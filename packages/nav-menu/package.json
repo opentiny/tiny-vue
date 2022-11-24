@@ -1,0 +1,17 @@
+{
+  "name": "@opentiny/vue-nav-menu",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "lint": "eslint src/**/*{.js,.html,.vue} --quiet",
+    "build:ui2": "cross-env BUILD_TARGET=single NODE_ENV=production node ../../build/build-ui.js",
+    "build:ui3": "cross-env BUILD_TARGET=single NODE_ENV=production node ../../example/build/build-ui.js"
+  },
+  "dependencies": {
+    "@opentiny/vue-common": "~0.1.0",
+    "@opentiny/vue-renderless": "~0.1.0",
+    "@opentiny/vue-locale": "~0.1.0"
+  },
+  "license": "MIT"
+}

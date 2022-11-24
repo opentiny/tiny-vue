@@ -1,0 +1,56 @@
+<template>
+  <div class="tiny-mobile-picker-column">
+    <div class="tiny-mobile-picker-column__mask" :style="state.maskStyle"></div>
+    <div
+      class="tiny-mobile-picker-column__indicator"
+      :style="{ height: itemHeight + 'px' }"
+    ></div>
+    <ul
+      class="tiny-mobile-picker-column__wrapper"
+      ref="track"
+      :style="state.wrapperStyle"
+      @click="onClickItem(1)"
+    >
+      <li
+        :class="{
+          'tiny-mobile-picker-column__item': true,
+          'is-select': index === state.currentIndex
+        }"
+        v-for="(item, index) in state.columnsItem.values"
+        :key="index"
+        @click.stop="onClickItem(index)"
+        :style="{ height: itemHeight + 'px', lineHeight: itemHeight + 'px' }"
+        @transitionend="onTransitionEnd"
+      >
+        {{ item }}
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+import {
+  renderless,
+  api
+} from '@opentiny/vue-renderless/picker-column/vue'
+import { $prefix, setup } from '@opentiny/vue-common'
+
+export default {
+  name: $prefix + 'PickerColumn',
+  emits: ['change'],
+  props: {
+    columnsItem: {
+      type: Object,
+      default: () => ({})
+    },
+    defaultIndex: Number,
+    itemHeight: Number,
+    visibleItemCount: Number,
+    swipeDuration: Number,
+    valueKey: String
+  },
+  setup(props, context) {
+    return setup({ props, context, renderless, api, mono: true })
+  }
+}
+</script>

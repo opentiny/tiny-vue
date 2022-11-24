@@ -1,0 +1,60 @@
+<template>
+  <component
+    :is="state.tag"
+    class="tiny-radio-group"
+    :class="[vertical ? 'list-inline' : '']"
+    role="radiogroup"
+    @keydown="handleKeydown"
+    ref="group"
+  >
+    <slot>
+      <template v-if="type === 'radio'">
+        <radio
+          v-for="(item, index) in options"
+          :key="index"
+          v-bind="item"
+        ></radio>
+      </template>
+      <template v-if="type === 'button'">
+        <radio-button
+          v-for="(item, index) in options"
+          :key="index"
+          v-bind="item"
+        ></radio-button>
+      </template>
+    </slot>
+  </component>
+</template>
+
+<script>
+import {
+  renderless,
+  api
+} from '@opentiny/vue-renderless/radio-group/vue'
+import { props, setup } from '@opentiny/vue-common'
+import Radio from '@opentiny/vue-radio'
+import RadioButton from '@opentiny/vue-radio-button'
+
+export default {
+  components: {
+    Radio,
+    RadioButton
+  },
+  emits: ['change'],
+  props: [
+    ...props,
+    'options',
+    'modelValue',
+    'type',
+    'size',
+    'fill',
+    'textColor',
+    'disabled',
+    'vertical'
+  ],
+  inheritAttrs: false,
+  setup(props, context) {
+    return setup({ props, context, renderless, api })
+  }
+}
+</script>

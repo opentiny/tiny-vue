@@ -1,0 +1,107 @@
+<template>
+  <div class="tiny-mobile-dropdown-menu-demo">
+    <tiny-dropdown-menu>
+      <tiny-dropdown-item
+        v-model="value1"
+        :options="option1"
+        @open="open"
+        @change="change"
+        @opened="opened"
+        @close="close"
+      >
+      </tiny-dropdown-item>
+      <tiny-dropdown-item
+        v-model="value3"
+        title="发布时间"
+        type="sort"
+        @click="sort"
+      ></tiny-dropdown-item>
+      <tiny-dropdown-item
+        v-model="value4"
+        :options="options4"
+        title="筛选"
+        type="filter"
+        @confirm="confirm"
+        @reset="reset"
+      ></tiny-dropdown-item>
+    </tiny-dropdown-menu>
+  </div>
+</template>
+
+<script>
+import { DropdownMenu, DropdownItem } from '@opentiny/vue'
+
+export default {
+  components: {
+    TinyDropdownMenu: DropdownMenu,
+    TinyDropdownItem: DropdownItem
+  },
+  data() {
+    return {
+      value1: 0,
+      value2: 'a',
+      value3: '',
+      value4: [[1, 2], [], []],
+      activeColor: 'violet',
+      option1: [
+        { text: '全部商品', value: 0 },
+        { text: '新款商品', value: 1 },
+        { text: '活动商品', value: 2 }
+      ],
+      option2: [
+        { text: '默认排序', value: 'a' },
+        { text: '好评排序', value: 'b' },
+        { text: '销量排序', value: 'c' }
+      ],
+      options4: [
+        {
+          title: '性别',
+          data: [
+            { value: 1, text: '女' },
+            { value: 2, text: '男' }
+          ]
+        },
+        {
+          title: '店铺类型',
+          data: [
+            { value: '1', text: '旗舰店' },
+            { value: 2, text: '专卖店' },
+            { value: 3, text: '专营店' }
+          ]
+        },
+        {
+          title: '商品类型',
+          data: [
+            { value: '1', text: '通用排序' },
+            { value: 2, text: '天猫直送' },
+            { value: 3, text: '公益宝贝' }
+          ]
+        }
+      ]
+    }
+  },
+  methods: {
+    open() {
+      console.log('open----')
+    },
+    close() {
+      console.log('close----')
+    },
+    opened() {
+      console.log('anima--------------')
+    },
+    change(val) {
+      console.log(val, '--------------')
+    },
+    sort(val) {
+      console.log(val)
+    },
+    confirm(ary) {
+      console.log(ary)
+    },
+    reset(ary) {
+      console.log(ary)
+    }
+  }
+}
+</script>

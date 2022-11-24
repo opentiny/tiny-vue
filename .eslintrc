@@ -1,0 +1,84 @@
+{
+  "root": true,
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": ["plugin:vue/essential", "eslint:recommended"],
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "ecmaVersion": 8
+  },
+  "rules": {
+    "no-debugger": "off",
+    "no-var": "error",
+    "no-tabs": "error",
+    "no-trailing-spaces": "error",
+    "no-mixed-spaces-and-tabs": "error",
+    "no-undef": "error",
+    "no-extra-semi": "error",
+    "no-empty": "error",
+    "no-console": "off",
+    "semi": [2, "never"],
+    "max-len": [
+      "warn",
+      {
+        "code": 160
+      }
+    ],
+    "function-paren-newline": ["off"],
+    "object-property-newline": [
+      "warn",
+      {
+        "allowAllPropertiesOnSameLine": true
+      }
+    ],
+    "newline-per-chained-call": [
+      "warn",
+      {
+        "ignoreChainWithDepth": 4
+      }
+    ],
+    "comma-dangle": "off",
+    "semi-style": ["warn", "last"],
+    "max-lines": ["error", 2000],
+    "max-lines-per-function": ["error", 200],
+    "complexity": ["error", 20],
+    "max-depth": ["warn", 4],
+    "max-nested-callbacks": ["error", 4],
+    "no-multi-assign": "off",
+    "no-undef-init": "warn",
+    "no-shadow": "off",
+    "max-params": ["warn", 5],
+    "no-param-reassign": "off",
+    "prefer-rest-params": "off",
+    "prefer-arrow-callback": "error",
+    "arrow-body-style": ["warn", "as-needed"],
+    "no-this-before-super": "error",
+    "quotes": ["warn", "single"],
+    "prefer-template": "off",
+    "no-multi-str": "warn",
+    "object-shorthand": "warn",
+    "dot-notation": "error",
+    "accessor-pairs": "error",
+    "no-prototype-builtins": "error",
+    "guard-for-in": "error",
+    "eqeqeq": "warn",
+    "no-negated-condition": "warn",
+    "no-fallthrough": "error",
+    "no-case-declarations": "error",
+    "no-unsafe-finally": "error",
+    "no-eval": "error",
+    "no-with": "error",
+    "no-implicit-coercion": [
+      "error",
+      {
+        "allow": ["!!", "~"]
+      }
+    ]
+  }
+}

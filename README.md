@@ -1,39 +1,75 @@
-#  tiny-vue
+<p align="center">
+  <a href="https://tinyuidesign.cloudbu.huawei.com/" target="_blank" rel="noopener noreferrer">
+    <img alt="TinyVue Logo" src="logo.svg" height="100" style="max-width:100%;">
+  </a>
+</p>
 
-#### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+<p align="center">Tiny Vue 是一个基于 Vue 的 UI 组件库，可以同时支持 Vue 2.0 和 Vue 3.0。</p>
 
-#### 软件架构
-软件架构说明
+特性：
 
+- 包含 69 个简洁、易用、功能强大的组件
+- 同时支持 Vue2 和 Vue3
+- 支持国际化
+- 支持主题定制
+- 组件内部支持配置式开发，特别适合低代码平台可视化组件配置
+- 采用模板、样式、逻辑分离的跨端跨框架架构，保障灵活性和可移植性
 
-#### 安装教程
+## 如何使用
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+### 1. 安装
 
-#### 使用说明
+执行以下命令，安装 Vue 3.0 版本的 Tiny Vue 组件库：
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+```shell
+npm i @opentiny/vue
+```
 
-#### 参与贡献
+执行以下命令，安装 Vue 2.0 版本的 Tiny Vue 组件库 ：
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+```shell
+npm i @opentiny/vue@2
+```
 
+### 2. 引入和使用
 
-#### 特技
+在`App.vue`文件中使用 Tiny Vue 组件。
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+```vue
+<script lang="ts" setup>
+import { Button as TinyButton } from '@opentiny/vue'
+</script>
+
+<template>
+  <tiny-button>Tiny Vue</tiny-button>
+</template>
+```
+
+## 本地开发
+
+```shell
+git clone git@github.com:opentiny/tiny-vue.git
+cd tiny-vue
+npm i
+
+# 启动 Vue3 项目
+npm run dev:vue3
+
+# 启动 Vue2 项目
+npm run dev:vue2
+```
+
+打开浏览器访问：[http://127.0.0.1:5173/](http://127.0.0.1:5173/)
+
+## 参与贡献
+
+如果你对我们的开源项目感兴趣，欢迎加入我们！
+
+参与贡献之前请先阅读[贡献指南](CONTRIBUTING.md)。
+
+- 添加官方小助手微信 opentiny，加入技术交流群
+- 加入邮件列表 opentiny@googlegroups.com
+
+## 开源协议
+
+[MIT](LICENSE)

@@ -1,0 +1,24 @@
+{
+  "name": "@opentiny/vue-picker",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "lint": "eslint src/**/*{.js,.html,.vue} --quiet",
+    "build:ui2": "cross-env BUILD_TARGET=single NODE_ENV=production node ../../build/build-ui.js",
+    "build:ui3": "cross-env BUILD_TARGET=single NODE_ENV=production node ../../example/build/build-ui.js"
+  },
+  "dependencies": {
+    "@opentiny/vue-common": "~0.1.0",
+    "@opentiny/vue-renderless": "~0.1.0",
+    "@opentiny/vue-input": "~0.1.0",
+    "@opentiny/vue-locale": "~0.1.0",
+    "@opentiny/vue-date-panel": "~0.1.0",
+    "@opentiny/vue-date-range": "~0.1.0",
+    "@opentiny/vue-month-range": "~0.1.0",
+    "@opentiny/vue-time": "~0.1.0",
+    "@opentiny/vue-time-range": "~0.1.0",
+    "@opentiny/vue-time-panel": "~0.1.0"
+  },
+  "license": "MIT"
+}

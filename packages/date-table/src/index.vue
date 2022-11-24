@@ -1,0 +1,89 @@
+<template>
+  <table
+    :class="['tiny-date-table', { 'is-week-mode': selectionMode === 'week' }]"
+    cellspacing="0"
+    @mousemove.stop="handleMouseMove"
+    cellpadding="0"
+    @click.stop="handleClick"
+  >
+    <tbody>
+      <tr>
+        <th v-if="showWeekNumber">{{ t('ui.datepicker.week') }}</th>
+        <th v-for="(weekDay, key) in state.weeks" :key="key">
+          {{ t(`ui.datepicker.weeks.${weekDay}`) }}
+        </th>
+      </tr>
+      <tr
+        v-for="(row, key) in state.rows"
+        :class="['tiny-date-table__row', { current: isWeekActive(row[1]) }]"
+        :key="key"
+      >
+        <td
+          v-for="(cellValue, key) in row"
+          :key="key"
+          :class="getCellClasses(cellValue)"
+        >
+          <div>
+            <span>
+              {{ cellValue.text }}
+            </span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</template>
+
+<script>
+import {
+  renderless,
+  api
+} from '@opentiny/vue-renderless/date-table/vue'
+import { $prefix, setup } from '@opentiny/vue-common'
+import { isDate } from '@opentiny/vue-renderless/common/deps/date-util'
+
+export default {
+  name: $prefix + 'DateTable',
+  emits: ['changerange', 'pick'],
+  props: {
+    value: {},
+    defaultValue: {
+      validator(value) {
+        return (
+          value === null ||
+          isDate(value) ||
+          (Array.isArray(value) && value.every(isDate))
+        )
+      }
+    },
+    firstDayOfWeek: {
+      default: 7,
+      type: Number,
+      validator: (value) => value >= 1 && value <= 7
+    },
+    date: {},
+    selectionMode: {
+      default: 'day'
+    },
+    disabledDate: {},
+    cellClassName: {},
+    maxDate: {},
+    minDate: {},
+    showWeekNumber: {
+      type: Boolean,
+      default: false
+    },
+    rangeState: {
+      default() {
+        return {
+          endDate: null,
+          selecting: false
+        }
+      }
+    }
+  },
+  setup(props, context) {
+    return setup({ props, context, renderless, api, mono: true })
+  }
+}
+</script>

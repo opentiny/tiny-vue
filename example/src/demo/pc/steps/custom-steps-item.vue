@@ -1,0 +1,54 @@
+<template>
+  <div class="content">
+    <tiny-steps
+      :data="stepsData"
+      name-field="reName"
+      count-field="reCount"
+      status-field="reStatus"
+    ></tiny-steps>
+  </div>
+</template>
+
+<script>
+import { Steps } from '@opentiny/vue'
+
+export default {
+  components: {
+    TinySteps: Steps
+  },
+  data() {
+    return {
+      stepsData: [
+        {
+          reName: 'name属性内容1',
+          reCount: 0,
+          reStatus: 'done'
+        },
+        {
+          reName: 'name属性内容2',
+          reCount: 9,
+          reStatus: 'done'
+        },
+        {
+          reName: 'name属性内容3',
+          reCount: 0,
+          reStatus: 'doing'
+        },
+        {
+          reName: 'name属性内容4',
+          reCount: 5,
+          reStatus: 'done'
+        }
+      ]
+    }
+  }
+}
+</script>
+
+<style scoped>
+.content {
+  padding: 20px;
+  max-width: 50%;
+  min-width: 700px;
+}
+</style>

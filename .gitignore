@@ -1,0 +1,41 @@
+.DS_Store
+node_modules
+dist/
+allDist/
+packages/**/runtime/
+coverage/
+
+/packages/base.js
+/packages/chart.js
+/packages/core.js
+/packages/index.js
+/packages/pc.js
+/packages/mobile.js
+
+# local env
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.history
+.vscode
+.cloudbuild
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.log
+*.stackdump
+
+yarn.lock
+package-lock.json
+
+tgzs
+*.tgz

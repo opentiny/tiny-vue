@@ -1,0 +1,53 @@
+<template>
+  <div>
+    <div class="page__hd">
+      <h1 class="page__title">Slider</h1>
+      <p class="page__desc">滑块</p>
+    </div>
+    <div class="padds">
+      <tiny-slider v-model="value"></tiny-slider>
+      <tiny-numeric
+        v-model="value"
+        :step="10"
+        :max="100"
+        :min="0"
+      ></tiny-numeric>
+    </div>
+  </div>
+</template>
+
+<script>
+import { Slider, Numeric } from '@opentiny/vue'
+
+export default {
+  components: {
+    TinySlider: Slider,
+    TinyNumeric: Numeric
+  },
+  data() {
+    return {
+      value: 20
+    }
+  }
+}
+</script>
+
+<style scoped>
+.page__hd {
+  padding: 40px;
+}
+.page__title {
+  font-weight: 400;
+  font-size: 21px;
+  text-align: left;
+}
+.page__desc {
+  margin-top: 5px;
+  color: #888;
+  font-size: 14px;
+  text-align: left;
+}
+.padds {
+  padding: 15px;
+}
+</style>

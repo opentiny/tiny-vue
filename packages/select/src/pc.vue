@@ -1,0 +1,363 @@
+<template>
+  <div
+    ref="select"
+    class="tiny-select"
+    v-popover:popover
+    :class="[
+      state.selectSize ? 'tiny-select--' + state.selectSize : '',
+      state.collapseTags ? 'tiny-select__collapse-tags' : '',
+      filterable ? 'tiny-select__filterable' : '',
+      multiple ? 'tiny-select__multiple' : '',
+      $parent.$attrs.class
+    ]"
+    @mouseleave.self="
+      () => {
+        state.selectHover = false
+        state.inputHovering = false
+      }
+    "
+    @mouseenter.self="
+      () => {
+        state.selectHover = true
+        state.inputHovering = true
+      }
+    "
+    @click.stop="toggleMenu"
+    v-clickoutside="handleClose"
+    v-bind="a($attrs, ['class', 'style'], true)"
+  >
+    <div :style="state.selectFiexd">
+      <div ref="tags" :class="['tiny-select__tags', { 'is-showicon': slots.prefix }]" v-if="multiple" :style="state.tagsStyle">
+        <span v-if="state.collapseTags && state.selected.length">
+          <tiny-tag
+            :closable="!state.selectDisabled"
+            :size="state.collapseTagSize"
+            :hit="state.selected[0].state ? state.selected[0].state.hitState : state.selected[0].hitState"
+            type="info"
+            @close="deleteTag($event, state.selected[0])"
+            disable-transitions
+          >
+            <span class="tiny-select__tags-text">{{ state.selected[0].state ? state.selected[0].state.currentLabel : state.selected[0].currentLabel }}</span>
+          </tiny-tag>
+          <tiny-tag v-if="state.selected.length > 1" :closable="false" :size="state.collapseTagSize" type="info" disable-transitions>
+            <span class="tiny-select__tags-text">+ {{ state.selected.length - 1 }}</span>
+          </tiny-tag>
+        </span>
+        <span v-if="!state.collapseTags">
+          <tiny-tag
+            v-for="(item, index) in state.selected"
+            :key="getValueKey(item)"
+            :closable="!state.selectDisabled"
+            :size="state.collapseTagSize"
+            :hit="item.state ? item.state.hitState : item.hitState"
+            type="info"
+            @close="deleteTag($event, item)"
+            disable-transitions
+          >
+            <span v-if="!state.visible && state.overflow === index" class="tiny-select__tags-text">{{
+              item.state ? item.state.currentLabel + '... ' : item.currentLabel + '... '
+            }}</span>
+            <span v-else class="tiny-select__tags-text">{{ item.state ? item.state.currentLabel : item.currentLabel }}</span>
+          </tiny-tag>
+        </span>
+
+        <input
+          ref="input"
+          v-if="filterable"
+          v-model="state.query"
+          type="text"
+          class="tiny-select__input"
+          :class="[state.selectSize ? `is-${state.selectSize}` : '']"
+          :disabled="state.selectDisabled"
+          :autocomplete="autocomplete"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @keyup="managePlaceholder"
+          @keydown="resetInputState"
+          @keydown.down.prevent="navigateOptions('next')"
+          @keydown.up.prevent="navigateOptions('prev')"
+          @keydown.enter.prevent="selectOption"
+          @keydown.esc.stop.prevent="state.visible = false"
+          @keydown.delete="deletePrevTag"
+          @keydown.tab="state.visible = false"
+          @compositionstart="handleComposition"
+          @compositionupdate="handleComposition"
+          @compositionend="handleComposition"
+          @input="debouncedQueryChange"
+          :style="{
+            'flex-grow': '1',
+            width: state.inputLength / (state.inputWidth - 32) + '%',
+            'max-width': state.inputWidth - 42 + 'px'
+          }"
+        />
+      </div>
+      <tiny-input
+        ref="reference"
+        v-model="state.selectedLabel"
+        type="text"
+        :placeholder="state.currentPlaceholder"
+        :name="name"
+        :id="id"
+        :autocomplete="autocomplete"
+        :size="state.selectSize"
+        :disabled="state.selectDisabled"
+        :readonly="state.readonly"
+        :unselectable="state.readonly ? 'on' : 'off'"
+        :validate-event="false"
+        :class="{ 'is-focus': state.visible, overflow: state.overflow }"
+        :tabindex="multiple && filterable ? '-1' : tabindex"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        @keyup="debouncedOnInputChange"
+        @keydown.down.stop.prevent="navigateOptions('next')"
+        @keydown.up.stop.prevent="navigateOptions('prev')"
+        @keydown.enter.prevent="selectOption"
+        @keydown.esc.stop.prevent="state.visible = false"
+        @keydown.tab="state.visible = false"
+        @paste="debouncedOnInputChange"
+        @mouseenter="onMouseenterNative"
+        @mouseleave="onMouseleaveNative"
+      >
+        <template #prefix v-if="slots.prefix">
+          <slot name="prefix"></slot>
+        </template>
+        <template #suffix>
+          <slot name="suffix"></slot>
+          <span v-if="state.showCopy" class="tiny-select__copy" @click.stop="handleCopyClick">
+            <icon-copy class="tiny-svg-size tiny-select__caret"></icon-copy>
+          </span>
+          <icon-chevron-down
+            v-show="!state.showClose && !(remote && filterable && !remoteConfig.showIcon)"
+            :class="['tiny-svg-size', 'tiny-select__caret', state.iconClass]"
+          ></icon-chevron-down>
+          <icon-close
+            v-if="state.showClose"
+            class="tiny-svg-size tiny-select__caret"
+            @click="handleClearClick"
+            @mouseenter="state.inputHovering = true"
+          ></icon-close>
+        </template>
+      </tiny-input>
+      <transition name="tiny-zoom-in-top" @before-enter="handleMenuEnter" @after-leave="doDestroy">
+        <tiny-select-dropdown
+          ref="popper"
+          :is-drop-inherit-width="isDropInheritWidth"
+          :placement="placement"
+          :append-to-body="popperAppendToBody"
+          v-show="!onCopying() && !hideDrop && state.visible && state.emptyText !== false"
+          :style="dropStyle"
+        >
+          <tiny-grid
+            v-if="renderType === 'grid'"
+            auto-resize
+            :row-id="valueField"
+            :select-config="buildSelectConfig()"
+            :radio-config="buildRadioConfig()"
+            ref="selectGrid"
+            :highlight-current-row="true"
+            :columns="gridOp.columns"
+            :data="state.gridData"
+            @select-all="selectChange"
+            @select-change="selectChange"
+            @radio-change="radioChange"
+            @mousedown.stop
+            v-bind="gridOp"
+          ></tiny-grid>
+
+          <tiny-tree
+            v-if="renderType === 'tree'"
+            :filter-node-method="filterMethod"
+            :props="{ label: textField }"
+            :expand-on-click-node="false"
+            :icon-trigger-click-node="false"
+            :node-key="valueField"
+            :default-expand-all="state.isExpandAll"
+            :check-strictly="treeOp.checkStrictly"
+            :default-checked-keys="state.gridCheckedData"
+            ref="selectTree"
+            :current-node-key="!multiple ? state.currentKey : ''"
+            :show-checkbox="multiple"
+            @node-collapse="nodeCollapse"
+            @node-expand="nodeExpand"
+            @check="nodeCheckClick"
+            @node-click="treeNodeClick"
+            v-bind="treeOp"
+          ></tiny-tree>
+
+          <tiny-scrollbar
+            v-if="!~['grid', 'tree'].indexOf(renderType)"
+            ref="scrollbar"
+            :tag="state.optimizeStore.flag ? 'div' : 'ul'"
+            :native="state.optimizeStore.flag"
+            :view-style="state.optimizeStore.flag ? state.optimizeStore.viewStyle : ''"
+            :wrap-class="['tiny-select-dropdown__wrap', state.optimizeStore.flag ? 'virtual' : '']"
+            :view-class="['tiny-select-dropdown__list', state.optimizeStore.flag ? 'virtual' : '']"
+            @mousedown.stop
+            :class="{
+              'is-empty': !allowCreate && state.query && state.filteredOptionsCount === 0
+            }"
+            v-show="state.options.length > 0 && !loading"
+          >
+            <tiny-option :value="state.query" created v-if="state.showNewOption && !state.optimizeStore.flag"> </tiny-option>
+            <li
+              v-if="multiple && showCheck && showAlloption && !filterable && !state.multipleLimit"
+              class="tiny-select-dropdown__item"
+              :class="{ hover: state.hoverIndex === -9, virtual: state.optimizeStore.flag }"
+              @click.stop="toggleCheckAll"
+              @mousedown.stop
+              @mouseenter="state.hoverIndex = -9"
+            >
+              <component :is="`icon-${state.selectCls}`" :class="['tiny-svg-size', state.selectCls]" />
+              <span>{{ t('ui.base.all') }}</span>
+            </li>
+            <slot>
+              <tiny-option
+                v-for="(item, index) in state.optimizeStore.flag ? state.optimizeStore.datas : state.datas"
+                :class="{
+                  virtual: state.optimizeStore.flag,
+                  'virtual-hidden': state.optimizeStore.flag && ~state.optimizeStore.hiddenOptions.indexOf(item)
+                }"
+                :key="state.optimizeStore.flag ? `${item[valueField]}` : index"
+                :label="item[textField]"
+                :value="item[valueField]"
+                :disabled="item.disabled"
+                :highlight-class="item._highlightClass"
+                :events="item.events"
+                @mousedown.stop
+              >
+              </tiny-option>
+            </slot>
+          </tiny-scrollbar>
+          <template
+            v-if="renderType !== 'grid' && renderType !== 'tree' && state.emptyText && (!allowCreate || loading || (allowCreate && state.options.length === 0))"
+          >
+            <slot name="empty" v-if="slots.empty"></slot>
+            <p class="tiny-select-dropdown__empty" v-else>
+              {{ state.emptyText }}
+            </p>
+          </template>
+        </tiny-select-dropdown>
+      </transition>
+    </div>
+  </div>
+</template>
+
+<script>
+import { renderless, api } from '@opentiny/vue-renderless/select/vue'
+import { props, setup, directive } from '@opentiny/vue-common'
+import TinyTag from '@opentiny/vue-tag'
+import TinyInput from '@opentiny/vue-input'
+import TinyOption from '@opentiny/vue-option'
+import TinyScrollbar from '@opentiny/vue-scrollbar'
+import TinySelectDropdown from '@opentiny/vue-select-dropdown'
+import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { iconClose, iconChevronDown, iconHalfselect, iconCheck, iconCheckedSur, iconCopy } from '@opentiny/vue-icon'
+import Grid from '@opentiny/vue-grid'
+import Tree from '@opentiny/vue-tree'
+
+const getReference = (el, binding, vnode) => {
+  const _ref = binding.expression ? binding.value : binding.arg
+  const popper = vnode.context.$refs[_ref]
+
+  if (popper) {
+    if (Array.isArray(popper)) {
+      popper[0].$refs.reference = el
+    } else {
+      popper.$refs.reference = el
+    }
+  }
+}
+
+export default {
+  emits: ['update:modelValue', 'change', 'focus', 'blur', 'clear', 'remove-tag', 'visible-change'],
+  directives: directive({
+    Clickoutside,
+    popover: {
+      bind(el, binding, vnode) {
+        getReference(el, binding, vnode)
+      },
+      inserted(el, binding, vnode) {
+        getReference(el, binding, vnode)
+      }
+    }
+  }),
+  components: {
+    TinyTag,
+    TinyInput,
+    TinyOption,
+    TinyGrid: Grid,
+    TinyTree: Tree,
+    IconClose: iconClose(),
+    TinyScrollbar,
+    IconChevronDown: iconChevronDown(),
+    IconCopy: iconCopy(),
+    TinySelectDropdown,
+    IconHalfselect: iconHalfselect(),
+    IconCheck: iconCheck(),
+    IconCheckedSur: iconCheckedSur()
+  },
+  props: [
+    ...props,
+    'id',
+    'multiple',
+    'name',
+    'dataset',
+    'readonly',
+    'tabindex',
+    'dropStyle',
+    'valueField',
+    'textField',
+    'copyable',
+    'size',
+    'options',
+    'showCheck',
+    'showAlloption',
+    'hideDrop',
+    'modelValue',
+    'showOverflowTooltip',
+    'remote',
+    'remoteConfig',
+    'placement',
+    'loading',
+    'disabled',
+    'valueKey',
+    'clearable',
+    'noDataText',
+    'filterable',
+    'loadingText',
+    'noMatchText',
+    'popperClass',
+    'allowCreate',
+    'placeholder',
+    'remoteMethod',
+    'filterMethod',
+    'collapseTags',
+    'autocomplete',
+    'multipleLimit',
+    'reserveKeyword',
+    'automaticDropdown',
+    'defaultFirstOption',
+    'popperAppendToBody',
+    'showDropdown',
+    'expandTags',
+    'renderType',
+    'gridOp',
+    'treeOp',
+    'delay',
+    'cacheOp',
+    'isDropInheritWidth',
+    'tagSelectable',
+    'selectConfig',
+    'radioConfig',
+    'allowCopy',
+    'textSplit',
+    'autoClose',
+    'queryDebounce',
+    'ignoreEnter',
+    'optimization'
+  ],
+  setup(props, context) {
+    return setup({ props, context, renderless, api })
+  }
+}
+</script>

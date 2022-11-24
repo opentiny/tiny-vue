@@ -1,0 +1,21 @@
+{
+  "name": "@opentiny/vue-link-menu",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "lint": "eslint src/**/*{.js,.html,.vue} --quiet",
+    "build:ui2": "cross-env BUILD_TARGET=single NODE_ENV=production node ../../build/build-ui.js",
+    "build:ui3": "cross-env BUILD_TARGET=single NODE_ENV=production node ../../example/build/build-ui.js"
+  },
+  "dependencies": {
+    "@opentiny/vue-renderless": "~0.1.0",
+    "@opentiny/vue-common": "~0.1.0",
+    "@opentiny/vue-icon": "~0.1.0",
+    "@opentiny/vue-input": "~0.1.0",
+    "@opentiny/vue-tree": "~0.1.0",
+    "@opentiny/vue-button": "~0.1.0",
+    "@opentiny/vue-dialog-box": "~0.1.0"
+  },
+  "license": "MIT"
+}
