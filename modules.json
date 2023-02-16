@@ -1,0 +1,1153 @@
+{
+  "ActionMenu": {
+    "path": "packages/action-menu/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ActionSheet": {
+    "path": "packages/action-sheet/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "mobile"
+  },
+  "Alert": {
+    "path": "packages/alert/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "AlertMobile": {
+    "path": "packages/alert/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "AlertPc": {
+    "path": "packages/alert/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Autocomplete": {
+    "path": "packages/autocomplete/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "AutocompletePc": {
+    "path": "packages/autocomplete/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Avatar": {
+    "path": "packages/avatar/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "mobile"
+  },
+  "Badge": {
+    "path": "packages/badge/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "BadgeMobile": {
+    "path": "packages/badge/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "BadgePc": {
+    "path": "packages/badge/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Breadcrumb": {
+    "path": "packages/breadcrumb/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "BreadcrumbItem": {
+    "path": "packages/breadcrumb-item/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "BreadcrumbItemPc": {
+    "path": "packages/breadcrumb-item/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "BreadcrumbPc": {
+    "path": "packages/breadcrumb/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "BulletinBoard": {
+    "path": "packages/bulletin-board/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "BulletinBoardPc": {
+    "path": "packages/bulletin-board/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Button": {
+    "path": "packages/button/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ButtonGroup": {
+    "path": "packages/button-group/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ButtonGroupPc": {
+    "path": "packages/button-group/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "ButtonMobile": {
+    "path": "packages/button/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "ButtonPc": {
+    "path": "packages/button/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Calendar": {
+    "path": "packages/calendar/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CalendarPc": {
+    "path": "packages/calendar/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "CardTemplate": {
+    "path": "packages/card-template/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CardTemplatePc": {
+    "path": "packages/card-template/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Carousel": {
+    "path": "packages/carousel/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CarouselItem": {
+    "path": "packages/carousel-item/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CarouselItemPc": {
+    "path": "packages/carousel-item/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "CarouselPc": {
+    "path": "packages/carousel/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Cascader": {
+    "path": "packages/cascader/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CascaderMenu": {
+    "path": "packages/cascader-menu/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CascaderNode": {
+    "path": "packages/cascader-node/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CascaderPanel": {
+    "path": "packages/cascader-panel/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CascaderPc": {
+    "path": "packages/cascader/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Checkbox": {
+    "path": "packages/checkbox/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CheckboxButton": {
+    "path": "packages/checkbox-button/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CheckboxButtonPc": {
+    "path": "packages/checkbox-button/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "CheckboxGroup": {
+    "path": "packages/checkbox-group/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CheckboxGroupMobile": {
+    "path": "packages/checkbox-group/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "CheckboxGroupPc": {
+    "path": "packages/checkbox-group/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "CheckboxMobile": {
+    "path": "packages/checkbox/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "CheckboxPc": {
+    "path": "packages/checkbox/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Col": {
+    "path": "packages/col/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ColPc": {
+    "path": "packages/col/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Collapse": {
+    "path": "packages/collapse/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CollapseItem": {
+    "path": "packages/collapse-item/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CollapseItemPc": {
+    "path": "packages/collapse-item/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "CollapsePc": {
+    "path": "packages/collapse/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "CollapseTransition": {
+    "path": "packages/collapse-transition/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "Container": {
+    "path": "packages/container/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ContainerPc": {
+    "path": "packages/container/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "CreditCard": {
+    "path": "packages/credit-card/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CreditCardForm": {
+    "path": "packages/credit-card-form/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CreditCardFormPc": {
+    "path": "packages/credit-card-form/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "CreditCardPc": {
+    "path": "packages/credit-card/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Crop": {
+    "path": "packages/crop/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "DatePanel": {
+    "path": "packages/date-panel/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "DatePicker": {
+    "path": "packages/date-picker/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "all"
+  },
+  "DatePickerMobile": {
+    "path": "packages/date-picker/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "DatePickerPc": {
+    "path": "packages/date-picker/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "DateRange": {
+    "path": "packages/date-range/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "DateTable": {
+    "path": "packages/date-table/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "DetailPage": {
+    "path": "packages/detail-page/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "DetailPagePc": {
+    "path": "packages/detail-page/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "DialogBox": {
+    "path": "packages/dialog-box/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "DialogBoxMobile": {
+    "path": "packages/dialog-box/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "DialogBoxPc": {
+    "path": "packages/dialog-box/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "DropTimes": {
+    "path": "packages/drop-times/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "DropTimesPc": {
+    "path": "packages/drop-times/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Dropdown": {
+    "path": "packages/dropdown/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "DropdownItem": {
+    "path": "packages/dropdown-item/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "mobile"
+  },
+  "DropdownItemMobile": {
+    "path": "packages/dropdown-item/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "DropdownItemPc": {
+    "path": "packages/dropdown-item/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "DropdownMenu": {
+    "path": "packages/dropdown-menu/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "mobile"
+  },
+  "DropdownMenuMobile": {
+    "path": "packages/dropdown-menu/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "DropdownMenuPc": {
+    "path": "packages/dropdown-menu/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Exception": {
+    "path": "packages/exception/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "mobile"
+  },
+  "FallMenu": {
+    "path": "packages/fall-menu/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "FallMenuPc": {
+    "path": "packages/fall-menu/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "FileUpload": {
+    "path": "packages/file-upload/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "FileUploadMobile": {
+    "path": "packages/file-upload/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "FileUploadPc": {
+    "path": "packages/file-upload/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Floatbar": {
+    "path": "packages/floatbar/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "FloatbarPc": {
+    "path": "packages/floatbar/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Form": {
+    "path": "packages/form/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "FormItem": {
+    "path": "packages/form-item/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "all"
+  },
+  "FormMobile": {
+    "path": "packages/form/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "FormPc": {
+    "path": "packages/form/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Fullscreen": {
+    "path": "packages/fullscreen/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "all"
+  },
+  "Grid": {
+    "path": "packages/grid/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "GridColumn": {
+    "path": "packages/grid-column/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "GridManager": {
+    "path": "packages/grid-manager/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "GridToolbar": {
+    "path": "packages/grid-toolbar/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "GridToolbarCustom": {
+    "path": "packages/grid-toolbar/src/custom.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "GridToolbarCustom-switch": {
+    "path": "packages/grid-toolbar/src/custom-switch.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Image": {
+    "path": "packages/image/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ImagePc": {
+    "path": "packages/image/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "ImageViewer": {
+    "path": "packages/image-viewer/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ImageViewerMobile": {
+    "path": "packages/image-viewer/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "ImageViewerPc": {
+    "path": "packages/image-viewer/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Input": {
+    "path": "packages/input/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "InputMobile": {
+    "path": "packages/input/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "InputPc": {
+    "path": "packages/input/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "InputTall-storage": {
+    "path": "packages/input/src/tall-storage.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "IpAddress": {
+    "path": "packages/ip-address/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "IpAddressPc": {
+    "path": "packages/ip-address/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Layout": {
+    "path": "packages/layout/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "LayoutPc": {
+    "path": "packages/layout/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Link": {
+    "path": "packages/link/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "LinkMenu": {
+    "path": "packages/link-menu/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "LinkMenuPc": {
+    "path": "packages/link-menu/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "LinkPc": {
+    "path": "packages/link/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "List": {
+    "path": "packages/list/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "mobile"
+  },
+  "Loading": {
+    "path": "packages/loading/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "Milestone": {
+    "path": "packages/milestone/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "MilestonePc": {
+    "path": "packages/milestone/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "MiniPicker": {
+    "path": "packages/mini-picker/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "mobile"
+  },
+  "Modal": {
+    "path": "packages/modal/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "MonthRange": {
+    "path": "packages/month-range/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "MonthTable": {
+    "path": "packages/month-table/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "NavBar": {
+    "path": "packages/nav-bar/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "mobile"
+  },
+  "NavMenu": {
+    "path": "packages/nav-menu/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "NavMenuPc": {
+    "path": "packages/nav-menu/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Notify": {
+    "path": "packages/notify/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "Numeric": {
+    "path": "packages/numeric/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "NumericMobile": {
+    "path": "packages/numeric/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "NumericPc": {
+    "path": "packages/numeric/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Option": {
+    "path": "packages/option/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "OptionGroup": {
+    "path": "packages/option-group/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "Pager": {
+    "path": "packages/pager/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "PagerItem": {
+    "path": "packages/pager-item/index.js",
+    "type": "component",
+    "exclude": false,
+    "private": "Pager"
+  },
+  "Panel": {
+    "path": "packages/panel/index.js",
+    "type": "component",
+    "exclude": true
+  },
+  "PanelPc": {
+    "path": "packages/panel/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Picker": {
+    "path": "packages/picker/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "PickerColumn": {
+    "path": "packages/picker-column/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "mobile"
+  },
+  "PopUpload": {
+    "path": "packages/pop-upload/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "PopUploadPc": {
+    "path": "packages/pop-upload/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Popeditor": {
+    "path": "packages/popeditor/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "PopeditorPc": {
+    "path": "packages/popeditor/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Popover": {
+    "path": "packages/popover/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "Popup": {
+    "path": "packages/popup/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "mobile"
+  },
+  "Progress": {
+    "path": "packages/progress/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ProgressMobile": {
+    "path": "packages/progress/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "ProgressPc": {
+    "path": "packages/progress/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "PullRefresh": {
+    "path": "packages/pull-refresh/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "mobile"
+  },
+  "Radio": {
+    "path": "packages/radio/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "RadioButton": {
+    "path": "packages/radio-button/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "RadioButtonPc": {
+    "path": "packages/radio-button/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "RadioGroup": {
+    "path": "packages/radio-group/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "RadioGroupPc": {
+    "path": "packages/radio-group/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "RadioMobile": {
+    "path": "packages/radio/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "RadioPc": {
+    "path": "packages/radio/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Rate": {
+    "path": "packages/rate/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "RatePc": {
+    "path": "packages/rate/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Row": {
+    "path": "packages/row/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "RowPc": {
+    "path": "packages/row/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "ScrollText": {
+    "path": "packages/scroll-text/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ScrollTextPc": {
+    "path": "packages/scroll-text/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Scrollbar": {
+    "path": "packages/scrollbar/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ScrollbarBar": {
+    "path": "packages/scrollbar/src/bar.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Search": {
+    "path": "packages/search/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "SearchMobile": {
+    "path": "packages/search/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "SearchPc": {
+    "path": "packages/search/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Select": {
+    "path": "packages/select/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "SelectDropdown": {
+    "path": "packages/select-dropdown/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "SelectDropdownPc": {
+    "path": "packages/select-dropdown/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "SelectPc": {
+    "path": "packages/select/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "SlideBar": {
+    "path": "packages/slide-bar/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "SlideBarPc": {
+    "path": "packages/slide-bar/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Slider": {
+    "path": "packages/slider/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "SliderMobile": {
+    "path": "packages/slider/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "SliderPc": {
+    "path": "packages/slider/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Split": {
+    "path": "packages/split/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "SplitPc": {
+    "path": "packages/split/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Steps": {
+    "path": "packages/steps/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "StepsPc": {
+    "path": "packages/steps/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "SvgIcon": {
+    "path": "packages/svg-icon/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "Switch": {
+    "path": "packages/switch/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "SwitchMobile": {
+    "path": "packages/switch/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "SwitchPc": {
+    "path": "packages/switch/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TabItem": {
+    "path": "packages/tab-item/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "all"
+  },
+  "Tabbar": {
+    "path": "packages/tabbar/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "mobile"
+  },
+  "TabbarItem": {
+    "path": "packages/tabbar-item/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "mobile"
+  },
+  "TabbarItemMobile": {
+    "path": "packages/tabbar-item/src/mobile.vue",
+    "type": "template",
+    "exclude": false,
+    "onlyMode": "mobile"
+  },
+  "Table": {
+    "path": "packages/table/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "Tabs": {
+    "path": "packages/tabs/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "TabsMobile": {
+    "path": "packages/tabs/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TabsPc": {
+    "path": "packages/tabs/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TabsTab-navMb": {
+    "path": "packages/tabs/src/mb.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TabsTab-navTab-bar": {
+    "path": "packages/tabs/src/tab-bar.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Tag": {
+    "path": "packages/tag/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "TagPc": {
+    "path": "packages/tag/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TextPopup": {
+    "path": "packages/text-popup/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "TextPopupPc": {
+    "path": "packages/text-popup/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Time": {
+    "path": "packages/time/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "TimeLine": {
+    "path": "packages/time-line/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "TimeLineMobile": {
+    "path": "packages/time-line/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TimeLinePc": {
+    "path": "packages/time-line/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TimePanel": {
+    "path": "packages/time-panel/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "TimePicker": {
+    "path": "packages/time-picker/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "TimeRange": {
+    "path": "packages/time-range/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "TimeSelect": {
+    "path": "packages/time-select/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "TimeSpinner": {
+    "path": "packages/time-spinner/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ToggleMenu": {
+    "path": "packages/toggle-menu/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ToggleMenuPc": {
+    "path": "packages/toggle-menu/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Tooltip": {
+    "path": "packages/tooltip/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "TopBox": {
+    "path": "packages/top-box/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "TopBoxPc": {
+    "path": "packages/top-box/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Transfer": {
+    "path": "packages/transfer/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "TransferPanel": {
+    "path": "packages/transfer-panel/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "TransferPc": {
+    "path": "packages/transfer/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Tree": {
+    "path": "packages/tree/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "TreeMenu": {
+    "path": "packages/tree-menu/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "TreePc": {
+    "path": "packages/tree/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TreeTree-node": {
+    "path": "packages/tree/src/tree-node.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Upload": {
+    "path": "packages/upload/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "all"
+  },
+  "UploadDragger": {
+    "path": "packages/upload-dragger/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "UploadList": {
+    "path": "packages/upload-list/index.js",
+    "type": "component",
+    "exclude": false,
+    "onlyMode": "all"
+  },
+  "UserContact": {
+    "path": "packages/user-contact/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "UserContactPc": {
+    "path": "packages/user-contact/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "UserHead": {
+    "path": "packages/user-head/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "UserHeadPc": {
+    "path": "packages/user-head/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Wizard": {
+    "path": "packages/wizard/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "WizardPc": {
+    "path": "packages/wizard/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "YearTable": {
+    "path": "packages/year-table/index.js",
+    "type": "component",
+    "exclude": false
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "root": true,
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": ["eslint:recommended", "plugin:vue/vue3-essential"],
+  "parserOptions": {
+    "parser": ["vue-eslint-parser", "@babel/eslint-parser"],
+    "requireConfigFile": false,
+    "sourceType": "module",
+    "ecmaVersion": "latest",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "no-debugger": "off",
+    "no-var": "error",
+    "no-tabs": "error",
+    "no-trailing-spaces": "error",
+    "no-mixed-spaces-and-tabs": "error",
+    "no-undef": "error",
+    "no-extra-semi": "error",
+    "no-empty": "error",
+    "no-console": "off",
+    "semi": [2, "never"],
+    "max-len": [
+      "warn",
+      {
+        "code": 160
+      }
+    ],
+    "function-paren-newline": ["off"],
+    "object-property-newline": [
+      "warn",
+      {
+        "allowAllPropertiesOnSameLine": true
+      }
+    ],
+    "newline-per-chained-call": [
+      "warn",
+      {
+        "ignoreChainWithDepth": 4
+      }
+    ],
+    "comma-dangle": "off",
+    "semi-style": ["warn", "last"],
+    "max-lines": ["error", 2400],
+    "max-lines-per-function": ["error", 200],
+    "complexity": ["error", 26],
+    "max-depth": ["warn", 4],
+    "max-nested-callbacks": ["error", 4],
+    "no-multi-assign": "off",
+    "no-undef-init": "warn",
+    "no-shadow": "off",
+    "max-params": ["warn", 5],
+    "no-param-reassign": "off",
+    "prefer-rest-params": "off",
+    "prefer-arrow-callback": "error",
+    "arrow-body-style": ["warn", "as-needed"],
+    "no-this-before-super": "error",
+    "quotes": ["warn", "single"],
+    "prefer-template": "off",
+    "no-multi-str": "warn",
+    "object-shorthand": "warn",
+    "dot-notation": "error",
+    "accessor-pairs": "error",
+    "no-prototype-builtins": "error",
+    "guard-for-in": "error",
+    "eqeqeq": "off",
+    "no-fallthrough": "error",
+    "no-case-declarations": "error",
+    "no-unsafe-finally": "error",
+    "no-eval": "error",
+    "no-with": "error",
+    "no-implicit-coercion": [
+      "error",
+      {
+        "allow": ["!!", "~"]
+      }
+    ],
+    "vue/multi-word-component-names": "off",
+    "vue/valid-v-slot": "off",
+    "vue/no-deprecated-v-on-native-modifier": "off",
+    "vue/no-reserved-component-names": "off",
+    "vue/no-deprecated-dollar-listeners-api": "off",
+    "vue/no-deprecated-slot-attribute": "off",
+    "vue/no-use-computed-property-like-method": "off",
+    "vue/no-mutating-props": "off"
+  }
+}

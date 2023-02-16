@@ -1,0 +1,3 @@
+# Except myapp folder:
+dist/
+public/

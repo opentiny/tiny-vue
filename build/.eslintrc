@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "no-empty": "off",
+    "no-console": "off"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/vue-icon",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/index.js",
+  "sideEffects": false,
+  "dependencies": {
+    "@opentiny/vue-common": "~0.1.0"
+  },
+  "license": "MIT"
+}
