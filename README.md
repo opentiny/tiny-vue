@@ -50,7 +50,7 @@ import { Button as TinyButton } from '@opentiny/vue'
 ```shell
 git clone git@github.com:opentiny/tiny-vue.git
 cd tiny-vue
-npm i
+npm i --legacy-peer-deps
 
 # 启动 Vue3 项目
 npm run dev:vue3
