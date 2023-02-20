@@ -39,11 +39,12 @@ const config = {
       '@opentiny/vue-common': pathJoin('packages/common'),
       '@opentiny/vue-renderless': pathJoin('../tiny-vue-renderless/src'),
       '@opentiny/vue-icon': pathJoin('packages/icon/index.js'),
+      ...doComponents(),
       '@opentiny/vue-theme/base/index.css': pathJoin('../tiny-vue-theme/src/base/index.less'),
-      '@opentiny/vue-theme/theme-tool.js': pathJoin('../tiny-vue-theme/src/theme-tool.js'),
-      '@opentiny/vue-theme/theme': pathJoin('../tiny-vue-theme/src/theme/index.js'),
-      '@opentiny/vue-theme-mobile/base/index.css': pathJoin('../tiny-vue-theme-mobile/src/base/index.less'),
-      ...doComponents()
+      '@opentiny/vue-theme/svg/index.css': pathJoin('../tiny-vue-theme/src/svg/index.less'),
+      '@opentiny/vue-theme/tall-storage/index.css': pathJoin('../tiny-vue-theme/src/tall-storage/index.less'),
+      '@opentiny/vue-theme': pathJoin('../tiny-vue-theme/src'),
+      '@opentiny/vue-theme-mobile/base/index.css': pathJoin('../tiny-vue-theme-mobile/src/base/index.less')
     }
   },
   define: {
