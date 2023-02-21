@@ -11,14 +11,18 @@
  -->
 
 <template>
-  <div class="tiny-user-head">
-    <div :style="state.style" :class="['tiny-user-head__portrait', { min, round }, type]">
+  <div class="tiny-mobile-user-head">
+    <div :style="{ ...state.style, width: `${state.size}px`, height: `${state.size}px` }" :class="['tiny-mobile-user-head__portrait', { min, round }, type]">
       <slot>
-        <component v-if="type === 'icon'" :is="state.internalValue" class="tiny-svg-size" />
-        <span v-if="type === 'label'" :style="state.fontSize" :title="state.internalValue">{{ state.label }}</span>
+        <component v-if="type === 'icon'" :is="state.internalValue" class="tiny-mobile-svg-size" />
+        <span v-if="type === 'label'" :style="{ fontSize: `${state.size * 0.3}px` }" :title="state.internalValue">{{ state.label }}</span>
       </slot>
     </div>
-    <div v-if="messageTotal" :class="['tiny-user-head__message', { min, round, basic: messageType === 'basic' || messageType === 'icon' }]">
+    <div
+      v-if="messageTotal"
+      :style="{ left: `${state.size * 0.9}px` }"
+      :class="['tiny-mobile-user-head__message', { min, round, basic: messageType === 'basic' || messageType === 'icon' }]"
+    >
       {{ state.message }}
     </div>
   </div>
@@ -28,13 +32,13 @@
 import { renderless, api } from '@opentiny/vue-renderless/user-head/vue'
 import { props, setup } from '@opentiny/vue-common'
 import { iconUser } from '@opentiny/vue-icon'
-import '@opentiny/vue-theme/user-head/index.css'
+import '@opentiny/vue-theme-mobile/user-head/index.css'
 
 export default {
   components: {
     IconUser: iconUser()
   },
-  props: [...props, 'min', 'round', 'color', 'backgroundColor', 'type', 'modelValue', 'messageTotal', 'messageType', 'messageUpperLimit'],
+  props: [...props, 'min', 'round', 'color', 'backgroundColor', 'type', 'modelValue', 'messageTotal', 'messageType', 'messageUpperLimit', 'size'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
