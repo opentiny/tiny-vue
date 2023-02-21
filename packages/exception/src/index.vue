@@ -12,13 +12,14 @@
 <template>
   <div class="tiny-mobile-exception" :class="exceptionClass">
     <div class="tiny-mobile-exception__content">
-      <div class="tiny-mobile-exception__content-view" :class="['tiny-mobile-exception__content-' + type]"></div>
+      <img v-if="imageUrl" :src="imageUrl" class="tiny-mobile-exception__image" />
+      <div v-else class="tiny-mobile-exception__content-view" :class="['tiny-mobile-exception__content-' + type]"></div>
       <slot name="content">
         <div class="tiny-mobile-exception__content-message">
           <div class="main-message">{{ state.message }}</div>
           <div v-if="subMessage" class="sub-message">{{ subMessage }}</div>
           <slot v-if="type === 'nodata'">
-            <tiny-button @click="create" type="primary" size="medium" plain> {{ buttonText ? buttonText : t('ui.exception.create') }}</tiny-button>
+            <tiny-button @click="create" type="primary" size="medium" round> {{ buttonText ? buttonText : t('ui.exception.create') }}</tiny-button>
           </slot>
         </div>
       </slot>
@@ -49,7 +50,8 @@ export default {
     message: String,
     subMessage: String,
     exceptionClass: String,
-    buttonText: String
+    buttonText: String,
+    imageUrl: String
   },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
