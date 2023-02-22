@@ -1124,6 +1124,11 @@ const router = [
     path: 'exception/type',
     meta: { title: 'mobileexception 缺省页组件 - 类型', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/exception/type.md')
+  },
+  {
+    path: 'table',
+    meta: { title: 'table 表格组件 - 类型', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/table/base.md')
   }
 ]
 
