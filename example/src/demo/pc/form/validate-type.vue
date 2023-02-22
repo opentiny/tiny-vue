@@ -1,13 +1,11 @@
 <template>
   <div class="demo-form-valid-text">
-    <br />
-    <p>配置在form标签上</p>
-    <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-width="100px" validate-type="text" :inline-message="true">
-      <tiny-form-item label="必填" prop="users" validate-position="top-end">
-        <tiny-input v-model="createData.users"></tiny-input>
-      </tiny-form-item>
+    <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-width="100px" :label-align="true" label-position="left" validate-type="text">
       <tiny-form-item label="日期" prop="datepicker">
         <tiny-date-picker v-model="createData.datepicker"></tiny-date-picker>
+      </tiny-form-item>
+      <tiny-form-item label="必填" prop="users" validate-position="top-end">
+        <tiny-input v-model="createData.users"></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="URL" prop="url" validate-position="bottom-end">
         <tiny-input v-model="createData.url"></tiny-input>
@@ -20,14 +18,6 @@
       </tiny-form-item>
       <tiny-form-item>
         <tiny-button type="primary" @click="handleSubmit('ruleForm')">提交</tiny-button>
-      </tiny-form-item>
-    </tiny-form>
-
-    <p>配置在某一个 form-item 上控制某一项的校验提示形式</p>
-
-    <tiny-form ref="ruleForm1" :model="createData" :rules="rules" label-width="100px" validate-type="text">
-      <tiny-form-item label="必填" prop="users" show-message error="自定义的错误信息" validate-type="text" :inline-message="true" size="mini">
-        <tiny-input v-model="createData.users"></tiny-input>
       </tiny-form-item>
     </tiny-form>
   </div>

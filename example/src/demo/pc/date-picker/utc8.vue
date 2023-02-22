@@ -1,9 +1,5 @@
 <template>
-  <tiny-date-picker
-    v-model="referenceDate"
-    :isutc8="true"
-    format="dd/MM/yyyy"
-  ></tiny-date-picker>
+  <tiny-date-picker v-model="referenceDate" :isutc8="true" format="dd/MM/yyyy"></tiny-date-picker>
 </template>
 
 <script>

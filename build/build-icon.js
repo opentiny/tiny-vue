@@ -32,7 +32,7 @@ const inputOptions = {
     // 如果打包文件中包含 jsx 语法， commonjs 必须放置在 babel 配置下面，否则会报错 PLUGIN_ERROR
     commonjs()
   ],
-  external: (deps) => /^@opentiny[\\/]-vue-common/.test(deps)
+  external: (deps) => /^@huawei[\\/]tiny-vue-common/.test(deps)
 }
 
 const outputOptions = {
@@ -49,7 +49,7 @@ const build = (components) => {
     if (component.path === 'index.js') {
       inputs.external = (deps) => !deps.includes('index.js')
     } else {
-      inputs.external = (deps) => /^@opentiny[\\/]vue-common/.test(deps)
+      inputs.external = (deps) => /^@huawei[\\/]tiny-vue-common/.test(deps)
     }
 
     rollup

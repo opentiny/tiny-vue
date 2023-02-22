@@ -142,15 +142,7 @@ const runtimeComponents = {
     'Chart',
     'ChartBoxplot'
   ],
-  external: [
-    'CardTemplate',
-    'CreditCard',
-    'CreditCardForm',
-    'SvgIcon',
-    'AutonaviMap',
-    'ChartWordcloud',
-    'ChartLiquidfill'
-  ]
+  external: ['CardTemplate', 'CreditCard', 'CreditCardForm', 'SvgIcon', 'AutonaviMap', 'ChartWordcloud', 'ChartLiquidfill']
 }
 
 const echartsVersion = getVersion('echarts')
@@ -160,12 +152,10 @@ const dependencies = {
   vue: 'node_modules/vue/dist/vue.min.js',
   'vue-i18n': 'node_modules/vue-i18n/dist/vue-i18n.min.js',
   axios: 'node_modules/axios/dist/axios.min.js',
-  'axios-mock-adapter':
-    'node_modules/axios-mock-adapter/dist/axios-mock-adapter.min.js',
-  '@vue/composition-api':
-    'node_modules/@vue/composition-api/dist/vue-composition-api.prod.js',
-  '@aurora/core': 'node_modules/@aurora/core/dist/aurora.min.js',
-  '@aurora/service': 'node_modules/@aurora/service/dist/aurora.service.min.js',
+  'axios-mock-adapter': 'node_modules/axios-mock-adapter/dist/axios-mock-adapter.min.js',
+  '@vue/composition-api': 'node_modules/@vue/composition-api/dist/vue-composition-api.prod.js',
+  '@huawei/core': 'node_modules/@huawei/core/dist/aurora.min.js',
+  '@huawei/service': 'node_modules/@huawei/service/dist/aurora.service.min.js',
   cropperjs: 'node_modules/cropperjs/dist/cropper.min.js',
   vue3: 'example/node_modules/vue/dist/vue.global.prod.js',
   'vue3-i18n': 'example/node_modules/vue-i18n/dist/vue-i18n.global.js'
@@ -176,17 +166,14 @@ const runtimeDeps = {
     vue: 'lib/vue.min.js' + getVersion('vue'),
     axios: 'lib/axios.min.js' + getVersion('axios'),
     'vue-i18n': 'lib/vue-i18n.min.js' + getVersion('vue-i18n'),
-    'axios-mock-adapter':
-      'lib/axios-mock-adapter.min.js' + getVersion('axios-mock-adapter')
+    'axios-mock-adapter': 'lib/axios-mock-adapter.min.js' + getVersion('axios-mock-adapter')
   },
   aurora: {
-    '@aurora/core': 'lib/aurora.min.js' + getVersion('@aurora/core'),
-    '@aurora/service':
-      'lib/aurora.service.min.js' + getVersion('@aurora/service')
+    '@huawei/core': 'lib/aurora.min.js' + getVersion('@huawei/core'),
+    '@huawei/service': 'lib/aurora.service.min.js' + getVersion('@huawei/service')
   },
-  aui3Lib: {
-    '@vue/composition-api':
-      'lib/vue-composition-api.prod.js' + getVersion('@vue/composition-api'),
+  tiny3Lib: {
+    '@vue/composition-api': 'lib/vue-composition-api.prod.js' + getVersion('@vue/composition-api'),
     echarts: echartsSource,
     'echarts/lib/echarts': echartsSource,
     'echarts/lib/chart/bar': echartsSource,
@@ -217,13 +204,10 @@ const runtimeDeps = {
     'echarts/lib/component/dataZoom': echartsSource,
     'echarts/lib/component/visualMap': echartsSource,
     cropperjs: 'lib/cropper.min.js' + getVersion('cropperjs'),
-    '@opentiny/vue-renderless-common':
-      'aui/common/renderless.js' +
-      getVersion('@opentiny/vue-renderless')
+    '@opentiny/vue-renderless-common': 'tiny/common/renderless.js' + getVersion('@opentiny/vue-renderless')
   },
-  aui3Component: {
-    '@opentiny/vue-locale':
-      'COMPONENT_DIR/locale.js' + auroraVueVersion,
+  tiny3Component: {
+    '@opentiny/vue-locale': 'COMPONENT_DIR/locale.js' + auroraVueVersion,
     '@opentiny/vue-icon': 'COMPONENT_DIR/icon.js' + auroraVueVersion,
     '@opentiny/vue-common': 'COMPONENT_DIR/common.js' + auroraVueVersion
   }
@@ -241,9 +225,7 @@ const getPartDeps = (keys = []) => {
   return tempDeps
 }
 
-const getAllDeps = () => {
-  return getPartDeps(Object.keys(runtimeDeps))
-}
+const getAllDeps = () => getPartDeps(Object.keys(runtimeDeps))
 
 const getAllComponents = () => {
   const componentMap = moduleUtils.getPcComponents(true)
@@ -255,38 +237,26 @@ const getAllComponents = () => {
     let version = auroraVueVersion
 
     try {
-      version =
-        '?v=' +
-        require('../' +
-          libEntry.replace('index.js', 'package.json')).version.replace(
-          /[\^|~]/g,
-          ''
-        )
+      version = '?v=' + require('../' + libEntry.replace('index.js', 'package.json')).version.replace(/[\^|~]/g, '')
     } catch (e) {
       logRed(e)
     }
 
-    systemMap[componentMap[i].importName] =
-      'COMPONENT_DIR/' + libName + '.js' + version
+    systemMap[componentMap[i].importName] = 'COMPONENT_DIR/' + libName + '.js' + version
   }
 
   return systemMap
 }
 
-const getFullRuntimeDeps = () => {
-  return { ...getAllDeps(), ...getAllComponents() }
-}
+const getFullRuntimeDeps = () => ({ ...getAllDeps(), ...getAllComponents() })
 
-const getComponentRuntimeDeps = () => {
-  return {
-    ...getPartDeps(['theme', 'aui3Lib', 'aui3Component']),
-    ...getAllComponents()
-  }
-}
+const getComponentRuntimeDeps = () => ({
+  ...getPartDeps(['theme', 'tiny3Lib', 'tiny3Component']),
+  ...getAllComponents()
+})
 
 const getFullRuntime = (name) => {
-  const arr =
-    typeof name === 'string' ? [name] : name || Object.keys(runtimeComponents)
+  const arr = typeof name === 'string' ? [name] : name || Object.keys(runtimeComponents)
 
   return [].concat(...arr.map((key) => runtimeComponents[key]))
 }
@@ -295,14 +265,7 @@ const getFullRuntime = (name) => {
  * 提取 @opentiny/vue-renderless 中的公共代码，打成独立包（避免组件运行不正常）
  */
 const getRenderlessExports = () => {
-  const RENDERLESS_PATH = pathJoin(
-    '..',
-    'node_modules',
-    '@aurora',
-    'renderless',
-    'common',
-    'runtime.js'
-  )
+  const RENDERLESS_PATH = pathJoin('..', 'node_modules', '@huawei', 'renderless', 'common', 'runtime.js')
 
   let EXTERNAL_RENDERLESS = []
 

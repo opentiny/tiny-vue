@@ -1,13 +1,6 @@
 <template>
   <div class="demo-select">
-    <tiny-select
-      v-model="treeRadio"
-      value-field="id"
-      text-field="label"
-      render-type="tree"
-      :tree-op="treeOp"
-      placeholder="请选择"
-    ></tiny-select>
+    <tiny-select v-model="treeRadio" value-field="id" text-field="label" render-type="tree" :tree-op="treeOp" placeholder="请选择"></tiny-select>
   </div>
 </template>
 

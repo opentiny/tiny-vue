@@ -17,7 +17,7 @@ export default {
           {
             text: '基于 url',
             date: '2019-07-31',
-            url: 'https://abcde.com',
+            url: 'localhost:3000/#/webcore/zh-CN/guide/changelog',
             target: '_blank'
           }
         ]

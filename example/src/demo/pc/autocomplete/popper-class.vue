@@ -25,33 +25,33 @@ export default {
   },
   data() {
     return {
-      list: [],
+      restaurants: [],
       value: '',
       popperAppendToBody: true
     }
   },
   mounted() {
-    this.list = this.loadAll()
+    this.restaurants = this.loadAll()
   },
   methods: {
     querySearch(queryString, cb) {
-      let list = this.list
-      let res = queryString ? list.filter(this.createFilter(queryString)) : list
+      let restaurants = this.restaurants
+      let results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants
 
-      // 返回建议列表的数据
-      cb(res)
+      // 调用 callback 返回建议列表的数据
+      cb(results)
     },
     createFilter(queryString) {
-      return (listItem) => listItem.name.toLowerCase().indexOf(queryString.toLowerCase()) === 0
+      return (restaurant) => restaurant.name.toLowerCase().indexOf(queryString.toLowerCase()) === 0
     },
     loadAll() {
       return [
         {
-          name: 'GFDDDDDDD科技公司',
+          name: 'GFDDDDDDD科技YX公司',
           address: '福州'
         },
         {
-          name: 'WWWWWWWWWW科技公司',
+          name: 'WWWWWWWWWW科技YX公司',
           address: '深圳福田区'
         },
         {
@@ -59,15 +59,15 @@ export default {
           address: '中山市'
         },
         {
-          name: 'TGBGBBBBBBBB公司',
+          name: 'TGBGBBBBBBBBYX公司',
           address: '梅州'
         },
         {
-          name: 'YHNNNNNNN科技公司',
+          name: 'YHNNNNNNN科技YX公司',
           address: '韶关'
         },
         {
-          name: '康康物业公司',
+          name: '康康物业YX公司',
           address: '广州天河区'
         }
       ]

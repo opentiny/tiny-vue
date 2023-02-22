@@ -1,12 +1,6 @@
 <template>
   <div class="input-wrap">
-    <tiny-input
-      v-model="input"
-      type="textarea"
-      counter
-      show-word-limit
-      :maxlength="20"
-    ></tiny-input>
+    <tiny-input v-model="input" type="textarea" counter show-word-limit :maxlength="20"></tiny-input>
   </div>
 </template>
 

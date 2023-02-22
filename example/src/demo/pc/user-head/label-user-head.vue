@@ -1,10 +1,5 @@
 <template>
-  <tiny-user-head
-    class="head-item"
-    type="label"
-    round
-    v-model="text"
-  ></tiny-user-head>
+  <tiny-user-head class="head-item" type="label" round v-model="text"></tiny-user-head>
 </template>
 
 <script>

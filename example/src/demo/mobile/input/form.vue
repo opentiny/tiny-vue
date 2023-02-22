@@ -1,11 +1,6 @@
 <template>
   <div class="input-wrap">
-    <tiny-input
-      v-model="input"
-      type="form"
-      is-select
-      :select-menu="selectMenu"
-    ></tiny-input>
+    <tiny-input v-model="input" type="form" is-select :select-menu="selectMenu"></tiny-input>
   </div>
 </template>
 

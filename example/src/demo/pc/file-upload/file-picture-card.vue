@@ -1,20 +1,12 @@
 <template>
   <div class="content">
-    <tiny-file-upload
-      :action="action"
-      class="upload-demo picture-demo"
-      list-type="picture-card"
-    >
+    <tiny-file-upload :action="action" class="upload-demo picture-demo" list-type="picture-card">
       <template #default>
         <icon-plus class="tiny-svg-size" />
       </template>
       <template #file="file">
         <div>
-          <img
-            class="tiny-upload-list__item-thumbnail"
-            :src="file.file.url"
-            alt=""
-          />
+          <img class="tiny-upload-list__item-thumbnail" :src="file.file.url" alt="" />
           <span class="tiny-upload-list__item-actions">
             <span class="tiny-upload-list__item-preview">
               <icon-view class="tiny-svg-size" />
@@ -37,21 +29,16 @@
 
 <script>
 import { FileUpload, DialogBox } from '@opentiny/vue'
-import {
-  iconPlus,
-  iconView,
-  iconDownload,
-  iconDel
-} from '@opentiny/vue-icon'
+import { IconPlus, IconView, IconDownload, IconDel } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyFileUpload: FileUpload,
     TinyDialogBox: DialogBox,
-    IconPlus: iconPlus(),
-    IconView: iconView(),
-    IconDownload: iconDownload(),
-    IconDel: iconDel()
+    IconPlus: IconPlus(),
+    IconView: IconView(),
+    IconDownload: IconDownload(),
+    IconDel: IconDel()
   },
   data() {
     return {

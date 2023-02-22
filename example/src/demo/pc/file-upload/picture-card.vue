@@ -1,10 +1,6 @@
 <template>
   <div class="content">
-    <tiny-file-upload
-      class="upload-demo picture-demo"
-      :action="action"
-      list-type="picture-card"
-    >
+    <tiny-file-upload class="upload-demo picture-demo" :action="action" list-type="picture-card">
       <icon-plus class="tiny-svg-size" />
     </tiny-file-upload>
     <tiny-dialog-box v-model="dialogVisible1">
@@ -15,13 +11,13 @@
 
 <script>
 import { FileUpload, DialogBox } from '@opentiny/vue'
-import { iconPlus } from '@opentiny/vue-icon'
+import { IconPlus } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyFileUpload: FileUpload,
     TinyDialogBox: DialogBox,
-    IconPlus: iconPlus()
+    IconPlus: IconPlus()
   },
   data() {
     return {

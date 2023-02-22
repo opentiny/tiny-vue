@@ -1,0 +1,94 @@
+{
+  "country": [
+    {
+      "territory_short_name": "China",
+      "description": "the People's Republic of China",
+      "language": "US",
+      "territory_code": "CN"
+    },
+    {
+      "territory_short_name": "France",
+      "description": "the French Republic",
+      "language": "US",
+      "territory_code": "FR"
+    },
+    {
+      "territory_short_name": "Finland",
+      "description": "the Republic of Finland",
+      "language": "US",
+      "territory_code": "FI"
+    },
+    {
+      "territory_short_name": "Kuwait",
+      "description": "the State of Kuwait",
+      "language": "US",
+      "territory_code": "KW"
+    },
+    {
+      "territory_short_name": "Moldova (the Republic of)",
+      "description": "the Republic of Moldova",
+      "language": "US",
+      "territory_code": "MD"
+    },
+    {
+      "territory_short_name": "Mozambique",
+      "description": "the Republic of Mozambique",
+      "language": "US",
+      "territory_code": "MZ"
+    },
+    {
+      "territory_short_name": "Niger",
+      "description": "the Republic of the Niger",
+      "language": "US",
+      "territory_code": "NE"
+    },
+    {
+      "territory_short_name": "Oman",
+      "description": "the Sultanate of Oman",
+      "language": "US",
+      "territory_code": "OM"
+    },
+    {
+      "territory_short_name": "Panama",
+      "description": "the Republic of Panama",
+      "language": "US",
+      "territory_code": "PA"
+    },
+    {
+      "territory_short_name": "Papua New Guinea",
+      "description": "the Independent State of Papua New Guinea",
+      "language": "US",
+      "territory_code": "PG"
+    },
+    {
+      "territory_short_name": "Serbia",
+      "description": "the Republic of Serbia",
+      "language": "US",
+      "territory_code": "RS"
+    },
+    {
+      "territory_short_name": "Senegal",
+      "description": "the Republic of Senegal",
+      "language": "US",
+      "territory_code": "SN"
+    },
+    {
+      "territory_short_name": "Tonga",
+      "description": "the Kingdom of Tonga",
+      "language": "US",
+      "territory_code": "TO"
+    },
+    {
+      "territory_short_name": "Uganda",
+      "description": "the Republic of Uganda",
+      "language": "US",
+      "territory_code": "UG"
+    },
+    {
+      "territory_short_name": "United States",
+      "description": "the United States of America",
+      "language": "US",
+      "territory_code": "US"
+    }
+  ]
+}

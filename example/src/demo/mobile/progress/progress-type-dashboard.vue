@@ -1,6 +1,5 @@
 <template>
-  <tiny-progress type="dashboard" :percentage="percentage" :color="tinyColors">
-  </tiny-progress>
+  <tiny-progress type="dashboard" :percentage="percentage" :color="tinyColors"> </tiny-progress>
 </template>
 
 <script>

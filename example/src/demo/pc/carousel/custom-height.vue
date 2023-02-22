@@ -1,21 +1,13 @@
 <template>
   <div>
     <tiny-carousel type="card" height="150px">
-      <tiny-carousel-item
-        class="carousel-item-demo"
-        v-for="item in 4"
-        :key="item"
-      >
+      <tiny-carousel-item class="carousel-item-demo" v-for="item in 4" :key="item">
         <h3>{{ item }}</h3>
       </tiny-carousel-item>
     </tiny-carousel>
     <br />
     <tiny-carousel type="card" height="200px">
-      <tiny-carousel-item
-        class="carousel-item-demo"
-        v-for="item in 4"
-        :key="item"
-      >
+      <tiny-carousel-item class="carousel-item-demo" v-for="item in 4" :key="item">
         <h3>{{ item }}</h3>
       </tiny-carousel-item>
     </tiny-carousel>
@@ -39,10 +31,10 @@ export default {
 }
 
 .carousel-item-demo:nth-child(2n) {
-  background-color: #99a9bf;
+  background-color: #f7f7f9;
 }
 
 .carousel-item-demo:nth-child(2n + 1) {
-  background-color: #d3dce6;
+  background-color: #f7f7f9;
 }
 </style>

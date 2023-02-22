@@ -1,13 +1,7 @@
 <template>
   <div>
-    <tiny-button @click="handleClick(!isBefore)" style="max-width: unset"
-      >设置flag-before值为{{ !isBefore }}</tiny-button
-    >
-    <tiny-milestone
-      :data="milestoneData"
-      :milestones-status="statusMap"
-      :flag-before="isBefore"
-    ></tiny-milestone>
+    <tiny-button @click="handleClick(!isBefore)" style="max-width: unset">设置flag-before值为{{ !isBefore }}</tiny-button>
+    <tiny-milestone :data="milestoneData" :milestones-status="statusMap" :flag-before="isBefore"></tiny-milestone>
   </div>
 </template>
 

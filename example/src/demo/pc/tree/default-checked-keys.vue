@@ -1,11 +1,5 @@
 <template>
-  <tiny-tree
-    :data="data5"
-    default-expand-all
-    show-checkbox
-    node-key="id"
-    :default-checked-keys="defaultcheckedkeys"
-  ></tiny-tree>
+  <tiny-tree :data="data5" default-expand-all show-checkbox node-key="id" :default-checked-keys="defaultcheckedkeys"></tiny-tree>
 </template>
 
 <script>

@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      backgroundImage: 'static/images/mountain.png',
+      backgroundImage: 'static/images/1.jpg',
       formData: {
         cardName: '',
         cardNumber: '',

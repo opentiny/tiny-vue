@@ -1,18 +1,18 @@
 <template>
   <div>
     <tiny-button @click="boxVisibility = true">弹出表单</tiny-button>
-    <tiny-dialog-box :visible="boxVisibility" @update:visible="boxVisibility = $event" title="消息" width="30%" :is-form-reset="false">
-      <tiny-form :model="formData" label-width="100px" label-position="top">
-        <tiny-form-item label="人员姓名" prop="name">
+    <tiny-dialog-box v-model:visible="boxVisibility" title="消息" width="30%" is-form-reset>
+      <tiny-form label-width="100px" label-position="top">
+        <tiny-form-item label="人员姓名">
           <tiny-input type="text" v-model="formData.name"></tiny-input>
         </tiny-form-item>
-        <tiny-form-item label="岗位" prop="type">
+        <tiny-form-item label="岗位">
           <tiny-radio-group v-model="formData.type">
             <tiny-radio :label="0">研发</tiny-radio>
             <tiny-radio :label="1">非研发</tiny-radio>
           </tiny-radio-group>
         </tiny-form-item>
-        <tiny-form-item label="特长" prop="goodAt">
+        <tiny-form-item label="特长">
           <tiny-checkbox :indeterminate="isIndeterminate" v-model="checkAll">全部</tiny-checkbox>
           <tiny-checkbox-group v-model="formData.goodAt">
             <tiny-checkbox v-for="(goodAtItem, index) in goodAtOptions[formData.type]" :label="goodAtItem" :key="goodAtItem + index">{{
@@ -101,12 +101,22 @@ export default {
         return this.formData.goodAt.length === this.goodAtOptions[this.formData.type].length
       },
       set(val) {
-        this.formData.goodAt = val ? [...this.goodAtOptions[this.formData.type]] : []
+        val ? (this.formData.goodAt = [...this.goodAtOptions[this.formData.type]]) : (this.formData.goodAt = [])
       }
     },
     isIndeterminate: {
       get() {
         return this.formData.goodAt.length > 0 && this.formData.goodAt.length < this.goodAtOptions[this.formData.type].length
+      }
+    }
+  },
+  watch: {
+    'formData.type'() {
+      this.formData.goodAt.length = 0
+    },
+    boxVisibility(newVal) {
+      if (!newVal) {
+        this.resetForm()
       }
     }
   }

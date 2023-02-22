@@ -40,7 +40,7 @@
 
 <script lang="jsx">
 import { Grid, GridColumn } from '@opentiny/vue'
-import { iconAdministrator, iconVersiontree, iconMarkOn, iconUser, iconAssociation, iconHelpful } from '@opentiny/vue-icon'
+import { IconAdministrator, IconVersiontree, IconMarkOn, IconUser, IconAssociation, IconHelpful } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -49,12 +49,12 @@ export default {
   },
   data() {
     return {
-      IconVersiontree: iconVersiontree(),
-      IconAdministrator: iconAdministrator(),
-      IconMarkOn: iconMarkOn(),
-      IconUser: iconUser(),
-      IconAssociation: iconAssociation(),
-      IconHelpful: iconHelpful(),
+      IconVersiontree: IconVersiontree(),
+      IconAdministrator: IconAdministrator(),
+      IconMarkOn: IconMarkOn(),
+      IconUser: IconUser(),
+      IconAssociation: IconAssociation(),
+      IconHelpful: IconHelpful(),
       tableData: [
         {
           id: '1',

@@ -1,9 +1,5 @@
 <template>
-  <tiny-milestone
-    :data="milestoneData"
-    :milestones-status="statusMap"
-    :start="1"
-  ></tiny-milestone>
+  <tiny-milestone :data="milestoneData" :milestones-status="statusMap" :start="1"></tiny-milestone>
 </template>
 
 <script>

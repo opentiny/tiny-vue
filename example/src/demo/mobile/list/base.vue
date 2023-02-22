@@ -1,12 +1,6 @@
 <template>
   <div>
-    <tiny-list
-      v-for="item of dataList"
-      :key="item.id"
-      :content="item.content"
-      :sub-text="item.subtext"
-      :content-des="item.contentdes"
-    ></tiny-list>
+    <tiny-list v-for="item of dataList" :key="item.id" :content="item.content" :sub-text="item.subtext" :content-des="item.contentdes"></tiny-list>
   </div>
 </template>
 

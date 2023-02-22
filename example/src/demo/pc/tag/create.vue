@@ -1,29 +1,9 @@
 <template>
   <div class="demo-tag-create">
-    <tiny-tag
-      :key="'tiny-tag-' + tag + index"
-      v-for="(tag, index) in dynamicTags"
-      closable
-      @close="closeTag(tag)"
-      >{{ tag }}
-    </tiny-tag>
-    <tiny-input
-      v-show="inputVisible"
-      v-model="inputValue"
-      ref="saveTagInput"
-      size="small"
-      @keyup.enter="handleInputConfirm"
-      @blur="handleInputConfirm"
-    >
+    <tiny-tag :key="'tiny-tag-' + tag + index" v-for="(tag, index) in dynamicTags" closable @close="closeTag(tag)">{{ tag }} </tiny-tag>
+    <tiny-input v-show="inputVisible" v-model="inputValue" ref="saveTagInput" size="small" @keyup.enter="handleInputConfirm" @blur="handleInputConfirm">
     </tiny-input>
-    <tiny-button
-      v-show="!inputVisible"
-      class="button-new-tag"
-      size="small"
-      @click="showInput"
-    >
-      + New Tag
-    </tiny-button>
+    <tiny-button v-show="!inputVisible" class="button-new-tag" size="small" @click="showInput"> + New Tag </tiny-button>
   </div>
 </template>
 

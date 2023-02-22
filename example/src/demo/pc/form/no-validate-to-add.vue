@@ -1,11 +1,5 @@
 <template>
-  <tiny-form
-    :model="ruleForm"
-    :rules="rules"
-    ref="ruleForm"
-    label-width="100px"
-    class="demo-ruleForm"
-  >
+  <tiny-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
     <tiny-form-item label="活动区域" prop="region">
       <tiny-select v-model="ruleForm.region" placeholder="请选择活动区域">
         <tiny-option label="区域一" value="shanghai"></tiny-option>
@@ -13,10 +7,7 @@
       </tiny-select>
     </tiny-form-item>
     <tiny-form-item label="日期时间" prop="datetime">
-      <tiny-date-picker
-        v-model="ruleForm.datetime"
-        type="datetime"
-      ></tiny-date-picker>
+      <tiny-date-picker v-model="ruleForm.datetime" type="datetime"></tiny-date-picker>
     </tiny-form-item>
     <tiny-form-item label="时间" prop="time">
       <tiny-time-picker v-model="ruleForm.time"></tiny-time-picker>
@@ -40,30 +31,14 @@
       <tiny-input type="textarea" v-model="ruleForm.desc"></tiny-input>
     </tiny-form-item>
     <tiny-form-item>
-      <tiny-button type="primary" @click="submitForm('ruleForm')"
-        >立即创建</tiny-button
-      >
+      <tiny-button type="primary" @click="submitForm('ruleForm')">立即创建</tiny-button>
       <tiny-button @click="resetForm('ruleForm')">重置</tiny-button>
     </tiny-form-item>
   </tiny-form>
 </template>
 
 <script>
-import {
-  Form,
-  FormItem,
-  Button,
-  Checkbox,
-  CheckboxGroup,
-  Radio,
-  RadioGroup,
-  Switch,
-  TimePicker,
-  DatePicker,
-  Input,
-  Select,
-  Option
-} from '@opentiny/vue'
+import { Form, FormItem, Button, Checkbox, CheckboxGroup, Radio, RadioGroup, Switch, TimePicker, DatePicker, Input, Select, Option } from '@opentiny/vue'
 import { alert } from '@opentiny/vue-modal'
 
 export default {
@@ -100,9 +75,7 @@ export default {
           { required: true, trigger: 'blur' },
           { min: 3, max: 5, trigger: 'blur' }
         ],
-        region: [
-          { required: true, message: '请选择活动区域', trigger: 'change' }
-        ],
+        region: [{ required: true, message: '请选择活动区域', trigger: 'change' }],
         datetime: [
           {
             type: 'date',
@@ -127,9 +100,7 @@ export default {
             trigger: 'change'
           }
         ],
-        resource: [
-          { required: true, message: '请选择活动资源', trigger: 'change' }
-        ],
+        resource: [{ required: true, message: '请选择活动资源', trigger: 'change' }],
         desc: [{ required: true, message: '请填写活动形式', trigger: 'blur' }]
       }
     }

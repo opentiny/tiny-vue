@@ -2,12 +2,19 @@
 
 if [ ! $version ];
 then npm version 0.1.0-`date "+%Y%m%d%H%M%S"`; 
-else npm version ${version}; 
+else npm version $version; 
 fi
 
-npm run bootstrap
-npm run build:vue3
-npm run release3
+npm install
+
+if [ ! $componentName ];
+then 
+    npm run build:vue$vueVersion
+else 
+    npm run buildfuxi:vue$vueVersion 
+fi
+
+npm run releasefuxi$vueVersion
 
 if [ $? -ne 0 ]
 then

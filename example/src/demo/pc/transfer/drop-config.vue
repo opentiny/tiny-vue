@@ -1,9 +1,5 @@
 <template>
-  <tiny-transfer
-    v-model="value"
-    :data="data"
-    :drop-config="dropConfig"
-  ></tiny-transfer>
+  <tiny-transfer v-model="value" :data="data" :drop-config="dropConfig"></tiny-transfer>
 </template>
 
 <script>

@@ -2,14 +2,7 @@
   <div class="tiny-mobile-mini-picker-demo">
     <tiny-form label-width="60px">
       <tiny-form-item label="地点">
-        <tiny-input
-          v-model="val"
-          @focus="fn"
-          placeholder="请选择"
-          type="form"
-          readonly
-          vertical
-        ></tiny-input>
+        <tiny-input v-model="val" @focus="fn" placeholder="请选择" type="form" readonly vertical></tiny-input>
       </tiny-form-item>
     </tiny-form>
     <tiny-mini-picker

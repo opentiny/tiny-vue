@@ -1,7 +1,5 @@
 <template>
-  <tiny-button @click="btnClick" :reset-time="0"
-    >自定义提示框的内容</tiny-button
-  >
+  <tiny-button @click="btnClick" :reset-time="0">自定义提示框的内容</tiny-button>
 </template>
 
 <script>

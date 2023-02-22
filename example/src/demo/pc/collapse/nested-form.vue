@@ -6,18 +6,12 @@
           <tiny-row>
             <tiny-col :xs="12" :sm="6" :md="6" :lg="6" :xl="6">
               <tiny-form-item label="公司名称">
-                <tiny-input
-                  v-model="formData.name"
-                  placeholder="请输入"
-                ></tiny-input>
+                <tiny-input v-model="formData.name" placeholder="请输入"></tiny-input>
               </tiny-form-item>
             </tiny-col>
             <tiny-col :xs="12" :sm="6" :md="6" :lg="6" :xl="6">
               <tiny-form-item label="员工数">
-                <tiny-numeric
-                  v-model="formData.employees"
-                  :min="0"
-                ></tiny-numeric>
+                <tiny-numeric v-model="formData.employees" :min="0"></tiny-numeric>
               </tiny-form-item>
             </tiny-col>
           </tiny-row>
@@ -30,13 +24,7 @@
             <tiny-col :xs="12" :sm="6" :md="6" :lg="6" :xl="6">
               <tiny-form-item label="城市">
                 <tiny-select v-model="formData.city" placeholder="请选择">
-                  <tiny-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  >
-                  </tiny-option>
+                  <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
                 </tiny-select>
               </tiny-form-item>
             </tiny-col>
@@ -48,20 +36,7 @@
 </template>
 
 <script>
-import {
-  Collapse,
-  CollapseItem,
-  Layout,
-  Form,
-  FormItem,
-  Row,
-  Col,
-  Input,
-  Numeric,
-  IpAddress,
-  Select,
-  Option
-} from '@opentiny/vue'
+import { Collapse, CollapseItem, Layout, Form, FormItem, Row, Col, Input, Numeric, IpAddress, Select, Option } from '@opentiny/vue'
 
 export default {
   components: {

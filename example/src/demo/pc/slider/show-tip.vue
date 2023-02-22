@@ -1,5 +1,5 @@
 <template>
-  <tiny-slider v-model="value" :show-tip="false"></tiny-slider>
+  <tiny-slider v-model="value" :format-tooltip="format" :show-tip="true"></tiny-slider>
 </template>
 
 <script>
@@ -12,6 +12,11 @@ export default {
   data() {
     return {
       value: 20
+    }
+  },
+  methods: {
+    format(value) {
+      return '当前值为：' + value
     }
   }
 }

@@ -1,10 +1,5 @@
 <template>
-  <tiny-tree
-    :data="data"
-    :props="defaultProps"
-    :render-after-expand="false"
-    @node-click="handleNodeClick"
-  ></tiny-tree>
+  <tiny-tree :data="data" :props="defaultProps" :render-after-expand="false" @node-click="handleNodeClick"></tiny-tree>
 </template>
 
 <script>

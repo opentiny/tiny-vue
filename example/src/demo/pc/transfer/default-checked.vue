@@ -1,10 +1,5 @@
 <template>
-  <tiny-transfer
-    v-model="value"
-    :data="data"
-    :left-default-checked="[2, 6]"
-    :right-default-checked="[1]"
-  ></tiny-transfer>
+  <tiny-transfer v-model="value" :data="data" :left-default-checked="[2, 6]" :right-default-checked="[1]"></tiny-transfer>
 </template>
 
 <script>

@@ -1,9 +1,7 @@
 <template>
   <tiny-milestone :data="milestoneData" :milestones-status="statusMap">
     <template #bottom="data">
-      <span style="font-size: 12px"
-        >{{ data.slotScope.name }} {{ data.slotScope.time }}</span
-      >
+      <span style="font-size: 12px">{{ data.slotScope.name }} {{ data.slotScope.time }}</span>
     </template>
   </tiny-milestone>
 </template>

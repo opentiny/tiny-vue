@@ -2,14 +2,7 @@
   <div>
     <tiny-button @click="replaceHandle" style="margin-bottom: 20px">替换图片</tiny-button>
     <tiny-button text="图片裁剪" @click="visible = !visible"></tiny-button>
-    <tiny-crop
-      ref="crop"
-      :cropvisible="visible"
-      @update:cropvisible="visible = $event"
-      src="static/images/mountain.png"
-      zoomable
-      :rotatable="false"
-    ></tiny-crop>
+    <tiny-crop ref="crop" :cropvisible="visible" @update:cropvisible="visible = $event" src="static/images/1.jpg" zoomable :rotatable="false"></tiny-crop>
   </div>
 </template>
 
@@ -28,7 +21,7 @@ export default {
   },
   methods: {
     replaceHandle() {
-      this.$refs.crop.replace('static/images/bridge.jpg')
+      this.$refs.crop.replace('static/images/3.jpg')
     }
   }
 }

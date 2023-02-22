@@ -3,11 +3,7 @@
     <tiny-tooltip content="Top Center 提示文字" placement="top">
       <button>Dark</button>
     </tiny-tooltip>
-    <tiny-tooltip
-      effect="light"
-      content="Bottom Center 提示文字"
-      placement="bottom"
-    >
+    <tiny-tooltip effect="light" content="Bottom Center 提示文字" placement="bottom">
       <button>Light</button>
     </tiny-tooltip>
   </div>

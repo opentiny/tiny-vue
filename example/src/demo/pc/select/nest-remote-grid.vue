@@ -13,6 +13,20 @@
       render-type="grid"
       :grid-op="gridOpRadio"
     ></tiny-select>
+    <tiny-select
+      v-model="radioValue"
+      filterable
+      remote
+      reserve-keyword
+      placeholder="请输入关键词"
+      :remote-method="remoteMethod"
+      :remote-config="{ autoSeach: true, clearData: true, showIcon: true }"
+      value-field="coaNumber"
+      :multiple="false"
+      text-field="coaNumber"
+      render-type="grid"
+      :grid-op="gridOpRadio"
+    ></tiny-select>
   </div>
 </template>
 
@@ -32,9 +46,7 @@ export default {
           setTimeout(() => {
             this.loading = false
 
-            const result = this.states.filter((item) => {
-              return item.coaNumber.indexOf(query) > -1
-            })
+            const result = this.states.filter((item) => item.coaNumber.indexOf(query) > -1)
 
             resolve(result)
           }, 200)
@@ -216,5 +228,6 @@ export default {
 <style scoped>
 .demo-select .tiny-select {
   width: 270px;
+  margin-right: 30px;
 }
 </style>

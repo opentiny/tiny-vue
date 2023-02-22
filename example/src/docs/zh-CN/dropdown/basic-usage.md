@@ -7,7 +7,7 @@
 
 <nova-uxlink widget-name="Dropdown"></nova-uxlink>
 
-将动作或菜单折叠到下拉菜单中。（暂不支持多级菜单）
+将动作或菜单折叠到下拉菜单中。
 
 </div>
 

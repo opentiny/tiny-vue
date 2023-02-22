@@ -33,11 +33,11 @@ export default {
       fileList: [
         {
           name: 'test1',
-          url: 'static/images/fruit.jpg'
+          url: 'static/images/ld.png'
         },
         {
           name: 'test2',
-          url: 'static/images/book.jpg'
+          url: 'static/images/ry.png'
         }
       ]
     }
@@ -47,7 +47,7 @@ export default {
       message('触发删除文件回调事件')
     },
     handlePreview(file) {
-      message('文件的url', file.url)
+      console.log(file.url)
     },
     progressEvent() {
       message('文件上传时的回调 返回进程')

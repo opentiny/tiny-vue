@@ -19,17 +19,13 @@
 
       <div class="btb">
         <tiny-button type="primary" size="small" plain>默认按钮</tiny-button>
-        <tiny-button type="primary" size="small" plain disabled
-          >默认按钮</tiny-button
-        >
+        <tiny-button type="primary" size="small" plain disabled>默认按钮</tiny-button>
       </div>
       <div class="btb">
         <tiny-button type="primary" size="mini">按钮</tiny-button>
       </div>
       <div class="btb">
-        <tiny-button :icon="IconMessageCircle" type="primary" size="mini" plain
-          >加入会议</tiny-button
-        >
+        <tiny-button :icon="IconMessageCircle" type="primary" size="mini" plain>加入会议</tiny-button>
       </div>
       <tiny-button type="primary" size="medium">主要按钮</tiny-button>
       <tiny-button type="success" size="medium">成功按钮</tiny-button>
@@ -39,20 +35,12 @@
         <span>底部悬浮按钮</span>
       </div>
       <div class="btb">
-        <tiny-button type="primary" size="small" plain @click="dat = 0"
-          >有间距双按钮</tiny-button
-        >
-        <tiny-button type="primary" size="small" plain @click="dat = 1"
-          >无间距双按钮</tiny-button
-        >
+        <tiny-button type="primary" size="small" plain @click="dat = 0">有间距双按钮</tiny-button>
+        <tiny-button type="primary" size="small" plain @click="dat = 1">无间距双按钮</tiny-button>
       </div>
       <div class="btb">
-        <tiny-button type="primary" size="small" plain @click="dat = 2"
-          >确定单按钮</tiny-button
-        >
-        <tiny-button type="primary" size="small" plain @click="dat = 3"
-          >删除单按钮</tiny-button
-        >
+        <tiny-button type="primary" size="small" plain @click="dat = 2">确定单按钮</tiny-button>
+        <tiny-button type="primary" size="small" plain @click="dat = 3">删除单按钮</tiny-button>
       </div>
     </div>
     <div class="test" v-if="dat === 1">

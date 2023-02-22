@@ -26,7 +26,7 @@ export default {
           pageSize: 15,
           total: 0,
           pageSizes: [5, 10, 15, 20],
-          layout: 'sizes, total, prev, pager, next, jumper'
+          layout: 'total, prev, pager, next, jumper, sizes'
         }
       },
       fetchData: {
@@ -36,14 +36,14 @@ export default {
       tableData: [
         {
           id: '1',
-          name: 'GFD科技公司',
+          name: 'GFD科技YX公司',
           city: '福州',
           employees: 800,
           created_date: '2014-04-30 00:56:00'
         },
         {
           id: '2',
-          name: 'WWW科技公司',
+          name: 'WWW科技YX公司',
           city: '深圳',
           employees: 300,
           created_date: '2016-07-08 12:36:22'
@@ -57,35 +57,35 @@ export default {
         },
         {
           id: '4',
-          name: 'TGB科技公司',
+          name: 'TGB科技YX公司',
           city: '龙岩',
           employees: 360,
           created_date: '2013-01-13 13:13:13'
         },
         {
           id: '5',
-          name: 'YHN科技公司',
+          name: 'YHN科技YX公司',
           city: '韶关',
           employees: 810,
           created_date: '2012-12-12 12:12:12'
         },
         {
           id: '6',
-          name: 'WSX科技公司',
+          name: 'WSX科技YX公司',
           city: '黄冈',
           employees: 800,
           created_date: '2011-11-11 11:11:11'
         },
         {
           id: '7',
-          name: 'KBG物业公司',
+          name: 'KBG物业YX公司',
           city: '赤壁',
           employees: 400,
           created_date: '2016-04-30 23:56:00'
         },
         {
           id: '8',
-          name: 'SZ市福德宝网络技术公司',
+          name: '深圳市福德宝网络技术YX公司',
           city: '深圳',
           employees: 540,
           created_date: '2016-06-03 13:53:25'
@@ -99,16 +99,17 @@ export default {
     },
     getData({ page, sort, data, filters }) {
       return new Promise((resolve) => {
-        // 此处服务为 自定义服务, page, sort, data, filters可获取当前表格的分页、排序、过滤等信息发送至服务端
-        // mock remote server
-        const startIndex = (page.currentPage - 1) * page.pageSize
-        const allData = this.tableData.filter((item) => !filters.city || !filters.city.value.length || filters.city.value.indexOf(item.city) !== -1)
-        const data = {
-          result: allData.slice(startIndex, startIndex + page.pageSize),
-          page: { ...page, total: allData.length }
-        }
+        setTimeout(() => {
+          // 此处为用户自定义的服务端分页、排序、过滤服务
+          const startIndex = (page.currentPage - 1) * page.pageSize
+          const allData = this.tableData.filter((item) => !filters.city || !filters.city.value.length || filters.city.value.indexOf(item.city) !== -1)
+          const data = {
+            result: allData.slice(startIndex, startIndex + page.pageSize),
+            page: Object.assign({}, page, { total: allData.length })
+          }
 
-        resolve({ result: data.result, page: data.page })
+          resolve({ result: data.result, page: data.page })
+        }, 500)
       })
     }
   }

@@ -1,16 +1,10 @@
 <template>
   <div class="content">
     <tiny-button @click="baseClick" :reset-time="0">基本提示图标</tiny-button>
-    <tiny-button @click="successClick" :reset-time="0"
-      >成功提示图标</tiny-button
-    >
-    <tiny-button @click="warningClick" :reset-time="0"
-      >警告提示图标</tiny-button
-    >
+    <tiny-button @click="successClick" :reset-time="0">成功提示图标</tiny-button>
+    <tiny-button @click="warningClick" :reset-time="0">警告提示图标</tiny-button>
     <tiny-button @click="errorClick" :reset-time="0">错误提示图标</tiny-button>
-    <tiny-button @click="loadingClick" :reset-time="0"
-      >加载提示图标</tiny-button
-    >
+    <tiny-button @click="loadingClick" :reset-time="0">加载提示图标</tiny-button>
   </div>
 </template>
 

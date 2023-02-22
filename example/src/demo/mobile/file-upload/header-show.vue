@@ -1,10 +1,5 @@
 <template>
-  <tiny-file-upload
-    ref="upload"
-    :action="action"
-    :file-list="fileList"
-    :header-show="false"
-  >
+  <tiny-file-upload ref="upload" :action="action" :file-list="fileList" :header-show="false">
     <template #trigger>
       <tiny-button type="primary">选取文件</tiny-button>
     </template>

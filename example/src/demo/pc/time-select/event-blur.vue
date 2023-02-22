@@ -1,12 +1,6 @@
 <template>
   <div>
-    <tiny-time-select
-      v-model="value1"
-      @blur="bulr"
-      @change="change"
-      @focus="focus"
-      placeholder="选择时间范围"
-    ></tiny-time-select>
+    <tiny-time-select v-model="value1" @blur="bulr" @change="change" @focus="focus" placeholder="选择时间范围"></tiny-time-select>
   </div>
 </template>
 

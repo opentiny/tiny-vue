@@ -67,12 +67,7 @@
           <div class="col sm">align top</div>
         </tiny-col>
       </tiny-row>
-      <tiny-row
-        :flex="true"
-        class="row-bg align"
-        justify="center"
-        align="middle"
-      >
+      <tiny-row :flex="true" class="row-bg align" justify="center" align="middle">
         <tiny-col :span="3">
           <div class="col lg">align middle</div>
         </tiny-col>
@@ -83,12 +78,7 @@
           <div class="col sm">align middle</div>
         </tiny-col>
       </tiny-row>
-      <tiny-row
-        :flex="true"
-        class="row-bg align"
-        justify="center"
-        align="bottom"
-      >
+      <tiny-row :flex="true" class="row-bg align" justify="center" align="bottom">
         <tiny-col :span="3">
           <div class="col lg">align bottom</div>
         </tiny-col>

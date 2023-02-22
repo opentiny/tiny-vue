@@ -1,11 +1,6 @@
 <template>
   <div class="demo-input">
-    <tiny-input
-      v-model="input"
-      placeholder="获取焦点"
-      @focus="focus"
-      @mouseenter="focus"
-    ></tiny-input>
+    <tiny-input v-model="input" placeholder="获取焦点" @focus="focus" @mouseenter="focus"></tiny-input>
   </div>
 </template>
 

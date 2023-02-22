@@ -1,16 +1,12 @@
 <template>
   <div>
-    <tiny-time-select
-      v-model="value"
-      :suffix-icon="IconYes"
-      placeholder="选择时间范围"
-    ></tiny-time-select>
+    <tiny-time-select v-model="value" :suffix-icon="IconYes" placeholder="选择时间范围"></tiny-time-select>
   </div>
 </template>
 
 <script>
 import { TimeSelect } from '@opentiny/vue'
-import { iconYes } from '@opentiny/vue-icon'
+import { IconYes } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -18,7 +14,7 @@ export default {
   },
   data() {
     return {
-      IconYes: iconYes(),
+      IconYes: IconYes(),
       value: '08:30'
     }
   }

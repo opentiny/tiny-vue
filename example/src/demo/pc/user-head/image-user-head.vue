@@ -1,5 +1,5 @@
 <template>
-  <tiny-user-head type="image" :modelValue="imgUrl"></tiny-user-head>
+  <tiny-user-head type="image" v-model="imgUrl"></tiny-user-head>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      imgUrl: 'static/images/fruit.jpg'
+      imgUrl: 'static/images/dog2.png'
     }
   }
 }

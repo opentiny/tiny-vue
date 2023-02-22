@@ -1,14 +1,8 @@
 <template>
   <div class="content">
-    <tiny-button @click="baseClick" :reset-time="0"
-      >默认3000ms后自动关闭提示框</tiny-button
-    >
-    <tiny-button @click="successClick" :reset-time="0"
-      >500ms后自动关闭提示框</tiny-button
-    >
-    <tiny-button @click="errorClick" :reset-time="0"
-      >5000ms后自动关闭提示框</tiny-button
-    >
+    <tiny-button @click="baseClick" :reset-time="0">默认3000ms后自动关闭提示框</tiny-button>
+    <tiny-button @click="successClick" :reset-time="0">500ms后自动关闭提示框</tiny-button>
+    <tiny-button @click="errorClick" :reset-time="0">5000ms后自动关闭提示框</tiny-button>
   </div>
 </template>
 

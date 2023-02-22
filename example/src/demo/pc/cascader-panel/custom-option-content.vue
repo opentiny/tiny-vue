@@ -2,9 +2,7 @@
   <tiny-cascader-panel class="cascader-panel-demo" :options="optionsCascader">
     <template #default="scopeData">
       <span>{{ scopeData.data.label }}自定义</span>
-      <span v-if="!scopeData.node.isLeaf"
-        >({{ scopeData.data.children.length }})</span
-      >
+      <span v-if="!scopeData.node.isLeaf">({{ scopeData.data.children.length }})</span>
     </template>
   </tiny-cascader-panel>
 </template>

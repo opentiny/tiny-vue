@@ -1,16 +1,7 @@
 <template>
   <div>
-    <tiny-input
-      placeholder="输入关键字进行过滤"
-      v-model="filterText"
-    ></tiny-input>
-    <tiny-tree
-      class="filter-tree"
-      :data="data5"
-      default-expand-all
-      :filter-node-method="filterNode"
-      ref="tree"
-    ></tiny-tree>
+    <tiny-input placeholder="输入关键字进行过滤" v-model="filterText"></tiny-input>
+    <tiny-tree class="filter-tree" :data="data5" default-expand-all :filter-node-method="filterNode" ref="tree"></tiny-tree>
   </div>
 </template>
 

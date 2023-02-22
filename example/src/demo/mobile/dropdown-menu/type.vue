@@ -1,22 +1,9 @@
 <template>
   <div class="tiny-mobile-dropdown-menu-demo">
     <tiny-dropdown-menu>
-      <tiny-dropdown-item
-        v-model="value2"
-        :options="option2"
-        z-index="10"
-      ></tiny-dropdown-item>
-      <tiny-dropdown-item
-        v-model="value3"
-        title="发布时间"
-        type="sort"
-      ></tiny-dropdown-item>
-      <tiny-dropdown-item
-        v-model="value4"
-        :options="options4"
-        title="筛选"
-        type="filter"
-      ></tiny-dropdown-item>
+      <tiny-dropdown-item v-model="value2" :options="option2" z-index="10"></tiny-dropdown-item>
+      <tiny-dropdown-item v-model="value3" title="发布时间" type="sort"></tiny-dropdown-item>
+      <tiny-dropdown-item v-model="value4" :options="options4" title="筛选" type="filter"></tiny-dropdown-item>
     </tiny-dropdown-menu>
   </div>
 </template>

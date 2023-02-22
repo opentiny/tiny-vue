@@ -60,8 +60,8 @@ export default {
   },
   data() {
     return {
-      circleUrl: 'static/images/floral.png',
-      dogUrl: 'static/images/fruit.jpg'
+      circleUrl: 'static/images/dog2.png',
+      dogUrl: 'static/images/dog1.png'
     }
   }
 }

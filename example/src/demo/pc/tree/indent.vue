@@ -1,10 +1,5 @@
 <template>
-  <tiny-tree
-    :data="data"
-    default-expand-all
-    show-checkbox
-    :indent="50"
-  ></tiny-tree>
+  <tiny-tree :data="data" default-expand-all show-checkbox :indent="50"></tiny-tree>
 </template>
 
 <script>

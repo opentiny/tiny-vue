@@ -12,7 +12,6 @@
           <template #buttons>
             <tiny-button @click="insertEvent">新增</tiny-button>
             <tiny-button @click="removeEvent">移除选中</tiny-button>
-            <tiny-button @click="getInsertEvent">获取新增</tiny-button>
             <tiny-button @click="getRemoveEvent">获取删除</tiny-button>
             <tiny-button @click="getUpdateEvent">获取修改</tiny-button>
             <tiny-button @click="clearTreeExpand">清空展开状态</tiny-button>
@@ -30,25 +29,20 @@
 
 <script>
 import { Grid, GridColumn, Button, GridToolbar, Modal } from '@opentiny/vue'
-import { filterTree } from '@opentiny/vue-renderless/grid/static/'
 
 function canRemove(node, nodes) {
   let flag = false
 
   for (let i = 0; i < nodes.length; i++) {
     flag = nodes[i] === node || (nodes[i].id && node.id && nodes[i].id === node.id)
-    if (flag) {
-      break
-    }
+    if (flag) break
   }
 
   return flag
 }
 
 function pushIfNotNull(array, item) {
-  if (item !== null) {
-    array.push(item)
-  }
+  if (item !== null) array.push(item)
 }
 
 function copyCannotRemove(node, nodes) {
@@ -63,17 +57,15 @@ function copyCannotRemove(node, nodes) {
       for (let i = 0; i < node.children.length; i++) {
         pushIfNotNull(children, copyCannotRemove(node.children[i], nodes))
       }
-      copyNode = {
-        ...node,
+      copyNode = Object.assign(Object.assign({}, node), {
         id: node.id || undefined,
         children
-      }
+      })
     } else {
-      copyNode = {
-        ...node,
+      copyNode = Object.assign(Object.assign({}, node), {
         id: node.id || undefined,
         children: undefined
-      }
+      })
     }
   }
 
@@ -103,7 +95,7 @@ export default {
         {
           id: '1',
           pid: '0',
-          name: 'GFD科技公司',
+          name: 'GFD科技YX公司',
           area: '华东区',
           employees: '800',
           children: [
@@ -119,7 +111,7 @@ export default {
         {
           id: '2',
           pid: '0',
-          name: 'WWWW科技公司',
+          name: 'WWWW科技YX公司',
           area: '华南区',
           employees: '500',
           children: [
@@ -135,7 +127,7 @@ export default {
         {
           id: '4',
           pid: '0',
-          name: 'TGB公司',
+          name: 'TGBYX公司',
           area: '华南区',
           employees: '360',
           children: [
@@ -149,14 +141,14 @@ export default {
             {
               id: '5',
               pid: '4',
-              name: 'YHN科技公司',
+              name: 'YHN科技YX公司',
               area: '华南区',
               employees: '810',
               children: [
                 {
                   id: '6',
                   pid: '5',
-                  name: 'WSX科技公司',
+                  name: 'WSX科技YX公司',
                   area: '华南区',
                   employees: '800'
                 },
@@ -174,14 +166,14 @@ export default {
         {
           id: '7',
           pid: '0',
-          name: '康康物业公司',
+          name: '康康物业YX公司',
           area: '华南区',
           employees: '400',
           children: [
             {
               id: '8',
               pid: '7',
-              name: 'SZ市福德宝网络技术公司',
+              name: '深圳市福德宝网络技术YX公司',
               area: '华南区',
               employees: '540'
             },
@@ -195,7 +187,7 @@ export default {
                 {
                   id: '23',
                   pid: '10',
-                  name: 'IK有限责任股份公司',
+                  name: 'IK有限责任股份YX公司',
                   area: '华南区',
                   employees: '455'
                 }
@@ -234,11 +226,7 @@ export default {
 
       this.removeList = removeRecords.map((item) => ({ ...item }))
     },
-    getInsertEvent() {
-      const insertList = filterTree(this.tableData, (item) => item.isNew, this.treeConfig)
 
-      Modal.alert(insertList.length)
-    },
     getRemoveEvent() {
       let removeRecords = this.removeList
 

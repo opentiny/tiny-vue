@@ -1,12 +1,6 @@
 <template>
   <div>
-    <tiny-tag
-      v-for="tag in tags"
-      :key="'tiny-tag1-' + tag.name"
-      closable
-      :type="tag.type"
-      @click="handleClick"
-    >
+    <tiny-tag v-for="tag in tags" :key="'tiny-tag1-' + tag.name" closable :type="tag.type" @click="handleClick">
       {{ tag.name }}
     </tiny-tag>
   </div>

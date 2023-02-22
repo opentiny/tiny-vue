@@ -10,11 +10,11 @@
 
 <script>
 import { Input } from '@opentiny/vue'
-import { iconCalendar } from '@opentiny/vue-icon'
+import { IconCalendar } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    IconCalendar: iconCalendar(),
+    IconCalendar: IconCalendar(),
     TinyInput: Input
   },
   data() {

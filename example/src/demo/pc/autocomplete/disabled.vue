@@ -1,6 +1,6 @@
 <template>
   <div class="demo-autocomplete">
-    <tiny-autocomplete v-model="value" disabled name="name" label="autocompleteLabel"></tiny-autocomplete>
+    <tiny-autocomplete v-model="value" disabled name="name"></tiny-autocomplete>
   </div>
 </template>
 

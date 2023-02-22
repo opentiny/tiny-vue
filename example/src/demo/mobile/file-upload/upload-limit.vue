@@ -1,9 +1,5 @@
 <template>
-  <tiny-file-upload
-    :action="action"
-    :before-upload="beforeAvatarUpload"
-    :limit="limit"
-  >
+  <tiny-file-upload :action="action" :before-upload="beforeAvatarUpload" :limit="limit">
     <template #trigger>
       <icon-upload></icon-upload>
     </template>

@@ -1,8 +1,6 @@
 <template>
   <div class="content">
-    <tiny-button @click="value1 = !value1" :reset-time="0"
-      >在窗口显示时触发事件</tiny-button
-    >
+    <tiny-button @click="value1 = !value1" :reset-time="0">在窗口显示时触发事件</tiny-button>
     <tiny-modal v-model="value1" type="confirm" show-footer @show="showClick">
       <template #default>
         <p>test</p>

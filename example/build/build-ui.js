@@ -25,7 +25,7 @@ const replaceConstant = {
 
 if (process.env.TINY_MODE === 'pc') {
   outputOptions.format = 'umd'
-  replaceConstant['process.env.TINY_MODE'] = JSON.stringify(process.env.tiny_mode)
+  replaceConstant['process.env.TINY_MODE'] = JSON.stringify(process.env.TINY_MODE)
 }
 
 const build = ({ comp, callbackFn }) => {

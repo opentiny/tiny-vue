@@ -11,12 +11,12 @@
 
 <script>
 import { UserHead } from '@opentiny/vue'
-import { iconMail } from '@opentiny/vue-icon'
+import { IconMail } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyUserHead: UserHead,
-    IconMail: iconMail()
+    IconMail: IconMail()
   }
 }
 </script>

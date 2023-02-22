@@ -1,10 +1,5 @@
 <template>
-  <tiny-toggle-menu
-    :data="datas"
-    :show-filter="false"
-    placeholder="输入框的占位符"
-    wrap
-  >
+  <tiny-toggle-menu :data="datas" :show-filter="false" placeholder="输入框的占位符" wrap>
     <template #node="data">
       <div>{{ data.label }}</div>
     </template>

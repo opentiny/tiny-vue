@@ -1,10 +1,6 @@
 <template>
   <div style="width: 270px">
-    <tiny-drop-times
-      v-model="value"
-      placeholder="请选择"
-      @change="change"
-    ></tiny-drop-times>
+    <tiny-drop-times v-model="value" placeholder="请选择" @change="change"></tiny-drop-times>
     <p>当前选中值：{{ value }}</p>
   </div>
 </template>

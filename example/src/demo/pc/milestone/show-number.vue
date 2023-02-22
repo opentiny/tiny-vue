@@ -1,13 +1,7 @@
 <template>
   <div>
-    <tiny-button @click="handleClick(!showNum)" style="max-width: unset"
-      >设置show-number值为{{ !showNum }}</tiny-button
-    >
-    <tiny-milestone
-      :data="milestoneData"
-      :milestones-status="statusMap"
-      :show-number="showNum"
-    ></tiny-milestone>
+    <tiny-button @click="handleClick(!showNum)" style="max-width: unset">设置show-number值为{{ !showNum }}</tiny-button>
+    <tiny-milestone :data="milestoneData" :milestones-status="statusMap" :show-number="showNum"></tiny-milestone>
   </div>
 </template>
 

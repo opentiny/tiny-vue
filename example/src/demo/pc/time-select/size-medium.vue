@@ -1,9 +1,5 @@
 <template>
-  <tiny-time-select
-    v-model="value"
-    placeholder="选择时间"
-    size="medium"
-  ></tiny-time-select>
+  <tiny-time-select v-model="value" placeholder="选择时间" size="medium"></tiny-time-select>
 </template>
 
 <script>

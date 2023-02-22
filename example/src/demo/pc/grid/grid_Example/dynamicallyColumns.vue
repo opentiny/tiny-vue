@@ -28,7 +28,7 @@ export default {
           pageSize: 5,
           pageSizes: [5, 10],
           total: 0,
-          layout: 'sizes, total, prev, pager, next, jumper'
+          layout: 'total, prev, pager, next, jumper, sizes'
         }
       },
       value: [new Date(2020, 1), new Date()],
@@ -180,12 +180,14 @@ export default {
       })
     },
     handleChange(val) {
-      this.item = []
-      let monthLen = this.getMonthBetween(val[0], val[1])
+      if (val && val.length > 1) {
+        this.item = []
+        let monthLen = this.getMonthBetween(val[0], val[1])
 
-      this.forWeek(monthLen)
+        this.forWeek(monthLen)
 
-      this.$refs.grid.handleFetch()
+        this.$refs.grid.handleFetch()
+      }
     },
     getMonthBetween(start, end) {
       // 传入的格式YYYY-MM

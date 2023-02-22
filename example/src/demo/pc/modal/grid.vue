@@ -33,14 +33,14 @@ export default {
       tableData: [
         {
           id: '1',
-          name: 'GFD科技公司 GFD科技公司 GFD科技公司 GFD科技公司 GFD科技公司',
+          name: 'GFD科技YX公司 GFD科技YX公司 GFD科技YX公司 GFD科技YX公司 GFD科技YX公司',
           city: '福州 福州 福州 福州 福州 福州 福州 福州 福州 福州',
-          address: '中国广东省深圳龙岗区阳光普照公寓',
+          address: '中国广东省深圳龙岗区SZ单身公寓',
           created_date: '2014-04-30 00:56:00 2014-04-30 00:56:00 2014-04-30 00:56:00 2014-04-30 00:56:00'
         },
         {
           id: '2',
-          name: 'WWW科技公司',
+          name: 'WWW科技YX公司',
           city: '深圳',
           address: '深圳福田区',
           created_date: '2016-07-08 12:36:22'

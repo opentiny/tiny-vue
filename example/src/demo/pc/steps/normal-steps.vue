@@ -1,10 +1,5 @@
 <template>
-  <tiny-time-line
-    :data="data"
-    :active="normalActive"
-    type="normal"
-    @click="normalClick"
-  ></tiny-time-line>
+  <tiny-time-line :data="data" :active="normalActive" type="normal" @click="normalClick"></tiny-time-line>
 </template>
 
 <script>
@@ -17,12 +12,7 @@ export default {
   data() {
     return {
       normalActive: 0,
-      data: [
-        { name: 'Basic Info.' },
-        { name: 'BOQ Info' },
-        { name: 'Involved Parties' },
-        { name: 'Billing' }
-      ]
+      data: [{ name: 'Basic Info.' }, { name: 'BOQ Info' }, { name: 'Involved Parties' }, { name: 'Billing' }]
     }
   },
   methods: {

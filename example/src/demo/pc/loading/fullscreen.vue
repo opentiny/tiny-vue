@@ -1,14 +1,7 @@
 <template>
   <div>
-    <tiny-button
-      @click="handleClick"
-      v-loading.lock.fullscreen="fullscreenLoading"
-      style="max-width: unset"
-      >指令方式加载全屏Loading</tiny-button
-    >
-    <tiny-button @click="handleClick2" style="max-width: unset"
-      >静态方法加载全屏Loading</tiny-button
-    >
+    <tiny-button @click="handleClick" v-loading.lock.fullscreen="fullscreenLoading" style="max-width: unset">指令方式加载全屏Loading</tiny-button>
+    <tiny-button @click="handleClick2" style="max-width: unset">静态方法加载全屏Loading</tiny-button>
   </div>
 </template>
 

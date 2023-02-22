@@ -1,16 +1,7 @@
 <template>
   <div>
     <tiny-button text="图片裁剪" @click="visible = !visible"></tiny-button>
-    <tiny-crop
-      :cropvisible="visible"
-      @update:cropvisible="visible = $event"
-      src="static/images/mountain.png"
-      :aspect-ratio="7 / 5"
-      :center="true"
-      :preview="true"
-      :quality="0.5"
-      max-size="300KB"
-    ></tiny-crop>
+    <tiny-crop :cropvisible="visible" @update:cropvisible="visible = $event" src="static/images/1.jpg" :aspect-ratio="7 / 5" :center="true"></tiny-crop>
   </div>
 </template>
 

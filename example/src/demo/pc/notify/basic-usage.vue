@@ -18,7 +18,7 @@ export default {
         title: (h, params) => <h4 style="margin:0">通知消息的标题</h4>,
         message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
         position: 'top-right',
-        duration: 500000,
+        duration: 2000,
         customClass: 'my-custom-cls'
       })
     }

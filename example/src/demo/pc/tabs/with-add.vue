@@ -1,5 +1,5 @@
 <template>
-  <tiny-tabs tab-style="card" :editable="false" :with-add="true" @add="handleadd" style="width: 500px" show-more-tabs popper-class="custom-class">
+  <tiny-tabs tab-style="card" :editable="false" :with-add="true" @add="handleadd" style="width: 500px" show-more-tabs>
     <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>

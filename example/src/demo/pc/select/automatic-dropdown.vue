@@ -1,21 +1,8 @@
 <template>
   <div>
-    <tiny-button @click="onFocus" style="margin-bottom: 10px"
-      >点击获取焦点</tiny-button
-    >
-    <tiny-select
-      v-model="value"
-      placeholder="请选择"
-      automatic-dropdown
-      ref="selectDom"
-    >
-      <tiny-option
-        v-for="item in options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
-      >
-      </tiny-option>
+    <tiny-button @click="onFocus" style="margin-bottom: 10px">点击获取焦点</tiny-button>
+    <tiny-select v-model="value" placeholder="请选择" automatic-dropdown ref="selectDom">
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
   </div>
 </template>

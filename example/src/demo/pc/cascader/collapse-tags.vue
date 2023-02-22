@@ -1,11 +1,5 @@
 <template>
-  <tiny-cascader
-    v-model="value"
-    :options="options"
-    :props="props"
-    collapse-tags
-    clearable
-  ></tiny-cascader>
+  <tiny-cascader v-model="value" :options="options" :props="props" collapse-tags clearable></tiny-cascader>
 </template>
 
 <script>
@@ -32,20 +26,8 @@ export default {
               label: '安装',
               children: [
                 {
-                  value: 'xiangmudengji',
-                  label: '项目登记'
-                },
-                {
                   value: 'huanjingzhunbei',
                   label: '环境准备'
-                },
-                {
-                  value: 'anzhuangcli',
-                  label: '安装 CLI'
-                },
-                {
-                  value: 'chuangjianxiangmu',
-                  label: '创建项目'
                 }
               ]
             },
@@ -80,14 +62,6 @@ export default {
                 {
                   value: 'color',
                   label: 'Color 色彩'
-                },
-                {
-                  value: 'font',
-                  label: 'Font 字体'
-                },
-                {
-                  value: 'icon',
-                  label: 'Icon 图标'
                 }
               ]
             },

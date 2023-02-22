@@ -26,7 +26,7 @@ export default {
       data: [
         {
           id: '1',
-          name: 'GFD科技公司',
+          name: 'GFD科技YX公司',
           area: '华东区',
           province: '福建省',
           city: '福州',
@@ -34,7 +34,7 @@ export default {
         },
         {
           id: '2',
-          name: 'WWW科技公司',
+          name: 'WWW科技YX公司',
           area: '华南区',
           province: '广东省',
           city: '深圳',
@@ -50,7 +50,7 @@ export default {
         },
         {
           id: '4',
-          name: 'TGB科技公司',
+          name: 'TGB科技YX公司',
           area: '华东区',
           province: '福建省',
           city: '龙岩',
@@ -58,7 +58,7 @@ export default {
         },
         {
           id: '5',
-          name: 'YHN科技公司',
+          name: 'YHN科技YX公司',
           area: '华南区',
           province: '广东省',
           city: '韶关',
@@ -66,7 +66,7 @@ export default {
         },
         {
           id: '6',
-          name: 'WSX科技公司',
+          name: 'WSX科技YX公司',
           area: '华中区',
           province: '湖北省',
           city: '黄冈',
@@ -74,7 +74,7 @@ export default {
         },
         {
           id: '7',
-          name: 'KBG物业公司',
+          name: 'KBG物业YX公司',
           area: '华中区',
           province: '湖北省',
           city: '赤壁',
@@ -82,7 +82,7 @@ export default {
         },
         {
           id: '8',
-          name: 'SZ市福德宝网络技术公司',
+          name: '深圳市福德宝网络技术YX公司',
           address: '厦门岛内',
           area: '华东区',
           city: '厦门',
@@ -106,7 +106,7 @@ export default {
         },
         {
           id: '11',
-          name: 'TIG管理公司',
+          name: 'TIG管理YX公司',
           area: '华南区',
           province: '广西省',
           city: '桂林',
@@ -114,7 +114,7 @@ export default {
         },
         {
           id: '12',
-          name: 'GGT科技公司',
+          name: 'GGT科技YX公司',
           area: '西南区',
           province: '云南省',
           city: '昆明',

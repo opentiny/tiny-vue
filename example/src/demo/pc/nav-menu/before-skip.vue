@@ -79,26 +79,6 @@ export default {
                 {
                   title: '查看构建报告',
                   url: ''
-                },
-                {
-                  title: '静态资源构建',
-                  url: ''
-                },
-                {
-                  title: '多环境部署',
-                  url: ''
-                },
-                {
-                  title: '静态资源部署',
-                  url: ''
-                },
-                {
-                  title: 'CI 部署',
-                  url: ''
-                },
-                {
-                  title: '引入静态资源',
-                  url: ''
                 }
               ]
             }
@@ -114,27 +94,15 @@ export default {
               children: [
                 {
                   title: 'Button 按钮',
-                  url: '#/zh-CN/component/button'
+                  url: 'button'
                 },
                 {
                   title: 'Datepicker 日期',
-                  url: '#/zh-CN/component/datepicker'
+                  url: 'datepicker'
                 },
                 {
                   title: 'Dropdown 下拉框',
-                  url: '#/zh-CN/component/dropdown'
-                },
-                {
-                  title: 'DropTimes 下拉时间',
-                  url: '#/zh-CN/component/droptimes'
-                },
-                {
-                  title: 'Input 输入框',
-                  url: '#/zh-CN/component/input'
-                },
-                {
-                  title: 'Textarea 文本域',
-                  url: '#/zh-CN/component/textarea'
+                  url: 'dropdown'
                 }
               ]
             },
@@ -143,16 +111,12 @@ export default {
               url: '',
               children: [
                 {
+                  title: 'Chart 图表',
+                  url: 'chart'
+                },
+                {
                   title: 'Grid 数据表格',
-                  url: '#/zh-CN/component/grid'
-                },
-                {
-                  title: 'Pager 分页',
-                  url: '#/zh-CN/component/pager'
-                },
-                {
-                  title: 'Tree 树形控件',
-                  url: '#/zh-CN/component/tree'
+                  url: 'grid'
                 }
               ]
             },
@@ -162,11 +126,11 @@ export default {
               children: [
                 {
                   title: 'ToggleMenu 收缩菜单',
-                  url: '#/zh-CN/component/toggleMenu'
+                  url: 'toggleMenu'
                 },
                 {
                   title: 'TreeMenu 树型菜单',
-                  url: '#/zh-CN/component/treemenu'
+                  url: 'treemenu'
                 }
               ]
             },
@@ -175,90 +139,12 @@ export default {
               url: '',
               children: [
                 {
+                  title: 'Amount 金额',
+                  url: 'amount'
+                },
+                {
                   title: 'Area 片区',
-                  url: '#/zh-CN/component/area'
-                },
-                {
-                  title: 'Company 公司',
-                  url: '#/zh-CN/component/company'
-                },
-                {
-                  title: 'Dept 部门',
-                  url: '#/zh-CN/component/dept'
-                },
-                {
-                  title: 'eDoc 企业文档',
-                  url: '#/zh-CN/component/Edoc'
-                },
-                {
-                  title: 'User 用户',
-                  url: '#/zh-CN/component/user'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          title: '教程',
-          url: '',
-          children: [
-            {
-              title: '页面布局',
-              url: '',
-              children: [
-                {
-                  title: '添加标签页',
-                  url: '#/zh-CN/tutorial/addtabs'
-                },
-                {
-                  title: '标签页配置',
-                  url: '#/zh-CN/tutorial/tabsattr'
-                }
-              ]
-            },
-            {
-              title: '查询功能',
-              url: '',
-              children: [
-                {
-                  title: '添加查询页面',
-                  url: '#/zh-CN/tutorial/addlist'
-                },
-                {
-                  title: '列表属性配置',
-                  url: '#/zh-CN/tutorial/listattr'
-                },
-                {
-                  title: '通讯录查询',
-                  url: '#/zh-CN/tutorial/searchfunc'
-                }
-              ]
-            },
-            {
-              title: '新增功能',
-              url: '',
-              children: [
-                {
-                  title: '表单新增功能',
-                  url: '#/zh-CN/tutorial/addservice'
-                },
-                {
-                  title: '表单数据验证',
-                  url: '#/zh-CN/tutorial/valid'
-                }
-              ]
-            },
-            {
-              title: '编辑功能',
-              url: '',
-              children: [
-                {
-                  title: '开启编辑功能',
-                  url: '#/zh-CN/tutorial/editattr'
-                },
-                {
-                  title: '保存表格数据',
-                  url: '#/zh-CN/tutorial/savefunc'
+                  url: 'area'
                 }
               ]
             }

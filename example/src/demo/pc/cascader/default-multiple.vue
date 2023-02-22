@@ -13,7 +13,7 @@ export default {
     return {
       value: [
         ['zhinan', 'anzhuang', 'xiangmudengji'],
-        ['zhinan', 'anzhuang', 'anzhuangcli'],
+        ['zhinan', 'anzhuang', 'huanjingzhunbei'],
         ['zhinan', 'kaifa', 'yinruzujian']
       ],
       options: [
@@ -26,8 +26,12 @@ export default {
               label: '安装',
               children: [
                 {
+                  value: 'xiangmudengji',
+                  label: '项目登记'
+                },
+                {
                   value: 'huanjingzhunbei',
-                  label: '环境准备'
+                  label: '环境'
                 },
                 {
                   value: 'anzhuangcli',
@@ -70,14 +74,6 @@ export default {
                 {
                   value: 'color',
                   label: 'Color 色彩'
-                },
-                {
-                  value: 'font',
-                  label: 'Font 字体'
-                },
-                {
-                  value: 'icon',
-                  label: 'Icon 图标'
                 }
               ]
             },
@@ -108,26 +104,6 @@ export default {
                 {
                   value: 'cascader',
                   label: 'Cascader 级联选择器'
-                },
-                {
-                  value: 'switch',
-                  label: 'Switch 开关'
-                },
-                {
-                  value: 'slider',
-                  label: 'Slider 滑块'
-                },
-                {
-                  value: 'time-picker',
-                  label: 'TimePicker 时间选择器'
-                },
-                {
-                  value: 'date-picker',
-                  label: 'DatePicker 日期选择器'
-                },
-                {
-                  value: 'form',
-                  label: 'Form 表单'
                 }
               ]
             },
@@ -192,6 +168,10 @@ export default {
                 {
                   value: 'tag',
                   label: 'Tag 标签'
+                },
+                {
+                  value: 'usercontact',
+                  label: 'UserContact 联系人'
                 },
                 {
                   value: 'slidebar',

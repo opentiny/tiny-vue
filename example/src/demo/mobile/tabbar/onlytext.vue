@@ -5,18 +5,12 @@
       <h2>Heading</h2>
       <h3>{{ pagetitle }}</h3>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
       </p>
     </div>
     <tiny-tabbar v-model="activeName" fixed>
-      <tiny-tabbar-item
-        v-for="item in itemList"
-        :key="item.title"
-        @click="tab(item.pagename, item.pagetitle)"
-      >
+      <tiny-tabbar-item v-for="item in itemList" :key="item.title" @click="tab(item.pagename, item.pagetitle)">
         {{ item.title }}
       </tiny-tabbar-item>
     </tiny-tabbar>

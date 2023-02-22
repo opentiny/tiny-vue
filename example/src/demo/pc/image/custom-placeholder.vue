@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      url: 'static/images/fruit.jpg'
+      url: 'static/images/1.jpg'
     }
   }
 }

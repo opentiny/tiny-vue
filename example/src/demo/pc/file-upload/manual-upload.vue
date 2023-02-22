@@ -1,16 +1,9 @@
 <template>
-  <tiny-file-upload
-    ref="upload"
-    :action="action"
-    :file-list="fileList"
-    :auto-upload="false"
-  >
+  <tiny-file-upload ref="upload" :action="action" :file-list="fileList" :auto-upload="false">
     <template #trigger>
       <tiny-button type="primary">选取文件</tiny-button>
     </template>
-    <tiny-button style="margin-left: 10px" type="success" @click="submitUpload"
-      >上传到服务器</tiny-button
-    >
+    <tiny-button style="margin-left: 10px" type="success" @click="submitUpload">上传到服务器</tiny-button>
   </tiny-file-upload>
 </template>
 

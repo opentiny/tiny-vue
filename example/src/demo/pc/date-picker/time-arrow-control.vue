@@ -1,10 +1,6 @@
 <template>
   <div style="width: 270px">
-    <tiny-date-picker
-      v-model="value"
-      type="datetime"
-      time-arrow-control
-    ></tiny-date-picker>
+    <tiny-date-picker v-model="value" type="datetime" time-arrow-control></tiny-date-picker>
   </div>
 </template>
 

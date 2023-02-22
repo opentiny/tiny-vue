@@ -2,7 +2,7 @@
   <div>
     <tiny-dropdown split-button type="primary">
       默认尺寸
-      <tiny-dropdown-menu slot="dropdown">
+      <tiny-dropdown-menu #dropdown>
         <tiny-dropdown-item>黄金糕</tiny-dropdown-item>
         <tiny-dropdown-item>狮子头</tiny-dropdown-item>
         <tiny-dropdown-item>螺蛳粉</tiny-dropdown-item>

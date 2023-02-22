@@ -2,7 +2,7 @@
   <tiny-transfer v-model="value" :data="data" :render-content="renderDataItem"></tiny-transfer>
 </template>
 
-<script lang="jsx">
+<script>
 import { Transfer } from '@opentiny/vue'
 
 export default {

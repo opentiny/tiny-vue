@@ -1,11 +1,6 @@
 <template>
   <div class="demo-container coBox7">
-    <tiny-container
-      :pattern="pattern"
-      :aside-width="asideWidth"
-      :footer-height="footerHeight"
-      :header-height="headerHeight"
-    >
+    <tiny-container :pattern="pattern" :aside-width="asideWidth" :footer-height="footerHeight" :header-height="headerHeight">
       <template #header>
         <tiny-layout>header-height：80</tiny-layout>
       </template>

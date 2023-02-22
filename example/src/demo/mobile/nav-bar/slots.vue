@@ -12,7 +12,7 @@
 
 <script>
 import { NavBar } from '@opentiny/vue'
-import { iconArrowLeft,iconMore } from '@opentiny/vue-icon'
+import { iconArrowLeft, iconMore } from '@opentiny/vue-icon'
 
 export default {
   components: {

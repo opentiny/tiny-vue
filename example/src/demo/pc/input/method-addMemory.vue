@@ -1,13 +1,7 @@
 <template>
   <div class="demo-input">
     <h3>input:{{ input }}</h3>
-    <tiny-input
-      ref="textMemory"
-      v-model="input"
-      name="textMemory"
-      placeholder="请输入内容"
-      @change="addMemory"
-    ></tiny-input>
+    <tiny-input ref="textMemory" v-model="input" name="textMemory" placeholder="请输入内容" @change="addMemory"></tiny-input>
   </div>
 </template>
 
@@ -26,7 +20,7 @@ export default {
   methods: {
     addMemory(val) {
       Modal.message({ message: val, status: 'success' })
-      this.$refs['textMemory'].addMemory(val)
+      this.$refs.textMemory.addMemory(val)
     }
   }
 }

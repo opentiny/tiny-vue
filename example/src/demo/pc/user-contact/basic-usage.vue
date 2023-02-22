@@ -12,8 +12,8 @@ export default {
   setup() {
     return {
       data: {
-        imgUrl: 'static/images/fruit.jpg',
-        userName: 'test1',
+        imgUrl: 'static/images/user-head.png',
+        userName: '小红',
         userDescription: 'test1',
         values: [
           { text: '部门', value: '某部门' },

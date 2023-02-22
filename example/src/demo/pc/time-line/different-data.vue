@@ -1,12 +1,5 @@
 <template>
-  <tiny-time-line
-    :data="data"
-    :active="active"
-    @click="click"
-    name-field="content"
-    time-field="timestamp"
-    vertical
-  ></tiny-time-line>
+  <tiny-time-line :data="data" :active="active" @click="click" name-field="content" time-field="timestamp" vertical></tiny-time-line>
 </template>
 
 <script>

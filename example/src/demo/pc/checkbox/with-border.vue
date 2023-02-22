@@ -2,43 +2,22 @@
   <div>
     <div>
       <tiny-checkbox-group v-model="checkboxGroup1">
-        <tiny-checkbox-button
-          v-for="city in cities"
-          :label="city"
-          :key="city"
-          >{{ city }}</tiny-checkbox-button
-        >
+        <tiny-checkbox-button v-for="city in cities" :label="city" :key="city">{{ city }}</tiny-checkbox-button>
       </tiny-checkbox-group>
     </div>
     <div style="margin-top: 20px">
       <tiny-checkbox-group v-model="checkboxGroup2" size="medium">
-        <tiny-checkbox-button
-          v-for="city in cities"
-          :label="city"
-          :key="city"
-          >{{ city }}</tiny-checkbox-button
-        >
+        <tiny-checkbox-button v-for="city in cities" :label="city" :key="city">{{ city }}</tiny-checkbox-button>
       </tiny-checkbox-group>
     </div>
     <div style="margin-top: 20px">
       <tiny-checkbox-group v-model="checkboxGroup3" size="small">
-        <tiny-checkbox-button
-          v-for="city in cities"
-          :label="city"
-          :disabled="city === '北京'"
-          :key="city"
-          >{{ city }}</tiny-checkbox-button
-        >
+        <tiny-checkbox-button v-for="city in cities" :label="city" :disabled="city === '北京'" :key="city">{{ city }}</tiny-checkbox-button>
       </tiny-checkbox-group>
     </div>
     <div style="margin-top: 20px">
       <tiny-checkbox-group v-model="checkboxGroup4" size="mini" disabled>
-        <tiny-checkbox-button
-          v-for="city in cities"
-          :label="city"
-          :key="city"
-          >{{ city }}</tiny-checkbox-button
-        >
+        <tiny-checkbox-button v-for="city in cities" :label="city" :key="city">{{ city }}</tiny-checkbox-button>
       </tiny-checkbox-group>
     </div>
   </div>

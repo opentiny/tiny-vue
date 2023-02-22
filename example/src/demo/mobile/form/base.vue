@@ -7,35 +7,16 @@
     <div class="padds">
       <tiny-form ref="ruleForm" :model="createData" :rules="rules">
         <tiny-form-item label="优秀" prop="users">
-          <tiny-input
-            v-model="createData.users"
-            vertical
-            placeholder="请输入内容"
-            type="form"
-          ></tiny-input>
+          <tiny-input v-model="createData.users" vertical placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="优秀">
-          <tiny-input
-            v-model="createData.user"
-            is-select
-            vertical
-            :select-menu="menus"
-            placeholder="请输入内容"
-            type="form"
-          ></tiny-input>
+          <tiny-input v-model="createData.user" is-select vertical :select-menu="menus" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
         <tiny-form-item class="demo-form-base-item">
-          <tiny-button type="primary" @click="handleSubmit('ruleForm')"
-            >提交</tiny-button
-          >
+          <tiny-button type="primary" @click="handleSubmit('ruleForm')">提交</tiny-button>
         </tiny-form-item>
       </tiny-form>
-      <tiny-dialog-box
-        :visible="boxVisibility"
-        @update:visible="boxVisibility = $event"
-        :modal-append-to-body="false"
-        title="消息提示"
-      >
+      <tiny-dialog-box :visible="boxVisibility" @update:visible="boxVisibility = $event" :modal-append-to-body="false" title="消息提示">
         <span>提交成功！</span>
       </tiny-dialog-box>
     </div>
@@ -58,8 +39,7 @@ export default {
       menus: [
         {
           id: 1,
-          label:
-            '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
+          label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
         },
         {
           id: 2,

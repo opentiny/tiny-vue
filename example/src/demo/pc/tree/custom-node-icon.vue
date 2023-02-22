@@ -1,15 +1,10 @@
 <template>
-  <tiny-tree
-    :data="data5"
-    show-checkbox
-    default-expand-all
-    :icon="IconRightO"
-  ></tiny-tree>
+  <tiny-tree :data="data5" show-checkbox default-expand-all :icon="IconRightO"></tiny-tree>
 </template>
 
 <script>
 import { Tree } from '@opentiny/vue'
-import { iconRightO } from '@opentiny/vue-icon'
+import { IconRightO } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -17,7 +12,7 @@ export default {
   },
   data() {
     return {
-      IconRightO: iconRightO(),
+      IconRightO: IconRightO(),
       data5: [
         {
           id: 1,

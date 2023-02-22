@@ -1,11 +1,6 @@
 <template>
   <div class="content">
-    <tiny-steps
-      :data="stepsData"
-      name-field="reName"
-      count-field="reCount"
-      status-field="reStatus"
-    ></tiny-steps>
+    <tiny-steps :data="stepsData" name-field="reName" count-field="reCount" status-field="reStatus"></tiny-steps>
   </div>
 </template>
 

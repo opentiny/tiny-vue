@@ -1,10 +1,5 @@
 <template>
-  <tiny-tree
-    :data="data"
-    default-expand-all
-    draggable
-    :allow-drop="allowDrop"
-  ></tiny-tree>
+  <tiny-tree :data="data" default-expand-all draggable :allow-drop="allowDrop"></tiny-tree>
 </template>
 
 <script>

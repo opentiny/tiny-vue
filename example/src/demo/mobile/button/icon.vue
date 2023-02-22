@@ -11,14 +11,7 @@
 
 <script>
 import { Button } from '@opentiny/vue'
-import {
-  iconDel,
-  iconYes,
-  iconEdit,
-  iconMail,
-  iconStarO,
-  iconSearch
-} from '@opentiny/vue-icon'
+import { iconDel, iconYes, iconEdit, iconMail, iconStarO, iconSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {

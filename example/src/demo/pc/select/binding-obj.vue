@@ -1,13 +1,7 @@
 <template>
   <div>
     <tiny-select v-model="value" placeholder="请选择" value-key="val">
-      <tiny-option
-        v-for="item in options"
-        :key="item.obj.id"
-        :label="item.text"
-        :value="item.obj"
-      >
-      </tiny-option>
+      <tiny-option v-for="item in options" :key="item.obj.id" :label="item.text" :value="item.obj"> </tiny-option>
     </tiny-select>
     {{ value }}
   </div>

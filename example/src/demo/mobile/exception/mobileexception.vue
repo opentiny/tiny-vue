@@ -93,9 +93,7 @@
       </template>
       <template #footer>
         <div>
-          <tiny-button @click.stop="gits = !gits" plain size="large"
-            >返回</tiny-button
-          >
+          <tiny-button @click.stop="gits = !gits" plain size="large">返回</tiny-button>
         </div>
       </template>
     </tiny-exception>

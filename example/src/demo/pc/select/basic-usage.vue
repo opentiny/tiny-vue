@@ -1,12 +1,6 @@
 <template>
   <tiny-select v-model="value" placeholder="请选择">
-    <tiny-option
-      v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value"
-    >
-    </tiny-option>
+    <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
 </template>
 
@@ -40,12 +34,10 @@ export default {
         {
           value: '选项5',
           label: '北京烤鸭'
-        },
+        }
       ],
       value: ''
     }
-  },
-  methods: {
   }
 }
 </script>

@@ -26,6 +26,9 @@
 | beforeClose | () => Boolean      | 关闭前回调方法，返回 false 可阻止关闭                | undefined     |
 | onClose     | Function           | 关闭回调                                             | undefined     |
 
+### 基本用法
+
 <nova-demo-view link="notify/basic-usage"></nova-demo-view>
+
 
 <br>

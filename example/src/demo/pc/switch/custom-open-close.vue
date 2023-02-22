@@ -1,10 +1,10 @@
 <template>
-  <tiny-switch v-model="value">
+  <tiny-switch :show-text="true" v-model="value">
     <template #open>
       <span>是</span>
     </template>
     <template #close>
-      <span style="position: relative; left: 4px">否</span>
+      <span style="position: relative">否</span>
     </template>
   </tiny-switch>
 </template>

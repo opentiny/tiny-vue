@@ -36,10 +36,10 @@ export default {
       for (let i = 1; i <= 20; i++) {
         data.push({
           id: i.toString(),
-          name: `GFD科技公司${i}`,
-          area: `华东区${i}`,
-          address: `福州${i}`,
-          introduction: `公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。${i}`,
+          name: 'GFD科技YX公司' + i,
+          area: '华东区' + i,
+          address: '福州' + i,
+          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。' + i,
           disabled: i % 4 === 0
         })
       }

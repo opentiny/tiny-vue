@@ -43,7 +43,7 @@ export default {
           pageSize: 5,
           pageSizes: [5, 10],
           total: 0,
-          layout: 'sizes, total, prev, pager, next, jumper'
+          layout: 'total, prev, pager, next, jumper, sizes'
         }
       },
       fetchData: {
@@ -52,7 +52,7 @@ export default {
       tableData: [
         {
           id: '1',
-          name: 'GFD科技公司',
+          name: 'GFD科技YX公司',
           city: 'FZ',
           employees: 800,
           created_date: '2014-04-30 00:56:00',
@@ -60,7 +60,7 @@ export default {
         },
         {
           id: '2',
-          name: 'WWW科技公司',
+          name: 'WWW科技YX公司',
           city: 'SZ',
           employees: 300,
           created_date: '2016-07-08 12:36:22',
@@ -76,7 +76,7 @@ export default {
         },
         {
           id: '4',
-          name: 'TGB科技公司',
+          name: 'TGB科技YX公司',
           city: 'LY',
           employees: 360,
           created_date: '2013-01-13 13:13:13',
@@ -84,7 +84,7 @@ export default {
         },
         {
           id: '5',
-          name: 'YHN科技公司',
+          name: 'YHN科技YX公司',
           city: 'SG',
           employees: 810,
           created_date: '2012-12-12 12:12:12',
@@ -92,7 +92,7 @@ export default {
         },
         {
           id: '6',
-          name: 'WSX科技公司',
+          name: 'WSX科技YX公司',
           city: 'HG',
           employees: 800,
           created_date: '2011-11-11 11:11:11',
@@ -100,7 +100,7 @@ export default {
         },
         {
           id: '7',
-          name: 'KBG物业公司',
+          name: 'KBG物业YX公司',
           city: 'CB',
           employees: 400,
           created_date: '2016-04-30 23:56:00',
@@ -108,7 +108,7 @@ export default {
         },
         {
           id: '8',
-          name: 'SZ市福德宝网络技术公司',
+          name: '深圳市福德宝网络技术YX公司',
           city: 'XM',
           created_date: '2016-06-03 13:53:25',
           employees: 540,

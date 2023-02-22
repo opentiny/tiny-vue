@@ -1,11 +1,7 @@
 <template>
   <div>
     <p>日期值：{{ value }}</p>
-    <tiny-date-picker
-      v-model="value"
-      type="datetimerange"
-      :default-time="['00:00:00', '23:59:59']"
-    ></tiny-date-picker>
+    <tiny-date-picker v-model="value" type="datetimerange" :default-time="['00:00:00', '23:59:59']"></tiny-date-picker>
   </div>
 </template>
 

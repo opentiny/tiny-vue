@@ -1,65 +1,37 @@
 <template>
   <div class="demo-form">
-    <tiny-form
-      ref="ruleForm"
-      hide-required-asterisk
-      :model="createData"
-      :rules="rules"
-      label-width="100px"
-      show-message
-    >
-      <tiny-form-item label="必填" prop="users" required>
+    <tiny-form ref="ruleForm" hide-required-asterisk :model="createData" :rules="rules" label-width="100px" show-message>
+      <tiny-form-item label="必填" prop="users" required :validateIcon="validateIcon">
         <tiny-input v-model="createData.users"></tiny-input>
       </tiny-form-item>
-      <tiny-form-item label="日期" prop="datepicker">
+      <tiny-form-item label="日期" prop="datepicker" required :validateIcon="validateIcon" validate-type="text">
         <tiny-date-picker v-model="createData.datepicker"></tiny-date-picker>
       </tiny-form-item>
-      <tiny-form-item label="URL" prop="url">
+      <tiny-form-item label="URL" prop="url" :validateIcon="validateIcon">
         <tiny-input v-model="createData.url"></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="等级" prop="radio">
-        <tiny-radio-group
-          v-model="createData.radio"
-          :options="options"
-        ></tiny-radio-group>
+        <tiny-radio-group v-model="createData.radio" :options="options"></tiny-radio-group>
       </tiny-form-item>
       <tiny-form-item label="邮件" prop="email">
         <tiny-input v-model="createData.email"></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="文本">
-        <tiny-input
-          v-model="createData.textarea"
-          type="textarea"
-          maxlength="15"
-        ></tiny-input>
+        <tiny-input v-model="createData.textarea" type="textarea" maxlength="15"></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="级联选择器" prop="cascader">
-        <tiny-cascader
-          v-model="createData.cascader"
-          :options="options2"
-          filterable
-        ></tiny-cascader>
+        <tiny-cascader v-model="createData.cascader" :options="options2" :popper-append-to-body="true" filterable></tiny-cascader>
       </tiny-form-item>
       <tiny-form-item>
-        <tiny-button type="primary" @click="handleSubmit('ruleForm')"
-          >提交</tiny-button
-        >
+        <tiny-button type="primary" @click="handleSubmit('ruleForm')">提交</tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>
 </template>
 
 <script>
-import {
-  Form,
-  FormItem,
-  Input,
-  DatePicker,
-  Button,
-  Modal,
-  RadioGroup,
-  Cascader
-} from '@opentiny/vue'
+import { Form, FormItem, Input, DatePicker, Button, Modal, RadioGroup, Cascader } from '@opentiny/vue'
+import { iconWarning } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -73,6 +45,7 @@ export default {
   },
   data() {
     return {
+      validateIcon: iconWarning(),
       options: [
         { label: 'A', text: '很好', events: { click: this.handleClick } },
         { label: 'B', text: '一般' }

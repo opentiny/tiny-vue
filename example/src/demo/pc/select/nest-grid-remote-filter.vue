@@ -1,11 +1,27 @@
 <template>
   <div class="demo-select">
     <tiny-select
-      ref="select"
-      v-model="radioValue"
+      ref="select1"
+      v-model="radioValue1"
       placeholder="请输入关键词"
       clearable
       :remote-method="remoteMethod"
+      remote
+      filterable
+      value-field="id"
+      :multiple="true"
+      text-field="city"
+      render-type="grid"
+      :grid-op="gridOpRadio"
+    ></tiny-select>
+
+    <tiny-select
+      ref="select2"
+      v-model="radioValue2"
+      placeholder="请输入关键词"
+      clearable
+      :remote-method="remoteMethod"
+      :remote-config="{ autoSeach: true, clearData: true, showIcon: true }"
       remote
       filterable
       value-field="id"
@@ -25,19 +41,18 @@ export default {
     TinySelect: Select
   },
   created() {
-    this.allData = Array.from({ length: 10000 }, (a, i) => {
-      return {
-        id: '00' + i,
-        area: '华南区' + i,
-        province: '广东省' + i,
-        city: '广州市' + i
-      }
-    })
+    this.allData = Array.from({ length: 10000 }, (a, i) => ({
+      id: '00' + i,
+      area: '华南区' + i,
+      province: '广东省' + i,
+      city: '广州市' + i
+    }))
   },
   data() {
     return {
       allData: [],
-      radioValue: '',
+      radioValue1: [],
+      radioValue2: [],
       gridOpRadio: {
         data: [],
         height: 300,
@@ -58,18 +73,14 @@ export default {
   },
   methods: {
     remoteMethod(value) {
-      let allData = Array.from({ length: 1000 }, (a, i) => {
-        return {
-          id: '00' + i,
-          area: '华南区' + i,
-          province: '广东省' + i,
-          city: '广州市' + i
-        }
-      })
+      let allData = Array.from({ length: 1000 }, (a, i) => ({
+        id: '00' + i,
+        area: '华南区' + i,
+        province: '广东省' + i,
+        city: '广州市' + i
+      }))
 
-      let filterData = allData.filter((item) => {
-        return item.city.indexOf(value) > -1
-      })
+      let filterData = allData.filter((item) => item.city.indexOf(value) > -1)
 
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -78,9 +89,7 @@ export default {
       })
     },
     filter(value) {
-      return this.allData.filter((item) => {
-        return item.city.indexOf(value) === -1
-      })
+      return this.allData.filter((item) => item.city.indexOf(value) === -1)
     }
   }
 }
@@ -89,6 +98,6 @@ export default {
 <style scoped>
 .demo-select .tiny-select {
   width: 270px;
-  margin-left: 200px;
+  margin-right: 30px;
 }
 </style>

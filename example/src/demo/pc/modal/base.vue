@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { Button, Modal } from '@opentiny/vue'
+import { Button, Modal, Notify } from '@opentiny/vue'
 
 export default {
   components: {
@@ -25,7 +25,13 @@ export default {
       Modal.alert({ message: '失败提示框', title: '错误提示', status: 'error' })
     },
     confirmClick() {
-      Modal.confirm('您确定要删除吗？')
+      Modal.confirm('您确定要删除吗？').then((res) => {
+        Notify({
+          type: 'info',
+          title: '触发回调事件',
+          message: `点击${res}按钮`
+        })
+      })
     }
   }
 }

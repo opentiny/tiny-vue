@@ -34,14 +34,14 @@ export default {
       tableData: [
         {
           id: '1',
-          name: 'GFD科技公司',
+          name: 'GFD科技YX公司',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 800,
           created_date: '2014-04-30 00:56:00'
         },
         {
           id: '2',
-          name: 'WWW科技公司',
+          name: 'WWW科技YX公司',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 300,
           created_date: '2016-07-08 12:36:22'
@@ -55,14 +55,14 @@ export default {
         },
         {
           id: '4',
-          name: 'TGB科技公司',
+          name: 'TGB科技YX公司',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 360,
           created_date: '2013-01-13 13:13:13'
         },
         {
           id: '5',
-          name: 'YHN科技公司',
+          name: 'YHN科技YX公司',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 810,
           created_date: '2012-12-12 12:12:12'
@@ -108,13 +108,13 @@ export default {
           resolve([
             {
               id: '1',
-              name: 'GFD科技公司',
+              name: 'GFD科技YX公司',
               city: '福州',
               province: '福建省'
             },
             {
               id: '2',
-              name: 'WWW科技公司',
+              name: 'WWW科技YX公司',
               city: '深圳',
               province: '广东省'
             },
@@ -126,13 +126,13 @@ export default {
             },
             {
               id: '4',
-              name: 'TGB科技公司',
+              name: 'TGB科技YX公司',
               city: '龙岩',
               province: '福建省'
             },
             {
               id: '5',
-              name: 'YHN科技公司',
+              name: 'YHN科技YX公司',
               city: '韶关',
               province: '广东省'
             }
@@ -150,7 +150,7 @@ export default {
 
       const data = Array.from({ length: page.pageSize }).map((item, i) => ({
         id: pageSize * (currentPage - 1) + i + 1,
-        name: `${randomAlphabets()}公司`,
+        name: randomAlphabets() + 'YX公司',
         city: ['福州', '深圳', '中山', '龙岩', '韶关', '黄冈', '赤壁', '厦门'][Math.floor(Math.random() * 8)],
         employees: Math.ceil(Math.random() * 10000)
       }))

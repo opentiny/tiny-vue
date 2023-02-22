@@ -1,32 +1,14 @@
 <template>
   <div>
     <div class="title">横向步骤条 正向</div>
-    <tiny-time-line
-      :data="data3"
-      type="timeline"
-      :active="timeActive1"
-      @click="timeClick1"
-    ></tiny-time-line>
+    <tiny-time-line :data="data3" type="timeline" :active="timeActive1" @click="timeClick1"></tiny-time-line>
     <div class="half-div">
       <div class="title">竖式步骤条 正向</div>
-      <tiny-time-line
-        :data="data3"
-        type="timeline"
-        vertical
-        :active="timeActive2"
-        @click="timeClick2"
-      ></tiny-time-line>
+      <tiny-time-line :data="data3" type="timeline" vertical :active="timeActive2" @click="timeClick2"></tiny-time-line>
     </div>
     <div class="half-div">
       <div class="title">竖式步骤条 反向</div>
-      <tiny-time-line
-        :data="data3"
-        reverse
-        type="timeline"
-        vertical
-        :active="timeActive3"
-        @click="timeClick3"
-      ></tiny-time-line>
+      <tiny-time-line :data="data3" reverse type="timeline" vertical :active="timeActive3" @click="timeClick3"></tiny-time-line>
     </div>
   </div>
 </template>

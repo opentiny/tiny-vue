@@ -1,8 +1,6 @@
 <template>
   <div style="width: 270px">
-    <tiny-button @click="Switchover" style="margin-bottom: 10px"
-      >启用/禁用</tiny-button
-    >
+    <tiny-button @click="Switchover" style="margin-bottom: 10px">启用/禁用</tiny-button>
     <tiny-date-picker v-model="value" :disabled="disabled"></tiny-date-picker>
   </div>
 </template>

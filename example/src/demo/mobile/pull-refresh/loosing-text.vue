@@ -1,9 +1,5 @@
 <template>
-  <tiny-pull-refresh
-    v-model="isLoading"
-    @refresh="onRefresh"
-    loosing-text="可以了，可以了，别扒拉了！"
-  >
+  <tiny-pull-refresh v-model="isLoading" @refresh="onRefresh" loosing-text="可以了，可以了，别扒拉了！">
     <h3>hello pull-refresh</h3>
   </tiny-pull-refresh>
 </template>

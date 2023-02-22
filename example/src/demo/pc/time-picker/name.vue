@@ -1,10 +1,6 @@
 <template>
   <div>
-    <tiny-time-picker
-      v-model="value1"
-      name="name"
-      placeholder="选择时间范围"
-    ></tiny-time-picker>
+    <tiny-time-picker v-model="value1" name="name" placeholder="选择时间范围"></tiny-time-picker>
   </div>
 </template>
 

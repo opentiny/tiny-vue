@@ -21,7 +21,7 @@ export default {
     const tableData = [
       {
         id: '1',
-        name: 'GFD科技公司',
+        name: 'GFD科技YX公司',
         city: '福州',
         employees: 800,
         created_date: '2014-04-30 00:56:00',
@@ -29,7 +29,7 @@ export default {
       },
       {
         id: '2',
-        name: 'WWW科技公司',
+        name: 'WWW科技YX公司',
         city: '深圳',
         employees: 300,
         created_date: '2016-07-08 12:36:22',
@@ -45,7 +45,7 @@ export default {
       },
       {
         id: '4',
-        name: 'TGB科技公司',
+        name: 'TGB科技YX公司',
         city: '龙岩',
         employees: 360,
         created_date: '2013-01-13 13:13:13',
@@ -53,7 +53,7 @@ export default {
       },
       {
         id: '5',
-        name: 'YHN科技公司',
+        name: 'YHN科技YX公司',
         city: '韶关',
         employees: 810,
         created_date: '2012-12-12 12:12:12',
@@ -61,7 +61,7 @@ export default {
       },
       {
         id: '6',
-        name: 'WSX科技公司',
+        name: 'WSX科技YX公司',
         city: '黄冈',
         employees: 800,
         created_date: '2011-11-11 11:11:11',
@@ -69,7 +69,7 @@ export default {
       },
       {
         id: '7',
-        name: 'KBG物业公司',
+        name: 'KBG物业YX公司',
         city: '赤壁',
         employees: 400,
         created_date: '2016-04-30 23:56:00',
@@ -77,7 +77,7 @@ export default {
       },
       {
         id: '8',
-        name: 'SZ市福德宝网络技术公司',
+        name: '深圳市福德宝网络技术YX公司',
         boole: true,
         city: '厦门',
         created_date: '2016-06-03 13:53:25',

@@ -6,7 +6,7 @@
       :cropvisible="visible"
       @update:cropvisible="visible = $event"
       ref="crop"
-      src="static/images/mountain.png"
+      src="static/images/1.jpg"
       @cropstart="cropstart"
       @cropmove="cropmove"
       @cropend="cropend"

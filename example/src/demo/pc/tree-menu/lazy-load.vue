@@ -22,9 +22,7 @@ export default {
         return resolve([{ label: '表单组件' }, { label: '数据组件' }])
       }
 
-      if (node.level > 3) {
-        return resolve([])
-      }
+      if (node.level > 3) return resolve([])
 
       let hasChild
 

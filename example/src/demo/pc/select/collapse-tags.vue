@@ -1,12 +1,6 @@
 <template>
   <tiny-select v-model="value" placeholder="请选择" multiple collapse-tags>
-    <tiny-option
-      v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value"
-    >
-    </tiny-option>
+    <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" :disabled="item.disabled"> </tiny-option>
   </tiny-select>
 </template>
 
@@ -23,7 +17,8 @@ export default {
       options: [
         {
           value: '选项1',
-          label: '黄金糕'
+          label: '黄金糕',
+          disabled: true
         },
         {
           value: '选项2',

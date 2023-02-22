@@ -14,7 +14,7 @@ export default {
   },
   data() {
     return {
-      image: 'static/images/button-image.png'
+      image: 'static/images/hae-logo.png'
     }
   }
 }

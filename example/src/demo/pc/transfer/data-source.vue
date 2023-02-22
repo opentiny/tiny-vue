@@ -1,10 +1,5 @@
 <template>
-  <tiny-transfer
-    v-model="value"
-    :data="data"
-    :to-left-disable="false"
-    :to-right-disable="false"
-  ></tiny-transfer>
+  <tiny-transfer v-model="value" :data="data" :to-left-disable="false" :to-right-disable="false"></tiny-transfer>
 </template>
 
 <script>

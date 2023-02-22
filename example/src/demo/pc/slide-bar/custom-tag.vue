@@ -1,11 +1,6 @@
 <template>
   <div class="demo-slide-bar-tag">
-    <tiny-slide-bar
-      v-model="list"
-      :init-blocks="initBlocks"
-      tag="div"
-      sub-tag="div"
-    ></tiny-slide-bar>
+    <tiny-slide-bar v-model="list" :init-blocks="initBlocks" tag="div" sub-tag="div"></tiny-slide-bar>
   </div>
 </template>
 
@@ -42,12 +37,7 @@ export default {
   color: #4e5e67;
 }
 
-.demo-slide-bar-tag
-  .tiny-slide-bar
-  .tiny-slide-bar__list
-  > div
-  li
-  div:nth-child(2) {
+.demo-slide-bar-tag .tiny-slide-bar .tiny-slide-bar__list > div li div:nth-child(2) {
   border-bottom: 1px solid #ebebeb;
 }
 
@@ -75,11 +65,7 @@ export default {
   border-color: rgba(153, 153, 153, 0.7);
 }
 
-.demo-slide-bar-tag
-  .tiny-slide-bar
-  .tiny-slide-bar__list
-  > div
-  > .icon-chevron-down {
+.demo-slide-bar-tag .tiny-slide-bar .tiny-slide-bar__list > div > .icon-chevron-down {
   position: absolute;
   top: 98.8%;
   left: 50%;
@@ -89,11 +75,7 @@ export default {
   display: none !important;
 }
 
-.demo-slide-bar-tag
-  .tiny-slide-bar
-  .tiny-slide-bar__list
-  > div
-  > .icon-chevron-down:before {
+.demo-slide-bar-tag .tiny-slide-bar .tiny-slide-bar__list > div > .icon-chevron-down:before {
   content: '';
   position: absolute;
   width: 20px;
@@ -105,27 +87,15 @@ export default {
   top: -5px;
 }
 
-.demo-slide-bar-tag
-  .tiny-slide-bar
-  .tiny-slide-bar__list
-  > div.tiny-slide-bar__select {
+.demo-slide-bar-tag .tiny-slide-bar .tiny-slide-bar__list > div.tiny-slide-bar__select {
   border-color: rgba(153, 153, 153, 0.7);
 }
 
-.demo-slide-bar-tag
-  .tiny-slide-bar
-  .tiny-slide-bar__list
-  > div.tiny-slide-bar__select
-  div
-  .tiny-icon {
+.demo-slide-bar-tag .tiny-slide-bar .tiny-slide-bar__list > div.tiny-slide-bar__select div .tiny-icon {
   color: rgba(153, 153, 153, 0.7);
 }
 
-.demo-slide-bar-tag
-  .tiny-slide-bar
-  .tiny-slide-bar__list
-  > div.tiny-slide-bar__select
-  div:nth-child(2) {
+.demo-slide-bar-tag .tiny-slide-bar .tiny-slide-bar__list > div.tiny-slide-bar__select div:nth-child(2) {
   border-bottom: 1px solid rgba(153, 153, 153, 0.7);
 }
 </style>

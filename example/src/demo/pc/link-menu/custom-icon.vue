@@ -1,15 +1,10 @@
 <template>
-  <tiny-link-menu
-    :data="datas"
-    :icon="IconDoubleRight"
-    ellipsis
-    :search-icon="IconExpressSearch"
-  ></tiny-link-menu>
+  <tiny-link-menu :data="datas" :icon="IconDoubleRight" ellipsis :search-icon="IconExpressSearch"></tiny-link-menu>
 </template>
 
 <script>
 import { LinkMenu } from '@opentiny/vue'
-import { iconDoubleRight,iconExpressSearch } from '@opentiny/vue-icon'
+import { IconDoubleRight, IconExpressSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -17,13 +12,12 @@ export default {
   },
   data() {
     return {
-      IconDoubleRight: iconDoubleRight(),
-      IconExpressSearch: iconExpressSearch(),
+      IconDoubleRight: IconDoubleRight(),
+      IconExpressSearch: IconExpressSearch(),
       datas: [
         {
           id: 1,
-          label:
-            '更新日志更新日志更新日志更新日志更新日志更新日志更新日志更新日志更新日志更新日志更新日志更新日志更新日志更新日志更新日志'
+          label: '更新日志更新日志更新日志更新日志更新日志更新日志更新日志更新日志更新日志更新日志更新日志更新日志更新日志更新日志更新日志'
         },
         {
           id: 2,

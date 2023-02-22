@@ -4,8 +4,8 @@
 const fs = require('fs-extra')
 const path = require('path')
 const { execSync } = require('child_process')
-const utils = require('./utils')
-const { logGreen } = require('./utils')
+const utils = require('../build/utils')
+const { logGreen } = require('../build/utils')
 
 const sourcePkg = 'packages'
 const packages = 'dist'
@@ -17,6 +17,7 @@ const NPM_WAREHOUSE = process.env.NPM_WAREHOUSE
 const targetVersion = utils.getTinyVersion('themeVersion')
 const targetVersionArr = targetVersion.split('.')
 const themeVersionDependencies = `~${targetVersionArr[0]}.${targetVersionArr[1]}.0`
+const typings = 'typings'
 
 const packPackages = (p, packagePath) => {
   execSync('npm pack -q', { cwd: path.join(packages, p) })
@@ -63,6 +64,9 @@ const dealPackage = (p, packageJSON) => {
     }
   }
   packageJSON.dependencies = Object.assign(packageJSON.dependencies || {}, dependencies)
+  if (VERSION_TAG.startsWith('3')) {
+    packageJSON.types = 'index.d.ts'
+  }
   packageJSON.sideEffects = false
   packageJSON.version = VERSION_TAG
 }
@@ -116,6 +120,41 @@ const dealFile = (componentDir, distDir) => {
   }
 }
 
+// chart文件夹处理
+
+const releaseChart = (componentDir, item) => {
+  fs.readdirSync(componentDir).forEach((child) => {
+    const stat = fs.statSync(path.join(componentDir, child))
+
+    if (stat.isDirectory()) {
+      const distPath = path.join(sourcePkg, item, child, packages)
+      const packageJson = path.join(sourcePkg, item, child, packageName)
+
+      const typingsPath = path.join(typings, item, child)
+
+      if (fs.existsSync(typingsPath) && VERSION_TAG.startsWith('3')) {
+        fs.copySync(typingsPath, path.join(packages, item), {
+          overwrite: true
+        })
+      }
+
+      if (fs.existsSync(distPath)) {
+        fs.copySync(distPath, path.join(packages, item, child), {
+          overwrite: true
+        })
+        fs.copySync(packageJson, path.join(packages, item, child, packageName), {
+          overwrite: true
+        })
+      } else {
+        fs.copySync(componentDir, path.join(packages, item, child), {
+          overwrite: true
+        })
+      }
+      release(path.join(item, child))
+    }
+  })
+}
+
 // 读取packages文件夹下的所有组件，并执行copy操作
 const releaseAll = () => {
   fs.readdirSync(path.join(sourcePkg)).forEach((item) => {
@@ -125,6 +164,13 @@ const releaseAll = () => {
     if (stat.isDirectory()) {
       const distPath = path.join(sourcePkg, item, packages)
       const packageJson = path.join(sourcePkg, item, packageName)
+      const typingsPath = path.join(typings, item)
+
+      if (fs.existsSync(typingsPath) && VERSION_TAG.startsWith('3')) {
+        fs.copySync(typingsPath, path.join(packages, item), {
+          overwrite: true
+        })
+      }
 
       if (fs.existsSync(distPath)) {
         fs.copySync(distPath, path.join(packages, item), {
@@ -134,6 +180,7 @@ const releaseAll = () => {
           overwrite: true
         })
       } else {
+        // 如果packags包里面没有dist目录，则copy整个目录，比如common local等适配层
         fs.copySync(componentDir, path.join(packages, item), {
           overwrite: true
         })
@@ -143,6 +190,9 @@ const releaseAll = () => {
       }
 
       release(item)
+      if (item === 'chart') {
+        releaseChart(componentDir, item)
+      }
     }
   })
 

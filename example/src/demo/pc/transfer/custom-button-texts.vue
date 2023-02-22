@@ -1,9 +1,5 @@
 <template>
-  <tiny-transfer
-    v-model="value"
-    :data="data"
-    :button-texts="['left', 'right']"
-  ></tiny-transfer>
+  <tiny-transfer v-model="value" :data="data" :button-texts="['left', 'right']"></tiny-transfer>
 </template>
 
 <script>

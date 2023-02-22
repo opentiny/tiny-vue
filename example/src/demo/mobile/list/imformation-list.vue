@@ -96,7 +96,7 @@ export default {
           content: 'AI系列培训-Introduction to AI & ML-分布式',
           subtext: '',
           contentdes: '',
-          img: 'static/images/planet1.jpg'
+          img: 'static/images/px.png'
         }
       ],
       dataList1: [
@@ -106,7 +106,7 @@ export default {
             'AI系列培训-Introduction to AI & ML-分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流',
           subtext: '',
           contentdes: '01-14 00:00',
-          img: 'static/images/planet2.jpg'
+          img: 'static/images/zh.png'
         }
       ],
       dataList2: [
@@ -116,7 +116,7 @@ export default {
             'AI系列培训-Introduction to AI & ML-分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流',
           subtext: '',
           contentdes: '1235评论',
-          img: 'static/images/planet3.jpg'
+          img: 'static/images/dsj.png'
         }
       ],
       dataList3: [
@@ -126,14 +126,14 @@ export default {
             'AI系列培训-Introduction to AI & ML-分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流',
           subtext: '',
           contentdes: '1235播放',
-          img: 'static/images/planet1.jpg'
+          img: 'static/images/ry.png'
         },
         {
           id: 2,
           content: 'AI系列培训',
           subtext: '',
           contentdes: '1235播放',
-          img: 'static/images/planet2.jpg'
+          img: 'static/images/ld.png'
         }
       ],
       dataList4: [
@@ -143,14 +143,14 @@ export default {
             'AI系列培训-Introduction to AI & ML-分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流,分布式与并行与交流，分布式与并行与交流',
           subtext: '',
           contentdes: '1235播放',
-          img: 'static/images/planet1.jpg'
+          img: 'static/images/jz.png'
         },
         {
           id: 2,
           content: 'AI系列培训',
           subtext: '',
           contentdes: '1235播放',
-          img: 'static/images/planet2.jpg'
+          img: 'static/images/dh.png'
         }
       ]
     }

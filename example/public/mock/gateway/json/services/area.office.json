@@ -1,0 +1,108 @@
+{
+  "area": [
+    {
+      "org_id": "610453",
+      "id_and_type": "610453Office",
+      "parent_and_type": "652495Rep. Office",
+      "name_cn": "牙买加办事处",
+      "date_from": "2007/11/26 00:00:00",
+      "name_en": "Jamaica Office",
+      "parent_type": "Rep. Office",
+      "dept_code": "025641",
+      "date_to": null,
+      "parent": "652495",
+      "area_label": "Office"
+    },
+    {
+      "org_id": "615077",
+      "id_and_type": "615077Office",
+      "parent_and_type": "652495Rep. Office",
+      "name_cn": "巴拿马办事处",
+      "date_from": "2008/07/08 00:00:00",
+      "name_en": "Panama Office",
+      "parent_type": "Rep. Office",
+      "dept_code": "025656",
+      "date_to": null,
+      "parent": "652495",
+      "area_label": "Office"
+    },
+    {
+      "org_id": "620058",
+      "id_and_type": "620058Office",
+      "parent_and_type": "652495Rep. Office",
+      "name_cn": "多米尼加办事处",
+      "date_from": "2009/05/21 00:00:00",
+      "name_en": "Dominica Office",
+      "parent_type": "Rep. Office",
+      "dept_code": "025659",
+      "date_to": null,
+      "parent": "652495",
+      "area_label": "Office"
+    },
+    {
+      "org_id": "649896",
+      "id_and_type": "649896Office",
+      "parent_and_type": "1125Rep. Office",
+      "name_cn": "西宁办事处",
+      "date_from": "2012/07/12 00:00:00",
+      "name_en": "Xining Office, CN",
+      "parent_type": "Rep. Office",
+      "dept_code": "035560",
+      "date_to": null,
+      "parent": "1125",
+      "area_label": "Office"
+    },
+    {
+      "org_id": "661414",
+      "id_and_type": "661414Office",
+      "parent_and_type": "649991Rep. Office",
+      "name_cn": "A公司XX地区部广州办事处",
+      "date_from": "2016/03/28 00:00:00",
+      "name_en": "Consumer BG Greater China Region Guangzhou Office",
+      "parent_type": "Rep. Office",
+      "dept_code": "041626",
+      "date_to": null,
+      "parent": "649991",
+      "area_label": "Office"
+    },
+    {
+      "org_id": "661415",
+      "id_and_type": "661415Office",
+      "parent_and_type": "649991Rep. Office",
+      "name_cn": "A公司XX地区部深圳办事处",
+      "date_from": "2016/03/28 00:00:00",
+      "name_en": "Consumer BG Greater China Region Shenzhen Office",
+      "parent_type": "Rep. Office",
+      "dept_code": "041627",
+      "date_to": null,
+      "parent": "649991",
+      "area_label": "Office"
+    },
+    {
+      "org_id": "661416",
+      "id_and_type": "661416Office",
+      "parent_and_type": "649991Rep. Office",
+      "name_cn": "A公司XX地区部东莞办事处",
+      "date_from": "2016/03/28 00:00:00",
+      "name_en": "Consumer BG Greater China Region Dongguan Office",
+      "parent_type": "Rep. Office",
+      "dept_code": "041628",
+      "date_to": null,
+      "parent": "649991",
+      "area_label": "Office"
+    },
+    {
+      "org_id": "661417",
+      "id_and_type": "661417Office",
+      "parent_and_type": "649991Rep. Office",
+      "name_cn": "A公司XX地区部佛山办事处",
+      "date_from": "2016/03/28 00:00:00",
+      "name_en": "Consumer BG Greater China Region Foshan Office",
+      "parent_type": "Rep. Office",
+      "dept_code": "041629",
+      "date_to": null,
+      "parent": "649991",
+      "area_label": "Office"
+    }
+  ]
+}

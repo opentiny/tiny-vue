@@ -1,11 +1,6 @@
 <template>
   <div class="demo-input">
-    <tiny-input
-      type="number"
-      v-model="input"
-      :step="2"
-      placeholder="step 为 2"
-    ></tiny-input>
+    <tiny-input type="number" v-model="input" :step="2" placeholder="step 为 2"></tiny-input>
   </div>
 </template>
 

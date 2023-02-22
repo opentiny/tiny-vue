@@ -6,30 +6,15 @@
     </div>
     <div>
       <p class="page__text">打开autocomplete</p>
-      <tiny-input
-        v-model="input"
-        placeholder="请输入内容"
-        clearable
-        autocomplete="on"
-      ></tiny-input>
+      <tiny-input v-model="input" placeholder="请输入内容" clearable autocomplete="on"></tiny-input>
     </div>
     <div>
       <p class="page__text">普通可关闭</p>
-      <tiny-input
-        v-model="input"
-        placeholder="请输入内容"
-        clearable
-      ></tiny-input>
+      <tiny-input v-model="input" placeholder="请输入内容" clearable></tiny-input>
     </div>
     <div>
       <p class="page__text">文本域</p>
-      <tiny-input
-        v-model="input"
-        type="textarea"
-        counter
-        show-word-limit
-        :maxlength="20"
-      ></tiny-input>
+      <tiny-input v-model="input" type="textarea" counter show-word-limit :maxlength="20"></tiny-input>
     </div>
   </div>
 </template>

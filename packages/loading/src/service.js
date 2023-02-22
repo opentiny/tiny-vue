@@ -74,7 +74,7 @@ const addStyle = (options, parent, instance) => {
 
 export default (configs = {}) => {
   configs = { ...defaults, ...configs }
-  tinyMode = configs.tiny_mode;
+  tinyMode = configs.tiny_mode
   if (typeof configs.target === 'string') {
     configs.target = document.querySelector(configs.target)
   }

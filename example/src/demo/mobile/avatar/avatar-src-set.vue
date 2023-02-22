@@ -2,7 +2,7 @@
   <div class="avatar-wrap">
     <tiny-avatar :src="circleUrl" :src-set="srcSet" size="large"></tiny-avatar>
     <tiny-avatar :icon="IconClockWork" size="large"></tiny-avatar>
-    <tiny-avatar :src="circleUrl" fit="contain" size="large"></tiny-avatar>
+    <tiny-avatar :src="circleUrlfit" fit="none" size="large"></tiny-avatar>
     <tiny-avatar :src="errorUrl" :error="onError" fit="none" size="large"></tiny-avatar>
     <tiny-avatar :src="circleUrl" shape="square" fit="none" size="large"></tiny-avatar>
   </div>
@@ -19,8 +19,9 @@ export default {
   data() {
     return {
       IconClockWork: iconClockWork(),
-      circleUrl: 'static/images/floral.png',
-      srcSet: 'static/images/watercolor.png 100w,static/images/floral.png 300w,static/images/fruit.jpg 500w',
+      circleUrl: 'static/images/circle.png',
+      circleUrlfit: 'static/images/dog1.png',
+      srcSet: 'static/images/dog1.png 100w,static/images/dog2.png 300w,static/images/dog3.png 500w',
       errorUrl: 'error.png', //使用错误路径
       onError() {
         console.log('加载失败')

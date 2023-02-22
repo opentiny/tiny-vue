@@ -1,11 +1,6 @@
 <template>
   <div class="input-wrap">
-    <tiny-input
-      v-model="input"
-      clearable
-      @change="change"
-      @clear="clear"
-    ></tiny-input>
+    <tiny-input v-model="input" clearable @change="change" @clear="clear"></tiny-input>
   </div>
 </template>
 
