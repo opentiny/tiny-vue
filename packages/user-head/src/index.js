@@ -45,10 +45,7 @@ export default {
     /**
      * @property {String} [backgroundColor=#BBBBBB] - 背景色
      */
-    backgroundColor: {
-      type: String,
-      default: template === PCTemplate ? '#BBBBBB' : '#4a79fe'
-    },
+    backgroundColor: String,
 
     /**
      * @property {String} [type=label] - 头像类型，icon|image|label 可选
