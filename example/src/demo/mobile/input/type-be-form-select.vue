@@ -1,12 +1,6 @@
 <template>
   <div class="input-wrap">
-    <tiny-input
-      v-model="input"
-      is-select
-      :select-menu="menus"
-      placeholder="请输入内容"
-      type="form"
-    ></tiny-input>
+    <tiny-input v-model="input" is-select :select-menu="menus" placeholder="请输入内容" type="form"></tiny-input>
   </div>
 </template>
 
@@ -23,8 +17,7 @@ export default {
       menus: [
         {
           id: 1,
-          label:
-            '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
+          label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
         },
         {
           id: 2,

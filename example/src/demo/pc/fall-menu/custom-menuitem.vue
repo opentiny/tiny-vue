@@ -8,12 +8,7 @@
         <span>{{ data.slotScope.title + 'level2' }}</span>
       </template>
       <template #level3="data">
-        <a
-          v-for="(level3, index) in data.slotScope"
-          :href="level3.url"
-          :key="index"
-          >{{ level3.title + 'level3' }}</a
-        >
+        <a v-for="(level3, index) in data.slotScope" :href="level3.url" :key="index">{{ level3.title + 'level3' }}</a>
       </template>
     </fall-menu>
   </div>
@@ -24,7 +19,7 @@ import { FallMenu } from '@opentiny/vue'
 
 export default {
   components: {
-    FallMenu: FallMenu
+    FallMenu
   },
   data() {
     return {
@@ -82,27 +77,28 @@ export default {
               title: '表单组件',
               url: '',
               children: [
-                { title: 'Button 按钮', url: '#/zh-CN/component/button' },
+                { title: 'Button 按钮', url: 'button' },
                 {
                   title: 'Datepicker 日期',
-                  url: '#/zh-CN/component/datepicker'
+                  url: 'datepicker'
                 },
-                { title: 'Dropdown 下拉框', url: '#/zh-CN/component/dropdown' },
+                { title: 'Dropdown 下拉框', url: 'dropdown' },
                 {
                   title: 'DropTimes 下拉时间',
-                  url: '#/zh-CN/component/droptimes'
+                  url: 'droptimes'
                 },
-                { title: 'Input 输入框', url: '#/zh-CN/component/input' },
-                { title: 'Textarea 文本域', url: '#/zh-CN/component/textarea' }
+                { title: 'Input 输入框', url: 'input' },
+                { title: 'Textarea 文本域', url: 'textarea' }
               ]
             },
             {
               title: '数据组件',
               url: '',
               children: [
-                { title: 'Grid 数据表格', url: '#/zh-CN/component/grid' },
-                { title: 'Pager 分页', url: '#/zh-CN/component/pager' },
-                { title: 'Tree 树形控件', url: '#/zh-CN/component/tree' }
+                { title: 'Chart 图表', url: 'chart' },
+                { title: 'Grid 数据表格', url: 'grid' },
+                { title: 'Pager 分页', url: 'pager' },
+                { title: 'Tree 树形控件', url: 'tree' }
               ]
             },
             {
@@ -111,12 +107,24 @@ export default {
               children: [
                 {
                   title: 'ToggleMenu 收缩菜单',
-                  url: '#/zh-CN/component/toggleMenu'
+                  url: 'toggleMenu'
                 },
                 {
                   title: 'TreeMenu 树型菜单',
-                  url: '#/zh-CN/component/treemenu'
+                  url: 'treemenu'
                 }
+              ]
+            },
+            {
+              title: '业务组件',
+              url: '',
+              children: [
+                { title: 'Amount 金额', url: 'amount' },
+                { title: 'Area 片区', url: 'area' },
+                { title: 'Company 公司', url: 'company' },
+                { title: 'Dept 部门', url: 'dept' },
+                { title: 'eDoc 企业文档', url: 'Edoc' },
+                { title: 'User 用户', url: 'user' }
               ]
             }
           ]
@@ -178,7 +186,7 @@ export default {
 
 <style scoped>
 .left-panel {
-  height: 400px;
-  width: 600px;
+  height: 150px;
+  width: 100%;
 }
 </style>

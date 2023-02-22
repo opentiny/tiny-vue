@@ -28,14 +28,14 @@ export default {
       tableData: [
         {
           id: '1',
-          name: 'GFD科技公司',
+          name: 'GFD科技YX公司',
           area: '华东区',
           address: '福州',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '2',
-          name: 'WWW科技公司',
+          name: 'WWW科技YX公司',
           area: '华南区',
           address: '深圳福田区',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
@@ -49,21 +49,21 @@ export default {
         },
         {
           id: '4',
-          name: 'TGB科技公司',
+          name: 'TGB科技YX公司',
           area: '华东区',
           address: '龙岩',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '5',
-          name: 'YHN科技公司',
+          name: 'YHN科技YX公司',
           area: '华南区',
           address: '韶关',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '6',
-          name: 'WSX科技公司',
+          name: 'WSX科技YX公司',
           area: '华中区',
           address: '黄冈',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'

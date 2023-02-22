@@ -1,7 +1,5 @@
 <template>
-  <tiny-button @click="btnClick" :reset-time="0"
-    >点击遮罩层可以关闭</tiny-button
-  >
+  <tiny-button @click="btnClick" :reset-time="0">点击遮罩层可以关闭</tiny-button>
 </template>
 
 <script>

@@ -2,15 +2,7 @@
   <div class="demo">
     <p class="demo-title">勾选-单选</p>
     <div>
-      <tiny-list
-        class="demo-list"
-        v-for="item of dataList"
-        :key="item.id"
-        :id="item.id"
-        :content="item.content"
-        :sub-text="item.subtext"
-        @click="clickFn"
-      >
+      <tiny-list class="demo-list" v-for="item of dataList" :key="item.id" :id="item.id" :content="item.content" :sub-text="item.subtext" @click="clickFn">
         <template #suffix>
           <tiny-radio v-model="value1" :label="item.id"></tiny-radio>
         </template>

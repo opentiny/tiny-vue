@@ -1,11 +1,5 @@
 <template>
-  <tiny-file-upload
-    accept="image/*"
-    ref="upload"
-    :action="action"
-    :file-list="fileList"
-    :before-upload="beforeUpload"
-  >
+  <tiny-file-upload accept="image/*" ref="upload" :action="action" :file-list="fileList" :before-upload="beforeUpload">
     <template #trigger>
       <tiny-button type="primary">选取文件</tiny-button>
     </template>

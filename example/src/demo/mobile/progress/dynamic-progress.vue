@@ -36,7 +36,7 @@ export default {
         this.timeId = null
       } else {
         this.action = '暂停'
-        this.timeId = setInterval(function () {
+        this.timeId = setInterval(() => {
           if (that.percentage < 100) {
             that.percentage += 10
           } else {

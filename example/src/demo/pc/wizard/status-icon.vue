@@ -4,7 +4,7 @@
 
 <script>
 import { Wizard } from '@opentiny/vue'
-import { iconMarkOn } from '@opentiny/vue-icon'
+import { IconMarkOn } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -12,7 +12,7 @@ export default {
   },
   data() {
     return {
-      IconMarkOn: iconMarkOn(),
+      IconMarkOn: IconMarkOn(),
       dataSet: [
         {
           name: '出差信息填写',

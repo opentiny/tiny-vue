@@ -1,9 +1,4 @@
 {
-  "ActionMenu": {
-    "path": "packages/action-menu/index.js",
-    "type": "component",
-    "exclude": false
-  },
   "ActionSheet": {
     "path": "packages/action-sheet/index.js",
     "type": "component",
@@ -25,6 +20,16 @@
     "type": "template",
     "exclude": false
   },
+  "Amount": {
+    "path": "packages/amount/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "Area": {
+    "path": "packages/area/index.js",
+    "type": "component",
+    "exclude": false
+  },
   "Autocomplete": {
     "path": "packages/autocomplete/index.js",
     "type": "component",
@@ -35,11 +40,21 @@
     "type": "template",
     "exclude": false
   },
+  "AutonaviMap": {
+    "path": "packages/chart/autonavi-map/index.js",
+    "type": "component",
+    "exclude": false
+  },
   "Avatar": {
     "path": "packages/avatar/index.js",
     "type": "component",
     "exclude": false,
     "onlyMode": "mobile"
+  },
+  "ActionMenu": {
+    "path": "packages/action-menu/index.js",
+    "type": "component",
+    "exclude": false
   },
   "Badge": {
     "path": "packages/badge/index.js",
@@ -54,6 +69,11 @@
   "BadgePc": {
     "path": "packages/badge/src/pc.vue",
     "type": "template",
+    "exclude": false
+  },
+  "BaiduMap": {
+    "path": "packages/chart/baidu-map/index.js",
+    "type": "component",
     "exclude": false
   },
   "Breadcrumb": {
@@ -176,6 +196,116 @@
     "type": "template",
     "exclude": false
   },
+  "Chart": {
+    "path": "packages/chart/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartBar": {
+    "path": "packages/chart/chart-bar/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartBoxplot": {
+    "path": "packages/chart/chart-boxplot/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartCandle": {
+    "path": "packages/chart/chart-candle/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartCore": {
+    "path": "packages/chart/chart-core/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartFunnel": {
+    "path": "packages/chart/chart-funnel/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartGauge": {
+    "path": "packages/chart/chart-gauge/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartGraph": {
+    "path": "packages/chart/chart-graph/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartHeatmap": {
+    "path": "packages/chart/chart-heatmap/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartHistogram": {
+    "path": "packages/chart/chart-histogram/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartLine": {
+    "path": "packages/chart/chart-line/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartLiquidfill": {
+    "path": "packages/chart/chart-liquidfill/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartMap": {
+    "path": "packages/chart/chart-map/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartPie": {
+    "path": "packages/chart/chart-pie/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartRadar": {
+    "path": "packages/chart/chart-radar/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartRing": {
+    "path": "packages/chart/chart-ring/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartSankey": {
+    "path": "packages/chart/chart-sankey/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartScatter": {
+    "path": "packages/chart/chart-scatter/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartSunburst": {
+    "path": "packages/chart/chart-sunburst/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartTree": {
+    "path": "packages/chart/chart-tree/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartWaterfall": {
+    "path": "packages/chart/chart-waterfall/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartWordcloud": {
+    "path": "packages/chart/chart-wordcloud/index.js",
+    "type": "component",
+    "exclude": false
+  },
   "Checkbox": {
     "path": "packages/checkbox/index.js",
     "type": "component",
@@ -251,6 +381,16 @@
     "type": "component",
     "exclude": false
   },
+  "Company": {
+    "path": "packages/company/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CompanyPc": {
+    "path": "packages/company/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "Container": {
     "path": "packages/container/index.js",
     "type": "component",
@@ -258,6 +398,16 @@
   },
   "ContainerPc": {
     "path": "packages/container/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Country": {
+    "path": "packages/country/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CountryPc": {
+    "path": "packages/country/src/pc.vue",
     "type": "template",
     "exclude": false
   },
@@ -284,6 +434,16 @@
   "Crop": {
     "path": "packages/crop/index.js",
     "type": "component",
+    "exclude": false
+  },
+  "Currency": {
+    "path": "packages/currency/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "CurrencyPc": {
+    "path": "packages/currency/src/pc.vue",
+    "type": "template",
     "exclude": false
   },
   "DatePanel": {
@@ -317,6 +477,16 @@
     "type": "component",
     "exclude": false
   },
+  "Dept": {
+    "path": "packages/dept/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "DeptPc": {
+    "path": "packages/dept/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "DetailPage": {
     "path": "packages/detail-page/index.js",
     "type": "component",
@@ -339,6 +509,16 @@
   },
   "DialogBoxPc": {
     "path": "packages/dialog-box/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "DropRoles": {
+    "path": "packages/drop-roles/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "DropRolesPc": {
+    "path": "packages/drop-roles/src/pc.vue",
     "type": "template",
     "exclude": false
   },
@@ -386,6 +566,16 @@
   },
   "DropdownMenuPc": {
     "path": "packages/dropdown-menu/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Espace": {
+    "path": "packages/espace/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "EspacePc": {
+    "path": "packages/espace/src/pc.vue",
     "type": "template",
     "exclude": false
   },
@@ -487,6 +677,16 @@
     "type": "template",
     "exclude": false
   },
+  "Hrapprover": {
+    "path": "packages/hrapprover/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "HrapproverPc": {
+    "path": "packages/hrapprover/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "Image": {
     "path": "packages/image/index.js",
     "type": "component",
@@ -581,6 +781,26 @@
   "Loading": {
     "path": "packages/loading/index.js",
     "type": "component",
+    "exclude": false
+  },
+  "Locales": {
+    "path": "packages/locales/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "LogonUser": {
+    "path": "packages/logon-user/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "Logout": {
+    "path": "packages/logout/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "LogoutPc": {
+    "path": "packages/logout/src/pc.vue",
+    "type": "template",
     "exclude": false
   },
   "Milestone": {
@@ -789,6 +1009,16 @@
     "type": "template",
     "exclude": false
   },
+  "Roles": {
+    "path": "packages/roles/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "RolesPc": {
+    "path": "packages/roles/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "Row": {
     "path": "packages/row/index.js",
     "type": "component",
@@ -968,11 +1198,6 @@
     "type": "template",
     "exclude": false
   },
-  "TabsTab-navTab-bar": {
-    "path": "packages/tabs/src/tab-bar.vue",
-    "type": "template",
-    "exclude": false
-  },
   "Tag": {
     "path": "packages/tag/index.js",
     "type": "component",
@@ -1115,6 +1340,21 @@
     "exclude": false,
     "onlyMode": "all"
   },
+  "User": {
+    "path": "packages/user/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "UserAccount": {
+    "path": "packages/user-account/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "UserAccountPc": {
+    "path": "packages/user-account/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "UserContact": {
     "path": "packages/user-contact/index.js",
     "type": "component",
@@ -1132,6 +1372,21 @@
   },
   "UserHeadPc": {
     "path": "packages/user-head/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "UserLink": {
+    "path": "packages/user-link/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "UserLinkPc": {
+    "path": "packages/user-link/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "UserPc": {
+    "path": "packages/user/src/pc.vue",
     "type": "template",
     "exclude": false
   },

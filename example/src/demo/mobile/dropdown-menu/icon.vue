@@ -1,11 +1,7 @@
 <template>
   <div class="tiny-mobile-dropdown-menu-demo">
     <tiny-dropdown-menu>
-      <tiny-dropdown-item
-        v-model="value2"
-        :options="option2"
-        :icon="icon"
-      ></tiny-dropdown-item>
+      <tiny-dropdown-item v-model="value2" :options="option2" :icon="icon"></tiny-dropdown-item>
     </tiny-dropdown-menu>
   </div>
 </template>

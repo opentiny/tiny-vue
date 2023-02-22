@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      srcList: ['static/images/planet1.jpg', 'static/images/planet2.jpg', 'static/images/planet3.jpg'],
+      srcList: ['static/images/dog1.png', 'static/images/dog2.png', 'static/images/dog3.png'],
       shows: false
     }
   },

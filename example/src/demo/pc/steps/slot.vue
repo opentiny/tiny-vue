@@ -4,10 +4,7 @@
     <tiny-steps :data="stepsData">
       <template #item="data">
         <span>
-          <component
-            :is="data.slotScope.status == 'done' ? IconYes : IconClose"
-            class="tiny-svg-size"
-          />
+          <component :is="data.slotScope.status == 'done' ? IconYes : IconClose" class="tiny-svg-size" />
         </span>
         <span>{{ data.slotScope.name }}</span>
       </template>
@@ -17,7 +14,7 @@
 
 <script>
 import { Steps } from '@opentiny/vue'
-import { iconYes,iconClose } from '@opentiny/vue-icon'
+import { IconYes, IconClose } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -25,8 +22,8 @@ export default {
   },
   data() {
     return {
-      IconYes: iconYes(),
-      IconClose: iconClose(),
+      IconYes: IconYes(),
+      IconClose: IconClose(),
       stepsData: [
         {
           name: 'Basic Info',

@@ -20,12 +20,8 @@
       </tiny-radio-group>
     </div>
     <div style="margin-top: 20px">
-      <tiny-radio border v-model="value" label="1" size="medium"
-        >日度</tiny-radio
-      >
-      <tiny-radio border v-model="value" label="2" size="small"
-        >月度</tiny-radio
-      >
+      <tiny-radio border v-model="value" label="1" size="medium">日度</tiny-radio>
+      <tiny-radio border v-model="value" label="2" size="small">月度</tiny-radio>
       <tiny-radio border v-model="value" label="3" size="mini">年度</tiny-radio>
     </div>
   </div>

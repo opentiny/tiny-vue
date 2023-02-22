@@ -1,10 +1,6 @@
 <template>
   <div>
-    <tiny-cascader
-      :options="options"
-      :props="{ checkStrictly: true }"
-      v-model="value"
-    ></tiny-cascader>
+    <tiny-cascader :options="options" :props="{ checkStrictly: true }" v-model="value"></tiny-cascader>
     value:{{ value }}
   </div>
 </template>

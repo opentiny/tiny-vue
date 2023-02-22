@@ -18,11 +18,11 @@ export default {
       fileList: [
         {
           name: 'test1',
-          url: 'static/images/fruit.jpg'
+          url: 'static/images/ld.png'
         },
         {
           name: 'test2',
-          url: 'static/images/book.jpg'
+          url: 'static/images/ry.png'
         }
       ]
     }

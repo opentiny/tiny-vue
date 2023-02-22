@@ -12,7 +12,7 @@
 
 <script>
 import { Autocomplete } from '@opentiny/vue'
-import { iconEdit, iconAssociation } from '@opentiny/vue-icon'
+import { IconEdit, IconAssociation } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -22,8 +22,8 @@ export default {
     return {
       restaurants: [],
       value: '',
-      IconEdit: iconEdit(),
-      IconAssociation: iconAssociation()
+      IconEdit: IconEdit(),
+      IconAssociation: IconAssociation()
     }
   },
   methods: {
@@ -40,11 +40,11 @@ export default {
     loadAll() {
       return [
         {
-          value: 'GFD科技公司',
+          value: 'GFD科技YX公司',
           address: '福州'
         },
         {
-          value: 'WWWW科技公司',
+          value: 'WWWW科技YX公司',
           address: '深圳福田区'
         },
         {
@@ -52,15 +52,15 @@ export default {
           address: '中山市'
         },
         {
-          value: 'TGB公司',
+          value: 'TGBYX公司',
           address: '梅州'
         },
         {
-          value: 'YHN科技公司',
+          value: 'YHN科技YX公司',
           address: '韶关'
         },
         {
-          value: '康康物业公司',
+          value: '康康物业YX公司',
           address: '广州天河区'
         }
       ]

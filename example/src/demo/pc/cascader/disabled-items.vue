@@ -1,8 +1,5 @@
 <template>
-  <tiny-cascader
-    :options="optionsDis"
-    :props="{ label: 'label' }"
-  ></tiny-cascader>
+  <tiny-cascader :options="optionsDis" :props="{ label: 'label' }"></tiny-cascader>
 </template>
 
 <script>

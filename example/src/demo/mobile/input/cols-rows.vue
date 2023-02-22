@@ -1,11 +1,6 @@
 <template>
   <div class="input-wrap">
-    <tiny-input
-      v-model="input"
-      type="textarea"
-      :cols="5"
-      :rows="1"
-    ></tiny-input>
+    <tiny-input v-model="input" type="textarea" :cols="5" :rows="1"></tiny-input>
   </div>
 </template>
 

@@ -11,17 +11,8 @@
           <div>{{ data.titleData.text }} 自定义内容</div>
         </template>
       </tiny-dropdown-item>
-      <tiny-dropdown-item
-        v-model="value3"
-        title="发布时间"
-        type="sort"
-      ></tiny-dropdown-item>
-      <tiny-dropdown-item
-        v-model="value4"
-        :options="options4"
-        title="筛选"
-        type="filter"
-      >
+      <tiny-dropdown-item v-model="value3" title="发布时间" type="sort"></tiny-dropdown-item>
+      <tiny-dropdown-item v-model="value4" :options="options4" title="筛选" type="filter">
         <div class="defineslot">自定义插槽</div>
       </tiny-dropdown-item>
     </tiny-dropdown-menu>

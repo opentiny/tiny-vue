@@ -1,9 +1,5 @@
 <template>
-  <tiny-transfer
-    v-model="value"
-    :data="data"
-    :props="{ key: 'value', label: 'desc' }"
-  ></tiny-transfer>
+  <tiny-transfer v-model="value" :data="data" :props="{ key: 'value', label: 'desc' }"></tiny-transfer>
 </template>
 
 <script>

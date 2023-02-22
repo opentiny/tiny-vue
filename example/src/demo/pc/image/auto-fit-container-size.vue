@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
-      url: 'static/images/mountain.png'
+      url: 'static/images/1.jpg'
     }
   }
 }

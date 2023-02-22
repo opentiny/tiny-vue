@@ -1,8 +1,5 @@
 <template>
-  <tiny-cascader
-    :options="options"
-    :props="{ expandTrigger: 'hover' }"
-  ></tiny-cascader>
+  <tiny-cascader :options="options" :props="{ expandTrigger: 'hover' }"></tiny-cascader>
 </template>
 
 <script>

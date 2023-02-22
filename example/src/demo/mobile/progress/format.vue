@@ -6,12 +6,7 @@
         <p class="page__desc">进度条</p>
       </div>
       <div class="pad">
-        <tiny-progress
-          class="progress"
-          :percentage="50"
-          :stroke-width="2"
-          :format="formatText"
-        ></tiny-progress>
+        <tiny-progress class="progress" :percentage="50" :stroke-width="2" :format="formatText"></tiny-progress>
       </div>
     </div>
   </div>

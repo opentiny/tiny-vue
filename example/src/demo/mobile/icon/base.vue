@@ -1,17 +1,7 @@
 <template>
   <div class="svgs-wrapper">
-    <div
-      class="svgs-item"
-      title="点击图标复制图标文本"
-      v-for="name in Object.keys(Svgs)"
-      :key="name"
-    >
-      <component
-        :is="Svgs[name]()"
-        class="svgs-icon"
-        :style="{ height: '2em', width: '2em', fill: '#000' }"
-        @click="clickIcon(name)"
-      ></component>
+    <div class="svgs-item" title="点击图标复制图标文本" v-for="name in Object.keys(Svgs)" :key="name">
+      <component :is="Svgs[name]()" class="svgs-icon" :style="{ height: '2em', width: '2em', fill: '#000' }" @click="clickIcon(name)"></component>
       <span class="svgs-text">{{ name }}</span>
     </div>
   </div>

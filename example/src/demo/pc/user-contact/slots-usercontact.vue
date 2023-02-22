@@ -1,5 +1,5 @@
 <template>
-  <tiny-user-contact :data="data" popper-class="custom-user-contact" :popper-append-to-body="false">
+  <tiny-user-contact :data="data">
     <div>自定义插槽内容</div>
   </tiny-user-contact>
 </template>
@@ -14,8 +14,8 @@ export default {
   setup() {
     return {
       data: {
-        imgUrl: 'static/images/fruit.jpg',
-        userName: 'test1',
+        imgUrl: 'static/images/user-head.png',
+        userName: '小红',
         userDescription: 'test1',
         values: [
           { text: '部门', value: '某部门' },

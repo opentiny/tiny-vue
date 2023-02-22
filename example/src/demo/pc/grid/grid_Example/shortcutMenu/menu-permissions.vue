@@ -25,7 +25,7 @@
 
 <script>
 import { Grid, GridColumn, Modal } from '@opentiny/vue'
-import { iconCopy } from '@opentiny/vue-icon'
+import { IconCopy } from '@opentiny/vue-icon'
 import { alert } from '@opentiny/vue-modal'
 
 export default {
@@ -40,7 +40,7 @@ export default {
           {
             code: 'copy',
             name: '复制',
-            prefixIcon: iconCopy()
+            prefixIcon: IconCopy()
           }
         ],
         [
@@ -119,7 +119,7 @@ export default {
       tableData: [
         {
           id: '1',
-          name: 'GFD科技公司',
+          name: 'GFD科技YX公司',
           userId: 421000103624183,
           area: '华东区',
           province: '福建省',
@@ -127,7 +127,7 @@ export default {
           contact: '许生',
           telephone: '1234567890',
           address: '福州',
-          ipaddress: '127.0.0.1',
+          ipaddress: '192.168.111.111',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 800,
           created_date: '2014-04-30 00:56:00',
@@ -137,7 +137,7 @@ export default {
         },
         {
           id: '2',
-          name: 'WWW科技公司',
+          name: 'WWW科技YX公司',
           userId: 421000103624183,
           area: '华南区',
           province: '广东省',
@@ -145,7 +145,7 @@ export default {
           contact: '朱生',
           telephone: '1234567890',
           address: '深圳福田区',
-          ipaddress: '127.0.0.1',
+          ipaddress: '192.168.111.1',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 300,
           created_date: '2016-07-08 12:36:22',
@@ -163,7 +163,7 @@ export default {
           contact: '秦生',
           telephone: '1234567890',
           address: '中山市',
-          ipaddress: '127.0.0.1',
+          ipaddress: '192.168.111.120',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 1300,
           created_date: '2014-02-14 14:14:14',
@@ -173,15 +173,15 @@ export default {
         },
         {
           id: '4',
-          name: 'TGB科技公司',
-          userId: 655783272594485,
+          name: 'TGB科技YX公司',
+          userId: 702973890055088,
           area: '华东区',
           province: '福建省',
           city: '龙岩',
           contact: '周生',
           telephone: '1234567890',
           address: '龙岩',
-          ipaddress: '127.0.0.1',
+          ipaddress: '192.168.11.111',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 360,
           created_date: '2013-01-13 13:13:13',
@@ -191,15 +191,15 @@ export default {
         },
         {
           id: '5',
-          name: 'YHN科技公司',
-          userId: 655783272594485,
+          name: 'YHN科技YX公司',
+          userId: 702973890055088,
           area: '华南区',
           province: '广东省',
           city: '韶关',
           contact: '郑生',
           telephone: '1234567890',
           address: '韶关',
-          ipaddress: '127.0.0.1',
+          ipaddress: '192.168.101.111',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
           employees: 810,
           created_date: '2012-12-12 12:12:12',

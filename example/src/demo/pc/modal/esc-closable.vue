@@ -1,7 +1,5 @@
 <template>
-  <tiny-button @click="btnClick" :reset-time="0"
-    >按 Esc 键可以关闭弹出框</tiny-button
-  >
+  <tiny-button @click="btnClick" :reset-time="0">按 Esc 键可以关闭弹出框</tiny-button>
 </template>
 
 <script>

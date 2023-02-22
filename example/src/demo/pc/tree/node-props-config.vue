@@ -1,10 +1,5 @@
 <template>
-  <tiny-tree
-    :data="data"
-    default-expand-all
-    show-checkbox
-    :props="props1"
-  ></tiny-tree>
+  <tiny-tree :data="data" default-expand-all show-checkbox :props="props1"></tiny-tree>
 </template>
 
 <script>

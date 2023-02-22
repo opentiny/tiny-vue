@@ -447,7 +447,8 @@ export default {
     },
     Events: {
       click: 'click',
-      flagclick: 'click'
+      flagclick: 'click',
+      'flag-click': 'click'
     },
     Methods: {},
     Slots: {
@@ -494,6 +495,14 @@ export default {
       default: 'value',
       footer: 'footer-slot'
     }
+  },
+  espace: {
+    Attributes: {
+      data: 'data'
+    },
+    Events: {},
+    Methods: {},
+    Slots: {}
   },
   steps: {
     Attributes: {
@@ -609,6 +618,7 @@ export default {
   'user-contact': {
     Attributes: {
       data: 'basic-usage',
+      espace: 'support-open-espace',
       'show-img': 'support-open-espace',
       'show-name': 'support-open-espace',
       'show-description': 'support-open-espace'
@@ -688,15 +698,12 @@ export default {
       size: 'size-mini'
     },
     Events: {
-      add: 'picker-events-add',
-      click: 'picker-events-click',
-      close: 'picker-events-close',
-      edit: 'picker-events-edit'
+      'event-change': 'event',
+      'event-blur': 'event',
+      'event-focus': 'event'
     },
     Methods: {},
-    Slots: {
-      title: 'custom-tab-title'
-    }
+    Slots: {}
   },
   transfer: {
     Attributes: {
@@ -920,16 +927,6 @@ export default {
       change: 'date-picker-events',
       focus: 'date-picker-events'
     },
-    Methods: {},
-    Slots: {}
-  },
-  locales: {
-    Attributes: {
-      local: '',
-      'change-lang': '',
-      service: 'custom-service'
-    },
-    Events: {},
     Methods: {},
     Slots: {}
   },

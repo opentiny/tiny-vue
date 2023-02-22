@@ -1,31 +1,17 @@
 <template>
   <div>
     <div>
-      <tiny-button
-        :icon="IconMinus"
-        :reset-time="0"
-        @click="decrease"
-      ></tiny-button>
-      <tiny-button
-        :icon="IconPlus"
-        :reset-time="0"
-        @click="increase"
-      ></tiny-button>
+      <tiny-button :icon="IconMinus" :reset-time="0" @click="decrease"></tiny-button>
+      <tiny-button :icon="IconPlus" :reset-time="0" @click="increase"></tiny-button>
     </div>
     <br />
-    <tiny-progress
-      class="progress"
-      :stroke-width="24"
-      :text-inside="testInside"
-      :percentage="percentage"
-      $mode="mobile"
-    ></tiny-progress>
+    <tiny-progress class="progress" :stroke-width="24" :text-inside="testInside" :percentage="percentage" $mode="mobile"></tiny-progress>
   </div>
 </template>
 
 <script>
 import { Progress, Button } from '@opentiny/vue'
-import { iconMinus,iconPlus } from '@opentiny/vue-icon'
+import { iconMinus, iconPlus } from '@opentiny/vue-icon'
 export default {
   components: {
     TinyProgress: Progress,

@@ -1,14 +1,8 @@
 <template>
   <tiny-row>
-    <tiny-col :span="2" class="tiny-color bg-success-normal">
-      bg-success-normal
-    </tiny-col>
-    <tiny-col :span="2" class="tiny-color bg-warning-normal">
-      bg-warning-normal
-    </tiny-col>
-    <tiny-col :span="2" class="tiny-color bg-error-normal">
-      bg-error-normal
-    </tiny-col>
+    <tiny-col :span="2" class="tiny-color bg-success-normal"> bg-success-normal </tiny-col>
+    <tiny-col :span="2" class="tiny-color bg-warning-normal"> bg-warning-normal </tiny-col>
+    <tiny-col :span="2" class="tiny-color bg-error-normal"> bg-error-normal </tiny-col>
   </tiny-row>
 </template>
 

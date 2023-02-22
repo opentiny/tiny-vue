@@ -4,8 +4,8 @@
       <tiny-form-item label="用户名" prop="username">
         <tiny-input v-model="createData.username" novalid-tip></tiny-input>
       </tiny-form-item>
-      <tiny-form-item label="密码" prop="passwordValue">
-        <tiny-input v-model="createData.passwordValue" type="password" show-password></tiny-input>
+      <tiny-form-item label="密码" prop="password">
+        <tiny-input v-model="createData.password" type="password" show-password></tiny-input>
       </tiny-form-item>
       <tiny-form-item>
         <tiny-button type="primary" @click="handleSubmit('ruleForm')">注册</tiny-button>
@@ -28,12 +28,12 @@ export default {
     return {
       createData: {
         username: '',
-        passwordValue: ''
+        password: ''
       },
       isvalidate: true,
       rules: {
         username: [{ required: true, message: '必填', trigger: 'blur' }],
-        passwordValue: [{ required: true, message: '必填', trigger: 'blur' }]
+        password: [{ required: true, message: '必填', trigger: 'blur' }]
       }
     }
   },

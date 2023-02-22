@@ -1,20 +1,10 @@
 <template>
   <div>
-    <tiny-button @click="boxVisibility = true"
-      >弹出Dialog{{ boxVisibility }}</tiny-button
-    >
-    <tiny-dialog-box
-      :visible="boxVisibility"
-      :close-on-press-escape="false"
-      title="消息"
-      width="30%"
-      @close="close"
-    >
+    <tiny-button @click="boxVisibility = true">弹出Dialog{{ boxVisibility }}</tiny-button>
+    <tiny-dialog-box :visible="boxVisibility" :close-on-press-escape="false" title="消息" width="30%" @close="close">
       <span>dialog-box内容</span>
       <template #footer>
-        <tiny-button type="primary" @click="boxVisibility = false"
-          >确 定</tiny-button
-        >
+        <tiny-button type="primary" @click="boxVisibility = false">确 定</tiny-button>
       </template>
     </tiny-dialog-box>
   </div>

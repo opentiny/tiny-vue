@@ -1,12 +1,7 @@
 <template>
   <div class="checkbox-group-wrap">
     <tiny-checkbox-group v-model="checkboxGroup" :min="1" :max="3">
-      <tiny-checkbox
-        v-for="(city, index) in cities"
-        :label="city"
-        :key="index"
-        >{{ city }}</tiny-checkbox
-      >
+      <tiny-checkbox v-for="(city, index) in cities" :label="city" :key="index">{{ city }}</tiny-checkbox>
     </tiny-checkbox-group>
   </div>
 </template>

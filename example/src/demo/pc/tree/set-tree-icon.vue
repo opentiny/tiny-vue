@@ -1,15 +1,10 @@
 <template>
-  <tiny-tree
-    :shrink-icon="IconMinusSquare"
-    :expand-icon="IconPlusSquare"
-    :data="data5"
-  >
-  </tiny-tree>
+  <tiny-tree :shrink-icon="IconMinusSquare" :expand-icon="IconPlusSquare" :data="data5"> </tiny-tree>
 </template>
 
 <script>
 import { Tree } from '@opentiny/vue'
-import { iconPlusSquare,iconMinusSquare } from '@opentiny/vue-icon'
+import { IconPlusSquare, IconMinusSquare } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -17,8 +12,8 @@ export default {
   },
   data() {
     return {
-      IconPlusSquare: iconPlusSquare(),
-      IconMinusSquare: iconMinusSquare(),
+      IconPlusSquare: IconPlusSquare(),
+      IconMinusSquare: IconMinusSquare(),
       defaultProps: {
         children: 'children',
         label: 'label'

@@ -1,10 +1,5 @@
 <template>
-  <tiny-tree
-    class="filter-tree"
-    default-expand-all
-    :data="data"
-    highlight-current
-  ></tiny-tree>
+  <tiny-tree class="filter-tree" default-expand-all :data="data" highlight-current></tiny-tree>
 </template>
 
 <script>

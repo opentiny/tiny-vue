@@ -1,9 +1,5 @@
 <template>
-  <tiny-button-group
-    :data="groupData"
-    :text-field="textField"
-    :value-field="valueField"
-  ></tiny-button-group>
+  <tiny-button-group :data="groupData" :text-field="textField" :value-field="valueField"></tiny-button-group>
 </template>
 
 <script>

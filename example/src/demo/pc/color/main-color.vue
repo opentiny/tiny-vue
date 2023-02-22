@@ -1,17 +1,9 @@
 <template>
   <tiny-row>
-    <tiny-col :span="2" class="tiny-color bg-primary-normal">
-      bg-primary-normal
-    </tiny-col>
-    <tiny-col :span="2" class="tiny-color bg-primary-hover">
-      bg-primary-hover
-    </tiny-col>
-    <tiny-col :span="2" class="tiny-color bg-primary-active">
-      bg-primary-active
-    </tiny-col>
-    <tiny-col :span="2" class="tiny-color bg-btn-active"
-      >bg-btn-active</tiny-col
-    >
+    <tiny-col :span="2" class="tiny-color bg-primary-normal"> bg-primary-normal </tiny-col>
+    <tiny-col :span="2" class="tiny-color bg-primary-hover"> bg-primary-hover </tiny-col>
+    <tiny-col :span="2" class="tiny-color bg-primary-active"> bg-primary-active </tiny-col>
+    <tiny-col :span="2" class="tiny-color bg-btn-active">bg-btn-active</tiny-col>
   </tiny-row>
 </template>
 

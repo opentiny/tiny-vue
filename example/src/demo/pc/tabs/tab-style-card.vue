@@ -1,11 +1,6 @@
 <template>
   <tiny-tabs :active-name="activeName" tab-style="card" size="small">
-    <tiny-tab-item
-      v-for="item in tabs3"
-      :key="item.name"
-      :title="item.title"
-      :name="item.name"
-    >
+    <tiny-tab-item v-for="item in tabs3" :key="item.name" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>
   </tiny-tabs>

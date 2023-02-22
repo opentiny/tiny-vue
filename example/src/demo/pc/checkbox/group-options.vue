@@ -1,9 +1,5 @@
 <template>
-  <tiny-checkbox-group
-    v-model="checkList"
-    type="checkbox"
-    :options="options"
-  ></tiny-checkbox-group>
+  <tiny-checkbox-group v-model="checkList" type="checkbox" :options="options"></tiny-checkbox-group>
 </template>
 
 <script>

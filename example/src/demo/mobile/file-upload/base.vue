@@ -23,11 +23,11 @@ export default {
       action: 'http://localhost:3000/api/upload',
       iconList: [
         {
-          url: 'images/mountain.png',
+          url: 'images/1.jpg',
           type: 'txt'
         },
         {
-          url: 'images/house.jpg',
+          url: 'images/2.jpg',
           type: 'xlsx'
         }
       ]

@@ -1,8 +1,5 @@
 <template>
-  <tiny-pop-upload
-    :action="action"
-    :before-remove="handleRemove"
-  ></tiny-pop-upload>
+  <tiny-pop-upload :action="action" :before-remove="handleRemove"></tiny-pop-upload>
 </template>
 
 <script>

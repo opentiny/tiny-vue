@@ -1,16 +1,8 @@
 <template>
   <div>
-    <tiny-button @click="click" style="margin-bottom: 15px"
-      >设置value值</tiny-button
-    >
+    <tiny-button @click="click" style="margin-bottom: 15px">设置value值</tiny-button>
     <tiny-select v-model="value" ref="drop" placeholder="请选择" multiple>
-      <tiny-option
-        v-for="item in options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
-      >
-      </tiny-option>
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
   </div>
 </template>

@@ -16,7 +16,7 @@ const TAG = process.argv[3] === 'false' ? '' : process.argv[3]
 const packages = path.join(ROOT_PATH, 'packages')
 const pkgJsonFileName = 'package.json'
 const { logGreen } = require('./utils')
-const tinyVueReg = /@opentiny\//
+const tinyVueReg = /@huawei\//
 
 const targetVersion = process.argv[2] || JSON.parse(fs.readFileSync(path.join(ROOT_PATH, pkgJsonFileName)).toString()).version
 

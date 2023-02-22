@@ -1,11 +1,5 @@
 <template>
-  <tiny-form
-    :model="ruleForm"
-    :rules="rules"
-    ref="ruleForm"
-    label-width="100px"
-    class="demo-form"
-  >
+  <tiny-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-form">
     <tiny-form-item label="活动名称" prop="name">
       <tiny-input v-model="ruleForm.name" validate-event></tiny-input>
     </tiny-form-item>

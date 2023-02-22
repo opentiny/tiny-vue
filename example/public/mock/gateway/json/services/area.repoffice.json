@@ -1,0 +1,82 @@
+{
+  "area": [
+    {
+      "org_id": "1112",
+      "id_and_type": "1112Rep.Office",
+      "parent_and_type": "1079Region",
+      "name_cn": "北京代表处",
+      "date_from": "1980/ 01 / 01 00:00:00",
+      "name_en": "Beijing Rep Office, CN",
+      "parent_type": "Region",
+      "dept_code": "027848",
+      "date_to": null,
+      "parent": "1079",
+      "area_label": "Rep.Office"
+    },
+    {
+      "org_id": "1114",
+      "id_and_type": "1114Rep.Office",
+      "parent_and_type": "1079Region",
+      "name_cn": "天津代表处",
+      "date_from": "1980/ 01 / 01 00:00:00",
+      "name_en": "Tianjin Rep Office, CN",
+      "parent_type": "Region",
+      "dept_code": "027862",
+      "date_to": null,
+      "parent": "1079",
+      "area_label": "Rep.Office"
+    },
+    {
+      "org_id": "1115",
+      "id_and_type": "1115Rep.Office",
+      "parent_and_type": "1079Region",
+      "name_cn": "太原代表处",
+      "date_from": "1980/ 01 / 01 00:00:00",
+      "name_en": "Taiyuan Rep Office, CN",
+      "parent_type": "Region",
+      "dept_code": "027876",
+      "date_to": null,
+      "parent": "1079",
+      "area_label": "Rep.Office"
+    },
+    {
+      "org_id": "649991",
+      "id_and_type": "649991Rep.Office",
+      "parent_and_type": "4199Region",
+      "name_cn": "A公司XX地区部广东代表处",
+      "date_from": "2012/ 07 / 28 00:00:00",
+      "name_en": "Consumer BG Greater China Region Guangdong Rep Office",
+      "parent_type": "Region",
+      "dept_code": "035628",
+      "date_to": null,
+      "parent": "4199",
+      "area_label": "Rep.Office"
+    },
+    {
+      "org_id": "652495",
+      "id_and_type": "652495Rep.Office",
+      "parent_and_type": "606804Region",
+      "name_cn": "加勒比海代表处",
+      "date_from": "2013/ 09 / 29 00:00:00",
+      "name_en": "Caribbean Rep Office",
+      "parent_type": "Region",
+      "dept_code": "037549",
+      "date_to": null,
+      "parent": "606804",
+      "area_label": "Rep.Office"
+    },
+    {
+      "org_id": "1125",
+      "id_and_type": "1125Rep.Office",
+      "parent_and_type": "1079Region",
+      "name_cn": "兰州代表处",
+      "date_from": "1980/ 01 / 01 00:00:00",
+      "name_en": "Lanzhou Rep Office, CN",
+      "parent_type": "Region",
+      "dept_code": "028017",
+      "date_to": null,
+      "parent": "1079",
+      "area_label": "Rep.Office"
+    }
+  ]
+}

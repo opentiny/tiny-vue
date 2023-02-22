@@ -1,9 +1,7 @@
 <template>
   <div>
     <tiny-radio disabled v-model="radio" label="禁用">选中禁用</tiny-radio>
-    <tiny-radio disabled v-model="radio" label="不选中禁用"
-      >不选中禁用</tiny-radio
-    >
+    <tiny-radio disabled v-model="radio" label="不选中禁用">不选中禁用</tiny-radio>
     <div style="margin-top: 20px">
       <tiny-radio-group disabled v-model="radio1">
         <tiny-radio :label="3">备选项1</tiny-radio>

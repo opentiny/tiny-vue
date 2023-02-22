@@ -5,7 +5,7 @@
 - 报告[新缺陷](https://github.com/opentiny/tiny-vue/issues/new?template=bug-report.yml)
 - 为[已有缺陷](https://github.com/opentiny/tiny-vue/labels/bug)提供更详细的信息，比如补充截图、提供更详细的复现步骤、提供最小可复现demo链接等
 - 提交 Pull requests 修复文档中的错别字或让文档更清晰和完善
-- 添加官方小助手微信 opentiny，加入技术交流群参与讨论
+- 添加官方小助手微信 opentiny-official，加入技术交流群参与讨论
 
 当你亲自使用 TinyVue 组件库，并参与多次以上形式的贡献，对 TinyVue 逐渐熟悉之后，可以尝试做一些更有挑战的事情，比如：
 
@@ -63,7 +63,7 @@ npm run dev:vue2
 - 请确保你已经完成本地启动中的步骤，并能正常访问：[http://127.0.0.1:5173/](http://127.0.0.1:5173/)
 - 创建新分支 `git checkout -b username/feature1`，分支名字建议为 `username/feat-xxx` / `username/fix-xxx`
 - 本地编码
-- 遵循 Commit Message Format 规范进行提交，不符合提交规范的 PR 将不会被合并
+- 遵循 [Commit Message Format](https://www.conventionalcommits.org/zh-hans/v1.0.0/) 规范进行提交，不符合提交规范的 PR 将不会被合并
 - 提交到远程仓库：git push origin branchName
 - (可选)同步上游仓库 dev 分支最新代码：git pull upstream dev
 - 打开 TinyVue 代码仓库的 [Pull requests](https://github.com/opentiny/tiny-vue/pulls) 链接，点击 New pull request 按钮提交 PR
@@ -77,5 +77,5 @@ npm run dev:vue2
 
 如果你对我们的开源项目感兴趣，欢迎通过以下方式加入我们的开源社区。
 
-- 添加官方小助手微信：opentiny，加入我们的技术交流群
+- 添加官方小助手微信：opentiny-official，加入我们的技术交流群
 - 加入邮件列表：opentiny@googlegroups.com

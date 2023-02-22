@@ -1,8 +1,6 @@
 <template>
   <div class="tiny-mobile-dialog-box-demo">
-    <tiny-button @click="boxVisibility = true"
-      >弹出Dialog {{ boxVisibility }}</tiny-button
-    >
+    <tiny-button @click="boxVisibility = true">弹出Dialog {{ boxVisibility }}</tiny-button>
     <tiny-dialog-box
       :visible="boxVisibility"
       @update:visible="boxVisibility = $event"
@@ -37,12 +35,7 @@ export default {
       console.log('确定按钮的回调')
     },
     getTime(now) {
-      return [
-        now.getHours(),
-        now.getMinutes(),
-        now.getSeconds(),
-        now.getMilliseconds()
-      ].join(':')
+      return [now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds()].join(':')
     }
   }
 }

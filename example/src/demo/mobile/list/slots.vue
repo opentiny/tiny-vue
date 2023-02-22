@@ -32,21 +32,21 @@ export default {
           content: '主文本1',
           subtext: '次文本1',
           contentdes: '这是描述文本1',
-          img: 'static/images/fruit.jpg'
+          img: 'static/images/dog1.png'
         },
         {
           id: 2,
           content: '主文本2',
           subtext: '次文本2',
           contentdes: '这是描述文本2',
-          img: 'static/images/floral.png'
+          img: 'static/images/dog2.png'
         },
         {
           id: 3,
           content: '主文本3',
           subtext: '次文本3',
           contentdes: '这是描述文本3',
-          img: 'static/images/watercolor.png'
+          img: 'static/images/dog3.png'
         }
       ]
     }

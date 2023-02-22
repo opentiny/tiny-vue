@@ -1,0 +1,343 @@
+{
+  "JCR": {
+    "area": [
+      {
+        "org_id": "3623",
+        "id_and_type": "3623JCR",
+        "parent_and_type": null,
+        "name_cn": "A公司 Marketing与销售服务部",
+        "date_from": "2005/06/21 00:00:00",
+        "name_en": "Consumer BG Marketing and Sales Service Dept",
+        "parent_type": null,
+        "dept_code": "024206",
+        "date_to": null,
+        "parent": null,
+        "area_label": "JCR"
+      },
+      {
+        "org_id": "650561",
+        "id_and_type": "650561JCR",
+        "parent_and_type": null,
+        "name_cn": "A公司 Marketing与销售服务部（东莞）",
+        "date_from": "2012/09/27 00:00:00",
+        "name_en": "Consumer BG Marketing and Sales Service Dept (Dongguan)",
+        "parent_type": null,
+        "dept_code": "036068",
+        "date_to": null,
+        "parent": null,
+        "area_label": "JCR"
+      },
+      {
+        "org_id": "654434",
+        "id_and_type": "654434JCR",
+        "parent_and_type": null,
+        "name_cn": "区域管理部",
+        "date_from": "2014/06/18 00:00:00",
+        "name_en": "Regions Mgmt Dept",
+        "parent_type": null,
+        "dept_code": "038368",
+        "date_to": null,
+        "parent": null,
+        "area_label": "JCR"
+      },
+      {
+        "org_id": "653159",
+        "id_and_type": "037852JCR",
+        "parent_and_type": null,
+        "name_cn": "A公司业务部",
+        "date_from": "2014/01/20 00:00:00",
+        "name_en": "Consumer BG Business Unit",
+        "parent_type": null,
+        "dept_code": "037852",
+        "date_to": null,
+        "parent": null,
+        "area_label": "JCR"
+      }
+    ]
+  },
+  "Region": {
+    "area": [
+      {
+        "org_id": "608076",
+        "id_and_type": "608076Region",
+        "parent_and_type": "650561JCR",
+        "name_cn": "火星终端子公司",
+        "date_from": "2007/08/06 00:00:00",
+        "name_en": "SZ Device USA",
+        "parent_type": "JCR",
+        "dept_code": "024387",
+        "date_to": null,
+        "parent": "650561",
+        "area_label": "Region"
+      },
+      {
+        "org_id": "606661",
+        "id_and_type": "606661Region",
+        "parent_and_type": "654434JCR",
+        "name_cn": "中东测试数据",
+        "date_from": "2007/04/06 00:00:00",
+        "name_en": "Middle East Region",
+        "parent_type": "JCR",
+        "dept_code": "026699",
+        "date_to": null,
+        "parent": "654434",
+        "area_label": "Region"
+      },
+      {
+        "org_id": "611900",
+        "id_and_type": "611900Region",
+        "parent_and_type": "654434JCR",
+        "name_cn": "加拿大代表处",
+        "date_from": "2008/04/09 00:00:00",
+        "name_en": "Canada Rep Office",
+        "parent_type": "JCR",
+        "dept_code": "027339",
+        "date_to": null,
+        "parent": "654434",
+        "area_label": "Region"
+      },
+      {
+        "org_id": "1079",
+        "id_and_type": "1079Region",
+        "parent_and_type": "654434JCR",
+        "name_cn": "中国测试数据",
+        "date_from": "1980/01/01 00:00:00",
+        "name_en": "China Region",
+        "parent_type": "JCR",
+        "dept_code": "027425",
+        "date_to": null,
+        "parent": "654434",
+        "area_label": "Region"
+      },
+      {
+        "org_id": "4199",
+        "id_and_type": "4199Region",
+        "parent_and_type": "3623JCR",
+        "name_cn": "测试数据",
+        "date_from": "2005/06/29 00:00:00",
+        "name_en": "test data China Region",
+        "parent_type": "JCR",
+        "dept_code": "024207",
+        "date_to": null,
+        "parent": "3623",
+        "area_label": "Region"
+      },
+      {
+        "org_id": "653596",
+        "id_and_type": "653596Region",
+        "parent_and_type": "037852JCR",
+        "name_cn": "国内销售与服务部",
+        "date_from": "2014/03/18 00:00:00",
+        "name_en": "Domestic Sales & Service Dept",
+        "parent_type": "JCR",
+        "dept_code": "037985",
+        "date_to": null,
+        "parent": "037852",
+        "area_label": "Region"
+      },
+      {
+        "org_id": "606804",
+        "id_and_type": "606804Region",
+        "parent_and_type": "654434JCR",
+        "name_cn": "西欧测试数据",
+        "date_from": "2007/04/19 00:00:00",
+        "name_en": "West European Region",
+        "parent_type": "JCR",
+        "dept_code": "024931",
+        "date_to": null,
+        "parent": "654434",
+        "area_label": "Region"
+      }
+    ]
+  },
+  "Rep. Office": {
+    "area": [
+      {
+        "org_id": "1112",
+        "id_and_type": "1112Rep.Office",
+        "parent_and_type": "1079Region",
+        "name_cn": "北京代表处",
+        "date_from": "1980/ 01 / 01 00:00:00",
+        "name_en": "Beijing Rep Office, CN",
+        "parent_type": "Region",
+        "dept_code": "027848",
+        "date_to": null,
+        "parent": "1079",
+        "area_label": "Rep.Office"
+      },
+      {
+        "org_id": "1114",
+        "id_and_type": "1114Rep.Office",
+        "parent_and_type": "1079Region",
+        "name_cn": "天津代表处",
+        "date_from": "1980/ 01 / 01 00:00:00",
+        "name_en": "Tianjin Rep Office, CN",
+        "parent_type": "Region",
+        "dept_code": "027862",
+        "date_to": null,
+        "parent": "1079",
+        "area_label": "Rep.Office"
+      },
+      {
+        "org_id": "1115",
+        "id_and_type": "1115Rep.Office",
+        "parent_and_type": "1079Region",
+        "name_cn": "太原代表处",
+        "date_from": "1980/ 01 / 01 00:00:00",
+        "name_en": "Taiyuan Rep Office, CN",
+        "parent_type": "Region",
+        "dept_code": "027876",
+        "date_to": null,
+        "parent": "1079",
+        "area_label": "Rep.Office"
+      },
+      {
+        "org_id": "649991",
+        "id_and_type": "649991Rep.Office",
+        "parent_and_type": "4199Region",
+        "name_cn": "测试数据广东代表处",
+        "date_from": "2012/ 07 / 28 00:00:00",
+        "name_en": "test data China Region Guangdong Rep Office",
+        "parent_type": "Region",
+        "dept_code": "035628",
+        "date_to": null,
+        "parent": "4199",
+        "area_label": "Rep.Office"
+      },
+      {
+        "org_id": "100000",
+        "id_and_type": "100000Rep.Office",
+        "parent_and_type": "606804Region",
+        "name_cn": "加勒比海代表处",
+        "date_from": "2013/ 09 / 29 00:00:00",
+        "name_en": "Caribbean Rep Office",
+        "parent_type": "Region",
+        "dept_code": "037549",
+        "date_to": null,
+        "parent": "606804",
+        "area_label": "Rep.Office"
+      },
+      {
+        "org_id": "1125",
+        "id_and_type": "1125Rep.Office",
+        "parent_and_type": "1079Region",
+        "name_cn": "兰州代表处",
+        "date_from": "1980/ 01 / 01 00:00:00",
+        "name_en": "Lanzhou Rep Office, CN",
+        "parent_type": "Region",
+        "dept_code": "028017",
+        "date_to": null,
+        "parent": "1079",
+        "area_label": "Rep.Office"
+      }
+    ]
+  },
+  "Office": {
+    "area": [
+      {
+        "org_id": "610453",
+        "id_and_type": "610453Office",
+        "parent_and_type": "100000Rep. Office",
+        "name_cn": "牙买加工作室",
+        "date_from": "2007/11/26 00:00:00",
+        "name_en": "Jamaica Office",
+        "parent_type": "Rep. Office",
+        "dept_code": "025641",
+        "date_to": null,
+        "parent": "100000",
+        "area_label": "Office"
+      },
+      {
+        "org_id": "615077",
+        "id_and_type": "615077Office",
+        "parent_and_type": "100000Rep. Office",
+        "name_cn": "巴拿马工作室",
+        "date_from": "2008/07/08 00:00:00",
+        "name_en": "Panama Office",
+        "parent_type": "Rep. Office",
+        "dept_code": "025656",
+        "date_to": null,
+        "parent": "100000",
+        "area_label": "Office"
+      },
+      {
+        "org_id": "620058",
+        "id_and_type": "620058Office",
+        "parent_and_type": "100000Rep. Office",
+        "name_cn": "多米尼加工作室",
+        "date_from": "2009/05/21 00:00:00",
+        "name_en": "Dominica Office",
+        "parent_type": "Rep. Office",
+        "dept_code": "025659",
+        "date_to": null,
+        "parent": "100000",
+        "area_label": "Office"
+      },
+      {
+        "org_id": "649896",
+        "id_and_type": "649896Office",
+        "parent_and_type": "1125Rep. Office",
+        "name_cn": "西宁工作室",
+        "date_from": "2012/07/12 00:00:00",
+        "name_en": "Xining Office, CN",
+        "parent_type": "Rep. Office",
+        "dept_code": "035560",
+        "date_to": null,
+        "parent": "1125",
+        "area_label": "Office"
+      },
+      {
+        "org_id": "661414",
+        "id_and_type": "661414Office",
+        "parent_and_type": "649991Rep. Office",
+        "name_cn": "测试数据广州工作室",
+        "date_from": "2016/03/28 00:00:00",
+        "name_en": "test data China Region Guangzhou Office",
+        "parent_type": "Rep. Office",
+        "dept_code": "041626",
+        "date_to": null,
+        "parent": "649991",
+        "area_label": "Office"
+      },
+      {
+        "org_id": "661415",
+        "id_and_type": "661415Office",
+        "parent_and_type": "649991Rep. Office",
+        "name_cn": "测试数据深圳工作室",
+        "date_from": "2016/03/28 00:00:00",
+        "name_en": "test data China Region Shenzhen Office",
+        "parent_type": "Rep. Office",
+        "dept_code": "041627",
+        "date_to": null,
+        "parent": "649991",
+        "area_label": "Office"
+      },
+      {
+        "org_id": "661416",
+        "id_and_type": "661416Office",
+        "parent_and_type": "649991Rep. Office",
+        "name_cn": "测试数据东莞工作室",
+        "date_from": "2016/03/28 00:00:00",
+        "name_en": "test data China Region Dongguan Office",
+        "parent_type": "Rep. Office",
+        "dept_code": "041628",
+        "date_to": null,
+        "parent": "649991",
+        "area_label": "Office"
+      },
+      {
+        "org_id": "661417",
+        "id_and_type": "661417Office",
+        "parent_and_type": "649991Rep. Office",
+        "name_cn": "测试数据佛山工作室",
+        "date_from": "2016/03/28 00:00:00",
+        "name_en": "test data China Region Foshan Office",
+        "parent_type": "Rep. Office",
+        "dept_code": "041629",
+        "date_to": null,
+        "parent": "649991",
+        "area_label": "Office"
+      }
+    ]
+  }
+}

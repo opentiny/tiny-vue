@@ -6,12 +6,7 @@
     </div>
     <div class="padds">
       <tiny-slider v-model="value"></tiny-slider>
-      <tiny-numeric
-        v-model="value"
-        :step="10"
-        :max="100"
-        :min="0"
-      ></tiny-numeric>
+      <tiny-numeric v-model="value" :step="10" :max="100" :min="0"></tiny-numeric>
     </div>
   </div>
 </template>

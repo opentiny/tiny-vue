@@ -1,21 +1,9 @@
 <template>
   <div class="tiny-mobile-tabs-three-level-demo">
     <tiny-tabs v-model="activeName1" :swipeable="true">
-      <tiny-tab-item
-        v-for="(state, key) in states"
-        :key="key"
-        :title="state.title"
-        :name="state.name"
-      >
+      <tiny-tab-item v-for="(state, key) in states" :key="key" :title="state.title" :name="state.name">
         <div v-for="(item, index) in list" :key="index" class="tab-item-demo">
-          <tiny-button
-            :class="[active === index ? 'is-active' : '']"
-            @click="click(index)"
-            round
-            :reset-time="0"
-          >
-            {{ item }}</tiny-button
-          >
+          <tiny-button :class="[active === index ? 'is-active' : '']" @click="click(index)" round :reset-time="0"> {{ item }}</tiny-button>
         </div>
       </tiny-tab-item>
     </tiny-tabs>
@@ -49,14 +37,7 @@ export default {
           name: 'third'
         }
       ],
-      list: [
-        '客户',
-        '关注的客户',
-        '最近访问',
-        '近七天新增客户',
-        '近七天访问最多的信息',
-        '其他'
-      ]
+      list: ['客户', '关注的客户', '最近访问', '近七天新增客户', '近七天访问最多的信息', '其他']
     }
   },
   methods: {

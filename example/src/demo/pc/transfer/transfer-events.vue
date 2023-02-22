@@ -1,11 +1,5 @@
 <template>
-  <tiny-transfer
-    v-model="value"
-    :data="data"
-    @change="change"
-    @left-check-change="leftCheckChange"
-    @right-check-change="rightCheckChange"
-  ></tiny-transfer>
+  <tiny-transfer v-model="value" :data="data" @change="change" @left-check-change="leftCheckChange" @right-check-change="rightCheckChange"></tiny-transfer>
 </template>
 
 <script>
@@ -38,33 +32,19 @@ export default {
   methods: {
     change(value, move, keyArray) {
       Modal.message({
-        message:
-          'change 事件，当前值：' +
-          value +
-          '，方向：' +
-          move +
-          '，移动的数据：' +
-          keyArray,
+        message: 'change 事件，当前值：' + value + '，方向：' + move + '，移动的数据：' + keyArray,
         status: 'info'
       })
     },
     leftCheckChange(checked, statusChanged) {
       Modal.message({
-        message:
-          'left-check-change 事件，被选中：' +
-          checked +
-          '，选中状态发生变化：' +
-          statusChanged,
+        message: 'left-check-change 事件，被选中：' + checked + '，选中状态发生变化：' + statusChanged,
         status: 'info'
       })
     },
     rightCheckChange(checked, statusChanged) {
       Modal.message({
-        message:
-          'right-check-change 事件，被选中：' +
-          checked +
-          '，选中状态发生变化：' +
-          statusChanged,
+        message: 'right-check-change 事件，被选中：' + checked + '，选中状态发生变化：' + statusChanged,
         status: 'info'
       })
     }

@@ -1,29 +1,11 @@
 <template>
   <div>
-    <tiny-button @click="getNode" title="根据 key 拿到节点对象"
-      >根据 key 拿到节点对象</tiny-button
-    >
-    <tiny-button @click="setChecked" title="通过 data 设置节点的勾选状态"
-      >通过 data 设置节点的勾选状态</tiny-button
-    >
-    <tiny-button @click="setCheckedKeys" title="通过 key 设置节点的当前选中状态"
-      >通过 key 设置节点的当前选中状态</tiny-button
-    >
-    <tiny-button
-      @click="setCheckedNodes"
-      title="通过 node 设置节点的当前选中状态"
-      >通过 node 设置节点的当前选中状态</tiny-button
-    >
-    <tiny-button @click="updateKeyChildren" title="通过 keys 设置节点子元素"
-      >通过 keys 设置节点子元素</tiny-button
-    >
-    <tiny-tree
-      :data="data"
-      ref="tree"
-      default-expand-all
-      show-checkbox
-      node-key="id"
-    ></tiny-tree>
+    <tiny-button @click="getNode" title="根据 key 拿到节点对象">根据 key 拿到节点对象</tiny-button>
+    <tiny-button @click="setChecked" title="通过 data 设置节点的勾选状态">通过 data 设置节点的勾选状态</tiny-button>
+    <tiny-button @click="setCheckedKeys" title="通过 key 设置节点的当前选中状态">通过 key 设置节点的当前选中状态</tiny-button>
+    <tiny-button @click="setCheckedNodes" title="通过 node 设置节点的当前选中状态">通过 node 设置节点的当前选中状态</tiny-button>
+    <tiny-button @click="updateKeyChildren" title="通过 keys 设置节点子元素">通过 keys 设置节点子元素</tiny-button>
+    <tiny-tree :data="data" ref="tree" default-expand-all show-checkbox node-key="id"></tiny-tree>
   </div>
 </template>
 

@@ -56,17 +56,41 @@ const config = {
       '@opentiny/vue-common': pathJoin('../../tiny-vue/packages/common'),
       '@opentiny/vue-renderless': pathJoin('../../tiny-vue-renderless/src'),
       '@opentiny/vue-icon': pathJoin('../../tiny-vue/packages/icon/index.js'),
-      '@opentiny/tiny-icon': pathJoin('../../tiny-vue/packages/icon/index.js'),
-      '@opentiny/tiny-theme/base/index.css': pathJoin('../../tiny-vue-theme/src/base/index.less'),
-      '@opentiny/tiny-theme/theme-tool.js': pathJoin('../../tiny-vue-theme/src/theme-tool.js'),
-      '@opentiny/tiny-theme/theme': pathJoin('../../tiny-vue-theme/src/theme/index.js'),
-      '@opentiny/tiny-theme-mobile/base/index.css': pathJoin('../../tiny-vue-theme-mobile/src/base/index.less'),
-      ...doComponents()
+      ...doComponents(),
+      '@opentiny/vue-theme/base/index.css': pathJoin('../../tiny-vue-theme/src/base/index.less'),
+      '@opentiny/vue-theme/svg/index.css': pathJoin('../../tiny-vue-theme/src/svg/index.less'),
+      '@opentiny/vue-theme/tall-storage/index.css': pathJoin('../../tiny-vue-theme/src/tall-storage/index.less'),
+      '@opentiny/vue-theme': pathJoin('../../tiny-vue-theme/src'),
+      '@opentiny/vue-theme-mobile/base/index.css': pathJoin('../../tiny-vue-theme-mobile/src/base/index.less')
     }
   },
   define: {
     'process.env': process.env
+  },
+  build: {
+    sourcemap: false,
+    copyPublicDir: false,
+    outDir: path.resolve(__dirname, '../dist/vue/runtime/'),
+    rollupOptions: {
+      // 确保外部化处理那些你不想打包进库的依赖
+      external: ['vue']
+    }
   }
 }
 
-export default defineConfig(() => config)
+export default defineConfig(({ command, mode }) => {
+  if (mode === 'pc') {
+    config.build.lib = {
+      entry: path.resolve(__dirname, './entry/pc.js'),
+      formats: ['es'],
+      fileName: (format) => `tiny-vue.${format}.js`
+    }
+  } else {
+    config.build.lib = {
+      entry: path.resolve(__dirname, './entry/icon.js'),
+      formats: ['es'],
+      fileName: (format) => `tiny-vue-icon.${format}.js`
+    }
+  }
+  return config
+})

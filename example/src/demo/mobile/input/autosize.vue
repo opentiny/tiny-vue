@@ -1,17 +1,7 @@
 <template>
   <div class="input-wrap">
-    <tiny-input
-      v-model="input"
-      type="textarea"
-      autosize
-      disabled
-      textarea-title="textarea-title"
-    ></tiny-input>
-    <tiny-input
-      v-model="input"
-      type="textarea"
-      :autosize="{ minRows: 2, maxRows: 3 }"
-    ></tiny-input>
+    <tiny-input v-model="input" type="textarea" autosize disabled textarea-title="textarea-title"></tiny-input>
+    <tiny-input v-model="input" type="textarea" :autosize="{ minRows: 2, maxRows: 3 }"></tiny-input>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="split-value">
-    <tiny-split value="200px">
+    <tiny-split modelValue="200px">
       <template #left>
         <div class="demo-split-pane">左面板</div>
       </template>

@@ -1,10 +1,6 @@
 <template>
   <tiny-checkbox-group v-model="checked" @change="valueChange">
-    <tiny-checkbox-button
-      v-for="item in list"
-      :label="item.title"
-      :key="item.id"
-    ></tiny-checkbox-button>
+    <tiny-checkbox-button v-for="item in list" :label="item.title" :key="item.id"></tiny-checkbox-button>
   </tiny-checkbox-group>
 </template>
 
@@ -25,9 +21,7 @@ export default {
   created() {
     this.getData().then((data) => {
       this.list = data
-      this.checked = data
-        .filter((item) => item.checked)
-        .map((item) => item.title)
+      this.checked = data.filter((item) => item.checked).map((item) => item.title)
     })
   },
   methods: {

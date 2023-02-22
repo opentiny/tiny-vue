@@ -1,5 +1,5 @@
 import [[UNAME]] from './src/index[[SUFFIX]]'
-// import '@opentiny/[[THEME]]/[[NAME]]/index.css'
+// import '@huawei/[[THEME]]/[[NAME]]/index.css'
 
 [[UNAME]].model = {
   prop: 'modelValue',

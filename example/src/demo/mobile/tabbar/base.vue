@@ -1,27 +1,14 @@
 <template>
   <div class="tiny-mobile-tabbar-demo">
     <div class="buttons">
-      <tiny-button type="primary" size="large" @click="change(2)"
-        >切换成2个标签页</tiny-button
-      >
-      <tiny-button type="primary" size="large" @click="change(3)"
-        >切换成3个标签页</tiny-button
-      >
-      <tiny-button type="primary" size="large" @click="change(4)"
-        >切换成4个标签页</tiny-button
-      >
-      <tiny-button type="primary" size="large" @click="change(5)">
-        切换成5个标签页</tiny-button
-      >
+      <tiny-button type="primary" size="large" @click="change(2)">切换成2个标签页</tiny-button>
+      <tiny-button type="primary" size="large" @click="change(3)">切换成3个标签页</tiny-button>
+      <tiny-button type="primary" size="large" @click="change(4)">切换成4个标签页</tiny-button>
+      <tiny-button type="primary" size="large" @click="change(5)"> 切换成5个标签页</tiny-button>
     </div>
     <div v-show="pagename" class="content">{{ pagename }}</div>
     <tiny-tabbar v-model="activeName" fixed>
-      <tiny-tabbar-item
-        v-for="item in list"
-        :key="item.title"
-        :icon="item.ico"
-        @click="tab(item.title)"
-      >
+      <tiny-tabbar-item v-for="item in list" :key="item.title" :icon="item.ico" @click="tab(item.title)">
         {{ item.title }}
       </tiny-tabbar-item>
     </tiny-tabbar>
@@ -30,13 +17,7 @@
 
 <script>
 import { Tabbar, TabbarItem, Button } from '@opentiny/vue'
-import {
-  iconDialog,
-  iconEmailAdd,
-  iconGroup,
-  iconSetting,
-  iconAdministrator
-} from '@opentiny/vue-icon'
+import { iconDialog, iconEmailAdd, iconGroup, iconSetting, iconAdministrator } from '@opentiny/vue-icon'
 
 export default {
   components: {

@@ -5,7 +5,7 @@
     :current-page="currentPage"
     @update:current-page="currentPage = $event"
     :page-size="100"
-    layout="sizes, total, prev, pager, next, jumper"
+    layout="total, sizes, prev, pager, next, jumper"
     :total="1000"
   >
   </tiny-pager>

@@ -1,10 +1,6 @@
 <template>
   <tiny-carousel height="150px" arrow="never">
-    <tiny-carousel-item
-      class="carousel-item-demo"
-      v-for="item in 4"
-      :key="item"
-    >
+    <tiny-carousel-item class="carousel-item-demo" v-for="item in 4" :key="item">
       <h3>{{ item }}</h3>
     </tiny-carousel-item>
   </tiny-carousel>
@@ -23,10 +19,10 @@ export default {
 
 <style scoped>
 .carousel-item-demo:nth-child(2n) {
-  background-color: #99a9bf;
+  background-color: #f7f7f9;
 }
 
 .carousel-item-demo:nth-child(2n + 1) {
-  background-color: #d3dce6;
+  background-color: #f7f7f9;
 }
 </style>

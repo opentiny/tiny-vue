@@ -1,11 +1,5 @@
 <template>
-  <tiny-tree
-    :data="data"
-    default-expand-all
-    show-checkbox
-    @node-contextmenu="nodeContextmenu"
-    @current-change="currentChange"
-  ></tiny-tree>
+  <tiny-tree :data="data" default-expand-all show-checkbox @node-contextmenu="nodeContextmenu" @current-change="currentChange"></tiny-tree>
 </template>
 
 <script>

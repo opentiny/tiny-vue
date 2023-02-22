@@ -1,10 +1,5 @@
 <template>
-  <tiny-cascader
-    placeholder="试试搜索：安装"
-    :options="options"
-    :props="{ multiple: true }"
-    filterable
-  ></tiny-cascader>
+  <tiny-cascader placeholder="试试搜索：安装" :options="options" :props="{ multiple: true }" filterable></tiny-cascader>
 </template>
 
 <script>

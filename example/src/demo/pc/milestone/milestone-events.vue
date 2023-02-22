@@ -1,10 +1,5 @@
 <template>
-  <tiny-milestone
-    :data="milestoneData"
-    :milestones-status="statusMap"
-    @click="nodeClick"
-    @flagclick="flagClick"
-  ></tiny-milestone>
+  <tiny-milestone :data="milestoneData" :milestones-status="statusMap" @click="nodeClick" @flag-click="flagClick"></tiny-milestone>
 </template>
 
 <script>

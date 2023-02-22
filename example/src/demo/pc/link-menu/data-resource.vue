@@ -1,5 +1,5 @@
 <template>
-  <tiny-link-menu :data="datas" title="收藏夹菜单" wrap :keep-selected-nodes="false"></tiny-link-menu>
+  <tiny-link-menu :data="datas" title="收藏夹菜单" wrap></tiny-link-menu>
 </template>
 
 <script>

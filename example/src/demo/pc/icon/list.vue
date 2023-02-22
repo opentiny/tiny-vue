@@ -1,12 +1,7 @@
 <template>
   <div class="svgs-wrapper">
     <div v-for="(icon, index) in Svgs" :key="index" class="svgs-item">
-      <component
-        :is="icon.component"
-        class="svgs-icon"
-        style="width: 2em; fill: #000; height: 2em"
-        @click="click(icon.name)"
-      ></component>
+      <component :is="icon.component" class="svgs-icon" style="width: 2em; fill: #000; height: 2em" @click="click(icon.name)"></component>
       <span class="svgs-text">{{ icon.name }}</span>
     </div>
   </div>
@@ -18,16 +13,11 @@ import { Modal } from '@opentiny/vue'
 export default {
   data() {
     return {
-      Svgs: Object.keys(Svgs).map((name) => {
-        return {
-          name,
-          component: Svgs[name]()
-        }
-      })
+      Svgs: Object.keys(Svgs).map((name) => ({
+        name,
+        component: Svgs[name]()
+      }))
     }
-  },
-  mounted() {
-    console.log('svg图标数量', Object.keys(Svgs).length)
   },
   methods: {
     click(name) {

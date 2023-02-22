@@ -1,7 +1,7 @@
 <template>
   <div>
     <tiny-button @click="visible3 = true">弹出Dialog</tiny-button>
-    <tiny-dialog-box :visible="visible3" @update:visible="visible3 = $event" :dragable="true" title="消息" width="30%">
+    <tiny-dialog-box :visible="visible3" @update:visible="visible3 = $event" :draggable="true" title="消息" width="30%">
       <div>
         <tiny-image style="width: 100px; height: 100px" :src="url" :preview-src-list="srcList"></tiny-image>
       </div>
@@ -16,16 +16,12 @@
 import { Button, DialogBox, Image } from '@opentiny/vue'
 
 export default {
-  components: {
-    TinyButton: Button,
-    TinyDialogBox: DialogBox,
-    TinyImage: Image
-  },
+  components: { TinyButton: Button, TinyDialogBox: DialogBox, TinyImage: Image },
   data() {
     return {
       visible3: false,
-      url: 'static/images/mountain.png',
-      srcList: ['static/images/mountain.png', 'static/images/house.jpg', 'static/images/bridge.jpg']
+      url: 'static/images/1.jpg',
+      srcList: ['static/images/1.jpg', 'static/images/2.jpg', 'static/images/3.jpg']
     }
   }
 }

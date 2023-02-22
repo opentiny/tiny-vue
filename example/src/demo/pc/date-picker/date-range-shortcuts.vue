@@ -1,9 +1,5 @@
 <template>
-  <tiny-date-picker
-    v-model="value"
-    type="daterange"
-    :picker-options="pickerOptionsDateRange"
-  ></tiny-date-picker>
+  <tiny-date-picker v-model="value" type="daterange" :picker-options="pickerOptionsDateRange"></tiny-date-picker>
 </template>
 
 <script>

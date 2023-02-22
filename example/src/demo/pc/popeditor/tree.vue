@@ -1,10 +1,5 @@
 <template>
-  <tiny-popeditor
-    v-model="value"
-    popseletor="tree"
-    title="树模式"
-    :tree-op="treeOp"
-  ></tiny-popeditor>
+  <tiny-popeditor v-model="value" popseletor="tree" title="树模式" :tree-op="treeOp"></tiny-popeditor>
 </template>
 
 <script>

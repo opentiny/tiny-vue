@@ -1,11 +1,7 @@
 <template>
   <div class="radio-wrap">
-    <tiny-radio v-model="value" label="1" @change="handleChange"
-      >单选框 1</tiny-radio
-    >
-    <tiny-radio v-model="value" label="2" @change="handleChange"
-      >单选框 2</tiny-radio
-    >
+    <tiny-radio v-model="value" label="1" @change="handleChange">单选框 1</tiny-radio>
+    <tiny-radio v-model="value" label="2" @change="handleChange">单选框 2</tiny-radio>
   </div>
 </template>
 

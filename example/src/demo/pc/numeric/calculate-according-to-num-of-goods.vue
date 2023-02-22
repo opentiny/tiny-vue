@@ -2,8 +2,7 @@
   <div>
     <div class="content">
       <span>数量：</span>
-      <tiny-numeric v-model="value" :min="0" placeholder="请输入商品数量">
-      </tiny-numeric>
+      <tiny-numeric v-model="value" :min="0" placeholder="请输入商品数量"> </tiny-numeric>
     </div>
     <div>单价：{{ price }}/斤</div>
     <div v-show="value ^ 0">总价：{{ price * value }}元</div>

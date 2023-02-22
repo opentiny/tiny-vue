@@ -1,10 +1,5 @@
 <template>
-  <tiny-transfer
-    v-model="value"
-    :data="data"
-    filterable
-    filter-placeholder="请输入关键字搜索"
-  ></tiny-transfer>
+  <tiny-transfer v-model="value" :data="data" filterable filter-placeholder="请输入关键字搜索"></tiny-transfer>
 </template>
 
 <script>

@@ -3,8 +3,7 @@
     <tiny-button @click="boxVisibility = true">可拖拽弹窗</tiny-button>
     <tiny-dialog-box
       draggable
-      :visible="boxVisibility"
-      @update:visible="boxVisibility = $event"
+      v-model:visible="boxVisibility"
       title="鼠标移入标题区域单击拖拽"
       width="30%"
       @drag-start="dragStart"
@@ -13,16 +12,14 @@
     >
       <span>dialog-box内容</span>
       <template #footer>
-        <tiny-button type="primary" @click="boxVisibility = false"
-          >确 定</tiny-button
-        >
+        <tiny-button type="primary" @click="boxVisibility = false">确 定</tiny-button>
       </template>
     </tiny-dialog-box>
   </div>
 </template>
 
 <script>
-import { Button, DialogBox, Modal } from '@opentiny/vue'
+import { Button, DialogBox } from '@opentiny/vue'
 
 export default {
   components: {
@@ -36,13 +33,13 @@ export default {
   },
   methods: {
     dragStart() {
-      Modal.message({ message: '拖拽开始', status: 'info' })
+      console.log('拖拽开始')
     },
     dragEnd() {
-      Modal.message({ message: '拖拽结束', status: 'info' })
+      console.log('拖拽结束')
     },
     dragMove() {
-      Modal.message({ message: '拖拽移动', status: 'info' })
+      console.log('拖拽移动')
     }
   }
 }

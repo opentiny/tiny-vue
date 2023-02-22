@@ -60,7 +60,7 @@ export default {
         {
           id: '1',
           pid: '0',
-          name: 'GFD科技公司',
+          name: 'GFD科技YX公司',
           area: '华东区',
           employees: '800',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
@@ -78,7 +78,7 @@ export default {
         {
           id: '2',
           pid: '0',
-          name: 'WWWW科技公司',
+          name: 'WWWW科技YX公司',
           area: '华南区',
           employees: '500',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
@@ -96,7 +96,7 @@ export default {
         {
           id: '4',
           pid: '0',
-          name: 'TGB公司',
+          name: 'TGBYX公司',
           area: '华南区',
           employees: '360',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
@@ -112,7 +112,7 @@ export default {
             {
               id: '5',
               pid: '4',
-              name: 'YHN科技公司',
+              name: 'YHN科技YX公司',
               area: '华南区',
               employees: '810',
               introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
@@ -120,7 +120,7 @@ export default {
                 {
                   id: '6',
                   pid: '5',
-                  name: 'WSX科技公司',
+                  name: 'WSX科技YX公司',
                   area: '华南区',
                   employees: '800',
                   introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
@@ -140,7 +140,7 @@ export default {
         {
           id: '7',
           pid: '0',
-          name: '康康物业公司',
+          name: '康康物业YX公司',
           area: '华南区',
           employees: '400',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
@@ -148,7 +148,7 @@ export default {
             {
               id: '8',
               pid: '7',
-              name: 'SZ市福德宝网络技术公司',
+              name: '深圳市福德宝网络技术YX公司',
               area: '华南区',
               employees: '540',
               introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
@@ -164,7 +164,7 @@ export default {
                 {
                   id: '23',
                   pid: '10',
-                  name: 'IK有限责任股份公司',
+                  name: 'IK有限责任股份YX公司',
                   area: '华南区',
                   employees: '455',
                   introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'

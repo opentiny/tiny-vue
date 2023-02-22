@@ -1,9 +1,5 @@
 <template>
-  <tiny-pop-upload
-    :action="action"
-    upload-name="file"
-    with-credentials
-  ></tiny-pop-upload>
+  <tiny-pop-upload :action="action" upload-name="file" with-credentials></tiny-pop-upload>
 </template>
 
 <script>

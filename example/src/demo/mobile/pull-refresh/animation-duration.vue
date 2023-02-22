@@ -1,9 +1,5 @@
 <template>
-  <tiny-pull-refresh
-    v-model="isLoading"
-    @refresh="onRefresh"
-    :animation-duration="1000"
-  >
+  <tiny-pull-refresh v-model="isLoading" @refresh="onRefresh" :animation-duration="1000">
     <h3>hello pull-refresh</h3>
   </tiny-pull-refresh>
 </template>

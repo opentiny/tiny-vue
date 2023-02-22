@@ -1,12 +1,6 @@
 <template>
   <div>
-    <tiny-tree
-      :data="data5"
-      :props="defaultProps"
-      default-expand-all
-      :show-contextmenu="true"
-      ref="tree"
-    >
+    <tiny-tree :data="data5" :props="defaultProps" default-expand-all :show-contextmenu="true" ref="tree">
       <template #contextmenu="{ data }">
         <div @click="add">
           <button>新增 {{ data.label }}</button>

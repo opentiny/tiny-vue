@@ -83,7 +83,7 @@ export default {
         showCheckbox: true,
         nodeKey: 'id',
         checkStrictly: true,
-        filterNodeMethod: function (query, data) {
+        filterNodeMethod(query, data) {
           return data.label.indexOf(query) > -1
         }
       }

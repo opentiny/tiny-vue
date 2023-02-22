@@ -1,9 +1,5 @@
 <template>
-  <tiny-cascader
-    v-model="value"
-    :options="options"
-    :show-all-levels="false"
-  ></tiny-cascader>
+  <tiny-cascader v-model="value" :options="options" :show-all-levels="false"></tiny-cascader>
 </template>
 
 <script>

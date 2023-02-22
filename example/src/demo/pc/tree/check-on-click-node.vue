@@ -1,17 +1,9 @@
 <template>
   <div>
-    <tiny-button @click="getCheckedKeys" title="获取选中数据的 keys"
-      >获取选中数据的 keys</tiny-button
-    >
-    <tiny-button @click="getCheckedNodes" title="获取选中标识的数据"
-      >获取选中标识的数据</tiny-button
-    >{{ checkedNodes }}
-    <tiny-button @click="getHalfCheckedKeys" title="获取半勾选数据的 keys"
-      >获取半勾选数据的 keys</tiny-button
-    >
-    <tiny-button @click="getHalfCheckedNodes" title="获取半勾选的数据"
-      >获取半勾选的数据</tiny-button
-    >{{ halfCheckedNodes }}
+    <tiny-button @click="getCheckedKeys" title="获取选中数据的 keys">获取选中数据的 keys</tiny-button>
+    <tiny-button @click="getCheckedNodes" title="获取选中标识的数据">获取选中标识的数据</tiny-button>{{ checkedNodes }}
+    <tiny-button @click="getHalfCheckedKeys" title="获取半勾选数据的 keys">获取半勾选数据的 keys</tiny-button>
+    <tiny-button @click="getHalfCheckedNodes" title="获取半勾选的数据">获取半勾选的数据</tiny-button>{{ halfCheckedNodes }}
     <tiny-tree
       :data="data"
       default-expand-all

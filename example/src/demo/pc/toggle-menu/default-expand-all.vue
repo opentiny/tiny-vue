@@ -1,9 +1,5 @@
 <template>
-  <tiny-toggle-menu
-    :data="datas"
-    default-expand-all
-    expand-on-click-node
-  ></tiny-toggle-menu>
+  <tiny-toggle-menu :data="datas" default-expand-all expand-on-click-node></tiny-toggle-menu>
 </template>
 
 <script>

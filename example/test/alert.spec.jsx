@@ -6,7 +6,7 @@ import { iconBoat } from '@opentiny/vue-icon'
 describe('Alert ', () => {
   test('render test & type & size', async () => {
     const TEXT = 'Winter is coming'
-    const wrapper = mount(() => <Alert type='success' size='large' title={TEXT} description='type 为 success' />)
+    const wrapper = mount(() => <Alert type="success" size="large" title={TEXT} description="type 为 success" />)
     expect(wrapper.find('.tiny-alert__close').exists()).toBe(true)
     expect(wrapper.find('.tiny-alert__title').text()).toEqual(TEXT)
     expect(wrapper.find('.tiny-alert').classes()).toContain('tiny-alert--large')
@@ -15,21 +15,22 @@ describe('Alert ', () => {
 
   test('icon', async () => {
     const TEXT = 'Winter is coming'
-    const wrapper = mount(() => <Alert type='success' icon={iconBoat()} title={TEXT} description='type 为 success' />)
+    const wrapper = mount(() => <Alert type="success" icon={iconBoat()} title={TEXT} description="type 为 success" />)
     expect(wrapper.find('.tiny-alert__icon').exists()).toBe(true)
   })
 
   test('slot', async () => {
     const TEXT = 'Winter is coming'
-    const wrapper = mount(() => <Alert
-      type='success'
-      size='large'
-      v-slots={{
-        title: () => TEXT
-      }}
-      description='type 为 success'
-    />)
+    const wrapper = mount(() => (
+      <Alert
+        type="success"
+        size="large"
+        v-slots={{
+          title: () => TEXT
+        }}
+        description="type 为 success"
+      />
+    ))
     expect(wrapper.find('.tiny-alert__title').text()).toEqual(TEXT)
   })
-
 })

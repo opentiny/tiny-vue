@@ -1,0 +1,18 @@
+[
+  {
+    "id": "b49cf1a5326b4ce797541064e48302d5",
+    "app_id": "app_common777777",
+    "code": "zhCN",
+    "name": "中文",
+    "i18n$$name": "中文",
+    "order_number": null
+  },
+  {
+    "id": "bdaedfe15dfd4ad8aa30bc05567de629",
+    "app_id": "app_common777777",
+    "code": "enUS",
+    "name": "English",
+    "i18n$$name": "English",
+    "order_number": null
+  }
+]

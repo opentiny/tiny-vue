@@ -28,8 +28,8 @@ export default {
     }
   },
   methods: {
-    onChange(e) {
-      Modal.message(e)
+    onChange(value) {
+      Modal.message(JSON.stringify(value))
     }
   }
 }

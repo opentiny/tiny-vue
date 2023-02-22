@@ -1,13 +1,5 @@
 <template>
-  <tiny-cascader
-    v-model="value"
-    :options="options"
-    clearable
-    separator="+"
-    size="medium"
-    popper-class="custom-class"
-    :popper-append-to-body="false"
-  ></tiny-cascader>
+  <tiny-cascader v-model="value" :options="options" clearable separator="+" size="medium"></tiny-cascader>
 </template>
 
 <script>

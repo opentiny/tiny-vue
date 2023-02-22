@@ -1,11 +1,5 @@
 <template>
-  <tiny-file-upload
-    accept="image/*"
-    ref="upload"
-    :action="action"
-    :file-list="fileList"
-    :before-upload="beforeUpload"
-  >
+  <tiny-file-upload accept="image/*" ref="upload" :action="action" :file-list="fileList" :before-upload="beforeUpload">
     <template #trigger>
       <icon-upload></icon-upload>
     </template>

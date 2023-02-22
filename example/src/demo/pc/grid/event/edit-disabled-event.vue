@@ -75,7 +75,7 @@ export default {
         },
         {
           id: '2',
-          name: 'WWW科技公司',
+          name: 'WWW科技YX公司',
           area: '华南区',
           address: '深圳福田区',
           employees: 600,
@@ -93,7 +93,7 @@ export default {
         },
         {
           id: '4',
-          name: 'TGB科技公司',
+          name: 'TGB科技YX公司',
           area: '华东区',
           address: '龙岩',
           employees: 900,
@@ -102,7 +102,7 @@ export default {
         },
         {
           id: '5',
-          name: 'YHN科技公司',
+          name: 'YHN科技YX公司',
           area: '华南区',
           address: '韶关',
           employees: 300,
@@ -111,7 +111,7 @@ export default {
         },
         {
           id: '6',
-          name: 'WSX科技公司',
+          name: 'WSX科技YX公司',
           area: '华中区',
           address: '黄冈',
           employees: 300,

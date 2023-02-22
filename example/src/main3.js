@@ -8,6 +8,8 @@ import Home from './components/Home.vue'
 import DemoView from './DemoView.vue'
 import PcRouter from './route.config.comp'
 import MobileRouter from './route.config.comp.mobile'
+import TinyService from '@opentiny/vue-service'
+import mockConfig from '../public/mock/gateway/ajax'
 import TinyThemeTool from '@opentiny/vue-theme/theme-tool.js'
 import { CURRENT_THEME_KEY, DEFAULT_THEME, THEME_MAP } from './const'
 
@@ -42,6 +44,8 @@ const router = createRouter({
 app.use(router)
 
 const TinyMode = 'tiny_mode'
+const service = new TinyService({ Vue3, app, mockConfig })
+
 app.config.globalProperties[TinyMode] = { value: mode }
-app.use(initI18n({ createI18n }))
+app.use(initI18n({ createI18n, i18n: {} }))
 app.mount('#app')

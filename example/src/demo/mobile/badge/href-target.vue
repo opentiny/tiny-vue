@@ -1,12 +1,8 @@
 <template>
   <div class="badge-wrap">
-    <tiny-badge :value="2" :href="'/'" target="_self"
-      >当前标签页打开</tiny-badge
-    >
+    <tiny-badge :value="2" :href="'/'" target="_self">当前标签页打开</tiny-badge>
     <br />
-    <tiny-badge :value="2" :href="'/'" target="_blank"
-      >新建标签页打开</tiny-badge
-    >
+    <tiny-badge :value="2" :href="'/'" target="_blank">新建标签页打开</tiny-badge>
   </div>
 </template>
 

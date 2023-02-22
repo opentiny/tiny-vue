@@ -1,9 +1,5 @@
 <template>
-  <tiny-file-upload
-    ref="upload"
-    :data="requestData"
-    :before-upload="beforeUpload"
-  >
+  <tiny-file-upload ref="upload" :data="requestData" :before-upload="beforeUpload">
     <template #trigger>
       <tiny-button type="primary">选取文件</tiny-button>
     </template>

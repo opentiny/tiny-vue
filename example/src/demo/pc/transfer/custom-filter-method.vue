@@ -1,11 +1,5 @@
 <template>
-  <tiny-transfer
-    v-model="value"
-    :data="data"
-    filterable
-    :filter-method="filterMethod"
-    filter-placeholder="请输入城市拼音"
-  ></tiny-transfer>
+  <tiny-transfer v-model="value" :data="data" filterable :filter-method="filterMethod" filter-placeholder="请输入城市拼音"></tiny-transfer>
 </template>
 
 <script>
@@ -19,15 +13,7 @@ export default {
     const generateData = () => {
       const data = []
       const cities = ['上海', '北京', '广州', '深圳', '南京', '西安', '成都']
-      const pinyin = [
-        'shanghai',
-        'beijing',
-        'guangzhou',
-        'shenzhen',
-        'nanjing',
-        'xian',
-        'chengdu'
-      ]
+      const pinyin = ['shanghai', 'beijing', 'guangzhou', 'shenzhen', 'nanjing', 'xian', 'chengdu']
 
       cities.forEach((city, index) => {
         data.push({

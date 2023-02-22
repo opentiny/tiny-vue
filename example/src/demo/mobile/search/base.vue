@@ -4,17 +4,9 @@
       <h2>SearchBar</h2>
       <div>搜索栏</div>
     </div>
-    <tiny-search
-      placeholder="搜索"
-      @change="handleChange"
-      default-value="mmmm"
-    ></tiny-search>
+    <tiny-search placeholder="搜索" @change="handleChange" default-value="mmmm"></tiny-search>
     <div :class="[{ 'is-show': value }, 'searchbar-result']">
-      <tiny-list
-        v-for="item of dataList"
-        :key="item.id"
-        :content="item.content"
-      ></tiny-list>
+      <tiny-list v-for="item of dataList" :key="item.id" :content="item.content"></tiny-list>
     </div>
   </div>
 </template>

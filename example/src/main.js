@@ -8,6 +8,8 @@ import Home from './components/Home.vue'
 import DemoView from './DemoView.vue'
 import PcRouter from './route.config.comp'
 import MobileRouter from './route.config.comp.mobile'
+import TinyService from '@opentiny/vue-service'
+import mockConfig from '../public/mock/gateway/ajax'
 
 Vue.use(VueRouter)
 Vue.use(Loading)
@@ -23,9 +25,10 @@ Vue.component('NovaAttributes', { render: () => null })
 Vue.component('mobileAttributes', { render: () => null })
 
 Vue.config.productionTip = false
-const mode = localStorage.getItem('vue-example-mode') || 'pc'
 
+const mode = localStorage.getItem('vue-example-mode') || 'pc'
 const TinyMode = 'tiny_mode'
+
 Vue.prototype[TinyMode] = { value: mode }
 
 const router = new VueRouter({
@@ -38,8 +41,14 @@ const router = new VueRouter({
   ]
 })
 
-new Vue({
-  i18n: initI18n({ VueI18n }),
-  router,
-  render: (h) => h(App)
-}).$mount('#app')
+const service = new TinyService({ Vue, mockConfig })
+
+service
+  .boot(({ Mock: mock }) => mock(mockConfig))
+  .then(({ i18n }) => {
+    new Vue({
+      i18n: initI18n({ VueI18n, i18n }),
+      router,
+      render: (h) => h(App)
+    }).$mount('#app')
+  })

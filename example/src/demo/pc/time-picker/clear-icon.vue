@@ -11,7 +11,7 @@
 
 <script>
 import { TimePicker } from '@opentiny/vue'
-import { iconClose } from '@opentiny/vue-icon'
+import { IconClose } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      IconClose: iconClose(),
+      IconClose: IconClose(),
       value1: new Date(2016, 9, 10, 18, 40)
     }
   }

@@ -1,9 +1,5 @@
 <template>
-  <tiny-cascader
-    v-model="value"
-    :options="options"
-    :props="{ emitPath: false }"
-  ></tiny-cascader>
+  <tiny-cascader v-model="value" :options="options" :props="{ emitPath: false }"></tiny-cascader>
 </template>
 
 <script>

@@ -1,9 +1,5 @@
 <template>
-  <tiny-toggle-menu
-    :data="datas"
-    automatic-filtering
-    placeholder="请输入过滤值"
-  ></tiny-toggle-menu>
+  <tiny-toggle-menu :data="datas" automatic-filtering placeholder="请输入过滤值"></tiny-toggle-menu>
 </template>
 
 <script>

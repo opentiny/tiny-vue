@@ -7,49 +7,21 @@
     <div class="demo-form-select-padds">
       <tiny-form ref="ruleForm" :model="createData" :rules="rules">
         <tiny-form-item label="标题">
-          <tiny-input
-            v-model="createData.user1"
-            is-select
-            :select-menu="menus"
-            placeholder="请输入内容"
-            type="form"
-          ></tiny-input>
+          <tiny-input v-model="createData.user1" is-select :select-menu="menus" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
       </tiny-form>
     </div>
     <div class="demo-form-select-padds">
-      <tiny-form
-        ref="ruleForm"
-        :model="createData"
-        :rules="rules"
-        label-position="left"
-      >
+      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-position="left">
         <tiny-form-item label="标题">
-          <tiny-input
-            v-model="createData.user1"
-            is-select
-            :select-menu="menus"
-            placeholder="请输入内容"
-            type="form"
-          ></tiny-input>
+          <tiny-input v-model="createData.user1" is-select :select-menu="menus" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
       </tiny-form>
     </div>
     <div class="demo-form-select-padds">
-      <tiny-form
-        ref="ruleForm"
-        :model="createData"
-        :rules="rules"
-        label-position="left"
-      >
+      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-position="left">
         <tiny-form-item label="标题">
-          <tiny-input
-            v-model="createData.user1"
-            is-select
-            :select-menu="menus"
-            placeholder="请输入内容"
-            type="form"
-          ></tiny-input>
+          <tiny-input v-model="createData.user1" is-select :select-menu="menus" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
         <div class="lableTip">
           辅助文本说明超过3行辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明
@@ -57,20 +29,9 @@
       </tiny-form>
     </div>
     <div class="demo-form-select-padds">
-      <tiny-form
-        ref="ruleForm"
-        :model="createData"
-        :rules="rules"
-        label-position="left"
-      >
+      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-position="left">
         <tiny-form-item label="标题">
-          <tiny-input
-            v-model="createData.user1"
-            is-select
-            :select-menu="menus"
-            placeholder="请输入内容"
-            type="form"
-          ></tiny-input>
+          <tiny-input v-model="createData.user1" is-select :select-menu="menus" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
         <div class="lableTip">辅助文本说明未超3行</div>
         <tiny-form-item label="标题">
@@ -98,21 +59,9 @@
       </tiny-form>
     </div>
     <div class="demo-form-select-padds">
-      <tiny-form
-        ref="ruleForm"
-        :model="createData"
-        :rules="rules"
-        label-position="top"
-      >
+      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-position="top">
         <tiny-form-item label="标题">
-          <tiny-input
-            v-model="createData.user2"
-            is-select
-            :select-menu="menus"
-            placeholder="请输入内容"
-            type="form"
-            vertical
-          ></tiny-input>
+          <tiny-input v-model="createData.user2" is-select :select-menu="menus" placeholder="请输入内容" type="form" vertical></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="标题">
           <tiny-input
@@ -155,8 +104,7 @@ export default {
       menus: [
         {
           id: '小花',
-          label:
-            '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
+          label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
         },
         {
           id: '小树',

@@ -1,10 +1,6 @@
 <template>
   <div class="demo-input">
-    <tiny-input
-      v-model="text"
-      placeholder="请输入内容"
-      @input="input"
-    ></tiny-input>
+    <tiny-input v-model="text" placeholder="请输入内容" @input="input"></tiny-input>
   </div>
 </template>
 

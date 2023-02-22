@@ -1,21 +1,10 @@
 <template>
   <div>
     <tiny-button @click="boxVisibility = true">弹出与关闭事件</tiny-button>
-    <tiny-dialog-box
-      :visible="boxVisibility"
-      @update:visible="boxVisibility = $event"
-      title="消息"
-      width="30%"
-      @open="open"
-      @close="close"
-      @opened="opened"
-      @closed="closed"
-    >
+    <tiny-dialog-box v-model:visible="boxVisibility" title="消息" width="30%" @open="open" @close="close" @opened="opened" @closed="closed">
       <span>dialog-box内容</span>
       <template #footer>
-        <tiny-button type="primary" @click="boxVisibility = false"
-          >确 定</tiny-button
-        >
+        <tiny-button type="primary" @click="boxVisibility = false">确 定</tiny-button>
       </template>
     </tiny-dialog-box>
   </div>
@@ -65,12 +54,7 @@ export default {
       })
     },
     getTime(now) {
-      return [
-        now.getHours(),
-        now.getMinutes(),
-        now.getSeconds(),
-        now.getMilliseconds()
-      ].join(':')
+      return [now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds()].join(':')
     }
   }
 }

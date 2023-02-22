@@ -10,12 +10,12 @@
 
 <script>
 import { NavMenu } from '@opentiny/vue'
-import { iconTotal } from '@opentiny/vue-icon'
+import { IconTotal } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyNavMenu: NavMenu,
-    IconTotal: iconTotal()
+    IconTotal: IconTotal()
   },
   methods: {
     handleSkip() {

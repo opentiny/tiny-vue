@@ -1,10 +1,5 @@
 <template>
-  <tiny-numeric
-    v-model="stepNum"
-    :controls="controls"
-    :label="label"
-    name="name"
-  ></tiny-numeric>
+  <tiny-numeric v-model="stepNum" :controls="controls" :label="label" name="name"></tiny-numeric>
 </template>
 
 <script>

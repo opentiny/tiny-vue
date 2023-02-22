@@ -1,12 +1,6 @@
 <template>
   <div class="demo-form">
-    <tiny-form
-      ref="ruleForm"
-      :model="createData"
-      :rules="rules"
-      label-width="100px"
-      show-message
-    >
+    <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-width="100px" show-message>
       <tiny-form-item prop="users">
         <template #label>必填</template>
         <tiny-input v-model="createData.users"></tiny-input>
@@ -21,30 +15,17 @@
       </tiny-form-item>
       <tiny-form-item prop="radio">
         <template #label>等级</template>
-        <tiny-radio-group
-          v-model="createData.radio"
-          :options="options"
-        ></tiny-radio-group>
+        <tiny-radio-group v-model="createData.radio" :options="options"></tiny-radio-group>
       </tiny-form-item>
       <tiny-form-item>
-        <tiny-button type="primary" @click="handleSubmit('ruleForm')"
-          >提交</tiny-button
-        >
+        <tiny-button type="primary" @click="handleSubmit('ruleForm')">提交</tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>
 </template>
 
 <script>
-import {
-  Form,
-  FormItem,
-  Input,
-  DatePicker,
-  Button,
-  Modal,
-  RadioGroup
-} from '@opentiny/vue'
+import { Form, FormItem, Input, DatePicker, Button, Modal, RadioGroup } from '@opentiny/vue'
 
 export default {
   components: {

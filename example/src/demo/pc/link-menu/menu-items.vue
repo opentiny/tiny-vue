@@ -1,9 +1,5 @@
 <template>
-  <tiny-link-menu
-    :data="datas"
-    :max-item="5"
-    :default-expand-all="false"
-  ></tiny-link-menu>
+  <tiny-link-menu :data="datas" :max-item="5" :default-expand-all="false"></tiny-link-menu>
 </template>
 
 <script>
