@@ -6,6 +6,8 @@
     <tiny-table :columns="columns2" :data="tableData" width="300px"></tiny-table>
     <div class="title">其它样式</div>
     <tiny-table :columns="columns3" :data="tableData" width="300px"></tiny-table>
+    <div class="title">无数据</div>
+    <tiny-table :columns="[]" :data="[]" width="200px"></tiny-table>
   </div>
 </template>
 
