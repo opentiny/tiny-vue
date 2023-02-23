@@ -895,16 +895,48 @@
           ]
         },
         {
-          "path": "/mobile-avatar",
-          "name": "Avatar 头像",
+          "path": "/user-head",
+          "name": "UserHead 用户头像",
           "children": [
             {
-              "path": "/mobile-avatar/avatar-size",
-              "name": "设置头像大小"
+              "path": "/user-head/min-user-head",
+              "name": "小头像"
             },
             {
-              "path": "/mobile-avatar/avatar-src-set",
-              "name": "设置头像"
+              "path": "/user-head/round-user-head",
+              "name": "圆形头像"
+            },
+            {
+              "path": "/user-head/label-user-head",
+              "name": "文字头像"
+            },
+            {
+              "path": "/user-head/icon-user-head",
+              "name": "图标头像"
+            },
+            {
+              "path": "/user-head/image-user-head",
+              "name": "图片头像"
+            },
+            {
+              "path": "/user-head/message-count",
+              "name": "消息计数"
+            },
+            {
+              "path": "/user-head/custom-color",
+              "name": "自定义颜色"
+            },
+            {
+              "path": "/user-head/custom-background-color",
+              "name": "自定义背景颜色"
+            },
+            {
+              "path": "/user-head/custom-user-head-content",
+              "name": "自定义图像内容"
+            },
+            {
+              "path": "/user-head/render-user-head-in-grid",
+              "name": "Grid单元格展示头像"
             }
           ]
         },

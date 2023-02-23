@@ -1144,6 +1144,61 @@ const router = [
     path: 'mobile-popover/direction',
     meta: { title: 'mobilepopover 气泡组件 - 类型', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/popover/direction.md')
+  },
+  {
+    path: 'user-head',
+    meta: { title: '其他组件-UserHead 用户头像', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-user-head' */ './docs/zh-CN/user-head/basic-usage.md')
+  },
+  {
+    path: 'user-head/min-user-head',
+    meta: { title: '其他组件-UserHead 用户头像-小头像', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-user-head' */ './docs/zh-CN/user-head/min-user-head.md')
+  },
+  {
+    path: 'user-head/round-user-head',
+    meta: { title: '其他组件-UserHead 用户头像-圆形头像', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-user-head' */ './docs/zh-CN/user-head/round-user-head.md')
+  },
+  {
+    path: 'user-head/label-user-head',
+    meta: { title: '其他组件-UserHead 用户头像-文字头像', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-user-head' */ './docs/zh-CN/user-head/label-user-head.md')
+  },
+  {
+    path: 'user-head/icon-user-head',
+    meta: { title: '其他组件-UserHead 用户头像-图标头像', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-user-head' */ './docs/zh-CN/user-head/icon-user-head.md')
+  },
+  {
+    path: 'user-head/image-user-head',
+    meta: { title: '其他组件-UserHead 用户头像-图片头像', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-user-head' */ './docs/zh-CN/user-head/image-user-head.md')
+  },
+  {
+    path: 'user-head/message-count',
+    meta: { title: '其他组件-UserHead 用户头像-消息计数', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-user-head' */ './docs/zh-CN/user-head/message-count.md')
+  },
+  {
+    path: 'user-head/custom-color',
+    meta: { title: '其他组件-UserHead 用户头像-自定义颜色', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-user-head' */ './docs/zh-CN/user-head/custom-color.md')
+  },
+  {
+    path: 'user-head/custom-background-color',
+    meta: { title: '其他组件-UserHead 用户头像-自定义背景颜色', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-user-head' */ './docs/zh-CN/user-head/custom-background-color.md')
+  },
+  {
+    path: 'user-head/custom-user-head-content',
+    meta: { title: '其他组件-UserHead 用户头像-自定义图像内容', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-user-head' */ './docs/zh-CN/user-head/custom-user-head-content.md')
+  },
+  {
+    path: 'user-head/render-user-head-in-grid',
+    meta: { title: '其他组件-UserHead 用户头像-Grid单元格展示头像', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-user-head' */ './docs/zh-CN/user-head/render-user-head-in-grid.md')
   }
 ]
 

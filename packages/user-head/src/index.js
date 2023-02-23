@@ -11,8 +11,13 @@
  */
 import { $props, $prefix, $setup } from '@opentiny/vue-common'
 import PCTemplate from './pc'
+import MobileTemplate from './mobile'
 
-const template = () => PCTemplate
+const template = (mode) => {
+  if (process.env.TINY_MODE === 'pc') return PCTemplate
+  else if (process.env.TINY_MODE === 'mobile') return MobileTemplate
+  else return mode === 'mobile' ? MobileTemplate : PCTemplate
+}
 
 export default {
   name: $prefix + 'UserHead',
@@ -42,7 +47,7 @@ export default {
      */
     backgroundColor: {
       type: String,
-      default: '#BBBBBB'
+      default: template === PCTemplate ? '#BBBBBB' : '#4a79fe'
     },
 
     /**
@@ -83,6 +88,17 @@ export default {
     messageUpperLimit: {
       type: Number,
       default: 0
+    },
+
+    /**
+     * @property {String, Number} [size=normal] - 头像尺寸
+     */
+    size: {
+      type: [Number, String],
+      default: 'medium',
+      validator(val) {
+        return typeof val === 'string' ? ~['large', 'medium', 'small'].indexOf(val) : typeof val === 'number'
+      }
     }
   },
   setup(props, context) {
