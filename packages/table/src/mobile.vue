@@ -10,51 +10,48 @@
  *
  -->
 <template>
-  <div class="tiny-table simple">
+  <div class="tiny-mobile-table simple" :style="{ width: width }">
     <table :width="width">
       <colgroup>
         <col v-for="(col, rowIndex) in columns" :key="rowIndex" :width="col.width" />
       </colgroup>
-      <thead class="tiny-table-header">
+      <thead class="tiny-mobile-table-header">
         <tr>
-          <th v-for="(col, colIndex) in columns" :key="colIndex" :class="{ overflow: col.showOverflow }">
-            <div class="tiny-table-cell">
+          <th v-for="(col, colIndex) in columns" :key="colIndex" :class="{ overflow: col.showOverflow, fixed: col.fixed }" :style="{ left: getLeft(colIndex) }">
+            <div class="tiny-mobile-table-cell">
               <component
                 v-if="col.type === 'selection'"
                 :is="`icon-${state.selectCls}`"
-                :class="['tiny-svg-size', { 'is-check': state.selectCls !== 'check' }]"
+                :class="['tiny-mobile-svg-size', { 'is-check': state.selectCls !== 'check' }]"
                 @click="togeSelectAll"
               />
-              <template v-if="!col.type">
-                <div v-if="colIndex !== columns.length - 1" class="tiny-table-header__line"></div>
+              <div v-if="!col.type">
                 {{ col.title }}
-              </template>
+              </div>
+              <div v-if="isLastFixed(colIndex, col)" class="shadow"></div>
             </div>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in data" :key="rowIndex" :class="['handlerCls', state.selectedKeys.indexOf(row[keys]) > -1 ? '' : 'is-disabled']">
-          <td v-for="(col, colIndex) in columns" :key="colIndex">
-            <div
-              :class="['tiny-table-cell', { overflow: col.showOverflow }]"
-              :title="col.showOverflow ? row[col.field] : ''"
-              :style="{ width: col.width ? col.width + 'px' : '' }"
-            >
+          <td v-for="(col, colIndex) in columns" :key="colIndex" :class="{ fixed: col.fixed }" :style="{ left: getLeft(colIndex) }">
+            <div :class="['tiny-mobile-table-cell', { overflow: col.showOverflow }]" :title="col.showOverflow ? row[col.field] : ''">
               <div v-if="col.type === 'index'">{{ rowIndex + 1 }}</div>
               <component
                 v-else-if="col.type === 'radio'"
                 :is="state.selectedRow === row ? 'icon-radioselected' : 'icon-radio'"
-                class="tiny-svg-size"
+                class="tiny-mobile-svg-size"
                 @click="selectRow(row)"
               />
               <component
                 v-else-if="col.type === 'selection'"
                 :is="state.selected.indexOf(row) === -1 ? 'icon-check' : 'icon-checked-sur'"
-                :class="['tiny-svg-size', { 'is-check': state.selected.indexOf(row) > -1 }, { 'is-disabled': state.selectedKeys.indexOf(keys) > -1 }]"
+                :class="['tiny-mobile-svg-size', { 'is-check': state.selected.indexOf(row) > -1 }, { 'is-disabled': state.selectedKeys.indexOf(keys) > -1 }]"
                 @click="togeSelected(row)"
               />
-              <template v-else>{{ row[col.field] }}</template>
+              <div v-else>{{ row[col.field] }}</div>
+              <div v-if="isLastFixed(colIndex, col)" class="shadow"></div>
             </div>
           </td>
         </tr>
@@ -68,11 +65,11 @@
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/table/vue'
-import { $prefix, setup } from '@opentiny/vue-common'
+import { setup, props } from '@opentiny/vue-common'
 import { iconRadioselected, iconRadio, iconCheck, iconCheckedSur, iconHalfselect } from '@opentiny/vue-icon'
+import '@opentiny/vue-theme-mobile/table/index.css'
 
 export default {
-  name: $prefix + 'Table',
   components: {
     IconRadioselected: iconRadioselected(),
     IconRadio: iconRadio(),
@@ -80,12 +77,24 @@ export default {
     IconCheckedSur: iconCheckedSur(),
     IconHalfselect: iconHalfselect()
   },
-  props: {
-    columns: Array,
-    data: Array,
-    width: String,
-    defaultChecked: Array,
-    keys: String
+  props: [...props, 'columns', 'data', 'width', 'defaultChecked', 'keys'],
+  methods: {
+    getLeft(index) {
+      let left = 0
+      for (let i = 0; i < index; i++) {
+        left += this.columns[i].width
+      }
+      return `${left}px`
+    },
+    isLastFixed(index, item) {
+      if (!item.fixed) {
+        return false
+      }
+      if (index === this.columns.length - 1) {
+        return true
+      }
+      return !this.columns[index + 1].fixed
+    }
   },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })

@@ -1199,6 +1199,11 @@ const router = [
     path: 'user-head/render-user-head-in-grid',
     meta: { title: '其他组件-UserHead 用户头像-Grid单元格展示头像', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-user-head' */ './docs/zh-CN/user-head/render-user-head-in-grid.md')
+  },
+  {
+    path: 'table',
+    meta: { title: 'table 表格组件 - 类型', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/table/base.md')
   }
 ]
 
