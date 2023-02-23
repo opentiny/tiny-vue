@@ -8,8 +8,6 @@ import Home from './components/Home.vue'
 import DemoView from './DemoView.vue'
 import PcRouter from './route.config.comp'
 import MobileRouter from './route.config.comp.mobile'
-import TinyService from '@opentiny/vue-service'
-import mockConfig from '../public/mock/gateway/ajax'
 
 Vue.use(VueRouter)
 Vue.use(Loading)
@@ -41,14 +39,8 @@ const router = new VueRouter({
   ]
 })
 
-const service = new TinyService({ Vue, mockConfig })
-
-service
-  .boot(({ Mock: mock }) => mock(mockConfig))
-  .then(({ i18n }) => {
-    new Vue({
-      i18n: initI18n({ VueI18n, i18n }),
-      router,
-      render: (h) => h(App)
-    }).$mount('#app')
-  })
+new Vue({
+  i18n: initI18n({ VueI18n, i18n: {} }),
+  router,
+  render: (h) => h(App)
+}).$mount('#app')
