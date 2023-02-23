@@ -1,11 +1,6 @@
 <template>
   <div class="tiny-mobile-tabbar-demo">
-    <tiny-tabbar
-      v-model="activeName"
-      :fixed="true"
-      active-color="blue"
-      inactive-color="grey"
-    >
+    <tiny-tabbar v-model="activeName" :fixed="true" active-color="blue" inactive-color="grey">
       <tiny-tabbar-item :icon="IconDialog"> 消息 </tiny-tabbar-item>
       <tiny-tabbar-item :icon="IconEmailAdd"> 邮件 </tiny-tabbar-item>
       <tiny-tabbar-item :icon="IconGroup"> 人员 </tiny-tabbar-item>
@@ -16,12 +11,7 @@
 
 <script>
 import { Tabbar, TabbarItem } from '@opentiny/vue'
-import {
-  iconDialog,
-  iconEmailAdd,
-  iconGroup,
-  iconSetting
-} from '@opentiny/vue-icon'
+import { iconDialog, iconEmailAdd, iconGroup, iconSetting } from '@opentiny/vue-icon'
 
 export default {
   components: {

@@ -13,7 +13,6 @@ export default {
   },
   setup(props) {
     const mode = localStorage.getItem('vue-example-mode') || 'pc'
-
     return {
       template: defineAsyncComponent(() => import(/* @vite-ignore */ `./demo/${mode}/${props.link}`))
     }

@@ -1,8 +1,5 @@
 <template>
-  <tiny-cascader-panel
-    class="cascader-panel-demo"
-    :options="optionsCascader"
-  ></tiny-cascader-panel>
+  <tiny-cascader-panel class="cascader-panel-demo" :options="optionsCascader"></tiny-cascader-panel>
 </template>
 
 <script>

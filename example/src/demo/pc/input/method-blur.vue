@@ -1,11 +1,6 @@
 <template>
   <div class="demo-input">
-    <tiny-input
-      ref="input"
-      v-model="input"
-      placeholder="通过 input 事件调用 blur()，请输入"
-      @input="enableBlur"
-    ></tiny-input>
+    <tiny-input ref="input" v-model="input" placeholder="通过 input 事件调用 blur()，请输入" @input="enableBlur"></tiny-input>
   </div>
 </template>
 

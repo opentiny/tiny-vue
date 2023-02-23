@@ -4,7 +4,7 @@
 
 <script>
 import { TreeMenu } from '@opentiny/vue'
-import { iconCalendar } from '@opentiny/vue-icon'
+import { IconCalendar } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -12,7 +12,7 @@ export default {
   },
   data() {
     return {
-      IconCalendar: iconCalendar()
+      IconCalendar: IconCalendar()
     }
   }
 }

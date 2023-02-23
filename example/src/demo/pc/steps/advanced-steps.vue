@@ -1,10 +1,5 @@
 <template>
-  <tiny-steps
-    :data="data"
-    type="advanced"
-    :active="advancedActive"
-    @click="advancedClick"
-  ></tiny-steps>
+  <tiny-steps :data="data" type="advanced" :active="advancedActive" @click="advancedClick"></tiny-steps>
 </template>
 
 <script>

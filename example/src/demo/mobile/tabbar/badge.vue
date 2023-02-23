@@ -11,12 +11,7 @@
 
 <script>
 import { Tabbar, TabbarItem } from '@opentiny/vue'
-import {
-  iconDialog,
-  iconEmailAdd,
-  iconGroup,
-  iconSetting
-} from '@opentiny/vue-icon'
+import { iconDialog, iconEmailAdd, iconGroup, iconSetting } from '@opentiny/vue-icon'
 
 export default {
   components: {

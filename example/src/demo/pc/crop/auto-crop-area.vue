@@ -1,7 +1,7 @@
 <template>
   <div>
     <tiny-button text="图片裁剪" @click="visible = !visible"></tiny-button>
-    <tiny-crop :cropvisible="visible" @update:cropvisible="visible = $event" src="static/images/mountain.png" :auto-crop-area="0.5"></tiny-crop>
+    <tiny-crop :cropvisible="visible" @update:cropvisible="visible = $event" src="static/images/1.jpg" :auto-crop-area="0.5"></tiny-crop>
   </div>
 </template>
 

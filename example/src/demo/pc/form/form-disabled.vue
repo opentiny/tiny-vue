@@ -48,7 +48,7 @@
         <tiny-drop-times v-model="createData.dropTimes"></tiny-drop-times>
       </tiny-form-item>
       <tiny-form-item label="Tooltip">
-        <tiny-tooltip effect="light" content="TINY Form Demo" placement="right">
+        <tiny-tooltip effect="light" content="TinyUI Form Demo" placement="right">
           <tiny-input v-model="createData.input" placeholder="click"></tiny-input>
         </tiny-tooltip>
       </tiny-form-item>
@@ -115,8 +115,10 @@ export default {
     TinyFormItem: FormItem,
     TinyCheckbox: Checkbox,
     TinySwitch: Switch,
+
     TinyNumeric: Numeric,
     TinyRadio: Radio,
+
     TinyDatePicker: DatePicker,
     TinyDropTimes: DropTimes,
     TinyTooltip: Tooltip,
@@ -158,11 +160,11 @@ export default {
       formDisabled: false,
       restaurants: [
         {
-          value: 'GFD科技公司',
+          value: 'GFD科技YX公司',
           address: '福州'
         },
         {
-          value: 'WWWW科技公司',
+          value: 'WWWW科技YX公司',
           address: '深圳福田区'
         },
         {
@@ -215,13 +217,13 @@ export default {
         data: [
           {
             id: '1',
-            name: 'GFD科技公司',
+            name: 'GFD科技YX公司',
             city: '福州',
             province: '福建'
           },
           {
             id: '2',
-            name: 'WWW科技公司',
+            name: 'WWW科技YX公司',
             city: '深圳',
             province: '广东'
           },

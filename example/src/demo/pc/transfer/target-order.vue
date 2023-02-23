@@ -1,9 +1,5 @@
 <template>
-  <tiny-transfer
-    v-model="value"
-    :data="data"
-    target-order="unshift"
-  ></tiny-transfer>
+  <tiny-transfer v-model="value" :data="data" target-order="unshift"></tiny-transfer>
 </template>
 
 <script>

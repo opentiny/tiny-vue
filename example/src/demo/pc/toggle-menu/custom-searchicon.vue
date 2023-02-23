@@ -1,13 +1,10 @@
 <template>
-  <tiny-toggle-menu
-    :data="datas"
-    :search-icon="IconDoubleRight"
-  ></tiny-toggle-menu>
+  <tiny-toggle-menu :data="datas" :search-icon="IconDoubleRight"></tiny-toggle-menu>
 </template>
 
 <script>
 import { ToggleMenu } from '@opentiny/vue'
-import { iconDoubleRight } from '@opentiny/vue-icon'
+import { IconDoubleRight } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -15,7 +12,7 @@ export default {
   },
   data() {
     return {
-      IconDoubleRight: iconDoubleRight(),
+      IconDoubleRight: IconDoubleRight(),
       datas: [
         {
           id: 1,

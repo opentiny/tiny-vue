@@ -1,11 +1,6 @@
 <template>
   <div class="input-wrap">
-    <tiny-input
-      v-model="input"
-      counter
-      :maxlength="10"
-      :minlength="5"
-    ></tiny-input>
+    <tiny-input v-model="input" counter :maxlength="10" :minlength="5"></tiny-input>
   </div>
 </template>
 

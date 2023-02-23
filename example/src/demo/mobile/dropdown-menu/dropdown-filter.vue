@@ -6,38 +6,20 @@
     </div>
     <div class="tiny-mobile-dropdown-menu-demo mobile-dropdown-menu-filter">
       <tiny-dropdown-menu :overlay="false">
-        <tiny-dropdown-item
-          v-model="value1"
-          :options="option2"
-        ></tiny-dropdown-item>
-        <tiny-dropdown-item
-          v-model="value2"
-          :options="option2"
-        ></tiny-dropdown-item>
-        <tiny-dropdown-item
-          v-model="value3"
-          :options="option2"
-        ></tiny-dropdown-item>
+        <tiny-dropdown-item v-model="value1" :options="option2"></tiny-dropdown-item>
+        <tiny-dropdown-item v-model="value2" :options="option2"></tiny-dropdown-item>
+        <tiny-dropdown-item v-model="value3" :options="option2"></tiny-dropdown-item>
       </tiny-dropdown-menu>
     </div>
     <div class="tiny-mobile-dropdown-menu-demo mobile-dropdown-menu-filter">
       <tiny-dropdown-menu :overlay="false">
-        <tiny-dropdown-item
-          v-model="value1"
-          :options="option2"
-        ></tiny-dropdown-item>
-        <tiny-dropdown-item
-          v-model="value2"
-          :options="option2"
-        ></tiny-dropdown-item>
+        <tiny-dropdown-item v-model="value1" :options="option2"></tiny-dropdown-item>
+        <tiny-dropdown-item v-model="value2" :options="option2"></tiny-dropdown-item>
       </tiny-dropdown-menu>
     </div>
     <div class="tiny-mobile-dropdown-menu-demo mobile-dropdown-menu-filter">
       <tiny-dropdown-menu :overlay="false">
-        <tiny-dropdown-item
-          v-model="value1"
-          :options="option2"
-        ></tiny-dropdown-item>
+        <tiny-dropdown-item v-model="value1" :options="option2"></tiny-dropdown-item>
       </tiny-dropdown-menu>
     </div>
   </div>

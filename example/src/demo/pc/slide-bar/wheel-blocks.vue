@@ -1,9 +1,5 @@
 <template>
-  <tiny-slide-bar
-    v-model="value"
-    :init-blocks="initBlocks"
-    :wheel-blocks="2"
-  ></tiny-slide-bar>
+  <tiny-slide-bar v-model="value" :init-blocks="initBlocks" :wheel-blocks="2"></tiny-slide-bar>
 </template>
 
 <script>

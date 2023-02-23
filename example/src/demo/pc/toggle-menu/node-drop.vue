@@ -1,9 +1,5 @@
 <template>
-  <tiny-toggle-menu
-    :data="datas"
-    draggable
-    @node-drop="nodeDrop"
-  ></tiny-toggle-menu>
+  <tiny-toggle-menu :data="datas" draggable @node-drop="nodeDrop"></tiny-toggle-menu>
 </template>
 
 <script>

@@ -17,6 +17,22 @@ const publish = () => {
         execSync(cmd, { cwd: ROOTPATH })
       } catch (error) {
         utils.logYellow(error)
+        execSync(cmd, { cwd: ROOTPATH })
+      }
+      if (item.startsWith('chart')) {
+        fs.readdirSync(childPath).forEach((value) => {
+          const chartChildPath = path.join(childPath, value)
+          const chartStat = fs.statSync(chartChildPath)
+          if (value.includes('-') && chartStat.isDirectory()) {
+            const cmd = `npm publish ./dist/chart/${value}`
+            try {
+              execSync(cmd, { cwd: ROOTPATH })
+            } catch (error) {
+              utils.logYellow(error)
+              execSync(cmd, { cwd: ROOTPATH })
+            }
+          }
+        })
       }
     }
   })

@@ -16,9 +16,7 @@
         </tiny-col>
       </tiny-row>
       <tiny-row :flex="true" :gutter="20" justify="center">
-        <tiny-button class="button" @click="toggleOrder">{{
-          state.buttonLabel
-        }}</tiny-button>
+        <tiny-button class="button" @click="toggleOrder">{{ state.buttonLabel }}</tiny-button>
       </tiny-row>
     </tiny-layout>
   </div>

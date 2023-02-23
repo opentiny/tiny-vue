@@ -1,13 +1,6 @@
 <template>
   <div style="width: 270px">
-    <tiny-drop-times
-      v-model="value"
-      placeholder="请选择"
-      :end="720"
-      :start="60"
-      :step="5"
-      @change="change"
-    ></tiny-drop-times>
+    <tiny-drop-times v-model="value" placeholder="请选择" :end="720" :start="60" :step="5" @change="change"></tiny-drop-times>
   </div>
 </template>
 

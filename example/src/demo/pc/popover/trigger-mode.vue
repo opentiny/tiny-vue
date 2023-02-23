@@ -1,35 +1,16 @@
 <template>
   <div class="container">
-    <tiny-popover
-      placement="top-start"
-      title="标题"
-      width="200"
-      trigger="hover"
-      content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
-    >
+    <tiny-popover placement="top-start" title="标题" width="200" trigger="hover" content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
       <template #reference>
         <button>hover 激活</button>
       </template>
     </tiny-popover>
-    <tiny-popover
-      placement="bottom"
-      title="标题"
-      width="200"
-      trigger="click"
-      content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
-    >
+    <tiny-popover placement="bottom" title="标题" width="200" trigger="click" content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
       <template #reference>
         <button>click 激活</button>
       </template>
     </tiny-popover>
-    <tiny-popover
-      ref="popover"
-      placement="right"
-      title="标题"
-      width="200"
-      trigger="focus"
-      content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
-    >
+    <tiny-popover ref="popover" placement="right" title="标题" width="200" trigger="focus" content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
       <template #reference>
         <button>focus 激活</button>
       </template>

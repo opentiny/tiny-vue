@@ -1,11 +1,5 @@
 <template>
-  <tiny-numeric
-    v-model="stepNum"
-    :step="step"
-    :min="0"
-    :max="10"
-    circulate
-  ></tiny-numeric>
+  <tiny-numeric v-model="stepNum" :step="step" :min="0" :max="10" circulate></tiny-numeric>
 </template>
 
 <script>

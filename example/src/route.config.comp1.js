@@ -315,9 +315,9 @@ export default [
     component: () => import(/* webpackChunkName: 'v3-grid' */ './docs/zh-CN/grid/context-menu/menu-permissions.md')
   },
   {
-    path: 'grid/mixin-ui/mixin-aui2',
+    path: 'grid/mixin-ui/mixin-tiny2',
     meta: { title: '表格组件-混用组件库-TINY 2.0', lang: 'zh-CN', sign: 'component' },
-    component: () => import(/* webpackChunkName: 'v3-grid' */ './docs/zh-CN/grid/mixin-ui/mixin-aui2.md')
+    component: () => import(/* webpackChunkName: 'v3-grid' */ './docs/zh-CN/grid/mixin-ui/mixin-tiny2.md')
   },
   {
     path: 'grid/mixin-ui/mixin-elementui',
@@ -335,9 +335,9 @@ export default [
     component: () => import(/* webpackChunkName: 'v3-grid' */ './docs/zh-CN/grid/editor/custom-editor.md')
   },
   {
-    path: 'grid/editor/custom-editor-aui3',
+    path: 'grid/editor/custom-editor-tiny3',
     meta: { title: '表格组件-编辑器-自定义编辑器', lang: 'zh-CN', sign: 'component' },
-    component: () => import(/* webpackChunkName: 'v3-grid' */ './docs/zh-CN/grid/editor/custom-editor-aui3.md')
+    component: () => import(/* webpackChunkName: 'v3-grid' */ './docs/zh-CN/grid/editor/custom-editor-tiny3.md')
   },
   {
     path: 'grid/editor/popeditor-in-grid',
@@ -362,7 +362,7 @@ export default [
   {
     path: 'grid/renderer/async-colunm-render',
     meta: { title: '表格组件-渲染器-列异步数据渲染', lang: 'zh-CN', sign: 'component' },
-    component: () => import(/* webpackChunkName: 'v3-grid' */ './docs/zh-CN/grid/renderer/async-colunm-render.md')
+    component: () => import(/* webpackChunkName: 'v3-grid' */ './docs/zh-CN/grid/renderer/async-colunm-render.md') // D:\aurora\aurora-web-nova\src\docs\zh-CN\grid\renderer\async-colunm-render.md
   },
   {
     path: 'grid/renderer/custom-renderer',
@@ -721,14 +721,74 @@ export default [
     component: () => import(/* webpackChunkName: 'v3-pager' */ './docs/zh-CN/pager/pager-append-to-body.md')
   },
   {
-    path: 'pager/popper-class',
-    meta: { title: '数据组件-Pager 分页-自定义下拉框类名', lang: 'zh-CN', sign: 'component' },
-    component: () => import(/* webpackChunkName: 'v3-pager' */ './docs/zh-CN/pager/popper-class.md')
-  },
-  {
     path: 'pager/pager-in-grid',
     meta: { title: '数据组件-Pager 分页-Grid 表格分页', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-pager' */ './docs/zh-CN/pager/pager-in-grid.md')
+  },
+  {
+    path: 'alert',
+    meta: { title: '提示组件-Alert 警告', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-alert' */ './docs/zh-CN/alert/basic-usage.md')
+  },
+  {
+    path: 'alert/alert-type',
+    meta: { title: '提示组件-Alert 警告-类型', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-alert' */ './docs/zh-CN/alert/alert-type.md')
+  },
+  {
+    path: 'alert/large-size',
+    meta: { title: '提示组件-Alert 警告-大尺寸', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-alert' */ './docs/zh-CN/alert/large-size.md')
+  },
+  {
+    path: 'alert/custom-title',
+    meta: { title: '提示组件-Alert 警告-自定义标题', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-alert' */ './docs/zh-CN/alert/custom-title.md')
+  },
+  {
+    path: 'alert/align-center',
+    meta: { title: '提示组件-Alert 警告-文字居中', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-alert' */ './docs/zh-CN/alert/align-center.md')
+  },
+  {
+    path: 'alert/custom-close-text',
+    meta: { title: '提示组件-Alert 警告-自定义关闭按钮文本', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-alert' */ './docs/zh-CN/alert/custom-close-text.md')
+  },
+  {
+    path: 'alert/custom-alert-icon',
+    meta: { title: '提示组件-Alert 警告-自定义警告图标', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-alert' */ './docs/zh-CN/alert/custom-alert-icon.md')
+  },
+  {
+    path: 'alert/not-closable',
+    meta: { title: '提示组件-Alert 警告-不可关闭', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-alert' */ './docs/zh-CN/alert/not-closable.md')
+  },
+  {
+    path: 'alert/custom-description',
+    meta: { title: '提示组件-Alert 警告-自定义提示内容', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-alert' */ './docs/zh-CN/alert/custom-description.md')
+  },
+  {
+    path: 'alert/interactive-operation',
+    meta: { title: '提示组件-Alert 警告-自定义交互操作', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-alert' */ './docs/zh-CN/alert/interactive-operation.md')
+  },
+  {
+    path: 'alert/alert-close-event',
+    meta: { title: '提示组件-Alert 警告-关闭事件', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-alert' */ './docs/zh-CN/alert/alert-close-event.md')
+  },
+  {
+    path: 'alert/feedback-of-result',
+    meta: { title: '提示组件-Alert 警告-表单提交结果反馈', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-alert' */ './docs/zh-CN/alert/feedback-of-result.md')
+  },
+  {
+    path: 'alert/show-icon',
+    meta: { title: '提示组件-Alert 警告-显示图标', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-alert' */ './docs/zh-CN/alert/show-icon.md')
   },
   {
     path: 'badge',
@@ -979,20 +1039,6 @@ export default [
     path: 'modal/modal-slots',
     meta: { title: '模态框组件-插槽', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-slots.md')
-  },
-  {
-    path: 'notify',
-    meta: {
-      title: '提示组件-Notify 通知组件',
-      lang: 'zh-CN',
-      sign: 'component'
-    },
-    component: () => import(/* webpackChunkName: 'v3-notify' */ './docs/zh-CN/notify/basic-usage.md')
-  },
-  {
-    path: 'modal/is-form-reset',
-    meta: { title: '模态框组件-弹出表单', lang: 'zh-CN', sign: 'component' },
-    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/is-form-reset.md')
   },
   {
     path: 'bulletin-board',

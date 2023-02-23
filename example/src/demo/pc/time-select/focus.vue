@@ -1,11 +1,7 @@
 <template>
   <div>
     <tiny-button @click="hanleFocus">手动获取焦点</tiny-button>
-    <tiny-time-select
-      v-model="value"
-      placeholder="选择时间"
-      ref="timeSelect"
-    ></tiny-time-select>
+    <tiny-time-select v-model="value" placeholder="选择时间" ref="timeSelect"></tiny-time-select>
   </div>
 </template>
 

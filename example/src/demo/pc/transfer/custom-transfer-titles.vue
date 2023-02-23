@@ -1,9 +1,5 @@
 <template>
-  <tiny-transfer
-    v-model="value"
-    :data="data"
-    :titles="['所有数据列表', '已选数据列表']"
-  ></tiny-transfer>
+  <tiny-transfer v-model="value" :data="data" :titles="['所有数据列表', '已选数据列表']"></tiny-transfer>
 </template>
 
 <script>

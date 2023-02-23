@@ -1,9 +1,5 @@
 <template>
-  <tiny-numeric
-    v-model="stepNum"
-    :step="step"
-    :step-strictly="true"
-  ></tiny-numeric>
+  <tiny-numeric v-model="stepNum" :step="step" :step-strictly="true"></tiny-numeric>
 </template>
 
 <script>

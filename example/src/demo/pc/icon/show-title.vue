@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { iconCopy } from '@opentiny/vue-icon'
+import { IconCopy } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    IconCopy: iconCopy()
+    IconCopy: IconCopy()
   }
 }
 </script>

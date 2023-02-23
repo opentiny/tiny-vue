@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { Popeditor, DatePicker, Numeric } from '@opentiny/vue'
+import { Popeditor, Select, Numeric } from '@opentiny/vue'
 
 export default {
   components: {
@@ -56,13 +56,25 @@ export default {
           labelWidth: '160px',
           attrs: { clearable: true }
         },
-        { label: '城市', field: 'city', component: DatePicker, span: 6 },
+        {
+          label: '城市',
+          field: 'city',
+          component: Select,
+          attrs: {
+            options: [
+              { label: '福州', value: 'fz' },
+              { label: '深圳', value: 'sz' }
+            ]
+          },
+          span: 6
+        },
         { label: '员工', field: 'employees', component: Numeric }
       ]
     }
   },
   methods: {
     remoteSearch({ page }) {
+      // 此处为用户自定义的远程搜索逻辑
       const randomAlphabets = () =>
         Array.from({ length: 5 })
           .map(() => String.fromCharCode(65 + Math.floor(26 * Math.random())))
@@ -70,7 +82,7 @@ export default {
       const { currentPage, pageSize } = page
       const data = Array.from({ length: page.pageSize }).map((item, i) => ({
         id: pageSize * (currentPage - 1) + i + 1,
-        name: `${randomAlphabets()}公司`,
+        name: randomAlphabets() + 'YX公司',
         city: ['福州', '深圳', '中山', '龙岩', '韶关', '黄冈', '赤壁', '厦门'][Math.floor(Math.random() * 8)],
         employees: Math.ceil(Math.random() * 10000)
       }))

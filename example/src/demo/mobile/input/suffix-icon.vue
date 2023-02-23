@@ -1,10 +1,6 @@
 <template>
   <div class="input-wrap">
-    <tiny-input
-      v-model="input"
-      placeholder="请输入内容"
-      :suffix-icon="IconDialog"
-    ></tiny-input>
+    <tiny-input v-model="input" placeholder="请输入内容" :suffix-icon="IconDialog"></tiny-input>
   </div>
 </template>
 

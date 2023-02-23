@@ -45,7 +45,7 @@ const build = (icons) => {
     } else if (itconComponent.path === 'lowercase.js') {
       inputs3.external = (deps) => !deps.includes('lowercase.js')
     } else {
-      inputs3.external = (deps) => !/@opentiny[\\/]vue-theme/.test(deps) && !deps.includes('index.js')
+      inputs3.external = (deps) => !/@huawei[\\/]tiny-vue-theme/.test(deps) && !deps.includes('index.js')
     }
 
     rollup

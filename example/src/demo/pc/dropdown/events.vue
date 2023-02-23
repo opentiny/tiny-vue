@@ -3,7 +3,7 @@
     下拉菜单
     <template #dropdown>
       <tiny-dropdown-menu>
-        <tiny-dropdown-item>黄金糕</tiny-dropdown-item>
+        <tiny-dropdown-item label="黄金糕"></tiny-dropdown-item>
         <tiny-dropdown-item>狮子头</tiny-dropdown-item>
         <tiny-dropdown-item>螺蛳粉</tiny-dropdown-item>
         <tiny-dropdown-item disabled>双皮奶</tiny-dropdown-item>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { Dropdown, DropdownMenu, DropdownItem, Modal } from '@opentiny/vue'
+import { Dropdown, DropdownMenu, DropdownItem, Notify } from '@opentiny/vue'
 
 export default {
   components: {
@@ -23,14 +23,20 @@ export default {
     TinyDropdownItem: DropdownItem
   },
   methods: {
-    itemClick(itemData) {
-      Modal.message({ message: itemData, status: 'info' })
+    itemClick(data) {
+      Notify({
+        type: 'info',
+        title: 'itemClick 回调事件',
+        message: `使用 dropdown-item 的label属性：${data.vm.label},\n 使用 dropdown-item 的默认插槽：${data.vm.$el.innerText}`,
+        position: 'top-right',
+        duration: 2000
+      })
     },
     buttonClick() {
-      Modal.message({ message: '下拉菜单内置按钮点击事件', status: 'info' })
+      Notify({ message: '下拉菜单内置按钮点击事件', status: 'info' })
     },
     visibleChange(status) {
-      Modal.message({
+      Notify({
         message: `下拉菜单显隐事件，当前为${status ? '显示' : '隐藏'}`,
         status: 'info'
       })

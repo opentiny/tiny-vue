@@ -88,14 +88,7 @@
   </div>
 </template>
 <script>
-import {
-  iconShare,
-  iconDel,
-  iconWriting,
-  iconAscending,
-  iconClockWork,
-  iconCalculator
-} from '@opentiny/vue-icon'
+import { iconShare, iconDel, iconWriting, iconAscending, iconClockWork, iconCalculator } from '@opentiny/vue-icon'
 
 export default {
   components: {

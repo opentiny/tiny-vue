@@ -1,9 +1,6 @@
 <template>
   <div class="preview">
-    <tiny-nav-menu
-      :fetch-menu-data="getMenuData"
-      :fields="fields"
-    ></tiny-nav-menu>
+    <tiny-nav-menu :fetch-menu-data="getMenuData" :fields="fields"></tiny-nav-menu>
   </div>
 </template>
 
@@ -30,92 +27,6 @@ export default {
           urlField: ''
         },
         {
-          label: '指南',
-          urlField: '',
-          children: [
-            {
-              label: '引入组件',
-              urlField: '',
-              children: [
-                {
-                  label: '按需引入',
-                  urlField: ''
-                },
-                {
-                  label: '完整引入',
-                  urlField: ''
-                }
-              ]
-            },
-            {
-              label: '后端适配器',
-              urlField: '',
-              children: [
-                {
-                  label: 'Gateway 适配器',
-                  urlField: ''
-                },
-                {
-                  label: 'Jalor 适配器',
-                  urlField: ''
-                },
-                {
-                  label: 'Standalone 适配器',
-                  urlField: ''
-                }
-              ]
-            },
-            {
-              label: '服务代理',
-              urlField: '',
-              children: [
-                {
-                  label: '本地代理',
-                  urlField: ''
-                },
-                {
-                  label: '远程代理',
-                  urlField: ''
-                }
-              ]
-            },
-            {
-              label: '构建部署',
-              urlField: '',
-              children: [
-                {
-                  label: '本地构建',
-                  urlField: ''
-                },
-                {
-                  label: '查看构建报告',
-                  urlField: ''
-                },
-                {
-                  label: '静态资源构建',
-                  urlField: ''
-                },
-                {
-                  label: '多环境部署',
-                  urlField: ''
-                },
-                {
-                  label: '静态资源部署',
-                  urlField: ''
-                },
-                {
-                  label: 'CI 部署',
-                  urlField: ''
-                },
-                {
-                  label: '引入静态资源',
-                  urlField: ''
-                }
-              ]
-            }
-          ]
-        },
-        {
           label: '组件',
           urlField: '',
           children: [
@@ -125,27 +36,27 @@ export default {
               children: [
                 {
                   label: 'Button 按钮',
-                  urlField: '#/zh-CN/component/button'
+                  urlField: 'button'
                 },
                 {
                   label: 'Datepicker 日期',
-                  urlField: '#/zh-CN/component/datepicker'
+                  urlField: 'datepicker'
                 },
                 {
                   label: 'Dropdown 下拉框',
-                  urlField: '#/zh-CN/component/dropdown'
+                  urlField: 'dropdown'
                 },
                 {
                   label: 'DropTimes 下拉时间',
-                  urlField: '#/zh-CN/component/droptimes'
+                  urlField: 'droptimes'
                 },
                 {
                   label: 'Input 输入框',
-                  urlField: '#/zh-CN/component/input'
+                  urlField: 'input'
                 },
                 {
                   label: 'Textarea 文本域',
-                  urlField: '#/zh-CN/component/textarea'
+                  urlField: 'textarea'
                 }
               ]
             },
@@ -154,16 +65,20 @@ export default {
               urlField: '',
               children: [
                 {
+                  label: 'Chart 图表',
+                  urlField: 'chart'
+                },
+                {
                   label: 'Grid 数据表格',
-                  urlField: '#/zh-CN/component/grid'
+                  urlField: 'grid'
                 },
                 {
                   label: 'Pager 分页',
-                  urlField: '#/zh-CN/component/pager'
+                  urlField: 'pager'
                 },
                 {
                   label: 'Tree 树形控件',
-                  urlField: '#/zh-CN/component/tree'
+                  urlField: 'tree'
                 }
               ]
             },
@@ -173,11 +88,11 @@ export default {
               children: [
                 {
                   label: 'ToggleMenu 收缩菜单',
-                  urlField: '#/zh-CN/component/toggleMenu'
+                  urlField: 'toggleMenu'
                 },
                 {
                   label: 'TreeMenu 树型菜单',
-                  urlField: '#/zh-CN/component/treemenu'
+                  urlField: 'treemenu'
                 }
               ]
             },
@@ -186,24 +101,28 @@ export default {
               urlField: '',
               children: [
                 {
+                  label: 'Amount 金额',
+                  urlField: 'amount'
+                },
+                {
                   label: 'Area 片区',
-                  urlField: '#/zh-CN/component/area'
+                  urlField: 'area'
                 },
                 {
                   label: 'Company 公司',
-                  urlField: '#/zh-CN/component/company'
+                  urlField: 'company'
                 },
                 {
                   label: 'Dept 部门',
-                  urlField: '#/zh-CN/component/dept'
+                  urlField: 'dept'
                 },
                 {
                   label: 'eDoc 企业文档',
-                  urlField: '#/zh-CN/component/Edoc'
+                  urlField: 'Edoc'
                 },
                 {
                   label: 'User 用户',
-                  urlField: '#/zh-CN/component/user'
+                  urlField: 'user'
                 }
               ]
             }

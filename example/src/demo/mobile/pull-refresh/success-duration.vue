@@ -1,11 +1,5 @@
 ﻿<template>
-  <tiny-pull-refresh
-    ref="refresh"
-    v-model="isLoading"
-    @refresh="onRefresh"
-    success-duration="3000"
-    success-text="下拉加载完成"
-  >
+  <tiny-pull-refresh ref="refresh" v-model="isLoading" @refresh="onRefresh" success-duration="3000" success-text="下拉加载完成">
     <h3>hello pull-refresh</h3>
   </tiny-pull-refresh>
 </template>

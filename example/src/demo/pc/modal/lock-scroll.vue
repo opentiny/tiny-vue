@@ -1,7 +1,5 @@
 <template>
-  <tiny-button @click="btnClick" :reset-time="0"
-    >不锁住滚动条不要遮罩层</tiny-button
-  >
+  <tiny-button @click="btnClick" :reset-time="0">不锁住滚动条不要遮罩层</tiny-button>
 </template>
 
 <script>

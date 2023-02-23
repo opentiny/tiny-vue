@@ -1,8 +1,6 @@
 <template>
   <div class="checkbox-wrap">
-    <tiny-checkbox v-model="checked" @change="handleChange"
-      >复选框</tiny-checkbox
-    >
+    <tiny-checkbox v-model="checked" @change="handleChange">复选框</tiny-checkbox>
   </div>
 </template>
 

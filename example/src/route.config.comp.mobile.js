@@ -295,6 +295,16 @@ const router = [
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/badge/content.md')
   },
   {
+    path: 'loading',
+    meta: { title: '提示组件-Loading 加载', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/loading/mobileloading.md')
+  },
+  {
+    path: 'loading/type',
+    meta: { title: '提示组件-Loading 加载-设置加载类型', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/loading/type.md')
+  },
+  {
     path: 'button',
     meta: { title: 'mobileButton 按钮组件', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/button/mobilebutton.md')
@@ -1124,6 +1134,16 @@ const router = [
     path: 'exception/type',
     meta: { title: 'mobileexception 缺省页组件 - 类型', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/exception/type.md')
+  },
+  {
+    path: 'mobile-popover',
+    meta: { title: 'mobilepopover 气泡组件 - 类型', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/popover/base.md')
+  },
+  {
+    path: 'mobile-popover/direction',
+    meta: { title: 'mobilepopover 气泡组件 - 类型', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/popover/direction.md')
   }
 ]
 

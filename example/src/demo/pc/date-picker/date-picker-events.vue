@@ -7,17 +7,11 @@
       </tiny-col>
       <tiny-col :span="4">
         <label>change：</label>
-        <tiny-date-picker
-          v-model="value"
-          @change="handleChange"
-        ></tiny-date-picker>
+        <tiny-date-picker v-model="value" @change="handleChange"></tiny-date-picker>
       </tiny-col>
       <tiny-col :span="4">
         <label>focus：</label>
-        <tiny-date-picker
-          v-model="value"
-          @focus="handleFocus"
-        ></tiny-date-picker>
+        <tiny-date-picker v-model="value" @focus="handleFocus"></tiny-date-picker>
       </tiny-col>
     </tiny-row>
   </tiny-layout>

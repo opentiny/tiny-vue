@@ -4,15 +4,8 @@
       <h1 class="page__title">FileUpload</h1>
       <p class="page__desc">上传组件</p>
     </div>
-    <tiny-file-upload
-      ref="upload"
-      :action="action"
-      :data="requestData"
-      file-title="头部标题"
-      :upload-icon="true"
-      name="name"
-    >
-      <icon-upload slot="trigger"></icon-upload>
+    <tiny-file-upload ref="upload" :action="action" :data="requestData" file-title="头部标题" :upload-icon="true" name="name">
+      <icon-upload #trigger></icon-upload>
     </tiny-file-upload>
   </div>
 </template>

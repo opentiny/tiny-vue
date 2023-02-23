@@ -1,9 +1,5 @@
 <template>
-  <tiny-slider
-    v-model="value"
-    :show-tip="true"
-    :format-tooltip="format"
-  ></tiny-slider>
+  <tiny-slider v-model="value" :show-tip="true" :format-tooltip="format"></tiny-slider>
 </template>
 
 <script>

@@ -1,7 +1,5 @@
 <template>
-  <tiny-button @click="btnClick" :reset-time="0"
-    >提示框最小高度为300</tiny-button
-  >
+  <tiny-button @click="btnClick" :reset-time="0">提示框最小高度为300</tiny-button>
 </template>
 
 <script>

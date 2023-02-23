@@ -1,8 +1,6 @@
 <template>
   <div>
-    <tiny-button @click="loadData" style="max-width: 200px; margin-bottom: 20px"
-      >空表格，请点击生成 1000 列</tiny-button
-    >
+    <tiny-button @click="loadData" style="max-width: 200px; margin-bottom: 20px">空表格，请点击生成 1000 列</tiny-button>
     <tiny-grid ref="tinyGrid" height="300"></tiny-grid>
   </div>
 </template>

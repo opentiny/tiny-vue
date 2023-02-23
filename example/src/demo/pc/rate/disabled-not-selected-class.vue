@@ -1,9 +1,5 @@
 <template>
-  <tiny-rate
-    v-model="rate"
-    disabled
-    :disabled-void-icon-class="readiconclass1"
-  ></tiny-rate>
+  <tiny-rate v-model="rate" disabled :disabled-void-icon-class="readiconclass1"></tiny-rate>
 </template>
 
 <script>

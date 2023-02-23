@@ -25,16 +25,12 @@ export default {
               label: '安装',
               children: [
                 {
+                  value: 'xiangmudengji',
+                  label: '项目登记'
+                },
+                {
                   value: 'huanjingzhunbei',
                   label: '环境准备'
-                },
-                {
-                  value: 'anzhuangcli',
-                  label: '安装 CLI'
-                },
-                {
-                  value: 'chuangjianxiangmu',
-                  label: '创建项目'
                 }
               ]
             },
@@ -65,18 +61,6 @@ export default {
                 {
                   value: 'layout',
                   label: 'Layout 布局'
-                },
-                {
-                  value: 'color',
-                  label: 'Color 色彩'
-                },
-                {
-                  value: 'font',
-                  label: 'Font 字体'
-                },
-                {
-                  value: 'icon',
-                  label: 'Icon 图标'
                 }
               ]
             },
@@ -87,22 +71,6 @@ export default {
                 {
                   value: 'radio',
                   label: 'Radio 单选框'
-                },
-                {
-                  value: 'checkbox',
-                  label: 'Checkbox 多选框'
-                },
-                {
-                  value: 'input',
-                  label: 'Input 输入框'
-                },
-                {
-                  value: 'number',
-                  label: 'Numeric 计数器'
-                },
-                {
-                  value: 'select',
-                  label: 'Select 选择器'
                 },
                 {
                   value: 'cascader',
@@ -191,6 +159,10 @@ export default {
                 {
                   value: 'tag',
                   label: 'Tag 标签'
+                },
+                {
+                  value: 'usercontact',
+                  label: 'UserContact 联系人'
                 },
                 {
                   value: 'slidebar',

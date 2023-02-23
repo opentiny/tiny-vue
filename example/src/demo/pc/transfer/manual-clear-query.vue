@@ -1,14 +1,7 @@
 <template>
   <div>
-    <tiny-button style="margin-bottom: 20px" @click="clearQuery"
-      >重置查询</tiny-button
-    >
-    <tiny-transfer
-      ref="transfer"
-      v-model="value"
-      :data="data"
-      filterable
-    ></tiny-transfer>
+    <tiny-button style="margin-bottom: 20px" @click="clearQuery">重置查询</tiny-button>
+    <tiny-transfer ref="transfer" v-model="value" :data="data" filterable></tiny-transfer>
   </div>
 </template>
 

@@ -2,16 +2,10 @@
   <tiny-form :inline="true" label-suffix="：">
     <tiny-form-item label="最大值">
       {{ max }}
-      <tiny-date-picker
-        v-model="max"
-        :picker-options="maxOptions"
-      ></tiny-date-picker>
+      <tiny-date-picker v-model="max" :picker-options="maxOptions"></tiny-date-picker>
     </tiny-form-item>
     <tiny-form-item label="最小值">
-      <tiny-date-picker
-        v-model="min"
-        :picker-options="minOptions"
-      ></tiny-date-picker>
+      <tiny-date-picker v-model="min" :picker-options="minOptions"></tiny-date-picker>
     </tiny-form-item>
   </tiny-form>
 </template>

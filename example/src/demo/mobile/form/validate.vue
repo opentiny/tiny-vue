@@ -5,49 +5,21 @@
       <p class="page__desc">表单校验</p>
     </div>
     <div class="demo-form-validate-padds">
-      <tiny-form
-        ref="ruleForm"
-        :model="createData"
-        :rules="rules"
-        inline-message
-      >
+      <tiny-form ref="ruleForm" :model="createData" :rules="rules" inline-message>
         <tiny-form-item label="优秀" prop="users">
-          <tiny-input
-            v-model="createData.users"
-            vertical
-            placeholder="请输入内容"
-            type="form"
-          ></tiny-input>
+          <tiny-input v-model="createData.users" vertical placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="优秀" prop="user">
-          <tiny-input
-            v-model="createData.user"
-            is-select
-            vertical
-            :select-menu="menus"
-            placeholder="请输入内容"
-            type="form"
-          ></tiny-input>
+          <tiny-input v-model="createData.user" is-select vertical :select-menu="menus" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
         <tiny-form-item class="demo-form-validate-item">
-          <tiny-button type="primary" @click="handleSubmit('ruleForm')"
-            >提交</tiny-button
-          >
-          <tiny-button type="primary" @click="clearValidate('ruleForm')"
-            >移除校验</tiny-button
-          >
-          <tiny-button type="primary" @click="resetFields('ruleForm')"
-            >重置</tiny-button
-          >
+          <tiny-button type="primary" @click="handleSubmit('ruleForm')">提交</tiny-button>
+          <tiny-button type="primary" @click="clearValidate('ruleForm')">移除校验</tiny-button>
+          <tiny-button type="primary" @click="resetFields('ruleForm')">重置</tiny-button>
         </tiny-form-item>
       </tiny-form>
     </div>
-    <tiny-dialog-box
-      :visible="boxVisibility"
-      @update:visible="boxVisibility = $event"
-      :modal-append-to-body="false"
-      title="消息提示"
-    >
+    <tiny-dialog-box :visible="boxVisibility" @update:visible="boxVisibility = $event" :modal-append-to-body="false" title="消息提示">
       <span>提交成功！</span>
     </tiny-dialog-box>
   </div>
@@ -69,8 +41,7 @@ export default {
       menus: [
         {
           id: 1,
-          label:
-            '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
+          label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
         },
         {
           id: 2,

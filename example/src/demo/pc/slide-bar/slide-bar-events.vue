@@ -1,10 +1,5 @@
 <template>
-  <tiny-slide-bar
-    v-model="list"
-    :init-blocks="initBlocks"
-    @click="handleClick"
-    @before-click="beforClick"
-  ></tiny-slide-bar>
+  <tiny-slide-bar v-model="list" :init-blocks="initBlocks" @click="handleClick" @before-click="beforClick"></tiny-slide-bar>
 </template>
 
 <script>

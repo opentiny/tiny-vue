@@ -1,10 +1,5 @@
 <template>
-  <tiny-file-upload
-    ref="upload"
-    :action="action"
-    :header-show="false"
-    size="medium"
-  >
+  <tiny-file-upload ref="upload" :action="action" :header-show="false" size="medium">
     <template #trigger>
       <tiny-button size="medium">上传</tiny-button>
     </template>

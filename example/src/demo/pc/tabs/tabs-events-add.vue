@@ -1,11 +1,6 @@
 <template>
   <tiny-tabs v-model="activeName" :with-add="true" @add="add" tab-style="card">
-    <tiny-tab-item
-      :key="item.name"
-      v-for="item in Tabs"
-      :title="item.title"
-      :name="item.name"
-    >
+    <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>
   </tiny-tabs>
@@ -30,8 +25,7 @@ export default {
         {
           title: '数据组件',
           name: 'second',
-          content:
-            '数据组件,提供了非常强大数据表格功能，在Grid可以展示数据列表，可以对数据列表进行选择、编辑等'
+          content: '数据组件,提供了非常强大数据表格功能，在Grid可以展示数据列表，可以对数据列表进行选择、编辑等'
         },
         {
           title: '导航组件',
@@ -57,7 +51,7 @@ export default {
 
       this.Tabs.push({
         title: 'Tab ++',
-        name: ++this.tabIndex + '',
+        name: String(++this.tabIndex),
         content: '动态增加 tabitem'
       })
     }

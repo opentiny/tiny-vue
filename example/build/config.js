@@ -8,13 +8,27 @@ const { nodeResolve } = require('@rollup/plugin-node-resolve')
 const { pathJoin } = require('../../build/utils')
 const { getAllModules } = require('../../build/module-utils')
 
-const external = ['vue', './pc', './mobile', '@opentiny/vue-common', '@opentiny/vue-locale', '@vue/composition-api', '@opentiny/vue-renderless']
+const external = [
+  'vue',
+  './pc',
+  './mobile',
+  '@opentiny/vue-common',
+  'echarts',
+  'echarts-amap',
+  '@opentiny/vue-locale',
+  'quill',
+  '@vue/composition-api',
+  '@opentiny/vue-renderless'
+]
 
 const globals = {
   vue: 'Vue',
   '@vue/composition-api': 'vueCompositionApi',
   '@opentiny/vue-locale': 'TinyVueLocale',
   '@opentiny/vue-common': 'TinyVueCommon',
+  'echarts-amap': 'echarts.amap',
+  'echarts-liquidfill': 'echarts-liquidfill',
+  'echarts-wordcloud': 'echarts-wordcloud',
   '@opentiny/vue-renderless': 'TinyRenderLess'
 }
 
@@ -30,14 +44,14 @@ components.forEach((itemComponent) => {
 
   const isComponent = itemComponent.type === 'component'
 
-  external.push(itemComponent.importName)
-  external.push(itemComponent.libName)
+  external.push(itemComponent.importName) // @opentiny/vue3-todo
+  external.push(itemComponent.libName) // @opentiny/vue3/todo
   globals[itemComponent.libName] = itemComponent.global // TinyTodo
 
   if (isComponent) {
     if (fs.existsSync(pathJoin('../../tiny-vue-theme'))) {
-      aliasList[`@opentiny/vue-theme/${itemComponent.LowerName}/index.css`] = pathJoin(`../../tiny-vue-theme/src/${itemComponent.LowerName}/index.css`)
-      aliasList[`@opentiny/vue-theme/${itemComponent.LowerName}/index.js`] = pathJoin(`../../tiny-vue-theme/src/${itemComponent.LowerName}/index.js`)
+      aliasList[`@opentiny/vue-theme/${itemComponent.LowerName}/index.css`] = pathJoin(`../../tiny-vue-theme/style/${itemComponent.LowerName}/index.css`)
+      aliasList[`@opentiny/vue-theme/${itemComponent.LowerName}/index.js`] = pathJoin(`../../tiny-vue-theme/style/${itemComponent.LowerName}/index.js`)
     }
     external.push(`${itemComponent.libName}/index.js`)
   } else {
@@ -47,7 +61,8 @@ components.forEach((itemComponent) => {
 
 exports.aliasList = aliasList
 
-exports.external = (deps) => external.includes(deps) || /^@opentiny[\\/](vue-common|vue-renderless|vue-theme|vue-icon|cropperjs)/.test(deps)
+exports.external = (deps) =>
+  external.includes(deps) || /^@huawei[\\/](tiny-vue-renderless|tiny-vue-theme|tiny-vue-common|tiny-vue-icon)|echarts|cropperjs|quill/.test(deps)
 
 exports.globalsMap = globals
 

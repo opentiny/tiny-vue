@@ -1,9 +1,5 @@
 <template>
-  <tiny-date-picker
-    v-model="value"
-    type="monthrange"
-    :picker-options="pickerOptions"
-  ></tiny-date-picker>
+  <tiny-date-picker v-model="value" type="monthrange" :picker-options="pickerOptions"></tiny-date-picker>
 </template>
 
 <script>
@@ -22,22 +18,8 @@ export default {
             text: '本月',
             onClick(picker) {
               const date = new Date()
-              const tmp = new Date(
-                date.getFullYear(),
-                date.getMonth() + 1,
-                1,
-                0,
-                0,
-                0
-              )
-              const start = new Date(
-                date.getFullYear(),
-                date.getMonth(),
-                1,
-                0,
-                0,
-                0
-              )
+              const tmp = new Date(date.getFullYear(), date.getMonth() + 1, 1, 0, 0, 0)
+              const start = new Date(date.getFullYear(), date.getMonth(), 1, 0, 0, 0)
               const end = new Date(tmp.getTime() - 1)
               picker.$emit('pick', [start, end])
             }

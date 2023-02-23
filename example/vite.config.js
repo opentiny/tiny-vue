@@ -66,7 +66,31 @@ const config = {
   },
   define: {
     'process.env': process.env
+  },
+  build: {
+    sourcemap: false,
+    copyPublicDir: false,
+    outDir: path.resolve(__dirname, '../dist/vue/runtime/'),
+    rollupOptions: {
+      // 确保外部化处理那些你不想打包进库的依赖
+      external: ['vue']
+    }
   }
 }
 
-export default defineConfig(() => config)
+export default defineConfig(({ command, mode }) => {
+  if (mode === 'pc') {
+    config.build.lib = {
+      entry: path.resolve(__dirname, './entry/pc.js'),
+      formats: ['es'],
+      fileName: (format) => `tiny-vue.${format}.js`
+    }
+  } else {
+    config.build.lib = {
+      entry: path.resolve(__dirname, './entry/icon.js'),
+      formats: ['es'],
+      fileName: (format) => `tiny-vue-icon.${format}.js`
+    }
+  }
+  return config
+})

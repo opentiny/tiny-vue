@@ -1,8 +1,6 @@
 <template>
   <div>
-    <tiny-button @click="handleClick" style="max-width: unset"
-      >设置v-loading.body的值为true</tiny-button
-    >
+    <tiny-button @click="handleClick" style="max-width: unset">设置v-loading.body的值为true</tiny-button>
     <div id="boxnine" v-loading.body="isBody"></div>
   </div>
 </template>

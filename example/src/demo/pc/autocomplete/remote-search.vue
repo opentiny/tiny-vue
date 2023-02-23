@@ -40,11 +40,11 @@ export default {
     loadAll() {
       return [
         {
-          name: 'GFD科技公司',
+          name: 'GFD科技YX公司',
           address: '福州'
         },
         {
-          name: 'WWWW科技公司',
+          name: 'WWWW科技YX公司',
           address: '深圳福田区'
         },
         {
@@ -52,15 +52,15 @@ export default {
           address: '中山市'
         },
         {
-          name: 'TGB公司',
+          name: 'TGBYX公司',
           address: '梅州'
         },
         {
-          name: 'YHN科技公司',
+          name: 'YHN科技YX公司',
           address: '韶关'
         },
         {
-          name: '康康物业公司',
+          name: '康康物业YX公司',
           address: '广州天河区'
         }
       ]

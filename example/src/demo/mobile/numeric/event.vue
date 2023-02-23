@@ -1,10 +1,5 @@
 <template>
-  <tiny-numeric
-    v-model="value"
-    @focus="Efocus"
-    @blur="Eblur"
-    @change="Echange"
-  ></tiny-numeric>
+  <tiny-numeric v-model="value" @focus="Efocus" @blur="Eblur" @change="Echange"></tiny-numeric>
 </template>
 
 <script>

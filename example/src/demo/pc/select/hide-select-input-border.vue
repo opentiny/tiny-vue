@@ -1,12 +1,6 @@
 <template>
   <tiny-select v-model="value" placeholder="请选择" multiple :hide-drop="true">
-    <tiny-option
-      v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value"
-    >
-    </tiny-option>
+    <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
 </template>
 

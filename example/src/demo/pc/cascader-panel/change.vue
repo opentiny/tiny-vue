@@ -1,8 +1,6 @@
 <template>
   <div>
-    <tiny-button @click="clearCheckedNodes" style="margin-bottom: 10px"
-      >清除选中节点</tiny-button
-    >
+    <tiny-button @click="clearCheckedNodes" style="margin-bottom: 10px">清除选中节点</tiny-button>
     <tiny-cascader-panel
       v-model="value"
       ref="CascaderPanel"
@@ -234,8 +232,7 @@ export default {
       }
 
       Modal.message({
-        message:
-          'change 事件，当前选中的值为:' + mess + '；传入的值为:' + value,
+        message: 'change 事件，当前选中的值为:' + mess + '；传入的值为:' + value,
         status: 'info'
       })
     }

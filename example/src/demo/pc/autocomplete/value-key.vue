@@ -1,6 +1,6 @@
 <template>
   <div class="demo-autocomplete">
-    <tiny-autocomplete v-model="value" value-key="name" :fetch-suggestions="querySearch" placeholder="请输入内容"></tiny-autocomplete>
+    <tiny-autocomplete v-model="value" value-key="name" :fetch-suggestions="querySearchFn" placeholder="请输入内容"></tiny-autocomplete>
   </div>
 </template>
 
@@ -13,29 +13,29 @@ export default {
   },
   data() {
     return {
-      list: [],
+      filterData: [],
       value: ''
     }
   },
   methods: {
-    querySearch(queryString, cb) {
-      let list = this.list
-      let res = queryString ? list.filter(this.createFilter(queryString)) : list
+    querySearchFn(queryString, cb) {
+      let filterData = this.filterData
+      let results = queryString ? filterData.filter(this.createFilter(queryString)) : filterData
 
-      // 返回建议列表的数据
-      cb(res)
+      // 调用 callback 返回过滤的列表数据
+      cb(results)
     },
     createFilter(queryString) {
-      return (listItem) => listItem.name.toLowerCase().indexOf(queryString.toLowerCase()) === 0
+      return (restaurant) => restaurant.name.toLowerCase().indexOf(queryString.toLowerCase()) === 0
     },
     loadAll() {
       return [
         {
-          name: 'GFD科技公司',
+          name: 'GFD科技YX公司',
           address: '福州'
         },
         {
-          name: 'WWWW科技公司',
+          name: 'WWWW科技YX公司',
           address: '深圳福田区'
         },
         {
@@ -43,22 +43,22 @@ export default {
           address: '中山市'
         },
         {
-          name: 'TGB公司',
+          name: 'TGBYX公司',
           address: '梅州'
         },
         {
-          name: 'YHN科技公司',
+          name: 'YHN科技YX公司',
           address: '韶关'
         },
         {
-          name: '康康物业公司',
+          name: '康康物业YX公司',
           address: '广州天河区'
         }
       ]
     }
   },
   mounted() {
-    this.list = this.loadAll()
+    this.filterData = this.loadAll()
   }
 }
 </script>

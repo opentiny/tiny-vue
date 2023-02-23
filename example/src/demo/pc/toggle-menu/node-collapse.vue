@@ -1,8 +1,5 @@
 <template>
-  <tiny-toggle-menu
-    :data="datas"
-    @node-collapse="nodeCollapse"
-  ></tiny-toggle-menu>
+  <tiny-toggle-menu :data="datas" @node-collapse="nodeCollapse"></tiny-toggle-menu>
 </template>
 
 <script>

@@ -8,22 +8,16 @@
 
 <script>
 import { Milestone } from '@opentiny/vue'
-import {
-  iconShare,
-  iconYes,
-  iconDel,
-  iconAscending,
-  iconWriting
-} from '@opentiny/vue-icon'
+import { IconShare, IconYes, IconDel, IconAscending, IconWriting } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyMilestone: Milestone,
-    IconShare: iconShare(),
-    IconYes: iconYes(),
-    IconDel: iconDel(),
-    IconWriting: iconWriting(),
-    IconAscending: iconAscending()
+    IconShare: IconShare(),
+    IconYes: IconYes(),
+    IconDel: IconDel(),
+    IconWriting: IconWriting(),
+    IconAscending: IconAscending()
   },
   data() {
     return {
@@ -41,38 +35,38 @@ export default {
           name: '自定义数据1',
           time: '2018-9-7',
           status: 'completed',
-          icon: iconShare()
+          icon: IconShare()
         },
         {
           name: '自定义数据2',
           time: '2018-9-8',
           status: 'completed',
-          icon: iconYes()
+          icon: IconYes()
         },
         {
           name: '自定义数据3',
           time: '2018-9-10',
           status: 'doing',
           content: null,
-          icon: iconDel()
+          icon: IconDel()
         },
         {
           name: '自定义数据4',
           time: '2018-9-9',
           status: 'cancel',
-          icon: iconWriting()
+          icon: IconWriting()
         },
         {
           name: '自定义数据5',
           time: '2018-9-11',
           status: 'back',
-          icon: iconAscending()
+          icon: IconAscending()
         },
         {
           name: '自定义数据6',
           time: '2018-9-9',
           status: 'end',
-          icon: iconShare()
+          icon: IconShare()
         }
       ]
     }

@@ -5,134 +5,50 @@
       <p class="page__desc">表单（纯展示）</p>
     </div>
     <div class="padds">
-      <tiny-form
-        ref="ruleForm"
-        :model="createData"
-        :rules="rules"
-        label-width="120"
-      >
+      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-width="120">
         <tiny-form-item label="个人交养老险" prop="users">
-          <tiny-input
-            v-model="createData.users"
-            placeholder="请输入内容"
-            type="form"
-            readonly
-          ></tiny-input>
+          <tiny-input v-model="createData.users" placeholder="请输入内容" type="form" readonly></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="个人交医疗险" prop="one">
-          <tiny-input
-            v-model="createData.one"
-            placeholder="请输入内容"
-            type="form"
-            readonly
-          ></tiny-input>
+          <tiny-input v-model="createData.one" placeholder="请输入内容" type="form" readonly></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="个人交失业险" prop="two">
-          <tiny-input
-            v-model="createData.two"
-            placeholder="请输入内容"
-            type="form"
-            readonly
-          ></tiny-input>
+          <tiny-input v-model="createData.two" placeholder="请输入内容" type="form" readonly></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="个人交住房金" prop="three">
-          <tiny-input
-            v-model="createData.three"
-            placeholder="请输入内容"
-            type="form"
-            readonly
-          ></tiny-input>
+          <tiny-input v-model="createData.three" placeholder="请输入内容" type="form" readonly></tiny-input>
         </tiny-form-item>
       </tiny-form>
     </div>
     <div class="padds">
-      <tiny-form
-        ref="ruleForm"
-        :model="createData"
-        :rules="rules"
-        label-width="120"
-      >
+      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-width="120">
         <tiny-form-item label="个人交养老险" prop="users">
-          <tiny-input
-            v-model="createData.users"
-            placeholder="请输入内容"
-            type="form"
-            readonly
-            vertical
-          ></tiny-input>
+          <tiny-input v-model="createData.users" placeholder="请输入内容" type="form" readonly vertical></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="个人交医疗险" prop="one">
-          <tiny-input
-            v-model="createData.one"
-            placeholder="请输入内容"
-            type="form"
-            readonly
-            vertical
-          ></tiny-input>
+          <tiny-input v-model="createData.one" placeholder="请输入内容" type="form" readonly vertical></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="个人交失业险" prop="two">
-          <tiny-input
-            v-model="createData.two"
-            placeholder="请输入内容"
-            type="form"
-            readonly
-            vertical
-          ></tiny-input>
+          <tiny-input v-model="createData.two" placeholder="请输入内容" type="form" readonly vertical></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="个人交住房金" prop="three">
-          <tiny-input
-            v-model="createData.three"
-            placeholder="请输入内容"
-            type="form"
-            readonly
-            vertical
-          ></tiny-input>
+          <tiny-input v-model="createData.three" placeholder="请输入内容" type="form" readonly vertical></tiny-input>
         </tiny-form-item>
       </tiny-form>
     </div>
     <div class="padds">
-      <tiny-form
-        ref="ruleForm"
-        :model="createData"
-        :rules="rules"
-        label-width="120"
-        label-position="top"
-      >
+      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-width="120" label-position="top">
         <tiny-form-item label="个人交养老险" prop="users">
-          <tiny-input
-            v-model="createData.users"
-            placeholder="请输入内容"
-            type="form"
-            readonly
-            vertical
-          ></tiny-input>
+          <tiny-input v-model="createData.users" placeholder="请输入内容" type="form" readonly vertical></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="个人交医疗险" prop="one">
-          <tiny-input
-            v-model="createData.one"
-            placeholder="请输入内容"
-            type="form"
-            readonly
-            vertical
-          ></tiny-input>
+          <tiny-input v-model="createData.one" placeholder="请输入内容" type="form" readonly vertical></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="个人交失业险" prop="two">
-          <tiny-input
-            v-model="createData.two"
-            placeholder="请输入内容"
-            type="form"
-            readonly
-            vertical
-          ></tiny-input>
+          <tiny-input v-model="createData.two" placeholder="请输入内容" type="form" readonly vertical></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="个人交住房金" prop="three">
-          <tiny-input
-            v-model="createData.three"
-            placeholder="请输入内容"
-            type="form"
-            readonly
-            vertical
-          ></tiny-input>
+          <tiny-input v-model="createData.three" placeholder="请输入内容" type="form" readonly vertical></tiny-input>
         </tiny-form-item>
       </tiny-form>
     </div>
@@ -142,11 +58,7 @@
           label="上下结构上下结构上下结构上下结构上下结构上下结构上下结构上下结构上下结构上下结构上下结构上下结构上下结构上下结构上下结构"
           prop="users"
         >
-          <tiny-input
-            v-model="createData.text1"
-            placeholder="请输入内容"
-            type="textarea"
-          ></tiny-input>
+          <tiny-input v-model="createData.text1" placeholder="请输入内容" type="textarea"></tiny-input>
         </tiny-form-item>
       </tiny-form>
     </div>
@@ -167,8 +79,7 @@ export default {
       menus: [
         {
           id: 1,
-          label:
-            '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
+          label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
         },
         {
           id: 2,
@@ -190,8 +101,7 @@ export default {
         one: '-200.00',
         two: '-252.50',
         three: '-1458.60',
-        text1:
-          '很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本'
+        text1: '很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本很长的文本'
       },
       rules: {}
     }

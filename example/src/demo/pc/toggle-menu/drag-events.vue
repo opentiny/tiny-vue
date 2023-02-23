@@ -98,19 +98,19 @@ export default {
   },
   methods: {
     nodeDragStart() {
-      console.log('拖拽节点后的事件')
+      Modal.message('拖拽节点后的事件')
     },
     nodeDragEnter() {
-      console.log('拖拽进入某个节点（包含自身节点）时触发的事件')
+      Modal.message('拖拽进入其他节点时触发的事件')
     },
     nodeDragOver() {
-      console.log('拖拽经过某个节点（包含自身节点）时触发的事件')
+      Modal.message('在拖拽节点时触发的事件')
     },
     nodeDragLeave() {
-      console.log('拖拽离开某个节点（包含自身节点）时触发的事件')
+      Modal.message('拖拽离开某个节点时触发的事件')
     },
     nodeDragEnd() {
-      console.log('拖拽结束时触发的事件')
+      Modal.message('拖拽结束时触发的事件')
     }
   }
 }

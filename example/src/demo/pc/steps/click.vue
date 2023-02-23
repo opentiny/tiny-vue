@@ -1,12 +1,7 @@
 <template>
   <div class="content">
     <div>点击步骤条节点来切换选中状态</div>
-    <tiny-steps
-      :data="stepsData"
-      :active="defaultActive"
-      type="normal"
-      @click="normalClick"
-    ></tiny-steps>
+    <tiny-steps :data="stepsData" :active="defaultActive" type="normal" @click="normalClick"></tiny-steps>
     <div v-if="currentNode">
       <span>选中节点index:{{ currentNode.index }}; </span><br />
       <span> 选中节点node: {{ currentNode.node }} </span>

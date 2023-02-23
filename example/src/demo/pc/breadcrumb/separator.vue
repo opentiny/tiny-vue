@@ -3,9 +3,7 @@
     <tiny-breadcrumb separator=">">
       <tiny-breadcrumb-item><a href="/">首页</a></tiny-breadcrumb-item>
       <tiny-breadcrumb-item>
-        <a href="/aurora_test/#/webcore/v3/zh-CN/component/breadcrumb">
-          产品
-        </a>
+        <a href="localhost:3000/webcore/v3/zh-CN/component/breadcrumb"> 产品 </a>
       </tiny-breadcrumb-item>
       <tiny-breadcrumb-item><a href="/"> 软件</a></tiny-breadcrumb-item>
     </tiny-breadcrumb>
@@ -13,9 +11,7 @@
     <tiny-breadcrumb :separator-icon="IconBoat">
       <tiny-breadcrumb-item><a hrfe="/">首页</a></tiny-breadcrumb-item>
       <tiny-breadcrumb-item>
-        <a href="/aurora_test/#/webcore/v3/zh-CN/component/breadcrumb">
-          产品
-        </a>
+        <a href="localhost:3000/webcore/v3/zh-CN/component/breadcrumb"> 产品 </a>
       </tiny-breadcrumb-item>
       <tiny-breadcrumb-item><a href="/"> 软件</a></tiny-breadcrumb-item>
     </tiny-breadcrumb>
@@ -24,7 +20,7 @@
 
 <script>
 import { Breadcrumb, BreadcrumbItem } from '@opentiny/vue'
-import { iconBoat } from '@opentiny/vue-icon'
+import { IconBoat } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -33,7 +29,7 @@ export default {
   },
   data() {
     return {
-      IconBoat: iconBoat()
+      IconBoat: IconBoat()
     }
   }
 }

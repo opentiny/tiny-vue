@@ -5,11 +5,7 @@
       <p class="page__desc">滑块</p>
     </div>
     <div class="padds">
-      <tiny-slider
-        v-model="value"
-        :step="10"
-        :format-tooltip="format"
-      ></tiny-slider>
+      <tiny-slider v-model="value" :step="10" :format-tooltip="format"></tiny-slider>
     </div>
   </div>
 </template>

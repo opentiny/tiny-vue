@@ -29,11 +29,7 @@ Select 选择器是一种通过点击弹出下拉列表展示数据并进行选�
 
 <br>
 
-### 嵌套 Grid 同时开启远程搜索
 
-<nova-demo-view link="select/nest-grid-remote-filter"></nova-demo-view>
-
-<br>
 
 ### text-field
 
@@ -59,9 +55,16 @@ Select 选择器是一种通过点击弹出下拉列表展示数据并进行选�
 
 <br>
 
-### 嵌套 Grid 开启远程搜索
+### 嵌套 Grid 开启远程搜索(多选)
+配置 `render-type` 为 `grid` 嵌套Grid；将 `filterable` 和 `remote` 设置为 `true`，同时传入 `remote-method` 方法，开启远程搜索。如需自动搜索和显示展开按钮，需设置 `remote-config` 
 
-配置 `render-type` 为 `grid` 嵌套Grid；将 `filterable` 和 `remote` 设置为 `true`，同时传入 `remote-method` 方法，开启远程搜索。
+<nova-demo-view link="select/nest-grid-remote-filter"></nova-demo-view>
+
+<br>
+
+### 嵌套 Grid 开启远程搜索（单选）
+
+配置 `render-type` 为 `grid` 嵌套Grid；将 `filterable` 和 `remote` 设置为 `true`，同时传入 `remote-method` 方法，开启远程搜索。如需自动搜索和显示展开按钮，需设置 `remote-config` 
 
 <nova-demo-view link="select/nest-remote-grid"></nova-demo-view>
 

@@ -1,11 +1,6 @@
 <template>
   <div>
-    <tiny-time-picker
-      v-model="value1"
-      :picker-options="{ selectableRange: '18:30:00 - 20:30:00' }"
-      placeholder="任意时间点"
-      disabled
-    ></tiny-time-picker>
+    <tiny-time-picker v-model="value1" :picker-options="{ selectableRange: '18:30:00 - 20:30:00' }" placeholder="任意时间点" disabled></tiny-time-picker>
   </div>
 </template>
 

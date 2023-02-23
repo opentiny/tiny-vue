@@ -197,7 +197,7 @@ const getSortModules = ({ filterIntercept, isSort = true }) => {
         component.parentDir = componentName
         // libPath: 'packages/todo/dist/pc.js' 组件输出路径
         component.libPath = component.path.replace('/index.js', '/src/index.js').replace('/src/', '/dist/lib/').replace('.vue', '.js')
-        // libName: '@opentiny/vue/todo/pc'
+        // libName: '@huawei/vue/todo/pc'
         component.libName = component.libPath
           .replace('packages/', '')
           .replace('/index', '')

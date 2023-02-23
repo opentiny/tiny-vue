@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <tiny-popover
       placement="top-start"
       title="标题"
@@ -49,5 +49,8 @@ export default {
 
 .demo-popover-class2 {
   background: #999 !important;
+}
+.container button.tiny-popover__reference {
+  margin: 0 30px;
 }
 </style>

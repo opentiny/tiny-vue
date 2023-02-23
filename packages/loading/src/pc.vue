@@ -16,12 +16,12 @@
       </div>
     </transition>
   </template>
-  
+
   <script>
   import { props, setup } from '@opentiny/vue-common'
   import { renderless, api } from '@opentiny/vue-renderless/loading/vue'
   import '@opentiny/vue-theme/loading/index.css'
-  
+
   export default {
     props: [...props],
 

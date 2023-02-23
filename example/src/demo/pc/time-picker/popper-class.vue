@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-time-picker v-model="value1" popper-class="pickerClass" placeholder="选择时间" :popper-append-to-body="false"></tiny-time-picker>
+    <tiny-time-picker v-model="value1" popper-class="pickerClass" placeholder="选择时间"></tiny-time-picker>
   </div>
 </template>
 

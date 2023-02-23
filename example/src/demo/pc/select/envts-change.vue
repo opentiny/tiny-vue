@@ -1,21 +1,6 @@
 <template>
-  <tiny-select
-    v-model="value"
-    placeholder="请选择"
-    clearable
-    @change="change"
-    @clear="clear"
-    @blur="blur"
-    @focus="focus"
-    @scroll="scroll"
-  >
-    <tiny-option
-      v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value"
-    >
-    </tiny-option>
+  <tiny-select v-model="value" placeholder="请选择" clearable @change="change" @clear="clear" @blur="blur" @focus="focus">
+    <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
 </template>
 
@@ -49,15 +34,7 @@ export default {
         {
           value: '选项5',
           label: '北京烤鸭'
-        },
-        {
-          value: '选项6',
-          label: '烧麦'
-        },
-        {
-          value: '选项7',
-          label: '猪脚饭'
-        },
+        }
       ],
       value: ''
     }
@@ -82,10 +59,7 @@ export default {
       Modal.message({
         message: 'blur事件'
       })
-    },
-    scroll(event) {
-      console.log('scroll event:', event)
-    },
+    }
   }
 }
 </script>

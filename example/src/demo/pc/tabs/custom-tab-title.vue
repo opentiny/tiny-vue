@@ -25,14 +25,14 @@
 
 <script>
 import { Tabs, TabItem } from '@opentiny/vue'
-import { iconCalendar, iconReplies } from '@opentiny/vue-icon'
+import { IconCalendar, IconReplies } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyTabs: Tabs,
     TinyTabItem: TabItem,
-    IconCalendar: iconCalendar(),
-    IconReplies: iconReplies()
+    IconCalendar: IconCalendar(),
+    IconReplies: IconReplies()
   },
   data() {
     return {
@@ -41,3 +41,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+svg {
+  margin-right: 6px;
+}
+</style>

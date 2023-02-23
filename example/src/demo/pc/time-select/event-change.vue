@@ -1,10 +1,6 @@
 <template>
   <div>
-    <tiny-time-select
-      v-model="value1"
-      @change="change"
-      placeholder="选择时间"
-    ></tiny-time-select>
+    <tiny-time-select v-model="value1" @change="change" placeholder="选择时间"></tiny-time-select>
   </div>
 </template>
 

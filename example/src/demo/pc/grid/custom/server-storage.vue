@@ -36,7 +36,7 @@ export default {
           pageSize: 3,
           total: 0,
           pageSizes: [3, 5, 10, 20],
-          layout: 'sizes, total, prev, pager, next, jumper'
+          layout: 'total, prev, pager, next, jumper, sizes'
         }
       },
       fetchData: {
@@ -46,14 +46,14 @@ export default {
       tableData: [
         {
           id: '1',
-          name: 'GFD科技公司',
+          name: 'GFD科技YX公司',
           area: '华东区',
           address: '福州',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '2',
-          name: 'WWWW科技公司',
+          name: 'WWWW科技YX公司',
           area: '华南区',
           address: '深圳福田区',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
@@ -67,35 +67,35 @@ export default {
         },
         {
           id: '4',
-          name: 'TGB公司',
+          name: 'TGBYX公司',
           area: '华北区',
           address: '梅州',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '5',
-          name: 'YHN科技公司',
+          name: 'YHN科技YX公司',
           area: '华南区',
           address: '韶关',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '6',
-          name: '康康物业公司',
+          name: '康康物业YX公司',
           area: '华北区',
           address: '广州天河区',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '7',
-          name: 'SZ市福德宝网络技术公司',
+          name: '深圳市福德宝网络技术YX公司',
           area: '华南区',
           address: '清远',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '8',
-          name: 'XA福德宝网络技术公司',
+          name: '西安门福德宝网络技术YX公司',
           area: '华东区',
           address: '厦门',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
@@ -109,7 +109,7 @@ export default {
         },
         {
           id: '10',
-          name: 'WSX科技公司',
+          name: 'WSX科技YX公司',
           area: '华南区',
           address: '广州',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'

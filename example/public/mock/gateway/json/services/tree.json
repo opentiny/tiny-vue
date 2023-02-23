@@ -1,0 +1,98 @@
+[
+  {
+    "id": 100,
+    "pId": 0,
+    "label": "node1",
+    "isParent": true
+  },
+  {
+    "id": 1,
+    "pId": 100,
+    "label": "node1.1",
+    "isParent": false
+  },
+  {
+    "id": 2,
+    "pId": 100,
+    "label": "node1.2",
+    "isParent": false
+  },
+  {
+    "id": 3,
+    "pId": 100,
+    "label": "node1.3",
+    "isParent": false
+  },
+  {
+    "id": 4,
+    "pId": 100,
+    "label": "node1.4",
+    "isParent": true
+  },
+  {
+    "id": 41,
+    "pId": 4,
+    "label": "node1.4.1",
+    "isParent": false
+  },
+  {
+    "id": 411,
+    "pId": 41,
+    "label": "node1.4.1.1",
+    "isParent": false
+  },
+  {
+    "id": 42,
+    "pId": 4,
+    "label": "node1.4.2",
+    "isParent": false
+  },
+  {
+    "id": 421,
+    "pId": 42,
+    "label": "node1.4.2.1",
+    "isParent": false
+  },
+  {
+    "id": 5,
+    "pId": 100,
+    "label": "node1.5",
+    "isParent": true
+  },
+  {
+    "id": 51,
+    "pId": 5,
+    "label": "node1.5.1",
+    "isParent": false
+  },
+  {
+    "id": 101,
+    "pId": 0,
+    "label": "node2",
+    "isParent": true
+  },
+  {
+    "id": 1011,
+    "pId": 101,
+    "label": "node2.1",
+    "isParent": false
+  },
+  {
+    "id": 102,
+    "pId": 0,
+    "label": "node3",
+    "isParent": true
+  },
+  {
+    "id": 1021,
+    "pId": 102,
+    "label": "node3.1",
+    "isParent": false
+  },
+  {
+    "id": 103,
+    "pId": 0,
+    "label": "node4",
+    "isParent": false
+  }
+]

@@ -49,7 +49,7 @@ export default {
                 {
                   id: 30101,
                   label: 'Button 按钮',
-                  url: 'https://abcde.com'
+                  url: 'button'
                 },
                 { id: 30102, label: 'Datepicker 日期', url: '' },
                 { id: 30103, label: 'Dropdown 下拉框', url: '' },

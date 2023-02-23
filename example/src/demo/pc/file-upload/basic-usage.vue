@@ -1,5 +1,5 @@
 <template>
-  <tiny-file-upload size="small" ref="upload" :action="action">
+  <tiny-file-upload size="small" :data="requestData" ref="upload" :action="action">
     <template #trigger>
       <tiny-button type="primary">点击上传</tiny-button>
     </template>
@@ -16,6 +16,9 @@ export default {
   },
   data() {
     return {
+      requestData: {
+        id: 123
+      },
       action: 'http://localhost:3000/api/upload'
     }
   }

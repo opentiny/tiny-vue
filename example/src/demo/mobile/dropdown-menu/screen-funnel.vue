@@ -6,25 +6,10 @@
     </div>
     <div class="tiny-mobile-dropdown-menu-demo">
       <tiny-dropdown-menu :overlay="false">
-        <tiny-dropdown-item
-          v-model="value1"
-          :options="option2"
-        ></tiny-dropdown-item>
-        <tiny-dropdown-item
-          v-model="value3"
-          title="发布时间"
-          type="sort"
-        ></tiny-dropdown-item>
-        <tiny-dropdown-item
-          v-model="value2"
-          :options="option2"
-        ></tiny-dropdown-item>
-        <tiny-dropdown-item
-          v-model="value4"
-          :options="options4"
-          title="筛选"
-          type="filter"
-        ></tiny-dropdown-item>
+        <tiny-dropdown-item v-model="value1" :options="option2"></tiny-dropdown-item>
+        <tiny-dropdown-item v-model="value3" title="发布时间" type="sort"></tiny-dropdown-item>
+        <tiny-dropdown-item v-model="value2" :options="option2"></tiny-dropdown-item>
+        <tiny-dropdown-item v-model="value4" :options="options4" title="筛选" type="filter"></tiny-dropdown-item>
       </tiny-dropdown-menu>
     </div>
   </div>

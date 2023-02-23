@@ -1,8 +1,5 @@
 <template>
-  <tiny-ip-address
-    v-model="valueForIPv4"
-    @select="selectForIPv4"
-  ></tiny-ip-address>
+  <tiny-ip-address v-model="valueForIPv4" @select="selectForIPv4"></tiny-ip-address>
 </template>
 
 <script>

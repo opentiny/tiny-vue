@@ -1,9 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <tiny-button @click="popverDisable = !popverDisable"
-        >{{ popverDisable ? '启用' : '禁用' }}弹出框</tiny-button
-      >
+      <tiny-button @click="popverDisable = !popverDisable">{{ popverDisable ? '启用' : '禁用' }}弹出框</tiny-button>
     </div>
     <div>
       <tiny-popover

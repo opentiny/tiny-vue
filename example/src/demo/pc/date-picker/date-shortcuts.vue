@@ -1,9 +1,6 @@
 <template>
   <div style="width: 270px">
-    <tiny-date-picker
-      v-model="value"
-      :picker-options="pickerOptions"
-    ></tiny-date-picker>
+    <tiny-date-picker v-model="value" :picker-options="pickerOptions"></tiny-date-picker>
   </div>
 </template>
 

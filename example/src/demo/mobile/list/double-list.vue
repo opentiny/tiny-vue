@@ -26,13 +26,13 @@ export default {
           id: 1,
           content: '主文本，文本较多换行时，列表高度相应增高，文本与列表上下间距不变',
           contentdes: '此处是辅助说明文体，说明文本',
-          img: 'static/images/floral.png'
+          img: 'static/images/dog2.png'
         },
         {
           id: 2,
           content: '主文本',
           contentdes: '此处是辅助说明文体，说明文本，文本较多换行时，列表高度相应增高，文本与列表上下间距不变',
-          img: 'static/images/floral.png'
+          img: 'static/images/dog2.png'
         }
       ]
     }

@@ -11,8 +11,8 @@ export default {
   },
   data() {
     return {
-      url: 'static/images/mountain.png',
-      srcList: ['static/images/mountain.png', 'static/images/house.jpg', 'static/images/bridge.jpg']
+      url: 'static/images/1.jpg',
+      srcList: ['static/images/1.jpg', 'static/images/2.jpg', 'static/images/3.jpg']
     }
   }
 }

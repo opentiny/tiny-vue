@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <tiny-popover
       placement="top-start"
       title="标题"
@@ -36,3 +36,8 @@ export default {
   }
 }
 </script>
+<style>
+.container button.tiny-popover__reference {
+  margin: 0 30px;
+}
+</style>

@@ -1,29 +1,15 @@
 <template>
   <tiny-layout>
     <tiny-row>
-      <tiny-col :span="2" class="tiny-color bg-gray-navigation">
-        bg-gray-navigation
-      </tiny-col>
-      <tiny-col :span="2" class="tiny-color bg-gray-darker">
-        bg-gray-darker
-      </tiny-col>
-      <tiny-col :span="2" class="tiny-color bg-gray-dark"
-        >bg-gray-dark</tiny-col
-      >
-      <tiny-col :span="2" class="tiny-color bg-gray-normal">
-        bg-gray-normal
-      </tiny-col>
+      <tiny-col :span="2" class="tiny-color bg-gray-navigation"> bg-gray-navigation </tiny-col>
+      <tiny-col :span="2" class="tiny-color bg-gray-darker"> bg-gray-darker </tiny-col>
+      <tiny-col :span="2" class="tiny-color bg-gray-dark">bg-gray-dark</tiny-col>
+      <tiny-col :span="2" class="tiny-color bg-gray-normal"> bg-gray-normal </tiny-col>
     </tiny-row>
     <tiny-row>
-      <tiny-col :span="2" class="tiny-color bg-gray-light"
-        >bg-gray-light</tiny-col
-      >
-      <tiny-col :span="2" class="tiny-color bg-gray-lighter">
-        bg-gray-lighter
-      </tiny-col>
-      <tiny-col :span="2" class="tiny-color bg-gray-background">
-        bg-gray-background
-      </tiny-col>
+      <tiny-col :span="2" class="tiny-color bg-gray-light">bg-gray-light</tiny-col>
+      <tiny-col :span="2" class="tiny-color bg-gray-lighter"> bg-gray-lighter </tiny-col>
+      <tiny-col :span="2" class="tiny-color bg-gray-background"> bg-gray-background </tiny-col>
       <tiny-col :span="2" class="tiny-color bg-light">bg-light</tiny-col>
     </tiny-row>
   </tiny-layout>

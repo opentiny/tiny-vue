@@ -3,6 +3,10 @@ import router2 from './route.config.comp2'
 
 const routers = [
   {
+    path: 'overview',
+    component: () => import('./docs/zh-CN/overview/component-overview.md')
+  },
+  {
     path: 'credit-card-form',
     meta: { title: '其他组件-CreditCardForm 信用卡表单', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-breadcrumb' */ './docs/zh-CN/credit-card-form/basic-usage.md')
@@ -121,6 +125,11 @@ const routers = [
     path: 'breadcrumb/custom-separator',
     meta: { title: '导航组件-Breadcrumb 面包屑-自定义分隔符', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-breadcrumb' */ './docs/zh-CN/breadcrumb/custom-separator.md')
+  },
+  {
+    path: 'breadcrumb/options',
+    meta: { title: '导航组件-Breadcrumb 面包屑-显示字段映射', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-breadcrumb' */ './docs/zh-CN/breadcrumb/options.md')
   },
   {
     path: 'fall-menu',
@@ -811,11 +820,6 @@ const routers = [
     path: 'date-picker/about-format',
     meta: { title: '表单组件-DatePicker 日期选择器-格式化相关', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-date-picker' */ './docs/zh-CN/date-picker/about-format.md')
-  },
-  {
-    path: 'date-picker/time-format',
-    meta: { title: '表单组件-DatePicker 日期选择器-timeFormat格式化', lang: 'zh-CN', sign: 'component' },
-    component: () => import(/* webpackChunkName: 'v3-date-picker' */ './docs/zh-CN/date-picker/time-format.md')
   },
   {
     path: 'date-picker/custom-suffix-icon',

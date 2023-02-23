@@ -10,13 +10,7 @@
     loading-text="Loading..."
     allow-copy
   >
-    <tiny-option
-      v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value"
-    >
-    </tiny-option>
+    <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
 </template>
 
@@ -89,9 +83,7 @@ export default {
     }
   },
   mounted() {
-    this.list = this.states.map((item) => {
-      return { value: item, label: item }
-    })
+    this.list = this.states.map((item) => ({ value: item, label: item }))
   },
   methods: {
     remoteMethod(query) {
@@ -99,9 +91,7 @@ export default {
         this.loading = true
         setTimeout(() => {
           this.loading = false
-          this.options = this.list.filter((item) => {
-            return item.label.toLowerCase().indexOf(query.toLowerCase()) > -1
-          })
+          this.options = this.list.filter((item) => item.label.toLowerCase().indexOf(query.toLowerCase()) > -1)
         }, 200)
       } else {
         this.options = []

@@ -28,7 +28,7 @@ export default {
   },
   data() {
     return {
-      circleUrl: 'static/images/watercolor.png'
+      circleUrl: 'static/images/circle.png'
     }
   }
 }

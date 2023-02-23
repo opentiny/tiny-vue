@@ -14,16 +14,16 @@
 
 <script>
 import { Button } from '@opentiny/vue'
-import { iconUpload } from '@opentiny/vue-icon'
+import { IconUpload } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    IconUpload: iconUpload(),
+    IconUpload: IconUpload(),
     TinyButton: Button
   },
   data() {
     return {
-      image: 'static/images/button-image.png'
+      image: 'static/images/hae-logo.png'
     }
   }
 }

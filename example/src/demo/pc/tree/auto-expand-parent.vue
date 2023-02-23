@@ -1,10 +1,5 @@
 <template>
-  <tiny-tree
-    :data="data5"
-    node-key="id"
-    :auto-expand-parent="false"
-    :default-expanded-keys="defaultexpandedkeys"
-  ></tiny-tree>
+  <tiny-tree :data="data5" node-key="id" :auto-expand-parent="false" :default-expanded-keys="defaultexpandedkeys"></tiny-tree>
 </template>
 
 <script>

@@ -24,3 +24,11 @@ tiny-options 标签设置 `disabled` 属性后该选项不可用。
 <nova-demo-view link="select/disabled-options"></nova-demo-view>
 
 <br>
+
+### 下拉选项某些项默认选中且禁用
+
+tiny-options 默认选中标签设置 `disabled` 属性后该选项禁用。
+
+<nova-demo-view link="select/disabled-and-selected-options"></nova-demo-view>
+
+<br>

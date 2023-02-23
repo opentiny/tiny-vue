@@ -1,17 +1,7 @@
 <template>
   <tiny-select v-model="value" placeholder="请选择" multiple>
-    <tiny-option-group
-      v-for="group in options3"
-      :key="group.label"
-      :label="group.label"
-      :disabled="group.disabled"
-    >
-      <tiny-option
-        v-for="item in group.options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
-      ></tiny-option>
+    <tiny-option-group v-for="group in options3" :key="group.label" :label="group.label" :disabled="group.disabled">
+      <tiny-option v-for="item in group.options" :key="item.value" :label="item.label" :value="item.value"></tiny-option>
     </tiny-option-group>
   </tiny-select>
 </template>

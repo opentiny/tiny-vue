@@ -1,15 +1,7 @@
 <template>
   <div class="radio-wrap">
-    <tiny-radio
-      v-model="value"
-      label="1"
-      border
-      disabled
-      text="单选框 1"
-    ></tiny-radio>
-    <tiny-radio v-model="value" label="2" border name="name"
-      >单选框 2</tiny-radio
-    >
+    <tiny-radio v-model="value" label="1" border disabled text="单选框 1"></tiny-radio>
+    <tiny-radio v-model="value" label="2" border name="name">单选框 2</tiny-radio>
   </div>
 </template>
 

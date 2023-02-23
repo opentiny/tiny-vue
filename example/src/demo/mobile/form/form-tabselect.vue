@@ -6,76 +6,22 @@
     </div>
     <div class="btb box">
       <div class="titleSingle">左右结构单行</div>
-      <tiny-button
-        type="primary"
-        size="small"
-        :plain="active != 0"
-        @click="change(0)"
-        >Small</tiny-button
-      >
-      <tiny-button
-        type="primary"
-        size="small"
-        :plain="active != 1"
-        @click="change(1)"
-        >Default</tiny-button
-      >
+      <tiny-button type="primary" size="small" :plain="active != 0" @click="change(0)">Small</tiny-button>
+      <tiny-button type="primary" size="small" :plain="active != 1" @click="change(1)">Default</tiny-button>
     </div>
     <div class="btb box">
       <div class="title">左右结构多行左右结构多行左右结构多行左右结构多行</div>
-      <tiny-button
-        type="primary"
-        size="small"
-        :plain="active != 0"
-        @click="change(0)"
-        >Small</tiny-button
-      >
-      <tiny-button
-        type="primary"
-        size="small"
-        :plain="active != 1"
-        @click="change(1)"
-        >Default</tiny-button
-      >
-      <tiny-button
-        type="primary"
-        size="small"
-        :plain="active != 2"
-        @click="change(2)"
-        >Large</tiny-button
-      >
+      <tiny-button type="primary" size="small" :plain="active != 0" @click="change(0)">Small</tiny-button>
+      <tiny-button type="primary" size="small" :plain="active != 1" @click="change(1)">Default</tiny-button>
+      <tiny-button type="primary" size="small" :plain="active != 2" @click="change(2)">Large</tiny-button>
     </div>
     <div class="box">
       <div class="singleTitle">上下结构单行</div>
       <div class="btb">
-        <tiny-button
-          type="primary"
-          size="small"
-          :plain="active != 0"
-          @click="change(0)"
-          >Small</tiny-button
-        >
-        <tiny-button
-          type="primary"
-          size="small"
-          :plain="active != 1"
-          @click="change(1)"
-          >Default</tiny-button
-        >
-        <tiny-button
-          type="primary"
-          size="small"
-          :plain="active != 2"
-          @click="change(2)"
-          >Large</tiny-button
-        >
-        <tiny-button
-          type="primary"
-          size="small"
-          :plain="active != 3"
-          @click="change(3)"
-          >Large2</tiny-button
-        >
+        <tiny-button type="primary" size="small" :plain="active != 0" @click="change(0)">Small</tiny-button>
+        <tiny-button type="primary" size="small" :plain="active != 1" @click="change(1)">Default</tiny-button>
+        <tiny-button type="primary" size="small" :plain="active != 2" @click="change(2)">Large</tiny-button>
+        <tiny-button type="primary" size="small" :plain="active != 3" @click="change(3)">Large2</tiny-button>
       </div>
     </div>
     <div class="box">
@@ -83,34 +29,10 @@
         上下结构多行上下结构多行上下结构多行上下结构多行上下结构多行上下结构多行上下结构多行上下结构多行上下结构多行上下结构多行上下结构多行上下结构多行上下结构多行上下结构多行上下结构多行上下结构多行上下结构多行上下结构多行上下结构多行上下结构多行
       </div>
       <div class="btb">
-        <tiny-button
-          type="primary"
-          size="small"
-          :plain="active != 0"
-          @click="change(0)"
-          >Small</tiny-button
-        >
-        <tiny-button
-          type="primary"
-          size="small"
-          :plain="active != 1"
-          @click="change(1)"
-          >Default</tiny-button
-        >
-        <tiny-button
-          type="primary"
-          size="small"
-          :plain="active != 2"
-          @click="change(2)"
-          >Large</tiny-button
-        >
-        <tiny-button
-          type="primary"
-          size="small"
-          :plain="active != 3"
-          @click="change(3)"
-          >Large2</tiny-button
-        >
+        <tiny-button type="primary" size="small" :plain="active != 0" @click="change(0)">Small</tiny-button>
+        <tiny-button type="primary" size="small" :plain="active != 1" @click="change(1)">Default</tiny-button>
+        <tiny-button type="primary" size="small" :plain="active != 2" @click="change(2)">Large</tiny-button>
+        <tiny-button type="primary" size="small" :plain="active != 3" @click="change(3)">Large2</tiny-button>
       </div>
     </div>
   </div>

@@ -1,9 +1,5 @@
 <template>
-  <tiny-time-line
-    :data="data"
-    name-field="statusText"
-    time-field="date"
-  ></tiny-time-line>
+  <tiny-time-line :data="data" name-field="statusText" time-field="date"></tiny-time-line>
 </template>
 
 <script>

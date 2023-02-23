@@ -30,19 +30,19 @@ export default {
   },
   methods: {
     inputCardCvv(val) {
-      Modal.message({ message: `CCV 输入的值:` + val, status: 'info' })
+      Modal.message({ message: 'CCV 输入的值:' + val, status: 'info' })
     },
     inputCardYear(val) {
-      Modal.message({ message: `选择的年份:` + val, status: 'info' })
+      Modal.message({ message: '选择的年份:' + val, status: 'info' })
     },
     inputCardMonth(val) {
-      Modal.message({ message: `选择的月份:` + val, status: 'info' })
+      Modal.message({ message: '选择的月份:' + val, status: 'info' })
     },
     inputCardName(val) {
-      Modal.message({ message: `输入的持卡者:` + val, status: 'info' })
+      Modal.message({ message: '输入的持卡者:' + val, status: 'info' })
     },
     inputCardNumber(val) {
-      Modal.message({ message: `输入的卡号:` + val, status: 'info' })
+      Modal.message({ message: '输入的卡号:' + val, status: 'info' })
     },
     submit(val) {
       Modal.message({

@@ -7,23 +7,14 @@
     <div class="demo-padds-native-type">
       <tiny-form ref="ruleForm" :model="createData" :rules="rules">
         <tiny-form-item label="优秀" prop="users">
-          <tiny-input
-            v-model="createData.users"
-            placeholder="请输入内容"
-            type="form"
-          ></tiny-input>
+          <tiny-input v-model="createData.users" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
         <tiny-form-item>
           <tiny-button @click="handleSubmit('ruleForm')">重置</tiny-button>
         </tiny-form-item>
       </tiny-form>
     </div>
-    <tiny-dialog-box
-      :visible="boxVisibility"
-      @update:visible="boxVisibility = $event"
-      :modal-append-to-body="false"
-      title="消息提示"
-    >
+    <tiny-dialog-box :visible="boxVisibility" @update:visible="boxVisibility = $event" :modal-append-to-body="false" title="消息提示">
       <span>reset</span>
     </tiny-dialog-box>
   </div>

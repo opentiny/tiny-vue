@@ -4,7 +4,7 @@
     <tiny-crop
       :cropvisible="visible"
       @update:cropvisible="visible = $event"
-      src="static/images/mountain.png"
+      src="static/images/1.jpg"
       :min-crop-box-width="100"
       :min-crop-box-height="100"
       :min-container-height="200"

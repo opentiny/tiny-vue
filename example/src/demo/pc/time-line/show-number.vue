@@ -1,10 +1,5 @@
 <template>
-  <tiny-time-line
-    :data="data"
-    :active="active"
-    @click="click"
-    :show-number="false"
-  ></tiny-time-line>
+  <tiny-time-line :data="data" :active="active" @click="click" :show-number="false"></tiny-time-line>
 </template>
 
 <script>

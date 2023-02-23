@@ -5,12 +5,7 @@
       <p class="page__desc">弹出式菜单</p>
     </div>
     <tiny-button @click="fn" type="primary" size="large">上滑列表</tiny-button>
-    <tiny-action-sheet
-      v-model="activeName"
-      :menus="menus"
-      :visible="boxVisibility"
-      @update:visible="boxVisibility = $event"
-    >
+    <tiny-action-sheet v-model="activeName" :menus="menus" :visible="boxVisibility" @update:visible="boxVisibility = $event">
       <template #item="data">
         <div>
           {{ data.item.label }}
@@ -35,8 +30,7 @@ export default {
       menus: [
         {
           id: 1,
-          label:
-            '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
+          label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
         },
         {
           id: 2,

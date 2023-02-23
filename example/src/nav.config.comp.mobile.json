@@ -852,6 +852,16 @@
               "name": "自定义提示内容"
             }
           ]
+        },
+        {
+          "path": "/loading",
+          "name": "Loading 加载",
+          "children": [
+            {
+              "path": "/loading/type",
+              "name": "加载不同样式"
+            }
+          ]
         }
       ]
     },
@@ -969,6 +979,15 @@
             {
               "path": "/mini-picker/toolbar",
               "name": "插槽"
+            }
+          ]
+        },{
+          "path": "/mobile-popover",
+          "name": " Popover 气泡",
+          "children": [
+            {
+              "path": "/mobile-popover/direction",
+              "name": "气泡方向"
             }
           ]
         }

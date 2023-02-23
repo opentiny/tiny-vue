@@ -1,15 +1,7 @@
 <template>
   <div>
-    <tiny-time-picker
-      v-model="value1"
-      format="hh:mm:ss a"
-      placeholder="任意时间点"
-    ></tiny-time-picker>
-    <tiny-time-picker
-      v-model="value1"
-      format="HH:mm:ss a"
-      placeholder="任意时间点"
-    ></tiny-time-picker>
+    <tiny-time-picker v-model="value1" format="hh:mm:ss a" placeholder="任意时间点"></tiny-time-picker>
+    <tiny-time-picker v-model="value1" format="HH:mm:ss a" placeholder="任意时间点"></tiny-time-picker>
   </div>
 </template>
 

@@ -8,10 +8,26 @@ const { nodeResolve } = require('@rollup/plugin-node-resolve')
 const { pathJoin } = require('./utils')
 const { getAllModules } = require('./module-utils')
 
-const external = ['vue', './pc', './mobile', '@vue/composition-api', '@opentiny/vue-common', '@opentiny/vue-locale', '@opentiny/vue-renderless']
+const external = [
+  'vue',
+  'quill',
+  './pc',
+  'echarts',
+  'echarts-amap',
+  './mobile',
+  '@vue/composition-api',
+  'echarts-liquidfill',
+  'echarts-wordcloud',
+  '@opentiny/vue-common',
+  '@opentiny/vue-locale',
+  '@opentiny/vue-renderless'
+]
 
 const globals = {
   vue: 'Vue',
+  'echarts-amap': 'echarts.amap',
+  'echarts-liquidfill': 'echarts-liquidfill',
+  'echarts-wordcloud': 'echarts-wordcloud',
   '@vue/composition-api': 'vueCompositionApi',
   '@opentiny/vue-common': 'TinyVueCommon',
   '@opentiny/vue-locale': 'TinyVueLocale',
@@ -35,9 +51,9 @@ components.forEach((item) => {
   globals[item.libName] = item.global // TinyTodo
 
   if (isComponent) {
-    if (fs.existsSync(pathJoin('../../vue-theme3'))) {
-      aliasList[`@opentiny/vue-theme/${item.LowerName}/index.css`] = pathJoin(`../../vue-theme3/style/${item.LowerName}/index.css`)
-      aliasList[`@opentiny/vue-theme/${item.LowerName}/index.js`] = pathJoin(`../../vue-theme3/style/${item.LowerName}/index.js`)
+    if (fs.existsSync(pathJoin('../../tiny-vue-theme'))) {
+      aliasList[`@opentiny/vue-theme/${item.LowerName}/index.css`] = pathJoin(`../../tiny-vue-theme/src/${item.LowerName}/index.css`)
+      aliasList[`@opentiny/vue-theme/${item.LowerName}/index.js`] = pathJoin(`../../tiny-vue-theme/src/${item.LowerName}/index.js`)
     }
     external.push(item.libName + '/index.js')
   } else {
@@ -47,7 +63,8 @@ components.forEach((item) => {
 
 exports.aliasList = aliasList
 
-exports.external = (deps) => external.includes(deps) || /^@opentiny[\\/](vue-renderless|vue-theme|vue-common|vue-icon)|cropperjs/.test(deps)
+exports.external = (deps) =>
+  external.includes(deps) || /^@huawei[\\/](tiny-vue-renderless|tiny-vue-theme|tiny-vue-common|tiny-vue-icon)|echarts|cropperjs|quill/.test(deps)
 
 exports.globals = globals
 

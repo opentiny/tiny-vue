@@ -1,10 +1,7 @@
 <template>
-  <tiny-pager
-    layout="sizes, total, slot, prev, pager, next, jumper"
-    :total="1000"
-  >
+  <tiny-pager layout="sizes,slot, prev, pager, next, jumper, ->, total" :total="1000">
     <template #default>
-      <span class="custom-content">我是插槽</span>
+      <span>我是插槽</span>
     </template>
   </tiny-pager>
 </template>
@@ -18,9 +15,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.custom-content {
-  margin: 0 10px;
-}
-</style>

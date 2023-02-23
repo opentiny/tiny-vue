@@ -11,13 +11,7 @@
         Main
         <br />
         <div v-for="item in patternData" :key="item.value" class="select-item">
-          <input
-            type="radio"
-            :id="item.value"
-            name="pattern"
-            :value="item.value"
-            v-model="myPattern"
-          />
+          <input type="radio" :id="item.value" name="pattern" :value="item.value" v-model="myPattern" />
           <label :for="item.value">{{ item.title }}</label>
         </div>
       </tiny-layout>

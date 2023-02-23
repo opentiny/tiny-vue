@@ -29,8 +29,8 @@ export default {
       IconGroup: iconGroup(),
       IconSetting: iconSetting(),
       icon: {
-        active: 'static/images/fruit.jpg',
-        inactive: 'static/images/floral.png'
+        active: 'static/images/dog1.png',
+        inactive: 'static/images/dog2.png'
       }
     }
   }

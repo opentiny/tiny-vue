@@ -1,20 +1,11 @@
 <template>
   <div class="demo-split">
-    <tiny-split
-      v-model="split1"
-      mode="vertical"
-      left-top-min="50px"
-      right-bottom-min="80px"
-    >
+    <tiny-split v-model="split1" mode="vertical" left-top-min="50px" right-bottom-min="80px">
       <template #top>
-        <div class="demo-split-pane">
-          left-top-min 左上方拖动的最小高度为 50px
-        </div>
+        <div class="demo-split-pane">left-top-min 左上方拖动的最小高度为 50px</div>
       </template>
       <template #bottom>
-        <div class="demo-split-pane">
-          right-bottom-min 右下方拖动的最小高度为 80px
-        </div>
+        <div class="demo-split-pane">right-bottom-min 右下方拖动的最小高度为 80px</div>
       </template>
     </tiny-split>
   </div>

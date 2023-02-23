@@ -1,32 +1,17 @@
 <template>
   <div>
     <span>Light </span>
-    <tiny-tag
-      v-for="item in items"
-      :key="'tiny-tag1-' + item.label"
-      :type="item.type"
-      effect="light"
-    >
+    <tiny-tag v-for="item in items" :key="'tiny-tag1-' + item.label" :type="item.type" effect="light">
       {{ item.label }}
     </tiny-tag>
     <br />
     <span>Dark </span>
-    <tiny-tag
-      v-for="item in items"
-      :key="'tiny-tag2-' + item.label"
-      :type="item.type"
-      effect="dark"
-    >
+    <tiny-tag v-for="item in items" :key="'tiny-tag2-' + item.label" :type="item.type" effect="dark">
       {{ item.label }}
     </tiny-tag>
     <br />
     <span>Plain </span>
-    <tiny-tag
-      v-for="item in items"
-      :key="'tiny-tag3-' + item.label"
-      :type="item.type"
-      effect="plain"
-    >
+    <tiny-tag v-for="item in items" :key="'tiny-tag3-' + item.label" :type="item.type" effect="plain">
       {{ item.label }}
     </tiny-tag>
   </div>

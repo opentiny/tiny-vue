@@ -3,25 +3,19 @@
     <template #prefix>
       <icon-share></icon-share>
     </template>
-    <tiny-option
-      v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value"
-    >
-    </tiny-option>
+    <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
 </template>
 
 <script>
 import { Select, Option } from '@opentiny/vue'
-import { iconShare } from '@opentiny/vue-icon'
+import { IconShare } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinySelect: Select,
     TinyOption: Option,
-    IconShare: iconShare()
+    IconShare: IconShare()
   },
   data() {
     return {

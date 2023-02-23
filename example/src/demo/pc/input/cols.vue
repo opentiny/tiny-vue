@@ -1,18 +1,9 @@
 <template>
   <div class="demo-input">
-    <tiny-input
-      type="textarea"
-      v-model="input"
-      placeholder="cols 为默认"
-    ></tiny-input>
+    <tiny-input type="textarea" v-model="input" placeholder="cols 为默认"></tiny-input>
     <br />
     <br />
-    <tiny-input
-      type="textarea"
-      v-model="input"
-      :cols="100"
-      placeholder="cols 为 100"
-    ></tiny-input>
+    <tiny-input type="textarea" v-model="input" :cols="100" placeholder="cols 为 100"></tiny-input>
   </div>
 </template>
 

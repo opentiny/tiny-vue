@@ -1,10 +1,6 @@
 <template>
   <div class="search-wrap">
-    <tiny-search
-      placeholder="搜索"
-      @change="handleChange"
-      @search="handleSearch"
-    ></tiny-search>
+    <tiny-search placeholder="搜索" @change="handleChange" @search="handleSearch"></tiny-search>
     输入的搜索内容为：{{ searchValue }}
   </div>
 </template>

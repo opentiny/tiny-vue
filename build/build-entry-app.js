@@ -50,6 +50,5 @@ const buildFullRuntime = (buildType) => {
   fs.writeFileSync(outputPath, output)
 
   utils.logGreen(`npm run build:entry done. [${outputDir}/${buildType}.js]`)
-}
-
-;['core', 'base', 'chart'].forEach(buildFullRuntime)
+};
+['core', 'base', 'chart'].forEach(buildFullRuntime)

@@ -9,21 +9,15 @@
 </template>
 
 <script>
-import {
-  iconShare,
-  iconDel,
-  iconWriting,
-  iconAscending,
-  iconClockWork
-} from '@opentiny/vue-icon'
+import { IconShare, IconDel, IconWriting, IconAscending, IconClockWork } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    IconShare: iconShare(),
-    IconDel: iconDel(),
-    IconWriting: iconWriting(),
-    IconAscending: iconAscending(),
-    IconClockWork: iconClockWork()
+    IconShare: IconShare(),
+    IconDel: IconDel(),
+    IconWriting: IconWriting(),
+    IconAscending: IconAscending(),
+    IconClockWork: IconClockWork()
   }
 }
 </script>

@@ -3,7 +3,7 @@
     <tiny-input v-model="text" placeholder="text"></tiny-input>
     <br />
     <br />
-    <tiny-input type="password" v-model="passwordValue" placeholder="passwordValue"></tiny-input>
+    <tiny-input type="password" v-model="password" placeholder="password"></tiny-input>
     <br />
     <br />
     <tiny-input type="textarea" v-model="textarea" placeholder="textarea"></tiny-input>
@@ -59,7 +59,7 @@ export default {
   data() {
     return {
       text: '',
-      passwordValue: '',
+      password: '',
       textarea: '',
       email: '',
       number: '',

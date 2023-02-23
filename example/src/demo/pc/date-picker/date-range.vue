@@ -1,11 +1,7 @@
 <template>
   <div>
     <p>日期值：{{ value }}</p>
-    <tiny-date-picker
-      v-model="value"
-      type="daterange"
-      :picker-options="onPickOptions"
-    ></tiny-date-picker>
+    <tiny-date-picker v-model="value" type="daterange" :picker-options="onPickOptions"></tiny-date-picker>
   </div>
 </template>
 

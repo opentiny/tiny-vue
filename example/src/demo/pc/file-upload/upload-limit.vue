@@ -1,9 +1,5 @@
 <template>
-  <tiny-file-upload
-    :action="action"
-    :before-upload="beforeAvatarUpload"
-    :limit="limit"
-  >
+  <tiny-file-upload :action="action" :before-upload="beforeAvatarUpload" :limit="limit">
     <tiny-button type="primary">点击上传xx</tiny-button>
   </tiny-file-upload>
 </template>

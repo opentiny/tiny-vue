@@ -4,7 +4,7 @@
 
 <script>
 import { IpAddress } from '@opentiny/vue'
-import { iconBoat } from '@opentiny/vue-icon'
+import { IconBoat } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -13,7 +13,7 @@ export default {
   data() {
     return {
       value: '192.168.0.1',
-      IconBoat: iconBoat()
+      IconBoat: IconBoat()
     }
   }
 }

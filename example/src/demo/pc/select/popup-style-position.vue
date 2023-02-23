@@ -1,20 +1,7 @@
 <template>
   <div class="demo-select">
-    <tiny-select
-      v-model="value"
-      placeholder="请选择"
-      multiple
-      popper-class="drop"
-      :popper-append-to-body="false"
-      placement="top"
-    >
-      <tiny-option
-        v-for="item in options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
-      >
-      </tiny-option>
+    <tiny-select v-model="value" placeholder="请选择" multiple popper-class="drop" :popper-append-to-body="false" placement="top">
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
   </div>
 </template>
@@ -58,11 +45,7 @@ export default {
 </script>
 
 <style>
-.demo-select {
-  min-height: 200px;
-}
-
 .demo-select .drop {
-  background-color: darkgrey;
+  background-color: #d5e8ff;
 }
 </style>

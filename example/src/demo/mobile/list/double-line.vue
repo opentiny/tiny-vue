@@ -5,12 +5,7 @@
       <span>列表</span>
     </div>
     <div class="demo-item">
-      <tiny-list
-        v-for="item of dataList"
-        :key="item.id"
-        :content="item.content"
-        :content-des="item.des"
-      >
+      <tiny-list v-for="item of dataList" :key="item.id" :content="item.content" :content-des="item.des">
         <template #suffix>
           <icon-chevron-right />
         </template>
@@ -33,8 +28,7 @@ export default {
       dataList: [
         {
           id: 1,
-          content:
-            '主文本，文本较多换行时，列表高度相应增高，文本与列表上下间距不变',
+          content: '主文本，文本较多换行时，列表高度相应增高，文本与列表上下间距不变',
           des: '此处是辅助说明文体，说明文本'
         },
         {

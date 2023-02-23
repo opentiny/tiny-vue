@@ -10,11 +10,11 @@
 
 <script>
 import { Input } from '@opentiny/vue'
-import { iconSearch } from '@opentiny/vue-icon'
+import { IconSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    IconSearch: iconSearch(),
+    IconSearch: IconSearch(),
     TinyInput: Input
   },
   data() {

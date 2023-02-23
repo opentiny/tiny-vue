@@ -2,10 +2,7 @@
   <tiny-transfer ref="transfer" v-model="value" :data="data">
     <template #default="optionData">
       <div>
-        <span :text="JSON.stringify(optionData.option)"
-          >{{ optionData.option.key }} - {{ optionData.option.label }} -
-          customized</span
-        >
+        <span :text="JSON.stringify(optionData.option)">{{ optionData.option.key }} - {{ optionData.option.label }} - customized</span>
       </div>
     </template>
   </tiny-transfer>

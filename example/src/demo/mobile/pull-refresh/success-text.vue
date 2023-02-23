@@ -1,9 +1,5 @@
 <template>
-  <tiny-pull-refresh
-    v-model="isLoading"
-    @refresh="onRefresh"
-    success-text="运气真好！！！"
-  >
+  <tiny-pull-refresh v-model="isLoading" @refresh="onRefresh" success-text="运气真好！！！">
     <h3>hello pull-refresh</h3>
   </tiny-pull-refresh>
 </template>

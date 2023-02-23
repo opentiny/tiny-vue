@@ -1,6 +1,6 @@
 <template>
   <div class="demo-autocomplete">
-    <tiny-autocomplete value-key="name" v-model="state1" :fetch-suggestions="fetchSearch" placeholder="请输入内容">
+    <tiny-autocomplete value-key="name" v-model="state1" :fetch-suggestions="querySearch" placeholder="请输入内容">
       <template #default="{ slotScope }">
         <div>{{ slotScope.name }}</div>
         <span style="font-size: 12px; color: #a29b91">{{ slotScope.address }}</span>
@@ -24,24 +24,24 @@ export default {
     }
   },
   methods: {
-    fetchSearch(queryString, callbacks) {
+    querySearch(queryString, cb) {
       let restaurants = this.restaurants
       let results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants
 
       // 调用 callback 返回建议列表的数据
-      callbacks(results)
+      cb(results)
     },
     createFilter(queryString) {
-      return (restaurant) => restaurant.name.toLowerCase().startsWith(queryString.toLowerCase())
+      return (restaurant) => restaurant.name.toLowerCase().indexOf(queryString.toLowerCase()) === 0
     },
     loadAll() {
       return [
         {
-          name: 'GFD科技公司',
+          name: 'GFD科技YX公司',
           address: '福州'
         },
         {
-          name: 'WWWW科技公司',
+          name: 'WWWW科技YX公司',
           address: '深圳福田区'
         },
         {
@@ -49,15 +49,15 @@ export default {
           address: '中山市'
         },
         {
-          name: 'TGB公司',
+          name: 'TGBYX公司',
           address: '梅州'
         },
         {
-          name: 'YHN科技公司',
+          name: 'YHN科技YX公司',
           address: '韶关'
         },
         {
-          name: '康康物业公司',
+          name: '康康物业YX公司',
           address: '广州天河区'
         }
       ]

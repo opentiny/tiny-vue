@@ -1,9 +1,5 @@
 <template>
-  <tiny-user-head
-    :message-total="100"
-    message-type="basic"
-    type="icon"
-  ></tiny-user-head>
+  <tiny-user-head :message-total="100" message-type="basic" type="icon"></tiny-user-head>
 </template>
 
 <script>

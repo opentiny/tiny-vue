@@ -5,7 +5,7 @@
         <span>是</span>
       </template>
       <template #close>
-        <span style="position: relative; left: 4px">否</span>
+        <span style="position: relative">否</span>
       </template>
     </tiny-switch>
     当前值:{{ value }}

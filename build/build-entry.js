@@ -138,7 +138,7 @@ const createEntry = (mode) => {
   })
 
   fs.writeFileSync(OUTPUT_PATH, output)
-}
-;['all', 'pc', 'mobile'].forEach(createEntry)
+};
+['all', 'pc', 'mobile'].forEach(createEntry)
 
 utils.logGreen(`npm run build:entry done. [${outputDir}/index.js,${outputDir}/pc.js,${outputDir}/mobile.js]`)

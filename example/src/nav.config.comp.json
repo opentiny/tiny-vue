@@ -49,6 +49,10 @@
             {
               "path": "/breadcrumb/custom-separator",
               "name": "自定义分隔符"
+            },
+            {
+              "path": "/breadcrumb/options",
+              "name": "显示字段映射"
             }
           ]
         },
@@ -479,8 +483,58 @@
               "name": "不同尺寸"
             },
             {
+              "path": "/dropdown/options",
+              "name": "使用配置式"
+            },
+            {
+              "path": "/dropdown/multi-level",
+              "name": "多级下拉菜单"
+            },
+            {
               "path": "/dropdown/events",
               "name": "事件"
+            }
+          ]
+        },
+        {
+          "path": "/action-menu",
+          "name": "ActionMenu 菜单按钮",
+          "children": [
+            {
+              "path": "/action-menu/disabled",
+              "name": "禁用"
+            },
+            {
+              "path": "/action-menu/text-field",
+              "name": "显示文本"
+            },
+            {
+              "path": "/action-menu/more-text",
+              "name": "下拉按钮显示文本"
+            },
+            {
+              "path": "/action-menu/spacing",
+              "name": "间距"
+            },
+            {
+              "path": "/action-menu/popper-class",
+              "name": "自定义下拉面板样式"
+            },
+            {
+              "path": "/action-menu/max-show-num",
+              "name": "显示个数"
+            },
+            {
+              "path": "/action-menu/item-click",
+              "name": "菜单项点击事件"
+            },
+            {
+              "path": "/action-menu/more-click",
+              "name": "更多按钮点击事件"
+            },
+            {
+              "path": "/action-menu/slot-item",
+              "name": "菜单项插槽"
             }
           ]
         }
@@ -997,10 +1051,6 @@
             {
               "path": "/date-picker/about-format",
               "name": "格式化相关"
-            },
-            {
-              "path": "/date-picker/time-format",
-              "name": "timeFormat格式化"
             },
             {
               "path": "/date-picker/custom-suffix-icon",
@@ -1637,6 +1687,10 @@
             {
               "path": "/select/filterable",
               "name": "可搜索"
+            },
+            {
+              "path": "/select/searchable",
+              "name": "下拉面板显示搜索框"
             },
             {
               "path": "/select/allow-create",
@@ -2400,8 +2454,8 @@
               "name": "自定义编辑器"
             },
             {
-              "path": "/grid/editor/custom-editor-aui3",
-              "name": "Tiny Vue 组件作为编辑器"
+              "path": "/grid/editor/custom-editor-tiny3",
+              "name": "3.0 组件作为编辑器"
             },
             {
               "path": "/grid/editor/custom-editor-mutil",
@@ -2729,10 +2783,6 @@
             {
               "path": "/pager/pager-append-to-body",
               "name": "下拉框位置"
-            },
-            {
-              "path": "/pager/popper-class",
-              "name": "自定义下拉框类名"
             },
             {
               "path": "/pager/custom-layout",
@@ -3146,6 +3196,10 @@
               "name": "手动控制"
             },
             {
+              "path": "/tooltip/visible-show",
+              "name": "智能提示出现"
+            },
+            {
               "path": "/tooltip/tooltip-theme",
               "name": "主题"
             },
@@ -3294,14 +3348,6 @@
               "name": "自定义内容"
             },
             {
-              "path": "/modal/is-form-reset",
-              "name": "弹出表单"
-            },
-            {
-              "path": "/modal/modal-slots",
-              "name": "插槽"
-            },
-            {
               "path": "/modal/modal-resize",
               "name": "调整窗口大小"
             },
@@ -3338,6 +3384,10 @@
               "name": "自定义堆叠顺序"
             },
             {
+              "path": "/modal/modal-is-form-reset",
+              "name": "关闭弹窗是否重置表单数据"
+            },
+            {
               "path": "/modal/modal-event",
               "name": "事件"
             },
@@ -3350,7 +3400,475 @@
         {
           "path": "/notify",
           "name": "Notify 通知",
-          "children": []
+          "children": [
+            {
+              "path": "/notify/debounce-delay",
+              "name": "配置防抖"
+            },
+            {
+              "path": "/notify/vertical-offset",
+              "name": "垂直方向偏离距离"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "图表组件",
+      "path": "/chart",
+      "children": [
+        {
+          "path": "/chart/attributes",
+          "name": "公共属性"
+        },
+        {
+          "path": "/chart/data-config",
+          "name": "数据配置"
+        },
+        {
+          "path": "/chart/events",
+          "name": "事件监听"
+        },
+        {
+          "path": "/chart/attributes-demo",
+          "name": "属性配置示例"
+        },
+        {
+          "path": "/chart/question",
+          "name": "常见问题示例"
+        },
+        {
+          "path": "/chart/line",
+          "name": "折线图"
+        },
+        {
+          "path": "/chart/histogram",
+          "name": "柱状图"
+        },
+        {
+          "path": "/chart/bar",
+          "name": "条形图"
+        },
+        {
+          "path": "/chart/pie",
+          "name": "饼图"
+        },
+        {
+          "path": "/chart/ring",
+          "name": "环图"
+        },
+        {
+          "path": "/chart/waterfall",
+          "name": "瀑布图"
+        },
+        {
+          "path": "/chart/funnel",
+          "name": "漏斗图"
+        },
+        {
+          "path": "/chart/radar",
+          "name": "雷达图"
+        },
+        {
+          "path": "/chart/map",
+          "name": "地图"
+        },
+        {
+          "path": "/chart/sankey",
+          "name": "桑基图"
+        },
+        {
+          "path": "/chart/heatmap",
+          "name": "热力图"
+        },
+        {
+          "path": "/chart/scatter",
+          "name": "散点图"
+        },
+        {
+          "path": "/chart/candle",
+          "name": "K线图"
+        },
+        {
+          "path": "/chart/gauge",
+          "name": "仪表盘"
+        },
+        {
+          "path": "/chart/tree",
+          "name": "树图"
+        },
+        {
+          "path": "/chart/liquidfill",
+          "name": "水球图"
+        },
+        {
+          "path": "/chart/wordcloud",
+          "name": "词云图"
+        },
+        {
+          "path": "/chart/sunburst",
+          "name": "旭日图"
+        },
+        {
+          "path": "/chart/graph",
+          "name": "拓扑图"
+        },
+        {
+          "path": "/chart/baidu-map",
+          "name": "百度地图"
+        },
+        {
+          "path": "/chart/autonavi-map",
+          "name": "高德地图"
+        },
+        {
+          "path": "/chart/boxplot",
+          "name": "箱形图"
+        }
+      ]
+    },
+    {
+      "name": "业务组件",
+      "children": [
+        {
+          "path": "/amount",
+          "name": "Amount 金额",
+          "children": [
+            {
+              "path": "/amount/set-date",
+              "name": "设置日期"
+            },
+            {
+              "path": "/amount/size",
+              "name": "编辑框大小"
+            },
+            {
+              "path": "/amount/custom-currency",
+              "name": "指定币种"
+            },
+            {
+              "path": "/amount/digits-maxlen",
+              "name": "金额设置"
+            },
+            {
+              "path": "/amount/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/amount/amount-disable",
+              "name": "禁用"
+            }
+          ]
+        },
+        {
+          "path": "/area",
+          "name": "Area 片区",
+          "children": [
+            {
+              "path": "/area/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/area/size",
+              "name": "设置组件大小"
+            },
+            {
+              "path": "/area/area-events",
+              "name": "事件"
+            },
+            {
+              "path": "/area/disabled",
+              "name": "禁用"
+            }
+          ]
+        },
+        {
+          "path": "/company",
+          "name": "Company 公司",
+          "children": [
+            {
+              "path": "/company/custom-show-num",
+              "name": "自定义数据显示数量"
+            },
+            {
+              "path": "/company/custom-service",
+              "name": "自定义服务"
+            }
+          ]
+        },
+        {
+          "path": "/country",
+          "name": "Country 国家/地区",
+          "children": [
+            {
+              "path": "/country/custom-service",
+              "name": "自定义服务"
+            }
+          ]
+        },
+        {
+          "path": "/currency",
+          "name": "Currency 币种",
+          "children": [
+            {
+              "path": "/currency/currency-disabled",
+              "name": "禁用"
+            },
+            {
+              "path": "/currency/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/currency/size",
+              "name": "设置组件大小"
+            }
+          ]
+        },
+        {
+          "path": "/dept",
+          "name": "Dept 部门",
+          "children": [
+            {
+              "path": "/dept/dept-events",
+              "name": "事件"
+            },
+            {
+              "path": "/dept/size",
+              "name": "设置组件大小"
+            },
+            {
+              "path": "/dept/before-confirm",
+              "name": "阻止弹框关闭"
+            },
+            {
+              "path": "/dept/auto-select",
+              "name": "部门信息自动选中"
+            },
+            {
+              "path": "/dept/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/dept/dynamic-disable",
+              "name": "禁用"
+            },
+            {
+              "path": "/dept/title",
+              "name": "弹出框标题"
+            },
+            {
+              "path": "/dept/slot-hrapprover",
+              "name": "插槽"
+            }
+          ]
+        },
+        {
+          "path": "/drop-roles",
+          "name": "DropRoles 下拉角色",
+          "children": [
+            {
+              "path": "/drop-roles/change-role-event",
+              "name": "角色切换事件"
+            },
+            {
+              "path": "/drop-roles/size",
+              "name": "设置组件大小"
+            },
+            {
+              "path": "/drop-roles/custom-service",
+              "name": "自定义服务"
+            }
+          ]
+        },
+        {
+          "path": "/espace",
+          "name": "Espace 消息弹框",
+          "children": [
+            {
+              "path": "/espace/use-in-usercontact",
+              "name": "用户联系人连接 eSpace"
+            }
+          ]
+        },
+        {
+          "path": "/hrapprover",
+          "name": "Hrapprover 权签人",
+          "children": [
+            {
+              "path": "/hrapprover/category-type",
+              "name": "权签类别"
+            },
+            {
+              "path": "/hrapprover/disabled-value-hrapprover",
+              "name": "禁用"
+            },
+            {
+              "path": "/hrapprover/custom-service",
+              "name": "自定义服务"
+            }
+          ]
+        },
+        {
+          "path": "/locales",
+          "name": "Locales 语言选择",
+          "children": [
+            {
+              "path": "/locales/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/locales/change-lang",
+              "name": "语言切换"
+            }
+          ]
+        },
+        {
+          "path": "/logon-user",
+          "name": "LogonUser 登录用户",
+          "children": [
+            {
+              "path": "/logon-user/custom-service",
+              "name": "自定义服务"
+            }
+          ]
+        },
+        {
+          "path": "/logout",
+          "name": "Logout 注销",
+          "children": [
+            {
+              "path": "/logout/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/logout/redirect-url",
+              "name": "自定义配置注销后跳转地址"
+            }
+          ]
+        },
+        {
+          "path": "/roles",
+          "name": "Roles 角色切换",
+          "children": [
+            {
+              "path": "/roles/fetch-role",
+              "name": "自定义服务"
+            }
+          ]
+        },
+        {
+          "path": "/user",
+          "name": "User 用户",
+          "children": [
+            {
+              "path": "/user/multiple-users",
+              "name": "多用户"
+            },
+            {
+              "path": "/user/tag-copy",
+              "name": "用户信息支持复制"
+            },
+            {
+              "path": "/user/tag-copy-all",
+              "name": "可复制图标显示隐藏"
+            },
+            {
+              "path": "/user/dynamic-disable",
+              "name": "禁用状态"
+            },
+            {
+              "path": "/user/value-split",
+              "name": "值分隔符"
+            },
+            {
+              "path": "/user/value-field",
+              "name": "取值字段映射"
+            },
+            {
+              "path": "/user/text-field",
+              "name": "显示字段映射"
+            },
+            {
+              "path": "/user/cache-users",
+              "name": "缓存用户"
+            },
+            {
+              "path": "/user/delay-load",
+              "name": "延时加载"
+            },
+            {
+              "path": "/user/load-after-input-the-length",
+              "name": "输入完指定长度后加载"
+            },
+            {
+              "path": "/user/event-change",
+              "name": "事件"
+            },
+            {
+              "path": "/user/user-options",
+              "name": "自定选项"
+            },
+            {
+              "path": "/user/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/user/custom-sort",
+              "name": "自定义排序"
+            },
+            {
+              "path": "/user/user-select-size",
+              "name": "尺寸设置"
+            }
+          ]
+        },
+        {
+          "path": "/user-account",
+          "name": "UserAccount 用户账号",
+          "children": [
+            {
+              "path": "/user-account/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/user-account/custom-operation",
+              "name": "自定义功能"
+            }
+          ]
+        },
+        {
+          "path": "/user-link",
+          "name": "UserLink 用户信息链接",
+          "children": [
+            {
+              "path": "/user-link/text-field",
+              "name": "显示字段映射"
+            },
+            {
+              "path": "/user-link/text-split",
+              "name": "自定义文本分隔符"
+            },
+            {
+              "path": "/user-link/value-field",
+              "name": "值字段映射"
+            },
+            {
+              "path": "/user-link/value-split",
+              "name": "自定义值分隔符"
+            },
+            {
+              "path": "/user-link/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/user-link/cache-users",
+              "name": "用户数据缓存"
+            },
+            {
+              "path": "/user-link/value",
+              "name": "默认值"
+            }
+          ]
         }
       ]
     },

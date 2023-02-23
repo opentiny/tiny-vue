@@ -1,10 +1,6 @@
 <template>
   <div class="demo-input">
-    <tiny-input
-      ref="input"
-      v-model="input"
-      placeholder="请输入内容"
-    ></tiny-input>
+    <tiny-input ref="input" v-model="input" placeholder="请输入内容"></tiny-input>
     <br />
     <br />
     <tiny-button @click="click">选中输入框内容</tiny-button>

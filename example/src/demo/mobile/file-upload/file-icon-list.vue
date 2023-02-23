@@ -21,7 +21,7 @@ export default {
       fileList: [
         {
           name: 'test1名字很长名字很长名字很长名字很长名字很长名字很长',
-          url: 'static/images/fruit.jpg',
+          url: 'static/images/ld.png',
           size: '1M',
           fileType: 'png'
         },
@@ -34,11 +34,11 @@ export default {
       ],
       iconList: [
         {
-          url: 'static/images/floral.png',
+          url: 'static/images/dog2.png',
           type: 'png'
         },
         {
-          url: 'static/images/fruit.jpg',
+          url: 'static/images/dog1.png',
           type: 'xlsx'
         }
       ]

@@ -1,14 +1,7 @@
 <template>
   <div>
     <tiny-button @click="handleFocus">focus</tiny-button>
-    <tiny-time-picker
-      v-model="value1"
-      ref="timePicker"
-      @blur="bulr"
-      @change="change"
-      @focus="focus"
-      placeholder="选择时间范围"
-    ></tiny-time-picker>
+    <tiny-time-picker v-model="value1" ref="timePicker" @blur="bulr" @change="change" @focus="focus" placeholder="选择时间范围"></tiny-time-picker>
   </div>
 </template>
 

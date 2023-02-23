@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { FileUpload, Button } from '@opentiny/vue'
+import { FileUpload, Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -18,7 +18,10 @@ export default {
     return {
       httpRequest: () =>
         new Promise((resolve) => {
-          // 此处服务为 自定义上传服务
+          // 此处为用户自定义的上传服务请求
+          setTimeout(() => {
+            Modal.message('上传成功')
+          }, 500)
         })
     }
   }

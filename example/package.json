@@ -4,22 +4,25 @@
   "scripts": {
     "dev": "vite",
     "test": "vitest test",
+    "build:runtime-pc": "vite build --mode pc",
+    "build:runtime-icon": "vite build --mode icon",
     "build:icon3": "cross-env NODE_ENV=production node build/build-icon.js",
     "coverage": "vitest run --coverage"
   },
   "devDependencies": {
-    "@vue/babel-plugin-jsx": "^1.1.0",
-    "rollup-plugin-postcss": "^2.0.3",
-    "rollup-plugin-vue": "^6.0.0",
-    "vue": "^3.2.11",
-    "@vue/test-utils": "^2.0.0",
-    "jsdom": "16.4.0",
-    "vue-i18n": "^9.1.7",
-    "vitest": "^0.22.1",
-    "vue-router": "^4.0.11",
     "@vitejs/plugin-vue": "^3.0.3",
     "@vitejs/plugin-vue-jsx": "^2.0.0",
-    "vite-plugin-markdown-vue": "^0.1.2"
+    "@vue/babel-plugin-jsx": "^1.1.0",
+    "@vue/test-utils": "^2.0.0",
+    "esbuild-register": "^3.3.3",
+    "jsdom": "16.4.0",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-vue": "^6.0.0",
+    "vite-plugin-markdown-vue": "^0.1.2",
+    "vitest": "^0.22.1",
+    "vue": "^3.2.25",
+    "vue-i18n": "^9.1.7",
+    "vue-router": "^4.0.11"
   },
   "eslintConfig": {
     "root": true,

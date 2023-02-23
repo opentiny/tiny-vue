@@ -58,27 +58,27 @@ export default {
                 {
                   id: 30101,
                   label: 'Button 按钮',
-                  url: 'https://abcde.com'
+                  url: 'button'
                 },
                 {
                   id: 30102,
                   label: 'Datepicker 日期',
-                  url: 'https://abcde.com'
+                  url: 'datepicker'
                 },
                 {
                   id: 30103,
                   label: 'Dropdown 下拉框',
-                  url: 'https://abcde.com'
+                  url: 'dropdown'
                 },
                 {
                   id: 30104,
                   label: 'DropTimes 下拉时间',
-                  url: 'https://abcde.com'
+                  url: 'droptimes'
                 },
                 {
                   id: 30105,
                   label: 'Input 输入框',
-                  url: 'https://abcde.com'
+                  url: 'input'
                 }
               ]
             },
@@ -98,12 +98,12 @@ export default {
                 {
                   id: 40101,
                   label: '添加标签页',
-                  url: 'https://abcde.com'
+                  url: 'addtabs'
                 },
                 {
                   id: 40102,
                   label: '标签页配置',
-                  url: 'https://abcde.com'
+                  url: 'tabsattr'
                 }
               ]
             },
@@ -114,17 +114,17 @@ export default {
                 {
                   id: 40201,
                   label: '添加查询页面',
-                  url: 'https://abcde.com'
+                  url: 'addlist'
                 },
                 {
                   id: 40202,
                   label: '列表属性配置',
-                  url: 'https://abcde.com'
+                  url: 'listattr'
                 },
                 {
                   id: 40203,
                   label: '通讯录查询',
-                  url: 'https://abcde.com'
+                  url: 'searchfunc'
                 }
               ]
             },
@@ -135,12 +135,12 @@ export default {
                 {
                   id: 40301,
                   label: '表单新增功能',
-                  url: 'https://abcde.com'
+                  url: 'addservice'
                 },
                 {
                   id: 40302,
                   label: '表单数据验证',
-                  url: 'https://abcde.com'
+                  url: 'valid'
                 }
               ]
             },
@@ -151,12 +151,12 @@ export default {
                 {
                   id: 40401,
                   label: '开启编辑功能',
-                  url: 'https://abcde.com'
+                  url: 'editattr'
                 },
                 {
                   id: 40402,
                   label: '保存表格数据',
-                  url: 'https://abcde.com'
+                  url: 'savefunc'
                 }
               ]
             }

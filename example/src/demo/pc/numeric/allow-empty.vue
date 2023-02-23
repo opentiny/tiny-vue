@@ -1,13 +1,5 @@
 <template>
-  <tiny-numeric
-    v-model="stepNum"
-    :step="step"
-    :min="1"
-    :max="10"
-    @change="onChange"
-    circulate
-    allow-empty
-  ></tiny-numeric>
+  <tiny-numeric v-model="stepNum" :step="step" :min="1" :max="10" @change="onChange" circulate allow-empty></tiny-numeric>
 </template>
 
 <script>

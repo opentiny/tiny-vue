@@ -1,9 +1,5 @@
 <template>
-  <tiny-tooltip
-    content="定义渐变动画"
-    transition="custom-transition"
-    placement="bottom"
-  >
+  <tiny-tooltip content="定义渐变动画" transition="custom-transition" placement="bottom">
     <button class="tiny-button tiny-button--primary">定义渐变动画</button>
   </tiny-tooltip>
 </template>
@@ -34,7 +30,6 @@ export default {
 .custom-transition-leave-active {
   opacity: 1;
   transform: translateX(0);
-  transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 1s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1), opacity 1s cubic-bezier(0.23, 1, 0.32, 1);
 }
 </style>
