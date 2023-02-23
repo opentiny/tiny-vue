@@ -9,8 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Table from './src/index.vue'
-import '@opentiny/vue-theme/table/index.css'
+import Table from './src/index'
 
 /* istanbul ignore next */
 Table.install = function (Vue) {
