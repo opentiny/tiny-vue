@@ -1,6 +1,6 @@
 ﻿<template>
   <div class="tiny-mobile-exception-demo">
-    <tiny-exception type="nodata" message="自定义文本内容" @click="test"></tiny-exception>
+    <tiny-exception type="nodata" message="自定义文本内容" imageUrl="static/images/planet1.jpg" @btn-click="test"></tiny-exception>
   </div>
 </template>
 
