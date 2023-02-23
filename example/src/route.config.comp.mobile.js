@@ -1144,6 +1144,11 @@ const router = [
     path: 'mobile-popover/direction',
     meta: { title: 'mobilepopover 气泡组件 - 类型', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/popover/direction.md')
+  },
+  {
+    path: 'table',
+    meta: { title: 'table 表格组件 - 类型', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/table/base.md')
   }
 ]
 
