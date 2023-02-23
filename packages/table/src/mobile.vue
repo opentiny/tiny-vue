@@ -84,7 +84,7 @@ export default {
       for (let i = 0; i < index; i++) {
         left += this.columns[i].width
       }
-      return left + 'px'
+      return `${left}px`
     },
     isLastFixed(index, item) {
       if (!item.fixed) {
