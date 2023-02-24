@@ -116,7 +116,7 @@ export default {
       'div',
       {
         class: [
-          'tiny-grid',
+          'tiny-grid__wrapper',
           'tiny-grid-menu__wrapper',
           {
             show: ctxMenuStore.visible
