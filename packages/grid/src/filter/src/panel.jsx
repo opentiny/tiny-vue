@@ -58,16 +58,10 @@ function renderAdvancePanelRadios() {
   return (
     <ul class="adv-row">
       <li class="tiny-grid__filter-option filter-option__radios">
-        <Radio
-          modelValue={'and'}
-          label="startwith"
-        >
+        <Radio modelValue={'and'} label="startwith">
           And
         </Radio>
-        <Radio
-          modelValue={'or'}
-          label="equals"
-        >
+        <Radio modelValue={'or'} label="equals">
           Or
         </Radio>
       </li>
@@ -227,7 +221,7 @@ export default {
     return (
       <div
         class={[
-          'tiny-grid',
+          'tiny-grid__wrapper',
           'tiny-grid__filter-wrapper',
           'filter__prevent-default',
           {
@@ -241,11 +235,11 @@ export default {
           <div class={['tiny-grid__filter-body', { 'show-addvance': this.showAdvance }]}>
             {column.slots && column.slots.filter
               ? column.slots.filter({
-                $grid,
-                values: options,
-                args,
-                context: this
-              })
+                  $grid,
+                  values: options,
+                  args,
+                  context: this
+                })
               : quickFilter}
           </div>
         ) : null}
@@ -267,7 +261,7 @@ export default {
     }
   },
   methods: {
-    updatePanel: debounce(20, function() {
+    updatePanel: debounce(20, function () {
       this.correctRelations()
 
       const inputFilter = this.filterStore.inputFilter
@@ -433,7 +427,7 @@ export default {
                     condition.relation = value
                     condition.method =
                       method ||
-                      function() {
+                      function () {
                         return true
                       }
                   }}
@@ -462,7 +456,7 @@ export default {
       const CheckedSur = iconCheckedSur()
       const Check = iconCheck()
 
-      const iconRender = function(checked, index) {
+      const iconRender = function (checked, index) {
         const props = {
           class: 'tiny-svg-size',
           tabindex: index
