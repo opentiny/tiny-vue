@@ -19,7 +19,7 @@
     @custom-mousemove="handleCustomMouseMove"
   >
     <template #default>
-      <div class="tiny-grid-custom tiny-grid" v-if="visible">
+      <div class="tiny-grid-custom tiny-grid__wrapper" v-if="visible">
         <div class="tiny-grid-custom__tabs">
           <div class="tiny-grid-custom__tabs-head">
             <ul>
