@@ -1146,6 +1146,11 @@ const router = [
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/popover/direction.md')
   },
   {
+    path: 'multi-select',
+    meta: { title: 'multi-select 选择器', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/multi-select/basic-usage.md')
+  },
+  {
     path: 'user-head',
     meta: { title: '其他组件-UserHead 用户头像', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-user-head' */ './docs/zh-CN/user-head/basic-usage.md')
