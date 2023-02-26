@@ -154,8 +154,8 @@ const dependencies = {
   axios: 'node_modules/axios/dist/axios.min.js',
   'axios-mock-adapter': 'node_modules/axios-mock-adapter/dist/axios-mock-adapter.min.js',
   '@vue/composition-api': 'node_modules/@vue/composition-api/dist/vue-composition-api.prod.js',
-  '@huawei/core': 'node_modules/@huawei/core/dist/aurora.min.js',
-  '@huawei/service': 'node_modules/@huawei/service/dist/aurora.service.min.js',
+  '@opentiny/core': 'node_modules/@opentiny/core/dist/aurora.min.js',
+  '@opentiny/service': 'node_modules/@opentiny/service/dist/aurora.service.min.js',
   cropperjs: 'node_modules/cropperjs/dist/cropper.min.js',
   vue3: 'example/node_modules/vue/dist/vue.global.prod.js',
   'vue3-i18n': 'example/node_modules/vue-i18n/dist/vue-i18n.global.js'
@@ -169,8 +169,8 @@ const runtimeDeps = {
     'axios-mock-adapter': 'lib/axios-mock-adapter.min.js' + getVersion('axios-mock-adapter')
   },
   aurora: {
-    '@huawei/core': 'lib/aurora.min.js' + getVersion('@huawei/core'),
-    '@huawei/service': 'lib/aurora.service.min.js' + getVersion('@huawei/service')
+    '@opentiny/core': 'lib/aurora.min.js' + getVersion('@opentiny/core'),
+    '@opentiny/service': 'lib/aurora.service.min.js' + getVersion('@opentiny/service')
   },
   tiny3Lib: {
     '@vue/composition-api': 'lib/vue-composition-api.prod.js' + getVersion('@vue/composition-api'),
@@ -265,7 +265,7 @@ const getFullRuntime = (name) => {
  * 提取 @opentiny/vue-renderless 中的公共代码，打成独立包（避免组件运行不正常）
  */
 const getRenderlessExports = () => {
-  const RENDERLESS_PATH = pathJoin('..', 'node_modules', '@huawei', 'renderless', 'common', 'runtime.js')
+  const RENDERLESS_PATH = pathJoin('..', 'node_modules', '@opentiny', 'renderless', 'common', 'runtime.js')
 
   let EXTERNAL_RENDERLESS = []
 
