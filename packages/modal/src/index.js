@@ -13,12 +13,10 @@ import { $props, $prefix, $setup } from '@opentiny/vue-common'
 import PCTemplate from './pc'
 import MobileTemplate from './mobile'
 
-let TinyMode = null
 const template = (mode) => {
-  const MODE = TinyMode || process.env.TINY_MODE || mode
-  if (MODE === 'pc') return PCTemplate
-  else if (MODE === 'mobile') return MobileTemplate
-  else return PCTemplate
+  if (process.env.TINY_MODE === 'pc') return PCTemplate
+  else if (process.env.TINY_MODE === 'mobile') return MobileTemplate
+  else return mode === 'mobile' ? MobileTemplate : PCTemplate
 }
 
 const $constants = {
@@ -89,7 +87,6 @@ export default {
     mode: null
   },
   setup(props, context) {
-    TinyMode = props.mode
     return $setup({ props, context, template })
   }
 }

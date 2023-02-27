@@ -15,7 +15,7 @@ export default {
         message: '不锁住滚动条不要遮罩层',
         lockScroll: false,
         mask: false,
-        mode: 'mobile'
+        tiny_mode: 'mobile'
       })
     }
   }

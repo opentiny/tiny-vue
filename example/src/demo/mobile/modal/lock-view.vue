@@ -15,7 +15,7 @@ export default {
         message: '不锁界面不要遮罩层',
         lockView: false,
         mask: false,
-        mode: 'mobile'
+        tiny_mode: 'mobile'
       })
     }
   }

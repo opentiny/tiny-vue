@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     confirmClick() {
-      Modal.message({ message: '点击确定按钮时触发事件', mode: 'mobile' })
+      Modal.message({ message: '点击确定按钮时触发事件', tiny_mode: 'mobile' })
     }
   }
 }

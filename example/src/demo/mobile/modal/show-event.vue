@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     showClick() {
-      Modal.message({ message: '在窗口显示时触发事件', mode: 'mobile' })
+      Modal.message({ message: '在窗口显示时触发事件', tiny_mode: 'mobile' })
     }
   }
 }

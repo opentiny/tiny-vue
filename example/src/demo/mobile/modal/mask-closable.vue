@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     btnClick() {
-      Modal.alert({ message: '点击遮罩层可以关闭', maskClosable: true, mode: 'mobile' })
+      Modal.alert({ message: '点击遮罩层可以关闭', maskClosable: true, tiny_mode: 'mobile' })
     }
   }
 }

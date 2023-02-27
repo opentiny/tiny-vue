@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     btnClick() {
-      Modal.alert({ message: '最大化显示', fullscreen: true, mode: 'mobile' })
+      Modal.alert({ message: '最大化显示', fullscreen: true, tiny_mode: 'mobile' })
     }
   }
 }

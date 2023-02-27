@@ -17,20 +17,20 @@ export default {
   },
   methods: {
     baseClick1() {
-      Modal.alert({ message: '单行居中对齐，多行居左对齐', showHeader: false, mode: 'mobile' })
+      Modal.alert({ message: '单行居中对齐，多行居左对齐', showHeader: false, tiny_mode: 'mobile' })
     },
     baseClick2() {
-      Modal.alert({ message: '单行居中对齐，多行居左对齐', title: '标题', mode: 'mobile' })
+      Modal.alert({ message: '单行居中对齐，多行居左对齐', title: '标题', tiny_mode: 'mobile' })
     },
     baseClick3() {
       Modal.alert({
         message: '单行居中对齐，多行居左对齐,单行居中对齐，多行居左对齐单行居中对齐，多行居左对齐单行居中对齐，多行居左对齐',
         title: '标题',
-        mode: 'mobile'
+        tiny_mode: 'mobile'
       })
     },
     baseClick4() {
-      Modal.confirm({ message: '您确定要删除吗？', mode: 'mobile' }).then((res) => {
+      Modal.confirm({ message: '您确定要删除吗？', tiny_mode: 'mobile' }).then((res) => {
         Notify({
           type: 'info',
           title: '触发回调事件',
@@ -39,7 +39,7 @@ export default {
       })
     },
     baseClick5() {
-      Modal.confirm({ message: '您确定要删除吗？', showHeader: false, mode: 'mobile' }).then((res) => {
+      Modal.confirm({ message: '您确定要删除吗？', showHeader: false, tiny_mode: 'mobile' }).then((res) => {
         Notify({
           type: 'info',
           title: '触发回调事件',

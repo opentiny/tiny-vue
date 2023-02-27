@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     zoomClick() {
-      Modal.message({ message: '窗口缩放时触发事件', mode: 'mobile' })
+      Modal.message({ message: '窗口缩放时触发事件', tiny_mode: 'mobile' })
     }
   }
 }

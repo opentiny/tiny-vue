@@ -15,7 +15,7 @@ export default {
         message: '提示框拖动最小宽度为700',
         resize: true,
         minWidth: 700,
-        mode: 'mobile'
+        tiny_mode: 'mobile'
       })
     }
   }

@@ -15,14 +15,14 @@ export default {
   },
   methods: {
     baseClick() {
-      Modal.message({ message: '默认3000ms后自动关闭提示框', mode: 'mobile' })
+      Modal.message({ message: '默认3000ms后自动关闭提示框', tiny_mode: 'mobile' })
     },
     successClick() {
       Modal.message({
         message: '500ms后自动关闭提示框',
         status: 'success',
         duration: '500',
-        mode: 'mobile'
+        tiny_mode: 'mobile'
       })
     },
     errorClick() {
@@ -30,7 +30,7 @@ export default {
         message: '5000ms后自动关闭提示框',
         status: 'error',
         duration: '5000',
-        mode: 'mobile'
+        tiny_mode: 'mobile'
       })
     }
   }

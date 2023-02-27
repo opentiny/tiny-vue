@@ -15,13 +15,13 @@ export default {
   },
   methods: {
     alertClick() {
-      Modal.alert({ message: 'alert 弹框', title: '弹框', mode: 'mobile' })
+      Modal.alert({ message: 'alert 弹框', title: '弹框', tiny_mode: 'mobile' })
     },
     messageClick() {
-      Modal.message({ message: 'message 提示框', title: '弹框', mode: 'mobile' })
+      Modal.message({ message: 'message 提示框', title: '弹框', tiny_mode: 'mobile' })
     },
     confirmClick() {
-      Modal.confirm({ message: '您确定要删除吗？', title: '确定框', mode: 'mobile' }).then((res) => {
+      Modal.confirm({ message: '您确定要删除吗？', title: '确定框', tiny_mode: 'mobile' }).then((res) => {
         Notify({
           type: 'info',
           title: '触发回调事件',

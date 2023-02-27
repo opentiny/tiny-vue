@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     btnClick() {
-      Modal.alert({ message: '自定义标题', title: '自定义标题', mode: 'mobile' })
+      Modal.alert({ message: '自定义标题', title: '自定义标题', tiny_mode: 'mobile' })
     }
   }
 }

@@ -16,7 +16,7 @@ export default {
         resize: true,
         height: 188,
         width: 366,
-        mode: 'mobile'
+        tiny_mode: 'mobile'
       })
     }
   }

@@ -17,19 +17,19 @@ export default {
   },
   methods: {
     baseClick() {
-      Modal.message({ message: '基本提示图标', status: 'info', mode: 'mobile' })
+      Modal.message({ message: '基本提示图标', status: 'info', tiny_mode: 'mobile' })
     },
     successClick() {
-      Modal.message({ message: '成功提示图标', status: 'success', mode: 'mobile' })
+      Modal.message({ message: '成功提示图标', status: 'success', tiny_mode: 'mobile' })
     },
     warningClick() {
-      Modal.message({ message: '警告提示图标', status: 'warning', mode: 'mobile' })
+      Modal.message({ message: '警告提示图标', status: 'warning', tiny_mode: 'mobile' })
     },
     errorClick() {
-      Modal.message({ message: '错误提示图标', status: 'error', mode: 'mobile' })
+      Modal.message({ message: '错误提示图标', status: 'error', tiny_mode: 'mobile' })
     },
     loadingClick() {
-      Modal.message({ message: '加载提示图标', status: 'loading', mode: 'mobile' })
+      Modal.message({ message: '加载提示图标', status: 'loading', tiny_mode: 'mobile' })
     }
   }
 }

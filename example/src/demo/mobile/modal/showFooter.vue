@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     btnClick() {
-      Modal.alert({ message: '不显示底部', showFooter: false, mode: 'mobile' })
+      Modal.alert({ message: '不显示底部', showFooter: false, tiny_mode: 'mobile' })
     }
   }
 }

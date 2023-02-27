@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     btnClick() {
-      Modal.alert({ message: '自定义提示框的内容', mode: 'mobile' })
+      Modal.alert({ message: '自定义提示框的内容', tiny_mode: 'mobile' })
     }
   }
 }

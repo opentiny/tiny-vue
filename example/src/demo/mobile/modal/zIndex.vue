@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     btnClick() {
-      Modal.alert({ message: 'zIndex的值为500', zIndex: 500, mode: 'mobile' })
+      Modal.alert({ message: 'zIndex的值为500', zIndex: 500, tiny_mode: 'mobile' })
     }
   }
 }

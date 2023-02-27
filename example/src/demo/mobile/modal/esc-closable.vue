@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     btnClick() {
-      Modal.alert({ message: '按 Esc 键可以关闭', escClosable: true, mode: 'mobile' })
+      Modal.alert({ message: '按 Esc 键可以关闭', escClosable: true, tiny_mode: 'mobile' })
     }
   }
 }
