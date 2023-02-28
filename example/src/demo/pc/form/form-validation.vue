@@ -22,6 +22,12 @@
       <tiny-form-item label="级联选择器" prop="cascader">
         <tiny-cascader v-model="createData.cascader" :options="options2" :popper-append-to-body="true" filterable></tiny-cascader>
       </tiny-form-item>
+      <tiny-form-item label="Numeric字段" prop="num1">
+        <tiny-numeric v-model="createData.num1"></tiny-numeric>
+      </tiny-form-item>
+      <tiny-form-item label="IP字段" prop="ip">
+        <tiny-ip-address v-model="createData.ip"></tiny-ip-address>
+      </tiny-form-item>
       <tiny-form-item>
         <tiny-button type="primary" @click="handleSubmit('ruleForm')">提交</tiny-button>
       </tiny-form-item>
@@ -30,7 +36,7 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, DatePicker, Button, Modal, RadioGroup, Cascader } from '@opentiny/vue'
+import { Form, FormItem, Input, DatePicker, Button, Modal, RadioGroup, Cascader, Numeric, IpAddress } from '@opentiny/vue'
 import { iconWarning } from '@opentiny/vue-icon'
 
 export default {
@@ -41,7 +47,9 @@ export default {
     TinyDatePicker: DatePicker,
     TinyButton: Button,
     TinyRadioGroup: RadioGroup,
-    TinyCascader: Cascader
+    TinyCascader: Cascader,
+    TinyNumeric: Numeric,
+    TinyIpAddress: IpAddress
   },
   data() {
     return {
@@ -73,6 +81,8 @@ export default {
         email: '',
         datepicker: '',
         textarea: '',
+        ip: '',
+        num1: 0,
         cascader: [] // 注意:级联选择器放在表单中校验时，默认值必须是数组
       },
       rules: {
@@ -84,7 +94,9 @@ export default {
         datepicker: { type: 'date' },
         url: { type: 'url' },
         email: { type: 'email' },
-        cascader: [{ required: true, message: '必填', trigger: 'blur' }]
+        cascader: [{ required: true, message: '必填', trigger: 'blur' }],
+        ip: [{ validator: (rule, value, cb) => (value == '1.1.1.1' ? cb() : cb(new Error('必填1.1.1.1'))), trigger: 'change' }],
+        num1: [{ type: 'number', min: 2, max: 11, message: '必填 2~11 之间的数字', trigger: 'change' }]
       }
     }
   },

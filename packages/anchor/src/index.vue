@@ -27,7 +27,7 @@ export default {
             <div class={`${anchorClass}-link`} key={item.key}>
               <a
                 href={item.link}
-                class={[anchorClass + '-link-title', currentLink === item.link && `${anchorClass}-link-title--active`]}
+                class={[`${anchorClass}-link-title`, currentLink === item.link && `${anchorClass}-link-title--active`]}
                 title={item.title}
                 onClick={(e) => linkClick(e, item)}
               >
