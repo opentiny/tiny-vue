@@ -67,7 +67,7 @@ export default {
     marginSize: { type: [Number, String], default: 10 },
     mask: { type: Boolean, default: () => true },
     maskClosable: Boolean,
-    message: [String, Function],
+    message: [String, Function, Object],
     minHeight: { type: [Number, String], default: () => 200 },
     minWidth: { type: [Number, String], default: () => 340 },
     modelValue: Boolean,
