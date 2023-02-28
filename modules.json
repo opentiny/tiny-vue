@@ -25,6 +25,11 @@
     "type": "component",
     "exclude": false
   },
+  "Anchor": {
+    "path": "packages/anchor/index.js",
+    "type": "component",
+    "exclude": false
+  },
   "Area": {
     "path": "packages/area/index.js",
     "type": "component",
