@@ -27,6 +27,7 @@ const template = (mode) => {
 export default {
   name: $prefix + 'CheckboxGroup',
   componentName: 'CheckboxGroup',
+  emits: ['change'],
   props: {
     ...$props,
     _constants: {
