@@ -63,8 +63,7 @@ components.forEach((item) => {
 
 exports.aliasList = aliasList
 
-exports.external = (deps) =>
-  external.includes(deps) || /^@huawei[\\/](tiny-vue-renderless|tiny-vue-theme|tiny-vue-common|tiny-vue-icon)|echarts|cropperjs|quill/.test(deps)
+exports.external = (deps) => external.includes(deps) || /^@opentiny[\\/](vue-renderless|vue-theme|vue-common|vue-icon)|echarts|cropperjs|quill/.test(deps)
 
 exports.globals = globals
 
