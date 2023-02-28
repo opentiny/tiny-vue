@@ -10,7 +10,14 @@
  *
  -->
 <template>
-  <div :class="['tiny-mobile-search', { collapse: state.collapse }, { focus: state.focus || (!state.focus && state.currentValue) }]">
+  <div
+    :class="[
+      'tiny-mobile-search',
+      `tiny-mobile-search-${themeType}`,
+      { collapse: state.collapse },
+      { focus: state.focus || (!state.focus && state.currentValue) }
+    ]"
+  >
     <div :class="['tiny-mobile-search__line']">
       <div class="tiny-mobile-search__box">
         <div class="tiny-mobile-search__input-btn">
@@ -31,25 +38,28 @@
           "
           :placeholder="placeholder"
           type="text"
-          class="tiny-mobile-search__input"
+          :class="['tiny-mobile-search__input', `tiny-mobile-search__input-${themeType}`]"
+          @keyup.enter="searchEnterKey"
+          @change="handleChange"
           @input="handleInput"
-          @change="handleInput"
           @focus="state.focus = true"
           @blur="state.focus = false"
+          @select.stop
         />
         <span class="tiny-mobile-search__close-icon" v-show="state.currentValue">
           <icon-operationfaild @click="clear" />
         </span>
       </div>
       <label class="tiny-mobile-search__label">
-        <a class="tiny-mobile-search__icon-label">
-          <icon-search />
-        </a>
         <span>{{ placeholder }}</span>
       </label>
     </div>
-    <div v-show="state.focus || (!state.focus && state.currentValue)" class="tiny-mobile-search__present" @click="searchClick">
-      <span class="tiny-mobile-search__text">{{ buttonText }}</span>
+    <div class="tiny-mobile-search__right">
+      <slot>
+        <div class="tiny-mobile-search__present" @click="searchClick">
+          <span class="tiny-mobile-search__text">{{ buttonText }}</span>
+        </div>
+      </slot>
     </div>
   </div>
 </template>
@@ -61,11 +71,12 @@ import { iconSearch, iconOperationfaild } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme-mobile/search/index.css'
 
 export default {
-  props: [...props, 'transparent', 'searchTypes', 'placeholder', 'buttonText', 'modelValue'],
+  props: [...props, 'transparent', 'searchTypes', 'placeholder', 'buttonText', 'modelValue', 'themeType'],
   components: {
     IconSearch: iconSearch(),
     IconOperationfaild: iconOperationfaild()
   },
+  emits: ['change', 'search', 'update:modelValue', 'clear', 'select'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
