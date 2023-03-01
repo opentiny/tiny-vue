@@ -12,7 +12,7 @@ const publish = () => {
     const stat = fs.statSync(childPath)
 
     if (stat.isDirectory()) {
-      const cmd = `npm publish ./dist/${item}`
+      const cmd = `npm publish ./dist/${item} --access public`
       try {
         execSync(cmd, { cwd: ROOTPATH })
       } catch (error) {
@@ -24,7 +24,7 @@ const publish = () => {
           const chartChildPath = path.join(childPath, value)
           const chartStat = fs.statSync(chartChildPath)
           if (value.includes('-') && chartStat.isDirectory()) {
-            const cmd = `npm publish ./dist/chart/${value}`
+            const cmd = `npm publish ./dist/chart/${value} --access public`
             try {
               execSync(cmd, { cwd: ROOTPATH })
             } catch (error) {
