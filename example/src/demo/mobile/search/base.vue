@@ -4,20 +4,23 @@
       <h2>SearchBar</h2>
       <div>搜索栏</div>
     </div>
-    <tiny-search placeholder="搜索" @change="handleChange" default-value="mmmm"></tiny-search>
+    <div class="title">primary</div>
+    <tiny-search v-model="value" @search="handleSearch"></tiny-search>
     <div :class="[{ 'is-show': value }, 'searchbar-result']">
-      <tiny-list v-for="item of dataList" :key="item.id" :content="item.content"></tiny-list>
+      {{ value }}
     </div>
+
+    <div class="title">gray</div>
+    <tiny-search placeholder="搜索placeholder" themeType="gray" @search="handleSearch"></tiny-search>
   </div>
 </template>
 
 <script>
-import { Search, List } from '@opentiny/vue'
+import { Search } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySearch: Search,
-    TinyList: List
+    TinySearch: Search
   },
   data() {
     return {
@@ -45,6 +48,9 @@ export default {
   methods: {
     handleChange(obj, val) {
       this.value = val
+    },
+    handleSearch(obj, val) {
+      alert(val)
     }
   }
 }
@@ -63,5 +69,10 @@ export default {
 }
 .searchbar-result.is-show {
   display: block;
+}
+
+.title {
+  font-size: 20px;
+  margin: 20px 0;
 }
 </style>

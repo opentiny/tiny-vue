@@ -72,6 +72,14 @@ export default {
     isEnterSearch: {
       type: Boolean,
       default: false
+    },
+    /**
+     * 配置主题色，primary:蓝 gray:灰
+     */
+    themeType: {
+      type: String,
+      default: 'primary',
+      validator: (value) => ['primary', 'gray'].includes(value)
     }
   },
   setup(props, context) {
