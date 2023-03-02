@@ -1,16 +1,18 @@
 <template>
   <tiny-row>
     <tiny-col :span="10">
-      <div id="basic-usage" style="height: 100vh; background: rgba(125, 0, 0, 0.1)">Basic Usage</div>
-      <div id="set-container" style="height: 100vh; background: rgba(0, 125, 0, 0.1)">Set Container</div>
-      <div id="event" style="background: rgba(0, 0, 125, 0.1)">
-        Event
-        <div id="on-change" style="height: 100vh; background: rgba(0, 0, 125, 0.2)">On Change</div>
-        <div id="link-click" style="height: 100vh; background: rgba(0, 0, 125, 0.3)">Link Click</div>
+      <div id="container" style="height: 30vh; border: 2px solid #333; overflow: auto">
+        <div id="basic-usage" style="height: 100vh; background: rgba(125, 0, 0, 0.1)">Basic Usage</div>
+        <div id="set-container" style="height: 100vh; background: rgba(0, 125, 0, 0.1)">Set Container</div>
+        <div id="event" style="background: rgba(0, 0, 125, 0.1)">
+          Event
+          <div id="on-change" style="height: 100vh; background: rgba(0, 0, 125, 0.2)">On Change</div>
+          <div id="link-click" style="height: 100vh; background: rgba(0, 0, 125, 0.3)">Link Click</div>
+        </div>
       </div>
     </tiny-col>
     <tiny-col :span="2">
-      <tiny-anchor :links="links"></tiny-anchor>
+      <tiny-anchor :links="links" containerId="#container" @link-click="handleClick" mark-class="is-active-content"></tiny-anchor>
     </tiny-col>
   </tiny-row>
 </template>
@@ -55,6 +57,18 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    handleClick(e, link) {
+      e.preventDefault()
+      console.log('link', link)
+    }
   }
 }
 </script>
+
+<style>
+.is-active-content {
+  border: 1px solid red;
+}
+</style>
