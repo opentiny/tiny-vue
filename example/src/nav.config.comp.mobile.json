@@ -1060,6 +1060,11 @@
           ]
         },
         {
+          "path": "/multi-select",
+          "name": " MultiSelect 下拉选择器",
+          "children": []
+        },
+        {
           "path": "/mini-picker",
           "name": " MiniPicker 选择器",
           "children": [
