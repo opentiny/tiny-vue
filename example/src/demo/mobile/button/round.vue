@@ -6,6 +6,7 @@
     <tiny-button type="info" round>信息按钮</tiny-button>
     <tiny-button type="warning" round>警告按钮</tiny-button>
     <tiny-button type="danger" round>危险按钮</tiny-button>
+    <tiny-button type="secondary" round>次要按钮</tiny-button>
   </div>
 </template>
 
@@ -26,7 +27,7 @@ export default {
 .button-wrap {
   padding: 0 10px;
 }
-.button-wrap .tiny-mobile-button:not(:nth-child(3n)) {
+.button-wrap .tiny-mobile-button {
   margin-right: 16px;
   margin-bottom: 16px;
 }
