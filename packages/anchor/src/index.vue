@@ -8,8 +8,17 @@ export default {
     links: {
       type: Array,
       default: () => []
+    },
+    containerId: {
+      type: String,
+      default: ''
+    },
+    markClass: {
+      type: String,
+      default: ''
     }
   },
+  emits: ['linkClick'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   },
