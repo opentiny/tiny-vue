@@ -127,6 +127,11 @@ const routers = [
     component: () => import(/* webpackChunkName: 'v3-anchor' */ './docs/zh-CN/anchor/set-container.md')
   },
   {
+    path: 'anchor/on-change',
+    meta: { title: '导航组件-anchor 锚点-onChange事件', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-anchor' */ './docs/zh-CN/anchor/on-change.md')
+  },
+  {
     path: 'breadcrumb',
     meta: { title: '导航组件-Breadcrumb 面包屑', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-breadcrumb' */ './docs/zh-CN/breadcrumb/normal-item.md')

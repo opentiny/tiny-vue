@@ -10,7 +10,7 @@
       </div>
     </tiny-col>
     <tiny-col :span="2">
-      <tiny-anchor :links="links"></tiny-anchor>
+      <tiny-anchor :links="links" @on-change="handleChange"></tiny-anchor>
     </tiny-col>
   </tiny-row>
 </template>
@@ -54,6 +54,11 @@ export default {
           ]
         }
       ]
+    }
+  },
+  methods: {
+    handleChange(link) {
+      console.log('change', link)
     }
   }
 }
