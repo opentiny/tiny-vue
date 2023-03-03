@@ -10,7 +10,7 @@
  *
  -->
 <script>
-import { $prefix, setup, h } from '@opentiny/vue-common'
+import { props, setup, h } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/modal/vue'
 import Button from '@opentiny/vue-button'
 import {
@@ -24,71 +24,41 @@ import {
   iconFullscreenLeft,
   iconMinscreenLeft
 } from '@opentiny/vue-icon'
-
-const $constants = {
-  MODAL_STATUS: {
-    INFO: 'info',
-    SUCCESS: 'success',
-    WARNING: 'warning',
-    ERROR: 'error',
-    LOADING: 'loading'
-  },
-  NODAL_TYPE: {
-    ALERT: 'alert',
-    CONFIRM: 'confirm',
-    MESSAGE: 'message'
-  },
-  STATUS_MAPPING_CLASSS: {
-    INFO: 'tiny-modal-svg__info',
-    SUCCESS: 'tiny-modal-svg__success',
-    WARNING: 'tiny-modal-svg__warning',
-    ERROR: 'tiny-modal-svg__error',
-    LOADING: 'tiny-modal-svg__refresh roll'
-  }
-}
+import '@opentiny/vue-theme/modal/index.css'
 
 export default {
-  name: $prefix + 'Modal',
-  props: {
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    animat: { type: Boolean, default: () => true },
-    beforeClose: Function,
-    duration: { type: [Number, String], default: () => 3000 },
-    escClosable: Boolean,
-    events: Object,
-    fullscreen: Boolean,
-    height: [Number, String],
-    id: String,
-    isFormReset: {
-      type: Boolean,
-      default: true
-    },
-    lockScroll: Boolean,
-    lockView: { type: Boolean, default: () => true },
-    marginSize: { type: [Number, String], default: 10 },
-    mask: { type: Boolean, default: () => true },
-    maskClosable: Boolean,
-    message: [String, Function],
-    minHeight: { type: [Number, String], default: () => 200 },
-    minWidth: { type: [Number, String], default: () => 340 },
-    modelValue: Boolean,
-    resize: Boolean,
-    showFooter: Boolean,
-    showHeader: { type: Boolean, default: true },
-    status: {
-      type: [String, Object],
-      default: ''
-    },
-    title: String,
-    top: { type: [Number, String], default: 15 },
-    type: { type: String, default: 'alert' },
-    vSize: String,
-    width: [Number, String],
-    zIndex: [Number, String]
-  },
+  props: [
+    ...props,
+    '_constants',
+    'animat',
+    'beforeClose',
+    'duration',
+    'escClosable',
+    'events',
+    'fullscreen',
+    'height',
+    'id',
+    'isFormReset',
+    'lockScroll',
+    'lockView',
+    'marginSize',
+    'mask',
+    'maskClosable',
+    'message',
+    'minHeight',
+    'minWidth',
+    'modelValue',
+    'resize',
+    'showFooter',
+    'showHeader',
+    'status',
+    'title',
+    'top',
+    'type',
+    'vSize',
+    'width',
+    'zIndex'
+  ],
   components: {
     Button
   },
@@ -96,7 +66,7 @@ export default {
     return { dialog: this }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   },
   render() {
     let { state, scopedSlots, vSize, type, resize, animat, status, showHeader } = this

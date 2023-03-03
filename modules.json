@@ -839,6 +839,16 @@
     "type": "component",
     "exclude": false
   },
+  "MultiSelect": {
+    "path": "packages/multi-select/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "MultiSelectMobile": {
+    "path": "packages/multi-select/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
   "NavBar": {
     "path": "packages/nav-bar/index.js",
     "type": "component",
@@ -1393,6 +1403,11 @@
   "UserPc": {
     "path": "packages/user/src/pc.vue",
     "type": "template",
+    "exclude": false
+  },
+  "Wheel": {
+    "path": "packages/wheel/index.js",
+    "type": "component",
     "exclude": false
   },
   "Wizard": {

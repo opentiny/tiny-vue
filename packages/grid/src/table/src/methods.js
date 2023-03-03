@@ -758,12 +758,16 @@ const Methods = {
         reassignNotFixed({ centerList, column })
       })
     let visibleColumn = leftList.concat(centerList).concat(rightList)
+
+    // 是否开启x轴方向上的虚拟滚动
     let scrollXLoad = scrollX && scrollX.gt && scrollX.gt < tableFullColumn.length
     let tableColumn = visibleColumn
     Object.assign(columnStore, { leftList, centerList, rightList })
     showGroupFixedError({ isColspan, isGroup, leftStartIndex, rightEndIndex, visibleColumn })
     tableColumn = onScrollXLoad({ _vm: this, scrollX, scrollXLoad, scrollXStore, tableColumn, visibleColumn })
     this.scrollXLoad = scrollXLoad
+
+    // 需要渲染的列数据
     this.tableColumn = tableColumn
     this.visibleColumn = visibleColumn
     return this.$nextTick().then(() => {
@@ -825,10 +829,12 @@ const Methods = {
     if (!bodyElem) {
       return this.computeScrollLoad()
     }
-    this.autoCellWidth(headerElem, bodyElem, footerElem)
+
+    // 虚拟滚动式需要等滚动条加载出来再进行样式调整
     if (refull !== true) {
-      return this.computeScrollLoad()
+      return this.computeScrollLoad().then(() => this.autoCellWidth(headerElem, bodyElem, footerElem))
     }
+
     // 初始化时需要在列计算之后再执行优化运算，达到最优显示效果
     return this.computeScrollLoad().then(() => {
       this.autoCellWidth(headerElem, bodyElem, footerElem)

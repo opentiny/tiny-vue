@@ -11,8 +11,7 @@
  */
 import { createComponent, setupComponent } from '@opentiny/vue-common'
 import { MsgQueue } from '@opentiny/vue-renderless/modal'
-import TINYModal from './src/index.vue'
-import '@opentiny/vue-theme/modal/index.css'
+import TINYModal from './src/index'
 
 TINYModal.version = process.env.COMPONENT_VERSION
 

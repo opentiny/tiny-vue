@@ -1,10 +1,14 @@
 <template>
   <div class="button-wrap">
-    <tiny-button>默认尺寸</tiny-button>
-    <tiny-button type="primary" size="large">large</tiny-button>
-    <tiny-button type="success" size="medium">medium</tiny-button>
-    <tiny-button type="info" size="small">small</tiny-button>
-    <tiny-button type="warning" size="mini">mini</tiny-button>
+    <tiny-button round>默认尺寸</tiny-button>
+    <tiny-button type="primary" size="large" round>large</tiny-button>
+    <tiny-button type="success" size="medium" round>medium</tiny-button>
+    <tiny-button type="info" size="small" round>small</tiny-button>
+    <tiny-button type="warning" size="mini" round>mini</tiny-button>
+    <tiny-button type="primary" size="large" round>大号按钮</tiny-button>
+    <tiny-button type="success" size="medium" round>中号按钮</tiny-button>
+    <tiny-button type="info" size="small" round>小号按钮</tiny-button>
+    <tiny-button type="warning" size="mini" round>mini按钮</tiny-button>
   </div>
 </template>
 
