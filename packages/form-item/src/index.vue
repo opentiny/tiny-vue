@@ -67,13 +67,22 @@ export default {
     validateIcon: {
       type: Object,
       default: null
+    },
+    ellipsis: {
+      type: Boolean,
+      default: false
+    },
+    vertical: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
   },
   render() {
-    const { state, required, slots, label, scopedSlots, showMessage, inlineMessage, validateIcon } = this
+    const { state, required, slots, label, scopedSlots, showMessage, inlineMessage, validateIcon, ellipsis, vertical } = this
+    console.log(vertical, this.refs)
     const isMobile = state.mode === 'mobile'
     const classPrefix = isMobile ? 'tiny-mobile-' : 'tiny-'
     const labelSlot = slots.label ? slots.label() : null
@@ -81,6 +90,7 @@ export default {
     const errorSlot = scopedSlots.error && scopedSlots.error(state.validateMessage)
     const formItemClass = `${classPrefix}form-item--${state.sizeClass ? state.sizeClass : ''}`
     const isShowError = state.validateState === 'error' && showMessage && state.form.showMessage
+    const lineClass = ellipsis ? 'is-ellipsis' : 'is-wordWarp'
 
     const FormContent = defaultSlots
       ? defaultSlots.map((vnode) => {
@@ -146,7 +156,7 @@ export default {
             ) : null
 
             return (
-              <div>
+              <div class="tiny-mobile-input-form_content">
                 {item}
                 {validateMessage}
               </div>
@@ -219,13 +229,15 @@ export default {
                 style: state.labelStyle,
                 attrs: {
                   for: state.labelFor
-                }
+                },
+                refs: 'formItemLabel'
               },
               labelSlot ? labelSlot : label + state.form.labelSuffix
             )
           : null
       ]
     )
+    console.log(LabelContent, LabelContent.el)
 
     return h(
       'div',
@@ -238,6 +250,8 @@ export default {
           'is-success': state.validateState === 'success',
           'is-required': state.isRequired || required,
           'is-no-asterisk': state.formInstance && state.formInstance.hideRequiredAsterisk,
+          // 'is-vertical':vertical,
+          [lineClass]: true,
           [formItemClass]: true
         }
       },
