@@ -1,12 +1,12 @@
 <template>
   <tiny-row>
     <tiny-col :span="10">
-      <div id="basic-usage" style="height: 100vh; background: rgba(125, 0, 0, 0.1)">Basic Usage</div>
-      <div id="set-container" style="height: 100vh; background: rgba(0, 125, 0, 0.1)">Set Container</div>
-      <div id="event" style="background: rgba(0, 0, 125, 0.1)">
+      <div id="basic-usage" class="basic-usage">Basic Usage</div>
+      <div id="set-container" class="set-container">Set Container</div>
+      <div id="event" class="event">
         Event
-        <div id="on-change" style="height: 100vh; background: rgba(0, 0, 125, 0.2)">On Change</div>
-        <div id="link-click" style="height: 100vh; background: rgba(0, 0, 125, 0.3)">Link Click</div>
+        <div id="on-change" class="on-change">On Change</div>
+        <div id="link-click" class="link-click">Link Click</div>
       </div>
     </tiny-col>
     <tiny-col :span="2">
@@ -58,3 +58,25 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.basic-usage {
+  height: 100vh;
+  background: rgba(125, 0, 0, 0.1);
+}
+.set-container {
+  height: 100vh;
+  background: rgba(0, 125, 0, 0.1);
+}
+.event {
+  background: rgba(0, 0, 125, 0.1);
+}
+.on-change {
+  height: 100vh;
+  background: rgba(0, 0, 125, 0.2);
+}
+.link-click {
+  height: 100vh;
+  background: rgba(0, 0, 125, 0.3);
+}
+</style>
