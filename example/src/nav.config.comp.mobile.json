@@ -867,6 +867,92 @@
               "name": "加载不同样式"
             }
           ]
+        },
+        {
+          "path": "/modal",
+          "name": "Modal 反馈弹框",
+          "children": [
+            {
+              "path": "/modal/modal-fullscreen",
+              "name": "最大化显示"
+            },
+            {
+              "path": "/modal/modal-esc-closable",
+              "name": "按 Esc 键关闭窗口"
+            },
+            {
+              "path": "/modal/modal-duration",
+              "name": "自动关闭延时"
+            },
+            {
+              "path": "/modal/modal-id",
+              "name": "防止重复提示"
+            },
+            {
+              "path": "/modal/modal-lock-scroll",
+              "name": "锁住滚动条"
+            },
+            {
+              "path": "/modal/modal-lock-view",
+              "name": "锁住页面"
+            },
+            {
+              "path": "/modal/modal-mask",
+              "name": "显示遮罩层"
+            },
+            {
+              "path": "/modal/modal-mask-closable",
+              "name": "点击遮罩层关闭窗口"
+            },
+            {
+              "path": "/modal/modal-message",
+              "name": "自定义内容"
+            },
+            {
+              "path": "/modal/modal-resize",
+              "name": "调整窗口大小"
+            },
+            {
+              "path": "/modal/modal-showFooter",
+              "name": "不显示底部"
+            },
+            {
+              "path": "/modal/modal-showHeader",
+              "name": "不显示头部"
+            },
+            {
+              "path": "/modal/modal-title",
+              "name": "标题"
+            },
+            {
+              "path": "/modal/modal-top",
+              "name": "距离顶部的位置"
+            },
+            {
+              "path": "/modal/modal-type",
+              "name": "窗口类型"
+            },
+            {
+              "path": "/modal/modal-value",
+              "name": "绑定值"
+            },
+            {
+              "path": "/modal/modal-zIndex",
+              "name": "自定义堆叠顺序"
+            },
+            {
+              "path": "/modal/modal-is-form-reset",
+              "name": "关闭弹窗是否重置表单数据"
+            },
+            {
+              "path": "/modal/modal-event",
+              "name": "事件"
+            },
+            {
+              "path": "/modal/modal-slots",
+              "name": "插槽"
+            }
+          ]
         }
       ]
     },
@@ -1023,7 +1109,8 @@
               "name": "插槽"
             }
           ]
-        },{
+        },
+        {
           "path": "/mobile-popover",
           "name": " Popover 气泡",
           "children": [

@@ -39,6 +39,20 @@
       "name": "导航组件",
       "children": [
         {
+          "path": "/anchor",
+          "name": "anchor 锚点",
+          "children": [
+            {
+              "path": "/anchor/basic-usage",
+              "name": "基本用法"
+            },
+            {
+              "path": "/anchor/set-container",
+              "name": "滚动容器"
+            }
+          ]
+        },
+        {
           "path": "/breadcrumb",
           "name": "Breadcrumb 面包屑",
           "children": [

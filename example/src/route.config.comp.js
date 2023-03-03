@@ -112,6 +112,21 @@ const routers = [
     component: () => import(/* webpackChunkName: 'v3-crop' */ './docs/zh-CN/crop/crop-events.md')
   },
   {
+    path: 'anchor',
+    meta: { title: '导航组件-anchor 锚点', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-anchor' */ './docs/zh-CN/anchor/basic-usage.md')
+  },
+  {
+    path: 'anchor/basic-usage',
+    meta: { title: '导航组件-anchor 锚点-基本用法', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-anchor' */ './docs/zh-CN/anchor/basic-usage.md')
+  },
+  {
+    path: 'anchor/set-container',
+    meta: { title: '导航组件-anchor 锚点-滚动容器', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-anchor' */ './docs/zh-CN/anchor/set-container.md')
+  },
+  {
     path: 'breadcrumb',
     meta: { title: '导航组件-Breadcrumb 面包屑', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-breadcrumb' */ './docs/zh-CN/breadcrumb/normal-item.md')
