@@ -129,6 +129,7 @@ Notify.close = function (id, userOnClose) {
   }
 
   typeof userOnClose === 'function' && userOnClose(instance)
+  let lastHeight = instance.$el.offsetHeight
   instance.$el.parentNode.removeChild(instance.$el)
   instances.splice(index, 1)
 
@@ -141,7 +142,7 @@ Notify.close = function (id, userOnClose) {
 
   copys.forEach((copy) => {
     if (copy.position === removedPosition) {
-      let height = parseInt(copy.dom.style[instance.state.verticalProperty], 10) - copy.$el.offsetHeight - 16
+      let height = parseInt(copy.dom.style[instance.state.verticalProperty], 10) - lastHeight - 16
       copy.dom.style[instance.state.verticalProperty] = height + 'px'
     }
   })
