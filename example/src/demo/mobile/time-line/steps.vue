@@ -49,10 +49,10 @@ export default {
       timeActive2: 0,
       timeActive3: 0,
       data3: [
-        { name: '已下单', state: 'normal', fold: true },
-        { name: '运输中', state: 'success', fold: false, showFoldBtn: true },
-        { name: '已签收', state: 'error' },
-        { name: '已确认收货', state: 'handing' }
+        { name: '已下单', state: 'normal', fold: true, time: '2019-11-12 14:20:15' },
+        { name: '运输中', state: 'success', fold: false, showFoldBtn: true, time: '2019-11-12 14:20:15' },
+        { name: '已签收', state: 'error', time: '2019-11-12 14:20:15' },
+        { name: '已确认收货', state: 'handing', time: '2019-11-12 14:20:15' }
       ],
       data4: [
         { name: '已下单', state: 'normal', showFoldBtn: true, fold: false },
