@@ -49,6 +49,10 @@
             {
               "path": "/anchor/set-container",
               "name": "滚动容器"
+            },
+            {
+              "path": "/anchor/on-change",
+              "name": "onChange事件"
             }
           ]
         },

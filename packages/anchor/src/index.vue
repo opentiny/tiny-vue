@@ -18,7 +18,7 @@ export default {
       default: ''
     }
   },
-  emits: ['linkClick'],
+  emits: ['linkClick', 'onChange'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   },
