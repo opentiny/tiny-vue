@@ -86,8 +86,8 @@ export default {
     const isMobile = state.mode === 'mobile'
     const classPrefix = isMobile ? 'tiny-mobile-' : 'tiny-'
     const labelSlot = slots.label ? slots.label() : null
-    const errorSlot = scopedSlots.error && scopedSlots.error(state.validateMessage)
     const defaultSlots = slots.default ? slots.default() : null
+    const errorSlot = scopedSlots.error && scopedSlots.error(state.validateMessage)
     const formItemClass = `${classPrefix}form-item--${state.sizeClass ? state.sizeClass : ''}`
     const isShowError = state.validateState === 'error' && showMessage && state.form.showMessage
     const isErrorInline = typeof inlineMessage === 'boolean' ? inlineMessage : (state.formInstance && state.formInstance.inlineMessage) || false
