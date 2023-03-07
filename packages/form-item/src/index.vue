@@ -80,16 +80,17 @@ export default {
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
   },
+  // eslint-disable-next-line complexity
   render() {
     const { state, required, slots, label, scopedSlots, showMessage, inlineMessage, validateIcon, ellipsis, vertical } = this
     const isMobile = state.mode === 'mobile'
     const classPrefix = isMobile ? 'tiny-mobile-' : 'tiny-'
     const labelSlot = slots.label ? slots.label() : null
+    const errorSlot = scopedSlots.error && scopedSlots.error(state.validateMessage)
     const defaultSlots = slots.default ? slots.default() : null
     const formItemClass = `${classPrefix}form-item--${state.sizeClass ? state.sizeClass : ''}`
     const isShowError = state.validateState === 'error' && showMessage && state.form.showMessage
     const isErrorInline = typeof inlineMessage === 'boolean' ? inlineMessage : (state.formInstance && state.formInstance.inlineMessage) || false
-    let errorSlot = scopedSlots.error && scopedSlots.error(state.validateMessage)
     let validateMessage = null
 
     const FormContent = defaultSlots
@@ -193,19 +194,21 @@ export default {
           )
         })
       : null
-    const validateIconContent = null
-    const errorDom = h(
-      'div',
-      {
-        class: {
-          [`${classPrefix}form-item__error`]: true,
-          [`${classPrefix}form-item__error--inline`]: isErrorInline
-        }
-      },
-      [validateIconContent, state.validateMessage]
-    )
-    errorSlot = errorSlot || errorDom
-    const ErrorContent = isShowError && state.getValidateType === 'text' ? errorSlot : null
+    const ErrorContent =
+      isShowError && state.getValidateType === 'text'
+        ? errorSlot
+          ? errorSlot
+          : h(
+              'div',
+              {
+                class: {
+                  [`${classPrefix}form-item__error`]: true,
+                  [`${classPrefix}form-item__error--inline`]: isErrorInline
+                }
+              },
+              [validateIcon ? h(validateIcon, { class: 'validate-icon' }) : null, state.validateMessage]
+            )
+        : null
     const LabelContent = h(
       'label-wrap',
       {
