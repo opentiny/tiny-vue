@@ -82,7 +82,6 @@ export default {
   },
   render() {
     const { state, required, slots, label, scopedSlots, showMessage, inlineMessage, validateIcon, ellipsis, vertical } = this
-    console.log(vertical, this.refs)
     const isMobile = state.mode === 'mobile'
     const classPrefix = isMobile ? 'tiny-mobile-' : 'tiny-'
     const labelSlot = slots.label ? slots.label() : null
@@ -90,7 +89,7 @@ export default {
     const errorSlot = scopedSlots.error && scopedSlots.error(state.validateMessage)
     const formItemClass = `${classPrefix}form-item--${state.sizeClass ? state.sizeClass : ''}`
     const isShowError = state.validateState === 'error' && showMessage && state.form.showMessage
-    const lineClass = ellipsis ? 'is-ellipsis' : 'is-wordWarp'
+    let validateMessage = null
 
     const FormContent = defaultSlots
       ? defaultSlots.map((vnode) => {
@@ -144,26 +143,25 @@ export default {
               popper.style.transform = `translate3d(${x}px, ${parseInt(y, 10)}px, ${z}px)`
             }
           }
-
           if (isMobile) {
             const validatePosition = this.validatePosition || state.formInstance.validatePosition || 'right'
-            const validateMessage = state.validateMessage ? (
+            validateMessage = state.validateMessage ? (
               validatePosition === 'right' ? (
                 <div class="tiny-mobile-input-form__error align-right">{state.validateMessage}</div>
               ) : (
                 <div class="tiny-mobile-input-form__error align-left">{state.validateMessage}</div>
               )
             ) : null
-
-            return (
-              <div class="tiny-mobile-input-form_content">
-                {item}
-                {validateMessage}
-              </div>
+            return h(
+              'div',
+              {
+                class: `${classPrefix}form-item__value`,
+                style: state.valueStyle
+              },
+              [item]
             )
           }
           const validateIconNode = validateIcon ? h(validateIcon, { class: 'tooltip-validate-icon' }) : null
-
           return h(
             'tooltip',
             {
@@ -210,7 +208,6 @@ export default {
               [validateIcon ? h(validateIcon, { class: 'validate-icon' }) : null, state.validateMessage]
             )
         : null
-
     const LabelContent = h(
       'label-wrap',
       {
@@ -225,7 +222,10 @@ export default {
           ? h(
               'label',
               {
-                class: `${classPrefix}form-item__label`,
+                class: {
+                  [`${classPrefix}form-item__label`]: true,
+                  'is-ellipsis': isMobile && ellipsis
+                },
                 style: state.labelStyle,
                 attrs: {
                   for: state.labelFor
@@ -237,8 +237,6 @@ export default {
           : null
       ]
     )
-    console.log(LabelContent, LabelContent.el)
-
     return h(
       'div',
       {
@@ -250,8 +248,6 @@ export default {
           'is-success': state.validateState === 'success',
           'is-required': state.isRequired || required,
           'is-no-asterisk': state.formInstance && state.formInstance.hideRequiredAsterisk,
-          // 'is-vertical':vertical,
-          [lineClass]: true,
           [formItemClass]: true
         }
       },
@@ -265,6 +261,7 @@ export default {
           },
           [
             FormContent,
+            vertical ? validateMessage : null,
             h(
               'transition',
               {
