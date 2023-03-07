@@ -1,10 +1,10 @@
 <template>
   <tiny-time-line :data="data" :active="active" @click="click">
-    <template #top="data">
-      <p style="text-align: center">{{ data.slotScope.name }}</p>
+    <template #top="{ slotScope: { index, name } }">
+      <p style="text-align: center">{{ index }}.{{ name }}</p>
     </template>
-    <template #bottom="data">
-      <p>{{ data.slotScope.time }}</p>
+    <template #bottom="{ slotScope: { time } }">
+      <p>{{ time }}</p>
     </template>
   </tiny-time-line>
 </template>
