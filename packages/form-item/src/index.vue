@@ -86,11 +86,11 @@ export default {
     const classPrefix = isMobile ? 'tiny-mobile-' : 'tiny-'
     const labelSlot = slots.label ? slots.label() : null
     const defaultSlots = slots.default ? slots.default() : null
-    let errorSlot = scopedSlots.error && scopedSlots.error(state.validateMessage)
+    const errorSlot = scopedSlots.error && scopedSlots.error(state.validateMessage)
     const formItemClass = `${classPrefix}form-item--${state.sizeClass ? state.sizeClass : ''}`
     const isShowError = state.validateState === 'error' && showMessage && state.form.showMessage
+    const isErrorInline = typeof inlineMessage === 'boolean' ? inlineMessage : (state.formInstance && state.formInstance.inlineMessage) || false
     let validateMessage = null
-    const errorInline = typeof inlineMessage === 'boolean' ? inlineMessage : (state.formInstance && state.formInstance.inlineMessage) || false
 
     const FormContent = defaultSlots
       ? defaultSlots.map((vnode) => {
@@ -193,19 +193,21 @@ export default {
           )
         })
       : null
-    errorSlot =
-      errorSlot ??
-      h(
-        'div',
-        {
-          class: {
-            [`${classPrefix}form-item__error`]: true,
-            [`${classPrefix}form-item__error--inline`]: errorInline
-          }
-        },
-        [validateIcon ? h(validateIcon, { class: 'validate-icon' }) : null, state.validateMessage]
-      )
-    const ErrorContent = isShowError && state.getValidateType === 'text' ? errorSlot : null
+    const ErrorContent =
+      isShowError && state.getValidateType === 'text'
+        ? errorSlot
+          ? errorSlot
+          : h(
+              'div',
+              {
+                class: {
+                  [`${classPrefix}form-item__error`]: true,
+                  [`${classPrefix}form-item__error--inline`]: isErrorInline
+                }
+              },
+              [validateIcon ? h(validateIcon, { class: 'validate-icon' }) : null, state.validateMessage]
+            )
+        : null
     const LabelContent = h(
       'label-wrap',
       {
