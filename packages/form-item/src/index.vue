@@ -81,7 +81,7 @@ export default {
     return setup({ props, context, renderless, api, mono: true })
   },
   render() {
-    const { state, required, slots, label, scopedSlots, showMessage, validateIcon, ellipsis, vertical } = this
+    const { state, required, slots, label, scopedSlots, showMessage, inlineMessage, validateIcon, ellipsis, vertical } = this
     const isMobile = state.mode === 'mobile'
     const classPrefix = isMobile ? 'tiny-mobile-' : 'tiny-'
     const labelSlot = slots.label ? slots.label() : null
@@ -90,6 +90,7 @@ export default {
     const formItemClass = `${classPrefix}form-item--${state.sizeClass ? state.sizeClass : ''}`
     const isShowError = state.validateState === 'error' && showMessage && state.form.showMessage
     let validateMessage = null
+    const errorInline = typeof inlineMessage === 'boolean' ? inlineMessage : (state.formInstance && state.formInstance.inlineMessage) || false
 
     const FormContent = defaultSlots
       ? defaultSlots.map((vnode) => {
@@ -192,17 +193,18 @@ export default {
           )
         })
       : null
-    // errorSlot = errorSlot ?? h(
-    //             'div',
-    //             {
-    //               class: {
-    //                 [`${classPrefix}form-item__error`]: true,
-    //                 [`${classPrefix}form-item__error--inline`]:
-    //                   typeof inlineMessage === 'boolean' ? inlineMessage : (state.formInstance && state.formInstance.inlineMessage) || false
-    //               }
-    //             },
-    //             [validateIcon ? h(validateIcon, { class: 'validate-icon' }) : null, state.validateMessage]
-    //           )
+    errorSlot =
+      errorSlot ??
+      h(
+        'div',
+        {
+          class: {
+            [`${classPrefix}form-item__error`]: true,
+            [`${classPrefix}form-item__error--inline`]: errorInline
+          }
+        },
+        [validateIcon ? h(validateIcon, { class: 'validate-icon' }) : null, state.validateMessage]
+      )
     const ErrorContent = isShowError && state.getValidateType === 'text' ? errorSlot : null
     const LabelContent = h(
       'label-wrap',
@@ -248,7 +250,6 @@ export default {
         }
       },
       [
-        !isMobile ? LabelContent : null,
         h(
           'div',
           {
