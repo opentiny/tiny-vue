@@ -193,21 +193,7 @@ export default {
           )
         })
       : null
-    const ErrorContent =
-      isShowError && state.getValidateType === 'text'
-        ? errorSlot
-          ? errorSlot
-          : h(
-              'div',
-              {
-                class: {
-                  [`${classPrefix}form-item__error`]: true,
-                  [`${classPrefix}form-item__error--inline`]: isErrorInline
-                }
-              },
-              [validateIcon ? h(validateIcon, { class: 'validate-icon' }) : null, state.validateMessage]
-            )
-        : null
+    const ErrorContent = isShowError && state.getValidateType === 'text' ? (errorSlot ? errorSlot : isErrorInline) : null
     const LabelContent = h(
       'label-wrap',
       {
@@ -229,8 +215,7 @@ export default {
                 style: state.labelStyle,
                 attrs: {
                   for: state.labelFor
-                },
-                refs: 'formItemLabel'
+                }
               },
               labelSlot ? labelSlot : label + state.form.labelSuffix
             )
@@ -252,6 +237,7 @@ export default {
         }
       },
       [
+        !isMobile ? LabelContent : null,
         h(
           'div',
           {
