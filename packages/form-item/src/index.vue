@@ -258,7 +258,7 @@ export default {
           {
             class: {
               [`${classPrefix}form-item__content`]: true,
-              'is-vertical': vertical
+              'is-vertical': isMobile && vertical
             },
             style: state.contentStyle
           },
