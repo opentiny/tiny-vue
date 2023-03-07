@@ -252,16 +252,19 @@ export default {
         }
       },
       [
-        LabelContent,
         h(
           'div',
           {
-            class: `${classPrefix}form-item__content`,
+            class: {
+              [`${classPrefix}form-item__content`]: true,
+              'is-vertical': vertical
+            },
             style: state.contentStyle
           },
           [
+            isMobile ? LabelContent : null,
             FormContent,
-            vertical ? validateMessage : null,
+            isMobile ? validateMessage : null,
             h(
               'transition',
               {
