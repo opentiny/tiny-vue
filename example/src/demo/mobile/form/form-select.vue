@@ -34,25 +34,23 @@
           <tiny-input v-model="createData.user1" is-select :select-menu="menus" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
         <div class="lableTip">辅助文本说明未超3行</div>
-        <tiny-form-item label="标题">
+        <tiny-form-item label="标题" vertical>
           <tiny-input
             v-model="createData.user4"
             is-select
             :select-menu="menus"
             placeholder="请输入内容"
             type="form"
-            vertical
             mobile-tips="辅助文本说明未超过3行"
           ></tiny-input>
         </tiny-form-item>
-        <tiny-form-item label="标题">
+        <tiny-form-item label="标题" vertical>
           <tiny-input
             v-model="createData.user3"
             is-select
             :select-menu="menus"
             placeholder="请输入内容"
             type="form"
-            vertical
             mobile-tips="辅助文本说明超过3行辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明"
           ></tiny-input>
         </tiny-form-item>
@@ -60,28 +58,26 @@
     </div>
     <div class="demo-form-select-padds">
       <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-position="top">
-        <tiny-form-item label="标题">
-          <tiny-input v-model="createData.user2" is-select :select-menu="menus" placeholder="请输入内容" type="form" vertical></tiny-input>
+        <tiny-form-item label="标题" vertical>
+          <tiny-input v-model="createData.user2" is-select :select-menu="menus" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
-        <tiny-form-item label="标题">
+        <tiny-form-item label="标题" vertical>
           <tiny-input
             v-model="createData.user4"
             is-select
             :select-menu="menus"
             placeholder="请输入内容"
             type="form"
-            vertical
             mobile-tips="辅助文本说明未超过3行"
           ></tiny-input>
         </tiny-form-item>
-        <tiny-form-item label="标题">
+        <tiny-form-item label="标题" vertical>
           <tiny-input
             v-model="createData.user3"
             is-select
             :select-menu="menus"
             placeholder="请输入内容"
             type="form"
-            vertical
             mobile-tips="辅助文本说明超过3行辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明"
           ></tiny-input>
         </tiny-form-item>
