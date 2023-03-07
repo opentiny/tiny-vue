@@ -86,10 +86,10 @@ export default {
     const classPrefix = isMobile ? 'tiny-mobile-' : 'tiny-'
     const labelSlot = slots.label ? slots.label() : null
     const defaultSlots = slots.default ? slots.default() : null
-    const errorSlot = scopedSlots.error && scopedSlots.error(state.validateMessage)
     const formItemClass = `${classPrefix}form-item--${state.sizeClass ? state.sizeClass : ''}`
     const isShowError = state.validateState === 'error' && showMessage && state.form.showMessage
     const isErrorInline = typeof inlineMessage === 'boolean' ? inlineMessage : (state.formInstance && state.formInstance.inlineMessage) || false
+    let errorSlot = scopedSlots.error && scopedSlots.error(state.validateMessage)
     let validateMessage = null
 
     const FormContent = defaultSlots
@@ -193,7 +193,15 @@ export default {
           )
         })
       : null
-    const ErrorContent = isShowError && state.getValidateType === 'text' ? (errorSlot ? errorSlot : isErrorInline) : null
+    errorSlot =
+      errorSlot ??
+      h('div', {
+        class: {
+          [`${classPrefix}form-item__error`]: true,
+          [`${classPrefix}form-item__error--inline`]: isErrorInline
+        }
+      })
+    const ErrorContent = isShowError && state.getValidateType === 'text' ? errorSlot : null
     const LabelContent = h(
       'label-wrap',
       {
