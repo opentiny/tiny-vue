@@ -193,14 +193,18 @@ export default {
           )
         })
       : null
-    errorSlot =
-      errorSlot ??
-      h('div', {
+    const validateIconContent = null
+    const errorDom = h(
+      'div',
+      {
         class: {
           [`${classPrefix}form-item__error`]: true,
           [`${classPrefix}form-item__error--inline`]: isErrorInline
         }
-      })
+      },
+      [validateIconContent, state.validateMessage]
+    )
+    errorSlot = errorSlot || errorDom
     const ErrorContent = isShowError && state.getValidateType === 'text' ? errorSlot : null
     const LabelContent = h(
       'label-wrap',
