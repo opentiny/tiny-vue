@@ -40,6 +40,10 @@ export default {
       type: Boolean,
       default: false
     },
+    showText: {
+      type: Boolean,
+      default: false
+    },
     falseColor: String,
     falseValue: {
       type: [String, Number, Boolean],
