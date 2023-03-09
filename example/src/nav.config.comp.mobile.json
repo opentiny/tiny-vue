@@ -106,6 +106,16 @@
               "name": "设置高度"
             }
           ]
+        },
+        {
+          "path": "/index-bar",
+          "name": "IndexBar 索引",
+          "children": [
+            {
+              "path": "/index-bar/event",
+              "name": "事件"
+            }
+          ]
         }
       ]
     },

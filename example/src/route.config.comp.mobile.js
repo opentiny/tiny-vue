@@ -1314,6 +1314,16 @@ const router = [
     path: 'modal/modal-slots',
     meta: { title: '模态框组件-插槽', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-slots.md')
+  },
+  {
+    path: 'index-bar',
+    meta: { title: '索引', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/mobile/index-bar/base.md')
+  },
+  {
+    path: 'index-bar/event',
+    meta: { title: '索引组件-事件', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/mobile/index-bar/event.md')
   }
 ]
 
