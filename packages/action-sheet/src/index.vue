@@ -11,8 +11,12 @@
  -->
 <template>
   <div class="tiny-mobile-action-sheet" v-show="visible" @click="visibleHandle">
-    <div class="tiny-mobile-action-sheet__mask"></div>
-    <div :class="['tiny-mobile-action-sheet__content', state.toggle ? 'is-toggle' : '']">
+    <div class="tiny-mobile-action-sheet__mask" :style="state.sheetMaskStyle" v-if="!isContent"></div>
+    <div
+      :class="['tiny-mobile-action-sheet__content', state.toggle ? 'is-toggle' : '', isContent ? '' : 'is-not-content']"
+      :style="[state.sheetContentStyle]"
+      ref="scrollMenu"
+    >
       <div :class="['tiny-mobile-action-sheet__menu', ellipsis ? 'is-ellipsis' : '']">
         <div
           :class="['tiny-mobile-action-sheet__item', item.warn ? 'is-warn' : '', item.id === modelValue || item.id === state.active ? 'is-active' : '']"
@@ -25,13 +29,13 @@
           </slot>
         </div>
       </div>
-      <div class="tiny-mobile-action-sheet__action">
-        <slot name="action">
-          <div class="tiny-mobile-action-sheet__cancel" @click="visibleHandle">
-            {{ t('ui.actionSheet.cancel') }}
-          </div>
-        </slot>
-      </div>
+    </div>
+    <div class="tiny-mobile-action-sheet__action" v-if="isContent">
+      <slot name="action">
+        <div class="tiny-mobile-action-sheet__cancel" @click="visibleHandle">
+          {{ t('ui.actionSheet.cancel') }}
+        </div>
+      </slot>
     </div>
   </div>
 </template>
@@ -40,6 +44,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/action-sheet/vue'
 import { $prefix, setup } from '@opentiny/vue-common'
 import '@opentiny/vue-theme-mobile/action-sheet/index.css'
+import BScroll from '@better-scroll/core'
 
 export default {
   name: $prefix + 'ActionSheet',
@@ -56,10 +61,18 @@ export default {
     ellipsis: {
       type: Boolean,
       default: false
+    },
+    height: {
+      type: String,
+      default: '200px'
+    },
+    isContent: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api, mono: true, extendOptions: { BScroll } })
   }
 }
 </script>

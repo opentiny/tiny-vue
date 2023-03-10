@@ -1,18 +1,18 @@
 <template>
-  <div class="demo-form-mobile">
+  <div class="demo-form">
     <div class="page__hd">
       <h1 class="page__title">Form</h1>
-      <p class="page__desc">表单（纯展示）</p>
+      <p class="page__desc">表单（校验显示位置）</p>
     </div>
-    <div class="demo-form-mobile-hide-padds">
-      <tiny-form ref="ruleForm" :model="createData" :rules="rules" :hide-required-asterisk="false" :inline="false">
-        <tiny-form-item label="优秀" prop="users" vertical>
+    <div class="demo-form-position-padds">
+      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-width="100px" label-position="left">
+        <tiny-form-item label="你真的好优秀呀！" prop="users" vertical>
           <tiny-input v-model="createData.users" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
-        <tiny-form-item label="优秀" vertical>
-          <tiny-input v-model="createData.user" is-select :select-menu="menus" placeholder="请输入内容" type="form"></tiny-input>
+        <tiny-form-item label="你真的好优秀呀！" prop="users" vertical ellipsis>
+          <tiny-input v-model="createData.user" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
-        <tiny-form-item class="demo-form-mobile-item">
+        <tiny-form-item class="demo-form-item">
           <tiny-button type="primary" @click="handleSubmit('ruleForm')">提交</tiny-button>
         </tiny-form-item>
       </tiny-form>
@@ -36,25 +36,6 @@ export default {
   },
   data() {
     return {
-      menus: [
-        {
-          id: 1,
-          label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
-        },
-        {
-          id: 2,
-          label: '我是小树'
-        },
-        {
-          id: 3,
-          label: '我是小草'
-        },
-        {
-          id: 4,
-          label: '我是小叶',
-          warn: true
-        }
-      ],
       createData: {
         users: '',
         user: ''
@@ -78,11 +59,6 @@ export default {
 </script>
 
 <style scoped>
-.demo-form-mobile-hide-padds {
-  padding: 15px;
-  background: white;
-  margin-bottom: 15px;
-}
 .page__hd {
   padding: 40px;
 }
@@ -91,27 +67,27 @@ export default {
   font-size: 21px;
   text-align: left;
 }
-.page__desc {
-  margin-top: 5px;
-  color: #888;
-  font-size: 14px;
-  text-align: left;
-}
-.demo-form-mobile {
+.demo-form {
   height: 100%;
+  overflow: auto;
+  padding-left: 16px;
+  padding-right: 15px;
   background: #f4f4f4;
 }
+.demo-form-position-padds {
+  padding-right: 15px;
+  background: white;
+  padding-left: 15px;
+  margin-bottom: 15px;
+}
 
-.demo-form-mobile-item {
+.demo-form-item {
   margin-top: 12px;
 }
 </style>
 
 <style>
-.demo-form-mobile .tiny-mobile-form-item__label {
-  background: #fff;
-}
-.demo-form-mobile-hide-padds .tiny-mobile-input-form__input {
+.demo-form-position-padds .tiny-mobile-input-form__input {
   text-align: right;
 }
 </style>

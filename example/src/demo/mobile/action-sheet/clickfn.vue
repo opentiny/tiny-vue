@@ -1,5 +1,8 @@
 <template>
   <div class="tiny-mobile-action-sheet-demo">
+    <div class="page__hd">
+      <p class="page__desc">点击事件获取返回值</p>
+    </div>
     <tiny-button _mode="mobile" @click="fn">cliclk me!</tiny-button>
     <tiny-action-sheet
       _mode="mobile"
@@ -8,6 +11,7 @@
       :visible="boxVisibility"
       @update:visible="boxVisibility = $event"
       @click="clickItem"
+      :isContent="true"
     ></tiny-action-sheet>
   </div>
 </template>
@@ -55,3 +59,14 @@ export default {
   }
 }
 </script>
+<style>
+.page__hd {
+  padding: 40px;
+}
+.page__desc {
+  margin-top: 5px;
+  color: #888;
+  font-size: 14px;
+  text-align: left;
+}
+</style>

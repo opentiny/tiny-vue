@@ -86,14 +86,7 @@
       </div>
     </template>
     <template v-if="type === 'form'">
-      <div
-        class="tiny-mobile-input-form"
-        :class="{ isVertical: vertical }"
-        :style="{
-          flexDirection: vertical ? 'column' : '',
-          alignItems: vertical ? 'flex-start' : 'center'
-        }"
-      >
+      <div class="tiny-mobile-input-form">
         <div v-if="isSelect" class="tiny-mobile-input-form__select" @click="showBox">
           <input
             type="text"
@@ -136,10 +129,6 @@
           @blur="handleBlur"
           @change="handleChange"
           :aria-label="label"
-          :style="{
-            textAlign: vertical ? '' : 'right',
-            padding: vertical ? '0px 16px 0 16px' : ''
-          }"
         />
         <tiny-action-sheet
           v-model="state.sheetvalue"
@@ -210,7 +199,6 @@ export default {
     'selectMenu',
     'labelWidth',
     'mobileTips',
-    'vertical',
     'isSelect',
     'type',
     'label',

@@ -94,16 +94,16 @@
           "name": "TimeLine 时间轴",
           "children": [
             {
-              "path": "/time-line/different-data",
-              "name": "数据映射"
-            },
-            {
               "path": "/time-line/slot",
               "name": "插槽"
             },
             {
               "path": "/time-line/space",
               "name": "设置高度"
+            },
+            {
+              "path": "/time-line/steps",
+              "name": "步骤条"
             }
           ]
         },
@@ -302,6 +302,10 @@
             {
               "path": "/form/validate",
               "name": "表单校验"
+            },
+            {
+              "path": "/form/auto-wordwrap",
+              "name": "自动换行"
             }
           ]
         },

@@ -5,7 +5,14 @@
       <p class="page__desc">弹出式菜单</p>
     </div>
     <tiny-button _mode="mobile" @click="fn" type="primary" size="large">上滑列表</tiny-button>
-    <tiny-action-sheet _mode="mobile" v-model="activeName" :menus="menus" :visible="boxVisibility" @update:visible="boxVisibility = $event"></tiny-action-sheet>
+    <tiny-action-sheet
+      _mode="mobile"
+      v-model="activeName"
+      :menus="menus"
+      :visible="boxVisibility"
+      @update:visible="boxVisibility = $event"
+      :isContent="true"
+    ></tiny-action-sheet>
   </div>
 </template>
 
@@ -38,6 +45,22 @@ export default {
           id: 4,
           label: '我是小叶',
           warn: true
+        },
+        {
+          id: 5,
+          label: '我是小茎'
+        },
+        {
+          id: 6,
+          label: '我是小根'
+        },
+        {
+          id: 7,
+          label: '我是小枝'
+        },
+        {
+          id: 8,
+          label: '我是小木'
         }
       ]
     }

@@ -260,6 +260,11 @@ const router = [
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/form/validate-position.md')
   },
   {
+    path: 'form/auto-wordwrap',
+    meta: { title: 'form 表单', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/form/auto-wordwrap.md')
+  },
+  {
     path: 'badge',
     meta: { title: 'mobileBadge 徽章组件', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/badge/mobilebadge.md')
@@ -766,14 +771,14 @@ const router = [
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/time-line/slot.md')
   },
   {
-    path: 'time-line/different-data',
-    meta: { title: 'mobileTimeLine 时间轴组件 - 数据映射', lang: 'zh-CN' },
-    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/time-line/different-data.md')
-  },
-  {
     path: 'time-line/space',
     meta: { title: 'mobileTimeLine 时间轴组件 - 高度', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/time-line/space.md')
+  },
+  {
+    path: 'time-line/steps',
+    meta: { title: 'mobileTimeLine 时间轴组件 - 步骤条', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/time-line/steps.md')
   },
   {
     path: 'dropdown-menu',
