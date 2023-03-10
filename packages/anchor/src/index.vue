@@ -5,6 +5,10 @@ import { renderless, api } from '@opentiny/vue-renderless/anchor/vue'
 export default {
   name: $prefix + 'Anchor',
   props: {
+    isAffix: {
+      type: Boolean,
+      default: false
+    },
     links: {
       type: Array,
       default: () => []
@@ -24,6 +28,7 @@ export default {
   },
   render() {
     const {
+      isAffix,
       links,
       linkClick,
       state: { currentLink }
@@ -47,8 +52,8 @@ export default {
           ))
         : null
 
-    return (
-      <div class={`${anchorClass}__wrapper`}>
+    return isAffix ? (
+      <div class={`${anchorClass}__affix`} ref="fixRef">
         <div class={anchorClass} ref="anchorRef">
           <div class={`${anchorClass}-link-mask`} ref="maskRef"></div>
           <div class={`${anchorClass}-orbit`}>
@@ -56,6 +61,14 @@ export default {
           </div>
           {links && renderLinks(links)}
         </div>
+      </div>
+    ) : (
+      <div class={anchorClass} ref="anchorRef">
+        <div class={`${anchorClass}-link-mask`} ref="maskRef"></div>
+        <div class={`${anchorClass}-orbit`}>
+          <div class={`${anchorClass}-orbit-skid`} ref="skidRef"></div>
+        </div>
+        {links && renderLinks(links)}
       </div>
     )
   }
