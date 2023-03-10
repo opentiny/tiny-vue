@@ -12,7 +12,7 @@
 <template>
   <div ref="indexBarAnchor" class="tiny-mobile-index-bar-anchor">
     <slot>
-      <div class="tiny-mobile-index-bar-anchor-label">{{ index }}</div>
+      <div class="tiny-mobile-index-bar-anchor__label">{{ index }}</div>
     </slot>
   </div>
 </template>
