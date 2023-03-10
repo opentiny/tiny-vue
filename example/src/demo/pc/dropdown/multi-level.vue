@@ -1,10 +1,6 @@
 <template>
   <div>
     <tiny-dropdown @item-click="itemClick">
-      <span>
-        <span>下拉菜单</span>
-        <icon-chevron-down></icon-chevron-down>
-      </span>
       <template #dropdown>
         <tiny-dropdown-menu :options="options"> </tiny-dropdown-menu>
       </template>
@@ -13,14 +9,13 @@
 </template>
 
 <script>
-import { iconChevronDown, iconStarDisable } from '@opentiny/vue-icon'
+import { iconStarDisable } from '@opentiny/vue-icon'
 import { Dropdown, DropdownMenu, Notify } from '@opentiny/vue'
 
 export default {
   components: {
     TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    IconChevronDown: iconChevronDown()
+    TinyDropdownMenu: DropdownMenu
   },
   data() {
     return {

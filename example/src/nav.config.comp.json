@@ -483,6 +483,10 @@
               "name": "不同尺寸"
             },
             {
+            "path": "/dropdown/title",
+            "name": "自定义文本"
+            },
+            {
               "path": "/dropdown/options",
               "name": "使用配置式"
             },
@@ -493,6 +497,10 @@
             {
               "path": "/dropdown/events",
               "name": "事件"
+            },
+            {
+              "path": "/dropdown/slot-default",
+              "name": "默认插槽"
             }
           ]
         },
