@@ -37,6 +37,7 @@ export default {
       type: String,
       default: () => constants.LOAD_ICON_TEXT
     },
+    _constants: Object
   },
   setup(props, context) {
     return $setup({ props, context, template })
