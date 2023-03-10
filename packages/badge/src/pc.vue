@@ -15,7 +15,7 @@
     <div
       v-if="!hidden && (state.content || state.content === 0 || isDot)"
       class="tiny-badge"
-      :class="[isDot ? 'tiny-badge--default' : '', state.isOverstep ? 'tiny-badge--max' : '', type ? 'tiny-badge--' + type : '']"
+      :class="[isDot ? 'tiny-badge--default' : '', state.isOverstep ? 'tiny-badge--max' : '', type ? 'tiny-badge--' + type : '', badgeClass || '']"
     >
       <slot name="content">
         <a v-if="state.href" :href="state.href" :target="target" rel="noopener noreferrer">{{ state.content }}</a>
@@ -31,7 +31,7 @@ import { props, setup } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/badge/index.css'
 
 export default {
-  props: [...props, 'isDot', 'hidden', 'type', 'max', 'value', 'modelValue', 'href', 'target'],
+  props: [...props, 'isDot', 'hidden', 'type', 'max', 'value', 'modelValue', 'href', 'target', 'badgeClass'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

@@ -3160,6 +3160,10 @@
             {
               "path": "/badge/hidden-badge-while-read-message",
               "name": "消息已读动态隐藏标记"
+            },
+            {
+              "path": "/badge/badge-class",
+              "name": "自定义标记class"
             }
           ]
         },
