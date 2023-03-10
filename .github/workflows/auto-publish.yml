@@ -1,0 +1,42 @@
+name: Auto publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: CheckOut Code
+        uses: actions/checkout@master
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Get package version
+        uses: tyankatsu0105/read-package-version-actions@v1
+        id: package-version
+
+      - name: Run Build Scripts
+        run: |
+          npm i --legacy-peer-deps
+          npm run build
+          npm run release
+
+      - name: Publish
+        run: npm publish opentiny-vue-theme-${{ steps.package-version.outputs.version }}.tgz
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.package-version.outputs.version }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{  secrets.GIT_TOKEN  }}
