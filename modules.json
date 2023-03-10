@@ -1469,5 +1469,15 @@
     "path": "packages/year-table/index.js",
     "type": "component",
     "exclude": false
+  },
+  "IndexBar": {
+    "path": "packages/index-bar/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "IndexBarAnchor": {
+    "path": "packages/index-bar-anchor/index.js",
+    "type": "component",
+    "exclude": false
   }
 }
