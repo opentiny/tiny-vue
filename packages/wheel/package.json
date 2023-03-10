@@ -13,8 +13,8 @@
     "@opentiny/vue-renderless": "~0.1.0",
     "@opentiny/vue-locale": "~0.1.0",
     "@opentiny/vue-icon": "~0.1.0",
-    "@better-scrool/core": "2.5.0",
-    "@better-scrool/wheel": "2.5.0"
+    "@better-scroll/core": "2.5.0",
+    "@better-scroll/wheel": "2.5.0"
   },
   "license": "MIT"
 }

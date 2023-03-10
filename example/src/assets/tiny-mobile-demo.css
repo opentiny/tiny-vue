@@ -89,27 +89,6 @@
 .content .tiny-mobile-exception-demo .tiny-mobile-exception__footer {
   position: absolute;
 }
-.tiny-mobile-action-sheet-demo {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-.tiny-mobile-action-sheet-demo .tiny-mobile-action-sheet {
-  height: 100%;
-  position: relative;
-}
-.tiny-mobile-action-sheet-demo.action-sheet-wrap .tiny-mobile-action-sheet {
-  height: calc(100% - 180px);
-}
-.tiny-mobile-action-sheet-demo.action-sheet-slot .tiny-mobile-action-sheet {
-  height: calc(100% - 195px);
-}
-.tiny-mobile-action-sheet-demo .tiny-mobile-action-sheet__mask,
-.tiny-mobile-action-sheet-demo .tiny-mobile-action-sheet__content {
-  position: absolute;
-  /* height: 100%; */
-  bottom: 45px;
-}
 .tiny-mobile-mini-picker-demo {
   width: 100%;
   height: 100%;

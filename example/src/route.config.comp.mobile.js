@@ -260,6 +260,11 @@ const router = [
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/form/validate-position.md')
   },
   {
+    path: 'form/auto-wordwrap',
+    meta: { title: 'form 表单', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/form/auto-wordwrap.md')
+  },
+  {
     path: 'badge',
     meta: { title: 'mobileBadge 徽章组件', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/badge/mobilebadge.md')

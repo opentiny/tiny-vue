@@ -292,6 +292,10 @@
             {
               "path": "/form/validate",
               "name": "表单校验"
+            },
+            {
+              "path": "/form/auto-wordwrap",
+              "name": "自动换行"
             }
           ]
         },
