@@ -4222,6 +4222,10 @@
             {
               "path": "/tag/tag-events",
               "name": "事件"
+            },
+            {
+              "path": "/tag/before-delete",
+              "name": "删除前的回调"
             }
           ]
         },

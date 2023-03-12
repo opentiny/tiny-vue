@@ -1301,6 +1301,11 @@ export default [
     component: () => import(/* webpackChunkName: 'v3-tag' */ './docs/zh-CN/tag/tag-events.md')
   },
   {
+    path: 'tag/before-delete',
+    meta: { title: '其他组件-Tag 标签-删除前的回调', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-tag' */ './docs/zh-CN/tag/before-delete.md')
+  },
+  {
     path: 'textpopup',
     meta: { title: '其他组件-TextPopup 输入框', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-tag' */ './docs/zh-CN/textpopup/basic-usage.md')
