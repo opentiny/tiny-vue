@@ -5,7 +5,7 @@
       <p class="page__desc">弹出式菜单</p>
     </div>
     <tiny-button @click="fn" type="primary" size="large">上滑列表</tiny-button>
-    <tiny-action-sheet v-model="activeName" ref="action" :menus="menus" :visible="boxVisibility" @update:visible="boxVisibility = $event" :isContent="true">
+    <tiny-action-sheet v-model="activeName" ref="action" :menus="menus" :visible="boxVisibility" @update:visible="boxVisibility = $event">
       <template #action>
         <tiny-button @click="visibleHandle" type="primary" size="large">取消</tiny-button>
       </template>
