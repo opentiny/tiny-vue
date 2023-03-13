@@ -12,7 +12,7 @@
       </div>
     </tiny-col>
     <tiny-col :span="2">
-      <tiny-anchor :links="links" containerId="#container" @linkClick="handleClick" mark-class="is-active-anchor"></tiny-anchor>
+      <tiny-anchor :links="links" container-id="#container" @link-click="handleClick" mark-class="is-active-anchor"></tiny-anchor>
     </tiny-col>
   </tiny-row>
 </template>
@@ -68,9 +68,6 @@ export default {
 </script>
 
 <style scoped>
-.divide {
-  height: 100px;
-}
 .is-active-anchor {
   border: 1px solid red;
 }
