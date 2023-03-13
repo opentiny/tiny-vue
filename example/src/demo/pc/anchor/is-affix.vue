@@ -1,5 +1,7 @@
 <template>
-  <tiny-anchor :links="links" @on-change="handleChange"></tiny-anchor>
+  <div class="wrap">
+    <tiny-anchor :links="links" is-affix></tiny-anchor>
+  </div>
 </template>
 
 <script>
@@ -40,11 +42,12 @@ export default {
         }
       ]
     }
-  },
-  methods: {
-    handleChange(link) {
-      console.log('change', link)
-    }
   }
 }
 </script>
+
+<style scoped>
+.wrap {
+  height: 125px;
+}
+</style>

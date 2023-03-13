@@ -14,7 +14,7 @@
 ### 指定容器内滚动
 
 指定容器 `containerId` 后，可以通过阻止a标签的默认事件，实现单页面`hash`路由模式的页面跳转
-还可以通过`maskClass`属性设置自定义类名，高亮显示滚动的目标元素
+还可以通过`maskClass`属性设置自定义类名，高亮显示滚动的目标元素；通过`linkClick`监听锚点点击事件
 
 <nova-demo-view link="anchor/set-container"></nova-demo-view>
 

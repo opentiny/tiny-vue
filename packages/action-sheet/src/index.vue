@@ -11,9 +11,9 @@
  -->
 <template>
   <div class="tiny-mobile-action-sheet" v-show="visible" @click="visibleHandle">
-    <div class="tiny-mobile-action-sheet__mask" :style="state.sheetMaskStyle" v-if="!isContent"></div>
+    <div class="tiny-mobile-action-sheet__mask" :style="state.sheetMaskStyle" v-if="!contentPosition"></div>
     <div
-      :class="['tiny-mobile-action-sheet__content', state.toggle ? 'is-toggle' : '', isContent ? '' : 'is-not-content']"
+      :class="['tiny-mobile-action-sheet__content', state.toggle ? 'is-toggle' : '', contentPosition ? '' : 'is-not-content']"
       :style="[state.sheetContentStyle]"
       ref="scrollMenu"
     >
@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <div class="tiny-mobile-action-sheet__action" v-if="isContent">
+    <div class="tiny-mobile-action-sheet__action" v-if="contentPosition">
       <slot name="action">
         <div class="tiny-mobile-action-sheet__cancel" @click="visibleHandle">
           {{ t('ui.actionSheet.cancel') }}
@@ -66,7 +66,7 @@ export default {
       type: String,
       default: '200px'
     },
-    isContent: {
+    contentPosition: {
       type: Boolean,
       default: false
     }
