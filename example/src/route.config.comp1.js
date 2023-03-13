@@ -831,6 +831,11 @@ export default [
     component: () => import(/* webpackChunkName: 'v3-badge' */ './docs/zh-CN/badge/hidden-badge-while-read-message.md')
   },
   {
+    path: 'badge/badge-class',
+    meta: { title: '提示组件-Badge 标记-自定义标记class', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-badge' */ './docs/zh-CN/badge/badge-class.md')
+  },
+  {
     path: 'loading',
     meta: { title: '提示组件-Loading 加载', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-loading' */ './docs/zh-CN/loading/basic-usage.md')
