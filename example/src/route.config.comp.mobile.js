@@ -737,12 +737,12 @@ const router = [
   },
   {
     path: 'tabs/events',
-    meta: { title: 'mobileTabs 选项卡组件 - 内容滑动切换标签页', lang: 'zh-CN' },
+    meta: { title: 'mobileTabs 选项卡组件 - 事件', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/tabs/tabs-event.md')
   },
   {
     path: 'tabs/before-leave',
-    meta: { title: 'mobileTabs 选项卡组件 - 内容滑动切换标签页', lang: 'zh-CN' },
+    meta: { title: 'mobileTabs 选项卡组件 - 切换标签页前的钩子', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/tabs/before-leave.md')
   },
   {
@@ -751,13 +751,18 @@ const router = [
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/tabs/with-add.md')
   },
   {
+    path: 'tabs/expand',
+    meta: { title: 'mobileTabs 选项卡组件 - 可展开标签页', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/tabs/expand.md')
+  },
+  {
     path: 'tabs/three-level',
-    meta: { title: 'mobileTabs 选项卡组件 - 新增标签页', lang: 'zh-CN' },
+    meta: { title: 'mobileTabs 选项卡组件 - 嵌套标签页', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/tabs/three-level.md')
   },
   {
     path: 'tabs/active-color',
-    meta: { title: 'mobileTabs 选项卡组件 - 新增标签页', lang: 'zh-CN' },
+    meta: { title: 'mobileTabs 选项卡组件 - 自定义当前标签页颜色', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/tabs/active-color.md')
   },
   {

@@ -3,10 +3,8 @@
     <div>
       <h2 style="font-size: 16px; margin: 12px 0 24px 8px">基本用法</h2>
       <div>
-        <tiny-tabs v-model="activeName" :with-add="true" @add="handleadd" :swipeable="true">
-          <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
-            {{ item.content }}
-          </tiny-tab-item>
+        <tiny-tabs v-model="activeName" show-expand-tabs expand-tabs-title="请选择" expand-tabs-mode="columns">
+          <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name"> </tiny-tab-item>
         </tiny-tabs>
       </div>
     </div>
@@ -43,20 +41,34 @@ export default {
           title: '标签 4',
           name: '4',
           content: '内容 4'
+        },
+        {
+          title: '标签 5',
+          name: '5',
+          content: '内容 5'
+        },
+        {
+          title: '标签 6',
+          name: '6',
+          content: '内容 6'
+        },
+        {
+          title: '标签 7',
+          name: '7',
+          content: '内容 7'
+        },
+        {
+          title: '标签 8',
+          name: '8',
+          content: '内容 8'
+        },
+        {
+          title: '标签 9',
+          name: '9',
+          content: '内容 9'
         }
       ],
-      activeName: '1',
-      tabIndex: 5
-    }
-  },
-  methods: {
-    handleadd() {
-      this.Tabs.push({
-        title: `标签 ${this.tabIndex}`,
-        name: String(this.tabIndex),
-        content: '动态增加tabitem'
-      })
-      this.tabIndex++
+      activeName: '1'
     }
   }
 }

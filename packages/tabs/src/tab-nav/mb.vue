@@ -12,13 +12,13 @@
 <script lang="jsx">
 import { $prefix, setup, h } from '@opentiny/vue-common' // 此处引入 h 是为了防止打包后 h 被重命名导致组件报错的问题
 import { renderless, api } from '@opentiny/vue-renderless/tab-nav/vue'
-import { t } from '@opentiny/vue-locale'
-import { iconClose } from '@opentiny/vue-icon'
+import { iconClose, iconChevronDown } from '@opentiny/vue-icon'
 
 export default {
   name: $prefix + 'TabNav',
   components: {
-    IconClose: iconClose()
+    IconClose: iconClose(),
+    IconChevronDown: iconChevronDown()
   },
   props: {
     panes: {
@@ -38,50 +38,94 @@ export default {
       type: Function,
       default: () => {}
     },
-    showMoreTabs: Boolean,
-    showPanesCount: Number
+    showExpandTabs: Boolean,
+    expandPanesWidth: {
+      type: String,
+      default: ''
+    },
+    expandTabsTitle: {
+      type: String,
+      default: '请选择'
+    },
+    expandTabsMode: {
+      type: String,
+      default: 'columns'
+    }
   },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true, h })
   },
   render() {
-    const { state, panes, onTabClick, onTabRemove, showMoreTabs, moreTabShow, showPanesCount, activeColor } = this
-
-    const moreTabs = showMoreTabs ? (
-      <div class="tiny-mobile-tabs__more-container">
-        <div popper-class="tiny-mobile-tabs__more-popover" placement="bottom-start" trigger="hover" width="200" offset={-70} visible-arrow>
-          <span
-            slot="reference"
-            class="tiny-mobile-tabs__more"
-            onClick={() => {
-              moreTabShow()
-            }}
-          >
-            {t('ui.tabs.moreItem')}
-          </span>
-          <ul style={state.showMoreItem ? { display: 'block' } : { display: 'none' }}>
-            {state.showMoreItem && ~showPanesCount
-              ? panes.slice(showPanesCount).map((pane, index) => {
-                  const tabName = pane.name || pane.state.index || index
-                  const tabLabelContent = pane.$slots.title || pane.title
-
-                  return (
-                    <li
-                      class="tiny-mobile-tabs__more-item"
-                      onClick={(e) => {
-                        onTabClick(pane, tabName, e)
-                        moreTabShow()
-                      }}
-                    >
-                      {tabLabelContent}
-                    </li>
-                  )
-                })
-              : null}
-          </ul>
-        </div>
+    const {
+      state,
+      panes,
+      onTabClick,
+      onTabRemove,
+      showExpandTabs,
+      expandTabShow,
+      activeColor,
+      expandPanesWidth,
+      currentName,
+      expandTabsTitle,
+      expandTabsMode
+    } = this
+    const tabsExpandIcon = showExpandTabs ? (
+      <div class="tiny-mobile-tabs__expand-icon">
+        <span
+          slot="reference"
+          class="tiny-mobile-tabs__expand"
+          onClick={() => {
+            expandTabShow()
+          }}
+        >
+          <icon-chevron-down></icon-chevron-down>
+        </span>
       </div>
     ) : null
+
+    const tabsExpandContent = (
+      <div
+        class="tiny-mobile-tabs__expand-content"
+        style={state.showExpandItem ? { display: 'block', width: expandPanesWidth ? expandPanesWidth + 'px' : '' } : { display: 'none' }}
+      >
+        <div class="tiny-mobile-tabs__expand-mask"></div>
+        <div class="tiny-mobile-tabs__expand-header">
+          <label class="tiny-mobile-tabs__expand-header-title" style={state.expandHeaderStyle}>
+            {expandTabsTitle}
+          </label>
+          <span slot="reference" class="tiny-mobile-tabs__expand" style={{ transform: 'rotate(180deg)' }}>
+            <icon-chevron-down></icon-chevron-down>
+          </span>
+        </div>
+        <div class="tiny-mobile-tabs__expand-list">
+          {panes.map((pane, index) => {
+            const tabName = pane.name || pane.state.index || index
+            const tabTitle = pane.$slots.title || pane.title
+
+            return (
+              <div
+                class={{
+                  'tiny-mobile-tabs__expand-item': true,
+                  [`tiny-mobile-tabs__expand-mode-${expandTabsMode}`]: expandTabsMode === 'columns'
+                }}
+              >
+                <div
+                  class={{
+                    'tiny-mobile-tabs__expand-item-title': true,
+                    'is-current': currentName === tabName
+                  }}
+                  onClick={(e) => {
+                    onTabClick(pane, tabName, e)
+                  }}
+                >
+                  {tabTitle}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    )
 
     const tabs = panes.map((pane, index) => {
       let tabName = pane.name || pane.state.index || index
@@ -101,7 +145,7 @@ export default {
           </span>
         ) : null
 
-      const tabLabelContent = pane.$slots.title || pane.title
+      const tabTitle = pane.$slots.title || pane.title
 
       return (
         <div
@@ -123,7 +167,7 @@ export default {
           }}
         >
           <span class="tiny-mobile-tabs__name" style={activeColor && pane.state.active ? { color: activeColor } : {}}>
-            {tabLabelContent}
+            {tabTitle}
             {btnClose}
           </span>
         </div>
@@ -132,12 +176,12 @@ export default {
 
     return (
       <div
-        style={showMoreTabs ? { paddingRight: '46px' } : {}}
+        style={showExpandTabs ? { paddingRight: '46px' } : {}}
         class={[
           'tiny-mobile-tabs__nav-wrap',
           state.scrollable ? 'is-scrollable' : '',
           panes.length > 4 ? 'tiny-mobile-tabs__wrap-scrollable' : '',
-          showMoreTabs ? 'is-show-more' : '',
+          showExpandTabs ? 'is-show-expand' : '',
           `is-${state.rootTabs.position}`
         ]}
       >
@@ -147,7 +191,7 @@ export default {
             <div class="tiny-mobile-tabs__line" style={[state.navStyle, activeColor ? { backgroundColor: activeColor } : {}]}></div>
           </div>
         </div>
-        {[moreTabs]}
+        {[tabsExpandIcon, tabsExpandContent]}
       </div>
     )
   }
