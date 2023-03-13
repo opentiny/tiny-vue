@@ -2,17 +2,17 @@
   <tiny-row>
     <tiny-col :span="10">
       <div id="container" class="scroll-container">
-        <div id="basic-usage" class="basic-usage">Basic Usage</div>
-        <div id="set-container" class="set-container">Set Container</div>
-        <div id="event" class="event">
-          Event
-          <div id="on-change" class="on-change">On Change</div>
-          <div id="link-click" class="link-click">Link Click</div>
+        <div id="section-1" class="section-1">Section 1</div>
+        <div id="section-2" class="section-2">Section 2</div>
+        <div id="section-3" class="section-3">
+          Section 3
+          <div id="section-3-1" class="section-3-1">Section 3-1</div>
+          <div id="section-3-2" class="section-3-2">Section 3-2</div>
         </div>
       </div>
     </tiny-col>
     <tiny-col :span="2">
-      <tiny-anchor :links="links" containerId="#container" @link-click="handleClick" mark-class="is-active-anchor"></tiny-anchor>
+      <tiny-anchor :links="links" containerId="#container" @linkClick="handleClick" mark-class="is-active-anchor"></tiny-anchor>
     </tiny-col>
   </tiny-row>
 </template>
@@ -29,29 +29,29 @@ export default {
     return {
       links: [
         {
-          key: 'basic-usage',
-          link: '#basic-usage',
-          title: 'Basic Usage'
+          key: 'section-1',
+          link: '#section-1',
+          title: 'Section 1'
         },
         {
-          key: 'set-container',
-          link: '#set-container',
-          title: 'Set Container'
+          key: 'section-2',
+          link: '#section-2',
+          title: 'Section 2'
         },
         {
-          key: 'event',
-          link: '#event',
-          title: 'Event',
+          key: 'section-3',
+          link: '#section-3',
+          title: 'Section 3',
           children: [
             {
-              key: 'on-change',
-              link: '#on-change',
-              title: 'On Change'
+              key: 'section-3-1',
+              link: '#section-3-1',
+              title: 'Section 3-1'
             },
             {
-              key: 'link-click',
-              link: '#link-click',
-              title: 'Link Click'
+              key: 'section-3-2',
+              link: '#section-3-2',
+              title: 'Section 3-2'
             }
           ]
         }
@@ -68,30 +68,33 @@ export default {
 </script>
 
 <style scoped>
+.divide {
+  height: 100px;
+}
 .is-active-anchor {
   border: 1px solid red;
 }
 .scroll-container {
-  height: 30vh;
+  height: 20vh;
   border: 2px solid #333;
-  overflow: hidden;
+  overflow: auto;
 }
-.basic-usage {
+.section-1 {
   height: 100vh;
   background: rgba(125, 0, 0, 0.1);
 }
-.set-container {
+.section-2 {
   height: 100vh;
   background: rgba(0, 125, 0, 0.1);
 }
-.event {
+.section-3 {
   background: rgba(0, 0, 125, 0.1);
 }
-.on-change {
+.section-3-1 {
   height: 100vh;
   background: rgba(0, 0, 125, 0.2);
 }
-.link-click {
+.section-3-2 {
   height: 100vh;
   background: rgba(0, 0, 125, 0.3);
 }

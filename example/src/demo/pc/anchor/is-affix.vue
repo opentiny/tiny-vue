@@ -1,5 +1,5 @@
 <template>
-  <tiny-anchor :links="links" @on-change="handleChange"></tiny-anchor>
+  <tiny-anchor :links="links" is-affix></tiny-anchor>
 </template>
 
 <script>
@@ -39,11 +39,6 @@ export default {
           ]
         }
       ]
-    }
-  },
-  methods: {
-    handleChange(link) {
-      console.log('change', link)
     }
   }
 }

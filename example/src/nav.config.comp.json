@@ -47,6 +47,10 @@
               "name": "基本用法"
             },
             {
+              "path": "/anchor/is-affix",
+              "name": "固定模式"
+            },
+            {
               "path": "/anchor/set-container",
               "name": "滚动容器"
             },
