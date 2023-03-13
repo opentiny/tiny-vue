@@ -1,5 +1,5 @@
 <template>
-  <tiny-dropdown :hide-on-click="false">
+  <tiny-dropdown title="自定义文本">
     <template #dropdown>
       <tiny-dropdown-menu>
         <tiny-dropdown-item>黄金糕</tiny-dropdown-item>
