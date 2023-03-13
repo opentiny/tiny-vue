@@ -44,6 +44,7 @@ export default {
                 class={[`${anchorClass}-link-title`, currentLink === item.link && `${anchorClass}-link-title--active`]}
                 title={item.title}
                 onClick={(e) => linkClick(e, item)}
+                ref={item.link}
               >
                 {item.title}
               </a>
