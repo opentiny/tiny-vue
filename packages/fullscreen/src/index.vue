@@ -53,7 +53,8 @@ export default {
     zIndex: {
       type: Number,
       default: 0
-    }
+    },
+    beforeChange: Function
   },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
