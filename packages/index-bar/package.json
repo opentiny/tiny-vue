@@ -1,5 +1,5 @@
 {
-  "name": "@opentiny/vue-action-sheet",
+  "name": "@opentiny/vue-index-bar",
   "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
@@ -9,9 +9,9 @@
     "build:ui3": "cross-env BUILD_TARGET=single NODE_ENV=production node ../../example/build/build-ui.js"
   },
   "dependencies": {
+    "@opentiny/vue-locale": "~0.1.0",
     "@opentiny/vue-common": "~0.1.0",
-    "@opentiny/vue-renderless": "~0.1.0",
-    "@better-scroll/core": "2.5.0"
+    "@opentiny/vue-renderless": "~0.1.0"
   },
   "license": "MIT"
 }

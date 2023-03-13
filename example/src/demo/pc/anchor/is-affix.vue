@@ -1,5 +1,7 @@
 <template>
-  <tiny-anchor :links="links" is-affix></tiny-anchor>
+  <div class="wrap">
+    <tiny-anchor :links="links" is-affix></tiny-anchor>
+  </div>
 </template>
 
 <script>
@@ -43,3 +45,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.wrap {
+  height: 125px;
+}
+</style>

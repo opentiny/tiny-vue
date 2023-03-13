@@ -67,13 +67,22 @@ export default {
     validateIcon: {
       type: Object,
       default: null
+    },
+    ellipsis: {
+      type: Boolean,
+      default: false
+    },
+    vertical: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
   },
+  // eslint-disable-next-line complexity
   render() {
-    const { state, required, slots, label, scopedSlots, showMessage, inlineMessage, validateIcon } = this
+    const { state, required, slots, label, scopedSlots, showMessage, inlineMessage, validateIcon, ellipsis, vertical } = this
     const isMobile = state.mode === 'mobile'
     const classPrefix = isMobile ? 'tiny-mobile-' : 'tiny-'
     const labelSlot = slots.label ? slots.label() : null
@@ -81,6 +90,8 @@ export default {
     const errorSlot = scopedSlots.error && scopedSlots.error(state.validateMessage)
     const formItemClass = `${classPrefix}form-item--${state.sizeClass ? state.sizeClass : ''}`
     const isShowError = state.validateState === 'error' && showMessage && state.form.showMessage
+    const isErrorInline = typeof inlineMessage === 'boolean' ? inlineMessage : (state.formInstance && state.formInstance.inlineMessage) || false
+    let validateMessage = null
 
     const FormContent = defaultSlots
       ? defaultSlots.map((vnode) => {
@@ -134,26 +145,25 @@ export default {
               popper.style.transform = `translate3d(${x}px, ${parseInt(y, 10)}px, ${z}px)`
             }
           }
-
           if (isMobile) {
             const validatePosition = this.validatePosition || state.formInstance.validatePosition || 'right'
-            const validateMessage = state.validateMessage ? (
+            validateMessage = state.validateMessage ? (
               validatePosition === 'right' ? (
                 <div class="tiny-mobile-input-form__error align-right">{state.validateMessage}</div>
               ) : (
                 <div class="tiny-mobile-input-form__error align-left">{state.validateMessage}</div>
               )
             ) : null
-
-            return (
-              <div>
-                {item}
-                {validateMessage}
-              </div>
+            return h(
+              'div',
+              {
+                class: `${classPrefix}form-item__value`,
+                style: state.valueStyle
+              },
+              [item]
             )
           }
           const validateIconNode = validateIcon ? h(validateIcon, { class: 'tooltip-validate-icon' }) : null
-
           return h(
             'tooltip',
             {
@@ -193,14 +203,12 @@ export default {
               {
                 class: {
                   [`${classPrefix}form-item__error`]: true,
-                  [`${classPrefix}form-item__error--inline`]:
-                    typeof inlineMessage === 'boolean' ? inlineMessage : (state.formInstance && state.formInstance.inlineMessage) || false
+                  [`${classPrefix}form-item__error--inline`]: isErrorInline
                 }
               },
               [validateIcon ? h(validateIcon, { class: 'validate-icon' }) : null, state.validateMessage]
             )
         : null
-
     const LabelContent = h(
       'label-wrap',
       {
@@ -215,7 +223,10 @@ export default {
           ? h(
               'label',
               {
-                class: `${classPrefix}form-item__label`,
+                class: {
+                  [`${classPrefix}form-item__label`]: true,
+                  'is-ellipsis': isMobile && ellipsis
+                },
                 style: state.labelStyle,
                 attrs: {
                   for: state.labelFor
@@ -226,7 +237,6 @@ export default {
           : null
       ]
     )
-
     return h(
       'div',
       {
@@ -242,15 +252,19 @@ export default {
         }
       },
       [
-        LabelContent,
+        !isMobile ? LabelContent : null,
         h(
           'div',
           {
-            class: `${classPrefix}form-item__content`,
-            style: state.contentStyle
+            class: {
+              [`${classPrefix}form-item__content`]: true,
+              'is-vertical': isMobile && vertical
+            }
           },
           [
+            isMobile ? LabelContent : null,
             FormContent,
+            isMobile ? validateMessage : null,
             h(
               'transition',
               {

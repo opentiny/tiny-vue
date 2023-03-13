@@ -10,34 +10,18 @@
  *
  */
 import { $props, $prefix, $setup } from '@opentiny/vue-common'
-import { constants, tinyMode } from './service'
-import PCTemplate from './pc'
-import MobileTemplate from './mobile'
+import MobileTemplate from './index.vue'
 
-const template = () => {
-  if (process.env.TINY_MODE === 'pc') {
-    return PCTemplate
-  } else if (process.env.TINY_MODE === 'mobile') {
-    return MobileTemplate
-  } else {
-    return tinyMode === 'mobile' ? MobileTemplate : PCTemplate
-  }
-}
+const template = () => MobileTemplate
 
 export default {
-  name: $prefix + 'Loading',
-  emits: [],
+  name: $prefix + 'IndexBar',
   props: {
     ...$props,
-    type: {
-      type: String,
-      validator: (value) => ~['primary', 'simple'].indexOf(value)
-    },
-    loadtext: {
-      type: String,
-      default: () => constants.LOAD_ICON_TEXT
-    },
-    _constants: Object
+    indexList: {
+      type: Array,
+      default: () => []
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })
