@@ -19,7 +19,7 @@ export default {
     IconClose: iconClose()
   },
   emits: ['click', 'close'],
-  props: [...props, 'text', 'closable', 'type', 'hit', 'disabled', 'color', 'size', 'effect'],
+  props: [...props, 'text', 'closable', 'type', 'hit', 'disabled', 'color', 'size', 'effect', 'beforeDelete'],
   setup(props, context) {
     return setup({ props, context, renderless, api, h })
   },
