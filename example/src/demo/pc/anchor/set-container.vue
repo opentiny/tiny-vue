@@ -68,9 +68,6 @@ export default {
 </script>
 
 <style scoped>
-.divide {
-  height: 100px;
-}
 .is-active-anchor {
   border: 1px solid red;
 }
