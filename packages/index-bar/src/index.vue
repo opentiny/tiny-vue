@@ -29,7 +29,7 @@
         v-for="(label, index) in indexList"
         :key="label"
         :id="index"
-        :class="['tiny-mobile-index-bar__side-label', state.index === index ? 'tiny-mobile-index-bar__side-label-active' : null]"
+        :class="['tiny-mobile-index-bar__label', state.index === index ? 'tiny-mobile-index-bar__label--active' : null]"
         @click="handleIndexClick({ index, label })"
       >
         {{ label }}
