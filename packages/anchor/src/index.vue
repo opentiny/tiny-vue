@@ -53,8 +53,8 @@ export default {
           ))
         : null
 
-    return isAffix ? (
-      <div class={`${anchorClass}__affix`} ref="fixRef">
+    return (
+      <div class={[isAffix ? `${anchorClass}__affix` : '', `${anchorClass}__wrapper`]} ref={isAffix ? 'fixRef' : ''}>
         <div class={anchorClass} ref="anchorRef">
           <div class={`${anchorClass}-link-mask`} ref="maskRef"></div>
           <div class={`${anchorClass}-orbit`}>
@@ -62,14 +62,6 @@ export default {
           </div>
           {links && renderLinks(links)}
         </div>
-      </div>
-    ) : (
-      <div class={anchorClass} ref="anchorRef">
-        <div class={`${anchorClass}-link-mask`} ref="maskRef"></div>
-        <div class={`${anchorClass}-orbit`}>
-          <div class={`${anchorClass}-orbit-skid`} ref="skidRef"></div>
-        </div>
-        {links && renderLinks(links)}
       </div>
     )
   }
