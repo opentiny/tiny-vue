@@ -51,7 +51,8 @@ export default {
     type: {
       type: String,
       validator: (value) => ~['primary', 'success', 'warning', 'info', 'danger'].indexOf(value)
-    }
+    },
+    badgeClass: String
   },
   setup(props, context) {
     return $setup({ props, context, template })

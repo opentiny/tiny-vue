@@ -10,26 +10,18 @@
  *
  */
 import { $props, $prefix, $setup } from '@opentiny/vue-common'
-import PCTemplate from './pc'
+import MobileTemplate from './index.vue'
 
-const template = () => PCTemplate
+const template = () => MobileTemplate
 
 export default {
-  name: $prefix + 'Tag',
+  name: $prefix + 'IndexBar',
   props: {
     ...$props,
-    hit: Boolean,
-    text: String,
-    type: String,
-    size: String,
-    color: String,
-    closable: Boolean,
-    effect: {
-      type: String,
-      default: 'light',
-      validator: (value) => ~['dark', 'light', 'plain'].indexOf(value)
-    },
-    beforeDelete: Function
+    indexList: {
+      type: Array,
+      default: () => []
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })

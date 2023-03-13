@@ -122,6 +122,11 @@ const routers = [
     component: () => import(/* webpackChunkName: 'v3-anchor' */ './docs/zh-CN/anchor/basic-usage.md')
   },
   {
+    path: 'anchor/is-affix',
+    meta: { title: '导航组件-anchor 锚点-基本用法', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-anchor' */ './docs/zh-CN/anchor/is-affix.md')
+  },
+  {
     path: 'anchor/set-container',
     meta: { title: '导航组件-anchor 锚点-滚动容器', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-anchor' */ './docs/zh-CN/anchor/set-container.md')

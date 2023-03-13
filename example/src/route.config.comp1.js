@@ -831,6 +831,11 @@ export default [
     component: () => import(/* webpackChunkName: 'v3-badge' */ './docs/zh-CN/badge/hidden-badge-while-read-message.md')
   },
   {
+    path: 'badge/badge-class',
+    meta: { title: '提示组件-Badge 标记-自定义标记class', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-badge' */ './docs/zh-CN/badge/badge-class.md')
+  },
+  {
     path: 'loading',
     meta: { title: '提示组件-Loading 加载', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-loading' */ './docs/zh-CN/loading/basic-usage.md')
@@ -1299,6 +1304,11 @@ export default [
     path: 'tag/tag-events',
     meta: { title: '其他组件-Tag 标签-事件', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-tag' */ './docs/zh-CN/tag/tag-events.md')
+  },
+  {
+    path: 'tag/before-delete',
+    meta: { title: '其他组件-Tag 标签-删除前的回调', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-tag' */ './docs/zh-CN/tag/before-delete.md')
   },
   {
     path: 'textpopup',
