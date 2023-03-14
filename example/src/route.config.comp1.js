@@ -836,6 +836,11 @@ export default [
     component: () => import(/* webpackChunkName: 'v3-badge' */ './docs/zh-CN/badge/badge-class.md')
   },
   {
+    path: 'badge/offset',
+    meta: { title: '提示组件-Badge 标记-位置偏移', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-badge' */ './docs/zh-CN/badge/offset.md')
+  },
+  {
     path: 'loading',
     meta: { title: '提示组件-Loading 加载', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-loading' */ './docs/zh-CN/loading/basic-usage.md')
