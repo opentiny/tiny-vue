@@ -4342,7 +4342,12 @@
         {
           "path": "/fullscreen",
           "name": "Fullscreen 全屏显示",
-          "children": []
+          "children": [
+            {
+              "path": "/fullscreen/before-change",
+              "name": "全屏/退出全屏前的回调"
+            }
+          ]
         }
       ]
     }
