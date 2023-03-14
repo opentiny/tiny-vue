@@ -1682,6 +1682,11 @@ const routers = [
     component: () => import(/* webpackChunkName: 'v3-switch' */ './docs/zh-CN/switch/enent.md')
   },
   {
+    path: 'switch/before-change',
+    meta: { title: '表单组件-Switch 开关-开关切换前的回调', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-switch' */ './docs/zh-CN/switch/before-change.md')
+  },
+  {
     path: 'time-select',
     meta: { title: '表单组件-time-select 时间选择', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-time-select' */ './docs/zh-CN/time-select/basic-usage.md')

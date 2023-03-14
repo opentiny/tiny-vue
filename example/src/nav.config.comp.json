@@ -1877,6 +1877,10 @@
             {
               "path": "/switch/dynamic-disable",
               "name": "禁用"
+            },
+            {
+              "path": "/switch/before-change",
+              "name": "开关切换前的回调"
             }
           ]
         },
