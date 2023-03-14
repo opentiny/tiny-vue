@@ -3180,6 +3180,10 @@
             {
               "path": "/badge/badge-class",
               "name": "自定义标记class"
+            },
+            {
+              "path": "/badge/offset",
+              "name": "位置偏移"
             }
           ]
         },
