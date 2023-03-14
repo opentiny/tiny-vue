@@ -750,6 +750,10 @@
             {
               "path": "/split/nested-use",
               "name": "嵌套使用"
+            },
+            {
+              "path": "/split/collapsible",
+              "name": "可折叠"
             }
           ]
         }
