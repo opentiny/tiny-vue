@@ -1,5 +1,5 @@
 <template>
-  <tiny-pull-refresh v-model="isLoading" @refresh="onRefresh" loosing-text="可以了，可以了，别扒拉了！">
+  <tiny-pull-refresh :pullDown="pullDownRefresh" loosing-text="可以了，可以了，别扒拉了！">
     <h3>hello pull-refresh</h3>
   </tiny-pull-refresh>
 </template>
@@ -13,14 +13,18 @@ export default {
   },
   data() {
     return {
-      isLoading: false
+      pullDownRefresh: {
+        handler: () => this.handlerPullDownRefresh()
+      }
     }
   },
   methods: {
-    onRefresh() {
-      setTimeout(() => {
-        this.isLoading = false
-      }, 1000)
+    handlerPullDownRefresh() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve()
+        }, 1000)
+      })
     }
   }
 }

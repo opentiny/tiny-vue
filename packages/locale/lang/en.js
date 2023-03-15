@@ -172,7 +172,7 @@ export default {
       cancel: 'cancel'
     },
     load: {
-      dot: 'Loading',
+      dot: 'Loading'
     },
     exception: {
       build: 'Building',
@@ -485,8 +485,11 @@ export default {
       confirm: 'Confirm'
     },
     pullRefresh: {
-      pulling: 'Pull down to refresh',
-      loosing: 'Release to refresh'
+      pullingDown: 'Pull down to refresh',
+      pullingUp: 'Pull up to refresh',
+      loosing: 'Release to refresh',
+      success: 'Refresh success',
+      failed: 'Refresh failed'
     }
   },
   validation: {
