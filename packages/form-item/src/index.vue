@@ -260,7 +260,7 @@ export default {
               [`${classPrefix}form-item__content`]: true,
               'is-vertical': isMobile && vertical
             },
-            style: state.contentStyle
+            style: !isMobile && state.contentStyle
           },
           [
             isMobile ? LabelContent : null,

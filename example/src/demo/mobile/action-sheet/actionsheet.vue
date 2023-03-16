@@ -11,7 +11,7 @@
       :menus="menus"
       :visible="boxVisibility"
       @update:visible="boxVisibility = $event"
-      :isContent="true"
+      content-position
     ></tiny-action-sheet>
   </div>
 </template>

@@ -66,7 +66,8 @@ export default {
     trueValue: {
       type: [String, Number, Boolean],
       default: true
-    }
+    },
+    beforeChange: Function
   },
   setup(props, context) {
     return $setup({ props, context, template })

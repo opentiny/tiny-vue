@@ -122,6 +122,11 @@ const routers = [
     component: () => import(/* webpackChunkName: 'v3-anchor' */ './docs/zh-CN/anchor/basic-usage.md')
   },
   {
+    path: 'anchor/is-affix',
+    meta: { title: '导航组件-anchor 锚点-基本用法', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-anchor' */ './docs/zh-CN/anchor/is-affix.md')
+  },
+  {
     path: 'anchor/set-container',
     meta: { title: '导航组件-anchor 锚点-滚动容器', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-anchor' */ './docs/zh-CN/anchor/set-container.md')
@@ -1675,6 +1680,11 @@ const routers = [
     path: 'switch/enent',
     meta: { title: '表单组件-Switch 开关-自定义开关的取值', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-switch' */ './docs/zh-CN/switch/enent.md')
+  },
+  {
+    path: 'switch/before-change',
+    meta: { title: '表单组件-Switch 开关-开关切换前的回调', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-switch' */ './docs/zh-CN/switch/before-change.md')
   },
   {
     path: 'time-select',

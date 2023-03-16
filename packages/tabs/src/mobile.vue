@@ -30,9 +30,11 @@ export default {
     'modelValue',
     'beforeLeave',
     'editable',
-    'showMoreTabs',
+    'showExpandTabs',
     'childrenTabs',
-    'swipeable'
+    'swipeable',
+    'expandTabsTitle',
+    'expandTabsMode'
   ],
   components: {
     TabNav,
@@ -71,7 +73,20 @@ export default {
     }
   },
   render() {
-    let { state, position, handleTabClick, handleTabRemove, handleTabAdd, editable, withAdd, showMoreTabs, swipeable, activeColor } = this
+    let {
+      state,
+      position,
+      handleTabClick,
+      handleTabRemove,
+      handleTabAdd,
+      editable,
+      withAdd,
+      showExpandTabs,
+      swipeable,
+      activeColor,
+      expandTabsTitle,
+      expandTabsMode
+    } = this
 
     const newButton =
       editable || withAdd ? (
@@ -96,16 +111,17 @@ export default {
         activeColor,
         onTabClick: handleTabClick,
         onTabRemove: handleTabRemove,
-        showPanesCount: state.showPanesCount,
-        showMoreTabs
+        showExpandTabs,
+        expandPanesWidth: state.expandPanesWidth,
+        expandTabsTitle,
+        expandTabsMode
       },
       ref: 'nav'
     }
-
     const TabNavComponent = h(TabNav, { ...navData })
 
     const header = (
-      <div class={['tiny-mobile-tabs__header', `is-${position}`, withAdd ? 'is-double-border' : '']}>
+      <div class={['tiny-mobile-tabs__header', `is-${position}`]}>
         {newButton}
         {TabNavComponent}
       </div>
@@ -120,10 +136,13 @@ export default {
         }
       : {}
 
-    const panels = (
-      <div class="tiny-mobile-tabs__content" {...{ on: listeners }}>
-        {this.slots.default()}
-      </div>
+    const panels = h(
+      'div',
+      {
+        class: 'tiny-mobile-tabs__content',
+        on: { ...listeners }
+      },
+      this.slots.default()
     )
 
     return (

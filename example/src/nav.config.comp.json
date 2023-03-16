@@ -47,6 +47,10 @@
               "name": "基本用法"
             },
             {
+              "path": "/anchor/is-affix",
+              "name": "固定模式"
+            },
+            {
               "path": "/anchor/set-container",
               "name": "滚动容器"
             },
@@ -501,6 +505,10 @@
               "name": "不同尺寸"
             },
             {
+            "path": "/dropdown/title",
+            "name": "自定义文本"
+            },
+            {
               "path": "/dropdown/options",
               "name": "使用配置式"
             },
@@ -511,6 +519,10 @@
             {
               "path": "/dropdown/events",
               "name": "事件"
+            },
+            {
+              "path": "/dropdown/slot-default",
+              "name": "默认插槽"
             }
           ]
         },
@@ -1865,6 +1877,10 @@
             {
               "path": "/switch/dynamic-disable",
               "name": "禁用"
+            },
+            {
+              "path": "/switch/before-change",
+              "name": "开关切换前的回调"
             }
           ]
         },
@@ -3160,6 +3176,14 @@
             {
               "path": "/badge/hidden-badge-while-read-message",
               "name": "消息已读动态隐藏标记"
+            },
+            {
+              "path": "/badge/badge-class",
+              "name": "自定义标记class"
+            },
+            {
+              "path": "/badge/offset",
+              "name": "位置偏移"
             }
           ]
         },
@@ -4222,6 +4246,10 @@
             {
               "path": "/tag/tag-events",
               "name": "事件"
+            },
+            {
+              "path": "/tag/before-delete",
+              "name": "删除前的回调"
             }
           ]
         },
@@ -4318,7 +4346,12 @@
         {
           "path": "/fullscreen",
           "name": "Fullscreen 全屏显示",
-          "children": []
+          "children": [
+            {
+              "path": "/fullscreen/before-change",
+              "name": "全屏/退出全屏前的回调"
+            }
+          ]
         }
       ]
     }
