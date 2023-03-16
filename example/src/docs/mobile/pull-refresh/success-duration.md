@@ -3,7 +3,7 @@
   <span class="wapi-ui-pull-refresh"/>
 </p>
 
-## pull-refresh 下拉刷新
+## pull-refresh 刷新
 
 <mobile-uxlink widget-name="PullRefresh"></mobile-uxlink>
 </div>
