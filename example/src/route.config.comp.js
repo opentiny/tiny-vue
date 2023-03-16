@@ -612,6 +612,11 @@ const routers = [
     component: () => import(/* webpackChunkName: 'v3-split' */ './docs/zh-CN/split/nested-use.md')
   },
   {
+    path: 'split/collapsible',
+    meta: { title: '容器组件-Split 面板分割-可折叠', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-split' */ './docs/zh-CN/split/collapsible.md')
+  },
+  {
     path: 'autocomplete',
     meta: { title: '表单组件-Autocomplete 自动完成', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-autocomplete' */ './docs/zh-CN/autocomplete/basic-usage.md')
