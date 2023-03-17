@@ -1852,6 +1852,11 @@ const routers = [
     component: () => import(/* webpackChunkName: 'v3-transfer' */ './docs/zh-CN/transfer/nested-tree.md')
   },
   {
+    path: 'transfer/before-transfer',
+    meta: { title: '表单组件-Transfer 穿梭框-穿梭前的回调', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-transfer' */ './docs/zh-CN/transfer/before-transfer.md')
+  },
+  {
     path: 'grid',
     meta: { title: '表格组件-导入导出', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-grid' */ './docs/zh-CN/grid/grid-basic-usage.md')
