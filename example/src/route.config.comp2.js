@@ -1462,6 +1462,11 @@ export default [
     component: () => import(/* webpackChunkName: 'v3-dropdown' */ './docs/zh-CN/action-menu/more-click.md')
   },
   {
+    path: 'action-menu/visible-change',
+    meta: { title: '导航组件-ActionMenu 下拉菜单', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-dropdown' */ './docs/zh-CN/action-menu/visible-change.md')
+  },
+  {
     path: 'action-menu/more-text',
     meta: { title: '导航组件-ActionMenu 下拉菜单', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-dropdown' */ './docs/zh-CN/action-menu/more-text.md')
