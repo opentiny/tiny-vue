@@ -1412,6 +1412,11 @@ export default [
     component: () => import(/* webpackChunkName: 'v3-dropdown' */ './docs/zh-CN/dropdown/size.md')
   },
   {
+    path: 'dropdown/title',
+    meta: { title: '导航组件-Dropdown 下拉菜单', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-dropdown' */ './docs/zh-CN/dropdown/title.md')
+  },
+  {
     path: 'dropdown/options',
     meta: { title: '导航组件-Dropdown 下拉菜单', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-dropdown' */ './docs/zh-CN/dropdown/options.md')
@@ -1420,6 +1425,11 @@ export default [
     path: 'dropdown/events',
     meta: { title: '导航组件-Dropdown 下拉菜单', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-dropdown' */ './docs/zh-CN/dropdown/events.md')
+  },
+  {
+    path: 'dropdown/slot-default',
+    meta: { title: '导航组件-Dropdown 下拉菜单', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-dropdown' */ './docs/zh-CN/dropdown/slot-default.md')
   },
   {
     path: 'action-menu',
@@ -1450,6 +1460,11 @@ export default [
     path: 'action-menu/more-click',
     meta: { title: '导航组件-ActionMenu 下拉菜单', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-dropdown' */ './docs/zh-CN/action-menu/more-click.md')
+  },
+  {
+    path: 'action-menu/visible-change',
+    meta: { title: '导航组件-ActionMenu 下拉菜单', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-dropdown' */ './docs/zh-CN/action-menu/visible-change.md')
   },
   {
     path: 'action-menu/more-text',

@@ -4,7 +4,6 @@
       <tiny-col :span="2">
         <p>hover 激活</p>
         <tiny-dropdown>
-          <span>下拉菜单 <icon-chevron-down /></span>
           <template #dropdown>
             <tiny-dropdown-menu>
               <tiny-dropdown-item><icon-plus></icon-plus> 黄金糕</tiny-dropdown-item>
@@ -19,7 +18,6 @@
       <tiny-col :span="2">
         <p>click 激活</p>
         <tiny-dropdown trigger="click">
-          <span> 下拉菜单 <icon-chevron-down /></span>
           <template #dropdown>
             <tiny-dropdown-menu>
               <tiny-dropdown-item :icon="IconPlus">黄金糕</tiny-dropdown-item>
@@ -36,7 +34,7 @@
 </template>
 
 <script>
-import { IconChevronDown, IconPlus, IconPlusCircle, IconPlusSquare, IconCheckedLinear, IconCheckedSur } from '@opentiny/vue-icon'
+import { IconPlus, IconPlusCircle, IconPlusSquare, IconCheckedLinear, IconCheckedSur } from '@opentiny/vue-icon'
 import { Layout, Row, Col, Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
 
 export default {
@@ -47,7 +45,6 @@ export default {
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,
     TinyDropdownItem: DropdownItem,
-    IconChevronDown: IconChevronDown(),
     IconPlus: IconPlus(),
     IconPlusCircle: IconPlusCircle(),
     IconPlusSquare: IconPlusSquare(),

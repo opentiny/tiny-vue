@@ -9,6 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  -->
+
 <script lang="jsx">
 import { renderless, api } from '@opentiny/vue-renderless/dropdown/vue'
 import { setup, $prefix, directive } from '@opentiny/vue-common'
@@ -74,7 +75,7 @@ export default {
       default: '下拉菜单'
     }
   },
-  emits: ['visible-change', 'item-click', 'button-click', 'menu-item-click'],
+  emits: ['visible-change', 'item-click', 'button-click', 'menu-item-click', 'handle-click'],
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
   },
@@ -98,7 +99,7 @@ export default {
       const defaultTriggerElm = (
         <span>
           <span>{title}</span>
-          <icon-chevron-down></icon-chevron-down>
+          {state.visible ? <icon-chevron-up /> : <icon-chevron-down />}
         </span>
       )
 

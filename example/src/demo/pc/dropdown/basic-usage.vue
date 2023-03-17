@@ -1,6 +1,5 @@
 <template>
   <tiny-dropdown>
-    <span>下拉菜单 <icon-chevron-down /></span>
     <template #dropdown>
       <tiny-dropdown-menu>
         <tiny-dropdown-item label="老友粉"></tiny-dropdown-item>
@@ -15,15 +14,13 @@
 </template>
 
 <script>
-import { IconChevronDown } from '@opentiny/vue-icon'
 import { Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
 
 export default {
   components: {
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem,
-    IconChevronDown: IconChevronDown()
+    TinyDropdownItem: DropdownItem
   }
 }
 </script>
