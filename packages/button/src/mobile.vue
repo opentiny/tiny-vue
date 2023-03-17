@@ -30,7 +30,7 @@
     <icon-loading v-if="loading" class="tiny-icon-loading" />
     <component v-if="icon && !loading" :is="icon" class="tiny-icon is-icon" />
     <slot>
-      <span>{{ text }}</span>
+      <span :style="{ marginLeft: text && (icon || loading) ? '4px' : 0 }">{{ text }}</span>
     </slot>
   </button>
 </template>

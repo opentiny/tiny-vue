@@ -26,8 +26,8 @@ export default {
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,
     TinyDropdownItem: DropdownItem,
-    iconChevronDown: iconChevronDown(),
-    iconChevronUp: iconChevronUp()
+    IconChevronDown: iconChevronDown(),
+    IconChevronUp: iconChevronUp()
   },
   data() {
     return {
@@ -36,7 +36,6 @@ export default {
   },
   methods: {
     visibleChange(status) {
-      console.log(status)
       this.visible = status
     }
   }

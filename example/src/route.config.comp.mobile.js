@@ -166,48 +166,53 @@ const router = [
   },
   {
     path: 'pull-refresh',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/base.md')
   },
   {
     path: 'pull-refresh/animation-duration',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/animation-duration.md')
   },
   {
     path: 'pull-refresh/disabled',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/disabled.md')
   },
   {
     path: 'pull-refresh/head-height',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/head-height.md')
   },
   {
     path: 'pull-refresh/loosing-text',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/loosing-text.md')
   },
   {
     path: 'pull-refresh/pull-refresh-slot',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/pull-refresh-slot.md')
   },
   {
+    path: 'pull-refresh/enhance',
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/enhance.md')
+  },
+  {
     path: 'pull-refresh/pulling-text',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/pulling-text.md')
   },
   {
     path: 'pull-refresh/success-duration',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/success-duration.md')
   },
   {
-    path: 'pull-refresh/success-text',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
-    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/success-text.md')
+    path: 'pull-refresh/result-text',
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/result-text.md')
   },
   {
     path: 'form',
@@ -258,6 +263,11 @@ const router = [
     path: 'form/validate-position',
     meta: { title: 'form 表单', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/form/validate-position.md')
+  },
+  {
+    path: 'form/auto-wordwrap',
+    meta: { title: 'form 表单', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/form/auto-wordwrap.md')
   },
   {
     path: 'badge',
@@ -732,12 +742,12 @@ const router = [
   },
   {
     path: 'tabs/events',
-    meta: { title: 'mobileTabs 选项卡组件 - 内容滑动切换标签页', lang: 'zh-CN' },
+    meta: { title: 'mobileTabs 选项卡组件 - 事件', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/tabs/tabs-event.md')
   },
   {
     path: 'tabs/before-leave',
-    meta: { title: 'mobileTabs 选项卡组件 - 内容滑动切换标签页', lang: 'zh-CN' },
+    meta: { title: 'mobileTabs 选项卡组件 - 切换标签页前的钩子', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/tabs/before-leave.md')
   },
   {
@@ -746,13 +756,18 @@ const router = [
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/tabs/with-add.md')
   },
   {
+    path: 'tabs/expand',
+    meta: { title: 'mobileTabs 选项卡组件 - 可展开标签页', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/tabs/expand.md')
+  },
+  {
     path: 'tabs/three-level',
-    meta: { title: 'mobileTabs 选项卡组件 - 新增标签页', lang: 'zh-CN' },
+    meta: { title: 'mobileTabs 选项卡组件 - 嵌套标签页', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/tabs/three-level.md')
   },
   {
     path: 'tabs/active-color',
-    meta: { title: 'mobileTabs 选项卡组件 - 新增标签页', lang: 'zh-CN' },
+    meta: { title: 'mobileTabs 选项卡组件 - 自定义当前标签页颜色', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/tabs/active-color.md')
   },
   {
@@ -766,14 +781,14 @@ const router = [
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/time-line/slot.md')
   },
   {
-    path: 'time-line/different-data',
-    meta: { title: 'mobileTimeLine 时间轴组件 - 数据映射', lang: 'zh-CN' },
-    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/time-line/different-data.md')
-  },
-  {
     path: 'time-line/space',
     meta: { title: 'mobileTimeLine 时间轴组件 - 高度', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/time-line/space.md')
+  },
+  {
+    path: 'time-line/steps',
+    meta: { title: 'mobileTimeLine 时间轴组件 - 步骤条', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/time-line/steps.md')
   },
   {
     path: 'dropdown-menu',
@@ -1146,6 +1161,11 @@ const router = [
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/popover/direction.md')
   },
   {
+    path: 'multi-select',
+    meta: { title: 'multi-select 选择器', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/multi-select/basic-usage.md')
+  },
+  {
     path: 'user-head',
     meta: { title: '其他组件-UserHead 用户头像', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-user-head' */ './docs/zh-CN/user-head/basic-usage.md')
@@ -1204,6 +1224,121 @@ const router = [
     path: 'table',
     meta: { title: 'table 表格组件 - 类型', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/table/base.md')
+  },
+  {
+    path: 'modal',
+    meta: { title: 'modal 反馈弹窗组件 - 类型', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/modal/basic-usage.md')
+  },
+  {
+    path: 'modal/modal-fullscreen',
+    meta: { title: '模态框组件-最大化显示', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-fullscreen.md')
+  },
+  {
+    path: 'modal/modal-esc-closable',
+    meta: { title: '模态框组件-按 Esc 键关闭窗口', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-esc-closable.md')
+  },
+  {
+    path: 'modal/modal-duration',
+    meta: { title: '模态框组件-自动关闭延时', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-duration.md')
+  },
+  {
+    path: 'modal/modal-id',
+    meta: { title: '模态框组件-防止重复提示', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-id.md')
+  },
+  {
+    path: 'modal/modal-lock-scroll',
+    meta: { title: '模态框组件-锁住滚动条', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-lock-scroll.md')
+  },
+  {
+    path: 'modal/modal-lock-view',
+    meta: { title: '模态框组件-锁住页面', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-lock-view.md')
+  },
+  {
+    path: 'modal/modal-mask',
+    meta: { title: '模态框组件-显示遮罩层', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-mask.md')
+  },
+  {
+    path: 'modal/modal-mask-closable',
+    meta: { title: '模态框组件-点击遮罩层关闭窗口', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-mask-closable.md')
+  },
+  {
+    path: 'modal/modal-message',
+    meta: { title: '模态框组件-自定义内容', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-message.md')
+  },
+  {
+    path: 'modal/modal-resize',
+    meta: { title: '模态框组件-拖动调整窗口大小', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-resize.md')
+  },
+  {
+    path: 'modal/modal-showHeader',
+    meta: { title: '模态框组件-不显示头部', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-showHeader.md')
+  },
+  {
+    path: 'modal/modal-showFooter',
+    meta: { title: '模态框组件-不显示底部', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-showFooter.md')
+  },
+  {
+    path: 'modal/modal-status',
+    meta: { title: '模态框组件-消息状态', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-status.md')
+  },
+  {
+    path: 'modal/modal-title',
+    meta: { title: '模态框组件-标题', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-title.md')
+  },
+  {
+    path: 'modal/modal-top',
+    meta: { title: '模态框组件-距离顶部的位置', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-top.md')
+  },
+  {
+    path: 'modal/modal-type',
+    meta: { title: '模态框组件-窗口类型', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-type.md')
+  },
+  {
+    path: 'modal/modal-value',
+    meta: { title: '模态框组件-绑定值', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-value.md')
+  },
+  {
+    path: 'modal/modal-zIndex',
+    meta: { title: '模态框组件-自定义堆叠顺序', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-zIndex.md')
+  },
+  {
+    path: 'modal/modal-event',
+    meta: { title: '模态框组件-事件', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-event.md')
+  },
+  {
+    path: 'modal/modal-slots',
+    meta: { title: '模态框组件-插槽', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/zh-CN/modal/modal-slots.md')
+  },
+  {
+    path: 'index-bar',
+    meta: { title: '索引', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/mobile/index-bar/base.md')
+  },
+  {
+    path: 'index-bar/event',
+    meta: { title: '索引组件-事件', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-modal' */ './docs/mobile/index-bar/event.md')
   }
 ]
 

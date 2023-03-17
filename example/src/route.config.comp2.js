@@ -405,6 +405,11 @@ export default [
     component: () => import(/* webpackChunkName: 'v3-fullscreen' */ './docs/zh-CN/fullscreen/basic-usage.md')
   },
   {
+    path: 'fullscreen/before-change',
+    meta: { title: '全屏显示-Fullscreen 全屏显示-全屏/退出全屏前的回调', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-fullscreen' */ './docs/zh-CN/fullscreen/before-change.md')
+  },
+  {
     path: 'user',
     meta: {
       title: '业务组件-User 用户',

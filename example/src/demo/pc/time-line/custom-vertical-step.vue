@@ -1,13 +1,13 @@
 <template>
   <tiny-time-line :data="data" :active="active" @click="click" vertical>
-    <template #left="data">
+    <template #left="{ slotScope: { name } }">
       <span style="text-align: right; float: left; padding-right: 16px">
-        {{ data.slotScope.name }}
+        {{ name }}
       </span>
     </template>
-    <template #right="data">
+    <template #right="{ slotScope: { time } }">
       <span style="margin-left: 15px; float: left">
-        {{ data.slotScope.time }}
+        {{ time }}
       </span>
     </template>
   </tiny-time-line>

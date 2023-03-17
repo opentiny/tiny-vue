@@ -20,11 +20,11 @@
         <tiny-dropdown trigger="click">
           <template #dropdown>
             <tiny-dropdown-menu>
-              <tiny-dropdown-item :icon="IconPlus">黄金糕</tiny-dropdown-item>
-              <tiny-dropdown-item :icon="IconPlusCircle">狮子头</tiny-dropdown-item>
-              <tiny-dropdown-item :icon="IconPlusSquare">螺蛳粉</tiny-dropdown-item>
-              <tiny-dropdown-item :icon="IconCheckedLinear">双皮奶</tiny-dropdown-item>
-              <tiny-dropdown-item :icon="IconCheckedSur">蚵仔煎</tiny-dropdown-item>
+              <tiny-dropdown-item :icon="iconPlus">黄金糕</tiny-dropdown-item>
+              <tiny-dropdown-item :icon="iconPlusCircle">狮子头</tiny-dropdown-item>
+              <tiny-dropdown-item :icon="iconPlusSquare">螺蛳粉</tiny-dropdown-item>
+              <tiny-dropdown-item :icon="iconCheckedLinear">双皮奶</tiny-dropdown-item>
+              <tiny-dropdown-item :icon="iconCheckedSur">蚵仔煎</tiny-dropdown-item>
             </tiny-dropdown-menu>
           </template>
         </tiny-dropdown>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { IconPlus, IconPlusCircle, IconPlusSquare, IconCheckedLinear, IconCheckedSur } from '@opentiny/vue-icon'
+import { iconPlus, iconPlusCircle, iconPlusSquare, iconCheckedLinear, iconCheckedSur } from '@opentiny/vue-icon'
 import { Layout, Row, Col, Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
 
 export default {
@@ -45,19 +45,19 @@ export default {
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,
     TinyDropdownItem: DropdownItem,
-    IconPlus: IconPlus(),
-    IconPlusCircle: IconPlusCircle(),
-    IconPlusSquare: IconPlusSquare(),
-    IconCheckedLinear: IconCheckedLinear(),
-    IconCheckedSur: IconCheckedSur()
+    IconPlus: iconPlus(),
+    IconPlusCircle: iconPlusCircle(),
+    IconPlusSquare: iconPlusSquare(),
+    IconCheckedLinear: iconCheckedLinear(),
+    IconCheckedSur: iconCheckedSur()
   },
   data() {
     return {
-      IconPlus: IconPlus(),
-      IconPlusCircle: IconPlusCircle(),
-      IconPlusSquare: IconPlusSquare(),
-      IconCheckedLinear: IconCheckedLinear(),
-      IconCheckedSur: IconCheckedSur()
+      iconPlus: iconPlus(),
+      iconPlusCircle: iconPlusCircle(),
+      iconPlusSquare: iconPlusSquare(),
+      iconCheckedLinear: iconCheckedLinear(),
+      iconCheckedSur: iconCheckedSur()
     }
   }
 }

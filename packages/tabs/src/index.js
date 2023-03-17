@@ -49,6 +49,9 @@ export default {
     beforeLeave: Function,
     stretch: Boolean,
     showMoreTabs: Boolean,
+    showExpandTabs: Boolean,
+    expandTabsTitle: String,
+    expandTabsMode: String,
     swipeable: {
       type: Boolean,
       default: true

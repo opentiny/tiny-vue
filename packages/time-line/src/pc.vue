@@ -20,7 +20,7 @@
         }"
         :class="['normal', getStatusCls(index)]"
       >
-        <slot name="top" :slot-scope="node">
+        <slot name="top" :slot-scope="{ index, ...node }">
           <div class="date-time">
             <span class="time">{{ getDate(node[timeField]).date }} {{ getDate(node[timeField]).time }}</span>
           </div>
@@ -41,7 +41,7 @@
           ]"
         ></div>
         <div class="node-description">
-          <slot name="bottom" :slot-scope="node">
+          <slot name="bottom" :slot-scope="{ index, ...node }">
             <div class="name" v-text="node[nameField]"></div>
             <div class="status">
               {{ showStatus ? getStatus(index) : '' }}
@@ -60,7 +60,7 @@
         :class="['timeline', getStatusCls(index)]"
       >
         <ul>
-          <slot name="left" :slot-scope="node">
+          <slot name="left" :slot-scope="{ index, ...node }">
             <li class="date-time">
               <span class="date">{{ getDate(node[timeField]).date }}</span>
               <span class="time">{{ getDate(node[timeField]).time }}</span>
@@ -77,7 +77,7 @@
               <span v-else>{{ showNumber ? (reverse ? state.nodes.length - 1 - index + start : index + start) : '' }}</span>
             </div>
           </li>
-          <slot name="right" :slot-scope="node">
+          <slot name="right" :slot-scope="{ index, ...node }">
             <li class="name" v-text="node[nameField]"></li>
           </slot>
         </ul>

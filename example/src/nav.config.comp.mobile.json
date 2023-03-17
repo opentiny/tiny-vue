@@ -68,6 +68,10 @@
               "name": "新增标签页"
             },
             {
+              "path": "/tabs/expand",
+              "name": "可展开标签页"
+            },
+            {
               "path": "/tabs/active-color",
               "name": "自定义当前标签页颜色"
             },
@@ -94,16 +98,26 @@
           "name": "TimeLine 时间轴",
           "children": [
             {
-              "path": "/time-line/different-data",
-              "name": "数据映射"
-            },
-            {
               "path": "/time-line/slot",
               "name": "插槽"
             },
             {
               "path": "/time-line/space",
               "name": "设置高度"
+            },
+            {
+              "path": "/time-line/steps",
+              "name": "步骤条"
+            }
+          ]
+        },
+        {
+          "path": "/index-bar",
+          "name": "IndexBar 索引",
+          "children": [
+            {
+              "path": "/index-bar/event",
+              "name": "事件"
             }
           ]
         }
@@ -292,6 +306,10 @@
             {
               "path": "/form/validate",
               "name": "表单校验"
+            },
+            {
+              "path": "/form/auto-wordwrap",
+              "name": "自动换行"
             }
           ]
         },
@@ -774,15 +792,15 @@
           "children": [
             {
               "path": "/pull-refresh/pulling-text",
-              "name": "下拉提示文字"
+              "name": "提示文字"
             },
             {
               "path": "/pull-refresh/loosing-text",
-              "name": "下拉可刷新的文字提示"
+              "name": "可刷新的文字提示"
             },
             {
-              "path": "/pull-refresh/success-text",
-              "name": "刷新成功的文字"
+              "path": "/pull-refresh/result-text",
+              "name": "刷新提示的文字"
             },
             {
               "path": "/pull-refresh/success-duration",
@@ -794,15 +812,19 @@
             },
             {
               "path": "/pull-refresh/head-height",
-              "name": "下拉时头部的高度"
+              "name": "头部的高度"
             },
             {
               "path": "/pull-refresh/disabled",
-              "name": "禁用下拉刷新"
+              "name": "禁用刷新"
             },
             {
               "path": "/pull-refresh/pull-refresh-slot",
               "name": "插槽"
+            },
+            {
+              "path": "/pull-refresh/enhance",
+              "name": "下拉/上拉刷新"
             }
           ]
         },
@@ -865,6 +887,92 @@
             {
               "path": "/loading/type",
               "name": "加载不同样式"
+            }
+          ]
+        },
+        {
+          "path": "/modal",
+          "name": "Modal 反馈弹框",
+          "children": [
+            {
+              "path": "/modal/modal-fullscreen",
+              "name": "最大化显示"
+            },
+            {
+              "path": "/modal/modal-esc-closable",
+              "name": "按 Esc 键关闭窗口"
+            },
+            {
+              "path": "/modal/modal-duration",
+              "name": "自动关闭延时"
+            },
+            {
+              "path": "/modal/modal-id",
+              "name": "防止重复提示"
+            },
+            {
+              "path": "/modal/modal-lock-scroll",
+              "name": "锁住滚动条"
+            },
+            {
+              "path": "/modal/modal-lock-view",
+              "name": "锁住页面"
+            },
+            {
+              "path": "/modal/modal-mask",
+              "name": "显示遮罩层"
+            },
+            {
+              "path": "/modal/modal-mask-closable",
+              "name": "点击遮罩层关闭窗口"
+            },
+            {
+              "path": "/modal/modal-message",
+              "name": "自定义内容"
+            },
+            {
+              "path": "/modal/modal-resize",
+              "name": "调整窗口大小"
+            },
+            {
+              "path": "/modal/modal-showFooter",
+              "name": "不显示底部"
+            },
+            {
+              "path": "/modal/modal-showHeader",
+              "name": "不显示头部"
+            },
+            {
+              "path": "/modal/modal-title",
+              "name": "标题"
+            },
+            {
+              "path": "/modal/modal-top",
+              "name": "距离顶部的位置"
+            },
+            {
+              "path": "/modal/modal-type",
+              "name": "窗口类型"
+            },
+            {
+              "path": "/modal/modal-value",
+              "name": "绑定值"
+            },
+            {
+              "path": "/modal/modal-zIndex",
+              "name": "自定义堆叠顺序"
+            },
+            {
+              "path": "/modal/modal-is-form-reset",
+              "name": "关闭弹窗是否重置表单数据"
+            },
+            {
+              "path": "/modal/modal-event",
+              "name": "事件"
+            },
+            {
+              "path": "/modal/modal-slots",
+              "name": "插槽"
             }
           ]
         }
@@ -974,6 +1082,11 @@
           ]
         },
         {
+          "path": "/multi-select",
+          "name": " MultiSelect 下拉选择器",
+          "children": []
+        },
+        {
           "path": "/mini-picker",
           "name": " MiniPicker 选择器",
           "children": [
@@ -1018,7 +1131,8 @@
               "name": "插槽"
             }
           ]
-        },{
+        },
+        {
           "path": "/mobile-popover",
           "name": " Popover 气泡",
           "children": [

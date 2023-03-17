@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { IconStarDisable } from '@opentiny/vue-icon'
+import { iconStarDisable } from '@opentiny/vue-icon'
 import { Dropdown, DropdownMenu, Notify } from '@opentiny/vue'
 
 export default {
@@ -43,7 +43,7 @@ export default {
         {
           label: '黄金糕',
           divided: true,
-          icon: IconStarDisable()
+          icon: iconStarDisable()
         }
       ],
       options1: [
@@ -58,7 +58,7 @@ export default {
         {
           name: '黄金糕',
           divided: true,
-          icon: IconStarDisable()
+          icon: iconStarDisable()
         }
       ],
       menuOptions: {
@@ -74,7 +74,7 @@ export default {
           {
             label: '黄金糕',
             divided: true,
-            icon: IconStarDisable()
+            icon: iconStarDisable()
           }
         ]
       },
@@ -91,7 +91,7 @@ export default {
           {
             name: '黄金糕',
             divided: true,
-            icon: IconStarDisable()
+            icon: iconStarDisable()
           }
         ],
         textField: 'name'

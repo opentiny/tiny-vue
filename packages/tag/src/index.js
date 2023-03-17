@@ -28,7 +28,8 @@ export default {
       type: String,
       default: 'light',
       validator: (value) => ~['dark', 'light', 'plain'].indexOf(value)
-    }
+    },
+    beforeDelete: Function
   },
   setup(props, context) {
     return $setup({ props, context, template })

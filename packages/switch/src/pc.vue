@@ -27,7 +27,7 @@ import '@opentiny/vue-theme/switch/index.css'
 
 export default {
   emits: ['change', 'update:modelValue'],
-  props: [...props, 'modelValue', 'trueValue', 'falseValue', 'disabled', 'mini', 'tabindex', 'showText'],
+  props: [...props, 'modelValue', 'trueValue', 'falseValue', 'disabled', 'mini', 'tabindex', 'showText', 'beforeChange'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
