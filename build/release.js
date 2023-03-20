@@ -22,6 +22,8 @@ const keys = [
   'license',
   'home',
   'repository',
+  'homepage',
+  'keywords',
   'dependencies',
   'engines',
   'browserslist'
