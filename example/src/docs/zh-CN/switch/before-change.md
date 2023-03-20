@@ -10,7 +10,7 @@
 Switch 在两种状态间切换选择。
 </div>
 
-### 基本用法
+### 开关切换前的回调
 
 <nova-demo-view link="switch/before-change"></nova-demo-view>
 

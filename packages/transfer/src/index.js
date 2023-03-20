@@ -93,7 +93,8 @@ export default {
       type: Boolean,
       default: true
     },
-    treeOp: Object
+    treeOp: Object,
+    beforeTransfer: Function
   },
   setup(props, context) {
     return $setup({ props, context, template })

@@ -1,5 +1,5 @@
 <template>
-  <tiny-tabs v-model="activeName4" tab-style="card" position="left">
+  <tiny-tabs v-model="activeName4" tab-style="card" position="left" :tooltip-config="{ effect: 'light', placement: 'left', visible: 'auto' }">
     <tiny-tab-item v-for="item in tabs3" :key="item.name" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>
@@ -20,7 +20,7 @@ export default {
       tabs3: [
         {
           name: 'navigation1',
-          title: 'Navigation1',
+          title: 'Navigation1(蒸羊羔蒸熊掌蒸鹿尾，可以试着将tooltip-config设置为字符串title)',
           content: 'Navigation1'
         },
         {

@@ -137,7 +137,8 @@ export default {
     'pagerOp',
     'showPager',
     'render',
-    'treeOp'
+    'treeOp',
+    'beforeTransfer'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

@@ -1,39 +1,42 @@
 <p align="center">
-  <a href="https://tinyuidesign.cloudbu.huawei.com/" target="_blank" rel="noopener noreferrer">
-    <img alt="TinyVue Logo" src="logo.svg" height="100" style="max-width:100%;">
+  <a href="https://opentiny.design/tiny-vue" target="_blank" rel="noopener noreferrer">
+    <img alt="OpenTiny Logo" src="logo.svg" height="100" style="max-width:100%;">
   </a>
 </p>
 
-<p align="center">Tiny Vue 是一个基于 Vue 的 UI 组件库，可以同时支持 Vue 2.0 和 Vue 3.0。</p>
+<p align="center">An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.</p>
 
-特性：
+English | [简体中文](README.zh-CN.md)
 
-- 包含 69 个简洁、易用、功能强大的组件
-- 同时支持 Vue2 和 Vue3
-- 支持国际化
-- 支持主题定制
-- 组件内部支持配置式开发，特别适合低代码平台可视化组件配置
-- 采用模板、样式、逻辑分离的跨端跨框架架构，保障灵活性和可移植性
+🌈 Features:
 
-## 如何使用
+- 📦 69 clean, easy-to-use and powerful components.
+- 🖖 One code, Support both Vue.js 2 and Vue.js 3.
+- 🖥️ One code, Support both PC and Mobile.
+- 🌍 Support internationalization.
+- 🎨 Support theme customization.
+- 📊 Components support configuration development, can support low-code platform.
+- 💡 Use a cross-end and cross-framework architecture, flexible and portable.
 
-### 1. 安装
+## 🛠️ Usage
 
-执行以下命令，安装 Vue 3.0 版本的 Tiny Vue 组件库：
+### 1. Installation
+
+Execute the following command to install the TinyVue component library for Vue.js 3.
 
 ```shell
-npm i @opentiny/vue
+npm i @opentiny/vue@3
 ```
 
-执行以下命令，安装 Vue 2.0 版本的 Tiny Vue 组件库 ：
+Execute the following command to install the TinyVue component library for Vue.js 2.
 
 ```shell
 npm i @opentiny/vue@2
 ```
 
-### 2. 引入和使用
+### 2. Import component
 
-在`App.vue`文件中使用 Tiny Vue 组件。
+Then you can use the TinyVue component(such as `<tiny-button>`) in the `App.vue` file.
 
 ```vue
 <script lang="ts" setup>
@@ -45,31 +48,31 @@ import { Button as TinyButton } from '@opentiny/vue'
 </template>
 ```
 
-## 本地开发
+## 🖥️ Development
 
 ```shell
 git clone git@github.com:opentiny/tiny-vue.git
 cd tiny-vue
 npm i --legacy-peer-deps
 
-# 启动 Vue3 项目
+# Vue.js 3
 npm run dev:vue3
 
-# 启动 Vue2 项目
+# Vue.js 2
 npm run dev:vue2
 ```
 
-打开浏览器访问：[http://127.0.0.1:5173/](http://127.0.0.1:5173/)
+Open your browser and visit: [http://127.0.0.1:5173/](http://127.0.0.1:5173/)
 
-## 参与贡献
+## 🤝 Contributing
 
-如果你对我们的开源项目感兴趣，欢迎加入我们！
+Welcome to join our OpenTiny community!🎉
 
-参与贡献之前请先阅读[贡献指南](CONTRIBUTING.md)。
+If you don't know how to start, please read our [contributing guide](CONTRIBUTING.md).
 
-- 添加官方小助手微信 opentiny，加入技术交流群
-- 加入邮件列表 opentiny@googlegroups.com
+- Add the official assistant WeChat `opentiny-official` and join the technical exchange group.
+- Add to the mailing list `opentiny@googlegroups.com`
 
-## 开源协议
+## License
 
 [MIT](LICENSE)
