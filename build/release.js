@@ -84,6 +84,9 @@ fs.copySync(packagePath, path.join(source, 'vue', packageName), {
   overwrite: true
 })
 
+// 拷贝 README 文件
+fs.copySync('README.md', path.join(source, 'README.md'))
+
 const entrys = ['pc.js', 'mobile.js', 'index.js']
 
 entrys.forEach((name) => {
