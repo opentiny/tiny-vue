@@ -74,7 +74,7 @@ export default {
       default: '下拉菜单'
     }
   },
-  emits: ['visible-change', 'item-click', 'button-click', 'menu-item-click'],
+  emits: ['visible-change', 'item-click', 'button-click', 'menu-item-click', 'handle-click'],
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
   },
