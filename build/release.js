@@ -11,7 +11,21 @@ const typings = 'typings'
 const packagePath = path.join(source, packageName)
 const packageJSON = fs.readJSONSync(packageName)
 
-const keys = ['name', 'version', 'description', 'main', 'files', 'sideEffects', 'author', 'license', 'repository', 'dependencies', 'engines', 'browserslist']
+const keys = [
+  'name',
+  'version',
+  'description',
+  'main',
+  'files',
+  'sideEffects',
+  'author',
+  'license',
+  'home',
+  'repository',
+  'dependencies',
+  'engines',
+  'browserslist'
+]
 
 const NPM_TAG = process.env.NPM_TAG
 // 命令行中指定的版本号
