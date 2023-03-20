@@ -4,17 +4,25 @@
   "uiVersion": "0.1.0",
   "srcVersion": "0.1.0",
   "themeVersion": "3.5.0",
-  "description": "@opentiny/vue",
+  "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "main": "index.js",
+  "homepage": "https://opentiny.design/tiny-vue",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/opentiny/tiny-vue"
   },
   "keywords": [
     "vue",
-    "Tiny Vue"
+    "vue3",
+    "frontend",
+    "component-library",
+    "components",
+    "vue-components",
+    "opentiny",
+    "renderless-components",
+    "headless-components"
   ],
-  "author": "Tiny Vue Team",
+  "author": "OpenTiny Team",
   "license": "MIT",
   "sideEffects": false,
   "scripts": {
