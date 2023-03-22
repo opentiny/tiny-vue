@@ -88,6 +88,7 @@ fs.copySync(packagePath, path.join(source, 'vue', packageName), {
 
 // 拷贝 README 文件
 fs.copySync('README.md', path.join(source, 'README.md'))
+fs.copySync('README.md', path.join(source, 'vue', 'README.md'))
 
 const entrys = ['pc.js', 'mobile.js', 'index.js']
 
