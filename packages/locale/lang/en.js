@@ -489,7 +489,8 @@ export default {
       pullingUp: 'Pull up to refresh',
       loosing: 'Release to refresh',
       success: 'Refresh success',
-      failed: 'Refresh failed'
+      failed: 'Refresh failed',
+      noMore: 'There is no more'
     }
   },
   validation: {
