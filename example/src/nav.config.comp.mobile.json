@@ -825,6 +825,10 @@
             {
               "path": "/pull-refresh/enhance",
               "name": "下拉/上拉刷新"
+            },
+            {
+              "path": "/pull-refresh/hasmore",
+              "name": "是否还有更多"
             }
           ]
         },

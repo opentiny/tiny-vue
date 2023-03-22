@@ -35,6 +35,7 @@
       </div>
       <div class="tiny-mobile-pull-refresh__content">
         <slot></slot>
+        <div v-if="!hasMore">{{state.noMoreText}}</div>
       </div>
       <div
         class="tiny-mobile-pull-refresh__tips tiny-mobile-pull-refresh__foot"
@@ -83,7 +84,11 @@ export default {
     },
     pullDown: {
       type: Function
-    }
+    },
+    hasMore: {
+      type: Boolean,
+      default: true
+    },
   },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })

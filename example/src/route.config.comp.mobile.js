@@ -200,6 +200,11 @@ const router = [
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/enhance.md')
   },
   {
+    path: 'pull-refresh/hasmore',
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/hasmore.md')
+  },
+  {
     path: 'pull-refresh/pulling-text',
     meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/pulling-text.md')

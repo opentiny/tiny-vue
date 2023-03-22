@@ -487,7 +487,8 @@ export default {
       pullingUp: '上拉即可刷新',
       loosing: '释放即可刷新',
       success: '刷新成功',
-      failed: '刷新失败'
+      failed: '刷新失败',
+      noMore: '没有更多了'
     }
   },
   validation: {
