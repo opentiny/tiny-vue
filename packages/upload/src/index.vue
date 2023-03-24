@@ -67,7 +67,11 @@ export default {
     onSuccess: Function,
     size: String,
     type: String,
-    withCredentials: Boolean
+    withCredentials: Boolean,
+    isHidden: {
+      type: Boolean,
+      default: false
+    }
   },
   setup(props, context) {
     return setup({
@@ -94,12 +98,13 @@ export default {
       name: name,
       uploadFiles: uploadFiles,
       fileList: fileList,
-      limit: limit
+      limit: limit,
+      isHidden: isHidden
     } = this
 
     const defaultSlot = (this.slots.default && this.slots.default()) || []
 
-    const hidden = fileList.length >= limit
+    const hidden = isHidden && fileList.length >= limit
 
     return (
       <div

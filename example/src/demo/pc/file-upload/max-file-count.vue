@@ -1,5 +1,5 @@
 <template>
-  <tiny-file-upload :action="action" :limit="limit">
+  <tiny-file-upload :action="action" :limit="limit" is-hidden>
     <tiny-button type="primary">点击上传</tiny-button>
   </tiny-file-upload>
 </template>
