@@ -1,0 +1,66 @@
+[
+  {
+    "title": "Data Source",
+    "content": "<p>Set the data source of the menu through the <code>data</code> attribute. In addition, you can set whether the node can be selected through <code>disabled</code> in the data object. </p>\n",
+    "link": "link-menu/data-resource",
+    "component": "LinkMenu Favorites Menu",
+    "findIntroStr": "LinkMenu favorites menu, which supports configurable menu items.",
+    "demoId": "data-resource1"
+  },
+  {
+    "title": "Collection Menu Title",
+    "content": "<p>The <code>title</code> attribute defines the title of the favorites menu. </p>\n",
+    "link": "link-menu/data-resource",
+    "component": "LinkMenu Favorites Menu",
+    "findIntroStr": "LinkMenu favorites menu, which supports configurable menu items.",
+    "demoId": "data-resource"
+  },
+  {
+    "title": "The menu content is displayed in a new line when it is too long.",
+    "content": "<p>The <code>wrap</code> attribute is used to set the menu content to be displayed in a line wrap when the menu content is too long. </p>\n",
+    "link": "link-menu/data-resource",
+    "component": "LinkMenu Favorites Menu",
+    "findIntroStr": "LinkMenu favorites menu, which supports configurable menu items.",
+    "demoId": "data-resource2"
+  },
+  {
+    "title": "Number of categories that can be added to favorites",
+    "content": "<p>The <code>max-item</code> attribute specifies the number of categories that can be selected and added to favorites. If <code>default-expand-all</code> is set to false, all nodes are collapsed when a menu pop-up window is opened. </p>\n",
+    "link": "link-menu/menu-items",
+    "component": "LinkMenu Favorites Menu",
+    "findIntroStr": "LinkMenu favorites menu, which supports configurable menu items.",
+    "demoId": "menu-items"
+  },
+  {
+    "title": "Customized menu data service",
+    "content": "<p>Customize the menu data service through <code>get-menu-data-sync</code> . </p>\n",
+    "link": "link-menu/get-menu-data-sync",
+    "component": "LinkMenu Favorites Menu",
+    "findIntroStr": "LinkMenu favorites menu, which supports configurable menu items.",
+    "demoId": "get-menu-data-sync"
+  },
+  {
+    "title": "Customize the folding and unfolding icon",
+    "content": "<p>Customize the expansion icon through the <code>icon</code> attribute. Use the <code>search-icon</code> attribute to customize the search icon. </p>\n",
+    "link": "link-menu/custom-icon",
+    "component": "LinkMenu Favorites Menu",
+    "findIntroStr": "LinkMenu favorites menu, which supports configurable menu items.",
+    "demoId": "custom-icon"
+  },
+  {
+    "title": "Omitted if the menu content is too long.",
+    "content": "<p>You can set the <code>ellipsis</code> attribute to omit the display when the menu content is too long. </p>\n",
+    "link": "link-menu/custom-icon",
+    "component": "LinkMenu Favorites Menu",
+    "findIntroStr": "LinkMenu favorites menu, which supports configurable menu items.",
+    "demoId": "custom-icon1"
+  },
+  {
+    "title": "Customize the bottom of the pop-up window",
+    "content": "<p>Customize the bottom of the menu pop-up window through the <code>foot</code> slot. The <code>sureNodevalue</code> method is used to obtain the selected menu node, close the menu pop-up window, and display the selected menu. The <code>hideDialog</code> method is used to close a pop-up window. Slots can be used in combination with both methods. </p>\n",
+    "link": "link-menu/custom-foot",
+    "component": "LinkMenu Favorites Menu",
+    "findIntroStr": "LinkMenu favorites menu, which supports configurable menu items.",
+    "demoId": "custom-foot"
+  }
+]

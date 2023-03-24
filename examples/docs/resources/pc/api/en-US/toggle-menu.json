@@ -1,0 +1,162 @@
+{
+  "attrs": [
+    {
+      "name": "data",
+      "sample": "basic-usage",
+      "type": "Array",
+      "desc": "Set the data of the collapsed menu.",
+      "defaultValue": ""
+    },
+    {
+      "name": "dragable",
+      "sample": "dragable",
+      "type": "Boolean",
+      "desc": "Whether to enable the node drag function. The default value is `false`",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-filter",
+      "sample": "show-filter",
+      "type": "Boolean",
+      "desc": "Specifies whether to display the search box. The default value is `true`.",
+      "defaultValue": ""
+    },
+    {
+      "name": "icon",
+      "sample": "custom-icon",
+      "type": "Object",
+      "desc": "Customize the icon on the left of the menu.",
+      "defaultValue": ""
+    },
+    {
+      "name": "default-expand-all",
+      "sample": "default-expand-all",
+      "type": "Boolean",
+      "desc": "Whether to expand all nodes in the menu by default. The default value is false.",
+      "defaultValue": ""
+    },
+    {
+      "name": "expand-on-click-node",
+      "sample": "default-expand-all",
+      "type": "Boolean",
+      "desc": "Whether to expand or collapse menus by clicking a node. The default value is false.",
+      "defaultValue": ""
+    },
+    {
+      "name": "placeholder",
+      "sample": "show-filter",
+      "type": "String",
+      "desc": "Placeholder in the text box.",
+      "defaultValue": ""
+    },
+    {
+      "name": "ellipsis",
+      "sample": "dragable",
+      "type": "Boolean",
+      "desc": "Omitted if the menu content is too long. The default value is false.",
+      "defaultValue": ""
+    },
+    {
+      "name": "wrap",
+      "sample": "show-filter",
+      "type": "Boolean",
+      "desc": "The menu content is displayed in a new line when it is too long. The default value is false.",
+      "defaultValue": ""
+    },
+    {
+      "name": "automatic-filtering",
+      "sample": "automatic-filtering",
+      "type": "Boolean",
+      "desc": "Whether to automatically filter content when you enter content in the text box. The default value is true.",
+      "defaultValue": ""
+    },
+    {
+      "name": "props",
+      "sample": "toggle-props",
+      "type": "Object",
+      "desc": "Configuration data option mapping field name",
+      "defaultValue": "The default value of this attribute is {children: 'children', label: 'label', disabled: 'disabled'}"
+    },
+    {
+      "name": "get-menu-data-sync",
+      "sample": "get-menu-data-sync",
+      "type": "Function",
+      "desc": "User-defined menu data service. Data is directly returned.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "node",
+      "sample": "toggle-props",
+      "type": "",
+      "desc": "Custom Slot",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "node-click",
+      "sample": "node-click",
+      "type": "Function(arg1, arg2)",
+      "desc": "Indicates that a node is clicked. ;Callback function triggered after a node is clicked. //Parameter arg1:\n{children: child node of the clicked node, id: ID of the clicked node, label: title of the clicked node} \n//Parameter arg2:\n Object Data information object of the currently clicked node",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-expand",
+      "sample": "node-expand",
+      "type": "Function(arg1, arg2, arg3)",
+      "desc": "Event after a node is expanded. ; Event triggered when a node is expanded; / / Parameter arg1:\n{children: child node of the clicked node, id: ID of the clicked node, label: title of the clicked node}\n//Parameter arg2:\nVueComponent Componet object information of the clicked node\n//Parameter arg3:\n{children: subnode ID of the clicked node: ID of the clicked node, label: Click title} of the node",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-collapse",
+      "sample": "node-collapse",
+      "type": "Function(arg1, arg2)",
+      "desc": "Event after the node is scaled in. ; Event triggered when a node is shut down; //Parameter arg1:Object \n{children: child node of the clicked node, id: ID of the clicked node, label: title of the clicked node}\n//Parameter arg2:Object Data information object of the currently clicked node",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-start",
+      "sample": "drag-events",
+      "type": "Function(arg1, arg2)",
+      "desc": "Event triggered when a node starts to be dragged. ;Event triggered when a node starts to be dragged. ; / / Parameters:\narg1:Object Data information object of the current node \narg2:event",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-enter",
+      "sample": "drag-events",
+      "type": "Function(arg1, arg2)",
+      "desc": "This event is triggered when a user drags a node to another node. Event triggered when a user drags a node to another node. / / Parameter \narg1: Object Data information object of the current node \narg2: Object Data information object of the current node after the node is dragged.",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-leave",
+      "sample": "drag-events",
+      "type": "Function(arg1, arg2)",
+      "desc": "This event is triggered when a user drags a node. Event triggered when a user drags a node. / / Parameter \narg1:Object Data information object of the currently dragged node \narg2: Object Data information object of the currently dragged node",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-over",
+      "sample": "drag-events",
+      "type": "Function(arg1, arg2, arg3)",
+      "desc": "Event triggered when a node is dragged (similar to the mouseover event of the browser); Event triggered when a node is dragged (similar to the mouseover event of the browser) / / Parameter \narg1:Object Data information object of the current dragged node \narg2:Object Data information object of the current dragged node \n arg3:event",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-end",
+      "sample": "drag-events",
+      "type": "Function(arg1, arg2, arg3, arg4)",
+      "desc": "Event triggered when dragging ends (r may not succeed). Event triggered when the drag is successfully completed; / / Parameter \narg1: Object Data information object of the current node\narg2: Object Data information object of the current node after the node is dragged\narg3: Drag type, for example,'inner'\narg4:event",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drop",
+      "sample": "node-drop",
+      "type": "Function(arg1, arg2)",
+      "desc": "Indicates the event after a node is dragged and dropped. This parameter is valid when the dragable attribute is set to true. ; Events after a node is dragged and dropped. This parameter is valid when the dragable attribute is set to true. ; / / Parameter \narg1:Object Data information object of the current dragged node \n arg2:Object Data information object of the current clicked node after the dragged node \narg3:Drag type \narg4:event",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@opentiny/vue-cascader",
+  "version": "3.7.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+   "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "^0.25.7"
+  },
+ "scripts": {
+    "build": "pnpm -w build:ui $npm_package_name",
+    "//postversion": "pnpm build"
+  },
+  "dependencies": {
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-tag": "workspace:~",
+    "@opentiny/vue-scrollbar": "workspace:~",
+    "@opentiny/vue-cascader-panel": "workspace:~"
+  },
+  "license": "MIT"
+}

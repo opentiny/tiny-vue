@@ -1,0 +1,137 @@
+{
+  "attrs": [
+    {
+      "name": "dialog-title",
+      "sample": "fill-button-text1",
+      "type": "String",
+      "desc": "设置文件上传弹框的标题;默认为 文件上传",
+      "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "size",
+      "type": "String",
+      "desc": "设置组件大小",
+      "defaultValue": ""
+    },
+    {
+      "name": "submit-button-text",
+      "sample": "fill-button-text2",
+      "type": "String",
+      "desc": "设置文件上传弹框中提交按钮的文本;默认为 开始上传",
+      "defaultValue": ""
+    },
+    {
+      "name": "cancel-button-text",
+      "sample": "fill-button-text1",
+      "type": "String",
+      "desc": "设置文件上传弹框中取消按钮的文本;默认为 取消",
+      "defaultValue": ""
+    },
+    {
+      "name": "action",
+      "sample": "custom-request-headers",
+      "type": "String",
+      "desc": "必选参数，设置上传的地址",
+      "defaultValue": ""
+    },
+    {
+      "name": "headers",
+      "sample": "custom-request-headers",
+      "type": "Object",
+      "desc": "设置上传的请求头部",
+      "defaultValue": ""
+    },
+    {
+      "name": "limit",
+      "sample": "file-limit",
+      "type": "Number",
+      "desc": "最大允许上传个数",
+      "defaultValue": ""
+    },
+    {
+      "name": "multiple",
+      "sample": "file-limit",
+      "type": "Boolean",
+      "desc": "是否支持多选文件",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "size",
+      "type": "Boolean",
+      "desc": "是否禁用;默认为 false",
+      "defaultValue": ""
+    },
+    {
+      "name": "accept",
+      "sample": "file-type",
+      "type": "String",
+      "desc": "接受上传的文件类型",
+      "defaultValue": ""
+    },
+    {
+      "name": "upload-file-type",
+      "sample": "file-type",
+      "type": "Array",
+      "desc": "对上传文件进行校验的类型，比如 ['.png', '.jpg']",
+      "defaultValue": ""
+    },
+    {
+      "name": "max-upload-file-size",
+      "sample": "max-upload-file-size",
+      "type": "Number",
+      "desc": "最大上传文件大小",
+      "defaultValue": ""
+    },
+    {
+      "name": "upload-name",
+      "sample": "upload-name",
+      "type": "String",
+      "desc": "上传的文件字段名",
+      "defaultValue": "该属性的默认值为 file"
+    },
+    {
+      "name": "upload-button-text",
+      "sample": "fill-button-text4",
+      "type": "String",
+      "desc": "打开弹出框的按钮的文本配置属性",
+      "defaultValue": "该属性的默认值为 选择文件"
+    },
+    {
+      "name": "with-credentials",
+      "sample": "upload-name",
+      "type": "Boolean",
+      "desc": "支持发送 cookie 凭证信息",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "before-remove",
+      "sample": "prevent-delete-file",
+      "type": "Function(arg1)",
+      "desc": "在上传文件列表点击删除成功前触发;arg1:{Object 点击删除的文件信息}",
+      "defaultValue": ""
+    },
+    {
+      "name": "before-upload",
+      "sample": "before-upload",
+      "type": "Function(arg1)",
+      "desc": "上传文件之前的钩子，参数为上传的文件，若返回 false 或者返回 Promise 且被 reject，则停止上传。;arg1:{Object 上传的文件信息}",
+      "defaultValue": ""
+    },
+    {
+      "name": "http-request",
+      "sample": "http-request",
+      "type": "Function",
+      "desc": "覆盖默认的上传行为，可以自定义上传的实现",
+      "defaultValue": ""
+    },
+    {
+      "name": "data",
+      "sample": "",
+      "type": "Object",
+      "desc": "上传时附带的额外参数",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "attrs": [
+    {
+      "name": "separator",
+      "sample": "separator",
+      "type": "String",
+      "desc": "分隔符",
+      "defaultValue": "该属性的默认值为 /"
+    },
+    {
+      "name": "separator-icon",
+      "sample": "separator",
+      "type": "Object",
+      "desc": "图标分隔符 class",
+      "defaultValue": ""
+    },
+    {
+      "name": "options",
+      "sample": "options",
+      "type": "Array",
+      "desc": "配置 options ,可以单独使用 tiny-breadcrumb 组件",
+      "defaultValue": "[]"
+    },
+    {
+      "name": "textField",
+      "sample": "options",
+      "type": "Array",
+      "desc": "指定面包屑的显示字段，结合 options 使用，组件默认 label ",
+      "defaultValue": "[]"
+    }
+  ],
+  "events": [
+    {
+      "name": "select",
+      "sample": "base",
+      "type": "Function",
+      "desc": "点击 breadcrumb-item 时触发",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "slot-default",
+      "type": "",
+      "desc": "默认插槽",
+      "defaultValue": ""
+    }
+  ],
+  "breadcrumbItemAttrs": [
+    {
+      "name": "to",
+      "sample": "slot-default",
+      "type": "String , Object",
+      "desc": "路由跳转对象，同 vue-router 的 to",
+      "defaultValue": ""
+    },
+    {
+      "name": "replace",
+      "sample": "slot-default",
+      "type": "Boolean",
+      "desc": "在使用 to 进行路由跳转时，启用 replace 将不会向 history 添加新记录",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "label",
+      "sample": "base",
+      "type": "String",
+      "desc": "定义面包屑的显示值",
+      "defaultValue": ""
+    }
+  ],
+  "breadcrumbItemSlots": [
+    {
+      "name": "default",
+      "sample": "slot-default",
+      "type": "",
+      "desc": "默认插槽",
+      "defaultValue": ""
+    }
+  ],
+  "breadcrumbItemEvents": [
+    {
+      "name": "select",
+      "sample": "base",
+      "type": "",
+      "desc": "点击 breadcrumb-item 时触发",
+      "defaultValue": ""
+    }
+  ]
+}

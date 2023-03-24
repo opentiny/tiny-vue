@@ -1,0 +1,69 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+.@{css-prefix}transition-carousel-arrow-left-enter,
+.@{css-prefix}transition-carousel-arrow-left-enter-from,
+.@{css-prefix}transition-carousel-arrow-left-leave-to {
+  opacity: 0;
+  left: 0;
+}
+
+.@{css-prefix}transition-carousel-arrow-left-enter-active {
+  animation: animation-left 0.3s;
+}
+
+.@{css-prefix}transition-carousel-arrow-left-leave-active {
+  animation: animation-left 0.3s reverse;
+}
+
+.@{css-prefix}transition-carousel-arrow-right-enter,
+.@{css-prefix}transition-carousel-arrow-right-enter-from,
+.@{css-prefix}transition-carousel-arrow-right-leave-to {
+  opacity: 0;
+  right: 0;
+}
+
+.@{css-prefix}transition-carousel-arrow-right-enter-active {
+  animation: animation-right 0.3s;
+}
+
+.@{css-prefix}transition-carousel-arrow-right-leave-active {
+  animation: animation-right 0.3s reverse;
+}
+
+@keyframes animation-right {
+  0% {
+    opacity: 0;
+    right: 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(-50%);
+    right: 16px;
+  }
+}
+
+@keyframes animation-left {
+  0% {
+    opacity: 0;
+    left: 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(-50%);
+    left: 16px;
+  }
+}

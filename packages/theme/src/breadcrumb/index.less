@@ -1,0 +1,79 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@breadcrumb-prefix-cls: ~'@{css-prefix}breadcrumb';
+
+.@{breadcrumb-prefix-cls} {
+  .component-css-vars-breadcrumb();
+
+  font-size: var(--ti-breadcrumb-font-size);
+  line-height: var(--ti-breadcrumb-text-line-height);
+  .clearfix();
+
+  & &__item {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+
+    &:last-child {
+      .@{breadcrumb-prefix-cls}__inner {
+        font-weight: var(--ti-breadcrumb-text-font-weight);
+
+        a {
+          cursor: text;
+        }
+      }
+
+      .@{breadcrumb-prefix-cls}__separator,
+      .@{breadcrumb-prefix-cls}__separator-cls {
+        display: none;
+      }
+    }
+  }
+
+  & &__inner {
+    vertical-align: middle;
+
+    &,
+    & a {
+      color: var(--ti-breadcrumb-text-color);
+    }
+
+    &:hover {
+      color: var(--ti-breadcrumb-hover-text-color);
+    }
+  }
+
+  & &__separator {
+    font-family: '\5B8B\4F53', sans-serif;
+    color: var(--ti-breadcrumb-separator-text-color);
+    padding: var(--ti-breadcrumb-separator-padding-vertical) var(--ti-breadcrumb-separator-padding-horizontal);
+    vertical-align: middle;
+  }
+
+  & &__separator-cls {
+    font-size: var(--ti-breadcrumb-font-size);
+    fill: var(--ti-breadcrumb-separator-text-color);
+    margin: var(--ti-breadcrumb-separator-margin-vertical) var(--ti-breadcrumb-separator-margin-horizontal);
+    vertical-align: middle;
+  }
+
+  & &__inner a:hover,
+  & &__item:last-child:hover {
+    color: var(--ti-breadcrumb-hover-text-color);
+    text-decoration: none;
+  }
+}

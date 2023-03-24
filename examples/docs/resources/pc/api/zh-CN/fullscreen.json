@@ -1,0 +1,73 @@
+{
+  "attrs": [
+    {
+      "name": "page-only",
+      "sample": "example-component",
+      "type": "Boolean",
+      "desc": "显示模式。true 为网页全屏，false 为浏览器全屏。默认值为 false",
+      "defaultValue": ""
+    },
+    {
+      "name": "teleport",
+      "sample": "example-component",
+      "type": "Boolean",
+      "desc": "是否将目标元素移动到 body 下。true 为移动，false 为不移动。默认值为 false",
+      "defaultValue": ""
+    },
+    {
+      "name": "z-index",
+      "sample": "example-component",
+      "type": "Number",
+      "desc": "在全屏显示时，目标元素的 zIndex",
+      "defaultValue": ""
+    },
+    {
+      "name": "fullscreen-class",
+      "sample": "example-component",
+      "type": "String",
+      "desc": "自定义组件 wrapper 的样式类名",
+      "defaultValue": ""
+    },
+    {
+      "name": "fullscreen",
+      "sample": "example-component",
+      "type": "Boolean",
+      "desc": "组件式使用时，控制组件是否全屏显示。默认为 false",
+      "defaultValue": ""
+    },
+    {
+      "name": "exit-on-click-wrapper",
+      "sample": "example-component",
+      "type": "Boolean",
+      "desc": "组件式使用时，点击组件 wrapper 是否关闭全屏显示。默认为 true",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "example-component",
+      "type": "",
+      "desc": "自定义内容，需要在 layout 中列出 slot",
+      "defaultValue": ""
+    }
+  ],
+  "methods": [
+    {
+      "name": "toggle",
+      "sample": "example-component",
+      "type": "",
+      "desc": "函数式使用时，切换全屏模式",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:fullscreen",
+      "sample": "example-component",
+      "type": "",
+      "desc": "组件式使用时，更新 fullscreen 属性",
+      "defaultValue": ""
+    }
+  ]
+}

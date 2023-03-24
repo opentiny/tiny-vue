@@ -1,0 +1,83 @@
+{
+  "attrs": [
+    {
+      "name": "lg",
+      "sample": "base",
+      "type": "Number , Object",
+      "desc": "Number of responsive grids or grid attribute objects greater than or equal to 1200px, for example, {span: 4, offset: 4}.",
+      "defaultValue": ""
+    },
+    {
+      "name": "md",
+      "sample": "base",
+      "type": "Number , Object",
+      "desc": "Number of responsive grids or grid attribute objects greater than or equal to 992px, for example, {span: 4, offset: 4}.",
+      "defaultValue": ""
+    },
+    {
+      "name": "no",
+      "sample": "base",
+      "type": "Number",
+      "desc": "Sort ID (valid when order is enabled in a row). The default value is 0.",
+      "defaultValue": "The default value of this attribute is 0"
+    },
+    {
+      "name": "offset",
+      "sample": "base",
+      "type": "Number",
+      "desc": "Number of grids on the left of the grid. The default value is 0.",
+      "defaultValue": "The default value of this attribute is 0"
+    },
+    {
+      "name": "sm",
+      "sample": "base",
+      "type": "Number , Object",
+      "desc": "Number of responsive grids or grid attribute objects greater than or equal to 768 pixels, for example, {span: 4, offset: 4}.",
+      "defaultValue": ""
+    },
+    {
+      "name": "span",
+      "sample": "base",
+      "type": "Number",
+      "desc": "Number of columns occupied by a grid",
+      "defaultValue": "The default value of this attribute is 12"
+    },
+    {
+      "name": "tag",
+      "sample": "base",
+      "type": "String",
+      "desc": "User-defined element label. Any label can be selected. The optional value of this attribute is *",
+      "defaultValue": "The default value of this attribute is div."
+    },
+    {
+      "name": "xl",
+      "sample": "base",
+      "type": "Number , Object",
+      "desc": "Number of responsive grids or grid attribute objects greater than or equal to 1920px, for example, {span: 4, offset: 4}.",
+      "defaultValue": ""
+    },
+    {
+      "name": "xs",
+      "sample": "base",
+      "type": "Number , Object",
+      "desc": "<768px responsive grids or grid attribute objects, for example, {span: 4, offset: 4}.",
+      "defaultValue": ""
+    },
+    {
+      "name": "move",
+      "sample": "base",
+      "type": "Number",
+      "desc": "Number of grids that move left and right (positive numbers to the right, negative numbers to the left)",
+      "defaultValue": "The default value of this attribute is 0"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "base",
+      "type": "",
+      "desc": "Default slot",
+      "defaultValue": ""
+    }
+  ]
+}

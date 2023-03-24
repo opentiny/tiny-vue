@@ -1,0 +1,62 @@
+{
+  "attrs": [
+    {
+      "name": "background-image",
+      "sample": "background-image",
+      "type": "String , Object",
+      "desc": "设置卡片的背景图片;",
+      "defaultValue": ""
+    },
+    {
+      "name": "form-data",
+      "sample": "basic-usage",
+      "type": "Object",
+      "desc": "设置信用卡显示数据",
+      "defaultValue": "// 该属性的默认值为 \n{cardCvv: '', cardName: '', cardYear: '', cardMonth: '', cardNumber: ''}"
+    }
+  ],
+  "events": [
+    {
+      "name": "submit",
+      "sample": "credit-card-form-events",
+      "type": "",
+      "desc": "提交时触发的事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "input-card-number",
+      "sample": "credit-card-form-events",
+      "type": "",
+      "desc": "输入卡号时触发的事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "input-card-name",
+      "sample": "credit-card-form-events",
+      "type": "",
+      "desc": "输入卡持有者时触发的事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "input-card-month",
+      "sample": "credit-card-form-events",
+      "type": "",
+      "desc": "选择月时触发的事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "input-card-year",
+      "sample": "credit-card-form-events",
+      "type": "",
+      "desc": "选择年时触发的事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "input-card-cvv",
+      "sample": "credit-card-form-events",
+      "type": "",
+      "desc": "输入 cvv 时触发的事件",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "accordion",
+      "type": "String , Array , Number",
+      "desc": "Currently activated panel (In accordion mode, the binding value type must be String. Otherwise, the binding value type is array.)",
+      "defaultValue": ""
+    },
+    {
+      "name": "accordion",
+      "sample": "accordion",
+      "type": "Boolean",
+      "desc": "In accordion mode",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "before-close",
+      "sample": "block-close",
+      "type": "Function",
+      "desc": "Do not close the folding panel.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "dynamic-disable",
+      "type": "",
+      "desc": "Default slot",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "collapse-events",
+      "type": "",
+      "desc": "Triggered when the current active panel changes. (In accordion mode, the type of activeNames is String. Otherwise, the type of activeNames is array.)",
+      "defaultValue": ""
+    }
+  ]
+}

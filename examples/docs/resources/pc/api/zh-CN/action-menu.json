@@ -1,0 +1,99 @@
+{
+  "attrs": [
+    {
+      "name": "options",
+      "sample": "basic-usage",
+      "type": "Array",
+      "desc": "可以配置菜单按钮数据，默认值为 [],数组中的每个元素为对象item,每个 item 一般可包含的字段有 (label,children,disabled,divided),例如：{ label: '登录',children:[],divided: true,disabled :true}。",
+      "defaultValue": "[]"
+    },
+    {
+      "name": "label",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "菜单项的显示值",
+      "defaultValue": ""
+    },
+    {
+      "name": "children",
+      "sample": "basic-usage",
+      "type": "Array",
+      "desc": "菜单项的子集",
+      "defaultValue": "[]"
+    },
+    {
+      "name": "divided",
+      "sample": "basic-usage",
+      "type": "Boolean",
+      "desc": "显示分割线。默认值：false",
+      "defaultValue": "false"
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled",
+      "type": "Boolean",
+      "desc": "是否禁用。默认：false",
+      "defaultValue": "false"
+    },
+    {
+      "name": "text-field",
+      "sample": "text-field",
+      "type": "String",
+      "desc": "设置菜单按钮显示文本的键值,默认值为 label",
+      "defaultValue": "label"
+    },
+    {
+      "name": "more-text",
+      "sample": "more-text",
+      "type": "String",
+      "desc": "配置下拉按钮显示文本,默认值为“更多”",
+      "defaultValue": "更多"
+    },
+    {
+      "name": "spacing",
+      "sample": "spacing",
+      "type": "[String,Number]",
+      "desc": "配置菜单按钮之间的间距,默认值为 5px",
+      "defaultValue": "5px"
+    },
+    {
+      "name": "popper-class",
+      "sample": "popper-class",
+      "type": "String",
+      "desc": "设置下拉面板的类名，自定义样式",
+      "defaultValue": ""
+    },
+    {
+      "name": "max-show-num",
+      "sample": "max-show-num",
+      "type": "Number",
+      "desc": " 配置显示菜单按钮的最大个数，默认值为2",
+      "defaultValue": "2"
+    }
+  ],
+  "slots": [
+    {
+      "name": "item",
+      "sample": "slot-item",
+      "type": "插槽",
+      "desc": "下拉面板中选项插槽",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "item-click",
+      "sample": "item-click",
+      "type": "Function",
+      "desc": "当选中菜单项时触发。返回数据data为Object类型，对象包含字段 itemData 和 vm 字段，itemData 为当前选中项的数据（仅配置式时生效），vm 为当前选中项的实例",
+      "defaultValue": "Function(data:Object)"
+    },
+    {
+      "name": "more-click",
+      "sample": "more-click",
+      "type": "Function",
+      "desc": "当点击下拉按钮时触发。",
+      "defaultValue": "Function"
+    }
+  ]
+}

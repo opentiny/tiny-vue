@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>Use <code>v-model</code> to set the default selected button and implement bidirectional binding. You can also set the default selected button through <code>value</code>, but bidirectional binding cannot be performed. </p>\n",
+    "link": "button-group/base",
+    "component": "ButtonGroup",
+    "findIntroStr": "A button group is used for multiple similar operations.",
+    "demoId": "base"
+  },
+  {
+    "title": "button group data",
+    "content": "<p>Sets the button group data through the <code>data</code> attribute. In the object, text is the button display text, and value is the value specified during bidirectional binding. </p>\n",
+    "link": "button-group/data",
+    "component": "Buttongroup",
+    "findIntroStr": "A button group is used for multiple similar operations.",
+    "demoId": "data"
+  },
+  {
+    "title": "Set Component Size",
+    "content": "<p> can be set to <code>medium</code>, <code>small</code>, <code>mini</code></p>\n",
+    "link": "button-group/size",
+    "component": "ButtonGroup",
+    "findIntroStr": "A button group is used for multiple similar operations.",
+    "demoId": "size"
+  },
+  {
+    "title": "Disabled",
+    "content": "<p>Set <code>disabled</code> to true to disable the entire button group. </p>\n",
+    "link": "button-group/disabled",
+    "component": "Buttongroup",
+    "findIntroStr": "A button group is used for multiple similar operations.",
+    "demoId": "disabled"
+  },
+  {
+    "title": "Simple button",
+    "content": "<p>Set <code>plain</code> to true to display the simple button style. </p>\n",
+    "link": "button-group/plain",
+    "component": "Buttongroup",
+    "findIntroStr": "A button group is used for multiple similar operations.",
+    "demoId": "plain"
+  },
+  {
+    "title": "Data Field Mapping",
+    "content": "<p>If the fields in the button group data object are not the default text and value, the <code>text-field</code> and <code>value-field</code> attributes can be used for mapping. </p>\n",
+    "link": "button-group/text-value-field",
+    "component": "Buttongroup",
+    "findIntroStr": "A button group is used for multiple similar operations.",
+    "demoId": "text-value-field"
+  },
+  {
+    "title": "Display More Buttons",
+    "content": "<p>Set the <code>show-more</code> attribute to a value greater than 0 and less than the button group data to display more buttons. </p>\n",
+    "link": "button-group/show-more",
+    "component": "Buttongroup",
+    "findIntroStr": "A button group is used for multiple similar operations.",
+    "demoId": "show-more"
+  },
+  {
+    "title": "Display Edit Button",
+    "content": "<p>Set <code>show-edit</code> to true to display the edit button. </p>\n",
+    "link": "button-group/show-edit",
+    "component": "Buttongroup",
+    "findIntroStr": "A button group is used for multiple similar operations.",
+    "demoId": "show-edit"
+  },
+  {
+    "title": "Edit Event",
+    "content": "<p>The <code>edit</code> event is triggered when the value of the check box is changed. </p>\n",
+    "link": "button-group/event-edit",
+    "component": "Buttongroup",
+    "findIntroStr": "A button group is used for multiple similar operations.",
+    "demoId": "event-edit"
+  },
+  {
+    "title": "Default slot",
+    "content": "<p>When the default slot mode is used, the <code>data, text-field, value-field, value / v-model, and size</code> attributes of the ButtonGroup do not take effect for buttons in the slot. \n However, you can set different attributes for different buttons on the Button component tag based on the application scenario. For details, see Button Component Attributes. </p>\n",
+    "link": "button-group/slot-default",
+    "component": "Buttongroup",
+    "findIntroStr": "A button group is used for multiple similar operations.",
+    "demoId": "slot-default"
+  }
+]

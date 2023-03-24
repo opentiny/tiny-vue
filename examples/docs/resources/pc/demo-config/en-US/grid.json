@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Label",
+    "content": "For details, see the following example.",
+    "link": "grid/basicUsage",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "basicUsage"
+  },
+  {
+    "title": "Profile",
+    "content": "For details, see the following example.",
+    "link": "grid/basicUsage-conf",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "basicUsage-conf"
+  }
+]

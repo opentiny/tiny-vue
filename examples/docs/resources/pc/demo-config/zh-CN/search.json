@@ -1,0 +1,90 @@
+[
+  {
+    "title": "基本用法",
+    "content": "详细用法参考如下示例",
+    "link": "search/basic-usage",
+    "component": " Search 搜索",
+    "findIntroStr": "指定条件对象进行搜索数据。",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "可清除",
+    "content": "<p>可通过 <code>clearable</code> 属性设置显示清空图标按钮。</p>\n",
+    "link": "search/clearable",
+    "component": " Search 搜索",
+    "findIntroStr": "指定条件对象进行搜索数据。",
+    "demoId": "clearable"
+  },
+  {
+    "title": "迷你模式",
+    "content": "<p>可通过 <code>mini</code> 设置组件为mini模式。</p>\n",
+    "link": "search/mini-mode",
+    "component": " Search 搜索",
+    "findIntroStr": "指定条件对象进行搜索数据。",
+    "demoId": "mini-mode"
+  },
+  {
+    "title": "透明模式",
+    "content": "<p>可通过 <code>transparent</code> 设置组件为透明模式（<code>mini</code>模式下有效）。搜索类型</p>\n",
+    "link": "search/transparent-mode",
+    "component": " Search 搜索",
+    "findIntroStr": "指定条件对象进行搜索数据。",
+    "demoId": "transparent-mode"
+  },
+  {
+    "title": "默认值搜索",
+    "content": "<p>可通过 <code>v-model</code> 配置组件默认搜索条件。</p>\n",
+    "link": "search/default-value",
+    "component": " Search 搜索",
+    "findIntroStr": "指定条件对象进行搜索数据。",
+    "demoId": "default-value"
+  },
+  {
+    "title": "搜索类型",
+    "content": "<p>可通过 <code>search-types</code> 配置组件可选的搜索类型。</p>\n",
+    "link": "search/search-types",
+    "component": " Search 搜索",
+    "findIntroStr": "指定条件对象进行搜索数据。",
+    "demoId": "search-types"
+  },
+  {
+    "title": "自定义搜索类型的内容",
+    "content": "详细用法参考如下示例",
+    "link": "search/custom-search-types",
+    "component": " Search 搜索",
+    "findIntroStr": "指定条件对象进行搜索数据。",
+    "demoId": "custom-search-types"
+  },
+  {
+    "title": "自定义搜索类型",
+    "content": "<p>搜索类型</p>\n",
+    "link": "search/show-selected-types",
+    "component": " Search 搜索",
+    "findIntroStr": "指定条件对象进行搜索数据。",
+    "demoId": "show-selected-types"
+  },
+  {
+    "title": "自定义 search 事件",
+    "content": "详细用法参考如下示例",
+    "link": "search/search-events",
+    "component": " Search 搜索",
+    "findIntroStr": "指定条件对象进行搜索数据。",
+    "demoId": "search-events"
+  },
+  {
+    "title": "自定义 change 事件",
+    "content": "详细用法参考如下示例",
+    "link": "search/change-events",
+    "component": " Search 搜索",
+    "findIntroStr": "指定条件对象进行搜索数据。",
+    "demoId": "change-events"
+  },
+  {
+    "title": "自定义 select 事件",
+    "content": "详细用法参考如下示例",
+    "link": "search/select-events",
+    "component": " Search 搜索",
+    "findIntroStr": "指定条件对象进行搜索数据。",
+    "demoId": "select-events"
+  }
+]

@@ -1,0 +1,55 @@
+{
+  "attrs": [
+    {
+      "name": "events",
+      "sample": "dynamic-add-schedule",
+      "type": "Array",
+      "desc": "事件列表",
+      "defaultValue": ""
+    },
+    {
+      "name": "mode",
+      "sample": "calendar-mode",
+      "type": "String",
+      "desc": "显示模式，month / year 可选，默认 month",
+      "defaultValue": ""
+    },
+    {
+      "name": "month",
+      "sample": "custom-day-cell",
+      "type": "Number",
+      "desc": "指定月份，默认当月",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-selected",
+      "sample": "show-selected-date",
+      "type": "Boolean",
+      "desc": "显示选中的日期",
+      "defaultValue": ""
+    },
+    {
+      "name": "year",
+      "sample": "custom-day-cell",
+      "type": "Number",
+      "desc": "指定年份，默认今年",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "day",
+      "sample": "custom-day-cell",
+      "type": "",
+      "desc": "日期单元格插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "tool",
+      "sample": "custom-calendar-toolbar",
+      "type": "",
+      "desc": "日历工具栏插槽",
+      "defaultValue": ""
+    }
+  ]
+}

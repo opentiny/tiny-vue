@@ -1,0 +1,198 @@
+{
+  "attrs": [
+    {
+      "name": "type",
+      "sample": "split-button",
+      "type": "String",
+      "desc": "Menu button type, which is the same as the Button component. (Valid only if split-button is true).",
+      "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "size",
+      "type": "String",
+      "desc": "Menu size. When split-button is set to true, this parameter is also valid for triggering a button. Available values (medium / small / mini)",
+      "defaultValue": ""
+    },
+    {
+      "name": "split-button",
+      "sample": "split-button",
+      "type": "Boolean",
+      "desc": "The drop-down trigger element is displayed as a button group. Default value: false",
+      "defaultValue": "false"
+    },
+    {
+      "name": "trigger",
+      "sample": "trigger",
+      "type": "String",
+      "desc": "Trigger drop-down behavior. The value can be hover or click. The default value is hover",
+      "defaultValue": "hover"
+    },
+    {
+      "name": "hide-on-click",
+      "sample": "hide-on-click",
+      "type": "Boolean",
+      "desc": "Indicates whether to hide a menu after a menu item is clicked. The default value is true.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "show-timeout",
+      "sample": "trigger",
+      "type": "Number",
+      "desc": "Delay for expanding the drop-down list. This parameter is valid only when trigger is hover. Default value: 250 ms",
+      "defaultValue": ""
+    },
+    {
+      "name": "hide-timeout",
+      "sample": "trigger",
+      "type": "Number",
+      "desc": "Delay for collapsing the drop-down list. This parameter is valid only when trigger is hover. Default value: 150 ms",
+      "defaultValue": ""
+    },
+    {
+      "name": "tabindex",
+      "sample": "basic-usage",
+      "type": "Number",
+      "desc": "tabindex of the Dropdown component.",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled",
+      "type": "Boolean",
+      "desc": "Whether to disable the function. Default value: false",
+      "defaultValue": "false"
+    },
+    {
+      "name": "menuOptions",
+      "sample": "options",
+      "type": "Object",
+      "desc": "Configuring DropdownMenu in Profiles",
+      "defaultValue": "{\"options\":[],\"textField\":\"label\",\"popper-class\":\"\",\"placement\":\"bottom-end\"}"
+    },
+    {
+      "name": "title",
+      "sample": "options",
+      "type": "String",
+      "desc": "When the default slot is not used, the menu title can be configured in the title attribute.",
+      "defaultValue": "drop-down menu"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "Element that triggers the display of the drop-down list. Note: The value must be an element or component.",
+      "defaultValue": ""
+    },
+    {
+      "name": "dropdown",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "drop-down list, usually the <tiny-dropdown-menu> component.",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "button-click",
+      "sample": "events",
+      "type": "Function",
+      "desc": "When split-button is set to true, click the callback function of the button on the left.",
+      "defaultValue": ""
+    },
+    {
+      "name": "item-click",
+      "sample": "events",
+      "type": "Function",
+      "desc": "Callback triggered by clicking a menu item.",
+      "defaultValue": ""
+    },
+    {
+      "name": "visible-change",
+      "sample": "events",
+      "type": "Function",
+      "desc": "This event is triggered when the drop-down list box is displayed or hidden.",
+      "defaultValue": ""
+    }
+  ],
+  "dropdownMenuattrs": [
+    {
+      "name": "placement",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "Menu pop-up position. The value can be (top/top-start/top-end/bottom/bottom-start/bottom-end). The default value is bottom-end",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-class",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "Set the pop-up drop-down style.",
+      "defaultValue": ""
+    },
+    {
+      "name": "options",
+      "sample": "options",
+      "type": "Array",
+      "desc": "Setting the properties of a menu item using a profile",
+      "defaultValue": "[]"
+    },
+    {
+      "name": "textField",
+      "sample": "options",
+      "type": "String",
+      "desc": "Used together with the options attribute to specify the copywriting field of a menu item. The default field is label.",
+      "defaultValue": "label"
+    }
+  ],
+  "dropdownMenuslots": [
+    {
+      "name": "default",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "The drop-down list is usually a <tiny-dropdown-item> component.",
+      "defaultValue": ""
+    }
+  ],
+  "dropdownItemattrs": [
+    {
+      "name": "disabled",
+      "sample": "disabled",
+      "type": "Boolean",
+      "desc": "Disabled. Default value: false",
+      "defaultValue": "false"
+    },
+    {
+      "name": "divided",
+      "sample": "hide-on-click",
+      "type": "Boolean",
+      "desc": "Displays the split line. Default value: false",
+      "defaultValue": "false"
+    },
+    {
+      "name": "icon",
+      "sample": "trigger",
+      "type": "Object",
+      "desc": "Embedded icon.",
+      "defaultValue": ""
+    },
+    {
+      "name": "label",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "Display value of a menu item",
+      "defaultValue": ""
+    }
+  ],
+  "dropdownItemslots": [
+    {
+      "name": "default",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "The options in the drop-down list box are displayed.",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>Set the preview image path through <code>src</code>. </p>\n",
+    "link": "image/basic-usage",
+    "component": "Image preview",
+    "findIntroStr": "Image container, which supports lazy loading, customized placeholder, and loading failure while retaining the native IMG feature.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Adaptive Container Size",
+    "content": "<p>You can use the <code>fit</code> attribute to determine how an image adapts to the container box, which is the same as the object-fit attribute of the native CSS. </p>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\">object-fit Description</p>\n<p>fill: The replaced content will be scaled to maintain its aspect ratio when filling the content box of the element\ncontain: The size of the replaced content can fill the content box of the element\ncover: The size of the replaced content maintains its aspect ratio while filling the entire content box of the element\nnone: The size of the replaced content is not changed\nscale-down: The size of the content is as if none or contain were specified, depending on which would result in a smaller object size. </p>\n</div>\n",
+    "link": "image/auto-fit-container-size",
+    "component": "Image preview",
+    "findIntroStr": "Image container, which supports lazy loading, customized placeholder, and loading failure while retaining the native IMG feature.",
+    "demoId": "auto-fit-container-size"
+  },
+  {
+    "title": "Placeholder",
+    "content": "<p>You can use <code>slot = placeholder</code> to customize the placeholder. </p>\n",
+    "link": "image/custom-placeholder",
+    "component": "Image preview",
+    "findIntroStr": "Image container, which supports lazy loading, customized placeholder, and loading failure while retaining the native IMG feature.",
+    "demoId": "custom-placeholder"
+  },
+  {
+    "title": "Lazy Loading",
+    "content": "<p>You can use <code>lazy</code> to enable lazy loading. Images are loaded only when they are scrolled to the visible range. You can use <code>scroll-container</code> to set the scroll container. If the scroll container is not defined, the scroll container is the parent element whose latest <code>overflow</code> value is <code>auto</code> or <code>scroll</code>. </p>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\"> Prompt</p>\n<p>The lazy loaded image must be a remote image. Lazy loading of static images is not supported. </p>\n</div>\n",
+    "link": "image/lazy-load",
+    "component": "Image preview",
+    "findIntroStr": "Image container, which supports lazy loading, customized placeholder, and loading failure while retaining the native IMG feature.",
+    "demoId": "lazy-load"
+  },
+  {
+    "title": "Preview Large Image",
+    "content": "<p>Enable the large image preview function through <code>preview-src-list</code> . </p>\n",
+    "link": "image/preview-src-list",
+    "component": "Image preview",
+    "findIntroStr": "Image container, which supports lazy loading, customized placeholder, and loading failure while retaining the native IMG feature.",
+    "demoId": "preview-src-list"
+  },
+  {
+    "title": "Image preview level",
+    "content": "<p>You can use <code>z-index</code> to set the level of the preview image. </p>\n",
+    "link": "image/preview-z-index",
+    "component": "Image preview",
+    "findIntroStr": "Image container, which supports lazy loading, customized placeholder, and loading failure while retaining the native IMG feature.",
+    "demoId": "preview-z-index"
+  },
+  {
+    "title": "Load success event",
+    "content": "<p>The <code>load</code> event is triggered when the image is successfully loaded. </p>\n",
+    "link": "image/load-event",
+    "component": "Image preview",
+    "findIntroStr": "Image container, which supports lazy loading, customized placeholder, and loading failure while retaining the native IMG feature.",
+    "demoId": "load-event"
+  },
+  {
+    "title": "Loading failure event",
+    "content": "<p>The <code>error</code> event is triggered when the image fails to be loaded. </p>\n",
+    "link": "image/load-error",
+    "component": "Image preview",
+    "findIntroStr": "Image container, which supports lazy loading, customized placeholder, and loading failure while retaining the native IMG feature.",
+    "demoId": "load-error"
+  },
+  {
+    "title": "Loading failed",
+    "content": "<p>You can set <code>slot = error</code> to customize the content that fails to be loaded. </p>\n",
+    "link": "image/custom-load-failed-text",
+    "component": "Image preview",
+    "findIntroStr": "Image container, which supports lazy loading, customized placeholder, and loading failure while retaining the native IMG feature.",
+    "demoId": "custom-load-failed-text"
+  },
+  {
+    "title": "Preview image in a dialog box",
+    "content": "<p>Embed <code>image</code> in the <code>dialog-box</code> element for image preview. </p>\n",
+    "link": "image/preview-in-dialog",
+    "component": "Image preview",
+    "findIntroStr": "Image container, which supports lazy loading, customized placeholder, and loading failure while retaining the native IMG feature.",
+    "demoId": "preview-in-dialog"
+  }
+]

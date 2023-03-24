@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "currency/basic-usage",
+    "component": "Currency",
+    "findIntroStr": "Currency component, which is used to display and select currency names. The options are obtained by configuring the data source.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Disabled",
+    "content": "<p>The <code>disabled</code> attribute is used to set whether to disable the component. The default value is false. </p>\n",
+    "link": "currency/disable-currency",
+    "component": "Currency",
+    "findIntroStr": "Currency component, which is used to display and select currency names. The options are obtained by configuring the data source.",
+    "demoId": "disable-currency"
+  },
+  {
+    "title": "Custom Service",
+    "content": "<p>You can use the <code>fetch-currency</code> attribute to specify a method in which the service customized by the request can be implemented. \n The <code>clearable</code> attribute is used to set whether data can be cleared. The default value is true. </p>\n",
+    "link": "currency/custom-service",
+    "component": "Currency",
+    "findIntroStr": "Currency component, which is used to display and select currency names. The options are obtained by configuring the data source.",
+    "demoId": "custom-service"
+  },
+  {
+    "title": "Set Component Size",
+    "content": "<p> can be set to <code>medium</code>, <code>small</code>, <code>mini</code></p>\n",
+    "link": "currency/size",
+    "component": "Currency",
+    "findIntroStr": "Currency component, which is used to display and select currency names. The options are obtained by configuring the data source.",
+    "demoId": "size"
+  }
+]

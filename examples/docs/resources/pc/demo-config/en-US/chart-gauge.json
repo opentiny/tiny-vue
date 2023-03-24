@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p> can run smoothly on PCs and mobile devices and is compatible with most browsers. (Internet Explorer 9/10/11, Chrome, Firefox, Safari, etc.) The bottom layer relies on the lightweight Canvas class library ZRender to provide intuitive, vivid, interactive, and highly personalized data visualization charts. </p>\n",
+    "link": "chart/gauge/base",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "gauge-base"
+  },
+  {
+    "title": "KQI/KPI Dimension Configuration",
+    "content": "For details, see the following example.",
+    "link": "chart/gauge/demo2",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "gauge-demo2"
+  },
+  {
+    "title": "Set Data Type",
+    "content": "For details, see the following example.",
+    "link": "chart/gauge/demo3",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "gauge-demo3"
+  },
+  {
+    "title": "Set the counter alias and unit",
+    "content": "For details, see the following example.",
+    "link": "chart/gauge/demo4",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "gauge-demo4"
+  },
+  {
+    "title": "Set multiple watch faces and modify the style",
+    "content": "For details, see the following example.",
+    "link": "chart/gauge/demo5",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "gauge-demo5"
+  }
+]

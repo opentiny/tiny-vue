@@ -1,0 +1,62 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@radio-group-prefix-cls: ~'@{css-prefix}radio-group';
+@radio-button-prefix-cls: ~'@{css-prefix}radio-button';
+@radio-prefix-cls: ~'@{css-prefix}radio';
+
+.@{radio-group-prefix-cls} {
+  display: inline-flex;
+
+  &.list-inline {
+    flex-direction: column;
+
+    .@{radio-prefix-cls} {
+      display: flex;
+      margin-right: 0;
+
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+    }
+
+    .@{radio-button-prefix-cls} {
+      display: block;
+
+      &:first-child .@{radio-button-prefix-cls}__inner {
+        border-radius: var(--ti-radio-button-border-radius) var(--ti-radio-button-border-radius) 0 0;
+        border-top: 1px solid var(--ti-radio-button-border-color);
+      }
+
+      &:last-child .@{radio-button-prefix-cls}__inner {
+        border-radius: 0 0 var(--ti-radio-button-border-radius) var(--ti-radio-button-border-radius);
+      }
+
+      &.is-active .@{radio-button-prefix-cls}__inner {
+        box-shadow: none;
+        border-color: var(--ti-radio-button-checked-normal-border-color);
+      }
+
+      &.is-active.is-disabled .@{radio-button-prefix-cls}__inner {
+        border-color: var(--ti-radio-input-checked-disabled-border-color);
+      }
+    }
+
+    .@{radio-button-prefix-cls}__inner {
+      border-top: 0;
+      border-left: 1px solid var(--ti-radio-button-border-color);
+    }
+  }
+}

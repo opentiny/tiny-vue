@@ -1,0 +1,11 @@
+{
+  "slots": [
+    {
+      "name": "default",
+      "sample": "custom-style",
+      "type": "",
+      "desc": "Floating block content.",
+      "defaultValue": ""
+    }
+  ]
+}

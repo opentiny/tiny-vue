@@ -1,0 +1,327 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../mixins/input.less';
+@import '../custom.less';
+@import './vars.less';
+@import '../transition/zoom-in-top.less';
+
+@calendar-prefix-cls: ~'@{css-prefix}calendar';
+@popover-prefix-cls: ~'@{css-prefix}popover';
+@popper-prefix-cls: ~'@{css-prefix}popper';
+
+.@{calendar-prefix-cls} {
+  .component-css-vars-calendar();
+
+  background: var(--ti-calendar-bg-color);
+  overflow: hidden;
+  margin: 10px;
+
+  &.is-popover.@{popover-prefix-cls}.@{popper-prefix-cls} {
+    padding: 0;
+    margin: 2px 0 0;
+  }
+
+  & &__header {
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  & &__selected {
+    border: 1px solid var(--ti-calendar-text-color-primary);
+    background: var(--ti-calendar-background-color-primary);
+    padding: 8px;
+    color: var(--ti-calendar-text-color-info);
+    line-height: 140%;
+    border-radius: var(--ti-calendar-selected-border-radius);
+    margin-bottom: 8px;
+  }
+
+  & &__tool {
+    list-style: none;
+    overflow: hidden;
+    float: right;
+    margin-bottom: 8px;
+
+    > li {
+      float: left;
+      margin-right: 8px;
+
+      > span {
+        display: inline-block;
+      }
+
+      &:last-child {
+        margin-left: 16px;
+        margin-right: 0;
+      }
+    }
+  }
+
+  & &__input {
+    width: var(--ti-calendar-tool-width);
+    position: relative;
+    outline: 0;
+
+    > input {
+      width: 100%;
+      height: var(--ti-calendar-input-height);
+      line-height: var(--ti-calendar-input-height);
+      border: 1px solid var(--ti-calendar-border-color);
+      color: var(--ti-calendar-text-color-info);
+      border-radius: var(--ti-calendar-input-border-radius);
+      background: var(--ti-calendar-bg-color);
+      font-size: var(--ti-calendar-input-font-size);
+      padding: 0 30px 0 8px;
+      display: block;
+      white-space: nowrap;
+      transition: border 0.3s;
+      outline: 0;
+      box-sizing: border-box;
+
+      &:hover,
+      &:focus,
+      &:active,
+      &.active,
+      &[active] {
+        border: 1px solid var(--ti-calendar-text-color-primary);
+      }
+
+      &[readonly] {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  & &__input-btn {
+    bottom: 0;
+    right: 4px;
+    position: absolute;
+    top: 0;
+    outline: 0;
+    box-sizing: border-box;
+    text-align: center;
+    overflow: hidden;
+    font-size: var(--ti-common-font-size-base);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    svg {
+      fill: var(--ti-calendar-text-color-primary);
+
+      &:hover {
+        fill: var(--ti-calendar-hover-text-color);
+      }
+    }
+  }
+
+  & &__tabs {
+    list-style: none;
+    overflow: hidden;
+
+    > li {
+      position: relative;
+      float: left;
+      width: calc(var(--ti-calendar-tool-width) / 2);
+      height: var(--ti-calendar-input-height);
+      line-height: var(--ti-calendar-input-height);
+      border: 1px solid var(--ti-calendar-border-color);
+      text-align: center;
+      font-size: var(--ti-calendar-input-font-size);
+      font-weight: 500;
+      color: var(--ti-calendar-text-color-info);
+      cursor: pointer;
+
+      &:first-child {
+        border-radius: 3px 0 0 3px;
+      }
+
+      &:last-child {
+        margin-left: -1px;
+        border-radius: 0 3px 3px 0;
+      }
+
+      &:hover {
+        color: var(--ti-calendar-text-color-primary);
+      }
+    }
+
+    > .active {
+      color: var(--ti-calendar-text-color-primary);
+      border: 1px solid var(--ti-calendar-text-color-primary);
+      z-index: 1;
+    }
+  }
+
+  & &__main {
+    width: 100%;
+    overflow: hidden;
+
+    table {
+      width: 100%;
+
+      > tr {
+        > th {
+          line-height: 18px;
+          padding: 0 10px 5px 10px;
+          font-size: var(--ti-calendar-content-heard-font-size);
+          text-align: right;
+          width: 100% / 7;
+        }
+
+        > td {
+          text-align: right;
+          padding: 0 5px 0 0;
+        }
+      }
+    }
+
+    &.year table > tr > td {
+      width: 100% / 3;
+    }
+  }
+
+  & &__day {
+    border-top: 3px solid var(--ti-calendar-border-color);
+    margin: 0 3px 5px 3px;
+    height: 100px;
+    padding: 5px;
+
+    &.selected {
+      background: var(--ti-calendar-background-color-primary);
+
+      .label {
+        color: var(--ti-calendar-text-color-primary);
+      }
+    }
+
+    &:hover {
+      background: var(--ti-calendar-background-color-primary);
+    }
+
+    &.disable {
+      color: var(--ti-calendar-disabled-text-color);
+
+      .info:before {
+        background: var(--ti-calendar-disabled-info-bg-color);
+      }
+
+      .success:before {
+        background: var(--ti-calendar-disabled-success-bg-color);
+      }
+
+      .warning:before {
+        background: var(--ti-calendar-disabled-warning-bg-color);
+      }
+
+      .error:before {
+        background: var(--ti-calendar-disabled-error-bg-color);
+      }
+    }
+
+    &.this-month,
+    &.today {
+      border-color: var(--ti-calendar-text-color-primary);
+    }
+  }
+
+  & &__events {
+    text-align: left;
+    height: calc(~'100% - 18px');
+    overflow-y: auto;
+
+    .event {
+      margin: 5px 10px;
+      cursor: pointer;
+
+      &:before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 3px;
+      }
+    }
+
+    .info:before {
+      background: var(--ti-calendar-text-color-info);
+    }
+
+    .success:before {
+      background: var(--ti-calendar-bg-color-success);
+    }
+
+    .warning:before {
+      background: var(--ti-calendar-bg-color-warning);
+    }
+
+    .error:before {
+      background: var(--ti-calendar-bg-color-danger);
+    }
+  }
+
+  &__tip {
+    display: block;
+    min-width: 160px;
+
+    &-header {
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      padding: 5px 0;
+      font-size: var(--ti-calendar-content-heard-font-size);
+    }
+
+    &-year {
+      float: left;
+    }
+
+    &-hours {
+      float: right;
+    }
+
+    &-title {
+      margin: 5px 0;
+      font-weight: bold;
+    }
+  }
+
+  & &__selector {
+    width: var(--ti-calendar-tool-width);
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  & &__list-item {
+    min-height: var(--ti-calendar-list-item-height);
+    line-height: var(--ti-calendar-list-item-height);
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 8px;
+    color: var(--ti-calendar-text-color-info);
+
+    &:hover {
+      cursor: pointer;
+      background: var(--ti-calendar-list-item-hover-bg-color);
+    }
+
+    &.is-selected {
+      background: var(--ti-calendar-list-item-selected-bg-color);
+      color: var(--ti-calendar-list-item-selected-text-color);
+    }
+  }
+}

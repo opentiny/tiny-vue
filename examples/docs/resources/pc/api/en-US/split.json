@@ -1,0 +1,92 @@
+{
+  "attrs": [
+    {
+      "name": "left-top-min",
+      "sample": "split-threshold",
+      "type": "Number , String",
+      "desc": "Minimum threshold on the left or upper panel.",
+      "defaultValue": "The default value of this attribute is 40px."
+    },
+    {
+      "name": "mode",
+      "sample": "split-mode",
+      "type": "String",
+      "desc": "Separation type. The value can be horizontal or vertical. The default value is horizontal. ;The optional values of this attribute are horizontal / vertical",
+      "defaultValue": "The default value of this attribute is horizontal."
+    },
+    {
+      "name": "right-bottom-min",
+      "sample": "split-threshold",
+      "type": "Number , String",
+      "desc": "Minimum threshold on the right or lower panel.",
+      "defaultValue": "The default value of this attribute is 40px."
+    },
+    {
+      "name": "modelValue",
+      "sample": "basic-usage",
+      "type": "Number , String",
+      "desc": "Position of the split panel.",
+      "defaultValue": "The default value of this attribute is 0.5."
+    }
+  ],
+  "slots": [
+    {
+      "name": "left",
+      "sample": "left-right-slot",
+      "type": "",
+      "desc": "Slot on the left panel",
+      "defaultValue": ""
+    },
+    {
+      "name": "right",
+      "sample": "left-right-slot",
+      "type": "",
+      "desc": "Right panel slot",
+      "defaultValue": ""
+    },
+    {
+      "name": "top",
+      "sample": "top-bottom-slot",
+      "type": "",
+      "desc": "Slot on the upper panel",
+      "defaultValue": ""
+    },
+    {
+      "name": "bottom",
+      "sample": "top-bottom-slot",
+      "type": "",
+      "desc": "Slot on the lower panel",
+      "defaultValue": ""
+    },
+    {
+      "name": "trigger",
+      "sample": "trigger-slot",
+      "type": "",
+      "desc": "Drag Slot",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "moveend",
+      "sample": "moveend-event",
+      "type": "Function()",
+      "desc": "Drag end event. ;Drag end event. ;No arguments",
+      "defaultValue": ""
+    },
+    {
+      "name": "movestart",
+      "sample": "movestart-event",
+      "type": "Function()",
+      "desc": "Drag start event. ;Drag start event. ;No arguments",
+      "defaultValue": ""
+    },
+    {
+      "name": "moving",
+      "sample": "moving-event",
+      "type": "Function(arg)",
+      "desc": "Draging events. ;Drag the event in. ; arg1:event (type Object)",
+      "defaultValue": ""
+    }
+  ]
+}

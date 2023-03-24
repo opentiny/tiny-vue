@@ -1,0 +1,91 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+@grid-prefix-cls: ~'@{css-prefix}grid';
+@grid-cell-prefix-cls: ~'@{css-prefix}grid-cell';
+@grid-header-prefix-cls: ~'@{css-prefix}grid-header';
+@grid-body-prefix-cls: ~'@{css-prefix}grid-body';
+@grid-input-prefix-cls: ~'@{css-prefix}grid-input';
+@grid-textarea-prefix-cls: ~'@{css-prefix}grid-textarea';
+
+// excel
+.@{grid-prefix-cls} {
+  &&-excel {
+    &.@{grid-cell-prefix-cls}__checked {
+      cursor: default;
+
+      .@{grid-header-prefix-cls}__column {
+        .@{grid-prefix-cls}-resizable {
+          cursor: default;
+        }
+      }
+    }
+
+    .@{grid-header-prefix-cls}__column {
+      padding: 4px 0;
+      font-size: var(--ti-common-font-size-base);
+      transition: none;
+      cursor: default;
+    }
+
+    .@{grid-body-prefix-cls}__column {
+      padding: 0;
+      transition: none;
+      height: inherit;
+      line-height: 24px;
+      vertical-align: top;
+      cursor: cell;
+
+      &.col__actived {
+        .@{grid-cell-prefix-cls} {
+          padding: 0;
+        }
+      }
+
+      .@{grid-cell-prefix-cls} {
+        padding: 0 2px;
+        word-break: break-all;
+
+        .@{grid-input-prefix-cls}__wrapper {
+          height: inherit;
+          position: relative;
+
+          .@{grid-textarea-prefix-cls} {
+            position: absolute;
+            overflow: hidden;
+            padding: 0 2px;
+          }
+
+          .@{grid-textarea-prefix-cls},
+          .@{grid-textarea-prefix-cls}:focus {
+            border-radius: 0;
+            border: 0;
+  
+            outline: 2px solid var(--ti-grid-primary-color);
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: -1px -1px;
+  }
+
+  100% {
+    background-position: -12px -12px;
+  }
+}

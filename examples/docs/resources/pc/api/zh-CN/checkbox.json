@@ -1,0 +1,99 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "checkbox-group",
+      "type": "String , Number , Boolean",
+      "desc": "绑定值",
+      "defaultValue": ""
+    },
+    {
+      "name": "label",
+      "sample": "indeterminate",
+      "type": "String , Number , Boolean",
+      "desc": "选中状态的值（只有在checkbox-group或者绑定对象类型为array时有效）",
+      "defaultValue": ""
+    },
+    {
+      "name": "true-label",
+      "sample": "text",
+      "type": "String , Number",
+      "desc": "选中时的值",
+      "defaultValue": ""
+    },
+    {
+      "name": "false-label",
+      "sample": "text",
+      "type": "String , Number",
+      "desc": "没有选中时的值",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "checked",
+      "type": "Boolean",
+      "desc": "是否禁用",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "border",
+      "sample": "content-overflow",
+      "type": "Boolean",
+      "desc": "是否显示边框",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "size",
+      "sample": "with-border",
+      "type": "String",
+      "desc": "Checkbox 的尺寸，仅在 border 为真时有效;该属性的可选值为 medium / small / mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "name",
+      "sample": "checkbox-group",
+      "type": "String",
+      "desc": "原生 name 属性",
+      "defaultValue": ""
+    },
+    {
+      "name": "checked",
+      "sample": "checked",
+      "type": "Boolean",
+      "desc": "当前是否勾选",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "indeterminate",
+      "sample": "indeterminate",
+      "type": "Boolean",
+      "desc": "设置 indeterminate 状态，只负责样式控制",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "text",
+      "sample": "text",
+      "type": "String",
+      "desc": "复选框显示的文本",
+      "defaultValue": "该属性的默认值为空"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "checkbox-slot",
+      "type": "",
+      "desc": "Checkbox的内容",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "checkbox-events",
+      "type": "",
+      "desc": "当绑定值变化时触发的事件",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "attrs": [
+    {
+      "name": "page-only",
+      "sample": "example-component",
+      "type": "Boolean",
+      "desc": "Display mode. The value true indicates that the web page is displayed in full screen mode, and the value false indicates that the browser is displayed in full screen mode. The default value is false",
+      "defaultValue": ""
+    },
+    {
+      "name": "teleport",
+      "sample": "example-component",
+      "type": "Boolean",
+      "desc": "Indicates whether to move the target element to the body. true: move; false: do not move. The default value is false",
+      "defaultValue": ""
+    },
+    {
+      "name": "z-index",
+      "sample": "example-component",
+      "type": "Number",
+      "desc": "ZIndex of the target element in full-screen display",
+      "defaultValue": ""
+    },
+    {
+      "name": "fullscreen-class",
+      "sample": "example-component",
+      "type": "String",
+      "desc": "Style class name of the custom component wrapper",
+      "defaultValue": ""
+    },
+    {
+      "name": "fullscreen",
+      "sample": "example-component",
+      "type": "Boolean",
+      "desc": "Whether to display a component in full screen mode. The default value is false",
+      "defaultValue": ""
+    },
+    {
+      "name": "exit-on-click-wrapper",
+      "sample": "example-component",
+      "type": "Boolean",
+      "desc": "When the component is used in component mode, click the component wrapper to determine whether to disable full-screen display. The default value is true.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "example-component",
+      "type": "",
+      "desc": "User-defined content. Slots must be listed in the layout.",
+      "defaultValue": ""
+    }
+  ],
+  "methods": [
+    {
+      "name": "toggle",
+      "sample": "example-component",
+      "type": "",
+      "desc": "Switch the full-screen mode when the function mode is used.",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "update:fullscreen",
+      "sample": "example-component",
+      "type": "",
+      "desc": "Update the fullscreen attribute in component mode.",
+      "defaultValue": ""
+    }
+  ]
+}

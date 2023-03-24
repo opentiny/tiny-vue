@@ -1,0 +1,98 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>Use the <code>data</code> attribute to set the timeline step bar data, and use the <code>active</code> attribute to set the selected step of the step bar. </p>\n",
+    "link": "time-line/basic-usage",
+    "component": "TimeLine",
+    "findIntroStr": "TimeLine",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "horizontal timeline",
+    "content": "<p>Set the horizontal timeline through the <code>horizontal</code> attribute. </p>\n",
+    "link": "time-line/horizontal-step",
+    "component": "TimeLine",
+    "findIntroStr": "TimeLine",
+    "demoId": "horizontal-step"
+  },
+  {
+    "title": "Vertical Timeline",
+    "content": "<p>Use the <code>vertical</code> attribute to set the vertical timeline. </p>\n",
+    "link": "time-line/vertical-step",
+    "component": "TimeLine",
+    "findIntroStr": "TimeLine",
+    "demoId": "vertical-step"
+  },
+  {
+    "title": "Direction of the vertical timeline",
+    "content": "<p>Sets the direction of the vertical step bar through the <code>reverse</code> attribute. </p>\n",
+    "link": "time-line/vertical-step-reverse",
+    "component": "TimeLine",
+    "findIntroStr": "TimeLine",
+    "demoId": "vertical-step-reverse"
+  },
+  {
+    "title": "Width Setting",
+    "content": "<p>Use the <code>space</code> attribute to set the width of the step bar. </p>\n",
+    "link": "time-line/set-step-width",
+    "component": "TimeLine",
+    "findIntroStr": "TimeLine",
+    "demoId": "set-step-width"
+  },
+  {
+    "title": "Data Mapping",
+    "content": "<p>The <code>name-field</code> attribute is used to set the field name corresponding to the node name in the node information, and the <code>time-field</code> attribute is used to set the field name corresponding to the node time information. </p>\n",
+    "link": "time-line/different-data",
+    "component": "TimeLine",
+    "findIntroStr": "TimeLine",
+    "demoId": "different-data"
+  },
+  {
+    "title": "Set the start value of the sequence number",
+    "content": "<p>Set the start step sequence number through the <code>start</code> attribute. </p>\n",
+    "link": "time-line/set-start-value",
+    "component": "TimeLine",
+    "findIntroStr": "TimeLine",
+    "demoId": "set-start-value"
+  },
+  {
+    "title": "Display the internal status of a component.",
+    "content": "<p>The <code>show-status</code> attribute is used to set whether to display the internal status of a component. The default value is <code>false</code>, indicating that the parameter is not displayed. </p>\n",
+    "link": "time-line/show-status",
+    "component": "TimeLine",
+    "findIntroStr": "TimeLine",
+    "demoId": "show-status"
+  },
+  {
+    "title": "Unfinished Sequence Number Display",
+    "content": "<p>The <code>show-number</code> attribute is used to set whether to display sequence numbers for uncompleted states. </p>\n",
+    "link": "time-line/show-number",
+    "component": "TimeLine",
+    "findIntroStr": "TimeLine",
+    "demoId": "show-number"
+  },
+  {
+    "title": "Customizing a Horizontal Timeline",
+    "content": "If <p><code>slot</code> is <code>top</code>, you can customize the top content of the step bar. If <p><code>slot</code> is <code>slot</code>, you can customize the bottom content of the step bar. </p>\n",
+    "link": "time-line/custom-normal-step",
+    "component": "TimeLine",
+    "findIntroStr": "TimeLine",
+    "demoId": "custom-normal-step"
+  },
+  {
+    "title": "Customized Vertical Timeline",
+    "content": "If <p><code>slot</code> is set to <code>left</code>, you can customize the content on the left of the step bar. If <p><code>slot</code> is set to <code>right</code>, you can customize the content on the right of the step bar. </p>\n",
+    "link": "time-line/custom-vertical-step",
+    "component": "TimeLine",
+    "findIntroStr": "TimeLine",
+    "demoId": "custom-vertical-step"
+  },
+  {
+    "title": "click event",
+    "content": "<p>The click event is triggered upon a click</p>\n",
+    "link": "time-line/vertical-step-reverse",
+    "component": "TimeLine",
+    "findIntroStr": "TimeLine",
+    "demoId": "vertical-step-reverse1"
+  }
+]

@@ -1,0 +1,102 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/link.less';
+@import '../custom.less';
+@import './vars.less';
+
+@link-prefix-cls: ~'@{css-prefix}link';
+
+.@{link-prefix-cls} {
+  .component-css-vars-link();
+
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  position: relative;
+  text-decoration: none;
+  outline: 0;
+  cursor: pointer;
+  padding: 0;
+  font-size: var(--ti-link-font-size);
+  font-weight: var(--ti-link-font-weight);
+
+  &.is-underline:hover:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 0;
+    bottom: 0;
+    border-bottom: 1px solid var(--ti-link-border-color);
+  }
+
+  &.is-disabled {
+    cursor: not-allowed;
+  }
+
+  &&--default {
+    .link-type(
+      var(--ti-link-default-text-color),
+      var(--ti-link-default-border-color),
+      var(--ti-link-default-hover-text-color),
+      var(--ti-link-default-disabled-text-color)
+    );
+  }
+
+  &&--primary {
+    .link-type(
+      var(--ti-link-primary-text-color),
+      var(--ti-link-primary-border-color),
+      var(--ti-link-primary-hover-text-color),
+      var(--ti-link-primary-disabled-text-color)
+    );
+  }
+
+  &&--danger {
+    .link-type(
+      var(--ti-link-danger-text-color),
+      var(--ti-link-danger-border-color),
+      var(--ti-link-danger-hover-text-color),
+      var(--ti-link-danger-disabled-text-color)
+    );
+  }
+
+  &&--success {
+    .link-type(
+      var(--ti-link-success-text-color),
+      var(--ti-link-success-border-color),
+      var(--ti-link-success-hover-text-color),
+      var(--ti-link-success-disabled-text-color)
+    );
+  }
+
+  &&--warning {
+    .link-type(
+      var(--ti-link-warning-text-color),
+      var(--ti-link-warning-border-color),
+      var(--ti-link-warning-hover-text-color),
+      var(--ti-link-warning-disabled-text-color)
+    );
+  }
+
+  &&--info {
+    .link-type(
+      var(--ti-link-info-text-color),
+      var(--ti-link-info-border-color),
+      var(--ti-link-info-hover-text-color),
+      var(--ti-link-info-disabled-text-color)
+    );
+  }
+}

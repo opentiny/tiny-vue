@@ -1,0 +1,217 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../mixins/button-group.less';
+@import '../custom.less';
+@import './vars.less';
+
+@button-group-prefix-cls: ~'@{css-prefix}button-group';
+@group-item-prefix-cls: ~'@{css-prefix}group-item';
+@button-prefix-cls: ~'@{css-prefix}button';
+@dropdown-prefix-cls: ~'@{css-prefix}dropdown';
+
+.@{button-group-prefix-cls} {
+  .component-css-vars-button-group();
+
+  display: inline-block;
+  vertical-align: middle;
+  .clearfix();
+
+  .@{group-item-prefix-cls} {
+    display: inline-block;
+    vertical-align: middle;
+
+    & li {
+      line-height: 28px;
+      background: var(--ti-button-group-item-bg-color);
+      float: left;
+      position: relative;
+
+      button {
+        border: 1px solid var(--ti-button-group-border-color);
+        display: block;
+        text-align: center;
+        color: var(--ti-button-group-item-btn-text-color);
+        background: var(--ti-button-group-item-bg-color);
+        min-width: var(--ti-button-group-item-btn-width);
+        height: var(--ti-button-group-item-btn-height);
+        padding: 0 8px;
+        text-decoration: none;
+        font-size: var(--ti-button-group-item-btn-font-size);
+        outline: none;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &.disabled,
+        &[disabled] {
+          background: var(--ti-button-group-item-btn-disabled-bg-color);
+          border-color: var(--ti-button-group-item-btn-disabled-border-color);
+          cursor: not-allowed;
+          color: var(--ti-button-group-item-btn-disabled-text-color);
+        }
+
+        &.plain,
+        &[plain] {
+          background: none;
+        }
+      }
+
+      &:hover {
+        z-index: 1;
+
+        button:not(.disabled) {
+          background: var(--ti-button-group-item-btn-hover-bg-color);
+          color: var(--ti-button-group-item-btn-hover-text-color);
+          border-color: var(--ti-button-group-item-btn-hover-bg-color);
+          outline: none;
+
+          &.plain,
+          &[plain] {
+            color: var(--ti-button-group-item-btn-plain-text-color);
+            background-color: var(--ti-button-group-item-btn-plain-bg-color);
+            border-color: var(--ti-button-group-item-btn-plain-border-color);
+          }
+        }
+      }
+
+      &.active {
+        z-index: 1;
+
+        &:hover {
+          button:not(.disabled) {
+            background: var(--ti-button-group-item-btn-hover-bg-color);
+            border-color: var(--ti-button-group-item-btn-hover-bg-color);
+
+            &.plain,
+            &[plain] {
+              background-color: var(--ti-button-group-item-btn-plain-bg-color);
+            }
+          }
+        }
+
+        button:not(.disabled) {
+          background: var(--ti-button-group-item-active-bg-color);
+          color: var(--ti-button-group-item-active-text-color);
+          border-color: var(--ti-button-group-item-active-bg-color);
+          outline: none;
+
+          &.plain,
+          &[plain] {
+            color: var(--ti-button-group-item-active-bg-color);
+            background: none;
+          }
+        }
+      }
+
+      &:first-child {
+        button {
+          border-radius: var(--ti-button-group-border-radius) 0 0 var(--ti-button-group-border-radius);
+        }
+      }
+
+      &:last-child {
+        button {
+          border-radius: 0 var(--ti-button-group-border-radius) var(--ti-button-group-border-radius) 0;
+        }
+      }
+
+      &:not(:last-child) {
+        margin-right: -1px;
+      }
+    }
+  }
+
+  & > .@{button-prefix-cls} {
+    float: left;
+    position: relative;
+
+    & + .@{button-prefix-cls} {
+      margin-left: 0;
+    }
+
+    &:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right-color: var(--ti-button-group-info-border-color);
+
+      &.@{button-prefix-cls}--default {
+        border-right-color: var(--ti-button-group-border-color);
+
+        &:hover,
+        &:active,
+        &:focus {
+          border-right-color: var(--ti-button-group-hover-border-color);
+          z-index: 1;
+        }
+      }
+    }
+
+    &:last-child {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-left-color: var(--ti-button-group-info-border-color);
+
+      &.@{button-prefix-cls}--default {
+        border-left-color: var(--ti-button-group-border-color);
+
+        &:hover,
+        &:active,
+        &:focus {
+          border-left-color: var(--ti-button-group-hover-border-color);
+          z-index: 1;
+        }
+      }
+    }
+
+    &:first-child:last-child {
+      border-radius: var(--ti-button-group-border-radius);
+
+      &.is-round {
+        border-radius: calc(var(--ti-button-size-normal-height, 30px) / 2);
+      }
+
+      &.is-circle {
+        border-radius: 50%;
+      }
+    }
+
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+      border-left-color: var(--ti-button-group-info-border-color);
+      border-right-color: var(--ti-button-group-info-border-color);
+
+      &.@{button-prefix-cls}--default {
+        border-left-color: var(--ti-button-group-border-color);
+        border-right-color: var(--ti-button-group-border-color);
+
+        &:hover,
+        &:active,
+        &:focus {
+          border-left-color: var(--ti-button-group-hover-border-color);
+          border-right-color: var(--ti-button-group-hover-border-color);
+          z-index: 1;
+        }
+      }
+    }
+
+    &:not(:last-child) {
+      margin-right: -1px;
+    }
+
+    & > .@{dropdown-prefix-cls} > .@{button-prefix-cls} {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-left-color: var(--ti-button-group-info-border-color);
+    }
+  }
+}

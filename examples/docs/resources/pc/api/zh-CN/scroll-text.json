@@ -1,0 +1,41 @@
+{
+  "attrs": [
+    {
+      "name": "direction",
+      "sample": "scroll-direction",
+      "type": "String",
+      "desc": "滚动的方向;该属性的可选值为 up / left / down / right",
+      "defaultValue": "该属性的默认值为 left"
+    },
+    {
+      "name": "hover-stop",
+      "sample": "hover-stop",
+      "type": "Boolean",
+      "desc": "hover 滚动是否停止，可选值为 false 或 true；默认值true。",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "time",
+      "sample": "scroll-time",
+      "type": "Number",
+      "desc": "整个滚动过程所用的时间，默认值 5s 。",
+      "defaultValue": "该属性的默认值为 5"
+    },
+    {
+      "name": "text",
+      "sample": "custom-scroll-text",
+      "type": "String",
+      "desc": "滚动的文本内容",
+      "defaultValue": "该属性的默认值为 ScrollText"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "custom-scroll-text",
+      "type": "",
+      "desc": "默认插槽",
+      "defaultValue": ""
+    }
+  ]
+}

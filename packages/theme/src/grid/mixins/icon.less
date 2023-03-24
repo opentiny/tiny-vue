@@ -1,0 +1,110 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+.DefaultWidthHeight() {
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
+}
+
+.grid-icon-caret() {
+  .DefaultWidthHeight();
+  &:before {
+    content: '';
+    left: 0;
+    bottom: 0.25em;
+    border-right-color: transparent;
+    position: absolute;
+    border-width: 0.5em;
+    border-style: solid;
+    border-top-color: transparent;
+    border-bottom-color: inherit;
+    border-left-color: transparent;
+    transition: border 0.1s ease-in-out;
+  }
+}
+
+.BeforeArrowTop() {
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0.38em;
+    left: 0.12em;
+    width: 0.5em;
+    height: 0.5em;
+    border-width: 0.1em;
+    border-style: solid;
+    border-top-color: inherit;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: inherit;
+  }
+}
+
+.BeforeDArrowTop() {
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0.24em;
+    left: 0.26em;
+    width: 0.5em;
+    height: 0.5em;
+    border-width: 0.08em;
+    border-style: solid;
+    border-right-color: inherit;
+    border-top-color: inherit;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+  }
+}
+
+.AfterDArrowTop() {
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0.42em;
+    left: 0.1em;
+    width: 0.5em;
+    height: 0.5em;
+    border-width: 0.08em;
+    border-style: solid;
+    border-top-color: inherit;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: inherit;
+  }
+}
+
+.BeforeSolidRadius() {
+  content: '';
+  border-radius: 50%;
+  border-width: 0.5em;
+  border-style: solid;
+  border-color: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.AfterSolidRadius() {
+  position: absolute;
+  color: #fff;
+  color: var(--ti-grid-light-color, #fff);
+  font-size: 0.7em;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  text-align: center;
+  font-weight: 700;
+}

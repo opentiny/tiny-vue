@@ -1,0 +1,43 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "accordion",
+      "type": "String , Array , Number",
+      "desc": "当前激活的面板(如果是手风琴模式，绑定值类型需要为String，否则为array)",
+      "defaultValue": ""
+    },
+    {
+      "name": "accordion",
+      "sample": "accordion",
+      "type": "Boolean",
+      "desc": "是否手风琴模式",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "before-close",
+      "sample": "block-close",
+      "type": "Function",
+      "desc": "阻止折叠面板关闭事件",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "dynamic-disable",
+      "type": "",
+      "desc": "默认插槽",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "collapse-events",
+      "type": "",
+      "desc": "当前激活面板改变时触发(如果是手风琴模式，参数 activeNames 类型为String，否则为array)",
+      "defaultValue": ""
+    }
+  ]
+}

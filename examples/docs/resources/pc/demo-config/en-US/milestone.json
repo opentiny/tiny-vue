@@ -1,0 +1,122 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "milestone/basic-usage",
+    "component": " Milestone",
+    "findIntroStr": "The milestone mode is a highly customized component. Users can customize the component status, node color, and line color. Activity flags can be inserted between nodes. The tip displays activity information.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Data Source",
+    "content": "<p>Set milestone data through the <code>data</code> attribute. </p>\n",
+    "link": "milestone/data-source",
+    "component": " Milestone",
+    "findIntroStr": "The milestone mode is a highly customized component. Users can customize the component status, node color, and line color. Activity flags can be inserted between nodes. The tip displays activity information.",
+    "demoId": "data-source"
+  },
+  {
+    "title": "Data Field Mapping",
+    "content": "<div class=\"tip custom-block\"><p class=\"custom-block-title\"> Data Field Mapping Attribute Description </p>\n<p><code>completed-field</code>: Set the value corresponding to the milestone completion status. The default value is <code>completed</code>\n<code>flag-content-field</code>: Set the field name corresponding to the description in the node flag data. The default value is <code>content</code>\n<code>flag-field</code>: Set the field name of the node flag data. The default value is <code>flags</code>\n<code>flag-name-field</code>. Set the field name corresponding to the name in the node flag data. The default value is <code>name</code>\n<code>flag-status-field</code>: Set the field name corresponding to the status in the node flag data. The default value is <code>status</code>\n<code>name-field</code>: Set the field name corresponding to the name in the node information. The default value is <code>name</code>\n<code>status-field</code>: Set the field name corresponding to the data status. The default value is <code>status</code>\n<code>time-field</code>. Field name corresponding to the node time information. The default value is <code>time</code></p>\n</div>\n",
+    "link": "milestone/data-field-mapping",
+    "component": " Milestone",
+    "findIntroStr": "The milestone mode is a highly customized component. Users can customize the component status, node color, and line color. Activity flags can be inserted between nodes. The tip displays activity information.",
+    "demoId": "data-field-mapping"
+  },
+  {
+    "title": "Flag data source node",
+    "content": "<p>You can use <code>flag-before</code> to set whether the data of the activity (i.e. flag) on the milestone is obtained from the previous node or the subsequent node. The default value is <code>false</code> to obtain the data of the subsequent node. </p>\n",
+    "link": "milestone/flag-before",
+    "component": " Milestone",
+    "findIntroStr": "The milestone mode is a highly customized component. Users can customize the component status, node color, and line color. Activity flags can be inserted between nodes. The tip displays activity information.",
+    "demoId": "flag-before"
+  },
+  {
+    "title": "Progress bar color",
+    "content": "<p>Sets the line color through the <code>line-style</code> attribute. </p>\n",
+    "link": "milestone/line-style",
+    "component": " Milestone",
+    "findIntroStr": "The milestone mode is a highly customized component. Users can customize the component status, node color, and line color. Activity flags can be inserted between nodes. The tip displays activity information.",
+    "demoId": "line-style"
+  },
+  {
+    "title": "Mapping Between Status and Color",
+    "content": "In the <p><code>milestones-status</code> attribute object, the key corresponds to the <code>status</code> field in the data of the <code>data</code> attribute, and then controls the mapping between different states and colors. </p>\n",
+    "link": "milestone/milestones-status",
+    "component": " Milestone",
+    "findIntroStr": "The milestone mode is a highly customized component. Users can customize the component status, node color, and line color. Activity flags can be inserted between nodes. The tip displays activity information.",
+    "demoId": "milestones-status"
+  },
+  {
+    "title": "Cancel the display of the sequence number in the unfinished state.",
+    "content": "<p>After <code>show-number</code> is set to false, the sequence number is not displayed on the node where the milestone is not completed. The default value is true. </p>\n",
+    "link": "milestone/show-number",
+    "component": " Milestone",
+    "findIntroStr": "The milestone mode is a highly customized component. Users can customize the component status, node color, and line color. Activity flags can be inserted between nodes. The tip displays activity information.",
+    "demoId": "show-number"
+  },
+  {
+    "title": "Completed node solid display",
+    "content": "<p>You can set the <code>solid</code> attribute to true to set the completed node to be displayed as solid and the halo is opaque. The default value is false. </p>\n",
+    "link": "milestone/solid-style",
+    "component": " Milestone",
+    "findIntroStr": "The milestone mode is a highly customized component. Users can customize the component status, node color, and line color. Activity flags can be inserted between nodes. The tip displays activity information.",
+    "demoId": "solid-style"
+  },
+  {
+    "title": "Width",
+    "content": "<p>Use the <code>space</code> attribute to set the width of the step bar. </p>\n",
+    "link": "milestone/milestone-space",
+    "component": " Milestone",
+    "findIntroStr": "The milestone mode is a highly customized component. Users can customize the component status, node color, and line color. Activity flags can be inserted between nodes. The tip displays activity information.",
+    "demoId": "milestone-space"
+  },
+  {
+    "title": "Start sequence number",
+    "content": "<p>Set the start sequence number of the milestone node through the <code>start</code> attribute. The default value is - 1. </p>\n",
+    "link": "milestone/start-index",
+    "component": " Milestone",
+    "findIntroStr": "The milestone mode is a highly customized component. Users can customize the component status, node color, and line color. Activity flags can be inserted between nodes. The tip displays activity information.",
+    "demoId": "start-index"
+  },
+  {
+    "title": "Custom Node Icons",
+    "content": "<p>The icon can be customized through the <code>icon</code>scope slot. </p>\n",
+    "link": "milestone/custom-icon-slot",
+    "component": " Milestone",
+    "findIntroStr": "The milestone mode is a highly customized component. Users can customize the component status, node color, and line color. Activity flags can be inserted between nodes. The tip displays activity information.",
+    "demoId": "custom-icon-slot"
+  },
+  {
+    "title": "Content under a customized node",
+    "content": "<p>You can customize the content below a node through the <code>bottom</code> scope slot. </p>\n",
+    "link": "milestone/custom-bottom",
+    "component": " Milestone",
+    "findIntroStr": "The milestone mode is a highly customized component. Users can customize the component status, node color, and line color. Activity flags can be inserted between nodes. The tip displays activity information.",
+    "demoId": "custom-bottom"
+  },
+  {
+    "title": "Content above the customized node",
+    "content": "<p>The <code>top</code> scope slot allows you to customize the content above the node. </p>\n",
+    "link": "milestone/custom-top",
+    "component": " Milestone",
+    "findIntroStr": "The milestone mode is a highly customized component. Users can customize the component status, node color, and line color. Activity flags can be inserted between nodes. The tip displays activity information.",
+    "demoId": "custom-top"
+  },
+  {
+    "title": "Custom Flag Content",
+    "content": "<p>You can customize the content of the node flag through the <code>flag</code> scope slot. </p>\n",
+    "link": "milestone/custom-flag",
+    "component": " Milestone",
+    "findIntroStr": "The milestone mode is a highly customized component. Users can customize the component status, node color, and line color. Activity flags can be inserted between nodes. The tip displays activity information.",
+    "demoId": "custom-flag"
+  },
+  {
+    "title": "Event",
+    "content": "<p>The <code>click</code> event is triggered when a milestone node is clicked. Parameter: (index: node index; node: node data information). The <code>flag-click</code> event is triggered when a milestone flag is clicked. (index: index of the flag on the node; node: data information of the flag on the node). </p>\n",
+    "link": "milestone/milestone-events",
+    "component": " Milestone",
+    "findIntroStr": "The milestone mode is a highly customized component. Users can customize the component status, node color, and line color. Activity flags can be inserted between nodes. The tip displays activity information.",
+    "demoId": "milestone-events"
+  }
+]

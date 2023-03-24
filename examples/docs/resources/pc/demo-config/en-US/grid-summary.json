@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>Configure custom statistics through <code>footer-method</code> and <code>show-footer</code>. </p>\n",
+    "link": "grid/summary/custom-summary",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "summary-custom-summary"
+  },
+  {
+    "title": "Set Profile Statistics",
+    "content": "<p>Set the profile statistics using <code>summary-config</code>. </p>\n",
+    "link": "grid/summary/configuration-summary",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "summary-configuration-summary"
+  }
+]

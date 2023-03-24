@@ -1,0 +1,123 @@
+/**
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
+@import '../custom.less';
+
+@grid-loading-prefix-cls: ~'@{css-prefix}grid-loading';
+
+// 加载中
+.@{grid-loading-prefix-cls} {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  & &__wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  & &__round {
+    width: 46px;
+    height: 46px;
+    position: relative;
+    margin: 0 auto;
+    // 兼容IE9 linear-gradient、animation属性不生效问题
+    background: url(./images/loading-64.gif) no-repeat center;
+    background: linear-gradient(to top, transparent, transparent);
+
+    span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(#000, #000);
+      position: absolute;
+      animation: load 1.04s ease infinite;
+    }
+
+    @keyframes load {
+      0% {
+        opacity: 10;
+      }
+
+      100% {
+        opacity: 0.1;
+      }
+    }
+
+    span:nth-child(1) {
+      top: 68%;
+      left: 68%;
+      animation-delay: 0s;
+      -webkit-animation-delay: 0s;
+    }
+
+    span:nth-child(2) {
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      animation-delay: 0.1s;
+      -webkit-animation-delay: 0.1s;
+    }
+
+    span:nth-child(3) {
+      top: 10%;
+      left: 68%;
+      animation-delay: 0.2s;
+      -webkit-animation-delay: 0.2s;
+    }
+
+    span:nth-child(5) {
+      top: 10%;
+      left: 12%;
+      animation-delay: 0.4s;
+      -webkit-animation-delay: 0.4s;
+    }
+
+    span:nth-child(4) {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      animation-delay: 0.3s;
+      -webkit-animation-delay: 0.3s;
+    }
+
+    span:nth-child(8) {
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      animation-delay: 0.7s;
+      -webkit-animation-delay: 0.7s;
+    }
+
+    span:nth-child(6) {
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      animation-delay: 0.5s;
+      -webkit-animation-delay: 0.5s;
+    }
+
+    span:nth-child(7) {
+      top: 68%;
+      left: 12%;
+      animation-delay: 0.6s;
+      -webkit-animation-delay: 0.6s;
+    }
+  }
+}

@@ -1,0 +1,93 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/variable.less';
+@import '../mixins/common.less';
+@import '../custom.less';
+
+@filter-prefix-cls: ~'@{css-prefix}filter';
+
+.container {
+  .container-fixed();
+
+  @media (min-width: @screen-sm) {
+    width: @container-sm;
+  }
+
+  @media (min-width: @screen-md) {
+    width: @container-md;
+  }
+
+  @media (min-width: @screen-lg-min) {
+    width: @container-lg;
+  }
+
+  @media (min-width: @screen-xl-min) {
+    width: @container-xl;
+  }
+}
+
+.row {
+  .make-row();
+
+  h3 {
+    margin-left: (@grid-gutter-width / 2);
+  }
+}
+
+.@{filter-prefix-cls} .row {
+  overflow: hidden;
+
+  .title {
+    margin-left: 10px;
+  }
+}
+
+.make-grid-columns();
+
+.make-grid-columns-float(xs);
+.make-grid(@grid-columns, xs, width);
+.make-grid(@grid-columns, xs, push);
+.make-grid(@grid-columns, xs, pull);
+.make-grid(@grid-columns, xs, offset);
+
+@media (min-width: @screen-sm-min) {
+  .make-grid-columns-float(sm);
+  .make-grid(@grid-columns, sm, width);
+  .make-grid(@grid-columns, sm, push);
+  .make-grid(@grid-columns, sm, pull);
+  .make-grid(@grid-columns, sm, offset);
+}
+
+@media (min-width: @screen-md-min) {
+  .make-grid-columns-float(md);
+  .make-grid(@grid-columns, md, width);
+  .make-grid(@grid-columns, md, push);
+  .make-grid(@grid-columns, md, pull);
+  .make-grid(@grid-columns, md, offset);
+}
+
+@media (min-width: @screen-lg-min) {
+  .make-grid-columns-float(lg);
+  .make-grid(@grid-columns, lg, width);
+  .make-grid(@grid-columns, lg, push);
+  .make-grid(@grid-columns, lg, pull);
+  .make-grid(@grid-columns, lg, offset);
+}
+
+@media (min-width: @screen-xl-min) {
+  .make-grid-columns-float(xl);
+  .make-grid(@grid-columns, xl, width);
+  .make-grid(@grid-columns, xl, push);
+  .make-grid(@grid-columns, xl, pull);
+  .make-grid(@grid-columns, xl, offset);
+}

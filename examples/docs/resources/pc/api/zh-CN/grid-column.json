@@ -1,0 +1,286 @@
+{
+  "attrs": [
+    {
+      "name": "align",
+      "sample": "grid-align#align-column-align",
+      "type": "String",
+      "desc": "列对其方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）",
+      "defaultValue": "该属性的默认值为 继承 table 的 align"
+    },
+    {
+      "name": "class-name",
+      "sample": "grid-custom-style#custom-style-cell-style",
+      "type": "String, Function",
+      "desc": "给单元格附加 className，也可以是函数 Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex})",
+      "defaultValue": ""
+    },
+    {
+      "name": "multi",
+      "sample": "grid-filter#filter-default-filter",
+      "type": "Boolean",
+      "desc": "是 filter 对象内置的属性，筛选是否允许多选;设置选择列是否显示复选框。当 columnType 为 'select' 时有效。",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "method",
+      "sample": "grid-filter#filter-custom-filter",
+      "type": "Function",
+      "desc": "是 filter 对象内置的自定义筛选方法 Function({value, row, column})",
+      "defaultValue": ""
+    },
+    {
+      "name": "fixed",
+      "sample": "grid-fixed#fixed-left-fixed",
+      "type": "String",
+      "desc": "将列固定在左侧，其中 freezable 可冻结可解冻，在表格个性化面板中可操作，而 frozen 只能冻结不能解冻，在个性化面板中不可操作;将列固定在左侧或者右侧（注意：固定列应该放在左右两侧的位置）;该属性的可选值为 left（固定左侧）, right（固定右侧）",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer-align",
+      "sample": "grid-align#align-footer-align-left-footer-align",
+      "type": "String",
+      "desc": "表尾列的对齐方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）",
+      "defaultValue": "该属性的默认值为 继承 align > 继承 table 的 footer-align"
+    },
+    {
+      "name": "footer-class-name",
+      "sample": "grid-footer#footer-footer-class-name",
+      "type": "String, Function",
+      "desc": "给表尾的单元格附加 className，也可以是函数 Function({$rowIndex, column, columnIndex, $columnIndex})",
+      "defaultValue": ""
+    },
+    {
+      "name": "header-align",
+      "sample": "grid-align#align-header-align-left-header-align",
+      "type": "String",
+      "desc": "表头列的对齐方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）",
+      "defaultValue": "该属性的默认值为 继承 align > 继承 table 的 header-align"
+    },
+    {
+      "name": "header-class-name",
+      "sample": "grid-header#header-header-class-name",
+      "type": "String, Function",
+      "desc": "设置列头样式名称;给表头的单元格附加 className，也可以是函数 Function({$rowIndex, column, columnIndex, $columnIndex})",
+      "defaultValue": ""
+    },
+    {
+      "name": "index-method",
+      "sample": "grid-serial-column#tiny-first-menu-custom-serial-column",
+      "type": "Function",
+      "desc": "只对 type=index 有效，自定义索引方法 Function({row, rowIndex, column, columnIndex})",
+      "defaultValue": ""
+    },
+    {
+      "name": "min-width",
+      "sample": "grid-width-height#tiny-first-menu-min-width",
+      "type": "Number, String",
+      "desc": "最小列宽度；会自动将剩余空间按比例分配;该属性的可选值为 整数, px，%",
+      "defaultValue": "该属性的默认值为 继承 table 的 column-min-width"
+    },
+    {
+      "name": "show-icon",
+      "sample": "grid-edit#tiny-first-menu-cell-editing",
+      "type": "Boolean",
+      "desc": "是否显示列头编辑图标，在编辑时有效",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "params",
+      "sample": "grid-filter#filter-default-filter",
+      "type": "Object",
+      "desc": "额外的参数（自定义一些数据参数，对于某些特殊的场景可能会用到）",
+      "defaultValue": ""
+    },
+    {
+      "name": "remote-sort",
+      "sample": "grid-sort#sort-server-sort",
+      "type": "Boolean",
+      "desc": "是否使用服务端排序，如果设置为 true 则不会对数据进行处理",
+      "defaultValue": "该属性的默认值为 继承 table 的 remote-sort"
+    },
+    {
+      "name": "resizable",
+      "sample": "grid-width-height#tiny-first-menu-resize-column-width",
+      "type": "Boolean",
+      "desc": "设置该列是否可以调整列宽;列是否允许拖动列宽调整大小",
+      "defaultValue": "该属性的默认值为 继承 table 的 resizable"
+    },
+    {
+      "name": "show-header-overflow",
+      "sample": "grid-tip#tip-column-header-tip",
+      "type": "String,Boolean",
+      "desc": "当表头内容过长时显示为省略号;该属性的可选值为 ellipsis（只显示省略号）, title（并且显示为原生 title）, tooltip（并且显示为 tooltip 提示）",
+      "defaultValue": "该属性的默认值为 继承 table 的 show-header-overflow"
+    },
+    {
+      "name": "show-overflow",
+      "sample": "grid-tip#tip-cell-tip",
+      "type": "String,Boolean",
+      "desc": "当内容过长时显示为省略号;该属性的可选值为 ellipsis（只显示省略号）, title（并且显示为原生 title）, tooltip（并且显示为 tooltip 提示）",
+      "defaultValue": "该属性的默认值为 继承 table 的 show-overflow"
+    },
+    {
+      "name": "sort-by",
+      "sample": "grid-sort#sort-combinations-sort",
+      "type": "String, Array",
+      "desc": "只对 sortable 有效，自定义排序的属性",
+      "defaultValue": ""
+    },
+    {
+      "name": "rules",
+      "sample": "",
+      "type": "Object",
+      "desc": "表单的验证功能",
+      "defaultValue": ""
+    },
+    {
+      "name": "required",
+      "sample": "grid-validation#grid_Example-gridValid-editing-validation",
+      "type": "Boolean",
+      "desc": "是否必填，如不设置，则会根据校验规则自动生成",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "sort-method",
+      "sample": "grid-sort#sort-custom-sort",
+      "type": "Function",
+      "desc": "自定义所有列的排序方法，当触发排序时会调用该函数 Function({ data, column, property, order }) 返回排序后的结果",
+      "defaultValue": ""
+    },
+    {
+      "name": "sortable",
+      "sample": "grid-sort#sort-default-sort",
+      "type": "Boolean",
+      "desc": "设置该列数据是否可以排序。;是否允许列排序",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "title",
+      "sample": "grid-data-source#tiny-first-menu-static-data",
+      "type": "String , Function",
+      "desc": "列标题（支持开启国际化），可以是函数 Function(h, params)",
+      "defaultValue": ""
+    },
+    {
+      "name": "tree-node",
+      "sample": "grid-tree-grid#tree-table-tree-grid-base",
+      "type": "Boolean",
+      "desc": "只对 tree-config 配置时有效，指定为树节点",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "format-value",
+      "sample": "grid-edit#tiny-first-menu-format-value",
+      "type": "Function",
+      "desc": "格式化单元格编辑器组件的传入值",
+      "defaultValue": ""
+    },
+    {
+      "name": "format-text",
+      "sample": "grid-renderer#grid_Example-gridRenderer-inner-renderer",
+      "type": "String , Function",
+      "desc": "设置当前表格列的显示获取编辑类型;设置当前表格列的显示获取编辑类型，也可以是函数 Function(params);该属性的可选值为 money / enum / select / number / integer / filesize / date / dateTime / longDateTime / time / longTime / yearMonth / ellipsis / rate / boole",
+      "defaultValue": ""
+    },
+    {
+      "name": "type",
+      "sample": "grid-serial-column#tiny-first-menu-default-serial-column",
+      "type": "String",
+      "desc": "设置内置列的类型;设置内置列的类型;该属性的可选值为 index（序号）/ selection（复选框）/ radio（单选框）/ expand（展开行）",
+      "defaultValue": ""
+    },
+    {
+      "name": "width",
+      "sample": "grid-width-height#tiny-first-menu-fixed-column-width",
+      "type": "Number , String",
+      "desc": "设置列的宽度，可以是像素或者百分比或者'auto'，设置为'auto'时，列宽会自动适应。;列宽度;该属性的可选值为 整数 / px /%",
+      "defaultValue": "该属性的默认值为 继承 table 的 column-width"
+    },
+    {
+      "name": "format-config",
+      "sample": "grid-data-source#tiny-first-menu-column-asyn-rendering",
+      "type": "Object",
+      "desc": "开启该列数据异步渲染。;{data: [], // 列数据源\n type: '', // 内置渲染器类型，与 format-text 属性取值相同\n async: true, // 配置为 true 后，支持动态修改 data 的数据。还可以配置为对象，配置为对象时，对象中可以配置 splitConfig.enabled（是否启用分隔配置）、splitConfig.valueSplit（指定 value 值的分隔符）、splitConfig.textSplit（指定 text 的分隔符）、fetch（列数据异步渲染，请求数据）\n label: '' // 单元格显示内容的映射\n value: '' // 单元格取值的映射}",
+      "defaultValue": ""
+    },
+    {
+      "name": "class-name",
+      "sample": "grid-custom-style#custom-style-cell-style",
+      "type": "String, Function",
+      "desc": "给单元格附加 className，也可以是函数 Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex})",
+      "defaultValue": ""
+    },
+    {
+      "name": "editor",
+      "sample": "grid-edit#tiny-first-menu-custom-editing",
+      "type": "Object , Function",
+      "desc": "单元格编辑渲染配置项，也可以是函数 Function(h, params);设置表格列的编辑类型。当 editMode 为 true，并且 editabele 为 true 是有效。",
+      "defaultValue": ""
+    },
+    {
+      "name": "field",
+      "sample": "grid-align#align-column-align",
+      "type": "String",
+      "desc": "设置表格列对应数据源的字段名，注意:该属性配置不支持含'.'，数字开头的字符串，不支持中文，不支持列字段重复（会导致配置个性化设置，自定义列拖动无效）",
+      "defaultValue": ""
+    },
+    {
+      "name": "filter",
+      "sample": "grid-filter#filter-default-filter",
+      "type": "Boolean , Object",
+      "desc": "设置表格列的筛选配置信息。默认值为 false 不配置筛选信息。",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "renderer",
+      "sample": "grid-renderer#grid_Example-gridRenderer-custom-renderer",
+      "type": "Object , Function",
+      "desc": "设置表格列的渲染类型。其优先级高于列的 type 属性配置;单元格渲染配置项，其优先级高于列的 formatText 属性配置，也可以是函数 Function(h, params)",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-tip",
+      "sample": "grid-tip#tip-cell-tip",
+      "type": "Boolean",
+      "desc": "表格列单元格是否需要提示",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "show-header-tip",
+      "sample": "grid-tip#tip-column-header-tip",
+      "type": "Boolean",
+      "desc": "表格列头是否需要提示",
+      "defaultValue": "该属性的默认值为 false"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "grid-header#header-custom-grid-header",
+      "type": "",
+      "desc": "自定义显示内容模板",
+      "defaultValue": ""
+    },
+    {
+      "name": "edit",
+      "sample": "grid-editor#grid_Example-gridEdit-custom-editor-select",
+      "type": "",
+      "desc": "自定义可编辑组件模板",
+      "defaultValue": ""
+    },
+    {
+      "name": "filter",
+      "sample": "grid-filter#filter-custom-filter",
+      "type": "",
+      "desc": "自定义筛选模板",
+      "defaultValue": ""
+    },
+    {
+      "name": "header",
+      "sample": "grid-header#header-slot-header",
+      "type": "",
+      "desc": "自定义表头内容的模板",
+      "defaultValue": ""
+    }
+  ]
+}

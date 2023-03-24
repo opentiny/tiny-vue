@@ -1,0 +1,332 @@
+{
+  "attrs": [
+    {
+      "name": "action",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "Upload URL. If no action is configured, the default gateway link is generated.",
+      "defaultValue": ""
+    },
+    {
+      "name": "open-download-file",
+      "sample": "upload-file-list",
+      "type": "Boolean",
+      "desc": "Whether to enable file download by clicking. By default, this function is disabled.",
+      "defaultValue": ""
+    },
+    {
+      "name": "headers",
+      "sample": "custom-upload-request",
+      "type": "Object",
+      "desc": "Set the upload request header. You can set headers to the header request information, for example, 1:headers='headers'2headers:{'Accept-Language':'en,zh', Authorization:' Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='}",
+      "defaultValue": ""
+    },
+    {
+      "name": "multiple",
+      "sample": "multiple-file",
+      "type": "Boolean",
+      "desc": "Specifies whether multiple files can be selected.",
+      "defaultValue": ""
+    },
+    {
+      "name": "data",
+      "sample": "basic-usage",
+      "type": "Object",
+      "desc": "Extra parameters attached during upload",
+      "defaultValue": ""
+    },
+    {
+      "name": "name",
+      "sample": "upload-file-list",
+      "type": "String",
+      "desc": "Field name of the uploaded file",
+      "defaultValue": "The default value of this attribute is file."
+    },
+    {
+      "name": "with-credentials",
+      "sample": "upload-request1",
+      "type": "Boolean",
+      "desc": "Cookie credential information can be sent.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "show-file-list",
+      "sample": "upload-file-list",
+      "type": "Boolean",
+      "desc": "Whether to display the list of uploaded files",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "drag",
+      "sample": "drag-upload",
+      "type": "Boolean",
+      "desc": "Whether to enable drag-and-drop upload",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "accept",
+      "sample": "accept-file-image",
+      "type": "String",
+      "desc": "File type to be uploaded. This parameter is invalid in thumbnail-mode mode.",
+      "defaultValue": ""
+    },
+    {
+      "name": "before-upload",
+      "sample": "prevent-upload-file",
+      "type": "Function(file)",
+      "desc": "Hook before uploading a file. The parameter is the file to be uploaded. If false is returned or Promise is returned and rejected, the upload stops.",
+      "defaultValue": ""
+    },
+    {
+      "name": "list-type",
+      "sample": "picture-card",
+      "type": "String",
+      "desc": "File list type; The optional values of this attribute are text / picture / picture-card / thumb",
+      "defaultValue": "The default value of this attribute is text."
+    },
+    {
+      "name": "thumb-option",
+      "sample": "upload-file-list-thumb",
+      "type": "Object",
+      "desc": "Configure the file list when the display type is thumb. popperClass pop-up window list custom class name; width: width of the pop-up window. The default value is 270. The value is of the number type. ShowDownload indicates whether to display the download button. The default Boolean value is false. ShowDel indicates whether to display the delete button. The default Boolean value is false. DownloadFile: Click the download button to execute the function. Enable the EDM mode and configure the necessary token. This configuration can be omitted. show-tooltip: Indicates whether to enable tip when the file name exceeds the hidden value. The default value is false. The icon before the list result. The default value is icon-attachment",
+      "defaultValue": ""
+    },
+    {
+      "name": "before-remove",
+      "sample": "prevent-delete-file",
+      "type": "Function(file, fileList)",
+      "desc": "Hook before deleting files. The parameters are the uploaded files and file list. If false is returned or Promise is returned and rejected, the deletion stops.",
+      "defaultValue": ""
+    },
+    {
+      "name": "auto-upload",
+      "sample": "manual-upload",
+      "type": "Boolean",
+      "desc": "Whether to upload a file immediately after it is selected",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "file-list",
+      "sample": "accept-file-image",
+      "type": "Array",
+      "desc": "List of uploaded files, for example, [{name:'food.jpg', url:' https://xxx.cdn.com/xxx.jpg '}]",
+      "defaultValue": ""
+    },
+    {
+      "name": "http-request",
+      "sample": "http-request",
+      "type": "Function",
+      "desc": "Overwrite the default upload behavior. You can customize the upload implementation. httpRequest: () => {this.$service.network.post . ('localhost:3000/tiny/upload',['data']) .then (Res => {//The service is a customized service. The upload cannot be performed because the TinyVue official website uses Mock upload.}) }",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "Disable",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "limit",
+      "sample": "upload-limit",
+      "type": "Number",
+      "desc": "Maximum number of files that can be uploaded",
+      "defaultValue": ""
+    },
+    {
+      "name": "edm",
+      "sample": "",
+      "type": "Object",
+      "desc": "To use the upload, download, and preview functions of the EDM, you can configure the upload, download, and preview parameters in the object.",
+      "defaultValue": ""
+    },
+    {
+      "name": "token",
+      "sample": "",
+      "type": "Function",
+      "desc": "Token required for uploading, downloading, and previewing using EDM. The return value is Promise.",
+      "defaultValue": ""
+    },
+    {
+      "name": "isFolder",
+      "sample": "edm-folder-upload",
+      "type": "Boolean",
+      "desc": "If this parameter is set to true, the function of uploading folders is enabled. A maximum of five folders can be uploaded. {edm:upload:{plugin:sha256,isFolder:true,token:()=>{}}}",
+      "defaultValue": ""
+    },
+    {
+      "name": "fileSize",
+      "sample": "",
+      "type": "Number | Array",
+      "desc": "Restrict the file size. The unit is KB. This parameter is valid when EDM upload is enabled. When the value is of the Number type, the upload stops if the value is less than the value of this parameter. When the value is an array, [min,max] sets the upload range. The value is of the Number type. The maximum value cannot exceed 2 GB. When this parameter is set to an array, the maximum value is compared with the value set on the EDM server and the minimum value is used.",
+      "defaultValue": ""
+    },
+    {
+      "name": "packageToken",
+      "sample": "",
+      "type": "Function",
+      "desc": "Configure the token for EDM batch packaging and downloading. The configuration structure is edm:{download:packageToken:()=>{}} and a Promise is returned",
+      "defaultValue": ""
+    },
+    {
+      "name": "upload",
+      "sample": "",
+      "type": "Object",
+      "desc": "Parameters required for configuring the EDM upload function. For example, edm:{upload:{plugin:sha256,token:()=>{}}},plugin indicates the hash value for verifying the document content generated by the third-party dependency, token indicates the authentication token, and the type is Function. Promise is returned.",
+      "defaultValue": ""
+    },
+    {
+      "name": "download",
+      "sample": "",
+      "type": "Object",
+      "desc": "Configure the parameters required for the EDM download function. For example, edm:{download:{token:()=>{}}},token is the authentication token.",
+      "defaultValue": ""
+    },
+    {
+      "name": "preivew",
+      "sample": "",
+      "type": "Object",
+      "desc": "Parameters required for configuring the EDM preview function, for example, edm:{preview:{plugin: util.default,previewUrl:./_index.html?appid= application ID,packageName:'jslib',token:()=>{}}}",
+      "defaultValue": ""
+    },
+    {
+      "name": "mergeService",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "If mergeService is set to true and multiple files are uploaded using the default service, multiple upload services are combined into one service.",
+      "defaultValue": ""
+    },
+    {
+      "name": "updateId",
+      "sample": "",
+      "type": "String",
+      "desc": "DocId of the document to be updated on the EDM",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "trigger",
+      "sample": "custom-trigger",
+      "type": "",
+      "desc": "Content of the triggering file selection box",
+      "defaultValue": ""
+    },
+    {
+      "name": "tip",
+      "sample": "custom-upload-tip",
+      "type": "",
+      "desc": "Prompt Description",
+      "defaultValue": ""
+    }
+  ],
+  "methods": [
+    {
+      "name": "clearFiles",
+      "sample": "clear-files",
+      "type": "",
+      "desc": "Clear the list of uploaded files. (This method cannot be invoked in before-upload.)",
+      "defaultValue": ""
+    },
+    {
+      "name": "abort",
+      "sample": "abort-quest",
+      "type": "",
+      "desc": "Cancel the upload request",
+      "defaultValue": ""
+    },
+    {
+      "name": "submit",
+      "sample": "manual-upload",
+      "type": "",
+      "desc": "List of manually uploaded files",
+      "defaultValue": ""
+    },
+    {
+      "name": "downloadFile",
+      "sample": "",
+      "type": "",
+      "desc": "Downloading an EDM File",
+      "defaultValue": ""
+    },
+    {
+      "name": "previewFile",
+      "sample": "",
+      "type": "",
+      "desc": "Previewing an EDM File",
+      "defaultValue": ""
+    },
+    {
+      "name": "getNewTabPreviewUrl",
+      "sample": "",
+      "type": "",
+      "desc": "URL for previewing the EDM file. The return value is Promise.",
+      "defaultValue": ""
+    },
+    {
+      "name": "handleRemove",
+      "sample": "",
+      "type": "",
+      "desc": "Manually remove EDM file",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "drop-error",
+      "sample": "drag-upload",
+      "type": "Function(arg1)",
+      "desc": "This event is triggered when a file fails to be dragged. This event is valid only when the drag function is enabled. ; dropError(arg1){\n// arg1 Information about the file that fails to be uploaded.\n {name: name of the file to be uploaded, \npercentage: percentage of the upload progress, \nraw: file information, \nsize: file size, \nstatus: upload status, \nuid: uid} \n// do something you want...}",
+      "defaultValue": ""
+    },
+    {
+      "name": "preview",
+      "sample": "upload-events",
+      "type": "Function(arg1)",
+      "desc": "Event triggered when an uploaded file is clicked in the file list. preview(arg1){\n arg1 = {name: Upload file name, percentage: upload progress percentage, raw: file information, size: file size, status: upload status, uid: uid}}",
+      "defaultValue": ""
+    },
+    {
+      "name": "remove",
+      "sample": "upload-events",
+      "type": "Function(arg1)",
+      "desc": "Event triggered when a file is removed from the file list; onRomove(arg1){\n //arg1 Information about the file to be removed:\n{name: name of the file to be uploaded, percentage: percentage of the upload progress, raw: file information, size: file size, status: upload status, uid: uid}\n// do something you want...}",
+      "defaultValue": ""
+    },
+    {
+      "name": "error",
+      "sample": "upload-events",
+      "type": "Function(arg1, arg2, arg3)",
+      "desc": "Event triggered when a file fails to be uploaded; onError(arg1, arg2, arg3){\n arg1 = error information\n arg2 = {name: upload file name, percentage: upload progress percentage, raw: file information, size: file size, status: upload status, uid: uid} arg2 is the information about the file that fails to be uploaded. // arg3 = [] Array type Array file array that is successfully uploaded. // do something you want...}",
+      "defaultValue": ""
+    },
+    {
+      "name": "exceed",
+      "sample": "upload-events",
+      "type": "",
+      "desc": "This event is triggered when the number of files exceeds the upper limit.",
+      "defaultValue": ""
+    },
+    {
+      "name": "progress",
+      "sample": "upload-events",
+      "type": "Function(arg1, arg2)",
+      "desc": "Event triggered when a file is uploaded; progress(arg1, arg2){\narg1 = event object current event object\n arg2 = {name: upload file name, percentage: upload progress percentage, raw: file information, size: file size, status: upload status, uid: uid} arg2 is the information about the uploaded file.\n// do something you want...}",
+      "defaultValue": ""
+    },
+    {
+      "name": "change",
+      "sample": "upload-events",
+      "type": "Function(file, fileList)",
+      "desc": "The event is triggered when the file status changes. The event is triggered when a file is added, uploaded successfully, or uploaded unsuccessfully. change(file, fileList)\n//file Information about the file that is successfully uploaded.\n {name: file name, percentage: upload progress percentage, raw: file information, size: file size, status: upload status, uid: uid} \n// fileList: array type: number of files that are successfully uploaded.\n}",
+      "defaultValue": ""
+    },
+    {
+      "name": "success",
+      "sample": "upload-events",
+      "type": "Function(arg1, arg2, arg3)",
+      "desc": "Event triggered when a file is successfully uploaded; success(arg1, arg2, arg3){// arg1 = res arg1 indicates the response information after the upload is successful. // arg2 = {name: upload file name, percentage: upload progress percentage, raw: file information, size: file size, status: upload status, uid: uid} arg2 is the currently uploaded file // arg3 = [] arg3 is the array of all uploaded files // do something you want...}",
+      "defaultValue": ""
+    }
+  ]
+}

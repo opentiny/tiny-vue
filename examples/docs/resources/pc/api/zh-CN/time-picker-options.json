@@ -1,0 +1,18 @@
+{
+  "attrs": [
+    {
+      "name": "selectableRange",
+      "sample": "basic-usage",
+      "type": "String/Array",
+      "desc": "可选时间段，例如'18:30:00 - 20:30:00'或者传入数组['09:30:00 - 12:00:00', '14:30:00 - 18:30:00']",
+      "defaultValue": ""
+    },
+    {
+      "name": "format",
+      "sample": "format",
+      "type": "String",
+      "desc": "时间格式化(TimePicker);该属性的可选值为 小时：HH，分：mm，秒：ss，AM/PM A",
+      "defaultValue": "该属性的默认值为 'HH:mm:ss'"
+    }
+  ]
+}

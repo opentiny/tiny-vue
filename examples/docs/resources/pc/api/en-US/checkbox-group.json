@@ -1,0 +1,92 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "checkbox-group",
+      "type": "Array",
+      "desc": "Bound Value",
+      "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "with-border",
+      "type": "String",
+      "desc": "Size of the check box group. This parameter is valid only for the check box with buttons or borders. The optional values of this attribute are medium / small / mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "with-border",
+      "type": "Boolean",
+      "desc": "Disable",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "min",
+      "sample": "min-max",
+      "type": "Number",
+      "desc": "Minimum number of checkboxes that can be selected",
+      "defaultValue": ""
+    },
+    {
+      "name": "max",
+      "sample": "min-max",
+      "type": "Number",
+      "desc": "Maximum number of checkboxes that can be selected",
+      "defaultValue": ""
+    },
+    {
+      "name": "text-color",
+      "sample": "vertical-checkbox",
+      "type": "String",
+      "desc": "Text color when the checkbox in button mode is activated",
+      "defaultValue": "The default value of this attribute is #ffffff."
+    },
+    {
+      "name": "fill",
+      "sample": "checkbox-button",
+      "type": "String",
+      "desc": "Fill color and border color when the checkbox in button mode is activated",
+      "defaultValue": "The default value of this attribute is #409EFF"
+    },
+    {
+      "name": "options",
+      "sample": "checkbox-group",
+      "type": "Array",
+      "desc": "Checkbox component list",
+      "defaultValue": ""
+    },
+    {
+      "name": "type",
+      "sample": "checkbox-group",
+      "type": "String",
+      "desc": "Checkbox component type (button/checkbox)",
+      "defaultValue": "The default value of this attribute is checkbox, which is used together with the options attribute."
+    },
+    {
+      "name": "vertical",
+      "sample": "vertical-checkbox",
+      "type": "Boolean",
+      "desc": "Set the component arrangement mode. Sets whether the check boxes are arranged vertically. The value of this attribute can be true or false",
+      "defaultValue": "The default value of this attribute is false."
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "checkbox-group",
+      "type": "",
+      "desc": "Checkbox Option Group",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "dynamic-create-checkbox",
+      "type": "",
+      "desc": "This event is triggered when the binding value changes.",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,211 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/tip.less';
+@import '../custom.less';
+@import './vars.less';
+
+@tips-prefix-cls: ~'@{css-prefix}tips';
+
+.@{tips-prefix-cls} {
+  .component-css-vars-tip();
+
+  z-index: 900;
+  position: absolute;
+  padding: var(--ti-tips-padding);
+  background: var(--ti-tips-bg-color);
+  border-radius: var(--ti-tips-border-radius);
+  color: var(--ti-tips-color-infor);
+  min-height: var(--ti-tips-height);
+  text-align: center;
+  line-height: var(--ti-tips-height);
+
+  .@{css-prefix-iconfont} {
+    color: var(--ti-tips-color-infor);
+    line-height: 36px;
+  }
+
+  > span {
+    float: left;
+    top: -5px;
+  }
+
+  &:before {
+    .tip-arrow(-4px; 50%; -4px);
+    .tip-make-arrow(
+      4px 4px 4px 0; transparent var(--ti-tips-bg-color)
+    );
+  }
+
+  span + p {
+    max-width: 300px;
+    max-height: 100px;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: auto;
+  }
+
+  .@{css-prefix}small-close {
+    position: absolute;
+    cursor: pointer;
+    right: 8px;
+    top: -5px;
+  }
+
+  .icon-remove + p,
+  .icon-remove + p,
+  .icon-successful + p {
+    margin-left: 0;
+  }
+
+  &.tips-bottom {
+    top: -5px;
+    left: 0;
+
+    &:before {
+      .tip-arrow(50%; -4px; 0);
+      .tip-make-arrow(
+        0 4px 4px 4px; var(--ti-tips-bg-color) transparent
+      );
+      margin-left: -6px;
+    }
+  }
+
+  &.tips-left {
+    &:before {
+      .tip-arrow(auto; 50%; -4px);
+      .tip-make-arrow(
+        4px 0 4px 4px; transparent var(--ti-tips-bg-color)
+      );
+      right: -4px;
+    }
+  }
+
+  &.tips-top {
+    top: -5px;
+    left: 0;
+
+    &:before {
+      .tip-arrow(50%; auto; auto);
+      .tip-make-arrow(
+        4px 4px 0 4px; var(--ti-tips-bg-color) transparent
+      );
+      margin-left: -6px;
+      bottom: -4px;
+      margin-bottom: 0;
+    }
+  }
+
+  &.tips-top-left {
+    top: -5px;
+    left: 0;
+
+    &:before {
+      .tip-arrow(0%; auto; auto);
+      .tip-make-arrow(
+        4px 4px 0 4px; var(--ti-tips-bg-color) transparent
+      );
+      margin-left: 10px;
+      bottom: -4px;
+      margin-bottom: 0;
+    }
+  }
+
+  &.tips-top-right {
+    top: -5px;
+    left: 0;
+
+    &:before {
+      .tip-arrow(100%; auto; auto);
+      .tip-make-arrow(
+        4px 4px 0 4px; var(--ti-tips-bg-color) transparent
+      );
+      margin-left: -16px;
+      bottom: -4px;
+      margin-bottom: 0;
+    }
+  }
+
+  &.tips-bottom-left {
+    top: -5px;
+    left: 0;
+
+    &:before {
+      .tip-arrow(0%; -4px; 0);
+      .tip-make-arrow(
+        0 4px 4px 4px; var(--ti-tips-bg-color) transparent
+      );
+      margin-left: 10px;
+    }
+  }
+
+  &.tips-bottom-right {
+    top: -5px;
+    left: 0;
+
+    &:before {
+      .tip-arrow(100%; -4px; 0);
+      .tip-make-arrow(
+        0 4px 4px 4px; var(--ti-tips-bg-color) transparent
+      );
+      margin-left: -16px;
+    }
+  }
+
+  &.tips-error {
+    .tip-variant(
+      var(--ti-tips-error-bg-color) ;
+        var(--ti-tips-error-text-color) ; 0 0 4px
+        var(--ti-tips-error-bg-color) ; 0
+    );
+  }
+
+  &.tips-warning {
+    .tip-variant(
+      var(--ti-tips-warning-bg-color) ;
+        var(--ti-tips-warning-text-color) ; 0 0 4px
+        var(--ti-tips-warning-bg-color) ; 0
+    );
+  }
+
+  &.tips-succeed {
+    .tip-variant(
+      var(--ti-tips-succeed-bg-color) ;
+        var(--ti-tips-succeed-text-color) ; 0 0 4px
+        var(--ti-tips-succeed-bg-color) ; 0
+    );
+  }
+
+  &.tips-infor {
+    .tip-variant(
+      var(--ti-tips-infor-bg-color) ;
+        var(--ti-tips-infor-text-color) ; 0 0 4px
+        var(--ti-tips-infor-bg-color) ; 0
+    );
+  }
+
+  &.tips-normal {
+    .tip-variant(
+      var(--ti-tips-normal-bg-color) ;
+        var(--ti-tips-normal-text-color) ; 0 0 4px
+        var(--ti-tips-normal-bg-color) ; 0
+    );
+  }
+
+  // Grid表头提示显示时隐藏simplesort箭头
+  .grid-innercell {
+    .grid-simplesort {
+      display: none;
+    }
+  }
+}

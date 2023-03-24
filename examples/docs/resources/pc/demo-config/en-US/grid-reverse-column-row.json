@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Grid-Inverting Rows and Columns in a Table",
+    "content": "<p>You need to configure <code>:columns=&quot;tableColumn&quot;</code> <code>:show-header=&quot;false&quot;</code> on the <code>grid</code> tag. Click the 'Reverse Table' button to view the effect. Currently, the operation can only be performed once. If the operation is performed multiple times, problems may occur. For details, see the following example. </p>\n",
+    "link": "grid/grid_Example/reverseRow",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "grid_Example-reverseRow"
+  }
+]

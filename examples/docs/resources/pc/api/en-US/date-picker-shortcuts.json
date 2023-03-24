@@ -1,0 +1,18 @@
+{
+  "attrs": [
+    {
+      "name": "text",
+      "sample": "date-shortcuts",
+      "type": "String",
+      "desc": "Title Text",
+      "defaultValue": ""
+    },
+    {
+      "name": "onClick",
+      "sample": "date-shortcuts",
+      "type": "Function",
+      "desc": "Selected callback function. The parameter is vm. You can set the value of the selector by triggering the pick event. For example, vm.$emit('pick', new Date())",
+      "defaultValue": ""
+    }
+  ]
+}

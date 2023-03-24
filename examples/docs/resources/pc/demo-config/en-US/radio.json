@@ -1,0 +1,106 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p> uses <code>v-model</code> to bind a variable. The variable value is the default radio selected. The variable value corresponds to the value of <code>label</code>. You can also use <code>text</code> to configure the display text, which is the same as the result of the default slot configuration plain text.\n\n<code>label</code> can be <code>String</code>, <code>Number</code>, or <code> Boolean</code>. </p>\n",
+    "link": "radio/basic-usage",
+    "component": "Radio option button",
+    "findIntroStr": "Used to configure options for different scenarios. Select one option from a group of options.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Profile Radio Group",
+    "content": "<p>Provides the <code>options</code> attribute to render radio groups by configuring object array data. This property eliminates the need to insert a <code>&lt;radio&gt;</code> or <code>&lt;radio-button&gt;</code> tag as a slot in the tag. \n\nThe <code>options</code> object array contains three fields: <code>label</code>, <code>text</code>, and <code>events</code>. \n\n The <code>type</code> attribute is also provided, which is used together with the <code>options</code> attribute. The default value is <code>radio</code>. You can also set this parameter to <code>button</code>. After the configuration, the radio group is displayed as a button. </p>\n",
+    "link": "radio/group-options",
+    "component": "Radio option button",
+    "findIntroStr": "Used to configure options for different scenarios. Select one option from a group of options.",
+    "demoId": "group-options"
+  },
+  {
+    "title": "With borders",
+    "content": "<p>You can set the <code>border</code> attribute to add a border to an option button. </p>\n",
+    "link": "radio/with-border",
+    "component": "Radio option button",
+    "findIntroStr": "Used to configure options for different scenarios. Select one option from a group of options.",
+    "demoId": "with-border"
+  },
+  {
+    "title": "Disabled",
+    "content": "<p>Set the <code>disabled</code> attribute to enable the disabled state. The default value is false. </p>\n",
+    "link": "radio/dynamic-disable",
+    "component": "Radio option button",
+    "findIntroStr": "Used to configure options for different scenarios. Select one option from a group of options.",
+    "demoId": "dynamic-disable"
+  },
+  {
+    "title": "vertical layout",
+    "content": "<p>You can set the <code>vertical</code> attribute on the RadioGroup component to enable the vertical layout of the option buttons. </p>\n",
+    "link": "radio/vertical",
+    "component": "Radio option button",
+    "findIntroStr": "Used to configure options for different scenarios. Select one option from a group of options.",
+    "demoId": "vertical"
+  },
+  {
+    "title": "Color Settings",
+    "content": "When a radio in the <p> format is activated, you can set the text color through the <code>text-color</code> attribute, and set the fill color and border color through the <code>fill</code> attribute. </p>\n",
+    "link": "radio/active-color",
+    "component": "Radio option button",
+    "findIntroStr": "Used to configure options for different scenarios. Select one option from a group of options.",
+    "demoId": "active-color"
+  },
+  {
+    "title": "Text Content",
+    "content": "<p>You can set the <code>text</code> attribute on the Radio component to set the content. </p>\n",
+    "link": "radio/radio-text",
+    "component": "Radio option button",
+    "findIntroStr": "Used to configure options for different scenarios. Select one option from a group of options.",
+    "demoId": "radio-text"
+  },
+  {
+    "title": "Button Content",
+    "content": "<p>You can set the radio content through the <code>label</code> attribute.</p>\n",
+    "link": "radio/radio-button",
+    "component": "Radio option button",
+    "findIntroStr": "Used to configure options for different scenarios. Select one option from a group of options.",
+    "demoId": "radio-button"
+  },
+  {
+    "title": "name",
+    "content": "For details, see the following example.",
+    "link": "radio/radio-button",
+    "component": "Radio option button",
+    "findIntroStr": "Used to configure options for different scenarios. Select one option from a group of options.",
+    "demoId": "radio-button1"
+  },
+  {
+    "title": "Size Settings",
+    "content": "<p>You can set the <code>size</code> attribute for a radio with a button or a radio with a border to change its size. The options include medium, small, and mini. </p>\n",
+    "link": "radio/radio-size",
+    "component": "Radio option button",
+    "findIntroStr": "Used to configure options for different scenarios. Select one option from a group of options.",
+    "demoId": "radio-size"
+  },
+  {
+    "title": "Option button event",
+    "content": "<p>You can set the <code>change</code> event on the Radio and RadioGroup components. The event is triggered when the bound value changes. The callback function is the selected radio label value. </p>\n",
+    "link": "radio/radio-events",
+    "component": "Radio option button",
+    "findIntroStr": "Used to configure options for different scenarios. Select one option from a group of options.",
+    "demoId": "radio-events"
+  },
+  {
+    "title": "Configure radio cyclically",
+    "content": "<p>You can set the <code>options</code> attribute on the RadioGroup component to configure radio cyclically. </p>\n",
+    "link": "radio/group-options",
+    "component": "Radio option button",
+    "findIntroStr": "Used to configure options for different scenarios. Select one option from a group of options.",
+    "demoId": "group-options1"
+  },
+  {
+    "title": "Default slot",
+    "content": "<p>by <code>default</code>default slot list. </p>\n",
+    "link": "radio/radio-default",
+    "component": "Radio option button",
+    "findIntroStr": "Used to configure options for different scenarios. Select one option from a group of options.",
+    "demoId": "radio-default"
+  }
+]

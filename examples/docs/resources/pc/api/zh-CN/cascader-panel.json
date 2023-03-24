@@ -1,0 +1,145 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "选中项绑定值",
+      "defaultValue": ""
+    },
+    {
+      "name": "options",
+      "sample": "change",
+      "type": "Array",
+      "desc": "可选项数据源，键名可通过 Props 属性配置",
+      "defaultValue": ""
+    },
+    {
+      "name": "props",
+      "sample": "cascader-panel-props",
+      "type": "Object",
+      "desc": "配置选项，具体见 CascaderPanel Props 表 ",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "custom-option-content",
+      "type": "",
+      "desc": "自定义备选项的节点内容，参数为 { node, data }，分别为当前节点的 Node 对象和数据",
+      "defaultValue": ""
+    }
+  ],
+  "methods": [
+    {
+      "name": "getCheckedNodes",
+      "sample": "change",
+      "type": "",
+      "desc": "获取选中的节点;参数为 (leafOnly) 是否只是获取子节点，默认值为 false",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearCheckedNodes",
+      "sample": "change",
+      "type": "",
+      "desc": "清空选中的节点",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "change",
+      "type": "Function(arg)",
+      "desc": "当选中节点变化时触发;arg:回调参数为 选中节点的值 (Array类型)",
+      "defaultValue": ""
+    },
+    {
+      "name": "expand-change",
+      "sample": "change",
+      "type": "Functon(arg)",
+      "desc": "当展开节点发生变化时触发;arg:回调参数为 各父级选项值组成的数组 (Array类型)",
+      "defaultValue": ""
+    }
+  ],
+  "caspanelprops": [
+    {
+      "name": "expandTrigger",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "次级菜单的展开方式;该属性的可选值为 click / hover",
+      "defaultValue": "click"
+    },
+    {
+      "name": "multiple",
+      "sample": "default-multiple",
+      "type": "Boolean",
+      "desc": "是否多选",
+      "defaultValue": "false"
+    },
+    {
+      "name": "checkStrictly",
+      "sample": "check-strictly",
+      "type": "Boolean",
+      "desc": "是否严格的遵守父子节点不互相关联",
+      "defaultValue": " false"
+    },
+    {
+      "name": "emitPath",
+      "sample": "events",
+      "type": "Boolean",
+      "desc": "在选中节点改变时，是否返回由该节点所在的各级菜单的值所组成的数组，若设置 false，则只返回该节点的值",
+      "defaultValue": " true"
+    },
+    {
+      "name": "lazy",
+      "sample": "auto-load",
+      "type": "Boolean",
+      "desc": "是否动态加载子节点，需与 lazyLoad 方法结合使用",
+      "defaultValue": "false"
+    },
+    {
+      "name": "lazyLoad",
+      "sample": "auto-load",
+      "type": "Function(node, resolve)",
+      "desc": "加载动态数据的方法，仅在 lazy 为 true 时有效;参数说明： node为当前点击的节点，resolve为数据加载完成的回调(必须调用)",
+      "defaultValue": ""
+    },
+    {
+      "name": "value",
+      "sample": "props-children",
+      "type": "String",
+      "desc": "指定选项的值为选项对象的某个属性值",
+      "defaultValue": "'value'"
+    },
+    {
+      "name": "label",
+      "sample": "props-children",
+      "type": "String",
+      "desc": "指定选项标签为选项对象的某个属性值",
+      "defaultValue": "'label'"
+    },
+    {
+      "name": "children",
+      "sample": "props-children",
+      "type": "String",
+      "desc": "指定选项的子选项为选项对象的某个属性值",
+      "defaultValue": "'children'"
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled-items",
+      "type": "String",
+      "desc": "指定选项的禁用为选项对象的某个属性值",
+      "defaultValue": "'disabled'"
+    },
+    {
+      "name": "leaf",
+      "sample": "check-strictly",
+      "type": "String",
+      "desc": "指定选项的叶子节点的标志位为选项对象的某个属性值",
+      "defaultValue": "'leaf'"
+    }
+  ]
+}

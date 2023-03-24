@@ -1,0 +1,198 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/tip.less';
+@import '../custom.less';
+@import './vars.less';
+
+@slider-prefix-cls: ~'@{css-prefix}slider';
+
+.@{slider-prefix-cls} {
+  &__wrapper {
+    .component-css-vars-slider();
+  }
+
+  border-radius: var(--ti-slider-border-radius);
+  height: var(--ti-slider-height);
+  position: relative;
+  margin: 13px 0;
+  background: var(--ti-slider-bg-color);
+  cursor: pointer;
+  width: ~'calc(100% - 89px)';
+  display: inline-block;
+
+  &:hover {
+    .@{slider-prefix-cls}__range {
+      background: var(--ti-slider-range-hover-bg-color);
+    }
+
+    .@{slider-prefix-cls}__handle {
+      border-color: var(--ti-slider-handle-border-color-hover);
+    }
+  }
+
+  &.disabled {
+    cursor: default;
+  }
+
+  &.disabled .@{slider-prefix-cls}__handle {
+    cursor: not-allowed;
+  }
+
+  &__vertical {
+    width: var(--ti-slider-height);
+    height: 300px;
+    display: block;
+    margin: 0 15px;
+
+    & + .@{slider-prefix-cls}__input {
+      margin-top: 12px;
+      float: none;
+      right: 0;
+    }
+
+    .@{slider-prefix-cls}__range {
+      border-radius: 10px;
+      position: absolute;
+      z-index: 1;
+      width: var(--ti-slider-height);
+    }
+
+    .@{slider-prefix-cls}__up {
+      top: 0;
+    }
+
+    .@{slider-prefix-cls}__down {
+      bottom: 0;
+    }
+
+    .@{slider-prefix-cls}__handle {
+      margin: var(--ti-slider-margin-vertical) var(--ti-slider-margin-right) var(--ti-slider-margin-vertical) var(--ti-slider-margin-left);
+    }
+  }
+
+  &__range {
+    border-radius: var(--ti-slider-range-border-radius);
+    position: absolute;
+    z-index: 1;
+    margin-top: var(--ti-slider-range-margin-top);
+    height: var(--ti-slider-range-height);
+    background: var(--ti-slider-range-bg-color);
+  }
+
+  &__left {
+    left: 0;
+  }
+
+  &__right {
+    right: 0;
+  }
+
+  &__handle {
+    border-radius: var(--ti-slider-handle-border-radius);
+    height: var(--ti-slider-handle-height);
+    width: var(--ti-slider-handle-width);
+    position: absolute;
+    margin: var(--ti-slider-handle-margin-top) var(--ti-slider-handle-margin-horizontal) var(--ti-slider-handle-margin-bottom);
+    z-index: 2;
+    outline: none;
+    background: var(--ti-slider-handle-bg-color);
+    border: var(--ti-slider-handle-border-weight) solid var(--ti-slider-handle-border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--ti-slider-handle-box-shadow);
+    user-select: none;
+    cursor: grab;
+    text-align: center;
+
+    &:hover {
+      color: var(--ti-slider-handle-text-color-hover);
+      border-color: var(--ti-slider-handle-border-color-hover);
+      transform: var(--ti-slider-handle-transform);
+
+      svg {
+        fill: var(--ti-slider-handle-icon-fill-color-hover);
+      }
+    }
+
+    svg {
+      display: var(--ti-slider-handle-icon-display);
+      height: 12px;
+      margin-left: 4px;
+      fill: var(--ti-slider-handle-icon-fill-color);
+    }
+  }
+
+  &__tips {
+    text-align: center;
+    font-size: var(--ti-common-font-size-base);
+    margin-top: -32px;
+    margin-left: var(--ti-slider-tips-margin-left);
+    position: absolute;
+    padding: 12px 16px;
+    line-height: 1.5;
+    z-index: 1010;
+    word-break: normal; // popup-body里面加了默认折行影响到此处需要重置
+    white-space: nowrap; // 强制不换行-to liyingfu 纵向进度条上的tips如果内容过多并有空格就会掉下去，此处设置强制显示一行
+    background: var(--ti-slider-tips-bg-color);
+    border: 1px solid var(--ti-slider-tips-border-color);
+    border-radius: var(--ti-common-border-radius-1);
+    color: var(--ti-slider-tips-text-color);
+
+    &:before {
+      margin-left: -6px;
+      bottom: -6px;
+      .tip-arrow(50%; auto; 0;);
+      .tip-make-arrow(
+        6px 6px 0 6px; var(--ti-slider-tips-border-color) transparent
+      );
+    }
+
+    &:after {
+      margin-left: -4px;
+      bottom: -4px;
+      .tip-arrow(50%; auto; 0;);
+      .tip-make-arrow(
+        4px 4px 0 4px; var(--ti-slider-tips-border-color) transparent
+      );
+    }
+  }
+
+  &__input {
+    display: inline-block;
+    line-height: var(--ti-slider-input-height);
+    vertical-align: top;
+    margin-left: 12px;
+    font-size: var(--ti-common-font-size-base);
+
+    input {
+      width: var(--ti-slider-input-width);
+      height: var(--ti-slider-input-height);
+      line-height: var(--ti-slider-input-height);
+      border: 1px solid var(--ti-slider-input-border-color);
+      border-radius: var(--ti-slider-input-border-radius);
+      color: var(--ti-slider-input-text-color);
+      background: var(--ti-slider-input-bg-color);
+      font-size: inherit;
+      padding: 0 8px;
+      outline: 0;
+      display: inline-block;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    span {
+      padding-left: 8px;
+    }
+  }
+}

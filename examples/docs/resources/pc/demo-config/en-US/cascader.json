@@ -1,0 +1,178 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>Renders a cascade selector by specifying an array of options with the <code>options</code> attribute. </p>\n",
+    "link": "cascader/basic-usage",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "When a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Hover Triggering Submenu",
+    "content": "<p>You can use <code>props.expandTrigger</code> to specify the triggering mode of expanding a submenu as <code>hover</code>. The default triggering mode is <code>click</code>. </p>\n",
+    "link": "cascader/expand-trigger",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "When a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "expand-trigger"
+  },
+  {
+    "title": "Disable Options",
+    "content": "<p>declares that this option is disabled by setting the <code>disabled</code> field in the data source, in this case, The first element in the array specified by <code>options</code> contains a <code>disabled: true</code> key-value pair and is therefore disabled. By default, Cascader checks whether the <code>disabled</code> field of each item in the data is <code>true</code>. If the name of the field that indicates the disabled meaning in your data is not <code>disabled</code>, you can use the <code>props.disabled</code> property to specify it. For details, see the API table of Cascader Props. Certainly, <code>value</code>, <code>label</code>, and <code>children</code> may also be specified in the same way. </p>\n",
+    "link": "cascader/disabled-items",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "When a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "disabled-items"
+  },
+  {
+    "title": "Specify Attribute Value",
+    "content": "<p>Sets the attribute value mapping through the <code>props</code> attribute. </p>\n",
+    "link": "cascader/disabled-items",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "When a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "disabled-items1"
+  },
+  {
+    "title": "Can be cleared",
+    "content": "<p>You can clear the text box by setting the <code>clearable</code> attribute. </p>\n",
+    "link": "cascader/clearable",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "When a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "clearable"
+  },
+  {
+    "title": "Separator",
+    "content": "<p>Set the separator through the <code>separator</code> attribute. </p>\n",
+    "link": "cascader/clearable",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "When a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "clearable1"
+  },
+  {
+    "title": "Dimension",
+    "content": "<p>Sets the size through the <code>size</code> attribute. </p>\n",
+    "link": "cascader/clearable",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "When a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "clearable2"
+  },
+  {
+    "title": "Multiple Choices",
+    "content": "<p>Use <code>props.multiple = true</code> to enable the multi-selection mode. </p>\n",
+    "link": "cascader/default-multiple",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "When a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "default-multiple"
+  },
+  {
+    "title": "Fold Tag",
+    "content": "<p>After the multi-selection mode is enabled, tags of all selected options are displayed by default. You can use <code>collapse-tags</code> to collapse tags. \n Use <code>disabled</code> to set whether to disable the component. The default value is false. </p>\n",
+    "link": "cascader/collapse-tags",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "When a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "collapse-tags"
+  },
+  {
+    "title": "The parent and child levels are not associated.",
+    "content": "<p>The <code>props.checkStrictly = true</code> is used to set the association between the parent and child nodes. In this way, any level of options can be selected. In the default single-choice mode, only leaf nodes can be selected. </p>\n",
+    "link": "cascader/check-strictly",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "When a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "check-strictly"
+  },
+  {
+    "title": "Select any level of options from multiple options.",
+    "content": "<p>In multi-selection mode, cancel the association between parent and child nodes and select any level of options. </p>\n",
+    "link": "cascader/check-strictly-multiple",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "When a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "check-strictly-multiple"
+  },
+  {
+    "title": "Dynamic loading",
+    "content": "<p>When a level is selected, the options under the level are dynamically loaded. Use <code>lazy</code> in the <code>props</code> attribute to enable dynamic loading, and use <code>lazyload</code> to set the method for loading data sources. The <code>lazyload</code> method has two parameters. The first parameter node is the node that is clicked currently, and the second parameter resolve is the callback for data loading completion (mandatory). To display the status of a node more accurately, a flag bit indicating whether the node is a leaf node may be added to the node data. (The default field is leaf, which can be modified using props.leaf.) Otherwise, the system determines whether a node is a leaf node based on whether there are subnodes. </p>\n",
+    "link": "cascader/auto-load",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "When a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "auto-load"
+  },
+  {
+    "title": "Dynamic loading with no parent-child association",
+    "content": "<p>When a level is selected, the options under the level are dynamically loaded. Use <code>lazy</code> in the <code>props</code> attribute to enable dynamic loading, and use <code>lazyload</code> to set the method for loading data sources. Use <code>checkStrictly</code> in the <code>props</code> attribute to enable parent-child disassociation. </p>\n",
+    "link": "cascader/auto-load-checkStrictly",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "When a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "auto-load-checkStrictly"
+  },
+  {
+    "title": "Specify Options",
+    "content": "<div class=\"tip custom-block\"><p class=\"custom-block-title\">Props</p>\n<p> uses <code>children</code> to specify the sub-option of the option. The default value is children. \n Use <code>value</code> to specify the value of a specified option. The default value is value. \nUse <code>label</code> to specify the option label. The default value is label. </p>\n</div>\n",
+    "link": "cascader/props-children",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "When a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "props-children"
+  },
+  {
+    "title": "Searchable",
+    "content": "<p>Set <code>filterable</code> to <code>true</code> to enable the search function. By default, the <code>label</code> of the node or the options containing the input value in <code>label</code> of all parent nodes (determined by <code>show-all-levels</code>). <code>empty</code>Content displayed when no matching option</p>\n",
+    "link": "cascader/filterable",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "If a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "filterable"
+  },
+  {
+    "title": "Search Delay",
+    "content": "For details, see the following example.",
+    "link": "cascader/filterable",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "If a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "filterable2"
+  },
+  {
+    "title": "Multiple choices can be searched",
+    "content": "<p>Enable the search function in multi-choice mode. </p>\n",
+    "link": "cascader/filterable-multiple",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "If a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "filterable-multiple"
+  },
+  {
+    "title": "Customized search logic",
+    "content": "<p><code>filter-method</code> customizes the search logic. The first parameter is node, and the second parameter is keyword. A Boolean value is returned to indicate whether the search is hit. To select a parent, set props.checkStrictly = true to deselect the parent and child nodes. In this way, the purpose of selecting any level of option is achieved. In the default single-choice mode, only leaf nodes can be selected. </p>\n",
+    "link": "cascader/filter-method",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "If a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "filter-method"
+  },
+  {
+    "title": "Placeholder Text",
+    "content": "For details, see the following example.",
+    "link": "cascader/filterable-multiple",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "If a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "filterable-multiple1"
+  },
+  {
+    "title": "Only the last level is displayed.",
+    "content": "<p>The <code>show-all-levels</code> attribute defines whether to display the complete path. If it is set to <code>false</code>, only the last level is displayed. The default value is <code>true</code>, indicating that the full path of the selected item is displayed. </p>\n",
+    "link": "cascader/show-all-levels",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "If a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "show-all-levels"
+  },
+  {
+    "title": "Event",
+    "content": "<p>Cascader cascade selector events include: <code>change</code>, <code>expand-change</code>, <code>blur</code>, <code>focus</code>, < code>visible-change</code>. </p>\n",
+    "link": "cascader/events",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "If a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "events"
+  },
+  {
+    "title": "Data type returned by a node",
+    "content": "For details, see the following example.",
+    "link": "cascader/events",
+    "component": "Cascader cascading selector",
+    "findIntroStr": "If a data set has a clear hierarchy, you can use the cascading selector to view and select a data set level by level.",
+    "demoId": "events1"
+  }
+]

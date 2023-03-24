@@ -1,0 +1,54 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@tall-storage-prefix-cls: ~'@{css-prefix}tall-storage';
+@storage-list-style-prefix-cls: ~'@{css-prefix}storage-list-style';
+@storage-list-prefix-cls: ~'@{css-prefix}storage-list';
+@storage-item-prefix-cls: ~'@{css-prefix}storage-item';
+
+.@{tall-storage-prefix-cls} {
+  .component-css-vars-tall-storage();
+
+  position: relative;
+  margin-top: 2px;
+
+  .@{storage-list-style-prefix-cls} {
+    position: absolute;
+    background-color: var(--ti-tall-storage-bg-color);
+    box-shadow: var(--ti-base-box-shadow);
+    border-radius: var(--ti-tall-storage-border-radius);
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 10;
+
+    .@{storage-list-prefix-cls} {
+      padding: 0;
+      list-style: none;
+
+      .@{storage-item-prefix-cls} {
+        height: var(--ti-tall-storage-item-height);
+        line-height: var(--ti-tall-storage-item-height);
+        padding: 0 8px;
+        white-space: nowrap;
+
+        &:hover,
+        &.item-hover {
+          cursor: pointer;
+          background-color: var(--ti-tall-storage-item-bg-color);
+        }
+      }
+    }
+  }
+}

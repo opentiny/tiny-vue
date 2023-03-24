@@ -1,0 +1,32 @@
+{
+  "attrs": [
+    {
+      "name": "src",
+      "sample": "",
+      "type": "String",
+      "desc": "",
+      "defaultValue": ""
+    },
+    {
+      "name": "width",
+      "sample": "",
+      "type": "String",
+      "desc": "Width",
+      "defaultValue": ""
+    },
+    {
+      "name": "height",
+      "sample": "",
+      "type": "String",
+      "desc": "Height",
+      "defaultValue": ""
+    },
+    {
+      "name": "fill",
+      "sample": "",
+      "type": "String",
+      "desc": "Spreading",
+      "defaultValue": ""
+    }
+  ]
+}

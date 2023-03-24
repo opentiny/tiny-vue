@@ -1,0 +1,676 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+.clearfix() {
+  &:after,
+  &:before {
+    content: '';
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.tab-focus() {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.center-block() {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.size(@width; @height) {
+  width: @width;
+  height: @height;
+}
+.square(@size) {
+  .size(@size; @size);
+}
+
+.placeholder(@color: #999) {
+  &:-moz-placeholder {
+    color: @color;
+  }
+
+  &::-moz-placeholder {
+    color: @color;
+    opacity: 1;
+  }
+
+  &:-ms-input-placeholder {
+    color: @color;
+  }
+
+  &::-webkit-input-placeholder {
+    color: @color;
+  }
+  &::-ms-input-placeholder {
+    color: @color;
+  }
+  &::placeholder {
+    color: @color;
+  }
+}
+
+.text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hide-text() {
+  font: ~'0/0' a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.text-hide() {
+  .hide-text();
+}
+
+.border-top-radius(@radius) {
+  border-top-left-radius: @radius;
+  border-top-right-radius: @radius;
+}
+.border-right-radius(@radius) {
+  border-top-right-radius: @radius;
+  border-bottom-right-radius: @radius;
+}
+.border-left-radius(@radius) {
+  border-top-left-radius: @radius;
+  border-bottom-left-radius: @radius;
+}
+.border-bottom-radius(@radius) {
+  border-bottom-left-radius: @radius;
+  border-bottom-right-radius: @radius;
+}
+
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow;
+  box-shadow: @shadow;
+}
+
+.transition(@transition) {
+  -webkit-transition: @transition;
+  transition: @transition;
+}
+.transition-property(@transition-property) {
+  transition-property: @transition-property;
+  -webkit-transition-property: @transition-property;
+}
+.transition-transform(@transition) {
+  -moz-transition: -moz-transform @transition;
+  -o-transition: -o-transform @transition;
+  -webkit-transition: -webkit-transform @transition;
+  transition: transform @transition;
+}
+.transition-delay(@transition-delay) {
+  transition-delay: @transition-delay;
+  -webkit-transition-delay: @transition-delay;
+}
+.transition-duration(@transition-duration) {
+  transition-duration: @transition-duration;
+  -webkit-transition-duration: @transition-duration;
+}
+
+.rotate(@degrees) {
+  -webkit-transform: rotate(@degrees);
+  -ms-transform: rotate(@degrees);
+  transform: rotate(@degrees);
+}
+.scale(@ratio) {
+  -webkit-transform: scale(@ratio);
+  -ms-transform: scale(@ratio);
+  transform: scale(@ratio);
+}
+.translate(@x; @y) {
+  -webkit-transform: translate(@x, @y);
+  -ms-transform: translate(@x, @y);
+  transform: translate(@x, @y);
+}
+.skew(@x; @y) {
+  -webkit-transform: skew(@x, @y);
+  -ms-transform: skewX(@x) skewY(@y);
+  transform: skew(@x, @y);
+}
+.rotateX(@degrees) {
+  -webkit-transform: rotateX(@degrees);
+  -ms-transform: rotateX(@degrees);
+  transform: rotateX(@degrees);
+}
+.translate3d(@x; @y; @z) {
+  transform: translate3d(@x, @y, @z);
+  -webkit-transform: translate3d(@x, @y, @z);
+}
+.rotateY(@degrees) {
+  -webkit-transform: rotateY(@degrees);
+  -ms-transform: rotateY(@degrees);
+  transform: rotateY(@degrees);
+}
+.perspective(@perspective) {
+  -moz-perspective: @perspective;
+  -webkit-perspective: @perspective;
+  perspective: @perspective;
+}
+.transform-origin(@origin) {
+  -webkit-transform-origin: @origin;
+  -moz-transform-origin: @origin;
+  transform-origin: @origin;
+}
+.perspective-origin(@perspective) {
+  -webkit-perspective-origin: @perspective;
+  -moz-perspective-origin: @perspective;
+  perspective-origin: @perspective;
+}
+
+.animation(@animation) {
+  -webkit-animation: @animation;
+  animation: @animation;
+}
+
+.backface-visibility(@visibility) {
+  -webkit-backface-visibility: @visibility;
+  -moz-backface-visibility: @visibility;
+  backface-visibility: @visibility;
+}
+
+.box-sizing(@boxmodel) {
+  -webkit-box-sizing: @boxmodel;
+  -moz-box-sizing: @boxmodel;
+  box-sizing: @boxmodel;
+}
+
+.user-select(@select) {
+  -ms-user-select: @select;
+  -webkit-user-select: @select;
+  -o-user-select: @select;
+  -moz-user-select: @select;
+  user-select: @select;
+}
+
+.resizable(@direction) {
+  resize: @direction;
+  overflow: auto;
+}
+
+.content-columns(@column-count; @column-gap: @grid-gutter-width) {
+  -moz-column-gap: @column-gap;
+  -webkit-column-count: @column-count;
+  column-count: @column-count;
+  -moz-column-count: @column-count;
+  -webkit-column-gap: @column-gap;
+  column-gap: @column-gap;
+}
+
+.hyphens(@mode: auto) {
+  -o-hyphens: @mode;
+  word-wrap: break-word;
+  -webkit-hyphens: @mode;
+  -ms-hyphens: @mode;
+  -moz-hyphens: @mode;
+  hyphens: @mode;
+}
+
+.opacity(@opacity) {
+  opacity: @opacity;
+  @opacity-ie: (@opacity * 100);
+  filter: ~'alpha(opacity=@{opacity-ie})';
+}
+
+#gradient {
+  .horizontal(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
+    background-image: -webkit-linear-gradient(left, color-stop(@start-color @start-percent), color-stop(@end-color @end-percent));
+    background-image: linear-gradient(to right, @start-color @start-percent, @end-color @end-percent);
+    background-repeat: repeat-x;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)", argb(@start-color), argb(@end-color)));
+  }
+  .vertical(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
+    background-image: -webkit-linear-gradient(top, @start-color @start-percent, @end-color @end-percent);
+    background-image: linear-gradient(to bottom, @start-color @start-percent, @end-color @end-percent);
+    background-repeat: repeat-x;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)", argb(@start-color), argb(@end-color)));
+  }
+
+  .directional(@start-color: #555; @end-color: #333; @deg: 45deg) {
+    background-repeat: repeat-x;
+    background-image: -webkit-linear-gradient(@deg, @start-color, @end-color);
+    background-image: linear-gradient(@deg, @start-color, @end-color);
+  }
+  .horizontal-three-colors(@start-color: #00b3ee; @mid-color: #7a43b6; @color-stop: 50%; @end-color: #c3325f) {
+    background-image: -webkit-linear-gradient(left, @start-color, @mid-color @color-stop, @end-color);
+    background-image: linear-gradient(to right, @start-color, @mid-color @color-stop, @end-color);
+    background-repeat: no-repeat;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)", argb(@start-color), argb(@end-color)));
+  }
+  .vertical-three-colors(@start-color: #00b3ee; @mid-color: #7a43b6; @color-stop: 50%; @end-color: #c3325f) {
+    background-image: -webkit-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+    background-image: linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+    background-repeat: no-repeat;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)", argb(@start-color), argb(@end-color)));
+  }
+  .radial(@inner-color: #555; @outer-color: #333) {
+    background-image: -webkit-radial-gradient(circle, @inner-color, @outer-color);
+    background-image: radial-gradient(circle, @inner-color, @outer-color);
+    background-repeat: no-repeat;
+  }
+  .striped(@color: rgba(255,255,255,0.15); @angle: 45deg) {
+    background-image: -webkit-linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+    background-image: linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+  }
+}
+.reset-filter() {
+  filter: e(%('progid:DXImageTransform.Microsoft.gradient(enabled = false)'));
+}
+
+.img-retina(@file-1x; @file-2x; @width-1x; @height-1x) {
+  background-image: url('@{file-1x}');
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    background-image: url('@{file-2x}');
+    background-size: @width-1x @height-1x;
+  }
+}
+
+.img-responsive(@display: block;) {
+  display: @display;
+  max-width: 100%;
+  height: auto;
+}
+
+.nav-divider(@color: #e5e5e5) {
+  height: 1px;
+  margin: ((@line-height-computed / 2) - 1) 0;
+  overflow: hidden;
+  background-color: @color;
+}
+
+.panel-variant(@border; @heading-text-color; @heading-bg-color; @heading-border) {
+  border-color: @border;
+
+  & > .panel-footer {
+    + .panel-collapse .panel-body {
+      border-bottom-color: @border;
+    }
+  }
+
+  & > .panel-heading {
+    background-color: @heading-bg-color;
+    border-color: @heading-border;
+    color: @heading-text-color;
+
+    + .panel-collapse .panel-body {
+      border-top-color: @border;
+    }
+  }
+}
+
+.table-row-variant(@state; @background) {
+  .table {
+    > thead,
+    > tbody,
+    > tfoot {
+      > tr > .@{state},
+      > .@{state} > td,
+      > .@{state} > th {
+        background-color: @background;
+      }
+    }
+  }
+
+  .table-hover > tbody {
+    > tr > .@{state}:hover,
+    > .@{state}:hover > td,
+    > .@{state}:hover > th {
+      background-color: darken(@background, 5%);
+    }
+  }
+}
+
+.pagination-size(@padding-vertical; @padding-horizontal; @font-size; @border-radius) {
+  > li {
+    > a,
+    > span {
+      font-size: @font-size;
+      padding: @padding-vertical @padding-horizontal;
+    }
+    &:last-child {
+      > a,
+      > span {
+        .border-right-radius(@border-radius);
+      }
+    }
+    &:first-child {
+      > a,
+      > span {
+        .border-left-radius(@border-radius);
+      }
+    }
+  }
+}
+
+.label-variant(@color) {
+  background-color: @color;
+  &[href] {
+    &:focus,
+    &:hover {
+      background-color: darken(@color, 10%);
+    }
+  }
+}
+
+.navbar-vertical-align(@element-height) {
+  margin-top: ((@navbar-height - @element-height) / 2);
+  margin-bottom: ((@navbar-height - @element-height) / 2);
+}
+
+.progress-bar-variant(@color) {
+  background-color: @color;
+  .progress-striped & {
+    #gradient > .striped();
+  }
+}
+
+.responsive-visibility() {
+  display: block !important;
+  table& {
+    display: table;
+  }
+  tr& {
+    display: table-row !important;
+  }
+  th&,
+  td& {
+    display: table-cell !important;
+  }
+}
+
+.responsive-invisibility() {
+  &,
+  tr&,
+  th&,
+  td& {
+    display: none !important;
+  }
+}
+
+.container-fixed() {
+  padding-right: (@grid-gutter-width / 2);
+  margin-right: auto;
+  padding-left: (@grid-gutter-width / 2);
+  margin-left: auto;
+  .clearfix();
+}
+
+.make-row(@gutter: @grid-gutter-width) {
+  margin-left: (@gutter / -2);
+  margin-right: (@gutter / -2);
+  .clearfix();
+}
+
+.make-xs-column(@columns; @gutter: @grid-gutter-width) {
+  position: relative;
+  float: left;
+  width: percentage((@columns / @grid-columns));
+  min-height: 1px;
+  padding-left: (@gutter / 2);
+  padding-right: (@gutter / 2);
+  box-sizing: border-box;
+}
+
+.make-sm-column(@columns; @gutter: @grid-gutter-width) {
+  position: relative;
+  min-height: 1px;
+  padding-left: (@gutter / 2);
+  padding-right: (@gutter / 2);
+  box-sizing: border-box;
+
+  @media (min-width: @screen-sm-min) {
+    float: left;
+    width: percentage((@columns / @grid-columns));
+  }
+}
+
+.make-sm-column-push(@columns) {
+  @media (min-width: @screen-sm-min) {
+    left: percentage((@columns / @grid-columns));
+  }
+}
+
+.make-sm-column-offset(@columns) {
+  @media (min-width: @screen-sm-min) {
+    margin-left: percentage((@columns / @grid-columns));
+  }
+}
+
+.make-sm-column-pull(@columns) {
+  @media (min-width: @screen-sm-min) {
+    right: percentage((@columns / @grid-columns));
+  }
+}
+
+.make-md-column(@columns; @gutter: @grid-gutter-width) {
+  position: relative;
+  min-height: 1px;
+  padding-left: (@gutter / 2);
+  padding-right: (@gutter / 2);
+  box-sizing: border-box;
+
+  @media (min-width: @screen-md-min) {
+    float: left;
+    width: percentage((@columns / @grid-columns));
+  }
+}
+
+.make-md-column-offset(@columns) {
+  @media (min-width: @screen-md-min) {
+    margin-left: percentage((@columns / @grid-columns));
+  }
+}
+.make-md-column-push(@columns) {
+  @media (min-width: @screen-md) {
+    left: percentage((@columns / @grid-columns));
+  }
+}
+.make-md-column-pull(@columns) {
+  @media (min-width: @screen-md-min) {
+    right: percentage((@columns / @grid-columns));
+  }
+}
+
+.make-lg-column(@columns; @gutter: @grid-gutter-width) {
+  position: relative;
+  min-height: 1px;
+  padding-left: (@gutter / 2);
+  padding-right: (@gutter / 2);
+  box-sizing: border-box;
+
+  @media (min-width: @screen-lg-min) {
+    float: left;
+    width: percentage((@columns / @grid-columns));
+  }
+}
+
+.make-lg-column-offset(@columns) {
+  @media (min-width: @screen-lg-min) {
+    margin-left: percentage((@columns / @grid-columns));
+  }
+}
+
+.make-lg-column-pull(@columns) {
+  @media (min-width: @screen-lg-min) {
+    right: percentage((@columns / @grid-columns));
+  }
+}
+
+.make-lg-column-push(@columns) {
+  @media (min-width: @screen-lg-min) {
+    left: percentage((@columns / @grid-columns));
+  }
+}
+
+.make-xl-column(@columns; @gutter: @grid-gutter-width) {
+  position: relative;
+  min-height: 1px;
+  padding-left: (@gutter / 2);
+  padding-right: (@gutter / 2);
+  box-sizing: border-box;
+
+  @media (min-width: @screen-xl-min) {
+    float: left;
+    width: percentage((@columns / @grid-columns));
+  }
+}
+
+.make-xl-column-offset(@columns) {
+  @media (min-width: @screen-xl-min) {
+    margin-left: percentage((@columns / @grid-columns));
+  }
+}
+.make-xl-column-pull(@columns) {
+  @media (min-width: @screen-xl-min) {
+    right: percentage((@columns / @grid-columns));
+  }
+}
+.make-xl-column-push(@columns) {
+  @media (min-width: @screen-xl-min) {
+    left: percentage((@columns / @grid-columns));
+  }
+}
+
+.make-grid-columns() {
+  .col(@index) when (@index = 1) {
+    @item: ~'.col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}, .col-xl-@{index}';
+    .col(@index + 1, @item);
+  }
+  .col(@index, @list) when (@index =< @grid-columns) {
+    @item: ~'.col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}, .col-xl-@{index}';
+    .col(@index + 1, ~'@{list}, @{item}');
+  }
+  .col(@index, @list) when (@index > @grid-columns) {
+    @{list} {
+      position: relative;
+      min-height: 1px;
+      padding-left: (@grid-gutter-width / 2);
+      padding-right: (@grid-gutter-width / 2);
+      box-sizing: border-box;
+    }
+  }
+  .col(1);
+}
+
+.make-grid-columns-float(@class) {
+  .col(@index) when (@index = 1) {
+    @item: ~'.col-@{class}-@{index}';
+    .col(@index + 1, @item);
+  }
+  .col(@index, @list) when (@index =< @grid-columns) {
+    @item: ~'.col-@{class}-@{index}';
+    .col(@index + 1, ~'@{list}, @{item}');
+  }
+  .col(@index, @list) when (@index > @grid-columns) {
+    @{list} {
+      float: left;
+    }
+  }
+  .col(1);
+}
+
+.calc-grid(@index, @class, @type) when (@type = width) and (@index > 0) {
+  .col-@{class}-@{index} {
+    width: percentage((@index / @grid-columns));
+  }
+}
+.calc-grid(@index, @class, @type) when (@type = pull) {
+  .col-@{class}-pull-@{index} {
+    right: percentage((@index / @grid-columns));
+  }
+}
+.calc-grid(@index, @class, @type) when (@type = push) {
+  .col-@{class}-push-@{index} {
+    left: percentage((@index / @grid-columns));
+  }
+}
+
+.calc-grid(@index, @class, @type) when (@type = offset) {
+  .col-@{class}-offset-@{index} {
+    margin-left: percentage((@index / @grid-columns));
+  }
+}
+.make-grid(@index, @class, @type) when (@index >= 0) {
+  .calc-grid(@index, @class, @type);
+  .make-grid(@index - 1, @class, @type);
+}
+
+.form-control-validation(@text-color: #555; @border-color: #ccc; @background-color: #f5f5f5) {
+  .control-label,
+  .checkbox,
+  .radio-inline,
+  .radio,
+  .checkbox-inline,
+  .help-block {
+    color: @text-color;
+  }
+  .form-control {
+    border-color: @border-color;
+    .box-shadow(
+      inset 0 1px 1px rgba(0, 0, 0, 0.075)
+    );
+    &:focus {
+      border-color: darken(@border-color, 10%);
+      @shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px lighten(@border-color, 20%);
+      .box-shadow(@shadow);
+    }
+  }
+  .input-group-addon {
+    color: @text-color;
+    border-color: @border-color;
+    background-color: @background-color;
+  }
+}
+
+.form-control-focus(@color: @input-border-focus) {
+  @color-rgba: rgba(red(@color), green(@color), blue(@color), 0.6);
+  &:focus {
+    border-color: @color;
+    outline: 0;
+    .box-shadow(~'inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px @{color-rgba}');
+  }
+}
+
+.input-size(@input-height; @padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius) {
+  font-size: @font-size;
+  padding: @padding-vertical @padding-horizontal;
+  border-radius: @border-radius;
+  line-height: @line-height;
+  height: @input-height;
+
+  textarea& {
+    height: auto;
+  }
+
+  select& {
+    line-height: @input-height;
+    height: @input-height;
+  }
+}

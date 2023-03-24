@@ -1,0 +1,69 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "change-role-event",
+      "type": "String , Number",
+      "desc": "Sets the text display value. ;Bound Value",
+      "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "size",
+      "type": "String",
+      "desc": "Set the component size",
+      "defaultValue": ""
+    },
+    {
+      "name": "placeholder",
+      "sample": "custom-service",
+      "type": "String",
+      "desc": "Set the placeholder text in the text box.",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-class",
+      "sample": "",
+      "type": "String",
+      "desc": "Add a class name for the popper. For details, see the popover component.",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-append-to-body",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "Indicates whether to insert a pop-up box to the body element. If a fault occurs in locating the fault in the dialog box that is displayed, you can set this attribute to false (for details, see the select component).",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "fetchRole",
+      "sample": "custom-service",
+      "type": "Object",
+      "desc": "User-defined API for obtaining the role list. This parameter is mandatory when the framework service is not used.",
+      "defaultValue": ""
+    },
+    {
+      "name": "fetchCurrentRole",
+      "sample": "custom-service",
+      "type": "Object",
+      "desc": "User-defined interface for obtaining the role of the current user. This parameter is mandatory when the framework service is not used.",
+      "defaultValue": ""
+    },
+    {
+      "name": "fields",
+      "sample": "custom-service",
+      "type": "Object",
+      "desc": "Customized data mapping. This parameter is mandatory when the framework service is not used.",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "change-role-event",
+      "type": "",
+      "desc": "This event is triggered after the current role is switched.",
+      "defaultValue": ""
+    }
+  ]
+}

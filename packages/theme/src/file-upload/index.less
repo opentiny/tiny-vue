@@ -1,0 +1,63 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+@upload-thumb-prefix-cls: ~'@{css-prefix}upload--thumb';
+
+.@{upload-thumb-prefix-cls} {
+  &__head {
+    cursor: pointer;
+    color: #343434;
+    font-size: var(--ti-common-font-size-1);
+    .thumb-icon {
+      margin-right: 8px;
+      fill: #999;
+    }
+    span {
+      vertical-align: middle;
+    }
+  }
+  &__body {
+    .thumb-item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      &:not(:last-child) {
+        padding-bottom: 8px;
+      }
+    }
+    .thumb-item-name {
+      padding: 4px 8px;
+      color: #333;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .thumb-success-icon {
+      fill: #52c41a;
+    }
+
+    .close-icon,
+    .download-icon,
+    .refres-icon {
+      fill: #7c7c7c;
+      cursor: pointer;
+    }
+
+    .thumb-icon + .thumb-icon {
+      margin-left: 8px;
+    }
+  }
+}

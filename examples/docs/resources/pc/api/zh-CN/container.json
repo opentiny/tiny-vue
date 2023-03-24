@@ -1,0 +1,62 @@
+{
+  "attrs": [
+    {
+      "name": "aside-width",
+      "sample": "custom-with-height",
+      "type": "Number , String",
+      "desc": "左侧宽度",
+      "defaultValue": "该属性的默认值为 200"
+    },
+    {
+      "name": "footer-height",
+      "sample": "custom-with-height",
+      "type": "Number , String",
+      "desc": "底部高度",
+      "defaultValue": "该属性的默认值为 60"
+    },
+    {
+      "name": "header-height",
+      "sample": "custom-with-height",
+      "type": "Number , String",
+      "desc": "头部高度",
+      "defaultValue": "该属性的默认值为 60"
+    },
+    {
+      "name": "pattern",
+      "sample": "custom-container",
+      "type": "String",
+      "desc": "版型类型;该属性的可选值为 default / simple / legend / classic / fashion",
+      "defaultValue": "该属性的默认值为 default"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "主要内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "header",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "头部内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "aside",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "侧边内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer",
+      "sample": "classic",
+      "type": "",
+      "desc": "底部内容",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Grid-data concatenation-normal column concatenation",
+    "content": "<p>You need to configure the <code>edit-config</code> object on the <code>grid</code> tag, and <code>activeMethod</code> before editing the event processing edit item data set. \nThe <code>editor</code> object is configured in the <code>grid-column</code> column. <code>component</code> is used to render the editing component. \n<code>attrs</code>Configure cascading data. \n<code>events</code> to set events. \nFor details, see the following example. </p>\n",
+    "link": "grid/grid_Example/dataCascading/cascade",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "grid_Example-dataCascading-cascade"
+  },
+  {
+    "title": "Grid-data concatenation-any parent concatenation",
+    "content": "<p>You need to configure the <code>edit-config</code> object on the <code>grid</code> tag, and <code>activeMethod</code> before editing the event processing edit item data set. \nThe <code>editor</code> object is configured in the <code>grid-column</code> column. <code>component</code> is used to render the editing component. \n<code>attrs</code>Configure cascading data. \n<code>events</code> to set events. \nFor details, see the following example. </p>\n",
+    "link": "grid/grid_Example/dataCascading/arbitraryCascade",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "grid_Example-dataCascading-arbitraryCascade"
+  }
+]

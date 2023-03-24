@@ -1,0 +1,229 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@tree-prefix-cls: ~'@{css-prefix}tree';
+@tree-node-prefix-cls: ~'@{css-prefix}tree-node';
+@radio-prefix-cls: ~'@{css-prefix}radio';
+
+.@{tree-prefix-cls} {
+  .component-css-vars-tree();
+
+  position: relative;
+  cursor: default;
+  background: var(--ti-tree-bg-color);
+  color: var(--ti-tree-text-color);
+
+  .is-drop-inner {
+    position: relative;
+
+    &::before {
+      pointer-events: none;
+      border: 2px solid var(--ti-tree-node-checked-icon-color);
+      content: ' ';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  &__empty-block {
+    position: relative;
+    min-height: 60px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__empty-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--ti-tree-empty-text-color);
+  }
+
+  &__drop-indicator {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--ti-tree-node-checked-icon-color);
+  }
+
+  &.is-dragging {
+    .@{tree-node-prefix-cls}__content {
+      cursor: move;
+
+      * {
+        pointer-events: none;
+      }
+    }
+
+    &.is-drop-not-allow {
+      .@{tree-node-prefix-cls}__content {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &--highlight-current {
+    .@{tree-node-prefix-cls}.is-current > .@{tree-node-prefix-cls}__content {
+      background-color: #f0f7ff;
+    }
+  }
+}
+
+.@{tree-node-prefix-cls} {
+  white-space: nowrap;
+  outline: 0;
+
+  &:focus > &__content {
+    background-color: var(--ti-tree-node-content-hover-bg-color);
+  }
+
+  &.is-current > &__content {
+    background-color: var(--ti-tree-node-content-current-bg-color);
+  }
+
+  &.is-drop-inner > &__content &__label {
+    background-color: var(--ti-tree-node-label-bg-color);
+    color: var(--ti-tree-node-label-text-color);
+  }
+
+  &.is-indeterminate,
+  &.is-expanded,
+  &.is-checked {
+    .@{tree-node-prefix-cls}__expand-icon {
+      fill: var(--ti-tree-node-expand-icon-color);
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    cursor: pointer;
+    border-radius: var(--ti-common-border-radius-normal);
+
+    &:hover {
+      background-color: var(--ti-tree-node-content-hover-bg-color) !important;
+      .@{tree-node-prefix-cls}__expand-icon {
+        fill: var(--ti-tree-node-checked-icon-color) !important; // 只有hover时，才进行高亮
+      }
+    }
+
+    & > label.@{css-prefix}checkbox {
+      margin-left: var(--ti-tree-node-label-margin-left);
+    }
+  }
+
+  &__expand-icon {
+    cursor: pointer;
+    fill: var(--ti-tree-node-expand-icon-color);
+    font-size: var(--ti-tree-node-icon-font-size);
+    transform: rotate(0);
+    transition: transform 0.3s ease-in-out;
+    flex-shrink: 0;
+
+    &.expanded {
+      transform: rotate(90deg);
+    }
+
+    &.is-leaf {
+      visibility: hidden;
+    }
+  }
+
+  &__label {
+    font-size: var(--ti-tree-node-label-font-size);
+    margin-left: var(--ti-tree-node-label-margin-left);
+  }
+
+  &__loading.circular {
+    margin-right: 4px;
+    margin-left: var(--ti-tree-node-label-margin-left);
+    font-size: var(--ti-tree-node-icon-font-size);
+    fill: var(--ti-tree-node-loading-icon-color);
+    animation: loading-rotate 2s linear infinite;
+
+    .path {
+      animation: loading-dash 1.5s ease-in-out infinite;
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: 0;
+      stroke-width: 2;
+      stroke: #1890ff;
+      stroke-linecap: round;
+    }
+  }
+
+  & > &__children {
+    overflow: hidden;
+    background-color: transparent;
+  }
+
+  &.is-expanded > &__children {
+    display: block;
+  }
+
+  &__menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5000;
+    font-size: var(--ti-common-font-size-base);
+    box-shadow: 2px 2px 4px -2px rgb(0, 0, 0, 0.2);
+    padding: 0 1px;
+    color: #606266;
+    font-family: Helvetica, Arial, 'Microsoft YaHei', sans-serif;
+    user-select: none;
+  }
+
+  .@{radio-prefix-cls} {
+    margin-right: 0;
+
+    .@{radio-prefix-cls}__label {
+      display: none;
+    }
+  }
+
+  .collapse-transition {
+    transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out, 0.3s padding-bottom ease-in-out;
+  }
+}
+
+@keyframes loading-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -40px;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120px;
+  }
+}

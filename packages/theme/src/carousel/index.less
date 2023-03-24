@@ -1,0 +1,219 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+@import '../transition/carousel-arrow.less';
+
+@carousel-prefix-cls: ~'@{css-prefix}carousel';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{carousel-prefix-cls} {
+  .component-css-vars-carousel();
+
+  overflow: hidden;
+  position: relative;
+
+  &&--card {
+    .@{carousel-prefix-cls}__indicators {
+      display: none;
+    }
+  }
+
+  &__container {
+    position: relative;
+    height: 300px;
+
+    .@{carousel-prefix-cls}__arrow {
+      border: none;
+      outline: 0;
+      padding: 0;
+      margin: 0;
+      height: var(--ti-carousel-arrow-height);
+      width: var(--ti-carousel-arrow-width);
+      cursor: pointer;
+      transition: 0.3s;
+      border-radius: 50%;
+      box-shadow: var(--ti-carousel-arrow-box-shadow);
+      background-color: var(--ti-carousel-arrow-bg-color);
+      color: var(--ti-carousel-indicator-active-text-color);
+      position: absolute;
+      top: 50%;
+      z-index: 3;
+      transform: translateY(-50%);
+      text-align: center;
+      font-size: var(--ti-carousel-arrow-font-size);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .@{svg-prefix-cls} {
+        fill: var(--ti-carousel-indicator-active-text-color);
+      }
+
+      &.@{carousel-prefix-cls}__arrow-left {
+        left: 16px;
+      }
+
+      &.@{carousel-prefix-cls}__arrow-right {
+        right: 16px;
+      }
+
+      &:hover {
+        background-color: var(--ti-carousel-arrow-hover-bg-color);
+      }
+
+      i {
+        cursor: pointer;
+      }
+    }
+  }
+
+  & &__indicators {
+    position: absolute;
+    list-style: none;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    padding: 0 4px;
+    z-index: 2;
+    background: var(--ti-carousel-indicators-bg-color);
+    border-radius: var(--ti-carousel-indicators-border-radius);
+    height: var(--ti-carousel-indicators-height);
+
+    .@{carousel-prefix-cls}__indicator {
+      display: inline-block;
+      background-color: transparent;
+      padding: var(--ti-carousel-indicator-padding-vertical) var(--ti-carousel-indicator-padding-horizontal);
+      margin-right: var(--ti-carousel-indicator-margin-right);
+      cursor: pointer;
+
+      &:hover button {
+        opacity: var(--ti-carousel-hover-opacity);
+      }
+
+      &.is-active {
+        width: var(--ti-carousel-indicator-active-width);
+        background-color: var(--ti-carousel-indicator-active-background-color);
+        border-radius: var(--ti-carousel-indicator-active-border-radius);
+        transition: var(--ti-carousel-indicator-active-transition);
+      }
+
+      &.is-active button {
+        transition-property: var(--ti-carousel-indicator-active-transition-property);
+        transition-timing-function: cubic-bezier(0.16, 0.75, 0.5, 1);
+        border-radius: var(--ti-carousel-indicator-active-border-radius);
+        background-color: var(--ti-carousel-indicator-active-text-color);
+        width: var(--ti-carousel-indicator-active-button-width);
+      }
+
+      .@{carousel-prefix-cls}__button {
+        display: block;
+        width: var(--ti-carousel-indicator-button-width);
+        height: var(--ti-carousel-indicator-button-height);
+        background-color: var(--ti-carousel-indicator-button-bg-color);
+        border: none;
+        outline: 0;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        transition: 0.3s;
+        border-radius: 50%;
+      }
+    }
+
+    .@{carousel-prefix-cls}__button._radius {
+      height: 8px;
+      width: 8px;
+      border-radius: 50%;
+      background-color: var(--ti-carousel-indicators-radius-bg-color);
+    }
+
+    &.@{carousel-prefix-cls}__indicators-outside {
+      bottom: 26px;
+      text-align: center;
+      position: static;
+      transform: none;
+      margin-top: 16px;
+      background: transparent;
+
+      button {
+        background-color: var(--ti-carousel-outside-button-bg-color);
+      }
+
+      .@{carousel-prefix-cls}__indicator {
+        &:hover button {
+          opacity: 0.6;
+        }
+
+        &.is-active button {
+          background-color: var(--ti-carousel-outside-button-active-bg-color);
+        }
+      }
+    }
+
+    &.@{carousel-prefix-cls}__indicators-labels {
+      left: 0;
+      right: 0;
+      transform: none;
+      text-align: center;
+
+      .@{carousel-prefix-cls}__button {
+        padding: 2px 18px;
+        font-size: var(--ti-carousel-labels-button-font-size);
+      }
+
+      .@{carousel-prefix-cls}__indicator {
+        padding: 6px 4px;
+      }
+    }
+
+    &.@{carousel-prefix-cls}__indicators-title {
+      left: auto;
+      right: 12px;
+      bottom: 3px;
+      transform: none;
+      background: transparent;
+    }
+
+    &.@{carousel-prefix-cls}__indicators-vertical {
+      left: 12px;
+      right: 0px;
+      bottom: 50%;
+      width: 16px;
+      height: 56px;
+      transform: translateY(50%);
+      padding: 2px 4px;
+
+      .@{carousel-prefix-cls}__indicator {
+        display: block;
+        margin: 4px 0;
+        padding: 0;
+
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+
+    &:not(.@{carousel-prefix-cls}__indicators-vertical) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

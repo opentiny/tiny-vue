@@ -1,0 +1,266 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "tree/basic-usage",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Data Source",
+    "content": "<p>You can configure the <code>data</code> attribute to set the data source. You can configure the static data source and dynamic data source. </p>\n",
+    "link": "tree/data-source",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "data-source"
+  },
+  {
+    "title": "Disabled",
+    "content": "<p>The data source contains <code>disabled: true</code>, which is automatically disabled during rendering. </p>\n",
+    "link": "tree/disable-node",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "disable-node"
+  },
+  {
+    "title": "Customized empty data text",
+    "content": "<p>Configure <code>template #empty</code>Set the user-defined empty data text. </p>\n",
+    "link": "tree/custom-empty-text",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "custom-empty-text"
+  },
+  {
+    "title": "Render after expansion",
+    "content": "<p>Configure the <code>render-after-expand</code> attribute to set whether to render data after expansion. The default value is <code>true</code>. </p>\n",
+    "link": "tree/render-after-expand",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "render-after-expand"
+  },
+  {
+    "title": "Unique ID",
+    "content": "<p>Use the <code>node-key</code> attribute to set the unique ID. </p>\n <p>You need to set the unique ID of a node for operations such as selecting, obtaining, adding, and deleting a node.</p>",
+    "link": "tree/node-key",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "node-key"
+  },
+  {
+    "title": "The parent and child are not associated with each other.",
+    "content": "<p>The <code>check-strictly</code> attribute is used to set the parent and child levels to No. </p>\n",
+    "link": "tree/check-strictly",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "check-strictly"
+  },
+  {
+    "title": "All nodes are expanded by default.",
+    "content": "<p>Use the <code>default-expand-all</code> property to set all nodes to be expanded by default. </p>\n",
+    "link": "tree/default-expand-all",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "default-expand-all"
+  },
+  {
+    "title": "Click to expand and collapse a node.",
+    "content": "<p>You can set the <code>expand-on-click-node</code> attribute to expand or collapse a node when you click the node content. </p>\n",
+    "link": "tree/expand-on-click-node",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "expand-on-click-node"
+  },
+  {
+    "title": "Selected when clicking a node",
+    "content": "<p>You can select or deselect data by setting the <code>check-on-click-node</code> attribute. \n The <code>icon-trigger-click-node</code> attribute is used to determine whether to trigger the node-click event when you click an icon. The default value is true. </p>\n",
+    "link": "tree/check-on-click-node",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "check-on-click-node"
+  },
+  {
+    "title": "Automatically Expand Parent Node",
+    "content": "<p>Indicates whether to display the parent node based on the <code>auto-expand-parent</code> attribute. The default value is <code>true</code>. </p>\n",
+    "link": "tree/auto-expand-parent",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "auto-expand-parent"
+  },
+  {
+    "title": "Nodes selected by default",
+    "content": "<p>The <code>default-checked-keys</code> attribute is used to set the selected data by default. </p>\n",
+    "link": "tree/default-checked-keys",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "default-checked-keys"
+  },
+  {
+    "title": "The specified node is expanded by default.",
+    "content": "<p>Set the default expanded node through the <code>default-expanded-keys</code> attribute. </p>\n",
+    "link": "tree/default-expanded-keys",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "default-expanded-keys"
+  },
+  {
+    "title": "Currently selected node flag",
+    "content": "<p>Use <code>current-node-key</code> to set the flag of the currently selected node. It must be used together with node-key=&quot;id&quot;. </p>\n",
+    "link": "tree/current-node-key",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "current-node-key"
+  },
+  {
+    "title": "Default slot",
+    "content": "<p>You can customize the content of a tree node through the <code>default</code> slot. The parameter is {node, data}. </p>\n",
+    "link": "tree/slot-deffault",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "slot-deffault"
+  },
+  {
+    "title": "Customized content area rendering",
+    "content": "<p>Sets the customized content through the <code>render-content</code> attribute. </p>\n",
+    "link": "tree/render-content",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "render-content"
+  },
+  {
+    "title": "Whether to enable the multi-choice mode",
+    "content": "<p>The <code>show-checkbox</code> attribute is used to set whether a node can be selected. The default value is <code>false</code>. </p>\n",
+    "link": "tree/show-checkbox",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "show-checkbox"
+  },
+  {
+    "title": "Dragable Node",
+    "content": "<p>The <code>draggable</code> attribute is used to set whether a node can be dragged. </p>\n",
+    "link": "tree/node-draggable",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "node-draggable"
+  },
+  {
+    "title": "Whether a customized node can be dragged",
+    "content": "<p>The <code>allow-drag</code> hook function is used to determine whether a node can be dragged. If the return value is <code>false</code>, the node cannot be dragged. </p>\n",
+    "link": "tree/allow-drag",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "allow-drag"
+  },
+  {
+    "title": "Whether the customized target node can be placed",
+    "content": "<p>The <code>allow-drop</code> attribute is used to determine whether the target node can be placed during dragging. The type parameter has three cases:'prev','inner', and'next', indicating that the parameter is placed before, inserted into, and placed after the target node, respectively. </p>\n",
+    "link": "tree/allow-drop",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "allow-drop"
+  },
+  {
+    "title": "Data Node Attribute Configuration",
+    "content": "<p>Sets the data node attribute through the <code>props</code> attribute. The default value of this attribute is <code>{children:'children', label:'label', disabled:'disabled'}</code>. </p>\n",
+    "link": "tree/node-props-config",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "node-props-config"
+  },
+  {
+    "title": "Lazy loading subnode",
+    "content": "<p>The <code>lazy</code> attribute is used to set whether to lazy load subnodes. It must be used together with the <code>load</code> method. The default value is <code>false</code>. </p>\n",
+    "link": "tree/lazy-load-node",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "lazy-load-node"
+  },
+  {
+    "title": "Highlight the selected node",
+    "content": "<p>The <code>highlight-current</code> attribute is used to highlight the selected node. </p>\n",
+    "link": "tree/highlight-current",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "highlight-current"
+  },
+  {
+    "title": "Filter Node",
+    "content": "<p>Set the node filtering method through the <code>filter-node-method</code> attribute. </p>\n",
+    "link": "tree/filter-node",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "filter-node"
+  },
+  {
+    "title": "Accordion Mode",
+    "content": "<p>The <code>accordion</code> attribute is used to set whether to open only one tree node at the same level at a time (in accordion mode). The default value is <code>false</code>. </p>\n",
+    "link": "tree/accordion-mode",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "accordion-mode"
+  },
+  {
+    "title": "horizontal indent",
+    "content": "<p>The <code>indent</code> attribute is used to control the horizontal indentation distance. The unit is <code>px</code>. The default value is <code>18px</code>. </p>\n",
+    "link": "tree/indent",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "indent"
+  },
+  {
+    "title": "Customize the expansion and collapse icon",
+    "content": "<p>Use the <code>icon</code> attribute to set the tree node expansion and collapse icon, import an icon from the <code>@opentiny/vue-icon</code>, initialize the icon, and transfer the icon to the <code>icon</code> attribute. </p>\n",
+    "link": "tree/custom-node-icon",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "custom-node-icon"
+  },
+  {
+    "title": "Expand and collapse icons and set them separately",
+    "content": "<p>Use the <code>expandIcon</code> attribute to set the expanded icon, and use the <code>shrinkIcon</code> attribute to set the collapsed icon. </p>\n",
+    "link": "tree/set-tree-icon",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "set-tree-icon"
+  },
+  {
+    "title": "You can customize the shortcut menu content.",
+    "content": "<p>The <code>show-contextmenu</code> attribute is used to set whether to enable the shortcut menu of the pop-up window. The <code>closeMenu</code> method of the instance can be invoked to close the customized menu. </p>\n",
+    "link": "tree/contextmenu",
+    "component": "Tree control",
+    "findIntroStr": "The customized menu is displayed after you right-click a node.",
+    "demoId": "contextmenu"
+  },
+  {
+    "title": "Drag Node Event",
+    "content": "For details, see the following example.",
+    "link": "tree/drag-events",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "drag-events"
+  },
+  {
+    "title": "Node Selection Event",
+    "content": "For details, see the following example.",
+    "link": "tree/node-events",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "node-events"
+  },
+  {
+    "title": "Event of right-clicking a node",
+    "content": "For details, see the following example.",
+    "link": "tree/node-contextmenu",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "node-contextmenu"
+  },
+  {
+    "title": "Single Choice",
+    "content": "<p> uses the <code>show-radio</code> attribute to set the single-choice feature of the tree node. The default value is <code>false</code>. This attribute and the <code>show-checkbox</code> attribute are mutually exclusive. Cannot be set to <code>true</code> at the same time. </p>\n",
+    "link": "tree/single-select-radio",
+    "component": "Tree control",
+    "findIntroStr": "Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported. However, it is not recommended to display menus. It is recommended to display menus using tree menus.",
+    "demoId": "single-select-radio"
+  }
+]

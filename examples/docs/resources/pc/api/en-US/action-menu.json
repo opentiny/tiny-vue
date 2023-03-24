@@ -1,0 +1,99 @@
+{
+  "attrs": [
+    {
+      "name": "options",
+      "sample": "basic-usage",
+      "type": "Array",
+      "desc": "You can configure menu button data. The default value is []. Each element in the array is an object item. Each item can contain the following fields: label, children, disabled, and divided, for example, {label:'Login', children:[],divided: true,disabled :true} .",
+      "defaultValue": "[]"
+    },
+    {
+      "name": "label",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "Display value of a menu item",
+      "defaultValue": ""
+    },
+    {
+      "name": "children",
+      "sample": "basic-usage",
+      "type": "Array",
+      "desc": "Subset of menu items",
+      "defaultValue": "[]"
+    },
+    {
+      "name": "divided",
+      "sample": "basic-usage",
+      "type": "Boolean",
+      "desc": "Displays the split line. Default value: false",
+      "defaultValue": "false"
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled",
+      "type": "Boolean",
+      "desc": "Whether to disable the function. Default value: false",
+      "defaultValue": "false"
+    },
+    {
+      "name": "textField",
+      "sample": "text-field",
+      "type": "String",
+      "desc": "Set the key value of the displayed text of a menu button. The default value is label.",
+      "defaultValue": "label"
+    },
+    {
+      "name": "moreText",
+      "sample": "more-text",
+      "type": "String",
+      "desc": "Configure the display text of the drop-down button. The default value is More.",
+      "defaultValue": "More"
+    },
+    {
+      "name": "spacing",
+      "sample": "spacing",
+      "type": "[String,Number]",
+      "desc": "Set the spacing between menu buttons. The default value is 5px.",
+      "defaultValue": "5px"
+    },
+    {
+      "name": "popperClass",
+      "sample": "popper-class",
+      "type": "String",
+      "desc": "Set the class name of the drop-down list box and customize the style.",
+      "defaultValue": ""
+    },
+    {
+      "name": "maxShowNum",
+      "sample": "max-show-num",
+      "type": "Number",
+      "desc": "Maximum number of menu buttons to be displayed. The default value is 2.",
+      "defaultValue": "2"
+    }
+  ],
+  "slots": [
+    {
+      "name": "item",
+      "sample": "slot-item",
+      "type": "Slot",
+      "desc": "Slots in the drop-down list box",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "itemClick",
+      "sample": "item-click",
+      "type": "Function",
+      "desc": "The itemClick event is triggered when a menu item is selected. The transferred parameter is the data of the selected item.",
+      "defaultValue": ""
+    },
+    {
+      "name": "moreClick",
+      "sample": "more-click",
+      "type": "Function",
+      "desc": "The moreClick event is triggered when a drop-down list button is clicked.",
+      "defaultValue": ""
+    }
+  ]
+}

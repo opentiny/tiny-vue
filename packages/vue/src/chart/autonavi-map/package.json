@@ -1,0 +1,17 @@
+{
+  "name": "@opentiny/vue-autonavi-map",
+  "version": "3.7.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+ "scripts": {
+    "build": "pnpm -w build:ui $npm_package_name",
+    "//postversion": "pnpm build"
+  },
+  "dependencies": {
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-chart-core": "workspace:~"
+  },
+  "license": "MIT"
+}

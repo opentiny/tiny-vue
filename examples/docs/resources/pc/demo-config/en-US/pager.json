@@ -1,0 +1,162 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "pager/basic-usage",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Current Page",
+    "content": "<p>Use <code>current-page</code> to set the number of initially loaded pages, and use <code>total</code> to set the total number of records</p>\n",
+    "link": "pager/current-page",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "current-page"
+  },
+  {
+    "title": "number mode",
+    "content": "<p>Set the component rendering mode through <code>mode=&quot;number&quot;</code></p>\n",
+    "link": "pager/pager-mode-number",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "pager-mode-number"
+  },
+  {
+    "title": "fixed mode",
+    "content": "<p>Set the component rendering mode through <code>mode=&quot;fixed&quot;</code></p>\n",
+    "link": "pager/pager-mode-fixed",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "pager-mode-fixed"
+  },
+  {
+    "title": "simple mode",
+    "content": "<p>Set the component rendering mode through <code>mode=&quot;simple&quot;</code></p>\n",
+    "link": "pager/pager-mode-simple",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "pager-mode-simple"
+  },
+  {
+    "title": "complete mode",
+    "content": "<p>Set the component rendering mode through <code>mode=&quot;complete&quot;</code></p>\n",
+    "link": "pager/pager-mode",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "pager-mode"
+  },
+  {
+    "title": "Total Pages",
+    "content": "<p>Set the total number of pages through <code>page-count</code></p>\n",
+    "link": "pager/page-count",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "page-count"
+  },
+  {
+    "title": "Paging event size-change",
+    "content": "<p><code>size-change</code> Triggered when the number of records on each page changes</p>\n",
+    "link": "pager/pager-events",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "pager-events"
+  },
+  {
+    "title": "Paging event current-change",
+    "content": "<p><code>current-change</code> Triggered when the current page number is switched</p>\n",
+    "link": "pager/pager-events-current-change",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "pager-events-current-change"
+  },
+  {
+    "title": "Paging event prev-click",
+    "content": "<p><code>prev-click</code> Triggered when switching to the previous page</p>\n",
+    "link": "pager/pager-events-prev-click",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "pager-events-prev-click"
+  },
+  {
+    "title": "Paging event next-click",
+    "content": "<p><code>next-click</code> Triggered when switching to the next page</p>\n",
+    "link": "pager/pager-events-nextclick",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "pager-events-nextclick"
+  },
+  {
+    "title": "Paging event before-page-change",
+    "content": "<p><code>before-page-change</code> Pre-paging event</p>\n",
+    "link": "pager/before-page-change",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "before-page-change"
+  },
+  {
+    "title": "Paging drop-down list box display position",
+    "content": "Indicates whether to add an element in the <p><code>popper-append-to-body</code> paging drop-down list box to the body element node. The default value of this attribute is <code>true</code>, indicating that the element is added to the body element node by default. </p>\n<p>If you do not want to add it to the body element node, set <code>:popper-append-to-body=\"false\"</code> </p>",
+    "link": "pager/page-append-to-body",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "popper-append-to-body"
+  },
+  {
+    "title": "Class name of the customized paging drop-down list box",
+    "content": "<p><code>popper-class</code> You can customize the class name of the paging drop-down list box</p>",
+    "link": "pager/popper-class",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "popper-class"
+  },
+  {
+    "title": "Customized pagination layout",
+    "content": "<p><code>layout</code> Set the paging layout. You can adjust the position of <code>slot</code> in <code>layout</code> to adjust the position where the slot content is rendered.</p>\n",
+    "link": "pager/custom-layout",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "custom-layout"
+  },
+  {
+    "title": "Number of page buttons",
+    "content": "<p><code>pager-count</code> Set the number of pages</p>\n",
+    "link": "pager/pager-count",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "pager-count"
+  },
+  {
+    "title": "Number of pages to be displayed",
+    "content": "Use <p><code>page-sizes</code> together with <code>page-size</code> to adjust the number of pages to be displayed on each page.</p>\n",
+    "link": "pager/page-size",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "page-size"
+  },
+  {
+    "title": "Hide pagination when there is only one page.",
+    "content": "<p><code>hide-on-single-page</code> Hide paging when there is only one page</p>\n",
+    "link": "pager/hide-on-single-page",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "hide-on-single-page"
+  },
+  {
+    "title": "Customize the text of the page-up button",
+    "content": "<p><code>prev-text</code> ,<code>next-text</code> Custom Page Up Button Text</p>\n",
+    "link": "pager/custom-next-prev-text",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "custom-next-prev-text"
+  },
+  {
+    "title": "Grid Table Pagination",
+    "content": "<p>The grid table uses the pagination component.\nThe <code>services/getGridMockData</code> service in this example needs to be implemented by yourself. The example simulates the data returned by the remote service.\n</p>\n",
+    "link": "pager/pager-in-grid",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "pager-in-grid"
+  }
+]

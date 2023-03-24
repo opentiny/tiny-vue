@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>After the <code>local</code> attribute is configured, the service is not automatically invoked. It is only used to switch the current language and does not refresh the page. </p>\n",
+    "link": "locales/basic-usage",
+    "component": "Locales Language Selection",
+    "findIntroStr": "Locales language selection component. When there are two languages, the language is displayed directly. When there are more than two languages, a drop-down list is displayed.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Custom Service",
+    "content": "<p><code>get-locale</code> can be used to customize all languages. <code>get-current-locale</code> is used to obtain the current language. <code>get-change-locale-url</code> is used to obtain the URL after the language is changed. The parameter is the language after the language is changed. </p>\n",
+    "link": "locales/custom-service",
+    "component": "Locales Language Selection",
+    "findIntroStr": "Locales language selection component. When there are two languages, the language is displayed directly. When there are more than two languages, a drop-down list is displayed.",
+    "demoId": "custom-service"
+  },
+  {
+    "title": "Switch Language",
+    "content": "<p>Provides the <code>change-lang</code> function to customize the language switching logic. If this function is not set, the built-in switching method is used. </p>\n",
+    "link": "locales/change-lang",
+    "component": "Locales Language Selection",
+    "findIntroStr": "Locales language selection component. When there are two languages, the language is displayed directly. When there are more than two languages, a drop-down list is displayed.",
+    "demoId": "change-lang"
+  }
+]
