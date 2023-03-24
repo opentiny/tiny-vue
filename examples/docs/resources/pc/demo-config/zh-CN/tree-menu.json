@@ -1,0 +1,186 @@
+[
+  {
+    "title": "基本用法",
+    "content": "<p>不配置数据时，默认从框架服务读取数据。</p>\n",
+    "link": "tree-menu/basic-usage",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "数据源",
+    "content": "<p>通过 <code>data</code> 设置树形菜单的数据。</p>\n",
+    "link": "tree-menu/data-resource",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "data-resource"
+  },
+  {
+    "title": "自定义菜单服务数据",
+    "content": "<p>通过 <code>get-menu-data-sync</code> 自定义菜单服务数据，直接返回数据。</p>\n",
+    "link": "tree-menu/get-menu-data-sync",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "get-menu-data-sync"
+  },
+  {
+    "title": "文字超长省略显示",
+    "content": "<p>可通过 <code>ellipsis</code> 配置当菜单文字过长时，显示成省略号。通过 <code>prefix-icon</code> 自定义前置图标。</p>\n",
+    "link": "tree-menu/text-ellipsis",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "text-ellipsis"
+  },
+  {
+    "title": "文字超长换行显示",
+    "content": "<p>可通过 <code>wrap</code> 配置当菜单文字过长时，换行显示。通过 showTitle 属性配置是否展示 title，默认值为 true。\n可通过 <code>show-filter</code> 配置是否显示搜索过滤框，默认为 true。\n可通过 <code>show-title</code> 配置是否显示 title ，默认为 true。</p>\n",
+    "link": "tree-menu/text-wrap",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "text-wrap"
+  },
+  {
+    "title": "父子级不相关联",
+    "content": "<p>通过 <code>check-strictly</code> 设置选择时父子级不相关联，需要与 <code>show-checkbox</code> 同时使用 。</p>\n",
+    "link": "tree-menu/check-strictly",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "check-strictly"
+  },
+  {
+    "title": "默认展开某节点",
+    "content": "<p>通过 <code>default-expanded-keys</code> 设置初始化展开某一节点 。</p>\n",
+    "link": "tree-menu/default-expanded-keys",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "default-expanded-keys"
+  },
+  {
+    "title": "懒加载子节点",
+    "content": "<p>可通过 <code>lazy</code> 是否懒加载子节点，需与 load 方法结合使用。</p>\n",
+    "link": "tree-menu/lazy-load",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "lazy-load"
+  },
+  {
+    "title": "搜索规则配置",
+    "content": "<p>可配置 <code>filter-node-method</code> 进行搜索规则配置，默认为模糊匹配，以下示例是精确配置。</p>\n",
+    "link": "tree-menu/filter-node-method",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "filter-node-method"
+  },
+  {
+    "title": "默认展开全部菜单",
+    "content": "<p>可通过属性 <code>default-expand-all</code> 配置默认展开全部菜单。\n通过属性 <code>default-checked-keys</code> 配置默认选中，需要与 <code>show-checkbox</code>, <code>node-key</code> 同时使用。</p>\n",
+    "link": "tree-menu/default-expand-all",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "default-expand-all"
+  },
+  {
+    "title": "自定义空数据文本",
+    "content": "<p>可通过属性 <code>empty-text</code> 配置空数据显示文本。</p>\n",
+    "link": "tree-menu/empty-text",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "empty-text"
+  },
+  {
+    "title": "拖动菜单",
+    "content": "<p>可通过属性置 <code>draggable</code> 实现菜单拖拽。</p>\n",
+    "link": "tree-menu/can-draggable",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "can-draggable"
+  },
+  {
+    "title": "拖拽菜单回调事件",
+    "content": "<p>拖拽菜单回调事件,配合 <code>draggable</code> 使用。</p>\n",
+    "link": "tree-menu/event-allow-draggable",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "event-allow-draggable"
+  },
+  {
+    "title": "节点被展开时触发的事件",
+    "content": "<p>节点被展开时触发的事件</p>\n",
+    "link": "tree-menu/event-node-expand",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "event-node-expand"
+  },
+  {
+    "title": "节点被关闭时触发的事件",
+    "content": "<p>节点被关闭时触发的事件</p>\n",
+    "link": "tree-menu/event-node-collapse",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "event-node-collapse"
+  },
+  {
+    "title": "节点选中状态发生变化时的回调",
+    "content": "<p>节点选中状态发生变化时的回调</p>\n",
+    "link": "tree-menu/event-check-change",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "event-check-change"
+  },
+  {
+    "title": "点击文字展开菜单",
+    "content": "<p>可通过属性 <code>expand-on-click-node</code> 配置点击文字即可展开子菜单。</p>\n",
+    "link": "tree-menu/expand-on-click-node",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "expand-on-click-node"
+  },
+  {
+    "title": "水平缩进",
+    "content": "<p>可通过属性 <code>indent</code> 控制子级相对于父级菜单的水平缩进距离，单位 px 。</p>\n",
+    "link": "tree-menu/tree-menu-indent",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "tree-menu-indent"
+  },
+  {
+    "title": "手风琴",
+    "content": "<p>通过 <code>accordion</code> 设置手风琴效果。</p>\n",
+    "link": "tree-menu/accordion",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "accordion"
+  },
+  {
+    "title": "节点可勾选",
+    "content": "<p>可配置 <code>show-checkbox</code> 属性设置节点是否可被勾选。</p>\n",
+    "link": "tree-menu/show-checkbox",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "show-checkbox"
+  },
+  {
+    "title": "自定义搜索图标",
+    "content": "<p>可配置 <code>search-icon</code> 属性设置自定义搜索图标</p>\n",
+    "link": "tree-menu/search-icon",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "search-icon"
+  },
+  {
+    "title": "插槽",
+    "content": "<p>可通过配置默认作用域插槽来显示菜单内容。</p>\n",
+    "link": "tree-menu/tree-menu-slot",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "tree-menu-slot"
+  },
+  {
+    "title": "事件",
+    "content": "<p><code>current-change</code> 当前选中节点变化时触发的事件。</p>\n",
+    "link": "tree-menu/event-current-change",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "event-current-change"
+  }
+]

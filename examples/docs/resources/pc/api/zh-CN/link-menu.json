@@ -1,0 +1,99 @@
+{
+  "attrs": [
+    {
+      "name": "data",
+      "sample": "data-resource1",
+      "type": "Array",
+      "desc": "设置收藏夹菜单的数据。",
+      "defaultValue": ""
+    },
+    {
+      "name": "icon",
+      "sample": "custom-icon",
+      "type": "Object",
+      "desc": "自定义节点展开折叠的图标。",
+      "defaultValue": ""
+    },
+    {
+      "name": "max-item",
+      "sample": "menu-items",
+      "type": "Number",
+      "desc": "设置可收藏的栏目的最大数量。",
+      "defaultValue": ""
+    },
+    {
+      "name": "titile",
+      "sample": "data-resource",
+      "type": "String",
+      "desc": "设置收藏夹菜单的标题，默认为空。",
+      "defaultValue": ""
+    },
+    {
+      "name": "default-expand-all",
+      "sample": "menu-items",
+      "type": "Boolean",
+      "desc": "设置打开菜单弹窗时默认是否展开所有节点，默认为 true 。",
+      "defaultValue": ""
+    },
+    {
+      "name": "search-icon",
+      "sample": "custom-icon",
+      "type": "Object",
+      "desc": "自定义搜索图标。",
+      "defaultValue": ""
+    },
+    {
+      "name": "ellipsis",
+      "sample": "custom-icon1",
+      "type": "Boolean",
+      "desc": "菜单内容超长时省略显示，默认为 true 。",
+      "defaultValue": ""
+    },
+    {
+      "name": "wrap",
+      "sample": "data-resource",
+      "type": "Boolean",
+      "desc": "菜单内容超长时换行显示，默认为 false 。",
+      "defaultValue": ""
+    },
+    {
+      "name": "keep-selected-nodes",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "树节点勾选内容后，点击取消按钮，再次打开弹窗是否保留取消前勾选的内容的状态，默认为 true 。",
+      "defaultValue": ""
+    },
+    {
+      "name": "get-menu-data-sync",
+      "sample": "get-menu-data-sync",
+      "type": "Function",
+      "desc": "自定义菜单数据服务，直接返回数据",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "foot",
+      "sample": "custom-foot",
+      "type": "",
+      "desc": "菜单弹窗底部插槽",
+      "defaultValue": ""
+    }
+  ],
+  "methods": [
+    {
+      "name": "sureNodevalue",
+      "sample": "custom-foot",
+      "type": "",
+      "desc": "获取选中的菜单节点并关闭菜单弹窗，同时展示选中的菜单。",
+      "defaultValue": ""
+    },
+    {
+      "name": "hideDialog",
+      "sample": "custom-foot",
+      "type": "",
+      "desc": "关闭菜单弹窗。",
+      "defaultValue": ""
+    }
+  ]
+}

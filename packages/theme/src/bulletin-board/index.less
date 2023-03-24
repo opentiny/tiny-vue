@@ -1,0 +1,252 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@bulletin-board-prefix-cls: ~'@{css-prefix}bulletin-board';
+@tabs-prefix-cls: ~'@{css-prefix}tabs';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{bulletin-board-prefix-cls} {
+  .component-css-vars-bulletin-board();
+
+  &__item {
+    margin-bottom: 12px;
+
+    .@{bulletin-board-prefix-cls}__textTitle {
+      display: block;
+      color: var(--ti-bulletin-board-item-title-text-color);
+      margin-bottom: 2px;
+      font-size: var(--ti-common-font-size-base);
+      white-space: normal;
+      font-family: Helvetica, Arial, 'microsoft yahei';
+      line-height: initial;
+
+      &,
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .@{bulletin-board-prefix-cls}__textDate {
+      color: var(--ti-bulletin-board-item-date-text-color);
+      font-size: var(--ti-bulletin-board-item-date-font-size);
+    }
+  }
+
+  &__title {
+    font-size: var(--ti-bulletin-board-title-font-size);
+    padding: 12px 0px 8px 24px;
+    color: var(--ti-bulletin-board-title-text-color);
+    font-weight: var(--ti-bulletin-board-title-font-weight);
+  }
+
+  &__more {
+    text-align: right;
+
+    & &-link {
+      color: var(--ti-bulletin-board-more-text-color);
+      font-size: var(--ti-bulletin-board-more-font-size);
+      line-height: normal;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+
+      .@{svg-prefix-cls} {
+        fill: var(--ti-bulletin-board-more-text-color);
+        font-size: var(--ti-bulletin-board-more-icon-font-size);
+        margin-left: 4px;
+      }
+
+      &:hover {
+        text-decoration: none;
+
+        .@{svg-prefix-cls} {
+          fill: var(--ti-bulletin-board-more-hover-text-color);
+        }
+      }
+    }
+  }
+
+  &__new {
+    background-color: var(--ti-bulletin-board-new-bg-color);
+    color: var(--ti-bulletin-board-new-text-color);
+    border-radius: var(--ti-bulletin-board-new-border-radius);
+    min-width: 30px;
+    min-height: 16px;
+    line-height: 16px;
+    font-size: var(--ti-common-font-size-base);
+    display: inline-block;
+    font-family: '宋体', cursive, Helvetica, Arial, 'microsoft yahei';
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .@{css-prefix}tabs {
+    .@{tabs-prefix-cls}--left,
+    .@{tabs-prefix-cls}--right,
+    .@{tabs-prefix-cls}__content,
+    .@{tabs-prefix-cls}__nav-scroll,
+    .@{tabs-prefix-cls}__nav-wrap {
+      overflow: hidden;
+    }
+
+    .@{tabs-prefix-cls}__header {
+      .@{tabs-prefix-cls}__nav-wrap {
+        margin-bottom: -1px;
+        position: relative;
+
+        &:after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 1px;
+          background-color: var(--ti-tabs-border-color);
+          z-index: 1;
+        }
+
+        &.is-scrollable {
+          padding: 0 20px;
+          box-sizing: border-box;
+        }
+      }
+
+      .@{tabs-prefix-cls}__nav {
+        top: 1px;
+      }
+    }
+
+    .@{tabs-prefix-cls}__nav {
+      white-space: nowrap;
+      position: relative;
+      transition: transform 0.3s;
+      float: left;
+      z-index: 2;
+    }
+
+    .@{tabs-prefix-cls}__item {
+      line-height: 36px;
+      height: 36px;
+      padding: 0 24px;
+      box-sizing: border-box;
+      display: inline-block;
+      list-style: none;
+      font-size: var(--ti-common-font-size-1);
+      font-weight: 500;
+      color: var(--ti-bulletin-board-tabs-item-text-color);
+      position: relative;
+
+      &:focus,
+      &:active {
+        outline: 0;
+      }
+
+      &:hover {
+        color: var(--ti-bulletin-board-tabs-item-hover-text-color);
+        cursor: pointer;
+      }
+
+      &.is-active {
+        color: var(--ti-bulletin-board-tabs-item-hover-text-color);
+      }
+
+      &.is-disabled {
+        color: var(--ti-bulletin-board-tabs-item-disabled-text-color);
+        cursor: default;
+      }
+
+      &.is-closable {
+        // 修复自定义标签配置:with-close="true"样式错乱问题
+        > div {
+          display: inline-block;
+        }
+
+        .icon-close {
+          display: initial;
+        }
+      }
+
+      .icon-close {
+        border-radius: 50%;
+        text-align: center;
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        margin-left: 5px;
+
+        &:before {
+          transform: scale(0.9);
+          display: inline-block;
+        }
+
+        &:hover {
+          background-color: #b4bccc;
+          color: #fff;
+        }
+      }
+
+      &::before {
+        bottom: 0px;
+        top: auto !important;
+        left: auto !important;
+      }
+    }
+
+    .@{tabs-prefix-cls}__content {
+      padding: 12px 24px 24px;
+    }
+
+    &.@{tabs-prefix-cls}--card {
+      .@{tabs-prefix-cls}__header {
+        .@{tabs-prefix-cls}__nav {
+          border: none;
+        }
+
+        .@{tabs-prefix-cls}__item {
+          border-left: none;
+        }
+      }
+
+      > .@{tabs-prefix-cls}__header {
+        border-bottom: 1px solid var(--ti-bulletin-board-tabs-header-border-color);
+
+        .@{tabs-prefix-cls}__item {
+          border-bottom: 1px solid transparent;
+          transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+          &:first-child {
+            border-left: none;
+          }
+
+          &.is-active {
+            border-bottom-color: #fff;
+
+            &.is-closable {
+              padding-left: 24px;
+              padding-right: 24px;
+            }
+
+            &:before {
+              position: absolute;
+              content: '';
+              width: 100%;
+              height: 3px;
+              background: var(--ti-bulletin-board-tabs-item-hover-text-color);
+              margin-left: -24px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

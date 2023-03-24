@@ -1,0 +1,48 @@
+{
+  "attrs": [
+    {
+      "name": "name",
+      "sample": "accordion",
+      "type": "String | Number",
+      "desc": "唯一标志符",
+      "defaultValue": ""
+    },
+    {
+      "name": "title",
+      "sample": "custom-collapse-title",
+      "type": "String",
+      "desc": "面板标题",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "dynamic-disable",
+      "type": "Boolean",
+      "desc": "是否禁用",
+      "defaultValue": "该属性的默认值为 false"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "dynamic-disable",
+      "type": "",
+      "desc": "默认插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "title",
+      "sample": "custom-collapse-title",
+      "type": "",
+      "desc": "标题",
+      "defaultValue": ""
+    },
+    {
+      "name": "icon",
+      "sample": "custom-collapse-icon",
+      "type": "",
+      "desc": "展开折叠 icon 图标",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "attrs": [
+    {
+      "name": "configs",
+      "sample": "",
+      "type": "Object",
+      "desc": "dates，scale，controls等的配置选项",
+      "defaultValue": ""
+    },
+    {
+      "name": "columns",
+      "sample": "",
+      "type": "Array",
+      "desc": "甘特图列配置",
+      "defaultValue": ""
+    },
+    {
+      "name": "scale",
+      "sample": "",
+      "type": "Object",
+      "desc": "刻度，可以配置数组中设置对象来指定任意数量的刻度",
+      "defaultValue": ""
+    },
+    {
+      "name": "subscales",
+      "sample": "",
+      "type": "Array",
+      "desc": "指定第二时间刻度",
+      "defaultValue": ""
+    },
+    {
+      "name": "events",
+      "sample": "",
+      "type": "Object",
+      "desc": "包括所有处理事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "locale",
+      "sample": "",
+      "type": "Object",
+      "desc": "设置组件的国际化",
+      "defaultValue": ""
+    },
+    {
+      "name": "tasks",
+      "sample": "",
+      "type": "Object",
+      "desc": "设置数据集;设置任务项，包含links（存储链接依赖关系的类型） 和 data（数据）",
+      "defaultValue": ""
+    },
+    {
+      "name": "skin",
+      "sample": "",
+      "type": "String",
+      "desc": "设置甘特图皮肤",
+      "defaultValue": ""
+    },
+    {
+      "name": "width",
+      "sample": "",
+      "type": "String",
+      "desc": "设置甘特图的宽度,不设置时，甘特图宽度自适应。;设置甘特图的宽度",
+      "defaultValue": "该属性的默认值为 500px"
+    }
+  ],
+  "events": [
+    {
+      "name": "ready",
+      "sample": "",
+      "type": "",
+      "desc": "甘特图渲染完成后触发的事件",
+      "defaultValue": ""
+    }
+  ]
+}

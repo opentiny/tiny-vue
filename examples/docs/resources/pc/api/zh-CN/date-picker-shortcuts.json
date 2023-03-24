@@ -1,0 +1,18 @@
+{
+  "attrs": [
+    {
+      "name": "text",
+      "sample": "date-shortcuts",
+      "type": "String",
+      "desc": "标题文本",
+      "defaultValue": ""
+    },
+    {
+      "name": "onClick",
+      "sample": "date-shortcuts",
+      "type": "Function",
+      "desc": "选中后的回调函数，参数是 vm，可通过触发 'pick' 事件设置选择器的值。例如 vm.$emit('pick', new Date())",
+      "defaultValue": ""
+    }
+  ]
+}

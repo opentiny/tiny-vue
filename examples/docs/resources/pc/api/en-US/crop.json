@@ -1,0 +1,302 @@
+{
+  "attrs": [
+    {
+      "name": "crop-type",
+      "sample": "get-cropped-canvas",
+      "type": "String",
+      "desc": "Type of the image that is returned after cropping. The value can be blob or base64. The default value is base64.",
+      "defaultValue": ""
+    },
+    {
+      "name": "preview",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "Specifies whether images in the cropping area can be previewed. The default value is false.",
+      "defaultValue": ""
+    },
+    {
+      "name": "quality",
+      "sample": "",
+      "type": "Number",
+      "desc": "Set the compression ratio of the cropped image. The value ranges from 0 to 1. The default value is 0.92.",
+      "defaultValue": ""
+    },
+    {
+      "name": "src",
+      "sample": "no-background",
+      "type": "String",
+      "desc": "Default cropped source image",
+      "defaultValue": ""
+    },
+    {
+      "name": "view-mode",
+      "sample": "view-mode",
+      "type": "Number",
+      "desc": "Defines the view mode of the cropper. The default value is 0. 0: no restriction. The value 3 can be moved out of the value 2. 1:3 can only be moved within 2. The 2:2 picture is not completely covered with 1 (i.e., there may be gaps on one side when the picture is zoomed out). 3: 2 The image fills the entire 1.",
+      "defaultValue": ""
+    },
+    {
+      "name": "drag-mode",
+      "sample": "drag-mode",
+      "type": "String",
+      "desc": "Defines the drag mode of the cropper. The default value is'crop'. 'Crop': A new crop box 3 can be generated. 'move': Only image 3 can be moved. 'none': no action is required.",
+      "defaultValue": ""
+    },
+    {
+      "name": "aspect-ratio",
+      "sample": "aspect-ratio",
+      "type": "Number",
+      "desc": "Aspect-to-height ratio of the crop box; The default value is 16 / 9",
+      "defaultValue": ""
+    },
+    {
+      "name": "max-size",
+      "sample": "",
+      "type": "String",
+      "desc": "Set the maximum size of the image to be cropped. The default value is 1 MB. The default value is 1M",
+      "defaultValue": ""
+    },
+    {
+      "name": "modal",
+      "sample": "no-modal",
+      "type": "Boolean",
+      "desc": "Whether to display the black mode below the cropping box above the image; The default value is true.",
+      "defaultValue": ""
+    },
+    {
+      "name": "guides",
+      "sample": "no-guides",
+      "type": "Boolean",
+      "desc": "Whether to display dotted lines above the crop box; The default value is true.",
+      "defaultValue": ""
+    },
+    {
+      "name": "center",
+      "sample": "aspect-ratio",
+      "type": "Boolean",
+      "desc": "Whether the cropping frame is in the center of the image; The default value is true.",
+      "defaultValue": ""
+    },
+    {
+      "name": "background",
+      "sample": "no-background",
+      "type": "Boolean",
+      "desc": "Whether to display the grid background of the container; The default value is true.",
+      "defaultValue": ""
+    },
+    {
+      "name": "movable",
+      "sample": "drag-mode",
+      "type": "Boolean",
+      "desc": "Indicates whether the image can be moved. The default value is true.",
+      "defaultValue": ""
+    },
+    {
+      "name": "rotatable",
+      "sample": "replace-image",
+      "type": "Boolean",
+      "desc": "Indicates whether images can be rotated. The default value is true.",
+      "defaultValue": ""
+    },
+    {
+      "name": "zoomable",
+      "sample": "replace-image",
+      "type": "Boolean",
+      "desc": "Whether to allow image zooming in; The default value is true.",
+      "defaultValue": ""
+    },
+    {
+      "name": "zoom-on-wheel",
+      "sample": "zoom-on-wheel",
+      "type": "Boolean",
+      "desc": "Specifies whether you can zoom in or out an image by scrolling the mouse wheel. The default value is true.",
+      "defaultValue": ""
+    },
+    {
+      "name": "wheel-zoom-ratio",
+      "sample": "wheel-zoom-ratio",
+      "type": "Number",
+      "desc": "Define the scaling ratio when moving the image with the mouse. The default value is 0.1",
+      "defaultValue": ""
+    },
+    {
+      "name": "min-container-width",
+      "sample": "min-crop-box-width-height",
+      "type": "Number",
+      "desc": "Minimum width of a container; The default value is 652",
+      "defaultValue": ""
+    },
+    {
+      "name": "min-container-height",
+      "sample": "min-crop-box-width-height",
+      "type": "Number",
+      "desc": "Minimum height of a container; The default value is 300",
+      "defaultValue": ""
+    },
+    {
+      "name": "min-crop-box-width",
+      "sample": "min-crop-box-width-height",
+      "type": "Number",
+      "desc": "Minimum width of the cropping layer; The default value is 0",
+      "defaultValue": ""
+    },
+    {
+      "name": "min-crop-box-height",
+      "sample": "min-crop-box-width-height",
+      "type": "Number",
+      "desc": "Minimum height of the crop layer; The default value is 0",
+      "defaultValue": ""
+    },
+    {
+      "name": "auto-crop",
+      "sample": "auto-crop-area",
+      "type": "Boolean",
+      "desc": "Indicates whether to automatically display the crop box during initialization. The default value is true.",
+      "defaultValue": ""
+    },
+    {
+      "name": "auto-crop-area",
+      "sample": "auto-crop-area",
+      "type": "Number",
+      "desc": "Defines the automatic cropping area size (percentage). The default value is 0.8",
+      "defaultValue": ""
+    },
+    {
+      "name": "cropvisible",
+      "sample": "min-crop-box-width-height",
+      "type": "Boolean",
+      "desc": "Set whether the cropping dialog box is visible. The default value is false",
+      "defaultValue": ""
+    }
+  ],
+  "methods": [
+    {
+      "name": "getCroppedCanvas",
+      "sample": "get-cropped-canvas",
+      "type": "",
+      "desc": "Obtain the cropped image data. .getCroppedCanvas().toDataURL(): Convert the image to a Base64 image. .getCroppedCanvas().toBlob(): Generate Blob image data",
+      "defaultValue": ""
+    },
+    {
+      "name": "replace",
+      "sample": "replace-image",
+      "type": "",
+      "desc": "Replace the image src and rebuild the cropper. The parameter is the image URL.",
+      "defaultValue": ""
+    },
+    {
+      "name": "clear",
+      "sample": "get-data",
+      "type": "",
+      "desc": "Clear the cropping box",
+      "defaultValue": ""
+    },
+    {
+      "name": "getData",
+      "sample": "get-data",
+      "type": "",
+      "desc": "Obtain the position and size of the final cropped region (based on the natural size of the original image). The parameter is rounded. The default value is false. If this parameter is set to true, all data can be obtained. The returned data type is Object",
+      "defaultValue": ""
+    },
+    {
+      "name": "getContainerData",
+      "sample": "get-container-data",
+      "type": "",
+      "desc": "Obtain the container size data. The returned data type is Object",
+      "defaultValue": ""
+    },
+    {
+      "name": "getImageData",
+      "sample": "get-image-data",
+      "type": "",
+      "desc": "Obtain the image position, size, and other related data. The returned data type is Object",
+      "defaultValue": ""
+    },
+    {
+      "name": "getCanvasData",
+      "sample": "get-image-data",
+      "type": "",
+      "desc": "Obtain the position and size of the canvas Canvas (image wrapper). The returned data type is Object",
+      "defaultValue": ""
+    },
+    {
+      "name": "getCropBoxData",
+      "sample": "get-crop-box-data",
+      "type": "",
+      "desc": "Obtain the position and size of the clip box. The returned data type is Object",
+      "defaultValue": ""
+    },
+    {
+      "name": "setAspectRatio",
+      "sample": "aspect-ratio",
+      "type": "",
+      "desc": "Change the aspect ratio of the cutting frame; The parameter is (aspectRatio) and the type is Number. The value is a positive number.",
+      "defaultValue": ""
+    },
+    {
+      "name": "disable",
+      "sample": "crop-meth",
+      "type": "",
+      "desc": "Disable the cropping box (the cropping box cannot be moved).",
+      "defaultValue": ""
+    },
+    {
+      "name": "enable",
+      "sample": "event-ready",
+      "type": "",
+      "desc": "Enable the cropping box",
+      "defaultValue": ""
+    },
+    {
+      "name": "destroy",
+      "sample": "event-ready",
+      "type": "",
+      "desc": "Destroy the cropper and delete the entire cropper from the image.",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "ready",
+      "sample": "event-ready",
+      "type": "",
+      "desc": "This event is triggered when a cropper instance is completely built.",
+      "defaultValue": ""
+    },
+    {
+      "name": "cropdata",
+      "sample": "event-about-crop",
+      "type": "Function(data)",
+      "desc": "The tailored data can be obtained from the cropdata event callback function. The default value is Base64 data.",
+      "defaultValue": ""
+    },
+    {
+      "name": "cropstart",
+      "sample": "event-about-crop",
+      "type": "",
+      "desc": "Triggered when the canvas (image wrapper) or clipping box starts to change; The callback parameter is (event: Event)",
+      "defaultValue": ""
+    },
+    {
+      "name": "cropmove",
+      "sample": "event-about-crop",
+      "type": "",
+      "desc": "Triggered when the canvas (image wrapper) or clipping box is changing; The callback parameter is (event: Event)",
+      "defaultValue": ""
+    },
+    {
+      "name": "cropend",
+      "sample": "event-about-crop",
+      "type": "",
+      "desc": "Triggered when the canvas (image wrapper) or clipping box changes. The callback parameter is (event: Event)",
+      "defaultValue": ""
+    },
+    {
+      "name": "crop",
+      "sample": "event-about-crop",
+      "type": "Function(value)",
+      "desc": "Triggered when the canvas (image wrapper) or crop box changes; The callback parameter is (event: Event), native event",
+      "defaultValue": ""
+    }
+  ]
+}

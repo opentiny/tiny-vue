@@ -1,0 +1,122 @@
+[
+  {
+    "title": "基本用法",
+    "content": "详细用法参考如下示例",
+    "link": "tooltip/basic-usage",
+    "component": " ToolTip 文字提示",
+    "findIntroStr": "动态显示提示信息，一般通过鼠标事件进行响应。",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "自定义渐变动画",
+    "content": "<p>通过 <code>transition</code> 定义渐变动画,默认选值为 <code>tiny-fade-in-linear</code></p>\n",
+    "link": "tooltip/custom-transition",
+    "component": " ToolTip 文字提示",
+    "findIntroStr": "动态显示提示信息，一般通过鼠标事件进行响应。",
+    "demoId": "custom-transition"
+  },
+  {
+    "title": "禁用",
+    "content": "<p>通过 <code>diabled</code> 设置禁用</p>\n",
+    "link": "tooltip/dynamic-disable",
+    "component": " ToolTip 文字提示",
+    "findIntroStr": "动态显示提示信息，一般通过鼠标事件进行响应。",
+    "demoId": "dynamic-disable"
+  },
+  {
+    "title": "手动控制",
+    "content": "<p>手动控制模式，通过设置 <code>manual</code> 属性为 true 后，mouseenter 和 mouseleave 事件将不会生效,然后可以通过设置 <code>v-model</code> 动态控制显示和隐藏</p>\n",
+    "link": "tooltip/manual-control-tip",
+    "component": " ToolTip 文字提示",
+    "findIntroStr": "动态显示提示信息，一般通过鼠标事件进行响应。",
+    "demoId": "manual-control-tip"
+  },
+  {
+    "title": "智能出现控制",
+    "content": "<p>提示的智能出现的模式，设置为 <code>auto</code> 时，tooltip只有在文本超长时，才显示出来。</p>\n",
+    "link": "tooltip/visible-show",
+    "component": " ToolTip 文字提示",
+    "findIntroStr": "动态显示提示信息，一般通过鼠标事件进行响应。",
+    "demoId": "visible-show"
+  },
+  {
+    "title": "主题",
+    "content": "<p>通过 <code>effect</code> 属性设置主题,可选值 dark/light 两种主题,默认值为 dark</p>\n",
+    "link": "tooltip/tooltip-theme",
+    "component": " ToolTip 文字提示",
+    "findIntroStr": "动态显示提示信息，一般通过鼠标事件进行响应。",
+    "demoId": "tooltip-theme"
+  },
+  {
+    "title": "自动隐藏和延迟时间",
+    "content": "<p>通过 <code>hide-after</code> 属性设置 Tooltip 组件出现后自动隐藏延时，单位毫秒，为 0 则不会自动隐藏。通过 <code>open-delay</code> 属性设置 Tooltip 组件延迟出现的时间，单位毫秒。</p>\n",
+    "link": "tooltip/open-delay",
+    "component": " ToolTip 文字提示",
+    "findIntroStr": "动态显示提示信息，一般通过鼠标事件进行响应。",
+    "demoId": "open-delay"
+  },
+  {
+    "title": "偏移量",
+    "content": "<p>通过 <code>offset</code> 属性设置 Tooltip 组件出现位置的偏移量。</p>\n",
+    "link": "tooltip/tooltip-offset",
+    "component": " ToolTip 文字提示",
+    "findIntroStr": "动态显示提示信息，一般通过鼠标事件进行响应。",
+    "demoId": "tooltip-offset"
+  },
+  {
+    "title": "鼠标是否可进入",
+    "content": "<p>通过 <code>enterable</code> 属性设置鼠标是否可进入到 tooltip 中。</p>\n",
+    "link": "tooltip/enterable",
+    "component": " ToolTip 文字提示",
+    "findIntroStr": "动态显示提示信息，一般通过鼠标事件进行响应。",
+    "demoId": "enterable"
+  },
+  {
+    "title": "是否显示箭头",
+    "content": "<p>通过 <code>visible-arrow</code> 属性设置是否显示 Tooltip 箭头。</p>\n",
+    "link": "tooltip/visible-arrow",
+    "component": " ToolTip 文字提示",
+    "findIntroStr": "动态显示提示信息，一般通过鼠标事件进行响应。",
+    "demoId": "visible-arrow"
+  },
+  {
+    "title": "添加样式类名",
+    "content": "<p>通过 <code>popper-class</code> 属性为 Tooltip 的 popper 添加类名。</p>\n",
+    "link": "tooltip/popper-class",
+    "component": " ToolTip 文字提示",
+    "findIntroStr": "动态显示提示信息，一般通过鼠标事件进行响应。",
+    "demoId": "popper-class"
+  },
+  {
+    "title": "自定义渲染函数",
+    "content": "<p>通过 <code>renderContent</code> 自定义渲染函数,返回需要渲染的节点内容 arg1:Vue的渲染函数h arg2:传递给组件的content文本。</p>\n",
+    "link": "tooltip/tooltip-render-content",
+    "component": " ToolTip 文字提示",
+    "findIntroStr": "动态显示提示信息，一般通过鼠标事件进行响应。",
+    "demoId": "tooltip-render-content"
+  },
+  {
+    "title": "插槽",
+    "content": "<p>通过 <code>content</code> 插槽添加自定义内容。</p>\n",
+    "link": "tooltip/tooltip-content",
+    "component": " ToolTip 文字提示",
+    "findIntroStr": "动态显示提示信息，一般通过鼠标事件进行响应。",
+    "demoId": "tooltip-content"
+  },
+  {
+    "title": "popper配置",
+    "content": "<p>通过 <code>popper-options</code> 属性为 Tooltip 的 popper 配置参数,具体可参考<a href=\"https://popper.js.org/\">popper.js</a></p>\n",
+    "link": "tooltip/popper-options",
+    "component": " ToolTip 文字提示",
+    "findIntroStr": "动态显示提示信息，一般通过鼠标事件进行响应。",
+    "demoId": "popper-options"
+  },
+  {
+    "title": "tabindex 配置",
+    "content": "<p>通过配置 <code>tabindex</code>， 配置的属性会自动添加到该组件的触发原上。</p>\n",
+    "link": "tooltip/tabindex",
+    "component": " ToolTip 文字提示",
+    "findIntroStr": "动态显示提示信息，一般通过鼠标事件进行响应。",
+    "demoId": "tabindex"
+  }
+]

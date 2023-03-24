@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Custom Prompt",
+    "content": "<p>When the data is empty, the <code> icon + text </code> prompt is displayed by default. You can also set the slot <code>v-slot:empty</code> or the <code>render-empty</code> attribute to define the prompt content. </p>\n",
+    "link": "grid/tiny-first-menu/empty-data-tip",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-empty-data-tip"
+  },
+  {
+    "title": "Default Prompt",
+    "content": "For details, see the following example.",
+    "link": "grid/tiny-first-menu/empty-data-default-tip",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-empty-data-default-tip"
+  },
+  {
+    "title": "Fix Center",
+    "content": "<p>When <code>is-center-empty</code> is set to <code>true</code>, drag the horizontal scroll bar to keep the empty data prompt so that the final data is displayed in the center of the table width</p>\n",
+    "link": "grid/tiny-first-menu/empty-data-iscenter",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-empty-data-iscenter"
+  }
+]

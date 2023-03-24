@@ -1,0 +1,99 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "checkbox-group",
+      "type": "String , Number , Boolean",
+      "desc": "Bound Value",
+      "defaultValue": ""
+    },
+    {
+      "name": "label",
+      "sample": "indeterminate",
+      "type": "String , Number , Boolean",
+      "desc": "Selected value (This parameter is valid only when checkbox-group or the bound object type is array.)",
+      "defaultValue": ""
+    },
+    {
+      "name": "true-label",
+      "sample": "text",
+      "type": "String , Number",
+      "desc": "Value when selected",
+      "defaultValue": ""
+    },
+    {
+      "name": "false-label",
+      "sample": "text",
+      "type": "String , Number",
+      "desc": "Value when no option is selected",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "checked",
+      "type": "Boolean",
+      "desc": "Disable",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "border",
+      "sample": "content-overflow",
+      "type": "Boolean",
+      "desc": "Display border",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "size",
+      "sample": "with-border",
+      "type": "String",
+      "desc": "Checkbox size. This parameter is valid only when border is set to true. The optional values of this attribute are medium / small / mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "name",
+      "sample": "checkbox-group",
+      "type": "String",
+      "desc": "Native name attribute",
+      "defaultValue": ""
+    },
+    {
+      "name": "checked",
+      "sample": "checked",
+      "type": "Boolean",
+      "desc": "Currently selected",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "indeterminate",
+      "sample": "indeterminate",
+      "type": "Boolean",
+      "desc": "Sets the indeterminate state and controls only the style.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "text",
+      "sample": "text",
+      "type": "String",
+      "desc": "Text displayed in the check box",
+      "defaultValue": "The default value of this attribute is null."
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "checkbox-slot",
+      "type": "",
+      "desc": "Checkbox content",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "checkbox-events",
+      "type": "",
+      "desc": "This event is triggered when the binding value changes.",
+      "defaultValue": ""
+    }
+  ]
+}

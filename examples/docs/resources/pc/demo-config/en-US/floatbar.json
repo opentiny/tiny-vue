@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>Fixed on the right of the screen by default</p>\n",
+    "link": "floatbar/base",
+    "component": "Floatbar floating block",
+    "findIntroStr": "The module always floats at a certain position on the screen and does not leave the screen due to web page scrolling.",
+    "demoId": "base"
+  },
+  {
+    "title": "Custom Style",
+    "content": "<p>You can configure the CSS style to set the floating block style</p>\n",
+    "link": "floatbar/custom-style",
+    "component": "Floatbar floating block",
+    "findIntroStr": "The module always floats at a certain position on the screen and does not leave the screen due to web page scrolling.",
+    "demoId": "custom-style"
+  },
+  {
+    "title": "Custom Content",
+    "content": "<p>Set the content of the floating block through the default slot</p>\n",
+    "link": "floatbar/custom-floatbar-item",
+    "component": "Floatbar floating block",
+    "findIntroStr": "The module always floats at a certain position on the screen and does not leave the screen due to web page scrolling.",
+    "demoId": "custom-floatbar-item"
+  },
+  {
+    "title": "Operation floating block content",
+    "content": "For details, see the following example.",
+    "link": "floatbar/operation-floatbar-item",
+    "component": "Floatbar floating block",
+    "findIntroStr": "The module always floats at a certain position on the screen and does not leave the screen due to web page scrolling.",
+    "demoId": "operation-floatbar-item"
+  }
+]

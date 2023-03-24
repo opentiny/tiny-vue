@@ -1,0 +1,690 @@
+/**
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
+/*注意：css var变量，以最后一次出现的生效。*/
+/*组件变量定义*/
+:root {
+  /* ---------------body样式设置----START----------------------------------------------*/
+  --ti-default-body-bg: #fff;
+  --ti-default-font-color: var(--ti-common-color-text-primary);
+  --ti-default-font-size: 12px;
+  --ti-default-font-family: var(--ti-common-font-family);
+  --ti-default-body-margin: 0;
+  --ti-default-body-padding: 0;
+  /* ---------------body样式设置----END------------------------------------------------*/
+  /* ---------------表单元素公共样式设置----START----------------------------------------------*/
+  --ti-input-height: 28px;
+  --ti-input-font-size: var(--ti-common-font-size-base);
+  --ti-input-border-radius: var(--ti-common-border-radius-normal);
+  --ti-input-padding-horizontal: var(--ti-common-space-10);
+  --ti-input-placeholder-color: var(--ti-common-color-text-disabled);
+  --ti-input-border-color: var(--ti-common-color-line-normal);
+  --ti-input-text-color: var(--ti-common-color-text-primary);
+  --ti-input-bg-color: var(--ti-common-color-bg-white-normal);
+  --ti-input-clear-color: var(--ti-common-color-icon-normal);
+  --ti-input-border-color-disabled: var(--ti-common-color-line-disabled);
+  --ti-input-text-color-disabled: var(--ti-common-color-text-disabled);
+  --ti-input-bg-color-disabled: var(--ti-common-color-bg-disabled);
+  --ti-input-clear-color-disabled: var(--ti-common-color-icon-disabled);
+  --ti-input-border-color-hover: var(--ti-common-color-line-hover);
+  --ti-input-clear-color-hover: var(--ti-common-color-icon-hover);
+  --ti-input-border-color-focus: var(--ti-common-color-line-active);
+  --ti-input-border-color-error: var(--ti-common-color-error-border);
+  --ti-input-bg-color-error: var(--ti-common-color-error-bg);
+  --ti-valid-error-icon-size: 16px;
+  --ti-valid-error-color: var(--ti-common-color-error);
+  --ti-valid-error-text-color: var(--ti-common-color-error-text);
+  --ti-textarea-padding-vertical: var(--ti-common-space-6);
+  --ti-textarea-min-height: 50px;
+  --ti-textarea-counter-text-color: var(--ti-common-color-text-weaken);
+  --ti-textarea-counter-inputed-text-color: var(--ti-common-color-text-primary);
+  /* ---------------表单元素公共样式设置----END------------------------------------------------*/
+  /* ---------------时间日期控件样式设置----START-----------------------------------------------*/
+  --ti-datetime-z-index: 10002;
+  --ti-datetime-input-font-size: var(--ti-common-font-size-base);
+  --ti-datetime-picker-color: var(--ti-common-color-text-primary);
+  --ti-datetime-picker-color-hover: var(--ti-common-color-text-highlight);
+  --ti-datetime-icon-color-hover: var(--ti-common-color-icon-hover);
+  --ti-datetime-content-color-active: var(--ti-common-color-bg-emphasize);
+  --ti-datetime-content-color-hover: var(--ti-common-color-bg-light-normal);
+  --ti-datetime-content-text-color-hover: var(--ti-common-color-text-highlight);
+  --ti-datetime-time-height: calc(var(--ti-input-height) - 2px);
+  --ti-datetime-range-selected-day-bg-color: var(
+    --ti-common-color-bg-light-normal
+  );
+  --ti-datetime-range-selected-day-bg-color-hover: var(
+    --ti-common-color-bg-light-emphasize
+  );
+  --ti-datetime-current-day-color: var(--ti-common-color-text-white);
+  --ti-datetime-day-width: 36px;
+  --ti-datetime-day-height: 24px;
+  --ti-datetime-day-margin-top: var(--ti-common-space-10);
+  --ti-datetime-icon-color-normal: var(--ti-common-color-icon-normal);
+  --ti-datetime-icon-color-disabled: var(--ti-common-color-icon-disabled);
+  --ti-datetime-content-color-normal: var(--ti-common-color-text-primary);
+  --ti-datetime-clear-icon-border-right-color: var(
+    --ti-common-color-line-dividing
+  );
+  --ti-datetime-week-bg-color: var(--ti-common-color-bg-white-normal);
+  --ti-datetime-beside-day-color: var(--ti-common-color-text-disabled);
+  --ti-datetime-beside-day-bg-color-hover: var(--ti-common-color-bg-disabled);
+  --ti-datetime-default-day-color: var(--ti-common-color-text-primary);
+  --ti-datetime-disable-day-bg-color: var(--ti-common-color-bg-disabled);
+  --ti-datetime-panel-border-color: var(--ti-common-color-line-active);
+  --ti-datetime-panel-border-radius: 0;
+  --ti-datetime-panel-box-shadow: var(--ti-common-shadow-2-down);
+  /* ---------------时间日期控件样式设置-----END------------------------------------------------*/
+  /* -------------------------menu控件样式设置----START---------------------------------------------*/
+  --ti-menu-item-color: var(--ti-common-color-text-link);
+  --ti-menu-item-color-hover: var(--ti-common-color-text-link-hover);
+  --ti-menu-item-color-active: var(--ti-common-color-text-link-hover);
+  --ti-menu-panel-item-color-hover: var(--ti-common-color-text-highlight);
+  --ti-menu-panel-item-color-active: var(--ti-common-color-text-white);
+  --ti-menu-panel-item-bg-active: var(--ti-menu-panel-item-color-hover);
+  --ti-menu-item-color-disabled: var(--ti-common-color-text-disabled);
+  --ti-menu-item-bg-hover: var(--ti-common-color-bg-white-emphasize);
+  --ti-menu-button-panel-border-color: var(--ti-menu-item-color);
+  /* -------------------------menubutton控件样式设置----END-----------------------------------------------*/
+  /* ---------------checkbox config----START----------------------------------------------*/
+  --ti-checkbox-size: var(--ti-common-font-size-2);
+  --ti-checkbox-mark-size: calc(var(--ti-checkbox-size) - 2px);
+  --ti-checkbox-bg-color: var(--ti-common-color-bg-white-normal);
+  --ti-checkbox-label-color: var(--ti-common-color-text-primary);
+  --ti-checkbox-border-radius: var(--ti-common-border-radius-normal);
+  --ti-checkbox-label-right-space: var(--ti-common-space-2x);
+  --ti-checkbox-mark-color: var(--ti-common-color-bg-white-normal);
+  --ti-checkbox-bg-color-checked: var(--ti-common-color-bg-emphasize);
+  --ti-checkbox-border-color: var(--ti-common-color-line-normal);
+  --ti-checkbox-bg-color-checked-hover: var(--ti-common-color-bg-hover);
+  --ti-checkbox-border-color-checked: var(--ti-common-color-line-active);
+  --ti-checkbox-bg-color-checked-active: var(
+    --ti-checkbox-bg-color-checked-hover
+  );
+  --ti-checkbox-label-color-checked: var(--ti-common-color-text-white);
+  --ti-checkbox-bg-color-unchecked-active: var(--ti-checkbox-bg-color);
+  --ti-checkbox-border-color-unchecked-active: var(
+    --ti-checkbox-border-color-hover
+  );
+  --ti-checkbox-border-color-hover: var(--ti-common-color-line-active);
+  --ti-checkbox-bg-color-disable: var(--ti-common-color-bg-disabled);
+  --ti-checkbox-mark-color-disabled: var(--ti-common-color-icon-disabled);
+  --ti-checkbox-label-color-disabled: var(--ti-common-color-text-disabled);
+  --ti-checkbox-border-color-checked-disabled: var(
+    --ti-common-color-line-disabled
+  );
+  --ti-checkbox-border-color-unchecked-disabled: var(
+    --ti-common-color-line-disabled
+  );
+  --ti-checkbox-partial-center-size: 6px;
+  --ti-checkbox-partial-color-checked: var(--ti-checkbox-border-color-checked);
+  --ti-checkbox-partial-color-checked-disabled: var(
+    --ti-checkbox-mark-color-disabled
+  );
+  --ti-checkbox-partial-color-checked-hover: var(
+    --ti-checkbox-bg-color-checked-hover
+  );
+  /* ---------------checkbox config----END----------------------------------------------*/
+  /* ---------------radio config----START----------------------------------------------*/
+  --ti-radio-mark-size: 8px;
+  --ti-radio-bg-color: var(--ti-common-color-bg-white-normal);
+  --ti-radio-border-color: var(--ti-common-color-line-normal);
+  --ti-radio-label-color: var(--ti-common-color-text-primary);
+  --ti-radio-border-color-checked: var(--ti-radio-bg-color-checked);
+  --ti-radio-bg-color-checked: var(--ti-common-color-bg-emphasize);
+  --ti-radio-bg-color-disabled: var(--ti-common-color-bg-disabled);
+  --ti-radio-mark-color-disabled: var(--ti-common-color-text-disabled);
+  --ti-radio-border-color-disabled: var(--ti-common-color-line-disabled);
+  --ti-radio-label-color-disabled: var(--ti-common-color-text-disabled);
+  --ti-radio-border-color-hover: var(--ti-common-color-line-active);
+  --ti-radio-bg-color-active: var(--ti-radio-bg-color);
+  --ti-radio-border-color-active: var(--ti-radio-border-color-hover);
+  --ti-radio-bg-color-checked-hover: var(--ti-common-color-bg-hover);
+  --ti-radio-bg-color-checked-active: var(--ti-common-color-bg-white-normal);
+  --ti-radio-border-color-checked-active: var(
+    --ti-radio-bg-color-checked-hover
+  );
+  /* ---------------radio config----END----------------------------------------------*/
+  /* ---------------button config----START----------------------------------------------*/
+  --ti-button-large-height: 32px;
+  --ti-button-large-padding-horizon: var(--ti-common-space-6x);
+  --ti-button-middle-height: 28px;
+  --ti-button-middle-padding-horizon: var(--ti-common-space-5x);
+  --ti-button-small-height: 24px;
+  --ti-button-small-padding-horizon: var(--ti-common-space-4x);
+  --ti-button-xs-height: 20px;
+  --ti-button-xs-padding-horizon: var(--ti-common-space-3x);
+  --ti-button-onlyIcon-height: 28px;
+  --ti-button-onlyIcon-width: 28px;
+  --ti-button-onlyIcon-padding: 5px;
+  --ti-button-onlyIcon-fontSize: 16px;
+  --ti-button-icon-padding-horizon: var(--ti-common-space-5x);
+  --ti-button-danger-box-shadow: 0 0;
+  --ti-button-default-box-shadow: 0 0;
+  --ti-button-default-text-color: var(--ti-common-color-text-primary);
+  --ti-button-border-radius: 2px;
+  --ti-button-default-normal-color: var(--ti-button-default-text-color);
+  --ti-button-default-normal-bg-color: var(--ti-common-bg-minor);
+  --ti-button-default-normal-border-color: var(--ti-common-color-line-normal);
+  --ti-button-default-color-hover: var(--ti-common-color-text-highlight);
+  --ti-button-default-bg-color-hover: var(--ti-common-bg-minor-hover);
+  --ti-button-default-border-color-hover: var(--ti-common-color-line-active);
+  --ti-button-default-color-active: var(--ti-button-default-color-hover);
+  --ti-button-default-bg-color-active: var(--ti-common-bg-minor-active);
+  --ti-button-default-border-color-active: var(
+    --ti-button-default-border-color-hover
+  );
+  --ti-button-default-color-disabled: var(--ti-common-color-text-disabled);
+  --ti-button-default-bg-color-disabled: var(--ti-common-color-bg-disabled);
+  --ti-button-default-border-color-disabled: var(
+    --ti-common-color-line-disabled
+  );
+  --ti-button-primary-normal-color: var(--ti-common-color-text-white);
+  --ti-button-primary-normal-bg-color: var(--ti-common-color-bg-emphasize);
+  --ti-button-primary-normal-border-color: var(--ti-common-color-bg-emphasize);
+  --ti-button-primary-color-hover: var(--ti-common-color-text-white);
+  --ti-button-primary-bg-color-hover: var(--ti-common-color-icon-darkbg-hover);
+  --ti-button-primary-border-color-hover: var(
+    --ti-button-primary-bg-color-hover
+  );
+  --ti-button-primary-color-active: var(--ti-button-primary-color-hover);
+  --ti-button-primary-bg-color-active: #526ecc;
+  --ti-button-primary-border-color-active: #526ecc;
+  --ti-button-primary-color-disabled: var(--ti-common-color-text-disabled);
+  --ti-button-primary-bg-color-disabled: var(
+    --ti-button-default-bg-color-disabled
+  );
+  --ti-button-primary-border-color-disabled: var(
+    --ti-button-default-border-color-disabled
+  );
+  --ti-button-danger-normal-color: var(--ti-common-color-text-white);
+  --ti-button-danger-normal-bg-color: var(--ti-common-bg-primary);
+  --ti-button-danger-normal-border-color: var(
+    --ti-button-danger-normal-bg-color
+  );
+  --ti-button-danger-color-hover: var(--ti-common-color-text-white);
+  --ti-button-danger-bg-color-hover: var(--ti-common-bg-primary-hover);
+  --ti-button-danger-border-color-hover: var(--ti-button-danger-bg-color-hover);
+  --ti-button-danger-color-active: var(--ti-common-color-text-white);
+  --ti-button-danger-bg-color-active: var(--ti-common-bg-primary-active);
+  --ti-button-danger-border-color-active: var(
+    --ti-button-danger-bg-color-active
+  );
+  --ti-button-danger-color-disabled: var(--ti-common-color-text-disabled);
+  --ti-button-danger-bg-color-disabled: var(
+    --ti-button-default-bg-color-disabled
+  );
+  --ti-button-danger-border-color-disabled: var(
+    --ti-button-default-border-color-disabled
+  );
+  /* ---------------button config----END----------------------------------------------*/
+  /* ---------------Select config----START----------------------------------------------*/
+  --ti-tag-bg-color: var(--ti-common-color-bg-normal);
+  /* tag的背景色*/
+  --ti-tag-bg-color-disabled: var(--ti-common-color-bg-disabled);
+  /* tag灰化的背景色*/
+  --ti-tag-text-color: var(--ti-common-color-text-secondary);
+  /* tag的文本, 未使用?*/
+  --ti-tag-text-color-hover: var(--ti-common-color-text-highlight);
+  /* 文本hover颜色*/
+  --ti-tag-text-color-disabled: var(--ti-common-color-text-disabled);
+  /* 文本灰化颜色*/
+  --ti-tag-icon-color: var(--ti-common-color-icon-graybg-normal);
+  /* tag叉号的颜色*/
+  --ti-tag-icon-color-hover: var(--ti-common-color-icon-graybg-hover);
+  /* tag叉号的hover颜色*/
+  --ti-tag-icon-color-disabled: var(--ti-common-color-icon-graybg-disabled);
+  /* tag叉号的灰化颜色*/
+  --ti-tag-icon-color-clear-hover: var(--ti-common-color-icon-hover);
+  --ti-dominator-select-arrow-color: var(--ti-common-color-icon-normal);
+  --ti-dominator-select-arrow-color-disabled: var(
+    --ti-common-color-line-disabled
+  );
+  --ti-dominator-multiselect-box-cell-border-color-disabled: var(
+    --ti-common-color-line-disabled
+  );
+  --ti-dominator-select-clear-color: var(--ti-common-color-icon-normal);
+  --ti-select-item-bg-color-hover: var(--ti-common-color-bg-white-emphasize);
+  --ti-select-item-text-color-hover: var(--ti-common-color-text-highlight);
+  --ti-select-item-selected-bg-color: var(--ti-common-color-bg-emphasize);
+  --ti-select-item-selected-text-color: var(--ti-common-color-text-white);
+  --ti-select-text-color-disabled: var(--ti-common-color-text-disabled);
+  --ti-select-group-color: var(--ti-common-color-text-weaken);
+  --ti-select-border-color-focus: var(--ti-common-color-line-active);
+  --ti-select-small-height: var(--ti-pagination-height);
+  --ti-select-small-dominator-text-left-padding: var(--ti-common-space-10);
+  --ti-select-small-triangle-position-right: 9px;
+  /* ---------------Select config----END----------------------------------------------*/
+  /* ---------------Searchbox config----START----------------------------------------------*/
+  --ti-searchbox-select-bg-color: var(--ti-common-color-bg-white-emphasize);
+  --ti-searchbox-select-bg-color-hover: var(--ti-common-color-bg-normal);
+  /* ---------------Searchbox config----END----------------------------------------------*/
+  /* ---------------modal config----START----------------------------------------------*/
+  --ti-modal-header-text-color: var(--ti-common-color-text-primary);
+  --ti-modal-close-icon-color: var(--ti-common-color-icon-normal);
+  --ti-modal-close-icon-color-hover: var(--ti-common-color-icon-hover);
+  --ti-modal-content-bg-color: var(--ti-common-color-bg-white-normal);
+  --ti-modal-backdrop-bg-color: #000000;
+  --ti-modal-header-font-weight: bold;
+  --ti-modal-close-icon-position-top: 8px;
+  --ti-modal-close-icon-position-right: 20px;
+  /* ---------------modal config----END----------------------------------------------*/
+  /* ---------------formfield config----START----------------------------------------------*/
+  --ti-formfield-item-padding-bottom: 20px;
+  --ti-formfield-item-required-padding-right: 0px;
+  --ti-formfield-item-required-font-size: 16px;
+  --ti-formfield-item-label-padding-right: 20px;
+  --ti-formfield-button-item-padding-top: 20px;
+  --ti-formfield-item-required-label-line-height: var(--ti-input-height);
+  --ti-formfield-text-from-item-line-height: 40px;
+  --ti-formfield-text-form-label-color: var(--ti-common-color-text-weaken);
+  --ti-formfield-item-content-line-height: 30px;
+  /* ---------------formfield config----END----------------------------------------------*/
+  /* ---------------tab config----START----------------------------------------------*/
+  --ti-tab-border-color: var(--ti-common-color-line-dividing);
+  --ti-tab-border-color-hover: var(--ti-tab-border-color);
+  --ti-tab-header-text-color: var(--ti-common-color-text-secondary);
+  --ti-tab-header-text-color-hover: var(--ti-common-color-text-highlight);
+  --ti-tab-header-text-color-active: var(--ti-tab-header-text-color-hover);
+  --ti-tab-header-text-color-active-font-weight: normal;
+  --ti-tab-header-font-size: var(--ti-common-font-size-1);
+  --ti-tab-header-border-bottom-active: 3px solid
+    var(--ti-common-color-bg-emphasize);
+  --ti-tab-second-level-header-text-color-active: var(
+    --ti-common-color-text-highlight
+  );
+  --ti-tab-second-level-header-text-color-hover: var(
+    --ti-tab-second-level-header-text-color-active
+  );
+  --ti-tab-dark-text-color: var(--ti-common-color-text-darkbg);
+  --ti-tab-dark-text-color-hover: var(--ti-common-color-text-white);
+  --ti-tab-dark-text-color-active: var(--ti-common-color-text-primary);
+  --ti-tab-dark-bg-color: var(--ti-common-color-bg-dark-normal);
+  --ti-tab-dark-bg-color-hover: var(--ti-common-color-bg-dark-emphasize);
+  --ti-tab-dark-bg-color-avtive: var(--ti-common-color-bg-normal);
+  --ti-tab-dark-color-disabled: var(--ti-common-color-text-gray-disabled);
+  --ti-tab-dark-padding-horizon: var(--ti-common-space-6x);
+  --ti-tab-dark-border-radius: var(--ti-common-border-radius-normal)
+    var(--ti-common-border-radius-normal) 0 0;
+  /* ---------------tab config----END----------------------------------------------*/
+  /* ---------------message config----START----------------------------------------------*/
+  --ti-message-prompt-icon-color: var(--ti-common-color-success);
+  --ti-message-error-icon-color: var(--ti-common-color-error);
+  --ti-message-warn-icon-color: var(--ti-common-color-warn);
+  --ti-message-confirm-icon-color: var(--ti-common-color-prompt);
+  --ti-message-default-width: 400px;
+  --ti-message-content-title-font-size: var(--ti-common-font-size-3);
+  /* ---------------message config----END----------------------------------------------*/
+  /* ---------------table config----START----------------------------------------------*/
+  --ti-table-th-height: 28px;
+  --ti-table-th-bg-color: var(--ti-common-color-bg-white-emphasize);
+  --ti-table-th-text-color: var(--ti-common-color-text-secondary);
+  --ti-table-th-spacing-line-color: var(--ti-common-color-text-white);
+  --ti-table-th-text-font-weight: 600;
+  --ti-table-border-bottom-color: var(--ti-common-color-line-dividing);
+  --ti-table-td-text-color: var(--ti-common-color-text-primary);
+  --ti-table-td-padding: var(--ti-common-space-3x) var(--ti-common-space-10);
+  --ti-table-td-line-height: var(--ti-common-line-height-number);
+  --ti-table-small-th-height: var(--ti-table-th-height);
+  --ti-table-small-td-horizontal-padding: 10px;
+  --ti-table-small-td-vertical-padding: var(--ti-common-space-2x);
+  --ti-table-small-td-line-height: var(--ti-common-line-height-number);
+  --ti-table-nest-th-height: var(--ti-table-small-th-height);
+  --ti-table-nest-td-line-height: var(--ti-common-line-height-number);
+  --ti-table-nest-td-border-bottom-color: var(--ti-table-border-bottom-color);
+  --ti-table-tr-bg-color: var(--ti-common-color-bg-white-normal);
+  --ti-table-tr-bg-color-hover: var(--ti-table-th-bg-color);
+  --ti-table-tr-bg-color-selected: var(--ti-table-tr-bg-color);
+  --ti-table-tr-text-color-disabled: var(--ti-common-color-text-disabled);
+  --ti-table-tr-bg-color-disabled: var(--ti-common-color-bg-disabled);
+  --ti-table-tr-bg-color-nodata: var(--ti-table-tr-bg-color);
+  --ti-table-tr-bg-color-nodata-color: var(--ti-common-color-text-link);
+  --ti-table-tr-bg-color-nodata-color-hover: var(
+    --ti-common-color-text-link-hover
+  );
+  --ti-table-nodata-td-color: var(--ti-common-color-text-secondary);
+  --ti-table-nodata-height: 210px;
+  --ti-table-small-nodata-height: 190px;
+  --ti-table-nodata-td-font-size: var(--ti-common-font-size-1);
+  --ti-table-nodata-lead-icon-height: 90px;
+  --ti-table-nodata-td-bg-img-url: url('data:image/png;base64,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');
+  --ti-table-col-resize-line: 1px dashed var(--ti-common-color-line-dividing);
+  --ti-table-cols-toggle-menu-color: var(--ti-common-color-icon-normal);
+  --ti-table-cols-toggle-menu-size: 28px;
+  --ti-table-cols-toggle-menu-font-size: var(--ti-common-font-size-2);
+  --ti-table-cols-toggle-menu-line-height: 26px;
+  --ti-table-cols-toggle-menu-color-hover: var(--ti-common-color-icon-hover);
+  --ti-table-cols-toggle-menu-color-disabled: var(
+    --ti-common-color-text-disabled
+  );
+  --ti-table-cols-toggle-menu-border-color-disabled: var(
+    --ti-common-color-line-disabled
+  );
+  --ti-table-cols-toggle-menu-border-color: var(--ti-common-color-line-normal);
+  --ti-table-cols-toggle-dropdown-border-radius: var(
+    --ti-common-border-radius-normal
+  );
+  --ti-table-cols-toggle-dropdown-box-shadow: var(--ti-common-shadow-2-down);
+  --ti-table-cols-toggle-dropdown-border-color: rgba(0, 0, 0, 0.2);
+  --ti-table-sort-icon-color-active: var(--ti-common-color-icon-active);
+  --ti-table-sort-color-hover: var(--ti-common-color-icon-hover);
+  --ti-table-details-icon-color-hover: var(--ti-common-color-icon-hover);
+  --ti-table-details-icon-color: var(--ti-common-color-icon-normal);
+  --ti-table-details-bg-color: var(--ti-common-color-bg-white-emphasize);
+  --ti-table-details-padding: 0;
+  --ti-table-small-details-padding: var(--ti-common-space-5x);
+  --ti-table-tree-minus-square-color: var(--ti-common-color-icon-active);
+  --ti-table-tree-minus-square-color-hover: var(--ti-common-color-icon-hover);
+  --ti-table-tree-plus-square-color: var(--ti-common-color-icon-normal);
+  --ti-table-tree-square-bg: var(--ti-common-color-bg-white-normal);
+  --ti-table-tree-square-right-space: var(--ti-common-space-2x);
+  --ti-table-tree-square-icon-font-size: 16px;
+  --ti-table-column-icon-left-space: var(--ti-common-space-5x);
+  --ti-table-column-icon-right-space: var(--ti-common-space-6);
+  --ti-table-column-select-icon-width: 32px;
+  --ti-table-column-icon-width: 42px;
+  /* ---------------table config----END----------------------------------------------*/
+  /* ---------------pagination config----START----------------------------------------------*/
+  --ti-pagination-height: 24px;
+  --ti-pagination-margin-top-table: 10px;
+  --ti-pagination-bg-color: var(--ti-common-color-bg-white-normal);
+  --ti-pagination-border-color: var(--ti-common-color-line-normal);
+  --ti-pagination-border-color-hover: var(--ti-common-color-line-hover);
+  --ti-pagination-text-color: var(--ti-common-color-text-secondary);
+  --ti-pagination-text-color-hover: var(--ti-common-color-icon-hover);
+  --ti-pagination-bg-color-hover: var(--ti-common-color-bg-light-normal);
+  --ti-pagination-text-color-active-hover: var(--ti-common-color-text-white);
+  --ti-pagination-bg-color-active-hover: var(--ti-common-color-bg-emphasize);
+  --ti-pagination-total-disable: var(--ti-common-color-text-disabled);
+  --ti-pagination-bg-color-disabled: var(--ti-common-color-bg-white-normal);
+  --ti-pagination-text-color-disabled: var(--ti-pagination-total-disable);
+  --ti-pagination-icon-color-disabled: var(--ti-common-color-icon-disabled);
+  --ti-pagination-text-color-active: var(--ti-common-color-text-white);
+  --ti-pagination-bg-color-active: var(--ti-common-color-bg-emphasize);
+  --ti-pagination-text-color-active-active: var(--ti-common-color-text-white);
+  --ti-pagination-bg-color-press: var(--ti-common-color-bg-emphasize);
+  --ti-pagination-prev-next-color: var(--ti-common-color-icon-normal);
+  --ti-pagination-prev-next-width: 22px;
+  --ti-pagination-button-bg-active: var(--ti-pagination-bg-color-press);
+  --ti-pagination-prev-next-color-active: var(
+    --ti-pagination-text-color-active-active
+  );
+  --ti-pagination-goto-icon-color: var(--ti-common-color-bg-emphasize);
+  --ti-pagination-goto-input-width: 45px;
+  --ti-pagination-goto-input-color: var(--ti-pagination-text-color);
+  --ti-pagination-text-min-width: 20px;
+  --ti-pagination-border-radius: var(--ti-common-border-radius-normal);
+  --ti-pagination-select-padding-left: var(--ti-common-space-10);
+  /* ---------------pagination config----END----------------------------------------------*/
+  /* ---------------tooltip config----START----------------------------------------------*/
+  --ti-tip-bg-color: var(--ti-common-color-bg-dark-deep);
+  --ti-tip-text-color: var(--ti-common-color-text-gray);
+  --ti-tip-border-radius: var(--ti-common-border-radius-1);
+  --ti-tip-border-color: var(--ti-common-color-bg-dark-deep);
+  --ti-tip-border: 1px solid var(--ti-common-color-bg-dark-deep);
+  --ti-tip-box-shadow-color: rgba(0, 0, 0, 0.2);
+  --ti-tip-box-shadow: var(--ti-common-shadow-3-down);
+  --ti-tip-vertical-padding: var(--ti-common-space-3x);
+  --ti-tip-horizon-padding: var(--ti-common-space-4x);
+  /* ---------------tooltip config----END----------------------------------------------*/
+  /* ---------------switch config----START----------------------------------------------*/
+  --ti-switch-track-on-bg-color: var(--ti-common-color-bg-emphasize);
+  --ti-switch-track-off-bg-color: var(--ti-common-color-bg-secondary);
+  --ti-switch-track-bg-color-disabled: var(--ti-common-color-bg-dark-disabled);
+  /* ---------------switch config----END----------------------------------------------*/
+  /* ---------------progressbar config----START----------------------------------------------*/
+  --ti-progressbar-progress-bg-color: var(--ti-common-color-line-dividing);
+  --ti-progressbar-bg-color: var(--ti-common-color-bg-emphasize);
+  --ti-progressbar-height: 5px;
+  --ti-progressbar-progress-border-radius: 999px;
+  --ti-progressbar-progress-label-color: var(--ti-common-color-text-white);
+  /* ---------------progressbar config----END----------------------------------------------*/
+  /* ---------------steps config----START----------------------------------------------*/
+  --ti-steps-number-font-size: var(--ti-common-font-size-1);
+  --ti-steps-line-color: var(--ti-common-color-line-normal);
+  --ti-steps-line-color-highlight: var(--ti-common-color-line-active);
+  --ti-steps-box-bg-color-highlight: var(--ti-common-color-bg-emphasize);
+  --ti-steps-box-highlight: var(--ti-common-color-icon-active);
+  --ti-steps-box-uncomplete: var(--ti-common-color-icon-normal);
+  --ti-steps-box-disabled: var(--ti-common-color-text-weaken);
+  --ti-steps-box-number-active: var(--ti-common-color-text-white);
+  --ti-steps-text-highlight: var(--ti-common-color-text-highlight);
+  --ti-steps-text-uncomplete: var(--ti-common-color-text-secondary);
+  --ti-steps-text-disabled: var(--ti-common-color-text-weaken);
+  --ti-steps-horizontal-process-done-color: var(--ti-base-color-brand-2);
+  --ti-steps-horizontal-process-wait-color: var(--ti-base-color-common-1);
+  /* ---------------steps config----END----------------------------------------------*/
+  /* -------------------------actionMenu控件样式设置----START---------------------------------------------*/
+  --ti-actionmenu-item-text-color: var(--ti-common-color-text-link);
+  --ti-actionmenu-item-text-color-hover: var(--ti-common-color-text-link-hover);
+  --ti-actionmenu-item-text-color-active: var(
+    --ti-common-color-text-link-hover
+  );
+  --ti-actionmenu-item-text-color-disabled: var(
+    --ti-common-color-text-disabled
+  );
+  --ti-actionmenu-divider-color: var(--ti-common-color-line-dividing);
+  /* -------------------------actionMenu控件样式设置----END-----------------------------------------------*/
+  /* ---------------leftmenu控件样式设置----START-----------------------------------------------------*/
+  --ti-leftmenu-width: 192px;
+  --ti-leftmenu-font-size: var(--ti-common-font-size-base);
+  --ti-leftmenu-head-font-size: var(--ti-common-font-size-1);
+  --ti-leftmenu-head-line-dividing-color: var(--ti-common-color-line-dividing);
+  --ti-leftmenu-container-bg-color: var(--ti-common-color-bg-white-normal);
+  --ti-leftmenu-toggle-icon-bg-color: #dbdbdb;
+  --ti-leftmenu-toggle-icon-bg-color-hover: #c9c9c9;
+  --ti-leftmenu-toggle-icon-color: #777777;
+  --ti-leftmenu-toggle-icon-color-hover: #666666;
+  --ti-leftmenu-head-text-color: var(--ti-common-color-text-primary);
+  --ti-leftmenu-first-level-font-size: 14px;
+  --ti-leftmenu-first-level-border-bottom: 1px #e5e5e5 solid;
+  --ti-leftmenu-first-level-border-top: 1px #fafafa solid;
+  --ti-leftmenu-first-level-border-bottom-selected: 1px #e5e5e5 solid;
+  --ti-leftmenu-first-level-border-top-selected: 1px #fafafa solid;
+  --ti-leftmenu-second-level-bg-color: #f7f8f8;
+  --ti-leftmenu-second-level-icon-color: #999;
+  --ti-leftmenu-second-level-font-size: 14px;
+  --ti-leftmenu-second-level-padding: 10px 36px 10px 40px;
+  --ti-leftmenu-second-level-border-bottom: 1px #e5e5e5 solid;
+  --ti-leftmenu-second-level-border-top: 1px #fafafa solid;
+  --ti-leftmenu-second-level-border-bottom-selected: 1px #e5e5e5 solid;
+  --ti-leftmenu-second-level-border-top-selected: 1px #fafafa solid;
+  --ti-leftmenu-item-bg-color: #f7f8f8;
+  --ti-leftmenu-item-text-color: var(--ti-common-color-text-secondary);
+  --ti-leftmenu-item-bg-color-hover: var(--ti-common-color-bg-white-emphasize);
+  --ti-leftmenu-item-text-color-hover: var(--ti-common-color-text-highlight);
+  --ti-leftmenu-border-left-width: 2px;
+  --ti-leftmenu-item-open-bg-color: #fff;
+  --ti-leftmenu-item-selected-bg-color: #fff;
+  --ti-leftmenu-item-selected-text-color: var(--ti-common-color-text-highlight);
+  --ti-leftmenu-item-selected-border-left-color: var(
+    --ti-common-color-line-active
+  );
+  --ti-leftmenu-level1-label-padding: 10px 36px 10px 20px;
+  --ti-leftment-leftmenu-head-text-align: left;
+  --ti-leftmenu-angle-normal-width: 8px;
+  --ti-leftmenu-angle-normal-height: 5px;
+  --ti-leftmenu-icon-color-nomal: var(--ti-common-color-icon-normal);
+  --ti-leftmenu-icon-color-hover: var(--ti-common-color-icon-hover);
+  --ti-leftmenu-head-padding: 20px 36px 20px 20px;
+  --ti-leftmenu-group-padding-top: var(--ti-common-space-10);
+  --ti-leftmenu-group-padding-right: 36px;
+  --ti-leftmenu-group-padding-bottom: var(--ti-common-space-10);
+  --ti-leftmenu-group-padding-left: var(--ti-common-space-5x);
+  --ti-leftmenu-foot-padding-top: 10px;
+  --ti-leftmenu-foot-padding-bottom: 10px;
+  --ti-leftmenu-foot-padding-left: 20px;
+  --ti-leftmenu-foot-space-right: 36px;
+  --ti-leftmenu-foot-text-color: var(--ti-common-color-text-link);
+  --ti-leftmenu-foot-text-color-hover: var(--ti-common-color-text-link-hover);
+  /* ----------------leftmenu控件样式设置----END------------------------------------------------------*/
+  /* ---------------fileUpload控件样式设置----START-----------------------------------------------------*/
+  --ti-upload-height: var(--ti-input-height);
+  --ti-upload-progerss-text-color: #2095f2;
+  --ti-upload-progress-bg-color: #bcdffb;
+  --ti-upload-field-default-width: 300px;
+  --ti-upload-item-bg: var(--ti-common-color-bg-normal);
+  --ti-upload-item-name-color: var(--ti-common-color-text-secondary);
+  --ti-upload-item-size-color: var(--ti-common-color-text-weaken);
+  --ti-upload-state-general-operate-color: var(--ti-actionmenu-item-text-color);
+  --ti-upload-state-general-operate-color-hover: var(
+    --ti-actionmenu-item-text-color-hover
+  );
+  /* ---------------fileUpload控件样式设置----END-----------------------------------------------------*/
+  /* ---------------buttonGroup控件样式设置----START-----------------------------------------------------*/
+  --ti-button-group-text-color: var(--ti-common-color-text-primary);
+  --ti-button-group-padding-horizon: var(--ti-button-middle-padding-horizon);
+  --ti-button-group-height: var(--ti-button-middle-height);
+  --ti-button-group-height-small: var(--ti-button-xs-height);
+  --ti-button-group-border-radius: var(--ti-common-border-radius-normal);
+  --ti-button-group-bg-color: var(--ti-common-color-bg-light-normal);
+  --ti-button-group-border-color: var(--ti-button-group-bg-color);
+  --ti-button-group-border-left-color: var(--ti-common-color-bg-white-normal);
+  --ti-button-group-bg-color-hover: var(--ti-common-color-bg-light-emphasize);
+  --ti-button-group-text-color-hover: var(--ti-common-color-text-primary);
+  --ti-button-group-border-color-hover: var(--ti-button-group-bg-color-hover);
+  --ti-button-group-bg-color-active: var(--ti-common-color-bg-emphasize);
+  --ti-button-group-bg-color-active-disabled: var(
+    --ti-common-color-bg-dark-disabled
+  );
+  --ti-button-group-text-color-active: var(--ti-common-color-text-white);
+  --ti-button-group-border-color-active: var(--ti-button-group-bg-color-active);
+  --ti-button-group-bg-color-disabled: var(--ti-common-color-bg-disabled);
+  --ti-button-group-text-color-disabled: var(--ti-common-color-text-disabled);
+  --ti-button-group-border-color-disabled: var(--ti-common-color-line-disabled);
+  --ti-button-group-space-bottom: var(--ti-common-space-base);
+  /* ---------------buttonGroup控件样式设置----END-----------------------------------------------------*/
+  /* ---------------collapse控件样式设置----START-----------------------------------------------------*/
+  --ti-collapse-panel-border: 1px solid #e3e3e3;
+  --ti-collapse-panel-bg-color: #f5f5f5;
+  --ti-collapse-panel-border-radius: 2px;
+  --ti-collapse-panel-padding: 10px;
+  /* ---------------collapse控件样式设置----END-----------------------------------------------------*/
+  /* ---------------accordion控件样式设置----START-----------------------------------------------------*/
+  --ti-accordion-panel-bg-color: var(--ti-common-color-bg-white-normal);
+  --ti-accordion-panel-border: 1px solid var(--ti-common-color-line-dividing);
+  --ti-accordion-panel-border-radius: var(--ti-common-border-radius-normal);
+  --ti-accordion-panel-height: 34px;
+  --ti-accordion-panel-lineheight: 34px;
+  --ti-accordion-panel-head-padding: 0 var(--ti-common-space-4x);
+  --ti-accordion-panel-head-bg-color: var(--ti-common-color-bg-white-emphasize);
+  --ti-accordion-panel-head-bg-color-disabled: var(
+    --ti-common-color-bg-disabled
+  );
+  --ti-accordion-panel-space-between: var(--ti-common-space-2x);
+  --ti-accordion-panel-collapse-border-top: 1px solid
+    var(--ti-common-color-line-dividing);
+  --ti-accordion-panel-body-padding: var(--ti-common-space-3x)
+    var(--ti-common-space-4x);
+  --ti-accordion-panel-title-color: var(--ti-common-color-text-primary);
+  --ti-accordion-panel-title-color-disabled: var(
+    --ti-common-color-text-disabled
+  );
+  --ti-accordion-panel-body-bg: var(--ti-common-color-bg-white-normal);
+  --ti-accordion-panel-body-shadow: none;
+  --ti-accordion-panel-fs: var(--ti-common-font-size-base);
+  --ti-accordion-panel-title-margin-left: var(--ti-common-space-4x);
+  --ti-accordion-panel-icon-color: var(--ti-common-color-icon-normal);
+  --ti-accordion-panel-icon-color-disabled: var(
+    --ti-common-color-icon-disabled
+  );
+  --ti-accordion-panel-icon-fs: var(--ti-common-font-size-2);
+  /* ---------------accordion控件样式设置----END-----------------------------------------------------*/
+  /* ---------------autoComplete样式设置----START-----------------------------------------------------*/
+  --ti-autocomplete-highlight-text-color: var(--ti-base-color-common);
+  --ti-autocomplete-highlight-font-weight: bold;
+  /* ---------------autoComplete样式设置----END-----------------------------------------------------*/
+  /* ---------------alert样式设置----START-----------------------------------------------------*/
+  --ti-alert-default-width: 400px;
+  --ti-alert-success-bg-color: var(--ti-common-color-success-bg);
+  --ti-alert-success-border-color: var(--ti-common-color-success-border);
+  --ti-alert-success-close-color: var(--ti-common-color-success);
+  --ti-alert-success-icon-color: var(--ti-common-color-success);
+  --ti-alert-success-box-shadow: var(--ti-common-shadow-success);
+  --ti-alert-error-bg-color: var(--ti-common-color-error-bg);
+  --ti-alert-error-border-color: var(--ti-common-color-error-border-secondary);
+  --ti-alert-error-close-color: var(--ti-common-color-error);
+  --ti-alert-error-icon-color: var(--ti-common-color-error);
+  --ti-alert-error-box-shadow: var(--ti-common-shadow-error);
+  --ti-alert-warn-bg-color: var(--ti-common-color-warn-bg);
+  --ti-alert-warn-border-color: var(--ti-common-color-warn-border);
+  --ti-alert-warn-close-color: var(--ti-common-color-warn);
+  --ti-alert-warn-icon-color: var(--ti-common-color-warn);
+  --ti-alert-warn-box-shadow: var(--ti-common-shadow-warn);
+  --ti-alert-prompt-bg-color: var(--ti-common-color-prompt-bg);
+  --ti-alert-prompt-border-color: var(--ti-common-color-prompt-border);
+  --ti-alert-prompt-close-color: var(--ti-common-color-prompt);
+  --ti-alert-prompt-icon-color: var(--ti-common-color-prompt);
+  --ti-alert-prompt-box-shadow: var(--ti-common-shadow-prompt);
+  --ti-alert-dark-bg-color: var(--ti-common-color-bg-dark-deep);
+  --ti-alert-dark-box-shadow: var(--ti-common-shadow-3-down);
+  --ti-alert-simple-border-color: var(--ti-common-color-line-normal);
+  --ti-alert-simple-close-color: var(--ti-common-color-icon-normal);
+  --ti-alert-label-color: var(--ti-common-color-text-secondary);
+  --ti-alert-type-icon-margin-right: var(--ti-common-space-2x);
+  --ti-alert-type-icon-width: var(--ti-common-font-size-2);
+  --ti-alert-close-icon-width: 12px;
+  --ti-alert-box-radius: var(--ti-common-border-radius-normal);
+  --ti-alert-close-icon-margin-left: var(--ti-alert-padding-horizon);
+  /* ---------------alert样式设置----END-----------------------------------------------------*/
+  /* ---------------slider样式设置----START-----------------------------------------------------*/
+  --ti-slider-track-bg-color: var(--ti-common-color-bg-light-normal);
+  --ti-slider-selection-bg-color: var(--ti-common-color-bg-emphasize);
+  --ti-slider-tick-color: var(--ti-common-color-text-secondary);
+  --ti-slider-tick-selection-color: var(--ti-common-color-bg-white-normal);
+  --ti-slider-tip-bg-color: var(--ti-common-color-bg-dark-deep);
+  --ti-slider-tip-color: var(--ti-common-color-text-gray);
+  --ti-slider-tip-bs: var(--ti-common-shadow-3-down);
+  --ti-slider-text-color: var(--ti-common-color-text-secondary);
+  --ti-slider-pointer-color-hover: var(--ti-common-color-bg-hover);
+  --ti-slider-pointer-color: var(--ti-slider-selection-bg-color);
+  --ti-slider-pointer-bs: var(--ti-common-shadow-1-down);
+  --ti-slider-pointer-bg-color: linear-gradient(
+    153deg,
+    var(--ti-common-color-bg-white-normal),
+    var(--ti-common-color-bg-light-normal) 99%
+  );
+  --ti-slider-pointer-border-disable: var(--ti-common-color-line-disabled);
+  --ti-slider-pointer-bg-disable: var(--ti-common-color-bg-disabled);
+  --ti-slider-color-disabled: var(--ti-common-color-text-disabled);
+  /* ---------------slider样式设置----END-----------------------------------------------------*/
+  /* ---------------UnifyValid样式设置----START-----------------------------------------------------*/
+  --ti-valid-pwd-level-bar-color: #8a8e99;
+  --ti-valid-pwd-level-bar-color-weak-active: var(--ti-common-color-error);
+  --ti-valid-pwd-level-bar-color-medium-active: var(--ti-common-color-warn);
+  --ti-valid-pwd-level-bar-color-strong-active: var(--ti-common-color-success);
+  /* ---------------UnifyValid样式设置----END-----------------------------------------------------*/
+  --ti-tree-node-bg-color-checked: var(--ti-common-color-bg-light-normal);
+  --ti-tree-node-checked-icon-color: var(--ti-common-color-bg-emphasize);
+  --ti-tree-content-box-color-hover: var(--ti-common-color-bg-white-emphasize);
+  --ti-tree-minus-square-color: var(--ti-common-color-icon-active);
+  --ti-tree-plus-square-color: var(--ti-common-color-icon-normal);
+  --ti-tree-icon-color-active: var(--ti-common-color-icon-active);
+  --ti-tree-icon-bg-color-active: var(--ti-common-color-bg-white-normal);
+  --ti-tree-item-height: 30px;
+  --ti-tree-item-lineheight: 30px;
+  --ti-tree-content-box-left-space: var(--ti-common-space-2x);
+  --ti-tree-square-icon-font-size: 16px;
+  --ti-tree-icon-right-space: var(--ti-common-space-2x);
+  --ti-tree-item-guide-line-color: var(--ti-common-color-line-dividing);
+  /* ---------------headFilter组件----START----------------------------------------------*/
+  --ti-head-filter-filtered-color: var(--ti-common-color-icon-active);
+  /* ---------------headFilter组件----END----------------------------------------------*/
+  /*------------------------------------------------------------------动效相关变量-----------------------------------------------------------------------*/
+  --ti-timing-function-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ti-timing-function-deceleration: cubic-bezier(0, 0, 0.2, 1);
+  --ti-timing-function-acceleration: cubic-bezier(0.4, 0, 1, 1);
+  --ti-timing-function-sharp: cubic-bezier(0.4, 0, 0.6, 1);
+  --ti-timing-function-smoothing: cubic-bezier(0.2, 0, 0.4, 1);
+  --ti-timing-function-linear: cubic-bezier(0, 0, 1, 1);
+  --ti-timing-function-default: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ti-timing-function-ease-in: cubic-bezier(0.42, 0, 1, 1);
+  --ti-timing-function-ease-out: cubic-bezier(0, 0, 0.58, 1);
+}

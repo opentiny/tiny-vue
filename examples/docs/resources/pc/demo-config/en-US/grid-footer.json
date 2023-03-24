@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Table tail statistics",
+    "content": "For details, see the following example.",
+    "link": "grid/footer/footer-summation",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "footer-footer-summation"
+  },
+  {
+    "title": "Table tail statistics (empty data)",
+    "content": "For details, see the following example.",
+    "link": "grid/footer/footer-summation-empty",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "footer-footer-summation-empty"
+  },
+  {
+    "title": "Table tail class name",
+    "content": "<p>\nAdd a class name to the cell at the end of the table through the table column attribute <code>footer-class-name</code> or the function Function({$rowIndex, column, columnIndex, $columnIndex}) . \n</p>\n",
+    "link": "grid/footer/footer-class-name",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "footer-footer-class-name"
+  },
+  {
+    "title": "Merge Rows or Columns at the Table Foot",
+    "content": "<p>Use <code>footer-method</code> and <code>footer-span-method</code> to set the total row or column logic of the table tail. <code>show-footer</code></p>\n must be configured",
+    "link": "grid/footer/footer-row-or-column-span",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "footer-footer-row-or-column-span"
+  }
+]

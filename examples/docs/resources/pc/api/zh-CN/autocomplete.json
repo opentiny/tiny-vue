@@ -1,0 +1,176 @@
+{
+  "attrs": [
+    {
+      "name": "clearable",
+      "sample": "clearable",
+      "type": "Boolean",
+      "desc": "是否可清空",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "placeholder",
+      "sample": "hide-loading1",
+      "type": "String",
+      "desc": "输入框占位文本",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled1",
+      "type": "Boolean",
+      "desc": "禁用",
+      "defaultValue": ""
+    },
+    {
+      "name": "value-key",
+      "sample": "value-key",
+      "type": "String",
+      "desc": "输入建议对象中用于显示的键名",
+      "defaultValue": ""
+    },
+    {
+      "name": "value",
+      "sample": "clearable",
+      "type": "String",
+      "desc": "必填值，输入绑定值",
+      "defaultValue": ""
+    },
+    {
+      "name": "debounce",
+      "sample": "debounce",
+      "type": "Number",
+      "desc": "获取输入建议的去抖延时",
+      "defaultValue": "该属性的默认值为 300"
+    },
+    {
+      "name": "placement",
+      "sample": "placement",
+      "type": "String",
+      "desc": "菜单弹出位置;该属性的可选值为 top / top-start / top-end / bottom / bottom-start / bottom-end",
+      "defaultValue": "该属性的默认值为 bottom-start"
+    },
+    {
+      "name": "popper-class",
+      "sample": "popper-class",
+      "type": "String",
+      "desc": "Autocomplete 下拉列表的类名",
+      "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "size",
+      "type": "String",
+      "desc": "设置组件大小，可设置为：medium，small，mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "trigger-on-focus",
+      "sample": "no-trigger-on-focus",
+      "type": "Boolean",
+      "desc": "是否在输入框 focus 时显示建议列表",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "name",
+      "sample": "clearable",
+      "type": "String",
+      "desc": "原生属性",
+      "defaultValue": ""
+    },
+    {
+      "name": "select-when-unmatched",
+      "sample": "select-event",
+      "type": "Boolean",
+      "desc": "在输入没有任何匹配建议的情况下，按下回车是否触发 select 事件",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "label",
+      "sample": "",
+      "type": "String",
+      "desc": "输入框关联的label文字",
+      "defaultValue": ""
+    },
+    {
+      "name": "prefix-icon",
+      "sample": "custom-icon",
+      "type": "String",
+      "desc": "输入框头部图标",
+      "defaultValue": ""
+    },
+    {
+      "name": "suffix-icon",
+      "sample": "custom-icon",
+      "type": "String",
+      "desc": "输入框尾部图标",
+      "defaultValue": ""
+    },
+    {
+      "name": "hide-loading",
+      "sample": "hide-loading",
+      "type": "Boolean",
+      "desc": "是否隐藏远程加载时的加载图标",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "popper-append-to-body",
+      "sample": "popper-class",
+      "type": "Boolean",
+      "desc": "是否将下拉列表插入至 body 元素。在下拉列表的定位出现问题时，可将该属性设置为 false",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "fetch-suggestions",
+      "sample": "remote-search",
+      "type": "Function(queryString, callback)",
+      "desc": "返回输入建议的方法，仅当你的输入建议数据 resolve 时，通过调用 callback(data:[]) 来返回它",
+      "defaultValue": ""
+    },
+    {
+      "name": "highlight-first-item",
+      "sample": "highlight-first-item",
+      "type": "Boolean",
+      "desc": "是否默认突出显示远程搜索建议中的第一项",
+      "defaultValue": "该属性的默认值为 false"
+    }
+  ],
+  "slots": [
+    {
+      "name": "prefix",
+      "sample": "custom-icon",
+      "type": "",
+      "desc": "输入框头部内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "suffix",
+      "sample": "custom-icon",
+      "type": "",
+      "desc": "输入框尾部内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "prepend",
+      "sample": "append-prepend",
+      "type": "",
+      "desc": "输入框前置内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "append",
+      "sample": "append-prepend",
+      "type": "",
+      "desc": "输入框后置内容",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "select",
+      "sample": "select-event",
+      "type": "",
+      "desc": "点击选中建议项时触发。回调参数为：选中建议项",
+      "defaultValue": ""
+    }
+  ]
+}

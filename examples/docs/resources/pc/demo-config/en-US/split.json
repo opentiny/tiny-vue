@@ -1,0 +1,90 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "split/basic-usage",
+    "component": "Split Panel",
+    "findIntroStr": "This command is used to divide an area into two parts whose width or height can be adjusted by dragging.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Panel Threshold",
+    "content": "For details, see the following example.",
+    "link": "split/split-threshold",
+    "component": "Split Panel",
+    "findIntroStr": "This command is used to divide an area into two parts whose width or height can be adjusted by dragging.",
+    "demoId": "split-threshold"
+  },
+  {
+    "title": "Split Mode",
+    "content": "<p>Split type of the same mode. The options are <code>horizontal</code> (horizontal) and <code>vertical</code> (vertical). The default value is <code>horizontal</code>. </p>\n",
+    "link": "split/split-mode",
+    "component": "Split Panel",
+    "findIntroStr": "This command is used to divide an area into two parts whose width or height can be adjusted by dragging.",
+    "demoId": "split-mode"
+  },
+  {
+    "title": "Drag not allowed",
+    "content": "For details, see the following example.",
+    "link": "split/basic-usage1",
+    "component": "Split Panel",
+    "findIntroStr": "This command is used to divide an area into two parts whose width or height can be adjusted by dragging.",
+    "demoId": "basic-usage1"
+  },
+  {
+    "title": "movestart event",
+    "content": "<p>Start moving event</p>\n",
+    "link": "split/movestart-event",
+    "component": "Split Panel",
+    "findIntroStr": "This command is used to divide an area into two parts whose width or height can be adjusted by dragging.",
+    "demoId": "movestart-event"
+  },
+  {
+    "title": "Moving Event",
+    "content": "<p>Moving Event</p>\n",
+    "link": "split/moving-event",
+    "component": "Split Panel",
+    "findIntroStr": "This command is used to divide an area into two parts whose width or height can be adjusted by dragging.",
+    "demoId": "moving-event"
+  },
+  {
+    "title": "moveend event",
+    "content": "<p>Move completion event</p>\n",
+    "link": "split/moveend-event",
+    "component": "Split Panel",
+    "findIntroStr": "This command is used to divide an area into two parts whose width or height can be adjusted by dragging.",
+    "demoId": "moveend-event"
+  },
+  {
+    "title": "Slots on the left and right panels",
+    "content": "For details, see the following example.",
+    "link": "split/left-right-slot",
+    "component": "Split Panel",
+    "findIntroStr": "This command is used to divide an area into two parts whose width or height can be adjusted by dragging.",
+    "demoId": "left-right-slot"
+  },
+  {
+    "title": "Slots on the upper and lower panels",
+    "content": "For details, see the following example.",
+    "link": "split/top-bottom-slot",
+    "component": "Split Panel",
+    "findIntroStr": "This command is used to divide an area into two parts whose width or height can be adjusted by dragging.",
+    "demoId": "top-bottom-slot"
+  },
+  {
+    "title": "Drag Slot",
+    "content": "For details, see the following example.",
+    "link": "split/trigger-slot",
+    "component": "Split Panel",
+    "findIntroStr": "This command is used to divide an area into two parts whose width or height can be adjusted by dragging.",
+    "demoId": "trigger-slot"
+  },
+  {
+    "title": "Nested",
+    "content": "For details, see the following example.",
+    "link": "split/nested-use",
+    "component": "Split Panel",
+    "findIntroStr": "This command is used to divide an area into two parts whose width or height can be adjusted by dragging.",
+    "demoId": "nested-use"
+  }
+]

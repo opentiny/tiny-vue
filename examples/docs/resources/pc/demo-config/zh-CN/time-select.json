@@ -1,0 +1,130 @@
+[
+  {
+    "title": "基本用法",
+    "content": "详细用法参考如下示例",
+    "link": "time-select/basic-usage",
+    "component": " TimeSelect 时间选择器",
+    "findIntroStr": "时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "固定时间范围",
+    "content": "详细用法参考如下示例",
+    "link": "time-select/range-placeholder",
+    "component": " TimeSelect 时间选择器",
+    "findIntroStr": "时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。",
+    "demoId": "range-placeholder"
+  },
+  {
+    "title": "选择器打开时默认时间设置",
+    "content": "<p>通过 <code>default-value</code> 设置选择器打开显示默认时间</p>\n",
+    "link": "time-select/default-value",
+    "component": " TimeSelect 时间选择器",
+    "findIntroStr": "时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。",
+    "demoId": "default-value"
+  },
+  {
+    "title": "指定时间点",
+    "content": "<p>picker-options 设置时间点</p>\n",
+    "link": "time-select/picker-options",
+    "component": " TimeSelect 时间选择器",
+    "findIntroStr": "时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。",
+    "demoId": "picker-options"
+  },
+  {
+    "title": "后置图标",
+    "content": "<p>通过 <code>suffix-icon</code> 属性设置日期输入框后置图标，从 <code>@opentiny/vue-icon</code> 中导入一个图标并进行初始化后传给 <code>suffix-icon</code>。</p>\n",
+    "link": "time-select/suffix-icon",
+    "component": " TimeSelect 时间选择器",
+    "findIntroStr": "时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。",
+    "demoId": "suffix-icon"
+  },
+  {
+    "title": "自定义清空图标",
+    "content": "<p>通过 <code>clear-icon</code> 自定义清空图标</p>\n",
+    "link": "time-select/clear-icon",
+    "component": " TimeSelect 时间选择器",
+    "findIntroStr": "时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。",
+    "demoId": "clear-icon"
+  },
+  {
+    "title": "显示清除按钮",
+    "content": "详细用法参考如下示例",
+    "link": "time-select/clear-icon",
+    "component": " TimeSelect 时间选择器",
+    "findIntroStr": "时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。",
+    "demoId": "clearable"
+  },
+  {
+    "title": "原生属性",
+    "content": "详细用法参考如下示例",
+    "link": "time-select/clear-icon",
+    "component": " TimeSelect 时间选择器",
+    "findIntroStr": "时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。",
+    "demoId": "name"
+  },
+  {
+    "title": "事件",
+    "content": "<p><code>focus</code> input 框聚焦时触发，<code>blur</code> input 框失焦时触发</p>\n",
+    "link": "time-select/event-blur",
+    "component": " TimeSelect 时间选择器",
+    "findIntroStr": "时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。",
+    "demoId": "event-blur"
+  },
+  {
+    "title": "文本框不可编辑",
+    "content": "<p>日期输入框默认可以输入日期，设置 <code>editable</code> 为 false 后，将不能输入。</p>\n",
+    "link": "time-select/editable",
+    "component": " TimeSelect 时间选择器",
+    "findIntroStr": "时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。",
+    "demoId": "editable"
+  },
+  {
+    "title": "禁用",
+    "content": "详细用法参考如下示例",
+    "link": "time-select/disabled",
+    "component": " TimeSelect 时间选择器",
+    "findIntroStr": "时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。",
+    "demoId": "disabled"
+  },
+  {
+    "title": "自定义类名",
+    "content": "详细用法参考如下示例",
+    "link": "time-select/popper-class",
+    "component": " TimeSelect 时间选择器",
+    "findIntroStr": "时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。",
+    "demoId": "popper-class"
+  },
+  {
+    "title": "mini 尺寸",
+    "content": "详细用法参考如下示例",
+    "link": "time-select/size-mini",
+    "component": " TimeSelect 时间选择器",
+    "findIntroStr": "时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。",
+    "demoId": "size-mini"
+  },
+  {
+    "title": "small 尺寸",
+    "content": "详细用法参考如下示例",
+    "link": "time-select/size-small",
+    "component": " TimeSelect 时间选择器",
+    "findIntroStr": "时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。",
+    "demoId": "size-small"
+  },
+  {
+    "title": "medium 尺寸",
+    "content": "详细用法参考如下示例",
+    "link": "time-select/size-medium",
+    "component": " TimeSelect 时间选择器",
+    "findIntroStr": "时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。",
+    "demoId": "size-medium"
+  },
+  {
+    "title": "手动获取焦点",
+    "content": "详细用法参考如下示例",
+    "link": "time-select/focus",
+    "component": " TimeSelect 时间选择器",
+    "findIntroStr": "时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。",
+    "demoId": "focus"
+  }
+]

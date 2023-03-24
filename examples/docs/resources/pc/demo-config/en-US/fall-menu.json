@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "fall-menu/data-resource",
+    "component": "FallMenu Waterfall Menu",
+    "findIntroStr": "The FallMenu waterfall menu is displayed horizontally and supports three-level menu configuration. It is applicable to version customization and is displayed in pop-up mode.",
+    "demoId": "data-resource"
+  },
+  {
+    "title": "Data Source",
+    "content": "<p>Set the data of the waterfall menu through <code>data</code>. </p>\n",
+    "link": "fall-menu/data-resource",
+    "component": "FallMenu Waterfall Menu",
+    "findIntroStr": "The FallMenu waterfall menu is displayed horizontally and supports three-level menu configuration. It is applicable to version customization and is displayed in pop-up mode.",
+    "demoId": "data-resource1"
+  },
+  {
+    "title": "Customizing Left/Right Icons",
+    "content": "<p>Use the <code>left</code> slot to set the left switch icon to IconLeft, and use the <code>right</code> slot to set the right switch icon to IconRight. </p>\n",
+    "link": "fall-menu/custom-slider-icon",
+    "component": "FallMenu Waterfall Menu",
+    "findIntroStr": "The FallMenu waterfall menu is displayed horizontally and supports three-level menu configuration. It is applicable to version customization and is displayed in pop-up mode.",
+    "demoId": "custom-slider-icon"
+  },
+  {
+    "title": "Custom Content",
+    "content": "<p>The level-1 menu content is customized through the <code>level1</code> slot, the level-2 menu content is customized through the <code>level2</code> slot, and the level-3 menu content is customized through the <code>level3</code> slot. </p>\n",
+    "link": "fall-menu/custom-menuitem",
+    "component": "FallMenu Waterfall Menu",
+    "findIntroStr": "The FallMenu waterfall menu is displayed horizontally and supports three-level menu configuration. It is applicable to version customization and is displayed in pop-up mode.",
+    "demoId": "custom-menuitem"
+  }
+]

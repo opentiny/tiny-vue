@@ -1,0 +1,154 @@
+[
+  {
+    "title": "Disabled",
+    "content": "<p>The <code>disabled</code> attribute can be set to the disabled state. </p>\n",
+    "link": "autocomplete/disabled",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "disabled1"
+  },
+  {
+    "title": "Native Attribute",
+    "content": "For details, see the following example.",
+    "link": "autocomplete/disabled",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "disabled"
+  },
+  {
+    "title": "Text box size",
+    "content": "<p>The value can be medium, small, or mini</p>\n",
+    "link": "autocomplete/size",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "size"
+  },
+  {
+    "title": "Can be cleared",
+    "content": "<p>After the <code>clearable</code> attribute is configured, the clear icon is displayed after you enter content. You can click to clear the content in the text box. </p>\n",
+    "link": "autocomplete/clearable",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "clearable"
+  },
+  {
+    "title": "Pre-content in the text box",
+    "content": "<p>Configure the <code>prepend</code> attribute to set the front content of the text box. </p>\n",
+    "link": "autocomplete/append-prepend",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "append-prepend"
+  },
+  {
+    "title": "Content after the text box",
+    "content": "<p>Configure the <code>append</code> attribute to set the content behind the text box. </p>\n",
+    "link": "autocomplete/append-prepend",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "append-append"
+  },
+  {
+    "title": "Custom Icon",
+    "content": "<p>Configure the <code>prefix-icon</code> and <code>suffix-icon</code> attributes to customize the icons before and after the text box. </p>\n",
+    "link": "autocomplete/custom-icon",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "custom-icon"
+  },
+  {
+    "title": "Customize icons by slot",
+    "content": "<p>You can also customize the front and rear icons of the text box through the <code>prefix</code> and <code>suffix</code> slots. </p>\n",
+    "link": "autocomplete/prefix-suffix-slot",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "prefix-suffix-slot"
+  },
+  {
+    "title": "Debounce Delay",
+    "content": "<p>You can set the dejitter delay for obtaining input suggestions through the <code>debounce</code> attribute. The default value is 300 ms. </p>\n",
+    "link": "autocomplete/debounce",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "debounce"
+  },
+  {
+    "title": "Hide the loading icon",
+    "content": "<p>Set <code>hide-loading</code> to true to hide the loading icon. </p>\n",
+    "link": "autocomplete/hide-loading",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "hide-loading"
+  },
+  {
+    "title": "Placeholder text in the text box",
+    "content": "<p>Use the <code>placeholder</code> attribute to set the placeholder text in the text box. </p>\n",
+    "link": "autocomplete/hide-loading",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "hide-loading1"
+  },
+  {
+    "title": "Custom Template",
+    "content": "<p>You can customize the input suggestion template through the scope slot. </p>\n",
+    "link": "autocomplete/cust-template",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "cust-template"
+  },
+  {
+    "title": "Remote Search",
+    "content": "<p>Set the remote search through the <code>fetch-suggestions</code> attribute. </p>\n",
+    "link": "autocomplete/remote-search",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "remote-search"
+  },
+  {
+    "title": "Specify the key name to be displayed.",
+    "content": "<p>After you enter content, the value corresponding to the value key name of the input object is displayed in the suggestion list by default. If the object does not have a value key name, you can specify the key name by using the <code>value-key</code> attribute. </p>\n",
+    "link": "autocomplete/value-key",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "value-key"
+  },
+  {
+    "title": "Custom List Style",
+    "content": "<p><code>popper-class</code> property specifies a style class name to customize the style of the suggestion list. The \n<code>popper-append-to-body</code> property sets whether the drop-down list is inserted into the body element. You can set this property to false when a problem occurs in locating the drop-down list. </p>\n",
+    "link": "autocomplete/popper-class",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "popper-class"
+  },
+  {
+    "title": "Set menu pop-up position",
+    "content": "<p><code>placement</code> property can be used to set the menu pop-up position. The default value is <code>bottom-start</code>. The options are top, top-start, top-end, bottom, bottom-start, and bottom-end. </p>\n",
+    "link": "autocomplete/placement",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "placement"
+  },
+  {
+    "title": "Highlight the first item",
+    "content": "<p>Set the <code>highlight-first-item</code> attribute to true to highlight the first item in the remote search suggestion. </p>\n",
+    "link": "autocomplete/highlight-first-item",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "highlight-first-item"
+  },
+  {
+    "title": "Focus does not display the suggestion list",
+    "content": "<p> By default, all suggestions are displayed when the input box is focused. However, if <code>trigger-on-focus</code> is set to false, the list of matched suggestions is displayed only after the input suggestions are matched. </p>\n",
+    "link": "autocomplete/no-trigger-on-focus",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "no-trigger-on-focus"
+  },
+  {
+    "title": "Event",
+    "content": "<p>Autocomplete provides the <code>select</code> event, which is triggered when a suggestion item is selected. The callback parameter is the suggestion item selected. \n Use <code>select-when-unmatched</code> to set whether to trigger the select event when you press Enter when no matching value is entered. The default value is false. </p>\n",
+    "link": "autocomplete/select-event",
+    "component": "Autocomplete",
+    "findIntroStr": "Provide input suggestions based on the input content.",
+    "demoId": "select-event"
+  }
+]

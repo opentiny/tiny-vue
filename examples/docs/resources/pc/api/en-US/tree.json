@@ -1,0 +1,444 @@
+{
+  "attrs": [
+    {
+      "name": "data",
+      "sample": "data-source",
+      "type": "Array",
+      "desc": "Set the data source. Static and dynamic data sources can be configured.; Display Data",
+      "defaultValue": ""
+    },
+    {
+      "name": "expand-icon",
+      "sample": "set-tree-icon",
+      "type": "Object",
+      "desc": "Indicates the expanded icon",
+      "defaultValue": ""
+    },
+    {
+      "name": "icon-trigger-click-node",
+      "sample": "check-on-click-node",
+      "type": "Boolean",
+      "desc": "Whether to trigger the node-click event when an icon is clicked to expand a node.",
+      "defaultValue": "The default value of this attribute is true"
+    },
+    {
+      "name": "show-contextmenu",
+      "sample": "contextmenu",
+      "type": "Boolean",
+      "desc": "Whether to display the custom menu when right-clicking a node. The default value is false.",
+      "defaultValue": ""
+    },
+    {
+      "name": "shrink-icon",
+      "sample": "set-tree-icon",
+      "type": "Object",
+      "desc": "Icon indicating contraction",
+      "defaultValue": ""
+    },
+    {
+      "name": "empty-text",
+      "sample": "custom-empty-text",
+      "type": "String",
+      "desc": "Text displayed when the content is empty.",
+      "defaultValue": ""
+    },
+    {
+      "name": "render-after-expand",
+      "sample": "render-after-expand",
+      "type": "Boolean",
+      "desc": "Whether to render a tree node after it is expanded for the first time.",
+      "defaultValue": "The default value of this property is true"
+    },
+    {
+      "name": "node-key",
+      "sample": "node-key",
+      "type": "String",
+      "desc": "The node uniquely identifies the attribute name.; Each tree node is used as a unique identifier attribute, and the entire tree should be unique",
+      "defaultValue": ""
+    },
+    {
+      "name": "check-strictly",
+      "sample": "check-strictly",
+      "type": "Boolean",
+      "desc": "Whether to strictly follow the method of not associating parent and child when the check box is displayed. The default value is false.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "default-expand-all",
+      "sample": "default-expand-all",
+      "type": "Boolean",
+      "desc": "Whether to expand all nodes by default",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "expand-on-click-node",
+      "sample": "expand-on-click-node",
+      "type": "Boolean",
+      "desc": "Click the node to expand the function of the node. When set to true, the node can be expanded or closed when the node content is clicked. If this parameter is set to false, the node can be expanded or expanded only after the expansion/fold icon is clicked in front of the node name.; Indicates whether to expand or shrink a node when a node is clicked. The default value is true. If the value is false, the node is expanded or collapsed only when an arrow icon is displayed.",
+      "defaultValue": "The default value of this property is true"
+    },
+    {
+      "name": "check-on-click-node",
+      "sample": "check-on-click-node",
+      "type": "Boolean",
+      "desc": "Whether to select a node when you click it. The default value is false, indicating that the node is selected only when you click the check box.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "auto-expand-parent",
+      "sample": "auto-expand-parent",
+      "type": "Boolean",
+      "desc": "Whether to automatically expand the parent node when expanding the child node.",
+      "defaultValue": "The default value of this attribute is true"
+    },
+    {
+      "name": "default-checked-keys",
+      "sample": "default-checked-keys",
+      "type": "Array",
+      "desc": "Selected by default. The value is the value corresponding to the key in the data source dataset. After the component is generated, the corresponding node in defaultValue is selected by default. ;Key array of selected nodes by default",
+      "defaultValue": ""
+    },
+    {
+      "name": "default-expanded-keys",
+      "sample": "default-expanded-keys",
+      "type": "Array",
+      "desc": "Key array of the expanded node by default",
+      "defaultValue": ""
+    },
+    {
+      "name": "render-content",
+      "sample": "render-content",
+      "type": "Function(h, {node, data, store}",
+      "desc": "Render Function of the content area of the tree node",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-checkbox",
+      "sample": "show-checkbox",
+      "type": "Boolean",
+      "desc": "Whether a node can be selected.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "draggable",
+      "sample": "node-draggable",
+      "type": "Boolean",
+      "desc": "Whether to enable the node dragging function. The node position can be dragged at will to change the parent-child structure of the original node. ;Whether to enable the function of dragging nodes",
+      "defaultValue": "The default value of this property is false"
+    },
+    {
+      "name": "allow-drag",
+      "sample": "allow-drag",
+      "type": "Function(node)",
+      "desc": "Dedicated whether a node can be dragged.",
+      "defaultValue": ""
+    },
+    {
+      "name": "allow-drop",
+      "sample": "allow-drop",
+      "type": "Function(draggingNode, dropNode, type)",
+      "desc": "Dedicated whether the target node can be placed during dragging. The type parameter has three situations: 'prev',' inner', and'next', which indicate that it is placed before the target node, inserted into the target node, and placed after the target node respectively",
+      "defaultValue": ""
+    },
+    {
+      "name": "props",
+      "sample": "node-props-config",
+      "type": "Object",
+      "desc": "Configuration options. For details, see the following table.",
+      "defaultValue": "The default value of this attribute is {children: 'children', label: 'label', disabled: 'disabled'}"
+    },
+    {
+      "name": "highlight-current",
+      "sample": "highlight-current",
+      "type": "Boolean",
+      "desc": "Whether to highlight the selected node",
+      "defaultValue": "The default value of this property is false"
+    },
+    {
+      "name": "lazy",
+      "sample": "lazy-load-node",
+      "type": "Boolean",
+      "desc": "Asynchronous loading mode. Data is requested when a node is expanded. Service support is required.; Whether to load subnodes in lazy mode. This parameter must be used together with the load method.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "load",
+      "sample": "lazy-load-node",
+      "type": "Function(node, resolve)",
+      "desc": "Method for loading subtree data. This parameter is valid only when the lazy attribute is set to true.",
+      "defaultValue": ""
+    },
+    {
+      "name": "filter-node-method",
+      "sample": "filter-node",
+      "type": "Function(value, data, node)",
+      "desc": "Field value of the node to be matched during input filtering. This parameter is invalid when showFilter is set to false.; method to filter tree nodes. If true is returned, the node can be displayed. If false is returned, the node can be hidden",
+      "defaultValue": ""
+    },
+    {
+      "name": "accordion",
+      "sample": "accordion-mode",
+      "type": "Boolean",
+      "desc": "Whether the path is a single path. If this parameter is set to true, nodes at all levels are mutually exclusive. If this parameter is set to a number, nodes not greater than this parameter are mutually exclusive. ;Do you want to open only one node of the same level tree at a time to expand",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "indent",
+      "sample": "indent",
+      "type": "Number",
+      "desc": "horizontal indentation between adjacent nodes, in pixels.",
+      "defaultValue": "The default value of this property is 18"
+    },
+    {
+      "name": "icon",
+      "sample": "custom-node-icon",
+      "type": "Object",
+      "desc": "User-defined icon. css: String (general style name of an icon), child: String (leaf node icon), parent: String (Parent node icon, open, close, and close), expand: String (the expansion node icon); collapse: String (the collapse node icon); Custom tree node icon",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "slot-deffault",
+      "type": "",
+      "desc": "Content of a user-defined tree node. The parameter is {node, data}.",
+      "defaultValue": ""
+    },
+    {
+      "name": "empty",
+      "sample": "custom-empty-text",
+      "type": "",
+      "desc": "Customize empty data text",
+      "defaultValue": ""
+    }
+  ],
+  "methods": [
+    {
+      "name": "filter",
+      "sample": "filter-node",
+      "type": "(value) => void",
+      "desc": "Filter tree nodes.",
+      "defaultValue": ""
+    },
+    {
+      "name": "updateKeyChildren",
+      "sample": "show-checkbox",
+      "type": "(key, data) => void",
+      "desc": "Use keys to set node subelements. The node-key attribute must be set in this method.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getCheckedNodes",
+      "sample": "check-on-click-node",
+      "type": "(leafOnly, includeHalfChecked) => result",
+      "desc": "Obtains the data of the selected identifier.; If a node can be selected (that is, show-checkbox is set to true), the array composed of the currently selected nodes is returned. This parameter is valid only when multiple nodes are selected.",
+      "defaultValue": ""
+    },
+    {
+      "name": "setCheckedNodes",
+      "sample": "show-checkbox",
+      "type": "(keys, leafOnly) => void",
+      "desc": "Set the selected node. You must set the node-key attribute in this method.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getCheckedKeys",
+      "sample": "check-on-click-node",
+      "type": "(leafOnly) => result",
+      "desc": "If a node can be selected (that is, show-checkbox is set to true), the array consisting of the keys of the selected node is returned. This parameter is valid only when multiple nodes are selected.",
+      "defaultValue": ""
+    },
+    {
+      "name": "setCheckedKeys",
+      "sample": "show-checkbox",
+      "type": "(keys, leafOnly) => void",
+      "desc": "Use keys to set the selected node. You must set the node-key attribute.",
+      "defaultValue": ""
+    },
+    {
+      "name": "setChecked",
+      "sample": "show-checkbox",
+      "type": "(data, checked, deep) => void",
+      "desc": "Use key/data to set the selected status of a node. You must set the node-key attribute in this method. The third parameter can recursively set the check status of all subnodes",
+      "defaultValue": ""
+    },
+    {
+      "name": "closeMenu",
+      "sample": "contextmenu",
+      "type": "() => void",
+      "desc": "Close the shortcut menu.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getHalfCheckedNodes",
+      "sample": "check-on-click-node",
+      "type": "() => result",
+      "desc": "If a node can be selected (that is, show-checkbox is set to true), the array composed of half-selected nodes is returned. This parameter takes effect only when multiple nodes are selected.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getHalfCheckedKeys",
+      "sample": "check-on-click-node",
+      "type": "() => result",
+      "desc": "If a node can be selected (that is, show-checkbox is set to true), the array consisting of the keys of the currently half-selected node is returned. This parameter is valid only when multiple nodes are selected.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getCurrentKey",
+      "sample": "node-key",
+      "type": "() => result",
+      "desc": "Obtains the key of the currently selected node. This method must be used to set the node-key attribute. If no node is selected, the system returns. This method takes effect only when one node is selected.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getCurrentNode",
+      "sample": "node-key",
+      "type": "() => result",
+      "desc": "Obtains the selected node. This parameter is valid only in single-choice mode. Obtains the data of the currently selected node. If no node is selected, null is returned",
+      "defaultValue": ""
+    },
+    {
+      "name": "setCurrentKey",
+      "sample": "node-key",
+      "type": "(key) => void",
+      "desc": "Use the key to set the selected status of a node. You must set the node-key attribute when using this method.",
+      "defaultValue": ""
+    },
+    {
+      "name": "setCurrentNode",
+      "sample": "node-key",
+      "type": "(key) => void",
+      "desc": "Use node to set the selected status of a node. You must set the node-key attribute in this method.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getNode",
+      "sample": "show-checkbox",
+      "type": "(data) => result",
+      "desc": "The node in the Tree component is obtained based on data or key.",
+      "defaultValue": ""
+    },
+    {
+      "name": "remove",
+      "sample": "",
+      "type": "(data) => void",
+      "desc": "Delete a node. ;Delete a node from the tree. The node-key attribute must be set in this method",
+      "defaultValue": ""
+    },
+    {
+      "name": "append",
+      "sample": "node-key",
+      "type": "(data, parentNode) => void",
+      "desc": "Add a subnode to a node in the tree.",
+      "defaultValue": ""
+    },
+    {
+      "name": "insertBefore",
+      "sample": "node-key",
+      "type": "(data, refNode) => void",
+      "desc": "Add a node before a tree node.",
+      "defaultValue": ""
+    },
+    {
+      "name": "insertAfter",
+      "sample": "node-key",
+      "type": "(data, refNode) => void",
+      "desc": "Insert a child node under the parent node based on the node data. Add a node  after a node of the Tree",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "node-click",
+      "sample": "check-on-click-node",
+      "type": "Function(data, node, vm)",
+      "desc": "Event after a node is clicked.; Callback when a node is clicked; //Parameter description\n{data: node data, node: node status information (including data), vm: component instance}",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-contextmenu",
+      "sample": "node-contextmenu",
+      "type": "Function(event, data, node, vm)",
+      "desc": "This event is triggered when a node is right-clicked. //Parameter description\n{data: node data, node: node status information (including data), vm: component instance, event: native event}",
+      "defaultValue": ""
+    },
+    {
+      "name": "check-change",
+      "sample": "node-events",
+      "type": "Function(data, node, vm)",
+      "desc": "The callback is performed when the selected node status changes. //Parameter description\n{node: node status (including data), checked: selected status of the currently clicked node, and indeterminate}",
+      "defaultValue": ""
+    },
+    {
+      "name": "check",
+      "sample": "drag-events",
+      "type": "Function(data, currentNode)",
+      "desc": "events after a node is selected. Triggered when the check box is clicked; // Callback parameters:\n{data: Object,// Information about the currently selected node\ncurrentNode:Object// Current selected status of the tree component. Contains four attributes: checkedNodes, checkedKeys, halfCheckedNodes, and halfCheckedKeys} ",
+      "defaultValue": ""
+    },
+    {
+      "name": "current-change",
+      "sample": "drag-events",
+      "type": "Function(data, currentNode)",
+      "desc": "Event triggered when the selected node changes. //Parameter description\n{data: node data, currentNode: node status information (including data)}",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-expand",
+      "sample": "default-expanded-keys",
+      "type": "Function(data, node, vm)",
+      "desc": "Event after a node is expanded.; event triggered when a node is expanded; //Parameter description\n{data: node data, node: node status information (including data, vm: current component instance}",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-collapse",
+      "sample": "default-expanded-keys",
+      "type": "Function(data, node, vm)",
+      "desc": "Event after node shrinking; Event triggered when a node is closed; //Parameter description\n{data: node data, node: node status information (including data), vm: current component instance}",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-start",
+      "sample": "drag-events",
+      "type": "Function(node, event)",
+      "desc": "Event triggered when a node starts to be dragged. Event triggered when a node starts to be dragged. node: drag node; event: native event",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-enter",
+      "sample": "drag-events",
+      "type": "Function(draggingNode, targetNode, dropType, event)",
+      "desc": "Event triggered when a user drags a node to another node. //Parameters\n{draggingNode: drag node, targetNode: target node, dropType: drag type, //Drag node mapping relationship on the target node (before/after/inner/none) \nevent: native event}",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-leave",
+      "sample": "drag-events",
+      "type": "Function(draggingNode, targetNode, dropType, event)",
+      "desc": "Event triggered when a node is dragged away. //Parameters\n{draggingNode: drag node, targetNode: target node, dropType: drag type, //Drag node mapping relationship on the target node (before/after/inner/none) \nevent: native event}",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-over",
+      "sample": "drag-events",
+      "type": "Function(raggingNode, targetNode, dropType, event)",
+      "desc": "Event triggered when a node is dragged (similar to the mouseover event of a browser). //Parameters\n{draggingNode: drag node, targetNode: target node, dropType: drag type, //Drag node mapping relationship on the target node (before/after/inner/none) \nevent: native event}",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-end",
+      "sample": "drag-events",
+      "type": "Function(draggingNode, targetNode, dropType, event)",
+      "desc": "Event triggered when the drag ends (may not be successful). //Parameters\n{draggingNode: drag node, targetNode: target node, dropType: drag type, //Drag node mapping relationship on the target node (before/after/inner/none) \nevent: native event}",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drop",
+      "sample": "node-draggable",
+      "type": "Function(draggingNode, targetNode, dropType, event)",
+      "desc": "Event after a node is dragged. The dragable attribute is valid when true is enabled.; event triggered when the drag is successfully completed; //Parameters\n{draggingNode: drag node, targetNode: target node, dropType: drag type, //Drag node mapping relationship on the target node (before/after/inner/none) \nevent: native event}",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "attrs": [
+    {
+      "name": "closable",
+      "sample": "closable",
+      "type": "Boolean",
+      "desc": "Set whether alarms can be disabled.",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "icon",
+      "sample": "icon",
+      "type": "String , Object",
+      "desc": "Set the alarm icon. By default, the corresponding icon is automatically used based on the value of type.",
+      "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "size",
+      "type": "String",
+      "desc": "Set the warning size to nomal or large. The default value is nomal. ;The value of this attribute can be nomal or large",
+      "defaultValue": "The default value of this attribute is normal."
+    },
+    {
+      "name": "title",
+      "sample": "title",
+      "type": "String",
+      "desc": "Set the warning title. This parameter is valid only when size is set to large. By default, the alarm title is automatically set based on type.",
+      "defaultValue": ""
+    },
+    {
+      "name": "type",
+      "sample": "type",
+      "type": "String",
+      "desc": "Set the alarm type. The value of this attribute can be success / warning / info / error",
+      "defaultValue": "The default value of this attribute is info."
+    },
+    {
+      "name": "description",
+      "sample": "custom-description",
+      "type": "String",
+      "desc": "Set the warning prompt content. The default value is null.",
+      "defaultValue": ""
+    },
+    {
+      "name": "center",
+      "sample": "center",
+      "type": "Boolean",
+      "desc": "Whether the text is centered",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "close-text",
+      "sample": "close-text",
+      "type": "String",
+      "desc": "Customized text of the close button",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-icon",
+      "sample": "show-icon",
+      "type": "Boolean",
+      "desc": "Display icon",
+      "defaultValue": "The default value of this attribute is true."
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "slot-default",
+      "type": "",
+      "desc": "Default slot of the component",
+      "defaultValue": ""
+    },
+    {
+      "name": "title",
+      "sample": "title",
+      "type": "",
+      "desc": "Title content",
+      "defaultValue": ""
+    },
+    {
+      "name": "description",
+      "sample": "custom-description",
+      "type": "",
+      "desc": "Prompt Content",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "close",
+      "sample": "close",
+      "type": "",
+      "desc": "Event triggered when the alert function is disabled",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "tooltip/basic-usage",
+    "component": "ToolTip text prompt",
+    "findIntroStr": "Dynamic display of prompt information, which is generally responded through mouse events.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Customized Gradient Animation",
+    "content": "<p>Defines the gradient animation through <code>transition</code>. The default value is <code>tiny-fade-in-linear</code></p>\n",
+    "link": "tooltip/custom-transition",
+    "component": "ToolTip text prompt",
+    "findIntroStr": "Dynamic display of prompt information, which is generally responded through mouse events.",
+    "demoId": "custom-transition"
+  },
+  {
+    "title": "Disabled",
+    "content": "<p>Disabled</code></p>\n",
+    "link": "tooltip/dynamic-disable",
+    "component": "ToolTip text prompt",
+    "findIntroStr": "Dynamic display of prompt information, which is generally responded through mouse events.",
+    "demoId": "dynamic-disable"
+  },
+  {
+    "title": "Manual Control",
+    "content": "<p>Manual control mode. After the <code>manual</code> attribute is set to true, the mouseenter and mouseleave events do not take effect. You can then dynamically display and hide </p>\n by setting <code>v-model</code>",
+    "link": "tooltip/manual-control-tip",
+    "component": "ToolTip text prompt",
+    "findIntroStr": "Dynamic display of prompt information, which is generally responded through mouse events.",
+    "demoId": "manual-control-tip"
+  },
+  {
+    "title": "Intelligent Appearance Control",
+    "content": "<p>Smart display mode of the prompt. When this parameter is set to <code>auto</code>, the tooltip is displayed only when the text is too long. </p>\n",
+    "link": "tooltip/visible-show",
+    "component": "ToolTip text prompt",
+    "findIntroStr": "Dynamic display of prompt information, which is generally responded through mouse events.",
+    "demoId": "visible-show"
+  },
+  {
+    "title": "Subject",
+    "content": "<p>Use the <code>effect</code> attribute to set the theme. The options are dark and light. </p>\n",
+    "link": "tooltip/tooltip-theme",
+    "component": "ToolTip text prompt",
+    "findIntroStr": "Dynamic display of prompt information, which is generally responded through mouse events.",
+    "demoId": "tooltip-theme"
+  },
+  {
+    "title": "Auto hide and delay time",
+    "content": "<p>Use the <code>hide-after</code> attribute to set the automatic hiding delay after the Tooltip component appears, in milliseconds. If the value is 0, the Tooltip component is not automatically hidden. The <code>open-delay</code> attribute is used to set the delay for the Tooltip component to appear, in milliseconds. </p>\n",
+    "link": "tooltip/open-delay",
+    "component": "ToolTip text prompt",
+    "findIntroStr": "Dynamic display of prompt information, which is generally responded through mouse events.",
+    "demoId": "open-delay"
+  },
+  {
+    "title": "Offset",
+    "content": "<p>Use the <code>offset</code> attribute to set the offset of the position where the Tooltip component appears. </p>\n",
+    "link": "tooltip/tooltip-offset",
+    "component": "ToolTip text prompt",
+    "findIntroStr": "Dynamic display of prompt information, which is generally responded through mouse events.",
+    "demoId": "tooltip-offset"
+  },
+  {
+    "title": "Whether the mouse can be accessed",
+    "content": "<p>The <code>enterable</code> attribute is used to set whether the mouse can access the tooltip. </p>\n",
+    "link": "tooltip/enterable",
+    "component": "ToolTip text prompt",
+    "findIntroStr": "Dynamic display of prompt information, which is generally responded through mouse events.",
+    "demoId": "enterable"
+  },
+  {
+    "title": "Display arrow",
+    "content": "<p>The <code>visible-arrow</code> attribute is used to set whether to display the Tooltip arrow. </p>\n",
+    "link": "tooltip/visible-arrow",
+    "component": "ToolTip text prompt",
+    "findIntroStr": "Dynamic display of prompt information, which is generally responded through mouse events.",
+    "demoId": "visible-arrow"
+  },
+  {
+    "title": "Add Style Class Name",
+    "content": "<p>Add the class name for the popper of the Tooltip using the <code>popper-class</code> attribute. </p>\n",
+    "link": "tooltip/popper-class",
+    "component": "ToolTip text prompt",
+    "findIntroStr": "Dynamic display of prompt information, which is generally responded through mouse events.",
+    "demoId": "popper-class"
+  },
+  {
+    "title": "Slot",
+    "content": "<p>Add custom content through the <code>content</code> slot. </p>\n",
+    "link": "tooltip/tooltip-content",
+    "component": "ToolTip text prompt",
+    "findIntroStr": "Dynamic display of prompt information, which is generally responded through mouse events.",
+    "demoId": "tooltip-content"
+  },
+  {
+    "title": "popper configuration",
+    "content": "<p> uses the <code>popper-options</code> attribute to configure the popper parameter of the Tooltip. For details, see <a href=\"https://popper.js.org/\">popper.js</a></p>\n",
+    "link": "tooltip/popper-options",
+    "component": "ToolTip text prompt",
+    "findIntroStr": "Dynamic display of prompt information, which is generally responded through mouse events.",
+    "demoId": "popper-options"
+  },
+  {
+    "title": "tabindex configuration",
+    "content": "<p>By configuring <code>tabindex</code>, the configured attributes are automatically added to the trigger source of the component. </p>\n",
+    "link": "tooltip/tabindex",
+    "component": "ToolTip text prompt",
+    "findIntroStr": "Dynamic display of prompt information, which is generally responded through mouse events.",
+    "demoId": "tabindex"
+  }
+]

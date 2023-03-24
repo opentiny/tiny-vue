@@ -1,0 +1,247 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import '../mixins/common.less';
+@import './vars.less';
+
+@form-item-prefix-cls: ~'@{css-prefix}form-item';
+@input-prefix-cls: ~'@{css-prefix}input';
+@input-group-prefix-cls: ~'@{css-prefix}input-group';
+@textarea-prefix-cls: ~'@{css-prefix}textarea';
+@button-prefix-cls: ~'@{css-prefix}button';
+@numeric-prefix-cls: ~'@{css-prefix}numeric';
+@date-editor-prefix-cls: ~'@{css-prefix}date-editor';
+@tooltip-prefix-cls: ~'@{css-prefix}tooltip';
+@switch-prefix-cls: ~'@{css-prefix}switch';
+@range-editor-prefix-cls: ~'@{css-prefix}range-editor';
+@select-prefix-cls: ~'@{css-prefix}select';
+
+.@{form-item-prefix-cls} {
+  .component-css-vars-form-item();
+
+  margin-bottom: 12px;
+  .clearfix();
+
+  & & {
+    margin-bottom: 0;
+  }
+
+  &&--mini,
+  &&--small {
+    margin-bottom: 8px;
+  }
+
+  &--medium &__label {
+    height: var(--ti-form-item-medium-line-height);
+    line-height: var(--ti-form-item-medium-line-height);
+  }
+
+  &--small &__label {
+    height: var(--ti-form-item-small-line-height);
+    line-height: var(--ti-form-item-small-line-height);
+  }
+
+  &--small &__error {
+    padding-top: 2px;
+  }
+
+  &--mini &__label {
+    height: var(--ti-form-item-mini-line-height);
+    line-height: var(--ti-form-item-mini-line-height);
+  }
+
+  &--medium &__content {
+    .@{css-prefix}checkbox,
+    .@{css-prefix}radio {
+      line-height: 42px;
+    }
+
+    .@{input-prefix-cls} .@{input-prefix-cls}__inner {
+      height: 42px;
+      line-height: 42px;
+    }
+  }
+
+  &--small &__content {
+    .@{css-prefix}checkbox,
+    .@{css-prefix}radio {
+      line-height: 36px;
+    }
+
+    .@{input-prefix-cls} .@{input-prefix-cls}__inner {
+      height: 36px;
+      line-height: 36px;
+    }
+  }
+
+  &--mini &__content {
+    .@{css-prefix}checkbox,
+    .@{css-prefix}radio {
+      line-height: 24px;
+    }
+
+    .@{input-prefix-cls} .@{input-prefix-cls}__inner {
+      height: 24px;
+      line-height: 24px;
+    }
+  }
+
+  &--mini &__error {
+    padding-top: 1px;
+  }
+
+  &__label-wrap {
+    float: left;
+
+    .@{form-item-prefix-cls}__label {
+      display: inline-block;
+      float: none;
+    }
+  }
+
+  &__label {
+    text-align: right;
+    vertical-align: middle;
+    float: left;
+    font-size: var(--ti-form-item-label-font-size);
+    color: var(--ti-form-item-label-text-color);
+    height: var(--ti-form-item-label-line-height);
+    line-height: var(--ti-form-item-label-line-height);
+    padding-right: 8px;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__content {
+    position: relative;
+    font-size: var(--ti-form-item-label-font-size);
+    .clearfix();
+
+    .@{input-prefix-cls} {
+      display: inline-block;
+      &.@{range-editor-prefix-cls}.@{input-prefix-cls}__inner {
+        display: inline-flex;
+      }
+
+      &.@{input-group-prefix-cls} {
+        display: inline-table;
+      }
+    }
+
+    .@{input-group-prefix-cls} {
+      vertical-align: top;
+    }
+
+    .@{button-prefix-cls} + .@{button-prefix-cls} {
+      margin-left: 8px;
+    }
+
+    .@{css-prefix}checkbox,
+    .@{css-prefix}radio {
+      line-height: 30px;
+    }
+
+    .@{numeric-prefix-cls},
+    .@{date-editor-prefix-cls}--daterange.@{input-prefix-cls},
+    .@{date-editor-prefix-cls}--daterange.@{input-prefix-cls}__inner,
+    .@{date-editor-prefix-cls}--timerange.@{input-prefix-cls},
+    .@{date-editor-prefix-cls}--timerange.@{input-prefix-cls}__inner {
+      width: 100%;
+    }
+  }
+
+  &__error {
+    color: var(--ti-form-item-error-text-color);
+    font-size: var(--ti-form-item-error-font-size);
+    line-height: 1;
+    padding-top: 4px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    .validate-icon {
+      fill: var(--ti-form-item-error-text-color);
+      margin-right: 8px;
+    }
+  }
+
+  &__error--inline {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: inline-block;
+    margin-left: 10px;
+  }
+
+  &.is-required:not(.is-no-asterisk) {
+    .@{form-item-prefix-cls}__label-wrap > .@{form-item-prefix-cls}__label:before,
+    & > .@{form-item-prefix-cls}__label:before {
+      content: '*';
+      color: var(--ti-form-item-error-text-color);
+      margin-right: 4px;
+    }
+  }
+
+  &.is-error {
+    .@{input-prefix-cls}__inner,
+    .@{input-prefix-cls}__inner:focus,
+    .@{textarea-prefix-cls}__inner,
+    .@{textarea-prefix-cls}__inner:focus {
+      border-color: var(--ti-form-item-error-border-color);
+      background-color: var(--ti-form-item-error-bg-color);
+    }
+
+    .@{input-group-prefix-cls}__append,
+    .@{input-group-prefix-cls}__prepend {
+      .@{input-prefix-cls}__inner {
+        border-color: transparent;
+      }
+    }
+
+    .@{input-prefix-cls}__validateIcon {
+      color: var(--ti-form-item-error-text-color);
+    }
+
+    .@{numeric-prefix-cls}__input-inner,
+    .@{numeric-prefix-cls}__input-inner:focus {
+      border-color: #f5222d;
+    }
+  }
+
+  &--feedback .@{input-prefix-cls}__validateIcon {
+    display: inline-block;
+  }
+
+  .@{input-prefix-cls}__validateIcon {
+    display: none;
+  }
+}
+
+.@{css-prefix} {
+  &zoom-in-top-enter-active,
+  &zoom-in-top-leave-active {
+    opacity: 1;
+    transform: scaleY(1);
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-origin: center top;
+  }
+
+  &zoom-in-top-enter,
+  &zoom-in-top-enter-from,
+  &zoom-in-top-leave-active {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}

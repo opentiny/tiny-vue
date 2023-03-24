@@ -1,0 +1,83 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+@checkbox-prefix-cls: ~'@{css-prefix}checkbox';
+
+.checkbox-border-disabled(@color, @border-color) {
+  border-color: @border-color;
+  color: @color;
+  pointer-events: none;
+  cursor: not-allowed;
+
+  .@{checkbox-prefix-cls}__inner,
+  .@{checkbox-prefix-cls}__inner:hover {
+    border-color: @border-color;
+    cursor: not-allowed;
+  }
+
+  &.is-checked {
+    border-color: @color;
+    .@{checkbox-prefix-cls}__inner,
+    .@{checkbox-prefix-cls}__inner:hover {
+      background-color: @color;
+      border-color: @color;
+      &::after {
+        border-color: @border-color;
+      }
+    }
+  }
+}
+
+.checkbox-input-disabled(@color, @bgcolor, @border-color) {
+  .@{checkbox-prefix-cls}__inner {
+    background-color: @bgcolor;
+    border-color: @border-color;
+    cursor: not-allowed;
+
+    svg {
+      fill: @border-color;
+    }
+
+    & + .@{checkbox-prefix-cls}__label {
+      cursor: not-allowed;
+    }
+  }
+  &.is-checked {
+    .@{checkbox-prefix-cls}__inner,
+    .@{checkbox-prefix-cls}__inner:hover {
+      background-color: @color;
+      border-color: @color;
+
+      &::after {
+        border-color: @bgcolor;
+      }
+    }
+  }
+  &.is-indeterminate {
+    .@{checkbox-prefix-cls}__inner,
+    .@{checkbox-prefix-cls}__inner:hover {
+      background-color: @color;
+      border-color: @color;
+
+      &::before {
+        background-color: @bgcolor;
+        border-color: @bgcolor;
+      }
+    }
+  }
+  & + span.@{checkbox-prefix-cls}__label {
+    color: @color;
+    cursor: not-allowed;
+  }
+}

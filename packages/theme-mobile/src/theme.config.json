@@ -1,0 +1,24 @@
+{
+  "components": [
+    "alert",
+    "avatar",
+    "badge",
+    "base",
+    "button",
+    "checkbox",
+    "checkbox-group",
+    "dialog-box",
+    "image-viewer",
+    "input",
+    "list",
+    "loading",
+    "nav-bar",
+    "numeric",
+    "radio",
+    "search",
+    "switch",
+    "tabbar",
+    "tabbar-item",
+    "tabs"
+  ]
+}

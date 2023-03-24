@@ -1,0 +1,195 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@milestone-prefix-cls: ~'@{css-prefix}milestone';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{milestone-prefix-cls} {
+  .component-css-vars-milestone();
+
+  overflow: hidden;
+  padding-top: 38px;
+
+  & &__node {
+    display: block;
+    float: left;
+
+    &::before {
+      content: '';
+      width: 28px;
+      height: 28px;
+      display: block;
+      position: relative;
+      left: ~'calc(50% - 14px)';
+      top: 28px;
+      z-index: 15;
+    }
+
+    &.is-solid {
+      &::before {
+        background: var(--ti-milestone-bg-color);
+      }
+
+      .@{svg-prefix-cls} {
+        fill: var(--ti-milestone-bg-color);
+      }
+    }
+
+    .iconfix {
+      font-size: var(--ti-common-font-size-4);
+    }
+  }
+
+  & &__icon {
+    background: var(--ti-milestone-bg-color);
+    width: var(--ti-milestone-icon-width, 20px);
+    height: var(--ti-milestone-icon-height, 20px);
+    line-height: var(--ti-milestone-icon-height, 20px);
+    position: relative;
+    font-size: var(--ti-milestone-font-size, 12px);
+    text-align: center;
+    left: ~'calc(50% - 10px)';
+    top: 4px;
+    border-radius: 50%;
+    color: var(--ti-milestone-text-color);
+    cursor: pointer;
+    z-index: 15;
+
+    &.is-completed {
+      border: solid 2px;
+
+      .@{svg-prefix-cls} {
+        fill: #1890ff;
+        vertical-align: baseline;
+      }
+    }
+  }
+
+  & &__line {
+    height: 4px;
+    left: 50%;
+    top: -8px;
+    position: relative; // 里程碑线条不区分状态
+    background: var(--ti-milestone-line-bg-color);
+  }
+
+  & &__line-end {
+    width: 0;
+  }
+
+  & &__description {
+    line-height: 14px;
+    margin-top: 8px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  & &__description-name {
+    width: 100%;
+    color: #333;
+    font-size: var(--ti-milestone-font-size);
+    float: left;
+  }
+
+  & &__description-status {
+    color: var(--ti-milestone-status-text-color);
+    font-size: var(--ti-milestone-font-size);
+    float: left;
+    width: 100%;
+  }
+
+  & &__flag-tip {
+    position: fixed;
+    padding: 2px 4px;
+    line-height: var(--ti-milestone-flag-tip-line-height);
+    background: var(--ti-milestone-flag-tip-bg-color);
+    border-radius: var(--ti-milestone-flag-tip-border-radius);
+    border: solid 1px var(--ti-milestone-flag-tip-bg-color);
+    text-align: center;
+    word-wrap: break-word;
+
+    &::before {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border: 1px solid;
+      border-width: 8px 8px 0px 8px;
+      border-color: #d9d9d9 transparent;
+      content: '';
+      left: ~'calc(50% - 4px)';
+      bottom: -6px;
+    }
+  }
+
+  & &__flag {
+    position: absolute;
+    left: ~'calc(50% - 29px)';
+    bottom: 5px;
+    width: 58px;
+    text-align: center;
+    z-index: 1;
+
+    &:hover {
+      z-index: 2;
+    }
+  }
+
+  & &__flag-content {
+    width: 58px;
+    height: 34px;
+    padding: 0px;
+    line-height: 15px;
+    font-size: var(--ti-milestone-flag-content-font-size);
+    border-radius: var(--ti-milestone-flag-content-border-radius);
+    color: var(--ti-milestone-text-color);
+    background: #333;
+    cursor: pointer;
+    vertical-align: middle;
+    display: table-cell;
+
+    p {
+      color: var(--ti-milestone-text-color);
+      width: 58px;
+      font-size: var(--ti-common-font-size-base);
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      padding: 0 4px;
+      margin: 0;
+      box-sizing: border-box;
+    }
+  }
+
+  & &__flag-line {
+    height: 30px;
+    width: 1px;
+    margin-left: 50%;
+    background: #333;
+  }
+
+  & &__dot {
+    display: block;
+    background: var(--ti-milestone-flag-line-color);
+    border: solid 1px;
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    position: relative;
+    bottom: -29px;
+    right: 2px;
+  }
+}

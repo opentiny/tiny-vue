@@ -1,0 +1,34 @@
+[
+  {
+    "title": "基本用法",
+    "content": "属性<code>links</code>传入数据渲染",
+    "link": "anchor/basic-usage",
+    "component": " Anchor 锚点",
+    "findIntroStr": "用于跳转到页面指定位置",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "固定模式",
+    "content": "设置属性<code>is-affix</code>为true, 让锚点不随页面滚动",
+    "link": "anchor/is-affix",
+    "component": " Anchor 锚点",
+    "findIntroStr": "用于跳转到页面指定位置",
+    "demoId": "is-affix"
+  },
+  {
+    "title": "滚动容器",
+    "content": "通过<code>container-id</code>属性指定滚动容器，<code>link-click</code>监听锚点点击事件，阻止浏览器默认行为，实现单页面<code>hash</code>路由模式的页内跳转，让页面只在想要的指定容器内滚动。通过<code>mask-class</code>属性设置自定义类名，高亮显示滚动的目标元素",
+    "link": "anchor/set-container",
+    "component": " Anchor 锚点",
+    "findIntroStr": "用于跳转到页面指定位置",
+    "demoId": "set-container"
+  },
+  {
+    "title": "change事件",
+    "content": "<code>on-change</code>事件，锚点链接改变时触发回调",
+    "link": "anchor/on-change",
+    "component": " Anchor 锚点",
+    "findIntroStr": "用于跳转到页面指定位置",
+    "demoId": "on-change"
+  }
+]

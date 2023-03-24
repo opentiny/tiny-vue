@@ -1,0 +1,11 @@
+{
+  "slots": [
+    {
+      "name": "default",
+      "sample": "custom-style",
+      "type": "",
+      "desc": "浮动块内容。",
+      "defaultValue": ""
+    }
+  ]
+}

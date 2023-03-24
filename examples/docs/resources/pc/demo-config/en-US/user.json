@@ -1,0 +1,154 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>Note that the User component requests mock data, which cannot be queried by other users. Use the real service during development. </p>\n",
+    "link": "user/basic-usage",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Multi-User",
+    "content": "<p>Set the <code>multiple</code> property to enable the multi-user mode. </p>\n",
+    "link": "user/multiple-users",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "multiple-users"
+  },
+  {
+    "title": "Collapse Tag",
+    "content": "<p>Set the <code>multiple</code> property to enable the multi-user mode. \n Use <code>collapse-tags</code> to configure whether to display collapsed tags in multi-user mode. The default value is false. </p>\n",
+    "link": "user/multiple-users-tag",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "multiple-users-tag"
+  },
+  {
+    "title": "User selector options can be copied",
+    "content": "<p>You can select an option in the <code>tag-selectable</code> text box with the mouse, and then press Ctrl + C or right-click to copy it. </p>\n",
+    "link": "user/tag-copy",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "tag-copy"
+  },
+  {
+    "title": "User selector options can be copied",
+    "content": "<p>After the <code>copyable</code> attribute is set, all <code>tag</code> text contents can be copied and separated by commas.</p>\n",
+    "link": "user/tag-copy-all",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "tag-copy-all"
+  },
+  {
+    "title": "Disabled",
+    "content": "<p>Set the <code>disabled</code> property to disable the User component. </p>\n",
+    "link": "user/dynamic-disable",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "dynamic-disable"
+  },
+  {
+    "title": "Exceeding prompt",
+    "content": "<p>Set <code>collapse-show-overflow-tooltip</code> This attribute takes effect only when <code>cache</code> is set to <code>true</code>. </p>\n",
+    "link": "user/collapse-show-overflow-tooltip",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "collapse-show-overflow-tooltip"
+  },
+  {
+    "title": "Value Separator",
+    "content": "<p>You can use the <code>value-split</code> attribute to specify the separator between different users in the value obtained for multiple users. The default value is <code>,</code>. \n You can use the <code>text-split</code> attribute to specify the text separator that matches the input in multi-user mode. The default value is <code>,</code>, and the value can be <code>!~%(=+^{/}).!]&lt;-&gt;[\\,:*#;</code> . </p>\n",
+    "link": "user/value-split",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "value-split"
+  },
+  {
+    "title": "Value Field Mapping",
+    "content": "<p>The <code>value-field</code> attribute specifies the format of the obtained value. The default value is userId and userAccount are also included. </p>\n",
+    "link": "user/value-field",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "value-field"
+  },
+  {
+    "title": "Display Field Mapping",
+    "content": "<p>You can use the <code>text-field</code> attribute to specify the field of the user to be displayed. </p>\n",
+    "link": "user/text-field",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "text-field"
+  },
+  {
+    "title": "Cache User",
+    "content": "<p>The <code>cache</code> attribute specifies whether user data is cached. The default value is cached. The \n\n<code>cache-key</code> attribute can be used to customize the cache key value. The default value is tiny-user. The \n\n<code>cache-fields</code> property is used to specify which user data is cached. </p>\n",
+    "link": "user/cache-users",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "cache-users"
+  },
+  {
+    "title": "Delayed loading",
+    "content": "<p>The <code>delay</code> attribute specifies the loading delay, in milliseconds. </p>\n",
+    "link": "user/delay-load",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "delay-load"
+  },
+  {
+    "title": "Load after the specified length is entered.",
+    "content": "<p>You can use the <code>suggest-length</code> attribute to specify the number of characters to start requesting services. </p>\n",
+    "link": "user/load-after-input-the-length",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "load-after-input-the-length"
+  },
+  {
+    "title": "Value change event",
+    "content": "<p>The user type can be obtained through the <code>change</code> event. </p>\n",
+    "link": "user/event-change",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "event-change"
+  },
+  {
+    "title": "User query error message",
+    "content": "<p>The <code>error</code> event can be used to obtain the input that fails to be queried. </p>\n",
+    "link": "user/event-error",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "event-error"
+  },
+  {
+    "title": "Custom Option Text",
+    "content": "<p>Sets the custom drop-down option text through the <code>options</code> slot. </p>\n",
+    "link": "user/user-options",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "user-options"
+  },
+  {
+    "title": "Custom Service",
+    "content": "<p>You can customize the user service through the <code>service</code> attribute. When a user enters an accurate account in the text box, the user is displayed in the drop-down menu. \nThe data sequence in the drop-down list box during <code>sort-by-fetch-data</code> association is the same as that returned by the interface.</p>\n",
+    "link": "user/custom-service",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "custom-service"
+  },
+  {
+    "title": "Custom Sorting",
+    "content": "<p> uses the <code>sortable</code> attribute to reference <code>sortablejs</code> for sorting. </p>\n",
+    "link": "user/custom-sort",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "custom-sort"
+  },
+  {
+    "title": "Size Settings",
+    "content": "<p>You can use the <code>size</code> attribute to specify the size of the text box, including medium, small, and mini. </p>\n",
+    "link": "user/user-select-size",
+    "component": "User",
+    "findIntroStr": "The Select selector component is used to query users, including single-user query and multi-user query.",
+    "demoId": "user-select-size"
+  }
+]

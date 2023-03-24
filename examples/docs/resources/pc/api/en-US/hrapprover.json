@@ -1,0 +1,46 @@
+{
+  "attrs": [
+    {
+      "name": "value",
+      "sample": "disabled",
+      "type": "String",
+      "desc": "Set the approver.",
+      "defaultValue": ""
+    },
+    {
+      "name": "approval-person",
+      "sample": "category-type",
+      "type": "String",
+      "desc": "Approval",
+      "defaultValue": ""
+    },
+    {
+      "name": "title",
+      "sample": "",
+      "type": "String",
+      "desc": "Set the pop-up window title.",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled",
+      "type": "Boolean",
+      "desc": "Sets whether the component is disabled.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "category",
+      "sample": "category-type",
+      "type": "String",
+      "desc": "Default approval type.",
+      "defaultValue": "The default value of this attribute is 0303."
+    },
+    {
+      "name": "fetchHrapprover",
+      "sample": "custom-service",
+      "type": "Function",
+      "desc": "Customize the interface for obtaining approver information. This parameter is mandatory when the framework service is not used. Other customized attributes are the same as those of the dept component.",
+      "defaultValue": ""
+    }
+  ]
+}

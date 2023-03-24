@@ -1,0 +1,117 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+.component-css-vars-button() {
+  --ti-button-border-radius: var(--ti-common-border-radius-normal);
+  --ti-button-font-size: var(--ti-common-font-size-base);
+  --ti-button-plain-disabled-text-color: var(--ti-base-color-common-2);
+
+  --ti-button-size-normal-min-width: var(--ti-base-size-width-normal);
+  --ti-button-size-normal-max-width: var(--ti-base-size-width-medium);
+  --ti-button-size-normal-height: var(--ti-common-size-7x);
+  --ti-button-size-normal-padding: var(--ti-common-space-2x);
+
+  --ti-button-size-large-min-width: var(--ti-base-size-width-normal);
+  --ti-button-size-large-max-width: var(--ti-base-size-width-large);
+  --ti-button-size-large-height: var(--ti-base-size-height-large);
+  --ti-button-size-large-font-size: var(--ti-common-font-size-2);
+  --ti-button-size-large-padding: var(--ti-common-space-4x);
+
+  --ti-button-size-medium-min-width: var(--ti-base-size-width-normal);
+  --ti-button-size-medium-max-width: var(--ti-base-size-width-large);
+  --ti-button-size-medium-height: var(--ti-base-size-height-medium);
+  --ti-button-size-medium-font-size: var(--ti-common-font-size-1);
+  --ti-button-size-medium-padding: var(--ti-common-space-3x);
+
+  --ti-button-size-small-min-width: var(--ti-base-size-width-normal);
+  --ti-button-size-small-max-width: var(--ti-base-size-width-medium);
+  --ti-button-size-small-height: var(--ti-base-size-height-small);
+  --ti-button-size-small-font-size: var(--ti-common-font-size-1);
+  --ti-button-size-small-padding: var(--ti-common-space-10);
+
+  --ti-button-size-mini-min-width: var(--ti-base-size-width-normal);
+  --ti-button-size-mini-max-width: var(--ti-base-size-width-medium);
+  --ti-button-size-mini-height: var(--ti-base-size-height-mini);
+  --ti-button-size-mini-font-size: var(--ti-common-font-size-base);
+  --ti-button-size-mini-padding: var(--ti-common-space-2x);
+
+  --ti-button-normal-text-color: var(--ti-base-color-common-7);
+  --ti-button-normal-border-color: var(--ti-base-color-border);
+  --ti-button-normal-background-color: var(--ti-base-color-light);
+  --ti-button-normal-hover-text-color: var(--ti-base-color-brand-6);
+  --ti-button-normal-hover-border-color: var(--ti-base-color-brand-6);
+  --ti-button-normal-hover-background-color: var(--ti-base-color-light);
+  --ti-button-normal-active-text-color: var(--ti-base-color-brand-6);
+  --ti-button-normal-active-border-color: var(--ti-base-color-brand-6);
+  --ti-button-normal-active-background-color: var(--ti-base-color-hover-background);
+  --ti-button-normal-disabled-text-color: var(--ti-common-color-text-disabled);
+  --ti-button-normal-disabled-border-color: var(--ti-common-color-line-disabled);
+  --ti-button-normal-disabled-background-color: var(--ti-common-color-bg-disabled);
+
+  --ti-button-text-color: var(--ti-base-color-brand-6);
+  --ti-button-text-color-hover: var(--ti-base-color-brand-5);
+  --ti-button-text-color-active: var(--ti-base-color-primary-active);
+  --ti-button-text-color-disabled: var(--ti-base-color-placeholder);
+
+  --ti-button-primary-normal-bg-color: var(--ti-base-color-primary-normal);
+  --ti-button-primary-hover-bg-color: var(--ti-base-color-primary-hover);
+  --ti-button-primary-active-bg-color: var(--ti-base-color-primary-active);
+  --ti-button-primary-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  --ti-button-primary-text-color: var(--ti-base-color-light);
+  --ti-button-primary-disabled-text-color: var(--ti-common-color-text-disabled);
+  --ti-button-primary-disabled-border-color: var(--ti-base-color-primary-disabled-border);
+  --ti-button-primary-plain-bg-color: rgba(24, 144, 255, 0.06);
+  --ti-button-primary-plain-disabled-bg-color: rgba(191, 191, 191, 0.1);
+
+  --ti-button-success-normal-bg-color: var(--ti-base-color-success-normal);
+  --ti-button-success-hover-bg-color: var(--ti-base-color-success-hover);
+  --ti-button-success-active-bg-color: var(--ti-base-color-success-active);
+  --ti-button-success-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  --ti-button-success-text-color: var(--ti-base-color-light);
+  --ti-button-success-disabled-text-color: var(--ti-common-color-text-disabled);
+  --ti-button-success-disabled-border-color: var(--ti-base-color-success-disabled-border);
+  --ti-button-success-plain-bg-color: rgba(82, 196, 26, 0.06);
+  --ti-button-success-plain-disabled-bg-color: rgba(166, 195, 185, 0.1);
+
+  --ti-button-warning-normal-bg-color: var(--ti-base-color-warning-normal);
+  --ti-button-warning-hover-bg-color: var(--ti-base-color-warning-hover);
+  --ti-button-warning-active-bg-color: var(--ti-base-color-warning-active);
+  --ti-button-warning-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  --ti-button-warning-text-color: var(--ti-base-color-light);
+  --ti-button-warning-disabled-text-color: var(--ti-common-color-text-disabled);
+  --ti-button-warning-disabled-border-color: var(--ti-base-color-warning-disabled-border);
+  --ti-button-warning-plain-bg-color: rgba(250, 173, 20, 0.06);
+  --ti-button-warning-plain-disabled-bg-color: rgba(211, 198, 162, 0.1);
+
+  --ti-button-danger-normal-bg-color: var(--ti-base-color-danger-normal);
+  --ti-button-danger-hover-bg-color: var(--ti-base-color-danger-hover);
+  --ti-button-danger-active-bg-color: var(--ti-base-color-danger-active);
+  --ti-button-danger-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  --ti-button-danger-text-color: var(--ti-base-color-light);
+  --ti-button-danger-disabled-text-color: var(--ti-common-color-text-disabled);
+  --ti-button-danger-disabled-border-color: var(--ti-base-color-danger-disabled-border);
+  --ti-button-danger-plain-bg-color: rgba(245, 34, 45, 0.06);
+  --ti-button-danger-plain-disabled-bg-color: rgba(216, 186, 181, 0.1);
+
+  --ti-button-info-normal-bg-color: var(--ti-base-color-info-normal);
+  --ti-button-info-hover-bg-color: var(--ti-base-color-info-hover);
+  --ti-button-info-active-bg-color: var(--ti-base-color-info-active);
+  --ti-button-info-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  --ti-button-info-text-color: var(--ti-base-color-light);
+  --ti-button-info-disabled-text-color: var(--ti-common-color-text-disabled);
+  --ti-button-info-disabled-border-color: var(--ti-base-color-info-disabled-border);
+  --ti-button-info-plain-bg-color: rgba(51, 51, 51, 0.06);
+  --ti-button-info-plain-disabled-bg-color: rgba(191, 191, 191, 0.1);
+
+  --ti-button-padding-vertical: 0;
+  --ti-button-padding-horizontal: var(--ti-common-space-5x);
+}

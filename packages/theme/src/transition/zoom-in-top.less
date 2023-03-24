@@ -1,0 +1,30 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+.@{css-prefix}transition-zoom-in-top-enter-active,
+.@{css-prefix}transition-zoom-in-top-leave-active {
+  opacity: 1;
+  transform: scaleY(1);
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-origin: center top;
+}
+
+.@{css-prefix}transition-zoom-in-top-enter,
+.@{css-prefix}transition-zoom-in-top-enter-from,
+.@{css-prefix}transition-zoom-in-top-leave-to {
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: center top;
+}

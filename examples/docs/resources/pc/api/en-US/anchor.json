@@ -1,0 +1,48 @@
+{
+  "attrs": [
+    {
+      "name": "links",
+      "sample": "basic-usage",
+      "type": "{key, link, title, children}[]",
+      "desc": "Data configuration item, which can be nested by children.",
+      "defaultValue": ""
+    },
+    {
+      "name": "is-affix",
+      "sample": "is-affix",
+      "type": "Boolean",
+      "desc": "Fixed mode",
+      "defaultValue": "false"
+    },
+    {
+      "name": "container-id",
+      "sample": "set-container",
+      "type": "String",
+      "desc": "Specify the scrolling container ID.",
+      "defaultValue": "document.body"
+    },
+    {
+      "name": "mask-class",
+      "sample": "set-container",
+      "type": "String",
+      "desc": "Class name of the customized scrolling target element",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "link-click",
+      "sample": "set-container",
+      "type": "Function(arg1, arg2)",
+      "desc": "An anchor click event, which is a callback function triggered after the anchor clicks. //Parameter arg1: click event object //Parameter arg2: {link: click anchor link, title: click node title}",
+      "defaultValue": ""
+    },
+    {
+      "name": "on-change",
+      "sample": "on-change",
+      "type": "Function(arg1)",
+      "desc": "Listen to the change of the anchor link; Callback function after the anchor point is changed; //arg1: ID of the current anchor",
+      "defaultValue": ""
+    }
+  ]
+}

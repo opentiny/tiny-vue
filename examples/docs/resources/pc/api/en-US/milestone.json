@@ -1,0 +1,169 @@
+{
+  "attrs": [
+    {
+      "name": "completed-field",
+      "sample": "data-field-mapping",
+      "type": "String",
+      "desc": "Set the milestone completion status. The default value is'completed'",
+      "defaultValue": "The default value of this attribute is completed."
+    },
+    {
+      "name": "data",
+      "sample": "data-source",
+      "type": "Object , Array",
+      "desc": "Set the step bar data. ;Set the data of the step bar.",
+      "defaultValue": ""
+    },
+    {
+      "name": "flag-before",
+      "sample": "flag-before",
+      "type": "Boolean",
+      "desc": "Set whether the data on the flag of an activity on a milestone is obtained from the previous node or the next node. The default value is false.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "flag-content-field",
+      "sample": "data-field-mapping",
+      "type": "String",
+      "desc": "Set the field name corresponding to the description in the node flag data. The default value is'content'",
+      "defaultValue": "The default value of this attribute is content."
+    },
+    {
+      "name": "flag-status-field",
+      "sample": "data-field-mapping",
+      "type": "String",
+      "desc": "Name of the field corresponding to the status in the node flag data. The default value is'status'",
+      "defaultValue": "The default value of this attribute is status."
+    },
+    {
+      "name": "flag-field",
+      "sample": "data-field-mapping",
+      "type": "String",
+      "desc": "Set the name of the field where the flag data is located in the node information. The default value is flags.",
+      "defaultValue": "The default value of this attribute is flags."
+    },
+    {
+      "name": "flag-name-field",
+      "sample": "data-field-mapping",
+      "type": "String",
+      "desc": "Set the field name corresponding to the name in the node flag data. The default value is'name'",
+      "defaultValue": "The default value of this attribute is name."
+    },
+    {
+      "name": "line-style",
+      "sample": "line-style",
+      "type": "String , Number",
+      "desc": "In milestone mode, set the line color value mode. The default value is 1. Two colors are used to distinguish the completed state from the uncompleted state. The line color of the completed state is the same as the completion color defined by milestonesStatus. \nIf this parameter is set to 2, the line color is based on the node status. \nIf the color value is set to a hexadecimal value, for example, #1890ff, the line color is the configured color regardless of status.",
+      "defaultValue": "The default value of this attribute is 1"
+    },
+    {
+      "name": "milestones-status",
+      "sample": "milestones-status",
+      "type": "Object",
+      "desc": "Define the mapping between the milestone status and color. The color must be a hexadecimal number, for example, {completed:'#1890FF'}",
+      "defaultValue": "The default value of this attribute is Function."
+    },
+    {
+      "name": "name-field",
+      "sample": "data-field-mapping",
+      "type": "String",
+      "desc": "Set the field name corresponding to the name in the node information. The default value is'name'",
+      "defaultValue": "The default value of this attribute is name."
+    },
+    {
+      "name": "show-number",
+      "sample": "show-number",
+      "type": "Boolean",
+      "desc": "Whether to display sequence numbers for unfinished states. The default value is true.",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "solid",
+      "sample": "solid-style",
+      "type": "Boolean",
+      "desc": "In milestone mode, set the completed node to be displayed as solid and the halo is opaque. The default value is false.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "space",
+      "sample": "milestone-space",
+      "type": "Number",
+      "desc": "Set the width of the step bar.",
+      "defaultValue": ""
+    },
+    {
+      "name": "start",
+      "sample": "start-index",
+      "type": "Number",
+      "desc": "Set the start step sequence number. The default value is -1.",
+      "defaultValue": "The default value for this property is - 1"
+    },
+    {
+      "name": "status-field",
+      "sample": "data-field-mapping",
+      "type": "String",
+      "desc": "Name of the field corresponding to the data status. The default value is'status'",
+      "defaultValue": "The default value of this attribute is status."
+    },
+    {
+      "name": "time-field",
+      "sample": "data-field-mapping",
+      "type": "String",
+      "desc": "Name of the field corresponding to the node time information. The default value is'time'",
+      "defaultValue": "The default value of this attribute is time."
+    }
+  ],
+  "slots": [
+    {
+      "name": "top",
+      "sample": "custom-top",
+      "type": "",
+      "desc": "Content above the node",
+      "defaultValue": ""
+    },
+    {
+      "name": "flag",
+      "sample": "custom-flag",
+      "type": "",
+      "desc": "Flag Content",
+      "defaultValue": ""
+    },
+    {
+      "name": "bottom",
+      "sample": "custom-bottom",
+      "type": "",
+      "desc": "Content under a node",
+      "defaultValue": ""
+    },
+    {
+      "name": "icon",
+      "sample": "custom-icon-slot",
+      "type": "",
+      "desc": "Node icon",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "sample": "milestone-events",
+      "type": "",
+      "desc": "Node click event (parameter) (index: node index, node: node data information)",
+      "defaultValue": ""
+    },
+    {
+      "name": "flagclick",
+      "sample": "milestone-events",
+      "type": "",
+      "desc": "[deprecated in v3.5.0 and removed in v3.17.0; Reason for removal: It is recommended that flag-click be used instead of flag-click]",
+      "defaultValue": ""
+    },
+    {
+      "name": "flag-click",
+      "sample": "milestone-events",
+      "type": "",
+      "desc": "In milestone mode, this parameter indicates the click event of the activity flag. (index: index of the flag on the node; node: data information of the flag on the node)",
+      "defaultValue": ""
+    }
+  ]
+}

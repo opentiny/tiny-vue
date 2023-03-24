@@ -1,0 +1,235 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import './vars.less';
+
+.aurora-popup__wrapper {
+  z-index: 2147483647 !important;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  margin: 0;
+
+  // 错误提示页
+  .aurora-errortips__box {
+    position: absolute;
+    width: var(--ti-errortips-width);
+    min-height: var(--ti-errortips-min-height);
+    max-height: var(--ti-errortips-max-height);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    overflow: hidden;
+    background: var(--ti-errortips-box-bg-color);
+    border: 1px solid transparent;
+    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    overflow-y: auto;
+
+    .aurora-errortips__body {
+      height: 100%;
+      text-align: initial;
+      padding: 20px;
+      color: var(--ti-errortips-body-text-color);
+      font-size: var(--ti-errortips-body-font-size);
+      display: table;
+      margin: auto;
+
+      .errortips {
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+
+        .error-code {
+          font-size: var(--ti-errortips-body-code-font-size);
+          color: var(--ti-errortips-body-code-text-color);
+          margin: 0 auto -45px;
+          text-shadow: 0px 2px 0 #fff, -2px 0px 0 #fff, 2px 0px 0 #fff;
+        }
+
+        .error-img {
+          width: 260px;
+          height: 180px;
+          margin: 0 auto;
+          background: url(../images/errortips-bg.png) no-repeat;
+        }
+
+        .error-content {
+          font-size: var(--ti-errortips-body-content-font-size);
+          margin: 24px 0;
+          font-weight: bold;
+        }
+
+        .error-bottom {
+          a {
+            font-weight: var(--ti-errortips-body-bottom-font-weight);
+            cursor: pointer;
+          }
+
+          span {
+            padding-right: 15px;
+          }
+        }
+      }
+    }
+  }
+
+  // sso 登录
+  .aurora-sso__box {
+    position: absolute;
+    background: var(--ti-errortips-sso-box-bg-color);
+    border: 1px solid transparent;
+    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    .aurora-sso__body {
+      text-align: initial;
+      padding: 20px;
+      color: var(--ti-errortips-sso-body-text-color);
+      line-height: 32px;
+      font-size: var(--ti-errortips-sso-body-font-size);
+
+      .aurora-sso__body-iframe {
+        width: 350px;
+        height: 350px;
+        height: 460px\9; // 兼容ie9-ie10
+        overflow: hidden;
+
+        // 兼容ie10-ie11
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+          height: 460px;
+        }
+
+        // 兼容edge
+        @supports (-ms-ime-align: auto) {
+          height: 460px;
+        }
+      }
+    }
+  }
+
+  // 非 sso 登录
+  &.login-not-sso {
+    background: var(--ti-errortips-not-sso-bg-color);
+    background-size: cover;
+
+    .aurora-not-sso__box {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      .aurora-not-sso__body {
+        width: 650px;
+        height: 400px;
+        background: var(--ti-errortips-not-sso-body-bg-color);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        border: 1px solid var(--ti-errortips-not-sso-body-border-color);
+        box-shadow: 0px 2px 4px #989a9e;
+
+        .title {
+          background: linear-gradient(to bottom, #ecedf1, #dadde2);
+          border-bottom: 1px solid var(--ti-errortips-not-sso-body-title-border-color);
+          padding: 16px 20px;
+          font-size: var(--ti-errortips-not-sso-body-title-font-size);
+        }
+
+        .tbl-login {
+          width: 100%;
+          border-collapse: collapse;
+          border-spacing: 0;
+          font-size: var(--ti-errortips-not-sso-body-login-font-size);
+          margin-top: 28px;
+
+          .form-item {
+            height: 60px;
+            line-height: 60px;
+
+            td.label {
+              width: 30%;
+              text-align: right;
+              color: var(--ti-errortips-not-sso-body-text-color);
+            }
+
+            td.cell {
+              width: 70%;
+              text-align: left;
+              padding-left: 12px;
+
+              input {
+                border: 1px solid var(--ti-errortips-not-sso-body-input-border-color);
+                border-radius: var(--ti-errortips-not-sso-body-input-border-radius);
+                outline: none;
+                width: 75%;
+                height: 40px;
+                line-height: 40px;
+                padding: 0 8px;
+                background: transparent;
+                color: var(--ti-errortips-not-sso-body-text-color);
+
+                &::-webkit-input-placeholder {
+                  color: var(--ti-errortips-not-sso-body-placeholder-text-color);
+                }
+
+                &:hover {
+                  border-color: var(--ti-errortips-not-sso-body-placeholder-text-color);
+                }
+
+                &:focus::-webkit-input-placeholder {
+                  color: var(--ti-errortips-not-sso-body-input-focus-text-color);
+                }
+
+                &.text-danger {
+                  border-color: var(--ti-errortips-not-sso-body-input-danger-border-color);
+                }
+              }
+
+              button {
+                width: 75%;
+                height: 40px;
+                line-height: 40px;
+                padding: 0 24px;
+                text-align: center;
+                color: var(--ti-errortips-not-sso-body-button-text-color);
+                background-color: var(--ti-errortips-not-sso-body-button-bg-color);
+                border: none;
+                border-radius: var(--ti-errortips-not-sso-body-button-border-radius);
+                transition: 0.3s;
+                outline: 0;
+
+                &:hover {
+                  background-color: var(--ti-errortips-not-sso-body-button-hover-bg-color);
+                }
+              }
+
+              .errmessage {
+                color: var(--ti-errortips-not-sso-body-errmessage-text-color);
+                line-height: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

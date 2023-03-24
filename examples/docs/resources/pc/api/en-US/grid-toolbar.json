@@ -1,0 +1,113 @@
+{
+  "attrs": [
+    {
+      "name": "buttons",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "Array",
+      "desc": "button list",
+      "defaultValue": ""
+    },
+    {
+      "name": "id",
+      "sample": "grid-customized#custom-column-width",
+      "type": "String",
+      "desc": "Unique ID",
+      "defaultValue": ""
+    },
+    {
+      "name": "loading",
+      "sample": "grid-toolbar#tiny-first-menu-refresh-grid",
+      "type": "Boolean",
+      "desc": "Loading",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "refresh",
+      "sample": "grid-toolbar#tiny-first-menu-refresh-grid",
+      "type": "Boolean",
+      "desc": "The table refresh function is enabled for the toolbar component.",
+      "defaultValue": ""
+    },
+    {
+      "name": "resizable",
+      "sample": "grid-customized#custom-column-width",
+      "type": "Boolean,Object",
+      "desc": "Drag column width configuration (id needs to be set)",
+      "defaultValue": ""
+    },
+    {
+      "name": "setting",
+      "sample": "grid-customized#custom-column-width",
+      "type": "Boolean/Object",
+      "desc": "Sets whether to display the personalized panel for table attributes. This parameter is valid only when the name attribute of the table is set. Set whether to display personalized settings for toolbar attributes (id needs to be set).",
+      "defaultValue": ""
+    },
+    {
+      "name": "full-screen",
+      "sample": "grid-toolbar#tiny-first-menu-grid-full-screen",
+      "type": "Boolean",
+      "desc": "Sets whether the table supports full screen or the container that requires full screen. ;Set whether to display full-screen buttons on the toolbar",
+      "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "grid-toolbar#tiny-first-menu-copy-row-data",
+      "type": "String",
+      "desc": "Dimension; The value of this attribute can be medium, small, or mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "before-open-full-screen",
+      "sample": "grid-toolbar#tiny-first-menu-grid-full-screen",
+      "type": "Function",
+      "desc": "Function():Boolean. If false is returned, full screen is blocked. If true is returned, full screen is not blocked.",
+      "defaultValue": ""
+    },
+    {
+      "name": "before-close-full-screen",
+      "sample": "grid-toolbar#tiny-first-menu-grid-full-screen",
+      "type": "Function",
+      "desc": "Function():Boolean. If the return value is false, the full-screen function is disabled. If the return value is true, the full-screen function is not disabled.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "toolbar",
+      "sample": "grid-toolbar#tiny-first-menu-custom-toolbar",
+      "type": "",
+      "desc": "Toolbar slot",
+      "defaultValue": ""
+    },
+    {
+      "name": "buttons",
+      "sample": "grid-toolbar#tiny-first-menu-export-excel",
+      "type": "",
+      "desc": "button list",
+      "defaultValue": ""
+    },
+    {
+      "name": "tools",
+      "sample": "grid-toolbar#tiny-first-menu-custom-toolbar",
+      "type": "",
+      "desc": "Tool list on the right",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "button-click",
+      "sample": "grid-validation#grid_Example-gridValid-before-submit-validation",
+      "type": "Function(arg, event)",
+      "desc": "This event is triggered when a button on the toolbar is clicked. arg1:{$grid: VueComponent table component instance object information $table: VueComponent table instance object component information button: button list object code: button type} arg2: event",
+      "defaultValue": ""
+    },
+    {
+      "name": "on-before-move",
+      "sample": "grid-validation#grid_Example-gridValid-before-submit-validation",
+      "type": "Function(arg1, arg2)",
+      "desc": "Event triggered before dragging a personalized panel; arg1: drag type arg2: drag line information",
+      "defaultValue": ""
+    }
+  ]
+}

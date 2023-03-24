@@ -1,0 +1,71 @@
+{
+  "attrs": [
+    {
+      "name": "label",
+      "sample": "with-border",
+      "type": "Boolean|Number|String",
+      "desc": "Radio value",
+      "defaultValue": ""
+    },
+    {
+      "name": "modelValue / v-model",
+      "sample": "with-border",
+      "type": "--",
+      "desc": "Bound Value",
+      "defaultValue": ""
+    },
+    {
+      "name": "text",
+      "sample": "radio-text",
+      "type": "String",
+      "desc": "Text",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "dynamic-disable",
+      "type": "Boolean",
+      "desc": "Disable",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "border",
+      "sample": "with-border",
+      "type": "Boolean",
+      "desc": "Display Border",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "size",
+      "sample": "radio-size",
+      "type": "String",
+      "desc": "Radio size. This parameter is valid only when border is set to true. The optional values of this attribute are medium / small / mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "name",
+      "sample": "radio-button1",
+      "type": "String",
+      "desc": "Native name attribute",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "radio-default",
+      "type": "",
+      "desc": "Radio default slot",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "radio-events",
+      "type": "",
+      "desc": "Event triggered when the binding value changes",
+      "defaultValue": ""
+    }
+  ]
+}

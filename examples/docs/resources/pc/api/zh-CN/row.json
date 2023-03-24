@@ -1,0 +1,55 @@
+{
+  "attrs": [
+    {
+      "name": "align",
+      "sample": "align",
+      "type": "String",
+      "desc": "flex 布局下的垂直排列方式;该属性的可选值为 top / middle / bottom",
+      "defaultValue": "该属性的默认值为 top"
+    },
+    {
+      "name": "flex",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "启用 flex 布局模式，现代浏览器下有效",
+      "defaultValue": ""
+    },
+    {
+      "name": "gutter",
+      "sample": "align",
+      "type": "Number",
+      "desc": "栅格间隔",
+      "defaultValue": "该属性的默认值为 0"
+    },
+    {
+      "name": "justify",
+      "sample": "align",
+      "type": "String",
+      "desc": "flex 布局下的水平排列方式;该属性的可选值为 start / end / center / space-around / space-between",
+      "defaultValue": "该属性的默认值为 start"
+    },
+    {
+      "name": "order",
+      "sample": "align",
+      "type": "String",
+      "desc": "flex 布局下排序方式;该属性的可选值为 asc / des",
+      "defaultValue": ""
+    },
+    {
+      "name": "tag",
+      "sample": "align",
+      "type": "String",
+      "desc": "自定义元素标签，可选任意标签;该属性的可选值为 *",
+      "defaultValue": "该属性的默认值为 div"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "base",
+      "type": "",
+      "desc": "默认插槽",
+      "defaultValue": ""
+    }
+  ]
+}

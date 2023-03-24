@@ -1,0 +1,160 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@card-template-prefix-cls: ~'@{css-prefix}card-template';
+
+.@{card-template-prefix-cls} {
+  .component-css-vars-card-template();
+
+  border-radius: 0;
+  background-color: var(--ti-card-bg-color);
+  overflow: hidden;
+  position: relative;
+  box-shadow: none;
+  border: 0;
+
+  & &__header {
+    padding: 0 24px;
+    height: var(--ti-card-header-height);
+    line-height: var(--ti-card-header-height);
+
+    &.is-line {
+      border-bottom: 1px solid var(--ti-card-header-border-color);
+    }
+  }
+
+  & &__title {
+    font-weight: var(--ti-card-header-title-font-weight);
+    font-size: var(--ti-card-header-title-font-size);
+    color: #333;
+    color: var(--ti-card-header-title-text-color);
+    float: left;
+  }
+
+  & &__tools {
+    .clearfix();
+
+    .@{css-prefix-iconfont} {
+      font-size: var(--ti-card-tool-icon-size);
+      cursor: pointer;
+    }
+  }
+
+  & &__list {
+    overflow: hidden;
+    float: right;
+
+    > li {
+      height: var(--ti-card-header-height);
+      line-height: var(--ti-card-header-height);
+      float: left;
+      font-size: var(--ti-common-font-size-2);
+      margin: 0 12px 0 0;
+
+      svg {
+        fill: var(--ti-card-tool-icon-color);
+        cursor: pointer;
+      }
+
+      .@{css-prefix-iconfont} {
+        color: var(--ti-card-tool-icon-color);
+
+        &:hover {
+          color: var(--ti-card-tool-hover-icon-color);
+        }
+
+        &:active {
+          color: var(--ti-card-tool-active-icon-color);
+        }
+      }
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+
+  & &__more {
+    position: absolute;
+    top: calc(var(--ti-card-header-height, 45px) - 1 * 1px);
+    right: 5px;
+    border: 1px solid var(--ti-card-header-border-color);
+    border-radius: 2px;
+    box-shadow: var(--ti-base-box-shadow);
+    background: var(--ti-card-bg-color);
+    color: #333;
+    color: var(--ti-card-tool-selector-text-color);
+    margin-top: 2px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      top: -5px;
+      right: 21px;
+      width: 0;
+      height: 0px;
+      border-style: solid;
+      border-width: 6px;
+      border-color: #ffffff #fff transparent transparent;
+      transform: rotate(-45deg);
+      box-shadow: 1px -1px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    > ul {
+      > li {
+        height: var(--ti-card-tool-selector-height);
+        line-height: var(--ti-card-tool-selector-height);
+        padding: 0 18px;
+        color: var(--ti-card-tool-selector-text-color);
+        display: flex;
+        align-items: center;
+
+        .@{css-prefix-iconfont} {
+          color: var(--ti-card-tool-icon-color);
+          margin-right: 10px;
+        }
+
+        svg {
+          font-size: var(--ti-common-font-size-2);
+        }
+
+        &:hover {
+          cursor: pointer;
+          color: var(--ti-card-tool-selector-hover-text-color);
+          background: var(--ti-card-tool-selector-hover-bg-color);
+
+          .@{css-prefix-iconfont} {
+            color: var(--ti-card-tool-hover-icon-color);
+          }
+        }
+
+        &:active {
+          color: var(--ti-card-tool-selector-active-text-color);
+          background: var(--ti-card-tool-selector-active-bg-color);
+
+          .@{css-prefix-iconfont} {
+            color: var(--ti-card-tool-active-icon-color);
+          }
+        }
+      }
+    }
+  }
+
+  & &__body {
+    padding: 12px 24px 24px;
+  }
+}

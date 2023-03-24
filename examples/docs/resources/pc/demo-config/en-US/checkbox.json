@@ -1,0 +1,122 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "checkbox/basic-usage",
+    "component": "Checkbox check box",
+    "findIntroStr": "Used to configure options for different scenarios. Users can select multiple options from a group of options.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Checkbox Group",
+    "content": "<p>Manages multiple <code>checkbox</code> elements into a group through the <code>checkbox-group</code> element. In <code>checkbox-group</code>, use <code>v-model</code> to bind variables of the Array type to implement bidirectional binding. The <code>label</code> attribute of the <code>checkbox</code> is its corresponding value. If there is no content in the tag, the attribute also serves as the introduction after the checkbox. <code>label</code> corresponds to the element value in the array. If the specified value exists, the value is selected. Otherwise, the value is not selected. </p>\n",
+    "link": "checkbox/checkbox-group",
+    "component": "Checkbox check box",
+    "findIntroStr": "Used to configure options for different scenarios. Users can select multiple options from a group of options.",
+    "demoId": "checkbox-group"
+  },
+  {
+    "title": "Profile Checkbox Group",
+    "content": "<p>Provides the <code>options</code> attribute. You can render a check box group by configuring object array data. With this attribute, you no longer need to insert the <code>checkbox</code> or <code>checkbox-button</code> element as a slot in the tag. \n\nThe <code>options</code> object array contains three fields: <code>label</code>, <code>text</code>, and <code>events</code>. \n\n The <code>type</code> attribute is also provided, which is used with the <code>options</code> attribute. The default value is <code>checkbox</code>. You can also set this parameter to <code>button</code>. After the configuration, the check box group is displayed as a button. </p>\n",
+    "link": "checkbox/group-options",
+    "component": "Checkbox check box",
+    "findIntroStr": "Used to configure options for different scenarios. Users can select multiple options from a group of options.",
+    "demoId": "group-options"
+  },
+  {
+    "title": "All and Half",
+    "content": "<p>After the <code>indeterminate</code> attribute is set to true in the <code>checkbox</code> element, the check box is displayed as half-selected. </p>\n",
+    "link": "checkbox/indeterminate",
+    "component": "Checkbox check box",
+    "findIntroStr": "Used to configure options for different scenarios. Users can select multiple options from a group of options.",
+    "demoId": "indeterminate"
+  },
+  {
+    "title": "Quantity Limit",
+    "content": "<p>On the <code>checkbox-group</code>, the <code>min</code> and <code>max</code> attributes can be used to specify the minimum and maximum values of the options that can be selected. </p>\n",
+    "link": "checkbox/min-max",
+    "component": "Checkbox check box",
+    "findIntroStr": "Used to configure options for different scenarios. Users can select multiple options from a group of options.",
+    "demoId": "min-max"
+  },
+  {
+    "title": "Currently selected",
+    "content": "<p>Whether to select <code>checked</code>. You can set <code>disabled</code> to disable the component. </p>\n",
+    "link": "checkbox/checked",
+    "component": "Checkbox check box",
+    "findIntroStr": "Configure options for different scenarios. Users can select multiple options from a group of options.",
+    "demoId": "checked"
+  },
+  {
+    "title": "button form check box",
+    "content": "<p>Embed <code>checkbox-button</code> into the <code>checkbox-group</code> element to implement a checkbox group in the form of a button. \n Fill color and border color when the checkbox is activated by pressing the <code>fill</code> button. The default value is #409EFF. </p>\n",
+    "link": "checkbox/checkbox-button",
+    "component": "Checkbox check box",
+    "findIntroStr": "Configure options for different scenarios. Users can select multiple options from a group of options.",
+    "demoId": "checkbox-button"
+  },
+  {
+    "title": "vertical layout",
+    "content": "<p>Set <code>vertical</code> to true on the <code>checkbox-group</code> element, The <code>checkbox-button</code> or <code>checkbox</code> managed by it is displayed as a vertical layout. </p>\n",
+    "link": "checkbox/vertical-checkbox",
+    "component": "Checkbox check box",
+    "findIntroStr": "Configure options for different scenarios. Users can select multiple options from a group of options.",
+    "demoId": "vertical-checkbox"
+  },
+  {
+    "title": "Dynamicly generate check box groups",
+    "content": "<p>The data required by the check box group can be obtained from the background through the request service and then dynamically generated. </p>\n",
+    "link": "checkbox/dynamic-create-checkbox",
+    "component": "Checkbox check box",
+    "findIntroStr": "Configure options for different scenarios. Users can select multiple options from a group of options.",
+    "demoId": "dynamic-create-checkbox"
+  },
+  {
+    "title": "Prompt message when the content exceeds the upper limit",
+    "content": "<p>If the introduction text next to the check box exceeds the limit, you can use the Tooltip component to add a prompt. When you hover the cursor over the tooltip component, you can prompt all the contents. \n\n Set the <code>border</code> attribute to true on the <code>checkbox</code> element to display the border. </p>\n",
+    "link": "checkbox/content-overflow",
+    "component": "Checkbox check box",
+    "findIntroStr": "Configure options for different scenarios. Users can select multiple options from a group of options.",
+    "demoId": "content-overflow"
+  },
+  {
+    "title": "Text",
+    "content": "<p>Set the text content in the <code>text</code> attribute.\nUse <code>true-label</code> to set the selected value, and <code>false-label</code> to set the unselected value. </p>\n",
+    "link": "checkbox/text",
+    "component": "Checkbox check box",
+    "findIntroStr": "Configure options for different scenarios. Users can select multiple options from a group of options.",
+    "demoId": "text"
+  },
+  {
+    "title": "Text Selection",
+    "content": "<p> uses <code>true-label</code> to set the selected value and <code>false-label</code> to set the unselected value. </p>\n",
+    "link": "checkbox/button-chek-box",
+    "component": "Checkbox check box",
+    "findIntroStr": "Configure options for different scenarios. Users can select multiple options from a group of options.",
+    "demoId": "button-chek-box"
+  },
+  {
+    "title": "Dimension",
+    "content": "<p>When the check box is a button, you can set the size of the button through the <code>size</code> attribute. The options are medium, small, and mini. \n\n Setting the <code>disabled</code> property on <code>checkbox-button</code> will disable a check button. If the <code>disabled</code> attribute is configured on the <code>checkbox-group</code> tab, all check buttons are disabled. </p>\n",
+    "link": "checkbox/with-border",
+    "component": "Checkbox check box",
+    "findIntroStr": "Configure options for different scenarios. Users can select multiple options from a group of options.",
+    "demoId": "with-border"
+  },
+  {
+    "title": "Event",
+    "content": "<p>The <code>change</code> event is triggered when the value of the check box is changed. </p>\n",
+    "link": "checkbox/checkbox-events",
+    "component": "Checkbox check box",
+    "findIntroStr": "Configure options for different scenarios. Users can select multiple options from a group of options.",
+    "demoId": "checkbox-events"
+  },
+  {
+    "title": "Slot",
+    "content": "<p>Content of Checkbox</p>\n",
+    "link": "checkbox/checkbox-slot",
+    "component": "Checkbox check box",
+    "findIntroStr": "Configure options for different scenarios. Users can select multiple options from a group of options.",
+    "demoId": "checkbox-slot"
+  }
+]

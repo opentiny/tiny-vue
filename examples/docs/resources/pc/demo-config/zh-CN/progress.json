@@ -1,0 +1,82 @@
+[
+  {
+    "title": "基本用法",
+    "content": "详细用法参考如下示例",
+    "link": "progress/basic-usage",
+    "component": " Progress 进度条",
+    "findIntroStr": "用于展示操作进度，告知用户当前状态和预期。",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "line 类型",
+    "content": "<p><code>type=&quot;line&quot;</code> 显示为 line 类型</p>\n",
+    "link": "progress/progress-type",
+    "component": " Progress",
+    "findIntroStr": "用于展示操作进度，告知用户当前状态和预期。",
+    "demoId": "progress-type"
+  },
+  {
+    "title": "circle 类型",
+    "content": "<p><code>type=&quot;circle&quot;</code> 显示为 circle 类型。<code>width</code>可以调整环形进度条画布宽度，默认值为126px。</p>\n",
+    "link": "progress/progress-type-circle",
+    "component": " Progress",
+    "findIntroStr": "用于展示操作进度，告知用户当前状态和预期。",
+    "demoId": "progress-type-circle"
+  },
+  {
+    "title": "dashboard 类型",
+    "content": "<p><code>type=&quot;dashboard&quot;</code> 显示为 dashboard 类型。<code>width</code>可以调整环形进度条画布宽度，默认值为126px。</p>\n",
+    "link": "progress/progress-type-dashboard",
+    "component": " Progress",
+    "findIntroStr": "用于展示操作进度，告知用户当前状态和预期。",
+    "demoId": "progress-type-dashboard"
+  },
+  {
+    "title": "宽度",
+    "content": "<p><code>stroke-width</code>进度条的宽度，单位 px</p>\n",
+    "link": "progress/progress-width",
+    "component": " Progress",
+    "findIntroStr": "用于展示操作进度，告知用户当前状态和预期。",
+    "demoId": "progress-width"
+  },
+  {
+    "title": "状态",
+    "content": "<p><code>status</code> 进度条当前状态（success/exception/warning）</p>\n",
+    "link": "progress/progress-status",
+    "component": " Progress",
+    "findIntroStr": "用于展示操作进度，告知用户当前状态和预期。",
+    "demoId": "progress-status"
+  },
+  {
+    "title": "文字内显或不显",
+    "content": "<p><code>show-text</code> 是否显示进度条文字内容</p>\n",
+    "link": "progress/text-inside-or-no-text",
+    "component": " Progress",
+    "findIntroStr": "用于展示操作进度，告知用户当前状态和预期。",
+    "demoId": "text-inside-or-no-text"
+  },
+  {
+    "title": "自定义颜色",
+    "content": "<p>通过 <code>color</code> 设置进度条颜色。color 进度条背景色（会覆盖 status 状态颜色）</p>\n",
+    "link": "progress/custom-color",
+    "component": " Progress",
+    "findIntroStr": "用于展示操作进度，告知用户当前状态和预期。",
+    "demoId": "custom-color"
+  },
+  {
+    "title": "自定义显示文字",
+    "content": "<p><code>text-inside</code> 进度条显示文字内置在进度条内（只在 type=line 时可用），<code>format</code>自定义进度条的文字</p>\n",
+    "link": "progress/format-text",
+    "component": " Progress",
+    "findIntroStr": "用于展示操作进度，告知用户当前状态和预期。",
+    "demoId": "format-text"
+  },
+  {
+    "title": "动态控制进度条变化",
+    "content": "<p>通过设置 <code>percentage</code> 动态控制进度条变化</p>\n",
+    "link": "progress/dynamic-control-changes",
+    "component": " Progress",
+    "findIntroStr": "用于展示操作进度，告知用户当前状态和预期。",
+    "demoId": "dynamic-control-changes"
+  }
+]

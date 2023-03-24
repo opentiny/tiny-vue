@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "slide-bar/basic-usage",
+    "component": "SlideBar Scrolling Block",
+    "findIntroStr": "SlideBar scroll block, which can be used as a sliding block of text.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Number of blocks scrolled each time",
+    "content": "<p>You can use <code>wheel-blocks</code> to set the number of blocks to be scrolled each time. \nThe data source can be obtained when the service is invoked through <code>value</code></p>\n",
+    "link": "slide-bar/wheel-blocks",
+    "component": "SlideBar Scrolling Block",
+    "findIntroStr": "SlideBar scroll block, which can be used as a sliding block of text.",
+    "demoId": "wheel-blocks"
+  },
+  {
+    "title": "Custom Scroll Block Content",
+    "content": "<p>Customize the scroll block content by slot. </p>\n",
+    "link": "slide-bar/custom-content",
+    "component": "SlideBar Scrolling Block",
+    "findIntroStr": "SlideBar scroll block, which can be used as a sliding block of text.",
+    "demoId": "custom-content"
+  },
+  {
+    "title": "Customized DOM Label",
+    "content": "<p>You can use <code>tag sub-tag</code> to customize DOM tags. </p>\n",
+    "link": "slide-bar/custom-tag",
+    "component": "SlideBar Scrolling Block",
+    "findIntroStr": "SlideBar scroll block, which can be used as a sliding block of text.",
+    "demoId": "custom-tag"
+  },
+  {
+    "title": "Scroll Block Event",
+    "content": "For details, see the following example.",
+    "link": "slide-bar/slide-bar-events",
+    "component": "SlideBar Scrolling Block",
+    "findIntroStr": "SlideBar scroll block, which can be used as a sliding block of text.",
+    "demoId": "slide-bar-events"
+  }
+]

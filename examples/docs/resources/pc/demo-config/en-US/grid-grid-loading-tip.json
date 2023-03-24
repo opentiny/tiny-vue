@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Disable loading status",
+    "content": "<p>Table attribute setting <code>loading</code> Enables or disables loading. The default value is <code>false</code>. </p>\n",
+    "link": "grid/tiny-first-menu/grid-loading-off-tip",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-grid-loading-off-tip"
+  },
+  {
+    "title": "Enable loading status",
+    "content": "For details, see the following example.",
+    "link": "grid/tiny-first-menu/grid-loading-tip",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-grid-loading-tip"
+  }
+]

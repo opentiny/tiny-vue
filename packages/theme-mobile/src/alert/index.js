@@ -1,0 +1,21 @@
+export default {
+  'tiny-mobile-alert-warning-icon-color': '#faad14',
+  'tiny-mobile-alert-warning-link-color': '#ffc833',
+  'tiny-mobile-alert-warning-bg-color': '#fef6e5',
+  'tiny-mobile-alert-error-icon-color': '#f5222d',
+  'tiny-mobile-alert-error-link-color': '#ff4642',
+  'tiny-mobile-alert-error-bg-color': '#fff1f0',
+  'tiny-mobile-alert-success-icon-color': '#52c41a',
+  'tiny-mobile-alert-success-link-color': '#78d53a',
+  'tiny-mobile-alert-success-bg-color': '#f6ffed',
+  'tiny-mobile-alert-info-icon-color': '#1890ff',
+  'tiny-mobile-alert-info-link-color': '#5ec2ff',
+  'tiny-mobile-alert-info-bg-color': '#e6f7ff',
+  'tiny-mobile-alert-nomal-height': '30px',
+  'tiny-mobile-alert-icon-size': '16px',
+  'tiny-mobile-alert-content-font-size': '12px',
+  'tiny-mobile-alert-content-color': '#999',
+  'tiny-mobile-alert-large-color': '#fff',
+  'tiny-mobile-alert-large-bgcolor': '#039be5',
+  'tiny-mobile-alert-large-border-radius': '4px'
+}

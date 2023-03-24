@@ -1,0 +1,82 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@scrollbar-prefix-cls: ~'@{css-prefix}scrollbar';
+
+.@{scrollbar-prefix-cls} {
+  overflow: hidden;
+  position: relative;
+
+  &:active > &__bar,
+  &:focus > &__bar,
+  &:hover > &__bar {
+    opacity: 1;
+    transition: opacity 340ms ease-out;
+  }
+
+  &__wrap {
+    overflow: scroll;
+    height: 100%;
+    max-height: 200px;
+  }
+
+  &__wrap--hidden-default::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  &__thumb {
+    position: relative;
+    display: block;
+    width: 0;
+    height: 0;
+    cursor: pointer;
+    border-radius: inherit;
+    background-color: rgba(144, 147, 153, 0.3);
+    transition: 0.3s background-color;
+
+    &:hover {
+      background-color: rgba(144, 147, 153, 0.5);
+    }
+  }
+
+  &__bar {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    z-index: 1;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 120ms ease-out;
+
+    &.is-vertical {
+      width: 6px;
+      top: 2px;
+
+      & > div {
+        width: 100%;
+      }
+    }
+
+    &.is-horizontal {
+      height: 6px;
+      left: 2px;
+
+      & > div {
+        height: 100%;
+      }
+    }
+  }
+}

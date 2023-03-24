@@ -1,0 +1,148 @@
+{
+  "attrs": [
+    {
+      "name": "page-size",
+      "sample": "pager-events",
+      "type": "Number",
+      "desc": "每页显示条目个数，支持 .sync 修饰符",
+      "defaultValue": "该属性的默认值为 10"
+    },
+    {
+      "name": "is-before-page-change",
+      "sample": "before-page-change",
+      "type": "Boolean",
+      "desc": "是否打开页面改变时的前置处理特性。在值为true时，翻页操作或者改变页大小操作不会立即生效，留给用户处理业务逻辑，之后通过调用预留的callback或者rollback使之生效或者失效，详看事件before-page-change",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-class",
+      "sample": "",
+      "type": "String",
+      "desc": "为 popper 添加类名(可参考 popover 组件)",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-append-to-body",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "total",
+      "sample": "current-page",
+      "type": "Number",
+      "desc": "总条目数",
+      "defaultValue": ""
+    },
+    {
+      "name": "page-count",
+      "sample": "page-count",
+      "type": "Number",
+      "desc": "总页数，total 和 page-count 设置任意一个就可以达到显示页码的功能；如果要支持 page-sizes 的更改，则需要使用 total 属性",
+      "defaultValue": ""
+    },
+    {
+      "name": "pager-count",
+      "sample": "pager-count",
+      "type": "Number",
+      "desc": "数字分页（number/complete）的模式下中间的页码按钮需要显示的最多个数;页码按钮的数量，当总页数超过该值时会折叠;该属性的可选值为 大于等于 5 且小于等于 21 的奇数",
+      "defaultValue": "该属性的默认值为 7"
+    },
+    {
+      "name": "current-page",
+      "sample": "current-page",
+      "type": "Number",
+      "desc": "当前页数，支持 .sync 修饰符",
+      "defaultValue": "该属性的默认值为 1"
+    },
+    {
+      "name": "layout",
+      "sample": "current-page",
+      "type": "String",
+      "desc": "组件布局，子组件名用逗号分隔;该属性的可选值为 sizes, prev, pager, next, jumper, ->, total, slot",
+      "defaultValue": "该属性的默认值为 prev, pager, next, jumper, ->, total"
+    },
+    {
+      "name": "page-sizes",
+      "sample": "page-size",
+      "type": "Array",
+      "desc": "设置指定可选择的每页显示条数;每页显示个数选择器的选项设置",
+      "defaultValue": "该属性的默认值为 [10, 20, 30, 40, 50, 100]"
+    },
+    {
+      "name": "prev-text",
+      "sample": "custom-next-prev-text",
+      "type": "String",
+      "desc": "替代图标显示的上一页文字",
+      "defaultValue": ""
+    },
+    {
+      "name": "next-text",
+      "sample": "custom-next-prev-text",
+      "type": "String",
+      "desc": "替代图标显示的下一页文字",
+      "defaultValue": ""
+    },
+    {
+      "name": "hide-on-single-page",
+      "sample": "hide-on-single-page",
+      "type": "Boolean",
+      "desc": "只有一页时是否隐藏",
+      "defaultValue": ""
+    },
+    {
+      "name": "mode",
+      "sample": "pager-mode-number",
+      "type": "String",
+      "desc": "设置分页显示模式,默认为number;设置分页显示模式;该属性的可选值为 number / simple / complete / fixed",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "custom-layout",
+      "type": "",
+      "desc": "自定义内容，需要在 layout 中列出 slot",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "before-page-change",
+      "sample": "before-page-change",
+      "type": "",
+      "desc": "在打开页面改变时的前置处理特性，并且进行翻页操作或者改变页大小操作时触发。;//参数arg\n { $grid: VueComponent, //table组件vue实例 \ncurrentPage: 1 //当前页码 \nlayout: 'total, prev, pager, next, jumper, sizes' //当前分页组件布局信息 \npageSize: 10// 当前每页显示条数 \npageSizes:[5, 10] //可切换的每页条数 \ntotal: 10 //总数据条数 }",
+      "defaultValue": ""
+    },
+    {
+      "name": "size-change",
+      "sample": "pager-events",
+      "type": "Function(arg1)",
+      "desc": "设置分页跳转后的事件;pageSize 改变时会触发;arg1: pageSize 新的当前值",
+      "defaultValue": ""
+    },
+    {
+      "name": "current-change",
+      "sample": "pager-events-current-change",
+      "type": "Function(arg1)",
+      "desc": "currentPage 改变时会触发;arg1: 新的当前页的值",
+      "defaultValue": ""
+    },
+    {
+      "name": "prev-click",
+      "sample": "pager-events-prev-click",
+      "type": "Function(arg1)",
+      "desc": "用户点击上一页按钮改变当前页后触发;arg1: 新的当前页的值",
+      "defaultValue": ""
+    },
+    {
+      "name": "next-click",
+      "sample": "pager-events-nextclick",
+      "type": "Function(arg1)",
+      "desc": "用户点击下一页按钮改变当前页后触发;arg1: Number 新的当前页的值",
+      "defaultValue": ""
+    }
+  ]
+}

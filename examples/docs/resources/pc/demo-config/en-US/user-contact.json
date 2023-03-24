@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "user-contact/basic-usage",
+    "component": "UserContact",
+    "findIntroStr": "UserContact component, which displays the user account and basic contact information, including the user description, avatar, and name. Any combination of the three elements.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Set Data Source",
+    "content": "<p>You can use <code>data</code> to set the data source. <code>imgUrl</code> indicates the image path, and <code>userName</code> indicates the name. <code>userDescription</code> indicates the user description. </p>\n",
+    "link": "user-contact/data-source",
+    "component": "UserContact",
+    "findIntroStr": "UserContact component, which displays the user account and basic contact information, including the user description, avatar, and name. Any combination of the three elements.",
+    "demoId": "data-source"
+  },
+  {
+    "title": "Customize the content that is not displayed in the dialog box.",
+    "content": "<p>Customize the content that is not displayed in the dialog box.\n<code>show-img</code>Indicates whether to display the avatar. The value true indicates that the avatar is displayed. The value false indicates that the avatar is hidden. The default value is true. \n<code>show-name</code> Indicates whether to display the name. The value true indicates that the name is displayed, and the value false indicates that the name is hidden. The default value is true. \n<code>show-description</code>Indicates whether to display the user description. If the value is true, the user description is displayed. If the value is false, the user description is hidden. The default value is true. </p>\n",
+    "link": "user-contact/not-displayed-content",
+    "component": "UserContact",
+    "findIntroStr": "UserContact component, which displays the user account and basic contact information, including the user description, avatar, and name. Any combination of the three elements.",
+    "demoId": "not-displayed-content"
+  },
+  {
+    "title": "Customize the default slot",
+    "content": "For details, see the following example.",
+    "link": "user-contact/slots-usercontact",
+    "component": "UserContact",
+    "findIntroStr": "UserContact component, which displays the user account and basic contact information, including the user description, avatar, and name. Any combination of the three elements.",
+    "demoId": "slots-usercontact"
+  }
+]

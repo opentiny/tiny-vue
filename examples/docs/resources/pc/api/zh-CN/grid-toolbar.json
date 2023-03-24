@@ -1,0 +1,113 @@
+{
+  "attrs": [
+    {
+      "name": "buttons",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "Array",
+      "desc": "按钮列表",
+      "defaultValue": ""
+    },
+    {
+      "name": "id",
+      "sample": "grid-customized#custom-column-width",
+      "type": "String",
+      "desc": "唯一 ID 标识",
+      "defaultValue": ""
+    },
+    {
+      "name": "loading",
+      "sample": "grid-toolbar#tiny-first-menu-refresh-grid",
+      "type": "Boolean",
+      "desc": "是否加载中",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "refresh",
+      "sample": "grid-toolbar#tiny-first-menu-refresh-grid",
+      "type": "Boolean",
+      "desc": "工具栏组件开启表格刷新功能。",
+      "defaultValue": ""
+    },
+    {
+      "name": "resizable",
+      "sample": "grid-customized#custom-column-width",
+      "type": "Boolean,Object",
+      "desc": "列宽拖动配置（需要设置 id）",
+      "defaultValue": ""
+    },
+    {
+      "name": "setting",
+      "sample": "grid-customized#custom-column-width",
+      "type": "Boolean/Object",
+      "desc": "设置表格属性是否显示个性化面板，当设置表格的name属性时有效;设置工具栏属性是否显示个性化配置（需要设置 id）",
+      "defaultValue": ""
+    },
+    {
+      "name": "full-screen",
+      "sample": "grid-toolbar#tiny-first-menu-grid-full-screen",
+      "type": "Boolean",
+      "desc": "设置表格是否可以全屏，或者需要全屏的容器。;设置工具栏属性是否显示全屏按钮",
+      "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "grid-toolbar#tiny-first-menu-copy-row-data",
+      "type": "String",
+      "desc": "尺寸;该属性的可选值为 medium,small,mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "before-open-full-screen",
+      "sample": "grid-toolbar#tiny-first-menu-grid-full-screen",
+      "type": "Function",
+      "desc": "全屏前的拦截方法 Function():Boolean，返回 false 则阻止全屏，返回 true 则不阻止",
+      "defaultValue": ""
+    },
+    {
+      "name": "before-close-full-screen",
+      "sample": "grid-toolbar#tiny-first-menu-grid-full-screen",
+      "type": "Function",
+      "desc": "关闭全屏前的拦截方法 Function():Boolean，返回 false 则阻止关闭全屏，返回 true 则不阻止",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "toolbar",
+      "sample": "grid-toolbar#tiny-first-menu-custom-toolbar",
+      "type": "",
+      "desc": "工具栏插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "buttons",
+      "sample": "grid-toolbar#tiny-first-menu-export-excel",
+      "type": "",
+      "desc": "按钮列表",
+      "defaultValue": ""
+    },
+    {
+      "name": "tools",
+      "sample": "grid-toolbar#tiny-first-menu-custom-toolbar",
+      "type": "",
+      "desc": "右侧工具列表",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "button-click",
+      "sample": "grid-validation#grid_Example-gridValid-before-submit-validation",
+      "type": "Function(arg,event)",
+      "desc": "当工具栏的按钮被点击时会后触发该事件;arg1:{ $grid: VueComponent  表格组件实例对象信息 $table: VueComponent 表实例对象组件信息 button:按钮列表信息对象 code: 按钮类型 } arg2:event",
+      "defaultValue": ""
+    },
+    {
+      "name": "on-before-move",
+      "sample": "grid-validation#grid_Example-gridValid-before-submit-validation",
+      "type": "Function(arg1,arg2)",
+      "desc": "个性化面板拖拽前事件;arg1:拖拽类型 arg2:拖拽行信息",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import '../mixins/hairline.less';
+@import './vars.less';
+
+@picker-column-prefix-cls: ~'@{css-prefix}mobile-picker-column';
+
+.@{picker-column-prefix-cls} {
+  position: relative;
+  flex: 1;
+  height: 100%;
+
+  &__wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition-timing-function: cubic-bezier(0.23, 1, 0.68, 1);
+  }
+
+  &__item {
+    height: var(--ti-mobile-picker-column-item-height, 34px);
+    line-height: var(--ti-mobile-picker-column-item-height, 34px);
+    color: var(--ti-mobile-picker-column-item-color, #333);
+    font-size: var(--ti-mobile-picker-column-item-font-size, 17px);
+    padding: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+
+    &.is-select {
+      color: var(--ti-mobile-picker-column-item-select-color, #039be5);
+    }
+  }
+
+  &__mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.4)),
+      linear-gradient(0deg, hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.4));
+    background-repeat: no-repeat;
+    background-position: top, bottom;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    pointer-events: none;
+  }
+
+  &__indicator {
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    left: 0px;
+    z-index: 3;
+    transform: translateY(-50%);
+    .hairline(
+      'top',
+      var(--ti-mobile-picker-column-indicator-border-color, #e5e5e5)
+    );
+    .hairline(
+      'bottom',
+      var(--ti-mobile-picker-column-indicator-border-color, #e5e5e5)
+    );
+  }
+
+  &:not(:first-child) &__mask::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    transform: scaleX(0.5);
+    transform-origin: 0 0;
+    content: ' ';
+    background: var(--ti-mobile-picker-column-mask-background, linear-gradient(#fff, #ddd, #fff));
+  }
+}

@@ -1,0 +1,73 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@amount-prefix-cls: ~'@{css-prefix}amount';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+@input-prefix-cls: ~'@{css-prefix}input';
+@popover-prefix-cls: ~'@{css-prefix}popover';
+
+.@{amount-prefix-cls} {
+  .component-css-vars-amount();
+  
+  width: 270px;
+
+  & &-input-icon {
+    .@{svg-prefix-cls} {
+      fill: var(--ti-amount-icon-color);
+      font-size: var(--ti-amount-icon-font-size);
+    }
+  }
+
+  &-popper {
+    width: 270px;
+
+    .popover-con {
+      .module:not(:last-child) {
+        margin-bottom: 12px;
+      }
+
+      .module {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .popover-left {
+          flex: 0 0 auto;
+          margin-right: 8px;
+          width: 30%;
+          text-align: right;
+        }
+
+        .popover-right:not(.@{input-prefix-cls}-prefix):not(.@{input-prefix-cls}-suffiX) {
+          .@{input-prefix-cls}__inner {
+            padding: 0 8px;
+          }
+        }
+
+        .popover-right.@{input-prefix-cls} {
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  .@{input-prefix-cls} {
+    outline: none;
+  }
+
+  span.@{popover-prefix-cls}__reference {
+    width: 100%;
+  }
+}

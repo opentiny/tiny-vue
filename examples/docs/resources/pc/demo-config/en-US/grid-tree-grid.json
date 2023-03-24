@@ -1,0 +1,106 @@
+[
+  {
+    "title": "Data structure with children",
+    "content": "<p>Configure tree-config=&quot;{children:'children'}&quot; on the grid tab to display data in a tree. In addition, you need to configure the tree-node attribute</p>\n on the field that displays the tree node",
+    "link": "grid/tree-table/tree-grid-base",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tree-table-tree-grid-base"
+  },
+  {
+    "title": "Flat Data Structure",
+    "content": "<p>Note: For a flattened data structure, you need to invoke the aggregateTableData method to convert data into data with sublevels to display the tree table structure.</p>\n",
+    "link": "grid/tree-table/tree-grid-data",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tree-table-tree-grid-data"
+  },
+  {
+    "title": "Operation Column",
+    "content": "In the <p> column, you can set type=&quot;radio&quot; to enable single selection and type=&quot;selection&quot; to enable multiple selection</p>\n",
+    "link": "grid/tree-table/tree-grid-operation-column",
+    "component": "Tree Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tree-table-tree-grid-operation-column"
+  },
+  {
+    "title": "Manually expand all tree nodes",
+    "content": "<p><code>setAllTreeExpansion(checked)</code> can be used to set whether all tree nodes are expanded or not. </p>\n",
+    "link": "grid/methods/set-all-tree-expansion",
+    "component": "Tree Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "methods-set-all-tree-expansion"
+  },
+  {
+    "title": "Manually expand a specified tree node",
+    "content": "You can set <p><code>setTreeExpansion(rows, checked)</code> to expand the specified tree node. The second parameter specifies whether to expand the row. </p>\n",
+    "link": "grid/methods/set-tree-expansion",
+    "component": "Tree Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "methods-set-tree-expansion"
+  },
+  {
+    "title": "Manually switch and expand tree nodes",
+    "content": "The <p><code>toggleTreeExpansion(row)</code> can be set to switch to expand the tree node. </p>\n",
+    "link": "grid/methods/toggle-tree-expansion",
+    "component": "Tree Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "methods-toggle-tree-expansion"
+  },
+  {
+    "title": "Frozen Column",
+    "content": "<p>On the column label, you can set the fixed=&quot;left&quot; attribute to fix the column on the left, and set the fixed=&quot;right&quot; attribute to fix the column on the right</p>\n",
+    "link": "grid/tree-table/tree-grid-fixed-column",
+    "component": "Tree Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tree-table-tree-grid-fixed-column"
+  },
+  {
+    "title": "Expand Row",
+    "content": "<p>Configure type=&quot;expand&quot; on the column label to expand the line. You can insert the required template information through the v-slot slot</p>\n",
+    "link": "grid/tree-table/tree-grid-expand",
+    "component": "Tree Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tree-table-tree-grid-expand"
+  },
+  {
+    "title": "Check whether the tree node is expanded.",
+    "content": "<p>You can use the <code>hasTreeExpand(row)</code> method to check whether a tree node is expanded. The row parameter indicates the row data object. </p>\n",
+    "link": "grid/tree-table/hasTreeExpand",
+    "component": "Tree Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tree-table-hasTreeExpand"
+  },
+  {
+    "title": "Expand Row No. Column Configuration",
+    "content": "<p>In the <code>treeConfig</code> attribute, set <code>ordered</code> to <code>false</code> to expand rows. The sequence number column is sorted by parent-child structure. By default, the <code>ordered</code> attribute is <code>true</code>. After the row is expanded, the sequence number column is sorted by sequence number. </p>\n",
+    "link": "grid/tree-table/tree-grid-index",
+    "component": "Tree Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tree-table-tree-grid-index"
+  },
+  {
+    "title": "Basic Usage",
+    "content": "<p>Table property<code>expand-config</code>Set the configuration item of the expanded line. </p>\n",
+    "link": "grid/tree-table/tree-grid-expand-config",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tree-table-tree-grid-expand-config"
+  },
+  {
+    "title": "Add, Delete, and Modify",
+    "content": "<p>Set slot=&quot;toolbar&quot; on the grid-toolbar tab, and configure related operation buttons. Note: To add data, you need to configure the edit-config text box on the grid tab. In addition, the component instance invokes methods through ref to perform related operations. findTree and filterTree are search and filter methods in the tool class. Due to the special structure of tree data, the <code>getInsertRecords</code> and <code>getRecordset</code> methods of the grid cannot obtain new data. Such data needs to be processed by users. </p>\n",
+    "link": "grid/tree-table/tree-grid-insert-delete-update",
+    "component": "Tree Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tree-table-tree-grid-insert-delete-update"
+  },
+  {
+    "title": "Keyboard operation",
+    "content": "<p>Move the highlighted row, set stripe to false, highlight-hover-row to false, and highlight-current-row to false. Configure the keyboard-config={isArrow: true} attribute to enable the arrow keys function.\n | Arrow Up | Move to the previous line of the highlighted line\n | Arrow Down | Move to the next line of the highlighted line\n | Enter | Expand the node. Enter the child node\n | Backspace | Close the node and return to the parent node</p>\n",
+    "link": "grid/tree-table/tree-grid-keyboard-operation",
+    "component": "Tree Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tree-table-tree-grid-keyboard-operation"
+  }
+]

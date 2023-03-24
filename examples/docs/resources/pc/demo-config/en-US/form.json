@@ -1,0 +1,114 @@
+[
+  {
+    "title": "Common Forms",
+    "content": "<p>In the Form component, each form field consists of a FormItem component. Various types of form controls can be placed in the form field, including Input, Select, Checkbox, Radio, Switch, DatePicker, and TimePicker. </p>\n",
+    "link": "form/frequently-used-form",
+    "component": "Form",
+    "findIntroStr": "It consists of buttons, text boxes, selectors, option buttons, and check boxes. It is used to collect, verify, and submit data.",
+    "demoId": "frequently-used-form"
+  },
+  {
+    "title": "Inline Form",
+    "content": "<p>When the vertical space is limited and the form is simple, you can place the form in a line. You can set the <code>inline</code> property to change the form field to the form field in the line. </p>\n",
+    "link": "form/form-in-row",
+    "component": "FormItem",
+    "findIntroStr": "FormItem configuration in the Form component.",
+    "demoId": "form-in-row"
+  },
+  {
+    "title": "Form Validation",
+    "content": "<p>Includes common verification rules such as mandatory fields, date, time, URL, and email. Use <code>trigger</code> to configure the mode of triggering the validation rule. If <code>change</code> is used, the validation is triggered when the value in the text box changes. If <code>blur</code> is used, the validation is triggered after the focus is lost. </p>\n",
+    "link": "form/form-validation",
+    "component": "Form",
+    "findIntroStr": "It consists of buttons, text boxes, selectors, option buttons, and check boxes. It is used to collect, verify, and submit data.",
+    "demoId": "form-validation"
+  },
+  {
+    "title": "Customized Verification Rule",
+    "content": "<p>Use the <code>validator</code> option to perform customized validation. In the validation method, <code>callback</code> must be invoked. Configure the <code>validate-on-rule-change</code> attribute to determine whether to trigger a verification immediately after the <code>rules</code> attribute is changed.</p>\n",
+    "link": "form/custom-validation-rule",
+    "component": "Form",
+    "findIntroStr": "It consists of buttons, text boxes, selectors, option buttons, and check boxes. It is used to collect, verify, and submit data.",
+    "demoId": "custom-validation-rule"
+  },
+  {
+    "title": "Text Alignment",
+    "content": "<p>Set the <code>label-align</code> attribute to determine whether to align text</p>\n",
+    "link": "form/label-align",
+    "component": "Form",
+    "findIntroStr": "It consists of buttons, text boxes, selectors, option buttons, and check boxes. It is used to collect, verify, and submit data.",
+    "demoId": "label-align"
+  },
+  {
+    "title": "Verification prompt position",
+    "content": "<p>You can use <code>validate-position</code> to customize the position where the error message appears. After this parameter is set on the <code>Form</code> component, the subcomponent <code>FormItem</code> inherits the setting of the parent component. The setting on the <code>FormItem</code> component takes precedence over the setting on the <code>From</code> component. </p>\n",
+    "link": "form/validation-position",
+    "component": "Form",
+    "findIntroStr": "It consists of buttons, text boxes, selectors, option buttons, and check boxes. It is used to collect, verify, and submit data.",
+    "demoId": "validation-position"
+  },
+  {
+    "title": "Add a verification method for a component without verification.",
+    "content": "For details, see the following example.",
+    "link": "form/no-validate-to-add",
+    "component": "Form",
+    "findIntroStr": "It consists of buttons, text boxes, selectors, option buttons, and check boxes. It is used to collect, verify, and submit data.",
+    "demoId": "no-validate-to-add"
+  },
+  {
+    "title": "Form Size",
+    "content": "<p>You can change the size of a component in a form by setting the <code>size</code> attribute on the <code>tiny-form</code> tab. You can set the <code>disabled</code> attribute to change the disabled status of components in the form.</p>\n",
+    "link": "form/size",
+    "component": "FormItem",
+    "findIntroStr": "It consists of buttons, text boxes, selectors, option buttons, and check boxes. It is used to collect, verify, and submit data.",
+    "demoId": "size"
+  },
+  {
+    "title": "Remove the verification result of a form item.",
+    "content": "<p>Invoke the <code>clearValidate</code> method to remove the verification result of a form item. Transfer the <code>prop</code> attribute of the form item to be removed or the array consisting of <code>prop</code>. If this parameter is not transferred, the verification result of the entire form is removed. </p>\n",
+    "link": "form/form-clear-validate",
+    "component": "Remove the verification result of a form item.",
+    "findIntroStr": "Method for removing the verification result of a form item in the Form component.",
+    "demoId": "form-clear-validate"
+  },
+  {
+    "title": "Label Text Slot",
+    "content": "<p>Customize the content of the label text in the <code>label</code> slot</p>\n",
+    "link": "form/slot-label",
+    "component": "FormItem",
+    "findIntroStr": "It consists of buttons, text boxes, selectors, option buttons, and check boxes. It is used to collect, verify, and submit data.",
+    "demoId": "slot-label"
+  },
+  {
+    "title": "Hide Form Item Verification Prompt",
+    "content": "<p>You can configure <code>novalid-tip</code> to determine whether to display the tip in the verification dialog box. </p>\n",
+    "link": "form/novalid-tip",
+    "component": "Form",
+    "findIntroStr": "Whether to display the tip of the verification dialog box",
+    "demoId": "novalid-tip"
+  },
+  {
+    "title": "Verification prompt format",
+    "content": "<p>You can use <code>validate-type</code> to set whether the verification prompt information is displayed in <code>text</code> or <code>tip</code> format. The default value is <code>tip</code>. You can also configure the verification prompt mode of a certain item on a certain <code>&lt;form-item&gt;</code> . </p>\n",
+    "link": "form/validate-type",
+    "component": "Form",
+    "findIntroStr": "It consists of buttons, text boxes, selectors, option buttons, and check boxes. It is used to collect, verify, and submit data.",
+    "demoId": "validate-type"
+  },
+  {
+    "title": "Disable form",
+    "content": "<p>You can set whether to disable the form by <code>disabled</code>. The default value is <code>false</code>. </p>\n",
+    "link": "form/form-disabled",
+    "component": "Form",
+    "findIntroStr": "It consists of buttons, text boxes, selectors, option buttons, and check boxes. It is used to collect, verify, and submit data.",
+    "demoId": "form-disabled"
+  },
+  {
+    "title": "Complex Layout",
+    "content": "<p>Complex layouts are implemented by working with the <code>Row</code> and <code>Col</code> component.</p>\n",
+    "link": "form/form-row-col",
+    "component": " Form",
+    "findIntroStr": "It consists of buttons, text boxes, selectors, option buttons, and check boxes. It is used to collect, verify, and submit data.",
+    "demoId": "form-row-col"
+  }
+]

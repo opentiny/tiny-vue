@@ -1,0 +1,130 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@scroll-text-prefix-cls: ~'@{css-prefix}scroll-text';
+
+.@{scroll-text-prefix-cls} {
+  &__wrapper {
+    .component-css-vars-scroll-text();
+  }
+
+  width: 300px;
+  height: var(--ti-scroll-text-height);
+  line-height: var(--ti-scroll-text-height);
+  background: var(--ti-scroll-text-bg-color);
+  margin: var(--ti-scroll-text-margin-vertical) var(--ti-scroll-text-margin-horizontal);
+  overflow: hidden;
+
+  & &__content {
+    width: max-content;
+    height: 100%;
+    padding: 0 8px;
+    display: flex;
+    display: inline-block\9;
+    align-items: center;
+    white-space: nowrap;
+    position: relative;
+    animation: infinite linear;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    // 兼容ie10-ie11
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      display: inline-block;
+    }
+
+    // 兼容edge
+    @supports (-ms-ime-align: auto) {
+      display: inline-block;
+    }
+
+    &.left {
+      animation-name: moveLeft;
+    }
+
+    &.right {
+      animation-name: moveRight;
+    }
+
+    &.up {
+      animation-name: moveUp;
+    }
+
+    &.down {
+      animation-name: moveDown;
+    }
+
+    &.singleUp {
+      animation-name: singleUp;
+    }
+
+    &.stop {
+      animation-play-state: paused;
+    }
+
+    &.up,
+    &.down {
+      width: 100%;
+      white-space: normal;
+    }
+
+    p {
+      width: auto;
+      line-height: 1;
+      margin: 0;
+    }
+  }
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translateX(300px);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(300px);
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes moveDown {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}

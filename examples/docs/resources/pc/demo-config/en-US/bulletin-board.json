@@ -1,0 +1,66 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>The <code>data</code> attribute must be set to set the bulletin information data, and the <code>tab-title</code> attribute must be set to set the title of each bulletin board. </p>\n",
+    "link": "bulletin-board/base",
+    "component": "BulletinBoard",
+    "findIntroStr": "BulletinBoard bulletin board component, which displays the information that needs to be paid attention to.",
+    "demoId": "base"
+  },
+  {
+    "title": "Billboard Title",
+    "content": "<p>You can use <code>title</code> to set the bulletin board title. </p>\n",
+    "link": "bulletin-board/title",
+    "component": "BulletinBoard",
+    "findIntroStr": "BulletinBoard bulletin board component, which displays the information that needs to be paid attention to.",
+    "demoId": "title"
+  },
+  {
+    "title": "Default Activated Tab",
+    "content": "<p>You can set the default active tab by <code>active-name</code>, starting from <code>1</code>. </p>\n",
+    "link": "bulletin-board/active-name",
+    "component": "BulletinBoard",
+    "findIntroStr": "BulletinBoard bulletin board component, which displays the information that needs to be paid attention to.",
+    "demoId": "active-name"
+  },
+  {
+    "title": "Tab Title",
+    "content": "<p>You can customize the tab title by using the <code>tab-title</code> attribute. </p>\n",
+    "link": "bulletin-board/tab-title",
+    "component": "BulletinBoard",
+    "findIntroStr": "BulletinBoard bulletin board component, which displays the information that needs to be paid attention to.",
+    "demoId": "tab-title"
+  },
+  {
+    "title": "URL-based redirection",
+    "content": "<p>The URL-based redirection is based on the <code>url</code> and <code>target</code> fields in the data. </p>\n",
+    "link": "bulletin-board/url",
+    "component": "BulletinBoard",
+    "findIntroStr": "BulletinBoard bulletin board component, which displays the information that needs to be paid attention to.",
+    "demoId": "url"
+  },
+  {
+    "title": "Route-based redirection",
+    "content": "<p>Route-based redirection is performed based on the <code>route</code> field in the data. </p>\n",
+    "link": "bulletin-board/route",
+    "component": "BulletinBoard",
+    "findIntroStr": "BulletinBoard bulletin board component, which displays the information that needs to be paid attention to.",
+    "demoId": "route"
+  },
+  {
+    "title": "Show More links",
+    "content": "<p>You can use <code>more-link</code> to display and set more links. <code>show-more</code> Sets whether to display the More button. The default value is true. </p>\n",
+    "link": "bulletin-board/more-link",
+    "component": "BulletinBoard",
+    "findIntroStr": "BulletinBoard bulletin board component, which displays the information that needs to be paid attention to.",
+    "demoId": "more-link"
+  },
+  {
+    "title": "User-defined bulletin prefix",
+    "content": "<p>You can use <code>icon</code> to customize the new bulletin prefix icon. </p>\n",
+    "link": "bulletin-board/icon",
+    "component": "BulletinBoard",
+    "findIntroStr": "BulletinBoard bulletin board component, which displays the information that needs to be paid attention to.",
+    "demoId": "icon"
+  }
+]

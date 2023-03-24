@@ -1,0 +1,66 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p> can run smoothly on PCs and mobile devices and is compatible with most browsers. (Internet Explorer 9/10/11, Chrome, Firefox, Safari, etc.) The bottom layer relies on the lightweight Canvas class library ZRender to provide intuitive, vivid, interactive, and highly personalized data visualization charts. </p>\n",
+    "link": "chart/scatter/base",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "scatter-base"
+  },
+  {
+    "title": "Example of a two-dimensional multi-indicator scatter chart",
+    "content": "For details, see the following example.",
+    "link": "chart/scatter/demo2",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "scatter-demo2"
+  },
+  {
+    "title": "KQI/KPI Dimension Configuration",
+    "content": "For details, see the following example.",
+    "link": "chart/scatter/demo3",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "scatter-demo3"
+  },
+  {
+    "title": "Data Type Configuration",
+    "content": "For details, see the following example.",
+    "link": "chart/scatter/demo4",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "scatter-demo4"
+  },
+  {
+    "title": "Attribute Name Configuration",
+    "content": "For details, see the following example.",
+    "link": "chart/scatter/demo5",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "scatter-demo5"
+  },
+  {
+    "title": "Zooming Configuration",
+    "content": "For details, see the following example.",
+    "link": "chart/scatter/demo6",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "scatter-demo6"
+  },
+  {
+    "title": "Scatter Style Configuration",
+    "content": "For details, see the following example.",
+    "link": "chart/scatter/demo7",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "scatter-demo7"
+  },
+  {
+    "title": "When the scatter is overwritten, the dialog box can be triggered by the coordinate axis.",
+    "content": "For details, see the following example.",
+    "link": "chart/scatter/demo8",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "scatter-demo8"
+  }
+]

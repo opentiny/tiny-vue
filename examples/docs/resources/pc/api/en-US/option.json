@@ -1,0 +1,41 @@
+{
+  "attrs": [
+    {
+      "name": "value",
+      "sample": "filter-method",
+      "type": "String/number/object",
+      "desc": "Value of an option",
+      "defaultValue": ""
+    },
+    {
+      "name": "label",
+      "sample": "filter-method",
+      "type": "String/number",
+      "desc": "Label of an option. If this parameter is not set, the value is the same as the value by default.",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled",
+      "type": "Boolean",
+      "desc": "Do you want to disable this option?",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "highlight-class",
+      "sample": "",
+      "type": "String",
+      "desc": "Customized highlighted class name",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "custom-options",
+      "type": "",
+      "desc": "Default slot (Insert a custom HTML template into tiny-option)",
+      "defaultValue": ""
+    }
+  ]
+}

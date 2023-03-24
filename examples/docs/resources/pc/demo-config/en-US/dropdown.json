@@ -1,0 +1,66 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>Basic Usage</p>\n",
+    "link": "dropdown/basic-usage",
+    "component": "Dropdown drop-down list",
+    "findIntroStr": "Dropdown drop-down list.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Trigger Object",
+    "content": "<p>Configure the <code>split-button</code> attribute. You can use the built-in button to trigger the drop-down menu. In addition, you can use the <code>type</code> attribute to configure the button status. The usage is the same as that of the <code>Button</code> component</p>\n",
+    "link": "dropdown/split-button",
+    "component": "Dropdown drop-down list",
+    "findIntroStr": "Dropdown drop-down list.",
+    "demoId": "split-button"
+  },
+  {
+    "title": "Trigger Mode",
+    "content": "<p>You can configure <code>click</code> or <code>hover</code> to activate</p>\n",
+    "link": "dropdown/trigger",
+    "component": "Dropdown drop-down list",
+    "findIntroStr": "Dropdown drop-down list.",
+    "demoId": "trigger"
+  },
+  {
+    "title": "Menu hiding mode",
+    "content": "The <p> drop-down menu is hidden by default after a menu item is clicked. You can disable this function by setting <code>hide-on-click</code> to <code>false</code>. </p>\n",
+    "link": "dropdown/hide-on-click",
+    "component": "Dropdown drop-down list",
+    "findIntroStr": "Dropdown drop-down list.",
+    "demoId": "hide-on-click"
+  },
+  {
+    "title": "Disabled",
+    "content": "The <p>Dropdown and DropdownItem components can be disabled through the <code>disabled</code> attribute. </p>\n",
+    "link": "dropdown/disabled",
+    "component": "Dropdown drop-down list",
+    "findIntroStr": "Dropdown drop-down list.",
+    "demoId": "disabled"
+  },
+  {
+    "title": "Different Sizes",
+    "content": "<p>Additional sizes: <code>medium</code>, <code>small</code>, <code>mini</code>, configured by setting the <code>size</code> property. </p>\n",
+    "link": "dropdown/size",
+    "component": "Dropdown drop-down list",
+    "findIntroStr": "Dropdown drop-down list.",
+    "demoId": "size"
+  },
+  {
+    "title": "Use Profile",
+    "content": "<p>DropdownYou can configure the attributes of DropdownMenu through the <code>menu-options</code> attribute. <code>title</code>Configure the name of the trigger source</p><p>DropdownMenu You can configure the attributes of DropdownItem through the <code>options</code> attribute. <code>text-field</code> is used in conjunction with <code>options</code> to specify the fields displayed in the menu copywriting. <code>text-field</code> The default value is label</p>\n",
+    "link": "dropdown/options",
+    "component": "Dropdown drop-down list",
+    "findIntroStr": "Dropdown drop-down list.",
+    "demoId": "options"
+  },
+  {
+    "title": "Internal Event",
+    "content": "<p>The built-in events include the <code>button-click</code>, <code>item-click</code>, and <code>visible-change</code> events. </p>\n",
+    "link": "dropdown/events",
+    "component": "Dropdown drop-down list",
+    "findIntroStr": "Dropdown drop-down list.",
+    "demoId": "events"
+  }
+]

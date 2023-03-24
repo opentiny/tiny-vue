@@ -1,0 +1,92 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@carousel-prefix-cls: ~'@{css-prefix}carousel';
+
+.@{carousel-prefix-cls} {
+  .component-css-vars-carousel-item();
+
+  &__item,
+  &__mask {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  &__item {
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    z-index: 0;
+
+    .item-title {
+      position: absolute;
+      bottom: 0;
+      height: var(--ti-carousel-item-title-height);
+      width: 100%;
+      line-height: var(--ti-carousel-item-title-height);
+      color: var(--ti-carousel-item-title-text-color, #fff);
+      text-align: left;
+      background: var(--ti-carousel-item-title-bg-color);
+
+      span {
+        padding: 0 12px;
+        font-size: var(--ti-carousel-item-title-span-font-size);
+        width: 80%;
+        display: inline-block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+
+    &.is-active {
+      z-index: 2;
+    }
+
+    &.is-animating {
+      transition: transform 0.4s ease-in-out;
+    }
+  }
+
+  &__item--card {
+    width: 50%;
+    transition: transform 0.4s ease-in-out;
+
+    &.is-in-stage {
+      cursor: pointer;
+      z-index: 1;
+
+      &.is-hover,
+      &:hover {
+        .@{carousel-prefix-cls}__mask {
+          opacity: 0.12;
+        }
+      }
+    }
+
+    &.is-active {
+      z-index: 2;
+    }
+  }
+
+  &__mask {
+    width: 100%;
+    background-color: var(--ti-carousel-mask-bg-color);
+    opacity: 0.24;
+    transition: 0.2s;
+  }
+}

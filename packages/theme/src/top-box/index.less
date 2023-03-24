@@ -1,0 +1,98 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../mixins/button.less';
+@import '../custom.less';
+@import './vars.less';
+
+@top-box-prefix-cls: ~'@{css-prefix}top-box';
+
+.@{top-box-prefix-cls} {
+  .component-css-vars-top-box();
+
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  max-height: 600px;
+  background: var(--ti-top-box-bg-color);
+  padding: 24px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s, transform 0.4s, top 0.4s;
+
+  & &__icon {
+    font-size: var(--ti-top-box-icon-font-size, 24px);
+    vertical-align: middle;
+  }
+
+  & &__content {
+    display: inline-block;
+    padding: 0 16px;
+    vertical-align: middle;
+  }
+
+  & &__closeBtn {
+    position: absolute;
+    top: 14px;
+    right: 12px;
+    cursor: pointer;
+    fill: rgba(51, 51, 51, 0.5);
+    display: none;
+
+    &:hover {
+      fill: rgba(51, 51, 51, 1);
+    }
+  }
+
+  & &__toolbar {
+    float: right;
+    margin-top: 24px;
+  }
+
+  &.is-closable &__closeBtn {
+    display: inline-block;
+  }
+
+  &.is-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &--success &__icon {
+    fill: var(--ti-top-box-success-icon-color);
+  }
+
+  &--error &__icon {
+    fill: var(--ti-top-box-error-icon-color);
+  }
+
+  &--warning &__icon {
+    fill: var(--ti-top-box-warning-icon-color);
+  }
+
+  &--help &__icon {
+    fill: var(--ti-top-box-help-icon-color);
+  }
+
+  &--info &__icon {
+    fill: var(--ti-top-box-info-icon-color);
+  }
+
+  &-fade-enter,
+  &-fade-leave-active {
+    opacity: 0;
+    transform: translate(-50%, -100%);
+  }
+}
