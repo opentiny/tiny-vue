@@ -2,12 +2,12 @@
   <tiny-row>
     <tiny-col :span="10">
       <div id="container" class="scroll-container">
-        <div id="section-1" class="section-1">Section 1</div>
-        <div id="section-2" class="section-2">Section 2</div>
-        <div id="section-3" class="section-3">
-          Section 3
-          <div id="section-3-1" class="section-3-1">Section 3-1</div>
-          <div id="section-3-2" class="section-3-2">Section 3-2</div>
+        <div id="sec-1" class="sec-1">Sec 1</div>
+        <div id="sec-2" class="sec-2">Sec 2</div>
+        <div id="sec-3" class="sec-3">
+          Sec 3
+          <div id="sec-3-1" class="sec-3-1">Sec 3-1</div>
+          <div id="sec-3-2" class="sec-3-2">Sec 3-2</div>
         </div>
       </div>
     </tiny-col>
@@ -29,29 +29,29 @@ export default {
     return {
       links: [
         {
-          key: 'section-1',
-          link: '#section-1',
-          title: 'Section 1'
+          key: 'sec-1',
+          link: '#sec-1',
+          title: 'Sec 1'
         },
         {
-          key: 'section-2',
-          link: '#section-2',
-          title: 'Section 2'
+          key: 'sec-2',
+          link: '#sec-2',
+          title: 'Sec 2'
         },
         {
-          key: 'section-3',
-          link: '#section-3',
-          title: 'Section 3',
+          key: 'sec-3',
+          link: '#sec-3',
+          title: 'Sec 3',
           children: [
             {
-              key: 'section-3-1',
-              link: '#section-3-1',
-              title: 'Section 3-1'
+              key: 'sec-3-1',
+              link: '#sec-3-1',
+              title: 'Sec 3-1'
             },
             {
-              key: 'section-3-2',
-              link: '#section-3-2',
-              title: 'Section 3-2'
+              key: 'sec-3-2',
+              link: '#sec-3-2',
+              title: 'Sec 3-2'
             }
           ]
         }
@@ -69,30 +69,31 @@ export default {
 
 <style scoped>
 .is-active-anchor {
-  border: 1px solid red;
+  border: 1px solid #333;
 }
 .scroll-container {
-  height: 20vh;
+  height: 50vh;
   border: 2px solid #333;
   overflow: auto;
 }
-.section-1 {
-  height: 100vh;
-  background: rgba(125, 0, 0, 0.1);
+.sec-1 {
+  height: 50vh;
+  background: rgba(135, 206, 235, 0.1);
 }
-.section-2 {
-  height: 100vh;
-  background: rgba(0, 125, 0, 0.1);
+.sec-2 {
+  height: 50vh;
+  background: rgba(135, 206, 235, 0.3);
 }
-.section-3 {
-  background: rgba(0, 0, 125, 0.1);
+.sec-3 {
+  background: rgba(135, 206, 235, 0.6);
+  padding-top: 20vh;
 }
-.section-3-1 {
-  height: 100vh;
-  background: rgba(0, 0, 125, 0.2);
+.sec-3-1 {
+  height: 50vh;
+  background: rgba(135, 206, 235, 0.8);
 }
-.section-3-2 {
-  height: 100vh;
-  background: rgba(0, 0, 125, 0.3);
+.sec-3-2 {
+  height: 50vh;
+  background: rgba(135, 206, 235, 1);
 }
 </style>
