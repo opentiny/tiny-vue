@@ -25,9 +25,7 @@
       </slot>
     </div>
     <div class="tiny-mobile-exception__footer">
-      <slot name="footer">
-        <span>{{ t('ui.exception.provide') }}</span>
-      </slot>
+      <slot name="footer"></slot>
     </div>
   </div>
 </template>
