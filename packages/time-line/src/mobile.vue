@@ -62,7 +62,9 @@
               <slot name="header" v-bind:item="node">
                 <div class="name">{{ node.name }}</div>
               </slot>
-              <div v-if="node.showFoldBtn" :class="['arrow-btn', node.fold ? 'arrow-btn-fold' : '']" @click="node.fold = !node.fold"></div>
+              <div v-if="node.showFoldBtn" class="arrow-btn" @click="node.fold = !node.fold">
+                <div :class="['arrow-btn-arrow', node.fold ? 'arrow-btn-arrow-fold' : '']"></div>
+              </div>
             </div>
             <div v-if="!node.fold" :class="['content', node.time ? 'content-left-margin' : null]">
               <slot name="content"> </slot>
