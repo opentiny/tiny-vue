@@ -1,86 +1,86 @@
-# 贡献指南
+# Contributing
 
-很高兴你有意愿参与 TinyVue 开源项目的贡献，参与贡献的形式有很多种，你可以根据自己的特长和兴趣选择其中的一个或多个：
+We are glad that you are willing to contribute to the TinyVue open source project. There are many forms of contribution, and you can choose one or more of them according to your strengths and interests:
 
-- 报告[新缺陷](https://github.com/opentiny/tiny-vue/issues/new?template=bug-report.yml)
-- 为[已有缺陷](https://github.com/opentiny/tiny-vue/labels/bug)提供更详细的信息，比如补充截图、提供更详细的复现步骤、提供最小可复现demo链接等
-- 提交 Pull requests 修复文档中的错别字或让文档更清晰和完善
-- 添加官方小助手微信 opentiny-official，加入技术交流群参与讨论
+- Report [new defect](https://github.com/opentiny/tiny-vue/issues/new?template=bug-report.yml)
+- Provide more detailed information for [existing defects](https://github.com/opentiny/tiny-vue/labels/bug), such as supplementary screenshots, more detailed reproduction steps, minimum reproducible demo links, etc.
+- Submit Pull requests to fix typos in the document or make the document clearer and better
+- Add the official assistant WeChat `opentiny-official` and join the technical exchange group to participate in the discussion.
 
-当你亲自使用 TinyVue 组件库，并参与多次以上形式的贡献，对 TinyVue 逐渐熟悉之后，可以尝试做一些更有挑战的事情，比如：
+When you personally use the TinyVue component library and participate in many of the above contributions, as you become familiar with TinyVue, you can try to do something more challenging, such as:
 
-- 修复缺陷，可以先从 [Good-first issue](https://github.com/opentiny/tiny-vue/labels/good%20first%20issue) 开始
-- 实现新特性
-- 完善单元测试
-- 翻译文档
-- 参与代码检视
+- Fix defects, you can start with [Good-first issue](https://github.com/opentiny/tiny-vue/labels/good%20first%20issue).
+- Implement new features.
+- Improve unit testing.
+- Translate the document.
+- Participate in code review.
 
-## 提交 Issue
+## Bug Reports
 
-如果你在使用 TinyVue 组件过程中遇到问题，欢迎给我们提交 Issue，提交 Issue 之前，请先仔细阅读相关的[官方文档](https://opentiny.design)，确认这是一个缺陷还是尚未实现的功能。
+If you encounter problems in the process of using TinyVue components, you are welcome to submit Issue to us. Before submitting Issue, please read the relevant [official documentation](https://opentiny.design) carefully to confirm whether this is a defect or an unimplemented function.
 
-如果是一个缺陷，创建新 Issue 时选择 [Bug report](https://github.com/opentiny/tiny-vue/issues/new?template=bug-report.yml) 模板，标题遵循 `[componentName]缺陷简述` 的格式，比如：`[select]选择框内容太长展示不下时，希望能支持配置tips提示`。
+If it is a defect, select [Bug report](https://github.com/opentiny/tiny-vue/issues/new?template=bug-report.yml) template when creating a new Issue. The title follows the format of `[componentName] defect description`. For example: `[select] filtering function, the selected option cannot be selected again after it has been deleted`.
 
-报告缺陷的 Issue 主要需要填写以下信息：
-- tiny-vue 和 vue 的版本号
-- 缺陷的表现，可截图辅助说明，如果有报错可贴上报错信息
-- 缺陷的复现步骤，最好能提供一个最小可复现 demo 链接
+Issue that reports defects mainly needs to fill in the following information:
+- Version numbers of `@opentiny/vue` and `vue`.
+- The performance of the defect can be illustrated by screenshot, and if there is an error, the error message can be posted.
+- Defect reproduction step, preferably with a minimum reproducible demo link.
 
-如果是一个新特性，则选择 [Feature request](https://github.com/opentiny/tiny-vue/issues/new?template=feature-request.yml) 模板，标题遵循 `[componentName]新特性简述` 的格式，比如：`[select]过滤功能中，选中的选项退格删除后，无法再次选中该选项`。
+If it is a new feature, select [Feature request](https://github.com/opentiny/tiny-vue/issues/new?template=feature-request.yml) template. The title follows the format of `[componentName] new feature description`. For example: `[select] selection box is too long to display, hope to support the configuration of tips prompt`.
 
-新特性的 Issue 主要需要填写以下信息：
-- 该特性主要解决用户的什么问题
-- 该特性的 api 是什么样的
+The following information is required for the Issue of the new feature:
+- What problems does this feature mainly solve for users?
+- What is the api of this feature?
 
-## 提交 PR
+## Pull Requests
 
-提交 PR 之前，请先确保你提交的内容是符合 TinyVue 整体规划的，一般已经标记为 [bug](https://github.com/opentiny/tiny-vue/labels/bug) 的 Issue 是鼓励提交 PR 的，如果你不是很确定，可以创建一个 [Discussion](https://github.com/opentiny/tiny-vue/discussions) 进行讨论。
+Before submitting pull request, please make sure that your submission is in line with the overall plan of TinyVue. Generally, issues that marked as [bug](https://github.com/opentiny/tiny-vue/labels/bug) are encouraged to submit pull requests. If you are not sure, you can create a [Discussion](https://github.com/opentiny/tiny-vue/discussions) for discussion.
 
-本地启动步骤：
+Local startup steps:
 
-- 点击 [TinyVue](https://github.com/opentiny/tiny-vue) 代码仓库右上角的 Fork 按钮，将上游仓库 Fork 到个人仓库
-- Clone 个人仓库到本地
-- 关联上游仓库，方便同步上游仓库最新代码
-- 在 Tiny Vue 根目录下运行 npm i, 安装 node 依赖
-- 运行 npm run dev:vue3，启动组件库网站
-- 打开浏览器访问：[http://127.0.0.1:5173/](http://127.0.0.1:5173/)
+- Click the Fork button in the upper right corner of the [TinyVue](https://github.com/opentiny/tiny-vue) code repository to Fork the upstream repository to the personal repository.
+- Clone personal repository to local.
+- Associated with the upstream repository to facilitate the synchronization of the latest code of the upstream repository.
+- Run `npm i --force` under the TinyVue root directory to install node dependencies.
+- Run `npm run dev:vue3` to launch the component library website.
+- Open the browser to visit: [http://127.0.0.1:5173/](http://127.0.0.1:5173/)
 
 ```shell
-# username 为用户名，执行前请替换
+# You need to replace username with your own user name
 git clone git@github.com:username/tiny-vue.git
 cd tiny-vue
 
-# 关联上游仓库
+# Associate upstream repository
 git remote add upstream git@github.com:opentiny/tiny-vue.git
 
-# 安装依赖
+# Installation
 npm i
 
-# 启动 Vue3 项目
+# Launch Vue.js 3
 npm run dev:vue3
 
-# 启动 Vue2 项目
+# Launch Vue.js 2
 npm run dev:vue2
 ```
 
-提交 PR 的步骤：
+To submit a PR:
 
-- 请确保你已经完成本地启动中的步骤，并能正常访问：[http://127.0.0.1:5173/](http://127.0.0.1:5173/)
-- 同步上游仓库 dev 分支最新代码：git pull upstream dev
-- 从上游仓库 dev 分支创建新分支 `git checkout -b username/feature1 upstream/dev`，分支名字建议为 `username/feat-xxx` / `username/fix-xxx`
-- 本地编码
-- 遵循 [Commit Message Format](https://www.conventionalcommits.org/zh-hans/v1.0.0/) 规范进行提交，不符合提交规范的 PR 将不会被合并
-- 提交到远程仓库：git push origin branchName
-- 打开 TinyVue 代码仓库的 [Pull requests](https://github.com/opentiny/tiny-vue/pulls) 链接，点击 New pull request 按钮提交 PR
-- 项目 Committer 进行 Code Review，并提出意见
-- PR 作者根据意见调整代码，请注意一个分支发起了 PR 后，后续的 commit 会自动同步，无需重新提交 PR
-- 项目管理员合并 PR
+- Make sure that you have completed the steps in local startup and can visit [http://127.0.0.1:5173/](http://127.0.0.1:5173/) normally.
+- Synchronize upstream repository dev branch latest code: `git pull upstream dev`.
+- Create a new branch `git checkout-b username/feature1 upstream/ dev` from the upstream repository dev branch. The name of the branch should be `username/feat- xxx` / `username/fix- xxx`.
+- Local coding.
+- Submit according to [Commit Message Format](https://www.conventionalcommits.org/zh-hans/v1.0.0/) specification. PR that do not conform to the submission specification will not be merged.
+- Submit to remote repository: `git push origin branchName`.
+- Open the [Pull requests](https://github.com/opentiny/tiny-vue/pulls) link of the TinyVue code repository and click the New pull request button to submit the PR.
+- Project Committer conducts Code Review and makes comments.
+- The PR author adjusts the code according to the opinion. Please note that when a branch initiates PR, the subsequent commit will be synchronized automatically, and there is no need to resubmit the PR.
+- Project administrator merges PR.
 
-贡献流程结束，感谢你的贡献！
+The contribution process is over, thank you for your contribution!
 
-## 加入开源社区
+## Join OpenTiny community
 
-如果你对我们的开源项目感兴趣，欢迎通过以下方式加入我们的开源社区。
+If you are interested in our open source project, you are welcome to join our open source community in the following ways.
 
-- 添加官方小助手微信：opentiny-official，加入我们的技术交流群
-- 加入邮件列表：opentiny@googlegroups.com
+- Add official assistant WeChat: opentiny-official to join our technical exchange group.
+- Add to the mailing list: opentiny@googlegroups.com

@@ -15,11 +15,7 @@
       </li>
 
       <li v-if="state.moreOptions.length" class="tiny-action-menu__item">
-        <tiny-dropdown @item-click="handleItemClick">
-          <span @click="handleMoreClick">
-            <span>{{ moreText }} </span>
-            <icon-chevron-down></icon-chevron-down>
-          </span>
+        <tiny-dropdown :title="moreText" :trigger="trigger" @item-click="handleItemClick" @handle-click="handleMoreClick" @visible-change="visibleChange">
           <template #dropdown>
             <tiny-dropdown-menu :textField="textField" :popperClass="popperClass">
               <tiny-dropdown-item v-for="(item, index) in state.moreOptions" :key="index" :itemData="item" :label="item[textField]">
@@ -42,7 +38,6 @@ import '@opentiny/vue-theme/action-menu/index.css'
 import Dropdown from '@opentiny/vue-dropdown'
 import DropdownMenu from '@opentiny/vue-dropdown-menu'
 import DropdownItem from '@opentiny/vue-dropdown-item'
-import { iconChevronDown } from '@opentiny/vue-icon'
 import { t } from '@opentiny/vue-locale'
 
 export default {
@@ -50,10 +45,9 @@ export default {
   components: {
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem,
-    IconChevronDown: iconChevronDown()
+    TinyDropdownItem: DropdownItem
   },
-  emits: ['more-click', 'item-click'],
+  emits: ['more-click', 'item-click', 'visible-change'],
   props: {
     options: {
       type: Array,
@@ -82,6 +76,10 @@ export default {
     popperAppendToBody: {
       type: Boolean,
       default: false
+    },
+    trigger: {
+      type: String,
+      default: 'hover'
     }
   },
   setup(props, context) {

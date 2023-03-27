@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: CheckOut Code
         uses: actions/checkout@master
+        with:
+          ref: release
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -18,25 +20,22 @@ jobs:
           node-version: 18
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Get package version
-        uses: tyankatsu0105/read-package-version-actions@v1
-        id: package-version
-
       - name: Run Build Scripts
         run: |
           npm i --legacy-peer-deps
-          npm run build
-          npm run release
+          npm run build:vue3
+          npm run release3
 
       - name: Publish
-        run: npm publish opentiny-vue-theme-${{ steps.package-version.outputs.version }}.tgz
+        run: npm publish opentiny-vue-${{ github.ref_name }}.tgz
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Release
+        if: contains(github.ref_name, 'alpha') == false
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v${{ steps.package-version.outputs.version }}
+          tag_name: v${{ github.ref_name }}
           generate_release_notes: true
         env:
-          GITHUB_TOKEN: ${{  secrets.GIT_TOKEN  }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

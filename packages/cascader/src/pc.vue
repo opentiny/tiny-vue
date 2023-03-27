@@ -159,8 +159,8 @@ export default {
     'popperAppendToBody',
     'autoSize'
   ],
+  emits: ['update:modelValue', 'change', 'visible-change', 'focus', 'blur', 'expand-change', 'active-item-change', 'remove-tag'],
   directives: { Clickoutside },
-  inheritAttrs: false,
   provide() {
     return {
       cascaderRoot: this

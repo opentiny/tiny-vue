@@ -1,5 +1,5 @@
 <template>
-  <tiny-pull-refresh :pullDown="pullDownRefresh" :pullUp="pullUpLoad">
+  <tiny-pull-refresh :pullUp="pullUpLoad" :pullDown="pullDownRefresh" success-text="运气真好！！！" failed-text="哦哦，出错了!">
     <h3>hello pull-refresh</h3>
   </tiny-pull-refresh>
 </template>
@@ -13,26 +13,24 @@ export default {
   },
   data() {
     return {
-      pullDownRefresh: {
-        headHeight: 100,
-        handler: () => this.handlerPullDownRefresh()
-      },
       pullUpLoad: {
-        footHeight: 100,
         handler: () => this.handlerPullUpLoad()
       },
+      pullDownRefresh: {
+        handler: () => this.handlerPullDownRefresh()
+      }
     }
   },
   methods: {
-    handlerPullDownRefresh() {
-      return new Promise((resolve) => {
+    handlerPullUpLoad() {
+      return new Promise((resolve, reject) => {
         setTimeout(() => {
-          resolve()
+          reject(new Error())
         }, 1000)
       })
     },
-    handlerPullUpLoad() {
-      return new Promise((resolve) => {
+    handlerPullDownRefresh() {
+      return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve()
         }, 1000)

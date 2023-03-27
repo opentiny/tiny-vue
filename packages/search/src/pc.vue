@@ -12,6 +12,7 @@
 <template>
   <div :class="['tiny-search', { mini: mini }, { collapse: state.collapse }]" @mouseenter="state.hovering = true" @mouseleave="state.hovering = false">
     <div :class="['tiny-search__line', { focus: state.focus }]">
+      <slot v-if="slots.prefix" name="prefix"></slot>
       <transition name="tiny-transition-search-line-fade" mode="out-in">
         <div v-show="!state.collapse && state.types.length" class="tiny-search__present" @click="showSelector">
           <slot name="text" :slot-scope="state.searchValue">
@@ -51,7 +52,8 @@
           </a>
         </div>
       </transition>
-      <div class="tiny-search__input-btn">
+      <slot v-if="slots.suffix" name="suffix"></slot>
+      <div v-else class="tiny-search__input-btn">
         <a @click="searchClick">
           <icon-search :style="{ fill: state.collapse && transparent ? '#fff' : '' }" class="tiny-svg-size" />
         </a>

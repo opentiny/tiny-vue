@@ -12,10 +12,10 @@
 <template>
   <div ref="outerWrapper" :class="state.wrapperClasses">
     <div v-if="state.isHorizontal" :class="`${state.prefix}-horizontal`">
-      <div :style="{ right: `${state.anotherOffset}%` }" :class="state.paneClasses" class="left-pane">
+      <div :style="{ right: state.collapsed ? '100%' : `${state.anotherOffset}%` }" :class="state.paneClasses" class="left-pane">
         <slot name="left" />
       </div>
-      <div :class="`${state.prefix}-trigger-con`" :style="{ left: `${state.offset}%` }" @mousedown="handleMousedown">
+      <div :class="`${state.prefix}-trigger-con`" :style="{ left: state.collapsed ? '2px' : `${state.offset}%` }" @mousedown="handleMousedown">
         <slot name="trigger">
           <div :class="[`${state.prefix}-trigger`, `${state.prefix}-trigger-vertical`]">
             <div :class="[`${state.prefix}-trigger-bar-con`, 'vertical']">
@@ -24,15 +24,25 @@
           </div>
         </slot>
       </div>
-      <div :style="{ left: `${state.offset}%` }" :class="state.paneClasses" class="right-pane">
+      <div
+        v-if="collapsible"
+        :class="`${state.prefix}-collapse-bar`"
+        :style="{
+          left: state.collapsed ? 0 : `calc(${state.offset}% - 2px)`
+        }"
+        @click="handleCollapse"
+      >
+        <icon-chevron-right :style="{ transform: `rotate(${state.collapsed ? '0deg' : '180deg'})` }" />
+      </div>
+      <div :style="{ left: state.collapsed ? '0' : `${state.offset}%` }" :class="state.paneClasses" class="right-pane">
         <slot name="right" />
       </div>
     </div>
     <div v-else :class="`${state.prefix}-vertical`">
-      <div :style="{ bottom: `${state.anotherOffset}%` }" :class="state.paneClasses" class="top-pane">
+      <div :style="{ bottom: state.collapsed ? '100%' : `${state.anotherOffset}%` }" :class="state.paneClasses" class="top-pane">
         <slot name="top" />
       </div>
-      <div :class="`${state.prefix}-trigger-con`" :style="{ top: `${state.offset}%` }" @mousedown="handleMousedown">
+      <div :class="`${state.prefix}-trigger-con`" :style="{ top: state.collapsed ? '2px' : `${state.offset}%` }" @mousedown="handleMousedown">
         <slot name="trigger">
           <div :class="[`${state.prefix}-trigger`, `${state.prefix}-trigger-horizontal`]">
             <div :class="[`${state.prefix}-trigger-bar-con`, 'horizontal']">
@@ -41,7 +51,17 @@
           </div>
         </slot>
       </div>
-      <div :style="{ top: `${state.offset}%` }" :class="state.paneClasses" class="bottom-pane">
+      <div
+        v-if="collapsible"
+        :class="`${state.prefix}-collapse-bar`"
+        :style="{
+          top: state.collapsed ? 0 : `calc(${state.offset}% - 2px)`
+        }"
+        @click="handleCollapse"
+      >
+        <icon-chevron-right :style="{ transform: `rotate(${state.collapsed ? '90deg' : '270deg'})` }" />
+      </div>
+      <div :style="{ top: state.collapsed ? '0' : `${state.offset}%` }" :class="state.paneClasses" class="bottom-pane">
         <slot name="bottom" />
       </div>
     </div>
@@ -51,10 +71,14 @@
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/split/vue'
 import { props, setup } from '@opentiny/vue-common'
+import { iconChevronRight } from '@opentiny/vue-icon'
 
 export default {
-  emits: ['moving', 'mousemove', 'mouseup', 'moveend', 'movestart', 'update:modelValue'],
-  props: [...props, 'modelValue', 'mode', 'leftTopMin', 'rightBottomMin'],
+  emits: ['moving', 'mousemove', 'mouseup', 'moveend', 'movestart', 'update:modelValue', 'collapsedChange'],
+  props: [...props, 'modelValue', 'mode', 'leftTopMin', 'rightBottomMin', 'collapsible'],
+  components: {
+    IconChevronRight: iconChevronRight()
+  },
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

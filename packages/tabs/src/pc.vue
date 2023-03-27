@@ -33,7 +33,8 @@ export default {
     'showMoreTabs',
     'popperClass',
     'popperAppendToBody',
-    'dropConfig'
+    'dropConfig',
+    'tooltipConfig'
   ],
   components: {
     TabNav,
@@ -60,7 +61,8 @@ export default {
       showMoreTabs,
       popperClass,
       popperAppendToBody,
-      dropConfig
+      dropConfig,
+      tooltipConfig
     } = this
 
     const newButton =
@@ -93,7 +95,8 @@ export default {
         showMoreTabs,
         popperClass,
         popperAppendToBody,
-        dropConfig
+        dropConfig,
+        tooltipConfig
       },
       on: {
         'tab-drag-start': handleTabDragStart,

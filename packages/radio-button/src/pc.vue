@@ -51,7 +51,6 @@ import { props, setup } from '@opentiny/vue-common'
 export default {
   emits: ['change'],
   props: [...props, 'label', 'events', 'text', 'disabled', 'name'],
-  inheritAttrs: false,
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

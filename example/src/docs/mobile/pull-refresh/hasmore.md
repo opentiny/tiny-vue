@@ -8,8 +8,8 @@
 <mobile-uxlink widget-name="PullRefresh"></mobile-uxlink>
 </div>
 
-### 禁用刷新
+### 是否还有更多内容
 
-<mobile-view link="pull-refresh/disabled"></mobile-view>
+<mobile-view link="pull-refresh/hasmore"></mobile-view>
 
 <br>

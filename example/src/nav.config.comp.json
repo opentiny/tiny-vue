@@ -563,6 +563,10 @@
               "name": "更多按钮点击事件"
             },
             {
+              "path": "/action-menu/visible-change",
+              "name": "菜单显示隐藏变化事件"
+            },
+            {
               "path": "/action-menu/slot-item",
               "name": "菜单项插槽"
             }
@@ -750,6 +754,10 @@
             {
               "path": "/split/nested-use",
               "name": "嵌套使用"
+            },
+            {
+              "path": "/split/collapsible",
+              "name": "可折叠"
             }
           ]
         }
@@ -3083,6 +3091,10 @@
             {
               "path": "/transfer/nested-tree",
               "name": "嵌套树"
+            },
+            {
+              "path": "/transfer/before-transfer",
+              "name": "穿梭前的回调"
             }
           ]
         }

@@ -16,7 +16,7 @@ const VERSION_TAG = process.env.VERSION_TAG || '0.1.0'
 const NPM_WAREHOUSE = process.env.NPM_WAREHOUSE
 const targetVersion = utils.getTinyVersion('themeVersion')
 const targetVersionArr = targetVersion.split('.')
-const themeVersionDependencies = `~${targetVersionArr[0]}.${targetVersionArr[1]}.0`
+const themeVersionDependencies = `~${targetVersionArr[0]}.${targetVersionArr[1]}.${targetVersionArr.slice(-targetVersionArr.length + 2).join('.')}`
 const typings = 'typings'
 
 const packPackages = (p, packagePath) => {

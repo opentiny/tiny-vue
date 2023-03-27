@@ -53,7 +53,8 @@ export default {
     rightBottomMin: {
       type: [Number, String],
       default: '40px'
-    }
+    },
+    collapsible: Boolean
   },
   setup(props, context) {
     return $setup({ props, context, template })

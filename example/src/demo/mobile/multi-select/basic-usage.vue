@@ -27,40 +27,51 @@ export default {
           children: [
             {
               label: '2020年',
+              value: '0',
               children: [
                 {
                   label: '2020全年',
+                  value: '0-0',
                   children: [
                     {
-                      label: '年'
+                      label: '年',
+                      value: '0-0-0',
                     }
                   ]
                 },
                 {
                   label: '2020年Q1',
+                  value: '0-1',
                   children: [
                     {
-                      label: '2020年Q1一月'
+                      label: '2020年Q1一月',
+                      value: '0-1-0',
                     },
                     {
-                      label: '2020年Q1二月'
+                      label: '2020年Q1二月',
+                      value: '0-1-1',
                     },
                     {
-                      label: '2020年Q1三月'
+                      label: '2020年Q1三月',
+                      value: '0-1-2',
                     }
                   ]
                 },
                 {
                   label: '2020年Q2',
+                  value: '0-2',
                   children: [
                     {
-                      label: '2020年Q2四月'
+                      label: '2020年Q2四月',
+                      value: '0-2-0',
                     },
                     {
-                      label: '2020年Q2五月'
+                      label: '2020年Q2五月',
+                      value: '0-2-1',
                     },
                     {
-                      label: '2020年Q2六月'
+                      label: '2020年Q2六月',
+                      value: '0-2-2',
                     }
                   ]
                 }
@@ -68,40 +79,51 @@ export default {
             },
             {
               label: '2021年',
+              value: '1',
               children: [
                 {
                   label: '2021全年',
+                  value: '1-0',
                   children: [
                     {
-                      label: '年'
+                      label: '年',
+                      value: '1-0-0',
                     }
                   ]
                 },
                 {
                   label: '2021年Q1',
+                  value: '1-1',
                   children: [
                     {
-                      label: '2021年Q1一月'
+                      label: '2021年Q1一月',
+                      value: '1-1-0',
                     },
                     {
-                      label: '2021年Q1二月'
+                      label: '2021年Q1二月',
+                      value: '1-1-1',
                     },
                     {
-                      label: '2021年Q1三月'
+                      label: '2021年Q1三月',
+                      value: '1-1-2',
                     }
                   ]
                 },
                 {
                   label: '2021年Q2',
+                  value: '1-2',
                   children: [
                     {
-                      label: '2021年Q2四月'
+                      label: '2021年Q2四月',
+                      value: '1-2-0',
                     },
                     {
-                      label: '2021年Q2五月'
+                      label: '2021年Q2五月',
+                      value: '1-2-1',
                     },
                     {
-                      label: '2021年Q2六月'
+                      label: '2021年Q2六月',
+                      value: '1-2-2',
                     }
                   ]
                 }
@@ -109,40 +131,51 @@ export default {
             },
             {
               label: '2022年',
+              value: '2',
               children: [
                 {
                   label: '2022全年',
+                  value: '2-0',
                   children: [
                     {
-                      label: '年'
+                      label: '年',
+                      value: '2-0-0',
                     }
                   ]
                 },
                 {
                   label: '2022年Q1',
+                  value: '2-1',
                   children: [
                     {
-                      label: '2022年Q1一月'
+                      label: '2022年Q1一月',
+                      value: '2-1-0',
                     },
                     {
-                      label: '2022年Q1二月'
+                      label: '2022年Q1二月',
+                      value: '2-1-1',
                     },
                     {
-                      label: '2022年Q1三月'
+                      label: '2022年Q1三月',
+                      value: '2-1-2',
                     }
                   ]
                 },
                 {
                   label: '2022年Q2',
+                  value: '2-2',
                   children: [
                     {
-                      label: '2022年Q2四月'
+                      label: '2022年Q2四月',
+                      value: '2-2-0',
                     },
                     {
-                      label: '2022年Q2五月'
+                      label: '2022年Q2五月',
+                      value: '2-2-1',
                     },
                     {
-                      label: '2022年Q2六月'
+                      label: '2022年Q2六月',
+                      value: '2-2-2',
                     }
                   ]
                 }
@@ -156,29 +189,37 @@ export default {
           children: [
             {
               label: '海外',
+              value: '0',
               children: [
                 {
-                  label: '欧洲巴黎'
+                  label: '欧洲巴黎',
+                  value: '0-0',
                 },
                 {
-                  label: '巴基斯坦'
+                  label: '巴基斯坦',
+                  value: '0-1',
                 },
                 {
-                  label: '土耳其'
+                  label: '土耳其',
+                  value: '0-2',
                 }
               ]
             },
             {
               label: '中国',
+              value: '1',
               children: [
                 {
-                  label: '北京'
+                  label: '北京',
+                  value: '1-0',
                 },
                 {
-                  label: '上海'
+                  label: '上海',
+                  value: '1-1',
                 },
                 {
-                  label: '南京'
+                  label: '南京',
+                  value: '1-2',
                 }
               ]
             }
@@ -189,19 +230,24 @@ export default {
           hasFooter: false,
           children: [
             {
-              label: '公有云'
+              label: '公有云',
+              value: '0',
             },
             {
-              label: '私有云'
+              label: '私有云',
+              value: '1',
             },
             {
-              label: '伙伴云'
+              label: '伙伴云',
+              value: '2',
             },
             {
-              label: '公有云1'
+              label: '公有云1',
+              value: '3',
             },
             {
-              label: '公有云2'
+              label: '公有云2',
+              value: '4',
             }
           ]
         }

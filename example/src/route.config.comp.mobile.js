@@ -166,48 +166,58 @@ const router = [
   },
   {
     path: 'pull-refresh',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/base.md')
   },
   {
     path: 'pull-refresh/animation-duration',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/animation-duration.md')
   },
   {
     path: 'pull-refresh/disabled',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/disabled.md')
   },
   {
     path: 'pull-refresh/head-height',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/head-height.md')
   },
   {
     path: 'pull-refresh/loosing-text',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/loosing-text.md')
   },
   {
     path: 'pull-refresh/pull-refresh-slot',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/pull-refresh-slot.md')
   },
   {
+    path: 'pull-refresh/enhance',
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/enhance.md')
+  },
+  {
+    path: 'pull-refresh/hasmore',
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/hasmore.md')
+  },
+  {
     path: 'pull-refresh/pulling-text',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/pulling-text.md')
   },
   {
     path: 'pull-refresh/success-duration',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
     component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/success-duration.md')
   },
   {
-    path: 'pull-refresh/success-text',
-    meta: { title: 'pull-refresh 下拉刷新', lang: 'zh-CN' },
-    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/success-text.md')
+    path: 'pull-refresh/result-text',
+    meta: { title: 'pull-refresh 刷新', lang: 'zh-CN' },
+    component: () => import(/* webpackChunkName: "mobileComp" */ './docs/mobile/pull-refresh/result-text.md')
   },
   {
     path: 'form',

@@ -792,15 +792,15 @@
           "children": [
             {
               "path": "/pull-refresh/pulling-text",
-              "name": "下拉提示文字"
+              "name": "提示文字"
             },
             {
               "path": "/pull-refresh/loosing-text",
-              "name": "下拉可刷新的文字提示"
+              "name": "可刷新的文字提示"
             },
             {
-              "path": "/pull-refresh/success-text",
-              "name": "刷新成功的文字"
+              "path": "/pull-refresh/result-text",
+              "name": "刷新提示的文字"
             },
             {
               "path": "/pull-refresh/success-duration",
@@ -812,15 +812,23 @@
             },
             {
               "path": "/pull-refresh/head-height",
-              "name": "下拉时头部的高度"
+              "name": "头部的高度"
             },
             {
               "path": "/pull-refresh/disabled",
-              "name": "禁用下拉刷新"
+              "name": "禁用刷新"
             },
             {
               "path": "/pull-refresh/pull-refresh-slot",
               "name": "插槽"
+            },
+            {
+              "path": "/pull-refresh/enhance",
+              "name": "下拉/上拉刷新"
+            },
+            {
+              "path": "/pull-refresh/hasmore",
+              "name": "是否还有更多"
             }
           ]
         },
