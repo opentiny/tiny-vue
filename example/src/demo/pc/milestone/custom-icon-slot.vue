@@ -84,7 +84,7 @@ export default {
   font-size: 12px;
   text-align: center;
   left: calc(50% - 10px);
-  top: 4px;
+  top: -1px;
   border-radius: 50%;
   color: #000;
   cursor: pointer;

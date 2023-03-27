@@ -11,7 +11,23 @@ const typings = 'typings'
 const packagePath = path.join(source, packageName)
 const packageJSON = fs.readJSONSync(packageName)
 
-const keys = ['name', 'version', 'description', 'main', 'files', 'sideEffects', 'author', 'license', 'repository', 'dependencies', 'engines', 'browserslist']
+const keys = [
+  'name',
+  'version',
+  'description',
+  'main',
+  'files',
+  'sideEffects',
+  'author',
+  'license',
+  'home',
+  'repository',
+  'homepage',
+  'keywords',
+  'dependencies',
+  'engines',
+  'browserslist'
+]
 
 const NPM_TAG = process.env.NPM_TAG
 // 命令行中指定的版本号
@@ -69,6 +85,10 @@ fs.writeFileSync(packagePath, JSON.stringify(packageJSON, null, 2))
 fs.copySync(packagePath, path.join(source, 'vue', packageName), {
   overwrite: true
 })
+
+// 拷贝 README 文件
+fs.copySync('README.md', path.join(source, 'README.md'))
+fs.copySync('README.md', path.join(source, 'vue', 'README.md'))
 
 const entrys = ['pc.js', 'mobile.js', 'index.js']
 

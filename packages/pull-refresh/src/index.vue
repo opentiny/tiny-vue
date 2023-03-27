@@ -10,7 +10,7 @@
  *
  -->
 <template>
-  <div class="tiny-mobile-pull-refresh">
+  <div class="tiny-mobile-pull-refresh" :style="state.refreshStyle">
     <div
       class="tiny-mobile-pull-refresh__track"
       ref="track"
@@ -19,23 +19,43 @@
         transform: 'translate3d(0px,' + state.translate3d + 'px,0px)'
       }"
     >
-      <div class="tiny-mobile-pull-refresh__head" :style="{ height: headHeight + 'px' }">
-        <span v-if="!state.checkStatus">{{ state.replaces }}</span>
-        <slot name="loading" v-if="state.checkStatus">
-          <ul v-if="state.checkStatus" class="tiny-mobile-pull-refresh__loading">
+      <div
+        class="tiny-mobile-pull-refresh__tips tiny-mobile-pull-refresh__head"
+        :style="{ height: state.pullDown.headHeight + 'px' }"
+        v-if="state.pullDownLoading || state.pullDownReplaces"
+      >
+        <span v-if="!state.pullDownLoading">{{ state.pullDownReplaces }}</span>
+        <slot name="loading" v-if="state.pullDownLoading">
+          <ul v-if="state.pullDownLoading" class="tiny-mobile-pull-refresh__loading">
             <i></i>
             <i></i>
             <i></i>
           </ul>
         </slot>
       </div>
-      <slot></slot>
+      <div class="tiny-mobile-pull-refresh__content">
+        <slot></slot>
+        <div v-if="!hasMore">{{state.noMoreText}}</div>
+      </div>
+      <div
+        class="tiny-mobile-pull-refresh__tips tiny-mobile-pull-refresh__foot"
+        :style="{ height: state.pullUp.footHeight + 'px' }"
+        v-if="state.pullUpLoading || state.pullUpReplaces"
+      >
+        <span v-if="!state.pullUpLoading">{{ state.pullUpReplaces }}</span>
+        <slot name="loading" v-if="state.pullUpLoading">
+          <ul v-if="state.pullUpLoading" class="tiny-mobile-pull-refresh__loading">
+            <i></i>
+            <i></i>
+            <i></i>
+          </ul>
+        </slot>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { t } from '@opentiny/vue-locale'
 import { $prefix, setup } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/pull-refresh/vue'
 import '@opentiny/vue-theme-mobile/pull-refresh/index.css'
@@ -44,15 +64,9 @@ export default {
   name: $prefix + 'PullRefresh',
   props: {
     modelValue: Boolean,
-    pullingText: {
-      type: String,
-      default: () => t('ui.pullRefresh.pulling')
-    },
-    loosingText: {
-      type: String,
-      default: () => t('ui.pullRefresh.loosing')
-    },
+    loosingText: String,
     successText: String,
+    failedText: String,
     successDuration: {
       type: [Number, String],
       default: 500
@@ -61,11 +75,20 @@ export default {
       type: [Number, String],
       default: 300
     },
-    headHeight: { type: [Number, String], default: 50 },
     disabled: {
       type: Boolean,
       default: false
-    }
+    },
+    pullUp: {
+      type: Function
+    },
+    pullDown: {
+      type: Function
+    },
+    hasMore: {
+      type: Boolean,
+      default: true
+    },
   },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })

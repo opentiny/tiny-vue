@@ -28,6 +28,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/user-head/vue'
 import { props, setup } from '@opentiny/vue-common'
 import { iconUser } from '@opentiny/vue-icon'
+import '@opentiny/vue-theme/user-head/index.css'
 
 export default {
   components: {

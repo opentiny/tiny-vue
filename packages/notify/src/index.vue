@@ -25,7 +25,7 @@ export default {
     customClass: [String, Object],
     duration: {
       type: Number,
-      default: 4500
+      default: 0
     },
     message: [String, Function],
     onClose: Function,

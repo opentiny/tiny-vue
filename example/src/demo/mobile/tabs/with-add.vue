@@ -3,15 +3,10 @@
     <div>
       <h2 style="font-size: 16px; margin: 12px 0 24px 8px">基本用法</h2>
       <div>
-        <tiny-tabs v-model="activeName1" :with-add="true" :swipeable="true">
-          <tiny-tab-item title="标签1" name="first"> 内容1 </tiny-tab-item>
-          <tiny-tab-item title="标签2" name="second"> 内容2 </tiny-tab-item>
-          <tiny-tab-item title="标签3" name="third"> 内容3 </tiny-tab-item>
-          <tiny-tab-item title="标签4" name="fourth"> 内容4 </tiny-tab-item>
-          <tiny-tab-item title="标签5" name="five"> 内容5 </tiny-tab-item>
-          <tiny-tab-item title="标签6" name="six"> 内容6 </tiny-tab-item>
-          <tiny-tab-item title="标签7" name="serven"> 内容7 </tiny-tab-item>
-          <tiny-tab-item title="标签8" name="eight"> 内容8 </tiny-tab-item>
+        <tiny-tabs v-model="activeName" :with-add="true" @add="handleadd" :swipeable="true">
+          <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+            {{ item.content }}
+          </tiny-tab-item>
         </tiny-tabs>
       </div>
     </div>
@@ -28,11 +23,40 @@ export default {
   },
   data() {
     return {
-      activeName1: 'third',
-      activeName2: 'second',
-      activeName3: 'second',
-      activeName4: 'second',
-      activeName5: '1'
+      Tabs: [
+        {
+          title: '标签 1',
+          name: '1',
+          content: '内容 1'
+        },
+        {
+          title: '标签 2',
+          name: '2',
+          content: '内容 2'
+        },
+        {
+          title: '标签 3',
+          name: '3',
+          content: '内容 3'
+        },
+        {
+          title: '标签 4',
+          name: '4',
+          content: '内容 4'
+        }
+      ],
+      activeName: '1',
+      tabIndex: 5
+    }
+  },
+  methods: {
+    handleadd() {
+      this.Tabs.push({
+        title: `标签 ${this.tabIndex}`,
+        name: String(this.tabIndex),
+        content: '动态增加tabitem'
+      })
+      this.tabIndex++
     }
   }
 }

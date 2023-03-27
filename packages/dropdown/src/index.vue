@@ -9,6 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  -->
+
 <script lang="jsx">
 import { renderless, api } from '@opentiny/vue-renderless/dropdown/vue'
 import { setup, $prefix, directive } from '@opentiny/vue-common'
@@ -74,14 +75,15 @@ export default {
       default: '下拉菜单'
     }
   },
-  emits: ['visible-change', 'item-click', 'button-click', 'menu-item-click'],
+  emits: ['visible-change', 'item-click', 'button-click', 'menu-item-click', 'handle-click'],
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
   },
   render() {
-    const triggerClass = 'tiny-dropdown-trigger'
     const { hide, splitButton, type, disabled, handleMainButtonClick, slots, size, state, menuOptions, title } = this
     let triggerElm = null
+    const triggerClass = 'tiny-dropdown-trigger'
+    const visibleClass = state.visible ? 'tiny-dropdown-visible' : ''
 
     if (splitButton) {
       triggerElm = (
@@ -90,7 +92,7 @@ export default {
             {slots.default && slots.default()}
           </tiny-button>
           <tiny-button ref="trigger" type={type} size={size} class={`tiny-dropdown__caret-button ${triggerClass}`} disabled={disabled} reset-time={0}>
-            {state.visible ? <icon-chevron-up /> : <icon-chevron-down />}
+            <icon-chevron-down class={visibleClass}></icon-chevron-down>
           </tiny-button>
         </tiny-button-group>
       )
@@ -98,7 +100,7 @@ export default {
       const defaultTriggerElm = (
         <span>
           <span>{title}</span>
-          <icon-chevron-down></icon-chevron-down>
+          <icon-chevron-down class={visibleClass}></icon-chevron-down>
         </span>
       )
 

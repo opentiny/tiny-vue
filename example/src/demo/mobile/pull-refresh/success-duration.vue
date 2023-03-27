@@ -1,5 +1,5 @@
 ﻿<template>
-  <tiny-pull-refresh ref="refresh" v-model="isLoading" @refresh="onRefresh" success-duration="3000" success-text="下拉加载完成">
+  <tiny-pull-refresh ref="refresh" :pullDown="pullDownRefresh" success-duration="3000" success-text="加载完成">
     <h3>hello pull-refresh</h3>
   </tiny-pull-refresh>
 </template>
@@ -13,14 +13,18 @@ export default {
   },
   data() {
     return {
-      isLoading: false
+      pullDownRefresh: {
+        handler: () => this.handlerPullDownRefresh()
+      }
     }
   },
   methods: {
-    onRefresh() {
-      setTimeout(() => {
-        this.isLoading = false
-      }, 1000)
+    handlerPullDownRefresh() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve()
+        }, 1000)
+      })
     }
   }
 }

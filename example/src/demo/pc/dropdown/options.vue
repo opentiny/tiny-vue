@@ -1,20 +1,12 @@
 <template>
   <div>
     <tiny-dropdown>
-      <span>
-        <span>下拉菜单</span>
-        <icon-chevron-down></icon-chevron-down>
-      </span>
       <template #dropdown>
         <tiny-dropdown-menu :options="options"> </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
 
     <tiny-dropdown>
-      <span>
-        <span>下拉菜单</span>
-        <icon-chevron-down></icon-chevron-down>
-      </span>
       <template #dropdown>
         <tiny-dropdown-menu :options="options1" textField="name"> </tiny-dropdown-menu>
       </template>
@@ -22,31 +14,20 @@
 
     <tiny-dropdown :menuOptions="menuOptions" title="点击下拉" @item-click="itemClick"></tiny-dropdown>
 
-    <tiny-dropdown :menuOptions="menuOptions">
-      <span>
-        <span>自定义下拉菜单</span>
-        <icon-chevron-down></icon-chevron-down>
-      </span>
-    </tiny-dropdown>
+    <tiny-dropdown :menuOptions="menuOptions"></tiny-dropdown>
 
-    <tiny-dropdown :menuOptions="menuOptions1" textField="name">
-      <span>
-        <span>下拉菜单</span>
-        <icon-chevron-down></icon-chevron-down>
-      </span>
-    </tiny-dropdown>
+    <tiny-dropdown :menuOptions="menuOptions1" textField="name"></tiny-dropdown>
   </div>
 </template>
 
 <script>
-import { IconChevronDown, IconStarDisable } from '@opentiny/vue-icon'
+import { iconStarDisable } from '@opentiny/vue-icon'
 import { Dropdown, DropdownMenu, Notify } from '@opentiny/vue'
 
 export default {
   components: {
     TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
-    IconChevronDown: IconChevronDown()
+    TinyDropdownMenu: DropdownMenu
   },
   data() {
     return {
@@ -62,7 +43,7 @@ export default {
         {
           label: '黄金糕',
           divided: true,
-          icon: IconStarDisable()
+          icon: iconStarDisable()
         }
       ],
       options1: [
@@ -77,7 +58,7 @@ export default {
         {
           name: '黄金糕',
           divided: true,
-          icon: IconStarDisable()
+          icon: iconStarDisable()
         }
       ],
       menuOptions: {
@@ -93,7 +74,7 @@ export default {
           {
             label: '黄金糕',
             divided: true,
-            icon: IconStarDisable()
+            icon: iconStarDisable()
           }
         ]
       },
@@ -110,7 +91,7 @@ export default {
           {
             name: '黄金糕',
             divided: true,
-            icon: IconStarDisable()
+            icon: iconStarDisable()
           }
         ],
         textField: 'name'

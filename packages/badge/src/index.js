@@ -51,6 +51,11 @@ export default {
     type: {
       type: String,
       validator: (value) => ~['primary', 'success', 'warning', 'info', 'danger'].indexOf(value)
+    },
+    badgeClass: String,
+    offset: {
+      type: Array,
+      default: [0, 0]
     }
   },
   setup(props, context) {

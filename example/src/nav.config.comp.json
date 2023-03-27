@@ -39,6 +39,28 @@
       "name": "导航组件",
       "children": [
         {
+          "path": "/anchor",
+          "name": "anchor 锚点",
+          "children": [
+            {
+              "path": "/anchor/basic-usage",
+              "name": "基本用法"
+            },
+            {
+              "path": "/anchor/is-affix",
+              "name": "固定模式"
+            },
+            {
+              "path": "/anchor/set-container",
+              "name": "滚动容器"
+            },
+            {
+              "path": "/anchor/on-change",
+              "name": "onChange事件"
+            }
+          ]
+        },
+        {
           "path": "/breadcrumb",
           "name": "Breadcrumb 面包屑",
           "children": [
@@ -483,6 +505,10 @@
               "name": "不同尺寸"
             },
             {
+            "path": "/dropdown/title",
+            "name": "自定义文本"
+            },
+            {
               "path": "/dropdown/options",
               "name": "使用配置式"
             },
@@ -493,6 +519,10 @@
             {
               "path": "/dropdown/events",
               "name": "事件"
+            },
+            {
+              "path": "/dropdown/slot-default",
+              "name": "默认插槽"
             }
           ]
         },
@@ -531,6 +561,10 @@
             {
               "path": "/action-menu/more-click",
               "name": "更多按钮点击事件"
+            },
+            {
+              "path": "/action-menu/visible-change",
+              "name": "菜单显示隐藏变化事件"
             },
             {
               "path": "/action-menu/slot-item",
@@ -720,6 +754,10 @@
             {
               "path": "/split/nested-use",
               "name": "嵌套使用"
+            },
+            {
+              "path": "/split/collapsible",
+              "name": "可折叠"
             }
           ]
         }
@@ -1847,6 +1885,10 @@
             {
               "path": "/switch/dynamic-disable",
               "name": "禁用"
+            },
+            {
+              "path": "/switch/before-change",
+              "name": "开关切换前的回调"
             }
           ]
         },
@@ -3049,6 +3091,10 @@
             {
               "path": "/transfer/nested-tree",
               "name": "嵌套树"
+            },
+            {
+              "path": "/transfer/before-transfer",
+              "name": "穿梭前的回调"
             }
           ]
         }
@@ -3142,6 +3188,14 @@
             {
               "path": "/badge/hidden-badge-while-read-message",
               "name": "消息已读动态隐藏标记"
+            },
+            {
+              "path": "/badge/badge-class",
+              "name": "自定义标记class"
+            },
+            {
+              "path": "/badge/offset",
+              "name": "位置偏移"
             }
           ]
         },
@@ -4204,6 +4258,10 @@
             {
               "path": "/tag/tag-events",
               "name": "事件"
+            },
+            {
+              "path": "/tag/before-delete",
+              "name": "删除前的回调"
             }
           ]
         },
@@ -4300,7 +4358,12 @@
         {
           "path": "/fullscreen",
           "name": "Fullscreen 全屏显示",
-          "children": []
+          "children": [
+            {
+              "path": "/fullscreen/before-change",
+              "name": "全屏/退出全屏前的回调"
+            }
+          ]
         }
       ]
     }

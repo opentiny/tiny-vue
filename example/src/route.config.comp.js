@@ -112,6 +112,31 @@ const routers = [
     component: () => import(/* webpackChunkName: 'v3-crop' */ './docs/zh-CN/crop/crop-events.md')
   },
   {
+    path: 'anchor',
+    meta: { title: '导航组件-anchor 锚点', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-anchor' */ './docs/zh-CN/anchor/basic-usage.md')
+  },
+  {
+    path: 'anchor/basic-usage',
+    meta: { title: '导航组件-anchor 锚点-基本用法', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-anchor' */ './docs/zh-CN/anchor/basic-usage.md')
+  },
+  {
+    path: 'anchor/is-affix',
+    meta: { title: '导航组件-anchor 锚点-基本用法', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-anchor' */ './docs/zh-CN/anchor/is-affix.md')
+  },
+  {
+    path: 'anchor/set-container',
+    meta: { title: '导航组件-anchor 锚点-滚动容器', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-anchor' */ './docs/zh-CN/anchor/set-container.md')
+  },
+  {
+    path: 'anchor/on-change',
+    meta: { title: '导航组件-anchor 锚点-onChange事件', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-anchor' */ './docs/zh-CN/anchor/on-change.md')
+  },
+  {
     path: 'breadcrumb',
     meta: { title: '导航组件-Breadcrumb 面包屑', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-breadcrumb' */ './docs/zh-CN/breadcrumb/normal-item.md')
@@ -585,6 +610,11 @@ const routers = [
     path: 'split/nested-use',
     meta: { title: '容器组件-Split 面板分割-嵌套使用', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-split' */ './docs/zh-CN/split/nested-use.md')
+  },
+  {
+    path: 'split/collapsible',
+    meta: { title: '容器组件-Split 面板分割-可折叠', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-split' */ './docs/zh-CN/split/collapsible.md')
   },
   {
     path: 'autocomplete',
@@ -1657,6 +1687,11 @@ const routers = [
     component: () => import(/* webpackChunkName: 'v3-switch' */ './docs/zh-CN/switch/enent.md')
   },
   {
+    path: 'switch/before-change',
+    meta: { title: '表单组件-Switch 开关-开关切换前的回调', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-switch' */ './docs/zh-CN/switch/before-change.md')
+  },
+  {
     path: 'time-select',
     meta: { title: '表单组件-time-select 时间选择', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-time-select' */ './docs/zh-CN/time-select/basic-usage.md')
@@ -1815,6 +1850,11 @@ const routers = [
     path: 'transfer/nested-tree',
     meta: { title: '表单组件-Transfer 穿梭框-嵌套树', lang: 'zh-CN', sign: 'component' },
     component: () => import(/* webpackChunkName: 'v3-transfer' */ './docs/zh-CN/transfer/nested-tree.md')
+  },
+  {
+    path: 'transfer/before-transfer',
+    meta: { title: '表单组件-Transfer 穿梭框-穿梭前的回调', lang: 'zh-CN', sign: 'component' },
+    component: () => import(/* webpackChunkName: 'v3-transfer' */ './docs/zh-CN/transfer/before-transfer.md')
   },
   {
     path: 'grid',

@@ -21,7 +21,7 @@ const defaults = {
   customClass: '',
   fullscreen: true,
   type: 'primary',
-  tiny_mode: 'pc',
+  tiny_mode: 'pc'
 }
 
 let fullscreenLoading = null

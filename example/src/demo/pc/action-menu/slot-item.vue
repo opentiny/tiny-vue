@@ -1,10 +1,8 @@
 <template>
   <tiny-action-menu :options="options">
     <template #item="{ data }">
-      <div>
-        <icon-smile></icon-smile>
-        <span> {{ data.name }}</span>
-      </div>
+      <icon-smile></icon-smile>
+      <span> {{ data.name }}</span>
     </template>
   </tiny-action-menu>
 </template>

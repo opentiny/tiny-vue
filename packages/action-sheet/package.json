@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@opentiny/vue-common": "~0.1.0",
-    "@opentiny/vue-renderless": "~0.1.0"
+    "@opentiny/vue-renderless": "~0.1.0",
+    "@better-scroll/core": "2.5.0"
   },
   "license": "MIT"
 }

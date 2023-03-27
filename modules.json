@@ -1,4 +1,9 @@
 {
+  "ActionMenu": {
+    "path": "packages/action-menu/index.js",
+    "type": "component",
+    "exclude": false
+  },
   "ActionSheet": {
     "path": "packages/action-sheet/index.js",
     "type": "component",
@@ -22,6 +27,11 @@
   },
   "Amount": {
     "path": "packages/amount/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "Anchor": {
+    "path": "packages/anchor/index.js",
     "type": "component",
     "exclude": false
   },
@@ -50,11 +60,6 @@
     "type": "component",
     "exclude": false,
     "onlyMode": "mobile"
-  },
-  "ActionMenu": {
-    "path": "packages/action-menu/index.js",
-    "type": "component",
-    "exclude": false
   },
   "Badge": {
     "path": "packages/badge/index.js",
@@ -672,6 +677,11 @@
     "type": "template",
     "exclude": false
   },
+  "GridToolbarCustom-select": {
+    "path": "packages/grid-toolbar/src/custom-select.vue",
+    "type": "template",
+    "exclude": false
+  },
   "GridToolbarCustom-switch": {
     "path": "packages/grid-toolbar/src/custom-switch.vue",
     "type": "template",
@@ -783,6 +793,16 @@
     "type": "component",
     "exclude": false
   },
+  "LoadingMobile": {
+    "path": "packages/loading/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "LoadingPc": {
+    "path": "packages/loading/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "Locales": {
     "path": "packages/locales/index.js",
     "type": "component",
@@ -832,6 +852,16 @@
   "MonthTable": {
     "path": "packages/month-table/index.js",
     "type": "component",
+    "exclude": false
+  },
+  "MultiSelect": {
+    "path": "packages/multi-select/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "MultiSelectMobile": {
+    "path": "packages/multi-select/mobile.vue",
+    "type": "template",
     "exclude": false
   },
   "NavBar": {
@@ -935,6 +965,16 @@
   "Popover": {
     "path": "packages/popover/index.js",
     "type": "component",
+    "exclude": false
+  },
+  "PopoverMobile": {
+    "path": "packages/popover/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "PopoverPc": {
+    "path": "packages/popover/src/pc.vue",
+    "type": "template",
     "exclude": false
   },
   "Popup": {
@@ -1178,6 +1218,16 @@
     "type": "component",
     "exclude": false
   },
+  "TableMobile": {
+    "path": "packages/table/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TablePc": {
+    "path": "packages/table/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "Tabs": {
     "path": "packages/tabs/index.js",
     "type": "component",
@@ -1195,6 +1245,11 @@
   },
   "TabsTab-navMb": {
     "path": "packages/tabs/src/mb.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TabsTab-navTab-bar": {
+    "path": "packages/tabs/src/tab-bar.vue",
     "type": "template",
     "exclude": false
   },
@@ -1370,6 +1425,11 @@
     "type": "component",
     "exclude": false
   },
+  "UserHeadMobile": {
+    "path": "packages/user-head/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
   "UserHeadPc": {
     "path": "packages/user-head/src/pc.vue",
     "type": "template",
@@ -1390,6 +1450,11 @@
     "type": "template",
     "exclude": false
   },
+  "Wheel": {
+    "path": "packages/wheel/index.js",
+    "type": "component",
+    "exclude": false
+  },
   "Wizard": {
     "path": "packages/wizard/index.js",
     "type": "component",
@@ -1402,6 +1467,16 @@
   },
   "YearTable": {
     "path": "packages/year-table/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "IndexBar": {
+    "path": "packages/index-bar/index.js",
+    "type": "component",
+    "exclude": false
+  },
+  "IndexBarAnchor": {
+    "path": "packages/index-bar-anchor/index.js",
     "type": "component",
     "exclude": false
   }

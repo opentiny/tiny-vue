@@ -1,5 +1,5 @@
 <template>
-  <tiny-pull-refresh v-model="isLoading" @refresh="onRefresh" disabled>
+  <tiny-pull-refresh :pullUp="pullUpLoad" :pullDown="pullDownRefresh">
     <h3>hello pull-refresh</h3>
   </tiny-pull-refresh>
 </template>
@@ -13,14 +13,21 @@ export default {
   },
   data() {
     return {
-      isLoading: false
+      pullDownRefresh: {
+        handler: () => this.handlerPullDownRefresh()
+      },
+      pullUpLoad: {
+        pullUpDisabled: true
+      }
     }
   },
   methods: {
-    onRefresh() {
-      setTimeout(() => {
-        this.isLoading = false
-      }, 1000)
+    handlerPullDownRefresh() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve()
+        }, 1000)
+      })
     }
   }
 }

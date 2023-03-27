@@ -172,7 +172,7 @@ export default {
       cancel: '取消'
     },
     load: {
-      dot: '加载中',
+      dot: '加载中'
     },
     exception: {
       build: '模块正在建设中',
@@ -483,8 +483,12 @@ export default {
       confirm: '确定'
     },
     pullRefresh: {
-      pulling: '下拉即可刷新',
-      loosing: '释放即可刷新'
+      pullingDown: '下拉即可刷新',
+      pullingUp: '上拉即可刷新',
+      loosing: '释放即可刷新',
+      success: '刷新成功',
+      failed: '刷新失败',
+      noMore: '没有更多了'
     }
   },
   validation: {

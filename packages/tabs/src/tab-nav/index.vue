@@ -14,6 +14,7 @@ import { $prefix, setup, h } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
 import { renderless, api } from '@opentiny/vue-renderless/tab-nav/vue'
 import Popover from '@opentiny/vue-popover'
+import Tooltip from '@opentiny/vue-tooltip'
 import { iconChevronLeft, iconChevronRight, iconClose } from '@opentiny/vue-icon'
 
 const getOrderedPanes = (state, panes) => {
@@ -64,6 +65,7 @@ export default {
   name: $prefix + 'TabNav',
   components: {
     Popover,
+    Tooltip,
     IconChevronLeft: iconChevronLeft(),
     IconChevronRight: iconChevronRight(),
     IconClose: iconClose()
@@ -95,13 +97,14 @@ export default {
     dropConfig: {
       type: Object,
       default: () => null
-    }
+    },
+    tooltipConfig: [String, Object]
   },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
   },
   render() {
-    const { state, tabStyle, editable, stretch, showPanesCount, onTabClick, onTabRemove, scrollNext, scrollPrev, changeTab } = this
+    const { state, tabStyle, editable, stretch, showPanesCount, onTabClick, onTabRemove, scrollNext, scrollPrev, changeTab, tooltipConfig } = this
     let { panes, setFocus, removeFocus, showMoreTabs, popperClass, popperAppendToBody } = this
 
     const spans = [
@@ -189,7 +192,22 @@ export default {
         </span>
       ) : null
 
-      const tabLabelContent = pane.$slots.title ? pane.$slots.title() : pane.title
+      const tipComp = () =>
+        tooltipConfig === 'title'
+          ? h('span', { class: 'tiny-tabs__item__title', attrs: { title: pane.title } }, [pane.title])
+          : h(
+              Tooltip,
+              {
+                class: 'tiny-tabs__item__title',
+                props: {
+                  content: pane.title,
+                  ...tooltipConfig
+                }
+              },
+              [h('span', {}, [pane.title])]
+            )
+      const toolTipComp = () => (tooltipConfig ? tipComp() : h('span', { class: 'tiny-tabs__item__title' }, [pane.title]))
+      const tabLabelContent = () => (pane.$slots.title ? pane.$slots.title() : toolTipComp())
       const tabindex = pane.state.active ? 0 : -1
 
       return h(
@@ -231,7 +249,7 @@ export default {
             }
           }
         },
-        [tabLabelContent, btnClose]
+        [tabLabelContent(), btnClose]
       )
     })
 

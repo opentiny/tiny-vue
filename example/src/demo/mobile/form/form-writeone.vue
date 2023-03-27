@@ -5,22 +5,21 @@
       <p class="page__desc">表单（文本框）</p>
     </div>
     <div class="demo-form-writeone-padds">
-      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-width="120" :hide-required-asterisk="true">
-        <tiny-form-item label="标题" prop="title1">
-          <tiny-input v-model="createData.title1" placeholder="请输入内容" type="form" vertical></tiny-input>
+      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-width="120px" :hide-required-asterisk="true">
+        <tiny-form-item label="标题" prop="title1" vertical>
+          <tiny-input v-model="createData.title1" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
-        <tiny-form-item label="标题" prop="title2">
-          <tiny-input v-model="createData.title2" placeholder="请输入内容" type="form" vertical></tiny-input>
+        <tiny-form-item label="标题" prop="title2" vertical>
+          <tiny-input v-model="createData.title2" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
-        <tiny-form-item label="标题" prop="title3">
-          <tiny-input v-model="createData.title3" @blur="handleSubmit('ruleForm')" placeholder="错误信息文本，右对齐" type="form" vertical></tiny-input>
+        <tiny-form-item label="标题" prop="title3" vertical>
+          <tiny-input v-model="createData.title3" @blur="handleSubmit('ruleForm')" placeholder="错误信息文本，右对齐" type="form"></tiny-input>
         </tiny-form-item>
-        <tiny-form-item label="标题" prop="title4">
+        <tiny-form-item label="标题" prop="title4" vertical>
           <tiny-input
             v-model="createData.title4"
             placeholder="请输入内容"
             type="form"
-            vertical
             mobile-tips="辅助文本说明辅助文本说明辅助文本说明辅助文本说明"
           ></tiny-input>
         </tiny-form-item>
@@ -28,18 +27,17 @@
     </div>
     <div class="demo-form-writeone-padds">
       <tiny-form ref="ruleForm1" :model="createData" :rules="rules" label-width="60px" label-position="top" validate-position="left">
-        <tiny-form-item label="标题" prop="title4">
+        <tiny-form-item label="标题" prop="title4" vertical>
           <tiny-input
             v-model="createData.title4"
             placeholder="请输入内容"
             type="form"
             readonly
-            vertical
             mobile-tips="辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明辅助文本说明"
           ></tiny-input>
         </tiny-form-item>
-        <tiny-form-item label="标题" prop="title5" id="title5">
-          <tiny-input v-model="createData.title5" placeholder="错误信息文本左对齐" type="form" readonly vertical @blur="handleSubmit('ruleForm1')"></tiny-input>
+        <tiny-form-item label="标题" prop="title5" id="title5" vertical>
+          <tiny-input v-model="createData.title5" placeholder="错误信息文本左对齐" type="form" readonly @blur="handleSubmit('ruleForm1')"></tiny-input>
         </tiny-form-item>
       </tiny-form>
     </div>

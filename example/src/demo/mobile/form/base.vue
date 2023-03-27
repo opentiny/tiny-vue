@@ -6,11 +6,11 @@
     </div>
     <div class="padds">
       <tiny-form ref="ruleForm" :model="createData" :rules="rules">
-        <tiny-form-item label="优秀" prop="users">
-          <tiny-input v-model="createData.users" vertical placeholder="请输入内容" type="form"></tiny-input>
+        <tiny-form-item label="优秀" prop="users" vertical>
+          <tiny-input v-model="createData.users" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
-        <tiny-form-item label="优秀">
-          <tiny-input v-model="createData.user" is-select vertical :select-menu="menus" placeholder="请输入内容" type="form"></tiny-input>
+        <tiny-form-item label="优秀" vertical>
+          <tiny-input v-model="createData.user" is-select :select-menu="menus" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
         <tiny-form-item class="demo-form-base-item">
           <tiny-button type="primary" @click="handleSubmit('ruleForm')">提交</tiny-button>
