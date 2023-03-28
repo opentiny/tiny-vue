@@ -1,8 +1,12 @@
 <template>
-  <tiny-dropdown>
+  <tiny-dropdown @visible-change="visibleChange">
+    <span>
+      <span>默认插槽</span>
+      <icon-chevron-up v-show="visible"></icon-chevron-up>
+      <icon-chevron-down v-show="!visible"></icon-chevron-down>
+    </span>
     <template #dropdown>
-      <tiny-dropdown-menu popper-class="my-class" placement="top">
-        <tiny-dropdown-item label="老友粉"></tiny-dropdown-item>
+      <tiny-dropdown-menu>
         <tiny-dropdown-item>黄金糕</tiny-dropdown-item>
         <tiny-dropdown-item>狮子头</tiny-dropdown-item>
         <tiny-dropdown-item>螺蛳粉</tiny-dropdown-item>
@@ -14,13 +18,26 @@
 </template>
 
 <script>
+import { iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
 import { Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
 
 export default {
   components: {
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem
+    TinyDropdownItem: DropdownItem,
+    IconChevronDown: iconChevronDown(),
+    IconChevronUp: iconChevronUp()
+  },
+  data() {
+    return {
+      visible: false
+    }
+  },
+  methods: {
+    visibleChange(status) {
+      this.visible = status
+    }
   }
 }
 </script>

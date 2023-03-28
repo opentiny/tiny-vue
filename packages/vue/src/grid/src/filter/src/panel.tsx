@@ -238,11 +238,11 @@ export default {
           <div class={['tiny-grid__filter-body', { 'show-addvance': this.showAdvance }]}>
             {column.slots && column.slots.filter
               ? column.slots.filter({
-                $grid,
-                values: options,
-                args,
-                context: this
-              })
+                  $grid,
+                  values: options,
+                  args,
+                  context: this
+                })
               : quickFilter}
           </div>
             )

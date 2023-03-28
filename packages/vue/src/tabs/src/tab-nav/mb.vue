@@ -129,6 +129,50 @@ export default {
       </div>
     )
 
+    const tabsExpandContent = (
+      <div
+        class="tiny-mobile-tabs__expand-content"
+        style={state.showExpandItem ? { display: 'block', width: expandPanesWidth ? expandPanesWidth + 'px' : '' } : { display: 'none' }}
+      >
+        <div class="tiny-mobile-tabs__expand-mask"></div>
+        <div class="tiny-mobile-tabs__expand-header">
+          <label class="tiny-mobile-tabs__expand-header-title" style={state.expandHeaderStyle}>
+            {expandTabsTitle}
+          </label>
+          <span slot="reference" class="tiny-mobile-tabs__expand" style={{ transform: 'rotate(180deg)' }}>
+            <icon-chevron-down></icon-chevron-down>
+          </span>
+        </div>
+        <div class="tiny-mobile-tabs__expand-list">
+          {panes.map((pane, index) => {
+            const tabName = pane.name || pane.state.index || index
+            const tabTitle = pane.$slots.title || pane.title
+
+            return (
+              <div
+                class={{
+                  'tiny-mobile-tabs__expand-item': true,
+                  [`tiny-mobile-tabs__expand-mode-${expandTabsMode}`]: expandTabsMode === 'columns'
+                }}
+              >
+                <div
+                  class={{
+                    'tiny-mobile-tabs__expand-item-title': true,
+                    'is-current': currentName === tabName
+                  }}
+                  onClick={(e) => {
+                    onTabClick(pane, tabName, e)
+                  }}
+                >
+                  {tabTitle}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    )
+
     const tabs = panes.map((pane, index) => {
       let tabName = pane.name || pane.state.index || index
       const withClose = pane.state.isClosable

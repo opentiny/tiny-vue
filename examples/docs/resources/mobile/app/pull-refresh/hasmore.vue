@@ -5,7 +5,7 @@
       <p class="page__desc">刷新</p>
     </div>
     <div class="page__content">
-      <tiny-pull-refresh :pullUp="pullUpLoad" :pullDown="pullDownRefresh" success-text="刷新成功" animation-duration="500" success-duration="500">
+      <tiny-pull-refresh :pullUp="pullUpLoad" :hasMore="hasMore" success-text="刷新成功" animation-duration="500" success-duration="500">
         <div :key="item.name" v-for="item in data">{{ item.label }}</div>
       </tiny-pull-refresh>
     </div>
@@ -25,25 +25,19 @@ export default {
       pullUpLoad: {
         handler: () => this.handlerPullUpLoad()
       },
-      pullDownRefresh: {
-        handler: () => this.handlerPullDownRefresh()
-      }
+      hasMore: true
     }
   },
   methods: {
     handlerPullUpLoad() {
       return new Promise((resolve) => {
         setTimeout(() => {
-          this.data.unshift({ label: 'hello pull-refresh up' })
-          resolve(this.data)
-        }, 1000)
-      })
-    },
-    handlerPullDownRefresh() {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          this.data.push({ label: 'hello pull-refresh down' })
-          resolve(this.data)
+          if (this.data.length === 5) {
+            this.hasMore = false
+          } else {
+            this.data.unshift({ label: 'hello pull-refresh up' })
+            resolve(this.data)
+          }
         }, 1000)
       })
     }

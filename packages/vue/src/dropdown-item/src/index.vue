@@ -121,7 +121,7 @@ export default defineComponent({
     TinyPopup: Popup,
     TinyButton: Button
   },
-  emits: ['open', 'opened', 'close', 'change', 'closed', 'update:modelValue', 'click', 'confirm'],
+  emits: ['update:modelValue', 'open', 'opened', 'click', 'change', 'closed', 'close', 'reset', 'confirm', 'item-click'],
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
   }

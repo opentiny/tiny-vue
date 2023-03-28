@@ -178,7 +178,6 @@ const dependencies = {
   axios: 'node_modules/axios/dist/axios.min.js',
   'axios-mock-adapter': 'node_modules/axios-mock-adapter/dist/axios-mock-adapter.min.js',
   '@vue/composition-api': 'node_modules/@vue/composition-api/dist/vue-composition-api.prod.js',
-  quill: 'node_modules/quill/dist/quill.min.js',
   echarts: 'node_modules/echarts/dist/echarts.min.js',
   cropperjs: 'node_modules/cropperjs/dist/cropper.min.js',
   vue3: 'example/node_modules/vue/dist/vue.global.prod.js',

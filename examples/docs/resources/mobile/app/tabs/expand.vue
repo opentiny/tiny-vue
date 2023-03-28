@@ -11,7 +11,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Tabs, TabItem } from '@opentiny/vue'
 
 export default {

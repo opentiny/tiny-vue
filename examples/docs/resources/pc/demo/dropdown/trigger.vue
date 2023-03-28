@@ -3,11 +3,7 @@
     <tiny-row>
       <tiny-col :span="2">
         <p>hover 激活</p>
-        <tiny-dropdown :hide-timeout="1000">
-          <span>
-            <span>下拉菜单</span>
-            <icon-chevron-down></icon-chevron-down>
-          </span>
+        <tiny-dropdown>
           <template #dropdown>
             <tiny-dropdown-menu>
               <tiny-dropdown-item><icon-plus></icon-plus> 黄金糕</tiny-dropdown-item>
@@ -21,18 +17,14 @@
       </tiny-col>
       <tiny-col :span="2">
         <p>click 激活</p>
-        <tiny-dropdown :show-timeout="1000" trigger="click">
-          <span>
-            <span>下拉菜单</span>
-            <icon-chevron-down></icon-chevron-down>
-          </span>
+        <tiny-dropdown trigger="click">
           <template #dropdown>
             <tiny-dropdown-menu>
-              <tiny-dropdown-item :icon="IconPlus">黄金糕</tiny-dropdown-item>
-              <tiny-dropdown-item :icon="IconPlusCircle">狮子头</tiny-dropdown-item>
-              <tiny-dropdown-item :icon="IconPlusSquare">螺蛳粉</tiny-dropdown-item>
-              <tiny-dropdown-item :icon="IconCheckedLinear">双皮奶</tiny-dropdown-item>
-              <tiny-dropdown-item :icon="IconCheckedSur">蚵仔煎</tiny-dropdown-item>
+              <tiny-dropdown-item :icon="iconPlus">黄金糕</tiny-dropdown-item>
+              <tiny-dropdown-item :icon="iconPlusCircle">狮子头</tiny-dropdown-item>
+              <tiny-dropdown-item :icon="iconPlusSquare">螺蛳粉</tiny-dropdown-item>
+              <tiny-dropdown-item :icon="iconCheckedLinear">双皮奶</tiny-dropdown-item>
+              <tiny-dropdown-item :icon="iconCheckedSur">蚵仔煎</tiny-dropdown-item>
             </tiny-dropdown-menu>
           </template>
         </tiny-dropdown>
@@ -41,8 +33,8 @@
   </tiny-layout>
 </template>
 
-<script lang="jsx">
-import { IconChevronDown, IconPlus, IconPlusCircle, IconPlusSquare, IconCheckedLinear, IconCheckedSur } from '@opentiny/vue-icon'
+<script>
+import { iconPlus, iconPlusCircle, iconPlusSquare, iconCheckedLinear, iconCheckedSur } from '@opentiny/vue-icon'
 import { Layout, Row, Col, Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
 
 export default {
@@ -53,20 +45,19 @@ export default {
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,
     TinyDropdownItem: DropdownItem,
-    IconChevronDown: IconChevronDown(),
-    IconPlus: IconPlus(),
-    IconPlusCircle: IconPlusCircle(),
-    IconPlusSquare: IconPlusSquare(),
-    IconCheckedLinear: IconCheckedLinear(),
-    IconCheckedSur: IconCheckedSur()
+    IconPlus: iconPlus(),
+    IconPlusCircle: iconPlusCircle(),
+    IconPlusSquare: iconPlusSquare(),
+    IconCheckedLinear: iconCheckedLinear(),
+    IconCheckedSur: iconCheckedSur()
   },
   data() {
     return {
-      IconPlus: IconPlus(),
-      IconPlusCircle: IconPlusCircle(),
-      IconPlusSquare: IconPlusSquare(),
-      IconCheckedLinear: IconCheckedLinear(),
-      IconCheckedSur: IconCheckedSur()
+      iconPlus: iconPlus(),
+      iconPlusCircle: iconPlusCircle(),
+      iconPlusSquare: iconPlusSquare(),
+      iconCheckedLinear: iconCheckedLinear(),
+      iconCheckedSur: iconCheckedSur()
     }
   }
 }

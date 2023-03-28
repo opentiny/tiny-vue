@@ -36,7 +36,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { TimeLine, Modal } from '@opentiny/vue'
 
 export default {

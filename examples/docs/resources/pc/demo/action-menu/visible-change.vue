@@ -1,8 +1,8 @@
 <template>
-  <tiny-action-menu :options="options" trigger="click" @more-click="moreClick"> </tiny-action-menu>
+  <tiny-action-menu :options="options" @visible-change="visibleChange"> </tiny-action-menu>
 </template>
 
-<script lang="jsx">
+<script>
 import { ActionMenu, Notify } from '@opentiny/vue'
 
 export default {
@@ -32,9 +32,9 @@ export default {
     }
   },
   methods: {
-    moreClick() {
+    visibleChange(status) {
       Notify({
-        message: '触发 moreClick 事件',
+        message: `触发 visible-change 事件,下拉状态为 ${status}`,
         position: 'top-right',
         duration: 2000
       })

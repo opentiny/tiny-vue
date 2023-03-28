@@ -1,10 +1,6 @@
 <template>
   <div>
     <tiny-dropdown>
-      <span>
-        <span>下拉菜单</span>
-        <icon-chevron-down></icon-chevron-down>
-      </span>
       <template #dropdown>
         <tiny-dropdown-menu>
           <tiny-dropdown-item>黄金糕</tiny-dropdown-item>
@@ -21,10 +17,6 @@
     <br />
 
     <tiny-dropdown disabled>
-      <span>
-        <span>下拉菜单</span>
-        <icon-chevron-down></icon-chevron-down>
-      </span>
       <template #dropdown>
         <tiny-dropdown-menu>
           <tiny-dropdown-item>黄金糕</tiny-dropdown-item>
@@ -38,16 +30,14 @@
   </div>
 </template>
 
-<script lang="jsx">
-import { IconChevronDown } from '@opentiny/vue-icon'
+<script>
 import { Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
 
 export default {
   components: {
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem,
-    IconChevronDown: IconChevronDown()
+    TinyDropdownItem: DropdownItem
   }
 }
 </script>

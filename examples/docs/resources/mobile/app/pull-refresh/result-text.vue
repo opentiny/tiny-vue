@@ -4,7 +4,7 @@
   </tiny-pull-refresh>
 </template>
 
-<script lang="jsx">
+<script>
 import { PullRefresh } from '@opentiny/vue'
 
 export default {
