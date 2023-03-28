@@ -1,0 +1,73 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+@grid-input-prefix-cls: ~'@{css-prefix}grid-input';
+@grid-textarea-prefix-cls: ~'@{css-prefix}grid-textarea';
+
+// input
+.@{grid-input-prefix-cls}__wrapper {
+  font-size: var(--ti-common-font-size-base);
+  font-size: var(--ti-grid-font-size, 12px);
+  display: inline-block;
+
+  &.type__textarea {
+    width: 100%;
+  }
+
+  .@{grid-input-prefix-cls},
+  .@{grid-textarea-prefix-cls} {
+    border-radius: 4px;
+    outline: 0;
+    padding: 4px 8px;
+    width: 100%;
+    color: var(--ti-grid-text-color);
+    border: 1px solid var(--ti-grid-border-color);
+    background-color: #fff;
+
+    &:focus {
+      border: 1px solid var(--ti-grid-primary-color);
+    }
+
+    &[disabled] {
+      cursor: not-allowed;
+      background-color: var(--ti-grid-input-disabled-bg-color);
+    }
+  }
+
+  .@{grid-input-prefix-cls} {
+    height: 32px;
+  }
+
+  .@{grid-textarea-prefix-cls} {
+    height: 100%;
+  }
+
+  &.size__medium {
+    .@{grid-input-prefix-cls} {
+      height: 36px;
+    }
+  }
+
+  &.size__small {
+    .@{grid-input-prefix-cls} {
+      height: 32px;
+    }
+  }
+
+  &.size__mini {
+    .@{grid-input-prefix-cls} {
+      height: 28px;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "@opentiny/vue-renderless",
+  "private": true,
+  "version": "3.7.0",
+  "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
+  "homepage": "https://opentiny.design/tiny-vue",
+  "keywords": [
+    "vue",
+    "vue3",
+    "frontend",
+    "component-library",
+    "components",
+    "vue-components",
+    "opentiny",
+    "renderless-components",
+    "headless-components"
+  ],
+  "author": "OpenTiny Team",
+  "license": "MIT",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "postversion": "pnpm build"
+  },
+  "dependencies": {
+    "xss": "1.0.11"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    "./*": "./src/*"
+  },
+  "devDependencies": {
+    "esno": "^0.16.3",
+    "tsup": "^6.5.0"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "attrs": [
+    {
+      "name": "active",
+      "sample": "advanced-steps",
+      "type": "Number",
+      "desc": "设置步骤条的选中步骤，默认为-1 。",
+      "defaultValue": "该属性的默认值为 -1"
+    },
+    {
+      "name": "count-field",
+      "sample": "custom-steps-item",
+      "type": "String",
+      "desc": "设置高级向导里徽标计数对应的字段名，默认为 'count'",
+      "defaultValue": "该属性的默认值为 count"
+    },
+    {
+      "name": "data",
+      "sample": "data-resource",
+      "type": "Object , Array",
+      "desc": "设置步骤条的数据 。",
+      "defaultValue": ""
+    },
+    {
+      "name": "name-field",
+      "sample": "custom-steps-item",
+      "type": "String",
+      "desc": "设置节点信息中名称对应的字段名，默认为 'name'",
+      "defaultValue": "该属性的默认值为 name"
+    },
+    {
+      "name": "space",
+      "sample": "order-progress",
+      "type": "Number",
+      "desc": "设置步骤条的宽度。",
+      "defaultValue": ""
+    },
+    {
+      "name": "status-field",
+      "sample": "custom-steps-item",
+      "type": "String",
+      "desc": "设置数据状态对应的字段名，默认为 'status'",
+      "defaultValue": "该属性的默认值为 status"
+    }
+  ],
+  "slots": [
+    {
+      "name": "item",
+      "sample": "slot",
+      "type": "",
+      "desc": "步骤条数据项插槽",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "sample": "click",
+      "type": "",
+      "desc": "节点的点击事件，参数（index:节点索引, node：节点数据信息）",
+      "defaultValue": ""
+    }
+  ]
+}

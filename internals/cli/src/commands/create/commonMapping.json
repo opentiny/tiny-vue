@@ -1,0 +1,17 @@
+{
+  "Locale": {
+    "path": "vue-locale/src/index.ts",
+    "type": "module",
+    "exclude": false
+  },
+  "Icon": {
+    "path": "vue-icon/index.ts",
+    "type": "module",
+    "exclude": false
+  },
+  "Common": {
+    "path": "vue-common/src/index.ts",
+    "type": "module",
+    "exclude": false
+  }
+}

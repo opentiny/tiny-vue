@@ -1,0 +1,59 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import '../checkbox/vars.less';
+
+@checkbox-group-prefix-cls: ~'@{css-prefix}checkbox-group';
+@checkbox-button-prefix-cls: ~'@{css-prefix}checkbox-button';
+@checkbox-prefix-cls: ~'@{css-prefix}checkbox';
+
+.@{checkbox-group-prefix-cls} {
+  .component-css-vars-checkbox();
+  display: flex;
+
+  &.is-vertical {
+    display: inline-block;
+
+    .@{checkbox-prefix-cls} {
+      display: flex;
+      margin-right: 0;
+
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+    }
+
+    .@{checkbox-button-prefix-cls} {
+      display: block;
+
+      &:first-child .@{checkbox-button-prefix-cls}__inner {
+        border-radius: 2px 2px 0 0;
+      }
+
+      &:last-child .@{checkbox-button-prefix-cls}__inner {
+        border-radius: 0 0 2px 2px;
+      }
+
+      &.is-checked .@{checkbox-button-prefix-cls}__inner {
+        box-shadow: 0 -1px 0 0 var(--ti-checkbox-shadow-color);
+        border-color: var(--ti-checkbox-button-checked-border-color);
+      }
+
+      &.is-checked.is-disabled .@{checkbox-button-prefix-cls}__inner {
+        box-shadow: 0 -1px 0 0 var(--ti-checkbox-border-color);
+        border-color: var(--ti-checkbox-border-color);
+        background: var(--ti-checkbox-disabled-bg-color);
+      }
+    }
+  }
+}

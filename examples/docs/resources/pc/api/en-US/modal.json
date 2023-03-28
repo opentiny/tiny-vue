@@ -1,0 +1,225 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "value",
+      "type": "Boolean",
+      "desc": "Bound Value",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "id",
+      "sample": "id",
+      "type": "String",
+      "desc": "This parameter is valid only for type=message. If you do not want to click a window repeatedly, you can set a unique ID to prevent repeated prompts.",
+      "defaultValue": ""
+    },
+    {
+      "name": "is-form-reset",
+      "sample": "is-form-reset",
+      "type": "Boolean",
+      "desc": "Close the pop-up window. The form data is reset by default.",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "title",
+      "sample": "title",
+      "type": "String",
+      "desc": "Window title (internationalization is supported)",
+      "defaultValue": ""
+    },
+    {
+      "name": "type",
+      "sample": "type",
+      "type": "String",
+      "desc": "Window type; The options of this attribute are alert, confirm, and message.",
+      "defaultValue": "The default value of this attribute is alert."
+    },
+    {
+      "name": "status",
+      "sample": "status",
+      "type": "String",
+      "desc": "This parameter is valid only for type=alert | confirm | message. The options of this attribute are info, success, warning, error, loading",
+      "defaultValue": "The default value of this attribute is info."
+    },
+    {
+      "name": "message",
+      "sample": "message",
+      "type": "[String, Function]",
+      "desc": "Content of the modal, Type: plain text/VNode, or function that returns String/VNode",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-header",
+      "sample": "showHeader",
+      "type": "Boolean",
+      "desc": "Display Header",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "showFooter",
+      "sample": "showFooter",
+      "type": "Boolean",
+      "desc": "Display bottom",
+      "defaultValue": ""
+    },
+    {
+      "name": "lock-view",
+      "sample": "lock-view",
+      "type": "Boolean",
+      "desc": "Whether to lock the page. Operations outside the window are not allowed.",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "lock-scroll",
+      "sample": "lock-scroll",
+      "type": "Boolean",
+      "desc": "Whether to lock the scroll bar to disable page scrolling.",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "mask",
+      "sample": "lock-view1",
+      "type": "Boolean",
+      "desc": "Display mask layer",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "mask-closable",
+      "sample": "mask-closable",
+      "type": "Boolean",
+      "desc": "Whether to allow clicking the mask layer to close the window",
+      "defaultValue": ""
+    },
+    {
+      "name": "esc-closable",
+      "sample": "esc-closable",
+      "type": "Boolean",
+      "desc": "Whether to allow closing the window by pressing Esc",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "resize",
+      "sample": "resize",
+      "type": "Boolean",
+      "desc": "Whether to allow dragging to adjust the window size",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "duration",
+      "sample": "duration",
+      "type": "[Number, String]",
+      "desc": "This parameter is valid only when type is set to message. It indicates the delay for automatic disabling.",
+      "defaultValue": "The default value of this attribute is 3000."
+    },
+    {
+      "name": "width",
+      "sample": "resize",
+      "type": "[Number, String]",
+      "desc": "Window width",
+      "defaultValue": ""
+    },
+    {
+      "name": "height",
+      "sample": "resize",
+      "type": "[Number, String]",
+      "desc": "Window height",
+      "defaultValue": ""
+    },
+    {
+      "name": "min-width",
+      "sample": "min-width",
+      "type": "[Number, String]",
+      "desc": "Minimum width of the window",
+      "defaultValue": ""
+    },
+    {
+      "name": "min-height",
+      "sample": "min-height",
+      "type": "[Number, String]",
+      "desc": "Minimum height of the window",
+      "defaultValue": ""
+    },
+    {
+      "name": "top",
+      "sample": "top",
+      "type": "[Number, String]",
+      "desc": "This parameter is valid only when type is set to message. It indicates the position from the top of the message.",
+      "defaultValue": "The default value of this attribute is 15"
+    },
+    {
+      "name": "zIndex",
+      "sample": "zIndex",
+      "type": "Number",
+      "desc": "User-defined stacking sequence (It may be used in some special scenarios, for example, when it is blocked.)",
+      "defaultValue": "The default value of this attribute is 3000."
+    },
+    {
+      "name": "fullscreen",
+      "sample": "fullscreen",
+      "type": "Boolean",
+      "desc": "Maximized display by default",
+      "defaultValue": "The default value of this attribute is false."
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "value1",
+      "type": "",
+      "desc": "Default slot",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer",
+      "sample": "footer-slot",
+      "type": "",
+      "desc": "Template at the bottom of the window",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "show",
+      "sample": "show-event",
+      "type": "Function(params)",
+      "desc": "This event is triggered when the window is displayed. params: {type //Event type, $modal //Component instance}",
+      "defaultValue": ""
+    },
+    {
+      "name": "hide",
+      "sample": "hide-event",
+      "type": "Function(params)",
+      "desc": "This event is triggered when the window is closed. params: {type //Event type, $modal //Component instance}",
+      "defaultValue": ""
+    },
+    {
+      "name": "confirm",
+      "sample": "confirm-event",
+      "type": "Function(params, event)",
+      "desc": "This event is triggered when the OK button is clicked. params: {type //Event type, $modal //Component instance}, event: native event",
+      "defaultValue": ""
+    },
+    {
+      "name": "close",
+      "sample": "close-event",
+      "type": "Function(params, event)",
+      "desc": "This event is triggered when the close button is clicked. params: {type //Event type, $modal //Component instance}, event: native event",
+      "defaultValue": ""
+    },
+    {
+      "name": "cancel",
+      "sample": "cancel-event",
+      "type": "Function(params, event)",
+      "desc": "This event is triggered when the Cancel button is clicked. params: {type //Event type, $modal //Component instance}, event: native event",
+      "defaultValue": ""
+    },
+    {
+      "name": "zoom",
+      "sample": "zoom-event",
+      "type": "Function(params, event)",
+      "desc": "This event is triggered when a window is zoomed in or out. params: {type //Event type, $modal //Component instance}, event: native event",
+      "defaultValue": ""
+    }
+  ]
+}

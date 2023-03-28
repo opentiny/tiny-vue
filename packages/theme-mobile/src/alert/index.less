@@ -1,0 +1,150 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/alert.less';
+@import '../custom.less';
+@import './vars.less';
+
+@alert-prefix-cls: ~'@{css-prefix}mobile-alert';
+
+.@{alert-prefix-cls} {
+  clear: both;
+  position: relative;
+
+  &--normal {
+    height: var(--ti-mobile-alert-nomal-height, 30px);
+    line-height: var(--ti-mobile-alert-nomal-height, 30px);
+    padding: 0px 16px;
+
+    .@{alert-prefix-cls}__content {
+      padding-left: 8px;
+      font-size: var(--ti-mobile-alert-content-font-size, 12px);
+      color: var(--ti-mobile-alert-content-color, #999);
+      display: inline-block;
+      vertical-align: middle;
+
+      &.is-hideicon {
+        padding: 0;
+      }
+    }
+  }
+
+  &&--large {
+    padding: 10px;
+    border-radius: var(--ti-mobile-alert-large-border-radius, 4px);
+    background: var(--ti-mobile-alert-large-bgcolor, #039be5);
+
+    &::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ti-mobile-alert-large-bgcolor, #039be5);
+      display: block;
+      position: absolute;
+      top: -24px;
+      left: 24px;
+    }
+
+    &::after {
+      content: '';
+      width: 3px;
+      height: 24px;
+      background: var(--ti-mobile-alert-large-bgcolor, #039be5);
+      display: block;
+      position: absolute;
+      top: -24px;
+      left: 24px;
+      transform: translateX(2px);
+    }
+
+    .@{alert-prefix-cls}__content {
+      font-size: 15px;
+      color: var(--ti-mobile-alert-large-color, #fff);
+      padding-left: 8px;
+      display: inline-block;
+      vertical-align: middle;
+
+      &.is-hideicon {
+        padding: 0;
+      }
+    }
+
+    .@{alert-prefix-cls}__icon {
+      fill: var(--ti-mobile-alert-large-color, #fff);
+    }
+
+    .is-custom {
+      font-size: 15px;
+      color: #fff;
+    }
+  }
+
+  &--success {
+    .alert-variant(
+      var(--ti-mobile-alert-success-icon-color, #52c41a) ;
+        var(--ti-mobile-alert-success-link-color, #78d53a) ;
+        var(--ti-mobile-alert-success-bg-color, #f6ffed)
+    );
+  }
+
+  &--info {
+    .alert-variant(
+      var(--ti-mobile-alert-info-icon-color, #1890ff) ;
+        var(--ti-mobile-alert-info-link-color, #5ec2ff) ;
+        var(--ti-mobile-alert-info-bg-color, #e6f7ff)
+    );
+  }
+
+  &--warning {
+    .alert-variant(
+      var(--ti-mobile-alert-warning-icon-color, #faad14) ;
+        var(--ti-mobile-alert-warning-link-color, #ffc833) ;
+        var(--ti-mobile-alert-warning-bg-color, #fef6e5)
+    );
+  }
+
+  &--error {
+    .alert-variant(
+      var(--ti-mobile-alert-error-icon-color, #f5222d) ;
+        var(--ti-mobile-alert-error-link-color, #ff4642) ;
+        var(--ti-mobile-alert-error-bg-color, #fff1f0)
+    );
+  }
+
+  &__icon {
+    font-size: var(--ti-mobile-alert-icon-size, 16px);
+  }
+
+  &.is-center {
+    text-align: center;
+  }
+
+  .is-custom {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 12px;
+    color: #999;
+  }
+
+  & &__close {
+    font-size: var(--ti-mobile-alert-content-font-size, 12px);
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+}

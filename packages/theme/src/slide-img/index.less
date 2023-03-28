@@ -1,0 +1,75 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+.slider-img {
+  position: relative;
+
+  > .icon-chevron-left,
+  > .icon-chevron-right {
+    height: 100%;
+    position: absolute;
+    .opacity(@opacity: 0);
+    width: 80px;
+    font-size: 50px;
+    color: #c4c4c4;
+
+    &:before {
+      top: 45%;
+      position: absolute;
+      padding: 0 20px;
+    }
+
+    &:hover {
+      .opacity(@opacity: 0.6);
+      cursor: pointer;
+    }
+  }
+
+  .icon-chevron-right {
+    right: 0;
+    top: 0;
+  }
+
+  > ul > li {
+    display: none;
+    text-align: center;
+  }
+
+  .slider-imgnav {
+    text-align: center;
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    span {
+      display: inline-block;
+      margin: 0 -2px;
+      cursor: pointer;
+      font-size: var(--ti-common-font-size-2);
+      color: #c4c4c4;
+
+      &:hover,
+      &.imgnav-selected {
+        color: #fff;
+      }
+    }
+  }
+
+  .@{css-prefix}repeat {
+    overflow-y: auto;
+  }
+}

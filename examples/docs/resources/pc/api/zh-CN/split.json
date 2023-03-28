@@ -1,0 +1,92 @@
+{
+  "attrs": [
+    {
+      "name": "left-top-min",
+      "sample": "split-threshold",
+      "type": "Number , String",
+      "desc": "左面板 / 上面板最小阈值。",
+      "defaultValue": "该属性的默认值为 40px"
+    },
+    {
+      "name": "mode",
+      "sample": "split-mode",
+      "type": "String",
+      "desc": "分割类型，可选值为 horizontal 或 vertical；默认值horizontal。;该属性的可选值为 horizontal / vertical",
+      "defaultValue": "该属性的默认值为 horizontal"
+    },
+    {
+      "name": "right-bottom-min",
+      "sample": "split-threshold",
+      "type": "Number , String",
+      "desc": "右面板 / 下面板最小阈值。",
+      "defaultValue": "该属性的默认值为 40px"
+    },
+    {
+      "name": "modelValue",
+      "sample": "basic-usage",
+      "type": "Number , String",
+      "desc": "分割面板的位置。",
+      "defaultValue": "该属性的默认值为 0.5"
+    }
+  ],
+  "slots": [
+    {
+      "name": "left",
+      "sample": "left-right-slot",
+      "type": "",
+      "desc": "左面板插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "right",
+      "sample": "left-right-slot",
+      "type": "",
+      "desc": "右面板插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "top",
+      "sample": "top-bottom-slot",
+      "type": "",
+      "desc": "上面板插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "bottom",
+      "sample": "top-bottom-slot",
+      "type": "",
+      "desc": "下面板插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "trigger",
+      "sample": "trigger-slot",
+      "type": "",
+      "desc": "拖拽插槽",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "moveend",
+      "sample": "moveend-event",
+      "type": "Function()",
+      "desc": "拖拽结束的事件。;拖拽结束的事件。;无arguments",
+      "defaultValue": ""
+    },
+    {
+      "name": "movestart",
+      "sample": "movestart-event",
+      "type": "Function()",
+      "desc": "拖拽开始的事件。;拖拽开始的事件。;无arguments",
+      "defaultValue": ""
+    },
+    {
+      "name": "moving",
+      "sample": "moving-event",
+      "type": "Function(arg)",
+      "desc": "拖拽中的事件。;拖拽中的事件。;arg1:event (类型Object)",
+      "defaultValue": ""
+    }
+  ]
+}

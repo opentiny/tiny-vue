@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>To ensure that the table is lightweight and open, the table is modularized and split. The core code is lightweight. The paging component needs to be introduced to the paging function. The built-in paging configuration procedure is as follows: \n1. <code>import</code> introduces the official <code>Pager</code> component. That is, <code>import Pager from '@opentiny/vue-pager'</code> or <code>{Pager} from '@opentiny/vue'</code>. \n2. <code>Pager</code> is transferred to the <code>data()</code> function and stored for use in the template. \n3. Set the table attribute <code>pager</code> to configure pagination and inject the pagination component through the <code>{component: Pager}</code> attribute of <code>pager</code>. \n4. Configure the seq-serial attribute to set the sequence number to be displayed consecutively after page turning. By default, the sequence number is displayed discontinuously.</p>\n",
+    "link": "grid/pager/inner-pager",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "pager-inner-pager"
+  },
+  {
+    "title": "The system prompts you to save data.",
+    "content": "<p>Configure the <code>showSaveMsg</code> attribute. When the table data is modified, the system prompts you to save the modification.</p>\n",
+    "link": "grid/pager/showSaveMsg",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "pager-showSaveMsg"
+  }
+]

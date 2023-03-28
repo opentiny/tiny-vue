@@ -1,0 +1,141 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+.@{css-prefix} {
+  .component-css-vars-collapse();
+  
+  &fade-in-linear-enter-active,
+  &fade-in-linear-leave-active {
+    transition: opacity 0.2s linear;
+  }
+
+  &fade-in-linear-enter,
+  &fade-in-linear-enter-from,
+  &fade-in-linear-leave,
+  &fade-in-linear-leave-from,
+  &fade-in-linear-leave-active {
+    opacity: 0;
+  }
+
+  &fade-in-enter-active,
+  &fade-in-leave-active {
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+  }
+
+  &fade-in-enter,
+  &fade-in-enter-from,
+  &fade-in-leave-active {
+    opacity: 0;
+  }
+
+  &zoom-in-center-enter-active,
+  &zoom-in-center-leave-active {
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+  }
+
+  &zoom-in-center-enter,
+  &zoom-in-center-enter-from,
+  &zoom-in-center-leave-active {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  &zoom-in-top-enter-active,
+  &zoom-in-top-leave-active {
+    opacity: 1;
+    transform: scaleY(1);
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+      opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-origin: center top;
+  }
+
+  &zoom-in-top-enter,
+  &zoom-in-top-enter-from,
+  &zoom-in-top-leave-active {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+
+  &zoom-in-bottom-enter-active,
+  &zoom-in-bottom-leave-active {
+    opacity: 1;
+    transform: scaleY(1);
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+      opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-origin: center bottom;
+  }
+
+  &zoom-in-bottom-enter,
+  &zoom-in-left-enter-from,
+  &zoom-in-bottom-leave-active {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+
+  &zoom-in-left-enter-active,
+  &zoom-in-left-leave-active {
+    opacity: 1;
+    transform: scale(1, 1);
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+      opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-origin: top left;
+  }
+
+  &zoom-in-left-enter,
+  &zoom-in-left-enter-from,
+  &zoom-in-left-leave-active {
+    opacity: 0;
+    transform: scale(0.45, 0.45);
+  }
+
+  &list-enter-active,
+  &list-leave-active {
+    transition: all 1s;
+  }
+
+  &list-enter,
+  &list-enter-from,
+  &list-leave-active {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  &opacity-transition {
+    transition: opacity 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+  }
+}
+
+.collapse-transition {
+  transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out,
+    0.3s padding-bottom ease-in-out;
+}
+
+.horizontal-collapse-transition {
+  transition: 0.3s width ease-in-out, 0.3s padding-left ease-in-out,
+    0.3s padding-right ease-in-out;
+}
+
+.fade-in-linear-enter,
+.fade-in-linear-enter-from,
+.fade-in-linear-leave,
+.fade-in-linear-leave-from,
+.fade-in-linear-leave-active {
+  opacity: 0;
+}
+
+.fade-in-linear-enter-active,
+.fade-in-linear-leave-active {
+  transition: opacity 0.2s linear;
+}

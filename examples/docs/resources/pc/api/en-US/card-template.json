@@ -1,0 +1,41 @@
+{
+  "attrs": [
+    {
+      "name": "body-style",
+      "sample": "",
+      "type": "",
+      "desc": "Set the style of the card body. The optional value of this attribute is --",
+      "defaultValue": "The default value of this attribute is --"
+    },
+    {
+      "name": "header-line",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "Specifies whether to display a split line in the card header. The default value is true.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "header",
+      "sample": "",
+      "type": "",
+      "desc": "Set the card header content, such as the title.",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer",
+      "sample": "",
+      "type": "",
+      "desc": "Set the content in the footer part of the card.",
+      "defaultValue": ""
+    },
+    {
+      "name": "default",
+      "sample": "",
+      "type": "",
+      "desc": "Default slot, which is used to set the content of the card body.",
+      "defaultValue": ""
+    }
+  ]
+}

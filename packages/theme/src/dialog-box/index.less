@@ -1,0 +1,260 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+@import '../mixins/button.less';
+
+@dialog-box-prefix-cls: ~'@{css-prefix}dialog-box';
+
+.@{dialog-box-prefix-cls} {
+  position: absolute;
+  background: var(--ti-dialogbox-bg-color);
+  border: 1px solid transparent;
+  border-radius: var(--ti-dialogbox-border-radius);
+  box-shadow: var(--ti-dialogbox-box-shadow);
+  overflow: hidden;
+
+  &__wrapper {
+    .component-css-vars-dialog-box();
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    margin: 0;
+  }
+
+  &.is-fullscreen {
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  &.is-center {
+    .@{dialog-box-prefix-cls}__header,
+    .@{dialog-box-prefix-cls}__footer {
+      text-align: center;
+    }
+  }
+
+  &__scroll-lock {
+    overflow: hidden;
+  }
+
+  &.is-fullscreen &__body {
+    max-height: calc(100vh - 94px);
+  }
+
+  & &__header {
+    padding: var(--ti-dialogbox-head-padding-top) var(--ti-dialogbox-head-padding-horizontal) var(--ti-dialogbox-head-padding-bottom);
+    background: var(--ti-dialogbox-bg-color);
+    font-weight: var(--ti-dialogbox-head-title-font-weight);
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+
+    .@{dialog-box-prefix-cls}__title {
+      font-size: var(--ti-dialogbox-head-title-font-size);
+      color: var(--ti-dialogbox-head-title-text-color);
+      font-weight: var(--ti-dialogbox-head-title-font-weight);
+      flex: 1;
+    }
+
+    .@{dialog-box-prefix-cls}__headerbtn {
+      border: none;
+      background: none;
+      padding: 0;
+      line-height: 1;
+      position: absolute;
+      top: var(--ti-dialogbox-btn-position-top);
+      right: 20px;
+      cursor: pointer;
+      height: 32px;
+      width: 32px;
+
+      &:hover {
+        background-color: var(--ti-dialogbox-btn-background-color-hover);
+        border-radius: 4px;
+      }
+
+      & + .@{dialog-box-prefix-cls}__headerbtn {
+        margin-left: 8px;
+      }
+
+      &:focus {
+        outline: none; //解决chrome下,focus状态下蓝边问题
+      }
+
+      .@{dialog-box-prefix-cls}__close {
+        fill: var(--ti-dialogbox-close-icon-color);
+        font-size: var(--ti-dialogbox-head-font-icon-size);
+
+        &:hover {
+          fill: var(--ti-dialogbox-close-icon-color-hover);
+        }
+      }
+    }
+  }
+
+  & &__body {
+    text-align: left;
+    padding: var(--ti-dialogbox-box-body-padding-vertical) var(--ti-dialogbox-box-body-padding-horizontal);
+    margin-bottom: var(--ti-dialogbox-box-body-margin-bottom);
+    color: var(--ti-dialogbox-box-body-text-color);
+    font-size: var(--ti-dialogbox-box-body-font-size);
+    overflow: auto;
+    max-height: 65vh;
+
+    .@{css-prefix}upload {
+      overflow: hidden;
+    }
+
+    > span {
+      max-height: 120px;
+      overflow-y: auto;
+    }
+
+    .@{css-prefix}dept__search {
+      line-height: 30px;
+    }
+  }
+
+  & &__footer {
+    text-align: inherit;
+    padding: 28px 32px 32px;
+    text-align: center;
+    box-sizing: border-box;
+
+    .@{css-prefix}toolbar {
+      .@{css-prefix}button {
+        margin: 0 4px;
+      }
+    }
+  }
+}
+
+.v-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  background: #000;
+}
+
+.v-modal-enter {
+  animation: v-modal-in 0.2s ease;
+}
+
+.v-modal-leave {
+  animation: v-modal-out 0.2s ease forwards;
+}
+
+@keyframes v-modal-in {
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes v-modal-out {
+  100% {
+    opacity: 0;
+  }
+}
+
+.dialog-slideRight-enter-active {
+  animation: slideRight 0.5s ease-in forwards;
+}
+
+.dialog-slideRight-leave-active {
+  animation: slideRightout 0.5s ease-in forwards;
+}
+
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateX(50%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slideRightout {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateX(50%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.dialog-fade-enter-active {
+  animation: dialog-fade-in 0.3s;
+}
+
+.dialog-fade-leave-active {
+  animation: dialog-fade-out 0.3s;
+}
+
+@keyframes dialog-fade-in {
+  0% {
+    transform: translate3d(0, -20px, 0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-fade-out {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(0, -20px, 0);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .@{dialog-box-prefix-cls} {
+    width: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+}

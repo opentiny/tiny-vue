@@ -1,0 +1,204 @@
+{
+  "attrs": [
+    {
+      "name": "center",
+      "sample": "center",
+      "type": "Boolean",
+      "desc": "设置为 true 时 弹出框的头部与底部内容会自动居中",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "is-form-reset",
+      "sample": "form-in-dialog",
+      "type": "Boolean",
+      "desc": "关闭弹窗，默认重置表单数据",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "show-close",
+      "sample": "hidden-close-buttons",
+      "type": "Boolean",
+      "desc": "是否显示关闭按钮",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "draggable",
+      "sample": "draggable",
+      "type": "Boolean",
+      "desc": "是否开启弹窗的拖拽功能，默认值为 false 。",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "fullscreen",
+      "sample": "fullscreen",
+      "type": "Boolean",
+      "desc": "弹出框是否全屏",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "modal",
+      "sample": "no-modal",
+      "type": "Boolean",
+      "desc": "是否启用遮罩层",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "close-on-click-modal",
+      "sample": "close-on-click-modal",
+      "type": "Boolean",
+      "desc": "是否可以通过点击遮罩层关闭弹窗，默认为 true ,可以在标签上设置:modal-closable=\"false\"不能通过点击遮罩层关闭弹窗。",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "close-on-press-escape",
+      "sample": "close-on-press-escape",
+      "type": "Boolean",
+      "desc": "是否可以通过 ESC 键关闭遮罩层",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "modal-append-to-body",
+      "sample": "right-dialog",
+      "type": "Boolean",
+      "desc": "遮罩层是否应用到 body 上，为 false 时遮罩层会应用到 DialogBox 的父元素上",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "append-to-body",
+      "sample": "secondary-dialog",
+      "type": "Boolean",
+      "desc": "DialogBox 本身是否插入到 body 上，嵌套的 Dialog 必须指定该属性并赋值为 true",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "right-slide",
+      "sample": "right-dialog",
+      "type": "Boolean",
+      "desc": "是否开启弹出右侧滑出功能，默认值为 false 。",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "lock-scroll",
+      "sample": "lock-scroll",
+      "type": "Boolean",
+      "desc": "Dialog弹出时是否禁用滚动条",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "show-header",
+      "sample": "hidden-header",
+      "type": "Boolean",
+      "desc": "是否显示弹窗头部 header，默认值为 true 。",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "title",
+      "sample": "custom-dialog-title",
+      "type": "String",
+      "desc": "弹出框标题。",
+      "defaultValue": ""
+    },
+    {
+      "name": "top",
+      "sample": "dialog-top-height",
+      "type": "String",
+      "desc": "设置弹出框距离窗口顶部的高度，默认为屏高的 15%",
+      "defaultValue": "该属性的默认值为 15vh"
+    },
+    {
+      "name": "visible",
+      "sample": "basic-usage",
+      "type": "Boolean",
+      "desc": "控制弹出框显示与关闭",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "width",
+      "sample": "dialog-width",
+      "type": "String",
+      "desc": "弹出框的宽度。",
+      "defaultValue": "该属性的默认值为 500px"
+    },
+    {
+      "name": "dialog-class",
+      "sample": "dialog-width",
+      "type": "String",
+      "desc": "自定义配置弹窗类名",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "custom-dialog-content",
+      "type": "",
+      "desc": "Dialog 的内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "title",
+      "sample": "custom-dialog-title",
+      "type": "",
+      "desc": "Dialog 标题区的内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer",
+      "sample": "custom-dialog-footer",
+      "type": "",
+      "desc": "Dialog 按钮操作区的内容",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "close",
+      "sample": "open-close-events",
+      "type": "Function()",
+      "desc": "Dialog 关闭的回调;Dialog 关闭的回调;无arguments",
+      "defaultValue": ""
+    },
+    {
+      "name": "open",
+      "sample": "open-close-events",
+      "type": "Function()",
+      "desc": "Dialog 打开的回调;Dialog 打开的回调;无arguments",
+      "defaultValue": ""
+    },
+    {
+      "name": "opened",
+      "sample": "open-close-events",
+      "type": "Function()",
+      "desc": "Dialog 打开动画结束时的回调;无arguments",
+      "defaultValue": ""
+    },
+    {
+      "name": "closed",
+      "sample": "open-close-events",
+      "type": "Function()",
+      "desc": "Dialog 关闭动画结束时的回调;无arguments",
+      "defaultValue": ""
+    },
+    {
+      "name": "drag-start",
+      "sample": "draggable",
+      "type": "Function(arg)",
+      "desc": "Dialog 拖拽开始事件;arg:event(包含弹窗的位置等信息)",
+      "defaultValue": ""
+    },
+    {
+      "name": "drag-move",
+      "sample": "draggable",
+      "type": "Function(arg)",
+      "desc": "Dialog 拖拽移动事件;arg:event(包含弹窗的位置等信息)",
+      "defaultValue": ""
+    },
+    {
+      "name": "drag-end",
+      "sample": "draggable",
+      "type": "Function(arg)",
+      "desc": "Dialog 拖拽结束事件;arg:event(包含弹窗的位置等信息)",
+      "defaultValue": ""
+    }
+  ]
+}

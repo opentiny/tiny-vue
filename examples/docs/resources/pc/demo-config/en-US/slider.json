@@ -1,0 +1,114 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "slider/basic-usage",
+    "component": "Slider Slider",
+    "findIntroStr": "You can slide the slider to determine the position and size. Multiple forms, horizontal, vertical, and range sliders.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "vertical mode",
+    "content": "<p>The vertical mode of the slider is displayed by setting the <code>vertical</code> attribute. landscape mode by default)\nIn vertical mode, you can set the height of the component by calling <code>height</code>\n",
+    "link": "slider/vertical-mode",
+    "component": "Slider Slider",
+    "findIntroStr": "You can slide the slider to determine the position and size. Multiple forms, horizontal, vertical, and range sliders.",
+    "demoId": "vertical-mode"
+  },
+  {
+    "title": "Maximum/Minimum",
+    "content": "<p>Set <code>min</code> <code>max</code> to set the value range of the slider.</p>\n",
+    "link": "slider/max-min",
+    "component": "Slider Slider",
+    "findIntroStr": "You can slide the slider to determine the position and size. Multiple forms, horizontal, vertical, and range sliders.",
+    "demoId": "max-min"
+  },
+  {
+    "title": "Current Value",
+    "content": "<p>Set <code>format-tooltip</code> to set the attribute value</p>\n",
+    "link": "slider/format-tooltip",
+    "component": "Slider Slider",
+    "findIntroStr": "You can slide the slider to determine the position and size. Multiple forms, horizontal, vertical, and range sliders.",
+    "demoId": "format-tooltip"
+  },
+  {
+    "title": "Range Selection",
+    "content": "<p>Set the initial range selection for the array through <code>v-model</code></p>\n",
+    "link": "slider/range-select",
+    "component": "Slider Slider",
+    "findIntroStr": "You can slide the slider to determine the position and size. Multiple forms, horizontal, vertical, and range sliders.",
+    "demoId": "range-select"
+  },
+  {
+    "title": "Text box mode",
+    "content": "<p>Enable the slider text box mode by configuring <code>show-input</code></p>\n",
+    "link": "slider/show-iput",
+    "component": "Slider Slider",
+    "findIntroStr": "You can slide the slider to determine the position and size. Multiple forms, horizontal, vertical, and range sliders.",
+    "demoId": "show-iput"
+  },
+  {
+    "title": "Shortcut Key Operations",
+    "content": "<p>Set the total number of steps. That is, when you press the shortcut key PageDown or PageUp, the moving distance is (Maximum value - Minimum value)/Number of pages</p>\n",
+    "link": "slider/shortcut-operation",
+    "component": "Slider Slider",
+    "findIntroStr": "You can slide the slider to determine the position and size. Multiple forms, horizontal, vertical, and range sliders.",
+    "demoId": "shortcut-operation"
+  },
+  {
+    "title": "Disabled",
+    "content": "<p>Set the attribute <code>disabled</code> to disable the sliding slider</p>\n",
+    "link": "slider/dynamic-disable",
+    "component": "Slider Slider",
+    "findIntroStr": "You can slide the slider to determine the position and size. Multiple forms, horizontal, vertical, and range sliders.",
+    "demoId": "dynamic-disable"
+  },
+  {
+    "title": "Prompt",
+    "content": "<p>Disable the slider prompt by setting <code>:show-tip=&quot;false&quot;</code> . (enabled by default)</p>\n",
+    "link": "slider/show-tip",
+    "component": "Slider Slider",
+    "findIntroStr": "You can slide the slider to determine the position and size. Multiple forms, horizontal, vertical, and range sliders.",
+    "demoId": "show-tip"
+  },
+  {
+    "title": "Step",
+    "content": "<p>Set <code>step</code> to configure the slider sliding step</p>\n",
+    "link": "slider/about-step",
+    "component": "Slider Slider",
+    "findIntroStr": "You can slide the slider to determine the position and size. Multiple forms, horizontal, vertical, and range sliders.",
+    "demoId": "about-step"
+  },
+  {
+    "title": "change event",
+    "content": "<p>change event</p>\n",
+    "link": "slider/slider-event-change",
+    "component": "Slider Slider",
+    "findIntroStr": "You can slide the slider to determine the position and size. Multiple forms, horizontal, vertical, and range sliders.",
+    "demoId": "slider-event-change"
+  },
+  {
+    "title": "start Slider sliding start event",
+    "content": "<p>start Slider Start Event</p>\n",
+    "link": "slider/slider-event-start",
+    "component": "Slider Slider",
+    "findIntroStr": "You can slide the slider to determine the position and size. Multiple forms, horizontal, vertical, and range sliders.",
+    "demoId": "slider-event-start"
+  },
+  {
+    "title": "stop slider sliding stop event",
+    "content": "<p>stop slider sliding stop event</p>\n",
+    "link": "slider/slider-event-stop",
+    "component": "Slider Slider",
+    "findIntroStr": "You can slide the slider to determine the position and size. Multiple forms, horizontal, vertical, and range sliders.",
+    "demoId": "slider-event-stop"
+  },
+  {
+    "title": "Custom Slot",
+    "content": "For details, see the following example.",
+    "link": "slider/slider-slot",
+    "component": "Slider Slider",
+    "findIntroStr": "You can slide the slider to determine the position and size. Multiple forms, horizontal, vertical, and range sliders.",
+    "demoId": "slider-slot"
+  }
+]

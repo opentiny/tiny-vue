@@ -1,0 +1,32 @@
+{
+  "attrs": [
+    {
+      "name": "shortcuts",
+      "sample": "date-shortcuts",
+      "type": "Object",
+      "desc": "Set shortcut options. The {text, onClick} object needs to be transferred. For details about the usage of the {text, onClick} object, see the demo or the following table.",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabledDate",
+      "sample": "max-min",
+      "type": "Function",
+      "desc": "Set the disabled status. The parameter is the current date. The return value is Boolean.",
+      "defaultValue": ""
+    },
+    {
+      "name": "firstDayOfWeek",
+      "sample": "date-range-shortcuts",
+      "type": "Number",
+      "desc": "Week start day; The optional values for this property are from 1 to 7",
+      "defaultValue": "The default value of this attribute is 7."
+    },
+    {
+      "name": "onPick",
+      "sample": "date-range",
+      "type": "Function({maxDate, minDate})",
+      "desc": "Callback that will be executed after a date is selected. The callback takes effect only when daterange or datetimerange is selected.",
+      "defaultValue": ""
+    }
+  ]
+}

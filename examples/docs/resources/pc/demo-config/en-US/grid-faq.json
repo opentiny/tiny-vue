@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Table column headers and cells are misplaced",
+    "content": "<p>When the grid table header is misplaced with the table body cell, You can perform the following operations as required.\n1. Set the column width for each column.\n2. Set <code>show-overflow</code> and <code>show-header-overflow</code> to <code>true</code>\n3. Set <code>table-layout</ Set this parameter to <code>auto</code></p>\n",
+    "link": "grid/faq/unbalanced",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "faq-unbalanced"
+  }
+]

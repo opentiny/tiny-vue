@@ -1,0 +1,43 @@
+{
+  "name": "@opentiny/vue-theme-mobile",
+  "private": true,
+  "version": "3.7.0",
+  "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
+  "homepage": "https://opentiny.design/tiny-vue",
+  "main": "index.css",
+  "keywords": [
+    "vue",
+    "vue3",
+    "frontend",
+    "component-library",
+    "components",
+    "vue-components",
+    "opentiny",
+    "renderless-components",
+    "headless-components"
+  ],
+  "author": "OpenTiny Team",
+  "license": "MIT",
+  "exports": {
+    "./*": "./src/*"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build:theme": "gulp build --gulpfile build/gulp-dist.js",
+    "build": "npm run clean && npm run build:theme",
+    "build:fast": "npm run build && npm run release",
+    "publishTgz": "node .cloudbuild/publish-tgzs.js",
+    "release": "node build/release.js",
+    "postversion": "pnpm build"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-less": "^4.0.1",
+    "rimraf": "^2.6.2"
+  }
+}

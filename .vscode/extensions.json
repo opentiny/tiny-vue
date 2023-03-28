@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "vue.volar",
+    "vue.vscode-typescript-vue-plugin",
+    "davidanson.vscode-markdownlint",
+    "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint",
+    "ms-playwright.playwright"
+  ],
+  "unwantedRecommendations": [
+    "esbenp.prettier-vscode",
+    "octref.vetur"
+  ]
+}

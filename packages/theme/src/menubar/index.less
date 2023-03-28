@@ -1,0 +1,490 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+.@{css-prefix}menu.menu-hor {
+  .component-css-vars-menubar();
+
+  margin-bottom: 0;
+  min-height: 30px; // 无数据时也显示蓝条
+  min-width: 300px; // 给菜单定义最小宽度，使之缩放有下拉箭头时候不会掉下来
+  font-size: var(--ti-menubar-menu-font-size, 14px);
+
+  > ul {
+    > li {
+      display: inline-block;
+      margin-left: -4px;
+      position: relative;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+
+      > a {
+        display: block;
+        padding: 0 10px;
+        min-width: 120px;
+        margin-right: -1px;
+        color: var(--ti-menubar-title-text-color);
+        font-size: var(--ti-common-font-size-2);
+
+        span.menu-icon {
+          margin-right: 8px;
+          top: -2px;
+        }
+      }
+
+      .submenu {
+        > li {
+          > a {
+            color: var(--ti-menubar-submenu-normal-text-color);
+
+            &:hover,
+            &:focus {
+              background: var(--ti-menubar-submenu-hover-bg-color);
+            }
+
+            &.active,
+            &:active {
+              background: var(--ti-menubar-submenu-active-bg-color);
+            }
+          }
+
+          > span {
+            &.icon-starActive {
+              left: 8px;
+            }
+
+            &.icon-transpond {
+              right: 8px;
+            }
+          }
+        }
+      }
+
+      &.node-selected,
+      &:hover {
+        > a {
+          border-right: 0;
+        }
+      }
+
+      &:last-child {
+        > a {
+          border-right: 0;
+        }
+      }
+    }
+
+    li {
+      padding: 0;
+      height: var(--ti-menubar-li-height);
+      line-height: var(--ti-menubar-li-height);
+      position: relative;
+
+      > a {
+        min-width: 60px;
+        width: 100%;
+        height: 100%;
+        color: var(--ti-menubar-title-text-color);
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: var(--ti-menubar-title-text-color);
+          text-decoration: none;
+          background: var(--ti-menubar-bg-color-active);
+        }
+      }
+    }
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    background: var(--ti-menubar-bg-color-normal);
+  }
+
+  // 设置此样式可使子菜单向左飘
+  .menus-left,
+  .menus-left .submenu {
+    left: auto;
+    right: 100%;
+  }
+
+  // 居顶导航菜单--垂直下拉
+  .node-selected {
+    > .submenu {
+      left: auto;
+      margin-top: 2px;
+
+      > li {
+        &.node-selected {
+          background: var(--ti-menubar-bg-color-active);
+
+          a {
+            color: var(--ti-menubar-submenu-normal-text-color);
+
+            &:hover {
+              color: #1890ff;
+              background: #fff;
+            }
+          }
+        }
+
+        .submenu {
+          margin-top: -40px;
+          margin-left: 2px;
+        }
+      }
+
+      .node-selected > .submenu {
+        left: 100%;
+      }
+    }
+
+    .submenu {
+      background: #fff;
+      border: 1px solid #d9d9d9;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  // 居顶导航菜单--多种类下拉
+  .menu-dropdown {
+    margin-top: 0;
+
+    .menu-group {
+      padding: 0 0 0 15px;
+      display: table-cell;
+      text-align: left;
+      word-break: break-all;
+      min-width: 330px;
+      max-width: 350px;
+      font-weight: normal;
+      vertical-align: top;
+
+      li {
+        line-height: 30px;
+        display: inline-block;
+        margin-right: 8px;
+
+        &.menu-row {
+          display: block;
+          .clearfix();
+        }
+
+        a {
+          padding-right: 8px;
+        }
+      }
+
+      &:last-child {
+        border-right: 0;
+      }
+    }
+
+    .memu-group-sub {
+      font-weight: normal;
+      border: none;
+      line-height: 25px;
+      .clearfix();
+      display: block;
+
+      li {
+        border: 0;
+      }
+    }
+  }
+
+  .submenu {
+    margin-top: 0;
+
+    li {
+      padding: 0;
+      height: var(--ti-menubar-submenu-li-height);
+      line-height: var(--ti-menubar-submenu-li-height);
+
+      .starActive-favorite {
+        color: #e1860a;
+      }
+
+      a {
+        padding: 0 35px 0 12px;
+        white-space: nowrap;
+        text-align: left;
+      }
+
+      span {
+        position: absolute;
+        color: var(--ti-menubar-submenu-normal-text-color);
+      }
+    }
+  }
+
+  .submenu,
+  .menu-dropdown {
+    position: absolute;
+    z-index: 10;
+    border-top: 0;
+    margin-top: 0;
+  }
+
+  span.icon-starActive,
+  span.icon-transpond {
+    position: absolute;
+  }
+
+  span.icon-transpond {
+    right: 5px;
+    margin-right: 0;
+  }
+
+  span.icon-starActive {
+    left: 0;
+
+    & + a {
+      padding-left: 35px;
+    }
+  }
+}
+
+.menu-roll {
+  > ul {
+    .clearfix();
+
+    > li {
+      .clearfix();
+      display: none;
+      margin-left: 0;
+
+      a {
+        height: 45px;
+        font-weight: bold;
+        min-width: 30px;
+        margin: 0;
+        padding: 0 6px;
+        text-align: left;
+      }
+
+      &.node-selected > a {
+        float: left;
+        width: 100%;
+      }
+    }
+  }
+
+  .submenu {
+    text-align: left;
+    line-height: 30px;
+    left: 100%;
+    margin-top: 45px;
+    min-width: 180px;
+
+    .submenu {
+      margin-top: -31px;
+      top: inherit; // 菜单归popup管之后，位置重置
+    }
+
+    li {
+      padding: 0 10px;
+      height: 45px;
+      line-height: 45px;
+
+      a {
+        padding: 0 6px;
+        display: block;
+        padding-right: 27px;
+      }
+
+      span {
+        float: right;
+        margin: 5px 0 0 10px;
+      }
+
+      span.@{css-prefix}icon {
+        float: none !important;
+      }
+
+      span.icon-starActive,
+      span.icon-transpond {
+        position: initial;
+      }
+    }
+  }
+
+  // 居顶导航菜单--水平二级菜单
+  .node-selected {
+    display: block;
+
+    > .submenu {
+      display: block;
+      left: 100%;
+      margin: 0;
+      min-width: 720px;
+
+      li {
+        float: left;
+      }
+    }
+  }
+}
+
+.roll-popup {
+  > ul {
+    > li {
+      display: block;
+
+      > .submenu {
+        display: none;
+      }
+    }
+  }
+}
+
+// 居顶菜单出现下拉小三角时叠加的样式-与menu-hor同级
+.hor-dropdown {
+  position: relative;
+  z-index: 100; // 由1改为100，使菜单在grid（z-inde:99）拖拽线上方显示
+
+  > ul,
+  .hor-dropdown-content {
+    float: left;
+  }
+}
+
+.hor-dropdown-content {
+  position: relative;
+  color: #fff;
+
+  > span {
+    width: 80px;
+    text-align: center;
+    display: inline-block;
+    line-height: 31px;
+    position: relative;
+    z-index: 1;
+    background: var(--ti-menubar-bg-color-normal);
+    line-height: 46px;
+
+    i {
+      width: 15px;
+      height: 16px;
+      padding-top: 1px;
+      border-radius: 2px;
+      cursor: pointer;
+      border: 1px solid var(--ti-menubar-dropdown-border-color);
+    }
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    min-width: 140px;
+    padding: 5px;
+    right: 0;
+    margin-top: -1px;
+    background: var(--ti-menubar-bg-color-normal);
+    padding: 5px 0;
+
+    li {
+      line-height: 24px;
+      padding: 2px 10px;
+      border: 1px solid var(--ti-menubar-bg-color-normal);
+
+      a {
+        color: #fff;
+      }
+
+      &:hover {
+        .box-shadow(inset 0 0 4px rgba(255, 255, 255, 0.6));
+        border-radius: 3px;
+        border: 1px solid var(--ti-menubar-dropdown-hover-border-color);
+        background: var(--ti-menubar-dropdown-hover-bg-color);
+      }
+    }
+  }
+}
+
+.menu-horline {
+  > ul {
+    > li {
+      a {
+        font-weight: normal;
+
+        span.@{css-prefix}icon {
+          margin-right: 5px;
+        }
+      }
+
+      position: inherit;
+
+      &.node-more {
+        position: relative;
+
+        > .submenu {
+          left: 0;
+
+          > li {
+            float: none;
+
+            > a {
+              text-align: left;
+            }
+          }
+
+          span.@{css-prefix}icon {
+            margin-left: 5px;
+          }
+        }
+      }
+
+      &.node-selected {
+        position: inherit;
+      }
+    }
+  }
+
+  .submenu {
+    min-width: 100%;
+
+    li {
+      float: left;
+
+      a {
+        padding: 0 8px;
+        margin: 5px 0;
+        line-height: 35px;
+        text-align: center;
+      }
+
+      span.@{css-prefix}icon {
+        float: none !important;
+      }
+
+      span.icon-starActive,
+      span.icon-transpond {
+        position: initial;
+      }
+    }
+  }
+
+  .node-selected > .submenu {
+    height: 45px;
+    left: 0;
+
+    li {
+      line-height: 45px;
+    }
+  }
+}

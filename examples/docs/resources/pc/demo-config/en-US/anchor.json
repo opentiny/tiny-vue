@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "Attribute <code>links</code>: input data rendering",
+    "link": "anchor/basic-usage",
+    "component": "Anchor",
+    "findIntroStr": "Used to jump to the specified position on the page",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Fixed mode",
+    "content": "Set the <code>is-affix</code> attribute to true so that the anchor does not scroll with the page.",
+    "link": "anchor/is-affix",
+    "component": "Anchor",
+    "findIntroStr": "Used to jump to the specified position on the page",
+    "demoId": "is-affix"
+  },
+  {
+    "title": "Rolling Container",
+    "content": "Use the <code>container-id</code> attribute to specify the scrolling container. <code>link-click</code> listens to anchor click events and prevents the default browser behavior. Implement intra-page redirection in single-page <code>hash</code> routing mode so that the page scrolls only in the specified container. Set the custom class name through the <code>mask-class</code> attribute to highlight the scrolling target element",
+    "link": "anchor/set-container",
+    "component": "Anchor",
+    "findIntroStr": "Used to jump to the specified position on the page",
+    "demoId": "set-container"
+  },
+  {
+    "title": "change event",
+    "content": "<code>on-change</code> event. Callback is triggered when the anchor link changes.",
+    "link": "anchor/on-change",
+    "component": "Anchor",
+    "findIntroStr": "Used to jump to the specified position on the page",
+    "demoId": "on-change"
+  }
+]

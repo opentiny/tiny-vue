@@ -1,0 +1,106 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@dropdown-item-prefix-cls: ~'@{css-prefix}dropdown-menu__item';
+
+[class*=tiny-] li.@{dropdown-item-prefix-cls} {
+  .component-css-vars-dropdown-item();
+
+  list-style: none;
+  line-height: var(--ti-dropdown-menu-item-height);
+  padding: var(--ti-dropdown-menu-item-padding-vertical) var(--ti-dropdown-menu-item-padding-horizontal);
+  margin: 0;
+  font-size: var(--ti-common-font-size-base);
+  color: var(--ti-dropdown-menu-item-text-color);
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  word-break: break-all;
+  max-width:var(--ti-dropdown-menu-item-max-width);
+  display: flex;
+  align-items: center;
+
+  .@{dropdown-item-prefix-cls}--child {
+    position: absolute;
+    right: 100%;
+    top: 0;
+    display: none;
+  }
+
+  &:focus,
+  &:not(.is-disabled):hover {
+    background-color: var(--ti-dropdown-menu-item-hover-bg-color);
+    color: var(--ti-dropdown-menu-item-hover-text-color);
+    border-radius: var(--ti-dropdown-menu-item-border-radius);
+
+    &>.@{dropdown-item-prefix-cls}-expand,
+    &>.@{dropdown-item-prefix-cls}-content{
+      svg {
+      fill: var(--ti-dropdown-menu-item-hover-text-color);
+      }
+    }
+    
+    &>.@{dropdown-item-prefix-cls}--child {
+     display: block;
+    }
+  }
+
+  &:not(.is-disabled):active {
+    background-color: var(--ti-dropdown-menu-item-active-bg-color);
+    color: var(--ti-dropdown-menu-item-active-text-color);
+    border-radius: var(--ti-dropdown-menu-item-border-radius);
+
+    svg {
+      fill: var(--ti-dropdown-menu-item-active-text-color);
+    }
+  }
+
+  svg {
+    margin-right: 5px;
+    margin-top: -2px;
+  }
+
+  &.is-disabled {
+    cursor: not-allowed;
+    color: var(--ti-dropdown-menu-item-disabled-text-color);
+  }
+
+  .@{dropdown-item-prefix-cls}-expand{
+    display: inline-block; 
+    height: 100%; 
+    margin-left: -20px;
+    width: 20px;
+
+    .tiny-svg{
+      width: 0.6em;
+      height: 0.6em;
+      margin-left: 5px;
+    }
+  }
+
+}
+
+.@{dropdown-item-prefix-cls}--divided {
+  position: relative;
+  margin-top: 6px;
+  border-top: 1px solid #e4e7ed;
+
+  &:before {
+    height: 6px;
+    display: block;
+    margin: 0 -20px;
+    background-color: var(--ti-dropdown-menu-item-divided-bg-color);
+  }
+}

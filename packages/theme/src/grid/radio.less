@@ -1,0 +1,116 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+@grid-radio-prefix-cls: ~'@{css-prefix}grid-radio';
+
+// radio
+.@{grid-radio-prefix-cls} {
+  display: inline-block;
+  user-select: none;
+  cursor: pointer;
+
+  &.size__small,
+  &.size__mini {
+    font-size: var(--ti-grid-font-size);
+
+    > input {
+      & + .@{grid-radio-prefix-cls}__icon {
+        font-size: var(--ti-common-font-size-1);
+      }
+    }
+  }
+
+  &.is__disabled {
+    cursor: not-allowed;
+
+    > input {
+      & + .@{grid-radio-prefix-cls}__icon {
+        border-color: var(--ti-grid-border-color);
+        background-color: var(--ti-grid-input-disabled-bg-color);
+
+        &:before {
+          border-color: var(--ti-grid-input-disabled-bg-color);
+          background-color: var(--ti-grid-input-disabled-bg-color);
+        }
+
+        & + .@{grid-radio-prefix-cls}__label {
+          color: var(--ti-grid-border-color);
+        }
+
+        &:hover {
+          border-color: var(--ti-grid-border-color);
+        }
+      }
+
+      &:checked + .@{grid-radio-prefix-cls}__icon {
+        border-color: var(--ti-grid-disabled-color);
+        background-color: var(--ti-grid-disabled-color);
+      }
+    }
+  }
+
+  > input {
+    display: none;
+
+    & + .@{grid-radio-prefix-cls}__icon {
+      position: relative;
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      border: 1px solid var(--ti-grid-border-color);
+      background-color: #fff;
+      vertical-align: middle;
+      border-radius: 50%;
+      font-size: var(--ti-common-font-size-2);
+
+      &:hover {
+        border-color: var(--ti-grid-primary-hover-color);
+      }
+    }
+
+    &:checked + .@{grid-radio-prefix-cls}__icon {
+      background-color: var(--ti-grid-primary-color);
+      border-color: var(--ti-grid-primary-color);
+
+      &:before {
+        content: '';
+        position: absolute;
+        border-width: 0.15em;
+        border-style: solid;
+        border-color: #fff;
+        background-color: #fff;
+        border-radius: 50%;
+        height: 0.4em;
+        width: 0.4em;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      & + .@{grid-radio-prefix-cls}__label {
+        color: var(--ti-grid-primary-color);
+      }
+    }
+  }
+
+  & &__label {
+    padding-left: 5px;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  & + & {
+    margin-left: 10px;
+  }
+}

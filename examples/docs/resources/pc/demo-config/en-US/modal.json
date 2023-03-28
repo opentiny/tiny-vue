@@ -1,0 +1,250 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>You can use the <code>Modal.alert</code> method to set a pop-up box, and use the <code>Modal.confirm</code> method to set a confirmation pop-up box. </p>\n",
+    "link": "modal/base",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "base"
+  },
+  {
+    "title": "Maximized display",
+    "content": "<p>You can use the <code>fullscreen</code> attribute to set whether to maximize the display. </p>\n",
+    "link": "modal/fullscreen",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "fullscreen"
+  },
+  {
+    "title": "Press Esc to close the dialog box.",
+    "content": "<p>You can use the <code>esc-closable</code> attribute to set whether to close a window by pressing the Esc key. The default value is <code>false</code>. </p>\n",
+    "link": "modal/esc-closable",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "esc-closable"
+  },
+  {
+    "title": "Automatic shutdown delay",
+    "content": "<p>You can use the <code>duration</code> attribute to set the delay time for automatic closing. This parameter is valid only for type=message. </p>\n",
+    "link": "modal/duration",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "duration"
+  },
+  {
+    "title": "Prevent repeated prompts",
+    "content": "<p>If you do not want to click the window repeatedly, you can set a unique <code>id</code> to prevent repeated prompts. This parameter is valid only for type=message. </p>\n",
+    "link": "modal/id",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "id"
+  },
+  {
+    "title": "Lock the scroll bar",
+    "content": "<p>You can use the <code>lock-scroll</code> attribute to set whether to lock the scroll bar. </p>\n",
+    "link": "modal/lock-scroll",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "lock-scroll"
+  },
+  {
+    "title": "Lock the page",
+    "content": "<p>You can use the <code>lock-view</code> attribute to set whether to lock the page. Operations outside the window are not allowed. </p>\n",
+    "link": "modal/lock-view",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "lock-view"
+  },
+  {
+    "title": "Display Mask Layer",
+    "content": "<p>You can set whether to display the mask layer through the <code>mask</code> attribute. The default value is <code>true</code>. </p>\n",
+    "link": "modal/lock-view",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "lock-view1"
+  },
+  {
+    "title": "Click the mask layer to close the window.",
+    "content": "<p>You can use the <code>mask-closable</code> attribute to set whether to allow clicking the mask layer to close the window. </p>\n",
+    "link": "modal/mask-closable",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "mask-closable"
+  },
+  {
+    "title": "Custom Content",
+    "content": "<p>You can set the content of the window through the <code>message</code> attribute. </p>\n",
+    "link": "modal/message",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "message"
+  },
+  {
+    "title": "Resize the window",
+    "content": "<p>You can set the width and height of a window by using <code>width</code> and <code>height</code>. You can set whether to allow dragging to adjust the window size by using <code>resize</code>. </p>\n",
+    "link": "modal/resize",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "resize"
+  },
+  {
+    "title": "Minimum width of the window after the window is resized",
+    "content": "<p>After <code>resize</code> is set to <code>true</code>, the <code>min-width</code> attribute can be used to set the minimum width of the window after being dragged. </p>\n",
+    "link": "modal/min-width",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "min-width"
+  },
+  {
+    "title": "Minimum height of the window after the window is resized",
+    "content": "<p>After <code>resize</code> is set to <code>true</code>, the <code>min-height</code> attribute can be used to set the minimum height of the window after being dragged. </p>\n",
+    "link": "modal/min-height",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "min-height"
+  },
+  {
+    "title": "The bottom is not displayed.",
+    "content": "<p>You can use the <code>showFooter</code> attribute to set whether to display the bottom. The default value is <code>true</code>. </p>\n",
+    "link": "modal/showFooter",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "showFooter"
+  },
+  {
+    "title": "The header is not displayed.",
+    "content": "<p>You can use the <code>showHeader</code> attribute to set whether to display the header. The default value is <code>true</code>. </p>\n",
+    "link": "modal/showHeader",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "showHeader"
+  },
+  {
+    "title": "Message Status",
+    "content": "<p>You can set the message status through the <code>status</code> attribute. The value can be <code>info | success | warning | error | loading</code> . </p>\n",
+    "link": "modal/status",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "status"
+  },
+  {
+    "title": "Title",
+    "content": "<p>You can set the title of the window through the <code>title</code> attribute. </p>\n",
+    "link": "modal/title",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "title"
+  },
+  {
+    "title": "Position from the top",
+    "content": "<p>You can use the <code>top</code> attribute to set the position of a message from the top of the message. This parameter is valid only for type=message. </p>\n",
+    "link": "modal/top",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "top"
+  },
+  {
+    "title": "Window Type",
+    "content": "<p>You can set the window type through the <code>type</code> attribute. The options are <code>alert | confirm | message</code>. </p>\n",
+    "link": "modal/type",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "type"
+  },
+  {
+    "title": "Bound Value",
+    "content": "<p>You can use the <code>value/v-model</code> attribute to bind a value. </p>\n",
+    "link": "modal/value",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "value"
+  },
+  {
+    "title": "Custom Stacking Sequence",
+    "content": "<p>You can use the <code>zIndex</code> attribute to set the custom stacking sequence. (It may be used in some special scenarios, such as when it is blocked.) </p>\n",
+    "link": "modal/zIndex",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "zIndex"
+  },
+  {
+    "title": "Cancel button event",
+    "content": "<p>The <code>cancel</code> event is triggered when the Cancel button is clicked. </p>\n",
+    "link": "modal/cancel-event",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "cancel-event"
+  },
+  {
+    "title": "Close button event",
+    "content": "<p>The <code>close</code> event is triggered when the close button is clicked. </p>\n",
+    "link": "modal/close-event",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "close-event"
+  },
+  {
+    "title": "OK button event",
+    "content": "<p>The <code>confirm</code> event is triggered when the OK button is clicked. </p>\n",
+    "link": "modal/confirm-event",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "confirm-event"
+  },
+  {
+    "title": "Window Close Event",
+    "content": "<p>The <code>hide</code> event is triggered when the window is closed. </p>\n",
+    "link": "modal/hide-event",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "hide-event"
+  },
+  {
+    "title": "Window Display Event",
+    "content": "<p>The <code>show</code> event is triggered when the window is displayed. </p>\n",
+    "link": "modal/show-event",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "show-event"
+  },
+  {
+    "title": "Window scaling event",
+    "content": "<p>The <code>zoom</code> event is triggered when the window is zoomed in or out. </p>\n",
+    "link": "modal/zoom-event",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "zoom-event"
+  },
+  {
+    "title": "Close the pop-up window. Are you sure you want to reset the form data?",
+    "content": "<p>When the Modal nested form is used and the pop-up window is closed, reset the form data.</p>\n<p>Set <code>is-form-reset</code> to false. If you close the pop-up window, the form is not reset.</p>",
+    "link": "modal/is-form-reset",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "is-form-reset"
+  },
+  {
+    "title": "Default slot",
+    "content": "<p>You can set the default slot by <code>templete</code>. </p>\n",
+    "link": "modal/value",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "value1"
+  },
+  {
+    "title": "Bottom slot",
+    "content": "<p>You can set the bottom slot through <code>slot=&quot;footer&quot;</code> . </p>\n",
+    "link": "modal/footer-slot",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "footer-slot"
+  },
+  {
+    "title": "Nested grid",
+    "content": "<p>You can nest grids through slots</p>\n",
+    "link": "modal/grid",
+    "component": "Modal modal box",
+    "findIntroStr": "Modal modal box",
+    "demoId": "grid"
+  }
+]

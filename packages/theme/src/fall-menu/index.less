@@ -1,0 +1,206 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@fall-menu-prefix-cls: ~'@{css-prefix}fall-menu';
+
+.@{fall-menu-prefix-cls} {
+  .component-css-vars-fall-menu();
+
+  & &__wrap {
+    background: var(--ti-fallmenu-bg-color-normal);
+    padding: 0 24px;
+  }
+
+  & &__nav {
+    height: var(--ti-fallmenu-menu-height);
+    margin: 0 auto;
+    position: relative;
+  }
+
+  & &__subnav {
+    overflow: hidden;
+
+    .icon-slot-left,
+    .icon-slot-right {
+      color: var(--ti-fallmenu-slot-text-color);
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: var(--ti-fallmenu-icon-font-size);
+      line-height: 1;
+
+      svg {
+        fill: #fff;
+      }
+    }
+
+    .icon-slot-left {
+      left: -12px;
+    }
+
+    .icon-slot-right {
+      right: -12px;
+    }
+  }
+
+  & &__list {
+    position: relative;
+    min-width: 4000px;
+    left: 0;
+    transition: left 0.4s;
+
+    .fall-hide {
+      .opacity(0);
+    }
+
+    ul {
+      .clearfix();
+    }
+
+    li {
+      float: left;
+      position: relative;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    a {
+      float: left;
+      display: block;
+      width: auto;
+      padding: 0 12px;
+      height: var(--ti-fallmenu-menu-height);
+      text-align: center;
+      text-decoration: none;
+      font-weight: 400;
+      line-height: var(--ti-fallmenu-menu-height);
+      font-size: var(--ti-fallmenu-title-font-size);
+      color: var(--ti-fallmenu-slot-text-color);
+
+      &:hover,
+      &.now {
+        color: var(--ti-fallmenu-slot-text-color);
+        background: var(--ti-fallmenu-bg-color-hover);
+        text-decoration: none;
+      }
+
+      &.now:before {
+        position: absolute;
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0;
+        border-color: #ffffff transparent;
+        top: 34px;
+        left: 42%;
+      }
+    }
+  }
+
+  & &__box {
+    position: absolute;
+    left: 0px;
+    top: var(--ti-fallmenu-menu-height);
+    width: 100%;
+    background: var(--ti-fallmenu-slot-bg-color);
+    overflow: hidden;
+    transition: opacity 0.4s;
+    .opacity(0);
+
+    .contbox {
+      overflow: hidden;
+    }
+
+    .cont {
+      min-width: 120px;
+      padding: 18px 20px;
+    }
+
+    .sublist {
+      li {
+        float: left;
+        width: 100%;
+
+        h3.mcate-item-hd {
+          font-size: var(--ti-fallmenu-box-font-size);
+          border-bottom: 0px solid #ccc;
+          color: var(--ti-fallmenu-box-title-text-color);
+          font-weight: normal;
+          margin: 0;
+        }
+
+        p.mcate-item-bd {
+          margin-top: 18px;
+
+          a {
+            margin: 8px 0px 0 0;
+            font-size: var(--ti-common-font-size-base);
+            color: var(--ti-fallmenu-box-text-color);
+            text-decoration: none;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+            &:hover {
+              color: var(--ti-fallmenu-box-hover-text-color);
+            }
+          }
+        }
+      }
+    }
+
+    &.active,
+    &:hover {
+      border-left: 1px solid #d9d9d9;
+      border-right: 1px solid #d9d9d9;
+      border-bottom: 1px solid #d9d9d9;
+      box-shadow: 1px 1px 5px 1px #d9d9d9;
+      .opacity(1);
+    }
+  }
+}
+
+@keyframes leftArrow {
+  0% {
+    left: -17px;
+  }
+
+  50% {
+    left: -13px;
+  }
+
+  100% {
+    left: -17px;
+  }
+}
+
+@keyframes rightArrow {
+  0% {
+    right: -17px;
+  }
+
+  50% {
+    right: -13px;
+  }
+
+  100% {
+    right: -17px;
+  }
+}

@@ -1,0 +1,90 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@card-prefix-cls: ~'@{css-prefix}card';
+
+.@{card-prefix-cls} {
+  .component-css-vars-user-card();
+
+  border: 1px solid var(--ti-usercard-border-color);
+  box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.15);
+
+  .dialog-foot {
+    display: block;
+
+    > div {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  h5,
+  p {
+    margin: 5px 0;
+  }
+
+  .card-top {
+    margin-bottom: 10px;
+
+    img {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--ti-usercard-image-border-radius, 3px);
+    }
+
+    .card-top-text {
+      padding: 10px - 5px 10px;
+      overflow: hidden;
+    }
+
+    .card-top-img,
+    .card-top-text {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  .card-bottom {
+    text-align: center;
+    display: block;
+    height: 20px;
+    margin: 0 -20px -20px;
+  }
+
+  .espace-online {
+    color: var(--ti-usercard-state-online-text-color);
+  }
+
+  .espace-busy {
+    color: var(--ti-usercard-state-busy-text-color);
+    font-size: 23px;
+    vertical-align: middle;
+    margin-top: -5px;
+  }
+
+  .espace-goaway {
+    color: var(--ti-usercard-state-goaway-text-color);
+    background: #fff;
+    border-radius: 50%;
+    font-size: 13px;
+  }
+
+  .espace-offline {
+    color: var(--ti-usercard-state-offline-text-color);
+    font-size: 23px;
+    vertical-align: middle;
+    margin-top: -5px;
+  }
+}

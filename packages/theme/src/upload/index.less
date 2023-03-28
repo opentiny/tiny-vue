@@ -1,0 +1,221 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@upload-prefix-cls: ~'@{css-prefix}upload';
+@upload-cover-prefix-cls: ~'@{css-prefix}upload-cover';
+
+.@{upload-prefix-cls} {
+  .component-css-vars-upload();
+
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  outline: 0;
+
+  &__input {
+    display: none;
+  }
+
+  &__tip {
+    font-size: var(--ti-upload-tip-font-size);
+    color: var(--ti-upload-tip-text-color);
+    margin-top: 8px;
+  }
+
+  &--picture-card {
+    width: 148px;
+    height: 148px;
+    line-height: 146px;
+    background-color: var(--ti-upload-picture-card-bg-color);
+    border: 1px dashed var(--ti-upload-picture-card-border-color);
+    border-radius: var(--ti-upload-picture-card-border-radius);
+    box-sizing: border-box;
+    vertical-align: top;
+
+    svg {
+      font-size: var(--ti-upload-picture-card-icon-font-size);
+      fill: var(--ti-upload-picture-card-icon-color);
+    }
+  }
+
+  &--picture-card:hover,
+  &:focus {
+    border-color: var(--ti-upload-picture-card-hover-text-color);
+    color: var(--ti-upload-picture-card-hover-text-color);
+  }
+
+  &:focus &-dragger {
+    border-color: var(--ti-upload-picture-card-hover-text-color);
+  }
+
+  &-cover__title,
+  &-list__item-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &--picture-card,
+  &-dragger {
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  iframe {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+
+  input[type='file'] {
+    display: none;
+  }
+}
+
+.@{upload-cover-prefix-cls} {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 10;
+  cursor: default;
+
+  &::after {
+    display: inline-block;
+    content: '';
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__label {
+    position: absolute;
+    right: -15px;
+    top: -6px;
+    width: 40px;
+    height: 24px;
+    background: #13ce66;
+    text-align: center;
+    transform: rotate(45deg);
+    box-shadow: 0 0 1pc 1px rgba(0, 0, 0, 0.2);
+
+    i {
+      color: #fff;
+      font-size: var(--ti-common-font-size-base);
+      margin-top: 11px;
+      transform: rotate(-45deg);
+    }
+  }
+
+  &__progress {
+    display: inline-block;
+    vertical-align: middle;
+    position: static;
+    width: 243px;
+
+    & + .@{upload-prefix-cls}__inner {
+      opacity: 0;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__interact {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.72);
+    text-align: center;
+
+    .btn {
+      display: inline-block;
+      color: #fff;
+      font-size: var(--ti-common-font-size-1);
+      cursor: pointer;
+      vertical-align: middle;
+      transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      margin-top: 60px;
+
+      span {
+        opacity: 0;
+        transition: opacity 0.15s linear;
+      }
+
+      i {
+        color: #fff;
+        display: block;
+        font-size: var(--ti-common-font-size-5);
+        line-height: inherit;
+        margin: 0 auto 5px;
+      }
+
+      &:not(:first-child) {
+        margin-left: 35px;
+      }
+
+      &:hover {
+        transform: translateY(-13px);
+
+        span {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    font-weight: 400;
+    padding: 0 10px;
+    margin: 0;
+    font-size: var(--ti-common-font-size-1);
+    color: #303133;
+    text-align: left;
+  }
+
+  & + .@{upload-prefix-cls}__inner {
+    opacity: 0;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.is-hidden {
+  display: none;
+}

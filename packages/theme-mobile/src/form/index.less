@@ -1,0 +1,116 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@form-prefix-cls: ~'@{css-prefix}mobile-form';
+@form-item-prefix-cls: ~'@{css-prefix}mobile-form-item';
+@input-form-prefix-cls: ~'@{css-prefix}mobile-input-form';
+
+.@{form-prefix-cls} {
+  width: 100%;
+  overflow: hidden;
+
+  div {
+    outline: none;
+  }
+
+  .@{form-item-prefix-cls} {
+    position: relative;
+    margin-bottom: 0;
+  }
+
+  .@{form-item-prefix-cls}__label {
+    width: 35%;
+    min-height: 48px;
+    line-height: 1.4;
+    font-size: 16px;
+    display: flex;
+    z-index: 1;
+    padding: 13px 0px;
+  }
+
+  .@{form-item-prefix-cls}__value {
+    width: 65%;
+  }
+
+  &--inline {
+    .@{form-item-prefix-cls},
+    .@{form-item-prefix-cls}__content {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .@{form-item-prefix-cls} {
+      margin-right: var(--ti-form-item-margin-right, 10px);
+    }
+
+    .@{form-item-prefix-cls}__label {
+      float: none;
+      display: inline-block;
+    }
+
+    .@{form-prefix-cls}--label-top .@{form-item-prefix-cls}__content {
+      display: block;
+    }
+  }
+
+  &--label-left {
+    .@{form-item-prefix-cls}__label {
+      text-align: left;
+    }
+  }
+
+  &--label-top {
+    .@{form-item-prefix-cls}__label {
+      width: 100%;
+      float: none;
+      position: initial;
+      text-align: left;
+      line-height: 1;
+    }
+
+    .@{form-item-prefix-cls}__value {
+      width: 100%;
+    }
+
+    .@{form-item-prefix-cls} {
+      margin-bottom: 16px;
+    }
+
+    .@{input-form-prefix-cls}__input {
+      width: 100%;
+    }
+
+    .@{form-item-prefix-cls}__content {
+      flex-wrap: wrap;
+    }
+
+  }
+
+  &--label-top & {
+    margin-bottom: 16px;
+  }
+
+  &--inline&--label-top {
+    .@{form-item-prefix-cls} {
+      margin-bottom: 16px;
+      margin-right: 64px;
+    }
+
+    .@{form-item-prefix-cls}__label {
+      display: block;
+      text-align: left;
+    }
+  }
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "Basic usage of the ActionMenu component.",
+    "link": "action-menu/basic-usage",
+    "component": " ActionMenu",
+    "findIntroStr": "ActionMenu",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Disabled",
+    "content": "Use the <code>disabled</code> field to configure whether the current drop-down list box is disabled.",
+    "link": "action-menu/disabled",
+    "component": "ActionMenu button",
+    "findIntroStr": "ActionMenu",
+    "demoId": "disabled"
+  },
+  {
+    "title": "Display Text",
+    "content": "Use the <code>text-field</code> attribute to configure the key value of the text to be displayed. The default value is <code>label</code>.",
+    "link": "action-menu/text-field",
+    "component": " ActionMenu",
+    "findIntroStr": "ActionMenu",
+    "demoId": "text-field"
+  },
+  {
+    "title": "The text of the drop-down button is displayed.",
+    "content": "Use the attribute <code>more-text</code> to configure the text to be displayed in the drop-down list box. The default value is <code>More</code",
+    "link": "action-menu/more-text",
+    "component": " ActionMenu",
+    "findIntroStr": "ActionMenu",
+    "demoId": "more-text"
+  },
+  {
+    "title": "Spacing",
+    "content": "The <code>spacing</code> attribute is used to configure the spacing between menu buttons. The default value is <code>5px</code>.",
+    "link": "action-menu/spacing",
+    "component": " ActionMenu",
+    "findIntroStr": "ActionMenu",
+    "demoId": "spacing"
+  },
+  {
+    "title": "Customize drop-down panel style",
+    "content": "Set the class name and style of the drop-down panel through the <code>popper-class</code> attribute.",
+    "link": "action-menu/popper-class",
+    "component": " ActionMenu",
+    "findIntroStr": "ActionMenu",
+    "demoId": "popper-class"
+  },
+  {
+    "title": "Displayed Number",
+    "content": "The <code>max-show-num</code> attribute specifies the maximum number of displayed menu buttons. The default value is <code>2</code>",
+    "link": "action-menu/max-show-num",
+    "component": " ActionMenu",
+    "findIntroStr": "ActionMenu",
+    "demoId": "max-show-num"
+  },
+  {
+    "title": "Menu Item Click Event",
+    "content": "When a menu item is selected, the <code>item-click</code> event is triggered. The transferred parameter is the data of the selected item.",
+    "link": "action-menu/item-click",
+    "component": " ActionMenu",
+    "findIntroStr": "ActionMenu",
+    "demoId": "item-click"
+  },
+  {
+    "title": "More button click event",
+    "content": "The <code>more-click</code> event is triggered when a drop-down list button is clicked.",
+    "link": "action-menu/more-click",
+    "component": " ActionMenu",
+    "findIntroStr": "ActionMenu",
+    "demoId": "more-click"
+  },
+  {
+    "title": "Menu Slot",
+    "content": "Use <code>#item</code> to configure the template for the options in the drop-down list box.",
+    "link": "action-menu/slot-item",
+    "component": " ActionMenu",
+    "findIntroStr": "ActionMenu",
+    "demoId": "slot-item"
+  }
+]

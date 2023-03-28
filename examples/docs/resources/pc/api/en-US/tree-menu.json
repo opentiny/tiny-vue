@@ -1,0 +1,232 @@
+{
+  "attrs": [
+    {
+      "name": "accordion",
+      "sample": "accordion",
+      "type": "Boolean",
+      "desc": "Indicates whether to display the accordion effect. The default value is false.",
+      "defaultValue": ""
+    },
+    {
+      "name": "allow-drag",
+      "sample": "",
+      "type": "Function(params)",
+      "desc": "Drag menu callback event. This event is used by draggable. The options are as follows: return false (forbidding dragging) and true (allowing dragging);params1: data object of the node to be dragged.",
+      "defaultValue": ""
+    },
+    {
+      "name": "allow-drop",
+      "sample": "",
+      "type": "Function(params1, params2, params3)",
+      "desc": "Drag menu callback event. This event is used by draggable. return false (forbidding dragging), true (allowing dragging);//params1:Object: data information object of the dragged node.\n//params2: Object: data information object of the dragged node\n//params3:'prev','inner', or'next'",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-title",
+      "sample": "text-wrap",
+      "type": "Boolean",
+      "desc": "Indicates whether to display the title prompt of a node. The prompt is triggered when the cursor is hovered over the node.",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-filter",
+      "sample": "text-wrap",
+      "type": "Boolean",
+      "desc": "Indicates whether to enable the input filtering node in the text box. The default value is true.",
+      "defaultValue": ""
+    },
+    {
+      "name": "data",
+      "sample": "data-resource",
+      "type": "Array",
+      "desc": "Display Data",
+      "defaultValue": ""
+    },
+    {
+      "name": "empty-text",
+      "sample": "empty-text",
+      "type": "String",
+      "desc": "Text displayed when the content is empty",
+      "defaultValue": ""
+    },
+    {
+      "name": "filter-node-method",
+      "sample": "filter-node-method",
+      "type": "Function(value, data, node)",
+      "desc": "Method executed to filter tree nodes. If true is returned, the node can be displayed. If false is returned, the node is hidden.",
+      "defaultValue": ""
+    },
+    {
+      "name": "expand-on-click-node",
+      "sample": "expand-on-click-node",
+      "type": "",
+      "desc": "Configure whether to expand a menu by clicking the menu text.",
+      "defaultValue": ""
+    },
+    {
+      "name": "ellipsis",
+      "sample": "text-ellipsis",
+      "type": "Boolean",
+      "desc": "Whether to omit display. The priority of wrap is higher than that of wrap. If this parameter is set to true, the required width of the node text exceeds the width of the container. The node text does not wrap, and no horizontal scroll bar is displayed. The extra text is displayed as...",
+      "defaultValue": ""
+    },
+    {
+      "name": "indent",
+      "sample": "tree-menu-indent",
+      "type": "Number",
+      "desc": "horizontal indent between adjacent nodes, in pixels.",
+      "defaultValue": ""
+    },
+    {
+      "name": "default-expand-all",
+      "sample": "default-expand-all",
+      "type": "",
+      "desc": "Initialize and expand all subnodes.",
+      "defaultValue": ""
+    },
+    {
+      "name": "draggable",
+      "sample": "can-draggable",
+      "type": "",
+      "desc": "Drag Menu",
+      "defaultValue": ""
+    },
+    {
+      "name": "wrap",
+      "sample": "text-wrap",
+      "type": "Boolean",
+      "desc": "Indicates whether to display information in a new line.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "default-expanded-keys",
+      "sample": "default-expanded-keys",
+      "type": "Array",
+      "desc": "Key array of nodes that are expanded by default",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-key",
+      "sample": "default-expand-all",
+      "type": "String",
+      "desc": "Each tree node is used as a unique identifier attribute. The entire tree must be unique.",
+      "defaultValue": ""
+    },
+    {
+      "name": "prefix-icon",
+      "sample": "text-ellipsis",
+      "type": "Object",
+      "desc": "Customize the front icon.",
+      "defaultValue": ""
+    },
+    {
+      "name": "search-icon",
+      "sample": "search-icon",
+      "type": "Object",
+      "desc": "Customize the search icon.",
+      "defaultValue": ""
+    },
+    {
+      "name": "check-strictly",
+      "sample": "check-strictly",
+      "type": "Boolean",
+      "desc": "Whether to strictly follow the method of disassociating parent and child when the check box is displayed. The default value is false and must be used together with show-checkbox.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "lazy",
+      "sample": "lazy-load",
+      "type": "Boolean",
+      "desc": "Whether to lazy load subnodes. This method must be used together with the load method.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "load",
+      "sample": "lazy-load",
+      "type": "Function(node, resolve)",
+      "desc": "Method for loading subtree data. This parameter is valid only when lazy is set to true.",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-checkbox",
+      "sample": "check-strictly",
+      "type": "Boolean",
+      "desc": "Whether the node can be selected",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "default-checked-keys",
+      "sample": "default-expand-all",
+      "type": "Array",
+      "desc": "Key array of the nodes selected by default",
+      "defaultValue": ""
+    },
+    {
+      "name": "get-menu-data-sync",
+      "sample": "get-menu-data-sync",
+      "type": "Function",
+      "desc": "User-defined menu data service, which returns a Promise object.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "tree-menu-slot",
+      "type": "",
+      "desc": "Content of a customized tree node. The parameter is {node, data}",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "node-click",
+      "sample": "event-current-change",
+      "type": "Function(arg1, arg2)",
+      "desc": "Callback when a node is clicked; //Parameter: arg1:Object \n{children: subnode of the clicked node, id: ID of the clicked node, label: title}\n// arg2:Object // of the clicked node, data information object of the currently clicked node",
+      "defaultValue": ""
+    },
+    {
+      "name": "current-change",
+      "sample": "event-current-change",
+      "type": "Function(arg1, arg2)",
+      "desc": "Event triggered when the selected node changes; //Parameter: arg1:Object \n{children: subnode of the clicked node, id: ID of the clicked node, label: title}\n// arg2:Object // of the clicked node, data information object of the currently clicked node",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-expand",
+      "sample": "event-node-expand",
+      "type": "Function(arg1, arg2)",
+      "desc": "Event triggered when a node is expanded; //Parameter: arg1:Object \n{children: subnode of the clicked node, id: ID of the clicked node, label: title}\n// arg2:Object // of the clicked node, data information object of the currently clicked node",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-collapse",
+      "sample": "event-node-collapse",
+      "type": "Function(arg1, arg2)",
+      "desc": "Event triggered when a node is shut down; //Parameter: arg1:Object \n{children: subnode of the clicked node, id: ID of the clicked node, label: title}\n// arg2:Object // of the clicked node, data information object of the currently clicked node",
+      "defaultValue": ""
+    },
+    {
+      "name": "check-change",
+      "sample": "event-check-change",
+      "type": "Function(arg1, arg2, arg3)",
+      "desc": "Callback when the node selection status changes; //Parameters: arg1:Object \n{children: subnode of the clicked node, id: ID of the clicked node, label: title}\n// arg2:Boolean // of the clicked node, status of the current clicked node, and status of the current clicked node \n // arg3:Boolean //",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-start",
+      "sample": "event-allow-draggable",
+      "type": "Function(node, event)",
+      "desc": "Event triggered when a node starts to be dragged; Event triggered when a node starts to be dragged; node: drags a node, event: native event",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-end",
+      "sample": "event-allow-draggable",
+      "type": "Function(draggingNode, targetNode, dropType, event)",
+      "desc": "Event triggered when the dragging ends (possibly unsuccessful) //Parameter \n{draggingNode: drag node, targetNode: target node, dropType: drag type, //Drag node mapping on the target node (before/after/inner/none) \nevent: native event}",
+      "defaultValue": ""
+    }
+  ]
+}

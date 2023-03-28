@@ -1,0 +1,195 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@split-prefix-cls: ~'@{css-prefix}split';
+
+.@{split-prefix-cls} {
+  .component-css-vars-split();
+
+  &-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &-pane {
+    position: absolute;
+
+    &.left-pane,
+    &.right-pane {
+      top: 0;
+      bottom: 0;
+      overflow: hidden;
+    }
+
+    &.left-pane {
+      left: 0;
+    }
+
+    &.right-pane {
+      right: 0;
+    }
+
+    &.top-pane,
+    &.bottom-pane {
+      left: 0;
+      right: 0;
+      overflow: hidden;
+    }
+
+    &.top-pane {
+      top: 0;
+    }
+
+    &.bottom-pane {
+      bottom: 0;
+    }
+
+    &-moving {
+      .user-select(none);
+    }
+  }
+
+  &-trigger {
+    &-con {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        .@{split-prefix-cls}-trigger {
+          background: var(--ti-split-trigger-hover-bg-color);
+
+          &-bar {
+            background: var(--ti-split-trigger-bar-hover-bg-color);
+          }
+        }
+      }
+    }
+
+    &-bar-con {
+      position: absolute;
+      overflow: hidden;
+      background: var(--ti-split-trigger-bar-con-bg-color);
+
+      &.vertical {
+        top: 50%;
+        height: calc(var(--ti-split-trigger-size) * 7);
+        transform: translate(0, -50%);
+        display: flex;
+        flex-direction: column;
+      }
+
+      &.horizontal {
+        left: 50%;
+        width: calc(var(--ti-split-trigger-size) * 7);
+        transform: translate(-50%, 0);
+      }
+    }
+
+    &-vertical {
+      width: var(--ti-split-trigger-size);
+      height: 100%;
+      background: var(--ti-split-trigger-bg-color);
+
+      .@{split-prefix-cls}-trigger-bar {
+        width: var(--ti-split-trigger-size);
+        height: var(--ti-split-trigger-size);
+        background: var(--ti-split-trigger-bar-bg-color);
+        float: left;
+        margin-top: var(--ti-split-trigger-bar-margin-top);
+        border-radius: 50%;
+      }
+    }
+
+    &-horizontal {
+      height: var(--ti-split-trigger-size);
+      width: 100%;
+      background: var(--ti-split-trigger-bg-color);
+
+      .@{split-prefix-cls}-trigger-bar {
+        height: var(--ti-split-trigger-size);
+        width: var(--ti-split-trigger-size);
+        background: var(--ti-split-trigger-bar-bg-color);
+        float: left;
+        margin-left: var(--ti-split-trigger-bar-margin-left);
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &-horizontal, &-vertical {
+    .@{split-prefix-cls}-collapse-bar {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #d9d9d9;
+      z-index: 15;
+      cursor: pointer;
+    }
+  }
+
+  &-horizontal {
+    .@{split-prefix-cls}-trigger-con {
+      top: 50%;
+      height: 100%;
+      width: 10px;
+      cursor: var(--ti-split-trigger-con-col-cursor);
+    }
+
+    .@{split-prefix-cls}-vertical .@{split-prefix-cls}-trigger-con {
+      left: 50%;
+      height: 10px;
+      width: 100%;
+    }
+
+    .@{split-prefix-cls}-collapse-bar {
+      top: calc(50% - 15px);
+      height: 30px;
+      border-radius: 0 4px 4px 0;
+    }
+  }
+
+  &-vertical {
+    .@{split-prefix-cls}-trigger-con {
+      left: 50%;
+      height: 10px;
+      width: 100%;
+      cursor: var(--ti-split-trigger-con-row-cursor);
+    }
+
+    .@{split-prefix-cls}-horizontal .@{split-prefix-cls}-trigger-con {
+      top: 50%;
+      height: 100%;
+      width: 10px;
+    }
+
+    .@{split-prefix-cls}-collapse-bar {
+      left: calc(50% - 15px);
+      width: 30px;
+      border-radius: 0 0 4px 4px;
+    }
+  }
+
+  .no-select {
+    .user-select(none);
+  }
+}

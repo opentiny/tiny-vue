@@ -1,0 +1,53 @@
+{
+  "attrs": [
+    {
+      "name": "local",
+      "sample": "basic-usage",
+      "type": "Boolean",
+      "desc": "是否本地",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "change-lang",
+      "sample": "change-lang",
+      "type": "Function",
+      "desc": "切换语言",
+      "defaultValue": ""
+    },
+    {
+      "name": "getLocale",
+      "sample": "custom-service",
+      "type": "Function",
+      "desc": "自定义获取系统语言列表接口，未使用框架服务时必填",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-class",
+      "sample": "",
+      "type": "String",
+      "desc": "为 popper 添加类名(可参考 popover 组件)",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-append-to-body",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "getCurrentLocale",
+      "sample": "custom-service",
+      "type": "Function",
+      "desc": "自定义获取当前语种接口，未使用框架服务时必填",
+      "defaultValue": ""
+    },
+    {
+      "name": "getChangeLocaleUrl",
+      "sample": "custom-service",
+      "type": "Function",
+      "desc": "自定义更新语言服务接口，未使用框架服务并且未配置 change-lang 时必填",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@radio-prefix-cls: ~'@{css-prefix}mobile-radio';
+
+.@{radio-prefix-cls} {
+  margin-right: 30px;
+  outline: 0;
+  white-space: nowrap;
+  cursor: pointer;
+  .user-select(none);
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &,
+  &__inner,
+  &__input {
+    position: relative;
+    display: inline-block;
+  }
+
+  &__input {
+    width: var(--ti-mobile-radio-size, 24px);
+    height: var(--ti-mobile-radio-size, 24px);
+    line-height: var(--ti-mobile-radio-size, 24px);
+    outline: 0;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+
+  &__inner {
+    border: 1px solid transparent;
+    border-radius: 50%;
+    width: var(--ti-mobile-radio-size, 24px);
+    height: var(--ti-mobile-radio-size, 24px);
+    background-color: transparent;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition-duration: 0.2s;
+    transition-property: color, border-color, background-color;
+
+    &::after {
+      content: '';
+      width: 8px;
+      height: 12px;
+      border-width: 0.1em;
+      border-style: solid;
+      border-color: var(--ti-mobile-radio-checked-color, #f36f64);
+      border-left: 0;
+      border-top: 0;
+      position: absolute;
+      left: 50%;
+      top: 45%;
+      transform: translate(-50%, -50%) rotate(45deg) scale(0);
+      transform-origin: center;
+      transition: all 0.15s ease-in;
+      opacity: 0;
+    }
+  }
+
+  &:hover:not(.is-disabled) &__inner,
+  &.is-checked &__inner {
+    &::after {
+      transform: translate(-50%, -50%) rotate(45deg) scale(1);
+      opacity: 1;
+    }
+  }
+
+  &.is-disabled &__inner,
+  &.is-disabled &__label {
+    cursor: not-allowed;
+  }
+
+  &.is-disabled.is-checked &__inner {
+    &:after {
+      border-color: var(--ti-mobile-radio-disabled-color, #ddd);
+    }
+  }
+
+  &.is-bordered &__inner {
+    border-color: var(--ti-mobile-radio-disabled-color, #ddd);
+
+    &::after {
+      border-color: var(--ti-mobile-radio-inner-border-color, #fff);
+    }
+  }
+
+  &.is-bordered:not(.is-disabled):hover &__inner {
+    border-color: var(--ti-mobile-radio-checked-color, #f36f64);
+  }
+
+  &.is-bordered.is-checked &__inner {
+    border-color: var(--ti-mobile-radio-checked-color, #f36f64);
+    background-color: var(--ti-mobile-radio-checked-color, #f36f64);
+  }
+
+  &.is-bordered.is-disabled.is-checked &__inner {
+    background-color: var(--ti-mobile-radio-disabled-color, #ddd);
+    border-color: var(--ti-mobile-radio-disabled-color, #ddd);
+
+    &::after {
+      border-color: var(--ti-mobile-radio-inner-border-color, #fff);
+    }
+  }
+
+  &__original {
+    opacity: 0;
+    outline: 0;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+  }
+
+  &__label {
+    font-size: var(--ti-mobile-radio-label-font-size, 16px);
+    padding-left: 8px;
+    vertical-align: middle;
+  }
+}

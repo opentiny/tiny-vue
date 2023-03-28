@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Bound static data",
+    "content": "<p>Table attribute setting<code>data</code>Enable bidirectional binding of static data. </p>\n",
+    "link": "grid/tiny-first-menu/static-data",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-static-data"
+  },
+  {
+    "title": "Open Service Request",
+    "content": "<p>Table attribute setting <code>fetch-data</code> enables the service request. </p>\n",
+    "link": "grid/tiny-first-menu/request-service",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-request-service"
+  },
+  {
+    "title": "Automatically load data",
+    "content": "<p>Table attribute <code>auto-load</code> specifies whether to enable the automatic request service. This parameter is valid when fetch-data is configured. In the following example, if <code>auto-load</code> is set to false, data will not be automatically loaded. </p>\n",
+    "link": "grid/tiny-first-menu/auto-load",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-auto-load"
+  },
+  {
+    "title": "Table column configuration information",
+    "content": "<p>Set the configuration information of table columns through the table attribute <code>columns</code></p>\n",
+    "link": "grid/tiny-first-menu/columns",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-columns"
+  },
+  {
+    "title": "Enable asynchronous rendering",
+    "content": "<p>Asynchronous rendering configuration procedure:\n1. Set the table attribute <code>is-async-column</code> to enable asynchronous rendering. \n2. Set <code>format-config</code> to enable asynchronous rendering of data in the column. </p>\n",
+    "link": "grid/tiny-first-menu/column-asyn-rendering",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-column-asyn-rendering"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "switch/basic-usage",
+    "component": "Switch",
+    "findIntroStr": "Switch switches between the two states.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Mini Size",
+    "content": "For details, see the following example.",
+    "link": "switch/mini-mode",
+    "component": "Switch",
+    "findIntroStr": "Sets whether to display the mini mode. The default value is false. When `mini` is set to `true`, no text prompt is displayed.",
+    "demoId": "mini-mode"
+  },
+  {
+    "title": "Customized switch display",
+    "content": "Customize the switch display by opening and closing named slots. The prerequisite is that <code>show-text</code> is set to <code>true</code>",
+    "link": "switch/custom-open-close",
+    "component": "Switch",
+    "findIntroStr": "Customize the switch display through named slots open and close.",
+    "demoId": "custom-open-close"
+  },
+  {
+    "title": "User-defined switch value",
+    "content": "The <p><code>false-value</code> property represents the value that is paid to <code>false-value</code> when closed. \n<code>true-value</code> The attribute represents the value paid to <code>true-value</code> when enabled. If the attribute name defined in v-model is <code>value</code>, the value in <code>true-value</code> or <code>false-value</code> can be obtained. </p>\n",
+    "link": "switch/custom-true-false-value",
+    "component": "Switch",
+    "findIntroStr": "Use the true-value and false-value attributes to set different values for the switch in the ON and OFF states.",
+    "demoId": "custom-true-false-value"
+  },
+  {
+    "title": "Disabled",
+    "content": "The <p><code>disable</code> attribute indicates that the current state cannot be used. The default value is false (true/false). </p>\n",
+    "link": "switch/dynamic-disable",
+    "component": "Switch",
+    "findIntroStr": "Disable the switch through the disabled attribute.",
+    "demoId": "dynamic-disable"
+  }
+]

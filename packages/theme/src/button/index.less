@@ -1,0 +1,322 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/button.less';
+@import '../custom.less';
+@import './vars.less';
+
+@button-prefix-cls: ~'@{css-prefix}button';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{button-prefix-cls} {
+  .component-css-vars-button();
+
+  display: inline-block;
+  appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  height: var(--ti-button-size-normal-height);
+  line-height: calc(var(--ti-button-size-normal-height) - 2px);
+  color: var(--ti-button-normal-text-color);
+  fill: var(--ti-button-normal-text-color);
+  font-size: var(--ti-button-font-size);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  user-select: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--ti-button-normal-border-color);
+  border-image: initial;
+  border-radius: var(--ti-button-border-radius);
+  background: var(--ti-button-normal-background-color);
+  padding: var(--ti-button-padding-vertical) var(--ti-button-padding-horizontal);
+  overflow: hidden;
+  transition: border 0.3s ease 0s, color 0.3s ease 0s, background 0.3s ease 0s;
+  outline: 0;
+
+  .@{svg-prefix-cls} {
+    vertical-align: text-top;
+  }
+
+  & > img {
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &:focus,
+  &:hover {
+    .button-color(
+      var(--ti-button-normal-hover-text-color),
+      var(--ti-button-normal-hover-border-color),
+      var(--ti-button-normal-hover-background-color)
+    );
+  }
+
+  &:active,
+  &.is-active,
+  &.is-plain:active {
+    .button-color(
+      var(--ti-button-normal-active-text-color),
+      var(--ti-button-normal-active-border-color),
+      var(--ti-button-normal-active-background-color)
+    );
+  }
+
+  &.is-disabled,
+  &.is-disabled:focus,
+  &.is-disabled:hover {
+    cursor: not-allowed;
+    .button-color(
+      var(--ti-button-normal-disabled-text-color),
+      var(--ti-button-normal-disabled-border-color),
+      var(--ti-button-normal-disabled-background-color)
+    );
+  }
+
+  &.is-plain:focus,
+  &.is-plain:hover {
+    .button-color(
+      var(--ti-button-normal-hover-text-color),
+      var(--ti-button-normal-hover-border-color),
+      var(--ti-button-normal-hover-background-color)
+    );
+  }
+
+  &.is-disabled.is-plain,
+  &.is-disabled.is-plain:focus,
+  &.is-disabled.is-plain:hover {
+    .button-color(
+      var(--ti-button-normal-disabled-text-color),
+      var(--ti-button-normal-disabled-border-color),
+      var(--ti-button-normal-disabled-background-color)
+    );
+  }
+
+  & + & {
+    margin-left: 8px;
+  }
+
+  &.is-loading {
+    position: relative;
+    pointer-events: none;
+    overflow: initial;
+
+    &:before {
+      pointer-events: none;
+      content: '';
+      position: absolute;
+      left: -1px;
+      top: -1px;
+      right: -1px;
+      bottom: -1px;
+      border-radius: inherit;
+      background-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .@{svg-prefix-cls} {
+      fill: var(--ti-button-info-text-color);
+    }
+
+    &.@{button-prefix-cls}--default {
+      .@{svg-prefix-cls} {
+        fill: var(--ti-button-normal-text-color);
+      }
+    }
+  }
+
+  &.is-round {
+    border-radius: calc(var(--ti-button-size-normal-height, 30px) / 2);
+  }
+
+  &.is-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &:not(.is-circle) {
+    .@{svg-prefix-cls}.is-text {
+      margin-right: 8px;
+    }
+
+    &.is-loading {
+      .@{svg-prefix-cls} {
+        margin-right: 4px;
+        margin-top: 2px;
+      }
+    }
+  }
+
+  &.is-circle {
+    border-radius: 50%;
+    min-width: var(--ti-button-size-normal-height);
+    min-height: var(--ti-button-size-normal-height);
+    line-height: 1;
+    padding: var(--ti-button-size-normal-padding);
+  }
+
+  &.is-circle&--large {
+    .button-circle-size(
+      var(--ti-button-size-large-height),
+      var(--ti-button-size-large-padding)
+    );
+  }
+
+  &.is-circle&--medium {
+    .button-circle-size(
+      var(--ti-button-size-medium-height),
+      var(--ti-button-size-medium-padding)
+    );
+  }
+
+  &.is-circle&--small {
+    .button-circle-size(
+      var(--ti-button-size-small-height),
+      var(--ti-button-size-small-padding)
+    );
+  }
+
+  &.is-circle&--mini {
+    .button-circle-size(
+      var(--ti-button-size-mini-height),
+      var(--ti-button-size-mini-padding)
+    );
+  }
+
+  &&--primary {
+    .button-type(
+      var(--ti-button-primary-text-color),
+      var(--ti-button-primary-normal-bg-color),
+      var(--ti-button-primary-hover-bg-color),
+      var(--ti-button-primary-active-bg-color),
+      var(--ti-button-primary-disabled-text-color),
+      var(--ti-button-primary-disabled-bg-color),
+      var(--ti-button-primary-plain-bg-color),
+      var(--ti-button-primary-plain-disabled-bg-color),
+      var(--ti-button-primary-disabled-border-color),
+    );
+  }
+
+  &&--success {
+    .button-type(
+      var(--ti-button-success-text-color),
+      var(--ti-button-success-normal-bg-color),
+      var(--ti-button-success-hover-bg-color),
+      var(--ti-button-success-active-bg-color),
+      var(--ti-button-success-disabled-text-color),
+      var(--ti-button-success-disabled-bg-color),
+      var(--ti-button-success-plain-bg-color),
+      var(--ti-button-success-plain-disabled-bg-color),
+      var(--ti-button-success-disabled-border-color),
+    );
+  }
+
+  &&--warning {
+    .button-type(
+      var(--ti-button-warning-text-color),
+      var(--ti-button-warning-normal-bg-color),
+      var(--ti-button-warning-hover-bg-color),
+      var(--ti-button-warning-active-bg-color),
+      var(--ti-button-warning-disabled-text-color),
+      var(--ti-button-warning-disabled-bg-color),
+      var(--ti-button-warning-plain-bg-color),
+      var(--ti-button-warning-plain-disabled-bg-color),
+      var(--ti-button-warning-disabled-border-color),
+    );
+  }
+
+  &&--danger {
+    .button-type(
+      var(--ti-button-danger-text-color),
+      var(--ti-button-danger-normal-bg-color),
+      var(--ti-button-danger-hover-bg-color),
+      var(--ti-button-danger-active-bg-color),
+      var(--ti-button-danger-disabled-text-color),
+      var(--ti-button-danger-disabled-bg-color),
+      var(--ti-button-danger-plain-bg-color),
+      var(--ti-button-danger-plain-disabled-bg-color),
+      var(--ti-button-danger-disabled-border-color),
+    );
+  }
+
+  &&--info {
+    .button-type(
+      var(--ti-button-info-text-color),
+      var(--ti-button-info-normal-bg-color),
+      var(--ti-button-info-hover-bg-color),
+      var(--ti-button-info-active-bg-color),
+      var(--ti-button-info-disabled-text-color),
+      var(--ti-button-info-disabled-bg-color),
+      var(--ti-button-info-plain-bg-color),
+      var(--ti-button-info-plain-disabled-bg-color),
+      var(--ti-button-info-disabled-border-color),
+    );
+  }
+
+  &&--text {
+    .button-text(
+      var(--ti-button-text-color),
+      var(--ti-button-text-color-hover),
+      var(--ti-button-text-color-active),
+      var(--ti-button-text-color-disabled)
+    );
+  }
+
+  &&--large {
+    .button-size(
+      var(--ti-button-size-large-font-size),
+      var(--ti-button-size-large-height)
+    );
+  }
+
+  &&--medium {
+    .button-size(
+      var(--ti-button-size-medium-font-size),
+      var(--ti-button-size-medium-height)
+    );
+  }
+
+  &&--small {
+    .button-size(
+      var(--ti-button-size-small-font-size),
+      var(--ti-button-size-small-height)    
+    );
+  }
+
+  &&--mini {
+    .button-size(
+      var(--ti-button-size-mini-font-size),
+      var(--ti-button-size-mini-height) 
+    );
+  }
+}
+
+.@{css-prefix-iconfont}-loading {
+  font-size: var(--ti-common-font-size-1);
+  line-height: 1;
+  animation: rotating 2s linear infinite;
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "@opentiny/vue-theme",
+  "version": "3.7.0",
+  "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
+  "main": "index.css",
+  "homepage": "https://opentiny.design/tiny-vue",
+  "keywords": [
+    "vue",
+    "vue3",
+    "frontend",
+    "component-library",
+    "components",
+    "vue-components",
+    "opentiny",
+    "renderless-components",
+    "headless-components"
+  ],
+  "author": "OpenTiny Team",
+  "license": "MIT",
+  "exports": {
+    "./*": "./src/*"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build:theme": "gulp build --gulpfile build/gulp-dist.js",
+    "build": "npm run clean && npm run build:theme && node build/replace-img.js",
+    "build:fast": "npm run build && npm run release",
+    "release": "node build/release.js",
+    "build:copy-remote": "npm run build:theme && cp-cli dist ../aurora-vue/node_modules/@aurora/theme",
+    "publishTgz": "node .cloudbuild/publish-tgzs.js",
+    "postversion": "pnpm build"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-less": "^5.0.0",
+    "gulp-svg-inline": "^1.0.1",
+    "rimraf": "^2.6.2"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "vertical",
+      "type": "--",
+      "desc": "Bound Value",
+      "defaultValue": ""
+    },
+    {
+      "name": "text-color",
+      "sample": "active-color",
+      "type": "String",
+      "desc": "Text color when the radio is activated in button mode",
+      "defaultValue": "The default value of this attribute is #fff"
+    },
+    {
+      "name": "disabled",
+      "sample": "dynamic-disable",
+      "type": "Boolean",
+      "desc": "Disable",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "size",
+      "sample": "radio-size",
+      "type": "String",
+      "desc": "Size of an option button group. This parameter is valid only for radios with buttons or borders. The optional values of this attribute are medium / small / mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "fill",
+      "sample": "active-color",
+      "type": "String",
+      "desc": "Fill color and border color when the radio in button mode is activated",
+      "defaultValue": ""
+    },
+    {
+      "name": "vertical",
+      "sample": "vertical",
+      "type": "Boolean",
+      "desc": "Set the component arrangement mode.",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "options",
+      "sample": "group-options",
+      "type": "Array",
+      "desc": "Configure radio cyclically",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "vertical",
+      "type": "",
+      "desc": "Radio Default Slot",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "vertical",
+      "type": "",
+      "desc": "Event triggered when the binding value changes",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,464 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@upload-list-prefix-cls: ~'@{css-prefix}upload-list';
+@progress-prefix-cls: ~'@{css-prefix}progress';
+@icon-close-tip-prefix-cls: ~'@{css-prefix}icon-close-tip';
+@icon-check-prefix-cls: ~'@{css-prefix}icon-check';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{upload-list-prefix-cls} {
+  .component-css-vars-upload-list();
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &__item {
+    transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+    font-size: var(--ti-upload-list-item-font-size);
+    color: var(--ti-upload-list-item-text-color);
+    line-height: 1.8;
+    margin-top: 8px;
+    position: relative;
+    box-sizing: border-box;
+    border-radius: var(--ti-upload-list-item-border-radius);
+    width: 100%;
+    outline: none;
+
+    &:hover {
+      background-color: var(--ti-upload-list-item-hover-background-color);
+
+      .@{svg-prefix-cls}.icon-close,
+      .@{svg-prefix-cls}.icon-refres {
+        display: inline-block;
+      }
+
+      .@{progress-prefix-cls}__text {
+        display: none;
+      }
+    }
+
+    &.is-success {
+      .@{upload-list-prefix-cls}__item-status-label {
+        display: block;
+      }
+
+      .@{upload-list-prefix-cls}__item-name:focus,
+      .@{upload-list-prefix-cls}__item-name:hover {
+        color: var(--ti-upload-list-item-hover-text-color);
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      &:focus:not(:hover) .@{icon-close-tip-prefix-cls} {
+        display: inline-block;
+      }
+
+      &:active,
+      &:not(.focusing):focus {
+        outline-width: 0;
+      }
+
+      &:active .@{icon-close-tip-prefix-cls},
+      &:focus .@{upload-list-prefix-cls}__item-status-label,
+      &:hover .@{upload-list-prefix-cls}__item-status-label,
+      &:not(.focusing):focus .@{icon-close-tip-prefix-cls} {
+        display: none;
+      }
+    }
+
+    &.is-disabled &:hover &-status-label {
+      display: block;
+    }
+
+    &.isEdm {
+      .@{upload-list-prefix-cls}__item-name {
+        display: inline-block;
+
+        &.isFail {
+          color: red;
+        }
+      }
+
+      .@{upload-list-prefix-cls}__item-edminfo {
+        margin-right: 46px;
+      }
+
+      .@{upload-list-prefix-cls}__item-status-label {
+        right: 16px;
+      }
+
+      &:not(.showUpdate) {
+        .icon-refres {
+          display: none;
+        }
+      }
+
+      &:not(.showDel) {
+        .icon-close {
+          display: none;
+        }
+      }
+
+      &.showUpdate {
+        .icon-refres {
+          right: 16px;
+        }
+      }
+
+      &.showDel {
+        .icon-close {
+          right: 16px;
+        }
+      }
+
+      &.showUpdate.showDel {
+        .icon-refres {
+          right: 28px;
+        }
+
+        .icon-close {
+          right: 8px;
+        }
+      }
+
+      &:not(.showUpdate):not(.showDel) {
+        .@{upload-list-prefix-cls}__item-status-label {
+          display: block;
+        }
+      }
+    }
+
+    .@{progress-prefix-cls} {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+    }
+
+    .@{progress-prefix-cls}__text {
+      position: absolute;
+      right: 0;
+      top: -13px;
+    }
+
+    .@{progress-prefix-cls}-bar {
+      margin-right: 0;
+      padding-right: 0;
+    }
+
+    .@{svg-prefix-cls} {
+      &.icon-successful {
+        font-size: var(--ti-upload-list-successful-icon-font-size);
+        fill: var(--ti-upload-list-successful-status-bg-color);
+      }
+
+      &.icon-close {
+        display: none;
+        position: absolute;
+        top: 50%;
+        right: 8px;
+        transform: translateY(-50%);
+        fill: var(--ti-upload-list-svg-close-icon-color);
+        font-size: var(--ti-upload-list-svg-icon-font-size);
+        opacity: 0.75;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      &.icon-refres {
+        display: none;
+        position: absolute;
+        top: 50%;
+        right: 28px;
+        transform: translateY(-50%);
+        fill: #606266;
+        font-size: var(--ti-common-font-size-base);
+        opacity: 0.75;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    .@{icon-close-tip-prefix-cls} {
+      display: none;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-size: var(--ti-upload-list-svg-icon-font-size);
+      cursor: pointer;
+      opacity: 1;
+      color: var(--ti-upload-list-item-hover-text-color);
+    }
+  }
+
+  &__item-edminfo,
+  &__item-folder {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  &__item-edminfo {
+    margin-right: 20px;
+
+    span {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    &.isFail span {
+      color: #f5222d;
+    }
+  }
+
+  &__item-name {
+    color: var(--ti-upload-list-item-text-color);
+    display: block;
+    margin-right: 40px;
+    padding-left: 4px;
+    transition: color 0.3s;
+
+    .@{svg-prefix-cls} {
+      font-size: var(--ti-upload-list-item-name-icon-font-size);
+      margin-right: 4px;
+      fill: var(--ti-upload-list-item-name-icon-color);
+    }
+  }
+
+  &__item-status-label {
+    position: absolute;
+    right: 5px;
+    top: 0;
+    line-height: inherit;
+    display: none;
+  }
+
+  &__item-delete {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: var(--ti-upload-list-svg-icon-font-size);
+    color: var(--ti-upload-list-svg-close-icon-color);
+    display: none;
+
+    &:hover {
+      color: var(--ti-upload-list-item-hover-text-color);
+    }
+  }
+
+  &--picture-card {
+    margin: 0;
+    display: inline;
+    vertical-align: top;
+
+    .@{upload-list-prefix-cls}__item {
+      overflow: hidden;
+      background-color: var(--ti-upload-list-picture-card-item-bg-color);
+      border: 1px solid var(--ti-upload-list-picture-card-item-border-color);
+      border-radius: var(--ti-upload-list-item-border-radius);
+      box-sizing: border-box;
+      width: 148px;
+      height: 148px;
+      margin: 0 8px 8px 0;
+      display: inline-block;
+
+      .@{icon-check-prefix-cls} {
+        fill: var(--ti-upload-list-picture-card-item-text-color);
+      }
+
+      .@{svg-prefix-cls}.icon-close,
+      .@{svg-prefix-cls}.icon-refres,
+      &:hover .@{upload-list-prefix-cls}__item-status-label {
+        display: none;
+      }
+
+      &:hover .@{progress-prefix-cls}__text {
+        display: block;
+      }
+    }
+
+    .@{upload-list-prefix-cls}__item-name {
+      display: none;
+    }
+
+    .@{upload-list-prefix-cls}__item-thumbnail {
+      width: 100%;
+      height: 100%;
+    }
+
+    .@{upload-list-prefix-cls}__item-status-label {
+      position: absolute;
+      right: -15px;
+      top: -6px;
+      width: 40px;
+      height: 24px;
+      background: var(--ti-upload-list-successful-status-bg-color);
+      text-align: center;
+      transform: rotate(45deg);
+      box-shadow: 0 0 1pc 1px rgba(0, 0, 0, 0.2);
+
+      .@{svg-prefix-cls} {
+        font-size: var(--ti-upload-list-svg-icon-font-size, 12px);
+        margin-top: 11px;
+        transform: rotate(-45deg);
+      }
+    }
+
+    .@{upload-list-prefix-cls}__item-actions {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      cursor: default;
+      text-align: center;
+      color: var(--ti-upload-list-picture-card-item-text-color);
+      opacity: 0;
+      font-size: var(--ti-common-font-size-4);
+      background-color: rgba(0, 0, 0, 0.5);
+      transition: opacity 0.3s;
+
+      &::after {
+        display: inline-block;
+        content: '';
+        height: 100%;
+        vertical-align: middle;
+      }
+
+      &:hover {
+        opacity: 1;
+
+        span {
+          display: inline-block;
+        }
+      }
+
+      span {
+        display: none;
+        cursor: pointer;
+
+        & + span {
+          margin-left: 15px;
+        }
+      }
+
+      .@{upload-list-prefix-cls}__item-delete,
+      .@{upload-list-prefix-cls}__item-refres {
+        position: static;
+        font-size: inherit;
+        color: inherit;
+      }
+    }
+
+    .@{progress-prefix-cls} {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      bottom: auto;
+      width: 126px;
+
+      .@{progress-prefix-cls}__text {
+        top: 50%;
+      }
+    }
+  }
+
+  &--picture &__item {
+    overflow: hidden;
+    z-index: 0;
+    background-color: var(--ti-upload-list-picture-card-item-bg-color);
+    box-sizing: border-box;
+    margin-top: 8px;
+    outline: 0;
+
+    .@{icon-check-prefix-cls} {
+      fill: var(--ti-upload-list-picture-card-item-text-color);
+    }
+
+    &:hover {
+      .@{upload-list-prefix-cls}__item-status-label {
+        background: 0 0;
+        box-shadow: none;
+        top: -2px;
+        right: -12px;
+      }
+
+      .@{progress-prefix-cls}__text {
+        display: block;
+      }
+    }
+
+    &.is-success {
+      .@{upload-list-prefix-cls}__item-name {
+        line-height: 56px;
+        margin-top: 0;
+
+        .@{svg-prefix-cls} {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &--picture &__item-thumbnail {
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--ti-upload-list-picture-card-item-border-color);
+    border-radius: var(--ti-upload-list-item-border-radius);
+    float: left;
+    position: relative;
+    z-index: 1;
+    vertical-align: middle;
+    margin-right: 12px;
+  }
+
+  &--picture &__item-name {
+    display: block;
+    line-height: 56px;
+
+    .@{svg-prefix-cls} {
+      font-size: var(--ti-common-font-size-1);
+    }
+  }
+
+  &--picture &__item-status-label {
+    position: absolute;
+    right: -17px;
+    top: -7px;
+    width: 46px;
+    height: 26px;
+    background: var(--ti-upload-list-successful-status-bg-color);
+    text-align: center;
+    transform: rotate(45deg);
+    box-shadow: 0 1px 1px #ccc;
+
+    .@{svg-prefix-cls} {
+      font-size: var(--ti-upload-list-svg-icon-font-size);
+      margin-top: 12px;
+      transform: rotate(-45deg);
+    }
+  }
+
+  &--picture .@{progress-prefix-cls} {
+    position: relative;
+    top: -7px;
+  }
+}

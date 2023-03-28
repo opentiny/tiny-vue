@@ -1,0 +1,241 @@
+{
+  "attrs": [
+    {
+      "name": "data",
+      "sample": "data-source",
+      "type": "Array",
+      "desc": "Transfer data source",
+      "defaultValue": ""
+    },
+    {
+      "name": "modelValue / v-model",
+      "sample": "data-source",
+      "type": "Array",
+      "desc": "Bound Value",
+      "defaultValue": ""
+    },
+    {
+      "name": "filterable",
+      "sample": "filterable",
+      "type": "Boolean",
+      "desc": "Searchable",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "filter-placeholder",
+      "sample": "filter-placeholder",
+      "type": "String",
+      "desc": "Search box placeholder",
+      "defaultValue": "The default value of this attribute is Please enter the search content."
+    },
+    {
+      "name": "filter-method",
+      "sample": "custom-filter-method",
+      "type": "Function(arg1, arg2)",
+      "desc": "Set the search filtering field of the shuttle box. This attribute is valid only when RenderType is set to table. //Customize the search method parameter \narg1:String Input filter string \narg2:Object Each data item",
+      "defaultValue": ""
+    },
+    {
+      "name": "titles",
+      "sample": "custom-transfer-titles",
+      "type": "Array",
+      "desc": "User-defined list title",
+      "defaultValue": "The default value of this attribute is ['List1','List2']"
+    },
+    {
+      "name": "button-texts",
+      "sample": "custom-button-texts",
+      "type": "Array",
+      "desc": "Custom Button Copywriting",
+      "defaultValue": "The default value of this attribute is []"
+    },
+    {
+      "name": "render-content",
+      "sample": "custom-render-content",
+      "type": "Function(arg1, arg2)",
+      "desc": "Customized data item rendering function; arg1:{Function for creating a virtual node}, arg2:{Object data item}",
+      "defaultValue": ""
+    },
+    {
+      "name": "format",
+      "sample": "checked-format-text",
+      "type": "Object",
+      "desc": "Selected status copywriting at the top of the list",
+      "defaultValue": "The default value for this attribute is {noChecked: '${checked}/${total}', hasChecked: '${checked}/${total}'}"
+    },
+    {
+      "name": "props",
+      "sample": "props-of-data-source",
+      "type": "Object",
+      "desc": "Field alias of the data source",
+      "defaultValue": ""
+    },
+    {
+      "name": "left-default-checked",
+      "sample": "default-checked",
+      "type": "Array",
+      "desc": "Key array of selected items in the list on the left in the initial state",
+      "defaultValue": "The default value of this attribute is []"
+    },
+    {
+      "name": "right-default-checked",
+      "sample": "default-checked",
+      "type": "Array",
+      "desc": "Key array of selected items in the list on the right in the initial state",
+      "defaultValue": "The default value of this attribute is []"
+    },
+    {
+      "name": "target-order",
+      "sample": "target-order",
+      "type": "String",
+      "desc": "Sorting policy of elements in the right list: If the value is original, the sequence of elements in the right list is the same as that in the data source. If the value is push, the newly added element is ranked last. If the value is unshift, the newly added element is ranked first. The value of this attribute can be original / push / unshift",
+      "defaultValue": "The default value of this attribute is original."
+    },
+    {
+      "name": "to-left-disable",
+      "sample": "data-source",
+      "type": "Boolean",
+      "desc": "Provides users to control the disabled status of the shuttle button. If the button is not selected during component initialization, the disabled status is displayed. The default value is true.",
+      "defaultValue": ""
+    },
+    {
+      "name": "to-right-disable",
+      "sample": "data-source",
+      "type": "Boolean",
+      "desc": "Provides users to control the disabled status of the shuttle button. If the button is not selected during component initialization, the disabled status is displayed. The default value is true.",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-all-btn",
+      "sample": "show-all-btn",
+      "type": "Boolean",
+      "desc": "All Move Buttons",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "drop-config",
+      "sample": "drop-config",
+      "type": "Object",
+      "desc": "Set the list items in the shuttle box to be dragged.",
+      "defaultValue": ""
+    },
+    {
+      "name": "columns",
+      "sample": "nested-table",
+      "type": "Array",
+      "desc": "Sets the table column configuration of the shuttle box. This attribute is valid only when RenderType is set to table. Sets the table column configuration of the shuttle box. This attribute is valid only when the rendering type (renderType) is grid.",
+      "defaultValue": ""
+    },
+    {
+      "name": "page-vo",
+      "sample": "nested-table",
+      "type": "Object",
+      "desc": "Sets the pagination configuration. This attribute is valid only when the rendering type is grid and must be used together with pager-op.",
+      "defaultValue": "The default value of this property is {currentPage:1,pageSize:10}"
+    },
+    {
+      "name": "show-pager",
+      "sample": "nested-table",
+      "type": "Boolean",
+      "desc": "Specifies whether to display pagination. This parameter is valid only when tables are rendered.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "pager-op",
+      "sample": "nested-table",
+      "type": "Object",
+      "desc": "Sets the pagination configuration. This parameter is valid when the table is rendered.",
+      "defaultValue": "The default value of this attribute is {mode:'fixed', pageVO: {currentPage: 1,pageSize: 10}"
+    },
+    {
+      "name": "render",
+      "sample": "nested-table",
+      "type": "Object",
+      "desc": "When plugin is set to Table, set the rendering to table. When the plugin is set to Tree",
+      "defaultValue": ""
+    },
+    {
+      "name": "tree-op",
+      "sample": "nested-tree",
+      "type": "Object",
+      "desc": "Set the tree-related configuration attributes when the plug-in is set to tree.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "left-footer",
+      "sample": "custom-footer",
+      "type": "",
+      "desc": "Content at the bottom of the left list",
+      "defaultValue": ""
+    },
+    {
+      "name": "right-footer",
+      "sample": "custom-footer",
+      "type": "",
+      "desc": "Content at the bottom of the list on the right",
+      "defaultValue": ""
+    },
+    {
+      "name": "button",
+      "sample": "panel-slot",
+      "type": "",
+      "desc": "Customized shuttle button",
+      "defaultValue": ""
+    },
+    {
+      "name": "default",
+      "sample": "custom-render-content",
+      "type": "",
+      "desc": "Content of a user-defined data item. The parameter is {option}.",
+      "defaultValue": ""
+    },
+    {
+      "name": "leftPanel",
+      "sample": "",
+      "type": "",
+      "desc": "Customized content on the left",
+      "defaultValue": ""
+    },
+    {
+      "name": "rightPanel",
+      "sample": "",
+      "type": "",
+      "desc": "Customized content on the right",
+      "defaultValue": ""
+    }
+  ],
+  "methods": [
+    {
+      "name": "clearQuery",
+      "sample": "manual-clear-query",
+      "type": "",
+      "desc": "Clear the search keywords of a panel.",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "transfer-events",
+      "type": "Function(arg1, arg2, arg3)",
+      "desc": "Triggered when an element in the list on the right changes. //Parameter arg1: Data value list on the right of the Array shuttle box.\n//Parameter arg2: String Data movement direction, which can be left or right\n//Parameter arg3: Array data value list to be moved",
+      "defaultValue": ""
+    },
+    {
+      "name": "left-check-change",
+      "sample": "transfer-events",
+      "type": "Function(arg1, arg2)",
+      "desc": "This event is triggered when an element in the list on the left is selected or deselected. //Parameter arg1: List of selected data values on the left of the Array shuttle box.\n//Parameter arg2: List of selected data values whose status changes on the left of the Array shuttle box",
+      "defaultValue": ""
+    },
+    {
+      "name": "right-check-change",
+      "sample": "transfer-events",
+      "type": "Function(arg1, arg2)",
+      "desc": "This event is triggered when an element in the list on the right is selected or deselected. //Parameter arg1: list of selected data values on the right of the Array shuttle box.\n//Parameter arg2: list of selected data values whose status changes on the right of the Array shuttle box",
+      "defaultValue": ""
+    }
+  ]
+}

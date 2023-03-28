@@ -1,0 +1,102 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@cascader-node-prefix-cls: ~'@{css-prefix}cascader-node';
+@radio-prefix-cls: ~'@{css-prefix}radio';
+@checkbox-prefix-cls: ~'@{css-prefix}checkbox';
+
+.@{cascader-node-prefix-cls} {
+  .component-css-vars-cascader-node();
+
+  &.is-selectable.in-active-path {
+    color: var(--ti-cascader-node-text-color);
+  }
+
+  &.in-active-path,
+  &.is-active {
+    background: var(--ti-cascader-node-selectable-hover-bg-color);
+    color: var(--ti-cascader-node-selectable-text-color);
+    &,
+    &:hover {
+      background: var(--ti-cascader-node-selectable-hover-bg-color);
+    }
+  }
+
+  &:not(.is-disabled):not(.in-active-path):not(.is-active) {
+    &:focus,
+    &:hover {
+      background: var(--ti-cascader-node-hover-bg-color);
+      color: var(--ti-cascader-node-hover-text-color);
+    }
+  }
+
+  &:not(.is-disabled) {
+    cursor: pointer;
+  }
+
+  &.is-disabled {
+    color: var(--ti-cascader-node-disabled-text-color);
+    fill: var(--ti-cascader-node-disabled-text-color);
+    background-color: var(--ti-cascader-node-disabled-bg-color);
+    cursor: not-allowed;
+  }
+
+  &__prefix,
+  &__postfix {
+    font-size: var(--ti-cascader-node-icon-font-size);
+    fill: var(--ti-cascader-node-icon-color);
+  }
+
+  &__prefix {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: var(--ti-cascader-node-prefix-display) !important;
+  }
+
+  &__postfix {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+
+  &__label {
+    max-width: 360px;
+    flex: 1;
+    flex-basis: auto\9;
+    padding: var(--ti-cascader-node-label-padding-vertical) var(--ti-cascader-node-label-padding-horizontal);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    // 兼容ie10-ie11
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      flex-basis: auto;
+    }
+  }
+
+  & > .@{radio-prefix-cls} {
+    margin-right: var(--ti-common-space-base);
+    .@{radio-prefix-cls}__label {
+      padding-left: 0;
+    }
+  }
+
+  & > .@{checkbox-prefix-cls} {
+    margin-right: var(--ti-common-space-base);
+  }
+}

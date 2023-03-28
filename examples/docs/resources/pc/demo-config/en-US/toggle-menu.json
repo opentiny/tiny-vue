@@ -1,0 +1,122 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "toggle-menu/basic-usage",
+    "component": "ToggleMenu collapse menu",
+    "findIntroStr": "A component that is displayed in a tree structure and applicable to version customization. The menu can be collapsed. After the menu is collapsed, only icons are displayed. You can click icons to display sub-node menus.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Icon on the left of the customized menu",
+    "content": "<p>You can customize the icon on the left of the menu through the <code>icon</code> attribute. </p>\n",
+    "link": "toggle-menu/custom-icon",
+    "component": "ToggleMenu collapse menu",
+    "findIntroStr": "A component that is displayed in a tree structure and applicable to version customization. The menu can be collapsed. After the menu is collapsed, only icons are displayed. You can click icons to display sub-node menus.",
+    "demoId": "custom-icon"
+  },
+  {
+    "title": "Customized menu data service",
+    "content": "<p>You can customize the menu data service through <code>get-menu-data-sync</code> . </p>\n",
+    "link": "toggle-menu/get-menu-data-sync",
+    "component": "ToggleMenu collapse menu",
+    "findIntroStr": "A component that is displayed in a tree structure and applicable to version customization. The menu can be collapsed. After the menu is collapsed, only icons are displayed. You can click icons to display sub-node menus.",
+    "demoId": "get-menu-data-sync"
+  },
+  {
+    "title": "props option mapping",
+    "content": "<p>You can use <code>props</code> to configure the mapping field. The default value of this attribute is {children:'children', label:'label', disabled:'disabled'}. </p>\n",
+    "link": "toggle-menu/toggle-props",
+    "component": "ToggleMenu collapse menu",
+    "findIntroStr": "A component that is displayed in a tree structure and applicable to version customization. The menu can be collapsed. After the menu is collapsed, only icons are displayed. You can click icons to display sub-node menus.",
+    "demoId": "toggle-props"
+  },
+  {
+    "title": "Custom Node Content",
+    "content": "<p>Customize the node content through the <code>node</code> slot. </p>\n",
+    "link": "toggle-menu/slot-node",
+    "component": "ToggleMenu collapse menu",
+    "findIntroStr": "A component that is displayed in a tree structure and applicable to version customization. The menu can be collapsed. After the menu is collapsed, only icons are displayed. You can click icons to display sub-node menus.",
+    "demoId": "slot-node"
+  },
+  {
+    "title": "All nodes are expanded by default.",
+    "content": "<p>You can use the <code>default-expand-all</code> attribute to set whether to expand all nodes by default, and use the <code>expand-on-click-node</code> attribute to set whether to expand or collapse menus by clicking a node. </p>\n",
+    "link": "toggle-menu/default-expand-all",
+    "component": "ToggleMenu collapse menu",
+    "findIntroStr": "A component that is displayed in a tree structure and applicable to version customization. The menu can be collapsed. After the menu is collapsed, only icons are displayed. You can click icons to display sub-node menus.",
+    "demoId": "default-expand-all"
+  },
+  {
+    "title": "Drag Node",
+    "content": "<p>You can use the <code>draggable</code> attribute to set whether to enable the node drag function. The default value is <code>false</code>. \nYou can use the <code>ellipsis</code> property to set whether to enable the function of omitting the overlong text content. The default value is <code>false</code></p>\n",
+    "link": "toggle-menu/draggable",
+    "component": "ToggleMenu collapse menu",
+    "findIntroStr": "A component that is displayed in a tree structure and applicable to version customization. The menu can be collapsed. After the menu is collapsed, only icons are displayed. You can click icons to display sub-node menus.",
+    "demoId": "draggable"
+  },
+  {
+    "title": "Display the filter search box.",
+    "content": "<p>You can set the <code>show-filter</code> attribute to determine whether to display the filter search box. The default value is <code>true</code>. You can set it to <code>false</code> not to display the filter search box. </p>\n",
+    "link": "toggle-menu/show-filter",
+    "component": "ToggleMenu collapse menu",
+    "findIntroStr": "A component that is displayed in a tree structure and applicable to version customization. The menu can be collapsed. After the menu is collapsed, only icons are displayed. You can click icons to display sub-node menus.",
+    "demoId": "show-filter"
+  },
+  {
+    "title": "Auto Filter",
+    "content": "<p>You can set the placeholder of the text box through the <code>placeholder</code> attribute. Use <code>automatic-filtering</code> to set whether to automatically filter input data. The default value is true. </p>\n",
+    "link": "toggle-menu/automatic-filtering",
+    "component": "ToggleMenu collapse menu",
+    "findIntroStr": "A component that is displayed in a tree structure and applicable to version customization. The menu can be collapsed. After the menu is collapsed, only icons are displayed. You can click icons to display sub-node menus.",
+    "demoId": "automatic-filtering"
+  },
+  {
+    "title": "The content exceeds the line feed.",
+    "content": "For details, see the following example.",
+    "link": "toggle-menu/show-filter",
+    "component": "ToggleMenu collapse menu",
+    "findIntroStr": "A component that is displayed in a tree structure and applicable to version customization. The menu can be collapsed. After the menu is collapsed, only icons are displayed. You can click icons to display sub-node menus.",
+    "demoId": "show-filter1"
+  },
+  {
+    "title": "Node Click Event",
+    "content": "<p><code>node-click</code> Event triggered after a node is clicked. </p>\n",
+    "link": "toggle-menu/node-click",
+    "component": "ToggleMenu collapse menu",
+    "findIntroStr": "A component that is displayed in a tree structure and applicable to version customization. The menu can be collapsed. After the menu is collapsed, only icons are displayed. You can click icons to display sub-node menus.",
+    "demoId": "node-click"
+  },
+  {
+    "title": "Expand Node Event",
+    "content": "Event triggered after the <p><code>node-expand</code> expands a node. </p>\n",
+    "link": "toggle-menu/node-expand",
+    "component": "ToggleMenu collapse menu",
+    "findIntroStr": "A component that is displayed in a tree structure and applicable to version customization. The menu can be collapsed. After the menu is collapsed, only icons are displayed. You can click icons to display sub-node menus.",
+    "demoId": "node-expand"
+  },
+  {
+    "title": "Shrunk Node Event",
+    "content": "Event triggered after a node is scaled in by the <p><code>node-collapse</code> . </p>\n",
+    "link": "toggle-menu/node-collapse",
+    "component": "ToggleMenu collapse menu",
+    "findIntroStr": "A component that is displayed in a tree structure and applicable to version customization. The menu can be collapsed. After the menu is collapsed, only icons are displayed. You can click icons to display sub-node menus.",
+    "demoId": "node-collapse"
+  },
+  {
+    "title": "Drag Node Event",
+    "content": "<p><code>node-drop</code>: This event is triggered after a node is dragged and dropped. You need to set <code>draggable</code> to <code>true</code>. </p>\n",
+    "link": "toggle-menu/node-drop",
+    "component": "ToggleMenu collapse menu",
+    "findIntroStr": "A component that is displayed in a tree structure and applicable to version customization. The menu can be collapsed. After the menu is collapsed, only icons are displayed. You can click icons to display sub-node menus.",
+    "demoId": "node-drop"
+  },
+  {
+    "title": "Drag Event",
+    "content": "<p><code>node-drag-start</code>: This event is triggered after a node is dragged. <code>node-drag-enter</code> is triggered when a node is dragged to another node. <code>node-drag-over</code> is triggered when a node is dragged. <code>node-drag-leave</code>: This event is triggered when a node is dragged out. <code>node-drag-end</code>: This event is triggered when a node is dragged out. </p>\n",
+    "link": "toggle-menu/drag-events",
+    "component": "ToggleMenu collapse menu",
+    "findIntroStr": "A component that is displayed in a tree structure and applicable to version customization. The menu can be collapsed. After the menu is collapsed, only icons are displayed. You can click icons to display sub-node menus.",
+    "demoId": "drag-events"
+  }
+]

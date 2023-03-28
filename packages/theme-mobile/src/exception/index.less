@@ -1,0 +1,106 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@exception-prefix-cls: ~'@{css-prefix}mobile-exception';
+
+.@{exception-prefix-cls} {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: var(--ti-mobile-exception-bg-color, #fff);
+  text-align: center;
+  z-index: 9999;
+
+  &__content-view {
+    width: var(--ti-mobile-exception-view-size, 200px);
+    height: var(--ti-mobile-exception-view-size, 200px);
+    background-size: 100%;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: var(--ti-mobile-exception-content-width, 234px);
+  }
+
+  &__image {
+    width: var(--ti-mobile-exception-image-width, 200px);
+  }
+
+  &__content-nodata {
+    background-image: url(../images/nodata.png);
+  }
+
+  &__content-build {
+    background-image: url(../images/build.png);
+  }
+
+  &__content-busy {
+    background-image: url(../images/busy.png);
+  }
+
+  &__content-noperm {
+    background-image: url(../images/404.png);
+  }
+
+  &__content-pcview {
+    background-image: url(../images/pcview.png);
+  }
+
+  &__content-weaknet {
+    background-image: url(../images/netcut.png);
+  }
+
+  &__content-message {
+    margin-top: 12px;
+
+    button {
+      min-width: var(--ti-mobile-exception-button-width, 136px);
+      height: var(--ti-mobile-exception-button-height, 42px);
+      margin-top: 24px;
+    }
+
+    .main-message {
+      color: var(--ti-mobile-exception-main-message-color, #999);
+      font-size: var(--ti-mobile-exception-main-message-font-size, 13px);
+      line-height: 1.5;
+    }
+
+    .sub-message {
+      margin-top: 4px;
+      color: var(--ti-mobile-exception-sub-message-color, #999);
+      font-size: var(--ti-mobile-exception-sub-message-font-size, 12px);
+    }
+  }
+
+  &__footer {
+    position: fixed;
+    right: 16px;
+    bottom: 40px;
+    left: 16px;
+    color: var(--ti-mobile-exception-footer-color, #999);
+    overflow: hidden;
+    font-size: var(--ti-mobile-exception-footer-font-size, 12px);
+    text-align: center;
+    z-index: 10000;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+}

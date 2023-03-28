@@ -1,0 +1,131 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+@import '../checkbox/vars.less';
+
+@checkbox-button-prefix-cls: ~'@{css-prefix}checkbox-button';
+
+.@{checkbox-button-prefix-cls} {
+  .component-css-vars-checkbox();
+  position: relative;
+  display: inline-block;
+
+  &:first-child &__inner {
+    border-radius: var(--ti-common-border-radius-normal) 0 0 var(--ti-common-border-radius-normal);
+  }
+
+  &:last-child &__inner {
+    border-radius: 0 var(--ti-common-border-radius-normal) var(--ti-common-border-radius-normal) 0;
+  }
+
+  &.is-checked {
+    .@{checkbox-button-prefix-cls}__inner {
+      color: var(--ti-checkbox-button-checked-text-color);
+      border-color: var(--ti-checkbox-button-checked-border-color);
+      box-shadow: -1px 0 0 0 var(--ti-checkbox-shadow-color);
+    }
+
+    &:first-child .@{checkbox-button-prefix-cls}__inner {
+      border-left-color: var(--ti-checkbox-button-checked-border-color);
+      box-shadow: none;
+    }
+  }
+
+  &.is-disabled {
+    .@{checkbox-button-prefix-cls}__inner {
+      color: var(--ti-checkbox-button-disabled-text-color);
+      cursor: not-allowed;
+      background-image: none;
+      background-color: var(--ti-checkbox-button-disabled-bg-color);
+      border-color: var(--ti-checkbox-border-color);
+      box-shadow: none;
+    }
+
+    &:first-child .@{checkbox-button-prefix-cls}__inner {
+      border-left-color: var(--ti-checkbox-border-color);
+    }
+  }
+
+  &__inner {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    outline: 0;
+    line-height: 1;
+    font-weight: 500;
+    cursor: pointer;
+    background: var(--ti-checkbox-button-bg-color);
+    border-left: 0;
+    border: 1px solid #e9edfa;
+    color: var(--ti-checkbox-button-text-color);
+    appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0 2px;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    padding: 12px 20px;
+    font-size: var(--ti-common-font-size-2);
+    min-width: 80px;
+    border-radius: 0;
+    .user-select(none);
+
+    &.is-round {
+      padding: 12px 20px;
+    }
+
+    &:hover {
+      background: var(--ti-checkbox-bg-color-hover);
+      color: var(--ti-checkbox-button-hover-text-color);
+    }
+  }
+
+  &__original {
+    opacity: 0;
+    outline: 0;
+    position: absolute;
+    margin: 0;
+    z-index: -1;
+  }
+
+  &--medium &__inner {
+    padding: 10px 20px;
+    font-size: var(--ti-common-font-size-1);
+    border-radius: 0;
+
+    &.is-round {
+      padding: 10px 20px;
+    }
+  }
+
+  &--small &__inner {
+    padding: 8px 15px;
+    font-size: var(--ti-common-font-size-base);
+    border-radius: 0;
+
+    &.is-round {
+      padding: 8px 15px;
+    }
+  }
+
+  &--mini &__inner {
+    padding: 5px 15px;
+    font-size: var(--ti-common-font-size-base);
+    border-radius: 0;
+
+    &.is-round {
+      padding: 5px 15px;
+    }
+  }
+}

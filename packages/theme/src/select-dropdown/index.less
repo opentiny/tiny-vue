@@ -1,0 +1,110 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@select-dropdown-prefix-cls: ~'@{css-prefix}select-dropdown';
+@tree-prefix-cls: ~'@{css-prefix}tree';
+@popper-prefix-cls: ~'@{css-prefix}popper';
+@scrollbar-prefix-cls: ~'@{css-prefix}scrollbar';
+
+.@{select-dropdown-prefix-cls} {
+  .component-css-vars-select-dropdown();
+
+  position: absolute;
+  z-index: 1001;
+  border: 1px solid var(--ti-select-dropdown-border-color);
+  border-radius: var(--ti-select-dropdown-border-radius);
+  background-color: var(--ti-select-dropdown-bg-color);
+  box-shadow: var(--ti-base-box-shadow);
+  margin-top: var(--ti-base-dropdown-gap);
+  box-sizing: border-box;
+
+  .@{tree-prefix-cls} {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  &.@{popper-prefix-cls} {
+    margin-top: var(--ti-base-dropdown-gap);
+  }
+
+  & .@{scrollbar-prefix-cls}.is-empty &__list {
+    padding: 0;
+  }
+
+  & &__search {
+    margin-bottom: var(--ti-select-dropdown-search-margin-bottom);
+
+    .tiny-input__inner {
+      box-sizing: border-box;
+      border-width: 0;
+      background-color: var(--ti-select-dropdown-search-bg-color);
+      padding-right: 54px;
+    }
+
+    .tiny-icon-close {
+      &::after {
+        content: '';
+        display: inline-block;
+        height: var(--ti-select-dropdown-line-height);
+        width: var(--ti-select-dropdown-line-width);
+        background-color: var(--ti-select-dropdown-line-bg-color);
+        line-height: 100%;
+        vertical-align: middle;
+        margin: var(--ti-select-dropdown-line-margin-vertical) var(--ti-select-dropdown-line-margin-horizontal);
+      }
+    }
+    .tiny-svg:hover {
+      fill: var(--ti-select-dropdown-active-text-color);
+    }
+  }
+
+  &__empty {
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
+    color: var(--ti-select-dropdown-empty-text-color);
+    font-size: var(--ti-select-dropdown-empty-font-size);
+  }
+
+  & &__wrap {
+    max-height: 197px;
+    margin-right: -4px;
+  }
+
+  & &__list {
+    list-style: none;
+    margin: 0;
+    box-sizing: border-box;
+    padding: var(--ti-select-dropdown-list-padding-top) var(--ti-select-dropdown-list-padding-horizontal) var(--ti-select-dropdown-list-padding-bottom);
+    text-align: left;
+  }
+
+  & &__item {
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding: var(--ti-select-dropdown-item-padding-vertical) var(--ti-select-dropdown-item-padding-horizontal);
+    margin-top: var(--ti-select-dropdown-item-margin-top);
+    border-radius: var(--ti-common-border-radius-normal);
+  }
+
+  & &__wrap.virtual {
+    position: relative;
+    margin-right: 0 !important;
+    & .@{select-dropdown-prefix-cls}__item {
+      position: absolute;
+      width: 100%;
+    }
+  }
+}

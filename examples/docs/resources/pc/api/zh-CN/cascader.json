@@ -1,0 +1,264 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "clearable",
+      "type": "",
+      "desc": "选中项绑定值",
+      "defaultValue": ""
+    },
+    {
+      "name": "options",
+      "sample": "disabled-items",
+      "type": "Array",
+      "desc": "可选项数据源，键名可通过 Props 属性配置",
+      "defaultValue": ""
+    },
+    {
+      "name": "props",
+      "sample": "props-children",
+      "type": "Object",
+      "desc": "配置选项，具体见 Cascader Props 表",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-class",
+      "sample": "",
+      "type": "String",
+      "desc": "为 popper 添加类名(可参考 popover 组件)",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-append-to-body",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)",
+      "defaultValue": "true"
+    },
+    {
+      "name": "size",
+      "sample": "clearable2",
+      "type": "String",
+      "desc": "尺寸;该属性的可选值为 medium / small / mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "placeholder",
+      "sample": "filterable-multiple1",
+      "type": "String",
+      "desc": "输入框占位文本",
+      "defaultValue": "请选择"
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled-items",
+      "type": "Boolean",
+      "desc": "是否禁用",
+      "defaultValue": "false"
+    },
+    {
+      "name": "clearable",
+      "sample": "clearable",
+      "type": "Boolean",
+      "desc": "是否支持清空选项",
+      "defaultValue": "false"
+    },
+    {
+      "name": "show-all-levels",
+      "sample": "show-all-levels",
+      "type": "Boolean",
+      "desc": "输入框中是否显示选中值的完整路径",
+      "defaultValue": "true"
+    },
+    {
+      "name": "collapse-tags",
+      "sample": "collapse-tags",
+      "type": "Boolean",
+      "desc": "多选模式下是否折叠Tag",
+      "defaultValue": "false"
+    },
+    {
+      "name": "separator",
+      "sample": "clearable1",
+      "type": "String",
+      "desc": "选项分隔符",
+      "defaultValue": "/"
+    },
+    {
+      "name": "filterable",
+      "sample": "filterable",
+      "type": "Boolean",
+      "desc": "是否可搜索选项",
+      "defaultValue": ""
+    },
+    {
+      "name": "filter-method",
+      "sample": "filter-method",
+      "type": "Function(node, keyword)",
+      "desc": "自定义搜索逻辑，第一个参数是节点 node，第二个参数是搜索关键词 keyword，通过返回布尔值表示是否命中",
+      "defaultValue": ""
+    },
+    {
+      "name": "debounce",
+      "sample": "filterable",
+      "type": "Number",
+      "desc": "搜索关键词输入的去抖延迟，单位毫秒",
+      "defaultValue": "300"
+    },
+    {
+      "name": "before-filter",
+      "sample": "filter-method",
+      "type": "Function(value)",
+      "desc": "筛选之前的钩子，参数为输入的值，若返回 false 或者返回 Promise 且被 reject，则停止筛选",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-class",
+      "sample": "",
+      "type": "String",
+      "desc": "自定义浮层类名",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "empty",
+      "sample": "filterable",
+      "type": "",
+      "desc": "无匹配选项时的内容",
+      "defaultValue": ""
+    }
+  ],
+  "methods": [
+    {
+      "name": "getCheckedNodes",
+      "sample": "events",
+      "type": "",
+      "desc": "获取选中的节点;参数为 (leafOnly) 是否只是获取子节点，默认值为 false",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "events",
+      "type": "Fuction(arg)",
+      "desc": "当选中节点变化时触发;arg:回调参数为 选中节点的值(Array类型)",
+      "defaultValue": ""
+    },
+    {
+      "name": "expand-change",
+      "sample": "events",
+      "type": "Fuction(arg)",
+      "desc": "当展开节点发生变化时触发;arg:回调参数为 各父级选项值组成的数组(Array类型)",
+      "defaultValue": ""
+    },
+    {
+      "name": "blur",
+      "sample": "events",
+      "type": "Fuction(arg)",
+      "desc": "当失去焦点时触发;arg:回调参数为 (event: Event, 类型:Object)",
+      "defaultValue": ""
+    },
+    {
+      "name": "focus",
+      "sample": "events",
+      "type": "Fuction(arg)",
+      "desc": "当获得焦点时触发;arg:回调参数为 (event: Event, 类型:Object)",
+      "defaultValue": ""
+    },
+    {
+      "name": "visible-change",
+      "sample": "events",
+      "type": "Fuction(arg)",
+      "desc": "下拉框出现/隐藏时触发;arg:回调参数为 出现则为 true，隐藏则为 false(布尔类型)",
+      "defaultValue": ""
+    },
+    {
+      "name": "remove-tag",
+      "sample": "default-multiple",
+      "type": "Fuction(arg)",
+      "desc": "在多选模式下，移除Tag时触发;arg:回调参数为 移除的Tag对应的节点的值(Array类型)",
+      "defaultValue": ""
+    }
+  ],
+  "casprops": [
+    {
+      "name": "expandTrigger",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "次级菜单的展开方式;该属性的可选值为 click / hover",
+      "defaultValue": "click"
+    },
+    {
+      "name": "multiple",
+      "sample": "default-multiple",
+      "type": "Boolean",
+      "desc": "是否多选",
+      "defaultValue": "false"
+    },
+    {
+      "name": "checkStrictly",
+      "sample": "check-strictly",
+      "type": "Boolean",
+      "desc": "是否严格的遵守父子节点不互相关联",
+      "defaultValue": " false"
+    },
+    {
+      "name": "emitPath",
+      "sample": "events",
+      "type": "Boolean",
+      "desc": "在选中节点改变时，是否返回由该节点所在的各级菜单的值所组成的数组，若设置 false，则只返回该节点的值",
+      "defaultValue": " true"
+    },
+    {
+      "name": "lazy",
+      "sample": "auto-load",
+      "type": "Boolean",
+      "desc": "是否动态加载子节点，需与 lazyLoad 方法结合使用",
+      "defaultValue": "false"
+    },
+    {
+      "name": "lazyLoad",
+      "sample": "auto-load",
+      "type": "Function(node, resolve)",
+      "desc": "加载动态数据的方法，仅在 lazy 为 true 时有效;参数说明： node为当前点击的节点，resolve为数据加载完成的回调(必须调用)",
+      "defaultValue": ""
+    },
+    {
+      "name": "value",
+      "sample": "props-children",
+      "type": "String",
+      "desc": "指定选项的值为选项对象的某个属性值",
+      "defaultValue": "'value'"
+    },
+    {
+      "name": "label",
+      "sample": "props-children",
+      "type": "String",
+      "desc": "指定选项标签为选项对象的某个属性值",
+      "defaultValue": "'label'"
+    },
+    {
+      "name": "children",
+      "sample": "props-children",
+      "type": "String",
+      "desc": "指定选项的子选项为选项对象的某个属性值",
+      "defaultValue": "'children'"
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled-items",
+      "type": "String",
+      "desc": "指定选项的禁用为选项对象的某个属性值",
+      "defaultValue": "'disabled'"
+    },
+    {
+      "name": "leaf",
+      "sample": "check-strictly",
+      "type": "String",
+      "desc": "指定选项的叶子节点的标志位为选项对象的某个属性值",
+      "defaultValue": "'leaf'"
+    }
+  ]
+}

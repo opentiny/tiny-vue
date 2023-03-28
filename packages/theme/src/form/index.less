@@ -1,0 +1,132 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@form-prefix-cls: ~'@{css-prefix}form';
+@form-item-prefix-cls: ~'@{css-prefix}form-item';
+@tooltip-prefix-cls: ~'@{css-prefix}tooltip';
+
+.@{form-prefix-cls} {
+  .component-css-vars-form();
+
+  width: 100%;
+  overflow: hidden;
+
+  div {
+    outline: none;
+  }
+
+  &--inline {
+    .@{form-item-prefix-cls},
+    .@{form-item-prefix-cls}__content {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .@{form-item-prefix-cls} {
+      margin-right: var(--ti-form-item-margin-right);
+    }
+
+    .@{form-item-prefix-cls}__label {
+      float: none;
+      display: inline-block;
+    }
+
+    .@{form-prefix-cls}--label-top .@{form-item-prefix-cls}__content {
+      display: block;
+    }
+  }
+
+  &--label-left {
+    &.has-required {
+      .@{form-item-prefix-cls}__label {
+        padding-left: 12px;
+      }
+    }
+    .@{form-item-prefix-cls}__label {
+      text-align: left;
+    }
+    &.label-align {
+      .@{form-item-prefix-cls} {
+        &.is-required {
+          .@{form-item-prefix-cls}__label {
+            padding-left: 12px;
+            position: relative;
+            &::before {
+              font-size: 20px;
+              line-height: 1;
+              position: absolute;
+              left: 0;
+              top: 60%;
+              transform: translateY(-50%);
+            }
+          }
+          & ~ .@{form-item-prefix-cls} {
+            .@{form-item-prefix-cls}__label {
+              padding-left: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &--label-top {
+    .@{form-item-prefix-cls}__label {
+      float: none;
+      display: inline-block;
+      text-align: left;
+      line-height: 1;
+      padding: 0 0 8px;
+    }
+
+    .@{form-item-prefix-cls} {
+      margin-bottom: 16px;
+    }
+  }
+
+  &--label-top & {
+    margin-bottom: 16px;
+  }
+
+  &--inline&--label-top {
+    .@{form-item-prefix-cls} {
+      margin-bottom: 16px;
+      margin-right: 64px;
+    }
+
+    .@{form-item-prefix-cls}__label {
+      display: block;
+      text-align: left;
+    }
+  }
+
+  &__valid {
+    &.@{tooltip-prefix-cls}.@{tooltip-prefix-cls}__popper {
+      padding: 7px 4px;
+
+      &.is-error[x-placement^='top'] .popper__arrow {
+        bottom: -4px;
+      }
+
+      &[x-placement^='top'] {
+        margin-bottom: 6px;
+      }
+
+      &[x-placement^='bottom'] {
+        margin-top: 6px;
+      }
+    }
+  }
+}

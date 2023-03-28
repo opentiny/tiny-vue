@@ -1,0 +1,41 @@
+{
+  "attrs": [
+    {
+      "name": "type",
+      "sample": "events",
+      "type": "",
+      "desc": "Data that can be obtained when an item-click is bound to the <tiny-dropdown> component.",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled",
+      "type": "",
+      "desc": "Disabled. Default value: false",
+      "defaultValue": ""
+    },
+    {
+      "name": "divided",
+      "sample": "hide-on-click",
+      "type": "",
+      "desc": "Displays the split line. Default value: false",
+      "defaultValue": ""
+    },
+    {
+      "name": "icon",
+      "sample": "trigger",
+      "type": "",
+      "desc": "Embedded icon.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "The options in the drop-down list are displayed.",
+      "defaultValue": ""
+    }
+  ]
+}

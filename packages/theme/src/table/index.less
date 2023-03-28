@@ -1,0 +1,129 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@table-prefix-cls: ~'@{css-prefix}table';
+@table-header-prefix-cls: ~'@{css-prefix}table-header';
+@table-cell-prefix-cls: ~'@{css-prefix}table-cell';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{table-prefix-cls} {
+  .component-css-vars-table();
+
+  &.simple {
+    table {
+      table-layout: fixed;
+
+      tr {
+        display: table-row;
+        vertical-align: inherit;
+        border-color: inherit;
+      }
+
+      tbody {
+        border-bottom: 1px solid var(--ti-table-border-color);
+
+        tr {
+          color: var(--ti-table-text-color);
+          background: var(--ti-table-bg-color);
+
+          &:nth-child(odd) {
+            background: var(--ti-table-odd-bg-color);
+          }
+
+          &:hover {
+            background: var(--ti-table-hover-bg-color);
+          }
+
+          &.is-disabled {
+            background: var(--ti-table-disabled-bg-color);
+            color: var(--ti-table-disabled-text-color);
+          }
+        }
+
+        .noData {
+          width: 582px;
+          height: 360px;
+          text-align: center;
+          color: var(--ti-table-nodata-text-color);
+          margin-bottom: -1px;
+          border-bottom: 1px solid var(--ti-table-border-color);
+          padding-top: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      th {
+        padding: 2px 0 2px 8px;
+        height: var(--ti-table-td-height);
+        border-left: none;
+      }
+
+      td {
+        padding: 2px 0 2px 8px;
+        height: var(--ti-table-td-height);
+        font-size: var(--ti-table-td-font-size);
+
+        .overflow {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      thead {
+        border-bottom: 1px solid var(--ti-table-border-color);
+        text-align: left;
+        background: var(--ti-table-thead-bg-color);
+        color: var(--ti-table-text-color);
+
+        th {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          text-align: left;
+          font-size: var(--ti-table-td-font-size);
+          color: var(--ti-table-text-color);
+          line-height: 1.7em;
+
+          .overflow {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+
+    .@{table-header-prefix-cls}__line {
+      float: right;
+      border-left: 1px solid var(--ti-table-border-color);
+      height: 20px;
+    }
+
+    .@{table-cell-prefix-cls} {
+      .@{svg-prefix-cls} {
+        font-size: var(--ti-common-font-size-2);
+        font-size: var(--ti-table-icon-font-size);
+        fill: var(--ti-table-border-color);
+
+        &.is-check {
+          fill: var(--ti-table-check-icon-color);
+        }
+      }
+    }
+  }
+}

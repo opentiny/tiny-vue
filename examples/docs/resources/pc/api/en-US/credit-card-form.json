@@ -1,0 +1,62 @@
+{
+  "attrs": [
+    {
+      "name": "background-image",
+      "sample": "background-image",
+      "type": "String , Object",
+      "desc": "Set the background image of the card.",
+      "defaultValue": ""
+    },
+    {
+      "name": "form-data",
+      "sample": "basic-usage",
+      "type": "Object",
+      "desc": "Setting Credit Card Display Data",
+      "defaultValue": "//The default value of this attribute is \n{cardCvv: '',cardName: '',cardYear: '',cardMonth: '',cardNumber: ''}"
+    }
+  ],
+  "events": [
+    {
+      "name": "submit",
+      "sample": "credit-card-form-events",
+      "type": "",
+      "desc": "Event triggered upon submission",
+      "defaultValue": ""
+    },
+    {
+      "name": "input-card-number",
+      "sample": "credit-card-form-events",
+      "type": "",
+      "desc": "Event triggered when a card number is entered",
+      "defaultValue": ""
+    },
+    {
+      "name": "input-card-name",
+      "sample": "credit-card-form-events",
+      "type": "",
+      "desc": "Event triggered when a card holder is entered",
+      "defaultValue": ""
+    },
+    {
+      "name": "input-card-month",
+      "sample": "credit-card-form-events",
+      "type": "",
+      "desc": "Event triggered when a month is selected",
+      "defaultValue": ""
+    },
+    {
+      "name": "input-card-year",
+      "sample": "credit-card-form-events",
+      "type": "",
+      "desc": "Event triggered when the year is selected",
+      "defaultValue": ""
+    },
+    {
+      "name": "input-card-cvv",
+      "sample": "credit-card-form-events",
+      "type": "",
+      "desc": "CVV input event triggered",
+      "defaultValue": ""
+    }
+  ]
+}

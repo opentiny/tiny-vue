@@ -1,0 +1,218 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "date-picker/basic-usage",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Select the shortcut option of the day band",
+    "content": "<p>With the <code>picker-options</code> attribute, which is an object in which you specify an array of <code>shortcuts</code> objects to set shortcut options. In addition, you can set the date when the <code>disabledDate</code> method is disabled as required. </p>\n",
+    "link": "date-picker/date-shortcuts",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "date-shortcuts"
+  },
+  {
+    "title": "Other date units",
+    "content": "<p>You can set different date units through the <code>type</code> attribute. In the following example, the date units are week, year, month, and dates. </p>\n",
+    "link": "date-picker/other-picker-type",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "other-picker-type"
+  },
+  {
+    "title": "Time Zone Selection",
+    "content": "<p>You can set the time zone of the date selection panel through the <code>show-timezone</code> attribute, and import timezoneData time zone data</p>\n",
+    "link": "date-picker/timezone",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "timezone"
+  },
+  {
+    "title": "Select Date Range",
+    "content": "<p>Set <code>type</code> to daterange. You can select a date range. \n Callback that will be executed after the selected date is obtained through <code>onPick</code>. The callback takes effect only when <code>daterange</code> or <code>datetimerange</code> is used. This parameter must be configured in <code>picker-options</code>. </p>\n",
+    "link": "date-picker/date-range",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "date-range"
+  },
+  {
+    "title": "Date Range Shortcut Options",
+    "content": "<p>Sets the date range shortcut through the <code>picker-options</code> object. \n <code>firstDayOfWeek</code>. The value ranges from 1 to 7. The default value is 7. </p>\n",
+    "link": "date-picker/date-range-shortcuts",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "date-range-shortcuts"
+  },
+  {
+    "title": "Default Time of the Date Range",
+    "content": "<p>When using <code>datetimerange</code> to set the date range, you can use <code>default-time</code> to set the start and end time. The default time is 00:00 on the selected date. 00 as the start and end time. <code>default-time</code> takes an array. Each item in the array is a string. The first item controls the time of the start date and the second item controls the time of the end date. </p>\n",
+    "link": "date-picker/default-time-of-range",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "default-time-of-range"
+  },
+  {
+    "title": "Select Month Range",
+    "content": "<p>Set the <code>type</code> attribute to monthrange. You can set the value to a month range. </p>\n",
+    "link": "date-picker/month-range",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "month-range"
+  },
+  {
+    "title": "Month Range Shortcut Options",
+    "content": "<p>Also, the <code>picker-options</code> object is used to set the month range shortcut options. </p>\n",
+    "link": "date-picker/month-range-shortcuts",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "month-range-shortcuts"
+  },
+  {
+    "title": "Read-only",
+    "content": "<p>Sets whether the calendar component is read-only through the <code>readonly</code> property. </p>\n",
+    "link": "date-picker/readonly",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "readonly"
+  },
+  {
+    "title": "Maximum/Minimum",
+    "content": "<p>Configure the <code>picker-options</code> attribute to disable the specified date segment based on the date in the <code>disabledDate</code> method of the object. In this way, the maximum and minimum values are implemented. </p>\n",
+    "link": "date-picker/max-min",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "max-min"
+  },
+  {
+    "title": "Alignment",
+    "content": "<p>You can use the <code>align</code> attribute to set the alignment mode between the date selection panel and the text box. The options are left, right, and center. The default value is left. </p>\n",
+    "link": "date-picker/align",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "align"
+  },
+  {
+    "title": "Size Settings",
+    "content": "<p>You can set the size of the date text box through the <code>size</code> attribute. The options are medium, small, and mini. </p>\n",
+    "link": "date-picker/set-size",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "set-size"
+  },
+  {
+    "title": "Clear Input",
+    "content": "<p>After you select a date, the clear icon is displayed by default when you hover the cursor over the text box. You can click the icon to clear the text box. If <code>clearable</code> is set to false, the clear icon is not displayed and cannot be cleared. The <code>clear-icon</code> property allows you to customize the clear icon. </p>\n",
+    "link": "date-picker/about-clear",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "about-clear"
+  },
+  {
+    "title": "Formatting",
+    "content": "<p> uses the <code>format</code> attribute to set the format of the text box, and the <code>value-format</code> attribute to set the format of the bound value. Date Format Attribute List</p>",
+    "link": "date-picker/about-format",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "about-format"
+  },
+  {
+    "title": "timeFormat formatting",
+    "content": "<p>Set the time display format of the date selection panel through the <code>time-format</code> attribute</p>",
+    "link": "date-picker/time-format",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "time-format"
+  },
+  {
+    "title": "Customized rear icon",
+    "content": "<p> uses the <code>suffix-icon</code> attribute to set the icon behind the date text box. An icon is imported from the <code>@opentiny/vue-icon</code>, initialized, and transferred to the <code>suffix-icon</code>. </p>\n",
+    "link": "date-picker/custom-suffix-icon",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "custom-suffix-icon"
+  },
+  {
+    "title": "Class name of the customized drop-down list box",
+    "content": "For details, see the following example.",
+    "link": "date-picker/custom-suffix-icon",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "custom-suffix-icon1"
+  },
+  {
+    "title": "Select Customized",
+    "content": "<p>When the range is selected, the <code>start-placeholder</code> and <code>end-placeholder</code> attributes can specify the placeholders of the start date and end date text boxes, respectively. The <code>range-separator</code> property specifies the separator between the start date and end date input boxes. </p>\n",
+    "link": "date-picker/custom-range",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "custom-range"
+  },
+  {
+    "title": "Select a range to cancel panel linkage",
+    "content": "<p>When the range is selected, by default, when you click the previous month or previous year arrow icon in the start date panel, the date in the end date panel is also switched to the previous month or previous year. When you switch the next month or the next year in the end date panel, the start date panel is also linked. However, if <code>unlink-panels</code> is set to true, panels are not associated with each other. When the year and month are changed, the change takes effect only for the current panel. </p>\n",
+    "link": "date-picker/unlink-panels",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "unlink-panels"
+  },
+  {
+    "title": "Default time setting when the selector is enabled",
+    "content": "<p><code>default-value</code> property specifies the date that is selected by default when the date picker panel opens. </p>\n",
+    "link": "date-picker/default-value",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "default-value"
+  },
+  {
+    "title": "The text box cannot be entered.",
+    "content": "By default, you can enter a date in the <p>Date text box. If you set <code>editable</code> to false, you cannot enter a date in the <p>Date text box. </p>\n",
+    "link": "date-picker/editable",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "editable"
+  },
+  {
+    "title": "Event",
+    "content": "<p>The main events include change, blur, and focus. </p>\n",
+    "link": "date-picker/date-picker-events",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "date-picker-events"
+  },
+  {
+    "title": "Focus",
+    "content": "<p>Use the <code>focus</code> method to enable the input to obtain the focus. </p>\n",
+    "link": "date-picker/focus",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "focus"
+  },
+  {
+    "title": "The arrow button controls the time selection.",
+    "content": "<p>When <code>type</code> is set to datetime or datetimerange, set <code>time-arrow-control</code> to true. The arrow button is displayed on the time panel to control the time selection. By default, the scrolling selection time is selected. </p>\n",
+    "link": "date-picker/time-arrow-control",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "time-arrow-control"
+  },
+  {
+    "title": "Do not trigger form validation",
+    "content": "<p>The date selector triggers form validation by default. The triggering modes include blur and change. If <code>validate-event</code> is set to false, form validation is not triggered. </p>\n",
+    "link": "date-picker/validate-event",
+    "component": "DatePicker Date Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "validate-event"
+  },
+  {
+    "title": "Set whether to display the GMT+8 time",
+    "content": "<p>You can use the <code>isutc8</code> attribute to set whether to display the GMT+8 time.</p>\n",
+    "link": "date-picker/utc8",
+    "component": "DatePicker displays the GMT+8 time outside China",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "utc8"
+  }
+]

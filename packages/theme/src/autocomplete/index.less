@@ -1,0 +1,115 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@autocomplete-prefix-cls: ~'@{css-prefix}autocomplete';
+@icon-loading-prefix-cls: ~'@{css-prefix}icon-loading';
+@popper-prefix-cls: ~'@{css-prefix}popper';
+
+.@{autocomplete-prefix-cls} {
+  .component-css-vars-autocomplete();
+
+  position: relative;
+  display: inline-block;
+
+  &-suggestion {
+    border: 1px solid var(--ti-autocomplete-suggestion-border-color);
+    border-radius: var(--ti-autocomplete-suggestion-border-radius);
+    background-color: var(--ti-autocomplete-suggestion-bg-color);
+    box-sizing: border-box;
+    box-shadow: var(--ti-base-box-shadow);
+
+    &__wrap {
+      max-height: 280px;
+      box-sizing: border-box;
+    }
+
+    // 兼容ie10-ie11
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      &__wrap {
+        margin-bottom: -17px !important;
+        padding-bottom: 6px;
+      }
+    }
+
+    &__list {
+      margin: 0;
+      padding: 0;
+    }
+
+    & &__list-item {
+      padding: 0 8px;
+      margin: 0;
+      line-height: var(--ti-autocomplete-li-height);
+      color: var(--ti-autocomplete-li-text-color);
+      font-size: var(--ti-autocomplete-li-font-size);
+      list-style: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+
+      &.highlighted,
+      &:hover {
+        background-color: var(--ti-autocomplete-li-hover-bg-color);
+      }
+
+      &.divider {
+        margin-top: 6px;
+        border-top: 1px solid var(--ti-autocomplete-li-divider-border-color);
+
+        &:last-child {
+          margin-bottom: -6px;
+        }
+      }
+
+      &:only-of-type {
+        &,
+        &:hover {
+          background-color: var(--ti-autocomplete-li-select-bg-color);
+          color: var(--ti-autocomplete-li-selected-text-color);
+        }
+      }
+    }
+
+    &.is-loading &__list-loading {
+      text-align: center;
+      height: 100px;
+      line-height: 100px;
+      font-size: var(--ti-common-font-size-4);
+      color: var(--ti-autocomplete-loading-text-color);
+
+      &::after {
+        display: inline-block;
+        content: '';
+        height: 100%;
+        vertical-align: middle;
+      }
+
+      &:hover {
+        background-color: #fff;
+      }
+    }
+
+    &.is-loading {
+      .@{icon-loading-prefix-cls} {
+        vertical-align: middle;
+      }
+    }
+
+    &.@{popper-prefix-cls}[x-placement^='bottom'] {
+      margin-top: var(--ti-base-dropdown-gap);
+    }
+  }
+}

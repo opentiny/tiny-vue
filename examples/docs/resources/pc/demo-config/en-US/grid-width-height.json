@@ -1,0 +1,106 @@
+[
+  {
+    "title": "Enable column width dragging",
+    "content": "<p>Column width is enabled by default. To disable this function, set <code>resizable</code> to <code>false</code></p>\n",
+    "link": "grid/tiny-first-menu/resize-column-width",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-resize-column-width"
+  },
+  {
+    "title": "Table column attribute width",
+    "content": "<p>The fixed width of the table column attribute is set. Values and percentages are supported. </p>\n",
+    "link": "grid/tiny-first-menu/fixed-column-width",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-fixed-column-width"
+  },
+  {
+    "title": "Adaptive expansion of column width",
+    "content": "<p>The table attribute is set to automatically expand fit. The default value is true, and adaptive expansion is enabled. If the value is false, the column width must be set. Otherwise, the table width is expanded by the cell content. </p>\n",
+    "link": "grid/tiny-first-menu/adaptive-column-width",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-adaptive-column-width"
+  },
+  {
+    "title": "The column width is not adaptively extended",
+    "content": "For details, see the following example.",
+    "link": "grid/tiny-first-menu/adaptive-un-column-width",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-adaptive-un-column-width"
+  },
+  {
+    "title": "Table Attribute Setting Height",
+    "content": "<p>Table attribute setting height Fixed table height. </p>\n",
+    "link": "grid/tiny-first-menu/fixed-grid-height",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-fixed-grid-height"
+  },
+  {
+    "title": "Disable responsive table width and height",
+    "content": "For details, see the following example.",
+    "link": "grid/tiny-first-menu/adaptive-grid-off-width-height",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-adaptive-grid-off-width-height"
+  },
+  {
+    "title": "Enable responsive table width and height",
+    "content": "<p>Table property setting autoResize property enabling responsive table width and height, set height <code>heigh</code> to <code>auto</code> to automatically follow the height of the parent container. </p>\n",
+    "link": "grid/news/auto-height",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "news-auto-height"
+  },
+  {
+    "title": "Set the minimum height of minHeight",
+    "content": "<p>Set minHeight to the minimum height and maxHeight to the maximum height. </p>\n",
+    "link": "grid/tiny-first-menu/min-grid-height",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-min-grid-height"
+  },
+  {
+    "title": "Set the maximum height of maxHeight",
+    "content": "For details, see the following example.",
+    "link": "grid/tiny-first-menu/max-min-grid-height",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-max-min-grid-height"
+  },
+  {
+    "title": "Set the overall column width",
+    "content": "<p>Set the minimum width of the overall column by using the <code>column-min-width</code> attribute. If this parameter is not set, the width of the column header span plus 36 (fixed width of the header) is used by default. \n</p>\n",
+    "link": "grid/tiny-first-menu/column-min-width",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-column-min-width"
+  },
+  {
+    "title": "Minimum width of this column",
+    "content": "<p>Minimum width of this column based on the table column attribute <code>min-width</code>; The automatically allocates the remaining space proportionally. \n</p>\n",
+    "link": "grid/tiny-first-menu/min-width",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-min-width"
+  },
+  {
+    "title": "Set the width of all columns",
+    "content": "<p>Set the width of all columns through the <code>column-width</code> attribute. The default value is even distribution. \n</p>\n",
+    "link": "grid/tiny-first-menu/column-width",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-column-width"
+  },
+  {
+    "title": "Recalculate Table",
+    "content": "<p>The <code>recalculate()</code> method can be used to recalculate the table when the width of the parent container changes. </p>\n",
+    "link": "grid/recalculate",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "recalculate"
+  }
+]

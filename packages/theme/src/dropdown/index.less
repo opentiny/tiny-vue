@@ -1,0 +1,84 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+@dropdown-prefix-cls: ~'@{css-prefix}dropdown';
+
+.@{dropdown-prefix-cls} {
+  display: inline-block;
+  position: relative;
+  font-size: var(--ti-common-font-size-base);
+
+  .@{css-prefix}button-group {
+    display: block;
+
+    .@{css-prefix}button {
+      float: none
+    }
+  }
+  
+  .@{dropdown-prefix-cls}__caret-button {
+    padding-left: 5px;
+    padding-right: 5px;
+    position: relative;
+    border-left: none;
+    min-width: 24px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 1px;
+      top: 5px;
+      bottom: 5px;
+      left: 0;
+      background: #fff
+    }
+
+    &.@{css-prefix}button--default:before {
+      background: #d9d9d9;
+    }
+
+    &.@{css-prefix}button--default:hover:before {
+      background-color: #1890ff
+    }  
+
+    &:hover:not(.is-disabled):before {
+      top: 0;
+      bottom: 0
+    }
+
+    svg {
+      padding-left: 0;
+      margin: 0 3px;
+    }
+  }
+
+  .@{dropdown-prefix-cls}-selfdefine:focus:active,
+  .@{dropdown-prefix-cls}-selfdefine:focus:not(.focusing) {
+    outline-width: 0
+  }
+
+  [disabled] {
+    cursor: not-allowed;
+    color: #bbb
+  }
+
+  &:hover{
+    cursor: pointer;
+  }
+
+  &-visible{
+    transform: rotate(180deg);
+  }
+}

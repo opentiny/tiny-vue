@@ -1,0 +1,127 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "basic-usage",
+      "type": "date(DatePicker) / array(DateRangePicker)",
+      "desc": "Date value selected by the date selector. You can set the initial value of the selector.",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled",
+      "type": "Boolean",
+      "desc": "Disabled",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "editable",
+      "sample": "basic-usage",
+      "type": "Boolean",
+      "desc": "The text box can be entered.",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "clearable",
+      "sample": "clear-icon",
+      "type": "Boolean",
+      "desc": "Display Clear Button",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "size",
+      "sample": "size-mini",
+      "type": "String",
+      "desc": "Text box size; The values of this attribute are medium, small, and mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "placeholder",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "Placeholder content for non-range selection",
+      "defaultValue": "The default value of this attribute is null."
+    },
+    {
+      "name": "popper-class",
+      "sample": "popper-class",
+      "type": "String",
+      "desc": "Class name of the TimePicker drop-down list box",
+      "defaultValue": ""
+    },
+    {
+      "name": "picker-options",
+      "sample": "picker-options",
+      "type": "Object",
+      "desc": "The following table lists the options of the current time and date selector.",
+      "defaultValue": "The default value of this attribute is {}."
+    },
+    {
+      "name": "default-value",
+      "sample": "default-value",
+      "type": "Date",
+      "desc": "Optional. When the selected date is empty, the time displayed by default when the selector panel is opened. Set it to a value that can be parsed by new Date().",
+      "defaultValue": ""
+    },
+    {
+      "name": "name",
+      "sample": "name",
+      "type": "String",
+      "desc": "Native attribute",
+      "defaultValue": ""
+    },
+    {
+      "name": "suffix-icon",
+      "sample": "suffix-icon",
+      "type": "String",
+      "desc": "Custom header icon",
+      "defaultValue": "The default value of this attribute is IconCalendar."
+    },
+    {
+      "name": "clear-icon",
+      "sample": "clear-icon",
+      "type": "String",
+      "desc": "Customized clear icon",
+      "defaultValue": "The default value of this attribute is IconOperationfailed."
+    },
+    {
+      "name": "popper-append-to-body",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "Indicates whether to insert a pop-up box to the body element. If a fault occurs in locating the fault in the dialog box that is displayed, you can set this attribute to false",
+      "defaultValue": "The default value of this attribute is true."
+    }
+  ],
+  "methods": [
+    {
+      "name": "focus",
+      "sample": "focus",
+      "type": "",
+      "desc": "Enable input to focus.",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "event-blur",
+      "type": "",
+      "desc": "This event is triggered when the user confirms the selected value.",
+      "defaultValue": ""
+    },
+    {
+      "name": "blur",
+      "sample": "event-blur",
+      "type": "",
+      "desc": "This event is triggered when the input loses focus.",
+      "defaultValue": ""
+    },
+    {
+      "name": "focus",
+      "sample": "event-blur",
+      "type": "",
+      "desc": "This event is triggered when the input is focused.",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "Bound value of the selected item",
+      "defaultValue": ""
+    },
+    {
+      "name": "options",
+      "sample": "change",
+      "type": "Array",
+      "desc": "Optional data source. The key name can be configured through the Props attribute.",
+      "defaultValue": ""
+    },
+    {
+      "name": "props",
+      "sample": "cascader-panel-props",
+      "type": "Object",
+      "desc": "Configuration options. For details, see the CascaderPanel Props table.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "custom-option-content",
+      "type": "",
+      "desc": "User-defined candidate node content. The parameter is {node, data}, which indicates the node object and data of the current node.",
+      "defaultValue": ""
+    }
+  ],
+  "methods": [
+    {
+      "name": "getCheckedNodes",
+      "sample": "change",
+      "type": "",
+      "desc": "Obtain the selected node. The parameter (leafOnly) indicates whether to obtain only subnodes. The default value is false",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearCheckedNodes",
+      "sample": "change",
+      "type": "",
+      "desc": "Clear selected nodes.",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "change",
+      "type": "Function(arg)",
+      "desc": "This event is triggered when the selected node changes. arg: The callback parameter is the value of the selected node (array type).",
+      "defaultValue": ""
+    },
+    {
+      "name": "expand-change",
+      "sample": "change",
+      "type": "Functon(arg)",
+      "desc": "This event is triggered when the expanded node changes. arg: The callback parameter is an array (Array type) consisting of parent option values.",
+      "defaultValue": ""
+    }
+  ],
+  "caspanelprops": [
+    {
+      "name": "expandTrigger",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "The expansion mode of the secondary menu; The optional values of this attribute are click / hover",
+      "defaultValue": "click"
+    },
+    {
+      "name": "multiple",
+      "sample": "default-multiple",
+      "type": "Boolean",
+      "desc": "Whether to select multiple options",
+      "defaultValue": "false"
+    },
+    {
+      "name": "checkStrictly",
+      "sample": "check-strictly",
+      "type": "Boolean",
+      "desc": "Whether to strictly comply with the principle that parent and child nodes are not associated with each other",
+      "defaultValue": "false"
+    },
+    {
+      "name": "emitPath",
+      "sample": "events",
+      "type": "Boolean",
+      "desc": "Indicates whether to return an array consisting of the values of menus at different levels of the selected node when the selected node is changed. If this parameter is set to false, only the value of the selected node is returned.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "lazy",
+      "sample": "auto-load",
+      "type": "Boolean",
+      "desc": "Whether to dynamically load subnodes. This parameter must be used together with the lazyLoad method.",
+      "defaultValue": "false"
+    },
+    {
+      "name": "lazyLoad",
+      "sample": "auto-load",
+      "type": "Function(node, resolve)",
+      "desc": "Method for loading dynamic data. This parameter is valid only when lazy is set to true. Parameter description: node indicates the currently clicked node. resolve indicates the callback after data loading is complete (mandatory).",
+      "defaultValue": ""
+    },
+    {
+      "name": "value",
+      "sample": "props-children",
+      "type": "String",
+      "desc": "The value of an option is the value of an attribute of the option object.",
+      "defaultValue": "'value'"
+    },
+    {
+      "name": "label",
+      "sample": "props-children",
+      "type": "String",
+      "desc": "Specify that the option label is an attribute value of the option object.",
+      "defaultValue": "'label'"
+    },
+    {
+      "name": "children",
+      "sample": "props-children",
+      "type": "String",
+      "desc": "Specifies that the sub-option of an option is an attribute value of the option object.",
+      "defaultValue": "'children'"
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled-items",
+      "type": "String",
+      "desc": "Specify that an option is disabled as an attribute value of the option object.",
+      "defaultValue": "'disabled'"
+    },
+    {
+      "name": "leaf",
+      "sample": "check-strictly",
+      "type": "String",
+      "desc": "The flag bit of the leaf node of the specified option is an attribute value of the option object.",
+      "defaultValue": "'leaf'"
+    }
+  ]
+}

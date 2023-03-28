@@ -1,0 +1,114 @@
+[
+  {
+    "title": "基本用法",
+    "content": "<p>表格列属性设置 <code>type=&quot;radio&quot;</code> 显示单选列。</p>\n",
+    "link": "grid/tiny-first-menu/default-serial-column",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-default-serial-column"
+  },
+  {
+    "title": "手动取消单选行",
+    "content": "详细用法参考如下示例",
+    "link": "grid/tiny-first-menu/clearRadioRow",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-clearRadioRow"
+  },
+  {
+    "title": "翻页后保留选中状态",
+    "content": "<p>通过配置<code>select-config</code>中的<code>reserve</code>为<code>true</code> 并设置<code>row-id</code>，开启翻页后保留选中状态功能。</p>\n",
+    "link": "grid/tiny-first-menu/gridPagerReserve",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-gridPagerReserve"
+  },
+  {
+    "title": "手动选中某一行",
+    "content": "<p><code>setRadioRow(row)</code> 用于单选行，设置某一行为选中状态。</p>\n",
+    "link": "grid/methods/set-radio-row",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "methods-set-radio-row"
+  },
+  {
+    "title": "单选配置项",
+    "content": "<p><code>radio-config</code> 配置项,可以配置单选框的默认选中项和禁用配置等特性。</p>\n",
+    "link": "grid/tiny-first-menu/radio-config",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-radio-config"
+  },
+  {
+    "title": "单选禁用",
+    "content": "<p>单选模式，通过 <code>radio-config</code> 配置项的属性 <code>checkMethod</code> ，传入自定义方法判断哪些数据项被禁用，方法会判断每个数据项，需返回值为 <code>true</code> 或者 <code>false</code>，代表此数据项启用或者禁用。</p>\n",
+    "link": "grid/disable-radio",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "disable-radio"
+  },
+  {
+    "title": "显示多选列",
+    "content": "<p>表格列属性设置 <code>type=&quot;selection&quot;</code> 显示多选列。</p>\n",
+    "link": "grid/tiny-first-menu/custom-serial-column",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-custom-serial-column"
+  },
+  {
+    "title": "手动取消多选行",
+    "content": "详细用法参考如下示例",
+    "link": "grid/tiny-first-menu/clearSelection",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-clearSelection"
+  },
+  {
+    "title": "手动选中所有行",
+    "content": "<p><code>setAllSelection(checked)</code> 用于多选行，可设置所有行的选中状态。</p>\n",
+    "link": "grid/methods/set-all-selection",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "methods-set-all-selection"
+  },
+  {
+    "title": "手动选中指定行",
+    "content": "<p><code>setSelection(rows, checked)</code> 用于多选行，可设置指定行为选中状态，第一个参数可传入对象或数组，如果是对象则选择单行，如果是数组则选择多行，第二个参数为选中与否。</p>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\">TIP</p>\n<p><code>setSelection</code> 方法不会触发 <code>select-change</code> 事件，只有点击才会触发。</p><p>多选模式，通过 <code>select-config</code> 配置项的属性<code>checkField</code>指定行数据的某个字段去决定这行数据的选中状态（并且选中状态和这个字段是双向绑定的）。</p>\n</div>\n",
+    "link": "grid/methods/set-selection",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "methods-set-selection"
+  },
+  {
+    "title": "手动切换所有行选中状态",
+    "content": "<p><code>toggleAllSelection()</code> 方法可直接切换所有行的选中状态。</p>\n",
+    "link": "grid/methods/toggle-all-selection",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "methods-toggle-all-selection"
+  },
+  {
+    "title": "手动切换指定行选中状态",
+    "content": "<p><code>toggleRowSelection(row)</code> 方法可直接切换某一行的选中状态。</p>\n",
+    "link": "grid/methods/toggle-row-selection",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "methods-toggle-row-selection"
+  },
+  {
+    "title": "多选禁用",
+    "content": "<p>多选模式，通过 <code>select-config</code> 配置项的属性 <code>checkMethod</code> ，传入自定义方法判断哪些数据项被禁用，方法会判断每个数据项，需返回值为 <code>true</code> 或者 <code>false</code>，代表此数据项启用或者禁用。</p>\n",
+    "link": "grid/disable-selection",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "disable-selection"
+  },
+  {
+    "title": "自定义操作列内容",
+    "content": "<p>通过插槽设置自定义操作列，即 <code>&lt;tiny-grid-column&gt;</code> 自定义操作列内容 <code>&lt;/tiny-grid-column&gt;</code> 。</p>\n",
+    "link": "grid/tiny-first-menu/custom-operation-column",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-custom-operation-column"
+  }
+]

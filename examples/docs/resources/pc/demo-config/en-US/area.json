@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>Sets the default value through the <code>v-model / value</code> property. </p>\n",
+    "link": "area/basic-usage",
+    "component": "Area",
+    "findIntroStr": "Displays the region name. The options are obtained by configuring the region and data source.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Custom Service",
+    "content": "<p>You can use <code>fetch-jcr</code> to customize services to obtain regional JCR data, and <code>fetch-rigion</code> to obtain regional region data. <code>fetch-rep</code> is used to obtain the data of rep offices, and <code>fetch-office</code> is used to obtain the data of offices. In addition, when the data field is not the default <code>name_cn</code> <code>org_id</code>, you can set the mapping field of the data through the <code>props</code> attribute. </p>\n",
+    "link": "area/custom-service",
+    "component": "Area",
+    "findIntroStr": "Displays the region name. The options are obtained by configuring the region and data source.",
+    "demoId": "custom-service"
+  },
+  {
+    "title": "Set Component Size",
+    "content": "<p>The options are as follows: <code>medium</code>, <code>small</code>, <code>mini</code></p>\n",
+    "link": "area/size",
+    "component": "Area",
+    "findIntroStr": "Displays the region name. The options are obtained by configuring the region and data source.",
+    "demoId": "size"
+  },
+  {
+    "title": "Event",
+    "content": "The <code>change-region</code> event is triggered when the value of the Region drop-down list box changes. The <code>change-rep</code> event is triggered when the value of the Rep drop-down list box changes. The <code>change-office</code> event is triggered when the value of the Office drop-down list box changes. </p>\n",
+    "link": "area/area-events",
+    "component": "Area",
+    "findIntroStr": "Displays the region name. The options are obtained by configuring the region and data source.",
+    "demoId": "area-events"
+  },
+  {
+    "title": "Set Component Size",
+    "content": "<p>Use <code>disabled</code> to disable the component. The default value is false. </p>\n",
+    "link": "area/disabled",
+    "component": "Area",
+    "findIntroStr": "Displays the region name. The options are obtained by configuring the region and data source.",
+    "demoId": "disabled"
+  }
+]

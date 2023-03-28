@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" xml:space="preserve">
+<g id="Icon">
+	<g id="UI-icons-英文名" transform="translate(-1037.000000, -1903.000000)">
+		<g id="网站通用图标" transform="translate(99.000000, 1053.000000)">
+			<g id="checkout" transform="translate(936.000000, 849.000000)">
+				<path class="svg-checkout-r1" d="M8,6h7c0.6,0,1,0.4,1,1l0,0c0,0.6-0.4,1-1,1H8C7.4,8,7,7.6,7,7l0,0C7,6.4,7.4,6,8,6z"/>
+				<path class="svg-checkout-r2" d="M8,10h5c0.6,0,1,0.4,1,1l0,0c0,0.6-0.4,1-1,1H8c-0.6,0-1-0.4-1-1l0,0
+					C7,10.4,7.4,10,8,10z"/>
+				<path class="svg-checkout-c" d="M18.1,21l5.7-5.7c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-6.4,6.4c-0.4,0.4-1,0.4-1.4,0
+					l-3.5-3.5c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0L18.1,21z"/>
+				<path class="svg-checkout-w" d="M20,2H6C5.1,2,4,3.1,4,4v18c0,0.9,1.1,2,2,2h6c0.5,0,1-0.5,1-1s-0.5-1-1-1l-6,0V4h14v9
+					c0,0.5,0.5,1,1,1s1-0.5,1-1V4C22,3.1,20.9,2,20,2z"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

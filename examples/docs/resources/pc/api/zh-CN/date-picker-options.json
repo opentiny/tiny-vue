@@ -1,0 +1,32 @@
+{
+  "attrs": [
+    {
+      "name": "shortcuts",
+      "sample": "date-shortcuts",
+      "type": "Object",
+      "desc": "设置快捷选项，需要传入 { text, onClick } 对象用法参考 demo 或下表",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabledDate",
+      "sample": "max-min",
+      "type": "Function",
+      "desc": "设置禁用状态，参数为当前日期，要求返回 Boolean",
+      "defaultValue": ""
+    },
+    {
+      "name": "firstDayOfWeek",
+      "sample": "date-range-shortcuts",
+      "type": "Number",
+      "desc": "周起始日;该属性的可选值为 1 到 7",
+      "defaultValue": "该属性的默认值为 7"
+    },
+    {
+      "name": "onPick",
+      "sample": "date-range",
+      "type": "Function({ maxDate, minDate })",
+      "desc": "选中日期后会执行的回调，只有当 daterange 或 datetimerange 才生效",
+      "defaultValue": ""
+    }
+  ]
+}

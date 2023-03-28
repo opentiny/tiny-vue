@@ -1,0 +1,18 @@
+{
+  "attrs": [
+    {
+      "name": "columns",
+      "sample": "",
+      "type": "array",
+      "desc": "A collection of dimensions and indicators. Most charts in a chart have a single dimension and multiple indicators. Therefore, the first value is a dimension by default, and the remaining values are indicators.",
+      "defaultValue": ""
+    },
+    {
+      "name": "rows",
+      "sample": "",
+      "type": "array",
+      "desc": "Data set",
+      "defaultValue": ""
+    }
+  ]
+}
