@@ -1,0 +1,4371 @@
+{
+  "component": [
+    {
+      "name": "框架风格",
+      "children": [
+        {
+          "path": "/color",
+          "name": "Color 色彩"
+        },
+        {
+          "path": "/container",
+          "name": "Container 版型"
+        },
+        {
+          "path": "/font",
+          "name": "Font 字体"
+        },
+        {
+          "path": "/icon",
+          "name": "Icon 图标"
+        },
+        {
+          "path": "/layout",
+          "name": "Layout 布局",
+          "children": [
+            {
+              "path": "/layout/row",
+              "name": "Row 行配置"
+            },
+            {
+              "path": "/layout/col",
+              "name": "Col 列配置"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "导航组件",
+      "children": [
+        {
+          "path": "/anchor",
+          "name": "anchor 锚点",
+          "children": [
+            {
+              "path": "/anchor/basic-usage",
+              "name": "基本用法"
+            },
+            {
+              "path": "/anchor/is-affix",
+              "name": "固定模式"
+            },
+            {
+              "path": "/anchor/set-container",
+              "name": "滚动容器"
+            },
+            {
+              "path": "/anchor/on-change",
+              "name": "onChange事件"
+            }
+          ]
+        },
+        {
+          "path": "/breadcrumb",
+          "name": "Breadcrumb 面包屑",
+          "children": [
+            {
+              "path": "/breadcrumb/custom-item",
+              "name": "自定义节点"
+            },
+            {
+              "path": "/breadcrumb/custom-separator",
+              "name": "自定义分隔符"
+            },
+            {
+              "path": "/breadcrumb/options",
+              "name": "显示字段映射"
+            }
+          ]
+        },
+        {
+          "path": "/fall-menu",
+          "name": "FallMenu 瀑布菜单",
+          "children": [
+            {
+              "path": "/fall-menu/data-resource",
+              "name": "数据源"
+            },
+            {
+              "path": "/fall-menu/custom-slider-icon",
+              "name": "自定义左右侧滑动图标"
+            },
+            {
+              "path": "/fall-menu/custom-menuitem",
+              "name": "自定义菜单内容"
+            }
+          ]
+        },
+        {
+          "path": "/floatbar",
+          "name": "Floatbar 浮动块",
+          "children": [
+            {
+              "path": "/floatbar/custom-style",
+              "name": "自定义样式"
+            },
+            {
+              "path": "/floatbar/custom-floatbar-item",
+              "name": "自定义浮动块内容"
+            },
+            {
+              "path": "/floatbar/operation-floatbar-item",
+              "name": "操作浮动块内容"
+            }
+          ]
+        },
+        {
+          "path": "/toggle-menu",
+          "name": "ToggleMenu 收缩菜单",
+          "children": [
+            {
+              "path": "/toggle-menu/custom-icon",
+              "name": "自定义菜单左侧图标"
+            },
+            {
+              "path": "/toggle-menu/get-menu-data-sync",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/toggle-menu/toggle-props",
+              "name": "选项配置"
+            },
+            {
+              "path": "/toggle-menu/default-expand-all",
+              "name": "默认展开所有节点"
+            },
+            {
+              "path": "/toggle-menu/dragable",
+              "name": "拖拽节点"
+            },
+            {
+              "path": "/toggle-menu/show-filter",
+              "name": "显示过滤搜索框"
+            },
+            {
+              "path": "/toggle-menu/events",
+              "name": "事件"
+            }
+          ]
+        },
+        {
+          "path": "/link-menu",
+          "name": "LinkMenu 收藏夹菜单",
+          "children": [
+            {
+              "path": "/link-menu/data-resource",
+              "name": "数据源"
+            },
+            {
+              "path": "/link-menu/menu-items",
+              "name": "可收藏栏目数"
+            },
+            {
+              "path": "/link-menu/get-menu-data-sync",
+              "name": "自定义菜单服务"
+            },
+            {
+              "path": "/link-menu/custom-icon",
+              "name": "自定义折叠展开图标"
+            },
+            {
+              "path": "/link-menu/custom-foot",
+              "name": "自定义菜单弹窗底部"
+            }
+          ]
+        },
+        {
+          "path": "/milestone",
+          "name": "Milestone 里程碑",
+          "children": [
+            {
+              "path": "/milestone/data-source",
+              "name": "数据源"
+            },
+            {
+              "path": "/milestone/data-field-mapping",
+              "name": "数据字段映射"
+            },
+            {
+              "path": "/milestone/flag-before",
+              "name": "旗帜数据来源前面节点"
+            },
+            {
+              "path": "/milestone/line-style",
+              "name": "进度条颜色"
+            },
+            {
+              "path": "/milestone/milestones-status",
+              "name": "状态与颜色对应关系"
+            },
+            {
+              "path": "/milestone/show-number",
+              "name": "取消未完成状态序号显示"
+            },
+            {
+              "path": "/milestone/solid-style",
+              "name": "已完成节点实心显示"
+            },
+            {
+              "path": "/milestone/milestone-space",
+              "name": "宽度"
+            },
+            {
+              "path": "/milestone/start-index",
+              "name": "序号起始值"
+            },
+            {
+              "path": "/milestone/custom-icon-slot",
+              "name": "自定义节点图标插槽"
+            },
+            {
+              "path": "/milestone/custom-bottom",
+              "name": "自定义节点下方内容"
+            },
+            {
+              "path": "/milestone/custom-top",
+              "name": "自定义节点上方内容"
+            },
+            {
+              "path": "/milestone/custom-flag",
+              "name": "自定义旗帜内容"
+            },
+            {
+              "path": "/milestone/milestone-events",
+              "name": "事件"
+            }
+          ]
+        },
+        {
+          "path": "/nav-menu",
+          "name": "NavMenu 导航菜单",
+          "children": [
+            {
+              "path": "/nav-menu/data-resource",
+              "name": "数据源"
+            },
+            {
+              "path": "/nav-menu/overflow",
+              "name": "显示策略"
+            },
+            {
+              "path": "/nav-menu/slot-logo",
+              "name": "插槽"
+            },
+            {
+              "path": "/nav-menu/before-skip",
+              "name": "菜单跳转处理"
+            },
+            {
+              "path": "/nav-menu/custom-service",
+              "name": "自定义服务"
+            }
+          ]
+        },
+        {
+          "path": "/steps",
+          "name": "Steps 步骤条",
+          "children": [
+            {
+              "path": "/steps/data-resource",
+              "name": "数据源"
+            },
+            {
+              "path": "/steps/normal-steps",
+              "name": "普通步骤条"
+            },
+            {
+              "path": "/steps/advanced-steps",
+              "name": "高级向导"
+            },
+            {
+              "path": "/steps/timeline-steps",
+              "name": "时间线步骤条"
+            },
+            {
+              "path": "/steps/custom-steps-item",
+              "name": "自定义数据项"
+            },
+            {
+              "path": "/steps/order-progress",
+              "name": "订单流程"
+            },
+            {
+              "path": "/steps/steps-event",
+              "name": "事件"
+            },
+            {
+              "path": "/steps/steps-slot",
+              "name": "插槽"
+            }
+          ]
+        },
+        {
+          "path": "/tabs",
+          "name": "Tabs 标签页",
+          "children": [
+            {
+              "path": "/tabs/tab-style",
+              "name": "风格类型"
+            },
+            {
+              "path": "/tabs/with-add",
+              "name": "标签页可增加"
+            },
+            {
+              "path": "/tabs/with-close",
+              "name": "标签页可关闭"
+            },
+            {
+              "path": "/tabs/position",
+              "name": "显示位置"
+            },
+            {
+              "path": "/tabs/before-leave",
+              "name": "切换标签页前的钩子"
+            },
+            {
+              "path": "/tabs/stretch-wh",
+              "name": "标签页宽度自适应"
+            },
+            {
+              "path": "/tabs/tabs-events",
+              "name": "事件"
+            },
+            {
+              "path": "/tabs/custom-tab-title",
+              "name": "自定义标签页标题"
+            },
+            {
+              "path": "/tabs/show-different-grid-data",
+              "name": "标签页切换不同 Grid"
+            }
+          ]
+        },
+        {
+          "path": "/time-line",
+          "name": "TimeLine 时间线",
+          "children": [
+            {
+              "path": "/time-line/vertical-step",
+              "name": "竖向时间线"
+            },
+            {
+              "path": "/time-line/set-step-width",
+              "name": "宽度设置"
+            },
+            {
+              "path": "/time-line/different-data",
+              "name": "数据映射"
+            },
+            {
+              "path": "/time-line/set-start-value",
+              "name": "设置序号起始值"
+            },
+            {
+              "path": "/time-line/show-status",
+              "name": "组件内部状态"
+            },
+            {
+              "path": "/time-line/show-number",
+              "name": "未完成的序号显示"
+            },
+            {
+              "path": "/time-line/custom-normal-step",
+              "name": "自定义横向时间线"
+            },
+            {
+              "path": "/time-line/custom-vertical-step",
+              "name": "自定义竖向时间线"
+            },
+            {
+              "path": "/time-line/event",
+              "name": "事件"
+            }
+          ]
+        },
+        {
+          "path": "/tree-menu",
+          "name": "TreeMenu 树型菜单",
+          "children": [
+            {
+              "path": "/tree-menu/data-resource",
+              "name": "数据源"
+            },
+            {
+              "path": "/tree-menu/text-ellipsis",
+              "name": "文字超长省略显示"
+            },
+            {
+              "path": "/tree-menu/text-wrap",
+              "name": "文字超长换行显示"
+            },
+            {
+              "path": "/tree-menu/check-strictly",
+              "name": "父子级不相关联"
+            },
+            {
+              "path": "/tree-menu/default-expanded-keys",
+              "name": "默认展开单节点"
+            },
+            {
+              "path": "/tree-menu/lazy-load",
+              "name": "懒加载子节点"
+            },
+            {
+              "path": "/tree-menu/filter-node-method",
+              "name": "搜索规则配置"
+            },
+            {
+              "path": "/tree-menu/empty-text",
+              "name": "自定义空数据文本"
+            },
+            {
+              "path": "/tree-menu/default-expand-all",
+              "name": "默认展开全部菜单"
+            },
+            {
+              "path": "/tree-menu/can-draggable",
+              "name": "拖动菜单"
+            },
+            {
+              "path": "/tree-menu/expand-on-click-node",
+              "name": "点击文字展开菜单"
+            },
+            {
+              "path": "/tree-menu/tree-menu-indent",
+              "name": "水平缩进"
+            },
+            {
+              "path": "/tree-menu/accordion",
+              "name": "手风琴"
+            },
+            {
+              "path": "/tree-menu/show-checkbox",
+              "name": "节点"
+            },
+            {
+              "path": "/tree-menu/search-icon",
+              "name": "搜索图标"
+            },
+            {
+              "path": "/tree-menu/tree-menu-slot",
+              "name": "插槽"
+            },
+            {
+              "path": "/tree-menu/tree-menu-event",
+              "name": "事件"
+            }
+          ]
+        },
+        {
+          "path": "/wizard",
+          "name": "Wizard 流程图",
+          "children": [
+            {
+              "path": "/wizard/page-guide",
+              "name": "页向导流程图"
+            },
+            {
+              "path": "/wizard/vertical",
+              "name": "垂直流程图"
+            },
+            {
+              "path": "/wizard/time-line-flow",
+              "name": "时间线流程图"
+            },
+            {
+              "path": "/wizard/slot",
+              "name": "插槽"
+            }
+          ]
+        },
+        {
+          "path": "/dropdown",
+          "name": "Dropdown 下拉菜单",
+          "children": [
+            {
+              "path": "/dropdown/split-button",
+              "name": "触发对象"
+            },
+            {
+              "path": "/dropdown/trigger",
+              "name": "触发方式"
+            },
+            {
+              "path": "/dropdown/hide-on-click",
+              "name": "菜单隐藏方式"
+            },
+            {
+              "path": "/dropdown/disabled",
+              "name": "禁用"
+            },
+            {
+              "path": "/dropdown/size",
+              "name": "不同尺寸"
+            },
+            {
+            "path": "/dropdown/title",
+            "name": "自定义文本"
+            },
+            {
+              "path": "/dropdown/options",
+              "name": "使用配置式"
+            },
+            {
+              "path": "/dropdown/multi-level",
+              "name": "多级下拉菜单"
+            },
+            {
+              "path": "/dropdown/events",
+              "name": "事件"
+            },
+            {
+              "path": "/dropdown/slot-default",
+              "name": "默认插槽"
+            }
+          ]
+        },
+        {
+          "path": "/action-menu",
+          "name": "ActionMenu 菜单按钮",
+          "children": [
+            {
+              "path": "/action-menu/disabled",
+              "name": "禁用"
+            },
+            {
+              "path": "/action-menu/text-field",
+              "name": "显示文本"
+            },
+            {
+              "path": "/action-menu/more-text",
+              "name": "下拉按钮显示文本"
+            },
+            {
+              "path": "/action-menu/spacing",
+              "name": "间距"
+            },
+            {
+              "path": "/action-menu/popper-class",
+              "name": "自定义下拉面板样式"
+            },
+            {
+              "path": "/action-menu/max-show-num",
+              "name": "显示个数"
+            },
+            {
+              "path": "/action-menu/item-click",
+              "name": "菜单项点击事件"
+            },
+            {
+              "path": "/action-menu/more-click",
+              "name": "更多按钮点击事件"
+            },
+            {
+              "path": "/action-menu/visible-change",
+              "name": "菜单显示隐藏变化事件"
+            },
+            {
+              "path": "/action-menu/slot-item",
+              "name": "菜单项插槽"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "容器组件",
+      "children": [
+        {
+          "path": "/carousel",
+          "name": "Carousel 走马灯",
+          "children": [
+            {
+              "path": "/carousel/indicator-trigger",
+              "name": "指示器和触发方式"
+            },
+            {
+              "path": "/carousel/manual-play",
+              "name": "手动轮播"
+            },
+            {
+              "path": "/carousel/close-loop",
+              "name": "关闭循环轮播"
+            },
+            {
+              "path": "/carousel/autoplay",
+              "name": "自动切换"
+            },
+            {
+              "path": "/carousel/play-interval",
+              "name": "轮播间隔时间"
+            },
+            {
+              "path": "/carousel/up-down-carousel",
+              "name": "纵向轮播"
+            },
+            {
+              "path": "/carousel/show-title",
+              "name": "显示标题"
+            },
+            {
+              "path": "/carousel/carousel-arrow",
+              "name": "左右切换箭头"
+            },
+            {
+              "path": "/carousel/card-mode",
+              "name": "卡片化展示"
+            }
+          ]
+        },
+        {
+          "path": "/dialog-box",
+          "name": "DialogBox 对话框",
+          "children": [
+            {
+              "path": "/dialog-box/secondary-dialog",
+              "name": "二级弹窗"
+            },
+            {
+              "path": "/dialog-box/custom-dialog-title",
+              "name": "自定义弹窗标题"
+            },
+            {
+              "path": "/dialog-box/custom-dialog-content",
+              "name": "自定义弹窗内容"
+            },
+            {
+              "path": "/dialog-box/custom-dialog-footer",
+              "name": "自定义弹窗底部"
+            },
+            {
+              "path": "/dialog-box/hidden-close-buttons",
+              "name": "隐藏关闭按钮"
+            },
+            {
+              "path": "/dialog-box/close-on-press-escape",
+              "name": "禁用 ESC 关闭"
+            },
+            {
+              "path": "/dialog-box/dialog-top-height",
+              "name": "弹窗距离顶部的高度"
+            },
+            {
+              "path": "/dialog-box/dialog-width",
+              "name": "弹窗的宽度"
+            },
+            {
+              "path": "/dialog-box/close-on-click-modal",
+              "name": "点击遮罩层不关闭"
+            },
+            {
+              "path": "/dialog-box/no-modal",
+              "name": "不启用遮罩层"
+            },
+            {
+              "path": "/dialog-box/right-dialog",
+              "name": "右侧弹窗"
+            },
+            {
+              "path": "/dialog-box/hidden-header",
+              "name": "隐藏弹窗头部"
+            },
+            {
+              "path": "/dialog-box/lock-scroll",
+              "name": "弹出时禁用滚动"
+            },
+            {
+              "path": "/dialog-box/center",
+              "name": "弹窗头部和底部内容居中"
+            },
+            {
+              "path": "/dialog-box/draggable",
+              "name": "可拖拽"
+            },
+            {
+              "path": "/dialog-box/fullscreen",
+              "name": "全屏弹窗"
+            },
+            {
+              "path": "/dialog-box/open-close-events",
+              "name": "弹出与关闭事件"
+            },
+            {
+              "path": "/dialog-box/form-in-dialog",
+              "name": "弹窗表单"
+            }
+          ]
+        },
+        {
+          "path": "/collapse",
+          "name": "Collapse 折叠面板",
+          "children": [
+            {
+              "path": "/collapse/accordion",
+              "name": "手风琴效果"
+            },
+            {
+              "path": "/collapse/dynamic-disable",
+              "name": "禁用状态"
+            },
+            {
+              "path": "/collapse/custom-collapse-title",
+              "name": "自定义面板标题"
+            },
+            {
+              "path": "/collapse/collapse-events",
+              "name": "折叠面板事件"
+            },
+            {
+              "path": "/collapse/block-close",
+              "name": "阻止折叠面板关闭"
+            },
+            {
+              "path": "/collapse/nested-grid",
+              "name": "嵌套表格"
+            },
+            {
+              "path": "/collapse/nested-form",
+              "name": "嵌套表单"
+            }
+          ]
+        },
+        {
+          "path": "/split",
+          "name": "Split 面板分割",
+          "children": [
+            {
+              "path": "/split/split-threshold",
+              "name": "面板阈值"
+            },
+            {
+              "path": "/split/split-mode",
+              "name": "分割方式"
+            },
+            {
+              "path": "/split/split-events",
+              "name": "事件"
+            },
+            {
+              "path": "/split/split-slot",
+              "name": "插槽"
+            },
+            {
+              "path": "/split/nested-use",
+              "name": "嵌套使用"
+            },
+            {
+              "path": "/split/collapsible",
+              "name": "可折叠"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "表单组件",
+      "children": [
+        {
+          "path": "/Autocomplete",
+          "name": "Autocomplete 自动完成",
+          "children": [
+            {
+              "path": "/autocomplete/select-event",
+              "name": "事件"
+            },
+            {
+              "path": "/autocomplete/disabled",
+              "name": "禁用"
+            },
+            {
+              "path": "/autocomplete/size",
+              "name": "输入框大小"
+            },
+            {
+              "path": "/autocomplete/clearable",
+              "name": "可清除"
+            },
+            {
+              "path": "/autocomplete/append-prepend",
+              "name": "输入框前/后置内容"
+            },
+            {
+              "path": "/autocomplete/custom-icon",
+              "name": "自定义图标"
+            },
+            {
+              "path": "/autocomplete/debounce",
+              "name": "去抖延时"
+            },
+            {
+              "path": "/autocomplete/hide-loading",
+              "name": "隐藏加载图标"
+            },
+            {
+              "path": "/autocomplete/cust-template",
+              "name": "自定义模板"
+            },
+            {
+              "path": "/autocomplete/remote-search",
+              "name": "远程搜索"
+            },
+            {
+              "path": "/autocomplete/value-key",
+              "name": "指定显示的键名"
+            },
+            {
+              "path": "/autocomplete/popper-class",
+              "name": "自定义列表样式"
+            },
+            {
+              "path": "/autocomplete/placement",
+              "name": "设置菜单弹出位置"
+            },
+            {
+              "path": "/autocomplete/highlight-first-item",
+              "name": "高亮显示第一项"
+            },
+            {
+              "path": "/autocomplete/no-trigger-on-focus",
+              "name": "聚焦不显示建议列表"
+            }
+          ]
+        },
+        {
+          "path": "/button",
+          "name": "Button 按钮",
+          "children": [
+            {
+              "path": "/button/text-button",
+              "name": "文字按钮"
+            },
+            {
+              "path": "/button/icon-button",
+              "name": "图标按钮"
+            },
+            {
+              "path": "/button/round",
+              "name": "圆角按钮"
+            },
+            {
+              "path": "/button/img-button",
+              "name": "图片按钮"
+            },
+            {
+              "path": "/button/button-style",
+              "name": "主题样式"
+            },
+            {
+              "path": "/button/show-loading",
+              "name": "显示加载中"
+            },
+            {
+              "path": "/button/button-size",
+              "name": "尺寸"
+            },
+            {
+              "path": "/button/circle-button",
+              "name": "圆形按钮"
+            },
+            {
+              "path": "/button/autofocus",
+              "name": "聚焦"
+            },
+            {
+              "path": "/button/plain-button",
+              "name": "朴素按钮"
+            },
+            {
+              "path": "/button/reset-time",
+              "name": "防止表单重复提交"
+            },
+            {
+              "path": "/button/default-focus",
+              "name": "默认聚焦"
+            },
+            {
+              "path": "/button/button-events",
+              "name": "事件"
+            },
+            {
+              "path": "/button/dynamic-disable-button",
+              "name": "动态禁用按钮"
+            }
+          ]
+        },
+        {
+          "path": "/button-group",
+          "name": "ButtonGroup 按钮组",
+          "children": [
+            {
+              "path": "/button-group/button-group-data",
+              "name": "按钮组数据"
+            },
+            {
+              "path": "/button-group/size",
+              "name": "设置组件大小"
+            },
+            {
+              "path": "/button-group/dynamic-disable",
+              "name": "禁用状态"
+            },
+            {
+              "path": "/button-group/plain-button-group",
+              "name": "朴素按钮"
+            },
+            {
+              "path": "/button-group/text-value-field",
+              "name": "数据字段映射"
+            },
+            {
+              "path": "/button-group/default-slot-usage",
+              "name": "默认插槽"
+            }
+          ]
+        },
+        {
+          "path": "/cascader",
+          "name": "Cascader 级联选择器",
+          "children": [
+            {
+              "path": "/cascader/disabled-items",
+              "name": "禁用选项"
+            },
+            {
+              "path": "/cascader/clearable",
+              "name": "可清空"
+            },
+            {
+              "path": "/cascader/default-multiple",
+              "name": "多选"
+            },
+            {
+              "path": "/cascader/check-strictly",
+              "name": "父子级不相关联"
+            },
+            {
+              "path": "/cascader/auto-load",
+              "name": "动态加载"
+            },
+            {
+              "path": "/cascader/props-children",
+              "name": "指定选择"
+            },
+            {
+              "path": "/cascader/filterable",
+              "name": "可搜索"
+            },
+            {
+              "path": "/cascader/show-all-levels",
+              "name": "仅显示最后一级"
+            },
+            {
+              "path": "/cascader/events",
+              "name": "事件"
+            }
+          ]
+        },
+        {
+          "path": "/cascader-panel",
+          "name": "CascaderPanel 级联面板",
+          "children": [
+            {
+              "path": "/cascader-panel/change",
+              "name": "事件"
+            },
+            {
+              "path": "/cascader-panel/custom-option-content",
+              "name": "自定义节点内容"
+            },
+            {
+              "path": "/cascader-panel/cascader-panel-props",
+              "name": "Props 选项"
+            }
+          ]
+        },
+        {
+          "path": "/checkbox",
+          "name": "Checkbox 复选框",
+          "children": [
+            {
+              "path": "/checkbox/checkbox-group",
+              "name": "复选框组"
+            },
+            {
+              "path": "/checkbox/indeterminate",
+              "name": "全选与半选"
+            },
+            {
+              "path": "/checkbox/min-max",
+              "name": "可选数量限制"
+            },
+            {
+              "path": "/checkbox/checkbox-button",
+              "name": "按钮形式复选框"
+            },
+            {
+              "path": "/checkbox/vertical-checkbox",
+              "name": "垂直布局"
+            },
+            {
+              "path": "/checkbox/dynamic-create-checkbox",
+              "name": "动态生成复选框"
+            },
+            {
+              "path": "/checkbox/content-overflow",
+              "name": "内容超出时的提示信息"
+            },
+            {
+              "path": "/checkbox/text",
+              "name": "文本"
+            },
+            {
+              "path": "/checkbox/with-border",
+              "name": "尺寸"
+            },
+            {
+              "path": "/checkbox/checkbox-events",
+              "name": "事件"
+            },
+            {
+              "path": "/checkbox/checkbox-slot",
+              "name": "插槽"
+            }
+          ]
+        },
+        {
+          "path": "/date-picker",
+          "name": "DatePicker 日期选择器",
+          "children": [
+            {
+              "path": "/date-picker/date-shortcuts",
+              "name": "选择日带快捷选项"
+            },
+            {
+              "path": "/date-picker/other-picker-type",
+              "name": "其他日期单位"
+            },
+            {
+              "path": "/date-picker/time-zone",
+              "name": "时区选择"
+            },
+            {
+              "path": "/date-picker/date-range",
+              "name": "选择日期范围"
+            },
+            {
+              "path": "/date-picker/date-range-shortcuts",
+              "name": "日期范围快捷选项"
+            },
+            {
+              "path": "/date-picker/default-time-of-range",
+              "name": "日期范围默认时刻"
+            },
+            {
+              "path": "/date-picker/month-range",
+              "name": "选择月份范围"
+            },
+            {
+              "path": "/date-picker/month-range-shortcuts",
+              "name": "月份范围快捷选项"
+            },
+            {
+              "path": "/date-picker/max-min",
+              "name": "最大最小值"
+            },
+            {
+              "path": "/date-picker/align",
+              "name": "对齐方式"
+            },
+            {
+              "path": "/date-picker/set-size",
+              "name": "尺寸设置"
+            },
+            {
+              "path": "/date-picker/about-clear",
+              "name": "清除输入"
+            },
+            {
+              "path": "/date-picker/about-format",
+              "name": "格式化相关"
+            },
+            {
+              "path": "/date-picker/custom-suffix-icon",
+              "name": "自定义后置图标"
+            },
+            {
+              "path": "/date-picker/custom-range",
+              "name": "范围选择自定义相关"
+            },
+            {
+              "path": "/date-picker/unlink-panels",
+              "name": "范围选择取消面板联动"
+            },
+            {
+              "path": "/date-picker/default-value",
+              "name": "选择器打开时默认时间设置"
+            },
+            {
+              "path": "/date-picker/editable",
+              "name": "文本框不可输入"
+            },
+            {
+              "path": "/date-picker/date-picker-events",
+              "name": "事件"
+            },
+            {
+              "path": "/date-picker/focus",
+              "name": "获取焦点"
+            },
+            {
+              "path": "/date-picker/time-arrow-control",
+              "name": "箭头按钮控制时间选择"
+            },
+            {
+              "path": "/date-picker/validate-event",
+              "name": "不触发表单校验"
+            },
+            {
+              "path": "/date-picker/utc8",
+              "name": "海外显示东八区时间"
+            }
+          ]
+        },
+        {
+          "path": "/drop-times",
+          "name": "DropTimes 下拉时间",
+          "children": [
+            {
+              "path": "/drop-times/start-end-step",
+              "name": "步长与时间区间"
+            },
+            {
+              "path": "/drop-times/size",
+              "name": "设置组件大小"
+            }
+          ]
+        },
+        {
+          "path": "/file-upload",
+          "name": "FileUpload 文件上传",
+          "children": [
+            {
+              "path": "/file-upload/jalor-request",
+              "name": "默认网关上传"
+            },
+            {
+              "path": "/file-upload/size",
+              "name": "设置组件大小"
+            },
+            {
+              "path": "/file-upload/accept-file-type",
+              "name": "可上传的文件类型"
+            },
+            {
+              "path": "/file-upload/manual-upload",
+              "name": "手动上传"
+            },
+            {
+              "path": "/file-upload/prevent-delete-file",
+              "name": "阻止删除文件"
+            },
+            {
+              "path": "/file-upload/prevent-upload-file",
+              "name": "阻止上传文件"
+            },
+            {
+              "path": "/file-upload/upload-request",
+              "name": "上传请求"
+            },
+            {
+              "path": "/file-upload/mini-mode",
+              "name": "mini模式"
+            },
+            {
+              "path": "/file-upload/drag-upload",
+              "name": "拖拽上传"
+            },
+            {
+              "path": "/file-upload/drag-select-file",
+              "name": "拖拽选择文件"
+            },
+            {
+              "path": "/file-upload/upload-file-list",
+              "name": "上传的文件列表"
+            },
+            {
+              "path": "/file-upload/custom-upload-request",
+              "name": "自定义上传请求"
+            },
+            {
+              "path": "/file-upload/upload-limit",
+              "name": "最大上传限制"
+            },
+            {
+              "path": "/file-upload/picture-card",
+              "name": "照片墙"
+            },
+            {
+              "path": "/file-upload/file-picture-card",
+              "name": "文件缩略图"
+            },
+            {
+              "path": "/file-upload/picture-list",
+              "name": "图片列表缩略图"
+            },
+            {
+              "path": "/file-upload/max-file-count",
+              "name": "最大上传文件数"
+            },
+            {
+              "path": "/file-upload/multiple-file",
+              "name": "文件多选"
+            },
+            {
+              "path": "/file-upload/custom-prefix",
+              "name": "钩子函数"
+            },
+            {
+              "path": "/file-upload/upload-events",
+              "name": "事件"
+            },
+            {
+              "path": "/file-upload/with-credentials",
+              "name": "支持发送 cookie 凭证信息"
+            },
+            {
+              "path": "/file-upload/clear-files",
+              "name": "手动清空已上传文件列表"
+            },
+            {
+              "path": "/file-upload/abort-quest",
+              "name": "手动取消上传请求"
+            },
+            {
+              "path": "/file-upload/custom-upload-tip",
+              "name": "自定义上传提示"
+            },
+            {
+              "path": "/file-upload/custom-trigger",
+              "name": "自定义触发文件选项框"
+            },
+            {
+              "path": "/file-upload/upload-user-head",
+              "name": "用户头像上传"
+            },
+            {
+              "path": "/file-upload/image-size",
+              "name": "获取上传图片的长宽尺寸"
+            }
+          ]
+        },
+        {
+          "path": "/form",
+          "name": "Form 表单",
+          "children": [
+            {
+              "path": "/form/formitem",
+              "name": "FormItem 表单项"
+            },
+            {
+              "path": "/form/form-validation",
+              "name": "表单校验"
+            },
+            {
+              "path": "/form/form-validate-setting",
+              "name": "表单校验配置"
+            },
+            {
+              "path": "/form/size",
+              "name": "表单尺寸"
+            },
+            {
+              "path": "/form/form-clear-validate",
+              "name": "移除表单校验"
+            },
+            {
+              "path": "/form/slot-label",
+              "name": "标签文本插槽"
+            },
+            {
+              "path": "/form/novalid-tip",
+              "name": "隐藏校验tip提示框"
+            },
+            {
+              "path": "/form/validate-type",
+              "name": "校验提示的形式"
+            },
+            {
+              "path": "/form/form-disabled",
+              "name": "表单禁用"
+            }
+          ]
+        },
+        {
+          "path": "/input",
+          "name": "Input 输入框",
+          "children": [
+            {
+              "path": "/input/clearable",
+              "name": "可清空"
+            },
+            {
+              "path": "/input/show-password",
+              "name": "密码框"
+            },
+            {
+              "path": "/input/input-size",
+              "name": "尺寸"
+            },
+            {
+              "path": "/input/custom-prefix-suffix-icon",
+              "name": "自定义输入框前后图标"
+            },
+            {
+              "path": "/input/resize-textarea",
+              "name": "可缩放文本域"
+            },
+            {
+              "path": "/input/textarea-limit-rows",
+              "name": "文本域限制输入行数"
+            },
+            {
+              "path": "/input/autosize-textarea",
+              "name": "可自适应文本高度的文本域"
+            },
+            {
+              "path": "/input/complicated-input",
+              "name": "复合型输入框"
+            },
+            {
+              "path": "/input/max-min",
+              "name": "最大最小值"
+            },
+            {
+              "path": "/input/max-min-length",
+              "name": "输入长度限制"
+            },
+            {
+              "path": "/input/counter",
+              "name": "输入计数器"
+            },
+            {
+              "path": "/input/step",
+              "name": "输入字段的合法数字间隔"
+            },
+            {
+              "path": "/input/validate-event",
+              "name": "输入时触发表单校验"
+            },
+            {
+              "path": "/input/autofocus",
+              "name": "自动获取焦点"
+            },
+            {
+              "path": "/input/input-events",
+              "name": "事件"
+            },
+            {
+              "path": "/input/input-methods",
+              "name": "方法"
+            }
+          ]
+        },
+        {
+          "path": "/ip-address",
+          "name": "IpAddress 输入框",
+          "children": [
+            {
+              "path": "/ip-address/type",
+              "name": "类型"
+            },
+            {
+              "path": "/ip-address/readonly",
+              "name": "文本只读"
+            },
+            {
+              "path": "/ip-address/size",
+              "name": "输入框大小"
+            },
+            {
+              "path": "/ip-address/custom-delimiter",
+              "name": "自定义分隔符"
+            },
+            {
+              "path": "/ip-address/ipaddress-events",
+              "name": "事件"
+            }
+          ]
+        },
+        {
+          "path": "/link",
+          "name": "Link 文字链接",
+          "children": [
+            {
+              "path": "/link/link-style",
+              "name": "主题样式"
+            },
+            {
+              "path": "/link/dynamic-disable",
+              "name": "禁用状态"
+            },
+            {
+              "path": "/link/focus-no-underline",
+              "name": "聚焦时不显示下划线"
+            },
+            {
+              "path": "/link/custom-icon",
+              "name": "自定义图标"
+            },
+            {
+              "path": "/link/config-href",
+              "name": "链接地址"
+            }
+          ]
+        },
+        {
+          "path": "/numeric",
+          "name": "Numeric 计数器",
+          "children": [
+            {
+              "path": "/numeric/allow-empty",
+              "name": "可清空输入"
+            },
+            {
+              "path": "/numeric/about-step",
+              "name": "步长"
+            },
+            {
+              "path": "/numeric/max-min",
+              "name": "最大最小值"
+            },
+            {
+              "path": "/numeric/numeric-size",
+              "name": "尺寸"
+            },
+            {
+              "path": "/numeric/controls",
+              "name": "控制按钮"
+            },
+            {
+              "path": "/numeric/precision",
+              "name": "数值精度"
+            },
+            {
+              "path": "/numeric/mouse-wheel",
+              "name": "鼠标滚轮滚动改变值"
+            },
+            {
+              "path": "/numeric/numeric-events",
+              "name": "事件"
+            },
+            {
+              "path": "/numeric/calculate-according-to-num-of-goods",
+              "name": "根据商品数量自动计算价格"
+            }
+          ]
+        },
+        {
+          "path": "/pop-editor",
+          "name": "PopEditor 弹出编辑",
+          "children": [
+            {
+              "path": "/pop-editor/custom-conditions",
+              "name": "自定义查询条件"
+            },
+            {
+              "path": "/pop-editor/draggable",
+              "name": "窗口拖动"
+            },
+            {
+              "path": "/pop-editor/show-clear-btn",
+              "name": "不可清除"
+            },
+            {
+              "path": "/pop-editor/resize",
+              "name": "弹出窗全屏展示"
+            },
+            {
+              "path": "/pop-editor/table-edit",
+              "name": "表格编辑"
+            },
+            {
+              "path": "/pop-editor/width-height",
+              "name": "宽高"
+            },
+            {
+              "path": "/pop-editor/custom-icon",
+              "name": "自定义图标"
+            },
+            {
+              "path": "/pop-editor/multi-selected",
+              "name": "多选"
+            },
+            {
+              "path": "/pop-editor/popeditor-events",
+              "name": "事件"
+            },
+            {
+              "path": "/pop-editor/dynamic-readonly",
+              "name": "只读"
+            },
+            {
+              "path": "/pop-editor/before-reset",
+              "name": "重置"
+            },
+            {
+              "path": "/pop-editor/slot",
+              "name": "插槽"
+            },
+            {
+              "path": "/pop-editor/dynamic-disabled",
+              "name": "禁用"
+            },
+            {
+              "path": "/pop-editor/clearable",
+              "name": "支持在搜索表单配置清除按钮"
+            },
+            {
+              "path": "/pop-editor/text-field",
+              "name": "显示字段映射"
+            },
+            {
+              "path": "/pop-editor/value-field",
+              "name": "提交字段映射"
+            },
+            {
+              "path": "/pop-editor/custom-title",
+              "name": "自定义标题"
+            },
+            {
+              "path": "/pop-editor/remote-search",
+              "name": "远程搜索"
+            },
+            {
+              "path": "/pop-editor/pager",
+              "name": "分页"
+            },
+            {
+              "path": "/pop-editor/render-text",
+              "name": "渲染反查"
+            },
+            {
+              "path": "/pop-editor/tree-edit",
+              "name": "树模式"
+            },
+            {
+              "path": "/pop-editor/single-select-radio",
+              "name": "树模式单选"
+            },
+            {
+              "path": "/pop-editor/size",
+              "name": "编辑框大小"
+            },
+            {
+              "path": "/pop-editor/show-overflow",
+              "name": "数据超出隐藏"
+            },
+            {
+              "path": "/pop-editor/trigger",
+              "name": "单选时触发勾选的方式"
+            },
+            {
+              "path": "/pop-editor/show-history",
+              "name": "设置历史记录标签页"
+            }
+          ]
+        },
+        {
+          "path": "/pop-upload",
+          "name": "PopUpload 弹出框上传",
+          "children": [
+            {
+              "path": "/pop-upload/custom-request-headers",
+              "name": "自定义请求头"
+            },
+            {
+              "path": "/pop-upload/size",
+              "name": "设置组件大小"
+            },
+            {
+              "path": "/pop-upload/http-request",
+              "name": "自定义上传请求"
+            },
+            {
+              "path": "/pop-upload/upload-name",
+              "name": "上传文件字段名"
+            },
+            {
+              "path": "/pop-upload/fill-button-text",
+              "name": "自定义文本内容"
+            },
+            {
+              "path": "/pop-upload/file-limit",
+              "name": "最大上传文件数"
+            },
+            {
+              "path": "/pop-upload/file-type",
+              "name": "可上传文件类型"
+            },
+            {
+              "path": "/pop-upload/max-upload-file-size",
+              "name": "可上传文件大小"
+            },
+            {
+              "path": "/pop-upload/before-remove-file",
+              "name": "上传文件移除前"
+            }
+          ]
+        },
+        {
+          "path": "/radio",
+          "name": "Radio 单选框",
+          "children": [
+            {
+              "path": "/radio/with-border",
+              "name": "带有边框"
+            },
+            {
+              "path": "/radio/dynamic-disable",
+              "name": "禁用状态"
+            },
+            {
+              "path": "/radio/vertical",
+              "name": "垂直布局"
+            },
+            {
+              "path": "/radio/active-color",
+              "name": "颜色设置"
+            },
+            {
+              "path": "/radio/radio-text",
+              "name": "文本内容"
+            },
+            {
+              "path": "/radio/radio-size",
+              "name": "尺寸设置"
+            },
+            {
+              "path": "/radio/radio-events",
+              "name": "单选框事件"
+            },
+            {
+              "path": "/radio/group-options",
+              "name": "循环配置"
+            },
+            {
+              "path": "/radio/radio-default",
+              "name": "插槽"
+            }
+          ]
+        },
+        {
+          "path": "/search",
+          "name": "Search 搜索",
+          "children": [
+            {
+              "path": "/search/clearable",
+              "name": "可清除"
+            },
+            {
+              "path": "/search/mini-mode",
+              "name": "mini 模式"
+            },
+            {
+              "path": "/search/transparent-mode",
+              "name": "透明模式"
+            },
+            {
+              "path": "/search/default-value",
+              "name": "默认搜索"
+            },
+            {
+              "path": "/search/search-types",
+              "name": "搜索类型"
+            },
+            {
+              "path": "/search/custom-search-types",
+              "name": "自定义搜索类型的内容"
+            },
+            {
+              "path": "/search/show-selected-types",
+              "name": "自定义搜索类型选择后的展示"
+            },
+            {
+              "path": "/search/search-events",
+              "name": "事件"
+            }
+          ]
+        },
+        {
+          "path": "/select",
+          "name": "Select 选择器",
+          "children": [
+            {
+              "path": "/select/multi-select",
+              "name": "多选"
+            },
+            {
+              "path": "/select/dynamic-disable",
+              "name": "禁用"
+            },
+            {
+              "path": "/select/select-size",
+              "name": "尺寸"
+            },
+            {
+              "path": "/select/option-group",
+              "name": "分组"
+            },
+            {
+              "path": "/select/select-events",
+              "name": "事件"
+            },
+            {
+              "path": "/select/filterable",
+              "name": "可搜索"
+            },
+            {
+              "path": "/select/searchable",
+              "name": "下拉面板显示搜索框"
+            },
+            {
+              "path": "/select/allow-create",
+              "name": "创建条目"
+            },
+            {
+              "path": "/select/remote-filter",
+              "name": "远程搜索"
+            },
+            {
+              "path": "/select/clear-options",
+              "name": "选项可清除"
+            },
+            {
+              "path": "/select/tag-copy",
+              "name": "选项可复制"
+            },
+            {
+              "path": "/select/tag-copy-all",
+              "name": "可复制所有图标显示隐藏"
+            },
+            {
+              "path": "/select/binding-obj",
+              "name": "绑定值为对象"
+            },
+            {
+              "path": "/select/custom-no-result-text",
+              "name": "自定义无匹配搜索文字"
+            },
+            {
+              "path": "/select/custom-empty-data-text",
+              "name": "自定义空数据显示文字"
+            },
+            {
+              "path": "/select/popup-style-position",
+              "name": "弹出框样式与定位"
+            },
+            {
+              "path": "/select/automatic-select",
+              "name": "获取焦点即弹出下拉菜单"
+            },
+            {
+              "path": "/select/custom-prefix",
+              "name": "自定义头部内容"
+            },
+            {
+              "path": "/select/custom-options",
+              "name": "自定义下拉内容"
+            },
+            {
+              "path": "/select/show-alloption",
+              "name": "不展示全选选项"
+            },
+            {
+              "path": "/select/set-input-value",
+              "name": "改变输入框的值"
+            },
+            {
+              "path": "/select/manual-focus-blur",
+              "name": "手动获取焦点"
+            },
+            {
+              "path": "/select/is-drop-inherit-width",
+              "name": "下拉跟随宽度"
+            },
+            {
+              "path": "/select/slot-select",
+              "name": "插槽"
+            },
+            {
+              "path": "/select/nest-grid",
+              "name": "嵌套 Grid"
+            },
+            {
+              "path": "/select/nest-tree",
+              "name": "嵌套 Tree"
+            },
+            {
+              "path": "/select/cache-usage",
+              "name": "本地缓存"
+            },
+            {
+              "path": "/select/optimization",
+              "name": "虚拟滚动"
+            },
+            {
+              "path": "/select/upgrade-guide",
+              "name": "升级指导"
+            }
+          ]
+        },
+        {
+          "path": "/slider",
+          "name": "Slider 滑块",
+          "children": [
+            {
+              "path": "/slider/vertical-mode",
+              "name": "竖向模式"
+            },
+            {
+              "path": "/slider/max-min",
+              "name": "最大最小值"
+            },
+            {
+              "path": "/slider/range-select",
+              "name": "范围选择"
+            },
+            {
+              "path": "/slider/show-input",
+              "name": "输入框模式"
+            },
+            {
+              "path": "/slider/shortcut-operation",
+              "name": "快捷键操作"
+            },
+            {
+              "path": "/slider/dynamic-disable",
+              "name": "禁用"
+            },
+            {
+              "path": "/slider/show-tip",
+              "name": "提示"
+            },
+            {
+              "path": "/slider/about-step",
+              "name": "步长"
+            },
+            {
+              "path": "/slider/slider-events",
+              "name": "事件"
+            },
+            {
+              "path": "/slider/slider-slot",
+              "name": "自定义插槽"
+            }
+          ]
+        },
+        {
+          "path": "/switch",
+          "name": "Switch 开关",
+          "children": [
+            {
+              "path": "/switch/mini-mode",
+              "name": "mini 模式"
+            },
+            {
+              "path": "/switch/custom-open-close",
+              "name": "自定义开关的显示"
+            },
+            {
+              "path": "/switch/custom-true-false-value",
+              "name": "自定义开关的取值"
+            },
+            {
+              "path": "/switch/dynamic-disable",
+              "name": "禁用"
+            },
+            {
+              "path": "/switch/before-change",
+              "name": "开关切换前的回调"
+            }
+          ]
+        },
+        {
+          "path": "/time-picker",
+          "name": "TimePicker 时间选择器",
+          "children": [
+            {
+              "path": "/time-picker/picker-options",
+              "name": "选择范围"
+            },
+            {
+              "path": "/time-picker/arrow-control",
+              "name": "箭头选择"
+            },
+            {
+              "path": "/time-picker/clear-icon",
+              "name": "自定义清除图标"
+            },
+            {
+              "path": "/time-picker/suffix-icon",
+              "name": "自定义后置图标"
+            },
+            {
+              "path": "/time-picker/format",
+              "name": "时间格式化"
+            },
+            {
+              "path": "/time-picker/time-low",
+              "name": "时间显示格式"
+            },
+            {
+              "path": "/time-picker/date",
+              "name": "日期显示格式"
+            },
+            {
+              "path": "/time-picker/is-range",
+              "name": "是否为时间范围选择"
+            },
+            {
+              "path": "/time-picker/default-value",
+              "name": "默认选择时间"
+            },
+            {
+              "path": "/time-picker/editable",
+              "name": "文本框不可输入"
+            },
+            {
+              "path": "/time-picker/time-picker-events",
+              "name": "事件"
+            }
+          ]
+        },
+        {
+          "path": "/time-select",
+          "name": "TimeSelect 时间选择",
+          "children": [
+            {
+              "path": "/time-select/range-placeholder",
+              "name": "固定时间范围"
+            },
+            {
+              "path": "/time-select/default-value",
+              "name": "选择默认值"
+            },
+            {
+              "path": "/time-select/picker-options",
+              "name": "指定时间固点"
+            },
+            {
+              "path": "/time-select/suffix-icon",
+              "name": "自定义后置图标"
+            },
+            {
+              "path": "/time-select/clear-icon",
+              "name": "自定义清除图标"
+            },
+            {
+              "path": "/time-select/event",
+              "name": "事件"
+            },
+            {
+              "path": "/time-select/editable",
+              "name": "文本框不可输入"
+            },
+            {
+              "path": "/time-select/disabled",
+              "name": "禁用"
+            },
+            {
+              "path": "/time-select/popper-class",
+              "name": "自定义类名"
+            },
+            {
+              "path": "/time-select/size",
+              "name": "尺寸"
+            },
+            {
+              "path": "/time-select/focus",
+              "name": "手动获取焦点"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "表格组件",
+      "path": "/grid",
+      "children": [
+        {
+          "name": "序号列",
+          "children": [
+            {
+              "path": "/grid/serial-column/default-serial-column",
+              "name": "默认序号列"
+            },
+            {
+              "path": "/grid/serial-column/custom-serial-column",
+              "name": "自定义序号列"
+            }
+          ]
+        },
+        {
+          "name": "操作列",
+          "children": [
+            {
+              "path": "/grid/operation-column/radio-operation-column",
+              "name": "单选"
+            },
+            {
+              "path": "/grid/operation-column/checkbox-operation-column",
+              "name": "多选"
+            },
+            {
+              "path": "/grid/operation-column/custom-operation-column",
+              "name": "自定义操作列"
+            }
+          ]
+        },
+        {
+          "name": "空数据",
+          "path": "/grid/empty-data-tip"
+        },
+        {
+          "name": "数据源",
+          "children": [
+            {
+              "path": "/grid/data-source/static-data",
+              "name": "静态数据"
+            },
+            {
+              "path": "/grid/data-source/request-service",
+              "name": "请求服务"
+            },
+            {
+              "path": "/grid/data-source/auto-load",
+              "name": "自动加载数据"
+            },
+            {
+              "path": "/grid/data-source/columns",
+              "name": "列数据配置"
+            },
+            {
+              "path": "/grid/data-source/column-asyn-rendering",
+              "name": "列异步渲染"
+            }
+          ]
+        },
+        {
+          "name": "大数据",
+          "children": [
+            {
+              "path": "/grid/large-data/scroll-paging",
+              "name": "滚动分页"
+            },
+            {
+              "path": "/grid/large-data/virtual-rolling",
+              "name": "虚拟滚动"
+            },
+            {
+              "path": "/grid/large-data/full-data-loading",
+              "name": "全量加载"
+            },
+            {
+              "path": "/grid/large-data/load-column",
+              "name": "生成 1000 列"
+            },
+            {
+              "path": "/grid/large-data/scroll-to",
+              "name": "滚动到指定位置"
+            }
+          ]
+        },
+        {
+          "name": "分页",
+          "children": [
+            {
+              "path": "/grid/pager/inner-pager",
+              "name": "内置分页"
+            }
+          ]
+        },
+        {
+          "name": "编辑",
+          "children": [
+            {
+              "path": "/grid/edit/row-editing",
+              "name": "行编辑"
+            },
+            {
+              "path": "/grid/edit/cell-editing",
+              "name": "单元格编辑"
+            },
+            {
+              "path": "/grid/edit/format-value",
+              "name": "格式化单元格编辑器"
+            },
+            {
+              "path": "/grid/edit/custom-editing",
+              "name": "自定义编辑"
+            },
+            {
+              "path": "/grid/edit/status-of-editing",
+              "name": "编辑状态"
+            },
+            {
+              "path": "/grid/edit/trigger-mode-for-editing",
+              "name": "触发方式"
+            }
+          ]
+        },
+        {
+          "name": "工具栏",
+          "children": [
+            {
+              "path": "/grid/toolbar/insert-delete-update",
+              "name": "增删改"
+            },
+            {
+              "path": "/grid/toolbar/save-data",
+              "name": "服务端数据方法"
+            },
+            {
+              "path": "/grid/toolbar/copy-row-data",
+              "name": "复制行"
+            },
+            {
+              "path": "/grid/toolbar/import-and-export",
+              "name": "导入导出"
+            },
+            {
+              "path": "/grid/toolbar/refresh-grid",
+              "name": "刷新"
+            },
+            {
+              "path": "/grid/toolbar/grid-full-screen",
+              "name": "全屏"
+            },
+            {
+              "path": "/grid/toolbar/custom-toolbar",
+              "name": "自定义工具栏"
+            },
+            {
+              "path": "/grid/toolbar/toolbar-op-config",
+              "name": "配置式"
+            }
+          ]
+        },
+        {
+          "name": "加载中",
+          "path": "/grid/grid-loading-tip"
+        },
+        {
+          "name": "尺寸",
+          "path": "/grid/grid-size"
+        },
+        {
+          "name": "宽高",
+          "children": [
+            {
+              "path": "/grid/width-height/resize-column-width",
+              "name": "调整列宽"
+            },
+            {
+              "path": "/grid/width-height/fixed-column-width",
+              "name": "固定列宽度"
+            },
+            {
+              "path": "/grid/width-height/adaptive-column-width",
+              "name": "自适应列宽度"
+            },
+            {
+              "path": "/grid/width-height/fixed-grid-height",
+              "name": "固定表格高度"
+            },
+            {
+              "path": "/grid/width-height/adaptive-grid-width-height",
+              "name": "响应式表格宽高"
+            },
+            {
+              "path": "/grid/width-height/auto-height",
+              "name": "自动高度"
+            },
+            {
+              "path": "/grid/width-height/max-min-grid-height",
+              "name": "最大最小表格高度"
+            },
+            {
+              "path": "/grid/width-height/column-min-width",
+              "name": "列最小宽度"
+            },
+            {
+              "path": "/grid/width-height/min-width",
+              "name": "单列最小宽度"
+            },
+            {
+              "path": "/grid/width-height/column-width",
+              "name": "总体列宽度"
+            },
+            {
+              "path": "/grid/width-height/recalculate",
+              "name": "重新计算表格"
+            }
+          ]
+        },
+        {
+          "name": "边框",
+          "path": "/grid/grid-border"
+        },
+        {
+          "name": "高亮",
+          "children": [
+            {
+              "path": "/grid/highlight/highlight-hover-row",
+              "name": "高亮悬停行"
+            },
+            {
+              "path": "/grid/highlight/highlight-current-row",
+              "name": "高亮当前选中行"
+            },
+            {
+              "path": "/grid/highlight/highlight-hover-column",
+              "name": "高亮悬停列"
+            },
+            {
+              "path": "/grid/highlight/highlight-current-column",
+              "name": "高亮当前选中列"
+            },
+            {
+              "path": "/grid/highlight/highlight-cell",
+              "name": "高亮编辑中的单元格"
+            }
+          ]
+        },
+        {
+          "name": "斑马线条纹",
+          "path": "/grid/grid-stripe"
+        },
+        {
+          "name": "优化配置项",
+          "path": "/grid/grid-optimization"
+        },
+        {
+          "name": "Tip 提示",
+          "children": [
+            {
+              "path": "/grid/tip/column-header-tip",
+              "name": "列头提示"
+            },
+            {
+              "path": "/grid/tip/cell-tip",
+              "name": "单元格提示"
+            }
+          ]
+        },
+        {
+          "name": "对齐方式",
+          "children": [
+            {
+              "path": "/grid/align/column-align",
+              "name": "列对齐"
+            },
+            {
+              "path": "/grid/align/header-align",
+              "name": "表头对齐"
+            },
+            {
+              "path": "/grid/align/footer-align",
+              "name": "表尾对齐"
+            },
+            {
+              "path": "/grid/align/grid-align",
+              "name": "表格对齐"
+            }
+          ]
+        },
+        {
+          "name": "表头",
+          "children": [
+            {
+              "path": "/grid/header/hide-grid-header",
+              "name": "隐藏表头"
+            },
+            {
+              "path": "/grid/header/custom-grid-header",
+              "name": "自定义表头"
+            },
+            {
+              "path": "/grid/header/slot-header",
+              "name": "表头插槽"
+            },
+            {
+              "path": "/grid/header/header-class-name",
+              "name": "表头的单元格类名"
+            }
+          ]
+        },
+        {
+          "name": "表尾",
+          "children": [
+            {
+              "path": "/grid/footer/footer-summation",
+              "name": "表尾合计"
+            },
+            {
+              "path": "/grid/footer/footer-class-name",
+              "name": "表尾单元格类名"
+            },
+            {
+              "path": "/grid/footer/footer-row-or-column-span",
+              "name": "表尾合并行或列"
+            }
+          ]
+        },
+        {
+          "name": "自定义样式",
+          "children": [
+            {
+              "path": "/grid/custom-style/row-style",
+              "name": "行样式"
+            },
+            {
+              "path": "/grid/custom-style/header-style",
+              "name": "表头样式"
+            },
+            {
+              "path": "/grid/custom-style/footer-style",
+              "name": "表尾样式"
+            },
+            {
+              "path": "/grid/custom-style/cell-style",
+              "name": "单元格样式"
+            }
+          ]
+        },
+        {
+          "name": "排序",
+          "children": [
+            {
+              "path": "/grid/sort/default-sort",
+              "name": "默认排序"
+            },
+            {
+              "path": "/grid/sort/combinations-sort",
+              "name": "多字段组合排序"
+            },
+            {
+              "path": "/grid/sort/custom-sort",
+              "name": "自定义排序"
+            },
+            {
+              "path": "/grid/sort/server-sort",
+              "name": "服务端排序"
+            }
+          ]
+        },
+        {
+          "name": "筛选",
+          "children": [
+            {
+              "path": "/grid/filter/default-filter",
+              "name": "默认筛选"
+            },
+            {
+              "path": "/grid/filter/advanced-filter",
+              "name": "高级筛选"
+            },
+            {
+              "path": "/grid/filter/custom-filter",
+              "name": "自定义筛选"
+            },
+            {
+              "path": "/grid/filter/server-filter",
+              "name": "服务端筛选"
+            },
+            {
+              "path": "/grid/filter/default-relation",
+              "name": "输入过滤的默认选项"
+            }
+          ]
+        },
+        {
+          "name": "冻结",
+          "children": [
+            {
+              "path": "/grid/fixed/left-fixed",
+              "name": "左侧冻结"
+            },
+            {
+              "path": "/grid/fixed/right-fixed",
+              "name": "右侧冻结"
+            },
+            {
+              "path": "/grid/fixed/multi-column-fixed",
+              "name": "多列冻结"
+            }
+          ]
+        },
+        {
+          "name": "合并",
+          "children": [
+            {
+              "path": "/grid/span/row-span",
+              "name": "行合并"
+            },
+            {
+              "path": "/grid/span/column-span",
+              "name": "列合并"
+            }
+          ]
+        },
+        {
+          "name": "分组",
+          "path": "/grid/row-grouping"
+        },
+        {
+          "name": "统计",
+          "children": [
+            {
+              "path": "/grid/summary/custom-summary",
+              "name": "自定义统计"
+            },
+            {
+              "path": "/grid/summary/configuration-summary",
+              "name": "配置式统计"
+            }
+          ]
+        },
+        {
+          "name": "拖拽",
+          "children": [
+            {
+              "path": "/grid/drag/row-drag",
+              "name": "行拖拽"
+            },
+            {
+              "path": "/grid/drag/column-drag",
+              "name": "列拖拽"
+            }
+          ]
+        },
+        {
+          "name": "数据级联",
+          "children": [
+            {
+              "path": "/grid/cascade/normal-column-cascade",
+              "name": "正常列级联"
+            },
+            {
+              "path": "/grid/cascade/any-parent-cascade",
+              "name": "任意父级联"
+            }
+          ]
+        },
+        {
+          "name": "右键菜单",
+          "children": [
+            {
+              "path": "/grid/context-menu/header-menu",
+              "name": "表头菜单"
+            },
+            {
+              "path": "/grid/context-menu/footer-menu",
+              "name": "表尾菜单"
+            },
+            {
+              "path": "/grid/context-menu/cell-menu",
+              "name": "单元格菜单"
+            },
+            {
+              "path": "/grid/context-menu/menu-permissions",
+              "name": "菜单权限"
+            }
+          ]
+        },
+        {
+          "name": "编辑器",
+          "children": [
+            {
+              "path": "/grid/editor/inner-editor",
+              "name": "内置编辑器"
+            },
+            {
+              "path": "/grid/editor/custom-editor",
+              "name": "自定义编辑器"
+            },
+            {
+              "path": "/grid/editor/custom-editor-tiny3",
+              "name": "3.0 组件作为编辑器"
+            },
+            {
+              "path": "/grid/editor/custom-editor-mutil",
+              "name": "下拉多选"
+            },
+            {
+              "path": "/grid/editor/popeditor-events",
+              "name": "编辑器事件"
+            },
+            {
+              "path": "/grid/editor/popeditor-in-grid",
+              "name": "Popeditor 弹窗编辑"
+            }
+          ]
+        },
+        {
+          "name": "渲染器",
+          "children": [
+            {
+              "path": "/grid/renderer/inner-renderer",
+              "name": "内置渲染器"
+            },
+            {
+              "path": "/grid/renderer/custom-renderer",
+              "name": "自定义渲染器"
+            },
+            {
+              "path": "/grid/renderer/async-colunm-render",
+              "name": "列异步数据渲染"
+            }
+          ]
+        },
+        {
+          "name": "表格校验",
+          "children": [
+            {
+              "path": "/grid/validation/editing-validation",
+              "name": "编辑时校验"
+            },
+            {
+              "path": "/grid/validation/select-validation",
+              "name": "选中时校验"
+            },
+            {
+              "path": "/grid/validation/before-submit-validation",
+              "name": "提交前校验"
+            },
+            {
+              "path": "/grid/validation/tipconfig",
+              "name": "错误提示配置"
+            }
+          ]
+        },
+        {
+          "name": "事件",
+          "children": [
+            {
+              "path": "/grid/event/header-click-event",
+              "name": "表头单击事件"
+            },
+            {
+              "path": "/grid/event/header-dblclick-event",
+              "name": "表头双击事件"
+            },
+            {
+              "path": "/grid/event/cell-click-event",
+              "name": "单元格单击事件"
+            },
+            {
+              "path": "/grid/event/cell-dblclick-event",
+              "name": "单元格双击事件"
+            },
+            {
+              "path": "/grid/event/cell-mouseenter-event",
+              "name": "单元格鼠标进入事件"
+            },
+            {
+              "path": "/grid/event/cell-mouseleave-event",
+              "name": "单元格鼠标离开事件"
+            },
+            {
+              "path": "/grid/event/grid-scroll-event",
+              "name": "表格滚动事件"
+            },
+            {
+              "path": "/grid/event/grid-events",
+              "name": "表格的事件对象"
+            },
+            {
+              "path": "/grid/event/current-change-event",
+              "name": "行选中事件"
+            },
+            {
+              "path": "/grid/event/edit-actived-event",
+              "name": "单元格激活编辑事件"
+            },
+            {
+              "path": "/grid/event/edit-closed-event",
+              "name": "单元格编辑完成事件"
+            },
+            {
+              "path": "/grid/event/edit-disabled-event",
+              "name": "单元格激活时如果是禁用状态事件"
+            },
+            {
+              "path": "/grid/event/footer-cell-context-menu-event",
+              "name": "右键点击表尾单元格事件"
+            },
+            {
+              "path": "/grid/event/header-cell-context-menu-event",
+              "name": "右键点击表头事件"
+            },
+            {
+              "path": "/grid/event/page-change-event",
+              "name": "分页发生改变事件"
+            },
+            {
+              "path": "/grid/event/radio-change-event",
+              "name": "radio 勾选行事件"
+            },
+            {
+              "path": "/grid/event/resizable-change-event",
+              "name": "列宽改变事件"
+            },
+            {
+              "path": "/grid/event/select-all-event",
+              "name": "全部选中事件"
+            },
+            {
+              "path": "/grid/event/select-change-event",
+              "name": "select 勾选行事件"
+            },
+            {
+              "path": "/grid/event/toggle-expand-change-event",
+              "name": "行展开收起事件"
+            },
+            {
+              "path": "/grid/event/toggle-tree-change-event",
+              "name": "树节点展开收起事件"
+            },
+            {
+              "path": "/grid/event/toolbar-button-click-event",
+              "name": "工具栏点击事件"
+            },
+            {
+              "path": "/grid/event/valid-error-event",
+              "name": "校验不通过事件"
+            },
+            {
+              "path": "/grid/event/grid-methods",
+              "name": "获取表格方法"
+            }
+          ]
+        },
+        {
+          "name": "插槽",
+          "children": [
+            {
+              "path": "/grid/slot/default-slot",
+              "name": "默认插槽"
+            },
+            {
+              "path": "/grid/slot/buttons-slot",
+              "name": "工具栏插槽"
+            },
+            {
+              "path": "/grid/slot/empty-slot",
+              "name": "空数据显示插槽"
+            }
+          ]
+        },
+        {
+          "name": "个性化",
+          "children": [
+            {
+              "path": "/grid/customized/column-width",
+              "name": "列宽"
+            },
+            {
+              "path": "/grid/customized/column-sort",
+              "name": "列排序"
+            },
+            {
+              "path": "/grid/customized/sort-type",
+              "name": "排序类型"
+            },
+            {
+              "path": "/grid/customized/column-fixed",
+              "name": "列冻结"
+            },
+            {
+              "path": "/grid/customized/column-sortable",
+              "name": "列顺序"
+            },
+            {
+              "path": "/grid/customized/column-visible-hidden",
+              "name": "列显示隐藏"
+            },
+            {
+              "path": "/grid/customized/prsonalized-drag",
+              "name": "个性化面板拖拽事件"
+            },
+            {
+              "path": "/grid/customized/page-size",
+              "name": "分页条数"
+            },
+            {
+              "path": "/grid/customized/local-storage",
+              "name": "本地存储"
+            },
+            {
+              "path": "/grid/customized/server-storage",
+              "name": "服务端存储"
+            }
+          ]
+        },
+        {
+          "name": "树表",
+          "children": [
+            {
+              "path": "/grid/tree-grid/tree-grid-base-usage",
+              "name": "基础用法"
+            },
+            {
+              "path": "/grid/tree-grid/tree-grid-operation-column",
+              "name": "操作列"
+            },
+            {
+              "path": "/grid/tree-grid/tree-grid-fixed-column",
+              "name": "冻结列"
+            },
+            {
+              "path": "/grid/tree-grid/tree-grid-expand",
+              "name": "展开行"
+            },
+            {
+              "path": "/grid/tree-grid/tree-grid-index",
+              "name": "展开行序号列配置"
+            },
+            {
+              "path": "/grid/tree-grid/tree-grid-expand-config",
+              "name": "展开行配置项"
+            },
+            {
+              "path": "/grid/tree-grid/tree-grid-insert-delete-update",
+              "name": "增删改"
+            },
+            {
+              "path": "/grid/tree-grid/tree-grid-keyboard-operation",
+              "name": "键盘操作"
+            }
+          ]
+        },
+        {
+          "name": "嵌套表格",
+          "path": "/grid/nested-grid"
+        },
+        {
+          "name": "导入导出",
+          "children": [
+            {
+              "path": "/grid/import-export/export-excel",
+              "name": "导出Excel"
+            },
+            {
+              "path": "/grid/import-export/import-grid",
+              "name": "导入Excel"
+            }
+          ]
+        },
+        {
+          "name": "鼠标和键盘配置",
+          "children": [
+            {
+              "name": "键盘导航",
+              "path": "/grid/keyboard/keyboard-navigation"
+            },
+            {
+              "path": "/grid/keyboard/keyboard-config",
+              "name": "按键配置项"
+            },
+            {
+              "path": "/grid/keyboard/mouse-config",
+              "name": "鼠标配置项"
+            }
+          ]
+        },
+        {
+          "name": "表格行列反转",
+          "path": "/grid/reverse-column-row"
+        },
+        {
+          "name": "动态生成列",
+          "path": "/grid/dynamically-columns"
+        },
+        {
+          "name": "常见问题",
+          "path": "/grid/faq"
+        }
+      ]
+    },
+    {
+      "name": "数据组件",
+      "children": [
+        {
+          "path": "/pager",
+          "name": "Pager 分页",
+          "children": [
+            {
+              "path": "/pager/current-page",
+              "name": "当前页"
+            },
+            {
+              "path": "/pager/pager-mode",
+              "name": "显示模式"
+            },
+            {
+              "path": "/pager/page-count",
+              "name": "总页数"
+            },
+            {
+              "path": "/pager/pager-events",
+              "name": "分页事件"
+            },
+            {
+              "path": "/pager/pager-append-to-body",
+              "name": "下拉框位置"
+            },
+            {
+              "path": "/pager/custom-layout",
+              "name": "自定义分页布局"
+            },
+            {
+              "path": "/pager/pager-count",
+              "name": "页码按钮数量"
+            },
+            {
+              "path": "/pager/page-size",
+              "name": "每页显示数量"
+            },
+            {
+              "path": "/pager/hide-on-single-page",
+              "name": "只有一页时隐藏分页"
+            },
+            {
+              "path": "/pager/custom-next-prev-text",
+              "name": "自定义上下页按钮文本"
+            },
+            {
+              "path": "/pager/pager-in-grid",
+              "name": "Grid 表格分页"
+            }
+          ]
+        },
+        {
+          "path": "/progress",
+          "name": "Progress 进度条",
+          "children": [
+            {
+              "path": "/progress/progress-type",
+              "name": "类型"
+            },
+            {
+              "path": "/progress/progress-width",
+              "name": "宽度"
+            },
+            {
+              "path": "/progress/progress-status",
+              "name": "状态"
+            },
+            {
+              "path": "/progress/text-inside-or-no-text",
+              "name": "文字内显或不显"
+            },
+            {
+              "path": "/progress/custom-color",
+              "name": "自定义颜色"
+            },
+            {
+              "path": "/progress/format-text",
+              "name": "自定义显示文字"
+            },
+            {
+              "path": "/progress/dynamic-control-changes",
+              "name": "动态控制进度条变化"
+            }
+          ]
+        },
+        {
+          "path": "/tree",
+          "name": "Tree 树形控件",
+          "children": [
+            {
+              "path": "/tree/data-source",
+              "name": "数据源"
+            },
+            {
+              "path": "/tree/disable-node",
+              "name": "禁用状态"
+            },
+            {
+              "path": "/tree/custom-empty-text",
+              "name": "自定义空数据文本"
+            },
+            {
+              "path": "/tree/render-after-expand",
+              "name": "展开后渲染"
+            },
+            {
+              "path": "/tree/node-key",
+              "name": "唯一标识"
+            },
+            {
+              "path": "/tree/check-strictly",
+              "name": "父子不互相关联"
+            },
+            {
+              "path": "/tree/default-expand-all",
+              "name": "默认展开所有节点"
+            },
+            {
+              "path": "/tree/expand-on-click-node",
+              "name": "点击节点展开收缩"
+            },
+            {
+              "path": "/tree/check-on-click-node",
+              "name": "点击节点时选中"
+            },
+            {
+              "path": "/tree/auto-expand-parent",
+              "name": "自动展开父节点"
+            },
+            {
+              "path": "/tree/default-checked-keys",
+              "name": "默认勾选的节点"
+            },
+            {
+              "path": "/tree/default-expanded-keys",
+              "name": "默认展开的节点"
+            },
+            {
+              "path": "/tree/current-node-key",
+              "name": "当前选中节点标志"
+            },
+            {
+              "path": "/tree/slot-deffault",
+              "name": "默认插槽"
+            },
+            {
+              "path": "/tree/render-content",
+              "name": "自定义内容区渲染"
+            },
+            {
+              "path": "/tree/show-checkbox",
+              "name": "是否开启多选模式"
+            },
+            {
+              "path": "/tree/node-draggable",
+              "name": "可拖拽节点"
+            },
+            {
+              "path": "/tree/allow-drag",
+              "name": "自定义节点能否被拖拽"
+            },
+            {
+              "path": "/tree/allow-drop",
+              "name": "自定义目标节点能否被放置"
+            },
+            {
+              "path": "/tree/node-props-config",
+              "name": "数据节点属性配置"
+            },
+            {
+              "path": "/tree/lazy-load-node",
+              "name": "懒加载子节点"
+            },
+            {
+              "path": "/tree/highlight-current",
+              "name": "高亮当前选中节点"
+            },
+            {
+              "path": "/tree/filter-node",
+              "name": "节点过滤"
+            },
+            {
+              "path": "/tree/accordion-mode",
+              "name": "手风琴模式"
+            },
+            {
+              "path": "/tree/indent",
+              "name": "水平缩进"
+            },
+            {
+              "path": "/tree/custom-node-icon",
+              "name": "自定义展开折叠图标"
+            },
+            {
+              "path": "/tree/set-tree-icon",
+              "name": "展开折叠图标分别设置"
+            },
+            {
+              "path": "/tree/contextmenu",
+              "name": "右键打开自定义菜单栏"
+            },
+            {
+              "path": "/tree/events",
+              "name": "事件"
+            },
+            {
+              "path": "/tree/show-radio",
+              "name": "单选"
+            }
+          ]
+        },
+        {
+          "path": "/transfer",
+          "name": "Transfer 穿梭框",
+          "children": [
+            {
+              "path": "/transfer/data-source",
+              "name": "数据源"
+            },
+            {
+              "path": "/transfer/show-all-btn",
+              "name": "展示全部移动按钮"
+            },
+            {
+              "path": "/transfer/custom-transfer-titles",
+              "name": "自定义列表标题"
+            },
+            {
+              "path": "/transfer/custom-button-texts",
+              "name": "自定义按钮文案"
+            },
+            {
+              "path": "/transfer/filter-placeholder",
+              "name": "搜索框占位符"
+            },
+            {
+              "path": "/transfer/custom-filter-method",
+              "name": "自定义搜索方法"
+            },
+            {
+              "path": "/transfer/default-checked",
+              "name": "默认勾选项"
+            },
+            {
+              "path": "/transfer/custom-render-content",
+              "name": "自定义数据项渲染"
+            },
+            {
+              "path": "/transfer/checked-format-text",
+              "name": "列表顶部勾选状态文案"
+            },
+            {
+              "path": "/transfer/filterable",
+              "name": "可搜索"
+            },
+            {
+              "path": "/transfer/props-of-data-source",
+              "name": "数据源的字段别名"
+            },
+            {
+              "path": "/transfer/target-order",
+              "name": "右侧排序策略"
+            },
+            {
+              "path": "/transfer/drop-config",
+              "name": "左右拖拽"
+            },
+            {
+              "path": "/transfer/transfer-events",
+              "name": "穿梭框事件"
+            },
+            {
+              "path": "/transfer/manual-clear-query",
+              "name": "手动清空搜索框"
+            },
+            {
+              "path": "/transfer/custom-footer",
+              "name": "自定义列表底部"
+            },
+            {
+              "path": "/transfer/panel-slot",
+              "name": "自定义面板内容"
+            },
+            {
+              "path": "/transfer/nested-table",
+              "name": "嵌套表格"
+            },
+            {
+              "path": "/transfer/nested-tree",
+              "name": "嵌套树"
+            },
+            {
+              "path": "/transfer/before-transfer",
+              "name": "穿梭前的回调"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "提示组件",
+      "children": [
+        {
+          "path": "/alert",
+          "name": "Alert 警告",
+          "children": [
+            {
+              "path": "/alert/alert-type",
+              "name": "类型"
+            },
+            {
+              "path": "/alert/large-size",
+              "name": "大尺寸"
+            },
+            {
+              "path": "/alert/custom-title",
+              "name": "自定义标题"
+            },
+            {
+              "path": "/alert/align-center",
+              "name": "文字居中"
+            },
+            {
+              "path": "/alert/custom-close-text",
+              "name": "自定义关闭按钮文本"
+            },
+            {
+              "path": "/alert/custom-alert-icon",
+              "name": "自定义警告图标"
+            },
+            {
+              "path": "/alert/not-closable",
+              "name": "不可关闭"
+            },
+            {
+              "path": "/alert/custom-description",
+              "name": "自定义提示内容"
+            },
+            {
+              "path": "/alert/interactive-operation",
+              "name": "自定义交互操作"
+            },
+            {
+              "path": "/alert/alert-close-event",
+              "name": "关闭事件"
+            },
+            {
+              "path": "/alert/feedback-of-result",
+              "name": "表单提交结果反馈"
+            },
+            {
+              "path": "/alert/show-icon",
+              "name": "显示图标"
+            }
+          ]
+        },
+        {
+          "path": "/badge",
+          "name": "Badge 标记",
+          "children": [
+            {
+              "path": "/badge/badge-style",
+              "name": "主题样式"
+            },
+            {
+              "path": "/badge/is-dot",
+              "name": "小圆点标记"
+            },
+            {
+              "path": "/badge/max-num",
+              "name": "计数最大值"
+            },
+            {
+              "path": "/badge/href-target",
+              "name": "跳转链接"
+            },
+            {
+              "path": "/badge/custom-badge-target",
+              "name": "自定义标记目标"
+            },
+            {
+              "path": "/badge/custom-tip-text",
+              "name": "自定义提示内容"
+            },
+            {
+              "path": "/badge/hidden-badge-while-read-message",
+              "name": "消息已读动态隐藏标记"
+            },
+            {
+              "path": "/badge/badge-class",
+              "name": "自定义标记class"
+            },
+            {
+              "path": "/badge/offset",
+              "name": "位置偏移"
+            }
+          ]
+        },
+        {
+          "path": "/loading",
+          "name": "Loading 加载",
+          "children": [
+            {
+              "path": "/loading/loading-tip-text",
+              "name": "自定义加载提示文本"
+            },
+            {
+              "path": "/loading/custom-background",
+              "name": "自定义遮罩背景色"
+            },
+            {
+              "path": "/loading/custom-class",
+              "name": "自定义样式"
+            },
+            {
+              "path": "/loading/body-lock",
+              "name": "修饰符"
+            },
+            {
+              "path": "/loading/fullscreen-loading",
+              "name": "全局加载"
+            },
+            {
+              "path": "/loading/custom-spinner",
+              "name": "自定义加载图标"
+            },
+            {
+              "path": "/loading/custom-loading-target",
+              "name": "区域加载"
+            }
+          ]
+        },
+        {
+          "path": "/tooltip",
+          "name": "Tooltip 文字提示",
+          "children": [
+            {
+              "path": "/tooltip/custom-transition",
+              "name": "自定义渐变动画"
+            },
+            {
+              "path": "/tooltip/dynamic-disable",
+              "name": "禁用"
+            },
+            {
+              "path": "/tooltip/manual-control-tip",
+              "name": "手动控制"
+            },
+            {
+              "path": "/tooltip/visible-show",
+              "name": "智能提示出现"
+            },
+            {
+              "path": "/tooltip/tooltip-theme",
+              "name": "主题"
+            },
+            {
+              "path": "/tooltip/tooltip-hide-delay",
+              "name": "自动隐藏和延迟时间"
+            },
+            {
+              "path": "/tooltip/tooltip-offset",
+              "name": "偏移量"
+            },
+            {
+              "path": "/tooltip/tooltip-enterable",
+              "name": "鼠标是否可进入"
+            },
+            {
+              "path": "/tooltip/tooltip-visible-arrow",
+              "name": "是否显示箭头"
+            },
+            {
+              "path": "/tooltip/tooltip-popper-class",
+              "name": "添加样式类名"
+            },
+            {
+              "path": "/tooltip/tooltip-content",
+              "name": "插槽的使用"
+            },
+            {
+              "path": "/tooltip/tooltip-popper-options",
+              "name": "popper配置"
+            },
+            {
+              "path": "/tooltip/tabindex",
+              "name": "tabindex配置"
+            }
+          ]
+        },
+        {
+          "path": "/popover",
+          "name": "Popover 弹出框",
+          "children": [
+            {
+              "path": "/popover/popover-content",
+              "name": "添加内容"
+            },
+            {
+              "path": "/popover/arrow-offset",
+              "name": "箭头偏移"
+            },
+            {
+              "path": "/popover/frame-offset",
+              "name": "弹出框偏移"
+            },
+            {
+              "path": "/popover/close-delay",
+              "name": "延迟隐藏"
+            },
+            {
+              "path": "/popover/dynamic-disable",
+              "name": "禁用"
+            },
+            {
+              "path": "/popover/open-delay",
+              "name": "延迟显示"
+            },
+            {
+              "path": "/popover/popover-placement",
+              "name": "显示位置"
+            },
+            {
+              "path": "/popover/popper-class",
+              "name": "自定义样式"
+            },
+            {
+              "path": "/popover/custom-transition",
+              "name": "自定义渐变动画"
+            },
+            {
+              "path": "/popover/trigger-mode",
+              "name": "触发方式"
+            },
+            {
+              "path": "/popover/hidden-arrow",
+              "name": "隐藏提示框箭头"
+            },
+            {
+              "path": "/popover/popover-width",
+              "name": "宽度"
+            },
+            {
+              "path": "/popover/popper-options",
+              "name": "弹出框选项"
+            },
+            {
+              "path": "/popover/trigger-reference",
+              "name": "触发源"
+            },
+            {
+              "path": "/popover/custom-tip-text",
+              "name": "自定义提示文本"
+            },
+            {
+              "path": "/popover/popover-events",
+              "name": "事件"
+            }
+          ]
+        },
+        {
+          "path": "/modal",
+          "name": "Modal 模态框",
+          "children": [
+            {
+              "path": "/modal/modal-fullscreen",
+              "name": "最大化显示"
+            },
+            {
+              "path": "/modal/modal-esc-closable",
+              "name": "按 Esc 键关闭窗口"
+            },
+            {
+              "path": "/modal/modal-duration",
+              "name": "自动关闭延时"
+            },
+            {
+              "path": "/modal/modal-id",
+              "name": "防止重复提示"
+            },
+            {
+              "path": "/modal/modal-lock-scroll",
+              "name": "锁住滚动条"
+            },
+            {
+              "path": "/modal/modal-lock-view",
+              "name": "锁住页面"
+            },
+            {
+              "path": "/modal/modal-mask",
+              "name": "显示遮罩层"
+            },
+            {
+              "path": "/modal/modal-mask-closable",
+              "name": "点击遮罩层关闭窗口"
+            },
+            {
+              "path": "/modal/modal-message",
+              "name": "自定义内容"
+            },
+            {
+              "path": "/modal/modal-resize",
+              "name": "调整窗口大小"
+            },
+            {
+              "path": "/modal/modal-showFooter",
+              "name": "不显示底部"
+            },
+            {
+              "path": "/modal/modal-showHeader",
+              "name": "不显示头部"
+            },
+            {
+              "path": "/modal/modal-status",
+              "name": "消息状态"
+            },
+            {
+              "path": "/modal/modal-title",
+              "name": "标题"
+            },
+            {
+              "path": "/modal/modal-top",
+              "name": "距离顶部的位置"
+            },
+            {
+              "path": "/modal/modal-type",
+              "name": "窗口类型"
+            },
+            {
+              "path": "/modal/modal-value",
+              "name": "绑定值"
+            },
+            {
+              "path": "/modal/modal-zIndex",
+              "name": "自定义堆叠顺序"
+            },
+            {
+              "path": "/modal/modal-is-form-reset",
+              "name": "关闭弹窗是否重置表单数据"
+            },
+            {
+              "path": "/modal/modal-event",
+              "name": "事件"
+            },
+            {
+              "path": "/modal/modal-slots",
+              "name": "插槽"
+            }
+          ]
+        },
+        {
+          "path": "/notify",
+          "name": "Notify 通知",
+          "children": [
+            {
+              "path": "/notify/debounce-delay",
+              "name": "配置防抖"
+            },
+            {
+              "path": "/notify/vertical-offset",
+              "name": "垂直方向偏离距离"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "图表组件",
+      "path": "/chart",
+      "children": [
+        {
+          "path": "/chart/attributes",
+          "name": "公共属性"
+        },
+        {
+          "path": "/chart/data-config",
+          "name": "数据配置"
+        },
+        {
+          "path": "/chart/events",
+          "name": "事件监听"
+        },
+        {
+          "path": "/chart/attributes-demo",
+          "name": "属性配置示例"
+        },
+        {
+          "path": "/chart/question",
+          "name": "常见问题示例"
+        },
+        {
+          "path": "/chart/line",
+          "name": "折线图"
+        },
+        {
+          "path": "/chart/histogram",
+          "name": "柱状图"
+        },
+        {
+          "path": "/chart/bar",
+          "name": "条形图"
+        },
+        {
+          "path": "/chart/pie",
+          "name": "饼图"
+        },
+        {
+          "path": "/chart/ring",
+          "name": "环图"
+        },
+        {
+          "path": "/chart/waterfall",
+          "name": "瀑布图"
+        },
+        {
+          "path": "/chart/funnel",
+          "name": "漏斗图"
+        },
+        {
+          "path": "/chart/radar",
+          "name": "雷达图"
+        },
+        {
+          "path": "/chart/map",
+          "name": "地图"
+        },
+        {
+          "path": "/chart/sankey",
+          "name": "桑基图"
+        },
+        {
+          "path": "/chart/heatmap",
+          "name": "热力图"
+        },
+        {
+          "path": "/chart/scatter",
+          "name": "散点图"
+        },
+        {
+          "path": "/chart/candle",
+          "name": "K线图"
+        },
+        {
+          "path": "/chart/gauge",
+          "name": "仪表盘"
+        },
+        {
+          "path": "/chart/tree",
+          "name": "树图"
+        },
+        {
+          "path": "/chart/liquidfill",
+          "name": "水球图"
+        },
+        {
+          "path": "/chart/wordcloud",
+          "name": "词云图"
+        },
+        {
+          "path": "/chart/sunburst",
+          "name": "旭日图"
+        },
+        {
+          "path": "/chart/graph",
+          "name": "拓扑图"
+        },
+        {
+          "path": "/chart/baidu-map",
+          "name": "百度地图"
+        },
+        {
+          "path": "/chart/autonavi-map",
+          "name": "高德地图"
+        },
+        {
+          "path": "/chart/boxplot",
+          "name": "箱形图"
+        }
+      ]
+    },
+    {
+      "name": "业务组件",
+      "children": [
+        {
+          "path": "/amount",
+          "name": "Amount 金额",
+          "children": [
+            {
+              "path": "/amount/set-date",
+              "name": "设置日期"
+            },
+            {
+              "path": "/amount/size",
+              "name": "编辑框大小"
+            },
+            {
+              "path": "/amount/custom-currency",
+              "name": "指定币种"
+            },
+            {
+              "path": "/amount/digits-maxlen",
+              "name": "金额设置"
+            },
+            {
+              "path": "/amount/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/amount/amount-disable",
+              "name": "禁用"
+            }
+          ]
+        },
+        {
+          "path": "/area",
+          "name": "Area 片区",
+          "children": [
+            {
+              "path": "/area/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/area/size",
+              "name": "设置组件大小"
+            },
+            {
+              "path": "/area/area-events",
+              "name": "事件"
+            },
+            {
+              "path": "/area/disabled",
+              "name": "禁用"
+            }
+          ]
+        },
+        {
+          "path": "/company",
+          "name": "Company 公司",
+          "children": [
+            {
+              "path": "/company/custom-show-num",
+              "name": "自定义数据显示数量"
+            },
+            {
+              "path": "/company/custom-service",
+              "name": "自定义服务"
+            }
+          ]
+        },
+        {
+          "path": "/country",
+          "name": "Country 国家/地区",
+          "children": [
+            {
+              "path": "/country/custom-service",
+              "name": "自定义服务"
+            }
+          ]
+        },
+        {
+          "path": "/currency",
+          "name": "Currency 币种",
+          "children": [
+            {
+              "path": "/currency/currency-disabled",
+              "name": "禁用"
+            },
+            {
+              "path": "/currency/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/currency/size",
+              "name": "设置组件大小"
+            }
+          ]
+        },
+        {
+          "path": "/dept",
+          "name": "Dept 部门",
+          "children": [
+            {
+              "path": "/dept/dept-events",
+              "name": "事件"
+            },
+            {
+              "path": "/dept/size",
+              "name": "设置组件大小"
+            },
+            {
+              "path": "/dept/before-confirm",
+              "name": "阻止弹框关闭"
+            },
+            {
+              "path": "/dept/auto-select",
+              "name": "部门信息自动选中"
+            },
+            {
+              "path": "/dept/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/dept/dynamic-disable",
+              "name": "禁用"
+            },
+            {
+              "path": "/dept/title",
+              "name": "弹出框标题"
+            },
+            {
+              "path": "/dept/slot-hrapprover",
+              "name": "插槽"
+            }
+          ]
+        },
+        {
+          "path": "/drop-roles",
+          "name": "DropRoles 下拉角色",
+          "children": [
+            {
+              "path": "/drop-roles/change-role-event",
+              "name": "角色切换事件"
+            },
+            {
+              "path": "/drop-roles/size",
+              "name": "设置组件大小"
+            },
+            {
+              "path": "/drop-roles/custom-service",
+              "name": "自定义服务"
+            }
+          ]
+        },
+        {
+          "path": "/espace",
+          "name": "Espace 消息弹框",
+          "children": [
+            {
+              "path": "/espace/use-in-usercontact",
+              "name": "用户联系人连接 eSpace"
+            }
+          ]
+        },
+        {
+          "path": "/hrapprover",
+          "name": "Hrapprover 权签人",
+          "children": [
+            {
+              "path": "/hrapprover/category-type",
+              "name": "权签类别"
+            },
+            {
+              "path": "/hrapprover/disabled-value-hrapprover",
+              "name": "禁用"
+            },
+            {
+              "path": "/hrapprover/custom-service",
+              "name": "自定义服务"
+            }
+          ]
+        },
+        {
+          "path": "/locales",
+          "name": "Locales 语言选择",
+          "children": [
+            {
+              "path": "/locales/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/locales/change-lang",
+              "name": "语言切换"
+            }
+          ]
+        },
+        {
+          "path": "/logon-user",
+          "name": "LogonUser 登录用户",
+          "children": [
+            {
+              "path": "/logon-user/custom-service",
+              "name": "自定义服务"
+            }
+          ]
+        },
+        {
+          "path": "/logout",
+          "name": "Logout 注销",
+          "children": [
+            {
+              "path": "/logout/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/logout/redirect-url",
+              "name": "自定义配置注销后跳转地址"
+            }
+          ]
+        },
+        {
+          "path": "/roles",
+          "name": "Roles 角色切换",
+          "children": [
+            {
+              "path": "/roles/fetch-role",
+              "name": "自定义服务"
+            }
+          ]
+        },
+        {
+          "path": "/user",
+          "name": "User 用户",
+          "children": [
+            {
+              "path": "/user/multiple-users",
+              "name": "多用户"
+            },
+            {
+              "path": "/user/tag-copy",
+              "name": "用户信息支持复制"
+            },
+            {
+              "path": "/user/tag-copy-all",
+              "name": "可复制图标显示隐藏"
+            },
+            {
+              "path": "/user/dynamic-disable",
+              "name": "禁用状态"
+            },
+            {
+              "path": "/user/value-split",
+              "name": "值分隔符"
+            },
+            {
+              "path": "/user/value-field",
+              "name": "取值字段映射"
+            },
+            {
+              "path": "/user/text-field",
+              "name": "显示字段映射"
+            },
+            {
+              "path": "/user/cache-users",
+              "name": "缓存用户"
+            },
+            {
+              "path": "/user/delay-load",
+              "name": "延时加载"
+            },
+            {
+              "path": "/user/load-after-input-the-length",
+              "name": "输入完指定长度后加载"
+            },
+            {
+              "path": "/user/event-change",
+              "name": "事件"
+            },
+            {
+              "path": "/user/user-options",
+              "name": "自定选项"
+            },
+            {
+              "path": "/user/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/user/custom-sort",
+              "name": "自定义排序"
+            },
+            {
+              "path": "/user/user-select-size",
+              "name": "尺寸设置"
+            }
+          ]
+        },
+        {
+          "path": "/user-account",
+          "name": "UserAccount 用户账号",
+          "children": [
+            {
+              "path": "/user-account/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/user-account/custom-operation",
+              "name": "自定义功能"
+            }
+          ]
+        },
+        {
+          "path": "/user-link",
+          "name": "UserLink 用户信息链接",
+          "children": [
+            {
+              "path": "/user-link/text-field",
+              "name": "显示字段映射"
+            },
+            {
+              "path": "/user-link/text-split",
+              "name": "自定义文本分隔符"
+            },
+            {
+              "path": "/user-link/value-field",
+              "name": "值字段映射"
+            },
+            {
+              "path": "/user-link/value-split",
+              "name": "自定义值分隔符"
+            },
+            {
+              "path": "/user-link/custom-service",
+              "name": "自定义服务"
+            },
+            {
+              "path": "/user-link/cache-users",
+              "name": "用户数据缓存"
+            },
+            {
+              "path": "/user-link/value",
+              "name": "默认值"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "其他组件",
+      "children": [
+        {
+          "path": "/bulletin-board",
+          "name": "BulletinBoard 公告牌",
+          "children": [
+            {
+              "path": "/bulletin-board/bulletin-board-title",
+              "name": "公告牌标题"
+            },
+            {
+              "path": "/bulletin-board/default-active-tab",
+              "name": "默认激活的选项卡"
+            },
+            {
+              "path": "/bulletin-board/custom-tab-title",
+              "name": "选项卡标题"
+            },
+            {
+              "path": "/bulletin-board/base-on-url",
+              "name": "基于Url的跳转"
+            },
+            {
+              "path": "/bulletin-board/base-on-route",
+              "name": "基于Route的跳转"
+            },
+            {
+              "path": "/bulletin-board/show-more-link",
+              "name": "显示 “更多” 链接"
+            },
+            {
+              "path": "/bulletin-board/custom-new-bulletin-icon",
+              "name": "自定义新公告前缀"
+            }
+          ]
+        },
+        {
+          "path": "/calendar",
+          "name": "Calendar 日历",
+          "children": [
+            {
+              "path": "/calendar/calendar-mode",
+              "name": "显示模式"
+            },
+            {
+              "path": "/calendar/show-selected-date",
+              "name": "显示选中日期"
+            },
+            {
+              "path": "/calendar/custom-day-cell",
+              "name": "自定义日期单元格"
+            },
+            {
+              "path": "/calendar/custom-calendar-toolbar",
+              "name": "自定义工具栏"
+            },
+            {
+              "path": "/calendar/dynamic-add-schedule",
+              "name": "添加日程事件"
+            }
+          ]
+        },
+        {
+          "path": "/credit-card-form",
+          "name": "CreditCardForm 信用卡表单",
+          "children": [
+            {
+              "path": "/credit-card-form/background-image",
+              "name": "背景图片"
+            },
+            {
+              "path": "/credit-card-form/credit-card-form-events",
+              "name": "事件"
+            }
+          ]
+        },
+        {
+          "path": "/crop",
+          "name": "Crop 图片裁剪",
+          "children": [
+            {
+              "path": "/crop/aspect-ratio",
+              "name": "裁剪框宽高比"
+            },
+            {
+              "path": "/crop/min-crop-box-width-height",
+              "name": "裁剪框最小宽高"
+            },
+            {
+              "path": "/crop/no-background",
+              "name": "不显示网格背景"
+            },
+            {
+              "path": "/crop/no-guides",
+              "name": "不显示虚线"
+            },
+            {
+              "path": "/crop/no-modal",
+              "name": "不显示模态"
+            },
+            {
+              "path": "/crop/view-mode",
+              "name": "视图模式"
+            },
+            {
+              "path": "/crop/drag-mode",
+              "name": "拖拽模式"
+            },
+            {
+              "path": "/crop/auto-crop-area",
+              "name": "自动裁剪面积"
+            },
+            {
+              "path": "/crop/get-container-data",
+              "name": "获取容器数据"
+            },
+            {
+              "path": "/crop/get-crop-box-data",
+              "name": "获取剪切框数据"
+            },
+            {
+              "path": "/crop/get-cropped-canvas",
+              "name": "获取裁剪后的图片数据"
+            },
+            {
+              "path": "/crop/get-data",
+              "name": "获取裁剪区域数据"
+            },
+            {
+              "path": "/crop/get-image-data",
+              "name": "获取图像数据"
+            },
+            {
+              "path": "/crop/replace-image",
+              "name": "替换图片"
+            },
+            {
+              "path": "/crop/wheel-zoom-ratio",
+              "name": "鼠标滚轮缩放图像时比例"
+            },
+            {
+              "path": "/crop/zoom-on-wheel",
+              "name": "禁用鼠标滚轮缩放图像"
+            },
+            {
+              "path": "/crop/crop-events",
+              "name": "事件"
+            }
+          ]
+        },
+        {
+          "path": "/detail-page",
+          "name": "DetailPage 表头详情栏",
+          "children": [
+            {
+              "path": "/detail-page/custom-show-text",
+              "name": "自定义展示文本"
+            }
+          ]
+        },
+        {
+          "path": "/image",
+          "name": "Image 图片预览",
+          "children": [
+            {
+              "path": "/image/auto-fit-container-size",
+              "name": "自适应容器尺寸"
+            },
+            {
+              "path": "/image/custom-placeholder",
+              "name": "占位内容"
+            },
+            {
+              "path": "/image/lazy-load",
+              "name": "懒加载"
+            },
+            {
+              "path": "/image/preview-src-list",
+              "name": "预览大图"
+            },
+            {
+              "path": "/image/preview-z-index",
+              "name": "图片预览层级"
+            },
+            {
+              "path": "/image/load-event",
+              "name": "加载事件"
+            },
+            {
+              "path": "/image/custom-load-failed-text",
+              "name": "加载失败"
+            },
+            {
+              "path": "/image/preview-in-dialog",
+              "name": "对话框中预览图片"
+            }
+          ]
+        },
+        {
+          "path": "/rate",
+          "name": "Rate 评分",
+          "children": [
+            {
+              "path": "/rate/custom-3-threshold-colors",
+              "name": "自定义 3 分段颜色"
+            },
+            {
+              "path": "/rate/disabled-not-selected-style",
+              "name": "自定义禁用时未选中图标颜色及样式"
+            },
+            {
+              "path": "/rate/custom-3-threshold-icon",
+              "name": "自定义 3 分段图标样式"
+            },
+            {
+              "path": "/rate/texts-and-text-color",
+              "name": "辅助文字及颜色"
+            },
+            {
+              "path": "/rate/size-and-space",
+              "name": "大小及占位宽度"
+            },
+            {
+              "path": "/rate/not-selected-style",
+              "name": "自定义未选中图标颜色及样式"
+            },
+            {
+              "path": "/rate/text-on-bottom",
+              "name": "图标下文字提示"
+            },
+            {
+              "path": "/rate/allow-half",
+              "name": "半选"
+            },
+            {
+              "path": "/rate/dynamic-disable",
+              "name": "禁用"
+            },
+            {
+              "path": "/rate/show-score",
+              "name": "分数显示"
+            },
+            {
+              "path": "/rate/radio-rate",
+              "name": "单选模式"
+            },
+            {
+              "path": "/rate/max-score",
+              "name": "最大分值"
+            },
+            {
+              "path": "/rate/threshold-value",
+              "name": "界限值"
+            },
+            {
+              "path": "/rate/rate-events",
+              "name": "事件"
+            }
+          ]
+        },
+        {
+          "path": "/scroll-text",
+          "name": "ScrollText 文字滚动",
+          "children": [
+            {
+              "path": "/scroll-text/scroll-direction",
+              "name": "文本滚动方向"
+            },
+            {
+              "path": "/scroll-text/hover-stop",
+              "name": "鼠标悬停时文本停止滚动"
+            },
+            {
+              "path": "/scroll-text/custom-scroll-text",
+              "name": "自定义文本内容"
+            },
+            {
+              "path": "/scroll-text/scroll-time",
+              "name": "滚动时间间隔"
+            },
+            {
+              "path": "/scroll-text/custom-text-style",
+              "name": "自定义文本样式"
+            }
+          ]
+        },
+        {
+          "path": "/slide-bar",
+          "name": "SlideBar 滚动块",
+          "children": [
+            {
+              "path": "/slide-bar/wheel-blocks",
+              "name": "每次滚动块数"
+            },
+            {
+              "path": "/slide-bar/custom-content",
+              "name": "自定义滚动块内容"
+            },
+            {
+              "path": "/slide-bar/custom-tag",
+              "name": "自定义 DOM 标签"
+            },
+            {
+              "path": "/slide-bar/slide-bar-events",
+              "name": "滚动块事件"
+            }
+          ]
+        },
+        {
+          "path": "/tag",
+          "name": "Tag 标签",
+          "children": [
+            {
+              "path": "/tag/color-border",
+              "name": "颜色和边框"
+            },
+            {
+              "path": "/tag/tag-size",
+              "name": "尺寸"
+            },
+            {
+              "path": "/tag/tag-effect",
+              "name": "主题"
+            },
+            {
+              "path": "/tag/create-and-close",
+              "name": "增删"
+            },
+            {
+              "path": "/tag/tag-events",
+              "name": "事件"
+            },
+            {
+              "path": "/tag/before-delete",
+              "name": "删除前的回调"
+            }
+          ]
+        },
+        {
+          "path": "/textpopup",
+          "name": "TextPopup 输入框",
+          "children": [
+            {
+              "path": "/textpopup/textpopup-placeholder",
+              "name": "提示占位文本"
+            },
+            {
+              "path": "/textpopup/textpopup-readonly",
+              "name": "只读"
+            },
+            {
+              "path": "/textpopup/textpopup-separtor",
+              "name": "分隔符"
+            },
+            {
+              "path": "/textpopup/textpopup-value",
+              "name": "绑定值"
+            },
+            {
+              "path": "/textpopup/textpopup-width",
+              "name": "宽度"
+            }
+          ]
+        },
+        {
+          "path": "/user-contact",
+          "name": "UserContact 联系人",
+          "children": [
+            {
+              "path": "/user-contact/data-source",
+              "name": "数据源"
+            },
+            {
+              "path": "/user-contact/not-displayed-content",
+              "name": "定制弹框不显示的内容"
+            },
+            {
+              "path": "/user-contact/slots-usercontact",
+              "name": "默认插槽"
+            }
+          ]
+        },
+        {
+          "path": "/user-head",
+          "name": "UserHead 用户头像",
+          "children": [
+            {
+              "path": "/user-head/min-user-head",
+              "name": "小头像"
+            },
+            {
+              "path": "/user-head/round-user-head",
+              "name": "圆形头像"
+            },
+            {
+              "path": "/user-head/label-user-head",
+              "name": "文字头像"
+            },
+            {
+              "path": "/user-head/icon-user-head",
+              "name": "图标头像"
+            },
+            {
+              "path": "/user-head/image-user-head",
+              "name": "图片头像"
+            },
+            {
+              "path": "/user-head/message-count",
+              "name": "消息计数"
+            },
+            {
+              "path": "/user-head/custom-color",
+              "name": "自定义颜色"
+            },
+            {
+              "path": "/user-head/custom-background-color",
+              "name": "自定义背景颜色"
+            },
+            {
+              "path": "/user-head/custom-user-head-content",
+              "name": "自定义图像内容"
+            },
+            {
+              "path": "/user-head/render-user-head-in-grid",
+              "name": "Grid单元格展示头像"
+            }
+          ]
+        },
+        {
+          "path": "/fullscreen",
+          "name": "Fullscreen 全屏显示",
+          "children": [
+            {
+              "path": "/fullscreen/before-change",
+              "name": "全屏/退出全屏前的回调"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
