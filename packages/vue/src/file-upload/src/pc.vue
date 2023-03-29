@@ -55,7 +55,8 @@ export default defineComponent({
     'isFolderTitle',
     'plugin',
     'listOption',
-    'maxNameLength'
+    'maxNameLength',
+    'isHidden'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, extendOptions: { Modal } })
@@ -209,7 +210,8 @@ export default defineComponent({
         onPreview: preview,
         httpRequest,
         isFolder,
-        edmToken
+        edmToken,
+        isHidden: this.isHidden
       },
       ref: 'upload-inner'
     }
