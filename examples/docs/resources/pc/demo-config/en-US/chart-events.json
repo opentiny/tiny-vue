@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Event Listening",
+    "content": "<p>A binding event is implemented by transferring an event name and an object of the corresponding callback function. The parameter in the callback function is the echarts module, which can be processed accordingly. </p>\n<h4>Example</h4>\n",
+    "link": "chart/events/base",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "events-base"
+  }
+]

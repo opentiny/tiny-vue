@@ -1,0 +1,62 @@
+{
+  "attrs": [
+    {
+      "name": "data",
+      "sample": "data-source",
+      "type": "Object",
+      "desc": "设置的数据;数据设置",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-img",
+      "sample": "not-displayed-content",
+      "type": "Boolean",
+      "desc": "是否显示头像，默认 true",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "show-name",
+      "sample": "not-displayed-content",
+      "type": "Boolean",
+      "desc": "是否显示姓名 userName,默认 true",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "show-number",
+      "sample": "not-displayed-content",
+      "type": "Boolean",
+      "desc": "是否显示工号 roleNumber,默认 true",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "popper-class",
+      "sample": "",
+      "type": "String",
+      "desc": "为 popper 添加类名(可参考 popover 组件)",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-append-to-body",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "espace",
+      "sample": "support-open-espace",
+      "type": "Array",
+      "desc": "espace 信息配置",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "slots-usercontact",
+      "type": "",
+      "desc": "默认插槽",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+.tooltip-type (@color, @bgcolor, @border-color) {
+  background: @bgcolor;
+  color: @color;
+
+  &[x-placement^='top'] .popper__arrow {
+    border-top-color: @border-color;
+
+    &::after {
+      border-top-color: @border-color;
+    }
+  }
+
+  &[x-placement^='bottom'] .popper__arrow {
+    border-bottom-color: @border-color;
+
+    &::after {
+      border-bottom-color: @border-color;
+    }
+  }
+
+  &[x-placement^='left'] .popper__arrow {
+    border-left-color: @border-color;
+
+    &::after {
+      border-left-color: @border-color;
+    }
+  }
+
+  &[x-placement^='right'] .popper__arrow {
+    border-right-color: @border-color;
+
+    &::after {
+      border-right-color: @border-color;
+    }
+  }
+}
+
+.tooltip-light (@color, @bgcolor, @border-color) {
+  background: @bgcolor;
+  color: @color;
+  border: 1px solid @border-color;
+
+  &[x-placement^='top'] .popper__arrow {
+    border-top-color: @border-color;
+
+    &::after {
+      border-top-color: @bgcolor;
+    }
+  }
+
+  &[x-placement^='bottom'] .popper__arrow {
+    border-bottom-color: @border-color;
+
+    &::after {
+      border-bottom-color: @bgcolor;
+    }
+  }
+
+  &[x-placement^='left'] .popper__arrow {
+    border-left-color: @border-color;
+
+    &::after {
+      border-left-color: @bgcolor;
+    }
+  }
+
+  &[x-placement^='right'] .popper__arrow {
+    border-right-color: @border-color;
+
+    &::after {
+      border-right-color: @bgcolor;
+    }
+  }
+}

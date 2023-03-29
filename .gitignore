@@ -1,16 +1,27 @@
 .DS_Store
 node_modules
 dist/
+dist2/
+dist2.7/
+dist3/
 allDist/
-packages/**/runtime/
+packages/**/runtime
 coverage/
 
-/packages/base.js
-/packages/chart.js
-/packages/core.js
-/packages/index.js
-/packages/pc.js
-/packages/mobile.js
+/packages/vue-icon-saas/src
+/packages/vue-icon-saas/index.ts
+/packages/vue/index.ts
+/packages/vue/pc.ts
+/packages/vue/mobile.ts
+/packages/vue/app.ts
+/packages/vue-icon/src/index.ts
+
+/examples/**/playwright-report
+/examples/docs/.vuepress/.cache/
+/examples/docs/.vuepress/.temp/
+/examples/docs/.vitepress/cache
+vite.config.ts.timestamp*
+vitest.config.ts.timestamp*
 
 # local env
 .env.local
@@ -20,12 +31,11 @@ coverage/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-lock.yaml
 
 # Editor directories and files
 .idea
 .history
-.vscode
-.cloudbuild
 *.suo
 *.ntvs*
 *.njsproj
@@ -34,8 +44,7 @@ yarn-error.log*
 *.log
 *.stackdump
 
-yarn.lock
-package-lock.json
-
 tgzs
 *.tgz
+
+

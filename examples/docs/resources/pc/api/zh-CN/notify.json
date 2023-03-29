@@ -1,0 +1,104 @@
+{
+  "attrs": [
+    {
+      "name": "type",
+      "sample": "type",
+      "type": "String",
+      "desc": "通知消息类型，可选值为 info、success、warning、error",
+      "defaultValue": "info"
+    },
+    {
+      "name": "title",
+      "sample": "title",
+      "type": "[String, Function]",
+      "desc": "通知消息标题，可用 jsx 定制",
+      "defaultValue": "undefined"
+    },
+    {
+      "name": "message",
+      "sample": "message",
+      "type": "[String, Function]",
+      "desc": "通知消息文本，可用 jsx 定制",
+      "defaultValue": "undefined"
+    },
+    {
+      "name": "position",
+      "sample": "position",
+      "type": "String",
+      "desc": "通知显示位置，可选值为 top-right、bottom-right",
+      "defaultValue": "bottom-right"
+    },
+    {
+      "name": "duration",
+      "sample": "duration",
+      "type": "Number",
+      "desc": "自动关闭延时毫秒数",
+      "defaultValue": "4500"
+    },
+    {
+      "name": "customClass",
+      "sample": "basic-usage",
+      "type": "[String, Object]",
+      "desc": "自定义样式类",
+      "defaultValue": "undefined"
+    },
+    {
+      "name": "showClose",
+      "sample": "showClose",
+      "type": "Boolean",
+      "desc": "是否显示关闭按钮",
+      "defaultValue": "true"
+    },
+    {
+      "name": "showIcon",
+      "sample": "showIcon",
+      "type": "Boolean",
+      "desc": "是否显示类型图标",
+      "defaultValue": "true"
+    },
+    {
+      "name": "closeIcon",
+      "sample": "closeIcon",
+      "type": "Object",
+      "desc": "关闭图标组件对象",
+      "defaultValue": "IconClose"
+    },
+    {
+      "name": "statusIcon",
+      "sample": "statusIcon",
+      "type": "Object",
+      "desc": "类型图标组件对象",
+      "defaultValue": "IconInfoSolid"
+    },
+    {
+      "name": "debounceDelay",
+      "sample": "debounceDelay",
+      "type": "Number",
+      "desc": "启用防抖",
+      "defaultValue": "0"
+    },
+    {
+      "name": "verticalOffset",
+      "sample": "verticalOffset",
+      "type": "[Number,String]",
+      "desc": "设置垂直方向偏离距离,单位px",
+      "defaultValue": 16
+    }
+  ],
+  "events": [
+    {
+      "name": "beforeClose",
+      "sample": "beforeClose",
+      "type": "Function",
+      "desc": "关闭前回调方法，返回 false 可阻止关闭",
+      "defaultValue": "undefined"
+    },
+    {
+      "name": "close",
+      "sample": "close",
+      "type": "Object",
+      "desc": "关闭 notify 时触发的事件",
+      "defaultValue": "undefined"
+    }
+  ]
+}

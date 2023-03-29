@@ -1,0 +1,201 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import '../mixins/hairline.less';
+@import './vars.less';
+
+@dialog-box-prefix-cls: ~'@{css-prefix}mobile-dialog-box';
+
+.@{dialog-box-prefix-cls} {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--ti-mobile-dialogbox-width, 270px);
+  background: var(--ti-mobile-dialogbox-background, #fff);
+
+  &__wrapper {
+    margin: 0;
+    overflow: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+  }
+
+  &.is-hide-header &__body {
+    padding: 24px 16px;
+    max-height: 490px;
+  }
+
+  & &__header {
+    padding: 16px 16px 8px;
+    text-align: center;
+  }
+
+  & &__title {
+    font-size: var(--ti-mobile-dialogbox-title-font-size, 17px);
+    color: var(--ti-mobile-dialogbox-title-color, #000);
+    font-weight: bold;
+  }
+
+  & &__body {
+    font-size: var(--ti-mobile-dialogbox-body-font-size, 16px);
+    color: var(--ti-mobile-dialogbox-body-color, #333);
+    padding: 0px 16px 16px;
+    max-height: 482px;
+    overflow-y: auto;
+  }
+
+  & &__footer {
+    height: 44px;
+    padding: 0 16px;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .hairline('top', var(--ti-mobile-dialogbox-border-color, #ccc));
+  }
+
+  & &__button {
+    width: 50%;
+    font-size: 16px;
+    line-height: 42px;
+    border: 0;
+    background: 0;
+    cursor: pointer;
+
+    &:focus {
+      outline: 0;
+    }
+
+    &.cancel-button {
+      color: var(--ti-mobile-dialogbox-cancel-button-color, #999);
+      .hairline('right', var(--ti-mobile-dialogbox-border-color, #ccc));
+    }
+
+    &.confirm-button {
+      color: var(--ti-mobile-dialogbox-confirm-button-color, #333);
+    }
+  }
+
+  &__scroll-lock {
+    overflow: hidden;
+  }
+}
+
+.v-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  background: #000;
+}
+
+.v-modal-enter {
+  animation: v-modal-in 0.2s ease;
+}
+
+.v-modal-leave {
+  animation: v-modal-out 0.2s ease forwards;
+}
+
+@keyframes v-modal-in {
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes v-modal-out {
+  100% {
+    opacity: 0;
+  }
+}
+
+.dialog-slideRight-enter-active {
+  animation: slideRight 0.5s ease-in forwards;
+}
+
+.dialog-slideRight-leave-active {
+  animation: slideRightout 0.5s ease-in forwards;
+}
+
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateX(50%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slideRightout {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateX(50%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.dialog-fade-leave-active {
+  animation: dialog-fade-out 0.3s;
+}
+
+.dialog-fade-enter-active {
+  animation: dialog-fade-in 0.3s;
+}
+
+@keyframes dialog-fade-out {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0);
+  }
+}
+
+@keyframes dialog-fade-in {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

@@ -1,0 +1,185 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@dropdown-menu-prefix-cls: ~'@{css-prefix}dropdown-menu';
+
+.@{dropdown-menu-prefix-cls} {
+  .component-css-vars-dropdown-menu();
+
+  position: absolute;
+  padding: var(--ti-dropdown-menu-padding-vertical) var(--ti-dropdown-menu-padding-horizontal);
+  background-color: var(--ti-common-color-bg-white-normal);
+  border-radius: var(--ti-common-border-radius-normal);
+  box-shadow: var(--ti-dropdown-menu-box-shadow);
+  width: max-content;
+
+  .@{dropdown-menu-prefix-cls}{
+    padding: var(--ti-dropdown-menu-padding-vertical) var(--ti-dropdown-menu-padding-horizontal);
+  }
+
+  &.@{css-prefix}popper .popper__arrow,
+  &.@{css-prefix}popper .popper__arrow:after {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+  }
+
+  &.@{css-prefix}popper .popper__arrow {
+    border-width: 6px;
+    filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.03));
+  }
+
+  &.@{css-prefix}popper .popper__arrow::after {
+    content: ' ';
+    border-width: 6px;
+  }
+
+  &.@{css-prefix}popper[x-placement^='top'] {
+    margin-bottom: var(--ti-dropdown-menu-margin-vertical);
+  }
+
+  &.@{css-prefix}popper[x-placement^='top'] .popper__arrow {
+    bottom: -6px;
+    left: 50%;
+    margin-right: 3px;
+    border-top-color: #d9d9d9;
+    border-bottom-width: 0;
+  }
+
+  &.@{css-prefix}popper[x-placement^='top'] .popper__arrow:after {
+    bottom: 1px;
+    margin-left: -6px;
+    border-top-color: #fff;
+    border-bottom-width: 0;
+  }
+
+  &.@{css-prefix}popper[x-placement^='bottom'] {
+    margin-top: var(--ti-dropdown-menu-margin-vertical);
+  }
+
+  &.@{css-prefix}popper[x-placement^='bottom'] .popper__arrow {
+    top: -6px;
+    left: 50%;
+    margin-right: 3px;
+    border-top-width: 0;
+    border-bottom-color: #d9d9d9;
+  }
+
+  &.@{css-prefix}popper[x-placement^='bottom'] .popper__arrow:after {
+    top: 1px;
+    margin-left: -6px;
+    border-top-width: 0;
+    border-bottom-color: #fff;
+  }
+
+  &.@{css-prefix}popper[x-placement^='right'] {
+    margin-left: 12px;
+  }
+
+  &.@{css-prefix}popper[x-placement^='right'] .popper__arrow {
+    top: 50%;
+    left: -6px;
+    margin-bottom: 3px;
+    border-right-color: #d9d9d9;
+    border-left-width: 0;
+  }
+
+  &.@{css-prefix}popper[x-placement^='right'] .popper__arrow:after {
+    bottom: -6px;
+    left: 1px;
+    border-right-color: #fff;
+    border-left-width: 0;
+  }
+
+  &.@{css-prefix}popper[x-placement^='left'] {
+    margin-right: 12px;
+  }
+
+  &.@{css-prefix}popper[x-placement^='left'] .popper__arrow {
+    top: 50%;
+    right: -6px;
+    margin-bottom: 3px;
+    border-right-width: 0;
+    border-left-color: #d9d9d9;
+  }
+
+  &.@{css-prefix}popper[x-placement^='left'] .popper__arrow:after {
+    right: 1px;
+    bottom: -6px;
+    margin-left: -6px;
+    border-right-width: 0;
+    border-left-color: #fff;
+  }
+}
+
+.@{dropdown-menu-prefix-cls}--medium {
+  padding: 6px 0;
+
+  .@{dropdown-menu-prefix-cls}__item {
+    line-height: 30px;
+    padding: 0 17px;
+    font-size: var(--ti-common-font-size-1);
+
+    &.@{dropdown-menu-prefix-cls}__item--divided {
+      margin-top: 6px;
+    }
+
+    &.@{dropdown-menu-prefix-cls}__item--divided:before {
+      height: 6px;
+      margin: 0 -17px;
+    }
+  }
+}
+
+.@{dropdown-menu-prefix-cls}--small {
+  padding: 6px 0;
+
+  .@{dropdown-menu-prefix-cls}__item {
+    line-height: 27px;
+    padding: 0 15px;
+    font-size: 13px;
+
+    &.@{dropdown-menu-prefix-cls}__item--divided {
+      margin-top: var(--ti-dropdown-menu-item-divided-margin-top);
+    }
+
+    &.@{dropdown-menu-prefix-cls}__item--divided:before {
+      height: 4px;
+      margin: 0 -15px;
+    }
+  }
+}
+
+.@{dropdown-menu-prefix-cls}--mini {
+  padding: 3px 0;
+
+  .@{dropdown-menu-prefix-cls}__item {
+    line-height: 24px;
+    padding: 0 10px;
+    font-size: var(--ti-common-font-size-base);
+
+    &.@{dropdown-menu-prefix-cls}__item--divided {
+      margin-top: 3px;
+    }
+
+    &.@{dropdown-menu-prefix-cls}__item--divided:before {
+      height: 3px;
+      margin: 0 -10px;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "attrs": [
+    {
+      "name": "events",
+      "sample": "dynamic-add-schedule",
+      "type": "Array",
+      "desc": "Event List",
+      "defaultValue": ""
+    },
+    {
+      "name": "mode",
+      "sample": "calendar-mode",
+      "type": "String",
+      "desc": "Display mode. The value can be month or year. The default value is month.",
+      "defaultValue": ""
+    },
+    {
+      "name": "month",
+      "sample": "custom-day-cell",
+      "type": "Number",
+      "desc": "Specified month. The default value is the current month.",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-selected",
+      "sample": "show-selected-date",
+      "type": "Boolean",
+      "desc": "Display the selected date.",
+      "defaultValue": ""
+    },
+    {
+      "name": "year",
+      "sample": "custom-day-cell",
+      "type": "Number",
+      "desc": "Specified year. The default year is this year.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "day",
+      "sample": "custom-day-cell",
+      "type": "",
+      "desc": "Date Cell Slot",
+      "defaultValue": ""
+    },
+    {
+      "name": "tool",
+      "sample": "custom-calendar-toolbar",
+      "type": "",
+      "desc": "Calendar Toolbar Slot",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "basic-usage",
+      "type": "Date / Array",
+      "desc": "设置日历组件的初始值。;绑定值",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "focus",
+      "type": "Boolean",
+      "desc": "禁用",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "popper-append-to-body",
+      "sample": "popup-style-position",
+      "type": "Boolean",
+      "desc": "是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "readonly",
+      "sample": "readonly",
+      "type": "Boolean",
+      "desc": "设置日历组件是否只读。",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "editable",
+      "sample": "editable",
+      "type": "Boolean",
+      "desc": "文本框可输入",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "clearable",
+      "sample": "about-clear",
+      "type": "Boolean",
+      "desc": "是否显示清除按钮",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "size",
+      "sample": "set-size",
+      "type": "String",
+      "desc": "输入框尺寸;该属性的可选值为 medium,small, mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "placeholder",
+      "sample": "other-picker-type",
+      "type": "String",
+      "desc": "非范围选择时的占位内容",
+      "defaultValue": "该属性的默认值为 []"
+    },
+    {
+      "name": "start-placeholder",
+      "sample": "custom-range",
+      "type": "String",
+      "desc": "范围选择时开始日期的占位内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "end-placeholder",
+      "sample": "custom-range",
+      "type": "String",
+      "desc": "范围选择时结束日期的占位内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "type",
+      "sample": "other-picker-type",
+      "type": "String",
+      "desc": "显示类型;该属性的可选值为 year / month / dates / week / daterange / date / datetime / datetimerange / monthrange",
+      "defaultValue": "该属性的默认值为 date"
+    },
+    {
+      "name": "format",
+      "sample": "about-format",
+      "type": "String",
+      "desc": "显示在输入框中的格式",
+      "defaultValue": "该属性的默认值为 yyyy-MM-dd"
+    },
+    {
+      "name": "value-format",
+      "sample": "about-format",
+      "type": "String",
+      "desc": "指定绑定值的格式。不指定则绑定值为 Date 对象",
+      "defaultValue": "该属性的默认值为 Date 对象"
+    },
+    {
+      "name": "time-format",
+      "sample": "",
+      "type": "String",
+      "desc": "当自定义的format格式无法自动区分时间与日期时可配置该选项用来辅助确定格式",
+      "defaultValue": ""
+    },
+    {
+      "name": "isutc8",
+      "sample": "utc8",
+      "type": "Boolean",
+      "desc": "默认值为 false ,设置为 true 时切换系统默认时区，时间依然显示为东八区时间。适用场景为海外地区显示东八区时间",
+      "defaultValue": ""
+    },
+    {
+      "name": "align",
+      "sample": "align",
+      "type": "String",
+      "desc": "对齐方式;该属性的可选值为 left / center / right",
+      "defaultValue": "该属性的默认值为 left"
+    },
+    {
+      "name": "show-timezone",
+      "sample": "timezone",
+      "type": "Boolean",
+      "desc": "是否开启设置日期选择面板时区选择",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "popper-class",
+      "sample": "custom-suffix-icon1",
+      "type": "String",
+      "desc": "为 DatePicker 下拉弹框添加的 class 类名",
+      "defaultValue": ""
+    },
+    {
+      "name": "picker-options",
+      "sample": "date-range-shortcuts",
+      "type": "Object",
+      "desc": "当前时间日期选择器特有的选项参考下表",
+      "defaultValue": "该属性的默认值为 {}"
+    },
+    {
+      "name": "range-separator",
+      "sample": "custom-range",
+      "type": "String",
+      "desc": "选择范围时的分隔符",
+      "defaultValue": "该属性的默认值为 - "
+    },
+    {
+      "name": "default-value",
+      "sample": "default-value",
+      "type": "Date",
+      "desc": "可选，当选中的日期值为空时，选择器面板打开时默认显示的时间，需设置为可被new Date()解析的值",
+      "defaultValue": ""
+    },
+    {
+      "name": "default-time",
+      "sample": "default-time-of-range",
+      "type": "String",
+      "desc": "范围选择时选中日期所使用的当日内具体时刻;该属性的可选值为 见日期格式",
+      "defaultValue": ""
+    },
+    {
+      "name": "name",
+      "sample": "timezone",
+      "type": "String",
+      "desc": "原生属性",
+      "defaultValue": ""
+    },
+    {
+      "name": "unlink-panels",
+      "sample": "unlink-panels",
+      "type": "Boolean",
+      "desc": "在范围选择器里取消两个日期面板之间的联动",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "suffix-icon ",
+      "sample": "custom-suffix-icon",
+      "type": "Object",
+      "desc": "自定义选择器的后置图标",
+      "defaultValue": "该属性的默认值为 IconCalendar，"
+    },
+    {
+      "name": "clear-icon",
+      "sample": "about-clear",
+      "type": "String",
+      "desc": "自定义清空图标",
+      "defaultValue": "该属性的默认值为 IconOperationfaild"
+    },
+    {
+      "name": "time-arrow-control",
+      "sample": "time-arrow-control",
+      "type": "Boolean",
+      "desc": "通过箭头按钮控制时间选择，当 type 为 datetime、datetimerange 时使用;默认为 通过鼠标滚轮滚动选择时间",
+      "defaultValue": ""
+    },
+    {
+      "name": "validate-event",
+      "sample": "validate-event",
+      "type": "Boolean",
+      "desc": "设置日期选择器在输入时是否会触发表单校验;默认为 true",
+      "defaultValue": ""
+    }
+  ],
+  "methods": [
+    {
+      "name": "focus",
+      "sample": "focus",
+      "type": "",
+      "desc": "使 input 获取焦点",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "date-picker-events",
+      "type": "Function(arg1)",
+      "desc": "用户确认选定的值时触发;change（arg1）{ // arg1为datepicker改变后的日期或者是日期集}",
+      "defaultValue": ""
+    },
+    {
+      "name": "blur",
+      "sample": "date-picker-events",
+      "type": "Function",
+      "desc": "当 input 失去焦点时触发;blur() { \n//do something you want...\n}",
+      "defaultValue": ""
+    },
+    {
+      "name": "focus",
+      "sample": "date-picker-events",
+      "type": "Function(arg1)",
+      "desc": "当 input 获得焦点时触发;focus(arg1}{ \n// arg1 = 对组件vue实例 \n//do something you want...\n}",
+      "defaultValue": ""
+    }
+  ]
+}

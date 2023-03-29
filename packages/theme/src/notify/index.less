@@ -1,0 +1,188 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@notify-prefix-cls: ~'@{css-prefix}notify';
+
+.@{notify-prefix-cls} {
+  .component-css-vars-notify();
+
+  position: fixed;
+  z-index: 1101;
+  max-width: var(--ti-notify-max-width);
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.3s;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 16px;
+  background: var(--ti-notify-bg-color);
+  border-radius: 2px;
+  border-radius: var(--ti-notify-border-radius);
+  font-size: var(--ti-common-font-size-base);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  box-shadow: var(--ti-notify-box-shadow);
+
+  &--info {
+    background: var(--ti-notify-info-bg-color);
+  }
+
+  &--warning {
+    background: var(--ti-notify-warning-bg-color);
+  }
+
+  &--error {
+    background: var(--ti-notify-error-bg-color);
+  }
+
+  &--success {
+    background: var(--ti-notify-success-bg-color);
+  }
+
+  &.top-left {
+    left: 10px;
+    top: 25px;
+  }
+
+  &.bottom-left {
+    left: 10px;
+    bottom: 25px;
+  }
+
+  &.top-right {
+    right: 10px;
+    top: 25px;
+  }
+
+  &.bottom-right {
+    right: 10px;
+    bottom: 25px;
+  }
+
+  & &__title {
+    font-weight: var(--ti-notify-title-font-weight);
+    font-size: var(--ti-notify-title-font-size);
+    color: var(--ti-notify-title-text-color);
+    line-height: 1.74;
+  }
+
+  & &__icon {
+    color: var(--ti-notify-text-color);
+  }
+
+  & &__content {
+    color: var(--ti-notify-title-text-color);
+    font-size: var(--ti-common-font-size-base);
+    margin: 0;
+    padding: 0;
+    font-size: var(--ti-common-font-size-1);
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
+
+  & &__closebtn {
+    cursor: pointer;
+    color: var(--ti-notify-text-color);
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+
+  & &__icon-zone {
+    width: 24px;
+    height: 24px;
+    font-size: var(--ti-notify-icon-size);
+  }
+
+  & &__message-zone {
+    width: calc(100% - 40px);
+    margin: var(--ti-notify-message-margin-vertical) var(--ti-notify-message-margin-right) var(--ti-notify-message-margin-vertical)
+      var(--ti-notify-message-margin-left);
+  }
+
+  & &__close-zone {
+    width: 16px;
+    height: 16px;
+    font-size: var(--ti-common-font-size-2);
+    cursor: pointer;
+  }
+
+  &--info &__icon-zone {
+    fill: var(--ti-notify-info-icon-color);
+  }
+
+  &--info &__close-zone {
+    fill: var(--ti-notify-close-icon-color);
+  }
+
+  &--warning &__icon-zone {
+    fill: var(--ti-notify-warning-icon-color);
+  }
+
+  &--warning &__close-zone {
+    fill: var(--ti-notify-close-icon-color);
+  }
+
+  &--error &__icon-zone {
+    fill: var(--ti-notify-error-icon-color);
+  }
+
+  &--error &__close-zone {
+    fill: var(--ti-notify-close-icon-color);
+  }
+
+  &--success &__icon-zone {
+    fill: var(--ti-notify-success-icon-color);
+  }
+
+  &--error &__close-zone {
+    fill: var(--ti-notify-close-icon-color);
+  }
+
+  &__icon-zone &__icon-status {
+    position: relative;
+  }
+
+  &--no-close &__message-zone {
+    width: calc(100% - 24px);
+  }
+
+  &__message-zone &__title-wrapper {
+    color: var(--ti-notify-title-text-color);
+    font-size: var(--ti-notify-title-font-size);
+    margin: var(--ti-notify-title-margin-top) var(--ti-notify-title-margin-horizontal) var(--ti-notify-title-margin-bottom);
+    height: var(--ti-notify-title-height);
+    line-height: var(--ti-notify-title-line-height);
+  }
+
+  &__message-zone &__content-wrapper {
+    height: auto;
+    line-height: 24px;
+    max-height: 96px;
+    overflow-y: auto;
+    font-size: var(--ti-notify-content-font-size);
+  }
+
+  &__close-zone &__icon-close {
+    position: relative;
+    top: 6px;
+  }
+
+  &--no-icon &__message-zone {
+    width: 100%;
+  }
+}

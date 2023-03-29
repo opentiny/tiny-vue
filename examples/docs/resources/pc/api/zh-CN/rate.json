@@ -1,0 +1,160 @@
+{
+  "attrs": [
+    {
+      "name": "max",
+      "sample": "max-score",
+      "type": "Number",
+      "desc": "最大分值",
+      "defaultValue": "该属性的默认值为 5"
+    },
+    {
+      "name": "disabled",
+      "sample": "dynamic-disable",
+      "type": "Boolean",
+      "desc": "是否为只读",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "allow-half",
+      "sample": "allow-half",
+      "type": "Boolean",
+      "desc": "是否允许半选",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "colors",
+      "sample": "custom-3-threshold-colors",
+      "type": "Array",
+      "desc": "icon 的颜色数组，为 Threshold 3 个分段所对应的颜色",
+      "defaultValue": "该属性的默认值为 ['#FADB14', '#FADB14', '#FADB14']"
+    },
+    {
+      "name": "disabled-void-color",
+      "sample": "disabled-not-selected-color",
+      "type": "String",
+      "desc": "禁用状态下未选中 icon 的颜色",
+      "defaultValue": "该属性的默认值为 #D9D9D9"
+    },
+    {
+      "name": "disabled-void-icon-class",
+      "sample": "disabled-not-selected-color",
+      "type": "String",
+      "desc": "只读状态下未选中的图标样式名",
+      "defaultValue": "该属性的默认值为 icon-stardisable"
+    },
+    {
+      "name": "high-threshold",
+      "sample": "threshold-value",
+      "type": "Number",
+      "desc": "高分和中等分数的界限值，值本身被划分在高分中",
+      "defaultValue": "该属性的默认值为 4"
+    },
+    {
+      "name": "icon-classes",
+      "sample": "custom-3-threshold-icon",
+      "type": "Array",
+      "desc": "三个分段对应的图标样式名",
+      "defaultValue": "该属性的默认值为 ['icon-starActive', 'icon-starActive', 'icon-starActive']"
+    },
+    {
+      "name": "low-threshold",
+      "sample": "threshold-value",
+      "type": "Number",
+      "desc": "低分和中等分数的界限值，值本身被划分在低分中",
+      "defaultValue": "该属性的默认值为 2"
+    },
+    {
+      "name": "score-template",
+      "sample": "show-score",
+      "type": "String",
+      "desc": "分数显示模板",
+      "defaultValue": "该属性的默认值为 {value}"
+    },
+    {
+      "name": "show-score",
+      "sample": "show-score",
+      "type": "Boolean",
+      "desc": "是否显示当前分数，show-score 和 show-text 不能同时为真",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "show-text",
+      "sample": "texts-and-text-color",
+      "type": "Boolean",
+      "desc": "是否显示辅助文字，若为真，则会从 texts 数组中选取当前分数对应的文字内容",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "text-color",
+      "sample": "texts-and-text-color",
+      "type": "String",
+      "desc": "辅助文字的颜色",
+      "defaultValue": "该属性的默认值为 #666666"
+    },
+    {
+      "name": "texts",
+      "sample": "texts-and-text-color",
+      "type": "Array",
+      "desc": "辅助文字数组",
+      "defaultValue": "该属性的默认值为 ['很差', '差', '一般', '好', '很好']"
+    },
+    {
+      "name": "void-color",
+      "sample": "not-selected-color",
+      "type": "String",
+      "desc": "未选中 icon 的颜色",
+      "defaultValue": "该属性的默认值为 #BFBFBF"
+    },
+    {
+      "name": "void-icon-class",
+      "sample": "not-selected-class",
+      "type": "String",
+      "desc": "未选中 icon 的类名",
+      "defaultValue": "该属性的默认值为 icon-stardisable"
+    },
+    {
+      "name": "radio",
+      "sample": "radio-rate",
+      "type": "Boolean",
+      "desc": "评分其他形态单选",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "size",
+      "sample": "size-and-space",
+      "type": "String",
+      "desc": "图标字体大小",
+      "defaultValue": "该属性的默认值为 18px"
+    },
+    {
+      "name": "space",
+      "sample": "size-and-space",
+      "type": "String",
+      "desc": "每个图标所占宽度",
+      "defaultValue": "该属性的默认值为 24px"
+    },
+    {
+      "name": "text-on-bottom",
+      "sample": "text-on-bottom",
+      "type": "Boolean",
+      "desc": "是否在图标下显示对应的文字",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "modelValue / v-model",
+      "sample": "basic-usage",
+      "type": "Number",
+      "desc": "绑定值",
+      "defaultValue": "该属性的默认值为 0"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "rate-events",
+      "type": "",
+      "desc": "分值改变时触发",
+      "defaultValue": ""
+    }
+  ]
+}

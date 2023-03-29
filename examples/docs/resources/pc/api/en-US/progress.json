@@ -1,0 +1,67 @@
+{
+  "attrs": [
+    {
+      "name": "percentage",
+      "sample": "basic-usage",
+      "type": "Number",
+      "desc": "Percentage (mandatory) The optional values for this property are 0 - 100",
+      "defaultValue": "The default value of this attribute is 0"
+    },
+    {
+      "name": "type",
+      "sample": "progress-type",
+      "type": "String",
+      "desc": "Progress bar type; The value of this attribute can be line, circle, or dashboard",
+      "defaultValue": "The default value of this attribute is line."
+    },
+    {
+      "name": "stroke-width",
+      "sample": "progress-width",
+      "type": "Number",
+      "desc": "Progress bar width, in px",
+      "defaultValue": "The default value of this attribute is 6"
+    },
+    {
+      "name": "text-inside",
+      "sample": "progress-width",
+      "type": "Boolean",
+      "desc": "The text displayed on the progress bar is embedded in the progress bar. This parameter is available only when type is set to line.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "status",
+      "sample": "progress-status",
+      "type": "String",
+      "desc": "Current status of the progress bar; The value of this attribute can be success, exception, or warning",
+      "defaultValue": ""
+    },
+    {
+      "name": "color",
+      "sample": "custom-color",
+      "type": "String , Function , Array",
+      "desc": "Background color of the progress bar (overwrites the status color).",
+      "defaultValue": ""
+    },
+    {
+      "name": "width",
+      "sample": "progress-width",
+      "type": "Number",
+      "desc": "Circular progress bar canvas width (available only when type is circle or dashboard)",
+      "defaultValue": "The default value of this attribute is 126."
+    },
+    {
+      "name": "show-text",
+      "sample": "text-inside-or-no-text",
+      "type": "Boolean",
+      "desc": "Display progress bar text",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "format",
+      "sample": "format-text",
+      "type": "Function",
+      "desc": "Customize the text of the progress bar",
+      "defaultValue": ""
+    }
+  ]
+}

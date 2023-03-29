@@ -1,0 +1,60 @@
+{
+  "attrs": [
+    {
+      "name": "text",
+      "sample": "loading-tip-text",
+      "type": "String",
+      "desc": "Set the text through the value attribute. Load copy displayed below the load icon",
+      "defaultValue": ""
+    },
+    {
+      "name": "fullscreen",
+      "sample": "fullscreen",
+      "type": "Boolean",
+      "desc": "Set type to true to display the full screen. Same as the fullscreen modifier in the v-loading instruction",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "target",
+      "sample": "target",
+      "type": "Object/String",
+      "desc": "Loading the DOM node to be overwritten. A DOM object or character string can be transferred. If a character string is transferred, it is transferred to document.querySelector as a parameter to obtain the corresponding DOM node.",
+      "defaultValue": "The default value of this attribute is document.body"
+    },
+    {
+      "name": "body",
+      "sample": "body",
+      "type": "Boolean",
+      "desc": "The same as the body modifier in the v-loading instruction",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "lock",
+      "sample": "fullscreen",
+      "type": "Boolean",
+      "desc": "The same as the lock modifier in the v-loading instruction",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "spinner",
+      "sample": "spinner",
+      "type": "String",
+      "desc": "Customized loading icon class name",
+      "defaultValue": ""
+    },
+    {
+      "name": "background",
+      "sample": "background",
+      "type": "String",
+      "desc": "Mask background color",
+      "defaultValue": ""
+    },
+    {
+      "name": "customClass",
+      "sample": "custom-class",
+      "type": "String",
+      "desc": "User-defined loading class name",
+      "defaultValue": ""
+    }
+  ]
+}

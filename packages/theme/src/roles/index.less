@@ -1,0 +1,68 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@roles-prefix-cls: ~'@{css-prefix}roles';
+
+.@{roles-prefix-cls} {
+  .component-css-vars-roles();
+
+  svg {
+    margin-left: 2px;
+  }
+
+  &__selector {
+    &.@{css-prefix}popover.@{css-prefix}popper {
+      padding: 0;
+    }
+  }
+
+  &__selector &__poplist-item {
+    padding: 0 8px;
+  }
+
+  &__selector-body {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  &__poplist {
+    min-width: 180px;
+  }
+
+  &__poplist-item {
+    min-height: var(--ti-roles-poplist-item-height);
+    line-height: var(--ti-roles-poplist-item-height);
+    max-width: 100%;
+    color: var(--ti-roles-poplist-item-text-color);
+    font-size: var(--ti-roles-poplist-item-font-size);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--ti-roles-poplist-item-hover-bg-color);
+    }
+
+    &.is-selected {
+      &,
+      &:hover {
+        background: var(--ti-roles-poplist-item-selected-bg-color);
+        color: var(--ti-roles-poplist-item-selected-text-color);
+      }
+    }
+  }
+}

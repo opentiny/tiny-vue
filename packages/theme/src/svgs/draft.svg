@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="17px" viewBox="0 0 16 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="图标" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-281.000000, -180.000000)" id="状态小图标">
+            <g transform="translate(281.000000, 33.000000)">
+                <g id="icon/草稿" transform="translate(0.000000, 147.000000)">
+                    <g id="Group-2" fill="#777777">
+                        <circle id="Oval-2" fill-rule="nonzero" cx="8" cy="8.12062276" r="8"></circle>
+                    </g>
+                    <g id="Group-3" transform="translate(3.506970, 4.380228)" stroke="#FFFFFF">
+                        <path d="M2.24814242,0.527771968 L6.73788887,0.527771968 C7.22672802,0.527771968 7.64391813,0.88118501 7.7242828,1.36337298 L8.42161623,5.54737361 C8.51241129,6.09214393 8.14439162,6.60737147 7.5996213,6.69816652 C7.54528987,6.70722176 7.49030317,6.7117726 7.43522231,6.7117726 L1.55080898,6.7117726 C0.998524232,6.7117726 0.550808981,6.26405735 0.550808981,5.7117726 C0.550808981,5.65669174 0.55535982,5.60170503 0.564415058,5.54737361 L1.2617485,1.36337298 C1.34211316,0.88118501 1.75930327,0.527771968 2.24814242,0.527771968 Z" id="Rectangle-3" fill-rule="nonzero"></path>
+                        <path d="M3.18314357,2.82077371 L5.80291585,2.82077371" id="Line" stroke-linecap="round" fill-rule="nonzero"></path>
+                        <path d="M3.00849208,4.48661913 L5.97756734,4.48661913" id="Line-Copy" stroke-linecap="round" fill-rule="nonzero"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,11 @@
+{
+  "slots": [
+    {
+      "name": "default",
+      "sample": "",
+      "type": "",
+      "desc": "默认插槽",
+      "defaultValue": ""
+    }
+  ]
+}

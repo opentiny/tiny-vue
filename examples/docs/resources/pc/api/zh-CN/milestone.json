@@ -1,0 +1,169 @@
+{
+  "attrs": [
+    {
+      "name": "completed-field",
+      "sample": "data-field-mapping",
+      "type": "String",
+      "desc": "设置里程碑完成状态对应的取值，默认为 'completed'",
+      "defaultValue": "该属性的默认值为 completed"
+    },
+    {
+      "name": "data",
+      "sample": "data-source",
+      "type": "Object , Array",
+      "desc": "设置步骤条的数据 。;设置步骤条的数据 。",
+      "defaultValue": ""
+    },
+    {
+      "name": "flag-before",
+      "sample": "flag-before",
+      "type": "Boolean",
+      "desc": "设置里程碑上活动即旗子上的数据从前面还是后面节点上获取，默认为 false 取后面节点上的数据。",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "flag-content-field",
+      "sample": "data-field-mapping",
+      "type": "String",
+      "desc": "设置节点旗子数据中描述对应的字段名，默认为 'content'",
+      "defaultValue": "该属性的默认值为 content"
+    },
+    {
+      "name": "flag-status-field",
+      "sample": "data-field-mapping",
+      "type": "String",
+      "desc": "设置节点旗子数据中状态对应的字段名，默认为 'status'",
+      "defaultValue": "该属性的默认值为 status"
+    },
+    {
+      "name": "flag-field",
+      "sample": "data-field-mapping",
+      "type": "String",
+      "desc": "设置节点信息中旗子数据所在字段名，默认为 'flags'",
+      "defaultValue": "该属性的默认值为 flags"
+    },
+    {
+      "name": "flag-name-field",
+      "sample": "data-field-mapping",
+      "type": "String",
+      "desc": "设置节点旗子数据中名称对应的字段名，默认为 'name'",
+      "defaultValue": "该属性的默认值为 name"
+    },
+    {
+      "name": "line-style",
+      "sample": "line-style",
+      "type": "String , Number",
+      "desc": "在里程碑模式下，设置线条颜色取值模式，默认为1，采用两种颜色区分完成与未完成状态，完成状态的线条颜色与milestonesStatus定义的完成颜色一致。\n设置为 2 时线条颜色根随节点状态。\n设置为 16进制的色值 如：#1890ff 时，线条不区分状态，全部为所设置的颜色。",
+      "defaultValue": "该属性的默认值为 1"
+    },
+    {
+      "name": "milestones-status",
+      "sample": "milestones-status",
+      "type": "Object",
+      "desc": "定义里程碑的状态与颜色对应关系，颜色取值必需为 16进制 如：{completed: '#1890FF'}",
+      "defaultValue": "该属性的默认值为 Function"
+    },
+    {
+      "name": "name-field",
+      "sample": "data-field-mapping",
+      "type": "String",
+      "desc": "设置节点信息中名称对应的字段名，默认为 'name'",
+      "defaultValue": "该属性的默认值为 name"
+    },
+    {
+      "name": "show-number",
+      "sample": "show-number",
+      "type": "Boolean",
+      "desc": "设置未完成的状态是否显示序号，默认为 true",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "solid",
+      "sample": "solid-style",
+      "type": "Boolean",
+      "desc": "在里程碑模式下，设置已经完成节点显示为实心，且光晕不透明，默认为 false",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "space",
+      "sample": "milestone-space",
+      "type": "Number",
+      "desc": "设置步骤条的宽度。",
+      "defaultValue": ""
+    },
+    {
+      "name": "start",
+      "sample": "start-index",
+      "type": "Number",
+      "desc": "设置步骤条序号起始值，默认为 -1 。",
+      "defaultValue": "该属性的默认值为 -1"
+    },
+    {
+      "name": "status-field",
+      "sample": "data-field-mapping",
+      "type": "String",
+      "desc": "设置数据状态对应的字段名，默认为 'status'",
+      "defaultValue": "该属性的默认值为 status"
+    },
+    {
+      "name": "time-field",
+      "sample": "data-field-mapping",
+      "type": "String",
+      "desc": "设置节点时间信息对应的字段名，默认为 'time'",
+      "defaultValue": "该属性的默认值为 time"
+    }
+  ],
+  "slots": [
+    {
+      "name": "top",
+      "sample": "custom-top",
+      "type": "",
+      "desc": "节点上方内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "flag",
+      "sample": "custom-flag",
+      "type": "",
+      "desc": "旗帜内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "bottom",
+      "sample": "custom-bottom",
+      "type": "",
+      "desc": "节点下方内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "icon",
+      "sample": "custom-icon-slot",
+      "type": "",
+      "desc": "节点图标",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "sample": "milestone-events",
+      "type": "",
+      "desc": "节点的点击事件，参数（index:节点索引, node：节点数据信息）",
+      "defaultValue": ""
+    },
+    {
+      "name": "flagclick",
+      "sample": "milestone-events",
+      "type": "",
+      "desc": "[deprecated v3.5.0废弃，v3.17.0移除；移除原因：命名规范，建议使用flag-click代替]",
+      "defaultValue": ""
+    },
+    {
+      "name": "flag-click",
+      "sample": "milestone-events",
+      "type": "",
+      "desc": "里程碑模式下，活动旗子的点击事件，参数（index:节点内旗子的索引, node：节点上旗子的数据信息）",
+      "defaultValue": ""
+    }
+  ]
+}

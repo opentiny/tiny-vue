@@ -1,0 +1,160 @@
+{
+  "attrs": [
+    {
+      "name": "max",
+      "sample": "max-score",
+      "type": "Number",
+      "desc": "Maximum score",
+      "defaultValue": "The default value of this attribute is 5"
+    },
+    {
+      "name": "disabled",
+      "sample": "dynamic-disable",
+      "type": "Boolean",
+      "desc": "Read-only",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "allow-half",
+      "sample": "allow-half",
+      "type": "Boolean",
+      "desc": "Whether to allow half selection",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "colors",
+      "sample": "custom-3-threshold-colors",
+      "type": "Array",
+      "desc": "icon color array, which is the color corresponding to the Threshold three segments.",
+      "defaultValue": "The default value of this attribute is ['#FADB14', '#FADB14', '#FADB14']"
+    },
+    {
+      "name": "disabled-void-color",
+      "sample": "disabled-not-selected-color",
+      "type": "String",
+      "desc": "Color of unselected icons in disabled state",
+      "defaultValue": "The default value of this attribute is #D9D9D9"
+    },
+    {
+      "name": "disabled-void-icon-class",
+      "sample": "disabled-not-selected-color",
+      "type": "String",
+      "desc": "Icon style name that is not selected in read-only state",
+      "defaultValue": "The default value of this attribute is icon-stardisable."
+    },
+    {
+      "name": "high-threshold",
+      "sample": "threshold-value",
+      "type": "Number",
+      "desc": "The threshold between the high score and the medium score. The value is divided into the high score.",
+      "defaultValue": "The default value of this attribute is 4"
+    },
+    {
+      "name": "icon-classes",
+      "sample": "custom-3-threshold-icon",
+      "type": "Array",
+      "desc": "Icon style name corresponding to the three segments",
+      "defaultValue": "The default value of this attribute is ['icon-starActive','icon-starActive','icon-starActive']"
+    },
+    {
+      "name": "low-threshold",
+      "sample": "threshold-value",
+      "type": "Number",
+      "desc": "The threshold value of the low score and the medium score. The value is divided into the low score.",
+      "defaultValue": "The default value of this attribute is 2"
+    },
+    {
+      "name": "score-template",
+      "sample": "show-score",
+      "type": "String",
+      "desc": "Score display template",
+      "defaultValue": "The default value of this attribute is {value}."
+    },
+    {
+      "name": "show-score",
+      "sample": "show-score",
+      "type": "Boolean",
+      "desc": "Whether to display the current score. The values of show-score and show-text cannot be true at the same time.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "show-text",
+      "sample": "texts-and-text-color",
+      "type": "Boolean",
+      "desc": "Indicates whether to display auxiliary text. If yes, the text corresponding to the current score is selected from the texts array.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "text-color",
+      "sample": "texts-and-text-color",
+      "type": "String",
+      "desc": "Color of auxiliary text",
+      "defaultValue": "The default value of this attribute is # 666666"
+    },
+    {
+      "name": "texts",
+      "sample": "texts-and-text-color",
+      "type": "Array",
+      "desc": "Auxiliary text array",
+      "defaultValue": "The default value of this attribute is ['poor', 'poor', 'average', 'good', 'good']"
+    },
+    {
+      "name": "void-color",
+      "sample": "not-selected-color",
+      "type": "String",
+      "desc": "Color of unselected icons",
+      "defaultValue": "The default value of this attribute is #BFBFBF"
+    },
+    {
+      "name": "void-icon-class",
+      "sample": "not-selected-class",
+      "type": "String",
+      "desc": "Class name of unselected icons",
+      "defaultValue": "The default value of this attribute is icon-stardisable."
+    },
+    {
+      "name": "radio",
+      "sample": "radio-rate",
+      "type": "Boolean",
+      "desc": "Single choice for scoring other forms",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "size",
+      "sample": "size-and-space",
+      "type": "String",
+      "desc": "Icon font size",
+      "defaultValue": "The default value of this attribute is 18px."
+    },
+    {
+      "name": "space",
+      "sample": "size-and-space",
+      "type": "String",
+      "desc": "Width of each icon",
+      "defaultValue": "The default value of this attribute is 24px."
+    },
+    {
+      "name": "text-on-bottom",
+      "sample": "text-on-bottom",
+      "type": "Boolean",
+      "desc": "Whether to display the corresponding text under the icon",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "modelValue / v-model",
+      "sample": "basic-usage",
+      "type": "Number",
+      "desc": "Bound Value",
+      "defaultValue": "The default value of this attribute is 0"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "rate-events",
+      "type": "",
+      "desc": "This event is triggered when the score changes.",
+      "defaultValue": ""
+    }
+  ]
+}

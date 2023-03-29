@@ -1,0 +1,69 @@
+{
+  "attrs": [
+    {
+      "name": "size",
+      "sample": "size",
+      "type": "String",
+      "desc": "设置组件大小，可以设置为：medium，small，mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-class",
+      "sample": "",
+      "type": "String",
+      "desc": "为 DropTimes 下拉弹框添加的 class 类名",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-append-to-body",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "modelValue / v-model",
+      "sample": "start-end-step",
+      "type": "—",
+      "desc": "绑定值",
+      "defaultValue": "该属性的默认值为 {}"
+    },
+    {
+      "name": "placeholder",
+      "sample": "start-end-step",
+      "type": "String",
+      "desc": "设置输入框内的提示占位文本",
+      "defaultValue": ""
+    },
+    {
+      "name": "end",
+      "sample": "start-end-step",
+      "type": "Number",
+      "desc": "结束时间，以分钟计算，默认值为 1440。",
+      "defaultValue": "该属性的默认值为 1440"
+    },
+    {
+      "name": "start",
+      "sample": "start-end-step",
+      "type": "Number",
+      "desc": "开始时间，以分钟计算，默认值为 0。",
+      "defaultValue": "该属性的默认值为 0"
+    },
+    {
+      "name": "step",
+      "sample": "start-end-step",
+      "type": "Number",
+      "desc": "间隔时间，以分钟计算，默认值为 15。",
+      "defaultValue": "该属性的默认值为 15"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "start-end-step",
+      "type": "",
+      "desc": "下拉切换当前时间后触发该事件",
+      "defaultValue": ""
+    }
+  ]
+}

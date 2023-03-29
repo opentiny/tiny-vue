@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "tag/basic-usage",
+    "component": "Tag",
+    "findIntroStr": "Tag tag component, used to mark transaction attributes and dimensions",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Color",
+    "content": "<p>You can use <code>color</code> to set the background color of a label. </p>\n",
+    "link": "tag/color3",
+    "component": "Tag",
+    "findIntroStr": "Tag tag component, used to mark transaction attributes and dimensions",
+    "demoId": "color3"
+  },
+  {
+    "title": "Border",
+    "content": "<p>You can use <code>hit</code> to set the label border. The options are true and false. The default value is false. </p>\n",
+    "link": "tag/hit",
+    "component": "Tag",
+    "findIntroStr": "Tag tag component, used to mark transaction attributes and dimensions",
+    "demoId": "hit"
+  },
+  {
+    "title": "Dimension",
+    "content": "<p>You can use <code>size</code> to set the tag size. The value can be medium, small, or mini. </p>\n",
+    "link": "tag/tag-size",
+    "component": "Tag",
+    "findIntroStr": "Tag tag component, used to mark transaction attributes and dimensions",
+    "demoId": "tag-size"
+  },
+  {
+    "title": "Subject",
+    "content": "<p>You can use <code>effect</code> to set the tag theme. The value can be dark, light, or plain. \n<code>type</code>You can set the corresponding type for the tag. The options are success, info, warning, and danger. </p>\n",
+    "link": "tag/effect",
+    "component": "Tag",
+    "findIntroStr": "Tag tag component, used to mark transaction attributes and dimensions",
+    "demoId": "effect"
+  },
+  {
+    "title": "Dynamic Edit Tag",
+    "content": "<p>Click <code>+ New Tag</code> and enter the tag name in the text box to create the last tag in the tag list. The <code>closable</code> attribute can be set to removeable tags for tags. </p>\n",
+    "link": "tag/create",
+    "component": "Tag",
+    "findIntroStr": "Tag tag component, used to mark transaction attributes and dimensions",
+    "demoId": "create"
+  },
+  {
+    "title": "Removable Label",
+    "content": "For details, see the following example.",
+    "link": "tag/closeable",
+    "component": "Tag",
+    "findIntroStr": "Tag tag component, used to mark transaction attributes and dimensions",
+    "demoId": "closeable"
+  },
+  {
+    "title": "Click Event",
+    "content": "For details, see the following example.",
+    "link": "tag/tag-event-click",
+    "component": "Tag",
+    "findIntroStr": "Tag tag component, used to mark transaction attributes and dimensions",
+    "demoId": "tag-event-click"
+  },
+  {
+    "title": "Close Event",
+    "content": "For details, see the following example.",
+    "link": "tag/tag-event-close",
+    "component": "Tag",
+    "findIntroStr": "Tag tag component, used to mark transaction attributes and dimensions",
+    "demoId": "tag-event-close"
+  }
+]

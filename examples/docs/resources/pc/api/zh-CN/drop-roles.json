@@ -1,0 +1,69 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "change-role-event",
+      "type": "String , Number",
+      "desc": "设置文本显示的值。;绑定值",
+      "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "size",
+      "type": "String",
+      "desc": "设置组件大小",
+      "defaultValue": ""
+    },
+    {
+      "name": "placeholder",
+      "sample": "custom-service",
+      "type": "String",
+      "desc": "设置输入框内的提示占位文本。",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-class",
+      "sample": "",
+      "type": "String",
+      "desc": "为 popper 添加类名(可参考 popover 组件)",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-append-to-body",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "fetchRole",
+      "sample": "custom-service",
+      "type": "Object",
+      "desc": "自定义获取角色列表接口，未使用框架服务时必填",
+      "defaultValue": ""
+    },
+    {
+      "name": "fetchCurrentRole",
+      "sample": "custom-service",
+      "type": "Object",
+      "desc": "自定义获取当前用户角色接口，未使用框架服务时必填",
+      "defaultValue": ""
+    },
+    {
+      "name": "fields",
+      "sample": "custom-service",
+      "type": "Object",
+      "desc": "自定义数据映射，未使用框架服务时必填",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "change-role-event",
+      "type": "",
+      "desc": "当前角色切换后触发",
+      "defaultValue": ""
+    }
+  ]
+}

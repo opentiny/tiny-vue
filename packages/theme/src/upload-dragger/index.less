@@ -1,0 +1,69 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@upload-prefix-cls: ~'@{css-prefix}upload';
+@upload-dragger-prefix-cls: ~'@{css-prefix}upload-dragger';
+
+.@{upload-dragger-prefix-cls} {
+  .component-css-vars-upload-dragger();
+
+  width: var(--ti-upload-dragger-width);
+  height: var(--ti-upload-dragger-height);
+  background-color: var(--ti-upload-dragger-bg-color);
+  border: 1px dashed var(--ti-upload-dragger-border-color);
+  border-radius: var(--ti-upload-dragger-border-radius);
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    border-color: var(--ti-upload-dragger-hover-text-color);
+  }
+
+  &.is-dragover {
+    background-color: var(--ti-upload-dragger-dragover-bg-color, rgba(32, 159, 255, 0.06));
+    border: 2px dashed var(--ti-upload-dragger-hover-text-color);
+  }
+
+  .icon-fileupload {
+    font-size: var(--ti-upload-dragger-icon-font-size);
+    fill: var(--ti-upload-dragger-icon-color);
+  }
+
+  .@{upload-prefix-cls}__text {
+    color: var(--ti-upload-dragger-text-color);
+    font-size: var(--ti-upload-dragger-text-font-size);
+    text-align: center;
+
+    em {
+      color: var(--ti-upload-dragger-hover-text-color);
+      font-style: normal;
+    }
+  }
+
+  & + .@{upload-prefix-cls}__tip {
+    text-align: center;
+  }
+
+  & ~ .@{upload-prefix-cls}__files {
+    border-top: 1px solid var(--ti-upload-dragger-files-border-color);
+    margin-top: 7px;
+    padding-top: 5px;
+  }
+}

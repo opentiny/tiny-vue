@@ -1,0 +1,137 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+@grid-prefix-cls: ~'@{css-prefix}grid';
+
+// tooltip
+.@{grid-prefix-cls}__tooltip-wrapper {
+  display: none;
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  font-size: var(--ti-grid-font-size);
+  max-width: 400px;
+  border-radius: 4px;
+  padding: 8px 12px;
+  white-space: normal;
+  word-break: break-word;
+  box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.2);
+  color: var(--ti-grid-text-color);
+  font-family: var(--ti-grid-font-family);
+  pointer-events: none;
+  z-index: 4000;
+
+  &.is__visible {
+    display: block;
+  }
+
+  &.is__arrow {
+    .@{grid-prefix-cls}__tooltip-arrow {
+      display: block;
+    }
+  }
+
+  &.placement__top {
+    .@{grid-prefix-cls}__tooltip-arrow {
+      bottom: -12px;
+
+      &:before {
+        top: -7px;
+      }
+    }
+  }
+
+  &.placement__bottom {
+    .@{grid-prefix-cls}__tooltip-arrow {
+      top: -12px;
+
+      &:before {
+        top: -4px;
+      }
+    }
+  }
+
+  &.theme__light {
+    background-color: var(--ti-grid-tooltip-light-background-color);
+    border: 1px solid var(--ti-grid-border-color);
+
+    &.placement__top {
+      .@{grid-prefix-cls}__tooltip-arrow {
+        border-top-color: var(--ti-grid-border-color);
+
+        &:before {
+          border-top-color: var(--ti-grid-tooltip-light-background-color);
+        }
+      }
+    }
+
+    &.placement__bottom {
+      .@{grid-prefix-cls}__tooltip-arrow {
+        border-bottom-color: var(--ti-grid-border-color);
+
+        &:before {
+          border-bottom-color: var(--ti-grid-tooltip-light-background-color);
+        }
+      }
+    }
+  }
+
+  &.theme__dark {
+    background: var(--ti-grid-tooltip-dark-background-color);
+    color: var(--ti-grid-light-color);
+
+    &.placement__top {
+      .@{grid-prefix-cls}__tooltip-arrow {
+        border-top-color: var(--ti-grid-tooltip-dark-background-color);
+
+        &:before {
+          border-top-color: var(--ti-grid-tooltip-dark-background-color);
+        }
+      }
+    }
+
+    &.placement__bottom {
+      .@{grid-prefix-cls}__tooltip-arrow {
+        border-bottom-color: var(--ti-grid-tooltip-dark-background-color);
+
+        &:before {
+          border-bottom-color: var(--ti-grid-tooltip-dark-background-color);
+        }
+      }
+    }
+  }
+
+  .@{grid-prefix-cls}__tooltip-arrow {
+    display: none;
+    position: absolute;
+    border-color: transparent;
+    border-width: 6px;
+    border-style: solid;
+    left: 50%;
+
+    &:before {
+      content: '';
+      position: absolute;
+      border-color: transparent;
+      border-width: 5px;
+      border-style: solid;
+      left: -5px;
+    }
+  }
+
+  &.@{grid-prefix-cls}__valid-error {
+    background-color: var(--ti-grid-error-color);
+    color: var(--ti-grid-light-color);
+  }
+}

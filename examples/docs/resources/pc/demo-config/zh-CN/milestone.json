@@ -1,0 +1,122 @@
+[
+  {
+    "title": "基本用法",
+    "content": "详细用法参考如下示例",
+    "link": "milestone/basic-usage",
+    "component": "Milestone 里程碑",
+    "findIntroStr": "里程碑模式是一个高度定制化的组件，用户可以自定义组件的状态，节点颜色，线条颜色等。支持在节点间插入活动旗子，tip 显示活动信息。",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "数据源",
+    "content": "<p>通过 <code>data</code> 属性设置里程碑数据。</p>\n",
+    "link": "milestone/data-source",
+    "component": " Milestone",
+    "findIntroStr": "里程碑模式是一个高度定制化的组件，用户可以自定义组件的状态，节点颜色，线条颜色等。支持在节点间插入活动旗子，tip 显示活动信息。",
+    "demoId": "data-source"
+  },
+  {
+    "title": "数据字段映射",
+    "content": "<div class=\"tip custom-block\"><p class=\"custom-block-title\">数据字段映射属性说明</p>\n<p><code>completed-field</code>：设置里程碑完成状态对应的取值，默认为 <code>completed</code>\n<code>flag-content-field</code>：设置节点旗子数据中描述对应的字段名，默认为 <code>content</code>\n<code>flag-field</code>：设置节点信息中旗子数据所在字段名，默认为 <code>flags</code>\n<code>flag-name-field</code>：设置节点旗子数据中名称对应的字段名，默认为 <code>name</code>\n<code>flag-status-field</code>：设置节点旗子数据中状态对应的字段名，默认为 <code>status</code>\n<code>name-field</code>：设置节点信息中名称对应的字段名，默认为 <code>name</code>\n<code>status-field</code>：设置数据状态对应的字段名，默认为 <code>status</code>\n<code>time-field</code>：设置节点时间信息对应的字段名，默认为 <code>time</code></p>\n</div>\n",
+    "link": "milestone/data-field-mapping",
+    "component": " Milestone",
+    "findIntroStr": "里程碑模式是一个高度定制化的组件，用户可以自定义组件的状态，节点颜色，线条颜色等。支持在节点间插入活动旗子，tip 显示活动信息。",
+    "demoId": "data-field-mapping"
+  },
+  {
+    "title": "旗帜数据来源前面节点",
+    "content": "<p>通过 <code>flag-before</code> 可设置里程碑上活动（即旗子）上的数据从前面还是后面节点上获取，默认为 <code>false</code> 取后面节点上的数据。</p>\n",
+    "link": "milestone/flag-before",
+    "component": " Milestone",
+    "findIntroStr": "里程碑模式是一个高度定制化的组件，用户可以自定义组件的状态，节点颜色，线条颜色等。支持在节点间插入活动旗子，tip 显示活动信息。",
+    "demoId": "flag-before"
+  },
+  {
+    "title": "进度条颜色",
+    "content": "<p>通过 <code>line-style</code> 属性设置线条颜色。</p>\n",
+    "link": "milestone/line-style",
+    "component": " Milestone",
+    "findIntroStr": "里程碑模式是一个高度定制化的组件，用户可以自定义组件的状态，节点颜色，线条颜色等。支持在节点间插入活动旗子，tip 显示活动信息。",
+    "demoId": "line-style"
+  },
+  {
+    "title": "状态与颜色对应关系",
+    "content": "<p><code>milestones-status</code> 属性对象中，键对应 <code>data</code> 属性的数据中的 <code>status</code> 字段，然后控制不同状态与颜色的对应关系。</p>\n",
+    "link": "milestone/milestones-status",
+    "component": " Milestone",
+    "findIntroStr": "里程碑模式是一个高度定制化的组件，用户可以自定义组件的状态，节点颜色，线条颜色等。支持在节点间插入活动旗子，tip 显示活动信息。",
+    "demoId": "milestones-status"
+  },
+  {
+    "title": "取消未完成状态序号显示",
+    "content": "<p>设置 <code>show-number</code> 为 false 后，里程碑未完成的节点上将不显示序号，默认为 true 。</p>\n",
+    "link": "milestone/show-number",
+    "component": " Milestone",
+    "findIntroStr": "里程碑模式是一个高度定制化的组件，用户可以自定义组件的状态，节点颜色，线条颜色等。支持在节点间插入活动旗子，tip 显示活动信息。",
+    "demoId": "show-number"
+  },
+  {
+    "title": "已完成节点实心显示",
+    "content": "<p>通过设置 <code>solid</code> 属性为 true 可设置已经完成节点显示为实心，且光晕不透明，默认为 false 。</p>\n",
+    "link": "milestone/solid-style",
+    "component": " Milestone",
+    "findIntroStr": "里程碑模式是一个高度定制化的组件，用户可以自定义组件的状态，节点颜色，线条颜色等。支持在节点间插入活动旗子，tip 显示活动信息。",
+    "demoId": "solid-style"
+  },
+  {
+    "title": "宽度",
+    "content": "<p>通过 <code>space</code> 属性设置步骤条的宽度。</p>\n",
+    "link": "milestone/milestone-space",
+    "component": " Milestone",
+    "findIntroStr": "里程碑模式是一个高度定制化的组件，用户可以自定义组件的状态，节点颜色，线条颜色等。支持在节点间插入活动旗子，tip 显示活动信息。",
+    "demoId": "milestone-space"
+  },
+  {
+    "title": "序号起始值",
+    "content": "<p>通过 <code>start</code> 属性设置里程碑节点的序号起始值，默认为 -1 。</p>\n",
+    "link": "milestone/start-index",
+    "component": " Milestone",
+    "findIntroStr": "里程碑模式是一个高度定制化的组件，用户可以自定义组件的状态，节点颜色，线条颜色等。支持在节点间插入活动旗子，tip 显示活动信息。",
+    "demoId": "start-index"
+  },
+  {
+    "title": "自定义节点图标",
+    "content": "<p>通过 <code>icon</code> 作用域插槽可自定义图标。</p>\n",
+    "link": "milestone/custom-icon-slot",
+    "component": " Milestone",
+    "findIntroStr": "里程碑模式是一个高度定制化的组件，用户可以自定义组件的状态，节点颜色，线条颜色等。支持在节点间插入活动旗子，tip 显示活动信息。",
+    "demoId": "custom-icon-slot"
+  },
+  {
+    "title": "自定义节点下方内容",
+    "content": "<p>通过 <code>bottom</code> 作用域插槽可自定义节点下方的内容。</p>\n",
+    "link": "milestone/custom-bottom",
+    "component": " Milestone",
+    "findIntroStr": "里程碑模式是一个高度定制化的组件，用户可以自定义组件的状态，节点颜色，线条颜色等。支持在节点间插入活动旗子，tip 显示活动信息。",
+    "demoId": "custom-bottom"
+  },
+  {
+    "title": "自定义节点上方内容",
+    "content": "<p>通过 <code>top</code> 作用域插槽可自定义节点上方的内容。</p>\n",
+    "link": "milestone/custom-top",
+    "component": " Milestone",
+    "findIntroStr": "里程碑模式是一个高度定制化的组件，用户可以自定义组件的状态，节点颜色，线条颜色等。支持在节点间插入活动旗子，tip 显示活动信息。",
+    "demoId": "custom-top"
+  },
+  {
+    "title": "自定义旗帜内容",
+    "content": "<p>通过 <code>flag</code> 作用域插槽可自定义节点旗帜的内容。</p>\n",
+    "link": "milestone/custom-flag",
+    "component": " Milestone",
+    "findIntroStr": "里程碑模式是一个高度定制化的组件，用户可以自定义组件的状态，节点颜色，线条颜色等。支持在节点间插入活动旗子，tip 显示活动信息。",
+    "demoId": "custom-flag"
+  },
+  {
+    "title": "事件",
+    "content": "<p>单击里程碑节点时触发 <code>click</code> 事件，参数（index:节点索引, node：节点数据信息）。单击里程碑旗帜时触发 <code>flag-click</code> 事件，参数（index:节点内旗子的索引, node：节点上旗子的数据信息）。</p>\n",
+    "link": "milestone/milestone-events",
+    "component": " Milestone",
+    "findIntroStr": "里程碑模式是一个高度定制化的组件，用户可以自定义组件的状态，节点颜色，线条颜色等。支持在节点间插入活动旗子，tip 显示活动信息。",
+    "demoId": "milestone-events"
+  }
+]

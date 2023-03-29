@@ -1,0 +1,48 @@
+{
+  "attrs": [
+    {
+      "name": "data",
+      "sample": "data-resource",
+      "type": "Object , Array",
+      "desc": "Set the waterfall menu data. ;Set the data of the waterfall menu.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "level1",
+      "sample": "custom-menuitem",
+      "type": "",
+      "desc": "User-defined level-1 menu",
+      "defaultValue": ""
+    },
+    {
+      "name": "level2",
+      "sample": "custom-menuitem",
+      "type": "",
+      "desc": "Customized level-2 menu",
+      "defaultValue": ""
+    },
+    {
+      "name": "level3",
+      "sample": "custom-menuitem",
+      "type": "",
+      "desc": "Customized Level-3 Menu",
+      "defaultValue": ""
+    },
+    {
+      "name": "left",
+      "sample": "custom-slider-icon",
+      "type": "",
+      "desc": "Customize the switch icon on the left.",
+      "defaultValue": ""
+    },
+    {
+      "name": "right",
+      "sample": "custom-slider-icon",
+      "type": "",
+      "desc": "Customize the switch icon on the right.",
+      "defaultValue": ""
+    }
+  ]
+}

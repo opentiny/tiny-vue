@@ -1,0 +1,41 @@
+{
+  "attrs": [
+    {
+      "name": "value",
+      "sample": "filter-method",
+      "type": "String/number/object",
+      "desc": "选项的值",
+      "defaultValue": ""
+    },
+    {
+      "name": "label",
+      "sample": "filter-method",
+      "type": "String/number",
+      "desc": "选项的标签，若不设置则默认与 value 相同",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled",
+      "type": "Boolean",
+      "desc": "是否禁用该选项",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "highlight-class",
+      "sample": "",
+      "type": "String",
+      "desc": "自定义高亮类名",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "custom-options",
+      "type": "",
+      "desc": "默认插槽(将自定义的 HTML 模板插入 tiny-option 中)",
+      "defaultValue": ""
+    }
+  ]
+}

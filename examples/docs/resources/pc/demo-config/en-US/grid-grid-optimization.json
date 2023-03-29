@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Optimized Configuration Items",
+    "content": "<div class=\"tip custom-block\"><p class=\"custom-block-title\">optimization(Object) Configuration Description </p>\n<p>| animat(Boolean) | Table animation effect switch. The default value is true. |\n| delayHover(Number) | When the table is dragged or scrolled, Minimum milliseconds after which the hover event can be triggered. The default value is 250 ms. |\n| scrollX(Object) | Horizontal X virtual scrolling configuration (for manual optimization in special scenarios). Example: {gt: 100} |\n| scrollY(Object) | Vertical Y virtual scrolling configuration (for manual optimization in special scenarios) Example: {gt: 500} |</p>\n</div>\n<p></p>\n",
+    "link": "grid/tiny-first-menu/grid-optimization",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-grid-optimization"
+  }
+]

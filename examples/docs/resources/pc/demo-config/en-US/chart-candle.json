@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p> can run smoothly on PCs and mobile devices and is compatible with most browsers. (Internet Explorer 9/10/11, Chrome, Firefox, Safari, etc.) The bottom layer relies on the lightweight Canvas class library ZRender to provide intuitive, vivid, interactive, and highly personalized data visualization charts. </p>\n",
+    "link": "chart/candle/base",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "candle-base"
+  },
+  {
+    "title": "Use simplified data format",
+    "content": "For details, see the following example.",
+    "link": "chart/candle/demo2",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "candle-demo2"
+  },
+  {
+    "title": "Set the data format",
+    "content": "For details, see the following example.",
+    "link": "chart/candle/demo3",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "candle-demo3"
+  },
+  {
+    "title": "Display MA, VOL",
+    "content": "For details, see the following example.",
+    "link": "chart/candle/demo4",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "candle-demo4"
+  },
+  {
+    "title": "Modify the KQI/KPI Name and Legend Text",
+    "content": "For details, see the following example.",
+    "link": "chart/candle/demo5",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "candle-demo5"
+  },
+  {
+    "title": "Modify the MA display period",
+    "content": "For details, see the following example.",
+    "link": "chart/candle/demo6",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "candle-demo6"
+  },
+  {
+    "title": "Set the dataRoom control",
+    "content": "For details, see the following example.",
+    "link": "chart/candle/demo7",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "candle-demo7"
+  }
+]

@@ -1,0 +1,71 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+.input-readonly(@color) {
+  &.readonly,
+  &[readonly] {
+    cursor: not-allowed;
+    box-shadow: none;
+
+    &:focus,
+    &:active,
+    &.active,
+    &[active],
+    &:hover {
+      border-color: @color;
+    }
+  }
+}
+
+.input-variant(@color-normal; @color-hover; @color-active; @color-disabled; @color-hover-shadow; @color-active-shadow) {
+  border-color: @color-normal;
+  .input-readonly(@color-normal);
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    border-color: @color-active;
+    box-shadow: var(--ti-input-normal-active-shadow-size, 0 0 0)
+      @color-active-shadow;
+  }
+
+  &:hover {
+    border-color: @color-hover;
+    box-shadow: var(--ti-input-normal-active-shadow-size, 0 0 0)
+      @color-hover-shadow;
+  }
+
+  &.disabled,
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      border-color: @color-disabled;
+    }
+  }
+}
+
+.input-size(@height) {
+  .@{css-prefix}input__inner {
+    height: @height;
+    line-height: @height;
+  }
+
+  .@{css-prefix}input__suffix {
+    line-height: calc(@height - 2px);
+  }
+}

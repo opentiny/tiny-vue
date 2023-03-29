@@ -1,0 +1,444 @@
+{
+  "attrs": [
+    {
+      "name": "data",
+      "sample": "data-source",
+      "type": "Array",
+      "desc": "设置数据源。可配置静态数据源和动态数据源。;展示数据",
+      "defaultValue": ""
+    },
+    {
+      "name": "expand-icon",
+      "sample": "set-tree-icon",
+      "type": "Object",
+      "desc": "指示展开的图标",
+      "defaultValue": ""
+    },
+    {
+      "name": "icon-trigger-click-node",
+      "sample": "check-on-click-node",
+      "type": "Boolean",
+      "desc": "点击图标展开节点时是否触发 node-click 事件",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "show-contextmenu",
+      "sample": "contextmenu",
+      "type": "Boolean",
+      "desc": "右键点击节点是否弹窗自定义菜单,默认值为 false",
+      "defaultValue": ""
+    },
+    {
+      "name": "shrink-icon",
+      "sample": "set-tree-icon",
+      "type": "Object",
+      "desc": "指示收缩的图标",
+      "defaultValue": ""
+    },
+    {
+      "name": "empty-text",
+      "sample": "custom-empty-text",
+      "type": "String",
+      "desc": "内容为空的时候展示的文本",
+      "defaultValue": ""
+    },
+    {
+      "name": "render-after-expand",
+      "sample": "render-after-expand",
+      "type": "Boolean",
+      "desc": "是否在第一次展开某个树节点后才渲染其子节点",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "node-key",
+      "sample": "node-key",
+      "type": "String",
+      "desc": "节点唯一标识属性名称。;每个树节点用来作为唯一标识的属性，整棵树应该是唯一的",
+      "defaultValue": ""
+    },
+    {
+      "name": "check-strictly",
+      "sample": "check-strictly",
+      "type": "Boolean",
+      "desc": "在显示复选框的情况下，是否严格的遵循父子不互相关联的做法，默认为 false",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "default-expand-all",
+      "sample": "default-expand-all",
+      "type": "Boolean",
+      "desc": "是否默认展开所有节点",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "expand-on-click-node",
+      "sample": "expand-on-click-node",
+      "type": "Boolean",
+      "desc": "点击节点展开收起开关。当设置为true: 点击节点内容时可展开/收起节点。设置为false: 只有点击节点名称前面的展开/收起图标才能进行节点展开/收起。;是否在点击节点的时候展开或者收缩节点， 默认值为 true，如果为 false，则只有点箭头图标的时候才会展开或者收缩节点。",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "check-on-click-node",
+      "sample": "check-on-click-node",
+      "type": "Boolean",
+      "desc": "是否在点击节点的时候选中节点，默认值为 false，即只有在点击复选框时才会选中节点。",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "auto-expand-parent",
+      "sample": "auto-expand-parent",
+      "type": "Boolean",
+      "desc": "展开子节点的时候是否自动展开父节点",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "default-checked-keys",
+      "sample": "default-checked-keys",
+      "type": "Array",
+      "desc": "配置默认选中。取值为 key 在数据源 dataset 中所对应的值。组件生成后会默认将 defaultValue 中所对应的节点选中。;默认勾选的节点的 key 的数组",
+      "defaultValue": ""
+    },
+    {
+      "name": "default-expanded-keys",
+      "sample": "default-expanded-keys",
+      "type": "Array",
+      "desc": "默认展开的节点的 key 的数组",
+      "defaultValue": ""
+    },
+    {
+      "name": "render-content",
+      "sample": "render-content",
+      "type": "Function(h, { node, data, store }",
+      "desc": "树节点的内容区的渲染 Function",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-checkbox",
+      "sample": "show-checkbox",
+      "type": "Boolean",
+      "desc": "节点是否可被选择",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "draggable",
+      "sample": "node-draggable",
+      "type": "Boolean",
+      "desc": "是否开启节点拖拽，节点的位置可任意拖放，改变原来的节点的父子结构。;是否开启拖拽节点功能",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "allow-drag",
+      "sample": "allow-drag",
+      "type": "Function(node)",
+      "desc": "判断节点能否被拖拽",
+      "defaultValue": ""
+    },
+    {
+      "name": "allow-drop",
+      "sample": "allow-drop",
+      "type": "Function(draggingNode, dropNode, type)",
+      "desc": "拖拽时判定目标节点能否被放置。type 参数有三种情况：'prev'、'inner' 和 'next'，分别表示放置在目标节点前、插入至目标节点和放置在目标节点后",
+      "defaultValue": ""
+    },
+    {
+      "name": "props",
+      "sample": "node-props-config",
+      "type": "Object",
+      "desc": "配置选项，具体看下表",
+      "defaultValue": "该属性的默认值为 {children: 'children',label: 'label',disabled: 'disabled'}"
+    },
+    {
+      "name": "highlight-current",
+      "sample": "highlight-current",
+      "type": "Boolean",
+      "desc": "是否高亮当前选中节点",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "lazy",
+      "sample": "lazy-load-node",
+      "type": "Boolean",
+      "desc": "异步加载模式，展开节点时再请求数据。需要服务支持。;是否懒加载子节点，需与 load 方法结合使用",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "load",
+      "sample": "lazy-load-node",
+      "type": "Function(node, resolve)",
+      "desc": "加载子树数据的方法，仅当 lazy 属性为true 时生效",
+      "defaultValue": ""
+    },
+    {
+      "name": "filter-node-method",
+      "sample": "filter-node",
+      "type": "Function(value, data, node)",
+      "desc": "指定输入筛选时匹配的节点的字段值。showFilter 为 false时无效。;对树节点进行筛选时执行的方法，返回 true 表示这个节点可以显示，返回 false 则表示这个节点会被隐藏",
+      "defaultValue": ""
+    },
+    {
+      "name": "accordion",
+      "sample": "accordion-mode",
+      "type": "Boolean",
+      "desc": "是否为单一路径。为 true 时，全部层级的节点同级互斥，为数字时，不大于该值的节点同级互斥。;是否每次只打开一个同级树节点展开",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "indent",
+      "sample": "indent",
+      "type": "Number",
+      "desc": "相邻级节点间的水平缩进，单位为像素",
+      "defaultValue": "该属性的默认值为 18"
+    },
+    {
+      "name": "icon",
+      "sample": "custom-node-icon",
+      "type": "Object",
+      "desc": "自定义图标。css : String（图标的总样式名），child : String（叶子节点图标），parent : String（父节点图标，open 打开，close，关闭），expand : String（展开节点图标），collapse : String（收缩节点图标）;自定义树节点的图标",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "slot-deffault",
+      "type": "",
+      "desc": "自定义树节点的内容，参数为 { node, data }",
+      "defaultValue": ""
+    },
+    {
+      "name": "empty",
+      "sample": "custom-empty-text",
+      "type": "",
+      "desc": "自定义空数据文本",
+      "defaultValue": ""
+    }
+  ],
+  "methods": [
+    {
+      "name": "filter",
+      "sample": "filter-node",
+      "type": "(value) => void",
+      "desc": "对树节点进行筛选操作",
+      "defaultValue": ""
+    },
+    {
+      "name": "updateKeyChildren",
+      "sample": "show-checkbox",
+      "type": "(key, data) => void",
+      "desc": "通过 keys 设置节点子元素，使用此方法必须设置 node-key 属性",
+      "defaultValue": ""
+    },
+    {
+      "name": "getCheckedNodes",
+      "sample": "check-on-click-node",
+      "type": "(leafOnly, includeHalfChecked) => result",
+      "desc": "获取选中标识的数据。;若节点可被选择（即 show-checkbox 为 true），则返回目前被选中的节点所组成的数组，仅配置多选时生效",
+      "defaultValue": ""
+    },
+    {
+      "name": "setCheckedNodes",
+      "sample": "show-checkbox",
+      "type": "(keys, leafOnly) => void",
+      "desc": "设置目前勾选的节点，使用此方法必须设置 node-key 属性",
+      "defaultValue": ""
+    },
+    {
+      "name": "getCheckedKeys",
+      "sample": "check-on-click-node",
+      "type": "(leafOnly) => result",
+      "desc": "若节点可被选择（即 show-checkbox 为 true），则返回目前被选中的节点的 key 所组成的数组, 仅配置多选时生效",
+      "defaultValue": ""
+    },
+    {
+      "name": "setCheckedKeys",
+      "sample": "show-checkbox",
+      "type": "(keys, leafOnly) => void",
+      "desc": "通过 keys 设置目前勾选的节点，使用此方法必须设置 node-key 属性",
+      "defaultValue": ""
+    },
+    {
+      "name": "setChecked",
+      "sample": "show-checkbox",
+      "type": "(data,checked,deep) => void",
+      "desc": "通过 key / data 设置某个节点的勾选状态，使用此方法必须设置 node-key 属性。通过第3个参数，可以递归设置所有子节点的勾选状态！",
+      "defaultValue": ""
+    },
+    {
+      "name": "closeMenu",
+      "sample": "contextmenu",
+      "type": "() => void",
+      "desc": "关闭右键点击节点弹窗自定义菜单",
+      "defaultValue": ""
+    },
+    {
+      "name": "getHalfCheckedNodes",
+      "sample": "check-on-click-node",
+      "type": "() => result",
+      "desc": "若节点可被选择（即 show-checkbox 为 true），则返回目前半选中的节点所组成的数组,仅配置多选时生效。",
+      "defaultValue": ""
+    },
+    {
+      "name": "getHalfCheckedKeys",
+      "sample": "check-on-click-node",
+      "type": "() => result",
+      "desc": "若节点可被选择（即 show-checkbox 为 true），则返回目前半选中的节点的 key 所组成的数组，仅配置多选时生效。",
+      "defaultValue": ""
+    },
+    {
+      "name": "getCurrentKey",
+      "sample": "node-key",
+      "type": "() => result",
+      "desc": "获取当前被选中节点的 key，使用此方法必须设置 node-key 属性，若没有节点被选中则返回 ，仅配置单选时生效",
+      "defaultValue": ""
+    },
+    {
+      "name": "getCurrentNode",
+      "sample": "node-key",
+      "type": "() => result",
+      "desc": "获得当前的选中的节点，仅单选模式下生效;获取当前被选中节点的 data，若没有节点被选中则返回 null",
+      "defaultValue": ""
+    },
+    {
+      "name": "setCurrentKey",
+      "sample": "node-key",
+      "type": "(key) => void",
+      "desc": "通过 key 设置某个节点的当前选中状态，使用此方法必须设置 node-key 属性",
+      "defaultValue": ""
+    },
+    {
+      "name": "setCurrentNode",
+      "sample": "node-key",
+      "type": "(key) => void",
+      "desc": "通过 node 设置某个节点的当前选中状态，使用此方法必须设置 node-key 属性",
+      "defaultValue": ""
+    },
+    {
+      "name": "getNode",
+      "sample": "show-checkbox",
+      "type": "(data) => result",
+      "desc": "根据 data 或者 key 拿到 Tree 组件中的 node",
+      "defaultValue": ""
+    },
+    {
+      "name": "remove",
+      "sample": "",
+      "type": "(data) => void",
+      "desc": "删除节点。;删除 Tree 中的一个节点，使用此方法必须设置 node-key 属性",
+      "defaultValue": ""
+    },
+    {
+      "name": "append",
+      "sample": "node-key",
+      "type": "(data, parentNode) => void",
+      "desc": "为 Tree 中的一个节点追加一个子节点",
+      "defaultValue": ""
+    },
+    {
+      "name": "insertBefore",
+      "sample": "node-key",
+      "type": "(data, refNode) => void",
+      "desc": "为 Tree 的一个节点的前面增加一个节点",
+      "defaultValue": ""
+    },
+    {
+      "name": "insertAfter",
+      "sample": "node-key",
+      "type": "(data, refNode) => void",
+      "desc": "根据节点数据在父节点下插入一个子节点。为 Tree 的一个节点的后面增加一个节点",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "node-click",
+      "sample": "check-on-click-node",
+      "type": "Function(data, node, vm)",
+      "desc": "点击节点后的事件。;节点被点击时的回调;//参数说明\n{data: 节点数据,node: 节点状态信息（包括数据）,vm: 组件实例}",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-contextmenu",
+      "sample": "node-contextmenu",
+      "type": "Function(event, data, node, vm)",
+      "desc": "当某一节点被鼠标右键点击时会触发该事件;//参数说明\n{data: 节点数据,node: 节点状态信息（包括数据）,vm: 组件实例,event:原生事件}",
+      "defaultValue": ""
+    },
+    {
+      "name": "check-change",
+      "sample": "node-events",
+      "type": "Function(data, node, vm)",
+      "desc": "节点选中状态发生变化时的回调;//参数说明\n{node: 节点状态信息（包括数据）,checked:当前点击节点的勾选状态,indeterminate}",
+      "defaultValue": ""
+    },
+    {
+      "name": "check",
+      "sample": "drag-events",
+      "type": "Function(data, currentNode)",
+      "desc": "勾选节点后的事件;当复选框被点击的时候触发;//回调参数：\n{data: Object,// 当前选中节点信息\ncurrentNode:Object//树组件目前的选中状态信息，包含 checkedNodes、checkedKeys、halfCheckedNodes、halfCheckedKeys 四个属性}",
+      "defaultValue": ""
+    },
+    {
+      "name": "current-change",
+      "sample": "drag-events",
+      "type": "Function(data, currentNode)",
+      "desc": "当前选中节点变化时触发的事件;//参数说明\n{data: 节点数据,currentNode: 节点状态信息（包括数据）}",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-expand",
+      "sample": "default-expanded-keys",
+      "type": "Function(data, node, vm)",
+      "desc": "展开节点后的事件。;节点被展开时触发的事件;//参数说明\n{data: 节点数据,node: 节点状态信息（包括数据,vm: 当前组件实例}",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-collapse",
+      "sample": "default-expanded-keys",
+      "type": "Function(data, node, vm)",
+      "desc": "收缩节点后的事件;节点被关闭时触发的事件;//参数说明\n{data: 节点数据,node: 节点状态信息（包括数据）,vm: 当前组件实例}",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-start",
+      "sample": "drag-events",
+      "type": "Function(node, event)",
+      "desc": "节点开始拖拽时触发的事件;节点开始拖拽时触发的事件;node: 拖拽节点，event: 原生事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-enter",
+      "sample": "drag-events",
+      "type": "Function(draggingNode, targetNode, dropType, event)",
+      "desc": "拖拽进入其他节点时触发的事件;//参数\n{draggingNode: 拖拽节点,targetNode: 目标节点,dropType: 拖拽类型, //拖拽节点在目标节点对应关系（before/after/inner/none)\nevent: 原生事件}",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-leave",
+      "sample": "drag-events",
+      "type": "Function(draggingNode, targetNode, dropType, event)",
+      "desc": "拖拽离开某个节点时触发的事件;//参数\n{draggingNode: 拖拽节点,targetNode: 目标节点,dropType: 拖拽类型,//拖拽节点在目标节点对应关系（before/after/inner/none)\nevent: 原生事件}",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-over",
+      "sample": "drag-events",
+      "type": "Function(raggingNode, targetNode, dropType, event)",
+      "desc": "在拖拽节点时触发的事件（类似浏览器的 mouseover 事件）;//参数\n{draggingNode: 拖拽节点,targetNode: 目标节点,dropType: 拖拽类型, //拖拽节点在目标节点对应关系（before/after/inner/none)\nevent: 原生事件}",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drag-end",
+      "sample": "drag-events",
+      "type": "Function(draggingNode, targetNode, dropType, event)",
+      "desc": "拖拽结束时（可能未成功）触发的事件;//参数\n{draggingNode: 拖拽节点,targetNode: 目标节点,dropType: 拖拽类型, //拖拽节点在目标节点对应关系（before/after/inner/none)\nevent: 原生事件}",
+      "defaultValue": ""
+    },
+    {
+      "name": "node-drop",
+      "sample": "node-draggable",
+      "type": "Function(draggingNode, targetNode, dropType, event)",
+      "desc": "拖放节点后的事件。开启 dragable 属性为 true 有效。;拖拽成功完成时触发的事件;//参数\n{draggingNode: 拖拽节点,targetNode: 目标节点,dropType: 拖拽类型, //拖拽节点在目标节点对应关系（before/after/inner/none)\nevent: 原生事件}",
+      "defaultValue": ""
+    }
+  ]
+}

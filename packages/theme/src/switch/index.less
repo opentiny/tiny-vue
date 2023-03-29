@@ -1,0 +1,101 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@switch-prefix-cls: ~'@{css-prefix}switch';
+
+.@{switch-prefix-cls} {
+  .component-css-vars-switch();
+  
+  display: inline-block;
+  width: var(--ti-switch-width);
+  height: var(--ti-switch-height);
+  line-height: var(--ti-switch-height);
+  border-radius: var(--ti-switch-border-radius);
+  vertical-align: middle;
+  border: 1px solid var(--ti-switch-off-bg-color);
+  background-color: var(--ti-switch-off-bg-color);
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+
+  & &-inner {
+    color: var(--ti-switch-text-color);
+    font-size: var(--ti-switch-inner-font-size);
+    position: absolute;
+    left: calc(var(--ti-switch-dot-position-left) + 4px);
+    top: -1px;
+  }
+
+  &__text{
+    width: var(--ti-switch-text-width);
+    .@{switch-prefix-cls}-inner{
+      left: calc(var(--ti-switch-dot-position-left) + 9px);
+    }
+  }
+
+  &.mini {
+    width: calc(var(--ti-switch-width) - 6px);
+  }
+
+  &&-checked.disabled,
+  &.disabled {
+    cursor: not-allowed;
+    background: var(--ti-switch-disabled-bg-color);
+    border-color: var(--ti-switch-disabled-bg-color);
+
+    &::after {
+      background: var(--ti-switch-disabled-dot-bg-color);
+      cursor: not-allowed;
+    }
+
+    .@{switch-prefix-cls}-inner {
+      color: var(--ti-switch-disabled-text-color);
+    }
+  }
+
+  &&-checked.disabled {
+    background: var(--ti-switch-checked-disabled-bg-color);
+    border-color: var(--ti-switch-checked-disabled-border-color);
+  }
+
+  &::after {
+    content: '';
+    width: var(--ti-switch-dot-size-height-width);
+    height: var(--ti-switch-dot-size-height-width);
+    border-radius: 50%;
+    background-color: var(--ti-switch-dot-bg-color);
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    cursor: pointer;
+    transition: left 0.2s ease-in-out, width 0.2s ease-in-out;
+  }
+
+  &&-checked {
+    border-color: var(--ti-switch-on-bg-color);
+    background-color: var(--ti-switch-on-bg-color);
+
+    .@{switch-prefix-cls}-inner {
+      left: 8px;
+      width: calc(100% - var(--ti-switch-dot-size-height-width));
+      overflow: hidden;
+    }
+
+    &:after {
+      left: calc(100% - var(--ti-switch-dot-offset));
+    }
+  }
+}

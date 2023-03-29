@@ -1,15 +1,10 @@
 {
-  "name": "@opentiny/vue",
+  "name": "opentiny-vue",
   "version": "3.6.0",
-  "uiVersion": "0.1.0",
-  "srcVersion": "0.1.0",
-  "themeVersion": "3.6.0",
+  "private": true,
+  "packageManager": "pnpm@7.11.0",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "homepage": "https://opentiny.design/tiny-vue",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/opentiny/tiny-vue"
-  },
   "keywords": [
     "vue",
     "vue3",
@@ -23,108 +18,118 @@
   ],
   "author": "OpenTiny Team",
   "license": "MIT",
-  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:opentiny/tiny-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/opentiny/tiny-vue/issues"
+  },
   "sideEffects": false,
+  "main": "packages/index.js",
+  "files": [
+    "index.js",
+    "pc.js",
+    "mobile.js",
+    "runtime"
+  ],
+  "engines": {
+    "node": ">=14",
+    "pnpm": ">=7"
+  },
   "scripts": {
-    "dev:vue2": "npm run build:entry && vite",
-    "dev:vue3": "npm run build:entry && lerna run dev --scope vue-example --stream",
-    "postinstall": "lerna exec npm install --scope vue-example",
-    "clean": "rimraf dist",
-    "create:ui": "node build/create-ui.js",
-    "create:mapping": "node build/create-mapping.js",
-    "sync-icons": "node build/sync-icons.js",
-    "build:ui2": "lerna run build:ui2 --scope @opentiny/vue*",
-    "buildfuxi:ui2": "lerna run build:ui2 --scope @opentiny/vue-${componentName}",
-    "build:icon2": "cross-env NODE_ENV=production node build/build-icon.js",
-    "build:vue2": "npm run clean && npm i @opentiny/vue-theme --no-save && npm run create:mapping && npm run build:entry && npm run build:ui2 && npm run build:icon2",
-    "buildfuxi:vue2": "npm run clean && npm run create:mapping && npm run build:entry && npm run buildfuxi:ui2 && npm run build:icon2",
-    "build:ui3": "lerna run build:ui3 --scope @opentiny/vue*",
-    "buildfuxi:ui3": "lerna run build:ui3 --scope @opentiny/vue-${componentName}",
-    "build:icon3": "lerna run build:icon3 --scope vue-example --stream",
-    "build:vue3": "npm run clean && npm i @opentiny/vue-theme --no-save && npm run create:mapping && npm run build:entry && npm run build:ui3 && npm run build:icon3",
-    "buildfuxi:vue3": "npm run clean && npm run create:mapping && npm run build:entry && npm run buildfuxi:ui3 && npm run build:icon3",
-    "build:entry": "node build/build-entry.js",
-    "build": "npm run clean && npm run build:entry",
-    "build:version": "cross-env TYPE=ui node build/build-version.js",
-    "build:runtime-pc": "lerna run build:runtime-pc --scope vue-example",
-    "build:runtime-icon": "lerna run build:runtime-icon --scope vue-example",
-    "build:runtime": "npm run build:runtime-pc && npm run build:runtime-icon",
-    "release3": "npm run release:ui3 && npm run release:vue3",
-    "release:vue3": "cross-env NPM_TAG=~3.6.0 NPM_WAREHOUSE=prod VERSION_TAG=3.6.0 node build/release.js",
-    "release:ui3": "cross-env NPM_TAG=~3.6.0 NPM_WAREHOUSE=prod VERSION_TAG=3.6.0 node build/release-ui.js",
-    "release2": "npm run release:ui2 && npm run release:vue2",
-    "release:vue2": "cross-env NPM_TAG=~2.6.0 NPM_WAREHOUSE=prod VERSION_TAG=2.6.0 node build/release.js",
-    "release:ui2": "cross-env NPM_TAG=~2.6.0 NPM_WAREHOUSE=prod VERSION_TAG=2.6.0 node build/release-ui.js",
-    "releasefuxi3": "npm run releasefuxi:ui3 && npm run releasefuxi:vue3",
-    "releasefuxi:vue3": "cross-env NPM_TAG=~3.5.0 NPM_WAREHOUSE=prod VERSION_TAG=${version} node build/release.js",
-    "releasefuxi:ui3": "cross-env NPM_TAG=~3.5.0 NPM_WAREHOUSE=prod VERSION_TAG=${version} node build/release-ui.js",
-    "releasefuxi2": "npm run releasefuxi:ui2 && npm run releasefuxi:vue2",
-    "releasefuxi:vue2": "cross-env NPM_TAG=~2.5.0 NPM_WAREHOUSE=prod VERSION_TAG=${version} node build/release.js",
-    "releasefuxi:ui2": "cross-env NPM_TAG=~2.5.0 NPM_WAREHOUSE=prod VERSION_TAG=${version} node build/release-ui.js",
-    "format": "prettier --write packages/**/*{.vue,.js,.jsx} example/src/**/*{.vue,.js,jsx} build/*.js example/test/*.jsx",
-    "lint": "eslint packages/**/*{.vue,.js,.jsx} example/src/**/*{.vue,.js,.jsx} build/*.js --ignore-pattern \"packages/**/dist\" --ignore-pattern \"packages/**/node_modules\" --ignore-pattern \"packages/**/runtime\" --fix",
-    "test": "lerna run test --scope vue-example --stream",
-    "coverage": "lerna run coverage --scope vue-example --stream",
-    "publishall": "node npm-publish.js",
-    "clean:dep": "rm -rf node_modules */node_modules && rm -rf package-lock.json example/package-lock.json",
-    "prepare": "husky install",
-    "commit": "git-cz"
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "pnpm build:internals",
+    "bootstrap": "pnpm --filter=\"!./packages/dist/**\" install",
+    "dev:vue2": "pnpm -C examples/vue2 dev",
+    "dev:vue2.7": "pnpm -C examples/vue2.7 dev",
+    "dev:vue3": "pnpm -C examples/vue3 dev",
+    "dev:docs": "pnpm -C examples/docs docs:dev",
+    "build:entry": "pnpm -C internals/cli build:entry",
+    "create:ui": "pnpm -C internals/cli create:ui",
+    "create:mapping": "pnpm -C internals/cli create:mapping",
+    "sync-icons": "pnpm -C internals/cli sync-icons",
+    "build:runtime": "pnpm -C internals/cli build:runtime",
+    "build:ui": "pnpm -C internals/cli build:ui",
+    "build:renderless": "pnpm -C packages/renderless build",
+    "build:internals": "pnpm \"--filter=./internals/*\" build",
+    "release:vue2": "pnpm -C internals/cli release:vue2",
+    "release:vue3": "pnpm -C internals/cli release:vue3",
+    "release:ui-vue2": "pnpm -C internals/cli release:ui-vue2",
+    "release:ui-vue3": "pnpm -C internals/cli release:ui-vue3",
+    "release:ui-test-vue2": "pnpm -C internals/cli release:ui-test-vue2",
+    "/* pubTgz */": "部署带绿标的 npm 包",
+    "pubTgz": "node .cloudbuild/pub-tgzs.js",
+    "format": "prettier --write --cache packages/**/{*.vue,*.js,*.ts,*.jsx,*.tsx} examples/**/{*.vue,*.js,*.ts,*.jsx,*.tsx} internal/**/{*.js,*.ts}",
+    "lint": "eslint \"packages/**/{*.vue,*.js,*.ts,*.jsx,*.tsx}\" --quiet",
+    "lint:doc": "eslint \"examples/**/{*.vue,*.js,*.ts,*.jsx,*.tsx}\" --quiet",
+    "lint:renderless": "eslint \"packages/renderless/src/**/{*.ts,*.tsx}\" --quiet",
+    "test": "npm run build:ui-vue2 -- action-sheet tab-item",
+    "test:ct": "cypress run-ct",
+    "test:pub": "npm run build:ui-vue2 && npm run release:ui-vue2 && npm run build:ui-vue3 && npm run release:ui-vue3 && mv -f tgzs/*.tgz ./ && npm run pubTgz -- production",
+    "test:pub-runtime": "npm run build:runtime-vue2 && npm run release:vue2 && npm run build:runtime-vue3 && npm run release:vue3 && mv -f tgzs/*.tgz ./ && npm run pubTgz -- production",
+    "test:pubTgz": "npm run pubTgz -- production",
+    "clean:build": "rimraf packages/dist packages/renderless/dist",
+    "clean:dependencies": "rm -rf node_modules /**/node_modules",
+    "// ---------- 构建【mf】版本 ----------": "",
+    "preci:deployMfPatch": "pnpm clean:build && lerna version prepatch --conventional-prerelease --include-merged-tags --preid mf --no-push --yes",
+    "ci:deployMfPatch": "lerna publish from-package --yes --dist-tag mf",
+    "postci:deployMfPatch": "git push --follow-tags origin",
+    "// ---------- 构建【beta】版本 ----------": "",
+    "preci:deployBetaPatch": "pnpm clean:build && lerna version prepatch --conventional-prerelease --include-merged-tags --preid beta --no-push --yes",
+    "ci:deployBetaPatch": "lerna publish from-package --yes --dist-tag beta",
+    "postci:deployBetaPatch": "git push --follow-tags origin",
+    "// ---------- 构建【补丁】版本 ----------": "",
+    "preci:releasePatchVersion": "pnpm clean:build && lerna version patch --conventional-graduate --include-merged-tags --no-push --yes",
+    "ci:releasePatchVersion": "lerna publish from-package --yes",
+    "postci:releasePatchVersion": "git push --follow-tags origin",
+    "// ---------- 构建【特性】版本 ----------": "",
+    "preci:releaseMinorVersion": "pnpm clean:build && lerna version minor --conventional-graduate --include-merged-tags --no-push --yes",
+    "ci:releaseMinorVersion": "lerna publish from-package --yes",
+    "postci:releaseMinorVersion": "git push --follow-tags origin",
+    "// ---------- 手工构建发布指定组件 (Mf) ----------": "",
+    "preci:deployMf": "pnpm clean:build",
+    "ci:deployMf": "pnpm build:ui",
+    "postci:deployMf": "lerna publish from-package --yes --dist-tag mf",
+    "// ---------- 手工构建发布指定组件 (Beta) ----------": "",
+    "preci:deployBeta": "pnpm clean:build",
+    "ci:deployBeta": "pnpm build:ui",
+    "postci:deployBeta": "lerna publish from-package --yes --dist-tag beta"
+  },
+  "dependencies": {
+    "@vue/composition-api": "1.2.2",
+    "cropperjs": "1.5.12",
+    "crypto-js": "4.1.1",
+    "echarts": "5.3.3",
+    "echarts-liquidfill": "3.0.0",
+    "echarts-wordcloud": "2.0.0",
+    "fs-extra": "^11.1.0",
+    "shepherd.js": "11.0.1",
+    "streamsaver": "2.0.6"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.18.13",
-    "@babel/eslint-parser": "^7.19.1",
-    "@babel/plugin-proposal-export-default-from": "^7.7.4",
-    "@babel/plugin-proposal-export-namespace-from": "^7.7.4",
-    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/plugin-syntax-jsx": "^7.2.0",
-    "@babel/preset-env": "^7.18.10",
-    "@better-scroll/core": "^2.5.0",
-    "@better-scroll/wheel": "^2.5.0",
-    "@commitlint/cli": "^17.3.0",
-    "@commitlint/config-conventional": "^17.3.0",
-    "@rollup/plugin-alias": "^3.1.9",
-    "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-replace": "^4.0.0",
-    "@vitejs/plugin-vue2-jsx": "^1.0.3",
-    "@vue/babel-plugin-jsx": "^1.1.0",
-    "@vue/compiler-sfc": "^3.2.39",
-    "@vue/composition-api": "1.2.2",
-    "commitizen": "^4.2.5",
-    "cropperjs": "^1.5.12",
-    "cross-env": "^7.0.3",
-    "cz-conventional-changelog": "^3.3.0",
-    "echarts": "^5.3.3",
-    "echarts-liquidfill": "3.1.0",
-    "echarts-wordcloud": "2.0.0",
-    "eslint": "^8.25.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-vue": "^9.6.0",
-    "fs-extra": "^10.1.0",
-    "glob": "^8.0.3",
-    "husky": "^8.0.2",
-    "lerna": "^5.4.2",
+    "@antfu/eslint-config": "^0.34.0",
+    "@types/eslint": "^8.4.10",
+    "@types/node": "^18.11.18",
+    "@typescript-eslint/parser": "^5.48.0",
+    "@volar-plugins/eslint": "^0.0.4",
+    "@volar-plugins/prettier": "^1.1.5",
+    "@volar-plugins/prettyhtml": "^1.0.3",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
-    "quill": "1.3.7",
-    "rimraf": "^3.0.0",
-    "rollup-plugin-postcss": "^2.0.3",
-    "rollup-plugin-vue": "5.0.1",
-    "rollup-plugin-vue-inline-svg": "~1.1.2",
-    "sortablejs": "^1.10.1",
-    "streamsaver": "^2.0.6",
-    "vite": "^3.0.9",
-    "vite-plugin-md2vue2": "^2.0.3",
-    "vite-plugin-vue2": "^2.0.2",
-    "vite-plugin-vue2-svg": "^0.3.0",
-    "vue": "~2.6.14",
-    "vue-eslint-parser": "^9.1.0",
-    "vue-i18n": "^8.9.0",
-    "vue-router": "^3.6.4",
-    "vue-template-compiler": "~2.6.14"
+    "@vue/tsconfig": "^0.1.3",
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "depcheck": "1.4.3",
+    "eslint": "^8.31.0",
+    "lerna": "^6.4.0",
+    "nx": "^15.4.5",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.4",
+    "vue": "^3.2.31",
+    "vue-tsc": "^1.0.24",
+    "vue-tsc-eslint-hook": "^1.0.24"
   },
   "husky": {
     "hooks": {
@@ -143,15 +148,73 @@
       "path": "cz-conventional-changelog"
     }
   },
+  "pnpm": {
+    "patchedDependencies": {
+      "depcheck@1.4.3": "patches/depcheck@1.4.3.patch",
+      "vite-plugin-importus@1.0.4": "patches/vite-plugin-importus@1.0.4.patch"
+    },
+    "overrides": {
+      "@vue/compiler-sfc@3": "3.2.39",
+      "@vue/runtime-core@3": "3.2.39",
+      "@vue/runtime-dom@3": "3.2.39",
+      "@vue/shared@3": "3.2.39",
+      "cropperjs": "1.5.12",
+      "echarts": "5.3.3",
+      "follow-redirects": "1.14.8",
+      "regenerator-runtime": "0.13.9",
+      "tslib": "2.4.0",
+      "typescript": "^4.9.3",
+      "vue-i18n@8": "8.27.2",
+      "vue-i18n@9": "9.2.2",
+      "vue-router@3": "3.6.5",
+      "vue-router@4": "4.1.5",
+      "vue-template-compiler@2.6": "2.6.14",
+      "vue-template-compiler@2.7": "2.7.10",
+      "vue@2.6": "2.6.14",
+      "vue@2.7": "2.7.10",
+      "vue@3": "3.2.39",
+      "vue2": "npm:vue@2.6.14",
+      "vue2.7": "npm:vue@2.7.10",
+      "vue3": "npm:vue@3.2.39",
+      "vite-plugin-importus": "1.0.4"
+    },
+    "packageExtensions": {
+      "vue-template-compiler@2.6.14": {
+        "peerDependencies": {
+          "vue": "2.6.14"
+        }
+      },
+      "vue-template-compiler@2.7.10": {
+        "peerDependencies": {
+          "vue": "2.7.10"
+        }
+      },
+      "@vue/composition-api": {
+        "peerDependencies": {
+          "vue": "2.6.14"
+        }
+      },
+      "vite-plugin-dts": {
+        "peerDependencies": {
+          "vue": "3.2.39"
+        }
+      },
+      "vite-plugin-importus": {
+        "dependencies": {
+          "param-case": "^3.0.4"
+        }
+      },
+      "vite-plugin-md": {
+        "peerDependenciesMeta": {
+          "@vitejs/plugin-vue": {
+            "optional": true
+          }
+        }
+      }
+    }
+  },
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ],
-  "engines": {
-    "node": ">=10.0.0"
-  },
-  "resolutions": {
-    "vue": "~2.6.14",
-    "vue-template-compiler": "~2.6.14"
-  }
+  ]
 }

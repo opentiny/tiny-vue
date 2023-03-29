@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "country/basic-usage",
+    "component": "Country",
+    "findIntroStr": "Country: country/region component, which is used to display and select country/region names. The options are obtained by configuring the data source.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Custom Service",
+    "content": "<p>You can use the <code>fetch-country</code> attribute to specify a method in which the service customized by the request can be implemented. <code>clearable</code>: indicates whether data can be cleared. The default value is true. </p>\n",
+    "link": "country/custom-service",
+    "component": "Country",
+    "findIntroStr": "Country: country/region component, which is used to display and select country/region names. The options are obtained by configuring the data source.",
+    "demoId": "custom-service"
+  }
+]

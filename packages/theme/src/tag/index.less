@@ -1,0 +1,175 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/tag.less';
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@tag-prefix-cls: ~'@{css-prefix}tag';
+
+.@{tag-prefix-cls} {
+  .component-css-vars-tag();
+
+  height: var(--ti-tag-height);
+  line-height: var(--ti-tag-height);
+  padding: 0 8px;
+  font-size: var(--ti-tag-font-size);
+  border-width: 1px;
+  border-radius: var(--ti-tag-border-radius);
+  border-style: solid;
+  box-sizing: border-box;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  .tag-variant(
+    var(--ti-tag-primary-text-color),
+    var(--ti-tag-primary-border-color),
+    var(--ti-tag-primary-background-color)
+  );
+  & &__text:hover {
+    cursor: pointer;
+    color: #526ecc;
+  }
+
+  & &__close {
+    font-size: var(--ti-tag-close-font-size);
+    margin-left: 6px;
+
+    &:hover {
+      cursor: pointer;
+      fill: #5e7ce0;
+    }
+  }
+
+  &&--info {
+    .tag-variant(
+      var(--ti-tag-info-text-color),
+      var(--ti-tag-info-border-color),
+      var(--ti-tag-info-background-color)
+    );
+  }
+
+  &&--success {
+    .tag-variant(
+      var(--ti-tag-success-text-color),
+      var(--ti-tag-success-border-color),
+      var(--ti-tag-success-background-color)
+    );
+  }
+
+  &&--warning {
+    .tag-variant(
+      var(--ti-tag-warning-text-color),
+      var(--ti-tag-warning-border-color),
+      var(--ti-tag-warning-background-color)
+    );
+  }
+
+  &&--danger {
+    .tag-variant(
+      var(--ti-tag-danger-text-color),
+      var(--ti-tag-danger-border-color),
+      var(--ti-tag-danger-background-color)
+    );
+  }
+
+  &--dark {
+    .tag-dark-variant(
+      var(--ti-tag-dark-text-color),
+      var(--ti-tag-dark-bg-color)
+    );
+  }
+
+  &--dark&--info {
+    .tag-dark-variant(
+      var(--ti-tag-dark-text-color),
+      var(--ti-tag-dark-info-bg-color)
+    );
+  }
+
+  &--dark&--success {
+    .tag-dark-variant(
+      var(--ti-tag-dark-text-color),
+      var(--ti-tag-dark-success-bg-color)
+    );
+  }
+
+  &--dark&--warning {
+    .tag-dark-variant(
+      var(--ti-tag-dark-text-color),
+      var(--ti-tag-dark-warning-bg-color)
+    );
+  }
+
+  &--dark&--danger {
+    .tag-dark-variant(
+      var(--ti-tag-dark-text-color),
+      var(--ti-tag-dark-danger-bg-color)
+    );
+  }
+
+  &--plain {
+    .tag-variant(
+      var(--ti-tag-plain-text-color),
+      var(--ti-tag-plain-border-color),
+      var(--ti-tag-plain-background-color)
+    );
+  }
+
+  &--plain&--info {
+    .tag-variant(
+      var(--ti-tag-plain-info-text-color),
+      var(--ti-tag-plain-info-border-color),
+      var(--ti-tag-plain-background-color)
+    );
+  }
+
+  &--plain&--success {
+    .tag-variant(
+      var(--ti-tag-plain-success-text-color),
+      var(--ti-tag-plain-success-border-color),
+      var(--ti-tag-plain-background-color)
+    );
+  }
+
+  &--plain&--warning {
+    .tag-variant(
+      var(--ti-tag-plain-warning-text-color),
+      var(--ti-tag-plain-warning-border-color),
+      var(--ti-tag-plain-background-color)
+    );
+  }
+
+  &--plain&--danger {
+    .tag-variant(
+      var(--ti-tag-plain-danger-text-color),
+      var(--ti-tag-plain-danger-border-color),
+      var(--ti-tag-plain-background-color)
+    );
+  }
+
+  &--medium {
+    height: var(--ti-tag-medium-height);
+    line-height: calc(var(--ti-tag-medium-height) - 2px);
+  }
+
+  &--small {
+    height: var(--ti-tag-small-height);
+    line-height: calc(var(--ti-tag-small-height) - 2px);
+  }
+
+  &--mini {
+    height: var(--ti-tag-mini-height);
+    line-height: calc(var(--ti-tag-mini-height) - 2px);
+  }
+}

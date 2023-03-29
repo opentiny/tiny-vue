@@ -1,0 +1,97 @@
+{
+  "attrs": [
+    {
+      "name": "type",
+      "sample": "type",
+      "type": "String",
+      "desc": "Notification message type. The options are info, success, warning, and error.",
+      "defaultValue": "info"
+    },
+    {
+      "name": "title",
+      "sample": "title",
+      "type": "[String, Function]",
+      "desc": "Notification message title, which can be customized by JSX.",
+      "defaultValue": "undefined"
+    },
+    {
+      "name": "message",
+      "sample": "message",
+      "type": "[String, Function]",
+      "desc": "Notification message text, which can be customized using JSX.",
+      "defaultValue": "undefined"
+    },
+    {
+      "name": "position",
+      "sample": "position",
+      "type": "String",
+      "desc": "Notification display position. The value can be top-right or bottom-right.",
+      "defaultValue": "bottom-right"
+    },
+    {
+      "name": "duration",
+      "sample": "duration",
+      "type": "Number",
+      "desc": "Automatic shutdown delay in milliseconds",
+      "defaultValue": "4500"
+    },
+    {
+      "name": "customClass",
+      "sample": "basic-usage",
+      "type": "[String, Object]",
+      "desc": "Custom style class",
+      "defaultValue": "undefined"
+    },
+    {
+      "name": "showClose",
+      "sample": "showClose",
+      "type": "Boolean",
+      "desc": "Whether to display the close button",
+      "defaultValue": "true"
+    },
+    {
+      "name": "showIcon",
+      "sample": "showIcon",
+      "type": "Boolean",
+      "desc": "Display Type Icon",
+      "defaultValue": "true"
+    },
+    {
+      "name": "closeIcon",
+      "sample": "closeIcon",
+      "type": "Object",
+      "desc": "Close icon component object",
+      "defaultValue": "IconClose"
+    },
+    {
+      "name": "statusIcon",
+      "sample": "statusIcon",
+      "type": "Object",
+      "desc": "Type icon component object",
+      "defaultValue": "IconInfoSolid"
+    },
+    {
+      "name": "debounceDelay",
+      "sample": "debounceDelay",
+      "type": "Number",
+      "desc": "Enable image stabilization",
+      "defaultValue": "0"
+    }
+  ],
+  "events": [
+    {
+      "name": "beforeClose",
+      "sample": "beforeClose",
+      "type": "Function",
+      "desc": "Callback method before closing. If false is returned, closing is prevented.",
+      "defaultValue": "undefined"
+    },
+    {
+      "name": "close",
+      "sample": "close",
+      "type": "Object",
+      "desc": "Event triggered when the notify function is disabled",
+      "defaultValue": "undefined"
+    }
+  ]
+}

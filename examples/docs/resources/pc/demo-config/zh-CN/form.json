@@ -1,0 +1,114 @@
+[
+  {
+    "title": "常用表单",
+    "content": "<p>在 Form 组件中，每一个表单域由一个 FormItem 组件构成，表单域中可以放置各种类型的表单控件，包括 Input、Select、Checkbox、Radio、Switch、DatePicker、TimePicker。</p>\n",
+    "link": "form/frequently-used-form",
+    "component": " Form 表单",
+    "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
+    "demoId": "frequently-used-form"
+  },
+  {
+    "title": "行内表单",
+    "content": "<p>当垂直方向空间受限且表单较简单时，可以在一行内放置表单，设置 <code>inline</code> 属性可以让表单域变为行内的表单域。</p>\n",
+    "link": "form/form-in-row",
+    "component": " FormItem 表单项",
+    "findIntroStr": "Form 组件下的 FormItem 配置。",
+    "demoId": "form-in-row"
+  },
+  {
+    "title": "表单校验",
+    "content": "<p>包括常用的必填、日期、时间、URL、邮件等校验规则。通过 <code>trigger</code> 配置触发校验规则的方式，为 <code>change</code> 时，当输入框值改变即触发校验，为 <code>blur</code> 时则失焦后触发校验。</p>\n",
+    "link": "form/form-validation",
+    "component": " Form 表单",
+    "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
+    "demoId": "form-validation"
+  },
+  {
+    "title": "自定义校验规则",
+    "content": "<p>通过 <code>validator</code> 选项进行自定义校验，校验方法中 <code>callback</code> 必须被调用。通过配置 <code>validate-on-rule-change</code> 属性,设置是否在 <code>rules</code> 属性改变后立即触发一次验证</p>\n",
+    "link": "form/custom-validation-rule",
+    "component": " Form 表单",
+    "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
+    "demoId": "custom-validation-rule"
+  },
+  {
+    "title": "文本对齐",
+    "content": "<p>通过配置 <code>label-align</code> 属性, 设置是否文本对齐</p>\n",
+    "link": "form/label-align",
+    "component": " Form 表单",
+    "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
+    "demoId": "label-align"
+  },
+  {
+    "title": "校验提示位置",
+    "content": "<p>通过 <code>validate-position</code> 可自定义错误提示出现的位置，在 <code>Form</code> 组件上设置后，子组件<code>FormItem</code>会继承父组件设置。单独在 <code>FormItem</code> 组件上进行设置优先级高于在 <code>From</code>上的设置。</p>\n",
+    "link": "form/validation-position",
+    "component": " Form 表单",
+    "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
+    "demoId": "validation-position"
+  },
+  {
+    "title": "无校验的组件添加校验的方法",
+    "content": "详细用法参考如下示例",
+    "link": "form/no-validate-to-add",
+    "component": " Form 表单",
+    "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
+    "demoId": "no-validate-to-add"
+  },
+  {
+    "title": "表单尺寸",
+    "content": "<p>通过在 <code>tiny-form</code> 标签上设置 <code>size</code> 属性可以改变表单内组件尺寸；设置 <code>disabled</code> 属性可以改变表单内组件禁用状态</p>\n",
+    "link": "form/size",
+    "component": " FormItem 表单项",
+    "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
+    "demoId": "size"
+  },
+  {
+    "title": "移除表单项的校验结果",
+    "content": "<p>调用 <code>clearValidate</code> 方法移除表单项的校验结果。传入待移除的表单项的 <code>prop</code> 属性或者 <code>prop</code> 组成的数组，如不传则移除整个表单的校验结果。</p>\n",
+    "link": "form/form-clear-validate",
+    "component": " 移除表单项的校验结果",
+    "findIntroStr": "Form 组件下的移除表单项的校验结果的方法。",
+    "demoId": "form-clear-validate"
+  },
+  {
+    "title": "标签文本插槽",
+    "content": "<p>通过在 <code>label</code> 插槽，自定义标签文本的内容</p>\n",
+    "link": "form/slot-label",
+    "component": " FormItem 表单项",
+    "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
+    "demoId": "slot-label"
+  },
+  {
+    "title": "隐藏表单项校验提示",
+    "content": "<p>通过配置 <code>novalid-tip</code> 设置是否显示校验提示框的tip内容提示。</p>\n",
+    "link": "form/novalid-tip",
+    "component": " Form 表单",
+    "findIntroStr": "配置是否显示校验提示框的tip内容提示",
+    "demoId": "novalid-tip"
+  },
+  {
+    "title": "校验提示的形式",
+    "content": "<p>通过 <code>validate-type</code> 可设置校验提示信息是以 <code>text</code> 文本显示还是以 <code>tip</code> 提示框的形式显示，默认为 <code>tip</code> 。也可直接配置在某一个 <code>&lt;form-item&gt;</code> 上控制某一项的校验提示形式。</p>\n",
+    "link": "form/validate-type",
+    "component": " Form 表单",
+    "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
+    "demoId": "validate-type"
+  },
+  {
+    "title": "表单禁用",
+    "content": "<p>通过 <code>disabled</code> 可设置表单是否禁用，默认为 <code>false</code>。</p>\n",
+    "link": "form/form-disabled",
+    "component": " Form 表单",
+    "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
+    "demoId": "form-disabled"
+  },
+  {
+    "title": "复杂布局",
+    "content": "<p>通过配合 <code>Row</code> 和 <code>Col</code> 组件来实现复杂布局。</p>\n",
+    "link": "form/form-row-col",
+    "component": " Form 表单",
+    "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
+    "demoId": "form-row-col"
+  }
+]

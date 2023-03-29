@@ -1,0 +1,146 @@
+{
+  "attrs": [
+    {
+      "name": "circulate",
+      "sample": "max-min",
+      "type": "Boolean",
+      "desc": "向上到达最大值后从最小值开始，或反过来",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "mouse-wheel",
+      "sample": "mouse-wheel",
+      "type": "Boolean",
+      "desc": "设置鼠标滚动滑轮是否改变数值",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "v-model",
+      "sample": "basic-usage",
+      "type": "Number",
+      "desc": "设置输入组件的默认值，默认为 0。",
+      "defaultValue": "该属性的默认值为 0"
+    },
+    {
+      "name": "min",
+      "sample": "max-min",
+      "type": "Number",
+      "desc": "规定组件可输入的最小数值，来创建合法值的范围，支持整数和小数。;设置计数器允许的最小值",
+      "defaultValue": "该属性的默认值为 -Infinity"
+    },
+    {
+      "name": "max",
+      "sample": "max-min",
+      "type": "Number",
+      "desc": "规定组件可输入的最大数值，来创建合法值的范围，支持整数和小数。;设置计数器允许的最大值",
+      "defaultValue": "该属性的默认值为 Infinity"
+    },
+    {
+      "name": "step",
+      "sample": "about-step",
+      "type": "Number",
+      "desc": "设置按上下方向键或点击上下按钮增减的数值，默认步长为 1。",
+      "defaultValue": "该属性的默认值为 1"
+    },
+    {
+      "name": "step-strictly",
+      "sample": "about-step",
+      "type": "Boolean",
+      "desc": "是否只能输入 step 的倍数",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "size",
+      "sample": "numeric-size",
+      "type": "String",
+      "desc": "计数器尺寸;该属性的可选值为 medium / small / mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "dynamic-disabled",
+      "type": "Boolean",
+      "desc": "是否禁用计数器",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "controls",
+      "sample": "controls",
+      "type": "Boolean",
+      "desc": "是否使用控制按钮",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "controls-position",
+      "sample": "controls",
+      "type": "String",
+      "desc": "控制按钮位置;该属性的可选值为 right",
+      "defaultValue": ""
+    },
+    {
+      "name": "name",
+      "sample": "controls2",
+      "type": "String",
+      "desc": "原生属性",
+      "defaultValue": ""
+    },
+    {
+      "name": "label",
+      "sample": "controls",
+      "type": "String",
+      "desc": "输入框关联的label文字",
+      "defaultValue": ""
+    },
+    {
+      "name": "placeholder",
+      "sample": "calculate-according-to-num-of-goods",
+      "type": "String",
+      "desc": "设置输入框内的提示占位文本 。",
+      "defaultValue": ""
+    },
+    {
+      "name": "precision",
+      "sample": "precision",
+      "type": "Number",
+      "desc": "数值精度",
+      "defaultValue": ""
+    },
+    {
+      "name": "format",
+      "sample": "",
+      "type": "Object",
+      "desc": "数字格式化置项，可配置如下字段：;{\n fraction: 4, // 保留小数位数\n rounding: 0, // 舍入点，0-9之间的数字，如配置为7时则为6舍7入，默认为5（四舍五入）;配置为0或>9将会进行截取\n prefix: '$', // 前置标识\n groupSize: 3, // 整数部分分组间隔，即第一个分组位数\n secondaryGroupSize: 2, // 整数部分第二级分组间隔，不设置或为0时 自动取groupSize\n groupSeparator: ',', // 整数部分分组分隔符\n decimalSeparator: '.', // 小数点符号\n fractionGroupSize: 0, // 小数部分分组间隔\n fractionGroupSeparator: ' ', // 小数分组分隔符\n suffix: '@' // 后置标识\n }",
+      "defaultValue": ""
+    },
+    {
+      "name": "allow-empty",
+      "sample": "allow-empty",
+      "type": "Boolean",
+      "desc": "计数器内容的可清空",
+      "defaultValue": "该属性的默认值为 false，表示不可清空"
+    }
+  ],
+  "events": [
+    {
+      "name": "focus",
+      "sample": "focus-event",
+      "type": "Function(arg1)",
+      "desc": "设置组件获得焦点时触发的回调函数。;onFocus(arg1){\n// arg1 =  event // do something you want... }",
+      "defaultValue": ""
+    },
+    {
+      "name": "blur",
+      "sample": "blur-event",
+      "type": "Function(arg1)",
+      "desc": "设置组件失去焦点时触发的回调函数。;onBlur(arg1){\n// arg1 = event  arg1为event对象\n// do something you want...}",
+      "defaultValue": ""
+    },
+    {
+      "name": "change",
+      "sample": "change-event",
+      "type": "Function(arg1,arg2)",
+      "desc": "设置组件的值变化时触发的回调函数。;onChange(arg1, arg2){\n// arg1 =  newVal/\n/arg2 =  oldVal\n// do something you want...}",
+      "defaultValue": ""
+    }
+  ]
+}

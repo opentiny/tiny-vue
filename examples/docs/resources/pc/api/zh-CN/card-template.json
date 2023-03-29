@@ -1,0 +1,41 @@
+{
+  "attrs": [
+    {
+      "name": "body-style",
+      "sample": "",
+      "type": "",
+      "desc": "设置卡片 body 部分的样式;该属性的可选值为 --",
+      "defaultValue": "该属性的默认值为 --"
+    },
+    {
+      "name": "header-line",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "设置卡片头部是否显示分割线，默认为 true 。",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "header",
+      "sample": "",
+      "type": "",
+      "desc": "设置卡片头部内容，比如标题。",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer",
+      "sample": "",
+      "type": "",
+      "desc": "设置卡片 footer 部分的内容。",
+      "defaultValue": ""
+    },
+    {
+      "name": "default",
+      "sample": "",
+      "type": "",
+      "desc": "默认插槽，设置卡片 body 部分的内容。",
+      "defaultValue": ""
+    }
+  ]
+}

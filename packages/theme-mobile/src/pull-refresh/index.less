@@ -1,0 +1,112 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@pull-refresh-prefix-cls: ~'@{css-prefix}mobile-pull-refresh';
+
+.@{pull-refresh-prefix-cls} {
+  height: 100%;
+  user-select: none;
+  &__track {
+    position: relative;
+    height: 100%;
+    transition-property: transform;
+  }
+
+  &__tips {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    color: var(--ti-mobile-pull-refresh-head-text-color, #969799);
+    font-size: var(--ti-mobile-pull-refresh-head-font-size, 14px);
+    line-height: 50px;
+    text-align: center;
+  }
+
+  &__head {
+    transform: translateY(-100%);
+  }
+
+  &__content {
+    overflow-y: auto;
+    height: 100%;
+  }
+
+  &__loading {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 12px;
+
+    i {
+      position: absolute;
+      top: 0;
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    i:nth-child(3) {
+      left: 48px;
+      background: #1ea5e8;
+      animation: three 300ms infinite;
+    }
+
+    i:nth-child(2) {
+      left: 24px;
+      background: #f6af39;
+      animation: two 300ms infinite;
+    }
+
+    i:nth-child(1) {
+      left: 0;
+      display: block;
+      background: #f25e51;
+      animation: one 300ms infinite;
+    }
+  }
+}
+
+@keyframes three {
+  from {
+    left: 48px;
+  }
+
+  to {
+    left: 0px;
+  }
+}
+
+@keyframes two {
+  from {
+    left: 24px;
+  }
+
+  to {
+    left: 48px;
+  }
+}
+
+@keyframes one {
+  from {
+    left: 0px;
+  }
+
+  to {
+    left: 24px;
+  }
+}

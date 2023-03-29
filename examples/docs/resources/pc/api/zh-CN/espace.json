@@ -1,0 +1,11 @@
+{
+  "attrs": [
+    {
+      "name": "data",
+      "sample": "support-open-espace",
+      "type": "Array , Object",
+      "desc": "设置组件数据，数组对象中包含选项有 type、value、icon。type 的可选择值有：im、sip、mailto",
+      "defaultValue": ""
+    }
+  ]
+}

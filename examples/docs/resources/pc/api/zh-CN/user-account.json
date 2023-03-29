@@ -1,0 +1,55 @@
+{
+  "attrs": [
+    {
+      "name": "getUserInfo",
+      "sample": "custom-service",
+      "type": "Function",
+      "desc": "自定义配置用户查询服务",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-class",
+      "sample": "",
+      "type": "String",
+      "desc": "为 popper 添加类名(可参考 popover 组件)",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-append-to-body",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "getUserImageUrl",
+      "sample": "custom-service",
+      "type": "Function",
+      "desc": "自定义配置获取用户头像服务",
+      "defaultValue": ""
+    },
+    {
+      "name": "showArrow",
+      "sample": "custom-service",
+      "type": "Boolean",
+      "desc": "设置为true时，箭头会与Roles组件的箭头方向保持一致",
+      "defaultValue": ""
+    },
+    {
+      "name": "beforeLogout",
+      "sample": "",
+      "type": "Function(params)",
+      "desc": "注销前的回调函数",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "custom-operation",
+      "type": "",
+      "desc": "默认插槽",
+      "defaultValue": ""
+    }
+  ]
+}

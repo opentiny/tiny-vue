@@ -1,0 +1,26 @@
+[
+  {
+    "title": "medium",
+    "content": "<p>Table settings<code>size</code> property adjusts the table size. </p>\n",
+    "link": "grid/tiny-first-menu/grid-size",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-grid-size"
+  },
+  {
+    "title": "small",
+    "content": "For details, see the following example.",
+    "link": "grid/tiny-first-menu/grid-size-small",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-grid-size-small"
+  },
+  {
+    "title": "mini",
+    "content": "For details, see the following example.",
+    "link": "grid/tiny-first-menu/grid-size-mini",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-grid-size-mini"
+  }
+]

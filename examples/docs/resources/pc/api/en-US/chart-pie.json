@@ -1,0 +1,109 @@
+{
+  "attrs": [
+    {
+      "name": "dimension",
+      "sample": "",
+      "type": "String",
+      "desc": "Dimension. By default, the first item in columns is a dimension.",
+      "defaultValue": ""
+    },
+    {
+      "name": "metrics",
+      "sample": "",
+      "type": "String",
+      "desc": "Indicator. By default, the second column is an indicator.",
+      "defaultValue": ""
+    },
+    {
+      "name": "dataType",
+      "sample": "",
+      "type": "String",
+      "desc": "Data type; The optional values of this attribute are KMB, normal, percent",
+      "defaultValue": ""
+    },
+    {
+      "name": "legendLimit",
+      "sample": "",
+      "type": "Number",
+      "desc": "The number of displayed legends is limited. If the number of legends is too large, the pie chart style is incorrect. If the number of legends exceeds the maximum value, the legend can be hidden to solve this problem.",
+      "defaultValue": ""
+    },
+    {
+      "name": "selectedMode",
+      "sample": "",
+      "type": "Number",
+      "desc": "Selected mode; The value of this attribute can be single or multiple",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "hoverAnimation",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "Whether to enable the zoom-in animation effect of hovering on a sector",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "radius",
+      "sample": "",
+      "type": "Number",
+      "desc": "Pie Chart Radius",
+      "defaultValue": ""
+    },
+    {
+      "name": "offsetY",
+      "sample": "",
+      "type": "Number",
+      "desc": "Longitudinal offset",
+      "defaultValue": ""
+    },
+    {
+      "name": "digit",
+      "sample": "",
+      "type": "Number",
+      "desc": "Set the number of bits reserved when the data type is percent.",
+      "defaultValue": "The default value of this attribute is 2"
+    },
+    {
+      "name": "roseType",
+      "sample": "",
+      "type": "String",
+      "desc": "The Nightingale rose chart is displayed. By default, the Nightingale rose chart is not displayed.",
+      "defaultValue": "The default value of this attribute is radius, area."
+    },
+    {
+      "name": "label",
+      "sample": "",
+      "type": "Object",
+      "desc": "Text label on the pie chart",
+      "defaultValue": ""
+    },
+    {
+      "name": "labelLine",
+      "sample": "",
+      "type": "Object",
+      "desc": "Label visual guide line style",
+      "defaultValue": ""
+    },
+    {
+      "name": "itemStyle",
+      "sample": "",
+      "type": "Object",
+      "desc": "Graph Style",
+      "defaultValue": ""
+    },
+    {
+      "name": "level",
+      "sample": "",
+      "type": "array",
+      "desc": "This parameter is set when there are multiple pie charts.",
+      "defaultValue": ""
+    },
+    {
+      "name": "limitShowNum",
+      "sample": "",
+      "type": "Number",
+      "desc": "If the value of this parameter exceeds the value of this parameter, replace it with'Other'. In this case, data is displayed in descending order.",
+      "defaultValue": ""
+    }
+  ]
+}

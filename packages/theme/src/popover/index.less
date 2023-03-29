@@ -1,0 +1,157 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@popover-prefix-cls: ~'@{css-prefix}popover';
+@popper-prefix-cls: ~'@{css-prefix}popper';
+
+.@{popover-prefix-cls}.@{popper-prefix-cls} {
+  .component-css-vars-popover();
+
+  position: absolute;
+  background: var(--ti-popover-bg-color);
+  color: var(--ti-popover-text-color);
+  border-radius: var(--ti-popover-border-radius);
+  border: 1px solid var(--ti-popover-border-color);
+  padding: var(--ti-popover-padding-vertical) var(--ti-popover-padding-horizontal);
+  z-index: 2000;
+  line-height: 1.4;
+  text-align: justify;
+  font-size: var(--ti-popover-font-size);
+  box-shadow: var(--ti-popover-box-shadow);
+  word-break: break-all;
+
+  .popper__arrow,
+  .popper__arrow::after {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+  }
+
+  .popper__arrow,
+  .@{popper-prefix-cls} .popper__arrow {
+    border-width: var(--ti-popover-arrow-border-width);
+    -webkit-filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.03));
+    filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.03));
+  }
+
+  .popper__arrow::after {
+    content: ' ';
+    border-width: var(--ti-popover-arrow-border-width);
+  }
+
+  &[x-placement^='top'] {
+    margin-bottom: var(--ti-popover-placement-margin-vertical);
+
+    .popper__arrow {
+      bottom: -6px;
+      left: 50%;
+      margin-right: 3px;
+      border-top-color: var(--ti-popover-arrow-border-color);
+      border-bottom-width: 0;
+
+      &::after {
+        bottom: 1px;
+        margin-left: -6px;
+        border-top-color: var(--ti-popover-placement-arrow-after-border-color);
+        border-bottom-width: 0;
+      }
+    }
+  }
+
+  &[x-placement^='bottom'] {
+    margin-top: var(--ti-popover-placement-margin-vertical);
+
+    .popper__arrow {
+      top: -6px;
+      left: 50%;
+      margin-right: 3px;
+      border-top-width: 0;
+      border-bottom-color: var(--ti-popover-arrow-border-color);
+
+      &::after {
+        top: 1px;
+        margin-left: -6px;
+        border-top-width: 0;
+        border-bottom-color: var(--ti-popover-placement-arrow-after-border-color);
+      }
+    }
+  }
+
+  &[x-placement^='right'] {
+    margin-left: var(--ti-popover-placement-margin-horizontal);
+
+    .popper__arrow {
+      top: 50%;
+      left: -6px;
+      margin-bottom: 3px;
+      border-right-color: var(--ti-popover-arrow-border-color);
+      border-left-width: 0;
+
+      &::after {
+        bottom: -6px;
+        left: 1px;
+        border-right-color: var(--ti-popover-placement-arrow-after-border-color);
+        border-left-width: 0;
+      }
+    }
+  }
+
+  &[x-placement^='left'] {
+    margin-right: var(--ti-popover-placement-margin-horizontal);
+
+    .popper__arrow {
+      top: 50%;
+      right: -6px;
+      margin-bottom: 3px;
+      border-right-width: 0;
+      border-left-color: var(--ti-popover-arrow-border-color);
+
+      &::after {
+        right: 1px;
+        bottom: -6px;
+        margin-left: -6px;
+        border-right-width: 0;
+        border-left-color: var(--ti-popover-placement-arrow-after-border-color);
+      }
+    }
+  }
+
+  .@{popover-prefix-cls}__plain {
+    padding: 18px 20px;
+  }
+
+  .@{popover-prefix-cls}__title {
+    color: var(--ti-popover-title-text-color);
+    font-size: var(--ti-popover-title-font-size);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  &:focus,
+  &:focus:active,
+  .@{popover-prefix-cls}__reference:focus:hover,
+  .@{popover-prefix-cls}__reference:focus:not(.focusing) {
+    outline-width: 0;
+  }
+}
+
+.@{popover-prefix-cls} {
+  &__reference {
+    display: inline-block;
+  }
+}

@@ -1,0 +1,146 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p> uses <code>v-model</code> to set the initial activated tab page. The bound value corresponds to the value of the <code>name</code> attribute in the <code>tiny-tab-item</code> element. A <code>tiny-tab-item</code> is a tab. You can use the <code>title</code> attribute to set the tab title. </p>\n",
+    "link": "tabs/basic-usage",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "card type",
+    "content": "<p>Use <code>tab-style</code> to set the tab style type and <code>active-name</code> to set the initially activated tab. </p>\n",
+    "link": "tabs/tab-style-card",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "tab-style-card"
+  },
+  {
+    "title": "bordercard type",
+    "content": "<p>Use <code>tab-style</code> to set the tab style type to <code>bordercard</code>. </p>\n",
+    "link": "tabs/tab-style-bordercard",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "tab-style-bordercard"
+  },
+  {
+    "title": "The tab page can be added.",
+    "content": "<p>Set the <code>with-add</code> attribute to enable tags to add functions. In addition, the <code>add</code> event is used to customize the logic for adding tabs. After the <code>show-more-tabs</code> attribute is configured, the <code>More</code> button is displayed when the tab page exceeds a certain width. </p>\n",
+    "link": "tabs/with-add",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "with-add"
+  },
+  {
+    "title": "The tab page can be closed.",
+    "content": "<p>The <code>withClose</code> attribute specifies whether the tab page can be closed. In addition, the <code>close</code> event can be used to customize the logic for closing the tab page. </p>\n",
+    "link": "tabs/tabs-events-close",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "tabs-events-close1"
+  },
+  {
+    "title": "top display position",
+    "content": "<p>Set the display position of the tab page through the <code>position</code> attribute. The options are <code>top</code>, <code>right</code>, <code>bottom</code>, and <code>left</code>. The default value is <code>top</code>. </p>\n",
+    "link": "tabs/position",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "position"
+  },
+  {
+    "title": "Display on the right",
+    "content": "For details, see the following example.",
+    "link": "tabs/position-right",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "position-right"
+  },
+  {
+    "title": "Display below",
+    "content": "For details, see the following example.",
+    "link": "tabs/position-bottom",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "position-bottom"
+  },
+  {
+    "title": "Display on the left",
+    "content": "For details, see the following example.",
+    "link": "tabs/position-left",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "position-left"
+  },
+  {
+    "title": "Event Before Leaving",
+    "content": "The hook function before <p><code>before-leave</code> switches the label. If false or Promise is returned and rejected, the switchover is blocked. If true is returned, the switchover is allowed. </p>\n",
+    "link": "tabs/before-leave",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "before-leave"
+  },
+  {
+    "title": "Automatically open",
+    "content": "The <p><code>stretch</code> property specifies whether the width of a label is self-expanded. The default value is false. </p>\n",
+    "link": "tabs/stretch-wh",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "stretch-wh"
+  },
+  {
+    "title": "add event",
+    "content": "<p>The <code>add</code> event is triggered when the Add button is clicked to add a tab page</p>\n",
+    "link": "tabs/tabs-events-add",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "tabs-events-add"
+  },
+  {
+    "title": "click event",
+    "content": "<p>The <code>click</code> event is triggered when a tab page is clicked</p>\n",
+    "link": "tabs/tabs-events-click",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "tabs-events-click"
+  },
+  {
+    "title": "close event",
+    "content": "<p>The <code>close</code> event is triggered when a tab page is closed</p>\n",
+    "link": "tabs/tabs-events-close",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "tabs-events-close"
+  },
+  {
+    "title": "edit Event",
+    "content": "<p>The <code>edit</code> event is triggered after you click Add to add a tab page or the tab page is closed</p>\n",
+    "link": "tabs/tabs-events-edit",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "tabs-events-edit"
+  },
+  {
+    "title": "Custom Tab Title",
+    "content": "<p>Customize the title of the tab page through the <code>title</code> slot of the <code>tiny-tab-item</code>, for example, add an icon before the title. </p>\n",
+    "link": "tabs/custom-tab-title",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "custom-tab-title"
+  },
+  {
+    "title": "Creating tab pages cyclically",
+    "content": "<p>Creates multiple <code>tiny-tab-items</code> based on the data loop through <code>v-for</code>. </p>\n",
+    "link": "tabs/tabdata-title",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "tabdata-title"
+  },
+  {
+    "title": "Switching a tab page to a grid",
+    "content": "Using the Grid component in the <blockquote>\n<p>Tabs component requires the Grid to set the <code>:auto-resize=&quot;true&quot;</code> property so that the Grid can adapt to changes in the parent element. </p>\n</blockquote>\n",
+    "link": "tabs/show-different-grid-data",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "show-different-grid-data"
+  }
+]

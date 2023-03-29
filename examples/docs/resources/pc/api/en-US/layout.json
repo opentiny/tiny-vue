@@ -1,0 +1,27 @@
+{
+  "attrs": [
+    {
+      "name": "tag",
+      "sample": "tag1",
+      "type": "String",
+      "desc": "Label",
+      "defaultValue": "The default value of this attribute is div."
+    },
+    {
+      "name": "size",
+      "sample": "",
+      "type": "String",
+      "desc": "Size; The value of this attribute can be medium / small / mini",
+      "defaultValue": "The default value of this attribute is medium."
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "base",
+      "type": "",
+      "desc": "Default slot",
+      "defaultValue": ""
+    }
+  ]
+}

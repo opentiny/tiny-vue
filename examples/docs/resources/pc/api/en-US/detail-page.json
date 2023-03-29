@@ -1,0 +1,67 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "",
+      "type": "Array",
+      "desc": "Set the data in the table header details column",
+      "defaultValue": ""
+    },
+    {
+      "name": "title",
+      "sample": "custom-show-text",
+      "type": "String",
+      "desc": "Details column title; The default value is Detail Bar with Table Header.",
+      "defaultValue": ""
+    },
+    {
+      "name": "text-split",
+      "sample": "custom-show-text",
+      "type": "String",
+      "desc": "Details column title separator; The default value is ':'",
+      "defaultValue": ""
+    },
+    {
+      "name": "dialog-title",
+      "sample": "custom-show-text",
+      "type": "String",
+      "desc": "Personalized pop-up window title; Default to'Personalization'",
+      "defaultValue": ""
+    },
+    {
+      "name": "label-title",
+      "sample": "custom-show-text",
+      "type": "String",
+      "desc": "Personalized pop-up window header text title bar field; The default value is'Field'",
+      "defaultValue": ""
+    },
+    {
+      "name": "tips",
+      "sample": "custom-show-text",
+      "type": "String",
+      "desc": "Prompt message that cannot be completely hidden; The default value is'At least one is displayed'",
+      "defaultValue": ""
+    },
+    {
+      "name": "value-title",
+      "sample": "custom-show-text",
+      "type": "String",
+      "desc": "Personalized pop-up window header text operation column field; The default value is'hidden'",
+      "defaultValue": ""
+    },
+    {
+      "name": "save-button",
+      "sample": "custom-show-text",
+      "type": "String",
+      "desc": "Text of the confirmation button in the personalized pop-up window; The default value is'OK'",
+      "defaultValue": ""
+    },
+    {
+      "name": "cancel-button",
+      "sample": "custom-show-text",
+      "type": "String",
+      "desc": "Text of the cancel button in the personalized pop-up window; The default value is'Cancel'",
+      "defaultValue": ""
+    }
+  ]
+}
