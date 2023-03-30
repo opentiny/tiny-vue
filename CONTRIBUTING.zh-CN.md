@@ -41,9 +41,9 @@
 - 点击 [TinyVue](https://github.com/opentiny/tiny-vue) 代码仓库右上角的 Fork 按钮，将上游仓库 Fork 到个人仓库
 - Clone 个人仓库到本地
 - 关联上游仓库，方便同步上游仓库最新代码
-- 在 Tiny Vue 根目录下运行 `npm i --force`, 安装 node 依赖
-- 运行 npm run dev:vue3，启动组件库网站
-- 打开浏览器访问：[http://127.0.0.1:5173/](http://127.0.0.1:5173/)
+- 在 Tiny Vue 根目录下运行 `pnpm i`, 安装 node 依赖
+- 运行 `pnpm dev`，启动组件库网站
+- 打开浏览器访问：[http://127.0.0.1:6175/](http://127.0.0.1:6175/)
 
 ```shell
 # username 为用户名，执行前请替换
@@ -54,18 +54,18 @@ cd tiny-vue
 git remote add upstream git@github.com:opentiny/tiny-vue.git
 
 # 安装依赖
-npm i
+pnpm i
 
 # 启动 Vue3 项目
-npm run dev:vue3
+pnpm dev
 
 # 启动 Vue2 项目
-npm run dev:vue2
+pnpm dev:vue2
 ```
 
 提交 PR 的步骤：
 
-- 请确保你已经完成本地启动中的步骤，并能正常访问：[http://127.0.0.1:5173/](http://127.0.0.1:5173/)
+- 请确保你已经完成本地启动中的步骤，并能正常访问：[http://127.0.0.1:6175/](http://127.0.0.1:6175/)
 - 同步上游仓库 dev 分支最新代码：git pull upstream dev
 - 从上游仓库 dev 分支创建新分支 `git checkout -b username/feature1 upstream/dev`，分支名字建议为 `username/feat-xxx` / `username/fix-xxx`
 - 本地编码
