@@ -56,17 +56,9 @@ export const getFormData = ({ constants, state, parent, props }) => ({ formData,
 
 export const uploadFiles = ({ state, constants, Modal, props, t }) => (files) => {
   const { limit, fileList } = props
-  if (limit) {
-    const fileCount = fileList.length + files.length
-    if (fileCount > limit) {
-      props.onExceed && props.onExceed(files, fileList)
-      return
-    } else if (fileCount === limit) {
-      Modal.message({
-        message: `${t('ui.upload.limitUploadFileNumber')}：${limit}`,
-        status: 'info'
-      })
-    }
+  if (limit && fileList.length + files.length > limit) {
+    props.onExceed && props.onExceed(files, fileList)
+    return
   }
 
   let postFiles = Array.prototype.slice.call(files)

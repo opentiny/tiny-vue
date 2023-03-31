@@ -53,16 +53,16 @@ import { Button as TinyButton } from '@opentiny/vue'
 ```shell
 git clone git@github.com:opentiny/tiny-vue.git
 cd tiny-vue
-npm i --legacy-peer-deps
+pnpm i
 
 # Vue.js 3
-npm run dev:vue3
+pnpm dev
 
 # Vue.js 2
-npm run dev:vue2
+pnpm dev:vue2
 ```
 
-Open your browser and visit: [http://127.0.0.1:5173/](http://127.0.0.1:5173/)
+Open your browser and visit: [http://127.0.0.1:6175/](http://127.0.0.1:6175/)
 
 ## 🤝 Contributing
 
