@@ -52,6 +52,8 @@
     "build:runtime": "pnpm -C internals/cli build:runtime",
     "build:ui": "pnpm -C internals/cli build:ui",
     "build:renderless": "pnpm -C packages/renderless build",
+    "build:theme": "pnpm -C packages/theme build",
+    "build:themeMobile": "pnpm -C packages/theme-mobile build",
     "build:internals": "pnpm \"--filter=./internals/*\" build",
     "release:vue2": "pnpm -C internals/cli release:vue2",
     "release:vue3": "pnpm -C internals/cli release:vue3",

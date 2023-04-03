@@ -25,7 +25,7 @@ export default function (): Plugin {
         }
 
         // import "@opentiny/vue-theme-*/index.less"; 替换为 css
-        code = code.replace(/^(import.+@opentiny\/theme.+index)\.less/gm, '$1.css')
+        code = code.replace(/^(import.+@opentiny\/vue-theme.+index)\.less/gm, '$1.css')
 
         // from "./src/xxx" 替换为 from "./lib/xxx"
         code = code.replace(/from "\.\/src\//g, 'from "./lib/')
