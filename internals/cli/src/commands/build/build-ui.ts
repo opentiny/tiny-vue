@@ -155,9 +155,6 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
     return new Set(
       libs
         .filter((item) => ['module', 'component'].includes(item.type))
-        // 不生成图标的 dts
-        .filter((item) => item.componentType !== 'icon')
-        .filter((item) => !item.path.includes('vue-icon'))
         .map((lib) => `packages/${lib.dtsRoot ? lib.path : path.dirname(lib.path)}`)
     )
   }
