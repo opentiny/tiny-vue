@@ -3,7 +3,6 @@
   "private": true,
   "version": "3.7.0",
   "description": "opentiny vue components",
-  "main": "index.ts",
   "type": "module",
   "files": [
     "index.js",
