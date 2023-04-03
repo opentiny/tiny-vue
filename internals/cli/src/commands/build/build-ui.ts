@@ -182,7 +182,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
             }
             // 图标入口排除子图标
             if (/vue-icon(-\w+)?\/index/.test(importer)) return /^\.\//.test(source)
-            // 子图标排除周边引用
+            // 子图标排除周边引用, 这里注意不要排除@opentiny/vue-theme
             if (/vue-icon(-\w+)?\/.+\/index/.test(importer)) return /^vue|@opentiny[\\/]vue-common/.test(source)
             // @opentiny/vue 入口
             if (/vue\/(index|pc|mobile)\.ts$/.test(importer)) return true
@@ -258,7 +258,9 @@ export async function buildUi(names: string[] = [], {
   let emptyOutDir = clean
   // 要构建的模块
   let tasks = getTasks(names)
-  if (names.some(name => name.includes('icon'))) {
+
+  // 如果指定了打包icon或者没有传入任何组件
+  if (names.some(name => name.includes('icon')) || !names.length) {
     tasks.push(...getByName({ name: utils.kebabCase({ str: 'icon-saas' }), isSort: false }))
     tasks.push(...getAllIcons())
   }

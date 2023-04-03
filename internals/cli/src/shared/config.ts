@@ -11,10 +11,7 @@ const EXTENERAL = [
   'shepherd.js'
 ]
 const external = (deps) => {
-  return (
-    EXTENERAL.includes(deps) ||
-    /^@opentiny[\\/]|@originjs|echarts|cropperjs|crypto-js/.test(deps)
-  )
+  return EXTENERAL.includes(deps) || /^@opentiny[\\/]|@originjs|echarts|cropperjs|crypto-js/.test(deps)
 }
 
 export { external }
