@@ -58,7 +58,7 @@ export const getVuePlugins = (vueVersion: string) => {
 
 export const ns = ver => ({ '2': '', '2.7': '2', '3': '3' })[ver] || ''
 
-export const getBaseConfig = ({ vueVersion, dtsInclude, dts }) => {
+export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget }) => {
   // 处理tsconfig中配置，主要是处理paths映射，确保dts可以找到正确的包
   const compilerOptions = require(pathFromWorkspaceRoot(`tsconfig.vue${vueVersion}.json`)).compilerOptions
 
@@ -99,12 +99,29 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts }) => {
       inlineChunksPlugin({ deleteInlinedFiles: true }),
       generatePackageJsonPlugin({
         beforeWriteFile: (filePath, content) => {
+          const versionTarget = `${vueVersion}.${buildTarget}`
+          const themeAndRenderlessVersion = `3.${buildTarget}`
+          const isThemeOrRenderless = (key) => key.includes('@opentiny/vue-theme') || key.includes('@opentiny/vue-renderless')
+
+          const dependencies = {}
+
+          Object.entries(content.dependencies).forEach(([key, value]) => {
+            if (isThemeOrRenderless(key)) {
+              dependencies[key] = `~${themeAndRenderlessVersion}`
+            } else if (value.includes('workspace:~')) {
+              dependencies[key] = `~${versionTarget}`
+            }
+          })
+
           // 如果是主入口或者svg图标则直接指向相同路径
           if (filePath === 'vue-icon' || filePath === 'vue') {
             content.main = './index.js'
           } else {
             content.main = './lib/index.js'
           }
+
+          content.version = versionTarget
+          content.dependencies = dependencies
 
           delete content.module
           delete content.devDependencies
@@ -131,7 +148,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts }) => {
   })
 }
 
-async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir, dts }) {
+async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir, dts, buildTarget }) {
   const rootDir = pathFromPackages('')
   const outDir = path.resolve(rootDir, `dist${vueVersion}/@opentiny`)
   await batchBuild({
@@ -166,7 +183,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
     const dtsInclude = toTsInclude(tasks)
     await build({
       configFile: false,
-      ...getBaseConfig({ vueVersion, dtsInclude, dts }),
+      ...getBaseConfig({ vueVersion, dtsInclude, dts, buildTarget }),
       build: {
         emptyOutDir,
         minify: false,
@@ -223,6 +240,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
 
 export interface BuildUiOption {
   vueVersions: string[] // vue的版本
+  buildTarget: string // 目标版本，必填, 不需要major位，因为需要同时打出vue2和vue3的包
   formats: string[] // 打包的格式
   clean: boolean // 是否清空build产物
   dts: boolean // 是否生成TS类型声明文件
@@ -264,6 +282,7 @@ function getTasks(names: string[]): Module[] {
 
 export async function buildUi(names: string[] = [], {
   vueVersions = ['2', '3'],
+  buildTarget = '8.0',
   formats = ['es'],
   clean = false,
   dts = true,
@@ -289,7 +308,7 @@ export async function buildUi(names: string[] = [], {
     const message = `TINY for vue${vueVersion}: ${JSON.stringify(
       names.length ? names : '全量'
     )}`
-    await batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir, dts })
+    await batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir, dts, buildTarget })
     // 确保只运行一次
     emptyOutDir = false
   }
