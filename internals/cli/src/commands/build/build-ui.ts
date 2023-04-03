@@ -180,11 +180,10 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
               // 模块入口，pc/mobile 文件要分离，同时排除 node_modules 依赖
               return /^\.\/(pc|mobile)/.test(source) || config.external(source)
             }
-
             // 图标入口排除子图标
             if (/vue-icon(-\w+)?\/index/.test(importer)) return /^\.\//.test(source)
             // 子图标排除周边引用
-            if (/vue-icon(-\w+)?\/.+\/index/.test(importer)) return /^vue|@opentiny[\\/](vue)/.test(source)
+            if (/vue-icon(-\w+)?\/.+\/index/.test(importer)) return /^vue|@opentiny[\\/]vue-common/.test(source)
             // @opentiny/vue 入口
             if (/vue\/(index|pc|mobile)\.ts$/.test(importer)) return true
 
