@@ -50,7 +50,7 @@
     "create:mapping": "pnpm -C internals/cli create:mapping",
     "sync-icons": "pnpm -C internals/cli sync-icons",
     "build:runtime": "pnpm -C internals/cli build:runtime",
-    "build:ui": "pnpm run create:mapping && pnpm run build:entry && pnpm -C internals/cli build:ui",
+    "build:ui": "pnpm -C internals/cli build:ui",
     "build:renderless": "pnpm -C packages/renderless build",
     "build:internals": "pnpm \"--filter=./internals/*\" build",
     "release:vue2": "pnpm -C internals/cli release:vue2",

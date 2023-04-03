@@ -99,7 +99,12 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts }) => {
       inlineChunksPlugin({ deleteInlinedFiles: true }),
       generatePackageJsonPlugin({
         beforeWriteFile: (filePath, content) => {
-          content.main = './lib/index.js'
+          // 如果是主入口或者svg图标则直接指向相同路径
+          if (filePath === 'vue-icon' || filePath === 'vue') {
+            content.main = './index.js'
+          } else {
+            content.main = './lib/index.js'
+          }
 
           delete content.module
           delete content.devDependencies
@@ -175,17 +180,29 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
             })
           ],
           external: (source, importer, isResolved) => {
-            if (isResolved || !importer) return false
+            if (isResolved || !importer) {
+              return false
+            }
+
+            // 图标入口排除子图标
+            if (/vue-icon\/(index|lowercase)/.test(importer)) {
+              return /^\.\//.test(source)
+            }
+
+            // 子图标排除周边引用, 这里注意不要排除svg图标
+            if (/vue-icon\/.+\/index/.test(importer)) {
+              return !/\.svg/.test(source)
+            }
+
             if (/src\/index/.test(importer)) {
               // 模块入口，pc/mobile 文件要分离，同时排除 node_modules 依赖
               return /^\.\/(pc|mobile)/.test(source) || config.external(source)
             }
-            // 图标入口排除子图标
-            if (/vue-icon(-\w+)?\/index/.test(importer)) return /^\.\//.test(source)
-            // 子图标排除周边引用, 这里注意不要排除@opentiny/vue-theme
-            if (/vue-icon(-\w+)?\/.+\/index/.test(importer)) return /^vue|@opentiny[\\/]vue-common/.test(source)
+
             // @opentiny/vue 入口
-            if (/vue\/(index|pc|mobile)\.ts$/.test(importer)) return true
+            if (/vue\/(index|pc|mobile)\.ts$/.test(importer)) {
+              return true
+            }
 
             return config.external(source)
           },

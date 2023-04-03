@@ -18,14 +18,14 @@ export default function (): Plugin {
         const suffix = name.match(regexpStr)?.[1]
 
         if (suffix) {
-          code = code.replace(
-            /".+\/src\/(pc|mobile)\.vue/g,
-            `"./$1.${suffix}`
-          )
+          code = code
+            .replace(/".+\/src\/(pc|mobile)\.vue/g, `"./$1.${suffix}`)
+            .replace(/\.\.\/src/g, './lib')
+            .replace('../lowercase', './lowercase')
         }
 
         // import "@opentiny/vue-theme-*/index.less"; 替换为 css
-        code = code.replace(/^(import.+@opentiny\/theme.+index)\.less/mg, '$1.css')
+        code = code.replace(/^(import.+@opentiny\/theme.+index)\.less/gm, '$1.css')
 
         // from "./src/xxx" 替换为 from "./lib/xxx"
         code = code.replace(/from "\.\/src\//g, 'from "./lib/')
