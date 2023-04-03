@@ -39,7 +39,7 @@ export default defineComponent({
     direction: {
       type: String,
       default: 'left',
-      validator: (value) => ~['up', 'left', 'down', 'right'].indexOf(value)
+      validator: (value: string) => Boolean(~['up', 'left', 'down', 'right'].indexOf(value))
     },
     hoverStop: {
       type: Boolean,
@@ -49,5 +49,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

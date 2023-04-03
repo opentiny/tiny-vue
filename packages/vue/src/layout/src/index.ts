@@ -28,11 +28,10 @@ export default defineComponent({
     size: {
       type: String,
       default: 'medium',
-      validator: (value) => ~['medium', 'small', 'mini'].indexOf(value)
+      validator: (value: string) => Boolean(~['medium', 'small', 'mini'].indexOf(value))
     }
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

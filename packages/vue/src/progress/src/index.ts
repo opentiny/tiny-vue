@@ -54,7 +54,7 @@ export default defineComponent({
       type: Number,
       default: 0,
       required: true,
-      validator: (val) => val >= 0 && val <= 100
+      validator: (val: number) => val >= 0 && val <= 100
     },
     showText: {
       type: Boolean,
@@ -62,7 +62,7 @@ export default defineComponent({
     },
     status: {
       type: String,
-      validator: (value) => !!$constants.PROGRESS_STATUS[value.toUpperCase()]
+      validator: (value: string) => !!$constants.PROGRESS_STATUS[value.toUpperCase()]
     },
     strokeWidth: {
       type: Number,
@@ -75,7 +75,7 @@ export default defineComponent({
     type: {
       type: String,
       default: $constants.PROGRESS_TYPE.LINE,
-      validator: (value) => !!$constants.PROGRESS_TYPE[value.toUpperCase()]
+      validator: (value: string) => !!$constants.PROGRESS_TYPE[value.toUpperCase()]
     },
     width: {
       type: Number,
@@ -85,5 +85,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

@@ -122,7 +122,7 @@ export default defineComponent({
     listType: {
       type: String,
       default: () => 'text',
-      validator: (value) => !!$constants.LIST_TYPE[value.toUpperCase().replace('-', '_')]
+      validator: (value: string) => !!$constants.LIST_TYPE[value.toUpperCase().replace('-', '_')]
     },
     mergeService: {
       type: Boolean,
@@ -193,5 +193,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

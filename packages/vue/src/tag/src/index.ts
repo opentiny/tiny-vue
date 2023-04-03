@@ -25,12 +25,11 @@ export default defineComponent({
     effect: {
       type: String,
       default: 'light',
-      validator: (value) => ~['dark', 'light', 'plain'].indexOf(value)
+      validator: (value: string) => Boolean(~['dark', 'light', 'plain'].indexOf(value))
     },
     beforeDelete: Function
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

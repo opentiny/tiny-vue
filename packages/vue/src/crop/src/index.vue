@@ -38,7 +38,9 @@
         <div class="tiny-crop__dialog-content">
           <div class="tiny-crop__dialog-content__crop">
             <img v-if="state.cropImg" :src="state.cropImg" alt="post-crop" />
-            <h1 v-else>{{ t('ui.crop.croppedImage') }}</h1>
+            <h1 v-else>
+              {{ t('ui.crop.croppedImage') }}
+            </h1>
           </div>
         </div>
       </div>
@@ -49,7 +51,17 @@
 <script lang="tsx">
 import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/crop/vue'
-import { iconConmentRefresh, iconNew, iconZoomIn, iconZoomOut, iconRepeat, iconRefres, iconClose, iconYes, iconCrop } from '@opentiny/vue-icon'
+import {
+  iconConmentRefresh,
+  iconNew,
+  iconZoomIn,
+  iconZoomOut,
+  iconRepeat,
+  iconRefres,
+  iconClose,
+  iconYes,
+  iconCrop
+} from '@opentiny/vue-icon'
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 
@@ -158,7 +170,7 @@ export default defineComponent({
     quality: {
       type: Number,
       default: 0.92,
-      validator: (value) => value <= 1 && value > 0
+      validator: (value: number) => value <= 1 && value > 0
     },
     rotatable: {
       type: Boolean,

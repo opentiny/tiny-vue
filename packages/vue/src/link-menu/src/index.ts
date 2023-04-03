@@ -35,7 +35,7 @@ export default defineComponent({
     },
     maxItem: {
       type: Number,
-      validator: (value) => value >= 0
+      validator: (value: number) => value >= 0
     },
     title: {
       type: String,
@@ -65,5 +65,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

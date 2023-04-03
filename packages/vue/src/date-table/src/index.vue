@@ -19,12 +19,18 @@
   >
     <tbody>
       <tr>
-        <th v-if="showWeekNumber">{{ t('ui.datepicker.week') }}</th>
+        <th v-if="showWeekNumber">
+          {{ t('ui.datepicker.week') }}
+        </th>
         <th v-for="(weekDay, key) in state.weeks" :key="key">
           {{ t(`ui.datepicker.weeks.${weekDay}`) }}
         </th>
       </tr>
-      <tr v-for="(row, key) in state.rows" :class="['tiny-date-table__row', { current: isWeekActive(row[1]) }]" :key="key">
+      <tr
+        v-for="(row, key) in state.rows"
+        :class="['tiny-date-table__row', { current: isWeekActive(row[1]) }]"
+        :key="key"
+      >
         <td v-for="(cellValue, key) in row" :key="key" :class="getCellClasses(cellValue)">
           <div>
             <span>
@@ -55,7 +61,7 @@ export default defineComponent({
     firstDayOfWeek: {
       default: 7,
       type: Number,
-      validator: (value) => value >= 1 && value <= 7
+      validator: (value: number) => value >= 1 && value <= 7
     },
     date: {},
     selectionMode: {

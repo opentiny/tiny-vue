@@ -21,7 +21,7 @@ export default defineComponent({
     visible: {
       type: String,
       default: () => 'always',
-      validator: (value) => ['always', 'auto'].includes(value)
+      validator: (value: string) => ['always', 'auto'].includes(value)
     },
     adjustArrow: {
       type: Boolean,
@@ -92,7 +92,7 @@ export default defineComponent({
     },
     type: {
       type: String,
-      validator: (value) => ~['normal', 'warning', 'error', 'info', 'success'].indexOf(value)
+      validator: (value: string) => Boolean(~['normal', 'warning', 'error', 'info', 'success'].indexOf(value))
     },
     visibleArrow: {
       type: Boolean,
@@ -157,8 +157,7 @@ export default defineComponent({
                       role="tooltip"
                       aria-hidden={this.disabled || !this.state.showPopper ? 'true' : 'false'}
                       onMouseenter={() => mouseenter()}
-                      onMouseleave={() => mouseleave()}
-                    >
+                      onMouseleave={() => mouseleave()}>
                       {content}
                     </div>
                   ])
@@ -176,7 +175,9 @@ export default defineComponent({
     const stringifyClassArr = (classArr) =>
       classArr
         .filter((item) => item)
-        .map((item) => (typeof item === 'string' ? item.trim() : typeof item === 'object' ? stringifyClassObj(item) : ''))
+        .map((item) =>
+          typeof item === 'string' ? item.trim() : typeof item === 'object' ? stringifyClassObj(item) : ''
+        )
         .join(' ')
 
     const addTooltipClass = (bindClass) => {
