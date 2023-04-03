@@ -71,7 +71,7 @@
             <div v-if="!node.fold" :class="['content', node.time ? 'content-left-margin' : null]">
               <slot name="content" :item="node"></slot>
             </div>
-            <div :class="['line', node.time ? 'line-left-margin' : null]"></div>
+            <div v-if="state.nodes.length > 1" :class="['line', node.time ? 'line-left-margin' : null]"></div>
           </li>
         </ul>
       </div>
