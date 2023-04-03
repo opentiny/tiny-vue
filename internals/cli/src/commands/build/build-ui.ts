@@ -108,10 +108,14 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget }) => {
           Object.entries(content.dependencies).forEach(([key, value]) => {
             if (isThemeOrRenderless(key)) {
               dependencies[key] = `~${themeAndRenderlessVersion}`
-            } else if (value.includes('workspace:~')) {
+            } else if ((value as string).includes('workspace:~')) {
               dependencies[key] = `~${versionTarget}`
             }
           })
+
+          if (filePath.includes('vue-common') && vueVersion === '2') {
+            dependencies['@vue/composition-api'] = '~1.2.2'
+          }
 
           // 如果是主入口或者svg图标则直接指向相同路径
           if (filePath === 'vue-icon' || filePath === 'vue') {
