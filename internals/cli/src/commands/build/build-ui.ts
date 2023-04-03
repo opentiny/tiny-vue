@@ -110,6 +110,8 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget }) => {
               dependencies[key] = `~${themeAndRenderlessVersion}`
             } else if ((value as string).includes('workspace:~')) {
               dependencies[key] = `~${versionTarget}`
+            } else {
+              dependencies[key] = value
             }
           })
 

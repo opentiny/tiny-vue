@@ -486,7 +486,7 @@ const getAllIcons = () => {
 
     return {
       path: item + '/index.ts',
-      libPath: item.replace('/src/', '/lib/') + '.js',
+      libPath: item.replace('/src/', '/lib/'),
       type: 'component',
       componentType: 'icon',
       name: utils.kebabCase({ str: name }),
