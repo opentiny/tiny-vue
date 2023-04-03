@@ -35,16 +35,6 @@
     "type": "component",
     "exclude": false
   },
-  "Anchor": {
-    "path": "packages/anchor/index.js",
-    "type": "component",
-    "exclude": false
-  },
-  "Anchor": {
-    "path": "packages/anchor/index.js",
-    "type": "component",
-    "exclude": false
-  },
   "Area": {
     "path": "vue/src/area/index.ts",
     "type": "component",
@@ -697,16 +687,6 @@
     "type": "template",
     "exclude": false
   },
-  "GridToolbarCustom-select": {
-    "path": "packages/grid-toolbar/src/custom-select.vue",
-    "type": "template",
-    "exclude": false
-  },
-  "GridToolbarCustom-select": {
-    "path": "packages/grid-toolbar/src/custom-select.vue",
-    "type": "template",
-    "exclude": false
-  },
   "GridToolbarCustom-switch": {
     "path": "vue/src/grid-toolbar/src/custom-switch.vue",
     "type": "template",
@@ -760,6 +740,11 @@
   "IndexBarAnchor": {
     "path": "vue/src/index-bar-anchor/index.ts",
     "type": "component",
+    "exclude": false
+  },
+  "IndexBarMobile": {
+    "path": "vue/src/index-bar/src/mobile.vue",
+    "type": "template",
     "exclude": false
   },
   "Input": {
@@ -1298,16 +1283,6 @@
     "type": "template",
     "exclude": false
   },
-  "TabsTab-navTab-bar": {
-    "path": "packages/tabs/src/tab-bar.vue",
-    "type": "template",
-    "exclude": false
-  },
-  "TabsTab-navTab-bar": {
-    "path": "packages/tabs/src/tab-bar.vue",
-    "type": "template",
-    "exclude": false
-  },
   "Tag": {
     "path": "vue/src/tag/index.ts",
     "type": "component",
@@ -1522,26 +1497,6 @@
   },
   "YearTable": {
     "path": "vue/src/year-table/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "IndexBar": {
-    "path": "packages/index-bar/index.js",
-    "type": "component",
-    "exclude": false
-  },
-  "IndexBarAnchor": {
-    "path": "packages/index-bar-anchor/index.js",
-    "type": "component",
-    "exclude": false
-  },
-  "IndexBar": {
-    "path": "packages/index-bar/index.js",
-    "type": "component",
-    "exclude": false
-  },
-  "IndexBarAnchor": {
-    "path": "packages/index-bar-anchor/index.js",
     "type": "component",
     "exclude": false
   }
