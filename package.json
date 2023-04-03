@@ -60,6 +60,8 @@
     "release:ui-test-vue2": "pnpm -C internals/cli release:ui-test-vue2",
     "/* pubTgz */": "部署带绿标的 npm 包",
     "pubTgz": "node .cloudbuild/pub-tgzs.js",
+    "pub2": "pnpm --filter=\"./packages/dist2/**\" publish --no-git-checks",
+    "pub3": "pnpm --filter=\"./packages/dist3/**\" publish --no-git-checks",
     "format": "prettier --write --cache packages/**/{*.vue,*.js,*.ts,*.jsx,*.tsx} examples/**/{*.vue,*.js,*.ts,*.jsx,*.tsx} internal/**/{*.js,*.ts}",
     "lint": "eslint \"packages/**/{*.vue,*.js,*.ts,*.jsx,*.tsx}\" --quiet",
     "lint:doc": "eslint \"examples/**/{*.vue,*.js,*.ts,*.jsx,*.tsx}\" --quiet",
