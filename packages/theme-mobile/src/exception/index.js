@@ -1,5 +1,4 @@
 export default {
-  'tiny-mobile-exception-bg-color': '#fff',
   'tiny-mobile-exception-main-message-color': '#999',
   'tiny-mobile-exception-main-message-font-size': '13px',
   'tiny-mobile-exception-sub-message-color': '#999',
