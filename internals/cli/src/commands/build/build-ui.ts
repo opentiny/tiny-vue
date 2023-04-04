@@ -200,6 +200,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
             })
           ],
           external: (source, importer, isResolved) => {
+            // vite打包入口文件或者没有解析过得包不能排除依赖
             if (isResolved || !importer) {
               return false
             }
@@ -219,7 +220,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
               return /^\.\/(pc|mobile)/.test(source) || config.external(source)
             }
 
-            // @opentiny/vue 入口
+            // @opentiny/vue 总入口，需要排除所有依赖
             if (/vue\/(index|pc|mobile)\.ts$/.test(importer)) {
               return true
             }
