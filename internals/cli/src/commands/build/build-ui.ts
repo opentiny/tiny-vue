@@ -132,6 +132,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget }) => {
           delete content.module
           delete content.devDependencies
           delete content.private
+          delete content.exports
 
           return {
             filePath: filePath.replace(/[\\/]lib$/, ''),
