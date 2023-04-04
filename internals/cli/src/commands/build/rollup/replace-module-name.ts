@@ -27,8 +27,8 @@ export default function (): Plugin {
         // import "@opentiny/vue-theme-*/index.less"; 替换为 css
         code = code.replace(/^(import.+@opentiny\/vue-theme.+index)\.less/gm, '$1.css')
 
-        // 替换scrollbar组件路径问题
-        code = code.replace('.././lib/bar.vue', './bar.js')
+        // 替换scrollbar组件路径 '.././lib/bar.vue' 替换为 './bar.js'
+        code = code.replace(/..\/.\/lib\/(.+).vue/g, './$1.js')
 
         // from "./src/xxx" 替换为 from "./lib/xxx"
         code = code.replace(/from "\.\/src\//g, 'from "./lib/')
