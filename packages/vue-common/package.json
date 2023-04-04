@@ -5,7 +5,6 @@
   "description": "",
   "main": "src/index.ts",
   "sideEffects": false,
-  "types": "./src/index.d.ts",
   "dependencies": {
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",

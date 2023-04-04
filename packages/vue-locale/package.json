@@ -6,7 +6,6 @@
   "main": "src/index.ts",
   "license": "MIT",
   "sideEffects": false,
-  "types": "./src/index.d.ts",
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
