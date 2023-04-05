@@ -377,14 +377,14 @@ const isNotArrayNotObject = (sortData) => {
  * @param {Boolean} isSort 是否需要排序
  * @returns 组件集合
  */
-const getMobileComponents = (isSort = true) => {
+const getMobileComponents = (isSort = true, hasModuleType = false) => {
   const modules = getAllModules(isSort)
-  const componentNames = modules.filter((item) => item.tmpName.includes('mobile')).map((item) => item.UpperName)
+  const moduleTyps = ['component']
+
+  hasModuleType && moduleTyps.push('module')
 
   const components = modules.filter(
-    (item) =>
-      (item.onlyMode && item.onlyMode.includes('mobile')) ||
-      (item.type === 'component' && componentNames.includes(item.UpperName))
+    (item) => moduleTyps.includes(item.type) && (!item.onlyMode || item.onlyMode.includes('mobile'))
   )
 
   return components
