@@ -55,6 +55,9 @@ git clone git@github.com:opentiny/tiny-vue.git
 cd tiny-vue
 pnpm i
 
+# Generate an entry file
+pnpm build:entry
+
 # Vue.js 3
 pnpm dev
 

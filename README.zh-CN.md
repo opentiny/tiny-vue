@@ -55,6 +55,9 @@ git clone git@github.com:opentiny/tiny-vue.git
 cd tiny-vue
 pnpm i
 
+# 生成入口文件
+pnpm build:entry
+
 # 启动 Vue3 项目
 pnpm dev
 
