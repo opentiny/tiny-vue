@@ -27,12 +27,6 @@
   },
   "sideEffects": false,
   "main": "packages/index.js",
-  "files": [
-    "index.js",
-    "pc.js",
-    "mobile.js",
-    "runtime"
-  ],
   "engines": {
     "node": ">=14",
     "pnpm": ">=7"
