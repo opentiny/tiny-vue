@@ -44,7 +44,9 @@ const validator = (value) => {
     value === undefined ||
     typeof value === 'string' ||
     value instanceof String ||
-    (Array.isArray(value) && value.length === 2 && value.every((item) => typeof item === 'string' || item instanceof String))
+    (Array.isArray(value) &&
+      value.length === 2 &&
+      value.every((item) => typeof item === 'string' || item instanceof String))
 
   return result
 }
@@ -123,12 +125,12 @@ export default defineComponent({
     minDate: {
       type: Date,
       default: () => new Date(currentYear - 10, 0, 1),
-      validator: (val) => Object.prototype.toString.call(val) === '[object Date]' && !isNaN(val.getTime())
+      validator: (val: Date) => Object.prototype.toString.call(val) === '[object Date]' && !isNaN(val.getTime())
     },
     maxDate: {
       type: Date,
       default: () => new Date(currentYear + 10, 11, 31),
-      validator: (val) => Object.prototype.toString.call(val) === '[object Date]' && !isNaN(val.getTime())
+      validator: (val: Date) => Object.prototype.toString.call(val) === '[object Date]' && !isNaN(val.getTime())
     },
     formatter: {
       type: Function,
@@ -139,5 +141,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

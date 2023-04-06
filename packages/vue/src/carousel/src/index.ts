@@ -53,7 +53,7 @@ export default defineComponent({
     },
     type: {
       type: String,
-      validator: (value) => !value || ~['card', 'vertical'].indexOf(value)
+      validator: (value: string) => Boolean(!value || ~['card', 'vertical'].indexOf(value))
     },
     showTitle: {
       type: Boolean,

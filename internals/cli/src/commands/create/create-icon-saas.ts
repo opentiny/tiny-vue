@@ -18,5 +18,9 @@ export function createIconSaas() {
     fs.copySync(path.resolve(iconDir, item), path.resolve(iconSaasDir, item), { overwrite: true })
   )
 
-  filesFragmentReplace(path.resolve(iconSaasDir, 'src'), [/@opentiny\/theme\/svgs\//g], ['@opentiny/vue-theme-saas/svgs/'])
+  filesFragmentReplace(
+    path.resolve(iconSaasDir, 'src'),
+    [/@opentiny\/vue-theme\/svgs\//g],
+    ['@opentiny/vue-theme-saas/svgs/']
+  )
 }

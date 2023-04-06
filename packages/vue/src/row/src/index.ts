@@ -21,23 +21,23 @@ export default defineComponent({
     gutter: {
       type: Number,
       default: 0,
-      validator(value) {
+      validator(value: number) {
         return value >= 0
       }
     },
     justify: {
       type: String,
       default: 'start',
-      validator: (value) => ~['start', 'center', 'end', 'space-between', 'space-around'].indexOf(value)
+      validator: (value: string) => Boolean(~['start', 'center', 'end', 'space-between', 'space-around'].indexOf(value))
     },
     align: {
       type: String,
       default: 'top',
-      validator: (value) => ~['top', 'middle', 'bottom'].indexOf(value)
+      validator: (value: string) => Boolean(~['top', 'middle', 'bottom'].indexOf(value))
     },
     order: {
       type: String,
-      validator: (value) => ~['asc', 'des'].indexOf(value)
+      validator: (value: string) => Boolean(~['asc', 'des'].indexOf(value))
     },
     tag: {
       type: String,
@@ -51,5 +51,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

@@ -42,7 +42,7 @@ export default defineComponent({
     labelPosition: {
       type: String,
       default: 'right',
-      validator: (value) => ~['left', 'top', 'right'].indexOf(value)
+      validator: (value: string) => Boolean(~['left', 'top', 'right'].indexOf(value))
     },
     labelWidth: {
       type: String,
@@ -68,8 +68,8 @@ export default defineComponent({
     validateType: {
       type: String,
       default: 'tip',
-      validator(value) {
-        return ~['tip', 'text'].indexOf(value)
+      validator(value: string) {
+        return Boolean(~['tip', 'text'].indexOf(value))
       }
     },
     manual: {
@@ -88,5 +88,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

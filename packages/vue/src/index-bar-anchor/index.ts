@@ -10,6 +10,7 @@
  *
  */
 import IndexBarAnchor from './src/index.vue'
+import { version } from './package.json'
 
 /* istanbul ignore next */
 IndexBarAnchor.install = function (Vue) {

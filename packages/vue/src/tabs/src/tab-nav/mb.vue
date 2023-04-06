@@ -69,27 +69,27 @@ export default {
       expandTabsTitle,
       expandTabsMode
     } = this
-    const tabsExpandIcon = showExpandTabs
-      ? (
+    const tabsExpandIcon = showExpandTabs ? (
       <div class="tiny-mobile-tabs__expand-icon">
         <span
           slot="reference"
           class="tiny-mobile-tabs__expand"
           onClick={() => {
             expandTabShow()
-          }}
-        >
+          }}>
           <icon-chevron-down></icon-chevron-down>
         </span>
       </div>
-        )
-      : null
+    ) : null
 
     const tabsExpandContent = (
       <div
         class="tiny-mobile-tabs__expand-content"
-        style={state.showExpandItem ? { display: 'block', width: expandPanesWidth ? expandPanesWidth + 'px' : '' } : { display: 'none' }}
-      >
+        style={
+          state.showExpandItem
+            ? { display: 'block', width: expandPanesWidth ? expandPanesWidth + 'px' : '' }
+            : { display: 'none' }
+        }>
         <div class="tiny-mobile-tabs__expand-mask"></div>
         <div class="tiny-mobile-tabs__expand-header">
           <label class="tiny-mobile-tabs__expand-header-title" style={state.expandHeaderStyle}>
@@ -109,8 +109,7 @@ export default {
                 class={{
                   'tiny-mobile-tabs__expand-item': true,
                   [`tiny-mobile-tabs__expand-mode-${expandTabsMode}`]: expandTabsMode === 'columns'
-                }}
-              >
+                }}>
                 <div
                   class={{
                     'tiny-mobile-tabs__expand-item-title': true,
@@ -118,52 +117,7 @@ export default {
                   }}
                   onClick={(e) => {
                     onTabClick(pane, tabName, e)
-                  }}
-                >
-                  {tabTitle}
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-    )
-
-    const tabsExpandContent = (
-      <div
-        class="tiny-mobile-tabs__expand-content"
-        style={state.showExpandItem ? { display: 'block', width: expandPanesWidth ? expandPanesWidth + 'px' : '' } : { display: 'none' }}
-      >
-        <div class="tiny-mobile-tabs__expand-mask"></div>
-        <div class="tiny-mobile-tabs__expand-header">
-          <label class="tiny-mobile-tabs__expand-header-title" style={state.expandHeaderStyle}>
-            {expandTabsTitle}
-          </label>
-          <span slot="reference" class="tiny-mobile-tabs__expand" style={{ transform: 'rotate(180deg)' }}>
-            <icon-chevron-down></icon-chevron-down>
-          </span>
-        </div>
-        <div class="tiny-mobile-tabs__expand-list">
-          {panes.map((pane, index) => {
-            const tabName = pane.name || pane.state.index || index
-            const tabTitle = pane.$slots.title || pane.title
-
-            return (
-              <div
-                class={{
-                  'tiny-mobile-tabs__expand-item': true,
-                  [`tiny-mobile-tabs__expand-mode-${expandTabsMode}`]: expandTabsMode === 'columns'
-                }}
-              >
-                <div
-                  class={{
-                    'tiny-mobile-tabs__expand-item-title': true,
-                    'is-current': currentName === tabName
-                  }}
-                  onClick={(e) => {
-                    onTabClick(pane, tabName, e)
-                  }}
-                >
+                  }}>
                   {tabTitle}
                 </div>
               </div>
@@ -184,7 +138,6 @@ export default {
           <span class="tiny-mobile-tabs__icon-close">
             <icon-close
               onClick={(e) => {
-                /* eslint-disable  no-useless-call */
                 onTabRemove(pane, e)
               }}
             />
@@ -210,8 +163,7 @@ export default {
           aria-selected={pane.state.active}
           onClick={(e) => {
             onTabClick(pane, tabName, e)
-          }}
-        >
+          }}>
           <span class="tiny-mobile-tabs__name" style={activeColor && pane.state.active ? { color: activeColor } : {}}>
             {tabTitle}
             {btnClose}
@@ -229,12 +181,13 @@ export default {
           panes.length > 4 ? 'tiny-mobile-tabs__wrap-scrollable' : '',
           showExpandTabs ? 'is-show-expand' : '',
           `is-${state.rootTabs.position}`
-        ]}
-      >
+        ]}>
         <div class={['tiny-mobile-tabs__nav-scroll']} ref="navScroll">
           <div class={['tiny-mobile-tabs__nav', `is-${state.rootTabs.position}`]} ref="nav" role="tablist">
             {tabs}
-            <div class="tiny-mobile-tabs__line" style={[state.navStyle, activeColor ? { backgroundColor: activeColor } : {}]}></div>
+            <div
+              class="tiny-mobile-tabs__line"
+              style={[state.navStyle, activeColor ? { backgroundColor: activeColor } : {}]}></div>
           </div>
         </div>
         {[tabsExpandIcon, tabsExpandContent]}

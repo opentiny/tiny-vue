@@ -46,7 +46,7 @@ export default defineComponent({
      */
     data: {
       type: Object,
-      validator: (value) =>
+      validator: (value: any) =>
         typeof value.userName === 'string' && value.imgUrl
           ? typeof value.imgUrl === 'string'
           : true && typeof value.userDescription === 'string' && (!value.values || Array.isArray(value.values))

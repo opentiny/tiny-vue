@@ -9,6 +9,11 @@
     "type": "module",
     "exclude": false
   },
+  "IconLowercase": {
+    "path": "vue-icon/lowercase.ts",
+    "type": "module",
+    "exclude": false
+  },
   "Common": {
     "path": "vue-common/src/index.ts",
     "type": "module",

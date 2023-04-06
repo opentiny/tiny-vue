@@ -46,7 +46,7 @@ export default defineComponent({
     type: {
       type: String,
       default: 'label',
-      validator: (value) => ~['icon', 'image', 'label'].indexOf(value)
+      validator: (value: string) => Boolean(~['icon', 'image', 'label'].indexOf(value))
     },
 
     /**
@@ -69,7 +69,7 @@ export default defineComponent({
     messageType: {
       type: String,
       default: 'details',
-      validator: (value) => ~['details', 'basic'].indexOf(value)
+      validator: (value: string) => Boolean(~['details', 'basic'].indexOf(value))
     },
 
     /**
@@ -87,12 +87,11 @@ export default defineComponent({
       type: [Number, String],
       default: 'medium',
       validator(val) {
-        return typeof val === 'string' ? ~['large', 'medium', 'small'].indexOf(val) : typeof val === 'number'
+        return Boolean(typeof val === 'string' ? ~['large', 'medium', 'small'].indexOf(val) : typeof val === 'number')
       }
     }
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

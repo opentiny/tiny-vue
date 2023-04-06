@@ -39,16 +39,15 @@ export default defineComponent({
     },
     type: {
       type: String,
-      validator: (value) => ~['primary', 'success', 'warning', 'info', 'danger'].indexOf(value)
+      validator: (value: string) => Boolean(~['primary', 'success', 'warning', 'info', 'danger'].indexOf(value))
     },
     badgeClass: String,
     offset: {
       type: Array,
-      default: [0, 0]
+      default: () => [0, 0]
     }
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

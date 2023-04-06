@@ -29,7 +29,7 @@ export default defineComponent({
     type: {
       type: String,
       default: 'IPv4',
-      validator: (value) => ~['IPv4', 'IPv6'].indexOf(value)
+      validator: (value: string) => Boolean(~['IPv4', 'IPv6'].indexOf(value))
     },
 
     /**
@@ -53,5 +53,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

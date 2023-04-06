@@ -13,13 +13,21 @@
   <div class="tiny-mobile-action-sheet" v-show="visible" @click="visibleHandle">
     <div class="tiny-mobile-action-sheet__mask" :style="state.sheetMaskStyle" v-if="!contentPosition"></div>
     <div
-      :class="['tiny-mobile-action-sheet__content', state.toggle ? 'is-toggle' : '', contentPosition ? '' : 'is-not-content']"
+      :class="[
+        'tiny-mobile-action-sheet__content',
+        state.toggle ? 'is-toggle' : '',
+        contentPosition ? '' : 'is-not-content'
+      ]"
       :style="[state.sheetContentStyle]"
       ref="scrollMenu"
     >
       <div :class="['tiny-mobile-action-sheet__menu', ellipsis ? 'is-ellipsis' : '']">
         <div
-          :class="['tiny-mobile-action-sheet__item', item.warn ? 'is-warn' : '', item.id === modelValue || item.id === state.active ? 'is-active' : '']"
+          :class="[
+            'tiny-mobile-action-sheet__item',
+            item.warn ? 'is-warn' : '',
+            item.id === modelValue || item.id === state.active ? 'is-active' : ''
+          ]"
           v-for="(item, index) in menus"
           :key="index"
           @click="menuHandle(item, index)"
