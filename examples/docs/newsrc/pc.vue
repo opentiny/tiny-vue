@@ -97,7 +97,7 @@ export default {
     const editor = useMonaco('#editor')
 
     const state = hooks.reactive({
-      pathName: $local.pathName || 'tiny-button', // 对应json中的 文件名， 每个文件有多个示例
+      pathName: $local.pathName || 'button', // 对应json中的 文件名， 每个文件有多个示例
       demos: [], // 组件的所有示例  {component,content,demoId,findIntroStr,link,title}[]
       currDemo: null, // 选中的demo
       currApi: [], // 当前path下的api
