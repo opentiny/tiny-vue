@@ -6,13 +6,15 @@
   "module": "index.ts",
   "files": [
     "index.js",
-    "lib"
+    "lib",
+    "index.d.ts",
+    "src"
   ],
-   "devDependencies": {
+  "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
     "vitest": "^0.25.7"
   },
- "scripts": {
+  "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"
   },
