@@ -14,10 +14,9 @@ import useAntd from './antd'
 import useiView from './iview'
 import useElementUI from './element-ui'
 
-export default defineComponent({
+export default {
   useAntd,
   useiView,
   useElementUI,
   Interceptor: GridAdapter
 }
-)

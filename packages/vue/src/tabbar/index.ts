@@ -11,6 +11,7 @@
  */
 import Tabbar from './src/index.vue'
 import '@opentiny/vue-theme-mobile/tabbar/index.less'
+import { version } from './package.json'
 
 Tabbar.model = {
   prop: 'modelValue',

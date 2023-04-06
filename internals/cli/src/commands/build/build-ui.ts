@@ -72,6 +72,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget }) => {
         dtsPlugin({
           root: pathFromWorkspaceRoot(),
           tsConfigFilePath: `tsconfig.vue${vueVersion}.json`,
+          aliasesExclude: [/@opentiny\/vue.+/],
           compilerOptions: {
             paths: {
               ...compilerOptions.paths,
@@ -83,6 +84,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget }) => {
             }
           },
           include: [...dtsInclude, 'packages/vue/*.d.ts'],
+          // 忽略类型检查错误，保证生成不会阻断
           skipDiagnostics: true,
           beforeWriteFile: (filePath, content) => {
             return {

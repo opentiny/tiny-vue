@@ -1,5 +1,6 @@
 import Company from './src/index'
 import '@opentiny/vue-theme/company/index.less'
+import { version } from './package.json'
 
 Company.model = {
   prop: 'modelValue',
