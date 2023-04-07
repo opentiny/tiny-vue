@@ -16,18 +16,22 @@
       <div v-else class="tiny-mobile-exception__content-view" :class="['tiny-mobile-exception__content-' + type]"></div>
       <slot name="content">
         <div class="tiny-mobile-exception__content-message">
-          <div class="main-message">{{ state.message }}</div>
-          <div v-if="subMessage" class="sub-message">{{ subMessage }}</div>
+          <div class="main-message">
+            {{ state.message }}
+          </div>
+          <div v-if="subMessage" class="sub-message">
+            {{ subMessage }}
+          </div>
           <slot v-if="type === 'nodata'">
-            <tiny-button @click="create" type="primary" size="medium" round> {{ buttonText ? buttonText : t('ui.exception.create') }}</tiny-button>
+            <tiny-button @click="create" type="primary" size="medium" round>
+              {{ buttonText ? buttonText : t('ui.exception.create') }}
+            </tiny-button>
           </slot>
         </div>
       </slot>
     </div>
     <div class="tiny-mobile-exception__footer">
-      <slot name="footer">
-        <span>{{ t('ui.exception.provide') }}</span>
-      </slot>
+      <slot name="footer"></slot>
     </div>
   </div>
 </template>

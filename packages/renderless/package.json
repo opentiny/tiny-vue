@@ -20,7 +20,8 @@
   "sideEffects": false,
   "scripts": {
     "build": "tsup",
-    "postversion": "pnpm build"
+    "postversion": "pnpm build",
+    "release": "esno ./scripts/postbuild.ts"
   },
   "dependencies": {
     "xss": "1.0.11"

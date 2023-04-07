@@ -15,7 +15,7 @@ import '@opentiny/vue-theme/loading/index.less'
 import { setupComponent } from '@opentiny/vue-common'
 import { version } from './package.json'
 
-let Loadings = {}
+let Loadings: any = {}
 
 /* istanbul ignore next */
 Loadings.install = function (app) {

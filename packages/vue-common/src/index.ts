@@ -1,10 +1,5 @@
 import hooks from './adapter'
-import {
-  appContext,
-  appProperties,
-  bindFilter,
-  createComponent
-} from './adapter'
+import { appContext, appProperties, bindFilter, createComponent } from './adapter'
 import { defineAsyncComponent, directive, emitter, h, markRaw, Teleport } from './adapter'
 import { parseVnode, renderComponent, rootConfig, tools, useRouter } from './adapter'
 import { t } from '@opentiny/vue-locale'
@@ -67,7 +62,7 @@ export const $setup = ({ props, context, template, extend = {} }) => {
 
 export const setup = ({ props, context, renderless, api, extendOptions = {}, mono = false }) => {
   const render = typeof props.tiny_renderless === 'function' ? props.tiny_renderless : renderless
-  const utils = { $prefix, t, ...tools(context) }
+  const utils = { $prefix, t, ...tools(context, resolveMode(props, context)) }
   const sdk = render(props, hooks, utils, extendOptions)
 
   const attrs = {
@@ -115,12 +110,10 @@ export const svg = ({ name = 'Icon', component }) => {
       name: $prefix + name,
       setup: (props, context) => {
         const { fill, width, height } = context.attrs || {}
-        const extend = Object.assign(
-          {
-            style: { fill, width, height },
-            class: { 'tiny-svg': true }
-          }
-        )
+        const extend = Object.assign({
+          style: { fill, width, height },
+          class: { 'tiny-svg': true }
+        })
 
         extend.isSvg = true
 
@@ -181,17 +174,7 @@ export const version = process.env.COMPONENT_VERSION
 
 export type { PropType, ExtractPropTypes, DefineComponent } from './adapter'
 
-export {
-  h,
-  hooks,
-  directive,
-  parseVnode,
-  useRouter,
-  emitter,
-  createComponent,
-  defineAsyncComponent,
-  Teleport
-}
+export { h, hooks, directive, parseVnode, useRouter, emitter, createComponent, defineAsyncComponent, Teleport }
 
 export default {
   h,

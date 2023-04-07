@@ -21,7 +21,9 @@ export default function ({ deleteInlinedFiles = true }): Plugin {
             /^import\s*.+\s*from\s+"[./]+(.+-[a-f0-9]{8}.+)".*$/gim,
             (_, chunkName) => {
               if (!cache[chunkName]) {
-                cache[chunkName] = (bundle[chunkName] as OutputChunk).code.replace(/export {[\s\S]+$/, '')
+                cache[chunkName] = (bundle[chunkName] as OutputChunk).code
+                  .replace(/export {[\s\S]+$/, '')
+                  .replace(/_extends/g, '_extends_tiny')
                 bundlesToDelete.add(chunkName)
               }
 

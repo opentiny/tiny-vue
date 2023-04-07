@@ -58,7 +58,18 @@ const appendPopper = ({ options, props, state, parent }) => {
   }
 }
 
-const setWatchFn = ({ watch, props, state, emit, nextTick, updatePopper, destroyPopper, onBeforeUnmount, onDeactivated, doDestroy }) => {
+const setWatchFn = ({
+  watch,
+  props,
+  state,
+  emit,
+  nextTick,
+  updatePopper,
+  destroyPopper,
+  onBeforeUnmount,
+  onDeactivated,
+  doDestroy
+}) => {
   watch(
     () => props.modelValue,
     (val) => {
@@ -101,56 +112,70 @@ const setWatchFn = ({ watch, props, state, emit, nextTick, updatePopper, destroy
   })
 }
 
-const createPopperFn = ({ state, props, refs, slots, appendArrow, emit, resetTransformOrigin, nextTick, updatePopper, nextZIndex, parent }) => (dom) => {
-  if (isServer) {
-    return
+const createPopperFn =
+  ({
+    state,
+    props,
+    refs,
+    slots,
+    appendArrow,
+    emit,
+    resetTransformOrigin,
+    nextTick,
+    updatePopper,
+    nextZIndex,
+    parent
+  }) =>
+  (dom) => {
+    if (isServer) {
+      return
+    }
+
+    state.currentPlacement = state.currentPlacement || props.placement
+
+    if (!/^(top|bottom|left|right)(-start|-end)?$/g.test(state.currentPlacement)) {
+      return
+    }
+
+    const options = props.popperOptions || { gpuAcceleration: false }
+    state.popperElm = state.popperElm || props.popper || refs.popper || dom
+    const popper = state.popperElm
+    let reference = getReference({ state, props, refs, slots })
+
+    if (!popper || !reference || reference.nodeType !== Node.ELEMENT_NODE) {
+      return
+    }
+
+    if (props.visibleArrow) {
+      appendArrow(popper)
+    }
+
+    appendPopper({ options, props, state, parent })
+
+    if (props.popperJS && state.popperJS.destroy) {
+      state.popperJS.destroy()
+    }
+
+    options.placement = state.currentPlacement
+    options.offset = props.offset || 0
+    options.arrowOffset = props.arrowOffset || 0
+    options.adjustArrow = props.adjustArrow || false
+
+    state.popperJS = new PopperJS(reference, popper, options)
+    state.popperJS.onCreate(() => {
+      emit('created', state)
+      resetTransformOrigin()
+      // 原来代码逻辑会触发2次updatePopper,暂时注释掉这一处，待观察
+      // new PopperJS 内部已经调用this.update了，所以屏蔽： nextTick(updatePopper)
+    })
+
+    if (typeof options.onUpdate === 'function') {
+      state.popperJS.onUpdate(options.onUpdate)
+    }
+
+    state.popperJS._popper.style.zIndex = nextZIndex(state.popperJS._reference)
+    on(state.popperElm, 'click', stop)
   }
-
-  state.currentPlacement = state.currentPlacement || props.placement
-
-  if (!/^(top|bottom|left|right)(-start|-end)?$/g.test(state.currentPlacement)) {
-    return
-  }
-
-  const options = props.popperOptions || { gpuAcceleration: false }
-  state.popperElm = state.popperElm || props.popper || refs.popper || dom
-  const popper = state.popperElm
-  let reference = getReference({ state, props, refs, slots })
-
-  if (!popper || !reference || reference.nodeType !== Node.ELEMENT_NODE) {
-    return
-  }
-
-  if (props.visibleArrow) {
-    appendArrow(popper)
-  }
-
-  appendPopper({ options, props, state, parent })
-
-  if (props.popperJS && state.popperJS.destroy) {
-    state.popperJS.destroy()
-  }
-
-  options.placement = state.currentPlacement
-  options.offset = props.offset || 0
-  options.arrowOffset = props.arrowOffset || 0
-  options.adjustArrow = props.adjustArrow || false
-
-  state.popperJS = new PopperJS(reference, popper, options)
-  state.popperJS.onCreate(() => {
-    emit('created', state)
-    resetTransformOrigin()
-    // 原来代码逻辑会触发2次updatePopper,暂时注释掉这一处，待观察
-    // new PopperJS 内部已经调用this.update了，所以屏蔽： nextTick(updatePopper)
-  })
-
-  if (typeof options.onUpdate === 'function') {
-    state.popperJS.onUpdate(options.onUpdate)
-  }
-
-  state.popperJS._popper.style.zIndex = nextZIndex(state.popperJS._reference)
-  on(state.popperElm, 'click', stop)
-}
 
 const appendArrowFn = (state) => (el) => {
   let hash
@@ -160,7 +185,7 @@ const appendArrowFn = (state) => (el) => {
   state.appended = true
 
   for (const item in el.attributes) {
-    if (el.attributes[item].name.startsWith('_v-')) {
+    if (el.attributes[item].name?.startsWith('_v-')) {
       hash = el.attributes[item].name
       break
     }
@@ -189,11 +214,25 @@ const resetTransformOriginFn = (state, props) => () => {
   if (typeof props.transformOrigin === 'string') {
     state.popperJS._popper.style.transformOrigin = props.transformOrigin
   } else {
-    state.popperJS._popper.style.transformOrigin = ['top', 'bottom'].includes(placement) ? `center ${origin}` : `${origin} center`
+    state.popperJS._popper.style.transformOrigin = ['top', 'bottom'].includes(placement)
+      ? `center ${origin}`
+      : `${origin} center`
   }
 }
 
-export default ({ parent, emit, nextTick, onBeforeUnmount, onDeactivated, props, watch, reactive, refs, slots, toRefs }) => {
+export default ({
+  parent,
+  emit,
+  nextTick,
+  onBeforeUnmount,
+  onDeactivated,
+  props,
+  watch,
+  reactive,
+  refs,
+  slots,
+  toRefs
+}) => {
   const state = reactive({
     popperJS: null,
     appended: false,
@@ -203,7 +242,8 @@ export default ({ parent, emit, nextTick, onBeforeUnmount, onDeactivated, props,
     currentPlacement: ''
   })
 
-  const nextZIndex = (reference) => (props.zIndex === 'relative' ? getReferMaxZIndex(reference) : PopupManager.nextZIndex())
+  const nextZIndex = (reference) =>
+    props.zIndex === 'relative' ? getReferMaxZIndex(reference) : PopupManager.nextZIndex()
   const appendArrow = appendArrowFn(state)
   const resetTransformOrigin = resetTransformOriginFn(state, props)
   let createPopper
@@ -219,7 +259,19 @@ export default ({ parent, emit, nextTick, onBeforeUnmount, onDeactivated, props,
       createPopper(dom)
     }
   }
-  createPopper = createPopperFn({ state, props, refs, slots, appendArrow, emit, resetTransformOrigin, nextTick, updatePopper, nextZIndex, parent })
+  createPopper = createPopperFn({
+    state,
+    props,
+    refs,
+    slots,
+    appendArrow,
+    emit,
+    resetTransformOrigin,
+    nextTick,
+    updatePopper,
+    nextZIndex,
+    parent
+  })
   const doDestroy = (forceDestroy) => {
     if (!state.popperJS || (state.showPopper && !forceDestroy)) {
       return
@@ -241,7 +293,18 @@ export default ({ parent, emit, nextTick, onBeforeUnmount, onDeactivated, props,
       }
     }
   }
-  setWatchFn({ watch, props, state, emit, nextTick, updatePopper, destroyPopper, onBeforeUnmount, onDeactivated, doDestroy })
+  setWatchFn({
+    watch,
+    props,
+    state,
+    emit,
+    nextTick,
+    updatePopper,
+    destroyPopper,
+    onBeforeUnmount,
+    onDeactivated,
+    doDestroy
+  })
 
   return { doDestroy, appendArrow, createPopper, updatePopper, destroyPopper, resetTransformOrigin, ...toRefs(state) }
 }
