@@ -1,10 +1,5 @@
 import hooks from './adapter'
-import {
-  appContext,
-  appProperties,
-  bindFilter,
-  createComponent
-} from './adapter'
+import { appContext, appProperties, bindFilter, createComponent } from './adapter'
 import { defineAsyncComponent, directive, emitter, h, markRaw, Teleport } from './adapter'
 import { parseVnode, renderComponent, rootConfig, tools, useRouter } from './adapter'
 import { t } from '@opentiny/vue-locale'
@@ -115,12 +110,10 @@ export const svg = ({ name = 'Icon', component }) => {
       name: $prefix + name,
       setup: (props, context) => {
         const { fill, width, height } = context.attrs || {}
-        const extend = Object.assign(
-          {
-            style: { fill, width, height },
-            class: { 'tiny-svg': true }
-          }
-        )
+        const extend = Object.assign({
+          style: { fill, width, height },
+          class: { 'tiny-svg': true }
+        })
 
         extend.isSvg = true
 
@@ -181,17 +174,7 @@ export const version = process.env.COMPONENT_VERSION
 
 export type { PropType, ExtractPropTypes, DefineComponent } from './adapter'
 
-export {
-  h,
-  hooks,
-  directive,
-  parseVnode,
-  useRouter,
-  emitter,
-  createComponent,
-  defineAsyncComponent,
-  Teleport
-}
+export { h, hooks, directive, parseVnode, useRouter, emitter, createComponent, defineAsyncComponent, Teleport }
 
 export default {
   h,
