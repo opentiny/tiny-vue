@@ -59,11 +59,11 @@ export const initI18n = ({ VueI18n, messages = {}, i18n = {} as any, merge }) =>
     merge = ({ lang, i18n, messages }) => extend.call(null, true, lang, i18n.messages, messages)
   }
 
-  const lang = { 'zh_CN': zhCN, 'en_US': enUS }
+  const lang = { zhCN, enUS }
 
   if (typeof VueI18n === 'function') {
     const vueI18n = new VueI18n({
-      locale: i18n.locale || 'zh_CN',
+      locale: i18n.locale || 'zhCN',
       messages: merge({ lang, i18n, messages })
     })
 
@@ -83,7 +83,7 @@ export const isVue2 = true
 
 export const isVue3 = false
 
-export { zhCN as zh_CN, enUS as en_US }
+export { zhCN, enUS }
 
 export default {
   isVue2,
@@ -93,6 +93,6 @@ export default {
   initI18n,
   t,
   use,
-  'en_US': enUS,
-  'zh_CN': zhCN
+  enUS,
+  zhCN
 }
