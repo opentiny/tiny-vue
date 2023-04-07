@@ -119,6 +119,7 @@
     "@opentiny/vue-option-group": "workspace:~",
     "@opentiny/vue-pager": "workspace:~",
     "@opentiny/vue-pager-item": "workspace:~",
+    "@opentiny/vue-panel": "workspace:~",
     "@opentiny/vue-picker": "workspace:~",
     "@opentiny/vue-picker-column": "workspace:~",
     "@opentiny/vue-pop-upload": "workspace:~",
