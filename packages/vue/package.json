@@ -4,6 +4,7 @@
   "version": "3.7.0",
   "description": "opentiny vue components",
   "type": "module",
+  "main": "index.ts",
   "sideEffects": false,
   "dependencies": {
     "@opentiny/vue-action-menu": "workspace:~",
