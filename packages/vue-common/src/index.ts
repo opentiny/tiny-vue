@@ -67,7 +67,7 @@ export const $setup = ({ props, context, template, extend = {} }) => {
 
 export const setup = ({ props, context, renderless, api, extendOptions = {}, mono = false }) => {
   const render = typeof props.tiny_renderless === 'function' ? props.tiny_renderless : renderless
-  const utils = { $prefix, t, ...tools(context) }
+  const utils = { $prefix, t, ...tools(context,resolveMode(props,context)) }
   const sdk = render(props, hooks, utils, extendOptions)
 
   const attrs = {
