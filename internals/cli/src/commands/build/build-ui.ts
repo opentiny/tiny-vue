@@ -52,7 +52,7 @@ export const getVuePlugins = (vueVersion: string) => {
 
 export const ns = (ver) => ({ '2': '', '2.7': '2', '3': '3' }[ver] || '')
 
-export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget }) => {
+export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, themeVersion }) => {
   // 处理tsconfig中配置，主要是处理paths映射，确保dts可以找到正确的包
   const compilerOptions = require(pathFromWorkspaceRoot(`tsconfig.vue${vueVersion}.json`)).compilerOptions
 
@@ -96,7 +96,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget }) => {
       generatePackageJsonPlugin({
         beforeWriteFile: (filePath, content) => {
           const versionTarget = `${vueVersion}.${buildTarget}`
-          const themeAndRenderlessVersion = `3.${buildTarget}`
+          const themeAndRenderlessVersion = `3.${themeVersion || buildTarget}`
           const isThemeOrRenderless = (key) =>
             key.includes('@opentiny/vue-theme') || key.includes('@opentiny/vue-renderless')
 
@@ -158,7 +158,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget }) => {
   })
 }
 
-async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir, dts, buildTarget }) {
+async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir, dts, buildTarget, themeVersion }) {
   const rootDir = pathFromPackages('')
   const outDir = path.resolve(rootDir, `dist${vueVersion}/@opentiny`)
   await batchBuild({
@@ -193,7 +193,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
     const dtsInclude = toTsInclude(tasks)
     await build({
       configFile: false,
-      ...getBaseConfig({ vueVersion, dtsInclude, dts, buildTarget }),
+      ...getBaseConfig({ vueVersion, dtsInclude, dts, buildTarget, themeVersion }),
       build: {
         emptyOutDir,
         minify: false,
@@ -256,6 +256,7 @@ export interface BuildUiOption {
   dts: boolean // 是否生成TS类型声明文件
   scope?: string // npm的组织名称
   min?: boolean // 是否压缩产物
+  themeVersion: string // renderless/theme/theme-mobile版本
 }
 
 function getEntryTasks(): Module[] {
@@ -296,7 +297,7 @@ function getTasks(names: string[]): Module[] {
 
 export async function buildUi(
   names: string[] = [],
-  { vueVersions = ['2', '3'], buildTarget = '8.0', formats = ['es'], clean = false, dts = true }: BuildUiOption
+  { vueVersions = ['2', '3'], buildTarget = '8.0', formats = ['es'], clean = false, dts = true, themeVersion }: BuildUiOption
 ) {
   // 是否清空构建目录
   let emptyOutDir = clean
@@ -317,7 +318,7 @@ export async function buildUi(
   // 要构建的vue框架版本
   for (const vueVersion of vueVersions) {
     const message = `TINY for vue${vueVersion}: ${JSON.stringify(names.length ? names : '全量')}`
-    await batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir, dts, buildTarget })
+    await batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir, dts, buildTarget, themeVersion })
     // 确保只运行一次
     emptyOutDir = false
   }
