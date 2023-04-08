@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-theme",
-  "version": "3.7.0",
+  "version": "3.6.1",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "main": "index.css",
   "homepage": "https://opentiny.design/tiny-vue",
@@ -25,7 +25,7 @@
     "build:theme": "gulp build --gulpfile build/gulp-dist.js",
     "build": "npm run clean && npm run build:theme && node build/replace-img.js",
     "build:fast": "npm run build && npm run release",
-    "release": "node build/release.js",
+    "release": "node build/release.js && node build/postbuild.js && cp README.md dist",
     "build:copy-remote": "npm run build:theme && cp-cli dist ../aurora-vue/node_modules/@aurora/theme",
     "publishTgz": "node .cloudbuild/publish-tgzs.js",
     "postversion": "pnpm build"
