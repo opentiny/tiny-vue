@@ -26,6 +26,7 @@ import { h, $prefix } from '@opentiny/vue-common'
 
 export default {
   name: $prefix + 'GridRadio',
+  emits: ['update:modelValue', 'change'],
   props: {
     modelValue: [String, Number],
     label: [String, Number],
