@@ -10,6 +10,7 @@
  *
  */
 import TimeRange from './src/index.vue'
+import '@opentiny/vue-theme/time-range/index.less'
 import { version } from './package.json'
 
 /* istanbul ignore next */
