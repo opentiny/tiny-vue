@@ -23,7 +23,7 @@ export default defineComponent({
     mode: {
       type: String,
       default: 'month',
-      validator: (value) => ~['month', 'year'].indexOf(value)
+      validator: (value: string) => Boolean(~['month', 'year'].indexOf(value))
     },
 
     /**
@@ -63,5 +63,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

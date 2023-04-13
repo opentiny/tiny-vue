@@ -24,7 +24,14 @@
  */
 import { isFunction, find } from '@opentiny/vue-renderless/grid/static/'
 import { isNull } from '@opentiny/vue-renderless/common/type'
-import { updateCellTitle, emitEvent, getClass, getFuncText, getRowid, formatText } from '@opentiny/vue-renderless/grid/utils'
+import {
+  updateCellTitle,
+  emitEvent,
+  getClass,
+  getFuncText,
+  getRowid,
+  formatText
+} from '@opentiny/vue-renderless/grid/utils'
 import { getCellLabel } from '../../tools'
 import GlobalConfig from '../../config'
 import { iconChevronRight, iconChevronDown } from '@opentiny/vue-icon'
@@ -32,7 +39,8 @@ import { h, hooks, $prefix } from '@opentiny/vue-common'
 import { getTreeChildrenKey, getTreeShowKey, getTableCellKey } from '../../table/src/strategy'
 
 // 滚动、拖动过程中不需要触发
-const isOperateMouse = ($table) => $table._isResize || ($table.lastScrollTime && Date.now() < $table.lastScrollTime + $table.optimizeOpts.delayHover)
+const isOperateMouse = ($table) =>
+  $table._isResize || ($table.lastScrollTime && Date.now() < $table.lastScrollTime + $table.optimizeOpts.delayHover)
 
 // 解决静态扫描驼峰变量问题
 const classMap = {
@@ -343,7 +351,17 @@ const setColumnEvents = (args1) => {
   // 双击事件处理
   addListenerDblclick({ $table, evntParams, tableListeners, tdOns, triggerDblclick })
 
-  return { commonParams, args, cellOverflow, showTitle, showTooltip, showEllipsis, hasEllipsis, tdOns, fixedHiddenColumn }
+  return {
+    commonParams,
+    args,
+    cellOverflow,
+    showTitle,
+    showTooltip,
+    showEllipsis,
+    hasEllipsis,
+    tdOns,
+    fixedHiddenColumn
+  }
 }
 
 /**
@@ -364,9 +382,19 @@ function renderColumn(args1) {
   let hasDefaultTip = editRules && (message === 'default' ? height || tableData.length > 1 : message === 'inline')
   let { align, className, editor, showTip } = column
   let cellAlign = align || allAlign
-  let columnActived = editConfig && editor && actived.row === row && (actived.column === column || editConfig.mode === 'row')
+  let columnActived =
+    editConfig && editor && actived.row === row && (actived.column === column || editConfig.mode === 'row')
 
-  let { commonParams, args, showTitle, showTooltip, showEllipsis, tdOns = {}, hasEllipsis, fixedHiddenColumn } = setColumnEvents(args1)
+  let {
+    commonParams,
+    args,
+    showTitle,
+    showTooltip,
+    showEllipsis,
+    tdOns = {},
+    hasEllipsis,
+    fixedHiddenColumn
+  } = setColumnEvents(args1)
   let params = { $seq, data: tableData, ...commonParams }
   // 索引列、选择列如果不配置对齐方式则默认为居中对齐
   cellAlign = modifyCellAlign({ cellAlign, column })
@@ -409,7 +437,11 @@ function renderRowGroupTds(args) {
             expand: !group.fold
           })
         } else {
-          groupTitleVNode = [<span class="row-group-title">{header}</span>, `:${value}`, <span class="tiny-badge">{group.children.length}</span>]
+          groupTitleVNode = [
+            <span class="row-group-title">{header}</span>,
+            `:${value}`,
+            <span class="tiny-badge">{group.children.length}</span>
+          ]
         }
         tds.push(
           <td colspan={tableColumn.length - index} class="tiny-grid-body__column">
@@ -469,8 +501,7 @@ function renderRowGroupData({ groupData, groupFolds, row, rowGroup, rowid, rows,
             }
           })
         }
-      }}
-    >
+      }}>
       {tds}
     </tr>
   )
@@ -501,7 +532,11 @@ function renderRow(args) {
             'tiny-hide': groupFolds.includes(row),
             [classMap.rowActived]: rowActived
           },
-          rowClassName ? (isFunction(rowClassName) ? rowClassName({ $table, $seq, seq, fixedType, rowLevel, row, rowIndex, $rowIndex }) : rowClassName) : ''
+          rowClassName
+            ? isFunction(rowClassName)
+              ? rowClassName({ $table, $seq, seq, fixedType, rowLevel, row, rowIndex, $rowIndex })
+              : rowClassName
+            : ''
         ],
         attrs: {
           'data-rowid': rowid
@@ -522,7 +557,8 @@ function renderRow(args) {
 }
 
 function renderRowAfter({ $table, h, row, rowIndex, rows, tableData }) {
-  typeof $table.renderRowAfter === 'function' && $table.renderRowAfter({ rows, row, data: tableData, rowIndex, renderColumn }, h)
+  typeof $table.renderRowAfter === 'function' &&
+    $table.renderRowAfter({ rows, row, data: tableData, rowIndex, renderColumn }, h)
 }
 
 function renderRowExpanded(args) {
@@ -578,6 +614,7 @@ function renderRowTree(args, renderRows) {
   let { rows, seq, seqCount, tableColumn, treeConfig, treeExpandeds } = args
   let { scrollYLoad } = $table
 
+  // 如果没有树表配置或者树表展开行数为零，则直接跳过
   if (!treeConfig || !treeExpandeds.length) {
     return
   }
@@ -585,6 +622,7 @@ function renderRowTree(args, renderRows) {
   let childrenKey = getTreeChildrenKey({ scrollYLoad, treeConfig })
   let rowChildren = row[childrenKey]
 
+  // 若果当前行不是展开行或者子节点个数为零，则跳过
   if (!rowChildren || !rowChildren.length || !~treeExpandeds.indexOf(row)) {
     return
   }
@@ -630,20 +668,27 @@ function renderRows({ h, _vm, $table, $seq, rowLevel, fixedType, tableData, tabl
     // 事件绑定
     addRowListenerMouseenter({ $table, highlightHoverRow, row, rowIndex, trOn })
     let rowid = getRowid($table, row)
+
+    // 如果有表格分组信息，则执行分组逻辑
     renderRowGroupData({ groupData, groupFolds, row, rowGroup, rowid, rows, tableColumn })
     let args = { $rowIndex, $seq, $table, _vm, editStore, fixedType, groupFolds, h, row, rowActived }
     Object.assign(args, { rowClassName, rowIndex, rowKey, rowLevel, rowid, rows, selection, seq })
     Object.assign(args, { tableColumn, trOn, treeConfig })
 
+    // 输入表格行列的vnode节点列表
     renderRow(args)
+
+    // 允许用户自定义表格行渲染后的逻辑
     renderRowAfter({ $table, h, row, rowIndex, rows, tableData })
     args = { $table, expandMethod, expandeds, fixedType, h, row, rowIndex, rowLevel }
     Object.assign(args, { rowid, rows, seq, tableColumn, trOn, treeConfig })
-    // 如果行被展开了
+
+    // 如果行被展开了，这里渲染展开行的vnode节点
     renderRowExpanded(args)
     args = { $seq, $table, _vm, fixedType, h, row, rowLevel, rows }
     Object.assign(args, { seq, seqCount, tableColumn, treeConfig, treeExpandeds })
-    // 如果是树形表格
+
+    // 如果是树形表格，则会递归渲染已展开行的子节点
     renderRowTree(args, renderRows)
   })
 
@@ -812,13 +857,19 @@ function renderTable({ $table, _vm, clearHoverRow, fixedType, tableColumn, table
         tableColumn.map((column, columnIndex) => h('col', { attrs: { name: column.id }, key: columnIndex }))
       ),
       // 内容
-      h('tbody', { ref: 'tbody', on: { mouseleave: clearHoverRow } }, renderRows({ h, _vm, $table, $seq: '', rowLevel: 0, fixedType, tableData, tableColumn }))
+      h(
+        'tbody',
+        { ref: 'tbody', on: { mouseleave: clearHoverRow } },
+        renderRows({ h, _vm, $table, $seq: '', rowLevel: 0, fixedType, tableData, tableColumn })
+      )
     ]
   )
 }
 
 function renderYSpace({ scrollLoad }) {
-  return h('div', { class: 'tiny-grid-body__y-space visual', ref: 'ySpace' }, [scrollLoad ? h('div', { class: 'tiny-grid-body__y-scrollbar' }) : [null]])
+  return h('div', { class: 'tiny-grid-body__y-space visual', ref: 'ySpace' }, [
+    scrollLoad ? h('div', { class: 'tiny-grid-body__y-scrollbar' }) : [null]
+  ])
 }
 
 function renderXSpace({ fixedType }) {
@@ -877,7 +928,11 @@ export default {
       'div',
       {
         ref: 'body',
-        class: ['tiny-grid__body-wrapper', fixedType ? `fixed-${fixedType}__wrapper` : 'body__wrapper', { [classMap.isScrollload]: scrollLoad }]
+        class: [
+          'tiny-grid__body-wrapper',
+          fixedType ? `fixed-${fixedType}__wrapper` : 'body__wrapper',
+          { [classMap.isScrollload]: scrollLoad }
+        ]
       },
       [
         renderXSpace({ fixedType }),

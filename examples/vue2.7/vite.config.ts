@@ -12,7 +12,7 @@ import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/
 import { getAlias, pathFromWorkspaceRoot, getOptimizeDeps } from '../../internals/cli/src/config/vite'
 // 增加Unocss
 import Unocss from 'unocss/vite'
-import { rules, shortcuts, variants } from './vite-plugins/vite-plugin-uno-preset.js'
+import { rules, shortcuts, variants } from '../docs/vite-plugins/vite-plugin-uno-preset.js'
 
 export default defineConfig((config) => {
   const env = loadEnv(config.mode, process.cwd(), '')

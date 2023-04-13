@@ -1,6 +1,8 @@
 <template>
-  <tiny-file-upload :action="action" :limit="limit" @exceed="handleExceed" multiple>
-    <tiny-button type="primary">点击上传</tiny-button>
+  <tiny-file-upload :action="action" :limit="limit" @exceed="handleExceed" multiple is-hidden>
+    <tiny-button type="primary">
+      点击上传
+    </tiny-button>
   </tiny-file-upload>
 </template>
 

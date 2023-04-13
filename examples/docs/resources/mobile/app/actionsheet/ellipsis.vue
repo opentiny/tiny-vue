@@ -1,5 +1,8 @@
 <template>
   <div class="tiny-mobile-action-sheet-demo">
+    <div class="page__hd">
+      <p class="page__desc">超长文字</p>
+    </div>
     <tiny-button _mode="mobile" @click="fn">cliclk me!</tiny-button>
     <tiny-action-sheet
       _mode="mobile"
@@ -8,6 +11,7 @@
       ellipsis
       :visible="boxVisibility"
       @update:visible="boxVisibility = $event"
+      content-position
     ></tiny-action-sheet>
   </div>
 </template>
@@ -27,7 +31,8 @@ export default {
       menus: [
         {
           id: 1,
-          label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
+          label:
+            '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
         },
         {
           id: 2,
@@ -52,3 +57,14 @@ export default {
   }
 }
 </script>
+<style>
+.page__hd {
+  padding: 40px;
+}
+.page__desc {
+  margin-top: 5px;
+  color: #888;
+  font-size: 14px;
+  text-align: left;
+}
+</style>

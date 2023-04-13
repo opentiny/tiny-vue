@@ -41,9 +41,9 @@ Local startup steps:
 - Click the Fork button in the upper right corner of the [TinyVue](https://github.com/opentiny/tiny-vue) code repository to Fork the upstream repository to the personal repository.
 - Clone personal repository to local.
 - Associated with the upstream repository to facilitate the synchronization of the latest code of the upstream repository.
-- Run `npm i --force` under the TinyVue root directory to install node dependencies.
-- Run `npm run dev:vue3` to launch the component library website.
-- Open the browser to visit: [http://127.0.0.1:5173/](http://127.0.0.1:5173/)
+- Run `pnpm i` under the TinyVue root directory to install node dependencies.
+- Run `pnpm dev` to launch the component library website.
+- Open the browser to visit: [http://127.0.0.1:6175/](http://127.0.0.1:6175/)
 
 ```shell
 # You need to replace username with your own user name
@@ -54,18 +54,18 @@ cd tiny-vue
 git remote add upstream git@github.com:opentiny/tiny-vue.git
 
 # Installation
-npm i
+pnpm i
 
 # Launch Vue.js 3
-npm run dev:vue3
+pnpm dev
 
 # Launch Vue.js 2
-npm run dev:vue2
+pnpm dev:vue2
 ```
 
 To submit a PR:
 
-- Make sure that you have completed the steps in local startup and can visit [http://127.0.0.1:5173/](http://127.0.0.1:5173/) normally.
+- Make sure that you have completed the steps in local startup and can visit [http://127.0.0.1:6175/](http://127.0.0.1:6175/) normally.
 - Synchronize upstream repository dev branch latest code: `git pull upstream dev`.
 - Create a new branch `git checkout-b username/feature1 upstream/ dev` from the upstream repository dev branch. The name of the branch should be `username/feat- xxx` / `username/fix- xxx`.
 - Local coding.

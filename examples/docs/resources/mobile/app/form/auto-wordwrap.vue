@@ -23,7 +23,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Form, FormItem, Input, Button, DialogBox } from '@opentiny/vue'
 
 export default {

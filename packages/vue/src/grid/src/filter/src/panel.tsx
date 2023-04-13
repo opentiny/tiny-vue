@@ -34,15 +34,13 @@ import { iconCheck, iconCheckedSur, iconDefinedFiltration, iconLeftWard, iconDel
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 
 function renderAdvancePanelAdvList({ _vm }) {
-  return _vm.showAdvList && _vm.showAdvItems
-    ? (
+  return _vm.showAdvList && _vm.showAdvItems ? (
     <ul class="adv-list" ref="advlist">
       {['等于', '不等于', '包含', '不包含', '开头是', '结尾是'].map((item) => (
         <li class="adv-item">{item}</li>
       ))}
     </ul>
-      )
-    : null
+  ) : null
 }
 
 function renderAdvancePanelButtons({ _vm }) {
@@ -79,8 +77,7 @@ function renderAdvancePanelAdvHeader({ _vm, ArrowLeft }) {
         _vm.showAdvance = false
         _vm.showAdvItems = false
         _vm.updatePanel()
-      }}
-    >
+      }}>
       <ArrowLeft></ArrowLeft>自定义筛选方式
     </div>
   )
@@ -174,8 +171,7 @@ function renderEnumableOptions({ iconRender, _vm, filterStore }) {
           // 多选
           item.checked = !item.checked
         }
-      }}
-    >
+      }}>
       {filterStore.multi ? iconRender(item.checked, index) : null}
       <a title={item.label}> {item.label} </a>
     </li>
@@ -214,7 +210,13 @@ export default {
     const { filterStore, $grid, optimizeOpts } = this
     let { args, column, options } = filterStore
 
-    const quickFilter = [this.renderInput(), this.renderEnumable(), this.renderDefault(), this.renderExtends(), this.renderBase()]
+    const quickFilter = [
+      this.renderInput(),
+      this.renderEnumable(),
+      this.renderDefault(),
+      this.renderExtends(),
+      this.renderBase()
+    ]
 
     const map = {
       filterActive: 'filter__active'
@@ -231,22 +233,19 @@ export default {
             [map.filterActive]: filterStore.visible
           }
         ]}
-        style={filterStore.style}
-      >
-        {filterStore.visible
-          ? (
+        style={filterStore.style}>
+        {filterStore.visible ? (
           <div class={['tiny-grid__filter-body', { 'show-addvance': this.showAdvance }]}>
             {column.slots && column.slots.filter
               ? column.slots.filter({
-                $grid,
-                values: options,
-                args,
-                context: this
-              })
+                  $grid,
+                  values: options,
+                  args,
+                  context: this
+                })
               : quickFilter}
           </div>
-            )
-          : null}
+        ) : null}
       </div>
     )
   },
@@ -317,16 +316,14 @@ export default {
             class={['tiny-grid__filter-option', { active: condition.empty === true }]}
             onClick={() => {
               this.filterNull(true)
-            }}
-          >
+            }}>
             <a class="item-content">{this.i18n('ui.grid.filter.empty')}</a>
           </li>
           <li
             class={['tiny-grid__filter-option', { active: condition.empty === false }]}
             onClick={() => {
               this.filterNull(false)
-            }}
-          >
+            }}>
             <a class="item-content">{this.i18n('ui.grid.filter.unempty')}</a>
           </li>
         </ul>
@@ -346,8 +343,7 @@ export default {
               class="tiny-grid__filter-option"
               onClick={() => {
                 this.filterExtends(item)
-              }}
-            >
+              }}>
               <a class="item-content">{item.label}</a>
             </li>
           ))}
@@ -371,8 +367,7 @@ export default {
                 this.showAdvance = true
                 this.updatePanel()
               }}
-              class="item-content"
-            >
+              class="item-content">
               高级筛选
             </a>
           </li>
@@ -421,9 +416,7 @@ export default {
 
       return (
         <ul class="tiny-grid__filter-panel">
-          {isAddbyProgram
-            ? null
-            : (
+          {isAddbyProgram ? null : (
             <li class="tiny-grid__filter-option filter-option__radios">
               {inputRelations.map(({ label, value, method }) => (
                 <Radio
@@ -436,13 +429,12 @@ export default {
                       function () {
                         return true
                       }
-                  }}
-                >
+                  }}>
                   {label}
                 </Radio>
               ))}
             </li>
-              )}
+          )}
           <li class="filter-option__input">{h(InputComponent, inputProps)}</li>
           <li class="tiny-grid__filter-option filter-option__btns">
             <Button type="primary" onClick={this.filterInput}>
@@ -473,10 +465,11 @@ export default {
       return (
         <div class="tiny-grid__filter-panel filter-panel__enum">
           <ul class="tiny-grid__filter-options">
-            {!filterStore.options.length ? renderEnumableEmpty({ _vm: this }) : renderEnumableOptions({ iconRender, _vm: this, filterStore })}
+            {!filterStore.options.length
+              ? renderEnumableEmpty({ _vm: this })
+              : renderEnumableOptions({ iconRender, _vm: this, filterStore })}
           </ul>
-          {filterStore.multi
-            ? (
+          {filterStore.multi ? (
             <div class="tiny-grid__filter-option filter-option__btns">
               <Button type="primary" onClick={this.filterEnum}>
                 {this.i18n('ui.base.confirm')}
@@ -484,13 +477,11 @@ export default {
               <Button
                 onClick={() => {
                   filterStore.visible = false
-                }}
-              >
+                }}>
                 {this.i18n('ui.base.cancel')}
               </Button>
             </div>
-              )
-            : null}
+          ) : null}
         </div>
       )
     },

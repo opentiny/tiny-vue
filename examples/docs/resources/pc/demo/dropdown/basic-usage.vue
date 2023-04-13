@@ -1,9 +1,5 @@
 <template>
-  <tiny-dropdown :tabindex="2">
-    <span>
-      <span>下拉菜单</span>
-      <icon-chevron-down></icon-chevron-down>
-    </span>
+  <tiny-dropdown>
     <template #dropdown>
       <tiny-dropdown-menu popper-class="my-class" placement="top">
         <tiny-dropdown-item label="老友粉"></tiny-dropdown-item>
@@ -17,16 +13,14 @@
   </tiny-dropdown>
 </template>
 
-<script lang="jsx">
-import { IconChevronDown } from '@opentiny/vue-icon'
+<script>
 import { Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
 
 export default {
   components: {
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem,
-    IconChevronDown: IconChevronDown()
+    TinyDropdownItem: DropdownItem
   }
 }
 </script>

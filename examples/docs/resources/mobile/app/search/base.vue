@@ -15,7 +15,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Search } from '@opentiny/vue'
 
 export default {

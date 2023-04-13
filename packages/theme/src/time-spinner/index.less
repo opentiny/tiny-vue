@@ -1,0 +1,139 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@time-spinner-prefix-cls: ~'@{css-prefix}time-spinner';
+
+.@{time-spinner-prefix-cls} {
+  .component-css-vars-time-spinner();
+
+  &__wrapper {
+    max-height: 190px;
+    overflow: auto;
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+    position: relative;
+
+    .@{scrollbar-prefix-cls}__wrap:not(.@{scrollbar-prefix-cls}__wrap--hidden-default) {
+      padding-bottom: 15px;
+    }
+
+    &.is-arrow {
+      box-sizing: border-box;
+      text-align: center;
+      overflow: hidden;
+
+      .@{time-spinner-prefix-cls}__list {
+        transform: translateY(-32px);
+      }
+
+      .@{time-spinner-prefix-cls}__item:hover:not(.disabled):not(.active) {
+        background: var(--ti-time-spinner-bg-color);
+        cursor: default;
+      }
+    }
+
+    .@{time-spinner-prefix-cls}__list {
+      transform: translateY(-6px);
+    }
+
+    &:last-child {
+      .@{time-spinner-prefix-cls}__list {
+        border-right: 0;
+      }
+    }
+  }
+
+  &__arrow {
+    font-size: var(--ti-time-spinner-font-size);
+    color: var(--ti-time-spinner-arrow-text-color);
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    text-align: center;
+    cursor: pointer;
+
+    .@{svg-prefix-cls} {
+      fill: var(--ti-time-spinner-arrow-text-color);
+    }
+
+    &:hover .@{svg-prefix-cls} {
+      fill: var(--ti-time-spinner-arrow-hover-text-color);
+    }
+
+    &.@{css-prefix}icon-arrow-up {
+      top: 10px;
+    }
+
+    &.@{css-prefix}icon-arrow-down {
+      bottom: 10px;
+    }
+
+    &.@{input-prefix-cls} {
+      width: 70%;
+
+      .@{input-prefix-cls}__inner {
+        padding: 0;
+        text-align: center;
+      }
+    }
+  }
+
+  &__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    border-right: 1px solid var(--ti-time-spinner-list-border-color);
+
+    &::after,
+    &::before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 80px;
+    }
+  }
+
+  &__item {
+    font-size: var(--ti-time-spinner-font-size);
+    color: var(--ti-time-spinner-text-color);
+    height: 32px;
+    line-height: 32px;
+
+    &:hover:not(.disabled):not(.active) {
+      background: var(--ti-time-spinner-selected-bg-color);
+      cursor: pointer;
+    }
+
+    &.active:not(.disabled) {
+      color: var(--ti-time-spinner-item-active-text-color);
+      font-weight: var(--ti-time-spinner-item-font-weight);
+      background-color: var(--ti-time-spinner-item-bg-color);
+    }
+
+    &.disabled {
+      color: var(--ti-time-spinner-disabled-text-color);
+      cursor: not-allowed;
+    }
+  }
+
+  &.has-seconds .@{time-spinner-prefix-cls}__wrapper {
+    width: 33.3%;
+  }
+}

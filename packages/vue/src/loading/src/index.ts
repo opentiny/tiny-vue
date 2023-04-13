@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import { constants, tinyMode } from './service'
+import { constants } from './service'
 import template from 'virtual-template?pc|mobile'
 
 export default defineComponent({
@@ -20,7 +20,7 @@ export default defineComponent({
     ...$props,
     type: {
       type: String,
-      validator: (value) => ~['primary', 'simple'].indexOf(value)
+      validator: (value: string) => Boolean(~['primary', 'simple'].indexOf(value))
     },
     loadtext: {
       type: String,
@@ -31,5 +31,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

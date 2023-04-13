@@ -19,6 +19,7 @@ export const renderless = (props, { onMounted, onUnmounted, onUpdated, reactive 
   const state = reactive({
     currentLink: '',
     observerLinks: {},
+    expandLink: {},
     intersectionObserver: null,
     scrollContainer: null,
     currentHash: ''

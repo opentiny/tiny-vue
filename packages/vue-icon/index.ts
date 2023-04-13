@@ -319,7 +319,7 @@ import IconWriting from './src/writing'
 import IconYes from './src/yes'
 import IconZoomIn from './src/zoom-in'
 import IconZoomOut from './src/zoom-out'
-export * from './src/lowercase'
+export * from './lowercase'
 export {
   IconAdd,
   IconAdministrator,

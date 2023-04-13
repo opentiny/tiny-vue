@@ -12,9 +12,11 @@
 
 import { addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
 
+
 const setFixAnchor = ({ vm }) => {
   const { fixRef } = vm.$refs
   if (fixRef) {
+    fixRef.style.position = 'fixed'
     fixRef.style.top = fixRef.offsetTop
   }
 }
@@ -76,19 +78,20 @@ const getCurrentAnchor = ({ vm, state, link, emit }) => {
 
 const addObserver = ({ props, state }) => {
   const { links } = props
-  const { intersectionObserver } = state
+  const { intersectionObserver, expandLink } = state
   const observer = (list) => {
     list.forEach(item => {
       const link = item.link
+      expandLink[link] = item
+      const linkEl = document.querySelector(link)
+      linkEl && intersectionObserver.observe(linkEl)
       if (item.children) {
         observer(item.children)
-      } else {
-        const linkEl = document.querySelector(link)
-        linkEl && intersectionObserver.observe(linkEl)
       }
     })
   }
   observer(links)
+
 }
 
 const setCurrentHash = (state) => {
@@ -98,6 +101,7 @@ const setCurrentHash = (state) => {
   }
   return false
 }
+
 
 export const getContainer = ({ props }) => () => props.containerId ? document.querySelector(props.containerId) : document.body
 
@@ -119,23 +123,33 @@ export const unmounted = ({ state }) => () => {
 }
 
 export const onItersectionObserver = ({ vm, state, props, emit }) => () => {
+  const { expandLink, scrollContainer } = state
+  const containerTop = scrollContainer.getBoundingClientRect().top + 10
   state.intersectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(item => {
       const key = item.target.id
       state.observerLinks[key] = item
     })
 
-    for (let item of Object.values(state.observerLinks)) {
-      if (item.isIntersecting && item.intersectionRatio > 0) {
-        const link = `#${item.target.id}`
-        getCurrentAnchor({ vm, state, link, emit })
-        break
+    for (let key in state.observerLinks) {
+      if (Object.prototype.hasOwnProperty.call(state.observerLinks, key)) {
+        const item = state.observerLinks[key]
+        if (item.isIntersecting && item.intersectionRatio >= 0 && item.target.getBoundingClientRect().top < containerTop) {
+          const link = `#${item.target.id}`
+          if (!expandLink[link].children) {
+            getCurrentAnchor({ vm, state, link, emit })
+            break
+          } else {
+            getCurrentAnchor({ vm, state, link, emit })
+          }
+        }
       }
     }
   })
 
   addObserver({ props, state })
 }
+
 
 export const linkClick = ({ state, vm, emit, props }) => (e, item) => {
   const { link, title } = item

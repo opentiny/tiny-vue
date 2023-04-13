@@ -1,5 +1,5 @@
 <template>
-  <tiny-action-menu :options="options" @more-click="moreClick"> </tiny-action-menu>
+  <tiny-action-menu :options="options" trigger="click" @more-click="moreClick"> </tiny-action-menu>
 </template>
 
 <script lang="jsx">

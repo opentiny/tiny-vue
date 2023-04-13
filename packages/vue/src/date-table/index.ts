@@ -10,6 +10,7 @@
  *
  */
 import DateTable from './src/index.vue'
+import '@opentiny/vue-theme/date-table/index.less'
 import { version } from './package.json'
 
 /* istanbul ignore next */

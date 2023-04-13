@@ -120,7 +120,10 @@ const renderEmptyPartFn = (opt) => {
       } else if (renderEmpty) {
         emptyVnodes = [renderEmpty(h, _vm)]
       } else {
-        emptyVnodes = [h('p', { class: 'tiny-grid__empty-img' }), h('span', { class: 'tiny-grid__empty-text' }, GlobalConfig.i18n('ui.grid.emptyText'))]
+        emptyVnodes = [
+          h('p', { class: 'tiny-grid__empty-img' }),
+          h('span', { class: 'tiny-grid__empty-text' }, GlobalConfig.i18n('ui.grid.emptyText'))
+        ]
       }
 
       emptyPartVnode = h('div', { class: 'empty-center-block' }, emptyVnodes)
@@ -150,7 +153,18 @@ const renderFooterFn = (opt) => {
  * 渲染浮固定列
  */
 function renderFixed(h, $table, fixedType) {
-  let { collectColumn, columnStore, footerData, isGroup, showFooter, showHeader, tableColumn, tableData, vSize, visibleColumn } = $table
+  let {
+    collectColumn,
+    columnStore,
+    footerData,
+    isGroup,
+    showFooter,
+    showHeader,
+    tableColumn,
+    tableData,
+    vSize,
+    visibleColumn
+  } = $table
   let fixedColumn = columnStore[`${fixedType}List`]
 
   const props = { fixedType, tableData, tableColumn, visibleColumn, collectColumn, size: vSize, fixedColumn, isGroup }
@@ -271,9 +285,32 @@ const renderSelectToolbarFn = (opt) => {
 }
 
 function getRenderer(opt) {
-  const { $slots, _vm, leftList, optimizeOpts, overflowX, props, rightList, showFooter, showHeader, tableColumn, tableData, vSize, visibleColumn } = opt
+  const {
+    $slots,
+    _vm,
+    leftList,
+    optimizeOpts,
+    overflowX,
+    props,
+    rightList,
+    showFooter,
+    showHeader,
+    tableColumn,
+    tableData,
+    vSize,
+    visibleColumn
+  } = opt
   const { $grid, ctxMenuStore, editRules, filterStore, footerData, footerMethod, hasFilter, hasTip, height, id } = _vm
-  const { isCtxMenu, isResizable, renderEmpty, scrollbarHeight, selectToolbarStore, tooltipContentOpts, vaildTipOpts, validOpts } = _vm
+  const {
+    isCtxMenu,
+    isResizable,
+    renderEmpty,
+    scrollbarHeight,
+    selectToolbarStore,
+    tooltipContentOpts,
+    vaildTipOpts,
+    validOpts
+  } = _vm
   const { selectToolbar, renderedToolbar } = $grid
 
   const renderHeader = () => (showHeader ? h(GridHeader, { ref: 'tableHeader', props }) : [null])
@@ -611,6 +648,7 @@ export default {
     remoteSort: Boolean,
     // 空数据渲染
     renderEmpty: Function,
+    // 自定义表格行渲染后的逻辑
     renderRowAfter: Function,
     // 所有列是否允许拖动列宽调整大小
     resizable: { type: Boolean, default: () => GlobalConfig.resizable },

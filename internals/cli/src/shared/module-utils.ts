@@ -127,6 +127,7 @@ const getSortModules = ({ filterIntercept, isSort = true }) => {
   const importName = '@opentiny/vue'
   Object.entries(moduleMap).forEach(([key, module]) => {
     let component = module as Module
+
     component.name = key
     // filterIntercept过滤筛选命令行传过来的组件名称，只输出命令行传递过来的组件
     if (filterIntercept(component) === true && component.exclude !== true) {
@@ -150,6 +151,7 @@ const getSortModules = ({ filterIntercept, isSort = true }) => {
         .replace('vue-locale/src/', 'packages/locale/')
         .replace('vue-icon/src/', 'packages/icon/')
         .replace('/index.ts', '/src/index.js')
+        .replace('/lowercase.ts', '/lowercase.js')
         .replace('/src/', '/dist/lib/')
         .replace('.vue', '.js')
 
@@ -182,7 +184,10 @@ const getSortModules = ({ filterIntercept, isSort = true }) => {
 
       // "vue-common/src/index.ts" ==> "vue-common/lib/index"
       if (component.type === 'module') {
-        component.libPath = component.path.replace('/src/', '/lib/').replace('index.ts', 'index')
+        component.libPath = component.path
+          .replace('/src/', '/lib/')
+          .replace('index.ts', 'index')
+          .replace('lowercase.ts', 'lowercase')
       }
 
       // "vue/src/button/index.ts" ==> "button/lib/index"
@@ -337,7 +342,7 @@ const isArraySortData = (sortData, setIndex) => {
 }
 
 const isNotArrayObject = (sortData, key, setIndex) => {
-  if (!(Array.isArray(sortData)) && typeof sortData === 'object') {
+  if (!Array.isArray(sortData) && typeof sortData === 'object') {
     for (const sortKey in sortData) {
       const dataItem = sortData[sortKey]
       let sortItem = {}
@@ -359,7 +364,7 @@ const isNotArrayObject = (sortData, key, setIndex) => {
 const isNotArrayNotObject = (sortData) => {
   const ret = { flag: false, result: null }
 
-  if (!(Array.isArray(sortData)) && !(typeof sortData === 'object')) {
+  if (!Array.isArray(sortData) && !(typeof sortData === 'object')) {
     ret.flag = true
     ret.result = sortData
   }
@@ -372,14 +377,14 @@ const isNotArrayNotObject = (sortData) => {
  * @param {Boolean} isSort 是否需要排序
  * @returns 组件集合
  */
-const getMobileComponents = (isSort = true) => {
+const getMobileComponents = (isSort = true, hasModuleType = false) => {
   const modules = getAllModules(isSort)
-  const componentNames = modules.filter((item) => item.tmpName.includes('mobile')).map((item) => item.UpperName)
+  const moduleTyps = ['component']
+
+  hasModuleType && moduleTyps.push('module')
 
   const components = modules.filter(
-    (item) =>
-      (item.onlyMode && item.onlyMode.includes('mobile')) ||
-      (item.type === 'component' && componentNames.includes(item.UpperName))
+    (item) => moduleTyps.includes(item.type) && (!item.onlyMode || item.onlyMode.includes('mobile'))
   )
 
   return components
@@ -476,17 +481,17 @@ const createModuleMapping = (componentName, isMobile = false) => {
 const getAllIcons = () => {
   const entries = fg.sync('vue-icon*/src/*', { cwd: utils.pathFromWorkspaceRoot('packages'), onlyDirectories: true })
 
-  return entries.map(item => {
+  return entries.map((item) => {
     const name = path.basename(item)
 
     return {
       path: item + '/index.ts',
-      libPath: item.replace('/src/', '/lib/') + '.js',
+      libPath: item.replace('/src/', '/lib/'),
       type: 'component',
       componentType: 'icon',
       name: utils.kebabCase({ str: name }),
       global: utils.capitalizeKebabCase(name),
-      importName: '@opentiny/vue-' + item,
+      importName: '@opentiny/vue-' + item
     } as Module
   })
 }
@@ -502,5 +507,5 @@ export {
   getPcComponents,
   createModuleMapping,
   getMobileComponents,
-  getAllIcons,
+  getAllIcons
 }

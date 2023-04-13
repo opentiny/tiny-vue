@@ -1,5 +1,6 @@
 import Hrapprover from './src/index'
 import '@opentiny/vue-theme/hrapprover/index.less'
+import { version } from './package.json'
 
 Hrapprover.model = {
   prop: 'modelValue',

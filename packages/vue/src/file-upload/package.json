@@ -4,11 +4,11 @@
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
-   "devDependencies": {
+  "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
     "vitest": "^0.25.7"
   },
- "scripts": {
+  "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"
   },
@@ -17,7 +17,8 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-progress": "workspace:~",
     "@opentiny/vue-upload-list": "workspace:~",
-    "@opentiny/vue-upload": "workspace:~"
+    "@opentiny/vue-upload": "workspace:~",
+    "streamsaver": "2.0.6"
   },
   "license": "MIT"
 }

@@ -31,7 +31,7 @@ export default defineComponent({
     pattern: {
       type: String,
       default: 'default',
-      validator: (value) => !!$constants[value.toUpperCase()]
+      validator: (value: string) => !!$constants[value.toUpperCase()]
     },
     headerHeight: {
       type: [Number, String],
@@ -49,5 +49,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

@@ -26,7 +26,13 @@ import { isNumber } from '@opentiny/vue-renderless/common/type'
 import { iconMinscreen, iconFullscreen } from '@opentiny/vue-icon'
 import { h, hooks, $prefix, defineComponent } from '@opentiny/vue-common'
 import { toStringJSON, isEmpty, isPlainObject, toJSONString, find } from '@opentiny/vue-renderless/grid/static/'
-import { getFuncText, emitEvent, getEventTargetNode, GlobalEvent, getListeners } from '@opentiny/vue-renderless/grid/utils'
+import {
+  getFuncText,
+  emitEvent,
+  getEventTargetNode,
+  GlobalEvent,
+  getListeners
+} from '@opentiny/vue-renderless/grid/utils'
 import GridCustom from './custom.vue'
 import GridCustomSelect from './custom-select.vue'
 import { GridButton, GridConfig, GridAdapter, GridTools } from '@opentiny/vue-grid'
@@ -84,15 +90,15 @@ function renderCustomWrapper({ _vm, settingStore, settingsBtnOns, tableFullColum
       h('div', { class: 'tiny-grid-custom__setting-btn', on: settingsBtnOns }, [
         setting?.simple
           ? h('tiny-grid-custom-select', {
-            on: {
-              saveSettings: _vm.handleSaveSettings
-            },
-            props: {
-              data: tableFullColumn,
-              setting,
-              value: settingStore.customVisible
-            }
-          })
+              on: {
+                saveSettings: _vm.handleSaveSettings
+              },
+              props: {
+                data: tableFullColumn,
+                setting,
+                value: settingStore.customVisible
+              }
+            })
           : h(GridConfig.icon.custom, { class: 'tiny-svg-size' })
       ]),
       h('div', { class: 'tiny-grid-custom__option-wrapper' }, [
@@ -462,7 +468,9 @@ export default defineComponent({
           if (settingsStorage && settingsStorage.pageSize) {
             const pageSize = settingsStorage.pageSize
 
-            this.$grid.pagerConfig && this.$grid.pagerConfig.pageSize !== pageSize && this.$grid.pageSizeChange(pageSize, $grid.autoLoad === false)
+            this.$grid.pagerConfig &&
+              this.$grid.pagerConfig.pageSize !== pageSize &&
+              this.$grid.pageSizeChange(pageSize, $grid.autoLoad === false)
           }
         }
 
@@ -673,7 +681,9 @@ export default defineComponent({
     handleClickCustomEvent() {
       let { settingStore } = this
       this.$refs.custom.settings.pageSize =
-        (this.$grid.pagerConfig && this.$grid.pagerConfig.pageSize) || (this.settingOpts.storage === 'local' && this.$refs.custom.settings.pageSize) || 10
+        (this.$grid.pagerConfig && this.$grid.pagerConfig.pageSize) ||
+        (this.settingOpts.storage === 'local' && this.$refs.custom.settings.pageSize) ||
+        10
 
       settingStore.customVisible = !settingStore.customVisible
     },
@@ -761,5 +771,4 @@ export default defineComponent({
       }
     }
   }
-}
-)
+})

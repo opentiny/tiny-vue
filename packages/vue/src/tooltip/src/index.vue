@@ -21,7 +21,7 @@ export default defineComponent({
     visible: {
       type: String,
       default: () => 'always',
-      validator: (value) => ['always', 'auto'].includes(value)
+      validator: (value: string) => ['always', 'auto'].includes(value)
     },
     adjustArrow: {
       type: Boolean,
@@ -92,7 +92,7 @@ export default defineComponent({
     },
     type: {
       type: String,
-      validator: (value) => ~['normal', 'warning', 'error', 'info', 'success'].indexOf(value)
+      validator: (value: string) => Boolean(~['normal', 'warning', 'error', 'info', 'success'].indexOf(value))
     },
     visibleArrow: {
       type: Boolean,
@@ -131,6 +131,7 @@ export default defineComponent({
       this.d({
         popperVM: {
           get: () =>
+            // 使用适配器里的createComponent创建一个新的vue的vnode节点为一个新组件，挂载到el下面去
             createComponent({
               el: document.createElement('div'),
               component: {
@@ -147,6 +148,8 @@ export default defineComponent({
                     this.debounceClose()
                   }
 
+                  this.$nextTick(() => this.updatePopper())
+
                   return h('transition', propsData, [
                     <div
                       ref="popper"
@@ -157,8 +160,7 @@ export default defineComponent({
                       role="tooltip"
                       aria-hidden={this.disabled || !this.state.showPopper ? 'true' : 'false'}
                       onMouseenter={() => mouseenter()}
-                      onMouseleave={() => mouseleave()}
-                    >
+                      onMouseleave={() => mouseleave()}>
                       {content}
                     </div>
                   ])
@@ -176,7 +178,9 @@ export default defineComponent({
     const stringifyClassArr = (classArr) =>
       classArr
         .filter((item) => item)
-        .map((item) => (typeof item === 'string' ? item.trim() : typeof item === 'object' ? stringifyClassObj(item) : ''))
+        .map((item) =>
+          typeof item === 'string' ? item.trim() : typeof item === 'object' ? stringifyClassObj(item) : ''
+        )
         .join(' ')
 
     const addTooltipClass = (bindClass) => {
@@ -195,6 +199,7 @@ export default defineComponent({
       return 'tiny-tooltip ' + className.replace(/\btiny-tooltip\b/g, '').trim()
     }
 
+    // 查找默认的slots, 并把它渲染到组件所在位置上。
     const getFirstElement = () => {
       const slots = this.slots.default && this.slots.default()
 

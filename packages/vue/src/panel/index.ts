@@ -10,6 +10,7 @@
  *
  */
 import Panel from './src/index'
+import { version } from './package.json'
 
 /* istanbul ignore next */
 Panel.install = function (Vue) {

@@ -72,11 +72,10 @@ export default defineComponent({
     themeType: {
       type: String,
       default: 'primary',
-      validator: (value) => ['primary', 'gray'].includes(value)
+      validator: (value: string) => ['primary', 'gray'].includes(value)
     }
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

@@ -41,7 +41,7 @@
           ]"
         ></div>
         <div class="node-description">
-          <slot name="bottom" v-bind:item="node">
+          <slot name="bottom" :item="node">
             <div class="name" v-text="node[nameField]"></div>
             <div class="status">
               {{ showStatus ? getStatus(index) : '' }}
@@ -59,15 +59,19 @@
                 <span class="time">{{ getDate(node[timeField]).date }} {{ getDate(node[timeField]).time }}</span>
               </div>
               <span :class="['round', `round-${node.state}`]"></span>
-              <slot name="header" v-bind:item="node">
-                <div class="name">{{ node.name }}</div>
+              <slot name="header" :item="node">
+                <div class="name">
+                  {{ node.name }}
+                </div>
               </slot>
-              <div v-if="node.showFoldBtn" :class="['arrow-btn', node.fold ? 'arrow-btn-fold' : '']" @click="node.fold = !node.fold"></div>
+              <div v-if="node.showFoldBtn" class="arrow-btn" @click="node.fold = !node.fold">
+                <div :class="['arrow-btn-arrow', node.fold ? 'arrow-btn-arrow-fold' : '']"></div>
+              </div>
             </div>
             <div v-if="!node.fold" :class="['content', node.time ? 'content-left-margin' : null]">
-              <slot name="content"> </slot>
+              <slot name="content" :item="node"></slot>
             </div>
-            <div :class="['line', node.time ? 'line-left-margin' : null]"></div>
+            <div v-if="state.nodes.length > 1" :class="['line', node.time ? 'line-left-margin' : null]"></div>
           </li>
         </ul>
       </div>

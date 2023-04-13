@@ -43,7 +43,10 @@
             </ul>
           </div>
           <div class="tiny-grid-custom__tabs-body">
-            <div v-show="activeName === 'base'" :class="['tabs-body-item', animateShow === 'base' ? 'active-item' : '']">
+            <div
+              v-show="activeName === 'base'"
+              :class="['tabs-body-item', animateShow === 'base' ? 'active-item' : '']"
+            >
               <div class="tiny-grid-custom__alert">
                 <component class="tiny-svg-size" is="icon-help" />
                 <p>{{ t('ui.grid.individuation.tabs.base.tips') }}</p>
@@ -76,7 +79,14 @@
                 <tiny-grid-column field="property" width="120px" class-name="setting-item">
                   <template v-slot="{ row, ...data }">
                     <div v-if="!row.children" class="setting-icon">
-                      <span class="icon" :title="row.visible ? t('ui.grid.individuation.colConfigs.visible') : t('ui.grid.individuation.colConfigs.invisible')">
+                      <span
+                        class="icon"
+                        :title="
+                          row.visible
+                            ? t('ui.grid.individuation.colConfigs.visible')
+                            : t('ui.grid.individuation.colConfigs.invisible')
+                        "
+                      >
                         <component
                           :class="[{ hide: !row.visible }, { open: row.visible }]"
                           :is="row.visible ? 'icon-eyeopen' : 'icon-eyeclose'"
@@ -124,16 +134,25 @@
                     </div>
                   </template>
                 </tiny-grid-column>
-                <tiny-grid-column v-if="numberSorting && !isGroup" width="100px" :editor="{}" :renderer="renderNumberSorting">
+                <tiny-grid-column
+                  v-if="numberSorting && !isGroup"
+                  width="100px"
+                  :editor="{}"
+                  :renderer="renderNumberSorting"
+                >
                   <template v-slot:edit="{ row }">
                     <tiny-select v-model="row.sortingIndex" @change="handelNumberSorting($event, row)">
-                      <tiny-option v-for="item in sortingOptions" :key="item" :label="item" :value="item"> </tiny-option>
+                      <tiny-option v-for="item in sortingOptions" :key="item" :label="item" :value="item">
+                      </tiny-option>
                     </tiny-select>
                   </template>
                 </tiny-grid-column>
               </tiny-grid>
             </div>
-            <div v-show="activeName === 'other'" :class="['tabs-body-item', animateShow === 'other' ? 'active-item' : '']">
+            <div
+              v-show="activeName === 'other'"
+              :class="['tabs-body-item', animateShow === 'other' ? 'active-item' : '']"
+            >
               <div class="tiny-grid-custom__alert">
                 <component class="tiny-svg-size" is="icon-help" />
                 <p>{{ t('ui.grid.individuation.tabs.other.tips') }}</p>
@@ -142,23 +161,39 @@
                 <li class="setting-item">
                   <span class="label">{{ t('ui.grid.individuation.tabs.other.sortType') }}</span>
                   <span class="selection">
-                    <tiny-radio v-model="settings.sortType" label="page">{{ t('ui.grid.individuation.tabs.other.currPageSort') }}</tiny-radio>
-                    <tiny-radio v-model="settings.sortType" label="all">{{ t('ui.grid.individuation.tabs.other.allDataSort') }}</tiny-radio>
+                    <tiny-radio v-model="settings.sortType" label="page">{{
+                      t('ui.grid.individuation.tabs.other.currPageSort')
+                    }}</tiny-radio>
+                    <tiny-radio v-model="settings.sortType" label="all">{{
+                      t('ui.grid.individuation.tabs.other.allDataSort')
+                    }}</tiny-radio>
                   </span>
                 </li>
                 <li class="setting-item">
                   <span class="label">{{ t('ui.grid.individuation.tabs.other.pageSize') }}</span>
                   <span class="selection">
-                    <tiny-radio v-for="(item, index) in initSettings.pageSizes" :key="index" v-model="settings.pageSize" :label="item">{{ item }}</tiny-radio>
+                    <tiny-radio
+                      v-for="(item, index) in initSettings.pageSizes"
+                      :key="index"
+                      v-model="settings.pageSize"
+                      :label="item"
+                      >{{ item }}</tiny-radio
+                    >
                   </span>
                 </li>
               </ul>
             </div>
-            <tiny-custom-switch v-if="multipleHistory && activeName === 'base'" ref="switch" :history-config="historyConfig"></tiny-custom-switch>
+            <tiny-custom-switch
+              v-if="multipleHistory && activeName === 'base'"
+              ref="switch"
+              :history-config="historyConfig"
+            ></tiny-custom-switch>
           </div>
         </div>
         <div v-if="!multipleHistory || (multipleHistory && activeName === 'base')" class="tiny-grid-custom__footer">
-          <tiny-button type="primary" @click="saveSettings" :disabled="saveDisabled">{{ t('ui.grid.individuation.saveBtn') }}</tiny-button>
+          <tiny-button type="primary" @click="saveSettings" :disabled="saveDisabled">{{
+            t('ui.grid.individuation.saveBtn')
+          }}</tiny-button>
           <tiny-button @click="resetSettings">{{ t('ui.grid.individuation.resetBtn') }}</tiny-button>
           <tiny-button @click="cancelSettings">{{ t('ui.grid.individuation.cancelBtn') }}</tiny-button>
         </div>
@@ -187,7 +222,7 @@ import {
 } from '@opentiny/vue-icon'
 import Select from '@opentiny/vue-select'
 import Option from '@opentiny/vue-option'
-import CustomSwitch from './custom-switch'
+import CustomSwitch from './custom-switch.vue'
 import { extend } from '@opentiny/vue-renderless/common/object'
 import { isNull } from '@opentiny/vue-renderless/grid/static/'
 
@@ -315,7 +350,8 @@ export default {
       return this.tinyTable.isGroup
     },
     historyConfig() {
-      const multipleHistory = isNull(this.multipleHistory) || typeof this.multipleHistory === 'boolean' ? {} : this.multipleHistory
+      const multipleHistory =
+        isNull(this.multipleHistory) || typeof this.multipleHistory === 'boolean' ? {} : this.multipleHistory
 
       return extend(true, {}, this.initSettings.multipleHistory || {}, multipleHistory)
     }

@@ -4,12 +4,15 @@
       <h1 class="page__title">上滑列表</h1>
       <p class="page__desc">弹出式菜单</p>
     </div>
-    <tiny-button @click="fn" type="primary" size="large">上滑列表</tiny-button>
-    <tiny-action-sheet v-model="activeName" ref="action" :menus="menus" :visible="boxVisibility" @update:visible="boxVisibility = $event">
-      <template #action>
-        <tiny-button @click="visibleHandle" type="primary" size="large">取消</tiny-button>
-      </template>
-    </tiny-action-sheet>
+    <tiny-button _mode="mobile" @click="fn" type="primary" size="large">上滑列表</tiny-button>
+    <tiny-action-sheet
+      _mode="mobile"
+      v-model="activeName"
+      :menus="menus"
+      :visible="boxVisibility"
+      @update:visible="boxVisibility = $event"
+      content-position
+    ></tiny-action-sheet>
   </div>
 </template>
 
@@ -42,6 +45,22 @@ export default {
           id: 4,
           label: '我是小叶',
           warn: true
+        },
+        {
+          id: 5,
+          label: '我是小茎'
+        },
+        {
+          id: 6,
+          label: '我是小根'
+        },
+        {
+          id: 7,
+          label: '我是小枝'
+        },
+        {
+          id: 8,
+          label: '我是小木'
         }
       ]
     }

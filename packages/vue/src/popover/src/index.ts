@@ -70,7 +70,7 @@ export default defineComponent({
     trigger: {
       type: String,
       default: 'click',
-      validator: (value) => ~['click', 'focus', 'hover', 'manual'].indexOf(value)
+      validator: (value: string) => Boolean(~['click', 'focus', 'hover', 'manual'].indexOf(value))
     },
     visibleArrow: {
       default: true
@@ -89,5 +89,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

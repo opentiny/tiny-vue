@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { PullRefresh } from '@opentiny/vue'
 
 export default {
@@ -50,7 +50,6 @@ export default {
   }
 }
 </script>
-
 <style scoped>
 .page__hd {
   padding: 40px;

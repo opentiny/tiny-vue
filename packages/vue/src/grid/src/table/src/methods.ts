@@ -41,7 +41,14 @@ import { createTooltipRange, processContentMethod } from './utils/handleTooltip'
 import { hasCheckField, hasNoCheckField } from './utils/handleSelectRow'
 // prettier-ignore
 import { isTargetRadioOrCheckbox, onClickExpandColumn, onClickTreeNodeColumn, onHighlightCurrentRow, onClickRadioColumn, onClickSelectColumn, onClickCellSelect } from './utils/triggerCellClickEvent'
-import { onGroupHeader, reassignNotFixed, reassignFixedRight, reassignFixedLeft, showGroupFixedError, onScrollXLoad } from './utils/refreshColumn'
+import {
+  onGroupHeader,
+  reassignNotFixed,
+  reassignFixedRight,
+  reassignFixedLeft,
+  showGroupFixedError,
+  onScrollXLoad
+} from './utils/refreshColumn'
 // prettier-ignore
 import { handleFilterConditionCustom, handleFilterConditionExtend, handleFilterRelations, handleFilterCheckStr, handleFilterCheck } from './utils/handleLocalFilter'
 import { hasCheckFieldNoStrictly, hasNoCheckFieldNoStrictly, setSelectionNoStrictly } from './utils/setAllSelection'
@@ -71,7 +78,14 @@ import {
   handleGlobalResizeEvent
 } from './events'
 
-import { getRowUniqueId, getTableRowKey, getTotalRows, setTreeScrollYCache, sliceFullData, sliceVisibleColumn } from './strategy'
+import {
+  getRowUniqueId,
+  getTableRowKey,
+  getTotalRows,
+  setTreeScrollYCache,
+  sliceFullData,
+  sliceVisibleColumn
+} from './strategy'
 
 let run = (names, $table) => names.forEach((name) => $table[name].apply($table))
 let isWebkit = browser['-webkit'] && browser.name !== 'edge'
@@ -85,21 +99,24 @@ const Methods = {
   columnDrop() {
     this.$nextTick(() => {
       const { plugin, onBeforeMove, filter } = this.dropConfig
-      this.columnSortable = plugin.create(this.$el.querySelector('.body__wrapper>.tiny-grid__header .tiny-grid-header__row'), {
-        handle: '.tiny-grid-header__column:not(.col__fixed)',
-        filter,
-        onEnd: (event) => {
-          onEndEvent({ event, _this: this })
-        },
-        onStart: (event) => {
-          this.$emit('column-drop-start', event, this)
-        },
-        onMove: (event) => {
-          const cancel = typeof onBeforeMove === 'function' ? onBeforeMove('column', null, event, this) : true
-          this.$emit('column-drop-move', event, this)
-          return cancel === undefined || cancel
+      this.columnSortable = plugin.create(
+        this.$el.querySelector('.body__wrapper>.tiny-grid__header .tiny-grid-header__row'),
+        {
+          handle: '.tiny-grid-header__column:not(.col__fixed)',
+          filter,
+          onEnd: (event) => {
+            onEndEvent({ event, _this: this })
+          },
+          onStart: (event) => {
+            this.$emit('column-drop-start', event, this)
+          },
+          onMove: (event) => {
+            const cancel = typeof onBeforeMove === 'function' ? onBeforeMove('column', null, event, this) : true
+            this.$emit('column-drop-move', event, this)
+            return cancel === undefined || cancel
+          }
         }
-      })
+      )
     })
   },
   // 处理行拖拽
@@ -172,7 +189,15 @@ const Methods = {
     let { renderSize, startIndex } = scrollYStore
     let afterFullData = force ? this.updateAfterFullData() : this.afterFullData
 
-    this.tableData = sliceFullData({ afterFullData, renderSize, scrollYLoad, startIndex, treeConfig, treeExpandeds, parentRowMap })
+    this.tableData = sliceFullData({
+      afterFullData,
+      renderSize,
+      scrollYLoad,
+      startIndex,
+      treeConfig,
+      treeExpandeds,
+      parentRowMap
+    })
     run(['updateScrollStatus', 'buildGroupData'], this)
     return this.$nextTick()
   },
@@ -194,10 +219,16 @@ const Methods = {
       tableSourceData: clone(tableFullData, true),
       scrollYLoad
     })
+
     if (scrollYLoad && !(height || maxHeight)) {
       error('ui.grid.error.scrollYHeight')
     }
-    this.clearScroll()
+
+    // 如果notRefresh为true表示不刷新表格状态，所以也不需要清楚滚动状态
+    if (!notRefresh) {
+      this.clearScroll()
+    }
+
     this.handleTableData(true)
     run(['reserveCheckSelection', 'checkSelectionStatus'], this)
     let first = () => !notRefresh && this.recalculate()
@@ -576,7 +607,9 @@ const Methods = {
       tableData = sortColumn.order === 'desc' ? sorted.reverse() : sorted
     }
 
-    tableData = tableData.filter((row) => filterColumn.every((column) => (remoteFilter ? true : this.handleLocalFilter(row, column))))
+    tableData = tableData.filter((row) =>
+      filterColumn.every((column) => (remoteFilter ? true : this.handleLocalFilter(row, column)))
+    )
 
     if (sortColumn && sortColumn.order) {
       let isRemote = isBoolean(sortColumn.remoteSort) ? sortColumn.remoteSort : remoteSort
@@ -726,7 +759,11 @@ const Methods = {
       fullColumn[cIndex].prop && warn('ui.grid.error.delProp')
       fullColumn[cIndex].label && warn('ui.grid.error.delLabel')
     }
-    if (treeConfig && fullColumn.some((column) => column.fixed) && fullColumn.some((column) => column.type === 'expand')) {
+    if (
+      treeConfig &&
+      fullColumn.some((column) => column.fixed) &&
+      fullColumn.some((column) => column.type === 'expand')
+    ) {
       warn('ui.grid.error.treeFixedExpand')
     }
   },
@@ -955,7 +992,10 @@ const Methods = {
         } else if (isArray(blurClassConfig)) {
           blurClass = blurClassConfig.slice(0)
         }
-        return (args.cell && args.cell.contains(event.target)) || blurClass.some((cls) => !this.getEventTargetNode(event, document.body, cls).flag)
+        return (
+          (args.cell && args.cell.contains(event.target)) ||
+          blurClass.some((cls) => !this.getEventTargetNode(event, document.body, cls).flag)
+        )
       }
     }
   },
@@ -1001,7 +1041,8 @@ const Methods = {
     let contentMethod = (this.tooltipConfig || {}).contentMethod
     let range = createTooltipRange({ _vm: this, cell, column, isHeader })
     const rangeWidth = range.getBoundingClientRect().width - (browser.name === 'ie' ? 5 : 0)
-    const padding = (parseInt(getStyle(cell, 'paddingLeft'), 10) || 0) + (parseInt(getStyle(cell, 'paddingRight'), 10) || 0)
+    const padding =
+      (parseInt(getStyle(cell, 'paddingLeft'), 10) || 0) + (parseInt(getStyle(cell, 'paddingRight'), 10) || 0)
     const isOverflow = rangeWidth + padding > cell.offsetWidth || wrapperElem.scrollWidth > wrapperElem.clientWidth
     if (content && (showTip || isOverflow)) {
       Object.assign(this.tooltipStore, { row, column, visible: true })
@@ -1106,7 +1147,15 @@ const Methods = {
     let { afterFullData, selectConfig = {}, treeConfig, selection } = this
     let { checkField: property, reserve, checkStrictly, checkMethod } = selectConfig
     hasCheckFieldNoStrictly({ afterFullData, checkMethod, checkStrictly, property, selection, treeConfig, value })
-    let selectRows = hasNoCheckFieldNoStrictly({ afterFullData, checkMethod, checkStrictly, property, selection, treeConfig, value })
+    let selectRows = hasNoCheckFieldNoStrictly({
+      afterFullData,
+      checkMethod,
+      checkStrictly,
+      property,
+      selection,
+      treeConfig,
+      value
+    })
     setSelectionNoStrictly({ _vm: this, checkStrictly, reserve, selectRows, selection, value })
     this.treeIndeterminates = []
     this.checkSelectionStatus()
@@ -1120,7 +1169,9 @@ const Methods = {
     }
     // 包含新增的数据
     if (checkField) {
-      everyHandler = checkMethod ? (row, rowIndex) => !checkMethod({ row, rowIndex }) || get(row, checkField) : (row) => get(row, checkField)
+      everyHandler = checkMethod
+        ? (row, rowIndex) => !checkMethod({ row, rowIndex }) || get(row, checkField)
+        : (row) => get(row, checkField)
       someHandler = (row) => get(row, checkField) || ~treeIndeterminates.indexOf(row)
       this.isAllSelected = false
       afterFullData.length && (this.isAllSelected = afterFullData.every(everyHandler))
@@ -1128,7 +1179,9 @@ const Methods = {
     } else {
       everyHandler = (row, rowIndex) => !checkMethod({ row, rowIndex })
       this.headerCheckDisabled = checkMethod && afterFullData.length && afterFullData.every(everyHandler)
-      everyHandler = checkMethod ? (row, rowIndex) => !checkMethod({ row, rowIndex }) || ~selection.indexOf(row) : (row) => ~selection.indexOf(row)
+      everyHandler = checkMethod
+        ? (row, rowIndex) => !checkMethod({ row, rowIndex }) || ~selection.indexOf(row)
+        : (row) => ~selection.indexOf(row)
       someHandler = (row) => ~treeIndeterminates.indexOf(row) || ~selection.indexOf(row)
       this.isAllSelected = false
       afterFullData.length && (this.isAllSelected = afterFullData.every(everyHandler))
@@ -1166,7 +1219,9 @@ const Methods = {
     let { tableFullData, treeConfig } = this
     let { checkField } = this.selectConfig || {}
     if (checkField) {
-      treeConfig ? eachTree(tableFullData, (item) => set(item, checkField, false), treeConfig) : tableFullData.forEach((item) => set(item, checkField, false))
+      treeConfig
+        ? eachTree(tableFullData, (item) => set(item, checkField, false), treeConfig)
+        : tableFullData.forEach((item) => set(item, checkField, false))
     }
     Object.assign(this, {
       isAllSelected: false,
@@ -1306,7 +1361,10 @@ const Methods = {
     let { actived } = editStore
     let { row, column, cell } = params
     // 解决 checkbox 重复触发两次问题
-    if (isTargetRadioOrCheckbox(event, column, 'radio') || isTargetRadioOrCheckbox(event, column, 'selection', 'checkbox')) {
+    if (
+      isTargetRadioOrCheckbox(event, column, 'radio') ||
+      isTargetRadioOrCheckbox(event, column, 'selection', 'checkbox')
+    ) {
       return
     }
     // 如果是展开行
@@ -1676,6 +1734,8 @@ const Methods = {
   loadScrollYData(event) {
     let { scrollYStore } = this
     let { startIndex, renderSize, offsetSize, visibleIndex, visibleSize, rowHeight } = scrollYStore
+
+    // 动态获取容器的scrollTop，这里有可能会造成卡顿，暂时没有好的方案
     let { scrollTop } = event.target
     let toVisibleIndex = Math.ceil(scrollTop / rowHeight)
     let preload = false
@@ -1710,7 +1770,10 @@ const Methods = {
     let { tableBody, tableHeader } = $refs
     let rHeight = scrollY.rHeight
     if (!rHeight) {
-      let firstTrElem = (tableBody && tableBody.$el.querySelector('tbody>tr')) || (tableHeader && tableHeader.$el.querySelector('thead>tr')) || null
+      let firstTrElem =
+        (tableBody && tableBody.$el.querySelector('tbody>tr')) ||
+        (tableHeader && tableHeader.$el.querySelector('thead>tr')) ||
+        null
       if (firstTrElem) {
         rHeight = firstTrElem.clientHeight
       }
@@ -1805,7 +1868,12 @@ const Methods = {
 
     containerNames.forEach((name) => {
       let tableElem = elemStore[`${name}-body-table`]
-      tableElem && (tableElem.style.marginTop = marginTop)
+
+      // 这里最好使用transform3D,使用gpu加速，防止页面重绘
+      if (tableElem) {
+        tableElem.style.transform = `translateY(${marginTop})`
+      }
+
       layouts.forEach((layout) => {
         let ySpaceElem = elemStore[`${name}-${layout}-ySpace`]
         ySpaceElem && (ySpaceElem.style.height = ySpaceHeight)
@@ -1878,7 +1946,9 @@ const Methods = {
   scrollToColumn(column, isDelay, move) {
     let hasColCache = this.fullColumnMap.has(column)
     column && hasColCache && colToVisible(this, column, move)
-    return isDelay && this.scrollYLoad ? new Promise((resolve) => setTimeout(() => resolve(this.$nextTick()), 50)) : this.$nextTick()
+    return isDelay && this.scrollYLoad
+      ? new Promise((resolve) => setTimeout(() => resolve(this.$nextTick()), 50))
+      : this.$nextTick()
   },
   resetScrollTop() {
     this.lastScrollTop = 0
@@ -1966,7 +2036,8 @@ const Methods = {
     const { scrollXLoad, scrollYLoad, isAsyncColumn } = this
     if (isAsyncColumn && (scrollXLoad || scrollYLoad)) {
       const { tableData, scrollXStore, scrollYStore, tableFullData, scrollDirection = 'N' } = this
-      const isInit = (scrollXLoad && scrollXStore.visibleIndex === 0) || (scrollYLoad && scrollYStore.visibleIndex === 0)
+      const isInit =
+        (scrollXLoad && scrollXStore.visibleIndex === 0) || (scrollYLoad && scrollYStore.visibleIndex === 0)
       // 第一次初始化及横、纵向滚动时（用户直接设置 data 属性时将由 handleAsyncColumn 初始化异步列）
       if (isInit || scrollDirection !== 'N') {
         this.handleResolveColumn(tableFullData, this.collectAsyncColumn(tableData))
@@ -2038,7 +2109,9 @@ const Methods = {
       return
     }
     const promises = mapFetchColumnPromise({ _vm: this, fetchColumns, tableColumn })
-    Promise.all(promises).then(handleAllColumnPromises({ startIndex, fetchColumns, tableData, asyncRenderMap, isScrollLoad }, this))
+    Promise.all(promises).then(
+      handleAllColumnPromises({ startIndex, fetchColumns, tableData, asyncRenderMap, isScrollLoad }, this)
+    )
   },
   // Publish methods 与工具栏对接
   connect({ toolbar }) {

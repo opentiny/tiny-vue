@@ -1,8 +1,8 @@
 <template>
   <div class="button-wrap">
     <tiny-button :icon="IconSearch"></tiny-button>
-    <tiny-button type="primary" :icon="IconEdit"></tiny-button>
-    <tiny-button type="success" :icon="IconYes"></tiny-button>
+    <tiny-button type="primary" :icon="IconEdit">编辑</tiny-button>
+    <tiny-button type="success" :icon="IconYes" text="好的"></tiny-button>
     <tiny-button type="info" :icon="IconMail"></tiny-button>
     <tiny-button type="warning" :icon="IconStarO"></tiny-button>
     <tiny-button type="danger" :icon="IconDel"></tiny-button>

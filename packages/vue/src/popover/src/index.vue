@@ -94,7 +94,7 @@ export default defineComponent({
     trigger: {
       type: String,
       default: 'click',
-      validator: (value) => ~['click', 'focus', 'hover', 'manual'].indexOf(value)
+      validator: (value: string) => Boolean(~['click', 'focus', 'hover', 'manual'].indexOf(value))
     },
     visibleArrow: {
       default: true
