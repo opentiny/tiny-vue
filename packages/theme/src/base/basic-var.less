@@ -98,7 +98,7 @@
   --ti-common-color-error-border: var(--ti-base-color-error-3); /* 错误-校验边框色*/
   --ti-common-color-error-border-secondary: var(--ti-base-color-error-2); /* 错误-alert边框色*/
 
-  --ti-common-color-info: var(--ti-base-color-info-normal); /* 信息-图标色/状态图标-信息*/
+  --ti-common-color-info: var(--ti-base-color-common-7); /* 信息-图标色/状态图标-信息*/
   --ti-common-color-info-text: var(--ti-base-color-common-7); /* 信息-文字色*/
   --ti-common-color-info-bg: rgba(51, 51, 51, 0.06); /* 信息-背景色*/
   --ti-common-color-info-border: #d3d4d6; /* 信息-边框色*/
@@ -190,10 +190,14 @@
 
   /* 白底背景状态色*/
   --ti-common-color-bg-white-normal: var(--ti-base-color-white); /* 白色背景，用于输入框背景*/
-  --ti-common-color-bg-white-emphasize: var(--ti-base-color-brand-1); /* 白色hover或强调色，如表头背景、表格悬浮、下拉选项悬浮背景*/
+  --ti-common-color-bg-white-emphasize: var(
+    --ti-base-color-brand-1
+  ); /* 白色hover或强调色，如表头背景、表格悬浮、下拉选项悬浮背景*/
 
   /* 浅底背景状态色*/
-  --ti-common-color-bg-light-normal: var(--ti-base-color-brand-2); /* 滑块slider-背景色/多选快buttongroup-默认背景色/树组件选中背景色*/
+  --ti-common-color-bg-light-normal: var(
+    --ti-base-color-brand-2
+  ); /* 滑块slider-背景色/多选快buttongroup-默认背景色/树组件选中背景色*/
   --ti-common-color-bg-light-emphasize: var(--ti-base-color-brand-3); /* 浅背景hover或强调色，开关组件“开”禁用背景色*/
 
   /* 深色底背景状态色*/
@@ -281,7 +285,8 @@
   --ti-common-shadow-success: 0 1px 3px 0 rgba(39, 176, 128, 0.25); /* 成功*/
 
   /* 字体*/
-  --ti-common-font-family: 'Helvetica', 'Arial', 'PingFangSC-Regular', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'Microsoft JhengHei';
+  --ti-common-font-family: 'Helvetica', 'Arial', 'PingFangSC-Regular', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑',
+    'Microsoft JhengHei';
 
   /* 字重*/
   --ti-common-font-weight-1: 100; /* 极细*/
@@ -360,72 +365,82 @@
   --ti-common-size-auto: auto; /* 其他尺寸-2*/
 
   /* 2022.9.23 补充 */
-  --ti-base-color-primary-normal: var(--ti-base-color-brand-6);
-  --ti-base-color-primary-hover: var(--ti-base-color-brand-5);
-  --ti-base-color-primary-active: var(--ti-base-color-brand-5);
-  --ti-base-color-primary-disabled: #a0cfff;
-  --ti-base-color-primary-disabled-border: var(--ti-common-color-line-disabled);
-  --ti-base-color-primary-disabled-text: var(--ti-common-color-text-disabled);
+  --ti-common-color-primary-normal: var(--ti-base-color-brand-6);
+  --ti-common-color-primary-hover: var(--ti-base-color-brand-5);
+  --ti-common-color-primary-active: var(--ti-base-color-brand-5);
+  --ti-common-color-primary-disabled: #a0cfff;
+  --ti-common-color-primary-disabled-border: var(--ti-common-color-line-disabled);
+  --ti-common-color-primary-disabled-text: var(--ti-common-color-text-disabled);
 
-  --ti-base-color-success-normal: var(--ti-common-color-success);
-  --ti-base-color-success-hover: var(--ti-common-color-success-border);
-  --ti-base-color-success-active: var(--ti-common-color-success-border);
-  --ti-base-color-success-disabled: #a6c3b9;
-  --ti-base-color-success-disabled-border: var(--ti-common-color-line-disabled);
-  --ti-base-color-success-disabled-text: var(--ti-common-color-text-disabled);
+  --ti-common-color-success-normal: var(--ti-common-color-success);
+  --ti-common-color-success-hover: var(--ti-common-color-success-border);
+  --ti-common-color-success-active: var(--ti-common-color-success-border);
+  --ti-common-color-success-disabled: #a6c3b9;
+  --ti-common-color-success-disabled-border: var(--ti-common-color-line-disabled);
+  --ti-common-color-success-disabled-text: var(--ti-common-color-text-disabled);
 
-  --ti-base-color-warning-normal: var(--ti-common-color-warn);
-  --ti-base-color-warning-hover: var(--ti-common-color-warn-secondary);
-  --ti-base-color-warning-active: var(--ti-common-color-warn-secondary);
-  --ti-base-color-warning-disabled: #d3c6a2;
-  --ti-base-color-warning-disabled-border: var(--ti-common-color-line-disabled);
-  --ti-base-color-warning-disabled-text: var(--ti-common-color-text-disabled);
+  --ti-common-color-warning-normal: var(--ti-common-color-warn);
+  --ti-common-color-warning-hover: var(--ti-common-color-warn-secondary);
+  --ti-common-color-warning-active: var(--ti-common-color-warn-secondary);
+  --ti-common-color-warning-disabled: #d3c6a2;
+  --ti-common-color-warning-disabled-border: var(--ti-common-color-line-disabled);
+  --ti-common-color-warning-disabled-text: var(--ti-common-color-text-disabled);
 
-  --ti-base-color-danger-normal: var(--ti-common-bg-primary);
-  --ti-base-color-danger-hover: var(--ti-common-bg-primary-hover);
-  --ti-base-color-danger-active: var(--ti-common-bg-primary-active);
-  --ti-base-color-danger-disabled: #d8bab5;
-  --ti-base-color-danger-disabled-border: var(--ti-common-color-line-disabled);
-  --ti-base-color-danger-disabled-text: var(--ti-common-color-text-disabled);
+  --ti-common-color-danger-normal: var(--ti-common-bg-primary);
+  --ti-common-color-danger-hover: var(--ti-common-bg-primary-hover);
+  --ti-common-color-danger-active: var(--ti-common-bg-primary-active);
+  --ti-common-color-danger-disabled: #d8bab5;
+  --ti-common-color-danger-disabled-border: var(--ti-common-color-line-disabled);
+  --ti-common-color-danger-disabled-text: var(--ti-common-color-text-disabled);
 
-  --ti-base-color-info-normal: var(--ti-base-color-common-7);
-  --ti-base-color-info-hover: #54657e;
-  --ti-base-color-info-active: #54657e;
-  --ti-base-color-info-disabled: #bfbfbf;
-  --ti-base-color-info-disabled-border: var(--ti-common-color-line-disabled);
-  --ti-base-color-info-disabled-text: var(--ti-common-color-text-disabled);
+  --ti-common-color-info-normal: var(--ti-base-color-common-7);
+  --ti-common-color-info-hover: #54657e;
+  --ti-common-color-info-active: #54657e;
+  --ti-common-color-info-disabled: #bfbfbf;
+  --ti-common-color-info-disabled-border: var(--ti-common-color-line-disabled);
+  --ti-common-color-info-disabled-text: var(--ti-common-color-text-disabled);
 
-  --ti-base-color-border: var(--ti-base-color-common-2);
-  --ti-base-color-border-hover: var(--ti-base-color-common-5);
-  --ti-base-color-light: #fff;
-  --ti-base-color-hover-background: var(--ti-base-color-brand-1);
-  --ti-base-color-selected-background: var(--ti-base-color-brand-6); /* 下拉框选中时的背景色 */
-  --ti-base-color-selected-text-color: var(--ti-base-color-light); /* 下拉框选中时文字的颜色 */
-  --ti-base-size-height-normal: 30px;
-  --ti-base-box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-  --ti-base-dropdown-gap: 2px;
+  --ti-common-color-border: var(--ti-base-color-common-2);
+  --ti-common-color-border-hover: var(--ti-base-color-common-5);
+  --ti-common-color-light: #fff;
+  --ti-common-color-hover-background: var(--ti-base-color-brand-1);
+  --ti-common-color-selected-background: var(--ti-base-color-brand-6); /* 下拉框选中时的背景色 */
+  --ti-common-color-selected-text-color: var(--ti-common-color-light); /* 下拉框选中时文字的颜色 */
+  --ti-common-size-height-normal: 30px;
+  --ti-common-box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  --ti-common-dropdown-gap: 2px;
 
   /* 2022.10.09 补充 */
-  --ti-base-color-dark: #000;
-  --ti-base-color-secondary: #666;
-  --ti-base-color-placeholder: #999;
-  --ti-base-color-navigation-background: #2e3243;
-  --ti-base-radius-large: 3px;
-  --ti-base-radius-medium: 2px;
-  --ti-base-radius-small: 1px;
-  --ti-base-font-size: 12px;
-  --ti-base-font-size-normal: 1em;
-  --ti-base-font-size-large: 1.125em;
-  --ti-base-font-weight-bold: 700;
-  --ti-base-size-width-large: 130px;
-  --ti-base-size-width-medium: 120px;
-  --ti-base-size-width-normal: 80px;
-  --ti-base-size-width-small: 36px;
-  --ti-base-size-width-minor: 30px;
-  --ti-base-size-width-mini: 24px;
-  --ti-base-size-height-large: 48px;
-  --ti-base-size-height-medium: 42px;
-  --ti-base-size-height-small: 28px;
-  --ti-base-size-height-minor: 30px;
-  --ti-base-size-height-mini: 24px;
+  --ti-common-color-dark: #000;
+  --ti-common-color-secondary: #666;
+  --ti-common-color-placeholder: #999;
+  --ti-common-color-navigation-background: #2e3243;
+  --ti-common-radius-large: 3px;
+  --ti-common-radius-medium: 2px;
+  --ti-common-radius-small: 1px;
+  --ti-common-font-size: 12px;
+  --ti-common-font-size-normal: 1em;
+  --ti-common-font-size-large: 1.125em;
+  --ti-common-font-weight-bold: 700;
+  --ti-common-size-width-large: 130px;
+  --ti-common-size-width-medium: 120px;
+  --ti-common-size-width-normal: 80px;
+  --ti-common-size-width-small: 36px;
+  --ti-common-size-width-minor: 30px;
+  --ti-common-size-width-mini: 24px;
+  --ti-common-size-height-large: 48px;
+  --ti-common-size-height-medium: 42px;
+  --ti-common-size-height-small: 28px;
+  --ti-common-size-height-minor: 30px;
+  --ti-common-size-height-mini: 24px;
+
+  /* 2023.4.12 补充*/
+  --ti-common-line-height-base: 12px; /* 跟字号保持一致 */
+  --ti-common-line-height-1: 14px;
+  --ti-common-line-height-2: 16px;
+  --ti-common-line-height-3: 18px;
+  --ti-common-line-height-4: 20px;
+  --ti-common-line-height-5: 24px;
+  --ti-common-line-height-6: 32px;
+  --ti-common-line-height-7: 36px;
 }

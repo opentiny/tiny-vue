@@ -28,7 +28,8 @@
     "release": "node build/release.js && node build/postbuild.js && cp README.md dist",
     "build:copy-remote": "npm run build:theme && cp-cli dist ../aurora-vue/node_modules/@aurora/theme",
     "publishTgz": "node .cloudbuild/publish-tgzs.js",
-    "postversion": "pnpm build"
+    "postversion": "pnpm build",
+    "build:themejson": "node scripts/build-theme-json"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
@@ -39,6 +40,7 @@
     "gulp-clean-css": "^4.2.0",
     "gulp-less": "^5.0.0",
     "gulp-svg-inline": "^1.0.1",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "fast-glob": "^3.2.12"
   }
 }

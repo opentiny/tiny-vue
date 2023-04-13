@@ -8,8 +8,8 @@
     <label for="num">切换到</label>
     <tiny-numeric id="num" v-model="index" @change="indexChange" :min="1" :max="8"></tiny-numeric>
     <tiny-button-group>
-      <tiny-button type="primary" @click="prev">上一张</tiny-button>
-      <tiny-button type="primary" @click="next">下一张</tiny-button>
+      <tiny-button type="primary" @click="prev" :disabled="index === 1"> 上一张 </tiny-button>
+      <tiny-button type="primary" @click="next" :disabled="index === 8"> 下一张 </tiny-button>
     </tiny-button-group>
   </div>
 </template>

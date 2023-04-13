@@ -10,12 +10,11 @@
  *
  */
 
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
 import { linkClick } from './index'
 
 export const api = ['linkClick']
 
-export const renderless = (props, { onMounted, onBeforeUnmount, inject }, { refs, router, emit }) => {
+export const renderless = (props, { inject }, { refs, router, emit }) => {
   const breadcrumbEmitter = inject('breadcrumbEmitter')
   const breadcrumb = inject('breadcrumb')
   const constants = breadcrumb._constants
@@ -24,15 +23,5 @@ export const renderless = (props, { onMounted, onBeforeUnmount, inject }, { refs
     linkClick: linkClick({ props, refs, router, emit, breadcrumbEmitter, constants })
   }
 
-  onMounted(() => {
-    on(refs.link, 'click', api.linkClick)
-  })
-
-  onBeforeUnmount(() => {
-    off(refs.link, 'click', api.linkClick)
-  })
-
-  return {
-    api
-  }
+  return api
 }

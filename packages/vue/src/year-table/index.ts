@@ -10,6 +10,7 @@
  *
  */
 import YearTable from './src/index.vue'
+import '@opentiny/vue-theme/year-table/index.less'
 import { version } from './package.json'
 
 /* istanbul ignore next */
