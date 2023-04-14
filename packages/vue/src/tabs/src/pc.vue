@@ -116,8 +116,8 @@ export default defineComponent({
 
     const header = (
       <div class={['tiny-tabs__header', `is-${position}`]}>
-        {newButton}
         {TabNavComponent}
+        {newButton}
       </div>
     )
 

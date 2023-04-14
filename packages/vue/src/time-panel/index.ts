@@ -10,6 +10,7 @@
  *
  */
 import TimePanel from './src/index.vue'
+import '@opentiny/vue-theme/date-panel/index.less'
 import { version } from './package.json'
 
 /* istanbul ignore next */

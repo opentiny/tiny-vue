@@ -11,12 +11,13 @@
  -->
 <template>
   <span class="tiny-breadcrumb__item">
-    <span :class="['tiny-breadcrumb__inner', to ? 'is-link' : '']" ref="link" role="link">
+    <span :class="['tiny-breadcrumb__inner', to ? 'is-link' : '']" ref="link" role="link" @click="linkClick">
       <slot>
         <span>{{ label }}</span>
       </slot>
     </span>
-    <component v-if="breadcrumb.separatorIcon" :is="breadcrumb.separatorIcon" class="tiny-svg-size tiny-breadcrumb__separator-cls" />
+    <component v-if="breadcrumb.separatorIcon" :is="breadcrumb.separatorIcon"
+      class="tiny-svg-size tiny-breadcrumb__separator-cls" />
     <span v-else class="tiny-breadcrumb__separator">{{ breadcrumb.separator }}</span>
   </span>
 </template>

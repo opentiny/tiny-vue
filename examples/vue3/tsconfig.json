@@ -10,5 +10,13 @@
     "node_modules",
     "**/dist",
     "**/*.md"
-  ]
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "../docs/newsrc/*"
+      ]
+    }
+  }
 }

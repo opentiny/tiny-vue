@@ -26,8 +26,8 @@
   border: 1px solid var(--ti-select-dropdown-border-color);
   border-radius: var(--ti-select-dropdown-border-radius);
   background-color: var(--ti-select-dropdown-bg-color);
-  box-shadow: var(--ti-base-box-shadow);
-  margin-top: var(--ti-base-dropdown-gap);
+  box-shadow: var(--ti-common-box-shadow);
+  margin-top: var(--ti-common-dropdown-gap);
   box-sizing: border-box;
 
   .@{tree-prefix-cls} {
@@ -36,7 +36,7 @@
   }
 
   &.@{popper-prefix-cls} {
-    margin-top: var(--ti-base-dropdown-gap);
+    margin-top: var(--ti-common-dropdown-gap);
   }
 
   & .@{scrollbar-prefix-cls}.is-empty &__list {
@@ -87,7 +87,8 @@
     list-style: none;
     margin: 0;
     box-sizing: border-box;
-    padding: var(--ti-select-dropdown-list-padding-top) var(--ti-select-dropdown-list-padding-horizontal) var(--ti-select-dropdown-list-padding-bottom);
+    padding: var(--ti-select-dropdown-list-padding-top) var(--ti-select-dropdown-list-padding-horizontal)
+      var(--ti-select-dropdown-list-padding-bottom);
     text-align: left;
   }
 

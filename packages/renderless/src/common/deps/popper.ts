@@ -317,6 +317,7 @@ Popper.prototype.destroy = function () {
 
   const popperStyle = (this._reference === this._oldreference && this._oldreference._popper) || {}
 
+  this._popper.style.display = 'none'
   this._popper.style.position = ''
   this._popper.style.top = popperStyle.top || ''
   this._popper.style.left = popperStyle.left || ''

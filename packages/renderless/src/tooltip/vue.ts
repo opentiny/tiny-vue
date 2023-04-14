@@ -24,7 +24,7 @@ import {
   debounceClose,
   watchFocusing,
   bindPopper,
-  focusHandler
+  focusHandler,
 } from './index'
 import userPopper from '@opentiny/vue-renderless/common/deps/vue-popper'
 import { guid } from '@opentiny/vue-renderless/common/string'
@@ -36,13 +36,12 @@ export const api = [
   'show',
   'doDestroy',
   'handleFocus',
-  'setExpectedState',
   'debounceClose',
   'handleShowPopper',
   'handleClosePopper',
   'setExpectedState',
   'updatePopper',
-  'focusHandler'
+  'focusHandler',
 ]
 
 const initState = ({ reactive, showPopper, popperElm, referenceElm, props }) =>
@@ -78,7 +77,7 @@ export const renderless = (
     show: show({ api, state, props }),
     hide: hide(api),
     destroyed: destroyed({ state, api }),
-    bindPopper: bindPopper({ vm, refs, state, nextTick }),
+    bindPopper: bindPopper({ vm, refs, nextTick }),
     watchFocusing: watchFocusing(state),
     removeFocusing: removeFocusing(state),
     handleBlur: handleBlur({ api, state }),
@@ -88,7 +87,7 @@ export const renderless = (
     handleShowPopper: handleShowPopper({ props, state }),
     handleClosePopper: handleClosePopper({ api, props, state }),
     bindEvent: bindEvent({ api, state, vm }),
-    focusHandler: focusHandler({ slots, api })
+    focusHandler: focusHandler({ slots, api }),
   })
 
   watch(() => state.focusing, api.watchFocusing)

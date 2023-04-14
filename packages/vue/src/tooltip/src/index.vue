@@ -131,6 +131,7 @@ export default defineComponent({
       this.d({
         popperVM: {
           get: () =>
+            // 使用适配器里的createComponent创建一个新的vue的vnode节点为一个新组件，挂载到el下面去
             createComponent({
               el: document.createElement('div'),
               component: {
@@ -146,6 +147,8 @@ export default defineComponent({
                     this.setExpectedState(false)
                     this.debounceClose()
                   }
+
+                  this.$nextTick(() => this.updatePopper())
 
                   return h('transition', propsData, [
                     <div
@@ -196,6 +199,7 @@ export default defineComponent({
       return 'tiny-tooltip ' + className.replace(/\btiny-tooltip\b/g, '').trim()
     }
 
+    // 查找默认的slots, 并把它渲染到组件所在位置上。
     const getFirstElement = () => {
       const slots = this.slots.default && this.slots.default()
 

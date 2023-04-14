@@ -48,6 +48,7 @@
     "build:renderless": "pnpm -C packages/renderless build",
     "build:theme": "pnpm -C packages/theme build",
     "build:themeMobile": "pnpm -C packages/theme-mobile build",
+    "build:themejson": "pnpm -C packages/theme build:themejson",
     "build:internals": "pnpm \"--filter=./internals/*\" build",
     "release:vue2": "pnpm -C internals/cli release:vue2",
     "release:vue3": "pnpm -C internals/cli release:vue3",
@@ -174,7 +175,8 @@
       "vue2": "npm:vue@2.6.14",
       "vue2.7": "npm:vue@2.7.10",
       "vue3": "npm:vue@3.2.39",
-      "vite-plugin-importus": "1.0.4"
+      "vite-plugin-importus": "1.0.4",
+      "vuepress-vite": "^2.0.0-beta.45"
     },
     "packageExtensions": {
       "vue-template-compiler@2.6.14": {

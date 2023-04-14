@@ -1,46 +1,39 @@
 <template>
   <div class="wp100 hp100 f-r of-hidden">
     <div class="w230 hp100 pt20 of-auto">
-      <tiny-tree-menu :data="menuData" :filter-node-method="fn.searchMenu" @current-change="fn.clickMenu"></tiny-tree-menu>
+      <tiny-tree-menu
+        :data="menuData"
+        :filter-node-method="fn.searchMenu"
+        @current-change="fn.clickMenu"
+      ></tiny-tree-menu>
     </div>
     <div class="fi-1 f-c px20 pb30 f-c mr200 of-auto">
       <!-- 标题 -->
       <div class="py20 f24 fw-bold text-center">
         {{ state.demos[0]?.component }}
       </div>
-      <div id="preview" class="bg-white">
+      <div id="preview" class="bg-white f-c">
+        <!-- 标题 + 组件说明  -->
         <div class="mb20 py10 pl16 child<code>p4 child<code>bg-lightless">
-          <div class="mr20 fw-bold">
-            {{ state.currDemo?.title }}({{ state.currDemo?.demoId }}.vue):
-          </div>
+          <div class="mr20 fw-bold">{{ state.currDemo?.title }}({{ state.currDemo?.demoId }}.vue):</div>
           <div v-html="state.currDemo?.content"></div>
         </div>
-        <!-- 预览 + 按钮 + 代码  -->
+        <!-- 预览 + 按钮 + 源代码编辑器  -->
         <div class="p20 of-auto b-a bs-dotted">
           <component :is="state.comp"></component>
         </div>
         <div class="f-r f-pos-end mt40">
-          <tiny-button @click="fn.format">
-            格式化
-          </tiny-button>
-          <tiny-tooltip effect="dark" content="选择src/_.vue文件" placement="top">
-            <tiny-button @click="fn.apply" type="primary">
-              应用
-            </tiny-button>
+          <tiny-button @click="fn.format"> 格式化 </tiny-button>
+          <tiny-tooltip effect="dark" content="选择cocs/newsrc/_.vue文件" placement="top">
+            <tiny-button @click="fn.apply" type="primary"> 应用 </tiny-button>
           </tiny-tooltip>
-          <tiny-button @click="fn.saveCode" class="!ml40">
-            保存
-          </tiny-button>
-          <tiny-button @click="fn.fullScreen">
-            全屏
-          </tiny-button>
+          <tiny-button @click="fn.saveCode" class="!ml40"> 保存 </tiny-button>
+          <tiny-button @click="fn.fullScreen"> 全屏 </tiny-button>
         </div>
-        <div id="editor" ref="editorRef" class="h300 mt10"></div>
+        <div id="editor" ref="editorRef" class="minh300 mt10 fi-1 mb20"></div>
       </div>
       <!-- API表格 -->
-      <div v-if="state.currApi" class="mt20 f24 fw-bold">
-        组件API
-      </div>
+      <div v-if="state.currApi" class="f24 fw-bold">组件API</div>
       <div v-for="(apiTable, key) in state.currApi" :key="key">
         <div class="my8 f22 fw-bold">
           {{ key }}
@@ -48,7 +41,9 @@
         <tiny-grid :data="apiTable" border auto-resize>
           <tiny-grid-column field="name" width="15%" title="名称">
             <template #default="data">
-              <a v-if="data.row.sample" class="c-primary h:c-error" @click="fn.selectDemo(data.row.sample)">{{ data.row.name }}</a>
+              <a v-if="data.row.sample" class="c-primary h:c-error" @click="fn.selectDemo(data.row.sample)">{{
+                data.row.name
+              }}</a>
               <span v-else>{{ data.row.name }}</span>
             </template>
           </tiny-grid-column>
@@ -61,7 +56,13 @@
     <!-- 右边浮动所有的demos -->
     <tiny-floatbar v-if="state.demos.length > 0" class="!top120">
       <div class="f12 ofy-auto">
-        <div v-for="demo in state.demos" :key="demo.demoId" @click="fn.selectDemo(demo.demoId)" class="w130 px10 py6 bg-light link-primary h:c-error h:td-under ellipsis cur-hand" :class="{ 'c-error': state.currDemo === demo }">
+        <div
+          v-for="demo in state.demos"
+          :key="demo.demoId"
+          @click="fn.selectDemo(demo.demoId)"
+          class="w130 px10 py6 bg-light link-primary h:c-error h:td-under ellipsis cur-hand"
+          :class="{ 'c-error': state.currDemo === demo }"
+        >
           {{ demo.title }}
           <Icon-star-icon v-if="state.currDemo === demo" style="fill: #ee343f" />
         </div>
@@ -129,7 +130,7 @@ export default {
       format: () => editor.format(),
       apply: async () => {
         await tmpSaver.save(editor.getCode())
-        setTimeout(() => (state.comp = markRaw(TmpDemo)), 100)
+        setTimeout(() => (state.comp = hooks.markRaw(TmpDemo)), 100)
       }
     }
 

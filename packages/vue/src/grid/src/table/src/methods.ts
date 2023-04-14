@@ -219,10 +219,16 @@ const Methods = {
       tableSourceData: clone(tableFullData, true),
       scrollYLoad
     })
+
     if (scrollYLoad && !(height || maxHeight)) {
       error('ui.grid.error.scrollYHeight')
     }
-    this.clearScroll()
+
+    // 如果notRefresh为true表示不刷新表格状态，所以也不需要清楚滚动状态
+    if (!notRefresh) {
+      this.clearScroll()
+    }
+
     this.handleTableData(true)
     run(['reserveCheckSelection', 'checkSelectionStatus'], this)
     let first = () => !notRefresh && this.recalculate()
