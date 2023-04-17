@@ -924,6 +924,11 @@ const Methods = {
       rightBody && (rightBody.$el.scrollTop = top)
     }
   },
+  //同步headerHeight
+  syncHeaderHeight() {
+    let headerEl = this.$refs.tableHeader?.$el
+    if (headerEl) this.headerHeight = headerEl.offsetHeight
+  },
   updateStyle() {
     let { $refs, columnStore, currentRow, height, maxHeight, minHeight, parentHeight, tableColumn } = this
     let containerList = ['main', 'left', 'right']
@@ -952,6 +957,8 @@ const Methods = {
     })
     currentRow && this.setCurrentRow(currentRow)
     this.syncFixedTop()
+    // Fixed issue #129
+    this.syncHeaderHeight()
     return this.$nextTick()
   },
   // 处理固定列的显示状态
