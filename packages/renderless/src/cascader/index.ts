@@ -254,7 +254,6 @@ export const handleExpandChange = ({ constants, dispatch, emit, nextTick, state,
 
     updatePopper(state.panel.$parent)
   })
-
   emit('expand-change', value)
   emit('active-item-change', value)
 }

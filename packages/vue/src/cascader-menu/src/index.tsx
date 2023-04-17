@@ -27,7 +27,6 @@ const renderNodeListFunc = (_vm) => () => {
   const mapHandler = (node, index) => {
     const uid = node.uid
     const hasChildren = node.hasChildren
-
     return (
       <cascader-node
         key={uid}
