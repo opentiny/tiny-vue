@@ -20,9 +20,10 @@
 @textarea-prefix-cls: ~'@{css-prefix}mobile-textarea';
 @button-prefix-cls: ~'@{css-prefix}mobile-button';
 @numeric-prefix-cls: ~'@{css-prefix}mobile-numeric';
+@input-form-prefix-cls: ~'@{css-prefix}mobile-input-form';
 
 .@{form-item-prefix-cls} {
-  margin-bottom: 12px;
+  margin-bottom: 0px;
   .clearfix();
 
   & & {
@@ -70,21 +71,65 @@
     text-align: right;
     vertical-align: middle;
     float: left;
-    font-size: 16px;
-    color: var(--ti-form-item-label-color, #333);
+    font-size: 14px;
+    color: var(--ti-mobile-base-color-common-2, #191919);
     line-height: 48px;
     padding-right: 8px;
     box-sizing: border-box;
   }
 
+  &__label.is-readonly{
+    color: var(--ti-mobile-base-color-common-6, #999999);
+    padding: 4px 0px; 
+    line-height: 14px;
+    min-height: 14px
+  }
+
   &__value {
     float: right;
+    font-size: 14px;
+    color: var(--ti-mobile-base-color-common-5, #595959); 
 
     .tiny-mobile-input-form__input{
       text-align: left;
+      font-size: 14px;
+      color: var(--ti-mobile-base-color-common-5, #595959); 
+    }
+
+    .tiny-mobile-textarea__inner{
+      line-height: 22px;
+      height: auto;
+      font-size: 14px;
     }
   }
 
+  &__value.is-readonly{
+    color: var(--ti-mobile-base-color-common-2, #191919);
+    
+    .tiny-mobile-input-form__input{
+      height: 22px;
+      line-height: 22px;
+    }
+
+    .tiny-mobile-textarea{
+      padding: 0px 16px;
+    }
+
+    input,textarea {
+      &.readonly,
+      &[readonly] {
+        color: var(--ti-mobile-base-color-common-2, #191919);
+      }
+    }
+    
+  }
+
+  .is-readonly {
+    .@{input-form-prefix-cls} {
+      height: 22px;
+    }
+  }
+  
   &__content {
     line-height: 48px;
     position: relative;
@@ -176,6 +221,14 @@
   .@{input-prefix-cls}__validateIcon {
     display: none;
   }
+}
+
+.@{form-item-prefix-cls}:last-child{
+  margin-bottom: 0px;
+}
+
+.@{form-item-prefix-cls}.is-readonly{
+  margin-bottom: 12px;
 }
 
 .@{css-prefix} {

@@ -17,9 +17,12 @@
 @multi-select-prefix-cls: ~'@{css-prefix}mobile-multi-select';
 
 .@{multi-select-prefix-cls} {
-  background: var(--ti-mobile-multi-select-bg, #fff);
   width: 100%;
-  border-radius: 0px 0px 16px 16px;
+  position: relative;
+
+  &__active {
+    background: var(--ti-mobile-multi-select-bg-active, #fff);
+  }
 
   &__header {
     display: flex;
@@ -34,7 +37,6 @@
       flex: 1;
       flex-direction: row;
       justify-content: space-between;
-      background: var(--ti-mobile-multi-select-header-bg, #fff);
       box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.06) inset;
     }
 
@@ -55,7 +57,7 @@
       align-items: center;
       justify-content: center;
       height: var(--ti-mobile-multi-select-header-item-height, 28px);
-      background: var(--ti-mobile-multi-select-header-item-bg, rgba(0, 0, 0, 0.03));
+      background: var(--ti-mobile-multi-select-header-item-bg, #ededed);
       border-radius: 4px;
       margin-top: var(--ti-mobile-multi-select-header-item-margin-top, 10px);
       padding: 5px 8px;
@@ -98,17 +100,28 @@
       }
     }
 
-    &__active {
+    &__selected{
+      background: var(--ti-mobile-multi-select-header-item-bg-selected, #f1f5ff);
+    }
+
+    &__selected &__label{
+      color: var(--ti-mobile-base-color-brand-1, #4a79fe);
+    }
+
+    &__selected &__icon{
+
       svg {
         fill: var(--ti-mobile-base-color-brand-1, #4a79fe);
       }
-
-      color: var(--ti-mobile-base-color-brand-1, #4a79fe);
     }
   }
 
   &__content {
+    width: 100%;
     height: var(--ti-mobile-multi-select-content-height, 226px);
+    position: absolute;
+    background: #fff;
+    z-index: 500;
   }
 
   .noFooter {
@@ -125,6 +138,10 @@
     align-items: center;
     border-radius: 0px 0px 16px 16px;
     box-shadow: 0px -1px 3px 0px #f8f8f8;
+    background: #fff;
+    z-index: 500;
+    position: absolute;
+    margin-top: 226px;
 
     button {
       width: var(--ti-mobile-multi-select-footer-width, 164px);
