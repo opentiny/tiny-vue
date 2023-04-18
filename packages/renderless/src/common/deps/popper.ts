@@ -155,23 +155,23 @@ export const getScrollParent = (el) => {
   return getScrollParent(el.parentNode)
 }
 
-const getOffsetRectRelativeToCustomParent = (el, parent, fixed) => {
+const getOffsetRectRelativeToCustomPopper = (el: HTMLElement, popper: HTMLElement, fixed: boolean) => {
   let { top, left, width, height } = getBoundingClientRect(el)
-  let parentRect = getBoundingClientRect(parent)
+  let popperRect = getBoundingClientRect(popper)
 
   if (fixed) {
     let { scrollTop, scrollLeft } = getScrollParent(parent)
-    parentRect.top += scrollTop
-    parentRect.bottom += scrollTop
-    parentRect.left += scrollLeft
-    parentRect.right += scrollLeft
+    popperRect.top += scrollTop
+    popperRect.bottom += scrollTop
+    popperRect.left += scrollLeft
+    popperRect.right += scrollLeft
   }
 
   let rect = {
-    top: top - parentRect.top,
-    left: left - parentRect.left,
-    bottom: top - parentRect.top + height,
-    right: left - parentRect.left + width,
+    top: top - popperRect.top,
+    left: left - popperRect.left,
+    bottom: top - popperRect.top + height,
+    right: left - popperRect.left + width,
     width,
     height
   }
@@ -413,14 +413,25 @@ Popper.prototype._getPosition = function (popper, reference) {
   return isParentFixed ? 'fixed' : 'absolute'
 }
 
-Popper.prototype._getOffsets = function (popper, reference, placement) {
+Popper.prototype._getOffsets = function (popper: HTMLElement, reference: HTMLElement, placement: string) {
   placement = placement.split('-')[0]
 
-  let popperOffsets = {}
+  let popperOffsets = {
+    position: this.state.position,
+    left: 0,
+    top: 0,
+    width: 0,
+    height: 0,
+  }
   popperOffsets.position = this.state.position
 
   let isParentFixed = popperOffsets.position === 'fixed'
-  let referenceOffsets = getOffsetRectRelativeToCustomParent(reference, getOffsetParent(popper), isParentFixed)
+  popper.style.left = '0'
+  popper.style.top = '0'
+  const originMargin = popper.style.margin
+  popper.style.margin = '0'
+  let referenceOffsets = getOffsetRectRelativeToCustomPopper(reference, popper, isParentFixed)
+  popper.style.margin = originMargin
 
   // 利用 popperOuterSize 来减少一次outerSize的计算
   let { width, height } = this.popperOuterSize ? this.popperOuterSize : (this.popperOuterSize = getOuterSizes(popper))
