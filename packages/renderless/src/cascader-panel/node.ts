@@ -45,7 +45,7 @@ export default class Node {
     const childrenKey = config.children
     const childrenData = this.data[childrenKey]
 
-    this.hasChildren = Array.isArray(childrenData)
+    this.hasChildren = Array.isArray(childrenData) && childrenData.length > 0
     this.children = (childrenData || []).map((child) => new Node(child, config, this))
   }
 
