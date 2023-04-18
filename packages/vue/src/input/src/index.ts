@@ -67,6 +67,14 @@ export default defineComponent({
       type: Array,
       default: () => []
     },
+    ellipsis: {
+      type: Boolean,
+      default: false
+    },
+    contentStyle: {
+      type: Object,
+      default: {}
+    },
     isSelect: {
       type: Boolean,
       default: false

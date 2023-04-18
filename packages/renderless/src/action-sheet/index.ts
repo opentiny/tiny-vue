@@ -30,6 +30,8 @@ export const setSheetStyle = ({ state, props }) => () => {
       'max-height': props.height,
     }
   }
+  // 内容区支持自定义主题
+  state.contentStyle = props.contentStyle ? props.contentStyle : '';
 }
 
 export const initScrollMenu = ({ state, nextTick, refs, BScroll }) => () => {
@@ -38,7 +40,7 @@ export const initScrollMenu = ({ state, nextTick, refs, BScroll }) => () => {
     if (!state.scroll) {
       state.scroll = new BScroll(scrollMenu, {
         probeType: 3,
-        click: true
+        tap: 'tap'
       })
     } else {
       state.scroll.refresh()
