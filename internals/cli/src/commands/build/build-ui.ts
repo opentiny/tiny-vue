@@ -191,8 +191,6 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
     utils.logGreen(`====== 开始构建 ${message} ======`)
     const entry = toEntry(tasks)
 
-    const entryPathSet = new Set(Object.values(entry))
-
     const dtsInclude = toTsInclude(tasks)
     await build({
       configFile: false,
@@ -209,12 +207,6 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
           external: (source, importer, isResolved) => {
             // vite打包入口文件或者没有解析过得包不能排除依赖
             if (isResolved || !importer) {
-              return false
-            }
-
-            // 模块作为入口时不需要通过external分离
-            const srcPath = path.resolve(importer, '..', source.split('?')[0])
-            if (entryPathSet.has(srcPath)) {
               return false
             }
 
