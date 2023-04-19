@@ -69,7 +69,7 @@
     "test:pub-runtime": "npm run build:runtime-vue2 && npm run release:vue2 && npm run build:runtime-vue3 && npm run release:vue3 && mv -f tgzs/*.tgz ./ && npm run pubTgz -- production",
     "test:pubTgz": "npm run pubTgz -- production",
     "clean:build": "rimraf packages/dist2 packages/dist3 packages/renderless/dist",
-    "clean:dependencies": "rm -rf node_modules /**/node_modules",
+    "clean:dependencies": "rimraf node_modules /**/node_modules",
     "// ---------- 构建【mf】版本 ----------": "",
     "preci:deployMfPatch": "pnpm clean:build && lerna version prepatch --conventional-prerelease --include-merged-tags --preid mf --no-push --yes",
     "ci:deployMfPatch": "lerna publish from-package --yes --dist-tag mf",
