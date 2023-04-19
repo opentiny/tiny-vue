@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue",
   "private": true,
-  "version": "3.7.0",
+  "version": "3.6.6",
   "description": "opentiny vue components",
   "type": "module",
   "main": "index.ts",
