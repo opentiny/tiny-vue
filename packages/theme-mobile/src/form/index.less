@@ -20,6 +20,8 @@
 .@{form-prefix-cls} {
   width: 100%;
   overflow: hidden;
+  padding: 12px;
+  background: #fff;
 
   div {
     outline: none;
@@ -27,14 +29,13 @@
 
   .@{form-item-prefix-cls} {
     position: relative;
-    margin-bottom: 0;
   }
 
   .@{form-item-prefix-cls}__label {
     width: 35%;
     min-height: 48px;
     line-height: 1.4;
-    font-size: 16px;
+    font-size: 14px;
     display: flex;
     z-index: 1;
     padding: 13px 0px;
@@ -78,6 +79,14 @@
       position: initial;
       text-align: left;
       line-height: 1;
+    }
+
+    .@{form-item-prefix-cls}__label.is-readonly{
+      margin-bottom: 6px;
+    }
+
+    .@{form-item-prefix-cls}__value .tiny-mobile-textarea{
+      padding: 0px 16px;
     }
 
     .@{form-item-prefix-cls}__value {

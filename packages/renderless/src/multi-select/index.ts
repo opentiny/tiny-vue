@@ -193,11 +193,10 @@ export const getLabelsStyle = (state) => {
   // 不超过总宽度25%的头部下拉项
   let widthInfo = over25Labels
   const len = state.dataSource.length
-  if (len >= 4) {
-    return getStyleConfig(state.labelLevelsInfo, { width: `${((1 / len) * 100).toFixed(2)}%` })
-  }
-  if (!widthInfo.length || widthInfo.length === state.labelLevelsInfo.length) {
-    // 所有下拉项同时不超过或者超过25%宽度
+
+  if (!widthInfo.length || widthInfo.length === state.labelLevelsInfo.length || len >= 4) {
+
+    // 所有下拉项同时不超过或者超过25%宽度或者列数大于等于4
     return getStyleConfig(state.labelLevelsInfo, { maxWidth: `${((1 / len) * 100).toFixed(2)}%` })
   }
   let fillArr

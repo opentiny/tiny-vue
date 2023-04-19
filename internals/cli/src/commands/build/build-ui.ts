@@ -64,33 +64,33 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, themeV
       ...getVuePlugins(vueVersion),
       dts
         ? dtsPlugin({
-          root: pathFromWorkspaceRoot(),
-          tsConfigFilePath: `tsconfig.vue${vueVersion}.json`,
-          aliasesExclude: [/@opentiny\/vue.+/],
-          compilerOptions: {
-            paths: {
-              ...compilerOptions.paths,
-              // 一定要映射到 packages/vue 下对应的 vue 版本和 @vue/composition-api 才能正确生成 dts
-              'vue': [`packages/vue/node_modules/vue${vueVersion}`],
-              '@vue/runtime-core': ['packages/vue/node_modules/@vue/runtime-core'],
-              '@vue/runtime-dom': ['packages/vue/node_modules/@vue/runtime-dom'],
-              '@vue/composition-api': ['packages/vue/node_modules/@vue/composition-api']
+            root: pathFromWorkspaceRoot(),
+            tsConfigFilePath: `tsconfig.vue${vueVersion}.json`,
+            aliasesExclude: [/@opentiny\/vue.+/],
+            compilerOptions: {
+              paths: {
+                ...compilerOptions.paths,
+                // 一定要映射到 packages/vue 下对应的 vue 版本和 @vue/composition-api 才能正确生成 dts
+                'vue': [`packages/vue/node_modules/vue${vueVersion}`],
+                '@vue/runtime-core': ['packages/vue/node_modules/@vue/runtime-core'],
+                '@vue/runtime-dom': ['packages/vue/node_modules/@vue/runtime-dom'],
+                '@vue/composition-api': ['packages/vue/node_modules/@vue/composition-api']
+              }
+            },
+            include: [...dtsInclude, 'packages/vue/*.d.ts'],
+            // 忽略类型检查错误，保证生成不会阻断
+            skipDiagnostics: true,
+            beforeWriteFile: (filePath, content) => {
+              return {
+                // "vue/src/alert/index.d.ts" ==> "alert/index.d.ts"
+                filePath: filePath.replace('/vue/src', '').replace('\\vue\\src', ''),
+                content: content
+                  // vue 2.7 还不能正常识别 vue-common
+                  .replace(/import\('[./]+vue-common.+'\)/, 'import("vue")')
+                  .replace(/\("vue[1-9\.]+/g, '("vue')
+              }
             }
-          },
-          include: [...dtsInclude, 'packages/vue/*.d.ts'],
-          // 忽略类型检查错误，保证生成不会阻断
-          skipDiagnostics: true,
-          beforeWriteFile: (filePath, content) => {
-            return {
-              // "vue/src/alert/index.d.ts" ==> "alert/index.d.ts"
-              filePath: filePath.replace('/vue/src', '').replace('\\vue\\src', ''),
-              content: content
-                // vue 2.7 还不能正常识别 vue-common
-                .replace(/import\('[./]+vue-common.+'\)/, 'import("vue")')
-                .replace(/\("vue[1-9\.]+/g, '("vue')
-            }
-          }
-        })
+          })
         : undefined,
       inlineChunksPlugin({ deleteInlinedFiles: true }),
       generatePackageJsonPlugin({
@@ -190,6 +190,9 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
     if (tasks.length === 0) return
     utils.logGreen(`====== 开始构建 ${message} ======`)
     const entry = toEntry(tasks)
+
+    const entryPathSet = new Set(Object.values(entry))
+
     const dtsInclude = toTsInclude(tasks)
     await build({
       configFile: false,
@@ -206,6 +209,12 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
           external: (source, importer, isResolved) => {
             // vite打包入口文件或者没有解析过得包不能排除依赖
             if (isResolved || !importer) {
+              return false
+            }
+
+            // 模块作为入口时不需要通过external分离
+            const srcPath = path.resolve(importer, '..', source.split('?')[0])
+            if (entryPathSet.has(srcPath)) {
               return false
             }
 
@@ -297,7 +306,14 @@ function getTasks(names: string[]): Module[] {
 
 export async function buildUi(
   names: string[] = [],
-  { vueVersions = ['2', '3'], buildTarget = '8.0', formats = ['es'], clean = false, dts = true, themeVersion }: BuildUiOption
+  {
+    vueVersions = ['2', '3'],
+    buildTarget = '8.0',
+    formats = ['es'],
+    clean = false,
+    dts = true,
+    themeVersion
+  }: BuildUiOption
 ) {
   // 是否清空构建目录
   let emptyOutDir = clean
