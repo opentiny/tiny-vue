@@ -73,7 +73,7 @@ export default defineComponent({
     },
     contentStyle: {
       type: Object,
-      default: {}
+      default: () => ({})
     },
     isSelect: {
       type: Boolean,
@@ -121,5 +121,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})
