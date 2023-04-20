@@ -155,23 +155,23 @@ export const getScrollParent = (el) => {
   return getScrollParent(el.parentNode)
 }
 
-const getOffsetRectRelativeToCustomPopper = (el: HTMLElement, popper: HTMLElement, fixed: boolean) => {
+const getOffsetRectRelativeToCustomParent = (el, parent, fixed) => {
   let { top, left, width, height } = getBoundingClientRect(el)
-  let popperRect = getBoundingClientRect(popper)
+  let parentRect = getBoundingClientRect(parent)
 
   if (fixed) {
     let { scrollTop, scrollLeft } = getScrollParent(parent)
-    popperRect.top += scrollTop
-    popperRect.bottom += scrollTop
-    popperRect.left += scrollLeft
-    popperRect.right += scrollLeft
+    parentRect.top += scrollTop
+    parentRect.bottom += scrollTop
+    parentRect.left += scrollLeft
+    parentRect.right += scrollLeft
   }
 
   let rect = {
-    top: top - popperRect.top,
-    left: left - popperRect.left,
-    bottom: top - popperRect.top + height,
-    right: left - popperRect.left + width,
+    top: top - parentRect.top,
+    left: left - parentRect.left,
+    bottom: top - parentRect.top + height,
+    right: left - parentRect.left + width,
     width,
     height
   }
@@ -179,9 +179,11 @@ const getOffsetRectRelativeToCustomPopper = (el: HTMLElement, popper: HTMLElemen
   return rect
 }
 
-const getScrollTopValue = (el) => (el == document.body ? Math.max(document.documentElement.scrollTop, document.body.scrollTop) : el.scrollTop)
+const getScrollTopValue = (el) =>
+  el == document.body ? Math.max(document.documentElement.scrollTop, document.body.scrollTop) : el.scrollTop
 
-const getScrollLeftValue = (el) => (el == document.body ? Math.max(document.documentElement.scrollLeft, document.body.scrollLeft) : el.scrollLeft)
+const getScrollLeftValue = (el) =>
+  el == document.body ? Math.max(document.documentElement.scrollLeft, document.body.scrollLeft) : el.scrollLeft
 
 const getMaxWH = (body, html) => {
   const height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
@@ -413,25 +415,14 @@ Popper.prototype._getPosition = function (popper, reference) {
   return isParentFixed ? 'fixed' : 'absolute'
 }
 
-Popper.prototype._getOffsets = function (popper: HTMLElement, reference: HTMLElement, placement: string) {
+Popper.prototype._getOffsets = function (popper, reference, placement) {
   placement = placement.split('-')[0]
 
-  let popperOffsets = {
-    position: this.state.position,
-    left: 0,
-    top: 0,
-    width: 0,
-    height: 0,
-  }
+  let popperOffsets = {}
   popperOffsets.position = this.state.position
 
   let isParentFixed = popperOffsets.position === 'fixed'
-  popper.style.left = '0'
-  popper.style.top = '0'
-  const originMargin = popper.style.margin
-  popper.style.margin = '0'
-  let referenceOffsets = getOffsetRectRelativeToCustomPopper(reference, popper, isParentFixed)
-  popper.style.margin = originMargin
+  let referenceOffsets = getOffsetRectRelativeToCustomParent(reference, getOffsetParent(popper), isParentFixed)
 
   // 利用 popperOuterSize 来减少一次outerSize的计算
   let { width, height } = this.popperOuterSize ? this.popperOuterSize : (this.popperOuterSize = getOuterSizes(popper))
@@ -785,7 +776,11 @@ Popper.prototype.modifiers.arrow = function (data) {
     arrow = this._popper.querySelector(arrow)
   }
 
-  if (!arrow || !this._popper.contains(arrow) || !this.isModifierRequired(this.modifiers.arrow, this.modifiers.keepTogether)) {
+  if (
+    !arrow ||
+    !this._popper.contains(arrow) ||
+    !this.isModifierRequired(this.modifiers.arrow, this.modifiers.keepTogether)
+  ) {
     return data
   }
 
