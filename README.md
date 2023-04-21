@@ -63,6 +63,7 @@ pnpm dev:vue2
 ```
 
 Open your browser and visit: [http://127.0.0.1:6175/](http://127.0.0.1:6175/)
+
 (It is possible that it is not port 6175. You can check the port displayed in the local running results. )
 
 ## 🤝 Contributing
