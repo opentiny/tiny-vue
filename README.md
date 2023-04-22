@@ -62,7 +62,7 @@ pnpm dev
 pnpm dev:vue2
 ```
 
-Open your browser and visit: [http://127.0.0.1:6175/](http://127.0.0.1:6175/)
+Open your browser and visit: [http://127.0.0.1:6175/](http://127.0.0.1:7130/)
 
 ## 🤝 Contributing
 
