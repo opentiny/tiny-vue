@@ -43,7 +43,7 @@ Local startup steps:
 - Associated with the upstream repository to facilitate the synchronization of the latest code of the upstream repository.
 - Run `pnpm i` under the TinyVue root directory to install node dependencies.
 - Run `pnpm dev` to launch the component library website.
-- Open the browser to visit: [http://127.0.0.1:6175/](http://127.0.0.1:6175/)
+- Open the browser to visit: [http://127.0.0.1:7130/](http://127.0.0.1:7130/)
 
 ```shell
 # You need to replace username with your own user name
@@ -65,7 +65,7 @@ pnpm dev:vue2
 
 To submit a PR:
 
-- Make sure that you have completed the steps in local startup and can visit [http://127.0.0.1:6175/](http://127.0.0.1:6175/) normally.
+- Make sure that you have completed the steps in local startup and can visit [http://127.0.0.1:7130/](http://127.0.0.1:7130/) normally.
 - Synchronize upstream repository dev branch latest code: `git pull upstream dev`.
 - Create a new branch `git checkout-b username/feature1 upstream/ dev` from the upstream repository dev branch. The name of the branch should be `username/feat- xxx` / `username/fix- xxx`.
 - Local coding.
