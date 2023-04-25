@@ -95,7 +95,14 @@ export function handleEnterKeyDown({ event, selected, actived }) {
   let isRightArrow = event.keyCode === 39
   // 如果是激活状态，退则出到下一行
   if (selected.row || actived.row) {
-    this.moveSelected({ args: selected.row ? selected.args : actived.args, isLeftArrow, isUpArrow, isRightArrow, isDwArrow: true, event })
+    this.moveSelected({
+      args: selected.row ? selected.args : actived.args,
+      isLeftArrow,
+      isUpArrow,
+      isRightArrow,
+      isDwArrow: true,
+      event
+    })
   } else if (treeConfig && highlightCurrentRow && currentRow) {
     // 如果是树形表格当前行回车移动到子节点
     let childrens = currentRow[treeConfig.children]
@@ -123,7 +130,15 @@ export function handleCtxMenu({ event }) {
       menuList: ctxMenuStore.selected.children
     })
   } else {
-    this.moveCtxMenu({ event, keyCode: event.keyCode, ctxMenuStore, property: 'selected', operKey: 39, operRest: true, menuList: this.ctxMenuList })
+    this.moveCtxMenu({
+      event,
+      keyCode: event.keyCode,
+      ctxMenuStore,
+      property: 'selected',
+      operKey: 39,
+      operRest: true,
+      menuList: this.ctxMenuList
+    })
   }
 }
 
@@ -223,7 +238,8 @@ export function handleGlobalKeydownEvent(event) {
 }
 
 export function handleGlobalResizeEvent() {
-  this.recalculate()
+  // 窗口尺寸改变时，实时计算表格的宽高
+  this.recalculate(true)
 }
 
 // 触发表头 tooltip 事件
@@ -251,7 +267,10 @@ export function triggerTooltipEvent(event, params) {
   let { actived } = editStore
   let { row, column, showTip } = params
   if (editConfig) {
-    if ((editConfig.mode === 'row' && actived.row === row && column.editor) || (actived.row === row && actived.column === column)) {
+    if (
+      (editConfig.mode === 'row' && actived.row === row && column.editor) ||
+      (actived.row === row && actived.column === column)
+    ) {
       return
     }
   }
