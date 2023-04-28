@@ -19,7 +19,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
     message,
     emptyOutDir,
     npmScope,
-    min,
+    min
   })
 
   function toEntry(libs) {
@@ -32,7 +32,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
   function getExternal() {
     return {
       vue: 'Vue',
-      '@vue/composition-api': 'VueCompositionAPI',
+      '@vue/composition-api': 'VueCompositionAPI'
     }
   }
 
@@ -59,7 +59,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
       }),
       babel({
         extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
-        presets: ['@babel/preset-env'],
+        presets: ['@babel/preset-env']
       })
     )
 
@@ -91,7 +91,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
               }
 
               return 'style/[name]-[hash][extname]'
-            },
+            }
           }
         },
         lib: {
@@ -101,16 +101,22 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
         },
         outDir
       }
-    }
-    )
+    })
   }
 }
 
 function getEntryTasks() {
-  return [{
-    path: 'vue/app.ts',
-    libPath: 'app.full',
-  }]
+  // 每次都要构建app和图标2个runtime
+  return [
+    {
+      path: 'vue/app.ts',
+      libPath: 'tiny-vue'
+    },
+    {
+      path: 'vue-icon/index.ts',
+      libPath: 'tiny-vue-icon'
+    }
+  ]
 }
 
 export async function buildRuntime({
