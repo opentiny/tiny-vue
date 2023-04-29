@@ -229,10 +229,9 @@ const calcCurrentValue = ({ currentValue, props, state }) => {
     if (stepValue) {
       currentValue -= stepValue
       currentValue += stepValue * 2 > step ? Number(step) : 0
-      if (stepPrecision) {
-        // step为小数时，currentValue也保持相同的精度
-        currentValue = currentValue.toFixed(stepPrecision)
-      }
+      // Fixed issue #174
+      // currentValue保持与step相同的精度
+      currentValue = currentValue.toFixed(stepPrecision)
     }
 
     if (state.isDouble) {
