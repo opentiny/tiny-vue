@@ -7,10 +7,9 @@ import type { BuildUiOption } from './build-ui'
 import { pathFromPackages, getBaseConfig, requireModules } from './build-ui'
 import commonjs from '@rollup/plugin-commonjs'
 
-const runtimeDir = 'dist/@opentiny/vue/runtime'
-
 async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope, min }) {
   const rootDir = pathFromPackages('')
+  const runtimeDir = `dist${vueVersion}/@opentiny/vue/runtime`
   const outDir = path.resolve(rootDir, runtimeDir)
 
   await batchBuild({
@@ -41,7 +40,13 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
     utils.logGreen(`====== 开始构建 ${message} ======`)
 
     const entry = toEntry(tasks)
-    const baseConfig = getBaseConfig({ vueVersion, dtsInclude: [], dts: false, npmScope }) as UserConfig
+    const baseConfig = getBaseConfig({
+      vueVersion,
+      dtsInclude: [],
+      dts: false,
+      npmScope,
+      isRuntime: true
+    }) as UserConfig
 
     baseConfig.define = Object.assign(baseConfig.define || {}, {
       'process.env.BUILD_TARGET': JSON.stringify(vueVersion !== '3' ? 'runtime' : 'component'),
@@ -96,6 +101,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
         },
         lib: {
           entry,
+          formats: ['es'],
           fileName: (format, entryName) => `${entryName}${min ? '.min' : ''}.${format === 'es' ? 'm' : ''}js`,
           name: 'Tiny'
         },
@@ -120,7 +126,7 @@ function getEntryTasks() {
 }
 
 export async function buildRuntime({
-  vueVersions = ['2', '2.7', '3'],
+  vueVersions = ['2', '3'],
   clean = false,
   scope = 'opentiny',
   min = false
@@ -134,7 +140,7 @@ export async function buildRuntime({
   // 要构建的vue框架版本
   for (const vueVersion of vueVersions) {
     const message = `TINY for vue${vueVersion}: runtime`
-    await batchBuildAll({ vueVersion, tasks: [tasks[0]], message, emptyOutDir, npmScope: scope, min })
+    await batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope: scope, min })
     // 确保只运行一次
     emptyOutDir = false
   }
