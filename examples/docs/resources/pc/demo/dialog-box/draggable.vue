@@ -1,6 +1,8 @@
 <template>
   <div>
-    <tiny-button @click="boxVisibility = true">可拖拽弹窗</tiny-button>
+    <tiny-button @click="boxVisibility = true">
+      可拖拽弹窗
+    </tiny-button>
     <tiny-dialog-box
       draggable
       v-model:visible="boxVisibility"
@@ -12,14 +14,16 @@
     >
       <span>dialog-box内容</span>
       <template #footer>
-        <tiny-button type="primary" @click="boxVisibility = false">确 定</tiny-button>
+        <tiny-button type="primary" @click="boxVisibility = false">
+          确 定
+        </tiny-button>
       </template>
     </tiny-dialog-box>
   </div>
 </template>
 
 <script lang="jsx">
-import { Button, DialogBox } from '@opentiny/vue'
+import { Button, DialogBox, Notify } from '@opentiny/vue'
 
 export default {
   components: {
@@ -33,13 +37,19 @@ export default {
   },
   methods: {
     dragStart() {
-      window.tinyLog('拖拽开始')
+      Notify({
+        message: '拖拽开始',
+        position: 'top-right'
+      })
     },
     dragEnd() {
-      window.tinyLog('拖拽结束')
+      Notify({
+        message: '拖拽结束',
+        position: 'top-right'
+      })
     },
     dragMove() {
-      window.tinyLog('拖拽移动')
+      // 拖拽移动事件
     }
   }
 }
