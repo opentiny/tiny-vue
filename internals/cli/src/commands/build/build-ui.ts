@@ -93,7 +93,6 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, themeV
           })
         : undefined,
       inlineChunksPlugin({ deleteInlinedFiles: true }),
-      // 打包 icon的runtime产物时，记得注释掉下面插件
       isRuntime
         ? undefined
         : generatePackageJsonPlugin({
