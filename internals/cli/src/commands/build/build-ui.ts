@@ -52,7 +52,7 @@ export const getVuePlugins = (vueVersion: string) => {
 
 export const ns = (ver) => ({ '2': '', '2.7': '2', '3': '3' }[ver] || '')
 
-export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, themeVersion }) => {
+export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, themeVersion, isRuntime }) => {
   // 处理tsconfig中配置，主要是处理paths映射，确保dts可以找到正确的包
   const compilerOptions = require(pathFromWorkspaceRoot(`tsconfig.vue${vueVersion}.json`)).compilerOptions
 
@@ -94,56 +94,58 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, themeV
         : undefined,
       inlineChunksPlugin({ deleteInlinedFiles: true }),
       // 打包 icon的runtime产物时，记得注释掉下面插件
-      generatePackageJsonPlugin({
-        beforeWriteFile: (filePath, content) => {
-          const versionTarget = `${vueVersion}.${buildTarget}`
-          const themeAndRenderlessVersion = `3.${themeVersion || buildTarget}`
-          const isThemeOrRenderless = (key) =>
-            key.includes('@opentiny/vue-theme') || key.includes('@opentiny/vue-renderless')
+      isRuntime
+        ? undefined
+        : generatePackageJsonPlugin({
+            beforeWriteFile: (filePath, content) => {
+              const versionTarget = `${vueVersion}.${buildTarget}`
+              const themeAndRenderlessVersion = `3.${themeVersion || buildTarget}`
+              const isThemeOrRenderless = (key) =>
+                key.includes('@opentiny/vue-theme') || key.includes('@opentiny/vue-renderless')
 
-          const dependencies = {}
+              const dependencies = {}
 
-          Object.entries(content.dependencies).forEach(([key, value]) => {
-            if (isThemeOrRenderless(key)) {
-              dependencies[key] = `~${themeAndRenderlessVersion}`
-            } else if ((value as string).includes('workspace:~')) {
-              dependencies[key] = `~${versionTarget}`
-            } else {
-              dependencies[key] = value
+              Object.entries(content.dependencies).forEach(([key, value]) => {
+                if (isThemeOrRenderless(key)) {
+                  dependencies[key] = `~${themeAndRenderlessVersion}`
+                } else if ((value as string).includes('workspace:~')) {
+                  dependencies[key] = `~${versionTarget}`
+                } else {
+                  dependencies[key] = value
+                }
+              })
+
+              if (filePath.includes('vue-common') && vueVersion === '2') {
+                dependencies['@vue/composition-api'] = '~1.2.2'
+              }
+
+              // 如果是主入口或者svg图标则直接指向相同路径
+              if (filePath === 'vue-icon' || filePath === 'vue') {
+                content.main = './index.js'
+              } else {
+                content.main = './lib/index.js'
+              }
+
+              content.types = 'index.d.ts'
+
+              if (filePath.includes('vue-common') || filePath.includes('vue-locale')) {
+                content.types = './src/index.d.ts'
+              }
+
+              content.version = versionTarget
+              content.dependencies = dependencies
+
+              delete content.module
+              delete content.devDependencies
+              delete content.private
+              delete content.exports
+
+              return {
+                filePath: filePath.replace(/[\\/]lib$/, ''),
+                content
+              }
             }
-          })
-
-          if (filePath.includes('vue-common') && vueVersion === '2') {
-            dependencies['@vue/composition-api'] = '~1.2.2'
-          }
-
-          // 如果是主入口或者svg图标则直接指向相同路径
-          if (filePath === 'vue-icon' || filePath === 'vue') {
-            content.main = './index.js'
-          } else {
-            content.main = './lib/index.js'
-          }
-
-          content.types = 'index.d.ts'
-
-          if (filePath.includes('vue-common') || filePath.includes('vue-locale')) {
-            content.types = './src/index.d.ts'
-          }
-
-          content.version = versionTarget
-          content.dependencies = dependencies
-
-          delete content.module
-          delete content.devDependencies
-          delete content.private
-          delete content.exports
-
-          return {
-            filePath: filePath.replace(/[\\/]lib$/, ''),
-            content
-          }
-        }
-      }),
+          }),
       replaceModuleNamePlugin()
     ],
     resolve: {
