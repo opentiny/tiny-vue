@@ -140,7 +140,11 @@ export async function buildRuntime({
   // 要构建的vue框架版本
   for (const vueVersion of vueVersions) {
     const message = `TINY for vue${vueVersion}: runtime`
-    await batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope: scope, min })
+
+    // 这里注意不能使用多入口打包，rollup多入口打包会抽取公共依赖（再由inlineChunksPlugin插件处理），导致组件库运行时加载失败
+    for (let i = 0; i < tasks.length; i++) {
+      await batchBuildAll({ vueVersion, tasks: [tasks[i]], message, emptyOutDir, npmScope: scope, min })
+    }
     // 确保只运行一次
     emptyOutDir = false
   }
