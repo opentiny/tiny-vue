@@ -31,13 +31,13 @@ export const computedStyle = ({ props, state }) => () => {
 
   if (!state.isFull) {
     style.width = width
-    style.top = top
+    style.top = state.top || top
 
     if (rightSlide) {
       style.right = 0
       style.height = 'calc(100vh - ' + style.top + ')'
     } else {
-      style.left = 'calc((100vw - ' + width + ') / 2)'
+      style.left = state.left || 'calc((100vw - ' + width + ') / 2)'
     }
   }
 
@@ -239,6 +239,8 @@ export const handleDrag = ({ parent, props, state, emit }) => (event) => {
 
     modalBoxElem.style.left = `${left}px`
     modalBoxElem.style.top = `${top}px`
+    state.left = `${left}px`
+    state.top = `${top}px`
 
     state.emitter.emit('boxdrag')
     emit('drag-move', event)

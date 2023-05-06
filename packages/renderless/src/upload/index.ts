@@ -295,6 +295,5 @@ export const mounted = ({ state, props, api }) => () => {
 }
 
 export const onBeforeDestroy = (state) => () => {
-  state.updateInput.onchange = null
   state.updateInput = null
 }
