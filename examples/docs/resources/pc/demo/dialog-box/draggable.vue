@@ -19,7 +19,7 @@
 </template>
 
 <script lang="jsx">
-import { Button, DialogBox } from '@opentiny/vue'
+import { Button, DialogBox, Notify } from '@opentiny/vue'
 
 export default {
   components: {
@@ -33,13 +33,19 @@ export default {
   },
   methods: {
     dragStart() {
-      window.tinyLog('拖拽开始')
+      Notify({
+        message: '拖拽开始',
+        position: 'top-right'
+      })
     },
     dragEnd() {
-      window.tinyLog('拖拽结束')
+      Notify({
+        message: '拖拽结束',
+        position: 'top-right'
+      })
     },
     dragMove() {
-      window.tinyLog('拖拽移动')
+      // 拖拽移动事件
     }
   }
 }
