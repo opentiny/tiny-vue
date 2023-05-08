@@ -1,5 +1,5 @@
 <template>
-  <tiny-rate v-model="rate" disabled></tiny-rate>
+  <tiny-rate v-model="rate" allow-half disabled></tiny-rate>
 </template>
 
 <script lang="jsx">
@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      rate: 3
+      rate: 2.5
     }
   }
 }
