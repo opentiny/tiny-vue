@@ -1,0 +1,116 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@date-range-picker-prefix-cls: ~'@{css-prefix}date-range-picker';
+
+.@{date-range-picker-prefix-cls} {
+  .component-css-vars-date-range-picker();
+
+  width: 558px;
+
+  &.has-sidebar {
+    width: 668px;
+  }
+
+  table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .@{picker-panel-prefix-cls}__body {
+    min-width: var(--ti-date-range-picker-body-min-width);
+  }
+
+  .@{picker-panel-prefix-cls}__content {
+    margin: 0;
+  }
+
+  &__header {
+    position: relative;
+    text-align: center;
+    height: 28px;
+
+    [class*='arrow-left'] {
+      float: left;
+    }
+
+    [class*='arrow-right'] {
+      float: right;
+    }
+
+    div {
+      font-size: var(--ti-date-range-picker-header-font-size);
+      font-weight: 500;
+      margin-right: 50px;
+    }
+  }
+
+  &__content {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 16px;
+
+    &.is-left {
+      border-right: 1px solid var(--ti-date-picker-border-color);
+    }
+
+    .@{date-range-picker-prefix-cls}__header div {
+      margin-left: 50px;
+      margin-right: 50px;
+    }
+  }
+
+  &__editors-wrap {
+    box-sizing: border-box;
+    display: table-cell;
+
+    &.is-right {
+      text-align: right;
+    }
+  }
+
+  &__time-header {
+    position: relative;
+    border-bottom: 1px solid var(--ti-date-picker-border-color);
+    font-size: var(--ti-date-picker-font-size);
+    padding: 8px 5px 5px;
+    display: table;
+    width: 100%;
+    box-sizing: border-box;
+
+    & > .@{css-prefix}icon-arrow-right {
+      font-size: var(--ti-common-font-size-4);
+      vertical-align: middle;
+      display: table-cell;
+      color: var(--ti-date-range-picker-time-header-icon-color);
+    }
+  }
+
+  &__time-picker-wrap {
+    position: relative;
+    display: table-cell;
+    padding: 0 5px;
+
+    .@{picker-panel-prefix-cls} {
+      position: absolute;
+      top: 13px;
+      right: 0;
+      z-index: 1;
+      background: var(--ti-date-picker-bg-color);
+    }
+  }
+}

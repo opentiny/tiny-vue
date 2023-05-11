@@ -10,6 +10,7 @@
  *
  */
 import DatePicker from './src/index.js'
+import '@opentiny/vue-theme/date-picker/index.less'
 import { version } from './package.json'
 
 DatePicker.model = {

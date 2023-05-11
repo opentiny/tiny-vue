@@ -4,7 +4,6 @@ export default {
   'tiny-form-item-mini-line-height': '24px',
   'tiny-form-item-label-line-height': '30px',
   'tiny-form-item-label-font-size': '14px',
-  'tiny-form-item-label-color': '#333',
   'tiny-form-item-error-color': '#f5222d',
   'tiny-form-item-error-font-size': '12px'
 }

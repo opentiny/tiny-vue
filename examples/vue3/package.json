@@ -7,7 +7,7 @@
     "*"
   ],
   "scripts": {
-    "dev": "vite --port 6175",
+    "dev": "vite --port 7130",
     "build": "vite build",
     "preview": "vite preview",
     "test:e2e": "playwright test",

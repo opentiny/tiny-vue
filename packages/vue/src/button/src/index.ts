@@ -42,7 +42,13 @@ export default defineComponent({
       type: String,
       default: 'button'
     },
-    size: String,
+    size: {
+      type: String,
+      default: '',
+      validator(val: string) {
+        return ['large', 'medium', 'small', 'mini', ''].includes(val)
+      }
+    },
     round: Boolean,
     plain: Boolean,
     circle: Boolean,
@@ -53,5 +59,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

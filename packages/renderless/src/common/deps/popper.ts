@@ -179,9 +179,11 @@ const getOffsetRectRelativeToCustomParent = (el, parent, fixed) => {
   return rect
 }
 
-const getScrollTopValue = (el) => (el == document.body ? Math.max(document.documentElement.scrollTop, document.body.scrollTop) : el.scrollTop)
+const getScrollTopValue = (el) =>
+  el == document.body ? Math.max(document.documentElement.scrollTop, document.body.scrollTop) : el.scrollTop
 
-const getScrollLeftValue = (el) => (el == document.body ? Math.max(document.documentElement.scrollLeft, document.body.scrollLeft) : el.scrollLeft)
+const getScrollLeftValue = (el) =>
+  el == document.body ? Math.max(document.documentElement.scrollLeft, document.body.scrollLeft) : el.scrollLeft
 
 const getMaxWH = (body, html) => {
   const height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
@@ -317,6 +319,7 @@ Popper.prototype.destroy = function () {
 
   const popperStyle = (this._reference === this._oldreference && this._oldreference._popper) || {}
 
+  this._popper.style.display = 'none'
   this._popper.style.position = ''
   this._popper.style.top = popperStyle.top || ''
   this._popper.style.left = popperStyle.left || ''
@@ -773,7 +776,11 @@ Popper.prototype.modifiers.arrow = function (data) {
     arrow = this._popper.querySelector(arrow)
   }
 
-  if (!arrow || !this._popper.contains(arrow) || !this.isModifierRequired(this.modifiers.arrow, this.modifiers.keepTogether)) {
+  if (
+    !arrow ||
+    !this._popper.contains(arrow) ||
+    !this.isModifierRequired(this.modifiers.arrow, this.modifiers.keepTogether)
+  ) {
     return data
   }
 

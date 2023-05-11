@@ -10,18 +10,23 @@
  *
  -->
 <template>
-  <div class="tiny-mobile-multi-select">
+  <div :class="['tiny-mobile-multi-select', state.isActive ? 'tiny-mobile-multi-select__active' : '']">
     <div class="tiny-mobile-multi-select__header">
       <div class="tiny-mobile-multi-select__header__flexCenter" ref="headerBox">
         <!-- 用来计算头部每项宽度 -->
         <div class="tiny-mobile-multi-select__header__calc">
-          <div v-for="(item, index) of dataSource" :key="index" class="tiny-mobile-multi-select__header__item" ref="label">
-            <div :class="['tiny-mobile-multi-select__header__label', state.headerInfo[index]?.isSelected ? 'tiny-mobile-multi-select__header__active' : '']">
+          <div 
+            v-for="(item, index) of dataSource" 
+            :key="index" 
+            :class="['tiny-mobile-multi-select__header__item', state.headerInfo[index]?.isSelected ? 'tiny-mobile-multi-select__header__selected' : '']" 
+            ref="label"
+          >
+            <div class="tiny-mobile-multi-select__header__label">
               <span v-if="!state.headerInfo[index]?.isSelected">{{ item.title }}</span>
               <span v-else>{{ state.headerInfo[index]?.title }}</span>
             </div>
             <div
-              :class="['tiny-mobile-multi-select__header__icon', state.headerInfo[index]?.isSelected ? 'tiny-mobile-multi-select__header__active' : '']"
+              class="tiny-mobile-multi-select__header__icon"
               :style="{
                 transform: state.headerInfo[index]?.isUP ? 'rotate(180deg)' : 'none'
               }"
@@ -33,16 +38,16 @@
         <div
           v-for="(item, index) of dataSource"
           :key="index"
-          class="tiny-mobile-multi-select__header__item"
+          :class="['tiny-mobile-multi-select__header__item', state.headerInfo[index]?.isSelected ? 'tiny-mobile-multi-select__header__selected' : '']"
           @click="handleClick(index)"
           :style="state.labelsStyle[index]"
         >
-          <div :class="['tiny-mobile-multi-select__header__label', state.headerInfo[index]?.isSelected ? 'tiny-mobile-multi-select__header__active' : '']">
+          <div class="tiny-mobile-multi-select__header__label">
             <span v-if="!state.headerInfo[index]?.isSelected">{{ item.title }}</span>
             <span v-else>{{ state.headerInfo[index]?.title }}</span>
           </div>
           <div
-            :class="['tiny-mobile-multi-select__header__icon', state.headerInfo[index]?.isSelected ? 'tiny-mobile-multi-select__header__active' : '']"
+            class="tiny-mobile-multi-select__header__icon"
             :style="{
               transform: state.headerInfo[index]?.isUP ? 'rotate(180deg)' : 'none'
             }"

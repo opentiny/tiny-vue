@@ -43,7 +43,7 @@
 - 关联上游仓库，方便同步上游仓库最新代码
 - 在 Tiny Vue 根目录下运行 `pnpm i`, 安装 node 依赖
 - 运行 `pnpm dev`，启动组件库网站
-- 打开浏览器访问：[http://127.0.0.1:6175/](http://127.0.0.1:6175/)
+- 打开浏览器访问：[http://127.0.0.1:7130/](http://127.0.0.1:7130/)
 
 ```shell
 # username 为用户名，执行前请替换
@@ -65,7 +65,7 @@ pnpm dev:vue2
 
 提交 PR 的步骤：
 
-- 请确保你已经完成本地启动中的步骤，并能正常访问：[http://127.0.0.1:6175/](http://127.0.0.1:6175/)
+- 请确保你已经完成本地启动中的步骤，并能正常访问：[http://127.0.0.1:7130/](http://127.0.0.1:7130/)
 - 同步上游仓库 dev 分支最新代码：git pull upstream dev
 - 从上游仓库 dev 分支创建新分支 `git checkout -b username/feature1 upstream/dev`，分支名字建议为 `username/feat-xxx` / `username/fix-xxx`
 - 本地编码

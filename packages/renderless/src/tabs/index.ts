@@ -92,6 +92,7 @@ export const handleTabClick = ({ api, emit, props, refs }) => (pane, tabName, ev
     return
   }
 
+  event.stopPropagation()
   api.setCurrentName(tabName)
 
   emit('click', pane, event)

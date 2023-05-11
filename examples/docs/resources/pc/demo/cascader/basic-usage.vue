@@ -18,6 +18,11 @@ export default {
           label: '指南',
           children: [
             {
+              value: 'quick-started',
+              label: '快速开始',
+              children: []
+            },
+            {
               value: 'anzhuang',
               label: '安装',
               children: [

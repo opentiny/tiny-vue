@@ -25,7 +25,11 @@ export const initService = ({ props, service }) => {
     if (propName) {
       return Promise.reject(new Error(`[TINY Error][FileUpload] Prop ${propName} is not configured`))
     } else {
-      return Promise.reject(new Error('[TINY Error][FileUpload] This component depends on @opentiny/vue-service'))
+      return Promise.reject(
+        new Error(
+          '[TINY Error][FileUpload] This component depends on @opentiny/vue-service, Currently unable to generate a default gateway, please set a value for the action'
+        )
+      )
     }
   }
 

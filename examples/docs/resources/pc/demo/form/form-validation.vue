@@ -1,7 +1,7 @@
 <template>
   <div class="demo-form">
     <tiny-form ref="ruleForm" hide-required-asterisk :model="createData" :rules="rules" label-width="100px" show-message>
-      <tiny-form-item label="必填" prop="users" required :validateIcon="validateIcon">
+      <tiny-form-item label="必填" prop="users" required :validate-icon="validateIcon">
         <tiny-input v-model="createData.users"></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="日期" prop="datepicker">
@@ -20,7 +20,14 @@
         <tiny-input v-model="createData.textarea" type="textarea" maxlength="15"></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="级联选择器" prop="cascader">
-        <tiny-cascader v-model="createData.cascader" :options="options2" :popper-append-to-body="true" filterable></tiny-cascader>
+        <tiny-cascader v-model="createData.cascader" :options="options2" :popper-append-to-body="true"
+          filterable></tiny-cascader>
+      </tiny-form-item>
+      <tiny-form-item label="Numeric字段" prop="num1">
+        <tiny-numeric v-model="createData.num1"></tiny-numeric>
+      </tiny-form-item>
+      <tiny-form-item label="IP字段" prop="ip">
+        <tiny-ip-address v-model="createData.ip"></tiny-ip-address>
       </tiny-form-item>
       <tiny-form-item label="Numeric字段" prop="num1">
         <tiny-numeric v-model="createData.num1"></tiny-numeric>
@@ -29,14 +36,27 @@
         <tiny-ip-address v-model="createData.ip"></tiny-ip-address>
       </tiny-form-item>
       <tiny-form-item>
-        <tiny-button type="primary" @click="handleSubmit('ruleForm')">提交</tiny-button>
+        <tiny-button type="primary" @click="handleSubmit('ruleForm')">
+          提交
+        </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>
 </template>
 
 <script>
-import { Form, FormItem, Input, DatePicker, Button, Modal, RadioGroup, Cascader, Numeric, IpAddress } from '@opentiny/vue'
+import {
+  Form,
+  FormItem,
+  Input,
+  DatePicker,
+  Button,
+  Modal,
+  RadioGroup,
+  Cascader,
+  Numeric,
+  IpAddress
+} from '@opentiny/vue'
 import { iconWarning } from '@opentiny/vue-icon'
 
 export default {
@@ -53,7 +73,7 @@ export default {
   },
   data() {
     return {
-      validateIcon: IconWarning(),
+      validateIcon: iconWarning(),
       options: [
         { label: 'A', text: '很好', events: { click: this.handleClick } },
         { label: 'B', text: '一般' }
@@ -95,7 +115,12 @@ export default {
         url: { type: 'url' },
         email: { type: 'email' },
         cascader: [{ required: true, message: '必填', trigger: 'blur' }],
-        ip: [{ validator: (rule, value, cb) => (value == '1.1.1.1' ? cb() : cb(new Error('必填1.1.1.1'))), trigger: 'change' }],
+        ip: [
+          {
+            validator: (rule, value, cb) => (value == '1.1.1.1' ? cb() : cb(new Error('必填1.1.1.1'))),
+            trigger: 'change'
+          }
+        ],
         num1: [{ type: 'number', min: 2, max: 11, message: '必填 2~11 之间的数字', trigger: 'change' }]
       }
     }

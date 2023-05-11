@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-carousel height="150px" ref="carousel" :initial-index="index - 1">
+    <tiny-carousel height="150px" ref="carousel" :initial-index="index - 1" @change="handleChange">
       <tiny-carousel-item class="carousel-item-demo" v-for="item in 8" :key="item" :name="'幻灯片 - ' + item">
         <h3>{{ item }}</h3>
       </tiny-carousel-item>
@@ -8,8 +8,8 @@
     <label for="num">切换到</label>
     <tiny-numeric id="num" v-model="index" @change="indexChange" :min="1" :max="8"></tiny-numeric>
     <tiny-button-group>
-      <tiny-button type="primary" @click="prev">上一张</tiny-button>
-      <tiny-button type="primary" @click="next">下一张</tiny-button>
+      <tiny-button type="primary" @click="prev" :disabled="index === 1"> 上一张 </tiny-button>
+      <tiny-button type="primary" @click="next" :disabled="index === 8"> 下一张 </tiny-button>
     </tiny-button-group>
   </div>
 </template>
@@ -43,6 +43,11 @@ export default {
     prev() {
       this.index = Math.max(this.index - 1, 0)
       this.$refs.carousel.prev()
+    },
+    handleChange(newVal) {
+      if (newVal >= 0) {
+        this.index = newVal + 1
+      }
     }
   }
 }
