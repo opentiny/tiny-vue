@@ -22,11 +22,11 @@
       "defaultValue": "[]"
     },
     {
-      "name": "textField",
+      "name": "text-field",
       "sample": "options",
-      "type": "Array",
+      "type": "String",
       "desc": "Specify the breadcrumb display field. This field is used together with options. The component defaults to label.",
-      "defaultValue": "[]"
+      "defaultValue": "label"
     }
   ],
   "events": [
