@@ -201,7 +201,10 @@ export const computedDecimalStyle = ({ props, state }) => {
 
   if (props.disabled) {
     width = `${props.modelValue * 100 - Math.floor(props.modelValue) * 100 < 50 ? 0 : 100}%`
-  } else if (props.allowHalf) {
+  }
+  
+  if (props.allowHalf) {
+    width = ''
     const reactSize = props.size ? Math.ceil(parseInt(props.size) / 2) + 'px' : '6px'
 
     clip = `rect(0px, ${reactSize}, ${props.size || '14px'}, 0px)`
