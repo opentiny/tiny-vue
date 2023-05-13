@@ -22,11 +22,11 @@
       "defaultValue": "[]"
     },
     {
-      "name": "textField",
+      "name": "text-field",
       "sample": "options",
-      "type": "Array",
+      "type": "String",
       "desc": "指定面包屑的显示字段，结合 options 使用，组件默认 label ",
-      "defaultValue": "[]"
+      "defaultValue": "label"
     }
   ],
   "events": [
