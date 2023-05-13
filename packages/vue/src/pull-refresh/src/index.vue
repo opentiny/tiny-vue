@@ -79,10 +79,10 @@ export default defineComponent({
       default: false
     },
     pullUp: {
-      type: Function
+      type: Object
     },
     pullDown: {
-      type: Function
+      type: Object
     },
     hasMore: {
       type: Boolean,
