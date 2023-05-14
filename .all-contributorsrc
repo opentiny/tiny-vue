@@ -41,6 +41,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "awspi",
+      "name": "Pithy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/66438036?v=4",
+      "profile": "https://github.com/awspi",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
