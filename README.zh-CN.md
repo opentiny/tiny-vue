@@ -73,6 +73,21 @@ pnpm dev:vue2
 - 添加官方小助手微信 opentiny-official，加入技术交流群
 - 加入邮件列表 opentiny@googlegroups.com
 
+## ✨ 贡献者
+
+贡献者是在 OpenTiny 社区中合并了 1 个或多个 PR 的社区成员。
+
+感谢以下 OpenTiny 的贡献者们 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
 ## 开源协议
 
 [MIT](LICENSE)

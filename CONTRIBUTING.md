@@ -84,3 +84,11 @@ If you are interested in our open source project, you are welcome to join our op
 
 - Add official assistant WeChat: opentiny-official to join our technical exchange group.
 - Add to the mailing list: opentiny@googlegroups.com
+
+If you have submitted Issue or PR to OpenTiny, you can comment on Issue or Pull Request, asking @all-contributors to add a contributor:
+
+```
+@all-contributors please add @<username> for <contributions>
+```
+
+For detailed rules, please refer to [https://allcontributors.org/docs/en/bot/usage](https://allcontributors.org/docs/en/bot/usage)

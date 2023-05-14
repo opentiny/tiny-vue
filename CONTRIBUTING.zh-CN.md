@@ -84,3 +84,11 @@ pnpm dev:vue2
 
 - 添加官方小助手微信：opentiny-official，加入我们的技术交流群
 - 加入邮件列表：opentiny@googlegroups.com
+
+如果你给 OpenTiny 提交过 Issue 或 PR，请通过以下方式添加自己到贡献者列表里。
+
+```
+@all-contributors please add @<username> for <contributions>
+```
+
+详细规则可以参考：[https://allcontributors.org/docs/en/bot/usage](https://allcontributors.org/docs/en/bot/usage)
