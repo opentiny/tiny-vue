@@ -73,6 +73,21 @@ If you don't know how to start, please read our [contributing guide](CONTRIBUTIN
 - Add the official assistant WeChat `opentiny-official` and join the technical exchange group.
 - Add to the mailing list `opentiny@googlegroups.com`
 
+## ✨ Contributors
+
+Contributors are community members who have 1 or more PR merged in OpenTiny.
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
 ## License
 
 [MIT](LICENSE)
