@@ -10,11 +10,21 @@
       <template #toolbar>
         <tiny-grid-toolbar class="customizedBox">
           <template #buttons>
-            <tiny-button @click="insertEvent">新增</tiny-button>
-            <tiny-button @click="removeEvent">移除选中</tiny-button>
-            <tiny-button @click="getRemoveEvent">获取删除</tiny-button>
-            <tiny-button @click="getUpdateEvent">获取修改</tiny-button>
-            <tiny-button @click="clearTreeExpand">清空展开状态</tiny-button>
+            <tiny-button @click="insertEvent">
+              新增
+            </tiny-button>
+            <tiny-button @click="removeEvent">
+              移除选中
+            </tiny-button>
+            <tiny-button @click="getRemoveEvent">
+              获取删除
+            </tiny-button>
+            <tiny-button @click="getUpdateEvent">
+              获取修改
+            </tiny-button>
+            <tiny-button @click="clearTreeExpand">
+              清空展开状态
+            </tiny-button>
           </template>
         </tiny-grid-toolbar>
       </template>
@@ -202,12 +212,15 @@ export default {
   methods: {
     insertEvent() {
       let tree = this.$refs.tree
-
+      const row = {
+        name: '新数据',
+        isNew: true,
+        children: [{
+          name: '新数据-child',
+        }]
+      }
       tree
-        .createRow({
-          name: '新数据',
-          isNew: true
-        })
+        .createRow(row)
         .then((newRow) => {
           // 插入到第一行
           this.tableData = [newRow, ...this.tableData]
@@ -216,6 +229,7 @@ export default {
         })
     },
     removeEvent() {
+      const isSameObject = (obj1, obj2) => JSON.stringify(obj1) === JSON.stringify(obj2)
       let tree = this.$refs.tree
 
       let removeRecords = tree.getSelectRecords()
@@ -223,7 +237,13 @@ export default {
       let tableData = this.tableData
 
       this.tableData = copy(tableData, removeRecords)
-
+      for (let i = 0; i < this.tableData.length; i++) {
+        for (let j = 0; j < removeRecords.length; j++) {
+          if (isSameObject(this.tableData[i], removeRecords[j])) {
+            this.tableData.splice(i, 1)
+          }
+        }
+      }
       this.removeList = removeRecords.map((item) => ({ ...item }))
     },
 
