@@ -92,6 +92,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/awspi"><img src="https://avatars.githubusercontent.com/u/66438036?v=4?s=100" width="100px;" alt="Pithy"/><br /><sub><b>Pithy</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=awspi" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/heygsc"><img src="https://avatars.githubusercontent.com/u/103993866?v=4?s=100" width="100px;" alt="heygsc"/><br /><sub><b>heygsc</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=heygsc" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/wwttff"><img src="https://avatars.githubusercontent.com/u/32888622?v=4?s=100" width="100px;" alt="MangoWu"/><br /><sub><b>MangoWu</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=wwttff" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ErKeLost"><img src="https://avatars.githubusercontent.com/u/66500121?v=4?s=100" width="100px;" alt="ADNY"/><br /><sub><b>ADNY</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=ErKeLost" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
