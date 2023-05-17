@@ -109,7 +109,7 @@ const capitalizeKebabCase = (str: string, splitChar = '-') => {
  * @param str 字符串
  * @param splitChar 分隔符
  */
-const kebabCase = ({ str, splitChar = '-' }: { str: string; splitChar: string }) => {
+const kebabCase = ({ str, splitChar = '-' }: { str: string; splitChar?: string }) => {
   if (!str || typeof str !== 'string') return str
 
   return str
