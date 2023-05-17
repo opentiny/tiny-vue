@@ -158,7 +158,7 @@ const prettierFormat = ({ str, options = {} }: { str: string; options: object })
  */
 const walkFileTree = (
   { dirPath, isDeep = false, fileFilter, callback }:
-  { dirPath: string; isDeep: boolean; fileFilter: Function; callback: Function }
+  { dirPath: string; isDeep: boolean; fileFilter?: Function; callback: Function }
 ) => {
   if (!dirPath || typeof callback !== 'function') {
     return
