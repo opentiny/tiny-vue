@@ -435,7 +435,6 @@ export const Cell = {
     let {
       $table,
       column: { slots },
-      isHidden,
       row
     } = params
     let { radioConfig = {}, selectRow, vSize } = $table
@@ -449,15 +448,13 @@ export const Cell = {
       name: `tiny-grid-radio__${$table.id}`,
       type: 'radio'
     }
-    if (!isHidden && checkMethod) {
+    if (checkMethod) {
       options.attrs.disabled = disabled = !checkMethod(params)
     }
-    if (!isHidden) {
-      options.domProps = { checked: row === selectRow }
-      options.on = {
-        change(event) {
-          $table.triggerRadioRowEvent(event, params)
-        }
+    options.domProps = { checked: row === selectRow }
+    options.on = {
+      change(event) {
+        $table.triggerRadioRowEvent(event, params)
       }
     }
     const map = {
@@ -481,7 +478,7 @@ export const Cell = {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderRadioCell(h, params))
   },
   renderSelectionHeader(h, params) {
-    let { $table, column, isHidden } = params
+    let { $table, column } = params
     let { slots, own } = column
     let { headerCheckDisabled, isAllSelected, isIndeterminate, selectConfig, vSize } = $table
     let headerTitle = own.title || own.label
@@ -492,16 +489,14 @@ export const Cell = {
     if (isCheckStrictly(selectConfig)) {
       return []
     }
-    if (!isHidden) {
-      options.domProps = {
-        disabled: headerCheckDisabled,
-        checked: isAllSelected && !headerCheckDisabled
-      }
-      options.on = {
-        change(event) {
-          $table.triggerCheckAllEvent(event, event.target.checked)
-          $table.showSelectToolbar()
-        }
+    options.domProps = {
+      disabled: headerCheckDisabled,
+      checked: isAllSelected && !headerCheckDisabled
+    }
+    options.on = {
+      change(event) {
+        $table.triggerCheckAllEvent(event, event.target.checked)
+        $table.showSelectToolbar()
       }
     }
     let vnode = getSelectVnodes({
@@ -516,7 +511,7 @@ export const Cell = {
     return [vnode]
   },
   renderSelectionCell(h, params) {
-    let { $table, column, isHidden, row } = params
+    let { $table, column, row } = params
     let { slots } = column
     let { selectConfig = {}, treeConfig, treeIndeterminates, vSize } = $table
     let { labelField, checkMethod } = selectConfig
@@ -525,15 +520,13 @@ export const Cell = {
     if (slots && slots.default) {
       return slots.default(params, h)
     }
-    if (!isHidden) {
-      checkMethod && (options.attrs.disabled = isDisabled = !checkMethod(params))
-      treeConfig && (indeterminate = ~treeIndeterminates.indexOf(row))
-      options.domProps = { checked: ~$table.selection.indexOf(row) }
-      options.on = {
-        change(event) {
-          $table.triggerCheckRowEvent(event, params, event.target.checked)
-          $table.showSelectToolbar()
-        }
+    checkMethod && (options.attrs.disabled = isDisabled = !checkMethod(params))
+    treeConfig && (indeterminate = ~treeIndeterminates.indexOf(row))
+    options.domProps = { checked: ~$table.selection.indexOf(row) }
+    options.on = {
+      change(event) {
+        $table.triggerCheckRowEvent(event, params, event.target.checked)
+        $table.showSelectToolbar()
       }
     }
     let vnode = getSelectCellVnodes({
@@ -551,7 +544,7 @@ export const Cell = {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderSelectionCell(h, params))
   },
   renderSelectionCellByProp(h, params) {
-    let { $table, column, isHidden, row } = params
+    let { $table, column, row } = params
     let { slots } = column
     let { selectConfig = {}, treeConfig, treeIndeterminates, vSize } = $table
     let { checkField: property, checkMethod, labelField } = selectConfig
@@ -562,14 +555,12 @@ export const Cell = {
       return slots.default(params, h)
     }
 
-    if (!isHidden) {
-      checkMethod && (options.attrs.disabled = isDisabled = !checkMethod(params))
-      treeConfig && (indeterminate = ~treeIndeterminates.indexOf(row))
-      options.domProps = { checked: get(row, property) }
-      options.on = {
-        change(event) {
-          $table.triggerCheckRowEvent(event, params, event.target.checked)
-        }
+    checkMethod && (options.attrs.disabled = isDisabled = !checkMethod(params))
+    treeConfig && (indeterminate = ~treeIndeterminates.indexOf(row))
+    options.domProps = { checked: get(row, property) }
+    options.on = {
+      change(event) {
+        $table.triggerCheckRowEvent(event, params, event.target.checked)
       }
     }
 
@@ -582,15 +573,13 @@ export const Cell = {
   },
   // 展开行
   renderExpandCell(h, params) {
-    let { $table, isHidden, row } = params
+    let { $table, row } = params
     let { expandConfig = {} } = $table
     let expandMethod = expandConfig.activeMethod
     let hideExpand = typeof expandMethod === 'function' ? expandMethod(row) : true
     let expandActive = false
 
-    if (!isHidden) {
-      expandActive = $table.expandeds.includes(params.row)
-    }
+    expandActive = $table.expandeds.includes(params.row)
 
     const map = {
       expandActive: 'expand__active'
@@ -653,37 +642,37 @@ export const Cell = {
         isColGroup
           ? []
           : [
-            column.order === 'asc' ?
-              h(icon.sortDesc, {
-                class: [
-                  'tiny-svg-size tiny-grid-sort__asc-btn',
-                  {
-                    'sort__active': column.order === 'asc'
-                  }
-                ],
-                on: { click(event) { $table.triggerSortEvent(event, column, 'desc') } }
-              })
-              : '',
-            column.order === 'desc' ?
-              h(icon.sortAsc, {
-                class: [
-                  'tiny-svg-size tiny-grid-sort__desc-btn',
-                  {
-                    'sort__active': column.order === 'desc'
-                  }
-                ],
-                on: { click(event) { $table.triggerSortEvent(event, column, '') } }
-              })
-              : '',
-            column.order
-              ? ''
-              : h(icon.sortDefault, {
-                class: [
-                  'tiny-svg-size tiny-grid-sort__desc-btn'
-                ],
-                on: { click(event) { $table.triggerSortEvent(event, column, 'asc') } }
-              })
-          ]
+              column.order === 'asc' ?
+                h(icon.sortDesc, {
+                  class: [
+                    'tiny-svg-size tiny-grid-sort__asc-btn',
+                    {
+                      'sort__active': column.order === 'asc'
+                    }
+                  ],
+                  on: { click(event) { $table.triggerSortEvent(event, column, 'desc') } }
+                })
+                : '',
+              column.order === 'desc' ?
+                h(icon.sortAsc, {
+                  class: [
+                    'tiny-svg-size tiny-grid-sort__desc-btn',
+                    {
+                      'sort__active': column.order === 'desc'
+                    }
+                  ],
+                  on: { click(event) { $table.triggerSortEvent(event, column, '') } }
+                })
+                : '',
+              column.order
+                ? ''
+                : h(icon.sortDefault, {
+                  class: [
+                    'tiny-svg-size tiny-grid-sort__desc-btn'
+                  ],
+                  on: { click(event) { $table.triggerSortEvent(event, column, 'asc') } }
+                })
+            ]
       )
     ]
   },

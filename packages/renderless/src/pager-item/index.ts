@@ -120,7 +120,7 @@ export const onPagerClick = ({ emit, props, vm }) => (event) => {
 
   if (props.isBeforePageChange && newPage !== currentPage) {
     let params = { newPage, currentPage, callback }
-    vm.$parent.beforePagerChangeHandler(params)
+    vm.$parent.$parent.beforePagerChangeHandler(params)
   } else {
     callback()
   }

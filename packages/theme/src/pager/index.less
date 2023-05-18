@@ -95,7 +95,6 @@
         }
 
         &.is-popup {
-
           svg {
             display: var(--ti-pager-dot-is-popup-display);
           }
@@ -248,9 +247,9 @@
 
   &__selector {
     .component-css-vars-pager();
-    
+
     &.@{popover-prefix-cls}.@{popper-prefix-cls} {
-      width: var(--ti-pager-body-width);
+      width: var(--ti-pager-sizes-input-width);
       padding: 0;
       border-radius: var(--ti-pager-pop-body-border-radius);
 
@@ -414,7 +413,8 @@
       font-size: 12px;
     }
 
-    .@{pager-prefix-cls}__btn-prev svg, .@{pager-prefix-cls}__btn-next svg {
+    .@{pager-prefix-cls}__btn-prev svg,
+    .@{pager-prefix-cls}__btn-next svg {
       font-size: 14px;
     }
 
@@ -428,34 +428,35 @@
       line-height: 22px;
     }
   }
-  
+
   &.is-disabled {
     .@{pager-prefix-cls}__total {
-      color: #C2C2C2;
+      color: #c2c2c2;
     }
 
     ul li {
       cursor: not-allowed;
-      color: #C2C2C2;
+      color: #c2c2c2;
       background-color: transparent;
 
-      &.is-active, &:not(.dot):not(.is-active):hover {
-        color: #C2C2C2;
+      &.is-active,
+      &:not(.dot):not(.is-active):hover {
+        color: #c2c2c2;
         font-weight: normal;
         background-color: transparent;
       }
     }
 
     .@{pager-prefix-cls}__input input {
-      color: #C2C2C2;
+      color: #c2c2c2;
       cursor: not-allowed;
       border-color: #dbdbdb;
-      background-color: #0000000D;
+      background-color: #0000000d;
     }
 
     .@{pager-prefix-cls}__input-btn svg {
-      fill: #C2C2C2;
-      color: #C2C2C2;
+      fill: #c2c2c2;
+      color: #c2c2c2;
       cursor: not-allowed;
     }
   }
