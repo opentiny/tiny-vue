@@ -10,7 +10,7 @@
 </template>
 
 <script lang="jsx">
-import { Tabs, TabItem } from '@opentiny/vue'
+import { Tabs, TabItem, Notify } from '@opentiny/vue'
 
 export default {
   components: {
@@ -24,7 +24,10 @@ export default {
   },
   methods: {
     beforeLeave() {
-      window.tinyLog('触发切换标签之前事件')
+      Notify({
+        message: '触发切换标签之前事件',
+        position: 'top-right'
+      })
 
       return false
     }

@@ -1,0 +1,107 @@
+@import '../custom.less';
+
+@amount-prefix-cls: ~'@{css-prefix}amount';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+@input-prefix-cls: ~'@{css-prefix}input';
+@popover-prefix-cls: ~'@{css-prefix}popover';
+
+.@{amount-prefix-cls} {
+  & &-input-icon {
+    .@{svg-prefix-cls} {
+      @apply fill-color-text-placeholder;
+      @apply text-base;
+
+      &:hover {
+        @apply fill-color-brand-hover;
+      }
+    }
+  }
+
+  &-popper.@{popover-prefix-cls} {
+    width: 364px;
+    @apply p-4;
+    @apply box-border;
+    @apply text-color-text-secondary;
+    @apply border-0;
+
+    .popover-con {
+      .module:not(:last-child) {
+        @apply mb-4;
+      }
+
+      .module {
+        @apply flex;
+        @apply justify-end;
+        @apply items-center;
+
+        .popover-left {
+          @apply grow-0 shrink-0 ~"basis-[auto]";
+          @apply mr-2;
+          @apply ~"w-1/5";
+        }
+
+        .popover-right:not(.@{input-prefix-cls}-prefix):not(.@{input-prefix-cls}-suffiX) {
+          .@{input-prefix-cls}__inner {
+            @apply py-0 px-2;
+          }
+        }
+
+        .popover-right.@{input-prefix-cls} {
+          @apply inline-block;
+        }
+      }
+    }
+
+    &[x-placement^='bottom'] {
+      @apply mt-1;
+
+      div.popper__arrow {
+        @apply filter-none;
+        @apply border-y-transparent;
+
+        &::after {
+          @apply top-0;
+          @apply border-y-transparent;
+        }
+      }
+    }
+
+    &[x-placement^='top'] {
+      @apply mb-1;
+
+      div.popper__arrow {
+        @apply filter-none;
+        @apply border-y-transparent;
+
+        &::after {
+          @apply top-0;
+          @apply border-y-transparent;
+        }
+      }
+    }
+  }
+
+  .@{input-prefix-cls} {
+    @apply outline-0;
+
+    &__suffix {
+      .@{amount-prefix-cls}-input-icon {
+        @apply flex;
+      }
+    }
+
+    &-display-only {
+      > .@{input-prefix-cls}-display-only__content {
+        @apply whitespace-normal;
+      }
+    }
+  }
+
+  span.@{popover-prefix-cls}__reference {
+    @apply w-full;
+  }
+
+  &:has(.is-display-only) {
+    @apply w-auto;
+  }
+}

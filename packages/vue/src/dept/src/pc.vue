@@ -1,6 +1,6 @@
 <template>
   <div class="tiny-dept">
-    <tiny-input :size="size" v-model="state.display" :disabled="disabled" readonly>
+    <tiny-input :size="size" v-model="state.display" :disabled="disabled" readonly :display-only="displayOnly">
       <template #suffix>
         <icon-popup class="tiny-input__icon tiny-svg-icon" @click="openDialog" />
       </template>
@@ -16,7 +16,9 @@
       :title="title"
     >
       <tiny-row class="tiny-dept__search">
-        <tiny-col class="tiny-dept__label" :title="t('ui.dept.search')" :span="3">{{ t('ui.dept.search') }}</tiny-col>
+        <tiny-col class="tiny-dept__label" :title="t('ui.dept.search')" :span="3">
+          {{ t('ui.dept.search') }}
+        </tiny-col>
         <tiny-col :span="5">
           <tiny-select
             class="tiny-detp__select"
@@ -31,13 +33,23 @@
             @change="searchChange"
           >
             <li
-              class="tiny-select-dropdown__item"
-              style="background: #f1f1f1; cursor: auto; border-bottom: solid 1px #d9d9d9; box-shadow: rgb(241, 241, 241) 0px -6px 0px 6px"
+              class="tiny-option tiny-select-dropdown__item"
+              style="
+                background: #f1f1f1;
+                cursor: auto;
+                border-bottom: solid 1px #d9d9d9;
+                box-shadow: rgb(241, 241, 241) 0px -6px 0px 6px;
+              "
             >
-              <span style="float: left; font-size: 12px">{{ t('ui.dept.code') }}</span
-              ><span style="float: right">{{ t('ui.dept.name') }}</span>
+              <span style="float: left; font-size: 12px">{{ t('ui.dept.code') }}</span>
+              <span style="float: right">{{ t('ui.dept.name') }}</span>
             </li>
-            <tiny-option v-for="(option, index) in state.searchOptions" :key="index" :label="option.hrName" :value="option.hrCode">
+            <tiny-option
+              v-for="(option, index) in state.searchOptions"
+              :key="index"
+              :label="option.hrName"
+              :value="option.hrCode"
+            >
               <span style="float: left; font-size: 12px">{{ option.hrCode }}</span>
               <span style="float: right; color: #8492a6; font-size: 12px">{{ option.hrName }}</span>
             </tiny-option>
@@ -46,7 +58,9 @@
       </tiny-row>
 
       <tiny-row class="tiny-dept__item" v-for="(dept, index) in deptState" :key="index">
-        <tiny-col class="tiny-dept__label" :title="t('ui.dept.' + dept.title)" :span="3">{{ t('ui.dept.' + dept.title) }}</tiny-col>
+        <tiny-col class="tiny-dept__label" :title="t('ui.dept.' + dept.title)" :span="3">
+          {{ t('ui.dept.' + dept.title) }}
+        </tiny-col>
         <tiny-col :span="9">
           <tiny-select
             class="tiny-detp__select"
@@ -60,13 +74,22 @@
             @visible-change="getCurrentList(index, $event)"
             @change="selectChange({ level: index, value: $event })"
           >
-            <tiny-option v-for="option in dept.options" :key="option.hrCode" :label="option.hrName" :value="option.hrCode"></tiny-option>
+            <tiny-option
+              v-for="option in dept.options"
+              :key="option.hrCode"
+              :label="option.hrName"
+              :value="option.hrCode"
+            ></tiny-option>
           </tiny-select>
         </tiny-col>
       </tiny-row>
       <tiny-row>
-        <p class="tiny-dept__label is-selected">{{ t('ui.dept.selected') }}</p>
-        <p class="tiny-dept__selected-info">{{ state.labels.join(' > ') }}</p>
+        <p class="tiny-dept__label is-selected">
+          {{ t('ui.dept.selected') }}
+        </p>
+        <p class="tiny-dept__selected-info">
+          {{ state.labels.join(' > ') }}
+        </p>
         <slot name="hrapprover" :slot-scope="state"></slot>
       </tiny-row>
       <template #footer>
@@ -104,7 +127,19 @@ export default defineComponent({
     TinyCol: Col,
     IconPopup: IconPopup()
   },
-  props: [...props, 'size', 'modelValue', 'disabled', 'fetchDeptList', 'fetchDeptByValue', 'fetchDept', 'beforeConfirm', 'autoSelect', 'title'],
+  props: [
+    ...props,
+    'size',
+    'modelValue',
+    'disabled',
+    'fetchDeptList',
+    'fetchDeptByValue',
+    'fetchDept',
+    'beforeConfirm',
+    'autoSelect',
+    'title',
+    'displayOnly'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

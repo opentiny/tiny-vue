@@ -23,7 +23,7 @@
   right: 10px;
   z-index: 99999;
   border: 1px solid var(--ti-floatbar-border-color);
-  box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--ti-floatbar-box-shadow);
   border-radius: var(--ti-floatbar-border-radius);
   overflow: hidden;
   background: var(--ti-floatbar-list-bg-color);
@@ -34,9 +34,9 @@
       background: var(--ti-floatbar-list-bg-color);
       color: var(--ti-floatbar-list-text-color);
       font-size: var(--ti-floatbar-font-size);
-      min-width: 80px;
-      min-height: 40px;
-      line-height: 40px;
+      min-width: var(--ti-floatbar-list-item-min-width);
+      min-height: var(--ti-floatbar-list-item-min-height);
+      line-height: var(--ti-floatbar-list-line-height);
       text-align: center;
 
       &:hover {

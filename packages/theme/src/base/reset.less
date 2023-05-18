@@ -11,6 +11,7 @@
 */
 
 @import '../custom.less';
+@import './basic-var.less';
 
 [class*=~'@{css-prefix}'] {
   -webkit-box-sizing: border-box;
@@ -140,25 +141,25 @@
 
   @media (min-width: 768px) {
     ::-webkit-scrollbar {
-      width: 4px;
-      height: 4px;
+      width: var(--ti-common-scrollbar-width);
+      height: var(--ti-common-scrollbar-height);
     }
 
     ::-webkit-scrollbar-track-piece {
-      background: #fafafa;
+      background: var(--ti-common-scrollbar-track-piece-bg-color);
     }
 
     ::-webkit-scrollbar-thumb {
-      background: #bfbfbf;
-      border-radius: 6px;
+      background: var(--ti-common-scrollbar-thumb-bg-color);
+      border-radius: var(--ti-common-scrollbar-thumb-border-radius);
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: #999999;
+      background: var(--ti-common-scrollbar-thumb-hover-bg-color);
     }
 
     ::-webkit-scrollbar-thumb:active {
-      background: #999999;
+      background: var(--ti-common-scrollbar-thumb-active-bg-color);
     }
 
     .@{css-prefix}scrollbar::-webkit-scrollbar {

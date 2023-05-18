@@ -18,3 +18,4 @@ export const getMessage =
       const types = ['build', 'weaknet', 'pcview', 'busy', 'noperm']
       return props.message || t(`ui.exception.${~types.indexOf(props.type) ? props.type : 'nodata'}`)
     }
+

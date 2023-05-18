@@ -1,15 +1,3 @@
-<!--
- * Copyright (c) 2022 - present TinyVue Authors.
- * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
- *
- * Use of this source code is governed by an MIT-style license.
- *
- * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
- * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
- * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
- *
- -->
-
 <template>
   <div class="tiny-user-contact">
     <Popover
@@ -22,11 +10,11 @@
       :visible-arrow="showArrow"
     >
       <template #reference>
-        <a :href="getUserHref()" class="dropdown-part">
+        <a :href="getUserHref()" @click="doUserAction" class="dropdown-part">
           <user-head v-show="showImg" :min="true" :round="true" v-model="data.imgUrl" type="image"></user-head>
           <div class="tiny-user-contact__role">
             <span v-show="showName" class="tiny-user-contact__role-name">{{ data.userName }}</span>
-            <span v-show="showDescription" class="tiny-user-contact__role-number">{{ data.userDescription }}</span>
+            <span v-show="showNumber" class="tiny-user-contact__role-number">{{ data.roleNumber }}</span>
           </div>
         </a>
         <component :is="show ? 'icon-chevron-up' : 'icon-chevron-down'" class="tiny-svg-size tiny-user-contact__arrow" />
@@ -41,7 +29,7 @@
               <user-head :round="true" v-model="data.imgUrl" type="image"></user-head>
               <div class="tiny-user-contact__role">
                 <span v-show="showName" class="tiny-user-contact__role-name">{{ data.userName }}</span>
-                <span v-show="showDescription" class="tiny-user-contact__role-number">{{ data.userDescription }}</span>
+                <span v-show="showNumber" class="tiny-user-contact__role-number">{{ t('ui.usercard.empno') }}：{{ data.roleNumber }}</span>
               </div>
             </div>
           </div>
@@ -53,31 +41,47 @@
               <span class="tiny-user-contact__state-right">{{ item.value }}</span>
             </div>
           </div>
+          <espace v-if="espace && espace.length" :data="espace" />
         </div>
       </card-template>
     </Popover>
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/user-contact/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { props, setup } from '@opentiny/vue-common'
 import UserHead from '@opentiny/vue-user-head'
 import CardTemplate from '@opentiny/vue-card-template'
-
+import Espace from '@opentiny/vue-espace'
 import Popover from '@opentiny/vue-popover'
-import { iconChevronUp, iconChevronDown } from '@opentiny/vue-icon'
+import { IconChevronUp, IconChevronDown } from '@opentiny/vue-icon'
+
+import { defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
-  props: [...props, 'data', 'showArrow', 'showName', 'showDescription', 'showImg', 'placement', 'popperClass', 'popperAppendToBody', 'isNewImMode'],
+  props: [
+    ...props,
+    'data',
+    'showArrow',
+    'espace',
+    'showName',
+    'showNumber',
+    'showImg',
+    'placement',
+    'popperClass',
+    'popperAppendToBody',
+    'isNewImMode'
+  ],
   components: {
     UserHead,
     CardTemplate,
+    Espace,
     Popover,
-    IconChevronUp: iconChevronUp(),
-    IconChevronDown: iconChevronDown()
+    IconChevronUp: IconChevronUp(),
+    IconChevronDown: IconChevronDown()
   },
-  setup(props, context) {
+  setup(props, context): any {
     return setup({ props, context, renderless, api })
   }
 })

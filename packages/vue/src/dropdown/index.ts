@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Dropdown from './src/index.vue'
+import Dropdown from './src/index'
 import '@opentiny/vue-theme/dropdown/index.less'
 import { version } from './package.json'
 

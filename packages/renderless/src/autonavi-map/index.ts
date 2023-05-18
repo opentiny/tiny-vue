@@ -10,7 +10,7 @@
  *
  */
 
-import { getAmap } from '@opentiny/vue-renderless/chart-core/deps/utils'
+import { getAmap } from '../chart-core/deps/utils'
 
 export const amap = (columns, rows, settings, extra) => {
   const { key, v, amap, useOuterMap, url } = settings

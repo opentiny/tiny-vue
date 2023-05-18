@@ -10,7 +10,7 @@
 *
 */
 
-import { isNumber } from '@opentiny/vue-renderless/common/type'
+import { isNumber } from '../common/type'
 
 export const computedShowHeader = ({ constants, props }) => () => props.pattern !== constants.SIMPLE
 

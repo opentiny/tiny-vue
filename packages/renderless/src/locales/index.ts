@@ -10,7 +10,7 @@
 *
 */
 
-import { xss } from '@opentiny/vue-renderless/common'
+import { xss } from '../common'
 
 export const getLocales = ({ api, service, state }) => () => {
   Promise.all([service.getLocale(), service.getCurrentLocale()]).then(([locales, current]) => {

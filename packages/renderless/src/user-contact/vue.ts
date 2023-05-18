@@ -10,22 +10,32 @@
 *
 */
 
-import { getUserHref } from './index'
+import { init } from '../common/deps/eSpaceCtrl'
+import { getUserHref, doUserAction, initEspaceLink, openEspace } from './index'
+import { testUID } from '../espace'
 
-export const api = ['show', 'getUserHref']
+export const api = ['show', 'getUserHref', 'doUserAction', 'initEspaceLink', 'openEspace', 'testUID']
 
-export const renderless = (props, { reactive, ref }) => {
+export const renderless = (props, { reactive, ref }, { service }) => {
+  const api = {}
+  const { setting = {} } = service || {}
+  const { widgets = {} } = setting
+
+  const eSpaceCtrlDisabled = widgets.ESpaceCtrl && !widgets.ESpaceCtrl.autoLink
+  const eSpaceCtrl = eSpaceCtrlDisabled ? {} : init()
+
   const state = reactive({
     initialized: false
   })
 
-  const api = {
-    state,
-    show: ref(false)
-  }
-
   Object.assign(api, {
-    getUserHref: getUserHref({ api, props })
+    state,
+    testUID: testUID,
+    show: ref(false),
+    getUserHref: getUserHref({ api, props }),
+    initEspaceLink: initEspaceLink({ api, props, state, eSpaceCtrl, eSpaceCtrlDisabled }),
+    doUserAction: doUserAction({ api, props, state, eSpaceCtrl }),
+    openEspace: openEspace({ api, props, eSpaceCtrl })
   })
 
   return api

@@ -79,6 +79,7 @@ function loadStatic(data, _vm) {
   if (data && data.length > 0) {
     _vm.loadTableData(data, true).then(() => {
       _vm.handleDefault()
+      // 需要等到表格的vnode渲染完成后再去计算样式，计算每一列的宽度和滚动条位置，这里也是可以优化的点，这样会导致页面重排，重绘
       _vm.updateStyle()
     })
   }
@@ -147,46 +148,6 @@ const renderFooterFn = (opt) => {
 
     return tableFooterVnode
   }
-}
-
-/**
- * 渲染浮固定列
- */
-function renderFixed(h, $table, fixedType) {
-  let {
-    collectColumn,
-    columnStore,
-    footerData,
-    isGroup,
-    showFooter,
-    showHeader,
-    tableColumn,
-    tableData,
-    vSize,
-    visibleColumn
-  } = $table
-  let fixedColumn = columnStore[`${fixedType}List`]
-
-  const props = { fixedType, tableData, tableColumn, visibleColumn, collectColumn, size: vSize, fixedColumn, isGroup }
-
-  // prettier-ignore
-  return h(
-    'div',
-    {
-      class: `tiny-grid__fixed-${fixedType}-wrapper`,
-      ref: `${fixedType}Container`
-    },
-    [
-      showHeader ? h(GridHeader, { props, ref: `${fixedType}Header` }) : null,
-      h(GridBody, { props, ref: `${fixedType}Body` }),
-      showFooter
-        ? h(GridFooter, {
-          props: { fixedType, footerData, tableColumn, visibleColumn, size: vSize, fixedColumn },
-          ref: `${fixedType}Footer`
-        })
-        : null
-    ]
-  )
 }
 
 const renderResizeBarFn = (opt) => {
@@ -288,11 +249,9 @@ function getRenderer(opt) {
   const {
     $slots,
     _vm,
-    leftList,
     optimizeOpts,
     overflowX,
     props,
-    rightList,
     showFooter,
     showHeader,
     tableColumn,
@@ -316,12 +275,7 @@ function getRenderer(opt) {
   const renderHeader = () => (showHeader ? h(GridHeader, { ref: 'tableHeader', props }) : [null])
   const renderEmptyPart = renderEmptyPartFn({ _vm, tableData, $slots, renderEmpty })
   const renderFooter = renderFooterFn({ showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize })
-
-  const renderFixedLeft = () => (leftList && leftList.length && overflowX ? renderFixed(h, _vm, 'left') : [null])
-  const renderFixedRight = () => (rightList && rightList.length && overflowX ? renderFixed(h, _vm, 'right') : [null])
-
   const renderResizeBar = renderResizeBarFn({ isResizable, overflowX, scrollbarHeight })
-
   const arg1 = { hasFilter, optimizeOpts, filterStore, isCtxMenu, ctxMenuStore, hasTip, tooltipContentOpts }
   const arg2 = { editRules, validOpts, height, tableData, vaildTipOpts, id, _vm }
   const renderPluginWrapper = renderPluginWrapperFn(Object.assign(arg1, arg2))
@@ -332,16 +286,15 @@ function getRenderer(opt) {
     renderHeader,
     renderEmptyPart,
     renderFooter,
-    renderFixedLeft,
-    renderFixedRight,
     renderResizeBar,
     renderPluginWrapper,
     renderSelectToolbar
   }
 }
 
+// 设置表格最外层元素类名
 function getTableAttrs(args) {
-  let { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, leftList, rightList, showOverflow } = args
+  let { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = args
   let { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup, mouseConfig } = args
   let { loading, highlightHoverRow, highlightHoverColumn } = args
 
@@ -350,8 +303,6 @@ function getTableAttrs(args) {
     showFooter: 'show__foot',
     overflowY: 'scroll__y',
     overflowX: 'scroll__x',
-    fixedLeft: 'fixed__left',
-    fixedRight: 'fixed__right',
     loading: 'is__loading',
     highlightHoverRow: 'row__highlight',
     highlightHoverColumn: 'column__highlight'
@@ -366,8 +317,6 @@ function getTableAttrs(args) {
       [map.showFooter]: showFooter,
       [map.overflowY]: overflowY,
       [map.overflowX]: overflowX,
-      [map.fixedLeft]: leftList.length,
-      [map.fixedRight]: rightList.length,
       'all-overflow': showOverflow,
       'all-head-overflow': showHeaderOverflow,
       'tiny-grid-cell__highlight': highlightCell,
@@ -391,14 +340,22 @@ const gridData = {
   collectColumn: [],
   // 存放列相关的信息
   columnStore: {
+    // 自适应的列表集合
     autoList: [],
     centerList: [],
+    // 左侧冻结列表集合
     leftList: [],
-    pxList: [],
-    pxMinList: [],
-    resizeList: [],
+    // 右侧冻结列表集合
     rightList: [],
+    // 固定像素宽度列表集合
+    pxList: [],
+    // 设置了最小宽度列表集合
+    pxMinList: [],
+    // 可调整列宽列表集合
+    resizeList: [],
+    // 百分比宽度列表集合
     scaleList: [],
+    // 百分比最小宽度列表集合
     scaleMinList: []
   },
   // 存放快捷菜单的信息
@@ -660,7 +617,7 @@ export default {
     rowKey: Boolean,
     // 行合并
     rowSpan: Array,
-    // 滚动加载
+    // 滚动加载(滚动分页加载)
     scrollLoad: Object,
     // 多选配置项
     selectConfig: Object,
@@ -769,6 +726,7 @@ export default {
         this.tooltipConfig
       )
     },
+    // 表格尺寸（medium|small|mini）
     vSize() {
       return this.size || (this.$parent && this.$parent.size) || (this.$parent && this.$parent.vSize)
     },
@@ -790,6 +748,7 @@ export default {
   },
   watch: {
     collectColumn(value) {
+      // 这里在表格初始化的时候会触发两次（标签式），造成性能损失，待整改
       this.watchColumn(value)
     },
     customs(value) {
@@ -797,6 +756,7 @@ export default {
       this.isUpdateCustoms = false
     },
     data(value) {
+      // 此处监听只有当data的引用地址改变之后才会触发
       if (Array.isArray(value)) {
         !this._isUpdateData && this.loadTableData(value, true).then(this.handleDefault)
         this._isUpdateData = false
@@ -814,10 +774,13 @@ export default {
     height() {
       this.$nextTick(this.recalculate)
     },
+    // 此属性暂时没有找到应用的demo，从语义上来说，觉得可以删除，官网有对应api但是没有对应的示例
     syncResize(value) {
+      // 是否自动根据状态属性去更新响应式表格宽高
       value && this.$nextTick(this.recalculate)
     },
     tableColumn() {
+      // 对所有列的列宽进行分类：百分比/px
       this.analyColumnWidth()
     }
   },
@@ -844,9 +807,10 @@ export default {
   mounted() {
     this.$nextTick().then(() => {
       if (this.autoResize && TINYGrid._resize) {
+        // 使用ResizeObserver监听表格父元素尺寸，然后动态计算表格各种尺寸
         this.bindResize()
       }
-
+      // 在body上挂载弹出框类的表格内部组件：右键菜单、筛选框、提示
       document.body.appendChild(this.$refs.tableWrapper)
     })
   },
@@ -903,10 +867,10 @@ export default {
     return { slots, tableListeners }
   },
   render() {
-    let { border, collectColumn, columnStore, editConfig, highlightCell, highlightHoverColumn } = this
-    let { highlightHoverRow, isGroup, loading, loadingComponent, mouseConfig = {}, optimizeOpts } = this
-    let { overflowX, overflowY, showFooter, showHeader, showHeaderOverflow, showOverflow } = this
-    let { stripe, tableColumn, tableData, vSize, visibleColumn } = this
+    let { border, collectColumn, columnStore, editConfig, highlightCell, highlightHoverColumn } = (this as any)
+    let { highlightHoverRow, isGroup, loading, loadingComponent, mouseConfig = {}, optimizeOpts } = (this as any)
+    let { overflowX, overflowY, showFooter, showHeader, showHeaderOverflow, showOverflow } = (this as any)
+    let { stripe, tableColumn, tableData, vSize, visibleColumn } = (this as any)
     let { leftList, rightList } = columnStore
     let $slots = this.slots
     const props = { tableData, tableColumn, visibleColumn, collectColumn, size: vSize, isGroup }
@@ -914,10 +878,10 @@ export default {
 
     Object.assign(args, { showFooter, showHeader, tableColumn, tableData, vSize, visibleColumn })
     const renders = getRenderer(args)
-    const { renderHeader, renderEmptyPart, renderFooter, renderFixedLeft } = renders
-    const { renderFixedRight, renderResizeBar, renderPluginWrapper, renderSelectToolbar } = renders
+    const { renderHeader, renderEmptyPart, renderFooter } = renders
+    const { renderResizeBar, renderPluginWrapper, renderSelectToolbar } = renders
 
-    args = { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, leftList, rightList, showOverflow }
+    args = { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow }
     Object.assign(args, { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup, mouseConfig })
     Object.assign(args, { loading, highlightHoverRow, highlightHoverColumn })
 
@@ -932,13 +896,9 @@ export default {
       h(GridBody, { ref: 'tableBody', props }),
       // 底部汇总
       renderFooter(),
-      // 左侧固定列
-      renderFixedLeft(),
-      // 右侧固定列
-      renderFixedRight(),
       // 边框线
       h('div', { class: 'tiny-grid__border-line', key: 'tinyGridBorderLine' }),
-      // 列宽线
+      // 列拖拽参考线
       renderResizeBar(),
       // 加载中
       h(loadingComponent || GridLoading, { props: { visible: loading } }),

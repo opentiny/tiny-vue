@@ -11,21 +11,44 @@
 */
 
 .component-css-vars-switch() {
-  --ti-switch-on-bg-color: var(--ti-base-color-brand-6);
-  --ti-switch-off-bg-color: var(--ti-base-color-common-2);
-  --ti-switch-disabled-bg-color: var(--ti-base-color-common-1);
-  --ti-switch-checked-disabled-bg-color: var(--ti-base-color-brand-3);
-  --ti-switch-checked-disabled-border-color: var(--ti-base-color-brand-3);
-  --ti-switch-disabled-text-color: var(--ti-base-color-bg-5);
-  --ti-switch-disabled-dot-bg-color: var(--ti-base-color-bg-5);
-  --ti-switch-text-color: var(--ti-common-color-light);
+  // 开关开启状态背景色
+  --ti-switch-on-bg-color: var(--ti-common-color-bg-emphasize);
+  // 开关关闭状态背景色
+  --ti-switch-off-bg-color: var(--ti-common-color-bg-secondary);
+  // 开关关闭禁用状态背景色
+  --ti-switch-disabled-bg-color: var(--ti-common-color-bg-dark-disabled);
+  // 开关开启禁用状态背景色
+  --ti-switch-checked-disabled-bg-color: var(--ti-common-color-bg-light-emphasize);
+  // 开关开启禁用状态边框色
+  --ti-switch-checked-disabled-border-color: var(--ti-common-color-bg-light-emphasize);
+  // 开关禁用状态文本色
+  --ti-switch-disabled-text-color: var(--ti-common-color-info-disabled);
+  // 开关禁用状态圆点色
+  --ti-switch-disabled-dot-bg-color: var(--ti-common-color-bg-disabled);
+  // 开关默认圆点色
   --ti-switch-dot-bg-color: var(--ti-common-color-light);
-  --ti-switch-width: 38px;
-  --ti-switch-height: 20px;
-  --ti-switch-border-radius: 24px;
+  // 开关圆点尺寸
+  --ti-switch-dot-size: var(--ti-common-size-4x);
+  // 开关圆点左边距(hide)
+  --ti-switch-dot-position-left: var(--ti-common-space-1);
+  // 开关圆点上边距(hide)
+  --ti-switch-dot-position-top: var(--ti-common-space-1);
+  // 开关圆点偏移量(hide)
+  --ti-switch-dot-offset: calc(var(--ti-switch-dot-size) + var(--ti-switch-dot-position-left));
+  // 开关文本色
+  --ti-switch-text-color: var(--ti-common-color-light);
+  // 默认开关宽度
+  --ti-switch-width: calc(var(--ti-common-size-base) * 9.5);
+  // 开关高度
+  --ti-switch-height: var(--ti-common-size-5x);
+  // 开关圆角
+  --ti-switch-border-radius: var(--ti-common-size-6x);
+  // 开关边框厚度
+  --ti-switch-border-weight: var(--ti-common-border-weight-normal);
+  // 开关字号
   --ti-switch-inner-font-size: var(--ti-common-font-size-base, 12px);
-  --ti-switch-dot-size-height-width: 16px;
-  --ti-switch-dot-position-left: 16px;
-  --ti-switch-dot-offset: calc(var(--ti-switch-dot-size-height-width) + 1px);
-  --ti-switch-text-width: 45px;
+  // 开关左侧距离(hide)
+  --ti-switch-inner-position-left: var(--ti-common-space-4x);
+  // 自定义文本开关宽度
+  --ti-switch-text-width: calc(var(--ti-common-size-11x) + 1px);
 }

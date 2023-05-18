@@ -10,8 +10,8 @@
 *
 */
 
-import afterLeave from '@opentiny/vue-renderless/common/deps/after-leave'
-import { removeClass } from '@opentiny/vue-renderless/common/deps/dom'
+import afterLeave from '../common/deps/after-leave'
+import { removeClass } from '../common/deps/dom'
 
 export const handleAfterLeave = (emit) => () => {
   emit('after-leave')

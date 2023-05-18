@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Avatar from './src/index.vue'
+import Avatar from './src/mobile.vue'
 import '@opentiny/vue-theme-mobile/avatar/index.less'
 import { version } from './package.json'
 

@@ -1,0 +1,27 @@
+@import '../custom.less';
+
+@container-prefix-cls: ~'@{css-prefix}container';
+
+.@{container-prefix-cls} {
+  & &__header,
+  & &__aside,
+  & &__main,
+  & &__footer {
+    @apply absolute;
+    @apply box-border;
+    @apply top-0;
+    @apply left-0;
+    @apply bottom-0;
+    @apply right-0;
+    @apply m-0;
+  }
+
+  & &__main {
+    @apply overflow-y-auto;
+  }
+
+  & &__footer {
+    @apply top-auto;
+    @apply w-auto;
+  }
+}

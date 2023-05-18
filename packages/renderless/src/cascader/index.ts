@@ -10,12 +10,12 @@
 *
 */
 
-import browser from '@opentiny/vue-renderless/common/browser'
-import { isNull } from '@opentiny/vue-renderless/common/type'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import { isEqual } from '@opentiny/vue-renderless/common/object'
-import { addResizeListener } from '@opentiny/vue-renderless/common/deps/resize-event'
-import { KEY_CODE, CASCADER } from '@opentiny/vue-renderless/common'
+import browser from '../common/browser'
+import { isNull } from '../common/type'
+import debounce from '../common/deps/debounce'
+import { isEqual } from '../common/object'
+import { addResizeListener } from '../common/deps/resize-event'
+import { KEY_CODE, CASCADER } from '../common'
 
 const initMigratingProps = () => ({
   expandTrigger: { newProp: CASCADER.PropsExpandTri, type: String },

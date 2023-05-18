@@ -13,11 +13,15 @@
 @import '../custom.less';
 @import './vars.less';
 
+@file-upload-prefix-cls: ~'@{css-prefix}file-upload';
 @upload-prefix-cls: ~'@{css-prefix}upload';
 @upload-dragger-prefix-cls: ~'@{css-prefix}upload-dragger';
 
-.@{upload-dragger-prefix-cls} {
+.@{file-upload-prefix-cls} {
   .component-css-vars-upload-dragger();
+}
+
+.@{upload-dragger-prefix-cls} {
 
   width: var(--ti-upload-dragger-width);
   height: var(--ti-upload-dragger-height);

@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import DateRange from './src/index.vue'
+import DateRange from './src/pc.vue'
 import '@opentiny/vue-theme/date-range/index.less'
 import { version } from './package.json'
 

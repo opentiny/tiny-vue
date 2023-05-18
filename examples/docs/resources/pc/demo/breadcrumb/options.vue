@@ -1,7 +1,7 @@
 <template>
   <div>
     <tiny-breadcrumb :options="options" @select="itemClick"></tiny-breadcrumb>
-    <tiny-breadcrumb :options="options1" textField="name" @select="itemClick"></tiny-breadcrumb>
+    <tiny-breadcrumb :options="options1" text-field="name" @select="itemClick"></tiny-breadcrumb>
   </div>
 </template>
 

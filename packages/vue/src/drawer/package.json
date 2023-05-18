@@ -1,0 +1,14 @@
+{
+  "name": "@opentiny/vue-drawer",
+  "version": "3.7.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~"
+  },
+  "license": "MIT"
+}

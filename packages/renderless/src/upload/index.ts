@@ -10,7 +10,7 @@
 *
 */
 
-import { KEY_CODE } from '@opentiny/vue-renderless/common'
+import { KEY_CODE } from '../common'
 
 export const isImage = (str) => str.includes('image')
 
@@ -295,6 +295,5 @@ export const mounted = ({ state, props, api }) => () => {
 }
 
 export const onBeforeDestroy = (state) => () => {
-  state.updateInput.onchange = null
   state.updateInput = null
 }

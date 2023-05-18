@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Radiobutton单选框/中尺寸/无文本/选中/正常" stroke="none" stroke-width="1">
+        <g id="radiobutton/on">
+            <path d="M3.05025253,12.9497475 C0.316582489,10.2160774 0.316582489,5.78392257 3.05025253,3.05025253 C5.78392257,0.316582489 10.2160774,0.316582489 12.9497475,3.05025253 C15.6834175,5.78392257 15.6834175,10.2160774 12.9497475,12.9497475 C10.2160774,15.6834175 5.78392257,15.6834175 3.05025253,12.9497475 Z" id="Shape"></path>
+            <circle id="Oval" fill="#FFFFFF" cx="8" cy="8" r="3"></circle>
+        </g>
+    </g>
+</svg>

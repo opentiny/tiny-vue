@@ -34,6 +34,14 @@ export default {
         {
           value: '选项5',
           label: '北京烤鸭'
+        },
+        {
+          value: '选项6',
+          label: '螺蛳粉'
+        },
+        {
+          value: '选项7',
+          label: '小龙虾'
         }
       ],
       value: ['选项1', '选项2']

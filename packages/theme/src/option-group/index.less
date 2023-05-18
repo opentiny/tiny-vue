@@ -13,40 +13,41 @@
 @import '../custom.less';
 @import './vars.less';
 
-@select-group-prefix-cls: ~'@{css-prefix}select-group';
+@option-group-prefix-cls: ~'@{css-prefix}option-group';
 
-.@{select-group-prefix-cls} {
+.@{option-group-prefix-cls} {
   .component-css-vars-option-group();
 
+  position: relative;
+  list-style: none;
   margin: 0;
   padding: 0;
 
-  &__wrap {
-    position: relative;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    &:not(:last-of-type) {
-      padding-bottom: 24px;
-    }
-
-    &:not(:last-of-type)::after {
-      content: '';
-      position: absolute;
-      display: block;
-      left: 8px;
-      right: 8px;
-      bottom: 12px;
-      height: 1px;
-      background: var(--ti-select-group-wrap-bg-color);
-    }
-
-    .@{select-group-prefix-cls}__title {
-      padding-left: 8px;
-      font-size: var(--ti-select-group-title-font-size);
-      color: var(--ti-select-group-title-text-color);
-      line-height: var(--ti-select-group-title-line-height);
-    }
+  &:not(:last-of-type) {
+    padding-bottom: var(--ti-option-group-padding-bottom);
   }
+
+  &:not(:last-of-type)::after {
+    content: '';
+    position: absolute;
+    display: block;
+    left: 8px;
+    right: 8px;
+    bottom: 12px;
+    height: var(--ti-option-group-line-dividing-height);
+    background: var(--ti-option-group-line-dividing-bg-color);
+  }
+
+  .@{option-group-prefix-cls}__title {
+    padding: 0 var(--ti-option-group-title-padding-horizontal);
+    font-size: var(--ti-option-group-title-font-size);
+    color: var(--ti-option-group-title-text-color);
+    line-height: var(--ti-option-group-title-line-height);
+    margin-top: var(--ti-option-group-title-margin-top);
+  }
+
+  &:first-child .@{option-group-prefix-cls}__title {
+    margin-top: 12px;
+  }
+
 }

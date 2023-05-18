@@ -1,0 +1,51 @@
+@import '../custom.less';
+
+@upload-thumb-prefix-cls: ~'@{css-prefix}upload--thumb';
+
+.@{upload-thumb-prefix-cls} {
+  &__head {
+    @apply cursor-pointer;
+    @apply text-color-text-primary;
+    @apply text-sm;
+    .thumb-icon {
+      @apply mr-2;
+      @apply fill-color-icon-secondary;
+    }
+    span {
+      @apply align-middle;
+    }
+  }
+  &__body {
+    .thumb-item {
+      @apply flex;
+      @apply justify-start;
+      @apply items-center;
+      &:not(:last-child) {
+        @apply pb-2;
+      }
+    }
+    .thumb-item-name {
+      @apply py-1 px-2;
+      @apply text-color-text-primary;
+      @apply flex-1;
+      @apply whitespace-nowrap;
+      @apply overflow-hidden;
+      @apply text-ellipsis;
+    }
+
+    .thumb-success-icon {
+      @apply fill-color-success;
+    }
+
+    .close-icon,
+    .download-icon,
+    .refres-icon {
+      @apply fill-color-icon-secondary;
+      @apply cursor-pointer;
+    }
+
+    .thumb-icon + .thumb-icon {
+      @apply ml-2;
+    }
+  }
+}

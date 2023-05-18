@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Crop from './src/index.vue'
+import Crop from './src/pc.vue'
 import '@opentiny/vue-theme/crop/index.less'
 import { version } from './package.json'
 

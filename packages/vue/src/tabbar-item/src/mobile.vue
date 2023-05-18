@@ -25,12 +25,24 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/tabbar-item/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { $props, $prefix, setup, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
-  props: [...props, 'url', 'replace', 'to', 'dot', 'icon', 'name', 'badge'],
+  name: $prefix + 'TabbarItem',
+  componentName: 'TinyTabbarItem',
+  props: {
+    ...$props,
+    url: String,
+    replace: Boolean,
+    to: [String, Object],
+    dot: Boolean,
+    icon: Object,
+    name: [Number, String],
+    info: [Number, String],
+    badge: [Number, String]
+  },
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

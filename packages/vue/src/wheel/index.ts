@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Wheel from './src/index'
+import Wheel from './src/mobile.vue'
 import '@opentiny/vue-theme-mobile/wheel/index.less'
 import { version } from './package.json'
 

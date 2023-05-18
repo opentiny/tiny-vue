@@ -64,6 +64,14 @@
     "demoId": "show-selected-types"
   },
   {
+    "title": "Left slot",
+    "content": "<p>can be inserted into the left slot through <code>prefix</code></p>\n",
+    "link": "search/slot-prefix",
+    "component": "Search",
+    "findIntroStr": "Specify a condition object to search for data.",
+    "demoId": "slot-prefix"
+  },
+  {
     "title": "Customized search event",
     "content": "For details, see the following example.",
     "link": "search/search-events",

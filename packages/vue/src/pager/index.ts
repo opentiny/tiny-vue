@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Pager from './src/index.vue'
+import Pager from './src/index'
 import '@opentiny/vue-theme/pager/index.less'
 import { version } from './package.json'
 

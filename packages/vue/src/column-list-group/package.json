@@ -1,0 +1,12 @@
+{
+  "name": "@opentiny/vue-column-list-group",
+  "version": "5.0.0-mf.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "dependencies": {
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~"
+  },
+  "license": "MIT"
+}

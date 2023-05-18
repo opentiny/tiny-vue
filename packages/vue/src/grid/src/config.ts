@@ -42,6 +42,7 @@ const GlobalConfig = {
   sortConfig: {},
   // 默认不开启隔行换色和行高亮，不暴露此配置
   stripe: false,
+  // 鼠标移入表格行是否高亮显示
   highlightHoverRow: true,
   resizable: true,
   fit: true,

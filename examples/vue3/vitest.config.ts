@@ -5,8 +5,9 @@ import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/
 import vue3Plugin from '@vitejs/plugin-vue'
 import vue3JsxPlugin from '@vitejs/plugin-vue-jsx'
 import vue3SvgPlugin from 'vite-svg-loader'
-import importPlugin from 'vite-plugin-importus'
-import { getAlias } from '../../internal/config/vite'
+import importPlugin from '@opentiny/vue-vite-import'
+import { TailwindCSSVitePlugin } from 'tailwindcss-vite-plugin'
+import { getAlias } from '../../internals/cli/src/config/vite'
 
 const pathResolve = (...paths: string[]) => path.resolve(__dirname, ...paths).replace(/\\/g, '/')
 
@@ -23,18 +24,19 @@ export default defineConfig((config) => {
       vue3SvgPlugin(),
       importPlugin([
         {
-          libraryName: '@opentiny/vue',
-          customName: name => `@opentiny/vue-${name}`,
-          style: false,
+          libraryName: '@opentiny/vue'
         },
-        ...['icon', 'icon-saas'].map(lib => ({
-          libraryName: `@opentiny/vue-${lib}`,
-          customName: (name: string) => {
-            return name === 'default' ? `@opentiny/vue-${lib}$` : `@opentiny/vue-${lib}/${name.replace(/^icon-/, '')}`
-          },
-          style: false,
-        })),
-      ])
+        {
+          libraryName: '@opentiny/vue-icon',
+          customName: (name) => {
+            return name === 'default' ? '@opentiny/vue-icon$' : `@opentiny/vue-icon/${name.replace(/^icon-/, '')}`
+          }
+        }
+      ]),
+      TailwindCSSVitePlugin({
+        config: pathResolve('tailwind.config.cjs'),
+        entry: pathResolve('src/index.css'),
+      }),
     ],
     optimizeDeps: {
       disabled: true,

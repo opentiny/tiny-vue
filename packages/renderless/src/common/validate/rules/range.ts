@@ -11,8 +11,8 @@
 */
 
 import * as util from '../util'
-import { isNumber } from '@opentiny/vue-renderless/common/type'
-import { getLength } from '@opentiny/vue-renderless/common/string'
+import { isNumber } from '../../type'
+import { getLength } from '../../string'
 
 function getErro({ min, max, val, key, rule, errors, util, options }) {
   if (min && !max && val < rule.min) {

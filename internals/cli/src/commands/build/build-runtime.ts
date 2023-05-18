@@ -7,10 +7,9 @@ import type { BuildUiOption } from './build-ui'
 import { pathFromPackages, getBaseConfig, requireModules } from './build-ui'
 import commonjs from '@rollup/plugin-commonjs'
 
-const runtimeDir = 'dist/@opentiny/vue/runtime'
-
 async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope, min }) {
   const rootDir = pathFromPackages('')
+  const runtimeDir = `dist${vueVersion}/@opentiny/vue/runtime`
   const outDir = path.resolve(rootDir, runtimeDir)
 
   await batchBuild({
@@ -19,7 +18,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
     message,
     emptyOutDir,
     npmScope,
-    min,
+    min
   })
 
   function toEntry(libs) {
@@ -33,6 +32,9 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
     return {
       vue: 'Vue',
       '@vue/composition-api': 'VueCompositionAPI',
+      '@opentiny/vue-locale': 'TinyVueLocale',
+      '@opentiny/vue-common': 'TinyVueCommon',
+      '@opentiny/vue-icon': 'TinyVueIcon',
     }
   }
 
@@ -41,7 +43,13 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
     utils.logGreen(`====== 开始构建 ${message} ======`)
 
     const entry = toEntry(tasks)
-    const baseConfig = getBaseConfig({ vueVersion, dtsInclude: [], dts: false, npmScope }) as UserConfig
+    const baseConfig = getBaseConfig({
+      vueVersion,
+      dtsInclude: [],
+      dts: false,
+      npmScope,
+      isRuntime: true
+    }) as UserConfig
 
     baseConfig.define = Object.assign(baseConfig.define || {}, {
       'process.env.BUILD_TARGET': JSON.stringify(vueVersion !== '3' ? 'runtime' : 'component'),
@@ -59,7 +67,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
       }),
       babel({
         extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
-        presets: ['@babel/preset-env'],
+        presets: ['@babel/preset-env']
       })
     )
 
@@ -91,7 +99,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
               }
 
               return 'style/[name]-[hash][extname]'
-            },
+            }
           }
         },
         lib: {
@@ -101,20 +109,34 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
         },
         outDir
       }
-    }
-    )
+    })
   }
 }
 
 function getEntryTasks() {
-  return [{
-    path: 'vue/app.ts',
-    libPath: 'app.full',
-  }]
+  // 每次都要构建app和图标2个runtime
+  return [
+    {
+      path: 'vue/app.ts',
+      libPath: 'tiny-vue'
+    },
+    {
+      path: 'vue-icon/index.ts',
+      libPath: 'tiny-vue-icon'
+    },
+    {
+      path: 'vue-locale/src/index.ts',
+      libPath: 'tiny-vue-locale'
+    },
+    {
+      path: 'vue-common/src/index.ts',
+      libPath: 'tiny-vue-common'
+    }
+  ]
 }
 
 export async function buildRuntime({
-  vueVersions = ['2', '2.7', '3'],
+  vueVersions = ['2', '3'],
   clean = false,
   scope = 'opentiny',
   min = false
@@ -128,7 +150,11 @@ export async function buildRuntime({
   // 要构建的vue框架版本
   for (const vueVersion of vueVersions) {
     const message = `TINY for vue${vueVersion}: runtime`
-    await batchBuildAll({ vueVersion, tasks: [tasks[0]], message, emptyOutDir, npmScope: scope, min })
+
+    // 这里注意不能使用多入口打包，rollup多入口打包会抽取公共依赖（再由inlineChunksPlugin插件处理），导致组件库运行时加载失败
+    for (let i = 0; i < tasks.length; i++) {
+      await batchBuildAll({ vueVersion, tasks: [tasks[i]], message, emptyOutDir, npmScope: scope, min })
+    }
     // 确保只运行一次
     emptyOutDir = false
   }

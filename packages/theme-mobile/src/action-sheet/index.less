@@ -37,7 +37,8 @@
     backface-visibility: hidden;
     transition: transform 0.3s;
     z-index: 500;
-    overflow: hidden;
+    overflow-y: scroll;
+    border-radius: 16px 16px 0px 0px;
     &.is-toggle {
       transform: translate(0, 0);
     }
@@ -77,6 +78,13 @@
     &.is-active {
       color: var(--ti-mobile-action-sheet-item-active-text-color, #039be5);
     }
+  }
+
+  &__menu &__item{
+    height: unset;
+    line-height: 16px;
+    padding: 16px;
+    font-family: PingFang SC, PingFang SC-PingFang SC;
   }
 
   &__item:not(:first-child) {

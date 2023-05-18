@@ -22,15 +22,14 @@
     "rollup": "^3.7.3",
     "semver": "^7.3.8",
     "tsup": "^6.5.0",
-    "vite": "^4.0.0",
-    "vite-plugin-importus": "^1.0.4"
+    "vite": "^4.3.2"
   },
   "bin": {
     "cli": "./dist/cjs/index.js"
   },
   "main": "./dist/cjs/index.js",
   "scripts": {
-    "//build": "tsup",
+    "build": "tsup",
     "// -------注意带 # 开头的脚本命令不要直接执行------- ": "",
     "build:entry": "esno src/index.ts build:entry",
     "#build:entry1": "node dist/index.js build:entry",
@@ -40,20 +39,6 @@
     "build:ui1": "pnpm build && node dist/index.js build:ui",
     "// #build:runtime-vue 构建适用于 Vue2/Vue3 的组件 Runtime (按需加载)": "",
     "build:runtime": "pnpm build:entry-app && esno src/index.ts build:runtime",
-    "// ---------------------release 打包--------------------- ": "",
-    "// release 生成 Vue2/Vue3 版本的 @opentiny/vue npm 包": "",
-    "#release": "esno src/commands/release/release.ts",
-    "release:vue2": "VUE_VERSION=vue2 pnpm #release",
-    "release:vue3": "VUE_VERSION=vue3 pnpm #release",
-    "// release:ui 生成 Vue2/Vue3 版本的 @opentiny/vue-* npm 包": "",
-    "#release:ui": "esno src/commands/release/release-ui.ts",
-    "release:ui-vue2": "VUE_VERSION=vue2 pnpm #release:ui",
-    "release:ui-vue3": "VUE_VERSION=vue3 pnpm #release:ui",
-    "// -----------------------测试包----------------------- ": "",
-    "// release:ui-test 生成 Vue2/Vue3 版本的 @opentiny/vue-* npm 包(可直接复制到项目工程的 node_modules 下进行替换使用)": "",
-    "#release:ui-test": "pnpm #release:ui && pnpm #release",
-    "release:ui-test-vue2": "VUE_VERSION=vue2 RELEASE_MODE=test pnpm #release:ui-test",
-    "release:ui-test-vue3": "VUE_VERSION=vue3 RELEASE_MODE=test pnpm #release:ui-test",
     "// ----------------------辅助脚本---------------------- ": "",
     "create:ui": "esno src/commands/create/create-ui.ts",
     "sync-icons": "esno src/commands/create/sync-icons.ts",

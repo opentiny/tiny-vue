@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 export default defineComponent({
   name: $prefix + 'Button',
@@ -42,13 +42,23 @@ export default defineComponent({
       type: String,
       default: 'button'
     },
-    size: String,
+    size: {
+      type: String,
+      default: '',
+      validator(val: string) {
+        return ['large', 'medium', 'small', 'mini', ''].includes(val)
+      }
+    },
     round: Boolean,
     plain: Boolean,
     circle: Boolean,
     loading: Boolean,
     disabled: Boolean,
-    autofocus: Boolean
+    autofocus: Boolean,
+    buttonClass: {
+      type: String,
+      default: ''
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })

@@ -10,9 +10,9 @@
 *
 */
 
-import { getFormated, getStackMap, get, set, cloneDeep } from '@opentiny/vue-renderless/chart-core/deps/utils'
-import { itemPoint, itemLabel, itemContent } from '@opentiny/vue-renderless/chart-core/deps/constants'
-import { isNull } from '@opentiny/vue-renderless/common/type'
+import { getFormated, getStackMap, get, set, cloneDeep } from '../chart-core/deps/utils'
+import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
+import { isNull } from '../common/type'
 
 // default opacity of bar while dim-axis type is 'value'
 const VALUE_AXIS_OPACITY = 0.5

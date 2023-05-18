@@ -10,8 +10,8 @@
 *
 */
 
-import { getWeekData } from '@opentiny/vue-renderless/picker'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { getWeekData } from '../picker'
+import debounce from '../common/deps/debounce'
 import {
   isDate,
   parseDate,
@@ -28,11 +28,11 @@ import {
   changeYearMonthAndClampDate,
   formatDate,
   extractTimeFormat
-} from '@opentiny/vue-renderless/common/deps/date-util'
-import { DATEPICKER } from '@opentiny/vue-renderless/common'
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
-import { getDateWithNewTimezone, getLocalTimezone } from '@opentiny/vue-renderless/common/date'
-import { fillChar } from '@opentiny/vue-renderless/common/string'
+} from '../common/deps/date-util'
+import { DATEPICKER } from '../common'
+import { on, off } from '../common/deps/dom'
+import { getDateWithNewTimezone, getLocalTimezone } from '../common/date'
+import { fillChar } from '../common/string'
 
 export const getYearLabel = ({ state, t }) => () => {
   const yearTranslation = t(DATEPICKER.YearI18n)

@@ -11,16 +11,28 @@
 */
 
 .component-css-vars-upload-dragger() {
-  --ti-upload-dragger-width: 360px;
-  --ti-upload-dragger-height: 180px;
-  --ti-upload-dragger-bg-color: #fafafa;
+  // 拖拽上传框宽度
+  --ti-upload-dragger-width: calc(var(--ti-common-size-base) * 90);
+  // 拖拽上传框高度
+  --ti-upload-dragger-height: var(--ti-common-size-45x);
+  // 拖拽上传框背景色
+  --ti-upload-dragger-bg-color: var(--ti-common-color-bg-gray);
+  // 拖拽上传框边框色
   --ti-upload-dragger-border-color: var(--ti-common-color-border);
+  // 拖拽上传框圆角
   --ti-upload-dragger-border-radius: var(--ti-common-border-radius-normal);
-  --ti-upload-dragger-hover-text-color: var(--ti-base-color-brand-5);
+  // 拖拽上传框(链接文本|悬浮边框)色
+  --ti-upload-dragger-hover-text-color: var(--ti-common-color-primary-hover);
+  // 文件拖到框内上传框背景色
   --ti-upload-dragger-dragover-bg-color: rgba(32, 159, 255, 0.06);
+  // 拖拽上传框内图标色
   --ti-upload-dragger-icon-color: var(--ti-common-color-placeholder);
+  // 拖拽上传框内图标尺寸
   --ti-upload-dragger-icon-font-size: var(--ti-common-font-size-7);
-  --ti-upload-dragger-text-color: var(--ti-common-color-secondary);
+  // 拖拽上传框内文本色
+  --ti-upload-dragger-text-color: var(--ti-common-color-text-secondary);
+  // 拖拽上传框内字号
   --ti-upload-dragger-text-font-size: var(--ti-common-font-size-base);
+  // 拖拽上传框文件列表边框色(hide)
   --ti-upload-dragger-files-border-color: #dcdfe6;
 }

@@ -222,6 +222,7 @@ export function handleGlobalKeydownEvent(event) {
   })
 }
 
+// 监听全局的窗口尺寸改变事件，然后重新计算表格样式
 export function handleGlobalResizeEvent() {
   this.recalculate()
 }

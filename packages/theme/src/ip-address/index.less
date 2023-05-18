@@ -20,7 +20,7 @@
 .@{ip-address-prefix-cls} {
   .component-css-vars-ip-address();
 
-  width: 270px;
+  width: var(--ti-ip-address-normal-width);
   max-width: 100%;
   outline: 0;
   display: inline-table;
@@ -29,16 +29,17 @@
 
   &__input {
     position: relative;
-    padding: 0;
     width: 100%;
     height: var(--ti-ip-address-normal-height);
+    line-height: var(--ti-ip-address-line-height);
     border: 1px solid var(--ti-ip-address-normal-border-color);
     color: var(--ti-ip-address-normal-text-color);
     border-radius: var(--ti-ip-address-border-radius);
     background: var(--ti-ip-address-normal-bg-color);
     font-size: var(--ti-ip-address-font-size);
-    padding: 0 8px;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     white-space: nowrap;
     background-image: none;
     .user-select(auto);
@@ -46,26 +47,27 @@
     outline: 0;
     box-sizing: border-box;
     .input-readonly(@color: var(--ti-ip-address-border-color-hover));
-    .placeholder(
-      @color: var(--ti-ip-address-normal-disabled-text-color)
-    ); //placeholder属性兼容处理
+    .placeholder(@color: var(--ti-ip-address-normal-disabled-text-color)); //placeholder属性兼容处理
+
     &:hover {
+      cursor: pointer;
       border: 1px solid var(--ti-ip-address-border-color-hover);
       color: var(--ti-ip-address-normal-text-color);
-      .placeholder(
-        @color: var(--ti-ip-address-normal-disabled-text-color)
-      );
+      .placeholder(@color: var(--ti-ip-address-normal-disabled-text-color));
     }
+
     &:focus,
     &:active,
     &.active,
     &[active] {
-      border: 1px solid var(--ti-ip-address-border-color-hover);
+      border: 1px solid var(--ti-ip-address-border-color-focus);
       color: var(--ti-ip-address-normal-text-color);
     }
+
     &:focus {
       .placeholder(@color: #d9d9d9);
     }
+
     &.disabled,
     &[disabled] {
       cursor: not-allowed;
@@ -74,6 +76,7 @@
       color: var(--ti-ip-address-normal-disabled-text-color);
       background: var(--ti-ip-address-disabled-bg-color);
       box-shadow: none;
+
       .@{css-prefix}svg {
         fill: var(--ti-ip-address-normal-disabled-text-color);
       }
@@ -82,52 +85,60 @@
     li {
       float: left;
       overflow: hidden;
-      width: 25%;
       display: inline-flex;
       align-items: center;
-      > input {
+
+      >input {
         border: none;
         text-align: center;
         outline: none;
         background: none;
         color: var(--ti-ip-address-normal-text-color);
-        width: ~'calc(100% - 12px)';
+        font-family: var(--ti-ip-address-normal-font-family);
+        width: var(--ti-ip-address-input-width);
         float: left;
         height: calc(var(--ti-ip-address-normal-height) - 2px);
-        line-height: calc(var(--ti-ip-address-normal-height) - 2px);
+        line-height: var(--ti-ip-address-line-height);
         padding: 0;
+
         &:focus,
         &:active,
         &.active,
         &[active] {
           color: var(--ti-ip-address-normal-text-color);
         }
+
         &:hover {
+          cursor: pointer;
           color: var(--ti-ip-address-normal-text-color);
         }
+
         &.disabled,
         &[disabled] {
           color: var(--ti-ip-address-normal-disabled-text-color);
         }
       }
+
       svg {
         vertical-align: middle;
         fill: var(--ti-ip-address-icon-color);
+        width: var(--ti-ip-address-icon-width);
+        height: var(--ti-ip-address-icon-height);
       }
+
       &:last-child {
-        > svg {
+        >svg {
           display: none;
         }
-        > input {
-          width: 100%;
-        }
       }
+
       &:only-child {
         width: 100%;
-        > input {
+
+        >input {
           width: 100%;
           text-align: left;
-          padding: 0 8px;
+          padding: var(--ti-ip-address-only-child-padding-vertical) var(--ti-ip-address-only-child-padding-horizontal);
         }
       }
     }

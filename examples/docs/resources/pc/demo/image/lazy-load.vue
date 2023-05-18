@@ -13,7 +13,7 @@ export default {
   },
   data() {
     return {
-      srcList: ['static/images/mountain.png', 'static/images/book.jpg', 'static/images/bridge.jpg']
+      srcList: ['/static/images/mountain.png', '/static/images/book.jpg', '/static/images/bridge.jpg']
     }
   }
 }

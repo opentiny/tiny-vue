@@ -1,0 +1,415 @@
+@import '../custom.less';
+
+@select-prefix-cls: ~'@{css-prefix}select';
+@input-prefix-cls: ~'@{css-prefix}input';
+@tag-prefix-cls: ~'@{css-prefix}tag';
+
+.@{select-prefix-cls} {
+  @apply inline-block;
+  @apply relative;
+  @apply w-full;
+  @apply outline-0;
+
+  & &__tags > span:not(.is-disabled),
+  & &__tags > span:not(.is-disabled) > span {
+    @apply contents;
+  }
+
+  &__show-tips {
+    max-height: 300px;
+    @apply overflow-x-hidden;
+    @apply w-full;
+  }
+
+  &__show-common {
+    @apply inline-block;
+  }
+
+  &__input {
+    @apply border-none;
+    @apply outline-0;
+    @apply p-0;
+    @apply ml-px; // 注意考虑tiny-select__tags已有的间距
+    @apply text-color-text-primary;
+    @apply text-xs;
+    @apply h-7;
+    @apply appearance-none;
+    @apply bg-transparent;
+
+    &.is-mini {
+      @apply h-6;
+    }
+
+    &.is-small {
+      @apply h-9;
+    }
+
+    &.is-medium {
+      height: 42px;
+    }
+  }
+
+  &&__multiple {
+    .@{input-prefix-cls}__suffix {
+      @apply ~'top-1.5';
+      @apply transform-none;
+    }
+  }
+
+  &&__multiple.@{select-prefix-cls}--medium {
+    .@{input-prefix-cls}__suffix {
+      @apply top-2;
+    }
+  }
+
+  &&__multiple.@{select-prefix-cls}--mini {
+    .@{input-prefix-cls}__suffix {
+      @apply top-1;
+    }
+  }
+
+  &&__multiple:not(&__collapse-tags):not(&__filterable) &__tags > span {
+    // 兼容ie10-ie11
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      @apply flex;
+      @apply flex-wrap;
+      @apply justify-start;
+      @apply content-start;
+    }
+
+    // 兼容edge
+    @supports (-ms-ime-align: auto) {
+      @apply w-full;
+      @apply flex;
+      @apply flex-wrap;
+      @apply justify-start;
+      @apply content-start;
+    }
+  }
+
+  &&__collapse-tags &__tags {
+    & > span {
+      @apply flex;
+      @apply w-full;
+    }
+  }
+
+  &&__collapse-tags&__filterable &__tags {
+    & > span {
+      @apply w-auto;
+      max-width: 76%;
+
+      & > span:first-child {
+        @apply flex-1;
+
+        // 兼容ie10-ie11
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+          @apply basis-auto;
+        }
+      }
+
+      & > span:only-child,
+      & > span:not(:only-child):first-child {
+        @apply ~"max-w-[100%]";
+      }
+
+      & > span:not(:only-child):not(:first-child) {
+        // 兼容ie10-ie11
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+          @apply shrink-0;
+          @apply basis-auto;
+        }
+      }
+    }
+  }
+
+  &__tags {
+    @apply absolute;
+    @apply leading-normal;
+    @apply whitespace-normal;
+    @apply pl-3;
+    @apply pr-2;
+    @apply ~'z-[1]';
+    @apply ~"top-1/2";
+    @apply ~"-translate-y-2/4";
+    @apply flex;
+    @apply items-center;
+    @apply flex-wrap;
+
+    &.is-showicon {
+      @apply pl-9;
+    }
+
+    .@{tag-prefix-cls}.@{tag-prefix-cls}--info {
+      @apply whitespace-nowrap;
+      @apply text-ellipsis;
+      @apply overflow-hidden;
+      @apply inline-flex;
+      @apply justify-start;
+      @apply items-center;
+      @apply border-transparent;
+      @apply text-color-text-primary;
+    }
+  }
+
+  &.is-hover-expand {
+    @apply align-top;
+
+    &.is-hover {
+      @apply h-7;
+
+      .is-expand {
+        @apply ~"z-[2]";
+      }
+    }
+
+    .@{select-prefix-cls}__tags {
+      @apply h-6;
+      @apply overflow-hidden;
+
+      &-collapse {
+        @apply visible;
+        @apply static;
+
+        &.is-hidden {
+          @apply invisible;
+          @apply absolute;
+        }
+      }
+
+      > span > span {
+        @apply w-full;
+      }
+    }
+
+    &.is-hover .@{select-prefix-cls}__tags {
+      @apply h-auto;
+      max-height: 96px;
+      @apply overflow-y-auto;
+
+      &-collapse {
+        @apply invisible;
+        @apply absolute;
+      }
+
+      &.is-hidden {
+        @apply m-0;
+      }
+
+      &.not-selected {
+        @apply overflow-y-hidden;
+      }
+    }
+
+    & .is-expand {
+      @apply absolute;
+      @apply w-full;
+    }
+
+    &.@{select-prefix-cls}--medium {
+      &.is-hover {
+        height: 42px;
+      }
+    }
+
+    &.@{select-prefix-cls}--small {
+      &.is-hover {
+        @apply h-9;
+      }
+    }
+  }
+
+  &.is-hover-expand.is-disabled {
+    .@{select-prefix-cls}__tags {
+      @apply h-auto;
+    }
+  }
+  &.is-hover-expand.is-display-only{
+    &.is-hover {
+      @apply h-auto;
+    }
+  }
+  &.is-disabled {
+    @apply cursor-not-allowed;
+
+    .@{input-prefix-cls} {
+      &__inner {
+        @apply pr-3;
+      }
+
+      &__suffix {
+        @apply hidden;
+      }
+    }
+
+    .@{select-prefix-cls}__tags {
+      @apply pr-4;
+    }
+  }
+
+  &__tags-text {
+    @apply inline-block;
+    @apply w-full;
+    @apply whitespace-nowrap;
+    @apply text-ellipsis;
+    @apply overflow-hidden;
+    @apply align-bottom;
+
+    & + .@{tag-prefix-cls}__close {
+      @apply shrink-0;
+    }
+
+    &.is-disabled {
+      max-height: 24px;
+
+      > span {
+        @apply inline-block;
+        @apply w-full;
+        @apply whitespace-nowrap;
+        @apply text-ellipsis;
+        @apply overflow-hidden;
+      }
+    }
+  }
+
+  &-tip &-tipcontent {
+    max-width: 300px;
+  }
+
+  & .@{input-prefix-cls} {
+    .@{input-prefix-cls}__inner {
+      @apply pl-3;
+      @apply pr-9;
+    }
+
+    .@{input-prefix-cls}__suffix {
+      @apply right-3;
+    }
+
+    &.@{input-prefix-cls}-prefix {
+      .@{input-prefix-cls}__inner {
+        @apply pl-9;
+      }
+    }
+
+    &.is-show-close {
+      .@{input-prefix-cls}__inner {
+        padding-right: 60px;
+      }
+
+      .icon-close {
+        @apply mr-2;
+        @apply fill-color-text-placeholder;
+
+        &:hover {
+          @apply fill-color-icon-primary;
+        }
+      }
+    }
+  }
+
+  & .@{input-prefix-cls} &__caret {
+    @apply text-base;
+    @apply transition-transform duration-300;
+    transform: rotateZ(180deg);
+    @apply cursor-pointer;
+    @apply fill-color-brand-hover;
+
+    &.is-reverse {
+      transform: rotateZ(0);
+      @apply fill-color-text-placeholder;
+    }
+
+    &.not-reverse {
+      transform: rotateZ(0);
+
+      &:hover {
+        @apply fill-color-brand-hover;
+      }
+    }
+
+    &.is-show-close {
+      @apply text-xs;
+      @apply text-center;
+      transform: rotateZ(180deg);
+      @apply rounded-full;
+      @apply fill-color-icon-placeholder;
+      transition: fill 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+      &:hover {
+        @apply text-color-text-secondary;
+      }
+    }
+
+    svg {
+      @apply w-3;
+      @apply h-3;
+    }
+  }
+
+  & .@{input-prefix-cls} &__copy {
+    @apply h-4;
+    @apply cursor-pointer;
+
+    svg {
+      @apply align-top;
+    }
+  }
+
+  & .@{input-prefix-cls}.is-disabled &__caret {
+    @apply fill-color-text-disabled;
+    @apply cursor-not-allowed;
+  }
+
+  & .@{input-prefix-cls}.is-disabled .@{input-prefix-cls}__inner {
+    @apply cursor-not-allowed;
+  }
+
+  & .@{input-prefix-cls}.is-focus .@{input-prefix-cls}__inner {
+    @apply border-color-border-focus;
+  }
+
+  & > .@{input-prefix-cls} {
+    @apply block;
+  }
+
+  .@{tag-prefix-cls} {
+    max-width: 180px;
+    @apply rounded-sm;
+    @apply py-0 px-3;
+    @apply whitespace-nowrap;
+    @apply box-border;
+    @apply border-transparent;
+    @apply ~"my-0.5" mr-1 ml-0;
+
+    &:last-child {
+      @apply mr-0;
+    }
+  }
+
+  &-dropdown__wrap.virtual {
+    @apply !mr-0;
+  }
+
+  &-dropdown__list.virtual {
+    @apply relative;
+  }
+
+  &-dropdown__item.virtual {
+    @apply absolute;
+    @apply w-full;
+  }
+
+  &-dropdown__item.virtual-hidden {
+    @apply hidden;
+  }
+
+  &__filter-input {
+    @apply px-3;
+    @apply pt-3;
+    @apply pb-1;
+    &.@{select-prefix-cls}__remote-input {
+      @apply pb-3;
+    }
+  }
+}

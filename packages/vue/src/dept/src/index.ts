@@ -22,6 +22,10 @@ export default defineComponent({
     title: {
       type: String,
       default: ''
+    },
+    displayOnly: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

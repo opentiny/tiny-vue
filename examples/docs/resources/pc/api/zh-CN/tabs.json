@@ -4,7 +4,7 @@
       "name": "tab-style",
       "sample": "tab-style-card",
       "type": "String",
-      "desc": "标签页样式;该属性的可选值为 card / border-card",
+      "desc": "标签页样式;该属性的可选值为 card / border-card / button-card",
       "defaultValue": ""
     },
     {
@@ -85,6 +85,13 @@
       "defaultValue": ""
     },
     {
+      "name": "drop-config",
+      "sample": "tabs-draggable",
+      "type": "String",
+      "desc": "启用标签页拖拽功能，对标签页进行重新排序，注意：不是通过 v-for 渲染的 tab-item，在拖拽排序后，无法在 tab-drag-end 事件中对其顺序进行保存",
+      "defaultValue": ""
+    },
+    {
       "name": "tooltip-config",
       "sample": "position-left",
       "type": "Object , String",
@@ -99,9 +106,37 @@
       "type": "",
       "desc": "自定义titl内容",
       "defaultValue": ""
+    },
+    {
+      "name": "moreIcon",
+      "sample": "custom-more-icon",
+      "type": "",
+      "desc": "自定义更多图标",
+      "defaultValue": ""
     }
   ],
   "events": [
+    {
+      "name": "tab-drag-start",
+      "sample": "tabs-events-add",
+      "type": "Function(arg1)",
+      "desc": "拖动开始时的事件, arguments: arg1:event",
+      "defaultValue": ""
+    },
+    {
+      "name": "tab-drag-over",
+      "sample": "tabs-events-add",
+      "type": "Function(arg1)",
+      "desc": "拖动中的事件, arguments: arg1:event",
+      "defaultValue": ""
+    },
+    {
+      "name": "tab-drag-end",
+      "sample": "tabs-events-add",
+      "type": "Function(arg1)",
+      "desc": "拖动结束后的事件, arguments: arg1:event",
+      "defaultValue": ""
+    },
     {
       "name": "add",
       "sample": "tabs-events-add",

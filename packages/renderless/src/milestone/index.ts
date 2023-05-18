@@ -11,7 +11,11 @@
 */
 
 const hexToRgb = (hex) => {
-  hex = hex.slice(1)
+  if (hex.includes('var')) {
+    hex = hex.replace(/var\(|\)/g, '')
+    hex = getComputedStyle(document.documentElement).getPropertyValue(hex)
+  }
+  hex = hex.replace(/\s*#/g, '')
 
   if (hex.length == 3) {
     hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2]

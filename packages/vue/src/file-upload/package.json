@@ -18,7 +18,8 @@
     "@opentiny/vue-progress": "workspace:~",
     "@opentiny/vue-upload-list": "workspace:~",
     "@opentiny/vue-upload": "workspace:~",
-    "streamsaver": "2.0.6"
+    "streamsaver": "2.0.6",
+    "crypto-js": "4.1.1"
   },
   "license": "MIT"
 }

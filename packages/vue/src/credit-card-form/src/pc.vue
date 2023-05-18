@@ -100,7 +100,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/credit-card-form/vue'
 import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
 import LetterOnly from '@opentiny/vue-renderless/common/deps/letter-only'

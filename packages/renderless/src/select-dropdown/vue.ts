@@ -11,7 +11,7 @@
 */
 
 import { mounted } from './index'
-import userPopper from '@opentiny/vue-renderless/common/deps/vue-popper'
+import userPopper from '../common/deps/vue-popper'
 
 export const api = ['state', 'doDestroy']
 

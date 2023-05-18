@@ -10,10 +10,10 @@
 *
 */
 
-import { REFRESH_INTERVAL } from '@opentiny/vue-renderless/common'
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
-import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
-import { xss } from '@opentiny/vue-renderless/common/xss.js'
+import { REFRESH_INTERVAL } from '../common'
+import { on, off } from '../common/deps/dom'
+import PopupManager from '../common/deps/popup-manager'
+import { xss } from '../common/xss.js'
 
 export const arrowClick = (state) => (opt) => {
   state.pager += opt

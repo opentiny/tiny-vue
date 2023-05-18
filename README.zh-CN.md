@@ -62,7 +62,7 @@ pnpm dev
 pnpm dev:vue2
 ```
 
-打开浏览器访问：[http://127.0.0.1:6175/](http://127.0.0.1:6175/)
+打开浏览器访问：[http://127.0.0.1:7130/](http://127.0.0.1:7130/)
 
 ## 🤝 参与贡献
 
@@ -72,6 +72,28 @@ pnpm dev:vue2
 
 - 添加官方小助手微信 opentiny-official，加入技术交流群
 - 加入邮件列表 opentiny@googlegroups.com
+
+## ✨ 贡献者
+
+贡献者是在 OpenTiny 社区中合并了 1 个或多个 PR 的社区成员。
+
+感谢以下 OpenTiny 的贡献者们 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/kagol"><img src="https://avatars.githubusercontent.com/u/9566362?v=4?s=100" width="100px;" alt="Kagol"/><br /><sub><b>Kagol</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=kagol" title="Code">💻</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## 开源协议
 

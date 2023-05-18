@@ -14,10 +14,11 @@ import { handleKeydown, mounted } from './index'
 
 export const api = ['state', 'handleKeydown']
 
-export const renderless = (props, { computed, onMounted, reactive, watch }, { parent, dispatch }) => {
+export const renderless = (props, { computed, onMounted, reactive, watch, provide }, { parent, dispatch }) => {
   const state = reactive({
     radioGroupSize: computed(() => props.size),
-    tag: 'div'
+    tag: 'div',
+    activeStyle: props.fill
   })
 
   parent.$on('handleChange', (value) => {
@@ -39,6 +40,10 @@ export const renderless = (props, { computed, onMounted, reactive, watch }, { pa
   )
 
   onMounted(api.onMounted)
+
+  provide('radioVertical', props.vertical)
+
+  provide('showTips', props.showTips)
 
   return api
 }

@@ -11,17 +11,21 @@ const version = utils.getopentinyVersion({})
 const outputDir = 'packages/vue'
 const iconDir = 'packages/vue-icon'
 const MAIN_TEMPLATE = `{{{include}}}
+ 
+ export const version = '${version}'
+ 
+ export {
+   {{{components}}}
+ }
 
-export const version = '${version}'
-
-export {
+ export default {
   {{{components}}}
 }
-`
+ `
 
 const buildFullRuntime = () => {
-  const outputPath = utils.pathFromWorkspaceRoot(outputDir, "app.ts")
-  const components = moduleUtils.getPcComponents()
+  const outputPath = utils.pathFromWorkspaceRoot(outputDir, 'app.ts')
+  const components = moduleUtils.getComponents()
   const includeTemplate: string[] = []
   const componentsTemplate: string[] = []
 
@@ -30,23 +34,23 @@ const buildFullRuntime = () => {
     {
       name: 'Icon',
       importName: '@opentiny/vue-icon',
-      path: 'packages/vue-icon',
+      path: 'packages/vue-icon'
     },
     {
       name: 'Locale',
       importName: '@opentiny/vue-locale',
-      path: 'packages/vue-locale',
+      path: 'packages/vue-locale'
     },
     {
       name: 'Renderless',
       importName: '@opentiny/vue-renderless/common/runtime',
-      path: 'packages/renderless',
+      path: 'packages/renderless'
     },
     {
       name: 'Common',
       importName: '@opentiny/vue-common',
-      path: 'packages/vue-common',
-    },
+      path: 'packages/vue-common'
+    }
   )
 
   components.forEach((item) => {
@@ -81,6 +85,7 @@ const buildIconEntry = () => {
   let iconEntryContent = fs.readFileSync(inputPath).toString('utf-8')
 
   iconEntryContent = iconEntryContent.replace(/.\/src\//g, './')
+  iconEntryContent = iconEntryContent.replace('export * from \'./lowercase\'', 'export * from \'../lowercase\'')
 
   fs.writeFileSync(outputPath, iconEntryContent)
 }

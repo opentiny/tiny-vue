@@ -1,6 +1,6 @@
 dist
-dist-vue2
-dist-vue3
+dist2
+dist3
 node_modules
 internal/template
 internal/runtime

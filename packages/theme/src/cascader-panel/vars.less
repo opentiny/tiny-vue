@@ -11,12 +11,22 @@
 */
 
 .component-css-vars-cascader-panel() {
+  // 下拉菜单面板的边框圆角
   --ti-cascader-panel-border-radius: var(--ti-common-border-radius-normal);
-  --ti-cascader-panel-border-color: var(--ti-common-color-border);
+  // 下拉菜单面板的边框色
+  --ti-cascader-panel-border-color: var(--ti-common-color-line-disabled);
+  // 下拉菜单面板的字体大小
   --ti-cascader-panel-font-size: var(--ti-common-font-size-base);
-  --ti-cascader-panel-node-height: var(--ti-common-size-height-minor);
-  --ti-cascader-panel-node-margin-top: 0;
-  --ti-cascader-panel-node-label-padding-vertical: 0;
-  --ti-cascader-panel-node-label-padding-right: 30px;
-  --ti-cascader-panel-node-label-padding-left: 20px;
+  // 下拉菜单面板子项的高度
+  --ti-cascader-panel-node-height: var(--ti-common-size-height-normal);
+  // 下拉菜单面板中子项的顶部外边距
+  --ti-cascader-panel-node-margin-top: var(--ti-common-space-0);
+  // 下拉菜单面板中子项的垂直方向的外边距
+  --ti-cascader-panel-node-label-padding-vertical: var(--ti-common-space-0);
+  // 下拉菜单面板中子项的标签的右侧内边距
+  --ti-cascader-panel-node-label-padding-right: calc(var(--ti-common-space-8x) - 2px);
+  // 下拉菜单面板中子项的标签的左侧内边距
+  --ti-cascader-panel-node-label-padding-left: var(--ti-common-space-5x);
+  // 下拉菜单面板中子项的边框圆角
+  --ti-cascader-panel-node-border-radius: var(--ti-common-border-radius-normal);
 }

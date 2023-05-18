@@ -19,23 +19,23 @@
   .component-css-vars-time-select();
 
   & &__item {
-    color: var(--ti-date-picker-text-color);
-    font-size: var(--ti-common-font-size-base);
-    padding: 0 8px;
-    line-height: var(--ti-base-size-height-normal);
-    height: var(--ti-base-size-height-normal);
+    color: var(--ti-time-select-item-text-color);
+    font-size: var(--ti-time-select-item-font-size);
+    padding: 0 var(--ti-time-select-item-padding-horizontal);
+    line-height: var(--ti-time-select-item-line-height);
+    height: var(--ti-time-select-item-height);
 
     &:not(.disabled):hover {
-      background-color: var(--ti-date-picker-hover-bg-color);
+      background-color: var(--ti-time-select-item-hover-bg-color);
       cursor: pointer;
     }
 
     &.selected:not(.disabled) {
-      background-color: var(--ti-date-picker-selected-bg-color);
+      background-color: var(--ti-time-select-item-hover-bg-color);
     }
 
     &.disabled {
-      color: var(--ti-date-picker-disabled-text-color);
+      color: var(--ti-time-select-item-disabled-text-color);
       cursor: not-allowed;
     }
   }

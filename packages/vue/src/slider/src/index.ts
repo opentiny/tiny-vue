@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 const $constants = {
   TIP_HEIGHT: 22,
@@ -46,6 +46,18 @@ const $constants = {
   },
   rightSvgCls(mode) {
     return mode === this.Mode ? this.PC_RIGHT_SVG_CLS : this.MOBILE_RIGHT_SVG_CLS
+  },
+  TIP_CLS(mode) {
+    return mode === this.Mode ? this.PC_TIP_CLS : this.MOBILE_TIP_CLS
+  },
+  SLIDER_CLS(mode) {
+    return mode === this.Mode ? this.PC_SLIDER_CLS : this.MOBILE_SLIDER_CLS
+  },
+  RANGE_CLS(mode) {
+    return mode === this.Mode ? this.PC_RANGE_CLS : this.MOBILE_RANGE_CLS
+  },
+  BUTTON_CLS(mode) {
+    return mode === this.Mode ? this.PC_BUTTON_CLS : this.MOBILE_BUTTON_CLS
   }
 }
 
@@ -99,6 +111,18 @@ export default defineComponent({
       default: 1
     },
     vertical: {
+      type: Boolean,
+      default: false
+    },
+    unit: {
+      type: String,
+      default: '%'
+    },
+    showSteps: {
+      type: Boolean,
+      default: false
+    },
+    showLabel: {
       type: Boolean,
       default: false
     }

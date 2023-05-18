@@ -39,7 +39,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/panel/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconChevronDown, iconChevronRight } from '@opentiny/vue-icon'

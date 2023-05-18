@@ -31,9 +31,13 @@ import {
   watchAutoplay,
   throttledArrowClick,
   throttledIndicatorHover,
-  computedHasLable
+  computedHasLable,
+  touchstart,
+  touchmove,
+  touchend,
+  computedStyle
 } from './index'
-import { addResizeListener, removeResizeListener } from '@opentiny/vue-renderless/common/deps/resize-event'
+import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
 
 export const api = [
   'state',
@@ -59,7 +63,10 @@ export const api = [
   'handleIndicatorClick',
   'handleIndicatorHover',
   'throttledArrowClick',
-  'throttledIndicatorHover'
+  'throttledIndicatorHover',
+  'touchstart',
+  'touchmove',
+  'touchend'
 ]
 
 const initState = ({ reactive, computed, api }) => {
@@ -76,10 +83,13 @@ const initState = ({ reactive, computed, api }) => {
   return state
 }
 
-const initApi = ({ api, state, props, emit }) => {
+const initApi = ({ api, state, props, emit, vm }) => {
   Object.assign(api, {
     state,
     computedHasLable,
+    touchstart: touchstart({ state, api }),
+    touchmove: touchmove({ props, state, vm }),
+    touchend: touchend({ state, api }),
     playSlides: playSlides({ props, state }),
     pauseTimer: pauseTimer(state),
     onComplete: onComplete({ count: 0, emit, props, state }),
@@ -161,7 +171,7 @@ export const renderless = (props, { computed, onMounted, onBeforeUnmount, reacti
   const api = {}
   const state = initState({ reactive, computed, api })
 
-  initApi({ api, state, props, emit })
+  initApi({ api, state, props, emit, vm })
 
   const { updateItems } = useItems({
     api,

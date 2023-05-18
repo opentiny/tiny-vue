@@ -10,10 +10,10 @@
  *
  */
 
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
-import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
-import { typeOf } from '@opentiny/vue-renderless/common/type'
-import { xss } from '@opentiny/vue-renderless/common/xss.js'
+import { on, off } from './dom'
+import PopupManager from './popup-manager'
+import { typeOf } from '../type'
+import { xss } from '../xss'
 
 const win = window
 const positions = ['left', 'right', 'top', 'bottom']
@@ -179,26 +179,16 @@ const getOffsetRectRelativeToCustomParent = (el, parent, fixed) => {
   return rect
 }
 
-const getScrollTopValue = (el) => (el == document.body ? Math.max(document.documentElement.scrollTop, document.body.scrollTop) : el.scrollTop)
+const getScrollTopValue = (el) =>
+  el === document.body ? Math.max(document.documentElement.scrollTop, document.body.scrollTop) : el.scrollTop
 
-const getScrollLeftValue = (el) => (el == document.body ? Math.max(document.documentElement.scrollLeft, document.body.scrollLeft) : el.scrollLeft)
+const getScrollLeftValue = (el) =>
+  el === document.body ? Math.max(document.documentElement.scrollLeft, document.body.scrollLeft) : el.scrollLeft
 
 const getMaxWH = (body, html) => {
   const height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
   const width = Math.max(body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth)
   return { width, height }
-}
-
-const adjustArrowStyle = (arrowStyle, side, arrowRect, popperRect, popperOptions) => {
-  let params = popperOptions.placement.split('-')
-  if (popperOptions.adjustArrow && ~['top', 'bottom'].indexOf(params[0]) && side === 'left') {
-    if (params[1] === 'start') {
-      arrowStyle.left = 8
-    } else if (!params[1]) {
-      arrowStyle.left = (popperRect.width - arrowRect.width) / 2
-    }
-  }
-  return arrowStyle
 }
 
 const getOuterSizes = (el) => {
@@ -766,48 +756,67 @@ Popper.prototype.modifiers.offset = function (data) {
   return data
 }
 
+// 计算arrow的位置,保存在data.offsets.arrow ={top,left}
 Popper.prototype.modifiers.arrow = function (data) {
-  let arrow = this._options.arrowElement
-  let arrowOffset = this._options.arrowOffset
+  let arrow = this._options.arrowElement // 小三角的dom
+  let arrowOffset = this._options.arrowOffset // 入参里的值，可能为 Infinity
 
   if (typeof arrow === 'string') {
     arrow = this._popper.querySelector(arrow)
   }
 
-  if (!arrow || !this._popper.contains(arrow) || !this.isModifierRequired(this.modifiers.arrow, this.modifiers.keepTogether)) {
+  if (
+    !arrow ||
+    !this._popper.contains(arrow) ||
+    !this.isModifierRequired(this.modifiers.arrow, this.modifiers.keepTogether)
+  ) {
     return data
   }
 
   let arrowStyle = {}
-  let placement = data.placement.split('-')[0]
-  let popper = getPopperClientRect(data.offsets.popper)
-  let reference = data.offsets.reference
-  let isVertical = ~['left', 'right'].indexOf(placement)
-  let len = isVertical ? 'height' : 'width'
-  let opSide = isVertical ? 'bottom' : 'right'
-  let altSide = isVertical ? 'left' : 'top'
-  let side = isVertical ? 'top' : 'left'
+  let placement = data.placement.split('-')[0] //             以下以 placement = right 为例
+  let popper = getPopperClientRect(data.offsets.popper) //    整个popper的dom屏幕尺寸。（popper到底是right-start还是right-end，此时已经计算好了的。所以最后那里不需要校正）
+  let reference = data.offsets.reference //                   tiny-form-item__content 元素的屏幕尺寸。 不包含label
+  let isVertical = ~['left', 'right'].indexOf(placement) //   true
+  let calcProp = isVertical ? 'height' : 'width' //           calcProp:height
+  let opSide = isVertical ? 'bottom' : 'right'//              opSide:bottom
+  let altSide = isVertical ? 'left' : 'top'//                 altSide:left       left是无用的那个值
+  let side = isVertical ? 'top' : 'left'//                    side:top
 
-  let popperRect = this.popperOuterSize ? this.popperOuterSize : (this.popperOuterSize = getOuterSizes(this._popper))
-  let arrowRect = getOuterSizes(arrow)
-  let arrowSize = arrowRect[len]
+  let popperRect = this.popperOuterSize ? this.popperOuterSize : (this.popperOuterSize = getOuterSizes(this._popper)) // popper的大小
+  let arrowRect = getOuterSizes(arrow)//                      arrow的大小 {height: 11，width: 5}
+  let arrowSize = arrowRect[calcProp]//                       11
 
+  // 如果reference 比 popper 更靠上，则popper上移到 ref.bottom - arrowSize （上边缘对齐）
   if (reference[opSide] - arrowSize < popper[side]) {
     data.offsets.popper[side] -= popper[side] - (reference[opSide] - arrowSize)
   }
-
+  // 如果reference 比 popper 更靠下，则popper下移到 ref.bottom + arrowSize（下边缘对齐）
   if (reference[side] + arrowSize > popper[opSide]) {
     data.offsets.popper[side] += reference[side] + arrowSize - popper[opSide]
   }
-
-  let center = reference[side] + (arrowOffset || reference[len] / 2 - arrowSize / 2)
+  // 如果arrowOffset有值，则center为ref的上边+arrowOffset。  此例arrowOffset为Infinity，  center也为无穷大。
+  let center = reference[side] + (arrowOffset || reference[calcProp] / 2 - arrowSize / 2)
   let sideValue = center - popper[side]
 
-  sideValue = Math.max(Math.min(popper[len] - arrowSize - 8, sideValue), 8)
-
+  // 猜测是上下边距留下8px的距离。 确保箭头不太靠顶靠底。
+  // 此时sideValue为“popper的顶- 箭头 - 8px” 的位置。
+  sideValue = Math.max(Math.min(popper[calcProp] - arrowSize - 8, sideValue), 8)
   arrowStyle[side] = sideValue
   arrowStyle[altSide] = ''
-  data.offsets.arrow = adjustArrowStyle(arrowStyle, side, arrowRect, popperRect, this._options)
+
+  // adjustArrow此处还要校正一下，但不明白为什么只校正left, 不校正top的位置？
+  const popperOptions = this._options
+  const params = popperOptions.placement.split('-')
+  if (popperOptions.adjustArrow && ~['top', 'bottom'].indexOf(params[0]) && side === 'left') {
+    if (params[1] === 'start') {
+      arrowStyle.left = 8
+    } else if (!params[1]) {
+      arrowStyle.left = (popperRect.width - arrowRect.width) / 2
+    }
+  }
+
+  data.offsets.arrow = arrowStyle
   data.arrowElement = arrow
 
   return data

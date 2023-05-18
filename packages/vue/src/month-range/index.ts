@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import MonthRange from './src/index.vue'
+import MonthRange from './src/pc.vue'
 import '@opentiny/vue-theme/month-range/index.less'
 import { version } from './package.json'
 

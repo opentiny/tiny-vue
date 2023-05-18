@@ -15,6 +15,13 @@
       "defaultValue": "该属性的默认值为 true"
     },
     {
+      "name": "size",
+      "sample": "size",
+      "type": "String",
+      "desc": "加载图标尺寸",
+      "defaultValue": "small"
+    },
+    {
       "name": "target",
       "sample": "target",
       "type": "Object/String",

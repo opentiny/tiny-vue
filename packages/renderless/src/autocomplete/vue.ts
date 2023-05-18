@@ -10,9 +10,9 @@
 *
 */
 
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import userPopper from '@opentiny/vue-renderless/common/deps/vue-popper'
-import { guid } from '@opentiny/vue-renderless/common/string'
+import debounce from '../common/deps/debounce'
+import userPopper from '../common/deps/vue-popper'
+import { guid } from '../common/string'
 import {
   computedVisible,
   watchVisible,

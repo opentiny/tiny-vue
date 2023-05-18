@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-breadcrumb separator=">">
+    <tiny-breadcrumb separator="/">
       <tiny-breadcrumb-item><a href="/">首页</a></tiny-breadcrumb-item>
       <tiny-breadcrumb-item>
         <a href="localhost:3000/webcore/v3/zh-CN/component/breadcrumb"> 产品 </a>

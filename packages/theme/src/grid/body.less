@@ -23,6 +23,7 @@
   overflow-x: auto;
 }
 
+// 鼠标配置项开启后，选中单元格的边框样式（position：absolute）
 .@{grid-prefix-cls}__borders {
   .@{grid-prefix-cls}-border-top,
   .@{grid-prefix-cls}-border-right,
@@ -64,17 +65,13 @@
 
 .@{grid-body-prefix-cls}__row {
   .@{grid-body-prefix-cls}__column {
-    &.col__checked {
-      position: relative;
-      background-color: var(--ti-grid-column-current-background-color);
-      border-right-color: var(--ti-grid-column-checked-border-color);
-      border-bottom-color: var(--ti-grid-column-checked-border-color);
-    }
 
+    // 设置鼠标或者键盘选中时，单元格的背景颜色
     &.col__selected {
       background-color: var(--ti-grid-light-color);
     }
 
+    // 修复计数器组件在表格中显示异常问题
     .@{numeric-prefix-cls} {
       width: 100%;
     }

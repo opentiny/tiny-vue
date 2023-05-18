@@ -106,7 +106,10 @@ setupComponent.TINYModal = {
     // vue3 或 vue2
     const isVue2 = !!Vue.component
     const tinyMode = isVue2 ? Vue.prototype.tiny_mode : Vue.config.globalProperties.tiny_mode
+    const tinyTheme = isVue2 ? Vue.prototype.tiny_theme : Vue.config.globalProperties.tiny_theme
     TINYModal.tiny_mode = process.env.TINY_MODE || (tinyMode && tinyMode.value)
+    TINYModal.tiny_theme = tinyTheme && tinyTheme.value
+
     TINYModal.installed = true
   },
   init(root) {

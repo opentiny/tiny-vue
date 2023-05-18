@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Popup from './src/index.vue'
+import Popup from './src/pc.vue'
 import '@opentiny/vue-theme-mobile/popup/index.less'
 import { version } from './package.json'
 

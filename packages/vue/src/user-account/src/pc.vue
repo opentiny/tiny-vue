@@ -26,7 +26,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/user-account/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import UserContact from '@opentiny/vue-user-contact'

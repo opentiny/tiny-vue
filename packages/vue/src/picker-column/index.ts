@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import PickerColumn from './src/index.vue'
+import PickerColumn from './src/mobile.vue'
 import '@opentiny/vue-theme-mobile/picker-column/index.less'
 import { version } from './package.json'
 

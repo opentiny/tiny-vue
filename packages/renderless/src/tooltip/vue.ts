@@ -25,9 +25,11 @@ import {
   watchFocusing,
   bindPopper,
   focusHandler,
+  observeCallback,
+  handleDocumentClick
 } from './index'
-import userPopper from '@opentiny/vue-renderless/common/deps/vue-popper'
-import { guid } from '@opentiny/vue-renderless/common/string'
+import userPopper from '../common/deps/vue-popper'
+import { guid } from '../common/string'
 
 export const api = [
   'state',
@@ -42,9 +44,10 @@ export const api = [
   'setExpectedState',
   'updatePopper',
   'focusHandler',
+  'markRaw'
 ]
 
-const initState = ({ reactive, showPopper, popperElm, referenceElm, props }) =>
+const initState = ({ reactive, showPopper, popperElm, referenceElm, props, markRaw, inject }) =>
   reactive({
     showPopper,
     popperElm,
@@ -54,30 +57,37 @@ const initState = ({ reactive, showPopper, popperElm, referenceElm, props }) =>
     expectedState: undefined,
     mounted: false,
     tooltipId: guid('tiny-tooltip-', 4),
-    tabindex: props.tabindex
+    tabindex: props.tabindex,
+    xPlacement: 'bottom',
+    poppers: markRaw([]),
+    showContent: inject('showContent', null),
+    tipsMaxWidth: inject('tips-max-width', null)
   })
 
 export const renderless = (
   props,
-  { watch, toRefs, reactive, onBeforeUnmount, onDeactivated, onMounted, onUnmounted },
+  { watch, toRefs, reactive, onBeforeUnmount, onDeactivated, onMounted, onUnmounted, markRaw, inject },
   { vm, emit, refs, slots, nextTick, parent }
 ) => {
   const api = {}
   const popperParam = { emit, props, nextTick, toRefs, reactive, parent, refs }
 
+  const popperVmRef = {}
+
   Object.assign(popperParam, { slots, onBeforeUnmount, onDeactivated, watch })
 
   const { showPopper, updatePopper, popperElm, referenceElm, doDestroy } = userPopper(popperParam)
-  const state = initState({ reactive, showPopper, popperElm, referenceElm, props })
+  const state = initState({ reactive, showPopper, popperElm, referenceElm, props, markRaw, inject })
 
   Object.assign(api, {
     state,
+    markRaw,
     doDestroy,
     updatePopper,
     show: show({ api, state, props }),
     hide: hide(api),
     destroyed: destroyed({ state, api }),
-    bindPopper: bindPopper({ vm, refs, nextTick }),
+    bindPopper: bindPopper({ vm, refs, nextTick, popperVmRef }),
     watchFocusing: watchFocusing(state),
     removeFocusing: removeFocusing(state),
     handleBlur: handleBlur({ api, state }),
@@ -88,6 +98,8 @@ export const renderless = (
     handleClosePopper: handleClosePopper({ api, props, state }),
     bindEvent: bindEvent({ api, state, vm }),
     focusHandler: focusHandler({ slots, api }),
+    handleDocumentClick: handleDocumentClick({ props, api, state, popperVmRef }),
+    observeCallback: observeCallback({ state, popperVmRef }),
   })
 
   watch(() => state.focusing, api.watchFocusing)
@@ -97,11 +109,21 @@ export const renderless = (
     (val) => nextTick(() => props.manual && (state.showPopper = val))
   )
 
-  onMounted(api.bindPopper)
+  onMounted(() => {
+    api.bindPopper()
+    if (props.genArrowByHtml) {
+      const config = { attributes: true, childList: false, subtree: false }
+      api.observer = new MutationObserver(api.observeCallback)
+      api.observer.observe(popperVmRef.popper, config)
+    }
+  })
 
   vm.$on('tooltip-update', api.bindPopper)
 
-  onUnmounted(api.destroyed)
+  onUnmounted(() => {
+    api.destroyed()
+    api.observer && api.observer.disconnect()
+  })
 
   return api
 }

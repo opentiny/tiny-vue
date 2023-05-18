@@ -23,13 +23,16 @@ import {
   getImageStyle,
   clickHandler,
   closeViewer,
-  mounted
+  mounted,
+  deleteHander
 } from './index'
 
-export const api = ['state', 'src', 'zIndex', 'previewSrcList', 'loadImage', 'clickHandler', 'closeViewer', 'handleLoad', 'handleError']
+export const api = ['state', 'src', 'zIndex', 'previewSrcList', 'loadImage', 'clickHandler', 'closeViewer', 'handleLoad', 'handleError', 'deleteHander']
 
-const initState = ({ reactive, computed, api, props }) => {
+const initState = ({ reactive, computed, api, props, images }) => {
   const state = reactive({
+    mfPreviewVisible: props.previewVisible,
+    images,
     error: false,
     loading: true,
     imageWidth: 0,
@@ -59,7 +62,8 @@ const initApi = ({ api, state, emit, props, vm, constants, nextTick, attrs }) =>
     handleLazyLoad: handleLazyLoad({ api, state, vm, nextTick }),
     loadImage: loadImage({ api, state, props, attrs }),
     computedGetImageStyle: computedGetImageStyle({ api, props }),
-    addLazyLoadListener: addLazyLoadListener({ api, props, state, vm })
+    addLazyLoadListener: addLazyLoadListener({ api, props, state, vm }),
+    deleteHander: deleteHander(emit)
   })
 }
 
@@ -75,9 +79,9 @@ const initWatch = ({ watch, state, api, props }) => {
   )
 }
 
-export const renderless = (props, { computed, onBeforeUnmount, onMounted, reactive, watch }, { vm, emit, constants, nextTick, attrs }) => {
+export const renderless = (props, { computed, onBeforeUnmount, onMounted, reactive, watch, provide }, { vm, emit, constants, nextTick, attrs }, {images}) => {
   const api = {}
-  const state = initState({ reactive, computed, api, props })
+  const state = initState({ reactive, computed, api, props, images })
 
   initApi({ api, state, emit, props, vm, constants, nextTick, attrs })
 
@@ -85,6 +89,10 @@ export const renderless = (props, { computed, onBeforeUnmount, onMounted, reacti
 
   onMounted(api.mounted)
   onBeforeUnmount(() => props.lazy && api.removeLazyLoadListener())
+
+  provide('mfPreviewVisible', state.mfPreviewVisible)
+
+  provide('urlList', props.previewSrcList)
 
   return api
 }

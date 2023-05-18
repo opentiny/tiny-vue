@@ -10,9 +10,9 @@
 *
 */
 
-import { on, off, addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
-import { emitEvent } from '@opentiny/vue-renderless/common/event'
-import { getDomNode } from '@opentiny/vue-renderless/common/deps/dom'
+import { on, off, addClass, removeClass } from '../common/deps/dom'
+import { emitEvent } from '../common/event'
+import { getDomNode } from '../common/deps/dom'
 
 export const computedAnimationName = ({ constants, props }) => () => (props.rightSlide ? constants.DIALOG_SLIDER_RIGHT : constants.DIALOG_FADE)
 
@@ -20,7 +20,7 @@ export const computedAddUnit = (value) => (isNaN(Number(value)) ? value : value 
 
 export const computedStyle = ({ props, state }) => () => {
   const style = {}
-  let { width, top, rightSlide } = props
+  let { width, top, rightSlide, maxHeight } = props
 
   if (top === undefined) {
     top = rightSlide ? '0' : '15vh'
@@ -28,16 +28,18 @@ export const computedStyle = ({ props, state }) => () => {
 
   width = computedAddUnit(width)
   top = computedAddUnit(top)
+  maxHeight = computedAddUnit(maxHeight)
 
   if (!state.isFull) {
     style.width = width
-    style.top = top
+    style.top = state.top || top
+    style.maxHeight = maxHeight
 
     if (rightSlide) {
       style.right = 0
       style.height = 'calc(100vh - ' + style.top + ')'
     } else {
-      style.left = 'calc((100vw - ' + width + ') / 2)'
+      style.left = state.left || 'calc((100vw - ' + width + ') / 2)'
     }
   }
 
@@ -239,6 +241,8 @@ export const handleDrag = ({ parent, props, state, emit }) => (event) => {
 
     modalBoxElem.style.left = `${left}px`
     modalBoxElem.style.top = `${top}px`
+    state.left = `${left}px`
+    state.top = `${top}px`
 
     state.emitter.emit('boxdrag')
     emit('drag-move', event)

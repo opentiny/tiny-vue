@@ -10,7 +10,7 @@
 *
 */
 
-import { initService } from '@opentiny/vue-renderless/user'
+import { initService } from '../user'
 import { init } from './index'
 
 export const api = ['state']

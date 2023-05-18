@@ -10,7 +10,7 @@
 *
 */
 
-import { clearMilliseconds, timeWithinRange, limitTimeRange, modifyDate } from '@opentiny/vue-renderless/common/deps/date-util'
+import { clearMilliseconds, timeWithinRange, limitTimeRange, modifyDate } from '../common/deps/date-util'
 
 export const minTimeOfDay = ({ MIN_TIME }) => (date) => modifyDate(MIN_TIME, date.getFullYear(), date.getMonth(), date.getDate())
 

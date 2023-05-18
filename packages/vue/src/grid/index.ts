@@ -28,17 +28,17 @@ import GridButton from './src/button'
 import * as GridTools from './src/tools'
 import { version } from './package.json'
 
+// 右键菜单、内置编辑器、导出、键盘操作、校验、响应式改变表格宽高（auto-resize）、筛选
 const components = [Menu, Edit, Export, Keyboard, Validator, Resize, Filter]
 
-function install() {
-  GridAdapter.setup({ i18n: t })
+// 设置全局参数,配置GlobalConfig，提供比如国际化方法
+GridAdapter.setup({ i18n: t })
+GridAdapter.t = t
 
-  GridAdapter.t = t
+// 把各个插件的方法都合并会$table
+components.map((component) => component.install(Table))
 
-  components.map((component) => component.install(Table))
-}
 
-install()
 
 Grid.version = version
 
@@ -54,5 +54,5 @@ if (process.env.BUILD_TARGET === 'runtime') {
 }
 
 export default Grid
-
+// 按需引入插件
 export { GridColumn, GridConfig, GridAdapter, GridRadio, GridButton, GridTools }

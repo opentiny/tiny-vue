@@ -19,30 +19,22 @@
         </template>
         <div class="tiny-bulletin-board__contain">
           <div v-for="(subItem, subIndex) in state.dataList" :key="subIndex" class="tiny-bulletin-board__item">
-            <a
-              v-if="subItem.url || subItem.route"
-              :href="subItem.url || getRoute(subItem.route)"
-              :target="subItem.target"
-              class="tiny-bulletin-board__textTitle"
-              rel="noopener noreferrer"
-            >
-              <span v-if="subIndex === 0" class="tiny-bulletin-board__new"> <component :is="icon" class="tiny-svg-size" />{{ icon ? '' : 'NEW' }} </span>
+            <a v-if="subItem.url || subItem.route" :href="subItem.url || getRoute(subItem.route)" :target="subItem.target" class="tiny-bulletin-board__textTitle" rel="noopener noreferrer">
+              <span v-if="subIndex === 0" class="tiny-bulletin-board__new">
+                <component :is="icon" class="tiny-svg-size" />{{ icon ? '' : 'NEW' }}
+              </span>
               {{ subItem.text }}
             </a>
             <span v-else class="tiny-bulletin-board__textTitle">
-              <span v-if="subIndex === 0" class="tiny-bulletin-board__new"> <component :is="icon" class="tiny-svg-size" />{{ icon ? '' : 'NEW' }} </span>
+              <span v-if="subIndex === 0" class="tiny-bulletin-board__new">
+                <component :is="icon" class="tiny-svg-size" />{{ icon ? '' : 'NEW' }}
+              </span>
               {{ subItem.text }}
             </span>
             <p class="tiny-bulletin-board__textDate">{{ subItem.date }}</p>
           </div>
           <div v-if="showMore" class="tiny-bulletin-board__more">
-            <a
-              v-if="showMore && state.moreLink && (state.moreLink.url || state.moreLink.route)"
-              :href="state.moreLink.url || getRoute(state.moreLink.route)"
-              class="tiny-bulletin-board__more-link"
-              :target="state.moreLink.target"
-              rel="noopener noreferrer"
-            >
+            <a v-if="showMore && state.moreLink && (state.moreLink.url || state.moreLink.route)" :href="state.moreLink.url || getRoute(state.moreLink.route)" class="tiny-bulletin-board__more-link" :target="state.moreLink.target" rel="noopener noreferrer">
               <span>{{ state.moreLink.text || 'more' }}</span>
               <icon-chevron-right class="tiny-svg-size" />
             </a>
@@ -53,7 +45,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/bulletin-board/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import Tabs from '@opentiny/vue-tabs'

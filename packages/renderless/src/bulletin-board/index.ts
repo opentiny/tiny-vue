@@ -10,7 +10,7 @@
  *
  */
 
-import { xss } from '@opentiny/vue-renderless/common/xss.js'
+import { xss } from '../common/xss.js'
 
 export const getRoute = (route) => `/${route || ''}`.replace(/^\/+/, '/')
 

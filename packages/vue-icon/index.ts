@@ -25,6 +25,7 @@ import IconAngularjs from './src/angularjs'
 import IconApp from './src/app'
 import IconApplication from './src/application'
 import IconAreaChart from './src/area-chart'
+import IconArrowBottom from './src/arrow-bottom'
 import IconArrowDown from './src/arrow-down'
 import IconArrowLeft from './src/arrow-left'
 import IconArrowRight from './src/arrow-right'
@@ -319,8 +320,54 @@ import IconWriting from './src/writing'
 import IconYes from './src/yes'
 import IconZoomIn from './src/zoom-in'
 import IconZoomOut from './src/zoom-out'
+import IconMobileRadio from './src/mobile-radio'
+import IconMobileRadioSelected from './src/mobile-radio-selected'
+import IconMobileCheckbox from './src/mobile-checkbox'
+import IconMobileCheckboxHalf from './src/mobile-checkbox-half'
+import IconMobileCheckboxSelected from './src/mobile-checkbox-selected'
+import IconAudio from './src/audio'
+import IconMic from './src/mic'
+import IconExcelType from './src/excel-type'
+import IconFileType from './src/file-type'
+import IconOtherType from './src/other-type'
+import IconPdfType from './src/pdf-type'
+import IconPictureType from './src/picture-type'
+import IconPptType from './src/ppt-type'
+import IconTextType from './src/text-type'
+import IconVideoType from './src/video-type'
+import IconWordType from './src/word-type'
+import IconZipType from './src/zip-type'
+
+// new design
+import IconPrompt from './src/prompt'
+import IconExpand from './src/expand'
+import IconPutAway from './src/put-away'
+import IconStretch from './src/stretch'
+import IconAddCircle from './src/add-circle'
 export * from './lowercase'
 export {
+  IconPrompt,
+  IconExpand,
+  IconPutAway,
+  IconStretch,
+  IconAddCircle,
+  IconAudio,
+  IconMic,
+  IconExcelType,
+  IconFileType,
+  IconOtherType,
+  IconPdfType,
+  IconPictureType,
+  IconPptType,
+  IconTextType,
+  IconVideoType,
+  IconWordType,
+  IconZipType,
+  IconMobileCheckbox,
+  IconMobileCheckboxHalf,
+  IconMobileCheckboxSelected,
+  IconMobileRadio,
+  IconMobileRadioSelected,
   IconAdd,
   IconAdministrator,
   IconAlignBaseline,
@@ -336,6 +383,7 @@ export {
   IconApp,
   IconApplication,
   IconAreaChart,
+  IconArrowBottom,
   IconArrowDown,
   IconArrowLeft,
   IconArrowRight,
@@ -633,6 +681,28 @@ export {
 }
 
 export default {
+  IconPrompt,
+  IconExpand,
+  IconPutAway,
+  IconStretch,
+  IconAddCircle,
+  IconAudio,
+  IconMic,
+  IconExcelType,
+  IconFileType,
+  IconOtherType,
+  IconPdfType,
+  IconPictureType,
+  IconPptType,
+  IconTextType,
+  IconVideoType,
+  IconWordType,
+  IconZipType,
+  IconMobileCheckbox,
+  IconMobileCheckboxHalf,
+  IconMobileCheckboxSelected,
+  IconMobileRadio,
+  IconMobileRadioSelected,
   IconAdd,
   IconAdministrator,
   IconAlignBaseline,
@@ -648,6 +718,7 @@ export default {
   IconApp,
   IconApplication,
   IconAreaChart,
+  IconArrowBottom,
   IconArrowDown,
   IconArrowLeft,
   IconArrowRight,
@@ -685,11 +756,11 @@ export default {
   IconConmentRefresh,
   IconCopySolid,
   IconCopy,
+  IconCrop,
   IconCourse,
   IconCueL,
   IconCustom,
   IconCustomerService,
-  IconCrop,
   IconDataSource,
   IconDefault,
   IconDefinedFiltration,
@@ -787,6 +858,7 @@ export default {
   IconFrown,
   IconFullscreen,
   IconFullscreenLeft,
+  IconMinscreenLeft,
   IconGrade,
   IconGroupTransfer,
   IconGroup,
@@ -830,7 +902,6 @@ export default {
   IconMarkOn,
   IconMeh,
   IconMessageCircle,
-  IconMinscreenLeft,
   IconMinscreen,
   IconMinusCircle,
   IconMinusSquare,

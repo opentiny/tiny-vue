@@ -92,7 +92,7 @@ export const renderless = (props, { onMounted, onUpdated, provide, reactive, wat
     handleTabRemove: handleTabRemove(emit),
     changeDirection: changeDirection({ props, state }),
     changeCurrentName: changeCurrentName({ emit, state }),
-    calcMorePanes: calcMorePanes({ parent, props, state }),
+    calcMorePanes: calcMorePanes({ parent, props, state, refs }),
     calcExpandPanes: calcExpandPanes({ parent, props, state }),
     calcPaneInstances: calcPaneInstances({ constants, parent, state, childrenHandler }),
     handleTabDragStart: handleTabDragStart({ emit }),

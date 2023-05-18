@@ -30,15 +30,17 @@ export const setSheetStyle = ({ state, props }) => () => {
       'max-height': props.height,
     }
   }
+  // 内容区支持自定义主题
+  state.contentStyle = props.contentStyle ? props.contentStyle : ''
 }
 
 export const initScrollMenu = ({ state, nextTick, refs, BScroll }) => () => {
   nextTick(() => {
     const { scrollMenu } = refs
-    if (!state.scroll) {
+    if (state.scroll) {
       state.scroll = new BScroll(scrollMenu, {
         probeType: 3,
-        click: true
+        tap: 'tap'
       })
     } else {
       state.scroll.refresh()
@@ -68,4 +70,33 @@ export const menuHandle = ({ emit, state }) => (item) => {
   emit('update:visible', false)
   emit('update:modelValue', item.id)
   emit('click', item)
+}
+
+export const close = ({ emit, vm }) => () => {
+  vm.$refs.drawer.close()
+
+  emit('close', false)
+}
+
+export const hide = (emit) => () => {
+  emit('hide', false)
+  emit('update:visible', false)
+}
+
+export const selectOption = ({ emit, props }) => (option) => {
+  const { valueField } = props
+
+  emit('update:visible', false)
+  emit('update:modelValue', option[valueField])
+  emit('click', option)
+}
+
+export const confirm = ({ emit, state }) => () => {
+  emit('confirm', state)
+  emit('update:visible', false)
+}
+
+export const actionSelectOption = ({ emit }) => (option, index) => {
+  emit('update:visible', false)
+  emit('click', option, index)
 }

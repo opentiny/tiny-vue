@@ -1,0 +1,19 @@
+@import '../custom.less';
+
+@filter-panel-prefix-cls: ~'@{css-prefix}filter-panel';
+
+.@{filter-panel-prefix-cls} {
+  &__popover.tiny-popover.tiny-popper {
+    min-width: 200px;
+
+    &[x-placement^='bottom'] {
+      margin-top: 4px;
+      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.16);
+    }
+
+    &[x-placement^='top'] {
+      margin-bottom: 4px;
+      box-shadow: 4px 0 12px 0 rgba(0, 0, 0, 0.16);
+    }
+  }
+}

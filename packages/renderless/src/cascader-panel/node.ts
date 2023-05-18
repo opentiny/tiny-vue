@@ -10,9 +10,9 @@
 *
 */
 
-import { isEqual } from '@opentiny/vue-renderless/common/object'
-import { capitalize } from '@opentiny/vue-renderless/common/string'
-import { isNull } from '@opentiny/vue-renderless/common/type'
+import { isEqual } from '../common/object'
+import { capitalize } from '../common/string'
+import { isNull } from '../common/type'
 
 let uid = 0
 

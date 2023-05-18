@@ -10,7 +10,7 @@
 *
 */
 
-import ResizeObserver from '@opentiny/vue-renderless/common/deps/ResizeObserver'
+import ResizeObserver from './ResizeObserver'
 
 const isServer = typeof window === 'undefined'
 const cacheKey = '__resizeListeners__'

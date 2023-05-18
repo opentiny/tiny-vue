@@ -10,10 +10,10 @@
  *
  */
 
-import { KEY_CODE } from '@opentiny/vue-renderless/common'
-import { emitEvent } from '@opentiny/vue-renderless/common/event'
-import { on, off, hasClass } from '@opentiny/vue-renderless/common/deps/dom'
-import { toNumber } from '@opentiny/vue-renderless/common/string'
+import { KEY_CODE } from '../common'
+import { emitEvent } from '../common/event'
+import { on, off, hasClass } from '../common/deps/dom'
+import { toNumber } from '../common/string'
 
 export const bindEvent = (api) => () => {
   on(window, 'resize', api.bindResize)
@@ -433,3 +433,49 @@ export const watchModelValue =
         }
       }
     }
+
+export const getPoints = ({ props, state }) => () => {
+  if (props.showSteps && props.step > 0) {
+    state.points = []
+    const num = parseInt(props.max / props.step)
+    for (let i = 1; i < num; i++) {
+      const point = {
+        position: (i / num) * 100 + '%',
+        value: (i / num) * props.max
+      }
+      state.points.push(point)
+    }
+  }
+}
+
+export const getLabels = ({ props, state }) => () => {
+  if (props.showLabel) {
+    state.labels = []
+
+    const isFunction = props.formatLabel instanceof Function
+    const num = parseInt(props.max / props.step)
+    for (let i = 0; i <= num; i++) {
+      const val = (i / num) * props.max
+      const label = {
+        position: (i / num) * 100 + '%',
+        label: isFunction ? props.formatLabel(val, i) : val,
+        value: val
+      }
+      state.labels.push(label)
+    }
+  }
+}
+
+export const inputValueChange = ({ props, state, api }) => ($event, pos) => {
+  if (props.disabled || !state.isDouble) return
+
+  if (!/^\d+$/.test($event.target.value)) {
+    if (pos === 'left') {
+      state.inputValue.splice(0, 1, state.leftBtnValue)
+    } else {
+      state.inputValue.splice(1, 1, state.rightBtnValue)
+    }
+    return
+  }
+  api.initSlider([Math.min(...state.inputValue), Math.max(...state.inputValue)])
+}

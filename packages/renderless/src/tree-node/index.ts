@@ -10,7 +10,7 @@
 *
 */
 
-import { getNodeKey as getTreeNodeKey } from '@opentiny/vue-renderless/common/deps/tree-model/util'
+import { getNodeKey as getTreeNodeKey } from '../common/deps/tree-model/util'
 
 export const watchIndeterminate = ({ api, props }) => (value) => api.handleSelectChange(props.node.checked, value)
 

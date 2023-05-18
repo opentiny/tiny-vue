@@ -32,6 +32,14 @@
     "demoId": "with-add"
   },
   {
+    "title": "'More' icon slot",
+    "content": "<p>Customize more icons through <code>show-more-tabs</code> and <code>moreIcon</code> slots</p>\n",
+    "link": "tabs/custom-more-icon",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "custom-more-icon"
+  },
+  {
     "title": "The tab page can be closed.",
     "content": "<p>The <code>withClose</code> attribute specifies whether the tab page can be closed. In addition, the <code>close</code> event can be used to customize the logic for closing the tab page. </p>\n",
     "link": "tabs/tabs-events-close",
@@ -88,6 +96,14 @@
     "demoId": "stretch-wh"
   },
   {
+    "title": "The tab page can be dragged.",
+    "content": "<p>Set the <code>drop-config</code> attribute, transfer the <code>Sortable</code> plug-in, enable the tab page drag function, and reorder the tab pages. </p>\n",
+    "link": "tabs/tabs-draggable",
+    "component": "Tabs tab",
+    "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
+    "demoId": "tabs-draggable"
+  },
+  {
     "title": "add event",
     "content": "<p>The <code>add</code> event is triggered when the Add button is clicked to add a tab page</p>\n",
     "link": "tabs/tabs-events-add",
@@ -142,5 +158,13 @@
     "component": "Tabs tab",
     "findIntroStr": "Separates data sets that are associated with content but belong to different categories.",
     "demoId": "show-different-grid-data"
+  },
+  {
+    "title": "Level-2 tab",
+    "content": "Nested tab",
+    "link": "tabs/tabs-second-layer",
+    "component": "Tabs tab",
+    "findIntroStr": "Separate data sets that are associated with content but belong to different categories.",
+    "demoId": "tabs-second-layer"
   }
 ]

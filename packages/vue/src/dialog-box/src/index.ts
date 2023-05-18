@@ -112,6 +112,10 @@ export default defineComponent({
     width: {
       type: String,
       default: () => '500px'
+    },
+    maxHeight: {
+      type: String,
+      default: () => ''
     }
   },
   setup(props, context) {

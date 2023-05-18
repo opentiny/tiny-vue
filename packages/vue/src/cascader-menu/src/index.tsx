@@ -10,7 +10,7 @@
  *
  */
 import { renderless, api } from '@opentiny/vue-renderless/cascader-menu/vue'
-import { $prefix, h, setup } from '@opentiny/vue-common'
+import { $prefix, h, setup, defineComponent} from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
 import Scrollbar from '@opentiny/vue-scrollbar'
 import CascaderNode from '@opentiny/vue-cascader-node'
@@ -45,7 +45,7 @@ const renderNodeListFunc = (_vm) => () => {
   return [...nodes, isHoverMenu ? <svg ref="hoverZone" class="tiny-cascader-menu__hover-zone"></svg> : null]
 }
 
-export default {
+export default defineComponent({
   name: $prefix + 'CascaderMenu',
   components: {
     TinyScrollbar: Scrollbar,
@@ -96,4 +96,4 @@ export default {
       [state.isEmpty ? renderEmptyText(h) : renderNodeList(h)]
     )
   }
-}
+})

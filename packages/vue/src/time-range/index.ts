@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import TimeRange from './src/index.vue'
+import TimeRange from './src/pc.vue'
 import '@opentiny/vue-theme/time-range/index.less'
 import { version } from './package.json'
 

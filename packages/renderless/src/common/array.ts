@@ -10,9 +10,9 @@
 *
 */
 
-import { SORT } from '@opentiny/vue-renderless/common'
-import { isSame } from '@opentiny/vue-renderless/common/type'
-import { getObj } from '@opentiny/vue-renderless/common/object'
+import { SORT } from './index'
+import { isSame } from './type'
+import { getObj } from './object'
 
 /**
  * 返回在数组中可以找到一个给定元素的第一个索引，如果不存在，则返回-1。

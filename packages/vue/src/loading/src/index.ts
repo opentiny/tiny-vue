@@ -11,7 +11,7 @@
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import { constants } from './service'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile=pc|mobile-first'
 
 export default defineComponent({
   name: $prefix + 'Loading',
@@ -26,7 +26,10 @@ export default defineComponent({
       type: String,
       default: () => constants.LOAD_ICON_TEXT
     },
-    _constants: Object
+    _constants: {
+      type: Object,
+      default: () => constants
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })

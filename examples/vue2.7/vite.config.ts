@@ -2,9 +2,8 @@ import path from 'node:path'
 import { defineConfig, loadEnv } from 'vite'
 import { checker as checkerPlugin } from 'vite-plugin-checker'
 import dynamicImportPlugin from 'vite-plugin-dynamic-import'
-import importPlugin from 'vite-plugin-importus'
+import importPlugin from '@opentiny/vue-vite-import'
 import inspectPlugin from 'vite-plugin-inspect'
-import { viteStaticCopy as staticCopyPlugin } from 'vite-plugin-static-copy'
 import vue2Plugin from '@vitejs/plugin-vue2'
 import vue2JsxPlugin from '@vitejs/plugin-vue2-jsx'
 import { createSvgPlugin as vue2SvgPlugin } from 'vite-plugin-vue2-svg'
@@ -33,17 +32,14 @@ export default defineConfig((config) => {
       vue2SvgPlugin(),
       importPlugin([
         {
-          libraryName: '@opentiny/vue',
-          customName: name => `@opentiny/vue-${name}`,
-          style: false,
+          libraryName: '@opentiny/vue'
         },
-        ...['icon', 'icon-saas'].map(lib => ({
-          libraryName: `@opentiny/vue-${lib}`,
-          customName: (name: string) => {
-            return name === 'default' ? `@opentiny/vue-${lib}$` : `@opentiny/vue-${lib}/${name.replace(/^icon-/, '')}`
-          },
-          style: false,
-        })),
+        {
+          libraryName: '@opentiny/vue-icon',
+          customName: (name) => {
+            return name === 'default' ? '@opentiny/vue-icon$' : `@opentiny/vue-icon/${name.replace(/^icon-/, '')}`
+          }
+        }
       ]),
       dynamicImportPlugin(),
       Unocss({
@@ -53,9 +49,6 @@ export default defineConfig((config) => {
         shortcuts,
         variants,
         safelist: [...Array.from({ length: 24 }, (_, i) => `c-rand${i + 1}`), ...Array.from({ length: 24 }, (_, i) => `bg-rand${i + 1}`)]
-      }),
-      staticCopyPlugin({
-        targets: [{ src: '../docs/public/*', dest: '' }],
       }),
       inspectPlugin(),
       checkerPlugin({ overlay: { initialIsOpen: false }, terminal: false, typescript: false, vueTsc: true }),
@@ -73,6 +66,7 @@ export default defineConfig((config) => {
     define: {
       'process.env': env,
     },
+    publicDir: '../public',
     optimizeDeps: getOptimizeDeps(2.7)
   }
 })

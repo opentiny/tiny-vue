@@ -62,7 +62,7 @@ pnpm dev
 pnpm dev:vue2
 ```
 
-Open your browser and visit: [http://127.0.0.1:6175/](http://127.0.0.1:6175/)
+Open your browser and visit: [http://127.0.0.1:7130/](http://127.0.0.1:7130/)
 
 ## 🤝 Contributing
 
@@ -72,6 +72,42 @@ If you don't know how to start, please read our [contributing guide](CONTRIBUTIN
 
 - Add the official assistant WeChat `opentiny-official` and join the technical exchange group.
 - Add to the mailing list `opentiny@googlegroups.com`
+
+## ✨ Contributors
+
+Contributors are community members who have 1 or more PR merged in OpenTiny.
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/kagol"><img src="https://avatars.githubusercontent.com/u/9566362?v=4?s=100" width="100px;" alt="Kagol"/><br /><sub><b>Kagol</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=kagol" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/zzcr"><img src="https://avatars.githubusercontent.com/u/18521562?v=4?s=100" width="100px;" alt="ajaxzheng"/><br /><sub><b>ajaxzheng</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=zzcr" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/TC-twwang"><img src="https://avatars.githubusercontent.com/u/42400776?v=4?s=100" width="100px;" alt="TC-twwang"/><br /><sub><b>TC-twwang</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=TC-twwang" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/MNZhu"><img src="https://avatars.githubusercontent.com/u/17588953?v=4?s=100" width="100px;" alt="jacknan"/><br /><sub><b>jacknan</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=MNZhu" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/awspi"><img src="https://avatars.githubusercontent.com/u/66438036?v=4?s=100" width="100px;" alt="Pithy"/><br /><sub><b>Pithy</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=awspi" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/heygsc"><img src="https://avatars.githubusercontent.com/u/103993866?v=4?s=100" width="100px;" alt="heygsc"/><br /><sub><b>heygsc</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=heygsc" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/wwttff"><img src="https://avatars.githubusercontent.com/u/32888622?v=4?s=100" width="100px;" alt="MangoWu"/><br /><sub><b>MangoWu</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=wwttff" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/ErKeLost"><img src="https://avatars.githubusercontent.com/u/66500121?v=4?s=100" width="100px;" alt="ADNY"/><br /><sub><b>ADNY</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=ErKeLost" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/chenxi-20"><img src="https://avatars.githubusercontent.com/u/76168465?v=4?s=100" width="100px;" alt="chenxi-20"/><br /><sub><b>chenxi-20</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=chenxi-20" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/rayhaoqin"><img src="https://avatars.githubusercontent.com/u/46983981?v=4?s=100" width="100px;" alt="Alaray"/><br /><sub><b>Alaray</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=rayhaoqin" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/yuanningning"><img src="https://avatars.githubusercontent.com/u/104059491?v=4?s=100" width="100px;" alt="ing"/><br /><sub><b>ing</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=yuanningning" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/shenjunjian"><img src="https://avatars.githubusercontent.com/u/6848520?v=4?s=100" width="100px;" alt="申君健"/><br /><sub><b>申君健</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=shenjunjian" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/MomoPoppy"><img src="https://avatars.githubusercontent.com/u/125256456?v=4?s=100" width="100px;" alt="MomoPoppy"/><br /><sub><b>MomoPoppy</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=MomoPoppy" title="Code">💻</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## License
 

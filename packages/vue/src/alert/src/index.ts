@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 const $constants = {
   ICON_MAP: {
@@ -24,7 +24,8 @@ const $constants = {
     error: 'ui.alert.error',
     info: 'ui.alert.info',
     warning: 'ui.alert.warning'
-  }
+  },
+  CONTENT_MAXHEUGHT: 252
 }
 
 export default defineComponent({
@@ -63,6 +64,18 @@ export default defineComponent({
     closeText: {
       type: String,
       default: ''
+    },
+    singleLine: {
+      type: Boolean,
+      default: false
+    },
+    scrolling: {
+      type: Boolean,
+      default: false
+    },
+    showFoldable: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

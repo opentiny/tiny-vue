@@ -3,8 +3,8 @@
     "strings": true
   },
   "markdownlint.config": {
-    "no-inline-html": true,
-    "first-line-heading": true
+    "no-inline-html": false,
+    "first-line-heading": false
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "prettier.enable": true,

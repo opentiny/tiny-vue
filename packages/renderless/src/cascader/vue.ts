@@ -39,9 +39,9 @@ import {
   presentTextHandler,
   handleBeforeUpdate
 } from './index'
-import { removeResizeListener } from '@opentiny/vue-renderless/common/deps/resize-event'
-import userPopper from '@opentiny/vue-renderless/common/deps/vue-popper'
-import { DATEPICKER } from '@opentiny/vue-renderless/common'
+import { removeResizeListener } from '../common/deps/resize-event'
+import userPopper from '../common/deps/vue-popper'
+import { DATEPICKER } from '../common'
 
 export const api = [
   'state',

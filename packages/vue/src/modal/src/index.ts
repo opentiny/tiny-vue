@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 const $constants = {
   MODAL_STATUS: {
@@ -77,7 +77,12 @@ export default defineComponent({
     vSize: String,
     width: [Number, String],
     zIndex: [Number, String],
-    mode: null
+    mode: null,
+    description: String,
+    options: Array,
+    showClose: { type: Boolean, default: true },
+    confirmContent: String,
+    cancelContent: String
   },
   setup(props, context) {
     return $setup({ props, context, template })

@@ -28,6 +28,7 @@
 
   &-pane {
     position: absolute;
+    font-size: var(--ti-split-pane-font-size);
 
     &.left-pane,
     &.right-pane {
@@ -135,7 +136,8 @@
     }
   }
 
-  &-horizontal, &-vertical {
+  &-horizontal,
+  &-vertical {
     .@{split-prefix-cls}-collapse-bar {
       position: absolute;
       display: flex;

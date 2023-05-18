@@ -10,8 +10,8 @@
 *
 */
 
-import { getFormated, htmlHandler, getLegend } from '@opentiny/vue-renderless/chart-core/deps/utils'
-import { itemPoint, itemLabel, itemContent } from '@opentiny/vue-renderless/chart-core/deps/constants'
+import { getFormated, htmlHandler, getLegend } from '../chart-core/deps/utils'
+import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
 
 const getXAxis = (args) => {
   const { columns, xAxisName, axisVisible, xAxisType } = args

@@ -10,12 +10,12 @@
  *
  */
 
-import { getNodeKey as innerGetNodekey } from '@opentiny/vue-renderless/common/deps/tree-model/util'
-import { KEY_CODE } from '@opentiny/vue-renderless/common'
-import TreeStore from '@opentiny/vue-renderless/common/deps/tree-model/tree-store'
-import { addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
-import { getDataset } from '@opentiny/vue-renderless/common/dataset'
+import { getNodeKey as innerGetNodekey } from '../common/deps/tree-model/util'
+import { KEY_CODE } from '../common'
+import TreeStore from '../common/deps/tree-model/tree-store'
+import { addClass, removeClass } from '../common/deps/dom'
+import { on, off } from '../common/deps/dom'
+import { getDataset } from '../common/dataset'
 
 export const setChildren = (props) => (data) => (props.data = data)
 

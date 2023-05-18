@@ -10,9 +10,9 @@
 *
 */
 
-import { getFormated, getMapJSON, getLegend as getLegendMap } from '@opentiny/vue-renderless/chart-core/deps/utils'
-import { itemPoint, itemLabel, itemContent } from '@opentiny/vue-renderless/chart-core/deps/constants'
-import { isNull } from '@opentiny/vue-renderless/common/type'
+import { getFormated, getMapJSON, getLegend as getLegendMap } from '../chart-core/deps/utils'
+import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
+import { isNull } from '../common/type'
 
 const getTooltip = ({ dataType, digit, dataStore, metrics, color, labelMap }) => {
   function formatter(item) {

@@ -133,7 +133,8 @@
         <tiny-action-sheet
           v-model="state.sheetvalue"
           :menus="selectMenu"
-          ellipsis
+          :ellipsis="ellipsis"
+          :contentStyle="contentStyle"
           :visible="state.boxVisibility"
           @update:visible="state.boxVisibility = $event"
         ></tiny-action-sheet>
@@ -176,7 +177,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/input/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconOperationfaild, iconEyeopen, iconChevronRight } from '@opentiny/vue-icon'
@@ -197,6 +198,8 @@ export default defineComponent({
     'name',
     'form',
     'selectMenu',
+    'ellipsis',
+    'contentStyle',
     'labelWidth',
     'mobileTips',
     'isSelect',

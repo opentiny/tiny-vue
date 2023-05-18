@@ -10,10 +10,10 @@
 *
 */
 
-import { isNull } from '@opentiny/vue-renderless/common/type'
-import { isEqual } from '@opentiny/vue-renderless/common/object'
-import { isEmpty } from '@opentiny/vue-renderless/cascader'
-import { KEY_CODE, CASCADER } from '@opentiny/vue-renderless/common'
+import { isNull } from '../common/type'
+import { isEqual } from '../common/object'
+import { isEmpty } from '../cascader'
+import { KEY_CODE, CASCADER } from '../common'
 
 export const watchCheckedValue = ({ api, emit, props, state }) => (value) => {
   if (!isEqual(value, props.modelValue)) {

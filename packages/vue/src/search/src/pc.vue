@@ -12,7 +12,9 @@
 <template>
   <div :class="['tiny-search', { mini }, { collapse: state.collapse }]" @mouseenter="state.hovering = true" @mouseleave="state.hovering = false">
     <div :class="['tiny-search__line', { focus: state.focus }]">
-      <slot v-if="slots.prefix" name="prefix"></slot>
+      <div class="tiny-search__prefix" v-if="slots.prefix">
+        <slot name="prefix"></slot>
+      </div>
       <transition name="tiny-transition-search-line-fade" mode="out-in">
         <div v-show="!state.collapse && state.types.length" class="tiny-search__present" @click="showSelector">
           <slot name="text" :slot-scope="state.searchValue">
@@ -29,9 +31,9 @@
         :style="
           transparent
             ? {
-                border: 'transparent',
-                background: state.collapse ? 'rgba(255,255,255,0.3)' : '#fff'
-              }
+              border: 'transparent',
+              background: state.collapse ? 'rgba(255,255,255,0.3)' : '#fff'
+            }
             : {}
         "
         :placeholder="placeholder"
@@ -53,7 +55,7 @@
         </div>
       </transition>
       <slot v-if="slots.suffix" name="suffix"></slot>
-      <div v-else class="tiny-search__input-btn">
+      <div v-else-if="!slots.prefix && !slots.suffix" class="tiny-search__input-btn">
         <a @click="searchClick">
           <icon-search :style="{ fill: state.collapse && transparent ? '#fff' : '' }" class="tiny-svg-size" />
         </a>
@@ -64,7 +66,9 @@
         <div class="tiny-search__selector-body">
           <ul class="tiny-search__poplist">
             <li v-for="(item, index) in state.types" :key="index" class="tiny-search__poplist-item" @click="changeKey(item)">
-              <slot name="poplist" :slot-scope="item">{{ item.text }} </slot>
+              <slot name="poplist" :slot-scope="item">
+                {{ item.text }}
+              </slot>
             </li>
           </ul>
         </div>

@@ -32,6 +32,17 @@ export const rootConfig = (context) => {
   return instance?.appContext.config.globalProperties
 }
 
+export const getComponentName = () => {
+  // 此处组件最多为两层组件，所以对多获取到父级组件即可
+  const instance = hooks.getCurrentInstance()
+  let componentName = instance?.type?.name
+  if (!componentName) {
+    componentName = instance?.parent?.type?.name
+  }
+
+  return componentName || ''
+}
+
 export const appContext = () =>
   hooks.getCurrentInstance()?.appContext || {
     component: () => {
@@ -307,8 +318,10 @@ export const tools = (context, mode) => {
 
   const setParentAttribute = ({ name, value }) => {
     const ctx = grandParent ? grandParent.ctx : instance?.parent?.ctx
-
     ctx[name] = value
+
+    // 当前的parentVm也保存一下。
+    parentVm[name] = value
   }
 
   const defineInstanceProperties = (props) => {

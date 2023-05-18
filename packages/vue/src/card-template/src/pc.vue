@@ -21,20 +21,9 @@
             <component class="tiny-svg-size" :is="item.icon" />
           </li>
         </ul>
-        <div
-          v-show="state.moreTools && state.moreTools.length && state.showMoreTools"
-          ref="selector"
-          class="tiny-selector tiny-card-template__more"
-          @mouseleave="state.showMoreTools = false"
-        >
+        <div v-show="state.moreTools && state.moreTools.length && state.showMoreTools" ref="selector" class="tiny-selector tiny-card-template__more" @mouseleave="state.showMoreTools = false">
           <ul class="tiny-poplist">
-            <li
-              v-for="(item, index) in state.moreTools"
-              :key="index"
-              :title="item.title"
-              :class="{ 'select-pre': state.isEnter }"
-              @click="toolClick(item.click)"
-            >
+            <li v-for="(item, index) in state.moreTools" :key="index" :title="item.title" :class="{ 'select-pre': state.isEnter }" @click="toolClick(item.click)">
               <component class="tiny-svg-size" :is="item.icon" />
               {{ item.title }}
             </li>
@@ -43,13 +32,13 @@
       </div>
     </div>
     <div :style="bodyStyle" class="tiny-card-template__body">
-      <slot />
+      <slot></slot>
     </div>
     <slot name="footer"></slot>
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/card-template/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconEdit, iconClose, iconExcel, iconHelp, iconMore } from '@opentiny/vue-icon'
