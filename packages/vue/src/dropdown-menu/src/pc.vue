@@ -29,7 +29,7 @@
   </transition>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/dropdown-menu/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import DropdownItem from '@opentiny/vue-dropdown-item'

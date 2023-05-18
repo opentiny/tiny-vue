@@ -31,26 +31,28 @@
         @focus="handleFocus"
         @blur="state.focusing = false"
       >
-        <slot name="icon">
-          <icon-chevron-right class="tiny-collapse-item__arrow tiny-svg-size" :class="{ 'is-active': state.isActive }" />
-        </slot>
+        <div class="tiny-collapse-item__arrow">
+          <slot name="icon">
+            <icon-chevron-right class="tiny-svg-size" :class="{ 'is-active': state.isActive }" />
+          </slot>
+        </div>
         <slot name="title">{{ title }}</slot>
       </div>
-    </div>
-    <collapse-transition>
-      <div
-        v-show="state.isActive"
-        class="tiny-collapse-item__wrap"
-        role="tabpanel"
-        :aria-hidden="!state.isActive"
-        :aria-labelledby="`tiny-collapse-head-${state.id}`"
-        :id="`tiny-collapse-content-${state.id}`"
-      >
-        <div class="tiny-collapse-item__content">
-          <slot></slot>
+      <collapse-transition>
+        <div
+          v-show="state.isActive"
+          class="tiny-collapse-item__wrap"
+          role="tabpanel"
+          :aria-hidden="!state.isActive"
+          :aria-labelledby="`tiny-collapse-head-${state.id}`"
+          :id="`tiny-collapse-content-${state.id}`"
+        >
+          <div class="tiny-collapse-item__content">
+            <slot></slot>
+          </div>
         </div>
-      </div>
-    </collapse-transition>
+      </collapse-transition>
+    </div>
   </div>
 </template>
 

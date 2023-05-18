@@ -10,10 +10,10 @@
 *
 */
 
-import { on, off, getScrollContainer, isInContainer } from '@opentiny/vue-renderless/common/deps/dom'
-import { typeOf } from '@opentiny/vue-renderless/common/type'
-import '@opentiny/vue-renderless/common/deps/requestAnimationFrame'
-import { rafThrottle } from '@opentiny/vue-renderless/image-viewer'
+import { on, off, getScrollContainer, isInContainer } from '../common/deps/dom'
+import { typeOf } from '../common/type'
+import '../common/deps/requestAnimationFrame'
+import { rafThrottle } from '../image-viewer'
 
 const isSupportObjectFit = () => document.documentElement.style.objectFit !== undefined
 
@@ -58,6 +58,10 @@ export const handleLoad = ({ state, emit }) => (event, img) => {
   state.loading = false
 
   emit('load', event)
+}
+
+export const deleteHander = (emit) => (event) => {
+  emit('delete', event)
 }
 
 export const handleError = ({ state, emit }) => (event) => {

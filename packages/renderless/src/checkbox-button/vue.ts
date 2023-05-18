@@ -21,7 +21,7 @@ import {
   computedIsDisabled,
   toggleEvent
 } from './index'
-import { addToStore, computedIsChecked, computedStore, computedIsLimitDisabled } from '@opentiny/vue-renderless/checkbox'
+import { addToStore, computedIsChecked, computedStore, computedIsLimitDisabled } from '../checkbox'
 
 export const api = ['state', 'handleChange']
 

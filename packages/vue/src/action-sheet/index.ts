@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import ActionSheet from './src/index.vue'
+import ActionSheet from './src/index'
 import { version } from './package.json'
 
 ActionSheet.model = {

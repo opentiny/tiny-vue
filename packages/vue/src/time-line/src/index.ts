@@ -10,12 +10,16 @@
  *
  */
 import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 const $constants = {
   PROCESS_DONE_CLS: 'process-done',
   PROCESS_CUR_CLS: 'process-current',
-  PROCESS_WAIT_CLS: 'process-wait'
+  PROCESS_WAIT_CLS: 'process-wait',
+  PROCESS_DISABLED_CLS: 'process-disabled',
+  PROCESS_ERROR_CLS: 'process-error',
+  STACK_NODES_MAX: '7',
+  LIMITED_STACK_NODES: '3'
 }
 
 export default defineComponent({
@@ -63,10 +67,13 @@ export default defineComponent({
     showStatus: {
       type: Boolean,
       default: false
+    },
+    subField: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

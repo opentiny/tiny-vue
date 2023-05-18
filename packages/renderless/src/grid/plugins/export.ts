@@ -23,8 +23,8 @@
  *
  */
 
-import { xss } from '@opentiny/vue-renderless/common/xss.js'
-import browser from '@opentiny/vue-renderless/common/browser'
+import { xss } from '../../common/xss.js'
+import browser from '../../common/browser'
 import { toTreeArray } from '../static'
 import { getCellValue, getFuncText } from '../utils'
 import { exportExcel } from './exportExcel'

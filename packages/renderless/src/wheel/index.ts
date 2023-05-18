@@ -10,7 +10,7 @@
 *
 */
 
-import { cloneDeep } from '@opentiny/vue-renderless/chart-core/deps/utils'
+import { cloneDeep } from '../chart-core/deps/utils'
 
 export const created = (api) => () => {
   api.loadPickerData()

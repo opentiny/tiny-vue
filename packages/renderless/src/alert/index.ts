@@ -15,6 +15,31 @@ export const close = ({ emit, state }) => () => {
   emit('close')
 }
 
-export const computedGetIcon = ({ constants, props }) => () => props.icon || constants.ICON_MAP[props.type]
+export const computedGetIcon = ({ constants, props, designConfig }) => () => {
+  const designIcon = designConfig?.icons?.[props.type]
+
+  return props.icon || designIcon || constants.ICON_MAP[props.type]
+}
 
 export const computedGetTitle = ({ constants, t, props }) => () => props.title || t(constants.TITLE_MAP[props.type])
+
+export const handleHeaderClick = ({ state, props, vm }) => () => {
+  if (props.showFoldable) {
+    state.contentVisible = !state.contentVisible
+  }
+
+  if (vm.$refs.ContentDescribe) {
+    state.contentDescribeHeight = vm.$refs.ContentDescribe.scrollHeight
+
+    if (state.contentDescribeHeight > state.contentMaxHeight) {
+      state.scrollStatus = true
+    }
+  }
+  if (vm.$refs.ContentDefault) {
+    state.contentDefaultHeight = vm.$refs.ContentDefault.scrollHeight
+
+    if (state.contentDefaultHeight > state.contentMaxHeight) {
+      state.scrollStatus = true
+    }
+  }
+}

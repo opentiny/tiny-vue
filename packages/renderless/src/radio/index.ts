@@ -59,3 +59,21 @@ export const toggleEvent = ({ props, refs, type }) => {
     radioEl[type + 'EventListener'](ev, props.events[ev])
   })
 }
+
+export const dispatchDisplayedValue = ({ state, dispatch, api }) => () => {
+  if (state.isDisplayOnly) {
+    dispatch('FormItem', 'displayed-value-changed', {
+      type: 'radio',
+      val: api.getDisplayedValue()
+    })
+  }
+}
+
+export const getDisplayedValue = ({ vm, state, props }) => () => {
+  if (state.model === props.label) {
+    return (vm.$refs.label && vm.$refs.label.innerText) || props.text || props.label
+  } else {
+    return ''
+  }
+}
+

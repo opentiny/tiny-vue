@@ -10,9 +10,9 @@
  *
  */
 
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
-import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
-import { isObject, typeOf } from '@opentiny/vue-renderless/common/type'
+import { on, off } from '../common/deps/dom'
+import PopupManager from '../common/deps/popup-manager'
+import { isObject, typeOf } from '../common/type'
 
 export const handleChange = ({ emit, state }) => (event) => {
   const value = event.target.value

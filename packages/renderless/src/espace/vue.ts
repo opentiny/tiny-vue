@@ -10,7 +10,7 @@
 *
 */
 
-import { init } from '@opentiny/vue-renderless/common/deps/eSpaceCtrl'
+import { init } from '../common/deps/eSpaceCtrl'
 import { getUserHref, getUserTitle, doUserAction, initEspaceLink, openEspace, testUID, soundEspace } from './index'
 
 export const api = ['getUserHref', 'getUserTitle', 'doUserAction', 'initEspaceLink', 'openEspace', 'testUID', 'soundEspace']

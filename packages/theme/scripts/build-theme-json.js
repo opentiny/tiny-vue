@@ -12,26 +12,29 @@ const ignoreNames = ['src', 'base']
 const ruleReg = /([\w|\-|_]*): *([\w|\-|\_|(|)]*);/
 
 function formatRule(name, key, value, desc) {
+  const hasHide = desc.includes('(hide)')
+  desc = desc.replace('(hide)', '')
+
   return `
-    "${key}": {
-        "id": "${key}",
-        "key": "${key}",
-        "variable": "${value}",
-        "value": "${value}",
-        "desc": "${desc}",
-        "descEn": "${desc}",
-        "component": "${name}",
-        "componentDesc": "",
-        "componentDescEn": "",
-        "selector": ".tiny-${name}",
-        "type": "",
-        "group": "",
-        "isImportant": "false",
-        "ui": "",
-        "show": 1,
-        "configurable": 1,
-        "isOpen": true
-    },`
+  "${key}": {
+    "id": "${key}",
+    "key": "${key}",
+    "variable": "${value}",
+    "value": "${value}",
+    "desc": "${desc}",
+    "descEn": "${desc}",
+    "component": "${name}",
+    "componentDesc": "",
+    "componentDescEn": "",
+    "selector": ".tiny-${name}",
+    "type": "",
+    "group": "",
+    "isImportant": "false",
+    "ui": "",
+    "show": 1,
+    "configurable": ${hasHide ? 0 : 1},
+    "isOpen": true
+  },`
 }
 
 // 处理一个vars.less文件
@@ -89,9 +92,7 @@ fg(['**/vars.less']).then((files) => {
 
   const parsed = components.map((comp) => parseFile(comp)).flat()
   let writedContent = parsed.join('').slice(1, -1) // 去除最后一个逗号
-  writedContent = `{
-${writedContent}
-}`
+  writedContent = `{\n${writedContent}\n}`
   fs.writeFileSync('scripts/theme.json', writedContent)
 
   // 记录未注释的组件

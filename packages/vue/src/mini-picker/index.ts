@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import MiniPicker from './src/index.vue'
+import MiniPicker from './src/mobile.vue'
 import '@opentiny/vue-theme-mobile/mini-picker/index.less'
 import { version } from './package.json'
 

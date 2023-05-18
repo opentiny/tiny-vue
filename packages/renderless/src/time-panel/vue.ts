@@ -27,7 +27,7 @@ import {
   emitPick,
   emitDestroy
 } from './index'
-import { DATEPICKER } from '@opentiny/vue-renderless/common'
+import { DATEPICKER } from '../common'
 
 export const api = ['state', 'handleMenuEnter', 'handleClick', 'handleClear', 'emitDestroy']
 

@@ -11,7 +11,7 @@
 </template>
 
 <script lang="jsx">
-import { ToggleMenu, Modal } from '@opentiny/vue'
+import { ToggleMenu, Notify } from '@opentiny/vue'
 
 export default {
   components: {
@@ -98,19 +98,34 @@ export default {
   },
   methods: {
     nodeDragStart() {
-      window.tinyLog('拖拽节点后的事件')
+      Notify({
+        message: '拖拽节点后的事件',
+        position: 'top-right'
+      })
     },
     nodeDragEnter() {
-      window.tinyLog('拖拽进入某个节点（包含自身节点）时触发的事件')
+      Notify({
+        message: '拖拽进入某个节点（包含自身节点）时触发的事件',
+        position: 'top-right'
+      })
     },
     nodeDragOver() {
-      window.tinyLog('拖拽经过某个节点（包含自身节点）时触发的事件')
+      Notify({
+        message: '拖拽经过某个节点（包含自身节点）时触发的事件',
+        position: 'top-right'
+      })
     },
     nodeDragLeave() {
-      window.tinyLog('拖拽离开某个节点（包含自身节点）时触发的事件')
+      Notify({
+        message: '拖拽离开某个节点（包含自身节点）时触发的事件',
+        position: 'top-right'
+      })
     },
     nodeDragEnd() {
-      window.tinyLog('拖拽结束时触发的事件')
+      Notify({
+        message: '拖拽结束时触发的事件',
+        position: 'top-right'
+      })
     }
   }
 }

@@ -26,7 +26,7 @@
     aria-valuemax="100"
   >
     <div class="tiny-progress-bar" v-if="type === 'line'">
-      <div class="tiny-progress-bar__outer" :style="{ height: strokeWidth + 'px' }">
+      <div class="tiny-progress-bar__outer" :style="{ height: strokeWidth + 'px', borderRadius: `${strokeWidth / 2}px` }">
         <transition
           appear
           appear-class="custom-appear-class"
@@ -34,7 +34,7 @@
           @appear="customAppearHook"
           @after-appear="customAfterAppearHook"
         >
-          <div class="tiny-progress-bar__inner" :style="state.barStyle">
+          <div class="tiny-progress-bar__inner" :style="{ ...state.barStyle, borderRadius: `${strokeWidth / 2}px` }">
             <div class="tiny-progress-bar__innerText" v-if="showText && textInside">
               {{ state.content }}
             </div>
@@ -72,13 +72,15 @@
       </svg>
     </div>
     <div class="tiny-progress__text" v-if="showText && !textInside" :style="{ fontSize: state.progressTextSize + 'px' }">
-      <template v-if="!status">{{ state.content }}</template>
+      <template v-if="!status">
+        {{ state.content }}
+      </template>
       <component v-else :is="state.iconClass" class="tiny-svg-size" />
     </div>
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/progress/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconClose, iconSuccessful, iconError, iconYes, iconWarning } from '@opentiny/vue-icon'

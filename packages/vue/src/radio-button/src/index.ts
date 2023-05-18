@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc'
+import template from 'virtual-template?pc|mobile-first'
 
 const $constants = {
   RADIO_GROUP: 'RadioGroup'
@@ -31,7 +31,8 @@ export default defineComponent({
       default: () => ({})
     },
     label: {},
-    disabled: Boolean
+    disabled: Boolean,
+    tipContent: String
   },
   setup(props, context) {
     return $setup({ props, context, template })

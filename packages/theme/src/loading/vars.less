@@ -11,11 +11,40 @@
 */
 
 .component-css-vars-loading() {
-  --ti-loading-text-color: var(--ti-base-color-brand-6);
-  --ti-loading-mask-bg-color: rgba(255, 255, 255, 0.9);
+  // 加载图标文本色
+  --ti-loading-text-color: var(--ti-common-color-icon-active);
+  // 加载背景色
+  --ti-loading-mask-bg-color: var(--ti-common-bg-minor);
+  // 加载文本字号
   --ti-loading-text-font-size: var(--ti-common-font-size-1);
-  --ti-loading-spinner-height: 42px;
-  --ti-loading-spinner-width: 42px;
-  --ti-loading-fullscreen-height: 50px;
-  --ti-loading-fullscreen-width: 50px;
+  // 加载图标自定义加载图标顶部外边距
+  --ti-loading-spinner-margin-top: calc(var(--ti-common-space-0) - 21px) ; 
+  // 加载图标文本垂直方向外边距
+  --ti-loading-text-margin-vertical: calc(var(--ti-common-space-base) - 1px); 
+  // 加载图标文本水平方向外边距
+  --ti-loading-text-margin-horizontal: var(--ti-common-space-0); 
+  // 全屏加载图标small尺寸时的宽度
+  --ti-loading-fullscreen-small-width: var(--ti-common-size-4x);
+  // 全屏加载图标medium尺寸时的宽度
+  --ti-loading-fullscreen-medium-width: var(--ti-common-size-8x);
+  // 全屏加载图标large尺寸时的宽度
+  --ti-loading-fullscreen-large-width: var(--ti-common-size-10x);
+  // 全屏加载图标small尺寸时的高度
+  --ti-loading-fullscreen-small-height: var(--ti-common-size-4x);
+  // 全屏加载图标medium尺寸时的高度
+  --ti-loading-fullscreen-medium-height: var(--ti-common-size-8x);
+  // 全屏加载图标large尺寸时的高度
+  --ti-loading-fullscreen-large-height: var(--ti-common-size-10x);
+  // 默认加载图标small尺寸时的高度
+  --ti-loading-spinner-small-height: var(--ti-common-size-4x);
+  // 默认加载图标medium尺寸时的高度
+  --ti-loading-spinner-medium-height: var(--ti-common-size-8x);
+  // 默认加载图标large尺寸时的高度
+  --ti-loading-spinner-large-height: var(--ti-common-size-10x);
+  // 默认加载图标small尺寸时的宽度
+  --ti-loading-spinner-small-width: var(--ti-common-size-4x);
+  // 默认加载图标medium尺寸时的宽度
+  --ti-loading-spinner-medium-width: var(--ti-common-size-8x);
+  // 默认加载图标large尺寸时的宽度
+  --ti-loading-spinner-large-width: var(--ti-common-size-10x);
 }

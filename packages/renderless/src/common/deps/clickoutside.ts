@@ -10,7 +10,7 @@
 *
 */
 
-import { on } from '@opentiny/vue-renderless/common/deps/dom'
+import { on } from './dom'
 
 const isServer = typeof window === 'undefined'
 const nodeList = []

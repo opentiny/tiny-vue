@@ -16,6 +16,8 @@
 @scrollbar-prefix-cls: ~'@{css-prefix}scrollbar';
 
 .@{scrollbar-prefix-cls} {
+  .component-css-vars-scrollbar();
+
   overflow: hidden;
   position: relative;
 
@@ -43,18 +45,17 @@
     width: 0;
     height: 0;
     cursor: pointer;
-    border-radius: inherit;
-    background-color: rgba(144, 147, 153, 0.3);
+    border-radius: var(--ti-scrollbar-thumb-border-radius);
+    background-color: var(--ti-scrollbar-thumb-bg-color);
     transition: 0.3s background-color;
 
     &:hover {
-      background-color: rgba(144, 147, 153, 0.5);
+      background-color: var(--ti-scrollbar-thumb-hover-bg-color);
     }
   }
 
   &__bar {
     position: absolute;
-    right: 2px;
     bottom: 2px;
     z-index: 1;
     border-radius: 4px;
@@ -62,8 +63,9 @@
     transition: opacity 120ms ease-out;
 
     &.is-vertical {
-      width: 6px;
+      width: var(--ti-scrollbar-vertical-width);
       top: 2px;
+      right: var(--ti-scrollbar-vertical-right);
 
       & > div {
         width: 100%;
@@ -73,6 +75,7 @@
     &.is-horizontal {
       height: 6px;
       left: 2px;
+      right: 2px;
 
       & > div {
         height: 100%;

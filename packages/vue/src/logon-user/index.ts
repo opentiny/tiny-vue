@@ -1,4 +1,4 @@
-import LogonUser from './src/index.vue'
+import LogonUser from './src/pc.vue'
 import { version } from './package.json'
 
 /* istanbul ignore next */

@@ -11,7 +11,7 @@
 */
 
 import { format, complementError, asyncMap, warning, deepMerge, convertFieldsError } from './util'
-import { hasOwn, isFunction } from '@opentiny/vue-renderless/common/type'
+import { hasOwn, isFunction } from '../type'
 
 function Schema(descriptor, translate) {
   Schema.getSystemMessage = () => Schema.getDefaultMessage(translate)

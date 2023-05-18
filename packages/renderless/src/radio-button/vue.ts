@@ -10,11 +10,13 @@
 *
 */
 
-import { handleChange, getValue, setValue, getGroup, getStyle, toggleEvents } from './index'
+import { handleChange, getValue, setValue, getGroup, getStyle, toggleEvents,keydownHandle,
+  handleFocus,
+  handleBlur } from './index'
 
 export const api = ['state', 'handleChange']
 
-export const renderless = (props, { computed, reactive, onMounted, onBeforeUnmount }, { emit, parent, dispatch, constants, nextTick, refs }) => {
+export const renderless = (props, { computed, reactive, onMounted, onBeforeUnmount, inject }, { emit, parent, dispatch, constants, nextTick, refs }) => {
   const api = {
     getGroup: getGroup({ constants, parent }),
     toggleEvents: toggleEvents({ refs, props })
@@ -30,14 +32,19 @@ export const renderless = (props, { computed, reactive, onMounted, onBeforeUnmou
     activeStyle: computed(() => api.getStyle()),
     size: computed(() => state.radioGroup.state.radioGroupSize),
     isDisabled: computed(() => props.disabled || state.radioGroup.disabled),
-    tabIndex: computed(() => (state.isDisabled || (state.radioGroup && state.value !== props.label) ? -1 : 0))
+    tabIndex: computed(() => (state.isDisabled || (state.radioGroup && state.value !== props.label) ? -1 : 0)),
+    showTips: inject('showTips', null),
+    tipContent: props.tipContent
   })
   Object.assign(api, {
     state,
     getValue: getValue(state),
     getStyle: getStyle(state),
     setValue: setValue({ emit, state }),
-    handleChange: handleChange({ constants, dispatch, nextTick, state })
+    handleChange: handleChange({ constants, dispatch, nextTick, state }),
+    keydownHandle: keydownHandle({ state, props }),
+    handleFocus: handleFocus(state),
+    handleBlur: handleBlur(state)
   })
 
   onMounted(api.toggleEvents)

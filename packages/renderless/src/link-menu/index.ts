@@ -10,8 +10,8 @@
 *
 */
 
-import { mapTree } from '@opentiny/vue-renderless/grid/static'
-import { copyArray } from '@opentiny/vue-renderless/common/object'
+import { mapTree } from '../grid/static'
+import { copyArray } from '../common/object'
 
 export const dialogTitle = ({ constants, props, t }) => () => props.title || t(constants.DIALOG_TITLE)
 

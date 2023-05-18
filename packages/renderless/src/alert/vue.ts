@@ -10,26 +10,29 @@
 *
 */
 
-import { close, computedGetIcon, computedGetTitle } from './index'
+import { close, computedGetIcon, computedGetTitle, handleHeaderClick } from './index'
 
-export const api = ['close', 'state']
+export const api = ['close', 'state', 'handleHeaderClick']
 
-export const renderless = (props, { computed, reactive }, { t, emit, constants }) => {
-  const api = {
-    computedGetIcon: computedGetIcon({ constants, props }),
-    computedGetTitle: computedGetTitle({ constants, props, t })
-  }
-
+export const renderless = (props, { computed, reactive }, { t, emit, constants, vm, designConfig }) => {
   const state = reactive({
     show: true,
     getIcon: computed(() => api.computedGetIcon()),
-    getTitle: computed(() => api.computedGetTitle())
+    getTitle: computed(() => api.computedGetTitle()),
+    contentVisible: false,
+    contentDescribeHeight: 0,
+    contentDefaultHeight: 0,
+    contentMaxHeight: constants.CONTENT_MAXHEUGHT,
+    scrollStatus: false
   })
 
-  Object.assign(api, {
+  const api = {
     state,
-    close: close({ state, emit })
-  })
+    computedGetIcon: computedGetIcon({ constants, props, designConfig }),
+    computedGetTitle: computedGetTitle({ constants, props, t }),
+    close: close({ state, emit }),
+    handleHeaderClick: handleHeaderClick({ state, props, vm })
+  }
 
   return api
 }

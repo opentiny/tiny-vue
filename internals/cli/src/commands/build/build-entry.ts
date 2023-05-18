@@ -13,7 +13,8 @@ const outputDir = 'packages/vue'
 const fileNames = {
   all: 'index.ts',
   pc: 'pc.ts',
-  mobile: 'mobile.ts'
+  mobile: 'mobile.ts',
+  'mobile-first': 'mobile-first.ts'
 }
 
 function getMainTemplate({ mode }) {
@@ -66,24 +67,25 @@ const createEntry = (mode) => {
   const MAIN_TEMPLATE = getMainTemplate({ mode })
   const includeTemplate: string[] = []
   const componentsTemplate: string[] = []
-  let components
-
-  if (mode === 'pc') {
-    components = moduleUtils.getPcComponents()
-  } else if (mode === 'mobile') {
-    components = moduleUtils.getMobileComponents()
-  } else {
-    components = moduleUtils.getComponents()
-  }
+  const components = moduleUtils.getComponents(mode)
+  const PKG_PATH = utils.pathFromWorkspaceRoot(outputDir, 'package.json')
+  const PKGContent = fs.readJSONSync(PKG_PATH)
+  const PKGDeps = {}
 
   components.forEach((item) => {
     if (item.inEntry !== false) {
       const component = utils.capitalizeKebabCase(item.name)
-
+      PKGDeps[item.importName] = 'workspace:~'
       componentsTemplate.push(`  ${component}`)
       includeTemplate.push(`import ${item.name} from '${item.importName}'`)
     }
   })
+
+  if (mode === 'all') {
+    // 重写package.json, 并格式化
+    PKGContent.dependencies = PKGDeps
+    fs.writeFileSync(PKG_PATH, JSON.stringify(PKGContent, null, '\t'))
+  }
 
   const template = handlebarsRender({
     template: MAIN_TEMPLATE,
@@ -99,9 +101,9 @@ const createEntry = (mode) => {
 }
 
 export function buildEntry() {
-  ['all', 'pc', 'mobile'].forEach(createEntry)
+  ['all', 'pc', 'mobile', 'mobile-first'].forEach(createEntry)
 
   utils.logGreen(
-    `npm run build:entry done. [${outputDir}/index.ts,${outputDir}/pc.ts,${outputDir}/mobile.ts]`
+    `npm run build:entry done. [${outputDir}/index.ts,${outputDir}/pc.ts,${outputDir}/mobile.ts,${outputDir}/mobile-first.ts]`
   )
 }

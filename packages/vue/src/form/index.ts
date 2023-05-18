@@ -10,11 +10,14 @@
  *
  */
 import Form from './src/index'
+import { version } from './package.json'
 
 /* istanbul ignore next */
 Form.install = function (Vue) {
   Vue.component(Form.name, Form)
 }
+
+Form.version = version
 
 /* istanbul ignore next */
 if (process.env.BUILD_TARGET === 'runtime') {

@@ -22,7 +22,7 @@ import {
   nextMonth,
   prevMonth,
   modifyWithTimeString
-} from '@opentiny/vue-renderless/common/deps/date-util'
+} from '../common/deps/date-util'
 
 export const calcDefaultValue = (defaultValue) => {
   if (Array.isArray(defaultValue)) {

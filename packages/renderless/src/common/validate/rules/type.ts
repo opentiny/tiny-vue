@@ -12,9 +12,9 @@
 
 import * as util from '../util'
 import required from './required'
-import { format } from '@opentiny/vue-renderless/common/date'
-import { isNullOrEmpty } from '@opentiny/vue-renderless/common/string'
-import { isNumber, isObject, isDate, typeOf } from '@opentiny/vue-renderless/common/type'
+import { format } from '../../date'
+import { isNullOrEmpty } from '../../string'
+import { isNumber, isObject, isDate, typeOf } from '../../type'
 
 const emailReg1 = '^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))'
 const emailReg = new RegExp(emailReg1 + '@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,6}))$')

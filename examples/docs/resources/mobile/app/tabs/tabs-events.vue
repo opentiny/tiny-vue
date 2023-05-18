@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-tabs style="height: 150px" v-model="activeName1" tab-style="card" :with-close="true" :with-add="true" @add="add" @close="close" @click="tabsEvent">
+    <tiny-tabs style="height: 150px" v-model="activeName1" tab-style="card" :with-close="true" :with-add="true" @add="add" @close="close">
       <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
         {{ item.content }}
       </tiny-tab-item>
@@ -76,9 +76,6 @@ export default {
         }
       })
       this.Tabs.splice(index, 1)
-    },
-    tabsEvent(tabs) {
-      console.log(tabs)
     }
   }
 }

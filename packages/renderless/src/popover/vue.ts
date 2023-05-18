@@ -28,9 +28,10 @@ import {
   handleDocumentClick,
   cleanup,
   wrapMounted,
-  handleItemClick
+  handleItemClick,
+  observeCallback
 } from './index'
-import userPopper from '@opentiny/vue-renderless/common/deps/vue-popper'
+import userPopper from '../common/deps/vue-popper'
 
 export const api = ['state', 'handleAfterEnter', 'handleAfterLeave', 'handleItemClick']
 
@@ -46,7 +47,7 @@ const initState = ({ reactive, computed, api, popperElm, showPopper, referenceEl
   return state
 }
 
-const initApi = ({ api, props, state, refs, emit, doDestroy, constants, nextTick }) => {
+const initApi = ({ api, props, state, refs, emit, doDestroy, constants, nextTick, vm }) => {
   Object.assign(api, {
     state,
     mounted: mounted({ api, state, constants, props, nextTick }),
@@ -68,10 +69,11 @@ const initApi = ({ api, props, state, refs, emit, doDestroy, constants, nextTick
     handleDocumentClick: handleDocumentClick({ refs, state }),
     wrapMounted: wrapMounted({ api, props, refs, state }),
     handleItemClick: handleItemClick({ emit, state }),
+    observeCallback: observeCallback({ vm, state })
   })
 }
 
-const initWatch = ({ watch, props, state, emit }) => {
+const initWatch = ({ watch, props, state, emit, api, nextTick }) => {
   watch(
     () => state.showPopper,
     (val) => {
@@ -83,12 +85,25 @@ const initWatch = ({ watch, props, state, emit }) => {
     },
     { immediate: true }
   )
+
+  watch(
+    () => props.reference,
+    (val, oldVal) => {
+      if (val !== oldVal) {
+        api.destroyed()
+
+        nextTick(() => {
+          api.wrapMounted()
+        })
+      }
+    }
+  )
 }
 
 export const renderless = (
   props,
   { reactive, computed, watch, toRefs, onBeforeUnmount, onMounted, onUnmounted, onActivated, onDeactivated },
-  { $prefix, emit, refs, slots, nextTick }
+  { $prefix, emit, vm, refs, slots, nextTick }
 ) => {
   const api = {}
   const constants = { IDPREFIX: `${$prefix.toLowerCase()}-popover` }
@@ -96,7 +111,7 @@ export const renderless = (
   const { showPopper, popperElm, referenceElm, doDestroy } = userPopper(options)
   const state = initState({ reactive, computed, api, popperElm, showPopper, referenceElm })
 
-  initApi({ api, constants, props, state, refs, emit, doDestroy, nextTick })
+  initApi({ api, constants, props, state, refs, emit, doDestroy, nextTick, vm })
 
   onDeactivated(() => {
     api.destroyed()
@@ -104,12 +119,25 @@ export const renderless = (
   })
 
   // 注册生命周期函数必须要在（watch）异步函数/组件之前，否则会 Vue3 警告
-  onMounted(api.wrapMounted)
+  onMounted(() => {
+    api.wrapMounted()
+    if (props.genArrowByHtml) {
+      const config = { attributes: true, childList: false, subtree: false }
+      api.observer = new MutationObserver(api.observeCallback)
+      api.observer.observe(vm.$refs.popper, config)
+    }
+  })
+
   onActivated(api.mounted)
-  onUnmounted(api.destroyed)
+
+  onUnmounted(() => {
+    api.destroyed()
+    api.observer && api.observer.disconnect()
+  })
+
   onBeforeUnmount(api.cleanup)
 
-  initWatch({ watch, props, state, emit })
+  initWatch({ watch, props, state, emit, api, nextTick })
 
   return api
 }

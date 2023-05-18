@@ -1,0 +1,26 @@
+.ButtonHover(@color) {
+  color: @color;
+  border-color: @color;
+}
+
+.ButtonPrimaryHover(@hovercolor) {
+  @apply text-color-text-inverse;
+  background-color: @hovercolor;
+  border-color: @hovercolor;
+}
+
+.ButtonInterval() {
+  @apply ml-2;
+
+  &.size__medium {
+    @apply ml-2;
+  }
+
+  &.size__small {
+    @apply ~'ml-1.5';
+  }
+
+  &.size__mini {
+    @apply ml-1;
+  }
+}

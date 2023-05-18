@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import MonthTable from './src/index.vue'
+import MonthTable from './src/pc.vue'
 import '@opentiny/vue-theme/month-table/index.less'
 import { version } from './package.json'
 

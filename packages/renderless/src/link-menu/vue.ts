@@ -11,8 +11,8 @@
 */
 
 import { initData, dialogTitle, disabledParentNode, filterNode, getValue, hideDialog, showDialog, sureNodevalue, disabledTreeNode, initService } from './index'
-import { copyArray } from '@opentiny/vue-renderless/common/object'
-import { setMenuKey } from '@opentiny/vue-renderless/tree-menu'
+import { copyArray } from '../common/object'
+import { setMenuKey } from '../tree-menu'
 
 export const api = ['state', 'initData', 'filterNode', 'getValue', 'hideDialog', 'setMenuKey', 'showDialog', 'sureNodevalue']
 

@@ -20,17 +20,17 @@ const ${localName} = (mode) => {
   let result
 
   // #v-ifndef VITE_TINY_MODE
-  result = import.meta.glob('./{pc,mobile}.vue', { eager: true })
+  result = import.meta.glob('./{pc,mobile,mobile-first}.vue', { eager: true })
   // #v-endif
 
   ${getTemplate(params)}
 
-  const finalMode = ${JSON.stringify(params)}[mode?.value || mode]
+  const finalMode = ${JSON.stringify(params)}[mode?.value || mode] || '${params[Object.keys(params)[0]]}'
 
   return result[\`./\${finalMode}.vue\`].default
 }
   `
-
+  
     return result
   })
 }

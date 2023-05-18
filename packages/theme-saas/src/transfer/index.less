@@ -1,0 +1,418 @@
+@import '../mixins/transfer.less';
+@import '../custom.less';
+@import '../transition/transfer.less';
+
+@transfer-prefix-cls: ~'@{css-prefix}transfer';
+@transfer-panel-prefix-cls: ~'@{css-prefix}transfer-panel';
+@checkbox-prefix-cls: ~'@{css-prefix}checkbox';
+@checkbox-group-prefix-cls: ~'@{css-prefix}checkbox-group';
+@input-prefix-cls: ~'@{css-prefix}input';
+@table-prefix-cls: ~'@{css-prefix}table';
+@pager-prefix-cls: ~'@{css-prefix}pager';
+@button-prefix-cls: ~'@{css-prefix}button';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+@tree-node-prefix-cls: ~'@{css-prefix}tree-node';
+@tree-prefix-cls: ~'@{css-prefix}tree';
+
+.@{transfer-prefix-cls} {
+  @apply text-sm;
+  @apply flex;
+  @apply justify-start;
+  @apply items-center;
+
+  &__buttons {
+    @apply py-0 px-3;
+
+    .defaultButton {
+      @apply flex;
+      @apply flex-col;
+
+      .@{button-prefix-cls} + .@{button-prefix-cls} {
+        @apply ml-0;
+      }
+
+      & + .@{button-prefix-cls} {
+        @apply mt-3 mx-0 mb-0;
+      }
+    }
+
+    .@{button-prefix-cls} {
+      @apply ~"min-w-[auto]";
+      @apply mt-0 mx-0 mb-2;
+    }
+  }
+
+  &__button {
+    @apply block;
+    @apply my-0 mx-auto;
+    @apply border-color-border-focus;
+    @apply bg-color-brand;
+    min-width: 30px;
+    min-height: 30px;
+    @apply leading-normal;
+    @apply p-2;
+
+    &.is-with-texts {
+      @apply rounded-sm;
+      min-width: 60px;
+    }
+
+    &.@{button-prefix-cls}:not(.is-circle) .@{svg-prefix-cls} {
+      @apply mr-0;
+    }
+
+    &:first-child {
+      @apply mb-2;
+    }
+
+    &:nth-child(2) {
+      @apply m-0;
+    }
+
+    i,
+    span {
+      @apply text-sm;
+    }
+  }
+
+  & &__button {
+    @apply border border-solid border-color-border;
+    @apply bg-color-bg-1;
+    @apply text-color-text-primary;
+    @apply leading-none;
+    padding: 8px 7px;
+    min-width: 32px;
+
+    .@{svg-prefix-cls} {
+      @apply fill-color-text-primary;
+    }
+
+    &.@{button-prefix-cls}:hover {
+      @apply bg-color-bg-1;
+      @apply border-color-border-hover;
+      @apply text-color-text-primary;
+    }
+
+    &.@{button-prefix-cls}:focus,
+    &.@{button-prefix-cls}:active {
+      @apply bg-color-bg-1;
+      @apply border-color-brand-active;
+    }
+
+    &.is-disabled,
+    &.is-disabled:hover {
+      @apply border-none;
+      @apply bg-color-bg-4;
+      @apply text-color-text-disabled;
+
+      &.is-with-texts {
+        @apply border border-solid border-color-bg-3;
+      }
+
+      .@{svg-prefix-cls} {
+        @apply fill-color-text-disabled;
+      }
+    }
+
+    &.is-with-texts {
+      @apply py-0;
+      @apply leading-normal;
+    }
+  }
+}
+
+.@{transfer-panel-prefix-cls} {
+  @apply border border-solid border-color-border;
+  @apply rounded;
+  @apply overflow-hidden;
+  @apply bg-color-bg-1;
+  width: 274px;
+  @apply ~"max-h-[100%]";
+  @apply align-middle;
+  @apply box-border;
+  @apply relative;
+
+  &__body {
+    @apply relative;
+    height: 234px;
+    @apply text-left;
+
+    &.is-with-footer {
+      @apply pb-10;
+      height: calc(100% - 40px);
+    }
+
+    .@{tree-prefix-cls} {
+      @apply h-full;
+      @apply pt-0 px-2 pb-2;
+      @apply overflow-auto;
+      .transfer-scrollbar(8px);
+    }
+
+    .@{transfer-panel-prefix-cls}__filter ~ .@{tree-prefix-cls} {
+      height: calc(100% - 46px);
+    }
+  }
+
+  &__list {
+    @apply m-0;
+    @apply py-2 px-0;
+    @apply list-none;
+    height: 240px;
+    @apply overflow-auto;
+    @apply box-border;
+    @apply block;
+
+    &.@{checkbox-group-prefix-cls} {
+      @apply block;
+    }
+  }
+
+  &.is-filterable &__body {
+    height: 240px;
+  }
+
+  &.is-filterable &__list {
+    height: 200px;
+    @apply pt-0;
+    @apply flex;
+    @apply flex-col;
+
+    .@{transfer-panel-prefix-cls}__item {
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        @apply shrink-0;
+      }
+    }
+  }
+
+  &__item {
+    line-height: 30px;
+    @apply flex;
+    @apply transition-all duration-500;
+
+    & + & {
+      @apply ml-0;
+      @apply flex;
+    }
+
+    &.@{checkbox-prefix-cls} {
+      @apply text-color-text-primary;
+      @apply leading-8;
+      @apply m-0;
+      @apply flex;
+      @apply pl-4;
+
+      &.is-checked {
+        &:hover {
+          @apply bg-color-bg-1;
+        }
+
+        &.is-disabled {
+          .@{checkbox-prefix-cls}__label {
+            @apply text-color-brand-disabled;
+          }
+        }
+      }
+
+      &:hover {
+        .@{checkbox-prefix-cls}__input:not(.is-disabled) {
+          .@{checkbox-prefix-cls}__inner {
+            svg {
+              @apply fill-color-text-primary;
+            }
+          }
+        }
+
+        .@{checkbox-prefix-cls}__input.is-checked:not(.is-disabled) {
+          .@{checkbox-prefix-cls}__inner {
+            svg {
+              @apply fill-color-brand;
+            }
+          }
+        }
+      }
+
+      &.@{checkbox-prefix-cls}__label {
+        @apply w-full;
+        @apply overflow-hidden;
+        @apply text-ellipsis;
+        @apply whitespace-nowrap;
+        @apply block;
+        @apply box-border;
+        padding-left: 22px;
+        @apply leading-8;
+      }
+
+      .@{checkbox-prefix-cls}__input {
+        @apply ~'leading-[0]';
+      }
+    }
+
+    &:hover {
+      @apply bg-color-bg-4;
+    }
+
+    &.is-disabled:hover {
+      background: 0;
+    }
+
+    &.@{checkbox-prefix-cls}__input {
+      @apply absolute;
+      top: 7px;
+    }
+  }
+
+  &__filter {
+    @apply text-center;
+    @apply p-2;
+    @apply box-border;
+    @apply block;
+    @apply w-auto;
+
+    .@{input-prefix-cls}__inner {
+      height: 30px;
+      line-height: 30px;
+      @apply w-full;
+      @apply text-xs;
+      @apply inline-block;
+      @apply box-border;
+      @apply rounded-sm;
+      padding-right: 30px;
+      @apply pl-2;
+    }
+
+    .@{input-prefix-cls}__icon {
+      @apply ~'ml-[5px]';
+    }
+
+    .@{css-prefix}icon-circle-close {
+      @apply cursor-pointer;
+    }
+  }
+
+  & &__header {
+    @apply h-12;
+    line-height: 48px;
+    @apply m-0;
+    @apply py-0 px-4;
+    @apply border-b border-b-color-bg-3;
+    @apply box-border;
+    @apply text-color-text-primary;
+    @apply relative;
+    @apply flex;
+    @apply justify-start;
+    @apply items-center;
+
+    .@{checkbox-prefix-cls} {
+      @apply leading-none;
+      @apply text-left;
+      @apply w-full;
+
+      .@{checkbox-prefix-cls}__label {
+        @apply text-sm;
+        @apply text-color-text-primary;
+        @apply font-bold;
+        width: calc(100% - 38px);
+        @apply overflow-hidden;
+        @apply text-ellipsis;
+        @apply whitespace-nowrap;
+
+        span {
+          @apply absolute;
+          @apply right-0;
+          @apply text-color-text-primary;
+          @apply text-sm;
+          @apply font-bold;
+        }
+      }
+    }
+
+    .headSort {
+      @apply absolute;
+      @apply ~'left-1/2';
+      @apply ~"top-1/2";
+      @apply ~"-translate-y-2/4";
+
+      div {
+        @apply w-5;
+        @apply h-5;
+        @apply mr-2;
+        @apply text-center;
+        @apply border border-solid;
+        @apply rounded-full;
+        @apply text-color-brand;
+        @apply inline-block;
+        @apply cursor-pointer;
+
+        i {
+          @apply ~"w-4.5";
+          @apply ~"h-4.5";
+          @apply block;
+        }
+      }
+    }
+  }
+
+  & &__footer {
+    @apply h-10;
+    @apply bg-color-bg-1;
+    @apply m-0;
+    @apply p-0;
+    @apply border-t border-t-color-bg-3;
+    @apply absolute;
+    @apply bottom-0;
+    @apply left-0;
+    @apply w-full;
+    @apply ~'z-[1]';
+
+    &::after {
+      @apply inline-block;
+      @apply content-[''];
+      @apply h-full;
+      @apply align-middle;
+    }
+
+    .@{checkbox-prefix-cls} {
+      @apply pl-5;
+      @apply text-color-text-secondary;
+    }
+  }
+
+  & &__empty {
+    @apply absolute;
+    @apply w-full;
+    top: calc(50% - 33px);
+    @apply m-0;
+    height: 30px;
+    line-height: 30px;
+    @apply text-color-text-secondary;
+    @apply text-center;
+  }
+
+  &.transferGrid {
+    width: 600px;
+
+    .@{transfer-panel-prefix-cls}__body {
+      @apply h-full;
+    }
+
+    .@{table-prefix-cls}.simple {
+      @apply w-full;
+      @apply py-0 px-2;
+      height: 400px;
+      @apply overflow-y-auto;
+
+      table {
+        @apply w-full;
+      }
+    }
+
+    .@{pager-prefix-cls} {
+      @apply ~'p-2.5';
+    }
+  }
+
+  .@{checkbox-prefix-cls}__label {
+    @apply pl-2;
+  }
+}

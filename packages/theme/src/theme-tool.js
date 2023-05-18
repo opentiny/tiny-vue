@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
-import components from './theme.config'
+import definedComponents from './theme.config'
 
 /**
  *  TinyVue主题切换类 负责CSS变量主题的装卸，主题元数据转换成主题数据
@@ -73,25 +73,32 @@ export default class TinyThemeTool {
       }
     }
     this.contentElement.textContent = this.formatCSSVariables(currentTheme.data)
+
     this.contentElement.setAttribute('tiny-theme', this.currentTheme.id)
   }
 
+  // 通过 `组件css变量`，来推导出组件名： 从 ti-checkbox-button-bg-color， 推导出 checkbox-button
   findClassName(name) {
     const compNameList = name.split('-')
     if (compNameList.length < 2) {
       return false
     }
-    const compLength = components.length
+    const compLength = definedComponents.length
     let compName = ''
     for (let i = 0; i < compLength; i++) {
-      if (components[i] === `${compNameList[1]}-${compNameList[2]}`) {
-        compName = `tiny-${components[i]}`
+      // 先试试是不是双段式的组件名： 比如dialog-box 这种
+      if (definedComponents[i] === `${compNameList[1]}-${compNameList[2]}`) {
+        compName = `tiny-${definedComponents[i]}`
         break
       }
     }
+    // 不是双段的组件，则取第一位为组件名
     if (!compName) {
       compName = `tiny-${compNameList[1]}`
     }
+
+    // 提高权重，促使主题变换成功
+    compName = `${compName}[class*=tiny]`
     return compName
   }
 

@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 export default defineComponent({
   name: $prefix + 'DropdownItem',
@@ -46,6 +46,22 @@ export default defineComponent({
     textField: {
       type: String,
       default: 'label'
+    },
+    selected: {
+      type: Boolean,
+      default: false
+    },
+    selectedField: {
+      type: String,
+      default: 'selected'
+    },
+    multiStage: {
+      type: Boolean,
+      default: false
+    },
+    currentIndex: {
+      type: Number,
+      default: () => -1
     }
   },
   setup(props, context) {

@@ -1,0 +1,49 @@
+@import '../custom.less';
+
+@radio-group-prefix-cls: ~'@{css-prefix}radio-group';
+@radio-button-prefix-cls: ~'@{css-prefix}radio-button';
+@radio-prefix-cls: ~'@{css-prefix}radio';
+
+.@{radio-group-prefix-cls} {
+  @apply inline-flex;
+
+  &.list-inline {
+    @apply flex-col;
+
+    .@{radio-prefix-cls} {
+      @apply flex;
+      @apply mr-0;
+
+      &:not(:last-child) {
+        @apply mb-2;
+      }
+    }
+
+    .@{radio-button-prefix-cls} {
+      @apply block;
+
+      &:first-child .@{radio-button-prefix-cls}__inner {
+        @apply rounded-tl-sm rounded-tr-sm rounded-br-none rounded-bl-none;
+        @apply border-t border-t-color-border;
+      }
+
+      &:last-child .@{radio-button-prefix-cls}__inner {
+        @apply rounded-tl-none rounded-tr-none rounded-br-sm rounded-bl-sm;
+      }
+
+      &.is-active .@{radio-button-prefix-cls}__inner {
+        @apply ~"shadow-[none]";
+        @apply border-color-border-focus;
+      }
+
+      &.is-active.is-disabled .@{radio-button-prefix-cls}__inner {
+        @apply border-color-border-disabled;
+      }
+    }
+
+    .@{radio-button-prefix-cls}__inner {
+      @apply border-t-0;
+      @apply border-l border-l-color-border;
+    }
+  }
+}

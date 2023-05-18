@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 const $constants = {
   FORM_ITEM: 'FormItem',
@@ -42,6 +42,10 @@ export default defineComponent({
     type: {
       type: String,
       default: 'checkbox'
+    },
+    displayOnly: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

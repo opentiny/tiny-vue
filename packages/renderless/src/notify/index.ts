@@ -10,9 +10,9 @@
 *
 */
 
-import { KEY_CODE } from '@opentiny/vue-renderless/common'
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
-import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
+import { KEY_CODE } from '../common'
+import { on, off } from '../common/deps/dom'
+import PopupManager from '../common/deps/popup-manager'
 
 export const startTimer = ({ api, state }) => () => {
   if (state.duration > 0) {

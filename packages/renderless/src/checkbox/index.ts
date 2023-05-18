@@ -119,3 +119,26 @@ export const toggleEvent = ({ parent, props, type }) => {
 
   Object.keys(props.events).forEach((ev) => inputEl[type + 'EventListener'](ev, props.events[ev]))
 }
+
+
+export const dispatchDisplayedValue = ({ state, api, dispatch }) => () => {
+  if (state.isDisplayOnly) {
+    dispatch('FormItem', 'displayed-value-changed', {
+      type: 'checkbox',
+      val: api.getDisplayedValue()
+    })
+  }
+}
+
+export const getDisplayedValue = ({ vm, state, props }) => () => {
+  if (state.isChecked) {
+    return (vm.$refs.label && vm.$refs.label.innerText) || props.text || props.label
+  } else {
+    return ''
+  }
+}
+
+export const computedIsDisplayOnly = ({ state, props }) => () => props.displayOnly || state.formDisplayOnly
+
+export const computedIsGroupDisplayOnly = ({ state }) => () =>
+  state.isGroup && (state.checkboxGroup.displayOnly || state.formDisplayOnly)

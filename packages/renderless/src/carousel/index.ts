@@ -10,8 +10,8 @@
 *
 */
 
-import throttle from '@opentiny/vue-renderless/common/deps/throttle'
-import { POSITION } from '@opentiny/vue-renderless/common'
+import throttle from '../common/deps/throttle'
+import { POSITION } from '../common'
 
 export const handleMouseEnter = ({ api, state }) => () => {
   state.hover = true
@@ -140,6 +140,14 @@ export const throttledIndicatorHover = (api) => throttle(300, (index) => api.han
 
 export const computedHasLable = (items) => items.some((item) => item.label.toString().length > 0)
 
+export const computedStyle = ({ props }) => () => {
+  if (props.height) {
+    return { 'height': props.height }
+  } else {
+    return { 'aspect-ratio': props.aspectRatio.replace(':', ' / ') }
+  }
+}
+
 export const onComplete = ({ count, emit, props, state }) => (total) => {
   if (count++ === total) {
     state.completed = true
@@ -151,3 +159,97 @@ export const onComplete = ({ count, emit, props, state }) => (total) => {
     emit('complete')
   }
 }
+
+export const touchstart = ({ state, api }) => (event) => {
+  if (state.items.length <= 1 || ~state.noTouchNode.indexOf(event.target.nodeName)) return
+
+  event.preventDefault()
+  event.stopPropagation()
+  resetTouchStatus(state)
+  api.pauseTimer()
+  state.itemsTranslate = state.items.map((item) => item.state.translate)
+
+  state.moving = true
+  state.touchTime = Date.now()
+  state.startPos.X = event.touches[0].clientX
+  state.startPos.Y = event.touches[0].clientY
+}
+
+export const touchmove = ({ props, state, vm }) => (event) => {
+  if (state.items.length <= 1 || ~state.noTouchNode.indexOf(event.target.nodeName)) return
+
+  const touch = event.touches[0]
+  const itemsLen = state.items.length
+  const carousel = vm.$refs.carousel
+
+  state.deltaPos.X = touch.clientX - state.startPos.X
+  state.deltaPos.Y = touch.clientY - state.startPos.Y
+  state.offsetPos.X = Math.abs(state.deltaPos.X)
+  state.offsetPos.Y = Math.abs(state.deltaPos.Y)
+  state.direction = state.direction || getDirection(state.offsetPos.X, state.offsetPos.Y)
+  state.isCorrectDirection = state.direction === props.type
+
+  if (!state.isCorrectDirection) return
+
+  state.size = state.direction === 'horizontal' ? carousel.offsetWidth : carousel.offsetHeight
+
+  const nextIndex = state.activeIndex === itemsLen - 1 ? 0 : state.activeIndex + 1
+  const prevIndex = state.activeIndex === 0 ? itemsLen - 1 : state.activeIndex - 1
+
+  state.delta = state.direction === 'horizontal' ? state.deltaPos.X : state.deltaPos.Y
+
+  state.moveDisable =
+    !props.loop &&
+    ((state.activeIndex === 0 && state.delta > 0) || (state.activeIndex === state.items.length - 1 && state.delta < 0))
+
+  if (state.moveDisable) return
+
+  state.items[state.activeIndex].setDelta(state.delta)
+  state.items[nextIndex].setDelta(state.delta)
+
+  if (itemsLen > 2) {
+    state.items[prevIndex].setDelta(state.delta)
+  }
+}
+
+export const touchend = ({ state, api }) => (event) => {
+  if (state.moveDisable || state.items.length <= 1 || ~state.noTouchNode.indexOf(event.target.nodeName)) return
+  const speed = state.delta / (Date.now() - state.touchTime)
+  const isShouldMove = Math.abs(speed) > 0.3 || Math.abs(state.delta) > +(state.size / 2).toFixed(2)
+  state.moving = false
+  state.itemsTranslate.forEach((item, index) => {
+    state.items[index].setDelta(0)
+  })
+  if (isShouldMove && state.isCorrectDirection) {
+    state.delta < 0 ? api.next() : api.prev()
+  } else if (Math.abs(state.delta) > 1) {
+    state.items.forEach((item) => {
+      item.resetAnimatingMf()
+    })
+  }
+  api.startTimer()
+}
+
+function getDirection(x, y) {
+  const MIN_DISTANCE = 10
+
+  if (x > y && x > MIN_DISTANCE) {
+    return 'horizontal'
+  }
+
+  if (y > x && y > MIN_DISTANCE) {
+    return 'vertical'
+  }
+
+  return ''
+}
+
+function resetTouchStatus(state) {
+  state.direction = ''
+  state.delta = 0
+  state.deltaPos.X = 0
+  state.deltaPos.Y = 0
+  state.offsetPos.X = 0
+  state.offsetPos.Y = 0
+}
+

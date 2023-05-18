@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Scrollbar from './src/index.vue'
+import Scrollbar from './src/pc.vue'
 import '@opentiny/vue-theme/scrollbar/index.less'
 import { version } from './package.json'
 

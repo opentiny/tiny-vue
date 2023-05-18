@@ -11,17 +11,21 @@ const version = utils.getopentinyVersion({})
 const outputDir = 'packages/vue'
 const iconDir = 'packages/vue-icon'
 const MAIN_TEMPLATE = `{{{include}}}
+ 
+ export const version = '${version}'
+ 
+ export {
+   {{{components}}}
+ }
 
-export const version = '${version}'
-
-export {
+ export default {
   {{{components}}}
 }
-`
+ `
 
 const buildFullRuntime = () => {
   const outputPath = utils.pathFromWorkspaceRoot(outputDir, 'app.ts')
-  const components = moduleUtils.getPcComponents()
+  const components = moduleUtils.getComponents()
   const includeTemplate: string[] = []
   const componentsTemplate: string[] = []
 
@@ -81,7 +85,7 @@ const buildIconEntry = () => {
   let iconEntryContent = fs.readFileSync(inputPath).toString('utf-8')
 
   iconEntryContent = iconEntryContent.replace(/.\/src\//g, './')
-  iconEntryContent = iconEntryContent.replace("export * from './lowercase'", "export * from '../lowercase'")
+  iconEntryContent = iconEntryContent.replace('export * from \'./lowercase\'', 'export * from \'../lowercase\'')
 
   fs.writeFileSync(outputPath, iconEntryContent)
 }

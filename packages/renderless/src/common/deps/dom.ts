@@ -10,7 +10,7 @@
 *
 */
 
-import { hasOwn, isObject, isNull } from '@opentiny/vue-renderless/common/type'
+import { hasOwn, isObject, isNull } from '../type'
 
 const isServer = typeof window === 'undefined'
 const SPECIAL_CHARS_REGEXP = /([:\-_]+(.))/g

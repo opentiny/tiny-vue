@@ -21,15 +21,19 @@
   display: inline-block;
 
   .area {
-    padding: 6px;
+    font-size: var(--ti-text-popup-font-size);
+    font-family: var(--ti-text-popup-font-family);
+    padding: var(--ti-text-popup-padding-vertical) var(--ti-text-popup-padding-horizontal);
     width: 100%;
     border-radius: var(--ti-text-popup-border-radius, 2px);
     outline: none;
+    box-sizing: border-box;
   }
 
   .text {
     border: 1px solid var(--ti-text-popup-border-color);
     line-height: 1;
+    height: var(--ti-text-popup-height);
 
     &:hover {
       border-color: var(--ti-text-popup-hover-border-color);
@@ -39,6 +43,6 @@
   .popup {
     resize: none;
     box-shadow: var(--ti-text-popup-box-shadow);
-    border: 1px solid var(--ti-text-popup-border-color);
+    border: 1px solid var(--ti-text-popup-focus-border-color);
   }
 }

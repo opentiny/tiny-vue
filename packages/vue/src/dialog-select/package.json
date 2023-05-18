@@ -1,0 +1,20 @@
+{
+  "name": "@opentiny/vue-dialog-select",
+  "version": "5.0.0-mf.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-dialog-box": "workspace:~",
+    "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-pager": "workspace:~",
+    "@opentiny/vue-grid": "workspace:~",
+    "@opentiny/vue-split": "workspace:~",
+    "@opentiny/vue-selected-box": "workspace:~",
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-tree": "workspace:~"
+  },
+  "license": "MIT"
+}

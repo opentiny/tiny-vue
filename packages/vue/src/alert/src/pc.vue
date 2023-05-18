@@ -15,17 +15,19 @@
       <component v-if="showIcon" :is="state.getIcon" class="tiny-svg-size tiny-alert__icon" />
       <div class="tiny-alert__content">
         <div v-if="size === 'large'" class="tiny-alert__title">
-          <slot name="title">{{ state.getTitle }}</slot>
+          <slot name="title">
+            {{ state.getTitle }}
+          </slot>
         </div>
-        <div
-          :class="[
-            'tiny-alert__description',
-            {
-              'is-hide': size === 'large' && !description && !slots.description
-            }
-          ]"
-        >
-          <slot name="description">{{ description }}</slot>
+        <div :class="[
+          'tiny-alert__description',
+          {
+            'is-hide': size === 'large' && !description && !slots.description
+          }
+        ]">
+          <slot name="description">
+            {{ description }}
+          </slot>
         </div>
         <div v-if="size === 'large'" class="tiny-alert__opration">
           <slot></slot>
@@ -37,7 +39,7 @@
   </transition>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/alert/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconClose, iconSuccess, iconError, iconHelp, iconWarning } from '@opentiny/vue-icon'

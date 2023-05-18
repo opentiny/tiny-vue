@@ -10,12 +10,12 @@
 *
 */
 
-import { getUsers, cacheUser, saveCache, initService } from '@opentiny/vue-renderless/user'
-import { initUser, showCard, showDetail } from './index'
+import { getUsers, cacheUser, saveCache, initService, syncCacheIds } from '../user'
+import { initUser, showCard, showDetail, computedTextField, computedValueField } from './index'
 
 export const api = ['state', 'showCard', 'showDetail']
 
-export const renderless = (props, { reactive, watch }, { service }) => {
+export const renderless = (props, { reactive, watch, computed }, { service }) => {
   service = initService({ props, service })
 
   const api = {}
@@ -29,23 +29,29 @@ export const renderless = (props, { reactive, watch }, { service }) => {
     data: {},
     spinner: true,
     imgUrl: '',
-    batch: props.batch === false ? false : props.batch || service.batch
+    batch: props.batch === false ? false : props.batch || service.batch,
+    textField: computed(() => api.computedTextField()),
+    valueField: computed(() => api.computedValueField())
   })
 
   Object.assign(api, {
     state,
     showDetail: showDetail(state),
     saveCache: saveCache({ props }),
-    cacheUser: cacheUser({ api, props, service }),
+    syncCacheIds: syncCacheIds({ props, state }),
+    cacheUser: cacheUser({ api, props, service, state }),
     initUser: initUser({ api, props, state }),
     getUsers: getUsers({ api, props, state }),
     showCard: showCard({ api, service, state }),
     getUserImageUrl: service.getUserImageUrl,
     fetchW3Accounts: service.fetchW3Accounts,
-    fetchUserByUserId: service.fetchUserByUserId
+    fetchUserByUserId: service.fetchUserByUserId,
+    computedTextField: computedTextField({ service, props }),
+    computedValueField: computedValueField({ service, props })
   })
 
   watch(() => props.modelValue, api.initUser, { immediate: true })
 
   return api
 }
+

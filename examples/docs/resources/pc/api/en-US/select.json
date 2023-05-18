@@ -169,6 +169,20 @@
       "defaultValue": "The default value of this attribute is no data."
     },
     {
+      "name": "show-empty-image",
+      "sample": "no-data-text",
+      "type": "Boolean",
+      "desc": "By default, empty data images are not displayed. When this parameter is set to true, empty data images are displayed.",
+      "defaultValue": "false"
+    },
+    {
+      "name": "input-box-type",
+      "sample": "input-box-type",
+      "type": "String",
+      "desc": "Set the display type of the text box. The options are input and underline. The default value is input.",
+      "defaultValue": "input"
+    },
+    {
       "name": "popper-class",
       "sample": "popup-style-position",
       "type": "String",

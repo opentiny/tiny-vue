@@ -10,9 +10,9 @@
 *
 */
 
-import { format } from '@opentiny/vue-renderless/common/string'
-import { isObject } from '@opentiny/vue-renderless/common/type'
-import { transformTreeData } from '@opentiny/vue-renderless/common/array'
+import { format } from '../string'
+import { isObject } from '../type'
+import { transformTreeData } from '../array'
 
 /**
  * 转换过滤参数

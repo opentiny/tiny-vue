@@ -15,11 +15,13 @@ import '@opentiny/vue-theme/loading/index.less'
 import { setupComponent } from '@opentiny/vue-common'
 import { version } from './package.json'
 
-let Loadings: any = {}
-
-/* istanbul ignore next */
-Loadings.install = function (app) {
-  app.directive('loading', directive)
+let Loadings: any = {
+  install(app) {
+    app.directive('loading', directive)
+  },
+  service,
+  directive,
+  version
 }
 
 /* istanbul ignore next */
@@ -34,9 +36,5 @@ setupComponent.TINYLoading = {
     root.$loading = service
   }
 }
-
-Loadings.service = service
-Loadings.directive = directive
-Loadings.version = version
 
 export default Loadings

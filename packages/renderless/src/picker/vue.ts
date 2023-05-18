@@ -63,7 +63,7 @@ import {
   initGlobalTimezone,
   emitDbTime
 } from './index'
-import { DATEPICKER } from '@opentiny/vue-renderless/common'
+import { DATEPICKER } from '../common'
 
 export const api = [
   'state',

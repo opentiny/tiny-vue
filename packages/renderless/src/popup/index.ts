@@ -10,10 +10,10 @@
 *
 */
 
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
-import { touchStart, touchMove } from '@opentiny/vue-renderless/common/deps/touch'
-import { getScroller } from '@opentiny/vue-renderless/dropdown-menu'
-import { isNull } from '@opentiny/vue-renderless/common/type'
+import { on, off } from '../common/deps/dom'
+import { touchStart, touchMove } from '../common/deps/touch'
+import { getScroller } from '../dropdown-menu'
+import { isNull } from '../common/type'
 
 export const getStyle = (props) => () => {
   const style = { ...props.popupStyle }

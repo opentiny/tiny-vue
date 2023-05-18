@@ -1,0 +1,69 @@
+@import '../custom.less';
+
+@scrollbar-prefix-cls: ~'@{css-prefix}scrollbar';
+
+.@{scrollbar-prefix-cls} {
+  @apply overflow-hidden;
+  @apply relative;
+
+  &:active > &__bar,
+  &:focus > &__bar,
+  &:hover > &__bar {
+    @apply opacity-100;
+    transition: opacity 340ms ease-out;
+  }
+
+  &__wrap {
+    @apply overflow-scroll;
+    @apply h-full;
+    max-height: 200px;
+  }
+
+  &__wrap--hidden-default::-webkit-scrollbar {
+    @apply w-0;
+    @apply h-0;
+  }
+
+  &__thumb {
+    @apply relative;
+    @apply block;
+    @apply w-0;
+    @apply h-0;
+    @apply cursor-pointer;
+    border-radius: inherit;
+    @apply bg-color-bg-3;
+    transition: 0.3s background-color;
+
+    &:hover {
+      @apply bg-color-border-disabled;
+    }
+  }
+
+  &__bar {
+    @apply absolute;
+    @apply ~'right-0.5';
+    @apply ~'bottom-0.5';
+    @apply ~'z-[1]';
+    @apply rounded;
+    @apply opacity-0;
+    transition: opacity 120ms ease-out;
+
+    &.is-vertical {
+      @apply w-1;
+      @apply ~'top-0.5';
+
+      & > div {
+        @apply w-full;
+      }
+    }
+
+    &.is-horizontal {
+      @apply h-1;
+      @apply ~"left-0.5";
+
+      & > div {
+        @apply h-full;
+      }
+    }
+  }
+}

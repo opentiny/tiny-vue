@@ -312,8 +312,7 @@ export const Cell = {
       return [title(h, params)]
     }
 
-    // 在 v3.0 中废弃 label
-    return [formatText(getFuncText(own.title || own.label), 1)]
+    return [formatText(getFuncText(own.title), 1)]
   },
   renderCell(h, params) {
     let { $table, row, column } = params
@@ -654,37 +653,37 @@ export const Cell = {
         isColGroup
           ? []
           : [
-              column.order === 'asc' ?
-                h(icon.sortDesc, {
-                  class: [
-                    'tiny-svg-size tiny-grid-sort__asc-btn',
-                    {
-                      'sort__active': column.order === 'asc'
-                    }
-                  ],
-                  on: { click(event) { $table.triggerSortEvent(event, column, 'desc') } }
-                })
-                : '',
-              column.order === 'desc' ?
-                h(icon.sortAsc, {
-                  class: [
-                    'tiny-svg-size tiny-grid-sort__desc-btn',
-                    {
-                      'sort__active': column.order === 'desc'
-                    }
-                  ],
-                  on: { click(event) { $table.triggerSortEvent(event, column, '') } }
-                })
-                : '',
-              column.order
-                ? ''
-                : h(icon.sortDefault, {
-                  class: [
-                    'tiny-svg-size tiny-grid-sort__desc-btn'
-                  ],
-                  on: { click(event) { $table.triggerSortEvent(event, column, 'asc') } }
-                })
-            ]
+            column.order === 'asc' ?
+              h(icon.sortDesc, {
+                class: [
+                  'tiny-svg-size tiny-grid-sort__asc-btn',
+                  {
+                    'sort__active': column.order === 'asc'
+                  }
+                ],
+                on: { click(event) { $table.triggerSortEvent(event, column, 'desc') } }
+              })
+              : '',
+            column.order === 'desc' ?
+              h(icon.sortAsc, {
+                class: [
+                  'tiny-svg-size tiny-grid-sort__desc-btn',
+                  {
+                    'sort__active': column.order === 'desc'
+                  }
+                ],
+                on: { click(event) { $table.triggerSortEvent(event, column, '') } }
+              })
+              : '',
+            column.order
+              ? ''
+              : h(icon.sortDefault, {
+                class: [
+                  'tiny-svg-size tiny-grid-sort__desc-btn'
+                ],
+                on: { click(event) { $table.triggerSortEvent(event, column, 'asc') } }
+              })
+          ]
       )
     ]
   },

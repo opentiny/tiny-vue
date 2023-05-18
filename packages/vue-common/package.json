@@ -9,7 +9,8 @@
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~"
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "tailwind-merge": "^1.8.0"
   },
   "license": "MIT",
   "scripts": {

@@ -33,7 +33,9 @@ import {
   getUnitPrecision,
   getDecimal,
   unmounted,
-  initService
+  initService,
+  dispatchDisplayedValue,
+  getDisplayedValue
 } from './index'
 
 export const api = ['state', 'decrease', 'increase', 'handleBlur', 'handleFocus', 'handleInput', 'handleInputChange', 'mouseEvent', 'focus', 'select']
@@ -59,7 +61,9 @@ const initState = ({ reactive, computed, props, api, $service, parent }) => {
 
     controlsAtRight: computed(() => props.controls && props.controlsPosition === 'right'),
 
-    format: computed(() => getUnitPrecision({ service: $service, props }))
+    format: computed(() => getUnitPrecision({ service: $service, props })),
+
+    isDisplayOnly: computed(() => props.displayOnly || (parent.tinyForm || {}).displayOnly)
   })
 
   return state
@@ -88,14 +92,18 @@ const initApi = ({ api, props, state, parent, refs, emit, dispatch, constants })
     mouseEvent: mouseEvent({ api, props, state }),
     handleBlur: handleBlur({ constants, dispatch, emit, props, state, api }),
     watchValue: watchValue({ api, state }),
-    setCurrentValue: setCurrentValue({ api, constants, dispatch, emit, props, state })
+    setCurrentValue: setCurrentValue({ api, constants, dispatch, emit, props, state }),
+    dispatchDisplayedValue: dispatchDisplayedValue({ api, state, dispatch }),
+    getDisplayedValue: getDisplayedValue({ state, props })
   })
 
   api.getDecimal(0)
 }
 
-const initWatch = ({ watch, props, api }) => {
+const initWatch = ({state, watch, props, api }) => {
   watch(() => props.modelValue, api.watchValue, { immediate: true })
+
+  watch(() => state.isDisplayOnly, api.dispatchDisplayedValue)
 }
 
 export const renderless = (
@@ -110,9 +118,12 @@ export const renderless = (
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
   initApi({ api, props, state, parent, refs, emit, dispatch, constants })
-  initWatch({ watch, props, api })
+  initWatch({state, watch, props, api })
 
-  onMounted(api.mounted)
+  onMounted(() => {
+    api.dispatchDisplayedValue()
+    api.mounted()
+  })
   onUpdated(api.updated)
   onUnmounted(api.unmounted)
 

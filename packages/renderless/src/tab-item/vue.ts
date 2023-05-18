@@ -32,7 +32,7 @@ export const renderless = (props, { computed, inject, reactive, watch }, { paren
 
   Object.assign(api, {
     state,
-    computedActive: computedActive({ parent, nextTick, props, state }),
+    computedActive: computedActive({ nextTick, props, state }),
     computedPaneName: computedPaneName({ props, state })
   })
 

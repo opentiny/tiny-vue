@@ -5,7 +5,7 @@
       "sample": "separator",
       "type": "String",
       "desc": "Separator",
-      "defaultValue": "The default value of this attribute is /"
+      "defaultValue": "The default value of this attribute is >"
     },
     {
       "name": "separator-icon",

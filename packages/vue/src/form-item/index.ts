@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import FormItem from './src/index.vue'
+import FormItem from './src/index'
 
 /* istanbul ignore next */
 FormItem.install = function (Vue) {

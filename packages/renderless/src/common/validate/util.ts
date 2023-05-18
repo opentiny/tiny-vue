@@ -10,7 +10,7 @@
 *
 */
 
-import { hasOwn, isNull } from '@opentiny/vue-renderless/common/type'
+import { hasOwn, isNull } from '../type'
 
 const formatRegExp = /%[sdj%]/g
 

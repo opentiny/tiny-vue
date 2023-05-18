@@ -10,7 +10,7 @@
 *
 */
 
-import { isDate, modifyWithTimeString, prevYear, nextYear, nextMonth } from '@opentiny/vue-renderless/common/deps/date-util'
+import { isDate, modifyWithTimeString, prevYear, nextYear, nextMonth } from '../common/deps/date-util'
 
 export const calcDefaultValue = (defaultValue) => {
   if (Array.isArray(defaultValue)) {

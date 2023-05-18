@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  -->
-<script lang="tsx">
+<script lang="ts">
 import Picker from '@opentiny/vue-picker'
 import { $props, defineComponent } from '@opentiny/vue-common'
 import { extend } from '@opentiny/vue-renderless/common/object'

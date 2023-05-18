@@ -10,9 +10,9 @@
 *
 */
 
-import { formatDate } from '@opentiny/vue-renderless/common/deps/date-util'
-import { getFirstDayOfMonth, getDayCountOfMonth, getWeekNumber, prevDate, nextDate, isDate, clearTime } from '@opentiny/vue-renderless/common/deps/date-util'
-import { DATEPICKER } from '@opentiny/vue-renderless/common'
+import { formatDate } from '../common/deps/date-util'
+import { getFirstDayOfMonth, getDayCountOfMonth, getWeekNumber, prevDate, nextDate, isDate, clearTime } from '../common/deps/date-util'
+import { DATEPICKER } from '../common'
 
 const formatJudg = ({ day, offset, j, i, cell, count, dateCountOfLastMonth }) => {
   const nodfpm = day + offset < 0 ? 7 + day + offset : day + offset

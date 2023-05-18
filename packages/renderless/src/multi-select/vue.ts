@@ -31,7 +31,7 @@ export const api = [
   'loadDefault'
 ]
 
-const initState = ({ computed, reactive }) => {
+const initState = (reactive) => {
   const state = reactive({
     dataSource: [],
     wheelData: [],
@@ -44,7 +44,6 @@ const initState = ({ computed, reactive }) => {
     headerInfo: [],
     defaultSelectedIndexs: [],
     defaultSelectedArray: [],
-    isActive: computed(() => state.headerInfo.some(item => item.isUP))
   })
 
   return state
@@ -78,9 +77,9 @@ const initWatch = ({ watch, props, state, refs, nextTick }) => {
   )
 }
 
-export const renderless = (props, { computed, onMounted, reactive, watch }, { emit, nextTick, refs }) => {
+export const renderless = (props, { onMounted, reactive, watch }, { emit, nextTick, refs }) => {
   const api = {}
-  const state = initState({ computed, reactive })
+  const state = initState(reactive)
 
   initApi({ api, props, state, emit, nextTick, refs })
 

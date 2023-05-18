@@ -4,5 +4,3 @@ dist-vue2/
 dist-vue3/
 node_modules
 examples/docs/public/assets/map/js
-packages/dist2
-packages/dist3

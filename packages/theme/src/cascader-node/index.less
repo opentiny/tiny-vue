@@ -26,12 +26,15 @@
 
   &.in-active-path,
   &.is-active {
-    background: var(--ti-cascader-node-selectable-hover-bg-color);
+    background: var(--ti-cascader-node-selectable-active-bg-color);
     color: var(--ti-cascader-node-selectable-text-color);
-    &,
     &:hover {
       background: var(--ti-cascader-node-selectable-hover-bg-color);
     }
+  }
+
+  &.in-active-path:hover {
+    background: var(--ti-cascader-node-selectable-hover-bg-color);
   }
 
   &:not(.is-disabled):not(.in-active-path):not(.is-active) {
@@ -90,13 +93,13 @@
   }
 
   & > .@{radio-prefix-cls} {
-    margin-right: var(--ti-common-space-base);
+    margin-right: var(--ti-cascader-node-radio-margin-right);
     .@{radio-prefix-cls}__label {
       padding-left: 0;
     }
   }
 
   & > .@{checkbox-prefix-cls} {
-    margin-right: var(--ti-common-space-base);
+    margin-right: var(--ti-cascader-node-radio-margin-right);
   }
 }

@@ -31,7 +31,10 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
   function getExternal() {
     return {
       vue: 'Vue',
-      '@vue/composition-api': 'VueCompositionAPI'
+      '@vue/composition-api': 'VueCompositionAPI',
+      '@opentiny/vue-locale': 'TinyVueLocale',
+      '@opentiny/vue-common': 'TinyVueCommon',
+      '@opentiny/vue-icon': 'TinyVueIcon',
     }
   }
 
@@ -101,7 +104,6 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
         },
         lib: {
           entry,
-          formats: ['es'],
           fileName: (format, entryName) => `${entryName}${min ? '.min' : ''}.${format === 'es' ? 'm' : ''}js`,
           name: 'Tiny'
         },
@@ -121,6 +123,14 @@ function getEntryTasks() {
     {
       path: 'vue-icon/index.ts',
       libPath: 'tiny-vue-icon'
+    },
+    {
+      path: 'vue-locale/src/index.ts',
+      libPath: 'tiny-vue-locale'
+    },
+    {
+      path: 'vue-common/src/index.ts',
+      libPath: 'tiny-vue-common'
     }
   ]
 }

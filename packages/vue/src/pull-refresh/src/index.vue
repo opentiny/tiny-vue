@@ -11,19 +11,11 @@
  -->
 <template>
   <div class="tiny-mobile-pull-refresh" :style="state.refreshStyle">
-    <div
-      class="tiny-mobile-pull-refresh__track"
-      ref="track"
-      :style="{
-        'transition-duration': state.animationDuration + 'ms',
-        transform: 'translate3d(0px,' + state.translate3d + 'px,0px)'
-      }"
-    >
-      <div
-        class="tiny-mobile-pull-refresh__tips tiny-mobile-pull-refresh__head"
-        :style="{ height: state.pullDown.headHeight + 'px' }"
-        v-if="state.pullDownLoading || state.pullDownReplaces"
-      >
+    <div class="tiny-mobile-pull-refresh__track" ref="track" :style="{
+      'transition-duration': state.animationDuration + 'ms',
+      transform: 'translate3d(0px,' + state.translate3d + 'px,0px)'
+    }">
+      <div class="tiny-mobile-pull-refresh__tips tiny-mobile-pull-refresh__head" :style="{ height: state.pullDown.headHeight + 'px' }" v-if="state.pullDownLoading || state.pullDownReplaces">
         <span v-if="!state.pullDownLoading">{{ state.pullDownReplaces }}</span>
         <slot name="loading" v-if="state.pullDownLoading">
           <ul v-if="state.pullDownLoading" class="tiny-mobile-pull-refresh__loading">
@@ -33,14 +25,10 @@
           </ul>
         </slot>
       </div>
-      <div class="tiny-mobile-pull-refresh__content" ref="content">
+      <div class="tiny-mobile-pull-refresh__content">
         <slot></slot>
       </div>
-      <div
-        class="tiny-mobile-pull-refresh__tips tiny-mobile-pull-refresh__foot"
-        :style="{ height: state.pullUp.footHeight + 'px' }"
-        v-if="state.pullUpLoading || state.pullUpReplaces"
-      >
+      <div class="tiny-mobile-pull-refresh__tips tiny-mobile-pull-refresh__foot" :style="{ height: state.pullUp.footHeight + 'px' }" v-if="state.pullUpLoading || state.pullUpReplaces">
         <span v-if="!state.pullUpLoading">{{ state.pullUpReplaces }}</span>
         <slot name="loading" v-if="state.pullUpLoading">
           <ul v-if="state.pullUpLoading" class="tiny-mobile-pull-refresh__loading">
@@ -79,15 +67,15 @@ export default defineComponent({
       default: false
     },
     pullUp: {
-      type: Object
+      type: Function
     },
     pullDown: {
-      type: Object
+      type: Function
     },
     hasMore: {
       type: Boolean,
       default: true
-    }
+    },
   },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })

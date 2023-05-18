@@ -219,31 +219,31 @@ const getTreeShowKey = ({ scrollYLoad, treeConfig }) => {
 }
 
 const sliceVisibleColumn = (args) => {
-  const { lastStartIndex, renderSize, scrollXLoad, startIndex, tableColumn } = args
+  const { lastStartIndex, renderSize, scrollXLoad, startIndex, tableColumn, columnStore } = args
   const { treeConfig, visibleColumn, visibleColumnChanged } = args
+  const { leftList, rightList } = columnStore
 
   let tableColumn2 = tableColumn
   let lastStartIndex2 = lastStartIndex
   let visibleColumnChanged2 = visibleColumnChanged
-  let sliced = false
 
   if (scrollXLoad && treeConfig) {
     if (visibleColumnChanged || !~lastStartIndex || lastStartIndex !== startIndex) {
       tableColumn2 = visibleColumn.slice(startIndex, startIndex + renderSize)
       lastStartIndex2 = startIndex
       visibleColumnChanged2 = false
-      sliced = true
     }
   } else {
     tableColumn2 = visibleColumn.slice(startIndex, startIndex + renderSize)
-    sliced = true
   }
+
+  // x轴虚拟滚动时，需要一直保持冻结列显示
+  tableColumn2 = [...new Set([...leftList, ...tableColumn2, ...rightList])]
 
   return {
     tableColumn: tableColumn2,
     lastStartIndex: lastStartIndex2,
-    visibleColumnChanged: visibleColumnChanged2,
-    sliced
+    visibleColumnChanged: visibleColumnChanged2
   }
 }
 

@@ -38,7 +38,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/rate/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconStarActive, iconStarDisable, iconSmile, iconFrown, iconMeh } from '@opentiny/vue-icon'

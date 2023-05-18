@@ -10,11 +10,11 @@
 *
 */
 
-import { formatNumber, roundFixed } from '@opentiny/vue-renderless/common/decimal'
-import { getMiniDecimal, lessEquals, equalsDecimal } from '@opentiny/vue-renderless/common/bigInt'
-import { isNumber, isNull } from '@opentiny/vue-renderless/common/type'
-import { MOUSEDELTA } from '@opentiny/vue-renderless/common'
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
+import { formatNumber, roundFixed } from '../common/decimal'
+import { getMiniDecimal, lessEquals, equalsDecimal } from '../common/bigInt'
+import { isNumber, isNull } from '../common/type'
+import { MOUSEDELTA } from '../common'
+import { on, off } from '../common/deps/dom'
 
 export const initService = (service) => {
   const { utils = {} } = service || {}
@@ -358,4 +358,14 @@ export const getUnitPrecision = ({ service, props }) => {
   rounding = isNumber(format.rounding) ? format.rounding : serFra.rounding
 
   return { ...defaultFmt, fraction, rounding, ...serFmt, ...format }
+}
+
+export const dispatchDisplayedValue = ({ state, api, dispatch }) => () => {
+  if (state.isDisplayOnly) {
+    dispatch('FormItem', 'displayed-value-changed', { type: 'numeric', val: api.getDisplayedValue() })
+  }
+}
+
+export const getDisplayedValue = ({ state, props }) => () => {
+  return state.displayValue || state.displayValue === 0 ? state.displayValue + ' ' + (props.unit || '') : '-'
 }

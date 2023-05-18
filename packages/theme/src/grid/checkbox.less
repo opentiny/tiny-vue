@@ -14,7 +14,7 @@
 
 @grid-checkbox-prefix-cls: ~'@{css-prefix}grid-checkbox';
 
-// checkbox
+// 表格内部多选框
 .@{grid-checkbox-prefix-cls} {
   display: inline-block;
   user-select: none;
@@ -43,16 +43,11 @@
       display: inline-block;
       width: 1em;
       height: 1em;
-      border: 1px solid var(--ti-grid-border-color);
+      border: 1px solid var(--ti-grid-checkbox-border-color);
       background-color: #fff;
       vertical-align: middle;
-      border-radius: var(--ti-grid-border-radius);
+      border-radius: var(--ti-grid-checkbox-border-radius);
       font-size: var(--ti-common-font-size-2);
-
-      &:before {
-        content: '';
-        position: absolute;
-      }
 
       &:hover {
         border-color: var(--ti-grid-primary-hover-color);
@@ -77,6 +72,7 @@
       > svg {
         display: block;
         fill: var(--ti-grid-primary-color);
+        border-radius: var(--ti-grid-checkbox-border-radius);
       }
     }
   }
@@ -87,7 +83,9 @@
         & + .@{grid-checkbox-prefix-cls}__icon {
           border: none;
           > svg {
+            display: block;
             fill: var(--ti-grid-primary-color);
+            border-radius: var(--ti-grid-checkbox-border-radius);
           }
         }
       }

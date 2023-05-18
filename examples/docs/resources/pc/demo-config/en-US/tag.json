@@ -56,6 +56,22 @@
     "demoId": "closeable"
   },
   {
+    "title": "Disabled",
+    "content": "<p>You can set <code>disabled</code> to disable the tag. </p>\n",
+    "link": "tag/disabled",
+    "component": "Tag",
+    "findIntroStr": "Tag label component, used to mark transaction attributes and dimensions",
+    "demoId": "disabled"
+  },
+  {
+    "title": "Icon label (default slot)",
+    "content": "For details, see the following example.",
+    "link": "tag/slot-default",
+    "component": "Tag",
+    "findIntroStr": "Tag tag component, used to mark transaction attributes and dimensions",
+    "demoId": "slot-default"
+  },
+  {
     "title": "Click Event",
     "content": "For details, see the following example.",
     "link": "tag/tag-event-click",

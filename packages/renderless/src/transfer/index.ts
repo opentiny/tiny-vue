@@ -10,7 +10,7 @@
 *
 */
 
-import { copyArray } from '@opentiny/vue-renderless/common/object'
+import { copyArray } from '../common/object'
 
 export const getObj = (props) => () => props.data.reduce((o, cur) => (o[cur[props.props.key]] = cur) && o, {})
 

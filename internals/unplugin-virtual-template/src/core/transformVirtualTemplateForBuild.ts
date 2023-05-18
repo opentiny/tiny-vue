@@ -25,6 +25,7 @@ ${getImports(params)}
 
 const ${localName} = (mode) => {
   if ('mobile' === (process.env.TINY_MODE || mode)) return MobileTemplate
+  else if ('mobile-first' === (process.env.TINY_MODE || mode)) return MobileFirstTemplate
   else return PcTemplate
 }
   `

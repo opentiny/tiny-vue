@@ -14,7 +14,7 @@
 @import './vars.less';
 
 @action-menu-prefix-cls: ~'@{css-prefix}action-menu';
-@dropdown-item-prefix-cls: ~'@{css-prefix}dropdown-menu__item';
+@dropdown-item-prefix-cls: ~'@{css-prefix}dropdown-item';
 
 .@{action-menu-prefix-cls} {
   .component-css-vars-action-menu();
@@ -31,33 +31,30 @@
       align-items: center;
 
       .tiny-svg {
-        fill: var(--ti-action-menu-text-color);
+        fill: var(--ti-action-menu-text-color); // TINY-TODO :没有使用--ti-base-color-brand-7的图标色
         margin: var(--ti-action-menu-item-svg-margin-top) var(--ti-action-menu-item-svg-margin-right) var(--ti-action-menu-item-svg-margin-bottom) var(--ti-action-menu-item-svg-margin-left);
       }
 
-      &:hover:not(.is-disabled) {
+      &:not(.is-disabled):hover {
         color: var(--ti-action-menu-item-hover-text-color);
 
         &.@{action-menu-prefix-cls}__item-visable {
           .@{dropdown-item-prefix-cls} {
-            color: var(--ti-action-menu-item-hover-text-color);
-          }
+            background-color: var(--ti-action-menu-item-hover-bg-color);
 
+            &__wrap {
+              color: var(--ti-action-menu-item-hover-text-color);
+            }
+          }
         }
 
         .tiny-svg {
-          fill: var(--ti-action-menu-item-hover-text-color);
-        }
-      }
-
-      &.is-disabled:hover{
-        .@{dropdown-item-prefix-cls} {
-          color: var(--ti-action-menu-item-disabled-text-color);
+          fill: var(--ti-action-menu-item-hover-text-color); // TINY-TODO :没有使用--ti-base-color-brand-8的图标色
         }
       }
 
       &.@{action-menu-prefix-cls}__item-visable {
-        .@{dropdown-item-prefix-cls} {
+        .@{dropdown-item-prefix-cls}__wrap {
           color: var(--ti-action-menu-text-color);
           padding: var(--ti-action-menu-item-padding-top) var(--ti-action-menu-item-padding-right) var(--ti-action-menu-item-padding-bottom) var(--ti-action-menu-item-padding-left);
 
@@ -65,12 +62,11 @@
             background-color: var(--ti-action-menu-item-hover-bg-color);
           }
         }
-      }
 
-      &.is-disabled {
-        .@{dropdown-item-prefix-cls} {
-          cursor: not-allowed;
-          color: var(--ti-action-menu-item-disabled-text-color);
+        &.is-disabled {
+          .@{dropdown-item-prefix-cls}__wrap {
+              color: var(--ti-action-menu-item-disabled-text-color);
+          }
         }
       }
 

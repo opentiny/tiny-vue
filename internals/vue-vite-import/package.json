@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "description": "A TinyVue vite import plugin",
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "dev": "tsc -w -p .",
     "build": "tsc && npx tsc --outDir dist",
@@ -26,6 +27,6 @@
   },
   "devDependencies": {
     "typescript": "^4.9.3",
-    "vite": "^3.0.1"
+    "vite": "^4.3.2"
   }
 }

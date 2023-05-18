@@ -1,1 +1,170 @@
-[{"title":"基本用法","content":"<p>通过 <code>v-model</code> 设置初始激活的标签页，绑定的值对应 <code>tiny-tab-item</code> 元素中 <code>name</code> 属性的值。一个 <code>tiny-tab-item</code> 为一个标签页，通过 <code>title</code> 属性设置标签页标题。</p>\n","link":"tabs/basic-usage","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"basic-usage"},{"title":"card 类型","content":"<p>通过 <code>tab-style</code> 设置标签页风格类型， 通过 <code>active-name</code> 设置初始激活的标签页 。</p>\n","link":"tabs/tab-style-card","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"tab-style-card"},{"title":"bordercard 类型","content":"<p>通过 <code>tab-style</code> 设置标签页风格类型为 <code>bordercard</code> 。</p>\n","link":"tabs/tab-style-bordercard","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"tab-style-bordercard"},{"title":"标签页可增加","content":"<p>设置 <code>with-add</code> 属性启用标签可增加功能。同时通过 <code>add</code> 事件自定义实现增加标签页的逻辑。配置 <code>show-more-tabs</code> 属性后当标签页超过一定宽度时将显示 <code>更多</code> 按钮。</p>\n","link":"tabs/with-add","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"with-add"},{"title":"标签页可关闭","content":"<p>通过 <code>withClose</code> 属性设置是否可关闭标签页。同时可通过 <code>close</code> 事件自定义实现关闭标签页的逻辑。</p>\n","link":"tabs/tabs-events-close","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"tabs-events-close1"},{"title":"top 显示位置","content":"<p>通过 <code>position</code> 属性设置标签页显示位置，可选值有 <code>top</code>、<code>right</code>、<code>bottom</code>、<code>left</code>，默认为 <code>top</code> 。</p>\n","link":"tabs/position","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"position"},{"title":"右侧显示","content":"详细用法参考如下示例","link":"tabs/position-right","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"position-right"},{"title":"下方显示","content":"详细用法参考如下示例","link":"tabs/position-bottom","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"position-bottom"},{"title":"左侧显示","content":"详细用法参考如下示例","link":"tabs/position-left","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"position-left"},{"title":"离开前事件","content":"<p><code>before-leave</code> 切换标签之前的钩子函数，若返回 false 或者返回 Promise 且被 reject，则阻止切换，返回 true 则可以切换。</p>\n","link":"tabs/before-leave","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"before-leave"},{"title":"可自动撑开","content":"<p><code>stretch</code> 属性设置标签的宽度是否自撑开，默认为 false 。</p>\n","link":"tabs/stretch-wh","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"stretch-wh"},{"title":"add 事件","content":"<p>点击新增按钮增加标签页时触发 <code>add</code> 事件</p>\n","link":"tabs/tabs-events-add","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"tabs-events-add"},{"title":"click 事件","content":"<p>单击标签页时触发 <code>click</code> 事件</p>\n","link":"tabs/tabs-events-click","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"tabs-events-click"},{"title":"close 事件","content":"<p>关闭标签页时触发 <code>close</code> 事件</p>\n","link":"tabs/tabs-events-close","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"tabs-events-close"},{"title":"edit 事件","content":"<p>点击新增按钮增加标签页 或 标签页被关闭后触发 <code>edit</code> 事件</p>\n","link":"tabs/tabs-events-edit","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"tabs-events-edit"},{"title":"自定义标签页标题","content":"<p>通过 <code>tiny-tab-item</code> 的 <code>title</code> 插槽自定义标签页标题，比如在标题前增加图标。</p>\n","link":"tabs/custom-tab-title","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"custom-tab-title"},{"title":"循环创建标签页","content":"<p>通过 <code>v-for</code> 根据数据循环创建多个 <code>tiny-tab-item</code> 。</p>\n","link":"tabs/tabdata-title","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"tabdata-title"},{"title":"标签页切换不同 Grid","content":"<blockquote>\n<p>Tabs 组件里使用 Grid 组件需要 Grid 设置属性 <code>:auto-resize=&quot;true&quot;</code>，这样才能让 Grid 自适应父元素响应变化。</p>\n</blockquote>\n","link":"tabs/show-different-grid-data","component":" Tabs 标签页","findIntroStr":"分隔内容上有关联但属于不同类别的数据集合。","demoId":"show-different-grid-data"}]
+[
+  {
+    "title": "基本用法",
+    "content": "<p>通过 <code>v-model</code> 设置初始激活的标签页，绑定的值对应 <code>tiny-tab-item</code> 元素中 <code>name</code> 属性的值。一个 <code>tiny-tab-item</code> 为一个标签页，通过 <code>title</code> 属性设置标签页标题。</p>\n",
+    "link": "tabs/basic-usage",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "card 类型",
+    "content": "<p>通过 <code>tab-style</code> 设置标签页风格类型， 通过 <code>active-name</code> 设置初始激活的标签页 。</p>\n",
+    "link": "tabs/tab-style-card",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "tab-style-card"
+  },
+  {
+    "title": "bordercard 类型",
+    "content": "<p>通过 <code>tab-style</code> 设置标签页风格类型为 <code>bordercard</code> 。</p>\n",
+    "link": "tabs/tab-style-bordercard",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "tab-style-bordercard"
+  },
+  {
+    "title": "标签页可增加",
+    "content": "<p>设置 <code>with-add</code> 属性启用标签可增加功能。同时通过 <code>add</code> 事件自定义实现增加标签页的逻辑。配置 <code>show-more-tabs</code> 属性后当标签页超过一定宽度时将显示 <code>更多</code> 按钮。</p>\n",
+    "link": "tabs/with-add",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "with-add"
+  },
+  {
+    "title": "'更多'图标插槽",
+    "content": "<p>通过 <code>show-more-tabs</code> 和 <code>moreIcon</code> 插槽实现自定义更多图标</p>\n",
+    "link": "tabs/custom-more-icon",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "custom-more-icon"
+  },
+  {
+    "title": "标签页可关闭",
+    "content": "<p>通过 <code>withClose</code> 属性设置是否可关闭标签页。同时可通过 <code>close</code> 事件自定义实现关闭标签页的逻辑。</p>\n",
+    "link": "tabs/tabs-events-close",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "tabs-events-close1"
+  },
+  {
+    "title": "top 显示位置",
+    "content": "<p>通过 <code>position</code> 属性设置标签页显示位置，可选值有 <code>top</code>、<code>right</code>、<code>bottom</code>、<code>left</code>，默认为 <code>top</code> 。</p>\n",
+    "link": "tabs/position",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "position"
+  },
+  {
+    "title": "右侧显示",
+    "content": "详细用法参考如下示例",
+    "link": "tabs/position-right",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "position-right"
+  },
+  {
+    "title": "下方显示",
+    "content": "详细用法参考如下示例",
+    "link": "tabs/position-bottom",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "position-bottom"
+  },
+  {
+    "title": "左侧显示",
+    "content": "详细用法参考如下示例",
+    "link": "tabs/position-left",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "position-left"
+  },
+  {
+    "title": "离开前事件",
+    "content": "<p><code>before-leave</code> 切换标签之前的钩子函数，若返回 false 或者返回 Promise 且被 reject，则阻止切换，返回 true 则可以切换。</p>\n",
+    "link": "tabs/before-leave",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "before-leave"
+  },
+  {
+    "title": "可自动撑开",
+    "content": "<p><code>stretch</code> 属性设置标签的宽度是否自撑开，默认为 false 。</p>\n",
+    "link": "tabs/stretch-wh",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "stretch-wh"
+  },
+  {
+    "title": "标签页可拖拽",
+    "content": "<p>设置 <code>drop-config</code> 属性，并传入 <code>Sortable</code> 插件，启用标签页拖拽功能，对标签页进行重新排序。</p>\n",
+    "link": "tabs/tabs-draggable",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "tabs-draggable"
+  },
+  {
+    "title": "add 事件",
+    "content": "<p>点击新增按钮增加标签页时触发 <code>add</code> 事件</p>\n",
+    "link": "tabs/tabs-events-add",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "tabs-events-add"
+  },
+  {
+    "title": "click 事件",
+    "content": "<p>单击标签页时触发 <code>click</code> 事件</p>\n",
+    "link": "tabs/tabs-events-click",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "tabs-events-click"
+  },
+  {
+    "title": "close 事件",
+    "content": "<p>关闭标签页时触发 <code>close</code> 事件</p>\n",
+    "link": "tabs/tabs-events-close",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "tabs-events-close"
+  },
+  {
+    "title": "edit 事件",
+    "content": "<p>点击新增按钮增加标签页 或 标签页被关闭后触发 <code>edit</code> 事件</p>\n",
+    "link": "tabs/tabs-events-edit",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "tabs-events-edit"
+  },
+  {
+    "title": "自定义标签页标题",
+    "content": "<p>通过 <code>tiny-tab-item</code> 的 <code>title</code> 插槽自定义标签页标题，比如在标题前增加图标。</p>\n",
+    "link": "tabs/custom-tab-title",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "custom-tab-title"
+  },
+  {
+    "title": "循环创建标签页",
+    "content": "<p>通过 <code>v-for</code> 根据数据循环创建多个 <code>tiny-tab-item</code> 。</p>\n",
+    "link": "tabs/tabdata-title",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "tabdata-title"
+  },
+  {
+    "title": "标签页切换不同 Grid",
+    "content": "<blockquote>\n<p>Tabs 组件里使用 Grid 组件需要 Grid 设置属性 <code>:auto-resize=&quot;true&quot;</code>，这样才能让 Grid 自适应父元素响应变化。</p>\n</blockquote>\n",
+    "link": "tabs/show-different-grid-data",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "show-different-grid-data"
+  },
+  {
+    "title": "二级标签页",
+    "content": "页签嵌套页签",
+    "link": "tabs/tabs-second-layer",
+    "component": " Tabs 标签页",
+    "findIntroStr": "分隔内容上有关联但属于不同类别的数据集合。",
+    "demoId": "tabs-second-layer"
+  }
+]

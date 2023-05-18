@@ -1,10 +1,11 @@
 <template>
   <div>
-    <tiny-select v-model="multivalue" placeholder="请选择" :searchable="true" multiple>
+    <p>多选</p>
+    <tiny-select v-model="multivalue" placeholder="请选择" :searchable="true" multiple :show-empty-image="true">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
-
-    <tiny-select v-model="value" placeholder="请选择" :searchable="true">
+    <p>单选</p>
+    <tiny-select v-model="value" placeholder="请选择" :searchable="true" :show-empty-image="true">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
   </div>
@@ -48,10 +49,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.tiny-select {
-  width: 130px;
-  margin-right: 20px;
-}
-</style>

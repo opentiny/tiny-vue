@@ -10,7 +10,7 @@
 *
 */
 
-import { downloadFile as ordinaryDownload } from '@opentiny/vue-renderless/upload-list'
+import { downloadFile as ordinaryDownload } from '../upload-list'
 
 import {
   initService,
@@ -18,6 +18,7 @@ import {
   previewFile,
   getToken,
   downloadFile,
+  downloadFileSingleInner,
   batchSegmentUpload,
   segmentUpload,
   sliceChunk,
@@ -58,9 +59,25 @@ import {
   batchSegmentDownload,
   downloadFileInner,
   setWriterFile,
-  afterDownload
+  afterDownload,
+  getFileHash,
+  modifyServiceUrlSingle,
+  getKiaScanTip,
+  downloadFileSingle,
+  downloadFileBatch,
+  downloadFileSingleHwh5,
+  validateDownloadStatus,
+  mounted,
+  handleChange,
+  previewFileSingle,
+  previewFileBatch,
+  previewImageSingle,
+  previewImageBatch,
+  abortDownload,
+  createDownloadCancelToken,
+  handleClickFileList
 } from './index'
-import { isEmptyObject } from '@opentiny/vue-renderless/common/type'
+import { isEmptyObject } from '../common/type'
 
 export const api = [
   'state',
@@ -80,10 +97,13 @@ export const api = [
   'getFileUploadUrl',
   'updateUrl',
   'previewImage',
-  'updateFile'
+  'updateFile',
+  'handleChange',
+  'abortDownload',
+  'handleClickFileList'
 ]
 
-const initState = ({ api, reactive, computed, inject, ref, vm, props, httpRequest }) => {
+const initState = ({ api, reactive, computed, inject, ref, vm, props, httpRequest, service }) => {
   const state = reactive({
     url: '',
     tempIndex: 1,
@@ -95,7 +115,7 @@ const initState = ({ api, reactive, computed, inject, ref, vm, props, httpReques
     listeners: vm.$listeners,
     docSize: 0, // unit(B)
     chunkSize: 0,
-    chunkBatchLimit: 20,
+    chunkBatchLimit: 5,
     downloadChunkLimit: 5,
     batchQueue: {},
     batchQueueListen: {},
@@ -123,69 +143,92 @@ const initState = ({ api, reactive, computed, inject, ref, vm, props, httpReques
     isEntireCheckCode: computed(() => !('isEntireCheckCode' in props.edm && props.edm.isEntireCheckCode !== true)),
     downloadBatchQueue: {},
     downloadBatchQueueListen: {},
-    dowuloadChunkFile: new Map(),
-    downloadReplayAtoms: {}
+    downloadChunkFile: {},
+    downloadReplayAtoms: {},
+    errorStatusCodes: [0, 401, 429], // 0：上传异常 401：没权限（token过期）429：超限
+    hasFileInfoInterface: computed(() => service.setting.services.EDM && service.setting.services.EDM.DocumentInfoUrl),
+    currentDownloadFile: '',    
+    isDragover: false,
+    downloadCancelToken: {}, // 取消下载token
+    downloadCancelData: {}, // 取消下载时需要清空的缓存数据
+    isHwh5: computed(() => !isEmptyObject(props.hwh5)),
+    selected: null
   })
 
   return state
 }
 
-const initApi = ({ api, state, props, constants, refs, $service, t, Modal }) => {
-  const { SIZE_2G, SIZE_20M, SIZE_8M } = constants.EDM
-
+const initApi = ({ api, state, props, constants, vm, $service, t, Modal }) => {
   Object.assign(api, {
     state,
     sliceChunk: sliceChunk({ state, props }),
     getFormData: getFormData({ constants, props, state }),
-    abort: abort({ constants, refs }),
-    handleClick: handleClick({ constants, refs }),
+    abort: abort({ constants, vm, state }),
+    handleClick: handleClick({ constants, vm }),
     getFile: getFile(state),
     clearFiles: clearFiles(state),
-    watchFileList: watchFileList({ constants, state }),
+    watchFileList: watchFileList({ constants, state, props }),
     watchListType: watchListType({ constants, state }),
     onBeforeDestroy: onBeforeDestroy(state),
     computedUploadDisabled: computedUploadDisabled({ props, state }),
-    computedUploadingSize: computedUploadingSize(state),
+    computedUploadingSize: computedUploadingSize({ state, constants }),
     getFileUploadUrl: getFileUploadUrl($service),
     getToken: getToken({ constants, props, state, t, Modal }),
     getDialogConfigObj: getDialogConfigObj({ props, state }),
-    computeDocChunkSize: computeDocChunkSize({ props, state, SIZE_2G, SIZE_20M, SIZE_8M }),
-    updateFile: updateFile({ constants, refs }),
+    computeDocChunkSize: computeDocChunkSize({ props, state, constants }),
+    updateFile: updateFile({ constants, vm }),
     getPreviewUrlSync: getPreviewUrlSync({ constants, props, state }),
     ordinaryDownload: ordinaryDownload($service),
     clearUploadingFiles: clearUploadingFiles({ constants, state }),
-    calcUploadingFilesInfo: calcUploadingFilesInfo({ state }),
-    properFileSize: properFileSize({ props, state, constants, Modal, t })
+    calcUploadingFilesInfo: calcUploadingFilesInfo({ state, constants }),
+    properFileSize: properFileSize({ props, state, constants, Modal, t }),
+    mounted: mounted({ vm, state }),
+    previewFileSingle: previewFileSingle({ api, state, props, constants, service: $service }),
+    previewFileBatch: previewFileBatch({ service: $service, props, state, api }),
+    previewImageSingle: previewImageSingle({ state, props, service: $service }),
+    previewImageBatch: previewImageBatch({ service: $service, api }),
+    abortDownload: abortDownload({ state }),
+    createDownloadCancelToken: createDownloadCancelToken({ state, service: $service })
   })
 }
 
-const mergeApi = ({ api, props, $service, state, constants, emit, mode, Modal, t, refs }) => {
+const mergeApi = ({ api, props, $service, state, constants, emit, mode, Modal, t, vm, CryptoJS, Streamsaver }) => {
   Object.assign(api, {
     segmentUploadInit: segmentUploadInit({ api, props, service: $service, state, constants }),
-    segmentUpload: segmentUpload({ api, props, service: $service, state, emit, constants }),
+    segmentUpload: segmentUpload({ api, props, service: $service, state, emit, constants, CryptoJS }),
     addFileToList: addFileToList({ api, constants, emit, props, state, mode }),
-    downloadFile: downloadFile({ api, state, props }),
-    previewImage: previewImage({ api, props, service: $service, state }),
-    previewFile: previewFile({ api, constants, Modal, props, service: $service, state, t }),
-    getNewTabPreviewUrl: getNewTabPreviewUrl({ api, props }),
-    submit: submit({ api, constants, Modal, refs, props, state, t }),
-    handleStart: handleStart({ api, constants, props, state, refs }),
-    batchSegmentUpload: batchSegmentUpload({ api, constants, props, refs, state }),
+    downloadFile: downloadFile({ api, state }),
+    downloadFileSingleInner: downloadFileSingleInner({ props, state, api, constants }),
+    previewImage: previewImage({ api, props, service: $service }),
+    previewFile: previewFile({ api, props }),
+    getNewTabPreviewUrl: getNewTabPreviewUrl({ api }),
+    submit: submit({ api, constants, Modal, vm, props, state, t }),
+    handleStart: handleStart({ api, constants, props, state, vm }),
+    batchSegmentUpload: batchSegmentUpload({ api, constants, props, vm, state }),
     largeDocumentUpload: largeDocumentUpload({ api, Modal, state, emit, constants, t }),
     handleProgress: handleProgress({ api, constants, emit, state }),
     handleSuccess: handleSuccess({ api, constants, emit, Modal, props, state }),
     handleError: handleError({ api, constants, emit, state }),
-    handleRemove: handleRemove({ api, emit, props, state }),
+    handleRemove: handleRemove({ api, emit, props, state, constants }),
     updateUrl: updateUrl({ api, props, service: $service, state }),
-    startUpload: startUpload({ api, state, constants, refs, Modal, t }),
+    startUpload: startUpload({ api, state, constants, vm, Modal, t }),
     beforeUpload: beforeUpload({ api, props, Modal, constants, t, state }),
     getDownloadFileInfo: getDownloadFileInfo({ api, props, state, service: $service }),
     largeDocumentDownload: largeDocumentDownload({ api, state }),
     sliceDownloadChunk: sliceDownloadChunk({ api, state }),
     batchSegmentDownload: batchSegmentDownload({ state, api }),
-    downloadFileInner: downloadFileInner({ api, props, service: $service, state, emit, constants, t, Modal }),
-    setWriterFile: setWriterFile({ state, emit, props }),
-    afterDownload: afterDownload({ api, state })
+    downloadFileInner: downloadFileInner({ api, props, state }),
+    setWriterFile: setWriterFile({ state, emit, Streamsaver }),
+    afterDownload: afterDownload({ api, state }),
+    getFileHash: getFileHash({ emit, Modal, constants, t, CryptoJS, state }),
+    modifyServiceUrlSingle: modifyServiceUrlSingle({ constants }),
+    getKiaScanTip: getKiaScanTip({ Modal, constants, t }),
+    downloadFileSingle: downloadFileSingle({ service: $service, constants, props, state, api, emit }),
+    downloadFileBatch: downloadFileBatch({ api, service: $service, props, state, emit }),
+    downloadFileSingleHwh5: downloadFileSingleHwh5({ state, props, emit, constants }),
+    validateDownloadStatus: validateDownloadStatus({ state, Modal }),
+    handleChange: handleChange({  vm, constants }),
+    handleClickFileList: handleClickFileList({ state, emit })
   })
 }
 
@@ -223,21 +266,26 @@ const initWatch = ({ watch, state, api, props, $service }) => {
   watch(() => props.edm, api.computeDocChunkSize, { deep: true, immediate: true })
 }
 
+export let getApi = () => ({})
+
 export const renderless = (
   props,
-  { computed, inject, onBeforeUnmount, provide, reactive, ref, watch },
-  { t, vm, refs, parent, emit, service, mode, constants },
-  { Modal }
+  { computed, inject, onBeforeUnmount, provide, reactive, ref, watch, onMounted },
+  { t, vm, parent, emit, service, mode, constants },
+  { Modal, CryptoJS, Streamsaver }
 ) => {
   const api = {}
   const $service = initService({ props, service })
   const httpRequest = $service.httpRequest
-  const state = initState({ reactive, computed, api, inject, ref, vm, props, httpRequest })
+  const state = initState({ reactive, computed, api, inject, ref, vm, props, httpRequest, service })
 
-  initApi({ api, state, props, constants, refs, $service, t, Modal })
-  mergeApi({ api, props, $service, state, constants, emit, mode, Modal, t, refs })
+  initApi({ api, state, props, constants, vm, $service, t, Modal })
+  mergeApi({ api, props, $service, state, constants, emit, mode, Modal, t, vm, CryptoJS, Streamsaver })
+  getApi = () => api
 
   provide('uploader', parent)
+
+  onMounted(api.mounted)
 
   // 注册生命周期函数必须要在（watch）异步函数/组件之前，否则会 Vue3 警告
   onBeforeUnmount(api.onBeforeDestroy)

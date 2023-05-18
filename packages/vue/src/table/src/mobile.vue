@@ -63,7 +63,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/table/vue'
 import { setup, props, defineComponent } from '@opentiny/vue-common'
 import { iconRadioselected, iconRadio, iconCheck, iconCheckedSur, iconHalfselect } from '@opentiny/vue-icon'

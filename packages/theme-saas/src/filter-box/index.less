@@ -1,0 +1,102 @@
+@import '../custom.less';
+
+@filter-box-prefix-cls: ~'@{css-prefix}filter-box';
+
+.@{filter-box-prefix-cls} {
+  @apply w-fit;
+  @apply h-7;
+  @apply leading-7;
+  @apply rounded-sm;
+  @apply bg-color-bg-2;
+  @apply text-color-text-primary;
+  @apply py-1;
+  @apply ~'px-1.5';
+  @apply flex;
+  @apply items-center;
+  @apply text-xs;
+
+  &:hover {
+    @apply bg-color-info-secondary-subtle;
+  }
+
+  &.disabled {
+    @apply cursor-not-allowed;
+
+    .title label {
+      color: #b5bbce;
+    }
+
+    .value {
+      @apply text-color-text-secondary;
+    }
+
+    svg.filter-box-icon {
+      fill: #b5bbce;
+      @apply cursor-not-allowed;
+    }
+  }
+
+  .title {
+    height: inherit;
+
+    label {
+      max-width: 100px;
+      @apply inline-block;
+      @apply overflow-hidden;
+      @apply text-ellipsis;
+      @apply whitespace-nowrap;
+      @apply text-color-none-active;
+      @apply mr-1;
+    }
+
+    &.active label {
+      @apply text-color-brand;
+    }
+
+    svg {
+      @apply w-4;
+      @apply h-4;
+      @apply mr-1;
+      @apply fill-color-icon-placeholder;
+      @apply relative;
+      @apply -top-px;
+      @apply align-super;
+
+      &:hover {
+        @apply fill-color-brand;
+      }
+    }
+  }
+
+  .value {
+    max-width: 100px;
+    height: inherit;
+    @apply mr-1;
+    @apply overflow-hidden;
+    @apply text-ellipsis;
+    @apply whitespace-nowrap;
+  }
+
+  .filter-box-icon {
+    @apply w-3;
+    @apply h-3;
+    @apply cursor-pointer;
+    @apply fill-color-fill-secondary;
+    transition: transform 0.3s;
+
+    &.is-reverse {
+      @apply rotate-180;
+    }
+  }
+
+  .filter-icon-close {
+    @apply w-3;
+    @apply h-3;
+    @apply cursor-pointer;
+    fill: #b5bbce;
+
+    &:hover {
+      @apply fill-color-fill-secondary;
+    }
+  }
+}

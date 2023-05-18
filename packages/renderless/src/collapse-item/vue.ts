@@ -11,7 +11,7 @@
 */
 
 import { handleFocus, handleEnterClick, handleHeaderClick } from './index'
-import { guid } from '@opentiny/vue-renderless/common/string'
+import { guid } from '../common/string'
 
 export const api = ['state', 'isActive', 'handleFocus', 'handleEnterClick', 'handleHeaderClick']
 

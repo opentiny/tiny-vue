@@ -1,9 +1,10 @@
 <template>
-  <div style="width: 420px">
-    <h3>
-      <span>点击切换表单状态</span>
-      <tiny-button type="primary" @click="formDisabled = !formDisabled">{{ formDisabled ? '启用表单' : '禁用表单' }}</tiny-button>
-      <span>{{ `disabled:${!!formDisabled}` }}</span>
+  <div style="width: 480px">
+    <h3 style="margin-bottom: 16px">
+      <span style="margin-right: 20px">点击切换表单状态</span>
+      <tiny-button type="primary" @click="formDisabled = !formDisabled">
+        {{ formDisabled ? '启用表单' : '禁用表单' }}
+      </tiny-button>
     </h3>
     <tiny-form :disabled="formDisabled" label-position="right" ref="createData" label-width="150px">
       <tiny-form-item label="Input">
@@ -11,7 +12,8 @@
       </tiny-form-item>
       <tiny-form-item label="Select">
         <tiny-select v-model="createData.select" placeholder="请选择">
-          <tiny-option v-for="item in selectOptions" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+          <tiny-option v-for="item in selectOptions" :key="item.value" :label="item.label" :value="item.value">
+          </tiny-option>
         </tiny-select>
       </tiny-form-item>
       <tiny-form-item label="Numeric">
@@ -21,12 +23,12 @@
         <tiny-switch v-model="createData.sw"></tiny-switch>
       </tiny-form-item>
       <tiny-form-item label="Radio">
-        <tiny-radio v-model="createData.sex" label="1">男</tiny-radio>
+        <tiny-radio v-model="createData.sex" label="1"> 男 </tiny-radio>
         <tiny-radio v-model="createData.sex" label="2" text="女"></tiny-radio>
       </tiny-form-item>
       <tiny-form-item label="Checkbox">
-        <tiny-checkbox v-model="createData.checked">复选框</tiny-checkbox>
-        <tiny-checkbox v-model="createData.checked2">复选框2</tiny-checkbox>
+        <tiny-checkbox v-model="createData.checked"> 复选框 </tiny-checkbox>
+        <tiny-checkbox v-model="createData.checked2"> 复选框2 </tiny-checkbox>
       </tiny-form-item>
       <tiny-form-item label="CheckboxGroup">
         <tiny-checkbox-group v-model="createData.groupChecked">
@@ -56,7 +58,11 @@
         <tiny-input v-model="createData.textarea" type="textarea" maxlength="15"> </tiny-input>
       </tiny-form-item>
       <tiny-form-item label="Autocomplete">
-        <tiny-autocomplete v-model="createData.autocomplete" placeholder="请输入内容" :fetch-suggestions="querySearch"></tiny-autocomplete>
+        <tiny-autocomplete
+          v-model="createData.autocomplete"
+          placeholder="请输入内容"
+          :fetch-suggestions="querySearch"
+        ></tiny-autocomplete>
       </tiny-form-item>
       <tiny-form-item label="ButtonGroup">
         <tiny-button-group :data="groupData"></tiny-button-group>
@@ -83,7 +89,7 @@
         <tiny-slider v-model="createData.slider"></tiny-slider>
       </tiny-form-item>
       <tiny-form-item>
-        <tiny-button type="primary" @click="submitClick">提交</tiny-button>
+        <tiny-button type="primary" @click="submitClick"> 提交 </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>

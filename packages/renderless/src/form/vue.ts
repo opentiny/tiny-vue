@@ -22,7 +22,9 @@ import {
   registerLabelWidth,
   deregisterLabelWidth,
   updateTip,
-  bindDialogEvent
+  bindDialogEvent,
+  showTooltip,
+  hideTooltip
 } from './index'
 
 export const api = [
@@ -34,10 +36,12 @@ export const api = [
   'getLabelWidthIndex',
   'registerLabelWidth',
   'deregisterLabelWidth',
-  'updateTip'
+  'updateTip',
+  'showTooltip',
+  'hideTooltip'
 ]
 
-export const renderless = (props, { computed, inject, provide, reactive, watch }, { parent }) => {
+export const renderless = (props, { computed, inject, provide, reactive, watch }, { vm, parent }) => {
   const api = {}
   const dialog = inject('dialog', null)
 
@@ -73,7 +77,9 @@ export const renderless = (props, { computed, inject, provide, reactive, watch }
     getLabelWidthIndex: getLabelWidthIndex(state),
     registerLabelWidth: registerLabelWidth({ api, state }),
     deregisterLabelWidth: deregisterLabelWidth({ api, state }),
-    watchRules: watchRules({ api, props, state })
+    watchRules: watchRules({ api, props, state }),
+    showTooltip: showTooltip({ vm, state }),
+    hideTooltip: hideTooltip({ state })
   })
 
   api.created()

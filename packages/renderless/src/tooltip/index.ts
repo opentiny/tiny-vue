@@ -10,8 +10,8 @@
 *
 */
 
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import { on, off, addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
+import debounce from '../common/deps/debounce'
+import { on, off, addClass, removeClass } from '../common/deps/dom'
 
 export const show = ({ api, state, props }) => () => {
   // 如果指定autoMode='auto', 则只有超长时，才显示tip。
@@ -158,10 +158,17 @@ export const bindEvent = ({ api, state, vm }) => (reference) => {
   on(referenceElm, 'click', api.removeFocusing)
 }
 
-export const bindPopper = ({ vm, refs, nextTick }) => (el) => {
+export const bindPopper = ({ vm, refs, nextTick, popperVmRef }) => (el) => {
   nextTick(() => vm.bindEvent(el))
 
   if (vm.popperVM) {
+
+    if (!vm.$refs.popper) {
+      popperVmRef.popper = vm.popperVM.$el
+    } else {
+      popperVmRef.popper = vm.$refs.popper
+    }
+
     refs.popper || (refs.popper = vm.popperVM.$el)
 
     nextTick(() => {
@@ -169,5 +176,29 @@ export const bindPopper = ({ vm, refs, nextTick }) => (el) => {
         vm.updatePopper()
       }
     })
+  }
+}
+
+export const observeCallback = ({ state, popperVmRef }) => (mutationsList) => {
+  for (let mutation of mutationsList) {
+    if (mutation.type === 'attributes' && mutation.attributeName === 'x-placement') {
+      state.xPlacement = popperVmRef.popper.getAttribute('x-placement') || 'bottom'
+    }
+  }
+}
+
+export const handleDocumentClick = ({ props, api, state, popperVmRef }) => (event) => {
+  if (props.manual) return
+
+  const reference = state.referenceElm
+  const $el = popperVmRef.popper
+
+  if (!$el || !reference || $el.contains(event.target) || reference.contains(event.target)) {
+    return
+  }
+
+  if (state.showPopper) {
+    api.setExpectedState(false)
+    api.debounceClose()
   }
 }

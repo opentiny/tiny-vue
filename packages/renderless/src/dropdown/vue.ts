@@ -10,7 +10,7 @@
  *
  */
 
-import { guid } from '@opentiny/vue-renderless/common/string'
+import { guid } from '../common/string'
 
 import {
   watchVisible,

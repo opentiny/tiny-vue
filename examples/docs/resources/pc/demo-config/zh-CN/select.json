@@ -32,6 +32,14 @@
     "demoId": "collapse-tags"
   },
   {
+    "title": "设置输入框类型",
+    "content": "<p>通过设置 <code>input-box-type</code> 为underline,可以设置为下划线类型。</p>\n",
+    "link": "select/input-box-type",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "input-box-type"
+  },
+  {
     "title": "选择个数限制",
     "content": "<p><code>multiple-limit</code> 属性可指定多选时用户最多可以选择的项目数，默认为 0 不限制。</p>\n",
     "link": "select/multiple-limit",
@@ -225,7 +233,7 @@
   },
   {
     "title": "自定义空数据显示文字",
-    "content": "<p>通过 <code>no-data-text</code> 属性可以自定义选项为空时显示的文字。</p>\n",
+    "content": "<p>通过 <code>no-data-text</code> 属性可以自定义选项为空时显示的文字。</p>\n <p>通过 <code>show-empty-image</code> 属性可以设置显示空数据图片，默认不显示。</p>\n",
     "link": "select/no-data-text",
     "component": " Select 选择器",
     "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",

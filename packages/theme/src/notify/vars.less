@@ -11,37 +11,76 @@
 */
 
 .component-css-vars-notify() {
+  // 通知背景色
   --ti-notify-bg-color: var(--ti-common-color-prompt-bg);
+  // info类型弹框背景色
   --ti-notify-info-bg-color: var(--ti-common-color-prompt-bg);
+  // info类型弹框左侧图标色
   --ti-notify-info-icon-color: var(--ti-common-color-prompt);
-
+  // warning类型弹框背景色
   --ti-notify-warning-bg-color: var(--ti-common-color-warn-bg);
+  // warning类型弹框左侧图标色
   --ti-notify-warning-icon-color: var(--ti-common-color-warn);
-
+  // error类型弹框背景色
   --ti-notify-error-bg-color: var(--ti-common-color-error-bg);
+  // error类型弹框左侧图标色
   --ti-notify-error-icon-color: var(--ti-common-color-error);
-
+  // success类型弹框背景色
   --ti-notify-success-bg-color: var(--ti-common-color-success-bg);
+  // success类型弹框左侧图标色
   --ti-notify-success-icon-color: var(--ti-common-color-success);
-
-  --ti-notify-text-color: var(--ti-base-color-brand-6);
+  // 通知文本色（没有效果）
+  --ti-notify-text-color: var(--ti-common-color-bg-emphasize);
+  // 弹框圆角
   --ti-notify-border-radius: var(--ti-common-border-radius-normal);
-
+  // 弹框文本色
   --ti-notify-title-text-color: var(--ti-common-color-info-normal);
+  // 内容文本色
+  --ti-notify-content-text-color: var(--ti-common-color-info-normal);
+  // 弹框标题字号
   --ti-notify-title-font-size: var(--ti-common-font-size-1);
+  // 通知标题字重（没有效果）
   --ti-notify-title-font-weight: var(--ti-common-font-weight-7);
-  --ti-notify-title-height: 30px;
-  --ti-notify-title-line-height: 30px;
-  --ti-notify-title-margin-top: 0;
-  --ti-notify-title-margin-horizontal: 0;
-  --ti-notify-title-margin-bottom: 0;
-
+  // 弹框标题顶部外边距
+  --ti-notify-title-margin-top: var(--ti-common-space-0);
+  // 弹框标题水平外边距
+  --ti-notify-title-margin-horizontal: var(--ti-common-space-0);
+  // 弹框标题底部外边距
+  --ti-notify-title-margin-bottom: var(--ti-common-space-2x);
+  // 弹框内容字号(没有效果，优先级被覆盖)
   --ti-notify-content-font-size: var(--ti-common-font-size-1);
-  --ti-notify-message-margin-vertical: 6px;
-  --ti-notify-message-margin-right: 0;
-  --ti-notify-message-margin-left: 10px;
+  // 弹框文字顶部外边距
+  --ti-notify-message-margin-top: var(--ti-common-space-0);
+  // 弹框文字底部外边距
+  --ti-notify-message-margin-bottom: var(--ti-common-space-0);
+  // 弹框文字右外边距
+  --ti-notify-message-margin-right: var(--ti-common-space-0);
+  // 弹框文字左外边距
+  --ti-notify-message-margin-left: var(--ti-common-space-10);
+  // 弹框左侧图标尺寸
   --ti-notify-icon-size: var(--ti-common-font-size-5);
+  // 弹框关闭图标色
   --ti-notify-close-icon-color: var(--ti-base-color-common-7);
+  // 弹框最大宽度
   --ti-notify-max-width: 400px;
+  // 弹框阴影
   --ti-notify-box-shadow: var(--ti-common-shadow-4-down);
+  // 弹框垂直方向内边距
+  --ti-notify-padding-vertical: var(--ti-common-space-4x);
+  // 弹框水平方向内边距
+  --ti-notify-padding-horizontal: var(--ti-common-space-4x);
+  // 关闭图标大小
+  --ti-notify-close-icon-font-size: var(--ti-common-font-size-2); 
+  // 关闭图标悬浮时颜色
+  --ti-notify-close-hover-icon-color: var(--ti-base-color-common-7);
+  // 弹框为top-left方向时左边距
+  --ti-notify-position-top-left: 10px;
+  // 弹框为bottom-left方向时左边距
+  --ti-notify-position-bottom-left: 10px;
+  // 弹框为top-right方向时右边距
+  --ti-notify-position-top-right: 10px;
+  // 弹框为bottom-right方向时右边距
+  --ti-notify-position-bottom-right: 10px;
+  // 关闭图标位移
+  --ti-notify-icon-transform: translate(0,-2px);
 }

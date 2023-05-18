@@ -10,9 +10,9 @@
  *
  */
 
-import { on, off, addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
-import { guid } from '@opentiny/vue-renderless/common/string'
-import { KEY_CODE } from '@opentiny/vue-renderless/common'
+import { on, off, addClass, removeClass } from '../common/deps/dom'
+import { guid } from '../common/string'
+import { KEY_CODE } from '../common'
 
 const processTrigger = ({ api, state, props, nextTick }) => {
   const { referenceElm, popperElm } = state
@@ -213,3 +213,12 @@ export const wrapMounted = ({ api, props, refs, state }) => () => {
 
   state.referenceElm && api.mounted()
 }
+
+export const observeCallback = ({ state, vm }) => (mutationsList) => {
+  for (let mutation of mutationsList) {
+    if (mutation.type === 'attributes' && mutation.attributeName === 'x-placement') {
+      state.xPlacement = vm.$refs.popper.getAttribute('x-placement') || 'bottom'
+    }
+  }
+}
+

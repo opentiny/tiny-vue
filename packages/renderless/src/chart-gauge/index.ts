@@ -10,9 +10,9 @@
 *
 */
 
-import { getFormated, isObject } from '@opentiny/vue-renderless/chart-core/deps/utils'
-import { isNull } from '@opentiny/vue-renderless/common/type'
-import { itemLabel, itemContent } from '@opentiny/vue-renderless/chart-core/deps/constants'
+import { getFormated, isObject } from '../chart-core/deps/utils'
+import { isNull } from '../common/type'
+import { itemLabel, itemContent } from '../chart-core/deps/constants'
 
 const getTooltip = (args) => {
   const { dataType, digit, tooltipFormatter } = args

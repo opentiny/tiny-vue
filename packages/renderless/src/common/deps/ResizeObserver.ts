@@ -10,7 +10,7 @@
 *
 */
 
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
+import { on, off } from './dom'
 
 const MapShim = (function () {
   if (typeof Map !== 'undefined') {

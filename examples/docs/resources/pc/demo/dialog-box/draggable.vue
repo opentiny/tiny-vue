@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-button @click="boxVisibility = true">可拖拽弹窗</tiny-button>
+    <tiny-button @click="boxVisibility = true"> 可拖拽弹窗 </tiny-button>
     <tiny-dialog-box
       draggable
       v-model:visible="boxVisibility"
@@ -12,7 +12,7 @@
     >
       <span>dialog-box内容</span>
       <template #footer>
-        <tiny-button type="primary" @click="boxVisibility = false">确 定</tiny-button>
+        <tiny-button type="primary" @click="boxVisibility = false"> 确 定 </tiny-button>
       </template>
     </tiny-dialog-box>
   </div>
@@ -45,7 +45,10 @@ export default {
       })
     },
     dragMove() {
-      // 拖拽移动事件
+      Notify({
+        message: '拖拽移动',
+        position: 'top-right'
+      })
     }
   }
 }

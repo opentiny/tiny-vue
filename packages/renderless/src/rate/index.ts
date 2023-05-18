@@ -10,7 +10,7 @@
 *
 */
 
-import { KEY_CODE } from '@opentiny/vue-renderless/common'
+import { KEY_CODE } from '../common'
 
 export const computedActiveColor = (props) => (state) => {
   let result = ''
@@ -202,7 +202,6 @@ export const computedDecimalStyle = ({ props, state }) => {
   if (props.disabled) {
     width = `${props.modelValue * 100 - Math.floor(props.modelValue) * 100 < 50 ? 0 : 100}%`
   }
-  
   if (props.allowHalf) {
     width = ''
     const reactSize = props.size ? Math.ceil(parseInt(props.size) / 2) + 'px' : '6px'

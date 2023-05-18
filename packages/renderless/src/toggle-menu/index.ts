@@ -10,8 +10,8 @@
  *
  */
 
-import { xss } from '@opentiny/vue-renderless/common/xss.js'
-import { isObject } from '@opentiny/vue-renderless/common/type'
+import { xss } from '../common/xss.js'
+import { isObject } from '../common/type'
 
 export const filterNode = (props) => (value, data) => {
   const node = data[props.props.label || 'label'] || ''

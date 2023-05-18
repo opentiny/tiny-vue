@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { $prefix, setup } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/tall-storage/vue'
 import '@opentiny/vue-theme/tall-storage/index.less'

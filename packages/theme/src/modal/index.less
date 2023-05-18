@@ -13,13 +13,12 @@
 @import '../custom.less';
 @import './vars.less';
 
-
 @modal-prefix-cls: ~'@{css-prefix}modal';
 
 @button-default-prefix-cls: ~'@{css-prefix}button--default';
 @button-prefix-cls: ~'@{css-prefix}button';
 
-.@{modal-prefix-cls}{
+.@{modal-prefix-cls} {
   .component-css-vars-modal();
 }
 
@@ -33,13 +32,7 @@
     height: 100%;
     font-size: var(--ti-modal-font-size);
     color: var(--ti-modal-text-color);
-    font-family:var(
-      --ti-modal-font-family,
-      Helvetica,
-      Arial,
-      'Microsoft YaHei',
-      sans-serif
-    );
+    font-family: var(--ti-modal-font-family);
     transition: top 0.4s;
 
     &.active {
@@ -84,12 +77,10 @@
       overflow: auto;
     }
 
-    &:not(.type__message) {
-      .@{modal-prefix-cls}__text {
-        font-size: var(--ti-common-font-size-base);
-        color: var(--ti-common-color-text-secondary);
-        line-height: var(--ti-common-line-height-number);
-      }
+    .@{modal-prefix-cls}__text {
+      font-size: var(--ti-modal-body-font-size);
+      color: var(--ti-modal-body-text-color);
+      line-height: var(--ti-modal-body-line-height);
     }
 
     &.lock__view,
@@ -145,7 +136,7 @@
 
       .@{modal-prefix-cls}__zoom-btn,
       .@{modal-prefix-cls}__close-btn {
-        font-size: var(--ti-modal-small-btn-font-size);
+        font-size: var(--ti-modal-message-status-icon-size);
         top: 10px;
       }
     }
@@ -164,13 +155,16 @@
 
       .@{modal-prefix-cls}__box {
         display: inline-block;
-        padding: 24px;
+        padding: var(--ti-modal-message-padding-vertical) var(--ti-modal-message-padding-right) var(--ti-modal-message-padding-vertical) var(--ti-modal-message-padding-left);
         margin-top: 0;
         width: auto;
-        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: var(--ti-modal-message-box-shadow);
         transform: translateY(-10%);
+        font-size: var(--ti-modal-message-font-size);
 
         .@{modal-prefix-cls}__body {
+          padding: var(--ti-modal-body-padding-top) var(--ti-modal-message-body-padding-horizontal) var(--ti-modal-body-padding-bottom);
+
           &:after {
             content: '';
             display: block;
@@ -179,17 +173,37 @@
             overflow: hidden;
             visibility: hidden;
           }
+
+          [class*=~'@{modal-prefix-cls}-svg'] {
+            width: var(--ti-modal-message-status-icon-size);
+            height: var(--ti-modal-message-status-icon-size);
+          }
         }
 
         .@{modal-prefix-cls}__content {
           max-width: 800px;
-          float: left;
         }
       }
 
       .@{modal-prefix-cls}__status-wrapper {
-        font-size: var(--ti-modal-small-btn-font-size);
-        padding-right: 10px;
+        font-size: var(--ti-modal-message-status-icon-size);
+        padding-right: var(--ti-modal-message-status-icon-padding-right);
+        height: var(--ti-modal-message-icon-box-height);
+      }
+
+      .@{modal-prefix-cls}__close-wrapper {
+        display: flex;
+        align-items: center;
+        height: var(--ti-modal-message-icon-box-height);
+
+        .@{modal-prefix-cls}__close-btn {
+          position: relative;
+          top: 0;
+          right: 0;
+          flex-shrink: 0;
+          font-size: var(--ti-modal-message-close-icon-size);
+          margin-left: var(--ti-modal-message-close-icon-margin-left);
+        }
       }
     }
 
@@ -224,8 +238,19 @@
     &.type__alert,
     &.type__confirm {
       .@{modal-prefix-cls}__status-wrapper {
-        font-size: var(--ti-modal-alert-font-size);
-        padding: 0 10px 0 2px;
+        font-size: var(--ti-modal-alert-icon-size);
+        padding-right: var(--ti-modal-status-icon-padding-right);
+      }
+    }
+
+    // 信息提示弹窗
+    &.status__info,
+    &.status__success,
+    &.status__warning,
+    &.status__question,
+    &.status__error {
+      .@{modal-prefix-cls}__header {
+        padding-bottom: var(--ti-modal-notification-header-padding-bottom);
       }
     }
 
@@ -268,6 +293,7 @@
       }
 
       .@{modal-prefix-cls}__resize {
+
         .wl-resize,
         .wr-resize,
         .swst-resize,
@@ -287,7 +313,7 @@
     background-color: var(--ti-modal-box-background-color);
     border-radius: var(--ti-modal-box-border-radius);
     font-size: var(--ti-modal-header-font-size);
-    box-shadow: var(--ti-common-shadow-4-down);
+    box-shadow: var(--ti-modal-box-shadow);
     text-align: left;
     pointer-events: auto;
     visibility: hidden;
@@ -361,39 +387,37 @@
   &__close-btn {
     font-size: var(--ti-modal-close-btn-font-size);
     position: absolute;
-    right: 24px;
+    right: var(--ti-modal-close-btn-right);
     top: var(--ti-modal-close-btn-top);
     z-index: 1;
-    fill: var(--ti-modal-btn-text-color);
-    transform: var(--ti-modal-close-btn-scale);
+    fill: var(--ti-modal-close-btn-icon-color);
+    transform: scale(1, 1);
     cursor: pointer;
     padding: var(--ti-modal-close-btn-padding-horizontal-vertical);
     border-radius: 4px;
 
     &:hover {
-      fill: var(--ti-modal-btn-text-color);
-      background-color:var(--ti-modal-close-btn-background-color-hover)
+      fill: var(--ti-modal-close-btn-hover-icon-color);
+      background-color: var(--ti-modal-close-btn-background-color-hover);
     }
   }
 
   &__zoom-btn {
-    right: 44px;
-    border-color: #c0c4cc;
-
-    &:hover {
-      border-color: #606266;
-    }
+    right: var(--ti-modal-zoom-btn-right);
   }
 
   &__footer {
     flex-shrink: 0;
     text-align: center;
     padding: var(--ti-modal-footer-padding-top) var(--ti-modal-footer-padding-horizontal) var(--ti-modal-footer-padding-bottom);
-    .@{button-prefix-cls}{
+
+    .@{button-prefix-cls} {
+      min-width: var(--ti-modal-footer-btn-min-width);
       border-radius: var(--ti-modal-footer-btn-border-radius);
     }
-    .@{button-default-prefix-cls}{
-      display: var(--ti-modal-footer-default-display-button);
+
+    .@{button-default-prefix-cls} {
+      display: inline-block;
     }
   }
 

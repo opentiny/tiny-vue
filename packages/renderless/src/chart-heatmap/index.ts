@@ -10,8 +10,8 @@
 *
 */
 
-import { getFormated, getBmap, getAmap, getMapJSON } from '@opentiny/vue-renderless/chart-core/deps/utils'
-import { HEAT_MAP_COLOR, itemPoint, itemLabel, itemContent } from '@opentiny/vue-renderless/chart-core/deps/constants'
+import { getFormated, getBmap, getAmap, getMapJSON } from '../chart-core/deps/utils'
+import { HEAT_MAP_COLOR, itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
 
 const getAxisList = (rows, label) => {
   const result = []

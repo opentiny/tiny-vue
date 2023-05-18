@@ -10,7 +10,7 @@
 *
 */
 
-import { emitEvent } from '@opentiny/vue-renderless/common/event'
+import { emitEvent } from '../common/event'
 
 export const leftClick = ({ api, props, refs, state }) => () => {
   if (state.leftLength >= 0) {
