@@ -10,11 +10,11 @@
       <template #toolbar>
         <tiny-grid-toolbar class="customizedBox">
           <template #buttons>
-            <tiny-button @click="insertEvent">新增</tiny-button>
-            <tiny-button @click="removeEvent">移除选中</tiny-button>
-            <tiny-button @click="getRemoveEvent">获取删除</tiny-button>
-            <tiny-button @click="getUpdateEvent">获取修改</tiny-button>
-            <tiny-button @click="clearTreeExpand">清空展开状态</tiny-button>
+            <tiny-button @click="insertEvent"> 新增 </tiny-button>
+            <tiny-button @click="removeEvent"> 移除选中 </tiny-button>
+            <tiny-button @click="getRemoveEvent"> 获取删除 </tiny-button>
+            <tiny-button @click="getUpdateEvent"> 获取修改 </tiny-button>
+            <tiny-button @click="clearTreeExpand"> 清空展开状态 </tiny-button>
           </template>
         </tiny-grid-toolbar>
       </template>
@@ -22,7 +22,11 @@
       <tiny-grid-column type="index" width="80"></tiny-grid-column>
       <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
       <tiny-grid-column field="area" title="区域" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
-      <tiny-grid-column field="employees" title="员工数" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
+      <tiny-grid-column
+        field="employees"
+        title="员工数"
+        :editor="{ component: 'input', autoselect: true }"
+      ></tiny-grid-column>
     </tiny-grid>
   </div>
 </template>
@@ -202,28 +206,37 @@ export default {
   methods: {
     insertEvent() {
       let tree = this.$refs.tree
-
-      tree
-        .createRow({
-          name: '新数据',
-          isNew: true
-        })
-        .then((newRow) => {
-          // 插入到第一行
-          this.tableData = [newRow, ...this.tableData]
-          let activeRow = this.tableData[0]
-          tree.refreshData().then(() => tree.setActiveRow(activeRow))
-        })
+      const row = {
+        name: '新数据',
+        isNew: true,
+        children: [
+          {
+            name: '新数据-child'
+          }
+        ]
+      }
+      tree.createRow(row).then((newRow) => {
+        // 插入到第一行
+        this.tableData = [newRow, ...this.tableData]
+        let activeRow = this.tableData[0]
+        tree.refreshData().then(() => tree.setActiveRow(activeRow))
+      })
     },
     removeEvent() {
+      const isSameObject = (obj1, obj2) => JSON.stringify(obj1) === JSON.stringify(obj2)
       let tree = this.$refs.tree
-
       let removeRecords = tree.getSelectRecords()
-
       let tableData = this.tableData
 
       this.tableData = copy(tableData, removeRecords)
 
+      for (let i = 0; i < this.tableData.length; i++) {
+        for (let j = 0; j < removeRecords.length; j++) {
+          if (isSameObject(this.tableData[i], removeRecords[j])) {
+            this.tableData.splice(i, 1)
+          }
+        }
+      }
       this.removeList = removeRecords.map((item) => ({ ...item }))
     },
 

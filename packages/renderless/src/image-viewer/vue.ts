@@ -60,14 +60,24 @@ export const api = [
   'handleDelete'
 ]
 
-const initState = ({ reactive, computed, api, mode, props, constants }) => {
+const initState = ({ reactive, computed, api, mode, props, constants, inject }) => {
   const state = reactive({
-    index: mode == 'pc' ? 0 : props.startPosition,
+    originScale: '',
+    moveable: false,
+    pageX: '',
+    pageY: '',
+    pageY2: '',
+    pageX2: '',
+    mfPreviewVisible: inject('mfPreviewVisible', null),
+    scale: 1,
+    time: null,
+    index: mode === 'pc' || mode === 'mobile-first' ? 0 : props.startPosition,
+    imageName: '',
     isShow: false,
     infinite: true,
     loading: false,
     transform: { scale: 1, deg: 0, offsetX: 0, offsetY: 0, objfit: 'contain', enableTransition: false },
-    urlList: props.urlList,
+    urlList: inject('urlList', null) || props.urlList,
     mode: constants.MODE.CONTAIN,
     previewVisible: props.previewVisible,
     fullScreen: props.imageFullCurrent,
@@ -138,7 +148,7 @@ const initWatch = ({ watch, state, api, props, nextTick, vm }) => {
     (value) => {
       api.watchVisible(value)
 
-      if (props.previewVisible) {
+      if (props.previewVisible || state.mfPreviewVisible) {
         nextTick(() => {
           state.urlList = props.urlList
           api.getImageWidth()
@@ -168,9 +178,9 @@ const initWatch = ({ watch, state, api, props, nextTick, vm }) => {
   )
 }
 
-export const renderless = (props, { computed, onMounted, onUpdated, reactive, watch }, { t, parent, nextTick, emit, constants, vm, mode }) => {
+export const renderless = (props, { computed, onMounted, onUpdated, reactive, watch, inject }, { t, parent, nextTick, emit, constants, vm, mode }) => {
   const api = {}
-  const state = initState({ reactive, computed, api, mode, props, constants })
+  const state = initState({ reactive, computed, api, mode, props, constants, inject })
 
   initApi({ api, state, props, parent, nextTick, emit, t, constants })
 

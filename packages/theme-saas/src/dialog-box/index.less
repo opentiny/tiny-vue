@@ -1,0 +1,254 @@
+@import '../custom.less';
+
+@dialog-box-prefix-cls: ~'@{css-prefix}dialog-box';
+
+.@{dialog-box-prefix-cls} {
+  @apply absolute;
+  @apply bg-color-bg-1;
+  @apply border-none;
+  @apply overflow-hidden;
+  @apply shadow-xl;
+  @apply rounded;
+  @apply flex;
+  @apply flex-col;
+
+  &__wrapper {
+    @apply fixed;
+    @apply top-0;
+    @apply right-0;
+    @apply bottom-0;
+    @apply left-0;
+    @apply overflow-auto;
+    @apply m-0;
+    @apply flex;
+    @apply items-center;
+  }
+
+  &.is-fullscreen {
+    @apply left-0;
+    @apply top-0;
+    @apply w-screen;
+    @apply h-screen;
+  }
+
+  &.is-center {
+    .@{dialog-box-prefix-cls}__header,
+    .@{dialog-box-prefix-cls}__footer {
+      @apply text-center;
+    }
+  }
+  &.is-right-slide {
+    @apply flex;
+    @apply flex-col;
+    @apply rounded-none;
+
+    .@{dialog-box-prefix-cls}__body {
+      @apply ~"max-h-[none]";
+      @apply flex-auto;
+    }
+  }
+
+  & &__header {
+    @apply px-6 py-4;
+    @apply h-12;
+    @apply leading-4;
+    @apply bg-color-bg-1;
+    @apply flex;
+    @apply justify-between;
+    @apply items-center;
+    @apply border-b border-b-color-bg-3;
+
+    .@{dialog-box-prefix-cls}__title {
+      @apply text-sm;
+      @apply text-color-text-primary;
+      @apply mr-4;
+      @apply flex-1;
+      @apply font-bold;
+    }
+
+    .@{dialog-box-prefix-cls}__headerbtn {
+      @apply border-none;
+      background: none;
+      @apply p-0;
+      @apply leading-none;
+      @apply cursor-pointer;
+
+      & + .@{dialog-box-prefix-cls}__headerbtn {
+        @apply ml-2;
+      }
+
+      &:focus {
+        @apply outline-0; //解决chrome下,focus状态下蓝边问题
+      }
+
+      .@{dialog-box-prefix-cls}__close {
+        @apply fill-color-text-primary;
+        @apply text-base;
+
+        &:hover {
+          @apply fill-color-brand;
+        }
+      }
+    }
+  }
+
+  & &__body {
+    @apply text-left;
+    @apply pt-0 pr-6 pb-0 pl-6;
+    @apply mb-6;
+    @apply mt-6;
+    @apply text-color-text-primary;
+    @apply leading-5;
+    @apply text-sm;
+    @apply overflow-auto;
+    max-height: 65vh;
+    @apply flex-1;
+
+    .@{css-prefix}upload {
+      @apply overflow-hidden;
+    }
+
+    > span {
+      max-height: 120px;
+      @apply overflow-y-auto;
+    }
+
+    .@{css-prefix}dept__search {
+      line-height: 30px;
+    }
+  }
+
+  &.is-fullscreen &__body {
+    max-height: calc(100vh - 94px);
+  }
+
+  & &__footer {
+    text-align: inherit;
+    @apply pt-4 pr-6 pb-4 pl-6;
+    @apply text-right;
+    @apply box-border;
+    @apply border-t border-t-color-bg-3;
+
+    .@{css-prefix}toolbar {
+      .@{css-prefix}button {
+        @apply my-0 mx-1;
+      }
+    }
+  }
+}
+
+.@{dialog-box-prefix-cls}__scroll-lock {
+  @apply overflow-hidden;
+}
+
+.v-modal {
+  @apply fixed;
+  @apply left-0;
+  @apply top-0;
+  @apply w-full;
+  @apply h-full;
+  @apply opacity-30;
+  @apply bg-black;
+}
+
+.v-modal-enter {
+  animation: v-modal-in 0.2s ease;
+}
+
+.v-modal-leave {
+  animation: v-modal-out 0.2s ease forwards;
+}
+
+@keyframes v-modal-in {
+  0% {
+    @apply opacity-0;
+  }
+}
+
+@keyframes v-modal-out {
+  100% {
+    @apply opacity-0;
+  }
+}
+
+.dialog-slideRight-enter-active {
+  animation: slideRight 0.5s ease-in forwards;
+}
+
+.dialog-slideRight-leave-active {
+  animation: slideRightout 0.5s ease-in forwards;
+}
+
+@keyframes slideRight {
+  0% {
+    @apply opacity-0;
+    @apply translate-x-full;
+  }
+
+  50% {
+    @apply opacity-60;
+    @apply translate-x-1/2;
+  }
+
+  100% {
+    @apply opacity-100;
+    @apply translate-x-0;
+  }
+}
+
+@keyframes slideRightout {
+  0% {
+    @apply opacity-100;
+    @apply translate-x-0;
+  }
+
+  50% {
+    @apply opacity-60;
+    @apply translate-x-1/2;
+  }
+
+  100% {
+    @apply opacity-0;
+    @apply translate-x-full;
+  }
+}
+
+.dialog-fade-enter-active {
+  animation: dialog-fade-in 0.3s;
+}
+
+.dialog-fade-leave-active {
+  animation: dialog-fade-out 0.3s;
+}
+
+@keyframes dialog-fade-in {
+  0% {
+    transform: translate3d(0, -20px, 0);
+    @apply opacity-0;
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+    @apply opacity-100;
+  }
+}
+
+@keyframes dialog-fade-out {
+  0% {
+    transform: translate3d(0, 0, 0);
+    @apply opacity-100;
+  }
+
+  100% {
+    transform: translate3d(0, -20px, 0);
+    @apply opacity-0;
+  }
+}
+
+@media (max-width: 480px) {
+  .@{dialog-box-prefix-cls} {
+    @apply !w-full;
+    @apply !top-0;
+    @apply !left-0;
+  }
+}

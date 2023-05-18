@@ -1,0 +1,57 @@
+export const classes = {
+  'search-default': 'relative inline-block text-xs w-full px-3 sm:px-0',
+  'pc-search-line':
+    'w-full border border-solid rounded-sm bg-white transition duration-300 ease-in-out border-separate hidden sm:inline-table',
+  'pc-search-line-focus': 'border-color-border-focus',
+  'pc-search-line-unfocus': 'border-color-border hover:border-color-border-hover',
+  'pc-search-line-big': 'h-[1.875rem]',
+  'pc-search-line-unbig': 'h-[1.625rem]',
+  'pc-search-present': 'table-cell relative align-middle right-0 text-color-text-primary w-px whitespace-nowrap',
+  'pc-search-present-big': 'pl-4 text-sm leading-[1.875rem]',
+  'pc-search-present-unbig': 'pl-3 text-xs leading-[1.625rem]',
+  'pc-search-present-pointer': 'cursor-pointer',
+  'pc-search-present-icon-outer':
+    'h-4 leading-4 inline-block pl-2 pr-3 py-0 border-r border-solid border-color-border-separator cursor-pointer',
+  'pc-search-present-icon-chevron-down': 'text-base fill-color-icon-primary hover:fill-color-icon-hover',
+  'pc-search-input-background-transparent': ' border-transparent',
+  'pc-search-input-background-transparent-collapse': 'bg-color-bg-1',
+  'pc-search-input-default':
+    'pl-2 table-cell relative align-middle right-0 text-color-text-primary border-0 outline-0 bg-transparent placeholder:text-color-none focus:placeholder:text-color-text-placeholder',
+  'pc-search-input-collapse': 'w-7 float-right p-0',
+  'pc-search-input-uncollapse': 'w-full',
+  'pc-search-input-collapse-big': 'pl-3',
+  'pc-search-input-collapse-unbig': 'pl-2',
+  'pc-search-input-big': 'pl-3 text-sm h-[1.875rem] leading-[1.875rem]',
+  'pc-search-input-unbig': 'text-xs h-[1.625rem] leading-[1.625rem]',
+  'pc-search-input-btn-transtion': 'table-cell relative align-middle right-0 w-8 text-center z-10',
+  'pc-search-input-btn-transtion-big': 'h-[1.875rem] translate-x-4',
+  'pc-search-input-btn-transtion-unbig': 'h-[1.625rem] translate-x-3.5',
+
+  'pc-search-input-btn-transtion-a': 'no-underline block w-8',
+  'pc-search-input-btn-transtion-a-big': 'leading-[1.875rem]',
+  'pc-search-input-btn-transtion-a-unbig': 'leading-[1.625rem]',
+  'pc-search-input-btn-transtion-svg-size': 'text-base fill-color-icon-primary hover:fill-color-icon-hover',
+  'pc-search-input-btn': 'table-cell relative align-middle right-0 text-center',
+  'pc-search-input-btn-big': 'h-[1.875rem] w-11',
+  'pc-search-input-btn-unbig': 'h-[1.625rem] w-10',
+  'pc-search-input-btn-a': 'no-underline block',
+  'pc-search-input-btn-a-big': 'w-11 leading-[1.875rem]',
+  'pc-search-input-btn-a-unbig': 'w-10 leading-[1.625rem]',
+  'pc-search-input-btn-icon-search-transparent': 'fill-color-bg-1',
+  'pc-search-input-btn-icon-search': 'text-base fill-color-none',
+  'search-selector':
+    'absolute top-full left-0 overflow-hidden min-w-[4.25rem] border border-solid border-color-border rounded text-xs shadow bg-white text-color-text-primary mt-0.5 py-1 hidden sm:block',
+  'search-selector-body': 'max-h-[18rem] overflow-x-hidden overflow-y-auto',
+  'search-selector-poplist-item':
+    'px-3 min-h-[1.5rem] leading-6 max-w-full overflow-hidden text-left text-ellipsis whitespace-nowrap cursor-pointer hover:bg-color-bg-2',
+  'search-selector-poplist-item-big': 'text-sm',
+  'search-selector-poplist-item-unbig': 'text-xs',
+  'mobile-search': 'flex sm:hidden w-full items-center shrink-0',
+  'mobile-search-input':
+    'bg-color-bg-4 pl-9    placeholder:text-color-none focus:placeholder:text-color-text-placeholder',
+  'mobile-search-input-bg-change': 'bg-color-bg-1',
+  'mobile-search-svg-size': 'text-base fill-color-none translate-x-1.5',
+  'mobile-search-svg-size-color': 'fill-color-bg-1',
+  'mobile-search-button': 'w-16 text-center cursor-pointer',
+  'mobile-search-button-notShowButton': 'hidden'
+}

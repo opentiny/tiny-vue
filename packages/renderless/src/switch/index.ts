@@ -10,7 +10,7 @@
 *
 */
 
-import { isNull } from '@opentiny/vue-renderless/common/type'
+import { isNull } from '../common/type'
 
 export const toggle = ({ emit, props, state }) => (event) => {
   event.preventDefault()

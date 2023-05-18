@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Fullscreen from './src/index.vue'
+import Fullscreen from './src/pc.vue'
 import FullscreenApi from '@opentiny/vue-renderless/common/deps/fullscreen/apis'
 import '@opentiny/vue-theme/fullscreen/index.less'
 import { version } from './package.json'

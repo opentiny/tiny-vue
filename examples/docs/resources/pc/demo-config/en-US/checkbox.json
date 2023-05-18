@@ -8,7 +8,7 @@
     "demoId": "basic-usage"
   },
   {
-    "title": "Checkbox Group",
+    "title": "Checkbox Group and Vertical Checkbox Group",
     "content": "<p>Manages multiple <code>checkbox</code> elements into a group through the <code>checkbox-group</code> element. In <code>checkbox-group</code>, use <code>v-model</code> to bind variables of the Array type to implement bidirectional binding. The <code>label</code> attribute of the <code>checkbox</code> is its corresponding value. If there is no content in the tag, the attribute also serves as the introduction after the checkbox. <code>label</code> corresponds to the element value in the array. If the specified value exists, the value is selected. Otherwise, the value is not selected. </p>\n",
     "link": "checkbox/checkbox-group",
     "component": "Checkbox check box",

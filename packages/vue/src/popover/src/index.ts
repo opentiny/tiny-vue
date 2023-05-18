@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile=pc|mobile-first'
 
 export default defineComponent({
   inheritAttrs: true,

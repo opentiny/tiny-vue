@@ -40,6 +40,7 @@ import methods, { setBodyRecords, invokeSaveDataApi, doRemoveOrShowMsg } from '.
 
 const propKeys = Object.keys(Table.props)
 
+// 表格工具栏渲染器
 function getRenderedToolbar({ $slots, _vm, loading, tableLoading, toolbar }) {
   return (_vm.renderedToolbar = (() => {
     let res = null
@@ -57,6 +58,7 @@ function getRenderedToolbar({ $slots, _vm, loading, tableLoading, toolbar }) {
   })())
 }
 
+// 表格内置分页渲染器
 function renderPager({ $slots, _vm, loading, pager, pagerConfig, tableLoading, vSize }) {
   let res = null
   if ($slots.pager) {
@@ -83,6 +85,7 @@ function renderPager({ $slots, _vm, loading, pager, pagerConfig, tableLoading, v
   return res
 }
 
+// 渲染主入口，创建表格最外层节点
 const createRender = (opt) => {
   const { h, _vm, vSize, props, selectToolbar, $slots, tableOns, renderedToolbar, loading, pagerConfig, pager, tableLoading } = opt
   return h(
@@ -98,6 +101,7 @@ const createRender = (opt) => {
     },
     [
       selectToolbar ? null : renderedToolbar,
+      // 这里会渲染tiny-grid-column插槽内容，从而获取列配置
       h('tiny-grid-table', { props, on: tableOns, ref: 'tinyTable' }, $slots.default && $slots.default()),
       renderPager({
         $slots,
@@ -174,6 +178,7 @@ export default {
     },
     tableProps() {
       let rest = {}
+      // 这里收集table组件的props，然后提供给下层组件使用
       propKeys.forEach((key) => (rest[key] = this[key]))
       return rest
     },
@@ -185,6 +190,7 @@ export default {
     }
   },
   watch: {
+    // 监听配置式columns数组
     columns(cols) {
       this.loadColumn(cols)
     },
@@ -196,15 +202,18 @@ export default {
     }
   },
   created() {
+    // 初始化fetchApi选项
     this.fetchOption = this.initFetchOption()
     this.pagerConfig = this.initPagerConfig()
 
     let { customs, events } = this
 
+    // 初始化表格个性化配置，用户可以配置customs
     if (customs) {
       this.tableCustoms = customs
     }
 
+    // 处理通过配置式方式传递过来的事件列表events
     if (events) {
       const listeners = {}
 
@@ -255,31 +264,39 @@ export default {
     }
   },
   setup(props, { slots, listeners, attrs }) {
+    // 处理表格用户传递过来的事件监听
     const tableListeners = getListeners(attrs, listeners)
 
     return { slots, tableListeners }
   },
   render() {
-    let { editConfig, fetchOption, listeners, loading, optimization, pager, pagerConfig, remoteFilter, remoteSort, selectToolbar } = this
-    let { seqIndex, slots: $slots, tableCustoms, tableData, tableListeners, tableLoading, tableProps, toolbar, vSize } = this
+    let { editConfig, fetchOption, listeners, loading, optimization, pager, pagerConfig, remoteFilter, remoteSort, selectToolbar } = this as any
+    let { seqIndex, slots: $slots, tableCustoms, tableData, tableListeners, tableLoading, tableProps, toolbar, vSize } = this as any
+    // 初始化虚拟滚动优化配置
     let optimizOpt = { ...GlobalConfig.optimization, ...optimization }
     let props = { ...tableProps, optimization: optimizOpt, startIndex: seqIndex }
     let tableOns = { ...listeners, ...tableListeners }
     let { handleRowClassName: rowClassName, sortChangeEvent, filterChangeEvent } = this
 
+    // fetchApi状态下初始化 loading、remoteSort、remoteFilter
     fetchOption && Object.assign(props, { loading: loading || tableLoading, data: tableData, rowClassName })
     fetchOption && remoteSort && (tableOns['sort-change'] = sortChangeEvent)
     fetchOption && remoteFilter && (tableOns['filter-change'] = filterChangeEvent)
 
+    // 处理表格工具栏和个性化数据
     toolbar && !(toolbar.setting && toolbar.setting.storage) && (props.customs = tableCustoms)
     toolbar && (tableOns['update:customs'] = (value) => (this.tableCustoms = value))
 
+    // 初始化表格编辑配置
     let editConfigOpt = { trigger: 'click', mode: 'cell', showStatus: true, ...editConfig }
 
+    // 这里handleActiveMethod处理一些编辑器的声明周期的拦截，用户传递过来的activeMethod优先级最高
     editConfig && (props.editConfig = Object.assign(editConfigOpt, { activeMethod: this.handleActiveMethod }))
 
+    // 获取工具栏的渲染器
     let renderedToolbar = getRenderedToolbar({ $slots, _vm: this, loading, tableLoading, toolbar })
 
+    // 创建表格最外层容器，并加载table组件
     return createRender({ h, _vm: this, vSize, props, selectToolbar, renderedToolbar, tableOns, $slots, loading, pager, pagerConfig, tableLoading })
   },
   methods: {
@@ -320,7 +337,7 @@ export default {
     },
     getParentHeight() {
       let { $el, $refs } = this
-
+      // 获取表格父级容器盒子的高度
       return $el.parentNode.clientHeight - ($refs.toolbar ? $refs.toolbar.$el.clientHeight : 0) - ($refs.pager?.$el ? $refs.pager.$el.clientHeight : 0)
     },
     handleRowClassName(params) {
@@ -487,7 +504,7 @@ export default {
 
       show ? addClass(this.$el, cls) : removeClass(this.$el, cls)
 
-      this.recalculate(true)
+      this.recalculate()
 
       emitEvent(this, 'fullscreen', show)
       this.emitter.emit('fullscreen', show)

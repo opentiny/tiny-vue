@@ -71,6 +71,13 @@
       "type": "",
       "desc": "默认搜索类型插槽",
       "defaultValue": ""
+    },
+    {
+      "name": "prefix",
+      "sample": "slot-prefix",
+      "type": "",
+      "desc": "左侧插槽",
+      "defaultValue": ""
     }
   ],
   "events": [

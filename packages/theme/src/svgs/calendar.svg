@@ -1,26 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 24 24" xml:space="preserve">
-<g id="Icon">
-	<g id="UI-icons-英文名" transform="translate(-102.000000, -1728.000000)">
-		<g id="网站通用图标" transform="translate(101.000000, 1053.000000)">
-			<g id="calendar" transform="translate(0.000000, 674.000000)">
-				<path class="svg-calendar-w" d="M22.2,4H20V3c0-0.5-0.5-1-1-1s-1,0.5-1,1v1H8V3c0-0.5-0.5-1-1-1S6,2.6,6,3v1H3.8C2.8,4,2,5,2,6
-					v16c0,1,0.8,2,1.8,2h18.5c1,0,1.8-1,1.8-2V6C24,5,23.2,4,22.2,4z M4,6h2v0.4C6,6.7,6.5,7,7,7s1-0.3,1-0.6V6h10v0.4
-					C18,6.7,18.5,7,19,7s1-0.3,1-0.6V6h2v2H4V6z M22,22H4V10h18V22z"/>
-				<path class="svg-calendar-r rec01" d="M7,13h2c0.6,0,1,0.4,1,1l0,0c0,0.6-0.4,1-1,1H7c-0.6,0-1-0.4-1-1l0,0C6,13.4,6.4,13,7,13z
-					"/>
-				<path class="svg-calendar-r rec02" d="M7,17h2c0.6,0,1,0.4,1,1l0,0c0,0.6-0.4,1-1,1H7c-0.6,0-1-0.4-1-1l0,0
-					C6,17.4,6.4,17,7,17z"/>
-				<path class="svg-calendar-r rec03" d="M12,13h2c0.6,0,1,0.4,1,1l0,0c0,0.6-0.4,1-1,1h-2c-0.6,0-1-0.4-1-1l0,0
-					C11,13.4,11.4,13,12,13z"/>
-				<path class="svg-calendar-r rec04" d="M12,17h2c0.6,0,1,0.4,1,1l0,0c0,0.6-0.4,1-1,1h-2c-0.6,0-1-0.4-1-1l0,0
-					C11,17.4,11.4,17,12,17z"/>
-				<path class="svg-calendar-r rec05" d="M17,13h2c0.6,0,1,0.4,1,1l0,0c0,0.6-0.4,1-1,1h-2c-0.6,0-1-0.4-1-1l0,0
-					C16,13.4,16.4,13,17,13z"/>
-			</g>
-		</g>
-	</g>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg  viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <filter x="-50.0%" y="-53.6%" width="200.0%" height="205.4%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="1" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.145098039   0 0 0 0 0.168627451   0 0 0 0 0.22745098  0 0 0 0.08 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="icon/16/日历/默认" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="矩形备份-22" x="0" y="0" width="16" height="16"></rect>
+        <g id="编组" filter="url(#filter-1)" transform="translate(1.000000, 1.474361)">
+            <rect id="矩形" fill="#808080" fill-rule="nonzero" x="3" y="4.5256386" width="2" height="2"></rect>
+            <rect id="矩形" fill="#808080" fill-rule="nonzero" x="6" y="4.5256386" width="2" height="2"></rect>
+            <rect id="矩形" fill="#808080" fill-rule="nonzero" x="9" y="4.5256386" width="2" height="2"></rect>
+            <rect id="矩形" fill="#808080" fill-rule="nonzero" x="3" y="8.5256386" width="2" height="2"></rect>
+            <rect id="矩形" fill="#808080" fill-rule="nonzero" x="6" y="8.5256386" width="2" height="2"></rect>
+            <rect id="矩形" fill="#808080" fill-rule="nonzero" x="9" y="8.5256386" width="2" height="2"></rect>
+            <rect id="矩形备份-4" stroke="#808080" x="0" y="0.525638599" width="14" height="13" rx="2"></rect>
+            <line x1="3.4743614" y1="1" x2="5.4743614" y2="1" id="路径-8" stroke="#808080" stroke-width="1.5" stroke-linecap="round" transform="translate(4.474361, 1.000000) rotate(90.000000) translate(-4.474361, -1.000000) "></line>
+            <line x1="8.4743614" y1="1" x2="10.4743614" y2="1" id="路径-8" stroke="#808080" stroke-width="1.5" stroke-linecap="round" transform="translate(9.474361, 1.000000) rotate(90.000000) translate(-9.474361, -1.000000) "></line>
+        </g>
+    </g>
 </svg>

@@ -12,12 +12,15 @@
 
 @import '../mixins/common.less';
 @import '../custom.less';
+@import './vars.less';
 @import '../checkbox/vars.less';
 
 @checkbox-button-prefix-cls: ~'@{css-prefix}checkbox-button';
 
 .@{checkbox-button-prefix-cls} {
   .component-css-vars-checkbox();
+  .component-css-vars-checkbox-button();
+
   position: relative;
   display: inline-block;
 
@@ -34,6 +37,7 @@
       color: var(--ti-checkbox-button-checked-text-color);
       border-color: var(--ti-checkbox-button-checked-border-color);
       box-shadow: -1px 0 0 0 var(--ti-checkbox-shadow-color);
+      background-color: var(--ti-checkbox-button-checked-bg-color);
     }
 
     &:first-child .@{checkbox-button-prefix-cls}__inner {
@@ -86,7 +90,7 @@
     }
 
     &:hover {
-      background: var(--ti-checkbox-bg-color-hover);
+      background: var(--ti-checkbox-button-bg-color-hover);
       color: var(--ti-checkbox-button-hover-text-color);
     }
   }

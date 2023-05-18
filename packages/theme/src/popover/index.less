@@ -26,9 +26,10 @@
   border: 1px solid var(--ti-popover-border-color);
   padding: var(--ti-popover-padding-vertical) var(--ti-popover-padding-horizontal);
   z-index: 2000;
-  line-height: 1.4;
+  line-height: var(--ti-popover-line-height);
   text-align: justify;
   font-size: var(--ti-popover-font-size);
+  font-family: var(--ti-popover-font-family);
   box-shadow: var(--ti-popover-box-shadow);
   word-break: break-all;
 
@@ -58,11 +59,12 @@
     margin-bottom: var(--ti-popover-placement-margin-vertical);
 
     .popper__arrow {
-      bottom: -6px;
+      bottom: calc(var(--ti-popover-arrow-height) * -1);
       left: 50%;
       margin-right: 3px;
       border-top-color: var(--ti-popover-arrow-border-color);
       border-bottom-width: 0;
+      border-top-width: var(--ti-popover-arrow-height);
 
       &::after {
         bottom: 1px;
@@ -77,11 +79,12 @@
     margin-top: var(--ti-popover-placement-margin-vertical);
 
     .popper__arrow {
-      top: -6px;
+      top: calc(var(--ti-popover-arrow-height) * -1);
       left: 50%;
       margin-right: 3px;
       border-top-width: 0;
       border-bottom-color: var(--ti-popover-arrow-border-color);
+      border-bottom-width: var(--ti-popover-arrow-height);
 
       &::after {
         top: 1px;
@@ -97,10 +100,11 @@
 
     .popper__arrow {
       top: 50%;
-      left: -6px;
+      left: calc(var(--ti-popover-arrow-height) * -1);
       margin-bottom: 3px;
       border-right-color: var(--ti-popover-arrow-border-color);
       border-left-width: 0;
+      border-right-width: var(--ti-popover-arrow-height);
 
       &::after {
         bottom: -6px;
@@ -116,10 +120,11 @@
 
     .popper__arrow {
       top: 50%;
-      right: -6px;
+      right: calc(var(--ti-popover-arrow-height) * -1);
       margin-bottom: 3px;
       border-right-width: 0;
       border-left-color: var(--ti-popover-arrow-border-color);
+      border-left-width: var(--ti-popover-arrow-height);
 
       &::after {
         right: 1px;

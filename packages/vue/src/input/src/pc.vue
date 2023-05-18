@@ -89,7 +89,12 @@
               <slot name="suffix"></slot>
               <component v-if="suffixIcon" :is="suffixIcon" class="tiny-svg-size tiny-input__icon" />
             </template>
-            <icon-close v-if="state.showClear" class="tiny-svg-size tiny-input__icon tiny-input__clear" @mousedown.prevent @click="clear"></icon-close>
+            <icon-close
+              v-if="state.showClear"
+              class="tiny-svg-size tiny-input__icon tiny-input__clear"
+              @mousedown.prevent
+              @click="clear"
+            ></icon-close>
             <component
               v-if="showPassword"
               :is="state.passwordVisible ? 'icon-eyeopen' : 'icon-eyeclose'"
@@ -97,10 +102,18 @@
               @click.native="handlePasswordVisible"
             ></component>
             <span v-if="state.isWordLimitVisible" class="tiny-input__count">
-              <span class="tiny-input__count-inner">{{ state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength }}</span>
+              <span class="tiny-input__count-inner"
+                ><span class="tiny-input__count-text-length">
+                  {{ state.showWordLimit ? `${state.textLength}` : '' }}
+                </span>
+                <span class="tiny-input__count-upper-limit">
+                  {{ state.showWordLimit ? `/${state.upperLimit}` : state.textLength }}
+                </span></span
+              >
             </span>
           </span>
-          <i class="tiny-input__icon" v-if="state.validateState" :class="['tiny-input__validateIcon', validateIcon]"> </i>
+          <i class="tiny-input__icon" v-if="state.validateState" :class="['tiny-input__validateIcon', validateIcon]">
+          </i>
         </span>
       </transition>
       <!-- 后置元素 -->
@@ -133,23 +146,44 @@
       :aria-label="label"
     >
     </textarea>
-    <span v-if="state.isWordLimitVisible && type === 'textarea'" class="tiny-input__count">{{
-      state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength
-    }}</span>
+    <span v-if="state.isWordLimitVisible && type === 'textarea'" class="tiny-input__count">
+      <span class="tiny-input__count-inner"
+        ><span class="tiny-input__count-text-length">
+          {{ state.showWordLimit ? `${state.textLength}` : '' }}
+        </span>
+        <span class="tiny-input__count-upper-limit">
+          {{ state.showWordLimit ? `/${state.upperLimit}` : state.textLength }}
+        </span>
+      </span>
+    </span>
     <slot></slot>
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/input/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import TinyTallStorage from './tall-storage.vue'
 import { iconClose, iconEyeopen, iconEyeclose } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/input/index.less'
+import '@opentiny/vue-theme/textarea/index.less'
 
 export default defineComponent({
   inheritAttrs: false,
-  emits: ['update:modelValue', 'change', 'clear', 'focus', 'blur', 'keyup', 'input', 'keydown', 'paste', 'mouseenter', 'mouseleave', 'click'],
+  emits: [
+    'update:modelValue',
+    'change',
+    'clear',
+    'focus',
+    'blur',
+    'keyup',
+    'input',
+    'keydown',
+    'paste',
+    'mouseenter',
+    'mouseleave',
+    'click'
+  ],
   components: {
     IconClose: iconClose(),
     IconEyeopen: iconEyeopen(),

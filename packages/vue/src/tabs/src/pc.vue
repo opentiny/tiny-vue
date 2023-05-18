@@ -17,7 +17,7 @@ import { iconPlus } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/tabs/index.less'
 
 export default defineComponent({
-  emits: ['add', 'click', 'close', 'edit', 'update:modelValue'],
+  emits: ['add', 'click', 'close', 'edit', 'update:modelValue', 'tab-drag-start', 'tab-drag-over', 'tab-drag-end'],
   props: [
     ...props,
     'tabStyle',
@@ -39,6 +39,11 @@ export default defineComponent({
   components: {
     TabNav,
     IconPlus: iconPlus()
+  },
+  provide() {
+    return {
+      moreIcon: this.$slots.moreIcon
+    }
   },
   setup(props, context) {
     return setup({ props, context, renderless, api })
@@ -130,9 +135,9 @@ export default defineComponent({
           'tiny-tabs--card': tabStyle === 'card',
           [`tiny-tabs--${position}`]: true,
           'tiny-tabs--border-card': tabStyle === 'border-card',
+          'tiny-tabs--button-card': tabStyle === 'button-card',
           'tiny-tabs--small': size === 'small'
-        }}
-      >
+        }}>
         {position !== 'bottom' ? [header, panels] : [panels, header]}
       </div>
     )

@@ -32,7 +32,7 @@ export default {
       },
       // 设置显示的指标维度
       chartSettings: {
-        'xAxis.0.axisLabel.rotate': 45
+        // 'xAxis.0.axisLabel.rotate': 45
       }
     }
   }

@@ -1,0 +1,60 @@
+@import '../custom.less';
+
+@grid-input-prefix-cls: ~'@{css-prefix}grid-input';
+@grid-textarea-prefix-cls: ~'@{css-prefix}grid-textarea';
+
+// input
+.@{grid-input-prefix-cls}__wrapper {
+  @apply text-xs;
+  @apply inline-block;
+
+  &.type__textarea {
+    @apply w-full;
+  }
+
+  .@{grid-input-prefix-cls},
+  .@{grid-textarea-prefix-cls} {
+    @apply rounded;
+    @apply outline-0;
+    @apply py-1 px-2;
+    @apply w-full;
+    @apply text-color-text-primary;
+    @apply border-color-border;
+    @apply bg-color-bg-1;
+
+    &:focus {
+      @apply border border-solid border-color-border-focus;
+    }
+
+    &[disabled] {
+      @apply cursor-not-allowed;
+      @apply bg-color-bg-2;
+    }
+  }
+
+  .@{grid-input-prefix-cls} {
+    @apply h-8;
+  }
+
+  .@{grid-textarea-prefix-cls} {
+    @apply h-full;
+  }
+
+  &.size__medium {
+    .@{grid-input-prefix-cls} {
+      @apply h-9;
+    }
+  }
+
+  &.size__small {
+    .@{grid-input-prefix-cls} {
+      @apply h-8;
+    }
+  }
+
+  &.size__mini {
+    .@{grid-input-prefix-cls} {
+      @apply h-7;
+    }
+  }
+}

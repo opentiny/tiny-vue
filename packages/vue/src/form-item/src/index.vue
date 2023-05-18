@@ -91,13 +91,6 @@ export default defineComponent({
     const formItemClass = `${classPrefix}form-item--${state.sizeClass ? state.sizeClass : ''}`
     const isShowError = state.validateState === 'error' && showMessage && state.form.showMessage
     const isErrorInline = typeof inlineMessage === 'boolean' ? inlineMessage : (state.formInstance && state.formInstance.inlineMessage) || false
-    
-    // 设置只读下label的样式
-    const isReadonly =  defaultSlots.some((vnode) => {
-      const props = parseVnode(vnode)?.props
-      return props && (props['readonly'] === '' || props['readonly'])
-    })
-
     let validateMessage = null
 
     const FormContent = defaultSlots
@@ -168,10 +161,7 @@ export default defineComponent({
           return h(
             'div',
             {
-              class: {
-                [`${classPrefix}form-item__value`]: true,
-                'is-readonly': isMobile && props && (props['readonly'] === '' || props['readonly'])
-              },
+              class: `${classPrefix}form-item__value`,
               style: state.valueStyle
             },
             [item]
@@ -237,8 +227,7 @@ export default defineComponent({
             {
               class: {
                 [`${classPrefix}form-item__label`]: true,
-                'is-ellipsis': isMobile && ellipsis,
-                'is-readonly': isMobile && isReadonly
+                'is-ellipsis': isMobile && ellipsis
               },
               style: state.labelStyle,
               attrs: {
@@ -261,8 +250,7 @@ export default defineComponent({
           'is-success': state.validateState === 'success',
           'is-required': state.isRequired || required,
           'is-no-asterisk': state.formInstance && state.formInstance.hideRequiredAsterisk,
-          [formItemClass]: true,
-          'is-readonly': isMobile && isReadonly
+          [formItemClass]: true
         }
       },
       [

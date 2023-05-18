@@ -1,0 +1,212 @@
+@import './mixins/common.less';
+@import './mixins/button.less';
+@import '../custom.less';
+
+@grid-button-prefix-cls: ~'@{css-prefix}grid-button';
+@grid-icon-prefix-cls: ~'@{css-prefix}grid-icon';
+@input-prefix-cls: ~'@{css-prefix}input';
+@button-prefix-cls: ~'@{css-prefix}button';
+
+.@{grid-button-prefix-cls} {
+  @apply relative;
+  @apply text-center;
+  @apply bg-color-bg-1;
+  @apply outline-0;
+  @apply text-xs;
+  @apply whitespace-nowrap;
+  @apply select-none;
+  @apply appearance-none;
+
+  &.is__disabled {
+    @apply text-color-text-disabled;
+
+    &:not(.is__loading) {
+      @apply cursor-no-drop;
+    }
+  }
+
+  &:not(.is__disabled) {
+    @apply cursor-pointer;
+  }
+
+  &.is__loading {
+    &:before {
+      @apply content-[''];
+      @apply absolute;
+      @apply -left-px;
+      @apply -top-px;
+      @apply -right-px;
+      @apply -bottom-px;
+      border-radius: inherit;
+      @apply bg-white ~"bg-opacity-[0.35]";
+      @apply pointer-events-none;
+    }
+  }
+
+  &.type__text {
+    @apply no-underline;
+    @apply border-0;
+    @apply bg-transparent;
+
+    &:not(.is__disabled) {
+      &:hover {
+        @apply text-color-brand-hover;
+      }
+    }
+  }
+
+  &.type__button {
+    @apply py-0 px-3;
+    line-height: 26px;
+    min-width: 72px;
+    max-width: 144px;
+    @apply h-7;
+    @apply border border-solid border-color-border;
+    @apply rounded-sm;
+    @apply whitespace-nowrap;
+    @apply text-ellipsis;
+    @apply overflow-hidden;
+
+    &.theme__primary {
+      @apply text-color-text-inverse;
+      @apply border-color-border-focus;
+      @apply bg-color-brand;
+
+      &:not(.is__disabled) {
+        &:hover {
+          .ButtonPrimaryHover(theme('colors.color.brand.hover.DEFAULT'));
+        }
+
+        &:active {
+          @apply text-color-text-inverse;
+          @apply bg-color-brand-active;
+          @apply border-color-brand-active;
+        }
+      }
+    }
+
+    &:not(.theme__primary) {
+      &:not(.is__disabled) {
+        &:hover {
+          .ButtonHover(theme('colors.color.text.primary'));
+        }
+
+        &:active {
+          @apply text-color-text-primary;
+          @apply border-color-brand-active;
+        }
+      }
+    }
+
+    &.size__medium {
+      padding: 0 14px;
+      @apply leading-7;
+    }
+
+    &.size__small {
+      @apply py-0 px-3;
+      line-height: 26px;
+    }
+
+    &.size__mini {
+      @apply py-0 ~'px-2.5';
+      @apply leading-6;
+    }
+  }
+
+  &.size__small,
+  &.size__mini {
+    @apply text-xs;
+  }
+
+  & + &,
+  & + &__dropdown {
+    .ButtonInterval();
+  }
+
+  &__loading-icon {
+    margin-right: 5px;
+  }
+
+  &__wrapper,
+  &__dropdown {
+    @apply inline-block;
+  }
+
+  &__dropdown {
+    @apply relative;
+
+    & + .@{grid-button-prefix-cls},
+    & + .@{grid-button-prefix-cls}__dropdown {
+      .ButtonInterval();
+    }
+
+    &.is__active {
+      & > .@{grid-button-prefix-cls} {
+        &.theme__primary {
+          .ButtonPrimaryHover(theme('colors.color.brand.hover.DEFAULT'));
+        }
+
+        &:not(.is__disabled) {
+          &:not(.theme__primary) {
+            .ButtonHover(theme('colors.color.brand.DEFAULT'));
+          }
+        }
+      }
+
+      .@{grid-button-prefix-cls}__dropdown-wrapper {
+        @apply block;
+      }
+
+      .@{grid-button-prefix-cls}__dropdown-arrow {
+        transform: rotate(315deg);
+
+        &.@{grid-icon-prefix-cls}__arrow-bottom {
+          @apply ~'-mt-0.5';
+        }
+      }
+    }
+
+    .@{grid-button-prefix-cls}__dropdown-arrow {
+      @apply text-xs;
+      @apply ~'ml-[5px]';
+      .animatTransition(transform, 0.2s);
+    }
+
+    .@{grid-button-prefix-cls}__dropdown-wrapper {
+      @apply hidden;
+      @apply absolute;
+      @apply ~'left-1/2';
+      @apply ~"-translate-x-2/4";
+      margin-top: 5px;
+      @apply ~'z-[100]';
+      padding: 5px;
+      @apply bg-color-bg-1;
+      @apply rounded;
+      @apply border border-solid border-color-border;
+      @apply shadow-sm;
+
+      & > .@{grid-button-prefix-cls} {
+        @apply m-0;
+        @apply block;
+        @apply w-full;
+        @apply border-0;
+
+        &.type__text {
+          @apply ~'py-0.5' px-2;
+        }
+      }
+    }
+  }
+
+  &__wrapper {
+    .@{input-prefix-cls} {
+      width: 270px;
+    }
+
+    .@{input-prefix-cls},
+    .@{button-prefix-cls} {
+      @apply align-middle;
+    }
+  }
+}

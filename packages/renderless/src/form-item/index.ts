@@ -10,11 +10,12 @@
 *
 */
 
-import { POSITION, VALIDATE_STATE } from '@opentiny/vue-renderless/common'
-import { merge } from '@opentiny/vue-renderless/common/object'
-import Validator from '@opentiny/vue-renderless/common/validate'
-import { isNull } from '@opentiny/vue-renderless/common/type'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { POSITION, VALIDATE_STATE } from '../common'
+import { omitText } from '../common/string'
+import { merge } from '../common/object'
+import Validator from '../common/validate'
+import { isNull } from '../common/type'
+import debounce from '../common/deps/debounce'
 
 export const watchError = (state) => (value) => {
   if (!isNull(value) && state.getValidateType === 'tip') {
@@ -96,7 +97,7 @@ export const computedContentStyle = ({ props, state }) => () => {
 
 export const computedForm = ({ constants, instance, state }) => () => {
   const { FORM_NAME, FORM_ITEM_NAME } = constants
-  let parent = instance.$parent
+  let parent = instance.$parent.$parent
   let parentName = parent.$options.componentName
 
   while (parentName !== FORM_NAME) {
@@ -414,4 +415,44 @@ export const wrapValidate = ({ validateFunc, props }) => {
   } else {
     return validateFunc
   }
+}
+
+export const handleMouseenter = ({ state }) => (e) => {
+  if (!state.isDisplayOnly || !state.typeName || !state.form) return
+  const dom = e.target
+  const text = dom.textContent
+  const font = window.getComputedStyle(dom).font
+  const rect = dom.getBoundingClientRect()
+  let res = {}
+  let overHeight = false
+
+  if (['text', 'password', 'number'].includes(state.typeName)) {
+    res = omitText(text, font, rect.width)
+  }
+
+  if (state.typeName === 'textarea' && dom && dom.scrollHeight > dom.offsetHeight) {
+    overHeight = true
+  }
+
+  if (res.o || overHeight) {
+    state.form.showTooltip(dom, state.displayedValue)
+  }
+}
+
+export const handleMouseleave = (state) => () => {
+  state.form && state.form.hideTooltip()
+}
+
+export const getDisplayedValue = ({ state }) => (param) => {
+  if (!state.formInstance.displayOnly) return
+  const valueSplit = state.formInstance.valueSplit || '; '
+  state.typeName = param.type
+  state.isBasicComp = true
+  state.displayedValue = state.displayedValue + (state.displayedValue && param.val ? valueSplit : '') + param.val
+}
+
+export const clearDisplayedValue = ({ state }) => () => {
+  state.typeName = ''
+  state.isBasicComp = false
+  state.displayedValue = ''
 }

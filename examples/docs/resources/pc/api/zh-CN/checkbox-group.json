@@ -1,5 +1,5 @@
 {
-  "attrs": [
+  "checkbox-group-attrs": [
     {
       "name": "modelValue / v-model",
       "sample": "checkbox-group",
@@ -71,7 +71,7 @@
       "defaultValue": "该属性的默认值为 false"
     }
   ],
-  "slots": [
+  "checkbox-group-slots": [
     {
       "name": "default",
       "sample": "checkbox-group",
@@ -80,7 +80,7 @@
       "defaultValue": ""
     }
   ],
-  "events": [
+  "checkbox-group-events": [
     {
       "name": "change",
       "sample": "dynamic-create-checkbox",

@@ -1,0 +1,133 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "kagol",
+      "name": "Kagol",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9566362?v=4",
+      "profile": "https://github.com/kagol",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "zzcr",
+      "name": "ajaxzheng",
+      "avatar_url": "https://avatars.githubusercontent.com/u/18521562?v=4",
+      "profile": "https://github.com/zzcr",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "TC-twwang",
+      "name": "TC-twwang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42400776?v=4",
+      "profile": "https://github.com/TC-twwang",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "MNZhu",
+      "name": "jacknan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17588953?v=4",
+      "profile": "https://github.com/MNZhu",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "awspi",
+      "name": "Pithy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/66438036?v=4",
+      "profile": "https://github.com/awspi",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "heygsc",
+      "name": "heygsc",
+      "avatar_url": "https://avatars.githubusercontent.com/u/103993866?v=4",
+      "profile": "https://github.com/heygsc",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "wwttff",
+      "name": "MangoWu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/32888622?v=4",
+      "profile": "https://github.com/wwttff",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ErKeLost",
+      "name": "ADNY",
+      "avatar_url": "https://avatars.githubusercontent.com/u/66500121?v=4",
+      "profile": "https://github.com/ErKeLost",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "chenxi-20",
+      "name": "chenxi-20",
+      "avatar_url": "https://avatars.githubusercontent.com/u/76168465?v=4",
+      "profile": "https://github.com/chenxi-20",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "rayhaoqin",
+      "name": "Alaray",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46983981?v=4",
+      "profile": "https://github.com/rayhaoqin",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "yuanningning",
+      "name": "ing",
+      "avatar_url": "https://avatars.githubusercontent.com/u/104059491?v=4",
+      "profile": "https://github.com/yuanningning",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "shenjunjian",
+      "name": "申君健",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6848520?v=4",
+      "profile": "https://github.com/shenjunjian",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "MomoPoppy",
+      "name": "MomoPoppy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/125256456?v=4",
+      "profile": "https://github.com/MomoPoppy",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 8,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "tiny-vue",
+  "projectOwner": "opentiny"
+}

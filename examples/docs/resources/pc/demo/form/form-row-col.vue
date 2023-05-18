@@ -32,10 +32,13 @@
           </tiny-form-item>
         </tiny-col>
       </tiny-row>
-
-      <tiny-button type="primary" @click="handleSubmit('ruleForm')">
-        提交
-      </tiny-button>
+      <tiny-row>
+        <tiny-col span="12">
+          <tiny-form-item>
+            <tiny-button type="primary" @click="handleSubmit('ruleForm')"> 提交 </tiny-button>
+          </tiny-form-item>
+        </tiny-col>
+      </tiny-row>
     </tiny-form>
   </div>
 </template>
@@ -98,5 +101,6 @@ export default {
 </script>
 
 <style scoped>
-.demo-form {}
+.demo-form {
+}
 </style>

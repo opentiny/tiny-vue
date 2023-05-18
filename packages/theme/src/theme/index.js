@@ -10,10 +10,13 @@
 *
 */
 
+import { flattenObject } from './utils'
 import { impressionTheme } from './impression-theme'
 import { infinityTheme } from './infinity-theme'
 import { deepTheme } from './deep-theme'
 import { galaxyTheme } from './galaxy-theme'
+import * as auroraTheme from './aurora-theme'
+import * as smbTheme from './smb-theme'
 
 export const tinyImpressionTheme = {
   id: 'tiny-impression-theme',
@@ -41,4 +44,18 @@ export const tinyGalaxyTheme = {
   name: 'Galaxy',
   cnName: '追光',
   data: galaxyTheme
+}
+
+export const tinyAuroraTheme = {
+  id: 'tiny-aurora-theme',
+  name: 'Aurora',
+  cnName: 'Aurora',
+  data: flattenObject(auroraTheme)
+}
+
+export const tinySmbTheme = {
+  id: 'tiny-smb-theme',
+  name: 'SMB',
+  cnName: 'SMB',
+  data: flattenObject(smbTheme)
 }

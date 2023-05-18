@@ -11,11 +11,18 @@
 */
 
 .component-css-vars-wizard() {
+  // 横向流程图默认字号(不含基础插槽)
   --ti-wizard-font-size: var(--ti-common-font-size-base);
-  --ti-wizard-text-color: var(--ti-common-color-info-normal);
+  // 节点文本色|图标色
   --ti-wizard-icon-color: var(--ti-common-color-light);
-  --ti-wizard-icon-bg-color: var(--ti-base-color-brand-6);
+  // 时间线流程图节点两侧文本色
+  --ti-wizard-text-color: var(--ti-common-color-info-normal);
+  // 时间线流程图节点右侧文字悬浮圆角
   --ti-wizard-detail-border-radius: var(--ti-common-border-radius-normal);
+  // 时间线流程图节点右侧文字悬浮背景色
   --ti-wizard-detail-bg-color: var(--ti-common-color-warning-normal);
-  --ti-wizard-chart-icon-bg-color: #d9d9d9;
+  // 已完成的节点和线条背景色
+  --ti-wizard-icon-bg-color: var(--ti-common-color-bg-emphasize);
+  // 未完成的节点背景色
+  --ti-wizard-chart-icon-bg-color: var(--ti-common-color-line-disabled);
 }

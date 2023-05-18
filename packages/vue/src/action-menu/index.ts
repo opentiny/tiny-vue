@@ -1,4 +1,4 @@
-import ActionMenu from './src/index.vue'
+import ActionMenu from './src/pc.vue'
 import '@opentiny/vue-theme/action-menu/index.less'
 import { version } from './package.json'
 

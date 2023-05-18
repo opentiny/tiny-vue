@@ -16,7 +16,8 @@
     'is-in-stage': state.inStage,
     'is-hover': state.hover,
     'is-animating': state.animating,
-    'tiny-oblique': state.isOblique || (state.carouselParent.type === 'card' && state.carouselParent.setUserCls),
+    'tiny-oblique': state.isOblique,
+    'tiny-oblique': state.carouselParent.type === 'card' && state.carouselParent.setUserCls
   }" :style="state.getTransform" class="tiny-carousel__item" @click="handleItemClick">
     <div v-if="state.carouselParent.type === 'card'" v-show="!state.active" class="tiny-carousel__mask"></div>
     <slot></slot>
@@ -26,7 +27,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/carousel-item/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 

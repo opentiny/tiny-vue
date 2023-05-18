@@ -10,12 +10,12 @@
 *
 */
 
-import { isEmptyObject, isObject } from '@opentiny/vue-renderless/common/type'
-import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
-import { mapTree } from '@opentiny/vue-renderless/grid/static'
-import { transformTreeData } from '@opentiny/vue-renderless/common/array'
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
-import { xss } from '@opentiny/vue-renderless/common/xss.js'
+import { isEmptyObject, isObject } from '../common/type'
+import PopupManager from '../common/deps/popup-manager'
+import { mapTree } from '../grid/static'
+import { transformTreeData } from '../common/array'
+import { on, off } from '../common/deps/dom'
+import { xss } from '../common/xss.js'
 
 const { nextZIndex } = PopupManager
 

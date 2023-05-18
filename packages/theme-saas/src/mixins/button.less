@@ -1,0 +1,143 @@
+.button-size(@font-size, @height, @min-width, @max-width, @padding) {
+  min-width: @min-width;
+  max-width: @max-width;
+  height: @height;
+  line-height: @height - 2;
+  font-size: @font-size;
+  padding: 0 @padding;
+
+  &.is-round {
+    border-radius: calc(@height / 2);
+  }
+
+  &.is-circle {
+    @apply rounded-full;
+  }
+}
+
+.button-circle-size(@size, @padding, @font-size) {
+  min-width: @size;
+  min-height: @size;
+  @apply h-auto;
+  @apply leading-none;
+  padding: @padding;
+
+  & > svg {
+    font-size: @font-size;
+  }
+}
+
+.button-color(@color, @border-color, @background-color) {
+  color: @color;
+  fill: @color;
+  border-color: @border-color;
+  background-color: @background-color;
+}
+
+.button-type(@color, @normal-color, @hover-color, @active-color, @disabled-color, @disabled-bgcolor, @plain-bgcolor, @plain-dis-bgcolor) {
+  color: @color;
+  fill: @color;
+  border-color: @normal-color;
+  background-color: @normal-color;
+
+  &:hover {
+    color: @color;
+    fill: @color;
+    border-color: @hover-color;
+    background-color: @hover-color;
+  }
+
+  &:focus,
+  &:active,
+  &.is-active {
+    color: @color;
+    fill: @color;
+    border-color: @active-color;
+    background-color: @active-color;
+    @apply outline-0;
+  }
+
+  &.is-disabled,
+  &.is-disabled:active,
+  &.is-disabled:focus,
+  &.is-disabled:hover {
+    color: @disabled-color;
+    fill: @disabled-color;
+    @apply border-transparent;
+    background-color: @disabled-bgcolor;
+  }
+
+  &.is-plain {
+    color: @normal-color;
+    fill: @normal-color;
+    border-color: @normal-color;
+    background-color: @plain-bgcolor;
+
+    &:hover {
+      color: @hover-color;
+      fill: @hover-color;
+      border-color: @hover-color;
+    }
+
+    &:focus,
+    &:active,
+    &.is-active {
+      color: @active-color;
+      fill: @active-color;
+      border-color: @active-color;
+      @apply outline-0;
+    }
+
+    &.is-disabled,
+    &.is-disabled:active,
+    &.is-disabled:focus,
+    &.is-disabled:hover {
+      color: @disabled-bgcolor;
+      fill: @disabled-bgcolor;
+      border-color: @disabled-bgcolor;
+      background-color: @plain-dis-bgcolor;
+    }
+  }
+}
+
+.button-text(@color, @hover-color, @active-color, @disabled-color) {
+  color: @color;
+  @apply text-sm;
+  @apply border-transparent;
+  @apply bg-transparent;
+
+  &:hover {
+    color: @hover-color;
+    @apply border-transparent;
+    @apply bg-transparent;
+
+    & > svg {
+      fill: @hover-color;
+    }
+  }
+
+  &:focus,
+  &:active,
+  &.is-active {
+    color: @active-color;
+    @apply border-transparent;
+    @apply bg-transparent;
+
+    & > svg {
+      fill: @active-color;
+    }
+  }
+
+  &.is-disabled,
+  &.is-disabled:active,
+  &.is-disabled:focus,
+  &.is-disabled:hover {
+    color: @disabled-color;
+    @apply border-transparent;
+    @apply bg-transparent;
+
+    & > svg {
+      fill: @disabled-color;
+    }
+  }
+}

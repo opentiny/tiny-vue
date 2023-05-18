@@ -97,6 +97,20 @@
       "type": "String",
       "desc": "设置分页显示模式,默认为number;设置分页显示模式;该属性的可选值为 number / simple / complete / fixed",
       "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "pager-size",
+      "type": "String",
+      "desc": "定义分页尺寸;该属性的可选值为 mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "pager-disabled",
+      "type": "Boolean",
+      "desc": "禁用分页",
+      "defaultValue": "该属性的默认值为false"
     }
   ],
   "slots": [

@@ -10,8 +10,8 @@
 *
 */
 
-import { extend } from '@opentiny/vue-renderless/common/object'
-import browser from '@opentiny/vue-renderless/common/browser'
+import { extend } from '../../common/object'
+import browser from '../../common/browser'
 
 const isIE = browser.name === 'ie'
 const rgbRegExp = /^rgba?\((\d+),\s(\d+),\s(\d+)([\s\S]*)\)$/

@@ -10,8 +10,8 @@
  *
  */
 
-import { KEY_CODE } from '@opentiny/vue-renderless/common'
-import { addClass, removeClass, on } from '@opentiny/vue-renderless/common/deps/dom'
+import { KEY_CODE } from '../index'
+import { addClass, removeClass, on } from './dom'
 
 let hasModal = false
 const isServer = typeof window === 'undefined'

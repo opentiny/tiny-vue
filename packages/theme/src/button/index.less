@@ -29,20 +29,22 @@
   color: var(--ti-button-normal-text-color);
   fill: var(--ti-button-normal-text-color);
   font-size: var(--ti-button-font-size);
+  min-width: var(--ti-button-size-normal-mini-width);
   white-space: nowrap;
   text-overflow: ellipsis;
   cursor: pointer;
   user-select: none;
-  border-width: 1px;
-  border-style: solid;
+  border-width: var(--ti-button-border-width);
+  border-style: var(--ti-button-border-style);
   border-color: var(--ti-button-normal-border-color);
   border-image: initial;
   border-radius: var(--ti-button-border-radius);
   background: var(--ti-button-normal-background-color);
-  padding: var(--ti-button-padding-vertical) var(--ti-button-padding-horizontal);
+  padding: var(--ti-button-padding-vertical) var(--ti-button-size-normal-padding-horizontal);
   overflow: hidden;
   transition: border 0.3s ease 0s, color 0.3s ease 0s, background 0.3s ease 0s;
   outline: 0;
+  vertical-align: middle;
 
   .@{svg-prefix-cls} {
     vertical-align: text-top;
@@ -124,7 +126,7 @@
       right: -1px;
       bottom: -1px;
       border-radius: inherit;
-      background-color: rgba(255, 255, 255, 0.35);
+      background-color: var(--ti-button-loading-bg-color);
     }
 
     .@{svg-prefix-cls} {
@@ -156,7 +158,7 @@
     &.is-loading {
       .@{svg-prefix-cls} {
         margin-right: 4px;
-        margin-top: 2px;
+        margin-top: 1px;
       }
     }
   }
@@ -167,6 +169,10 @@
     min-height: var(--ti-button-size-normal-height);
     line-height: 1;
     padding: var(--ti-button-size-normal-padding);
+
+    &.is-hide-boder{
+      border: none;
+    }
   }
 
   &.is-circle&--large {
@@ -201,11 +207,18 @@
     .button-type(
       var(--ti-button-primary-text-color),
       var(--ti-button-primary-normal-bg-color),
+      var(--ti-button-primary-normal-border-color),
       var(--ti-button-primary-hover-bg-color),
+      var(--ti-button-primary-hover-border-color),
       var(--ti-button-primary-active-bg-color),
       var(--ti-button-primary-disabled-text-color),
       var(--ti-button-primary-disabled-bg-color),
+      var(--ti-button-primary-plain-text-color),
+      var(--ti-button-primary-plain-hover-text-color),
       var(--ti-button-primary-plain-bg-color),
+      var(--ti-button-primary-plain-hover-bg-color),
+      var(--ti-button-primary-plain-border-color),
+      var(--ti-button-primary-plain-hover-border-color),
       var(--ti-button-primary-plain-disabled-bg-color),
       var(--ti-button-primary-disabled-border-color),
     );
@@ -215,11 +228,18 @@
     .button-type(
       var(--ti-button-success-text-color),
       var(--ti-button-success-normal-bg-color),
+      var(--ti-button-success-normal-border-color),
       var(--ti-button-success-hover-bg-color),
+      var(--ti-button-success-hover-border-color),
       var(--ti-button-success-active-bg-color),
       var(--ti-button-success-disabled-text-color),
       var(--ti-button-success-disabled-bg-color),
+      var(--ti-button-success-plain-text-color),
+      var(--ti-button-success-plain-hover-text-color),
       var(--ti-button-success-plain-bg-color),
+      var(--ti-button-success-plain-hover-bg-color),
+      var(--ti-button-success-plain-border-color),
+      var(--ti-button-success-plain-hover-border-color),
       var(--ti-button-success-plain-disabled-bg-color),
       var(--ti-button-success-disabled-border-color),
     );
@@ -229,11 +249,18 @@
     .button-type(
       var(--ti-button-warning-text-color),
       var(--ti-button-warning-normal-bg-color),
+      var(--ti-button-warning-normal-border-color),
       var(--ti-button-warning-hover-bg-color),
+      var(--ti-button-warning-hover-border-color),
       var(--ti-button-warning-active-bg-color),
       var(--ti-button-warning-disabled-text-color),
       var(--ti-button-warning-disabled-bg-color),
+      var(--ti-button-warning-plain-text-color),
+      var(--ti-button-warning-plain-hover-text-color),
       var(--ti-button-warning-plain-bg-color),
+      var(--ti-button-warning-plain-hover-bg-color),
+      var(--ti-button-warning-plain-border-color),
+      var(--ti-button-warning-plain-hover-border-color),
       var(--ti-button-warning-plain-disabled-bg-color),
       var(--ti-button-warning-disabled-border-color),
     );
@@ -243,25 +270,49 @@
     .button-type(
       var(--ti-button-danger-text-color),
       var(--ti-button-danger-normal-bg-color),
+      var(--ti-button-danger-normal-border-color),
       var(--ti-button-danger-hover-bg-color),
+      var(--ti-button-danger-hover-border-color),
       var(--ti-button-danger-active-bg-color),
       var(--ti-button-danger-disabled-text-color),
       var(--ti-button-danger-disabled-bg-color),
+      var(--ti-button-danger-plain-text-color),
+      var(--ti-button-danger-plain-hover-text-color),
       var(--ti-button-danger-plain-bg-color),
+      var(--ti-button-danger-plain-hover-bg-color),
+      var(--ti-button-danger-plain-border-color),
+      var(--ti-button-danger-plain-hover-border-color),
       var(--ti-button-danger-plain-disabled-bg-color),
       var(--ti-button-danger-disabled-border-color),
     );
+
+    &.is-plain {
+
+      &.is-disabled,
+      &.is-disabled:active,
+      &.is-disabled:focus,
+      &.is-disabled:hover {
+        border-color: var(--ti-button-danger-plain-disabled-border-color);
+      }
+    }
   }
 
   &&--info {
     .button-type(
       var(--ti-button-info-text-color),
       var(--ti-button-info-normal-bg-color),
+      var(--ti-button-info-normal-border-color),
       var(--ti-button-info-hover-bg-color),
+      var(--ti-button-info-hover-border-color),
       var(--ti-button-info-active-bg-color),
       var(--ti-button-info-disabled-text-color),
       var(--ti-button-info-disabled-bg-color),
+      var(--ti-button-info-plain-text-color),
+      var(--ti-button-info-plain-hover-text-color),
       var(--ti-button-info-plain-bg-color),
+      var(--ti-button-info-plain-hover-bg-color),
+      var(--ti-button-info-plain-border-color),
+      var(--ti-button-info-plain-hover-border-color),
       var(--ti-button-info-plain-disabled-bg-color),
       var(--ti-button-info-disabled-border-color),
     );
@@ -272,35 +323,91 @@
       var(--ti-button-text-color),
       var(--ti-button-text-color-hover),
       var(--ti-button-text-color-active),
-      var(--ti-button-text-color-disabled)
+      var(--ti-button-text-color-disabled),
+      var(--ti-button-text-hover-weight),
     );
+
+    border-radius: var(--ti-button-text-hover-border-radius);
+
+    & .@{svg-prefix-cls} {
+      width: var(--ti-button-text-svg-width);
+      height: var(--ti-button-text-svg-height);
+      fill: var(--ti-button-text-svg-fill);
+    }
+
+    &:has(.@{svg-prefix-cls}):hover {
+      background: var(--ti-button-text-hover-bg-color);
+      border-radius: var(--ti-button-text-hover-border-radius);
+
+      & .@{svg-prefix-cls} {
+        fill: var(--ti-button-text-svg-hover-fill);
+      }
+    }
+
+    &:has(.@{svg-prefix-cls}) {
+      padding: 0 var(--ti-button-text-svg-padding-horizontal);
+    }
+
+    &:has(.@{svg-prefix-cls}).is-disabled {
+      background: transparent;
+      fill: var(--ti-button-text-svg-fill-disabled);
+
+      & .@{svg-prefix-cls} {
+        fill: var(--ti-button-text-svg-fill-disabled);
+      }
+
+      &:hover {
+        fill: var(--ti-button-text-svg-fill-disabled);
+        background: transparent;
+      }
+    }
   }
 
   &&--large {
     .button-size(
       var(--ti-button-size-large-font-size),
-      var(--ti-button-size-large-height)
+      var(--ti-button-size-large-height),
+      var(--ti-button-size-large-padding-horizontal),
+      var(--ti-button-size-large-mini-width),
     );
+
+    & + & {
+      margin-left: var(--ti-button-size-large-margin-left);
+    }
   }
 
   &&--medium {
     .button-size(
       var(--ti-button-size-medium-font-size),
-      var(--ti-button-size-medium-height)
+      var(--ti-button-size-medium-height),
+      var(--ti-button-size-medium-padding-horizontal),
+      var(--ti-button-size-medium-mini-width),
     );
+
+    & + & {
+      margin-left: var(--ti-button-size-medium-margin-left);
+    }
   }
 
   &&--small {
     .button-size(
       var(--ti-button-size-small-font-size),
-      var(--ti-button-size-small-height)    
+      var(--ti-button-size-small-height),
+      var(--ti-button-size-small-padding-horizontal),
+      var(--ti-button-size-small-mini-width),
     );
+
+    & + & {
+      margin-left: var(--ti-button-size-small-margin-left);
+    }
   }
 
   &&--mini {
     .button-size(
       var(--ti-button-size-mini-font-size),
-      var(--ti-button-size-mini-height) 
+      var(--ti-button-size-mini-height),
+      var(--ti-button-size-mini-padding-horizontal),
+      var(--ti-button-size-mini-mini-width),
     );
   }
 }

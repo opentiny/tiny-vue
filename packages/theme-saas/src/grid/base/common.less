@@ -1,0 +1,41 @@
+@import '../mixins/common.less';
+@import '../../custom.less';
+
+@grid-prefix-cls: ~'@{css-prefix}grid';
+@grid-input-prefix-cls: ~'@{css-prefix}grid-input';
+@grid-tree-prefix-cls: ~'@{css-prefix}grid-tree';
+
+// animat
+.@{grid-prefix-cls}__animat {
+  .@{grid-prefix-cls}-sort__asc-btn,
+  .@{grid-prefix-cls}-sort__desc-btn,
+  .@{grid-prefix-cls}-filter__btn {
+    &:before,
+    &:after {
+      .animatTransition(border);
+    }
+  }
+
+  .@{grid-prefix-cls}__expand-icon {
+    .animatTransition(all);
+  }
+
+  .@{grid-input-prefix-cls}__wrapper {
+    .@{grid-input-prefix-cls} {
+      .animatTransition(border);
+    }
+  }
+
+  .@{grid-tree-prefix-cls}__node-btn {
+    .animatTransition(transform);
+  }
+
+  .@{grid-prefix-cls}-checkbox,
+  .@{grid-prefix-cls}-radio {
+    > input {
+      &:checked + span {
+        .animatTransition(background-color);
+      }
+    }
+  }
+}

@@ -14,15 +14,10 @@
     <slot>
       <ul v-if="!(showMore && showMore > 0)" class="tiny-group-item">
         <li v-for="(node, index) in data" :key="index" :class="{ active: state.value === node[valueField] }">
-          <button
-            :class="state.attributeValue"
-            :style="{
-              height: size == 'medium' ? '42px' : size == 'small' ? '36px' : size == 'mini' ? '24px' : '',
-              'line-height': size == 'medium' ? '40px' : size == 'small' ? '34px' : size == 'mini' ? '22px' : ''
-            }"
-            type="button"
-            @click="handleClick(node)"
-          >
+          <button :class="state.attributeValue" :style="{
+            height: size == 'medium' ? '42px' : size == 'small' ? '36px' : size == 'mini' ? '24px' : '',
+            'line-height': size == 'medium' ? '40px' : size == 'small' ? '34px' : size == 'mini' ? '22px' : ''
+          }" type="button" @click="handleClick(node)">
             {{ node[textField] }}
           </button>
         </li>
@@ -41,15 +36,10 @@
               </tiny-button>
             </template>
             <ul class="more-list">
-              <li
-                v-for="(moreNode, index) in state.moreData"
-                :key="index"
-                :class="{
-                  active: state.value === moreNode[valueField],
-                  'more-item': true
-                }"
-                @click="moreNodeClick(moreNode)"
-              >
+              <li v-for="(moreNode, index) in state.moreData" :key="index" :class="{
+                active: state.value === moreNode[valueField],
+                'more-item': true
+              }" @click="moreNodeClick(moreNode)">
                 {{ moreNode[textField] }}
               </li>
             </ul>
@@ -65,7 +55,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/button-group/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import Popover from '@opentiny/vue-popover'

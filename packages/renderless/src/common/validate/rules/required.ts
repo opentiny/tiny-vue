@@ -11,7 +11,7 @@
 */
 
 import * as util from '../util'
-import { hasOwn } from '@opentiny/vue-renderless/common/type'
+import { hasOwn } from '../../type'
 
 export default function ({ rule, checkValue, source, errors, options, type }) {
   if (rule.required && (!hasOwn.call(source, rule.field) || util.isEmptyValue(checkValue, type || rule.type))) {

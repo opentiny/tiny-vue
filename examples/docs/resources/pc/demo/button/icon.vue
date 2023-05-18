@@ -1,11 +1,24 @@
 <template>
   <div>
-    <tiny-button :icon="IconSearch"></tiny-button>
-    <tiny-button type="primary" :icon="IconEdit"></tiny-button>
-    <tiny-button type="success" native-type="submit" :icon="IconYes"></tiny-button>
-    <tiny-button type="info" :icon="IconMail"></tiny-button>
-    <tiny-button type="warning" :icon="IconStarO"></tiny-button>
-    <tiny-button type="danger" :icon="IconDel"></tiny-button>
+    <tiny-button :icon="IconSearch" type="text" size="mini">
+    </tiny-button>
+    <tiny-button :icon="IconSearch" type="text">
+    </tiny-button>
+    <tiny-button type="primary" :icon="IconEdit">
+      图标按钮
+    </tiny-button>
+    <tiny-button type="success" native-type="submit" :icon="IconYes">
+      图标按钮
+    </tiny-button>
+    <tiny-button type="info" :icon="IconMail">
+      图标按钮
+    </tiny-button>
+    <tiny-button type="warning" :icon="IconStarO">
+      图标按钮
+    </tiny-button>
+    <tiny-button type="danger" :icon="IconDel">
+      图标按钮
+    </tiny-button>
   </div>
 </template>
 

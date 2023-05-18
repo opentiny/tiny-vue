@@ -9,8 +9,8 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { POSITION } from '@opentiny/vue-renderless/common'
-import { capitalize } from '@opentiny/vue-renderless/common/string'
+import { POSITION } from '../common'
+import { capitalize } from '../common/string'
 
 export const computedBarStyle = (parent) => (props, state) => {
   const style = {}

@@ -10,7 +10,7 @@
 *
 */
 
-import { xss } from '@opentiny/vue-renderless/common'
+import { xss } from '../common'
 
 export const showList = (state) => () => (state.showPopover = true)
 

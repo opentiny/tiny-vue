@@ -160,6 +160,13 @@
       "type": "Boolean",
       "desc": "默认最大化显示",
       "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "message-closable",
+      "sample": "status",
+      "type": "Boolean",
+      "desc": "message信息是否显示关闭按钮",
+      "defaultValue": "该属性的默认值为 false"
     }
   ],
   "slots": [

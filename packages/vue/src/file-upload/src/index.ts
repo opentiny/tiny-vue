@@ -10,11 +10,13 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
 import streamSaver from 'streamsaver'
 
 const $constants = {
   UPLOAD_INNER: 'upload-inner',
+  UPLOAD_INNER_TEMPLATE: 'upload-inner-template',
+  FILE_UPLOAD_INNER: 'file-upload-inner',
   FILE_STATUS: {
     READY: 'ready',
     SUCESS: 'success',
@@ -26,7 +28,9 @@ const $constants = {
     TEXT: 'text',
     PICTURE_CARD: 'picture-card',
     PICTURE: 'picture',
-    THUMB: 'thumb'
+    THUMB: 'thumb',
+    PICTURE_SINGLE: 'picture-single',
+    DRAG_SINGLE: 'drag-single'
   },
   EDM: {
     CHUNKINIT: 'chunkInit',
@@ -53,14 +57,48 @@ const $constants = {
     LARGEFILEKEY: 'ui.fileUpload.largefile',
     EXCEED: 'ui.fileUpload.exceed',
     SIZE: 'ui.fileUpload.fileSize',
+    SIZE_17G: 17 * 1024 * 1024,
     SIZE_2G: 2 * 1024 * 1024, // 单位（KB）
+    SIZE_64M: 64 * 1024,
+    SIZE_32M: 32 * 1024,
     SIZE_20M: 20 * 1024,
+    SIZE_16M: 16 * 1024,
     SIZE_8M: 8 * 1024,
+    SIZE_4M: 4 * 1024,
+    SIZE_2M: 2 * 1024,
+    SIZE_0M: 0 * 1024,
     FILEEMPTY: 'ui.fileUpload.empty',
     KIASCANTIP: 'ui.fileUpload.kiaScanTip',
     FILENAMEEXCEEDS: 'ui.fileUpload.fileNameExceeds',
-    THEFILENAME: 'ui.fileUpload.fileName'
-  }
+    THEFILENAME: 'ui.fileUpload.fileName',
+    CALCHASH: 'ui.fileUpload.calcHash',
+    KIASTATUS: 12079,
+    FILE_PREVIEW_TYPE: {
+      ASPOSE: 'aspose',
+      WPS: 'wps'
+    }
+  },
+  IMAGE_TYPE: 'image/*',
+  IMAGE_TYPES: [
+    'png',
+    'jpg',
+    'jpeg',
+    'gif',
+    'svg',
+    'webp',
+    'bmp',
+    'tif',
+    'pjp',
+    'apng',
+    'xbm',
+    'jxl',
+    'svgz',
+    'ico',
+    'tiff',
+    'jfif',
+    'pjpeg',
+    'avif'
+  ]
 }
 
 export default defineComponent({
@@ -188,9 +226,38 @@ export default defineComponent({
     maxNameLength: {
       type: Number,
       default: 20
-    }
+    },
+    scale: {
+      type: [Number, String],
+      default: 1
+    },
+    showName: {
+      type: Boolean,
+      default: false
+    },
+    sourceType: {
+      type: String,
+      default: 'picture',
+      validator(val) {
+        return Boolean(~['picture', 'video', 'audio'].indexOf(val))
+      }
+    },
+    showTitle: {
+      type: Boolean,
+      default: true
+    },
+    title: {
+      type: String,
+      default: ''
+    },
+    displayOnly: {
+      type: Boolean,
+      default: false
+    },
+    customClass: [String, Object, Array],
+    hwh5: Object
   },
   setup(props, context) {
-    return $setup({ props, context, template })
+    return $setup({ props, context, template, extend: { ref: 'file-upload-inner' } })
   }
 })

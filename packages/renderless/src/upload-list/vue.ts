@@ -1,56 +1,105 @@
-/**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+import {
+  parsePercentage,
+  handleClick,
+  picturefilePreview,
+  getDeleteData,
+  downloadFile,
+  play,
+  pause,
+  handleLoadedmetadata,
+  handleTimeupdate,
+  destroyed,
+  showOperatePanel,
+  getFileType,
+  getFileIcon,
+  mounted,
+  calcUploadListLiWidth,
+  reUpload,
+  remove
+} from './index'
+import { getToken, initService } from '../file-upload'
+import { getApi } from '../file-upload/vue'
 
-import { parsePercentage, handleClick, picturefilePreview, getDeleteData, downloadFile } from './index'
-import { downloadFile as edmDownloadFile, getToken } from '@opentiny/vue-renderless/file-upload'
+export const api = [
+  't',
+  'state',
+  'parsePercentage',
+  'handleClick',
+  'handlePreview',
+  'picturefilePreview',
+  'getDeleteData',
+  'downloadFile',
+  'play',
+  'pause',
+  'handleLoadedmetadata',
+  'handleTimeupdate',
+  'showOperatePanel',
+  'getFileType',
+  'getFileIcon',
+  'reUpload',
+  'remove'
+]
 
-export const api = ['t', 'state', 'parsePercentage', 'handleClick', 'handlePreview', 'picturefilePreview', 'getDeleteData', 'downloadFile']
-
-export const renderless = (props, { reactive }, { t, parent, mode: tinyMode, emit, service }, { Modal }) => {
-  const mode = props._mode || parent.$mode || (tinyMode ? (tinyMode.value ? tinyMode.value : 'pc') : 'pc')
+export const renderless = (
+  props,
+  { reactive, onMounted, onUnmounted, watch },
+  { t, parent, mode, emit, service, vm, nextTick },
+  { Modal }
+) => {
+  const api = { getApi }
+  parent = parent.$parent
+  const constants = parent.$constants
+  const $service = initService({ props, service })
 
   const state = reactive({
     focusing: false,
     shows: false,
     startPostion: 0,
-    screenType: mode !== 'pc'
+    screenType: mode === 'mobile' ? true : false,
+    showPanel: false
   })
 
-  parent.getToken = getToken({
-    constants: parent.$constants,
-    props: parent,
-    state: parent.state,
-    t,
-    Modal
-  })
+  parent.getToken = getToken({ constants, props: parent, state: parent.state, t, Modal })
 
-  const api = {
+  Object.assign(api, {
     state,
     getDeleteData: getDeleteData(emit),
     parsePercentage: parsePercentage(),
-    downloadFile: downloadFile(service),
+    downloadFile: downloadFile($service),
     picturefilePreview: picturefilePreview(state),
-    edmDownloadFile: edmDownloadFile({
-      api: parent,
-      constants: parent.$constants,
-      props: parent,
-      service,
-      state: parent.state
-    })
-  }
-
-  Object.assign(api, {
-    handleClick: handleClick({ props, api, parent })
+    handleClick: handleClick({ props, api, parent }),
+    play: play({ vm, api }),
+    pause: pause({ vm }),
+    handleLoadedmetadata: handleLoadedmetadata({ vm }),
+    handleTimeupdate: handleTimeupdate(),
+    destroyed: destroyed({ api, props, vm }),
+    showOperatePanel: showOperatePanel({ state }),
+    getFileType: getFileType(),
+    getFileIcon: getFileIcon(),
+    mounted: mounted({ api, vm }),
+    calcUploadListLiWidth: calcUploadListLiWidth({ vm, nextTick, props, constants }),
+    reUpload: reUpload({ emit, props, parent }),
+    remove: remove({ emit })
   })
+
+  props.listType === constants.LIST_TYPE.DRAG_SINGLE &&
+    watch(
+      () => props.files && props.files[0],
+      (file) => {
+        if (file && file.status === constants.FILE_STATUS.FAIL) {
+          setTimeout(() => {
+            api.remove({ file })
+          }, 2000)
+        }
+      },
+      { immediate: true, deep: true }
+    )
+
+  watch(() => props.files, api.calcUploadListLiWidth)
+
+  onMounted(api.mounted)
+
+  onUnmounted(api.destroyed)
 
   return api
 }

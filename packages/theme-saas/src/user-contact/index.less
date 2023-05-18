@@ -1,0 +1,177 @@
+@import '../custom.less';
+
+@user-contact-prefix-cls: ~'@{css-prefix}user-contact';
+@user-head-prefix-cls: ~'@{css-prefix}user-head';
+@espace-prefix-cls: ~'@{css-prefix}espace';
+@card-template-prefix-cls: ~'@{css-prefix}card-template';
+@logout-prefix-cls: ~'@{css-prefix}logout';
+@popover-prefix-cls: ~'@{css-prefix}popover';
+
+.@{user-contact-prefix-cls} {
+  @apply relative;
+  @apply inline-block;
+  @apply text-color-text-primary;
+
+  .reference-wrapper.reference-wrapper-show a:hover {
+    @apply no-underline;
+  }
+
+  .@{user-contact-prefix-cls}__role-name,
+  .@{user-contact-prefix-cls}__role-number {
+    @apply mr-2;
+  }
+
+  &.@{css-prefix}popper.@{css-prefix}popover {
+    @apply mt-2;
+    @apply text-sm;
+    @apply leading-5;
+    @apply text-color-text-primary;
+    @apply p-0;
+    @apply border-0;
+  }
+
+  & &__main {
+    width: 448px;
+    @apply text-sm;
+    @apply box-border;
+    @apply rounded;
+
+    .@{user-head-prefix-cls} {
+      @apply h-full;
+      @apply w-20;
+      @apply float-left;
+    }
+
+    .@{user-head-prefix-cls}__portrait {
+      @apply w-20;
+      @apply h-20;
+      line-height: 80px;
+    }
+
+    .@{user-contact-prefix-cls}__role {
+      @apply h-full;
+      @apply w-auto;
+      @apply float-left;
+      @apply ml-6;
+      @apply text-xl;
+      @apply leading-7;
+      @apply flex;
+      @apply flex-col;
+      @apply justify-center;
+    }
+
+    .@{user-contact-prefix-cls}__role-name {
+      @apply block;
+      @apply w-full;
+      @apply h-6;
+      @apply text-color-text-inverse;
+      @apply overflow-hidden;
+      @apply text-ellipsis;
+      @apply whitespace-nowrap;
+      @apply text-left;
+      @apply mb-2;
+    }
+
+    .@{user-contact-prefix-cls}__role-number {
+      @apply text-sm;
+      @apply text-white text-opacity-80;
+    }
+
+    .@{css-prefix}espace svg {
+      @apply fill-color-text-primary;
+    }
+
+    .card-tools {
+      @apply hidden;
+    }
+  }
+
+  & &__header {
+    height: 128px;
+    @apply p-6;
+    @apply bg-color-brand;
+    @apply text-color-text-inverse;
+  }
+
+  & &__title {
+    @apply block;
+    @apply h-full;
+    @apply text-xs;
+    @apply font-normal;
+    line-height: 46px;
+  }
+
+  & &__role {
+    @apply inline-block;
+    @apply ml-2;
+    @apply align-middle;
+    @apply text-sm;
+    @apply leading-8;
+    @apply text-color-text-primary;
+  }
+
+  & &__arrow {
+    @apply text-sm;
+    @apply align-middle;
+    @apply fill-color-text-placeholder;
+  }
+
+  & &__state:not(:first-child) {
+    @apply text-left;
+    @apply mt-2;
+  }
+
+  & &__state-left {
+    @apply opacity-100;
+    @apply leading-4;
+    @apply text-color-text-secondary;
+    @apply text-left;
+    @apply w-auto;
+    @apply mr-0;
+  }
+
+  & &__state-right {
+    @apply opacity-100;
+    font-family: MicrosoftYaHei;
+    @apply leading-4;
+  }
+
+  .@{card-template-prefix-cls}__header.is-line {
+    @apply h-auto;
+    @apply border-b-0;
+    @apply p-0;
+  }
+
+  .@{card-template-prefix-cls}__body {
+    @apply p-6;
+  }
+
+  .@{user-head-prefix-cls} {
+    @apply relative;
+    @apply inline-block;
+    @apply align-middle;
+  }
+
+  .@{espace-prefix-cls} {
+    @apply mt-4;
+  }
+
+  &.show-arrow {
+    .@{user-contact-prefix-cls}__main {
+      @apply w-auto;
+
+      .user-account-custom {
+        line-height: 30px;
+      }
+
+      .@{logout-prefix-cls} {
+        line-height: 30px;
+      }
+    }
+
+    .@{card-template-prefix-cls}__body {
+      min-width: 180px;
+      @apply rounded;
+    }
+  }
+}

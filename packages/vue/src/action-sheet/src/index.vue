@@ -22,11 +22,16 @@
       ref="scrollMenu"
     >
       <div :class="['tiny-mobile-action-sheet__menu', ellipsis ? 'is-ellipsis' : '']">
-        <div :class="[
-          'tiny-mobile-action-sheet__item',
-          item.warn ? 'is-warn' : '',
-          item.id === modelValue || item.id === state.active ? 'is-active' : ''
-        ]" :style="state.contentStyle" v-for="(item, index) in menus" :key="index" @click="menuHandle(item, index)">
+        <div
+          :class="[
+            'tiny-mobile-action-sheet__item',
+            item.warn ? 'is-warn' : '',
+            item.id === modelValue || item.id === state.active ? 'is-active' : ''
+          ]"
+          v-for="(item, index) in menus"
+          :key="index"
+          @click="menuHandle(item, index)"
+        >
           <slot name="item" :item="item">
             {{ item.label }}
           </slot>
@@ -67,15 +72,11 @@ export default defineComponent({
     },
     height: {
       type: String,
-      default: '100%'
+      default: '200px'
     },
     contentPosition: {
       type: Boolean,
       default: false
-    },
-    contentStyle: {
-      type: Object,
-      default: {},
     }
   },
   setup(props, context) {

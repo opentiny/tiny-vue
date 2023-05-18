@@ -10,7 +10,7 @@
 *
 */
 
-import { merge } from '@opentiny/vue-renderless/common/object'
+import { merge } from '../common/object'
 
 export const watchRules = ({ api, props, state }) => (newRules = {}, oldRules = {}) => {
   const newValidFields = Object.keys(newRules)
@@ -182,3 +182,20 @@ export const bindDialogEvent = ({ api, dialog, state }) => {
     })
   }
 }
+
+export const showTooltip = ({ vm, state }) => (dom, val) => {
+  const tooltip = vm.$refs.tooltip
+  tooltip.state.referenceElm = dom
+  tooltip.state.popperElm && (tooltip.state.popperElm.style.display = 'none')
+  tooltip.doDestroy()
+
+  state.tooltipVisible = true
+  state.displayedValue = val
+
+  setTimeout(tooltip.updatePopper, 20)
+}
+
+export const hideTooltip = ({ state }) => () => {
+  state.tooltipVisible = false
+}
+

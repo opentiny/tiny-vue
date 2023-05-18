@@ -10,11 +10,11 @@
 *
 */
 
-import { toDate } from '@opentiny/vue-renderless/common/date'
-import { hasClass } from '@opentiny/vue-renderless/common/deps/dom'
-import { range as rangeDate, getDayCountOfMonth, nextDate } from '@opentiny/vue-renderless/common/deps/date-util'
-import { arrayFindIndex, coerceTruthyValueToArray, arrayFind } from '@opentiny/vue-renderless/date-table'
-import { DATEPICKER } from '@opentiny/vue-renderless/common'
+import { toDate } from '../common/date'
+import { hasClass } from '../common/deps/dom'
+import { range as rangeDate, getDayCountOfMonth, nextDate } from '../common/deps/date-util'
+import { arrayFindIndex, coerceTruthyValueToArray, arrayFind } from '../date-table'
+import { DATEPICKER } from '../common'
 
 export const datesInMonth = (year, month) => {
   const numOfDays = getDayCountOfMonth(year, month)

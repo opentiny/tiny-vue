@@ -10,8 +10,8 @@
 *
 */
 
-import { isUndefined, isNull } from '@opentiny/vue-renderless/grid/static'
-import { log } from '@opentiny/vue-renderless/common'
+import { isUndefined, isNull } from '../grid/static'
+import { log } from '../common'
 
 export const init = ({ state, service, api }) => () => {
   const { textField, valueField } = service.fields

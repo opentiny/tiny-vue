@@ -10,8 +10,8 @@
 *
 */
 
-import { isLeapYear } from '@opentiny/vue-renderless/common/date'
-import { copyArray } from '@opentiny/vue-renderless/common/object'
+import { isLeapYear } from '../common/date'
+import { copyArray } from '../common/object'
 
 /**
  * 获取指定年月的总天数

@@ -1,0 +1,232 @@
+@import '../custom.less';
+
+@guide-prefix-cls: ~'@{css-prefix}guide';
+.@{guide-prefix-cls} {
+  .shepherd-arrow {
+    @apply h-4 absolute w-4 -z-10;
+
+    &:before {
+      @apply w-4 absolute h-4  bg-color-bg-1 rotate-45 -z-10;
+      content: '';
+    }
+  }
+
+  .@{guide-prefix-cls}__z-top {
+    @apply relative bg-color-bg-1;
+    z-index: 9999;
+  }
+
+  .shepherd-content {
+    @apply w-full rounded p-0;
+    outline: none;
+
+    .shepherd-header {
+      @apply items-center rounded-t flex justify-end leading-8 px-6 pt-6 bg-color-bg-1;
+
+      .shepherd-title {
+        @apply text-lg text-color-icon-primary leading-5 font-bold flex m-0 p-0 grow shrink-0 basis-auto;
+        font-family: PingFangSC;
+      }
+
+      .shepherd-cancel-icon {
+        @apply flex bg-transparent border-none cursor-pointer m-0 p-0;
+        transition: color 0.5s ease;
+
+        span {
+          @apply text-3xl w-5 h-5 leading-5 text-color-icon-primary inline-flex justify-center font-light;
+          transform: rotate(-360deg);
+          margin-top: -6px;
+        }
+
+        &:hover {
+          color: rgba(0, 0, 0, 0.75);
+        }
+      }
+    }
+    .shepherd-text {
+      @apply leading-5 text-color-icon-primary text-sm;
+      padding: 24px 24px 22px;
+
+      .scrollBox {
+        @apply w-full overflow-auto text-justify pr-2;
+
+        &::-webkit-scrollbar {
+          @apply w-1 h-10;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          @apply w-1 h-10 rounded-sm bg-clip-padding;
+          border: 4px solid rgba(57, 57, 57, 0.3);
+        }
+      }
+
+      p {
+        @apply mt-0;
+
+        &:last-child {
+          @apply mb-0;
+        }
+      }
+    }
+
+    .shepherd-footer {
+      @apply rounded-b flex justify-end pt-0 px-6 pb-6 items-center relative;
+
+      &.shepherd-button:last-child {
+        @apply mr-0;
+      }
+
+      .progress-style {
+        @apply absolute left-6 text-sm text-color-text-primary font-normal;
+        font-family: PingFangSC;
+      }
+
+      .shepherd-button {
+        @apply text-white bg-color-brand cursor-pointer rounded border-0 w-24 h-8 ml-2;
+        transition: all 0.5s ease;
+
+        &:hover {
+          @apply bg-color-brand-hover;
+        }
+
+        &:focus {
+          @apply bg-color-brand-focus;
+        }
+
+        &:active {
+          @apply bg-color-brand-active;
+        }
+
+        &:disabled {
+          @apply bg-color-brand-disabled text-color-bg-1 cursor-not-allowed;
+        }
+
+        &.shepherd-button-secondary {
+          @apply text-color-text-primary rounded text-xs text-center leading-3 font-normal ml-2 border-color-border bg-color-bg-1;
+          @apply border-x border-y border-solid;
+
+          &:hover {
+            @apply border-color-border-hover;
+          }
+
+          &:active {
+            @apply border-color-brand-active;
+          }
+
+          &:focus {
+            @apply border-color-text-primary;
+          }
+
+          &:disabled {
+            @apply bg-color-bg-4 cursor-not-allowed border-color-bg-3 text-color-text-disabled;
+          }
+        }
+      }
+    }
+  }
+
+  &.only-content {
+    .shepherd-header {
+      @apply pt-0;
+
+      .shepherd-cancel-icon {
+        @apply absolute top-6;
+      }
+    }
+
+    .shepherd-text {
+      padding-right: 52px;
+    }
+  }
+
+  &.shepherd-has-title {
+    &.shepherd-content {
+      &.shepherd-cancel-icon {
+        color: hsla(0, 0%, 50%, 0.75);
+
+        &:hover {
+          color: rgba(0, 0, 0, 0.75);
+        }
+      }
+    }
+  }
+
+  &.shepherd-element.shepherd-has-title[data-popper-placement^='bottom'] {
+    & > .shepherd-arrow:before {
+      @apply bg-color-bg-1;
+    }
+  }
+
+  &.shepherd-element {
+    @apply h-auto shadow-xl rounded bg-color-bg-1 opacity-0 invisible;
+    z-index: 9999;
+    width: 510px;
+    outline: none;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+
+  &.shepherd-enabled.shepherd-element {
+    @apply opacity-100 visible;
+  }
+
+  &.shepherd-element[data-popper-reference-hidden]:not(.shepherd-centered) {
+    @apply opacity-0 pointer-events-none invisible;
+  }
+
+  &.shepherd-element,
+  &.shepherd-element *,
+  &.shepherd-element :after,
+  &.shepherd-element :before {
+    @apply box-border;
+  }
+
+  &.shepherd-element[data-popper-placement^='top'] > .shepherd-arrow {
+    @apply -bottom-2;
+  }
+
+  &.shepherd-element[data-popper-placement^='bottom'] > .shepherd-arrow {
+    @apply -top-2;
+  }
+
+  &.shepherd-element[data-popper-placement^='left'] > .shepherd-arrow {
+    @apply -right-2;
+  }
+
+  &.shepherd-element[data-popper-placement^='right'] > .shepherd-arrow {
+    @apply -left-2;
+  }
+
+  &.shepherd-element.shepherd-centered > .shepherd-arrow {
+    @apply opacity-0;
+  }
+
+  &.shepherd-element.shepherd-has-title[data-popper-placement^='bottom'] > .shepherd-arrow:before {
+    @apply bg-color-bg-1;
+  }
+
+  &.shepherd-target-click-disabled.shepherd-enabled.shepherd-target,
+  &.shepherd-target-click-disabled.shepherd-enabled.shepherd-target * {
+    @apply pointer-events-none;
+  }
+}
+
+.shepherd-modal-overlay-container {
+  @apply w-full h-full left-0 opacity-0 overflow-hidden pointer-events-none fixed top-0 right-0 bottom-0;
+  z-index: 9997;
+  transition: all 0.3s ease-out, height 0ms 0.3s, opacity 0.3s 0ms;
+
+  &.shepherd-modal-is-visible {
+    @apply opacity-50;
+    transform: translateZ(0);
+    transition: all 0.3s ease-out, height 0s 0s, opacity 0.3s 0s;
+
+    path {
+      pointer-events: all;
+    }
+  }
+}
+
+.@{guide-prefix-cls}__z-top {
+  @apply relative bg-color-bg-1;
+  z-index: 9999;
+}

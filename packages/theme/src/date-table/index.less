@@ -48,10 +48,10 @@
 
   &.is-week-mode &__row.current {
     div {
-      background-color: var(--ti-date-table-week-current-bg-color);
+      background-color: var(--ti-date-table-week-bg-color-current-select);
 
       &:hover {
-        background-color: var(--ti-date-table-week-current-hover-bg-color);
+        background-color: var(--ti-date-table-week-bg-color-current-hover);
       }
     }
 
@@ -62,7 +62,8 @@
 
       &.start-date span,
       &.end-date span {
-        background-color: var(--ti-date-table-current-select-bg-color);
+        background-color: var(--ti-date-table-bg-color-current-select);
+        border-radius: var(--ti-date-table-border-radius-current-select);
       }
     }
   }
@@ -131,13 +132,13 @@
 
     &.available:hover span {
       background-color: var(--ti-date-table-hover-bg-color);
-      border-radius: var(--ti-date-table-current-border-radius);
+      border-radius: var(--ti-date-table-border-radius-current-select);
     }
 
     &.current:not(.disabled) span {
       color: var(--ti-date-table-td-nomal-text-color);
-      background-color: var(--ti-date-table-current-select-bg-color);
-      border-radius: var(--ti-date-table-current-border-radius);
+      background-color: var(--ti-date-table-bg-color-current-select);
+      border-radius: var(--ti-date-table-border-radius-current-select);
     }
 
     &.end-date,
@@ -147,7 +148,7 @@
       }
 
       span {
-        background-color: var(--ti-date-table-current-select-bg-color);
+        background-color: var(--ti-date-table-bg-color-current-select);
       }
     }
 
@@ -188,7 +189,7 @@
       &.end-date:hover,
       &.start-date:hover {
         span {
-          background-color: var(--ti-date-table-current-select-bg-color);
+          background-color: var(--ti-date-table-bg-color-current-select);
         }
       }
     }
@@ -209,13 +210,13 @@
       }
 
       span {
-        background-color: var(--ti-date-table-current-select-bg-color);
+        background-color: var(--ti-date-table-bg-color-current-select);
         color: var(--ti-date-table-td-nomal-text-color);
         border: none;
       }
 
       &.available:hover span {
-        background-color: var(--ti-date-table-current-select-bg-color);
+        background-color: var(--ti-date-table-bg-color-current-select);
       }
     }
 

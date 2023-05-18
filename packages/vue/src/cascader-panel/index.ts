@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import CascaderPanel from './src/index.vue'
+import CascaderPanel from './src/pc.vue'
 import '@opentiny/vue-theme/cascader-panel/index.less'
 import { version } from './package.json'
 

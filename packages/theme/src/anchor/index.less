@@ -18,6 +18,7 @@
 .@{anchor-prefix-cls} {
   &__wrapper {
     .component-css-vars-anchor();
+    background-color: var(--ti-anchor-bg-color);
   }
   &__affix {
     position: fixed;
@@ -34,7 +35,7 @@
     border-bottom-right-radius: 10px;
     left: var(--ti-anchor-orbit-width / 2);
     width: 100%;
-    background-color: rgba(80, 115, 229, 0.15);
+    background-color: var(--ti-anchor-link-mask-bg-color);
   }
 
   &-orbit {
@@ -48,7 +49,7 @@
     &-skid {
       position: absolute;
       left: 0;
-      width: var(--ti-anchor-orbit-width);
+      width: var(--ti-anchor-orbit-skid-width);
       background-color: var(--ti-anchor-orbit-bg-color);
       &--active {
         background-color: var(--ti-anchor-link-active-bg-color);
@@ -56,13 +57,17 @@
     }
   }
 
+  &-link-title:hover {
+    color: var(--ti-anchor-link-hover-text-color);
+  }
+
   &-link {
-    margin: 0 0 0 9px;
+    margin: 0 0 0 var(--ti-anchor-link-margin-left);
     cursor: pointer;
     &-title {
       display: block;
       max-width: 100%;
-      padding: 1px 8px 1px 10px;
+      padding: var(--ti-anchor-link-title-padding-vertical) var(--ti-anchor-link-title-padding-right) var(--ti-anchor-link-title-padding-vertical) var(--ti-anchor-link-title-padding-left);
       white-space: nowrap;
       text-overflow: ellipsis;
       color: var(--ti-anchor-text-color);

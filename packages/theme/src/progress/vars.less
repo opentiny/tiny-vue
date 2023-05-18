@@ -11,13 +11,22 @@
 */
 
 .component-css-vars-progress() {
-  --ti-progress-text-color: var(--ti-common-color-info-normal);
+  // 进度条默认文本色
+  --ti-progress-text-color: var(--ti-common-color-text-primary);
+  // 进度条内层文本字号
   --ti-progress-text-font-size: var(--ti-common-font-size-base);
-  --ti-progress-bar-border-radius: 100px;
-  --ti-progress-bar-outer-bg-color: var(--ti-base-color-bg-5);
-  --ti-progress-bar-inner-bg-color: var(--ti-base-color-brand-6);
+  // 横向条未完成部分背景色
+  --ti-progress-bar-outer-bg-color: var(--ti-common-color-bg-disabled);
+  // 横向条已完成部分背景色
+  --ti-progress-bar-inner-bg-color: var(--ti-common-color-bg-emphasize);
+  // 横向条内层文本色
   --ti-progress-bar-inner-text-color: var(--ti-common-color-light);
+  // 横向条右侧文字左外边距
+  --ti-progress-bar-text-margin-left: var(--ti-common-space-2x);
+  // success状态横向条已完成部分背景色
   --ti-progress-success-bg-color: var(--ti-common-color-success-normal);
+  // warning状态横向条已完成部分背景色
   --ti-progress-warning-bg-color: var(--ti-common-color-warning-normal);
-  --ti-progress-exception-bg-color: var(--ti-base-color-bg-8);
+  // exception状态横向条已完成部分背景色
+  --ti-progress-exception-bg-color: var(--ti-common-bg-primary);
 }

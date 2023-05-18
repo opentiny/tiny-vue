@@ -23,9 +23,9 @@
  *
  */
 
-import browser from '@opentiny/vue-renderless/common/browser'
+import browser from '../../common/browser'
 import { remove } from '../static'
-import { on } from '@opentiny/vue-renderless/common/deps/dom'
+import { on } from '../../common/deps/dom'
 
 // 监听全局事件
 const wheelName = browser.isDoc && /Firefox/i.test(navigator.userAgent) ? 'DOMMouseScroll' : 'mousewheel'

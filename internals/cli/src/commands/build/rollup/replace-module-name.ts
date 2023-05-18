@@ -18,8 +18,9 @@ export default function (): Plugin {
         const suffix = name.match(regexpStr)?.[1]
 
         if (suffix) {
+          // "../../button/src/mobile-first.vue"
           code = code
-            .replace(/".+\/src\/(pc|mobile)\.vue/g, `"./$1.${suffix}`)
+            .replace(/".+\/src\/(pc|mobile|mobile-first)\.vue/g, `"./$1.${suffix}`)
             .replace(/\.\.\/src/g, './lib')
             .replace('../lowercase', './lowercase')
         }
@@ -29,6 +30,8 @@ export default function (): Plugin {
 
         // from "./src/xxx" 替换为 from "./lib/xxx"
         code = code.replace(/from "\.\/src\//g, 'from "./lib/')
+          .replace(/".*\.\/.*\/label-wrap"/, '"./label-wrap"')
+          .replace(/".*\.\/.*\/tall-storage.vue"/, '"./tall-storage"')
 
         chunk.code = code
       }

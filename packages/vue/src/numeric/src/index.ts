@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 const $constants = {
   MAX: 'aria-valuemax',
@@ -111,6 +111,14 @@ export default defineComponent({
     validateEvent: {
       type: Boolean,
       default: true
+    },
+    displayOnly: {
+      type: Boolean,
+      default: false
+    },
+    showLeft: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

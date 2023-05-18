@@ -8,6 +8,13 @@
       "defaultValue": "The default value of this attribute is dark."
     },
     {
+      "name": "type",
+      "sample": "tooltip-theme",
+      "type": "String",
+      "desc": "The default type is provided. The options for this attribute are normal, warning, error, information, and success. The priority of type is higher than that of effect.",
+      "defaultValue": ""
+    },
+    {
       "name": "content",
       "sample": "basic-usage",
       "type": "String",

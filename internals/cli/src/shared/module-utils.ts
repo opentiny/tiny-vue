@@ -21,7 +21,7 @@ export interface Module {
   /** 是否排除构建，例如组件尚未开发完，设置 true */
   exclude?: boolean
   /** 组件类型支持的模式 */
-  onlyMode?: mode[]
+  mode?: mode[]
   /** 模块名称，如 Button */
   name: string
   /** 模块构建物路径，如 vue/button/lib/index */
@@ -49,23 +49,6 @@ export interface Module {
  */
 const getAllModules = (isSort) => {
   return getSortModules({ filterIntercept: () => true, isSort })
-}
-
-/**
- * 获取所有组件，并排序、格式化
- * @param {Boolean} isSort 是否需要排序
- * @param {Boolean} hasModuleType 是否包含特殊模块（common、locale、icon）
- * @returns 组件对象
- */
-const getComponents = (isSort = true, hasModuleType = false) => {
-  const moduleTyps = ['component']
-
-  hasModuleType && moduleTyps.push('module')
-
-  return getSortModules({
-    filterIntercept: (item) => moduleTyps.includes(item.type),
-    isSort
-  })
 }
 
 /**
@@ -373,39 +356,18 @@ const isNotArrayNotObject = (sortData) => {
 }
 
 /**
- * 获取移动端组件
+ * 根据模式获取所有组件，并排序、格式化
+ * @param {Boolean} mode 生成模式 'all', 'pc', 'mobile', 'mobile-first'
  * @param {Boolean} isSort 是否需要排序
- * @returns 组件集合
+ * @returns 组件对象
  */
-const getMobileComponents = (isSort = true, hasModuleType = false) => {
+const getComponents = (mode, isSort = true) => {
   const modules = getAllModules(isSort)
-  const moduleTyps = ['component']
 
-  hasModuleType && moduleTyps.push('module')
-
-  const components = modules.filter(
-    (item) => moduleTyps.includes(item.type) && (!item.onlyMode || item.onlyMode.includes('mobile'))
-  )
-
-  return components
-}
-
-/**
- * 获取 PC 端组件
- * @param {Boolean} isSort 是否需要排序
- * @param {Boolean} hasModuleType 是否包含特殊模块（common、locale、icon）
- * @returns 组件集合
- */
-const getPcComponents = (isSort = true, hasModuleType = false) => {
-  const modules = getAllModules(isSort)
-  const moduleTyps = ['component']
-
-  hasModuleType && moduleTyps.push('module')
-
-  const components = modules.filter(
-    (item) => moduleTyps.includes(item.type) && (!item.onlyMode || item.onlyMode.includes('pc'))
-  )
-
+  const components = modules.filter(item => item.type === 'component')
+    // 以下3种情况，均写入entry js文件。
+    // 1、入参all，  2、chart组件，item.mode不存在  3、item.mode包含要输出的entry
+    .filter(item => mode === 'all' || !item.mode || item.mode.includes(mode))
   return components
 }
 
@@ -422,7 +384,7 @@ export const addModule = ({ componentName, templateName, newObj = {}, isMobile =
     path: `vue/src/${componentName}/` + (isEntry ? `${templateName}.ts` : `src/${templateName}.vue`),
     type: isEntry ? 'component' : 'template',
     exclude: false,
-    // onlyMode: isMobile ? 'mobile' : 'all',
+    mode: isMobile ? 'mobile' : 'all',
     ...newObj
   }
 }
@@ -504,8 +466,6 @@ export {
   getComponents,
   getModuleInfo,
   getSortModules,
-  getPcComponents,
   createModuleMapping,
-  getMobileComponents,
   getAllIcons
 }

@@ -33,7 +33,7 @@
   },
   {
     "title": "文本对齐",
-    "content": "<p>通过配置 <code>label-align</code> 属性, 设置是否文本对齐</p>\n",
+    "content": "<p>通过配置 <code>label-align</code> 属性, 设置是否文本对齐,通过配置 <code>label-position</code> 属性, 设置文本标签的位置</p>\n",
     "link": "form/label-align",
     "component": " Form 表单",
     "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
@@ -57,7 +57,7 @@
   },
   {
     "title": "表单尺寸",
-    "content": "<p>通过在 <code>tiny-form</code> 标签上设置 <code>size</code> 属性可以改变表单内组件尺寸；设置 <code>disabled</code> 属性可以改变表单内组件禁用状态</p>\n",
+    "content": "<p>通过在 <code>tiny-form</code> 标签上设置 <code>size</code> 属性可以改变表单内组件尺寸。</p>\n",
     "link": "form/size",
     "component": " FormItem 表单项",
     "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
@@ -110,5 +110,13 @@
     "component": " Form 表单",
     "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
     "demoId": "form-row-col"
+  },
+  {
+    "title": "分组表单",
+    "content": "<p>将多个表单组合在一起</p>\n",
+    "link": "form/group-form",
+    "component": " Form 表单",
+    "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
+    "demoId": "group-form"
   }
 ]

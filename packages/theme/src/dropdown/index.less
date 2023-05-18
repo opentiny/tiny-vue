@@ -11,74 +11,85 @@
 */
 
 @import '../custom.less';
+@import './vars.less';
 
 @dropdown-prefix-cls: ~'@{css-prefix}dropdown';
 
 .@{dropdown-prefix-cls} {
+  .component-css-vars-dropdown();
+
   display: inline-block;
   position: relative;
-  font-size: var(--ti-common-font-size-base);
+  font-size: var(--ti-dropdown-font-size);
+
+  &__trigger{
+    .@{dropdown-prefix-cls}__title{
+      margin-right: var(--ti-dropdown-trigger-title-margin-right);
+    }
+  }
 
   .@{css-prefix}button-group {
     display: block;
 
     .@{css-prefix}button {
-      float: none
+      float: none;
     }
   }
-  
+
   .@{dropdown-prefix-cls}__caret-button {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: var(--ti-dropdown-caret-button-padding-left);
+    padding-right: var(--ti-dropdown-caret-button-padding-right);
     position: relative;
     border-left: none;
-    min-width: 24px;
+    min-width: var(--ti-dropdown-caret-button-min-width);
 
     &:before {
       content: '';
       position: absolute;
       display: block;
-      width: 1px;
-      top: 5px;
-      bottom: 5px;
+      width: var(--ti-dropdown-caret-line-width);
+      top: 0;
+      bottom: 0;
       left: 0;
-      background: #fff
+      margin-top: var(--ti-dropdown-caret-line-margin-top);
+      margin-bottom: var(--ti-dropdown-caret-line-margin-bottom);
+      background-color: var(--ti-dropdown-caret-line-bg-color);
     }
 
     &.@{css-prefix}button--default:before {
-      background: #d9d9d9;
+      background: var(--ti-dropdown-caret-line-bg-color-default);
     }
 
     &.@{css-prefix}button--default:hover:before {
-      background-color: #1890ff
-    }  
+      background-color: var(--ti-dropdown-caret-line-bg-color-default-hover);
+    }
 
     &:hover:not(.is-disabled):before {
-      top: 0;
-      bottom: 0
+      margin-top: var(--ti-dropdown-caret-line-margin-top-hover);
+      margin-bottom: var(--ti-dropdown-caret-line-margin-bottom-hover);
     }
 
     svg {
-      padding-left: 0;
-      margin: 0 3px;
+      padding-left: var(--ti-dropdown-caret-svg-padding-left);
+      margin: var(--ti-dropdown-caret-svg-margin-vertical) var(--ti-dropdown-caret-svg-margin-horizontal);
     }
   }
 
   .@{dropdown-prefix-cls}-selfdefine:focus:active,
   .@{dropdown-prefix-cls}-selfdefine:focus:not(.focusing) {
-    outline-width: 0
+    outline-width: 0;
   }
 
   [disabled] {
     cursor: not-allowed;
-    color: #bbb
+    color: var(--ti-dropdown-text-color-disabled);
   }
 
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 
-  &-visible{
+  &--visible {
     transform: rotate(180deg);
   }
 }

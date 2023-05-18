@@ -24,30 +24,30 @@
   line-height: var(--ti-tag-height);
   padding: 0 8px;
   font-size: var(--ti-tag-font-size);
-  border-width: 1px;
+  border-width: var(--ti-tag-border-weight); // smb新增
   border-radius: var(--ti-tag-border-radius);
   border-style: solid;
   box-sizing: border-box;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
+
   .tag-variant(
     var(--ti-tag-primary-text-color),
     var(--ti-tag-primary-border-color),
     var(--ti-tag-primary-background-color)
   );
-  & &__text:hover {
-    cursor: pointer;
-    color: #526ecc;
-  }
 
   & &__close {
     font-size: var(--ti-tag-close-font-size);
-    margin-left: 6px;
-
+    margin-left: var(--ti-tag-close-margin-left); // smb新增
+    margin-right: var(--ti-tag-close-margin-right); // smb新增
+    cursor: pointer;
+    opacity: var(--ti-tag-primary-close-opacity); // smb新增
+    fill: var(--ti-tag-primary-close-icon-color); // smb新增
     &:hover {
-      cursor: pointer;
-      fill: #5e7ce0;
+      // smb新增
+      fill: var(--ti-tag-primary-close-hover-icon-color);
     }
   }
 
@@ -160,16 +160,54 @@
 
   &--medium {
     height: var(--ti-tag-medium-height);
-    line-height: calc(var(--ti-tag-medium-height) - 2px);
+    line-height: var(--ti-tag-medium-height); // smb修正
+    padding: 0 var(--ti-tag-medium-padding-horizontal); // smb新增
+    border-radius: var(--ti-tag-medium-border-radius); // smb新增
+    // smb新增
+    .@{tag-prefix-cls}__close {
+      margin-left: var(--ti-tag-close-medium-margin-left);
+      margin-right: var(--ti-tag-close-medium-margin-right);
+    }
   }
 
   &--small {
     height: var(--ti-tag-small-height);
-    line-height: calc(var(--ti-tag-small-height) - 2px);
+    line-height: var(--ti-tag-small-height); // smb修正
+    padding: 0 var(--ti-tag-small-padding-horizontal); // smb新增
+    font-size: 12px; // smb新增
+    border-radius: var(--ti-tag-small-border-radius); // smb新增
+    // smb新增
+    .@{tag-prefix-cls}__close {
+      margin-left: var(--ti-tag-close-small-margin-left);
+      margin-right: var(--ti-tag-close-small-margin-right);
+    }
   }
 
   &--mini {
     height: var(--ti-tag-mini-height);
-    line-height: calc(var(--ti-tag-mini-height) - 2px);
+    line-height: var(--ti-tag-mini-height); // smb修正
+    padding: 0 var(--ti-tag-small-padding-horizontal); // smb新增
+    font-size: 12px; // smb新增
+    border-radius: var(--ti-tag-small-border-radius); // smb新增
+    // smb新增
+    .@{tag-prefix-cls}__close {
+      margin-left: var(--ti-tag-close-small-margin-left);
+      margin-right: var(--ti-tag-close-small-margin-right);
+    }
+  }
+
+  // smb新增
+  &.is-disabled,
+  &.is-disabled:focus,
+  &.is-disabled:hover {
+    cursor: not-allowed;
+    color: #c2c2c2;
+    background-color: rgba(0, 0, 0, 0.05);
+    svg,
+    svg:hover,
+    .@{tag-prefix-cls}__close {
+      cursor: not-allowed;
+      fill: #c2c2c2;
+    }
   }
 }

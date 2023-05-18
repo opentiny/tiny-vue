@@ -10,7 +10,7 @@
 *
 */
 
-import { isObject, isNull } from '@opentiny/vue-renderless/common/type'
+import { isObject, isNull } from '../common/type'
 
 export const getRouteActive = ({ props, route }) => () => {
   if (props.to && route) {

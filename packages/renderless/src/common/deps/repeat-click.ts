@@ -10,7 +10,7 @@
 *
 */
 
-import { on, once } from '@opentiny/vue-renderless/common/deps/dom'
+import { on, once } from './dom'
 
 export default (el, binding) => {
   let interval = null

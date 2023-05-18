@@ -10,9 +10,9 @@
 *
 */
 
-import { format } from '@opentiny/vue-renderless/common/date'
-import { copyArray, extend } from '@opentiny/vue-renderless/common/object'
-import { isObject } from '@opentiny/vue-renderless/common/type'
+import { format } from '../common/date'
+import { copyArray, extend } from '../common/object'
+import { isObject } from '../common/type'
 
 export const lastStepHandle = ({ state, emit }) => () => {
   for (let i = 0; i < state.datas.length; i++) {

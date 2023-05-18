@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Exception from './src/index.vue'
+import Exception from './src/index'
 import '@opentiny/vue-theme-mobile/exception/index.less'
 import { version } from './package.json'
 

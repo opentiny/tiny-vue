@@ -1,0 +1,13 @@
+@import '../custom.less';
+
+@progress-prefix-cls: ~'@{css-prefix}progress';
+
+.progress-status(@color) {
+  .@{progress-prefix-cls}-bar__inner {
+    background-color: @color;
+  }
+
+  .@{progress-prefix-cls}__text svg {
+    fill: @color;
+  }
+}

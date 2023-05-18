@@ -10,7 +10,7 @@
 *
 */
 
-import { limitTimeRange, clearMilliseconds, timeWithinRange } from '@opentiny/vue-renderless/common/deps/date-util'
+import { limitTimeRange, clearMilliseconds, timeWithinRange } from '../common/deps/date-util'
 
 export const watchValue = ({ api, nextTick, state }) => (value) => {
   let date

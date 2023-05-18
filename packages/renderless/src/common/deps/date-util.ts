@@ -10,10 +10,10 @@
 *
 */
 
-import fecha from '@opentiny/vue-renderless/common/deps/date'
-import { isNull } from '@opentiny/vue-renderless/common/type'
-import { isLeapYear } from '@opentiny/vue-renderless/common/date'
-import { DATEPICKER } from '@opentiny/vue-renderless/common'
+import fecha from './date'
+import { isNull } from '../type'
+import { isLeapYear } from '../date'
+import { DATEPICKER } from '../index'
 
 const weeks = DATEPICKER.Weeks
 const months = DATEPICKER.MonhtList

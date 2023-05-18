@@ -10,7 +10,7 @@
 *
 */
 
-import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
+import PopupManager from '../common/deps/popup-manager'
 
 export const toolClick = (showMoreTools) => (cb) => {
   typeof cb === 'function' && cb()

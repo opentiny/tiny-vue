@@ -33,7 +33,8 @@ import {
   closeEvent,
   confirmEvent,
   cancelEvent,
-  open
+  open,
+  resetDragStyle
 } from './index'
 
 export const api = [
@@ -52,10 +53,11 @@ export const api = [
   'confirmEvent',
   'cancelEvent',
   'open',
-  'beforeUnmouted'
+  'beforeUnmouted',
+  'resetDragStyle'
 ]
 
-export const renderless = (props, { computed, onMounted, onBeforeUnmount, reactive, watch }, { refs, emit, emitter, nextTick, broadcast, vm: parent }) => {
+export const renderless = (props, { computed, onMounted, onBeforeUnmount, reactive, watch }, { refs, emit, emitter, nextTick, broadcast, vm: parent }, { isMobileFirstMode }) => {
   const api = {}
   const state = reactive({
     emitter: emitter(),
@@ -77,24 +79,25 @@ export const renderless = (props, { computed, onMounted, onBeforeUnmount, reacti
     getBox: getBox(refs),
     watchValue: watchValue(api),
     created: created({ api, props, state }),
-    mounted: mounted({ api, parent, props }),
-    beforeUnmouted: beforeUnmouted({ api, parent }),
+    mounted: mounted({ api, parent, props, isMobileFirstMode }),
+    beforeUnmouted: beforeUnmouted({ api, parent, isMobileFirstMode }),
     selfClickEvent: selfClickEvent({ api, parent, props }),
     updateZindex: updateZindex({ state, props }),
-    handleEvent: handleEvent({ api, emit, parent, props }),
+    handleEvent: handleEvent({ api, emit, parent, props, isMobileFirstMode }),
     closeEvent: closeEvent(api),
     confirmEvent: confirmEvent(api),
     cancelEvent: cancelEvent(api),
-    open: open({ api, emit, nextTick, parent, props, state }),
+    open: open({ api, emit, nextTick, parent, props, state, isMobileFirstMode }),
     addMsgQueue: addMsgQueue({ api, parent }),
     removeMsgQueue: removeMsgQueue({ api, parent }),
     close: close({ emit, parent, props, state }),
     handleGlobalKeydownEvent: handleGlobalKeydownEvent(api),
-    maximize: maximize({ api, nextTick, props, state }),
-    revert: revert({ api, nextTick, state }),
-    toggleZoomEvent: toggleZoomEvent({ api, emit, parent, state }),
-    mousedownEvent: mousedownEvent({ api, nextTick, props, state, emit }),
-    dragEvent: dragEvent({ api, emit, parent, props, state })
+    maximize: maximize({ api, nextTick, props, state, isMobileFirstMode }),
+    revert: revert({ api, nextTick, state, isMobileFirstMode }),
+    toggleZoomEvent: toggleZoomEvent({ api, emit, parent, state, isMobileFirstMode }),
+    mousedownEvent: mousedownEvent({ api, nextTick, props, state, emit, isMobileFirstMode }),
+    dragEvent: dragEvent({ api, emit, parent, props, state }),
+    resetDragStyle: resetDragStyle(api)
   })
 
   watch(() => props.modelValue, api.watchValue)

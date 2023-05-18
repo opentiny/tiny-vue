@@ -29,7 +29,11 @@ import {
   scrollNext,
   changeTab,
   setFocus,
-  removeFocus
+  removeFocus,
+  sortableEvent,
+  handleTabDragStart,
+  handleTabDragEnd,
+  watchCurrentName
 } from './index'
 
 export const api = [
@@ -48,7 +52,7 @@ export const api = [
   'swiperHandle'
 ]
 
-export const renderless = (props, { computed, inject, onBeforeUnmount, onMounted, onUpdated, reactive }, { parent, refs, mode: tinyMode }) => {
+export const renderless = (props, { computed, inject, onBeforeUnmount, onMounted, onUpdated, reactive, markRaw }, { parent, vm, nextTick, refs, mode: tinyMode, emit }) => {
   const api = { mounted, beforeUnmount, computedNavStyle, computedSizeName }
   const state = reactive({
     navOffset: 0,
@@ -81,7 +85,11 @@ export const renderless = (props, { computed, inject, onBeforeUnmount, onMounted
     visibilityChangeHandler: visibilityChangeHandler(state),
     scrollToActiveTab: scrollToActiveTab({ props, parent, refs, state }),
     scrollIntoView: scrollIntoView({ props, parent, refs, state }),
-    computedHeaderStyle: computedHeaderStyle({ refs, state })
+    computedHeaderStyle: computedHeaderStyle({ refs, state }),
+    watchCurrentName: watchCurrentName({ nextTick, vm, state }),
+    handleTabDragStart: handleTabDragStart({ state, vm, emit }),
+    handleTabDragEnd: handleTabDragEnd({ state, vm, nextTick }),
+    sortableEvent: sortableEvent({ api, props, state, vm, emit, markRaw })
   })
 
   Object.assign(api, { updated: updated({ api, props, refs, state }), changeTab: changeTab(api) })

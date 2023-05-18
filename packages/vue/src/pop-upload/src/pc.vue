@@ -99,7 +99,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import Alert from '@opentiny/vue-alert'
 import Button from '@opentiny/vue-button'
 import Modal from '@opentiny/vue-modal'

@@ -10,7 +10,7 @@
  *
  */
 import { $props, $setup, $prefix, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc'
+import template from 'virtual-template?pc|mobile-first'
 
 const $constants = {
   CHILD_NAME: $prefix + 'CarouselItem'
@@ -53,12 +53,22 @@ export default defineComponent({
     },
     type: {
       type: String,
-      validator: (value: string) => Boolean(!value || ~['card', 'vertical'].indexOf(value))
+      default: 'horizontal',
+      validator: (value: string) => Boolean(!value || ~['card', 'vertical', 'horizontal'].indexOf(value))
     },
     showTitle: {
       type: Boolean,
       default: false
-    }
+    },
+    aspectRatio: {
+      type: String,
+      default: '16:2'
+    },
+    indicatorStyle: {
+      type: String,
+      default: 'light',
+      validator: (value: string) => Boolean(!value || ~['light', 'dark'].indexOf(value))
+    },
   },
   setup(props, context) {
     return $setup({

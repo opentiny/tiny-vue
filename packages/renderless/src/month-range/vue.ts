@@ -26,7 +26,7 @@ import {
   handleShortcutClick,
   doPick
 } from './index'
-import { nextYear } from '@opentiny/vue-renderless/common/deps/date-util'
+import { nextYear } from '../common/deps/date-util'
 
 export const api = ['state', 'rightNextYear', 'rightPrevYear', 'handleRangePick', 'handleShortcutClick', 'handleChangeRange', 'leftPrevYear', 'leftNextYear']
 

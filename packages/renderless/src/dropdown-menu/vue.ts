@@ -10,24 +10,30 @@
 *
 */
 
-import { toggleItem, updateOffset, clickOutside, getScroller, useVuePopper } from './index'
+import { toggleItem, updateOffset, clickOutside, getScroller, useVuePopper, mounted, handleMenuItemClick, handleMouseenter, handleMouseleave } from './index'
 
-export const api = ['state', 'toggleItem', 'updateOffset', 'clickOutside', 'doDestroy']
+export const api = ['state', 'toggleItem', 'updateOffset', 'clickOutside', 'doDestroy', 'handleMouseenter', 'handleMouseleave']
 
 export const renderless = (props, hooks, instance) => {
   const api = {}
-  const { reactive, provide } = hooks
-  const { refs, nextTick, mode, vm } = instance
+  const { reactive, provide, onMounted } = hooks
+  const { nextTick, mode, vm, parent, dispatch, emit, refs} = instance
   const state = reactive({
     offset: 0,
     scroller: null,
     children: [],
     size: '',
-    showPopper: false
+    showPopper: false,
+    label: '',
+    showContent: false,
+    selected: false,
+    selectedIndex: -1
   })
 
+  provide('dropdownMenu', vm)
+  provide('multiStage', props.multiStage)
+
   if (mode === 'mobile') {
-    provide('dropdownMenu', vm)
     nextTick(() => {
       state.scroller = getScroller(refs.menu)
     })
@@ -39,8 +45,14 @@ export const renderless = (props, hooks, instance) => {
     state,
     toggleItem: toggleItem(state),
     clickOutside: clickOutside({ props, refs, state }),
-    updateOffset: updateOffset({ props, state, refs })
+    updateOffset: updateOffset({ props, state, refs }),
+    mounted: mounted({ api, parent, state }),
+    handleMouseenter: handleMouseenter({ emit }),
+    handleMouseleave: handleMouseleave({ emit }),
+    handleMenuItemClick: handleMenuItemClick({ dispatch, state })
   })
+
+  onMounted(api.mounted)
 
   return api
 }

@@ -10,55 +10,70 @@
  *
  -->
 <template>
-  <div :class="['tiny-steps', { 'is-horizontal': horizontal && !vertical }]">
+  <div :class="['tiny-steps', { 'is-horizontal': horizontal && !vertical, 'tiny-steps--mini': size === 'mini' }]">
     <div v-if="!vertical" class="tiny-steps-normal">
-      <div
-        v-for="(node, index) in state.nodes"
-        :key="index"
-        :style="{
-          width: horizontal ? 'auto' : space ? space + 'px' : 100 / state.nodes.length + '%'
-        }"
-        :class="['normal', getStatusCls(index)]"
-      >
-        <slot name="top" :slot-scope="{ index, ...node }">
-          <div class="date-time">
-            <span class="time">{{ getDate(node[timeField]).date }} {{ getDate(node[timeField]).time }}</span>
+      <template v-if="textPosition === 'right'">
+        <ul class="tiny-steps-right" ref="stepsRight">
+          <template v-for="(node, index) in state.nodes" :key="index">
+            <li v-if="index" :class="['step-line', { 'line-done': index <= state.current }]"></li>
+            <li :class="['normal step-content', getStatusCls(index, node)]">
+              <div class="icon step-icon" @click="handleClick({ index, node })">
+                <span v-if="index < state.current || node.error" :custom-title="index + start" class="icon-wrap">
+                  <icon-close v-if="node.error" class="tiny-svg-size fixicon" />
+                  <icon-yes v-else class="tiny-svg-size fixicon" />
+                </span>
+                <span v-else>{{ showNumber ? index + start : '' }}</span>
+              </div>
+
+              <div class="node-description step-text">
+                <slot name="text" :slot-scope="{ index, ...node }">
+                  <div class="name" v-text="node[nameField]"></div>
+                  <div class="status">
+                    {{ showStatus ? getStatus(index) : '' }}
+                  </div>
+                </slot>
+              </div>
+            </li>
+          </template>
+        </ul>
+      </template>
+      <template v-else>
+        <div v-for="(node, index) in state.nodes" :key="index" :style="{
+            width: horizontal ? 'auto' : space ? space + 'px' : 100 / state.nodes.length + '%'
+          }" :class="['normal', getStatusCls(index, node)]">
+          <div class="icon" @click="handleClick({ index, node })">
+            <span v-if="index < state.current || node.error" :custom-title="index + start" class="icon-wrap">
+              <icon-close v-if="node.error" class="tiny-svg-size fixicon" />
+              <icon-yes v-else class="tiny-svg-size fixicon" />
+            </span>
+            <span v-else>{{ showNumber ? index + start : '' }}</span>
+
           </div>
-        </slot>
-        <div class="icon" @click="handleClick({ index, node })">
-          <span v-if="index >= state.current">{{ showNumber ? index + start : '' }}</span>
-          <span v-else :custom-title="index + start" class="icon-wrap">
-            <icon-yes class="tiny-svg-size fixicon" />
-          </span>
-        </div>
-        <div
-          :class="[
+
+          <!-- 引导线 -->
+          <div :class="[
             'line',
             {
               'line-done': index < state.current,
               'line-end': index === state.nodes.length - 1
             }
-          ]"
-        ></div>
-        <div class="node-description">
-          <slot name="bottom" :slot-scope="{ index, ...node }">
-            <div class="name" v-text="node[nameField]"></div>
-            <div class="status">
-              {{ showStatus ? getStatus(index) : '' }}
-            </div>
-          </slot>
+          ]"></div>
+
+          <div class="node-description">
+            <slot name="bottom" :slot-scope="{ index, ...node }">
+              <div class="name" v-text="node[nameField]"></div>
+              <div class="status">
+                {{ showStatus ? getStatus(index) : '' }}
+              </div>
+            </slot>
+          </div>
         </div>
-      </div>
+      </template>
     </div>
     <div v-else :class="['tiny-steps-timeline', { reverse }]">
-      <div
-        v-for="(node, index) in state.nodes"
-        :key="index"
-        :style="{
+      <div v-for="(node, index) in state.nodes" :key="index" :style="{
           height: index === state.nodes.length - 1 ? '' : space ? space + 'px' : '88px'
-        }"
-        :class="['timeline', getStatusCls(index)]"
-      >
+        }" :class="['timeline', getStatusCls(index, node)]">
         <ul>
           <slot name="left" :slot-scope="{ index, ...node }">
             <li class="date-time">
@@ -66,15 +81,13 @@
               <span class="time">{{ getDate(node[timeField]).time }}</span>
             </li>
           </slot>
-          <li
-            :style="{
-              height: index === state.nodes.length - 1 ? '' : space ? space + 'px' : '88px'
-            }"
-            class="line"
-          >
+          <li :style="{
+            height: index === state.nodes.length - 1 ? '' : space ? space + 'px' : '88px'
+          }" class="line">
             <div class="icon" @click="handleClick({ index, node })">
               <icon-yes v-if="reverse ? index > state.current : index < state.current" class="tiny-svg-size" />
-              <span v-else>{{ showNumber ? (reverse ? state.nodes.length - 1 - index + start : index + start) : '' }}</span>
+              <span v-else>{{ showNumber ? (reverse ? state.nodes.length - 1 - index + start : index + start) : ''
+              }}</span>
             </div>
           </li>
           <slot name="right" :slot-scope="{ index, ...node }">
@@ -87,19 +100,35 @@
 </template>
 
 <script lang="tsx">
-import { renderless, api } from '@opentiny/vue-renderless/time-line/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { iconYes } from '@opentiny/vue-icon'
+import {
+  renderless,
+  api
+} from '@opentiny/vue-renderless/time-line/vue'
+import {
+  props,
+  setup,
+  defineComponent
+} from '@opentiny/vue-common'
+import {
+  iconYes,
+  iconClose
+} from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/steps/index.less'
 
 export default defineComponent({
   emits: ['click'],
-  props: [...props, 'vertical', 'horizontal', 'showNumber', 'nameField', 'timeField', 'start', 'data', 'space', 'active', 'reverse', 'showStatus'],
+  props: [...props, 'vertical', 'horizontal', 'showNumber', 'nameField', 'timeField', 'start', 'data', 'space', 'active', 'reverse', 'showStatus', 'size', 'textPosition'],
   components: {
-    IconYes: iconYes()
+    IconYes: iconYes(),
+    IconClose: iconClose()
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({
+      props,
+      context,
+      renderless,
+      api
+    })
   }
 })
 </script>

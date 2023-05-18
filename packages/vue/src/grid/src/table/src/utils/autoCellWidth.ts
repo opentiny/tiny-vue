@@ -23,6 +23,8 @@
  *
  */
 
+import { addClass } from '@opentiny/vue-renderless/common/deps/dom'
+
 // 自适应
 const adaptive = ({ autoArr, meanWidth, minCellWidth, tableWidth, fit, bodyWidth }) => {
   autoArr.forEach((column, index) => {
@@ -45,11 +47,11 @@ const adaptive = ({ autoArr, meanWidth, minCellWidth, tableWidth, fit, bodyWidth
   return tableWidth
 }
 
+// 计算每一列的渲染宽度：renderWidth
 const initTableWidth = ({ remainWidth, columnStore }) => {
   let tableWidth = 0
   let { resizeList: resizeArr, pxMinList: pxMinArr, pxList: pxArr } = columnStore
   let { scaleList: scaleArr, scaleMinList: scaleMinArr } = columnStore
-
   // 最小宽
   pxMinArr.forEach((column) => {
     let minWidth = parseInt(column.minWidth)
@@ -109,5 +111,37 @@ export const calcTableWidth = ({ bodyWidth, columnStore, fit, minCellWidth, rema
     meanWidth = minCellWidth
   }
 
+  // 自适应修补一些列的宽度
   return adaptive({ autoArr, meanWidth, minCellWidth, tableWidth, fit, bodyWidth })
+}
+
+const setLeftOrRightPosition = ({ columnList, direction, headerEl, bodyEl }) => {
+  const colLength = columnList.length
+  columnList.reduce((pos, column, index) => {
+    // 可能存在没有表头的情况，所以需要兼容处理下
+    const ths = headerEl?.querySelectorAll(`[data-colid=${column.id}]`) || []
+    const tds = bodyEl.querySelectorAll(`[data-colid=${column.id}]`)
+    const allFixed = [...Array.from(ths), ...Array.from(tds)]
+    const isLastLeftFixed = direction === 'left' && index === colLength - 1
+    const isFirstRightFixed = direction === 'right' && index === 0
+
+    allFixed.forEach(td => {
+      td.style[direction] = `${pos}px`
+      if (isLastLeftFixed) {
+        addClass(td, 'fixed-left-last__column')
+      }
+      if (isFirstRightFixed) {
+        addClass(td, 'fixed-right-first__column')
+      }
+    })
+    pos += column.renderWidth
+    return pos
+  }, 0)
+}
+
+export const calcFixedStickyPosition = ({ headerEl, bodyEl, columnStore }) => {
+  // 获取左侧和右侧冻结列
+  const { leftList, rightList } = columnStore
+  setLeftOrRightPosition({ columnList: leftList, direction: 'left', headerEl, bodyEl })
+  setLeftOrRightPosition({ columnList: rightList, direction: 'right', headerEl, bodyEl })
 }

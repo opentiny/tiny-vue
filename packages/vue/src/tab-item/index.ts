@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import TabItem from './src/index.vue'
+import TabItem from './src/index'
 import { version } from './package.json'
 
 /* istanbul ignore next */

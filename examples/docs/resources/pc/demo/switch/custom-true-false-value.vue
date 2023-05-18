@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-switch v-model="value" true-value="yes" false-value="no">
+    <tiny-switch v-model="value" true-value="yes" false-value="no" show-text>
       <template #open>
         <span>是</span>
       </template>

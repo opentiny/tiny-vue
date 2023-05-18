@@ -29,7 +29,7 @@ import {
   advanceTime,
   compuAmPmMode
 } from './index'
-import { parseDate } from '@opentiny/vue-renderless/common/deps/date-util'
+import { parseDate } from '../common/deps/date-util'
 
 export const api = ['state', 'handleMinChange', 'handleConfirm', 'setMinSelectionRange', 'handleCancel', 'setMaxSelectionRange', 'handleMaxChange']
 

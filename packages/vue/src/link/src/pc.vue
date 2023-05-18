@@ -11,7 +11,7 @@
  -->
 <template>
   <a
-    :class="['tiny-link', type ? `tiny-link--${type}` : '', state.disabled && 'is-disabled', underline && !state.disabled && 'is-underline']"
+    :class="['tiny-link', 'tiny-link--additional', type ? `tiny-link--${type}` : '', state.disabled && 'is-disabled', underline && !state.disabled && 'is-underline']"
     :href="state.disabled ? null : href"
     v-bind="a($attrs, ['^on[A-Z]'])"
     @click="handleClick"
@@ -26,7 +26,7 @@
   </a>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/link/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 

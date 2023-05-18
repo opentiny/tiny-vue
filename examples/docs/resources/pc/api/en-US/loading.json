@@ -15,6 +15,13 @@
       "defaultValue": "The default value of this attribute is true."
     },
     {
+      "name": "size",
+      "sample": "size",
+      "type": "String",
+      "desc": "Load icon size",
+      "defaultValue": "small"
+    },
+    {
       "name": "target",
       "sample": "target",
       "type": "Object/String",

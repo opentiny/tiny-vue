@@ -10,7 +10,7 @@
 *
 */
 
-import { extend } from '@opentiny/vue-renderless/common/object'
+import { extend } from '../common/object'
 
 export const getHrList = ({ api, props, state }) => (deptCode) => {
   state.loading = true
