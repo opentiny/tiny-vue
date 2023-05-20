@@ -10,8 +10,8 @@
 *
 */
 
-import { random } from '@opentiny/vue-renderless/common/string'
-import { itemLabel, itemContent } from '@opentiny/vue-renderless/chart-core/deps/constants'
+import { random } from '../common/string'
+import { itemLabel, itemContent } from '../chart-core/deps/constants'
 
 const isArr = Array.isArray
 

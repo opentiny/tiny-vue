@@ -11,7 +11,7 @@
  */
 import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 export default defineComponent({
   name: $prefix + 'Search',
@@ -73,6 +73,14 @@ export default defineComponent({
       type: String,
       default: 'primary',
       validator: (value: string) => ['primary', 'gray'].includes(value)
+    },
+    showButton: {
+      type: Boolean,
+      default: false
+    },
+    changeBgColor: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

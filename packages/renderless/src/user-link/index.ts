@@ -18,9 +18,13 @@ export const initUser = ({ api, props, state }) => (value) => {
 
   api.getUsers(value).then((info) => {
     // 按value排序
-    info.sort((a, b) => (value.indexOf(String(a[props.valueField])) > value.indexOf(String(b[props.valueField])) ? 1 : -1))
+    info.sort((a, b) => {
+      return value.indexOf(a[state.valueField] + '') > value.indexOf(b[state.valueField] + '') ? 1 : -1
+    })
 
-    const list = info.map((user) => user[props.valueField])
+    const list = info.map((user) => {
+      return user[state.valueField]
+    })
 
     state.options = info
     state.user = props.multiple ? list : list[0]
@@ -45,3 +49,7 @@ export const showCard = ({ api, service, state }) => (user) => {
 export const showDetail = (state) => () => {
   state.expand = !state.expand
 }
+
+export const computedTextField = ({ service, props }) => () => props.textField || service.textField || 'userCN'
+
+export const computedValueField = ({ service, props }) => () => props.valueField || service.valueField || 'userId'

@@ -10,11 +10,11 @@
 *
 */
 
-import { setSheetStyle, initScrollMenu, visibleHandle, watchVisible, menuHandle } from './index'
+import { setSheetStyle, initScrollMenu, visibleHandle, watchVisible, menuHandle, close, selectOption, confirm, actionSelectOption, hide } from './index'
 
-export const api = ['state', 'setSheetStyle', 'initScrollMenu', 'visibleHandle', 'menuHandle']
+export const api = ['state', 'setSheetStyle', 'initScrollMenu', 'visibleHandle', 'menuHandle', 'close', 'selectOption', 'confirm', 'actionSelectOption', 'hide']
 
-export const renderless = (props, { reactive, watch }, { emit, nextTick, refs }, { BScroll }) => {
+export const renderless = (props, { reactive, watch }, { emit, nextTick, refs, vm }, { BScroll }) => {
   const api = {}
   const state = reactive({
     toggle: false,
@@ -34,6 +34,8 @@ export const renderless = (props, { reactive, watch }, { emit, nextTick, refs },
     },
   )
 
+  watch(() => props.visible, api.watchVisible, { immediate: true })
+
   Object.assign(api, {
     state,
     setSheetStyle: setSheetStyle({ state, props }),
@@ -41,6 +43,11 @@ export const renderless = (props, { reactive, watch }, { emit, nextTick, refs },
     visibleHandle: visibleHandle({ emit, state }),
     watchVisible: watchVisible({ emit, props, state }),
     menuHandle: menuHandle({ state, emit }),
+    confirm: confirm({ state, emit }),
+    selectOption: selectOption({ emit, props }),
+    actionSelectOption: actionSelectOption({ emit }),
+    close: close({ emit, vm }),
+    hide: hide(emit)
   })
 
   return api

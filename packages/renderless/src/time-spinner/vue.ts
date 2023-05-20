@@ -29,7 +29,7 @@ import {
   handleClick,
   emitSelectRange
 } from './index'
-import { getRangeHours, getRangeMinutes } from '@opentiny/vue-renderless/common/deps/date-util'
+import { getRangeHours, getRangeMinutes } from '../common/deps/date-util'
 
 export const api = ['state', 'emitSelectRange', 'adjustCurrentSpinner', 'handleClick', 'decrease', 'increase', 'amPm', 'adjustSpinners']
 

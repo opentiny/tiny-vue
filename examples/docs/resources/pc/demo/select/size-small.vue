@@ -1,5 +1,5 @@
 <template>
-  <tiny-select v-model="value" placeholder="请选择" size="small">
+  <tiny-select v-model="value" placeholder="请选择" size="small" multiple>
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
 </template>

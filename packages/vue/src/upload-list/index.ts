@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import UploadList from './src/index.vue'
+import UploadList from './src/index'
 import { version } from './package.json'
 
 /* istanbul ignore next */

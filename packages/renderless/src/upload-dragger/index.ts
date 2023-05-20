@@ -62,3 +62,8 @@ export const onDrop = ({ emit, props, state }) => (event) => {
 
   emit('file', filteredFile)
 }
+
+
+export const watchDragover = ({ state, constants }) => () => {
+  state.uploader.$refs[constants.FILE_UPLOAD_INNER].$emit('drag-over', state.dragover)
+}

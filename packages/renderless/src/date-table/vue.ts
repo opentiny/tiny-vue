@@ -26,7 +26,7 @@ import {
   getCellRangeClasses,
   getCell
 } from './index'
-import { getStartDateOfMonth } from '@opentiny/vue-renderless/common/deps/date-util'
+import { getStartDateOfMonth } from '../common/deps/date-util'
 
 export const api = ['state', 'getCellClasses', 'isWeekActive', 'handleMouseMove', 'handleClick']
 

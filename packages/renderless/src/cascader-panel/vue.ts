@@ -34,8 +34,8 @@ import {
   syncMenuState,
   syncMultiCheckState
 } from './index'
-import { merge } from '@opentiny/vue-renderless/common/object'
-import { isEmpty } from '@opentiny/vue-renderless/cascader'
+import { merge } from '../common/object'
+import { isEmpty } from '../cascader'
 import Store from './store.js'
 
 export const api = [

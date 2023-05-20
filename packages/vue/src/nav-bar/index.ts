@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import NavBar from './src/index.vue'
+import NavBar from './src/mobile.vue'
 import '@opentiny/vue-theme-mobile/nav-bar/index.less'
 import { version } from './package.json'
 

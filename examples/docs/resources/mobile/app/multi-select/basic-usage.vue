@@ -245,4 +245,5 @@ export default {
 .page__content {
   width: 375px;
   height: 48px;
+  background-color: #fff;
 }</style>

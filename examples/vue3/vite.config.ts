@@ -2,9 +2,8 @@ import path from 'node:path'
 import { defineConfig, loadEnv } from 'vite'
 import { checker as checkerPlugin } from 'vite-plugin-checker'
 import dynamicImportPlugin from 'vite-plugin-dynamic-import'
-import importPlugin from 'vite-plugin-importus'
+import importPlugin from '@opentiny/vue-vite-import'
 import inspectPlugin from 'vite-plugin-inspect'
-import { viteStaticCopy as staticCopyPlugin } from 'vite-plugin-static-copy'
 
 import vue3Plugin from '@vitejs/plugin-vue'
 import vue3JsxPlugin from '@vitejs/plugin-vue-jsx'
@@ -34,22 +33,16 @@ export default defineConfig((config) => {
       vue3SvgPlugin(),
       importPlugin([
         {
-          libraryName: '@opentiny/vue',
-          customName: name => `@opentiny/vue-${name}`,
-          style: false,
+          libraryName: '@opentiny/vue'
         },
-        ...['icon', 'icon-saas'].map(lib => ({
-          libraryName: `@opentiny/vue-${lib}`,
-          customName: (name: string) => {
-            return name === 'default' ? `@opentiny/vue-${lib}$` : `@opentiny/vue-${lib}/${name.replace(/^icon-/, '')}`
-          },
-          style: false,
-        })),
+        {
+          libraryName: '@opentiny/vue-icon',
+          customName: (name) => {
+            return name === 'default' ? '@opentiny/vue-icon$' : `@opentiny/vue-icon/${name.replace(/^icon-/, '')}`
+          }
+        }
       ]),
       dynamicImportPlugin(),
-      staticCopyPlugin({
-        targets: [{ src: '../docs/public/*', dest: '' }],
-      }),
       Unocss({
         include: [/\.js$/, /\.ts$/, /\.vue$/, /\.html$/, /\.jsx$/, /\.tsx$/], // 增加js ,ts扫描
         presets: [],
@@ -59,7 +52,7 @@ export default defineConfig((config) => {
         safelist: [...Array.from({ length: 24 }, (_, i) => `c-rand${i + 1}`), ...Array.from({ length: 24 }, (_, i) => `bg-rand${i + 1}`)]
       }),
       inspectPlugin(),
-      checkerPlugin({ overlay: { initialIsOpen: false }, terminal: false, typescript: false, vueTsc: true }),
+      checkerPlugin({ overlay: { initialIsOpen: false }, terminal: false, typescript: false, vueTsc: false }),
     ],
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.vue'],
@@ -73,6 +66,7 @@ export default defineConfig((config) => {
     define: {
       'process.env': env,
     },
+    publicDir: '../public',
     optimizeDeps: getOptimizeDeps(3),
   }
 })

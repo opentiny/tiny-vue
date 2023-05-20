@@ -10,10 +10,12 @@
 *
 */
 
-.button-size(@font-size, @height) {
+.button-size(@font-size, @height, @padding, @minimal-width) {
   height: @height;
-  line-height: @height;
+  line-height: calc(@height - 2px);
   font-size: @font-size;
+  padding: 0 @padding;
+  min-width: @minimal-width;
 
   &.is-round {
     border-radius: calc(@height / 2);
@@ -39,17 +41,17 @@
   background-color: @background-color;
 }
 
-.button-type(@color, @normal-color, @hover-color, @active-color, @disabled-color, @disabled-bg-color, @plain-bg-color, @plain-dis-bg-color, @disabled-border-color: @disabled-bg-color) {
+.button-type(@color, @normal-bg-color, @normal-border-color,@hover-bg-color, @hover-border-color, @active-color, @disabled-color, @disabled-bg-color, @plain-text-color, @plain-hover-text-color, @plain-bg-color, @plain-hover-bg-color,@plain-border-color, @plain-hover-border-color, @plain-dis-bg-color, @disabled-border-color: @disabled-bg-color) {
   color: @color;
   fill: @color;
-  border-color: @normal-color;
-  background-color: @normal-color;
+  border-color: @normal-border-color;
+  background-color: @normal-bg-color;
 
   &:hover {
     color: @color;
     fill: @color;
-    border-color: @hover-color;
-    background-color: @hover-color;
+    border-color: @hover-border-color;
+    background-color: @hover-bg-color;
   }
 
   &:focus,
@@ -73,16 +75,16 @@
   }
 
   &.is-plain {
-    color: @normal-color;
-    fill: @normal-color;
-    border-color: @normal-color;
+    color: @plain-text-color;
+    fill: @plain-text-color;
+    border-color: @plain-border-color;
     background-color: @plain-bg-color;
 
     &:hover {
-      color: @color;
-      fill: @color;
-      border-color: @normal-color;
-      background-color: @normal-color;
+      color: @plain-hover-text-color;
+      fill: @plain-hover-text-color;
+      border-color:@plain-hover-border-color;
+      background-color: @plain-hover-bg-color;
     }
 
     &:focus,
@@ -107,14 +109,15 @@
   }
 }
 
-.button-text(@color, @hover-color, @active-color, @disabled-color) {
+.button-text(@color, @hover-bg-color, @active-color, @disabled-color, @hover-weight) {
   color: @color;
   font-size: var(--ti-common-font-size-1);
   border-color: transparent;
   background-color: transparent;
 
   &:hover {
-    color: @hover-color;
+    color: @hover-bg-color;
+    font-weight: @hover-weight;
     border-color: transparent;
     background-color: transparent;
   }
@@ -134,5 +137,6 @@
     color: @disabled-color;
     border-color: transparent;
     background-color: transparent;
+    font-weight: normal;
   }
 }

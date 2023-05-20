@@ -1,0 +1,42 @@
+@import '../custom.less';
+@import '../mixins/common.less';
+
+@text-popup-prefix-cls: ~'@{css-prefix}text-popup';
+
+.@{text-popup-prefix-cls} {
+  @apply inline-block;
+
+  &.show-auto-width {
+    @apply w-full;
+  }
+
+  .area {
+    @apply w-full;
+    @apply ~'py-1.5' px-4;
+    @apply rounded;
+    @apply outline-0;
+    @apply text-color-text-primary;
+    @apply text-sm;
+    .placeholder(@color: theme('colors.color.text.placeholder'));
+
+    &:hover {
+      @apply border-color-border-hover;
+    }
+
+    &:focus {
+      @apply border-color-border-focus;
+      @apply caret-color-brand;
+    }
+  }
+
+  .text {
+    @apply h-8;
+    @apply border border-solid border-color-border;
+    @apply leading-none;
+  }
+
+  .popup {
+    @apply resize-none;
+    @apply border border-solid border-color-border;
+  }
+}

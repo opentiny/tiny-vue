@@ -1,4 +1,4 @@
-import Locales from './src/index.vue'
+import Locales from './src/pc.vue'
 import '@opentiny/vue-theme/locales/index.less'
 import { version } from './package.json'
 

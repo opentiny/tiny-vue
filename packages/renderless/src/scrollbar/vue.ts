@@ -11,7 +11,7 @@
 */
 
 import { handleScroll, update } from './index'
-import { addResizeListener, removeResizeListener } from '@opentiny/vue-renderless/common/deps/resize-event'
+import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
 
 export const api = ['state', 'update', 'handleScroll']
 

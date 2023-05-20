@@ -10,11 +10,11 @@
 *
 */
 
-import { merge } from '@opentiny/vue-renderless/common/object'
-import { markNodeData, NODE_KEY } from '@opentiny/vue-renderless/common/deps/tree-model/util'
-import { indexOf } from '@opentiny/vue-renderless/common/array'
-import { hasOwn, typeOf } from '@opentiny/vue-renderless/common/type'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { merge } from '../../object'
+import { markNodeData, NODE_KEY } from './util'
+import { indexOf } from '../../array'
+import { hasOwn, typeOf } from '../../type'
+import debounce from '../debounce'
 
 const defaultChildrenKey = 'children'
 

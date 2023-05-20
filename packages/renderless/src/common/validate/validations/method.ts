@@ -12,7 +12,7 @@
 
 import rules from '../rules/index'
 import { isEmptyValue } from '../util'
-import { hasOwn } from '@opentiny/vue-renderless/common/type'
+import { hasOwn } from '../../type'
 
 export default function (rule, checkValue, callback, source, options) {
   const validate = rule.required || (!rule.required && hasOwn.call(source, rule.field))

@@ -1,15 +1,3 @@
-/**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
-
 import {
   initUser,
   handleBlur,
@@ -26,12 +14,19 @@ import {
   cacheUser,
   visibleChange,
   initService,
-  filter
+  filter,
+  computedTextField,
+  computedValueField,
+  syncCacheIds
 } from './index'
 
 export const api = ['state', 'handleBlur', 'searchMethod', 'userChange', 'visibleChange', 'useSortable', 'filter']
 
-export const renderless = (props, { reactive, watch }, { emit, nextTick, refs, service, constants, dispatch }) => {
+export const renderless = (
+  props,
+  { reactive, watch, computed, provide },
+  { emit, nextTick, vm, service, constants, dispatch }
+) => {
   const api = {}
   const $service = initService({ props, service })
 
@@ -47,7 +42,9 @@ export const renderless = (props, { reactive, watch }, { emit, nextTick, refs, s
     sortable: null,
     overflow: false,
     addevnet: false,
-    batch: props.batch === false ? false : props.batch || $service.batch
+    batch: props.batch === false ? false : props.batch || $service.batch,
+    textField: computed(() => api.computedTextField()),
+    valueField: computed(() => api.computedValueField())
   })
 
   Object.assign(api, {
@@ -63,18 +60,24 @@ export const renderless = (props, { reactive, watch }, { emit, nextTick, refs, s
     handleBlur: handleBlur({ constants, dispatch, state }),
     filter: filter({ props, state }),
     suggestUser: suggestUser(api),
-    cacheUser: cacheUser({ api, props, service: $service }),
+    cacheUser: cacheUser({ api, props, service: $service, state }),
     initUser: initUser({ api, props, state }),
     getUsers: getUsers({ api, props, state }),
     setSelected: setSelected({ api, props, state }),
     searchMethod: searchMethod({ api, props, state, emit }),
     userChange: userChange({ api, emit, props, state }),
-    useSortable: useSortable({ api, props, state, refs })
+    useSortable: useSortable({ api, props, state, vm }),
+    computedTextField: computedTextField({ service: $service, props }),
+    computedValueField: computedValueField({ service: $service, props }),
+    syncCacheIds: syncCacheIds({ props, state })
   })
 
   props.cache && api.updateCache()
 
   watch(() => props.modelValue, api.initUser, { immediate: true })
+
+  provide('showContent', props.showTips)
+  provide('tips-max-width', props.maxWidth)
 
   return api
 }

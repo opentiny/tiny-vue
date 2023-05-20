@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-drawer": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@better-scroll/core": "2.5.0"
   },

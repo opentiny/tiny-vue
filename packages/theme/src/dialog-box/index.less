@@ -18,10 +18,10 @@
 
 .@{dialog-box-prefix-cls} {
   position: absolute;
-  background: var(--ti-dialogbox-bg-color);
+  background: var(--ti-dialog-box-bg-color);
   border: 1px solid transparent;
-  border-radius: var(--ti-dialogbox-border-radius);
-  box-shadow: var(--ti-dialogbox-box-shadow);
+  border-radius: var(--ti-dialog-box-border-radius);
+  box-shadow: var(--ti-dialog-box-shadow);
   overflow: hidden;
 
   &__wrapper {
@@ -44,6 +44,7 @@
   }
 
   &.is-center {
+
     .@{dialog-box-prefix-cls}__header,
     .@{dialog-box-prefix-cls}__footer {
       text-align: center;
@@ -59,18 +60,18 @@
   }
 
   & &__header {
-    padding: var(--ti-dialogbox-head-padding-top) var(--ti-dialogbox-head-padding-horizontal) var(--ti-dialogbox-head-padding-bottom);
-    background: var(--ti-dialogbox-bg-color);
-    font-weight: var(--ti-dialogbox-head-title-font-weight);
+    padding: var(--ti-dialog-box-head-padding-top) var(--ti-dialog-box-head-padding-horizontal) var(--ti-dialog-box-head-padding-bottom);
+    background: var(--ti-dialog-box-bg-color);
+    font-weight: var(--ti-dialog-box-head-title-font-weight);
     display: flex;
     position: relative;
     justify-content: space-between;
     align-items: center;
 
     .@{dialog-box-prefix-cls}__title {
-      font-size: var(--ti-dialogbox-head-title-font-size);
-      color: var(--ti-dialogbox-head-title-text-color);
-      font-weight: var(--ti-dialogbox-head-title-font-weight);
+      font-size: var(--ti-dialog-box-head-title-font-size);
+      color: var(--ti-dialog-box-head-title-text-color);
+      font-weight: var(--ti-dialog-box-head-title-font-weight);
       flex: 1;
     }
 
@@ -80,18 +81,18 @@
       padding: 0;
       line-height: 1;
       position: absolute;
-      top: var(--ti-dialogbox-btn-position-top);
-      right: 20px;
+      top: calc(var(--ti-dialog-box-btn-position-top) - (var(--ti-dialog-box-btn-height) - var(--ti-dialog-box-close-icon-size)) / 2);
+      right: calc(var(--ti-dialog-box-btn-position-right) - (var(--ti-dialog-box-btn-width) - var(--ti-dialog-box-close-icon-size)) / 2);
       cursor: pointer;
-      height: 32px;
-      width: 32px;
+      height: var(--ti-dialog-box-btn-height);
+      width: var(--ti-dialog-box-btn-width);
 
       &:hover {
-        background-color: var(--ti-dialogbox-btn-background-color-hover);
-        border-radius: 4px;
+        background-color: var(--ti-dialog-box-btn-background-color-hover);
+        border-radius: var(--ti-dialog-box-btn-border-radius);
       }
 
-      & + .@{dialog-box-prefix-cls}__headerbtn {
+      &+.@{dialog-box-prefix-cls}__headerbtn {
         margin-left: 8px;
       }
 
@@ -100,11 +101,11 @@
       }
 
       .@{dialog-box-prefix-cls}__close {
-        fill: var(--ti-dialogbox-close-icon-color);
-        font-size: var(--ti-dialogbox-head-font-icon-size);
+        fill: var(--ti-dialog-box-close-icon-color);
+        font-size: var(--ti-dialog-box-close-icon-size);
 
         &:hover {
-          fill: var(--ti-dialogbox-close-icon-color-hover);
+          fill: var(--ti-dialog-box-close-icon-color-hover);
         }
       }
     }
@@ -112,10 +113,9 @@
 
   & &__body {
     text-align: left;
-    padding: var(--ti-dialogbox-box-body-padding-vertical) var(--ti-dialogbox-box-body-padding-horizontal);
-    margin-bottom: var(--ti-dialogbox-box-body-margin-bottom);
-    color: var(--ti-dialogbox-box-body-text-color);
-    font-size: var(--ti-dialogbox-box-body-font-size);
+    padding: var(--ti-dialog-box-body-padding-vertical) var(--ti-dialog-box-body-padding-horizontal);
+    color: var(--ti-dialog-box-body-text-color);
+    font-size: var(--ti-dialog-box-body-font-size);
     overflow: auto;
     max-height: 65vh;
 
@@ -123,7 +123,7 @@
       overflow: hidden;
     }
 
-    > span {
+    >span {
       max-height: 120px;
       overflow-y: auto;
     }
@@ -135,14 +135,52 @@
 
   & &__footer {
     text-align: inherit;
-    padding: 28px 32px 32px;
+    padding: var(--ti-dialog-box-footer-padding-vertical) var(--ti-dialog-box-footer-padding-horizontal) var(--ti-dialog-box-footer-margin-bottom);
     text-align: center;
     box-sizing: border-box;
+
+    .@{css-prefix}button {
+      min-width: var(--ti-dialog-box-footer-btn-min-width);
+    }
 
     .@{css-prefix}toolbar {
       .@{css-prefix}button {
         margin: 0 4px;
       }
+    }
+  }
+
+  // 抽屉
+  &.is-right-slide {
+    border-radius: var(--ti-dialog-box-drawer-radius);
+
+    .@{dialog-box-prefix-cls}__header,
+    .@{dialog-box-prefix-cls}__body,
+    .@{dialog-box-prefix-cls}__footer {
+      width: calc(100% - var(--ti-dialog-box-drawer-padding-left) - var(--ti-dialog-box-drawer-padding-right));
+      margin-left: var(--ti-dialog-box-drawer-padding-left);
+      margin-right: var(--ti-dialog-box-drawer-padding-right);
+    }
+
+    .@{dialog-box-prefix-cls}__header {
+      padding: var(--ti-dialog-box-drawer-header-padding-top) var(--ti-dialog-box-drawer-header-padding-right) var(--ti-dialog-box-drawer-header-padding-bottom) var(--ti-dialog-box-drawer-header-padding-left);
+      border-bottom: 1px solid var(--ti-dialog-box-drawer-divider-border-color);
+
+      &btn {
+        right: calc(var(--ti-dialog-box-btn-position-right) - var(--ti-dialog-box-drawer-padding-right) - (var(--ti-dialog-box-btn-width) - var(--ti-dialog-box-close-icon-size)) / 2);
+      }
+    }
+
+    .@{dialog-box-prefix-cls}__body {
+      padding: var(--ti-dialog-box-drawer-body-padding-top) var(--ti-dialog-box-drawer-body-padding-right) var(--ti-dialog-box-drawer-body-padding-bottom) var(--ti-dialog-box-drawer-body-padding-left);
+    }
+
+    .@{dialog-box-prefix-cls}__footer {
+      position: absolute;
+      bottom: 0;
+      padding: var(--ti-dialog-box-drawer-footer-padding-top) var(--ti-dialog-box-drawer-footer-padding-right) var(--ti-dialog-box-drawer-footer-padding-bottom) var(--ti-dialog-box-drawer-footer-padding-left);
+      border-top: 1px solid var(--ti-dialog-box-drawer-divider-border-color);
+      text-align: right;
     }
   }
 }

@@ -10,17 +10,19 @@
 *
 */
 
-import { create, getMessage } from './index'
+import { create, getMessage} from './index'
 
 export const api = ['state', 'create']
 
-export const renderless = (props, { computed, reactive }, { t, emit }) => {
+export const renderless = (props, { computed, reactive }, { t, emit }, { images }) => {
   const api = {
     create: create(emit),
     getMessage: getMessage({ props, t })
   }
 
   const state = reactive({
+    urlType: props.type,
+    images,
     message: computed(() => api.getMessage({ props, t }))
   })
 

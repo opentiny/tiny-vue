@@ -27,7 +27,7 @@
   </span>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { setup, props, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/popover/vue'
 import '@opentiny/vue-theme/popover/index.less'

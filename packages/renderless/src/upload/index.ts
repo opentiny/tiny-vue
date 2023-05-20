@@ -10,7 +10,7 @@
 *
 */
 
-import { KEY_CODE } from '@opentiny/vue-renderless/common'
+import { KEY_CODE } from '../common'
 
 export const isImage = (str) => str.includes('image')
 

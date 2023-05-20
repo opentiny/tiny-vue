@@ -11,16 +11,87 @@
 */
 
 .component-css-vars-numeric() {
-  --ti-numeric-input-width: 180px;
+  // 默认宽度
+  --ti-numeric-input-width: calc(var(--ti-common-space-base) * 45);
+  // 默认高度
+  --ti-numeric-input-normal-height: var(--ti-common-size-height-normal);
+  // 边框圆角
   --ti-numeric-input-border-radius: var(--ti-common-border-radius-normal);
-  --ti-numeric-input-normal-border-color: var(--ti-common-color-border);
-  --ti-numeric-input-normal-text-color: var(--ti-common-color-info-normal);
-  --ti-numeric-input-normal-bg-color: var(--ti-common-color-light);
-  --ti-numeric-input-normal-height: 28px;
+  // 边框默认色
+  --ti-numeric-input-normal-border-color: var(--ti-common-color-line-normal);
+  // 分隔线颜色
+  --ti-numeric-input-dividing-border-color: var(--ti-common-color-line-normal);
+  // 分割线高度
+  --ti-numeric-input-dividing-border-height: var(--ti-numeric-input-normal-height);
+  // 禁用时分割线display(hide)
+  --ti-numeric-input-dividing-border-display: 'block';
+  // 输入框字号
+  --ti-numeric-input-normal-font-size: var(--ti-common-font-size-base);
+  // 输入框字体色
+  --ti-numeric-input-normal-text-color: var(--ti-common-color-text-primary);
+  // 默认背景色
+  --ti-numeric-input-normal-bg-color: var(--ti-common-color-bg-white-normal);
+  // 按钮默认宽度
+  --ti-numeric-input-icon-width: calc(var(--ti-numeric-input-normal-height) - 1px);
+  // 悬浮边框色
   --ti-numeric-input-normal-active-border-color: var(--ti-common-color-border-hover);
+  // 提示占位符文本色
   --ti-numeric-input-placeholder-text-color: var(--ti-common-color-placeholder);
-  --ti-numeric-input-disabled-bg-color: var(--ti-common-color-bg-disabled);
-  --ti-numeric-input-icon-color-hover: var(--ti-common-color-border-hover);
+  // 按钮悬浮图标色
+  --ti-numeric-input-icon-color-hover: var(--ti-common-color-icon-normal);
+  // 按钮禁用图标色
   --ti-numeric-input-icon-color-disabled: var(--ti-common-color-icon-disabled);
+  // 聚焦时边框色
+  --ti-numeric-input-border-color-active: var(--ti-common-color-line-active);
+  // 图标大小
+  --ti-numeric-input-icon-size: var(--ti-common-font-size-1);
+
+  // 禁用文本色
+  --ti-numeric-input-disabled-text-color: var(--ti-common-color-text-disabled);
+  // 禁用背景色
+  --ti-numeric-input-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  // 禁用时边框色
   --ti-numeric-input-border-color-disabled: var(--ti-common-color-line-disabled);
+  // 按钮禁用时背景色
+  --ti-numeric-input-btn-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  // 按钮禁用时分隔线颜色
+  --ti-numeric-input-btn-border-color-disabled: var(--ti-common-color-line-disabled);
+
+  // medium尺寸宽度
+  --ti-numeric-input-width-medium: calc(var(--ti-common-space-10) * 27);
+  // medium尺寸高度
+  --ti-numeric-input-height-medium: var(--ti-common-size-height-medium);
+  // medium尺寸按钮宽度
+  --ti-numeric-input-icon-width-medium: var(--ti-numeric-input-height-medium);
+  // medium尺寸图标大小
+  --ti-numeric-input-icon-size-medium: var(--ti-common-font-size-2);
+
+  // small尺寸宽度
+  --ti-numeric-input-width-small: var(--ti-common-size-50x);
+  // small尺寸高度
+  --ti-numeric-input-height-small: var(--ti-common-size-9x);
+  // small尺寸按钮宽度
+  --ti-numeric-input-icon-width-small: var(--ti-numeric-input-height-small);
+  // small尺寸图标大小
+  --ti-numeric-input-icon-size-small: var(--ti-common-font-size-1);
+
+  // mini尺寸宽度
+  --ti-numeric-input-width-mini: calc(var(--ti-common-space-10) * 13);
+  // mini尺寸高度
+  --ti-numeric-input-height-mini: var(--ti-common-size-6x);
+  // mini尺寸按钮宽度
+  --ti-numeric-input-icon-width-mini: var(--ti-numeric-input-height-mini);
+  // mini尺寸图标大小
+  --ti-numeric-input-icon-size-mini: var(--ti-common-font-size-base);
+
+  // 单位内容宽度
+  --ti-numeric-input-unit-width: calc(var(--ti-common-space-10) * 5);
+  // 单位字体色
+  --ti-numeric-input-unit-text-color: var(--ti-common-color-text-secondary);
+  // 单位字号
+  --ti-numeric-input-unit-font-size: var(--ti-common-font-size-base);
+  // 单位左边框颜色
+  --ti-numeric-input-unit-border-left-color: var(--ti-common-color-line-dividing);
+  // 单位背景色
+  --ti-numeric-input-unit-bg-color: var(--ti-common-color-bg-gray);
 }

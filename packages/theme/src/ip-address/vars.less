@@ -11,15 +11,45 @@
 */
 
 .component-css-vars-ip-address() {
-  --ti-ip-address-normal-height: var(--ti-common-size-height-normal);
+  // IP地址输入框高度
+  --ti-ip-address-normal-height: var(--ti-common-size-7x);
+  // IP地址输入框宽度
+  --ti-ip-address-normal-width: calc(var(--ti-common-size-base) * 40);
+  // IP地址输入框IPv6 类型垂直内边距
+  --ti-ip-address-only-child-padding-vertical: var(--ti-common-space-0);
+  // IP地址输入框IPv6 类型水平内边距
+  --ti-ip-address-only-child-padding-horizontal: var(--ti-common-space-2x);
+  // IP地址输入框默认文本色
   --ti-ip-address-normal-text-color: var(--ti-common-color-info-normal);
+  // IP地址输入框图标文本色
   --ti-ip-address-icon-color: var(--ti-common-color-info-normal);
-  --ti-ip-address-normal-disabled-text-color: var(--ti-common-color-placeholder);
+  // IP地址输入框图标宽度
+  --ti-ip-address-icon-width: calc(var(--ti-common-size-base) * 2.5);
+  // IP地址输入框图标高度
+  --ti-ip-address-icon-height: var(--ti-ip-address-icon-width);
+  // IP地址输入框禁用文本色
+  --ti-ip-address-normal-disabled-text-color: var(--ti-common-color-text-disabled);
+  // IP地址输入框默认边框色
   --ti-ip-address-normal-border-color: var(--ti-common-color-border);
+  // IP地址输入框默认背景色
   --ti-ip-address-normal-bg-color: var(--ti-common-color-light);
+  // IP地址输入框圆角
   --ti-ip-address-border-radius: var(--ti-common-border-radius-normal);
+  // IP地址输入框字号
   --ti-ip-address-font-size: var(--ti-common-font-size-base);
-  --ti-ip-address-border-color-hover: var(--ti-base-color-brand-6);
+  // IP地址输入框字族
+  --ti-ip-address-normal-font-family: var(--ti-common-font-family);
+  // IP地址输入框行高
+  --ti-ip-address-line-height: var(--ti-common-line-height-2);
+  // IP地址输入框聚焦边框色
+  --ti-ip-address-border-color-focus: var(--ti-common-color-line-active);
+  // IP地址输入框悬浮边框色
+  --ti-ip-address-border-color-hover: var(--ti-common-color-line-hover);
+  // IP地址输入框禁用背景色
   --ti-ip-address-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  // IP地址输入框禁用边框色
   --ti-ip-address-disabled-border-color: var(--ti-common-color-line-disabled);
+  // Ip地址输入框item宽度
+  --ti-ip-address-input-width: var(--ti-common-size-8x);
+
 }

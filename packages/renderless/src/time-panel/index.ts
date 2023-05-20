@@ -10,8 +10,8 @@
 *
 */
 
-import scrollIntoView from '@opentiny/vue-renderless/common/deps/scroll-into-view'
-import { DATEPICKER } from '@opentiny/vue-renderless/common'
+import scrollIntoView from '../common/deps/scroll-into-view'
+import { DATEPICKER } from '../common'
 
 export const parseTime = () => (time) => {
   const values = (time || '').split(':')

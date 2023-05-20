@@ -64,6 +64,13 @@
       "type": "",
       "desc": "Default search type slot",
       "defaultValue": ""
+    },
+    {
+      "name": "prefix",
+      "sample": "slot-prefix",
+      "type": "",
+      "desc": "Left slot",
+      "defaultValue": ""
     }
   ],
   "events": [

@@ -75,7 +75,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/link-menu/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconSetting } from '@opentiny/vue-icon'

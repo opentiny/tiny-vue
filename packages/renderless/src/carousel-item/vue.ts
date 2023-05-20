@@ -10,7 +10,7 @@
 *
 */
 
-import { processIndex, calculateTranslate, translateItem, handleItemClick, computedTransform } from './index'
+import { processIndex, calculateTranslate, translateItem, handleItemClick, computedTransform, resetAnimatingMf, setDelta } from './index'
 
 export const api = [
   'state',
@@ -27,7 +27,9 @@ export const api = [
   'processIndex',
   'calculateTranslate',
   'translateItem',
-  'handleItemClick'
+  'handleItemClick',
+  'resetAnimatingMf',
+  'setDelta'
 ]
 
 export const renderless = (props, { computed, onMounted, onUnmounted, reactive }, { parent, dispatch }) => {
@@ -55,7 +57,9 @@ export const renderless = (props, { computed, onMounted, onUnmounted, reactive }
     handleItemClick: handleItemClick(parent),
     computedTransform: computedTransform({ parent, TYPE_VERTICAL }),
     calculateTranslate: calculateTranslate({ CARD_SCALE, state }),
-    translateItem: translateItem({ api, CARD_SCALE, parent, state })
+    translateItem: translateItem({ api, CARD_SCALE, parent, state }),
+    setDelta: setDelta({ state }),
+    resetAnimatingMf: resetAnimatingMf(state)
   })
 
   onMounted(() => {

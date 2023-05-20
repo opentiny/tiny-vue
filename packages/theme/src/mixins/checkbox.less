@@ -39,14 +39,14 @@
   }
 }
 
-.checkbox-input-disabled(@color, @bgcolor, @border-color) {
+.checkbox-input-disabled(@bg-color, @border-color, @bg-color-checked, @border-color-checked, @label-color, @icon-color) {
   .@{checkbox-prefix-cls}__inner {
-    background-color: @bgcolor;
+    background-color: @bg-color;
     border-color: @border-color;
     cursor: not-allowed;
 
     svg {
-      fill: @border-color;
+      fill: @icon-color;
     }
 
     & + .@{checkbox-prefix-cls}__label {
@@ -56,28 +56,28 @@
   &.is-checked {
     .@{checkbox-prefix-cls}__inner,
     .@{checkbox-prefix-cls}__inner:hover {
-      background-color: @color;
-      border-color: @color;
+      background-color: @bg-color-checked;
+      border-color: @border-color-checked;
 
       &::after {
-        border-color: @bgcolor;
+        border-color: @icon-color;
       }
     }
   }
   &.is-indeterminate {
     .@{checkbox-prefix-cls}__inner,
     .@{checkbox-prefix-cls}__inner:hover {
-      background-color: @color;
-      border-color: @color;
+      background-color: @bg-color-checked;
+      border-color: @border-color-checked;
 
       &::before {
-        background-color: @bgcolor;
-        border-color: @bgcolor;
+        background-color: @icon-color;
+        border-color: @icon-color;
       }
     }
   }
   & + span.@{checkbox-prefix-cls}__label {
-    color: @color;
+    color: @label-color;
     cursor: not-allowed;
   }
 }

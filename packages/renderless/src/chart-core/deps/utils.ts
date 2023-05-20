@@ -10,16 +10,16 @@
  *
  */
 
-import { extend, copyArray } from '@opentiny/vue-renderless/common/object'
-import { isObject, typeOf as getType, isNull } from '@opentiny/vue-renderless/common/type'
-import _debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { extend, copyArray } from '../../common/object'
+import { isObject, typeOf as getType, isNull } from '../../common/type'
+import _debounce from '../../common/deps/debounce'
 import _numerify from './numerify'
-import { escapeHtml } from '@opentiny/vue-renderless/common/string'
-import { xss } from '@opentiny/vue-renderless/common'
+import { escapeHtml } from '../../common/string'
+import { xss } from '../../common'
 
-export { setObj as set, getObj as get, isEqual } from '@opentiny/vue-renderless/common/object'
+export { setObj as set, getObj as get, isEqual } from '../../common/object'
 
-export { typeOf as getType, isObject } from '@opentiny/vue-renderless/common/type'
+export { typeOf as getType, isObject } from '../../common/type'
 
 export const debounce = (callback, delay) => _debounce(delay, false, callback)
 

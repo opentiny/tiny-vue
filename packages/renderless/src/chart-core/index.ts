@@ -10,7 +10,7 @@
 *
 */
 
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
+import { on, off } from '../common/deps/dom'
 import { DEFAULT_COLORS, DEFAULT_THEME, STATIC_PROPS, ECHARTS_SETTINGS, SAAS_DEFAULT_COLORS_10, SAAS_DEFAULT_COLORS_18, DEFAULT_CONFIG } from './deps/constants'
 import { getType, debounce, isObject, cloneDeep, isEqual, htmlHandler } from './deps/utils'
 import setAnimation from './modules/animation'
@@ -280,7 +280,7 @@ export const init = ({ state, props, api, refs, echartsLib, markRaw }) => () => 
   }
 
   const themeName = props.themeName || props.theme || DEFAULT_THEME
-  state.echarts = markRaw(echartsLib.init(refs.canvas, themeName, { ...themeName, ...ictThemeName }, props.initOptions))
+  state.echarts = markRaw(echartsLib.init(refs.canvas, { ...themeName, ...ictThemeName }, props.initOptions))
 
   if (props.data) {
     api.changeHandler()

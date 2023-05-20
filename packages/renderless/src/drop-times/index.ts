@@ -10,7 +10,7 @@
 *
 */
 
-import { format } from '@opentiny/vue-renderless/common/date'
+import { format } from '../common/date'
 
 export const init = ({ state, props }) => () => {
   let list = []

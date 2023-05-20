@@ -84,10 +84,10 @@ import {
   computeMultipleLimit,
   resetFilter
 } from './index'
-import { BROWSER_NAME } from '@opentiny/vue-renderless/common'
-import browserInfo from '@opentiny/vue-renderless/common/browser'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import { isNumber, isNull } from '@opentiny/vue-renderless/common/type'
+import { BROWSER_NAME } from '../common'
+import browserInfo from '../common/browser'
+import debounce from '../common/deps/debounce'
+import { isNumber, isNull } from '../common/type'
 
 export const api = [
   'state',
@@ -184,7 +184,9 @@ const initStateAdd = ({ computed, props, api, parent, emitter }) => ({
   formItemSize: computed(() => (parent.formItem || {}).formItemSize),
   selectDisabled: computed(() => props.disabled || (parent.form || {}).disabled),
   gridCheckedData: computed(() => api.getcheckedData()),
-  isExpandAll: computed(() => (props.treeOp && props.treeOp.defaultExpandAll !== undefined ? props.treeOp.defaultExpandAll : true)),
+  isExpandAll: computed(() =>
+    props.treeOp && props.treeOp.defaultExpandAll !== undefined ? props.treeOp.defaultExpandAll : true
+  ),
   searchSingleCopy: computed(() => props.allowCopy && !props.multiple && props.filterable),
   filterOrSearch: computed(() => props.filterable || props.searchable)
 })
@@ -219,10 +221,14 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants 
         props.clearable &&
         !state.selectDisabled &&
         state.inputHovering &&
-        (props.multiple ? Array.isArray(props.modelValue) && props.modelValue.length > 0 : !isNull(props.modelValue) && props.modelValue !== '')
+        (props.multiple
+          ? Array.isArray(props.modelValue) && props.modelValue.length > 0
+          : !isNull(props.modelValue) && props.modelValue !== '')
     ),
-    optionsAllDisabled: computed(() => state.options.filter((option) => option.visible).every((option) => option.disabled)),
-    collapseTagSize: computed(() => (~['small', 'mini'].indexOf(state.selectSize) ? 'mini' : 'small')),
+    optionsAllDisabled: computed(() =>
+      state.options.filter((option) => option.visible).every((option) => option.disabled)
+    ),
+    collapseTagSize: computed(() => state.selectSize),
     showNewOption: computed(
       () =>
         props.filterable &&
@@ -234,7 +240,9 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants 
     optimizeOpts: computed(() => api.computeOptimizeOpts()),
     optimizeStore: { flag: false, valueIndex: 0, startIndex: 0, viewStyle: '', datas: [] },
     collapseTags: computed(() => api.computeCollapseTags()),
-    multipleLimit: computed(() => api.computeMultipleLimit())
+    multipleLimit: computed(() => api.computeMultipleLimit()),
+    isSelectAll: computed(() => state.selectCls === 'checked-sur'),
+    isHalfSelect: computed(() => state.selectCls === 'halfselect')
   })
 
   return state

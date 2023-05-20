@@ -23,7 +23,7 @@
  *
  */
 
-import { isDate, isRegExp } from '@opentiny/vue-renderless/common/type'
+import { isDate, isRegExp } from '../../../common/type'
 import isNumber from './isNumber'
 import isString from './isString'
 import isBoolean from './isBoolean'

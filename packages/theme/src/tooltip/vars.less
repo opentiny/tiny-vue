@@ -11,31 +11,73 @@
 */
 
 .component-css-vars-tooltip() {
+  // 弹框箭头的尺寸,(hide)
+  --ti-tooltip-popper-border-width: 6px;
+  // 弹框箭头的负尺寸,用于偏移(hide)
+  --ti-tooltip-popper-neg-border-width: calc(var(--ti-tooltip-popper-border-width) * -1);
+  // 弹框字体行高(hide)
+  --ti-tooltip-popper-font-line-height: var(--ti-common-line-height-3);
+  // 弹框字体(hide)
+  --ti-tooltip-popper-font-family: var(--ti-common-font-family);
+  // 悬浮弹出框圆角
   --ti-tooltip-popper-border-radius: var(--ti-common-border-radius-1);
+  // 悬浮弹出框字号
   --ti-tooltip-popper-font-size: var(--ti-common-font-size-base);
-  --ti-tooltip-popper-border-color: var(--ti-base-color-common-6);
-  --ti-tooltip-popper-normal-bg-color: var(--ti-common-color-secondary);
-  --ti-tooltip-popper-normal-text-color: var(--ti-common-color-light);
-  --ti-tooltip-popper-normal-border-color: var(--ti-common-color-secondary);
-  --ti-tooltip-popper-info-bg-color: #69c0ff;
+  // 弹框三角默认边框色
+  --ti-tooltip-popper-border-color: var(--ti-common-color-bg-dark-deep);
+  // 正常背景色 (hide)
+  --ti-tooltip-popper-normal-bg-color: var(--ti-common-color-bg-dark-deep);
+  // 文字提示正常文本色(hide)
+  --ti-tooltip-popper-normal-text-color: var(--ti-tooltip-popper-dark-text-color);
+  // 弹框正常边框色 (hide)
+  --ti-tooltip-popper-normal-border-color: var(--ti-common-color-bg-dark-deep);
+
+  // info类型弹框背景色
+  --ti-tooltip-popper-info-bg-color:  var(--ti-common-color-prompt-border);
+  // info类型弹框文本色
   --ti-tooltip-popper-info-text-color: var(--ti-common-color-light);
-  --ti-tooltip-popper-info-border-color: #69c0ff;
-  --ti-tooltip-popper-error-bg-color: var(--ti-base-color-common-6);
+  // info类型弹框三角边框色
+  --ti-tooltip-popper-info-border-color:  var(--ti-common-color-prompt-border);
+
+  // error类型弹框背景色
+  --ti-tooltip-popper-error-bg-color: var(--ti-common-color-bg-dark-deep);
+  // error类型弹框文本色
   --ti-tooltip-popper-error-text-color: var(--ti-common-color-light);
-  --ti-tooltip-popper-error-border-color: var(--ti-base-color-common-6);
-  --ti-tooltip-popper-warning-bg-color: #ffd666;
+  // error类型弹框三角边框色
+  --ti-tooltip-popper-error-border-color: var(--ti-common-color-bg-dark-deep);
+
+  // warning类型弹框背景色
+  --ti-tooltip-popper-warning-bg-color: var(--ti-common-color-warning-normal);
+  // warning类型弹框文本色
   --ti-tooltip-popper-warning-text-color: var(--ti-common-color-light);
-  --ti-tooltip-popper-warning-border-color: #ffd666;
-  --ti-tooltip-popper-success-bg-color: #95de64;
+  // warning类型弹框三角边框色
+  --ti-tooltip-popper-warning-border-color:var(--ti-common-color-warning-normal);
+
+  // success类型弹框背景色
+  --ti-tooltip-popper-success-bg-color: var(--ti-common-color-success-normal);
+  // success类型弹框文本色
   --ti-tooltip-popper-success-text-color: var(--ti-common-color-light);
-  --ti-tooltip-popper-success-border-color: #95de64;
-  --ti-tooltip-popper-dark-bg-color: var(--ti-base-color-common-6);
+  // success类型弹框三角边框色
+  --ti-tooltip-popper-success-border-color: var(--ti-common-color-success-normal);
+
+  // dark主题弹框背景色
+  --ti-tooltip-popper-dark-bg-color: var(--ti-common-color-bg-dark-deep);
+  // dark主题弹框文本色
   --ti-tooltip-popper-dark-text-color: var(--ti-common-color-light);
+  // light主题弹框背景色
   --ti-tooltip-popper-light-bg-color: var(--ti-common-color-light);
-  --ti-tooltip-popper-light-text-color: var(--ti-base-color-common-6);
-  --ti-tooltip-popper-light-border-color: var(--ti-base-color-common-6);
-  --ti-tooltip-box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
-  --ti-tooltip-padding-vertical: 11px;
-  --ti-tooltip-padding-horizontal: 15px;
-  --ti-tooltip-validate-icon-color: var(--ti-base-color-error-3);
+
+  // light主题|禁用弹框文本色
+  --ti-tooltip-popper-light-text-color: var(--ti-common-color-bg-dark-deep);
+  // light主题|禁用时弹框边框色
+  --ti-tooltip-popper-light-border-color: var(--ti-common-color-bg-dark-deep);
+
+  // 弹框阴影
+  --ti-tooltip-box-shadow:var(--ti-common-shadow-3-down);
+  // 弹框垂直内边距
+  --ti-tooltip-padding-vertical:var(--ti-common-space-3x);
+  // 弹框水平内边距
+  --ti-tooltip-padding-horizontal: var(--ti-common-space-4x);
+  // 文字提示错误图标色
+  --ti-tooltip-validate-icon-color: var(--ti-common-color-error);
 }

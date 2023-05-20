@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Tooltip from './src/index.vue'
+import Tooltip from './src/index'
 import '@opentiny/vue-theme/tooltip/index.less'
 import { version } from './package.json'
 

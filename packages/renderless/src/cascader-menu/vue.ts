@@ -11,8 +11,8 @@
 */
 
 import { handleExpand, handleMouseMove, clearHoverZone } from './index'
-import { CASCADER } from '@opentiny/vue-renderless/common'
-import { random } from '@opentiny/vue-renderless/common/string'
+import { CASCADER } from '../common'
+import { random } from '../common/string'
 
 export const api = ['state', 'handleMouseMove', 'handleExpand']
 

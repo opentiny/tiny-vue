@@ -10,7 +10,7 @@
 *
 */
 
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
+import { on, off } from './dom'
 
 /**
  * v-number-only

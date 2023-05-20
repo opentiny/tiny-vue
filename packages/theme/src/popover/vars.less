@@ -11,19 +11,40 @@
 */
 
 .component-css-vars-popover() {
+  // 弹框字体
+  --ti-popover-font-family: var(--ti-common-font-family);
+  // 弹框背景色
   --ti-popover-bg-color: var(--ti-common-color-light);
-  --ti-popover-text-color: #606266;
-  --ti-popover-border-color: #d9d9d9;
+  // 弹框内容文本色
+  --ti-popover-text-color: var(--ti-common-color-text-secondary);
+  // 弹框边框色
+  --ti-popover-border-color: var(--ti-common-color-line-dividing);
+  // 弹框圆角
   --ti-popover-border-radius: var(--ti-common-border-radius-1);
+  // 弹框内容字号
   --ti-popover-font-size: var(--ti-common-font-size-1);
-  --ti-popover-title-text-color: #303133;
+  // 弹框内容行高
+  --ti-popover-line-height: 1.4;
+  // 弹框标题文本色
+  --ti-popover-title-text-color: var(--ti-common-color-text-primary);
+  // 弹框标题字号
   --ti-popover-title-font-size: var(--ti-common-font-size-2);
-  --ti-popover-arrow-border-width: 6px;
+  // 弹出框小箭头边框厚度
+  --ti-popover-arrow-border-width: calc(var(--ti-common-border-weight-2) * 2);
+  // 弹出框小箭头高度
+  --ti-popover-arrow-height: var(--ti-popover-arrow-border-width);
+  // 弹出框垂直外边距
   --ti-popover-placement-margin-vertical: var(--ti-common-space-3x);
+  // 弹出框小箭头水平外边距(hide)
   --ti-popover-placement-margin-horizontal: var(--ti-common-space-3x);
+  // 弹框小箭头填充色
   --ti-popover-placement-arrow-after-border-color: var(--ti-common-color-light);
-  --ti-popover-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  --ti-popover-arrow-border-color: var(--ti-popover-border-color);
-  --ti-popover-padding-vertical: 11px;
-  --ti-popover-padding-horizontal: 15px;
+  // 弹框阴影
+  --ti-popover-box-shadow: var(--ti-common-shadow-1-down);
+  // 弹框小箭头边框色
+  --ti-popover-arrow-border-color: var(--ti-common-color-line-dividing);
+  // 弹框垂直内边距
+  --ti-popover-padding-vertical: var(--ti-common-space-3x);
+  // 弹框水平内边距
+  --ti-popover-padding-horizontal: var(--ti-common-space-4x);
 }

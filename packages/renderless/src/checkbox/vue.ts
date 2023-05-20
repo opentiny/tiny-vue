@@ -23,12 +23,16 @@ import {
   computedFormItemSize,
   computedCheckboxSize,
   mounted,
-  toggleEvent
+  toggleEvent,
+  dispatchDisplayedValue,
+  getDisplayedValue,
+  computedIsDisplayOnly,
+  computedIsGroupDisplayOnly
 } from './index'
 
 export const api = ['state', 'handleChange']
 
-export const renderless = (props, { computed, onMounted, onBeforeUnmount, reactive, watch, inject }, { parent, emit, constants, nextTick, dispatch }) => {
+export const renderless = (props, { computed, onMounted, onBeforeUnmount, reactive, watch, inject }, {vm, parent, emit, constants, nextTick, dispatch }) => {
   parent.tinyForm = parent.tinyForm || inject('form', null)
   const api = { dispatch }
   const state = reactive({
@@ -40,6 +44,9 @@ export const renderless = (props, { computed, onMounted, onBeforeUnmount, reacti
     checkboxSize: computed(() => api.computedCheckboxSize()),
     isLimitDisabled: computed(() => api.computedIsLimitDisabled()),
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
+    formDisplayOnly: computed(() => (parent.tinyForm || {}).displayOnly),
+    isDisplayOnly: computed(() => api.computedIsDisplayOnly()),
+    isGroupDisplayOnly: computed(() => api.computedIsGroupDisplayOnly()),
     model: computed({ get: () => api.computedGetModelGet(), set: (value) => api.computedGetModelSet(value) })
   })
   Object.assign(api, {
@@ -50,6 +57,8 @@ export const renderless = (props, { computed, onMounted, onBeforeUnmount, reacti
     computedIsChecked: computedIsChecked({ state, props }),
     computedIsLimitDisabled: computedIsLimitDisabled(state),
     computedIsDisabled: computedIsDisabled({ state, props }),
+    computedIsDisplayOnly: computedIsDisplayOnly({ state, props }),
+    computedIsGroupDisplayOnly: computedIsGroupDisplayOnly({ state }),
     computedGetModelGet: computedGetModelGet({ state, props }),
     computedIsGroup: computedIsGroup({ state, parent, constants }),
     computedGetModelSet: computedGetModelSet({ state, dispatch, emit, constants })
@@ -58,13 +67,17 @@ export const renderless = (props, { computed, onMounted, onBeforeUnmount, reacti
   api.computedCheckboxSize = computedCheckboxSize({ state, props, formItemSize })
   Object.assign(api, {
     mounted: mounted({ emit, props, api, parent }),
-    handleChange: handleChange({ state, props, emit, nextTick, dispatch: api.dispatch, constants })
+    handleChange: handleChange({ state, props, emit, nextTick, dispatch: api.dispatch, constants }),
+    dispatchDisplayedValue: dispatchDisplayedValue({ state, api, dispatch }),
+    getDisplayedValue: getDisplayedValue({ state, props, vm })
   })
 
   watch(
     () => props.modelValue,
     (value) => props.validateEvent && api.dispatch(constants.FORM_ITEM, constants.FORM_CHANGE, value)
   )
+
+  watch(() => state.isDisplayOnly, api.dispatchDisplayedValue)
 
   onBeforeUnmount(() => {
     toggleEvent({ parent, props, type: 'remove' })
@@ -73,6 +86,7 @@ export const renderless = (props, { computed, onMounted, onBeforeUnmount, reacti
   onMounted(() => {
     dispatch('Tooltip', 'tooltip-update')
     toggleEvent({ parent, props, type: 'add' })
+    api.dispatchDisplayedValue()
     api.mounted()
   })
 

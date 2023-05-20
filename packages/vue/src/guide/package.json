@@ -1,0 +1,16 @@
+{
+  "name": "@opentiny/vue-guide",
+  "version": "5.0.0-mf.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "shepherd.js": "11.0.1"
+  },
+  "peerDependencies": {
+    "@floating-ui/dom": "^1.0.10"
+  },
+  "license": "MIT"
+}

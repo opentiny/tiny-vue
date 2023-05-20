@@ -36,12 +36,11 @@ type ModeType = 'pc' | 'mobile' | undefined
 
 export default function vitePluginBabelImport(
   plgOptions: PluginOptions,
-  mode: ModeType
+  mode?: ModeType
 ): Plugin {
   return {
     name: '@opentiny/vue-vite-import',
     transform(code, id) {
-      const matchValue = mode === 'pc' ? './mobile' : './pc'
       const isCheckMode = mode && /@opentiny\/vue-.+?\/lib\/index.js$/.test(id)
       // 不处理node_modules内的依赖
       if (/\.(?:[jt]sx?|vue)$/.test(id) && !/(node_modules)/.test(id)) {
@@ -53,7 +52,7 @@ export default function vitePluginBabelImport(
           map: null
         }
       } else if (isCheckMode) {
-        const newCode = code.replace(matchValue, `./${mode}`)
+        const newCode = code.replace(/("|').\/(mobile|pc|mobile-first)[.js]*("|')/g, `"./${mode}"`)
         return {
           code: newCode,
           map: null
@@ -115,7 +114,7 @@ const transformImport = (matchRes: string, opt: PluginInnerOption) => {
     let itemName = item.trim()
     let asName = ''
 
-    // 处理import { Alert as TinyAlert } from '@opentiny/vue'
+    // 处理import { Alert as TinyAlert } from '@opentiny/vue' --> import TinyAlert from '@opentiny/vue'
     const isImportWithAs = itemName.includes(' as ')
     if (isImportWithAs) {
       const allName = itemName.split(' as ')
@@ -123,16 +122,21 @@ const transformImport = (matchRes: string, opt: PluginInnerOption) => {
       asName = allName[1]
     }
     const importName = opt.customName?.(itemName) || opt.libraryResolve(itemName)
-    const compImportName = isImportWithAs ? `* as ${asName}` : itemName
+    const compImportName = isImportWithAs ? asName : itemName
     return `import ${compImportName} from '${importName}'`
   })
   return componentsArr.join('\n') + '\n'
 }
 
+const transformDefaultImport = (matchRes: string, opt: PluginInnerOption) => {
+  const importName = opt.customName?.('default') || matchRes
+  return `import ${matchRes} from '${importName}'`
+}
+
 const compRegExpMap = {
   '@opentiny/vue': /import\s+?{([\w ,\s]+)}\s+?from\s+?('|")@opentiny\/vue('|")/g,
   '@opentiny/vue-icon':
-    /import\s+?{([\w ,\s]+)}\s+?from\s+?('|")@opentiny\/vue-icon('|")/g
+    /import\s+?{*([\w ,\s]+)}*\s+?from\s+?('|")@opentiny\/vue-icon('|")/g
 }
 
 function transformCode(
@@ -145,8 +149,11 @@ function transformCode(
     const compRegexp = compRegExpMap[(opt.libraryName as '@opentiny/vue')]
     if (compRegexp && compRegexp.test(resultCode)) {
       const newCode = resultCode.replace(compRegexp, (_all, matchRes): string => {
-        const newImport = transformImport(matchRes, opt)
-        return newImport
+        if (_all.includes('{')) {
+          return transformImport(matchRes, opt)
+        } else {
+          return transformDefaultImport(matchRes, opt)
+        }
       })
       resultCode = newCode
     }

@@ -13,11 +13,15 @@
 @import '../custom.less';
 @import './vars.less';
 
+@file-upload-prefix-cls: ~'@{css-prefix}file-upload';
 @upload-prefix-cls: ~'@{css-prefix}upload';
 @upload-cover-prefix-cls: ~'@{css-prefix}upload-cover';
 
-.@{upload-prefix-cls} {
+.@{file-upload-prefix-cls} {
   .component-css-vars-upload();
+}
+
+.@{upload-prefix-cls} {
 
   display: inline-block;
   text-align: center;
@@ -52,12 +56,12 @@
 
   &--picture-card:hover,
   &:focus {
-    border-color: var(--ti-upload-picture-card-hover-text-color);
-    color: var(--ti-upload-picture-card-hover-text-color);
+    border-color: var(--ti-upload-picture-card-hover-border-color);
+    color: var(--ti-upload-picture-card-hover-border-color);
   }
 
   &:focus &-dragger {
-    border-color: var(--ti-upload-picture-card-hover-text-color);
+    border-color: var(--ti-upload-picture-card-hover-border-color);
   }
 
   &-cover__title,

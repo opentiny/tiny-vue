@@ -1,0 +1,113 @@
+@import '../custom.less';
+
+.@{css-prefix}transition-carousel-arrow-left-enter,
+.@{css-prefix}transition-carousel-arrow-left-enter-from,
+.@{css-prefix}transition-carousel-arrow-left-leave-to {
+  @apply opacity-0;
+  @apply left-0;
+}
+
+.@{css-prefix}transition-carousel-arrow-left-enter-active {
+  animation: animation-left 0.3s;
+}
+
+.@{css-prefix}transition-carousel-arrow-left-leave-active {
+  animation: animation-left 0.3s reverse;
+}
+
+.@{css-prefix}transition-carousel-arrow-right-enter,
+.@{css-prefix}transition-carousel-arrow-right-enter-from,
+.@{css-prefix}transition-carousel-arrow-right-leave-to {
+  @apply opacity-0;
+  @apply right-0;
+}
+
+.@{css-prefix}transition-carousel-arrow-right-enter-active {
+  animation: animation-right 0.3s;
+}
+
+.@{css-prefix}transition-carousel-arrow-right-leave-active {
+  animation: animation-right 0.3s reverse;
+}
+
+@keyframes animation-right {
+  0% {
+    @apply opacity-0;
+    @apply right-0;
+  }
+
+  100% {
+    @apply opacity-100;
+    @apply ~"-translate-y-2/4";
+    @apply right-4;
+  }
+}
+
+@keyframes animation-left {
+  0% {
+    @apply opacity-0;
+    @apply left-0;
+  }
+
+  100% {
+    @apply opacity-100;
+    @apply ~"-translate-y-2/4";
+    @apply left-4;
+  }
+}
+
+.@{css-prefix}transition-carousel-arrow-top-enter,
+.@{css-prefix}transition-carousel-arrow-top-enter-from,
+.@{css-prefix}transition-carousel-arrow-top-leave-to {
+  @apply opacity-0;
+  @apply top-0;
+}
+
+.@{css-prefix}transition-carousel-arrow-top-enter-active {
+  animation: animation-top 0.3s;
+}
+
+.@{css-prefix}transition-carousel-arrow-top-leave-active {
+  animation: animation-top 0.3s reverse;
+}
+
+.@{css-prefix}transition-carousel-arrow-bottom-enter,
+.@{css-prefix}transition-carousel-arrow-bottom-enter-from,
+.@{css-prefix}transition-carousel-arrow-bottom-leave-to {
+  @apply opacity-0;
+  @apply bottom-0;
+}
+
+.@{css-prefix}transition-carousel-arrow-bottom-enter-active {
+  animation: animation-bottom 0.3s;
+}
+
+.@{css-prefix}transition-carousel-arrow-bottom-leave-active {
+  animation: animation-bottom 0.3s reverse;
+}
+
+@keyframes animation-bottom {
+  0% {
+    @apply opacity-0;
+    bottom: -45px;
+  }
+
+  100% {
+    @apply opacity-100;
+    @apply ~"-translate-x-2/4";
+    bottom: 15px;
+  }
+}
+
+@keyframes animation-top {
+  0% {
+    @apply opacity-0;
+    @apply top-0;
+  }
+
+  100% {
+    @apply opacity-100;
+    @apply ~"-translate-x-2/4";
+    top: 15px;
+  }
+}

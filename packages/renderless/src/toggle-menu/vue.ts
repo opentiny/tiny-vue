@@ -27,7 +27,7 @@ import {
   nodeDrop,
   clickA
 } from './index'
-import { setMenuKey } from '@opentiny/vue-renderless/tree-menu'
+import { setMenuKey } from '../tree-menu'
 
 export const api = [
   'state',

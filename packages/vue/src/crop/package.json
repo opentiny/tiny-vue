@@ -4,11 +4,11 @@
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
-  "devDependencies": {
+   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
     "vitest": "^0.25.7"
   },
-  "scripts": {
+ "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"
   },
@@ -16,7 +16,7 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
-    "cropperjs": "1.5.13"
+    "cropperjs": "1.5.7"
   },
   "license": "MIT"
 }

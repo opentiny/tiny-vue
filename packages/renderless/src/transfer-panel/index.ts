@@ -10,8 +10,8 @@
 *
 */
 
-import { copyArray } from '@opentiny/vue-renderless/common/object'
-import { getFlatData } from '@opentiny/vue-renderless/transfer'
+import { copyArray } from '../common/object'
+import { getFlatData } from '../transfer'
 
 export const showFilterData = (data, sign) => {
   const getChild = (data, sign) =>

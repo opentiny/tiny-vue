@@ -10,10 +10,10 @@
 *
 */
 
-import { isPlainObject, isNumber, isNumeric, isNull } from '@opentiny/vue-renderless/common/type'
-import { getObj, toJsonStr } from '@opentiny/vue-renderless/common/object'
-import { toFixed } from '@opentiny/vue-renderless/common/decimal'
-import { nanoid } from '@opentiny/vue-renderless/common/xss.js'
+import { isPlainObject, isNumber, isNumeric, isNull } from './type'
+import { getObj, toJsonStr } from './object'
+import { toFixed } from './decimal'
+import { nanoid } from './xss'
 
 /**
  * 文本替换格式类型
@@ -759,3 +759,34 @@ export const toFileSize = (value, unit, currUnit) => {
  * @param {String} text
  */
 export const isKorean = (text) => /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi.test(text)
+
+/**
+ * 对字符串进行省略截取
+ * @param {*} text 待处理的字符串
+ * @param {*} font 字符集，例如 '14px Arial'
+ * @param {*} w 字符串显示最大长度
+ * @returns obj obj.t为处理后字符串，obj.o为是否已省略标志
+ */
+ export const omitText = (text, font, w) => {
+  const canvas = document.createElement('canvas')
+  const ctx = canvas.getContext('2d')
+
+  ctx.font = font
+
+  let metric = ctx.measureText(text)
+  let t
+
+  if (metric.width < w) {
+    return { t: text, o: false }
+  } else {
+    for (let i = -1; ; i--) {
+      t = text.slice(0, i) + '...'
+      metric = ctx.measureText(t)
+
+      if (metric.width < w) {
+        return { t, o: true }
+      }
+    }
+  }
+}
+

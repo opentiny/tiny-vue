@@ -1,17 +1,21 @@
-/**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+import { updateStartIndex, isVisibleHandler, computedRightNodePos } from './index'
 
-export const api = []
+export const api = ['state', 'isVisibleHandler']
 
-export const renderless = function () {
-  return {}
+export const renderless = (props, { reactive, watch, computed }) => {
+  const state = reactive({
+    startIndex: 0,
+    endIndex: computed(() => state.startIndex + props.visibleNum),
+    rightNodePositions: computed(() => api.computedRightNodePos())
+  })
+
+  const api = {
+    updateStartIndex: updateStartIndex({ state, props }),
+    isVisibleHandler: isVisibleHandler({ state, props }),
+    computedRightNodePos: computedRightNodePos({ state, props })
+  }
+
+  watch(() => props.active, api.updateStartIndex, { immediate: true })
+
+  return Object.assign(api, { state })
 }

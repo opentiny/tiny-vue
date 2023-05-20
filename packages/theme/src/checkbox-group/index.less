@@ -12,6 +12,8 @@
 
 @import '../custom.less';
 @import '../checkbox/vars.less';
+@import '../checkbox-button/vars.less';
+@import './vars.less';
 
 @checkbox-group-prefix-cls: ~'@{css-prefix}checkbox-group';
 @checkbox-button-prefix-cls: ~'@{css-prefix}checkbox-button';
@@ -19,6 +21,9 @@
 
 .@{checkbox-group-prefix-cls} {
   .component-css-vars-checkbox();
+  .component-css-vars-checkbox-button();
+  .component-css-vars-checkbox-group();
+
   display: flex;
 
   &.is-vertical {
@@ -29,7 +34,7 @@
       margin-right: 0;
 
       &:not(:last-child) {
-        margin-bottom: 8px;
+        margin-bottom: var(--ti-checkbox-group-margin-bottom);
       }
     }
 

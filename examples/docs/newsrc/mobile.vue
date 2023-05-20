@@ -1,73 +1,85 @@
 <template>
   <div class="wp100 hp100 f-r of-hidden">
-    <div class="w230 hp100 pt20 of-auto">
-      <tiny-tree-menu :data="menuData" :filter-node-method="fn.searchMenu" @current-change="fn.clickMenu"></tiny-tree-menu>
+    <div class="w230 pt20 of-auto">
+      <tiny-tree-menu
+        class="!w213"
+        :data="menuData"
+        :filter-node-method="fn.searchMenu"
+        @current-change="fn.clickMenu"
+      ></tiny-tree-menu>
     </div>
-    <div class="fi-1 f-c px20 pb30 f-c mr200 of-auto">
+    <div class="fi-1 f-c px20 pb30 f-c pr200 of-auto">
       <!-- 标题 -->
       <div class="py20 f24 fw-bold text-center">
-        {{ state.demos[0]?.component }}
+        {{ modeState.pathName }}
       </div>
       <div id="preview" class="bg-white">
         <div class="mb20 py10 pl16 child<code>p4 child<code>bg-lightless">
-          <div class="mr20 fw-bold">
-            {{ state.currDemo?.title }}({{ state.currDemo?.demoId }}.vue):
+          <div class="mr20 fw-bold">{{ state.currDemo?.name['zh-CN'] }}({{ state.currDemo?.codeFiles[0] }}):</div>
+          <div v-html="state.currDemo?.desc['zh-CN']"></div>
+        </div>
+        <!-- 预览 -->
+        <div class="rel px20">
+          <div class="phone-container" @dblclick="fn.openInVscode(state.currDemo)">
+            <div class="mobile-view-container">
+              <component :is="state.comp"></component>
+            </div>
           </div>
-          <div v-html="state.currDemo?.content"></div>
         </div>
-        <!-- 预览 + 按钮 + 代码  -->
-        <div class="p20 of-auto b-a bs-dotted">
-          <component :is="state.comp"></component>
-        </div>
-        <div class="f-r f-pos-end mt40">
-          <tiny-button @click="fn.format">
-            格式化
-          </tiny-button>
-          <tiny-tooltip effect="dark" content="选择src/_.vue文件" placement="top">
-            <tiny-button @click="fn.apply" type="primary">
-              应用
-            </tiny-button>
-          </tiny-tooltip>
-          <tiny-button @click="fn.saveCode" class="!ml40">
-            保存
-          </tiny-button>
-          <tiny-button @click="fn.fullScreen">
-            全屏
-          </tiny-button>
-        </div>
-        <div id="editor" ref="editorRef" class="h300 mt10"></div>
       </div>
       <!-- API表格 -->
-      <div v-if="state.currApi" class="mt20 f24 fw-bold">
-        组件API
-      </div>
-      <div v-for="(apiTable, key) in state.currApi" :key="key">
-        <div class="my8 f22 fw-bold">
-          {{ key }}
+      <div v-if="state.currApi.length" class="my20 f24 fw-bold">组件API</div>
+
+      <div v-for="(oneGroup, idx) in state.currApi" :key="idx">
+        <div class="f-r f-pos-start fw-bold">
+          <div :id="oneGroup.name" class="f18">
+            {{ oneGroup.name }}
+          </div>
+          <div class="ml12 b-a-primary c-primary px8 py4">
+            {{ oneGroup.type }}
+          </div>
         </div>
-        <tiny-grid :data="apiTable" border auto-resize>
-          <tiny-grid-column field="name" width="15%" title="名称">
-            <template #default="data">
-              <a v-if="data.row.sample" class="c-primary h:c-error" @click="fn.selectDemo(data.row.sample)">{{ data.row.name }}</a>
-              <span v-else>{{ data.row.name }}</span>
-            </template>
-          </tiny-grid-column>
-          <tiny-grid-column field="type" width="20%" title="类型"></tiny-grid-column>
-          <tiny-grid-column field="defaultValue" width="20%" title="默认值"></tiny-grid-column>
-          <tiny-grid-column field="desc" title="说明">
-            <template #default="{ row }">
-              <div v-html="row.desc['zh-CN']"></div>
-            </template>
-          </tiny-grid-column>
-        </tiny-grid>
+        <div v-for="(oneApiArr, key) in oneGroup" :key="key">
+          <div v-if="key !== 'name' && key !== 'type' && oneApiArr.length > 0">
+            <div class="f18 py28">
+              {{ key }}
+            </div>
+            <tiny-grid :data="oneApiArr" border auto-resize>
+              <tiny-grid-column field="name" width="15%" title="名称">
+                <template #default="data">
+                  <a v-if="data.row.demoId" class="c-primary h:c-error" @click="fn.selectDemo(data.row.demoId)">{{
+                    data.row.name
+                  }}</a>
+                  <span v-else>{{ data.row.name }}</span>
+                </template>
+              </tiny-grid-column>
+              <tiny-grid-column field="type" width="20%" title="类型"></tiny-grid-column>
+              <tiny-grid-column field="defaultValue" width="20%" title="默认值"></tiny-grid-column>
+              <tiny-grid-column field="desc" title="说明">
+                <template #default="{ row }">
+                  <div v-html="row.desc['zh-CN']"></div>
+                </template>
+              </tiny-grid-column>
+            </tiny-grid>
+          </div>
+        </div>
       </div>
     </div>
     <!-- 右边浮动所有的demos -->
-    <tiny-floatbar v-if="state.demos.length > 0" class="!top120">
+    <tiny-floatbar v-if="state.demos.length > 0" class="!top120 !z1 !right25">
       <div class="f12 ofy-auto">
-        <div v-for="demo in state.demos" :key="demo.demoId" @click="fn.selectDemo(demo.demoId)" class="w130 px10 py6 bg-light link-primary h:c-error h:td-under ellipsis cur-hand" :class="{ 'c-error': state.currDemo === demo }">
-          {{ demo.name['zh-CN'] }}
-          <Icon-star-icon v-if="state.currDemo === demo" style="fill: #ee343f" />
+        <div
+          v-for="demo in state.demos"
+          :key="demo.demoId"
+          @click="fn.selectDemo(demo.demoId)"
+          class="w130 px10 py4 bg-light f-r f-pos-between"
+          :class="{ 'c-error': state.currDemo === demo }"
+        >
+          <div class="link-primary h:c-error h:td-under ellipsis">
+            {{ demo.name['zh-CN'] }}
+            <Icon-star-icon v-if="state.currDemo === demo" style="fill: #ee343f" />
+          </div>
+          <IconOpeninVscode @click.stop="fn.openInVscode(demo)" class="f18 cur-hand" />
         </div>
       </div>
     </tiny-floatbar>
@@ -75,14 +87,11 @@
 </template>
 
 <script>
-import 'uno.css'
-import './style.css'
 import { hooks } from '@opentiny/vue-common'
 import { Floatbar, TreeMenu, Button, Grid, GridColumn, Tooltip } from '@opentiny/vue'
-import { iconStarActive } from '@opentiny/vue-icon'
+import { iconStarActive, iconSelect } from '@opentiny/vue-icon'
 import { menuData, apis, demoStr, demoVue } from './resourceMobile.js'
-import { $local, useFileSaver, useMonaco, useFullScreen } from './uses'
-import TmpDemo from './_.vue'
+import { useModeCtx } from './uses'
 
 export default {
   components: {
@@ -92,21 +101,17 @@ export default {
     TinyGrid: Grid,
     TinyGridColumn: GridColumn,
     TinyTooltip: Tooltip,
-    IconStarIcon: iconStarActive()
+    IconStarIcon: iconStarActive(),
+    IconOpeninVscode: iconSelect()
   },
   setup() {
-    const saver = useFileSaver() // 一个本地文件保存器
-    const tmpSaver = useFileSaver() // 应用时，临时保存一个本地文件
-    const fullScreener = useFullScreen('#preview')
-    const editor = useMonaco('#editor')
-    const API_COLLECTION = ['properties', 'events', 'slot']
-
+    const { state: modeState, fn: modeFn } = useModeCtx()
     const state = hooks.reactive({
-      pathName: $local.pathName || 'button', // 对应json中的 文件名， 每个文件有多个示例
-      demos: [], // 组件的所有示例  {component,content,demoId,findIntroStr,link,title}[]
+      demos: [], // 组件的所有示例
       currDemo: null, // 选中的demo
       currApi: [], // 当前path下的api
-      comp: null // 当前示例的组件实例
+      comp: null, // 当前示例的组件实例
+      currDemoSrc: ''
     })
     const fn = {
       // 菜单搜索：忽略大小写
@@ -117,7 +122,7 @@ export default {
       // 点击菜单：如果是二级菜单，根据path 刷新整个页面内容
       clickMenu: async (menu) => {
         if (menu.nameCn && menu.key !== state.key) {
-          state.pathName = menu.key
+          modeState.pathName = menu.key
           await _switchPath()
         }
       },
@@ -129,12 +134,8 @@ export default {
           await _switchDemo()
         }
       },
-      saveCode: () => saver.save(editor.getCode()),
-      fullScreen: () => fullScreener.toggle(),
-      format: () => editor.format(),
-      apply: async () => {
-        await tmpSaver.save(editor.getCode())
-        setTimeout(() => (state.comp = markRaw(TmpDemo)), 100)
+      openInVscode: (demo) => {
+        fetch(`/__open-in-editor?file=../docs/resources/mobile/app/${state.pathName}/${demo.codeFiles[0]}`)
       }
     }
 
@@ -144,21 +145,14 @@ export default {
 
     // 以下私有方法，无须传递给vue模板的。
     async function _switchPath() {
-      $local.pathName = state.pathName
       // 查找API
-      const apiModule = apis[`../resources/mobile/app/${state.pathName}/webdoc/${state.pathName}.js`]
+      const apiModule = apis[`../resources/mobile/app/${modeState.pathName}/webdoc/${modeState.pathName}.js`]
       if (apiModule) {
-        const api = await apiModule()
-        const apis = api.default.apis[0]
-        const apiObj = {}
-        Object.entries(apis).forEach(([key, value]) => {
-          if (API_COLLECTION.includes(key)) {
-            apiObj[key] = apis[key]
-          }
-        })
-        state.currApi = apiObj
-        state.demos = api.default.demos || []
-        state.currDemo = api.default.demos?.[0]
+        const module = await apiModule()
+        const apiRoot = module.default
+        state.currApi = apiRoot.apis
+        state.demos = apiRoot.demos || []
+        state.currDemo = state.demos.find((d) => d.demoId === modeState.demoId) || state.demos?.[0]
       } else {
         state.currApi = null
         state.currDemos = []
@@ -166,21 +160,25 @@ export default {
       await _switchDemo()
     }
     async function _switchDemo() {
-      $local.demoId = state.currDemo.demoId
-      saver.reset()
-      // 查找源码
-      const src = await demoStr[`../resources/mobile/app/${state.pathName}/${state.currDemo.demoId}.vue`]()
-      editor.setCode(src)
-      editor.scrollTop()
-      // 查找组件
-      const comp = await demoVue[`../resources/mobile/app/${state.pathName}/${state.currDemo.demoId}.vue`]()
+      modeState.demoId = state.currDemo.demoId
+      const path = `../resources/mobile/app/${modeState.pathName}/${state.currDemo?.codeFiles[0]}`
+
+      // 查找源码  查找组件
+      state.currDemoSrc = await demoStr[path]()
+      const comp = await demoVue[path]()
+
       state.comp = hooks.markRaw(comp.default)
+
+      modeFn.cacheCtx()
+      modeFn.pushToUrl()
     }
 
     return {
       menuData,
       state,
-      fn
+      fn,
+      modeState,
+      modeFn
     }
   }
 }

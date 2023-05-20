@@ -22,7 +22,7 @@ import {
   computeOffset,
   handleCollapse
 } from './index'
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
+import { on, off } from '../common/deps/dom'
 
 export const api = ['state', 'handleMousedown', 'handleCollapse']
 

@@ -12,12 +12,7 @@
 <template>
   <div class="tiny-badge__wrapper">
     <slot />
-    <div
-      v-if="!hidden && (state.content || state.content === 0 || isDot)"
-      class="tiny-badge"
-      :class="[isDot ? 'tiny-badge--default' : '', state.isOverstep ? 'tiny-badge--max' : '', type ? 'tiny-badge--' + type : '', badgeClass || '']"
-      :style="{ transform: `translate(${offset[0]}${typeof offset[0] === 'number' ? 'px' : ''}, ${offset[1]}${typeof offset[1] === 'number' ? 'px' : ''})` }"
-    >
+    <div v-if="!hidden && (state.content || state.content === 0 || isDot)" class="tiny-badge" :class="[isDot ? 'tiny-badge--default' : '', state.isOverstep ? 'tiny-badge--max' : '', type ? 'tiny-badge--' + type : '', badgeClass || '']" :style="{ transform: `translate(${offset[0]}${typeof offset[0] === 'number' ? 'px' : ''}, ${offset[1]}${typeof offset[1] === 'number' ? 'px' : ''})` }">
       <slot name="content">
         <a v-if="state.href" :href="state.href" :target="target" rel="noopener noreferrer">{{ state.content }}</a>
         <span class="tiny-badge__content-text" v-if="!state.href">{{ state.content }}</span>
@@ -26,7 +21,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/badge/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/badge/index.less'

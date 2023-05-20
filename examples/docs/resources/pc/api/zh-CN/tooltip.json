@@ -8,6 +8,13 @@
       "defaultValue": "该属性的默认值为 dark"
     },
     {
+      "name": "type",
+      "sample": "tooltip-theme",
+      "type": "String",
+      "desc": "默认提供的类型;该属性的可选值为 normal/warning/error/info/success 。type的优先级大于effect",
+      "defaultValue": ""
+    },
+    {
       "name": "content",
       "sample": "basic-usage",
       "type": "String",

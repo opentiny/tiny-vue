@@ -1,12 +1,18 @@
 <template>
   <div class="demo-form">
+    <div style="margin-bottom: 16px">
+      <div style="margin-bottom: 6px">是否对齐：<tiny-switch v-model="isLabelAlign"></tiny-switch></div>
+      <div>
+        标签位置： <tiny-button-group :data="labelPositionList" v-model="labelPositionValue"></tiny-button-group>
+      </div>
+    </div>
     <tiny-form
       ref="ruleForm"
       :model="createData"
       :rules="rules"
       :validate-on-rule-change="isvalidate"
-      :label-align="true"
-      label-position="left"
+      :label-align="isLabelAlign"
+      :label-position="labelPositionValue"
       label-width="100px"
       @validate="validate"
     >
@@ -19,23 +25,25 @@
       <tiny-form-item label="密钥" prop="password2">
         <tiny-input v-model="createData.password2" type="password" show-password></tiny-input>
       </tiny-form-item>
-      <tiny-form-item>
-        <tiny-button type="primary" @click="handleSubmit('ruleForm')">注册</tiny-button>
-        <tiny-button type="primary" @click="removePass">清除密码校验</tiny-button>
+      <tiny-form-item class="btn-form-item">
+        <tiny-button type="primary" @click="handleSubmit('ruleForm')"> 注册 </tiny-button>
+        <tiny-button type="primary" @click="removePass"> 清除密码校验 </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>
 </template>
 
 <script lang="jsx">
-import { Form, FormItem, Input, Button, Modal } from '@opentiny/vue'
+import { Form, FormItem, Input, Button, Modal, ButtonGroup, Switch } from '@opentiny/vue'
 
 export default {
   components: {
     TinyForm: Form,
     TinyFormItem: FormItem,
     TinyInput: Input,
-    TinyButton: Button
+    TinyButton: Button,
+    TinyButtonGroup: ButtonGroup,
+    TinySwitch: Switch
   },
   data() {
     let validatePass = (rule, value, callback) => {
@@ -50,6 +58,13 @@ export default {
     }
 
     return {
+      isLabelAlign: true,
+      labelPositionList: [
+        { text: 'left', value: 'left' },
+        { text: 'top', value: 'top' },
+        { text: 'right', value: 'right' }
+      ],
+      labelPositionValue: 'left',
       createData: {
         username: '',
         password: '',
@@ -101,5 +116,8 @@ export default {
 <style scoped>
 .demo-form {
   width: 380px;
+}
+.btn-form-item {
+  padding-top: 8px;
 }
 </style>

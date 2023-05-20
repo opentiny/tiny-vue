@@ -1,0 +1,50 @@
+@import '../custom.less';
+
+@cascader-menu-prefix-cls: ~'@{css-prefix}cascader-menu';
+@cascader-node-prefix-cls: ~'@{css-prefix}cascader-node';
+
+.@{cascader-menu-prefix-cls} {
+  min-width: 220px;
+  @apply box-border;
+  @apply text-color-text-primary;
+  @apply pt-1;
+
+  &:last-child {
+    @apply border-r-0;
+
+    .@{cascader-node-prefix-cls} {
+      @apply pr-5;
+    }
+  }
+
+  & &__wrap {
+    height: 204px;
+  }
+
+  & &__list {
+    @apply relative;
+    @apply min-h-full;
+    @apply m-0;
+    @apply list-none;
+    @apply box-border;
+    @apply pb-1;
+  }
+
+  &__hover-zone {
+    @apply absolute;
+    @apply top-0;
+    @apply left-0;
+    @apply w-full;
+    @apply h-full;
+    @apply pointer-events-none;
+  }
+
+  &__empty-text {
+    @apply absolute;
+    @apply ~"top-1/2";
+    @apply ~'left-1/2';
+    @apply ~"-translate-x-2/4" ~"-translate-y-2/4";
+    @apply text-center;
+    @apply text-color-text-placeholder;
+  }
+}

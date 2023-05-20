@@ -1,0 +1,107 @@
+@import '../custom.less';
+
+@grid-prefix-cls: ~'@{css-prefix}grid';
+@grid-body-prefix-cls: ~'@{css-prefix}grid-body';
+@numeric-prefix-cls: ~'@{css-prefix}numeric';
+
+.@{grid-prefix-cls}__body-wrapper,
+.@{grid-prefix-cls}__fixed-left-body-wrapper,
+.@{grid-prefix-cls}__fixed-right-body-wrapper {
+  @apply border-b border-b-color-bg-3;
+  @apply overflow-y-auto;
+  @apply overflow-x-auto;
+}
+
+.@{grid-prefix-cls}__borders {
+  .@{grid-prefix-cls}-border-top,
+  .@{grid-prefix-cls}-border-right,
+  .@{grid-prefix-cls}-border-bottom,
+  .@{grid-prefix-cls}-border-left {
+    @apply absolute;
+    @apply bg-color-brand;
+  }
+
+  .@{grid-prefix-cls}-checked-borders {
+    .@{grid-prefix-cls}-border-top,
+    .@{grid-prefix-cls}-border-bottom {
+      @apply ~'h-0.5';
+    }
+
+    .@{grid-prefix-cls}-border-right,
+    .@{grid-prefix-cls}-border-left {
+      @apply ~'w-0.5';
+    }
+  }
+
+  .@{grid-prefix-cls}-copyed-borders {
+    .@{grid-prefix-cls}-border-top,
+    .@{grid-prefix-cls}-border-bottom {
+      height: 3px;
+    }
+
+    .@{grid-prefix-cls}-border-right,
+    .@{grid-prefix-cls}-border-left {
+      width: 3px;
+    }
+
+    & > span {
+      background: repeating-linear-gradient(
+        135deg,
+        theme('colors.transparent'),
+        theme('colors.transparent') 3px,
+        theme('colors.color.brand.DEFAULT') 3px,
+        theme('colors.color.brand.DEFAULT') 9px
+      );
+      animation: shine 1s infinite linear;
+    }
+  }
+}
+
+.@{grid-body-prefix-cls}__row {
+  .@{grid-body-prefix-cls}__column {
+    &.col__checked {
+      @apply relative;
+      @apply bg-color-bg-2;
+      @apply border-r-color-border-separator;
+      @apply border-b-color-border-separator;
+    }
+
+    &.col__selected {
+      @apply bg-color-bg-1;
+    }
+
+    .@{numeric-prefix-cls} {
+      @apply w-full;
+    }
+
+    &.col__edit.col__actived.col__valid-success {
+      > .@{grid-prefix-cls}-cell {
+        @apply flex;
+        @apply justify-center;
+        @apply items-center;
+      }
+    }
+  }
+}
+
+.@{grid-prefix-cls} {
+  &[class*='tiny-'] {
+    @media (min-width: 768px) {
+      ::-webkit-scrollbar,
+      &::-webkit-scrollbar {
+        @apply w-2;
+        @apply h-2;
+      }
+    }
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: -1px -1px;
+  }
+
+  100% {
+    background-position: -12px -12px;
+  }
+}

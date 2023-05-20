@@ -28,7 +28,7 @@ import {
   showScrollbar,
   hideScrollbar
 } from './index'
-import usePopup from '@opentiny/vue-renderless/common/deps/vue-popup'
+import usePopup from '../common/deps/vue-popup'
 
 export const api = ['afterEnter', 'afterLeave', 'handleClose', 'handleWrapperClick', 'handleCancel', 'handleConfirm', 'handleDrag', 'state']
 

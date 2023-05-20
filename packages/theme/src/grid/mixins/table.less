@@ -19,28 +19,46 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding-left: 8px;
+  padding-left: var(--ti-table-td-padding-horizontal);
   box-sizing: border-box;
 }
 
+// 表头单元格高度
+.DefaultHeaderColumnHeight() {
+  height: var(--ti-grid-default-header-column-height);
+}
+
+.MediumHeaderColumnHeight() {
+  height: var(--ti-grid-medium-header-column-height);
+}
+
+.SmallHeaderColumnHeight() {
+  height: var(--ti-grid-small-header-column-height);
+}
+
+.MiniHeaderColumnHeight() {
+  height: var(--ti-grid-mini-header-column-height);
+}
+
+// 表格主体单元格高度
 .DefaultColumnHeight() {
-  height: var(--ti-grid-default-column-height, 42px);
+  height: var(--ti-grid-default-column-height);
 }
 
 .MediumColumnHeight() {
-  height: var(--ti-grid-medium-column-height, 46px);
+  height: var(--ti-grid-medium-column-height);
 }
 
 .SmallColumnHeight() {
-  height: var(--ti-grid-small-column-height, 30px);
+  height: var(--ti-grid-small-column-height);
 }
 
 .MiniColumnHeight() {
-  height: var(--ti-grid-mini-column-height, 26px);
+  height: var(--ti-grid-mini-column-height);
 }
 
 .DefaultTdPadding() {
-  padding: var(--ti-table-td-padding-vertical, 2px) var(--ti-table-td-padding-horizontal, 8px);
+  padding: var(--ti-table-td-padding-vertical) var(--ti-table-td-padding-horizontal);
 }
 
 .CellEllipsis() {

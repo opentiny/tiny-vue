@@ -29,10 +29,12 @@ let isWebkit = browser['-webkit'] && browser.name !== 'edge'
 
 export function computeScrollYLoad({ _vm, scrollLoad, scrollY, scrollYLoad, scrollYStore, tableBodyElem }) {
   if (scrollYLoad || scrollLoad) {
+    // 获取表格体默认第一行的高度
     scrollYStore.rowHeight = _vm.getRowHeight()
   }
 
   if (scrollYLoad) {
+    // scrollY.vSize用户配置的可视区域渲染行数
     let visibleYSize = toNumber(scrollY.vSize || Math.ceil(tableBodyElem.clientHeight / scrollYStore.rowHeight))
 
     scrollYStore.visibleSize = visibleYSize
@@ -42,12 +44,16 @@ export function computeScrollYLoad({ _vm, scrollLoad, scrollY, scrollYLoad, scro
       scrollYStore.offsetSize = visibleYSize
     }
 
+    // scrollY.rSize用户配置的每次渲染行数
     if (!scrollY.rSize) {
+      // 如果是webkit内核浏览器则渲染行数*2否则就+2行（ie浏览器）
       scrollYStore.renderSize = visibleYSize + (isWebkit ? 2 : visibleYSize)
     }
 
+    // 计算需要渲染的表格数据，并更新YSpace元素高度用来显示正确的滚动条长度
     _vm.updateScrollYData()
   } else {
+    // 滚动分页加载
     _vm.updateScrollYSpace()
   }
 }

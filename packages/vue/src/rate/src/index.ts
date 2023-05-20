@@ -11,7 +11,7 @@
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
-import template from 'virtual-template?pc'
+import template from 'virtual-template?pc|mobile-first'
 
 const $constants = {
   RATENODECLS: 'tiny-rate__star',

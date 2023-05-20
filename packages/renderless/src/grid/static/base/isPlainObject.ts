@@ -10,6 +10,6 @@
 *
 */
 
-import { isPlainObject } from '@opentiny/vue-renderless/common/type'
+import { isPlainObject } from '../../../common/type'
 
 export default isPlainObject

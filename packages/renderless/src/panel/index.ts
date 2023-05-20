@@ -10,7 +10,7 @@
 *
 */
 
-import { emitEvent } from '@opentiny/vue-renderless/common/event'
+import { emitEvent } from '../common/event'
 
 export const toggle = ({ api, state }) => () => {
   state.isShow ? api.collapse() : api.expand()

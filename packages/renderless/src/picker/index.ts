@@ -10,13 +10,13 @@
 *
 */
 
-import { toDate, getDateWithNewTimezone, getStrTimezone, getLocalTimezone } from '@opentiny/vue-renderless/common/date'
-import { isNumber, isDate } from '@opentiny/vue-renderless/common/type'
-import userPopper from '@opentiny/vue-renderless/common/deps/vue-popper'
-import { DATEPICKER } from '@opentiny/vue-renderless/common'
-import { formatDate, parseDate, isDateObject, getWeekNumber } from '@opentiny/vue-renderless/common/deps/date-util'
-import { extend } from '@opentiny/vue-renderless/common/object'
-import globalTimezone from '@opentiny/vue-renderless/picker/timezone'
+import { toDate, getDateWithNewTimezone, getStrTimezone, getLocalTimezone } from '../common/date'
+import { isNumber, isDate } from '../common/type'
+import userPopper from '../common/deps/vue-popper'
+import { DATEPICKER } from '../common'
+import { formatDate, parseDate, isDateObject, getWeekNumber } from '../common/deps/date-util'
+import { extend } from '../common/object'
+import globalTimezone from '../picker/timezone'
 
 const iso8601Reg = /^\d{4}-\d{2}-\d{2}(.)\d{2}:\d{2}:\d{2}(.+)$/
 

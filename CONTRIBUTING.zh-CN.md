@@ -3,7 +3,7 @@
 很高兴你有意愿参与 TinyVue 开源项目的贡献，参与贡献的形式有很多种，你可以根据自己的特长和兴趣选择其中的一个或多个：
 
 - 报告[新缺陷](https://github.com/opentiny/tiny-vue/issues/new?template=bug-report.yml)
-- 为[已有缺陷](https://github.com/opentiny/tiny-vue/labels/bug)提供更详细的信息，比如补充截图、提供更详细的复现步骤、提供最小可复现demo链接等
+- 为[已有缺陷](https://github.com/opentiny/tiny-vue/labels/bug)提供更详细的信息，比如补充截图、提供更详细的复现步骤、提供最小可复现 demo 链接等
 - 提交 Pull requests 修复文档中的错别字或让文档更清晰和完善
 - 添加官方小助手微信 opentiny-official，加入技术交流群参与讨论
 
@@ -22,6 +22,7 @@
 如果是一个缺陷，创建新 Issue 时选择 [Bug report](https://github.com/opentiny/tiny-vue/issues/new?template=bug-report.yml) 模板，标题遵循 `[componentName]缺陷简述` 的格式，比如：`[select]过滤功能中，选中的选项退格删除后，无法再次选中该选项`。
 
 报告缺陷的 Issue 主要需要填写以下信息：
+
 - tiny-vue 和 vue 的版本号
 - 缺陷的表现，可截图辅助说明，如果有报错可贴上报错信息
 - 缺陷的复现步骤，最好能提供一个最小可复现 demo 链接
@@ -29,6 +30,7 @@
 如果是一个新特性，则选择 [Feature request](https://github.com/opentiny/tiny-vue/issues/new?template=feature-request.yml) 模板，标题遵循 `[componentName]新特性简述` 的格式，比如：`[select]选择框内容太长展示不下时，希望能支持配置tips提示`。
 
 新特性的 Issue 主要需要填写以下信息：
+
 - 该特性主要解决用户的什么问题
 - 该特性的 api 是什么样的
 

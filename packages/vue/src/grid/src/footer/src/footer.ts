@@ -29,7 +29,7 @@ import { isNull } from '@opentiny/vue-renderless/common/type'
 import { h, $prefix } from '@opentiny/vue-common'
 
 const classMap = {
-  fixedHidden: 'fixed__hidden',
+  fixedHidden: 'fixed__column',
   colEllipsis: 'col__ellipsis',
   filterActive: 'filter__active',
   cellSummary: 'cell__summary'
@@ -93,7 +93,7 @@ function renderColgroup(tableColumn) {
 }
 
 const renderfoots = (opt) => {
-  const { $table, allAlign, allColumnOverflow, allFooterAlign, buildParamFunc, columnKey, fixedType } = opt
+  const { $table, allAlign, allColumnOverflow, allFooterAlign, buildParamFunc, columnKey } = opt
   const { footerCellClassName, footerData, footerRowClassName, footerSpanMethod, overflowX, tableColumn, tableListeners } = opt
   return (list, $rowIndex) =>
     h(
@@ -101,13 +101,13 @@ const renderfoots = (opt) => {
       {
         class: [
           'tiny-grid-footer__row',
-          footerRowClassName ? (isFunction(footerRowClassName) ? footerRowClassName({ $table, $rowIndex, fixed: fixedType }) : footerRowClassName) : ''
+          footerRowClassName ? (isFunction(footerRowClassName) ? footerRowClassName({ $table, $rowIndex }) : footerRowClassName) : ''
         ]
       },
       tableColumn
         .map((column, $columnIndex) => {
           const arg1 = { $columnIndex, $rowIndex, $table, allAlign, allColumnOverflow, allFooterAlign }
-          const arg2 = { column, fixedType, footerData, footerSpanMethod, overflowX, tableListeners }
+          const arg2 = { column, footerData, footerSpanMethod, overflowX, tableListeners }
           const { attrs, columnIndex, fixedHiddenColumn, footAlign, footerClassName, hasEllipsis, params, tfOns } = buildParamFunc(Object.assign(arg1, arg2))
           return h(
             'td',
@@ -151,16 +151,15 @@ export default {
   name: `${$prefix}GridFooter`,
   props: {
     fixedColumn: Array,
-    fixedType: String,
     footerData: Array,
     size: String,
     tableColumn: Array,
     visibleColumn: Array
   },
   mounted() {
-    let { $el, $parent: $table, $refs, fixedType } = this
+    let { $el, $parent: $table, $refs } = this
     let { elemStore } = $table
-    let keyPrefix = `${fixedType || 'main'}-footer-`
+    let keyPrefix = 'main-footer-'
 
     elemStore[`${keyPrefix}wrapper`] = $el
     elemStore[`${keyPrefix}table`] = $refs.table
@@ -169,32 +168,24 @@ export default {
     elemStore[`${keyPrefix}x-space`] = $refs.xSpace
   },
   render() {
-    let { $parent: $table, buildParamFunc, fixedColumn, fixedType, footerData, tableColumn } = this
+    let { $parent: $table, buildParamFunc, footerData, tableColumn } = this
     let { align: allAlign, columnKey, footerAlign: allFooterAlign, footerCellClassName, footerRowClassName, footerSpanMethod } = $table
-    let { overflowX, scrollXLoad, showOverflow: allColumnOverflow, tableLayout, tableListeners } = $table
-
-    // 如果是使用优化模式
-    if (fixedType && allColumnOverflow) {
-      tableColumn = fixedColumn
-    }
-    if (fixedType && !allColumnOverflow && scrollXLoad) {
-      tableColumn = fixedColumn
-    }
+    let { overflowX, showOverflow: allColumnOverflow, tableLayout, tableListeners } = $table
 
     let tableAttrs = { cellspacing: 0, cellpadding: 0, border: 0 }
     let colgroupVNode = renderColgroup(tableColumn)
-    let arg1 = { $table, allAlign, allColumnOverflow, allFooterAlign, buildParamFunc, columnKey, fixedType }
+    let arg1 = { $table, allAlign, allColumnOverflow, allFooterAlign, buildParamFunc, columnKey }
     let arg2 = { footerCellClassName, footerData, footerRowClassName, footerSpanMethod, overflowX, tableColumn, tableListeners }
     let tfootVNode = renderTfoot(Object.assign(arg1, arg2))
 
     return h(
       'div',
       {
-        class: ['tiny-grid__footer-wrapper', fixedType ? `fixed-${fixedType}__wrapper` : 'body__wrapper'],
+        class: ['tiny-grid__footer-wrapper', 'body__wrapper'],
         on: { scroll: this.scrollEvent }
       },
       [
-        fixedType ? [null] : h('div', { class: 'tiny-grid-body__x-space', ref: 'xSpace' }),
+        h('div', { class: 'tiny-grid-body__x-space', ref: 'xSpace' }),
         h(
           'table',
           {
@@ -216,7 +207,7 @@ export default {
   methods: {
     scrollEvent(event) {
       // 滚动处理： 如果存在列固定左侧，同步更新滚动状态；如果存在列固定右侧，同步更新滚动状态。
-      let { $parent: $table, fixedType } = this
+      let { $parent: $table } = this
       let { $refs, lastScrollLeft, scrollXLoad } = $table
       let { tableBody, tableFooter, tableHeader } = $refs
       let headerElem = tableHeader ? tableHeader.$el : null
@@ -229,7 +220,7 @@ export default {
           elem.scrollLeft = scrollLeft
         }
       }
-      let eventParams = [{ $table, fixed: fixedType, isX, isY: false, scrollLeft, scrollTop: bodyElem.scrollTop, type: 'footer' }, event]
+      let eventParams = [{ $table, isX, isY: false, scrollLeft, scrollTop: bodyElem.scrollTop, type: 'footer' }, event]
 
       $table.lastScrollTime = Date.now()
       $table.lastScrollLeft = scrollLeft
@@ -245,10 +236,9 @@ export default {
     },
     buildParamFunc(opt) {
       let { $columnIndex, $rowIndex, $table, allAlign, allColumnOverflow, allFooterAlign } = opt
-      let { column, fixedType, footerData, footerSpanMethod, overflowX, tableListeners } = opt
+      let { column, footerData, footerSpanMethod, overflowX, tableListeners } = opt
       let { showOverflow, footerAlign, align, footerClassName } = column
-      let isColGroup = column.children && column.children.length
-      let fixedHiddenColumn = fixedType ? column.fixed !== fixedType && !isColGroup : column.fixed && overflowX
+      let fixedHiddenColumn = column.fixed && overflowX
       let cellOverflowValue = isNull(showOverflow) ? allColumnOverflow : showOverflow
       let footAlign = footerAlign || align || allFooterAlign || allAlign
       let isShowEllipsis = cellOverflowValue === 'ellipsis'
@@ -263,8 +253,7 @@ export default {
         $rowIndex,
         column,
         columnIndex,
-        $columnIndex,
-        fixed: fixedType
+        $columnIndex
       }
 
       addListenerMouseover({ $table, params, showTitle: isShowTitle, showTooltip, tfOns })

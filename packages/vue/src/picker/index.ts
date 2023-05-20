@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Picker from './src/index.vue'
+import Picker from './src/pc.vue'
 import '@opentiny/vue-theme/picker/index.less'
 import '@opentiny/vue-theme/input/index.less'
 import { version } from './package.json'

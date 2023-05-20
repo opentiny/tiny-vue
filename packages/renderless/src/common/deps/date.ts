@@ -10,8 +10,8 @@
 *
 */
 
-import { DATEPICKER } from '@opentiny/vue-renderless/common'
-import { isNull, isDate } from '@opentiny/vue-renderless/common/type'
+import { DATEPICKER } from '../index'
+import { isNull, isDate } from '../type'
 
 const fecha = {}
 const digitsReg = ['\\d\\d?', '\\d{3}', '\\d{4}']

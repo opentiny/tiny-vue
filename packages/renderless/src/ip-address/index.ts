@@ -10,7 +10,7 @@
  *
  */
 
-import { KEY_CODE, IPTHRESHOLD } from '@opentiny/vue-renderless/common'
+import { KEY_CODE, IPTHRESHOLD } from '../common'
 
 export const isIP6 = (str) => /^IPv6$/i.test(str)
 

@@ -10,27 +10,18 @@
  *
  -->
 <template>
-  <button
-    class="tiny-button"
-    @click="handleClick"
-    :disabled="state.buttonDisabled || loading"
-    :autofocus="autofocus"
-    :type="nativeType"
-    :class="[
-      type ? 'tiny-button--' + type : '',
-      size ? 'tiny-button--' + size : '',
-      {
-        'is-disabled': state.buttonDisabled,
-        'is-loading': loading,
-        'is-plain': state.plain,
-        'is-round': round,
-        'is-circle': circle,
-        'is-icon': icon && !loading && (text || $slots.default)
-      }
-    ]"
-    :tabindex="tabindex"
-    v-bind="a($attrs, ['class', 'style'], true)"
-  >
+  <button class="tiny-button" @click="handleClick" :disabled="state.buttonDisabled || loading" :autofocus="autofocus" :type="nativeType" :class="[
+    type ? 'tiny-button--' + type : '',
+    size ? 'tiny-button--' + size : '',
+    {
+      'is-disabled': state.buttonDisabled,
+      'is-loading': loading,
+      'is-plain': state.plain,
+      'is-round': round,
+      'is-circle': circle,
+      'is-icon': icon && !loading && (text || $slots.default)
+    }
+  ]" :tabindex="tabindex" v-bind="a($attrs, ['class', 'style'], true)">
     <icon-loading v-if="loading" class="tiny-icon-loading tiny-svg-size" />
     <component v-if="icon && !loading" :is="icon" :class="{ 'is-text': text || $slots.default }" />
     <slot>
@@ -39,7 +30,7 @@
   </button>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/button/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconLoading } from '@opentiny/vue-icon'

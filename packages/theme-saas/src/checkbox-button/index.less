@@ -1,0 +1,117 @@
+@import '../mixins/common.less';
+@import '../custom.less';
+
+@checkbox-button-prefix-cls: ~'@{css-prefix}checkbox-button';
+
+.@{checkbox-button-prefix-cls} {
+  @apply relative;
+  @apply inline-block;
+
+  &:first-child &__inner {
+    @apply border-l border-l-color-border;
+    @apply rounded-tl-sm rounded-tr-none rounded-br-none rounded-bl-sm;
+  }
+
+  &:last-child &__inner {
+    @apply rounded-tl-none rounded-tr-sm rounded-br-sm rounded-bl-none;
+  }
+
+  &.is-checked {
+    .@{checkbox-button-prefix-cls}__inner {
+      @apply text-color-text-inverse;
+      @apply bg-color-brand;
+      @apply border-color-border-focus;
+    }
+
+    &:first-child .@{checkbox-button-prefix-cls}__inner {
+      @apply border-l-color-border-focus;
+      @apply ~"shadow-[none]";
+    }
+  }
+
+  &.is-disabled {
+    .@{checkbox-button-prefix-cls}__inner {
+      @apply text-color-text-disabled;
+      @apply cursor-not-allowed;
+      @apply bg-none;
+      @apply bg-color-bg-2;
+      @apply border-color-border;
+      @apply ~"shadow-[none]";
+    }
+
+    &:first-child .@{checkbox-button-prefix-cls}__inner {
+      @apply border-l-color-border;
+    }
+  }
+
+  &__inner {
+    @apply relative;
+    @apply inline-block;
+    @apply whitespace-nowrap;
+    @apply align-middle;
+    @apply outline-0;
+    @apply leading-none;
+    @apply font-medium;
+    @apply cursor-pointer;
+    @apply bg-color-bg-1;
+    @apply border border-solid border-color-border;
+    @apply border-l-0;
+    @apply text-color-text-primary;
+    @apply appearance-none;
+    @apply text-center;
+    @apply box-border;
+    @apply m-0;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    @apply py-3 px-5;
+    @apply text-xs;
+    min-width: 80px;
+    @apply rounded-none;
+    .user-select(none);
+
+    &.is-round {
+      @apply py-3 px-5;
+    }
+
+    &:hover {
+      @apply text-color-brand-hover;
+    }
+  }
+
+  &__original {
+    @apply opacity-0;
+    @apply outline-0;
+    @apply absolute;
+    @apply m-0;
+    @apply ~'-z-[1]';
+  }
+
+  &--medium &__inner {
+    @apply ~'py-2.5' px-5;
+    @apply text-sm;
+    @apply rounded-none;
+
+    &.is-round {
+      @apply ~'py-2.5' px-5;
+    }
+  }
+
+  &--small &__inner {
+    padding: 8px 15px;
+    @apply text-xs;
+    @apply rounded-none;
+
+    &.is-round {
+      padding: 8px 15px;
+    }
+  }
+
+  &--mini &__inner {
+    padding: 5px 15px;
+    @apply text-xs;
+    @apply rounded-none;
+
+    &.is-round {
+      padding: 5px 15px;
+    }
+  }
+}

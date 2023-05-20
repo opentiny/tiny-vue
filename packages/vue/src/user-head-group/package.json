@@ -1,0 +1,14 @@
+{
+  "name": "@opentiny/vue-user-head-group",
+  "version": "5.0.0-mf.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-user-head": "workspace:~"
+  },
+  "license": "MIT"
+}

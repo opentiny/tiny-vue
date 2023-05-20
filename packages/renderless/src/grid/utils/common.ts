@@ -23,9 +23,9 @@
  *
  */
 
-import { extend } from '@opentiny/vue-renderless/common/object'
-import { isNull } from '@opentiny/vue-renderless/common/type'
-import { find } from '@opentiny/vue-renderless/common/array'
+import { extend } from '../../common/object'
+import { isNull } from '../../common/type'
+import { find } from '../../common/array'
 import { get, isFunction, set, findTree } from '../static'
 
 export const gridSize = ['medium', 'small', 'mini']

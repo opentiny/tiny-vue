@@ -10,9 +10,9 @@
 *
 */
 
-import { extend } from '@opentiny/vue-renderless/common/object'
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
-import screenfull from '@opentiny/vue-renderless/common/deps/fullscreen/screenfull'
+import { extend } from '../../object'
+import { on, off } from '../dom'
+import screenfull from './screenfull'
 
 const defaults = {
   callback: () => undefined,

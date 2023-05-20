@@ -21,7 +21,7 @@
   border: 1px solid var(--ti-selector-border-color);
   border-radius: var(--ti-selector-border-radius);
   font-size: var(--ti-selector-font-size);
-  box-shadow: var(--ti-common-box-shadow);
+  box-shadow: var(--ti-common-shadow-2-down);
   background: var(--ti-selector-bg-color);
   color: var(--ti-selector-text-color);
   margin-top: 2px;
@@ -58,6 +58,7 @@
     }
 
     &.poplist-language li {
+
       a,
       span {
         display: inline-block;
@@ -130,14 +131,15 @@
 
   .@{css-prefix}tree {
     &.radio {
-      & > .tree-menus {
+      &>.tree-menus {
         .tree-node {
           &.node-selected {
-            > .tree-menus-link,
-            > .tree-menus-link:hover,
-            > .tree-menus-link .tree-node-name,
-            > .tree-menus-link .tree-node-name:hover,
-            > .tree-menus-link .tree-node-body:hover .tree-node-name {
+
+            >.tree-menus-link,
+            >.tree-menus-link:hover,
+            >.tree-menus-link .tree-node-name,
+            >.tree-menus-link .tree-node-name:hover,
+            >.tree-menus-link .tree-node-body:hover .tree-node-name {
               background: var(--ti-selector-selected-hover-bg-color);
             }
           }

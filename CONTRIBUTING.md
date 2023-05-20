@@ -22,6 +22,7 @@ If you encounter problems in the process of using TinyVue components, you are we
 If it is a defect, select [Bug report](https://github.com/opentiny/tiny-vue/issues/new?template=bug-report.yml) template when creating a new Issue. The title follows the format of `[componentName] defect description`. For example: `[select] filtering function, the selected option cannot be selected again after it has been deleted`.
 
 Issue that reports defects mainly needs to fill in the following information:
+
 - Version numbers of `@opentiny/vue` and `vue`.
 - The performance of the defect can be illustrated by screenshot, and if there is an error, the error message can be posted.
 - Defect reproduction step, preferably with a minimum reproducible demo link.
@@ -29,6 +30,7 @@ Issue that reports defects mainly needs to fill in the following information:
 If it is a new feature, select [Feature request](https://github.com/opentiny/tiny-vue/issues/new?template=feature-request.yml) template. The title follows the format of `[componentName] new feature description`. For example: `[select] selection box is too long to display, hope to support the configuration of tips prompt`.
 
 The following information is required for the Issue of the new feature:
+
 - What problems does this feature mainly solve for users?
 - What is the api of this feature?
 

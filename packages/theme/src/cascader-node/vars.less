@@ -11,16 +11,32 @@
 */
 
 .component-css-vars-cascader-node() {
-  --ti-cascader-node-hover-bg-color: var(--ti-base-color-brand-1);
-  --ti-cascader-node-hover-text-color: var(--ti-base-color-brand-6);
-  --ti-cascader-node-text-color: var(--ti-base-color-white);
+  // 下拉列表子项的背景色
+  --ti-cascader-node-hover-bg-color: var(--ti-common-color-bg-white-emphasize);
+  // 下拉列表子项悬浮时的文本色
+  --ti-cascader-node-hover-text-color: var(--ti-common-color-text-highlight);
+  // 下拉列表子项的文本色
+  --ti-cascader-node-text-color: var(--ti-common-color-text-white);
+  // 下拉列表子项选中后悬浮时的背景色
   --ti-cascader-node-selectable-hover-bg-color: var(--ti-common-color-selected-background);
+  // 下拉列表子项选中时的文本色
   --ti-cascader-node-selectable-text-color: var(--ti-common-color-selected-text-color);
-  --ti-cascader-node-disabled-text-color: var(--ti-common-color-placeholder);
-  --ti-cascader-node-disabled-bg-color: var(--ti-common-color-placeholder);
+  // 下拉列表子项禁用状态时的文本色
+  --ti-cascader-node-disabled-text-color: var(--ti-common-color-text-disabled);
+  // 下拉列表子项禁用状态时的背景色
+  --ti-cascader-node-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  // 下拉列表子项的icon图标的字体大小
   --ti-cascader-node-icon-font-size: var(--ti-common-font-size-1);
-  --ti-cascader-node-icon-color: #bfbfbf;
+  // 下拉列表子项的icon图标的色
+  --ti-cascader-node-icon-color: var(--ti-common-color-icon-normal);
+  // 下拉列表子项的前缀display
   --ti-cascader-node-prefix-display: 'inline-block';
-  --ti-cascader-node-label-padding-vertical: 0;
-  --ti-cascader-node-label-padding-horizontal: 10px;
+  // 下拉列表子项的标签的垂直方向的内边距
+  --ti-cascader-node-label-padding-vertical: var(--ti-common-space-0);
+  // 下拉列表子项的标签的水平方向的内边距
+  --ti-cascader-node-label-padding-horizontal: var(--ti-common-space-10);
+  // 下拉列表子项的单选按钮右侧外边距
+  --ti-cascader-node-radio-margin-right: var(--ti-common-space-base); 
+  // 下拉列表子项聚焦时的背景色
+  --ti-cascader-node-selectable-active-bg-color: var(--ti-common-color-selected-background);
 }

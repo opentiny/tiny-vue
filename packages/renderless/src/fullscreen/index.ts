@@ -10,7 +10,7 @@
 *
 */
 
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
+import { on, off } from '../common/deps/dom'
 
 export const toggle = ({ state, api }) => (value) => {
   if (value === undefined) {

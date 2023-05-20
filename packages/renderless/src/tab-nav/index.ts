@@ -10,10 +10,10 @@
 *
 */
 
-import { KEY_CODE, POSITION } from '@opentiny/vue-renderless/common'
-import { capitalize } from '@opentiny/vue-renderless/common/string'
-import { addResizeListener, removeResizeListener } from '@opentiny/vue-renderless/common/deps/resize-event'
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
+import { KEY_CODE, POSITION } from '../common'
+import { capitalize } from '../common/string'
+import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
+import { on, off } from '../common/deps/dom'
 
 export const computedNavStyle = (state) => {
   const dir = ~[POSITION.Top, POSITION.Bottom].indexOf(state.rootTabs.position) ? 'X' : 'Y'
@@ -110,6 +110,7 @@ export const mounted = ({ api, parent }) => {
 
   api.scrollToActiveTab()
   api.scrollIntoView()
+  api.sortableEvent()
 }
 
 export const beforeUnmount = ({ api, parent }) => {
@@ -283,4 +284,92 @@ export const computedHeaderStyle = ({ refs, state }) => () => {
   }
 
   return state.expandHeaderStyle
+}
+
+export const handleTabDragStart = ({ state, vm, emit }) => (event) => {
+  state.dragging = true
+
+  if ([POSITION.Top, POSITION.Bottom].indexOf(state.rootTabs.position) === -1) {
+    emit('tab-drag-start', event)
+    return
+  }
+
+  const navContainer = vm.$refs.navScroll
+  const nav = vm.$refs.nav
+
+  const containerWidth = navContainer.offsetWidth
+  const navWidth = nav.offsetWidth
+
+  if (navWidth > containerWidth) {
+    const navHeight = nav.offsetHeight
+
+    navContainer.style.height = navHeight + 'px'
+    nav.style.transition = 'none'
+    nav.style.transform = ''
+    nav.style.width = containerWidth + 'px'
+    nav.style.overflowX = 'scroll'
+
+    nav.scrollTo(state.navOffset, 0)
+  }
+
+  emit('tab-drag-start', event)
+}
+
+export const handleTabDragEnd = ({ vm, state, nextTick }) => () => {
+  state.dragging = false
+
+  if ([POSITION.Top, POSITION.Bottom].indexOf(state.rootTabs.position) === -1) {
+    return
+  }
+
+  const nav = vm.$refs.nav
+
+  if (nav.style.width) {
+    const navOffset = nav.scrollLeft
+    const navContainer = vm.$refs.navScroll
+
+    navContainer.style.height = ''
+    nav.style.width = ''
+    nav.style.overflowX = ''
+    state.navOffset = navOffset
+
+    nextTick(() => {
+      nav.style.transition = ''
+    })
+  }
+}
+
+export const sortableEvent = ({ api, props, state, vm, emit, markRaw }) => () => {
+  if (!props.dropConfig || typeof props.dropConfig.plugin !== 'function') {
+    return
+  }
+
+  const navSortableObj = new props.dropConfig.plugin(vm.$refs.nav, {
+    sort: true,
+    draggable: '.tiny-tabs__item',
+    onUpdate(event) {
+      emit('tab-drag-end', event)
+    },
+    onMove(event) {
+      emit('tab-drag-over', event)
+    },
+    onStart(event) {
+      api.handleTabDragStart(event)
+    },
+    onEnd(event) {
+      api.handleTabDragEnd(event)
+    }
+  })
+
+  state.navSortableObj = markRaw(navSortableObj)
+}
+
+export const watchCurrentName = ({ nextTick, vm, state }) => () => {
+  nextTick(() => {
+    const tabBarVnode = vm.$refs.tabBar
+
+    if (tabBarVnode) {
+      tabBarVnode.state.barStyle = tabBarVnode.computedBarStyle(tabBarVnode, state)
+    }
+  })
 }

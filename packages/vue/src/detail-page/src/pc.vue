@@ -46,7 +46,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import Button from '@opentiny/vue-button'
 import { iconSetting } from '@opentiny/vue-icon'
 import Checkbox from '@opentiny/vue-checkbox'

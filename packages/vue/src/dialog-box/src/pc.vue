@@ -50,7 +50,7 @@
   </transition>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/dialog-box/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconClose, iconFullscreen, iconMinscreen } from '@opentiny/vue-icon'
@@ -84,7 +84,8 @@ export default defineComponent({
     'rightSlide',
     'destroyOnClose',
     'dialogClass',
-    'beforeClose'
+    'beforeClose',
+    'maxHeight'
   ],
   model: {
     prop: 'visible',

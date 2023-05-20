@@ -24,7 +24,7 @@
  */
 
 import { getRowid } from './common'
-import { hasClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { hasClass } from '../../common/deps/dom'
 import { arrayIndexOf } from '../static'
 
 const ATTR_NAME = 'data-rowid'
@@ -109,14 +109,14 @@ function setBodyLeft(body, td, $table, column, move) {
     let offset = 0
 
     if (isLeftArrow && fixedDom) {
-      const div = fixedDom.querySelector('td.fixed__hidden')
+      const div = fixedDom.querySelector('td.fixed__column')
       const division = div ? div.getBoundingClientRect().left : fixedDom.getBoundingClientRect().right
 
       division > left && (offset = left - division)
     }
 
     if (isRightArrow && fixedDom) {
-      const div = fixedDom.querySelector('td:not(.fixed__hidden)') || fixedDom
+      const div = fixedDom.querySelector('td:not(.fixed__column)') || fixedDom
       const division = div.getBoundingClientRect().left
 
       division < right && (offset = right - division)

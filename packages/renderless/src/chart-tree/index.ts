@@ -10,8 +10,8 @@
 *
 */
 
-import { isObject } from '@opentiny/vue-renderless/chart-core/deps/utils'
-import { itemLabel, itemContent, SAAS_DEFAULT_COLORS_10 } from '@opentiny/vue-renderless/chart-core/deps/constants'
+import { isObject } from '../chart-core/deps/utils'
+import { itemLabel, itemContent, SAAS_DEFAULT_COLORS_10 } from '../chart-core/deps/constants'
 
 const getTreeLegend = (args) => {
   const { dimension, rows } = args

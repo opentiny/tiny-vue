@@ -10,21 +10,30 @@
 *
 */
 
-import { onDragOver, onDrop } from './index'
+import { onDragOver, onDrop, watchDragover } from './index'
 
 export const api = ['state', 'onDragOver', 'onDrop']
 
-export const renderless = (props, { inject, reactive, ref }, { emit }) => {
+export const renderless = (props, { inject, reactive, ref, watch }, { emit }) => {
   const state = reactive({
     dragover: false,
     uploader: inject('uploader') || ref({ default: '' })
   })
 
+  const constants = state.uploader.$constants || {}
+
   const api = {
     state,
     onDragOver: onDragOver({ props, state }),
-    onDrop: onDrop({ emit, props, state })
+    onDrop: onDrop({ emit, props, state }),
+    watchDragover: watchDragover({ state, constants })
   }
+
+  watch(
+    () => state.dragover,
+    () => api.watchDragover()
+  )
+
 
   return api
 }

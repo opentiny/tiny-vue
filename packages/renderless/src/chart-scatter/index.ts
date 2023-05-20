@@ -10,10 +10,10 @@
 *
 */
 
-import { getFormated, hexToRgb } from '@opentiny/vue-renderless/chart-core/deps/utils'
-import { itemPoint, itemLabel, itemContent } from '@opentiny/vue-renderless/chart-core/deps/constants'
-import { line } from '@opentiny/vue-renderless/chart-line'
-import { isNull } from '@opentiny/vue-renderless/common/type'
+import { getFormated, hexToRgb } from '../chart-core/deps/utils'
+import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
+import { line } from '../chart-line'
+import { isNull } from '../common/type'
 
 const getScatterLegend = (dataLabels, legendName) => {
   function formatter(name) {

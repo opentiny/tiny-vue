@@ -10,11 +10,13 @@
 *
 */
 
-import { handleChange, isGroup, radioSize, isDisabled, tabIndex, getModel, setModel, toggleEvent } from './index'
+import {
+  handleChange, isGroup, radioSize, isDisabled, tabIndex, getModel, setModel, toggleEvent, dispatchDisplayedValue, getDisplayedValue
+} from './index'
 
 export const api = ['state', 'handleChange']
 
-export const renderless = (props, { onMounted, onBeforeUnmount, computed, reactive, inject }, { refs, parent, emit, constants, nextTick, dispatch }) => {
+export const renderless = (props, { onMounted, onBeforeUnmount, computed, reactive, inject, watch }, { refs, vm, parent, emit, constants, nextTick, dispatch }) => {
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
   const api = {}
@@ -41,10 +43,15 @@ export const renderless = (props, { onMounted, onBeforeUnmount, computed, reacti
     tabIndex: tabIndex({ props, state }),
     isDisabled: isDisabled({ props, state }),
     setModel: setModel({ constants, dispatch, emit, props, refs, state }),
-    handleChange: handleChange({ constants, dispatch, emit, state, nextTick })
+    handleChange: handleChange({ constants, dispatch, emit, state, nextTick }),
+    dispatchDisplayedValue: dispatchDisplayedValue({ state, api, dispatch }),
+    getDisplayedValue: getDisplayedValue({ vm, state, props })
   })
 
+  watch(() => state.isDisplayOnly, api.dispatchDisplayedValue)
+
   onMounted(() => {
+    api.dispatchDisplayedValue()
     dispatch('Tooltip', 'tooltip-update')
     toggleEvent({ props, refs, type: 'add' })
   })

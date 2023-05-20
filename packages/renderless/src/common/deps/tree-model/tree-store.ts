@@ -10,9 +10,9 @@
 *
 */
 
-import { hasOwn, isNull } from '@opentiny/vue-renderless/common/type'
-import { getNodeKey } from '@opentiny/vue-renderless/common/deps/tree-model/util'
-import Node from '@opentiny/vue-renderless/common/deps/tree-model/node'
+import { hasOwn, isNull } from '../../type'
+import { getNodeKey } from './util'
+import Node from './node'
 
 export default class TreeStore {
   constructor(options) {

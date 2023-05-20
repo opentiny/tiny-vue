@@ -52,7 +52,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/slider/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import '@opentiny/vue-theme-mobile/slider/index.less'

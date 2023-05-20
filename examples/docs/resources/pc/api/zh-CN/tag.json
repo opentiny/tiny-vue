@@ -11,7 +11,7 @@
       "name": "closeable",
       "sample": "create",
       "type": "Boolean",
-      "desc": "是否可关闭", 
+      "desc": "是否可关闭",
       "defaultValue": ""
     },
     {
@@ -41,12 +41,19 @@
       "type": "String",
       "desc": "主题;该属性的可选值为 dark / light / plain",
       "defaultValue": "该属性的默认值为 light"
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled",
+      "type": "Boolean",
+      "desc": "是否禁用",
+      "defaultValue": "该属性的默认值为 false"
     }
   ],
   "slots": [
     {
       "name": "default",
-      "sample": "effect",
+      "sample": "slot-default",
       "type": "",
       "desc": "标签内容",
       "defaultValue": ""

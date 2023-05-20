@@ -1,6 +1,11 @@
 <template>
   <div class="demo-autocomplete">
-    <tiny-autocomplete v-model="value" value-key="name" :fetch-suggestions="querySearch" placeholder="请输入内容"></tiny-autocomplete>
+    <tiny-autocomplete
+      v-model="value"
+      value-key="name"
+      :fetch-suggestions="querySearch"
+      placeholder="请输入内容"
+    ></tiny-autocomplete>
   </div>
 </template>
 
@@ -20,13 +25,18 @@ export default {
   methods: {
     querySearch(queryString, cb) {
       let restaurants = this.restaurants
-      let results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants
+      restaurants = queryString
+        ? restaurants.filter(this.createFilter(queryString))
+        : restaurants
 
       // 调用 callback 返回建议列表的数据
-      cb(results)
+      cb(restaurants)
     },
     createFilter(queryString) {
-      return (restaurant) => restaurant.name.toLowerCase().indexOf(queryString.toLowerCase()) === 0
+      return (restaurant) =>
+        restaurant.name
+          .toLowerCase()
+          .indexOf(queryString.toLowerCase()) === 0
     },
     loadAll() {
       return [

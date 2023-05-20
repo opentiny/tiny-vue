@@ -5,7 +5,7 @@
       "sample": "separator",
       "type": "String",
       "desc": "分隔符",
-      "defaultValue": "该属性的默认值为 /"
+      "defaultValue": "该属性的默认值为 >"
     },
     {
       "name": "separator-icon",

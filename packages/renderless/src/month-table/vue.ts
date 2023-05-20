@@ -21,7 +21,7 @@ import {
   getCellStyle,
   getMonthOfCell
 } from './index'
-import { DATEPICKER } from '@opentiny/vue-renderless/common'
+import { DATEPICKER } from '../common'
 
 export const api = ['state', 'handleMonthTableClick', 'handleMouseMove', 'getCellStyle']
 

@@ -10,11 +10,11 @@
 *
 */
 
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import { toDateStr } from '@opentiny/vue-renderless/common/date'
-import { toJsonStr } from '@opentiny/vue-renderless/common/object'
-import { toJson } from '@opentiny/vue-renderless/common/string'
-import { log } from '@opentiny/vue-renderless/common'
+import debounce from '../common/deps/debounce'
+import { toDateStr } from '../common/date'
+import { toJsonStr } from '../common/object'
+import { toJson } from '../common/string'
+import { log } from '../common/xss'
 
 const request = {
   timmer: null,
@@ -31,9 +31,7 @@ const request = {
     }
 
     queryIds.forEach((id) => {
-      if (!~this.group[valueField].indexOf(id)) {
-        !this.group[valueField].push(id)
-      }
+      if (!~this.group[valueField].indexOf(id)) !this.group[valueField].push(id)
     })
   },
   removeRequest(item) {
@@ -51,21 +49,19 @@ const request = {
     const args = []
 
     for (let key in this.group) {
-      if (Object.prototype.hasOwnProperty.call(this.group, key)) {
-        const all = this.group[key]
-        const items = this.splitArr(all, this.batch)
+      const all = this.group[key]
+      const items = this.splitArr(all, this.batch)
 
-        if (key === 'userId') {
-          args.push(...items.map((item) => item.join(',')))
-        } else {
-          args.push(
-            ...items.map((item) => ({
-              valueField: key,
-              valueSplit: item.valueSplit,
-              [key]: item.join(',')
-            }))
-          )
-        }
+      if (key === 'userId') {
+        args.push(...items.map((item) => item.join(',')))
+      } else {
+        args.push(
+          ...items.map((item) => ({
+            valueField: key,
+            valueSplit: item.valueSplit,
+            [key]: item.join(',')
+          }))
+        )
       }
     }
 
@@ -80,12 +76,8 @@ const request = {
 
     data.forEach((item) => {
       for (let key in this.group) {
-        if (Object.prototype.hasOwnProperty.call(this.group, key)) {
-          if (!me.cache[key]) {
-            me.cache[key] = {}
-          }
-          me.cache[key][item[key]] = item
-        }
+        if (!me.cache[key]) me.cache[key] = {}
+        me.cache[key][item[key]] = item
       }
     })
   },
@@ -108,7 +100,7 @@ const request = {
     const reqParamsSeq = me.getParams()
     let reqLen = reqParamsSeq.length
 
-    reqParamsSeq.forEach((params) => {
+    reqParamsSeq.map((params) => {
       api
         .fetchW3Accounts(params)
         .then((data) => {
@@ -146,7 +138,7 @@ const request = {
                 }
               })
             })
-            errors.length && log(`user [${errors.join(',')}] not found`, 'warn')
+            errors.length && log.logger.warn(`user [${errors.join(',')}] not found`)
             this.clearRequest()
           }
         })
@@ -188,8 +180,8 @@ const request = {
   }
 }
 
-export const suggestUser = (api) => (query) =>
-  new Promise((resolve, reject) => {
+export const suggestUser = (api) => (query) => {
+  return new Promise((resolve, reject) => {
     api
       .fetchSuggestUser(query)
       .then((users) => {
@@ -201,9 +193,11 @@ export const suggestUser = (api) => (query) =>
       })
       .catch(reject)
   })
+}
 
 export const updateOptions = ({ props, state, nextTick }) => (usersList) => {
-  const { valueField, textField, noDataText } = props
+  const { noDataText } = props
+  const { valueField, textField } = state
   const values = [].concat(state.user || [])
   const options = [].concat(state.selected)
   const hides = []
@@ -249,7 +243,7 @@ export const autoSelect = ({ props, state, nextTick }) => (usersList) => {
 
   usersList.forEach((list) => {
     if (list.length === 1) {
-      const value = list[0][props.valueField]
+      const value = list[0][state.valueField]
 
       !~values.indexOf(value) && values.push(value)
 
@@ -302,9 +296,7 @@ export const searchMethod = ({ api, props, state, emit }) =>
           }
         })
 
-        if (failList.length) {
-          emit('error', failList)
-        }
+        if (failList.length) emit('error', failList)
 
         api.updateOptions(usersList).then(() => {
           api.autoSelect(usersList).then(() => {
@@ -317,9 +309,13 @@ export const searchMethod = ({ api, props, state, emit }) =>
   })
 
 export const setSelected = ({ api, props, state }) => (value) => {
-  const values = Array.isArray(value) ? value.map((v) => String(v).toLocaleLowerCase()) : String(value).toLocaleLowerCase().split(props.valueSplit)
+  const values = Array.isArray(value)
+    ? value.map((v) => (v + '').toLocaleLowerCase())
+    : (value + '').toLocaleLowerCase().split(props.valueSplit)
 
-  state.selected = state.options.filter((user) => ~values.indexOf(String(user[props.valueField]).toLocaleLowerCase()))
+  state.selected = state.options.filter((user) => {
+    return ~values.indexOf((user[state.valueField] + '').toLocaleLowerCase())
+  })
 
   props.cache && api.cacheUser(state.selected)
 }
@@ -327,11 +323,15 @@ export const setSelected = ({ api, props, state }) => (value) => {
 export const userChange = ({ api, emit, props, state }) => (value) => {
   const { multiple } = props
 
-  let newVal = multiple && Array.isArray(value) ? value.join(props.valueSplit) : String(value || '')
+  let newVal = multiple && Array.isArray(value) ? value.join(props.valueSplit) : (value || '') + ''
 
   api.setSelected(newVal)
 
-  if (typeof state.lastValue === 'string' && state.lastValue !== null && state.lastValue.toLocaleLowerCase() !== newVal.toLocaleLowerCase()) {
+  if (
+    typeof state.lastValue === 'string' &&
+    state.lastValue !== null &&
+    state.lastValue.toLocaleLowerCase() !== newVal.toLocaleLowerCase()
+  ) {
     emit('update:modelValue', newVal)
     emit('change', newVal, state.selected)
   }
@@ -339,15 +339,19 @@ export const userChange = ({ api, emit, props, state }) => (value) => {
   state.lastValue = newVal
 }
 
-const syncCacheIds = (ids, props, queryIds, cacheData) => {
-  const { valueField, cacheFields, cacheKey } = props
+export const syncCacheIds = ({ props, state }) => (ids, queryIds, cacheData) => {
+  const { cacheFields, cacheKey } = props
+  const { valueField } = state
   const cacheUsers = toJson(window.localStorage.getItem(cacheKey)) || {}
   ids.forEach((id) => {
     // 如果存在cache 但是cache中不存在自定义cacheFields的字段需要优化 TODO
     if (cacheUsers[id]) {
       const cacheUser = cacheUsers[id]
 
-      const textField = props.textField === 'userCN' || props.textField === 'userId' || props.textField === 'dept' ? '' : props.textField
+      const textField =
+        state.textField === 'userCN' || state.textField === 'userId' || state.textField === 'dept'
+          ? ''
+          : state.textField
 
       if (textField !== '' && !cacheUser.a) {
         window.localStorage.removeItem(cacheKey)
@@ -378,13 +382,14 @@ const syncCacheIds = (ids, props, queryIds, cacheData) => {
 }
 
 export const getUsers = ({ api, props, state }) => (value) => {
-  const { valueField, cache } = props
+  const { cache } = props
+  const { valueField } = state
   const ids = Array.isArray(value) ? value : value.split(props.valueSplit)
   const cacheData = []
   const queryIds = cache ? [] : ids
 
   if (cache) {
-    syncCacheIds(ids, props, queryIds, cacheData)
+    api.syncCacheIds(ids, queryIds, cacheData)
     request.setCache(cacheData, valueField)
 
     if (!queryIds.length) {
@@ -399,7 +404,8 @@ export const getUsers = ({ api, props, state }) => (value) => {
       if (data.error) {
         reject(data.error)
       } else {
-        resolve(data.concat(cacheData))
+        const filterData = cacheData.filter((cache) => !~data.findIndex((d) => d[valueField] === cache[valueField]))
+        resolve(data.concat(filterData))
       }
     }
 
@@ -434,8 +440,9 @@ export const saveCache = ({ props }) => (cache) => {
   window.localStorage.setItem(props.cacheKey, toJsonStr(cache))
 }
 
-export const cacheUser = ({ api, props, service }) => (users) => {
-  const { valueField, cacheKey } = props
+export const cacheUser = ({ api, props, service, state }) => (users) => {
+  const { cacheKey } = props
+  const { valueField } = state
   const cacheUser = toJson(window.localStorage.getItem(cacheKey)) || {}
   const cacheFields = service.userCache
   let user
@@ -455,7 +462,7 @@ export const cacheUser = ({ api, props, service }) => (users) => {
         u: u[cacheFields.userCN],
         d: u[cacheFields.dept],
         e: u[cacheFields.eno],
-        a: ~['userCN', 'userId', 'dept'].indexOf(props.textField) ? null : u[props.textField],
+        a: ~['userCN', 'userId', 'dept'].indexOf(state.textField) ? null : u[state.textField],
         r: 0
       }
 
@@ -469,26 +476,26 @@ export const cacheUser = ({ api, props, service }) => (users) => {
   try {
     api.saveCache(cacheUser)
   } catch (e) {
-    const sortUsers = Object.keys(cacheUser).sort((a, b) => (cacheUser[a].r < cacheUser[b].r ? 1 : -1))
+    const sortUsers = Object.keys(cacheUser).sort((a, b) => {
+      return cacheUser[a].r < cacheUser[b].r ? 1 : -1
+    })
 
     const cutUser = sortUsers.splice(0, sortUsers.length / 2)
     const newCache = {}
 
     for (let i in cutUser) {
-      if (Object.prototype.hasOwnProperty.call(cutUser, i)) {
-        newCache[cutUser[i]] = cacheUser[cutUser[i]]
-      }
+      newCache[cutUser[i]] = cacheUser[cutUser[i]]
     }
 
     api.saveCache(newCache)
   }
 }
 
-export const useSortable = ({ api, props, state, refs }) => () => {
-  const selectDom = refs.select.$el
+export const useSortable = ({ api, props, state, vm }) => () => {
+  const selectDom = vm.$refs.select.$el
 
   if (props.sortable && props.multiple && !state.sortable) {
-    const tagsDom = selectDom.querySelector('.tiny-select__tags>span')
+    const tagsDom = selectDom.querySelector('.tiny-select__tags>span>span')
 
     state.sortable = props.sortable.create(tagsDom, {
       handle: '.tiny-tag',
@@ -519,7 +526,7 @@ export const initUser = ({ api, props, state }) => (value) => {
   state.user = !props.multiple ? '' : []
 
   if (typeof value === 'number') {
-    value = String(value)
+    value += ''
   }
 
   if (!value) {
@@ -532,11 +539,13 @@ export const initUser = ({ api, props, state }) => (value) => {
   value &&
     api.getUsers(value).then((info) => {
       // 按value排序
-      info.sort((a, b) => (value.indexOf(String(a[props.valueField])) > value.indexOf(String(b[props.valueField])) ? 1 : -1))
+      info.sort((a, b) => {
+        return value.indexOf(a[state.valueField] + '') > value.indexOf(b[state.valueField] + '') ? 1 : -1
+      })
 
       const list = info.map((user) => {
         user._show = true
-        return user[props.valueField]
+        return user[state.valueField]
       })
 
       state.options = info
@@ -554,7 +563,7 @@ export const initService = ({ props, service }) => {
     if (propName) {
       return Promise.reject(new Error(`[TINY Error][User]] Prop ${propName} is not configured`))
     } else {
-      return Promise.reject(new Error('[TINY Error][User]] This component depends on @opentiny/vue-service'))
+      return Promise.reject(new Error('[TINY Error][User]] This component depends on @opentiny/service'))
     }
   }
 
@@ -563,7 +572,10 @@ export const initService = ({ props, service }) => {
   const { fetchUser, fetchW3Accounts, fetchSuggestUser, fetchUserByUserId } = $service
 
   const { options = {} } = setting
-  const { UserCache = { uuid: 'uuid', userId: 'userId', userCN: 'userCN', dept: 'dept', eno: 'employeeNumber' }, User = { batch: 50 } } = options
+  const {
+    UserCache = { uuid: 'uuid', userId: 'userId', userCN: 'userCN', dept: 'dept', eno: 'employeeNumber' },
+    User = { batch: 50, textField: '', valueField: '' }
+  } = options
 
   return {
     fetchUser: props.fetchUser || fetchUser || noopFnCreator('fetchUser'),
@@ -574,7 +586,9 @@ export const initService = ({ props, service }) => {
     getLangData: props.getLangData || base.getLangData || noopFnCreator('getLangData'),
     getUserInfo: props.getUserInfo || base.getUserInfo || noopFnCreator('getUserInfo'),
     userCache: props.UserCache || UserCache,
-    batch: User.batch
+    batch: User.batch,
+    textField: User.textField,
+    valueField: User.valueField
   }
 }
 
@@ -582,10 +596,16 @@ export const filter = ({ props, state }) => () => {
   if (props.multiple && props.hideSelected) {
     const selectedUsers = state.user.map((value) => (typeof value === 'string' ? value.toLocaleLowerCase() : value))
 
-    return state.options.filter(
-      (user) => !~selectedUsers.indexOf(typeof user[props.valueField] === 'string' ? user[props.valueField].toLocaleLowerCase() : user[props.valueField])
-    )
+    return state.options.filter((user) => {
+      return !~selectedUsers.indexOf(
+        typeof user[state.valueField] === 'string' ? user[state.valueField].toLocaleLowerCase() : user[state.textField]
+      )
+    })
   }
 
   return state.options
 }
+
+export const computedTextField = ({ service, props }) => () => props.textField || service.textField || 'userCN'
+
+export const computedValueField = ({ service, props }) => () => props.valueField || service.valueField || 'userId'

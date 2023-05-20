@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import CollapseTransition from './src/index.vue'
+import CollapseTransition from './src/pc.vue'
 import '@opentiny/vue-theme/collapse/index.less'
 import { version } from './package.json'
 

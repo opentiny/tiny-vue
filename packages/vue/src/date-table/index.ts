@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import DateTable from './src/index.vue'
+import DateTable from './src/pc.vue'
 import '@opentiny/vue-theme/date-table/index.less'
 import { version } from './package.json'
 

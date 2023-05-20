@@ -1,0 +1,411 @@
+@import '../custom.less';
+
+@steps-prefix-cls: ~'@{css-prefix}steps';
+@default-color: theme('colors.color.text.primary');
+@active-color: theme('colors.color.brand.DEFAULT');
+@disabled-color: theme('colors.color.text.disabled');
+
+.@{steps-prefix-cls} {
+  color: @default-color;
+
+  & &-advanced {
+    & li {
+      line-height: 48px;
+      @apply inline-block;
+      @apply bg-color-bg-1;
+      @apply relative;
+      @apply cursor-pointer;
+
+      &:not(:last-child)::after {
+        @apply content-[''];
+        border-top: 25px solid transparent;
+        border-bottom: 25px solid transparent;
+        border-left: 20px solid theme('colors.color.bg.1');
+        @apply absolute;
+        @apply right-px;
+        @apply top-0;
+        @apply ~'z-[1]';
+      }
+      &:hover:not(:last-child)::after {
+        border-left-color: @active-color;
+      }
+
+      &:not(:last-child)::before {
+        @apply content-[''];
+        border-top: 25px solid transparent;
+        border-bottom: 25px solid transparent;
+        border-left: 20px solid @default-color;
+        @apply absolute;
+        @apply right-0;
+        @apply top-0;
+      }
+
+      &.current:not(:last-child)::before,
+      &:hover:not(:last-child)::before {
+        border-left-color: @active-color;
+      }
+
+      &:not(:first-child) a::after {
+        @apply content-[''];
+        border-top: 24px solid transparent;
+        border-bottom: 24px solid transparent;
+        border-left: 20px solid theme('colors.color.bg.1');
+        @apply absolute;
+        @apply -left-px;
+        @apply top-0;
+        @apply ~'z-[1]';
+      }
+
+      &:not(:first-child) a::before {
+        @apply content-[''];
+        border-top: 24px solid transparent;
+        border-bottom: 24px solid transparent;
+        border-left: 20px solid @default-color;
+        @apply absolute;
+        @apply left-0;
+        @apply top-0;
+      }
+
+      &.current:not(:first-child) a::before,
+      &:hover:not(:first-child) a::before {
+        border-left-color: @active-color;
+      }
+
+      &:first-child a {
+        @apply pl-3;
+      }
+
+      &.current {
+        a.label {
+          background: @active-color;
+          border: solid 1px @active-color;
+          @apply text-color-text-inverse;
+          @apply font-bold;
+        }
+
+        &::after {
+          border-left-color: @active-color;
+        }
+      }
+
+      &:last-child a {
+        @apply mr-0;
+      }
+
+      &:hover a.label {
+        background: @active-color;
+        border-color: @active-color;
+        @apply text-color-text-inverse;
+        @apply no-underline;
+      }
+
+      a.label {
+        border: solid 1px @default-color;
+        @apply border-r-0;
+        @apply flex;
+        @apply relative;
+        @apply no-underline;
+        @apply pl-8;
+        @apply pr-11;
+        color: @default-color;
+        @apply text-sm;
+        @apply mr-5;
+        > span {
+          @apply w-full;
+          @apply h-full;
+          @apply text-ellipsis;
+          @apply whitespace-nowrap;
+          @apply overflow-hidden;
+        }
+      }
+
+      &:first-child {
+        a {
+          border-top-left-radius: 3px;
+          border-bottom-left-radius: 3px;
+        }
+      }
+
+      &:last-child {
+        a {
+          border-right: solid 1px @default-color;
+          border-top-right-radius: 3px;
+          border-bottom-right-radius: 3px;
+          @apply mr-0;
+          @apply pr-16;
+        }
+      }
+
+      .dot {
+        @apply h-5;
+        @apply w-5;
+        @apply p-0;
+        @apply leading-5;
+        @apply cursor-pointer;
+        right: 34px;
+        @apply ~"top-1/2";
+        @apply ~"-translate-y-2/4";
+        @apply flex;
+        @apply absolute;
+        svg {
+          @apply w-full;
+          @apply h-full;
+          @apply fill-color-text-primary;
+        }
+      }
+
+      &.current,
+      &:hover {
+        .dot svg {
+          @apply fill-color-icon-inverse;
+        }
+      }
+    }
+
+    .count {
+      @apply bg-color-error;
+      border-radius: 10px;
+      @apply text-color-text-inverse;
+      @apply inline-block;
+      @apply text-xs;
+      @apply font-normal;
+      @apply ~"h-4.5";
+      line-height: 18px;
+      @apply py-0 ~'px-1.5';
+      @apply text-center;
+      @apply whitespace-nowrap;
+      @apply absolute;
+      @apply ~"-top-2.5";
+      right: 34px;
+      @apply ~'z-[1]';
+    }
+  }
+
+  .process-wait,
+  .process-wait .status,
+  .process-wait .node-description .status {
+    color: @disabled-color;
+  }
+
+  .process-wait {
+    .icon:hover {
+      color: @active-color;
+    }
+  }
+
+  .line {
+    @apply bg-color-border-separator;
+  }
+
+  .icon {
+    @apply w-6;
+    @apply h-6;
+    @apply leading-6;
+    @apply box-border;
+    @apply relative;
+    @apply text-sm;
+    @apply text-center;
+    left: ~'calc(50% - 12px)';
+    @apply top-0;
+    @apply rounded-full;
+    @apply bg-color-bg-1;
+    color: @disabled-color;
+    @apply cursor-pointer;
+    @apply ~'z-[15]';
+  }
+
+  .process-done {
+    .icon {
+      @apply bg-color-bg-1;
+      @apply w-6;
+      @apply h-6;
+      @apply leading-6;
+      @apply text-2xl;
+      color: @active-color;
+
+      .@{css-prefix}svg {
+        fill: @active-color;
+        @apply align-baseline;
+        border: 1px solid @active-color;
+        @apply rounded-full;
+        @apply p-1;
+      }
+
+      &:active {
+        .@{css-prefix}svg {
+          @apply fill-color-icon-active;
+          @apply border-color-brand-active;
+        }
+      }
+    }
+
+    .line {
+      @apply bg-color-text-primary;
+    }
+  }
+
+  .node-description {
+    @apply relative;
+    @apply mt-3;
+    @apply overflow-hidden;
+    @apply text-center;
+
+    .name {
+      @apply text-sm;
+      @apply float-left;
+      @apply font-bold;
+      @apply w-full;
+    }
+
+    .status {
+      @apply text-xs;
+      @apply mt-2;
+      @apply text-color-text-secondary;
+      @apply float-left;
+      @apply w-full;
+    }
+  }
+
+  .process-current {
+    color: @active-color;
+
+    .icon {
+      background: @active-color;
+      @apply text-color-text-inverse;
+      @apply text-sm;
+    }
+
+    .status {
+      color: @active-color;
+    }
+  }
+
+  .reverse {
+    .process-current {
+      .line {
+        @apply bg-color-text-primary;
+      }
+    }
+  }
+
+  & &-normal {
+    @apply overflow-hidden;
+
+    .normal {
+      @apply block;
+      @apply float-left;
+    }
+
+    .line {
+      @apply h-px;
+      @apply ~'left-1/2';
+      @apply ~"-top-3";
+      @apply relative;
+    }
+
+    .line-end {
+      @apply w-0;
+    }
+
+    .process-done {
+      .line {
+        @apply bg-color-text-primary;
+      }
+    }
+
+    .icon {
+      span {
+        @apply inline-block;
+      }
+    }
+  }
+
+  & &-timeline {
+    @apply overflow-hidden;
+
+    .timeline {
+      @apply overflow-hidden;
+
+      .line {
+        @apply w-px;
+        @apply float-left;
+
+        .@{css-prefix}svg {
+          @apply align-baseline;
+        }
+      }
+
+      .date-time {
+        width: 100px;
+        @apply float-left;
+        @apply pr-6;
+        @apply text-right;
+        @apply text-xs;
+
+        .time {
+          @apply block;
+          @apply leading-none;
+        }
+
+        .date {
+          @apply block;
+          @apply leading-none;
+          @apply mb-1;
+        }
+      }
+
+      .name {
+        @apply float-left;
+        @apply ml-6;
+        @apply text-sm;
+        @apply font-bold;
+        line-height: 1.45em;
+      }
+
+      .icon {
+        @apply top-0;
+      }
+    }
+  }
+
+  .process-wait {
+    .icon {
+      @apply border border-solid;
+    }
+  }
+
+  &.mobile {
+    padding-left: 10%;
+
+    .@{steps-prefix-cls}-timeline {
+      overflow: inherit;
+
+      .@{css-prefix-iconfont} {
+        font-size: 45px;
+      }
+
+      .timeline {
+        .line {
+          .icon {
+            width: 45px;
+            line-height: 45px;
+            height: 45px;
+            @apply text-4xl;
+            @apply relative;
+            @apply ~"-left-5";
+          }
+        }
+
+        .name {
+          margin-left: 30px;
+          font-size: 26px;
+          @apply font-bold;
+        }
+
+        & > div {
+          @apply ml-5;
+        }
+      }
+    }
+  }
+}

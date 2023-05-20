@@ -1,0 +1,22 @@
+export const tinyNotifySmbTheme = {
+  'ti-notify-max-width': '340px',
+  'ti-notify-message-margin-left': 'var(--ti-common-space-2x)',
+  'ti-notify-info-bg-color': 'var(--ti-common-color-bg-navigation)',
+  'ti-notify-border-radius': 'var(--ti-common-border-radius-4)',
+  'ti-notify-box-shadow': '0px 2px 12px 0px rgba(0,0,0,0.08)',
+  'ti-notify-close-icon-font-size': 'var(--ti-common-font-size-4)',
+  'ti-notify-close-icon-color': 'var(--ti-common-color-icon-normal)',
+  'ti-notify-title-font-size': 'var(--ti-common-font-size-2)',
+  'ti-notify-title-font-weight': '600',
+  'ti-notify-content-text-color': 'var(--ti-common-color-text-secondary)',
+  'ti-notify-message-margin-right': 'var(--ti-common-space-2x)',
+  'ti-notify-close-hover-icon-color': 'var(--ti-common-color-icon-hover)',
+  'ti-notify-position-top-left': 'var(--ti-common-space-6x)',
+  'ti-notify-position-bottom-left': 'var(--ti-common-space-6x)',
+  'ti-notify-position-top-right': 'var(--ti-common-space-6x)',
+  'ti-notify-position-bottom-right': 'var(--ti-common-space-6x)',
+  'ti-notify-success-bg-color': 'var(--ti-common-color-bg-navigation)',
+  'ti-notify-error-bg-color': 'var(--ti-common-color-bg-navigation)',
+  'ti-notify-warning-bg-color': 'var(--ti-common-color-bg-navigation)',
+  'ti-notify-icon-transform': 'translate(0,-1px)'
+}

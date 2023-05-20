@@ -10,7 +10,7 @@
 *
 */
 
-import { addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { addClass, removeClass } from '../common/deps/dom'
 
 
 const setFixAnchor = ({ vm }) => {

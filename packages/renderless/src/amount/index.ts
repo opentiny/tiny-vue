@@ -10,10 +10,10 @@
 *
 */
 
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
-import { formatNumber } from '@opentiny/vue-renderless/common/decimal'
-import { getMiniDecimal, equalsDecimal } from '@opentiny/vue-renderless/common/bigInt'
-import { isNumber } from '@opentiny/vue-renderless/common/type'
+import { on, off } from '../common/deps/dom'
+import { formatNumber } from '../common/decimal'
+import { getMiniDecimal, equalsDecimal } from '../common/bigInt'
+import { isNumber } from '../common/type'
 
 export const initService = (service) => {
   const { utils = {} } = service || {}

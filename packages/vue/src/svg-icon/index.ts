@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import SvgIcon from './src/index.vue'
+import SvgIcon from './src/pc.vue'
 import '@opentiny/vue-theme/svg/index.less'
 import { version } from './package.json'
 

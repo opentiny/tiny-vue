@@ -10,9 +10,9 @@
 *
 */
 
-import { isEqual } from '@opentiny/vue-renderless/common/object'
-import { capitalize } from '@opentiny/vue-renderless/common/string'
-import { isNull } from '@opentiny/vue-renderless/common/type'
+import { isEqual } from '../common/object'
+import { capitalize } from '../common/string'
+import { isNull } from '../common/type'
 
 let uid = 0
 
@@ -45,7 +45,7 @@ export default class Node {
     const childrenKey = config.children
     const childrenData = this.data[childrenKey]
 
-    this.hasChildren = Array.isArray(childrenData) && childrenData.length > 0
+    this.hasChildren = Array.isArray(childrenData)
     this.children = (childrenData || []).map((child) => new Node(child, config, this))
   }
 

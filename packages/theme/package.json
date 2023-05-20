@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-theme",
-  "version": "3.6.6",
+  "version": "3.8.0",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "main": "index.css",
   "homepage": "https://opentiny.design/tiny-vue",
@@ -23,13 +23,14 @@
   "scripts": {
     "clean": "rimraf dist",
     "build:theme": "gulp build --gulpfile build/gulp-dist.js",
-    "build": "npm run clean && npm run build:theme && node build/replace-img.js",
+    "build": "npm run clean && npm run build:component-cssvar && npm run build:theme && node build/replace-img.js",
     "build:fast": "npm run build && npm run release",
     "release": "node build/release.js && node build/postbuild.js && cp README.md dist",
-    "build:copy-remote": "npm run build:theme && cp-cli dist ../aurora-vue/node_modules/@aurora/theme",
+    "build:copy-remote": "npm run build:theme && cp-cli dist ../tiny-vue/node_modules/@opentiny/vue-theme",
     "publishTgz": "node .cloudbuild/publish-tgzs.js",
     "postversion": "pnpm build",
-    "build:themejson": "node scripts/build-theme-json"
+    "build:themejson": "node scripts/build-theme-json",
+    "build:component-cssvar": "node scripts/build-component-cssvar"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",

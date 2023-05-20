@@ -59,7 +59,7 @@
         }
 
         .tree-node-name {
-          padding: 0 24px;
+          padding: 0 var(--ti-tree-menu-node-body-text-padding-horizontal);
         }
       }
 
@@ -126,13 +126,13 @@
       }
 
       .tree-node-body {
-        min-height: 40px;
+        min-height: var(--ti-tree-menu-node-height);
         display: flex;
         align-items: center;
       }
 
       .@{tree-node-prefix-cls}__label {
-        //兼容ie10-ie11
+        // 兼容ie10-ie11
         @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
           display: flex;
         }

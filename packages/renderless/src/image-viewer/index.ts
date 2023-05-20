@@ -10,9 +10,9 @@
 *
 */
 
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
-import { KEY_CODE } from '@opentiny/vue-renderless/common'
-import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
+import { on, off } from '../common/deps/dom'
+import { KEY_CODE } from '../common'
+import PopupManager from '../common/deps/popup-manager'
 
 const isFirefox = () => !!window.navigator.userAgent.match(/firefox/i)
 

@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import List from './src/index.vue'
+import List from './src/mobile.vue'
 import '@opentiny/vue-theme-mobile/list/index.less'
 import { version } from './package.json'
 

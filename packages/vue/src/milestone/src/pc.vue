@@ -94,7 +94,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/milestone/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'

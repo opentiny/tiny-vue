@@ -1,1 +1,90 @@
-[{"title":"基本用法","content":"详细用法参考如下示例","link":"tag/basic-usage","component":" Tag 标签","findIntroStr":"Tag 标签组件，用于标记事物的属性和维度","demoId":"basic-usage"},{"title":"颜色","content":"<p>可通过 <code>color</code> 设置标签背景色。</p>\n","link":"tag/color3","component":" Tag 标签","findIntroStr":"Tag 标签组件，用于标记事物的属性和维度","demoId":"color3"},{"title":"边框","content":"<p>可通过 <code>hit</code> 设置标签边框，可选值（true/false）true为有边框，false无边框,默认值为 false。</p>\n","link":"tag/hit","component":" Tag 标签","findIntroStr":"Tag 标签组件，用于标记事物的属性和维度","demoId":"hit"},{"title":"尺寸","content":"<p>可通过 <code>size</code> 设置Tag标签大小，可选值（medium / small / mini）。</p>\n","link":"tag/tag-size","component":" Tag 标签","findIntroStr":"Tag 标签组件，用于标记事物的属性和维度","demoId":"tag-size"},{"title":"主题","content":"<p>可通过 <code>effect</code> 设置Tag标签主题，可选值（dark / light / plain）。\n<code>type</code>可以为标签设置相应的类型，可选值（success / info / warning / danger）。</p>\n","link":"tag/effect","component":" Tag 标签","findIntroStr":"Tag 标签组件，用于标记事物的属性和维度","demoId":"effect"},{"title":"动态编辑标签","content":"<p>通过点击<code>+ New Tag</code>在文本框中输入你要定义的标签名就能在标签列表中最后一个创建标签 。<code>closable</code> 属性可以为标签设置成可去除标签。</p>\n","link":"tag/create","component":" Tag 标签","findIntroStr":"Tag 标签组件，用于标记事物的属性和维度","demoId":"create"},{"title":"可移除标签","content":"详细用法参考如下示例","link":"tag/closeable","component":" Tag 标签","findIntroStr":"Tag 标签组件，用于标记事物的属性和维度","demoId":"closeable"},{"title":"Click 事件","content":"详细用法参考如下示例","link":"tag/tag-event-click","component":" Tag 标签","findIntroStr":"Tag 标签组件，用于标记事物的属性和维度","demoId":"tag-event-click"},{"title":"Close 事件","content":"详细用法参考如下示例","link":"tag/tag-event-close","component":" Tag 标签","findIntroStr":"Tag 标签组件，用于标记事物的属性和维度","demoId":"tag-event-close"}]
+[
+  {
+    "title": "基本用法",
+    "content": "详细用法参考如下示例",
+    "link": "tag/basic-usage",
+    "component": " Tag 标签",
+    "findIntroStr": "Tag 标签组件，用于标记事物的属性和维度",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "颜色",
+    "content": "<p>可通过 <code>color</code> 设置标签背景色。</p>\n",
+    "link": "tag/color3",
+    "component": " Tag 标签",
+    "findIntroStr": "Tag 标签组件，用于标记事物的属性和维度",
+    "demoId": "color3"
+  },
+  {
+    "title": "边框",
+    "content": "<p>可通过 <code>hit</code> 设置标签边框，可选值（true/false）true为有边框，false无边框,默认值为 false。</p>\n",
+    "link": "tag/hit",
+    "component": " Tag 标签",
+    "findIntroStr": "Tag 标签组件，用于标记事物的属性和维度",
+    "demoId": "hit"
+  },
+  {
+    "title": "尺寸",
+    "content": "<p>可通过 <code>size</code> 设置Tag标签大小，可选值（medium / small / mini）。</p>\n",
+    "link": "tag/tag-size",
+    "component": " Tag 标签",
+    "findIntroStr": "Tag 标签组件，用于标记事物的属性和维度",
+    "demoId": "tag-size"
+  },
+  {
+    "title": "主题",
+    "content": "<p>可通过 <code>effect</code> 设置Tag标签主题，可选值（dark / light / plain）。\n<code>type</code>可以为标签设置相应的类型，可选值（success / info / warning / danger）。</p>\n",
+    "link": "tag/effect",
+    "component": " Tag 标签",
+    "findIntroStr": "Tag 标签组件，用于标记事物的属性和维度",
+    "demoId": "effect"
+  },
+  {
+    "title": "动态编辑标签",
+    "content": "<p>通过点击<code>+ New Tag</code>在文本框中输入你要定义的标签名就能在标签列表中最后一个创建标签 。<code>closable</code> 属性可以为标签设置成可去除标签。</p>\n",
+    "link": "tag/create",
+    "component": " Tag 标签",
+    "findIntroStr": "Tag 标签组件，用于标记事物的属性和维度",
+    "demoId": "create"
+  },
+  {
+    "title": "可移除标签",
+    "content": "详细用法参考如下示例",
+    "link": "tag/closeable",
+    "component": " Tag 标签",
+    "findIntroStr": "Tag 标签组件，用于标记事物的属性和维度",
+    "demoId": "closeable"
+  },
+  {
+    "title": "禁用",
+    "content": "<p>可通过 <code>disabled</code> 设置标签禁用。</p>\n",
+    "link": "tag/disabled",
+    "component": " Tag 标签",
+    "findIntroStr": "Tag 标签组件，用于标记事物的属性和维度",
+    "demoId": "disabled"
+  },
+  {
+    "title": "图标标签（使用默认插槽）",
+    "content": "详细用法参考如下示例",
+    "link": "tag/slot-default",
+    "component": " Tag 标签",
+    "findIntroStr": "Tag 标签组件，用于标记事物的属性和维度",
+    "demoId": "slot-default"
+  },
+  {
+    "title": "Click 事件",
+    "content": "详细用法参考如下示例",
+    "link": "tag/tag-event-click",
+    "component": " Tag 标签",
+    "findIntroStr": "Tag 标签组件，用于标记事物的属性和维度",
+    "demoId": "tag-event-click"
+  },
+  {
+    "title": "Close 事件",
+    "content": "详细用法参考如下示例",
+    "link": "tag/tag-event-close",
+    "component": " Tag 标签",
+    "findIntroStr": "Tag 标签组件，用于标记事物的属性和维度",
+    "demoId": "tag-event-close"
+  }
+]

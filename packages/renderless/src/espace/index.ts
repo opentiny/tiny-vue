@@ -10,7 +10,7 @@
 *
 */
 
-import { xss } from '@opentiny/vue-renderless/common'
+import { xss } from '../common'
 
 export const getUserHref = ({ api, props }) => (item) => {
   const type = item.type ? String(item.type).toLocaleLowerCase() : ''

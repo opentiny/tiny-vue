@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc'
+import template from 'virtual-template?pc|mobile-first'
 
 export default defineComponent({
   name: $prefix + 'RadioGroup',
@@ -30,6 +30,10 @@ export default defineComponent({
     type: {
       type: String,
       default: 'radio'
+    },
+    showTips: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
