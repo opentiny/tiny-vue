@@ -106,6 +106,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/ygj6"><img src="https://avatars.githubusercontent.com/u/7699524?v=4?s=100" width="100px;" alt="ygj6"/><br /><sub><b>ygj6</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=ygj6" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/MrWang2016"><img src="https://avatars.githubusercontent.com/u/24307164?v=4?s=100" width="100px;" alt="MrWang2016"/><br /><sub><b>MrWang2016</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=MrWang2016" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
