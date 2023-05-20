@@ -104,6 +104,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
         },
         lib: {
           entry,
+          formats: ['es'],
           fileName: (format, entryName) => `${entryName}${min ? '.min' : ''}.${format === 'es' ? 'm' : ''}js`,
           name: 'Tiny'
         },
@@ -117,10 +118,6 @@ function getEntryTasks() {
   // 每次都要构建app和图标2个runtime
   return [
     {
-      path: 'vue/app.ts',
-      libPath: 'tiny-vue'
-    },
-    {
       path: 'vue-icon/index.ts',
       libPath: 'tiny-vue-icon'
     },
@@ -131,6 +128,10 @@ function getEntryTasks() {
     {
       path: 'vue-common/src/index.ts',
       libPath: 'tiny-vue-common'
+    },
+    {
+      path: 'vue/app.ts',
+      libPath: 'tiny-vue'
     }
   ]
 }

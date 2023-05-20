@@ -20,12 +20,12 @@ const MAIN_TEMPLATE = `{{{include}}}
 
  export default {
   {{{components}}}
-}
+ }
  `
 
 const buildFullRuntime = () => {
   const outputPath = utils.pathFromWorkspaceRoot(outputDir, 'app.ts')
-  const components = moduleUtils.getComponents()
+  const components = moduleUtils.getComponents('pc')
   const includeTemplate: string[] = []
   const componentsTemplate: string[] = []
 
