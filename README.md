@@ -102,6 +102,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/MomoPoppy"><img src="https://avatars.githubusercontent.com/u/125256456?v=4?s=100" width="100px;" alt="MomoPoppy"/><br /><sub><b>MomoPoppy</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=MomoPoppy" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/WXC-Spring"><img src="https://avatars.githubusercontent.com/u/131581326?v=4?s=100" width="100px;" alt="WXC-Spring"/><br /><sub><b>WXC-Spring</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=WXC-Spring" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/GaoNeng-wWw"><img src="https://avatars.githubusercontent.com/u/31283122?v=4?s=100" width="100px;" alt="GaoNeng"/><br /><sub><b>GaoNeng</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=GaoNeng-wWw" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://acyza.github.io"><img src="https://avatars.githubusercontent.com/u/101238421?v=4?s=100" width="100px;" alt="acyza"/><br /><sub><b>acyza</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=acyza" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
