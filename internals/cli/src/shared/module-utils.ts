@@ -47,7 +47,7 @@ export interface Module {
  * @param {Boolean} isSort 是否需要排序
  * @returns 模块对象
  */
-const getAllModules = (isSort) => {
+const getAllModules = (isSort: boolean) => {
   return getSortModules({ filterIntercept: () => true, isSort })
 }
 
@@ -55,7 +55,7 @@ const getAllModules = (isSort) => {
  * @param {String} key 根据模块对象的 Key 获取对应的值
  * @returns 模块对象
  */
-const getModuleInfo = (key) => {
+const getModuleInfo = (key: string) => {
   return moduleMap[key] || {}
 }
 
@@ -66,7 +66,10 @@ const getModuleInfo = (key) => {
  * @param {Boolean} isOriginal 是否取原始数据
  * @param {Boolean} isSort 是否需要排序
  */
-const getByName = ({ name, inversion = false, isOriginal = false, isSort = true }) => {
+const getByName = (
+  { name, inversion = false, isOriginal = false, isSort = true }:
+  { name: string;inversion: boolean;isOriginal: boolean;isSort: boolean }
+) => {
   const callback = (item) => {
     const result = new RegExp(`/${name}/|^vue-${name}/`).test(item.path)
     return inversion ? !result : result
@@ -80,7 +83,7 @@ const getByName = ({ name, inversion = false, isOriginal = false, isSort = true 
  * @private
  * @param {Function} filterIntercept 搜索条件
  */
-const getModules = (filterIntercept) => {
+const getModules = (filterIntercept: Function) => {
   let modules = {}
 
   if (typeof filterIntercept === 'function') {
@@ -104,7 +107,7 @@ const getModules = (filterIntercept) => {
  * @param {Function} filterIntercept 搜索条件
  * @param {Boolean} isSort 是否需要排序
  */
-const getSortModules = ({ filterIntercept, isSort = true }) => {
+const getSortModules = ({ filterIntercept, isSort = true }: { filterIntercept: Function; isSort: boolean }) => {
   let modules: Module[] = []
   let componentCount = 0
   const importName = '@opentiny/vue'
@@ -119,7 +122,7 @@ const getSortModules = ({ filterIntercept, isSort = true }) => {
       // 这段逻辑暂时没有用到
       const componentName = dirs.slice(1, dirs.indexOf('src'))
       // UpperName: Todo
-      component.UpperName = utils.capitalizeKebabCase(componentName.pop())
+      component.UpperName = utils.capitalizeKebabCase(componentName.pop() ?? '')
 
       // LowerName: todo
       component.LowerName = utils.kebabCase({ str: component.UpperName })
@@ -331,7 +334,7 @@ const isNotArrayObject = (sortData, key, setIndex) => {
       let sortItem = {}
 
       if (typeof dataItem !== 'object') {
-        sortItem.__real_value = dataItem
+        (sortItem as unknown as Record<string, any>).__real_value = dataItem
       } else {
         sortItem = {
           ...sortData[sortKey]
@@ -375,11 +378,13 @@ const getComponents = (mode, isSort = true) => {
  * 获取模块项的模块
  * @param {String} componentName 组件名称（大写，例如：img-preview）
  * @param {Oject} newObj 新增对象
- * @param {Boolean} isMobile 是否为移动组件
  * @returns 模块对象
  */
-export const addModule = ({ componentName, templateName, newObj = {}, isMobile = false }) => {
-  const isEntry = templateName.endsWith('index')
+export const addModule = (
+  { componentName, templateName, newObj = {} }:
+  { componentName: string; templateName?: string; newObj?: object; isMobile: boolean }
+) => {
+  const isEntry = templateName?.endsWith('index') ?? false
   return {
     path: `vue/src/${componentName}/` + (isEntry ? `${templateName}.ts` : `src/${templateName}.vue`),
     type: isEntry ? 'component' : 'template',
