@@ -2,9 +2,9 @@ import * as monaco from 'monaco-editor'
 import { hooks } from '@opentiny/vue-common'
 // monaco ESM模块集成说明 ： https://github.com/microsoft/monaco-editor/blob/main/docs/integrate-esm.md#using-vite
 // https://github.com/vitejs/vite/discussions/1791#discussioncomment-321046
-import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
+import HtmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
 self.MonacoEnvironment = {
-  getWorker: () => new htmlWorker()
+  getWorker: () => new HtmlWorker()
 }
 
 export function useMonaco(selector) {
