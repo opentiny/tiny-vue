@@ -91,7 +91,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, themeV
           }
         }
       }),
-      inlineChunksPlugin({ deleteInlinedFiles: true }),
+      !isRuntime && inlineChunksPlugin({ deleteInlinedFiles: true }),
       !isRuntime &&
       generatePackageJsonPlugin({
         beforeWriteFile: (filePath, content) => {
@@ -144,7 +144,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, themeV
           }
         }
       }),
-      replaceModuleNamePlugin()
+      !isRuntime && replaceModuleNamePlugin()
     ],
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.vue'],
