@@ -38,6 +38,10 @@ export default defineComponent({
     showEdit: {
       type: Boolean,
       default: false
+    },
+    border: {
+      type: Boolean,
+      default: true
     }
   },
   setup(props, context) {

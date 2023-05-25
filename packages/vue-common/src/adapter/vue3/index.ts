@@ -476,12 +476,14 @@ export const h: CreateElement = (component, propsData, childData) => {
   return hooks.h(type, props, children)
 }
 
-export const createComponent = ({ component, propsData, el }) => {
-  const vnode = hooks.createVNode(component, propsData)
+export const createComponentFn = (design) => {
+  return ({ component, propsData, el }) => {
+    const comp = Object.assign(component, { provide: { [design.configKey]: design.configInstance } })
+    const vnode = hooks.createVNode(comp, propsData)
 
-  hooks.render(vnode, el)
-
-  return createVm({}, vnode.component)
+    hooks.render(vnode, el)
+    return createVm({}, vnode.component)
+  }
 }
 
 export const defineComponent = hooks.defineComponent

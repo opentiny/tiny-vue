@@ -20,7 +20,7 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+import { Grid, GridColumn, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -142,7 +142,10 @@ export default {
   },
   methods: {
     headerMenuClick() {
-      alert('触发表头右键点击事件')
+      Modal.message({
+        message: '触发表头右键点击事件',
+        status: 'info'
+      })
     },
     visibleMethod({ options, column }) {
       const isVisible = column && (column.property === 'name' || column.property === 'area' || column.property === 'telephone')
@@ -163,11 +166,17 @@ export default {
       switch (menu.code) {
         case 'copy':
           if (row && column) {
-            alert(`copy ${row}`)
+            Modal.message({
+              message: `copy ${row}`,
+              status: 'info'
+            })
           }
           break
         default:
-          alert(`点击了 ${menu.name} 选项`)
+          Modal.message({
+            message: `点击了 ${menu.name} 选项`,
+            status: 'info'
+          })
       }
     }
   }

@@ -8,11 +8,10 @@ import Handlebars from 'handlebars'
 let RegCache = {}
 let HandlebarsCompile
 
-const replaceDelimiters = function (str, sourceReg, escape?: boolean) {
+const replaceDelimiters = function (str, sourceReg, escape) {
   let regex = RegCache[sourceReg] || (RegCache[sourceReg] = new RegExp(sourceReg, 'g'))
   let match
 
-  // eslint-disable-next-line no-cond-assign
   while ((match = regex.exec(str))) {
     let prefix = str.slice(0, match.index)
     let inner = (escape ? '\\' : '') + '{{' + match[1] + '}}'
@@ -24,34 +23,31 @@ const replaceDelimiters = function (str, sourceReg, escape?: boolean) {
   return str
 }
 
-Object.defineProperty(Handlebars, 'setDelimiter', {
-  value(delimiters: string[]) {
-    if (delimiters[0].slice(-1) !== '=') {
-      delimiters[0] += '(?!=)'
-    }
+Handlebars.setDelimiter = function (delimiters) {
+  if (delimiters[0].slice(-1) !== '=') {
+    delimiters[0] += '(?!=)'
+  }
 
-    let source = delimiters[0] + '([\\s\\S]+?)' + delimiters[1]
+  let source = delimiters[0] + '([\\s\\S]+?)' + delimiters[1]
 
-    if (!HandlebarsCompile) {
-      HandlebarsCompile = Handlebars.compile
-    }
+  if (!HandlebarsCompile) {
+    HandlebarsCompile = Handlebars.compile
+  }
 
-    Handlebars.compile = function (str) {
-      // eslint-disable-next-line prefer-rest-params
-      let args = [].slice.call(arguments)
+  Handlebars.compile = function (str) {
+    let args = [].slice.call(arguments)
 
-      if (typeof str === 'string') {
-        if (delimiters[0] !== '{{' && delimiters[1] !== '}}') {
-          args[0] = replaceDelimiters(args[0], '{{([\\s\\S]+?)}}', true)
-        }
-
-        args[0] = replaceDelimiters(args[0], source)
+    if (typeof str === 'string') {
+      if (delimiters[0] !== '{{' && delimiters[1] !== '}}') {
+        args[0] = replaceDelimiters(args[0], '{{([\\s\\S]+?)}}', true)
       }
 
-      return HandlebarsCompile.apply(Handlebars, args)
+      args[0] = replaceDelimiters(args[0], source)
     }
+
+    return HandlebarsCompile.apply(Handlebars, args)
   }
-})
+}
 
 /**
  * 格式化模板
@@ -63,13 +59,8 @@ Object.defineProperty(Handlebars, 'setDelimiter', {
  * @param {Object} delimiter
  * @returns {String}
  */
-export default function ({ delimiter, template, options, data }: {
-  delimiter?: string[]
-  template: string
-  options?: CompileOptions
-  data: any
-}) {
-  delimiter && (Handlebars as typeof Handlebars & { setDelimiter: (delimiter: string[]) => any }).setDelimiter(delimiter)
-  const compile = Handlebars.compile(template, options)
-  return compile(data)
+export default function ({ delimiter, template, options, data }) {
+  delimiter && Handlebars.setDelimiter(delimiter)
+
+  return Handlebars.compile(template, options)(data)
 }

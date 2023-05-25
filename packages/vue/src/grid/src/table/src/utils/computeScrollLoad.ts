@@ -53,7 +53,6 @@ export function computeScrollYLoad({ _vm, scrollLoad, scrollY, scrollYLoad, scro
     // 计算需要渲染的表格数据，并更新YSpace元素高度用来显示正确的滚动条长度
     _vm.updateScrollYData()
   } else {
-    // 滚动分页加载
     _vm.updateScrollYSpace()
   }
 }
@@ -61,7 +60,9 @@ export function computeScrollYLoad({ _vm, scrollLoad, scrollY, scrollYLoad, scro
 export function computeScrollXLoad({ _vm, scrollX, scrollXLoad, scrollXStore, tableBodyElem, visibleColumn }) {
   if (scrollXLoad) {
     let firstColumn = visibleColumn[0]
+    // 获取x轴虚拟滚动每列宽度
     let cWidth = firstColumn ? firstColumn.renderWidth : 40
+    // 获取每次需要渲染的列数
     let visibleXSize = toNumber(scrollX.vSize || Math.ceil(tableBodyElem.clientWidth / cWidth))
 
     scrollXStore.visibleSize = visibleXSize
@@ -74,6 +75,7 @@ export function computeScrollXLoad({ _vm, scrollX, scrollXLoad, scrollXStore, ta
       scrollXStore.renderSize = visibleXSize + 2
     }
 
+    // 处理x轴虚拟滚动渲染数据
     _vm.updateScrollXData()
   } else {
     _vm.updateScrollXSpace()

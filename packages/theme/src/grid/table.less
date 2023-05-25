@@ -669,7 +669,7 @@
       cursor: pointer;
 
       &:hover {
-        fill: var(--ti-grid-text-color);
+        fill: var(--ti-grid-icon-color);
       }
 
       &.sort__active {
@@ -796,7 +796,7 @@
       .@{grid-cell-prefix-cls}__ellipsis,
       .@{grid-cell-prefix-cls}__tooltip,
       .@{grid-cell-prefix-cls}__title {
-        padding: 0 var(--ti-table-td-padding-horizontal);
+        padding: 0 var(--ti-grid-td-padding-horizontal);
       }
     }
   }
@@ -1069,11 +1069,11 @@
     .@{grid-prefix-cls}-default-select {
       outline: 0;
       height: var(--ti-grid-input-height);
-      padding: 0 var(--ti-table-td-padding-horizontal);
+      padding: 0 var(--ti-grid-td-padding-horizontal);
       width: 100%;
       color: var(--ti-grid-text-color);
       border-radius: var(--ti-grid-border-radius);
-      border: 1px solid var(--ti-table-td-padding-horizontal);
+      border: 1px solid var(--ti-grid-border-color);
 
       &:focus {
         border: 1px solid var(--ti-grid-primary-color);

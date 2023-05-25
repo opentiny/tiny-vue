@@ -59,6 +59,7 @@ const makeModules = () => {
       const entryObj = getBuildEntryFile(file, dirs, subPath)
       const mode: string[] = []
 
+      // 这里通过判断pc、mobile、first-mobile模板的个数，来分类组件
       if (entryObj.isMainEntry && dirs.includes('src')) {
         const srcPath = subPath.replace(file, 'src')
         const srcFiles = fs.readdirSync(srcPath) || []

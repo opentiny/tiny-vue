@@ -59,7 +59,7 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
+<style scoped>
 .icon-clockWork {
   fill: var(--ti-common-color-line-active);
   font-size: 18px;
@@ -69,23 +69,23 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  a {
-    color: #1476ff;
-    position: relative;
-  }
-  a:hover {
-    font-weight: bold;
-  }
-  a:first-child::after {
-    content: '';
-    position: absolute;
-    height: 17px;
-    right: -12px;
-    border-right: 1px solid rgba(0, 0, 0, 0.15);
-  }
-  a:last-child {
-    margin-left: 24px;
-  }
+}
+.title a {
+  color: #1476ff;
+  position: relative;
+}
+.title a:hover {
+  font-weight: bold;
+}
+.title a:first-child::after {
+  content: '';
+  position: absolute;
+  height: 17px;
+  right: -12px;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+}
+.title a:last-child {
+  margin-left: 24px;
 }
 .is-disabled a {
   color: #c2c2c2;

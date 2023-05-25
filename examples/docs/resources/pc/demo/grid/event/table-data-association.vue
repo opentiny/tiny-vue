@@ -39,7 +39,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn } from '@opentiny/vue'
 
 export default {

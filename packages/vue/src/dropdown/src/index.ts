@@ -10,7 +10,7 @@ export default defineComponent({
     type: String,
     trigger: {
       type: String,
-      default: 'click'
+      default: 'hover'
     },
     size: {
       type: String,

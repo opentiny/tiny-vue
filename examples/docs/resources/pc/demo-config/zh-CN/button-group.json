@@ -1,1 +1,98 @@
-[{"title":"基本用法","content":"<p>通过 <code>v-model</code> 设置默认选中的按钮，并实现双向绑定。通过 <code>value</code> 也可设置默认选中按钮，但不能进行双向绑定。</p>\n","link":"button-group/base","component":" ButtonGroup 按钮组","findIntroStr":"以按钮组的方式出现，常用于多项类似操作。","demoId":"base"},{"title":"按钮组数据","content":"<p>通过 <code>data</code> 属性设置按钮组数据，对象中的 text 为按钮显示文本，value 用于双向绑定时指定的值。</p>\n","link":"button-group/data","component":" Buttongroup 按钮组","findIntroStr":"以按钮组的方式出现，常用于多项类似操作。","demoId":"data"},{"title":"设置组件大小","content":"<p>可以设置为：<code>medium</code>，<code>small</code>，<code>mini</code></p>\n","link":"button-group/size","component":" ButtonGroup 按钮组","findIntroStr":"以按钮组的方式出现，常用于多项类似操作。","demoId":"size"},{"title":"禁用状态","content":"<p>设置 <code>disabled</code> 属性为 true 可禁用整个按钮组。</p>\n","link":"button-group/disabled","component":" Buttongroup 按钮组","findIntroStr":"以按钮组的方式出现，常用于多项类似操作。","demoId":"disabled"},{"title":"朴素按钮","content":"<p>设置 <code>plain</code> 属性为 true 可显示为朴素按钮样式。</p>\n","link":"button-group/plain","component":" Buttongroup 按钮组","findIntroStr":"以按钮组的方式出现，常用于多项类似操作。","demoId":"plain"},{"title":"数据字段映射","content":"<p>若按钮组数据对象中的字段不是默认的 text 和 value ，则可通过 <code>text-field</code>、<code>value-field</code> 属性进行映射。</p>\n","link":"button-group/text-value-field","component":" Buttongroup 按钮组","findIntroStr":"以按钮组的方式出现，常用于多项类似操作。","demoId":"text-value-field"},{"title":"是否显示更多按钮","content":"<p>设置 <code>show-more</code> 属性值大于 0 且小于按钮组数据，可显示更多按钮。</p>\n","link":"button-group/show-more","component":" Buttongroup 按钮组","findIntroStr":"以按钮组的方式出现，常用于多项类似操作。","demoId":"show-more"},{"title":"是否显示编辑按钮","content":"<p>设置 <code>show-edit</code> 属性值为 true ，可显示编辑按钮。</p>\n","link":"button-group/show-edit","component":" Buttongroup 按钮组","findIntroStr":"以按钮组的方式出现，常用于多项类似操作。","demoId":"show-edit"},{"title":"编辑事件","content":"<p>勾选值改变后将触发 <code>edit</code> 事件。</p>\n","link":"button-group/event-edit","component":" Buttongroup 按钮组","findIntroStr":"以按钮组的方式出现，常用于多项类似操作。","demoId":"event-edit"},{"title":"默认插槽","content":"<p>使用默认插槽的方式时，ButtonGroup 的 <code>data、text-field、value-field、value / v-model、size</code> 属性对插槽中的按钮将不再生效。\n但可根据使用场景在 Button 组件标签上对不同按钮设置不同的属性，具体参考 Button 组件属性。</p>\n","link":"button-group/slot-default","component":" Buttongroup 按钮组","findIntroStr":"以按钮组的方式出现，常用于多项类似操作。","demoId":"slot-default"}]
+[
+    {
+        "title": "基本用法",
+        "content": "<p>通过 <code>v-model</code> 设置默认选中的按钮，并实现双向绑定。通过 <code>value</code> 也可设置默认选中按钮，但不能进行双向绑定。</p>\n",
+        "link": "button-group/base",
+        "component": " ButtonGroup 按钮组",
+        "findIntroStr": "以按钮组的方式出现，常用于多项类似操作。",
+        "demoId": "base"
+    },
+    {
+        "title": "按钮组数据",
+        "content": "<p>通过 <code>data</code> 属性设置按钮组数据，对象中的 text 为按钮显示文本，value 用于双向绑定时指定的值。</p>\n",
+        "link": "button-group/data",
+        "component": " Buttongroup 按钮组",
+        "findIntroStr": "以按钮组的方式出现，常用于多项类似操作。",
+        "demoId": "data"
+    },
+    {
+        "title": "设置组件大小",
+        "content": "<p>可以设置为：<code>medium</code>，<code>small</code>，<code>mini</code></p>\n",
+        "link": "button-group/size",
+        "component": " ButtonGroup 按钮组",
+        "findIntroStr": "以按钮组的方式出现，常用于多项类似操作。",
+        "demoId": "size"
+    },
+    {
+        "title": "禁用状态",
+        "content": "<p>设置 <code>disabled</code> 属性为 true 可禁用整个按钮组。</p>\n",
+        "link": "button-group/disabled",
+        "component": " Buttongroup 按钮组",
+        "findIntroStr": "以按钮组的方式出现，常用于多项类似操作。",
+        "demoId": "disabled"
+    },
+    {
+        "title": "朴素按钮",
+        "content": "<p>设置 <code>plain</code> 属性为 true 可显示为朴素按钮样式。</p>\n",
+        "link": "button-group/plain",
+        "component": " Buttongroup 按钮组",
+        "findIntroStr": "以按钮组的方式出现，常用于多项类似操作。",
+        "demoId": "plain"
+    },
+    {
+        "title": "数据字段映射",
+        "content": "<p>若按钮组数据对象中的字段不是默认的 text 和 value ，则可通过 <code>text-field</code>、<code>value-field</code> 属性进行映射。</p>\n",
+        "link": "button-group/text-value-field",
+        "component": " Buttongroup 按钮组",
+        "findIntroStr": "以按钮组的方式出现，常用于多项类似操作。",
+        "demoId": "text-value-field"
+    },
+    {
+        "title": "是否显示更多按钮",
+        "content": "<p>设置 <code>show-more</code> 属性值大于 0 且小于按钮组数据，可显示更多按钮。</p>\n",
+        "link": "button-group/show-more",
+        "component": " Buttongroup 按钮组",
+        "findIntroStr": "以按钮组的方式出现，常用于多项类似操作。",
+        "demoId": "show-more"
+    },
+    {
+        "title": "是否显示编辑按钮",
+        "content": "<p>设置 <code>show-edit</code> 属性值为 true ，可显示编辑按钮。</p>\n",
+        "link": "button-group/show-edit",
+        "component": " Buttongroup 按钮组",
+        "findIntroStr": "以按钮组的方式出现，常用于多项类似操作。",
+        "demoId": "show-edit"
+    },
+    {
+        "title": "编辑事件",
+        "content": "<p>勾选值改变后将触发 <code>edit</code> 事件。</p>\n",
+        "link": "button-group/event-edit",
+        "component": " Buttongroup 按钮组",
+        "findIntroStr": "以按钮组的方式出现，常用于多项类似操作。",
+        "demoId": "event-edit"
+    },
+    {
+        "title": "默认插槽",
+        "content": "<p>使用默认插槽的方式时，ButtonGroup 的 <code>data、text-field、value-field、value / v-model、size</code> 属性对插槽中的按钮将不再生效。\n但可根据使用场景在 Button 组件标签上对不同按钮设置不同的属性，具体参考 Button 组件属性。</p>\n",
+        "link": "button-group/slot-default",
+        "component": " Buttongroup 按钮组",
+        "findIntroStr": "以按钮组的方式出现，常用于多项类似操作。",
+        "demoId": "slot-default"
+    },
+    {
+        "title": "多行",
+        "content": "<p>多行按钮组，超出最大宽度后，换行显示</p>\n",
+        "link": "button-group/button-group-multiple",
+        "component": " Buttongroup 按钮组",
+        "findIntroStr": "多行",
+        "demoId": "button-group-multiple"
+    },
+    {
+        "title": "边框",
+        "content": "<p>设置有无边框，默认为true</p>\n",
+        "link": "button-group/border",
+        "component": " Buttongroup 按钮组",
+        "findIntroStr": "边框",
+        "demoId": "border"
+    }
+]

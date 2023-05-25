@@ -801,17 +801,24 @@ export default {
     const { elemStore } = $table
     const keyPrefix = 'main-body-'
 
-    // 缓存一些重要组件的refs
+    // 表体第一层div，出现滚动条的dom元素
     elemStore[`${keyPrefix}wrapper`] = $el
+    // 表体table元素
     elemStore[`${keyPrefix}table`] = $refs.table
+    // colgroup元素，保持表头和表体宽度保持一致
     elemStore[`${keyPrefix}colgroup`] = $refs.colgroup
+    // tbody元素
     elemStore[`${keyPrefix}list`] = $refs.tbody
+    // x轴滚动条占位元素
     elemStore[`${keyPrefix}xSpace`] = $refs.xSpace
+    // y轴滚动条占位元素
     elemStore[`${keyPrefix}ySpace`] = $refs.ySpace
+    // 空数据元素
     elemStore[`${keyPrefix}emptyBlock`] = $refs.emptyBlock
 
-    this.$el.onscroll = this.scrollEvent
-    this.$el._onscroll = this.scrollEvent
+    // 表体第一层div监听滚动事件
+    $el.onscroll = this.scrollEvent
+    $el._onscroll = this.scrollEvent
   },
   setup(props, { slots }) {
     hooks.onBeforeUnmount(() => {

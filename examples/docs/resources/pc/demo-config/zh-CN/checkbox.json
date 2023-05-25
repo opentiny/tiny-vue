@@ -118,5 +118,13 @@
     "component": " Checkbox 复选框",
     "findIntroStr": "用于配置不同场景的选项，提供用户可在一组选项中进行多选。",
     "demoId": "checkbox-slot"
+  },
+  {
+    "title": "多行按钮",
+    "content": "<p>多行按钮组，超出最大宽度后，换行显示</p>\n",
+    "link": "checkbox/checkbox-button-multiple",
+    "component": "Checkbox check box",
+    "findIntroStr": "多行按钮",
+    "demoId": "checkbox-button-multiple"
   }
 ]

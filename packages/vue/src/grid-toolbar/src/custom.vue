@@ -77,7 +77,7 @@
                 <tiny-grid-column v-if="initSettings.showIndex" type="index" width="60"></tiny-grid-column>
                 <tiny-grid-column field="title" tree-node></tiny-grid-column>
                 <tiny-grid-column field="property" width="120px" class-name="setting-item">
-                  <template v-slot="{ row, ...data }">
+                  <template #default="{ row, ...data }">
                     <div v-if="!row.children" class="setting-icon">
                       <span
                         class="icon"
@@ -88,7 +88,7 @@
                         "
                       >
                         <component
-                          :class="[{ hide: !row.visible }, { open: row.visible }]"
+                          :class="[{ open: row.visible }]"
                           :is="row.visible ? 'icon-eyeopen' : 'icon-eyeclose'"
                           @click="handlerSetting('visible', row, data)"
                         />
@@ -140,7 +140,7 @@
                   :editor="{}"
                   :renderer="renderNumberSorting"
                 >
-                  <template v-slot:edit="{ row }">
+                  <template #edit="{ row }">
                     <tiny-select v-model="row.sortingIndex" @change="handelNumberSorting($event, row)">
                       <tiny-option v-for="item in sortingOptions" :key="item" :label="item" :value="item">
                       </tiny-option>
@@ -177,8 +177,7 @@
                       :key="index"
                       v-model="settings.pageSize"
                       :label="item"
-                      >{{ item }}</tiny-radio
-                    >
+                    >{{ item }}</tiny-radio>
                   </span>
                 </li>
               </ul>
@@ -191,11 +190,17 @@
           </div>
         </div>
         <div v-if="!multipleHistory || (multipleHistory && activeName === 'base')" class="tiny-grid-custom__footer">
-          <tiny-button type="primary" @click="saveSettings" :disabled="saveDisabled">{{
-            t('ui.grid.individuation.saveBtn')
-          }}</tiny-button>
-          <tiny-button @click="resetSettings">{{ t('ui.grid.individuation.resetBtn') }}</tiny-button>
-          <tiny-button @click="cancelSettings">{{ t('ui.grid.individuation.cancelBtn') }}</tiny-button>
+          <tiny-button type="primary" @click="saveSettings" :disabled="saveDisabled">
+            {{
+              t('ui.grid.individuation.saveBtn')
+            }}
+          </tiny-button>
+          <tiny-button @click="resetSettings">
+            {{ t('ui.grid.individuation.resetBtn') }}
+          </tiny-button>
+          <tiny-button @click="cancelSettings">
+            {{ t('ui.grid.individuation.cancelBtn') }}
+          </tiny-button>
         </div>
       </div>
     </template>

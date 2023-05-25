@@ -1,11 +1,6 @@
 <template>
   <div>
-    <tiny-grid
-      ref="basicGrid"
-      :data="tableData"
-      @toolbar-button-click="toolbarButtonClickEvent"
-      :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
-    >
+    <tiny-grid ref="basicGrid" :data="tableData" @toolbar-button-click="toolbarButtonClickEvent" :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
       <template #toolbar>
         <tiny-grid-toolbar :buttons="toolbarButtons"></tiny-grid-toolbar>
       </template>
@@ -14,17 +9,12 @@
       <tiny-grid-column field="name" show-overflow title="名称" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
       <tiny-grid-column field="area" title="区域" :editor="{ component: 'input' }"></tiny-grid-column>
       <tiny-grid-column field="address" title="地址" :editor="{ component: 'input' }"></tiny-grid-column>
-      <tiny-grid-column
-        field="introduction"
-        title="公司简介"
-        :editor="{ component: 'input', autoselect: true }"
-        show-overflow
-      ></tiny-grid-column>
+      <tiny-grid-column field="introduction" title="公司简介" :editor="{ component: 'input', autoselect: true }" show-overflow></tiny-grid-column>
     </tiny-grid>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn, GridToolbar } from '@opentiny/vue'
 import { Modal } from '@opentiny/vue-modal'
 

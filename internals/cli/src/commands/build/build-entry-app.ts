@@ -9,7 +9,6 @@ import handlebarsRender from './handlebars.render.js'
 
 const version = utils.getopentinyVersion({})
 const outputDir = 'packages/vue'
-const iconDir = 'packages/vue-icon'
 const MAIN_TEMPLATE = `{{{include}}}
  
  export const version = '${version}'
@@ -17,7 +16,6 @@ const MAIN_TEMPLATE = `{{{include}}}
  export {
    {{{components}}}
  }
-
  export default {
   {{{components}}}
  }
@@ -32,24 +30,9 @@ const buildFullRuntime = () => {
   // 导出公共模块
   components.push(
     {
-      name: 'Icon',
-      importName: '@opentiny/vue-icon',
-      path: 'packages/vue-icon'
-    },
-    {
-      name: 'Locale',
-      importName: '@opentiny/vue-locale',
-      path: 'packages/vue-locale'
-    },
-    {
       name: 'Renderless',
       importName: '@opentiny/vue-renderless/common/runtime',
       path: 'packages/renderless'
-    },
-    {
-      name: 'Common',
-      importName: '@opentiny/vue-common',
-      path: 'packages/vue-common'
     }
   )
 
@@ -78,17 +61,4 @@ const buildFullRuntime = () => {
   utils.logGreen(`npm run build:entry done. [${outputDir}/app.ts]`)
 }
 
-// 重新创建 icon 入口
-const buildIconEntry = () => {
-  const inputPath = utils.pathFromWorkspaceRoot(iconDir, 'index.ts')
-  const outputPath = utils.pathFromWorkspaceRoot(iconDir, 'src', 'index.ts')
-  let iconEntryContent = fs.readFileSync(inputPath).toString('utf-8')
-
-  iconEntryContent = iconEntryContent.replace(/.\/src\//g, './')
-  iconEntryContent = iconEntryContent.replace('export * from \'./lowercase\'', 'export * from \'../lowercase\'')
-
-  fs.writeFileSync(outputPath, iconEntryContent)
-}
-
-buildIconEntry()
 buildFullRuntime()

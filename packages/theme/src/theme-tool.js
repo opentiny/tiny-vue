@@ -104,7 +104,7 @@ export default class TinyThemeTool {
 
   formatCSSVariables(themeData) {
     const componentsMap = {}
-    let rootCssVar = ':root {'
+    let rootCssVar = 'html:root {'
     let componentsCssVar = ''
 
     Object.keys(themeData).forEach((item) => {

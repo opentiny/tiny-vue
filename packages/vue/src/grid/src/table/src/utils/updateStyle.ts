@@ -79,8 +79,8 @@ function layoutFooter({
 }
 
 // 计算colgroup元素中每个col元素的width属性，保证表头和表格体保持对齐
-function layoutColgroup({ elemStore, fullColumnIdData, layout, name, scrollbarWidth }) {
-  let colgroupElem = elemStore[`${name}-${layout}-colgroup`]
+function layoutColgroup({ elemStore, fullColumnIdData, layout, scrollbarWidth }) {
+  let colgroupElem = elemStore[`main-${layout}-colgroup`]
   let colElemHandler = (colElem) => {
     let colid = colElem.getAttribute('name')
 
@@ -99,9 +99,9 @@ function layoutColgroup({ elemStore, fullColumnIdData, layout, name, scrollbarWi
   }
 }
 
-function layoutHeader({ elemStore, layout, name, scrollXLoad, scrollbarWidth, tableColumn, tableElem, tableWidth }) {
+function layoutHeader({ elemStore, layout, scrollXLoad, scrollbarWidth, tableColumn, tableElem, tableWidth }) {
   let tWidth = tableWidth
-  let repairElem = elemStore[`${name}-${layout}-repair`]
+  let repairElem = elemStore[`main-${layout}-repair`]
 
   if (scrollXLoad) {
     tWidth = tableColumn.reduce((previous, column) => previous + column.renderWidth, 0)
@@ -128,16 +128,12 @@ function layoutBodyWrapper({
   headerHeight,
   maxHeight,
   minHeight,
-  overflowX,
   parentHeight,
-  showFooter,
   wrapperElem,
   scrollbarWidth,
-  scrollbarHeight
 }) {
   if (wrapperElem) {
     if (customHeight > 0) {
-      const barWidth = showFooter ? (overflowX ? scrollbarWidth : 0) : scrollbarHeight
       const contentHeight = customHeight - headerHeight - footerHeight
 
       wrapperElem.style.height = `${contentHeight}px`
@@ -146,7 +142,6 @@ function layoutBodyWrapper({
     if (maxHeight) {
       maxHeight = isScale(maxHeight) ? Math.floor((parseInt(maxHeight) / 100) * parentHeight) : toNumber(maxHeight)
 
-      const barHeight = showFooter ? 0 : scrollbarHeight
       const contentHeight = maxHeight - headerHeight
 
       wrapperElem.style.maxHeight = `${contentHeight}px`
@@ -177,10 +172,10 @@ function layoutEmptyBlock({ emptyBlockElem, tWidth }) {
 }
 
 function layoutBody(options) {
-  let { customHeight, elemStore, footerHeight, headerHeight, layout, name } = options
-  let { maxHeight, minHeight, overflowX, parentHeight, scrollXLoad, scrollbarHeight } = options
-  let { scrollbarWidth, showFooter, tableColumn, tableElem, tableWidth, wrapperElem } = options
-  let emptyBlockElem = elemStore[`${name}-${layout}-emptyBlock`]
+  let { customHeight, elemStore, footerHeight, headerHeight, layout } = options
+  let { maxHeight, minHeight, parentHeight, scrollXLoad } = options
+  let { scrollbarWidth, tableColumn, tableElem, tableWidth, wrapperElem } = options
+  let emptyBlockElem = elemStore[`main-${layout}-emptyBlock`]
 
   let ret = layoutBodyWrapper({
     customHeight,
@@ -188,11 +183,8 @@ function layoutBody(options) {
     headerHeight,
     maxHeight,
     minHeight,
-    overflowX,
     parentHeight,
-    scrollbarHeight,
     scrollbarWidth,
-    showFooter,
     wrapperElem
   })
 
@@ -211,23 +203,23 @@ function layoutBody(options) {
 }
 
 export function handleLayout(params) {
-  let { _vm, columnStore, customHeight, fixedColumn, fixedWrapperElem, layout, maxHeight, minHeight, name, parentHeight, tableColumn } = params
+  let { _vm, columnStore, customHeight, fixedColumn, fixedWrapperElem, layout, maxHeight, minHeight, parentHeight, tableColumn } = params
   let { elemStore, footerHeight, fullColumnIdData, headerHeight, showFooter } = _vm
   let { overflowX, overflowY, scrollXLoad, scrollbarHeight, scrollbarWidth } = _vm
   let { showOverflow: allColumnOverflow, tableHeight, tableWidth } = _vm
 
-  let wrapperElem = elemStore[`${name}-${layout}-wrapper`]
-  let tableElem = elemStore[`${name}-${layout}-table`]
+  let wrapperElem = elemStore[`main-${layout}-wrapper`]
+  let tableElem = elemStore[`main-${layout}-table`]
   /*
    * 表头体样式处理
    * 横向滚动渲染
    */
   if (layout === 'header') {
-    tableColumn = layoutHeader({ elemStore, layout, name, scrollXLoad, scrollbarWidth, tableColumn, tableElem, tableWidth })
+    tableColumn = layoutHeader({ elemStore, layout, scrollXLoad, scrollbarWidth, tableColumn, tableElem, tableWidth })
   } else if (layout === 'body') {
     let ret = layoutBody({
       ...{ allColumnOverflow, columnStore, customHeight, elemStore, fixedColumn, fixedWrapperElem },
-      ...{ footerHeight, headerHeight, layout, maxHeight, minHeight, name, overflowX, overflowY },
+      ...{ footerHeight, headerHeight, layout, maxHeight, minHeight, overflowX, overflowY },
       ...{ parentHeight, scrollXLoad, scrollbarHeight, scrollbarWidth, showFooter, tableColumn, tableElem, tableHeight, tableWidth, wrapperElem }
     })
 
@@ -250,8 +242,8 @@ export function handleLayout(params) {
       wrapperElem
     })
   }
-
-  layoutColgroup({ elemStore, fullColumnIdData, layout, name, scrollbarWidth })
+  // 计算colgroup元素中每个col元素的width属性，保证表头和表格体保持对齐
+  layoutColgroup({ elemStore, fullColumnIdData, layout, scrollbarWidth })
 
   return { tableColumn, maxHeight, minHeight }
 }

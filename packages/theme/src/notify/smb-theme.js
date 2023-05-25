@@ -9,7 +9,7 @@ export const tinyNotifySmbTheme = {
   'ti-notify-title-font-size': 'var(--ti-common-font-size-2)',
   'ti-notify-title-font-weight': '600',
   'ti-notify-content-text-color': 'var(--ti-common-color-text-secondary)',
-  'ti-notify-message-margin-right': 'var(--ti-common-space-2x)',
+  'ti-notify-message-margin-right': 'var(--ti-common-space-3x)',
   'ti-notify-close-hover-icon-color': 'var(--ti-common-color-icon-hover)',
   'ti-notify-position-top-left': 'var(--ti-common-space-6x)',
   'ti-notify-position-bottom-left': 'var(--ti-common-space-6x)',

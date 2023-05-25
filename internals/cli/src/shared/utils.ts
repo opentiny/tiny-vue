@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url'
 import { searchForWorkspaceRoot } from 'vite'
 
 const workspaceRoot = searchForWorkspaceRoot(process.cwd())
-const pathFromWorkspaceRoot = (...args: string[]) => path.resolve(workspaceRoot, ...args)
+const pathFromWorkspaceRoot = (...args) => path.resolve(workspaceRoot, ...args)
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -17,7 +17,7 @@ const dirname = path.dirname(filename)
  * 根据运行上下文获取路径（运行时打包用）
  * @returns 文件绝对路径
  */
-const resolveCwd = (...args: any[]) => {
+const resolveCwd = (...args) => {
   return path.join(process.cwd(), ...args)
 }
 
@@ -26,7 +26,7 @@ const resolveCwd = (...args: any[]) => {
  * @param {String} posixPath 路径
  * @returns 文件绝对路径
  */
-const assetsPath = (posixPath: string) => {
+const assetsPath = (posixPath) => {
   return path.posix.join('static', posixPath)
 }
 
@@ -42,7 +42,7 @@ const getComponentName = () => {
  * 获取当前上下文的路径
  * @returns 文件绝对路径
  */
-const pathJoin = (...args: string[]) => {
+const pathJoin = (...args) => {
   return path.join(dirname, ...args)
 }
 
@@ -79,7 +79,7 @@ const getCurrentCliTool = () => {
  * 执行 node 命令
  * @param {String} cmdStr 命令字符串
  */
-const execCmd = (cmdStr: string) => {
+const execCmd = (cmdStr) => {
   cmdStr && execSync(cmdStr, { stdio: 'inherit' })
 }
 
@@ -88,7 +88,7 @@ const execCmd = (cmdStr: string) => {
  * @param {String} str 字符串
  * @returns 字符串
  */
-const capitalize = (str: string) => {
+const capitalize = (str) => {
   return typeof str === 'string' ? str.slice(0, 1).toUpperCase() + str.slice(1) : str
 }
 
@@ -97,7 +97,7 @@ const capitalize = (str: string) => {
  * @param {String} str 字符串
  * @returns 字符串
  */
-const capitalizeKebabCase = (str: string, splitChar = '-') => {
+const capitalizeKebabCase = (str, splitChar = '-') => {
   return typeof str === 'string' ? str.split(splitChar).map(capitalize).join('') : str
 }
 
@@ -109,7 +109,7 @@ const capitalizeKebabCase = (str: string, splitChar = '-') => {
  * @param str 字符串
  * @param splitChar 分隔符
  */
-const kebabCase = ({ str, splitChar = '-' }: { str: string; splitChar?: string }) => {
+const kebabCase = ({ str, splitChar = '-' }) => {
   if (!str || typeof str !== 'string') return str
 
   return str
@@ -119,7 +119,7 @@ const kebabCase = ({ str, splitChar = '-' }: { str: string; splitChar?: string }
 
       if (charCod < 65 || charCod > 122) return char
 
-      return (charCod >= 65 && charCod <= 90) ? (index !== 0 ? splitChar : '') + char.toLowerCase() : char
+      return (charCod >= 65 && charCod) <= 90 ? (index !== 0 ? splitChar : '') + char.toLowerCase() : char
     })
     .join('')
 }
@@ -129,7 +129,7 @@ const kebabCase = ({ str, splitChar = '-' }: { str: string; splitChar?: string }
  * @param {String} str 格式字符
  * @param {Object} options 格式字符
  */
-const prettierFormat = ({ str, options = {} }: { str: string; options: object }) => {
+const prettierFormat = ({ str, options = {} }) => {
   return prettier.format(
     str,
     Object.assign(
@@ -156,10 +156,7 @@ const prettierFormat = ({ str, options = {} }: { str: string; options: object })
  * @param {Function} fileFilter 文件筛选拦截函数
  * @param {Function} callback 遍历回调
  */
-const walkFileTree = (
-  { dirPath, isDeep = false, fileFilter, callback }:
-  { dirPath: string; isDeep: boolean; fileFilter?: Function; callback: Function }
-) => {
+const walkFileTree = ({ dirPath, isDeep = false, fileFilter, callback }) => {
   if (!dirPath || typeof callback !== 'function') {
     return
   }
@@ -195,7 +192,7 @@ const walkFileTree = (
  * @param {Boolean} 是否为 vue2 环境
  * @returns 版本号
  */
-const getVersion = ({ name, context, isVue2 }: { name: string; context: string; isVue2: boolean }) => {
+const getVersion = ({ name, context, isVue2 }) => {
   return getComponentVersion({ name, context, dir: 'node_modules', isVue2 })
 }
 
@@ -207,11 +204,8 @@ const getVersion = ({ name, context, isVue2 }: { name: string; context: string; 
  * @param {Boolean} 是否为 vue2 环境
  * @returns 版本号
  */
-const getComponentVersion = (
-  { name, context = '..', dir = 'packages', isOrigin = false, isVue2 }:
-  { name: string; context?: string; dir?: string; isOrigin?: boolean; isVue2: boolean }
-) => {
-  let version: string
+const getComponentVersion = ({ name, context = '..', dir = 'packages', isOrigin = false, isVue2 }) => {
+  let version
   const packageJSONPath = pathJoin(context, dir, name, 'package.json')
 
   if (fs.existsSync(packageJSONPath)) {
@@ -234,7 +228,7 @@ const getComponentVersion = (
  * @param {Boolean} 是否为 vue2 环境
  * @returns
  */
-const getPublichVersion = ({ version, isVue2 }: { version: string; isVue2: boolean }) => {
+const getPublichVersion = ({ version, isVue2 }) => {
   if (isVue2) {
     return version.replace(/^4/, '3').replace('?v=4', '?v=3')
   }
@@ -249,7 +243,7 @@ const getPublichVersion = ({ version, isVue2 }: { version: string; isVue2: boole
  * @param {Boolean} 是否为 vue2 环境
  * @returns 版本号
  */
-const getPackageVersion = ({ name, isRoot = false, isVue2 = false }: { name: string; isRoot: boolean; isVue2: boolean }) => {
+const getPackageVersion = ({ name, isRoot = false, isVue2 = false }) => {
   let version = isRoot ? getopentinyVersion({ key: name }) : getComponentVersion({ name, isOrigin: true, isVue2 })
 
   return getBigVersion(version)
@@ -265,7 +259,7 @@ const getBigVersion = (version) => {
  * @param {Boolean} 是否为 vue2 环境
  * @returns 版本号
  */
-const getComponentOriginVersion = ({ name, isVue2 }: { name: string; isVue2: boolean }) => {
+const getComponentOriginVersion = ({ name, isVue2 }) => {
   return getComponentVersion({ name, isOrigin: true, isVue2 })
 }
 
@@ -275,7 +269,7 @@ const getComponentOriginVersion = ({ name, isVue2 }: { name: string; isVue2: boo
  * @param {Boolean} 是否为 vue2 环境
  * @returns 版本号
  */
-const getopentinyVersion = ({ key = 'version' }: { key: string }) => {
+const getopentinyVersion = ({ key = 'version' }) => {
   const packageJson = fs.readJsonSync(pathFromWorkspaceRoot('packages/vue/package.json'))
   const packageJsonOption = packageJson[key] || packageJson
 
@@ -324,7 +318,7 @@ const getInnerDependenciesVersion = ({ isTestEnv, tag, version }) => {
  * 在控制台显示绿色提示
  * @param {String} 提示内容
  */
-const logGreen = (str: string) => {
+const logGreen = (str) => {
   /* eslint-disable no-console */
   console.log(chalk.green('### ' + str))
 }
@@ -333,7 +327,7 @@ const logGreen = (str: string) => {
  * 在控制台显示黄色提示
  * @param {String} 提示内容
  */
-const logYellow = (str: string) => {
+const logYellow = (str) => {
   console.log(chalk.yellow('### ' + str))
 }
 
@@ -341,7 +335,7 @@ const logYellow = (str: string) => {
  * 在控制台显示青色提示
  * @param {String} 提示内容
  */
-const logCyan = (str: string) => {
+const logCyan = (str) => {
   console.log(chalk.cyan('### ' + str))
 }
 
@@ -349,7 +343,7 @@ const logCyan = (str: string) => {
  * 在控制台显示红色提示
  * @param {String} 提示内容
  */
-const logRed = (str: string) => {
+const logRed = (str) => {
   console.log(chalk.red('### ' + str))
 }
 
@@ -427,7 +421,7 @@ const getBuildTag = ({ version }) => {
  *
  * @return {Array<string>} filesPath
  */
-const getFilesPath = (folderPath: string): Array<string> => {
+const getFilesPath = (folderPath) => {
   let filesPath: string[] = []
   try {
     let files = fs.readdirSync(folderPath)
@@ -436,7 +430,6 @@ const getFilesPath = (folderPath: string): Array<string> => {
       let stats = fs.statSync(tempPath)
 
       if (stats.isDirectory()) {
-        // eslint-disable-next-line prefer-spread
         filesPath.push.apply(filesPath, getFilesPath(tempPath))
       } else {
         filesPath.push(tempPath)
@@ -476,7 +469,7 @@ const fragmentReplace = (filePath, regExpStr, targetStr) => {
  * @param {Array<string> | string} regExpStr
  * @param {Array<string> | string} targetStr
  */
-const filesFragmentReplace = (folderPath, regExpStr: Array<string> | string, targetStr: Array<string> | string) => {
+const filesFragmentReplace = (folderPath, regExpStr, targetStr) => {
   let filesPath = getFilesPath(folderPath)
 
   if (filesPath) {

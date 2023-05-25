@@ -10,8 +10,8 @@
   </div>
 </template>
 
-<script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+<script>
+import { Grid, GridColumn, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -20,7 +20,10 @@ export default {
   },
   methods: {
     selectChange() {
-      alert('选项改变了')
+      Modal.message({
+        message: '选项改变了',
+        status: 'info'
+      })
     }
   },
   data() {

@@ -52,7 +52,7 @@ export default function vitePluginBabelImport(
           map: null
         }
       } else if (isCheckMode) {
-        const newCode = code.replace(/("|').\/(mobile|pc|mobile-first)[.js]*("|')/g, `"./${mode}"`)
+        const newCode = code.replace(/('|")\.\/(mobile|pc|mobile-first)(\.js)?('|")/g, `"./${mode}"`)
         return {
           code: newCode,
           map: null

@@ -75,7 +75,7 @@ export default defineComponent({
     },
     type: {
       type: String,
-      validator: (value:string) => Boolean(~['normal', 'warning', 'error', 'info', 'success'].indexOf(value))
+      validator: (value: string) => Boolean(~['normal', 'warning', 'error', 'info', 'success'].indexOf(value))
     },
     visibleArrow: {
       type: Boolean,

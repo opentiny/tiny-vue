@@ -67,11 +67,11 @@
     position: relative;
     justify-content: space-between;
     align-items: center;
+    font-size: var(--ti-dialog-box-head-title-font-size);
+    color: var(--ti-dialog-box-head-title-text-color);
+    font-weight: var(--ti-dialog-box-head-title-font-weight);
 
     .@{dialog-box-prefix-cls}__title {
-      font-size: var(--ti-dialog-box-head-title-font-size);
-      color: var(--ti-dialog-box-head-title-text-color);
-      font-weight: var(--ti-dialog-box-head-title-font-weight);
       flex: 1;
     }
 
@@ -153,6 +153,8 @@
   // 抽屉
   &.is-right-slide {
     border-radius: var(--ti-dialog-box-drawer-radius);
+    min-width: var(--ti-dialog-box-drawer-min-width);
+    max-width: var(--ti-dialog-box-drawer-max-width);
 
     .@{dialog-box-prefix-cls}__header,
     .@{dialog-box-prefix-cls}__body,

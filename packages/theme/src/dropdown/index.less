@@ -14,17 +14,45 @@
 @import './vars.less';
 
 @dropdown-prefix-cls: ~'@{css-prefix}dropdown';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+@button-prefix-cls: ~'@{css-prefix}button';
 
 .@{dropdown-prefix-cls} {
   .component-css-vars-dropdown();
 
   display: inline-block;
   position: relative;
+  color: var(--ti-dropdown-text-color);
   font-size: var(--ti-dropdown-font-size);
 
-  &__trigger{
-    .@{dropdown-prefix-cls}__title{
+  span {
+    display: inline-block;
+  }
+
+  &__trigger {
+    .@{dropdown-prefix-cls}__title {
       margin-right: var(--ti-dropdown-trigger-title-margin-right);
+      line-height: var(--ti-dropdown-line-height);
+    }
+
+    .@{svg-prefix-cls} {
+      fill: var(--ti-dropdown-icon-color);
+      font-size: var(--ti-dropdown-icon-size);
+      vertical-align:middle;
+      margin-top: -4px;
+    }
+
+    &.@{css-prefix}button .@{svg-prefix-cls} {
+      fill: var(--ti-dropdown-button-icon-color);
+      font-size:var(--ti-dropdown-button-icon-size)
+    }
+
+    &:not(.@{dropdown-prefix-cls}__caret-button):hover {
+      color: var(--ti-dropdown-text-color-hover);
+
+      .@{svg-prefix-cls} {
+        fill: var(--ti-dropdown-icon-color-hover);
+      }
     }
   }
 
@@ -33,7 +61,23 @@
 
     .@{css-prefix}button {
       float: none;
+      &--medium{
+        & + .@{css-prefix}button.@{css-prefix}button--medium{
+          margin-left: 0;
+        }
+      }
+
+      &--small{
+        & + .@{css-prefix}button.@{css-prefix}button--small{
+          margin-left: 0;
+        }
+      }
     }
+  }
+
+  .@{dropdown-prefix-cls}__title-button {
+    padding-left: var(--ti-dropdown-title-button-padding-left);
+    padding-right: var(--ti-dropdown-title-button-padding-right);
   }
 
   .@{dropdown-prefix-cls}__caret-button {
@@ -42,7 +86,7 @@
     position: relative;
     border-left: none;
     min-width: var(--ti-dropdown-caret-button-min-width);
-
+   
     &:before {
       content: '';
       position: absolute;
@@ -91,5 +135,6 @@
 
   &--visible {
     transform: rotate(180deg);
+    transform-origin: center;
   }
 }

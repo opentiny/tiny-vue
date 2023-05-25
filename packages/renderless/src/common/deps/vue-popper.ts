@@ -39,12 +39,12 @@ const getReferMaxZIndex = (reference) => {
   let max = getZIndex(reference)
   let z
 
-  do {
+  // webcomponents场景下，shadowRoot的nodeType是文档片段，文档片段没有父节点且无法做为getComputedStyle的参数
+  while (reference !== document.body && reference?.parentNode?.nodeType !== 11 && reference.parentNode) {
     reference = reference.parentNode
     z = getZIndex(reference)
-    max = z > max ? z : max
-    // webcomponents场景下，shadowRoot的nodeType是文档片段，文档片段没有父节点且无法做为getComputedStyle的参数
-  } while (reference !== document.body && reference?.parentNode?.nodeType !== 11 && reference.parentNode)
+    max = Math.max(z, max)
+  }
 
   return `${max + 1}`
 }

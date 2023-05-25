@@ -32,6 +32,22 @@
     "demoId": "text-position"
   },
   {
+    "title": "底部分割线",
+    "content": "<p>通过<code>show-divider</code> 设置是否显示步骤条底部分隔线，仅当节点文本内容位于序号右边时生效。</p>\n",
+    "link": "steps/show-divider",
+    "component": " Steps 步骤条",
+    "findIntroStr": "Steps 步骤条",
+    "demoId": "show-divider"
+  },
+  {
+    "title": "当前节点描述信息",
+    "content": "<p>通过<code>active-node-desc</code> 插槽添加当前节点一些自定义的描述信息。</p>\n",
+    "link": "steps/slot-active-node-desc",
+    "component": " Steps 步骤条",
+    "findIntroStr": "Steps 步骤条",
+    "demoId": "slot-active-node-desc"
+  },
+  {
     "title": "尺寸",
     "content": "<p>通过 <code>size</code> 设置步骤条尺寸。</p>\n",
     "link": "steps/size",

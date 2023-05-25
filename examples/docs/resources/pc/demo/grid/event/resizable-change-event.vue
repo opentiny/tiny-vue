@@ -9,8 +9,8 @@
   </div>
 </template>
 
-<script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+<script>
+import { Grid, GridColumn, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -19,7 +19,10 @@ export default {
   },
   methods: {
     sizeChange() {
-      alert('列宽发生了变化')
+      Modal.message({
+        message: '列宽发生了变化',
+        status: 'info'
+      })
     }
   },
   data() {

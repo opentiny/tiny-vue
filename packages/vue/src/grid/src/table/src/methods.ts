@@ -858,21 +858,27 @@ const Methods = {
    * 支持（width=?、width=?px、width=?%、min-width=?、min-width=?px、min-width=?%）
    */
   recalculate() {
-    let { tableBody, tableFooter, tableHeader } = this.$refs
-    let getElem = (ref) => (ref ? ref.$el : null)
-    let headerElem = getElem(tableHeader)
-    let bodyElem = getElem(tableBody)
-    let footerElem = getElem(tableFooter)
+    const { scrollXLoad, scrollYLoad, scrollLoad } = this
+    const { tableBody, tableFooter, tableHeader } = this.$refs
+    const getElem = (ref) => (ref ? ref.$el : null)
+    const headerElem = getElem(tableHeader)
+    const bodyElem = getElem(tableBody)
+    const footerElem = getElem(tableFooter)
     if (!bodyElem) {
       return this.computeScrollLoad()
     }
 
-    // 初始化时需要在列计算之后再执行优化运算，达到最优显示效果
-    return this.computeScrollLoad().then(() => {
-      // 设置表格每列的尺寸(此时还没有设置colgroup的dom元素尺寸)，这里执行之后还需要继续设置滚动条状态
-      this.autoCellWidth(headerElem, bodyElem, footerElem)
-      this.computeScrollLoad()
-    })
+    // 设置表格每列的尺寸(此时还没有设置colgroup的dom元素尺寸)，这里执行之后还需要继续设置滚动条状态
+    this.autoCellWidth(headerElem, bodyElem, footerElem)
+
+    if (scrollXLoad || scrollYLoad || scrollLoad) {
+      return this.computeScrollLoad().then(() => {
+        this.autoCellWidth(headerElem, bodyElem, footerElem)
+      })
+    }
+
+    // 实现布局，将列renderWidth设置到具体的dom上
+    return this.computeScrollLoad()
   },
   // 列宽计算
   autoCellWidth(headerEl, bodyEl, footerEl) {
@@ -886,6 +892,7 @@ const Methods = {
 
     // 此处操作很重要，这里会计算所有列的宽度并且计算出表格整体宽度
     let tableWidth = calcTableWidth({ bodyWidth: bodyW, columnStore, fit, minCellWidth, remainWidth: bodyW })
+    // offsetWidth（带有滚动条的宽度），clientWidth（不带滚动条的样式）
     let scrollbarWidth = overflowY ? bodyEl.offsetWidth - bodyW : 0
     let parentHeight = this.getParentHeight()
 
@@ -937,7 +944,9 @@ const Methods = {
 
     layoutList.forEach((layout) => {
       const args1 = { _vm: this, columnStore, customHeight }
-      const args2 = { layout, maxHeight, minHeight, name: 'main', parentHeight, tableColumn }
+      const args2 = { layout, maxHeight, minHeight, parentHeight, tableColumn }
+
+      // 实现布局，将列renderWidth设置到具体的dom上
       let ret = handleLayout(Object.assign(args1, args2))
       tableColumn = ret.tableColumn
       maxHeight = ret.maxHeight
@@ -1628,6 +1637,7 @@ const Methods = {
   debounceScrollX: debounce(debounceScrollDirDuration, function (event) {
     this.loadScrollXData(event)
   }),
+  // 处理x轴滚动时，虚拟滚动数据计算
   loadScrollXData() {
     let { scrollXStore, visibleColumn } = this
     let { offsetSize, renderSize, startIndex, visibleIndex, visibleSize } = scrollXStore
@@ -1764,15 +1774,15 @@ const Methods = {
   // 计算可视渲染相关数据
   computeScrollLoad() {
     return this.$nextTick().then(() => {
-      let { $refs, optimizeOpts, visibleColumn } = this
-      let { scrollLoad, scrollXLoad, scrollXStore, scrollYLoad, scrollYStore } = this
+      let { $refs, optimizeOpts, visibleColumn } = this as any
+      let { scrollLoad, scrollXLoad, scrollXStore, scrollYLoad, scrollYStore } = this as any
       let { scrollX, scrollY } = optimizeOpts
       let { tableBody } = $refs
       let bodyElem = tableBody ? tableBody.$el : null
       if (bodyElem) {
-        // 计算 X 逻辑
+        // 只计算X轴虚拟滚动逻辑,优化正常表格计算效率
         computeScrollXLoad({ _vm: this, scrollX, scrollXLoad, scrollXStore, tableBodyElem: bodyElem, visibleColumn })
-        // 计算 Y 逻辑
+        // 只计算Y轴虚拟滚动逻辑,优化正常表格计算效率
         computeScrollYLoad({ _vm: this, scrollLoad, scrollY, scrollYLoad, scrollYStore, tableBodyElem: bodyElem })
       }
       this.$nextTick(this.updateStyle)
@@ -1786,14 +1796,17 @@ const Methods = {
 
     Object.assign(args, { treeConfig, visibleColumn, visibleColumnChanged })
 
+    // 获取需要渲染的列数和最后一次渲染列的index值
     let ret = sliceVisibleColumn(args)
 
     scrollXStore.lastStartIndex = ret.lastStartIndex
 
     this.tableColumn = ret.tableColumn
     this.visibleColumnChanged = ret.visibleColumnChanged
+
     // 初始化表格时也需要计算x轴方向滚动条占位符的尺寸
     this.updateScrollXSpace()
+
     // 处理滚动条滚动后的异步渲染列逻辑
     this.updateScrollStatus()
   },
@@ -1815,6 +1828,7 @@ const Methods = {
     layouts.forEach((layout) => {
       const xSpaceElem = elemStore[`main-${layout}-xSpace`]
       const extra = layout === 'header' ? scrollbarWidth : 0
+      // 这里只能找到body中的元素，header和footer永远是false
       if (xSpaceElem) {
         // 表格主体内容x轴方向虚拟滚动条占位元素
         xSpaceElem.style.width = scrollXLoad ? `${tableWidth + extra}px` : ''
@@ -1834,7 +1848,6 @@ const Methods = {
     let bodyHeight = getTotalRows(this)
     let isVScrollOrLoad = scrollYLoad || scrollLoad
     let { marginTop, ySpaceHeight } = {}
-    let layouts = ['header', 'body', 'footer']
 
     // 通过开始渲染下标startIndex和表格的行高度来计算marginTop
     marginTop = isVScrollOrLoad && scrollYLoad ? `${Math.max(startIndex * rowHeight, 0)}px` : ''
@@ -1847,17 +1860,17 @@ const Methods = {
       tableElem.style.transform = `translateY(${marginTop})`
     }
 
-    layouts.forEach((layout) => {
-      const ySpaceElem = elemStore[`main-${layout}-ySpace`]
-      ySpaceElem && (ySpaceElem.style.height = ySpaceHeight)
-      // 滚动分页加载逻辑
-      if (ySpaceElem && scrollLoad && $grid) {
-        const scrollHeight = $grid.pagerConfig.total * rowHeight
-        Object.assign(scrollLoadStore, { bodyHeight, scrollHeight })
-        ySpaceElem.firstChild.style.height = `${scrollHeight}px`
-        ySpaceElem.onscroll = this.debounceScrollLoad
-      }
-    })
+    const ySpaceElem = elemStore['main-body-ySpace']
+    ySpaceElem && (ySpaceElem.style.height = ySpaceHeight)
+
+    // 滚动分页加载逻辑
+    if (ySpaceElem && scrollLoad && $grid) {
+      const scrollHeight = $grid.pagerConfig.total * rowHeight
+      Object.assign(scrollLoadStore, { bodyHeight, scrollHeight })
+      ySpaceElem.firstChild.style.height = `${scrollHeight}px`
+      ySpaceElem.onscroll = this.debounceScrollLoad
+    }
+
     this.$nextTick(this.updateStyle)
   },
   updateScrollLoadBar(event) {

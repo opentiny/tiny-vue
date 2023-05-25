@@ -34,7 +34,11 @@ import {
 
 export const api = ['state', 'handleMainButtonClick', 'hide', 'show', 'initDomOperation', 'handleClick']
 
-export const renderless = (props, { reactive, watch, provide, onMounted }, { emit, parent, broadcast, vm, nextTick }) => {
+export const renderless = (
+  props,
+  { reactive, watch, provide, onMounted },
+  { emit, parent, broadcast, vm, nextTick, designConfig }
+) => {
   const api = {}
   const state = reactive({
     visible: false,
@@ -44,7 +48,8 @@ export const renderless = (props, { reactive, watch, provide, onMounted }, { emi
     menuItemsArray: null,
     triggerElm: null,
     dropdownElm: null,
-    listId: `dropdown-menu-${guid()}`
+    listId: `dropdown-menu-${guid()}`,
+    designConfig
   })
 
   provide('dropdown', vm)

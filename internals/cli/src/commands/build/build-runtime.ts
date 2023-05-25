@@ -115,7 +115,6 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
 }
 
 function getEntryTasks() {
-  // 每次都要构建app和图标2个runtime
   return [
     {
       path: 'vue-icon/index.ts',

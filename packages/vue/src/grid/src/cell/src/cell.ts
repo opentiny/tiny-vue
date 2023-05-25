@@ -29,7 +29,7 @@ import { Renderer } from '../../adapter'
 import { getCellLabel } from '../../tools'
 import GLOBAL_CONFIG from '../../config'
 import { hooks } from '@opentiny/vue-common'
-import { iconCheckedSur, iconHalfselect } from '@opentiny/vue-icon'
+import { iconCheckedSur, iconMobileCheckboxHalf } from '@opentiny/vue-icon'
 import { getTableCellKey } from '../../table/src/strategy'
 
 const insertedField = GLOBAL_CONFIG.constant.insertedField
@@ -191,7 +191,7 @@ const getSelectVnodes = ({ h, vSize, headerCheckDisabled, isIndeterminate, optio
           })
           : '',
         isIndeterminate
-          ? h(iconHalfselect(), {
+          ? h(iconMobileCheckboxHalf(), {
             class: ['tiny-svg-size', 'icon-half-select']
           })
           : ''
@@ -217,12 +217,11 @@ const getSelectCellVnodes = ({ indeterminate, h, isDisabled, vSize, labelField, 
     [
       h('input', options),
       h('span', { class: 'tiny-grid-checkbox__icon' }, [
-        h(iconCheckedSur(), { class: ['tiny-svg-size', 'icon-checked-sur'] }),
         indeterminate
-          ? h(iconHalfselect(), {
+          ? h(iconMobileCheckboxHalf(), {
             class: ['tiny-svg-size', 'icon-half-select']
           })
-          : ''
+          : h(iconCheckedSur(), { class: ['tiny-svg-size', 'icon-checked-sur'] })
       ]),
       labelField ? h('span', { class: 'tiny-grid-checkbox__label' }, get(row, labelField)) : null
     ]
@@ -247,7 +246,7 @@ const getSelectCellByProsVnodes = ({ h, vSize, indeterminate, isDisabled, option
       h('span', { class: 'tiny-grid-checkbox__icon' }, [
         !indeterminate
           ? ''
-          : h(iconHalfselect(), {
+          : h(iconMobileCheckboxHalf(), {
             class: ['tiny-svg-size', 'icon-half-select']
           }),
         h(iconCheckedSur(), { class: ['tiny-svg-size', 'icon-checked-sur'] })

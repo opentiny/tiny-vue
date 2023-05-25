@@ -1707,3 +1707,9 @@ export const computeMultipleLimit =
 
     return optmzApis.natural(multiple && optimizeStore.flag ? multipleLimit || optimizeOpts.limit : multipleLimit)
   }
+
+export const computedGetIcon =
+  ({ constants, designConfig }) =>
+  (name = 'downWard') => {
+    return designConfig?.icons[name] || constants?.ICON_MAP[name]
+  }

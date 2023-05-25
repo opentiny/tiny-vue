@@ -16,7 +16,8 @@
     class="tiny-dropdown-item tiny-dropdown-menu__item"
     :class="{
       'is-disabled': disabled,
-      'tiny-dropdown-item--divided tiny-dropdown-menu__item--divided': divided
+      'tiny-dropdown-item--divided tiny-dropdown-menu__item--divided': divided,
+      'has-children': itemData.children && itemData.children.length
     }"
     ref="dropdownItem"
     @click="handleClick"
@@ -29,7 +30,7 @@
         v-if="itemData.children && itemData.children.length"
         class="tiny-dropdown-item__expand tiny-dropdown-menu__item-expand"
       >
-        <icon-delta-left></icon-delta-left>
+        <component :is="state.getIcon" />
       </span>
       <div class="tiny-dropdown-item__content tiny-dropdown-menu__item-content">
         <component v-if="icon" :is="icon" class="tiny-svg-size" />

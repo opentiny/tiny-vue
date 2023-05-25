@@ -4,7 +4,11 @@
  * 检查结果：查看 theme-result.txt ,发现未写注释的变量
  */
 const fs = require('fs')
+const path = require('path')
 const fg = require('fast-glob')
+const allComp = require('./components')
+const xlsx = require('node-xlsx')
+const themeConfFile = path.resolve(__dirname, './theme.json')
 
 // 指定哪些目录的`vars.less`不需要处理
 const ignoreNames = ['src', 'base']
@@ -68,7 +72,11 @@ function parseFile(component) {
       if (desc === '未知变量') component.noDescCount++
 
       let [_, key, value] = matches
-      formated.push(formatRule(component.name, key, value, desc))
+
+      const componentName = allComp[component.name]
+      if (componentName) {
+        formated.push(formatRule(componentName, key, value, desc))
+      }
       desc = '未知变量'
     }
   }
@@ -98,4 +106,51 @@ fg(['**/vars.less']).then((files) => {
   // 记录未注释的组件
   const noDesc = components.filter((c) => c.noDescCount > 0)
   fs.writeFileSync('scripts/theme-result.txt', JSON.stringify(noDesc, null, 2))
+  writeThemeExcel()
 })
+
+function writeExcel(data, fileName) {
+  const excelData = []
+
+  data.forEach(item => {
+    let addInfo = {}
+    addInfo.name = item.name + '配置化'
+    addInfo.data = [
+      ['id', 'key', 'variable（可选）', 'value（可选）', 'desc', 'descEn', 'component', 'componentDesc', 'componentDescEn', 'selector', 'type', 'group', 'isImportant', 'ui（所属的框架）', 'show', 'configurable']
+    ]
+    item.data.forEach((idKey, i) => {
+      if (i === 0) {
+        idKey.splice(13, 1, '@opentiny/vue')
+      }
+      const rowData = [...idKey]
+      addInfo.data.push(rowData)
+    })
+    excelData.push(addInfo)
+  })
+  let buffer = xlsx.build(excelData)
+  fs.writeFile(`scripts/${fileName}.xlsx`, buffer, (err) => {
+    if (err) {
+      return console.warn(`写入${fileName}失败`)
+    }
+  })
+}
+
+function writeThemeExcel() {
+  // 将theme.json文件生成excel
+  let themeData = fs.readFileSync(themeConfFile, 'utf-8').toString()
+  themeData = JSON.parse(themeData)
+  const openXlsxObj = {}
+  Object.values(themeData).forEach(item => {
+    // 过滤掉非开源的
+    if (item.isOpen) {
+      delete item.isOpen
+      openXlsxObj[item.component] = openXlsxObj[item.component] ? [...openXlsxObj[item.component], Object.values(item)] : [Object.values(item)]
+    }
+  })
+
+  const openXlsxArr = []
+  Object.entries(openXlsxObj).forEach(item => {
+    openXlsxArr.push({ name: item[0], data: item[1] })
+  })
+  writeExcel(openXlsxArr, 'themeExcel')
+}

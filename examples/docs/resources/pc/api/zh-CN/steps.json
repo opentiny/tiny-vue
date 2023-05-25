@@ -5,20 +5,20 @@
       "sample": "advanced-steps",
       "type": "Number",
       "desc": "设置步骤条的选中步骤，默认为-1 。",
-      "defaultValue": "该属性的默认值为 -1"
+      "defaultValue": "-1"
     },
     {
       "name": "count-field",
       "sample": "custom-steps-item",
       "type": "String",
       "desc": "设置高级向导里徽标计数对应的字段名，默认为 'count'",
-      "defaultValue": "该属性的默认值为 count"
+      "defaultValue": "count"
     },
     {
       "name": "data",
       "sample": "data-resource",
       "type": "Object , Array",
-      "desc": "设置步骤条的数据 。",
+      "desc": "设置步骤条的数据。",
       "defaultValue": ""
     },
     {
@@ -26,7 +26,7 @@
       "sample": "custom-steps-item",
       "type": "String",
       "desc": "设置节点信息中名称对应的字段名，默认为 'name'",
-      "defaultValue": "该属性的默认值为 name"
+      "defaultValue": "name"
     },
     {
       "name": "space",
@@ -40,7 +40,21 @@
       "sample": "custom-steps-item",
       "type": "String",
       "desc": "设置数据状态对应的字段名，默认为 'status'",
-      "defaultValue": "该属性的默认值为 status"
+      "defaultValue": "status"
+    },
+    {
+      "name": "text-position",
+      "sample": "text-position",
+      "type": "String",
+      "desc": "设置节点文本内容的位置, 可选值有right, bottom",
+      "defaultValue": "bottom"
+    },
+    {
+      "name": "show-divider",
+      "sample": "show-divider",
+      "type": "Boolean",
+      "desc": "设置是否显示步骤条底部分割线",
+      "defaultValue": "false"
     }
   ],
   "slots": [
@@ -49,6 +63,13 @@
       "sample": "slot",
       "type": "",
       "desc": "步骤条数据项插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "active-node-desc",
+      "sample": "slot",
+      "type": "",
+      "desc": "当前节点描述信息插槽",
       "defaultValue": ""
     }
   ],

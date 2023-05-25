@@ -1,6 +1,11 @@
 <template>
   <div>
-    <tiny-checkbox-button v-model="checked" text="复选框" true-label="真文本" false-label="假文本"></tiny-checkbox-button>
+    <tiny-checkbox-button
+      v-model="checked"
+      text="复选框"
+      true-label="真文本"
+      false-label="假文本"
+    ></tiny-checkbox-button>
     <button @click="getValue">获取文本</button>
   </div>
 </template>

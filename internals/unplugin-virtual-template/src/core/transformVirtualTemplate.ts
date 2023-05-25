@@ -30,7 +30,7 @@ const ${localName} = (mode) => {
   return result[\`./\${finalMode}.vue\`].default
 }
   `
-  
+
     return result
   })
 }
