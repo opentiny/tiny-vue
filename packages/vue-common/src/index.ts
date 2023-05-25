@@ -3,7 +3,7 @@ import {
   appContext,
   appProperties,
   bindFilter,
-  createComponent,
+  createComponentFn,
   getElementCssClass,
   getElementStatusClass
 } from './adapter'
@@ -109,14 +109,20 @@ export const $setup = ({ props, context, template, extend = {} }) => {
 
 export const mergeClass = (...cssClasses) => twMerge(stringifyCssClass(cssClasses))
 
-const designConfigKey = Symbol('designConfigKey')
+const design = {
+  configKey: Symbol('designConfigKey'),
+  configInstance: null
+}
 
 // 注入规范配置
 export const provideDesignConfig = (designConfig) => {
-  if (typeof designConfig === 'object') {
-    hooks.provide(designConfigKey, designConfig)
+  if (Object.keys(designConfig).length) {
+    hooks.provide(design.configKey, designConfig)
+    design.configInstance = designConfig
   }
 }
+
+const createComponent = createComponentFn(design)
 
 interface DesignConfig {
   components?: any
@@ -128,7 +134,7 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
   const render = typeof props.tiny_renderless === 'function' ? props.tiny_renderless : renderless
 
   // 获取组件级配置和全局配置（inject需要带有默认值，否则控制台会报警告）
-  const globalDesignConfig: DesignConfig = hooks.inject(designConfigKey, {})
+  const globalDesignConfig: DesignConfig = hooks.inject(design.configKey, {})
   const designConfig = globalDesignConfig?.components?.[getComponentName().replace($prefix, '')]
 
   const utils = { $prefix, t, ...tools(context, resolveMode(props, context)), mergeClass, designConfig, globalDesignConfig }
@@ -185,7 +191,7 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
 
 export const svg = ({ name = 'Icon', component }) => {
   return (propData?) =>
-    markRaw({
+    markRaw(defineComponent({
       name: $prefix + name,
       setup: (props, context) => {
         const { fill, width, height, 'custom-class': customClass } = context.attrs || {}
@@ -218,7 +224,7 @@ export const svg = ({ name = 'Icon', component }) => {
           extend
         })
       }
-    })
+    }))
 }
 
 export const filterAttrs = (attrs, filters, include) => {

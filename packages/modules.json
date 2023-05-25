@@ -2,15 +2,18 @@
   "ActionMenu": {
     "path": "vue/src/action-menu/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "ActionSheet": {
     "path": "vue/src/action-sheet/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
-      "mobile",
-      "mobile-first"
+      "mobile-first",
+      "mobile"
     ]
   },
   "ActionSheetMobile": {
@@ -28,9 +31,9 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "AlertMobile": {
@@ -51,17 +54,26 @@
   "Amount": {
     "path": "vue/src/amount/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "Anchor": {
     "path": "vue/src/anchor/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "Area": {
     "path": "vue/src/area/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "Autocomplete": {
     "path": "vue/src/autocomplete/index.ts",
@@ -84,16 +96,19 @@
   "Avatar": {
     "path": "vue/src/avatar/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile"
+    ]
   },
   "Badge": {
     "path": "vue/src/badge/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "BadgeMobile": {
@@ -160,9 +175,9 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "ButtonGroup": {
@@ -222,12 +237,18 @@
   "Card": {
     "path": "vue/src/card/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile-first"
+    ]
   },
   "CardGroup": {
     "path": "vue/src/card-group/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile-first"
+    ]
   },
   "CardTemplate": {
     "path": "vue/src/card-template/index.ts",
@@ -247,8 +268,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "CarouselItem": {
@@ -256,8 +277,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "CarouselItemMobileFirst": {
@@ -296,12 +317,18 @@
   "CascaderNode": {
     "path": "vue/src/cascader-node/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "CascaderPanel": {
     "path": "vue/src/cascader-panel/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "CascaderPc": {
     "path": "vue/src/cascader/src/pc.vue",
@@ -313,8 +340,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "mobile",
-      "mobile-first"
+      "mobile-first",
+      "mobile"
     ]
   },
   "CascaderSelectMobileFirst": {
@@ -330,7 +357,10 @@
   "Cell": {
     "path": "vue/src/cell/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile-first"
+    ]
   },
   "Chart": {
     "path": "vue/src/chart/index.ts",
@@ -447,9 +477,9 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "CheckboxButton": {
@@ -470,9 +500,9 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "CheckboxGroupMobile": {
@@ -523,8 +553,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "CollapseItem": {
@@ -532,8 +562,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "CollapseItemMobileFirst": {
@@ -559,17 +589,26 @@
   "CollapseTransition": {
     "path": "vue/src/collapse-transition/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "ColumnListGroup": {
     "path": "vue/src/column-list-group/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile-first"
+    ]
   },
   "ColumnListItem": {
     "path": "vue/src/column-list-item/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile-first"
+    ]
   },
   "Common": {
     "path": "vue-common/src/index.ts",
@@ -649,7 +688,10 @@
   "Crop": {
     "path": "vue/src/crop/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "Currency": {
     "path": "vue/src/currency/index.ts",
@@ -667,16 +709,18 @@
   "DatePanel": {
     "path": "vue/src/date-panel/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "DatePicker": {
     "path": "vue/src/date-picker/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "DatePickerMobile": {
@@ -687,7 +731,10 @@
   "DatePickerMobileFirst": {
     "path": "vue/src/date-picker-mobile-first/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile-first"
+    ]
   },
   "DatePickerPc": {
     "path": "vue/src/date-picker/src/pc.vue",
@@ -697,12 +744,18 @@
   "DateRange": {
     "path": "vue/src/date-range/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "DateTable": {
     "path": "vue/src/date-table/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "Dept": {
     "path": "vue/src/dept/index.ts",
@@ -745,8 +798,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile"
+      "mobile",
+      "pc"
     ]
   },
   "DialogBoxMobile": {
@@ -816,8 +869,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "DropdownItem": {
@@ -825,9 +878,9 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "DropdownItemMobile": {
@@ -850,9 +903,9 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "DropdownMenuMobile": {
@@ -924,8 +977,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "mobile",
-      "mobile-first"
+      "mobile-first",
+      "mobile"
     ]
   },
   "ExceptionMobile": {
@@ -956,9 +1009,9 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "FileUploadMobile": {
@@ -1000,7 +1053,10 @@
   "FilterBox": {
     "path": "vue/src/filter-box/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "FilterMobileFirst": {
     "path": "vue/src/filter/src/mobile-first.vue",
@@ -1010,7 +1066,10 @@
   "FilterPanel": {
     "path": "vue/src/filter-panel/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "Floatbar": {
     "path": "vue/src/floatbar/index.ts",
@@ -1030,8 +1089,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "FlowchartMobileFirst": {
@@ -1049,9 +1108,9 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "FormItem": {
@@ -1059,8 +1118,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "FormItemLabelWrap": {
@@ -1096,7 +1155,10 @@
   "Fullscreen": {
     "path": "vue/src/fullscreen/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "Grid": {
     "path": "vue/src/grid/index.ts",
@@ -1159,8 +1221,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "ImageMobileFirst": {
@@ -1178,9 +1240,9 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "ImageViewerMobile": {
@@ -1221,9 +1283,9 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "InputMobile": {
@@ -1301,16 +1363,19 @@
   "List": {
     "path": "vue/src/list/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile"
+    ]
   },
   "Loading": {
     "path": "vue/src/loading/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "LoadingMobile": {
@@ -1336,12 +1401,18 @@
   "Locales": {
     "path": "vue/src/locales/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "LogonUser": {
     "path": "vue/src/logon-user/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "Logout": {
     "path": "vue/src/logout/index.ts",
@@ -1377,16 +1448,19 @@
   "MiniPicker": {
     "path": "vue/src/mini-picker/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile"
+    ]
   },
   "Modal": {
     "path": "vue/src/modal/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "ModalMobile": {
@@ -1407,12 +1481,18 @@
   "MonthRange": {
     "path": "vue/src/month-range/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "MonthTable": {
     "path": "vue/src/month-table/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "MultiSelect": {
     "path": "vue/src/multi-select/index.ts",
@@ -1430,7 +1510,10 @@
   "NavBar": {
     "path": "vue/src/nav-bar/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile"
+    ]
   },
   "NavMenu": {
     "path": "vue/src/nav-menu/index.ts",
@@ -1448,16 +1531,19 @@
   "Notify": {
     "path": "vue/src/notify/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "Numeric": {
     "path": "vue/src/numeric/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "NumericMobile": {
@@ -1478,20 +1564,26 @@
   "Option": {
     "path": "vue/src/option/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "OptionGroup": {
     "path": "vue/src/option-group/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "Pager": {
     "path": "vue/src/pager/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "PagerItem": {
@@ -1499,8 +1591,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "PagerItemMobileFirst": {
@@ -1539,12 +1631,18 @@
   "Picker": {
     "path": "vue/src/picker/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "PickerColumn": {
     "path": "vue/src/picker-column/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile"
+    ]
   },
   "PopUpload": {
     "path": "vue/src/pop-upload/index.ts",
@@ -1562,7 +1660,10 @@
   "Popconfirm": {
     "path": "vue/src/popconfirm/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile-first"
+    ]
   },
   "Popeditor": {
     "path": "vue/src/popeditor/index.ts",
@@ -1582,9 +1683,9 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "PopoverMobile": {
@@ -1605,16 +1706,19 @@
   "Popup": {
     "path": "vue/src/popup/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "Progress": {
     "path": "vue/src/progress/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "ProgressMobile": {
@@ -1635,16 +1739,19 @@
   "PullRefresh": {
     "path": "vue/src/pull-refresh/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile"
+    ]
   },
   "Radio": {
     "path": "vue/src/radio/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "RadioButton": {
@@ -1652,8 +1759,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "RadioButtonMobileFirst": {
@@ -1671,8 +1778,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "RadioGroupMobileFirst": {
@@ -1705,8 +1812,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "RateMobileFirst": {
@@ -1800,16 +1907,19 @@
   "Scrollbar": {
     "path": "vue/src/scrollbar/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "Search": {
     "path": "vue/src/search/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "SearchMobile": {
@@ -1832,8 +1942,7 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile"
+      "pc"
     ]
   },
   "SelectDropdown": {
@@ -1852,7 +1961,10 @@
   "SelectMobile": {
     "path": "vue/src/select-mobile/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile-first"
+    ]
   },
   "SelectPc": {
     "path": "vue/src/select/src/pc.vue",
@@ -1862,15 +1974,18 @@
   "SelectView": {
     "path": "vue/src/select-view/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile-first"
+    ]
   },
   "SelectedBox": {
     "path": "vue/src/selected-box/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "SelectedBoxMobileFirst": {
@@ -1901,9 +2016,9 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "SliderMobile": {
@@ -1937,15 +2052,18 @@
   "StandardListItem": {
     "path": "vue/src/standard-list-item/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile-first"
+    ]
   },
   "Steps": {
     "path": "vue/src/steps/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "StepsMobileFirst": {
@@ -1961,16 +2079,19 @@
   "SvgIcon": {
     "path": "vue/src/svg-icon/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "Switch": {
     "path": "vue/src/switch/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "SwitchMobile": {
@@ -1993,8 +2114,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "TabItemMobileFirst": {
@@ -2010,20 +2131,26 @@
   "Tabbar": {
     "path": "vue/src/tabbar/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile"
+    ]
   },
   "TabbarItem": {
     "path": "vue/src/tabbar-item/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile"
+    ]
   },
   "Table": {
     "path": "vue/src/table/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile"
+      "mobile",
+      "pc"
     ]
   },
   "TableMobile": {
@@ -2041,9 +2168,9 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "TabsMobile": {
@@ -2066,14 +2193,17 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "TagGroup": {
     "path": "vue/src/tag-group/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile-first"
+    ]
   },
   "TagMobileFirst": {
     "path": "vue/src/tag/src/mobile-first.vue",
@@ -2101,16 +2231,19 @@
   "Time": {
     "path": "vue/src/time/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "TimeLine": {
     "path": "vue/src/time-line/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "TimeLineMobile": {
@@ -2131,35 +2264,50 @@
   "TimePanel": {
     "path": "vue/src/time-panel/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "TimePicker": {
     "path": "vue/src/time-picker/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
-      "mobile"
+      "pc"
     ]
   },
   "TimePickerMobile": {
     "path": "vue/src/time-picker-mobile/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile-first"
+    ]
   },
   "TimeRange": {
     "path": "vue/src/time-range/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "TimeSelect": {
     "path": "vue/src/time-select/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "TimeSpinner": {
     "path": "vue/src/time-spinner/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "ToggleMenu": {
     "path": "vue/src/toggle-menu/index.ts",
@@ -2179,8 +2327,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "TooltipMobileFirst": {
@@ -2217,7 +2365,10 @@
   "TransferPanel": {
     "path": "vue/src/transfer-panel/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "TransferPc": {
     "path": "vue/src/transfer/src/pc.vue",
@@ -2235,7 +2386,10 @@
   "TreeMenu": {
     "path": "vue/src/tree-menu/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "TreePc": {
     "path": "vue/src/tree/src/pc.vue",
@@ -2247,8 +2401,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "UploadDragger": {
@@ -2256,8 +2410,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "UploadDraggerMobileFirst": {
@@ -2275,8 +2429,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "UploadListMobileFirst": {
@@ -2338,9 +2492,9 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "pc",
+      "mobile-first",
       "mobile",
-      "mobile-first"
+      "pc"
     ]
   },
   "UserHeadGroup": {
@@ -2392,7 +2546,10 @@
   "Wheel": {
     "path": "vue/src/wheel/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "mobile"
+    ]
   },
   "Wizard": {
     "path": "vue/src/wizard/index.ts",
@@ -2410,11 +2567,17 @@
   "YearRange": {
     "path": "vue/src/year-range/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "YearTable": {
     "path": "vue/src/year-table/index.ts",
     "type": "component",
-    "exclude": false
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   }
 }

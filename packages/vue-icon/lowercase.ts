@@ -10,6 +10,7 @@
  *
  */
 
+import iconPromptExclamation from './src/prompt-exclamation'
 import iconAdd from './src/add'
 import iconAdministrator from './src/administrator'
 import iconAlignBaseline from './src/align-baseline'
@@ -202,6 +203,7 @@ import iconLineHeight from './src/line-height'
 import iconLineThrought from './src/line-throught'
 import iconLink from './src/link'
 import iconLoading from './src/loading'
+import IconLoadingShadow from './src/loading-shadow'
 import iconLock from './src/lock'
 import iconMailContent from './src/mail-content'
 import iconMail from './src/mail'
@@ -345,8 +347,18 @@ import iconExpand from './src/expand'
 import iconPutAway from './src/put-away'
 import iconStretch from './src/stretch'
 import iconAddCircle from './src/add-circle'
+import iconUpWard from './src/up-ward'
+import iconDownWard from './src/down-ward'
+import iconLeftWardArrow from './src/left-ward-arrow'
+import iconSortTriangle from './src/sort-triangle'
+import iconSortTriangleAscending from './src/sort-triangle-ascending'
+import iconSortTriangleDescending from './src/sort-triangle-descending'
 
 export {
+  iconSortTriangle,
+  iconSortTriangleAscending,
+  iconSortTriangleDescending,
+  iconPromptExclamation,
   iconPrompt,
   iconExpand,
   iconPutAway,
@@ -455,6 +467,7 @@ export {
   iconDoubleRight,
   iconDownO,
   iconDown,
+  iconDownWard,
   iconDownloadCloud,
   iconDownloadLink,
   iconDownload,
@@ -561,7 +574,9 @@ export {
   iconLineThrought,
   iconLink,
   iconLoading,
+  IconLoadingShadow,
   iconLock,
+  iconLeftWardArrow,
   iconMailContent,
   iconMail,
   iconMale,
@@ -667,6 +682,7 @@ export {
   iconUnsent,
   iconUpO,
   iconUp,
+  iconUpWard,
   iconUpload,
   iconUser,
   iconVersiontree,
@@ -682,6 +698,9 @@ export {
 }
 
 export default {
+  iconSortTriangle,
+  iconSortTriangleAscending,
+  iconSortTriangleDescending,
   iconPrompt,
   iconExpand,
   iconPutAway,
@@ -790,6 +809,7 @@ export default {
   iconDoubleRight,
   iconDownO,
   iconDown,
+  iconDownWard,
   iconDownloadCloud,
   iconDownloadLink,
   iconDownload,
@@ -896,7 +916,9 @@ export default {
   iconLineThrought,
   iconLink,
   iconLoading,
+  IconLoadingShadow,
   iconLock,
+  iconLeftWardArrow,
   iconMailContent,
   iconMail,
   iconMale,
@@ -1002,6 +1024,7 @@ export default {
   iconUnsent,
   iconUpO,
   iconUp,
+  iconUpWard,
   iconUpload,
   iconUser,
   iconVersiontree,

@@ -41,7 +41,6 @@ export default function vitePluginBabelImport(
   return {
     name: '@opentiny/vue-vite-import',
     transform(code, id) {
-      const matchValue = mode === 'pc' ? './mobile' : './pc'
       const isCheckMode = mode && /@opentiny\/vue-.+?\/lib\/index.js$/.test(id)
       // 不处理node_modules内的依赖
       if (/\.(?:[jt]sx?|vue)$/.test(id) && !/(node_modules)/.test(id)) {
@@ -53,7 +52,7 @@ export default function vitePluginBabelImport(
           map: null
         }
       } else if (isCheckMode) {
-        const newCode = code.replace(matchValue, `./${mode}`)
+        const newCode = code.replace(/('|")\.\/(mobile|pc|mobile-first)(\.js)?('|")/g, `"./${mode}"`)
         return {
           code: newCode,
           map: null

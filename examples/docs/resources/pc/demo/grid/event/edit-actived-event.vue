@@ -4,17 +4,12 @@
     <tiny-grid-column field="name" title="名称" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
     <tiny-grid-column field="area" title="区域" :editor="{ component: 'select', options }"></tiny-grid-column>
     <tiny-grid-column field="address" title="地址" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
-    <tiny-grid-column
-      field="introduction"
-      title="公司简介"
-      :editor="{ component: 'input', autoselect: true }"
-      show-overflow="ellipsis"
-    ></tiny-grid-column>
+    <tiny-grid-column field="introduction" title="公司简介" :editor="{ component: 'input', autoselect: true }" show-overflow="ellipsis"></tiny-grid-column>
   </tiny-grid>
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+import { Grid, GridColumn, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -23,7 +18,10 @@ export default {
   },
   methods: {
     editActive() {
-      alert('激活编辑事件')
+      Modal.message({
+        message: '激活编辑事件',
+        status: 'info'
+      })
     }
   },
   data() {

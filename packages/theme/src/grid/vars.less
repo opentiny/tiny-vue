@@ -13,8 +13,12 @@
 .component-css-vars-grid() {
   // 表格默认字体
   --ti-grid-font-family: var(--ti-common-font-family);
-  // 默认文本色
+  // 默认表头文本色
+  --ti-grid-header-text-color: var(--ti-common-color-info-normal);
+  // 默认表体文本色
   --ti-grid-text-color: var(--ti-common-color-info-normal);
+  // 默认按钮图标悬浮色
+  --ti-grid-icon-color: var(--ti-common-color-info-normal);
   // 表格亮色
   --ti-grid-light-color: var(--ti-common-color-light);
   // 表格错误色
@@ -41,14 +45,13 @@
   // 表头x轴虚拟滚动元素边框颜色
   --ti-grid-header-repair-border-color: var(--ti-common-color-transparent);
 
-   // 表格内部单选按钮边框色
-   --ti-grid-radio-border-color: var(--ti-common-color-line-dividing);
+  // 表格内部单选按钮边框色
+  --ti-grid-radio-border-color: var(--ti-common-color-line-dividing);
 
-   // 表格内部多选按钮边框色
-   --ti-grid-checkbox-border-color: var(--ti-common-color-line-dividing);
-   // 表格内部多选按钮边框圆角
-   --ti-grid-checkbox-border-radius: var(--ti-common-border-radius-normal);
-
+  // 表格内部多选按钮边框色
+  --ti-grid-checkbox-border-color: var(--ti-common-color-line-dividing);
+  // 表格内部多选按钮边框圆角
+  --ti-grid-checkbox-border-radius: var(--ti-common-border-radius-normal);
 
   // 表格头部默认背景色
   --ti-grid-header-background-color: var(--ti-common-color-bg-white-emphasize);
@@ -95,7 +98,7 @@
   // 鼠标配置项双击表头选中当前列背景色
   --ti-grid-column-current-background-color: var(--ti-common-color-hover-background);
   // 表头编辑图标色
-  --ti-grid-column-icon-text-color: var(--ti-common-color-icon-norma);
+  --ti-grid-column-icon-text-color: var(--ti-common-color-icon-normal);
   // 可编辑表格输入框高度
   --ti-grid-input-height: var(--ti-common-size-height-normal);
   // 鼠标配置项选中项边框厚度
@@ -103,30 +106,30 @@
   // 表格加载中背景色
   --ti-grid-loading-background-color: rgba(0, 0, 0, 0.2);
   // 单元格字体高度
-  --ti-grid-line-height-number:var(--ti-common-line-height-number);
+  --ti-grid-line-height-number: var(--ti-common-line-height-number);
 
-   // 中等尺寸表头高度
-   --ti-grid-medium-header-column-height: var(--ti-common-size-height-normal);
-   // 默认尺寸表头高度
-   --ti-grid-default-header-column-height: var(--ti-common-size-height-normal);
-   // 小尺寸表头高度
-   --ti-grid-small-header-column-height: var(--ti-common-size-height-normal);
-   // 超小尺寸表头高度
-   --ti-grid-mini-header-column-height: var(--ti-common-size-height-normal);
+  // 中等尺寸表头高度
+  --ti-grid-medium-header-column-height: var(--ti-common-size-height-normal);
+  // 默认尺寸表头高度
+  --ti-grid-default-header-column-height: var(--ti-common-size-height-normal);
+  // 小尺寸表头高度
+  --ti-grid-small-header-column-height: var(--ti-common-size-height-normal);
+  // 超小尺寸表头高度
+  --ti-grid-mini-header-column-height: var(--ti-common-size-height-normal);
 
-   // 中等尺寸表格单元格高度
-   --ti-grid-medium-column-height: var(--ti-common-size-13x);
-   // 默认尺寸表格单元格高度
-   --ti-grid-default-column-height:  calc(var(--ti-common-space-10x) + 2px);
-   // 小尺寸表格单元格高度
-   --ti-grid-small-column-height: var(--ti-common-size-9x);
-   // 超小尺寸表格单元格高度
-   --ti-grid-mini-column-height: var(--ti-common-size-7x);
+  // 中等尺寸表格单元格高度
+  --ti-grid-medium-column-height: var(--ti-common-size-13x);
+  // 默认尺寸表格单元格高度
+  --ti-grid-default-column-height: calc(var(--ti-common-space-10x) + 2px);
+  // 小尺寸表格单元格高度
+  --ti-grid-small-column-height: var(--ti-common-size-9x);
+  // 超小尺寸表格单元格高度
+  --ti-grid-mini-column-height: var(--ti-common-size-7x);
 
   // 默认单元格垂直内边距
-  --ti-table-td-padding-vertical: calc(var(--ti-common-space-1) * 2);
+  --ti-grid-td-padding-vertical: calc(var(--ti-common-space-1) * 2);
   // 单元格水平内边距
-  --ti-table-td-padding-horizontal: var(--ti-common-space-2x);
+  --ti-grid-td-padding-horizontal: var(--ti-common-space-2x);
   // 表头排序图标尺寸
   --ti-grid-header-icon-font-size: var(--ti-common-font-size-2);
   // 表格无数据背景图片

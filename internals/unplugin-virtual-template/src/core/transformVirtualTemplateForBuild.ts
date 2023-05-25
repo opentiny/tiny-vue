@@ -20,13 +20,32 @@ export function transformVirtualTemplateForBuild(code: string) {
       }).join('\n')
     }
 
+    const getTemplateFunction = (params: Record<string, string>) => {
+      const templateArr = Object.entries(params)
+      let defaultReturnStr = ''
+
+      const templateStr = templateArr.map(([key, value], index) => {
+        // 当模板个数等于1时，不需要默认return 语句
+        if (!index && templateArr.length > 1) {
+          defaultReturnStr = `return ${key}`
+        }
+
+        // 当模板数等于1则直接return该模板
+        if (templateArr.length === 1) {
+          return `return ${key}`
+        } else {
+          return `if ('${value}' === (process.env.TINY_MODE || mode)) {return ${key}}`
+        }
+      }).join('\n')
+
+      return `${templateStr}${defaultReturnStr}`
+    }
+
     const result = `
 ${getImports(params)}
 
 const ${localName} = (mode) => {
-  if ('mobile' === (process.env.TINY_MODE || mode)) return MobileTemplate
-  else if ('mobile-first' === (process.env.TINY_MODE || mode)) return MobileFirstTemplate
-  else return PcTemplate
+  ${getTemplateFunction(params)}
 }
   `
     return result

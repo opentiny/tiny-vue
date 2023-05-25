@@ -50,6 +50,9 @@ const $constants = {
   InputBoxType: {
     Input: 'input',
     Underline: 'underline'
+  },
+  ICON_MAP: {
+    downWard: 'icon-delta-down'
   }
 }
 

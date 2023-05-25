@@ -37,10 +37,10 @@
     },
     {
       "name": "disabled-void-icon-class",
-      "sample": "disabled-not-selected-color",
+      "sample": "disabled-void-icon-class",
       "type": "String",
-      "desc": "只读状态下未选中的图标样式名",
-      "defaultValue": "该属性的默认值为 icon-stardisable"
+      "desc": "只读状态下未选中的图标样式名，可选值:icon-starDisable | icon-frown | icon-meh | icon-smile",
+      "defaultValue": "该属性的默认值为 icon-starActive"
     },
     {
       "name": "high-threshold",
@@ -109,8 +109,8 @@
       "name": "void-icon-class",
       "sample": "not-selected-class",
       "type": "String",
-      "desc": "未选中 icon 的类名",
-      "defaultValue": "该属性的默认值为 icon-stardisable"
+      "desc": "未选中 icon 的图标样式名,可选值:icon-starDisable | icon-frown | icon-meh | icon-smile",
+      "defaultValue": "该属性的默认值为 icon-starActive"
     },
     {
       "name": "radio",

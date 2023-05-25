@@ -62,6 +62,13 @@
       "type": "Boolean",
       "desc": "Whether to display the edit button. This parameter takes effect only when more buttons are displayed.",
       "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "border",
+      "sample": "border",
+      "type": "Boolean",
+      "desc": "Remove button border.",
+      "defaultValue": "The default value of this attribute is true."
     }
   ],
   "slots": [

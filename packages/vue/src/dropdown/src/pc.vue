@@ -17,7 +17,7 @@ import Button from '@opentiny/vue-button'
 import ButtonGroup from '@opentiny/vue-button-group'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import DropdownMenu from '@opentiny/vue-dropdown-menu'
-import { iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
+import { iconDeltaDown, iconDownWard } from '@opentiny/vue-icon'
 
 export default defineComponent({
   name: $prefix + 'Dropdown',
@@ -25,9 +25,8 @@ export default defineComponent({
   components: {
     TinyButton: Button,
     TinyButtonGroup: ButtonGroup,
-    IconChevronDown: iconChevronDown(),
-    IconChevronUp: iconChevronUp(),
-    TinyDropdownMenu: DropdownMenu
+    TinyDropdownMenu: DropdownMenu,
+    IconDownWard: iconDownWard()
   },
   directives: directive({ Clickoutside }),
   props: {
@@ -86,10 +85,17 @@ export default defineComponent({
     const triggerClass = 'tiny-dropdown__trigger tiny-dropdown-trigger'
     const visibleClass = state.visible ? 'tiny-dropdown--visible tiny-dropdown-visible' : ''
 
+    const IconDown = state?.designConfig?.icons?.downWard || iconDeltaDown()
+
     if (splitButton) {
       triggerElm = (
         <tiny-button-group>
-          <tiny-button type={type} size={size} onClick={handleMainButtonClick} disabled={disabled}>
+          <tiny-button
+            type={type}
+            size={size}
+            onClick={handleMainButtonClick}
+            disabled={disabled}
+            class="tiny-dropdown__title-button">
             {slots.default && slots.default()}
           </tiny-button>
           <tiny-button
@@ -99,7 +105,7 @@ export default defineComponent({
             class={`tiny-dropdown__caret-button ${triggerClass}`}
             disabled={disabled}
             reset-time={0}>
-            <icon-chevron-down class={visibleClass}></icon-chevron-down>
+            <icon-down-ward class={visibleClass}></icon-down-ward>
           </tiny-button>
         </tiny-button-group>
       )
@@ -107,7 +113,7 @@ export default defineComponent({
       const defaultTriggerElm = (
         <span>
           <span class={'tiny-dropdown__title'}>{title}</span>
-          <icon-chevron-down class={visibleClass}></icon-chevron-down>
+          <IconDown class={visibleClass}></IconDown>
         </span>
       )
 

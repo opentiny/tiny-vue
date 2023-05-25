@@ -78,5 +78,21 @@
     "component": "Buttongroup",
     "findIntroStr": "A button group is used for multiple similar operations.",
     "demoId": "slot-default"
+  },
+  {
+    "title": "Button Group Multiple",
+    "content": "<p>Multi-line button group, after exceeding the maximum width, it will be displayed in a new line.</p>\n",
+    "link": "button-group/button-group-multiple",
+    "component": "Buttongroup",
+    "findIntroStr": "Button group multiple",
+    "demoId": "button-group-multiple"
+  },
+  {
+    "title": "Border",
+    "content": "<p>Set with or without border, the default is true.</p>\n",
+    "link": "button-group/Border",
+    "component": "Buttongroup",
+    "findIntroStr": "Border",
+    "demoId": "border"
   }
 ]

@@ -1,4 +1,5 @@
 import path from 'node:path'
+import fs from 'fs-extra'
 import * as utils from '../../shared/utils'
 import { writeModuleMap, quickSort } from '../../shared/module-utils'
 import commonMapping from './commonMapping.json'
@@ -32,12 +33,10 @@ const getTemplateName = (currentPaths, entryObj) => {
   return `${currentPaths.split('-').map(utils.capitalize).join('')}${subFix}`
 }
 
-interface BuildEntryType {
-  path: string
-  // type为三种 component：组件入口，template：组件模板（pc|mobile|mobile-first），module:单独的模块（icon|common|local）
-  type: 'component' | 'template' | 'module'
-  exclude: boolean
-  mode?: string[]
+const tempMap = {
+  'pc.vue': 'pc',
+  'mobile.vue': 'mobile',
+  'mobile-first.vue': 'mobile-first',
 }
 
 /**
@@ -58,6 +57,19 @@ const makeModules = () => {
     callback({ file, subPath, dirs }) {
       // 判断是否是需要作为打包入口文件
       const entryObj = getBuildEntryFile(file, dirs, subPath)
+      const mode: string[] = []
+
+      // 这里通过判断pc、mobile、first-mobile模板的个数，来分类组件
+      if (entryObj.isMainEntry && dirs.includes('src')) {
+        const srcPath = subPath.replace(file, 'src')
+        const srcFiles = fs.readdirSync(srcPath) || []
+        srcFiles.forEach(item => {
+          if (tempMap[item]) {
+            mode.push(tempMap[item])
+          }
+        })
+      }
+
       if (entryObj.isBuildEntryFile) {
         const modulePath = subPath.slice(subPath.lastIndexOf(`vue${path.sep}src`)).replaceAll(path.sep, '/')
         const matchArr = modulePath.match(/.+\/(.+?)\/(index\.ts|src\/pc\.|src\/mobile\.|src\/mobile-first\.)/)
@@ -68,29 +80,16 @@ const makeModules = () => {
             type: entryObj.isMainEntry ? 'component' : 'template',
             exclude: false
           }
+
+          if (mode.length > 0) {
+            templates[compName].mode = mode
+          }
         }
       }
     }
   })
 
   const modulesJson = quickSort({ sortData: templates, returnType: 'object' })
-
-  Object.entries(modulesJson).forEach(([key, value]) => {
-    if ((value as BuildEntryType).type === 'component') {
-      const mode: string[] = []
-      const compTempCol = ['Pc', 'Mobile', 'MobileFirst']
-      compTempCol.forEach(item => {
-        if (modulesJson[key + item]) {
-          // 放入modules.json之前，转为小写
-          const modeName = item === 'MobileFirst' ? 'mobile-first' : item.toLowerCase()
-          mode.push(modeName)
-        }
-      })
-      if (mode.length) {
-        (value as BuildEntryType).mode = mode
-      }
-    }
-  })
 
   writeModuleMap(modulesJson)
 }

@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       rate: 2,
-      iconclass2: 'icon-starActive'
+      iconclass2: 'icon-starDisable'
     }
   }
 }

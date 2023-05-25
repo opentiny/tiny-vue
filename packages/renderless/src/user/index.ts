@@ -14,7 +14,7 @@ import debounce from '../common/deps/debounce'
 import { toDateStr } from '../common/date'
 import { toJsonStr } from '../common/object'
 import { toJson } from '../common/string'
-import { log } from '../common'
+import { log } from '../common/xss'
 
 const request = {
   timmer: null,

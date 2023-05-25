@@ -120,8 +120,8 @@ export const tinyBaseSmbTheme = {
   'ti-common-color-icon-graybg-active': 'var(--ti-base-color-brand)',
   'ti-common-color-icon-graybg-disabled': 'var(--ti-base-color-common-4)',
   'ti-common-color-icon-darkbg-normal': 'var(--ti-base-color-common-3)',
-  'ti-common-color-icon-darkbg-hover': 'var(--ti-base-color-brand3)',
-  'ti-common-color-icon-darkbg-active': 'var(--ti-base-color-brand3)',
+  'ti-common-color-icon-darkbg-hover': 'var(--ti-base-color-brand-3)',
+  'ti-common-color-icon-darkbg-active': 'var(--ti-base-color-brand-3)',
   'ti-common-color-icon-darkbg-disabled': 'var(--ti-base-color-common-1)',
   'ti-common-color-icon-info': 'var(--ti-base-color-icon-info)',
 

@@ -1,5 +1,10 @@
 <template>
-  <tiny-button-group :data="groupData" disabled></tiny-button-group>
+  <div>
+    <tiny-button-group :data="groupData" disabled></tiny-button-group>
+  </div>
+  <div style="margin-top: 8px;">
+    <tiny-button-group :data="groupData" :border="false" disabled></tiny-button-group>
+  </div>
 </template>
 
 <script lang="jsx">

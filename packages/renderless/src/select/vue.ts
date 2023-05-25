@@ -82,7 +82,8 @@ import {
   getScrollListener,
   computeCollapseTags,
   computeMultipleLimit,
-  resetFilter
+  resetFilter,
+  computedGetIcon
 } from './index'
 import { BROWSER_NAME } from '../common'
 import browserInfo from '../common/browser'
@@ -242,13 +243,14 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants 
     collapseTags: computed(() => api.computeCollapseTags()),
     multipleLimit: computed(() => api.computeMultipleLimit()),
     isSelectAll: computed(() => state.selectCls === 'checked-sur'),
-    isHalfSelect: computed(() => state.selectCls === 'halfselect')
+    isHalfSelect: computed(() => state.selectCls === 'halfselect'),
+    getIcon: computed(() => api.computedGetIcon())
   })
 
   return state
 }
 
-const addApi = ({ api, props, state, refs, emit, constants, parent, nextTick, dispatch, vm }) => {
+const addApi = ({ api, props, state, refs, emit, constants, parent, nextTick, dispatch, vm, designConfig }) => {
   Object.assign(api, {
     resetInputHeight: resetInputHeight({ api, constants, nextTick, props, refs, state }),
     calcOverFlow: calcOverFlow({ refs, props, state }),
@@ -285,11 +287,26 @@ const addApi = ({ api, props, state, refs, emit, constants, parent, nextTick, di
     mounted: mounted({ api, parent, state, props, refs }),
     unMount: unMount({ api, parent, refs, state }),
     watchOptimizeOpts: watchOptimizeOpts({ api, props, refs, state }),
-    resetFilter: resetFilter({ state, api })
+    resetFilter: resetFilter({ state, api }),
+    computedGetIcon: computedGetIcon({ constants, designConfig })
   })
 }
 
-const initApi = ({ api, props, state, refs, emit, maskState, constants, parent, nextTick, dispatch, t, vm }) => {
+const initApi = ({
+  api,
+  props,
+  state,
+  refs,
+  emit,
+  maskState,
+  constants,
+  parent,
+  nextTick,
+  dispatch,
+  t,
+  vm,
+  designConfig
+}) => {
   Object.assign(api, {
     state,
     maskState,
@@ -337,7 +354,7 @@ const initApi = ({ api, props, state, refs, emit, maskState, constants, parent, 
     computeMultipleLimit: computeMultipleLimit({ props, state })
   })
 
-  addApi({ api, props, state, refs, emit, constants, parent, nextTick, dispatch, vm })
+  addApi({ api, props, state, refs, emit, constants, parent, nextTick, dispatch, vm, designConfig })
 }
 
 const addWatch = ({ watch, props, api, state }) => {
@@ -404,7 +421,7 @@ const initWatch = ({ watch, props, api, state, nextTick, refs }) => {
 export const renderless = (
   props,
   { computed, onBeforeUnmount, onMounted, reactive, watch, provide },
-  { vm, refs, parent, emit, constants, nextTick, dispatch, t, emitter }
+  { vm, refs, parent, emit, constants, nextTick, dispatch, t, emitter, designConfig }
 ) => {
   const api = {}
   const state = initState({ reactive, computed, props, api, emitter, parent, constants })
@@ -414,7 +431,7 @@ export const renderless = (
 
   const maskState = reactive({ width: '', height: '', top: '' })
 
-  initApi({ api, props, state, refs, emit, maskState, constants, parent, nextTick, dispatch, t, vm })
+  initApi({ api, props, state, refs, emit, maskState, constants, parent, nextTick, dispatch, t, vm, designConfig })
   initWatch({ watch, props, api, state, nextTick, refs })
 
   onMounted(api.mounted)

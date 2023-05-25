@@ -113,10 +113,18 @@
   },
   {
     "title": "Slot",
-    "content": "<p>Content of Checkbox</p>\n",
+    "content": "<p>Multi-line button group, after exceeding the maximum width, it will be displayed in a new line.</p>\n",
     "link": "checkbox/checkbox-slot",
     "component": "Checkbox check box",
     "findIntroStr": "Configure options for different scenarios. Users can select multiple options from a group of options.",
     "demoId": "checkbox-slot"
+  },
+  {
+    "title": "Checkbox Button Multiple",
+    "content": "<p>Checkbox button multiple</p>\n",
+    "link": "checkbox/checkbox-button-multiple",
+    "component": "Checkbox check box",
+    "findIntroStr": "Configure options for different scenarios. Users can select multiple options from a group of options.",
+    "demoId": "checkbox-button-multiple"
   }
 ]

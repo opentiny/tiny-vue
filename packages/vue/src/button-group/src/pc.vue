@@ -8,9 +8,9 @@
  * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
- -->
+-->
 <template>
-  <div class="tiny-button-group">
+  <div class="tiny-button-group" :class="[ size ? 'tiny-button-group--' + size : '' , border ? '' : 'tiny-button-group--borderless']" >
     <slot>
       <ul v-if="!(showMore && showMore > 0)" class="tiny-group-item">
         <li v-for="(node, index) in data" :key="index" :class="{ active: state.value === node[valueField] }">
@@ -63,7 +63,7 @@ import Button from '@opentiny/vue-button'
 import { iconPopup, iconWriting } from '@opentiny/vue-icon'
 
 export default defineComponent({
-  props: [...props, 'size', 'data', 'plain', 'modelValue', 'disabled', 'valueField', 'textField', 'showMore', 'showEdit'],
+  props: [...props, 'size', 'data', 'plain', 'modelValue', 'disabled', 'valueField', 'textField', 'showMore', 'showEdit','border'],
   components: {
     TinyPopover: Popover,
     TinyButton: Button,

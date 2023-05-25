@@ -27,7 +27,8 @@ import {
   clickItem,
   clickWrapper,
   getItemStyle,
-  handleClick
+  handleClick,
+  computedGetIcon
 } from './index'
 
 export const api = [
@@ -64,13 +65,14 @@ const initState = ({ reactive, computed, api, props, parent, dropdownMenu }) => 
     closeOnClickOverlay: computed(() => parent.closeOnClickOverlay),
     children: [],
     textField: dropdownMenu?.textField || props.textField,
-    popperClass: dropdownMenu?.popperClass || ''
+    popperClass: dropdownMenu?.popperClass || '',
+    getIcon: computed(() => api.computedGetIcon())
   })
 
   return state
 }
 
-const initApi = ({ api, state, emit, props, parent, dispatch, vm }) => {
+const initApi = ({ api, state, emit, props, parent, dispatch, vm, constants, designConfig }) => {
   Object.assign(api, {
     state,
     open: open(emit),
@@ -89,11 +91,16 @@ const initApi = ({ api, state, emit, props, parent, dispatch, vm }) => {
     getItemStyle: getItemStyle({ parent, state }),
     bindScroll: bindScroll({ api, parent }),
     confirm: confirm({ emit, props, state }),
-    handleClick: handleClick({ props, dispatch, vm, emit })
+    handleClick: handleClick({ props, dispatch, vm, emit }),
+    computedGetIcon: computedGetIcon({ constants, designConfig })
   })
 }
 
-export const renderless = (props, { computed, reactive, watch, inject }, { parent, emit, vm, dispatch, mode }) => {
+export const renderless = (
+  props,
+  { computed, reactive, watch, inject },
+  { parent, emit, vm, dispatch, mode, constants, designConfig }
+) => {
   const api = {}
   const dropdownMenu = inject('dropdownMenu', null)
 
@@ -104,7 +111,7 @@ export const renderless = (props, { computed, reactive, watch, inject }, { paren
 
   const state = initState({ reactive, computed, api, props, parent, dropdownMenu })
 
-  initApi({ api, state, emit, props, parent, dispatch, vm })
+  initApi({ api, state, emit, props, parent, dispatch, vm, constants, designConfig })
 
   watch(() => state.showPopup, api.bindScroll)
 

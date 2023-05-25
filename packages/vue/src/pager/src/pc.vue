@@ -15,10 +15,9 @@ import Popover from '@opentiny/vue-popover'
 import { t } from '@opentiny/vue-locale'
 import { $prefix, h, defineComponent } from '@opentiny/vue-common'
 import {
-  iconDeltaUp,
+  iconTriangleDown,
   iconChevronLeft,
-  iconChevronRight,
-  iconChevronDown
+  iconChevronRight
 } from '@opentiny/vue-icon'
 import { emitEvent } from '@opentiny/vue-renderless/common/event'
 
@@ -205,16 +204,14 @@ export default defineComponent({
         }
       },
       render() {
-        const ChevronUp = iconDeltaUp()
-        /* iconDeltaDown */
-        const Down = iconChevronDown()
+        const TriangleDown = iconTriangleDown()
 
         const scopedSlots = {
           reference: () => (
             <div slot="reference" class="tiny-pager__popover">
               <div class="tiny-pager__input">
                 <input disabled={this.$parent.disabled} type="text" readonly="readonly" value={this.$parent.internalPageSize} />
-                <div class="tiny-pager__input-btn">{this.showSizes ? <ChevronUp class="tiny-svg-size" /> : <Down class="tiny-svg-size" />}</div>
+                <div class="tiny-pager__input-btn"><TriangleDown class={['tiny-svg-size', this.showSizes? 'tiny-svg-size__reverse-180': '']} /></div>
               </div>
             </div>
           ),
@@ -246,6 +243,10 @@ export default defineComponent({
                 popperClass: 'tiny-pager__selector' + (this.popperClass ? ' ' + this.popperClass : ''),
                 visibleArrow: false,
                 disabled: this.$parent.disabled
+              },
+              on: {
+                show: this.handleShowPopover,
+                hide: this.handleHidePopover
               },
               scopedSlots,
               ref: 'sizesList'
@@ -284,6 +285,13 @@ export default defineComponent({
               callback()
             }
           }
+        },
+        handleShowPopover() {
+          if (this.$parent.disabled) return this.showSizes = false
+          this.showSizes = true
+        },
+        handleHidePopover() {
+          this.showSizes = false
         }
       }
     },

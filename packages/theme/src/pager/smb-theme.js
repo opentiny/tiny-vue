@@ -32,7 +32,6 @@ export const tinyPagerSmbTheme = {
   'ti-pager-prev-next-hover-bg-color': 'transparent',
   'ti-pager-group-sizes-margin-right': '0px',
   'ti-pager-sizes-input-width': '78px',
-  'ti-pager-body-width': '78px',
   'ti-pager-sizes-input-hover-text-color': '#595959',
   'ti-pager-input-btn-width': '16px',
   'ti-pager-input-btn-right': '12px',

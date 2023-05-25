@@ -1,7 +1,17 @@
 <template>
   <div>
-    <tiny-button-group size="mini" :data="groupData" v-model="checkedVal"></tiny-button-group>
-    <span>当前选中值：{{ checkedVal }}</span>
+    <div>
+      <tiny-button-group size="mini" :data="groupData" v-model="checkedVal"></tiny-button-group>
+      <span>当前选中值：{{ checkedVal }}</span>
+    </div>
+    <div style="margin-top: 20px">
+      <tiny-button-group size="small" :data="groupData" v-model="checkedVal"></tiny-button-group>
+      <span>当前选中值：{{ checkedVal }}</span>
+    </div>
+    <div style="margin-top: 20px">
+      <tiny-button-group size="medium" :data="groupData" v-model="checkedVal"></tiny-button-group>
+      <span>当前选中值：{{ checkedVal }}</span>
+    </div>
   </div>
 </template>
 

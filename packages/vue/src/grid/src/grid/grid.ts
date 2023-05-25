@@ -29,7 +29,7 @@ import { removeClass, addClass } from '@opentiny/vue-renderless/common/deps/dom'
 import { getDataset } from '@opentiny/vue-renderless/common/dataset'
 import { getListeners, emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import { extend } from '@opentiny/vue-renderless/common/object'
-import { h, hooks, emitter, $prefix } from '@opentiny/vue-common'
+import { h, hooks, emitter, $prefix, setup } from '@opentiny/vue-common'
 import Modal from '@opentiny/vue-modal'
 import Pager from '@opentiny/vue-pager'
 import { Buttons } from '../adapter'
@@ -266,12 +266,23 @@ export default {
   setup(props, { slots, listeners, attrs }) {
     // 处理表格用户传递过来的事件监听
     const tableListeners = getListeners(attrs, listeners)
+    const renderless = (props, hooks, { designConfig = null }) => {
+      return ({ tableListeners, designConfig })
+    }
 
-    return { slots, tableListeners }
+    return setup({ props, context: { slots, listeners, attrs }, renderless, api: ['designConfig', 'tableListeners'] })
   },
   render() {
     let { editConfig, fetchOption, listeners, loading, optimization, pager, pagerConfig, remoteFilter, remoteSort, selectToolbar } = this as any
-    let { seqIndex, slots: $slots, tableCustoms, tableData, tableListeners, tableLoading, tableProps, toolbar, vSize } = this as any
+    let { seqIndex, $slots, tableCustoms, tableData, tableListeners, tableLoading, tableProps, toolbar, vSize, designConfig } = this as any
+
+    // grid全局替换smb图标
+    if (designConfig && designConfig.icons) {
+      GlobalConfig.icon.sortDefault = designConfig.icons.sort
+      GlobalConfig.icon.sortAsc = designConfig.icons.ascending
+      GlobalConfig.icon.sortDesc = designConfig.icons.descending
+    }
+
     // 初始化虚拟滚动优化配置
     let optimizOpt = { ...GlobalConfig.optimization, ...optimization }
     let props = { ...tableProps, optimization: optimizOpt, startIndex: seqIndex }

@@ -11,7 +11,7 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Pager } from '@opentiny/vue'
+import { Grid, GridColumn, Pager, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -109,7 +109,10 @@ export default {
   },
   methods: {
     pageChange() {
-      alert('触发分页change事件')
+      Modal.message({
+        message: '触发分页change事件',
+        status: 'info'
+      })
     },
     getData({ page }) {
       let curPage = page.currentPage

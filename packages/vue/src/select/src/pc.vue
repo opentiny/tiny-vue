@@ -153,10 +153,11 @@
             <span v-if="state.showCopy" class="tiny-select__copy" @click.stop="handleCopyClick">
               <icon-copy class="tiny-svg-size tiny-select__caret"></icon-copy>
             </span>
-            <icon-chevron-down
+            <component
               v-show="!state.showClose && !(remote && filterable && !remoteConfig.showIcon)"
+              :is="state.getIcon"
               :class="['tiny-svg-size', 'tiny-select__caret', state.iconClass]"
-            ></icon-chevron-down>
+            ></component>
             <icon-close
               v-if="state.showClose"
               class="tiny-svg-size tiny-select__caret"
@@ -322,12 +323,12 @@ import TinyCheckbox from '@opentiny/vue-checkbox'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import {
   iconClose,
-  iconChevronDown,
   iconHalfselect,
   iconCheck,
   iconCheckedSur,
   iconCopy,
-  iconSearch
+  iconSearch,
+  iconDeltaDown
 } from '@opentiny/vue-icon'
 
 const getReference = (el, binding, vnode) => {
@@ -367,12 +368,12 @@ export default defineComponent({
     TinyTree,
     TinyCheckbox,
     IconClose: iconClose(),
-    IconChevronDown: iconChevronDown(),
     IconCopy: iconCopy(),
     IconHalfselect: iconHalfselect(),
     IconCheck: iconCheck(),
     IconCheckedSur: iconCheckedSur(),
-    IconSearch: iconSearch()
+    IconSearch: iconSearch(),
+    IconDeltaDown: iconDeltaDown()
   },
   props: [
     ...props,

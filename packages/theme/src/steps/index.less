@@ -14,6 +14,7 @@
 @import './vars.less';
 
 @steps-prefix-cls: ~'@{css-prefix}steps';
+@step-prefix-cls: ~'@{css-prefix}step';
 
 .@{steps-prefix-cls} {
   .component-css-vars-steps();
@@ -170,7 +171,7 @@
     cursor: pointer;
     z-index: 15;
 
-    .svg,
+    .@{css-prefix}svg,
     span {
       position: absolute;
       top: 50%;
@@ -182,12 +183,13 @@
 
   .date-time {
     text-align: center;
+    color: var(--ti-steps-time-text-color);
+    font-size: var(--ti-steps-time-font-size);
+    margin-bottom: var(--ti-steps-time-margin-bottom);
   }
 
   .node-description {
     position: relative;
-    margin-top: var(--ti-steps-content-margin-top);
-    overflow: hidden;
     text-align: center;
 
     .name {
@@ -195,6 +197,11 @@
       float: left;
       width: 100%;
       color: var(--ti-steps-timeline-date-time-text-color);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--ti-steps-text-color-hover);
+      }
     }
 
     .status {
@@ -202,6 +209,16 @@
       float: left;
       width: 100%;
     }
+  }
+
+  .@{step-prefix-cls}--text-bottom {
+    .node-description {
+      margin-top: var(--ti-steps-content-margin-top);
+    }
+  }
+
+  &__node {
+    position: relative;
   }
 
   .process-done {
@@ -212,6 +229,7 @@
     .icon {
       background: var(--ti-steps-done-icon-bg-color);
       color: var(--ti-steps-done-icon-color);
+      border-color: var(--ti-steps-done-active-border-color);
 
       .@{css-prefix}svg {
         fill: var(--ti-steps-done-icon-color);
@@ -293,7 +311,6 @@
   }
 
   & &-normal {
-    overflow: hidden;
 
     .normal {
       display: block;
@@ -302,9 +319,9 @@
     }
 
     .line {
-      width: calc(100% - var(--ti-steps-icon-size) - var(--ti-steps-text-margin-horizontal) - var(--ti-steps-line-margin-right));
+      width: calc(100% - var(--ti-steps-icon-size) - var(--ti-steps-line-margin-horizontal) * 2);
       height: var(--ti-steps-line-height);
-      left: calc(50% + var(--ti-steps-icon-size) / 2 + var(--ti-steps-line-margin-right));
+      left: calc(50% + var(--ti-steps-icon-size) / 2 + var(--ti-steps-line-margin-horizontal));
       top: calc((var(--ti-steps-icon-size) - var(--ti-steps-line-height)) / 2);
       position: absolute;
     }
@@ -313,20 +330,10 @@
       width: 0;
     }
 
-    .process-done {
-      .icon {
-        border-color: var(--ti-steps-done-active-border-color);
-      }
-
-      .line {
-        background: var(--ti-steps-line-active-bg-color);
-      }
-    }
-
     .process-current {
       .name {
-        color: var(--ti-steps-advanced-active-bg-color);
-        font-weight: var(--ti-steps-active-color-weight);
+        color: var(--ti-steps-advanced-active-text-color);
+        font-weight: var(--ti-steps-active-font-weight);
       }
     }
 
@@ -335,6 +342,50 @@
         display: inline-block;
       }
     }
+
+    .process-wait {
+
+      .@{steps-prefix-cls}__node .icon:hover,
+      &.step-content:hover .icon {
+        border-color: var(--ti-steps-unselected-hover-border-color);
+        color: var(--ti-steps-unselected-hover-icon-color);
+      }
+
+      &.step-content:hover .name {
+        color: var(--ti-steps-unselected-hover-icon-color);
+      }
+    }
+  }
+
+  .show-divider {
+    .process-current .icon::after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      bottom: calc(-1 * var(--ti-steps-bottom-divider-margin-top));
+      left: 50%;
+      transform: translateX(-50%);
+      border: 7px solid transparent;
+      border-top: none;
+      border-bottom-color: var(--ti-steps-advanced-active-bg-color);
+    }
+
+    .@{steps-prefix-cls}__bottom-divider {
+      width: 100%;
+      height: var(--ti-steps-bottom-divider-height);
+      margin-top: calc(var(--ti-steps-bottom-divider-margin-top) - 4px);
+      background-color: var(--ti-steps-bottom-divider-bg-color);
+    }
+  }
+
+  .process-current .@{steps-prefix-cls}__text-bottom {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(100%);
+  }
+
+  .step-content:not(.process-current) .@{steps-prefix-cls}__text-bottom {
+    display: none;
   }
 
   & &-timeline {
@@ -375,7 +426,7 @@
       }
 
       &.process-current {
-        color: var(--ti-steps-advanced-active-bg-color);
+        color: var(--ti-steps-advanced-active-text-color);
       }
 
       .name {
@@ -424,7 +475,7 @@
     }
   }
 
-  &-right {
+  &--text-right {
     display: inline-flex;
     align-items: center;
     padding: 0;
@@ -434,7 +485,7 @@
       width: var(--ti-steps-line-width);
       height: var(--ti-steps-line-height);
       min-width: var(--ti-steps-line-min-width);
-      margin-right: var(--ti-steps-line-margin-right);
+      margin: 0 var(--ti-steps-line-margin-horizontal);
       line-height: 0;
       background-color: var(--ti-steps-line-bg-color);
       font-size: 0;
@@ -455,7 +506,7 @@
       }
 
       .step-text {
-        margin: 0 var(--ti-steps-text-margin-horizontal);
+        margin-left: var(--ti-steps-text-margin-left);
         max-width: var(--ti-steps-content-max-width);
 
         .name {

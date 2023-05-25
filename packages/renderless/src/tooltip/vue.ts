@@ -70,7 +70,8 @@ export const renderless = (
   { vm, emit, refs, slots, nextTick, parent }
 ) => {
   const api = {}
-  const popperParam = { emit, props, nextTick, toRefs, reactive, parent, refs }
+  // 因为tootip组件由单层组件变成双层组件，所以parent需要再往上找一层
+  const popperParam = { emit, props, nextTick, toRefs, reactive, parent: parent.$parent, refs }
 
   const popperVmRef = {}
 

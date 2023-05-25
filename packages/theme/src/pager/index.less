@@ -19,6 +19,7 @@
 @popover-prefix-cls: ~'@{css-prefix}popover';
 @popper-prefix-cls: ~'@{css-prefix}popper';
 @select-prefix-cls: ~'@{css-prefix}select';
+@select-svg-cls: ~'@{css-prefix}svg';
 
 .@{pager-prefix-cls} {
   .component-css-vars-pager();
@@ -57,7 +58,7 @@
       cursor: pointer;
       margin-right: 4px;
       text-align: center;
-      line-height: var(--ti-pager-height);
+      line-height: calc(var(--ti-pager-height) - 2px);
       border-radius: var(--ti-pager-li-border-radius);
       height: var(--ti-pager-height);
       width: var(--ti-pager-width);
@@ -184,7 +185,7 @@
   &__btn-prev,
   &__btn-next {
     height: var(--ti-pager-height);
-    line-height: var(--ti-pager-height);
+    line-height: calc(var(--ti-pager-height) - 2px);
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -250,7 +251,7 @@
     .component-css-vars-pager();
     
     &.@{popover-prefix-cls}.@{popper-prefix-cls} {
-      width: var(--ti-pager-body-width);
+      width: var(--ti-pager-sizes-input-width);
       padding: 0;
       border-radius: var(--ti-pager-pop-body-border-radius);
 
@@ -378,7 +379,7 @@
     &-btn {
       width: var(--ti-pager-input-btn-width);
       height: var(--ti-pager-height);
-      line-height: var(--ti-pager-height);
+      line-height: calc(var(--ti-pager-height) - 2px);
       position: absolute;
       right: var(--ti-pager-input-btn-right);
       bottom: 0;
@@ -395,6 +396,11 @@
         vertical-align: middle;
       }
     }
+  }
+
+  & .@{select-svg-cls}-size.@{select-svg-cls}-size__reverse-180 {
+    transform: rotate(180deg);
+    transform-origin: 50% 50%;
   }
 
   .@{popover-prefix-cls}__reference {
@@ -431,32 +437,34 @@
   
   &.is-disabled {
     .@{pager-prefix-cls}__total {
-      color: #C2C2C2;
+      color: var(--ti-base-color-common-3);
     }
 
     ul li {
       cursor: not-allowed;
-      color: #C2C2C2;
+      color: var(--ti-base-color-common-3);
       background-color: transparent;
 
       &.is-active, &:not(.dot):not(.is-active):hover {
-        color: #C2C2C2;
+        color: var(--ti-base-color-common-3);
         font-weight: normal;
         background-color: transparent;
       }
     }
 
     .@{pager-prefix-cls}__input input {
-      color: #C2C2C2;
+      color: var(--ti-base-color-common-3);
       cursor: not-allowed;
       border-color: #dbdbdb;
-      background-color: #0000000D;
+      background-color: var(--ti-base-color-bg-1);
     }
 
-    .@{pager-prefix-cls}__input-btn svg {
-      fill: #C2C2C2;
-      color: #C2C2C2;
-      cursor: not-allowed;
+    .@{pager-prefix-cls}__input-btn {
+      svg {
+        fill: var(--ti-base-color-common-3);
+        color: var(--ti-base-color-common-3);
+        cursor: not-allowed;
+      }
     }
   }
 }

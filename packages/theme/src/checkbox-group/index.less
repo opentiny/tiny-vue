@@ -25,6 +25,10 @@
   .component-css-vars-checkbox-group();
 
   display: flex;
+  flex-wrap: var(--ti-checkbox-group-flex-wrap);
+  width: 100%;
+  margin-top: var(--ti-checkbox-group-margin-top);
+
 
   &.is-vertical {
     display: inline-block;
@@ -43,6 +47,7 @@
 
       &:first-child .@{checkbox-button-prefix-cls}__inner {
         border-radius: 2px 2px 0 0;
+
       }
 
       &:last-child .@{checkbox-button-prefix-cls}__inner {

@@ -1,22 +1,14 @@
-/* eslint-env node */
-
-/** @type {import('@volar-plugins/eslint')} */
-// const volarEslintPlugin = require('@volar-plugins/eslint')
-
-/** @type {import('@volar-plugins/prettier')} */
-// const { volarPrettierPlugin } = require('@volar-plugins/prettier')
-
-/** @type {import('@volar-plugins/prettyhtml')} */
-// const prettyhtml = require('@volar-plugins/prettyhtml')
+const baseConfig = require('./.eslintrc.cjs') // load your project eslint config
 
 module.exports = {
   plugins: [
-    // volarEslintPlugin(require('./linting/resolve-config.js')),
-    // volarPrettierPlugin({
-    //   languages: ['html', 'css', 'scss', 'typescript', 'javascript'],
-    //   html: { breakContentsFromTags: true },
-    //   useVscodeIndentation: true,
-    // }),
-    // prettyhtml({ printWidth: 100 }),
-  ],
+    require('@volar-plugins/eslint').default((program) => ({
+      ...baseConfig,
+      ignorePatterns: ['**/*.vue.*'], // ignore virtual files: *.vue.ts, *.vue.html, *.vue.css
+      parserOptions: {
+        ...baseConfig.parserOptions,
+        programs: [program] // replace eslint typescript program
+      }
+    }))
+  ]
 }

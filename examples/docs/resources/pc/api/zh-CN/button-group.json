@@ -62,6 +62,13 @@
       "type": "Boolean",
       "desc": "是否显示编辑按钮，只有在显示更多的情况下生效。",
       "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "border",
+      "sample": "border",
+      "type": "Boolean",
+      "desc": "是否显示边框线",
+      "defaultValue": "该属性的默认值为 true"
     }
   ],
   "slots": [

@@ -238,7 +238,7 @@ const sliceVisibleColumn = (args) => {
   }
 
   // x轴虚拟滚动时，需要一直保持冻结列显示
-  tableColumn2 = [...new Set([...leftList, ...tableColumn2, ...rightList])]
+  tableColumn2 = Array.from(new Set([...leftList, ...tableColumn2, ...rightList]))
 
   return {
     tableColumn: tableColumn2,

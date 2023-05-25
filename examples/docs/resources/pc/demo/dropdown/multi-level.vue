@@ -24,19 +24,20 @@ export default {
           label: '老友粉1',
           icon: iconStarDisable(),
           children: [
-            { label: '老友粉2.1', children: [{ label: '狮子头3.1' }] },
-            { label: '老友粉2.2', divided: true },
+            {
+              label: '老友粉2.1',
+              children: [{ label: '狮子头3.1' }]
+            },
+            { label: '老友粉2.2' },
             { label: '老友粉2.3', disabled: true }
           ]
         },
         {
           label: '狮子头',
-          divided: true,
           disabled: true
         },
         {
           label: '黄金糕',
-          divided: true,
           icon: iconStarDisable()
         }
       ]

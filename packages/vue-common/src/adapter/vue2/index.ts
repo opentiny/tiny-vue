@@ -317,7 +317,12 @@ export const parseVnode = (vnode) => {
 
 export const h = hooks.h
 
-export const createComponent = ({ component, propsData, el }) => new (Vue.extend(component))({ propsData, el }).$mount()
+export const createComponentFn = (design) => {
+  return ({ component, propsData, el }) => {
+    const comp = Object.assign(component, { provide: { [design.configKey]: design.configInstance } })
+    return new (Vue.extend(comp))({ propsData, el }).$mount()
+  }
+}
 
 export const defineComponent = hooks.defineComponent
 

@@ -37,10 +37,10 @@
     },
     {
       "name": "disabled-void-icon-class",
-      "sample": "disabled-not-selected-color",
+      "sample": "disabled-void-icon-class",
       "type": "String",
-      "desc": "Icon style name that is not selected in read-only state",
-      "defaultValue": "The default value of this attribute is icon-stardisable."
+      "desc": "Icon style name that is not selected in read-only state. Options 'icon-starDisable' | 'icon-frown' | 'icon-meh' | 'icon-smile'",
+      "defaultValue": "The default value of this attribute is icon-starActive."
     },
     {
       "name": "high-threshold",
@@ -109,8 +109,8 @@
       "name": "void-icon-class",
       "sample": "not-selected-class",
       "type": "String",
-      "desc": "Class name of unselected icons",
-      "defaultValue": "The default value of this attribute is icon-stardisable."
+      "desc": "Class name of unselected icons. Options 'icon-starDisable' | 'icon-frown' | 'icon-meh' | 'icon-smile'",
+      "defaultValue": "The default value of this attribute is icon-starActive."
     },
     {
       "name": "radio",

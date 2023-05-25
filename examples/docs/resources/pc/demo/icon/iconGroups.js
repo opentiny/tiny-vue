@@ -177,9 +177,11 @@ export const iconGroups = {
     'IconDoubleRight',
     'IconDownO',
     'IconDown',
+    'IconDownWard',
     'IconEnd',
     'IconLeftO',
     'IconLeftWard',
+    'IconLeftWardArrow',
     'IconLeft',
     'IconPopup',
     'IconRightO',
@@ -187,7 +189,8 @@ export const iconGroups = {
     'IconRightward',
     'IconTriangleDown',
     'IconUpO',
-    'IconUp'
+    'IconUp',
+    'IconUpWard'
   ],
   Symbols: [
     'IconBusy',

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <tiny-progress class="progress-first" :stroke-width="4" :percentage="70"></tiny-progress>
-    <tiny-progress class="progress-second" :stroke-width="12" :percentage="70"></tiny-progress>
+    <tiny-progress class="progress-first" :stroke-width="4" :percentage="percentage"></tiny-progress>
+    <tiny-progress class="progress-second" :stroke-width="12" :percentage="percentage"></tiny-progress>
     <div class="tip" v-if="percentage !== 100">
       努力加载中，请稍后...
     </div>
@@ -13,7 +13,12 @@ import { Progress } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyProgress: Progress
+    TinyProgress: Progress,
+  },
+  data() {
+    return {
+      percentage: 70
+    }
   }
 }
 </script>
