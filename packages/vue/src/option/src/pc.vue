@@ -28,7 +28,7 @@
   >
     <span v-if="state.select.multiple && !state.select.state.multipleLimit">
       <tiny-checkbox
-        v-model="state.itemSelected"
+        :model-value="state.itemSelected"
         :disabled="disabled || state.groupDisabled || state.limitReached"
       ></tiny-checkbox>
     </span>
@@ -42,14 +42,11 @@
 import { renderless, api } from '@opentiny/vue-renderless/option/vue'
 import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
 import Checkbox from '@opentiny/vue-checkbox'
-import { iconCheck, iconCheckedSur } from '@opentiny/vue-icon'
 
 export default defineComponent({
   name: $prefix + 'Option',
   componentName: 'Option',
   components: {
-    IconCheck: iconCheck(),
-    IconCheckedSur: iconCheckedSur(),
     TinyCheckbox: Checkbox
   },
   props: {

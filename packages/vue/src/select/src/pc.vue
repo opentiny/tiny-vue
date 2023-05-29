@@ -262,7 +262,7 @@
               @mousedown.stop
               @mouseenter="state.hoverIndex = -9"
             >
-              <tiny-checkbox v-model="state.isSelectAll" :indeterminate="state.isHalfSelect" :class="state.selectCls">
+              <tiny-checkbox :model-value="state.isSelectAll" :indeterminate="state.isHalfSelect" :class="state.selectCls">
                 {{ t('ui.base.all') }}
               </tiny-checkbox>
             </li>

@@ -274,7 +274,7 @@ export default {
   },
   render() {
     let { editConfig, fetchOption, listeners, loading, optimization, pager, pagerConfig, remoteFilter, remoteSort, selectToolbar } = this as any
-    let { seqIndex, $slots, tableCustoms, tableData, tableListeners, tableLoading, tableProps, toolbar, vSize, designConfig } = this as any
+    let { seqIndex, slots: $slots, tableCustoms, tableData, tableListeners, tableLoading, tableProps, toolbar, vSize, designConfig } = this as any
 
     // grid全局替换smb图标
     if (designConfig && designConfig.icons) {
