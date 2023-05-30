@@ -1,11 +1,11 @@
 import path from 'node:path'
 import { searchForWorkspaceRoot } from 'vite'
-import { getAllModules } from '../shared/module-utils.js'
+import { getAllModules } from '../shared/module-utils'
 
 const workspaceRoot = searchForWorkspaceRoot(process.cwd())
 const pathFromWorkspaceRoot = (...args) => path.resolve(workspaceRoot, ...args)
 
-const getComponentAlias = (alias = {}) => {
+function getComponentAlias(alias = {}) {
   getAllModules(false).forEach((item) => {
     if (item.type === 'component')
       alias[item.importName] = pathFromWorkspaceRoot('packages', item.path)
@@ -13,7 +13,7 @@ const getComponentAlias = (alias = {}) => {
   return alias
 }
 
-const getAlias = (vueVersion: string | number, theme = '') => {
+function getAlias(vueVersion: string | number, theme = '') {
   const ns = (t: string) => t ? '-' + t : ''
 
   return {
@@ -38,7 +38,7 @@ const getAlias = (vueVersion: string | number, theme = '') => {
   }
 }
 
-const createContainer = (klass, defaultTitle) => {
+function createContainer(klass, defaultTitle) {
   return [
     klass,
     {
@@ -55,7 +55,7 @@ const createContainer = (klass, defaultTitle) => {
   ]
 }
 
-const getOptimizeDeps = (vueVersion: string | number) => {
+function getOptimizeDeps(vueVersion: string | number) {
   return {
     include: [
       'shepherd.js',

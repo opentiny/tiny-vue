@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command, Option } from 'commander'
-import { buildUi, buildEntry, buildRuntime } from './commands/build/index.js'
+import { buildUi, buildEntry, buildRuntime } from './commands/build'
 
 const program = new Command()
 

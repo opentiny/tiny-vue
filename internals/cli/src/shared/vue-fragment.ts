@@ -1,6 +1,6 @@
-const fs = require('fs-extra')
-const path = require('path')
-const { filesFragmentReplace, logYellow, isBuildForVue2, logGreen } = require('./utils')
+import * as fs from 'fs-extra'
+import path from 'node:path'
+import { filesFragmentReplace, logYellow, isBuildForVue2, logGreen } from './utils'
 
 const replaceVue3Type = process.env.REPLACE_VUE3_TYPE
 
@@ -25,9 +25,9 @@ if (replaceVue3Type === 'typings') {
           /'virtual:locale\/vue'/g
         ],
         [
-          "'./vue2'",
-          "'./types/vue2'",
-          "'./vue2'"
+          '\'./vue2\'',
+          '\'./types/vue2\'',
+          '\'./vue2\''
         ]
       )
     } else {
@@ -54,9 +54,9 @@ if (replaceVue3Type === 'typings') {
           /'virtual:locale\/vue'/g
         ],
         [
-          "'./vue3'",
-          "'./types/vue3'",
-          "'./vue3'"
+          '\'./vue3\'',
+          '\'./types/vue3\'',
+          '\'./vue3\''
         ]
       )
     } else {

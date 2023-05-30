@@ -17,7 +17,7 @@ const dirname = path.dirname(filename)
  * 根据运行上下文获取路径（运行时打包用）
  * @returns 文件绝对路径
  */
-const resolveCwd = (...args: any[]) => {
+function resolveCwd(...args: any[]) {
   return path.join(process.cwd(), ...args)
 }
 
@@ -26,7 +26,7 @@ const resolveCwd = (...args: any[]) => {
  * @param {String} posixPath 路径
  * @returns 文件绝对路径
  */
-const assetsPath = (posixPath: string) => {
+function assetsPath(posixPath: string) {
   return path.posix.join('static', posixPath)
 }
 
@@ -34,7 +34,7 @@ const assetsPath = (posixPath: string) => {
  * 根据运行上下文获取，当前运行组件的名称
  * @returns 当前运行组件目录名称
  */
-const getComponentName = () => {
+function getComponentName() {
   return process.cwd().split(path.sep).pop()
 }
 
@@ -42,7 +42,7 @@ const getComponentName = () => {
  * 获取当前上下文的路径
  * @returns 文件绝对路径
  */
-const pathJoin = (...args: string[]) => {
+function pathJoin(...args: string[]) {
   return path.join(dirname, ...args)
 }
 
@@ -50,7 +50,7 @@ const pathJoin = (...args: string[]) => {
  * 获取用户输入命令参数
  * @returns 参数数组
  */
-const getInputCmd = () => {
+function getInputCmd() {
   const args: string[] = []
   const argv: string[] = process.argv || []
 
@@ -67,7 +67,7 @@ const getInputCmd = () => {
  * 获取当前执行 cli 命令的工具：node\npm\yarn
  * @returns node\npm\yarn
  */
-const getCurrentCliTool = () => {
+function getCurrentCliTool() {
   const npmExecpaths = process.env.npm_execpaths
 
   if (!npmExecpaths) return 'node'
@@ -79,7 +79,7 @@ const getCurrentCliTool = () => {
  * 执行 node 命令
  * @param {String} cmdStr 命令字符串
  */
-const execCmd = (cmdStr: string) => {
+function execCmd(cmdStr: string) {
   cmdStr && execSync(cmdStr, { stdio: 'inherit' })
 }
 
@@ -88,7 +88,7 @@ const execCmd = (cmdStr: string) => {
  * @param {String} str 字符串
  * @returns 字符串
  */
-const capitalize = (str: string) => {
+function capitalize(str: string) {
   return typeof str === 'string' ? str.slice(0, 1).toUpperCase() + str.slice(1) : str
 }
 
@@ -97,7 +97,7 @@ const capitalize = (str: string) => {
  * @param {String} str 字符串
  * @returns 字符串
  */
-const capitalizeKebabCase = (str: string, splitChar = '-') => {
+function capitalizeKebabCase(str: string, splitChar = '-') {
   return typeof str === 'string' ? str.split(splitChar).map(capitalize).join('') : str
 }
 
@@ -109,7 +109,7 @@ const capitalizeKebabCase = (str: string, splitChar = '-') => {
  * @param str 字符串
  * @param splitChar 分隔符
  */
-const kebabCase = ({ str, splitChar = '-' }: { str: string; splitChar?: string }) => {
+function kebabCase({ str, splitChar = '-' }: { str: string; splitChar?: string }) {
   if (!str || typeof str !== 'string') return str
 
   return str
@@ -129,7 +129,7 @@ const kebabCase = ({ str, splitChar = '-' }: { str: string; splitChar?: string }
  * @param {String} str 格式字符
  * @param {Object} options 格式字符
  */
-const prettierFormat = ({ str, options = {} }: { str: string; options: object }) => {
+function prettierFormat({ str, options = {} }: { str: string; options?: object }) {
   return prettier.format(
     str,
     Object.assign(
@@ -156,10 +156,8 @@ const prettierFormat = ({ str, options = {} }: { str: string; options: object })
  * @param {Function} fileFilter 文件筛选拦截函数
  * @param {Function} callback 遍历回调
  */
-const walkFileTree = (
-  { dirPath, isDeep = false, fileFilter, callback }:
-  { dirPath: string; isDeep: boolean; fileFilter?: Function; callback: Function }
-) => {
+function walkFileTree({ dirPath, isDeep = false, fileFilter, callback }:
+{ dirPath: string; isDeep: boolean; fileFilter?: Function; callback: Function }) {
   if (!dirPath || typeof callback !== 'function') {
     return
   }
@@ -195,7 +193,7 @@ const walkFileTree = (
  * @param {Boolean} 是否为 vue2 环境
  * @returns 版本号
  */
-const getVersion = ({ name, context, isVue2 }: { name: string; context: string; isVue2: boolean }) => {
+function getVersion({ name, context, isVue2 }: { name: string; context: string; isVue2: boolean }) {
   return getComponentVersion({ name, context, dir: 'node_modules', isVue2 })
 }
 
@@ -207,10 +205,8 @@ const getVersion = ({ name, context, isVue2 }: { name: string; context: string; 
  * @param {Boolean} 是否为 vue2 环境
  * @returns 版本号
  */
-const getComponentVersion = (
-  { name, context = '..', dir = 'packages', isOrigin = false, isVue2 }:
-  { name: string; context?: string; dir?: string; isOrigin?: boolean; isVue2: boolean }
-) => {
+function getComponentVersion({ name, context = '..', dir = 'packages', isOrigin = false, isVue2 }:
+{ name: string; context?: string; dir?: string; isOrigin?: boolean; isVue2: boolean }) {
   let version: string
   const packageJSONPath = pathJoin(context, dir, name, 'package.json')
 
@@ -234,7 +230,7 @@ const getComponentVersion = (
  * @param {Boolean} 是否为 vue2 环境
  * @returns
  */
-const getPublichVersion = ({ version, isVue2 }: { version: string; isVue2: boolean }) => {
+function getPublichVersion({ version, isVue2 }: { version: string; isVue2: boolean }) {
   if (isVue2) {
     return version.replace(/^4/, '3').replace('?v=4', '?v=3')
   }
@@ -249,13 +245,13 @@ const getPublichVersion = ({ version, isVue2 }: { version: string; isVue2: boole
  * @param {Boolean} 是否为 vue2 环境
  * @returns 版本号
  */
-const getPackageVersion = ({ name, isRoot = false, isVue2 = false }: { name: string; isRoot: boolean; isVue2: boolean }) => {
+function getPackageVersion({ name, isRoot = false, isVue2 = false }: { name: string; isRoot: boolean; isVue2: boolean }) {
   let version = isRoot ? getopentinyVersion({ key: name }) : getComponentVersion({ name, isOrigin: true, isVue2 })
 
   return getBigVersion(version)
 }
 
-const getBigVersion = (version) => {
+function getBigVersion(version) {
   return `~${semver.major(version)}.${semver.minor(version)}.0`
 }
 
@@ -265,7 +261,7 @@ const getBigVersion = (version) => {
  * @param {Boolean} 是否为 vue2 环境
  * @returns 版本号
  */
-const getComponentOriginVersion = ({ name, isVue2 }: { name: string; isVue2: boolean }) => {
+function getComponentOriginVersion({ name, isVue2 }: { name: string; isVue2: boolean }) {
   return getComponentVersion({ name, isOrigin: true, isVue2 })
 }
 
@@ -275,7 +271,7 @@ const getComponentOriginVersion = ({ name, isVue2 }: { name: string; isVue2: boo
  * @param {Boolean} 是否为 vue2 环境
  * @returns 版本号
  */
-const getopentinyVersion = ({ key = 'version' }: { key: string }) => {
+function getopentinyVersion({ key = 'version' }: { key?: string }) {
   const packageJson = fs.readJsonSync(pathFromWorkspaceRoot('packages/vue/package.json'))
   const packageJsonOption = packageJson[key] || packageJson
 
@@ -285,7 +281,7 @@ const getopentinyVersion = ({ key = 'version' }: { key: string }) => {
 /**
  * 获取指定依赖的版本号
  */
-const getDependentVersion = ({ libraryName, packageJSON }) => {
+function getDependentVersion({ libraryName, packageJSON }) {
   const packageJson = packageJSON || getopentinyVersion({ key: 'all' })
 
   packageJson.dependencies = packageJson.dependencies || {}
@@ -297,7 +293,7 @@ const getDependentVersion = ({ libraryName, packageJSON }) => {
 /**
  * 获取当前环境下 theme、theme-mobile、renderless
  */
-const getInnerDependenciesVersion = ({ isTestEnv, tag, version }) => {
+function getInnerDependenciesVersion({ isTestEnv, tag, version }) {
   let themeVersion
   let renderlessVersion
   let themeMobileVersion
@@ -324,7 +320,7 @@ const getInnerDependenciesVersion = ({ isTestEnv, tag, version }) => {
  * 在控制台显示绿色提示
  * @param {String} 提示内容
  */
-const logGreen = (str: string) => {
+function logGreen(str: string) {
   /* eslint-disable no-console */
   console.log(chalk.green('### ' + str))
 }
@@ -333,7 +329,7 @@ const logGreen = (str: string) => {
  * 在控制台显示黄色提示
  * @param {String} 提示内容
  */
-const logYellow = (str: string) => {
+function logYellow(str: string) {
   console.log(chalk.yellow('### ' + str))
 }
 
@@ -341,7 +337,7 @@ const logYellow = (str: string) => {
  * 在控制台显示青色提示
  * @param {String} 提示内容
  */
-const logCyan = (str: string) => {
+function logCyan(str: string) {
   console.log(chalk.cyan('### ' + str))
 }
 
@@ -349,25 +345,25 @@ const logCyan = (str: string) => {
  * 在控制台显示红色提示
  * @param {String} 提示内容
  */
-const logRed = (str: string) => {
+function logRed(str: string) {
   console.log(chalk.red('### ' + str))
 }
 
 /**
  * 根据运行上下文或者环境变量判断是否为 Vue2 环境
  */
-const isBuildForVue2 = () => {
+function isBuildForVue2() {
   return (process.env.VUE_VERSION || process.env.npm_lifecycle_event || 'vue2').includes('vue2')
 }
 
-const getVueVersion = () => {
+function getVueVersion() {
   return parseFloat((process.env.VUE_VERSION || 'vue2').replace('vue', ''))
 }
 
 /**
  * 打包 Vue3 版本时 packageJson 文件 name dependencies 更改 @opentiny/vue 改为 @opentiny/vue3
  */
-const changePackageName = ({ packageJSON, isVue2 }) => {
+function changePackageName({ packageJSON, isVue2 }) {
   if (!isVue2) {
     packageJSON.name = packageJSON.name.replace(/^@opentiny\/vue(?!3)/, '@opentiny/vue3')
 
@@ -386,7 +382,7 @@ const changePackageName = ({ packageJSON, isVue2 }) => {
 /*
  * 获取 opentiny 分组下指定包名、tag 名称的版本号
  */
-const getLiblaryTagVersion = ({ tag, name }) => {
+function getLiblaryTagVersion({ tag, name }) {
   const version = execSync(`npm v @opentiny/${name}@${tag} version`).toString('utf-8').replace(/\n/, '')
 
   if (tag === 'latest') {
@@ -399,11 +395,11 @@ const getLiblaryTagVersion = ({ tag, name }) => {
 /*
  * 获取发布 npm 包版本支持的 tag 类别数组
  */
-const getNpmTagArray = () => {
+function getNpmTagArray() {
   return ['alpha', 'beta', 'latest', 'next', 'echarts5', 'icsl', 'saas', 'mf']
 }
 
-const getBuildTag = ({ version }) => {
+function getBuildTag({ version }) {
   const tags = getNpmTagArray()
   const inputArgs = (version || '').split('.')
   let isTestEnv = false
@@ -427,7 +423,7 @@ const getBuildTag = ({ version }) => {
  *
  * @return {Array<string>} filesPath
  */
-const getFilesPath = (folderPath: string): Array<string> => {
+function getFilesPath(folderPath: string): Array<string> {
   let filesPath: string[] = []
   try {
     let files = fs.readdirSync(folderPath)
@@ -456,7 +452,7 @@ const getFilesPath = (folderPath: string): Array<string> => {
  * @param {Array<RegExp> | RegExp} regExpStr
  * @param {Array<string> | string} targetStr
  */
-const fragmentReplace = (filePath, regExpStr, targetStr) => {
+function fragmentReplace(filePath, regExpStr, targetStr) {
   let file = fs.readFileSync(filePath, 'utf8')
 
   if (Array.isArray(regExpStr) && Array.isArray(targetStr) && regExpStr.length === targetStr.length) {
@@ -476,7 +472,7 @@ const fragmentReplace = (filePath, regExpStr, targetStr) => {
  * @param {Array<string> | string} regExpStr
  * @param {Array<string> | string} targetStr
  */
-const filesFragmentReplace = (folderPath, regExpStr: Array<string> | string, targetStr: Array<string> | string) => {
+function filesFragmentReplace(folderPath, regExpStr: Array<string | RegExp> | string | RegExp, targetStr: Array<string> | string) {
   let filesPath = getFilesPath(folderPath)
 
   if (filesPath) {

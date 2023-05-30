@@ -6,10 +6,16 @@ import * as fs from 'fs-extra'
 import path from 'node:path'
 import { createRequire } from 'node:module'
 import fg from 'fast-glob'
-import * as utils from './utils'
+import {
+  pathFromWorkspaceRoot,
+  capitalizeKebabCase,
+  kebabCase,
+  prettierFormat,
+  pathJoin
+} from './utils'
 
 const require = createRequire(import.meta.url)
-const moduleMap = require(utils.pathFromWorkspaceRoot('packages/modules.json'))
+const moduleMap = require(pathFromWorkspaceRoot('packages/modules.json'))
 
 type mode = 'pc' | 'mobile' | 'mobile-first'
 
@@ -47,7 +53,7 @@ export interface Module {
  * @param {Boolean} isSort 是否需要排序
  * @returns 模块对象
  */
-const getAllModules = (isSort: boolean) => {
+function getAllModules(isSort: boolean) {
   return getSortModules({ filterIntercept: () => true, isSort })
 }
 
@@ -55,7 +61,7 @@ const getAllModules = (isSort: boolean) => {
  * @param {String} key 根据模块对象的 Key 获取对应的值
  * @returns 模块对象
  */
-const getModuleInfo = (key: string) => {
+function getModuleInfo(key: string) {
   return moduleMap[key] || {}
 }
 
@@ -66,10 +72,8 @@ const getModuleInfo = (key: string) => {
  * @param {Boolean} isOriginal 是否取原始数据
  * @param {Boolean} isSort 是否需要排序
  */
-const getByName = (
-  { name, inversion = false, isOriginal = false, isSort = true }:
-  { name: string;inversion: boolean;isOriginal: boolean;isSort: boolean }
-) => {
+function getByName({ name, isSort = true, inversion = false, isOriginal = false }:
+{ name: string; isSort: boolean; inversion?: boolean; isOriginal?: boolean }) {
   const callback = (item) => {
     const result = new RegExp(`/${name}/|^vue-${name}/`).test(item.path)
     return inversion ? !result : result
@@ -83,7 +87,7 @@ const getByName = (
  * @private
  * @param {Function} filterIntercept 搜索条件
  */
-const getModules = (filterIntercept: Function) => {
+function getModules(filterIntercept: Function) {
   let modules = {}
 
   if (typeof filterIntercept === 'function') {
@@ -107,7 +111,7 @@ const getModules = (filterIntercept: Function) => {
  * @param {Function} filterIntercept 搜索条件
  * @param {Boolean} isSort 是否需要排序
  */
-const getSortModules = ({ filterIntercept, isSort = true }: { filterIntercept: Function; isSort: boolean }) => {
+function getSortModules({ filterIntercept, isSort = true }: { filterIntercept: Function; isSort: boolean }) {
   let modules: Module[] = []
   let componentCount = 0
   const importName = '@opentiny/vue'
@@ -122,10 +126,10 @@ const getSortModules = ({ filterIntercept, isSort = true }: { filterIntercept: F
       // 这段逻辑暂时没有用到
       const componentName = dirs.slice(1, dirs.indexOf('src'))
       // UpperName: Todo
-      component.UpperName = utils.capitalizeKebabCase(componentName.pop() ?? '')
+      component.UpperName = capitalizeKebabCase(componentName.pop() ?? '')
 
       // LowerName: todo
-      component.LowerName = utils.kebabCase({ str: component.UpperName })
+      component.LowerName = kebabCase({ str: component.UpperName })
 
       // 工程的父文件夹
       component.parentDir = componentName
@@ -166,7 +170,7 @@ const getSortModules = ({ filterIntercept, isSort = true }: { filterIntercept: F
       // global: 'TinyTodoPc'
       component.global = 'Tiny' + key
 
-      component.importName = `@opentiny/vue-${utils.kebabCase({ str: key })}`
+      component.importName = `@opentiny/vue-${kebabCase({ str: key })}`
 
       // "vue-common/src/index.ts" ==> "vue-common/lib/index"
       if (component.type === 'module') {
@@ -203,7 +207,7 @@ const getSortModules = ({ filterIntercept, isSort = true }: { filterIntercept: F
  * @param {String} returnType 返回类型 Array|Object
  * @returns 排序后的数组或对象
  */
-const quickSort = ({ sortData, key = 'name', returnType = 'array' }) => {
+function quickSort({ sortData, key = 'name', returnType = 'array' }) {
   const maxNumberLength = 59
   let indexArr = []
   const setIndex = getFuncSetIndex(key, maxNumberLength, indexArr)
@@ -321,13 +325,13 @@ function getFuncSetIndex(key, maxNumberLength, indexArr) {
   return setIndex
 }
 
-const isArraySortData = (sortData, setIndex) => {
+function isArraySortData(sortData, setIndex) {
   if (Array.isArray(sortData)) {
     sortData.forEach(setIndex)
   }
 }
 
-const isNotArrayObject = (sortData, key, setIndex) => {
+function isNotArrayObject(sortData, key, setIndex) {
   if (!Array.isArray(sortData) && typeof sortData === 'object') {
     for (const sortKey in sortData) {
       const dataItem = sortData[sortKey]
@@ -347,7 +351,7 @@ const isNotArrayObject = (sortData, key, setIndex) => {
   }
 }
 
-const isNotArrayNotObject = (sortData) => {
+function isNotArrayNotObject(sortData) {
   const ret = { flag: false, result: null }
 
   if (!Array.isArray(sortData) && !(typeof sortData === 'object')) {
@@ -364,7 +368,7 @@ const isNotArrayNotObject = (sortData) => {
  * @param {Boolean} isSort 是否需要排序
  * @returns 组件对象
  */
-const getComponents = (mode, isSort = true) => {
+function getComponents(mode, isSort = true) {
   const modules = getAllModules(isSort)
 
   const components = modules.filter(item => item.type === 'component')
@@ -380,10 +384,8 @@ const getComponents = (mode, isSort = true) => {
  * @param {Oject} newObj 新增对象
  * @returns 模块对象
  */
-export const addModule = (
-  { componentName, templateName, newObj = {} }:
-  { componentName: string; templateName?: string; newObj?: object; isMobile: boolean }
-) => {
+export function addModule({ componentName, templateName, newObj = {}, isMobile }:
+{ componentName: string; templateName?: string; newObj?: object; isMobile: boolean }) {
   const isEntry = templateName?.endsWith('index') ?? false
   return {
     path: `vue/src/${componentName}/` + (isEntry ? `${templateName}.ts` : `src/${templateName}.vue`),
@@ -398,10 +400,10 @@ export const addModule = (
  * 将输入的 Map 写入到 modules.json 文件中，并格式化
  * @param {String|Object} moduleMap 模块 Json 对象集合或 Json 字符串
  */
-export const writeModuleMap = (moduleMap) => {
+export function writeModuleMap(moduleMap) {
   fs.writeFileSync(
-    utils.pathFromWorkspaceRoot('packages/modules.json'),
-    utils.prettierFormat({
+    pathFromWorkspaceRoot('packages/modules.json'),
+    prettierFormat({
       str: typeof moduleMap === 'string' ? moduleMap : JSON.stringify(moduleMap),
       options: {
         parser: 'json',
@@ -422,8 +424,8 @@ export const readModuleMap = () => moduleMap || {}
  * @param {String} componentName 组件名称 （驼峰大写：img-preview）
  * @param {Boolean} isMobile 是否为移动组件
  */
-const createModuleMapping = (componentName, isMobile = false) => {
-  const upperName = utils.capitalizeKebabCase(componentName)
+function createModuleMapping(componentName, isMobile = false) {
+  const upperName = capitalizeKebabCase(componentName)
 
   // 生成 modules.json 文件
   moduleMap[upperName] = addModule({
@@ -434,8 +436,8 @@ const createModuleMapping = (componentName, isMobile = false) => {
   const moduleJson = quickSort({ sortData: moduleMap, returnType: 'object' })
 
   fs.writeJsonSync(
-    utils.pathJoin('..', 'modules.json'),
-    utils.prettierFormat({
+    pathJoin('..', 'modules.json'),
+    prettierFormat({
       str: JSON.stringify(moduleJson),
       options: {
         parser: 'json',
@@ -445,8 +447,8 @@ const createModuleMapping = (componentName, isMobile = false) => {
   )
 }
 
-const getAllIcons = () => {
-  const entries = fg.sync('vue-icon*/src/*', { cwd: utils.pathFromWorkspaceRoot('packages'), onlyDirectories: true })
+function getAllIcons() {
+  const entries = fg.sync('vue-icon*/src/*', { cwd: pathFromWorkspaceRoot('packages'), onlyDirectories: true })
 
   return entries.map((item) => {
     const name = path.basename(item)
@@ -456,8 +458,8 @@ const getAllIcons = () => {
       libPath: item.replace('/src/', '/lib/'),
       type: 'component',
       componentType: 'icon',
-      name: utils.kebabCase({ str: name }),
-      global: utils.capitalizeKebabCase(name),
+      name: kebabCase({ str: name }),
+      global: capitalizeKebabCase(name),
       importName: '@opentiny/vue-' + item
     } as Module
   })

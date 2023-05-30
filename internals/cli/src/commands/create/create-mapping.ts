@@ -1,11 +1,11 @@
 import path from 'node:path'
 import fs from 'fs-extra'
-import * as utils from '../../shared/utils'
+import { capitalize, walkFileTree, pathFromWorkspaceRoot, logGreen, logRed } from '../../shared/utils'
 import { writeModuleMap, quickSort } from '../../shared/module-utils'
 import commonMapping from './commonMapping.json'
 
 // 每个组件，最多四个入口：index.ts、pc.vue、mobile.vue mobile-first 其他文件均不排除，直接打入到组件中
-const getBuildEntryFile = (file, dirs, subPath) => {
+function getBuildEntryFile(file, dirs, subPath) {
   // 模板文件（pc|mobile|mobile-first）需要同级目录有index.ts文件才能成为打包入口
   const isTemplatePath = dirs.includes('index.ts')
   const isMainEntry = file.includes('index') && dirs.includes('package.json')
@@ -21,7 +21,7 @@ const getBuildEntryFile = (file, dirs, subPath) => {
   }
 }
 
-const getTemplateName = (currentPaths, entryObj) => {
+function getTemplateName(currentPaths, entryObj) {
   const entryMaps = {
     isPcEntry: 'Pc',
     isMobileEntry: 'Mobile',
@@ -30,7 +30,7 @@ const getTemplateName = (currentPaths, entryObj) => {
   }
   const mapKey = Object.keys(entryObj).filter(item => entryObj[item] && item !== 'isBuildEntryFile')[0]
   const subFix = entryMaps[mapKey]
-  return `${currentPaths.split('-').map(utils.capitalize).join('')}${subFix}`
+  return `${currentPaths.split('-').map(capitalize).join('')}${subFix}`
 }
 
 const tempMap = {
@@ -42,14 +42,14 @@ const tempMap = {
 /**
  * 扫描指定目录下面的组件目录，查找非 index.vue 文件（模板）生成 modules.json 中的对象
  */
-const makeModules = () => {
+function makeModules() {
   const templates = { ...commonMapping }
 
   // 获取存放所有组件的文件夹
   const packagesStr = 'packages/vue/src'
-  utils.walkFileTree({
+  walkFileTree({
     isDeep: true,
-    dirPath: utils.pathFromWorkspaceRoot(packagesStr),
+    dirPath: pathFromWorkspaceRoot(packagesStr),
     fileFilter({ file }) {
       return !/node_modules|helper|common|assets/.test(file)
     },
@@ -97,7 +97,7 @@ const makeModules = () => {
 try {
   makeModules()
 
-  utils.logGreen('npm run create:mapping done.')
+  logGreen('npm run create:mapping done.')
 } catch (e) {
-  utils.logRed(e)
+  logRed(e)
 }

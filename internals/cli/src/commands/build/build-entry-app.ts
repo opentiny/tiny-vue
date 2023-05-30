@@ -2,12 +2,18 @@
  * 生成全量运行时入口文件
  */
 import fs from 'fs-extra'
-import { EOL as endOfLine } from 'os'
-import * as utils from '../../shared/utils.js'
-import * as moduleUtils from '../../shared/module-utils.js'
-import handlebarsRender from './handlebars.render.js'
+import { EOL as endOfLine } from 'node:os'
+import {
+  getopentinyVersion,
+  pathFromWorkspaceRoot,
+  capitalizeKebabCase,
+  prettierFormat,
+  logGreen,
+} from '../../shared/utils'
+import { getComponents } from '../../shared/module-utils'
+import handlebarsRender from './handlebars.render'
 
-const version = utils.getopentinyVersion({})
+const version = getopentinyVersion({})
 const outputDir = 'packages/vue'
 const MAIN_TEMPLATE = `{{{include}}}
  
@@ -21,9 +27,9 @@ const MAIN_TEMPLATE = `{{{include}}}
  }
  `
 
-const buildFullRuntime = () => {
-  const outputPath = utils.pathFromWorkspaceRoot(outputDir, 'app.ts')
-  const components = moduleUtils.getComponents('pc')
+function buildFullRuntime() {
+  const outputPath = pathFromWorkspaceRoot(outputDir, 'app.ts')
+  const components = getComponents('pc')
   const includeTemplate: string[] = []
   const componentsTemplate: string[] = []
 
@@ -39,7 +45,7 @@ const buildFullRuntime = () => {
   components.forEach((item) => {
     // 暂时排除 chart 类组件
     if (item.inEntry !== false && !item.path.includes('chart') && !item.path.includes('river')) {
-      const component = utils.capitalizeKebabCase(item.name)
+      const component = capitalizeKebabCase(item.name)
 
       componentsTemplate.push(`  ${component}`)
       includeTemplate.push(`import ${item.name} from '${item.importName}'`)
@@ -54,11 +60,11 @@ const buildFullRuntime = () => {
     }
   })
 
-  const output = utils.prettierFormat({ str: template })
+  const output = prettierFormat({ str: template })
 
   fs.writeFileSync(outputPath, output)
 
-  utils.logGreen(`npm run build:entry done. [${outputDir}/app.ts]`)
+  logGreen(`npm run build:entry done. [${outputDir}/app.ts]`)
 }
 
 buildFullRuntime()

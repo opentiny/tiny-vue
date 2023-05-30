@@ -1,12 +1,12 @@
-import path from 'path'
+import path from 'node:path'
 import { removeSync } from 'fs-extra'
-import * as utils from './utils'
+import { walkFileTree, pathJoin, logGreen, logRed } from '../shared/utils'
 
 /**
  * 删除 packages 项目包下插件内部的 dist、runtime、node_modules 文件
  */
-const deleteDistFile = () => {
-  utils.walkFileTree({
+function deleteDistFile() {
+  walkFileTree({
     isDeep: true,
     fileFilter({ file, subPath, isDirectory }) {
       let flag = true
@@ -22,7 +22,7 @@ const deleteDistFile = () => {
 
       return flag
     },
-    dirPath: utils.pathJoin('..', 'packages'),
+    dirPath: pathJoin('..', 'packages'),
     callback() {
       // empty
     }
@@ -42,7 +42,7 @@ try {
     removeSync(path.join(__dirname, '..', 'packages', name + '.js'))
   })
 
-  utils.logGreen('npm run clean:build done.')
+  logGreen('npm run clean:build done.')
 } catch (e) {
-  utils.logRed('npm run clean:build failed.', e)
+  logRed('npm run clean:build failed.')
 }

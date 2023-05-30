@@ -2,12 +2,18 @@
  * 生成入口文件，包括 pc.js / mobile.js / mobile-first.js / index.js
  */
 import fs from 'fs-extra'
-import { EOL as endOfLine } from 'os'
-import * as utils from '../../shared/utils.js'
-import * as moduleUtils from '../../shared/module-utils.js'
-import handlebarsRender from './handlebars.render.js'
+import { EOL as endOfLine } from 'node:os'
+import {
+  getopentinyVersion,
+  pathFromWorkspaceRoot,
+  capitalizeKebabCase,
+  prettierFormat,
+  logGreen,
+} from '../../shared/utils'
+import { getComponents } from '../../shared/module-utils'
+import handlebarsRender from './handlebars.render'
 
-const version = utils.getopentinyVersion({})
+const version = getopentinyVersion({})
 const outputDir = 'packages/vue'
 
 const fileNames = {
@@ -62,19 +68,19 @@ function getMainTemplate({ mode }) {
   `
 }
 
-const createEntry = (mode) => {
-  const OUTPUT_PATH = utils.pathFromWorkspaceRoot(outputDir, fileNames[mode])
+function createEntry(mode: string) {
+  const OUTPUT_PATH = pathFromWorkspaceRoot(outputDir, fileNames[mode])
   const MAIN_TEMPLATE = getMainTemplate({ mode })
   const includeTemplate: string[] = []
   const componentsTemplate: string[] = []
-  const components = moduleUtils.getComponents(mode)
-  const PKG_PATH = utils.pathFromWorkspaceRoot(outputDir, 'package.json')
+  const components = getComponents(mode)
+  const PKG_PATH = pathFromWorkspaceRoot(outputDir, 'package.json')
   const PKGContent = fs.readJSONSync(PKG_PATH)
   const PKGDeps = {}
 
   components.forEach((item) => {
     if (item.inEntry !== false) {
-      const component = utils.capitalizeKebabCase(item.name)
+      const component = capitalizeKebabCase(item.name)
       PKGDeps[item.importName] = 'workspace:~'
       componentsTemplate.push(`  ${component}`)
       includeTemplate.push(`import ${item.name} from '${item.importName}'`)
@@ -95,7 +101,7 @@ const createEntry = (mode) => {
     }
   })
 
-  const output = utils.prettierFormat({ str: template })
+  const output = prettierFormat({ str: template })
 
   fs.writeFileSync(OUTPUT_PATH, output)
 }
@@ -103,7 +109,7 @@ const createEntry = (mode) => {
 export function buildEntry() {
   ['all', 'pc', 'mobile', 'mobile-first'].forEach(createEntry)
 
-  utils.logGreen(
+  logGreen(
     `npm run build:entry done. [${outputDir}/index.ts,${outputDir}/pc.ts,${outputDir}/mobile.ts,${outputDir}/mobile-first.ts]`
   )
 }
