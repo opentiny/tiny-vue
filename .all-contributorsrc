@@ -221,6 +221,15 @@
       "contributions": [
         "infra"
       ]
+    },
+    {
+      "login": "linxiang07",
+      "name": "linxiang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/40119767?v=4",
+      "profile": "https://github.com/linxiang07",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 8,

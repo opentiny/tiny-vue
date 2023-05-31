@@ -114,6 +114,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="12.5%"><a href="https://juejin.cn/user/1996368846785128"><img src="https://avatars.githubusercontent.com/u/31237954?v=4?s=100" width="100px;" alt="前端爆冲"/><br /><sub><b>前端爆冲</b></sub></a><br /><a href="#infra-brenner8023" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/xiejay97"><img src="https://avatars.githubusercontent.com/u/64340763?v=4?s=100" width="100px;" alt="Xie Jay"/><br /><sub><b>Xie Jay</b></sub></a><br /><a href="#infra-xiejay97" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/linxiang07"><img src="https://avatars.githubusercontent.com/u/40119767?v=4?s=100" width="100px;" alt="linxiang"/><br /><sub><b>linxiang</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=linxiang07" title="Code">💻</a></td>
+    </tr>
   </tbody>
 </table>
 
