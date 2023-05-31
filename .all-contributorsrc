@@ -203,6 +203,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "brenner8023",
+      "name": "前端爆冲",
+      "avatar_url": "https://avatars.githubusercontent.com/u/31237954?v=4",
+      "profile": "https://juejin.cn/user/1996368846785128",
+      "contributions": [
+        "infra"
+      ]
     }
   ],
   "contributorsPerLine": 8,
