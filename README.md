@@ -110,6 +110,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/qinwencheng"><img src="https://avatars.githubusercontent.com/u/24841685?v=4?s=100" width="100px;" alt="qinwencheng"/><br /><sub><b>qinwencheng</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=qinwencheng" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/Huangyilin19"><img src="https://avatars.githubusercontent.com/u/48042709?v=4?s=100" width="100px;" alt="黄怡林"/><br /><sub><b>黄怡林</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Huangyilin19" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/zuixinwang"><img src="https://avatars.githubusercontent.com/u/59717852?v=4?s=100" width="100px;" alt="zuixinwang"/><br /><sub><b>zuixinwang</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=zuixinwang" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/LadyChatterleyLover"><img src="https://avatars.githubusercontent.com/u/35223515?v=4?s=100" width="100px;" alt="luopei"/><br /><sub><b>luopei</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=LadyChatterleyLover" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
