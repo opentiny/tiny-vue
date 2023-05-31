@@ -112,6 +112,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/zuixinwang"><img src="https://avatars.githubusercontent.com/u/59717852?v=4?s=100" width="100px;" alt="zuixinwang"/><br /><sub><b>zuixinwang</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=zuixinwang" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/LadyChatterleyLover"><img src="https://avatars.githubusercontent.com/u/35223515?v=4?s=100" width="100px;" alt="luopei"/><br /><sub><b>luopei</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=LadyChatterleyLover" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://juejin.cn/user/1996368846785128"><img src="https://avatars.githubusercontent.com/u/31237954?v=4?s=100" width="100px;" alt="前端爆冲"/><br /><sub><b>前端爆冲</b></sub></a><br /><a href="#infra-brenner8023" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/xiejay97"><img src="https://avatars.githubusercontent.com/u/64340763?v=4?s=100" width="100px;" alt="Xie Jay"/><br /><sub><b>Xie Jay</b></sub></a><br /><a href="#infra-xiejay97" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     </tr>
   </tbody>
 </table>
