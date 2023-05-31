@@ -116,6 +116,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/linxiang07"><img src="https://avatars.githubusercontent.com/u/40119767?v=4?s=100" width="100px;" alt="linxiang"/><br /><sub><b>linxiang</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=linxiang07" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://bollome.netlify.app/"><img src="https://avatars.githubusercontent.com/u/103836393?v=4?s=100" width="100px;" alt="程序员包子"/><br /><sub><b>程序员包子</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=coderbaozi" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
