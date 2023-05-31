@@ -4,7 +4,7 @@
 
 Please check if your PR fulfills the following requirements:
 
-- [ ] The commit message follows our [Commit Message Guidelines]([https://github.com/opentiny/ui-vue/blob/main/CONTRIBUTING.md](https://github.com/opentiny/tiny-vue/blob/dev/CONTRIBUTING.md)
+- [ ] The commit message follows our [Commit Message Guidelines](https://github.com/opentiny/tiny-vue/blob/dev/CONTRIBUTING.md)
 - [ ] Tests for the changes have been added (for bug fixes / features)
 - [ ] Docs have been added / updated (for bug fixes / features)
 
