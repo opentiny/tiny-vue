@@ -212,6 +212,15 @@
       "contributions": [
         "infra"
       ]
+    },
+    {
+      "login": "xiejay97",
+      "name": "Xie Jay",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64340763?v=4",
+      "profile": "https://github.com/xiejay97",
+      "contributions": [
+        "infra"
+      ]
     }
   ],
   "contributorsPerLine": 8,
