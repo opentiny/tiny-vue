@@ -1,0 +1,30 @@
+{
+    "attrs": [
+        {
+            "name": "design",
+            "sample": "base",
+            "desc": "规范",
+            "type": "ConfigProviderProps",
+            "defaultValue": "{breakPoints: {'xs': 480,'sm': 640,'md': 768,'lg': 1024,'xl': 1280,'2xl': 1536},direction: 'ltr',tag: {enable: true,name: 'div'}}"
+        },
+        {
+            "name": "design.breakPoints",
+            "sample": "base",
+            "desc": "端点, 为Layout提供",
+            "type": "breakPoint",
+            "defaultValue": "{'xs': 480,'sm': 640,'md': 768,'lg': 1024,'xl': 1280,'2xl': 1536}"
+        },
+        {
+            "name": "design.direction",
+            "sample": "text-dire",
+            "desc": "文字排版方向",
+            "type": "'ltr' | 'rtl'",
+            "defaultValue": "ltr"
+        },
+        {
+            "name": "design.tag",
+            "type": "object",
+            "defaultValue": "{enable: true,name: 'div'}"
+        }
+    ]
+}
