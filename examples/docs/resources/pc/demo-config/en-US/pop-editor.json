@@ -254,5 +254,13 @@
     "component": "PopEditor pop-up editing",
     "findIntroStr": "This component can only select data in the pop-up panel. Data cannot be manually entered. The tree or grid component is displayed in the pop-up panel.",
     "demoId": "show-history"
+  },
+  {
+    "title": "Remote Data Request",
+    "content": "<p>Configure the <code>auto-lookup</code> to false, set initialization to not request data, or call this $ref.popuptor.handleSearch() Proactively calls the request method</p>\n",
+    "link": "popeditor/auto-lookup",
+    "component": "PopEditor pop-up editing",
+    "findIntroStr": "This component can only select data in the pop-up panel. Data cannot be manually entered. The tree or grid component is displayed in the pop-up panel.",
+    "demoId": "auto-lookup"
   }
 ]
