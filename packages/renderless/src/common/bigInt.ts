@@ -188,6 +188,7 @@ export class BigIntDecimal {
       this.integer = BigInt(numbers[0])
       const decimalStr = numbers[1] || '0'
       this.decimal = convertBigInt(decimalStr)
+      this.decimalLen = decimalStr.length
     } else {
       this.nan = true
     }
