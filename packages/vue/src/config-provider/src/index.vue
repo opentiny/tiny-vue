@@ -1,5 +1,5 @@
 <template>
-  <component :is="design.tag.name ?? 'div'" v-if="design.tag?.enable" :class="classNames" :style="cssVar">
+  <component :is="newProps.tag.name ?? 'div'" v-if="newProps.tag?.enable" :class="classNames" :style="cssVar">
     <slot></slot>
   </component>
   <slot v-else></slot>
@@ -10,6 +10,21 @@ import type { PropType } from '@opentiny/vue-common'
 import type { ConfigProviderProps } from './props'
 import { $prefix, defineComponent, provideDesignConfig, hooks } from '@opentiny/vue-common'
 
+const constant: ConfigProviderProps = {
+  breakPoints: {
+    'xs': 480,
+    'sm': 640,
+    'md': 768,
+    'lg': 1024,
+    'xl': 1280,
+    '2xl': 1536
+  },
+  direction: 'ltr',
+  tag: {
+    enable: true,
+    name: 'div'
+  },
+}
 export default defineComponent({
   name: $prefix + 'ConfigProvider',
   props: {
@@ -17,36 +32,31 @@ export default defineComponent({
       type: Object as PropType<ConfigProviderProps>,
       default: () => {
         return {
-          breakPoints: {
-            'xs': 480,
-            'sm': 640,
-            'md': 768,
-            'lg': 1024,
-            'xl': 1280,
-            '2xl': 1536
-          },
-          direction: 'ltr',
-          tag: {
-            enable: true,
-            name: 'div'
-          },
+          ...constant
         } as ConfigProviderProps
       }
     }
   },
   setup(props, { slots }) {
-    provideDesignConfig(props.design)
-    const isRTL = hooks.computed(() => props.design.direction === 'rtl')
+    const { breakPoints, direction, globalPrefix, tag } = hooks.toRefs(props.design)
+    const standardizationProps = hooks.reactive({
+      breakPoints: breakPoints?.value ?? constant.breakPoints,
+      direction: direction?.value ?? constant.direction,
+      globalPrefix: globalPrefix?.value ?? constant.globalPrefix,
+      tag: tag?.value ?? constant.tag,
+    })
+    provideDesignConfig(standardizationProps)
+    const isRTL = hooks.computed(() => standardizationProps.direction === 'rtl')
     const cssVar = hooks.computed(() => {
       return {
-        '--text-direction': props.design.direction
+        '--text-direction': standardizationProps.direction
       }
     })
     const classNames = hooks.reactive({
       'tiny-config-provider': true,
       'tiny-config-provider--rtl': isRTL
     })
-    return { slots, classNames, cssVar }
+    return { slots, classNames, cssVar, newProps: standardizationProps }
   },
 })
 </script>
