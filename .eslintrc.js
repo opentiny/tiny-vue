@@ -23,6 +23,7 @@ module.exports = {
     'arrow-parens': 'off',
     'operator-linebreak': 'off',
     'antfu/if-newline': 'off',
+    'antfu/top-level-function': 'off',
     'import/order': 'off',
     'import/no-duplicates': 'off',
     'quote-props': 'off',
