@@ -10,8 +10,8 @@
 *
 */
 
-import { hasOwn } from '@opentiny/vue-renderless/common/type'
-import { xss } from '@opentiny/vue-renderless/common/xss.js'
+import { hasOwn } from '../type'
+import { xss } from '../xss'
 
 const getBody = (xhr) => {
   const text = xhr.responseText || xhr.response

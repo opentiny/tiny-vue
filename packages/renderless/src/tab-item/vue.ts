@@ -15,16 +15,18 @@ import { computedIsClosable, computedActive, computedPaneName, watchTitle } from
 export const api = ['state']
 
 export const renderless = (props, { computed, inject, reactive, watch }, { parent, nextTick }) => {
+  const rootTabs = inject('rootTabs')
+
   const api = {
     watchTitle: watchTitle(parent),
-    computedIsClosable: computedIsClosable({ parent, props })
+    computedIsClosable: computedIsClosable({ rootTabs, props })
   }
 
   const state = reactive({
     index: null,
     loaded: false,
     animateShow: true,
-    rootTabs: inject('rootTabs'),
+    rootTabs,
     active: computed(() => api.computedActive()),
     paneName: computed(() => api.computedPaneName()),
     isClosable: computed(() => api.computedIsClosable())
@@ -32,7 +34,7 @@ export const renderless = (props, { computed, inject, reactive, watch }, { paren
 
   Object.assign(api, {
     state,
-    computedActive: computedActive({ parent, nextTick, props, state }),
+    computedActive: computedActive({ nextTick, props, state }),
     computedPaneName: computedPaneName({ props, state })
   })
 

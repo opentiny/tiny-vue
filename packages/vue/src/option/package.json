@@ -4,18 +4,17 @@
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
-   "devDependencies": {
+  "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "^0.25.7"
+    "vitest": "^0.31.0"
   },
- "scripts": {
+  "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"
   },
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~"
+    "@opentiny/vue-common": "workspace:~"
   },
   "license": "MIT"
 }

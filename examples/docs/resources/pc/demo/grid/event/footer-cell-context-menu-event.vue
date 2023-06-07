@@ -24,7 +24,7 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+import { Grid, GridColumn, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -166,10 +166,16 @@ export default {
   },
   methods: {
     footerMenuClick() {
-      alert('触发表尾右键点击事件')
+      Modal.message({
+        message: '触发表尾右键点击事件',
+        status: 'info'
+      })
     },
     footerCellClick() {
-      alert('触发表尾左键点击事件')
+      Modal.message({
+        message: '触发表尾左键点击事件',
+        status: 'info'
+      })
     },
     footerMethod({ columns, data }) {
       return [

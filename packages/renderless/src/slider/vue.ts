@@ -34,7 +34,10 @@ import {
   customBeforeAppearHook,
   customAfterAppearHook,
   watchActiveValue,
-  watchModelValue
+  watchModelValue,
+  getPoints,
+  getLabels,
+  inputValueChange
 } from './index'
 
 export const api = [
@@ -60,7 +63,8 @@ export const api = [
   'hideTip',
   'autoSlider',
   'customBeforeAppearHook',
-  'customAfterAppearHook'
+  'customAfterAppearHook',
+  'inputValueChange'
 ]
 
 const initState = ({ reactive, computed, props, api, parent }) => {
@@ -125,13 +129,21 @@ export const renderless = (props, { computed, onBeforeUnmount, onMounted, reacti
     setActiveButtonValue: setActiveButtonValue({ api, emit, props, state }),
     initSlider: initSlider({ api, props, state }),
     watchModelValue: watchModelValue({ api, state }),
-    watchActiveValue: watchActiveValue({ api, emit, props, state })
+    watchActiveValue: watchActiveValue({ api, emit, props, state }),
+    getPoints: getPoints({ props, state }),
+    getLabels: getLabels({ props, state }),
+    inputValueChange: inputValueChange({ props, api, state })
   })
 
   watch(() => props.modelValue, api.watchModelValue, { immediate: true })
   watch(() => state.activeValue, api.watchActiveValue, { immediate: true })
 
-  onMounted(api.bindEvent)
+  onMounted(() => {
+    api.bindEvent()
+    api.getPoints()
+    api.getLabels()
+  })
+  
   onBeforeUnmount(api.unBindEvent)
 
   return api

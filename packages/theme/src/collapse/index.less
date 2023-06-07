@@ -12,10 +12,11 @@
 
 @import '../custom.less';
 @import './vars.less';
+@collapse-prefix-cls: ~'@{css-prefix}collapse';
 
-.@{css-prefix} {
+.@{collapse-prefix-cls} {
   .component-css-vars-collapse();
-  
+
   &fade-in-linear-enter-active,
   &fade-in-linear-leave-active {
     transition: opacity 0.2s linear;

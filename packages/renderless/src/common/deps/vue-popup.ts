@@ -10,10 +10,10 @@
 *
 */
 
-import { merge } from '@opentiny/vue-renderless/common/object'
-import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
-import getScrollBarWidth from '@opentiny/vue-renderless/common/deps/scrollbar-width'
-import { getStyle, addClass, removeClass, hasClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { merge } from '../object'
+import PopupManager from './popup-manager'
+import getScrollBarWidth from './scrollbar-width'
+import { getStyle, addClass, removeClass, hasClass } from './dom'
 
 let idSeed = 1
 let scrollBarWidth

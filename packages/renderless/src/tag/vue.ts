@@ -12,9 +12,19 @@
 
 import { handleClose, handleClick } from './index'
 
-export const api = ['handleClose', 'handleClick']
+export const api = ['state', 'handleClose', 'handleClick']
 
-export const renderless = (props, hooks, { emit, parent }) => ({
-  handleClose: handleClose({ emit, props }),
-  handleClick: handleClick({ emit, parent })
-})
+export const renderless = (props, { reactive, computed }, { emit, parent }) =>{
+  const state = reactive({
+    type: computed(() => props.theme || props.type),
+    show: true,
+    selected: false
+  })
+
+  const api = {
+    handleClose: handleClose({ emit, props, state }),
+    handleClick: handleClick({ emit, props, parent, state })
+  }
+
+  return Object.assign(api, { state })
+}

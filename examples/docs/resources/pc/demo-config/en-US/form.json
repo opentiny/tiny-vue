@@ -110,5 +110,13 @@
     "component": " Form",
     "findIntroStr": "It consists of buttons, text boxes, selectors, option buttons, and check boxes. It is used to collect, verify, and submit data.",
     "demoId": "form-row-col"
+  },
+  {
+    "title": "Group Form",
+    "content": "<p>Grouping multiple forms together</p>\n",
+    "link": "form/group-form",
+    "component": " Form",
+    "findIntroStr": "It consists of buttons, text boxes, selectors, option buttons, and check boxes. It is used to collect, verify, and submit data.",
+    "demoId": "group-form"
   }
 ]

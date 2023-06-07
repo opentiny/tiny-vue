@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       rate: 3,
-      readiconclass1: 'icon-starActive'
+      readiconclass1: 'icon-starDisable'
     }
   }
 }

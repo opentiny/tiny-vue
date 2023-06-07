@@ -1,24 +1,42 @@
 import path from 'node:path'
+import fs from 'fs-extra'
 import * as utils from '../../shared/utils'
 import { writeModuleMap, quickSort } from '../../shared/module-utils'
 import commonMapping from './commonMapping.json'
 
-const isBuildEntryFile = (file, dirs, subPath) => {
-  // 每个组件，最多三个入口：index.ts、pc.vue、mobile.vue 其他文件均不排除，直接打入到组件中
+// 每个组件，最多四个入口：index.ts、pc.vue、mobile.vue mobile-first 其他文件均不排除，直接打入到组件中
+const getBuildEntryFile = (file, dirs, subPath) => {
+  // 模板文件（pc|mobile|mobile-first）需要同级目录有index.ts文件才能成为打包入口
+  const isTemplatePath = dirs.includes('index.ts')
   const isMainEntry = file.includes('index') && dirs.includes('package.json')
-  const isPcEntry = file.includes('pc.') && subPath.includes(`src${path.sep}pc.`)
-  const isMobileEntry = file.includes('mobile.') && subPath.includes(`src${path.sep}mobile.`)
+  const isPcEntry = file.includes('pc.') && subPath.includes(`src${path.sep}pc.`) && isTemplatePath
+  const isMobileEntry = file.includes('mobile.') && subPath.includes(`src${path.sep}mobile.`) && isTemplatePath
+  const isMobileFirstEntry = file.includes('mobile-first.') && subPath.includes(`src${path.sep}mobile-first.`) && isTemplatePath
   return {
-    isBuildEntryFile: isMainEntry || isPcEntry || isMobileEntry,
+    isBuildEntryFile: isMainEntry || isPcEntry || isMobileEntry || isMobileFirstEntry,
     isMainEntry,
     isPcEntry,
-    isMobileEntry
+    isMobileEntry,
+    isMobileFirstEntry
   }
 }
 
 const getTemplateName = (currentPaths, entryObj) => {
-  const subFix = entryObj.isPcEntry ? 'Pc' : (entryObj.isMobileEntry ? 'Mobile' : '')
+  const entryMaps = {
+    isPcEntry: 'Pc',
+    isMobileEntry: 'Mobile',
+    isMobileFirstEntry: 'MobileFirst',
+    isMainEntry: ''
+  }
+  const mapKey = Object.keys(entryObj).filter(item => entryObj[item] && item !== 'isBuildEntryFile')[0]
+  const subFix = entryMaps[mapKey]
   return `${currentPaths.split('-').map(utils.capitalize).join('')}${subFix}`
+}
+
+const tempMap = {
+  'pc.vue': 'pc',
+  'mobile.vue': 'mobile',
+  'mobile-first.vue': 'mobile-first',
 }
 
 /**
@@ -38,10 +56,23 @@ const makeModules = () => {
     // file:模块文件名称，subPath:处于同一文件夹的文件集合，dirs:文件所在的绝对路径
     callback({ file, subPath, dirs }) {
       // 判断是否是需要作为打包入口文件
-      const entryObj = isBuildEntryFile(file, dirs, subPath)
+      const entryObj = getBuildEntryFile(file, dirs, subPath)
+      const mode: string[] = []
+
+      // 这里通过判断pc、mobile、first-mobile模板的个数，来分类组件
+      if (entryObj.isMainEntry && dirs.includes('src')) {
+        const srcPath = subPath.replace(file, 'src')
+        const srcFiles = fs.readdirSync(srcPath) || []
+        srcFiles.forEach(item => {
+          if (tempMap[item]) {
+            mode.push(tempMap[item])
+          }
+        })
+      }
+
       if (entryObj.isBuildEntryFile) {
         const modulePath = subPath.slice(subPath.lastIndexOf(`vue${path.sep}src`)).replaceAll(path.sep, '/')
-        const matchArr = modulePath.match(/.+\/(.+?)\/(index\.ts|src\/pc\.|src\/mobile\.)/)
+        const matchArr = modulePath.match(/.+\/(.+?)\/(index\.ts|src\/pc\.|src\/mobile\.|src\/mobile-first\.)/)
         if (matchArr?.[1]) {
           const compName = getTemplateName(matchArr[1], entryObj)
           templates[compName] = {
@@ -49,22 +80,16 @@ const makeModules = () => {
             type: entryObj.isMainEntry ? 'component' : 'template',
             exclude: false
           }
+
+          if (mode.length > 0) {
+            templates[compName].mode = mode
+          }
         }
       }
     }
   })
 
   const modulesJson = quickSort({ sortData: templates, returnType: 'object' })
-
-  Object.entries(modulesJson).forEach(([key, value]) => {
-    if (!key.includes('Pc') && !key.includes('Mobile')) {
-      if (modulesJson[`${key}Pc`] && !modulesJson[`${key}Mobile`]) {
-        value.onlyMode = 'pc'
-      } else if (!modulesJson[`${key}Pc`] && modulesJson[`${key}Mobile`]) {
-        value.onlyMode = 'mobile'
-      }
-    }
-  })
 
   writeModuleMap(modulesJson)
 }

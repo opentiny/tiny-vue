@@ -10,7 +10,7 @@
 *
 */
 
-import { log as uLog, xss } from '@opentiny/vue-renderless/common/xss.js'
+import { log as uLog, xss } from './xss.js'
 
 export const KEY_CODE = {
   Backspace: 8,

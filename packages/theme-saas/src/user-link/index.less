@@ -1,0 +1,101 @@
+@import '../custom.less';
+
+@userlink-prefix-cls: ~'@{css-prefix}userlink';
+@user-card-prefix-cls: ~'@{css-prefix}user-card';
+
+.@{userlink-prefix-cls} {
+  li {
+    @apply float-left;
+    @apply list-none;
+
+    .@{css-prefix}popover__reference {
+      @apply text-xs;
+      @apply text-color-brand;
+
+      &:hover {
+        @apply text-color-brand-hover;
+        @apply no-underline;
+        @apply cursor-pointer;
+      }
+    }
+  }
+}
+
+.@{user-card-prefix-cls} {
+  .card-box {
+    @apply text-sm;
+    @apply text-color-text-primary;
+
+    .card-box__body {
+      .card-top-img,
+      .card-top-text {
+        @apply inline-block;
+        @apply align-middle;
+      }
+
+      .card-top-img {
+        @apply w-20;
+        @apply rounded;
+        @apply overflow-hidden;
+        @apply h-20;
+        @apply mb-6;
+
+        img {
+          @apply w-full;
+          @apply block;
+        }
+      }
+
+      .card-top-text {
+        @apply py-0 pr-0 pl-6;
+        @apply overflow-hidden;
+        @apply leading-5;
+        @apply mb-6;
+
+        span {
+          @apply text-xl;
+          @apply text-color-text-primary;
+          @apply leading-7;
+          @apply inline-block;
+          @apply mb-2;
+        }
+        p {
+          @apply mt-0 mx-0 mb-1;
+          &:last-child {
+            @apply m-0;
+          }
+        }
+      }
+
+      .card-center {
+        @apply leading-5;
+        @apply mb-4;
+
+        p {
+          @apply m-0;
+          &:not(:first-child) {
+            @apply mt-2;
+          }
+          strong {
+            @apply font-normal;
+          }
+        }
+      }
+    }
+  }
+
+  &.@{css-prefix}popover.@{css-prefix}popper {
+    @apply p-6;
+    @apply mt-6;
+    width: 448px;
+  }
+
+  .box__footer {
+    @apply inline-block;
+    @apply cursor-pointer;
+    @apply text-color-brand;
+    svg {
+      @apply fill-color-brand;
+    }
+  }
+}

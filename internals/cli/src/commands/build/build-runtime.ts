@@ -31,7 +31,10 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
   function getExternal() {
     return {
       vue: 'Vue',
-      '@vue/composition-api': 'VueCompositionAPI'
+      '@vue/composition-api': 'VueCompositionAPI',
+      '@opentiny/vue-locale': 'TinyVueLocale',
+      '@opentiny/vue-common': 'TinyVueCommon',
+      '@opentiny/vue-icon': 'TinyVueIcon',
     }
   }
 
@@ -112,15 +115,22 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
 }
 
 function getEntryTasks() {
-  // 每次都要构建app和图标2个runtime
   return [
-    {
-      path: 'vue/app.ts',
-      libPath: 'tiny-vue'
-    },
     {
       path: 'vue-icon/index.ts',
       libPath: 'tiny-vue-icon'
+    },
+    {
+      path: 'vue-locale/src/index.ts',
+      libPath: 'tiny-vue-locale'
+    },
+    {
+      path: 'vue-common/src/index.ts',
+      libPath: 'tiny-vue-common'
+    },
+    {
+      path: 'vue/app.ts',
+      libPath: 'tiny-vue'
     }
   ]
 }

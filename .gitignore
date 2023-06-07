@@ -7,7 +7,6 @@ dist3/
 allDist/
 packages/**/runtime
 coverage/
-esbuild-kit/
 
 /packages/vue-icon-saas/src
 /packages/vue-icon-saas/index.ts
@@ -18,8 +17,6 @@ esbuild-kit/
 /packages/vue-icon/src/index.ts
 
 /examples/**/playwright-report
-/examples/docs/.vuepress/.cache/
-/examples/docs/.vuepress/.temp/
 /examples/docs/.vitepress/cache
 vite.config.ts.timestamp*
 vitest.config.ts.timestamp*
@@ -52,3 +49,6 @@ tgzs
 
 packages/theme/scripts/theme.json
 packages/theme/scripts/theme-result.txt
+packages/theme/scripts/themeExcel.xlsx
+
+packages/theme/src/theme/*-theme/component.js

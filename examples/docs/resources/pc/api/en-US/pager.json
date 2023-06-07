@@ -97,6 +97,20 @@
       "type": "String",
       "desc": "Set the pagination display mode. The default value is number. Set the pagination display mode. The optional values of this attribute are number / simple / complete / fixed",
       "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "pager-size",
+      "type": "String",
+      "desc": "Define the pager size. The value of this attribute can be mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "pager-disabled",
+      "type": "Boolean",
+      "desc": "Disabled pager",
+      "defaultValue": "The default value of this attribute is false"
     }
   ],
   "slots": [

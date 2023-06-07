@@ -47,7 +47,7 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+import { Grid, GridColumn, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -123,7 +123,10 @@ export default {
   },
   methods: {
     editDisabled() {
-      alert('激活editDisable事件')
+      Modal.message({
+        message: '激活editDisable事件',
+        status: 'info'
+      })
     },
     activeMethod({ row }) {
       return row.area !== '华东区'

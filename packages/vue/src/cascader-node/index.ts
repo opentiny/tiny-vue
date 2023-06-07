@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import CascaderNode from './src/index.vue'
+import CascaderNode from './src/pc.vue'
 import '@opentiny/vue-theme/cascader-node/index.less'
 import { version } from './package.json'
 

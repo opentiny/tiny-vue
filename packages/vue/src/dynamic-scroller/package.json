@@ -1,0 +1,13 @@
+{
+  "name": "@opentiny/vue-dynamic-scroller",
+  "version": "5.0.0-mf.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "dependencies": {
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-recycle-scroller": "workspace:~"
+  },
+  "license": "MIT"
+}

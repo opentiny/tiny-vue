@@ -10,13 +10,13 @@
 *
 */
 
-import { find } from '@opentiny/vue-renderless/common/array'
-import { typeOf, isNull } from '@opentiny/vue-renderless/common/type'
-import { getDataset } from '@opentiny/vue-renderless/common/dataset'
-import { isNullOrEmpty } from '@opentiny/vue-renderless/common/string'
-import { isEqual } from '@opentiny/vue-renderless/common/object'
-import { eachTree } from '@opentiny/vue-renderless/grid/static'
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
+import { find } from '../common/array'
+import { typeOf, isNull } from '../common/type'
+import { getDataset } from '../common/dataset'
+import { isNullOrEmpty } from '../common/string'
+import { isEqual } from '../common/object'
+import { eachTree } from '../grid/static'
+import { on, off } from '../common/deps/dom'
 
 export const computedGetTitle = ({ constants, props, t }) => props.title || t(constants.TITLE)
 

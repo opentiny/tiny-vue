@@ -53,7 +53,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/dropdown-menu/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconUp, iconDown, iconUnfilter, iconSort, iconDeltaDown, iconDeltaUp } from '@opentiny/vue-icon'

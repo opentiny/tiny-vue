@@ -4,13 +4,13 @@
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
- "scripts": {
+  "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"
   },
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
-    "echarts": "5.2.1",
+    "echarts": "5.4.1",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-locale": "workspace:~"
   },

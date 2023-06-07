@@ -22,19 +22,20 @@
 .@{grid-prefix-cls}__header-wrapper {
   background-color: var(--ti-grid-header-background-color);
 
+  // x轴方向虚拟滚动适配线
   .@{grid-prefix-cls}__repair {
     position: absolute;
     left: 0;
     bottom: 0;
     height: 0;
-    border-bottom: 1px solid var(--ti-grid-border-color);
+    border-bottom: 1px solid var(--ti-grid-header-repair-border-color);
   }
 }
 
 .@{grid-header-prefix-cls}__column {
   position: relative;
   font-size: var(--ti-grid-font-size);
-  color: var(--ti-grid-text-color);
+  color: var(--ti-grid-header-text-color);
 
   &.is__sortable {
     .@{grid-cell-prefix-cls} {
@@ -100,7 +101,7 @@
     text-align: center;
     font-size: var(--ti-common-font-size-2);
     margin-right: 4px;
-    fill: var(--ti-grid-column-icon-border-color);
+    fill: var(--ti-grid-column-icon-text-color);
 
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
       top: 18px;
@@ -116,7 +117,7 @@
     top: 0;
     margin: auto;
     width: 14px;
-    height: 28px;
+    height: 100%;
     text-align: center;
     z-index: 1;
     user-select: none;
@@ -135,19 +136,13 @@
 
       &:before {
         width: 1px;
-        height: 100%;
-        background-color: #fff;
+        height: var(--ti-grid-header-resizable-line-height);
+        background-color: var(--ti-grid-header-resizable-bg-color);
       }
 
       &:after {
         width: 0;
         height: 100%;
-      }
-    }
-
-    &.is__line:hover {
-      &:before {
-        background-color: var(--ti-grid-icon-fill-hover-bg-color);
       }
     }
   }

@@ -88,3 +88,12 @@ export const computedTransform = ({ parent, TYPE_VERTICAL }) => (state) => {
     transform: TRANSLATE
   }
 }
+
+export const resetAnimatingMf = (state) => () => {
+  state.animatingMf = false
+}
+
+export const setDelta = ({ state }) => (val) => {
+  state.delta = val
+}
+

@@ -24,7 +24,6 @@
  */
 import { arrayEach, toNumber } from '@opentiny/vue-renderless/grid/static/'
 import { isScale } from '@opentiny/vue-renderless/grid/utils'
-import browser from '@opentiny/vue-renderless/common/browser'
 
 function setTableElemWidth({ scrollbarWidth, tWidth, tableElem }) {
   if (tableElem && tWidth === null) {
@@ -36,19 +35,8 @@ function setTableElemWidth({ scrollbarWidth, tWidth, tableElem }) {
   }
 }
 
-function getTableWidth({ allColumnOverflow, fixedColumn, fixedType, scrollXLoad, tWidth, tableColumn }) {
-  let isFixedAllColumnOverflow = fixedType && allColumnOverflow
-
-  if (isFixedAllColumnOverflow) {
-    tableColumn = fixedColumn
-    tWidth = tableColumn.reduce((previous, column) => previous + column.renderWidth, 0)
-  }
-
-  if (!isFixedAllColumnOverflow && scrollXLoad && fixedType) {
-    tableColumn = fixedColumn
-  }
-
-  if (!isFixedAllColumnOverflow && scrollXLoad) {
+function getTableWidth({ scrollXLoad, tWidth, tableColumn }) {
+  if (scrollXLoad) {
     tWidth = tableColumn.reduce((previous, column) => previous + column.renderWidth, 0)
   }
 
@@ -57,9 +45,6 @@ function getTableWidth({ allColumnOverflow, fixedColumn, fixedType, scrollXLoad,
 
 function layoutFooter({
   customHeight,
-  fixedColumn,
-  fixedType,
-  allColumnOverflow,
   footerHeight,
   headerHeight,
   scrollXLoad,
@@ -75,7 +60,7 @@ function layoutFooter({
   // 如果是使用优化模式
   let tWidth = tableWidth
   // 如果是固定列与设置了超出隐藏
-  let ret = getTableWidth({ allColumnOverflow, fixedColumn, fixedType, scrollXLoad, tWidth, tableColumn })
+  let ret = getTableWidth({ scrollXLoad, tWidth, tableColumn })
 
   tableColumn = ret.tableColumn
   tWidth = ret.tWidth
@@ -93,9 +78,9 @@ function layoutFooter({
   return tableColumn
 }
 
-function layoutColgroup({ elemStore, fullColumnIdData, layout, name, scrollbarWidth }) {
-  let colgroupElem = elemStore[`${name}-${layout}-colgroup`]
-
+// 计算colgroup元素中每个col元素的width属性，保证表头和表格体保持对齐
+function layoutColgroup({ elemStore, fullColumnIdData, layout, scrollbarWidth }) {
+  let colgroupElem = elemStore[`main-${layout}-colgroup`]
   let colElemHandler = (colElem) => {
     let colid = colElem.getAttribute('name')
 
@@ -114,13 +99,9 @@ function layoutColgroup({ elemStore, fullColumnIdData, layout, name, scrollbarWi
   }
 }
 
-function layoutHeader({ elemStore, fixedColumn, fixedType, layout, name, scrollXLoad, scrollbarWidth, tableColumn, tableElem, tableWidth }) {
+function layoutHeader({ elemStore, layout, scrollXLoad, scrollbarWidth, tableColumn, tableElem, tableWidth }) {
   let tWidth = tableWidth
-  let repairElem = elemStore[`${name}-${layout}-repair`]
-
-  if (scrollXLoad && fixedType) {
-    tableColumn = fixedColumn
-  }
+  let repairElem = elemStore[`main-${layout}-repair`]
 
   if (scrollXLoad) {
     tWidth = tableColumn.reduce((previous, column) => previous + column.renderWidth, 0)
@@ -135,46 +116,35 @@ function layoutHeader({ elemStore, fixedColumn, fixedType, layout, name, scrollX
   return tableColumn
 }
 
-function layoutTable({ fixedType, overflowY, scrollbarWidth, tWidth, tableElem }) {
+function layoutTable({ tWidth, tableElem }) {
   if (tableElem) {
     tableElem.style.width = tWidth ? `${tWidth}px` : tWidth
-
-    // 兼容性处理
-    if (overflowY && fixedType && (browser['-moz'] || browser.name === 'safari')) {
-      tableElem.style.paddingRight = `${scrollbarWidth}px`
-    }
   }
 }
 
 function layoutBodyWrapper({
-  fixedType,
   footerHeight,
   customHeight,
   headerHeight,
   maxHeight,
   minHeight,
-  overflowX,
   parentHeight,
-  showFooter,
   wrapperElem,
   scrollbarWidth,
-  scrollbarHeight
 }) {
   if (wrapperElem) {
     if (customHeight > 0) {
-      const barWidth = showFooter ? (overflowX ? scrollbarWidth : 0) : scrollbarHeight
       const contentHeight = customHeight - headerHeight - footerHeight
 
-      wrapperElem.style.height = `${fixedType ? contentHeight - barWidth : contentHeight}px`
+      wrapperElem.style.height = `${contentHeight}px`
     }
 
     if (maxHeight) {
       maxHeight = isScale(maxHeight) ? Math.floor((parseInt(maxHeight) / 100) * parentHeight) : toNumber(maxHeight)
 
-      const barHeight = showFooter ? 0 : scrollbarHeight
       const contentHeight = maxHeight - headerHeight
 
-      wrapperElem.style.maxHeight = `${fixedType ? contentHeight - barHeight : contentHeight}px`
+      wrapperElem.style.maxHeight = `${contentHeight}px`
     }
 
     if (minHeight) {
@@ -201,103 +171,55 @@ function layoutEmptyBlock({ emptyBlockElem, tWidth }) {
   }
 }
 
-function layoutBodyFixedWrapper({
-  customHeight,
-  columnStore,
-  fixedWrapperElem,
-  footerHeight,
-  fixedType,
-  scrollbarWidth,
-  headerHeight,
-  tableHeight,
-  scrollbarHeight,
-  showFooter,
-  wrapperElem
-}) {
-  if (fixedWrapperElem) {
-    let isRightFixed = fixedType === 'right'
-    let fixedColumn = columnStore[`${fixedType}List`]
-
-    if (wrapperElem) {
-      wrapperElem.style.top = `${headerHeight}px`
-    }
-
-    const contentHeight = customHeight > 0 ? customHeight - headerHeight - footerHeight : tableHeight
-    const barHeight = scrollbarHeight * (showFooter ? 2 : 1)
-
-    fixedWrapperElem.style.height = `${contentHeight + headerHeight + footerHeight - barHeight}px`
-    fixedWrapperElem.style.width = `${fixedColumn.reduce((previous, column) => previous + column.renderWidth, isRightFixed ? scrollbarWidth : 0)}px`
-  }
-}
-
 function layoutBody(options) {
-  let { allColumnOverflow, columnStore, customHeight, elemStore, fixedColumn, fixedType, fixedWrapperElem, footerHeight, headerHeight, layout, name } = options
-  let { maxHeight, minHeight, overflowX, overflowY, parentHeight, scrollXLoad, scrollbarHeight } = options
-  let { scrollbarWidth, showFooter, tableColumn, tableElem, tableHeight, tableWidth, wrapperElem } = options
-  let emptyBlockElem = elemStore[`${name}-${layout}-emptyBlock`]
+  let { customHeight, elemStore, footerHeight, headerHeight, layout } = options
+  let { maxHeight, minHeight, parentHeight, scrollXLoad } = options
+  let { scrollbarWidth, tableColumn, tableElem, tableWidth, wrapperElem } = options
+  let emptyBlockElem = elemStore[`main-${layout}-emptyBlock`]
 
   let ret = layoutBodyWrapper({
     customHeight,
-    fixedType,
     footerHeight,
     headerHeight,
     maxHeight,
     minHeight,
-    overflowX,
     parentHeight,
-    scrollbarHeight,
     scrollbarWidth,
-    showFooter,
     wrapperElem
   })
 
   maxHeight = ret.maxHeight
   minHeight = ret.minHeight
 
-  // 如果是固定列
-  layoutBodyFixedWrapper({
-    columnStore,
-    customHeight,
-    fixedType,
-    fixedWrapperElem,
-    footerHeight,
-    headerHeight,
-    scrollbarHeight,
-    scrollbarWidth,
-    showFooter,
-    tableHeight,
-    wrapperElem
-  })
   let tWidth = tableWidth
 
   // 如果是固定列与设置了超出隐藏
-  ret = getTableWidth({ allColumnOverflow, fixedColumn, fixedType, scrollXLoad, tWidth, tableColumn })
+  ret = getTableWidth({ scrollXLoad, tWidth, tableColumn })
   tableColumn = ret.tableColumn
   tWidth = ret.tWidth
-  layoutTable({ fixedType, overflowY, scrollbarWidth, tWidth, tableElem })
+  layoutTable({ tWidth, tableElem })
   layoutEmptyBlock({ emptyBlockElem, tWidth })
   return { maxHeight, minHeight, tableColumn }
 }
 
 export function handleLayout(params) {
-  let { _vm, columnStore, customHeight, fixedColumn, fixedType, fixedWrapperElem, layout, maxHeight, minHeight, name, parentHeight, tableColumn } = params
-  let { border, elemStore, footerHeight, fullColumnIdData, headerHeight, showFooter } = _vm
-  let { isGroup, overflowX, overflowY, scrollXLoad, scrollbarHeight, scrollbarWidth } = _vm
-  let { showHeaderOverflow: allColumnHeaderOverflow, showOverflow: allColumnOverflow, tableHeight, tableWidth } = _vm
+  let { _vm, columnStore, customHeight, fixedColumn, fixedWrapperElem, layout, maxHeight, minHeight, parentHeight, tableColumn } = params
+  let { elemStore, footerHeight, fullColumnIdData, headerHeight, showFooter } = _vm
+  let { overflowX, overflowY, scrollXLoad, scrollbarHeight, scrollbarWidth } = _vm
+  let { showOverflow: allColumnOverflow, tableHeight, tableWidth } = _vm
 
-  let wrapperElem = elemStore[`${name}-${layout}-wrapper`]
-  let tableElem = elemStore[`${name}-${layout}-table`]
-
+  let wrapperElem = elemStore[`main-${layout}-wrapper`]
+  let tableElem = elemStore[`main-${layout}-table`]
   /*
    * 表头体样式处理
    * 横向滚动渲染
    */
   if (layout === 'header') {
-    tableColumn = layoutHeader({ elemStore, fixedColumn, fixedType, layout, name, scrollXLoad, scrollbarWidth, tableColumn, tableElem, tableWidth })
+    tableColumn = layoutHeader({ elemStore, layout, scrollXLoad, scrollbarWidth, tableColumn, tableElem, tableWidth })
   } else if (layout === 'body') {
     let ret = layoutBody({
-      ...{ allColumnOverflow, columnStore, customHeight, elemStore, fixedColumn, fixedType, fixedWrapperElem },
-      ...{ footerHeight, headerHeight, layout, maxHeight, minHeight, name, overflowX, overflowY },
+      ...{ allColumnOverflow, columnStore, customHeight, elemStore, fixedColumn, fixedWrapperElem },
+      ...{ footerHeight, headerHeight, layout, maxHeight, minHeight, overflowX, overflowY },
       ...{ parentHeight, scrollXLoad, scrollbarHeight, scrollbarWidth, showFooter, tableColumn, tableElem, tableHeight, tableWidth, wrapperElem }
     })
 
@@ -306,10 +228,7 @@ export function handleLayout(params) {
     tableColumn = ret.tableColumn
   } else if (layout === 'footer') {
     tableColumn = layoutFooter({
-      allColumnOverflow,
       customHeight,
-      fixedColumn,
-      fixedType,
       fixedWrapperElem,
       footerHeight,
       headerHeight,
@@ -323,8 +242,8 @@ export function handleLayout(params) {
       wrapperElem
     })
   }
-
-  layoutColgroup({ allColumnHeaderOverflow, allColumnOverflow, border, elemStore, fullColumnIdData, isGroup, layout, name, scrollbarWidth })
+  // 计算colgroup元素中每个col元素的width属性，保证表头和表格体保持对齐
+  layoutColgroup({ elemStore, fullColumnIdData, layout, scrollbarWidth })
 
   return { tableColumn, maxHeight, minHeight }
 }

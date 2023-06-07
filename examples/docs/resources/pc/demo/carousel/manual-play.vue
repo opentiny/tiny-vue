@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-carousel height="150px" ref="carousel" :initial-index="index - 1" @change="handleChange">
+    <tiny-carousel height="150px" ref="carousel" :initial-index="index - 1">
       <tiny-carousel-item class="carousel-item-demo" v-for="item in 8" :key="item" :name="'幻灯片 - ' + item">
         <h3>{{ item }}</h3>
       </tiny-carousel-item>
@@ -43,11 +43,6 @@ export default {
     prev() {
       this.index = Math.max(this.index - 1, 0)
       this.$refs.carousel.prev()
-    },
-    handleChange(newVal) {
-      if (newVal >= 0) {
-        this.index = newVal + 1
-      }
     }
   }
 }

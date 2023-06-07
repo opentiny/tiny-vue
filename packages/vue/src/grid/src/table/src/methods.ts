@@ -27,10 +27,8 @@ import { toDecimal } from '@opentiny/vue-renderless/common/string'
 import { getStyle } from '@opentiny/vue-renderless/common/deps/dom'
 import { addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-// prettier-ignore
 import { isNumber, filterTree, remove, isArray, isBoolean, findTree, set, get, has, eachTree, arrayEach, sortBy, isUndefined, toNumber, isEqual, mapTree, clone, destructuring, clear, sum, find, toStringJSON, toArray } from '@opentiny/vue-renderless/grid/static/'
 import browser from '@opentiny/vue-renderless/common/browser'
-// prettier-ignore
 import { isPx, isScale, colToVisible, getCell, getEventTargetNode, rowToVisible, setCellValue, getRowid, emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import Cell from '../../cell'
 import { error, warn } from '../../tools'
@@ -39,7 +37,6 @@ import GlobalConfig from '../../config'
 import { handleLayout } from './utils/updateStyle'
 import { createTooltipRange, processContentMethod } from './utils/handleTooltip'
 import { hasCheckField, hasNoCheckField } from './utils/handleSelectRow'
-// prettier-ignore
 import { isTargetRadioOrCheckbox, onClickExpandColumn, onClickTreeNodeColumn, onHighlightCurrentRow, onClickRadioColumn, onClickSelectColumn, onClickCellSelect } from './utils/triggerCellClickEvent'
 import {
   onGroupHeader,
@@ -49,13 +46,13 @@ import {
   showGroupFixedError,
   onScrollXLoad
 } from './utils/refreshColumn'
-// prettier-ignore
 import { handleFilterConditionCustom, handleFilterConditionExtend, handleFilterRelations, handleFilterCheckStr, handleFilterCheck } from './utils/handleLocalFilter'
 import { hasCheckFieldNoStrictly, hasNoCheckFieldNoStrictly, setSelectionNoStrictly } from './utils/setAllSelection'
 import { mapFetchColumnPromise } from './utils/handleResolveColumn'
 import { computeScrollYLoad, computeScrollXLoad } from './utils/computeScrollLoad'
 import { createHandlerOnEnd } from './utils/rowDrop'
-import { calcTableWidth } from './utils/autoCellWidth'
+import { calcTableWidth, calcFixedStickyPosition } from './utils/autoCellWidth'
+import { generateFixedClassName } from './utils/handleFixedColumn'
 import { funcs, headerProps, onEndEvent, handleAllColumnPromises } from './funcs'
 import {
   triggerHeaderTooltipEvent,
@@ -184,6 +181,7 @@ const Methods = {
       .then(() => this.updateFooter())
       .then(() => this.recalculate())
   },
+  // 处理表格数据（过滤，排序，虚拟滚动需要渲染数据的条数）
   handleTableData(force) {
     let { scrollYLoad, scrollYStore, treeConfig, treeExpandeds, parentRowMap } = this
     let { renderSize, startIndex } = scrollYStore
@@ -198,9 +196,11 @@ const Methods = {
       treeExpandeds,
       parentRowMap
     })
+
     run(['updateScrollStatus', 'buildGroupData'], this)
     return this.$nextTick()
   },
+  // 全量加载表格数据
   loadTableData(datas, notRefresh) {
     let { $refs, editStore, height, maxHeight } = this
     let { lastScrollLeft, lastScrollTop } = this
@@ -216,6 +216,7 @@ const Methods = {
     // 原始数据
     Object.assign(this, {
       tableSynchData: datas,
+      // 此处存在性能问题，如果用户表格数据量很大，这里深拷贝会带来性能问题,
       tableSourceData: clone(tableFullData, true),
       scrollYLoad
     })
@@ -224,7 +225,7 @@ const Methods = {
       error('ui.grid.error.scrollYHeight')
     }
 
-    // 如果notRefresh为true表示不刷新表格状态，所以也不需要清楚滚动状态
+    // 如果notRefresh为true表示不刷新表格状态，所以也不需要清除滚动状态
     if (!notRefresh) {
       this.clearScroll()
     }
@@ -233,20 +234,24 @@ const Methods = {
     run(['reserveCheckSelection', 'checkSelectionStatus'], this)
     let first = () => !notRefresh && this.recalculate()
     let second = () => {
+      // 让表格滚动条滚动到最后一次滚动到的位置
       if (lastScrollLeft || lastScrollTop) {
         return this.scrollTo(lastScrollLeft, lastScrollTop)
       } else {
+        // 重置表头滚动条位置
         let headerElem = $refs.tableHeader ? $refs.tableHeader.$el : null
         headerElem && (headerElem.scrollLeft = 0)
       }
     }
     return this.$nextTick().then(first).then(second)
   },
+  // 重新加载数据
   reloadData(datas) {
     return this.clearAll()
       .then(() => this.loadTableData(datas))
       .then(() => this.handleDefault())
   },
+  // 加载全量数据
   loadData(datas) {
     return new Promise((resolve) => {
       this.loadTableData(datas)
@@ -274,6 +279,7 @@ const Methods = {
     this.tableData = tableData.slice(0)
     return this.$nextTick()
   },
+  // 从新加载列配置
   reloadColumn(columns) {
     return this.clearAll().then(() => this.loadColumn(columns))
   },
@@ -753,12 +759,6 @@ const Methods = {
     this.refreshColumn()
     this.handleTableData(true)
     $toolbar && $toolbar.updateColumn(fullColumn)
-    // 在v3.0中废弃prop、label
-    if (fullColumn.length) {
-      let cIndex = Math.floor((fullColumn.length - 1) / 2)
-      fullColumn[cIndex].prop && warn('ui.grid.error.delProp')
-      fullColumn[cIndex].label && warn('ui.grid.error.delLabel')
-    }
     if (
       treeConfig &&
       fullColumn.some((column) => column.fixed) &&
@@ -809,7 +809,7 @@ const Methods = {
     this.visibleColumn = visibleColumn
     return this.$nextTick().then(() => {
       this.updateFooter()
-      this.recalculate(true)
+      this.recalculate()
     })
   },
   // 指定列宽的列进行拆分
@@ -857,39 +857,47 @@ const Methods = {
    * 计算单元格列宽，动态分配可用剩余空间
    * 支持（width=?、width=?px、width=?%、min-width=?、min-width=?px、min-width=?%）
    */
-  recalculate(refull) {
-    let { tableBody, tableFooter, tableHeader } = this.$refs
-    let getElem = (ref) => (ref ? ref.$el : null)
-    let headerElem = getElem(tableHeader)
-    let bodyElem = getElem(tableBody)
-    let footerElem = getElem(tableFooter)
+  recalculate() {
+    const { scrollXLoad, scrollYLoad, scrollLoad } = this
+    const { tableBody, tableFooter, tableHeader } = this.$refs
+    const getElem = (ref) => (ref ? ref.$el : null)
+    const headerElem = getElem(tableHeader)
+    const bodyElem = getElem(tableBody)
+    const footerElem = getElem(tableFooter)
     if (!bodyElem) {
       return this.computeScrollLoad()
     }
 
-    // 虚拟滚动式需要等滚动条加载出来再进行样式调整
-    if (refull !== true) {
-      return this.computeScrollLoad().then(() => this.autoCellWidth(headerElem, bodyElem, footerElem))
+    // 设置表格每列的尺寸(此时还没有设置colgroup的dom元素尺寸)，这里执行之后还需要继续设置滚动条状态
+    this.autoCellWidth(headerElem, bodyElem, footerElem)
+
+    if (scrollXLoad || scrollYLoad || scrollLoad) {
+      return this.computeScrollLoad().then(() => {
+        this.autoCellWidth(headerElem, bodyElem, footerElem)
+      })
     }
 
-    // 初始化时需要在列计算之后再执行优化运算，达到最优显示效果
-    return this.computeScrollLoad().then(() => {
-      this.autoCellWidth(headerElem, bodyElem, footerElem)
-      this.computeScrollLoad()
-    })
+    // 实现布局，将列renderWidth设置到具体的dom上
+    return this.computeScrollLoad()
   },
   // 列宽计算
   autoCellWidth(headerEl, bodyEl, footerEl) {
     // 列宽最少限制 40px
-    let { minCellWidth = 40, bodyW, remainWidth } = {}
+    let minCellWidth = 40
     let { fit, columnStore } = this
     let tableHeight = bodyEl.offsetHeight
     let overflowY = bodyEl.scrollHeight > bodyEl.clientHeight
-    bodyW = bodyEl.clientWidth
-    remainWidth = bodyW
-    let tableWidth = calcTableWidth({ bodyWidth: bodyW, columnStore, fit, minCellWidth, remainWidth })
+    let bodyW = bodyEl.clientWidth
+    let { leftList, rightList } = columnStore
+
+    // 此处操作很重要，这里会计算所有列的宽度并且计算出表格整体宽度
+    let tableWidth = calcTableWidth({ bodyWidth: bodyW, columnStore, fit, minCellWidth, remainWidth: bodyW })
+    // offsetWidth（带有滚动条的宽度），clientWidth（不带滚动条的样式）
     let scrollbarWidth = overflowY ? bodyEl.offsetWidth - bodyW : 0
     let parentHeight = this.getParentHeight()
+
+    // 经过calcTableWidth计算出了所有列的宽度，下一步进行所有冻结列sticky布局的left和right值
+    calcFixedStickyPosition({ headerEl, bodyEl, columnStore })
 
     Object.assign(this, { overflowY, parentHeight, scrollbarWidth, tableHeight, tableWidth })
     if (headerEl) {
@@ -904,34 +912,26 @@ const Methods = {
       this.scrollbarHeight = Math.max(tableHeight - bodyEl.clientHeight, 0)
       this.overflowX = tableWidth > bodyW
     }
-    if (this.overflowX) {
-      this.checkScrolling()
+
+    if (leftList.length || rightList.length) {
+      // 处理冻结列类名
+      generateFixedClassName({ $table: this, bodyElem: bodyEl, leftList, rightList })
     }
+  },
+  // 同步headerHeight
+  syncHeaderHeight() {
+    let headerEl = this.$refs.tableHeader?.$el
+    if (headerEl) this.headerHeight = headerEl.offsetHeight
   },
   resetResizable() {
     let { $toolbar, visibleColumn } = this
     visibleColumn.forEach((col) => (col.resizeWidth = 0))
     $toolbar && $toolbar.resetResizable()
     this.analyColumnWidth()
-    return this.recalculate(true)
-  },
-  // 同步左右固定列的top值，修复在拖动列宽时出现横向滚动条导至固定列错位问题
-  syncFixedTop() {
-    const { tableBody, leftBody, rightBody } = this.$refs
-    if (tableBody) {
-      const top = tableBody.$el.scrollTop
-      leftBody && (leftBody.$el.scrollTop = top)
-      rightBody && (rightBody.$el.scrollTop = top)
-    }
-  },
-  //同步headerHeight
-  syncHeaderHeight() {
-    let headerEl = this.$refs.tableHeader?.$el
-    if (headerEl) this.headerHeight = headerEl.offsetHeight
+    return this.recalculate()
   },
   updateStyle() {
-    let { $refs, columnStore, currentRow, height, maxHeight, minHeight, parentHeight, tableColumn } = this
-    let containerList = ['main', 'left', 'right']
+    let { columnStore, currentRow, height, maxHeight, minHeight, parentHeight, tableColumn } = this
     let layoutList = ['header', 'body', 'footer']
     let { customHeight, scaleToPx } = {}
 
@@ -942,41 +942,20 @@ const Methods = {
       customHeight = isScale(height) ? scaleToPx : toNumber(height)
     }
 
-    containerList.forEach((name, index) => {
-      let fixedType = index > 0 ? name : ''
-      let fixedColumn = columnStore[`${fixedType}List`]
-      let fixedWrapperElem = $refs[`${fixedType}Container`]
-      layoutList.forEach((layout) => {
-        const args1 = { _vm: this, columnStore, customHeight, fixedColumn, fixedType }
-        const args2 = { fixedWrapperElem, layout, maxHeight, minHeight, name, parentHeight, tableColumn }
-        let ret = handleLayout(Object.assign(args1, args2))
-        tableColumn = ret.tableColumn
-        maxHeight = ret.maxHeight
-        minHeight = ret.minHeight
-      })
+    layoutList.forEach((layout) => {
+      const args1 = { _vm: this, columnStore, customHeight }
+      const args2 = { layout, maxHeight, minHeight, parentHeight, tableColumn }
+
+      // 实现布局，将列renderWidth设置到具体的dom上
+      let ret = handleLayout(Object.assign(args1, args2))
+      tableColumn = ret.tableColumn
+      maxHeight = ret.maxHeight
+      minHeight = ret.minHeight
     })
     currentRow && this.setCurrentRow(currentRow)
-    this.syncFixedTop()
     // Fixed issue #129
     this.syncHeaderHeight()
     return this.$nextTick()
-  },
-  // 处理固定列的显示状态
-  checkScrolling() {
-    let { leftContainer, rightContainer, tableBody } = this.$refs
-    let bodyElem = tableBody ? tableBody.$el : null
-    if (!bodyElem) {
-      return
-    }
-    let { clientWidth, scrollLeft, scrollWidth } = bodyElem
-    let showLeft = scrollLeft > 0
-    let showRight = clientWidth < scrollWidth - scrollLeft
-    if (leftContainer) {
-      showLeft ? addClass(leftContainer, 'scrolling__middle') : removeClass(leftContainer, 'scrolling__middle')
-    }
-    if (rightContainer) {
-      showRight ? addClass(rightContainer, 'scrolling__middle') : removeClass(rightContainer, 'scrolling__middle')
-    }
   },
   preventEvent(event, type, args, next, end) {
     let eventList = Interceptor.get(type)
@@ -1302,22 +1281,6 @@ const Methods = {
   getRadioRow() {
     let { selectRow: radioRow } = this
     return radioRow
-  },
-  // 行hover事件
-  triggerHoverEvent(event, { row }) {
-    this.setHoverRow(row)
-  },
-  setHoverRow(row) {
-    let rowid = getRowid(this, row)
-    let rowElems = this.$el.querySelectorAll(`[data-rowid="${rowid}"]`)
-    this.clearHoverRow()
-    arrayEach(rowElems, (elem) => addClass(elem, 'row__hover'))
-    this.hoverRow = row
-  },
-  clearHoverRow() {
-    let rowElems = this.$el.querySelectorAll('.tiny-grid-body__row.row__hover')
-    arrayEach(rowElems, (elem) => removeClass(elem, 'row__hover'))
-    this.hoverRow = null
   },
   triggerHeaderCellClickEvent(event, params) {
     let { _lastResizeTime: lastTime, highlightCurrentColumn } = this
@@ -1664,7 +1627,7 @@ const Methods = {
   // 横向 X 可视渲染事件处理
   triggerScrollXEvent(event) {
     let { adaptive } = this.scrollXStore
-    // webkit 浏览器使用最佳的渲染方式
+    // webkit 浏览器使用最佳的渲染方式（防抖操作）
     if (!isWebkit || !adaptive) {
       this.debounceScrollX(event)
     } else {
@@ -1674,6 +1637,7 @@ const Methods = {
   debounceScrollX: debounce(debounceScrollDirDuration, function (event) {
     this.loadScrollXData(event)
   }),
+  // 处理x轴滚动时，虚拟滚动数据计算
   loadScrollXData() {
     let { scrollXStore, visibleColumn } = this
     let { offsetSize, renderSize, startIndex, visibleIndex, visibleSize } = scrollXStore
@@ -1721,6 +1685,7 @@ const Methods = {
   debounceScrollY: debounce(debounceScrollDirDuration, function (event) {
     this.loadScrollYData(event)
   }),
+  // 处理滚动分页相关逻辑
   debounceScrollLoad: debounce(debounceScrollLoadDuration, function (event) {
     const { scrollHeight, bodyHeight } = this.scrollLoadStore
     const { currentPage, pageSize } = this.$grid.tablePage
@@ -1739,8 +1704,12 @@ const Methods = {
   }),
   // 纵向 Y 可视渲染处理
   loadScrollYData(event) {
-    let { scrollYStore } = this
-    let { startIndex, renderSize, offsetSize, visibleIndex, visibleSize, rowHeight } = scrollYStore
+    const { scrollYStore, columnStore } = this
+    const { tableBody, tableHeader } = this.$refs
+    const { startIndex, renderSize, offsetSize, visibleIndex, visibleSize, rowHeight } = scrollYStore
+    const getElem = (ref) => (ref ? ref.$el : null)
+    const headerEl = getElem(tableHeader)
+    const bodyEl = getElem(tableBody)
 
     // 动态获取容器的scrollTop，这里有可能会造成卡顿，暂时没有好的方案
     let { scrollTop } = event.target
@@ -1768,7 +1737,13 @@ const Methods = {
     }
     scrollYStore.visibleIndex = toVisibleIndex
     this.$nextTick(() => {
+      const { leftList, rightList } = columnStore
       this.updateSelectedCls(true)
+
+      // 虚拟滚动时,如果存在冻结列，则需要动态设置冻结列的状态
+      if (leftList.length || rightList.length) {
+        calcFixedStickyPosition({ headerEl, bodyEl, columnStore })
+      }
     })
   },
   getRowHeight() {
@@ -1777,6 +1752,7 @@ const Methods = {
     let { tableBody, tableHeader } = $refs
     let rHeight = scrollY.rHeight
     if (!rHeight) {
+      // 获取表头或者表格体第一个tr的高度
       let firstTrElem =
         (tableBody && tableBody.$el.querySelector('tbody>tr')) ||
         (tableHeader && tableHeader.$el.querySelector('thead>tr')) ||
@@ -1788,6 +1764,7 @@ const Methods = {
     // 默认的行高，默认行高需要跟 css 样式一致
     if (!rHeight) {
       let vSizeList = ['medium', 'small', 'mini']
+      // 这里因为需要适配多套主题配置方案，所以这里的默认高度写死不合适，待整改
       let defSizeList = [44, 40, 36]
       let i = vSizeList.indexOf(vSize)
       rHeight = ~i ? defSizeList[i] : 48
@@ -1797,27 +1774,29 @@ const Methods = {
   // 计算可视渲染相关数据
   computeScrollLoad() {
     return this.$nextTick().then(() => {
-      let { $refs, optimizeOpts, visibleColumn } = this
-      let { scrollLoad, scrollXLoad, scrollXStore, scrollYLoad, scrollYStore } = this
+      let { $refs, optimizeOpts, visibleColumn } = this as any
+      let { scrollLoad, scrollXLoad, scrollXStore, scrollYLoad, scrollYStore } = this as any
       let { scrollX, scrollY } = optimizeOpts
       let { tableBody } = $refs
       let bodyElem = tableBody ? tableBody.$el : null
       if (bodyElem) {
-        // 计算 X 逻辑
+        // 只计算X轴虚拟滚动逻辑,优化正常表格计算效率
         computeScrollXLoad({ _vm: this, scrollX, scrollXLoad, scrollXStore, tableBodyElem: bodyElem, visibleColumn })
-        // 计算 Y 逻辑
+        // 只计算Y轴虚拟滚动逻辑,优化正常表格计算效率
         computeScrollYLoad({ _vm: this, scrollLoad, scrollY, scrollYLoad, scrollYStore, tableBodyElem: bodyElem })
       }
       this.$nextTick(this.updateStyle)
     })
   },
+  // 处理x轴方向虚拟滚动列数据加载
   updateScrollXData() {
-    let { scrollXLoad, scrollXStore, tableColumn, treeConfig, visibleColumn, visibleColumnChanged } = this
+    let { scrollXLoad, scrollXStore, tableColumn, treeConfig, visibleColumn, visibleColumnChanged, columnStore } = this
     let { lastStartIndex = -1, renderSize, startIndex } = scrollXStore
-    let args = { lastStartIndex, renderSize, scrollXLoad, startIndex, tableColumn }
+    let args = { lastStartIndex, renderSize, scrollXLoad, startIndex, tableColumn, columnStore }
 
     Object.assign(args, { treeConfig, visibleColumn, visibleColumnChanged })
 
+    // 获取需要渲染的列数和最后一次渲染列的index值
     let ret = sliceVisibleColumn(args)
 
     scrollXStore.lastStartIndex = ret.lastStartIndex
@@ -1825,16 +1804,17 @@ const Methods = {
     this.tableColumn = ret.tableColumn
     this.visibleColumnChanged = ret.visibleColumnChanged
 
-    if (ret.sliced) {
-      this.updateScrollXSpace()
-      this.updateScrollStatus()
-    }
+    // 初始化表格时也需要计算x轴方向滚动条占位符的尺寸
+    this.updateScrollXSpace()
+
+    // 处理滚动条滚动后的异步渲染列逻辑
+    this.updateScrollStatus()
   },
   // 更新横向 X 可视渲染上下剩余空间大小
   updateScrollXSpace() {
-    let { $refs, elemStore, scrollXLoad, scrollXStore, scrollbarWidth, tableWidth, visibleColumn } = this
-    let { tableBody, tableFooter, tableHeader } = $refs
-    let { startIndex } = scrollXStore
+    const { $refs, elemStore, scrollXLoad, scrollXStore, scrollbarWidth, tableWidth, visibleColumn } = this
+    const { tableBody, tableFooter, tableHeader } = $refs
+    const { startIndex } = scrollXStore
     let { bodyElem, footerElem, headerElem, leftSpaceWidth, marginLeft } = {}
     headerElem = tableHeader ? tableHeader.$el.querySelector('.tiny-grid__header') : null
     bodyElem = tableBody.$el.querySelector('.tiny-grid__body')
@@ -1844,19 +1824,20 @@ const Methods = {
     headerElem && (headerElem.style.marginLeft = marginLeft)
     bodyElem.style.marginLeft = marginLeft
     footerElem && (footerElem.style.marginLeft = marginLeft)
-    let containerNames = ['main']
-    let layouts = ['header', 'body', 'footer']
-    containerNames.forEach((name) => {
-      layouts.forEach((layout) => {
-        let xSpaceElem = elemStore[`${name}-${layout}-xSpace`]
-        let extra = layout === 'header' ? scrollbarWidth : 0
-        if (xSpaceElem) {
-          xSpaceElem.style.width = scrollXLoad ? `${tableWidth + extra}px` : ''
-        }
-      })
+    const layouts = ['header', 'body', 'footer']
+    layouts.forEach((layout) => {
+      const xSpaceElem = elemStore[`main-${layout}-xSpace`]
+      const extra = layout === 'header' ? scrollbarWidth : 0
+      // 这里只能找到body中的元素，header和footer永远是false
+      if (xSpaceElem) {
+        // 表格主体内容x轴方向虚拟滚动条占位元素
+        xSpaceElem.style.width = scrollXLoad ? `${tableWidth + extra}px` : ''
+      }
     })
+
     this.$nextTick(this.updateStyle)
   },
+  // 处理虚拟滚动加载数据，并更新YSpace位置
   updateScrollYData() {
     run(['handleTableData', 'updateScrollYSpace'], this)
   },
@@ -1867,38 +1848,36 @@ const Methods = {
     let bodyHeight = getTotalRows(this)
     let isVScrollOrLoad = scrollYLoad || scrollLoad
     let { marginTop, ySpaceHeight } = {}
-    let containerNames = ['main', 'left', 'right']
-    let layouts = ['header', 'body', 'footer']
 
+    // 通过开始渲染下标startIndex和表格的行高度来计算marginTop
     marginTop = isVScrollOrLoad && scrollYLoad ? `${Math.max(startIndex * rowHeight, 0)}px` : ''
     ySpaceHeight = isVScrollOrLoad ? `${bodyHeight * rowHeight}px` : ''
 
-    containerNames.forEach((name) => {
-      let tableElem = elemStore[`${name}-body-table`]
+    const tableElem = elemStore['main-body-table']
 
-      // 这里最好使用transform3D,使用gpu加速，防止页面重绘
-      if (tableElem) {
-        tableElem.style.transform = `translateY(${marginTop})`
-      }
+    // 这里最好使用transform3D,使用gpu加速，防止页面重绘
+    if (tableElem) {
+      tableElem.style.transform = `translateY(${marginTop})`
+    }
 
-      layouts.forEach((layout) => {
-        let ySpaceElem = elemStore[`${name}-${layout}-ySpace`]
-        ySpaceElem && (ySpaceElem.style.height = ySpaceHeight)
-        if (ySpaceElem && scrollLoad && $grid) {
-          let scrollHeight = $grid.pagerConfig.total * rowHeight
-          Object.assign(scrollLoadStore, { bodyHeight, scrollHeight })
-          ySpaceElem.firstChild.style.height = `${scrollHeight}px`
-          ySpaceElem.onscroll = this.debounceScrollLoad
-        }
-      })
-    })
+    const ySpaceElem = elemStore['main-body-ySpace']
+    ySpaceElem && (ySpaceElem.style.height = ySpaceHeight)
+
+    // 滚动分页加载逻辑
+    if (ySpaceElem && scrollLoad && $grid) {
+      const scrollHeight = $grid.pagerConfig.total * rowHeight
+      Object.assign(scrollLoadStore, { bodyHeight, scrollHeight })
+      ySpaceElem.firstChild.style.height = `${scrollHeight}px`
+      ySpaceElem.onscroll = this.debounceScrollLoad
+    }
+
     this.$nextTick(this.updateStyle)
   },
   updateScrollLoadBar(event) {
     let { $el, elemStore, scrollLoad, scrollLoadStore } = this
     if (scrollLoad && $el.contains(event.target)) {
       let wheelDelta = event.wheelDelta ? event.wheelDelta : -event.detail * 40
-      let scrollElm = elemStore['right-body-ySpace'] || elemStore['main-body-ySpace']
+      let scrollElm = elemStore['main-body-ySpace']
       let { scrollHeight, bodyHeight } = scrollLoadStore
       let max = scrollHeight - bodyHeight
       let top = scrollElm.scrollTop - wheelDelta
@@ -2168,7 +2147,7 @@ const Methods = {
       let selected = this.getSelectRecords()
       let position = typeof selectToolbar === 'object' ? selectToolbar.position : ''
       if (selectColumn && selected && selected.length) {
-        let selectTh = this.$el.querySelector('th.tiny-grid-header__column.col__selection:not(.fixed__hidden)')
+        let selectTh = this.$el.querySelector('th.tiny-grid-header__column.col__selection')
         let headerWrapper = this.$el.querySelector('.tiny-grid>.tiny-grid__header-wrapper')
         let tr = selectTh.parentNode
         let thArr = toArray(tr.childNodes)

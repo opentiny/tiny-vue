@@ -25,6 +25,7 @@
 
   display: inline-block;
   vertical-align: middle;
+  margin-top: var(--ti-button-group-margin-top);
   .clearfix();
 
   .@{group-item-prefix-cls} {
@@ -36,6 +37,7 @@
       background: var(--ti-button-group-item-bg-color);
       float: left;
       position: relative;
+      margin-top: var(--ti-button-group-item-margin-top);
 
       button {
         border: 1px solid var(--ti-button-group-border-color);
@@ -45,12 +47,13 @@
         background: var(--ti-button-group-item-bg-color);
         min-width: var(--ti-button-group-item-btn-width);
         height: var(--ti-button-group-item-btn-height);
-        padding: 0 8px;
+        padding: 0 var(--ti-button-group-btn-padding-horizontal);
         text-decoration: none;
         font-size: var(--ti-button-group-item-btn-font-size);
         outline: none;
         cursor: pointer;
         transition: all 0.3s;
+        border-radius: var(--ti-button-group-middle-border-radius);
 
         &.disabled,
         &[disabled] {
@@ -72,7 +75,7 @@
         button:not(.disabled) {
           background: var(--ti-button-group-item-btn-hover-bg-color);
           color: var(--ti-button-group-item-btn-hover-text-color);
-          border-color: var(--ti-button-group-item-btn-hover-bg-color);
+          border-color: var(--ti-button-group-item-btn-hover-border-color);
           outline: none;
 
           &.plain,
@@ -90,7 +93,7 @@
         &:hover {
           button:not(.disabled) {
             background: var(--ti-button-group-item-btn-hover-bg-color);
-            border-color: var(--ti-button-group-item-btn-hover-bg-color);
+            border-color: var(--ti-button-group-active-hover-border-color);
 
             &.plain,
             &[plain] {
@@ -102,8 +105,9 @@
         button:not(.disabled) {
           background: var(--ti-button-group-item-active-bg-color);
           color: var(--ti-button-group-item-active-text-color);
-          border-color: var(--ti-button-group-item-active-bg-color);
+          border-color: var(--ti-button-group-item-active-border-color);
           outline: none;
+
 
           &.plain,
           &[plain] {
@@ -115,27 +119,27 @@
 
       &:first-child {
         button {
-          border-radius: var(--ti-button-group-border-radius) 0 0 var(--ti-button-group-border-radius);
+          border-radius: var(--ti-button-group-border-radius) var(--ti-button-group-right-border-radius) var(--ti-button-group-right-border-radius) var(--ti-button-group-border-radius);
         }
       }
 
       &:last-child {
         button {
-          border-radius: 0 var(--ti-button-group-border-radius) var(--ti-button-group-border-radius) 0;
+          border-radius: var(--ti-button-group-left-border-radius) var(--ti-button-group-border-radius) var(--ti-button-group-border-radius) var(--ti-button-group-left-border-radius);
         }
       }
 
       &:not(:last-child) {
-        margin-right: -1px;
+        margin-right: var(--ti-button-group-item-li-margin-right);
       }
     }
   }
 
-  & > .@{button-prefix-cls} {
+  &>.@{button-prefix-cls} {
     float: left;
     position: relative;
 
-    & + .@{button-prefix-cls} {
+    &+.@{button-prefix-cls} {
       margin-left: 0;
     }
 
@@ -208,10 +212,42 @@
       margin-right: -1px;
     }
 
-    & > .@{dropdown-prefix-cls} > .@{button-prefix-cls} {
+    &>.@{dropdown-prefix-cls}>.@{button-prefix-cls} {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
       border-left-color: var(--ti-button-group-info-border-color);
+    }
+  }
+
+  &&--mini {
+    & li:not(:last-child) {
+      margin-right: var(--ti-button-group-mini-margin-right);
+    }
+
+    & li button {
+      font-size: var(--ti-button-group-mini-font-size);
+      padding: 0 var(--ti-button-group-mini-padding-horizontal);
+      border-radius: var(--ti-button-group-mini-border-radius);
+    }
+  }
+
+  &&--borderless {
+    .@{group-item-prefix-cls} li button {
+      border: 1px solid transparent;
+    }
+
+    .@{group-item-prefix-cls} li:hover button:not(.disabled) {
+      background-color: var(--ti-button-group-no-border-hover-bg-color);
+      border-color: var(--ti-button-group-no-border-hover-border-color);
+    }
+
+    .@{group-item-prefix-cls} li.active:hover button:not(.disabled) {
+      background-color: var(--ti-button-group-no-border-active-hover-bg-color);
+      border-color: var(--ti-button-group-no-border-border-color);
+    }
+
+    .@{group-item-prefix-cls} li button.disabled {
+      background-color: var(--ti-button-group-no-border-disabled-bg-color);
     }
   }
 }

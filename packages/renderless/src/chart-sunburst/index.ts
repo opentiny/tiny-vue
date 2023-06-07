@@ -10,7 +10,7 @@
 *
 */
 
-import { itemPoint, itemLabel, itemContent } from '@opentiny/vue-renderless/chart-core/deps/constants'
+import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
 
 const getTooltip = () => ({
   trigger: 'item',

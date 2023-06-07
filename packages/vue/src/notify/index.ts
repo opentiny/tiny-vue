@@ -11,18 +11,18 @@
  */
 
 import { createComponent } from '@opentiny/vue-common'
-import NotifyConstructor from './src/index.vue'
+import NotifyConstructor from './src/pc.vue'
 import '@opentiny/vue-theme/notify/index.less'
-import { iconSuccessful, iconError, iconInfoSolid, iconWarning } from '@opentiny/vue-icon'
+import { IconSuccess, iconError, IconPrompt, iconWarningTriangle } from '@opentiny/vue-icon'
 
 let seed = 1
 let instances = []
 
 const IconMap = {
-  warning: iconWarning(),
+  warning: iconWarningTriangle(),
   error: iconError(),
-  info: iconInfoSolid(),
-  success: iconSuccessful()
+  info: IconPrompt(),
+  success: IconSuccess()
 }
 
 const durationMap = {

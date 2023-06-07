@@ -11,24 +11,84 @@
 */
 
 .component-css-vars-button-group() {
-  --ti-button-group-border-color: var(--ti-common-color-border);
+  // 按钮组边框色
+  --ti-button-group-border-color: var(--ti-common-color-line-normal);
+  // 按钮组圆角
   --ti-button-group-border-radius: var(--ti-common-border-radius-normal);
-  --ti-button-group-hover-border-color: var(--ti-base-color-brand-6);
-  --ti-button-group-info-border-color: rgba(255, 255, 255, 0.5);
-  --ti-button-group-disabled-text-color: var(--ti-common-color-bg-disabled);
-  --ti-button-group-item-bg-color: var(--ti-common-color-light);
-  --ti-button-group-item-btn-text-color: var(--ti-common-color-info-normal);
+  // 按钮组第一个按钮右侧圆角
+  --ti-button-group-right-border-radius: 0px;
+  // 按钮组中间按钮圆角
+  --ti-button-group-middle-border-radius: 0px;
+  // 按钮组最后一个按钮左侧圆角
+  --ti-button-group-left-border-radius: 0px;
+  // 默认插槽尾部按钮的左边框色
+  --ti-button-group-hover-border-color: var(--ti-common-color-line-active);
+  // 默认插槽按钮间分割线颜色
+  --ti-button-group-info-border-color: var(--ti-common-color-light);
+  // 禁用色（没有使用）
+  --ti-button-group-disabled-text-color: var(--ti-common-color-text-disabled);
+  // 默认按钮未选中项背景色|朴素按钮组背景色
+  --ti-button-group-item-bg-color: var(--ti-common-color-bg-white-normal);
+  // 按钮非选中项文本色
+  --ti-button-group-item-btn-text-color: var(--ti-common-color-text-primary);
+  // 按钮项宽度
   --ti-button-group-item-btn-width: var(--ti-common-size-width-normal);
-  --ti-button-group-item-btn-height: var(--ti-common-size-height-minor);
+  // 未指定尺寸的按钮项高度
+  --ti-button-group-item-btn-height: var(--ti-common-size-height-normal);
+  // 按钮组默认字号
   --ti-button-group-item-btn-font-size: var(--ti-common-font-size-base);
+  // 按钮项禁用背景色
   --ti-button-group-item-btn-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  // 按钮项禁用边框色
   --ti-button-group-item-btn-disabled-border-color: var(--ti-common-color-border);
-  --ti-button-group-item-btn-disabled-text-color: var(--ti-common-color-placeholder);
-  --ti-button-group-item-btn-hover-bg-color: var(--ti-base-color-brand-5);
+  // 按钮项禁用色
+  --ti-button-group-item-btn-disabled-text-color: var(--ti-common-color-text-disabled);
+  // 默认按钮项悬浮背景色|朴素按钮选中项悬浮边框色
+  --ti-button-group-item-btn-hover-bg-color: var(--ti-common-color-primary-hover);
+  // 按钮项悬浮边框色
+  --ti-button-group-item-btn-hover-border-color: var(--ti-common-color-primary-hover);
+  // 默认按钮非选中项悬浮文本色
   --ti-button-group-item-btn-hover-text-color: var(--ti-common-color-light);
-  --ti-button-group-item-btn-plain-text-color: var(--ti-base-color-brand-6);
-  --ti-button-group-item-btn-plain-bg-color: rgba(24, 144, 255, 0.06);
-  --ti-button-group-item-btn-plain-border-color: var(--ti-base-color-brand-6);
-  --ti-button-group-item-active-bg-color: var(--ti-base-color-brand-6);
+  // 朴素按钮非选中项悬浮文本色
+  --ti-button-group-item-btn-plain-text-color: var(--ti-common-color-text-link-hover);
+  // 朴素按钮项悬浮背景色
+  --ti-button-group-item-btn-plain-bg-color: var(--ti-common-color-prompt-bg:);
+  // 朴素按钮非选中项悬浮边框色
+  --ti-button-group-item-btn-plain-border-color: var(--ti-common-color-bg-emphasize);
+  // 默认按钮选中项背景色|朴素按钮选中项文本边框色
+  --ti-button-group-item-active-bg-color: var(--ti-common-color-bg-emphasize);
+  // 默认按钮选中项文本色
   --ti-button-group-item-active-text-color: var(--ti-common-color-light);
+  // 默认按钮右侧外边距
+  --ti-button-group-item-li-margin-right: -1px;
+  // 默认按钮选中边框色
+  --ti-button-group-item-active-border-color: var(--ti-common-color-bg-emphasize);
+  // 默认按钮选中边框色
+  --ti-button-group-active-hover-border-color: var(--ti-common-color-primary-hover);
+  // 默认按钮内间距
+  --ti-button-group-btn-padding-horizontal: 8px;
+  // 小尺寸按钮字号
+  --ti-button-group-item-active-font-size: 14px;
+  // 按钮组按钮上间距
+  --ti-button-group-margin-top: -8px;
+  // 按钮组各个按钮的上间距
+  --ti-button-group-item-margin-top: 0;
+  // 小尺寸按钮组按钮右间距
+  --ti-button-group-mini-margin-right: 0px;
+  // 小尺寸按钮组按钮字号
+  --ti-button-group-mini-font-size: 12px;
+  // 无边框按钮悬浮按钮组背景色
+  --ti-button-group-no-border-hover-bg-color: var(--ti-common-color-primary-hover);
+  // 无边框按钮组按钮选中态悬浮背景色
+  --ti-button-group-no-border-active-hover-bg-color: var(--ti-common-color-primary-hover);
+  // 无边框按钮组按钮禁用状态下背景色
+  --ti-button-group-no-border-disabled-bg-color: #FFFFFF;
+  // 小尺寸按钮内间距
+  --ti-button-group-mini-padding-horizontal: 16px;
+  // 小尺寸按钮圆角
+  --ti-button-group-mini-border-radius: 0px;
+  // 无边框按钮悬浮边框色
+  --ti-button-group-no-border-hover-border-color: transparent;
+  // 选中按钮组按钮悬浮边框色
+  --ti-button-group-no-border-border-color: transparent;
 }

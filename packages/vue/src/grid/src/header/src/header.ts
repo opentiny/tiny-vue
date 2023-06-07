@@ -94,30 +94,14 @@ function modifyHeadAlign({ column, headAlign }) {
 }
 
 function computeDragLeft(args) {
-  let { cell, dragMinLeft, dragPosLeft, fixedOffsetWidth, isLeftFixed, isRightFixed } = args
-  let { left, leftContainer, minInterval, rightContainer, tableBodyElem } = args
-
-  if (isLeftFixed) {
-    // 左固定列（不允许超过右侧固定列、不允许超过右边距）
-    left = Math.min(left, (rightContainer ? rightContainer.offsetLeft : tableBodyElem.clientWidth) - fixedOffsetWidth - minInterval)
-  } else if (isRightFixed) {
-    // 右侧固定列（不允许超过左侧固定列、不允许超过左边距）
-    dragMinLeft = (leftContainer ? leftContainer.clientWidth : 0) + fixedOffsetWidth + minInterval
-    left = Math.min(left, dragPosLeft + cell.clientWidth - minInterval)
-  }
+  let { dragMinLeft } = args
+  let { left } = args
 
   let dragLeft = Math.max(left, dragMinLeft)
 
   return { left, dragMinLeft, dragLeft }
 }
 
-function computeDragPosLeft({ dragPosLeft, fixedOffsetWidth, isRightFixed, rightContainer }) {
-  if (isRightFixed && rightContainer) {
-    dragPosLeft = rightContainer.offsetLeft + fixedOffsetWidth
-  }
-
-  return dragPosLeft
-}
 function renderTableColgroup(tableColumn) {
   return h(
     'colgroup',
@@ -132,8 +116,8 @@ function renderRepair() {
   return h('div', { class: 'tiny-grid__repair', ref: 'repair' })
 }
 
-function renderXSpace({ fixedType }) {
-  return fixedType ? [null] : h('div', { class: 'tiny-grid-body__x-space', ref: 'xSpace' })
+function renderXSpace() {
+  return h('div', { class: 'tiny-grid-body__x-space', ref: 'xSpace' })
 }
 
 const classMap = {
@@ -143,7 +127,7 @@ const classMap = {
   colSelection: 'col__selection',
   colGroup: 'col__group',
   colEllipsis: 'col__ellipsis',
-  fixedHidden: 'fixed__hidden',
+  fixedHidden: 'fixed__column',
   isSortable: 'is__sortable',
   isEditable: 'is__editable',
   isFilter: 'is__filter',
@@ -245,13 +229,13 @@ function renderThResize({ _vm, border, column, fixedHiddenColumn, isColGroup, pa
 }
 
 function getThHandler(args) {
-  let { $rowIndex, $table, _vm, allAlign, allColumnHeaderOverflow, allHeaderAlign, border, columnKey, fixedType, headerCellClassName } = args
+  let { $rowIndex, $table, _vm, allAlign, allColumnHeaderOverflow, allHeaderAlign, border, columnKey, headerCellClassName } = args
   let { headerSuffixIconAbsolute, highlightCurrentColumn, isDragHeaderSorting, mouseConfig, overflowX, resizable, sortOpts, tableListeners } = args
 
   return (column, $columnIndex) => {
     let { showHeaderOverflow, showHeaderTip, headerAlign, align, headerClassName } = column
     let isColGroup = column.children && column.children.length
-    let fixedHiddenColumn = fixedType ? column.fixed !== fixedType && !isColGroup : column.fixed && overflowX
+    let fixedHiddenColumn = column.fixed && overflowX
     let headOverflow = isNull(showHeaderOverflow) ? allColumnHeaderOverflow : showHeaderOverflow
     let showEllipsis = headOverflow === 'ellipsis'
     let showTitle = headOverflow === 'title'
@@ -265,7 +249,7 @@ function getThHandler(args) {
     // 确保表格索引的准确性
     let columnIndex = $table.getColumnIndex(column)
     let params = { $table, $rowIndex, column }
-    Object.assign(params, { columnIndex, $columnIndex, fixed: fixedType })
+    Object.assign(params, { columnIndex, $columnIndex })
     addListenerMouseover({ $table, params, showHeaderTip, showTitle, showTooltip, thOns })
     addListenerMouseout({ $table, showHeaderTip, showTooltip, thOns })
 
@@ -292,7 +276,7 @@ function getThHandler(args) {
 
 function renderTableThead(args) {
   let { $table, _vm, allAlign, allColumnHeaderOverflow } = args
-  let { allHeaderAlign, border, columnKey, fixedType } = args
+  let { allHeaderAlign, border, columnKey } = args
   let { headerCellClassName, headerColumn, headerRowClassName, headerSuffixIconAbsolute } = args
   let { highlightCurrentColumn, isDragHeaderSorting, mouseConfig } = args
   let { overflowX, resizable, sortOpts, tableListeners } = args
@@ -305,7 +289,7 @@ function renderTableThead(args) {
     headerColumn.map((cols, $rowIndex) => {
       let args1 = { $rowIndex, $table, _vm, allAlign, allColumnHeaderOverflow, allHeaderAlign, border, columnKey }
 
-      Object.assign(args1, { fixedType, headerCellClassName, headerSuffixIconAbsolute, highlightCurrentColumn })
+      Object.assign(args1, { headerCellClassName, headerSuffixIconAbsolute, highlightCurrentColumn })
       Object.assign(args1, { isDragHeaderSorting, mouseConfig, overflowX, resizable, sortOpts, tableListeners })
 
       return h(
@@ -313,29 +297,13 @@ function renderTableThead(args) {
         {
           class: [
             'tiny-grid-header__row',
-            headerRowClassName ? (isFunction(headerRowClassName) ? headerRowClassName({ $table, $rowIndex, fixed: fixedType }) : headerRowClassName) : ''
+            headerRowClassName ? (isFunction(headerRowClassName) ? headerRowClassName({ $table, $rowIndex }) : headerRowClassName) : ''
           ]
         },
         cols.map(getThHandler(args1)).concat([h('th', { class: 'col__gutter' })])
       )
     })
   )
-}
-function computeFixedOffsetWidth({ fixedOffsetWidth, isLeftFixed, cell }) {
-  let siblingProp = isLeftFixed ? 'nextElementSibling' : 'previousElementSibling'
-  let tempCellElem = cell[siblingProp]
-
-  while (tempCellElem) {
-    if (hasClass(tempCellElem, 'fixed__hidden')) {
-      break
-    } else if (!hasClass(tempCellElem, 'col__group')) {
-      fixedOffsetWidth += tempCellElem.offsetWidth
-    }
-
-    tempCellElem = tempCellElem[siblingProp]
-  }
-
-  return fixedOffsetWidth
 }
 
 function updateResizableToolbar($table) {
@@ -344,20 +312,12 @@ function updateResizableToolbar($table) {
   }
 }
 
-function modifyTableColumn({ fixedColumn, fixedType, scrollXLoad, tableColumn }) {
-  if (scrollXLoad && fixedType) {
-    tableColumn = fixedColumn
-  }
-
-  return tableColumn
-}
-
 function renderTable(args) {
-  let { $table, _vm, allAlign, allColumnHeaderOverflow, allHeaderAlign, border, columnKey, fixedType } = args
+  let { $table, _vm, allAlign, allColumnHeaderOverflow, allHeaderAlign, border, columnKey } = args
   let { headerCellClassName, headerColumn, headerRowClassName, headerSuffixIconAbsolute } = args
   let { highlightCurrentColumn, isDragHeaderSorting, mouseConfig, overflowX, resizable, sortOpts } = args
   let { tableColumn, tableLayout, tableListeners } = args
-  let args1 = { $table, _vm, allAlign, allColumnHeaderOverflow, allHeaderAlign, border, columnKey, fixedType }
+  let args1 = { $table, _vm, allAlign, allColumnHeaderOverflow, allHeaderAlign, border, columnKey }
 
   Object.assign(args1, { headerCellClassName, headerColumn, headerRowClassName, headerSuffixIconAbsolute })
   Object.assign(args1, { highlightCurrentColumn, isDragHeaderSorting, mouseConfig })
@@ -380,11 +340,11 @@ function renderTable(args) {
   )
 }
 
-const documentOnmouseup = function ({ oldMousemove, oldMouseup, column, isRightFixed, dragPosLeft, dragLeft, resizeBarElem, $table, params }) {
+const documentOnmouseup = function ({ oldMousemove, oldMouseup, column, dragPosLeft, dragLeft, resizeBarElem, $table, params }) {
   document.onmousemove = oldMousemove
   document.onmouseup = oldMouseup
 
-  let resizeWidth = column.renderWidth + (isRightFixed ? dragPosLeft - dragLeft : dragLeft - dragPosLeft)
+  let resizeWidth = column.renderWidth + dragLeft - dragPosLeft
   resizeWidth = typeof resizeWidth === 'number' ? resizeWidth : parseInt(resizeWidth, 10) || 40
   column.resizeWidth = resizeWidth < 40 ? 40 : resizeWidth
 
@@ -393,7 +353,7 @@ const documentOnmouseup = function ({ oldMousemove, oldMouseup, column, isRightF
   Object.assign($table, { _isResize: false, _lastResizeTime: Date.now() })
 
   $table.analyColumnWidth()
-  $table.recalculate(true)
+  $table.recalculate()
   updateResizableToolbar($table)
   emitEvent($table, 'resizable-change', [params])
 }
@@ -403,7 +363,6 @@ export default {
   props: {
     collectColumn: Array,
     fixedColumn: Array,
-    fixedType: String,
     size: String,
     isGroup: Boolean,
     tableColumn: Array,
@@ -421,9 +380,9 @@ export default {
     }
   },
   mounted() {
-    let { $el, $parent: $table, $refs, fixedType } = this
+    let { $el, $parent: $table, $refs } = this
     let elemStore = $table.elemStore
-    let keyPrefix = `${fixedType || 'main'}-header-`
+    let keyPrefix = 'main-header-'
 
     elemStore[`${keyPrefix}wrapper`] = $el
     elemStore[`${keyPrefix}table`] = $refs.table
@@ -436,16 +395,14 @@ export default {
     this.uploadColumn()
   },
   render() {
-    let { $parent: $table, fixedColumn, fixedType, headerColumn, tableColumn } = this
+    let { $parent: $table, headerColumn, tableColumn } = this
     let { align: allAlign, border, columnKey, headerAlign: allHeaderAlign } = $table
     let { headerCellClassName, headerRowClassName, headerSuffixIconAbsolute } = $table
     let { highlightCurrentColumn, isDragHeaderSorting, mouseConfig = {}, overflowX } = $table
-    let { resizable, scrollXLoad, showHeaderOverflow: allColumnHeaderOverflow } = $table
+    let { resizable, showHeaderOverflow: allColumnHeaderOverflow } = $table
     let { sortOpts, tableLayout, tableListeners } = $table
-    // 横向滚动渲染
-    tableColumn = modifyTableColumn({ fixedColumn, fixedType, scrollXLoad, tableColumn })
 
-    let args = { $table, _vm: this, allAlign, allColumnHeaderOverflow, allHeaderAlign, border, columnKey, fixedType }
+    let args = { $table, _vm: this, allAlign, allColumnHeaderOverflow, allHeaderAlign, border, columnKey }
 
     Object.assign(args, { headerCellClassName, headerColumn, headerRowClassName, headerSuffixIconAbsolute })
     Object.assign(args, { highlightCurrentColumn, isDragHeaderSorting, mouseConfig, overflowX, resizable, sortOpts })
@@ -454,37 +411,31 @@ export default {
     return h(
       'div',
       {
-        class: ['tiny-grid__header-wrapper', fixedType ? `fixed-${fixedType}__wrapper` : 'body__wrapper']
+        class: ['tiny-grid__header-wrapper', 'body__wrapper']
       },
-      [
-        renderXSpace({ fixedType }),
+      [ // 表格主体内容x轴方向虚拟滚动条占位元素，在表头中属于无效元素，待删除
+        renderXSpace(),
         renderTable(args),
-        // 其他
+        // x轴方向虚拟滚动适配线
         renderRepair()
       ]
     )
   },
   methods: {
     uploadColumn() {
-      this.headerColumn = this.isGroup ? convertToRows(this.collectColumn) : [this.$parent.scrollXLoad && this.fixedType ? this.fixedColumn : this.tableColumn]
+      this.headerColumn = this.isGroup ? convertToRows(this.collectColumn) : [this.tableColumn]
     },
     resizeMousedown(event, params) {
-      let { $el, $parent: $table, fixedType } = this
+      let { $el, $parent: $table } = this
       let { clientX: dragClientX, target: dragBtnElem } = event
       let { column } = params
       let { dragLeft = 0, minInterval = 36, fixedOffsetWidth = 0 } = {}
-      let { leftContainer, resizeBar: resizeBarElem, rightContainer, tableBody } = $table.$refs
+      let { resizeBar: resizeBarElem, tableBody } = $table.$refs
       let { cell = dragBtnElem.parentNode, dragBtnWidth = dragBtnElem.clientWidth } = {}
       let { pos = getOffsetPos(dragBtnElem, $el), tableBodyElem = tableBody.$el } = {}
       let dragMinLeft = pos.left - cell.clientWidth + dragBtnWidth + minInterval
       let dragPosLeft = pos.left + Math.floor(dragBtnWidth / 2)
-      let { isRightFixed = fixedType === 'right', isLeftFixed = fixedType === 'left' } = {}
       let { oldMousemove = document.onmousemove, oldMouseup = document.onmouseup } = {}
-
-      if (isLeftFixed || isRightFixed) {
-        fixedOffsetWidth = computeFixedOffsetWidth({ fixedOffsetWidth, isLeftFixed, cell })
-        dragPosLeft = computeDragPosLeft({ dragPosLeft, fixedOffsetWidth, isRightFixed, rightContainer })
-      }
 
       // 处理拖动事件
       let handleMousemoveEvent = function (event) {
@@ -492,9 +443,9 @@ export default {
         event.preventDefault()
 
         let { offsetX = event.clientX - dragClientX, left = offsetX + dragPosLeft } = {}
-        let scrollLeft = fixedType ? 0 : tableBodyElem.scrollLeft
-        let args = { cell, dragMinLeft, dragPosLeft, fixedOffsetWidth, isLeftFixed, isRightFixed }
-        Object.assign(args, { left, leftContainer, minInterval, rightContainer, tableBodyElem })
+        let scrollLeft = tableBodyElem.scrollLeft
+        let args = { cell, dragMinLeft, dragPosLeft, fixedOffsetWidth }
+        Object.assign(args, { left, minInterval, tableBodyElem })
 
         let ret = computeDragLeft(args)
         left = ret.left
@@ -509,7 +460,7 @@ export default {
 
       document.onmousemove = handleMousemoveEvent
       document.onmouseup = () => {
-        documentOnmouseup({ oldMousemove, oldMouseup, column, isRightFixed, dragPosLeft, dragLeft, resizeBarElem, $table, params })
+        documentOnmouseup({ oldMousemove, oldMouseup, column, dragPosLeft, dragLeft, resizeBarElem, $table, params })
       }
       handleMousemoveEvent(event)
     }

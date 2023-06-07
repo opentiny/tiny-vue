@@ -24,9 +24,16 @@ export default defineComponent({
     return setup({ props, context, renderless, api, h })
   },
   render() {
-    const { type, size, hit, effect, slots, closable, color, handleClose, handleClick } = this
+    const { type, size, hit, effect, slots, closable, color, handleClose, handleClick, disabled } = this
 
-    const classes = ['tiny-tag', type ? `tiny-tag--${type}` : '', size ? `tiny-tag--${size}` : '', effect ? `tiny-tag--${effect}` : '', hit && 'is-hit']
+    const classes = [
+      'tiny-tag',
+      type ? `tiny-tag--${type}` : '',
+      size ? `tiny-tag--${size}` : '',
+      effect ? `tiny-tag--${effect}` : '',
+      hit && 'is-hit',
+      disabled ? 'is-disabled' : ''
+    ]
 
     const tagElement = (
       <span class={classes} style={{ backgroundColor: color }} onClick={handleClick}>

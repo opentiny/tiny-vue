@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc'
+import template from 'virtual-template?pc|mobile-first'
 
 export default defineComponent({
   name: $prefix + 'Tag',
@@ -19,9 +19,17 @@ export default defineComponent({
     hit: Boolean,
     text: String,
     type: String,
+    theme: String,
     size: String,
     color: String,
     closable: Boolean,
+    operable: Boolean,
+    disabled: Boolean,
+    selectable: Boolean,
+    customClass: {
+      type: String,
+      default: ''
+    },
     effect: {
       type: String,
       default: 'light',

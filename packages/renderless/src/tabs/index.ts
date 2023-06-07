@@ -50,24 +50,25 @@ export const calcPaneInstances = ({ constants, parent, state, childrenHandler })
 }
 
 /* istanbul ignore */
-export const calcMorePanes = ({ parent, props, state }) => () => {
+export const calcMorePanes = ({ parent, props, state, refs }) => () => {
   if (!props.showMoreTabs) {
     return
   }
 
   const el = parent.$el
+
   const tabs = el.querySelectorAll('.tiny-tabs__item')
+  const navRef = refs.nav.$refs
+  const NavWidth = navRef.nav.offsetWidth || 0
+  const tabsHeaderWidth = navRef.navScroll.offsetWidth || 0
 
-  if (tabs && tabs.length) {
-    const tabsHeaderWidth = el.querySelector('.tiny-tabs__nav-scroll').clientWidth + 15
-    let tabsAllWidth = 0
-
-    for (let i = 0, length = tabs.length; i < length; i++) {
-      const width = tabs[i].offsetWidth
-
-      tabsAllWidth += width
-
-      if (tabsAllWidth > tabsHeaderWidth) {
+  // 判断标签列表是否超出
+  if (NavWidth > tabsHeaderWidth) {
+    // item可能长度不一，只能累加
+    for (let i = 0; i < tabs.length; i++) {
+      // 遮住item元素一半则隐藏
+      const isHiddenWidth = tabs[i].offsetLeft + tabs[i].offsetWidth / 2
+      if (isHiddenWidth > tabsHeaderWidth) {
         state.showPanesCount = i
         break
       }
@@ -92,7 +93,6 @@ export const handleTabClick = ({ api, emit, props, refs }) => (pane, tabName, ev
     return
   }
 
-  event.stopPropagation()
   api.setCurrentName(tabName)
 
   emit('click', pane, event)

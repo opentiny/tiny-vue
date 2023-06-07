@@ -13,7 +13,7 @@
       :limit="3"
       :file-list="fileList"
     >
-      <tiny-button type="primary">点击上传</tiny-button>
+      <tiny-button type="primary"> 点击上传 </tiny-button>
     </tiny-file-upload>
   </div>
 </template>
@@ -47,7 +47,7 @@ export default {
       message('触发删除文件回调事件')
     },
     handlePreview(file) {
-      window.tinyLog(file.url)
+      message(file.url)
     },
     progressEvent() {
       message('文件上传时的回调 返回进程')

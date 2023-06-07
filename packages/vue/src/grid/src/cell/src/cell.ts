@@ -29,7 +29,7 @@ import { Renderer } from '../../adapter'
 import { getCellLabel } from '../../tools'
 import GLOBAL_CONFIG from '../../config'
 import { hooks } from '@opentiny/vue-common'
-import { iconCheckedSur, iconHalfselect } from '@opentiny/vue-icon'
+import { iconCheckedSur, iconMobileCheckboxHalf } from '@opentiny/vue-icon'
 import { getTableCellKey } from '../../table/src/strategy'
 
 const insertedField = GLOBAL_CONFIG.constant.insertedField
@@ -191,7 +191,7 @@ const getSelectVnodes = ({ h, vSize, headerCheckDisabled, isIndeterminate, optio
           })
           : '',
         isIndeterminate
-          ? h(iconHalfselect(), {
+          ? h(iconMobileCheckboxHalf(), {
             class: ['tiny-svg-size', 'icon-half-select']
           })
           : ''
@@ -217,12 +217,11 @@ const getSelectCellVnodes = ({ indeterminate, h, isDisabled, vSize, labelField, 
     [
       h('input', options),
       h('span', { class: 'tiny-grid-checkbox__icon' }, [
-        h(iconCheckedSur(), { class: ['tiny-svg-size', 'icon-checked-sur'] }),
         indeterminate
-          ? h(iconHalfselect(), {
+          ? h(iconMobileCheckboxHalf(), {
             class: ['tiny-svg-size', 'icon-half-select']
           })
-          : ''
+          : h(iconCheckedSur(), { class: ['tiny-svg-size', 'icon-checked-sur'] })
       ]),
       labelField ? h('span', { class: 'tiny-grid-checkbox__label' }, get(row, labelField)) : null
     ]
@@ -247,7 +246,7 @@ const getSelectCellByProsVnodes = ({ h, vSize, indeterminate, isDisabled, option
       h('span', { class: 'tiny-grid-checkbox__icon' }, [
         !indeterminate
           ? ''
-          : h(iconHalfselect(), {
+          : h(iconMobileCheckboxHalf(), {
             class: ['tiny-svg-size', 'icon-half-select']
           }),
         h(iconCheckedSur(), { class: ['tiny-svg-size', 'icon-checked-sur'] })
@@ -312,8 +311,7 @@ export const Cell = {
       return [title(h, params)]
     }
 
-    // 在 v3.0 中废弃 label
-    return [formatText(getFuncText(own.title || own.label), 1)]
+    return [formatText(getFuncText(own.title), 1)]
   },
   renderCell(h, params) {
     let { $table, row, column } = params
@@ -436,7 +434,6 @@ export const Cell = {
     let {
       $table,
       column: { slots },
-      isHidden,
       row
     } = params
     let { radioConfig = {}, selectRow, vSize } = $table
@@ -450,15 +447,13 @@ export const Cell = {
       name: `tiny-grid-radio__${$table.id}`,
       type: 'radio'
     }
-    if (!isHidden && checkMethod) {
+    if (checkMethod) {
       options.attrs.disabled = disabled = !checkMethod(params)
     }
-    if (!isHidden) {
-      options.domProps = { checked: row === selectRow }
-      options.on = {
-        change(event) {
-          $table.triggerRadioRowEvent(event, params)
-        }
+    options.domProps = { checked: row === selectRow }
+    options.on = {
+      change(event) {
+        $table.triggerRadioRowEvent(event, params)
       }
     }
     const map = {
@@ -482,7 +477,7 @@ export const Cell = {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderRadioCell(h, params))
   },
   renderSelectionHeader(h, params) {
-    let { $table, column, isHidden } = params
+    let { $table, column } = params
     let { slots, own } = column
     let { headerCheckDisabled, isAllSelected, isIndeterminate, selectConfig, vSize } = $table
     let headerTitle = own.title || own.label
@@ -493,16 +488,14 @@ export const Cell = {
     if (isCheckStrictly(selectConfig)) {
       return []
     }
-    if (!isHidden) {
-      options.domProps = {
-        disabled: headerCheckDisabled,
-        checked: isAllSelected && !headerCheckDisabled
-      }
-      options.on = {
-        change(event) {
-          $table.triggerCheckAllEvent(event, event.target.checked)
-          $table.showSelectToolbar()
-        }
+    options.domProps = {
+      disabled: headerCheckDisabled,
+      checked: isAllSelected && !headerCheckDisabled
+    }
+    options.on = {
+      change(event) {
+        $table.triggerCheckAllEvent(event, event.target.checked)
+        $table.showSelectToolbar()
       }
     }
     let vnode = getSelectVnodes({
@@ -517,7 +510,7 @@ export const Cell = {
     return [vnode]
   },
   renderSelectionCell(h, params) {
-    let { $table, column, isHidden, row } = params
+    let { $table, column, row } = params
     let { slots } = column
     let { selectConfig = {}, treeConfig, treeIndeterminates, vSize } = $table
     let { labelField, checkMethod } = selectConfig
@@ -526,15 +519,13 @@ export const Cell = {
     if (slots && slots.default) {
       return slots.default(params, h)
     }
-    if (!isHidden) {
-      checkMethod && (options.attrs.disabled = isDisabled = !checkMethod(params))
-      treeConfig && (indeterminate = ~treeIndeterminates.indexOf(row))
-      options.domProps = { checked: ~$table.selection.indexOf(row) }
-      options.on = {
-        change(event) {
-          $table.triggerCheckRowEvent(event, params, event.target.checked)
-          $table.showSelectToolbar()
-        }
+    checkMethod && (options.attrs.disabled = isDisabled = !checkMethod(params))
+    treeConfig && (indeterminate = ~treeIndeterminates.indexOf(row))
+    options.domProps = { checked: ~$table.selection.indexOf(row) }
+    options.on = {
+      change(event) {
+        $table.triggerCheckRowEvent(event, params, event.target.checked)
+        $table.showSelectToolbar()
       }
     }
     let vnode = getSelectCellVnodes({
@@ -552,7 +543,7 @@ export const Cell = {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderSelectionCell(h, params))
   },
   renderSelectionCellByProp(h, params) {
-    let { $table, column, isHidden, row } = params
+    let { $table, column, row } = params
     let { slots } = column
     let { selectConfig = {}, treeConfig, treeIndeterminates, vSize } = $table
     let { checkField: property, checkMethod, labelField } = selectConfig
@@ -563,14 +554,12 @@ export const Cell = {
       return slots.default(params, h)
     }
 
-    if (!isHidden) {
-      checkMethod && (options.attrs.disabled = isDisabled = !checkMethod(params))
-      treeConfig && (indeterminate = ~treeIndeterminates.indexOf(row))
-      options.domProps = { checked: get(row, property) }
-      options.on = {
-        change(event) {
-          $table.triggerCheckRowEvent(event, params, event.target.checked)
-        }
+    checkMethod && (options.attrs.disabled = isDisabled = !checkMethod(params))
+    treeConfig && (indeterminate = ~treeIndeterminates.indexOf(row))
+    options.domProps = { checked: get(row, property) }
+    options.on = {
+      change(event) {
+        $table.triggerCheckRowEvent(event, params, event.target.checked)
       }
     }
 
@@ -583,15 +572,13 @@ export const Cell = {
   },
   // 展开行
   renderExpandCell(h, params) {
-    let { $table, isHidden, row } = params
+    let { $table, row } = params
     let { expandConfig = {} } = $table
     let expandMethod = expandConfig.activeMethod
     let hideExpand = typeof expandMethod === 'function' ? expandMethod(row) : true
     let expandActive = false
 
-    if (!isHidden) {
-      expandActive = $table.expandeds.includes(params.row)
-    }
+    expandActive = $table.expandeds.includes(params.row)
 
     const map = {
       expandActive: 'expand__active'

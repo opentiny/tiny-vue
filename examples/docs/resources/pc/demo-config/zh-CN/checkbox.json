@@ -1,1 +1,130 @@
-[{"title":"基本用法","content":"详细用法参考如下示例","link":"checkbox/basic-usage","component":" Checkbox 复选框","findIntroStr":"用于配置不同场景的选项，提供用户可在一组选项中进行多选。","demoId":"basic-usage"},{"title":"复选框组","content":"<p>通过 <code>checkbox-group</code> 元素把多个 <code>checkbox</code> 元素管理为一组，在 <code>checkbox-group</code> 中使用 <code>v-model</code> 绑定 Array 类型的变量即可实现双向绑定。 <code>checkbox</code> 的 <code>label</code> 属性是其对应的值，若该标签中无内容，则该属性也充当 checkbox 后的介绍。<code>label</code> 与数组中的元素值相对应，如果存在指定的值则为选中状态，否则为不选中。</p>\n","link":"checkbox/checkbox-group","component":" Checkbox 复选框","findIntroStr":"用于配置不同场景的选项，提供用户可在一组选项中进行多选。","demoId":"checkbox-group"},{"title":"配置式复选框组","content":"<p>提供 <code>options</code> 属性，支持通过配置对象数组数据的形式来渲染多选框组。使用该属性后，可以不用再在标签中以插槽的形式插入 <code>checkbox</code> 或 <code>checkbox-button</code> 元素。\n\n<code>options</code> 对象数组中包括三个字段：<code>label</code>、<code>text</code>、<code>events</code>。\n\n另外还提供 <code>type</code> 属性，配合 <code>options</code> 属性一起使用，默认值为 <code>checkbox</code>。还可以配置为 <code>button</code>，配置后复选框组将以按钮的形式展示。</p>\n","link":"checkbox/group-options","component":" Checkbox 复选框","findIntroStr":"用于配置不同场景的选项，提供用户可在一组选项中进行多选。","demoId":"group-options"},{"title":"全选与半选","content":"<p>在 <code>checkbox</code> 元素中配置 <code>indeterminate</code> 属性为 true 后，勾选框将展示为半选的样式。</p>\n","link":"checkbox/indeterminate","component":" Checkbox 复选框","findIntroStr":"用于配置不同场景的选项，提供用户可在一组选项中进行多选。","demoId":"indeterminate"},{"title":"可选数量限制","content":"<p>在 <code>checkbox-group</code> 上可通过 <code>min</code>、<code>max</code> 属性指定可勾选项目的最小、最大值。</p>\n","link":"checkbox/min-max","component":" Checkbox 复选框","findIntroStr":"用于配置不同场景的选项，提供用户可在一组选项中进行多选。","demoId":"min-max"},{"title":"当前是否勾选","content":"<p>在 <code>checked</code> 当前是否勾选，通过 <code>disabled</code> 设置组件是否禁用。</p>\n","link":"checkbox/checked","component":" Checkbox 复选框","findIntroStr":"用于配置不同场景的选项，提供用户可在一组选项中进行多选。","demoId":"checked"},{"title":"按钮形式复选框","content":"<p>在 <code>checkbox-group</code> 元素中嵌入 <code>checkbox-button</code> 即可实现按钮形式的复选框组。\n通过 <code>fill</code> 按钮形式的 Checkbox 激活时的填充色和边框色，默认值为：#409EFF。</p>\n","link":"checkbox/checkbox-button","component":" Checkbox 复选框","findIntroStr":"用于配置不同场景的选项，提供用户可在一组选项中进行多选。","demoId":"checkbox-button"},{"title":"垂直布局","content":"<p>在 <code>checkbox-group</code> 元素上设置 <code>vertical</code> 为 true，则其管理的 <code>checkbox-button</code> 或 <code>checkbox</code> 将展示为垂直布局。</p>\n","link":"checkbox/vertical-checkbox","component":" Checkbox 复选框","findIntroStr":"用于配置不同场景的选项，提供用户可在一组选项中进行多选。","demoId":"vertical-checkbox"},{"title":"动态生成复选框组","content":"<p>复选框组所需数据可通过请求服务从后台取得，然后动态生成。</p>\n","link":"checkbox/dynamic-create-checkbox","component":" Checkbox 复选框","findIntroStr":"用于配置不同场景的选项，提供用户可在一组选项中进行多选。","demoId":"dynamic-create-checkbox"},{"title":"内容超出时的提示信息","content":"<p>若复选框后的介绍文字超出时，可以通过 Tooltip 组件增加提示信息，鼠标悬停时可提示所有内容。\n\n在 <code>checkbox</code> 元素上配置 <code>border</code> 属性为 true，可显示边框。</p>\n","link":"checkbox/content-overflow","component":" Checkbox 复选框","findIntroStr":"用于配置不同场景的选项，提供用户可在一组选项中进行多选。","demoId":"content-overflow"},{"title":"文本","content":"<p>在 <code>text</code> 属性设置文本内容\n通过 <code>true-label</code> 设置选中的值， <code>false-label</code> 设置未选中的值。</p>\n","link":"checkbox/text","component":" Checkbox 复选框","findIntroStr":"用于配置不同场景的选项，提供用户可在一组选项中进行多选。","demoId":"text"},{"title":"文本选择","content":"<p>通过 <code>true-label</code> 设置选中的值， <code>false-label</code> 设置未选中的值。</p>\n","link":"checkbox/button-chek-box","component":" Checkbox 复选框","findIntroStr":"用于配置不同场景的选项，提供用户可在一组选项中进行多选。","demoId":"button-chek-box"},{"title":"尺寸","content":"<p>当复选框为按钮形式时，通过 <code>size</code> 属性可以设置按钮复选框的尺寸，可选项有 medium、small、mini。\n\n在 <code>checkbox-button</code> 上设置 <code>disabled</code> 属性，将禁用某一个复选按钮，若在 <code>checkbox-group</code> 标签上配置 <code>disabled</code> 属性，则禁用所有复选按钮。</p>\n","link":"checkbox/with-border","component":" Checkbox 复选框","findIntroStr":"用于配置不同场景的选项，提供用户可在一组选项中进行多选。","demoId":"with-border"},{"title":"事件","content":"<p>勾选值改变后将触发 <code>change</code> 事件。</p>\n","link":"checkbox/checkbox-events","component":" Checkbox 复选框","findIntroStr":"用于配置不同场景的选项，提供用户可在一组选项中进行多选。","demoId":"checkbox-events"},{"title":"插槽","content":"<p>Checkbox 的内容</p>\n","link":"checkbox/checkbox-slot","component":" Checkbox 复选框","findIntroStr":"用于配置不同场景的选项，提供用户可在一组选项中进行多选。","demoId":"checkbox-slot"}]
+[
+  {
+    "title": "基本用法",
+    "content": "详细用法参考如下示例",
+    "link": "checkbox/basic-usage",
+    "component": " Checkbox 复选框",
+    "findIntroStr": "用于配置不同场景的选项，提供用户可在一组选项中进行多选。",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "复选框组和垂直复选框组",
+    "content": "<p>通过 <code>checkbox-group</code> 元素把多个 <code>checkbox</code> 元素管理为一组，在 <code>checkbox-group</code> 中使用 <code>v-model</code> 绑定 Array 类型的变量即可实现双向绑定。 <code>checkbox</code> 的 <code>label</code> 属性是其对应的值，若该标签中无内容，则该属性也充当 checkbox 后的介绍。<code>label</code> 与数组中的元素值相对应，如果存在指定的值则为选中状态，否则为不选中。</p>\n",
+    "link": "checkbox/checkbox-group",
+    "component": " Checkbox 复选框",
+    "findIntroStr": "用于配置不同场景的选项，提供用户可在一组选项中进行多选。",
+    "demoId": "checkbox-group"
+  },
+  {
+    "title": "配置式复选框组",
+    "content": "<p>提供 <code>options</code> 属性，支持通过配置对象数组数据的形式来渲染多选框组。使用该属性后，可以不用再在标签中以插槽的形式插入 <code>checkbox</code> 或 <code>checkbox-button</code> 元素。\n\n<code>options</code> 对象数组中包括三个字段：<code>label</code>、<code>text</code>、<code>events</code>。\n\n另外还提供 <code>type</code> 属性，配合 <code>options</code> 属性一起使用，默认值为 <code>checkbox</code>。还可以配置为 <code>button</code>，配置后复选框组将以按钮的形式展示。</p>\n",
+    "link": "checkbox/group-options",
+    "component": " Checkbox 复选框",
+    "findIntroStr": "用于配置不同场景的选项，提供用户可在一组选项中进行多选。",
+    "demoId": "group-options"
+  },
+  {
+    "title": "全选与半选",
+    "content": "<p>在 <code>checkbox</code> 元素中配置 <code>indeterminate</code> 属性为 true 后，勾选框将展示为半选的样式。</p>\n",
+    "link": "checkbox/indeterminate",
+    "component": " Checkbox 复选框",
+    "findIntroStr": "用于配置不同场景的选项，提供用户可在一组选项中进行多选。",
+    "demoId": "indeterminate"
+  },
+  {
+    "title": "可选数量限制",
+    "content": "<p>在 <code>checkbox-group</code> 上可通过 <code>min</code>、<code>max</code> 属性指定可勾选项目的最小、最大值。</p>\n",
+    "link": "checkbox/min-max",
+    "component": " Checkbox 复选框",
+    "findIntroStr": "用于配置不同场景的选项，提供用户可在一组选项中进行多选。",
+    "demoId": "min-max"
+  },
+  {
+    "title": "当前是否勾选",
+    "content": "<p>在 <code>checked</code> 当前是否勾选，通过 <code>disabled</code> 设置组件是否禁用。</p>\n",
+    "link": "checkbox/checked",
+    "component": " Checkbox 复选框",
+    "findIntroStr": "用于配置不同场景的选项，提供用户可在一组选项中进行多选。",
+    "demoId": "checked"
+  },
+  {
+    "title": "按钮形式复选框",
+    "content": "<p>在 <code>checkbox-group</code> 元素中嵌入 <code>checkbox-button</code> 即可实现按钮形式的复选框组。\n通过 <code>fill</code> 按钮形式的 Checkbox 激活时的填充色和边框色，默认值为：#409EFF。</p>\n",
+    "link": "checkbox/checkbox-button",
+    "component": " Checkbox 复选框",
+    "findIntroStr": "用于配置不同场景的选项，提供用户可在一组选项中进行多选。",
+    "demoId": "checkbox-button"
+  },
+  {
+    "title": "垂直布局",
+    "content": "<p>在 <code>checkbox-group</code> 元素上设置 <code>vertical</code> 为 true，则其管理的 <code>checkbox-button</code> 或 <code>checkbox</code> 将展示为垂直布局。</p>\n",
+    "link": "checkbox/vertical-checkbox",
+    "component": " Checkbox 复选框",
+    "findIntroStr": "用于配置不同场景的选项，提供用户可在一组选项中进行多选。",
+    "demoId": "vertical-checkbox"
+  },
+  {
+    "title": "动态生成复选框组",
+    "content": "<p>复选框组所需数据可通过请求服务从后台取得，然后动态生成。</p>\n",
+    "link": "checkbox/dynamic-create-checkbox",
+    "component": " Checkbox 复选框",
+    "findIntroStr": "用于配置不同场景的选项，提供用户可在一组选项中进行多选。",
+    "demoId": "dynamic-create-checkbox"
+  },
+  {
+    "title": "内容超出时的提示信息",
+    "content": "<p>若复选框后的介绍文字超出时，可以通过 Tooltip 组件增加提示信息，鼠标悬停时可提示所有内容。\n\n在 <code>checkbox</code> 元素上配置 <code>border</code> 属性为 true，可显示边框。</p>\n",
+    "link": "checkbox/content-overflow",
+    "component": " Checkbox 复选框",
+    "findIntroStr": "用于配置不同场景的选项，提供用户可在一组选项中进行多选。",
+    "demoId": "content-overflow"
+  },
+  {
+    "title": "文本",
+    "content": "<p>在 <code>text</code> 属性设置文本内容\n通过 <code>true-label</code> 设置选中的值， <code>false-label</code> 设置未选中的值。</p>\n",
+    "link": "checkbox/text",
+    "component": " Checkbox 复选框",
+    "findIntroStr": "用于配置不同场景的选项，提供用户可在一组选项中进行多选。",
+    "demoId": "text"
+  },
+  {
+    "title": "文本选择",
+    "content": "<p>通过 <code>true-label</code> 设置选中的值， <code>false-label</code> 设置未选中的值。</p>\n",
+    "link": "checkbox/button-chek-box",
+    "component": " Checkbox 复选框",
+    "findIntroStr": "用于配置不同场景的选项，提供用户可在一组选项中进行多选。",
+    "demoId": "button-chek-box"
+  },
+  {
+    "title": "尺寸",
+    "content": "<p>当复选框为按钮形式时，通过 <code>size</code> 属性可以设置按钮复选框的尺寸，可选项有 medium、small、mini。\n\n在 <code>checkbox-button</code> 上设置 <code>disabled</code> 属性，将禁用某一个复选按钮，若在 <code>checkbox-group</code> 标签上配置 <code>disabled</code> 属性，则禁用所有复选按钮。</p>\n",
+    "link": "checkbox/with-border",
+    "component": " Checkbox 复选框",
+    "findIntroStr": "用于配置不同场景的选项，提供用户可在一组选项中进行多选。",
+    "demoId": "with-border"
+  },
+  {
+    "title": "事件",
+    "content": "<p>勾选值改变后将触发 <code>change</code> 事件。</p>\n",
+    "link": "checkbox/checkbox-events",
+    "component": " Checkbox 复选框",
+    "findIntroStr": "用于配置不同场景的选项，提供用户可在一组选项中进行多选。",
+    "demoId": "checkbox-events"
+  },
+  {
+    "title": "插槽",
+    "content": "<p>Checkbox 的内容</p>\n",
+    "link": "checkbox/checkbox-slot",
+    "component": " Checkbox 复选框",
+    "findIntroStr": "用于配置不同场景的选项，提供用户可在一组选项中进行多选。",
+    "demoId": "checkbox-slot"
+  },
+  {
+    "title": "多行按钮",
+    "content": "<p>多行按钮组，超出最大宽度后，换行显示</p>\n",
+    "link": "checkbox/checkbox-button-multiple",
+    "component": "Checkbox check box",
+    "findIntroStr": "多行按钮",
+    "demoId": "checkbox-button-multiple"
+  }
+]

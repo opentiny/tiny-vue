@@ -195,6 +195,13 @@
       "type": "String",
       "desc": "自定义配置弹窗类名",
       "defaultValue": ""
+    },
+    {
+      "name": "auto-lookup",
+      "sample": "auto-lookup",
+      "type": "Boolean",
+      "desc": "设置初始化不请求数据",
+      "defaultValue": "true"
     }
   ],
   "slots": [

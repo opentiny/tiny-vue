@@ -10,6 +10,7 @@
  *
  */
 
+import iconPromptExclamation from './src/prompt-exclamation'
 import iconAdd from './src/add'
 import iconAdministrator from './src/administrator'
 import iconAlignBaseline from './src/align-baseline'
@@ -25,6 +26,7 @@ import iconAngularjs from './src/angularjs'
 import iconApp from './src/app'
 import iconApplication from './src/application'
 import iconAreaChart from './src/area-chart'
+import iconArrowBottom from './src/arrow-bottom'
 import iconArrowDown from './src/arrow-down'
 import iconArrowLeft from './src/arrow-left'
 import iconArrowRight from './src/arrow-right'
@@ -201,6 +203,7 @@ import iconLineHeight from './src/line-height'
 import iconLineThrought from './src/line-throught'
 import iconLink from './src/link'
 import iconLoading from './src/loading'
+import IconLoadingShadow from './src/loading-shadow'
 import iconLock from './src/lock'
 import iconMailContent from './src/mail-content'
 import iconMail from './src/mail'
@@ -320,8 +323,64 @@ import iconWriting from './src/writing'
 import iconYes from './src/yes'
 import iconZoomIn from './src/zoom-in'
 import iconZoomOut from './src/zoom-out'
+import iconMobileRadio from './src/mobile-radio'
+import iconMobileRadioSelected from './src/mobile-radio-selected'
+import iconMobileCheckbox from './src/mobile-checkbox'
+import iconMobileCheckboxHalf from './src/mobile-checkbox-half'
+import iconMobileCheckboxSelected from './src/mobile-checkbox-selected'
+import iconAudio from './src/audio'
+import iconMic from './src/mic'
+import iconExcelType from './src/excel-type'
+import iconFileType from './src/file-type'
+import iconOtherType from './src/other-type'
+import iconPdfType from './src/pdf-type'
+import iconPictureType from './src/picture-type'
+import iconPptType from './src/ppt-type'
+import iconTextType from './src/text-type'
+import iconVideoType from './src/video-type'
+import iconWordType from './src/word-type'
+import iconZipType from './src/zip-type'
+
+// new design
+import iconPrompt from './src/prompt'
+import iconExpand from './src/expand'
+import iconPutAway from './src/put-away'
+import iconStretch from './src/stretch'
+import iconAddCircle from './src/add-circle'
+import iconUpWard from './src/up-ward'
+import iconDownWard from './src/down-ward'
+import iconLeftWardArrow from './src/left-ward-arrow'
+import iconSortTriangle from './src/sort-triangle'
+import iconSortTriangleAscending from './src/sort-triangle-ascending'
+import iconSortTriangleDescending from './src/sort-triangle-descending'
 
 export {
+  iconSortTriangle,
+  iconSortTriangleAscending,
+  iconSortTriangleDescending,
+  iconPromptExclamation,
+  iconPrompt,
+  iconExpand,
+  iconPutAway,
+  iconStretch,
+  iconAddCircle,
+  iconAudio,
+  iconMic,
+  iconExcelType,
+  iconFileType,
+  iconOtherType,
+  iconPdfType,
+  iconPictureType,
+  iconPptType,
+  iconTextType,
+  iconVideoType,
+  iconWordType,
+  iconZipType,
+  iconMobileCheckbox,
+  iconMobileCheckboxHalf,
+  iconMobileCheckboxSelected,
+  iconMobileRadio,
+  iconMobileRadioSelected,
   iconAdd,
   iconAdministrator,
   iconAlignBaseline,
@@ -337,6 +396,7 @@ export {
   iconApp,
   iconApplication,
   iconAreaChart,
+  iconArrowBottom,
   iconArrowDown,
   iconArrowLeft,
   iconArrowRight,
@@ -407,6 +467,7 @@ export {
   iconDoubleRight,
   iconDownO,
   iconDown,
+  iconDownWard,
   iconDownloadCloud,
   iconDownloadLink,
   iconDownload,
@@ -513,7 +574,9 @@ export {
   iconLineThrought,
   iconLink,
   iconLoading,
+  IconLoadingShadow,
   iconLock,
+  iconLeftWardArrow,
   iconMailContent,
   iconMail,
   iconMale,
@@ -619,6 +682,7 @@ export {
   iconUnsent,
   iconUpO,
   iconUp,
+  iconUpWard,
   iconUpload,
   iconUser,
   iconVersiontree,
@@ -634,6 +698,31 @@ export {
 }
 
 export default {
+  iconSortTriangle,
+  iconSortTriangleAscending,
+  iconSortTriangleDescending,
+  iconPrompt,
+  iconExpand,
+  iconPutAway,
+  iconStretch,
+  iconAddCircle,
+  iconAudio,
+  iconMic,
+  iconExcelType,
+  iconFileType,
+  iconOtherType,
+  iconPdfType,
+  iconPictureType,
+  iconPptType,
+  iconTextType,
+  iconVideoType,
+  iconWordType,
+  iconZipType,
+  iconMobileCheckbox,
+  iconMobileCheckboxHalf,
+  iconMobileCheckboxSelected,
+  iconMobileRadio,
+  iconMobileRadioSelected,
   iconAdd,
   iconAdministrator,
   iconAlignBaseline,
@@ -649,6 +738,7 @@ export default {
   iconApp,
   iconApplication,
   iconAreaChart,
+  iconArrowBottom,
   iconArrowDown,
   iconArrowLeft,
   iconArrowRight,
@@ -686,11 +776,11 @@ export default {
   iconConmentRefresh,
   iconCopySolid,
   iconCopy,
+  iconCrop,
   iconCourse,
   iconCueL,
   iconCustom,
   iconCustomerService,
-  iconCrop,
   iconDataSource,
   iconDefault,
   iconDefinedFiltration,
@@ -719,6 +809,7 @@ export default {
   iconDoubleRight,
   iconDownO,
   iconDown,
+  iconDownWard,
   iconDownloadCloud,
   iconDownloadLink,
   iconDownload,
@@ -788,6 +879,7 @@ export default {
   iconFrown,
   iconFullscreen,
   iconFullscreenLeft,
+  iconMinscreenLeft,
   iconGrade,
   iconGroupTransfer,
   iconGroup,
@@ -824,14 +916,15 @@ export default {
   iconLineThrought,
   iconLink,
   iconLoading,
+  IconLoadingShadow,
   iconLock,
+  iconLeftWardArrow,
   iconMailContent,
   iconMail,
   iconMale,
   iconMarkOn,
   iconMeh,
   iconMessageCircle,
-  iconMinscreenLeft,
   iconMinscreen,
   iconMinusCircle,
   iconMinusSquare,
@@ -931,6 +1024,7 @@ export default {
   iconUnsent,
   iconUpO,
   iconUp,
+  iconUpWard,
   iconUpload,
   iconUser,
   iconVersiontree,

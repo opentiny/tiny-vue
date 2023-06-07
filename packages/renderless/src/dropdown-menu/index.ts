@@ -10,7 +10,7 @@
 *
 */
 
-import userPopper from '@opentiny/vue-renderless/common/deps/vue-popper'
+import userPopper from '../common/deps/vue-popper'
 
 export const toggleItem = (state) => (active, item) => {
   if (item.disabled) {
@@ -144,4 +144,34 @@ export const useVuePopper = ({ api, props, hooks, instance, state }) => {
       popper.currentPlacement.value = value
     }
   )
+}
+
+export const mounted = ({ api, parent, state }) => () => {
+  parent.$on('menuselectedIndex', (selectedIndex) => {
+    state.selectedIndex = selectedIndex
+  })
+  parent.$on('menu-item-click', api.handleMenuItemClick)
+  parent.$on('mouseenter-tips', (showContent, label) => {
+    state.label = label
+    state.showContent = showContent
+  })
+  parent.$on('mouseleave-tips', (showContent, label) => {
+    state.label = label
+    state.showContent = showContent
+  })
+}
+
+export const handleMenuItemClick = ({ state, dispatch }) => (itemData, instance, label, showContent) => {
+  state.label = label
+  state.showContent = showContent
+
+  dispatch('TinyDropdown', 'current-item-click', [itemData, instance])
+}
+
+export const handleMouseenter = ({ emit }) => ($event) => {
+  emit('mouseenter', $event)
+}
+
+export const handleMouseleave = ({ emit }) => ($event) => {
+  emit('mouseleave', $event)
 }

@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc'
+import template from 'virtual-template?pc|mobile-first'
 
 const $constants = {
   NONE: 'none',
@@ -40,6 +40,26 @@ export default defineComponent({
     zIndex: {
       type: Number,
       default: $constants.DEFAULT_POPPER_ZINDEX
+    },
+    showIndex: {
+      type: Boolean,
+      default: false
+    },
+    showHover: {
+      type: Boolean,
+      default: false
+    },
+    previewVisible: {
+      type: Boolean,
+      default: false
+    },
+    round: {
+      type: Boolean,
+      default: false
+    },
+    imageSize: {
+      type: Number,
+      default: 100
     }
   },
   setup(props, context) {

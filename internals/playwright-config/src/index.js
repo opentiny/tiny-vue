@@ -25,8 +25,8 @@ const Config = ({ testDir, port, autoStart = false }) => ({
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  /* playwright 同时可以开启几个浏览器进行测试 */
+  workers: process.env.CI ? 1 : 2,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -56,7 +56,7 @@ const Config = ({ testDir, port, autoStart = false }) => ({
       use: {
         ...devices['Desktop Firefox']
       }
-    },
+    }
     // {
     //   name: 'webkit',
     //   use: {
@@ -97,9 +97,9 @@ const Config = ({ testDir, port, autoStart = false }) => ({
   // outputDir: 'test-results/',
 
   /* Run your local dev server before starting the tests */
-  webServer: autoStart ?
-      {
-      /**
+  webServer: autoStart
+    ? {
+        /**
        * Use the dev server by default for faster feedback loop.
        * Use the preview server on CI for more realistic testing.
       Playwright will re-use the local server if there is already a dev-server running.

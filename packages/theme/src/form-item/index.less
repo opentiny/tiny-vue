@@ -29,16 +29,22 @@
 .@{form-item-prefix-cls} {
   .component-css-vars-form-item();
 
-  margin-bottom: 12px;
+  font-family: var(--ti-common-font-family);
+  margin-bottom: var(--ti-form-item-margin-bottom-default);
   .clearfix();
 
   & & {
     margin-bottom: 0;
   }
 
-  &&--mini,
+  &&--mini {
+    margin-bottom: var(--ti-form-item-margin-bottom-mini);
+  }
   &&--small {
-    margin-bottom: 8px;
+    margin-bottom: var(--ti-form-item-margin-bottom-small);
+  }
+  &--medium {
+    margin-bottom: var(--ti-form-item-margin-bottom-medium);
   }
 
   &--medium &__label {
@@ -63,36 +69,36 @@
   &--medium &__content {
     .@{css-prefix}checkbox,
     .@{css-prefix}radio {
-      line-height: 42px;
+      line-height: var(--ti-form-item-input-medium-height);
     }
 
     .@{input-prefix-cls} .@{input-prefix-cls}__inner {
-      height: 42px;
-      line-height: 42px;
+      height: var(--ti-form-item-input-medium-height);
+      line-height: var(--ti-form-item-input-medium-height);
     }
   }
 
   &--small &__content {
     .@{css-prefix}checkbox,
     .@{css-prefix}radio {
-      line-height: 36px;
+      line-height: var(--ti-form-item-input-small-height);
     }
 
     .@{input-prefix-cls} .@{input-prefix-cls}__inner {
-      height: 36px;
-      line-height: 36px;
+      height: var(--ti-form-item-input-small-height);
+      line-height: var(--ti-form-item-input-small-height);
     }
   }
 
   &--mini &__content {
     .@{css-prefix}checkbox,
     .@{css-prefix}radio {
-      line-height: 24px;
+      line-height: var(--ti-form-item-input-mini-height);
     }
 
     .@{input-prefix-cls} .@{input-prefix-cls}__inner {
-      height: 24px;
-      line-height: 24px;
+      height: var(--ti-form-item-input-mini-height);
+      line-height: var(--ti-form-item-input-mini-height);
     }
   }
 
@@ -188,8 +194,9 @@
   &.is-required:not(.is-no-asterisk) {
     .@{form-item-prefix-cls}__label-wrap > .@{form-item-prefix-cls}__label:before,
     & > .@{form-item-prefix-cls}__label:before {
+      display: var(--ti-form-item-error-star-display);
       content: '*';
-      color: var(--ti-form-item-error-text-color);
+      color: var(--ti-form-item-error-star-text-color);
       margin-right: 4px;
     }
   }

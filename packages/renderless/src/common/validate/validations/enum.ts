@@ -12,7 +12,7 @@
 
 import rules from '../rules/index'
 import { isEmptyValue } from '../util'
-import { hasOwn } from '@opentiny/vue-renderless/common/type'
+import { hasOwn } from '../../type'
 
 const ENUM = 'enum'
 

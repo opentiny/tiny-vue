@@ -10,8 +10,8 @@
 *
 */
 
-import { isDate, isNumber, isNumeric } from '@opentiny/vue-renderless/common/type'
-import { fillChar } from '@opentiny/vue-renderless/common/string'
+import { isDate, isNumber, isNumeric } from './type'
+import { fillChar } from './string'
 
 const daysInMonths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 const yyyymmddReg = new RegExp(

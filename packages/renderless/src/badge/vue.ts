@@ -11,14 +11,11 @@
 */
 
 import { computedContent, computedValueRef } from './index'
-import { xss } from '@opentiny/vue-renderless/common/xss'
+import { xss } from '../common/xss'
 
 export const api = ['state']
 
 export const renderless = (props, { computed, reactive }) => {
-  const api = {
-    computedValueRef: computedValueRef({ props })
-  }
 
   const state = reactive({
     isOverstep: false,
@@ -27,8 +24,12 @@ export const renderless = (props, { computed, reactive }) => {
     href: computed(() => xss.filterUrl(props.href))
   })
 
-  api.state = state
-  api.computedContent = computedContent({ props, state })
+  const api = {
+    state,
+    computedValueRef: computedValueRef({ props }),
+    computedContent: computedContent({ props, state })
+  }
+
 
   return api
 }

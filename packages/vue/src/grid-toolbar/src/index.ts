@@ -35,6 +35,7 @@ import {
 } from '@opentiny/vue-renderless/grid/utils'
 import GridCustom from './custom.vue'
 import GridCustomSelect from './custom-select.vue'
+import GridCustomSaas from './custom-saas.vue'
 import { GridButton, GridConfig, GridAdapter, GridTools } from '@opentiny/vue-grid'
 
 const classMap = {
@@ -90,19 +91,19 @@ function renderCustomWrapper({ _vm, settingStore, settingsBtnOns, tableFullColum
       h('div', { class: 'tiny-grid-custom__setting-btn', on: settingsBtnOns }, [
         setting?.simple
           ? h('tiny-grid-custom-select', {
-              on: {
-                saveSettings: _vm.handleSaveSettings
-              },
-              props: {
-                data: tableFullColumn,
-                setting,
-                value: settingStore.customVisible
-              }
-            })
+            on: {
+              saveSettings: _vm.handleSaveSettings
+            },
+            props: {
+              data: tableFullColumn,
+              setting,
+              value: settingStore.customVisible
+            }
+          })
           : h(GridConfig.icon.custom, { class: 'tiny-svg-size' })
       ]),
       h('div', { class: 'tiny-grid-custom__option-wrapper' }, [
-        h('tiny-grid-custom', {
+        h(_vm.customMode === 'saas' ? 'tiny-grid-custom-saas' : 'tiny-grid-custom', {
           on: {
             showModal: (modalVisible) => (settingStore.customVisible = modalVisible),
             saveSettings: _vm.handleSaveSettings,
@@ -110,9 +111,11 @@ function renderCustomWrapper({ _vm, settingStore, settingsBtnOns, tableFullColum
             cancelSettings: () => _vm.$emit('cancel-setting')
           },
           props: {
+            customMode: _vm.customMode,
             data: tableFullColumn,
             value: settingStore.customVisible,
             other: setting.other,
+            search: setting.search,
             keys: setting.keys,
             sortable: setting.sortable,
             filter: setting.filter,
@@ -121,7 +124,10 @@ function renderCustomWrapper({ _vm, settingStore, settingsBtnOns, tableFullColum
             refresh: setting.refresh,
             numberSorting: setting.numberSorting,
             multipleHistory: setting.multipleHistory,
-            initSettings
+            initSettings,
+            resetMethod: _vm.resetMethod,
+            alwaysShowColumns: setting.alwaysShowColumns,
+            columnsGroup: setting.columnsGroup
           },
           ref: 'custom'
         })
@@ -202,6 +208,7 @@ export default defineComponent({
   components: {
     TinyGridCustom: GridCustom,
     TinyGridCustomSelect: GridCustomSelect,
+    TinyGridCustomSaas: GridCustomSaas,
     IconFullscreen: iconFullscreen(),
     IconMinscreen: iconMinscreen()
   },
@@ -226,7 +233,8 @@ export default defineComponent({
     data: Array,
     customs: Array,
     beforeOpenFullScreen: Function,
-    beforeCloseFullScreen: Function
+    beforeCloseFullScreen: Function,
+    resetMethod: Function
   },
   inject: {
     $grid: {
@@ -588,7 +596,7 @@ export default defineComponent({
       this.saveColumnWidth(isReset)
       tableComp.analyColumnWidth()
 
-      return tableComp.recalculate(true)
+      return tableComp.recalculate()
     },
     updateSetting() {
       const tableComp = this.$grid || this.table
@@ -608,7 +616,7 @@ export default defineComponent({
             // 处理表格数据，否则列排序不生效
             this.$grid.handleTableData(true).then(() => {
               // 重新计算内部元素的位置
-              this.$grid.recalculate(true)
+              this.$grid.recalculate()
             })
           })
         }

@@ -1,4 +1,3 @@
-import type { Rule, Shortcut } from '@unocss/core'
 const _s0 = {
   m: 'margin',
   p: 'padding',
@@ -16,7 +15,7 @@ const _s0 = {
   b: '-bottom',
   t: '-top'
 }
-const sizeRules: Rule[] = [
+const sizeRules = [
   // 高宽， 字体，行高                       f12  lh20   w200  h200  box78
   [/^(w|h|minw|maxw|minh|maxh)(\d+)$/, ([, attr, num]) => ({ [`${_s0[attr]}`]: `${num}px` })],
   // 高宽百分比                             wp33  hp50
@@ -58,7 +57,7 @@ const _s1 = {
   stretch: 'stretch'
 }
 
-const layoutRules: Rule[] = [
+const layoutRules = [
   // display                          d-none,  d-block d-flex d-inline d-grid  d-ib  d-if  d-ig
   [/^d-(none|block|flex|inline|grid|ib|if|ig)$/, ([, pos]) => ({ display: `${_s1[pos]}` })],
   // position                           abs  rel  fixed  sticky  static
@@ -94,14 +93,14 @@ const _s2 = {
   none: 'none'
 }
 
-const fontRules: Rule[] = [
+const fontRules = [
   // 字体与行高                              f12  lh20
   [/^(f|lh)(\d+)$/, ([, attr, num]) => ({ [`${_s2[attr]}`]: `${num}px` })],
   // 字体粗细                               fw-bold  fw-700
   [/^fw-(bold|thin|normal)$/, ([, dir]) => ({ 'font-weight': `${_s2[dir]}` })],
   [/^fw-(\d+)$/, ([, val]) => ({ 'font-weight': val })],
   // 文字对齐                               text-right  ta-center
-  [/^(text|ta)-(right|left|center)$/, ([, dir]) => ({ 'text-align': dir })],
+  [/^(text|ta)-(right|left|center)$/, ([, abbr, dir]) => ({ 'text-align': dir })],
   // 文字上下划线  solid|double|dotted|dashed|wavy
   //             td-under  td-over-wavy td-over  td-none-dashed
   [
@@ -121,7 +120,7 @@ const _s3 = {
   ws: 'var(--border-width) var(--border-style) ' // width & style
 }
 
-const borderRules: Rule[] = [
+const borderRules = [
   // 边框           b-a b-b b-r b-t b-l  b-a-primary  b-a#ff0000
   [/^b-([arlbt])$/, ([, pos]) => ({ [`border${_s3[pos]}`]: _s3.ws + 'var(--border-color)' })],
   [/^b-([arlbt])-([\w|-]+)$/, ([, pos, color]) => ({ [`border${_s3[pos]}`]: _s3.ws + `var(--${color})` })],
@@ -145,7 +144,7 @@ const _s4 = {
   disable: 'not-allowed'
 }
 const clamp = (v, min, max) => Math.min(Math.max(v, min), max)
-const utilRules: Rule[] = [
+const utilRules = [
   // 省略号                                 ellipsis  ellipsis2  ellipsis3
   ['ellipsis', { overflow: 'hidden', ' text-overflow': 'ellipsis', 'white-space': 'nowrap' }],
   [
@@ -174,7 +173,7 @@ const utilRules: Rule[] = [
   ['hide', { visibility: 'hidden' }],
   ['show', { visibility: 'visible' }],
   // 透明度                               op100
-  [/^op(\d+)$/, ([, val]) => ({ opacity: clamp(parseInt(val) / 100, 0, 1) })],
+  [/^op(\d+)$/, ([, val]) => ({ opacity: clamp(val / 100, 0, 1) })],
   ['op-hover', { opacity: 'var(--hover-op)' }],
   ['op-disabled', { opacity: 'var(--disabled-op)' }],
 
@@ -183,23 +182,20 @@ const utilRules: Rule[] = [
 ]
 
 const _s5 = { c: 'color', bg: 'background-color' }
-const colorRules: Rule[] = [
+const colorRules = [
   // 颜色  #不建议使用            c-black  bg-primary  c#123456  c-theme-color
-  [
-    /^(c|bg)-rand(\d+)$/,
-    ([, attr]) => ({ [`${_s5[attr]}`]: `#${Math.floor(Math.random() * 255 * 255 * 255).toString(16)}` })
-  ],
+  [/^(c|bg)-rand(\d+)$/, ([, attr, seed]) => ({ [`${_s5[attr]}`]: `#${Math.floor(Math.random() * 255 * 255 * 255).toString(16)}` })],
   [/^(c|bg)-([\w|-]+)$/, ([, attr, color]) => ({ [`${_s5[attr]}`]: `var(--${color})` })],
   [/^(c|bg)#(\w+)$/, ([, attr, color]) => ({ [`${_s5[attr]}`]: `#${color}` })]
 ]
 export const rules = [...sizeRules, ...layoutRules, ...fontRules, ...borderRules, ...utilRules, ...colorRules]
 
-export const shortcuts: Shortcut[] = [
+export const shortcuts = [
   [/^(m|p)x(-?\d+)$/, ([, t, c]) => `${t}l${c} ${t}r${c}`],
   [/^(m|p)y(-?\d+)$/, ([, t, c]) => `${t}t${c} ${t}b${c}`],
 
-  [/^(m|p)x-auto$/, ([, t]) => `${t}l-auto ${t}r-auto`],
-  [/^(m|p)y-auto$/, ([, t]) => `${t}t-auto ${t}b-auto`],
+  [/^(m|p)x-auto$/, ([, t, c]) => `${t}l-auto ${t}r-auto`],
+  [/^(m|p)y-auto$/, ([, t, c]) => `${t}t-auto ${t}b-auto`],
   [/^box(\d+)$/, ([, w]) => `w${w} h${w}`],
   [/^link-(\w+)$/, ([, c]) => `c-${c} h:c-${c}less  cur-hand `],
   [/^link#(\w+)$/, ([, c]) => `c#${c} cur-hand `],

@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 export default defineComponent({
   name: $prefix + 'Form',
@@ -83,6 +83,18 @@ export default defineComponent({
     popperOptions: {
       type: Object,
       default: () => ({})
+    },
+    displayOnly: {
+      type: Boolean,
+      default: false
+    },
+    valueSplit: {
+      type: String,
+      default: '; '
+    },
+    showAutoWidth: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

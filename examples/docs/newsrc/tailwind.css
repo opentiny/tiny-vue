@@ -1,0 +1,4 @@
+/* 调试mobile-first时，再放开此处 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

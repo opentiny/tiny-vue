@@ -10,7 +10,7 @@
 *
 */
 
-import { isSame } from '@opentiny/vue-renderless/common/type'
+import { isSame } from '../common/type'
 
 const HIDDEN_STYLE = `
 height:0 !important;visibility:hidden !important;overflow:hidden !important;
@@ -315,3 +315,42 @@ export const hasSelection = (api) => () => {
   const input = api.getInput()
   return input && input.selectionStart !== input.selectionEnd
 }
+
+export const handleEnterDisplayOnlyContent = ({ state, props }) => ($event, type) => {
+  const target = $event.target
+
+  if (
+    target &&
+    (target.scrollWidth > target.offsetWidth || (type === 'textarea' && target.scrollHeight > target.offsetHeight))
+  ) {
+    state.displayOnlyTooltip = props.displayOnlyContent || state.nativeInputValue
+  }
+}
+
+export const hiddenPassword = ({ state, props }) => () => {
+  let str = ''
+  const password = props.displayOnlyContent || state.nativeInputValue
+
+  for (let i = 0; i < password.length; i++) {
+    str += '*'
+  }
+  return str
+}
+
+export const dispatchDisplayedValue = ({ state, props, dispatch, api }) => () => {
+  if (state.isDisplayOnly) {
+    dispatch('FormItem', 'displayed-value-changed', {
+      type: props.type || 'text',
+      val: api.getDisplayedValue()
+    })
+  }
+}
+
+export const getDisplayedValue = ({ state, props }) => () => {
+  if (props.type === 'password') {
+    return state.hiddenPassword || '-'
+  } else {
+    return props.displayOnlyContent || state.nativeInputValue || '-'
+  }
+}
+

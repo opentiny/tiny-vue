@@ -1,0 +1,25 @@
+@import '../custom.less';
+
+@cascader-panel-prefix-cls: ~'@{css-prefix}cascader-panel';
+@cascader-node-prefix-cls: ~'@{css-prefix}cascader-node';
+
+.@{cascader-panel-prefix-cls} {
+  @apply flex;
+  @apply rounded;
+  @apply text-xs;
+
+  &.is-bordered {
+    @apply border border-solid border-color-border;
+    @apply rounded;
+  }
+
+  .@{cascader-node-prefix-cls} {
+    @apply relative;
+    @apply flex;
+    @apply items-center;
+    @apply pt-0 pr-10 pb-0 pl-3;
+    @apply h-8;
+    @apply leading-8;
+    @apply outline-0;
+  }
+}

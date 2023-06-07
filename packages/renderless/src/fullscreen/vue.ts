@@ -10,7 +10,7 @@
 *
 */
 
-import sf from '@opentiny/vue-renderless/common/deps/fullscreen/screenfull'
+import sf from '../common/deps/fullscreen/screenfull'
 import { exit, enter, toggle, request, getState, shadeClick, keypressCallback, fullScreenCallback, onChangeFullscreen, computeWrapperStyle } from './index'
 
 export const api = ['state', 'exit', 'enter', 'toggle', 'request', 'getState', 'shadeClick', 'keypressCallback', 'fullScreenCallback', 'onChangeFullscreen']

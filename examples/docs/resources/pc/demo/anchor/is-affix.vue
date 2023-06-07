@@ -1,17 +1,21 @@
 <template>
   <div class="wrap">
-    <tiny-anchor :links="links" is-affix></tiny-anchor>
+    <tiny-switch v-model="isAffix"></tiny-switch>
+    <span>{{ isAffix ? '关闭固定模式' : '打开固定模式' }}</span>
+    <tiny-anchor :links="links" :is-affix="isAffix"></tiny-anchor>
   </div>
 </template>
 
 <script>
-import { Anchor } from '@opentiny/vue'
+import { Anchor, Switch } from '@opentiny/vue'
 export default {
   components: {
-    TinyAnchor: Anchor
+    TinyAnchor: Anchor,
+    TinySwitch: Switch
   },
   data() {
     return {
+      isAffix: false,
       links: [
         {
           key: 'demonstrate',
@@ -53,6 +57,6 @@ export default {
 
 <style scoped>
 .wrap {
-  height: 150px;
+  min-height: 180px;
 }
 </style>

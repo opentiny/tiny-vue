@@ -1,14 +1,8 @@
 {
   "name": "@opentiny/vue-docs",
   "type": "module",
-  "private": true,
-  "version": "1.0.6-mf.0",
+  "version": "1.0.8",
   "description": "",
-  "scripts": {
-    "docs:build": "vuepress build",
-    "docs:clean-dev": "vuepress dev --clean-cache",
-    "docs:dev": "vuepress dev"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -17,35 +11,15 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/vue-design-aurora": "workspace:~",
+    "@opentiny/vue-design-smb": "workspace:~",
+    "@playwright/test": "^1.29.2",
     "sortablejs": "1.15.0"
   },
   "devDependencies": {
-    "@opentiny-internal/unplugin-virtual-template": "workspace:*",
-    "@playwright/test": "^1.29.2",
-    "@vitejs/plugin-vue": "^4.0.0",
-    "@vitejs/plugin-vue-jsx": "^2.1.0",
-    "@vue/compiler-sfc": "^3.2.31",
-    "@vue/runtime-core": "^3.2.31",
-    "@vue/runtime-dom": "^3.2.31",
-    "@vue/shared": "^3.2.31",
-    "postcss": "^8.4.16",
-    "vite": "^4.0.2",
-    "vite-plugin-dynamic-import": "^1.2.4",
-    "vite-plugin-importer": "^0.2.5",
-    "vite-plugin-importus": "^1.0.4",
-    "vite-plugin-inspect": "^0.7.11",
-    "vite-plugin-static-copy": "0.12.0",
-    "vite-svg-loader": "^3.6.0",
-    "vue": "^3.2.21",
-    "monaco-editor": "^0.34.1",
-    "monaco-editor-core": "^0.34.1",
-    "monaco-volar": "0.0.6",
-    "onigasm": "^2.2.5",
-    "unocss": "^0.48.0",
-    "@unocss/core": "^0.48.0",
-    "@unocss/preset-icons": "^0.48.0",
-    "@unocss/transformer-directives": "^0.48.0",
-    "@vuepress/client": "^2.0.0-beta.61",
-    "vuepress": "^2.0.0-beta.61"
-  }
+    "@playwright/test": "^1.29.2"
+  },
+  "files": [
+    "resources"
+  ]
 }

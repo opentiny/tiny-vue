@@ -3,7 +3,8 @@
   "private": true,
   "version": "5.0.2-mf.0",
   "description": "",
-  "main": "index.ts",
+  "main": "lib/index.js",
+  "module": "index.ts",
   "devDependencies": {
     "@vue/composition-api": "~1.2.2",
     "vue": "~2.6.14",

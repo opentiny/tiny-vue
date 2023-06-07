@@ -232,6 +232,7 @@ export const tools = (context, mode) => {
 
   const setParentAttribute = ({ name, value }) => {
     instance.$parent[name] = value
+    parentVm[name] = value
   }
 
   const defineInstanceProperties = (props) => {

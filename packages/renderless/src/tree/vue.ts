@@ -10,7 +10,7 @@
 *
 */
 
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import debounce from '../common/deps/debounce'
 import {
   computedShowEmptyText,
   closeMenu,

@@ -10,8 +10,8 @@
 *
 */
 
-import { modifyTime } from '@opentiny/vue-renderless/common/deps/date-util'
-import { DATEPICKER } from '@opentiny/vue-renderless/common'
+import { modifyTime } from '../common/deps/date-util'
+import { DATEPICKER } from '../common'
 
 export const getArrowHourList = (state) => () => {
   const hours = state.hours

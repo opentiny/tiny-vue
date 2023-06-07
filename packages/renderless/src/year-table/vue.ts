@@ -10,21 +10,36 @@
 *
 */
 
-import { getCellStyle, handleYearTableClick } from './index'
+import { getRows, getCellStyle, handleYearTableClick, watchDate, markRange, handleMouseMove } from './index'
 
-export const api = ['state', 'handleYearTableClick', 'getCellStyle']
+export const api = ['state', 'handleYearTableClick', 'getCellStyle', 'handleMouseMove']
 
-export const renderless = (props, { computed, reactive }, { emit }) => {
+export const renderless = (props, { computed, reactive, watch }, { emit, vm }) => {
   const api = {}
   const state = reactive({
-    startYear: computed(() => Math.floor(props.date.getFullYear() / 10) * 10)
+    tableRows: [[], [], []],
+    rows: computed(() => api.getRows())
   })
 
   Object.assign(api, {
     state,
     getCellStyle: getCellStyle({ props }),
-    handleYearTableClick: handleYearTableClick({ emit })
+    handleYearTableClick: handleYearTableClick({ emit, props, state }),
+    markRange: markRange({ props, state }),
+    watchDate: watchDate({ api, props }),
+    getRows: getRows({ props, state, vm }),
+    handleMouseMove: handleMouseMove({ api, emit, props, state }),
   })
+
+  watch(
+    () => props.rangeState,
+    (value, oldValue) => value !== oldValue && api.markRange(props.minDate, value.endDate),
+    { deep: true }
+  )
+  
+  watch(() => props.minDate, api.watchDate)
+
+  watch(() => props.maxDate, api.watchDate)
 
   return api
 }

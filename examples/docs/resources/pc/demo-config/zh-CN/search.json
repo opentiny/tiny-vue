@@ -64,6 +64,14 @@
     "demoId": "show-selected-types"
   },
   {
+    "title": "左侧插槽",
+    "content": "<p>可通过<code>prefix</code>插入左侧插槽</p>\n",
+    "link": "search/slot-prefix",
+    "component": " Search 搜索",
+    "findIntroStr": "指定条件对象进行搜索数据。",
+    "demoId": "slot-prefix"
+  },
+  {
     "title": "自定义 search 事件",
     "content": "详细用法参考如下示例",
     "link": "search/search-events",

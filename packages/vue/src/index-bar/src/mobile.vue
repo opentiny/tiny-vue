@@ -38,7 +38,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/index-bar/vue'
 

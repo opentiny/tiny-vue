@@ -10,7 +10,7 @@
 *
 */
 
-import { fillChar } from '@opentiny/vue-renderless/common/string'
+import { fillChar } from './string'
 
 const BigInt = window.BigInt
 
@@ -176,7 +176,11 @@ export class BigIntDecimal {
       num2str(mergedValue)
     }
     const f = Function
-    const convertBigInt = (str) => f(`return BigInt(${str})`)()
+    const convertBigInt = (str) => {
+      // 将以多个零开头的整数前置零清空 '0000000000000003e+21' --> '3e+21' ,解决BigInt(0000000000000003e+21)报错问题
+      const validStr = str.replace(/^0+/, '') || '0'
+      return f(`return BigInt(${validStr})`)()
+    }
     if (validateNumber(mergedValue)) {
       const trimRet = trimNumber(mergedValue)
       this.negative = trimRet.negative
@@ -184,6 +188,7 @@ export class BigIntDecimal {
       this.integer = BigInt(numbers[0])
       const decimalStr = numbers[1] || '0'
       this.decimal = convertBigInt(decimalStr)
+      this.decimalLen = decimalStr.length
     } else {
       this.nan = true
     }

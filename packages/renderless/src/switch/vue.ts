@@ -29,7 +29,8 @@ export const renderless = (props, { computed, watch, reactive, inject }, { paren
     wrapClasses: computed(() => api.computedWarpClasses()),
     style: computed(() => api.computedStyle()),
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
-    disabled: computed(() => props.disabled || state.formDisabled)
+    disabled: computed(() => props.disabled || state.formDisabled),
+    isDisplayOnly: computed(() => props.displayOnly || (parent.tinyForm || {}).displayOnly)
   })
 
   Object.assign(api, {

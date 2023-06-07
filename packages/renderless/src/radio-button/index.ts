@@ -48,3 +48,11 @@ export const toggleEvents = ({ refs, props }) => (isUnBind = false) => {
     radioEl[(isUnBind ? 'remove' : 'add') + 'EventListener'](ev, props.events[ev])
   })
 }
+
+export const keydownHandle = ({ state, props }) => () => {
+  state.value = state.isDisabled ? state.value : props.label
+}
+
+export const handleFocus = (state) => () => (state.focus = true)
+
+export const handleBlur = (state) => () => (state.focus = false)

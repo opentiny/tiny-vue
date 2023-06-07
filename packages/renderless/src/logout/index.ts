@@ -10,7 +10,7 @@
 *
 */
 
-import { xss } from '@opentiny/vue-renderless/common'
+import { xss } from '../common'
 
 export const logout = ({ service, state, props }) => () => {
   let { isMock, isLocal, redirectUrl = '', getLogoutUrl, showLogin } = service

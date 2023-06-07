@@ -26,7 +26,7 @@ import {
   keydown,
   getHeightOfSize
 } from './index'
-import { KEY_CODE } from '@opentiny/vue-renderless/common'
+import { KEY_CODE } from '../common'
 
 export const api = ['state', 'focus', 'inputEvent', 'blur', 'keyup', 'keydown', 'change', 'select']
 

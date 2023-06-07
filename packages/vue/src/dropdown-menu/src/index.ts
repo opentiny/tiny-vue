@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 export default defineComponent({
   name: $prefix + 'DropdownMenu',
@@ -63,6 +63,10 @@ export default defineComponent({
     textField: {
       type: String,
       default: 'label'
+    },
+    maxHeight: {
+      type: [Number, String],
+      default: '400'
     }
   },
   setup(props, context) {

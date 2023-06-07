@@ -51,7 +51,7 @@ import {
   computerLabel,
   computerEnableYearArrow
 } from './index'
-import { nextMonth, extractDateFormat, extractTimeFormat } from '@opentiny/vue-renderless/common/deps/date-util'
+import { nextMonth, extractDateFormat, extractTimeFormat } from '../common/deps/date-util'
 
 export const api = [
   'state',

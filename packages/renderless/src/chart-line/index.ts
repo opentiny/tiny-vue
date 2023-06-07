@@ -10,9 +10,9 @@
 *
 */
 
-import { getFormated, getStackMap, getLegend, hexToRgb, set } from '@opentiny/vue-renderless/chart-core/deps/utils'
-import { isNull } from '@opentiny/vue-renderless/common/type'
-import { itemPoint, itemLabel, itemContent, SAAS_DEFAULT_COLORS_10 } from '@opentiny/vue-renderless/chart-core/deps/constants'
+import { getFormated, getStackMap, getLegend, hexToRgb, set } from '../chart-core/deps/utils'
+import { isNull } from '../common/type'
+import { itemPoint, itemLabel, itemContent, SAAS_DEFAULT_COLORS_10 } from '../chart-core/deps/constants'
 
 const getLineXAxis = (args) => {
   const { xAxisType, dimension, rows, xAxisName, axisVisible } = args

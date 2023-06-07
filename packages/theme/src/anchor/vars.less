@@ -11,10 +11,32 @@
 */
 
 .component-css-vars-anchor() {
-  --ti-anchor-text-color: var(--ti-common-color-info);
+  // 组件默认背景色
+  --ti-anchor-bg-color: var(--ti-common-color-bg-white-normal);
+  // 锚点默认文本色
+  --ti-anchor-text-color: var(--ti-common-color-text-primary);
+  // 锚点默认字号
   --ti-anchor-font-size: var(--ti-common-font-size-1);
-  --ti-anchor-link-active-bg-color: var(--ti-common-color-bg-emphasize);
-  --ti-anchor-link-active-text-color: var(--ti-common-color-bg-emphasize);
+  // 选中锚点竖向轨道滑块背景色
+  --ti-anchor-link-active-bg-color: var(--ti-common-color-selected-background);
+  // 选中锚点竖向轨道滑块宽度
+  --ti-anchor-orbit-skid-width: var(--ti-common-size-base);
+  // 竖向轨道宽度
   --ti-anchor-orbit-width: var(--ti-common-size-base);
-  --ti-anchor-orbit-bg-color: var(--ti-common-color-line-dividing);
+  // 选中锚点文本色
+  --ti-anchor-link-active-text-color: var(--ti-common-color-primary-active);
+  // 选中锚点蒙层背景色
+  --ti-anchor-link-mask-bg-color: var(--ti-common-color-info-plain-disabled-bg-color);
+  // 悬浮锚点文本色
+  --ti-anchor-link-hover-text-color: var(--ti-common-color-primary-active);
+  // 锚点竖向轨道背景色
+  --ti-anchor-orbit-bg-color: var(--ti-common-color-line-disabled);
+  // 锚点左外边距
+  --ti-anchor-link-margin-left: var(--ti-common-space-2x);
+  // 锚点标题垂直内边距
+  --ti-anchor-link-title-padding-vertical: var(--ti-common-space-1);
+  // 锚点标题右外边距
+  --ti-anchor-link-title-padding-right: var(--ti-common-space-2x);
+  // 锚点标题左外边距
+  --ti-anchor-link-title-padding-left: var(--ti-common-space-10);
 }

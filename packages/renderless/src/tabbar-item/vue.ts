@@ -11,7 +11,7 @@
 */
 
 import { getRouteActive, onClick, bindChildren, routeTab } from './index'
-import { xss } from '@opentiny/vue-renderless/common/xss.js'
+import { xss } from '../common/xss.js'
 
 export const api = ['state', 'onClick']
 

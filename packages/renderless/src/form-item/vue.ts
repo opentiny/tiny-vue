@@ -33,7 +33,11 @@ import {
   computedFieldValue,
   computedGetValidateType,
   updateTip,
-  wrapValidate
+  wrapValidate,
+  getDisplayedValue,
+  clearDisplayedValue,
+  handleMouseenter,
+  handleMouseleave
 } from './index'
 
 export const api = [
@@ -48,7 +52,10 @@ export const api = [
   'updateComputedLabelWidth',
   'addValidateEvents',
   'removeValidateEvents',
-  'updateTip'
+  'updateTip',
+  'getDisplayedValue',
+  'handleMouseenter',
+  'handleMouseleave'
 ]
 
 const initState = ({ reactive, computed, api, mode, inject, props }) => {
@@ -65,7 +72,12 @@ const initState = ({ reactive, computed, api, mode, inject, props }) => {
     canShowTip: false,
     // 兼容 2.0 validation 的 required
     validationRequired: false,
+    validateType: 'text',
     tooltip: null,
+    displayedValue: '',
+    isBasicComp: false,
+    showTooltip: false,
+    typeName: '',
     formInstance: inject('form', null),
     labelFor: computed(() => props.for || props.prop),
     labelStyle: computed(() => api.computedLabelStyle()),
@@ -74,8 +86,16 @@ const initState = ({ reactive, computed, api, mode, inject, props }) => {
     form: computed(() => api.computedForm()),
     fieldValue: computed(() => api.computedFieldValue()),
     isRequired: computed(() => api.computedIsRequired()),
+    formInline: computed(() => state.formInstance.inline),
     formSize: computed(() => state.formInstance.size),
     formItemSize: computed(() => props.size || state.formSize),
+    isDisplayOnly: computed(() => state.formInstance.displayOnly),
+    labelPosition: computed(() => state.formInstance.labelPosition),
+    hideRequiredAsterisk: computed(() => state.formInstance.hideRequiredAsterisk),
+    labelSuffix: computed(() => state.formInstance.labelSuffix),
+    labelWidth: computed(() => state.formInstance.labelWidth),
+    showMessage: computed(() => state.formInstance.showMessage),
+    inlineMessage: computed(() => state.formInstance.inlineMessage),
     sizeClass: computed(() => state.formItemSize),
     getValidateType: computed(() => api.computedGetValidateType())
   })
@@ -109,7 +129,11 @@ const initApi = ({ api, state, dispatch, broadcast, refs, props, constants, inst
     onFieldBlur: onFieldBlur(api),
     onFieldChange: onFieldChange({ api, state }),
     addValidateEvents: addValidateEvents({ api, instance, props, state }),
-    validate: wrapValidate({ validateFunc: validate({ api, props, state, t }), props })
+    validate: wrapValidate({ validateFunc: validate({ api, props, state, t }), props }),
+    getDisplayedValue: getDisplayedValue({ state }),
+    clearDisplayedValue: clearDisplayedValue({ state }),
+    handleMouseenter: handleMouseenter({ state }),
+    handleMouseleave: handleMouseleave(state)
   })
 }
 

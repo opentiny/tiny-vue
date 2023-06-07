@@ -10,8 +10,8 @@
 *
 */
 
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
-import { toFileSize } from '@opentiny/vue-renderless/common/string'
+import { on, off } from '../common/deps/dom'
+import { toFileSize } from '../common/string'
 
 export const computedCropImages = ({ constants, t }) => () => t(constants.CROP_IMAGE)
 

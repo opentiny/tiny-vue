@@ -19,6 +19,7 @@
 .@{tooltip-prefix-cls} {
   .component-css-vars-tooltip();
 
+  font-family: var(--ti-tooltip-popper-font-family);
   &:focus:hover,
   &:focus:not(.focusing) {
     outline-width: 0;
@@ -30,7 +31,7 @@
     border-radius: var(--ti-tooltip-popper-border-radius);
     padding: var(--ti-tooltip-padding-vertical) var(--ti-tooltip-padding-horizontal);
     font-size: var(--ti-tooltip-popper-font-size);
-    line-height: 1.2;
+    line-height: var(--ti-tooltip-popper-font-line-height);
     min-width: 10px;
     max-width: 450px;
     z-index: 2000;
@@ -46,27 +47,30 @@
       border-color: transparent;
       border-style: solid;
     }
-
+    /* 控制箭头尺寸
+    6px:  var(--ti-tooltip-popper-border-width);
+    -6px:  var(--ti-tooltip-popper-neg-border-width);
+    */
     .popper__arrow {
-      border-width: 6px;
+      border-width: var(--ti-tooltip-popper-border-width);
     }
 
     .popper__arrow::after {
       content: ' ';
-      border-width: 5px;
+      border-width: var(--ti-tooltip-popper-border-width);
     }
 
     &[x-placement^='top'] {
       margin-bottom: 12px;
 
       .popper__arrow {
-        bottom: -6px;
+        bottom: var(--ti-tooltip-popper-neg-border-width);
         border-top-color: var(--ti-tooltip-popper-border-color);
         border-bottom-width: 0;
 
         &::after {
           bottom: 1px;
-          margin-left: -5px;
+          margin-left: var(--ti-tooltip-popper-neg-border-width);
           border-top-color: var(--ti-tooltip-popper-border-color);
           border-bottom-width: 0;
         }
@@ -77,13 +81,13 @@
       margin-top: 12px;
 
       .popper__arrow {
-        top: -6px;
+        top: var(--ti-tooltip-popper-neg-border-width);
         border-top-width: 0;
         border-bottom-color: var(--ti-tooltip-popper-border-color);
 
         &::after {
           top: 1px;
-          margin-left: -5px;
+          margin-left: var(--ti-tooltip-popper-neg-border-width);
           border-top-width: 0;
           border-bottom-color: var(--ti-tooltip-popper-border-color);
         }
@@ -94,12 +98,12 @@
       margin-left: 12px;
 
       .popper__arrow {
-        left: -6px;
+        left: var(--ti-tooltip-popper-neg-border-width);
         border-right-color: var(--ti-tooltip-popper-border-color);
         border-left-width: 0;
 
         &::after {
-          bottom: -5px;
+          bottom: var(--ti-tooltip-popper-neg-border-width);
           left: 1px;
           border-right-color: var(--ti-tooltip-popper-border-color);
           border-left-width: 0;
@@ -111,20 +115,19 @@
       margin-right: 12px;
 
       .popper__arrow {
-        right: -6px;
+        right: var(--ti-tooltip-popper-neg-border-width);
         border-right-width: 0;
         border-left-color: var(--ti-tooltip-popper-border-color);
 
         &::after {
           right: 1px;
-          bottom: -5px;
-          margin-left: -5px;
+          bottom: var(--ti-tooltip-popper-neg-border-width);
+          margin-left: var(--ti-tooltip-popper-neg-border-width);
           border-right-width: 0;
           border-left-color: var(--ti-tooltip-popper-border-color);
         }
       }
     }
-
     &.is-normal {
       .tooltip-type(
         var(--ti-tooltip-popper-normal-text-color),

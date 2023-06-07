@@ -33,7 +33,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/image/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import ImageViewer from '@opentiny/vue-image-viewer'

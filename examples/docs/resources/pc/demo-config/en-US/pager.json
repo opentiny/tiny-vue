@@ -158,5 +158,21 @@
     "component": "Pager Pagination",
     "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
     "demoId": "pager-in-grid"
+  },
+  {
+    "title": "Pagination Size",
+    "content": "<p>The grid table uses the pagination component.\nThe <code>services/getGridMockData</code> service in this example needs to be implemented by yourself. The example simulates the data returned by the remote service.\n</p>\n",
+    "link": "pager/pager-size",
+    "component": "Pager Pagination",
+    "findIntroStr": "When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.",
+    "demoId": "pager-size"
+  },
+  {
+    "title": "Pagination Disabled",
+    "content": "<p>Disabled pagination all functions.</p>\n",
+    "link": "pager/pager-disabled",
+    "component": "Pager Pagination",
+    "findIntroStr": "Disabled pagination all functions.",
+    "demoId": "pager-disabled"
   }
 ]

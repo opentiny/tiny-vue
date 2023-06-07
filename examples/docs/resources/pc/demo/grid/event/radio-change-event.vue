@@ -9,8 +9,8 @@
   </tiny-grid>
 </template>
 
-<script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+<script>
+import { Grid, GridColumn, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -19,7 +19,10 @@ export default {
   },
   methods: {
     radioChange() {
-      alert('选项改变')
+      Modal.message({
+        message: '选项改变',
+        status: 'info'
+      })
     }
   },
   data() {

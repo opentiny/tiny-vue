@@ -29,12 +29,6 @@
       <tiny-form-item label="IP字段" prop="ip">
         <tiny-ip-address v-model="createData.ip"></tiny-ip-address>
       </tiny-form-item>
-      <tiny-form-item label="Numeric字段" prop="num1">
-        <tiny-numeric v-model="createData.num1"></tiny-numeric>
-      </tiny-form-item>
-      <tiny-form-item label="IP字段" prop="ip">
-        <tiny-ip-address v-model="createData.ip"></tiny-ip-address>
-      </tiny-form-item>
       <tiny-form-item>
         <tiny-button type="primary" @click="handleSubmit('ruleForm')">
           提交

@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 const $constants = {
   PC_PREFIXCLS: 'tiny-switch',
@@ -60,7 +60,11 @@ export default defineComponent({
       type: [String, Number, Boolean],
       default: true
     },
-    beforeChange: Function
+    beforeChange: Function,
+    displayOnly: {
+      type: Boolean,
+      default: false
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })

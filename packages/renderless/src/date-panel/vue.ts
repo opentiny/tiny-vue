@@ -55,8 +55,8 @@ import {
   computerTimeFormat,
   watchVisible
 } from './index'
-import { getWeekNumber, extractDateFormat } from '@opentiny/vue-renderless/common/deps/date-util'
-import { DATEPICKER, DATE } from '@opentiny/vue-renderless/common'
+import { getWeekNumber, extractDateFormat } from '../common/deps/date-util'
+import { DATEPICKER, DATE } from '../common'
 
 export const api = [
   'state',
@@ -114,6 +114,7 @@ const initState = ({ reactive, computed, api, i18n }) => {
     tz: '',
     selectedTz: null,
     animationName: '',
+    startYear: Math.floor(new Date().getFullYear() / 10) * 10,
     year: computed(() => state.date.getFullYear()),
     month: computed(() => state.date.getMonth()),
     week: computed(() => getWeekNumber(state.date)),

@@ -29,6 +29,7 @@
   font-family: var(--ti-grid-font-family);
   background-color: var(--ti-grid-light-color);
 
+  // 显示表头
   &.show__head {
     .@{grid-prefix-cls}__fixed-left-wrapper,
     .@{grid-prefix-cls}__fixed-right-wrapper {
@@ -40,6 +41,7 @@
     }
   }
 
+  // 显示表尾
   &.show__foot {
     &.scroll__x {
       .@{grid-prefix-cls}__body-wrapper {
@@ -51,19 +53,12 @@
         &.fixed-left__wrapper,
         &.fixed-right__wrapper {
           padding-bottom: 12px;
-          
-          //兼容ie10-ie11
-          @media screen and (-ms-high-contrast: active),
-            (-ms-high-contrast: none) {
-            .@{grid-prefix-cls}__body {
-              padding-bottom: 17px;
-            }
-          }
         }
       }
     }
   }
 
+  // 表格列高亮显示
   &.column__highlight {
     .@{grid-prefix-cls}-header__column {
       &:not(.col__index) {
@@ -74,6 +69,7 @@
     }
   }
 
+  // 中等尺寸
   &.size__medium {
     .@{grid-prefix-cls}-header__column,
     .@{grid-prefix-cls}-body__column,
@@ -84,15 +80,21 @@
       }
     }
 
+    // 表格主体部分和表位单元格高度
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column{
       .MediumColumnHeight();
     }
 
+    // 表头单元格高度
+    .@{grid-prefix-cls}-header__column{
+      .MediumHeaderColumnHeight();
+    }
+
     .@{grid-prefix-cls}-loading {
       .@{grid-prefix-cls}__spinner {
-        width: 50px;
-        height: 50px;
+        width: 48px;
+        height: 48px;
       }
     }
 
@@ -108,11 +110,11 @@
         .MediumColumnHeight();
       }
     }
+
   }
 
+  // 小尺寸
   &.size__small {
-    font-size: var(--ti-grid-font-size);
-
     .@{grid-prefix-cls}-header__column,
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
@@ -127,10 +129,15 @@
       .SmallColumnHeight();
     }
 
+    // 表头单元格高度
+    .@{grid-prefix-cls}-header__column{
+      .SmallHeaderColumnHeight();
+    }
+
     .@{grid-prefix-cls}-loading {
       .@{grid-prefix-cls}__spinner {
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
       }
     }
 
@@ -148,9 +155,8 @@
     }
   }
 
+  // 超小尺寸
   &.size__mini {
-    font-size: var(--ti-grid-font-size);
-
     .@{grid-prefix-cls}-header__column,
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
@@ -165,10 +171,15 @@
       .MiniColumnHeight();
     }
 
+    // 表头单元格高度
+    .@{grid-prefix-cls}-header__column{
+      .MiniHeaderColumnHeight();
+    }
+
     .@{grid-prefix-cls}-loading {
       .@{grid-prefix-cls}__spinner {
-        width: 38px;
-        height: 38px;
+        width: 36px;
+        height: 36px;
       }
     }
 
@@ -184,11 +195,56 @@
         .MiniColumnHeight();
       }
     }
+
   }
 
-  .fixed__hidden {
-    visibility: hidden;
+  // 冻结列，采用sticky布局代替多表格渲染，至少少渲染一半的dom元素
+  .fixed__column {
+    position: sticky;
+    z-index: 1;
+    background-color: var(--ti-grid-light-color);
   }
+
+  th.fixed__column{
+    background-color: var(--ti-grid-header-background-color);
+  }
+
+  .fixed__column.fixed-left-last__column:after{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: -1px;
+    width: 30px;
+    transform: translate(100%);
+    transition: box-shadow .3s;
+    content: "";
+    pointer-events: none;
+  }
+
+  .fixed__column.fixed-right-first__column:after{
+    position: absolute;
+    top: 0;
+    bottom: -1px;
+    left: 0;
+    width: 30px;
+    transform: translate(-100%);
+    transition: box-shadow .3s;
+    content: "";
+    pointer-events: none;
+  }
+
+  &-fixed__left{
+    .fixed__column.fixed-left-last__column:after{
+      box-shadow: inset 10px 0 8px -8px #00000026;
+    }
+  }
+
+  &-fixed__right{
+    .fixed__column.fixed-right-first__column:after{
+      box-shadow: inset -10px 0 8px -8px #00000026;
+    }
+  }
+
 
   table {
     border-spacing: 0;
@@ -196,6 +252,7 @@
     table-layout: fixed;
   }
 
+  // 表格斑马条纹样式
   &&__stripe {
     .@{grid-prefix-cls}-body__row {
       // 支持所有行 hover 背景颜色
@@ -219,11 +276,12 @@
     }
     &.mark-insert {
       .@{grid-prefix-cls}-body__row.row__new {
-        background-color: #f2f5fc;
+        background-color: var(--ti-grid-new-row-background-color);
       }
     }
   }
 
+  // 开启表格边框
   &&__border {
     // 启用 border 只有表头生效，默认不建议启用 border 属性，另外如果内嵌列，则表头会自动启用 border 属性
     &:before,
@@ -313,6 +371,7 @@
     }
   }
 
+  // 选中行样式
   &&__checked {
     user-select: none;
 
@@ -362,6 +421,7 @@
     }
   }
 
+  // 冻结列样式
   & &__fixed-left-wrapper,
   & &__fixed-right-wrapper {
     width: 100%;
@@ -439,66 +499,72 @@
     }
   }
 
+  // 设置每行样式
   & &-body__row {
-    background-color: var(--ti-grid-row-odd-background-color);
+    background-color: var(--ti-grid-row-background-color);
 
-    &.row__hover {
-      background-color: var(--ti-grid-row-hover-background-color);
-    }
-
+    // 选中某一行时的背景颜色
     &.row__current {
       background-color: var(--ti-grid-row-hover-background-color);
     }
   }
 
+  &.row__highlight &-body__row:hover{
+    background-color: var(--ti-grid-row-hover-background-color);
+
+    .fixed__column{
+      background-color: var(--ti-grid-row-hover-background-color);
+    }
+  }
+
+  // 单元格样式(表格默认尺寸)
   & &-header__column,
   & &-body__column,
   & &-footer__column {
+    // 默认文字居左对齐
     text-align: left;
 
     &:not(.col__ellipsis) {
       .DefaultTdPadding();
     }
 
-    
+    // 当前选中列
     &.col__current {
       background-color: var(--ti-grid-column-current-background-color);
     }
 
+    // 文字居中
     &.col__center {
       text-align: center;
     }
 
+    // 文字居右
     &.col__right {
       text-align: right;
     }
 
+    // 单行省略
     &.col__ellipsis {
       .CellEllipsis();
     }
+
+    border-bottom: 1px solid var(--ti-grid-body-td-border-color);
   }
 
+  // 表头高度
   & &-header__column{
-    height: var(--ti-grid-header-column-height);
+    height: var(--ti-grid-default-header-column-height);
   }
 
   & &-body__column,
   & &-footer__column{
     .DefaultColumnHeight();
-    border-bottom: 1px solid var(--ti-grid-border-color);
   }
 
-  & &-body__row &-body__column,
-  & &-header__row &-header__column {
-    &.hideTypeClass .@{grid-prefix-cls}-cell {
-      padding: 0;
-    }
-  }
-
+  // 单元格内部div
   & &-cell {
-    line-height: 120%;
+    line-height: var(--ti-grid-line-height-number);
     white-space: normal;
-    -ms-word-break: break-all;
     word-break: break-word;
 
     .@{grid-prefix-cls}-checkbox {
@@ -511,6 +577,7 @@
       position: relative;
     }
 
+    // 内置渲染器boole
     .@{grid-prefix-cls}__data-boole {
       .icon-yes {
         fill: var(--ti-grid-success-color);
@@ -521,6 +588,7 @@
       }
     }
 
+    // 内置渲染器rate
     .@{grid-prefix-cls}__data-rate {
       .@{grid-prefix-cls}__rate-chart {
         opacity: 0.6;
@@ -597,11 +665,11 @@
       line-height: 16px;
       display: block;
       font-size: var(--ti-grid-header-icon-font-size);
-      fill: var(--ti-grid-column-icon-border-color);
+      fill: var(--ti-grid-column-icon-text-color);
       cursor: pointer;
 
       &:hover {
-        fill: var(--ti-grid-text-color);
+        fill: var(--ti-grid-icon-color);
       }
 
       &.sort__active {
@@ -614,7 +682,7 @@
     }
   }
 
-  // 列宽线
+  // 列拖拽参考线
   & &__resizable-bar {
     display: none;
     position: absolute;
@@ -632,11 +700,12 @@
     }
   }
 
-  // 树形节点
+  // 树形节点缩进
   & &-tree__indent {
     display: inline-block;
   }
 
+  // 树形节点展开节点
   & &-tree-wrapper {
     display: inline-block;
     vertical-align: bottom;
@@ -651,10 +720,10 @@
 
     .@{grid-prefix-cls}-tree__node-btn {
       font-size: var(--ti-grid-font-size);
-      color: #939599;
+      border-color: var(--ti-grid-tree-icon-color);
 
       &:hover {
-        color: var(--ti-grid-text-color);
+        border-color: var(--ti-grid-tree-icon-hover-color);
       }
     }
   }
@@ -683,6 +752,7 @@
     }
   }
 
+  // 展开行td
   & &-body__expanded-column {
     border-bottom: 1px solid var(--ti-grid-border-color);
   }
@@ -691,11 +761,9 @@
     padding: 20px;
   }
 
-  // 固定列
+  // 可编辑表格样式
   &&-editable {
     .@{grid-prefix-cls}-body__column {
-      height: 43px;
-      line-height: inherit;
       line-height: inherit;
     }
 
@@ -728,7 +796,7 @@
       .@{grid-cell-prefix-cls}__ellipsis,
       .@{grid-cell-prefix-cls}__tooltip,
       .@{grid-cell-prefix-cls}__title {
-        padding: 0 8px;
+        padding: 0 var(--ti-grid-td-padding-horizontal);
       }
     }
   }
@@ -763,13 +831,14 @@
     }
   }
 
-  // 暂无数据
+  // 表格loading
   &.is__loading {
     .@{grid-prefix-cls}__empty-block {
       visibility: hidden;
     }
   }
 
+  // 暂无数据
   & &__empty-block {
     display: none;
     opacity: 0;
@@ -805,6 +874,7 @@
     }
   }
 
+  // 表格无数据背景图
   & &__empty-img {
     width: 100%;
     height: 100px;
@@ -899,7 +969,7 @@
     overflow-y: scroll;
   }
 
-  // 可编辑
+  // 可编辑表格
   &&-editable {
     &.@{grid-prefix-cls}-cell__highlight {
       .@{grid-prefix-cls}-body__column {
@@ -932,6 +1002,7 @@
     }
 
     .@{grid-prefix-cls}-body__column {
+
       .DefaultTdPadding();
 
       &.col__actived {
@@ -946,6 +1017,7 @@
         }
       }
 
+      // 可编辑表格showStatus为true时,左上角的角标
       &.col__dirty {
         &:before {
           content: '';
@@ -975,6 +1047,7 @@
     }
   }
 
+  // 表格全屏样式
   &.@{css-prefix}fullscreen-full {
     z-index: 1000;
     position: fixed;
@@ -988,18 +1061,18 @@
     padding: 8px;
   }
 
-  // 默认的渲染
+  // 默认的和筛选面板渲染器和编辑器样式
   &,
   &__filter-wrapper {
     .@{grid-prefix-cls}-default-input,
     .@{grid-prefix-cls}-default-textarea,
     .@{grid-prefix-cls}-default-select {
       outline: 0;
-      padding: 0 8px;
-      height: 30px;
+      height: var(--ti-grid-input-height);
+      padding: 0 var(--ti-grid-td-padding-horizontal);
       width: 100%;
       color: var(--ti-grid-text-color);
-      border-radius: 2px;
+      border-radius: var(--ti-grid-border-radius);
       border: 1px solid var(--ti-grid-border-color);
 
       &:focus {
@@ -1009,8 +1082,8 @@
 
     .@{grid-prefix-cls}-editor {
       width: 100%;
-      height: 30px;
-      line-height: 30px;
+      height: var(--ti-grid-input-height);
+      line-height: normal;
       color: var(--ti-grid-text-color);
 
       .@{input-prefix-cls} {
@@ -1042,6 +1115,7 @@
     }
   }
 
+  // 筛选面板样式
   &__filter-wrapper {
     .@{grid-prefix-cls}-default-input,
     .@{grid-prefix-cls}-default-textarea {

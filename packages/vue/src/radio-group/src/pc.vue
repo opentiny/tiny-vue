@@ -22,7 +22,7 @@
   </component>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/radio-group/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import Radio from '@opentiny/vue-radio'

@@ -1,0 +1,78 @@
+@import '../custom.less';
+
+@grid-prefix-cls: ~'@{css-prefix}grid';
+@grid-cell-prefix-cls: ~'@{css-prefix}grid-cell';
+@grid-header-prefix-cls: ~'@{css-prefix}grid-header';
+@grid-body-prefix-cls: ~'@{css-prefix}grid-body';
+@grid-input-prefix-cls: ~'@{css-prefix}grid-input';
+@grid-textarea-prefix-cls: ~'@{css-prefix}grid-textarea';
+
+// excel
+.@{grid-prefix-cls} {
+  &&-excel {
+    &.@{grid-cell-prefix-cls}__checked {
+      @apply cursor-default;
+
+      .@{grid-header-prefix-cls}__column {
+        .@{grid-prefix-cls}-resizable {
+          @apply cursor-default;
+        }
+      }
+    }
+
+    .@{grid-header-prefix-cls}__column {
+      @apply py-1 px-0;
+      @apply text-xs;
+      @apply transition-none;
+      @apply cursor-default;
+    }
+
+    .@{grid-body-prefix-cls}__column {
+      @apply p-0;
+      @apply transition-none;
+      height: inherit;
+      @apply leading-6;
+      @apply align-top;
+      @apply cursor-cell;
+
+      &.col__actived {
+        .@{grid-cell-prefix-cls} {
+          @apply p-0;
+        }
+      }
+
+      .@{grid-cell-prefix-cls} {
+        @apply py-0 ~'px-0.5';
+        @apply break-all;
+
+        .@{grid-input-prefix-cls}__wrapper {
+          height: inherit;
+          @apply relative;
+
+          .@{grid-textarea-prefix-cls} {
+            @apply absolute;
+            @apply overflow-hidden;
+            @apply py-0 ~'px-0.5';
+          }
+
+          .@{grid-textarea-prefix-cls},
+          .@{grid-textarea-prefix-cls}:focus {
+            @apply rounded-none;
+            @apply border-0;
+            @apply outline-2 outline-solid outline-color-brand;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: -1px -1px;
+  }
+
+  100% {
+    background-position: -12px -12px;
+  }
+}

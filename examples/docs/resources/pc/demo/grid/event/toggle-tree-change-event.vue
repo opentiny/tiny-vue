@@ -31,8 +31,8 @@
   </div>
 </template>
 
-<script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+<script>
+import { Grid, GridColumn, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -41,7 +41,10 @@ export default {
   },
   methods: {
     expandTree() {
-      alert('触树展开事件')
+      Modal.message({
+        message: '触树展开事件',
+        status: 'info'
+      })
     }
   },
   data() {

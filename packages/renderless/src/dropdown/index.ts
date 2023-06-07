@@ -10,8 +10,8 @@
  *
  */
 
-import { KEY_CODE } from '@opentiny/vue-renderless/common'
-import { addClass, removeClass, on, off } from '@opentiny/vue-renderless/common/deps/dom'
+import { KEY_CODE } from '../common'
+import { addClass, removeClass, on, off } from '../common/deps/dom'
 
 export const watchVisible = ({ broadcast, emit, nextTick }) => (value) => {
   broadcast('TinyDropdownMenu', 'visible', value)

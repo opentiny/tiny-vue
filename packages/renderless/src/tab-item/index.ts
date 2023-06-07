@@ -10,10 +10,10 @@
 *
 */
 
-export const computedIsClosable = ({ parent, props }) => () => props.withClose || parent.withClose
+export const computedIsClosable = ({ rootTabs, props }) => () => props.withClose || rootTabs.withClose
 
-export const computedActive = ({ parent, nextTick, props, state }) => () => {
-  const active = parent.state.currentName === (props.name || state.index)
+export const computedActive = ({ nextTick, props, state }) => () => {
+  const active = state.rootTabs.state.currentName === (props.name || state.index)
 
   if (active) {
     state.loaded = true

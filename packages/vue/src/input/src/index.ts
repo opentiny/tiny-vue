@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 const $constants = {
   INPUT_PC: 'tiny-input__',
@@ -73,7 +73,7 @@ export default defineComponent({
     },
     contentStyle: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     isSelect: {
       type: Boolean,
@@ -116,9 +116,26 @@ export default defineComponent({
     textareaTitle: {
       type: String,
       default: '标题'
+    },
+    displayOnly: {
+      type: Boolean,
+      default: false
+    },
+    displayOnlyContent: {
+      type: String,
+      default: ''
+    },
+    inputClass: {
+      type: String,
+      default: ''
+    },
+    frontClearIcon: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-})
+}
+)

@@ -22,8 +22,8 @@ import {
   setSelectionRange,
   handleConfirm
 } from './index'
-import { compuAmPmMode } from '@opentiny/vue-renderless/time-range'
-import { isDate } from '@opentiny/vue-renderless/common/deps/date-util'
+import { compuAmPmMode } from '../time-range'
+import { isDate } from '../common/deps/date-util'
 
 export const api = ['state', 'handleChange', 'setSelectionRange', 'handleCancel', 'handleConfirm', 'adjustSpinners']
 

@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/breadcrumb/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import BreadcrumbItem from '@opentiny/vue-breadcrumb-item'

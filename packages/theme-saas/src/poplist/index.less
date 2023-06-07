@@ -1,0 +1,13 @@
+@import '../custom.less';
+
+@poplist-prefix-cls: ~'@{css-prefix}poplist';
+
+.@{poplist-prefix-cls} {
+  &.poplist-user {
+    min-width: 180px;
+    .@{css-prefix-iconfont} {
+      float: right;
+      @apply ~'ml-[5px]';
+    }
+  }
+}

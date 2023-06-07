@@ -5,19 +5,21 @@
     <tiny-alert description="type 为默认值 success"></tiny-alert>
     <div>
       <icon-share class="tiny-svg-size icon-share"></icon-share>
+      <tiny-icon-add></tiny-icon-add>
     </div>
   </div>
 </template>
 
 <script>
 import { ButtonGroup, Alert as TinyAlert } from '@opentiny/vue'
-import { iconShare } from '@opentiny/vue-icon'
+import { iconShare, iconAdd as TinyIconAdd } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyButtonGroup: ButtonGroup,
-    TinyAlert: TinyAlert,
-    IconShare: iconShare()
+    TinyAlert,
+    IconShare: iconShare(),
+    TinyIconAdd: TinyIconAdd()
   },
   data() {
     return {

@@ -176,6 +176,20 @@
       "defaultValue": "该属性的默认值为 无数据"
     },
     {
+      "name": "show-empty-image",
+      "sample": "no-data-text",
+      "type": "Boolean",
+      "desc": "默认不显示空数据图片，设置为 true 的时候显示",
+      "defaultValue": "false"
+    },
+    {
+      "name": "input-box-type",
+      "sample": "input-box-type",
+      "type": "String",
+      "desc": "设置输入框的显示类型，包含 input / underline 两种，默认为input",
+      "defaultValue": "input"
+    },
+    {
       "name": "popper-class",
       "sample": "popup-style-position",
       "type": "String",

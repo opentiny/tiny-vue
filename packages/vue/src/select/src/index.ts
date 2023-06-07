@@ -46,6 +46,13 @@ const $constants = {
   TYPE: {
     Grid: 'grid',
     Tree: 'tree'
+  },
+  InputBoxType: {
+    Input: 'input',
+    Underline: 'underline'
+  },
+  ICON_MAP: {
+    downWard: 'icon-delta-down'
   }
 }
 
@@ -218,10 +225,17 @@ export default defineComponent({
     searchable: {
       type: Boolean,
       default: false
+    },
+    showEmptyImage: {
+      type: Boolean,
+      default: false
+    },
+    InputBoxType: {
+      type: String,
+      default: 'input'
     }
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

@@ -57,7 +57,9 @@ export default defineComponent({
     'type',
     'vSize',
     'width',
-    'zIndex'
+    'zIndex',
+    'showClose',
+    'messageClosable'
   ],
   components: {
     Button
@@ -69,7 +71,7 @@ export default defineComponent({
     return setup({ props, context, renderless, api })
   },
   render() {
-    let { state, scopedSlots, vSize, type, resize, animat, status, showHeader } = this
+    let { state, scopedSlots, vSize, type, resize, animat, status, showHeader, messageClosable } = this
     let { showFooter, title, message, lockScroll, lockView, mask, _constants: constants, t } = this
     let { zoomLocat, visible, contentVisible, modalTop, isMsg } = state
     let defaultSlot = scopedSlots.default
@@ -201,7 +203,17 @@ export default defineComponent({
                   defaultSlot
                     ? defaultSlot.call(this, { $modal: this }, h)
                     : [h('div', { class: 'tiny-modal__text' }, typeof message === 'function' ? message.call(this, h) : message)]
-                )
+                ),
+                messageClosable ? h('div', {
+                  class: 'tiny-modal__close-wrapper'
+                },
+                  h(iconClose(), {
+                    class: ['tiny-modal__close-btn'],
+                    on: {
+                      click: this.closeEvent
+                    }
+                  })
+                ) : null
               ]
             ),
             showFooter
@@ -213,30 +225,30 @@ export default defineComponent({
                 footerSlot
                   ? footerSlot.call(this, { $modal: this, beforeClose: this.beforeClose }, h)
                   : [
-                      h(
+                    h(
+                      Button,
+                      {
+                        props: {
+                          type: 'primary'
+                        },
+                        on: {
+                          click: this.confirmEvent
+                        }
+                      },
+                      t('ui.button.confirm')
+                    ),
+                    type === 'confirm'
+                      ? h(
                         Button,
                         {
-                          props: {
-                            type: 'primary'
-                          },
                           on: {
-                            click: this.confirmEvent
+                            click: this.cancelEvent
                           }
                         },
-                        t('ui.button.confirm')
-                      ),
-                      type === 'confirm'
-                        ? h(
-                          Button,
-                          {
-                            on: {
-                              click: this.cancelEvent
-                            }
-                          },
-                          t('ui.button.cancel')
-                        )
-                        : null
-                    ]
+                        t('ui.button.cancel')
+                      )
+                      : null
+                  ]
               )
               : null,
             !isMsg && resize

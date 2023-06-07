@@ -10,9 +10,9 @@
 *
 */
 
-import { getFormated } from '@opentiny/vue-renderless/chart-core/deps/utils'
-import { isNull } from '@opentiny/vue-renderless/common/type'
-import { itemLabel, itemContent, SAAS_DEFAULT_COLORS_10 } from '@opentiny/vue-renderless/chart-core/deps/constants'
+import { getFormated } from '../chart-core/deps/utils'
+import { isNull } from '../common/type'
+import { itemLabel, itemContent, SAAS_DEFAULT_COLORS_10 } from '../chart-core/deps/constants'
 
 const getWaterfallTooltip = (dataType, digit) => {
   let trigger = 'axis'

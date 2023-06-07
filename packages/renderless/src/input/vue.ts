@@ -34,9 +34,13 @@ import {
   handlePasswordVisible,
   handleCompositionStart,
   handleCompositionUpdate,
-  hasSelection
+  hasSelection,
+  handleEnterDisplayOnlyContent,
+  hiddenPassword,
+  dispatchDisplayedValue,
+  getDisplayedValue
 } from './index'
-import useStorageBox from '@opentiny/vue-renderless/tall-storage/vue-storage-box'
+import useStorageBox from '../tall-storage/vue-storage-box'
 
 export const api = [
   'blur',
@@ -66,7 +70,9 @@ export const api = [
   'selectedMemory',
   'storageData',
   'isMemoryStorage',
-  'hasSelection'
+  'hasSelection',
+  'handleEnterDisplayOnlyContent',
+  'hiddenPassword'
 ]
 
 const initState = ({ reactive, computed, mode, props, parent, constants }) => {
@@ -105,7 +111,14 @@ const initState = ({ reactive, computed, mode, props, parent, constants }) => {
         !state.inputDisabled &&
         !props.readonly &&
         !props.showPassword
-    )
+    ),
+    isDisplayOnly: computed(
+      () =>
+        (props.displayOnly || (parent.tinyForm || {}).displayOnly) &&
+        ['text', 'textarea', 'password', 'number'].includes(props.type)
+    ),
+    displayOnlyTooltip: '',
+    hiddenPassword: computed(() => api.hiddenPassword())
   })
 
   return state
@@ -125,7 +138,9 @@ const initApi = ({ api, state, dispatch, broadcast, emit, refs, props, CLASS_PRE
     getSuffixVisible: getSuffixVisible({ parent, props, state }),
     calculateNodeStyling: calculateNodeStyling(),
     handleCompositionStart: handleCompositionStart(state),
-    handleCompositionUpdate: handleCompositionUpdate(state)
+    handleCompositionUpdate: handleCompositionUpdate(state),
+    dispatchDisplayedValue: dispatchDisplayedValue({ state, props, dispatch, api }),
+    getDisplayedValue: getDisplayedValue({ state, props })
   })
 }
 
@@ -161,7 +176,9 @@ const mergeApi = ({ storages, api, componentName, props, emit, eventName, nextTi
     setNativeInputValue: setNativeInputValue({ api, state }),
     handleCompositionEnd: handleCompositionEnd({ api, state }),
     handlePasswordVisible: handlePasswordVisible({ api, nextTick, state }),
-    hasSelection: hasSelection(api)
+    hasSelection: hasSelection(api),
+    handleEnterDisplayOnlyContent: handleEnterDisplayOnlyContent({ state, props }),
+    hiddenPassword: hiddenPassword({ state, props })
   })
 }
 
@@ -241,6 +258,8 @@ export const renderless = (
     api.setNativeInputValue()
     api.resizeTextarea()
     api.updateIconOffset()
+    api.dispatchDisplayedValue()
+    
     dispatch('Select', 'input-mounted', vm.$el)
     dispatch('Tooltip', 'tooltip-update', vm.$el)
   })

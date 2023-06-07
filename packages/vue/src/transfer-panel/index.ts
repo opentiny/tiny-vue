@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import TransferPanel from './src/index.vue'
+import TransferPanel from './src/pc.vue'
 import { version } from './package.json'
 
 /* istanbul ignore next */

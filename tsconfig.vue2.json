@@ -1,6 +1,7 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
+    "allowJs": true ,
     "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
@@ -33,10 +34,7 @@
     ]
   },
   "vueCompilerOptions": {
-    "target": 2,
-    "_hooks": [
-      "./linting/vue-tsc-hook.js"
-    ]
+    "target": 2
   },
   "include": [
     "packages/**/*.ts",

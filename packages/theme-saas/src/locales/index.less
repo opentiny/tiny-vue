@@ -1,0 +1,49 @@
+@import '../custom.less';
+
+@locales-prefix-cls: ~'@{css-prefix}locales';
+@popover-prefix-cls: ~'@{css-prefix}popover';
+@popper-prefix-cls: ~'@{css-prefix}popper';
+
+.@{locales-prefix-cls} {
+  @apply cursor-pointer;
+  @apply text-sm;
+  @apply text-color-brand;
+
+  svg {
+    @apply fill-color-brand;
+    @apply ml-2;
+  }
+
+  &:hover {
+    @apply text-color-brand-hover;
+
+    svg {
+      @apply fill-color-icon-hover;
+    }
+  }
+
+  &__popper {
+    &.@{popover-prefix-cls}.@{popper-prefix-cls} {
+      @apply p-0;
+    }
+
+    .poplist {
+      width: 216px;
+      @apply py-1 px-0;
+
+      li {
+        @apply list-none;
+        @apply cursor-pointer;
+        @apply py-0 px-4;
+        @apply leading-8;
+
+        &:hover {
+          @apply bg-color-bg-4;
+        }
+        &.selected {
+          background: none;
+        }
+      }
+    }
+  }
+}

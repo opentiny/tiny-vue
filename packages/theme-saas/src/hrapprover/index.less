@@ -1,0 +1,86 @@
+@import '../custom.less';
+
+@hrapprover-prefix-cls: ~'@{css-prefix}hrapprover';
+@dept-prefix-cls: ~'@{css-prefix}dept';
+@input-prefix-cls: ~'@{css-prefix}input';
+
+.@{dept-prefix-cls} {
+  .@{hrapprover-prefix-cls}__list {
+    @apply mt-4;
+    @apply overflow-auto;
+    max-height: 180px;
+
+    > table {
+      tbody {
+        tr {
+          @apply border-b border-b-color-bg-3;
+          @apply text-color-text-primary;
+          @apply bg-color-bg-2;
+
+          &:hover {
+            @apply bg-color-bg-5;
+          }
+
+          &:nth-child(odd) {
+            @apply bg-color-bg-1;
+          }
+        }
+      }
+
+      tr {
+        @apply table-row;
+        vertical-align: inherit;
+        border-color: inherit;
+      }
+
+      th {
+        border-left: none;
+        @apply ~'pt-0.5 pr-0 pb-0.5 pl-2';
+        @apply h-8;
+      }
+
+      td {
+        @apply ~'pt-0.5 pr-0 pb-0.5 pl-2';
+        @apply h-10;
+        @apply text-xs;
+      }
+
+      thead {
+        @apply border-b border-b-color-bg-1;
+        @apply text-left;
+        @apply bg-color-bg-2;
+        @apply text-color-text-primary;
+
+        th {
+          @apply overflow-hidden;
+          @apply text-ellipsis;
+          @apply whitespace-nowrap;
+          @apply text-xs;
+          @apply text-color-text-primary;
+        }
+
+        tr > th:last-child {
+          @apply relative;
+
+          &::after {
+            @apply content-[''];
+            @apply absolute;
+            @apply left-0;
+            @apply top-2;
+            @apply w-px;
+            @apply h-4;
+            @apply bg-color-text-disabled;
+          }
+        }
+      }
+    }
+  }
+
+  .@{hrapprover-prefix-cls}__error {
+    @apply border border-solid border-color-error;
+  }
+
+  .@{input-prefix-cls}__suffix .@{input-prefix-cls}__icon {
+    @apply align-middle;
+  }
+}

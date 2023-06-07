@@ -23,7 +23,7 @@
  *
  */
 
-import browser from '@opentiny/vue-renderless/common/browser'
+import browser from '../../common/browser'
 import { remove } from '../static'
 
 let resizeTimeout

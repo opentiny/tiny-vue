@@ -10,7 +10,7 @@
 *
 */
 
-import { getObj } from '@opentiny/vue-renderless/common/object'
+import { getObj } from '../common/object'
 
 const escapeRegexpString = (value = '') => String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
 

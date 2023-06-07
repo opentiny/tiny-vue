@@ -35,8 +35,8 @@ export const renderless = (props, { computed, inject, reactive, onMounted, onBef
     reqs: {},
     uploader: inject('uploader'),
     accecpt: '',
-    isEdm: computed(() => parent.state.isEdm),
-    openEdmDownload: computed(() => parent.edm.download),
+    isEdm: computed(() => state.uploader.$refs[constants.FILE_UPLOAD_INNER].state.isEdm),
+    openEdmDownload: computed(() => state.uploader.$refs[constants.FILE_UPLOAD_INNER].edm.download),
 
     headers: computed(() => {
       if (state.isEdm) {

@@ -21,6 +21,7 @@
 
   font-size: var(--ti-breadcrumb-font-size);
   line-height: var(--ti-breadcrumb-text-line-height);
+  font-family: var(--ti-breadcrumb-font-family);
   .clearfix();
 
   & &__item {
@@ -31,9 +32,13 @@
     &:last-child {
       .@{breadcrumb-prefix-cls}__inner {
         font-weight: var(--ti-breadcrumb-text-font-weight);
+        color: var(--ti-breadcrumb-selected-text-color);
+        text-decoration: none;
 
         a {
           cursor: text;
+          color: var(--ti-breadcrumb-selected-text-color);
+          text-decoration: none;
         }
       }
 
@@ -54,14 +59,26 @@
 
     &:hover {
       color: var(--ti-breadcrumb-hover-text-color);
+      text-decoration: var(--ti-breadcrumb-hover-text-decoration);
+
+      & a:hover {
+        cursor: pointer;
+        color: var(--ti-breadcrumb-hover-text-color);
+        text-decoration: var(--ti-breadcrumb-hover-text-decoration);
+      }
+
     }
+
+
   }
 
   & &__separator {
-    font-family: '\5B8B\4F53', sans-serif;
+    font-family: var(--ti-breadcrumb-font-family);
     color: var(--ti-breadcrumb-separator-text-color);
-    padding: var(--ti-breadcrumb-separator-padding-vertical) var(--ti-breadcrumb-separator-padding-horizontal);
+    margin: var(--ti-breadcrumb-separator-margin-vertical) var(--ti-breadcrumb-separator-margin-horizontal);
     vertical-align: middle;
+    text-align: center;
+    width: var(--ti-breadcrumb-separator-width);
   }
 
   & &__separator-cls {
@@ -71,9 +88,16 @@
     vertical-align: middle;
   }
 
-  & &__inner a:hover,
   & &__item:last-child:hover {
+    cursor: text;
     color: var(--ti-breadcrumb-hover-text-color);
     text-decoration: none;
+
+    a {
+      cursor: text;
+      color: var(--ti-breadcrumb-selected-text-color);
+      text-decoration: none;
+    }
+
   }
 }

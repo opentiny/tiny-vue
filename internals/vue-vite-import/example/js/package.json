@@ -16,7 +16,8 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.10.2",
     "@vitejs/plugin-vue-jsx": "^2.0.1",
-    "vite": "^3.0.0"
+    "vite-plugin-inspect": "^0.7.10",
+    "vite": "^4.3.8"
   },
   "email": ""
 }

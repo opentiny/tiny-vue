@@ -10,7 +10,7 @@
 *
 */
 
-import { on, off } from '@opentiny/vue-renderless/common/deps/dom'
+import { on, off } from '../common/deps/dom'
 
 export const initPullRefresh = ({ t, props, state }) => () => {
   const defaultOption = {
@@ -28,21 +28,19 @@ export const initPullRefresh = ({ t, props, state }) => () => {
     paddingTop: state.pullDown.headHeight + 'px',
     paddingBottom: state.pullUp.footHeight + 'px'
   }
+  state.loosingText = props.loosingText ?? t('ui.pullRefresh.loosing')
+  state.successText = props.successText ?? t('ui.pullRefresh.success')
+  state.failedText = props.failedText ?? t('ui.pullRefresh.failed')
 }
 
 export const onTouchstart = (state) => (event) => {
   state.draggposition = event.touches[0].clientY
 }
 
-export const onTouchmove = ({ props, state, refs }) => (event) => {
+export const onTouchmove = ({ props, state }) => (event) => {
   if (event.touches[0].clientY < state.draggposition) {
-    // 在滚动条在底部10px内时，才触发上拉刷新，防止频繁触发
-    const scrollBottom = refs.content.scrollHeight - refs.content.clientHeight - refs.content.scrollTop
-    if (scrollBottom > 10) {
-      return
-    }
     // 上拉刷新
-    if (!state.pullUp.pullUpDisabled && state.pullUp.handler) {
+    if (!state.pullUp.pullUpDisabled) {
       // 没有更多了
       if (props.hasMore) {
         state.translate3d = (event.touches[0].clientY - state.draggposition) / 2
@@ -51,12 +49,8 @@ export const onTouchmove = ({ props, state, refs }) => (event) => {
       }
     }
   } else {
-    // 在滚动条在顶部10px内时，才触发下拉刷新，防止频繁触发
-    if (refs.content.scrollTop > 10) {
-      return
-    }
     // 下拉刷新
-    if (!state.pullDown.pullDownDisabled && state.pullDown.handler) {
+    if (!state.pullDown.pullDownDisabled) {
       state.translate3d = (event.touches[0].clientY - state.draggposition) / 2
       state.pullDownReplaces = Math.abs(state.translate3d) > state.pullDown.headHeight ? state.loosingText : state.pullDown.pullingDownText
       state.pullUpReplaces = ''

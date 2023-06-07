@@ -11,22 +11,80 @@
 */
 
 .component-css-vars-collapse-item() {
-  --ti-collapse-item-text-color: var(--ti-common-color-info-normal);
-  --ti-collapse-item-icon-color: var(--ti-common-color-icon-normal);
-  --ti-collapse-item-wrap-bg-color: var(--ti-common-color-light);
-  --ti-collapse-item-disabled-text-color: var(--ti-common-color-placeholder);
-  --ti-collapse-item-header-font-size: var(--ti-common-font-size-base);
-  --ti-collapse-item-header-focus-text-color: var(--ti-base-color-brand-5);
-  --ti-collapse-item-arrow-font-size: var(--ti-common-font-size-base);
-  --ti-collapse-item-arrow-hover-text-color: var(--ti-common-color-info-normal);
-  --ti-collapse-item-content-font-size: var(--ti-common-font-size-base);
-  --ti-collapse-item-header-bg-color: var(--ti-base-color-brand-1);
-  --ti-collapse-item-margin-top: var(--ti-common-space-2x);
+  // 面板默认文本色
+  --ti-collapse-item-text-color: var(--ti-common-color-text-primary);
+  // 面板背景色
   --ti-collapse-item-bg-color: var(--ti-common-color-bg-white-normal);
+  // 面板边框色
   --ti-collapse-item-border-color: var(--ti-common-color-line-dividing);
+  // 面板左边框色
+  --ti-collapse-item-border-color-left: var(--ti-collapse-item-border-color);
+  // 面板右边框色
+  --ti-collapse-item-border-color-right: var(--ti-collapse-item-border-color);
+  // 面板上边框色
+  --ti-collapse-item-border-color-top: var(--ti-collapse-item-border-color);
+  // 面板禁用时左边框色
+  --ti-collapse-item-disabled-border-color-left: var(--ti-collapse-item-border-color);
+  // 面板禁用时右边框色
+  --ti-collapse-item-disabled-border-color-right: var(--ti-collapse-item-border-color);
+  // 面板禁用时上边框色
+  --ti-collapse-item-disabled-border-color-top: var(--ti-collapse-item-border-color);
+  // 面板圆角
   --ti-collapse-item-border-radius: var(--ti-common-border-radius-normal);
+  // 面板顶部外边距
+  --ti-collapse-item-margin-top: var(--ti-common-space-2x);
+  // 面板头部最小高度
+  --ti-collapse-item-header-min-height: var(--ti-common-size-8x);
+  // 面板头部向下箭头图标色
+  --ti-collapse-item-icon-color: var(--ti-common-color-icon-normal);
+  // 面板内容背景色
+  --ti-collapse-item-wrap-bg-color: var(--ti-common-color-light);
+  // 面板禁用文本色
+  --ti-collapse-item-disabled-text-color: var(--ti-common-color-text-disabled);
+  // 面板禁用背景色
+  --ti-collapse-item-disabled-header-bg-color: var(--ti-common-color-bg-disabled);
+  // 面板头部字号
+  --ti-collapse-item-header-font-size: var(--ti-common-font-size-base);
+  // 面板头部字重
+  --ti-collapse-item-header-font-weight: var(--ti-common-font-weight-4);
+  // 面板头部的聚焦文本色(hide)
+  --ti-collapse-item-header-focus-text-color: var(--ti-common-color-text-primary);
+  // 面板头部箭头尺寸(hide)
+  --ti-collapse-item-arrow-font-size: var(--ti-common-font-size-base);
+  // 面板头部箭头右外边距
+  --ti-collapse-item-arrow-margin-right: var(--ti-common-space-3x);
+  // 面板头部向上箭头图标色|箭头悬浮色
+  --ti-collapse-item-arrow-hover-text-color: var(--ti-common-color-info);
+  // 面板头部箭头尺寸
   --ti-collapse-item-icon-font-size: var(--ti-common-font-size-2);
-  --ti-collapse-item-header-padding-vertical: 0;
+  // 面板头部垂直内边距
+  --ti-collapse-item-header-padding-vertical: var(--ti-common-space-0);
+  // 面板头部水平内边距
   --ti-collapse-item-header-padding-horizontal: var(--ti-common-space-4x);
-  --ti-collapse-item-content-border-color-top: var(--ti-common-color-line-dividing);
+  // 面板头部背景色
+  --ti-collapse-item-header-bg-color: var(--ti-common-color-bg-white-emphasize);
+  // 面板头部边框色
+  --ti-collapse-item-header-border-color: var(--ti-common-color-transparent);
+  // 面板头部左边框色
+  --ti-collapse-item-header-border-color-left: var(--ti-collapse-item-header-border-color);
+  // 面板头部右边框色
+  --ti-collapse-item-header-border-color-right: var(--ti-collapse-item-header-border-color);
+  // 面板内容边框色
+  --ti-collapse-item-content-border-color: var(--ti-common-color-transparent);
+  // 面板内容左边框色
+  --ti-collapse-item-content-border-color-left: var(--ti-collapse-item-content-border-color);
+  // 面板内容右边框色
+  --ti-collapse-item-content-border-color-right: var(--ti-collapse-item-content-border-color);
+  // 面板内容顶部边框色
+  --ti-collapse-item-content-border-color-top: var(--ti-collapse-item-border-color);
+  // 面板内容顶部内边距
+  --ti-collapse-item-content-padding-top: var(--ti-common-space-3x);
+  // 面板内容左内边距
+  --ti-collapse-item-content-padding-left: var(--ti-common-space-4x);
+  // 面板内容右内边距
+  --ti-collapse-item-content-padding-right: var(--ti-common-space-4x);
+  // 面板内容底部内边距
+  --ti-collapse-item-content-padding-bottom: var(--ti-common-space-3x);
+  // 面板内容字号
+  --ti-collapse-item-content-font-size: var(--ti-common-font-size-base);
 }

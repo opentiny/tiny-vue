@@ -5,21 +5,21 @@
  * yarn create:ui img-preview -single 输出纯净模板（没有 pc 等模板/单层组件）
  * yarn create:ui img-preview -mobile 创建纯移动组件
  */
-const path = require('path')
-const fs = require('fs-extra')
-const semver = require('semver')
-const utils = require('./utils')
-const { createModuleMapping } = require('./module-utils')
-const handlebarsRender = require('./handlebars.render')
+import path from 'path'
+import fs from 'fs-extra'
+import semver from 'semver'
+import * as utils from '../../shared/utils'
+import { createModuleMapping } from '../../shared/module-utils'
+import handlebarsRender from '../build/handlebars.render'
 
 const args = utils.getInputCmd()
 
 if (args.length > 0) {
-  const commands = []
-  const components = []
-  const templateDir = utils.pathJoin('../template/component')
-  const componetDir = utils.pathJoin('../../packages/vue/components')
-  const { version } = fs.readJSONSync(utils.pathJoin('../../packages/vue/package.json'))
+  const commands: string[] = []
+  const components: string[] = []
+  const templateDir = utils.pathJoin('../../public/template/component')
+  const componetDir = utils.pathJoin('../../../../packages/vue/src')
+  const { version } = fs.readJSONSync(utils.pathJoin('../../../../packages/vue/package.json'))
 
   args.forEach((item) => {
     if (item.indexOf('-') === 0) {

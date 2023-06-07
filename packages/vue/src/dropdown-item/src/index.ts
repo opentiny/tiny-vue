@@ -10,13 +10,23 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
+
+const $constants = {
+  ICON_MAP: {
+    leftWardArrow: 'icon-delta-left'
+  }
+}
 
 export default defineComponent({
   name: $prefix + 'DropdownItem',
   componentName: 'TinyDropdownItem',
   props: {
     ...$props,
+    _constants: {
+      type: Object,
+      default: () => $constants
+    },
     icon: [String, Object],
     disabled: Boolean,
     divided: Boolean,
@@ -46,10 +56,25 @@ export default defineComponent({
     textField: {
       type: String,
       default: 'label'
+    },
+    selected: {
+      type: Boolean,
+      default: false
+    },
+    selectedField: {
+      type: String,
+      default: 'selected'
+    },
+    multiStage: {
+      type: Boolean,
+      default: false
+    },
+    currentIndex: {
+      type: Number,
+      default: () => -1
     }
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

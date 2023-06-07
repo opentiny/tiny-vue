@@ -1,0 +1,104 @@
+@import '../custom.less';
+
+@upload-prefix-cls: ~'@{css-prefix}upload';
+@upload-dragger-prefix-cls: ~'@{css-prefix}upload-dragger';
+
+.@{upload-dragger-prefix-cls} {
+  width: 360px;
+  height: 180px;
+  @apply bg-color-bg-1;
+  @apply border-2 border-dashed border-color-text-placeholder;
+  @apply rounded;
+  @apply box-border;
+  @apply text-center;
+  @apply overflow-hidden;
+  @apply flex;
+  @apply flex-col;
+  @apply justify-center;
+  @apply items-center;
+
+  &:hover {
+    @apply border-color-border-hover;
+  }
+
+  &:active {
+    @apply border-color-border-hover;
+    @apply bg-color-bg-2;
+  }
+
+  &.is-dragover {
+    @apply relative;
+    @apply border-color-error;
+
+    &::after {
+      @apply content-[''];
+      @apply w-full;
+      @apply h-full;
+      @apply absolute;
+      border: 5px solid theme('colors.color.error.disabled');
+    }
+  }
+
+  .icon-fileupload {
+    font-size: 32px;
+    @apply fill-color-text-primary;
+  }
+
+  .@{upload-prefix-cls}__text {
+    @apply text-color-text-primary;
+    @apply text-xs;
+    @apply text-center;
+    @apply mt-2;
+
+    em {
+      @apply text-color-brand;
+      @apply not-italic;
+    }
+
+    &-tips {
+      @apply text-xs;
+      @apply mt-2;
+      @apply text-color-text-secondary;
+    }
+  }
+
+  & + .@{upload-prefix-cls}__tip {
+    @apply text-center;
+  }
+
+  & ~ .@{upload-prefix-cls}__files {
+    @apply border-t border-t-color-border;
+    margin-top: 7px;
+    padding-top: 5px;
+  }
+}
+
+.@{upload-prefix-cls} {
+  &.is-disabled {
+    .@{upload-prefix-cls}-dragger {
+      @apply cursor-not-allowed;
+      @apply border-color-border;
+
+      &:active {
+        @apply bg-color-bg-1;
+        @apply border-color-border;
+      }
+
+      .icon-fileupload {
+        @apply fill-color-text-disabled;
+      }
+
+      .@{upload-prefix-cls}__text {
+        @apply text-color-text-disabled;
+
+        em {
+          @apply text-color-brand-disabled;
+        }
+
+        &-tips {
+          @apply text-color-text-disabled;
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,17 @@
 import hooks from './adapter'
-import { appContext, appProperties, bindFilter, createComponent } from './adapter'
+import {
+  appContext,
+  appProperties,
+  bindFilter,
+  createComponentFn,
+  getElementCssClass,
+  getElementStatusClass
+} from './adapter'
 import { defineAsyncComponent, directive, emitter, h, markRaw, Teleport } from './adapter'
-import { parseVnode, renderComponent, rootConfig, tools, useRouter } from './adapter'
+import { parseVnode, renderComponent, rootConfig, tools, useRouter, getComponentName } from './adapter'
 import { t } from '@opentiny/vue-locale'
+import { stringifyCssClass } from './csscls'
+import { twMerge } from 'tailwind-merge'
 import '@opentiny/vue-theme/base/index.less'
 
 import { defineComponent, isVue2, isVue3 } from './adapter'
@@ -10,32 +19,35 @@ export { defineComponent, isVue2, isVue3, appProperties }
 
 export const $prefix = 'Tiny'
 
-const tinyMap = {
-  tinyMode: 'tiny_mode',
-  tinyModeRoot: 'tiny_mode_root',
-  tinyTemplate: 'tiny_template',
-  tinyRenderless: 'tiny_renderless'
-}
-
 export const $props = {
-  [tinyMap.tinyMode]: String,
-  [tinyMap.tinyModeRoot]: Boolean,
-  [tinyMap.tinyTemplate]: [Function, Object],
-  [tinyMap.tinyRenderless]: Function
+  'tiny_mode': String,
+  'tiny_mode_root': Boolean,
+  'tiny_template': [Function, Object],
+  'tiny_renderless': Function,
+  'tiny_theme': String,
+  'tiny_chart_theme': Object
 }
 
-export const props = ['tiny_mode', 'tiny_mode_root', 'tiny_template', 'tiny_renderless', '_constants']
+export const props = [
+  'tiny_mode',
+  'tiny_mode_root',
+  'tiny_template',
+  'tiny_renderless',
+  '_constants',
+  'tiny_theme',
+  'tiny_chart_theme'
+]
 
-const resolveMode = (props, context) => {
-  let isRightMode = (mode) => ~['pc', 'mobile'].indexOf(mode)
+export const resolveMode = (props, context) => {
+  let isRightMode = (mode) => ~['pc', 'mobile', 'mobile-first'].indexOf(mode)
   let config = rootConfig(context)
   let tinyModeProp = typeof props.tiny_mode === 'string' ? props.tiny_mode : null
   let tinyModeInject = hooks.inject('TinyMode', null)
   let tinyModeGlobal = config.tiny_mode && config.tiny_mode.value
 
-  !isRightMode(tinyModeProp) && (tinyModeProp = null)
-  !isRightMode(tinyModeInject) && (tinyModeInject = null)
-  !isRightMode(tinyModeGlobal) && (tinyModeGlobal = null)
+  if (!isRightMode(tinyModeProp)) tinyModeProp = null
+  if (!isRightMode(tinyModeInject)) tinyModeInject = null
+  if (!isRightMode(tinyModeGlobal)) tinyModeGlobal = null
 
   let tinyMode = tinyModeProp || tinyModeInject || tinyModeGlobal || 'pc'
 
@@ -43,7 +55,42 @@ const resolveMode = (props, context) => {
     hooks.provide('TinyMode', tinyMode)
   }
 
+  let instance = hooks.getCurrentInstance()
+
+  if (isVue2) {
+    instance = instance.proxy
+  }
+
+  Object.defineProperty(instance, '_tiny_mode', { value: tinyMode })
+
   return tinyMode
+}
+
+const resolveTheme = ({ props, context, utils }) => {
+  const isRightTheme = (theme) => ~['tiny', 'saas'].indexOf(theme)
+  const config = rootConfig(context)
+  let tinyThemeProp = typeof props.tiny_theme === 'string' ? props.tiny_theme : null
+  let tinyThemeInject = hooks.inject('TinyTheme', null)
+  let tinyThemeGlobal = config.tiny_theme && config.tiny_theme.value
+
+  if (!isRightTheme(tinyThemeProp)) tinyThemeProp = null
+  if (!isRightTheme(tinyThemeInject)) tinyThemeInject = null
+  if (!isRightTheme(tinyThemeGlobal)) tinyThemeGlobal = null
+
+  const tinyTheme = tinyThemeProp || tinyThemeInject || tinyThemeGlobal || 'tiny'
+
+  return (utils.vm.theme = tinyTheme)
+}
+
+const resolveChartTheme = ({ props, context, utils }) => {
+  const config = rootConfig(context)
+  let tinyChartProp = typeof props.tiny_chart_theme === 'object' ? props.tiny_chart_theme : null
+  let tinyChartInject = hooks.inject('TinyChartTheme', null)
+  let tinyChartGlobal = config.tiny_chart_theme && config.tiny_chart_theme.value
+
+  const tinyChartTheme = tinyChartProp || tinyChartInject || tinyChartGlobal || null
+
+  return (utils.vm.chart_theme = tinyChartTheme)
 }
 
 export const $setup = ({ props, context, template, extend = {} }) => {
@@ -60,10 +107,46 @@ export const $setup = ({ props, context, template, extend = {} }) => {
   return renderComponent({ view, props, context, extend })
 }
 
-export const setup = ({ props, context, renderless, api, extendOptions = {}, mono = false }) => {
+export const mergeClass = (...cssClasses) => twMerge(stringifyCssClass(cssClasses))
+
+const design = {
+  configKey: Symbol('designConfigKey'),
+  configInstance: null
+}
+
+// 注入规范配置
+export const provideDesignConfig = (designConfig) => {
+  if (Object.keys(designConfig).length) {
+    hooks.provide(design.configKey, designConfig)
+    design.configInstance = designConfig
+  }
+}
+
+const createComponent = createComponentFn(design)
+
+interface DesignConfig {
+  components?: any
+  name?: string
+  version?: string
+}
+
+export const setup = ({ props, context, renderless, api, extendOptions = {}, mono = false, classes = {} }) => {
   const render = typeof props.tiny_renderless === 'function' ? props.tiny_renderless : renderless
-  const utils = { $prefix, t, ...tools(context, resolveMode(props, context)) }
+
+  // 获取组件级配置和全局配置（inject需要带有默认值，否则控制台会报警告）
+  const globalDesignConfig: DesignConfig = hooks.inject(design.configKey, {})
+  const designConfig = globalDesignConfig?.components?.[getComponentName().replace($prefix, '')]
+
+  const utils = { $prefix, t, ...tools(context, resolveMode(props, context)), mergeClass, designConfig, globalDesignConfig }
+
+  resolveTheme({ props, context, utils })
+  resolveChartTheme({ props, context, utils })
   const sdk = render(props, hooks, utils, extendOptions)
+
+  // 加载全局配置，合并api
+  if (typeof designConfig?.renderless === 'function') {
+    Object.assign(sdk, designConfig.renderless(props, hooks, utils, sdk))
+  }
 
   const attrs = {
     t,
@@ -71,7 +154,9 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
     f: bindFilter,
     a: filterAttrs,
     d: utils.defineInstanceProperties,
-    dp: utils.defineParentInstanceProperties
+    dp: utils.defineParentInstanceProperties,
+    gcls: (key) => getElementCssClass(classes, key),
+    m: mergeClass
   }
 
   /**
@@ -105,17 +190,27 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
 }
 
 export const svg = ({ name = 'Icon', component }) => {
-  return () =>
-    markRaw({
+  return (propData?) =>
+    markRaw(defineComponent({
       name: $prefix + name,
       setup: (props, context) => {
-        const { fill, width, height } = context.attrs || {}
-        const extend = Object.assign({
-          style: { fill, width, height },
-          class: { 'tiny-svg': true }
-        })
-
-        extend.isSvg = true
+        const { fill, width, height, 'custom-class': customClass } = context.attrs || {}
+        const mergeProps = Object.assign({}, props, propData || null)
+        const mode = resolveMode(mergeProps, context)
+        const isMobileFirst = mode === 'mobile-first'
+        const tinyTag = { 'data-tag': isMobileFirst ? 'tiny-svg' : null }
+        const attrs = isVue3 ? tinyTag : { attrs: tinyTag }
+        const className = isMobileFirst
+          ? mergeClass('h-4 w-4 inline-block', customClass || '', mergeProps.class || '')
+          : 'tiny-svg'
+        const extend = Object.assign(
+          {
+            style: { fill, width, height },
+            class: className,
+            isSvg: true
+          },
+          attrs
+        )
 
         // 解决本地运行会报大量警告的问题
         if (process.env.BUILD_TARGET) {
@@ -124,12 +219,12 @@ export const svg = ({ name = 'Icon', component }) => {
 
         return renderComponent({
           component,
-          props,
+          props: mergeProps,
           context,
           extend
         })
       }
-    })
+    }))
 }
 
 export const filterAttrs = (attrs, filters, include) => {
@@ -174,7 +269,18 @@ export const version = process.env.COMPONENT_VERSION
 
 export type { PropType, ExtractPropTypes, DefineComponent } from './adapter'
 
-export { h, hooks, directive, parseVnode, useRouter, emitter, createComponent, defineAsyncComponent, Teleport }
+export {
+  h,
+  hooks,
+  directive,
+  parseVnode,
+  useRouter,
+  emitter,
+  createComponent,
+  defineAsyncComponent,
+  getElementStatusClass,
+  Teleport
+}
 
 export default {
   h,
@@ -194,5 +300,6 @@ export default {
   $setup,
   setup,
   hooks,
+  getElementStatusClass,
   $install
 }

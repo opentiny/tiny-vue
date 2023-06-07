@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      url: 'static/images/mountain.png'
+      url: '/static/images/mountain.png'
     }
   }
 }

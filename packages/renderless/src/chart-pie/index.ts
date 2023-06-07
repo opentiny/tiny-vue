@@ -10,9 +10,9 @@
 *
 */
 
-import { getFormated, setArrayValue, cloneDeep } from '@opentiny/vue-renderless/chart-core/deps/utils'
-import { itemPoint, itemLabel, itemContent } from '@opentiny/vue-renderless/chart-core/deps/constants'
-import { isNull } from '@opentiny/vue-renderless/common/type'
+import { getFormated, setArrayValue, cloneDeep } from '../chart-core/deps/utils'
+import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
+import { isNull } from '../common/type'
 
 const pieRadius = 100
 const ringRadius = [90, 100]

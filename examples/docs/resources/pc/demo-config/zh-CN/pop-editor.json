@@ -254,5 +254,13 @@
     "component": " PopEditor 弹出编辑",
     "findIntroStr": "该组件只能在弹出的面板中选择数据，不能手动输入数据；弹出面板中显示为 Tree 组件或者 Grid 组件。",
     "demoId": "show-history"
+  },
+  {
+    "title": "远程数据请求",
+    "content": "<p>配置 <code>auto-lookup</code> 为false，设置初始化不请求数据，也可以调用 this.$refs.popeditor.handleSearch() 主动调用请求方法</p>\n",
+    "link": "popeditor/auto-lookup",
+    "component": " PopEditor 弹出编辑",
+    "findIntroStr": "该组件只能在弹出的面板中选择数据，不能手动输入数据；弹出面板中显示为 Tree 组件或者 Grid 组件。",
+    "demoId": "auto-lookup"
   }
 ]

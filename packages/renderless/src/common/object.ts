@@ -10,7 +10,7 @@
 *
 */
 
-import { hasOwn, typeOf, isObject, isPlainObject, isNull } from '@opentiny/vue-renderless/common/type'
+import { hasOwn, typeOf, isObject, isPlainObject, isNull } from './type'
 
 /**
  * 将对象的每个属性值进行循环处理。

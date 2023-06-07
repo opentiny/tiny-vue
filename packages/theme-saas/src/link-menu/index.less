@@ -1,0 +1,266 @@
+@import '../mixins/common.less';
+@import '../custom.less';
+
+@link-menu-prefix-cls: ~'@{css-prefix}link-menu';
+@input-prefix-cls: ~'@{css-prefix}input';
+@tree-prefix-cls: ~'@{css-prefix}tree';
+@tree-node-prefix-cls: ~'@{css-prefix}tree-node';
+@checkbox-prefix-cls: ~'@{css-prefix}checkbox';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+@dialog-box-prefix-cls: ~'@{css-prefix}dialog-box';
+
+.@{link-menu-prefix-cls} {
+  &__nav &__nav-item {
+    @apply text-color-brand;
+    @apply text-sm;
+    @apply border-r border-r-color-border;
+    @apply py-0 px-2;
+    @apply leading-none;
+    @apply inline-block;
+    background: 0;
+    @apply whitespace-nowrap;
+    @apply no-underline;
+    @apply outline-0;
+    @apply text-center;
+    @apply cursor-pointer;
+
+    .@{svg-prefix-cls} {
+      @apply fill-color-brand;
+      @apply mr-1;
+    }
+
+    span {
+      @apply leading-none;
+      @apply align-middle;
+    }
+  }
+
+  &__nav &__btn {
+    @apply text-color-brand;
+    @apply bg-color-bg-1;
+    @apply py-0 px-2;
+    @apply leading-none;
+    @apply outline-0;
+    @apply text-center;
+    @apply border-none;
+    @apply cursor-pointer;
+
+    .@{svg-prefix-cls} {
+      @apply fill-color-text-primary;
+      @apply text-lg;
+    }
+
+    &:hover {
+      .@{svg-prefix-cls} {
+        @apply fill-color-icon-hover;
+      }
+    }
+
+    &:active {
+      .@{svg-prefix-cls} {
+        @apply fill-color-icon-active;
+      }
+    }
+  }
+
+  .@{dialog-box-prefix-cls} {
+    &__header {
+      height: 72px;
+      @apply pt-8 pr-8 pb-6 pl-8;
+    }
+    &__body {
+      @apply pt-0 pr-8 pb-3 pl-8;
+    }
+    &__footer {
+      @apply pb-8;
+    }
+  }
+
+  .@{input-prefix-cls} {
+    width: 30%;
+    min-width: 216px;
+    @apply mb-4;
+
+    .@{input-prefix-cls}__inner {
+      @apply h-8;
+      @apply leading-8;
+      @apply text-sm;
+      @apply text-color-text-primary;
+      @apply bg-color-bg-1;
+      @apply border border-solid border-color-border;
+      @apply rounded;
+      @apply pt-0 pr-12 pb-0 pl-4;
+      @apply block;
+      @apply whitespace-nowrap;
+      @apply select-auto;
+      @apply ~"transition-[border]" duration-300;
+      @apply outline-0;
+      @apply box-border;
+    }
+
+    .@{input-prefix-cls}__suffix-inner {
+      svg {
+        @apply fill-color-text-primary;
+      }
+    }
+  }
+
+  .@{tree-prefix-cls} {
+    .@{tree-node-prefix-cls} {
+      &__content {
+        @apply h-12;
+
+        &:hover {
+          @apply bg-color-bg-4;
+        }
+
+        > label.@{checkbox-prefix-cls} {
+          @apply ml-4;
+
+          &.is-disabled + .tree-node {
+            .tree-node-name {
+              @apply text-color-text-disabled;
+            }
+          }
+        }
+      }
+
+      .tree-node-icon {
+        @apply text-sm;
+        @apply order-1;
+        @apply mr-4;
+
+        > svg {
+          @apply text-base;
+        }
+      }
+
+      .@{checkbox-prefix-cls} {
+        &__inner {
+          @apply flex;
+
+          svg {
+            @apply align-text-bottom;
+          }
+        }
+      }
+
+      .tree-node-body {
+        @apply block;
+        @apply no-underline;
+
+        & > .@{svg-prefix-cls} {
+          @apply ml-1;
+        }
+      }
+
+      .tree-node-name {
+        @apply text-color-text-primary;
+        @apply text-sm;
+        @apply rounded-sm;
+        @apply pt-0 pr-4 pb-0 pl-2;
+        @apply align-middle;
+      }
+
+      &.is-focusable {
+        .tree-node-name {
+          @apply text-color-text-primary;
+        }
+      }
+
+      &.is-current {
+        > .@{tree-node-prefix-cls}__content {
+          @apply relative;
+          @apply bg-color-bg-3;
+
+          &::after {
+            @apply content-[''];
+            @apply border-r-2 border-r-color-brand;
+            @apply absolute;
+            @apply top-0;
+            @apply left-0;
+            @apply h-full;
+            @apply ~'z-[1]';
+          }
+        }
+      }
+
+      &:focus {
+        > .@{tree-node-prefix-cls}__content {
+          @apply bg-color-bg-4;
+        }
+      }
+
+      &.is-current:focus {
+        > .@{tree-node-prefix-cls}__content {
+          @apply bg-color-bg-3;
+        }
+      }
+    }
+
+    &.@{link-menu-prefix-cls}__overflow {
+      .tree-node {
+        width: calc(100% - 48px);
+      }
+
+      .tree-node-name {
+        @apply w-full;
+        @apply inline-block;
+        .text-overflow();
+      }
+    }
+
+    &.@{link-menu-prefix-cls}__wrap {
+      .@{tree-node-prefix-cls}__content {
+        min-height: 48px;
+        @apply ~'py-0.5 px-0';
+        @apply flex;
+        @apply justify-start;
+        @apply items-center;
+        @apply text-sm;
+
+        .@{tree-node-prefix-cls}__expand-icon {
+          &.expanded {
+            @apply rotate-90;
+          }
+        }
+
+        .@{checkbox-prefix-cls} {
+          @apply self-start;
+          font-size: inherit;
+          @apply h-full;
+
+          &__input {
+            @apply leading-4;
+          }
+        }
+
+        .tree-node {
+          @apply w-full;
+
+          .tree-node-name {
+            font-size: inherit;
+          }
+        }
+      }
+
+      .tree-node-body {
+        @apply flex;
+        @apply justify-start;
+        @apply items-start;
+        @apply no-underline;
+
+        .@{svg-prefix-cls} {
+          @apply shrink-0;
+        }
+      }
+
+      .tree-node-name {
+        @apply inline-block;
+        @apply whitespace-normal;
+        @apply leading-normal;
+        word-break: break-word;
+      }
+    }
+  }
+}

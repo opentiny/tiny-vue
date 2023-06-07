@@ -4,7 +4,7 @@
     <tiny-grid-column field="name" title="名称">
       <template #default="data">
         <tiny-tooltip class="item" effect="dark" :content="data.row.name" placement="top-start">
-          <span>{{ data.row.name }}</span>
+          <span style="color:pink">{{ data.row.name }}</span>
         </tiny-tooltip>
       </template>
     </tiny-grid-column>

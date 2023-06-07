@@ -14,11 +14,13 @@
 @import '../mixins/checkbox.less';
 @import '../custom.less';
 @import './vars.less';
+@import '../checkbox-button/vars.less';
 
 @checkbox-prefix-cls: ~'@{css-prefix}checkbox';
 
 .@{checkbox-prefix-cls} {
   .component-css-vars-checkbox();
+  .component-css-vars-checkbox-button();
 
   position: relative;
   display: inline-flex;
@@ -26,8 +28,9 @@
   color: var(--ti-checkbox-text-color);
   font-weight: 500;
   font-size: 0; //去除inline-block元素间间距
+  font-family: var(--ti-checkbox-text-font-family);
   white-space: nowrap;
-  margin-right: 30px;
+  margin-right: var(--ti-checkbox-label-margin-right);
   outline: none;
   cursor: pointer;
   .user-select(none);
@@ -41,7 +44,7 @@
     border-radius: 2px;
     border: 1px solid var(--ti-checkbox-border-color);
     box-sizing: border-box;
-    line-height: normal;
+    line-height: var(--ti-checkbox-font-normal-line-height);
     height: 40px;
 
     & + & {
@@ -62,7 +65,7 @@
       height: 36px;
 
       .@{checkbox-prefix-cls}__label {
-        line-height: 17px;
+        line-height: var(--ti-checkbox-font-medium-line-height);
         font-size: var(--ti-common-font-size-1);
       }
 
@@ -78,7 +81,7 @@
       height: 32px;
 
       .@{checkbox-prefix-cls}__label {
-        line-height: 15px;
+        line-height: var(--ti-checkbox-font-small-line-height);
         font-size: var(--ti-common-font-size-base);
       }
 
@@ -99,7 +102,7 @@
       height: 28px;
 
       .@{checkbox-prefix-cls}__label {
-        line-height: 12px;
+        line-height: var(--ti-checkbox-font-mini-line-height);
         font-size: var(--ti-common-font-size-base);
       }
 
@@ -147,7 +150,9 @@
     }
 
     &.is-disabled {
-      .checkbox-input-disabled(var(--ti-checkbox-label-text-color-disabled), var(--ti-checkbox-bg-color-disable), var(--ti-checkbox-border-color-unchecked-disabled));
+      .checkbox-input-disabled(var(--ti-checkbox-bg-color-disable), var(--ti-checkbox-border-color-unchecked-disabled),
+      var(--ti-checkbox-bg-color-checked-disabled), var(--ti-checkbox-border-color-checked-disabled),
+      var(--ti-checkbox-label-text-color-disabled), var(--ti-checkbox-icon-color-disabled));
     }
 
     &.is-checked {
@@ -184,25 +189,26 @@
         border-color: var(--ti-checkbox-border-color-checked);
 
         &:hover {
-          background-color: var(--ti-checkbox-bg-color-checked);
-          border-color: var(--ti-checkbox-border-color-checked);
+          background-color: var(--ti-checkbox-bg-color-hover-checked);
+          border-color: var(--ti-checkbox-border-color-hover-checked);
         }
       }
     }
   }
 
-  &__inner {
+  .@{checkbox-prefix-cls}__inner {
     display: inline-block;
     position: relative;
     border: 1px solid var(--ti-checkbox-border-color);
-    border-radius: var(--ti-common-border-radius-normal);
+    border-radius: var(--ti-checkbox-border-radius);
     box-sizing: border-box;
     width: 16px;
     height: 16px;
     background-color: var(--ti-checkbox-bg-color);
     outline: none;
     z-index: 1;
-    transition: border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46), background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
+    transition: border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
+      background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
 
     &:hover {
       border-color: var(--ti-checkbox-border-color-hover);
@@ -212,14 +218,14 @@
       box-sizing: content-box;
       content: '';
       border: 1px solid #fff;
-      border-width: 0 2px 2px 0;
+      border-width: 0 var(--ti-checkbox-checkline-width) var(--ti-checkbox-checkline-width) 0; // 对勾的线宽
       border-left: 0;
       border-top: 0;
       height: var(--ti-checkbox-icon-height);
       width: var(--ti-checkbox-icon-width);
       position: absolute;
-      left: var(--ti-checkbox-icon-left);
-      top: var(--ti-checkbox-icon-top);
+      margin-left: var(--ti-checkbox-icon-margin-left);
+      margin-top: var(--ti-checkbox-icon-margin-top);
       transform: rotate(45deg) scaleY(0);
       transition: transform 0.15s ease-in 0.05s;
       transform-origin: center;
