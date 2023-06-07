@@ -6,6 +6,11 @@ export interface breakPoint {
   'xl': number
   '2xl': number
 }
+export type TextDirection = 'rtl' | 'lrt'
+export interface Tag {
+  enable: boolean
+  name: string
+}
 
 export interface ConfigProviderProps {
   breakPoints: breakPoint

@@ -1,15 +1,19 @@
 <template>
-  <tiny-config-provider :design="design">
-    <tiny-tag>这是一个Tag</tiny-tag>
-  </tiny-config-provider>
-  <br />
-  <div :style="[design.tag.enable && 'padding: 0px 1em;']">
-    <tiny-switch v-model="design.tag.enable" />
+  <div>
+    <tiny-config-provider :tag="tag">
+      <tiny-tag>这是一个Tag</tiny-tag>
+      <tiny-tag>{{ tagEnable }}</tiny-tag>
+    </tiny-config-provider>
+    <br />
+    <div :style="[tag.enable && 'padding: 0px 1em;']">
+      <tiny-switch v-model="tag.enable" />
+    </div>
   </div>
 </template>
 
 <script>
 import { ConfigProvider, Tag, Switch } from '@opentiny/vue'
+
 export default {
   components: {
     TinyConfigProvider: ConfigProvider,
@@ -18,21 +22,15 @@ export default {
   },
   data() {
     return {
-      design: {
-        breakPoints: {
-          'xs': 480,
-          'sm': 640,
-          'md': 768,
-          'lg': 1024,
-          'xl': 1280,
-          '2xl': 1536
-        },
-        direction: 'ltr',
-        tag: {
-          enable: true,
-          name: 'div'
-        },
+      tag: {
+        enable: true,
+        name: 'div'
       }
+    }
+  },
+  computed: {
+    tagEnable() {
+      return this.tag.enable ? '被DOM包裹' : '没有被DOM包裹'
     }
   }
 }
@@ -43,5 +41,8 @@ export default {
   padding: 1em;
   border: 1px solid #ccc;
   border-radius: 1em;
+}
+.tiny-tag {
+  margin-right: 10px;
 }
 </style>

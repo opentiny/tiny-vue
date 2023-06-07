@@ -1,63 +1,96 @@
-<template>
-  <component :is="newProps.tag.name ?? 'div'" v-if="newProps.tag?.enable" :class="classNames" :style="cssVar">
-    <slot></slot>
-  </component>
-  <slot v-else></slot>
-</template>
-
 <script lang="ts">
-import type { PropType } from '@opentiny/vue-common'
-import type { ConfigProviderProps } from './props'
-import { $prefix, defineComponent, provideDesignConfig, hooks } from '@opentiny/vue-common'
+import { provideDesignConfig, type PropType, hooks, props as _props, isVue2 } from '@opentiny/vue-common'
+import type { Tag, TextDirection, breakPoint } from './props'
+import { $prefix, defineComponent } from '@opentiny/vue-common'
+import { configProviderContextKey } from '../index'
 
-const constant: ConfigProviderProps = {
-  breakPoints: {
-    'xs': 480,
-    'sm': 640,
-    'md': 768,
-    'lg': 1024,
-    'xl': 1280,
-    '2xl': 1536
-  },
-  direction: 'ltr',
-  tag: {
-    enable: true,
-    name: 'div'
-  },
-}
 export default defineComponent({
   name: $prefix + 'ConfigProvider',
   props: {
     design: {
-      type: Object as PropType<ConfigProviderProps>,
+      type: Object,
+      default: () => {
+        return {}
+      }
+    },
+    breakPoints: {
+      type: Object as PropType<breakPoint>,
       default: () => {
         return {
-          ...constant
-        } as ConfigProviderProps
+          breakPoints: {
+            'xs': 480,
+            'sm': 640,
+            'md': 768,
+            'lg': 1024,
+            'xl': 1280,
+            '2xl': 1536
+          }
+        }
       }
-    }
+    },
+    direction: {
+      type: String as PropType<TextDirection>,
+      default: 'ltr'
+    },
+    tag: {
+      type: Object as PropType<Tag>,
+      default: () => {
+        return {
+          enable: true,
+          name: 'div'
+        }
+      }
+    },
+    ..._props.map((item) => {
+      return {
+        [item]: {
+          type: String
+        }
+      }
+    }).reduce((pre, cur) => {
+      return {
+        ...pre,
+        ...cur
+      }
+    })
   },
   setup(props, { slots }) {
-    const { breakPoints, direction, globalPrefix, tag } = hooks.toRefs(props.design)
-    const standardizationProps = hooks.reactive({
-      breakPoints: breakPoints?.value ?? constant.breakPoints,
-      direction: direction?.value ?? constant.direction,
-      globalPrefix: globalPrefix?.value ?? constant.globalPrefix,
-      tag: tag?.value ?? constant.tag,
-    })
-    provideDesignConfig(standardizationProps)
-    const isRTL = hooks.computed(() => standardizationProps.direction === 'rtl')
+    const { direction } = hooks.toRefs(props)
+    provideDesignConfig(props.design)
+    const isRTL = hooks.computed(() => direction.value === 'rtl')
     const cssVar = hooks.computed(() => {
       return {
-        '--text-direction': standardizationProps.direction
+        '--text-direction': direction.value
       }
     })
     const classNames = hooks.reactive({
       'tiny-config-provider': true,
       'tiny-config-provider--rtl': isRTL
     })
-    return { slots, classNames, cssVar, newProps: standardizationProps }
+    hooks.provide(configProviderContextKey, props)
+    return {
+      slots,
+      classNames,
+      cssVar,
+      props,
+      isVue2
+    }
   },
+  render() {
+    const attr = {
+      class: this.classNames,
+      style: this.cssVar
+    }
+    if (!this.props.tag.enable) {
+      const slots = this.slots?.default?.()
+      if (isVue2 && (slots?.length ?? 1) > 1) {
+        return hooks.h('div', {}, slots)
+      }
+      return slots
+    }
+    const tagName = this.props.tag.name ?? 'div'
+    return hooks.h(tagName, attr, this.$slots.default)
+  }
 })
 </script>
 
