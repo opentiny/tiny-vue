@@ -1,14 +1,18 @@
 {
   "name": "@opentiny/vue-vite-import",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "A TinyVue vite import plugin",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
     "dev": "tsc -w -p .",
     "build": "tsc && npx tsc --outDir dist",
     "prepublishOnly": "npm run build"
   },
+  "files": [
+    "dist"
+  ],
   "type": "module",
   "types": "dist/index.d.ts",
   "author": "Tiny Vue Team",
