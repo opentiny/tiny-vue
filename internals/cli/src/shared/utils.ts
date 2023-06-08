@@ -129,7 +129,7 @@ const kebabCase = ({ str, splitChar = '-' }: { str: string; splitChar?: string }
  * @param {String} str 格式字符
  * @param {Object} options 格式字符
  */
-const prettierFormat = ({ str, options = {} }: { str: string; options: object }) => {
+const prettierFormat = ({ str, options = {} }: { str: string; options?: object }) => {
   return prettier.format(
     str,
     Object.assign(
@@ -156,10 +156,8 @@ const prettierFormat = ({ str, options = {} }: { str: string; options: object })
  * @param {Function} fileFilter 文件筛选拦截函数
  * @param {Function} callback 遍历回调
  */
-const walkFileTree = (
-  { dirPath, isDeep = false, fileFilter, callback }:
-  { dirPath: string; isDeep: boolean; fileFilter?: Function; callback: Function }
-) => {
+const walkFileTree = ({ dirPath, isDeep = false, fileFilter, callback }:
+{ dirPath: string; isDeep: boolean; fileFilter?: Function; callback: Function }) => {
   if (!dirPath || typeof callback !== 'function') {
     return
   }
@@ -207,10 +205,8 @@ const getVersion = ({ name, context, isVue2 }: { name: string; context: string; 
  * @param {Boolean} 是否为 vue2 环境
  * @returns 版本号
  */
-const getComponentVersion = (
-  { name, context = '..', dir = 'packages', isOrigin = false, isVue2 }:
-  { name: string; context?: string; dir?: string; isOrigin?: boolean; isVue2: boolean }
-) => {
+const getComponentVersion = ({ name, context = '..', dir = 'packages', isOrigin = false, isVue2 }:
+{ name: string; context?: string; dir?: string; isOrigin?: boolean; isVue2: boolean }) => {
   let version: string
   const packageJSONPath = pathJoin(context, dir, name, 'package.json')
 
@@ -476,7 +472,7 @@ const fragmentReplace = (filePath, regExpStr, targetStr) => {
  * @param {Array<string> | string} regExpStr
  * @param {Array<string> | string} targetStr
  */
-const filesFragmentReplace = (folderPath, regExpStr: Array<string> | string, targetStr: Array<string> | string) => {
+const filesFragmentReplace = (folderPath, regExpStr: Array<string | RegExp> | string | RegExp, targetStr: Array<string> | string) => {
   let filesPath = getFilesPath(folderPath)
 
   if (filesPath) {

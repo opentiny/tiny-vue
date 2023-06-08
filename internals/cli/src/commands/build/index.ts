@@ -1,3 +1,3 @@
-export * from './build-ui.js'
-export * from './build-entry.js'
+export * from './build-ui'
+export * from './build-entry'
 export * from './build-runtime'

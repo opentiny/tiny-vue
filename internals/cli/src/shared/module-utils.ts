@@ -6,10 +6,16 @@ import * as fs from 'fs-extra'
 import path from 'node:path'
 import { createRequire } from 'node:module'
 import fg from 'fast-glob'
-import * as utils from './utils'
+import {
+  pathFromWorkspaceRoot,
+  capitalizeKebabCase,
+  kebabCase,
+  prettierFormat,
+  pathJoin
+} from './utils'
 
 const require = createRequire(import.meta.url)
-const moduleMap = require(utils.pathFromWorkspaceRoot('packages/modules.json'))
+const moduleMap = require(pathFromWorkspaceRoot('packages/modules.json'))
 
 type mode = 'pc' | 'mobile' | 'mobile-first'
 
@@ -66,10 +72,8 @@ const getModuleInfo = (key: string) => {
  * @param {Boolean} isOriginal 是否取原始数据
  * @param {Boolean} isSort 是否需要排序
  */
-const getByName = (
-  { name, inversion = false, isOriginal = false, isSort = true }:
-  { name: string;inversion: boolean;isOriginal: boolean;isSort: boolean }
-) => {
+const getByName = ({ name, isSort = true, inversion = false, isOriginal = false }:
+{ name: string; isSort: boolean; inversion?: boolean; isOriginal?: boolean }) => {
   const callback = (item) => {
     const result = new RegExp(`/${name}/|^vue-${name}/`).test(item.path)
     return inversion ? !result : result
@@ -122,10 +126,10 @@ const getSortModules = ({ filterIntercept, isSort = true }: { filterIntercept: F
       // 这段逻辑暂时没有用到
       const componentName = dirs.slice(1, dirs.indexOf('src'))
       // UpperName: Todo
-      component.UpperName = utils.capitalizeKebabCase(componentName.pop() ?? '')
+      component.UpperName = capitalizeKebabCase(componentName.pop() ?? '')
 
       // LowerName: todo
-      component.LowerName = utils.kebabCase({ str: component.UpperName })
+      component.LowerName = kebabCase({ str: component.UpperName })
 
       // 工程的父文件夹
       component.parentDir = componentName
@@ -166,7 +170,7 @@ const getSortModules = ({ filterIntercept, isSort = true }: { filterIntercept: F
       // global: 'TinyTodoPc'
       component.global = 'Tiny' + key
 
-      component.importName = `@opentiny/vue-${utils.kebabCase({ str: key })}`
+      component.importName = `@opentiny/vue-${kebabCase({ str: key })}`
 
       // "vue-common/src/index.ts" ==> "vue-common/lib/index"
       if (component.type === 'module') {
@@ -380,10 +384,8 @@ const getComponents = (mode, isSort = true) => {
  * @param {Oject} newObj 新增对象
  * @returns 模块对象
  */
-export const addModule = (
-  { componentName, templateName, newObj = {} }:
-  { componentName: string; templateName?: string; newObj?: object; isMobile: boolean }
-) => {
+export const addModule = ({ componentName, templateName, newObj = {}, isMobile }:
+{ componentName: string; templateName?: string; newObj?: object; isMobile: boolean }) => {
   const isEntry = templateName?.endsWith('index') ?? false
   return {
     path: `vue/src/${componentName}/` + (isEntry ? `${templateName}.ts` : `src/${templateName}.vue`),
@@ -400,8 +402,8 @@ export const addModule = (
  */
 export const writeModuleMap = (moduleMap) => {
   fs.writeFileSync(
-    utils.pathFromWorkspaceRoot('packages/modules.json'),
-    utils.prettierFormat({
+    pathFromWorkspaceRoot('packages/modules.json'),
+    prettierFormat({
       str: typeof moduleMap === 'string' ? moduleMap : JSON.stringify(moduleMap),
       options: {
         parser: 'json',
@@ -423,7 +425,7 @@ export const readModuleMap = () => moduleMap || {}
  * @param {Boolean} isMobile 是否为移动组件
  */
 const createModuleMapping = (componentName, isMobile = false) => {
-  const upperName = utils.capitalizeKebabCase(componentName)
+  const upperName = capitalizeKebabCase(componentName)
 
   // 生成 modules.json 文件
   moduleMap[upperName] = addModule({
@@ -434,8 +436,8 @@ const createModuleMapping = (componentName, isMobile = false) => {
   const moduleJson = quickSort({ sortData: moduleMap, returnType: 'object' })
 
   fs.writeJsonSync(
-    utils.pathJoin('..', 'modules.json'),
-    utils.prettierFormat({
+    pathJoin('..', 'modules.json'),
+    prettierFormat({
       str: JSON.stringify(moduleJson),
       options: {
         parser: 'json',
@@ -446,7 +448,7 @@ const createModuleMapping = (componentName, isMobile = false) => {
 }
 
 const getAllIcons = () => {
-  const entries = fg.sync('vue-icon*/src/*', { cwd: utils.pathFromWorkspaceRoot('packages'), onlyDirectories: true })
+  const entries = fg.sync('vue-icon*/src/*', { cwd: pathFromWorkspaceRoot('packages'), onlyDirectories: true })
 
   return entries.map((item) => {
     const name = path.basename(item)
@@ -456,8 +458,8 @@ const getAllIcons = () => {
       libPath: item.replace('/src/', '/lib/'),
       type: 'component',
       componentType: 'icon',
-      name: utils.kebabCase({ str: name }),
-      global: utils.capitalizeKebabCase(name),
+      name: kebabCase({ str: name }),
+      global: capitalizeKebabCase(name),
       importName: '@opentiny/vue-' + item
     } as Module
   })
