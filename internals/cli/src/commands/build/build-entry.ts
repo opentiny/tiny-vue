@@ -13,7 +13,7 @@ import {
 import { getComponents } from '../../shared/module-utils'
 import handlebarsRender from './handlebars.render'
 
-const version = getopentinyVersion({})
+const version = getopentinyVersion({ key: 'version' })
 const outputDir = 'packages/vue'
 
 const fileNames = {
@@ -68,7 +68,7 @@ function getMainTemplate({ mode }) {
   `
 }
 
-function createEntry(mode: string) {
+const createEntry = (mode) => {
   const OUTPUT_PATH = pathFromWorkspaceRoot(outputDir, fileNames[mode])
   const MAIN_TEMPLATE = getMainTemplate({ mode })
   const includeTemplate: string[] = []

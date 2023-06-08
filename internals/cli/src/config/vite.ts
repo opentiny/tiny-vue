@@ -5,7 +5,7 @@ import { getAllModules } from '../shared/module-utils'
 const workspaceRoot = searchForWorkspaceRoot(process.cwd())
 const pathFromWorkspaceRoot = (...args) => path.resolve(workspaceRoot, ...args)
 
-function getComponentAlias(alias = {}) {
+const getComponentAlias = (alias = {}) => {
   getAllModules(false).forEach((item) => {
     if (item.type === 'component')
       alias[item.importName] = pathFromWorkspaceRoot('packages', item.path)
@@ -13,7 +13,7 @@ function getComponentAlias(alias = {}) {
   return alias
 }
 
-function getAlias(vueVersion: string | number, theme = '') {
+const getAlias = (vueVersion: string | number, theme = '') => {
   const ns = (t: string) => t ? '-' + t : ''
 
   return {
@@ -38,7 +38,7 @@ function getAlias(vueVersion: string | number, theme = '') {
   }
 }
 
-function createContainer(klass, defaultTitle) {
+const createContainer = (klass, defaultTitle) => {
   return [
     klass,
     {
@@ -55,7 +55,7 @@ function createContainer(klass, defaultTitle) {
   ]
 }
 
-function getOptimizeDeps(vueVersion: string | number) {
+const getOptimizeDeps = (vueVersion: string | number) => {
   return {
     include: [
       'shepherd.js',

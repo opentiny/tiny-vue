@@ -5,7 +5,7 @@ import { walkFileTree, pathJoin, logGreen, logRed } from '../shared/utils'
 /**
  * 删除 packages 项目包下插件内部的 dist、runtime、node_modules 文件
  */
-function deleteDistFile() {
+const deleteDistFile = () => {
   walkFileTree({
     isDeep: true,
     fileFilter({ file, subPath, isDirectory }) {

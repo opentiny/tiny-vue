@@ -22,7 +22,7 @@ export const pathFromPackages = (...args) => pathFromWorkspaceRoot('packages', .
 export const require = createRequire(import.meta.url)
 export const requireModules = (id: string) => require(require.resolve(pathFromWorkspaceRoot(id)))
 
-export function getVuePlugins(vueVersion: string) {
+export const getVuePlugins = (vueVersion: string) => {
   const pluginMap = {
     '2': () => {
       const vue2Plugin = requireModules('examples/vue2/node_modules/vite-plugin-vue2').createVuePlugin
@@ -56,8 +56,17 @@ export function getVuePlugins(vueVersion: string) {
 
 export const ns = (ver) => ({ '2': '', '2.7': '2', '3': '3' }[ver] || '')
 
-// eslint-disable-next-line unused-imports/no-unused-vars
-export function getBaseConfig({ vueVersion, dtsInclude, dts, buildTarget, themeVersion, isRuntime, npmScope }: any) {
+export interface BaseConfig {
+  vueVersion: string
+  dtsInclude: string[] | Set<string>
+  dts: boolean
+  buildTarget: string
+  themeVersion: string
+  npmScope?: string
+  isRuntime: boolean
+}
+
+export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, themeVersion, isRuntime }: BaseConfig) => {
   // 处理tsconfig中配置，主要是处理paths映射，确保dts可以找到正确的包
   const compilerOptions = require(pathFromWorkspaceRoot(`tsconfig.vue${vueVersion}.json`)).compilerOptions
 
@@ -197,7 +206,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
     logGreen(`====== 开始构建 ${message} ======`)
     const entry = toEntry(tasks)
 
-    const dtsInclude = toTsInclude(tasks)
+    const dtsInclude = toTsInclude(tasks) as BaseConfig['dtsInclude']
     await build({
       configFile: false,
       ...getBaseConfig({ vueVersion, dtsInclude, dts, buildTarget, themeVersion, isRuntime: false }),

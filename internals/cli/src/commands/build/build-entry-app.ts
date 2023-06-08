@@ -13,7 +13,7 @@ import {
 import { getComponents } from '../../shared/module-utils'
 import handlebarsRender from './handlebars.render'
 
-const version = getopentinyVersion({})
+const version = getopentinyVersion({ key: 'version' })
 const outputDir = 'packages/vue'
 const MAIN_TEMPLATE = `{{{include}}}
  
@@ -27,7 +27,7 @@ const MAIN_TEMPLATE = `{{{include}}}
  }
  `
 
-function buildFullRuntime() {
+const buildFullRuntime = () => {
   const outputPath = pathFromWorkspaceRoot(outputDir, 'app.ts')
   const components = getComponents('pc')
   const includeTemplate: string[] = []

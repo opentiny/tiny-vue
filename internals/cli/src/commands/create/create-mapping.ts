@@ -5,7 +5,7 @@ import { writeModuleMap, quickSort } from '../../shared/module-utils'
 import commonMapping from './commonMapping.json'
 
 // 每个组件，最多四个入口：index.ts、pc.vue、mobile.vue mobile-first 其他文件均不排除，直接打入到组件中
-function getBuildEntryFile(file, dirs, subPath) {
+const getBuildEntryFile = (file, dirs, subPath) => {
   // 模板文件（pc|mobile|mobile-first）需要同级目录有index.ts文件才能成为打包入口
   const isTemplatePath = dirs.includes('index.ts')
   const isMainEntry = file.includes('index') && dirs.includes('package.json')
@@ -21,7 +21,7 @@ function getBuildEntryFile(file, dirs, subPath) {
   }
 }
 
-function getTemplateName(currentPaths, entryObj) {
+const getTemplateName = (currentPaths, entryObj) => {
   const entryMaps = {
     isPcEntry: 'Pc',
     isMobileEntry: 'Mobile',
@@ -42,7 +42,7 @@ const tempMap = {
 /**
  * 扫描指定目录下面的组件目录，查找非 index.vue 文件（模板）生成 modules.json 中的对象
  */
-function makeModules() {
+const makeModules = () => {
   const templates = { ...commonMapping }
 
   // 获取存放所有组件的文件夹

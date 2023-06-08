@@ -12,7 +12,7 @@ const EXTENERAL = [
   './label-wrap',
   './tall-storage.vue'
 ]
-function external(deps) {
+const external = (deps) => {
   return EXTENERAL.includes(deps) || /^@opentiny[\\/]|@originjs|echarts|cropperjs|@better-scroll|crypto-js/.test(deps)
 }
 

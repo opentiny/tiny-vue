@@ -53,7 +53,7 @@ export interface Module {
  * @param {Boolean} isSort 是否需要排序
  * @returns 模块对象
  */
-function getAllModules(isSort: boolean) {
+const getAllModules = (isSort: boolean) => {
   return getSortModules({ filterIntercept: () => true, isSort })
 }
 
@@ -61,7 +61,7 @@ function getAllModules(isSort: boolean) {
  * @param {String} key 根据模块对象的 Key 获取对应的值
  * @returns 模块对象
  */
-function getModuleInfo(key: string) {
+const getModuleInfo = (key: string) => {
   return moduleMap[key] || {}
 }
 
@@ -72,8 +72,8 @@ function getModuleInfo(key: string) {
  * @param {Boolean} isOriginal 是否取原始数据
  * @param {Boolean} isSort 是否需要排序
  */
-function getByName({ name, isSort = true, inversion = false, isOriginal = false }:
-{ name: string; isSort: boolean; inversion?: boolean; isOriginal?: boolean }) {
+const getByName = ({ name, isSort = true, inversion = false, isOriginal = false }:
+{ name: string; isSort: boolean; inversion?: boolean; isOriginal?: boolean }) => {
   const callback = (item) => {
     const result = new RegExp(`/${name}/|^vue-${name}/`).test(item.path)
     return inversion ? !result : result
@@ -87,7 +87,7 @@ function getByName({ name, isSort = true, inversion = false, isOriginal = false 
  * @private
  * @param {Function} filterIntercept 搜索条件
  */
-function getModules(filterIntercept: Function) {
+const getModules = (filterIntercept: Function) => {
   let modules = {}
 
   if (typeof filterIntercept === 'function') {
@@ -111,7 +111,7 @@ function getModules(filterIntercept: Function) {
  * @param {Function} filterIntercept 搜索条件
  * @param {Boolean} isSort 是否需要排序
  */
-function getSortModules({ filterIntercept, isSort = true }: { filterIntercept: Function; isSort: boolean }) {
+const getSortModules = ({ filterIntercept, isSort = true }: { filterIntercept: Function; isSort: boolean }) => {
   let modules: Module[] = []
   let componentCount = 0
   const importName = '@opentiny/vue'
@@ -207,7 +207,7 @@ function getSortModules({ filterIntercept, isSort = true }: { filterIntercept: F
  * @param {String} returnType 返回类型 Array|Object
  * @returns 排序后的数组或对象
  */
-function quickSort({ sortData, key = 'name', returnType = 'array' }) {
+const quickSort = ({ sortData, key = 'name', returnType = 'array' }) => {
   const maxNumberLength = 59
   let indexArr = []
   const setIndex = getFuncSetIndex(key, maxNumberLength, indexArr)
@@ -325,13 +325,13 @@ function getFuncSetIndex(key, maxNumberLength, indexArr) {
   return setIndex
 }
 
-function isArraySortData(sortData, setIndex) {
+const isArraySortData = (sortData, setIndex) => {
   if (Array.isArray(sortData)) {
     sortData.forEach(setIndex)
   }
 }
 
-function isNotArrayObject(sortData, key, setIndex) {
+const isNotArrayObject = (sortData, key, setIndex) => {
   if (!Array.isArray(sortData) && typeof sortData === 'object') {
     for (const sortKey in sortData) {
       const dataItem = sortData[sortKey]
@@ -351,7 +351,7 @@ function isNotArrayObject(sortData, key, setIndex) {
   }
 }
 
-function isNotArrayNotObject(sortData) {
+const isNotArrayNotObject = (sortData) => {
   const ret = { flag: false, result: null }
 
   if (!Array.isArray(sortData) && !(typeof sortData === 'object')) {
@@ -368,7 +368,7 @@ function isNotArrayNotObject(sortData) {
  * @param {Boolean} isSort 是否需要排序
  * @returns 组件对象
  */
-function getComponents(mode, isSort = true) {
+const getComponents = (mode, isSort = true) => {
   const modules = getAllModules(isSort)
 
   const components = modules.filter(item => item.type === 'component')
@@ -384,8 +384,8 @@ function getComponents(mode, isSort = true) {
  * @param {Oject} newObj 新增对象
  * @returns 模块对象
  */
-export function addModule({ componentName, templateName, newObj = {}, isMobile }:
-{ componentName: string; templateName?: string; newObj?: object; isMobile: boolean }) {
+export const addModule = ({ componentName, templateName, newObj = {}, isMobile }:
+{ componentName: string; templateName?: string; newObj?: object; isMobile: boolean }) => {
   const isEntry = templateName?.endsWith('index') ?? false
   return {
     path: `vue/src/${componentName}/` + (isEntry ? `${templateName}.ts` : `src/${templateName}.vue`),
@@ -400,7 +400,7 @@ export function addModule({ componentName, templateName, newObj = {}, isMobile }
  * 将输入的 Map 写入到 modules.json 文件中，并格式化
  * @param {String|Object} moduleMap 模块 Json 对象集合或 Json 字符串
  */
-export function writeModuleMap(moduleMap) {
+export const writeModuleMap = (moduleMap) => {
   fs.writeFileSync(
     pathFromWorkspaceRoot('packages/modules.json'),
     prettierFormat({
@@ -424,7 +424,7 @@ export const readModuleMap = () => moduleMap || {}
  * @param {String} componentName 组件名称 （驼峰大写：img-preview）
  * @param {Boolean} isMobile 是否为移动组件
  */
-function createModuleMapping(componentName, isMobile = false) {
+const createModuleMapping = (componentName, isMobile = false) => {
   const upperName = capitalizeKebabCase(componentName)
 
   // 生成 modules.json 文件
@@ -447,7 +447,7 @@ function createModuleMapping(componentName, isMobile = false) {
   )
 }
 
-function getAllIcons() {
+const getAllIcons = () => {
   const entries = fg.sync('vue-icon*/src/*', { cwd: pathFromWorkspaceRoot('packages'), onlyDirectories: true })
 
   return entries.map((item) => {

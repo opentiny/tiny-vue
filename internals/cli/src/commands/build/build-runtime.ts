@@ -4,7 +4,7 @@ import { build } from 'vite'
 import commonjs from '@rollup/plugin-commonjs'
 import babel from '@rollup/plugin-babel'
 import { logGreen } from '../../shared/utils'
-import type { BuildUiOption } from './build-ui'
+import type { BuildUiOption, BaseConfig } from './build-ui'
 import { pathFromPackages, getBaseConfig, requireModules } from './build-ui'
 
 async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope, min }) {
@@ -45,11 +45,11 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
     const entry = toEntry(tasks)
     const baseConfig = getBaseConfig({
       vueVersion,
-      dtsInclude: [],
+      dtsInclude: [] as string[],
       dts: false,
       npmScope,
       isRuntime: true
-    }) as UserConfig
+    } as BaseConfig) as UserConfig
 
     baseConfig.define = Object.assign(baseConfig.define || {}, {
       'process.env.BUILD_TARGET': JSON.stringify(vueVersion !== '3' ? 'runtime' : 'component'),
