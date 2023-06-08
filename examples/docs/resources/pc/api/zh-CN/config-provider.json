@@ -1,0 +1,32 @@
+{
+    "attrs": [
+        {
+            "name": "design",
+            "sample": "base",
+            "desc": "规范",
+            "type": "ConfigProviderProps",
+            "defaultValue": ""
+        },
+        {
+            "name": "breakPoints",
+            "sample": "base",
+            "desc": "断点, 为Layout提供",
+            "type": "breakPoint",
+            "defaultValue": "{'xs': 480,'sm': 640,'md': 768,'lg': 1024,'xl': 1280,'2xl': 1536}"
+        },
+        {
+            "name": "direction",
+            "sample": "text-dire",
+            "desc": "文字排版方向",
+            "type": "'ltr' | 'rtl'",
+            "defaultValue": "ltr"
+        },
+        {
+            "name": "tag",
+            "type": "object",
+            "desc": "是否被元素包裹, 如果是vue2且没有一个单一节点, 组件会自动创建一个div",
+            "sample": "base",
+            "defaultValue": "{enable: true,name: 'div'}"
+        }
+    ]
+}

@@ -54,6 +54,7 @@ export default function ({ deleteInlinedFiles = true }): Plugin {
         // 删除 chunks
         bundlesToDelete.forEach((name) => {
           delete bundle[name]
+          // eslint-disable-next-line no-console
           console.log(`\n${chalk.red(name)} 已经被内联并删除`)
         })
       }

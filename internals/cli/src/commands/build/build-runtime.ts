@@ -1,11 +1,11 @@
 import path from 'node:path'
 import type { UserConfig } from 'vite'
 import { build } from 'vite'
-import babel from '@rollup/plugin-babel'
-import * as utils from '../../shared/utils.js'
-import type { BuildUiOption } from './build-ui'
-import { pathFromPackages, getBaseConfig, requireModules } from './build-ui'
 import commonjs from '@rollup/plugin-commonjs'
+import babel from '@rollup/plugin-babel'
+import { logGreen } from '../../shared/utils'
+import type { BuildUiOption, BaseConfig } from './build-ui'
+import { pathFromPackages, getBaseConfig, requireModules } from './build-ui'
 
 async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope, min }) {
   const rootDir = pathFromPackages('')
@@ -40,16 +40,16 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
 
   async function batchBuild({ vueVersion, tasks, message, emptyOutDir, npmScope, min }) {
     if (tasks.length === 0) return
-    utils.logGreen(`====== 开始构建 ${message} ======`)
+    logGreen(`====== 开始构建 ${message} ======`)
 
     const entry = toEntry(tasks)
     const baseConfig = getBaseConfig({
       vueVersion,
-      dtsInclude: [],
+      dtsInclude: [] as string[],
       dts: false,
       npmScope,
       isRuntime: true
-    }) as UserConfig
+    } as BaseConfig) as UserConfig
 
     baseConfig.define = Object.assign(baseConfig.define || {}, {
       'process.env.BUILD_TARGET': JSON.stringify(vueVersion !== '3' ? 'runtime' : 'component'),
@@ -60,15 +60,17 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
     })
 
     baseConfig.plugins?.push(
-      commonjs({
-        include: /node_modules/,
-        requireReturnsDefault: true,
-        defaultIsModuleExports: true
-      }),
-      babel({
-        extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
-        presets: ['@babel/preset-env']
-      })
+      ...[
+        commonjs({
+          include: /node_modules/,
+          requireReturnsDefault: true,
+          defaultIsModuleExports: true
+        }),
+        babel({
+          extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
+          presets: ['@babel/preset-env']
+        })
+      ] as any[]
     )
 
     await build({

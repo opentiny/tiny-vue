@@ -4,7 +4,7 @@
 import path from 'node:path'
 import fs from 'fs-extra'
 import { searchForWorkspaceRoot } from 'vite'
-import { filesFragmentReplace } from '../../shared/utils.js'
+import { filesFragmentReplace } from '../../shared/utils'
 
 const ROOT_PATH = searchForWorkspaceRoot(process.cwd())
 const packages = path.join(ROOT_PATH, 'packages')

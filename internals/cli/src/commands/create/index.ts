@@ -1,1 +1,1 @@
-export * from './create-icon-saas.js'
+export * from './create-icon-saas'

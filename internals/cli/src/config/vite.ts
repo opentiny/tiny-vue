@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { searchForWorkspaceRoot } from 'vite'
-import { getAllModules } from '../shared/module-utils.js'
+import { getAllModules } from '../shared/module-utils'
 
 const workspaceRoot = searchForWorkspaceRoot(process.cwd())
 const pathFromWorkspaceRoot = (...args) => path.resolve(workspaceRoot, ...args)

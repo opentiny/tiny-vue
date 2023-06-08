@@ -1,6 +1,6 @@
 import path from 'node:path'
 import fs from 'fs-extra'
-import * as utils from '../../shared/utils'
+import { capitalize, walkFileTree, pathFromWorkspaceRoot, logGreen, logRed } from '../../shared/utils'
 import { writeModuleMap, quickSort } from '../../shared/module-utils'
 import commonMapping from './commonMapping.json'
 
@@ -30,7 +30,7 @@ const getTemplateName = (currentPaths, entryObj) => {
   }
   const mapKey = Object.keys(entryObj).filter(item => entryObj[item] && item !== 'isBuildEntryFile')[0]
   const subFix = entryMaps[mapKey]
-  return `${currentPaths.split('-').map(utils.capitalize).join('')}${subFix}`
+  return `${currentPaths.split('-').map(capitalize).join('')}${subFix}`
 }
 
 const tempMap = {
@@ -47,9 +47,9 @@ const makeModules = () => {
 
   // 获取存放所有组件的文件夹
   const packagesStr = 'packages/vue/src'
-  utils.walkFileTree({
+  walkFileTree({
     isDeep: true,
-    dirPath: utils.pathFromWorkspaceRoot(packagesStr),
+    dirPath: pathFromWorkspaceRoot(packagesStr),
     fileFilter({ file }) {
       return !/node_modules|helper|common|assets/.test(file)
     },
@@ -97,7 +97,7 @@ const makeModules = () => {
 try {
   makeModules()
 
-  utils.logGreen('npm run create:mapping done.')
+  logGreen('npm run create:mapping done.')
 } catch (e) {
-  utils.logRed(e)
+  logRed(e)
 }
