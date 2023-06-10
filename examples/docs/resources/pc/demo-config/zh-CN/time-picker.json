@@ -10,10 +10,10 @@
   {
     "title": "选择范围",
     "content": "<p>picker-options 设置时间选择范围</p>\n",
-    "link": "time-picker/basic-usage",
+    "link": "time-picker/picker-options",
     "component": " TimePicker 时间选择器",
     "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
-    "demoId": "basic-usage1"
+    "demoId": "picker-options"
   },
   {
     "title": "箭头选择",
@@ -134,6 +134,14 @@
     "component": " TimePicker 时间选择器",
     "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
     "demoId": "editable"
+  },
+  {
+    "title": "禁用状态",
+    "content": "<p>通过设置 <code>disabled</code> 为 true 后，禁用时间输入框。</p>\n",
+    "link": "time-picker/disabled",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "disabled"
   },
   {
     "title": "事件",

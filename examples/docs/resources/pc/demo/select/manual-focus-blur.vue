@@ -1,8 +1,12 @@
 <template>
   <div>
-    <tiny-button @click="click1" style="max-width: unset; margin-bottom: 15px">单击按钮 Select 将获取焦点</tiny-button>
-    <tiny-button @click="click2" style="max-width: unset; margin-bottom: 15px">单击按钮 Select 将失去焦点</tiny-button>
-    <tiny-select v-model="value" ref="drop" placeholder="请选择" multiple>
+    <tiny-button @click="click1" style="max-width: unset; margin-bottom: 15px">
+      单击按钮 Select 将获取焦点
+    </tiny-button>
+    <tiny-button @click="click2" style="max-width: unset; margin-bottom: 15px">
+      单击按钮 Select 将失去焦点
+    </tiny-button>
+    <tiny-select v-model="value" ref="drop" placeholder="请选择" multiple filterable>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
   </div>

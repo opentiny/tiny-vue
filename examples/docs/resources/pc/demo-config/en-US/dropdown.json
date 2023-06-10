@@ -24,6 +24,14 @@
     "demoId": "trigger"
   },
   {
+    "title": "Custom Text",
+    "content": "<p>DropdownYou can customize the text of DropdownMenu through the <code>title</code> attribute.</p>\n",
+    "link": "dropdown/options",
+    "component": "Dropdown drop-down list",
+    "findIntroStr": "Dropdown drop-down list.",
+    "demoId": "options"
+  },
+  {
     "title": "Menu hiding mode",
     "content": "The <p> drop-down menu is hidden by default after a menu item is clicked. You can disable this function by setting <code>hide-on-click</code> to <code>false</code>. </p>\n",
     "link": "dropdown/hide-on-click",
@@ -62,5 +70,13 @@
     "component": "Dropdown drop-down list",
     "findIntroStr": "Dropdown drop-down list.",
     "demoId": "events"
+  },
+  {
+    "title": "Default Slot",
+    "content": "<p>Dropdown can customize content through the <code>default</code> slot</p>\n",
+    "link": "dropdown/slot-default",
+    "component": "Dropdown drop-down list",
+    "findIntroStr": "Dropdown drop-down list.",
+    "demoId": "slot-default"
   }
 ]

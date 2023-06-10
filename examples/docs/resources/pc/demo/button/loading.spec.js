@@ -1,7 +1,19 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
-    await page.goto('http://localhost:7130/pc/button/type');
-    await page.getByText('显示加载中').click();
-    await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/button[1]')).toHaveClass(/is-loading/)
-});
+test('测试图片按钮是否插入图片成功', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/button/loading')
+  await expect(page.locator('.tiny-button:nth-child(1)')).toHaveClass(/is-loading/)
+  await expect(page.locator('.tiny-button:nth-child(2)')).toHaveClass(/is-loading/)
+  await expect(page.locator('.tiny-button:nth-child(3)')).toHaveClass(/is-loading/)
+  await expect(page.locator('.tiny-button:nth-child(4)')).toHaveClass(/is-loading/)
+  await expect(page.locator('.tiny-button:nth-child(5)')).toHaveClass(/is-loading/)
+  await expect(page.locator('.tiny-button:nth-child(6)')).toHaveClass(/is-loading/)
+
+  await expect(page.locator('.tiny-button:nth-child(1) >> .tiny-icon-loading')).toBeVisible()
+  await expect(page.locator('.tiny-button:nth-child(2) >> .tiny-icon-loading')).toBeVisible()
+  await expect(page.locator('.tiny-button:nth-child(3) >> .tiny-icon-loading')).toBeVisible()
+  await expect(page.locator('.tiny-button:nth-child(4) >> .tiny-icon-loading')).toBeVisible()
+  await expect(page.locator('.tiny-button:nth-child(5) >> .tiny-icon-loading')).toBeVisible()
+  await expect(page.locator('.tiny-button:nth-child(6) >> .tiny-icon-loading')).toBeVisible()
+})

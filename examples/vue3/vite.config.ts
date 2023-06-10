@@ -7,6 +7,7 @@ import inspectPlugin from 'vite-plugin-inspect'
 
 import vue3Plugin from '@vitejs/plugin-vue'
 import vue3JsxPlugin from '@vitejs/plugin-vue-jsx'
+import Markdown from 'vite-plugin-md'
 
 import { getAlias, pathFromWorkspaceRoot, getOptimizeDeps } from '../../internals/cli/src/config/vite'
 import vue3SvgPlugin from 'vite-svg-loader'
@@ -35,14 +36,21 @@ export default defineConfig((config) => {
         {
           libraryName: '@opentiny/vue'
         },
-        {
-          libraryName: '@opentiny/vue-icon',
-          customName: (name) => {
-            return name === 'default' ? '@opentiny/vue-icon$' : `@opentiny/vue-icon/${name.replace(/^icon-/, '')}`
+        ...['icon', 'icon-saas'].map(lib => ({
+          libraryName: `@opentiny/vue-${lib}`,
+          customName: (name: string) => {
+            return name === 'default' ? `@opentiny/vue-${lib}$` : `@opentiny/vue-${lib}/${name.replace(/^icon-/, '')}`
           }
-        }
+        }))
       ]),
       dynamicImportPlugin(),
+      Markdown({
+        markdownItOptions: {
+          html: true,
+          linkify: true,
+          typographer: true,
+        },
+      }),
       Unocss({
         include: [/\.js$/, /\.ts$/, /\.vue$/, /\.html$/, /\.jsx$/, /\.tsx$/], // 增加js ,ts扫描
         presets: [],

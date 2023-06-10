@@ -86,5 +86,13 @@
     "component": "IpAddress text box",
     "findIntroStr": "The IP address text box is the same as that of the native IpAddress component of the HTML. In addition, the data binding function is provided.",
     "demoId": "select"
+  },
+  {
+    "title": "input event",
+    "content": "The <code>input</code> event is triggered when a user enters a text box. ",
+    "link": "ip-address/input",
+    "component": "IpAddress text box",
+    "findIntroStr": "The IP address text box is the same as that of the native IpAddress component of the HTML. In addition, the data binding function is provided.",
+    "demoId": "input"
   }
 ]

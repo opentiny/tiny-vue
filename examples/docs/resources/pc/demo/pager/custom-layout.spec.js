@@ -1,16 +1,27 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
-    await page.goto('http://localhost:7130/pc/pager/custom-layout');
-    await page.getByText('自定义分页布局').nth(1).click();
-    await page.locator('#preview svg').nth(1).click();
-    await page.getByRole('listitem', { name: '20' }).click();
-    await page.locator('#preview').getByText('50').click();
-    await expect(page.locator('#preview').getByText('50')).toHaveAttribute('class', 'is-active');
-    await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/button[2]')).toBeDisabled;
-    await page.locator('#preview svg').nth(1).click();
-    await page.getByRole('listitem', { name: '50' }).click();
-    await page.locator('#preview').getByText('20').click();
-    await expect(page.locator('#preview').getByText('20')).toHaveAttribute('class', 'is-active')
-    await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/button[2]')).toBeDisabled;
-});
+test('测试自定义分页布局', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/pager/custom-layout')
+
+  const preview = page.locator('#preview')
+  const pager = preview.locator('.tiny-pager')
+  const prev = pager.locator('.tiny-pager__btn-prev')
+  const next = pager.locator('.tiny-pager__btn-next')
+  const slot = pager.getByText('我是插槽')
+
+  await expect(slot).toBeVisible()
+  const pageSizeBox = await pager.locator('.tiny-pager__input').boundingBox()
+  const slotBox = await slot.boundingBox()
+  expect(pageSizeBox.x).toBeLessThan(slotBox.x)
+  const prevBox = await prev.boundingBox()
+  expect(slotBox.x).toBeLessThan(prevBox.x)
+  const pagesBox = await pager.locator('.tiny-pager__pages').boundingBox()
+  expect(prevBox.x).toBeLessThan(pagesBox.x)
+  const nextBox = await next.boundingBox()
+  expect(pagesBox.x).toBeLessThan(nextBox.x)
+  const gotoBox = await pager.locator('.tiny-pager__goto').boundingBox()
+  expect(nextBox.x).toBeLessThan(gotoBox.x)
+  const totalBox = await pager.locator('.tiny-pager__total').boundingBox()
+  expect(gotoBox.x).toBeLessThan(totalBox.x)
+})

@@ -12,6 +12,7 @@
       text-field="coaNumber"
       render-type="grid"
       :grid-op="gridOpRadio"
+      popper-class="grid-remote"
     ></tiny-select>
 
     <tiny-select
@@ -27,6 +28,7 @@
       text-field="coaNumber"
       render-type="grid"
       :grid-op="gridOpRadio"
+      popper-class="grid-remote-config"
     ></tiny-select>
   </div>
 </template>

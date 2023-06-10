@@ -1,20 +1,23 @@
 <template>
   <div>
-    <tiny-progress :percentage="50" :color="customColor"></tiny-progress>
-    <tiny-progress :percentage="50" :color="customColorMethod"></tiny-progress>
-    <tiny-progress :percentage="50" :color="customColors"></tiny-progress>
+    <tiny-button @click="add"> 点击增加改变颜色 </tiny-button>
+    <tiny-progress :percentage="value" :color="customColor"></tiny-progress>
+    <tiny-progress :percentage="value" :color="customColorMethod"></tiny-progress>
+    <tiny-progress :percentage="value" :color="customColors"></tiny-progress>
   </div>
 </template>
 
 <script lang="jsx">
-import { Progress } from '@opentiny/vue'
+import { Progress, Button } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyProgress: Progress
+    TinyProgress: Progress,
+    TinyButton: Button
   },
   data() {
     return {
+      value: 50,
       customColor: '#409eff',
       // 在什么进度显示什么样的颜色
       customColors: [
@@ -27,6 +30,9 @@ export default {
     }
   },
   methods: {
+    add() {
+      this.value += 20
+    },
     // 在什么进度显示什么样的颜色
     customColorMethod(percentage) {
       if (percentage < 30) {

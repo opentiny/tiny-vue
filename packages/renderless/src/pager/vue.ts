@@ -1,5 +1,7 @@
 export const api = []
-export function renderless() {
+
+export const renderless = () => {
   const api = {}
+
   return api
 }

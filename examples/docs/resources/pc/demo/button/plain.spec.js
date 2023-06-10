@@ -1,8 +1,12 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
-    await page.goto('http://localhost:7130/pc/button/circle');
-    await page.locator('.f12 > div:nth-child(10)').click();
-    await page.getByRole('button', { name: '朴素按钮' }).click();
-    await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/button[1]')).toHaveClass(/is-plain/)
-});
+test('测试朴素按钮', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/button/plain')
+  await expect(page.getByRole('button', { name: '朴素按钮' })).toHaveClass(/is-plain/)
+  await expect(page.getByRole('button', { name: '主要按钮' })).toHaveClass(/is-plain/)
+  await expect(page.getByRole('button', { name: '成功按钮' })).toHaveClass(/is-plain/)
+  await expect(page.getByRole('button', { name: '信息按钮' })).toHaveClass(/is-plain/)
+  await expect(page.getByRole('button', { name: '警告按钮' })).toHaveClass(/is-plain/)
+  await expect(page.getByRole('button', { name: '危险按钮' })).toHaveClass(/is-plain/)
+})

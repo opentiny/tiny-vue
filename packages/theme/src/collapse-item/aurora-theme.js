@@ -18,5 +18,8 @@ export const tinyCollapseitemAuroraTheme = {
   'ti-collapse-item-content-padding-left': 'var(--ti-common-space-6x)',
   'ti-collapse-item-content-padding-bottom': 'var(--ti-common-space-6x)',
   'ti-collapse-item-content-padding-right': 'var(--ti-common-space-6x)',
-  'ti-collapse-item-content-padding-top': 'var(--ti-common-space-0)'
+  'ti-collapse-item-content-padding-top': 'var(--ti-common-space-0)',
+  'ti-collapse-item-arrow-transform': 'rotate(0)',
+  'ti-collapse-item-is-active-arrow-transform': 'rotate(90deg)',
+  'ti-collapse-item-is-active-arrow-text-color': '#1890ff'
 }

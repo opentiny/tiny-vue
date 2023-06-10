@@ -67,17 +67,14 @@
     &-title {
       display: block;
       max-width: 100%;
-      padding: var(--ti-anchor-link-title-padding-vertical) var(--ti-anchor-link-title-padding-right) var(--ti-anchor-link-title-padding-vertical) var(--ti-anchor-link-title-padding-left);
+      padding: var(--ti-anchor-link-title-padding-vertical) var(--ti-anchor-link-title-padding-right)
+        var(--ti-anchor-link-title-padding-vertical) var(--ti-anchor-link-title-padding-left);
       white-space: nowrap;
       text-overflow: ellipsis;
       color: var(--ti-anchor-text-color);
-      &--active {
+      &&--active {
         color: var(--ti-anchor-link-active-text-color);
       }
     }
   }
-}
-
-.tiny-anchor-scroll-container {
-  scroll-behavior: smooth;
 }

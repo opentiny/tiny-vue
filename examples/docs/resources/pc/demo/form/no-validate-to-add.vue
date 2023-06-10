@@ -31,8 +31,12 @@
       <tiny-input type="textarea" v-model="ruleForm.desc"></tiny-input>
     </tiny-form-item>
     <tiny-form-item>
-      <tiny-button type="primary" @click="submitForm('ruleForm')">立即创建</tiny-button>
-      <tiny-button @click="resetForm('ruleForm')">重置</tiny-button>
+      <tiny-button type="primary" @click="submitForm('ruleForm')">
+        立即创建
+      </tiny-button>
+      <tiny-button @click="resetForm('ruleForm')">
+        重置
+      </tiny-button>
     </tiny-form-item>
   </tiny-form>
 </template>

@@ -141,7 +141,6 @@ const getSortModules = ({ filterIntercept, isSort = true }: { filterIntercept: F
         .replace('vue-locale/src/', 'packages/locale/')
         .replace('vue-icon/src/', 'packages/icon/')
         .replace('/index.ts', '/src/index.js')
-        .replace('/lowercase.ts', '/lowercase.js')
         .replace('/src/', '/dist/lib/')
         .replace('.vue', '.js')
 
@@ -177,7 +176,6 @@ const getSortModules = ({ filterIntercept, isSort = true }: { filterIntercept: F
         component.libPath = component.path
           .replace('/src/', '/lib/')
           .replace('index.ts', 'index')
-          .replace('lowercase.ts', 'lowercase')
       }
 
       // "vue/src/button/index.ts" ==> "button/lib/index"

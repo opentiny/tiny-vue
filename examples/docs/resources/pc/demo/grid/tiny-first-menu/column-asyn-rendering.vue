@@ -156,7 +156,7 @@ export default {
         setTimeout(() => {
           resolve(randomFN())
           // 模拟请求完成
-        }, 500)
+        }, 2000)
       })
     }
   }

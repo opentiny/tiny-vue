@@ -1,7 +1,8 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
-    await page.goto('http://localhost:7130/pc/button/icon');
-    await page.getByText('文字按钮').click();
-    await page.getByRole('button', { name: 'text属性' }).click();
-});
+test('测试按钮文字', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/button/text')
+  await expect(page.getByRole('button', { name: '文本按钮' })).toHaveClass(/tiny-button--text/)
+  await expect(page.getByRole('button', { name: 'text属性' })).toHaveClass(/tiny-button--text/)
+})

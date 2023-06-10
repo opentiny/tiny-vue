@@ -117,11 +117,11 @@
 
     &:hover {
       &:not(.is-disabled) {
-        & ~ .@{numeric-prefix-cls}__input .@{numeric-prefix-cls}__input-inner:not(.is-disabled) {
+        &~.@{numeric-prefix-cls}__input .@{numeric-prefix-cls}__input-inner:not(.is-disabled) {
           border-color: var(--ti-numeric-input-icon-color-hover);
         }
 
-        & ~ .@{numeric-prefix-cls}__input.is-disabled .@{numeric-prefix-cls}__input-inner:not(.is-disabled) {
+        &~.@{numeric-prefix-cls}__input.is-disabled .@{numeric-prefix-cls}__input-inner:not(.is-disabled) {
           border-color: var(--ti-numeric-input-border-color-disabled);
         }
       }
@@ -150,7 +150,9 @@
       content: '';
       display: inline-block;
       position: absolute;
+      top: 50%;
       left: 0;
+      transform: translateY(-50%);
       height: var(--ti-numeric-input-dividing-border-height);
       border-left: 1px solid var(--ti-numeric-input-dividing-border-color);
     }
@@ -170,7 +172,9 @@
       content: '';
       display: inline-block;
       position: absolute;
+      top: 50%;
       right: 0;
+      transform: translateY(-50%);
       height: var(--ti-numeric-input-dividing-border-height);
       border-left: 1px solid var(--ti-numeric-input-dividing-border-color);
     }
@@ -198,6 +202,7 @@
     margin: 0 1px 0 0;
     background: var(--ti-numeric-input-unit-bg-color);
   }
+
   &.is-disabled &__decrease,
   &.is-disabled &__increase {
     border-color: var(--ti-numeric-input-border-color-disabled);
@@ -223,6 +228,11 @@
       width: var(--ti-numeric-input-icon-width-medium);
       line-height: calc(var(--ti-numeric-input-height-medium) - 2);
       font-size: var(--ti-numeric-input-icon-size-medium);
+
+      &::before,
+      &::after {
+        height: var(--ti-numeric-input-divider-height-medium);
+      }
     }
 
     .@{numeric-prefix-cls}__input-inner {
@@ -241,6 +251,11 @@
       width: var(--ti-numeric-input-icon-width-small);
       line-height: calc(var(--ti-numeric-input-icon-width-small) - 2);
       font-size: var(--ti-numeric-input-icon-size-small);
+
+      &::before,
+      &::after {
+        height: var(--ti-numeric-input-divider-height-small);
+      }
     }
 
     .@{numeric-prefix-cls}__input-inner {
@@ -253,12 +268,18 @@
 
   &--mini {
     width: var(--ti-numeric-input-width-mini);
+    font-size: 0; // 消除父子元素间多出来的空白
 
     .@{numeric-prefix-cls}__decrease,
     .@{numeric-prefix-cls}__increase {
       width: var(--ti-numeric-input-icon-width-mini);
       line-height: calc(var(--ti-numeric-input-icon-width-mini) - 4);
       font-size: var(--ti-numeric-input-icon-size-mini);
+
+      &::before,
+      &::after {
+        height: var(--ti-numeric-input-divider-height-mini);
+      }
     }
 
     .@{numeric-prefix-cls}__input-inner {
@@ -274,12 +295,14 @@
       padding-left: 8px;
       padding-right: 8px;
     }
+
     .@{numeric-prefix-cls}__input {
       &.has-unit {
         .@{numeric-prefix-cls}__input-inner {
           padding: 0 50px 0 8px;
         }
       }
+
       &.text-align-left {
         .@{numeric-prefix-cls}__input-inner {
           text-align: left;

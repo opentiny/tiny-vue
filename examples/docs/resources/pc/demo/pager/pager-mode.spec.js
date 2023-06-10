@@ -1,20 +1,18 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
-    await page.goto('http://localhost:7130/pc/pager/pager-mode');
-    await page.getByRole('textbox').nth(1).click();
-    await page.locator('.tiny-pager__input-btn').click();
-    await page.getByRole('textbox').nth(2).click();
-    await page.getByRole('textbox').nth(2).fill('6');
-    await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/div/button[2]')).not.toBeDisabled
-    await page.getByRole('button', { name: '前往' }).click();
-    await page.getByRole('textbox').nth(2).click();
-    await page.getByRole('textbox').nth(2).fill('10');
-    await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/div/button[2]')).not.toBeDisabled
-    await page.getByRole('button', { name: '前往' }).click();
-    await page.getByRole('textbox').nth(2).click();
-    await page.getByRole('textbox').nth(2).press('ArrowRight');
-    await page.getByRole('textbox').nth(2).fill('12');
-    await page.getByRole('button', { name: '前往' }).click();
-    await expect(page.locator('#preview').getByRole('button').nth(1)).toBeDisabled
-});
+test('分页complete模式', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/pager/pager-mode')
+
+  const preview = page.locator('#preview')
+  const pager = preview.locator('.tiny-pager')
+  const prev = pager.locator('.tiny-pager__btn-prev')
+  const next = pager.locator('.tiny-pager__btn-next')
+
+  await expect(prev).toBeVisible()
+  await expect(pager.locator('.tiny-pager__pages')).toBeVisible()
+  await expect(next).toBeVisible()
+  await expect(pager.locator('.tiny-pager__input')).toBeVisible()
+  await expect(pager.locator('.tiny-pager__goto')).toBeVisible()
+  await expect(pager.locator('.tiny-pager__total')).toBeVisible()
+})

@@ -10,12 +10,16 @@
     </div>
     <div class="fi-1 f-c px20 pb30 f-c pr200 of-auto">
       <!-- 标题 -->
-      <div class="py20 f24 fw-bold text-center">
-        {{ modeState.pathName }}
+      <div class="py20">
+        <component :is="state.currMd" class="component-md"></component>
       </div>
       <div id="preview" class="bg-white">
         <div class="mb20 py10 pl16 child<code>p4 child<code>bg-lightless">
-          <div class="mr20 fw-bold">{{ state.currDemo?.name['zh-CN'] }}({{ state.currDemo?.codeFiles[0] }}):</div>
+          <div class="mr20 fw-bold">
+            {{ state.currDemo?.name['zh-CN'] }}
+            (<span class="allselect">{{ state.currDemo?.codeFiles[0] }}</span
+            >):
+          </div>
           <div v-html="state.currDemo?.desc['zh-CN']"></div>
         </div>
         <!-- 预览 -->
@@ -40,23 +44,29 @@
             <div class="f18 py28">
               {{ key }}
             </div>
-            <tiny-grid :data="oneApiArr" border auto-resize>
-              <tiny-grid-column field="name" width="15%" title="名称">
-                <template #default="data">
-                  <a v-if="data.row.demoId" class="c-primary h:c-error" @click="fn.selectDemo(data.row.demoId)">{{
-                    data.row.name
-                  }}</a>
-                  <span v-else>{{ data.row.name }}</span>
-                </template>
-              </tiny-grid-column>
-              <tiny-grid-column field="type" width="20%" title="类型"></tiny-grid-column>
-              <tiny-grid-column field="defaultValue" width="20%" title="默认值"></tiny-grid-column>
-              <tiny-grid-column field="desc" title="说明">
-                <template #default="{ row }">
-                  <div v-html="row.desc['zh-CN']"></div>
-                </template>
-              </tiny-grid-column>
-            </tiny-grid>
+            <table class="api-table">
+              <thead>
+                <tr>
+                  <th width="15%">名称</th>
+                  <th width="20%">类型</th>
+                  <th width="20%">默认值</th>
+                  <th width="55%">说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="row in oneApiArr" :key="row.name">
+                  <td>
+                    <a v-if="row.demoId" class="c-primary h:c-error cur-hand" @click="fn.selectDemo(row.demoId)">{{
+                      row.name
+                    }}</a>
+                    <span v-else>{{ row.name }}</span>
+                  </td>
+                  <td>{{ row.type }}</td>
+                  <td>{{ row.defaultValue }}</td>
+                  <td v-html="row.desc['zh-CN']"></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -84,9 +94,9 @@
 
 <script>
 import { hooks } from '@opentiny/vue-common'
-import { Floatbar, TreeMenu, Button, Grid, GridColumn, Tooltip } from '@opentiny/vue'
+import { Floatbar, TreeMenu, Button, Tooltip } from '@opentiny/vue'
 import { iconStarActive, iconSelect } from '@opentiny/vue-icon'
-import { menuData, apis, demoStr, demoVue } from './resourceMobileFirst.js'
+import { menuData, apis, demoStr, demoVue, mds } from './resourceMobileFirst.js'
 import { useModeCtx } from './uses'
 
 export default {
@@ -94,8 +104,6 @@ export default {
     TinyFloatbar: Floatbar,
     TinyTreeMenu: TreeMenu,
     TinyButton: Button,
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
     TinyTooltip: Tooltip,
     IconStarIcon: iconStarActive(),
     IconOpeninVscode: iconSelect()
@@ -108,7 +116,8 @@ export default {
       currDemo: null, // 选中的demo
       currApi: [], // 当前path下的api
       comp: null, // 当前示例的组件实例
-      currDemoSrc: ''
+      currDemoSrc: '',
+      currMd: hooks.computed(() => mds[`${modeState.pathName}.cn.md`])
     })
     const fn = {
       // 菜单搜索：忽略大小写
@@ -179,3 +188,11 @@ export default {
   }
 }
 </script>
+
+<style>
+.component-md h1,
+.component-md h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+</style>

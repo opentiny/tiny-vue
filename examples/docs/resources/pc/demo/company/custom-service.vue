@@ -1,9 +1,19 @@
 <template>
-  <tiny-company v-model="value" placeholder="请输入" :fetch-company="getCompanyData" is-drop-inherit-width></tiny-company>
+  <tiny-company
+    v-model="value"
+    placeholder="请输入"
+    :fetch-company="getCompanyData"
+    :fields="fields"
+    :max="2"
+    @change="change"
+    @clear="clear"
+    is-drop-inherit-width
+    clearable
+  ></tiny-company>
 </template>
 
 <script lang="jsx">
-import { Company } from '@opentiny/vue'
+import { Company, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -11,20 +21,41 @@ export default {
   },
   data() {
     return {
+      fields: {
+        textField: 'name',
+        valueField: 'id'
+      },
       value: ''
     }
   },
   methods: {
     getCompanyData() {
-      let that = this
-      return new Promise((resolve, reject) => {
-        that.$service.network
-          .get('servlet/idataProxy/params/ws/soaservices/CompanyServlet')
-          .then((response) => {
-            resolve((response.data && response.data.company) || [])
-          })
-          .catch(reject)
+      return new Promise((resolve) => {
+        resolve([
+          {
+            id: '0001',
+            name: '公司一'
+          },
+          {
+            id: '0002',
+            name: '公司二'
+          },
+          {
+            id: '0003',
+            name: '公司三'
+          },
+          {
+            id: '0004',
+            name: '公司四'
+          }
+        ])
       })
+    },
+    clear() {
+      Modal.message({ message: 'clear:触发了', status: 'info' })
+    },
+    change(value) {
+      Modal.message({ message: `change:${value}`, status: 'info' })
     }
   }
 }

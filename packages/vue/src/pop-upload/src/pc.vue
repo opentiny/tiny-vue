@@ -16,6 +16,7 @@
       <div class="tiny-popupload__dialog">
         <div class="tiny-popupload__dialog-header">
           <tiny-alert
+            type="info"
             size="large"
             v-if="state.tipsTitle[0] != undefined || state.tipsTitle[1] != undefined || state.tipsTitle[2] != undefined"
             :title="state.tipsTitleText"

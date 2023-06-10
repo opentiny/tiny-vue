@@ -416,6 +416,14 @@
     "demoId": "cache-usage"
   },
   {
+    "title": "Hide drop-down",
+    "content": "<p>Use the <code>hide-drop</code> attribute to disable the display of the drop-down list. </p>\n",
+    "link": "select/hide-select-input-border",
+    "component": "Select Selector",
+    "findIntroStr": "Select selector is a UI component that displays and selects data from a drop-down list box.",
+    "demoId": "hide-select-input-border"
+  },
+  {
     "title": "Slot Mode",
     "content": "<p>If the list rendering component is set to <code>vue-option</code> through slot to output the drop-down list, you need to manually add the cache function. </p>\n",
     "link": "select/memoize-usage",

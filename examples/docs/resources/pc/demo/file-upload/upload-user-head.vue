@@ -1,5 +1,5 @@
 <template>
-  <tiny-file-upload class="upload-demo" :action="action" @sucess="handleAvatarSuccess" :show-file-list="false">
+  <tiny-file-upload class="upload-demo" :action="action" @success="handleAvatarSuccess" :show-file-list="false">
     <img v-if="imageUrl" :src="imageUrl" class="upload-avatar-demo" />
     <icon-plus class="tiny-svg-size" />
   </tiny-file-upload>
@@ -7,12 +7,12 @@
 
 <script lang="jsx">
 import { FileUpload } from '@opentiny/vue'
-import { IconPlus } from '@opentiny/vue-icon'
+import { iconPlus } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyFileUpload: FileUpload,
-    IconPlus: IconPlus()
+    IconPlus: iconPlus()
   },
   data() {
     return {
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style scoped>
-.upload-demo .tiny-upload {
+.upload-demo :deep(.tiny-upload) {
   width: 87px;
   height: 87px;
   line-height: 87px;

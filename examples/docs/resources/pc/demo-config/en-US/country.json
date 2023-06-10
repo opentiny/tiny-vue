@@ -14,5 +14,13 @@
     "component": "Country",
     "findIntroStr": "Country: country/region component, which is used to display and select country/region names. The options are obtained by configuring the data source.",
     "demoId": "custom-service"
+  },
+  {
+    "title": "Custom Data Fields",
+    "content": "When a user-defined data body is used, <code>fields</code> must be used to specify fields.",
+    "link": "country/fields",
+    "component": "Country",
+    "findIntroStr": "Country: country/region component, which is used to display and select country/region names. The options are obtained by configuring the data source.",
+    "demoId": "fields"
   }
 ]

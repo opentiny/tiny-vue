@@ -226,7 +226,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
             }
 
             // 图标入口排除子图标
-            if (/vue-icon\/(index|lowercase)/.test(importer)) {
+            if (/vue-icon\/index/.test(importer)) {
               return /^\.\//.test(source)
             }
 

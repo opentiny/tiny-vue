@@ -4,6 +4,8 @@
 
 <script>
 import { Anchor } from '@opentiny/vue'
+import { message } from '@opentiny/vue-modal'
+
 export default {
   components: {
     TinyAnchor: Anchor
@@ -48,7 +50,7 @@ export default {
   },
   methods: {
     handleChange(link) {
-      console.log('change', link)
+      message(`change${link}`)
     }
   }
 }

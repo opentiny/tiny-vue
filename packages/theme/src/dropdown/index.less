@@ -46,12 +46,21 @@
       fill: var(--ti-dropdown-button-icon-color);
       font-size:var(--ti-dropdown-button-icon-size)
     }
+    &.@{css-prefix}button--default .@{svg-prefix-cls}{
+      fill: var(--ti-button-normal-text-color);
+    }
 
     &:not(.@{dropdown-prefix-cls}__caret-button):hover {
       color: var(--ti-dropdown-text-color-hover);
 
       .@{svg-prefix-cls} {
         fill: var(--ti-dropdown-icon-color-hover);
+      }
+      &[disabled] {
+        color: var(--ti-dropdown-text-color-disabled);
+        .@{svg-prefix-cls} {
+          fill: var(--ti-dropdown-text-color-disabled);
+        }
       }
     }
   }
@@ -127,6 +136,9 @@
   [disabled] {
     cursor: not-allowed;
     color: var(--ti-dropdown-text-color-disabled);
+    svg {
+      fill: var(--ti-dropdown-text-color-disabled);
+    }
   }
 
   &:hover {

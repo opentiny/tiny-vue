@@ -1,8 +1,8 @@
 <template>
   <div>
-    <tiny-button @click="resetResizable">重置列宽拖动操作</tiny-button>
-    <tiny-button @click="resetCustoms">重置列的隐藏操作</tiny-button>
-    <tiny-button @click="resetAll" style="margin-bottom: 20px">重置列的所有操作</tiny-button>
+    <tiny-button @click="resetResizable"> 重置列宽拖动操作 </tiny-button>
+    <tiny-button @click="resetCustoms"> 重置列的隐藏操作 </tiny-button>
+    <tiny-button @click="resetAll"> 重置列的所有操作 </tiny-button>
     <tiny-grid ref="resizeGrid" :data="tableData" :resizable="true">
       <template #toolbar>
         <tiny-grid-toolbar id="custom-width" :resizable="{ storage: true }" setting></tiny-grid-toolbar>

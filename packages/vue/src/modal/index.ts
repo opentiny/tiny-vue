@@ -23,7 +23,7 @@ TINYModal.model = {
 }
 
 export function Modal(options) {
-  return new Promise((resolve) => {
+  const modalPromise = new Promise((resolve) => {
     if (options && options.id && MsgQueue.some((comp) => comp.id === options.id)) {
       resolve('exist')
     } else {
@@ -47,8 +47,11 @@ export function Modal(options) {
       })
 
       $modal.open()
+      setTimeout(() => (modalPromise.vm = $modal), 0)
     }
   })
+
+  return modalPromise
 }
 
 const modal = Modal

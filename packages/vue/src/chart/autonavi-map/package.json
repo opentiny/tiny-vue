@@ -4,7 +4,12 @@
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
- "scripts": {
+  "sideEffects": false,
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "^0.31.0"
+  },
+  "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"
   },

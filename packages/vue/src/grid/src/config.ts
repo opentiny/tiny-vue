@@ -120,8 +120,51 @@ const GlobalConfig = {
     asyncPrefix: '_$async_'
   },
   TINY_TABLE_CUSTOM_COLUMN_WIDTH: 'TINY_TABLE_CUSTOM_COLUMN_WIDTH',
-  TINY_TABLE_CUSTOM_SETTING: 'TINY_TABLE_CUSTOM_SETTING'
+  TINY_TABLE_CUSTOM_SETTING: 'TINY_TABLE_CUSTOM_SETTING',
+  viewConfig: {
+    // 视图类型
+    DEFAULT: 'default',
+    MF: 'mf',
+    CARD: 'card',
+    LIST: 'list',
+    GANTT: 'gantt',
+    // 移动优先视图下展示类型
+    MF_SHOW_LIST: 'list',
+    MF_SHOW_CARD: 'card',
+    // 在不同视图下表格模块的显示
+    toolbar: { default: 'block', mf: 'hidden sm:block', card: 'hidden sm:block' },
+    pager: { default: 'block', mf: 'hidden sm:block', card: 'hidden sm:block' },
+    columnAnchor: { default: 'flex', mf: 'hidden sm:flex', card: 'hidden' },
+    hiddenColumn: { default: 'block', mf: 'hidden sm:block', card: 'hidden' },
+    tableHeader: { default: 'block', mf: 'hidden sm:block', card: 'hidden' },
+    emptyData: { default: 'block', mf: 'hidden sm:block', card: 'hidden' },
+    tableBody: { default: 'block', mf: 'hidden sm:block', card: 'hidden' },
+    tableFooter: { default: 'block', mf: 'hidden sm:block', card: 'hidden' },
+    fixedColumn: { default: 'block', mf: 'hidden sm:block', card: 'hidden' },
+    borderLine: { default: 'block', mf: 'hidden sm:block', card: 'hidden' },
+    resizeBar: { default: 'block', mf: 'hidden sm:block', card: 'hidden' },
+    gridLoading: { default: 'block', mf: 'hidden sm:block', card: 'hidden' },
+    tableWrapper: { default: 'block', mf: 'hidden sm:block', card: 'hidden' },
+    selectToolbar: { default: 'block', mf: 'hidden sm:block', card: 'hidden' },
+    mfTable: { default: 'hidden', mf: 'block sm:hidden', card: 'block' },
+    footerBorder: { default: 'block', mf: 'hidden sm:block', card: 'hidden' },
+    operButton: { default: 'inline-block', mf: 'hidden sm:inline-block', card: 'hidden' }
+  }
 }
+
+// list视图类型、gantt视图类型和card视图类型的配置一致
+function addListConfig() {
+  const viewConfig = GlobalConfig.viewConfig
+
+  for (let key of Object.keys(viewConfig)) {
+    if (typeof viewConfig[key] === 'object') {
+      viewConfig[key].list = viewConfig[key].card
+      viewConfig[key].gantt = viewConfig[key].card
+    }
+  }
+}
+
+addListConfig()
 
 export default GlobalConfig
 

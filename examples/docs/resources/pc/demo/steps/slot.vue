@@ -3,10 +3,14 @@
     <div>通过 item 插槽添加自定义图标</div>
     <tiny-steps :data="stepsData">
       <template #item="data">
+        <a class="label"
+          ><span>{{ data.slotScope.name }}</span></a
+        >
         <span>
-          <component :is="data.slotScope.status == 'done' ? IconYes : IconClose" class="tiny-svg-size" />
+          <div :class="['dot', data.slotScope.status]">
+            <component :is="data.slotScope.status == 'done' ? IconYes : IconClose" class="tiny-svg-size" />
+          </div>
         </span>
-        <span>{{ data.slotScope.name }}</span>
       </template>
     </tiny-steps>
   </div>

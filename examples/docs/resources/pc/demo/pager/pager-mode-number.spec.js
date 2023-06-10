@@ -1,8 +1,18 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
-    await page.goto('http://localhost:7130/pc/pager/current-page');
-    await page.getByText('number 模式').click();
-    await page.getByRole('listitem').filter({ hasText: '2' }).click();
-    await expect(page.getByRole('listitem').filter({ hasText: '2' })).toHaveText('2')
-});
+test('分页number模式', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/pager/pager-mode-number')
+
+  const preview = page.locator('#preview')
+  const pager = preview.locator('.tiny-pager')
+  const prev = pager.locator('.tiny-pager__btn-prev')
+  const next = pager.locator('.tiny-pager__btn-next')
+
+  await expect(prev).toBeVisible()
+  await expect(pager.locator('.tiny-pager__pages')).toBeVisible()
+  await expect(next).toBeVisible()
+  await expect(pager.locator('.tiny-pager__input')).toBeVisible()
+  await expect(pager.locator('.tiny-pager__goto')).toBeVisible()
+  await expect(pager.locator('.tiny-pager__total')).toBeVisible()
+})

@@ -78,5 +78,13 @@
     "component": " ActionMenu 菜单按钮",
     "findIntroStr": "ActionMenu 菜单按钮",
     "demoId": "slot-item"
+  },
+  {
+    "title": "下拉面板显示事件",
+    "content": "当下拉面板出现或者隐藏时触发 <code>visible-change</code> 事件",
+    "link": "action-menu/visible-change",
+    "component": " ActionMenu 菜单按钮",
+    "findIntroStr": "ActionMenu 菜单按钮",
+    "demoId": "visible-change"
   }
 ]

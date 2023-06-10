@@ -16,6 +16,26 @@ body,
   width: 100%;
 }
 
+.api-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 1px solid #252b3a;
+}
+.api-table tbody tr:hover {
+  background-color: #f2f5fc;
+}
+.api-table th {
+  background-color: #f2f5fc;
+  border: 1px solid #bdbdbd;
+  padding: 4px 8px;
+}
+.api-table td {
+  font-size: 14px;
+  border: 1px solid #cccccc;
+  padding: 4px 8px;
+}
+
 :root {
   --none: none;
   --transparent: transparent;

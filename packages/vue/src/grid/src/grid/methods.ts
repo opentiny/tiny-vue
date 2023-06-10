@@ -75,7 +75,7 @@ export function invokeSaveDataApi({ _vm, args, body, code, removeRecords, resolv
 
 const getWrapFunc = (name) =>
   function () {
-    return this.$refs.tinyTable[name].apply(this.$refs.tinyTable[name], arguments)
+    return this.$refs.tinyTable[name].apply(this.$refs.tinyTable, arguments)
   }
 
 const methods = {}

@@ -1,12 +1,11 @@
-import { test, expect } from '@playwright/test';
-import exp from 'constants';
+import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
-    await page.goto('http://localhost:7130/pc/button-group/event-edit');
-    await page.getByText('默认插槽').click();
-    await page.getByRole('button', { name: 'Button1' }).click();
-    await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/button[1]')).toHaveClass(/tiny-button--primary/)
-    await page.getByRole('button', { name: 'Button2' }).click();
-    await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/button[2]')).toHaveClass(/tiny-button--success/)
-    await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/button[3]')).toBeDisabled
-});
+test('测试按钮默认插槽', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/button-group/slot-default')
+  const preview = page.locator('#preview')
+  const buttonGroup = preview.locator('.tiny-button-group').first()
+  await expect(buttonGroup.getByRole('button', { name: 'Button1' })).toHaveCSS('background-color', 'rgb(94, 124, 224)')
+  await expect(buttonGroup.getByRole('button', { name: 'Button2' })).toHaveCSS('background-color', 'rgb(80, 212, 171)')
+  await expect(buttonGroup.getByRole('button', { name: 'Button3' })).toHaveClass(/is-disabled/)
+})

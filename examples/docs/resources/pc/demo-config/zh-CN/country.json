@@ -1,1 +1,26 @@
-[{"title":"基本用法","content":"详细用法参考如下示例","link":"country/basic-usage","component":" Country 国家/地区","findIntroStr":"Country 国家/地区组件，用于国家/地区名称展示及选择，通过配置数据源获取选项。","demoId":"basic-usage"},{"title":"自定义服务","content":"<p>通过 <code>fetch-country</code> 属性可以指定一个方法，在方法中可实现请求自定义的服务。 <code>clearable</code> 设置是否可清空，默认值为 true。</p>\n","link":"country/custom-service","component":" Country 国家/地区","findIntroStr":"Country 国家/地区组件，用于国家/地区名称展示及选择，通过配置数据源获取选项。","demoId":"custom-service"}]
+[
+  {
+    "title": "基本用法",
+    "content": "详细用法参考如下示例",
+    "link": "country/basic-usage",
+    "component": " Country 国家/地区",
+    "findIntroStr": "Country 国家/地区组件，用于国家/地区名称展示及选择，通过配置数据源获取选项。",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "自定义服务",
+    "content": "<p>通过 <code>fetch-country</code> 属性可以指定一个方法，在方法中可实现请求自定义的服务。 <code>clearable</code> 设置是否可清空，默认值为 true。</p>\n",
+    "link": "country/custom-service",
+    "component": " Country 国家/地区",
+    "findIntroStr": "Country 国家/地区组件，用于国家/地区名称展示及选择，通过配置数据源获取选项。",
+    "demoId": "custom-service"
+  },
+  {
+    "title": "自定义数据的字段",
+    "content": "当使用自定义的数据体时，需要使用<code>fields</code>来指定字段",
+    "link": "country/fields",
+    "component": " Country 国家/地区",
+    "findIntroStr": "Country 国家/地区组件，用于国家/地区名称展示及选择，通过配置数据源获取选项。",
+    "demoId": "fields"
+  }
+]

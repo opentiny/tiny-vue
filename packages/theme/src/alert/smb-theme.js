@@ -1,5 +1,4 @@
 export const tinyAlertSmbTheme = {
-  'ti-alert-normal-height': 'var(--ti-common-space-10x)',
   'ti-alert-border-radius': 'var(--ti-common-border-radius-4)',
   'ti-alert-description-font-size': 'var(--ti-common-font-size-1)',
   'ti-alert-warning-border-color': 'transparent',
@@ -25,8 +24,8 @@ export const tinyAlertSmbTheme = {
   'ti-alert-normal-padding-left': 'var(--ti-common-space-4x)',
   'ti-alert-normal-padding-right': 'var(--ti-common-space-3x)',
   'ti-alert-title-font-size': 'var(--ti-common-font-size-4)',
-  'ti-alert-icon-font-size': 'var(--ti-common-font-size-2)',
-  'ti-alert-large-icon-font-size': 'var(--ti-common-font-size-5)',
+  'ti-alert-icon-font-size': 'var(--ti-common-font-size-base)',
+  'ti-alert-large-icon-font-size': '21px',
   'ti-alert-large-icon-margin-top': '3px',
   'ti-alert-large-padding-top': 'var(--ti-common-space-4x)',
   'ti-alert-large-padding-bottom': 'var(--ti-common-space-4x)',

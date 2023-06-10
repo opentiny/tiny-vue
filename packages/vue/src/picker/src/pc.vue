@@ -24,17 +24,17 @@
     :placeholder="placeholder"
     @focus="handleFocus"
     @keydown="handleKeydown"
-    :modelValue="state.displayValue"
+    :model-value="state.displayValue"
     :title="state.displayValue"
     @update:modelValue="(value) => (state.userInput = value)"
     @change="handleChange"
     @mouseenter="handleMouseEnter"
     @mouseleave="state.showClose = false"
-    :validateEvent="false"
+    :validate-event="false"
     ref="reference"
   >
     <template #suffix>
-      <i class="tiny-input__icon">
+      <i class="tiny-input__icon-container">
         <transition name="tiny-transition-icon-scale-in">
           <component
             :is="state.showClose ? clearIcon : null"

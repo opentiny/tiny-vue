@@ -1,5 +1,12 @@
 <template>
-  <tiny-flowchart ref="chart" :data="chartData" :config="chartConfig" @click-node="onClickNode" @click-link="onClickLink" @click-blank="onClickBlank">
+  <tiny-flowchart
+    ref="chart"
+    :data="chartData"
+    :config="chartConfig"
+    @click-node="onClickNode"
+    @click-link="onClickLink"
+    @click-blank="onClickBlank"
+  >
   </tiny-flowchart>
 </template>
 

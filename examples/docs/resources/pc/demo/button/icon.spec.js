@@ -1,14 +1,15 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
-    await page.goto('http://localhost:7130/pc/button/base');
-    await page.getByText('图标按钮').click();
-    await page.locator('.rel').click();
-    await page.locator('.tiny-button').first().click();
-    await page.locator('button:nth-child(2)').click();
-    await page.locator('button:nth-child(3)').click();
-    await page.locator('button:nth-child(4)').click();
-    await page.locator('button:nth-child(5)').click();
-    await page.locator('button:nth-child(6)').click();
-    await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/button[1]')).toHaveAttribute('class', 'tiny-button tiny-button--default')
-});
+test('测试是否图标按钮', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/button/icon')
+
+  const preview = page.locator('#preview')
+  const button = preview.locator('.tiny-button')
+  await expect(button.first().locator('svg')).toBeVisible()
+  await expect(button.nth(1).locator('svg')).toBeVisible()
+  await expect(button.nth(2).locator('svg')).toBeVisible()
+  await expect(button.nth(3).locator('svg')).toBeVisible()
+  await expect(button.nth(4).locator('svg')).toBeVisible()
+  await expect(button.nth(5).locator('svg')).toBeVisible()
+})

@@ -1,9 +1,34 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/button/base');
-  await page.getByText('基本用法').nth(1).click();
-  await page.getByRole('button', { name: '默认按钮' }).click();
-  await page.getByRole('button', { name: '朴素按钮' }).click();
-  await page.getByRole('button', { name: '圆角按钮' }).click();
-});
+test('测试默认按钮', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/button/base')
+  await expect(page.locator('.tiny-button').first()).toHaveClass(/tiny-button--default/)
+  await expect(page.getByRole('button', { name: '主要按钮' }).first()).toHaveClass(/tiny-button--primary/)
+  await expect(page.getByRole('button', { name: '成功按钮' }).first()).toHaveClass(/tiny-button--success/)
+  await expect(page.getByRole('button', { name: '信息按钮' }).first()).toHaveClass(/tiny-button--info/)
+  await expect(page.getByRole('button', { name: '警告按钮' }).first()).toHaveClass(/tiny-button--warning/)
+  await expect(page.getByRole('button', { name: '危险按钮' }).first()).toHaveClass(/tiny-button--danger/)
+})
+
+test('测试朴素按钮', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/button/base')
+  await expect(page.getByRole('button', { name: '朴素按钮' })).toHaveClass(/is-plain/)
+  await expect(page.getByRole('button', { name: '主要按钮' }).nth(1)).toHaveClass(/tiny-button--primary is-plain/)
+  await expect(page.getByRole('button', { name: '成功按钮' }).nth(1)).toHaveClass(/tiny-button--success is-plain/)
+  await expect(page.getByRole('button', { name: '信息按钮' }).nth(1)).toHaveClass(/tiny-button--info is-plain/)
+  await expect(page.getByRole('button', { name: '警告按钮' }).nth(1)).toHaveClass(/tiny-button--warning is-plain/)
+  await expect(page.getByRole('button', { name: '危险按钮' }).nth(1)).toHaveClass(/tiny-button--danger is-plain/)
+})
+
+test('测试圆角按钮', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/button/base')
+  await expect(page.getByRole('button', { name: '圆角按钮' })).toHaveClass(/is-round/)
+  await expect(page.getByRole('button', { name: '主要按钮' }).nth(2)).toHaveClass(/tiny-button--primary is-round/)
+  await expect(page.getByRole('button', { name: '成功按钮' }).nth(2)).toHaveClass(/tiny-button--success is-round/)
+  await expect(page.getByRole('button', { name: '信息按钮' }).nth(2)).toHaveClass(/tiny-button--info is-round/)
+  await expect(page.getByRole('button', { name: '警告按钮' }).nth(2)).toHaveClass(/tiny-button--warning is-round/)
+  await expect(page.getByRole('button', { name: '危险按钮' }).nth(2)).toHaveClass(/tiny-button--danger is-round/)
+})

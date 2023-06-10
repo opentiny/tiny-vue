@@ -25,9 +25,8 @@ import { ButtonGroup, Link } from '@opentiny/vue'
 import TinyPc from './pc.vue'
 import TinyMobile from './mobile.vue'
 import TinyMobileFirst from './mobile-first.vue'
-import { hooks, provideDesignConfig } from '@opentiny/vue-common'
+import { hooks } from '@opentiny/vue-common'
 import { useModeCtx } from './uses'
-import designAuroraConfig from '@opentiny/vue-design-aurora'
 
 export default {
   components: {
@@ -47,9 +46,6 @@ export default {
       ],
       vueVersion: hooks.version
     })
-
-    // 注入aurora主题规范
-    provideDesignConfig(designAuroraConfig)
 
     hooks.onMounted(() => {
       hooks.watch(

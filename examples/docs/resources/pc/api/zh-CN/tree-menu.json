@@ -181,7 +181,7 @@
   "events": [
     {
       "name": "node-click",
-      "sample": "event-current-change",
+      "sample": "event-node-click",
       "type": "Function(arg1,arg2)",
       "desc": "节点被点击时的回调;//参数: arg1:Object \n{ children: 点击节点的子节点, id: 点击节点的id, label: 点击节点的title }\n// arg2:Object // 当前点击节点的数据信息对象",
       "defaultValue": ""

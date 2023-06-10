@@ -12,8 +12,8 @@
     </tiny-tab-item>
     <tiny-tab-item title="表格组件B" name="second">
       <tiny-grid :data="tableData" :auto-resize="true">
-        <tiny-grid-column type="index" width="60"></tiny-grid-column>
-        <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+        <tiny-grid-column type="index" width="50"></tiny-grid-column>
+        <tiny-grid-column type="selection" width="50"></tiny-grid-column>
         <tiny-grid-column field="name" title="公司名称(默认为左对齐)"></tiny-grid-column>
         <tiny-grid-column field="employees" title="员工数(左对齐)" align="left"></tiny-grid-column>
         <tiny-grid-column field="createdDate" title="创建日期(右对齐)" align="right"></tiny-grid-column>

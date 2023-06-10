@@ -1,5 +1,5 @@
 <template>
-  <tiny-pop-upload :action="action" :max-upload-file-size="30000"></tiny-pop-upload>
+  <tiny-pop-upload :action="action" :max-upload-file-size="10000"></tiny-pop-upload>
 </template>
 
 <script lang="jsx">

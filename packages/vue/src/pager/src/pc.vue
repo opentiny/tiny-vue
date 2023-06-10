@@ -121,7 +121,7 @@ export default defineComponent({
           pageSizes={this.pageSizes}
         ></sizes>
       ),
-      slot: <slot>{this.slots.default && this.slots.default()}</slot>,
+      slot: typeof this.slots.default === 'function' ? this.slots.default() : this.slots.default,
       total: <total></total>
     }
 
@@ -590,7 +590,6 @@ export default defineComponent({
     emitChange() {
       this.$nextTick(() => {
         if (this.internalCurrentPage !== this.lastEmittedPage || this.userChangePageSize) {
-          this.$emit('current-change', this.internalCurrentPage)
           this.$emit('update:current-page', this.internalCurrentPage)
           this.$emit('page-change', {
             currentPage: this.internalCurrentPage,
@@ -650,6 +649,7 @@ export default defineComponent({
       immediate: true,
       handler(newVal) {
         this.$emit('update:currentPage', newVal)
+        this.$emit('current-change', newVal)
         this.lastEmittedPage = -1
       }
     },

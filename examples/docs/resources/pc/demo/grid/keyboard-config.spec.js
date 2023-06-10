@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('键盘按键配置项测试', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('http://localhost:7130/pc/grid-keyboard/keyboard-config')
-  await page.getByText('GFD科技YX公司').click()
+  await page.getByText('GFD科技YX公司').first().click()
   await page.waitForTimeout(1000)
   await page.locator('body').press('ArrowDown')
 

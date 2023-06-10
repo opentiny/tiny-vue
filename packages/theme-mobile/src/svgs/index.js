@@ -221,6 +221,7 @@ import IconWriting from './writing.svg'
 import IconYes from './yes.svg'
 import IconZoomIn from './zoom-in.svg'
 import IconZoomOut from './zoom-out.svg'
+
 export {
   IconAdministrator,
   IconAreaChart,

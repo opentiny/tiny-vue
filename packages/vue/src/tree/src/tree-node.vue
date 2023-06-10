@@ -108,6 +108,7 @@
       </collapse-transition>
     </div>
     <div
+      ref="menuContext"
       class="tiny-tree-node__menu"
       :style="state.menuposition"
       v-if="state.showMenu && TreeRoot.showContextmenu"

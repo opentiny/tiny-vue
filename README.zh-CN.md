@@ -59,7 +59,7 @@ pnpm i
 pnpm dev
 
 # 启动 Vue2 项目
-pnpm dev:vue2
+pnpm dev2
 ```
 
 打开浏览器访问：[http://127.0.0.1:7130/](http://127.0.0.1:7130/)

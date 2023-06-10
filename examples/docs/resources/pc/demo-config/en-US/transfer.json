@@ -137,7 +137,7 @@
   },
   {
     "title": "Panel Slot",
-    "content": "<p>You can use <code>left-panel</code> and <code>right-panel</code> to customize the contents of the left and right panels. Use <code>button</code> to customize the shuttle button</p>\n",
+    "content": "<p>You can use <code>left-panel</code> and <code>right-panel</code> to customize the contents of the left and right panels. Use <code>button-panel</code> to customize the shuttle button</p>\n",
     "link": "transfer/panel-slot",
     "component": "Transfer shuttle box",
     "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",

@@ -2,9 +2,15 @@
   <div>
     <h6>通过点击下面按钮，改变表格父级标签容器尺寸查看效果</h6>
     <div class="group-btns">
-      <tiny-button @click="changeSizeBig" type="primary">800*300</tiny-button>
-      <tiny-button @click="changeSizeMid" type="primary">600*300</tiny-button>
-      <tiny-button @click="changeSizeSmall" type="primary">400*300</tiny-button>
+      <tiny-button @click="changeSizeBig" type="primary">
+        800*300
+      </tiny-button>
+      <tiny-button @click="changeSizeMid" type="primary">
+        600*300
+      </tiny-button>
+      <tiny-button @click="changeSizeSmall" type="primary">
+        400*300
+      </tiny-button>
     </div>
     <div class="auto-resize-box" :style="styleObj">
       <tiny-grid :data="tableData" :auto-resize="false" :sync-resize="true">
@@ -49,7 +55,7 @@ export default {
   data() {
     return {
       styleObj: {
-        width: '800px',
+        width: '400px',
         height: '300px'
       },
       tableData: [
@@ -105,9 +111,10 @@ export default {
 .auto-resize-box {
   border: 1px solid #666;
   padding: 10px;
-  widows: 800px;
+  width: 400px;
   height: 300px;
 }
+
 .group-btns {
   margin-bottom: 20px;
 }

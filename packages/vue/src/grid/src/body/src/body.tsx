@@ -121,46 +121,43 @@ function buildColumnProps(args) {
 }
 
 function buildColumnChildren(args) {
-  let { h, hasDefaultTip, params, row, validError } = args
-  let { allColumnOverflow, column, fixedHiddenColumn } = args
+  let { h, hasDefaultTip, params, row, validError, column } = args
   let { showEllipsis, showTip, showTitle, showTooltip, validStore } = args
   let cellNode: any[] = []
-  if (!allColumnOverflow || !fixedHiddenColumn) {
-    let validNode: any = null
-    if (hasDefaultTip) {
-      validNode = [null]
-      if (validError) {
-        validNode = h(
-          'div',
-          {
-            class: 'tiny-grid-cell__valid',
-            style: validStore.rule && validStore.rule.width ? { width: `${validStore.rule.width}px` } : null
-          },
-          [h('span', { class: 'tiny-grid-cell__valid-msg' }, validStore.content)]
-        )
-      }
-    }
-    cellNode = [
-      h(
+  let validNode: any = null
+  if (hasDefaultTip) {
+    validNode = [null]
+    if (validError) {
+      validNode = h(
         'div',
         {
-          class: [
-            'tiny-grid-cell',
-            {
-              'tiny-grid-cell__title': showTitle,
-              'tiny-grid-cell__tooltip': showTooltip || showTip,
-              'tiny-grid-cell__ellipsis': showEllipsis
-            }
-          ],
-          attrs: { title: showTitle ? getCellLabel(row, column, params) : null },
-          key: getTableCellKey(params)
+          class: 'tiny-grid-cell__valid',
+          style: validStore.rule && validStore.rule.width ? { width: `${validStore.rule.width}px` } : null
         },
-        // 调用column组件的renderCell渲染单元格内部的内容
-        column.renderCell(h, params)
-      ),
-      validNode
-    ]
+        [h('span', { class: 'tiny-grid-cell__valid-msg' }, validStore.content)]
+      )
+    }
   }
+  cellNode = [
+    h(
+      'div',
+      {
+        class: [
+          'tiny-grid-cell',
+          {
+            'tiny-grid-cell__title': showTitle,
+            'tiny-grid-cell__tooltip': showTooltip || showTip,
+            'tiny-grid-cell__ellipsis': showEllipsis
+          }
+        ],
+        attrs: { title: showTitle ? getCellLabel(row, column, params) : null },
+        key: getTableCellKey(params)
+      },
+      // 调用column组件的renderCell渲染单元格内部的内容
+      column.renderCell(h, params)
+    ),
+    validNode
+  ]
   return cellNode
 }
 
@@ -309,8 +306,8 @@ function doSpan({ attrs, params, rowSpan, spanMethod }) {
   return true
 }
 
-function isCellDirty({ $table, column, editConfig, fixedHiddenColumn, isDirty, row }) {
-  if (!fixedHiddenColumn && editConfig && editConfig.showStatus) {
+function isCellDirty({ $table, column, editConfig, isDirty, row }) {
+  if (editConfig && editConfig.showStatus) {
     isDirty = $table.hasRowChange(row, column.property)
   }
 
@@ -373,8 +370,7 @@ function renderColumn(args1) {
   let { $seq, $table, column, columnIndex } = args1
   let { h, row } = args1
   let { align: allAlign, cellClassName, columnKey, editConfig } = $table
-  let { editRules, editStore, rowId, rowSpan } = $table
-  let { showOverflow: allColumnOverflow, height } = $table
+  let { editRules, editStore, rowId, rowSpan, height } = $table
   let { tableData, validOpts, validStore, validatedMap, spanMethod } = $table
   let { isDirty, attrs = { 'data-colid': column.id } } = {}
   let { message } = validOpts
@@ -406,13 +402,13 @@ function renderColumn(args1) {
     return
   }
   // 编辑后的显示状态（是否该单元格数据被更改）此处如果是树表大数据虚拟滚动+表格编辑器，会造成卡顿，这里需要递归树表数据
-  isDirty = isCellDirty({ $table, column, editConfig, fixedHiddenColumn, isDirty, row })
+  isDirty = isCellDirty({ $table, column, editConfig, isDirty, row })
   args = { attrs, cellAlign, cellClassName, className, column, columnActived, columnIndex, columnKey, editor }
   Object.assign(args, { fixedHiddenColumn, hasEllipsis, isDirty, params, tdOns, validError, validated })
 
   // 组装渲染单元格td所需要的props属性
   const colProps = buildColumnProps(args)
-  args = { allColumnOverflow, column, fixedHiddenColumn, h, hasDefaultTip, params, row }
+  args = { column, h, hasDefaultTip, params, row }
   Object.assign(args, { showEllipsis, showTip, showTitle, showTooltip, validError, validStore })
 
   // 渲染td单元格中的div元素（自定义渲染和编辑器）

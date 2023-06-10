@@ -10,7 +10,7 @@
  *
  -->
 <template>
-  <div class="tiny-slide-bar" @mousewheel.passive="mouseEvent" ref="wrapper">
+  <div class="tiny-slide-bar" @mousewheel.prevent="mouseEvent" ref="wrapper">
     <icon-chevron-left :class="[state.showLeft ? '' : 'tiny-disabled']" class="tiny-svg-size icon-chevron-left" @click="leftClick" />
     <div class="tiny-slide-bar__content">
       <transition>

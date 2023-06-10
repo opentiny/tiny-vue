@@ -28,7 +28,8 @@ export default {
   },
   data() {
     return {
-      boxVisibility: false
+      boxVisibility: false,
+      isNotifyMoving: false
     }
   },
   methods: {
@@ -45,10 +46,13 @@ export default {
       })
     },
     dragMove() {
-      Notify({
-        message: '拖拽移动',
-        position: 'top-right'
-      })
+      if (!this.isNotifyMoving) {
+        Notify({
+          message: '拖拽移动',
+          position: 'top-right'
+        })
+        this.isNotifyMoving = true
+      }
     }
   }
 }

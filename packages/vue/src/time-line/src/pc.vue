@@ -15,7 +15,8 @@
       <template v-if="textPosition === 'right'">
         <ul class="tiny-steps--text-right" ref="stepsRight">
           <template v-for="(node, index) in state.nodes" :key="index">
-            <li v-if="index" :class="['step-line', { 'line-done': index <= state.current }]"></li>
+            <li v-if="index" :class="['step-line', { 'line-done': index <= state.current }]"
+              :style="{ width: space + 'px' }"></li>
             <li :class="['normal step-content', getStatusCls(index, node)]">
               <div class="icon step-icon" @click="handleClick({ index, node })">
                 <span v-if="index < state.current || node.error" :custom-title="index + start" class="icon-wrap">

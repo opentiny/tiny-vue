@@ -96,38 +96,6 @@
     "demoId": "can-draggable"
   },
   {
-    "title": "拖拽菜单回调事件",
-    "content": "<p>拖拽菜单回调事件,配合 <code>draggable</code> 使用。</p>\n",
-    "link": "tree-menu/event-allow-draggable",
-    "component": " TreeMenu 树型菜单",
-    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
-    "demoId": "event-allow-draggable"
-  },
-  {
-    "title": "节点被展开时触发的事件",
-    "content": "<p>节点被展开时触发的事件</p>\n",
-    "link": "tree-menu/event-node-expand",
-    "component": " TreeMenu 树型菜单",
-    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
-    "demoId": "event-node-expand"
-  },
-  {
-    "title": "节点被关闭时触发的事件",
-    "content": "<p>节点被关闭时触发的事件</p>\n",
-    "link": "tree-menu/event-node-collapse",
-    "component": " TreeMenu 树型菜单",
-    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
-    "demoId": "event-node-collapse"
-  },
-  {
-    "title": "节点选中状态发生变化时的回调",
-    "content": "<p>节点选中状态发生变化时的回调</p>\n",
-    "link": "tree-menu/event-check-change",
-    "component": " TreeMenu 树型菜单",
-    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
-    "demoId": "event-check-change"
-  },
-  {
     "title": "点击文字展开菜单",
     "content": "<p>可通过属性 <code>expand-on-click-node</code> 配置点击文字即可展开子菜单。</p>\n",
     "link": "tree-menu/expand-on-click-node",
@@ -176,11 +144,51 @@
     "demoId": "tree-menu-slot"
   },
   {
-    "title": "事件",
+    "title": "节点点击事件",
+    "content": "<p><code>node-click</code>节点被点击触发的事件。</p>\n",
+    "link": "tree-menu/event-node-click",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "event-node-click"
+  },
+  {
+    "title": "当前选中节点变化事件",
     "content": "<p><code>current-change</code> 当前选中节点变化时触发的事件。</p>\n",
     "link": "tree-menu/event-current-change",
     "component": " TreeMenu 树型菜单",
     "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
     "demoId": "event-current-change"
+  },
+  {
+    "title": "拖拽菜单回调事件",
+    "content": "<p>拖拽菜单回调事件,配合 <code>draggable</code> 使用。</p>\n",
+    "link": "tree-menu/event-allow-draggable",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "event-allow-draggable"
+  },
+  {
+    "title": "节点被展开时触发的事件",
+    "content": "<p>节点被展开时触发的事件</p>\n",
+    "link": "tree-menu/event-node-expand",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "event-node-expand"
+  },
+  {
+    "title": "节点被折叠时触发的事件",
+    "content": "<p>节点被折叠时触发的事件</p>\n",
+    "link": "tree-menu/event-node-collapse",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "event-node-collapse"
+  },
+  {
+    "title": "节点选中状态变化事件",
+    "content": "<p>节点选中状态发生变化时的回调</p>\n",
+    "link": "tree-menu/event-check-change",
+    "component": " TreeMenu 树型菜单",
+    "findIntroStr": "以树形方式显示的菜单，适用于版型定制的一种组件。",
+    "demoId": "event-check-change"
   }
 ]
