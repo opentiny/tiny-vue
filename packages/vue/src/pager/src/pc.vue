@@ -646,7 +646,6 @@ export default defineComponent({
       }
     },
     internalCurrentPage: {
-      immediate: true,
       handler(newVal) {
         this.$emit('update:currentPage', newVal)
         this.$emit('current-change', newVal)
