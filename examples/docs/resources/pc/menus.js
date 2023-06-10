@@ -1075,6 +1075,12 @@ const routerArr = [
         zh: '全屏显示',
         enSuffix: true,
         path: '/fullscreen'
+      },
+      {
+        en: 'ConfigProvider',
+        zh: '全局设置',
+        enSuffix: true,
+        path: '/config-provider'
       }
     ]
   }

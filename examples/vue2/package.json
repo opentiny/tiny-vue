@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "dev": "vite --port 7126",
+    "dev:saas": "vite --port 7126 --mode saas",
     "build": "vite build",
     "preview": "vite preview",
     "test:e2e": "playwright test",
@@ -28,7 +29,7 @@
     "@opentiny/vue-vite-import": "workspace:~",
     "@opentiny/vue-design-smb": "workspace:~",
     "@playwright/test": "^1.29.2",
-    "@vitest/ui": "^0.27.1",
+    "@vitest/ui": "^0.31.0",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
     "@vue/composition-api": "1.2.2",
     "@vue/runtime-dom": "^3.2.31",

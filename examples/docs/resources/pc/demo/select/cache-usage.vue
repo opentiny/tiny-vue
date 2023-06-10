@@ -1,5 +1,17 @@
 <template>
-  <tiny-select v-model="value" placeholder="请选择" clearable :options="options" :cache-op="cacheOp"></tiny-select>
+  <div>
+    <tiny-select
+      v-model="value"
+      placeholder="请选择"
+      clearable
+      :options="options"
+      :cache-op="cacheOp"
+      @change="cacheChange"
+    ></tiny-select>
+    <p class="cache-value">
+      {{ cacheValue }}
+    </p>
+  </div>
 </template>
 
 <script lang="jsx">
@@ -14,6 +26,7 @@ export default {
       cacheOp: {
         key: 'test'
       },
+      cacheValue: '',
       options: [
         {
           value: '选项1',
@@ -37,6 +50,11 @@ export default {
         }
       ],
       value: '选项3'
+    }
+  },
+  methods: {
+    cacheChange() {
+      this.cacheValue = window.localStorage.getItem(`tiny_memorize_${this.cacheOp.key}`)
     }
   }
 }

@@ -10,7 +10,7 @@
 *
 */
 
-import { handleClick } from './index'
+import { handleClick, moreNodeClick } from './index'
 
 export const api = ['state', 'handleClick', 'moreNodeClick']
 
@@ -44,7 +44,8 @@ export const renderless = (props, { computed, reactive, watch, inject }, { emit,
 
   const api = {
     state,
-    handleClick: handleClick({ emit, props, state })
+    handleClick: handleClick({ emit, props, state }),
+    moreNodeClick: moreNodeClick({ emit, props, state })
   }
 
   return api

@@ -53,6 +53,7 @@ function setBasicProperty(column, context) {
   column.treeNode = context.treeNode
   column.renderer = context.renderer
   column.editor = context.editor
+  column.operationConfig = context.operationConfig
 }
 
 function ColumnConfig(context, { renderHeader, renderCell, renderData } = {}, config = {}) {

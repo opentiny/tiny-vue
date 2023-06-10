@@ -15,15 +15,18 @@
 
 @popupload-prefix-cls: ~'@{css-prefix}popupload';
 @upload-list-prefix-cls: ~'@{css-prefix}upload-list';
-@grid-modal-prefix-cls: ~'@{css-prefix}grid-modal';
+@popupload__modal-prefix-cls: ~'@{css-prefix}popupload__modal';
 @alert-prefix-cls: ~'@{css-prefix}alert';
+
+.@{popupload__modal-prefix-cls} {
+  .component-css-vars-pop-upload();
+}
 
 .@{popupload-prefix-cls} {
   .component-css-vars-pop-upload();
-
-  font-size: var(--ti-popupload-font-size);
   display: flex;
   align-items: center;
+  font-size: var(--ti-popupload-font-size);
 
   &__dialog {
     max-height: 512px;
@@ -34,12 +37,12 @@
 
   &__dialog-header {
     .@{alert-prefix-cls} {
-      margin-bottom: 10px;
+      margin-bottom: var(--ti-popupload-dialog-header-alert-margin-bottom);
     }
   }
 
   &__dialog-body {
-    padding-bottom: 24px;
+    padding-bottom: var(--ti-popupload-dialog-table-body-padding-bottom);
 
     .@{upload-list-prefix-cls} {
       display: none;
@@ -51,7 +54,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: 24px;
+    padding-bottom: var(--ti-popupload-dialog-footer-padding-bottom);
   }
 
   &__dialog-tips {
@@ -60,13 +63,15 @@
   }
 
   &__dialog-table {
-    height: 280px;
+    font-size: var(--ti-popupload-dialog-table-font-size);
+    height: var(--ti-popupload-dialog-table-height);
     width: 100%;
-    margin-top: 10px;
+    margin-top: var(--ti-popupload-dialog-margin-top);
 
     .header-col {
       border-right: 1px solid var(--ti-popupload-dialog-table-border-color);
-      padding: 0 12px;
+      padding: var(--ti-popupload-table-header-col-padding-vertical)
+        var(--ti-popupload-table-header-col-padding-horizontal);
 
       &:last-child {
         border-right: none;
@@ -74,9 +79,9 @@
     }
 
     .body-col {
-      padding: 8px 12px;
-      margin: 0;
-      line-height: 20px;
+      padding: var(--ti-popupload-table-body-col-padding-vertical) var(--ti-popupload-table-body-col-padding-horizontal);
+      margin: var(--ti-popupload-table-body-col-margin-vertical) var(--ti-popupload-table-body-col-margin-horizontal);
+      line-height: var(--ti-popupload-table-body-col-line-height);
     }
 
     .col1 {
@@ -96,7 +101,7 @@
     height: var(--ti-popupload-dialog-table-header-height);
     width: 100%;
     color: var(--ti-popupload-dialog-table-header-text-color);
-    font-weight: 700;
+    font-weight: var(--ti-popupload-dialog-table-header-font-weight);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -122,24 +127,22 @@
     justify-content: space-between;
 
     &:nth-child(even) {
-      background: rgba(51, 51, 51, 0.06);
+      background: var(--ti-popupload-table-item-even-bg-color);
     }
 
     .delIcon {
-      height: 17px;
-      width: 17px;
+      width: var(--ti-popupload-dialog-table-icon-size);
       fill: var(--ti-popupload-dialog-table-icon-color);
       cursor: pointer;
 
       &:hover {
-        height: 17px;
-        width: 17px;
+        width: var(--ti-popupload-dialog-table-icon-size-hover);
         fill: var(--ti-popupload-dialog-table-icon-color-hover);
       }
     }
   }
 
-  &__modal .@{grid-modal-prefix-cls}__body {
+  &__modal .@{popupload__modal-prefix-cls}__body {
     overflow-y: auto;
   }
 }

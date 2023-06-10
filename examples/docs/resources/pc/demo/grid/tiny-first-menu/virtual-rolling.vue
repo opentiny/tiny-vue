@@ -1,14 +1,11 @@
 <template>
-  <tiny-grid
-    ref="tinyTable"
-    height="300"
-    :optimization="{
-      animat: true,
-      delayHover: 250,
-      scrollX: { gt: 20 },
-      scrollY: { gt: 30 }
-    }"
-  >
+  <tiny-grid ref="tinyTable" height="300" :optimization="{
+    animat: true,
+    delayHover: 250,
+    scrollX: { gt: 20 },
+    scrollY: { gt: 30 }
+  }">
+    <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="名称"></tiny-grid-column>
     <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
     <tiny-grid-column field="city" title="地址"></tiny-grid-column>

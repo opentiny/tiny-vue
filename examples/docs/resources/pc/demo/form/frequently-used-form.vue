@@ -5,7 +5,9 @@
         <tiny-numeric v-model="createData.quantity"></tiny-numeric>
       </tiny-form-item>
       <tiny-form-item label="单选">
-        <tiny-radio v-model="createData.sex" label="1">男</tiny-radio>
+        <tiny-radio v-model="createData.sex" label="1">
+          男
+        </tiny-radio>
         <tiny-radio v-model="createData.sex" label="2" text="女"></tiny-radio>
       </tiny-form-item>
       <tiny-form-item label="日期">
@@ -20,10 +22,13 @@
         </tiny-tooltip>
       </tiny-form-item>
       <tiny-form-item label="文本">
-        <tiny-input v-model="createData.textarea" type="textarea" maxlength="15"> </tiny-input>
+        <tiny-input v-model="createData.textarea" type="textarea" maxlength="15">
+        </tiny-input>
       </tiny-form-item>
       <tiny-form-item>
-        <tiny-button type="primary" @click="submitClick">提交</tiny-button>
+        <tiny-button type="primary" @click="submitClick">
+          提交
+        </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>

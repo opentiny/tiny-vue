@@ -24,21 +24,26 @@ export default {
   },
   methods: {
     getFetchHrapprover() {
-      let that = this
-
-      return new Promise((resolve, reject) => {
-        that.$service.network
-          .get('servlet/idataProxy/params/ws/soaservices/HRApproverServlet', {
-            params: {
-              code: that.value,
-              category: that.category
-            }
-          })
-          .then((response) => {
-            resolve((response.data && response.data.hrpa) || [])
-          })
-          .catch(reject)
-      })
+      return Promise.resolve([
+        {
+          'dept_Code': '022471',
+          'remarks': null,
+          'approval_Person': 'test1',
+          'approval_Category': '0303'
+        },
+        {
+          'dept_Code': '041963',
+          'remarks': '权限申请',
+          'approval_Person': 'test2',
+          'approval_Category': '0303'
+        },
+        {
+          'dept_Code': '041963',
+          'remarks': '资产申请',
+          'approval_Person': 'test3',
+          'approval_Category': '0303'
+        }
+      ])
     }
   }
 }

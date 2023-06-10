@@ -23,12 +23,18 @@
         <tiny-switch v-model="createData.sw"></tiny-switch>
       </tiny-form-item>
       <tiny-form-item label="Radio">
-        <tiny-radio v-model="createData.sex" label="1"> 男 </tiny-radio>
+        <tiny-radio v-model="createData.sex" label="1">
+          男
+        </tiny-radio>
         <tiny-radio v-model="createData.sex" label="2" text="女"></tiny-radio>
       </tiny-form-item>
       <tiny-form-item label="Checkbox">
-        <tiny-checkbox v-model="createData.checked"> 复选框 </tiny-checkbox>
-        <tiny-checkbox v-model="createData.checked2"> 复选框2 </tiny-checkbox>
+        <tiny-checkbox v-model="createData.checked">
+          复选框
+        </tiny-checkbox>
+        <tiny-checkbox v-model="createData.checked2">
+          复选框2
+        </tiny-checkbox>
       </tiny-form-item>
       <tiny-form-item label="CheckboxGroup">
         <tiny-checkbox-group v-model="createData.groupChecked">
@@ -55,7 +61,8 @@
         </tiny-tooltip>
       </tiny-form-item>
       <tiny-form-item label="Textarea">
-        <tiny-input v-model="createData.textarea" type="textarea" maxlength="15"> </tiny-input>
+        <tiny-input v-model="createData.textarea" type="textarea" maxlength="15">
+        </tiny-input>
       </tiny-form-item>
       <tiny-form-item label="Autocomplete">
         <tiny-autocomplete
@@ -89,7 +96,9 @@
         <tiny-slider v-model="createData.slider"></tiny-slider>
       </tiny-form-item>
       <tiny-form-item>
-        <tiny-button type="primary" @click="submitClick"> 提交 </tiny-button>
+        <tiny-button type="primary" @click="submitClick">
+          提交
+        </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>

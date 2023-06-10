@@ -1,29 +1,37 @@
 /**
  * 初始化/创建 ICON 组件，从 @opentiny/vue-theme/svgs 中提取 SVG 图标创建对应的 ICON 组件
  */
-const path = require('path')
-const fs = require('fs-extra')
-const utils = require('./utils')
-const semver = require('semver')
-const { EOL } = require('os')
-const handlebarsRender = require('./handlebars.render')
+import path from 'node:path'
+import fs from 'fs-extra'
+import semver from 'semver'
+import { EOL } from 'node:os'
+import handlebarsRender from '../build/handlebars.render'
+import {
+  pathJoin,
+  logYellow,
+  getopentinyVersion,
+  capitalizeKebabCase,
+  prettierFormat,
+  logGreen,
+  logRed
+} from '../../shared/utils'
 
 const svgRE = /\.svg$/
-const svgDir = utils.pathJoin('..', 'node_modules', '@opentiny', 'theme', 'svgs')
-const iconDir = utils.pathJoin('..', 'packages', 'icon')
+const svgDir = pathJoin('..', 'node_modules', '@opentiny', 'theme', 'svgs')
+const iconDir = pathJoin('..', 'packages', 'icon')
 const packageJson = 'package.json'
-const templatePath = utils.pathJoin('..', 'template')
+const templatePath = pathJoin('..', 'template')
 
 // 检查是否按照依赖包
 if (!fs.existsSync(svgDir)) {
-  utils.logYellow(`The @opentiny/vue-theme is not exist , please npm install @opentiny/vue-theme.`)
+  logYellow('The @opentiny/vue-theme is not exist , please npm install @opentiny/vue-theme.')
 }
 
 // 是否包含 package/icon 目录
 if (!fs.existsSync(iconDir)) {
   fs.mkdirSync(iconDir)
 
-  const version = utils.getopentinyVersion()
+  const version = getopentinyVersion({ key: 'version' })
   const iconTemplate = fs.readJSONSync(path.join(templatePath, 'component', packageJson))
 
   // 删除多余的依赖
@@ -43,8 +51,8 @@ if (!fs.existsSync(iconDir)) {
   fs.writeFileSync(path.join(iconDir, packageJson), packageContent)
 }
 
-const exportComponents = []
-const exportIcons = []
+const exportComponents: string[] = []
+const exportIcons: string[] = []
 const componentTemplate = fs.readFileSync(path.join(templatePath, 'icon', 'index.ts'), { encoding: 'utf8' })
 
 // 根据 @opentiny/vue-theme/svgs 中的 svg 图片创建对应的 icon 组件
@@ -56,7 +64,7 @@ fs.readdirSync(svgDir).forEach((fileName) => {
     if (!fs.existsSync(iconPath)) {
       fs.mkdirSync(iconPath)
 
-      const iconName = utils.capitalizeKebabCase(svgName)
+      const iconName = capitalizeKebabCase(svgName)
       const fullIconName = `Icon${iconName}`
       const iconEntryContent = handlebarsRender({
         template: componentTemplate,
@@ -67,7 +75,7 @@ fs.readdirSync(svgDir).forEach((fileName) => {
         delimiter: ['\\[\\[', '\\]\\]']
       })
 
-      fs.writeFileSync(path.join(iconPath, 'index.ts'), utils.prettierFormat({ str: iconEntryContent }))
+      fs.writeFileSync(path.join(iconPath, 'index.ts'), prettierFormat({ str: iconEntryContent }))
 
       exportComponents.push(`import ${fullIconName} from './${svgName}'`)
       exportIcons.push(fullIconName)
@@ -78,7 +86,7 @@ fs.readdirSync(svgDir).forEach((fileName) => {
 if (exportComponents.length) {
   fs.writeFileSync(
     path.join(iconDir, 'index.ts'),
-    utils.prettierFormat({
+    prettierFormat({
       str: `${exportComponents.join(EOL)}
 
   export {
@@ -92,7 +100,7 @@ if (exportComponents.length) {
     })
   )
 
-  utils.logGreen('npm run create:icon done.')
+  logGreen('npm run create:icon done.')
 } else {
-  utils.logRed('npm run create:icon fail.')
+  logRed('npm run create:icon fail.')
 }

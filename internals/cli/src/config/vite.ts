@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { searchForWorkspaceRoot } from 'vite'
-import { getAllModules } from '../shared/module-utils.js'
+import { getAllModules } from '../shared/module-utils'
 
 const workspaceRoot = searchForWorkspaceRoot(process.cwd())
 const pathFromWorkspaceRoot = (...args) => path.resolve(workspaceRoot, ...args)
@@ -19,11 +19,14 @@ const getAlias = (vueVersion: string | number, theme = '') => {
   return {
     // 主模块映射
     // vite 4 不支持 exports 语法自动拼接 index 文件 https://github.com/vitejs/vite/issues/7267
+    '@opentiny/vue-icon-saas$': pathFromWorkspaceRoot('packages/vue-icon-saas/index.ts'),
+    '@opentiny/vue-icon-saas': pathFromWorkspaceRoot('packages/vue-icon-saas/src'),
     '@opentiny/vue-icon$': pathFromWorkspaceRoot(`packages/vue-icon${ns(theme)}/index.ts`),
     '@opentiny/vue-icon': pathFromWorkspaceRoot(`packages/vue-icon${ns(theme)}/src`),
     '@opentiny/vue-renderless': pathFromWorkspaceRoot('packages/renderless/src'),
     '@opentiny/vue-theme-mobile': pathFromWorkspaceRoot('packages/theme-mobile/src'),
     '@opentiny/vue-theme': pathFromWorkspaceRoot(`packages/theme${ns(theme)}/src`),
+    '@opentiny/vue-theme-saas': pathFromWorkspaceRoot('packages/theme-saas/src'),
     '@opentiny/vue-common': pathFromWorkspaceRoot('packages/vue-common/src'),
     '@opentiny/vue-locale': pathFromWorkspaceRoot('packages/vue-locale/src'),
 

@@ -2,8 +2,8 @@ import { iconSortTriangle, iconSortTriangleAscending, iconSortTriangleDescending
 
 export default {
   icons: {
-    sort: iconSortTriangle(),
-    descending: iconSortTriangleAscending(),
-    ascending: iconSortTriangleDescending()
+    sortDefault: iconSortTriangle(),
+    sortAsc: iconSortTriangleAscending(),
+    sortDesc: iconSortTriangleDescending()
   }
 }

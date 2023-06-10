@@ -6,6 +6,7 @@ import importPlugin from '@opentiny/vue-vite-import'
 import inspectPlugin from 'vite-plugin-inspect'
 import vue2Plugin from '@vitejs/plugin-vue2'
 import vue2JsxPlugin from '@vitejs/plugin-vue2-jsx'
+import Markdown from 'vite-plugin-md'
 import { createSvgPlugin as vue2SvgPlugin } from 'vite-plugin-vue2-svg'
 import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/vite'
 import { getAlias, pathFromWorkspaceRoot, getOptimizeDeps } from '../../internals/cli/src/config/vite'
@@ -49,6 +50,13 @@ export default defineConfig((config) => {
         shortcuts,
         variants,
         safelist: [...Array.from({ length: 24 }, (_, i) => `c-rand${i + 1}`), ...Array.from({ length: 24 }, (_, i) => `bg-rand${i + 1}`)]
+      }),
+      Markdown({
+        markdownItOptions: {
+          html: true,
+          linkify: true,
+          typographer: true,
+        },
       }),
       inspectPlugin(),
       checkerPlugin({ overlay: { initialIsOpen: false }, terminal: false, typescript: false, vueTsc: true }),

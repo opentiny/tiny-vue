@@ -19,10 +19,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .custom {
   position: static;
   width: 200px;
-  background-color: burlywood;
+  background-color: rgb(222, 184, 135);
+
+  & li:hover a {
+    color: #fff;
+  }
 }
 </style>

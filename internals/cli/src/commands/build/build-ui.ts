@@ -5,14 +5,18 @@ import path from 'node:path'
 import { build, defineConfig } from 'vite'
 import dtsPlugin from 'vite-plugin-dts'
 import vue3SvgPlugin from 'vite-svg-loader'
-import { getAlias, pathFromWorkspaceRoot } from '../../config/vite.js'
-import * as config from '../../shared/config.js'
-import type { Module } from '../../shared/module-utils.js'
-import { getAllIcons, getAllModules, getByName } from '../../shared/module-utils.js'
-import * as utils from '../../shared/utils.js'
-import generatePackageJsonPlugin from './rollup/generate-package-json.js'
-import inlineChunksPlugin from './rollup/inline-chunks.js'
-import replaceModuleNamePlugin from './rollup/replace-module-name.js'
+import { getAlias, pathFromWorkspaceRoot } from '../../config/vite'
+import { external } from '../../shared/config'
+import type { Module } from '../../shared/module-utils'
+import { getAllIcons, getAllModules, getByName } from '../../shared/module-utils'
+import {
+  logGreen,
+  kebabCase,
+  capitalizeKebabCase,
+} from '../../shared/utils'
+import generatePackageJsonPlugin from './rollup/generate-package-json'
+import inlineChunksPlugin from './rollup/inline-chunks'
+import replaceModuleNamePlugin from './rollup/replace-module-name'
 
 export const pathFromPackages = (...args) => pathFromWorkspaceRoot('packages', ...args)
 export const require = createRequire(import.meta.url)
@@ -52,7 +56,17 @@ export const getVuePlugins = (vueVersion: string) => {
 
 export const ns = (ver) => ({ '2': '', '2.7': '2', '3': '3' }[ver] || '')
 
-export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, themeVersion, isRuntime }) => {
+export interface BaseConfig {
+  vueVersion: string
+  dtsInclude: string[] | Set<string>
+  dts: boolean
+  buildTarget: string
+  themeVersion: string
+  npmScope?: string
+  isRuntime: boolean
+}
+
+export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, themeVersion, isRuntime }: BaseConfig) => {
   // 处理tsconfig中配置，主要是处理paths映射，确保dts可以找到正确的包
   const compilerOptions = require(pathFromWorkspaceRoot(`tsconfig.vue${vueVersion}.json`)).compilerOptions
 
@@ -189,10 +203,10 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
 
   async function batchBuild({ vueVersion, tasks, formats, message, emptyOutDir, dts }) {
     if (tasks.length === 0) return
-    utils.logGreen(`====== 开始构建 ${message} ======`)
+    logGreen(`====== 开始构建 ${message} ======`)
     const entry = toEntry(tasks)
 
-    const dtsInclude = toTsInclude(tasks)
+    const dtsInclude = toTsInclude(tasks) as BaseConfig['dtsInclude']
     await build({
       configFile: false,
       ...getBaseConfig({ vueVersion, dtsInclude, dts, buildTarget, themeVersion, isRuntime: false }),
@@ -203,7 +217,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
           plugins: [
             getBabelOutputPlugin({
               presets: [['@babel/preset-env', { loose: true, modules: false }]]
-            })
+            }) as any
           ],
           external: (source, importer, isResolved) => {
             // vite打包入口文件或者没有解析过得包不能排除依赖
@@ -212,7 +226,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
             }
 
             // 图标入口排除子图标
-            if (/vue-icon\/(index|lowercase)/.test(importer)) {
+            if (/vue-icon\/index/.test(importer)) {
               return /^\.\//.test(source)
             }
 
@@ -223,7 +237,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
 
             if (/src\/index/.test(importer)) {
               // 模块入口，pc/mobile 文件要分离，同时排除 node_modules 依赖
-              return /^\.\/(pc|mobile|mobile-first)/.test(source) || config.external(source)
+              return /^\.\/(pc|mobile|mobile-first)/.test(source) || external(source)
             }
 
             // @opentiny/vue 总入口，需要排除所有依赖
@@ -231,7 +245,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
               return true
             }
 
-            return config.external(source)
+            return external(source)
           },
           output: {
             strict: false,
@@ -268,8 +282,8 @@ function getEntryTasks(): Module[] {
     dtsRoot: true,
     libPath: `vue/${mode}`,
     type: 'module',
-    name: utils.kebabCase({ str: '@opentiny/vue' }),
-    global: utils.capitalizeKebabCase('opentinyVue'),
+    name: kebabCase({ str: '@opentiny/vue' }),
+    global: capitalizeKebabCase('opentinyVue'),
     importName: '@opentiny/vue'
   }))
 }
@@ -283,7 +297,7 @@ function getTasks(names: string[]): Module[] {
   return names
     .map((name) =>
       getByName({
-        name: utils.kebabCase({ str: name.replace('@opentiny/vue-', '') }),
+        name: kebabCase({ str: name.replace('@opentiny/vue-', '') }),
         isSort: false
       })
     )
@@ -315,7 +329,7 @@ export async function buildUi(
 
   // 如果指定了打包icon或者没有传入任何组件
   if (names.some((name) => name.includes('icon')) || !names.length) {
-    tasks.push(...getByName({ name: utils.kebabCase({ str: 'icon-saas' }), isSort: false }))
+    tasks.push(...getByName({ name: kebabCase({ str: 'icon-saas' }), isSort: false }))
     tasks.push(...getAllIcons())
   }
 

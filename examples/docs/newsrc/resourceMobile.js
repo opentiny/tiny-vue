@@ -11,6 +11,14 @@ export const demoVue = import.meta.glob('../resources/mobile/app/**/*.vue', { ea
 // api属性
 export const apis = import.meta.glob('../resources/mobile/app/*/webdoc/*.js', { eager: false })
 
+// 组件的md
+const allMD = import.meta.glob('../resources/mobile/app/*/webdoc/*.cn.md', { eager: true })
+export const mds = {}
+for (const path in allMD) {
+  let key = path.split('/').slice(-1)[0]
+  mds[key] = allMD[path].default
+}
+
 const menuData = cmpMenus.slice(0)
 function processMenu(menu, isTop) {
   menu.id = menu.key

@@ -59,7 +59,7 @@ pnpm i
 pnpm dev
 
 # Vue.js 2
-pnpm dev:vue2
+pnpm dev2
 ```
 
 Open your browser and visit: [http://127.0.0.1:7130/](http://127.0.0.1:7130/)
@@ -100,6 +100,23 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/yuanningning"><img src="https://avatars.githubusercontent.com/u/104059491?v=4?s=100" width="100px;" alt="ing"/><br /><sub><b>ing</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=yuanningning" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/shenjunjian"><img src="https://avatars.githubusercontent.com/u/6848520?v=4?s=100" width="100px;" alt="申君健"/><br /><sub><b>申君健</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=shenjunjian" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/MomoPoppy"><img src="https://avatars.githubusercontent.com/u/125256456?v=4?s=100" width="100px;" alt="MomoPoppy"/><br /><sub><b>MomoPoppy</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=MomoPoppy" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/WXC-Spring"><img src="https://avatars.githubusercontent.com/u/131581326?v=4?s=100" width="100px;" alt="WXC-Spring"/><br /><sub><b>WXC-Spring</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=WXC-Spring" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/GaoNeng-wWw"><img src="https://avatars.githubusercontent.com/u/31283122?v=4?s=100" width="100px;" alt="GaoNeng"/><br /><sub><b>GaoNeng</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=GaoNeng-wWw" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://acyza.github.io"><img src="https://avatars.githubusercontent.com/u/101238421?v=4?s=100" width="100px;" alt="acyza"/><br /><sub><b>acyza</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=acyza" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/ygj6"><img src="https://avatars.githubusercontent.com/u/7699524?v=4?s=100" width="100px;" alt="ygj6"/><br /><sub><b>ygj6</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=ygj6" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/MrWang2016"><img src="https://avatars.githubusercontent.com/u/24307164?v=4?s=100" width="100px;" alt="MrWang2016"/><br /><sub><b>MrWang2016</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=MrWang2016" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/qinwencheng"><img src="https://avatars.githubusercontent.com/u/24841685?v=4?s=100" width="100px;" alt="qinwencheng"/><br /><sub><b>qinwencheng</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=qinwencheng" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Huangyilin19"><img src="https://avatars.githubusercontent.com/u/48042709?v=4?s=100" width="100px;" alt="黄怡林"/><br /><sub><b>黄怡林</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Huangyilin19" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/zuixinwang"><img src="https://avatars.githubusercontent.com/u/59717852?v=4?s=100" width="100px;" alt="zuixinwang"/><br /><sub><b>zuixinwang</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=zuixinwang" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/LadyChatterleyLover"><img src="https://avatars.githubusercontent.com/u/35223515?v=4?s=100" width="100px;" alt="luopei"/><br /><sub><b>luopei</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=LadyChatterleyLover" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://juejin.cn/user/1996368846785128"><img src="https://avatars.githubusercontent.com/u/31237954?v=4?s=100" width="100px;" alt="前端爆冲"/><br /><sub><b>前端爆冲</b></sub></a><br /><a href="#infra-brenner8023" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/xiejay97"><img src="https://avatars.githubusercontent.com/u/64340763?v=4?s=100" width="100px;" alt="Xie Jay"/><br /><sub><b>Xie Jay</b></sub></a><br /><a href="#infra-xiejay97" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/linxiang07"><img src="https://avatars.githubusercontent.com/u/40119767?v=4?s=100" width="100px;" alt="linxiang"/><br /><sub><b>linxiang</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=linxiang07" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://bollome.netlify.app/"><img src="https://avatars.githubusercontent.com/u/103836393?v=4?s=100" width="100px;" alt="程序员包子"/><br /><sub><b>程序员包子</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=coderbaozi" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

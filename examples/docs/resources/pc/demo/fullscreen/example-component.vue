@@ -1,19 +1,11 @@
 <template>
   <div class="tiny-fullscreen-demo">
     <label class="checkbox">
-      <input
-        v-model="pageOnly"
-        type="checkbox"
-        name="button"
-      />
+      <input v-model="pageOnly" type="checkbox" name="button" />
       pageOnly
     </label>
     <label class="checkbox">
-      <input
-        v-model="teleport"
-        type="checkbox"
-        name="button"
-      />
+      <input v-model="teleport" type="checkbox" name="button" />
       teleport
     </label>
     <tiny-fullscreen
@@ -36,20 +28,10 @@
         "
       >
         <button type="button" @click="toggle">
-          {{
-            fullscreen
-              ? 'Exit Fullscreen'
-              : 'Request Fullscreen'
-          }}
+          {{ fullscreen ? 'Exit Fullscreen' : 'Request Fullscreen' }}
         </button>
-        <img
-          v-show="!fullscreen"
-          src="static/images/book-small.jpg"
-        />
-        <img
-          v-show="fullscreen"
-          src="static/images/book-big.jpg"
-        />
+        <img v-show="!fullscreen" src="static/images/book-small.jpg" />
+        <img v-show="fullscreen" src="static/images/book-big.jpg" />
       </div>
     </tiny-fullscreen>
   </div>

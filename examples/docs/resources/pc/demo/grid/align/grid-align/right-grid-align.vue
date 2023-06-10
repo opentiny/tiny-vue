@@ -1,5 +1,5 @@
 <template>
-  <tiny-grid :data="tableData" align="“right”">
+  <tiny-grid :data="tableData" align="right">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>

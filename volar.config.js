@@ -1,4 +1,4 @@
-const baseConfig = require('./.eslintrc.cjs') // load your project eslint config
+const baseConfig = require('./.eslintrc.js') // load your project eslint config
 
 module.exports = {
   plugins: [

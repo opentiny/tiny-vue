@@ -4,6 +4,7 @@
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
+  "sideEffects": false,
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
     "vitest": "^0.31.0"
@@ -14,8 +15,7 @@
   },
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~"
+    "@opentiny/vue-common": "workspace:~"
   },
   "license": "MIT"
 }

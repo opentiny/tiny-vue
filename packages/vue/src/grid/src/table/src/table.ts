@@ -39,6 +39,7 @@ import methods from './methods'
 import GlobalConfig from '../../config'
 import { error } from '../../tools'
 import { clearOnTableUnmount } from './strategy'
+import MfTable from '../../mobile-first/index.vue'
 
 function verifyConfig(_vm) {
   if (!getRowkey(_vm)) {
@@ -272,7 +273,7 @@ function getRenderer(opt) {
   } = _vm
   const { selectToolbar, renderedToolbar } = $grid
 
-  const renderHeader = () => (showHeader ? h(GridHeader, { ref: 'tableHeader', props }) : [null])
+  const renderHeader = () => (showHeader ? h(GridHeader, { ref: 'tableHeader', props, class: _vm.viewCls('tableHeader') }) : [null])
   const renderEmptyPart = renderEmptyPartFn({ _vm, tableData, $slots, renderEmpty })
   const renderFooter = renderFooterFn({ showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize })
   const renderResizeBar = renderResizeBarFn({ isResizable, overflowX, scrollbarHeight })
@@ -290,6 +291,14 @@ function getRenderer(opt) {
     renderPluginWrapper,
     renderSelectToolbar
   }
+}
+
+const renderFooterBorder = (_vm) => {
+  const { showFooterBorder, footerBorderBottom } = _vm
+  const cls = ['tiny-grid__footer-border-line', _vm.viewCls('footerBorder')]
+  const style = `bottom:${footerBorderBottom}px;`
+
+  return showFooterBorder ? h('div', { ref: 'footerBorder', class: cls, style }) : null
 }
 
 // 设置表格最外层元素类名
@@ -458,7 +467,13 @@ const gridData = {
   // 在编辑模式下 单元格在失去焦点验证的状态
   validatedMap: {},
   // 显示的列
-  visibleColumn: []
+  visibleColumn: [],
+  // 表尾边框线是否显示和位置
+  showFooterBorder: false,
+  footerBorderBottom: 0,
+  tableBodyHeight: 0,
+  // 表格父容器的高度
+  parentHeight: 0
 }
 const getTableData = () => {
   const tableData = {
@@ -659,7 +674,25 @@ export default {
     // 树形结构配置项
     treeConfig: Object,
     // 校验配置项
-    validConfig: Object
+    validConfig: Object,
+    // 多端卡片配置
+    cardConfig: Object,
+    // 视图类型
+    viewType: { type: String, default: () => GlobalConfig.viewConfig.DEFAULT },
+    // 移动优先视图下展示类型
+    mfShow: { type: String, default: () => GlobalConfig.viewConfig.MF_SHOW_LIST },
+    // 列锚点
+    columnAnchor: Array,
+    // 表尾自定义渲染
+    renderFooter: Function,
+    // 多端列表配置
+    listConfig: Object,
+    // 多端甘特配置
+    ganttConfig: Object,
+    // 数据预取配置
+    prefetch: [Boolean, Array],
+    // 相交配置
+    intersectionOption: Object
   },
   provide() {
     return {
@@ -813,6 +846,12 @@ export default {
       // 在body上挂载弹出框类的表格内部组件：右键菜单、筛选框、提示
       document.body.appendChild(this.$refs.tableWrapper)
     })
+
+    setTimeout(() => {
+      const tableFooter = this.$refs.tableFooter
+      this.showFooterBorder = !!tableFooter
+      this.footerBorderBottom = tableFooter ? tableFooter.$el.getBoundingClientRect().height : 0
+    })
   },
   activated() {
     let { lastScrollLeft, lastScrollTop } = this
@@ -887,26 +926,35 @@ export default {
 
     return h('div', getTableAttrs(args), [
       // 隐藏列
-      h('div', { class: 'tiny-grid-hidden-column', ref: 'hideColumn' }, $slots.default && $slots.default()),
+      h('div', { class: ['tiny-grid-hidden-column', this.viewCls('hiddenColumn')], ref: 'hideColumn' }, $slots.default && $slots.default()),
       // 主头部
       renderHeader(),
       // 居中显示空数据
       renderEmptyPart(),
       // 主内容
-      h(GridBody, { ref: 'tableBody', props }),
+      h(GridBody, { ref: 'tableBody', props, class: this.viewCls('tableBody') }),
       // 底部汇总
       renderFooter(),
       // 边框线
-      h('div', { class: 'tiny-grid__border-line', key: 'tinyGridBorderLine' }),
+      h('div', { class: ['tiny-grid__border-line', this.viewCls('borderLine')], key: 'tinyGridBorderLine' }),
       // 列拖拽参考线
       renderResizeBar(),
       // 加载中
-      h(loadingComponent || GridLoading, { props: { visible: loading } }),
+      h(loadingComponent || GridLoading, { props: { visible: loading }, class: this.viewCls('gridLoading') }),
       // 筛选、快捷菜单、Tip提示、校验提示
       renderPluginWrapper(),
       // 多选工具栏
-      renderSelectToolbar()
+      renderSelectToolbar(),
+      // 多端表格
+      h(MfTable, { ref: 'mfTable', props }),
+      // 表尾边框线
+      renderFooterBorder(this)
     ])
   },
-  methods
+  methods: {
+    ...methods,
+    viewCls(module) {
+      return (this as any).$grid.viewCls(module)
+    }
+  }
 }

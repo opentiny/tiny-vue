@@ -1,11 +1,7 @@
 <template>
   <tiny-grid :data="tableData" @fullscreen="onFullscreen">
     <template #toolbar>
-      <tiny-grid-toolbar
-        full-screen
-        :before-open-full-screen="beforeOpenFullScreen"
-        :before-close-full-screen="beforeCloseFullScreen"
-      ></tiny-grid-toolbar>
+      <tiny-grid-toolbar full-screen :before-open-full-screen="beforeOpenFullScreen" :before-close-full-screen="beforeCloseFullScreen"></tiny-grid-toolbar>
     </template>
     <tiny-grid-column field="name" title="名称"></tiny-grid-column>
     <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
@@ -97,6 +93,7 @@ export default {
         message: isFull ? '全屏了' : '关闭全屏了',
         status: 'info'
       })
+      return true
     }
   }
 }

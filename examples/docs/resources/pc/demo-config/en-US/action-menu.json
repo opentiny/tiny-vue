@@ -78,5 +78,13 @@
     "component": " ActionMenu",
     "findIntroStr": "ActionMenu",
     "demoId": "slot-item"
+  },
+  {
+    "title": "Drop-down menu visible change",
+    "content": "When the drop-down menu change to be visible or hidden, the <code>visible-change</code> event is triggered.",
+    "link": "action-menu/visible-change",
+    "component": " ActionMenu",
+    "findIntroStr": "ActionMenu",
+    "demoId": "visible-change"
   }
 ]

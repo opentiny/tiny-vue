@@ -34,8 +34,8 @@ export default defineComponent({
       default: false
     },
     showText: {
-      type: Boolean,
-      default: false
+      type: Boolean || undefined,
+      default: undefined
     },
     falseColor: String,
     falseValue: {

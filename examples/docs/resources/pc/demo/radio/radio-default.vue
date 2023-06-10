@@ -1,7 +1,7 @@
 <template>
   <div>
     <tiny-radio v-model="value" label="1">
-      <span>选项内容一</span>
+      <span class="red">选项内容一</span>
       <span>选项描述</span>
     </tiny-radio>
     <tiny-radio v-model="value" label="2">
@@ -25,3 +25,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.red {
+  color: #ff0000;
+}
+</style>

@@ -17,7 +17,7 @@
   },
   {
     "title": "Arrow Offset",
-    "content": "<p><code>arrow-offset</code> Sets the offset of the arrow to change the position of the arrow. </p>\n",
+    "content": "<p><code>arrow-offset</code> Sets the offset of the arrow to change the position of the arrow.By default, the arrow retains at least 8px of space to ensure that the arrow does not stick to the left. </p>\n",
     "link": "popover/arrow-offset",
     "component": " Popover",
     "findIntroStr": "Popover can trigger a pop-up dialog box by performing operations on a trigger source. The pop-up content, delay triggering, and gradient animation are supported.",

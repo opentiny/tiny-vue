@@ -178,7 +178,7 @@
       "defaultValue": ""
     },
     {
-      "name": "button",
+      "name": "button-panel",
       "sample": "panel-slot",
       "type": "",
       "desc": "自定义穿梭按钮",
@@ -192,15 +192,15 @@
       "defaultValue": ""
     },
     {
-      "name": "leftPanel",
-      "sample": "",
+      "name": "left-panel",
+      "sample": "panel-slot",
       "type": "",
       "desc": "左侧自定义内容",
       "defaultValue": ""
     },
     {
-      "name": "rightPanel",
-      "sample": "",
+      "name": "right-panel",
+      "sample": "panel-slot",
       "type": "",
       "desc": "右侧自定义内容",
       "defaultValue": ""

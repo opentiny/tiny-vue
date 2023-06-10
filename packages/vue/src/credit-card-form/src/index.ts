@@ -11,7 +11,7 @@
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
-
+//该组件定于2023年8月30日版本日落
 export default defineComponent({
   name: $prefix + 'CreditCardForm',
   props: {
@@ -25,5 +25,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

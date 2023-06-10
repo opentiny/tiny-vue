@@ -25,7 +25,7 @@ export default {
           label: '菜单内容超长是否换行显示，默认为不换行',
           children: [
             {
-              id: 5,
+              id: 6,
               label: '引入组件',
               url: '#/webnova/zh-CN/guide/quickstart'
             },

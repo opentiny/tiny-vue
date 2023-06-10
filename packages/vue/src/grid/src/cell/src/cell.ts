@@ -29,8 +29,13 @@ import { Renderer } from '../../adapter'
 import { getCellLabel } from '../../tools'
 import GLOBAL_CONFIG from '../../config'
 import { hooks } from '@opentiny/vue-common'
-import { iconCheckedSur, iconMobileCheckboxHalf } from '@opentiny/vue-icon'
+import {
+  iconCheckedSur, iconMobileCheckboxHalf, iconEllipsis
+} from '@opentiny/vue-icon'
 import { getTableCellKey } from '../../table/src/strategy'
+import Dropdown from '@opentiny/vue-dropdown'
+import DropdownMenu from '@opentiny/vue-dropdown-menu'
+import DropdownItem from '@opentiny/vue-dropdown-item'
 
 const insertedField = GLOBAL_CONFIG.constant.insertedField
 
@@ -133,6 +138,15 @@ function getColumnRuleTypeExpand({ _vm, renMaps, type }) {
     action: () => {
       renMaps.renderCell = _vm.renderExpandCell
       renMaps.renderData = _vm.renderExpandData
+    }
+  }
+}
+
+function getColumnRuleTypeOperation({ _vm, renMaps, type }) {
+  return {
+    match: () => type === 'operation',
+    action: () => {
+      renMaps.renderCell = _vm.renderOperationCell
     }
   }
 }
@@ -277,6 +291,7 @@ export const Cell = {
         type
       }),
       getColumnRuleTypeExpand({ _vm, renMaps, type }),
+      getColumnRuleTypeOperation({ _vm, renMaps, type }),
       getColumnRuleTypeOther({
         $table,
         _vm,
@@ -632,8 +647,6 @@ export const Cell = {
     let { icon } = GLOBAL_CONFIG
     let { $table, column } = params
     let isColGroup = column.children && column.children.length
-
-    // prettier-ignore
     return [
       h(
         'span',
@@ -641,36 +654,36 @@ export const Cell = {
         isColGroup
           ? []
           : [
-              column.order === 'asc' ?
+              (column.order === 'desc' || !icon.sortDefault) ?
+                h(icon.sortAsc, {
+                  class: [
+                    'tiny-grid-sort__btn',
+                    {
+                      'sort__active': column.order === (!icon.sortDefault ? 'asc' : 'desc')
+                    }
+                  ],
+                  on: { click(event) { $table.triggerSortEvent(event, column, !icon.sortDefault ? 'asc' : '') } }
+                })
+                : '',
+              (column.order === 'asc' || !icon.sortDefault) ?
                 h(icon.sortDesc, {
                   class: [
-                    'tiny-svg-size tiny-grid-sort__asc-btn',
+                    'tiny-grid-sort__btn',
                     {
-                      'sort__active': column.order === 'asc'
+                      'sort__active': column.order === (!icon.sortDefault ? 'desc' : 'asc')
                     }
                   ],
                   on: { click(event) { $table.triggerSortEvent(event, column, 'desc') } }
                 })
                 : '',
-              column.order === 'desc' ?
-                h(icon.sortAsc, {
+              (!column.order && icon.sortDefault)
+                ? h(icon.sortDefault, {
                   class: [
-                    'tiny-svg-size tiny-grid-sort__desc-btn',
-                    {
-                      'sort__active': column.order === 'desc'
-                    }
-                  ],
-                  on: { click(event) { $table.triggerSortEvent(event, column, '') } }
-                })
-                : '',
-              column.order
-                ? ''
-                : h(icon.sortDefault, {
-                  class: [
-                    'tiny-svg-size tiny-grid-sort__desc-btn'
+                    'tiny-grid-sort__btn'
                   ],
                   on: { click(event) { $table.triggerSortEvent(event, column, 'asc') } }
                 })
+                : ''
             ]
       )
     ]
@@ -819,6 +832,85 @@ export const Cell = {
   },
   getSuffixCls(params) {
     return params.$table.headerSuffixIconAbsolute ? ['suffix-icon-1', 'suffix-icon-0'] : ['', '']
+  },
+  renderOperationCell(h, params) {
+    const { column, $table, row } = params
+    const { operationConfig = {} } = column
+    const { buttons = [], render, max = 3, disabledClass = '' } = operationConfig
+    const viewClass = $table.viewCls('operButton')
+
+    if (render) {
+      return render({ h, buttons, params })
+    }
+
+    const renderBase = (buttonConfig, flag, classes, attrs) => {
+      const mergeParams = { buttonConfig, ...params }
+      const on = isDisabled(buttonConfig) ? {} : { click: (e) => buttonConfig.click(e, mergeParams) }
+
+      classes = classes.join('\u{20}')
+
+      const clazz = isDisabled(buttonConfig) ? [classes, 'tiny-grid__oper-col-button--disabled', disabledClass] : classes
+      const childNodes =
+        typeof buttonConfig.icon === 'function' ? [buttonConfig.icon(h, mergeParams)] : [h(buttonConfig.icon)]
+
+      return flag ? h('span', { class: clazz, attrs, on }, childNodes) : null
+    }
+
+    const renderBig = (buttonConfig, cls = '') => {
+      const classes = ['tiny-grid__oper-col-button', buttonConfig.class || '', cls]
+      const attrs = { title: buttonConfig.name || '' }
+      return renderBase(buttonConfig, buttonConfig.icon, classes, attrs)
+    }
+
+    const isDisabled = (buttonConfig) => {
+      const { disabled = false } = buttonConfig
+      return (typeof disabled === 'boolean' && disabled) || (typeof disabled === 'function' && disabled(row))
+    }
+
+    const isHidden = (buttonConfig) => {
+      const { hidden = false } = buttonConfig
+      return (typeof hidden === 'boolean' && hidden) || (typeof hidden === 'function' && hidden(row))
+    }
+
+    const handleItemClick = (name) => {
+      const buttonConfig = visibleButtons.find(({ name: buttonName }) => buttonName === name)
+      buttonConfig.click(window.event || {}, { buttonConfig, ...params })
+    }
+
+    const visibleButtons = []
+
+    buttons.forEach((buttonConfig) => !isHidden(buttonConfig) && visibleButtons.push(buttonConfig))
+
+    let groupBig
+
+    if (visibleButtons.length > max) {
+      const end = max - 1
+
+      groupBig = visibleButtons.slice(0, end).map((buttonConfig) => renderBig(buttonConfig, viewClass))
+      groupBig.push(
+        h(Dropdown, { on: { 'item-click': handleItemClick }, props: { trigger: 'hover', showIcon: false } }, [
+          h(iconEllipsis(), { class: 'tiny-grid__oper-col-elps' }),
+          h(
+            DropdownMenu,
+            { slot: 'dropdown' },
+            visibleButtons.slice(end).map((buttonConfig) =>
+              h(
+                DropdownItem,
+                {
+                  class: { [disabledClass || '']: isDisabled(buttonConfig) },
+                  props: { itemData: buttonConfig, disabled: isDisabled(buttonConfig) }
+                },
+                buttonConfig.name
+              )
+            )
+          )
+        ])
+      )
+    } else {
+      groupBig = visibleButtons.map((buttonConfig) => renderBig(buttonConfig, viewClass))
+    }
+
+    return [h('span', { class: 'inline-flex' }, groupBig)]
   }
 }
 

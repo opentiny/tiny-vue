@@ -1,14 +1,22 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
-    await page.goto('http://localhost:7130/pc/pager/pager-count');
-    await page.getByText('每页显示数量').click();
-    await page.getByRole('listitem').filter({ hasText: '10' }).click();
-    await expect(page.getByRole('listitem').filter({ hasText: '10' })).toHaveAttribute('class', 'is-active');
-    await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/button[2]')).toBeDisabled
-    await page.locator('span').filter({ hasText: '51020304050100' }).locator('path').click();
-    await page.getByRole('listitem', { name: '10' }).first().click();
-    await page.locator('#preview').getByText('5').click();
-    await expect(page.locator('#preview').getByText('5')).toHaveAttribute('class', 'is-active')
-    await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/button[2]')).toBeDisabled
-});
+test('每页显示数量', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/pager/page-size')
+
+  const total = 50
+  const initPageSize = 5
+  const getPageCount = (pageSize) => String(Math.ceil(total / pageSize))
+  const preview = page.locator('#preview')
+  const pager = preview.locator('.tiny-pager')
+  const sizeChange = pager.locator('.tiny-pager__input')
+  const sizeSelect = page.locator('.tiny-pager__selector')
+  const pageItem = pager.locator('.tiny-pager__pages li')
+
+  await expect(pageItem.last()).toHaveText(getPageCount(initPageSize))
+  await sizeChange.click()
+  await sizeSelect.getByText('20').click()
+  await expect(pageItem.last()).toHaveText(getPageCount(20))
+  await sizeSelect.getByText('50').click()
+  await expect(pageItem.last()).toHaveText(getPageCount(50))
+})

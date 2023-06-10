@@ -1,17 +1,16 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { addClass, removeClass } from '../common/deps/dom'
-
 
 const setFixAnchor = ({ vm }) => {
   const { fixRef } = vm.$refs
@@ -37,9 +36,7 @@ const setScrollContainer = ({ state, api, cb = null }) => {
   const currentContainer = api.getContainer()
   const { scrollContainer } = state
   if (scrollContainer !== currentContainer) {
-    removeClass(scrollContainer, 'tiny-anchor-scroll-container')
     state.scrollContainer = currentContainer
-    addClass(currentContainer, 'tiny-anchor-scroll-container')
     cb && cb()
   }
 }
@@ -71,7 +68,9 @@ const updateSkidPosition = ({ vm, state, emit }) => {
 }
 
 const getCurrentAnchor = ({ vm, state, link, emit }) => {
-  if (state.currentLink === link) { return }
+  if (state.currentLink === link || state.isScroll) {
+    return
+  }
   state.currentLink = link
   updateSkidPosition({ vm, state, emit })
 }
@@ -80,7 +79,7 @@ const addObserver = ({ props, state }) => {
   const { links } = props
   const { intersectionObserver, expandLink } = state
   const observer = (list) => {
-    list.forEach(item => {
+    list.forEach((item) => {
       const link = item.link
       expandLink[link] = item
       const linkEl = document.querySelector(link)
@@ -91,7 +90,6 @@ const addObserver = ({ props, state }) => {
     })
   }
   observer(links)
-
 }
 
 const setCurrentHash = (state) => {
@@ -102,70 +100,97 @@ const setCurrentHash = (state) => {
   return false
 }
 
-
-export const getContainer = ({ props }) => () => props.containerId ? document.querySelector(props.containerId) : document.body
-
-export const mounted = ({ vm, state, api }) => () => {
-  setScrollContainer({ state, api })
-  setFixAnchor({ vm })
-  api.onItersectionObserver()
-  setCurrentHash(state)
+// 处理滚动结束
+const handleScroll = (state) => {
+  clearTimeout(state.scrollTimer)
+  state.scrollTimer = setTimeout(() => {
+    state.isScroll = false
+    clearTimeout(state.scrollTimer)
+  }, 500)
 }
 
-export const updated = ({ state, api }) => () => {
-  const cb = api.onItersectionObserver
-  setScrollContainer({ state, api, cb })
-}
+export const getContainer =
+  ({ props }) =>
+    () =>
+      props.containerId ? document.querySelector(props.containerId) : document.body
 
-export const unmounted = ({ state }) => () => {
-  const { intersectionObserver } = state
-  intersectionObserver.disconnect()
-}
+export const mounted =
+  ({ vm, state, api }) =>
+    () => {
+      setScrollContainer({ state, api })
+      setFixAnchor({ vm })
+      api.onItersectionObserver()
+      setCurrentHash(state)
+    }
 
-export const onItersectionObserver = ({ vm, state, props, emit }) => () => {
-  const { expandLink, scrollContainer } = state
-  const containerTop = scrollContainer.getBoundingClientRect().top + 10
-  state.intersectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(item => {
-      const key = item.target.id
-      state.observerLinks[key] = item
-    })
+export const updated =
+  ({ state, api }) =>
+    () => {
+      const cb = api.onItersectionObserver
+      setScrollContainer({ state, api, cb })
+    }
 
-    for (let key in state.observerLinks) {
-      if (Object.prototype.hasOwnProperty.call(state.observerLinks, key)) {
-        const item = state.observerLinks[key]
-        if (item.isIntersecting && item.intersectionRatio >= 0 && item.target.getBoundingClientRect().top < containerTop) {
-          const link = `#${item.target.id}`
-          if (!expandLink[link].children) {
-            getCurrentAnchor({ vm, state, link, emit })
-            break
-          } else {
-            getCurrentAnchor({ vm, state, link, emit })
+export const unmounted =
+  ({ state }) =>
+    () => {
+      const { intersectionObserver } = state
+      intersectionObserver.disconnect()
+      state.scrollContainer.removeEventListener('scroll', handleScroll(state))
+    }
+
+export const onItersectionObserver =
+  ({ vm, state, props, emit }) =>
+    () => {
+      const { expandLink, scrollContainer } = state
+      const containerTop = scrollContainer.getBoundingClientRect().top + 10
+      state.intersectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((item) => {
+          const key = item.target.id
+          state.observerLinks[key] = item
+        })
+
+        for (let key in state.observerLinks) {
+          if (Object.prototype.hasOwnProperty.call(state.observerLinks, key)) {
+            const item = state.observerLinks[key]
+            if (
+              item.isIntersecting &&
+            item.intersectionRatio >= 0 &&
+            item.target.getBoundingClientRect().top < containerTop
+            ) {
+              const link = `#${item.target.id}`
+              if (!expandLink[link].children) {
+                getCurrentAnchor({ vm, state, link, emit })
+                break
+              } else {
+                getCurrentAnchor({ vm, state, link, emit })
+              }
+            }
           }
         }
+      })
+
+      addObserver({ props, state })
+    }
+
+export const linkClick =
+  ({ state, vm, emit, props }) =>
+    (e, item) => {
+      state.isScroll = true
+      const { link, title } = item
+      const emitLink = { link, title }
+      emit('linkClick', e, emitLink)
+
+      const isChangeHash = setCurrentHash(state)
+      const { scrollContainer } = state
+      state.currentLink = link
+      updateSkidPosition({ vm, state, emit })
+      setMarkClass({ state, props })
+
+      if (scrollContainer !== document.body && !isChangeHash) {
+        const linkEl = scrollContainer.querySelector(item.link)
+        const top = linkEl.offsetTop - scrollContainer.offsetTop // 修复横向锚点无法滚动到顶部
+        const param = { top, left: 0, behavior: 'smooth' }
+        scrollContainer.scrollTo(param)
+        scrollContainer.addEventListener('scroll', handleScroll(state))
       }
     }
-  })
-
-  addObserver({ props, state })
-}
-
-
-export const linkClick = ({ state, vm, emit, props }) => (e, item) => {
-  const { link, title } = item
-  const emitLink = { link, title }
-  emit('linkClick', e, emitLink)
-
-  const isChangeHash = setCurrentHash(state)
-  const { scrollContainer } = state
-  state.currentLink = link
-  updateSkidPosition({ vm, state, emit })
-  setMarkClass({ state, props })
-
-  if (scrollContainer !== document.body && !isChangeHash) {
-    const linkEl = scrollContainer.querySelector(item.link)
-    const top = linkEl.offsetTop
-    const param = { top, left: 0, behavior: 'smooth' }
-    scrollContainer.scrollTo(param)
-  }
-}

@@ -2,6 +2,7 @@
   <tiny-select
     v-model="value"
     filterable
+    multiple
     remote
     reserve-keyword
     placeholder="请输入关键词"

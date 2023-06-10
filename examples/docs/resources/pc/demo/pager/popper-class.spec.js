@@ -1,9 +1,14 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
-    await page.goto('http://localhost:7130/pc/pager/popper-class');
-    await page.getByText('自定义分页下拉框的类名').nth(2).click();
-    await page.locator('#preview svg').nth(1).click();
-    await page.getByRole('listitem', { name: '5' }).first().click();
-    await expect(page.locator('//div[@role="tooltip"]')).toHaveClass(/custom-pager/)
-});
+test('自定义分页下拉框的类名', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/pager/popper-class')
+
+  const preview = page.locator('#preview')
+  const pager = preview.locator('.tiny-pager')
+  const sizeChange = pager.locator('.tiny-pager__input')
+  const sizeSelect = page.locator('.tiny-pager__selector')
+
+  await sizeChange.click()
+  await expect(sizeSelect).toHaveClass(/custom-pager/)
+})

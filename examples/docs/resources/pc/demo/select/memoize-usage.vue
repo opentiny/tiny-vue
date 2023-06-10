@@ -10,6 +10,9 @@
         :highlight-class="item._highlightClass"
       ></tiny-option>
     </tiny-select>
+    <p class="cache-value">
+      {{ cacheValue }}
+    </p>
   </div>
 </template>
 
@@ -50,12 +53,14 @@ export default {
   data() {
     return {
       options,
-      value: '选项3'
+      value: '选项3',
+      cacheValue: []
     }
   },
   methods: {
     clickItem(value) {
       MemorizeInstance.updateByKey(value)
+      this.cacheValue = window.localStorage.getItem('tiny_memorize_test456')
     }
   }
 }

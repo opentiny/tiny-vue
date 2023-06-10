@@ -1,7 +1,7 @@
 <template>
   <tiny-layout>
     <tiny-row class="margin-bottom10">
-      <tiny-col :span="3">
+      <tiny-col :span="3" id="test">
         <div class="col">默认</div>
       </tiny-col>
       <tiny-col :span="3">

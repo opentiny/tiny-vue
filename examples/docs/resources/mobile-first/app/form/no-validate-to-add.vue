@@ -130,7 +130,6 @@ export default {
 .demo-ruleForm .tiny-form-item .tiny-form-item__content {
   width: 270px;
 }
-
 button:first-of-type {
   margin-left: 100px;
 }

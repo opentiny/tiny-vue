@@ -4,7 +4,7 @@ export const api = ['dataStore', 'handleClick', 'dataStore', 'mouseEnter', 'mous
 
 export const renderless = (props, { reactive, inject }, { dispatch, vm }) => {
   const api = {}
-  const dropdownMenuVm = inject('dropdownMenuVm')
+  const dropdownMenuVm = inject('dropdownMenu')
   const multiStage = inject('multiStage')
   let dataStore = reactive({
     checkedStatus: dropdownMenuVm.checkedStatus,

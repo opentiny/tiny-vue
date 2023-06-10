@@ -2,6 +2,7 @@
   <div class="demo-select">
     <tiny-select
       v-model="value"
+      class="grid-select"
       value-field="id"
       :multiple="true"
       text-field="city"
@@ -12,6 +13,7 @@
     ></tiny-select>
     <tiny-select
       v-model="radioValue"
+      class="grid-radio"
       value-field="id"
       :multiple="false"
       text-field="city"

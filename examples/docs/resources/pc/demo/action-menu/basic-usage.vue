@@ -1,5 +1,6 @@
 <template>
-  <tiny-action-menu :options="options"> </tiny-action-menu>
+  <tiny-action-menu :options="options">
+  </tiny-action-menu>
 </template>
 
 <script lang="jsx">

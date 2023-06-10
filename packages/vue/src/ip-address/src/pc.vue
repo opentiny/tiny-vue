@@ -53,7 +53,7 @@ import { iconDotIpv4 } from '@opentiny/vue-icon'
 
 export default defineComponent({
   props: [...props, 'size', 'modelValue', 'type', 'readonly', 'disabled', 'delimiter'],
-  emits: ['update:modelValue', 'change', 'blur', 'focus', 'select', 'input'],
+  emits: ['update:modelValue', 'change', 'blur', 'focus', 'select', 'inputEvent'],
   components: {
     IconDotIpv4: iconDotIpv4()
   },

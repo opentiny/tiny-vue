@@ -1,14 +1,9 @@
 <template>
   <div>
-    <tiny-button @click="click">setSelection</tiny-button>
-    <tiny-grid
-      :data="tableData"
-      ref="grid"
-      :select-config="{ checkField: 'boole' }"
-      highlight-current-row
-      border
-      :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
-    >
+    <tiny-button @click="click">
+      setSelection
+    </tiny-button>
+    <tiny-grid :data="tableData" ref="grid" :select-config="{ checkField: 'boole' }" highlight-current-row border :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column type="selection" width="60"></tiny-grid-column>
       <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
@@ -60,7 +55,7 @@ export default {
         city: '龙岩',
         employees: 360,
         createdDate: '2013-01-13 13:13:13',
-        boole: true
+        boole: false
       },
       {
         id: '5',
@@ -68,7 +63,7 @@ export default {
         city: '韶关',
         employees: 810,
         createdDate: '2012-12-12 12:12:12',
-        boole: true
+        boole: false
       },
       {
         id: '6',

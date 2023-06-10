@@ -9,5 +9,5 @@ test('个性化排序测试', async ({ page }) => {
   await page.waitForTimeout(200)
   const sortBtn = await page.getByRole('cell', { name: '员工数' }).getByRole('img')
 
-  await expect(sortBtn).toHaveClass(/tiny-grid-sort__asc-btn/)
+  await expect(sortBtn).toHaveClass(/tiny-grid-sort__btn/)
 })

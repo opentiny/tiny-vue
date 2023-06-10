@@ -41,7 +41,7 @@ export default function vitePluginBabelImport(
   return {
     name: '@opentiny/vue-vite-import',
     transform(code, id) {
-      const isCheckMode = mode && /@opentiny\/vue-.+?\/lib\/index.js$/.test(id)
+      const isCheckMode = mode && /@opentiny\/vue-.+?\/lib\/index.js$/.test(id) && code.includes(`./${mode}`)
       // 不处理node_modules内的依赖
       if (/\.(?:[jt]sx?|vue)$/.test(id) && !/(node_modules)/.test(id)) {
         return {
@@ -133,11 +133,7 @@ const transformDefaultImport = (matchRes: string, opt: PluginInnerOption) => {
   return `import ${matchRes} from '${importName}'`
 }
 
-const compRegExpMap = {
-  '@opentiny/vue': /import\s+?{([\w ,\s]+)}\s+?from\s+?('|")@opentiny\/vue('|")/g,
-  '@opentiny/vue-icon':
-    /import\s+?{*([\w ,\s]+)}*\s+?from\s+?('|")@opentiny\/vue-icon('|")/g
-}
+const getCompRegExp = (libraryName: any) => new RegExp(`import\\s+?{*([\\w ,\\s]+)}*\\s+?from\\s+?('|")${libraryName}('|")`, 'g')
 
 function transformCode(
   code: string,
@@ -146,8 +142,8 @@ function transformCode(
   let resultCode = code
 
   plgOptions.forEach(opt => {
-    const compRegexp = compRegExpMap[(opt.libraryName as '@opentiny/vue')]
-    if (compRegexp && compRegexp.test(resultCode)) {
+    const compRegexp = getCompRegExp(opt.libraryName)
+    if (compRegexp.test(resultCode)) {
       const newCode = resultCode.replace(compRegexp, (_all, matchRes): string => {
         if (_all.includes('{')) {
           return transformImport(matchRes, opt)

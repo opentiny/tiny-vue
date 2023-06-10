@@ -329,10 +329,8 @@
 
     border-radius: var(--ti-button-text-hover-border-radius);
 
-    & .@{svg-prefix-cls} {
-      width: var(--ti-button-text-svg-width);
-      height: var(--ti-button-text-svg-height);
-      fill: var(--ti-button-text-svg-fill);
+    &:has(.@{svg-prefix-cls}) {
+      padding: 0 var(--ti-button-text-svg-padding-horizontal);
     }
 
     &:has(.@{svg-prefix-cls}):hover {
@@ -342,10 +340,6 @@
       & .@{svg-prefix-cls} {
         fill: var(--ti-button-text-svg-hover-fill);
       }
-    }
-
-    &:has(.@{svg-prefix-cls}) {
-      padding: 0 var(--ti-button-text-svg-padding-horizontal);
     }
 
     &:has(.@{svg-prefix-cls}).is-disabled {
@@ -359,6 +353,66 @@
       &:hover {
         fill: var(--ti-button-text-svg-fill-disabled);
         background: transparent;
+      }
+    }
+
+    & .@{svg-prefix-cls} {
+      vertical-align: middle;
+      fill: var(--ti-button-text-svg-fill);
+    }
+
+    &.@{button-prefix-cls}.@{button-prefix-cls}--large {
+      min-width: var(--ti-button-text-size-large-min-width);
+      height: var(--ti-button-text-size-large-height);
+      line-height: calc(var(--ti-button-text-size-large-height) - 2px);
+  
+      svg {
+        width: var(--ti-button-text-size-large-svg-width);
+        height: var(--ti-button-text-size-large-svg-height);
+      }
+    }
+
+    &.@{button-prefix-cls}.@{button-prefix-cls}--medium {
+      min-width: var(--ti-button-text-size-medium-min-width);
+      height: var(--ti-button-text-size-medium-height);
+      line-height: calc(var(--ti-button-text-size-medium-height) - 2px);
+  
+      svg {
+        width: var(--ti-button-text-size-medium-svg-width);
+        height: var(--ti-button-text-size-medium-svg-height);
+      }
+    }
+
+    &.@{button-prefix-cls} {
+      min-width: var(--ti-button-text-size-default-min-width);
+      height: var(--ti-button-text-size-default-height);
+      line-height: calc(var(--ti-button-text-size-default-height) - 2px);
+  
+      svg {
+        width: var(--ti-button-text-size-default-svg-width);
+        height: var(--ti-button-text-size-default-svg-height);
+      }
+    }
+
+    &.@{button-prefix-cls}.@{button-prefix-cls}--small {
+      min-width: var(--ti-button-text-size-small-min-width);
+      height: var(--ti-button-text-size-small-height);
+      line-height: calc(var(--ti-button-text-size-small-height) - 2px);
+  
+      svg {
+        width: var(--ti-button-text-size-small-svg-width);
+        height: var(--ti-button-text-size-small-svg-height);
+      }
+    }
+
+    &.@{button-prefix-cls}.@{button-prefix-cls}--mini {
+      min-width: var(--ti-button-text-size-mini-min-width);
+      height: var(--ti-button-text-size-mini-height);
+      line-height: calc(var(--ti-button-text-size-mini-height) - 2px);
+  
+      svg {
+        width: var(--ti-button-text-size-mini-svg-width);
+        height: var(--ti-button-text-size-mini-svg-height);
       }
     }
   }

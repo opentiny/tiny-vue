@@ -1,12 +1,10 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
-    await page.goto('http://localhost:7130/pc/button/loading');
-    await page.getByText('尺寸').nth(1).click();
-    await page.getByRole('button', { name: '默认按钮' }).click();
-    await page.getByRole('button', { name: '超大按钮' }).click();
-    await page.getByRole('button', { name: '中等按钮' }).click();
-    await page.getByRole('button', { name: '小型按钮' }).click();
-    await page.getByRole('button', { name: '超小按钮' }).click();
-    await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/button[2]')).toHaveClass(/tiny-button--large/)
-});
+test('测试按钮尺寸', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/button/size')
+  await expect(page.getByRole('button', { name: '超大按钮' }).first()).toHaveClass(/tiny-button--large/)
+  await expect(page.getByRole('button', { name: '中等按钮' }).first()).toHaveClass(/tiny-button--medium/)
+  await expect(page.getByRole('button', { name: '小型按钮' }).first()).toHaveClass(/tiny-button--small/)
+  await expect(page.getByRole('button', { name: '超小按钮' }).first()).toHaveClass(/tiny-button--mini/)
+})

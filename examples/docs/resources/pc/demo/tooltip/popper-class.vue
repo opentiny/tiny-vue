@@ -3,10 +3,10 @@
     v-model="showTooltip"
     popper-class="tippoper"
     :append-to-body="false"
-    content="为 Tooltip 的 popper 添加类名"
+    content="popper 添加类名"
     :manual="false"
   >
-    <button class="tiny-button tiny-button--primary">为 Tooltip 的 popper 添加类名</button>
+    <button class="tiny-button tiny-button--primary">添加类名</button>
   </tiny-tooltip>
 </template>
 

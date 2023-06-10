@@ -195,6 +195,13 @@
       "type": "String",
       "desc": "Customized configuration pop-up window class name",
       "defaultValue": ""
+    },
+    {
+      "name": "auto-lookup",
+      "sample": "auto-lookup",
+      "type": "Boolean",
+      "desc": "Set initialization not to request data",
+      "defaultValue": "true"
     }
   ],
   "slots": [

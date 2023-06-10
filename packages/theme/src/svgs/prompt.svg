@@ -1,6 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g id="icon/alert/prompt/16" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M8,1 C4.134375,1 1,4.134375 1,8 C1,11.865625 4.134375,15 8,15 C11.865625,15 15,11.865625 15,8 C15,4.134375 11.865625,1 8,1 Z M8,5.71428571 C7.52678571,5.71428571 7.14285714,5.33035714 7.14285714,4.85714286 C7.14285714,4.38392857 7.52678571,4 8,4 C8.47321429,4 8.85714286,4.38392857 8.85714286,4.85714286 C8.85714286,5.33035714 8.47321429,5.71428571 8,5.71428571 Z M8,6.85714286 C8.31559129,6.85714286 8.57142857,7.11298014 8.57142857,7.42857143 L8.57142857,11.4285714 C8.57142857,11.7441627 8.31559129,12 8,12 C7.68440871,12 7.42857143,11.7441627 7.42857143,11.4285714 L7.42857143,7.42857143 C7.42857143,7.11298014 7.68440871,6.85714286 8,6.85714286 Z" id="形状" fill="#1476FF"></path>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 14 14" style="enable-background:new 0 0 14 14;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#1476FF;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+</style>
+<path class="st0" d="M7,0C3.13,0,0,3.13,0,7c0,3.87,3.13,7,7,7c3.87,0,7-3.13,7-7C14,3.13,10.87,0,7,0z"/>
+<path class="st1" d="M7.57,6.43v4C7.57,10.74,7.32,11,7,11s-0.57-0.26-0.57-0.57v-4c0-0.32,0.26-0.57,0.57-0.57S7.57,6.11,7.57,6.43
+	z M7,3C6.53,3,6.14,3.38,6.14,3.86S6.53,4.71,7,4.71s0.86-0.38,0.86-0.86S7.47,3,7,3z"/>
 </svg>

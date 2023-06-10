@@ -655,7 +655,6 @@ export const handleRemove = ({ api, emit, props, state, constants }) => (file, r
   }
 
   let doRemove = () => {
-    file.status = constants.FILE_STATUS.FAIL
     api.abort(file)
     let fileList = state.uploadFiles
 

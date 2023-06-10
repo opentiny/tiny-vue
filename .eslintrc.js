@@ -4,9 +4,12 @@
 module.exports = {
   extends: '@antfu',
   rules: {
-    'vue/component-tags-order': ['error', {
-      order: [['script', 'template'], 'style'],
-    }],
+    'vue/component-tags-order': [
+      'error',
+      {
+        order: [['script', 'template'], 'style']
+      }
+    ],
     'vue/order-in-components': 'off',
     'vue/component-name-in-template-casing': 'off',
     'vue/custom-event-name-casing': 'off',
@@ -23,6 +26,7 @@ module.exports = {
     'arrow-parens': 'off',
     'operator-linebreak': 'off',
     'antfu/if-newline': 'off',
+    'antfu/top-level-function': 'off',
     'import/order': 'off',
     'import/no-duplicates': 'off',
     'quote-props': 'off',
@@ -37,6 +41,6 @@ module.exports = {
     '@typescript-eslint/brace-style': 'off',
     '@typescript-eslint/restrict-plus-operands': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/restrict-template-expressions': 'off',
-  },
+    '@typescript-eslint/restrict-template-expressions': 'off'
+  }
 }

@@ -11,6 +11,7 @@
 */
 
 import { hasOwn, isNull } from '../type'
+import { log } from '../xss'
 
 const formatRegExp = /%[sdj%]/g
 
@@ -181,7 +182,7 @@ export function asyncMap(objArray, option, func, callback) {
       asyncSerialArray(flattenArr, func, next)
     })
 
-    pending.catch((error) => error)
+    pending.catch((error) => log.logger.error(error))
     return pending
   }
 
@@ -216,7 +217,7 @@ export function asyncMap(objArray, option, func, callback) {
     })
   })
 
-  pending.catch((e) => e)
+  pending.catch((error) => log.logger.error(error))
 
   return pending
 }

@@ -68,7 +68,7 @@ export const tinyBaseAuroraTheme = {
   'ti-common-color-success-bg': '#f6ffed', // 成功-背景色
   'ti-common-color-success-border': '#95de64', // 成功-边框色
 
-  'ti-common-color-error-text': '#333', // 错误-文字色
+  'ti-common-color-error-text': 'var(--ti-base-color-error-3)', // 错误-文字色
   'ti-common-color-error-bg': '#fff1f0', // 错误-背景色/校验背景色
   'ti-common-color-error-border': '#ff7875', // 错误-校验边框色
 

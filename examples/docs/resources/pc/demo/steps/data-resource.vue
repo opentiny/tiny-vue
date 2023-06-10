@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <tiny-steps :data="stepsData"></tiny-steps>
+    <tiny-steps :data="stepsData" :active="active" @click="onClick"></tiny-steps>
   </div>
 </template>
 
@@ -22,19 +22,26 @@ export default {
         {
           name: 'name属性内容2',
           count: 9,
-          status: 'done'
+          status: 'doing'
         },
         {
           name: 'name属性内容3',
           count: 0,
-          status: 'doing'
+          status: 'undo'
         },
         {
           name: 'name属性内容4',
           count: 5,
-          status: 'done'
+          status: 'undo'
         }
-      ]
+      ],
+      active: 1
+    }
+  },
+  methods: {
+    onClick(index, node) {
+      this.active = index
+      node.status = 'doing'
     }
   }
 }

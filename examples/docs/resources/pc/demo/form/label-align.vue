@@ -1,7 +1,9 @@
 <template>
   <div class="demo-form">
     <div style="margin-bottom: 16px">
-      <div style="margin-bottom: 6px">是否对齐：<tiny-switch v-model="isLabelAlign"></tiny-switch></div>
+      <div style="margin-bottom: 6px">
+        是否对齐：<tiny-switch v-model="isLabelAlign"></tiny-switch>
+      </div>
       <div>
         标签位置： <tiny-button-group :data="labelPositionList" v-model="labelPositionValue"></tiny-button-group>
       </div>
@@ -26,8 +28,12 @@
         <tiny-input v-model="createData.password2" type="password" show-password></tiny-input>
       </tiny-form-item>
       <tiny-form-item class="btn-form-item">
-        <tiny-button type="primary" @click="handleSubmit('ruleForm')"> 注册 </tiny-button>
-        <tiny-button type="primary" @click="removePass"> 清除密码校验 </tiny-button>
+        <tiny-button type="primary" @click="handleSubmit('ruleForm')">
+          注册
+        </tiny-button>
+        <tiny-button type="primary" @click="removePass">
+          清除密码校验
+        </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>

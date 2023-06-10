@@ -263,7 +263,6 @@ export const handleInput = ({ state, api, emit, props }) => (event) => {
   event.target.value = isNull(value) ? '' : value
   state.lastInput = value
   state.userInput = value
-  api.setCurrentValue(value === '-' ? 0 : value)
 }
 
 export const handleInputChange = ({ api }) => (event) => {

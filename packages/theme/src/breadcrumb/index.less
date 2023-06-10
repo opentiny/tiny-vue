@@ -66,10 +66,7 @@
         color: var(--ti-breadcrumb-hover-text-color);
         text-decoration: var(--ti-breadcrumb-hover-text-decoration);
       }
-
     }
-
-
   }
 
   & &__separator {
@@ -90,14 +87,14 @@
 
   & &__item:last-child:hover {
     cursor: text;
-    color: var(--ti-breadcrumb-hover-text-color);
     text-decoration: none;
-
+    .@{breadcrumb-prefix-cls}__inner {
+      color: var(--ti-breadcrumb-selected-hover-text-color);
+    }
     a {
       cursor: text;
-      color: var(--ti-breadcrumb-selected-text-color);
+      color: var(--ti-breadcrumb-selected-hover-text-color);
       text-decoration: none;
     }
-
   }
 }

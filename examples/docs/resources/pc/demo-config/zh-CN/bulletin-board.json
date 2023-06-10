@@ -1,1 +1,66 @@
-[{"title":"基本用法","content":"<p>必须设置 <code>data</code> 属性设置公告牌公告信息数据，以及 <code>tab-title</code> 属性设置每个公告牌标题。</p>\n","link":"bulletin-board/base","component":" BulletinBoard 公告牌","findIntroStr":"BulletinBoard 公告牌组件，展现需要重点关注的信息。","demoId":"base"},{"title":"公告牌标题","content":"<p>可通过 <code>title</code> 设置公告牌标题。</p>\n","link":"bulletin-board/title","component":" BulletinBoard 公告牌","findIntroStr":"BulletinBoard 公告牌组件，展现需要重点关注的信息。","demoId":"title"},{"title":"默认激活的选项卡","content":"<p>可通过 <code>active-name</code> 设置默认激活的选项卡，从 <code>1</code> 开始计算。</p>\n","link":"bulletin-board/active-name","component":" BulletinBoard 公告牌","findIntroStr":"BulletinBoard 公告牌组件，展现需要重点关注的信息。","demoId":"active-name"},{"title":"选项卡标题","content":"<p>可通过 <code>tab-title</code> 属性自定义选项卡标题。</p>\n","link":"bulletin-board/tab-title","component":" BulletinBoard 公告牌","findIntroStr":"BulletinBoard 公告牌组件，展现需要重点关注的信息。","demoId":"tab-title"},{"title":"基于Url的跳转","content":"<p>基于 Url 的跳转是根据数据中的 <code>url</code> 和 <code>target</code> 字段进行跳转的。</p>\n","link":"bulletin-board/url","component":" BulletinBoard 公告牌","findIntroStr":"BulletinBoard 公告牌组件，展现需要重点关注的信息。","demoId":"url"},{"title":"基于Route的跳转","content":"<p>基于 Route 的跳转是根据数据中的 <code>route</code> 字段进行跳转的。</p>\n","link":"bulletin-board/route","component":" BulletinBoard 公告牌","findIntroStr":"BulletinBoard 公告牌组件，展现需要重点关注的信息。","demoId":"route"},{"title":"显示 “更多” 链接","content":"<p>可通过 <code>more-link</code> 显示并设置更多链接。 <code>show-more</code> 设置是否显示更多按钮，默认为 true。</p>\n","link":"bulletin-board/more-link","component":" BulletinBoard 公告牌","findIntroStr":"BulletinBoard 公告牌组件，展现需要重点关注的信息。","demoId":"more-link"},{"title":"自定义新公告前缀","content":"<p>可通过 <code>icon</code> 自定义新公告前缀图标。</p>\n","link":"bulletin-board/icon","component":" BulletinBoard 公告牌","findIntroStr":"BulletinBoard 公告牌组件，展现需要重点关注的信息。","demoId":"icon"}]
+[
+  {
+    "title": "基本用法",
+    "content": "<p>必须设置 <code>data</code> 属性设置公告牌公告信息数据，以及 <code>tab-title</code> 属性设置每个公告牌标题。</p>\n",
+    "link": "bulletin-board/base",
+    "component": " BulletinBoard 公告牌",
+    "findIntroStr": "BulletinBoard 公告牌组件，展现需要重点关注的信息。",
+    "demoId": "base"
+  },
+  {
+    "title": "公告牌标题",
+    "content": "<p>可通过 <code>title</code> 设置公告牌标题。</p>\n",
+    "link": "bulletin-board/title",
+    "component": " BulletinBoard 公告牌",
+    "findIntroStr": "BulletinBoard 公告牌组件，展现需要重点关注的信息。",
+    "demoId": "title"
+  },
+  {
+    "title": "默认激活的选项卡",
+    "content": "<p>可通过 <code>active-name</code> 设置默认激活的选项卡，从 <code>1</code> 开始计算。</p>\n",
+    "link": "bulletin-board/active-name",
+    "component": " BulletinBoard 公告牌",
+    "findIntroStr": "BulletinBoard 公告牌组件，展现需要重点关注的信息。",
+    "demoId": "active-name"
+  },
+  {
+    "title": "选项卡标题",
+    "content": "<p>可通过 <code>tab-title</code> 属性自定义选项卡标题。</p>\n",
+    "link": "bulletin-board/tab-title",
+    "component": " BulletinBoard 公告牌",
+    "findIntroStr": "BulletinBoard 公告牌组件，展现需要重点关注的信息。",
+    "demoId": "tab-title"
+  },
+  {
+    "title": "基于Url的跳转",
+    "content": "<p>基于 Url 的跳转是根据数据中的 <code>url</code> 和 <code>target</code> 字段进行跳转的。</p>\n",
+    "link": "bulletin-board/url",
+    "component": " BulletinBoard 公告牌",
+    "findIntroStr": "BulletinBoard 公告牌组件，展现需要重点关注的信息。",
+    "demoId": "url"
+  },
+  {
+    "title": "基于Route的跳转",
+    "content": "<p>基于 Route 的跳转是根据数据中的 <code>route</code> 字段进行跳转的。</p>\n",
+    "link": "bulletin-board/route",
+    "component": " BulletinBoard 公告牌",
+    "findIntroStr": "BulletinBoard 公告牌组件，展现需要重点关注的信息。",
+    "demoId": "route"
+  },
+  {
+    "title": "显示 “更多” 链接",
+    "content": "<p>可通过 <code>more-link</code> 显示并设置更多链接。 <code>show-more</code> 设置是否显示更多按钮，默认为 true。</p>\n",
+    "link": "bulletin-board/more-link",
+    "component": " BulletinBoard 公告牌",
+    "findIntroStr": "BulletinBoard 公告牌组件，展现需要重点关注的信息。",
+    "demoId": "more-link"
+  },
+  {
+    "title": "自定义新公告前缀",
+    "content": "<p>可通过 <code>icon</code> 自定义新公告前缀图标。</p>\n",
+    "link": "bulletin-board/icon",
+    "component": " BulletinBoard 公告牌",
+    "findIntroStr": "BulletinBoard 公告牌组件，展现需要重点关注的信息。",
+    "demoId": "icon"
+  }
+]

@@ -65,7 +65,7 @@
   },
   {
     "title": "Customized prompt content",
-    "content": "<p>When <code>size</code> is set to large, you can customize the prompt content through the <code>description</code> attribute or slot. </p>\n",
+    "content": "<p>You can customize the prompt content through the <code>description</code> attribute or slot. </p>\n",
     "link": "alert/custom-description",
     "component": "Alert",
     "findIntroStr": "Alert alarms, including warning, error, info, and success.",

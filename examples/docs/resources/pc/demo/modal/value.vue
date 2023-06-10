@@ -3,7 +3,7 @@
     <tiny-button @click="value1 = !value1" :reset-time="0">默认插槽</tiny-button>
     <tiny-modal v-model="value1" :lock-scroll="false" show-footer>
       <template #default>
-        <p>test</p>
+        <p class="custom-content">test</p>
       </template>
     </tiny-modal>
   </div>
@@ -24,3 +24,8 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.custom-content {
+  color: #3168f1;
+}
+</style>

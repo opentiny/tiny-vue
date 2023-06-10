@@ -13,7 +13,8 @@
 import Pager from '@opentiny/vue-pager-item'
 import Popover from '@opentiny/vue-popover'
 import { t } from '@opentiny/vue-locale'
-import { $prefix, h, defineComponent } from '@opentiny/vue-common'
+import { $prefix, h, setup, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from '@opentiny/vue-renderless/pager/vue'
 import {
   iconTriangleDown,
   iconChevronLeft,
@@ -80,6 +81,9 @@ export default defineComponent({
       internalTotal: this.total
     }
   },
+  setup(props, context) {
+    return setup({ props, context, renderless, api })
+  },
   render() {
     const layout = this.internalLayout
 
@@ -117,7 +121,7 @@ export default defineComponent({
           pageSizes={this.pageSizes}
         ></sizes>
       ),
-      slot: <slot>{typeof this.$slots.default === 'function' ? this.$slots.default() : this.$slots.default}</slot>,
+      slot: typeof this.slots.default === 'function' ? this.slots.default() : this.slots.default,
       total: <total></total>
     }
 
@@ -211,7 +215,7 @@ export default defineComponent({
             <div slot="reference" class="tiny-pager__popover">
               <div class="tiny-pager__input">
                 <input disabled={this.$parent.disabled} type="text" readonly="readonly" value={this.$parent.internalPageSize} />
-                <div class="tiny-pager__input-btn"><TriangleDown class={['tiny-svg-size', this.showSizes? 'tiny-svg-size__reverse-180': '']} /></div>
+                <div class="tiny-pager__input-btn"><TriangleDown class={['tiny-svg-size', this.showSizes ? 'tiny-svg-size__reverse-180' : '']} /></div>
               </div>
             </div>
           ),
@@ -586,7 +590,6 @@ export default defineComponent({
     emitChange() {
       this.$nextTick(() => {
         if (this.internalCurrentPage !== this.lastEmittedPage || this.userChangePageSize) {
-          this.$emit('current-change', this.internalCurrentPage)
           this.$emit('update:current-page', this.internalCurrentPage)
           this.$emit('page-change', {
             currentPage: this.internalCurrentPage,
@@ -646,6 +649,7 @@ export default defineComponent({
       immediate: true,
       handler(newVal) {
         this.$emit('update:currentPage', newVal)
+        this.$emit('current-change', newVal)
         this.lastEmittedPage = -1
       }
     },

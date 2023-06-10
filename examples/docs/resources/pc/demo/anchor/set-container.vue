@@ -12,13 +12,19 @@
       </div>
     </tiny-col>
     <tiny-col :span="2">
-      <tiny-anchor :links="links" container-id="#container" @link-click="handleClick" mark-class="is-active-anchor"></tiny-anchor>
+      <tiny-anchor
+        :links="links"
+        container-id="#container"
+        @link-click="handleClick"
+        mark-class="is-active-anchor"
+      ></tiny-anchor>
     </tiny-col>
   </tiny-row>
 </template>
 
 <script>
 import { Anchor, Row, Col } from '@opentiny/vue'
+
 export default {
   components: {
     TinyAnchor: Anchor,
@@ -72,7 +78,7 @@ export default {
   border: 1px solid #333;
 }
 .scroll-container {
-  height: 50vh;
+  height: 40vh;
   border: 2px solid #333;
   overflow: auto;
 }

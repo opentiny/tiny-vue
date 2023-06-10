@@ -1,7 +1,7 @@
 <template>
   <tiny-tree :data="data5">
     <template #default="sourceData">
-      <div class="tiny-tree-node__label">{{ sourceData.data.label }}</div>
+      <div class="custom-label">{{ sourceData.data.label }}</div>
     </template>
   </tiny-tree>
 </template>
@@ -80,3 +80,20 @@ export default {
   }
 }
 </script>
+<style scoped lang="less">
+.custom-label {
+  color: #5e7ce0;
+}
+
+:deep(.is-current>.tiny-tree-node__content) {
+  svg {
+    fill: #fff;
+  }
+
+  .custom-label {
+    color: #fff;
+    font-weight: 500;
+    margin-left: 8px;
+  }
+}
+</style>

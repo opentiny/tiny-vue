@@ -24,6 +24,14 @@
     "demoId": "trigger"
   },
   {
+    "title": "自定义文本",
+    "content": "<p>Dropdown 可以通过<code>title</code> 属性去自定义显示文本</p>\n",
+    "link": "dropdown/title",
+    "component": "Dropdown 下拉菜单",
+    "findIntroStr": "Dropdown 下拉菜单。",
+    "demoId": "title"
+  },
+  {
     "title": "菜单隐藏方式",
     "content": "<p>下拉菜单默认在点击菜单项后会被隐藏，将 <code>hide-on-click</code> 属性默认为 <code>false</code> 可以关闭此功能。</p>\n",
     "link": "dropdown/hide-on-click",
@@ -70,5 +78,13 @@
     "component": "Dropdown 下拉菜单",
     "findIntroStr": "Dropdown 下拉菜单。",
     "demoId": "events"
+  },
+  {
+    "title": "默认插槽",
+    "content": "<p>Dropdown 可以通过<code>default</code> 插槽去自定义显示内容</p>\n",
+    "link": "dropdown/slot-default",
+    "component": "Dropdown 下拉菜单",
+    "findIntroStr": "Dropdown 下拉菜单。",
+    "demoId": "slot-default"
   }
 ]

@@ -11,6 +11,7 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/vue-theme-saas": "workspace:~",
     "@opentiny/vue-design-aurora": "workspace:~",
     "@opentiny/vue-design-smb": "workspace:~",
     "@playwright/test": "^1.29.2",
