@@ -37,7 +37,7 @@ export const setSheetStyle = ({ state, props }) => () => {
 export const initScrollMenu = ({ state, nextTick, refs, BScroll }) => () => {
   nextTick(() => {
     const { scrollMenu } = refs
-    if (state.scroll) {
+    if (!state.scroll) {
       state.scroll = new BScroll(scrollMenu, {
         probeType: 3,
         tap: 'tap'
