@@ -64,7 +64,7 @@ export default defineComponent({
      */
     isEnterSearch: {
       type: Boolean,
-      default: false
+      default: true
     },
     /**
      * 配置主题色，primary:蓝 gray:灰
