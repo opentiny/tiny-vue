@@ -9,7 +9,10 @@ const shared: Options = {
   target: 'node14',
   platform: 'node',
   dts: false,
-  publicDir: true
+  publicDir: true,
+  env: {
+    TINY_TSUP_ENV: 'production'
+  }
 }
 
 export default defineConfig([

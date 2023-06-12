@@ -13,16 +13,16 @@ import {
   capitalizeKebabCase,
   prettierFormat,
   logGreen,
-  logRed
+  logRed,
+  templatePath
 } from '../../shared/utils'
 
 const svgRE = /\.svg$/
 const svgDir = pathJoin('..', 'node_modules', '@opentiny', 'theme', 'svgs')
 const iconDir = pathJoin('..', 'packages', 'icon')
 const packageJson = 'package.json'
-const templatePath = pathJoin('..', 'template')
 
-// 检查是否按照依赖包
+// 检查是否安装依赖包
 if (!fs.existsSync(svgDir)) {
   logYellow('The @opentiny/vue-theme is not exist , please npm install @opentiny/vue-theme.')
 }
