@@ -835,7 +835,12 @@ export const Cell = {
   },
   renderOperationCell(h, params) {
     const { column, $table, row } = params
-    const { operationConfig = {} } = column
+    const { operationConfig = {}, slots } = column
+
+    if (slots && slots.default) {
+      return slots.default(params, h)
+    }
+
     const { buttons = [], render, max = 3, disabledClass = '' } = operationConfig
     const viewClass = $table.viewCls('operButton')
 
