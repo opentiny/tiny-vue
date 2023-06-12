@@ -1,6 +1,11 @@
 import path from 'node:path'
 import { removeSync } from 'fs-extra'
-import { walkFileTree, pathJoin, logGreen, logRed } from '../shared/utils'
+import {
+  walkFileTree,
+  logGreen,
+  logRed,
+  pathJoinFromCLI
+} from '../shared/utils'
 
 /**
  * 删除 packages 项目包下插件内部的 dist、runtime、node_modules 文件
@@ -22,7 +27,7 @@ const deleteDistFile = () => {
 
       return flag
     },
-    dirPath: pathJoin('..', 'packages'),
+    dirPath: pathJoinFromCLI('../../packages'),
     callback() {
       // empty
     }

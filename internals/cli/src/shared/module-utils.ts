@@ -11,7 +11,7 @@ import {
   capitalizeKebabCase,
   kebabCase,
   prettierFormat,
-  pathJoin
+  pathJoinFromCLI
 } from './utils'
 
 const require = createRequire(import.meta.url)
@@ -434,7 +434,7 @@ const createModuleMapping = (componentName, isMobile = false) => {
   const moduleJson = quickSort({ sortData: moduleMap, returnType: 'object' })
 
   fs.writeJsonSync(
-    pathJoin('..', 'modules.json'),
+    pathJoinFromCLI('../../packages/modules.json'),
     prettierFormat({
       str: JSON.stringify(moduleJson),
       options: {
