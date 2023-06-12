@@ -4,7 +4,7 @@
       "name": "data",
       "sample": "data-source",
       "type": "Array",
-      "desc": "设置数据源。可配置静态数据源和动态数据源。;展示数据",
+      "desc": "设置数据源。可配置静态数据源和动态数据源。",
       "defaultValue": ""
     },
     {
@@ -53,7 +53,7 @@
       "name": "node-key",
       "sample": "node-key",
       "type": "String",
-      "desc": "节点唯一标识属性名称。;每个树节点用来作为唯一标识的属性，整棵树应该是唯一的",
+      "desc": "节点唯一标识属性名称。每个树节点用来作为唯一标识的属性，整棵树应该是唯一的",
       "defaultValue": ""
     },
     {
@@ -74,7 +74,7 @@
       "name": "expand-on-click-node",
       "sample": "expand-on-click-node",
       "type": "Boolean",
-      "desc": "点击节点展开收起开关。当设置为true: 点击节点内容时可展开/收起节点。设置为false: 只有点击节点名称前面的展开/收起图标才能进行节点展开/收起。;是否在点击节点的时候展开或者收缩节点， 默认值为 true，如果为 false，则只有点箭头图标的时候才会展开或者收缩节点。",
+      "desc": "点击节点展开收起开关。当设置为true: 点击节点内容时可展开/收起节点。设置为false: 只有点击节点名称前面的展开/收起图标才能进行节点展开/收起。是否在点击节点的时候展开或者收缩节点， 默认值为 true，如果为 false，则只有点箭头图标的时候才会展开或者收缩节点。",
       "defaultValue": "该属性的默认值为 true"
     },
     {
@@ -95,7 +95,7 @@
       "name": "default-checked-keys",
       "sample": "default-checked-keys",
       "type": "Array",
-      "desc": "配置默认选中。取值为 key 在数据源 dataset 中所对应的值。组件生成后会默认将 defaultValue 中所对应的节点选中。;默认勾选的节点的 key 的数组",
+      "desc": "配置默认选中。取值为 key 在数据源 dataset 中所对应的值。组件生成后会默认将 defaultValue 中所对应的节点选中。默认勾选的节点的 key 的数组",
       "defaultValue": ""
     },
     {
@@ -123,7 +123,7 @@
       "name": "draggable",
       "sample": "node-draggable",
       "type": "Boolean",
-      "desc": "是否开启节点拖拽，节点的位置可任意拖放，改变原来的节点的父子结构。;是否开启拖拽节点功能",
+      "desc": "是否开启节点拖拽，节点的位置可任意拖放，改变原来的节点的父子结构。是否开启拖拽节点功能",
       "defaultValue": "该属性的默认值为 false"
     },
     {
@@ -158,7 +158,7 @@
       "name": "lazy",
       "sample": "lazy-load-node",
       "type": "Boolean",
-      "desc": "异步加载模式，展开节点时再请求数据。需要服务支持。;是否懒加载子节点，需与 load 方法结合使用",
+      "desc": "异步加载模式，展开节点时再请求数据。需要服务支持。是否懒加载子节点，需与 load 方法结合使用",
       "defaultValue": "该属性的默认值为 false"
     },
     {
@@ -172,14 +172,14 @@
       "name": "filter-node-method",
       "sample": "filter-node",
       "type": "Function(value, data, node)",
-      "desc": "指定输入筛选时匹配的节点的字段值。showFilter 为 false时无效。;对树节点进行筛选时执行的方法，返回 true 表示这个节点可以显示，返回 false 则表示这个节点会被隐藏",
+      "desc": "指定输入筛选时匹配的节点的字段值。showFilter 为 false时无效。对树节点进行筛选时执行的方法，返回 true 表示这个节点可以显示，返回 false 则表示这个节点会被隐藏",
       "defaultValue": ""
     },
     {
       "name": "accordion",
       "sample": "accordion-mode",
       "type": "Boolean",
-      "desc": "是否为单一路径。为 true 时，全部层级的节点同级互斥，为数字时，不大于该值的节点同级互斥。;是否每次只打开一个同级树节点展开",
+      "desc": "是否为单一路径。为 true 时，全部层级的节点同级互斥，为数字时，不大于该值的节点同级互斥。是否每次只打开一个同级树节点展开",
       "defaultValue": "该属性的默认值为 false"
     },
     {
@@ -232,7 +232,7 @@
       "name": "getCheckedNodes",
       "sample": "check-on-click-node",
       "type": "(leafOnly, includeHalfChecked) => result",
-      "desc": "获取选中标识的数据。;若节点可被选择（即 show-checkbox 为 true），则返回目前被选中的节点所组成的数组，仅配置多选时生效",
+      "desc": "获取选中标识的数据。若节点可被选择（即 show-checkbox 为 true），则返回目前被选中的节点所组成的数组，仅配置多选时生效",
       "defaultValue": ""
     },
     {
@@ -323,7 +323,7 @@
       "name": "remove",
       "sample": "",
       "type": "(data) => void",
-      "desc": "删除节点。;删除 Tree 中的一个节点，使用此方法必须设置 node-key 属性",
+      "desc": "删除节点。删除 Tree 中的一个节点，使用此方法必须设置 node-key 属性",
       "defaultValue": ""
     },
     {
@@ -353,7 +353,7 @@
       "name": "node-click",
       "sample": "check-on-click-node",
       "type": "Function(data, node, vm)",
-      "desc": "点击节点后的事件。;节点被点击时的回调;//参数说明\n{data: 节点数据,node: 节点状态信息（包括数据）,vm: 组件实例}",
+      "desc": "点击节点后的事件。节点被点击时的回调;//参数说明\n{data: 节点数据,node: 节点状态信息（包括数据）,vm: 组件实例}",
       "defaultValue": ""
     },
     {
@@ -388,7 +388,7 @@
       "name": "node-expand",
       "sample": "default-expanded-keys",
       "type": "Function(data, node, vm)",
-      "desc": "展开节点后的事件。;节点被展开时触发的事件;//参数说明\n{data: 节点数据,node: 节点状态信息（包括数据,vm: 当前组件实例}",
+      "desc": "展开节点后的事件。节点被展开时触发的事件;//参数说明\n{data: 节点数据,node: 节点状态信息（包括数据,vm: 当前组件实例}",
       "defaultValue": ""
     },
     {
@@ -437,7 +437,7 @@
       "name": "node-drop",
       "sample": "node-draggable",
       "type": "Function(draggingNode, targetNode, dropType, event)",
-      "desc": "拖放节点后的事件。开启 dragable 属性为 true 有效。;拖拽成功完成时触发的事件;//参数\n{draggingNode: 拖拽节点,targetNode: 目标节点,dropType: 拖拽类型, //拖拽节点在目标节点对应关系（before/after/inner/none)\nevent: 原生事件}",
+      "desc": "拖放节点后的事件。开启 dragable 属性为 true 有效。拖拽成功完成时触发的事件;//参数\n{draggingNode: 拖拽节点,targetNode: 目标节点,dropType: 拖拽类型, //拖拽节点在目标节点对应关系（before/after/inner/none)\nevent: 原生事件}",
       "defaultValue": ""
     }
   ]

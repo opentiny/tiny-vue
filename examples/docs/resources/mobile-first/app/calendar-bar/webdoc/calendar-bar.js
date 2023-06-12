@@ -89,7 +89,7 @@ export default {
           '<p>用户传入的日期为<code>  当前日期</code>，当前日期所在月份为<code>  当前月份</code>，当前月份周六周日为 周末，非周六周日为 工作日。 使用<code>  config.workday </code>配置一个方法，用于判断 工作日 是否作为真正的工作日； 使用<code>  config.holiday</code> 配置一个方法，用于判断 周末 是否作为真正的周末； 使用<code>  config.workdayColorClass 和 config.holidayColorClass</code> 配置工作日和周末的字体颜色类。<p>',
         'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['marked.vue']
+      codeFiles: ['workday.vue']
     }
   ],
   apis: []

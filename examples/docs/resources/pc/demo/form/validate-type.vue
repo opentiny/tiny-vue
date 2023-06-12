@@ -19,7 +19,9 @@
         <tiny-input v-model="createData.textarea" type="textarea" maxlength="15"></tiny-input>
       </tiny-form-item>
       <tiny-form-item>
-        <tiny-button type="primary" @click="handleSubmit('ruleForm')">提交</tiny-button>
+        <tiny-button type="primary" @click="handleSubmit('ruleForm')">
+          提交
+        </tiny-button>
       </tiny-form-item>
     </tiny-form>
 

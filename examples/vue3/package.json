@@ -8,12 +8,13 @@
   ],
   "scripts": {
     "dev": "vite --port 7130",
+    "dev:saas": "vite --port 7130 --mode saas",
     "build": "vite build",
     "preview": "vite preview",
     "test:e2e": "playwright test",
     "test:unit": "vitest",
     "install:browser": "playwright install",
-    "codegen": "playwright codegen playwright.pro"
+    "codegen": "playwright codegen localhost:7130"
   },
   "devDependencies": {
     "@opentiny-internal/playwright-config": "workspace:^1.0.1-beta.0",
@@ -33,7 +34,7 @@
     "@playwright/test": "^1.29.2",
     "@vitejs/plugin-vue": "4.1.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
-    "@vitest/ui": "^0.27.1",
+    "@vitest/ui": "^0.31.0",
     "@vue/runtime-core": "3.2.31",
     "@vue/test-utils": "^2.2.7",
     "jsdom": "^21.0.0",

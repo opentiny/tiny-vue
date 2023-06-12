@@ -40,6 +40,14 @@
     "demoId": "target"
   },
   {
+    "title": "Custom Class Name",
+    "content": "<p><code>badge-class</code> Custom Class Name</p>\n",
+    "link": "badge/badge-class",
+    "component": "Badge flag",
+    "findIntroStr": "Badge displays specified data, such as the number of to-do tasks and the number of new tasks.",
+    "demoId": "badge-class"
+  },
+  {
     "title": "Custom Tag Target",
     "content": "<p><code>default slot</code> Tag Content Custom</p>\n",
     "link": "badge/slot-default",
@@ -62,5 +70,13 @@
     "component": "Badge flag",
     "findIntroStr": "Badge displays specified data, such as the number of to-do tasks and the number of new tasks.",
     "demoId": "dynamic-hidden"
+  },
+  {
+    "title": "Tag Offset",
+    "content": "<p><code>offset</code> Custom Tag Offset</p>\n",
+    "link": "badge/offset",
+    "component": "Badge flag",
+    "findIntroStr": "Badge displays specified data, such as the number of to-do tasks and the number of new tasks.",
+    "demoId": "offset"
   }
 ]

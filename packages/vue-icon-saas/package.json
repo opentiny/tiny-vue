@@ -1,9 +1,9 @@
 {
   "name": "@opentiny/vue-icon-saas",
+  "private": true,
   "version": "3.7.0",
   "description": "",
-  "main": "lib/index.js",
-  "module": "index.ts",
+  "main": "index.ts",
   "license": "MIT",
   "sideEffects": false,
   "exports": {

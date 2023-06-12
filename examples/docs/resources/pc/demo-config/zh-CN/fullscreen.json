@@ -1,1 +1,18 @@
-[{"title":"组件式使用","content":"详细用法参考如下示例","link":"fullscreen/example-component","component":" Fullscreen 全屏显示","findIntroStr":"Fullscreen 全屏显示","demoId":"example-component"},{"title":"函数式使用","content":"详细用法参考如下示例","link":"fullscreen/example-api","component":" Fullscreen 全屏显示","findIntroStr":"Fullscreen 全屏显示","demoId":"example-api"}]
+[
+  {
+    "title": "组件式使用",
+    "content": "详细用法参考如下示例",
+    "link": "fullscreen/example-component",
+    "component": " Fullscreen 全屏显示",
+    "findIntroStr": "Fullscreen 全屏显示",
+    "demoId": "example-component"
+  },
+  {
+    "title": "函数式使用",
+    "content": "详细用法参考如下示例",
+    "link": "fullscreen/example-api",
+    "component": " Fullscreen 全屏显示",
+    "findIntroStr": "Fullscreen 全屏显示",
+    "demoId": "example-api"
+  }
+]

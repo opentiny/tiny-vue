@@ -23,8 +23,12 @@
         <tiny-cascader v-model="createData.cascader" :options="options2" :popper-append-to-body="true" filterable></tiny-cascader>
       </tiny-form-item>
       <tiny-form-item>
-        <tiny-button type="success" @click="clearFormValid">移除表单校验</tiny-button>
-        <tiny-button type="primary" @click="handleSubmit('ruleForm')">提交</tiny-button>
+        <tiny-button type="success" @click="clearFormValid">
+          移除表单校验
+        </tiny-button>
+        <tiny-button type="primary" @click="handleSubmit('ruleForm')">
+          提交
+        </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>

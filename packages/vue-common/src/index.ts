@@ -15,6 +15,7 @@ import { twMerge } from 'tailwind-merge'
 import '@opentiny/vue-theme/base/index.less'
 
 import { defineComponent, isVue2, isVue3 } from './adapter'
+
 export { defineComponent, isVue2, isVue3, appProperties }
 
 export const $prefix = 'Tiny'
@@ -109,7 +110,8 @@ export const $setup = ({ props, context, template, extend = {} }) => {
 
 export const mergeClass = (...cssClasses) => twMerge(stringifyCssClass(cssClasses))
 
-const design = {
+// 提供给没有renderless层的组件使用（比如TinyVuePlus组件）
+export const design = {
   configKey: Symbol('designConfigKey'),
   configInstance: null
 }

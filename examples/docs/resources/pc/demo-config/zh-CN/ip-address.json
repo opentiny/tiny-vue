@@ -1,1 +1,98 @@
-[{"title":"IPv4 类型","content":"<p>可通过 <code>type</code> 属性配置 <code>IPv4</code> 类型，默认是 <code>IPv4</code>。</p>\n","link":"ip-address/ipv4-type","component":" IpAddress 输入框","findIntroStr":"IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。","demoId":"ipv4-type"},{"title":"IPv6 类型","content":"<p>可通过 <code>type</code>属性配置为 <code>IPv6</code> 类型，默认是 <code>IPv4</code>。</p>\n","link":"ip-address/ipv6-type","component":" IpAddress 输入框","findIntroStr":"IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。","demoId":"ipv6-type"},{"title":"文本只读","content":"<p>通过 <code>readonly</code> 属性设置文本的只读行，默认为 false 。</p>\n","link":"ip-address/readonly","component":" IpAddress 输入框","findIntroStr":"IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。","demoId":"readonly"},{"title":"禁用","content":"<p>通过 <code>disabled</code> 属性设置文本是否禁用，默认为 false。</p>\n","link":"ip-address/disabled","component":" IpAddress 输入框","findIntroStr":"IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。","demoId":"disabled"},{"title":"输入框大小","content":"<p>可设置为<code>medium</code>，<code>small</code>，<code>mini</code></p>\n","link":"ip-address/size","component":" IpAddress 输入框","findIntroStr":"IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。","demoId":"size"},{"title":"属性设置分隔符","content":"<p>可通过 <code>delimiter</code> 属性设置分隔符(图标类)。</p>\n","link":"ip-address/delimiter","component":" IpAddress 输入框","findIntroStr":"IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。","demoId":"delimiter"},{"title":"默认插槽","content":"<p>可通过默认插槽设置分隔符。</p>\n","link":"ip-address/slots","component":" IpAddress 输入框","findIntroStr":"IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。","demoId":"slots"},{"title":"focus 事件","content":"<p>文本框获取焦点时触发 <code>focus</code> 事件。</p>\n","link":"ip-address/focus","component":" IpAddress 输入框","findIntroStr":"IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。","demoId":"focus"},{"title":"blur 事件","content":"<p>文本框失去焦点时触发 <code>blur</code> 事件。</p>\n","link":"ip-address/blur","component":" IpAddress 输入框","findIntroStr":"IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。","demoId":"blur"},{"title":"change 事件","content":"<p>文本框内容改变后触发 <code>change</code> 事件。</p>\n","link":"ip-address/change","component":" IpAddress 输入框","findIntroStr":"IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。","demoId":"change"},{"title":"select 事件","content":"<p>文本框内容选中时触发 <code>select</code> 事件。</p>\n","link":"ip-address/select","component":" IpAddress 输入框","findIntroStr":"IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。","demoId":"select"}]
+[
+  {
+    "title": "IPv4 类型",
+    "content": "<p>可通过 <code>type</code> 属性配置 <code>IPv4</code> 类型，默认是 <code>IPv4</code>。</p>\n",
+    "link": "ip-address/ipv4-type",
+    "component": " IpAddress 输入框",
+    "findIntroStr": "IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。",
+    "demoId": "ipv4-type"
+  },
+  {
+    "title": "IPv6 类型",
+    "content": "<p>可通过 <code>type</code>属性配置为 <code>IPv6</code> 类型，默认是 <code>IPv4</code>。</p>\n",
+    "link": "ip-address/ipv6-type",
+    "component": " IpAddress 输入框",
+    "findIntroStr": "IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。",
+    "demoId": "ipv6-type"
+  },
+  {
+    "title": "文本只读",
+    "content": "<p>通过 <code>readonly</code> 属性设置文本的只读行，默认为 false 。</p>\n",
+    "link": "ip-address/readonly",
+    "component": " IpAddress 输入框",
+    "findIntroStr": "IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。",
+    "demoId": "readonly"
+  },
+  {
+    "title": "禁用",
+    "content": "<p>通过 <code>disabled</code> 属性设置文本是否禁用，默认为 false。</p>\n",
+    "link": "ip-address/disabled",
+    "component": " IpAddress 输入框",
+    "findIntroStr": "IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。",
+    "demoId": "disabled"
+  },
+  {
+    "title": "输入框大小",
+    "content": "<p>可设置为<code>medium</code>，<code>small</code>，<code>mini</code></p>\n",
+    "link": "ip-address/size",
+    "component": " IpAddress 输入框",
+    "findIntroStr": "IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。",
+    "demoId": "size"
+  },
+  {
+    "title": "属性设置分隔符",
+    "content": "<p>可通过 <code>delimiter</code> 属性设置分隔符(图标类)。</p>\n",
+    "link": "ip-address/delimiter",
+    "component": " IpAddress 输入框",
+    "findIntroStr": "IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。",
+    "demoId": "delimiter"
+  },
+  {
+    "title": "默认插槽",
+    "content": "<p>可通过默认插槽设置分隔符。</p>\n",
+    "link": "ip-address/slots",
+    "component": " IpAddress 输入框",
+    "findIntroStr": "IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。",
+    "demoId": "slots"
+  },
+  {
+    "title": "focus 事件",
+    "content": "<p>文本框获取焦点时触发 <code>focus</code> 事件。</p>\n",
+    "link": "ip-address/focus",
+    "component": " IpAddress 输入框",
+    "findIntroStr": "IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。",
+    "demoId": "focus"
+  },
+  {
+    "title": "blur 事件",
+    "content": "<p>文本框失去焦点时触发 <code>blur</code> 事件。</p>\n",
+    "link": "ip-address/blur",
+    "component": " IpAddress 输入框",
+    "findIntroStr": "IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。",
+    "demoId": "blur"
+  },
+  {
+    "title": "change 事件",
+    "content": "<p>文本框内容改变后触发 <code>change</code> 事件。</p>\n",
+    "link": "ip-address/change",
+    "component": " IpAddress 输入框",
+    "findIntroStr": "IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。",
+    "demoId": "change"
+  },
+  {
+    "title": "select 事件",
+    "content": "<p>文本框内容选中时触发 <code>select</code> 事件。</p>\n",
+    "link": "ip-address/select",
+    "component": " IpAddress 输入框",
+    "findIntroStr": "IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。",
+    "demoId": "select"
+  },
+  {
+    "title": "input 事件",
+    "content": "<p>文本框输入时触发 <code>input</code> 事件。</p>\n",
+    "link": "ip-address/input",
+    "component": " IpAddress 输入框",
+    "findIntroStr": "IP 地址输入框与 HTML 原生的 IpAddress 组件保持一致，同时提供数据绑定功能。",
+    "demoId": "input"
+  }
+]

@@ -1,14 +1,6 @@
 <template>
-  <tiny-tree
-    :data="data5"
-    :default-checked-keys="defaultcheckedkeys"
-    node-key="id"
-    default-expand-all
-    show-radio
-    :show-checkbox="false"
-    @check-change="onCheckChange"
-    check-strictly
-  ></tiny-tree>
+  <tiny-tree :data="data5" :default-checked-keys="defaultcheckedkeys" node-key="id" default-expand-all show-radio
+    :show-checkbox="false" :check-on-click-node="true" @check-change="onCheckChange" check-strictly></tiny-tree>
 </template>
 
 <script lang="jsx">

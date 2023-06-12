@@ -4,7 +4,7 @@
     <tiny-breadcrumb-item>
       <a href="localhost:3000/webcore/v3/zh-CN/component/breadcrumb"> 产品 </a>
     </tiny-breadcrumb-item>
-    <tiny-breadcrumb-item :to="{ path: '/breadcrumb' }">软件</tiny-breadcrumb-item>
+    <tiny-breadcrumb-item :to="{ path: '/breadcrumb' }"> 软件 </tiny-breadcrumb-item>
   </tiny-breadcrumb>
 </template>
 

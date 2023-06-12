@@ -15,7 +15,9 @@
         <tiny-input v-model="createData.password" type="password" show-password></tiny-input>
       </tiny-form-item>
       <tiny-form-item>
-        <tiny-button type="primary" @click="handleSubmit('ruleForm')">注册</tiny-button>
+        <tiny-button type="primary" @click="handleSubmit('ruleForm')">
+          注册
+        </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>

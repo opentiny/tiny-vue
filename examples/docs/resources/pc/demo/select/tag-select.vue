@@ -1,7 +1,18 @@
 <template>
-  <tiny-select ref="select" v-model="value" placeholder="请选择" multiple tag-selectable>
-    <tiny-option v-for="item in options" v-show="!item.filter" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
-  </tiny-select>
+  <div>
+    <tiny-select ref="select" v-model="value" placeholder="请选择" multiple tag-selectable>
+      <tiny-option
+        v-for="item in options"
+        v-show="!item.filter"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      >
+      </tiny-option>
+    </tiny-select>
+    <p>复制到此处：</p>
+    <input class="copy-value" type="text" />
+  </div>
 </template>
 
 <script lang="jsx">

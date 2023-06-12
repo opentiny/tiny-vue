@@ -87,11 +87,20 @@
         小型按钮
       </tiny-button>
     </tiny-row>
+
+    <tiny-row>
+      <tiny-button :icon="IconDel" type="text" size="mini" />
+      <tiny-button :icon="IconDel" type="text" size="small" />
+      <tiny-button :icon="IconDel" type="text" />
+      <tiny-button :icon="IconDel" type="text" size="medium" />
+      <tiny-button :icon="IconDel" type="text" size="large" />
+    </tiny-row>
   </tiny-layout>
 </template>
 
 <script>
 import { Button, Layout, Row } from '@opentiny/vue'
+import { iconDel } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -99,7 +108,11 @@ export default {
     TinyLayout: Layout,
     TinyRow: Row
   },
-  data() { }
+  data() {
+    return {
+      IconDel: iconDel()
+    }
+  }
 }
 </script>
 

@@ -1,12 +1,14 @@
 import { test, expect } from '@playwright/test'
 
 test('按钮组基本示例', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('http://localhost:7130/pc/button-group/base')
-  await page.getByText('基本用法').nth(1).click()
-  await page.getByRole('button', { name: 'Button1' }).click()
-  await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/div/ul/li[1]')).toHaveAttribute('class', 'active')
-  await page.getByRole('button', { name: 'Button2' }).click()
-  await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/div/ul/li[2]')).toHaveAttribute('class', 'active')
+
+  const buttonGroup = page.locator('.tiny-button-group').nth(1)
   await page.getByRole('button', { name: 'Button3' }).click()
-  await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/div/ul/li[3]')).toHaveAttribute('class', 'active')
+  await expect(buttonGroup.locator('li').nth(2)).toHaveClass('active')
+  await page.getByRole('button', { name: 'Button2' }).click()
+  await expect(buttonGroup.locator('li').nth(1)).toHaveClass('active')
+  await page.getByRole('button', { name: 'Button1' }).click()
+  await expect(buttonGroup.locator('li').nth(0)).toHaveClass('active')
 })

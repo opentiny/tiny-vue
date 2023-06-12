@@ -27,12 +27,12 @@ export default defineConfig((config) => {
         {
           libraryName: '@opentiny/vue'
         },
-        {
-          libraryName: '@opentiny/vue-icon',
-          customName: (name) => {
-            return name === 'default' ? '@opentiny/vue-icon$' : `@opentiny/vue-icon/${name.replace(/^icon-/, '')}`
+        ...['icon', 'icon-saas'].map(lib => ({
+          libraryName: `@opentiny/vue-${lib}`,
+          customName: (name: string) => {
+            return name === 'default' ? `@opentiny/vue-${lib}$` : `@opentiny/vue-${lib}/${name.replace(/^icon-/, '')}`
           }
-        }
+        }))
       ]),
       TailwindCSSVitePlugin({
         config: pathResolve('tailwind.config.cjs'),

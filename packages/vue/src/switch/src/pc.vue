@@ -10,9 +10,9 @@
  *
  -->
 <template>
-  <span :class="[state.wrapClasses, showText ? 'tiny-switch__text' : '']" :tabindex="tabindex" @click="toggle" @keydown.space="toggle">
+  <span :class="[state.wrapClasses, state.showText ? 'tiny-switch__text' : '']" :tabindex="tabindex" @click="toggle" @keydown.space="toggle">
     <span :class="state.innerClasses">
-      <div v-if="!mini && showText">
+      <div v-if="!mini && state.showText">
         <slot v-if="state.currentValue === trueValue" name="open">ON</slot>
         <slot v-if="state.currentValue === falseValue" name="close">OFF</slot>
       </div>

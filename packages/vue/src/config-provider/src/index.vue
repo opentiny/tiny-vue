@@ -41,18 +41,20 @@ export default defineComponent({
         }
       }
     },
-    ..._props.map((item) => {
-      return {
-        [item]: {
-          type: String
+    ..._props
+      .map((item) => {
+        return {
+          [item]: {
+            type: String
+          }
         }
-      }
-    }).reduce((pre, cur) => {
-      return {
-        ...pre,
-        ...cur
-      }
-    })
+      })
+      .reduce((pre, cur) => {
+        return {
+          ...pre,
+          ...cur
+        }
+      })
   },
   setup(props, { slots }) {
     const { direction } = hooks.toRefs(props)
@@ -81,21 +83,21 @@ export default defineComponent({
       class: this.classNames,
       style: this.cssVar
     }
+    const slots = isVue2 ? this.$slots?.default : this.slots?.default?.()
     if (!this.props.tag.enable) {
-      const slots = this.slots?.default?.()
       if (isVue2 && (slots?.length ?? 1) > 1) {
         return hooks.h('div', {}, slots)
       }
       return slots
     }
     const tagName = this.props.tag.name ?? 'div'
-    return hooks.h(tagName, attr, this.$slots.default)
+    return hooks.h(tagName, attr, slots)
   }
 })
 </script>
 
 <style>
-.tiny-config-provider--rtl{
+.tiny-config-provider--rtl {
   direction: var(--text-direction);
   transform: translateY(-1);
 }

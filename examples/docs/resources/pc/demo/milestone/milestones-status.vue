@@ -52,7 +52,7 @@ export default {
         {
           name: '未完成状态，状态值:end',
           time: '2018-9-9',
-          status: 'ecancelnd'
+          status: 'end'
         }
       ]
     }

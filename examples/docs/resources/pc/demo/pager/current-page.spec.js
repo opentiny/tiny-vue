@@ -1,10 +1,25 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
-    await page.goto('http://localhost:7130/pc/pager/current-page');
-    await page.locator('div:nth-child(2) > .link-primary').click();
-    await page.locator('#preview').getByText('1').click();
-    await page.locator('#preview').getByText('5').click()
-    await expect(page.locator('#preview').getByText('5')).toHaveText('5')
-    await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/button[2]')).toBeDisabled
-});
+test('测试设置当前页', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/pager/current-page')
+
+  const preview = page.locator('#preview')
+  const pager = preview.locator('.tiny-pager')
+  const getPrev = (parent) => parent.locator('.tiny-pager__btn-prev')
+  const getNext = (parent) => parent.locator('.tiny-pager__btn-next')
+  const isActive = /is-active/
+  const prev = getPrev(pager.first())
+  const next = getNext(pager.first())
+  await expect(pager.locator('li').getByText('2')).toHaveClass(isActive)
+  await expect(prev).not.toBeDisabled()
+  await expect(next).not.toBeDisabled()
+  await pager.locator('li').getByText('5').click()
+  await expect(pager.locator('li').getByText('5')).toHaveClass(isActive)
+  await expect(prev).not.toBeDisabled()
+  await expect(next).toBeDisabled()
+  await pager.locator('li').getByText('1').click()
+  await expect(pager.locator('li').getByText('1')).toHaveClass(isActive)
+  await expect(prev).toBeDisabled()
+  await expect(next).not.toBeDisabled()
+})

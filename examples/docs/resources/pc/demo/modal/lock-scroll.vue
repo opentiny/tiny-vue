@@ -11,8 +11,9 @@ export default {
   },
   methods: {
     btnClick() {
+      const str = '不锁住滚动条不要遮罩层。  '
       Modal.alert({
-        message: '不锁住滚动条不要遮罩层',
+        message: str.repeat(100),
         lockScroll: false,
         mask: false
       })

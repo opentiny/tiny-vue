@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      action: ''
+      action: 'http://localhost:3000/api/upload'
     }
   }
 }

@@ -6,7 +6,7 @@
 const fs = require('fs')
 const path = require('path')
 const fg = require('fast-glob')
-const allComp = require('./components')
+const aliasCompName = require('./components')
 const xlsx = require('node-xlsx')
 const themeConfFile = path.resolve(__dirname, './theme.json')
 
@@ -73,10 +73,8 @@ function parseFile(component) {
 
       let [_, key, value] = matches
 
-      const componentName = allComp[component.name]
-      if (componentName) {
-        formated.push(formatRule(componentName, key, value, desc))
-      }
+      const name = aliasCompName[component.name] || component.name
+      formated.push(formatRule(name, key, value, desc))
       desc = '未知变量'
     }
   }
@@ -112,11 +110,28 @@ fg(['**/vars.less']).then((files) => {
 function writeExcel(data, fileName) {
   const excelData = []
 
-  data.forEach(item => {
+  data.forEach((item) => {
     let addInfo = {}
     addInfo.name = item.name + '配置化'
     addInfo.data = [
-      ['id', 'key', 'variable（可选）', 'value（可选）', 'desc', 'descEn', 'component', 'componentDesc', 'componentDescEn', 'selector', 'type', 'group', 'isImportant', 'ui（所属的框架）', 'show', 'configurable']
+      [
+        'id',
+        'key',
+        'variable（可选）',
+        'value（可选）',
+        'desc',
+        'descEn',
+        'component',
+        'componentDesc',
+        'componentDescEn',
+        'selector',
+        'type',
+        'group',
+        'isImportant',
+        'ui（所属的框架）',
+        'show',
+        'configurable'
+      ]
     ]
     item.data.forEach((idKey, i) => {
       if (i === 0) {
@@ -140,16 +155,18 @@ function writeThemeExcel() {
   let themeData = fs.readFileSync(themeConfFile, 'utf-8').toString()
   themeData = JSON.parse(themeData)
   const openXlsxObj = {}
-  Object.values(themeData).forEach(item => {
+  Object.values(themeData).forEach((item) => {
     // 过滤掉非开源的
     if (item.isOpen) {
       delete item.isOpen
-      openXlsxObj[item.component] = openXlsxObj[item.component] ? [...openXlsxObj[item.component], Object.values(item)] : [Object.values(item)]
+      openXlsxObj[item.component] = openXlsxObj[item.component]
+        ? [...openXlsxObj[item.component], Object.values(item)]
+        : [Object.values(item)]
     }
   })
 
   const openXlsxArr = []
-  Object.entries(openXlsxObj).forEach(item => {
+  Object.entries(openXlsxObj).forEach((item) => {
     openXlsxArr.push({ name: item[0], data: item[1] })
   })
   writeExcel(openXlsxArr, 'themeExcel')

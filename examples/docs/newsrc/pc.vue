@@ -1,7 +1,12 @@
 <template>
   <div class="wp100 hp100 f-r of-hidden">
     <div class="w230 pt20 of-auto">
-      <tiny-tree-menu class="!w213" :data="menuData" :filter-node-method="fn.searchMenu" @current-change="fn.clickMenu"></tiny-tree-menu>
+      <tiny-tree-menu
+        class="!w213"
+        :data="menuData"
+        :filter-node-method="fn.searchMenu"
+        @current-change="fn.clickMenu"
+      ></tiny-tree-menu>
     </div>
     <div class="fi-1 f-c px20 pb30 f-c pr200 of-auto" ref="rightRef">
       <!-- 标题 -->
@@ -12,7 +17,7 @@
         <!-- 标题 + 组件说明  -->
         <div class="mb20 py10 pl16 child<code>p4 child<code>bg-lightless">
           <div class="mr20 fw-bold">
-            {{ state.currDemo?.title }}({{ state.currDemo?.demoId }}.vue ):
+            {{ state.currDemo?.title }}( <span class="allselect">{{ state.currDemo?.demoId }}</span>.vue ):
           </div>
           <div v-html="state.currDemo?.content"></div>
         </div>
@@ -36,25 +41,41 @@
         <div class="my8 f22 fw-bold">
           {{ key }}
         </div>
-        <tiny-grid :data="apiTable" border auto-resize>
-          <tiny-grid-column field="name" width="15%" title="名称">
-            <template #default="data">
-              <a v-if="data.row.sample" class="c-primary h:c-error" @click="fn.selectDemo(data.row.sample)">{{
-                data.row.name
-              }}</a>
-              <span v-else>{{ data.row.name }}</span>
-            </template>
-          </tiny-grid-column>
-          <tiny-grid-column field="type" width="20%" title="类型"></tiny-grid-column>
-          <tiny-grid-column field="defaultValue" width="20%" title="默认值"></tiny-grid-column>
-          <tiny-grid-column field="desc" title="说明"></tiny-grid-column>
-        </tiny-grid>
+        <table class="api-table">
+          <thead>
+            <tr>
+              <th width="15%">名称</th>
+              <th width="20%">类型</th>
+              <th width="20%">默认值</th>
+              <th width="55%">说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="row in apiTable" :key="row.name">
+              <td>
+                <a v-if="row.sample" class="c-primary h:c-error cur-hand" @click="fn.selectDemo(row.sample)">{{
+                  row.name
+                }}</a>
+                <span v-else>{{ row.name }}</span>
+              </td>
+              <td>{{ row.type }}</td>
+              <td>{{ row.defaultValue }}</td>
+              <td>{{ row.desc }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <!-- 右边浮动所有的demos -->
     <tiny-floatbar v-if="state.demos.length > 0" class="!top120 !z1 !right25">
       <div class="f12 ofy-auto" style="max-height: calc(100vh - 240px)">
-        <div v-for="demo in state.demos" :key="demo.demoId" @click="fn.selectDemo(demo.demoId)" class="w130 px10 py4 bg-light f-r f-pos-between" :class="{ 'c-error': state.currDemo === demo }">
+        <div
+          v-for="demo in state.demos"
+          :key="demo.demoId"
+          @click="fn.selectDemo(demo.demoId)"
+          class="w130 px10 py4 bg-light f-r f-pos-between"
+          :class="{ 'c-error': state.currDemo === demo }"
+        >
           <div class="link-primary h:c-error h:td-under ellipsis">
             {{ demo.title }}
             <Icon-star-icon v-if="state.currDemo === demo" style="fill: #ee343f" />
@@ -70,13 +91,25 @@
       </span>
       <template #dropdown>
         <tiny-dropdown-menu placement="top">
-          <tiny-dropdown-item label="tiny-default-theme" class="minw160" :class="{ '!c-primary': currThemeLabel === 'tiny-default-theme' }">
+          <tiny-dropdown-item
+            label="tiny-default-theme"
+            class="minw160"
+            :class="{ '!c-primary': currThemeLabel === 'tiny-default-theme' }"
+          >
             Default Theme
           </tiny-dropdown-item>
-          <tiny-dropdown-item label="tiny-aurora-theme" class="minw160" :class="{ '!c-primary': currThemeLabel === 'tiny-aurora-theme' }">
+          <tiny-dropdown-item
+            label="tiny-aurora-theme"
+            class="minw160"
+            :class="{ '!c-primary': currThemeLabel === 'tiny-aurora-theme' }"
+          >
             Aurora Theme
           </tiny-dropdown-item>
-          <tiny-dropdown-item label="tiny-smb-theme" class="minw160" :class="{ '!c-primary': currThemeLabel === 'tiny-smb-theme' }">
+          <tiny-dropdown-item
+            label="tiny-smb-theme"
+            class="minw160"
+            :class="{ '!c-primary': currThemeLabel === 'tiny-smb-theme' }"
+          >
             SMB Theme
           </tiny-dropdown-item>
         </tiny-dropdown-menu>
@@ -91,8 +124,6 @@ import {
   Floatbar,
   TreeMenu,
   Button,
-  Grid,
-  GridColumn,
   Tooltip,
   Dropdown,
   DropdownMenu,
@@ -104,14 +135,13 @@ import { menuData, zhDemo, demoVue, demoStr, zhApi } from './resourcePc.js'
 import { useTheme, useModeCtx } from './uses'
 import SvgTheme from './assets/theme.svg'
 import designSmbConfig from '@opentiny/vue-design-smb'
+import designAuroraConfig from '@opentiny/vue-design-aurora'
 
 export default {
   components: {
     TinyFloatbar: Floatbar,
     TinyTreeMenu: TreeMenu,
     TinyButton: Button,
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
     TinyTooltip: Tooltip,
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,
@@ -197,7 +227,8 @@ export default {
     }
 
     const designConfigMap = {
-      'tiny-smb-theme': designSmbConfig
+      'tiny-smb-theme': designSmbConfig,
+      'tiny-aurora-theme': designAuroraConfig
     }
 
     const lastThemeKey = localStorage.getItem('tinyThemeToolkey')

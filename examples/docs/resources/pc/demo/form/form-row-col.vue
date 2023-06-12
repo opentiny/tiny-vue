@@ -35,7 +35,9 @@
       <tiny-row>
         <tiny-col span="12">
           <tiny-form-item>
-            <tiny-button type="primary" @click="handleSubmit('ruleForm')"> 提交 </tiny-button>
+            <tiny-button type="primary" @click="handleSubmit('ruleForm')">
+              提交
+            </tiny-button>
           </tiny-form-item>
         </tiny-col>
       </tiny-row>

@@ -1,10 +1,10 @@
 <template>
   <tiny-time-line :data="data" :active="active" @click="click">
     <template #top="{ slotScope: { index, name } }">
-      <p style="text-align: center">{{ index }}.{{ name }}</p>
+      <p class="custom-top">{{ index }}.{{ name }}</p>
     </template>
     <template #bottom="{ slotScope: { time } }">
-      <p>{{ time }}</p>
+      <p class="custom-bottom">{{ time }}</p>
     </template>
   </tiny-time-line>
 </template>
@@ -37,3 +37,13 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.custom-top {
+  text-align: center;
+}
+
+.custom-bottom {
+  color: #8a8e99;
+  font-size: 12px;
+}
+</style>

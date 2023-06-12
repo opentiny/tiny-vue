@@ -17,7 +17,7 @@
   },
   {
     "title": "箭头偏移",
-    "content": "<p><code>arrow-offset</code> 设置箭头的偏移量，来改变箭头的位置。</p>\n",
+    "content": "<p><code>arrow-offset</code> 设置箭头的在弹窗层上的偏移量。箭头默认至少会保留8px的空间， 以保证箭头不会贴在弹窗层两边。</p>\n",
     "link": "popover/arrow-offset",
     "component": " Popover",
     "findIntroStr": "Popover可通过对一个触发源操作触发弹出框,支持自定义弹出内容，延迟触发和渐变动画",

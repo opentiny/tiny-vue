@@ -1,21 +1,32 @@
 <template>
-  <tiny-grid ref="mytable" row-id="myid" :data="tableData">
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="radio" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="名称"></tiny-grid-column>
-    <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
-    <tiny-grid-column field="address" title="地址"></tiny-grid-column>
-    <tiny-grid-column field="introduction" title="公司简介" show-overflow></tiny-grid-column>
-  </tiny-grid>
+  <div>
+    <tiny-button @click="printRowId">
+      打印rowId
+    </tiny-button>
+    <tiny-grid ref="mytable" row-id="myid" :data="tableData">
+      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column type="radio" width="60"></tiny-grid-column>
+      <tiny-grid-column field="name" title="名称"></tiny-grid-column>
+      <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
+      <tiny-grid-column field="address" title="地址"></tiny-grid-column>
+      <tiny-grid-column field="introduction" title="公司简介" show-overflow></tiny-grid-column>
+    </tiny-grid>
+  </div>
 </template>
 
-<script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+<script>
+import { Grid, GridColumn, Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
     TinyGrid: Grid,
+    TinyButton: Button,
     TinyGridColumn: GridColumn
+  },
+  methods: {
+    printRowId() {
+      Modal.message(this.tableData[0].myid)
+    }
   },
   data() {
     return {

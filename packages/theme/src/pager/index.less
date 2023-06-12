@@ -66,8 +66,9 @@
       color: var(--ti-pager-text-color);
       padding: var(--ti-pager-poplist-item-padding-vertical) var(--ti-pager-poplist-item-padding-horizontal);
       box-sizing: border-box;
-      border: 1px solid transparent;
+      border: 1px solid  var(--ti-pager-li-border-color);
       transition: all 0.5s ease;
+
 
       a {
         color: var(--ti-pager-text-color);
@@ -112,7 +113,8 @@
       &.is-active {
         font-weight: var(--ti-pager-active-font-weight);
         color: var(--ti-pager-active-font-color);
-        background-color: var(--ti-pager-primary-bg-color);
+        background-color: var(--ti-pager-active-bg-color);
+        border: 1px solid var(--ti-pager-poplist-item-hover-border-color);
       }
     }
     li:last-child {
@@ -159,7 +161,7 @@
       height: var(--ti-pager-input-height);
       line-height: var(--ti-pager-input-height);
       border: 1px solid #d9d9d9;
-      color: var(--ti-pager-text-color);
+      color: var(--ti-pager-goto-text-color);
       vertical-align: middle;
       border-radius: var(--ti-pager-input-border-radius);
       background: #fff;
@@ -184,6 +186,7 @@
 
   &__btn-prev,
   &__btn-next {
+    width: var(--ti-pager-width);
     height: var(--ti-pager-height);
     line-height: calc(var(--ti-pager-height) - 2px);
     display: inline-flex;
@@ -193,7 +196,7 @@
     font-weight: bolder;
     color: var(--ti-pagination-prev-next-color);
     outline: none;
-    border: none;
+    border: 1px solid var(--ti-pager-li-border-color);
     background: transparent;
     margin-top: 0;
     margin-right: var(--ti-pager-prev-margin-right);
@@ -211,13 +214,14 @@
     }
 
     svg {
-      fill: var(--ti-pager-prev-next-svg-fill);
+      fill: var(--ti-pager-btn-svg-color);
       font-size: var(--ti-pager-svg-font-size);
       vertical-align: middle;
     }
 
     &:hover {
       background-color: var(--ti-pager-prev-next-hover-bg-color);
+      border: 1px solid var(--ti-pager-poplist-item-hover-border-color);
 
       svg {
         fill: var(--ti-pager-poplist-item-hover-text-color);
@@ -392,7 +396,7 @@
 
       svg {
         font-size: var(--ti-pager-svg-font-size);
-        fill: var(--ti-pager-total-svg-fill);
+        fill: var(--ti-pager-total-svg-color);
         vertical-align: middle;
       }
     }

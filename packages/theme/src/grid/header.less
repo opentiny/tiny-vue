@@ -37,6 +37,13 @@
   font-size: var(--ti-grid-font-size);
   color: var(--ti-grid-header-text-color);
 
+  // 去掉最后一个竖线
+  &:nth-last-of-type(2) {
+    .@{grid-prefix-cls}-resizable.is__line:before {
+      width: 0px;
+    }
+  }
+
   &.is__sortable {
     .@{grid-cell-prefix-cls} {
       padding-right: 20px;

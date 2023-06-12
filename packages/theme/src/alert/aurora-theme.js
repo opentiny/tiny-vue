@@ -1,5 +1,4 @@
 export const tinyAlertAuroraTheme = {
-  'ti-alert-normal-height': 'var(--ti-common-size-9x)',
   'ti-alert-normal-padding-top': 'var(--ti-common-space-2x)',
   'ti-alert-normal-padding-right': 'var(--ti-common-space-3x)',
   'ti-alert-normal-padding-left': 'var(--ti-common-space-3x)',

@@ -1,5 +1,5 @@
 <template>
-  <tiny-slide-bar v-model="list" :init-blocks="initBlocks" @click="handleClick" @before-click="beforClick"></tiny-slide-bar>
+  <tiny-slide-bar v-model="list" :init-blocks="initBlocks" @click="handleClick" @before-click="beforeClick"></tiny-slide-bar>
 </template>
 
 <script lang="jsx">
@@ -32,7 +32,7 @@ export default {
         status: 'info'
       })
     },
-    beforClick() {
+    beforeClick() {
       Modal.message({ message: 'before-click 事件', status: 'info' })
     }
   }

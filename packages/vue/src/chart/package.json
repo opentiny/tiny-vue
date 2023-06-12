@@ -10,6 +10,7 @@
     "index.d.ts",
     "src"
   ],
+  "sideEffects": false,
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
     "vitest": "^0.31.0"

@@ -125,7 +125,9 @@ export default {
     // 渲染类型 index,radio,selection,expand
     type: String,
     // 列宽度
-    width: [Number, String]
+    width: [Number, String],
+    // 操作列配置
+    operationConfig: Object
   },
   provide() {
     return { $column: this }

@@ -8,16 +8,12 @@ allDist/
 packages/**/runtime
 coverage/
 
-/packages/vue-icon-saas/src
-/packages/vue-icon-saas/index.ts
 /packages/vue/index.ts
 /packages/vue/pc.ts
 /packages/vue/mobile.ts
 /packages/vue/app.ts
-/packages/vue-icon/src/index.ts
 
 /examples/**/playwright-report
-/examples/docs/.vitepress/cache
 vite.config.ts.timestamp*
 vitest.config.ts.timestamp*
 

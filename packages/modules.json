@@ -1211,11 +1211,6 @@
     "type": "module",
     "exclude": false
   },
-  "IconLowercase": {
-    "path": "vue-icon/lowercase.ts",
-    "type": "module",
-    "exclude": false
-  },
   "Image": {
     "path": "vue/src/image/index.ts",
     "type": "component",

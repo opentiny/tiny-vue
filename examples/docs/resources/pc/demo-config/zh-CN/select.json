@@ -312,6 +312,14 @@
     "demoId": "is-drop-inherit-width"
   },
   {
+    "title": "隐藏下拉",
+    "content": "<p>通过 <code>hide-drop</code> 属性设置下拉列表不显示。</p>\n",
+    "link": "select/hide-select-input-border",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "hide-select-input-border"
+  },
+  {
     "title": "默认插槽",
     "content": "<p>通过 <code>default</code> 默认插槽列表。</p>\n",
     "link": "select/slot-default",
@@ -433,7 +441,7 @@
   },
   {
     "title": "配置方式",
-    "content": "<p>通过设置 <code>cache-op</code> 开启缓存功能并且通过 <code>options</code> 设置下来选项。</p>\n",
+    "content": "<p>通过设置 <code>cache-op</code> 开启缓存功能并且通过 <code>options</code> 设置下拉选项。</p>\n",
     "link": "select/cache-usage",
     "component": " Select 选择器",
     "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",

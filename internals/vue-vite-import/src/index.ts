@@ -133,7 +133,7 @@ const transformDefaultImport = (matchRes: string, opt: PluginInnerOption) => {
   return `import ${matchRes} from '${importName}'`
 }
 
-const getCompRegExp = (libraryName: any) => new RegExp(`import\\s+?{([\\w ,\\s]+)}\\s+?from\\s+?('|")${libraryName}('|")`, 'g')
+const getCompRegExp = (libraryName: any) => new RegExp(`import\\s+?{*([\\w ,\\s]+)}*\\s+?from\\s+?('|")${libraryName}('|")`, 'g')
 
 function transformCode(
   code: string,
@@ -143,7 +143,7 @@ function transformCode(
 
   plgOptions.forEach(opt => {
     const compRegexp = getCompRegExp(opt.libraryName)
-    if (compRegexp && compRegexp.test(resultCode)) {
+    if (compRegexp.test(resultCode)) {
       const newCode = resultCode.replace(compRegexp, (_all, matchRes): string => {
         if (_all.includes('{')) {
           return transformImport(matchRes, opt)

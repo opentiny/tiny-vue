@@ -19,5 +19,5 @@ test('多个表格联动测试', async ({ page }) => {
     .first()
     .click()
 
-  await expect(page.getByText('ss').nth(2)).toBeVisible()
+  await expect(page.getByText('ss').first()).toBeVisible()
 })

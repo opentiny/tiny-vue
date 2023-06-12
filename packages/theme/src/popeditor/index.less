@@ -19,11 +19,17 @@
 @dialog-box-prefix-cls: ~'@{css-prefix}dialog-box';
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
+.@{dialog-box-prefix-cls} {
+  .component-css-vars-popeditor();
+}
+
 .@{popeditor-prefix-cls} {
   .component-css-vars-popeditor();
 
   .@{input-prefix-cls} {
     &.@{popeditor-prefix-cls}-readonly .@{input-prefix-cls}__inner {
+      padding-left: var(--ti-popeditor-input-padding-left);
+
       &:hover,
       &:focus,
       &:active {
@@ -62,6 +68,7 @@
       .@{input-prefix-cls}__inner {
         padding-right: 50px;
       }
+
       .@{svg-prefix-cls}__popeditor {
         &.@{css-prefix}chevron {
           margin-right: 8px;
@@ -87,9 +94,9 @@
       cursor: pointer;
 
       .@{svg-prefix-cls}__popeditor {
-        height: 30px;
-        line-height: 30px;
-        font-size: var(--ti-common-font-size-1);
+        height: var(--ti-popeditor-icon-height);
+        line-height: var(--ti-popeditor-icon-line-height);
+        font-size: var(--ti-popeditor-icon-font-size);
         fill: var(--ti-popeditor-icon-color);
         cursor: pointer;
 
@@ -125,7 +132,7 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        margin-bottom: 12px;
+        margin-bottom: var(--ti-popeditor-search-item-margin-bottom);
 
         .@{popeditor-prefix-cls}__search-label {
           text-align: right;
@@ -142,7 +149,7 @@
     .@{popeditor-prefix-cls}__search-footer {
       width: 100%;
       text-align: center;
-      margin: 12px auto;
+      margin: var(--ti-popeditor-search-footer-margin-vertical) var(--ti-popeditor-search-footer-margin-horizontal);
     }
   }
 
@@ -155,7 +162,7 @@
     &__left,
     &__right {
       width: 50%;
-      padding: 0 4px;
+      padding: var(--ti-popeditor-tabs-body-padding-vertical) var(--ti-popeditor-tabs-body-padding-horizontal);
       vertical-align: top;
 
       &.@{popeditor-prefix-cls}-body__radio {
@@ -169,12 +176,12 @@
         margin: 0;
         padding: 0 10px;
         overflow: hidden;
-        height: 40px;
+        height: var(--ti-popeditor-tabs-li-height);
         width: 100%;
         position: relative;
 
         ul {
-          height: 40px;
+          height: var(--ti-popeditor-tabs-li-height);
           border-bottom: 1px solid var(--ti-popeditor-border-color);
           box-sizing: border-box;
 
@@ -182,7 +189,7 @@
             float: left;
             margin-right: -1px;
             cursor: pointer;
-            padding: 0 20px;
+            padding: var(--ti-popeditor-tabs-li-padding-vertical) var(--ti-popeditor-tabs-li-padding-horizontal);
             color: var(--ti-popeditor-tabs-text-color);
             min-width: 90px;
             height: var(--ti-popeditor-tabs-li-height);
@@ -191,7 +198,7 @@
             &.@{popeditor-prefix-cls}__tabs-selected {
               color: var(--ti-popeditor-tabs-selected-text-color);
               border-bottom: 3px solid var(--ti-popeditor-tabs-selected-text-color);
-              font-weight: 700;
+              font-weight: var(--ti-popeditor-tabs-selected-font-weight);
             }
           }
         }
@@ -199,7 +206,8 @@
 
       .@{popeditor-prefix-cls}__tabs-body {
         .tabs-body-item {
-          padding: 12px 12px 0px;
+          padding: var(--ti-popeditor-tabs-body-item-padding-top) var(--ti-popeditor-tabs-body-item-padding-horizontal)
+            var(--ti-popeditor-tabs-body-item-padding-bottom);
 
           .@{pager-prefix-cls} {
             padding-bottom: 0;

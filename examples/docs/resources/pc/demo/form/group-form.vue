@@ -1,41 +1,57 @@
 <template>
   <div class="demo-form">
-    <div class="group-form-title">分组标题1</div>
+    <div class="group-form-title">
+      分组标题1
+    </div>
     <tiny-form ref="groupForm1" :model="createData" :rules="rules" label-position="top" label-width="100px">
       <tiny-form-item label="站点名称" prop="name">
         <tiny-input v-model="createData.name" placeholder="请输入"></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="弹性公网IP" prop="ip">
-        <tiny-radio v-model="createData.ip" label="1"> 现在购买 </tiny-radio>
-        <tiny-radio v-model="createData.ip" label="0"> 暂不购买 </tiny-radio>
+        <tiny-radio v-model="createData.ip" label="1">
+          现在购买
+        </tiny-radio>
+        <tiny-radio v-model="createData.ip" label="0">
+          暂不购买
+        </tiny-radio>
       </tiny-form-item>
       <tiny-form-item label="站点地址（可选）" prop="address" class="address">
         <tiny-input v-model="createData.address" placeholder="例如：www.example.com"></tiny-input>
         <icon-help-circle title="站点地址（可选）" class="icon-help"></icon-help-circle>
       </tiny-form-item>
     </tiny-form>
-    <div class="group-form-title second-title">分组标题2</div>
+    <div class="group-form-title second-title">
+      分组标题2
+    </div>
     <tiny-form ref="groupForm2" :model="createData" :rules="rules" label-position="top" label-width="100px">
       <tiny-form-item label="国家" prop="country">
         <tiny-input v-model="createData.country" placeholder="请输入"></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="类别" prop="type">
-        <tiny-radio v-model="createData.type" label="1"> 现在购买 </tiny-radio>
-        <tiny-radio v-model="createData.type" label="0"> 暂不购买 </tiny-radio>
+        <tiny-radio v-model="createData.type" label="1">
+          现在购买
+        </tiny-radio>
+        <tiny-radio v-model="createData.type" label="0">
+          暂不购买
+        </tiny-radio>
       </tiny-form-item>
       <tiny-form-item label="标题内容超出六个字" prop="title">
         <tiny-input type="textarea" v-model="createData.title" placeholder="请输入"></tiny-input>
       </tiny-form-item>
       <tiny-form-item class="btn-form-item">
-        <tiny-button type="primary" @click="handleSubmit"> 确认 </tiny-button>
-        <tiny-button @click="resetForm"> 取消 </tiny-button>
+        <tiny-button type="primary" @click="handleSubmit">
+          确认
+        </tiny-button>
+        <tiny-button @click="resetForm">
+          取消
+        </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>
 </template>
 
 <script lang="jsx">
-import { Form, FormItem, Input, Button, Modal, ButtonGroup, Switch, Radio } from '@opentiny/vue'
+import { Form, FormItem, Input, Button, Modal, Radio } from '@opentiny/vue'
 import { IconHelpCircle } from '@opentiny/vue-icon'
 
 export default {

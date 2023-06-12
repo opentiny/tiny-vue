@@ -1,9 +1,19 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
-    await page.goto('http://localhost:7130/pc/pager/pager-events');
-    await page.getByText('分页事件size-change').nth(1).click();
-    await page.locator('.tiny-pager__input-btn > .tiny-svg').click();
-    await page.getByRole('listitem', { name: '30' }).click();
-    await page.getByText('size-change 事件，每页 30 条').click();
-});
+test('分页事件size-change', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/pager/pager-events')
+
+  const preview = page.locator('#preview')
+  const pager = preview.locator('.tiny-pager')
+  const sizeSelect = page.locator('.tiny-pager__selector')
+  const sizeChange = pager.locator('.tiny-pager__input')
+  const modalBox = page.locator('.tiny-modal__box')
+
+  await sizeChange.click()
+  await sizeSelect.getByText('50').click()
+  await expect(modalBox.filter({ hasText: 'size-change 事件，每页 50 条' })).toBeVisible()
+  await sizeChange.click()
+  await sizeSelect.getByText('100').click()
+  await expect(modalBox.filter({ hasText: 'size-change 事件，每页 100 条' })).toBeVisible()
+})

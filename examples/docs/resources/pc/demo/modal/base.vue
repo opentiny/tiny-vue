@@ -1,9 +1,17 @@
 <template>
   <div class="content">
-    <tiny-button @click="baseClick" :reset-time="0">基本提示框</tiny-button>
-    <tiny-button @click="successClick" :reset-time="0">成功提示框</tiny-button>
-    <tiny-button @click="errorClick" :reset-time="0">失败提示框</tiny-button>
-    <tiny-button @click="confirmClick" :reset-time="0">确认提示框</tiny-button>
+    <tiny-button @click="baseClick" :reset-time="0">
+      基本提示框
+    </tiny-button>
+    <tiny-button @click="successClick" :reset-time="0">
+      成功提示框
+    </tiny-button>
+    <tiny-button @click="errorClick" :reset-time="0">
+      失败提示框
+    </tiny-button>
+    <tiny-button @click="confirmClick" :reset-time="0">
+      确认提示框
+    </tiny-button>
   </div>
 </template>
 
@@ -16,7 +24,8 @@ export default {
   },
   methods: {
     baseClick() {
-      Modal.alert('基本提示框', '标题')
+      const modal = Modal.alert('基本提示框', '标题')
+      setTimeout(() => modal.vm.close(), 3000)
     },
     successClick() {
       Modal.alert({ message: '成功提示框', status: 'success' })

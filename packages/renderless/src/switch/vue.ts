@@ -14,7 +14,7 @@ import { toggle, computedWarpClasses, computedInnerClasses, computedStyle } from
 
 export const api = ['toggle', 'state']
 
-export const renderless = (props, { computed, watch, reactive, inject }, { parent, constants, mode, emit }) => {
+export const renderless = (props, { computed, watch, reactive, inject }, { parent, constants, mode, emit, designConfig }) => {
   const prefixCls = constants.prefixcls(mode)
 
   parent.tinyForm = parent.tinyForm || inject('form', null)
@@ -30,7 +30,15 @@ export const renderless = (props, { computed, watch, reactive, inject }, { paren
     style: computed(() => api.computedStyle()),
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
     disabled: computed(() => props.disabled || state.formDisabled),
-    isDisplayOnly: computed(() => props.displayOnly || (parent.tinyForm || {}).displayOnly)
+    isDisplayOnly: computed(() => props.displayOnly || (parent.tinyForm || {}).displayOnly),
+    showText: computed(() => {
+      // 用户没传showText属性时，aurora默认是展示文本
+      if (props.showText === undefined) {
+        return designConfig?.showText || false
+      } else {
+        return props.showText
+      }
+    } ),
   })
 
   Object.assign(api, {

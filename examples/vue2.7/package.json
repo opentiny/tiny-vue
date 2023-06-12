@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "dev": "vite --port 7127",
+    "dev:saas": "vite --port 7127 --mode saas",
     "build": "vite build",
     "preview": "vite preview",
     "test:e2e": "playwright test",
@@ -29,7 +30,7 @@
     "@playwright/test": "^1.29.2",
     "@vitejs/plugin-vue2": "^2.2.0",
     "@vitejs/plugin-vue2-jsx": "^1.1.0",
-    "@vitest/ui": "^0.27.1",
+    "@vitest/ui": "^0.31.0",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
     "@vue/test-utils": "^1.3.3",
     "jsdom": "^21.0.0",

@@ -6,8 +6,10 @@ import importPlugin from '@opentiny/vue-vite-import'
 import inspectPlugin from 'vite-plugin-inspect'
 import { createVuePlugin as vue2Plugin } from 'vite-plugin-vue2'
 import { createSvgPlugin as vue2SvgPlugin } from 'vite-plugin-vue2-svg'
+import Markdown from 'vite-plugin-md'
 import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/vite'
 import { getAlias, pathFromWorkspaceRoot, getOptimizeDeps } from '../../internals/cli/src/config/vite'
+
 // 增加Unocss
 import Unocss from 'unocss/vite'
 import { rules, shortcuts, variants } from '../docs/vite-plugins/vite-plugin-uno-preset.js'
@@ -32,12 +34,12 @@ export default defineConfig((config) => {
         {
           libraryName: '@opentiny/vue'
         },
-        {
-          libraryName: '@opentiny/vue-icon',
-          customName: (name) => {
-            return name === 'default' ? '@opentiny/vue-icon$' : `@opentiny/vue-icon/${name.replace(/^icon-/, '')}`
+        ...['icon', 'icon-saas'].map(lib => ({
+          libraryName: `@opentiny/vue-${lib}`,
+          customName: (name: string) => {
+            return name === 'default' ? `@opentiny/vue-${lib}$` : `@opentiny/vue-${lib}/${name.replace(/^icon-/, '')}`
           }
-        }
+        }))
       ]),
       dynamicImportPlugin(),
       Unocss({
@@ -47,6 +49,13 @@ export default defineConfig((config) => {
         shortcuts,
         variants,
         safelist: [...Array.from({ length: 24 }, (_, i) => `c-rand${i + 1}`), ...Array.from({ length: 24 }, (_, i) => `bg-rand${i + 1}`)]
+      }),
+      Markdown({
+        markdownItOptions: {
+          html: true,
+          linkify: true,
+          typographer: true,
+        },
       }),
       inspectPlugin()
     ],

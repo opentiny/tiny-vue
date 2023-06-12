@@ -16,15 +16,59 @@ export default {
   },
   methods: {
     getCurrencyData() {
-      let that = this
-
-      return new Promise((resolve, reject) => {
-        that.$service.network
-          .get('servlet/idataProxy/params/ws/soaservices/CurrencyServlet')
-          .then((response) => {
-            resolve((response.data && response.data.currency) || [])
-          })
-          .catch(reject)
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve([
+            {
+              'symbol': '$',
+              'currency_code': 'MZN'
+            },
+            {
+              'symbol': null,
+              'currency_code': 'CNY'
+            },
+            {
+              'symbol': '*NULL*',
+              'currency_code': 'CHE'
+            },
+            {
+              'symbol': '$',
+              'currency_code': 'USD'
+            },
+            {
+              'symbol': null,
+              'currency_code': 'VND'
+            },
+            {
+              'symbol': null,
+              'currency_code': 'VUV'
+            },
+            {
+              'symbol': null,
+              'currency_code': 'WST'
+            },
+            {
+              'symbol': null,
+              'currency_code': 'XAF'
+            },
+            {
+              'symbol': null,
+              'currency_code': 'IRU'
+            },
+            {
+              'symbol': null,
+              'currency_code': 'IRE'
+            },
+            {
+              'symbol': null,
+              'currency_code': 'BYN'
+            },
+            {
+              'symbol': null,
+              'currency_code': 'HKD'
+            }
+          ])
+        }, 500)
       })
     }
   }

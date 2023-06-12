@@ -16,14 +16,33 @@ export default {
   },
   methods: {
     getCountryData() {
-      let that = this
-      return new Promise((resolve, reject) => {
-        that.$service.network
-          .get('servlet/idataProxy/params/ws/soaservices/CountryServlet')
-          .then((response) => {
-            resolve((response.data && response.data.country) || [])
-          })
-          .catch(reject)
+      return new Promise((resolve) => {
+        resolve([
+          {
+            'territory_short_name': 'China',
+            'description': 'the Peoples Republic of China',
+            'language': 'US',
+            'territory_code': 'CN'
+          },
+          {
+            'territory_short_name': 'France',
+            'description': 'the French Republic',
+            'language': 'US',
+            'territory_code': 'FR'
+          },
+          {
+            'territory_short_name': 'Finland',
+            'description': 'the Republic of Finland',
+            'language': 'US',
+            'territory_code': 'FI'
+          },
+          {
+            'territory_short_name': 'Kuwait',
+            'description': 'the State of Kuwait',
+            'language': 'US',
+            'territory_code': 'KW'
+          }
+        ])
       })
     }
   }

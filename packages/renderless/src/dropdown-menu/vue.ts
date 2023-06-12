@@ -17,7 +17,7 @@ export const api = ['state', 'toggleItem', 'updateOffset', 'clickOutside', 'doDe
 export const renderless = (props, hooks, instance) => {
   const api = {}
   const { reactive, provide, onMounted } = hooks
-  const { nextTick, mode, vm, parent, dispatch, emit, refs} = instance
+  const { nextTick, mode, vm, parent, dispatch, emit, refs } = instance
   const state = reactive({
     offset: 0,
     scroller: null,

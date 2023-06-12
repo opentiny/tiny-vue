@@ -73,7 +73,7 @@
       font-size: var(--ti-collapse-item-arrow-font-size);
       order: -1;
       transition: transform 0.3s;
-      transform: rotate(90deg);
+      transform: var(--ti-collapse-item-arrow-transform);
 
       svg {
         font-size: var(--ti-collapse-item-icon-font-size);
@@ -85,8 +85,10 @@
       border-bottom-color: transparent;
 
       .@{collapse-item-prefix-cls}__arrow {
-        transform: rotate(-90deg);
-        fill: var(--ti-collapse-item-arrow-hover-text-color);
+        transform: var(--ti-collapse-item-is-active-arrow-transform);
+        svg{
+          fill: var(--ti-collapse-item-is-active-arrow-text-color);
+        }
       }
     }
   }

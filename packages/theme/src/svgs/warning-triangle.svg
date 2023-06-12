@@ -1,8 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g id="icon/alert/warning/16" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M8.84214045,1.99620332 L14.8875136,13.1221712 C15.1355954,13.5787435 14.9596241,14.1462685 14.4944708,14.3897737 C14.3562257,14.4621442 14.2019568,14.5 14.045279,14.5 L1.95453261,14.5 C1.42735881,14.5 1,14.080525 1,13.5630764 C1,13.409289 1.03856723,13.2578659 1.11229795,13.1221712 L7.15767114,1.99620332 C7.40575293,1.53963101 7.98394425,1.36690601 8.44909761,1.61041124 C8.61620187,1.69788941 8.75301818,1.83218176 8.84214045,1.99620332 Z" id="三角形" fill="#FF8800"></path>
-        <path d="M8,12.5 C7.5859375,12.5 7.25,12.1640625 7.25,11.75 C7.25,11.3359375 7.5859375,11 8,11 C8.4140625,11 8.75,11.3359375 8.75,11.75 C8.75,12.1640625 8.4140625,12.5 8,12.5 Z" id="路径" fill="#FFFFFF"></path>
-        <rect id="矩形" fill="#FFFFFF" transform="translate(8.000000, 7.750000) scale(-1, -1) rotate(180.000000) translate(-8.000000, -7.750000) " x="7.5" y="5.5" width="1" height="4.5" rx="0.5"></rect>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 14 14" style="enable-background:new 0 0 14 14;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#FF8800;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+</style>
+<path class="st0" d="M7.84,1l6.05,11.13c0.25,0.46,0.07,1.02-0.39,1.27c-0.14,0.07-0.29,0.11-0.45,0.11H0.95
+	C0.43,13.5,0,13.08,0,12.56c0-0.15,0.04-0.31,0.11-0.44L6.16,1c0.25-0.46,0.83-0.63,1.29-0.39C7.62,0.7,7.75,0.83,7.84,1z"/>
+<path class="st1" d="M7.75,10.75c0,0.41-0.34,0.75-0.75,0.75s-0.75-0.34-0.75-0.75S6.59,10,7,10S7.75,10.34,7.75,10.75z M7,9
+	c0.28,0,0.5-0.22,0.5-0.5V5c0-0.28-0.22-0.5-0.5-0.5S6.5,4.72,6.5,5v3.5C6.5,8.78,6.72,9,7,9z"/>
 </svg>

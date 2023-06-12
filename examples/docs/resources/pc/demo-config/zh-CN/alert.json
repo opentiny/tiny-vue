@@ -65,7 +65,7 @@
   },
   {
     "title": "自定义提示内容",
-    "content": "<p>当 <code>size</code> 为 large时，可通过 <code>description</code> 属性或插槽设置自定义提示内容。</p>\n",
+    "content": "<p>可通过 <code>description</code> 属性或插槽设置自定义提示内容。</p>\n",
     "link": "alert/custom-description",
     "component": " Alert 警告",
     "findIntroStr": "Alert 警告,提供 warning、error、info、success 四种类型显示不同类别的信息。",

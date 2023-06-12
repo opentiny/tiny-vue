@@ -1,5 +1,6 @@
 <template>
   <tiny-grid ref="tinyTable" height="300">
+    <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="名称"></tiny-grid-column>
     <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
     <tiny-grid-column field="city" title="地址"></tiny-grid-column>
