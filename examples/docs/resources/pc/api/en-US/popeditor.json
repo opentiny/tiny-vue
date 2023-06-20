@@ -202,6 +202,13 @@
       "type": "Boolean",
       "desc": "Set initialization not to request data",
       "defaultValue": "true"
+    },
+    {
+      "name": "suggest",
+      "sample": "suggest",
+      "type": "Boolean",
+      "desc": "Configure the suggest to enable the association function, and automatically trigger the association query after entering the input box; This function needs to be used in conjunction with remoteSearch",
+      "defaultValue": ""
     }
   ],
   "slots": [
