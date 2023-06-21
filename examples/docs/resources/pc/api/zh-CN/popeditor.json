@@ -202,6 +202,13 @@
       "type": "Boolean",
       "desc": "设置初始化不请求数据",
       "defaultValue": "true"
+    },
+    {
+      "name": "suggest",
+      "sample": "suggest",
+      "type": "Boolean",
+      "desc": "配置suggest 开启联想功能，输入框输入后自动触发联想查询；该功能需要联合 remoteSearch 使用",
+      "defaultValue": ""
     }
   ],
   "slots": [
