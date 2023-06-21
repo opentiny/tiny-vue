@@ -185,7 +185,7 @@
   },
   {
     "title": "工具栏点击事件",
-    "content": "<p>在 <code>grid</code> 标签上配置 <code>resizable-change</code> 可以监听工具栏点击事件</p>\n",
+    "content": "<p>在 <code>grid</code> 标签上配置 <code>toolbar-button-click</code> 可以监听工具栏点击事件</p>\n",
     "link": "grid/event/toolbar-button-click-event",
     "component": " Grid 表格",
     "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
