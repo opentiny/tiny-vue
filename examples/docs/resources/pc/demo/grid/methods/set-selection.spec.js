@@ -5,5 +5,5 @@ test('手动选中指定行', async ({ page }) => {
   await page.goto('http://localhost:7130/pc/grid-operation-column/methods-set-selection')
   await page.getByRole('button', { name: 'setSelection' }).click()
 
-  await expect(page.getByRole('row', { name: '5 810 2012-12-12 12:12:12 韶关' }).locator('span svg')).toBeVisible()
+  await expect(page.getByRole('row', { name: '5 810 2012-12-12 12:12:12 韶关' }).getByRole('img').first()).toBeVisible()
 })

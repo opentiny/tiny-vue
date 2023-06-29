@@ -27,6 +27,7 @@ export default defineComponent({
       default: () => $constants
     },
     title: String,
+    titleRight: String,
     name: {
       type: [String, Number],
       default() {

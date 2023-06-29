@@ -204,7 +204,7 @@
     }
   }
   &.is-disabled.is-display-only {
-    display: flex;
+    @apply flex;
     background: none;
   }
   &.is-display-only {
@@ -244,6 +244,10 @@
     .@{numeric-prefix-cls}__input {
       padding: 0 33px;
       @apply h-8;
+
+      &.has-unit {
+        padding: 0 58px 0 12px;
+      }
     }
 
     .@{numeric-prefix-cls}__input-inner {

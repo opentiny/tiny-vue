@@ -20,4 +20,5 @@ export const show = ({ state, emit, props }) => (trigger) => {
 export const confirm = ({ state, emit }) => () => {
   state.showPopover = false
   emit('confirm', state)
+  emit('hide', state)
 }

@@ -1,1 +1,26 @@
-[{"title":"列头提示","content":"<p>列头提示有2种，一种是 <code>show-header-tip</code> 提示（内容是否超出都会提示），另一种是 <code>show-header-overflow</code> 内容超出当前行时隐藏并提示。</p>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\">TIP</p>\n<p><code>show-header-overflow</code> 可选值有：</p>\n<ul>\n<li><code>tooltip</code>：内容超出部分显示 <code>...</code>，左侧/右侧弹出提示层显示全部信息，<code>show-overflow</code> 开启时的缺省提示</li>\n<li><code>title</code>：和原生标签的 <code>title</code> 属性一致</li>\n<li><code>ellipsis</code>：内容超出部分显示 <code>...</code>，没有提示</li>\n</ul>\n</div>\n","link":"grid/tip/column-header-tip","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tip-column-header-tip"},{"title":"单元格提示","content":"<p>单元格提示有2种，一种是 <code>show-tip</code> 提示（内容是否超出都会提示），另一种是 <code>show-overflow</code> 内容超出当前行时隐藏并提示。</p>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\">TIP</p>\n<p><code>show-overflow</code> 可选值有：</p>\n<ul>\n<li><code>title</code>：和原生标签的 <code>title</code> 属性一致</li>\n<li><code>ellipsis</code>：内容超出部分显示 <code>...</code>，没有提示</li>\n<li><code>tooltip</code>：内容超出部分显示 <code>...</code>，左侧/右侧弹出提示层显示全部信息，<code>show-overflow</code> 开启时的缺省提示\n<code>tooltip</code> 提示可通过 <code>Grid</code> 属性 <code>:tooltip-config</code> 进行配置，配置方式参考 <code>Tooltip</code> 组件</li>\n</ul>\n</div>\n","link":"grid/tip/cell-tip","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tip-cell-tip"}]
+[
+  {
+    "title": "列头提示",
+    "content": "<p>列头提示有2种，一种是 <code>show-header-tip</code> 提示（内容是否超出都会提示），另一种是 <code>show-header-overflow</code> 内容超出当前行时隐藏并提示。</p>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\">TIP</p>\n<p><code>show-header-overflow</code> 可选值有：</p>\n<ul>\n<li><code>tooltip</code>：内容超出部分显示 <code>...</code>，左侧/右侧弹出提示层显示全部信息，<code>show-overflow</code> 开启时的缺省提示</li>\n<li><code>title</code>：和原生标签的 <code>title</code> 属性一致</li>\n<li><code>ellipsis</code>：内容超出部分显示 <code>...</code>，没有提示</li>\n</ul>\n</div>\n",
+    "link": "grid/tip/column-header-tip",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tip-column-header-tip"
+  },
+  {
+    "title": "单元格提示",
+    "content": "<p>单元格提示有2种，一种是 <code>show-tip</code> 提示（内容是否超出都会提示），另一种是 <code>show-overflow</code> 内容超出当前行时隐藏并提示。</p>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\">TIP</p>\n<p><code>show-overflow</code> 可选值有：</p>\n<ul>\n<li><code>title</code>：和原生标签的 <code>title</code> 属性一致</li>\n<li><code>ellipsis</code>：内容超出部分显示 <code>...</code>，没有提示</li>\n<li><code>tooltip</code>：内容超出部分显示 <code>...</code>，左侧/右侧弹出提示层显示全部信息</li>\n</ul>\n</div>\n",
+    "link": "grid/tip/cell-tip",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tip-cell-tip"
+  },
+  {
+    "title": "自定义单元格提示",
+    "content": "<p><code>tooltip</code> 提示可通过 <code>Grid</code> 属性 <code>:tooltip-config</code> 进行配置，配置中的<code>contentMethod</code>方法可以自定义提示内容，配置方式参考 <code>Tooltip</code> 组件</p>\n",
+    "link": "grid/tip/cell-tip-config",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tip-cell-tip-config"
+  }
+]

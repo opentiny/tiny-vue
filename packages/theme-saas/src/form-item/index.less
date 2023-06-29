@@ -227,6 +227,7 @@
 
   &__error {
     @apply text-color-error text-xs p-0 absolute top-full left-0 h-5 leading-5;
+    @apply w-full overflow-hidden text-ellipsis whitespace-nowrap;
   }
 
   &__error--inline {
@@ -240,7 +241,7 @@
   &.is-required:not(.is-no-asterisk) {
     .@{form-item-prefix-cls}__label-wrap > .@{form-item-prefix-cls}__label:before,
     & > .@{form-item-prefix-cls}__label:before {
-      content: '*';
+      @apply ~"content-['*']";
       @apply text-color-error;
       @apply mr-1;
     }
@@ -266,8 +267,8 @@
       @apply text-color-error;
     }
 
-    .@{numeric-prefix-cls}__input-inner,
-    .@{numeric-prefix-cls}__input-inner:focus {
+    .@{numeric-prefix-cls}__input,
+    .@{numeric-prefix-cls}__input:focus {
       @apply border-color-error;
     }
 

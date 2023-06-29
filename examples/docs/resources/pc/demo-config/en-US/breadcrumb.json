@@ -25,7 +25,7 @@
   },
   {
     "title": "options configuration",
-    "content": "<p>Totally configure each <code>BreadcrumbItem</code> via <code>options</code>. </p>Set <code>textField</code> to specify the field to be displayed. The default field to be displayed is <code>label</code>\n",
+    "content": "<p>Totally configure each <code>BreadcrumbItem</code> via <code>options</code>. </p>Set <code>text-field</code> to specify the field to be displayed. The default field to be displayed is <code>label</code>\n",
     "link": "breadcrumb/options",
     "component": "Breadcrumb",
     "findIntroStr": "Breadcrumb navigation, which tells visitors where they are currently on the site and how to get back.",

@@ -24,6 +24,14 @@
     "demoId": "trigger"
   },
   {
+    "title": "显示箭头",
+    "content": "<p>可以配置 <code>visible-arrow</code> 为true ,显示箭头，默认不显示</p>\n",
+    "link": "dropdown/visible-arrow",
+    "component": "Dropdown 下拉菜单",
+    "findIntroStr": "Dropdown 下拉菜单。",
+    "demoId": "visible-arrow"
+  },
+  {
     "title": "自定义文本",
     "content": "<p>Dropdown 可以通过<code>title</code> 属性去自定义显示文本</p>\n",
     "link": "dropdown/title",
@@ -70,6 +78,14 @@
     "component": "Dropdown 下拉菜单",
     "findIntroStr": "Dropdown 下拉菜单。",
     "demoId": "multi-level"
+  },
+  {
+    "title": "弹框最小宽度与触发源一致",
+    "content": "<p>Dropdown 可以通过<code>inherit-width</code>属性配置 DropdownMenu 的最小宽度继承触发源的宽度</p>\n",
+    "link": "dropdown/inherit-width",
+    "component": "Dropdown 下拉菜单",
+    "findIntroStr": "Dropdown 下拉菜单。",
+    "demoId": "inherit-width"
   },
   {
     "title": "内置事件",

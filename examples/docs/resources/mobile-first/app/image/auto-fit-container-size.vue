@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
-      url: 'webnova/static/images/1.jpg'
+      url: '/static/images/1.jpg'
     }
   }
 }

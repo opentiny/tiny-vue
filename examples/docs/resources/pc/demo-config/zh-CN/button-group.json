@@ -17,7 +17,7 @@
     },
     {
         "title": "设置组件大小",
-        "content": "<p>可以设置为：<code>medium</code>，<code>small</code>，<code>mini</code></p>\n",
+        "content": "<p>可以设置为：<code>medium</code>，<code>small</code>，<code>mini</code>。</p>\n",
         "link": "button-group/size",
         "component": " ButtonGroup 按钮组",
         "findIntroStr": "以按钮组的方式出现，常用于多项类似操作。",
@@ -64,6 +64,14 @@
         "demoId": "show-edit"
     },
     {
+        "title": "change事件",
+        "content": "<p>当选中按钮发生改变时将触发 <code>change</code> 事件。</p>\n",
+        "link": "button-group/change-event",
+        "component": " Buttongroup 按钮组",
+        "findIntroStr": "以按钮组的方式出现，常用于多项类似操作。",
+        "demoId": "change-event"
+    },
+    {
         "title": "编辑事件",
         "content": "<p>勾选值改变后将触发 <code>edit</code> 事件。</p>\n",
         "link": "button-group/event-edit",
@@ -81,7 +89,7 @@
     },
     {
         "title": "多行",
-        "content": "<p>多行按钮组，超出最大宽度后，换行显示</p>\n",
+        "content": "<p>多行按钮组，超出最大宽度后，换行显示。</p>\n",
         "link": "button-group/button-group-multiple",
         "component": " Buttongroup 按钮组",
         "findIntroStr": "多行",
@@ -89,10 +97,18 @@
     },
     {
         "title": "边框",
-        "content": "<p>设置有无边框，默认为true</p>\n",
+        "content": "<p>设置有无边框，默认为true。</p>\n",
         "link": "button-group/border",
         "component": " Buttongroup 按钮组",
         "findIntroStr": "边框",
         "demoId": "border"
+    },
+    {
+        "title": "选块角标",
+        "content": "<p>通过配置项 <code>sup</code> 配置选块角标。</p>\n",
+        "link": "button-group/sup",
+        "component": " Buttongroup 按钮组",
+        "findIntroStr": "选块角标",
+        "demoId": "sup"
     }
 ]

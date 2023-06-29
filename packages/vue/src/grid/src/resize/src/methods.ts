@@ -27,7 +27,11 @@ import GlobalConfig from '../../config'
 
 export default {
   bindResize() {
-    const resizeObserver = new Resize(this.recalculate, GlobalConfig.resizeInterval)
+    const resizeObserver = new Resize(() => {
+      this.updateParentHeight()
+      this.updateTableBodyHeight()
+      this.recalculate()
+    }, GlobalConfig.resizeInterval)
 
     resizeObserver.observe(this.getParentElem())
     this.$resize = resizeObserver

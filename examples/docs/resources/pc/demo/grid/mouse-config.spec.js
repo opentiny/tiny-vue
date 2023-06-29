@@ -5,7 +5,5 @@ test('表格组件鼠标配置项测试', async ({ page }) => {
   await page.goto('http://localhost:7130/pc/grid-keyboard/mouse-config')
   await page.getByText('WWWW科技YX公司').first().click()
 
-  await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/div/div/div[3]/table/tbody/tr[2]/td[2]')).toHaveClass(
-    /col__selected/
-  )
+  await expect(page.getByRole('cell', { name: 'WWWW科技YX公司' })).toHaveClass(/col__checked/)
 })

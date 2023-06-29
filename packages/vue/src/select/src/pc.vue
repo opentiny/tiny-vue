@@ -48,10 +48,10 @@
         >
           <span v-if="state.collapseTags && state.selected.length">
             <tiny-tag
+              :type="tagType"
               :closable="!state.selectDisabled && !state.selected[0].disabled"
               :size="state.collapseTagSize"
               :hit="state.selected[0].state ? state.selected[0].state.hitState : state.selected[0].hitState"
-              type="info"
               @close="deleteTag($event, state.selected[0])"
               disable-transitions
             >
@@ -61,9 +61,9 @@
             </tiny-tag>
             <tiny-tag
               v-if="state.selected.length > 1"
+              :type="tagType"
               :closable="false"
               :size="state.collapseTagSize"
-              type="info"
               disable-transitions
             >
               <span class="tiny-select__tags-text">+ {{ state.selected.length - 1 }}</span>
@@ -73,6 +73,7 @@
             <tiny-tag
               v-for="(item, index) in state.selected"
               :key="getValueKey(item)"
+              :type="tagType"
               :closable="!state.selectDisabled && !item.disabled"
               :size="state.collapseTagSize"
               :hit="item.state ? item.state.hitState : item.hitState"
@@ -262,7 +263,11 @@
               @mousedown.stop
               @mouseenter="state.hoverIndex = -9"
             >
-              <tiny-checkbox :model-value="state.isSelectAll" :indeterminate="state.isHalfSelect" :class="state.selectCls">
+              <tiny-checkbox
+                :model-value="state.isSelectAll"
+                :indeterminate="state.isHalfSelect"
+                :class="state.selectCls"
+              >
                 {{ t('ui.base.all') }}
               </tiny-checkbox>
             </li>
@@ -436,7 +441,8 @@ export default defineComponent({
     'optimization',
     'searchable',
     'showEmptyImage',
-    'inputBoxType'
+    'inputBoxType',
+    'tagType'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

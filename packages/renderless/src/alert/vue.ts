@@ -10,9 +10,9 @@
 *
 */
 
-import { close, computedGetIcon, computedGetTitle, handleHeaderClick } from './index'
+import { handleClose, computedGetIcon, computedGetTitle, handleHeaderClick } from './index'
 
-export const api = ['close', 'state', 'handleHeaderClick']
+export const api = ['handleClose', 'state', 'handleHeaderClick']
 
 export const renderless = (props, { computed, reactive }, { t, emit, constants, vm, designConfig }) => {
   const state = reactive({
@@ -30,7 +30,7 @@ export const renderless = (props, { computed, reactive }, { t, emit, constants, 
     state,
     computedGetIcon: computedGetIcon({ constants, props, designConfig }),
     computedGetTitle: computedGetTitle({ constants, props, t }),
-    close: close({ state, emit }),
+    handleClose: handleClose({ emit, state}),
     handleHeaderClick: handleHeaderClick({ state, props, vm })
   }
 

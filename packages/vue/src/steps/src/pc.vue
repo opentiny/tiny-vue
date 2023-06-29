@@ -15,14 +15,14 @@
       <li
         v-for="(node, index) in data"
         :key="index"
-        :style="{ width: space ? space + 'px' : 100 / data.length + '%' }"
+        :style="{ width: space ? state.computedSpace : 100 / data.length + '%' }"
         :class="{
           current: index === active,
           [node[statusField]]: node[statusField]
         }"
         @click="$emit('click', index, node)"
       >
-        <slot name="item" :slot-scope="node">
+        <slot name="item" :slot-scope="node" :index="index">
           <a class="label" :title="node[nameField]"
             ><span>{{ node[nameField] }}</span></a
           >
@@ -43,6 +43,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/steps/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconRefres, iconYes } from '@opentiny/vue-icon'
+import '@opentiny/vue-theme/steps/index.less'
 
 export default defineComponent({
   emits: ['click'],

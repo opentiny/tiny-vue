@@ -8,8 +8,8 @@
       "defaultValue": ""
     },
     {
-      "name": "dragable",
-      "sample": "dragable",
+      "name": "draggable",
+      "sample": "draggable",
       "type": "Boolean",
       "desc": "Whether to enable the node drag function. The default value is `false`",
       "defaultValue": ""
@@ -51,7 +51,7 @@
     },
     {
       "name": "ellipsis",
-      "sample": "dragable",
+      "sample": "draggable",
       "type": "Boolean",
       "desc": "Omitted if the menu content is too long. The default value is false.",
       "defaultValue": ""
@@ -155,7 +155,7 @@
       "name": "node-drop",
       "sample": "node-drop",
       "type": "Function(arg1, arg2)",
-      "desc": "Indicates the event after a node is dragged and dropped. This parameter is valid when the dragable attribute is set to true. ; Events after a node is dragged and dropped. This parameter is valid when the dragable attribute is set to true. ; / / Parameter \narg1:Object Data information object of the current dragged node \n arg2:Object Data information object of the current clicked node after the dragged node \narg3:Drag type \narg4:event",
+      "desc": "Indicates the event after a node is dragged and dropped. This parameter is valid when the draggable attribute is set to true. ; Events after a node is dragged and dropped. This parameter is valid when the draggable attribute is set to true. ; / / Parameter \narg1:Object Data information object of the current dragged node \n arg2:Object Data information object of the current clicked node after the dragged node \narg3:Drag type \narg4:event",
       "defaultValue": ""
     }
   ]

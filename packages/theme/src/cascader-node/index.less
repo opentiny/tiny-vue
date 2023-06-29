@@ -37,6 +37,8 @@
     background: var(--ti-cascader-node-selectable-hover-bg-color);
   }
 
+  
+
   &:not(.is-disabled):not(.in-active-path):not(.is-active) {
     &:focus,
     &:hover {
@@ -60,6 +62,12 @@
   &__postfix {
     font-size: var(--ti-cascader-node-icon-font-size);
     fill: var(--ti-cascader-node-icon-color);
+  }
+
+  &.in-active-path {
+    .@{cascader-node-prefix-cls}__postfix {
+      fill: var(--ti-cascader-node-active-icon-color);
+    }
   }
 
   &__prefix {

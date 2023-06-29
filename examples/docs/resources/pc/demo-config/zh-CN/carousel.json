@@ -1,1 +1,106 @@
-[{"title":"基本用法","content":"详细用法参考如下示例","link":"carousel/basic-usage","component":" Carousel 走马灯","findIntroStr":"常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。","demoId":"basic-usage"},{"title":"指示器和触发方式","content":"<p>走马灯指示器默认显示在幻灯片内容上，配置 <code>indicator-position</code> 为 outside 后，将显示在外部。\n配置 <code>trigger</code> 为 click ，可以修改指示器触发方式为单击，默认鼠标悬停到指示器时，走马灯幻灯片就会对应切换。</p>\n","link":"carousel/indicator-trigger","component":" Carousel 走马灯","findIntroStr":"常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。","demoId":"indicator-trigger"},{"title":"手动轮播","content":"<p>调用 <code>setActiveItem()</code>、<code>next()</code>、<code>prev()</code> 方法可根据需要进行轮播。<code>initial-index</code> 属性可以指定初始激活的幻灯片索引。</p>\n","link":"carousel/manual-play","component":" Carousel 走马灯","findIntroStr":"常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。","demoId":"manual-play"},{"title":"关闭循环轮播","content":"<p>配置 <code>loop</code> 属性为 false 后，若走马灯幻灯片已切换到最后一项，则将不能再从第一项开始循环切换。即切换到最后一项时，右侧切换箭头不再显示，切换到第一项时，左侧切换箭头不再显示。</p>\n","link":"carousel/close-loop","component":" Carousel 走马灯","findIntroStr":"常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。","demoId":"close-loop"},{"title":"自动切换","content":"<p>配置 <code>autoplay</code> 属性为 true 后，走马灯的幻灯片内容将自动轮播切换。</p>\n","link":"carousel/autoplay","component":" Carousel 走马灯","findIntroStr":"常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。","demoId":"autoplay"},{"title":"轮播间隔时间","content":"<p>走马灯幻灯片轮播间隔时间默认为 3000 毫秒，通过 <code>interval</code> 属性可以自定义。</p>\n","link":"carousel/play-interval","component":" Carousel 走马灯","findIntroStr":"常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。","demoId":"play-interval"},{"title":"纵向轮播","content":"<p>配置 <code>type</code> 属性为 vertical 即可实现纵向轮播。</p>\n","link":"carousel/up-down-carousel","component":" Carousel 走马灯","findIntroStr":"常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。","demoId":"up-down-carousel"},{"title":"显示标题","content":"<p>通过 <code>title</code> 配置显示标题，需要与 <code>show-title</code> 结合使用。</p>\n","link":"carousel/show-title","component":" Carousel 走马灯","findIntroStr":"常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。","demoId":"show-title"},{"title":"总是显示切换箭头","content":"详细用法参考如下示例","link":"carousel/carousel-arrow-always","component":" Carousel 走马灯","findIntroStr":"常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。","demoId":"carousel-arrow-always"},{"title":"hover 时显示切换箭头","content":"详细用法参考如下示例","link":"carousel/carousel-arrow-hover","component":" Carousel 走马灯","findIntroStr":"常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。","demoId":"carousel-arrow-hover"},{"title":"隐藏切换箭头","content":"详细用法参考如下示例","link":"carousel/carousel-arrow-never","component":" Carousel 走马灯","findIntroStr":"常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。","demoId":"carousel-arrow-never"},{"title":"卡片模式","content":"<p>配置 <code>type</code> 属性为 card 后，走马灯将以卡片形式进行展示。</p>\n","link":"carousel/card-mode","component":" Carousel 走马灯","findIntroStr":"常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。","demoId":"card-mode"}]
+[
+    {
+        "title": "基本用法",
+        "content": "详细用法参考如下示例",
+        "link": "carousel/basic-usage",
+        "component": " Carousel 走马灯",
+        "findIntroStr": "常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。",
+        "demoId": "basic-usage"
+    },
+    {
+        "title": "指示器和触发方式",
+        "content": "<p>走马灯指示器默认显示在幻灯片内容上，配置 <code>indicator-position</code> 为 outside 后，将显示在外部。\n配置 <code>trigger</code> 为 click ，可以修改指示器触发方式为单击，默认鼠标悬停到指示器时，走马灯幻灯片就会对应切换。</p>\n",
+        "link": "carousel/indicator-trigger",
+        "component": " Carousel 走马灯",
+        "findIntroStr": "常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。",
+        "demoId": "indicator-trigger"
+    },
+    {
+        "title": "手动轮播",
+        "content": "<p>调用 <code>setActiveItem()</code>、<code>next()</code>、<code>prev()</code> 方法可根据需要进行轮播。<code>initial-index</code> 属性可以指定初始激活的幻灯片索引。</p>\n",
+        "link": "carousel/manual-play",
+        "component": " Carousel 走马灯",
+        "findIntroStr": "常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。",
+        "demoId": "manual-play"
+    },
+    {
+        "title": "关闭循环轮播",
+        "content": "<p>配置 <code>loop</code> 属性为 false 后，若走马灯幻灯片已切换到最后一项，则将不能再从第一项开始循环切换。即切换到最后一项时，右侧切换箭头不再显示，切换到第一项时，左侧切换箭头不再显示。</p>\n",
+        "link": "carousel/close-loop",
+        "component": " Carousel 走马灯",
+        "findIntroStr": "常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。",
+        "demoId": "close-loop"
+    },
+    {
+        "title": "自动切换",
+        "content": "<p>配置 <code>autoplay</code> 属性为 true 后，走马灯的幻灯片内容将自动轮播切换。</p>\n",
+        "link": "carousel/autoplay",
+        "component": " Carousel 走马灯",
+        "findIntroStr": "常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。",
+        "demoId": "autoplay"
+    },
+    {
+        "title": "轮播间隔时间",
+        "content": "<p>走马灯幻灯片轮播间隔时间默认为 3000 毫秒，通过 <code>interval</code> 属性可以自定义。</p>\n",
+        "link": "carousel/play-interval",
+        "component": " Carousel 走马灯",
+        "findIntroStr": "常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。",
+        "demoId": "play-interval"
+    },
+    {
+        "title": "纵向轮播",
+        "content": "<p>配置 <code>type</code> 属性为 vertical 即可实现纵向轮播。</p>\n",
+        "link": "carousel/up-down-carousel",
+        "component": " Carousel 走马灯",
+        "findIntroStr": "常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。",
+        "demoId": "up-down-carousel"
+    },
+    {
+        "title": "显示标题",
+        "content": "<p>通过 <code>title</code> 配置显示标题，需要与 <code>show-title</code> 结合使用。</p>\n",
+        "link": "carousel/show-title",
+        "component": " Carousel 走马灯",
+        "findIntroStr": "常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。",
+        "demoId": "show-title"
+    },
+    {
+        "title": "总是显示切换箭头",
+        "content": "详细用法参考如下示例",
+        "link": "carousel/carousel-arrow-always",
+        "component": " Carousel 走马灯",
+        "findIntroStr": "常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。",
+        "demoId": "carousel-arrow-always"
+    },
+    {
+        "title": "hover 时显示切换箭头",
+        "content": "详细用法参考如下示例",
+        "link": "carousel/carousel-arrow-hover",
+        "component": " Carousel 走马灯",
+        "findIntroStr": "常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。",
+        "demoId": "carousel-arrow-hover"
+    },
+    {
+        "title": "隐藏切换箭头",
+        "content": "详细用法参考如下示例",
+        "link": "carousel/carousel-arrow-never",
+        "component": " Carousel 走马灯",
+        "findIntroStr": "常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。",
+        "demoId": "carousel-arrow-never"
+    },
+    {
+        "title": "卡片模式",
+        "content": "<p>配置 <code>type</code> 属性为 card 后，走马灯将以卡片形式进行展示。</p>\n",
+        "link": "carousel/card-mode",
+        "component": " Carousel 走马灯",
+        "findIntroStr": "常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。",
+        "demoId": "card-mode"
+    },
+    {
+        "title": "走马灯事件",
+        "content": "<p>主要包含<code>change</code>事件。</p>\n<p>当幻灯片切换时会触发该事件，回调函数可接收两个参数：<code>当前幻灯片索引</code>和<code>上一张幻灯片索引</code>。</p>\n",
+        "link": "carousel/carousel-events",
+        "component": " Carousel 走马灯",
+        "findIntroStr": "常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。",
+        "demoId": "carousel-events"
+    }
+]

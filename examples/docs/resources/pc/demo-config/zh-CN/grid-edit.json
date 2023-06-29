@@ -1,1 +1,106 @@
-[{"title":"行编辑","content":"<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>mode: 'row'</code> 开启行编辑，即：<code>:edit-config=&quot;{ mode: 'row' }&quot;</code>。</p>\n","link":"grid/tiny-first-menu/row-editing","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-row-editing"},{"title":"还原更改","content":"<p>调用方法 <code>revertData(rows, field)</code> 可以还原指定行 row 或者整个表格的数据。rows 为对象则还原一行数据，为数组则还原多行数据，field 可不指定。不指定任何参数时则还原整个表格数据。</p>\n","link":"grid/edit/revertData","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"edit-revertData"},{"title":"检查数据是否改变","content":"<p><code>hasRowChange(row, field)</code> 检查行或列数据是否发生改变，field 可不指定。</p>\n","link":"grid/edit/hasRowChange","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"edit-hasRowChange"},{"title":"单元格编辑","content":"<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>mode: 'cell'</code> 开启行编辑，即：<code>:edit-config=&quot;{ mode: 'cell' }&quot;</code>。\n表格列属性设置 <code>show-icon</code> 设置列头是否显示编辑图标，在编辑时有效。</p>\n","link":"grid/tiny-first-menu/cell-editing","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-cell-editing"},{"title":"手动激活编辑","content":"<p><code>setActiveCell(row, field)</code> 方法可激活指定单元格编辑。<code>setActiveRow(row)</code> 方法激活行编辑，如果是 mode=cell 则默认激活第一个单元格。</p>\n","link":"grid/methods/set-active-cell","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"methods-set-active-cell"},{"title":"单元格格式化","content":"<p>表格列属性 <code>format-value</code> 格式化单元格编辑器组件的传入值。</p>\n","link":"grid/tiny-first-menu/format-value","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-format-value"},{"title":"自定义编辑规则","content":"<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>activeMethod</code> 自定义编辑规则。</p>\n","link":"grid/tiny-first-menu/custom-editing","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-custom-editing"},{"title":"自定义编辑校验规则","content":"<p>表格属性设置 <code>edit-config</code> 开启编辑模式，并配置 <code>edit-rules</code> 对象来设置校验对象和校验规则，然后在 <code>editor</code> 对象中设置 <code>isValidAlways</code> 开启编辑实时校验。</p>\n","link":"grid/tiny-first-menu/editor-is-salid-always","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-editor-is-salid-always"},{"title":"开启编辑状态","content":"<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>showStatus</code> 开启或关闭单元格更新状态（单元格左上角倒三角形更新标识)，默认值为 <code>true</code> 开启状态。</p>\n","link":"grid/tiny-first-menu/status-of-editing","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-status-of-editing"},{"title":"关闭编辑状态","content":"详细用法参考如下示例","link":"grid/tiny-first-menu/status-of-noediting","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-status-of-noediting"},{"title":"点击触发编辑","content":"<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>trigger</code> 修改触发方式。可选值有 <code>点击触发（click）/ 双击触发（dblclick）/ 手动触发（manual）</code>，默认值为 <code>click 点击触发</code>。</p>\n","link":"grid/tiny-first-menu/trigger-mode-for-editing","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-trigger-mode-for-editing"},{"title":"双击触发编辑","content":"详细用法参考如下示例","link":"grid/tiny-first-menu/trigger-mode-db-editing","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-trigger-mode-db-editing"},{"title":"手动触发编辑","content":"详细用法参考如下示例","link":"grid/tiny-first-menu/trigger-mode-hm-editing","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-trigger-mode-hm-editing"}]
+[
+  {
+    "title": "行编辑",
+    "content": "<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>mode: 'row'</code> 开启行编辑，即：<code>:edit-config=&quot;{ mode: 'row' }&quot;</code>。</p>\n",
+    "link": "grid/tiny-first-menu/row-editing",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-row-editing"
+  },
+  {
+    "title": "还原更改",
+    "content": "<p>调用方法 <code>revertData(rows, field)</code> 可以还原指定行 row 或者整个表格的数据。rows 为对象则还原一行数据，为数组则还原多行数据，field 可不指定。不指定任何参数时则还原整个表格数据。</p>\n",
+    "link": "grid/edit/revertData",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "edit-revertData"
+  },
+  {
+    "title": "检查数据是否改变",
+    "content": "<p><code>hasRowChange(row, field)</code> 检查行或列数据是否发生改变，field 可不指定。</p>\n",
+    "link": "grid/edit/hasRowChange",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "edit-hasRowChange"
+  },
+  {
+    "title": "单元格编辑",
+    "content": "<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>mode: 'cell'</code> 开启行编辑，即：<code>:edit-config=&quot;{ mode: 'cell' }&quot;</code>。\n表格列属性设置 <code>show-icon</code> 设置列头是否显示编辑图标，在编辑时有效。</p>\n",
+    "link": "grid/tiny-first-menu/cell-editing",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-cell-editing"
+  },
+  {
+    "title": "手动激活编辑",
+    "content": "<p><code>setActiveCell(row, field)</code> 方法可激活指定单元格编辑。<code>setActiveRow(row)</code> 方法激活行编辑，如果是 mode=cell 则默认激活第一个单元格。</p>\n",
+    "link": "grid/methods/set-active-cell",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "methods-set-active-cell"
+  },
+  {
+    "title": "单元格格式化",
+    "content": "<p>表格列属性 <code>format-value</code> 格式化单元格编辑器组件的传入值。</p>\n",
+    "link": "grid/tiny-first-menu/format-value",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-format-value"
+  },
+  {
+    "title": "自定义编辑规则",
+    "content": "<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>activeMethod</code> 自定义编辑规则。</p>\n",
+    "link": "grid/tiny-first-menu/custom-editing",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-custom-editing"
+  },
+  {
+    "title": "自定义编辑校验规则",
+    "content": "<p>表格属性设置 <code>edit-config</code> 开启编辑模式，并配置 <code>edit-rules</code> 对象来设置校验对象和校验规则，然后在 <code>editor</code> 对象中设置 <code>isValidAlways</code> 开启编辑实时校验。</p>\n",
+    "link": "grid/tiny-first-menu/editor-is-salid-always",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-editor-is-salid-always"
+  },
+  {
+    "title": "开启编辑状态",
+    "content": "<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>showStatus</code> 开启或关闭单元格更新状态（单元格左上角倒三角形更新标识)，默认值为 <code>true</code> 开启状态。</p>\n",
+    "link": "grid/tiny-first-menu/status-of-editing",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-status-of-editing"
+  },
+  {
+    "title": "关闭编辑状态",
+    "content": "详细用法参考如下示例",
+    "link": "grid/tiny-first-menu/status-of-noediting",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-status-of-noediting"
+  },
+  {
+    "title": "点击触发编辑",
+    "content": "<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>trigger</code> 修改触发方式。可选值有 <code>点击触发（click）/ 双击触发（dblclick）/ 手动触发（manual）</code>，默认值为 <code>click 点击触发</code>。</p>\n",
+    "link": "grid/tiny-first-menu/trigger-mode-for-editing",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-trigger-mode-for-editing"
+  },
+  {
+    "title": "双击触发编辑",
+    "content": "详细用法参考如下示例",
+    "link": "grid/tiny-first-menu/trigger-mode-db-editing",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-trigger-mode-db-editing"
+  },
+  {
+    "title": "手动触发编辑",
+    "content": "在点击其他行或表格外部时，编辑器会自动关闭。设置 <code>editConfig.autoClear</code> 为 <code>false</code> 可以防止编辑器自动关闭",
+    "link": "grid/tiny-first-menu/trigger-mode-hm-editing",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-trigger-mode-hm-editing"
+  }
+]

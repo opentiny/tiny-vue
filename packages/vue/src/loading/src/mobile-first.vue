@@ -73,7 +73,7 @@ export default defineComponent({
     _constants: Object
   },
   setup(props, context): any {
-    return setup({ props, context, renderless, api, mono: true, classes })
+    return setup({ props, context, renderless, api, classes })
   }
 })
 </script>

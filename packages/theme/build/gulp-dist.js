@@ -34,7 +34,7 @@ gulp.task('compile', () => {
 
 gulp.task('copycssvar', () => {
   return gulp
-    .src([`${source}/**/*.js`, `${source}/index.js`], { allowEmpty: true })
+    .src([`${source}/**/*.js`, `${source}/**/*.ts`, `${source}/index.js`], { allowEmpty: true })
     .pipe(gulp.dest(`${dist}`))
 })
 

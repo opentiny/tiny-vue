@@ -1,4 +1,5 @@
 import CardGroup from './src/mobile-first.vue'
+import { version } from './package.json'
 
 CardGroup.model = {
   prop: 'modelValue',
@@ -10,7 +11,7 @@ CardGroup.install = function (Vue) {
   Vue.component(CardGroup.name, CardGroup)
 }
 
-CardGroup.version = process.env.COMPONENT_VERSION
+CardGroup.version = version
 
 /* istanbul ignore next */
 if (process.env.BUILD_TARGET === 'runtime') {

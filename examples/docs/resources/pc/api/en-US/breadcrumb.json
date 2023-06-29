@@ -1,5 +1,5 @@
 {
-  "attrs": [
+  "breadcrumbAttrs": [
     {
       "name": "separator",
       "sample": "separator",
@@ -29,21 +29,12 @@
       "defaultValue": "label"
     }
   ],
-  "events": [
+  "breadcrumbEvents": [
     {
       "name": "select",
-      "sample": "base",
+      "sample": "options",
       "type": "Function",
       "desc": "This event is triggered when breadcrumb-item is clicked.",
-      "defaultValue": ""
-    }
-  ],
-  "slots": [
-    {
-      "name": "default",
-      "sample": "slot-default",
-      "type": "",
-      "desc": "Default slot",
       "defaultValue": ""
     }
   ],

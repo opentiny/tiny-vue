@@ -11,7 +11,10 @@
  -->
 
 <template>
-  <div :class="['tiny-mobile-upload-list', 'tiny-mobile-upload-list--' + listType, { 'is-disabled': disabled }]" v-if="state.screenType">
+  <div
+    :class="['tiny-mobile-upload-list', 'tiny-mobile-upload-list--' + listType, { 'is-disabled': disabled }]"
+    v-if="state.screenType"
+  >
     <transition-group tag="ul" name="tiny-list">
       <li
         v-for="(file, index) in files"
@@ -29,8 +32,18 @@
               :src="file.url"
               alt=""
             />
-            <icon-error class="icon-close card-close" v-if="listType === 'picture-card' && display" @click.stop="$emit('remove', file)"></icon-error>
-            <Progress v-if="file.status === 'uploading'" type="circle" :percentage="parsePercentage(file.percentage)" :stroke-width="1.4" :width="32">
+            <icon-error
+              class="icon-close card-close"
+              v-if="listType === 'picture-card' && display"
+              @click.stop="$emit('remove', file)"
+            ></icon-error>
+            <Progress
+              v-if="file.status === 'uploading'"
+              type="circle"
+              :percentage="parsePercentage(file.percentage)"
+              :stroke-width="1.4"
+              :width="32"
+            >
             </Progress>
           </div>
           <div class="tiny-mobile-upload-list__list" v-else>
@@ -52,10 +65,20 @@
               <p class="tiny-mobile-upload-list__text-details file-size">
                 {{ file.size }}
               </p>
-              <Progress v-if="file.status === 'uploading'" :show-text="false" :stroke-width="2" :percentage="parsePercentage(file.percentage)"> </Progress>
+              <Progress
+                v-if="file.status === 'uploading'"
+                :show-text="false"
+                :stroke-width="2"
+                :percentage="parsePercentage(file.percentage)"
+              >
+              </Progress>
             </div>
             <div class="file-delete">
-              <icon-close-circle class="icon-close" v-if="listType !== 'picture-card' && display" @click="$emit('remove', file)"></icon-close-circle>
+              <icon-close-circle
+                class="icon-close"
+                v-if="listType !== 'picture-card' && display"
+                @click="$emit('remove', file)"
+              ></icon-close-circle>
             </div>
           </div>
         </slot>
@@ -66,14 +89,19 @@
       :url-list="srcList"
       :close-show="true"
       :show-index="true"
-      :startPosition="state.startPostion"
+      :start-position="state.startPostion"
       tool-show
       @update:preview-visible="state.shows = $event"
       delete-button
       @newImageList="getDeleteData"
     ></tiny-image-viewer>
   </div>
-  <transition-group tag="ul" v-else :class="['tiny-upload-list', 'tiny-upload-list--' + listType, { 'is-disabled': disabled }]" name="tiny-list">
+  <transition-group
+    tag="ul"
+    v-else
+    :class="['tiny-upload-list', 'tiny-upload-list--' + listType, { 'is-disabled': disabled }]"
+    name="tiny-list"
+  >
     <li
       v-for="file in files"
       :key="file.uid"
@@ -96,7 +124,11 @@
           @click="handleClick(file)"
           :title="isFolderTitle ? (file.path || '') + file.name : file.name"
         >
-          <icon-attachment v-if="!isFolder" :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''" class="tiny-svg-size" />{{ file.name }}
+          <icon-attachment
+            v-if="!isFolder"
+            :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"
+            class="tiny-svg-size"
+          />{{ file.name }}
         </a>
         <div :class="['tiny-upload-list__item-edminfo', { isFail: isEdm && file.status === 'fail' }]" v-if="isEdm">
           <span>{{ file.docId }}</span>
@@ -109,11 +141,21 @@
           <icon-successful class="tiny-svg-size icon-successful" v-if="listType === 'text'" />
           <icon-yes class="tiny-svg-size tiny-icon-check" v-if="['picture-card', 'picture'].indexOf(listType) > -1" />
         </label>
-        <span v-if="isEdm && !isFolder && !disabled && file.status !== 'fail'" :title="t('ui.fileUpload.updateFile')" @click="$emit('update', file)">
-          <icon-file-cloudupload class="tiny-svg-size icon-refres" :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"></icon-file-cloudupload>
+        <span
+          v-if="isEdm && !isFolder && !disabled && file.status !== 'fail'"
+          :title="t('ui.fileUpload.updateFile')"
+          @click="$emit('update', file)"
+        >
+          <icon-file-cloudupload
+            class="tiny-svg-size icon-refres"
+            :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"
+          ></icon-file-cloudupload>
         </span>
         <span v-if="!disabled" :title="t('ui.fileUpload.deleteFile')" @click="$emit('remove', file)">
-          <icon-close class="tiny-svg-size icon-close" :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"></icon-close>
+          <icon-close
+            class="tiny-svg-size icon-close"
+            :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"
+          ></icon-close>
         </span>
         <i class="tiny-icon-close-tip" v-if="!disabled"> {{ t('ui.fileUpload.deleteTip') }}</i>
         <Progress
@@ -124,10 +166,20 @@
         >
         </Progress>
         <span class="tiny-upload-list__item-actions" v-if="listType === 'picture-card'">
-          <span v-if="openDownloadFile" class="tiny-upload-list__item-download" :title="t('ui.fileUpload.downloadFile')" @click="handleClick(file)">
+          <span
+            v-if="openDownloadFile"
+            class="tiny-upload-list__item-download"
+            :title="t('ui.fileUpload.downloadFile')"
+            @click="handleClick(file)"
+          >
             <icon-download class="tiny-svg-size" />
           </span>
-          <span class="tiny-upload-list__item-preview" v-if="handlePreview" :title="t('ui.fileUpload.previewFile')" @click="handlePreview(file)">
+          <span
+            class="tiny-upload-list__item-preview"
+            v-if="handlePreview"
+            :title="t('ui.fileUpload.previewFile')"
+            @click="handlePreview(file)"
+          >
             <icon-view class="tiny-svg-size" />
           </span>
           <span
@@ -138,7 +190,12 @@
           >
             <icon-file-cloudupload class="tiny-svg-size" />
           </span>
-          <span v-if="!disabled" class="tiny-upload-list__item-delete" :title="t('ui.fileUpload.deleteFile')" @click="$emit('remove', file)">
+          <span
+            v-if="!disabled"
+            class="tiny-upload-list__item-delete"
+            :title="t('ui.fileUpload.deleteFile')"
+            @click="$emit('remove', file)"
+          >
             <icon-del class="tiny-svg-size" />
           </span>
         </span>
@@ -199,14 +256,7 @@ export default defineComponent({
     'maxNameLength'
   ],
   setup(props, context) {
-    return setup({
-      props,
-      context,
-      renderless,
-      api,
-      mono: true,
-      extendOptions: { Modal }
-    })
+    return setup({ props, context, renderless, api, extendOptions: { Modal } })
   }
 })
 </script>

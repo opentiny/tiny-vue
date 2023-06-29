@@ -16,14 +16,34 @@ import handlebarsRender from './handlebars.render'
 const version = getopentinyVersion({ key: 'version' })
 const outputDir = 'packages/vue'
 const MAIN_TEMPLATE = `{{{include}}}
- 
+import { $prefix } from '@opentiny/vue-common'
+const components = [{{{components}}}]
+  
+export const install = (app, opts = {}) => {
+  const regex = new RegExp('^' + $prefix)
+
+  components.forEach((component) => {
+    const name = component.name
+    const alias = opts.alias || opts.prefix
+
+    if (typeof component.install !== 'function') return
+
+    if (name && alias) {
+      app.component(name.replace(regex, alias), component)
+    } else {
+      component.install(app)
+    }
+  })
+}
+
  export const version = '${version}'
  
  export {
    {{{components}}}
  }
  export default {
-  {{{components}}}
+  {{{components}}},
+  install
  }
  `
 

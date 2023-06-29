@@ -25,7 +25,7 @@
   },
   {
     "title": "options 配置",
-    "content": "<p>通过 <code>options</code> 总体配置每个 <code>BreadcrumbItem</code>。  </p> 设置<code>textField</code> 指定显示字段，默认显示字段为 <code>label</code>\n",
+    "content": "<p>通过 <code>options</code> 总体配置每个 <code>BreadcrumbItem</code>。  </p> 设置<code>text-field</code> 指定显示字段，默认显示字段为 <code>label</code>\n",
     "link": "breadcrumb/options",
     "component": " Breadcrumb 面包屑",
     "findIntroStr": "Breadcrumb 面包屑导航，作用是告诉访问者他们目前在网站中的位置以及如何返回。",

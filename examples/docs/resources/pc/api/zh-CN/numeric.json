@@ -118,6 +118,13 @@
       "type": "Boolean",
       "desc": "计数器内容的可清空",
       "defaultValue": "该属性的默认值为 false，表示不可清空"
+    },
+    {
+      "name": "unit",
+      "sample": "unit",
+      "type": "String",
+      "desc": "设置计数器的单位。在设置单位时，控制按钮将不可用。",
+      "defaultValue": ""
     }
   ],
   "events": [

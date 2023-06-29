@@ -1,5 +1,6 @@
 const { resolve } = require('node:path')
 const { promises: fsPromises } = require('node:fs')
+
 const root = resolve('./')
 
 async function run() {

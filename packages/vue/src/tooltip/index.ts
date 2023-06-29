@@ -10,7 +10,6 @@
  *
  */
 import Tooltip from './src/index'
-import '@opentiny/vue-theme/tooltip/index.less'
 import { version } from './package.json'
 
 Tooltip.model = {

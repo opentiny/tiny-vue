@@ -1,11 +1,31 @@
 <template>
   <div class="tiny-filter-panel">
-    <tiny-popover ref="popover" v-model="state.visible" :placement="placement" :visible-arrow="false" :popper-class="popperClass + ' tiny-filter-panel__popover'" :append-to-body="popperAppendToBody" trigger="manual" @show="popoverShow" @hide="popoverHide">
+    <tiny-popover
+      ref="popover"
+      v-model="state.visible"
+      :placement="placement"
+      :visible-arrow="false"
+      :popper-class="popperClass + ' tiny-filter-panel__popover'"
+      :append-to-body="popperAppendToBody"
+      trigger="manual"
+      @show="popoverShow"
+      @hide="popoverHide"
+    >
       <div>
         <slot></slot>
       </div>
       <template #reference>
-        <tiny-filter-box ref="filterBox" @click="togglePanel" @handle-clear="handleClear" :show-close="clearable" :disabled="disabled" :label="label" :tip="tip" :value="value" :drop-down-visible="state.visible"></tiny-filter-box>
+        <tiny-filter-box
+          ref="filterBox"
+          @click="togglePanel"
+          @handle-clear="handleClear"
+          :show-close="clearable"
+          :disabled="disabled"
+          :label="label"
+          :tip="tip"
+          :value="value"
+          :drop-down-visible="state.visible"
+        ></tiny-filter-box>
       </template>
     </tiny-popover>
   </div>
@@ -51,13 +71,7 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    return setup({
-      props,
-      context,
-      renderless,
-      api,
-      mono: true
-    })
+    return setup({ props, context, renderless, api, mono: true })
   }
 })
 </script>

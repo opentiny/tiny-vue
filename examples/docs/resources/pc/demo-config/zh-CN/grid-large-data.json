@@ -1,1 +1,50 @@
-[{"title":"滚动分页","content":"<p>滚动分页配置步骤：\n1、表格属性设置 <code>fetch-data</code> 开启服务请求；\n2、表格属性设置 <code>scroll-load</code> 开启滚动分页。</p>\n","link":"grid/tiny-first-menu/scroll-paging","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-scroll-paging"},{"title":"虚拟滚动","content":"<p>虚拟滚动配置步骤：\n1、表格属性设置 <code>height</code> 固定高度；\n2、表格属性设置 <code>optimization</code> 开启虚拟滚动。</p>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\">optimization(Object) 配置说明</p>\n<p>| delayHover(Number) | 当表格发生拖动、滚动...等行为时，至少多少毫秒之后才允许触发 hover 事件 默认 250ms |\n| scrollX(Object) | 横向 X 虚拟滚动配置（用于特殊场景手动调优）例如：{ gt: 100 } |\n| scrollY(Object) | 纵向 Y 虚拟滚动配置（用于特殊场景手动调优）例如：{ gt: 500 } |</p>\n</div>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\">开启虚拟滚动注意事项</p>\n<p>1、开启虚拟滚动的前提是需要保证每列的宽度一样，可以通过在 <code>&lt;tiny-grid&gt;</code> 标签上的 <code>column-width</code> 属性配置统一的宽度。\n2、开启虚拟滚动将会禁用列宽调整功能，因为列拖拽会改变列宽度，导致虚拟滚动渲染的列数计算有误从而引起表格样式错乱，所以禁止列拖拽。</p>\n</div>\n","link":"grid/tiny-first-menu/virtual-rolling","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-virtual-rolling"},{"title":"树表虚拟滚动","content":"<p><table class=\"table\"><thead><tr><th>名称</th> <th>类型</th> <th>描述</th> <th>默认值</th></tr></thead> <tbody><tr><td>optimization.scrollX.gt</td> <td>Number</td> <td>指定大于多少列时自动启动 X 虚拟滚动</td> <td>100</td></tr> <tr><td>optimization.scrollX.rSize</td> <td>Number</td> <td>每次渲染列数</td> <td></td></tr> <tr><td>optimization.scrollX.vSize</td> <td>Number</td> <td>指定可视区域列数</td> <td></td></tr> <tr><td>optimization.scrollX.adaptive</td> <td>Boolean</td> <td>自动适配最优的渲染方式（设置为 false 列数组只会在滚动完成后截取一次，便于大数据场景提升性能，但是会短暂白屏，渲染完成后即恢复）</td> <td>true</td></tr> <tr><td>optimization.scrollY.gt</td> <td>Number</td> <td>指定大于多少行时自动启动 Y 虚拟滚动</td> <td>500</td></tr> <tr><td>optimization.scrollY.rSize</td> <td>Number</td> <td>每次渲染行数</td> <td></td></tr> <tr><td>optimization.scrollY.adaptive</td> <td>Boolean</td> <td>自动适配最优的渲染方式（设置为 false 行数组只会在滚动完成后截取一次，便于大数据场景提升性能，但是会短暂白屏，渲染完成后即恢复）</td> <td>true</td></tr></tbody></table></p>\n</div>\n","link":"grid/tiny-first-menu/grid-large-tree-data","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-grid-large-tree-data"},{"title":"全量加载","content":"<p>当表格数据过多时会有性能问题，用户可通过 <code>$refs</code> 获取表格对象，设置表格对象的 <code>loadData</code> 方法启用全量加载来优化性能。</p>\n","link":"grid/tiny-first-menu/full-data-loading","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-full-data-loading"},{"title":"生成 1000 列","content":"<p>通过 <code>loadColumn(columns)</code> 方法可以加载列配置，对于需要重新加载列的场景下可能会用到。</p>\n","link":"grid/large-data/load-column","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"large-data-load-column"},{"title":"滚动到指定位置","content":"<div class=\"tip custom-block\"><p class=\"custom-block-title\">方法说明</p>\n<p><code>scrollTo(scrollLeft, scrollTop)</code>：滚动到对应的位置\n<code>scrollToRow(row)</code>：滚动到对应的行\n<code>scrollToColumn(column)</code>：手滚动到对应的列</p>\n</div>\n","link":"grid/large-data/scroll-to","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"large-data-scroll-to"}]
+[
+  {
+    "title": "滚动分页",
+    "content": "<p>滚动分页配置步骤：\n1、表格属性设置 <code>fetch-data</code> 开启服务请求；\n2、表格属性设置 <code>scroll-load</code> 开启滚动分页。</p>\n",
+    "link": "grid/tiny-first-menu/scroll-paging",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-scroll-paging"
+  },
+  {
+    "title": "虚拟滚动",
+    "content": "<p>虚拟滚动配置步骤：\n1、表格属性设置 <code>height</code> 固定高度；\n2、表格属性设置 <code>optimization</code> 开启虚拟滚动。</p>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\">optimization(Object) 配置说明</p>\n<p>| delayHover(Number) | 当表格发生拖动、滚动...等行为时，至少多少毫秒之后才允许触发 hover 事件 默认 250ms |\n| scrollX(Object) | 横向 X 虚拟滚动配置（用于特殊场景手动调优）例如：{ gt: 100 } |\n| scrollY(Object) | 纵向 Y 虚拟滚动配置（用于特殊场景手动调优）例如：{ gt: 500 } |</p>\n</div>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\">开启虚拟滚动注意事项</p>\n<p>1、开启虚拟滚动的前提是需要保证每列的宽度一样，可以通过在 <code>&lt;tiny-grid&gt;</code> 标签上的 <code>column-width</code> 属性配置统一的宽度。\n2、开启虚拟滚动将会禁用列宽调整功能，因为列拖拽会改变列宽度，导致虚拟滚动渲染的列数计算有误从而引起表格样式错乱，所以禁止列拖拽。</p>\n</div>\n",
+    "link": "grid/tiny-first-menu/virtual-rolling",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-virtual-rolling"
+  },
+  {
+    "title": "树表虚拟滚动",
+    "content": "<p><table class=\"table\"><thead><tr><th>名称</th> <th>类型</th> <th>描述</th> <th>默认值</th></tr></thead> <tbody><tr><td>optimization.scrollX.gt</td> <td>Number</td> <td>指定大于多少列时自动启动 X 虚拟滚动</td> <td>100</td></tr> <tr><td>optimization.scrollX.rSize</td> <td>Number</td> <td>每次渲染列数</td> <td></td></tr> <tr><td>optimization.scrollX.vSize</td> <td>Number</td> <td>指定可视区域列数</td> <td></td></tr> <tr><td>optimization.scrollX.adaptive</td> <td>Boolean</td> <td>自动适配最优的渲染方式（设置为 false 列数组只会在滚动完成后截取一次，便于大数据场景提升性能，但是会短暂白屏，渲染完成后即恢复）</td> <td>true</td></tr> <tr><td>optimization.scrollY.gt</td> <td>Number</td> <td>指定大于多少行时自动启动 Y 虚拟滚动</td> <td>500</td></tr> <tr><td>optimization.scrollY.rSize</td> <td>Number</td> <td>每次渲染行数</td> <td></td></tr> <tr><td>optimization.scrollY.adaptive</td> <td>Boolean</td> <td>自动适配最优的渲染方式（设置为 false 行数组只会在滚动完成后截取一次，便于大数据场景提升性能，但是会短暂白屏，渲染完成后即恢复）</td> <td>true</td></tr></tbody></table></p>\n</div>\n",
+    "link": "grid/tiny-first-menu/grid-large-tree-data",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-grid-large-tree-data"
+  },
+  {
+    "title": "全量加载",
+    "content": "<p>当表格数据过多时会有性能问题，用户可通过 <code>$refs</code> 获取表格对象，设置表格对象的 <code>loadData</code> 方法启用全量加载来优化性能。</p>\n",
+    "link": "grid/tiny-first-menu/full-data-loading",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-full-data-loading"
+  },
+  {
+    "title": "生成 1000 列",
+    "content": "<p>通过 <code>loadColumn(columns)</code> 方法可以加载列配置，对于需要重新加载列的场景下可能会用到。</p>\n",
+    "link": "grid/large-data/load-column",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "large-data-load-column"
+  },
+  {
+    "title": "滚动到指定位置",
+    "content": "<div class=\"tip custom-block\"><p class=\"custom-block-title\">方法说明</p>\n<p><code>scrollTo(scrollLeft, scrollTop)</code>：滚动到对应的位置\n<code>scrollToRow(row)</code>：滚动到对应的行\n<code>scrollToColumn(column)</code>：手滚动到对应的列</p>\n</div>\n",
+    "link": "grid/large-data/scroll-to",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "large-data-scroll-to"
+  }
+]

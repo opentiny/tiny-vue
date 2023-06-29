@@ -10,8 +10,9 @@
     ></tiny-grid-column>
     <tiny-grid-column
       field="createdDate"
-      title="创建日期过长隐藏时显示为省略号并用 tooltip 显示"
+      title="创建日期长度超过表格当前列的宽度，创建日期过长隐藏时显示为省略号并用 tooltip 显示"
       show-header-overflow="tooltip"
+      sortable
     ></tiny-grid-column>
     <tiny-grid-column
       field="city"

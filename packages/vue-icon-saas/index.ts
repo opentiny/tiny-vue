@@ -1,5 +1,30 @@
+/**
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
+
+import IconPromptExclamation from './src/prompt-exclamation'
+import IconAdd from './src/add'
 import IconAdministrator from './src/administrator'
-import IconAudio from './src/audio'
+import IconAlignBaseline from './src/align-baseline'
+import IconAlignCenter from './src/align-center'
+import IconAlignFlexCenter from './src/align-flex-center'
+import IconAlignFlexEnd from './src/align-flex-end'
+import IconAlignFlexStart from './src/align-flex-start'
+import IconAlignJustify from './src/align-justify'
+import IconAlignLeft from './src/align-left'
+import IconAlignRight from './src/align-right'
+import IconAlignStretch from './src/align-stretch'
+import IconAngularjs from './src/angularjs'
+import IconApp from './src/app'
+import IconApplication from './src/application'
 import IconAreaChart from './src/area-chart'
 import IconArrowBottom from './src/arrow-bottom'
 import IconArrowDown from './src/arrow-down'
@@ -12,6 +37,7 @@ import IconAttachment from './src/attachment'
 import IconBarChart from './src/bar-chart'
 import IconBefilter from './src/befilter'
 import IconBoat from './src/boat'
+import IconBoxSolid from './src/box-solid'
 import IconBusy from './src/busy'
 import IconCalculator from './src/calculator'
 import IconCalendar from './src/calendar'
@@ -31,15 +57,19 @@ import IconCloseSquare from './src/close-square'
 import IconClose from './src/close'
 import IconCloudDownload from './src/cloud-download'
 import IconCloudUpload from './src/cloud-upload'
+import IconCode from './src/code'
 import IconCoin from './src/coin'
+import IconColReverse from './src/col-reverse'
 import IconCommission from './src/commission'
 import IconConmentRefresh from './src/conment-refresh'
+import IconCopySolid from './src/copy-solid'
 import IconCopy from './src/copy'
 import IconCourse from './src/course'
 import IconCueL from './src/cue-l'
 import IconCustom from './src/custom'
 import IconCustomerService from './src/customer-service'
 import IconCrop from './src/crop'
+import IconDataSource from './src/data-source'
 import IconDefault from './src/default'
 import IconDefinedFiltration from './src/defined-filtration'
 import IconDel from './src/del'
@@ -55,9 +85,13 @@ import IconDeltaUpO from './src/delta-up-o'
 import IconDeltaUp from './src/delta-up'
 import IconDerive from './src/derive'
 import IconDescending from './src/descending'
+import IconDesktopView from './src/desktop-view'
 import IconDialog from './src/dialog'
 import IconDialog2 from './src/dialog2'
+import IconDirectionCol from './src/direction-col'
+import IconDirectionRow from './src/direction-row'
 import IconDotChart from './src/dot-chart'
+import IconDotDownload from './src/dot-download'
 import IconDotIpv4 from './src/dot-ipv4'
 import IconDoubleLeft from './src/double-left'
 import IconDoubleRight from './src/double-right'
@@ -66,6 +100,7 @@ import IconDown from './src/down'
 import IconDownloadCloud from './src/download-cloud'
 import IconDownloadLink from './src/download-link'
 import IconDownload from './src/download'
+import IconDraft from './src/draft'
 import IconEdit from './src/edit'
 import IconEditorTab from './src/editor-tab'
 import IconEllipsis from './src/ellipsis'
@@ -82,9 +117,6 @@ import IconExport from './src/export'
 import IconExpressSearch from './src/express-search'
 import IconEyeclose from './src/eyeclose'
 import IconEyeopen from './src/eyeopen'
-import IconMic from './src/mic'
-import IconExcelType from './src/excel-type'
-
 import IconEditorAlignCenter from './src/editor-align-center'
 import IconEditorAlignLeft from './src/editor-align-left'
 import IconEditorAlignRight from './src/editor-align-right'
@@ -112,7 +144,6 @@ import IconEditorTitle from './src/editor-title'
 import IconEditorUnderline from './src/editor-underline'
 import IconEditorUndo from './src/editor-undo'
 import IconEditorVideo from './src/editor-video'
-
 import IconFileCloudupload from './src/file-cloudupload'
 import IconFileExcel from './src/file-excel'
 import IconFile from './src/file'
@@ -124,13 +155,17 @@ import IconFiltered from './src/filtered'
 import IconFlag from './src/flag'
 import IconFolderClosed from './src/folder-closed'
 import IconFolderOpened from './src/folder-opened'
+import IconFontColor from './src/font-color'
+import IconFontFamily from './src/font-family'
+import IconFontSize from './src/font-size'
+import IconFontStyle from './src/font-style'
+import IconFontWeight from './src/font-weight'
 import IconFreezeLeft from './src/freeze-left'
 import IconFreezeRight from './src/freeze-right'
 import IconFrownO from './src/frown-o'
 import IconFrown from './src/frown'
 import IconFullscreen from './src/fullscreen'
 import IconFullscreenLeft from './src/fullscreen-left'
-import IconFileType from './src/file-type'
 import IconGrade from './src/grade'
 import IconGroupTransfer from './src/group-transfer'
 import IconGroup from './src/group'
@@ -142,19 +177,32 @@ import IconHelpQuery from './src/help-query'
 import IconHelpSolid from './src/help-solid'
 import IconHelp from './src/help'
 import IconHelpful from './src/helpful'
+import IconHideLeft from './src/hide-left'
+import IconHideRight from './src/hide-right'
+import IconHideTopleft from './src/hide-topleft'
 import IconImport from './src/import'
 import IconInfoCircle from './src/info-circle'
 import IconInfoSolid from './src/info-solid'
 import IconInfo from './src/info'
 import IconInformation from './src/information'
+import IconJs from './src/js'
+import IconJusitfyCenter from './src/jusitfy-center'
+import IconJusitfyFlexEnd from './src/jusitfy-flex-end'
+import IconJusitfySpaceAround from './src/jusitfy-space-around'
+import IconJusitfySpaceBetween from './src/jusitfy-space-between'
+import IconJustitfyFlexStart from './src/justitfy-flex-start'
+import IconLanguage from './src/language'
 import IconLeave from './src/leave'
 import IconLeftFrozen from './src/left-frozen'
 import IconLeftO from './src/left-o'
 import IconLeftWard from './src/left-ward'
 import IconLeft from './src/left'
 import IconLineChart from './src/line-chart'
+import IconLineHeight from './src/line-height'
+import IconLineThrought from './src/line-throught'
 import IconLink from './src/link'
 import IconLoading from './src/loading'
+import IconLoadingShadow from './src/loading-shadow'
 import IconLock from './src/lock'
 import IconMailContent from './src/mail-content'
 import IconMail from './src/mail'
@@ -167,18 +215,20 @@ import IconMinscreenLeft from './src/minscreen-left'
 import IconMinusCircle from './src/minus-circle'
 import IconMinusSquare from './src/minus-square'
 import IconMinus from './src/minus'
+import IconMobileView from './src/mobile-view'
 import IconMobile from './src/mobile'
 import IconMore from './src/more'
 import IconNew from './src/new'
 import IconNoPremission from './src/no-premission'
 import IconNodeOpen from './src/node-open'
 import IconNode from './src/node'
+import IconNodejs from './src/nodejs'
+import IconNone from './src/none'
 import IconOffLine from './src/off-line'
 import IconOnLine from './src/on-line'
 import IconOperationfaildL from './src/operationfaild-l'
 import IconOperationfaild from './src/operationfaild'
 import IconOuterLink from './src/outer-link'
-import IconOtherType from './src/other-type'
 import IconPagelink from './src/pagelink'
 import IconPagerFirst from './src/pager-first'
 import IconPagerLast from './src/pager-last'
@@ -198,11 +248,10 @@ import IconPopup from './src/popup'
 import IconPreChecked from './src/pre-checked'
 import IconPrintPreview from './src/print-preview'
 import IconPushpin from './src/pushpin'
-import IconPdfType from './src/pdf-type'
-import IconPictureType from './src/picture-type'
-import IconPptType from './src/ppt-type'
 import IconRadio from './src/radio'
 import IconRadioselected from './src/radioselected'
+import IconReactjs from './src/reactjs'
+import IconRedo from './src/redo'
 import IconRefres from './src/refres'
 import IconRenew from './src/renew'
 import IconRepeat from './src/repeat'
@@ -212,6 +261,7 @@ import IconRightFrozen from './src/right-frozen'
 import IconRightO from './src/right-o'
 import IconRight from './src/right'
 import IconRightward from './src/rightward'
+import IconRowReverse from './src/row-reverse'
 import IconSandwichCollapse from './src/sandwich-collapse'
 import IconSandwichExpand from './src/sandwich-expand'
 import IconSave from './src/save'
@@ -226,6 +276,7 @@ import IconShareArrow from './src/share-arrow'
 import IconShoppingCard from './src/shopping-card'
 import IconSmileO from './src/smile-o'
 import IconSmile from './src/smile'
+import IconSortDefault from './src/sort-default'
 import IconSort from './src/sort'
 import IconStarActive from './src/star-active'
 import IconStarDisable from './src/star-disable'
@@ -234,21 +285,27 @@ import IconStartCircle from './src/start-circle'
 import IconStart from './src/start'
 import IconStatistics from './src/statistics'
 import IconStop from './src/stop'
+import IconStreamSolid from './src/stream-solid'
 import IconSuccess from './src/success'
 import IconSuccessful from './src/successful'
+import IconTabletView from './src/tablet-view'
 import IconTaskCooperation from './src/task-cooperation'
 import IconTelephoneCircle from './src/telephone-circle'
 import IconTelephone from './src/telephone'
+import IconTextAlign from './src/text-align'
+import IconTextDecoration from './src/text-decoration'
 import IconTextTab from './src/text-tab'
 import IconText from './src/text'
 import IconTime from './src/time'
 import IconTotal from './src/total'
 import IconTriangleDown from './src/triangle-down'
-import IconTextType from './src/text-type'
 import IconUndelete from './src/undelete'
+import IconUnderline from './src/underline'
+import IconUndo from './src/undo'
 import IconUnfilter from './src/unfilter'
 import IconUnfreeze from './src/unfreeze'
 import IconUnknow from './src/unknow'
+import IconUnknown from './src/unknown'
 import IconUnlock from './src/unlock'
 import IconUnsent from './src/unsent'
 import IconUpO from './src/up-o'
@@ -257,601 +314,771 @@ import IconUpload from './src/upload'
 import IconUser from './src/user'
 import IconVersiontree from './src/versiontree'
 import IconView from './src/view'
-import IconVideoType from './src/video-type'
+import IconVuejs from './src/vuejs'
 import IconWarningTriangle from './src/warning-triangle'
 import IconWarning from './src/warning'
 import IconWebPlus from './src/web-plus'
 import IconWriting from './src/writing'
-import IconWordType from './src/word-type'
 import IconYes from './src/yes'
 import IconZoomIn from './src/zoom-in'
 import IconZoomOut from './src/zoom-out'
-import IconZipType from './src/zip-type'
 import IconMobileRadio from './src/mobile-radio'
 import IconMobileRadioSelected from './src/mobile-radio-selected'
 import IconMobileCheckbox from './src/mobile-checkbox'
 import IconMobileCheckboxHalf from './src/mobile-checkbox-half'
 import IconMobileCheckboxSelected from './src/mobile-checkbox-selected'
+import IconAudio from './src/audio'
+import IconMic from './src/mic'
+import IconExcelType from './src/excel-type'
+import IconFileType from './src/file-type'
+import IconOtherType from './src/other-type'
+import IconPdfType from './src/pdf-type'
+import IconPictureType from './src/picture-type'
+import IconPptType from './src/ppt-type'
+import IconTextType from './src/text-type'
+import IconVideoType from './src/video-type'
+import IconWordType from './src/word-type'
+import IconZipType from './src/zip-type'
 
-// new icons
+// new design
+import IconPrompt from './src/prompt'
+import IconExpand from './src/expand'
+import IconPutAway from './src/put-away'
+import IconStretch from './src/stretch'
+import IconAddCircle from './src/add-circle'
+import IconUpWard from './src/up-ward'
 import IconDownWard from './src/down-ward'
-import IconDotDownload from './src/dot-download'
 import IconLeftWardArrow from './src/left-ward-arrow'
-import IconPromptExclamation from './src/prompt-exclamation'
-import IconSortDefault from './src/sort-default'
 import IconSortTriangle from './src/sort-triangle'
 import IconSortTriangleAscending from './src/sort-triangle-ascending'
 import IconSortTriangleDescending from './src/sort-triangle-descending'
 
-export { IconDownWard }
-export { IconDownWard as iconDownWard }
-export { IconDotDownload }
-export { IconDotDownload as iconDotDownload }
-export { IconLeftWardArrow }
-export { IconLeftWardArrow as iconLeftWardArrow }
-export { IconPromptExclamation }
-export { IconPromptExclamation as iconPromptExclamation }
-export { IconSortDefault }
-export { IconSortDefault as iconSortDefault }
-export { IconSortTriangle }
-export { IconSortTriangle as iconSortTriangle }
-export { IconSortTriangleAscending }
-export { IconSortTriangleAscending as iconSortTriangleAscending }
-export { IconSortTriangleDescending }
-export { IconSortTriangleDescending as iconSortTriangleDescending }
-
-// old icons
-export { IconMobileCheckbox }
-export { IconMobileCheckbox as iconMobileCheckbox }
-export { IconMobileCheckboxHalf }
-export { IconMobileCheckboxHalf as iconMobileCheckboxHalf }
-export { IconMobileCheckboxSelected }
-export { IconMobileCheckboxSelected as iconMobileCheckboxSelected }
-export { IconMobileRadio }
-export { IconMobileRadio as iconMobileRadio }
-export { IconMobileRadioSelected }
-export { IconMobileRadioSelected as iconMobileRadioSelected }
-export { IconAdministrator }
-export { IconAdministrator as iconAdministrator }
-export { IconAudio }
-export { IconAudio as iconAudio }
-export { IconAreaChart }
-export { IconAreaChart as iconAreaChart }
-export { IconArrowDown }
-export { IconArrowDown as iconArrowDown }
-export { IconArrowBottom }
-export { IconArrowBottom as iconArrowBottom }
-export { IconArrowLeft }
-export { IconArrowLeft as iconArrowLeft }
-export { IconArrowRight }
-export { IconArrowRight as iconArrowRight }
-export { IconArrowUp }
-export { IconArrowUp as iconArrowUp }
-export { IconAscending }
-export { IconAscending as iconAscending }
-export { IconAssociation }
-export { IconAssociation as iconAssociation }
-export { IconAttachment }
-export { IconAttachment as iconAttachment }
-export { IconBarChart }
-export { IconBarChart as iconBarChart }
-export { IconBefilter }
-export { IconBefilter as iconBefilter }
-export { IconBoat }
-export { IconBoat as iconBoat }
-export { IconBusy }
-export { IconBusy as iconBusy }
-export { IconCalculator }
-export { IconCalculator as iconCalculator }
-export { IconCalendar }
-export { IconCalendar as iconCalendar }
-export { IconCheckOut }
-export { IconCheckOut as iconCheckOut }
-export { IconCheck }
-export { IconCheck as iconCheck }
-export { IconCheckedLinear }
-export { IconCheckedLinear as iconCheckedLinear }
-export { IconCheckedSur }
-export { IconCheckedSur as iconCheckedSur }
-export { IconCheckedTrue }
-export { IconCheckedTrue as iconCheckedTrue }
-export { IconChevronDown }
-export { IconChevronDown as iconChevronDown }
-export { IconChevronLeft }
-export { IconChevronLeft as iconChevronLeft }
-export { IconChevronRight }
-export { IconChevronRight as iconChevronRight }
-export { IconChevronUp }
-export { IconChevronUp as iconChevronUp }
-export { IconClearFilter }
-export { IconClearFilter as iconClearFilter }
-export { IconClockWork }
-export { IconClockWork as iconClockWork }
-export { IconCloseCircle }
-export { IconCloseCircle as iconCloseCircle }
-export { IconCloseSquare }
-export { IconCloseSquare as iconCloseSquare }
-export { IconClose }
-export { IconClose as iconClose }
-export { IconCloudDownload }
-export { IconCloudDownload as iconCloudDownload }
-export { IconCloudUpload }
-export { IconCloudUpload as iconCloudUpload }
-export { IconCoin }
-export { IconCoin as iconCoin }
-export { IconCommission }
-export { IconCommission as iconCommission }
-export { IconConmentRefresh }
-export { IconConmentRefresh as iconConmentRefresh }
-export { IconCopy }
-export { IconCopy as iconCopy }
-export { IconCourse }
-export { IconCourse as iconCourse }
-export { IconCueL }
-export { IconCueL as iconCueL }
-export { IconCustom }
-export { IconCustom as iconCustom }
-export { IconCustomerService }
-export { IconCustomerService as iconCustomerService }
-export { IconCrop }
-export { IconCrop as iconCrop }
-export { IconDefault }
-export { IconDefault as iconDefault }
-export { IconDefinedFiltration }
-export { IconDefinedFiltration as iconDefinedFiltration }
-export { IconDel }
-export { IconDel as iconDel }
-export { IconDeletePage }
-export { IconDeletePage as iconDeletePage }
-export { IconDeleted }
-export { IconDeleted as iconDeleted }
-export { IconDeltaDownO }
-export { IconDeltaDownO as iconDeltaDownO }
-export { IconDeltaDown }
-export { IconDeltaDown as iconDeltaDown }
-export { IconDeltaLeftO }
-export { IconDeltaLeftO as iconDeltaLeftO }
-export { IconDeltaLeft }
-export { IconDeltaLeft as iconDeltaLeft }
-export { IconDeltaRightO }
-export { IconDeltaRightO as iconDeltaRightO }
-export { IconDeltaRight }
-export { IconDeltaRight as iconDeltaRight }
-export { IconDeltaUpO }
-export { IconDeltaUpO as iconDeltaUpO }
-export { IconDeltaUp }
-export { IconDeltaUp as iconDeltaUp }
-export { IconDerive }
-export { IconDerive as iconDerive }
-export { IconDescending }
-export { IconDescending as iconDescending }
-export { IconDialog }
-export { IconDialog as iconDialog }
-export { IconDialog2 }
-export { IconDialog2 as iconDialog2 }
-export { IconDotChart }
-export { IconDotChart as iconDotChart }
-export { IconDotIpv4 }
-export { IconDotIpv4 as iconDotIpv4 }
-export { IconDoubleLeft }
-export { IconDoubleLeft as iconDoubleLeft }
-export { IconDoubleRight }
-export { IconDoubleRight as iconDoubleRight }
-export { IconDownO }
-export { IconDownO as iconDownO }
-export { IconDown }
-export { IconDown as iconDown }
-export { IconDownloadCloud }
-export { IconDownloadCloud as iconDownloadCloud }
-export { IconDownloadLink }
-export { IconDownloadLink as iconDownloadLink }
-export { IconDownload }
-export { IconDownload as iconDownload }
-export { IconEdit }
-export { IconEdit as iconEdit }
-export { IconEditorTab }
-export { IconEditorTab as iconEditorTab }
-export { IconEllipsis }
-export { IconEllipsis as iconEllipsis }
-export { IconEmailAdd }
-export { IconEmailAdd as iconEmailAdd }
-export { IconEmailCircle }
-export { IconEmailCircle as iconEmailCircle }
-export { IconEnd }
-export { IconEnd as iconEnd }
-export { IconError }
-export { IconError as iconError }
-export { IconEspaceAuto }
-export { IconEspaceAuto as iconEspaceAuto }
-export { IconEspace }
-export { IconEspace as iconEspace }
-export { IconExcel }
-export { IconExcel as iconExcel }
-export { IconException }
-export { IconException as iconException }
-export { IconExclamation }
-export { IconExclamation as iconExclamation }
-export { IconExport }
-export { IconExport as iconExport }
-export { IconExpressSearch }
-export { IconExpressSearch as iconExpressSearch }
-export { IconEyeclose }
-export { IconEyeclose as iconEyeclose }
-export { IconEyeopen }
-export { IconEyeopen as iconEyeopen }
-export { IconMic }
-export { IconMic as iconMic }
-export { IconExcelType }
-export { IconExcelType as iconExcelType }
-export { IconEditorAlignCenter }
-export { IconEditorAlignCenter as iconEditorAlignCenter }
-export { IconEditorAlignLeft }
-export { IconEditorAlignLeft as iconEditorAlignLeft }
-export { IconEditorAlignRight }
-export { IconEditorAlignRight as iconEditorAlignRight }
-export { IconEditorBackground }
-export { IconEditorBackground as iconEditorBackground }
-export { IconEditorBold }
-export { IconEditorBold as iconEditorBold }
-export { IconEditorCode }
-export { IconEditorCode as iconEditorCode }
-export { IconEditorDeleteline }
-export { IconEditorDeleteline as iconEditorDeleteline }
-export { IconEditorEraser }
-export { IconEditorEraser as iconEditorEraser }
-export { IconEditorItalic }
-export { IconEditorItalic as iconEditorItalic }
-export { IconEditorLeftBorder }
-export { IconEditorLeftBorder as iconEditorLeftBorder }
-export { IconEditorList }
-export { IconEditorList as iconEditorList }
-export { IconEditorListDot }
-export { IconEditorListDot as iconEditorListDot }
-export { IconEditorListNum }
-export { IconEditorListNum as iconEditorListNum }
-export { IconEditorMenuLeft }
-export { IconEditorMenuLeft as iconEditorMenuLeft }
-export { IconEditorMenuRight }
-export { IconEditorMenuRight as iconEditorMenuRight }
-export { IconEditorQuote }
-export { IconEditorQuote as iconEditorQuote }
-export { IconEditorRedo }
-export { IconEditorRedo as iconEditorRedo }
-export { IconEditorRightBorder }
-export { IconEditorRightBorder as iconEditorRightBorder }
-export { IconEditorSub }
-export { IconEditorSub as iconEditorSub }
-export { IconEditorSubtitle }
-export { IconEditorSubtitle as iconEditorSubtitle }
-export { IconEditorSuper }
-export { IconEditorSuper as iconEditorSuper }
-export { IconEditorTable }
-export { IconEditorTable as iconEditorTable }
-export { IconEditorTextcolor }
-export { IconEditorTextcolor as iconEditorTextcolor }
-export { IconEditorTitle }
-export { IconEditorTitle as iconEditorTitle }
-export { IconEditorUnderline }
-export { IconEditorUnderline as iconEditorUnderline }
-export { IconEditorUndo }
-export { IconEditorUndo as iconEditorUndo }
-export { IconEditorVideo }
-export { IconEditorVideo as iconEditorVideo }
-export { IconFileCloudupload }
-export { IconFileCloudupload as iconFileCloudupload }
-export { IconFileExcel }
-export { IconFileExcel as iconFileExcel }
-export { IconFile }
-export { IconFile as iconFile }
-export { IconFilesCircle }
-export { IconFilesCircle as iconFilesCircle }
-export { IconFiles }
-export { IconFiles as iconFiles }
-export { IconFiletext }
-export { IconFiletext as iconFiletext }
-export { IconFileupload }
-export { IconFileupload as iconFileupload }
-export { IconFiltered }
-export { IconFiltered as iconFiltered }
-export { IconFlag }
-export { IconFlag as iconFlag }
-export { IconFolderClosed }
-export { IconFolderClosed as iconFolderClosed }
-export { IconFolderOpened }
-export { IconFolderOpened as iconFolderOpened }
-export { IconFreezeLeft }
-export { IconFreezeLeft as iconFreezeLeft }
-export { IconFreezeRight }
-export { IconFreezeRight as iconFreezeRight }
-export { IconFrownO }
-export { IconFrownO as iconFrownO }
-export { IconFrown }
-export { IconFrown as iconFrown }
-export { IconFullscreen }
-export { IconFullscreen as iconFullscreen }
-export { IconFullscreenLeft }
-export { IconFullscreenLeft as iconFullscreenLeft }
-export { IconFileType }
-export { IconFileType as iconFileType }
-export { IconGrade }
-export { IconGrade as iconGrade }
-export { IconGroupTransfer }
-export { IconGroupTransfer as iconGroupTransfer }
-export { IconGroup }
-export { IconGroup as iconGroup }
-export { IconHalfchecked }
-export { IconHalfchecked as iconHalfchecked }
-export { IconHalfselect }
-export { IconHalfselect as iconHalfselect }
-export { IconHeartempty }
-export { IconHeartempty as iconHeartempty }
-export { IconHelpCircle }
-export { IconHelpCircle as iconHelpCircle }
-export { IconHelpQuery }
-export { IconHelpQuery as iconHelpQuery }
-export { IconHelpSolid }
-export { IconHelpSolid as iconHelpSolid }
-export { IconHelp }
-export { IconHelp as iconHelp }
-export { IconHelpful }
-export { IconHelpful as iconHelpful }
-export { IconImport }
-export { IconImport as iconImport }
-export { IconInfoCircle }
-export { IconInfoCircle as iconInfoCircle }
-export { IconInfoSolid }
-export { IconInfoSolid as iconInfoSolid }
-export { IconInfo }
-export { IconInfo as iconInfo }
-export { IconInformation }
-export { IconInformation as iconInformation }
-export { IconLeave }
-export { IconLeave as iconLeave }
-export { IconLeftFrozen }
-export { IconLeftFrozen as iconLeftFrozen }
-export { IconLeftO }
-export { IconLeftO as iconLeftO }
-export { IconLeftWard }
-export { IconLeftWard as iconLeftWard }
-export { IconLeft }
-export { IconLeft as iconLeft }
-export { IconLineChart }
-export { IconLineChart as iconLineChart }
-export { IconLink }
-export { IconLink as iconLink }
-export { IconLoading }
-export { IconLoading as iconLoading }
-export { IconLock }
-export { IconLock as iconLock }
-export { IconMailContent }
-export { IconMailContent as iconMailContent }
-export { IconMail }
-export { IconMail as iconMail }
-export { IconMale }
-export { IconMale as iconMale }
-export { IconMarkOn }
-export { IconMarkOn as iconMarkOn }
-export { IconMeh }
-export { IconMeh as iconMeh }
-export { IconMessageCircle }
-export { IconMessageCircle as iconMessageCircle }
-export { IconMinscreen }
-export { IconMinscreen as iconMinscreen }
-export { IconMinscreenLeft }
-export { IconMinscreenLeft as iconMinscreenLeft }
-export { IconMinusCircle }
-export { IconMinusCircle as iconMinusCircle }
-export { IconMinusSquare }
-export { IconMinusSquare as iconMinusSquare }
-export { IconMinus }
-export { IconMinus as iconMinus }
-export { IconMobile }
-export { IconMobile as iconMobile }
-export { IconMore }
-export { IconMore as iconMore }
-export { IconNew }
-export { IconNew as iconNew }
-export { IconNoPremission }
-export { IconNoPremission as iconNoPremission }
-export { IconNodeOpen }
-export { IconNodeOpen as iconNodeOpen }
-export { IconNode }
-export { IconNode as iconNode }
-export { IconOffLine }
-export { IconOffLine as iconOffLine }
-export { IconOnLine }
-export { IconOnLine as iconOnLine }
-export { IconOperationfaildL }
-export { IconOperationfaildL as iconOperationfaildL }
-export { IconOperationfaild }
-export { IconOperationfaild as iconOperationfaild }
-export { IconOuterLink }
-export { IconOuterLink as iconOuterLink }
-export { IconOtherType }
-export { IconOtherType as iconOtherType }
-export { IconPagelink }
-export { IconPagelink as iconPagelink }
-export { IconPagerFirst }
-export { IconPagerFirst as iconPagerFirst }
-export { IconPagerLast }
-export { IconPagerLast as iconPagerLast }
-export { IconPagerNext }
-export { IconPagerNext as iconPagerNext }
-export { IconPagerPrev }
-export { IconPagerPrev as iconPagerPrev }
-export { IconPanelMax }
-export { IconPanelMax as iconPanelMax }
-export { IconPanelMini }
-export { IconPanelMini as iconPanelMini }
-export { IconPanelNormal }
-export { IconPanelNormal as iconPanelNormal }
-export { IconPauseCircle }
-export { IconPauseCircle as iconPauseCircle }
-export { IconPause }
-export { IconPause as iconPause }
-export { IconPicture }
-export { IconPicture as iconPicture }
-export { IconPieChart }
-export { IconPieChart as iconPieChart }
-export { IconPlusCircle }
-export { IconPlusCircle as iconPlusCircle }
-export { IconPlusSquare }
-export { IconPlusSquare as iconPlusSquare }
-export { IconPlus }
-export { IconPlus as iconPlus }
-export { IconPopup }
-export { IconPopup as iconPopup }
-export { IconPreChecked }
-export { IconPreChecked as iconPreChecked }
-export { IconPrintPreview }
-export { IconPrintPreview as iconPrintPreview }
-export { IconPushpin }
-export { IconPushpin as iconPushpin }
-export { IconPdfType }
-export { IconPdfType as iconPdfType }
-export { IconPictureType }
-export { IconPictureType as iconPictureType }
-export { IconPptType }
-export { IconPptType as iconPptType }
-export { IconRadio }
-export { IconRadio as iconRadio }
-export { IconRadioselected }
-export { IconRadioselected as iconRadioselected }
-export { IconRefres }
-export { IconRefres as iconRefres }
-export { IconRenew }
-export { IconRenew as iconRenew }
-export { IconRepeat }
-export { IconRepeat as iconRepeat }
-export { IconReplace }
-export { IconReplace as iconReplace }
-export { IconReplies }
-export { IconReplies as iconReplies }
-export { IconRightFrozen }
-export { IconRightFrozen as iconRightFrozen }
-export { IconRightO }
-export { IconRightO as iconRightO }
-export { IconRight }
-export { IconRight as iconRight }
-export { IconRightward }
-export { IconRightward as iconRightward }
-export { IconSandwichCollapse }
-export { IconSandwichCollapse as iconSandwichCollapse }
-export { IconSandwichExpand }
-export { IconSandwichExpand as iconSandwichExpand }
-export { IconSave }
-export { IconSave as iconSave }
-export { IconScissor }
-export { IconScissor as iconScissor }
-export { IconSearch }
-export { IconSearch as iconSearch }
-export { IconSelect }
-export { IconSelect as iconSelect }
-export { IconSent }
-export { IconSent as iconSent }
-export { IconSeparate }
-export { IconSeparate as iconSeparate }
-export { IconSetting }
-export { IconSetting as iconSetting }
-export { IconShare }
-export { IconShare as iconShare }
-export { IconShareArrow }
-export { IconShareArrow as iconShareArrow }
-export { IconShoppingCard }
-export { IconShoppingCard as iconShoppingCard }
-export { IconSmileO }
-export { IconSmileO as iconSmileO }
-export { IconSmile }
-export { IconSmile as iconSmile }
-export { IconSort }
-export { IconSort as iconSort }
-export { IconStarActive }
-export { IconStarActive as iconStarActive }
-export { IconStarDisable }
-export { IconStarDisable as iconStarDisable }
-export { IconStarO }
-export { IconStarO as iconStarO }
-export { IconStartCircle }
-export { IconStartCircle as iconStartCircle }
-export { IconStart }
-export { IconStart as iconStart }
-export { IconStatistics }
-export { IconStatistics as iconStatistics }
-export { IconStop }
-export { IconStop as iconStop }
-export { IconSuccess }
-export { IconSuccess as iconSuccess }
-export { IconSuccessful }
-export { IconSuccessful as iconSuccessful }
-export { IconTaskCooperation }
-export { IconTaskCooperation as iconTaskCooperation }
-export { IconTelephoneCircle }
-export { IconTelephoneCircle as iconTelephoneCircle }
-export { IconTelephone }
-export { IconTelephone as iconTelephone }
-export { IconTextTab }
-export { IconTextTab as iconTextTab }
-export { IconText }
-export { IconText as iconText }
-export { IconTime }
-export { IconTime as iconTime }
-export { IconTotal }
-export { IconTotal as iconTotal }
-export { IconTriangleDown }
-export { IconTriangleDown as iconTriangleDown }
-export { IconTextType }
-export { IconTextType as iconTextType }
-export { IconUndelete }
-export { IconUndelete as iconUndelete }
-export { IconUnfilter }
-export { IconUnfilter as iconUnfilter }
-export { IconUnfreeze }
-export { IconUnfreeze as iconUnfreeze }
-export { IconUnknow }
-export { IconUnknow as iconUnknow }
-export { IconUnlock }
-export { IconUnlock as iconUnlock }
-export { IconUnsent }
-export { IconUnsent as iconUnsent }
-export { IconUpO }
-export { IconUpO as iconUpO }
-export { IconUp }
-export { IconUp as iconUp }
-export { IconUpload }
-export { IconUpload as iconUpload }
-export { IconUser }
-export { IconUser as iconUser }
-export { IconVersiontree }
-export { IconVersiontree as iconVersiontree }
-export { IconView }
-export { IconView as iconView }
-export { IconVideoType }
-export { IconVideoType as iconVideoType }
-export { IconWarningTriangle }
-export { IconWarningTriangle as iconWarningTriangle }
-export { IconWarning }
-export { IconWarning as iconWarning }
-export { IconWebPlus }
-export { IconWebPlus as iconWebPlus }
-export { IconWriting }
-export { IconWriting as iconWriting }
-export { IconWordType }
-export { IconWordType as iconWordType }
-export { IconYes }
-export { IconYes as iconYes }
-export { IconZoomIn }
-export { IconZoomIn as iconZoomIn }
-export { IconZoomOut }
-export { IconZoomOut as iconZoomOut }
-export { IconZipType }
-export { IconZipType as iconZipType }
+export {
+  IconSortTriangle,
+  IconSortTriangle as iconSortTriangle,
+  IconSortTriangleAscending,
+  IconSortTriangleAscending as iconSortTriangleAscending,
+  IconSortTriangleDescending,
+  IconSortTriangleDescending as iconSortTriangleDescending,
+  IconPromptExclamation,
+  IconPromptExclamation as iconPromptExclamation,
+  IconPrompt,
+  IconPrompt as iconPrompt,
+  IconExpand,
+  IconExpand as iconExpand,
+  IconPutAway,
+  IconPutAway as iconPutAway,
+  IconStretch,
+  IconStretch as iconStretch,
+  IconAddCircle,
+  IconAddCircle as iconAddCircle,
+  IconAudio,
+  IconAudio as iconAudio,
+  IconMic,
+  IconMic as iconMic,
+  IconExcelType,
+  IconExcelType as iconExcelType,
+  IconFileType,
+  IconFileType as iconFileType,
+  IconOtherType,
+  IconOtherType as iconOtherType,
+  IconPdfType,
+  IconPdfType as iconPdfType,
+  IconPictureType,
+  IconPictureType as iconPictureType,
+  IconPptType,
+  IconPptType as iconPptType,
+  IconTextType,
+  IconTextType as iconTextType,
+  IconVideoType,
+  IconVideoType as iconVideoType,
+  IconWordType,
+  IconWordType as iconWordType,
+  IconZipType,
+  IconZipType as iconZipType,
+  IconMobileCheckbox,
+  IconMobileCheckbox as iconMobileCheckbox,
+  IconMobileCheckboxHalf,
+  IconMobileCheckboxHalf as iconMobileCheckboxHalf,
+  IconMobileCheckboxSelected,
+  IconMobileCheckboxSelected as iconMobileCheckboxSelected,
+  IconMobileRadio,
+  IconMobileRadio as iconMobileRadio,
+  IconMobileRadioSelected,
+  IconMobileRadioSelected as iconMobileRadioSelected,
+  IconAdd,
+  IconAdd as iconAdd,
+  IconAdministrator,
+  IconAdministrator as iconAdministrator,
+  IconAlignBaseline,
+  IconAlignBaseline as iconAlignBaseline,
+  IconAlignCenter,
+  IconAlignCenter as iconAlignCenter,
+  IconAlignFlexCenter,
+  IconAlignFlexCenter as iconAlignFlexCenter,
+  IconAlignFlexEnd,
+  IconAlignFlexEnd as iconAlignFlexEnd,
+  IconAlignFlexStart,
+  IconAlignFlexStart as iconAlignFlexStart,
+  IconAlignJustify,
+  IconAlignJustify as iconAlignJustify,
+  IconAlignLeft,
+  IconAlignLeft as iconAlignLeft,
+  IconAlignRight,
+  IconAlignRight as iconAlignRight,
+  IconAlignStretch,
+  IconAlignStretch as iconAlignStretch,
+  IconAngularjs,
+  IconAngularjs as iconAngularjs,
+  IconApp,
+  IconApp as iconApp,
+  IconApplication,
+  IconApplication as iconApplication,
+  IconAreaChart,
+  IconAreaChart as iconAreaChart,
+  IconArrowBottom,
+  IconArrowBottom as iconArrowBottom,
+  IconArrowDown,
+  IconArrowDown as iconArrowDown,
+  IconArrowLeft,
+  IconArrowLeft as iconArrowLeft,
+  IconArrowRight,
+  IconArrowRight as iconArrowRight,
+  IconArrowUp,
+  IconArrowUp as iconArrowUp,
+  IconAscending,
+  IconAscending as iconAscending,
+  IconAssociation,
+  IconAssociation as iconAssociation,
+  IconAttachment,
+  IconAttachment as iconAttachment,
+  IconBarChart,
+  IconBarChart as iconBarChart,
+  IconBefilter,
+  IconBefilter as iconBefilter,
+  IconBoat,
+  IconBoat as iconBoat,
+  IconBoxSolid,
+  IconBoxSolid as iconBoxSolid,
+  IconBusy,
+  IconBusy as iconBusy,
+  IconCalculator,
+  IconCalculator as iconCalculator,
+  IconCalendar,
+  IconCalendar as iconCalendar,
+  IconCheckOut,
+  IconCheckOut as iconCheckOut,
+  IconCheck,
+  IconCheck as iconCheck,
+  IconCheckedLinear,
+  IconCheckedLinear as iconCheckedLinear,
+  IconCheckedSur,
+  IconCheckedSur as iconCheckedSur,
+  IconCheckedTrue,
+  IconCheckedTrue as iconCheckedTrue,
+  IconChevronDown,
+  IconChevronDown as iconChevronDown,
+  IconChevronLeft,
+  IconChevronLeft as iconChevronLeft,
+  IconChevronRight,
+  IconChevronRight as iconChevronRight,
+  IconChevronUp,
+  IconChevronUp as iconChevronUp,
+  IconClearFilter,
+  IconClearFilter as iconClearFilter,
+  IconClockWork,
+  IconClockWork as iconClockWork,
+  IconCloseCircle,
+  IconCloseCircle as iconCloseCircle,
+  IconCloseSquare,
+  IconCloseSquare as iconCloseSquare,
+  IconClose,
+  IconClose as iconClose,
+  IconCloudDownload,
+  IconCloudDownload as iconCloudDownload,
+  IconCloudUpload,
+  IconCloudUpload as iconCloudUpload,
+  IconCode,
+  IconCode as iconCode,
+  IconCoin,
+  IconCoin as iconCoin,
+  IconColReverse,
+  IconColReverse as iconColReverse,
+  IconCommission,
+  IconCommission as iconCommission,
+  IconConmentRefresh,
+  IconConmentRefresh as iconConmentRefresh,
+  IconCopySolid,
+  IconCopySolid as iconCopySolid,
+  IconCopy,
+  IconCopy as iconCopy,
+  IconCrop,
+  IconCrop as iconCrop,
+  IconCourse,
+  IconCourse as iconCourse,
+  IconCueL,
+  IconCueL as iconCueL,
+  IconCustom,
+  IconCustom as iconCustom,
+  IconCustomerService,
+  IconCustomerService as iconCustomerService,
+  IconDataSource,
+  IconDataSource as iconDataSource,
+  IconDefault,
+  IconDefault as iconDefault,
+  IconDefinedFiltration,
+  IconDefinedFiltration as iconDefinedFiltration,
+  IconDel,
+  IconDel as iconDel,
+  IconDeletePage,
+  IconDeletePage as iconDeletePage,
+  IconDeleted,
+  IconDeleted as iconDeleted,
+  IconDeltaDownO,
+  IconDeltaDownO as iconDeltaDownO,
+  IconDeltaDown,
+  IconDeltaDown as iconDeltaDown,
+  IconDeltaLeftO,
+  IconDeltaLeftO as iconDeltaLeftO,
+  IconDeltaLeft,
+  IconDeltaLeft as iconDeltaLeft,
+  IconDeltaRightO,
+  IconDeltaRightO as iconDeltaRightO,
+  IconDeltaRight,
+  IconDeltaRight as iconDeltaRight,
+  IconDeltaUpO,
+  IconDeltaUpO as iconDeltaUpO,
+  IconDeltaUp,
+  IconDeltaUp as iconDeltaUp,
+  IconDerive,
+  IconDerive as iconDerive,
+  IconDescending,
+  IconDescending as iconDescending,
+  IconDesktopView,
+  IconDesktopView as iconDesktopView,
+  IconDialog,
+  IconDialog as iconDialog,
+  IconDialog2,
+  IconDialog2 as iconDialog2,
+  IconDirectionCol,
+  IconDirectionCol as iconDirectionCol,
+  IconDirectionRow,
+  IconDirectionRow as iconDirectionRow,
+  IconDotChart,
+  IconDotChart as iconDotChart,
+  IconDotDownload,
+  IconDotDownload as iconDotDownload,
+  IconDotIpv4,
+  IconDotIpv4 as iconDotIpv4,
+  IconDoubleLeft,
+  IconDoubleLeft as iconDoubleLeft,
+  IconDoubleRight,
+  IconDoubleRight as iconDoubleRight,
+  IconDownO,
+  IconDownO as iconDownO,
+  IconDown,
+  IconDown as iconDown,
+  IconDownWard,
+  IconDownWard as iconDownWard,
+  IconDownloadCloud,
+  IconDownloadCloud as iconDownloadCloud,
+  IconDownloadLink,
+  IconDownloadLink as iconDownloadLink,
+  IconDownload,
+  IconDownload as iconDownload,
+  IconDraft,
+  IconDraft as iconDraft,
+  IconEdit,
+  IconEdit as iconEdit,
+  IconEditorTab,
+  IconEditorTab as iconEditorTab,
+  IconEllipsis,
+  IconEllipsis as iconEllipsis,
+  IconEmailAdd,
+  IconEmailAdd as iconEmailAdd,
+  IconEmailCircle,
+  IconEmailCircle as iconEmailCircle,
+  IconEnd,
+  IconEnd as iconEnd,
+  IconError,
+  IconError as iconError,
+  IconEspaceAuto,
+  IconEspaceAuto as iconEspaceAuto,
+  IconEspace,
+  IconEspace as iconEspace,
+  IconExcel,
+  IconExcel as iconExcel,
+  IconException,
+  IconException as iconException,
+  IconExclamation,
+  IconExclamation as iconExclamation,
+  IconExport,
+  IconExport as iconExport,
+  IconExpressSearch,
+  IconExpressSearch as iconExpressSearch,
+  IconEyeclose,
+  IconEyeclose as iconEyeclose,
+  IconEyeopen,
+  IconEyeopen as iconEyeopen,
+  IconEditorAlignCenter,
+  IconEditorAlignCenter as iconEditorAlignCenter,
+  IconEditorAlignLeft,
+  IconEditorAlignLeft as iconEditorAlignLeft,
+  IconEditorAlignRight,
+  IconEditorAlignRight as iconEditorAlignRight,
+  IconEditorBackground,
+  IconEditorBackground as iconEditorBackground,
+  IconEditorBold,
+  IconEditorBold as iconEditorBold,
+  IconEditorCode,
+  IconEditorCode as iconEditorCode,
+  IconEditorDeleteline,
+  IconEditorDeleteline as iconEditorDeleteline,
+  IconEditorEraser,
+  IconEditorEraser as iconEditorEraser,
+  IconEditorItalic,
+  IconEditorItalic as iconEditorItalic,
+  IconEditorLeftBorder,
+  IconEditorLeftBorder as iconEditorLeftBorder,
+  IconEditorList,
+  IconEditorList as iconEditorList,
+  IconEditorListDot,
+  IconEditorListDot as iconEditorListDot,
+  IconEditorListNum,
+  IconEditorListNum as iconEditorListNum,
+  IconEditorMenuLeft,
+  IconEditorMenuLeft as iconEditorMenuLeft,
+  IconEditorMenuRight,
+  IconEditorMenuRight as iconEditorMenuRight,
+  IconEditorQuote,
+  IconEditorQuote as iconEditorQuote,
+  IconEditorRedo,
+  IconEditorRedo as iconEditorRedo,
+  IconEditorRightBorder,
+  IconEditorRightBorder as iconEditorRightBorder,
+  IconEditorSub,
+  IconEditorSub as iconEditorSub,
+  IconEditorSubtitle,
+  IconEditorSubtitle as iconEditorSubtitle,
+  IconEditorSuper,
+  IconEditorSuper as iconEditorSuper,
+  IconEditorTable,
+  IconEditorTable as iconEditorTable,
+  IconEditorTextcolor,
+  IconEditorTextcolor as iconEditorTextcolor,
+  IconEditorTitle,
+  IconEditorTitle as iconEditorTitle,
+  IconEditorUnderline,
+  IconEditorUnderline as iconEditorUnderline,
+  IconEditorUndo,
+  IconEditorUndo as iconEditorUndo,
+  IconEditorVideo,
+  IconEditorVideo as iconEditorVideo,
+  IconFileCloudupload,
+  IconFileCloudupload as iconFileCloudupload,
+  IconFileExcel,
+  IconFileExcel as iconFileExcel,
+  IconFile,
+  IconFile as iconFile,
+  IconFilesCircle,
+  IconFilesCircle as iconFilesCircle,
+  IconFiles,
+  IconFiles as iconFiles,
+  IconFiletext,
+  IconFiletext as iconFiletext,
+  IconFileupload,
+  IconFileupload as iconFileupload,
+  IconFiltered,
+  IconFiltered as iconFiltered,
+  IconFlag,
+  IconFlag as iconFlag,
+  IconFolderClosed,
+  IconFolderClosed as iconFolderClosed,
+  IconFolderOpened,
+  IconFolderOpened as iconFolderOpened,
+  IconFontColor,
+  IconFontColor as iconFontColor,
+  IconFontFamily,
+  IconFontFamily as iconFontFamily,
+  IconFontSize,
+  IconFontSize as iconFontSize,
+  IconFontStyle,
+  IconFontStyle as iconFontStyle,
+  IconFontWeight,
+  IconFontWeight as iconFontWeight,
+  IconFreezeLeft,
+  IconFreezeLeft as iconFreezeLeft,
+  IconFreezeRight,
+  IconFreezeRight as iconFreezeRight,
+  IconFrownO,
+  IconFrownO as iconFrownO,
+  IconFrown,
+  IconFrown as iconFrown,
+  IconFullscreen,
+  IconFullscreen as iconFullscreen,
+  IconFullscreenLeft,
+  IconFullscreenLeft as iconFullscreenLeft,
+  IconMinscreenLeft,
+  IconMinscreenLeft as iconMinscreenLeft,
+  IconGrade,
+  IconGrade as iconGrade,
+  IconGroupTransfer,
+  IconGroupTransfer as iconGroupTransfer,
+  IconGroup,
+  IconGroup as iconGroup,
+  IconHalfchecked,
+  IconHalfchecked as iconHalfchecked,
+  IconHalfselect,
+  IconHalfselect as iconHalfselect,
+  IconHeartempty,
+  IconHeartempty as iconHeartempty,
+  IconHelpCircle,
+  IconHelpCircle as iconHelpCircle,
+  IconHelpQuery,
+  IconHelpQuery as iconHelpQuery,
+  IconHelpSolid,
+  IconHelpSolid as iconHelpSolid,
+  IconHelp,
+  IconHelp as iconHelp,
+  IconHelpful,
+  IconHelpful as iconHelpful,
+  IconHideLeft,
+  IconHideLeft as iconHideLeft,
+  IconHideRight,
+  IconHideRight as iconHideRight,
+  IconHideTopleft,
+  IconHideTopleft as iconHideTopleft,
+  IconImport,
+  IconImport as iconImport,
+  IconInfoCircle,
+  IconInfoCircle as iconInfoCircle,
+  IconInfoSolid,
+  IconInfoSolid as iconInfoSolid,
+  IconInfo,
+  IconInfo as iconInfo,
+  IconInformation,
+  IconInformation as iconInformation,
+  IconJs,
+  IconJs as iconJs,
+  IconJusitfyCenter,
+  IconJusitfyCenter as iconJusitfyCenter,
+  IconJusitfyFlexEnd,
+  IconJusitfyFlexEnd as iconJusitfyFlexEnd,
+  IconJusitfySpaceAround,
+  IconJusitfySpaceAround as iconJusitfySpaceAround,
+  IconJusitfySpaceBetween,
+  IconJusitfySpaceBetween as iconJusitfySpaceBetween,
+  IconJustitfyFlexStart,
+  IconJustitfyFlexStart as iconJustitfyFlexStart,
+  IconLanguage,
+  IconLanguage as iconLanguage,
+  IconLeave,
+  IconLeave as iconLeave,
+  IconLeftFrozen,
+  IconLeftFrozen as iconLeftFrozen,
+  IconLeftO,
+  IconLeftO as iconLeftO,
+  IconLeftWard,
+  IconLeftWard as iconLeftWard,
+  IconLeft,
+  IconLeft as iconLeft,
+  IconLineChart,
+  IconLineChart as iconLineChart,
+  IconLineHeight,
+  IconLineHeight as iconLineHeight,
+  IconLineThrought,
+  IconLineThrought as iconLineThrought,
+  IconLink,
+  IconLink as iconLink,
+  IconLoading,
+  IconLoading as iconLoading,
+  IconLoadingShadow,
+  IconLoadingShadow as iconLoadingShadow,
+  IconLock,
+  IconLock as iconLock,
+  IconLeftWardArrow,
+  IconLeftWardArrow as iconLeftWardArrow,
+  IconMailContent,
+  IconMailContent as iconMailContent,
+  IconMail,
+  IconMail as iconMail,
+  IconMale,
+  IconMale as iconMale,
+  IconMarkOn,
+  IconMarkOn as iconMarkOn,
+  IconMeh,
+  IconMeh as iconMeh,
+  IconMessageCircle,
+  IconMessageCircle as iconMessageCircle,
+  IconMinscreen,
+  IconMinscreen as iconMinscreen,
+  IconMinusCircle,
+  IconMinusCircle as iconMinusCircle,
+  IconMinusSquare,
+  IconMinusSquare as iconMinusSquare,
+  IconMinus,
+  IconMinus as iconMinus,
+  IconMobileView,
+  IconMobileView as iconMobileView,
+  IconMobile,
+  IconMobile as iconMobile,
+  IconMore,
+  IconMore as iconMore,
+  IconNew,
+  IconNew as iconNew,
+  IconNoPremission,
+  IconNoPremission as iconNoPremission,
+  IconNodeOpen,
+  IconNodeOpen as iconNodeOpen,
+  IconNode,
+  IconNode as iconNode,
+  IconNodejs,
+  IconNodejs as iconNodejs,
+  IconNone,
+  IconNone as iconNone,
+  IconOffLine,
+  IconOffLine as iconOffLine,
+  IconOnLine,
+  IconOnLine as iconOnLine,
+  IconOperationfaildL,
+  IconOperationfaildL as iconOperationfaildL,
+  IconOperationfaild,
+  IconOperationfaild as iconOperationfaild,
+  IconOuterLink,
+  IconOuterLink as iconOuterLink,
+  IconPagelink,
+  IconPagelink as iconPagelink,
+  IconPagerFirst,
+  IconPagerFirst as iconPagerFirst,
+  IconPagerLast,
+  IconPagerLast as iconPagerLast,
+  IconPagerNext,
+  IconPagerNext as iconPagerNext,
+  IconPagerPrev,
+  IconPagerPrev as iconPagerPrev,
+  IconPanelMax,
+  IconPanelMax as iconPanelMax,
+  IconPanelMini,
+  IconPanelMini as iconPanelMini,
+  IconPanelNormal,
+  IconPanelNormal as iconPanelNormal,
+  IconPauseCircle,
+  IconPauseCircle as iconPauseCircle,
+  IconPause,
+  IconPause as iconPause,
+  IconPicture,
+  IconPicture as iconPicture,
+  IconPieChart,
+  IconPieChart as iconPieChart,
+  IconPlusCircle,
+  IconPlusCircle as iconPlusCircle,
+  IconPlusSquare,
+  IconPlusSquare as iconPlusSquare,
+  IconPlus,
+  IconPlus as iconPlus,
+  IconPopup,
+  IconPopup as iconPopup,
+  IconPreChecked,
+  IconPreChecked as iconPreChecked,
+  IconPrintPreview,
+  IconPrintPreview as iconPrintPreview,
+  IconPushpin,
+  IconPushpin as iconPushpin,
+  IconRadio,
+  IconRadio as iconRadio,
+  IconRadioselected,
+  IconRadioselected as iconRadioselected,
+  IconReactjs,
+  IconReactjs as iconReactjs,
+  IconRedo,
+  IconRedo as iconRedo,
+  IconRefres,
+  IconRefres as iconRefres,
+  IconRenew,
+  IconRenew as iconRenew,
+  IconRepeat,
+  IconRepeat as iconRepeat,
+  IconReplace,
+  IconReplace as iconReplace,
+  IconReplies,
+  IconReplies as iconReplies,
+  IconRightFrozen,
+  IconRightFrozen as iconRightFrozen,
+  IconRightO,
+  IconRightO as iconRightO,
+  IconRight,
+  IconRight as iconRight,
+  IconRightward,
+  IconRightward as iconRightward,
+  IconRowReverse,
+  IconRowReverse as iconRowReverse,
+  IconSandwichCollapse,
+  IconSandwichCollapse as iconSandwichCollapse,
+  IconSandwichExpand,
+  IconSandwichExpand as iconSandwichExpand,
+  IconSave,
+  IconSave as iconSave,
+  IconScissor,
+  IconScissor as iconScissor,
+  IconSearch,
+  IconSearch as iconSearch,
+  IconSelect,
+  IconSelect as iconSelect,
+  IconSent,
+  IconSent as iconSent,
+  IconSeparate,
+  IconSeparate as iconSeparate,
+  IconSetting,
+  IconSetting as iconSetting,
+  IconShare,
+  IconShare as iconShare,
+  IconShareArrow,
+  IconShareArrow as iconShareArrow,
+  IconShoppingCard,
+  IconShoppingCard as iconShoppingCard,
+  IconSmileO,
+  IconSmileO as iconSmileO,
+  IconSmile,
+  IconSmile as iconSmile,
+  IconSortDefault,
+  IconSortDefault as iconSortDefault,
+  IconSort,
+  IconSort as iconSort,
+  IconStarActive,
+  IconStarActive as iconStarActive,
+  IconStarDisable,
+  IconStarDisable as iconStarDisable,
+  IconStarO,
+  IconStarO as iconStarO,
+  IconStartCircle,
+  IconStartCircle as iconStartCircle,
+  IconStart,
+  IconStart as iconStart,
+  IconStatistics,
+  IconStatistics as iconStatistics,
+  IconStop,
+  IconStop as iconStop,
+  IconStreamSolid,
+  IconStreamSolid as iconStreamSolid,
+  IconSuccess,
+  IconSuccess as iconSuccess,
+  IconSuccessful,
+  IconSuccessful as iconSuccessful,
+  IconTabletView,
+  IconTabletView as iconTabletView,
+  IconTaskCooperation,
+  IconTaskCooperation as iconTaskCooperation,
+  IconTelephoneCircle,
+  IconTelephoneCircle as iconTelephoneCircle,
+  IconTelephone,
+  IconTelephone as iconTelephone,
+  IconTextAlign,
+  IconTextAlign as iconTextAlign,
+  IconTextDecoration,
+  IconTextDecoration as iconTextDecoration,
+  IconTextTab,
+  IconTextTab as iconTextTab,
+  IconText,
+  IconText as iconText,
+  IconTime,
+  IconTime as iconTime,
+  IconTotal,
+  IconTotal as iconTotal,
+  IconTriangleDown,
+  IconTriangleDown as iconTriangleDown,
+  IconUndelete,
+  IconUndelete as iconUndelete,
+  IconUnderline,
+  IconUnderline as iconUnderline,
+  IconUndo,
+  IconUndo as iconUndo,
+  IconUnfilter,
+  IconUnfilter as iconUnfilter,
+  IconUnfreeze,
+  IconUnfreeze as iconUnfreeze,
+  IconUnknow,
+  IconUnknow as iconUnknow,
+  IconUnknown,
+  IconUnknown as iconUnknown,
+  IconUnlock,
+  IconUnlock as iconUnlock,
+  IconUnsent,
+  IconUnsent as iconUnsent,
+  IconUpO,
+  IconUpO as iconUpO,
+  IconUp,
+  IconUp as iconUp,
+  IconUpWard,
+  IconUpWard as iconUpWard,
+  IconUpload,
+  IconUpload as iconUpload,
+  IconUser,
+  IconUser as iconUser,
+  IconVersiontree,
+  IconVersiontree as iconVersiontree,
+  IconView,
+  IconView as iconView,
+  IconVuejs,
+  IconVuejs as iconVuejs,
+  IconWarningTriangle,
+  IconWarningTriangle as iconWarningTriangle,
+  IconWarning,
+  IconWarning as iconWarning,
+  IconWebPlus,
+  IconWebPlus as iconWebPlus,
+  IconWriting,
+  IconWriting as iconWriting,
+  IconYes,
+  IconYes as iconYes,
+  IconZoomIn,
+  IconZoomIn as iconZoomIn,
+  IconZoomOut,
+  IconZoomOut as iconZoomOut,
+}
 
 export default {
-  IconAdministrator,
+  IconSortTriangle,
+  IconSortTriangleAscending,
+  IconSortTriangleDescending,
+  IconPrompt,
+  IconExpand,
+  IconPutAway,
+  IconStretch,
+  IconAddCircle,
   IconAudio,
+  IconMic,
+  IconExcelType,
+  IconFileType,
+  IconOtherType,
+  IconPdfType,
+  IconPictureType,
+  IconPptType,
+  IconTextType,
+  IconVideoType,
+  IconWordType,
+  IconZipType,
+  IconMobileCheckbox,
+  IconMobileCheckboxHalf,
+  IconMobileCheckboxSelected,
+  IconMobileRadio,
+  IconMobileRadioSelected,
+  IconAdd,
+  IconAdministrator,
+  IconAlignBaseline,
+  IconAlignCenter,
+  IconAlignFlexCenter,
+  IconAlignFlexEnd,
+  IconAlignFlexStart,
+  IconAlignJustify,
+  IconAlignLeft,
+  IconAlignRight,
+  IconAlignStretch,
+  IconAngularjs,
+  IconApp,
+  IconApplication,
   IconAreaChart,
-  IconArrowDown,
   IconArrowBottom,
+  IconArrowDown,
   IconArrowLeft,
   IconArrowRight,
   IconArrowUp,
@@ -861,6 +1088,7 @@ export default {
   IconBarChart,
   IconBefilter,
   IconBoat,
+  IconBoxSolid,
   IconBusy,
   IconCalculator,
   IconCalendar,
@@ -880,15 +1108,19 @@ export default {
   IconClose,
   IconCloudDownload,
   IconCloudUpload,
+  IconCode,
   IconCoin,
+  IconColReverse,
   IconCommission,
   IconConmentRefresh,
+  IconCopySolid,
   IconCopy,
+  IconCrop,
   IconCourse,
   IconCueL,
   IconCustom,
   IconCustomerService,
-  IconCrop,
+  IconDataSource,
   IconDefault,
   IconDefinedFiltration,
   IconDel,
@@ -904,17 +1136,23 @@ export default {
   IconDeltaUp,
   IconDerive,
   IconDescending,
+  IconDesktopView,
   IconDialog,
   IconDialog2,
+  IconDirectionCol,
+  IconDirectionRow,
   IconDotChart,
+  IconDotDownload,
   IconDotIpv4,
   IconDoubleLeft,
   IconDoubleRight,
   IconDownO,
   IconDown,
+  IconDownWard,
   IconDownloadCloud,
   IconDownloadLink,
   IconDownload,
+  IconDraft,
   IconEdit,
   IconEditorTab,
   IconEllipsis,
@@ -931,8 +1169,6 @@ export default {
   IconExpressSearch,
   IconEyeclose,
   IconEyeopen,
-  IconMic,
-  IconExcelType,
   IconEditorAlignCenter,
   IconEditorAlignLeft,
   IconEditorAlignRight,
@@ -971,13 +1207,18 @@ export default {
   IconFlag,
   IconFolderClosed,
   IconFolderOpened,
+  IconFontColor,
+  IconFontFamily,
+  IconFontSize,
+  IconFontStyle,
+  IconFontWeight,
   IconFreezeLeft,
   IconFreezeRight,
   IconFrownO,
   IconFrown,
   IconFullscreen,
   IconFullscreenLeft,
-  IconFileType,
+  IconMinscreenLeft,
   IconGrade,
   IconGroupTransfer,
   IconGroup,
@@ -989,20 +1230,34 @@ export default {
   IconHelpSolid,
   IconHelp,
   IconHelpful,
+  IconHideLeft,
+  IconHideRight,
+  IconHideTopleft,
   IconImport,
   IconInfoCircle,
   IconInfoSolid,
   IconInfo,
   IconInformation,
+  IconJs,
+  IconJusitfyCenter,
+  IconJusitfyFlexEnd,
+  IconJusitfySpaceAround,
+  IconJusitfySpaceBetween,
+  IconJustitfyFlexStart,
+  IconLanguage,
   IconLeave,
   IconLeftFrozen,
   IconLeftO,
   IconLeftWard,
   IconLeft,
   IconLineChart,
+  IconLineHeight,
+  IconLineThrought,
   IconLink,
   IconLoading,
+  IconLoadingShadow,
   IconLock,
+  IconLeftWardArrow,
   IconMailContent,
   IconMail,
   IconMale,
@@ -1010,22 +1265,23 @@ export default {
   IconMeh,
   IconMessageCircle,
   IconMinscreen,
-  IconMinscreenLeft,
   IconMinusCircle,
   IconMinusSquare,
   IconMinus,
+  IconMobileView,
   IconMobile,
   IconMore,
   IconNew,
   IconNoPremission,
   IconNodeOpen,
   IconNode,
+  IconNodejs,
+  IconNone,
   IconOffLine,
   IconOnLine,
   IconOperationfaildL,
   IconOperationfaild,
   IconOuterLink,
-  IconOtherType,
   IconPagelink,
   IconPagerFirst,
   IconPagerLast,
@@ -1045,11 +1301,10 @@ export default {
   IconPreChecked,
   IconPrintPreview,
   IconPushpin,
-  IconPdfType,
-  IconPictureType,
-  IconPptType,
   IconRadio,
   IconRadioselected,
+  IconReactjs,
+  IconRedo,
   IconRefres,
   IconRenew,
   IconRepeat,
@@ -1059,6 +1314,7 @@ export default {
   IconRightO,
   IconRight,
   IconRightward,
+  IconRowReverse,
   IconSandwichCollapse,
   IconSandwichExpand,
   IconSave,
@@ -1073,6 +1329,7 @@ export default {
   IconShoppingCard,
   IconSmileO,
   IconSmile,
+  IconSortDefault,
   IconSort,
   IconStarActive,
   IconStarDisable,
@@ -1081,42 +1338,42 @@ export default {
   IconStart,
   IconStatistics,
   IconStop,
+  IconStreamSolid,
   IconSuccess,
   IconSuccessful,
+  IconTabletView,
   IconTaskCooperation,
   IconTelephoneCircle,
   IconTelephone,
+  IconTextAlign,
+  IconTextDecoration,
   IconTextTab,
   IconText,
   IconTime,
   IconTotal,
   IconTriangleDown,
-  IconTextType,
   IconUndelete,
+  IconUnderline,
+  IconUndo,
   IconUnfilter,
   IconUnfreeze,
   IconUnknow,
+  IconUnknown,
   IconUnlock,
   IconUnsent,
   IconUpO,
   IconUp,
+  IconUpWard,
   IconUpload,
   IconUser,
   IconVersiontree,
   IconView,
-  IconVideoType,
+  IconVuejs,
   IconWarningTriangle,
   IconWarning,
   IconWebPlus,
   IconWriting,
-  IconWordType,
   IconYes,
   IconZoomIn,
-  IconZoomOut,
-  IconZipType,
-  IconMobileRadio,
-  IconMobileRadioSelected,
-  IconMobileCheckbox,
-  IconMobileCheckboxHalf,
-  IconMobileCheckboxSelected
+  IconZoomOut
 }

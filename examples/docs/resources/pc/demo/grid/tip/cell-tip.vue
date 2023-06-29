@@ -1,13 +1,5 @@
 <template>
-  <tiny-grid
-    :tooltip-config="{
-      placement: 'top',
-      visibleArrow: true,
-      enterable: true,
-      effect: 'light'
-    }"
-    :data="tableData"
-  >
+  <tiny-grid :data="tableData">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="公司名称" show-tip></tiny-grid-column>

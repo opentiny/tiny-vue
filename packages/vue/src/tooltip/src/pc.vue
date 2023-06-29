@@ -14,6 +14,7 @@
 <script lang="tsx">
 import { renderless, api } from '@opentiny/vue-renderless/tooltip/vue'
 import { $prefix, setup, createComponent, parseVnode, h, defineComponent } from '@opentiny/vue-common'
+import '@opentiny/vue-theme/tooltip/index.less'
 
 export default defineComponent({
   name: $prefix + 'Tooltip',

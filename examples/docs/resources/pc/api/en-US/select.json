@@ -22,6 +22,13 @@
       "defaultValue": "The default value of this attribute is false."
     },
     {
+      "name": "tag-type",
+      "sample": "tag-type",
+      "type": "String",
+      "desc": "This parameter is used to set tags for different themes. This parameter is applicable only when multiple themes are selected. By default, tag-type is empty. The options of this parameter are success, info, warning, and danger. When the Aurora theme is used, set this parameter to info.",
+      "defaultValue": ""
+    },
+    {
       "name": "placement",
       "sample": "popup-style-position",
       "type": "String",

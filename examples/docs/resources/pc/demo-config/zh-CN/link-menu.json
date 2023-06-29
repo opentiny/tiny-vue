@@ -1,1 +1,66 @@
-[{"title":"数据源","content":"<p>通过 <code>data</code> 属性设置菜单的数据源，同时在数据对象中可通过 <code>disabled</code> 设置该节点是否可被勾选。</p>\n","link":"link-menu/data-resource","component":" LinkMenu 收藏夹菜单","findIntroStr":"LinkMenu 收藏夹形式的菜单，支持可配置菜单项。","demoId":"data-resource1"},{"title":"收藏菜单标题","content":"<p>通过 <code>title</code> 属性定义收藏菜单标题。</p>\n","link":"link-menu/data-resource","component":" LinkMenu 收藏夹菜单","findIntroStr":"LinkMenu 收藏夹形式的菜单，支持可配置菜单项。","demoId":"data-resource"},{"title":"菜单内容超长时换行显示","content":"<p>通过 <code>wrap</code> 属性设置菜单内容超长时换行显示。</p>\n","link":"link-menu/data-resource","component":" LinkMenu 收藏夹菜单","findIntroStr":"LinkMenu 收藏夹形式的菜单，支持可配置菜单项。","demoId":"data-resource2"},{"title":"可收藏栏目数","content":"<p>通过 <code>max-item</code> 属性指定可勾选并收藏的栏目数。指定 <code>default-expand-all</code> 为 false 时，打开菜单弹窗时所有节点为折叠状态。</p>\n","link":"link-menu/menu-items","component":" LinkMenu 收藏夹菜单","findIntroStr":"LinkMenu 收藏夹形式的菜单，支持可配置菜单项。","demoId":"menu-items"},{"title":"自定义菜单数据服务","content":"<p>通过 <code>get-menu-data-sync</code> 自定义菜单数据服务。</p>\n","link":"link-menu/get-menu-data-sync","component":" LinkMenu 收藏夹菜单","findIntroStr":"LinkMenu 收藏夹形式的菜单，支持可配置菜单项。","demoId":"get-menu-data-sync"},{"title":"自定义折叠展开图标","content":"<p>通过 <code>icon</code> 属性自定义折叠展开图标。通过 <code>search-icon</code> 属性自定义搜索图标。</p>\n","link":"link-menu/custom-icon","component":" LinkMenu 收藏夹菜单","findIntroStr":"LinkMenu 收藏夹形式的菜单，支持可配置菜单项。","demoId":"custom-icon"},{"title":"菜单内容超长时省略显示","content":"<p>通过 <code>ellipsis</code> 属性设置菜单内容超长时省略显示。</p>\n","link":"link-menu/custom-icon","component":" LinkMenu 收藏夹菜单","findIntroStr":"LinkMenu 收藏夹形式的菜单，支持可配置菜单项。","demoId":"custom-icon1"},{"title":"自定义菜单弹窗底部","content":"<p>通过 <code>foot</code> 插槽自定义菜单弹窗的底部内容。<code>sureNodevalue</code> 方法用于获取选中的菜单节点并关闭菜单弹窗，同时展示选中的菜单。<code>hideDialog</code> 方法用于关闭弹窗。插槽可结合这两个方法一起使用。</p>\n","link":"link-menu/custom-foot","component":" LinkMenu 收藏夹菜单","findIntroStr":"LinkMenu 收藏夹形式的菜单，支持可配置菜单项。","demoId":"custom-foot"}]
+[
+    {
+        "title": "数据源",
+        "content": "<p>通过 <code>data</code> 属性设置菜单的数据源，同时在数据对象中可通过 <code>disabled</code> 设置该节点是否可被勾选。</p>\n",
+        "link": "link-menu/data-resource",
+        "component": " LinkMenu 收藏夹菜单",
+        "findIntroStr": "LinkMenu 收藏夹形式的菜单，支持可配置菜单项。",
+        "demoId": "data-resource1"
+    },
+    {
+        "title": "收藏菜单标题",
+        "content": "<p>通过 <code>title</code> 属性定义收藏菜单标题。</p>\n",
+        "link": "link-menu/data-resource",
+        "component": " LinkMenu 收藏夹菜单",
+        "findIntroStr": "LinkMenu 收藏夹形式的菜单，支持可配置菜单项。",
+        "demoId": "data-resource"
+    },
+    {
+        "title": "菜单内容超长时换行显示",
+        "content": "<p>通过 <code>wrap</code> 属性设置菜单内容超长时换行显示。</p>\n",
+        "link": "link-menu/data-resource",
+        "component": " LinkMenu 收藏夹菜单",
+        "findIntroStr": "LinkMenu 收藏夹形式的菜单，支持可配置菜单项。",
+        "demoId": "data-resource2"
+    },
+    {
+        "title": "可收藏栏目数",
+        "content": "<p>通过 <code>max-item</code> 属性指定可勾选并收藏的栏目数。指定 <code>default-expand-all</code> 为 false 时，打开菜单弹窗时所有节点为折叠状态。</p>\n",
+        "link": "link-menu/menu-items",
+        "component": " LinkMenu 收藏夹菜单",
+        "findIntroStr": "LinkMenu 收藏夹形式的菜单，支持可配置菜单项。",
+        "demoId": "menu-items"
+    },
+    {
+        "title": "自定义菜单数据服务",
+        "content": "<p>通过 <code>get-menu-data-sync</code> 自定义菜单数据服务。</p>\n",
+        "link": "link-menu/get-menu-data-sync",
+        "component": " LinkMenu 收藏夹菜单",
+        "findIntroStr": "LinkMenu 收藏夹形式的菜单，支持可配置菜单项。",
+        "demoId": "get-menu-data-sync"
+    },
+    {
+        "title": "自定义折叠展开图标",
+        "content": "<p>通过 <code>icon</code> 属性自定义折叠展开图标。通过 <code>search-icon</code> 属性自定义搜索图标。</p>\n",
+        "link": "link-menu/custom-icon",
+        "component": " LinkMenu 收藏夹菜单",
+        "findIntroStr": "LinkMenu 收藏夹形式的菜单，支持可配置菜单项。",
+        "demoId": "custom-icon"
+    },
+    {
+        "title": "菜单内容超长时省略显示",
+        "content": "<p>通过 <code>ellipsis</code> 属性设置菜单内容超长时省略显示。</p>\n",
+        "link": "link-menu/custom-icon",
+        "component": " LinkMenu 收藏夹菜单",
+        "findIntroStr": "LinkMenu 收藏夹形式的菜单，支持可配置菜单项。",
+        "demoId": "custom-icon1"
+    },
+    {
+        "title": "自定义菜单弹窗底部",
+        "content": "<p>通过 <code>foot</code> 插槽自定义菜单弹窗的底部内容。<code>sureNodevalue</code> 方法用于获取选中的菜单节点并关闭菜单弹窗，同时展示选中的菜单。<code>hideDialog</code> 方法用于关闭弹窗。插槽可结合这两个方法一起使用。</p>\n",
+        "link": "link-menu/custom-foot",
+        "component": " LinkMenu 收藏夹菜单",
+        "findIntroStr": "LinkMenu 收藏夹形式的菜单，支持可配置菜单项。",
+        "demoId": "custom-foot"
+    }
+]

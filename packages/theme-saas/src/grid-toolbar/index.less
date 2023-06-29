@@ -24,6 +24,8 @@
   }
 
   .@{grid-modal-prefix-cls}__header {
+    @apply border-none;
+
     .@{grid-modal-prefix-cls}__close-btn{
       @apply ~'h-4.5';
       @apply ~'w-4.5';
@@ -112,12 +114,13 @@
   
                 p {
                   @apply flex-1;
+                  @apply m-0;
                 }
   
                 .clear-all {
                   @apply text-color-brand;
                   @apply cursor-pointer;
-                  @apply mr-3;
+                  @apply ml-4;
 
                 }
   
@@ -295,6 +298,7 @@
             .right-panel {
               @apply p-5;
               @apply h-full;
+              @apply box-border;
             }
   
             .group-label {
@@ -349,7 +353,7 @@
       @apply ~'my-0.5';
       @apply mx-3;
       @apply flex;
-      @apply justify-end;
+      justify-content: right;
       @apply ~'pr-2.5';
 
       >button{
@@ -365,7 +369,7 @@
 
 .@{popover-prefix-cls}.grid-toolbar-template-popover {
   .radio-box {
-    margin-bottom: 14px;
+    @apply ~"mb-3.5";
   }
 
   .btn-box {

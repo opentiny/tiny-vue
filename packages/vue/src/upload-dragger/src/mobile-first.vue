@@ -23,7 +23,7 @@ export default defineComponent({
   name: $prefix + 'UploadDragger',
   props: [...props, 'disabled', 'customClass'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>

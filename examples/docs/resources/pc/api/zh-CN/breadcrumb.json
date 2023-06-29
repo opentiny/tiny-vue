@@ -1,5 +1,5 @@
 {
-  "attrs": [
+  "breadcrumbAttrs": [
     {
       "name": "separator",
       "sample": "separator",
@@ -29,21 +29,12 @@
       "defaultValue": "label"
     }
   ],
-  "events": [
+  "breadcrumbEvents": [
     {
       "name": "select",
-      "sample": "base",
+      "sample": "options",
       "type": "Function",
       "desc": "点击 breadcrumb-item 时触发",
-      "defaultValue": ""
-    }
-  ],
-  "slots": [
-    {
-      "name": "default",
-      "sample": "slot-default",
-      "type": "",
-      "desc": "默认插槽",
       "defaultValue": ""
     }
   ],

@@ -1,5 +1,5 @@
 <template>
-  <tiny-grid @footer-cell-dblclick="footerCellDblclick" :data="tableData" show-footer :footer-method="footerMethod" border>
+  <tiny-grid @footer-cell-dblclick="footerCellDblclick" :data="tableData" show-footer :footer-method="footerMethod">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>

@@ -51,6 +51,9 @@ function handleIfScrollYLoadTruthy({ isScrollYLoad, _vm, selfRow, prevTrElem, ta
 
 function createHandlerOnEnd({ _vm, refresh }) {
   return (event) => {
+    let insertRecords = _vm.getInsertRecords()
+    // 包含新增数据的表格不可再拖动行顺序
+    if (insertRecords.length) return false
     let options = { children: 'children' }
     let targetTrElem = event.item
     let { parentNode: wrapperElem, previousElementSibling: prevTrElem } = targetTrElem

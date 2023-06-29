@@ -22,7 +22,7 @@
       "defaultValue": ""
     },
     {
-      "name": "titile",
+      "name": "title",
       "sample": "data-resource",
       "type": "String",
       "desc": "设置收藏夹菜单的标题，默认为空。",

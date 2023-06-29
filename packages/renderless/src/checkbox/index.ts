@@ -9,6 +9,7 @@
 * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
 *
 */
+import { isNull } from '../common/type'
 
 export const addToStore = ({ state, props }) => () => {
   if (Array.isArray(state.model) && !state.model.includes(props.label)) {
@@ -18,17 +19,29 @@ export const addToStore = ({ state, props }) => () => {
   }
 }
 
+export const removeFromStore = ({ state, props }) => () => {
+  if (Array.isArray(state.model)) {
+    const index = state.model.indexOf(props.label)
+    index !== -1 && state.model.splice(index, 1)
+  } else {
+    state.model = props.falseLabel !== undefined && props.falseLabel
+  }
+}
+
 export const handleChange = ({ state, props, emit, nextTick, dispatch, constants }) => (event) => {
   if (state.isLimitExceeded) {
     return
   }
 
   let moduleValue
+  const { trueLabel, falseLabel } = props
+
   if (event.target.checked) {
-    moduleValue = props.trueLabel === undefined ? true : props.trueLabel
+    moduleValue = trueLabel === undefined ? true : trueLabel
   } else {
-    moduleValue = props.falseLabel === undefined ? false : props.falseLabel
+    moduleValue = falseLabel === undefined ? false : falseLabel
   }
+
   emit('change', moduleValue, event)
 
   nextTick(() => {
@@ -44,7 +57,7 @@ export const computedGetModelGet = ({ state, props }) => () => {
       ? props.modelValue
       : state.selfModel
 
-  return ~[undefined, null].indexOf(model) ? [] : model
+  return isNull(model) ? [] : model
 }
 
 export const computedGetModelSet = ({ state, dispatch, emit, constants }) => (value) => {
@@ -67,7 +80,7 @@ export const computedIsChecked = ({ state, props }) => () => {
     return state.model
   } else if (Array.isArray(state.model)) {
     return state.model.includes(props.label)
-  } else if (state.model !== null && state.model !== undefined) {
+  } else if (!isNull(state.model)) {
     return state.model === props.trueLabel
   }
 }
@@ -87,23 +100,32 @@ export const computedIsGroup = ({ state, parent, constants }) => () => {
   return false
 }
 
-export const computedStore = ({ state, props }) => () => (state.checkboxGroup ? state.checkboxGroup.modelValue : props.modelValue)
+export const computedStore = ({ state, props }) => () =>
+  (state.checkboxGroup ? state.checkboxGroup.modelValue : props.modelValue)
 
 export const computedIsLimitDisabled = (state) => () => {
   const { max, min } = state.checkboxGroup
 
-  return (!!(max || min) && state.model.length >= max && !state.isChecked) || (state.model.length <= min && state.isChecked)
+  return (
+    (!!(max || min) && state.model.length >= max && !state.isChecked) || (state.model.length <= min && state.isChecked)
+  )
 }
 
 export const computedIsDisabled = ({ state, props }) => () =>
-  (state.isGroup ? state.checkboxGroup.disabled || props.disabled || state.isLimitDisabled : props.disabled) || state.formDisabled
+  (state.isGroup
+    ? (state.checkboxGroup.disabled ||
+      state.checkboxGroup.displayOnly ||
+      props.disabled ||
+      props.displayOnly ||
+      state.isLimitDisabled)
+    : props.disabled) || state.formDisabled
 
 export const computedFormItemSize = (props) => () => (props.formItem || {}).formItemSize
 
 export const computedCheckboxSize = ({ state, props, formItemSize }) => () => {
   const tempCheckboxSize = props.size || formItemSize.value
 
-  return state.isGroup ? state.checkboxGroup.state.checkboxGroupSize || tempCheckboxSize : tempCheckboxSize
+  return state.isGroup ? (state.checkboxGroup.state.checkboxGroupSize || tempCheckboxSize) : tempCheckboxSize
 }
 
 export const mounted = ({ props, emit, api, parent }) => () => {
@@ -117,9 +139,10 @@ export const mounted = ({ props, emit, api, parent }) => () => {
 export const toggleEvent = ({ parent, props, type }) => {
   const inputEl = parent.$el
 
-  Object.keys(props.events).forEach((ev) => inputEl[type + 'EventListener'](ev, props.events[ev]))
+  for (let ev in props.events) {
+    inputEl[type + 'EventListener'](ev, props.events[ev])
+  }
 }
-
 
 export const dispatchDisplayedValue = ({ state, api, dispatch }) => () => {
   if (state.isDisplayOnly) {

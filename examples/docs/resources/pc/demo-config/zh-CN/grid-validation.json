@@ -1,1 +1,82 @@
-[{"title":"编辑时校验","content":"<p>grid 标签配置 edit-config 对象，并配置 edit-rules 对象来设置校验对象和校验规则。具体参考下面示例。</p>\n","link":"grid/grid_Example/gridValid/editing-validation","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"grid_Example-gridValid-editing-validation"},{"title":"隐藏列编辑时校验","content":"<p>grid 标签配置 edit-config 对象且列配置type：visible 且配置isValidAlways属性时, 即列总是显示可编辑状态时，支持编辑时校验,并配置 edit-rules 对象来设置校验对象和校验规则。具体参考下面示例。</p>\n","link":"grid/grid_Example/gridValid/editing-isvalidalways-validation","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"grid_Example-gridValid-editing-isvalidalways-validation"},{"title":"数据关联校验","content":"<p>在自定义校验时，<code>validator</code>方法<code>rule</code>参数中可获取到当前行与列的信息。可以按业务的需求实现数据关联的校验逻辑</p>\n","link":"grid/grid_Example/gridValid/row-data-valid","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"grid_Example-gridValid-row-data-valid"},{"title":"自定义组件与插槽编辑器校验","content":"<p>在使用自定义组件时，组件需要实现<code>v-model</code>的功能。在使用插槽时想要实时校验需要手动触发组件的校验方法</p>\n","link":"grid/grid_Example/gridValid/custcomp","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"grid_Example-gridValid-custcomp"},{"title":"选中时校验","content":"<p>grid 标签配置 edit-config 对象，并配置 edit-rules 对象来设置校验对象和校验规则，通过按钮点击事件调用 this.$refs.basicGrid.validate()方法来触发表格校验，具体参考下面示例。</p>\n","link":"grid/grid_Example/gridValid/select-validation","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"grid_Example-gridValid-select-validation"},{"title":"提交前校验","content":"<p>grid 标签配置 edit-config 对象，并配置 edit-rules 对象来设置校验对象和校验规则，通过按钮点击事件调用 this.$refs.basicGrid.validate()方法来触发表格校验，具体参考下面示例。</p>\n","link":"grid/grid_Example/gridValid/before-submit-validation","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"grid_Example-gridValid-before-submit-validation"},{"title":"触发校验时自动定位到当前校验的单元格","content":"<p>grid 编辑器引入 tiny.0 组件，标签配置 edit-config 对象，并配置 edit-rules 对象来设置校验对象和校验规则，通过按钮点击事件调用 this.$refs.basicGrid.validate()方法来触发表格校验，具体参考下面示例。</p>\n","link":"grid/grid_Example/gridValid/validation-scroll-to-col","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"grid_Example-gridValid-validation-scroll-to-col"},{"title":"错误提示配置项","content":"<p>表格默认错误提示显示在 <code>body</code> 上， 可以通过设置 <code>tooltip-config</code> 的 <code>appendTobody</code> 设置为 <code>false</code> 来解决页面滚动时tip位置错误的问题。设置 <code>placement</code> 属性调整默认显示方向。<code>tooltip-config</code> 的配置可参参考 tooltip 组件</p>\n","link":"grid/grid_Example/gridValid/tipconfig","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"grid_Example-gridValid-tipconfig"}]
+[
+  {
+    "title": "编辑时校验",
+    "content": "<p>grid 标签配置 edit-config 对象，并配置 edit-rules 对象来设置校验对象和校验规则。具体参考下面示例。</p>\n",
+    "link": "grid/grid_Example/gridValid/editing-validation",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "grid_Example-gridValid-editing-validation"
+  },
+  {
+    "title": "隐藏列编辑时校验",
+    "content": "<p>grid 标签配置 edit-config 对象且列配置type：visible 且配置isValidAlways属性时, 即列总是显示可编辑状态时，支持编辑时校验,并配置 edit-rules 对象来设置校验对象和校验规则。具体参考下面示例。</p>\n",
+    "link": "grid/grid_Example/gridValid/editing-isvalidalways-validation",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "grid_Example-gridValid-editing-isvalidalways-validation"
+  },
+  {
+    "title": "数据关联校验",
+    "content": "<p>在自定义校验时，<code>validator</code>方法<code>rule</code>参数中可获取到当前行与列的信息。可以按业务的需求实现数据关联的校验逻辑</p>\n",
+    "link": "grid/grid_Example/gridValid/row-data-valid",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "grid_Example-gridValid-row-data-valid"
+  },
+  {
+    "title": "自定义组件与插槽编辑器校验",
+    "content": "<p>在使用自定义组件时，组件需要实现<code>v-model</code>的功能。在使用插槽时想要实时校验需要手动触发组件的校验方法</p>\n",
+    "link": "grid/grid_Example/gridValid/custcomp",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "grid_Example-gridValid-custcomp"
+  },
+  {
+    "title": "选中时校验",
+    "content": "<p>grid 标签配置 edit-config 对象，并配置 edit-rules 对象来设置校验对象和校验规则，通过按钮点击事件调用 this.$refs.basicGrid.validate()方法来触发表格校验，具体参考下面示例。</p>\n",
+    "link": "grid/grid_Example/gridValid/select-validation",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "grid_Example-gridValid-select-validation"
+  },
+  {
+    "title": "提交前校验",
+    "content": "<p>grid 标签配置 edit-config 对象，并配置 edit-rules 对象来设置校验对象和校验规则，通过按钮点击事件调用 this.$refs.basicGrid.validate()方法来触发表格校验，具体参考下面示例。</p>\n",
+    "link": "grid/grid_Example/gridValid/before-submit-validation",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "grid_Example-gridValid-before-submit-validation"
+  },
+  {
+    "title": "校验提示跟随单元格移动",
+    "content": "<p>通过配置 tooltipConfig.popperOptions.bubbling 为 true ，可实现表格的校验提示跟随其外部的滚动条滚动。</p>\n",
+    "link": "grid/grid_Example/gridValid/bubbling",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "grid_Example-gridValid-bubbling"
+  },
+  {
+    "title": "触发校验时自动定位到当前校验的单元格",
+    "content": "<p>grid 编辑器引入 tiny 组件，标签配置 edit-config 对象，并配置 edit-rules 对象来设置校验对象和校验规则，通过按钮点击事件调用 this.$refs.basicGrid.validate()方法来触发表格校验，具体参考下面示例。</p>\n",
+    "link": "grid/grid_Example/gridValid/validation-scroll-to-col",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "grid_Example-gridValid-validation-scroll-to-col"
+  },
+  {
+    "title": "错误提示配置项",
+    "content": "<p>表格默认错误提示显示在 <code>body</code> 上， 可以通过设置 <code>tooltip-config</code> 的 <code>appendTobody</code> 设置为 <code>false</code> 来解决页面滚动时tip位置错误的问题。设置 <code>placement</code> 属性调整默认显示方向。<code>tooltip-config</code> 的配置可参参考 tooltip 组件</p>\n",
+    "link": "grid/grid_Example/gridValid/tipconfig",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "grid_Example-gridValid-tipconfig"
+  },
+  {
+    "title": "隐藏必填星号",
+    "content": "<p>通过表格属性 <code>editRules</code> 可以配置表格的编辑规则，如果指定某一字段的 <code>required</code> 为 <code>true</code>，就会在表头显示必填星号。如果想要隐藏掉必填星号，可以通过表格属性 <code>validConfig</code> 配置一个方法 <code>asteriskMethod</code> 来控制，返回 <code>false</code> 则隐藏。参考示例：</p>\n",
+    "link": "grid/grid_Example/gridValid/asterisk-method",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "grid_Example-gridValid-asterisk-method"
+  }
+]

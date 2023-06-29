@@ -15,7 +15,7 @@
       <ul @keydown.enter="keydownEvent" class="tiny-storage-list">
         <li
           v-for="item in localstorageData"
-          v-bind:key="item"
+          :key="item"
           class="tiny-storage-item"
           :class="[state.hoverValue === item ? 'item-hover' : '']"
           @click="selectItem(item)"
@@ -40,7 +40,7 @@ export default {
     localstorageData: Array
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   }
 }
 </script>

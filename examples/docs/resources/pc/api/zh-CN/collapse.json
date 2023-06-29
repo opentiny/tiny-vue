@@ -1,8 +1,8 @@
 {
-  "attrs": [
+  "collapseAttrs": [
     {
       "name": "modelValue / v-model",
-      "sample": "accordion",
+      "sample": "basic-usage",
       "type": "String , Array , Number",
       "desc": "当前激活的面板(如果是手风琴模式，绑定值类型需要为String，否则为array)",
       "defaultValue": ""
@@ -22,7 +22,7 @@
       "defaultValue": ""
     }
   ],
-  "slots": [
+  "collapseSlots": [
     {
       "name": "default",
       "sample": "dynamic-disable",
@@ -31,12 +31,72 @@
       "defaultValue": ""
     }
   ],
-  "events": [
+  "collapseEvents": [
     {
       "name": "change",
       "sample": "collapse-events",
       "type": "",
       "desc": "当前激活面板改变时触发(如果是手风琴模式，参数 activeNames 类型为String，否则为array)",
+      "defaultValue": ""
+    }
+  ],
+  "collapseItemAttrs": [
+    {
+      "name": "name",
+      "sample": "accordion",
+      "type": "String | Number",
+      "desc": "唯一标志符",
+      "defaultValue": ""
+    },
+    {
+      "name": "title",
+      "sample": "custom-collapse-title",
+      "type": "String",
+      "desc": "面板标题",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "dynamic-disable",
+      "type": "Boolean",
+      "desc": "是否禁用",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "title-right",
+      "sample": "custom-title-right",
+      "type": "String",
+      "desc": "自定义面板标题右侧内容",
+      "defaultValue": ""
+    }
+  ],
+  "collapseItemSlots": [
+    {
+      "name": "default",
+      "sample": "dynamic-disable",
+      "type": "",
+      "desc": "默认插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "title",
+      "sample": "custom-collapse-title",
+      "type": "",
+      "desc": "标题",
+      "defaultValue": ""
+    },
+    {
+      "name": "icon",
+      "sample": "custom-collapse-icon",
+      "type": "",
+      "desc": "展开折叠 icon 图标",
+      "defaultValue": ""
+    },
+    {
+      "name": "title-right",
+      "sample": "custom-title-right",
+      "type": "",
+      "desc": "自定义面板标题右侧内容",
       "defaultValue": ""
     }
   ]

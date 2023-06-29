@@ -33,7 +33,16 @@ import {
 } from './index'
 import userPopper from '../common/deps/vue-popper'
 
-export const api = ['state', 'handleAfterEnter', 'handleAfterLeave', 'handleItemClick']
+export const api = [
+  'state',
+  'handleAfterEnter',
+  'handleAfterLeave',
+  'doToggle',
+  'doShow',
+  'doClose',
+  'doDestroy',
+  'handleItemClick'
+]
 
 const initState = ({ reactive, computed, api, popperElm, showPopper, referenceElm }) => {
   const state = reactive({
@@ -42,15 +51,16 @@ const initState = ({ reactive, computed, api, popperElm, showPopper, referenceEl
     timer: null,
     mounted: false,
     referenceElm,
+    xPlacement: 'bottom',
     tooltipId: computed(() => api.computedTooltipId())
   })
   return state
 }
 
-const initApi = ({ api, props, state, refs, emit, doDestroy, constants, nextTick, vm }) => {
+const initApi = ({ api, props, state, refs, emit, doDestroy, constants, nextTick, vm, mode }) => {
   Object.assign(api, {
     state,
-    mounted: mounted({ api, state, constants, props, nextTick }),
+    mounted: mounted({ api, state, constants, props, nextTick, mode }),
     cleanup: cleanup({ state, props }),
     destroyed: destroyed({ state, api }),
     doDestroy,
@@ -103,7 +113,7 @@ const initWatch = ({ watch, props, state, emit, api, nextTick }) => {
 export const renderless = (
   props,
   { reactive, computed, watch, toRefs, onBeforeUnmount, onMounted, onUnmounted, onActivated, onDeactivated },
-  { $prefix, emit, vm, refs, slots, nextTick }
+  { $prefix, emit, vm, refs, slots, nextTick, mode }
 ) => {
   const api = {}
   const constants = { IDPREFIX: `${$prefix.toLowerCase()}-popover` }
@@ -111,7 +121,7 @@ export const renderless = (
   const { showPopper, popperElm, referenceElm, doDestroy } = userPopper(options)
   const state = initState({ reactive, computed, api, popperElm, showPopper, referenceElm })
 
-  initApi({ api, constants, props, state, refs, emit, doDestroy, nextTick, vm })
+  initApi({ api, constants, props, state, refs, emit, doDestroy, nextTick, vm, mode })
 
   onDeactivated(() => {
     api.destroyed()

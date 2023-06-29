@@ -11,7 +11,7 @@
       <template #title>
         <div class="title">
           <div>反馈 Feedback</div>
-          <div>
+          <div @click.stop>
             <a href="">查看监控数据</a>
             <a href="">卸载</a>
           </div>
@@ -24,7 +24,7 @@
       <template #title>
         <div class="title">
           <div>效率 Efficiency</div>
-          <div>
+          <div @click.stop>
             <a href="">查看监控数据</a>
             <a href="">卸载</a>
           </div>
@@ -41,15 +41,15 @@
   </tiny-collapse>
 </template>
 
-<script lang="jsx">
+<script>
 import { Collapse, CollapseItem } from '@opentiny/vue'
-import { IconClockWork } from '@opentiny/vue-icon'
+import { iconClockWork } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyCollapse: Collapse,
     TinyCollapseItem: CollapseItem,
-    IconClockWork: IconClockWork()
+    IconClockWork: iconClockWork()
   },
   data() {
     return {

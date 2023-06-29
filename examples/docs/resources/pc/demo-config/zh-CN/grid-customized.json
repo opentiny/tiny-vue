@@ -110,5 +110,13 @@
     "component": " Grid 表格",
     "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
     "demoId": "custom-server-storage"
+  },
+  {
+    "title": "自定义重置",
+    "content": "<p>通过工具栏属性 <code>reset-method</code>  配置一个方法，在重置个性化时调用，需要返回 <code>promise</code>，指定重置的个性化数据，参考示例：",
+    "link": "grid/custom/reset-method",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "custom-reset-method"
   }
 ]

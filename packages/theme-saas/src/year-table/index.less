@@ -1,0 +1,116 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+@year-table-prefix-cls: ~'@{css-prefix}year-table';
+
+
+
+.@{year-table-prefix-cls} {
+  @apply text-xs;
+  @apply -m-px;
+  @apply border-collapse;
+
+  td:not(.in-range),
+  td.in-range {
+    @apply text-center;
+    @apply cursor-pointer;
+    @apply py-4 px-0;
+
+    &.today {
+      .cell {
+        @apply border border-solid border-color-border-focus;
+        line-height: 46px;
+      }
+
+      &.end-date,
+      &.start-date {
+        .cell {
+          @apply text-color-text-inverse;
+        }
+      }
+    }
+
+    &.disabled {
+      .cell {
+        @apply bg-color-bg-2;
+        @apply cursor-not-allowed;
+        @apply text-color-text-disabled;
+
+        &:hover {
+          @apply text-color-text-disabled;
+        }
+      }
+    }
+
+    .cell {
+      @apply w-12;
+      @apply h-12;
+      line-height: 48px;
+      @apply box-border;
+      @apply block;
+      @apply text-color-text-primary;
+      @apply my-0;
+      @apply rounded;
+
+      &:hover {
+        @apply bg-color-brand-hover-subtle;
+      }
+    }
+
+    &.in-range {
+      div,
+      div:hover {
+        @apply bg-color-brand-hover-subtle;
+      }
+    }
+
+    &.end-date,
+    &.start-date {
+      div {
+        @apply text-color-text-inverse;
+      }
+
+      .cell {
+        @apply text-color-text-inverse;
+        @apply bg-color-brand;
+      }
+    }
+
+    &.start-date div {
+      @apply rounded-tl;
+      @apply rounded-bl;
+    }
+
+    &.end-date div {
+      @apply rounded-tr;
+      @apply rounded-br;
+      @apply mr-5;
+    }
+
+    &:not(.in-range) {
+      div {
+        @apply h-auto;
+        @apply p-0;
+      }
+    }
+
+    &.current:not(.disabled) .cell {
+      &,
+      &:hover {
+        @apply text-color-text-inverse;
+        @apply bg-color-brand;
+      }
+    }
+  }
+}

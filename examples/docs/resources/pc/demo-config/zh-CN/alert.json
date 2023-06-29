@@ -9,7 +9,7 @@
   },
   {
     "title": "类型",
-    "content": "<p>通过 <code>type</code> 设置不同的类型。可选值：success、warning、info、error，默认值：info 。</p>\n",
+    "content": "<p>通过 <code>type</code> 设置不同的类型。可选值：success、warning、info、error，默认值：success 。</p>\n",
     "link": "alert/type",
     "component": " Alert 警告",
     "findIntroStr": "Alert 警告,提供 warning、error、info、success 四种类型显示不同类别的信息。",

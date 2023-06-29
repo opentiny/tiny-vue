@@ -14,9 +14,10 @@ import { computedWidth, watchValue, mounted, onFocus, onBlur, onInput, separteTe
 
 export const api = ['state', 'onFocus', 'onBlur', 'onInput']
 
-export const renderless = (props, { computed, onMounted, reactive, watch }, { emit, nextTick, refs }) => {
+export const renderless = (props, { computed, onMounted, reactive, watch, inject }, { emit, nextTick, refs }) => {
   const api = {}
   const state = reactive({
+    showAutoWidth: inject('showAutoWidth', null),
     type: 'input',
     textAreaValue: '',
     text: null,

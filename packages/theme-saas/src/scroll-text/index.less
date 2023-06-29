@@ -5,70 +5,78 @@
 .@{scroll-text-prefix-cls} {
   width: 300px;
   @apply h-9;
-  @apply leading-9;
   @apply bg-color-bg-4;
   @apply my-0 mx-auto;
-  @apply overflow-hidden;
+  @apply py-2;
 
   & &__content {
+    @apply h-5;
+    @apply leading-5;
     @apply w-max;
-    @apply h-full;
     @apply py-0 px-2;
+    @apply w-full;
+    @apply overflow-hidden;
+    @apply text-center;
     @apply flex;
-    @apply items-center;
-    @apply whitespace-nowrap;
-    @apply relative;
-    animation: infinite linear;
-    animation-duration: 7s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
 
-    // 兼容ie10-ie11
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      @apply inline-block;
-    }
+    & > div {
+      @apply flex;
+      @apply items-center;
+      @apply whitespace-nowrap;
+      @apply justify-center;
+      @apply relative;
 
-    // 兼容edge
-    @supports (-ms-ime-align: auto) {
-      @apply inline-block;
-    }
+      @apply text-center;
+      animation: infinite linear;
+      animation-iteration-count: infinite;
 
-    &.left {
-      animation-name: moveLeft;
-    }
+      &.left {
+        animation-name: moveLeft;
+      }
 
-    &.right {
-      animation-name: moveRight;
-    }
+      &.right {
+        animation-name: moveRight;
+      }
 
-    &.up {
-      animation-name: moveUp;
-    }
+      &.up {
+        animation-name: moveUp;
+      }
 
-    &.down {
-      animation-name: moveDown;
-    }
+      &.down {
+        animation-name: moveDown;
+      }
 
-    &.singleUp {
-      animation-name: singleUp;
-    }
+      &.singleUp {
+        animation-name: singleUp;
+      }
 
-    &.stop {
-      animation-play-state: paused;
-    }
+      &.stop {
+        animation-play-state: paused;
+      }
 
-    &.up,
-    &.down {
-      @apply w-full;
-      @apply whitespace-normal;
-    }
+      &.up,
+      &.down {
+        @apply w-full;
+        @apply whitespace-normal;
+      }
 
-    p {
-      @apply w-auto;
-      @apply leading-none;
-      @apply m-0;
-      @apply text-xs;
-      @apply text-color-text-primary;
+      p {
+        @apply w-auto;
+        @apply leading-none;
+        @apply m-0;
+        @apply text-xs;
+        @apply text-color-text-primary;
+      }
+
+      // 兼容ie10-ie11
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        @apply inline-block;
+      }
+
+      // 兼容edge
+      @supports (-ms-ime-align: auto) {
+        @apply inline-block;
+      }
     }
   }
 }
@@ -79,7 +87,7 @@
   }
 
   100% {
-    @apply ~"-translate-x-full";
+    transform: translateX(-100%);
   }
 }
 
@@ -88,27 +96,31 @@
     @apply ~"-translate-x-full";
   }
 
+  50% {
+    transform: translateX(0px);
+  }
+
   100% {
-    transform: translateX(300px);
+    @apply translate-x-full;
   }
 }
 
 @keyframes moveUp {
   0% {
-    @apply translate-y-full;
+    transform: translateY(20px);
   }
 
   100% {
-    @apply ~"-translate-y-full";
+    transform: translateY(-20px);
   }
 }
 
 @keyframes moveDown {
   0% {
-    @apply ~"-translate-y-full";
+    transform: translateY(-20px);
   }
 
   100% {
-    @apply translate-y-full;
+    transform: translateY(20px);
   }
 }

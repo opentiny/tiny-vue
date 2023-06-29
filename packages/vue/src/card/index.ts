@@ -1,4 +1,5 @@
 import Card from './src/mobile-first.vue'
+import { version } from './package.json'
 
 Card.model = {
   prop: 'modelValue',
@@ -9,7 +10,7 @@ Card.install = function (Vue) {
   Vue.component(Card.name, Card)
 }
 
-Card.version = process.env.COMPONENT_VERSION
+Card.version = version
 
 /* istanbul ignore next */
 if (process.env.BUILD_TARGET === 'runtime') {

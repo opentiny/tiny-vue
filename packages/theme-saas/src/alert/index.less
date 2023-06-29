@@ -19,13 +19,13 @@
     .@{alert-prefix-cls}__content {
       @apply py-0 px-2;
       @apply table-cell;
-      line-height: 18px;
-      max-width: calc(100% - 30px);
+      @apply leading-normal;
+      max-width: calc(100% - theme('spacing.8'));
     }
   }
 
   &&--large {
-    padding: 18px 24px 14px;
+    @apply px-4 py-6;
     @apply flex;
 
     .@{alert-prefix-cls}__content {

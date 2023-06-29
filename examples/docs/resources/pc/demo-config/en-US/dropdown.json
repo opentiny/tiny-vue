@@ -24,12 +24,20 @@
     "demoId": "trigger"
   },
   {
-    "title": "Custom Text",
-    "content": "<p>DropdownYou can customize the text of DropdownMenu through the <code>title</code> attribute.</p>\n",
-    "link": "dropdown/options",
+    "title": "Display Arrow",
+    "content": "<p>You can set <code>visible-arrow</code> to true to display the arrow. By default, the arrow is not displayed.</p>\n",
+    "link": "dropdown/visible-arrow",
     "component": "Dropdown drop-down list",
     "findIntroStr": "Dropdown drop-down list.",
-    "demoId": "options"
+    "demoId": "visible-arrow"
+  },
+  {
+    "title": "Custom Text",
+    "content": "<p>Dropdown can use the <code>title</code> attribute to customize the display text</p>\n",
+    "link": "dropdown/title",
+    "component": "Dropdown drop-down list",
+    "findIntroStr": "Dropdown drop-down list.",
+    "demoId": "title"
   },
   {
     "title": "Menu hiding mode",
@@ -57,11 +65,27 @@
   },
   {
     "title": "Use Profile",
-    "content": "<p>DropdownYou can configure the attributes of DropdownMenu through the <code>menu-options</code> attribute. <code>title</code>Configure the name of the trigger source</p><p>DropdownMenu You can configure the attributes of DropdownItem through the <code>options</code> attribute. <code>text-field</code> is used in conjunction with <code>options</code> to specify the fields displayed in the menu copywriting. <code>text-field</code> The default value is label</p>\n",
+    "content": "<p>DropdownYou can configure the attributes of DropdownMenu through the <code>menu-options</code> attribute. <code>title</code>Configure the name of the trigger source</p><p>DropdownMenu You can configure the attributes of DropdownItem through the <code>options</code> attribute. <code>text-field</code> is used together with <code>options</code> to specify the fields displayed in the menu copywriting. <code>text-field</code> The default value is label</p>\n",
     "link": "dropdown/options",
     "component": "Dropdown drop-down list",
     "findIntroStr": "Dropdown drop-down list.",
     "demoId": "options"
+  },
+  {
+    "title": "Multi-Level Menu",
+    "content": "<p>Dropdown can set the subnodes of a menu through the <code>children</code> field</p>\n",
+    "link": "dropdown/multi-level",
+    "component": "Dropdown drop-down list",
+    "findIntroStr": "Dropdown drop-down list.",
+    "demoId": "multi-level"
+  },
+  {
+    "title": "The minimum width of the dialog box is the same as that of the trigger source.",
+    "content": "<p>Dropdown can use the <code>inherit-width</code> attribute to configure the minimum width of DropdownMenu to inherit the width of the trigger source</p>\n",
+    "link": "dropdown/inherit-width",
+    "component": "Dropdown drop-down list",
+    "findIntroStr": "Dropdown drop-down list.",
+    "demoId": "inherit-width"
   },
   {
     "title": "Internal Event",
@@ -72,8 +96,8 @@
     "demoId": "events"
   },
   {
-    "title": "Default Slot",
-    "content": "<p>Dropdown can customize content through the <code>default</code> slot</p>\n",
+    "title": "Default slot",
+    "content": "<p>Dropdown can be customized through the <code>default</code> slot</p>\n",
     "link": "dropdown/slot-default",
     "component": "Dropdown drop-down list",
     "findIntroStr": "Dropdown drop-down list.",

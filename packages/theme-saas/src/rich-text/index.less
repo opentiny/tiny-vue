@@ -533,6 +533,17 @@
   }
 }
 
+.is-display-only {
+  .ql-toolbar.ql-snow {
+    display: none;
+
+    & + .ql-container.ql-snow {
+      border-top: 1px solid #d9d9d9;
+      margin: -15px 0;
+    }
+  }
+}
+
 .ql-bubble {
   &,
   & * {
@@ -901,7 +912,7 @@
       }
 
       .ql-picker-item[data-value='small']::before {
-        font-size: 10px;
+        @apply text-2xs;
       }
 
       .ql-picker-item[data-value='large']::before {
@@ -1500,7 +1511,7 @@
       }
 
       .ql-picker-item[data-value='small']::before {
-        font-size: 10px;
+        @apply text-2xs;
       }
 
       .ql-picker-item[data-value='large']::before {

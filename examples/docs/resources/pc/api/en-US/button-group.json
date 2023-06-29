@@ -83,9 +83,16 @@
   "events": [
     {
       "name": "edit",
-      "sample": "edit",
+      "sample": "event-edit",
       "type": "",
       "desc": "Set the callback function triggered when the edit button is clicked.",
+      "defaultValue": ""
+    },
+    {
+      "name": "change",
+      "sample": "change-event",
+      "type": "",
+      "desc": "Set the callback function triggered when the selected button is changed.",
       "defaultValue": ""
     }
   ]

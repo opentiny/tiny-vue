@@ -16,7 +16,6 @@ import { xss } from '../common/xss'
 export const api = ['state']
 
 export const renderless = (props, { computed, reactive }) => {
-
   const state = reactive({
     isOverstep: false,
     valueRef: computed(() => api.computedValueRef()),
@@ -29,7 +28,6 @@ export const renderless = (props, { computed, reactive }) => {
     computedValueRef: computedValueRef({ props }),
     computedContent: computedContent({ props, state })
   }
-
 
   return api
 }

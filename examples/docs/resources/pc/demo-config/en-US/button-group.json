@@ -64,8 +64,16 @@
     "demoId": "show-edit"
   },
   {
+    "title": "Change Event",
+    "content": "<p>The <code>change</code> event is triggered when the selected button is changed. </p>\n",
+    "link": "button-group/change-event",
+    "component": "Buttongroup",
+    "findIntroStr": "A button group is used for multiple similar operations.",
+    "demoId": "change-event"
+  },
+  {
     "title": "Edit Event",
-    "content": "<p>The <code>edit</code> event is triggered when the value of the check box is changed. </p>\n",
+    "content": "<p>The <code>edit</code> event is triggered when the edit button is clicked. </p>\n",
     "link": "button-group/event-edit",
     "component": "Buttongroup",
     "findIntroStr": "A button group is used for multiple similar operations.",

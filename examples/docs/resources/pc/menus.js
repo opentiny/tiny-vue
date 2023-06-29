@@ -115,6 +115,12 @@ const routerArr = [
         path: '/anchor'
       },
       {
+        en: 'Guide',
+        zh: '引导',
+        enSuffix: true,
+        path: '/guide'
+      },
+      {
         en: 'Breadcrumb',
         zh: '面包屑',
         enSuffix: true,
@@ -216,6 +222,12 @@ const routerArr = [
         zh: '对话框',
         enSuffix: true,
         path: '/dialog-box'
+      },
+      {
+        en: 'Drawer',
+        zh: '抽屉',
+        enSuffix: true,
+        path: '/drawer'
       },
       {
         en: 'Collapse',
@@ -869,6 +881,12 @@ const routerArr = [
         zh: '弹出框',
         enSuffix: true,
         path: '/popover'
+      },
+      {
+        en: 'Popconfirm',
+        zh: '气泡确认框组件',
+        enSuffix: true,
+        path: '/popconfirm'
       },
       {
         en: 'Modal',

@@ -15,6 +15,6 @@ test('基础用法', async ({ page }) => {
   // 滑块向右移动百分之二十
   await page.mouse.move(sliderWidth * 0.2 + x, y)
   const sliderTip = slider.locator('div').nth(2)
-  await expect(sliderTip).toHaveText('39')
+  await expect(sliderTip).toHaveText('59')
   await page.mouse.up()
 })

@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   getConfig,
@@ -37,7 +37,12 @@ import {
   watchValue,
   setInputHeightToTag,
   presentTextHandler,
-  handleBeforeUpdate
+  handleBeforeUpdate,
+  showPlaceholder,
+  calcCollapseTags,
+  watchInputHover,
+  handleMouseenter,
+  handleMouseleave
 } from './index'
 import { removeResizeListener } from '../common/deps/resize-event'
 import userPopper from '../common/deps/vue-popper'
@@ -58,11 +63,14 @@ export const api = [
   'handleBlur',
   'handleFocus',
   'toggleDropDownVisible',
-  'handleKeyDown'
+  'handleKeyDown',
+  'handleMouseenter',
+  'handleMouseleave'
 ]
 
-const initState = ({ reactive, props, computed, parent, api, refs, t, constants }) => {
+const initState = ({ reactive, props, computed, parent, api, t, constants, refs, inject }) => {
   const state = reactive({
+    showAutoWidth: inject('showAutoWidth', null),
     dropDownVisible: false,
     checkedValue: props.modelValue || null,
     inputHover: false,
@@ -76,9 +84,11 @@ const initState = ({ reactive, props, computed, parent, api, refs, t, constants 
     pressDeleteCount: 0,
     realSize: computed(() => props.size),
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
-    disabled: computed(() => props.disabled || state.formDisabled),
+    displayOnly: computed(() => props.displayOnly),
+    disabled: computed(() => props.disabled || state.isDisplayOnly || state.formDisabled),
     tagSize: computed(() => (~['small', 'mini'].indexOf(state.realSize) ? 'mini' : 'small')),
     isDisabled: computed(() => state.disabled),
+    isDisplayOnly: computed(() => state.displayOnly || (parent.auiForm || {}).displayOnly),
     config: computed(() => api.getConfig()),
     multiple: computed(() => state.config.multiple),
     leafOnly: computed(() => !state.config.checkStrictly),
@@ -86,16 +96,19 @@ const initState = ({ reactive, props, computed, parent, api, refs, t, constants 
     clearBtnVisible: computed(() => api.computClearVisible()),
     panel: computed(() => refs.panel),
     placeholder: computed(() => props.placeholder || t(constants.placeholder)),
-    inputValues: computed(() => (state.multiple ? state.presentText : state.inputValue))
+    inputValues: computed(() => (state.multiple ? state.presentText : state.inputValue)),
+    collapseTagsLength: 0,
+    isHidden: false,
+    tooltipVisible: false,
+    tooltipContent: ''
   })
 
   return state
 }
 
-const initApi = ({ api, state, constants, dispatch, emit, refs, props, updatePopper, nextTick, parent }) => {
+const initApi = ({ api, state, constants, dispatch, emit, refs, props, updatePopper, nextTick, parent, t }) => {
   Object.assign(api, {
     state,
-    handleBlur: handleBlur({ constants, dispatch, emit, state }),
     handleFocus: handleFocus(emit),
     handleClear: handleClear(state),
     getCheckedNodes: getCheckedNodes(state),
@@ -103,11 +116,12 @@ const initApi = ({ api, state, constants, dispatch, emit, refs, props, updatePop
     handleDropdownLeave: handleDropdownLeave(state),
     focusFirstNode: focusFirstNode({ refs, state }),
     computClearVisible: computClearVisible({ props, state }),
-    updateStyle: updateStyle({ parent, refs, state, updatePopper }),
+    showPlaceholder: showPlaceholder({ props, state, t, constants }),
+    updateStyle: updateStyle({ parent, refs, state, updatePopper, nextTick, props }),
     getSuggestions: getSuggestions({ nextTick, props, state, updatePopper }),
     handleExpandChange: handleExpandChange({ constants, emit, dispatch, nextTick, state, updatePopper }),
     getConfig: getConfig({ parent, props }),
-    setInputHeightToTag: setInputHeightToTag({ nextTick, parent }),
+    setInputHeightToTag: setInputHeightToTag({ nextTick, parent, state }),
     handleSuggestionClick: handleSuggestionClick({ api, state }),
     handleDelete: handleDelete({ api, state }),
     computePresentText: computePresentText({ props, state }),
@@ -120,7 +134,12 @@ const initApi = ({ api, state, constants, dispatch, emit, refs, props, updatePop
     watchCheckedValue: watchCheckedValue({ api, emit, state }),
     toggleDropDownVisible: toggleDropDownVisible({ emit, nextTick, refs, state, updatePopper }),
     selfMounted: selfMounted({ api, parent, props, refs, state }),
-    handleBeforeUpdate: handleBeforeUpdate({ props, api })
+    handleBeforeUpdate: handleBeforeUpdate({ props, api, state }),
+    handleBlur: handleBlur({ constants, dispatch, emit, state, api, props }),
+    calcCollapseTags: calcCollapseTags({ refs, state, nextTick }),
+    watchInputHover: watchInputHover({ refs }),
+    handleMouseenter: handleMouseenter({ refs, state }),
+    handleMouseleave: handleMouseleave({ state })
   })
 }
 
@@ -165,6 +184,8 @@ const initWatch = ({ watch, state, api, props, nextTick, updatePopper }) => {
     () => Array.isArray(state.checkedValue) && state.checkedValue.length,
     () => setTimeout(() => updatePopper())
   )
+
+  watch([() => state.inputHover, () => state.dropDownVisible], api.watchInputHover)
 }
 
 export const renderless = (
@@ -196,15 +217,20 @@ export const renderless = (
   })
 
   const api = {}
-  const state = initState({ reactive, props, computed, parent, api, refs, t, constants })
+  const state = initState({ reactive, props, computed, parent, api, t, constants, refs, inject })
 
-  initApi({ api, state, constants, dispatch, emit, refs, props, updatePopper, nextTick, parent })
+  initApi({ api, state, constants, dispatch, emit, refs, props, updatePopper, nextTick, parent, t })
 
   initWatch({ watch, state, api, props, nextTick, updatePopper })
 
   onBeforeUpdate(api.handleBeforeUpdate)
   onUpdated(api.updateStyle)
   onMounted(api.selfMounted)
+
+  parent.$on('handle-clear', (event) => {
+    api.handleClear(event)
+  })
+
   onBeforeUnmount(() => removeResizeListener(parent.$el, api.updateStyle))
 
   return api

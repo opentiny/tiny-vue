@@ -1,13 +1,29 @@
 <template>
-  <div class="flex w-full min-h-[2.625rem] text-xs" :class="[
-    type === 'card'
-      ? 'p-3 border-0.5 hover:shadow sm:border rounded border-color-border-separator mb-2 [&:last-child]:mb-0'
-      : 'px-0 py-3 border-b-0.5 sm:border-b-px border-b-color-border-separator [&:last-child]:border-none'
-  ]">
-    <div v-if="showImage || (slots.image && slots.image())" class="float-left items-center mr-2.5 shrink-0" :class="[icon.name ? 'block' : 'block sm:flex']">
+  <div
+    class="flex w-full min-h-[2.625rem] text-xs"
+    :class="[
+      type === 'card'
+        ? 'p-3 border-0.5 hover:shadow sm:border rounded border-color-border-separator mb-2 [&:last-child]:mb-0'
+        : 'px-0 py-3 border-b-0.5 sm:border-b-px border-b-color-border-separator [&:last-child]:border-none'
+    ]"
+  >
+    <div
+      v-if="showImage || (slots.image && slots.image())"
+      class="float-left items-center mr-2.5 shrink-0"
+      :class="[icon.name ? 'block' : 'block sm:flex']"
+    >
       <slot name="image">
         <component v-if="icon.name" :is="icon.name" class="w-5 h-5" :style="{ fill: icon.color }" />
-        <tiny-user-head v-else :type="userHead.type || 'icon'" v-model="userHead.value" :min="userHead.min" :round="userHead.round" :color="userHead.color" :background-color="userHead.backgroundColor" :size="userHead.size"></tiny-user-head>
+        <tiny-user-head
+          v-else
+          :type="userHead.type || 'icon'"
+          v-model="userHead.value"
+          :min="userHead.min"
+          :round="userHead.round"
+          :color="userHead.color"
+          :background-color="userHead.backgroundColor"
+          :size="userHead.size"
+        ></tiny-user-head>
       </slot>
     </div>
     <div class="text-left flex-auto mx-0 my-auto leading-5">
@@ -16,22 +32,48 @@
           <span class="mr-3 shrink-0">{{ data.title || '' }}</span>
           <span class="text-color-text-placeholder shrink-0">{{ data.subTitle || '' }}</span>
           <slot name="tag">
-            <tiny-tag-group v-if="tag" class="inline-block ml-3 text-xs [&_span]:whitespace-nowrap" :data="tag.data" :size="tag.size" :effect="tag.effect"></tiny-tag-group>
+            <tiny-tag-group
+              v-if="tag"
+              class="inline-block ml-3 text-xs [&_span]:whitespace-nowrap"
+              :data="tag.data"
+              :size="tag.size"
+              :effect="tag.effect"
+            ></tiny-tag-group>
           </slot>
         </div>
         <tiny-tooltip effect="light" :content="state.descTooltip" placement="top" @mouseenter.native="handleEnterDesc">
-          <p v-if="data.desc" class="mt-2 text-xs line-clamp-2 sm:line-clamp-1">{{ data.desc }}</p>
+          <p v-if="data.desc" class="mt-2 text-xs line-clamp-2 sm:line-clamp-1">
+            {{ data.desc }}
+          </p>
         </tiny-tooltip>
       </slot>
     </div>
-    <div v-if="state.effectOptions.length || (slots.operate && slots.operate())" class="w-auto pr-0 pl-6 h-auto flex items-center justify-center shrink-0 text-color-text-primary">
+    <div
+      v-if="state.effectOptions.length || (slots.operate && slots.operate())"
+      class="w-auto pr-0 pl-6 h-auto flex items-center justify-center shrink-0 text-color-text-primary"
+    >
       <slot name="operate">
-        <div class="cursor-pointer mr-5 hidden sm:block" v-for="(item, index) in state.effectOptions.slice(0, state.sliceNum)" :key="item.text + index" :class="[item.disabled ? 'text-color-text-disabled cursor-not-allowed' : '']" @click="handelIconClick(item, index)">
+        <div
+          class="cursor-pointer mr-5 hidden sm:block"
+          v-for="(item, index) in state.effectOptions.slice(0, state.sliceNum)"
+          :key="item.text + index"
+          :class="[item.disabled ? 'text-color-text-disabled cursor-not-allowed' : '']"
+          @click="handelIconClick(item, index)"
+        >
           <component :is="item.icon" class="w-4 h-4" :class="[item.disabled ? 'fill-color-icon-disabled' : '']" />
           <span v-if="item.text" class="ml-1 align-middle sm:align-bottom">{{ item.text }}</span>
         </div>
-        <div class="cursor-pointer hidden sm:block" :class="[state.effectOptions[state.sliceNum].disabled ? 'text-color-text-disabled cursor-not-allowed' : '']" v-if="state.effectOptions.length === state.iconNum" @click="handelIconClick(state.effectOptions[state.sliceNum], state.sliceNum)">
-          <component :is="state.effectOptions[state.sliceNum].icon" class="w-4 h-4" :class="[state.effectOptions[state.sliceNum].disabled ? 'fill-color-icon-disabled' : '']" />
+        <div
+          class="cursor-pointer hidden sm:block"
+          :class="[state.effectOptions[state.sliceNum].disabled ? 'text-color-text-disabled cursor-not-allowed' : '']"
+          v-if="state.effectOptions.length === state.iconNum"
+          @click="handelIconClick(state.effectOptions[state.sliceNum], state.sliceNum)"
+        >
+          <component
+            :is="state.effectOptions[state.sliceNum].icon"
+            class="w-4 h-4"
+            :class="[state.effectOptions[state.sliceNum].disabled ? 'fill-color-icon-disabled' : '']"
+          />
           <span v-if="state.effectOptions[state.sliceNum].text" class="ml-1 align-middle sm:align-bottom">{{
             state.effectOptions[state.sliceNum].text
           }}</span>
@@ -42,9 +84,19 @@
             <span v-if="state.effectOptions[0].text" class="ml-1 text-color-text-primary">{{ t('ui.base.more') }}</span>
             <template #dropdown>
               <tiny-dropdown-menu placement="bottom">
-                <tiny-dropdown-item v-for="(item, index) in state.effectOptions.slice(state.sliceNum)" :key="item.text + index">
-                  <div @click="handelIconClick(item, index + state.sliceNum)" :class="[item.disabled ? 'text-color-text-disabled cursor-not-allowed' : '']">
-                    <component :is="item.icon" class="w-4 h-4" :class="[item.disabled ? 'fill-color-icon-disabled' : '']" />
+                <tiny-dropdown-item
+                  v-for="(item, index) in state.effectOptions.slice(state.sliceNum)"
+                  :key="item.text + index"
+                >
+                  <div
+                    @click="handelIconClick(item, index + state.sliceNum)"
+                    :class="[item.disabled ? 'text-color-text-disabled cursor-not-allowed' : '']"
+                  >
+                    <component
+                      :is="item.icon"
+                      class="w-4 h-4"
+                      :class="[item.disabled ? 'fill-color-icon-disabled' : '']"
+                    />
                     <span v-if="item.text">{{ item.text }}</span>
                   </div>
                 </tiny-dropdown-item>
@@ -58,8 +110,15 @@
             <template #dropdown>
               <tiny-dropdown-menu placement="bottom">
                 <tiny-dropdown-item v-for="(item, index) in state.effectOptions" :key="item.text + index">
-                  <div @click="handelIconClick(item, index)" :class="[item.disabled ? 'text-color-text-disabled cursor-not-allowed' : '']">
-                    <component :is="item.icon" class="w-4 h-4" :class="[item.disabled ? 'fill-color-icon-disabled' : '']" />
+                  <div
+                    @click="handelIconClick(item, index)"
+                    :class="[item.disabled ? 'text-color-text-disabled cursor-not-allowed' : '']"
+                  >
+                    <component
+                      :is="item.icon"
+                      class="w-4 h-4"
+                      :class="[item.disabled ? 'fill-color-icon-disabled' : '']"
+                    />
                     <span v-if="item.text">{{ item.text }}</span>
                   </div>
                 </tiny-dropdown-item>
@@ -143,13 +202,7 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    return setup({
-      props,
-      context,
-      renderless,
-      api,
-      mono: true
-    })
+    return setup({ props, context, renderless, api, mono: true })
   }
 })
 </script>

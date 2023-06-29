@@ -17,7 +17,8 @@
       { 'is-disabled': state.isDisabled },
       { 'is-focus': state.focus },
       { 'is-bordered': border },
-      { 'is-checked': state.model === label }
+      { 'is-checked': state.model === label },
+      { 'is-display-only': state.isDisplayOnly }
     ]"
     role="radio"
     :aria-checked="state.model === label"
@@ -62,7 +63,19 @@ import '@opentiny/vue-theme/radio/index.less'
 
 export default defineComponent({
   emits: ['change', 'update:modelValue'],
-  props: [...props, 'modelValue', 'events', 'label', 'text', 'disabled', 'name', 'border', 'size', 'tabindex'],
+  props: [
+    ...props,
+    'modelValue',
+    'events',
+    'label',
+    'text',
+    'disabled',
+    'name',
+    'border',
+    'size',
+    'tabindex',
+    'displayOnly'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

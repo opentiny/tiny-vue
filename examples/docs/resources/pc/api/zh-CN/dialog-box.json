@@ -1,6 +1,13 @@
 {
   "attrs": [
     {
+      "name": "visible",
+      "sample": "basic-usage",
+      "type": "Boolean",
+      "desc": "控制弹出框显示与关闭",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
       "name": "center",
       "sample": "center",
       "type": "Boolean",
@@ -104,13 +111,6 @@
       "type": "String",
       "desc": "设置弹出框距离窗口顶部的高度，默认为屏高的 15%",
       "defaultValue": "该属性的默认值为 15vh"
-    },
-    {
-      "name": "visible",
-      "sample": "basic-usage",
-      "type": "Boolean",
-      "desc": "控制弹出框显示与关闭",
-      "defaultValue": "该属性的默认值为 true"
     },
     {
       "name": "width",

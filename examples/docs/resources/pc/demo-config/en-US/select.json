@@ -24,6 +24,14 @@
     "demoId": "collapse-tags"
   },
   {
+    "title": "Set the tag type",
+    "content": "<p>Set the tag type through the <code>tagType</code> attribute</p>\n",
+    "link": "select/tag-type",
+    "component": "Select Selector",
+    "findIntroStr": "Select selector is a UI component that displays and selects data from a drop-down list box.",
+    "demolde": "tag type"
+  },
+  {
     "title": "Set the text box type",
     "content": "<p>You can set <code>input-box-type</code> to underline. </p>\n",
     "link": "select/input-box-type",

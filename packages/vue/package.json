@@ -2,7 +2,28 @@
 	"name": "@opentiny/vue",
 	"private": true,
 	"version": "3.8.1",
-	"description": "opentiny vue components",
+	"description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
+	"homepage": "https://opentiny.design/tiny-vue",
+	"keywords": [
+		"vue",
+		"vue3",
+		"frontend",
+		"component-library",
+		"components",
+		"vue-components",
+		"opentiny",
+		"renderless-components",
+		"headless-components"
+	],
+	"author": "OpenTiny Team",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:opentiny/tiny-vue.git"
+	},
+	"bugs": {
+		"url": "https://github.com/opentiny/tiny-vue/issues"
+	},
 	"type": "module",
 	"main": "index.ts",
 	"sideEffects": false,
@@ -219,7 +240,6 @@
 		"vue2.7": "npm:vue@2.7.10",
 		"vue3": "npm:vue@3.2.31"
 	},
-	"license": "MIT",
 	"scripts": {
 		"build": "pnpm -w build:ui",
 		"postversion": "pnpm build"

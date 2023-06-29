@@ -26,3 +26,12 @@ export const computedRightNodePos = ({ state, props }) => () => {
     right: -(index + 1) * 4 + 'px'
   }))
 }
+
+export const computedSpace = ({ props }) => {
+  const { space } = props
+  if (/^\d+$/.test(space)) {
+    return `${space}px`
+  }
+
+  return space
+}

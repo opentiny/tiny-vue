@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <tiny-layout>
+    <tiny-layout class="tiny-layout-responsive-layout">
       <tiny-row :gutter="10">
         <tiny-col :xs="4" :sm="3" :md="2" :lg="4" :xl="1">
           <div class="col">1</div>
@@ -32,26 +32,6 @@ export default {
 </script>
 
 <style scoped>
-.tiny-row {
-  margin-bottom: 20px;
-}
-
-.tiny-row .last-child {
-  margin-bottom: 0;
-}
-
-.tiny-col .col {
-  line-height: 30px;
-  text-align: center;
-  color: #fff;
-  background: #1f9ed8;
-  border-radius: 15px;
-}
-
-.tiny-col:nth-child(even) .col {
-  background: #73d0fc;
-}
-
 .lg {
   height: 80px;
 }

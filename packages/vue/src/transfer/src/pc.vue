@@ -39,7 +39,13 @@
     </div>
     <div class="tiny-transfer__buttons">
       <slot name="button-panel">
-        <tiny-button v-if="showAllBtn" type="primary" :disabled="state.leftData.length === 0" class="tiny-transfer__button" @click="addToRight('all')">
+        <tiny-button
+          v-if="showAllBtn"
+          type="primary"
+          :disabled="state.leftData.length === 0"
+          class="tiny-transfer__button"
+          @click="addToRight('all')"
+        >
           <icon-double-right class="tiny-svg-size"></icon-double-right>
         </tiny-button>
         <div class="defaultButton">
@@ -62,7 +68,13 @@
             <span v-if="buttonTexts[0] !== undefined">{{ buttonTexts[0] }}</span>
           </tiny-button>
         </div>
-        <tiny-button v-if="showAllBtn" type="primary" :disabled="state.rightData.length === 0" class="tiny-transfer__button" @click="addToLeft('all')">
+        <tiny-button
+          v-if="showAllBtn"
+          type="primary"
+          :disabled="state.rightData.length === 0"
+          class="tiny-transfer__button"
+          @click="addToLeft('all')"
+        >
           <icon-double-left class="tiny-svg-size"></icon-double-left>
         </tiny-button>
       </slot>

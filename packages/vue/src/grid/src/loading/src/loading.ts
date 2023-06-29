@@ -9,19 +9,19 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { h, $prefix } from '@opentiny/vue-common'
-import { iconLoading } from '@opentiny/vue-icon'
+import { h, $prefix, defineComponent, $props } from '@opentiny/vue-common'
 
-export default {
+export default defineComponent({
   name: $prefix + 'GridLoading',
   props: {
+    ...$props,
     visible: Boolean
   },
   render() {
     return h(
       'div',
       {
-        class: 'tiny-grid-loading tiny-loading',
+        class: 'tiny-grid-loading',
         style: {
           display: this.visible ? 'block' : 'none'
         }
@@ -30,15 +30,32 @@ export default {
         h(
           'div',
           {
-            class: 'tiny-grid-loading__wrap tiny-loading__spinner'
+            class: 'tiny-loading tiny-grid-loading__wrap tiny-loading__spinner'
           },
           [
-            h(iconLoading(), {
-              class: 'circular'
-            })
+            h(
+              'svg',
+              {
+                class: 'circular',
+                attrs: {
+                  viewBox: '25 25 50 50'
+                }
+              },
+              [
+                h('circle', {
+                  class: 'path',
+                  attrs: {
+                    cx: '50',
+                    cy: '50',
+                    r: '24',
+                    fill: 'none'
+                  }
+                })
+              ]
+            )
           ]
         )
       ]
     )
   }
-}
+})

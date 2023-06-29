@@ -9,7 +9,7 @@
   },
   {
     "title": "Type",
-    "content": "<p>Set different types through <code>type</code>. The options are success, warning, info, and error. The default value is info. </p>\n",
+    "content": "<p>Set different types through <code>type</code>. The options are success, warning, info, and error. The default value is success. </p>\n",
     "link": "alert/type",
     "component": "Alert",
     "findIntroStr": "Alert alarms, including warning, error, info, and success.",

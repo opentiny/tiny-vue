@@ -36,6 +36,38 @@ import {
 } from './utils/triggerCellMousedownEvent'
 import { handleHeaderCellMousedownEvent } from './utils/triggerHeaderCellMousedownEvent'
 
+const removeCellClass = (bodyRef, clazz) =>
+  arrayEach(bodyRef.$el.querySelectorAll('.' + clazz), (elem) => removeClass(elem, clazz))
+
+const getCellIndex = ({ cell, elemStore, bodyList }) => {
+  let trElem = cell.parentNode
+  let cIndex = arrayIndexOf(trElem.children, cell)
+  let leftBodyList = (elemStore['left-body-list'] || { children: [] }).children
+  let rightBodyList = (elemStore['right-body-list'] || { children: [] }).children
+  let rIndex = arrayIndexOf(bodyList, trElem)
+
+  if (rIndex === undefined || rIndex === -1) {
+    rIndex = arrayIndexOf(leftBodyList, trElem)
+  }
+
+  if (rIndex === undefined || rIndex === -1) {
+    rIndex = arrayIndexOf(rightBodyList, trElem)
+  }
+
+  return { rIndex, cIndex }
+}
+
+const getModify = ({ offsetTop, offsetLeft, cWidth, cHeight }) => {
+  let modifyDomStyle = (dom, styleOptions) => dom && Object.assign(dom.style, styleOptions)
+
+  return (top, right, bottom, left) => {
+    modifyDomStyle(top, { top: `${offsetTop}px`, left: `${offsetLeft}px`, width: `${cWidth}px` })
+    modifyDomStyle(right, { top: `${offsetTop}px`, left: `${offsetLeft + cWidth}px`, height: `${cHeight}px` })
+    modifyDomStyle(bottom, { top: `${offsetTop + cHeight}px`, left: `${offsetLeft}px`, width: `${cWidth}px` })
+    modifyDomStyle(left, { top: `${offsetTop}px`, left: `${offsetLeft}px`, height: `${cHeight}px` })
+  }
+}
+
 export default {
   // Tab键移动处理
   moveTabSelected(args, isLeft, event, edit) {
@@ -122,7 +154,7 @@ export default {
     } else if (isLeftArrow && columnIndex) {
       for (let pos = columnIndex - 1; pos >= 0; pos--) {
         if (!hasIndexColumn(visibleColumn[pos])) {
-          columnIndex = pos
+          params.columnIndex = pos
           params.column = visibleColumn[pos]
           break
         }
@@ -247,26 +279,23 @@ export default {
       editStore: { selected },
       elemStore
     } = this
-    let nameList = ['left', 'main', 'right']
 
     if (!keep) {
       selected.row = null
       selected.column = null
     }
 
-    nameList.forEach((name) => {
-      let bodyElem = elemStore[`${name}-body-list`]
-      let headerElem = elemStore[`${name}-header-list`]
+    let bodyElem = elemStore['main-body-list']
+    let headerElem = elemStore['main-header-list']
 
-      if (bodyElem) {
-        let elem = bodyElem.querySelector('.col__selected')
-        removeClass(elem, 'col__selected')
-      }
+    if (bodyElem) {
+      let elem = bodyElem.querySelector('.col__selected')
+      removeClass(elem, 'col__selected')
+    }
 
-      if (headerElem) {
-        arrayEach(headerElem.querySelectorAll('.col__title-selected'), (elem) => removeClass(elem, 'col__title-selected'))
-      }
-    })
+    if (headerElem) {
+      arrayEach(headerElem.querySelectorAll('.col__title-selected'), (elem) => removeClass(elem, 'col__title-selected'))
+    }
 
     return this.$nextTick()
   },
@@ -290,7 +319,7 @@ export default {
 
     tableBody.$refs.checkBorders.style.display = 'none'
 
-    arrayEach(tableBody.$el.querySelectorAll('.col__checked'), (elem) => removeClass(elem, 'col__checked'))
+    removeCellClass(tableBody, 'col__checked')
 
     return this.$nextTick()
   },
@@ -323,10 +352,8 @@ export default {
   handleChecked(rowNodes) {
     let { cHeight, cWidth, offsetLeft, offsetTop } = {}
 
-    cWidth = -2
-    cHeight = -2
-    offsetTop = 0
-    offsetLeft = 0
+    cWidth = cHeight = -2
+    offsetTop = offsetLeft = 0
 
     this.clearChecked()
 
@@ -352,14 +379,13 @@ export default {
       })
     })
 
-    let { checkBorders, checkBottom, checkLeft, checkRight, checkTop } = this.$refs.tableBody.$refs
-    checkBorders.style.display = 'block'
-    let modifyDomStyle = (dom, styleOptions) => Object.assign(dom.style, styleOptions)
+    let modify = getModify({ offsetTop, offsetLeft, cWidth, cHeight })
+    let { tableBody } = this.$refs
+    let { checkBorders, checkTop, checkRight, checkBottom, checkLeft } = tableBody.$refs
 
-    modifyDomStyle(checkTop, { top: `${offsetTop}px`, left: `${offsetLeft}px`, width: `${cWidth}px` })
-    modifyDomStyle(checkRight, { top: `${offsetTop}px`, left: `${offsetLeft + cWidth}px`, height: `${cHeight}px` })
-    modifyDomStyle(checkBottom, { top: `${offsetTop + cHeight}px`, left: `${offsetLeft}px`, width: `${cWidth}px` })
-    modifyDomStyle(checkLeft, { top: `${offsetTop}px`, left: `${offsetLeft}px`, height: `${cHeight}px` })
+    modify(checkTop, checkRight, checkBottom, checkLeft)
+
+    checkBorders.style.display = 'block'
 
     this.editStore.checked.rowNodes = rowNodes
   },
@@ -439,27 +465,19 @@ export default {
   },
   // 清空已复制的内容
   _clearCopyed() {
-    let {
-      $refs,
-      editStore: { copyed: editStoreCopyed },
-      keyboardConfig
-    } = this
+    let { $refs, editStore, keyboardConfig } = this
+    let { copyed: editStoreCopyed } = editStore
 
-    if (!keyboardConfig || !keyboardConfig.isCut) {
-      return this.$nextTick()
-    }
+    if (!keyboardConfig || !keyboardConfig.isCut) return this.$nextTick()
 
-    let tableBody = $refs.tableBody
-    let { copyBorders } = tableBody.$refs
-    let colCopyeds = tableBody.$el.querySelectorAll('.col__copyed')
-    let eachHandler = (colCopyed) => removeClass(colCopyed, 'col__copyed')
+    let { tableBody } = $refs
 
     editStoreCopyed.cut = false
     editStoreCopyed.rows = []
     editStoreCopyed.columns = []
 
-    copyBorders.style.display = 'none'
-    arrayEach(colCopyeds, eachHandler)
+    tableBody.$refs.copyBorders.style.display = 'none'
+    removeCellClass(tableBody, 'col__copyed')
 
     return this.$nextTick()
   },
@@ -469,17 +487,20 @@ export default {
     let copyed = editStore.copyed
     let rowNodes = editStore.checked.rowNodes
     let { cHeight, cWidth, offsetLeft, offsetTop, rows = [], columns = [] } = {}
-    cWidth = -3
-    cHeight = -3
-    offsetTop = 0
-    offsetLeft = 0
+
+    cWidth = cHeight = -3
+    offsetTop = offsetLeft = 0
+
     this.clearCopyed()
+
+    if (!rowNodes) return
 
     if (rowNodes.length) {
       let firstRows = rowNodes[0]
       let firstCell = firstRows[0]
       let firstRowsLength = firstRows.length
       let { rowIndex, columnIndex } = getCellNodeIndex(firstCell)
+
       columns = tableColumn.slice(columnIndex, columnIndex + firstRowsLength)
       rows = tableData.slice(rowIndex, rowIndex + rowNodes.length)
     }
@@ -488,27 +509,32 @@ export default {
       arrayEach(rowNode, (colNode, colIndex) => {
         let isTop = rowIndex === 0
         let isLeft = colIndex === 0
+
         if (isTop) {
           if (isLeft) {
             offsetTop = colNode.offsetTop
             offsetLeft = colNode.offsetLeft
           }
+
           cWidth += colNode.offsetWidth
         }
+
         if (isLeft) {
           cHeight += colNode.offsetHeight
         }
+
         addClass(colNode, 'col__copyed')
       })
     })
 
-    let { copyBorders, copyTop, copyRight, copyBottom, copyLeft } = this.$refs.tableBody.$refs
-    let modifyDomStyle = (dom, styleOptions) => Object.assign(dom.style, styleOptions)
+    let modify = getModify({ offsetTop, offsetLeft, cWidth, cHeight })
+    let { tableBody } = this.$refs
+    let { copyBorders, copyTop, copyRight, copyBottom, copyLeft } = tableBody.$refs
+
+    modify(copyTop, copyRight, copyBottom, copyLeft)
+
     copyBorders.style.display = 'block'
-    modifyDomStyle(copyTop, { top: `${offsetTop}px`, left: `${offsetLeft}px`, width: `${cWidth}px` })
-    modifyDomStyle(copyRight, { top: `${offsetTop}px`, left: `${offsetLeft + cWidth}px`, height: `${cHeight}px` })
-    modifyDomStyle(copyBottom, { top: `${offsetTop + cHeight}px`, left: `${offsetLeft}px`, width: `${cWidth}px` })
-    modifyDomStyle(copyLeft, { top: `${offsetTop}px`, left: `${offsetLeft}px`, height: `${cHeight}px` })
+
     copyed.cut = cut
     copyed.columns = columns
     copyed.rows = rows
@@ -516,19 +542,11 @@ export default {
   },
   // 处理粘贴
   handlePaste() {
-    let {
-      editStore: {
-        copyed: { columns, cut, rows },
-        selected
-      },
-      elemStore,
-      tableData,
-      visibleColumn
-    } = this
+    let { editStore, elemStore, tableData, visibleColumn } = this
+    let { copyed, selected } = editStore
+    let { columns, cut, rows } = copyed
 
-    if (!rows.length || !columns.length || !selected.row || !selected.column) {
-      return
-    }
+    if (!rows.length || !columns.length || !selected.row || !selected.column) return
 
     let { columnIndex, rowIndex } = selected.args
 
@@ -548,13 +566,16 @@ export default {
     cut && this.clearCopyed()
 
     let cell = selected.args.cell
-    let trElem = cell.parentNode
-    let colIndex = arrayIndexOf(trElem.children, cell)
     let bodyList = elemStore['main-body-list'].children
-    let rIndex = arrayIndexOf(bodyList, trElem)
-    let targetTrElem = bodyList[rIndex + rows.length - 1]
-    let targetCell = targetTrElem.children[colIndex + columns.length - 1]
+    let { rIndex, cIndex } = getCellIndex({ cell, elemStore, bodyList })
+    let maxIndex = bodyList.length - 1
+    let curIndex = rIndex + rows.length - 1
+    let targetTrElem = bodyList[curIndex > maxIndex ? maxIndex : curIndex]
 
+    maxIndex = targetTrElem.children.length - 1
+    curIndex = cIndex + columns.length - 1
+
+    let targetCell = targetTrElem.children[curIndex > maxIndex ? maxIndex : curIndex]
     let targetCellNode = getCellNodeIndex(targetCell)
     let cellNode = getCellNodeIndex(cell)
     let rowNodes = getRowNodes(bodyList, cellNode, targetCellNode)

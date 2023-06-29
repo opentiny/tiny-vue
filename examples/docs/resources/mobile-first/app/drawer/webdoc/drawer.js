@@ -95,7 +95,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>- header: 头部插槽，默认显示头部，设置 :show-header="true" 时有效；- header-right: 头部右侧插槽，默认显示关闭功能；- footer: 头部插槽，默认隐藏底部，设置 :show-footer="true" 时有效；<p>',
+          '<p>- header: 头部插槽，默认显示头部，设置 :show-header="true" 时有效；- header-right: 头部右侧插槽，默认显示关闭功能；- footer: 底部插槽，默认隐藏底部，设置 :show-footer="true" 时有效；<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['slot.vue']

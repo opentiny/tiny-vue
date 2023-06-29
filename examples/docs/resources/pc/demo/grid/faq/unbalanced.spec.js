@@ -8,5 +8,5 @@ test('常见问题--表格列头与单元格错位测试', async ({ page }) => {
   const { x } = await firstThDom.boundingBox()
   const { x: x1 } = await firstTdDom.boundingBox()
 
-  await expect(x).toEqual(x1)
+  await expect(x).not.toEqual(x1)
 })

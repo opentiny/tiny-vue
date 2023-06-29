@@ -11,7 +11,7 @@
 
 <script>
 import { Progress, Button } from '@opentiny/vue'
-import { IconMinus, IconPlus } from '@opentiny/vue-icon'
+import { iconMinus, iconPlus } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -22,8 +22,8 @@ export default {
     return {
       testInside: true,
       percentage: 20,
-      IconMinus: IconMinus(),
-      IconPlus: IconPlus()
+      IconMinus: iconMinus(),
+      IconPlus: iconPlus()
     }
   },
   methods: {

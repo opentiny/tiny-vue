@@ -1,21 +1,24 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 export const computedBarStyle = ({ api, props }) => () => ({
   width: props.percentage + '%',
   backgroundColor: api.getCurrentColor(props.percentage)
 })
 
-export const computedRelativeStrokeWidth = ({ props }) => () => ((props.strokeWidth / props.width) * 100).toFixed(1)
+export const computedRelativeStrokeWidth = ({ constants, state }) => () => {
+  if (state.width === 0 || state.strokeWidth === 0) return constants.REL_STROKE_WIDTH
+  return ((state.strokeWidth / state.width) * 100).toFixed(1)
+}
 
 export const computedRadius = ({ constants, props, state }) => () =>
   props.type === constants.PROGRESS_TYPE.CIRCLE || props.type === constants.PROGRESS_TYPE.DASHBOARD
@@ -45,6 +48,8 @@ export const computedTrailPathStyle = ({ state }) => () => ({
   strokeDashoffset: state.strokeDashoffset
 })
 
+export const computedCircleStyle = ({ state }) => () => state.width ? { height: state.width + 'px', width: state.width + 'px' } : {}
+
 export const computedCirclePathStyle = ({ props, state }) => () => ({
   strokeDasharray: `${state.perimeter * state.rate * (props.percentage / 100)}px, ${state.perimeter}px`,
   strokeDashoffset: state.strokeDashoffset,
@@ -54,20 +59,68 @@ export const computedCirclePathStyle = ({ props, state }) => () => ({
 export const computedStroke = ({ api, constants, props }) => () =>
   (props.color && api.getCurrentColor(props.percentage)) || constants.STATUS_TO_COLOR[props.status] || constants.STATUS_DEFAULT_COLOR
 
-export const computedIconClass = ({ constants, props }) => () => {
+export const computedIconClass = ({ constants, props, mode }) => () => {
   if (props.status === constants.PROGRESS_STATUS.SUCCESS) {
-    return props.type === constants.PROGRESS_TYPE.LINE ? constants.ICON_SUCCESS : constants.ICON_CIRCLE_SUCCESS
+    const iconClasses =
+          props.type === constants.PROGRESS_TYPE.LINE
+            ? [constants.ICON_SUCCESS, constants.ICON_CIRCLE_SUCCESS]
+            : [constants.ICON_CIRCLE_SUCCESS, constants.ICON_SUCCESS]
+    return mode === 'mobile-first' ? iconClasses[1] : iconClasses[0]
   } else if (props.status === constants.PROGRESS_STATUS.WARNING) {
     return props.type === constants.PROGRESS_TYPE.LINE ? constants.ICON_WARNING : constants.ICON_CIRCLE_WARNING
   } else if (props.status === constants.PROGRESS_STATUS.EXCEPTION) {
-    return props.type === constants.PROGRESS_TYPE.LINE ? constants.ICON_EXCEPTION : constants.ICON_CIRCLE_EXCEPTION
+    const iconClasses =
+          props.type === constants.PROGRESS_TYPE.LINE
+            ? [constants.ICON_EXCEPTION, constants.ICON_CIRCLE_EXCEPTION]
+            : [constants.ICON_CIRCLE_EXCEPTION, constants.ICON_EXCEPTION]
+    return mode === 'mobile-first' ? iconClasses[1] : iconClasses[0]
   }
 }
 
-export const computedProgressTextSize = ({ constants, props }) => () =>
-  props.type === constants.PROGRESS_TYPE.LINE ? 12 + props.strokeWidth * 0.4 : props.width * 0.111111 + 2
+export const computedIconStyle = ({ constants, props, state }) => () => {
+  if (props.type === constants.PROGRESS_TYPE.LINE) {
+    return state.strokeWidth
+      ? {
+          width: constants.TEXT_XS + state.strokeWidth * constants.STROKE_WIDTH_RATE,
+          height: constants.TEXT_XS + state.strokeWidth * constants.STROKE_WIDTH_RATE
+        }
+      : {}
+  } else {
+    return state.width
+      ? { width: state.width / constants.WIDTH_RATE_TWO, height: state.width / constants.WIDTH_RATE_TWO }
+      : {}
+  }
+}
 
-export const computedContent = ({ props }) => () => (typeof props.format === 'function' ? props.format(props.percentage) || '' : `${props.percentage}%`)
+export const computedProgressTextSize = ({ constants, props, state, mode }) => () => {
+  if (mode === 'mobile-first') {
+    let fontSize = constants.TEXT_XS
+    const sizeWidthMap = {
+      small: constants.PROGRESS_SIZE_WIDTH.SMALL,
+      medium: constants.PROGRESS_SIZE_WIDTH.MEDIUM,
+      large: constants.PROGRESS_SIZE_WIDTH.LARGE
+    }
+
+    if (props.type === constants.PROGRESS_TYPE.LINE) {
+      fontSize = state.strokeWidth
+        ? constants.TEXT_XS + state.strokeWidth * constants.STROKE_WIDTH_RATE
+        : props.size === constants.PROGRESS_SIZE.SMALL
+          ? constants.TEXT_XS
+          : constants.TEXT_SM
+    } else {
+      const width = state.width ? state.width : sizeWidthMap[props.size]
+      fontSize = width / constants.WIDTH_RATE_THREE
+      state.percentTextSize = width / constants.WIDTH_RATE_SIX
+    }
+    return fontSize
+  } else {
+    return props.type === constants.PROGRESS_TYPE.LINE
+      ? constants.TEXT_XS + state.strokeWidth * constants.STROKE_WIDTH_RATE
+      : state.width * 0.111111 + 2
+  }
+}
+
+export const computedContent = ({ props }) => () => (typeof props.format === 'function' ? props.format() || '' : `${props.percentage}%`)
 
 export const getCurrentColor = ({ api, props }) => (percentage) => {
   if (typeof props.color === 'function') {

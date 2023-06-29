@@ -40,19 +40,19 @@ export default defineComponent({
     'customClass'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true, h, extendOptions: { Modal } })
+    return setup({ props, context, renderless, api, h, extendOptions: { Modal } })
   },
   render() {
     let {
-      accept: accept,
-      disabled: disabled,
-      handleChange: handleChange,
-      handleClick: handleClick,
-      handleKeydown: handleKeydown,
-      isFolder: isFolder,
-      multiple: multiple,
-      name: name,
-      uploadFiles: uploadFiles,
+      accept,
+      disabled,
+      handleChange,
+      handleClick,
+      handleKeydown,
+      isFolder,
+      multiple,
+      name,
+      uploadFiles,
       listType,
       displayOnly,
       customClass
@@ -63,9 +63,7 @@ export default defineComponent({
     const operateSlot = (this as any).slots.operate && (this as any).slots.operate()
 
     return (
-      <div
-        class={!displayOnly && listType === 'text' ? 'flex justify-between mt-4 mb-2 sm:my-3' : 'h-full'}
-      >
+      <div class={!displayOnly && listType === 'text' ? 'flex justify-between mt-4 mb-2 sm:my-3' : 'h-full'}>
         {tipSlot && <div class="flex items-center sm:hidden inline-block text-sm">{tipSlot}</div>}
         <div class="h-full" onClick={handleClick} onKeydown={handleKeydown} tabindex="0">
           {listType === 'drag-single' ? (

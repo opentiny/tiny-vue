@@ -182,7 +182,8 @@ export function asyncMap(objArray, option, func, callback) {
       asyncSerialArray(flattenArr, func, next)
     })
 
-    pending.catch((error) => log.logger.error(error))
+    // 校验器会报告中，errors fields 同时存在，属于正常，不打印；  代码真异常才打印。
+    pending.catch((error) => (error.errors && error.fields) || log.logger.error(error))
     return pending
   }
 
@@ -217,7 +218,8 @@ export function asyncMap(objArray, option, func, callback) {
     })
   })
 
-  pending.catch((error) => log.logger.error(error))
+  // 校验器会报告中，errors fields 同时存在，属于正常，不打印；  代码真异常才打印。
+  pending.catch((error) => (error.errors && error.fields) || log.logger.error(error))
 
   return pending
 }

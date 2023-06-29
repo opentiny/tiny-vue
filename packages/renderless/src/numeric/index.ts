@@ -85,7 +85,7 @@ export const increase = ({ api, props, state }) => () => {
     return
   }
 
-  const value = props.modelValue || 0
+  const value = (props.mouseWheel ? state.displayValue : props.modelValue) || 0
   let newVal = api.internalIncrease({ val: value, step: props.step })
 
   if (!props.circulate || !isFinite(props.max) || !isFinite(props.min)) {
@@ -105,7 +105,7 @@ export const decrease = ({ api, props, state }) => () => {
     return
   }
 
-  const value = props.modelValue || 0
+  const value = (props.mouseWheel ? state.displayValue : props.modelValue) || 0
   let newVal = api.internalDecrease({ val: value, step: props.step })
 
   if (!props.circulate || !isFinite(props.max) || !isFinite(props.min)) {
@@ -130,7 +130,11 @@ export const handleBlur = ({ constants, dispatch, emit, props, state, api }) => 
   }
 }
 
-export const handleFocus = ({ emit, state, props, api }) => (event) => {
+export const handleFocus = ({ emit, state, props, api, refs }) => (event) => {
+  if (props.disabled) {
+    refs.input.blur()
+  }
+
   state.inputStatus = true
 
   const currentValue = api.getDecimal(state.currentValue)

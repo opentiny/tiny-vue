@@ -1,1 +1,58 @@
-[{"title":"基本用法","content":"详细用法参考如下示例","link":"text-popup/basic-usage","component":" TextPopup 输入框","findIntroStr":"TextPopup 输入框，提供数据绑定功能。","demoId":"basic-usage"},{"title":"提示占位文本","content":"<p><code>placeholder</code> 属性的值为 <code>string</code> 此属性会把值默认显示到输入框中。</p>\n","link":"text-popup/placeholder","component":" TextPopup 输入框","findIntroStr":"TextPopup 输入框，提供数据绑定功能。","demoId":"placeholder"},{"title":"只读","content":"<p>可通过 <code>readonly</code> 设置是否只读。</p>\n","link":"text-popup/readonly","component":" TextPopup 输入框","findIntroStr":"TextPopup 输入框，提供数据绑定功能。","demoId":"readonly"},{"title":"分隔符","content":"<p>可通过 <code>separtor</code> 设置分隔符,在文本框中输入回车就是分隔符的位置。</p>\n","link":"text-popup/separtor","component":" TextPopup 输入框","findIntroStr":"TextPopup 输入框，提供数据绑定功能。","demoId":"separtor"},{"title":"绑定值","content":"<p>可通过 <code>value</code> 或 <code>v-model</code> 设置绑定值。</p>\n","link":"text-popup/value","component":" TextPopup 输入框","findIntroStr":"TextPopup 输入框，提供数据绑定功能。","demoId":"value"},{"title":"清除 value 值","content":"详细用法参考如下示例","link":"text-popup/clear-value","component":" TextPopup 输入框","findIntroStr":"TextPopup 输入框，提供数据绑定功能。","demoId":"clear-value"},{"title":"宽度","content":"<p>可通过 <code>width</code> 设置宽度。</p>\n","link":"text-popup/width","component":" TextPopup 输入框","findIntroStr":"TextPopup 输入框，提供数据绑定功能。","demoId":"width"}]
+[
+  {
+    "title": "基本用法",
+    "content": "详细用法参考如下示例",
+    "link": "text-popup/basic-usage",
+    "component": " TextPopup 输入框",
+    "findIntroStr": "TextPopup 输入框，提供数据绑定功能。",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "提示占位文本",
+    "content": "<p><code>placeholder</code> 属性的值为 <code>string</code> 此属性会把值默认显示到输入框中。</p>\n",
+    "link": "text-popup/placeholder",
+    "component": " TextPopup 输入框",
+    "findIntroStr": "TextPopup 输入框，提供数据绑定功能。",
+    "demoId": "placeholder"
+  },
+  {
+    "title": "只读",
+    "content": "<p>可通过 <code>readonly</code> 设置是否只读。</p>\n",
+    "link": "text-popup/readonly",
+    "component": " TextPopup 输入框",
+    "findIntroStr": "TextPopup 输入框，提供数据绑定功能。",
+    "demoId": "readonly"
+  },
+  {
+    "title": "分隔符",
+    "content": "<p>可通过 <code>separtor</code> 设置分隔符,在文本框中输入回车就是分隔符的位置。</p>\n",
+    "link": "text-popup/separtor",
+    "component": " TextPopup 输入框",
+    "findIntroStr": "TextPopup 输入框，提供数据绑定功能。",
+    "demoId": "separtor"
+  },
+  {
+    "title": "绑定值",
+    "content": "<p>可通过 <code>value</code> 或 <code>v-model</code> 设置绑定值。</p>\n",
+    "link": "text-popup/value",
+    "component": " TextPopup 输入框",
+    "findIntroStr": "TextPopup 输入框，提供数据绑定功能。",
+    "demoId": "value"
+  },
+  {
+    "title": "清除 value 值",
+    "content": "详细用法参考如下示例",
+    "link": "text-popup/clear-value",
+    "component": " TextPopup 输入框",
+    "findIntroStr": "TextPopup 输入框，提供数据绑定功能。",
+    "demoId": "clear-value"
+  },
+  {
+    "title": "宽度",
+    "content": "<p>可通过 <code>width</code> 设置宽度。</p>\n",
+    "link": "text-popup/width",
+    "component": " TextPopup 输入框",
+    "findIntroStr": "TextPopup 输入框，提供数据绑定功能。",
+    "demoId": "width"
+  }
+]

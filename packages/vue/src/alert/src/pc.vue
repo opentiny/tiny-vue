@@ -33,8 +33,12 @@
           <slot></slot>
         </div>
       </div>
-      <icon-close v-if="!closeText && closable" @click="close" class="tiny-svg-size tiny-alert__icon tiny-alert__close"></icon-close>
-      <span v-else-if="closeText && closable" @click="close" class="is-custom">{{ closeText }}</span>
+      <icon-close
+        v-if="!closeText && closable"
+        @click="handleClose"
+        class="tiny-svg-size tiny-alert__icon tiny-alert__close"
+      ></icon-close>
+      <span v-else-if="closeText && closable" @click="handleClose" class="is-custom">{{ closeText }}</span>
     </div>
   </transition>
 </template>
@@ -46,7 +50,18 @@ import { iconClose, iconSuccess, iconError, iconHelp, iconWarning } from '@opent
 import '@opentiny/vue-theme/alert/index.less'
 
 export default defineComponent({
-  props: [...props, 'icon', 'type', 'size', 'description', 'title', 'closable', 'center', 'showIcon', 'closeText'],
+  props: [
+    ...props,
+    'icon',
+    'type',
+    'size',
+    'description',
+    'title',
+    'closable',
+    'center',
+    'showIcon',
+    'closeText'
+  ],
   components: {
     IconClose: iconClose(),
     IconSuccess: iconSuccess(),
@@ -54,6 +69,7 @@ export default defineComponent({
     IconHelp: iconHelp(),
     IconWarning: iconWarning()
   },
+  emits: ['close'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

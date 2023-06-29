@@ -38,10 +38,13 @@ export default defineComponent({
     tabindex: {
       type: String,
       default: '1'
+    },
+    displayOnly: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

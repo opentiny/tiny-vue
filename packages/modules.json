@@ -344,13 +344,13 @@
       "mobile"
     ]
   },
-  "CascaderSelectMobileFirst": {
-    "path": "vue/src/cascader-select/src/mobile-first.vue",
+  "CascaderSelectMobile": {
+    "path": "vue/src/cascader-select/src/mobile.vue",
     "type": "template",
     "exclude": false
   },
-  "CascaderSelectMobile": {
-    "path": "vue/src/cascader-select/src/mobile.vue",
+  "CascaderSelectMobileFirst": {
+    "path": "vue/src/cascader-select/src/mobile-first.vue",
     "type": "template",
     "exclude": false
   },
@@ -1657,8 +1657,19 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
+  },
+  "PopconfirmMobileFirst": {
+    "path": "vue/src/popconfirm/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "PopconfirmPc": {
+    "path": "vue/src/popconfirm/src/pc.vue",
+    "type": "template",
+    "exclude": false
   },
   "Popeditor": {
     "path": "vue/src/popeditor/index.ts",

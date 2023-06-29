@@ -185,6 +185,7 @@ export function handleCopyKeyDown({ event }) {
   if (event.keyCode === 65) {
     this.handleAllChecked(event)
   } else if (event.keyCode === 88 || event.keyCode === 67) {
+    // Ctrl + X 或 Ctrl + C
     this.handleCopyed(event.keyCode === 88, event)
   } else {
     this.handlePaste(event)

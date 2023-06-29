@@ -246,4 +246,35 @@
     padding-left: 8px;
     font-size: var(--ti-checkbox-font-size);
   }
+
+    &.is-display-only {
+    .@{checkbox-prefix-cls}__input {
+      &.is-disabled {
+        & + span {
+          &.aui-checkbox__label {
+            color: #161E26;
+          }
+        }
+      }
+    }
+  }
+  &.is-group-display-only {
+    margin: 0;
+    padding: 0;
+    display: none;
+    &.is-checked {
+      display: inline-block;
+    }
+    .@{checkbox-prefix-cls}__input {
+      display: none;
+    }
+    .@{checkbox-prefix-cls}__label::after {
+      display: inline-block;
+      content: ';';
+    }
+    & .@{checkbox-prefix-cls}__label{
+      margin: 0;
+      padding: 0;
+    }
+  }
 }

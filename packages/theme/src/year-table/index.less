@@ -12,11 +12,15 @@
 
 @import '../custom.less';
 @import './vars.less';
+@import '../date-picker/vars.less';
+@import '../date-table/vars.less';
 
 @year-table-prefix-cls: ~'@{css-prefix}year-table';
 
 .@{year-table-prefix-cls} {
   .component-css-vars-year-table();
+  .component-css-vars-date-picker();
+  .component-css-vars-date-table();
 
   font-size: var(--ti-date-picker-font-size);
   margin: -1px;
@@ -59,7 +63,7 @@
     }
 
     &.current:not(.disabled) .cell {
-      color: var(--ti-date-table-td-nomal-text-color);
+      color: var(--ti-date-table-td-normal-text-color);
       background: var(--ti-date-picker-current-select-bg-color);
     }
   }

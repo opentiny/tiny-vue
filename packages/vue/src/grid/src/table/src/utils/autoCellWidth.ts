@@ -115,7 +115,7 @@ export const calcTableWidth = ({ bodyWidth, columnStore, fit, minCellWidth, rema
   return adaptive({ autoArr, meanWidth, minCellWidth, tableWidth, fit, bodyWidth })
 }
 
-const setLeftOrRightPosition = ({ columnList, direction, headerEl, bodyEl }) => {
+const setLeftOrRightPosition = ({ columnList, direction, headerEl, bodyEl, scrollbarWidth }) => {
   const colLength = columnList.length
   // 这里需要浅拷贝一份，避免改变原始数据的顺序
   const colList = columnList.slice()
@@ -124,6 +124,7 @@ const setLeftOrRightPosition = ({ columnList, direction, headerEl, bodyEl }) => 
   if (direction === 'right') {
     colList.reverse()
   }
+
   colList.reduce((pos, column, index) => {
     // 可能存在没有表头的情况，所以需要兼容处理下
     const ths = headerEl?.querySelectorAll(`[data-colid=${column.id}]`) || []
@@ -133,7 +134,14 @@ const setLeftOrRightPosition = ({ columnList, direction, headerEl, bodyEl }) => 
     const isFirstRightFixed = direction === 'right' && index === colLength - 1
 
     allFixed.forEach(td => {
-      td.style[direction] = `${pos}px`
+      // 有纵向滚动条时，表头右冻结列需要补偿right定位
+      let compensatingWidth = 0
+      if (direction === 'right' && scrollbarWidth && td.className.includes('header__column')) {
+        compensatingWidth = scrollbarWidth
+      }
+
+      td.style[direction] = `${pos + compensatingWidth}px`
+
       if (isLastLeftFixed) {
         addClass(td, 'fixed-left-last__column')
       }
@@ -146,9 +154,9 @@ const setLeftOrRightPosition = ({ columnList, direction, headerEl, bodyEl }) => 
   }, 0)
 }
 
-export const calcFixedStickyPosition = ({ headerEl, bodyEl, columnStore }) => {
+export const calcFixedStickyPosition = ({ headerEl, bodyEl, columnStore, scrollbarWidth }) => {
   // 获取左侧和右侧冻结列
   const { leftList, rightList } = columnStore
-  setLeftOrRightPosition({ columnList: leftList, direction: 'left', headerEl, bodyEl })
-  setLeftOrRightPosition({ columnList: rightList, direction: 'right', headerEl, bodyEl })
+  setLeftOrRightPosition({ columnList: leftList, direction: 'left', headerEl, bodyEl, scrollbarWidth })
+  setLeftOrRightPosition({ columnList: rightList, direction: 'right', headerEl, bodyEl, scrollbarWidth })
 }

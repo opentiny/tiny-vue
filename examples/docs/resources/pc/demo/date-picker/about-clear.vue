@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       value1: new Date(),
-      value2: new Date(),
+      value2: new Date('2023-05-24'),
       IconMinus: IconMinus()
     }
   }

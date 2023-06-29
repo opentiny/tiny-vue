@@ -50,12 +50,24 @@ export default defineComponent({
       type: String,
       default: 'time'
     },
+    tipsField: {
+      type: String,
+      default: 'tips'
+    },
+    autoColorField: {
+      type: String,
+      default: 'autoColor'
+    },
+    showIconField: {
+      type: String,
+      default: 'showIcon'
+    },
     start: {
       type: Number,
       default: 1
     },
     data: Array,
-    space: Number,
+    space: [String, Number],
     active: {
       type: Number,
       default: -1

@@ -1,0 +1,99 @@
+{
+  "attrs": [
+    {
+      "name": "title",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "Set the pop confirm title.",
+      "defaultValue": ""
+    },
+    {
+      "name": "content",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "Set the pop confirm content.",
+      "defaultValue": ""
+    },
+    {
+      "name": "popperClass",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "Set the pop confirm popper class name.",
+      "defaultValue": ""
+    },
+    {
+      "name": "trigger",
+      "sample": "trigger",
+      "type": "String",
+      "desc": "How to show the pop confirm.",
+      "defaultValue": "hover"
+    },
+    {
+      "name": "placement",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "Set the pop confirm placement.",
+      "defaultValue": "top"
+    },
+    {
+      "name": "cancelButton",
+      "sample": "basic-usage",
+      "type": "Boolean",
+      "desc": "Is show the cancel button",
+      "defaultValue": "true"
+    },
+    {
+      "name": "width",
+      "sample": "basic-usage",
+      "type": "String, Number",
+      "desc": "Set the pop confirm box with.",
+      "defaultValue": ""
+    },
+    {
+      "name": "type",
+      "sample": "type",
+      "type": "String, Object",
+      "desc": "Set the icon type, info,success,warning,error can be set.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "default slot",
+      "defaultValue": ""
+    },
+    {
+      "name": "reference",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "reference slot",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "show",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "Triggered when pop confirm show",
+      "defaultValue": ""
+    },
+    {
+      "name": "hide",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "Triggered when pop confirm hide",
+      "defaultValue": ""
+    },
+    {
+      "name": "confirm",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "Triggered when confirm button is clicked",
+      "defaultValue": ""
+    }
+  ]
+}

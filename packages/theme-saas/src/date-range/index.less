@@ -1,0 +1,107 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+@date-range-picker-prefix-cls: ~'@{css-prefix}date-range-picker';
+
+
+.@{date-range-picker-prefix-cls} {
+  width: 552px;
+
+  &.has-sidebar {
+    width: 662px;
+  }
+
+  table {
+    @apply table-fixed;
+    @apply w-full;
+  }
+
+  .@{picker-panel-prefix-cls}__body {
+    min-width: 513px;
+  }
+
+  .@{picker-panel-prefix-cls}__content {
+    @apply m-0;
+  }
+
+  &__header {
+    @apply relative;
+    @apply text-center;
+    @apply p-4;
+    @apply h-12;
+
+    [class*='arrow-left'] {
+      @apply float-left;
+    }
+
+    [class*='arrow-right'] {
+      float: right;
+    }
+
+    div {
+      @apply text-xs;
+      @apply font-medium;
+      margin-right: 50px;
+    }
+  }
+
+  &__content {
+    @apply float-left;
+    @apply ~'w-1/2';
+    @apply box-border;
+    @apply m-0;
+    @apply pt-4 pr-4~"pb-1.5" pl-4;
+
+    &.is-left {
+      @apply border-r border-r-color-bg-3;
+    }
+
+    .@{date-range-picker-prefix-cls}__header div {
+      margin-left: 50px;
+      margin-right: 50px;
+    }
+  }
+
+  &__editors-wrap {
+    @apply box-border;
+    @apply table-cell;
+
+    &.is-right {
+      @apply text-right;
+    }
+  }
+
+  &__time-header {
+    & > .@{css-prefix}icon-arrow-right {
+      @apply text-xl;
+      @apply align-middle;
+      @apply table-cell;
+      @apply text-color-text-primary;
+    }
+  }
+
+  &__time-picker-wrap {
+    @apply relative;
+    @apply table-cell;
+    padding: 0 5px;
+
+    .@{picker-panel-prefix-cls} {
+      @apply absolute;
+      top: 13px;
+      @apply right-0;
+      @apply ~'z-[1]';
+      @apply bg-color-bg-1;
+    }
+  }
+}

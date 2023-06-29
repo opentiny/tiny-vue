@@ -109,34 +109,42 @@ const _setActiveCell = function (row, field) {
 }
 
 export default {
-  _insert(data) {
-    return this.insertAt(data)
+  _insert(records) {
+    return this.insertAt(records)
   },
   // 根据位置从指定行添加数据
   _insertAt(records, row) {
     let { afterFullData, editStore, isAsyncColumn, scrollYLoad, tableFullData, tableSourceData = [], treeConfig } = this
+
     if (treeConfig) {
       throw new Error(error('ui.grid.error.treeInsert'))
     }
+
     // 增加新增标识
     if (isAsyncColumn) {
       const columnSet = this.getColumns()
+
       columnSet.forEach((column) => {
         if (column.format && column.format.async && column.format.async.fetch) {
           records[GlobalConfig.constant.insertedField] = true
         }
       })
     }
+
     if (!isArray(records)) {
       records = [records]
     }
+
     let nowData = afterFullData
     let newRecords = records.map((record) => hooks.reactive(this.defineField({ ...record })))
     let newRecordsCopy = clone(newRecords, true)
+
     operArrs({ _vm: this, editStore, newRecords, newRecordsCopy, nowData, row, tableFullData, tableSourceData })
-    this.modifyCache()
+
+    this.updateCache(true)
     this.handleTableData(true)
     this.checkSelectionStatus()
+
     if (scrollYLoad) {
       this.updateScrollYSpace()
     }
@@ -156,50 +164,75 @@ export default {
    * 如果传 rows 则删除多行
    */
   _remove(rows) {
-    let { afterFullData: nowData, scrollYLoad, selectConfig = {}, selection, tableFullData, treeConfig, tableSourceData = [] } = this
+    let { afterFullData, scrollYLoad, selectConfig = {} } = this
+    let { selection, tableFullData, treeConfig, tableSourceData = [] } = this
     let { insertList, removeList } = this.editStore
     let { checkField } = selectConfig
-    let { rest = [], rowsOld = rows } = {}
+    let nowData = afterFullData
+    let rest = []
+    let rowsOld = rows
     let inArr = (row, rows) => ~rows.indexOf(row)
+
     if (treeConfig) {
       throw new Error(error('ui.grid.error.treeRemove'))
     }
+
     if (!rowsOld) {
       rows = tableFullData
     }
+
     if (rowsOld && !isArray(rowsOld)) {
       rows = [rowsOld]
     }
+
+    // 如果不是新增，则保存记录
     for (let i = 0; i < rows.length; i++) {
       let row = rows[i]
-      if (!this.hasRowInsert(row)) {
-        removeList.push(row)
-      }
+      if (this.hasRowInsert(row)) continue
+      removeList.push(row)
     }
+
     // 如果绑定了多选属性，则更新状态
     if (!checkField) {
       remove(selection, (row) => inArr(row, rows))
     }
+
+    // 从数据源中移除
     if (tableFullData === rows) {
       rows = tableFullData.slice(0)
-      nowData.length = 0
       tableFullData.length = 0
+      nowData.length = 0
     } else {
       rest = remove(tableFullData, (row) => inArr(row, rows))
       remove(nowData, (row) => inArr(row, rows))
     }
+
+    // 从备份中移除新增数据
+    remove(
+      tableSourceData,
+      (row) =>
+        find(insertList, (r) => getRowid(this, r) === getRowid(this, row)) &&
+        find(rows, (r) => getRowid(this, r) === getRowid(this, row))
+    )
+
     // 从新增中移除已删除的数据
     remove(insertList, (row) => inArr(row, rows))
-    // 从tableSourceData中删除数据
-    removeFromTableSourceData({ _vm: this, rows, tableSourceData })
+
     // 修改缓存
-    this.modifyCache()
+    this.updateCache(true)
     this.handleTableData(true)
+
     this.checkSelectionStatus()
+
     if (scrollYLoad) {
       this.updateScrollYSpace()
     }
-    let res = { row: rows && rows.length ? rows[rows.length - 1] : null, rows: rest }
+
+    let res = {
+      row: rows && rows.length ? rows[rows.length - 1] : null,
+      rows: rest
+    }
+
     return this.$nextTick().then(() => {
       this.recalculate()
       return res
@@ -243,8 +276,7 @@ export default {
 
     for (let i = 0; i < rows.length; i++) {
       let row = rows[i]
-      let rowIndex = this.getRowIndex(row)
-      let oRow = tableSourceData[rowIndex]
+      let oRow = find(tableSourceData, (item) => getRowid(this, row) === getRowid(this, item))
 
       if (oRow && row) {
         if (field) {

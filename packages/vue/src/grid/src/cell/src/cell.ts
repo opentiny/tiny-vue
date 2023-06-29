@@ -30,19 +30,15 @@ import { getCellLabel } from '../../tools'
 import GLOBAL_CONFIG from '../../config'
 import { hooks } from '@opentiny/vue-common'
 import {
-  iconCheckedSur, iconMobileCheckboxHalf, iconEllipsis
+  iconCheckedSur, iconHalfselect,
+  iconCheck, iconEllipsis, iconArrowBottom, iconRadio,
+  iconRadioselected,
 } from '@opentiny/vue-icon'
-import { getTableCellKey } from '../../table/src/strategy'
 import Dropdown from '@opentiny/vue-dropdown'
 import DropdownMenu from '@opentiny/vue-dropdown-menu'
 import DropdownItem from '@opentiny/vue-dropdown-item'
 
 const insertedField = GLOBAL_CONFIG.constant.insertedField
-
-const classMap = {
-  isDisabled: 'is__disabled',
-  isIndeterminate: 'is__indeterminate'
-}
 
 const getCellRender = (isTreeNode, treeCellRender, treeRender, context) => context[isTreeNode ? treeCellRender : treeRender]
 
@@ -61,7 +57,6 @@ function processRenderer({ h, params, renderer, value }) {
       result.flag = true
       result.vnodes = [
         h(hooks.toRaw(component), {
-          key: getTableCellKey(params),
           class: 'grid-cell',
           attrs: {
             value,
@@ -182,93 +177,6 @@ function getColumnRuleTypeOther({ $table, _vm, colProps, editor, filter, isTreeN
 const isCheckStrictly = (selectConfig) =>
   (selectConfig && selectConfig.checkStrictly && !selectConfig.showHeader) || (selectConfig && !selectConfig.checkStrictly && selectConfig.showHeader === false)
 
-const getSelectVnodes = ({ h, vSize, headerCheckDisabled, isIndeterminate, options, isAllSelected, headerTitle }) =>
-  h(
-    'label',
-    {
-      class: [
-        'tiny-grid-checkbox tiny-select-header',
-        {
-          [`size__${vSize}`]: vSize,
-          [classMap.isDisabled]: headerCheckDisabled,
-          [classMap.isIndeterminate]: isIndeterminate
-        }
-      ],
-      key: random()
-    },
-    [
-      h('input', options),
-      h('span', { class: 'tiny-grid-checkbox__icon' }, [
-        isAllSelected
-          ? h(iconCheckedSur(), {
-            class: ['tiny-svg-size', 'icon-checked-sur']
-          })
-          : '',
-        isIndeterminate
-          ? h(iconMobileCheckboxHalf(), {
-            class: ['tiny-svg-size', 'icon-half-select']
-          })
-          : ''
-      ]),
-      headerTitle ? h('span', { class: 'tiny-grid-checkbox__label' }, getFuncText(headerTitle)) : null
-    ]
-  )
-
-const getSelectCellVnodes = ({ indeterminate, h, isDisabled, vSize, labelField, options, row }) =>
-  h(
-    'label',
-    {
-      class: [
-        'tiny-grid-checkbox tiny-select-cell',
-        {
-          [`size__${vSize}`]: vSize,
-          [classMap.isIndeterminate]: indeterminate,
-          [classMap.isDisabled]: isDisabled
-        }
-      ],
-      key: random()
-    },
-    [
-      h('input', options),
-      h('span', { class: 'tiny-grid-checkbox__icon' }, [
-        indeterminate
-          ? h(iconMobileCheckboxHalf(), {
-            class: ['tiny-svg-size', 'icon-half-select']
-          })
-          : h(iconCheckedSur(), { class: ['tiny-svg-size', 'icon-checked-sur'] })
-      ]),
-      labelField ? h('span', { class: 'tiny-grid-checkbox__label' }, get(row, labelField)) : null
-    ]
-  )
-
-const getSelectCellByProsVnodes = ({ h, vSize, indeterminate, isDisabled, options, labelField, row }) =>
-  h(
-    'label',
-    {
-      key: random(),
-      class: [
-        'tiny-grid-checkbox',
-        {
-          [`size__${vSize}`]: vSize,
-          [classMap.isIndeterminate]: indeterminate,
-          [classMap.isDisabled]: isDisabled
-        }
-      ]
-    },
-    [
-      h('input', options),
-      h('span', { class: 'tiny-grid-checkbox__icon' }, [
-        !indeterminate
-          ? ''
-          : h(iconMobileCheckboxHalf(), {
-            class: ['tiny-svg-size', 'icon-half-select']
-          }),
-        h(iconCheckedSur(), { class: ['tiny-svg-size', 'icon-checked-sur'] })
-      ]),
-      !labelField ? null : h('span', { class: 'tiny-grid-checkbox__label' }, get(row, labelField))
-    ]
-  )
-
 export const Cell = {
   createColumn($table, colProps) {
     let { type, filter, editor, treeNode } = colProps
@@ -311,6 +219,7 @@ export const Cell = {
       }
     }
 
+    // 实例化表格列配置对象，添加renderCell等渲染函数方法
     return getColumnConfig(colProps, renMaps, GLOBAL_CONFIG)
   },
   // 单元格
@@ -326,7 +235,7 @@ export const Cell = {
       return [title(h, params)]
     }
 
-    return [formatText(getFuncText(own.title), 1)]
+    return [h('div', { class: 'tiny-grid-cell-text' }, [formatText(getFuncText(own.title), 1)])]
   },
   renderCell(h, params) {
     let { $table, row, column } = params
@@ -357,7 +266,7 @@ export const Cell = {
       return [cellValue(h, params)]
     }
 
-    return [formatText(cellValue, 1)]
+    return [formatText(cellValue)]
   },
   renderTreeCell(h, params) {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderCell.call(this, h, params))
@@ -381,7 +290,11 @@ export const Cell = {
     let iconVNode = []
 
     if (rowChildren && rowChildren.length) {
-      iconVNode = [renderIcon ? renderIcon(h, { active: isActive, ...params }) : h('i', { class: `tiny-grid-tree__node-btn ${icon.tree}` })]
+      iconVNode = [renderIcon
+        ? renderIcon(h, { active: isActive, ...params })
+        : h(iconArrowBottom(), {
+          class: ['tiny-grid-tree__node-btn', icon.tree, { 'is__active': isActive }]
+        })]
     }
     const map = {
       isActive: 'is__active'
@@ -465,27 +378,26 @@ export const Cell = {
     if (checkMethod) {
       options.attrs.disabled = disabled = !checkMethod(params)
     }
+
     options.domProps = { checked: row === selectRow }
     options.on = {
       change(event) {
         $table.triggerRadioRowEvent(event, params)
       }
     }
+
     const map = {
       isDisabled: 'is__disabled'
     }
     return [
-      h(
-        'label',
-        {
-          class: ['tiny-grid-radio', { [`size__${vSize}`]: vSize, [map.isDisabled]: disabled }]
-        },
-        [
-          h('input', options),
-          h('span', { class: 'tiny-grid-radio__icon' }),
-          labelField ? h('span', { class: 'tiny-grid-radio__label' }, get(row, labelField)) : null
-        ]
-      )
+      h('label', { class: ['tiny-grid-radio', { [`size__${vSize}`]: vSize, 'is__disabled': disabled }] }, [
+        h('input', options),
+        h('span', { class: 'tiny-grid-radio__icon' }, [
+          h(iconRadio(), { class: ['tiny-svg-size', 'icon-radio'] }),
+          h(iconRadioselected(), { class: ['tiny-svg-size', 'icon-radio-selected'] })
+        ]),
+        labelField ? h('span', { class: 'tiny-grid-radio__label' }, get(row, labelField)) : null
+      ])
     ]
   },
   renderTreeRadioCell(h, params) {
@@ -503,6 +415,7 @@ export const Cell = {
     if (isCheckStrictly(selectConfig)) {
       return []
     }
+
     options.domProps = {
       disabled: headerCheckDisabled,
       checked: isAllSelected && !headerCheckDisabled
@@ -513,16 +426,38 @@ export const Cell = {
         $table.showSelectToolbar()
       }
     }
-    let vnode = getSelectVnodes({
-      h,
-      vSize,
-      headerCheckDisabled,
-      isIndeterminate,
-      options,
-      isAllSelected,
-      headerTitle
-    })
-    return [vnode]
+
+    let vnode = h(
+      'label',
+      {
+        class: [
+          'tiny-grid-checkbox tiny-select-header',
+          {
+            [`size__${vSize}`]: vSize,
+            'is__disabled': headerCheckDisabled,
+            'is__indeterminate': isIndeterminate
+          }
+        ],
+        key: random()
+      },
+      [
+        h('input', options),
+        h('span', { class: 'tiny-grid-checkbox__icon' }, [
+          h(iconCheck(), { class: ['tiny-svg-size', 'icon-check'] }),
+          isAllSelected ? h(iconCheckedSur(), { class: ['tiny-svg-size', 'icon-checked-sur'] }) : '',
+          isIndeterminate ? h(iconHalfselect(), { class: ['tiny-svg-size', 'icon-half-select'] }) : ''
+        ]),
+        headerTitle ? h('span', { class: 'tiny-grid-checkbox__label' }, getFuncText(headerTitle)) : null
+      ]
+    )
+
+    let dropdownVnode = null
+
+    if (slots && slots.dropdown) {
+      dropdownVnode = h('div', { class: 'selection-dropdown-wrapper' }, [slots.dropdown(params, h)])
+    }
+
+    return [vnode, dropdownVnode]
   },
   renderSelectionCell(h, params) {
     let { $table, column, row } = params
@@ -531,9 +466,11 @@ export const Cell = {
     let { labelField, checkMethod } = selectConfig
     let { indeterminate = false, isDisabled = !!checkMethod } = {}
     let options = { attrs: { type: 'checkbox' } }
+
     if (slots && slots.default) {
       return slots.default(params, h)
     }
+
     checkMethod && (options.attrs.disabled = isDisabled = !checkMethod(params))
     treeConfig && (indeterminate = ~treeIndeterminates.indexOf(row))
     options.domProps = { checked: ~$table.selection.indexOf(row) }
@@ -543,15 +480,39 @@ export const Cell = {
         $table.showSelectToolbar()
       }
     }
-    let vnode = getSelectCellVnodes({
-      h,
-      vSize,
-      indeterminate,
-      isDisabled,
-      options,
-      labelField,
-      row
-    })
+
+    let { twcls } = params
+    let labelCls = [
+      'tiny-grid-checkbox tiny-select-cell',
+      {
+        [`size__${vSize}`]: vSize,
+        'is__indeterminate': indeterminate,
+        'is__disabled': isDisabled
+      }
+    ]
+    let inputCls = null
+    let spanCls = 'tiny-grid-checkbox__icon'
+    let svgCls = 'tiny-svg-size icon-checked-sur'
+
+    if (twcls) {
+      labelCls = twcls.label || labelCls
+      inputCls = twcls.input || inputCls
+      spanCls = twcls.span || spanCls
+      svgCls = twcls.svg || svgCls
+
+      options.class = inputCls
+    }
+
+    let vnode = h('label', { class: labelCls, key: random() }, [
+      h('input', options),
+      h('span', { class: spanCls }, [
+        h(iconCheck(), { class: ['tiny-svg-size', 'icon-check'] }),
+        h(iconCheckedSur(), { class: svgCls }),
+        indeterminate ? h(iconHalfselect(), { class: 'tiny-svg-size icon-half-select' }) : ''
+      ]),
+      labelField ? h('span', { class: 'tiny-grid-checkbox__label' }, get(row, labelField)) : null
+    ])
+
     return [vnode]
   },
   renderTreeSelectionCell(h, params) {
@@ -578,7 +539,29 @@ export const Cell = {
       }
     }
 
-    let vnode = getSelectCellByProsVnodes({ h, indeterminate, isDisabled, vSize, labelField, options, row })
+    const vnode = h(
+      'label',
+      {
+        key: random(),
+        class: [
+          'tiny-grid-checkbox',
+          {
+            [`size__${vSize}`]: vSize,
+            'is__indeterminate': indeterminate,
+            'is__disabled': isDisabled
+          }
+        ]
+      },
+      [
+        h('input', options),
+        h('span', { class: 'tiny-grid-checkbox__icon' }, [
+          h(iconCheck(), { class: ['tiny-svg-size', 'icon-check'] }),
+          !indeterminate ? '' : h(iconHalfselect(), { class: ['tiny-svg-size', 'icon-half-select'] }),
+          h(iconCheckedSur(), { class: ['tiny-svg-size', 'icon-checked-sur'] })
+        ]),
+        labelField ? h('span', { class: 'tiny-grid-checkbox__label' }, get(row, labelField)) : null
+      ]
+    )
 
     return [vnode]
   },
@@ -589,11 +572,12 @@ export const Cell = {
   renderExpandCell(h, params) {
     let { $table, row } = params
     let { expandConfig = {} } = $table
-    let expandMethod = expandConfig.activeMethod
+    let { showIcon = true, activeMethod: expandMethod } = expandConfig
     let hideExpand = typeof expandMethod === 'function' ? expandMethod(row) : true
-    let expandActive = false
 
-    expandActive = $table.expandeds.includes(params.row)
+    const expandActive = $table.expandeds.includes(params.row)
+
+    if (!showIcon) return null
 
     const map = {
       expandActive: 'expand__active'
@@ -654,37 +638,37 @@ export const Cell = {
         isColGroup
           ? []
           : [
-              (column.order === 'desc' || !icon.sortDefault) ?
-                h(icon.sortAsc, {
-                  class: [
-                    'tiny-grid-sort__btn',
-                    {
-                      'sort__active': column.order === (!icon.sortDefault ? 'asc' : 'desc')
-                    }
-                  ],
-                  on: { click(event) { $table.triggerSortEvent(event, column, !icon.sortDefault ? 'asc' : '') } }
-                })
-                : '',
-              (column.order === 'asc' || !icon.sortDefault) ?
-                h(icon.sortDesc, {
-                  class: [
-                    'tiny-grid-sort__btn',
-                    {
-                      'sort__active': column.order === (!icon.sortDefault ? 'desc' : 'asc')
-                    }
-                  ],
-                  on: { click(event) { $table.triggerSortEvent(event, column, 'desc') } }
-                })
-                : '',
-              (!column.order && icon.sortDefault)
-                ? h(icon.sortDefault, {
-                  class: [
-                    'tiny-grid-sort__btn'
-                  ],
-                  on: { click(event) { $table.triggerSortEvent(event, column, 'asc') } }
-                })
-                : ''
-            ]
+            (column.order === 'desc' || !icon.sortDefault) ?
+              h(icon.sortAsc, {
+                class: [
+                  'tiny-grid-sort__btn',
+                  {
+                    'sort__active': column.order === (!icon.sortDefault ? 'asc' : 'desc')
+                  }
+                ],
+                on: { click(event) { $table.triggerSortEvent(event, column, !icon.sortDefault ? 'asc' : '') } }
+              })
+              : '',
+            (column.order === 'asc' || !icon.sortDefault) ?
+              h(icon.sortDesc, {
+                class: [
+                  'tiny-grid-sort__btn',
+                  {
+                    'sort__active': column.order === (!icon.sortDefault ? 'desc' : 'asc')
+                  }
+                ],
+                on: { click(event) { $table.triggerSortEvent(event, column, 'desc') } }
+              })
+              : '',
+            (!column.order && icon.sortDefault)
+              ? h(icon.sortDefault, {
+                class: [
+                  'tiny-grid-sort__btn'
+                ],
+                on: { click(event) { $table.triggerSortEvent(event, column, 'asc') } }
+              })
+              : ''
+          ]
       )
     ]
   },
@@ -734,7 +718,7 @@ export const Cell = {
   // 可编辑
   renderEditHeader(h, params) {
     let { $table, column } = params
-    let { editConfig, editRules } = $table
+    let { editConfig, editRules, validOpts } = $table
     let { filter, remoteSort, sortable, type } = column
     let icon = GLOBAL_CONFIG.icon
     let isRequired
@@ -757,8 +741,10 @@ export const Cell = {
       isRequired = columnRules.some((rule) => rule.required)
     }
 
+    const showAsterisk = typeof validOpts.asteriskMethod !== 'function' || validOpts.asteriskMethod(params)
+
     let vNodes = [
-      isRequired ? h('i', { class: `tiny-icon ${icon.required}` }) : null,
+      isRequired && showAsterisk ? h('i', { class: `tiny-icon ${icon.required}` }) : null,
       editConfig && !editConfig.showIcon && !column.showIcon ? null : h(icon.edit, { class: 'tiny-grid-edit-icon tiny-svg-size' })
     ]
 
@@ -837,6 +823,7 @@ export const Cell = {
     const { column, $table, row } = params
     const { operationConfig = {}, slots } = column
 
+    // 如果是用户自定义的插槽，怎么走用户插槽逻辑
     if (slots && slots.default) {
       return slots.default(params, h)
     }

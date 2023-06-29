@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   blur,
@@ -38,7 +38,9 @@ import {
   handleEnterDisplayOnlyContent,
   hiddenPassword,
   dispatchDisplayedValue,
-  getDisplayedValue
+  getDisplayedValue,
+  handleDrop,
+  handleDragStart
 } from './index'
 import useStorageBox from '../tall-storage/vue-storage-box'
 
@@ -72,7 +74,9 @@ export const api = [
   'isMemoryStorage',
   'hasSelection',
   'handleEnterDisplayOnlyContent',
-  'hiddenPassword'
+  'hiddenPassword',
+  'handleDrop',
+  'handleDragStart'
 ]
 
 const initState = ({ reactive, computed, mode, props, parent, constants }) => {
@@ -87,22 +91,36 @@ const initState = ({ reactive, computed, mode, props, parent, constants }) => {
     checkedLable: '',
     sheetvalue: props.modelValue,
     inputSize: computed(() => props.size || state.formItemSize),
-    showClear: computed(() => props.clearable && !state.inputDisabled && !props.readonly && state.nativeInputValue && (state.focused || state.hovering)),
+    showClear: computed(
+      () =>
+        props.clearable &&
+        !state.inputDisabled &&
+        !props.readonly &&
+        state.nativeInputValue &&
+        (state.focused || state.hovering)
+    ),
     upperLimit: computed(() => parent.$attrs.maxlength),
     textLength: computed(() => textLength(props.modelValue)),
     inputExceed: computed(() => state.isWordLimitVisible && state.textLength > state.upperLimit),
     formItemSize: computed(() => (parent.formItem || {}).formItemSize),
     validateIcon: computed(() => constants.VALIDATE_ICON[state.validateState]),
     showWordLimit: computed(() => props.showWordLimit && parent.$attrs.maxlength),
-    inputDisabled: computed(() => props.disabled || (parent.tinyForm || {}).disabled),
+    inputDisabled: computed(
+      () =>
+        props.disabled || (parent.auiForm || {}).disabled || state.isDisplayOnly || (parent.tinyForm || {}).displayOnly
+    ),
     validateState: computed(() => (parent.formItem ? parent.formItem.validateState : '')),
     textareaStyle: computed(() => ({
       ...state.textareaCalcStyle,
       resize: props.resize
     })),
     needStatusIcon: computed(() => (parent.tinyForm ? parent.tinyForm.statusIcon : false)),
-    showPwdVisible: computed(() => props.showPassword && !state.inputDisabled && !props.readonly && (!!state.nativeInputValue || state.focused)),
-    nativeInputValue: computed(() => (props.modelValue === null || props.modelValue === undefined ? '' : String(props.modelValue))),
+    showPwdVisible: computed(
+      () => props.showPassword && !state.inputDisabled && !props.readonly && (!!state.nativeInputValue || state.focused)
+    ),
+    nativeInputValue: computed(() =>
+      props.modelValue === null || props.modelValue === undefined ? '' : String(props.modelValue)
+    ),
 
     isWordLimitVisible: computed(
       () =>
@@ -140,7 +158,9 @@ const initApi = ({ api, state, dispatch, broadcast, emit, refs, props, CLASS_PRE
     handleCompositionStart: handleCompositionStart(state),
     handleCompositionUpdate: handleCompositionUpdate(state),
     dispatchDisplayedValue: dispatchDisplayedValue({ state, props, dispatch, api }),
-    getDisplayedValue: getDisplayedValue({ state, props })
+    getDisplayedValue: getDisplayedValue({ state, props }),
+    handleDrop: handleDrop(emit),
+    handleDragStart: handleDragStart(emit)
   })
 }
 
@@ -171,7 +191,8 @@ const mergeApi = ({ storages, api, componentName, props, emit, eventName, nextTi
     calcTextareaHeight: calcTextareaHeight({
       api,
       hiddenTextarea: null,
-      props
+      props,
+      state
     }),
     setNativeInputValue: setNativeInputValue({ api, state }),
     handleCompositionEnd: handleCompositionEnd({ api, state }),
@@ -224,6 +245,18 @@ const initWatch = ({ watch, state, api, props, nextTick, emit, componentName, ev
   )
 
   watch(
+    () => state.isDisplayOnly,
+    () => {
+      nextTick(() => {
+        api.setNativeInputValue()
+        api.resizeTextarea()
+        api.updateIconOffset()
+        api.dispatchDisplayedValue()
+      })
+    }
+  )
+
+  watch(
     () => state.sheetvalue,
     (value) => api.watchFormSelect(value),
     { immediate: true }
@@ -259,7 +292,7 @@ export const renderless = (
     api.resizeTextarea()
     api.updateIconOffset()
     api.dispatchDisplayedValue()
-    
+
     dispatch('Select', 'input-mounted', vm.$el)
     dispatch('Tooltip', 'tooltip-update', vm.$el)
   })

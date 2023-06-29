@@ -16,6 +16,8 @@ import '@opentiny/vue-theme/base/index.less'
 
 import { defineComponent, isVue2, isVue3 } from './adapter'
 
+export { version } from '../package.json'
+
 export { defineComponent, isVue2, isVue3, appProperties }
 
 export const $prefix = 'Tiny'
@@ -184,7 +186,11 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
 
       if (typeof value !== 'undefined') {
         attrs[name] = value
-        mono || utils.setParentAttribute({ name, value })
+        // 只有单层组件，才需要给setup传递： mono:true
+        // 双层组件，需要把内层的api复制到外层，这样用户应用的ref才能拿到组件的api
+        if (!mono) {
+          utils.setParentAttribute({ name, value })
+        }
       }
     })
 
@@ -266,8 +272,6 @@ export const $install = (component) => {
     Vue.component(component.name, component)
   }
 }
-
-export const version = process.env.COMPONENT_VERSION
 
 export type { PropType, ExtractPropTypes, DefineComponent } from './adapter'
 

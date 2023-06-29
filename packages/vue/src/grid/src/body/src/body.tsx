@@ -37,7 +37,7 @@ import { getCellLabel } from '../../tools'
 import GlobalConfig from '../../config'
 import { iconChevronRight, iconChevronDown } from '@opentiny/vue-icon'
 import { h, hooks, $prefix } from '@opentiny/vue-common'
-import { getTreeChildrenKey, getTreeShowKey, getTableCellKey } from '../../table/src/strategy'
+import { getTreeChildrenKey, getTreeShowKey } from '../../table/src/strategy'
 import { generateFixedClassName } from '../../table/src/utils/handleFixedColumn'
 
 // 滚动、拖动过程中不需要触发鼠标移入移出事件
@@ -109,7 +109,8 @@ function buildColumnProps(args) {
         [classMap.colDirty]: isDirty,
         [classMap.colActived]: columnActived,
         'col__valid-error': validError && validated,
-        'col__valid-success': columnActived ? !validError && !validated : isDirty && !validated
+        'col__valid-success': columnActived ? !validError && !validated : isDirty && !validated,
+        'col__treenode': column.treeNode
       },
       getClass(className, params),
       getClass(cellClassName, params)
@@ -150,8 +151,7 @@ function buildColumnChildren(args) {
             'tiny-grid-cell__ellipsis': showEllipsis
           }
         ],
-        attrs: { title: showTitle ? getCellLabel(row, column, params) : null },
-        key: getTableCellKey(params)
+        attrs: { title: showTitle ? getCellLabel(row, column, params) : null }
       },
       // 调用column组件的renderCell渲染单元格内部的内容
       column.renderCell(h, params)
@@ -502,8 +502,9 @@ function renderRow(args) {
   let { selection, seq, tableColumn, trOn, treeConfig } = args
   let { scrollYLoad } = $table
   let treeShowKey = getTreeShowKey({ scrollYLoad, treeConfig })
+  let { hideMethod } = treeConfig || {}
 
-  if (treeShowKey && !row[treeShowKey]) {
+  if ((treeShowKey && !row[treeShowKey]) || (hideMethod && hideMethod(row, rowLevel))) {
     return
   }
 
@@ -553,7 +554,11 @@ function renderRowExpanded(args) {
   const { $table, expandMethod, expandeds, h, row, rowIndex } = args
   const { rowLevel, rowid, rows, seq, tableColumn, trOn, treeConfig } = args
 
-  if (expandeds.length && expandeds.includes(row) && (typeof expandMethod === 'function' ? expandMethod(row) : true)) {
+  if (
+    expandeds.length &&
+    expandeds.includes(row) &&
+    (typeof expandMethod === 'function' ? expandMethod(row, rowLevel) : true)
+  ) {
     const column = find(tableColumn, (column) => column.type === 'expand')
     const columnIndex = $table.getColumnIndex(column)
     let cellStyle

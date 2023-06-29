@@ -26,25 +26,24 @@ import definedComponents from './theme.config'
  */
 
 export default class TinyThemeTool {
-  // 当前主题
-  currentTheme
-
-  // 当前style标签元素
-  contentElement
-
-  // 当前style标签的id
-  styleSheetId
-
-  // 默认主题
-
-  defaultTheme = {
-    id: 'tiny-default-theme',
-    name: 'Default',
-    cnName: '默认',
-    data: {}
-  }
-
   constructor(theme, styleSheetId = 'tinyThemeVariables') {
+    // 当前主题
+    this.currentTheme = null
+
+    // 当前style标签元素
+    this.contentElement = null
+
+    // 当前style标签的id
+    this.styleSheetId = null
+
+    // 默认主题
+    this.defaultTheme = {
+      id: 'tiny-default-theme',
+      name: 'Default',
+      cnName: '默认',
+      data: {}
+    }
+
     let currentTheme = theme
     if (!theme) {
       currentTheme = this.defaultTheme

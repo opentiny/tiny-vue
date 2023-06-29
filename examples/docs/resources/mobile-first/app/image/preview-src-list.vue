@@ -1,5 +1,12 @@
 <template>
-  <tiny-image :image-size="100" :src="url" :preview-src-list="srcList" show-index @delete="deleteHander" preview-visible></tiny-image>
+  <tiny-image
+    :image-size="100"
+    :src="url"
+    :preview-src-list="srcList"
+    show-index
+    @delete="deleteHander"
+    preview-visible
+  ></tiny-image>
 </template>
 
 <script>
@@ -11,8 +18,8 @@ export default {
   },
   data() {
     return {
-      url: 'webnova/static/images/1.jpg',
-      srcList: ['webnova/static/images/1.jpg', 'webnova/static/images/dog2.png', 'webnova/static/images/3.jpg']
+      url: '/static/images/1.jpg',
+      srcList: ['/static/images/1.jpg', '/static/images/2.jpg', '/static/images/3.jpg']
     }
   },
   methods: {

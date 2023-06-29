@@ -1,8 +1,8 @@
 <template>
   <div>
     <tiny-grid :data="tableData" :tree-config="{ children: 'children' }">
-      <tiny-grid-column field="index" width="60" tree-node></tiny-grid-column>
-      <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
+      <tiny-grid-column field="id" width="60"></tiny-grid-column>
+      <tiny-grid-column field="name" title="公司名称" tree-node></tiny-grid-column>
       <tiny-grid-column field="area" title="区域"></tiny-grid-column>
       <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
     </tiny-grid>

@@ -71,11 +71,25 @@
       "defaultValue": "{\"options\":[],\"textField\":\"label\",\"popper-class\":\"\",\"placement\":\"bottom-end\"}"
     },
     {
+      "name": "visible-arrow",
+      "sample": "visible-arrow",
+      "type": "Boolean",
+      "desc": "是否显示箭头。默认值不显示",
+      "defaultValue": "false"
+    },
+    {
       "name": "title",
       "sample": "options",
       "type": "String",
       "desc": "不使用默认插槽时，title属性可以配置菜单标题",
       "defaultValue": "下拉菜单"
+    },
+    {
+      "name": "inherit-width",
+      "sample": "inherit-width",
+      "type": "Boolean",
+      "desc": "默认为false,设置true时，弹框的最小宽度继承触发源的宽度",
+      "defaultValue": "false"
     }
   ],
   "slots": [

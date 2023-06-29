@@ -233,6 +233,10 @@ export default defineComponent({
     InputBoxType: {
       type: String,
       default: 'input'
+    },
+    tagType: {
+      type: String,
+      default: ''
     }
   },
   setup(props, context) {

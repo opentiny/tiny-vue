@@ -6,6 +6,13 @@ const $constants = {
     READY: 'ready',
     RECORDING: 'recording',
     PAUSE: 'pause',
+  },
+  HWH5_STATUS: {
+    START: 'start',
+    PAUSE: 'pause',
+    CONTINUE: 'continue',
+    CANCEL: 'cancel',
+    END: 'end'
   }
 }
 
@@ -17,7 +24,15 @@ export default {
       type: Object,
       default: () => $constants
     },
-    modelValue: Boolean
+    modelValue: Boolean,
+    isHwh5: {
+      type: Boolean,
+      default: false
+    },
+    lockScroll: {
+      type: Boolean,
+      default: true
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })

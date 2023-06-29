@@ -32,6 +32,14 @@
     "demoId": "collapse-tags"
   },
   {
+    "title": "设置 tag 类型",
+    "content": "<p>通过 <code>tagType</code> 属性设置标签类型 </p>\n",
+    "link": "select/tag-type",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "tag-type"
+  },
+  {
     "title": "设置输入框类型",
     "content": "<p>通过设置 <code>input-box-type</code> 为underline,可以设置为下划线类型。</p>\n",
     "link": "select/input-box-type",

@@ -37,7 +37,7 @@ function rule2({ isKeySpacebar, keyboardConfig, selected, _vm, event }) {
       selected.row &&
       selected.column &&
       (selected.column.type === 'selection' || selected.column.type === 'radio'),
-    action: () => _vm.handleSpaceKeyDown({ event, keyboardConfig })
+    action: () => _vm.handleSpaceKeyDown({ event, keyboardConfig, selected })
   }
 }
 

@@ -128,7 +128,7 @@
     },
     {
       "name": "data",
-      "sample": "",
+      "sample": "data",
       "type": "Object",
       "desc": "Extra parameters attached during upload",
       "defaultValue": ""

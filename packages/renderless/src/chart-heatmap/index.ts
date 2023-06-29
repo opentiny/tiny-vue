@@ -133,35 +133,35 @@ const fixParam = ({ type, rows, dimension, metrics, extraMetrics, chartData, inn
 }
 
 const getResult = (args) => {
-  let { type, options, pointSize, blurSize, res, key, v, bmap, mapOrigin, geo, beforeRegisterMap } = args
+  let { type, options, pointSize, blurSize, res, key, v, url, bmap, mapOrigin, geo, beforeRegisterMap } = args
   let { echarts, specialAreas, position, positionJsonLink, beforeRegisterMapOnce } = args
   let { mapURLProfix, amap, tooltip, xAxis, yAxis } = args
 
   if (type === 'bmap') {
     Object.assign(options.series[0], { coordinateSystem: 'bmap', pointSize, blurSize })
 
-    res = getBmap(key, v).then(() => ({ bmap, ...options }))
+    res = getBmap({ key, version: v, url }).then(() => ({ bmap, ...options }))
   } else if (type === 'map') {
     options.series[0].coordinateSystem = 'geo'
-    let json = mapOrigin
+    // 根据echart v5文档，注册地图的api修改为：echarts.registerMap('china',{geoJSON: someJson})
+    let jsonStr = JSON.stringify(mapOrigin)
 
-    if (json) {
-      const geoAttr = { map: mapOrigin, ...geo }
+    if (jsonStr) {
+      const geoAttr = { map: jsonStr, ...geo }
 
-      beforeRegisterMap && (json = beforeRegisterMap(json))
-
-      echarts.registerMap(mapOrigin, json, specialAreas)
-
+      beforeRegisterMap && (jsonStr = beforeRegisterMap(mapOrigin))
+      echarts.registerMap(jsonStr, { geoJSON: mapOrigin }, specialAreas)
       res = new Promise((resolve) => resolve({ geo: geoAttr, ...options }))
-    } else {
+    }
+    // 如果用户没有提供数据，根据用户提供的mapURLProfix/position.json的位置，get请求地图文件 .
+    else {
       let params = { position, positionJsonLink, beforeRegisterMapOnce, mapURLProfix }
 
       res = getMapJSON(params).then((json) => {
         const geoAttr = { map: position, ...geo }
 
         beforeRegisterMap && (json = beforeRegisterMap(json))
-
-        echarts.registerMap(position, json, specialAreas)
+        echarts.registerMap(position, { geoJSON: json }, specialAreas)
 
         return { geo: geoAttr, ...options }
       })
@@ -180,7 +180,7 @@ const getResult = (args) => {
 export const heatmap = (columns, rows, settings, extra) => {
   const { type = 'cartesian' } = settings // cartesian, map, bmap,
   const { dimension = [columns[0], columns[1]] } = settings
-  const { dataType = 'normal', min, max, digit, bmap, amap, geo, key, v = '2.0' } = settings
+  const { dataType = 'normal', min, max, digit, bmap, amap, geo, key, v = '2.0', url } = settings
   const { position, mapOrigin, positionJsonLink, beforeRegisterMap, pointSize = 10, blurSize = 5 } = settings
   const { heatColor, yAxisName, xAxisName, beforeRegisterMapOnce, specialAreas = {} } = settings
   const { metrics = columns[2], mapURLProfix = 'https://unpkg.com/echarts@3.6.2/map/json/' } = settings
@@ -213,7 +213,7 @@ export const heatmap = (columns, rows, settings, extra) => {
   const options = { visualMap, series, grid: { left: 25, right: 80, width: 'auto', height: 'auto' } }
 
   let res
-  let args = { type, options, pointSize, blurSize, res, key, v, bmap, mapOrigin, geo, beforeRegisterMap }
+  let args = { type, options, pointSize, blurSize, res, key, v, url, bmap, mapOrigin, geo, beforeRegisterMap }
 
   Object.assign(args, { echarts, specialAreas, position, positionJsonLink, beforeRegisterMapOnce })
   Object.assign(args, { mapURLProfix, amap, tooltip, xAxis, yAxis })

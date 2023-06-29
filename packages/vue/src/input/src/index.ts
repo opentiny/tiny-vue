@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
+import { $props, $prefix, $setup, defineComponent, type PropType } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
 const $constants = {
@@ -54,7 +54,7 @@ export default defineComponent({
     readonly: Boolean,
     suffixIcon: [Object, String],
     prefixIcon: [Object, String],
-    modelValue: [String, Number],
+    modelValue: [String, Number] as PropType<string | number | null>,
     type: {
       type: String,
       default: 'text'
@@ -73,7 +73,7 @@ export default defineComponent({
     },
     contentStyle: {
       type: Object,
-      default: () => ({}),
+      default: () => ({})
     },
     isSelect: {
       type: Boolean,
@@ -137,5 +137,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

@@ -278,7 +278,8 @@ export default {
         dargFixed: 'Fixed columns cannot be dragged.',
         remoteMethod: '"remoteMethod" needs to be set for remote storage for personalized template management.',
         remoteSelectedMethod:
-          '"remoteSelectedMethod" needs to be set for remote storage for personalized template management.'
+          '"remoteSelectedMethod" needs to be set for remote storage for personalized template management.',
+        chainCallError: 'There is a syntax error in the default slot for the column, please check.'
       },
       filter: {
         allFilter: 'All',

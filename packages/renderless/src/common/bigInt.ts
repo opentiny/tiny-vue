@@ -11,8 +11,9 @@
 */
 
 import { fillChar } from './string'
+import { isBrowser } from './browser'
 
-const BigInt = window.BigInt
+const BigInt = isBrowser ? window.BigInt : global.BigInt
 
 export function supportBigInt() {
   return typeof BigInt === 'function'

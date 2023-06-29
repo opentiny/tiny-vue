@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   onComplete,
@@ -31,7 +31,7 @@ import {
   watchAutoplay,
   throttledArrowClick,
   throttledIndicatorHover,
-  computedHasLable,
+  computedHasLabel,
   touchstart,
   touchmove,
   touchend,
@@ -72,12 +72,34 @@ export const api = [
 const initState = ({ reactive, computed, api }) => {
   const state = reactive({
     items: [],
+    itemsTranslate: [],
     timer: null,
     hover: false,
     activeIndex: -1,
     completed: false,
     containerWidth: 0,
-    hasLabel: computed(() => api.computedHasLable(state.items))
+    delta: 0,
+    startPos: {
+      X: 0,
+      Y: 0
+    },
+    deltaPos: {
+      X: 0,
+      Y: 0
+    },
+    offsetPos: {
+      X: 0,
+      Y: 0
+    },
+    touchTime: 0,
+    direction: '',
+    size: 0,
+    moving: false,
+    moveDisable: false,
+    isCorrectDirection: false,
+    noTouchNode: ['svg', 'BUTTON', 'path', 'g'],
+    style: computed(() => api.computedStyle()),
+    hasLabel: computed(() => api.computedHasLabel(state.items))
   })
 
   return state
@@ -86,7 +108,7 @@ const initState = ({ reactive, computed, api }) => {
 const initApi = ({ api, state, props, emit, vm }) => {
   Object.assign(api, {
     state,
-    computedHasLable,
+    computedHasLabel,
     touchstart: touchstart({ state, api }),
     touchmove: touchmove({ props, state, vm }),
     touchend: touchend({ state, api }),
@@ -109,7 +131,8 @@ const initApi = ({ api, state, props, emit, vm }) => {
     handleMouseLeave: handleMouseLeave({ api, state }),
     handleButtonEnter: handleButtonEnter({ api, state }),
     throttledArrowClick: throttledArrowClick(api),
-    throttledIndicatorHover: throttledIndicatorHover(api)
+    throttledIndicatorHover: throttledIndicatorHover(api),
+    computedStyle: computedStyle({ props })
   })
 }
 
@@ -167,7 +190,11 @@ export const useResizeListener = ({ api, onBeforeUnmount, onMounted, parent }) =
   })
 }
 
-export const renderless = (props, { computed, onMounted, onBeforeUnmount, reactive, watch }, { vm, parent, constants, emit, childrenHandler }) => {
+export const renderless = (
+  props,
+  { computed, onMounted, onBeforeUnmount, reactive, watch },
+  { vm, parent, constants, emit, childrenHandler }
+) => {
   const api = {}
   const state = initState({ reactive, computed, api })
 
@@ -197,6 +224,7 @@ export const renderless = (props, { computed, onMounted, onBeforeUnmount, reacti
 
   parent.$on('updateItems', api.updateItems)
 
+  // 监听子组件 CarouselItem 提交的 complete 事件
   parent.$on('complete', () => {
     api.onComplete(state.items.length)
   })

@@ -30,7 +30,11 @@
       :close-on-click-modal="false"
     >
       <div class="tiny-link-menu__filert">
-        <tiny-input :placeholder="t('ui.linkMenu.placeholder')" v-model="state.filterText" :suffix-icon="searchIcon"></tiny-input>
+        <tiny-input
+          :placeholder="t('ui.linkMenu.placeholder')"
+          v-model="state.filterText"
+          :suffix-icon="searchIcon"
+        ></tiny-input>
       </div>
       <tiny-tree
         :data="state.datas"
@@ -66,8 +70,12 @@
       <template #footer>
         <div class="tiny-link-menu__dialog-btn">
           <slot name="foot">
-            <tiny-button type="primary" :disabled="state.disabled" :reset-time="0" @click="sureNodevalue">{{ t('ui.linkMenu.sure') }}</tiny-button>
-            <tiny-button :disabled="state.disabled" :reset-time="0" @click="hideDialog">{{ t('ui.linkMenu.cancel') }}</tiny-button>
+            <tiny-button type="primary" :disabled="state.disabled" :reset-time="0" @click="sureNodevalue">{{
+              t('ui.linkMenu.sure')
+            }}</tiny-button>
+            <tiny-button :disabled="state.disabled" :reset-time="0" @click="hideDialog">{{
+              t('ui.linkMenu.cancel')
+            }}</tiny-button>
           </slot>
         </div>
       </template>
@@ -85,7 +93,20 @@ import Button from '@opentiny/vue-button'
 import DialogBox from '@opentiny/vue-dialog-box'
 
 export default defineComponent({
-  props: [...props, 'data', 'maxItem', 'icon', 'props', 'title', 'defaultExpandAll', 'searchIcon', 'ellipsis', 'wrap', 'getMenuDataSync', 'keepSelectedNodes'],
+  props: [
+    ...props,
+    'data',
+    'maxItem',
+    'icon',
+    'props',
+    'title',
+    'defaultExpandAll',
+    'searchIcon',
+    'ellipsis',
+    'wrap',
+    'getMenuDataSync',
+    'keepSelectedNodes'
+  ],
   components: {
     TinyTree: Tree,
     TinyInput: Input,

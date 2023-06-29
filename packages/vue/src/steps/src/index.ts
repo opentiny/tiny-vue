@@ -29,11 +29,24 @@ export default defineComponent({
       default: 'status'
     },
     data: [Object, Array],
-    space: Number,
+    space: [String, Number],
     active: {
       type: Number,
       default: -1
-    }
+    },
+    visibleNum: {
+      type: Number,
+      default: 5
+    },
+    descriptionField: {
+      type: String,
+      default: 'description'
+    },
+    vertical: Boolean,
+    advanced: Boolean,
+    duration: Number,
+    noArrow: Boolean,
+    flex: Boolean
   },
   setup(props, context) {
     return $setup({ props, context, template })

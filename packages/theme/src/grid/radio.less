@@ -39,34 +39,35 @@
       display: inline-block;
       width: 1em;
       height: 1em;
-      border: 1px solid var(--ti-grid-radio-border-color);
-      background-color: #fff;
       vertical-align: middle;
       border-radius: 50%;
       font-size: var(--ti-common-font-size-2);
 
-      &:hover {
-        border-color: var(--ti-grid-primary-hover-color);
+      > svg {
+        fill: var(--ti-grid-radio-border-color);
+        vertical-align: top;
+
+        &:hover {
+          fill: var(--ti-grid-primary-hover-color);
+        }
+
+        &.icon-radio-selected {
+          display: none;
+        }
       }
     }
 
     &:checked + .@{grid-radio-prefix-cls}__icon {
-      background-color: var(--ti-grid-primary-color);
-      border-color: var(--ti-grid-primary-color);
 
-      &:before {
-        content: '';
-        position: absolute;
-        border-width: 0.15em;
-        border-style: solid;
-        border-color: #fff;
-        background-color: #fff;
-        border-radius: 50%;
-        height: 0.4em;
-        width: 0.4em;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+      > svg {
+        &.icon-radio {
+          display: none;
+        }
+
+        &.icon-radio-selected {
+          display: inline-block;
+          fill: var(--ti-grid-primary-color);
+        }
       }
 
       & + .@{grid-radio-prefix-cls}__label {
@@ -80,26 +81,27 @@
 
     > input {
       & + .@{grid-radio-prefix-cls}__icon {
-        border-color: var(--ti-grid-border-color);
-        background-color: var(--ti-grid-input-disabled-bg-color);
+        > svg {
+          fill: var(--ti-grid-border-color);
 
-        &:before {
-          border-color: var(--ti-grid-input-disabled-bg-color);
-          background-color: var(--ti-grid-input-disabled-bg-color);
+          path:last-child {
+            fill: var(--ti-grid-input-disabled-bg-color);
+          }
         }
 
         & + .@{grid-radio-prefix-cls}__label {
-          color: var(--ti-grid-border-color);
-        }
-
-        &:hover {
-          border-color: var(--ti-grid-border-color);
+          color: var(--ti-grid-radio-border-color);
         }
       }
 
       &:checked + .@{grid-radio-prefix-cls}__icon {
-        border-color: var(--ti-grid-disabled-color);
-        background-color: var(--ti-grid-disabled-color);
+        > svg {
+          fill: var(--ti-grid-input-disabled-bg-color);
+
+          path:first-child {
+            fill: var(--ti-grid-input-disabled-bg-color);
+          }
+        }
       }
     }
   }

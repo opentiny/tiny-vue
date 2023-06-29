@@ -130,7 +130,7 @@ export const tinyBaseAuroraTheme = {
   'ti-common-color-text-link-hover': '#40a9ff', // 链接悬浮色
   'ti-common-color-text-link-darkbg': 'var(--ti-base-color-brand-4)', // 深色背景链接色
   'ti-common-color-text-link-darkbg-hover': 'var(--ti-base-color-brand-3)', // 深色背景链接悬浮色
-  'ti-common-color-text-highlight': '#333', // 文本高亮色
+  'ti-common-color-text-highlight': 'var(--ti-base-color-brand-6)', // 文本高亮色
   'ti-common-color-text-white': 'var(--ti-base-color-white)', // 深色背景或图标上文字色
   'ti-common-color-text-gray': 'var(--ti-base-color-white)', // 深色背景下的文本色，用于tip
   'ti-common-color-text-gray-disabled': 'var(--ti-base-color-common-4)', // 深色背景下的灰色文本禁用色，用于tab页签中
@@ -268,7 +268,7 @@ export const tinyBaseAuroraTheme = {
   'ti-common-shadow-1-left': '-1px 0px 4px 0 rgba(0, 0, 0, 0.1)', // 阴影-1 左
   'ti-common-shadow-1-right': '1px 0px 4px 0 rgba(0, 0, 0, 0.1)', // 阴影-1 右
   'ti-common-shadow-2-up': '0 -2px 8px 0 rgba(0, 0, 0, 0.2)', // 阴影-2 上
-  'ti-common-shadow-2-down': '0 0 4px rgba(0, 0, 0, 0.3)', // 阴影-2 下 select 等下拉弹框的阴影
+  'ti-common-shadow-2-down': '0 2px 12px rgba(0, 0, 0, 0.1)', // 阴影-2 下 select 等下拉弹框的阴影
   'ti-common-shadow-2-left': '-2px 0 8px 0 rgba(238, 10, 10, 0.2)', // 阴影-2 左
   'ti-common-shadow-2-right': '2px 0 8px 0 rgba(252, 5, 5, 0.2)', // 阴影-2 右
   'ti-common-shadow-3-up': '0 -4px 16px 0 rgba(0, 0, 0, 0.2)', // 阴影-3 上

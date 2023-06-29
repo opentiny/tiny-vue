@@ -26,7 +26,7 @@
     aria-valuemax="100"
   >
     <div class="tiny-progress-bar" v-if="type === 'line'">
-      <div class="tiny-progress-bar__outer" :style="{ height: strokeWidth + 'px', borderRadius: `${strokeWidth / 2}px` }">
+      <div class="tiny-progress-bar__outer" :style="{ height: state.strokeWidth + 'px', borderRadius: `${state.strokeWidth / 2}px` }">
         <transition
           appear
           appear-class="custom-appear-class"
@@ -34,7 +34,7 @@
           @appear="customAppearHook"
           @after-appear="customAfterAppearHook"
         >
-          <div class="tiny-progress-bar__inner" :style="{ ...state.barStyle, borderRadius: `${strokeWidth / 2}px` }">
+          <div class="tiny-progress-bar__inner" :style="{ ...state.barStyle, borderRadius: `${state.strokeWidth / 2}px` }">
             <div class="tiny-progress-bar__innerText" v-if="showText && textInside">
               {{ state.content }}
             </div>
@@ -42,7 +42,7 @@
         </transition>
       </div>
     </div>
-    <div class="tiny-progress-circle" :style="{ height: width + 'px', width: width + 'px' }" v-else>
+    <div class="tiny-progress-circle" :style="{ height: state.width + 'px', width: state.width + 'px' }" v-else>
       <svg viewBox="0 0 100 100">
         <path
           class="tiny-progress-circle__track"
@@ -83,14 +83,14 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/progress/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { iconClose, iconSuccessful, iconError, iconYes, iconWarning } from '@opentiny/vue-icon'
+import { iconClose, iconSuccess, iconError, iconYes, iconWarning } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/progress/index.less'
 
 export default defineComponent({
   props: [...props, 'type', 'percentage', 'status', 'strokeWidth', 'textInside', 'width', 'showText', 'color', 'format'],
   components: {
     IconClose: iconClose(),
-    IconSuccessful: iconSuccessful(),
+    IconSuccess: iconSuccess(),
     IconError: iconError(),
     IconYes: iconYes(),
     IconWarning: iconWarning()

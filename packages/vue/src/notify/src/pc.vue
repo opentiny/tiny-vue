@@ -109,8 +109,7 @@ export default defineComponent({
         v-show="state.visible"
         onMouseenter={clearTimer}
         onMouseleave={startTimer}
-        onClick={click}
-      >
+        onClick={click}>
         {[iconVNode, msgVNode, closeVNode]}
       </div>
     )

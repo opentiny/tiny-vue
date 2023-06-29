@@ -12,10 +12,18 @@
 <template>
   <div ref="outerWrapper" :class="state.wrapperClasses">
     <div v-if="state.isHorizontal" :class="`${state.prefix}-horizontal`">
-      <div :style="{ right: state.collapsed ? '100%' : `${state.anotherOffset}%` }" :class="state.paneClasses" class="left-pane">
+      <div
+        :style="{ right: state.collapsed ? '100%' : `${state.anotherOffset}%` }"
+        :class="state.paneClasses"
+        class="left-pane"
+      >
         <slot name="left" />
       </div>
-      <div :class="`${state.prefix}-trigger-con`" :style="{ left: state.collapsed ? '2px' : `${state.offset}%` }" @mousedown="handleMousedown">
+      <div
+        :class="`${state.prefix}-trigger-con`"
+        :style="{ left: state.collapsed ? '2px' : `${state.offset}%` }"
+        @mousedown="handleMousedown"
+      >
         <slot name="trigger">
           <div :class="[`${state.prefix}-trigger`, `${state.prefix}-trigger-vertical`]">
             <div :class="[`${state.prefix}-trigger-bar-con`, 'vertical']">
@@ -39,10 +47,18 @@
       </div>
     </div>
     <div v-else :class="`${state.prefix}-vertical`">
-      <div :style="{ bottom: state.collapsed ? '100%' : `${state.anotherOffset}%` }" :class="state.paneClasses" class="top-pane">
+      <div
+        :style="{ bottom: state.collapsed ? '100%' : `${state.anotherOffset}%` }"
+        :class="state.paneClasses"
+        class="top-pane"
+      >
         <slot name="top" />
       </div>
-      <div :class="`${state.prefix}-trigger-con`" :style="{ top: state.collapsed ? '2px' : `${state.offset}%` }" @mousedown="handleMousedown">
+      <div
+        :class="`${state.prefix}-trigger-con`"
+        :style="{ top: state.collapsed ? '2px' : `${state.offset}%` }"
+        @mousedown="handleMousedown"
+      >
         <slot name="trigger">
           <div :class="[`${state.prefix}-trigger`, `${state.prefix}-trigger-horizontal`]">
             <div :class="[`${state.prefix}-trigger-bar-con`, 'horizontal']">

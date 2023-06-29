@@ -14,7 +14,7 @@ export default {
   },
   data() {
     return {
-      value: []
+      value: [new Date(2023, 4, 15), new Date(2023, 4, 21)]
     }
   }
 }

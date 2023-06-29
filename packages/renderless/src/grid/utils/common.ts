@@ -156,6 +156,7 @@ export const assemColumn = ($table, $column, instance) => {
   if (!$column || $column !== $parent) {
     collectColumn.splice(insertIndex, 0, columnConfig)
   } else {
+    // 如果存在$column父级表格列组件实例
     const parentConfig = $column.columnConfig
 
     if (!parentConfig.children) {

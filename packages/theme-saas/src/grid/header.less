@@ -69,7 +69,7 @@
     line-height: 14px;
     @apply text-sm;
     &:before {
-      content: '*';
+      @apply ~"content-['*']";
       @apply ~'w-2.5';
       @apply ~'h-2.5';
       @apply block;
@@ -163,24 +163,6 @@
           @apply border-color-border-focus;
         }
       }
-    }
-  }
-}
-
-.@{grid-prefix-cls}__fixed-left-wrapper {
-  .@{grid-header-prefix-cls}__column {
-    .@{grid-prefix-cls}-resizable {
-      @apply right-px;
-    }
-  }
-}
-
-.@{grid-prefix-cls}__fixed-right-wrapper {
-  .@{grid-header-prefix-cls}__column {
-    .@{grid-prefix-cls}-resizable {
-      @apply right-auto;
-      @apply left-0;
-      @apply ~"-translate-x-2/4";
     }
   }
 }

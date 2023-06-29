@@ -266,6 +266,30 @@
   &-mini {
     .input-size(var(--ti-input-mini-height));
   }
+
+  &.is-display-only {
+    .@{input-prefix-cls}-display-only {
+      position: relative;
+
+      .@{input-prefix-cls}__inner {
+        visibility: hidden;
+        height: auto;
+        line-height: inherit;
+        border: 0;
+      }
+
+      &__content {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        max-width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+  }
 }
 
 .@{input-group-prefix-cls} {

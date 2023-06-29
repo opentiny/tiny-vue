@@ -126,7 +126,6 @@
     color: var(--ti-dialog-box-body-text-color);
     font-size: var(--ti-dialog-box-body-font-size);
     overflow: auto;
-    max-height: 65vh;
 
     .@{css-prefix}upload {
       overflow: hidden;
@@ -143,7 +142,6 @@
   }
 
   & &__footer {
-    text-align: inherit;
     padding: var(--ti-dialog-box-footer-padding-top) var(--ti-dialog-box-footer-padding-horizontal) var(--ti-dialog-box-footer-margin-bottom);
     text-align: center;
     box-sizing: border-box;
@@ -196,7 +194,7 @@
   }
 }
 
-body:not(.@{dialog-box-prefix-cls}__scroll-lock) {
+body:not(.@{css-prefix}popup-parent--hidden) {
   .v-modal {
     pointer-events: none;
   }
@@ -209,6 +207,7 @@ body:not(.@{dialog-box-prefix-cls}__scroll-lock) {
     }
   }
 }
+
 .v-modal {
   position: fixed;
   left: 0;

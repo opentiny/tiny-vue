@@ -21,15 +21,22 @@
 
   position: absolute;
   padding: var(--ti-dropdown-menu-padding-vertical) var(--ti-dropdown-menu-padding-horizontal);
-  background-color: var(--ti-common-color-bg-white-normal);
-  border-radius: var(--ti-common-border-radius-normal);
+  background-color: var(--ti-dropdown-menu-bg-color);
+  border-radius: var(--ti-dropdown-menu-border-radius);
   box-shadow: var(--ti-dropdown-menu-box-shadow);
   width: max-content;
   min-width: var(--ti-dropdown-menu-min-width);
   margin: var(--ti-dropdown-menu-margin-vertical) 0;
+  border: var(--ti-dropdown-menu-border-width) solid var(--ti-dropdown-menu-border-color);
 
   .@{dropdown-menu-prefix-cls} {
     padding: var(--ti-dropdown-menu-padding-vertical) var(--ti-dropdown-menu-padding-horizontal);
+  }
+
+  &:has(.has-children) li:not(.has-children) {
+    .@{dropdown-item-prefix-cls}__content {
+      margin-left: var(--ti-dropdown-item-content-margin-left);
+    }
   }
 
   &.@{css-prefix}popper .popper__arrow,

@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { h, hooks, $prefix } from '@opentiny/vue-common'
+import { h, hooks, $prefix, appProperties } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
 import { extend } from '@opentiny/vue-renderless/common/object'
 import { isEmptyObject, isObject, isNull } from '@opentiny/vue-renderless/common/type'
@@ -113,9 +113,11 @@ const renderEmptyPartFn = (opt) => {
   const { _vm, tableData, $slots, renderEmpty } = opt
   return () => {
     let emptyPartVnode = null
+    let { computerTableBodyHeight } = _vm
 
     if (_vm.isCenterEmpty && !tableData.length) {
       let emptyVnodes
+      let noEmptyClass = _vm.viewType === 'card' || _vm.viewType === 'list'
 
       if ($slots.empty) {
         emptyVnodes = $slots.empty.call(_vm, h)
@@ -128,7 +130,16 @@ const renderEmptyPartFn = (opt) => {
         ]
       }
 
-      emptyPartVnode = h('div', { class: 'empty-center-block' }, emptyVnodes)
+      emptyPartVnode = h(
+        'div',
+        {
+          class: [{ 'empty-center-block': !noEmptyClass }, _vm.viewCls('emptyData')],
+          style: {
+            height: computerTableBodyHeight
+          }
+        },
+        emptyVnodes
+      )
     }
 
     return emptyPartVnode
@@ -303,9 +314,10 @@ const renderFooterBorder = (_vm) => {
 
 // 设置表格最外层元素类名
 function getTableAttrs(args) {
-  let { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = args
-  let { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup, mouseConfig } = args
-  let { loading, highlightHoverRow, highlightHoverColumn } = args
+  const { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = args
+  const { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup, mouseConfig } = args
+  const { loading, highlightHoverRow, highlightHoverColumn } = args
+  const { tinyTheme, stripeSaas, borderSaas, borderVertical } = args
 
   const map = {
     showHeader: 'show__head',
@@ -331,7 +343,11 @@ function getTableAttrs(args) {
       'tiny-grid-cell__highlight': highlightCell,
       'tiny-grid__animat': optimizeOpts.animat,
       'tiny-grid__stripe': stripe,
+      'tiny-grid__stripe-saas': tinyTheme === 'saas' && stripeSaas,
       'tiny-grid__border': border || isGroup,
+      'tiny-grid__border-saas': tinyTheme === 'saas' && borderSaas,
+      'tiny-grid__group-saas': tinyTheme === 'saas' && isGroup,
+      'tiny-grid__border-vertical': borderVertical,
       'tiny-grid__checked': mouseConfig.checked,
       'mark-insert': editConfig && editConfig.markInsert,
       'edit__no-border': editConfig && editConfig.showBorder === false,
@@ -512,7 +528,11 @@ const getTableData = () => {
     // 表格宽度
     tableWidth: 0,
     // 存放 tooltip 相关信息
-    tooltipStore: {}
+    tooltipStore: {},
+    // 表格已挂载完成
+    afterMounted: false,
+    // 临时任务
+    tasks: {}
   }
   return tableData
 }
@@ -664,6 +684,12 @@ export default {
     startIndex: { type: Number, default: 0 },
     // 是否带有斑马纹
     stripe: { type: Boolean, default: () => GlobalConfig.stripe },
+    // saas下是否带有斑马纹
+    stripeSaas: { type: Boolean, default: () => GlobalConfig.stripeSaas },
+    // saas下是否带有下边框线
+    borderSaas: { type: Boolean, default: () => GlobalConfig.borderSaas },
+    // saas下配置竖线
+    borderVertical: { type: Boolean, default: () => GlobalConfig.borderVertical },
     // 默认统计配置
     summaryConfig: Object,
     // 是否自动根据状态属性去更新响应式表格宽高
@@ -777,6 +803,14 @@ export default {
     },
     validOpts() {
       return extend(true, { message: 'tooltip' }, GlobalConfig.validConfig, this.validConfig)
+    },
+    tinyTheme() {
+      const ctx = appProperties()
+
+      return (ctx.tiny_theme ? ctx.tiny_theme.value : '') || 'tiny'
+    },
+    computerTableBodyHeight() {
+      return this.tableBodyHeight === 0 ? 'calc(100% - 36px)' : `${this.tableBodyHeight}px`
     }
   },
   watch: {
@@ -791,7 +825,7 @@ export default {
     data(value) {
       // 此处监听只有当data的引用地址改变之后才会触发
       if (Array.isArray(value)) {
-        !this._isUpdateData && this.loadTableData(value, true).then(this.handleDefault)
+        !this._isUpdateData && this.loadTableData(value, true).then(this.handleDefault).then(this.handleSelectionHeader)
         this._isUpdateData = false
       }
     },
@@ -815,6 +849,13 @@ export default {
     tableColumn() {
       // 对所有列的列宽进行分类：百分比/px
       this.analyColumnWidth()
+      // 处理空数据时表头是否禁用
+      this.handleSelectionHeader()
+      // 设置列锚点数据
+      this.columnAnchor && this.$grid.buildColumnAnchorParams()
+    },
+    parentHeight() {
+      this.$nextTick(this.recalculate)
     }
   },
   created() {
@@ -839,6 +880,8 @@ export default {
   },
   mounted() {
     this.$nextTick().then(() => {
+      this.afterMounted = true
+
       if (this.autoResize && TINYGrid._resize) {
         // 使用ResizeObserver监听表格父元素尺寸，然后动态计算表格各种尺寸
         this.bindResize()
@@ -908,12 +951,14 @@ export default {
   render() {
     let { border, collectColumn, columnStore, editConfig, highlightCell, highlightHoverColumn } = (this as any)
     let { highlightHoverRow, isGroup, loading, loadingComponent, mouseConfig = {}, optimizeOpts } = (this as any)
-    let { overflowX, overflowY, showFooter, showHeader, showHeaderOverflow, showOverflow } = (this as any)
-    let { stripe, tableColumn, tableData, vSize, visibleColumn } = (this as any)
+    let { overflowX, overflowY, showFooter, showHeader, showHeaderOverflow, showOverflow, tinyTheme } = (this as any)
+    let { stripe, tableColumn, tableData, vSize, visibleColumn, slots, $slots, stripeSaas, borderSaas } = (this as any)
+    let { borderVertical, cardConfig, listConfig, ganttConfig } = this
     let { leftList, rightList } = columnStore
-    let $slots = this.slots
     const props = { tableData, tableColumn, visibleColumn, collectColumn, size: vSize, isGroup }
-    let args = { $slots, _vm: this, leftList, optimizeOpts, overflowX, props, rightList }
+
+    Object.assign(props, { cardConfig, listConfig, ganttConfig })
+    let args = { $slots: slots, _vm: this, leftList, optimizeOpts, overflowX, props, rightList }
 
     Object.assign(args, { showFooter, showHeader, tableColumn, tableData, vSize, visibleColumn })
     const renders = getRenderer(args)
@@ -923,10 +968,11 @@ export default {
     args = { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow }
     Object.assign(args, { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup, mouseConfig })
     Object.assign(args, { loading, highlightHoverRow, highlightHoverColumn })
+    Object.assign(args, { tinyTheme, stripeSaas, borderSaas, borderVertical })
 
     return h('div', getTableAttrs(args), [
       // 隐藏列
-      h('div', { class: ['tiny-grid-hidden-column', this.viewCls('hiddenColumn')], ref: 'hideColumn' }, $slots.default && $slots.default()),
+      h('div', { class: ['tiny-grid-hidden-column', this.viewCls('hiddenColumn')], ref: 'hideColumn' }, typeof $slots.default === 'function' ? $slots.default() : $slots.default),
       // 主头部
       renderHeader(),
       // 居中显示空数据

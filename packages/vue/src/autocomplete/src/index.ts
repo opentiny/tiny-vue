@@ -72,10 +72,13 @@ export default defineComponent({
     valueKey: {
       type: String,
       default: () => 'value'
+    },
+    displayOnly: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

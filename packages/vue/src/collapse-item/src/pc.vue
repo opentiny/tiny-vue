@@ -37,6 +37,9 @@
           </slot>
         </div>
         <slot name="title">{{ title }}</slot>
+        <div class="tiny-collapse-item__title__right">
+          <slot name="title-right">{{ titleRight }}</slot>
+        </div>
       </div>
       <collapse-transition>
         <div
@@ -63,7 +66,7 @@ import CollapseTransition from '@opentiny/vue-collapse-transition'
 import { iconChevronRight } from '@opentiny/vue-icon'
 
 export default defineComponent({
-  props: [...props, 'title', 'name', 'disabled'],
+  props: [...props, 'title', 'titleRight', 'name', 'disabled'],
   components: {
     CollapseTransition,
     IconChevronRight: iconChevronRight()

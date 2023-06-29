@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "popconfirm/basic-usage",
+    "component": "Pop Confirm",
+    "findIntroStr": "Use explanatory text and action buttons for secondary confirmation.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Trigger",
+    "content": "<p><code>trigger</code> Sets hot to show the pop confirm. </p>\n",
+    "link": "popconfirm/trigger",
+    "component": "Pop Confirm",
+    "findIntroStr": "Use explanatory text and action buttons for secondary confirmation.",
+    "demoId": "trigger"
+  },
+  {
+    "title": "Type",
+    "content": "<p><code>type</code> Sets the icon type. </p>\n",
+    "link": "popconfirm/type",
+    "component": "Pop Confirm",
+    "findIntroStr": "Use explanatory text and action buttons for secondary confirmation.",
+    "demoId": "type"
+  }
+]

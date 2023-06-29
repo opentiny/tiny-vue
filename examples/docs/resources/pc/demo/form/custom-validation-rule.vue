@@ -59,7 +59,7 @@ export default {
       rules: {
         username: [
           { required: true, message: '必填', trigger: 'blur' },
-          { min: 2, max: 11, message: '长度必须不小于2', trigger: 'change' }
+          { min: 2, max: 11, message: '长度必须不小于2', trigger: ['change', 'blur'] }
         ],
         password: [
           { required: true, message: '必填', trigger: 'blur' },

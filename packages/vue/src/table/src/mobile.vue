@@ -17,7 +17,12 @@
       </colgroup>
       <thead class="tiny-mobile-table-header">
         <tr>
-          <th v-for="(col, colIndex) in columns" :key="colIndex" :class="{ overflow: col.showOverflow, fixed: col.fixed }" :style="{ left: getLeft(colIndex) }">
+          <th
+            v-for="(col, colIndex) in columns"
+            :key="colIndex"
+            :class="{ overflow: col.showOverflow, fixed: col.fixed }"
+            :style="{ left: getLeft(colIndex) }"
+          >
             <div class="tiny-mobile-table-cell">
               <component
                 v-if="col.type === 'selection'"
@@ -34,10 +39,24 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(row, rowIndex) in data" :key="rowIndex" :class="['handlerCls', state.selectedKeys.indexOf(row[keys]) > -1 ? '' : 'is-disabled']">
-          <td v-for="(col, colIndex) in columns" :key="colIndex" :class="{ fixed: col.fixed }" :style="{ left: getLeft(colIndex) }">
-            <div :class="['tiny-mobile-table-cell', { overflow: col.showOverflow }]" :title="col.showOverflow ? row[col.field] : ''">
-              <div v-if="col.type === 'index'">{{ rowIndex + 1 }}</div>
+        <tr
+          v-for="(row, rowIndex) in data"
+          :key="rowIndex"
+          :class="['handlerCls', state.selectedKeys.indexOf(row[keys]) > -1 ? '' : 'is-disabled']"
+        >
+          <td
+            v-for="(col, colIndex) in columns"
+            :key="colIndex"
+            :class="{ fixed: col.fixed }"
+            :style="{ left: getLeft(colIndex) }"
+          >
+            <div
+              :class="['tiny-mobile-table-cell', { overflow: col.showOverflow }]"
+              :title="col.showOverflow ? row[col.field] : ''"
+            >
+              <div v-if="col.type === 'index'">
+                {{ rowIndex + 1 }}
+              </div>
               <component
                 v-else-if="col.type === 'radio'"
                 :is="state.selectedRow === row ? 'icon-radioselected' : 'icon-radio'"
@@ -47,10 +66,16 @@
               <component
                 v-else-if="col.type === 'selection'"
                 :is="state.selected.indexOf(row) === -1 ? 'icon-check' : 'icon-checked-sur'"
-                :class="['tiny-mobile-svg-size', { 'is-check': state.selected.indexOf(row) > -1 }, { 'is-disabled': state.selectedKeys.indexOf(keys) > -1 }]"
+                :class="[
+                  'tiny-mobile-svg-size',
+                  { 'is-check': state.selected.indexOf(row) > -1 },
+                  { 'is-disabled': state.selectedKeys.indexOf(keys) > -1 }
+                ]"
                 @click="togeSelected(row)"
               />
-              <div v-else>{{ row[col.field] }}</div>
+              <div v-else>
+                {{ row[col.field] }}
+              </div>
               <div v-if="isLastFixed(colIndex, col)" class="shadow"></div>
             </div>
           </td>
@@ -97,7 +122,7 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>

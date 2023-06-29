@@ -1,11 +1,12 @@
 import DynamicScrollerItem from './src/index'
+import { version } from './package.json'
 
 /* istanbul ignore next */
 DynamicScrollerItem.install = function (Vue) {
   Vue.component(DynamicScrollerItem.name, DynamicScrollerItem)
 }
 
-DynamicScrollerItem.version = process.env.COMPONENT_VERSION
+DynamicScrollerItem.version = version
 
 /* istanbul ignore next */
 if (process.env.BUILD_TARGET === 'runtime') {

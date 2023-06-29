@@ -1,4 +1,4 @@
-const fs = require('fs')
+const fs = require('node:fs')
 const fg = require('fast-glob')
 
 const ignoreNames = ['base', 'theme']
@@ -8,21 +8,37 @@ fg(['**/*-theme.js']).then((files) => {
     .map((file) => {
       const arr = file.split('/')
       const themeFile = arr.slice(-1)[0]
+      const content = fs.readFileSync(file, { encoding: 'utf8' })
       return {
         name: arr.slice(-2)[0],
         theme: themeFile.substring(0, themeFile.indexOf('.')),
+        content
       }
     })
     .filter((item) => !ignoreNames.includes(item.name))
 
-  const themes = groupBy(components, item => item.theme)
+  const themes = groupBy(components, (item) => item.theme)
 
   Object.entries(themes).forEach(([themeKey, components]) => {
-    const contents = components.map(component => `export * from '../../${component.name}/${themeKey}'`).join('\n')
+    // 抓取每一个 xxx-theme.js文件，每个文件都是一个对象体
+    let themeObjs = components.map((component) => {
+      let src = component.content
+      src = src.replace(/export[\s\S]*\{/, '{')
+      src = `(${src})`
+      // eslint-disable-next-line no-eval
+      return eval(src)
+    })
+
+    // 把对象体的所有键值组合为一个对象
+    let contents = 'export const concatTheme = {\n'
+    themeObjs.forEach((obj) => {
+      Object.keys(obj).forEach((token) => {
+        contents += `  '${token}': '${obj[token]}',\n`
+      })
+    })
+    contents += '}\n'
     fs.writeFileSync(`src/theme/${themeKey}/component.js`, contents)
   })
-
-  console.log('build component css var done.')
 })
 
 function groupBy(array, fn) {

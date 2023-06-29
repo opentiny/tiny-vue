@@ -81,12 +81,15 @@
       }
     }
 
+    .@{collapse-item-prefix-cls}__title__right {
+      margin-left: auto;
+    }
     &.is-active {
       border-bottom-color: transparent;
 
       .@{collapse-item-prefix-cls}__arrow {
         transform: var(--ti-collapse-item-is-active-arrow-transform);
-        svg{
+        svg {
           fill: var(--ti-collapse-item-is-active-arrow-text-color);
         }
       }

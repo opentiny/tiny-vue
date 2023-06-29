@@ -33,7 +33,7 @@
       "sample": "type",
       "type": "String",
       "desc": "设置警告的类型;该属性的可选值为 success/warning/info/error",
-      "defaultValue": "该属性的默认值为 info"
+      "defaultValue": "该属性的默认值为 success"
     },
     {
       "name": "description",
@@ -47,7 +47,7 @@
       "sample": "center",
       "type": "Boolean",
       "desc": "文字是否居中",
-      "defaultValue": "该属性的默认值为 true"
+      "defaultValue": "该属性的默认值为 false"
     },
     {
       "name": "close-text",
@@ -90,7 +90,7 @@
   "events": [
     {
       "name": "close",
-      "sample": "close",
+      "sample": "close-events",
       "type": "",
       "desc": "关闭 alert 时触发的事件",
       "defaultValue": ""

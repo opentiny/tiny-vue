@@ -64,7 +64,7 @@ export default defineComponent({
     'isBeforePageChange'
   ],
   setup(props: any, context: any): any {
-    return setup({ props, context, renderless, api, mono: true, classes })
+    return setup({ props, context, renderless, api, classes })
   }
 })
 </script>

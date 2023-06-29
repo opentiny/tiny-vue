@@ -1,4 +1,4 @@
-.tiny-popup__wrapper {
+.aurora-popup__wrapper {
   z-index: 2147483647 !important;
   @apply bg-black bg-opacity-50;
   @apply fixed;
@@ -10,7 +10,7 @@
   @apply m-0;
 
   //错误提示页
-  .tiny-errortips__box {
+  .aurora-errortips__box {
     @apply absolute;
     width: 800px;
     min-height: 450px;
@@ -27,7 +27,7 @@
     @apply text-center;
     @apply overflow-y-auto;
 
-    .tiny-errortips__body {
+    .aurora-errortips__body {
       @apply h-full;
       text-align: initial;
       @apply p-5;
@@ -76,7 +76,7 @@
   }
 
   //sso 登录
-  .tiny-sso__box {
+  .aurora-sso__box {
     @apply absolute;
     @apply bg-color-bg-1;
     @apply border border-solid border-transparent;
@@ -84,13 +84,13 @@
     @apply ~'left-1/2';
     @apply ~"top-1/2";
     @apply ~"-translate-x-2/4" ~"-translate-y-2/4";
-    .tiny-sso__body {
+    .aurora-sso__body {
       text-align: initial;
       @apply p-5;
       @apply text-color-text-primary;
       @apply leading-8;
       @apply text-sm;
-      .tiny-sso__body-iframe {
+      .aurora-sso__body-iframe {
         width: 350px;
         height: 350px;
         height: 460px\9; //兼容ie9-ie10
@@ -114,12 +114,12 @@
     @apply bg-color-bg-5;
     @apply bg-cover;
 
-    .tiny-not-sso__box {
+    .aurora-not-sso__box {
       @apply w-full;
       @apply h-full;
       @apply overflow-hidden;
 
-      .tiny-not-sso__body {
+      .aurora-not-sso__body {
         width: 650px;
         height: 400px;
         @apply bg-color-bg-2;

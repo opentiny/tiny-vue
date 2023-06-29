@@ -10,7 +10,52 @@
  *
  -->
 <template>
-  <div class="tiny-grid-custom-switch">
+  <tiny-popover
+    v-if="customMode === 'saas'"
+    ref="popover"
+    width="280"
+    v-model="templateVisible"
+    placement="top"
+    popper-class="grid-toolbar-template-popover"
+    trigger="manual"
+  >
+    <div>
+      <div class="radio-box" v-if="selectedTemplateVal.id">
+        <tiny-radio v-model="saveMethod" label="overwrite">
+          {{ t('ui.grid.individuation.overwriteSave') }}
+        </tiny-radio>
+        <tiny-radio v-model="saveMethod" label="save">
+          {{ t('ui.grid.individuation.saveAs') }}
+        </tiny-radio>
+      </div>
+      <tiny-input
+        v-if="saveMethod === 'save'"
+        v-model="savedTemplateName"
+        type="text"
+        :placeholder="t('ui.grid.individuation.defaultTemplateName')"
+      ></tiny-input>
+      <tiny-input
+        v-else
+        v-model="selectedTemplateName"
+        :placeholder="t('ui.grid.individuation.reserveTemplateName')"
+        type="text"
+      ></tiny-input>
+      <div class="btn-box">
+        <tiny-button @click="templateVisible = false">
+          {{ t('ui.grid.individuation.cancelBtn') }}
+        </tiny-button>
+        <tiny-button type="primary" @click="handleSaveConfirm(saveMethod)">
+          {{ t('ui.grid.individuation.saveBtn') }}
+        </tiny-button>
+      </div>
+    </div>
+    <template #reference>
+      <tiny-button class="save-btn" @click="templateVisible = !templateVisible">
+        {{ t('ui.grid.individuation.saveTemplate') }}
+      </tiny-button>
+    </template>
+  </tiny-popover>
+  <div v-else class="tiny-grid-custom-switch">
     <tiny-layout>
       <tiny-row no-space>
         <tiny-col :span="12">
@@ -26,9 +71,14 @@
       <tiny-row no-space>
         <tiny-col v-if="historyConfig.showSave" :span="2">
           <div>
-            <tiny-button type="primary" size="mini" :disabled="historyConfig.saveDisabled || saveDisabled" @click="handleSave">{{
-              historyConfig.saveText || t('ui.grid.individuation.switchsave')
-            }}</tiny-button>
+            <tiny-button
+              type="primary"
+              size="mini"
+              :disabled="historyConfig.saveDisabled || saveDisabled"
+              @click="handleSave"
+            >
+              {{ historyConfig.saveText || t('ui.grid.individuation.switchsave') }}
+            </tiny-button>
           </div>
         </tiny-col>
         <tiny-col :span="2">
@@ -104,13 +154,21 @@
     >
       <!-- save -->
       <div v-if="status === 'save'" class="tiny-grid-custom-switch__confirm-btns">
-        <tiny-button type="primary" @click="handleSaveConfirm('save')">{{ t('ui.grid.individuation.switchonlytemp') }}</tiny-button>
-        <tiny-button @click="handleSaveConfirm('save-apply')">{{ t('ui.grid.individuation.switchtempapply') }}</tiny-button>
-        <tiny-button @click="handleSaveConfirm('overwrite')" :disabled="!selected">{{ t('ui.grid.individuation.switchtempoverwrite') }}</tiny-button>
+        <tiny-button type="primary" @click="handleSaveConfirm('save')">
+          {{ t('ui.grid.individuation.switchonlytemp') }}
+        </tiny-button>
+        <tiny-button @click="handleSaveConfirm('save-apply')">
+          {{ t('ui.grid.individuation.switchtempapply') }}
+        </tiny-button>
+        <tiny-button @click="handleSaveConfirm('overwrite')" :disabled="!selected">
+          {{ t('ui.grid.individuation.switchtempoverwrite') }}
+        </tiny-button>
       </div>
       <!-- apply -->
       <template v-if="status === 'apply'">
-        <div class="tiny-grid-custom-switch__del-tip">{{ selectedName }}</div>
+        <div class="tiny-grid-custom-switch__del-tip">
+          {{ selectedName }}
+        </div>
         <div class="tiny-grid-custom-switch__del-tip">
           {{ t('ui.grid.individuation.switchapplycon') }}
         </div>
@@ -121,7 +179,9 @@
       </template>
       <!-- del -->
       <template v-if="status === 'del'">
-        <div class="tiny-grid-custom-switch__del-tip">{{ selectedName }}</div>
+        <div class="tiny-grid-custom-switch__del-tip">
+          {{ selectedName }}
+        </div>
         <div class="tiny-grid-custom-switch__del-tip">
           {{ t('ui.grid.individuation.switchdelcon') }}
         </div>
@@ -129,16 +189,28 @@
       <template #footer>
         <template v-if="~['apply', 'edit', 'del'].indexOf(status)">
           <template v-if="status === 'apply'">
-            <tiny-button type="primary" @click="handleApplyConfirm('yes')">{{ t('ui.grid.individuation.switchdelyes') }}</tiny-button>
-            <tiny-button @click="handleApplyConfirm('no')">{{ t('ui.grid.individuation.switchdelno') }}</tiny-button>
+            <tiny-button type="primary" @click="handleApplyConfirm('yes')">
+              {{ t('ui.grid.individuation.switchdelyes') }}
+            </tiny-button>
+            <tiny-button @click="handleApplyConfirm('no')">
+              {{ t('ui.grid.individuation.switchdelno') }}
+            </tiny-button>
           </template>
           <template v-if="status === 'edit'">
-            <tiny-button type="primary" :disabled="!editName" @click="handleEditConfirm('yes')">{{ t('ui.grid.individuation.switchdelyes') }}</tiny-button>
-            <tiny-button @click="handleEditConfirm('no')">{{ t('ui.grid.individuation.switchdelno') }}</tiny-button>
+            <tiny-button type="primary" :disabled="!editName" @click="handleEditConfirm('yes')">
+              {{ t('ui.grid.individuation.switchdelyes') }}
+            </tiny-button>
+            <tiny-button @click="handleEditConfirm('no')">
+              {{ t('ui.grid.individuation.switchdelno') }}
+            </tiny-button>
           </template>
           <template v-if="status === 'del'">
-            <tiny-button type="primary" @click="handleDelConfirm('yes')">{{ t('ui.grid.individuation.switchdelyes') }}</tiny-button>
-            <tiny-button @click="handleDelConfirm('no')">{{ t('ui.grid.individuation.switchdelno') }}</tiny-button>
+            <tiny-button type="primary" @click="handleDelConfirm('yes')">
+              {{ t('ui.grid.individuation.switchdelyes') }}
+            </tiny-button>
+            <tiny-button @click="handleDelConfirm('no')">
+              {{ t('ui.grid.individuation.switchdelno') }}
+            </tiny-button>
           </template>
         </template>
       </template>
@@ -146,7 +218,8 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
+import Modal from '@opentiny/vue-modal'
 import Button from '@opentiny/vue-button'
 import Select from '@opentiny/vue-select'
 import Input from '@opentiny/vue-input'
@@ -155,13 +228,18 @@ import Row from '@opentiny/vue-row'
 import Col from '@opentiny/vue-col'
 import Alert from '@opentiny/vue-alert'
 import DialogBox from '@opentiny/vue-dialog-box'
-import { iconSave, iconEdit, iconDel } from '@opentiny/vue-icon'
+import Popover from '@opentiny/vue-popover'
+import Radio from '@opentiny/vue-radio'
+import { IconSave, IconEdit, IconDel } from '@opentiny/vue-icon'
 import { t } from '@opentiny/vue-locale'
 import { GridTools } from '@opentiny/vue-grid'
-import { find } from '@opentiny/vue-renderless/grid/static/'
+import { find } from '@opentiny/vue-renderless/grid/static'
 import { createCustom, getStorage, setStorage, mergeArray } from './multiple-history'
+import { $props } from '@opentiny/vue-common'
 
-export default {
+import { defineComponent } from '@opentiny/vue-common'
+
+export default defineComponent({
   name: 'TinyGridCustomSwitch',
   components: {
     TinyButton: Button,
@@ -171,6 +249,8 @@ export default {
     TinyRow: Row,
     TinyCol: Col,
     TinyAlert: Alert,
+    TinyRadio: Radio,
+    TinyPopover: Popover,
     TinyDialogBox: DialogBox
   },
   inject: {
@@ -179,6 +259,12 @@ export default {
     }
   },
   props: {
+    ...$props,
+    customMode: String,
+    selectedTemplateVal: {
+      type: Object,
+      default: () => ({})
+    },
     historyConfig: {
       type: Object,
       default: () => ({})
@@ -186,22 +272,26 @@ export default {
   },
   data() {
     return {
-      IconSave: iconSave(),
-      IconEdit: iconEdit(),
-      IconDel: iconDel(),
+      IconSave: IconSave(),
+      IconEdit: IconEdit(),
+      IconDel: IconDel(),
       saveDisabled: true,
       selectDisabled: true,
       applyDisabled: true,
       editDisabled: true,
       delDisabled: true,
       options: [],
-      option: null,
+      option: null as any,
       selected: null,
       selectedName: null,
       visible: false,
       userKey: null,
       status: null,
-      editName: null
+      editName: null,
+      selectedTemplateName: '',
+      savedTemplateName: '',
+      templateVisible: false,
+      saveMethod: 'save'
     }
   },
   computed: {
@@ -209,17 +299,30 @@ export default {
       return this.status === 'apply'
         ? this.t('ui.grid.individuation.switchapply')
         : this.status === 'edit'
-          ? this.t('ui.grid.individuation.switchedit')
-          : this.status === 'del'
-            ? this.t('ui.grid.individuation.switchdel')
-            : this.t('ui.grid.individuation.switchconfirm')
+        ? this.t('ui.grid.individuation.switchedit')
+        : this.status === 'del'
+        ? this.t('ui.grid.individuation.switchdel')
+        : this.t('ui.grid.individuation.switchconfirm')
+    }
+  },
+  watch: {
+    templateVisible(val) {
+      val && (this.savedTemplateName = '')
+    },
+    selectedTemplateVal: {
+      handler() {
+        this.selectedTemplateName = this.selectedTemplateVal.name || ''
+        this.saveMethod = this.selectedTemplateVal.id ? 'overwrite' : 'save'
+      },
+      deep: true,
+      immediate: true
     }
   },
   created() {
     let {
       settingOpts: { storage: storageType, storageKey },
       id: toolbarId
-    } = this.$grid.toolBarVm
+    } = (this as any).$grid.toolBarVm
 
     if (!this.doCheck({ storageType })) return
 
@@ -229,6 +332,7 @@ export default {
       const optionArr = (storeObj || {})[toolbarId] || []
 
       this.options = optionArr.filter((opt) => (this.userKey ? opt.userKey === this.userKey : true))
+      this.$emit('init-storage', this.options)
 
       getStorage(storageKey, storageType, this.historyConfig.remoteSelectedMethod).then((storeObj) => {
         this.option = (storeObj || {})[toolbarId] || {}
@@ -245,9 +349,16 @@ export default {
       this.visible = true
     },
     handleSaveConfirm(flag) {
-      if (flag === 'overwrite' && !this.selected) return
+      if (flag === 'overwrite') {
+        if (
+          (this.customMode === 'saas' && !this.selectedTemplateVal.id) ||
+          (this.customMode !== 'saas' && !this.selected)
+        ) {
+          return
+        }
+      }
 
-      const toolBarVm = this.$grid.toolBarVm
+      const toolBarVm = (this as any).$grid.toolBarVm
       const customVm = toolBarVm.$refs.custom
       const item = createCustom(customVm.buildSettings(), this.userKey)
       const { id: toolbarId } = toolBarVm
@@ -258,23 +369,35 @@ export default {
         const optionArr = storeObj[toolbarId] || []
 
         if (flag === 'save' || flag === 'save-apply') {
+          if (flag === 'save' && this.savedTemplateName) {
+            item.name = this.savedTemplateName
+          }
+          this.options.push(item)
+          this.$emit('init-storage', this.options)
           optionArr.unshift(item)
         } else if (flag === 'overwrite') {
           let index, customId, customName
 
+          const selectedId = this.customMode === 'saas' ? this.selectedTemplateVal.id : this.selected
+          const selectedName = this.customMode === 'saas' ? this.selectedTemplateVal.name : this.selectedName
+
           for (let i = 0; i < optionArr.length; i++) {
-            if (optionArr[i].id === this.selected) {
+            if (optionArr[i].id === selectedId) {
               index = i
-              customId = this.selected
-              customName = this.selectedName
+              customId = selectedId
+              customName = selectedName
 
               break
             }
           }
 
           item.id = customId
-          item.name = customName
+          item.name = this.selectedTemplateName || customName
           optionArr.splice(index, 1, item)
+
+          if (this.selectedTemplateName && this.selectedTemplateName !== customName) {
+            customVm.updateTemplateOptions(item.id, item.name)
+          }
         }
 
         storeObj[toolbarId] = optionArr
@@ -285,17 +408,26 @@ export default {
       const postOperate = () => {
         if (flag === 'save-apply' || flag === 'overwrite') {
           customVm.multipleHistoryId = item.id
-          customVm.saveSettings()
+          customVm.saveSettings(this.customMode === 'saas')
         }
 
         this.visible = false
-        this.status = null
+        this.status = ''
       }
-
+      this.templateVisible = false
       this.doStorage(business, postOperate)
+      Modal.message({
+        message: t('ui.grid.saveSuccess'),
+        status: 'success'
+      })
     },
     handleApply() {
-      if (this.historyConfig.applyDisabled || this.applyDisabled || !this.selected || this.option.id === this.selected) {
+      if (
+        this.historyConfig.applyDisabled ||
+        this.applyDisabled ||
+        !this.selected ||
+        this.option.id === this.selected
+      ) {
         return
       }
 
@@ -304,7 +436,7 @@ export default {
     },
     handleApplyConfirm(flag) {
       if (flag === 'yes') {
-        const toolBarVm = this.$grid.toolBarVm
+        const toolBarVm = (this as any).$grid.toolBarVm
         const { id: toolbarId } = toolBarVm
         const customVm = toolBarVm.$refs.custom
         let customId
@@ -334,14 +466,14 @@ export default {
           customVm.saveSettings()
 
           this.visible = false
-          this.status = null
+          this.status = ''
         }
 
         this.doStorage(business, postOperate, noStore)
       }
 
       this.visible = false
-      this.status = null
+      this.status = ''
     },
     handleEdit() {
       if (this.historyConfig.editDisabled || this.editDisabled || !this.selected) {
@@ -356,7 +488,7 @@ export default {
       if (flag === 'yes') {
         if (!this.editName) return
 
-        const { id: toolbarId } = this.$grid.toolBarVm
+        const { id: toolbarId } = (this as any).$grid.toolBarVm
 
         const business = (storeObj) => {
           storeObj = storeObj || {}
@@ -374,7 +506,7 @@ export default {
           this.setSelected()
 
           this.visible = false
-          this.status = null
+          this.status = ''
           this.editName = null
         }
 
@@ -383,7 +515,7 @@ export default {
 
       if (flag === 'no') {
         this.visible = false
-        this.status = null
+        this.status = ''
         this.editName = null
       }
     },
@@ -397,7 +529,7 @@ export default {
     },
     handleDelConfirm(flag) {
       if (flag === 'yes') {
-        const { id: toolbarId } = this.$grid.toolBarVm
+        const { id: toolbarId } = (this as any).$grid.toolBarVm
 
         const business = (storeObj) => {
           storeObj = storeObj || {}
@@ -414,7 +546,7 @@ export default {
           this.setSelected()
 
           this.visible = false
-          this.status = null
+          this.status = ''
         }
 
         this.doStorage(business, postOperate)
@@ -422,11 +554,11 @@ export default {
 
       if (flag === 'no') {
         this.visible = false
-        this.status = null
+        this.status = ''
       }
     },
-    doStorage(business, postOperate, noStore) {
-      const toolBarVm = this.$grid.toolBarVm
+    doStorage(business, postOperate, noStore = false) {
+      const toolBarVm = (this as any).$grid.toolBarVm
       const {
         settingOpts: { storage: storageType },
         id: toolbarId
@@ -471,8 +603,8 @@ export default {
     },
     setUserKey() {
       this.userKey = ~['userId', 'userAccount'].indexOf(this.historyConfig.userKey)
-        ? this.$grid.$service
-          ? this.$grid.$service.base.getEnvInfoSync().user[this.historyConfig.userKey]
+        ? (this as any).$grid.$service
+          ? (this as any).$grid.$service.base.getEnvInfoSync().user[this.historyConfig.userKey]
           : null
         : null
     },
@@ -502,7 +634,7 @@ export default {
         this.applyDisabled = true
       }
 
-      const customVm = this.$grid.toolBarVm.$refs.custom
+      const customVm = (this as any).$grid.toolBarVm.$refs.custom
 
       customVm.saveDisabled = false
 
@@ -518,5 +650,5 @@ export default {
       this.delDisabled = false
     }
   }
-}
+})
 </script>

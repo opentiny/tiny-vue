@@ -18,7 +18,7 @@ export default {
   },
   data() {
     return {
-      customsData: [{ field: 'name', visible: false }],
+      customsData: [{ property: 'name', visible: false }],
       tableData: [
         {
           id: '1',

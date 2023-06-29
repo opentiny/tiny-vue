@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('列宽改变事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('http://localhost:7130/pc/grid-event/event-resizable-change-event')
-  const draggerDom = page.getByRole('cell', { name: '名称' }).locator('div').nth(1)
+  const draggerDom = page.getByRole('cell', { name: '名称' }).locator('.tiny-grid-resizable')
   // 获取拖拽元素位置
   const { x, y } = await draggerDom.boundingBox()
   // 开始拖拽

@@ -16,10 +16,13 @@ export default defineComponent({
       type: Object,
       default: () => $constants
     },
-    fetchRole: Function
+    fetchRole: Function,
+    getEnvInfoSync: Function,
+    getChangeRoleUrl: Function,
+    getCustomized: Function,
+    pushCustomized: Function
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

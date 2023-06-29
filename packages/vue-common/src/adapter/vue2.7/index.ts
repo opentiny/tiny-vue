@@ -11,6 +11,7 @@
  */
 import Vue from 'vue'
 import * as hooks from 'vue'
+
 import type { } from 'vue-router' // https://github.com/microsoft/TypeScript/issues/47663#issuecomment-1270716220
 import { emitter, bindFilter, getElementCssClass, getElementStatusClass } from '../utils'
 import teleport from '../teleport'
@@ -29,6 +30,17 @@ export const renderComponent = ({ view = null as any, component = null as any, p
 }
 
 export const rootConfig = () => hooks.getCurrentInstance()?.proxy.$root
+
+export const getComponentName = () => {
+  // 此处组件最多为两层组件，所以对多获取到父级组件即可
+  const instance = hooks.getCurrentInstance()
+  let componentName = instance?.vnode?.componentOptions?.Ctor?.extendOptions?.name
+  if (!componentName) {
+    componentName = instance?.parent?.vnode?.componentOptions?.Ctor?.extendOptions?.name
+  }
+
+  return componentName || ''
+}
 
 export const appContext = () => Vue
 
@@ -324,7 +336,12 @@ export const parseVnode = (vnode) => {
 
 export const h = hooks.h
 
-export const createComponent = ({ component, propsData, el }) => new (Vue.extend(component))({ propsData, el }).$mount()
+export const createComponentFn = (design) => {
+  return ({ component, propsData, el }) => {
+    const comp = Object.assign(component, { provide: { [design.configKey]: design.configInstance } })
+    return new (Vue.extend(comp))({ propsData, el }).$mount()
+  }
+}
 
 export const defineComponent = hooks.defineComponent
 

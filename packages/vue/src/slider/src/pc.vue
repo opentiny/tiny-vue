@@ -12,12 +12,21 @@
 <template>
   <div class="tiny-slider__wrapper" style="position: relative">
     <div
+      role="tiny-slider"
       :class="['tiny-slider', { 'tiny-slider__vertical': vertical, disabled: state.disabled }]"
       :style="{ height: vertical ? height : '' }"
       @mousedown="bindMouseDown"
     >
-      <transition appear appear-class="custom-appear-class" @before-appear="customBeforeAppearHook" @after-appear="customAfterAppearHook">
-        <div :class="['tiny-slider__range', vertical ? 'tiny-slider__down' : 'tiny-slider__left']" :style="state.barStyle"></div>
+      <transition
+        appear
+        appear-class="custom-appear-class"
+        @before-appear="customBeforeAppearHook"
+        @after-appear="customAfterAppearHook"
+      >
+        <div
+          :class="['tiny-slider__range', vertical ? 'tiny-slider__down' : 'tiny-slider__left']"
+          :style="state.barStyle"
+        ></div>
       </transition>
       <div
         class="tiny-slider__handle"
@@ -59,7 +68,9 @@
     </div>
     <template v-if="showInput && !state.isDouble">
       <div class="tiny-slider__input">
-        <slot :slot-scope="state.activeValue"> <input type="text" v-model="state.activeValue" :disabled="state.disabled" /><span>%</span> </slot>
+        <slot :slot-scope="state.activeValue">
+          <input type="text" v-model="state.activeValue" :disabled="state.disabled" /><span>%</span>
+        </slot>
       </div>
     </template>
   </div>
@@ -72,7 +83,21 @@ import '@opentiny/vue-theme/slider/index.less'
 
 export default defineComponent({
   emits: ['update:modelValue', 'change', 'start', 'stop'],
-  props: [...props, 'modelValue', 'disabled', 'max', 'min', 'vertical', 'step', 'numPages', 'showTip', 'showInput', 'height', 'range', 'formatTooltip'],
+  props: [
+    ...props,
+    'modelValue',
+    'disabled',
+    'max',
+    'min',
+    'vertical',
+    'step',
+    'numPages',
+    'showTip',
+    'showInput',
+    'height',
+    'range',
+    'formatTooltip'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

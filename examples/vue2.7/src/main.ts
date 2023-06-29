@@ -11,6 +11,10 @@ const mode = $local.mode || 'pc'
 Vue.prototype.tiny_mode = { value: mode }
 Vue.prototype.isPcMode = mode === 'pc'
 Vue.prototype.isMobileMode = mode === 'mobile'
+
+// 注入全局的saas主题变量
+Vue.prototype.tiny_theme = { value: import.meta.env.VITE_TINY_THEME }
+
 Vue.use(VueI18n)
 Vue.use(Loading)
 

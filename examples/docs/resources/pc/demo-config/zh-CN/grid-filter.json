@@ -1,1 +1,58 @@
-[{"title":"过滤","content":"<div class=\"tip custom-block\"><p class=\"custom-block-title\">filter 配置</p>\n<p>通过自定义的 <code>filter</code> 的作用域插槽自定义筛选的规则\n可以配置项：\nmulti 设置在显示枚举选项功能是否为多选, 仅在 enumable:true 下有效。\nenumable 设置在过滤面板中显示枚举选项。\ninputFilter 设置在过滤面板中显示输入筛选的项。\ndefaultFilter 设置在过滤面板中显示默认的筛选条件。\nvalues 设置在显示枚举选项功能(enumable)下制定静态数据源。\nlabel 设置枚举数据的显示值属性字段， 默认'label'。\nvalue 设置枚举数据的实际值属性字段， 默认'value'。</p>\n</div>\n","link":"grid/filter/default-filter","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"filter-default-filter"},{"title":"自定义参数","content":"<p>通过 <code>params</code> 添加自定义参数</p>\n","link":"grid/column/column-params","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"column-column-params"},{"title":"过滤高级设置","content":"<p>通过 <code>inputFilter</code> 可以给input过滤区域配置自定义组件与条件，通过 <code>extends</code> 可以增加快捷过滤列表</p>\n","link":"grid/filter/advanced-filter","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"filter-advanced-filter"},{"title":"设置列筛选规则","content":"<p>通过 <code>filter</code> 属性设置列筛选规则</p>\n","link":"grid/filter/custom-filter","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"filter-custom-filter"},{"title":"自定义筛选","content":"<p>通过 <code>params</code> 属性设置额外的参数</p>\n","link":"grid/grid-params","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"grid-params"},{"title":"服务端过滤","content":"<p>配置 remote-filter 开启服务端过滤，服务端过滤会调用表格 fetch-data 进行查询，filter-change 服务端过滤后触发的事件\n该示例中的 <code>services/getGridMockData</code> 服务需要自行实现，示例模拟了远程服务返回的数据\n</p>\n","link":"grid/filter/server-filter","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"filter-server-filter"},{"title":"输入过滤的默认选项","content":"<p>通过属性 <code>inputFilter.relation</code> 配置输入过滤的默认选项。\n输入过滤的内置选项：<code>equals</code>，<code>unequal</code>，<code>greaterThan</code>，<code>lessThan</code>，<code>equalToGreaterThan</code>，<code>equalToLessThan</code>，<code>contains</code>，<code>startwith</code>，<code>endwith</code>；也可以配置自定义选项。\n配置自定义选项的同时要配置过滤方法，通过属性 <code>inputFilter.method</code> 配置。</p>\n","link":"grid/filter/default-relation","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"filter-default-relation"}]
+[
+  {
+    "title": "过滤",
+    "content": "<div class=\"tip custom-block\"><p class=\"custom-block-title\">filter 配置</p>\n<p>通过自定义的 <code>filter</code> 的作用域插槽自定义筛选的规则\n可以配置项：\nmulti 设置在显示枚举选项功能是否为多选, 仅在 enumable:true 下有效。\nenumable 设置在过滤面板中显示枚举选项。\ninputFilter 设置在过滤面板中显示输入筛选的项。\ndefaultFilter 设置在过滤面板中显示默认的筛选条件。\nvalues 设置在显示枚举选项功能(enumable)下制定静态数据源。\nlabel 设置枚举数据的显示值属性字段， 默认'label'。\nvalue 设置枚举数据的实际值属性字段， 默认'value'。</p>\n</div>\n",
+    "link": "grid/filter/default-filter",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "filter-default-filter"
+  },
+  {
+    "title": "自定义参数",
+    "content": "<p>通过 <code>params</code> 添加自定义参数</p>\n",
+    "link": "grid/column/column-params",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "column-column-params"
+  },
+  {
+    "title": "过滤高级设置",
+    "content": "<p>通过 <code>inputFilter</code> 可以给input过滤区域配置自定义组件与条件，通过 <code>extends</code> 可以增加快捷过滤列表</p>\n",
+    "link": "grid/filter/advanced-filter",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "filter-advanced-filter"
+  },
+  {
+    "title": "设置列筛选规则",
+    "content": "<p>通过 <code>filter</code> 属性设置列筛选规则</p>\n",
+    "link": "grid/filter/custom-filter",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "filter-custom-filter"
+  },
+  {
+    "title": "自定义筛选",
+    "content": "<p>通过 <code>params</code> 属性设置额外的参数</p>\n",
+    "link": "grid/grid-params",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "grid-params"
+  },
+  {
+    "title": "服务端过滤",
+    "content": "<p>配置 remote-filter 开启服务端过滤，服务端过滤会调用表格 fetch-data 进行查询，filter-change 服务端过滤后触发的事件\n该示例中的 <code>services/getGridMockData</code> 服务需要自行实现，示例模拟了远程服务返回的数据\n</p>\n",
+    "link": "grid/filter/server-filter",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "filter-server-filter"
+  },
+  {
+    "title": "输入过滤的默认选项",
+    "content": "<p>通过属性 <code>inputFilter.relation</code> 配置输入过滤的默认选项。\n输入过滤的内置选项：<code>equals</code>，<code>unequal</code>，<code>greaterThan</code>，<code>lessThan</code>，<code>equalToGreaterThan</code>，<code>equalToLessThan</code>，<code>contains</code>，<code>startwith</code>，<code>endwith</code>；也可以配置自定义选项。\n配置自定义选项的同时要配置过滤方法，通过属性 <code>inputFilter.method</code> 配置。</p>\n",
+    "link": "grid/filter/default-relation",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "filter-default-relation"
+  }
+]

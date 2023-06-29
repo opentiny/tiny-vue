@@ -10,7 +10,13 @@
       @hide="hide"
     >
       <template #reference>
-        <span> {{ state.currentRole }}<component v-show="state.roleList.length > 1" :is="state.showIcon ? 'icon-chevron-down' : 'icon-chevron-up'" /> </span>
+        <span>
+          {{ state.currentRole }}
+          <component
+            v-show="state.roleList.length > 1"
+            :is="state.showIcon ? 'icon-chevron-down' : 'icon-chevron-up'"
+          />
+        </span>
       </template>
       <div class="tiny-roles tiny-roles__selector-body">
         <ul class="tiny-roles__poplist">
@@ -38,7 +44,7 @@ import Popover from '@opentiny/vue-popover'
 import { IconChevronDown, IconChevronUp } from '@opentiny/vue-icon'
 
 export default defineComponent({
-  props: [...props, 'fetchRole'],
+  props: [...props, 'fetchRole', 'getEnvInfoSync', 'getChangeRoleUrl', 'getCustomized', 'pushCustomized'],
   components: {
     TinyPopover: Popover,
     IconChevronDown: IconChevronDown(),

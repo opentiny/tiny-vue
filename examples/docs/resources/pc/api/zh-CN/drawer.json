@@ -1,0 +1,120 @@
+{
+  "attrs": [
+    {
+      "name": "visible",
+      "sample": "basic-usage",
+      "type": "Boolean",
+      "desc": "控制抽屉显示与关闭",
+      "defaultValue": ""
+    },
+    {
+      "name": "placement",
+      "sample": "placement",
+      "type": "String",
+      "desc": "添加 placement 属性设置抽屉的方向，可选值有 left|right|top|bottom",
+      "defaultValue": "right"
+    },
+    {
+      "name": "width",
+      "sample": "width",
+      "type": "String",
+      "desc": "设置抽屉的宽度",
+      "defaultValue": "500px"
+    },
+    {
+      "name": "dragable",
+      "sample": "dragable",
+      "type": "Boolean",
+      "desc": "控制抽屉开启或关闭宽度拖拽功能",
+      "defaultValue": "false"
+    },
+    {
+      "name": "mask",
+      "sample": "mask",
+      "type": "Boolean",
+      "desc": "控制遮罩层显示隐藏 ",
+      "defaultValue": "true"
+    },
+    {
+      "name": "mask-closable",
+      "sample": "mask-closable",
+      "type": "Boolean",
+      "desc": "默认弹窗打开后，可以单击遮罩层关闭弹窗，设置 mask-closable 为 false 后将禁用该功能",
+      "defaultValue": "true"
+    },
+    {
+      "name": "show-close",
+      "sample": "show-close",
+      "type": "Boolean",
+      "desc": "控制关闭图标显示",
+      "defaultValue": "true"
+    },
+    {
+      "name": "show-header",
+      "sample": "show-header",
+      "type": "Boolean",
+      "desc": "控制头部显示",
+      "defaultValue": "true"
+    },
+    {
+      "name": "show-footer",
+      "sample": "show-footer",
+      "type": "Boolean",
+      "desc": "控制底部显示",
+      "defaultValue": "false"
+    },
+    {
+      "name": "z-index",
+      "sample": "z-index",
+      "type": "Number",
+      "desc": "自定义堆叠顺序（对于某些特殊场景，比如被遮挡时可能会用到）",
+      "defaultValue": "该属性的默认值为 2000"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "default-slot",
+      "type": "",
+      "desc": "默认插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "header",
+      "sample": "header-slot",
+      "type": "",
+      "desc": "头部插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "header-right",
+      "sample": "header-right-slot",
+      "type": "",
+      "desc": "头部右侧插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer",
+      "sample": "footer-slot",
+      "type": "",
+      "desc": "底部插槽",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "close",
+      "sample": "close-event",
+      "type": "Function(params)",
+      "desc": "关闭抽屉事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "confirm",
+      "sample": "confirm-event",
+      "type": "Function(params)",
+      "desc": "确认事件，设置 :show-footer=\"true\" 时有效",
+      "defaultValue": ""
+    }
+  ]
+}

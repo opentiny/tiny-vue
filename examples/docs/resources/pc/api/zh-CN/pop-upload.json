@@ -128,7 +128,7 @@
     },
     {
       "name": "data",
-      "sample": "",
+      "sample": "data",
       "type": "Object",
       "desc": "上传时附带的额外参数",
       "defaultValue": ""

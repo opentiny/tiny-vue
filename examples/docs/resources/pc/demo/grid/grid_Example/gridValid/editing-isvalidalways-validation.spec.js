@@ -7,15 +7,14 @@ test('隐藏列编辑时校验', async ({ page }) => {
     .getByRole('row', {
       name: '1 华东区 福州 公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
     })
-    .getByRole('cell')
-    .nth(1)
-    .click()
+    .getByRole('textbox')
+    .clear()
   await page
     .getByRole('row', {
       name: '1 华东区 福州 公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
     })
     .getByRole('textbox')
-    .fill('')
+    .fill('GF')
 
-  await expect(page.getByRole('tooltip', { name: '名称必填' })).toBeVisible()
+  await expect(page.getByRole('tooltip', { name: '名称长度在 3 到 50 个字符' })).toBeVisible()
 })

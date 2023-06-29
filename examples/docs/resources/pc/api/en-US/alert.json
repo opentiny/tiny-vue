@@ -33,7 +33,7 @@
       "sample": "type",
       "type": "String",
       "desc": "Set the alarm type. The value of this attribute can be success / warning / info / error",
-      "defaultValue": "The default value of this attribute is info."
+      "defaultValue": "The default value of this attribute is success."
     },
     {
       "name": "description",
@@ -47,7 +47,7 @@
       "sample": "center",
       "type": "Boolean",
       "desc": "Whether the text is centered",
-      "defaultValue": "The default value of this attribute is true."
+      "defaultValue": "The default value of this attribute is false."
     },
     {
       "name": "close-text",
@@ -90,7 +90,7 @@
   "events": [
     {
       "name": "close",
-      "sample": "close",
+      "sample": "close-events",
       "type": "",
       "desc": "Event triggered when the alert function is disabled",
       "defaultValue": ""

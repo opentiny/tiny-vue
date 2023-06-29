@@ -23,6 +23,15 @@ export const getStatus = ({ state, t }) => (value) => {
   return status > 0 ? t('ui.steps.done') : status === 0 ? t('ui.steps.doing') : t('ui.steps.wait')
 }
 
+export const computedSpace = ({ props }) => {
+  const { space } = props
+  if (/^\d+$/.test(space)) {
+    return `${space}px`
+  }
+
+  return space
+}
+
 export const handleClick = ({ emit, state }) => ({ index, node }) => {
   if (!node.disabled) {
     emit('click', state.isReverse ? state.nodes.length - index - 1 : index, node)

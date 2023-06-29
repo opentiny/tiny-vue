@@ -5,7 +5,7 @@
 @ip-address-prefix-cls: ~'@{css-prefix}ip-address';
 
 .@{ip-address-prefix-cls} {
-  width: 270px;
+  @apply w-72;
   @apply ~"max-w-[100%]";
   @apply outline-0;
   @apply inline-table;
@@ -16,7 +16,7 @@
     @apply relative;
     @apply p-0;
     @apply w-full;
-    height: 30px;
+    @apply h-7;
     @apply border border-solid border-color-border;
     @apply text-color-text-primary;
     @apply rounded-sm;
@@ -75,7 +75,7 @@
         @apply outline-0;
         background: none;
         @apply text-color-text-primary;
-        width: ~'calc(100% - 12px)';
+        width: ~'calc(100% - theme(spacing.3))';
         @apply float-left;
         @apply h-7;
         @apply leading-7;

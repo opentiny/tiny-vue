@@ -29,31 +29,11 @@
   font-family: var(--ti-grid-font-family);
   background-color: var(--ti-grid-light-color);
 
-  // 显示表头
-  &.show__head {
-    .@{grid-prefix-cls}__fixed-left-wrapper,
-    .@{grid-prefix-cls}__fixed-right-wrapper {
-      .@{grid-prefix-cls}__body-wrapper {
-        &:before {
-          display: none;
-        }
-      }
-    }
-  }
-
   // 显示表尾
   &.show__foot {
     &.scroll__x {
       .@{grid-prefix-cls}__body-wrapper {
         overflow-x: auto;
-      }
-    }
-    &.scroll__y {
-      .@{grid-prefix-cls}__body-wrapper {
-        &.fixed-left__wrapper,
-        &.fixed-right__wrapper {
-          padding-bottom: 12px;
-        }
       }
     }
   }
@@ -75,9 +55,7 @@
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
      
-      &:not(.col__ellipsis) {
-        .DefaultTdPadding();
-      }
+      .DefaultTdPadding();
     }
 
     // 表格主体部分和表位单元格高度
@@ -119,9 +97,7 @@
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
 
-      &:not(.col__ellipsis) {
-        .DefaultTdPadding();
-      }
+      .DefaultTdPadding();
     }
 
     .@{grid-prefix-cls}-body__column,
@@ -161,9 +137,7 @@
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
       
-      &:not(.col__ellipsis) {
-        .DefaultTdPadding();
-      }
+      .DefaultTdPadding();
     }
 
     .@{grid-prefix-cls}-body__column,
@@ -200,47 +174,49 @@
 
   // 冻结列，采用sticky布局代替多表格渲染，至少少渲染一半的dom元素
   .fixed__column {
-    position: sticky;
+    position: sticky !important;
     z-index: 1;
     background-color: var(--ti-grid-light-color);
+
+    &.fixed-left-last__column:after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: -1px;
+      width: 30px;
+      transform: translate(100%);
+      transition: box-shadow .3s;
+      content: '';
+      pointer-events: none;
+    }
+
+    &.fixed-right-first__column:after {
+      position: absolute;
+      top: 0;
+      bottom: -1px;
+      left: 0;
+      width: 30px;
+      transform: translate(-100%);
+      transition: box-shadow .3s;
+      content: '';
+      pointer-events: none;
+    }
+
   }
 
-  th.fixed__column{
+  th.fixed__column {
     background-color: var(--ti-grid-header-background-color);
   }
 
-  .fixed__column.fixed-left-last__column:after{
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: -1px;
-    width: 30px;
-    transform: translate(100%);
-    transition: box-shadow .3s;
-    content: "";
-    pointer-events: none;
-  }
 
-  .fixed__column.fixed-right-first__column:after{
-    position: absolute;
-    top: 0;
-    bottom: -1px;
-    left: 0;
-    width: 30px;
-    transform: translate(-100%);
-    transition: box-shadow .3s;
-    content: "";
-    pointer-events: none;
-  }
-
-  &-fixed__left{
-    .fixed__column.fixed-left-last__column:after{
+  &-fixed__left {
+    .fixed__column.fixed-left-last__column:after {
       box-shadow: inset 10px 0 8px -8px #00000026;
     }
   }
 
-  &-fixed__right{
-    .fixed__column.fixed-right-first__column:after{
+  &-fixed__right {
+    .fixed__column.fixed-right-first__column:after {
       box-shadow: inset -10px 0 8px -8px #00000026;
     }
   }
@@ -310,6 +286,7 @@
 
     &:before {
       top: 0;
+      z-index: 2;
       border-top: 1px solid var(--ti-grid-border-color);
     }
 
@@ -343,24 +320,10 @@
       border: none;
     }
 
-    .@{grid-prefix-cls}__fixed-left-wrapper {
-      .@{grid-prefix-cls}-body__column {
-        border-right-color: var(--ti-grid-border-color);
-      }
-    }
-
-    .@{grid-prefix-cls}__body-wrapper,
-    .@{grid-prefix-cls}__fixed-left-body-wrapper,
-    .@{grid-prefix-cls}__fixed-right-body-wrapper {
+    .@{grid-prefix-cls}__body-wrapper {
       border-bottom: none;
     }
 
-    .@{grid-prefix-cls}__fixed-left-wrapper,
-    .@{grid-prefix-cls}__fixed-right-wrapper {
-      &::before {
-        border-top-width: 1px;
-      }
-    }
 
     .@{grid-prefix-cls}__border-line {
       &:before,
@@ -416,6 +379,7 @@
     }
   }
 
+  // 表头和表尾影藏滚动条
   & &__header-wrapper,
   & &__footer-wrapper {
     overflow-x: hidden;
@@ -423,7 +387,7 @@
   }
 
   & &__footer-wrapper {
-    border: 1px solid var(--ti-grid-border-color);
+    border-top: 1px solid var(--ti-grid-border-color);
     border-bottom: none;
     overflow: hidden !important;
 
@@ -435,78 +399,13 @@
     }
   }
 
-  // 冻结列样式
-  & &__fixed-left-wrapper,
-  & &__fixed-right-wrapper {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    z-index: 1;
-    overflow: hidden;
-    background-color: var(--ti-grid-light-color);
-
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 0;
-      border-top: 0px solid var(--ti-grid-border-color);
-      z-index: 1;
-    }
-
-    .@{grid-prefix-cls}__body-wrapper {
-      overflow-x: hidden;
-      border-bottom: none;
-    }
-  }
-
-  & &__fixed-left-wrapper {
-    left: 0;
-    width: 200px;
-    border-right: 0px solid var(--ti-grid-border-color);
-
-    &.scrolling__middle {
-      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.12);
-    }
-  }
-
-  & &__fixed-right-wrapper {
-    right: 0;
-
-    &.scrolling__middle {
-      box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.12);
-    }
-  }
-
   & &__header-wrapper,
   & &__body-wrapper,
   & &__footer-wrapper {
     position: relative;
-
-    &.fixed-left__wrapper,
-    &.fixed-right__wrapper {
-      position: absolute;
-      top: 0;
-    }
-
-    &.fixed-left__wrapper {
-      left: 0;
-    }
-
-    &.fixed-right__wrapper {
-      right: 0;
-      overflow-y: auto;
-    }
   }
 
-  & &__header-wrapper {
-    &.fixed-right__wrapper {
-      -ms-overflow-style: none;
-    }
-  }
-
+  // 列宽度调整线
   &&-cell__resize {
     * {
       cursor: col-resize;
@@ -538,9 +437,7 @@
     // 默认文字居左对齐
     text-align: left;
 
-    &:not(.col__ellipsis) {
-      .DefaultTdPadding();
-    }
+    .DefaultTdPadding();
 
     // 当前选中列
     &.col__current {
@@ -636,6 +533,19 @@
     }
   }
 
+  & &-header__column:not(.col__selection) {
+    .@{grid-cell-prefix-cls} {
+      display: flex;
+      align-items: center;
+    }
+  
+    &.col__ellipsis {
+      .@{grid-cell-prefix-cls}-text {
+        .TextEllipsis();
+      }
+    }
+  }
+
   & &-body__x-space {
     width: 100%;
     height: 1px;
@@ -649,29 +559,7 @@
 
   // 排序
   & &-sort-wrapper {
-    position: absolute;
-    right: 4px;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    text-align: center;
-    width: 20px;
-    height: 28px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      top: 4px;
-      margin: 0;
-    }
-
-    .@{grid-prefix-cls}-icon__caret-top {
-      &:before {
-        bottom: 0.1em;
-      }
-    }
+    padding-left: 4px;
 
     .@{grid-prefix-cls}-sort__btn {
       display: block;
@@ -722,13 +610,14 @@
 
     &.is__active {
       .@{grid-prefix-cls}-tree__node-btn {
-        transform: rotate(180deg);
+        transform: rotate(0);
       }
     }
 
     .@{grid-prefix-cls}-tree__node-btn {
       font-size: var(--ti-grid-font-size);
       border-color: var(--ti-grid-tree-icon-color);
+      transform: rotate(-90deg);
 
       &:hover {
         border-color: var(--ti-grid-tree-icon-hover-color);
@@ -767,76 +656,6 @@
 
   & &-body__expanded-cell {
     padding: 20px;
-  }
-
-  // 可编辑表格样式
-  &&-editable {
-    .@{grid-prefix-cls}-body__column {
-      line-height: inherit;
-    }
-
-    &.size__medium {
-      .@{grid-prefix-cls}-body__column {
-        .MediumColumnHeight();
-      }
-    }
-
-    &.size__small {
-      .@{grid-prefix-cls}-body__column {
-        .SmallColumnHeight();
-      }
-    }
-
-    &.size__mini {
-      .@{grid-prefix-cls}-body__column {
-        .MiniColumnHeight();
-      }
-    }
-  }
-
-  // 溢出列
-  & &-header__column,
-  & &-body__column,
-  & &-footer__column {
-    &.col__ellipsis {
-      line-height: inherit;
-
-      .@{grid-cell-prefix-cls}__ellipsis,
-      .@{grid-cell-prefix-cls}__tooltip,
-      .@{grid-cell-prefix-cls}__title {
-        padding: 0 var(--ti-grid-td-padding-horizontal);
-      }
-    }
-  }
-
-  &.size__medium {
-    .@{grid-prefix-cls}-header__column,
-    .@{grid-prefix-cls}-body__column,
-    .@{grid-prefix-cls}-footer__column {
-      &.col__ellipsis {
-        .MediumColumnHeight();
-      }
-    }
-  }
-
-  &.size__small {
-    .@{grid-prefix-cls}-header__column,
-    .@{grid-prefix-cls}-body__column,
-    .@{grid-prefix-cls}-footer__column {
-      &.col__ellipsis {
-        .SmallColumnHeight();
-      }
-    }
-  }
-
-  &.size__mini {
-    .@{grid-prefix-cls}-header__column,
-    .@{grid-prefix-cls}-body__column,
-    .@{grid-prefix-cls}-footer__column {
-      &.col__ellipsis {
-        .MiniColumnHeight();
-      }
-    }
   }
 
   // 表格loading
@@ -1132,13 +951,6 @@
     th.col__gutter {
       width: 0;
     }
-
-    // 配置表头排序且文本超出省略号显示，排序图标遮挡文字问题
-    .@{grid-prefix-cls}-header__column.col__ellipsis.is__sortable {
-      .@{grid-cell-prefix-cls} {
-        padding-right: 28px;
-      }
-    }
   }
 
   & &__selected-box-outer {
@@ -1234,7 +1046,7 @@
 }
 
 // 表格全屏样式
-&.@{css-prefix}fullscreen-full {
+.@{css-prefix}fullscreen-full {
   z-index: 1000;
   position: fixed;
   overflow: auto;
