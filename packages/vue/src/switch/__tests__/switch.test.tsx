@@ -29,4 +29,8 @@ describe('PC Mode', () => {
     await nextTick()
     expect(handleClick).toHaveBeenCalled()
   })
+
+  test.todo('base 基本用法')
+  test.todo('true-value & false-value 自定义开关取值')
+  test.todo('disable 禁用状态')
 })

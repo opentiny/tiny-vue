@@ -50,7 +50,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style>
 code {
   padding: 4px;
   background-color: var(--lightless);

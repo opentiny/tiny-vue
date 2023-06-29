@@ -42,6 +42,7 @@
     "// ----------------------辅助脚本---------------------- ": "",
     "create:ui": "esno src/commands/create/create-ui.ts",
     "sync-icons": "esno src/commands/create/sync-icons.ts",
+    "create:icon-saas": "esno src/index.ts create:icon-saas",
     "clean:build": "esno src/commands/clean.ts",
     "create:mapping": "esno src/commands/create/create-mapping.ts"
   },

@@ -62,10 +62,20 @@ export default defineComponent({
       type: Boolean,
       default: true
     },
-    size: String
+    size: String,
+    shape: String,
+    label: String,
+    tip: String,
+    displayOnly: {
+      type: Boolean,
+      default: false
+    },
+    hoverExpand: {
+      type: Boolean,
+      default: false
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

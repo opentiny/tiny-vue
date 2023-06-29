@@ -67,9 +67,13 @@
   }
 
   &--medium &__content {
+    line-height: var(--ti-form-item-medium-line-height);
     .@{css-prefix}checkbox,
     .@{css-prefix}radio {
       line-height: var(--ti-form-item-input-medium-height);
+    }
+    .@{css-prefix}checkbox-group {
+      min-height: var(--ti-form-item-input-medium-height);
     }
 
     .@{input-prefix-cls} .@{input-prefix-cls}__inner {
@@ -79,9 +83,13 @@
   }
 
   &--small &__content {
+    line-height: var(--ti-form-item-small-line-height);
     .@{css-prefix}checkbox,
     .@{css-prefix}radio {
       line-height: var(--ti-form-item-input-small-height);
+    }
+    .@{css-prefix}checkbox-group {
+      min-height: var(--ti-form-item-input-small-height);
     }
 
     .@{input-prefix-cls} .@{input-prefix-cls}__inner {
@@ -91,9 +99,13 @@
   }
 
   &--mini &__content {
+    line-height: var(--ti-form-item-mini-line-height);
     .@{css-prefix}checkbox,
     .@{css-prefix}radio {
       line-height: var(--ti-form-item-input-mini-height);
+    }
+    .@{css-prefix}checkbox-group {
+      min-height: var(--ti-form-item-input-mini-height);
     }
 
     .@{input-prefix-cls} .@{input-prefix-cls}__inner {
@@ -133,6 +145,7 @@
   &__content {
     position: relative;
     font-size: var(--ti-form-item-label-font-size);
+    line-height: var(--ti-form-item-label-line-height);
     .clearfix();
 
     .@{input-prefix-cls} {
@@ -156,7 +169,11 @@
 
     .@{css-prefix}checkbox,
     .@{css-prefix}radio {
+      vertical-align: middle;
       line-height: 30px;
+    }
+    .@{css-prefix}checkbox-group {
+      min-height: var(--ti-form-item-label-line-height);
     }
 
     .@{numeric-prefix-cls},
@@ -223,7 +240,8 @@
 
     .@{numeric-prefix-cls}__input-inner,
     .@{numeric-prefix-cls}__input-inner:focus {
-      border-color: #f5222d;
+      border-color: var(--ti-form-item-error-border-color);
+      background-color: var(--ti-form-item-error-bg-color);
     }
   }
 

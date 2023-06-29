@@ -19,14 +19,13 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 .custom {
   position: static;
   width: 200px;
   background-color: rgb(222, 184, 135);
-
-  & li:hover a {
-    color: #fff;
-  }
+}
+.custom li:hover a {
+  color: #fff;
 }
 </style>

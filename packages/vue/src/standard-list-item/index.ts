@@ -1,11 +1,12 @@
 import StandardListItem from './src/mobile-first.vue'
+import { version } from './package.json'
 
 /* istanbul ignore next */
 StandardListItem.install = function (Vue) {
   Vue.component(StandardListItem.name, StandardListItem)
 }
 
-StandardListItem.version = process.env.COMPONENT_VERSION
+StandardListItem.version = version
 
 /* istanbul ignore next */
 if (process.env.BUILD_TARGET === 'runtime') {

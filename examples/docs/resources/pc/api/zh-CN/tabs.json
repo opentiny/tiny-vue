@@ -104,7 +104,7 @@
       "name": "title",
       "sample": "custom-tab-title",
       "type": "",
-      "desc": "自定义titl内容",
+      "desc": "自定义title内容",
       "defaultValue": ""
     },
     {

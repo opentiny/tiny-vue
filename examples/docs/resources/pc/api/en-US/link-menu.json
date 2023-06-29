@@ -22,7 +22,7 @@
       "defaultValue": ""
     },
     {
-      "name": "titile",
+      "name": "title",
       "sample": "data-resource",
       "type": "String",
       "desc": "Set the title of the favorites menu. The default value is null.",

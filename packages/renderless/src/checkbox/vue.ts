@@ -12,6 +12,7 @@
 
 import {
   addToStore,
+  removeFromStore,
   handleChange,
   computedGetModelGet,
   computedGetModelSet,
@@ -20,23 +21,25 @@ import {
   computedStore,
   computedIsLimitDisabled,
   computedIsDisabled,
+  computedIsDisplayOnly,
+  computedIsGroupDisplayOnly,
   computedFormItemSize,
   computedCheckboxSize,
   mounted,
   toggleEvent,
   dispatchDisplayedValue,
-  getDisplayedValue,
-  computedIsDisplayOnly,
-  computedIsGroupDisplayOnly
+  getDisplayedValue
 } from './index'
 
-export const api = ['state', 'handleChange']
+export const api = ['state', 'handleChange', 'computedStore']
 
-export const renderless = (props, { computed, onMounted, onBeforeUnmount, reactive, watch, inject }, {vm, parent, emit, constants, nextTick, dispatch }) => {
-  parent.tinyForm = parent.tinyForm || inject('form', null)
-  const api = { dispatch }
+const initState = ({ reactive, computed, parent, api, inject, props }) => {
   const state = reactive({
-    ...{ focus: false, selfModel: false, isLimitExceeded: false },
+    size: props.size || inject('size', null),
+    vertical: inject('vertical', null),
+    focus: false,
+    selfModel: false,
+    isLimitExceeded: false,
     store: computed(() => api.computedStore()),
     isGroup: computed(() => api.computedIsGroup()),
     isChecked: computed(() => api.computedIsChecked()),
@@ -47,11 +50,20 @@ export const renderless = (props, { computed, onMounted, onBeforeUnmount, reacti
     formDisplayOnly: computed(() => (parent.tinyForm || {}).displayOnly),
     isDisplayOnly: computed(() => api.computedIsDisplayOnly()),
     isGroupDisplayOnly: computed(() => api.computedIsGroupDisplayOnly()),
-    model: computed({ get: () => api.computedGetModelGet(), set: (value) => api.computedGetModelSet(value) })
+    model: computed({
+      get: () => api.computedGetModelGet(),
+      set: (value) => api.computedGetModelSet(value)
+    })
   })
+
+  return state
+}
+
+const initApi = ({ vm, api, state, dispatch, props, parent, constants, formItemSize, emit, nextTick }) => {
   Object.assign(api, {
     state,
     addToStore: addToStore({ state, props }),
+    removeFromStore: removeFromStore({ state, props }),
     computedStore: computedStore({ state, props }),
     computedFormItemSize: computedFormItemSize(props),
     computedIsChecked: computedIsChecked({ state, props }),
@@ -61,16 +73,27 @@ export const renderless = (props, { computed, onMounted, onBeforeUnmount, reacti
     computedIsGroupDisplayOnly: computedIsGroupDisplayOnly({ state }),
     computedGetModelGet: computedGetModelGet({ state, props }),
     computedIsGroup: computedIsGroup({ state, parent, constants }),
-    computedGetModelSet: computedGetModelSet({ state, dispatch, emit, constants })
-  })
-  const formItemSize = computed(() => api.computedFormItemSize())
-  api.computedCheckboxSize = computedCheckboxSize({ state, props, formItemSize })
-  Object.assign(api, {
+    computedCheckboxSize: computedCheckboxSize({ state, props, formItemSize }),
+    computedGetModelSet: computedGetModelSet({ state, dispatch, emit, constants }),
     mounted: mounted({ emit, props, api, parent }),
-    handleChange: handleChange({ state, props, emit, nextTick, dispatch: api.dispatch, constants }),
+    handleChange: handleChange({ state, props, emit, nextTick, dispatch, constants }),
     dispatchDisplayedValue: dispatchDisplayedValue({ state, api, dispatch }),
     getDisplayedValue: getDisplayedValue({ state, props, vm })
   })
+}
+
+export const renderless = (
+  props,
+  { computed, onMounted, onBeforeUnmount, reactive, watch, inject },
+  { vm, parent, emit, constants, nextTick, dispatch }
+) => {
+  const api = { dispatch }
+  const formItemSize = computed(() => api.computedFormItemSize())
+  const state = initState({ reactive, computed, parent, api, inject, props })
+
+  parent.tinyForm = parent.tinyForm || inject('form', null)
+
+  initApi({ vm, api, state, dispatch, props, parent, constants, formItemSize, emit, nextTick })
 
   watch(
     () => props.modelValue,
@@ -78,6 +101,13 @@ export const renderless = (props, { computed, onMounted, onBeforeUnmount, reacti
   )
 
   watch(() => state.isDisplayOnly, api.dispatchDisplayedValue)
+
+  watch(
+    () => props.checked,
+    (value) => {
+      value ? api.addToStore() : api.removeFromStore()
+    }
+  )
 
   onBeforeUnmount(() => {
     toggleEvent({ parent, props, type: 'remove' })

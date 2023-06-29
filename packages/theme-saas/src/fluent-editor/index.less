@@ -43,12 +43,12 @@
           &::after {
             @apply content-[''];
             @apply absolute;
-            width: 14px;
+            @apply ~"w-3.5";
             @apply ~'h-3.5';
             @apply right-2;
             top: calc(50% + 1px);
             @apply ~"-translate-y-2/4";
-            background: url(../svgs/chevron-down.svg) no-repeat center/100%;
+            background: url(../images/chevron-down.svg) no-repeat center/100%;
           }
         }
 
@@ -217,7 +217,7 @@
           &::after {
             @apply content-[''];
             @apply absolute;
-            width: 14px;
+            @apply ~"w-3.5";
             @apply ~'h-3.5';
             @apply right-0;
             top: calc(50% + 1px);
@@ -227,13 +227,13 @@
 
         .icon-share {
           &::after {
-            background: url(../svgs/share-arrow.svg) no-repeat center/100%;
+            background: url(../images/share-arrow.svg) no-repeat center/100%;
           }
         }
 
         .icon-delete {
           &::after {
-            background: url(../svgs/del.svg) no-repeat center/100%;
+            background: url(../images/del.svg) no-repeat center/100%;
           }
         }
       }

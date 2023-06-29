@@ -42,13 +42,15 @@ const processTrigger = ({ api, state, props, nextTick }) => {
 }
 
 /* istanbul ignore next */
-export const mounted = ({ api, state, constants, props, nextTick }) => () => {
+export const mounted = ({ api, state, constants, props, nextTick, mode }) => () => {
   state.mounted = true
 
   const { referenceElm, popperElm, tooltipId } = state
 
   if (referenceElm) {
-    addClass(referenceElm, `${constants.IDPREFIX}__reference`)
+    if (mode !== 'mobile-first') {
+      addClass(referenceElm, `${constants.IDPREFIX}__reference`)
+    }
 
     referenceElm.setAttribute('aria-describedby', tooltipId)
     referenceElm.setAttribute('tabindex', props.tabindex)
@@ -185,18 +187,26 @@ export const cleanup = ({ props, state }) => () => {
 
 /* istanbul ignore next */
 export const destroyed = ({ state, api }) => () => {
-  const reference = state.referenceElm
+  const { referenceElm, popperElm } = state
 
-  off(reference, 'click', api.doToggle)
-  off(reference, 'mouseup', api.doClose)
-  off(reference, 'mousedown', api.doShow)
-  off(reference, 'focusin', api.doShow)
-  off(reference, 'focusout', api.doClose)
-  off(reference, 'mousedown', api.doShow)
-  off(reference, 'mouseup', api.doClose)
-  off(reference, 'mouseleave', api.handleMouseLeave)
-  off(reference, 'mouseenter', api.handleMouseEnter)
+  // 原来
+  off(referenceElm, 'click', api.doToggle)
+  off(referenceElm, 'mouseup', api.doClose)
+  off(referenceElm, 'mousedown', api.doShow)
+  off(referenceElm, 'focusin', api.doShow)
+  off(referenceElm, 'focusout', api.doClose)
+  off(referenceElm, 'mouseleave', api.handleMouseLeave)
+  off(referenceElm, 'mouseenter', api.handleMouseEnter)
   off(document, 'click', api.handleDocumentClick)
+
+  // 同步补充
+  off(popperElm, 'focusin', api.handleFocus) //
+  off(popperElm, 'focusout', api.handleBlur)
+  off(popperElm, 'mouseenter', api.handleMouseEnter)
+  off(popperElm, 'mouseleave', api.handleMouseLeave)
+  off(referenceElm, 'click', api.handleClick)
+  off(referenceElm, 'focusout', api.handleBlur)
+  off(referenceElm, 'keydown', api.handleKeydown)
 }
 
 export const computedTooltipId = (constants) => () => `${constants.IDPREFIX}-${guid('', 4)}`
@@ -221,4 +231,3 @@ export const observeCallback = ({ state, vm }) => (mutationsList) => {
     }
   }
 }
-

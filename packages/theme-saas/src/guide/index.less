@@ -3,37 +3,70 @@
 @guide-prefix-cls: ~'@{css-prefix}guide';
 .@{guide-prefix-cls} {
   .shepherd-arrow {
-    @apply h-4 absolute w-4 -z-10;
+    height: 16px;
+    position: absolute;
+    width: 16px;
+    z-index: -10;
 
     &:before {
-      @apply w-4 absolute h-4  bg-color-bg-1 rotate-45 -z-10;
+      width: 16px;
+      position: absolute;
+      height: 16px;
+      background-color: #fff;
+      transform: rotate(45deg);
+      z-index: -10;
       content: '';
     }
   }
 
-  .@{guide-prefix-cls}__z-top {
-    @apply relative bg-color-bg-1;
-    z-index: 9999;
-  }
-
   .shepherd-content {
-    @apply w-full rounded p-0;
+    width: 100%;
+    border-radius: 4px;
+    padding: 0;
     outline: none;
 
     .shepherd-header {
-      @apply items-center rounded-t flex justify-end leading-8 px-6 pt-6 bg-color-bg-1;
+      align-items: center;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      display: flex;
+      justify-content: flex-end;
+      line-height: 32px;
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-top: 24px;
+      background-color: #fff;
 
       .shepherd-title {
-        @apply text-lg text-color-icon-primary leading-5 font-bold flex m-0 p-0 grow shrink-0 basis-auto;
+        font-size: 18px;
+        color: #333d48;
+        line-height: 20px;
+        font-weight: 700;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        flex: 1 0 auto;
         font-family: PingFangSC;
       }
 
       .shepherd-cancel-icon {
-        @apply flex bg-transparent border-none cursor-pointer m-0 p-0;
+        display: flex;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
         transition: color 0.5s ease;
 
         span {
-          @apply text-3xl w-5 h-5 leading-5 text-color-icon-primary inline-flex justify-center font-light;
+          font-size: 30px;
+          width: 20px;
+          height: 20px;
+          line-height: 20px;
+          color: #333d48;
+          display: inline-flex;
+          justify-content: center;
+          font-weight: 300;
           transform: rotate(-360deg);
           margin-top: -6px;
         }
@@ -43,100 +76,152 @@
         }
       }
     }
+
     .shepherd-text {
-      @apply leading-5 text-color-icon-primary text-sm;
+      line-height: 20px;
+      color: #333d48;
+      font-size: 14px;
       padding: 24px 24px 22px;
 
       .scrollBox {
-        @apply w-full overflow-auto text-justify pr-2;
+        width: 100%;
+        overflow: auto;
+        text-align: justify;
+        padding-right: 8px;
 
         &::-webkit-scrollbar {
-          @apply w-1 h-10;
+          width: 4px;
+          height: 40px;
         }
 
         &::-webkit-scrollbar-thumb {
-          @apply w-1 h-10 rounded-sm bg-clip-padding;
+          width: 4px;
+          height: 40px;
+          border-radius: 2px;
+          background-clip: padding-box;
           border: 4px solid rgba(57, 57, 57, 0.3);
         }
       }
 
       p {
-        @apply mt-0;
-
+        margin-top: 0;
         &:last-child {
-          @apply mb-0;
+          margin-bottom: 0;
         }
       }
     }
 
     .shepherd-footer {
-      @apply rounded-b flex justify-end pt-0 px-6 pb-6 items-center relative;
+      border-bottom-right-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 0;
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-bottom: 24px;
+      align-items: center;
+      position: relative;
 
       &.shepherd-button:last-child {
-        @apply mr-0;
+        margin-right: 0;
       }
 
       .progress-style {
-        @apply absolute left-6 text-sm text-color-text-primary font-normal;
+        position: absolute;
+        left: 24px;
+        font-size: 14px;
+        color: #161e26;
+        font-weight: 400;
         font-family: PingFangSC;
       }
 
       .shepherd-button {
-        @apply text-white bg-color-brand cursor-pointer rounded border-0 w-24 h-8 ml-2;
+        color: #fff;
+        background-color: #0067d1;
+        cursor: pointer;
+        border-radius: 4px;
+        border: 0;
+        width: 96px;
+        height: 32px;
+        margin-left: 8px;
         transition: all 0.5s ease;
 
         &:hover {
-          @apply bg-color-brand-hover;
+          background-color: #0072e8;
         }
 
         &:focus {
-          @apply bg-color-brand-focus;
+          background-color: #0067d1;
         }
 
         &:active {
-          @apply bg-color-brand-active;
+          background-color: #005bba;
         }
 
         &:disabled {
-          @apply bg-color-brand-disabled text-color-bg-1 cursor-not-allowed;
+          background-color: rgba(0, 103, 209, 0.3);
+          color: #fff;
+          cursor: not-allowed;
         }
 
         &.shepherd-button-secondary {
-          @apply text-color-text-primary rounded text-xs text-center leading-3 font-normal ml-2 border-color-border bg-color-bg-1;
-          @apply border-x border-y border-solid;
+          color: #161e26;
+          border-radius: 4px;
+          font-size: 12px;
+          text-align: center;
+          line-height: 12px;
+          font-weight: 400px;
+          margin-left: 8px;
+          border-color: rgba(22, 30, 38, 0.2);
+          background-color: #fff;
+          border-left-width: 1px;
+          border-right-width: 1px;
+          border-top-width: 1px;
+          border-bottom-width: 1px;
+          border-style: solid;
 
           &:hover {
-            @apply border-color-border-hover;
+            border-color: #161e26;
           }
 
           &:active {
-            @apply border-color-brand-active;
+            border-color: #005bba;
           }
 
           &:focus {
-            @apply border-color-text-primary;
+            border-color: #161e26;
           }
 
           &:disabled {
-            @apply bg-color-bg-4 cursor-not-allowed border-color-bg-3 text-color-text-disabled;
+            background-color: rgba(22, 30, 38, 0.05);
+            cursor: not-allowed;
+            border-color: rgba(22, 30, 38, 0.1);
+            color: rgba(22, 30, 38, 0.3);
           }
         }
       }
     }
   }
-
   &.only-content {
     .shepherd-header {
-      @apply pt-0;
+      padding-top: 0px;
 
       .shepherd-cancel-icon {
-        @apply absolute top-6;
+        position: absolute;
+        top: 24px;
       }
     }
 
     .shepherd-text {
       padding-right: 52px;
     }
+  }
+
+  .@{guide-prefix-cls}__z-top {
+    z-index: 9999;
+    position: relative;
+    background-color: #fff;
   }
 
   &.shepherd-has-title {
@@ -153,70 +238,88 @@
 
   &.shepherd-element.shepherd-has-title[data-popper-placement^='bottom'] {
     & > .shepherd-arrow:before {
-      @apply bg-color-bg-1;
+      background-color: #fff;
     }
   }
 
   &.shepherd-element {
-    @apply h-auto shadow-xl rounded bg-color-bg-1 opacity-0 invisible;
+    height: auto;
+    box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.16);
+    background-color: #fff;
+    opacity: 0;
+    visibility: hidden;
     z-index: 9999;
     width: 510px;
     outline: none;
+    border-radius: 4px;
     transition: opacity 0.3s, visibility 0.3s;
   }
 
   &.shepherd-enabled.shepherd-element {
-    @apply opacity-100 visible;
+    opacity: 1;
+    visibility: visible;
   }
 
   &.shepherd-element[data-popper-reference-hidden]:not(.shepherd-centered) {
-    @apply opacity-0 pointer-events-none invisible;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
   }
 
   &.shepherd-element,
   &.shepherd-element *,
   &.shepherd-element :after,
   &.shepherd-element :before {
-    @apply box-border;
+    box-sizing: border-box;
   }
 
   &.shepherd-element[data-popper-placement^='top'] > .shepherd-arrow {
-    @apply -bottom-2;
+    bottom: -8px;
   }
 
   &.shepherd-element[data-popper-placement^='bottom'] > .shepherd-arrow {
-    @apply -top-2;
+    top: -8px;
   }
 
   &.shepherd-element[data-popper-placement^='left'] > .shepherd-arrow {
-    @apply -right-2;
+    right: -8px;
   }
 
   &.shepherd-element[data-popper-placement^='right'] > .shepherd-arrow {
-    @apply -left-2;
+    left: -8px;
   }
 
   &.shepherd-element.shepherd-centered > .shepherd-arrow {
-    @apply opacity-0;
+    opacity: 0;
   }
 
-  &.shepherd-element.shepherd-has-title[data-popper-placement^='bottom'] > .shepherd-arrow:before {
-    @apply bg-color-bg-1;
+  &.shepherd-element.shepherd-has-title[data-popper-placement^='bottom']
+    > .shepherd-arrow:before {
+    background-color: #fff;
   }
 
   &.shepherd-target-click-disabled.shepherd-enabled.shepherd-target,
   &.shepherd-target-click-disabled.shepherd-enabled.shepherd-target * {
-    @apply pointer-events-none;
+    pointer-events: none;
   }
 }
 
 .shepherd-modal-overlay-container {
-  @apply w-full h-full left-0 opacity-0 overflow-hidden pointer-events-none fixed top-0 right-0 bottom-0;
+  pointer-events: none;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  position: fixed;
   z-index: 9997;
+  top: 0;
   transition: all 0.3s ease-out, height 0ms 0.3s, opacity 0.3s 0ms;
 
   &.shepherd-modal-is-visible {
-    @apply opacity-50;
+    opacity: 0.5;
     transform: translateZ(0);
     transition: all 0.3s ease-out, height 0s 0s, opacity 0.3s 0s;
 
@@ -227,6 +330,7 @@
 }
 
 .@{guide-prefix-cls}__z-top {
-  @apply relative bg-color-bg-1;
   z-index: 9999;
+  position: relative;
+  background-color: #fff;
 }

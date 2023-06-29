@@ -3,8 +3,8 @@ import { test, expect } from '@playwright/test'
 test('图片大图', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('http://localhost:7130/pc/image/preview-src-list')
-  await page.getByRole('img').click()
-  const Image = page.getByRole('img').nth(1)
+  await page.locator('.tiny-image__inner').click()
+  const Image = page.locator('.tiny-image-viewer__img')
 
   // 点击缩小
   await page.locator('.icon').first().click()

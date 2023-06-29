@@ -76,15 +76,14 @@ export default {
 
 <style>
 .custom {
-  background: rgb(245, 236, 236);
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
   position: relative;
   font-size: 12px;
   text-align: center;
-  left: calc(50% - 10px);
-  top: -1px;
+  left: 0;
+  top: -2px;
   border-radius: 50%;
   color: #000;
   cursor: pointer;

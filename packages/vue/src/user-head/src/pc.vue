@@ -18,7 +18,10 @@
         <span v-if="type === 'label'" :style="state.fontSize" :title="state.internalValue">{{ state.label }}</span>
       </slot>
     </div>
-    <div v-if="messageTotal" :class="['tiny-user-head__message', { min, round, basic: messageType === 'basic' || messageType === 'icon' }]">
+    <div
+      v-if="messageTotal"
+      :class="['tiny-user-head__message', { min, round, basic: messageType === 'basic' || messageType === 'icon' }]"
+    >
       {{ state.message }}
     </div>
   </div>
@@ -34,7 +37,18 @@ export default defineComponent({
   components: {
     IconUser: iconUser()
   },
-  props: [...props, 'min', 'round', 'color', 'backgroundColor', 'type', 'modelValue', 'messageTotal', 'messageType', 'messageUpperLimit'],
+  props: [
+    ...props,
+    'min',
+    'round',
+    'color',
+    'backgroundColor',
+    'type',
+    'modelValue',
+    'messageTotal',
+    'messageType',
+    'messageUpperLimit'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

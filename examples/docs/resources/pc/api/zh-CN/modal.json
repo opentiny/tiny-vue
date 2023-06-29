@@ -57,7 +57,7 @@
       "defaultValue": "该属性的默认值为 true"
     },
     {
-      "name": "showFooter",
+      "name": "show-footer",
       "sample": "showFooter",
       "type": "Boolean",
       "desc": "是否显示底部",
@@ -148,7 +148,7 @@
       "defaultValue": "该属性的默认值为 15"
     },
     {
-      "name": "zIndex",
+      "name": "z-index",
       "sample": "zIndex",
       "type": "Number",
       "desc": "自定义堆叠顺序（对于某些特殊场景，比如被遮挡时可能会用到）",

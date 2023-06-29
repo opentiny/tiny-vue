@@ -10,6 +10,12 @@
 *
 */
 
+export const handleChange = ({ emit, state }) => () => {
+  if (!state.disabled) {
+    emit('change', state.value)
+  }
+}
+
 export const handleClick = ({ emit, props, state }) => (node) => {
   if (!state.disabled) {
     state.value = node[props.valueField]

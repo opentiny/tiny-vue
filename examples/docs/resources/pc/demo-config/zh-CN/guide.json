@@ -1,0 +1,98 @@
+[
+  {
+    "title": "基础用法",
+    "content": "详细用法参考如下示例",
+    "link": "guide/base",
+    "component": " Guide 引导",
+    "findIntroStr": "Guide 用户引导。",
+    "demoId": "base"
+  },
+  {
+    "title": "引导框箭头距离",
+    "content": "<p>通过 <code>pop-position</code> 属性设置箭头方向。<br>该属性的可选值为 <code>top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end</code> <br>若存在多个步骤，需要单独给每个步骤设置不同的展示位置，可以在 <code>dom-data</code> 里面添加 <code>popPosition</code> 属性并赋值，若存在单独设置的箭头方向，则会覆盖全局的箭头方向</p>\n",
+    "link": "guide/arror-position",
+    "component": " Guide 引导",
+    "findIntroStr": "Guide 用户引导。",
+    "demoId": "arror-position"
+  },
+  {
+    "title": "窗口的事件回调",
+    "content": "<p>窗口的事件回调<br>在 <code>dom-data<code> 中使用：<br> <code>beforeShow</code> ：展示前回调<br> <code>show</code> ：展示回调<br> <code>beforeHide</code> ：隐藏前回调<br> <code>hide</code> ：隐藏回调<br> <code>cancel</code> ：关闭取消回调<br> <code>complete</code> ：完成回调<br>  <code>destroy</code> ：销毁回调</p>",
+    "link": "guide/callback",
+    "component": " Guide 引导",
+    "findIntroStr": "Guide 用户引导。",
+    "demoId": "callback"
+  },
+  {
+    "title": "纯段落用户引导",
+    "content": "<p>通过添加 <code>only-content</code> 类名实现纯段落用户引导</p>\n",
+    "link": "guide/content-step",
+    "component": " Guide 引导",
+    "findIntroStr": "Guide 用户引导。",
+    "demoId": "content-step"
+  },
+  {
+    "title": "多步骤纯段落用户引导",
+    "content": "<p>通过添加 <code>only-content</code> 类名实现纯段落用户引导</p>\n",
+    "link": "guide/content-steps",
+    "component": " Guide 引导",
+    "findIntroStr": "Guide 用户引导。",
+    "demoId": "content-steps"
+  },
+  {
+    "title": "高亮多处",
+    "content": "<p>在 <code>dom-data</code> 里面通过 <code>hightBox</code>属性添加需要高亮的元素</p>\n",
+    "link": "guide/dom-hight",
+    "component": " Guide 引导",
+    "findIntroStr": "Guide 用户引导。",
+    "demoId": "dom-hight"
+  },
+  {
+    "title": "引导框主轴（纵轴）距离",
+    "content": "<p>通过设置 <code>main-axis</code> 大小来设置主轴（纵轴）距离</p>\n",
+    "link": "guide/guide-poistion-mainAxis",
+    "component": " Guide 引导",
+    "findIntroStr": "Guide 用户引导。",
+    "demoId": "guide-poistion-mainAxis"
+  },
+  {
+    "title": "引导框横轴距离",
+    "content": "<p>通过设置 <code>cross-axis</code> 大小来设置横轴距离</p>\n",
+    "link": "guide/guide-poistion-crossAxis",
+    "component": " Guide 引导",
+    "findIntroStr": "Guide 用户引导。",
+    "demoId": "guide-poistion-crossAxis"
+  },
+  {
+    "title": "引导框对齐轴距离",
+    "content": "<p>通过设置 <code>alignment-axis</code> 大小来设置对齐轴距离</p>\n",
+    "link": "guide/guide-poistion-alignmentAxis",
+    "component": " Guide 引导",
+    "findIntroStr": "Guide 用户引导。",
+    "demoId": "guide-poistion-alignmentAxis"
+  },
+  {
+    "title": "图文结合用户引导",
+    "content": "<p>可以在插槽里面添加任何 <code>html</code> 或通过 <code>dom-data</code> 里面的 <code>text</code> 属性实现图文结合用户引导</p>\n",
+    "link": "guide/image-text",
+    "component": " Guide 引导",
+    "findIntroStr": "Guide 用户引导。",
+    "demoId": "image-text"
+  },
+  {
+    "title": "自定义宽高",
+    "content": "<p>通过添加 <code>width</code>和 <code>height</code>来自定义宽高</p>\n",
+    "link": "guide/size",
+    "component": " Guide 引导",
+    "findIntroStr": "Guide 用户引导。",
+    "demoId": "size"
+  },
+  {
+    "title": "通过添加多个类名实现用户引导",
+    "content": "<p>详细用法参考如下示例</p>\n",
+    "link": "guide/title-steps",
+    "component": " Guide 引导",
+    "findIntroStr": "Guide 用户引导。",
+    "demoId": "title-steps"
+  }
+]

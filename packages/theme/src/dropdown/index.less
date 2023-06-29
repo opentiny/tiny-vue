@@ -38,15 +38,16 @@
     .@{svg-prefix-cls} {
       fill: var(--ti-dropdown-icon-color);
       font-size: var(--ti-dropdown-icon-size);
-      vertical-align:middle;
+      vertical-align: middle;
       margin-top: -4px;
     }
 
     &.@{css-prefix}button .@{svg-prefix-cls} {
       fill: var(--ti-dropdown-button-icon-color);
-      font-size:var(--ti-dropdown-button-icon-size)
+      font-size: var(--ti-dropdown-button-icon-size)
     }
-    &.@{css-prefix}button--default .@{svg-prefix-cls}{
+
+    &.@{css-prefix}button--default .@{svg-prefix-cls} {
       fill: var(--ti-button-normal-text-color);
     }
 
@@ -56,8 +57,10 @@
       .@{svg-prefix-cls} {
         fill: var(--ti-dropdown-icon-color-hover);
       }
+
       &[disabled] {
         color: var(--ti-dropdown-text-color-disabled);
+
         .@{svg-prefix-cls} {
           fill: var(--ti-dropdown-text-color-disabled);
         }
@@ -70,14 +73,15 @@
 
     .@{css-prefix}button {
       float: none;
-      &--medium{
-        & + .@{css-prefix}button.@{css-prefix}button--medium{
+
+      &--medium {
+        &+.@{css-prefix}button.@{css-prefix}button--medium {
           margin-left: 0;
         }
       }
 
-      &--small{
-        & + .@{css-prefix}button.@{css-prefix}button--small{
+      &--small {
+        &+.@{css-prefix}button.@{css-prefix}button--small {
           margin-left: 0;
         }
       }
@@ -95,7 +99,7 @@
     position: relative;
     border-left: none;
     min-width: var(--ti-dropdown-caret-button-min-width);
-   
+
     &:before {
       content: '';
       position: absolute;
@@ -136,6 +140,7 @@
   [disabled] {
     cursor: not-allowed;
     color: var(--ti-dropdown-text-color-disabled);
+
     svg {
       fill: var(--ti-dropdown-text-color-disabled);
     }

@@ -8,8 +8,8 @@
       "defaultValue": ""
     },
     {
-      "name": "dragable",
-      "sample": "dragable",
+      "name": "draggable",
+      "sample": "draggable",
       "type": "Boolean",
       "desc": "设置是否开启拖拽节点的功能，默认值为 `false`",
       "defaultValue": ""
@@ -51,7 +51,7 @@
     },
     {
       "name": "ellipsis",
-      "sample": "dragable",
+      "sample": "draggable",
       "type": "Boolean",
       "desc": "菜单内容超长时省略显示，默认为 false 。",
       "defaultValue": ""
@@ -162,7 +162,7 @@
       "name": "node-drop",
       "sample": "node-drop",
       "type": "Function(arg1,arg2)",
-      "desc": "拖放节点后的事件。开启 dragable 属性为 true 有效。;拖放节点后的事件。开启 dragable 属性为 true 有效。;//参数\narg1:Object 当前拖拽节点的数据信息对象\n arg2:Object 当前点击节点拖拽后的位置节点的数据信息对象\narg3: 拖拽的类型\narg4:event ",
+      "desc": "拖放节点后的事件。开启 draggable 属性为 true 有效。;拖放节点后的事件。开启 draggable 属性为 true 有效。;//参数\narg1:Object 当前拖拽节点的数据信息对象\n arg2:Object 当前点击节点拖拽后的位置节点的数据信息对象\narg3: 拖拽的类型\narg4:event ",
       "defaultValue": ""
     }
   ]

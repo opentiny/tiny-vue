@@ -11,6 +11,7 @@
 */
 
 import { on, off } from './dom'
+import { isBrowser } from '../browser'
 
 const MapShim = (function () {
   if (typeof Map !== 'undefined') {
@@ -95,8 +96,7 @@ const MapShim = (function () {
   })()
 })()
 
-const func = window.Function
-const isBrowser = window !== 'undefined' && document !== 'undefined' && window.document === document
+const func = isBrowser ? window.Function : global.Function
 
 const global$1 = (function () {
   const isMath = (val) => val.Math === Math

@@ -15,7 +15,7 @@ export default {
   },
   data() {
     return {
-      url: 'webnova/static/images/1.jpg'
+      url: '/static/images/1.jpg'
     }
   }
 }

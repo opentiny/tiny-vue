@@ -17,17 +17,6 @@
   font-family: Helvetica, Arial, 'Microsoft YaHei', sans-serif;
   @apply bg-color-bg-1;
 
-  &.show__head {
-    .@{grid-prefix-cls}__fixed-left-wrapper,
-    .@{grid-prefix-cls}__fixed-right-wrapper {
-      .@{grid-prefix-cls}__body-wrapper {
-        &:before {
-          @apply hidden;
-        }
-      }
-    }
-  }
-
   &.show__foot {
     &.scroll__x {
       .@{grid-prefix-cls}__body-wrapper {
@@ -173,8 +162,51 @@
     }
   }
 
+  // 冻结列，采用sticky布局代替多表格渲染，至少少渲染一半的dom元素
   .fixed__column {
-    @apply invisible;
+    position: sticky !important;
+    z-index: 1;
+    @apply bg-color-bg-1;
+
+    &.fixed-left-last__column:after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: -1px;
+      width: 30px;
+      transform: translate(100%);
+      transition: box-shadow 0.3s;
+      content: '';
+      pointer-events: none;
+    }
+
+    &.fixed-right-first__column:after {
+      position: absolute;
+      top: 0;
+      bottom: -1px;
+      left: 0;
+      width: 30px;
+      transform: translate(-100%);
+      transition: box-shadow 0.3s;
+      content: '';
+      pointer-events: none;
+    }
+  }
+
+  th.fixed__column {
+    @apply bg-color-bg-5;
+  }
+
+  &-fixed__left {
+    .fixed__column.fixed-left-last__column:after {
+      box-shadow: inset 10px 0 8px -8px #00000026;
+    }
+  }
+
+  &-fixed__right {
+    .fixed__column.fixed-right-first__column:after {
+      box-shadow: inset -10px 0 8px -8px #00000026;
+    }
   }
 
   table {
@@ -193,18 +225,18 @@
         }
 
         &.row__current {
-          @apply bg-color-bg-3;
+          @apply bg-color-brand-hover-subtle;
         }
       }
 
       &.row__selected {
         &:not(.row__hover) {
           &:nth-child(2n) {
-            background-color: rgba(0, 103, 209, 0.1);
+            @apply bg-color-brand-hover-subtle;
           }
 
           &:nth-child(2n + 1) {
-            background-color: rgba(0, 103, 209, 0.05);
+            @apply bg-color-brand-hover-subtler;
           }
         }
       }
@@ -255,23 +287,8 @@
       background-position: 100% 0, 100% 100%;
     }
 
-    .@{grid-prefix-cls}__fixed-left-wrapper {
-      .@{grid-prefix-cls}-body__column {
-        @apply border-r-color-border;
-      }
-    }
-
-    .@{grid-prefix-cls}__body-wrapper,
-    .@{grid-prefix-cls}__fixed-left-body-wrapper,
-    .@{grid-prefix-cls}__fixed-right-body-wrapper {
+    .@{grid-prefix-cls}__body-wrapper {
       border-bottom: none;
-    }
-
-    .@{grid-prefix-cls}__fixed-left-wrapper,
-    .@{grid-prefix-cls}__fixed-right-wrapper {
-      &::before {
-        @apply ~'border-t-[1px]';
-      }
     }
 
     .@{grid-prefix-cls}__border-line {
@@ -297,7 +314,77 @@
     }
   }
 
+  &&__group-saas {
+    .@{grid-prefix-cls}__header {
+      @apply relative;
+
+      &::before {
+        @apply ~"content-['']";
+        @apply absolute;
+        @apply top-0;
+        @apply w-0;
+        @apply h-full;
+        @apply ~"z-[1]";
+        @apply border-l;
+        @apply border-l-color-border;
+      }
+
+      &::after {
+        @apply ~"content-['']";
+        @apply absolute;
+        @apply top-0;
+        @apply w-full;
+        @apply h-0;
+        @apply ~"z-[1]";
+        @apply border-t;
+        @apply border-t-color-border;
+      }
+
+      .@{grid-header-prefix-cls}__row > .@{grid-header-prefix-cls}__column {
+        background-image: linear-gradient(
+            -90deg,
+            theme('colors.color.border.DEFAULT'),
+            theme('colors.color.border.DEFAULT')
+          ),
+          linear-gradient(-180deg, theme('colors.color.border.DEFAULT'), theme('colors.color.border.DEFAULT'));
+        @apply bg-no-repeat;
+
+        .is__line::before {
+          @apply bg-transparent;
+        }
+      }
+    }
+  }
+
   &&__border-vertical {
+    .@{grid-prefix-cls}__body {
+      @apply relative;
+
+      &::before {
+        @apply ~"content-['']";
+        @apply absolute;
+        @apply top-0;
+        @apply left-0;
+        @apply w-0;
+        @apply h-full;
+        @apply ~"z-[1]";
+        @apply border-l;
+        @apply border-l-color-border;
+      }
+
+      &::after {
+        @apply ~"content-['']";
+        @apply absolute;
+        @apply top-0;
+        @apply right-0;
+        @apply w-0;
+        @apply h-full;
+        @apply ~"z-[1]";
+        @apply border-r;
+        @apply border-r-color-border;
+      }
+    }
+
     .@{grid-prefix-cls}-body__column {
       @apply border-r border-r-color-border;
 
@@ -355,69 +442,10 @@
     }
   }
 
-  & &__fixed-left-wrapper,
-  & &__fixed-right-wrapper {
-    @apply w-full;
-    @apply absolute;
-    @apply top-0;
-    @apply ~'z-[1]';
-    @apply overflow-hidden;
-    @apply bg-color-bg-1;
-
-    &:before {
-      @apply content-[''];
-      @apply absolute;
-      @apply top-0;
-      @apply left-0;
-      @apply w-full;
-      @apply h-0;
-      @apply border-t-0 border-t-color-border;
-      @apply ~'z-[1]';
-    }
-
-    .@{grid-prefix-cls}__body-wrapper {
-      @apply overflow-x-hidden;
-      border-bottom: none;
-    }
-  }
-
-  & &__fixed-left-wrapper {
-    @apply left-0;
-    width: 200px;
-    @apply border-r-0 border-r-color-border;
-
-    &.scrolling__middle {
-      @apply shadow-sm;
-    }
-  }
-
-  & &__fixed-right-wrapper {
-    @apply right-0;
-
-    &.scrolling__middle {
-      @apply shadow-sm;
-    }
-  }
-
   & &__header-wrapper,
   & &__body-wrapper,
   & &__footer-wrapper {
     @apply relative;
-
-    &.fixed-left__wrapper,
-    &.fixed-right__wrapper {
-      @apply absolute;
-      @apply top-0;
-    }
-
-    &.fixed-left__wrapper {
-      @apply left-0;
-    }
-
-    &.fixed-right__wrapper {
-      @apply right-0;
-      @apply overflow-y-auto;
-    }
   }
 
   & &__header-wrapper {
@@ -448,7 +476,15 @@
     }
 
     &.row__current {
-      @apply bg-color-bg-3;
+      @apply bg-color-brand-hover-subtle;
+    }
+  }
+
+  &.row__highlight &-body__row:hover{
+    @apply bg-color-brand-hover-subtle;
+
+    .fixed__column{
+      @apply bg-color-brand-hover-subtle;
     }
   }
 
@@ -476,13 +512,6 @@
 
     &.col__ellipsis {
       .CellEllipsis();
-    }
-  }
-
-  & &-body__row &-body__column,
-  & &-header__row &-header__column {
-    &.hideTypeClass .@{grid-prefix-cls}-cell {
-      @apply p-0;
     }
   }
 
@@ -545,6 +574,19 @@
     }
   }
 
+  & &-header__column:not(.col__selection){
+    .@{grid-cell-prefix-cls} {
+      @apply flex;
+      @apply items-center;
+    }
+  
+    &.col__ellipsis {
+      .@{grid-cell-prefix-cls}-text {
+        .TextEllipsis();
+      }
+    }
+  }
+
   & &-body__x-space {
     @apply w-full;
     @apply h-px;
@@ -558,32 +600,9 @@
 
   // 排序
   & &-sort-wrapper {
-    @apply absolute;
-    @apply right-1;
-    @apply top-0;
-    @apply bottom-0;
-    @apply m-auto;
-    @apply text-center;
-    @apply w-5;
-    @apply h-7;
-    @apply flex;
-    @apply flex-col;
-    @apply justify-center;
-    @apply items-center;
+    padding-left: 4px;
 
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      @apply top-1;
-      @apply m-0;
-    }
-
-    .@{grid-prefix-cls}-icon__caret-top {
-      &:before {
-        bottom: 0.1em;
-      }
-    }
-
-    .@{grid-prefix-cls}-sort__asc-btn,
-    .@{grid-prefix-cls}-sort__desc-btn {
+    .@{grid-prefix-cls}-sort__btn {
       @apply ~'h-3.5';
       line-height: 14px;
       @apply block;
@@ -595,10 +614,6 @@
       &.sort__active {
         @apply fill-color-brand;
       }
-    }
-
-    .@{grid-prefix-cls}-sort__desc-btn {
-      @apply ~'-mt-0.5';
     }
   }
 
@@ -775,7 +790,7 @@
 
     &.is__visible {
       @apply flex;
-      flex-flow: row wrap;
+      @apply flex-col;
       @apply opacity-100;
       &.is__center {
         @apply opacity-0;
@@ -802,6 +817,7 @@
     height: 100px;
     @apply m-0;
     background: url(../images/grid-nodata.svg) no-repeat center center;
+    @apply flex-shrink-0;
   }
 
   & &__empty-text {
@@ -1016,8 +1032,7 @@
 
     .@{grid-prefix-cls}-editor {
       @apply w-full;
-      height: 30px;
-      line-height: 30px;
+      height: 100%;
       @apply text-color-text-primary;
 
       .@{input-prefix-cls} {

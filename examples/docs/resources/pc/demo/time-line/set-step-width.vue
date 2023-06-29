@@ -1,5 +1,17 @@
 <template>
-  <tiny-time-line :data="data" :active="active" @click="click" :space="200" text-position="right"></tiny-time-line>
+  <p>1. <code>space</code>取值可以是带尺寸单位的具体数值。以下示例设置节点宽度为200px：</p>
+  <tiny-time-line :data="data" :active="active" space="200" @click="normalClick"> </tiny-time-line>
+
+  <p>2. <code>space</code>取值也可以是百分比数值，基准为组件父元素的宽度。以下示例设置引导线长度为20%：</p>
+  <div class="timeline-box">
+    <tiny-time-line
+      :data="data"
+      :active="active"
+      text-position="right"
+      space="20%"
+      @click="normalClick"
+    ></tiny-time-line>
+  </div>
 </template>
 
 <script lang="jsx">
@@ -26,3 +38,14 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+code {
+  padding: 4px;
+  background-color: var(--lightless);
+}
+
+.timeline-box {
+  width: 800px;
+}
+</style>

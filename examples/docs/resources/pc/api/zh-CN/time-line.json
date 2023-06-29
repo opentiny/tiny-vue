@@ -52,8 +52,8 @@
     {
       "name": "space",
       "sample": "set-step-width",
-      "type": "Number",
-      "desc": "设置步骤条的宽度",
+      "type": "String， Numer",
+      "desc": "设置时间线节点的宽度, 取值为数字、带长度单位数值与百分比，数字会默认以px为长度单位。",
       "defaultValue": ""
     },
     {

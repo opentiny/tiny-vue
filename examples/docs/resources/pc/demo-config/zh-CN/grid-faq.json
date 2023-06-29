@@ -22,5 +22,13 @@
     "component": " Grid 表格",
     "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
     "demoId": "faq-opSlot"
+  },
+  {
+    "title": "列默认插槽中不建议使用 Tooltip 或 Poppover",
+    "content": "<p>因为在表格渲染时，列的默认插槽会执行很多次，在数据量大的场景下，会因为创建大量 Tooltip 实例而产生性能问题，也有其他状态共享问题。\n所以建议使用表格内置 Tooltip，参考示例中城市字段，参考【Tip 提示】章节。</p>\n",
+    "link": "grid/faq/many-poppover",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "faq-many-poppover"
   }
 ]

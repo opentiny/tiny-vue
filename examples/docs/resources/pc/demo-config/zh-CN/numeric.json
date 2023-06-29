@@ -120,6 +120,14 @@
     "demoId": "change-event"
   },
   {
+    "title": "单位",
+    "content": "<p>可通过 <code>unit</code> 属性设置计数器的单位，在设置单位时，控制按钮将不可用。</p>\n",
+    "link": "numeric/unit",
+    "component": " Numeric 计数器",
+    "findIntroStr": "Numeric 计数器可用于输入数字,可自定义数值范围，步进大小。支持鼠标键盘增减。",
+    "demoId": "unit"
+  },
+  {
     "title": "根据商品数量自动计算价格",
     "content": "<p>根据商品数量自动计算价格。</p>\n",
     "link": "numeric/calculate-according-to-num-of-goods",

@@ -37,7 +37,7 @@
     },
     {
       "name": "disabled-void-icon-class",
-      "sample": "disabled-void-icon-class",
+      "sample": "disabled-not-selected-class",
       "type": "String",
       "desc": "Icon style name that is not selected in read-only state. Options 'icon-starDisable' | 'icon-frown' | 'icon-meh' | 'icon-smile'",
       "defaultValue": "The default value of this attribute is icon-starActive."

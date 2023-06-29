@@ -3,8 +3,8 @@ import { test, expect } from '@playwright/test'
 test('type 属性', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('http://localhost:7130/pc/input/type')
-  const input = page.locator('.demo-input > .tiny-input > input')
-  const textArea = page.locator('.demo-input > .tiny-textarea > textarea')
+  const input = page.locator('.demo-input > .tiny-input >  .tiny-input-display-only > input')
+  const textArea = page.locator('.demo-input > .tiny-textarea > .tiny-textarea-display-only > textarea')
   await expect(input.nth(0)).toHaveAttribute('type', 'text')
   await expect(input.nth(1)).toHaveAttribute('type', 'password')
   await expect(input.nth(2)).toHaveAttribute('type', 'email')

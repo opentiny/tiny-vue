@@ -17,7 +17,8 @@
       state.inputSize ? 'tiny-numeric--' + state.inputSize : '',
       { 'is-disabled': state.inputDisabled },
       { 'is-without-controls': !controls || (unit && hideUnit) },
-      { 'is-controls-right': state.controlsAtRight }
+      { 'is-controls-right': state.controlsAtRight },
+      { 'is-display-only': state.isDisplayOnly }
     ]"
     @mousewheel.prevent="mouseEvent"
   >
@@ -47,34 +48,43 @@
     <div
       :class="[
         'tiny-numeric__input',
+        { 'tiny-numeric__read-only': state.isDisplayOnly },
         state.inputSize ? `tiny-input-${state.inputSize}` : '',
         state.inputDisabled ? 'is-disabled' : '',
         { 'has-unit': unit && !hideUnit },
-        { 'text-align-left': unit && !unitCenter }
+        { 'text-align-left': unit && !unitCenter },
+        { 'tiny-numeric__controls-position': controlsPosition }
       ]"
     >
-      <input
-        :tabindex="tabindex"
-        class="tiny-numeric__input-inner"
-        ref="input"
-        :value="state.displayValue"
-        :placeholder="placeholder"
-        :max="max"
-        :min="min"
-        :name="name"
-        :aria-label="label"
-        @keydown.up.prevent="increase"
-        @keydown.down.prevent="decrease"
-        @blur="handleBlur"
-        @focus="handleFocus"
-        @input="handleInput"
-        @change="handleInputChange"
-      />
+      <span class="tiny-numeric-display-only">
+        <span class="tiny-numeric-display-only__content" v-if="state.isDisplayOnly">
+          <span class="tiny-numeric-display-only__value">{{ state.displayValue }}</span>
+          <span class="tiny-numeric-display-only__unit" v-if="unit && !hideUnit && state.currentValue">{{ unit }}</span>
+          <span v-else-if="unit && !hideUnit">{{ unit }}</span>
+        </span>
+        <input
+          :tabindex="tabindex"
+          :class="['tiny-numeric__input-inner', { 'tiny-numeric__show-left': !controls && showLeft }]"
+          ref="input"
+          :value="state.displayValue"
+          :placeholder="placeholder"
+          :max="max"
+          :min="min"
+          :name="name"
+          :aria-label="label"
+          @keydown.up.prevent="increase"
+          @keydown.down.prevent="decrease"
+          @blur="handleBlur"
+          @focus="handleFocus"
+          @input="handleInput"
+          @change="handleInputChange"
+        />
+      </span>
     </div>
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/numeric/vue'
 import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
 import bind from '@opentiny/vue-renderless/common/deps/repeat-click'
@@ -119,9 +129,11 @@ export default defineComponent({
     'modelTruncation',
     'strictInput',
     'hideUnit',
-    'unitCenter'
+    'unitCenter',
+    'displayOnly',
+    'showLeft'
   ],
-  emits: ['update:modelValue', 'change', 'blur', 'focus'],
+  emits: ['update:modelValue', 'change', 'blur', 'focus', 'paste-error'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

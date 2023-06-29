@@ -352,7 +352,17 @@ module.exports = {
     spacing: () => {
       tokens.spacing = setToken('spacing', defaultTheme.spacing)
       tokens.spacing['4.5'] = `var(${prefix}spacing-4_5, 1.125rem)`
+      tokens.spacing['18'] = `var(${prefix}spacing-18, 4.5rem)`
+      tokens.spacing['54'] = `var(${prefix}spacing-54, 13.5rem)`
+      tokens.spacing['112'] = `var(${prefix}spacing-112, 28rem)`
+      tokens.spacing['144'] = `var(${prefix}spacing-144, 36rem)`
       return tokens.spacing
+    },
+    lineHeight: () => {
+      tokens.lineHeight = setToken('line-height', defaultTheme.lineHeight)
+      tokens.lineHeight['5.5'] = `var(${prefix}line-height-5_5, 1.375rem)`
+      tokens.lineHeight['6.5'] = `var(${prefix}line-height-6_5, 1.625rem)`
+      return tokens.lineHeight
     },
     fontSize: {
       '2xs': `var(${prefix}fontSize-2xs, 0.625rem)`,

@@ -28,11 +28,15 @@
   }
 
   & &__slot {
-    flex: auto 0 0;
+    @apply flex-grow-0;
+    @apply flex-shrink-0;
+    @apply basis-auto;
   }
 
   & &__item-wrapper {
-    flex: 1;
+    @apply flex-grow;
+    @apply flex-shrink;
+    @apply basis-0;
     @apply box-border;
     @apply overflow-hidden;
     @apply relative;

@@ -10,7 +10,10 @@
  *
  -->
 <template>
-  <div :style="{ width: state.width }" class="tiny-text-popup">
+  <div
+    :style="{ width: !state.showAutoWidth && state.width }"
+    :class="['tiny-text-popup', { 'show-auto-width': state.showAutoWidth }]"
+  >
     <input v-show="state.type === 'input'" ref="text" :placeholder="placeholder" class="area text" @focus="onFocus" />
     <textarea
       v-show="state.type === 'textarea'"

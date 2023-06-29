@@ -30,8 +30,6 @@ import { arrayIndexOf } from '../static'
 const ATTR_NAME = 'data-rowid'
 const CELL_CLS = '.tiny-grid-cell'
 const ROW_CLS = '.tiny-grid-body__row'
-const htmlEl = document.querySelector('html')
-const bodyEl = document.body
 
 export const isPx = (val) => val && /^\d+(px)?$/.test(val)
 
@@ -186,6 +184,8 @@ export const getEventTargetNode = (event, container, queryCls) => {
 
 function getNodeOffset(el, container, rest) {
   if (el) {
+    const htmlEl = document.querySelector('html')
+    const bodyEl = document.body
     const parentEl = el.parentNode
 
     rest.top += el.offsetTop

@@ -17,6 +17,7 @@
     "@opentiny/vue-action-sheet": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-tooltip": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~"
   },
   "license": "MIT"

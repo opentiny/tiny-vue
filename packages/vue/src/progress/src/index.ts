@@ -40,7 +40,7 @@ const $constants = {
   },
   STATUS_DEFAULT_COLOR: '#20a0ff',
   ICON_CIRCLE_WARNING: 'icon-warning',
-  ICON_CIRCLE_SUCCESS: 'icon-successful',
+  ICON_CIRCLE_SUCCESS: 'icon-success',
   ICON_CIRCLE_EXCEPTION: 'icon-error',
   ICON_SUCCESS: 'icon-yes',
   ICON_EXCEPTION: 'icon-close',
@@ -68,6 +68,7 @@ export default defineComponent({
       type: [String, Array, Function],
       default: ''
     },
+    info: String,
     format: Function,
     percentage: {
       type: Number,
@@ -85,7 +86,7 @@ export default defineComponent({
     },
     strokeWidth: {
       type: Number,
-      default: 6
+      default: 0
     },
     textInside: {
       type: Boolean,
@@ -96,9 +97,14 @@ export default defineComponent({
       default: $constants.PROGRESS_TYPE.LINE,
       validator: (value: string) => !!$constants.PROGRESS_TYPE[value.toUpperCase()]
     },
+    size: {
+      type: String,
+      default: $constants.PROGRESS_SIZE.MEDIUM,
+      validator: (value) => !!$constants.PROGRESS_SIZE[value.toUpperCase()]
+    },
     width: {
       type: Number,
-      default: 126
+      default: 0
     }
   },
   setup(props, context) {

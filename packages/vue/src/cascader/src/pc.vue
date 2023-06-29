@@ -16,7 +16,10 @@
       'tiny-cascader',
       state.realSize && `tiny-cascader--${state.realSize}`,
       { 'is-disabled': state.isDisabled },
-      { 'tiny-cascader-multiple': state.multiple }
+      { 'tiny-cascader-multiple': state.multiple },
+      { 'is-display-only': state.isDisplayOnly },
+      { 'show-auto-width': state.showAutoWidth },
+      { 'is-hover-expand': hoverExpand }
     ]"
     v-clickoutside="() => toggleDropDownVisible(false)"
     @mouseenter="state.inputHover = true"
@@ -24,59 +27,111 @@
     @click="() => toggleDropDownVisible(state.readonly ? undefined : true)"
     @keydown="handleKeyDown"
   >
-    <tiny-input
-      ref="input"
-      :model-value="state.multiple ? state.presentText : state.inputValue"
-      :size="state.realSize"
-      :placeholder="state.placeholder"
-      :readonly="state.readonly"
+    <tiny-filter-box
+      v-if="shape === 'filter'"
+      @click.stop="toggleDropDownVisible()"
+      :show-close="clearable"
       :disabled="state.isDisabled"
-      :validate-event="false"
-      :class="{ 'is-focus': state.dropDownVisible }"
-      @focus="handleFocus"
-      @blur="handleBlur"
-      @update:modelValue="handleInput"
-    >
-      <template #suffix>
-        <icon-close v-if="state.clearBtnVisible" key="clear" class="tiny-input__icon" @click.stop="handleClear"></icon-close>
-        <component
-          v-else
-          :is="state.dropDownVisible ? 'icon-chevron-up' : 'icon-chevron-down'"
-          key="arrow-down"
-          :class="['tiny-input__icon', state.dropDownVisible && 'is-reverse']"
-          @click.stop="toggleDropDownVisible()"
-        ></component>
-      </template>
-    </tiny-input>
-    <div v-if="state.multiple" class="tiny-cascader__tags">
-      <tiny-tag
-        v-for="(tag, index) in state.presentTags"
-        :key="tag.key"
-        type="info"
-        :size="state.tagSize"
-        :hit="tag.hitState"
-        :closable="tag.closable"
-        disable-transitions
-        @close="deleteTag(index)"
+      :label="label"
+      :tip="tip"
+      :value="state.multiple ? state.presentTags.map((item) => item.text).join('; ') : state.inputValue"
+      :drop-down-visible="state.dropDownVisible"
+    ></tiny-filter-box>
+    <div ref="reference" class="tiny-cascader-content">
+      <tiny-input
+        v-if="shape !== 'filter'"
+        ref="input"
+        :model-value="state.multiple ? state.presentText : state.inputValue"
+        :size="state.realSize"
+        :placeholder="state.placeholder"
+        :readonly="state.readonly"
+        :disabled="state.isDisabled"
+        :display-only="displayOnly"
+        :display-only-content="state.multiple ? state.presentTags.map((item) => item.text).join('; ') : ''"
+        :validate-event="false"
+        :class="{ 'is-focus': state.dropDownVisible }"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        @update:modelValue="handleInput"
       >
-        <span>{{ tag.text }}</span>
-      </tiny-tag>
-      <input
-        v-if="filterable && !state.isDisabled"
-        v-model.trim="state.inputValue"
-        type="text"
-        class="tiny-cascader__search-input"
-        :placeholder="state.presentTags.length ? '' : placeholder"
-        @input="(e) => handleInput(state.inputValue, e)"
-        @click.stop="toggleDropDownVisible(true)"
-        @keydown.delete="handleDelete"
-      />
+        <template #suffix>
+          <icon-close
+            v-if="state.clearBtnVisible"
+            key="clear"
+            class="tiny-input__icon"
+            @click.stop="handleClear"
+          ></icon-close>
+          <component
+            v-else
+            :is="state.dropDownVisible ? 'icon-delta-up' : 'icon-delta-down'"
+            key="arrow-down"
+            :class="['tiny-input__icon', state.dropDownVisible && 'is-reverse']"
+            @click.stop="toggleDropDownVisible()"
+          ></component>
+        </template>
+      </tiny-input>
+      <div
+        ref="tags-content"
+        v-if="state.multiple && !state.isDisplayOnly && !shape"
+        class="tiny-cascader__tags"
+        :class="{
+          'is-expand-content': hoverExpand && !state.isDisabled && (state.inputHover || state.dropDownVisible)
+        }"
+      >
+        <tiny-tag
+          v-if="hoverExpand"
+          :class="['tiny-cascader__tags-collapse', { 'is-hidden': state.isHidden }]"
+          type="info"
+          :closable="false"
+          :size="state.tagSize"
+          >+ {{ state.collapseTagsLength }}</tiny-tag
+        >
+        <tiny-tag
+          v-for="(tag, index) in state.presentTags"
+          :key="tag.key"
+          type="info"
+          :size="state.tagSize"
+          :hit="tag.hitState"
+          :closable="tag.closable"
+          disable-transitions
+          @close="deleteTag(index)"
+          @mouseenter.native="handleMouseenter"
+          @mouseleave.native="handleMouseleave"
+        >
+          <span>{{ tag.text }}</span>
+        </tiny-tag>
+        <input
+          v-if="filterable && !state.isDisabled"
+          v-model.trim="state.inputValue"
+          type="text"
+          class="tiny-cascader__search-input"
+          :placeholder="state.presentTags.length ? '' : placeholder"
+          @input="(e) => handleInput(state.inputValue, e)"
+          @click.stop="toggleDropDownVisible(true)"
+          @keydown.delete="handleDelete"
+        />
+      </div>
     </div>
+    <tiny-tooltip
+      ref="tooltip"
+      v-model="state.tooltipVisible"
+      :manual="true"
+      effect="light"
+      :content="state.tooltipContent"
+      placement="top"
+    >
+    </tiny-tooltip>
     <transition name="tiny-zoom-in-top" @after-leave="handleDropdownLeave">
       <div
         v-show="state.dropDownVisible"
         ref="popper"
-        :class="['tiny-popper', 'tiny-cascader-dropdown', 'tiny-cascader__dropdown', popperClass, { 'is-auto-size': autoSize, 'is-multiple': state.multiple }]"
+        :class="[
+          'tiny-popper',
+          'tiny-cascader-dropdown',
+          'tiny-cascader__dropdown',
+          popperClass,
+          { 'is-auto-size': autoSize, 'is-multiple': state.multiple }
+        ]"
         @mousedown.stop
       >
         <tiny-cascader-panel
@@ -111,11 +166,11 @@
               <icon-yes v-if="item.checked" class="icon-check"></icon-yes>
             </li>
           </template>
-          <template #empty v-else>
+          <slot name="empty" v-if="!state.suggestions.length">
             <li class="tiny-cascader__empty-text">
               {{ t('ui.cascader.noMatch') }}
             </li>
-          </template>
+          </slot>
         </tiny-scrollbar>
       </div>
     </transition>
@@ -130,7 +185,9 @@ import Input from '@opentiny/vue-input'
 import Tag from '@opentiny/vue-tag'
 import Scrollbar from '@opentiny/vue-scrollbar'
 import CascaderPanel from '@opentiny/vue-cascader-panel'
-import { iconClose, iconChevronDown, iconYes, iconChevronUp } from '@opentiny/vue-icon'
+import FilterBox from '@opentiny/vue-filter-box'
+import Tooltip from '@opentiny/vue-tooltip'
+import { iconClose, iconDeltaDown, iconDeltaUp, iconYes } from '@opentiny/vue-icon'
 
 export default defineComponent({
   props: [
@@ -157,9 +214,24 @@ export default defineComponent({
     'boundariesPadding',
     'arrowOffset',
     'popperAppendToBody',
-    'autoSize'
+    'autoSize',
+    'displayOnly',
+    'shape',
+    'label',
+    'tip',
+    'hoverExpand'
   ],
-  emits: ['update:modelValue', 'change', 'visible-change', 'focus', 'blur', 'expand-change', 'active-item-change', 'remove-tag'],
+  emits: [
+    'update:modelValue',
+    'change',
+    'visible-change',
+    'focus',
+    'blur',
+    'expand-change',
+    'active-item-change',
+    'remove-tag',
+    'created'
+  ],
   directives: { Clickoutside },
   provide() {
     return {
@@ -170,11 +242,13 @@ export default defineComponent({
     TinyInput: Input,
     TinyTag: Tag,
     TinyScrollbar: Scrollbar,
+    TinyFilterBox: FilterBox,
     TinyCascaderPanel: CascaderPanel,
     IconClose: iconClose(),
-    IconChevronDown: iconChevronDown(),
-    IconChevronUp: iconChevronUp(),
-    IconYes: iconYes()
+    iconDeltaDown: iconDeltaDown(),
+    iconDeltaUp: iconDeltaUp(),
+    IconYes: iconYes(),
+    TinyTooltip: Tooltip
   },
   setup(props, context) {
     return setup({ props, context, renderless, api })

@@ -1,1 +1,42 @@
-[{"title":"控制隐藏表头","content":"<p>设置 <code>showHeader</code> 属性为 <code>fasle</code> 控制隐藏表头，默认为 <code>true</code>。</p>\n","link":"grid/header/hide-grid-header","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"header-hide-grid-header"},{"title":"自定义表头","content":"<p>通过列 <code>slot</code> 插槽自定义表头</p>\n","link":"grid/header/custom-grid-header","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"header-custom-grid-header"},{"title":"配置自定义表头内容的模板","content":"<p>设置 <code>header</code> 插槽，配置自定义表头内容的模板。</p>\n","link":"grid/header/slot-header","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"header-slot-header"},{"title":"基本说明","content":"<p>通过列属性 <code>header-class-name</code> 给表头的单元格附加 className，也可以是函数 Function({$rowIndex, column, columnIndex, $columnIndex})。\n</p>\n","link":"grid/header/header-class-name","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"header-header-class-name"}]
+[
+  {
+    "title": "控制隐藏表头",
+    "content": "<p>设置 <code>showHeader</code> 属性为 <code>fasle</code> 控制隐藏表头，默认为 <code>true</code>。</p>\n",
+    "link": "grid/header/hide-grid-header",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "header-hide-grid-header"
+  },
+  {
+    "title": "自定义表头",
+    "content": "<p>通过列 <code>slot</code> 插槽自定义表头</p>\n",
+    "link": "grid/header/custom-grid-header",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "header-custom-grid-header"
+  },
+  {
+    "title": "配置式多级表头",
+    "content": "<p>配置式多级表头</p>\n",
+    "link": "grid/header/config-grid-header",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "header-config-grid-header"
+  },
+  {
+    "title": "配置自定义表头内容的模板",
+    "content": "<p>设置 <code>header</code> 插槽，配置自定义表头内容的模板。</p>\n",
+    "link": "grid/header/slot-header",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "header-slot-header"
+  },
+  {
+    "title": "基本说明",
+    "content": "<p>通过列属性 <code>header-class-name</code> 给表头的单元格附加 className，也可以是函数 Function({$rowIndex, column, columnIndex, $columnIndex})。\n</p>\n",
+    "link": "grid/header/header-class-name",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "header-header-class-name"
+  }
+]

@@ -89,11 +89,18 @@
               }"
             >
               <ul class="group">
-                <li class="tiny-nav-menu__sub-menu-title" :class="!!group.title ? '' : 'tiny-nav-menu__sub-menu-title-blank'">
-                  <component :is="getTag(group)" :to="getRoute(group)" @click="clickMenu(group)">{{ group.title }}</component>
+                <li
+                  class="tiny-nav-menu__sub-menu-title"
+                  :class="!!group.title ? '' : 'tiny-nav-menu__sub-menu-title-blank'"
+                >
+                  <component :is="getTag(group)" :to="getRoute(group)" @click="clickMenu(group)">{{
+                    group.title
+                  }}</component>
                 </li>
                 <li v-for="(item, i) in group.children" :key="i" class="sub-item">
-                  <component :is="getTag(item)" :to="getRoute(item)" @click="clickMenu(item)">{{ item.title }}</component>
+                  <component :is="getTag(item)" :to="getRoute(item)" @click="clickMenu(item)">{{
+                    item.title
+                  }}</component>
                 </li>
               </ul>
             </li>
@@ -110,7 +117,17 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconSetting, iconChevronRight, iconSandwichCollapse, iconSandwichExpand } from '@opentiny/vue-icon'
 
 export default defineComponent({
-  props: [...props, 'data', 'parentKey', 'overflow', 'beforeSkip', 'fetchMenuData', 'fields', 'prevent', 'allowFullUrl'],
+  props: [
+    ...props,
+    'data',
+    'parentKey',
+    'overflow',
+    'beforeSkip',
+    'fetchMenuData',
+    'fields',
+    'prevent',
+    'allowFullUrl'
+  ],
   components: {
     IconSetting: iconSetting(),
     IconChevronRight: iconChevronRight(),

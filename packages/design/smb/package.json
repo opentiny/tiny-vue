@@ -1,6 +1,7 @@
 {
   "name": "@opentiny/vue-design-smb",
   "version": "3.7.14",
+  "sideEffects": false,
   "main": "index.ts",
   "dependencies": {
     "@opentiny/vue-icon": "workspace:~"

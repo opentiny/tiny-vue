@@ -9,21 +9,7 @@
       <ul v-if="files.length">
         <li
           ref="upload-list-li"
-          class="
-            group
-            relative
-            sm:inline-block
-            min-w-full
-            sm:min-w-[26.25rem]
-            p-3
-            mb-2
-            mr-2
-            border-0.5
-            sm:border
-            border-color-border-separator
-            rounded
-            hover:bg-color-bg-2
-          "
+          class="group relative sm:inline-block min-w-full sm:min-w-[26.25rem] p-3 mb-2 mr-2 border-0.5 sm:border border-color-border-separator rounded hover:bg-color-bg-2"
           :class="{ 'sm:border-color-brand border-color-border-separator': file.uid === (selected && selected.uid) }"
           v-for="file in files"
           :key="file.uid"
@@ -74,18 +60,7 @@
             <div class="inline-block w-[calc(100%-2.8rem)] text-xs">
               <div class="flex h-4 mr-12 sm:mr-0">
                 <div
-                  class="
-                    flex-1
-                    sm:mr-6
-                    text-sm
-                    sm:text-xs
-                    leading-[0.875rem]
-                    sm:leading-3
-                    text-color-text-primary
-                    overflow-hidden
-                    text-ellipsis
-                    whitespace-nowrap
-                  "
+                  class="flex-1 sm:mr-6 text-sm sm:text-xs leading-[0.875rem] sm:leading-3 text-color-text-primary overflow-hidden text-ellipsis whitespace-nowrap"
                 >
                   <span :title="file.name">{{
                     file.name
@@ -124,7 +99,7 @@
                   <icon-ellipsis
                     v-if="~['success', 'downloading'].indexOf(file.status)"
                     @click="showOperatePanel({ file })"
-                    :class="'fill-color-text-primary'"
+                    class="fill-color-text-primary"
                   />
                   <icon-error
                     v-if="!displayOnly && ~['uploading', 'fail'].indexOf(file.status)"
@@ -159,7 +134,9 @@
           </slot>
         </li>
       </ul>
-      <div v-else class="my-4 text-color-none text-xs">{{ t('ui.uploadList.noAttachments') }}</div>
+      <div v-else class="my-4 text-color-none text-xs">
+        {{ t('ui.uploadList.noAttachments') }}
+      </div>
     </div>
     <div v-else-if="listType === 'drag-single'" class="border-dashed border-color-border text-center">
       <slot name="upload"></slot>
@@ -224,7 +201,9 @@
                     :is="getFileIcon({ type: getFileType({ file }) }).name"
                   />
                 </div>
-                <div class="mt-3 mb-2">{{ file.name }}</div>
+                <div class="mt-3 mb-2">
+                  {{ file.name }}
+                </div>
                 <div>
                   <span class="text-color-brand cursor-pointer" @click.stop="remove({ file })">{{
                     t('ui.uploadList.delete')
@@ -266,19 +245,7 @@
               @click.stop="remove({ file })"
             ></icon-error>
             <div
-              class="
-                relative
-                w-full
-                h-full
-                after:absolute
-                after:w-full
-                after:h-full
-                after:left-0
-                after:top-0
-                after:rounded
-                after:bg-black
-                after:opacity-50
-              "
+              class="relative w-full h-full after:absolute after:w-full after:h-full after:left-0 after:top-0 after:rounded after:bg-black after:opacity-50"
               :class="[
                 !~['uploading', 'fail'].indexOf(file.status) ? 'after:hidden sm:after:group-hover:block' : '',
                 { 'mb-7': listType === 'picture-card' && showName },
@@ -296,17 +263,7 @@
               </video>
               <div
                 v-else-if="sourceType === 'audio'"
-                class="
-                  flex
-                  w-full
-                  h-full
-                  justify-center
-                  items-center
-                  border
-                  rounded
-                  border-transparent
-                  bg-color-info-secondary-subtle
-                "
+                class="flex w-full h-full justify-center items-center border rounded border-transparent bg-color-info-secondary-subtle"
               >
                 <audio
                   :ref="'audio' + (file.uid || index)"
@@ -560,14 +517,7 @@ export default defineComponent({
     'selected'
   ],
   setup(props, context) {
-    return setup({
-      props,
-      context,
-      renderless,
-      api,
-      mono: true,
-      extendOptions: { Modal }
-    })
+    return setup({ props, context, renderless, api, extendOptions: { Modal } })
   }
 })
 </script>

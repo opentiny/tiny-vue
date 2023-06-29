@@ -12,6 +12,7 @@ test('范围选择', async ({ page }) => {
   const { x, y } = await sliderBlock1.boundingBox()
 
   await sliderBlock1.hover()
+  await sliderBlock1.hover() 
   await page.mouse.down()
   await page.mouse.move(sliderWidth * -0.1 + x, y)
   const sliderTip = slider.locator('div').nth(3)

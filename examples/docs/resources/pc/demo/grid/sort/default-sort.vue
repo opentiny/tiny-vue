@@ -5,7 +5,7 @@
     </template>
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
+    <tiny-grid-column field="name" title="公司名称" sortable></tiny-grid-column>
     <tiny-grid-column
       field="employees"
       title="员工数排序点击表头排序，可以通过配置 trigger 设置触发源"

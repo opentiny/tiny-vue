@@ -12,11 +12,15 @@
 
 @import '../custom.less';
 @import './vars.less';
+@import '../date-picker/vars.less';
+@import '../date-table/vars.less';
 
 @month-table-prefix-cls: ~'@{css-prefix}month-table';
 
 .@{month-table-prefix-cls} {
   .component-css-vars-month-table();
+  .component-css-vars-date-picker();
+  .component-css-vars-date-table();
 
   font-size: var(--ti-date-picker-font-size);
   margin: -1px;
@@ -90,7 +94,6 @@
     }
 
     &:not(.in-range) {
-      padding: 16px 4px;
 
       div {
         height: auto;
@@ -108,7 +111,7 @@
     &.current:not(.disabled) .cell {
       &,
       &:hover {
-        color: var(--ti-date-table-td-nomal-text-color);
+        color: var(--ti-date-table-td-normal-text-color);
         background: var(--ti-month-table-td-text-bg-color);
       }
     }

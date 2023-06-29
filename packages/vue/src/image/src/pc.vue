@@ -29,7 +29,12 @@
         'tiny-image__preview': state.getPreview
       }"
     />
-    <image-viewer :z-index="zIndex" v-if="state.getPreview && state.showViewer" :on-close="closeViewer" :url-list="previewSrcList" />
+    <image-viewer
+      :z-index="zIndex"
+      v-if="state.getPreview && state.showViewer"
+      :on-close="closeViewer"
+      :url-list="previewSrcList"
+    />
   </div>
 </template>
 

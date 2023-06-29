@@ -1,5 +1,5 @@
 <template>
-  <tiny-date-picker v-model="value" type="monthrange"></tiny-date-picker>
+  <tiny-date-picker v-model="value" type="monthrange" :picker-options="maxOptions"></tiny-date-picker>
 </template>
 
 <script lang="jsx">
@@ -11,7 +11,12 @@ export default {
   },
   data() {
     return {
-      value: ''
+      value: '',
+      maxOptions: {
+        disabledDate(time) {
+          return time.getTime() > Date.now()
+        }
+      }
     }
   }
 }

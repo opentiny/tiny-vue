@@ -50,6 +50,8 @@ export default [
   'pop-editor',
   'popup-horiz-menu',
   'popup-menu',
+  'popconfirm',
+  'popconfirm-popover',
   'picker-panel',
   'quick-link-menu',
   'time-picker',

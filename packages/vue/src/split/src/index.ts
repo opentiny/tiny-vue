@@ -52,10 +52,25 @@ export default defineComponent({
       type: [Number, String],
       default: '40px'
     },
+    'trigger-simple': {
+      type: Boolean,
+      default: false
+    },
+    'collapse-left-top': {
+      type: Boolean,
+      default: false
+    },
+    'collapse-right-bottom': {
+      type: Boolean,
+      default: false
+    },
+    'three-areas': {
+      type: Boolean,
+      default: false
+    },
     collapsible: Boolean
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

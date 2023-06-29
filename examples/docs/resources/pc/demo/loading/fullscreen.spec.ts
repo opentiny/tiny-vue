@@ -5,7 +5,7 @@ test('全局加载', async ({ page }) => {
   await page.goto('http://localhost:7130/pc/loading/fullscreen')
   const loadingText = page.locator('.tiny-loading__text')
   await page.getByRole('button', { name: '指令方式加载全屏Loading' }).click()
-  const vLoading = page.locator('div:nth-child(4) > .tiny-loading__spinner')
+  const vLoading = page.locator('.circular')
   await expect(vLoading).toBeVisible()
 
   await page.getByRole('button', { name: '静态方法加载全屏Loading' }).click()

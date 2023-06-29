@@ -106,9 +106,25 @@
   {
     "title": "自定义操作列内容",
     "content": "<p>通过插槽设置自定义操作列，即 <code>&lt;tiny-grid-column&gt;</code> 自定义操作列内容 <code>&lt;/tiny-grid-column&gt;</code> 。</p>\n",
-    "link": "grid/tiny-first-menu/custom-operation-column",
+    "link": "grid/operation-column/custom-operation-column",
     "component": " Grid 表格",
     "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
-    "demoId": "tiny-first-menu-custom-operation-column"
+    "demoId": "operation-column-custom-operation-column"
+  },
+  {
+    "title": "表头下拉菜单",
+    "content": "<p>使用多选列 dropdown 插槽，可以在多选列表头配置自定义下拉菜单，示例中使用 AuiDropdown 组件。</p>\n",
+    "link": "grid/operation-column/dropdown",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "operation-column-dropdown"
+  },
+  {
+    "title": "表头自动禁用",
+    "content": "<p>多选模式，在空数据时复选列表头自动禁用；如果设置 <code>selectConfig.headerAutoDisabled</code> 为 <code>false</code> ，则不自动禁用，保持和旧版本兼容。</p>\n",
+    "link": "grid/operation-column/header-select-disabled",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "operation-column-header-select-disabled"
   }
 ]

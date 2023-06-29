@@ -1,4 +1,4 @@
-import { updateStartIndex, isVisibleHandler, computedRightNodePos } from './index'
+import { updateStartIndex, isVisibleHandler, computedRightNodePos, computedSpace } from './index'
 
 export const api = ['state', 'isVisibleHandler']
 
@@ -6,7 +6,8 @@ export const renderless = (props, { reactive, watch, computed }) => {
   const state = reactive({
     startIndex: 0,
     endIndex: computed(() => state.startIndex + props.visibleNum),
-    rightNodePositions: computed(() => api.computedRightNodePos())
+    rightNodePositions: computed(() => api.computedRightNodePos()),
+    computedSpace: computed(() => computedSpace({ props })),
   })
 
   const api = {

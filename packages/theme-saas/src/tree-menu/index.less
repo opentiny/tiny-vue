@@ -7,11 +7,13 @@
 @tree-menu-prefix-cls: ~'@{css-prefix}tree-menu';
 
 .@{tree-menu-prefix-cls} {
-  width: 228px;
+  width: 248px;
   @apply relative;
   @apply text-xs;
-  @apply pt-6;
-  @apply bg-color-bg-1;
+
+  &__show-filter {
+    @apply pt-4;
+  }
 
   .@{input-prefix-cls} {
     @apply py-0 px-4;
@@ -28,13 +30,13 @@
 
       > svg {
         @apply text-base;
-        @apply fill-color-text-primary;
+        @apply fill-color-text-placeholder;
       }
     }
   }
 
   .@{tree-prefix-cls} {
-    @apply mt-4;
+    @apply pt-4;
 
     .@{tree-node-prefix-cls} {
       .@{tree-node-prefix-cls}__content {
@@ -68,7 +70,11 @@
         }
 
         .tree-node-name {
-          @apply py-0 px-4;
+          @apply py-0 px-3;
+          svg {
+            @apply ~"-mt-0.5";
+            @apply mr-4;
+          }
         }
 
         .@{css-prefix}checkbox {
@@ -110,6 +116,11 @@
           .tree-node-body {
             @apply text-color-brand;
             @apply font-normal;
+            .tree-node-name {
+              svg {
+                @apply fill-color-brand;
+              }
+            }
           }
 
           .tree-node-number {

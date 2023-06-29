@@ -495,7 +495,7 @@ export const initTabIndex = ({ vm, state }) => () => {
 export const handleKeydown = ({ vm, state }) => (event) => {
   const currentItem = event.target
 
-  if (!currentItem.className.includes('tiny-tree-node')) {
+  if (!JSON.stringify(currentItem.className).includes('tiny-tree-node')) {
     return
   }
 

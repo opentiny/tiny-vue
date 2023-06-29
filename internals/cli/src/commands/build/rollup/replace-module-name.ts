@@ -1,6 +1,6 @@
 import type { Plugin, NormalizedOutputOptions, OutputBundle } from 'rollup'
 
-export default function (): Plugin {
+export default function (version: string): Plugin {
   return {
     name: 'opentiny-vue:replace-module-name',
     generateBundle: (output: NormalizedOutputOptions, bundle: OutputBundle) => {
@@ -22,7 +22,11 @@ export default function (): Plugin {
           code = code
             .replace(/".+\/src\/(pc|mobile|mobile-first)\.vue/g, `"./$1.${suffix}`)
             .replace(/\.\.\/src/g, './lib')
-            .replace('../lowercase', './lowercase')
+        }
+
+        // 统一给运行时组件添加版本号
+        if (name.includes('index.js')) {
+          code = code.replace(/version = "([\d \.]{5,})"/, `version = "${version}"`)
         }
 
         // import "@opentiny/vue-theme-*/index.less"; 替换为 css

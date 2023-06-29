@@ -1,1 +1,50 @@
-[{"title":"绑定静态数据","content":"<p>表格属性设置 <code>data</code> 开启双向绑定静态数据。</p>\n","link":"grid/tiny-first-menu/static-data","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-static-data"},{"title":"开启服务请求","content":"<p>表格属性设置 <code>fetch-data</code> 开启服务请求。</p>\n","link":"grid/tiny-first-menu/request-service","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-request-service"},{"title":"自动加载数据","content":"<p>表格属性 <code>auto-load</code> 设置是否开启自动请求服务，配置 fetch-data 时有效。如下示例设置 <code>auto-load</code> 为 false 后，就不会自动加载数据。</p>\n","link":"grid/tiny-first-menu/auto-load","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-auto-load"},{"title":"表格列的配置信息","content":"<p>通过表格属性 <code>columns</code> 设置表格列的配置信息</p>\n","link":"grid/tiny-first-menu/columns","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-columns"},{"title":"开启异步渲染","content":"<p>异步渲染配置步骤：\n1、表格属性设置 <code>is-async-column</code> 开启异步渲染；\n2、表格列设置 <code>format-config</code> 开启该列数据异步渲染。</p>\n","link":"grid/tiny-first-menu/column-asyn-rendering","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tiny-first-menu-column-asyn-rendering"}]
+[
+  {
+    "title": "绑定静态数据",
+    "content": "<p>表格属性设置 <code>data</code> 开启双向绑定静态数据。</p>\n",
+    "link": "grid/tiny-first-menu/static-data",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-static-data"
+  },
+  {
+    "title": "开启服务请求",
+    "content": "<p>表格属性设置 fetch-data 开启服务请求。表格首次加载服务数据的时机默认是在 mounted 阶段，如果开了 prefetch 开关就在 created 阶段开始加载。可以设置 prefetch 为数组，指定后端排序字段参数，作为数据接口方法参数 sortBy。例如：[{ property: 'name', order: 'desc' }]，参考示例</p>\n",
+    "link": "grid/tiny-first-menu/request-service",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-request-service"
+  },
+  {
+    "title": "自动加载数据",
+    "content": "<p>表格属性 <code>auto-load</code> 设置是否开启自动请求服务，配置 fetch-data 时有效。如下示例设置 <code>auto-load</code> 为 false 后，就不会自动加载数据。</p>\n",
+    "link": "grid/tiny-first-menu/auto-load",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-auto-load"
+  },
+  {
+    "title": "表格列的配置信息",
+    "content": "<p>通过表格属性 <code>columns</code> 设置表格列的配置信息</p>\n",
+    "link": "grid/tiny-first-menu/columns",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-columns"
+  },
+  {
+    "title": "开启异步渲染",
+    "content": "<p>异步渲染配置步骤：\n1、表格属性设置 <code>is-async-column</code> 开启异步渲染；\n2、表格列设置 <code>format-config</code> 开启该列数据异步渲染。</p>\n",
+    "link": "grid/tiny-first-menu/column-asyn-rendering",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-column-asyn-rendering"
+  },
+  {
+    "title": "在默认插槽中使用复杂数据",
+    "content": "<p>兼容低版本的复杂数据访问（例如：row.attr1.attr2.attr3），参考示例。\n在列初始化过程中，使用 `skip` 插槽参数可以跳过默认插槽内容的执行，参考示例。\n在表格渲染过程中，没有提供这个参数，始终不会跳过默认插槽内容的执行。</p>\n",
+    "link": "grid/tiny-first-menu/defslot-protochain-fetch",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tiny-first-menu-defslot-protochain-fetch"
+  }
+]

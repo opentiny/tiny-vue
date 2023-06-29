@@ -20,12 +20,12 @@
   .component-css-vars-fall-menu();
 
   & &__wrap {
-    background: var(--ti-fallmenu-bg-color-normal);
+    background: var(--ti-fall-menu-bg-color-normal);
     padding: 0 24px;
   }
 
   & &__nav {
-    height: var(--ti-fallmenu-menu-height);
+    height: var(--ti-fall-menu-menu-height);
     margin: 0 auto;
     position: relative;
   }
@@ -35,12 +35,12 @@
 
     .icon-slot-left,
     .icon-slot-right {
-      color: var(--ti-fallmenu-slot-text-color);
+      color: var(--ti-fall-menu-slot-text-color);
       cursor: pointer;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      font-size: var(--ti-fallmenu-icon-font-size);
+      font-size: var(--ti-fall-menu-icon-font-size);
       line-height: 1;
 
       svg {
@@ -84,18 +84,18 @@
       display: block;
       width: auto;
       padding: 0 12px;
-      height: var(--ti-fallmenu-menu-height);
+      height: var(--ti-fall-menu-menu-height);
       text-align: center;
       text-decoration: none;
       font-weight: 400;
-      line-height: var(--ti-fallmenu-menu-height);
-      font-size: var(--ti-fallmenu-title-font-size);
-      color: var(--ti-fallmenu-slot-text-color);
+      line-height: var(--ti-fall-menu-menu-height);
+      font-size: var(--ti-fall-menu-title-font-size);
+      color: var(--ti-fall-menu-slot-text-color);
 
       &:hover,
       &.now {
-        color: var(--ti-fallmenu-slot-text-color);
-        background: var(--ti-fallmenu-bg-color-hover);
+        color: var(--ti-fall-menu-slot-text-color);
+        background: var(--ti-fall-menu-bg-color-hover);
         text-decoration: none;
       }
 
@@ -116,9 +116,9 @@
   & &__box {
     position: absolute;
     left: 0px;
-    top: var(--ti-fallmenu-menu-height);
+    top: var(--ti-fall-menu-menu-height);
     width: 100%;
-    background: var(--ti-fallmenu-slot-bg-color);
+    background: var(--ti-fall-menu-slot-bg-color);
     overflow: hidden;
     transition: opacity 0.4s;
     .opacity(0);
@@ -138,9 +138,9 @@
         width: 100%;
 
         h3.mcate-item-hd {
-          font-size: var(--ti-fallmenu-box-font-size);
+          font-size: var(--ti-fall-menu-box-font-size);
           border-bottom: 0px solid #ccc;
-          color: var(--ti-fallmenu-box-title-text-color);
+          color: var(--ti-fall-menu-box-title-text-color);
           font-weight: normal;
           margin: 0;
         }
@@ -151,7 +151,7 @@
           a {
             margin: 8px 0px 0 0;
             font-size: var(--ti-common-font-size-base);
-            color: var(--ti-fallmenu-box-text-color);
+            color: var(--ti-fall-menu-box-text-color);
             text-decoration: none;
             display: block;
             overflow: hidden;
@@ -159,7 +159,7 @@
             text-overflow: ellipsis;
 
             &:hover {
-              color: var(--ti-fallmenu-box-hover-text-color);
+              color: var(--ti-fall-menu-box-hover-text-color);
             }
           }
         }

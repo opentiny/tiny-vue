@@ -5,5 +5,5 @@ test('Collapse 嵌套表格', async ({ page }) => {
   await page.goto('http://localhost:7130/pc/collapse/nested-grid')
 
   const content = page.locator('.tiny-collapse-item__content')
-  await expect(content.locator('.tiny-grid')).toBeVisible()
+  await expect(content.locator('.tiny-grid').nth(0)).toBeVisible()
 })

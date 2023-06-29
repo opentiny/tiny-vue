@@ -1,8 +1,8 @@
 {
-  "attrs": [
+  "collapseAttrs": [
     {
       "name": "modelValue / v-model",
-      "sample": "accordion",
+      "sample": "basic-usage",
       "type": "String , Array , Number",
       "desc": "Currently activated panel (In accordion mode, the binding value type must be String. Otherwise, the binding value type is array.)",
       "defaultValue": ""
@@ -22,7 +22,7 @@
       "defaultValue": ""
     }
   ],
-  "slots": [
+  "collapseSlots": [
     {
       "name": "default",
       "sample": "dynamic-disable",
@@ -31,12 +31,58 @@
       "defaultValue": ""
     }
   ],
-  "events": [
+  "collapseEvents": [
     {
       "name": "change",
       "sample": "collapse-events",
       "type": "",
       "desc": "Triggered when the current active panel changes. (In accordion mode, the type of activeNames is String. Otherwise, the type of activeNames is array.)",
+      "defaultValue": ""
+    }
+  ],
+  "collapseItemAttrs": [
+    {
+      "name": "name",
+      "sample": "accordion",
+      "type": "String | Number",
+      "desc": "Unique identifier",
+      "defaultValue": ""
+    },
+    {
+      "name": "title",
+      "sample": "custom-collapse-title",
+      "type": "String",
+      "desc": "Panel Title",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "dynamic-disable",
+      "type": "Boolean",
+      "desc": "Disable",
+      "defaultValue": "The default value of this attribute is false."
+    }
+  ],
+  "collapseItemSlots": [
+    {
+      "name": "default",
+      "sample": "dynamic-disable",
+      "type": "",
+      "desc": "Default slot",
+      "defaultValue": ""
+    },
+    {
+      "name": "title",
+      "sample": "custom-collapse-title",
+      "type": "",
+      "desc": "Title",
+      "defaultValue": ""
+    },
+    {
+      "name": "icon",
+      "sample": "custom-collapse-icon",
+      "type": "",
+      "desc": "Expand and collapse the icon.",
       "defaultValue": ""
     }
   ]

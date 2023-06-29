@@ -1,0 +1,81 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@popconfirm-prefix-cls: ~'@{css-prefix}popconfirm';
+
+.@{popconfirm-prefix-cls} {
+  .component-css-vars-popconfirm();
+
+  display: inline-block;
+
+  &__reference {
+    display: inline-block;
+  }
+}
+
+.@{popconfirm-prefix-cls}-popover {
+  .component-css-vars-popconfirm();
+
+  min-width: 168px;
+  max-width: 90vw;
+
+  &__container {
+    padding: var(--ti-popconfirm-popover-container-padding-vertical) 0;
+    font-size: var(--ti-popconfirm-popover-footer-font-size);
+    color: var(--ti-popconfirm-popover-footer-font-color);
+  }
+  &__header {
+    display: flex;
+    align-items: center;
+    line-height: var(--ti-popconfirm-popover-line-height);
+  }
+  &__icon {
+    height: var(--ti-popconfirm-popover-icon-width);
+    width: var(--ti-popconfirm-popover-icon-width);
+    margin-right: var(--ti-popconfirm-popover-icon-margin-top);
+  }
+  &__title {
+    flex: 1 1 auto;
+  }
+  &__content {
+    color: #5C6976;
+    line-height: var(--ti-popconfirm-popover-line-height);
+  }
+  &__footer {
+    display: flex;
+    justify-content: var(--ti-popconfirm-popover-footer-justify-content);
+    margin-top: var(--ti-popconfirm-popover-footer-margin-top);
+  }
+  &__confirm-button {
+    width: 72px;
+  }
+  &__cancel-button {
+    width: 72px;
+  }
+
+  .fill-color-info-secondary {
+    fill: #5CACFF;
+  }
+  .fill-color-error {
+    fill: #EB171F;
+  }
+  .fill-color-warning {
+    fill: #FDC000;
+  }
+  .fill-color-success {
+    fill: #00A874;
+  }
+}

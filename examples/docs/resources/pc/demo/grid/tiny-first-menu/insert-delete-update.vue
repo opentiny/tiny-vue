@@ -15,7 +15,12 @@
     </template>
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="50"></tiny-grid-column>
-    <tiny-grid-column field="name" show-overflow title="名称" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
+    <tiny-grid-column
+      field="name"
+      show-overflow
+      title="名称"
+      :editor="{ component: 'input', autoselect: true }"
+    ></tiny-grid-column>
     <tiny-grid-column field="area" title="区域" :editor="{ component: 'input' }"></tiny-grid-column>
     <tiny-grid-column field="address" title="地址" :editor="{ component: 'input' }"></tiny-grid-column>
     <tiny-grid-column
@@ -27,7 +32,7 @@
   </tiny-grid>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn, GridToolbar, Modal } from '@opentiny/vue'
 import { alert } from '@opentiny/vue-modal'
 
@@ -68,14 +73,14 @@ export default {
       tableData: [
         {
           id: '1',
-          name: 'GFD科技YX公司',
+          name: 'GFD科技有限公司',
           area: '华东区',
           address: '福州',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '2',
-          name: 'WWWW科技YX公司',
+          name: 'WWWW科技有限公司',
           area: '华南区',
           address: '深圳福田区',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
@@ -89,21 +94,21 @@ export default {
         },
         {
           id: '4',
-          name: 'TGBYX公司',
+          name: 'TGB有限公司',
           area: '华北区',
           address: '梅州',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '5',
-          name: 'YHN科技YX公司',
+          name: 'YHN科技有限公司',
           area: '华南区',
           address: '韶关',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
         },
         {
           id: '6',
-          name: '康康物业YX公司',
+          name: '康康物业有限公司',
           area: '华北区',
           address: '广州天河区',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
@@ -113,14 +118,16 @@ export default {
   },
   methods: {
     toolbarButtonClickEvent({ code, $grid }) {
-      const data = $grid.getSelectRecords()
+      // 用于多选行，获取已选中的数据，该方法默认返回拷贝的数据，如果需要返回原始响应式数据，则需加上入参 true，如 getSelectRecords(true)
+      const data = $grid.getSelectRecords(true)
       const updateData = $grid.getUpdateRecords()
       const insertData = $grid.getInsertRecords()
-      const removeData = $grid.getRemoveRecords()
 
       switch (code) {
         case 'insert':
-          this.$refs.basicGrid.insert({})
+          this.$refs.basicGrid.insert({}).then((res) => {
+            this.$refs.basicGrid.setActiveRow(res.row)
+          })
           break
         case 'cancel': {
           $grid.clearSelection()
@@ -138,7 +145,7 @@ export default {
           break
         }
         case 'save': {
-          if (!updateData.length && !insertData.length && !removeData.length) {
+          if (!updateData.length && !insertData.length) {
             alert('没有修改记录')
           } else {
             Modal.message({

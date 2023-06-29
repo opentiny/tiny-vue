@@ -8,14 +8,14 @@
     <div
       ref="slider"
       role="tiny-slider"
-      class="relative bg-color-bg-3 w-full h-0.5 flex-1 my-4 mx-0"
+      class="tiny-mobile-slider relative bg-color-bg-3 w-full h-0.5 flex-1 my-4 mx-0"
       :class="[disabled ? 'cursor-default' : 'cursor-pointer']"
       @touchstart="bindMouseDown"
       @mousedown="bindMouseDown"
     >
       <div
         role="tiny-slider__range"
-        class="absolute rounded left-0 -bottom-px h-1"
+        class="tiny-mobile-slider__range absolute rounded left-0 -bottom-px h-1"
         :class="[disabled ? 'bg-color-none-hover' : 'bg-color-brand']"
         :style="state.barStyle"
       ></div>
@@ -23,23 +23,7 @@
         role="tiny-slider__handle"
         tabindex="0"
         v-if="state.leftBtnShow"
-        class="
-          absolute
-          w-6
-          h-6
-          sm:w-5
-          sm:h-5
-          box-border
-          border-0
-          sm:border-2
-          shadow-md
-          sm:shadow-none
-          rounded-full
-          bg-color-bg-1
-          -translate-x-2.5
-          -bottom-[0.5625rem]
-          left-0
-        "
+        class="tiny-mobile-slider__handle absolute w-6 h-6 sm:w-5 sm:h-5 box-border border-0 sm:border-2 shadow-md sm:shadow-none rounded-full bg-color-bg-1 -translate-x-2.5 -bottom-[0.5625rem] left-0"
         :class="[
           disabled
             ? 'border-color-none-hover cursor-not-allowed'
@@ -57,23 +41,7 @@
         role="tiny-slider__handle"
         tabindex="0"
         v-if="state.rightBtnShow"
-        class="
-          absolute
-          w-6
-          h-6
-          sm:w-5
-          sm:h-5
-          box-border
-          border-0
-          sm:border-2
-          shadow-md
-          sm:shadow-none
-          rounded-full
-          bg-color-bg-1
-          -translate-x-2.5
-          -bottom-[0.5625rem]
-          left-0
-        "
+        class="tiny-mobile-slider__handle absolute w-6 h-6 sm:w-5 sm:h-5 box-border border-0 sm:border-2 shadow-md sm:shadow-none rounded-full bg-color-bg-1 -translate-x-2.5 -bottom-[0.5625rem] left-0"
         :class="[
           disabled
             ? 'border-color-none-hover cursor-not-allowed'
@@ -139,19 +107,7 @@
             v-model="state.inputValue[0]"
             :disabled="state.disabled"
             @change="inputValueChange($event, 'left')"
-            class="
-              h-8
-              w-12
-              outline-0
-              px-2
-              py-0
-              text-center
-              border border-color-bg-3
-              hover:border-color-border-hover
-              focus:border-color-brand-focus
-              disabled:border-color-border
-              rounded
-            "
+            class="h-8 w-12 outline-0 px-2 py-0 text-center border border-color-bg-3 hover:border-color-border-hover focus:border-color-brand-focus disabled:border-color-border rounded"
           />
           <div
             class="h-px w-4 mx-2 my-0"
@@ -162,19 +118,7 @@
             v-model="state.inputValue[1]"
             :disabled="state.disabled"
             @change="inputValueChange($event, 'right')"
-            class="
-              h-8
-              w-12
-              outline-0
-              px-2
-              py-0
-              text-center
-              border border-color-bg-3
-              hover:border-color-border-hover
-              focus:border-color-brand-focus
-              disabled:border-color-border
-              rounded
-            "
+            class="h-8 w-12 outline-0 px-2 py-0 text-center border border-color-bg-3 hover:border-color-border-hover focus:border-color-brand-focus disabled:border-color-border rounded"
           />
           <span class="ml-2">{{ unit }}</span>
         </slot>
@@ -184,19 +128,7 @@
           <input
             type="text"
             v-model="state.activeValue"
-            class="
-              h-8
-              w-12
-              outline-0
-              px-2
-              py-0
-              text-center
-              border border-color-bg-3
-              hover:border-color-border-hover
-              focus:border-color-brand-focus
-              disabled:border-color-border
-              rounded
-            "
+            class="h-8 w-12 outline-0 px-2 py-0 text-center border border-color-bg-3 hover:border-color-border-hover focus:border-color-brand-focus disabled:border-color-border rounded"
             :disabled="state.disabled"
           /><span class="ml-2">{{ unit }}</span>
         </slot>

@@ -25,7 +25,6 @@
 import { set, assign, objectMap, get, each, isObject, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { getCellValue, setCellValue } from '@opentiny/vue-renderless/grid/utils'
 import { hooks } from '@opentiny/vue-common'
-import { getTableCellKey } from '../../table/src/strategy'
 
 function getAttrs({ name, attrs }, params) {
   let props = attrs
@@ -215,8 +214,7 @@ function defaultEditRender(h, renderOpts, params, context) {
       ...attrs,
       [modelProps]: cellValue
     },
-    on: getEvents(renderOpts, params, context),
-    key: getTableCellKey({ $table, column, row })
+    on: getEvents(renderOpts, params, context)
   }
 
   if (autoRefresh(renderOpts, params, context)) {

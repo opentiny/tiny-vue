@@ -1,4 +1,5 @@
 import debounce from '../common/deps/debounce'
+import { addClass, removeClass } from '../common/deps/dom'
 
 export const close = ({ emit, state }) => () => {
   state.toggle = false
@@ -89,4 +90,18 @@ export const removeDragEvent = ({ api, vm }) => () => {
   el.removeEventListener('touchstart', api.mousedown)
   el.removeEventListener('touchmove', api.mousemove)
   el.removeEventListener('touchend', api.mouseup)
+}
+
+export const showScrollbar = (lockScrollClass) => () => {
+  addClass(document.body, lockScrollClass)
+}
+
+export const hideScrollbar = (lockScrollClass) => () => {
+  removeClass(document.body, lockScrollClass)
+}
+
+export const watchVisibleNotImmediate = ({ api, props }) => (visible) => {
+  if (props.lockScroll) {
+    visible ? api.showScrollbar() : api.hideScrollbar()
+  }
 }

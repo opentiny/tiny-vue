@@ -17,7 +17,7 @@
   },
   {
     "title": "表单校验",
-    "content": "<p>包括常用的必填、日期、时间、URL、邮件等校验规则。通过 <code>trigger</code> 配置触发校验规则的方式，为 <code>change</code> 时，当输入框值改变即触发校验，为 <code>blur</code> 时则失焦后触发校验。</p>\n",
+    "content": "<p>包括常用的必填、日期、时间、URL、邮件等校验规则。通过 <code>trigger</code> 配置触发校验规则的方式，为 <code>change</code> 时，当输入框值改变即触发校验，为 <code>blur</code> 时则失焦后触发校验，可设置成数组 <code>['change', 'blur']</code> 两种场景都触发。</p>\n",
     "link": "form/form-validation",
     "component": " Form 表单",
     "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
@@ -25,7 +25,7 @@
   },
   {
     "title": "自定义校验规则",
-    "content": "<p>通过 <code>validator</code> 选项进行自定义校验，校验方法中 <code>callback</code> 必须被调用。通过配置 <code>validate-on-rule-change</code> 属性,设置是否在 <code>rules</code> 属性改变后立即触发一次验证</p>\n",
+    "content": "<p>通过 <code>validator</code> 选项进行自定义校验，校验方法中 <code>callback</code> 必须被调用。通过配置 <code>validate-on-rule-change</code> 属性,设置是否在 <code>rules</code> 属性改变后立即触发一次验证。</p>\n",
     "link": "form/custom-validation-rule",
     "component": " Form 表单",
     "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
@@ -33,7 +33,7 @@
   },
   {
     "title": "文本对齐",
-    "content": "<p>通过配置 <code>label-align</code> 属性, 设置是否文本对齐,通过配置 <code>label-position</code> 属性, 设置文本标签的位置</p>\n",
+    "content": "<p>通过配置 <code>label-align</code> 属性, 设置是否文本对齐,通过配置 <code>label-position</code> 属性, 设置文本标签的位置。</p>\n",
     "link": "form/label-align",
     "component": " Form 表单",
     "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
@@ -113,10 +113,18 @@
   },
   {
     "title": "分组表单",
-    "content": "<p>将多个表单组合在一起</p>\n",
+    "content": "<p>将多个表单组合在一起。</p>\n",
     "link": "form/group-form",
     "component": " Form 表单",
     "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
     "demoId": "group-form"
+  },
+  {
+    "title": "SMB必填表单项",
+    "content": "<p>SMB设计规范，必填表单项前不会带有红色星号，需要自行区分必填项与可选项目。</p>\n",
+    "link": "form/smb-required",
+    "component": " Form 表单",
+    "findIntroStr": "由按钮、输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。",
+    "demoId": "smb-required"
   }
 ]

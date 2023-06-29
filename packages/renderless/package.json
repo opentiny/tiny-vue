@@ -17,6 +17,13 @@
   ],
   "author": "OpenTiny Team",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:opentiny/tiny-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/opentiny/tiny-vue/issues"
+  },
   "sideEffects": false,
   "scripts": {
     "build": "tsup",

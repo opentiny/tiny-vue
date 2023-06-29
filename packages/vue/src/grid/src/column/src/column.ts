@@ -22,17 +22,17 @@
  * SOFTWARE.
  *
  */
+
+import { h, hooks, $prefix, $props, defineComponent } from '@opentiny/vue-common'
 import { assemColumn, destroyColumn } from '@opentiny/vue-renderless/grid/utils'
-import { findTree } from '@opentiny/vue-renderless/grid/static/'
 import Cell from '../../cell'
-import { h, hooks, $prefix } from '@opentiny/vue-common'
+import { warn } from '../../tools'
 
-const SLOT_VM_CACHE = new WeakMap()
-
-export default {
+export default defineComponent({
   name: $prefix + 'GridColumn',
   componentName: 'GridColumn',
   props: {
+    ...$props,
     // 列对其方式
     align: String,
     // 给单元格附加 className
@@ -141,6 +141,7 @@ export default {
     const $column = inject('$column', null)
 
     const state = reactive({
+      // 穿件表格列实例化对象
       columnConfig: Cell.createColumn($table, props),
       slots,
       cacheKey: markRaw({ uid: currentInstance.uid }),
@@ -157,31 +158,22 @@ export default {
 
     nextTick(() => assemColumn($table, $column, instance))
 
-    onBeforeUnmount(() => {
-      destroyColumn($table, instance)
-      SLOT_VM_CACHE.delete(state.cacheKey)
-    })
+    onBeforeUnmount(() => destroyColumn($table, instance))
 
     return state
   },
   render() {
-    const { slots, cacheKey, firstRow, columnConfig } = this
-    let slotVm
+    const { slots, firstRow, columnConfig } = this
+    let slotVnode
 
-    if (SLOT_VM_CACHE.has(cacheKey)) {
-      slotVm = SLOT_VM_CACHE.get(cacheKey)
-    } else {
-      slotVm = slots.default && slots.default({ row: firstRow, column: columnConfig })
-      SLOT_VM_CACHE.set(cacheKey, slotVm)
+    try {
+      slotVnode = slots.default && slots.default({ row: firstRow, column: columnConfig, skip: true })
+    } catch (e) {
+      slotVnode = null
+      warn('ui.grid.error.chainCallError')
     }
 
-    const hasSubColumn = findTree(slotVm, ({ componentOptions, type }) => {
-      const componentName = (type && type.name) || (componentOptions && componentOptions.Ctor.extendOptions.name)
-
-      return componentName === 'TinyGridColumn'
-    })
-
-    return h('div', hasSubColumn && slotVm)
+    return h('div', slotVnode)
   },
   methods: Cell
-}
+})

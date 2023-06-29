@@ -35,54 +35,62 @@ const isEdge = (browser) => {
   }
 }
 
+export const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined' && window.document === document
+
 export default (() => {
-  const isMobile = /(Android|webOS|iPhone|iPad|iPod|SymbianOS|BlackBerry|Windows Phone)/.test(navigator.userAgent)
   const browser = {
     name: undefined,
     version: undefined,
     isDoc: typeof document !== 'undefined',
-    isMobile,
-    isPC: !isMobile,
+    isMobile: false,
+    isPC: true,
     isNode: typeof window === 'undefined'
   }
 
-  let matches
+  if (isBrowser) {
+    const isMobile = /(Android|webOS|iPhone|iPad|iPod|SymbianOS|BlackBerry|Windows Phone)/.test(navigator.userAgent)
 
-  if (!!window.chrome && (!!window.chrome.webstore || /^Google\b/.test(window.navigator.vendor))) {
-    browser.name = 'chrome'
-    browser.chrome = true
-    matches = navigator.userAgent.match(/chrome\/(\d+)/i)
-    browser.version = !!matches && !!matches[1] && parseInt(matches[1], 10)
-    matches = undefined
-  } else if (!!document.all || !!document.documentMode) {
-    browser.name = 'ie'
-    browser.version = getIEVersion()
-    browser.ie = true
-  } else if (typeof window.InstallTrigger !== 'undefined') {
-    browser.name = 'firefox'
-    browser.firefox = true
-  } else if (Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0) {
-    browser.name = 'safari'
-    browser.safari = true
-  } else if ((!!window.opr && !!window.opr.addons) || !!window.opera) {
-    browser.name = 'opera'
-    browser.opera = true
-  }
+    browser.isMobile = isMobile
+    browser.isPC = !isMobile
 
-  isEdge(browser)
+    let matches
 
-  if (!~['ie', 'chrome'].indexOf(browser.name)) {
-    const reg = browser.name + '/(\\d+)'
-    matches = navigator.userAgent.match(new RegExp(reg, 'i'))
-    browser.version = !!matches && !!matches[1] && parseInt(matches[1], 10)
-    matches = undefined
-  }
+    if (!!window.chrome && (!!window.chrome.webstore || /^Google\b/.test(window.navigator.vendor))) {
+      browser.name = 'chrome'
+      browser.chrome = true
+      matches = navigator.userAgent.match(/chrome\/(\d+)/i)
+      browser.version = !!matches && !!matches[1] && parseInt(matches[1], 10)
+      matches = undefined
+    } else if (!!document.all || !!document.documentMode) {
+      browser.name = 'ie'
+      browser.version = getIEVersion()
+      browser.ie = true
+    } else if (typeof window.InstallTrigger !== 'undefined') {
+      browser.name = 'firefox'
+      browser.firefox = true
+    } else if (Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0) {
+      browser.name = 'safari'
+      browser.safari = true
+    } else if ((!!window.opr && !!window.opr.addons) || !!window.opera) {
+      browser.name = 'opera'
+      browser.opera = true
+    }
 
-  if (browser.isDoc) {
-    const bodyEl = document.body || document.documentElement;
-    ['webkit', 'khtml', 'moz', 'ms', 'o'].forEach((core) => {
-      browser['-' + core] = !!bodyEl[core + 'MatchesSelector']
-    })
+    isEdge(browser)
+
+    if (!~['ie', 'chrome'].indexOf(browser.name)) {
+      const reg = browser.name + '/(\\d+)'
+      matches = navigator.userAgent.match(new RegExp(reg, 'i'))
+      browser.version = !!matches && !!matches[1] && parseInt(matches[1], 10)
+      matches = undefined
+    }
+
+    if (browser.isDoc) {
+      const bodyEl = document.body || document.documentElement;
+      ['webkit', 'khtml', 'moz', 'ms', 'o'].forEach((core) => {
+        browser['-' + core] = !!bodyEl[core + 'MatchesSelector']
+      })
+    }
   }
 
   return browser

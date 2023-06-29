@@ -22,7 +22,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>`type="line"` 显示为 line 类型<p>',
+        'zh-CN': '<p><code>type="line"</code>显示为 line 类型<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['progress-type.vue']
@@ -34,7 +34,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>`type="circle"` 显示为 circle 类型。`width`可以调整环形进度条画布宽度，默认值为 96px。<p>',
+        'zh-CN': '<p><code>type="circle"</code>显示为 circle 类型。<code>width<code>可以调整环形进度条画布宽度，默认值为 96px。<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['progress-type-circle.vue']
@@ -46,7 +46,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>`size` 进度条的大小（small/medium/large）<p>',
+        'zh-CN': '<p><code>size</code>进度条的大小（small/medium/large）<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['progress-size.vue']
@@ -58,7 +58,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>`stroke-width`自定义进度条的宽度，单位 px<p>',
+        'zh-CN': '<p><code>stroke-width<code>自定义进度条的宽度，单位 px<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['progress-width.vue']
@@ -70,7 +70,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>`status` 进度条当前状态（success/exception/warning）<p>',
+        'zh-CN': '<p><code>status</code>进度条当前状态（success/exception/warning）<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['progress-status.vue']
@@ -82,7 +82,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>`show-text` 是否显示进度条文字内容<p>',
+        'zh-CN': '<p><code>show-text</code>是否显示进度条文字内容<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['text-inside-or-no-text.vue']
@@ -94,7 +94,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>通过 `color` 设置进度条颜色。color 进度条背景色（会覆盖 status 状态颜色）<p>',
+        'zh-CN': '<p>通过 <code>color</code>设置进度条颜色。color 进度条背景色（会覆盖 status 状态颜色）<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['custom-color.vue']
@@ -107,7 +107,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>`text-inside` 进度条显示文字内置在进度条内（只在 type=line 时可用），`format`自定义进度条的文字<p>',
+          '<p><code>text-inside</code>进度条显示文字内置在进度条内（只在 type=line 时可用），<code>format<code>自定义进度条的文字<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['format-text.vue']
@@ -119,8 +119,8 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>通过设置 `percentage` 动态控制进度条变化<p>',
-        'en-US': '<p>bbutton click</p>'
+        'zh-CN': '<p>通过设置 <code>percentage</code>动态控制进度条变化<p>',
+        'en-US': '<p>button click</p>'
       },
       codeFiles: ['dynamic-control-changes.vue']
     }

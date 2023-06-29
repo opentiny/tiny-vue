@@ -2,9 +2,8 @@
   <div class="content">
     <tiny-steps
       :data="stepsData"
-      name-field="reName"
-      :space="100"
       :active="active"
+      name-field="reName"
       count-field="reCount"
       status-field="reStatus"
       @click="normalClick"

@@ -5,10 +5,7 @@ test('动态加载', async ({ page }) => {
   await page.goto('http://localhost:7130/pc/cascader/auto-load')
   await page.locator('#preview').getByRole('img').nth(1).click()
   const svg = page.locator('.tiny-cascader-node__postfix > .st0')
-  await expect(svg).toHaveAttribute(
-    'd',
-    'M7 21c.2 0 .5-.1.6-.2l9.9-8c.2-.2.4-.5.4-.8 0-.3-.1-.6-.4-.8L7.6 3.3c-.4-.4-1.1-.3-1.4.2-.4.4-.3 1.1.2 1.4l8.9 7.2-8.9 7.2c-.4.4-.5 1-.2 1.4.2.2.5.3.8.3z'
-  )
+  await expect(svg).toHaveAttribute('d', 'M6 2v20l13-10z')
   await page.getByRole('menuitem', { name: '选项1' }).click()
   const loadingSvg = page.getByRole('menuitem', { name: '选项1' }).locator('path')
   await expect(loadingSvg).toHaveAttribute(

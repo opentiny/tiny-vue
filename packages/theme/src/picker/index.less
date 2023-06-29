@@ -14,6 +14,8 @@
 @import '../custom.less';
 @import './vars.less';
 @import '../transition/timepicker.less';
+@import '../date-picker/vars.less';
+
 
 @date-editor-prefix-cls: ~'@{css-prefix}date-editor';
 @range-editor-prefix-cls: ~'@{css-prefix}range-editor';
@@ -21,6 +23,7 @@
 
 .@{date-editor-prefix-cls} {
   .component-css-vars-picker();
+  .component-css-vars-date-picker();
 
   position: relative;
   display: inline-block;

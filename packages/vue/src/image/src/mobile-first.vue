@@ -16,17 +16,7 @@
     </slot>
     <slot v-else-if="state.error" name="error">
       <img
-        class="
-          w-full
-          h-full
-          flex
-          justify-center
-          items-center
-          text-sm
-          align-middle
-          text-color-bg-3
-          bg-no-repeat bg-center
-        "
+        class="w-full h-full flex justify-center items-center text-sm align-middle text-color-bg-3 bg-no-repeat bg-center"
         :src="state.images.imageError"
         alt=""
       />

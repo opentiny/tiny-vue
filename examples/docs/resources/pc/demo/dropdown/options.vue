@@ -14,9 +14,9 @@
 
     <tiny-dropdown :menu-options="menuOptions" title="点击下拉" @item-click="itemClick"></tiny-dropdown>
 
-    <tiny-dropdown :menuOptions="menuOptions"></tiny-dropdown>
+    <tiny-dropdown :menu-options="menuOptions"></tiny-dropdown>
 
-    <tiny-dropdown :menuOptions="menuOptions1" textField="name"></tiny-dropdown>
+    <tiny-dropdown :menu-options="menuOptions1" text-field="name"></tiny-dropdown>
   </div>
 </template>
 

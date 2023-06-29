@@ -1,11 +1,20 @@
 <template>
   <div>
     当前处于活动的行索引号（rowIndex）：{{ activedRow }} <br /><br />
-    <tiny-grid ref="theGrid" :data="tableData" seq-serial :edit-config="{ trigger: 'manual', mode: 'row' }">
+    <tiny-grid
+      ref="theGrid"
+      :data="tableData"
+      seq-serial
+      :edit-config="{ trigger: 'manual', mode: 'row', autoClear: false }"
+    >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
       <tiny-grid-column field="area" title="区域" :editor="{ component: 'select', options }"></tiny-grid-column>
-      <tiny-grid-column field="address" title="地址" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
+      <tiny-grid-column
+        field="address"
+        title="地址"
+        :editor="{ component: 'input', autoselect: true }"
+      ></tiny-grid-column>
       <tiny-grid-column
         field="introduction"
         title="公司简介"
@@ -13,13 +22,13 @@
         show-overflow="ellipsis"
       ></tiny-grid-column>
       <tiny-grid-column title="操作" width="200" align="center">
-        <template v-slot="data">
+        <template #default="data">
           <template v-if="$refs.theGrid && $refs.theGrid.hasActiveRow(data.row)">
-            <tiny-button size="mini" @click="saveRowEvent(data.row)">保存</tiny-button>
-            <tiny-button size="mini" @click="cancelRowEvent(data.row)">取消</tiny-button>
+            <tiny-button size="mini" @click="saveRowEvent(data.row)"> 保存 </tiny-button>
+            <tiny-button size="mini" @click="cancelRowEvent(data.row)"> 取消 </tiny-button>
           </template>
           <template v-else>
-            <tiny-button size="mini" @click="editRowEvent(data.row)">编辑</tiny-button>
+            <tiny-button size="mini" @click="editRowEvent(data.row)"> 编辑 </tiny-button>
           </template>
         </template>
       </tiny-grid-column>

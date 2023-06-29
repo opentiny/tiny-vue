@@ -37,7 +37,7 @@
     },
     {
       "name": "disabled-void-icon-class",
-      "sample": "disabled-void-icon-class",
+      "sample": "disabled-not-selected-class",
       "type": "String",
       "desc": "只读状态下未选中的图标样式名，可选值:icon-starDisable | icon-frown | icon-meh | icon-smile",
       "defaultValue": "该属性的默认值为 icon-starActive"

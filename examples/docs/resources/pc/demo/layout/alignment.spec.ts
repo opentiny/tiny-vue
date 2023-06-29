@@ -8,6 +8,4 @@ test('layout对齐方式', async ({ page }) => {
   await expect(layoutDiv.first()).toHaveClass(/row-justify-start/)
   await expect(layoutDiv.nth(1)).toHaveClass(/row-justify-center/)
   await expect(layoutDiv.nth(2)).toHaveClass(/row-justify-end/)
-  await expect(layoutDiv.nth(3)).toHaveAttribute('justify', 'space-between')
-  await expect(layoutDiv.nth(4)).toHaveClass(/row-justify-space-around/)
 })

@@ -423,7 +423,7 @@ const customResolveComponent = (component) => {
   let type = component
   let customElement = false
 
-  if (typeof component === 'string') {
+  if (typeof component === 'string' && typeof document !== 'undefined') {
     const el = document.createElement(component)
     const svgTagNames = ['SVG', 'CIRCLE', 'PATH']
 

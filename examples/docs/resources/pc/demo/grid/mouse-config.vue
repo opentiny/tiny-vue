@@ -1,5 +1,11 @@
 <template>
-  <tiny-grid :data="tableData" :edit-config="{}" :mouse-config="mouseConfigData">
+  <tiny-grid
+    :data="tableData"
+    :edit-config="{}"
+    :mouse-config="{ checked: true }"
+    :keyboard-config="{ isCut: true }"
+    column-min-width="200px"
+  >
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="名称"></tiny-grid-column>
     <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
@@ -18,10 +24,6 @@ export default {
   },
   data() {
     return {
-      mouseConfigData: {
-        checked: true,
-        selected: true // 是否开启左键选中功能 默认为false
-      },
       tableData: [
         {
           id: '1',

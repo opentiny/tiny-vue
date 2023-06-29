@@ -1,5 +1,5 @@
 {
-  "attrs": [
+  "Carousel Attrs": [
     {
       "name": "arrow",
       "sample": "up-down-carousel",
@@ -11,14 +11,14 @@
       "name": "autoplay",
       "sample": "autoplay",
       "type": "Boolean",
-      "desc": "是否自动切换。",
+      "desc": "是否自动切换",
       "defaultValue": "该属性的默认值为 false"
     },
     {
       "name": "height",
       "sample": "indicator-trigger",
       "type": "String",
-      "desc": "走马灯的高度。",
+      "desc": "走马灯的高度",
       "defaultValue": ""
     },
     {
@@ -32,28 +32,28 @@
       "name": "initial-index",
       "sample": "manual-play",
       "type": "Number",
-      "desc": "初始状态激活的幻灯片的索引，从 0 开始 。",
+      "desc": "初始状态激活的幻灯片的索引，从 0 开始",
       "defaultValue": "该属性的默认值为 0"
     },
     {
       "name": "interval",
       "sample": "play-interval",
       "type": "Number",
-      "desc": "自动切换的时间间隔，单位为毫秒。",
+      "desc": "自动切换的时间间隔，单位为毫秒",
       "defaultValue": "该属性的默认值为 3000"
     },
     {
       "name": "show-title",
       "sample": "show-title",
       "type": "Boolean",
-      "desc": "是否显示标题。",
+      "desc": "是否显示标题",
       "defaultValue": "该属性的默认值为 false"
     },
     {
       "name": "trigger",
       "sample": "indicator-trigger",
       "type": "String",
-      "desc": "指示器的触发方式，默认为 hover。;该属性的可选值为 click",
+      "desc": "指示器的触发方式，默认为 hover。该属性的可选值为 click",
       "defaultValue": "该属性的默认值为 hover"
     },
     {
@@ -71,7 +71,7 @@
       "defaultValue": "该属性的默认值为 true"
     }
   ],
-  "slots": [
+  "Carousel Slots": [
     {
       "name": "default",
       "sample": "manual-play",
@@ -80,12 +80,12 @@
       "defaultValue": ""
     }
   ],
-  "methods": [
+  "Carousel Methods": [
     {
       "name": "next",
       "sample": "manual-play",
       "type": "",
-      "desc": "切换至下一张幻灯片。",
+      "desc": "切换至下一张幻灯片",
       "defaultValue": ""
     },
     {
@@ -103,12 +103,37 @@
       "defaultValue": ""
     }
   ],
-  "events": [
+  "Carousel Events": [
     {
       "name": "change",
-      "sample": "manual-play",
+      "sample": "carousel-events",
       "type": "",
       "desc": "幻灯片切换时触发",
+      "defaultValue": ""
+    }
+  ],
+  "Carousel-Item Attrs": [
+    {
+      "name": "title",
+      "sample": "show-title",
+      "type": "String",
+      "desc": "幻灯片标题",
+      "defaultValue": ""
+    },
+    {
+      "name": "name",
+      "sample": "show-title",
+      "type": "String",
+      "desc": "幻灯片名称",
+      "defaultValue": ""
+    }
+  ],
+  "Carousel-Item Slots": [
+    {
+      "name": "default",
+      "sample": "manual-play",
+      "type": "",
+      "desc": "默认插槽",
       "defaultValue": ""
     }
   ]

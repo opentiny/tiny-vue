@@ -1,4 +1,5 @@
 import ColumnListGroup from './src/mobile-first.vue'
+import { version } from './package.json'
 
 ColumnListGroup.model = {
   prop: 'modelValue',
@@ -9,7 +10,7 @@ ColumnListGroup.install = function (Vue) {
   Vue.component(ColumnListGroup.name, ColumnListGroup)
 }
 
-ColumnListGroup.version = process.env.COMPONENT_VERSION
+ColumnListGroup.version = version
 
 /* istanbul ignore next */
 if (process.env.BUILD_TARGET === 'runtime') {

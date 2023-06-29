@@ -116,4 +116,13 @@ describe('PC Mode', () => {
     ></CascaderPanel >)
     expect(wrapper.find('.only-slot').exists()).toBe(true)
   })
+
+  // 通过 expand-change 点击展开节点发生变化时触发，回调参数为 各父级选项值组成的数组
+  test.todo('expand-change')
+
+  // 可以通过 scoped slot 对级联面板的备选项的节点内容进行自定义，scoped slot 会传入两个字段 node 和 data，分别表示当前节点的 Node 对象和数据
+  test.todo('scoped slot')
+
+  // 通过 children 指定子级选项，默认值为 children。 通过 emitPath 是否返回由该节点所在的各级菜单的值所组成的数组。 通过 label 指定显示选项 label 值，默认为 label。 通过 value 指定值选项 value 值，默认为 value
+  test.todo('props')
 })

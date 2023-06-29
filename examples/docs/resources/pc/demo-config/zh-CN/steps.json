@@ -8,6 +8,14 @@
     "demoId": "data-resource"
   },
   {
+    "title": "节点宽度",
+    "content": "<p>使用 <code>space</code>属性配置步骤条节点的宽度。</p>\n",
+    "link": "steps/space",
+    "component": " Steps 步骤条",
+    "findIntroStr": "Steps 步骤条",
+    "demoId": "space"
+  },
+  {
     "title": "普通步骤条",
     "content": "<p>使用 <code>tiny-time-line</code> 标签，并设置 <code>type</code> 为 <code>normal</code> 实现普通步骤条。</p>\n",
     "link": "steps/normal-steps",

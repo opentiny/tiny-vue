@@ -10,7 +10,7 @@
 *
 */
 
-import { handleClick, getStatusCls, getStatus, computedData, getDate, computedCurrent, computedIsReverse, changeStatus, computedStackNodes} from './index'
+import { handleClick, getStatusCls, getStatus, computedData, getDate, computedCurrent, computedIsReverse, changeStatus, computedStackNodes, computedSpace } from './index'
 
 export const api = ['state', 'handleClick', 'getStatusCls', 'getStatus', 'getDate', 'changeStatus']
 
@@ -21,6 +21,7 @@ export const renderless = (props, { computed, reactive }, { t, emit, constants }
     current: computed(() => api.computedCurrent()),
     isReverse: computed(() => api.computedIsReverse()),
     stackNodes: computed(() => (state.showAll ? state.nodes : api.computedStackNodes())),
+    computedSpace: computed(() => computedSpace({ props })),
     showData: false,
     showAll: false
   })

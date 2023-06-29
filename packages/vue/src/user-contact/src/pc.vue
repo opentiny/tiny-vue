@@ -17,7 +17,10 @@
             <span v-show="showNumber" class="tiny-user-contact__role-number">{{ data.roleNumber }}</span>
           </div>
         </a>
-        <component :is="show ? 'icon-chevron-up' : 'icon-chevron-down'" class="tiny-svg-size tiny-user-contact__arrow" />
+        <component
+          :is="show ? 'icon-chevron-up' : 'icon-chevron-down'"
+          class="tiny-svg-size tiny-user-contact__arrow"
+        />
       </template>
       <card-template v-if="slots.default" :tools="data.tools" class="tiny-user-contact__main">
         <slot></slot>
@@ -29,7 +32,9 @@
               <user-head :round="true" v-model="data.imgUrl" type="image"></user-head>
               <div class="tiny-user-contact__role">
                 <span v-show="showName" class="tiny-user-contact__role-name">{{ data.userName }}</span>
-                <span v-show="showNumber" class="tiny-user-contact__role-number">{{ t('ui.usercard.empno') }}：{{ data.roleNumber }}</span>
+                <span v-show="showNumber" class="tiny-user-contact__role-number"
+                  >{{ t('ui.usercard.empno') }}：{{ data.roleNumber }}</span
+                >
               </div>
             </div>
           </div>

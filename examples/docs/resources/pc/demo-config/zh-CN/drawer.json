@@ -1,0 +1,130 @@
+[
+  {
+    "title": "基本用法",
+    "content": "<p>详细用法参考如下示例</p>",
+    "link": "drawer/basic-usage",
+    "component": "Drawer 抽屉",
+    "findIntroStr": "",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "抽屉方向",
+    "content": "<p>添加 <code>placement</code> 属性设置抽屉的方向，可选值有 `left|right|top|bottom`，默认值为 `right`。</p>",
+    "link": "drawer/placement",
+    "component": "Drawer 抽屉",
+    "findIntroStr": "",
+    "demoId": "placement"
+  },
+  {
+    "title": "抽屉宽度",
+    "content": "<p>添加<code>width</code> 属性设置抽屉的宽度，默认值为 `500px`</p>",
+    "link": "drawer/width",
+    "component": "Drawer 抽屉",
+    "findIntroStr": "",
+    "demoId": "width"
+  },
+  {
+    "title": "宽度拖拽功能",
+    "content": "<p>添加 <code>dragable</code> 属性开启抽屉宽度拖拽功能，默认值为 `false`</p>",
+    "link": "drawer/dragable",
+    "component": "Drawer 抽屉",
+    "findIntroStr": "",
+    "demoId": "dragable"
+  },
+  {
+    "title": "遮罩层显示隐藏",
+    "content": "<p>添加 <code>mask</code> 属性可以控制遮罩层显示隐藏，默认值为 `true` 。</p>",
+    "link": "drawer/mask",
+    "component": "Drawer 抽屉",
+    "findIntroStr": "",
+    "demoId": "mask"
+  },
+  {
+    "title": "点击遮罩层关闭抽屉",
+    "content": "<p>默认弹窗打开后，可以单击遮罩层关闭弹窗，设置 <code>mask-closable</code> 为 `false` 后将禁用该功能，默认值为 `true` 。</p>",
+    "link": "drawer/mask-closable",
+    "component": "Drawer 抽屉",
+    "findIntroStr": "",
+    "demoId": "mask-closable"
+  },
+  {
+    "title": "关闭图标显示",
+    "content": "<p><code>show-close</code> 控制显示关闭图标，默认值为 true</p>",
+    "link": "drawer/show-close",
+    "component": "Drawer 抽屉",
+    "findIntroStr": "",
+    "demoId": "show-close"
+  },
+  {
+    "title": "头部显示",
+    "content": "<p><code>show-header</code> 控制显示头部，默认值为 true</p>",
+    "link": "drawer/show-header",
+    "component": "Drawer 抽屉",
+    "findIntroStr": "",
+    "demoId": "show-header"
+  },
+  {
+    "title": "底部显示",
+    "content": "<p><code>show-footer</code> 控制显示底部，默认值为 false</p>",
+    "link": "drawer/show-footer",
+    "component": "Drawer 抽屉",
+    "findIntroStr": "",
+    "demoId": "show-footer"
+  },
+  {
+    "title": "自定义堆叠顺序",
+    "content": "<p>可通过 <code>z-index</code> 属性设置自定义堆叠顺序（对于某些特殊场景，比如被遮挡时可能会用到）。</p>\n",
+    "link": "drawer/z-index",
+    "component": "Drawer 抽屉",
+    "findIntroStr": "",
+    "demoId": "z-index"
+  },
+  {
+    "title": "默认插槽",
+    "content": "<p>自定义抽屉主体内容</p>",
+    "link": "drawer/default-slot",
+    "component": "Drawer 抽屉",
+    "findIntroStr": "",
+    "demoId": "default-slot"
+  },
+  {
+    "title": "头部插槽",
+    "content": "<p>自定义头部内容，当<code>show-header</code>取值为 true 时有效</p>",
+    "link": "drawer/header-slot",
+    "component": "Drawer 抽屉",
+    "findIntroStr": "",
+    "demoId": "header-slot"
+  },
+  {
+    "title": "头部右侧插槽",
+    "content": "<p>自定义头部右侧内容，当<code>show-header</code>取值为 true 时有效</p>",
+    "link": "drawer/header-right-slot",
+    "component": "Drawer 抽屉",
+    "findIntroStr": "",
+    "demoId": "header-right-slot"
+  },
+  {
+    "title": "底部插槽",
+    "content": "<p>底部插槽，默认隐藏底部，设置 :show-footer=\"true\" 时有效<p>",
+    "link": "drawer/footer-slot",
+    "component": "Drawer 抽屉",
+    "findIntroStr": "",
+    "demoId": "footer-slot"
+  },
+  {
+    "title": "关闭事件",
+    "content": "<p>关闭抽屉事件</p>",
+    "link": "drawer/close-event",
+    "component": "Drawer 抽屉",
+    "findIntroStr": "",
+    "demoId": "close-event"
+  },
+  {
+    "title": "确认事件",
+    "content": "<p>确认事件，设置 :show-footer=\"true\" 时有效</p>",
+    "link": "drawer/confirm-event",
+    "component": "Drawer 抽屉",
+    "findIntroStr": "",
+    "demoId": "confirm-event"
+  }
+]

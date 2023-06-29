@@ -71,11 +71,25 @@
       "defaultValue": "{\"options\":[],\"textField\":\"label\",\"popper-class\":\"\",\"placement\":\"bottom-end\"}"
     },
     {
+      "name": "visible-arrow",
+      "sample": "visible-arrow",
+      "type": "Boolean",
+      "desc": "Indicates whether to display arrows. The default value is not displayed",
+      "defaultValue": "false"
+    },
+    {
       "name": "title",
       "sample": "options",
       "type": "String",
       "desc": "When the default slot is not used, the menu title can be configured in the title attribute.",
       "defaultValue": "drop-down menu"
+    },
+    {
+      "name": "inherit-width",
+      "sample": "inherit-width",
+      "type": "Boolean",
+      "desc": "The default value is false. When this parameter is set to true, the minimum width of the dialog box inherits the width of the trigger source.",
+      "defaultValue": "false"
     }
   ],
   "slots": [

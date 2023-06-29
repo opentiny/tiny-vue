@@ -1,6 +1,8 @@
 <template>
   <div>
-    <tiny-button @click="boxVisibility = true">右侧弹窗</tiny-button>
+    <tiny-button @click="boxVisibility = true">
+      右侧弹窗
+    </tiny-button>
     <tiny-dialog-box right-slide v-model:visible="boxVisibility" title="消息">
       <template #title>
         <div class="header">
@@ -10,8 +12,12 @@
       </template>
       <span>半屏弹窗内容</span>
       <template #footer>
-        <tiny-button type="primary" @click="boxVisibility = false">确 定</tiny-button>
-        <tiny-button plain @click="boxVisibility = false">取消</tiny-button>
+        <tiny-button type="primary" @click="boxVisibility = false">
+          确 定
+        </tiny-button>
+        <tiny-button plain @click="boxVisibility = false">
+          取消
+        </tiny-button>
       </template>
     </tiny-dialog-box>
   </div>
@@ -34,21 +40,21 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
+
+<style scoped>
 .header {
   display: flex;
   align-items: center;
+}
+.header .title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-right: 8px;
+}
 
-  .title {
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1.5;
-    margin-right: 8px;
-  }
-
-  .icon {
-    margin-top: 2px;
-    font-size: 16px;
-  }
+.header .icon {
+  margin-top: 2px;
+  font-size: 16px;
 }
 </style>

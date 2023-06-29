@@ -2,6 +2,7 @@
   "name": "@opentiny/vue-design-aurora",
   "version": "3.7.14",
   "main": "index.ts",
+  "sideEffects": false,
   "dependencies": {
     "@opentiny/vue-icon": "workspace:~"
   },

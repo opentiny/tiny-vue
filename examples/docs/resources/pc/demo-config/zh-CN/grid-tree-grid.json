@@ -1,1 +1,114 @@
-[{"title":"有子级的数据结构","content":"<p>在 grid 标签上配置 tree-config=&quot;{children: 'children'}&quot;以树的形式来展示数据,还需要在展示树节点的字段上配置 tree-node 属性</p>\n","link":"grid/tree-table/tree-grid-base","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tree-table-tree-grid-base"},{"title":"扁平化数据结构","content":"<p>注意：扁平化的数据结构需要调用 aggregateTableData 方法把数据转换成带有子级的数据才能正常的显示出树表的结构</p>\n","link":"grid/tree-table/tree-grid-data","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tree-table-tree-grid-data"},{"title":"操作列","content":"<p>列通过配置 type=&quot;radio&quot; 实现单选，配置 type=&quot;selection&quot; 实现多选</p>\n","link":"grid/tree-table/tree-grid-operation-column","component":" 树表","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tree-table-tree-grid-operation-column"},{"title":"手动展开所有树节点","content":"<p><code>setAllTreeExpansion(checked)</code> 可设置所有树节点的展开与否。</p>\n","link":"grid/methods/set-all-tree-expansion","component":" 树表","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"methods-set-all-tree-expansion"},{"title":"手动展开指定树节点","content":"<p><code>setTreeExpansion(rows, checked)</code> 可设置展开指定的树形节点，第二个参数设置这一行展开与否。</p>\n","link":"grid/methods/set-tree-expansion","component":" 树表","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"methods-set-tree-expansion"},{"title":"手动切换展开树形节点","content":"<p><code>toggleTreeExpansion(row)</code> 可设置切换展开树形节点。</p>\n","link":"grid/methods/toggle-tree-expansion","component":" 树表","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"methods-toggle-tree-expansion"},{"title":"冻结列","content":"<p>在列的标签上可以通过配置 fixed=&quot;left&quot; 属性把该列固定在左侧，配置 fixed=&quot;right&quot; 属性把该列固定在右侧</p>\n","link":"grid/tree-table/tree-grid-fixed-column","component":" 树表","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tree-table-tree-grid-fixed-column"},{"title":"展开行","content":"<p>在 column 标签上配置 type=&quot;expand&quot; 展开行,可以通过 v-slot 插槽插入需要的模板信息</p>\n","link":"grid/tree-table/tree-grid-expand","component":" 树表","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tree-table-tree-grid-expand"},{"title":"检查树节点是否已展开","content":"<p>通过 <code>hasTreeExpand(row)</code> 方法可以检查树节点是否已展开，参数 row 为行数据对象。</p>\n","link":"grid/tree-table/hasTreeExpand","component":" 树表","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tree-table-hasTreeExpand"},{"title":"展开行序号列配置","content":"<p>在 <code>treeConfig</code> 属性里配置 <code>ordered</code> 为 <code>false</code> 展开行，序号列按父子级的结构排序。默认 <code>ordered</code> 属性为 <code>true</code> 展开行后序号列按序号排序。</p>\n","link":"grid/tree-table/tree-grid-index","component":" 树表","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tree-table-tree-grid-index"},{"title":"基本用法","content":"<p>表格属性 <code>expand-config</code> 设置展开行配置项。</p>\n","link":"grid/tree-table/tree-grid-expand-config","component":" Grid 表格","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tree-table-tree-grid-expand-config"},{"title":"增删改","content":"<p>在 grid-toolbar 标签上配置 slot=&quot;toolbar&quot; 插槽，配置相关的操作按钮 ，注意：新增数据需要在 grid 标签上配置 edit-config 编辑框的配置信息，并通过 ref 获取到组件实例调用方法进行相关操作，findTree、filterTree 是工具类里的查找和过滤方法。由于tree数据节构的特殊性，grid的<code>getInsertRecords</code>与<code>getRecordset</code>方法无法获取到新增数据，此类数据需要用户自行处理。</p>\n","link":"grid/tree-table/tree-grid-insert-delete-update","component":" 树表","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tree-table-tree-grid-insert-delete-update"},{"title":"键盘操作","content":"<p>键盘移动高亮行,设置斑马线属性 stripe 为 false,鼠标悬停高亮行 highlight-hover-row 为 false,高亮当前行 highlight-current-row ,并配置 keyboard-config={isArrow: true} 属性启用方向键功能\n | Arrow Up ↑ | 移动到高亮行的上一行\n | Arrow Down ↓ | 移动到高亮行的下一行\n | Enter | 展开节点，进入子节点\n | Backspace | 关闭节点，返回到父节点</p>\n","link":"grid/tree-table/tree-grid-keyboard-operation","component":" 树表","findIntroStr":"表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。","demoId":"tree-table-tree-grid-keyboard-operation"}]
+[
+  {
+    "title": "有子级的数据结构",
+    "content": "<p>在 grid 标签上配置 tree-config=&quot;{children: 'children'}&quot;以树的形式来展示数据,还需要在展示树节点的字段上配置 tree-node 属性</p>\n",
+    "link": "grid/tree-table/tree-grid-base",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tree-table-tree-grid-base"
+  },
+  {
+    "title": "扁平化数据结构",
+    "content": "<p>注意：扁平化的数据结构需要调用 aggregateTableData 方法把数据转换成带有子级的数据才能正常的显示出树表的结构</p>\n",
+    "link": "grid/tree-table/tree-grid-data",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tree-table-tree-grid-data"
+  },
+  {
+    "title": "操作列",
+    "content": "<p>列通过配置 type=&quot;radio&quot; 实现单选，配置 type=&quot;selection&quot; 实现多选</p>\n",
+    "link": "grid/tree-table/tree-grid-operation-column",
+    "component": " 树表",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tree-table-tree-grid-operation-column"
+  },
+  {
+    "title": "手动展开所有树节点",
+    "content": "<p><code>setAllTreeExpansion(checked)</code> 可设置所有树节点的展开与否。</p>\n",
+    "link": "grid/methods/set-all-tree-expansion",
+    "component": " 树表",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "methods-set-all-tree-expansion"
+  },
+  {
+    "title": "手动展开指定树节点",
+    "content": "<p><code>setTreeExpansion(rows, checked)</code> 可设置展开指定的树形节点，第二个参数设置这一行展开与否。</p>\n",
+    "link": "grid/methods/set-tree-expansion",
+    "component": " 树表",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "methods-set-tree-expansion"
+  },
+  {
+    "title": "手动切换展开树形节点",
+    "content": "<p><code>toggleTreeExpansion(row)</code> 可设置切换展开树形节点。</p>\n",
+    "link": "grid/methods/toggle-tree-expansion",
+    "component": " 树表",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "methods-toggle-tree-expansion"
+  },
+  {
+    "title": "冻结列",
+    "content": "<p>在列的标签上可以通过配置 fixed=&quot;left&quot; 属性把该列固定在左侧，配置 fixed=&quot;right&quot; 属性把该列固定在右侧</p>\n",
+    "link": "grid/tree-table/tree-grid-fixed-column",
+    "component": " 树表",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tree-table-tree-grid-fixed-column"
+  },
+  {
+    "title": "展开行",
+    "content": "<p>在 column 标签上配置 type=&quot;expand&quot; 展开行,可以通过 v-slot 插槽插入需要的模板信息</p>\n",
+    "link": "grid/tree-table/tree-grid-expand",
+    "component": " 树表",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tree-table-tree-grid-expand"
+  },
+  {
+    "title": "检查树节点是否已展开",
+    "content": "<p>通过 <code>hasTreeExpand(row)</code> 方法可以检查树节点是否已展开，参数 row 为行数据对象。</p>\n",
+    "link": "grid/tree-table/hasTreeExpand",
+    "component": " 树表",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tree-table-hasTreeExpand"
+  },
+  {
+    "title": "展开行序号列配置",
+    "content": "<p>在 <code>treeConfig</code> 属性里配置 <code>ordered</code> 为 <code>false</code> 展开行，序号列按父子级的结构排序。默认 <code>ordered</code> 属性为 <code>true</code> 展开行后序号列按序号排序。</p>\n",
+    "link": "grid/tree-table/tree-grid-index",
+    "component": " 树表",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tree-table-tree-grid-index"
+  },
+  {
+    "title": "基本用法",
+    "content": "<p>表格属性 <code>expand-config</code> 设置展开行配置项。</p>\n",
+    "link": "grid/tree-table/tree-grid-expand-config",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tree-table-tree-grid-expand-config"
+  },
+  {
+    "title": "增删改",
+    "content": "<p>在 grid-toolbar 标签上配置 slot=&quot;toolbar&quot; 插槽，配置相关的操作按钮 ，注意：新增数据需要在 grid 标签上配置 edit-config 编辑框的配置信息，并通过 ref 获取到组件实例调用方法进行相关操作，findTree、filterTree 是工具类里的查找和过滤方法。由于tree数据节构的特殊性，grid的<code>getInsertRecords</code>与<code>getRecordset</code>方法无法获取到新增数据，此类数据需要用户自行处理。</p>\n",
+    "link": "grid/tree-table/tree-grid-insert-delete-update",
+    "component": " 树表",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tree-table-tree-grid-insert-delete-update"
+  },
+  {
+    "title": "键盘操作",
+    "content": "<p>键盘移动高亮行,设置斑马线属性 stripe 为 false,鼠标悬停高亮行 highlight-hover-row 为 false,高亮当前行 highlight-current-row ,并配置 keyboard-config={isArrow: true} 属性启用方向键功能\n | Arrow Up ↑ | 移动到高亮行的上一行\n | Arrow Down ↓ | 移动到高亮行的下一行\n | Enter | 展开节点，进入子节点\n | Backspace | 关闭节点，返回到父节点</p>\n",
+    "link": "grid/tree-table/tree-grid-keyboard-operation",
+    "component": " 树表",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tree-table-tree-grid-keyboard-operation"
+  },
+  {
+    "title": "自定义展开和隐藏行",
+    "content": "<p>表格属性 <code>expandConfig.activeMethod</code> 配置一个方法控制行是否可展开，参数为 <code>row</code> 和 <code>rowLevel</code>，返回 <code>false</code> 则此行不可展开，且不显示展开图标\n表格属性 <code>expandConfig.showIcon</code> 配置是否显示展开图标，默认为 <code>true</code> 表示显示展开图标\n表格属性 <code>treeConfig.hideMethod</code> 配置一个方法控制行是否渲染，参数为 <code>row</code> 和 <code>rowLevel</code>，返回 <code>true</code> 则此行隐藏不渲染</p>\n",
+    "link": "grid/tree-table/tree-grid-expand-active-method",
+    "component": " 树表",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "tree-table-tree-grid-expand-active-method"
+  }
+]

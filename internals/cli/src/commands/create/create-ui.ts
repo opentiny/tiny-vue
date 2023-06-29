@@ -10,11 +10,12 @@ import fs from 'fs-extra'
 import semver from 'semver'
 import {
   getInputCmd,
-  pathJoin,
   walkFileTree,
   capitalizeKebabCase,
   logGreen,
-  logYellow
+  logYellow,
+  templatePath,
+  pathJoinFromCLI
 } from '../../shared/utils'
 import { createModuleMapping } from '../../shared/module-utils'
 import handlebarsRender from '../build/handlebars.render'
@@ -24,9 +25,9 @@ const args = getInputCmd()
 if (args.length > 0) {
   const commands: string[] = []
   const components: string[] = []
-  const templateDir = pathJoin('../../public/template/component')
-  const componetDir = pathJoin('../../../../packages/vue/src')
-  const { version } = fs.readJSONSync(pathJoin('../../../../packages/vue/package.json'))
+  const templateDir = path.join(templatePath, './component')
+  const componetDir = pathJoinFromCLI('../../packages/vue/src')
+  const { version } = fs.readJSONSync(pathJoinFromCLI('../../packages/vue/package.json'))
 
   args.forEach((item) => {
     if (item.indexOf('-') === 0) {

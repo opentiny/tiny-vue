@@ -10,7 +10,14 @@
  *
  */
 
-import { computedMessage, computedStyle, computedFontSize, computedLabel, getInternalValue, computedSize } from './index'
+import {
+  computedMessage,
+  computedStyle,
+  computedFontSize,
+  computedLabel,
+  getInternalValue,
+  computedSize
+} from './index'
 
 export const api = ['state']
 

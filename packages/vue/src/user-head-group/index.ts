@@ -1,4 +1,5 @@
 import UserHeadGroup from './src/index.js'
+import { version } from './package.json'
 
 UserHeadGroup.model = {
   prop: 'modelValue',
@@ -10,7 +11,7 @@ UserHeadGroup.install = function (Vue) {
   Vue.component(UserHeadGroup.name, UserHeadGroup)
 }
 
-UserHeadGroup.version = process.env.COMPONENT_VERSION
+UserHeadGroup.version = version
 
 /* istanbul ignore next */
 if (process.env.BUILD_TARGET === 'runtime') {

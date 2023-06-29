@@ -112,7 +112,7 @@
   }
 
   & &__plain-node-title-txt {
-    transform: translateY(-2px);
+    @apply ~"-translate-y-0.5";
   }
 
   & &__plain-node-title {
@@ -180,7 +180,7 @@
 
   &.is-current > &__content {
     @apply text-color-brand;
-    @apply bg-color-brand-hover-subtle; 
+    @apply bg-color-brand-hover-subtler; 
   }
 
   &:not(.is-focusable) {

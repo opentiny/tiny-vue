@@ -47,6 +47,8 @@ export function onCellMousedownGridEl(args) {
 export function handleCellMousedownEvent(args1) {
   let { $el, _vm, bodyList, cell, cellFirstElementChild } = args1
   let { cellLastElementChild, headStart, headerList, isIndex, startCellNode } = args1
+  let { mouseConfig = {} } = _vm
+  let { updateInterval = 10 } = mouseConfig || {}
 
   let oldMousemove = document.onmousemove
   let oldMouseup = document.onmouseup
@@ -75,7 +77,7 @@ export function handleCellMousedownEvent(args1) {
     onCellMousedownGridEl(args)
   }
 
-  let updateEventThrot = throttle(80, false, updateEvent, true)
+  let updateEventThrot = throttle(updateInterval, false, updateEvent, true)
 
   document.onmousemove = updateEventThrot
   document.onmouseup = function () {

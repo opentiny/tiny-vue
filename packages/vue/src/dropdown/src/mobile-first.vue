@@ -68,7 +68,7 @@ export default defineComponent({
   },
   emits: ['visible-change', 'item-click', 'button-click', 'selectedIndex', 'current-item-click'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true, h })
+    return setup({ props, context, renderless, api, h })
   },
   render() {
     const { hide, splitButton, type, disabled, handleMainButtonClick, slots, size, state, border, round, m } = this
@@ -89,8 +89,7 @@ export default defineComponent({
           ])}
           disabled={disabled}
           reset-time={0}
-          nativeOn-click={handleMainButtonClick}
-        >
+          nativeOn-click={handleMainButtonClick}>
           <div class={'overflow-hidden overflow-ellipsis whitespace-nowrap w-full'}>
             {slots.default && slots.default(params)}
           </div>
@@ -120,8 +119,7 @@ export default defineComponent({
             border &&
               state.visible &&
               '[&_svg]:fill-color-border-focus visited:[&_svg]:fill-color-border-focus active:[&_svg]:fill-color-border-focus [&_svg]:transition-transform [&_svg]:duration-300 [&_svg]:rotate-180'
-          ]}
-        >
+          ]}>
           {suffixSlot || <icon-chevron-down />}
         </span>
       )
@@ -140,8 +138,7 @@ export default defineComponent({
               : '[&_svg]:fill-color-icon-placeholder',
             type === 'primary' && '[&_svg]:fill-color-bg-1'
           ]}
-          reset-time={0}
-        >
+          reset-time={0}>
           {defaultSlot}
           {suffixInner}
         </tiny-button>
@@ -152,8 +149,7 @@ export default defineComponent({
             state.visible && '[&_svg]:transition-transform [&_svg]:duration-300 [&_svg]:rotate-180',
             disabled && 'text-color-text-disabled cursor-not-allowe [&_svg]:fill-color-text-disabled',
             'inline-flex'
-          ]}
-        >
+          ]}>
           <span class="inline-flex hover:text-color-brand-hover active:text-color-brand-focus h-4 leading-4">
             {defaultSlot}
           </span>
@@ -172,8 +168,7 @@ export default defineComponent({
           state.showSelfIcon && 'leading-4 h-4 [&_svg]:align-top [&_svg]:rotate-0'
         ]}
         v-clickoutside={hide}
-        aria-disabled={disabled}
-      >
+        aria-disabled={disabled}>
         {triggerElm}
         {menuElm}
       </div>

@@ -121,6 +121,14 @@
       @apply h-auto;
       vertical-align: inherit;
     }
+
+    .@{form-item-prefix-cls}.is-required:not(.is-no-asterisk) {
+      .@{form-item-prefix-cls}__label-wrap > .@{form-item-prefix-cls}__label:before,
+      & > .@{form-item-prefix-cls}__label:before {
+        @apply ~"content-['']";
+      }
+    }
+
     .@{form-item-prefix-cls}__content {
       .tiny-checkbox {
         @apply leading-normal;

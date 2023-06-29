@@ -18,7 +18,7 @@
       "name": "data",
       "sample": "data",
       "type": "Array",
-      "desc": "按钮组数据。例：[{text: '', value: ''}]",
+      "desc": "按钮组数据。例：[{text: '', value: ''}]。",
       "defaultValue": ""
     },
     {
@@ -67,7 +67,7 @@
       "name": "border",
       "sample": "border",
       "type": "Boolean",
-      "desc": "是否显示边框线",
+      "desc": "是否显示边框线。",
       "defaultValue": "该属性的默认值为 true"
     }
   ],
@@ -83,9 +83,16 @@
   "events": [
     {
       "name": "edit",
-      "sample": "edit",
+      "sample": "event-edit",
       "type": "",
       "desc": "设置当编辑按钮被点击时触发的回调函数。",
+      "defaultValue": ""
+    },
+    {
+      "name": "change",
+      "sample": "change-event",
+      "type": "",
+      "desc": "当选中按钮发生改变时触发的回调函数。",
       "defaultValue": ""
     }
   ]

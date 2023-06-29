@@ -1,4 +1,5 @@
 import Alert from './src/alert'
+import Popconfirm from './src/popconfirm'
 import Dropdown from './src/dropdown'
 import DropdownItem from './src/dropdown-item'
 import Select from './src/select'
@@ -10,6 +11,7 @@ export default {
   version,
   components: {
     Alert,
+    Popconfirm,
     Dropdown,
     DropdownItem,
     Select,

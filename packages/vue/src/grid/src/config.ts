@@ -42,6 +42,12 @@ const GlobalConfig = {
   sortConfig: {},
   // 默认不开启隔行换色和行高亮，不暴露此配置
   stripe: false,
+  // saas下默认不开启隔行换色和行高亮
+  stripeSaas: false,
+  // saas下默认开启下划线
+  borderSaas: true,
+  // saas下通过borderVertical开启边框竖线
+  borderVertical: false,
   // 鼠标移入表格行是否高亮显示
   highlightHoverRow: true,
   resizable: true,

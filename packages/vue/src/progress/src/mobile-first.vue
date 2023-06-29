@@ -80,7 +80,7 @@
             'text-xs inline-block align-middle ml-3 leading-none',
             !showText && 'hidden',
             type !== 'line'
-              ? 'text-gray-900 absolute top-1/2 left-0 w-full text-center m-0 translate-x-0 -translate-y-1/2'
+              ? 'text-color-text-primary absolute top-1/2 left-0 w-full text-center m-0 translate-x-0 -translate-y-1/2'
               : 'text-color-text-primary'
           )
         "
@@ -122,7 +122,7 @@
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/progress/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { IconClose, IconSuccess, IconError, IconYes, IconWarning } from '@opentiny/vue-icon'
+import { iconClose, iconSuccess, iconError, iconYes, iconWarning } from '@opentiny/vue-icon'
 
 export default defineComponent({
   props: [
@@ -140,11 +140,11 @@ export default defineComponent({
     'info'
   ],
   components: {
-    IconClose: IconClose(),
-    IconSuccess: IconSuccess(),
-    IconError: IconError(),
-    IconYes: IconYes(),
-    IconWarning: IconWarning()
+    IconClose: iconClose(),
+    IconSuccess: iconSuccess(),
+    IconError: iconError(),
+    IconYes: iconYes(),
+    IconWarning: iconWarning()
   },
   setup(props, context) {
     return setup({ props, context, renderless, api })

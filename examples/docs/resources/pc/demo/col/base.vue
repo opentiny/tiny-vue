@@ -53,13 +53,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.col {
-  line-height: 30px;
-  text-align: center;
-  color: #fff;
-  background: #1f9ed8;
-  border-radius: 15px;
-}
-</style>

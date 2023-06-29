@@ -109,18 +109,24 @@ const handleScroll = (state) => {
   }, 500)
 }
 
+// 设置滚动偏移量
+const setChildOffsetTop = ({ state, props }) => {
+  state.offsetTop = document.querySelector(props.links[0].link)?.offsetTop || 0
+}
+
 export const getContainer =
   ({ props }) =>
     () =>
       props.containerId ? document.querySelector(props.containerId) : document.body
 
 export const mounted =
-  ({ vm, state, api }) =>
+  ({ vm, state, api, props }) =>
     () => {
       setScrollContainer({ state, api })
       setFixAnchor({ vm })
       api.onItersectionObserver()
       setCurrentHash(state)
+      setChildOffsetTop({ state, props })
     }
 
 export const updated =
@@ -142,32 +148,36 @@ export const onItersectionObserver =
   ({ vm, state, props, emit }) =>
     () => {
       const { expandLink, scrollContainer } = state
-      const containerTop = scrollContainer.getBoundingClientRect().top + 10
-      state.intersectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach((item) => {
-          const key = item.target.id
-          state.observerLinks[key] = item
-        })
+      state.intersectionObserver = new IntersectionObserver(
+        (entries) => {
+          const { top } = scrollContainer.getBoundingClientRect()
+          const scrollStartTop = top + state.offsetTop
+          entries.forEach((item) => {
+            const key = item.target.id
+            state.observerLinks[key] = item
+          })
 
-        for (let key in state.observerLinks) {
-          if (Object.prototype.hasOwnProperty.call(state.observerLinks, key)) {
-            const item = state.observerLinks[key]
-            if (
-              item.isIntersecting &&
-            item.intersectionRatio >= 0 &&
-            item.target.getBoundingClientRect().top < containerTop
-            ) {
-              const link = `#${item.target.id}`
-              if (!expandLink[link].children) {
-                getCurrentAnchor({ vm, state, link, emit })
-                break
-              } else {
-                getCurrentAnchor({ vm, state, link, emit })
+          for (let key in state.observerLinks) {
+            if (Object.prototype.hasOwnProperty.call(state.observerLinks, key)) {
+              const item = state.observerLinks[key]
+              if (
+                item.isIntersecting &&
+                item.intersectionRatio >= 0 &&
+                item.target.getBoundingClientRect().top < scrollStartTop
+              ) {
+                const link = `#${item.target.id}`
+                if (!expandLink[link].children) {
+                  getCurrentAnchor({ vm, state, link, emit })
+                  break
+                } else {
+                  getCurrentAnchor({ vm, state, link, emit })
+                }
               }
             }
           }
-        }
-      })
+        },
+        { root: scrollContainer, threshold: [0] }
+      )
 
       addObserver({ props, state })
     }

@@ -2,11 +2,10 @@ import { addResizeListener, removeResizeListener } from '../common/deps/resize-e
 import { wheelListener, getBoundRect, handleClickDropdownItem, key, emitAdd } from './index'
 import { getAddWheelListener } from './wheel'
 
-const { addWheelListener, removeWheelListener } = getAddWheelListener(window, document)
-
 export const api = ['state', 'wheelListener', 'handleClickDropdownItem', 'key', 'emitAdd']
 
 export const renderless = (props, { onMounted, onBeforeUnmount, reactive, watch, inject, computed }, { vm }) => {
+  const { addWheelListener, removeWheelListener } = getAddWheelListener(window, document)
   const tabs = inject('tabs', null)
 
   const state = reactive({

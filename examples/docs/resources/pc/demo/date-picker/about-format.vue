@@ -32,7 +32,7 @@ export default {
   },
   data() {
     return {
-      value1: new Date(),
+      value1: new Date('2023-05-24'),
       value2: 1590076800000,
       value3: '2020-05-22'
     }

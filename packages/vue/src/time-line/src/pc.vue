@@ -16,7 +16,7 @@
         <ul class="tiny-steps--text-right" ref="stepsRight">
           <template v-for="(node, index) in state.nodes" :key="index">
             <li v-if="index" :class="['step-line', { 'line-done': index <= state.current }]"
-              :style="{ width: space + 'px' }"></li>
+              :style="{ flex: space ? `0 0 ${state.computedSpace}`: 'auto' }"></li>
             <li :class="['normal step-content', getStatusCls(index, node)]">
               <div class="icon step-icon" @click="handleClick({ index, node })">
                 <span v-if="index < state.current || node.error" :custom-title="index + start" class="icon-wrap">
@@ -45,7 +45,7 @@
       </template>
       <template v-else>
         <div v-for="(node, index) in state.nodes" :key="index" :style="{
-            width: space ? space + 'px' : 100 / state.nodes.length + '%'
+          width: state.computedSpace || 100 / state.nodes.length + '%'
           }" :class="['normal tiny-step--text-bottom', getStatusCls(index, node)]">
           <slot name="top" :slot-scope="{ index, ...node }">
             <div class="date-time">
@@ -85,7 +85,7 @@
     </div>
     <div v-else :class="['tiny-steps-timeline', { reverse }]">
       <div v-for="(node, index) in state.nodes" :key="index" :style="{
-          height: index === state.nodes.length - 1 ? '' : space ? space + 'px' : '88px'
+              height: index === state.nodes.length - 1 ? '' : state.computedSpace || '88px'
         }" :class="['timeline', getStatusCls(index, node)]">
         <ul>
           <slot name="left" :slot-scope="{ index, ...node }">
@@ -95,7 +95,7 @@
             </li>
           </slot>
           <li :style="{
-            height: index === state.nodes.length - 1 ? '' : space ? space + 'px' : '88px'
+            height: index === state.nodes.length - 1 ? '' : state.computedSpace || '88px'
           }" class="line">
             <div class="icon" @click="handleClick({ index, node })">
               <icon-yes v-if="reverse ? index > state.current : index < state.current" class="tiny-svg-size" />

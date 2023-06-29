@@ -10,7 +10,7 @@
 *
 */
 
-export const close = ({ emit, state }) => () => {
+export const handleClose = ({ emit, state }) => () => {
   state.show = false
   emit('close')
 }

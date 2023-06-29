@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import userPopper from '../common/deps/vue-popper'
 
@@ -40,27 +40,31 @@ export const toggleItem = (state) => (active, item) => {
   }
 }
 
-export const updateOffset = ({ props, state, refs }) => () => {
-  if (!refs.menu) {
-    return
+export const updateOffset =
+  ({ props, state, refs }) =>
+  () => {
+    if (!refs.menu) {
+      return
+    }
+
+    const rect = refs.menu.getBoundingClientRect()
+
+    if (props.direction === 'down') {
+      state.offset = rect.bottom
+    } else {
+      state.offset = window.innerHeight - rect.top
+    }
   }
 
-  const rect = refs.menu.getBoundingClientRect()
-
-  if (props.direction === 'down') {
-    state.offset = rect.bottom
-  } else {
-    state.offset = window.innerHeight - rect.top
+export const clickOutside =
+  ({ props, state }) =>
+  () => {
+    if (props.closeOnClickOutside && props.closeOnClickOverlay) {
+      state.children.forEach((item) => {
+        item.type !== 'filter' && item.toggle(false)
+      })
+    }
   }
-}
-
-export const clickOutside = ({ props, state }) => () => {
-  if (props.closeOnClickOutside && props.closeOnClickOverlay) {
-    state.children.forEach((item) => {
-      item.type !== 'filter' && item.toggle(false)
-    })
-  }
-}
 
 export const getScroller = (el, root) => {
   const overflowScrollReg = /scroll|auto/i
@@ -115,6 +119,10 @@ export const useVuePopper = ({ api, props, hooks, instance, state }) => {
     dropdown.popperElm = popper.popperElm.value = vm.$el
     popper.referenceElm.value = dropdown.$el
     dropdown.initDomOperation()
+
+    if (dropdown.inheritWidth) {
+      dropdown.popperElm.style.minWidth = dropdown.$el.clientWidth + 'px'
+    }
   })
 
   onBeforeUnmount(() => {
@@ -146,32 +154,40 @@ export const useVuePopper = ({ api, props, hooks, instance, state }) => {
   )
 }
 
-export const mounted = ({ api, parent, state }) => () => {
-  parent.$on('menuselectedIndex', (selectedIndex) => {
-    state.selectedIndex = selectedIndex
-  })
-  parent.$on('menu-item-click', api.handleMenuItemClick)
-  parent.$on('mouseenter-tips', (showContent, label) => {
+export const mounted =
+  ({ api, parent, state }) =>
+  () => {
+    parent.$on('menuselectedIndex', (selectedIndex) => {
+      state.selectedIndex = selectedIndex
+    })
+    parent.$on('menu-item-click', api.handleMenuItemClick)
+    parent.$on('mouseenter-tips', (showContent, label) => {
+      state.label = label
+      state.showContent = showContent
+    })
+    parent.$on('mouseleave-tips', (showContent, label) => {
+      state.label = label
+      state.showContent = showContent
+    })
+  }
+
+export const handleMenuItemClick =
+  ({ state, dispatch }) =>
+  (itemData, instance, label, showContent) => {
     state.label = label
     state.showContent = showContent
-  })
-  parent.$on('mouseleave-tips', (showContent, label) => {
-    state.label = label
-    state.showContent = showContent
-  })
-}
 
-export const handleMenuItemClick = ({ state, dispatch }) => (itemData, instance, label, showContent) => {
-  state.label = label
-  state.showContent = showContent
+    dispatch('TinyDropdown', 'current-item-click', [itemData, instance])
+  }
 
-  dispatch('TinyDropdown', 'current-item-click', [itemData, instance])
-}
+export const handleMouseenter =
+  ({ emit }) =>
+  ($event) => {
+    emit('mouseenter', $event)
+  }
 
-export const handleMouseenter = ({ emit }) => ($event) => {
-  emit('mouseenter', $event)
-}
-
-export const handleMouseleave = ({ emit }) => ($event) => {
-  emit('mouseleave', $event)
-}
+export const handleMouseleave =
+  ({ emit }) =>
+  ($event) => {
+    emit('mouseleave', $event)
+  }

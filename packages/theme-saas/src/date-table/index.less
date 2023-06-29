@@ -1,0 +1,211 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+
+@date-table-prefix-cls: ~'@{css-prefix}date-table';
+
+.@{date-table-prefix-cls} {
+  @apply text-xs;
+  .user-select(none);
+
+  &.is-week-mode &__row:hover {
+    td {
+      &.available:hover {
+        @apply text-color-text-primary;
+      }
+
+      &:first-child div {
+        @apply ~'ml-[5px]';
+        @apply rounded-tl;
+        @apply rounded-bl;
+      }
+
+      &:last-child div {
+        margin-right: 5px;
+        @apply rounded-tr;
+        @apply rounded-br;
+      }
+    }
+
+    div {
+      @apply bg-color-brand-hover-subtle;
+    }
+  }
+
+  &.is-week-mode &__row.current {
+    div {
+      @apply bg-color-brand-hover-subtle;
+    }
+
+    td.available {
+      &:hover span {
+        @apply bg-transparent;
+      }
+
+      &.start-date span,
+      &.end-date span {
+        @apply bg-color-brand;
+      }
+    }
+  }
+
+  tr > td {
+    @apply pt-0 pr-0~'pb-2.5' pl-0;
+    @apply box-border;
+    @apply text-center;
+    @apply cursor-pointer;
+    @apply relative;
+
+    div {
+      @apply h-8;
+      @apply box-border;
+    }
+
+    span {
+      @apply w-8;
+      @apply h-8;
+      @apply leading-8;
+      @apply block;
+      @apply absolute;
+      @apply ~'left-1/2';
+      @apply box-border;
+      @apply ~"-translate-x-2/4";
+      @apply rounded;
+    }
+
+    &.next-month,
+    &.pre-month {
+      @apply text-color-text-disabled;
+      @apply cursor-pointer;
+    }
+
+    &.today {
+      @apply relative;
+
+      span {
+        @apply border border-solid border-color-border-focus;
+        line-height: 30px;
+      }
+
+      &.end-date,
+      &.start-date {
+        span {
+          @apply text-color-text-inverse;
+        }
+      }
+    }
+
+    &.available:hover span {
+      @apply bg-color-brand-hover-subtle;
+    }
+
+    &.current:not(.disabled) span {
+      @apply text-color-text-inverse;
+      @apply bg-color-brand;
+    }
+
+    &.end-date,
+    &.start-date {
+      div {
+        @apply text-color-text-inverse;
+      }
+
+      span {
+        @apply bg-color-brand;
+      }
+    }
+
+    &.start-date,
+    &:first-child {
+      div {
+        @apply rounded-tl;
+        @apply rounded-bl;
+      }
+    }
+
+    &.start-date div {
+      margin-left: 9px;
+    }
+
+    &.end-date,
+    &:last-child {
+      div {
+        @apply rounded-tr;
+        @apply rounded-br;
+      }
+    }
+
+    &.end-date div {
+      margin-right: 9px;
+    }
+
+    &.disabled {
+      div {
+        @apply bg-color-bg-2;
+        @apply opacity-100;
+        @apply cursor-not-allowed;
+        @apply text-color-text-disabled;
+      }
+    }
+
+    &.in-range {
+      div,
+      div:hover {
+        @apply bg-color-brand-hover-subtle;
+      }
+
+      &.end-date:hover,
+      &.start-date:hover {
+        span {
+          @apply bg-color-brand;
+        }
+      }
+    }
+
+    &.selected {
+      div {
+        @apply ~'ml-1.5';
+        @apply ~"mr-1.5";
+        @apply bg-color-brand-hover-subtle;
+        @apply rounded;
+
+        &:hover {
+          @apply bg-color-brand-hover-subtle;
+        }
+      }
+
+      span {
+        @apply bg-color-brand;
+        @apply text-color-text-inverse;
+        @apply border-none;
+        @apply rounded;
+      }
+
+      &.available:hover span {
+        @apply bg-color-brand;
+      }
+    }
+
+    &.week {
+      font-size: 80%;
+      @apply text-color-text-primary;
+    }
+  }
+
+  tr > th {
+    padding: 16px 5px;
+    @apply text-color-text-primary;
+    @apply font-normal;
+  }
+}

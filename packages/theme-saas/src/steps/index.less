@@ -78,7 +78,9 @@
       &.current {
         a.label {
           background: @active-color;
-          border: solid 1px @active-color;
+          @apply border;
+          @apply border-solid;
+          border-color: @active-color;
           @apply text-color-text-inverse;
           @apply font-bold;
         }
@@ -100,7 +102,9 @@
       }
 
       a.label {
-        border: solid 1px @default-color;
+        @apply border;
+        @apply border-solid;
+        border-color: @default-color;
         @apply border-r-0;
         @apply flex;
         @apply relative;
@@ -128,7 +132,8 @@
 
       &:last-child {
         a {
-          border-right: solid 1px @default-color;
+          @apply border-r;
+          border-right-color: @default-color;
           border-top-right-radius: 3px;
           border-bottom-right-radius: 3px;
           @apply mr-0;
@@ -226,7 +231,9 @@
       .@{css-prefix}svg {
         fill: @active-color;
         @apply align-baseline;
-        border: 1px solid @active-color;
+        @apply border;
+        @apply border-solid;
+        border-color: @active-color;
         @apply rounded-full;
         @apply p-1;
       }

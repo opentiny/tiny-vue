@@ -106,8 +106,9 @@
         @apply left-0;
         @apply max-w-full;
         @apply absolute;
-        white-space: pre-line;
-        line-height: 1.5;
+        @apply break-words;
+        @apply whitespace-pre-line;
+        @apply leading-normal;
       }
     }
     .@{textarea-prefix-cls}__inner {

@@ -24,12 +24,13 @@ export const renderless = (props, { onMounted, onUnmounted, onUpdated, reactive 
     scrollContainer: null,
     currentHash: '',
     isScroll: false,
-    scrollTimer: null
+    scrollTimer: null,
+    offsetTop: 0
   })
 
   Object.assign(api, {
     state,
-    mounted: mounted({ vm, state, api }),
+    mounted: mounted({ vm, state, api, props }),
     updated: updated({ state, api }),
     unmounted: unmounted({ state }),
     getContainer: getContainer({ props }),

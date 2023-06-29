@@ -6,6 +6,7 @@
 
 <script lang="jsx">
 import { ChartHeatmap } from '@opentiny/vue'
+import mapChina from '../mapChina'
 
 export default {
   components: {
@@ -30,7 +31,7 @@ export default {
       },
       // 地图热力图
       chartSettings: {
-        mapOrigin: null, // 用户自己的地图数据
+        mapOrigin: mapChina, // 用户自己的地图数据
         type: 'map',
         geo: {
           label: {
@@ -49,15 +50,6 @@ export default {
           }
         }
       }
-    }
-  },
-  created() {
-    if (window._map_china) {
-      this.chartSettings.mapOrigin = window._map_china
-    } else {
-      this.$service.network.get('services/mapChina').then(({ data }) => {
-        this.chartSettings.mapOrigin = data
-      })
     }
   }
 }

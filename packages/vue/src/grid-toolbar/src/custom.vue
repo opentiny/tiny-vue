@@ -56,21 +56,11 @@
                 :auto-resize="true"
                 :data="columns"
                 :row-class-name="rowClassName"
-                :drop-config="{
-                  row: true,
-                  column: false,
-                  plugin: !isGroup && sortable,
-                  onBeforeMove,
-                  filter,
-                  refresh
-                }"
+                row-key
+                :drop-config="dropConfig"
                 :tree-config="{ children: 'children' }"
                 :show-header="false"
-                :edit-config="{
-                  trigger: 'click',
-                  mode: 'cell',
-                  showStatus: true
-                }"
+                :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
                 :max-height="historyConfig.tableMaxHeight"
                 @row-drop-end="handleRowDropEnd"
               >
@@ -79,51 +69,21 @@
                 <tiny-grid-column field="property" width="120px" class-name="setting-item">
                   <template #default="{ row, ...data }">
                     <div v-if="!row.children" class="setting-icon">
-                      <span
-                        class="icon"
-                        :title="
-                          row.visible
-                            ? t('ui.grid.individuation.colConfigs.visible')
-                            : t('ui.grid.individuation.colConfigs.invisible')
-                        "
-                      >
+                      <span class="icon" :title="visibleTitle(row)">
                         <component
                           :class="[{ open: row.visible }]"
                           :is="row.visible ? 'icon-eyeopen' : 'icon-eyeclose'"
                           @click="handlerSetting('visible', row, data)"
                         />
                       </span>
-                      <span
-                        class="icon"
-                        :title="
-                          row.sortable
-                            ? row.order
-                              ? row.order === 'asc'
-                                ? t('ui.grid.individuation.colConfigs.asc')
-                                : t('ui.grid.individuation.colConfigs.desc')
-                              : t('ui.grid.individuation.colConfigs.unsorted')
-                            : ''
-                        "
-                      >
+                      <span class="icon" :title="sortTitle(row)">
                         <component
-                          :class="{
-                            sort: row.order,
-                            'is-visible': !row.sortable
-                          }"
+                          :class="{ sort: row.order, 'is-visible': !row.sortable }"
                           :is="row.order ? constants.icon[row.order] : 'icon-minus'"
                           @click="handlerSetting('order', row)"
                         />
                       </span>
-                      <span
-                        class="icon"
-                        :title="
-                          row.fixed
-                            ? row.fixed === 'left'
-                              ? t('ui.grid.individuation.colConfigs.frozenLeft')
-                              : t('ui.grid.individuation.colConfigs.frozenRight')
-                            : t('ui.grid.individuation.colConfigs.unfrozen')
-                        "
-                      >
+                      <span class="icon" :title="fixedTitle(row)">
                         <component
                           v-if="row.level === 1 && showFixed"
                           :class="{ lock: row.fixed }"
@@ -177,7 +137,8 @@
                       :key="index"
                       v-model="settings.pageSize"
                       :label="item"
-                    >{{ item }}</tiny-radio>
+                      >{{ item }}</tiny-radio
+                    >
                   </span>
                 </li>
               </ul>
@@ -189,13 +150,15 @@
             ></tiny-custom-switch>
           </div>
         </div>
-        <div v-if="!multipleHistory || (multipleHistory && activeName === 'base')" class="tiny-grid-custom__footer">
+        <div
+          v-if="!multipleHistory || (multipleHistory && activeName === 'base')"
+          class="tiny-grid-custom__footer"
+          :dir="TinyTheme === 'saas' ? 'rtl' : 'ltr'"
+        >
           <tiny-button type="primary" @click="saveSettings" :disabled="saveDisabled">
-            {{
-              t('ui.grid.individuation.saveBtn')
-            }}
+            {{ t('ui.grid.individuation.saveBtn') }}
           </tiny-button>
-          <tiny-button @click="resetSettings">
+          <tiny-button @click="handleReset">
             {{ t('ui.grid.individuation.resetBtn') }}
           </tiny-button>
           <tiny-button @click="cancelSettings">
@@ -207,31 +170,33 @@
   </tiny-modal>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import Button from '@opentiny/vue-button'
 import Modal from '@opentiny/vue-modal'
 import { t } from '@opentiny/vue-locale'
 import Grid, { GridRadio, GridColumn } from '@opentiny/vue-grid'
-import { find, mapTree } from '@opentiny/vue-renderless/grid/static/'
+import { find, mapTree } from '@opentiny/vue-renderless/grid/static'
 import {
-  iconEyeopen,
-  iconEyeclose,
-  iconUnlock,
-  iconLock,
-  iconMinus,
-  iconDescending,
-  iconAscending,
-  iconHelp,
-  iconLeftFrozen,
-  iconRightFrozen
+  IconEyeopen,
+  IconEyeclose,
+  IconUnlock,
+  IconLock,
+  IconMinus,
+  IconDescending,
+  IconAscending,
+  IconHelp,
+  IconLeftFrozen,
+  IconRightFrozen
 } from '@opentiny/vue-icon'
 import Select from '@opentiny/vue-select'
 import Option from '@opentiny/vue-option'
 import CustomSwitch from './custom-switch.vue'
 import { extend } from '@opentiny/vue-renderless/common/object'
-import { isNull } from '@opentiny/vue-renderless/grid/static/'
+import { isNull } from '@opentiny/vue-renderless/grid/static'
+import { appProperties } from '@opentiny/vue-common'
+import { $props, defineComponent } from '@opentiny/vue-common'
 
-export default {
+export default defineComponent({
   components: {
     TinyModal: Modal,
     TinyButton: Button,
@@ -240,16 +205,16 @@ export default {
     TinyGridColumn: GridColumn,
     TinySelect: Select,
     TinyOption: Option,
-    IconEyeopen: iconEyeopen(),
-    IconEyeclose: iconEyeclose(),
-    IconUnlock: iconUnlock(),
-    IconLeftFrozen: iconLeftFrozen(),
-    IconRightFrozen: iconRightFrozen(),
-    IconLock: iconLock(),
-    IconMinus: iconMinus(),
-    IconDescending: iconDescending(),
-    IconAscending: iconAscending(),
-    IconHelp: iconHelp(),
+    IconEyeopen: IconEyeopen(),
+    IconEyeclose: IconEyeclose(),
+    IconUnlock: IconUnlock(),
+    IconLeftFrozen: IconLeftFrozen(),
+    IconRightFrozen: IconRightFrozen(),
+    IconLock: IconLock(),
+    IconMinus: IconMinus(),
+    IconDescending: IconDescending(),
+    IconAscending: IconAscending(),
+    IconHelp: IconHelp(),
     TinyCustomSwitch: CustomSwitch
   },
   name: 'TinyGridCustom',
@@ -259,6 +224,7 @@ export default {
     }
   },
   props: {
+    ...$props,
     data: {
       type: Array,
       default() {
@@ -291,8 +257,10 @@ export default {
       default: () => []
     },
     numberSorting: Boolean,
-    multipleHistory: [Object, Boolean]
+    multipleHistory: [Object, Boolean],
+    resetMethod: Function
   },
+  emits: ['input', 'saveSettings', 'resetSettings', 'cancelSettings', 'showModal'],
   data() {
     return {
       activeName: 'base',
@@ -346,26 +314,41 @@ export default {
       set() {}
     },
     showFixed() {
-      return this.$grid
+      return (this as any).$grid
     },
-    tinyTable() {
-      return (this.$grid && this.$grid.$refs.tinyTable) || {}
+    TinyTable() {
+      return ((this as any).$grid && (this as any).$grid.$refs.TinyTable) || {}
     },
     isGroup() {
-      return this.tinyTable.isGroup
+      return this.TinyTable.isGroup
     },
     historyConfig() {
       const multipleHistory =
         isNull(this.multipleHistory) || typeof this.multipleHistory === 'boolean' ? {} : this.multipleHistory
 
       return extend(true, {}, this.initSettings.multipleHistory || {}, multipleHistory)
+    },
+    TinyTheme() {
+      const ctx = appProperties()
+
+      return (ctx.Tiny_theme ? ctx.Tiny_theme.value : '') || 'aurora'
+    },
+    dropConfig() {
+      return {
+        row: true,
+        column: false,
+        plugin: !this.isGroup && this.sortable,
+        onBeforeMove: this.onBeforeMove,
+        filter: this.filter,
+        refresh: this.refresh
+      }
     }
   },
   methods: {
     t,
     getColumnConfigs(configs) {
-      const getColNodes = (columns) =>
-        columns
+      const getColNodes = (columns) => {
+        return columns
           .map(({ id, title, property, fixed, visible, order, sortable, level, children }) => {
             if (property) {
               const column = {
@@ -386,8 +369,9 @@ export default {
             }
           })
           .filter((i) => i)
-      if (configs.length && this.$grid) {
-        const { collectColumn } = this.$grid.getTableColumn()
+      }
+      if (configs.length && (this as any).$grid) {
+        const { collectColumn } = (this as any).$grid.getTableColumn()
         const columns = getColNodes(collectColumn)
 
         this.initNumberSorting(columns)
@@ -396,9 +380,7 @@ export default {
       }
     },
     initNumberSorting(columns) {
-      if (this.isGroup) {
-        return
-      }
+      if (this.isGroup) return
 
       this.sortingOptions = []
 
@@ -422,16 +404,14 @@ export default {
       this.columns = columns
     },
     handleRowDropEnd() {
-      if (this.isGroup) {
-        return
-      }
+      if (this.isGroup) return
 
       this.columns.forEach((column, index) => {
         column.sortingIndex = index + 1
       })
     },
     renderNumberSorting(h, { row }) {
-      return <span>{row.sortingIndex}</span>
+      return h('span', row.sortingIndex + '')
     },
     handleCustomMouseMove() {
       this.$refs.switch && this.$refs.switch.$refs.select && this.$refs.switch.$refs.select.blur()
@@ -489,7 +469,7 @@ export default {
       }
     },
     handlerSetting(type, column) {
-      const invisibleCols = this.columns.filter((item) => item.visible).length
+      const invisibleCols = this.fullColumn.filter((item) => item.visible).length
 
       switch (type) {
         case 'visible':
@@ -564,7 +544,92 @@ export default {
     },
     handleClose() {
       this.$emit('showModal', false)
+    },
+    handleReset(event) {
+      let equal = (cols1, cols2) => {
+        let props1 = []
+        let props2 = []
+
+        cols1.forEach((col) => col && col.property && props1.push(col.property))
+        cols2.forEach((col) => col && col.property && props2.push(col.property))
+
+        return props1.length === props2.length && props1.sort().join(',') === props2.sort().join(',')
+      }
+
+      if (typeof this.resetMethod === 'function') {
+        this.resetMethod().then((sourceSettings) => {
+          this.buildSettings()
+
+          let { columns, sortType, pageSize } = sourceSettings || {}
+
+          if (columns && columns.length && this.settings.columns && this.settings.columns.length) {
+            this.settings.columns.forEach((setting) => {
+              let source = find(columns, (item) => item.property === setting.property)
+              let target = find(this.columns, (item) => item.property === setting.property)
+
+              if (source) {
+                Object.assign(setting, source)
+                Object.assign(target, source)
+              }
+            })
+
+            if (equal(columns, this.settings.columns)) {
+              let settingColumns = []
+              let gridColumns = []
+
+              columns.map((source) => {
+                let settingCol = find(this.settings.columns, (item) => source.property === item.property)
+                let targetCol = find(this.columns, (item) => source.property === item.property)
+
+                settingColumns.push(settingCol)
+                gridColumns.push(targetCol)
+              })
+
+              this.settings.columns = settingColumns
+              this.columns = gridColumns
+            }
+          }
+
+          sortType && (this.settings.sortType = sortType)
+          pageSize && (this.settings.pageSize = pageSize)
+        })
+      } else {
+        this.resetSettings(event)
+      }
+    },
+    visibleTitle(row) {
+      if (row.visible) {
+        return t('ui.grid.individuation.colConfigs.visible')
+      } else {
+        return t('ui.grid.individuation.colConfigs.invisible')
+      }
+    },
+    sortTitle(row) {
+      if (row.sortable) {
+        if (row.order) {
+          if (row.order === 'asc') {
+            return t('ui.grid.individuation.colConfigs.asc')
+          } else {
+            return t('ui.grid.individuation.colConfigs.desc')
+          }
+        } else {
+          return t('ui.grid.individuation.colConfigs.unsorted')
+        }
+      } else {
+        return ''
+      }
+    },
+    fixedTitle(row) {
+      if (row.fixed) {
+        if (row.fixed === 'left') {
+          return t('ui.grid.individuation.colConfigs.frozenLeft')
+        } else {
+          return t('ui.grid.individuation.colConfigs.frozenRight')
+        }
+      } else {
+        return t('ui.grid.individuation.colConfigs.unfrozen')
+      }
     }
   }
-}
+})
 </script>

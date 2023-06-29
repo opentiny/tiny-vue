@@ -15,17 +15,6 @@
   font-family: Helvetica, Arial, 'Microsoft YaHei', sans-serif;
   @apply bg-color-bg-1;
 
-  &.show__head {
-    .@{grid-prefix-cls}__fixed-left-wrapper,
-    .@{grid-prefix-cls}__fixed-right-wrapper {
-      .@{grid-prefix-cls}__body-wrapper {
-        &:before {
-          @apply hidden;
-        }
-      }
-    }
-  }
-
   &.show__foot {
     &.scroll__x {
       .@{grid-prefix-cls}__body-wrapper {
@@ -160,7 +149,7 @@
     }
   }
 
-  .fixed__column {
+  .fixed__hidden {
     @apply invisible;
   }
 
@@ -180,7 +169,7 @@
         }
 
         &.row__current {
-          @apply bg-color-bg-4;
+          @apply bg-color-brand-hover-subtle;
         }
       }
 
@@ -243,23 +232,8 @@
       background-position: 100% 0, 100% 100%;
     }
 
-    .@{grid-prefix-cls}__fixed-left-wrapper {
-      .@{grid-prefix-cls}-body__column {
-        @apply border-r-color-border;
-      }
-    }
-
-    .@{grid-prefix-cls}__body-wrapper,
-    .@{grid-prefix-cls}__fixed-left-body-wrapper,
-    .@{grid-prefix-cls}__fixed-right-body-wrapper {
+    .@{grid-prefix-cls}__body-wrapper {
       border-bottom: none;
-    }
-
-    .@{grid-prefix-cls}__fixed-left-wrapper,
-    .@{grid-prefix-cls}__fixed-right-wrapper {
-      &::before {
-        @apply ~'border-t-[1px]';
-      }
     }
 
     .@{grid-prefix-cls}__border-line {
@@ -343,50 +317,6 @@
     }
   }
 
-  & &__fixed-left-wrapper,
-  & &__fixed-right-wrapper {
-    @apply w-full;
-    @apply absolute;
-    @apply top-0;
-    @apply ~'z-[1]';
-    @apply overflow-hidden;
-    @apply bg-color-bg-1;
-
-    &:before {
-      @apply content-[''];
-      @apply absolute;
-      @apply top-0;
-      @apply left-0;
-      @apply w-full;
-      @apply h-0;
-      @apply border-t-0 border-t-color-border;
-      @apply ~'z-[1]';
-    }
-
-    .@{grid-prefix-cls}__body-wrapper {
-      @apply overflow-x-hidden;
-      border-bottom: none;
-    }
-  }
-
-  & &__fixed-left-wrapper {
-    @apply left-0;
-    width: 200px;
-    @apply border-r-0 border-r-color-border;
-
-    &.scrolling__middle {
-      @apply shadow-sm;
-    }
-  }
-
-  & &__fixed-right-wrapper {
-    @apply right-0;
-
-    &.scrolling__middle {
-      @apply shadow-sm;
-    }
-  }
-
   & &__header-wrapper,
   & &__body-wrapper,
   & &__footer-wrapper {
@@ -422,7 +352,7 @@
     }
 
     &.row__current {
-      @apply bg-color-bg-5;
+      @apply bg-color-brand-hover-subtle;
     }
   }
 
@@ -753,7 +683,8 @@
 
     &.is__visible {
       @apply flex;
-      flex-flow: row wrap;
+      @apply flex-wrap;
+      @apply flex-row;
       @apply opacity-100;
 
       &.is__center {
@@ -977,8 +908,7 @@
 
     .@{grid-prefix-cls}-editor {
       @apply w-full;
-      height: 30px;
-      line-height: 30px;
+      height: 100%;
       @apply text-color-text-primary;
 
       .@{input-prefix-cls} {

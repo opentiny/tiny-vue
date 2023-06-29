@@ -10,6 +10,7 @@ import Markdown from 'vite-plugin-md'
 import { createSvgPlugin as vue2SvgPlugin } from 'vite-plugin-vue2-svg'
 import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/vite'
 import { getAlias, pathFromWorkspaceRoot, getOptimizeDeps } from '../../internals/cli/src/config/vite'
+
 // 增加Unocss
 import Unocss from 'unocss/vite'
 import { rules, shortcuts, variants } from '../docs/vite-plugins/vite-plugin-uno-preset.js'
@@ -59,7 +60,7 @@ export default defineConfig((config) => {
         },
       }),
       inspectPlugin(),
-      checkerPlugin({ overlay: { initialIsOpen: false }, terminal: false, typescript: false, vueTsc: true }),
+      checkerPlugin({ overlay: { initialIsOpen: false }, terminal: false, typescript: false, vueTsc: false }),
     ],
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.vue'],

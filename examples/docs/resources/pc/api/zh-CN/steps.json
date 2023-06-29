@@ -30,9 +30,9 @@
     },
     {
       "name": "space",
-      "sample": "order-progress",
-      "type": "Number",
-      "desc": "设置步骤条的宽度。",
+      "sample": "space",
+      "type": "String, Number",
+      "desc": "设置步骤条节点的宽度, 取值为数字、带长度单位数值与百分比，数字会默认以px为长度单位。",
       "defaultValue": ""
     },
     {

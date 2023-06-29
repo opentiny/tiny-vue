@@ -22,6 +22,13 @@
       "defaultValue": "该属性的默认值为 false"
     },
     {
+      "name": "tag-type",
+      "sample": "tag-type",
+      "type": "String",
+      "desc": "用于设置不同主题的标签，仅多选时适用,tag-type 默认为空，该属性的可选值为 success / info / warning / danger ,使用aurora 主题时设置该属性为 info",
+      "defaultValue": ""
+    },
+    {
       "name": "placement",
       "sample": "popup-style-position",
       "type": "String",
@@ -284,7 +291,7 @@
       "name": "copyable",
       "sample": "search-allow-copy",
       "type": "Boolean",
-      "desc": "是开启复制功能，配置后会在输入框右侧鼠标上浮后有个复制按钮。（值能用于多选模式）",
+      "desc": "是开启复制功能，配置后会在输入框右侧鼠标上浮后有个复制按钮。（只能用于多选模式）",
       "defaultValue": ""
     },
     {

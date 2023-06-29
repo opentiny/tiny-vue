@@ -4,11 +4,9 @@
       <div id="container" class="scroll-container">
         <div id="sec-1" class="sec-1">Sec 1</div>
         <div id="sec-2" class="sec-2">Sec 2</div>
-        <div id="sec-3" class="sec-3">
-          Sec 3
-          <div id="sec-3-1" class="sec-3-1">Sec 3-1</div>
-          <div id="sec-3-2" class="sec-3-2">Sec 3-2</div>
-        </div>
+        <div id="sec-3" class="sec-3">Sec 3</div>
+        <div id="sec-3-1" class="sec-3-1">Sec 3-1</div>
+        <div id="sec-3-2" class="sec-3-2">Sec 3-2</div>
       </div>
     </tiny-col>
     <tiny-col :span="2">
@@ -79,7 +77,6 @@ export default {
 }
 .scroll-container {
   height: 40vh;
-  border: 2px solid #333;
   overflow: auto;
 }
 .sec-1 {

@@ -80,7 +80,7 @@ const initApi = ({ api, props, state, parent, refs, emit, dispatch, constants })
     mounted: mounted({ constants, parent, props, refs, state }),
     unmounted: unmounted({ parent, state }),
     getDecimal: getDecimal(props),
-    handleFocus: handleFocus({ emit, state, props, api }),
+    handleFocus: handleFocus({ emit, state, props, api, refs }),
     decrease: decrease({ api, props, state }),
     increase: increase({ api, props, state }),
     handleInput: handleInput({ state, api, emit, props }),

@@ -114,5 +114,28 @@
       outline: 0;
     }
   }
+
+  &.is-display-only {
+    .@{textarea-prefix-cls}-display-only {
+      @apply relative;
+    }
+    .@{textarea-prefix-cls}-display-only__content {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      max-width: 100%;
+      -webkit-line-clamp: 5;
+      display: -webkit-box;
+      /* autoprefixer: ignore next */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .@{textarea-prefix-cls}__inner {
+      visibility: hidden;
+    }
+  }
 }
 

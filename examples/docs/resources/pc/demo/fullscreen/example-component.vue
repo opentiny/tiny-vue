@@ -30,8 +30,8 @@
         <button type="button" @click="toggle">
           {{ fullscreen ? 'Exit Fullscreen' : 'Request Fullscreen' }}
         </button>
-        <img v-show="!fullscreen" src="static/images/book-small.jpg" />
-        <img v-show="fullscreen" src="static/images/book-big.jpg" />
+        <img v-show="!fullscreen" src="/static/images/book-small.jpg" />
+        <img v-show="fullscreen" src="/static/images/book-big.jpg" />
       </div>
     </tiny-fullscreen>
   </div>

@@ -7,12 +7,17 @@ import {
   mouseup,
   mousemove,
   addDragEvent,
-  removeDragEvent
+  removeDragEvent,
+  showScrollbar,
+  hideScrollbar,
+  watchVisibleNotImmediate
 } from './index'
 
 export const api = ['state', 'close', 'confirm']
 
-export const renderless = (props, { reactive, watch, onMounted, onBeforeUnmount, computed }, { emit, vm }) => {
+export const renderless = (props, { reactive, watch, onMounted, onBeforeUnmount, computed }, { emit, vm, mode, constants }) => {
+  const lockScrollClass = constants.SCROLL_LOCK_CLASS(mode)
+
   const api = {}
   const state = reactive({
     toggle: false,
@@ -31,15 +36,22 @@ export const renderless = (props, { reactive, watch, onMounted, onBeforeUnmount,
     addDragEvent: addDragEvent({ api, vm }),
     removeDragEvent: removeDragEvent({ api, vm }),
     watchVisible: watchVisible({ state }),
-    watchToggle: watchToggle({ emit })
+    watchToggle: watchToggle({ emit }),
+    showScrollbar: showScrollbar(lockScrollClass),
+    hideScrollbar: hideScrollbar(lockScrollClass),
+    watchVisibleNotImmediate: watchVisibleNotImmediate({ api, props })
   })
 
   onMounted(() => {
     props.dragable && api.addDragEvent()
+    if (props.lockScroll && props.visible) {
+      api.showScrollbar()
+    }
   })
 
   onBeforeUnmount(() => {
     props.dragable && api.removeDragEvent()
+    props.lockScroll && api.hideScrollbar()
   })
 
   watch(() => props.visible, api.watchVisible, { immediate: true })

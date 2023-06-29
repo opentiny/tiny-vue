@@ -1,6 +1,13 @@
 {
   "attrs": [
     {
+      "name": "modelValue / v-model",
+      "sample": "start-end-step",
+      "type": "—",
+      "desc": "绑定值",
+      "defaultValue": "该属性的默认值为 {}"
+    },
+    {
       "name": "size",
       "sample": "size",
       "type": "String",
@@ -20,13 +27,6 @@
       "type": "Boolean",
       "desc": "是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)",
       "defaultValue": "该属性的默认值为 true"
-    },
-    {
-      "name": "modelValue / v-model",
-      "sample": "start-end-step",
-      "type": "—",
-      "desc": "绑定值",
-      "defaultValue": "该属性的默认值为 {}"
     },
     {
       "name": "placeholder",

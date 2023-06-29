@@ -157,7 +157,7 @@ const prettierFormat = ({ str, options = {} }: { str: string; options?: object }
  * @param {Function} callback 遍历回调
  */
 const walkFileTree = ({ dirPath, isDeep = false, fileFilter, callback }:
-{ dirPath: string; isDeep: boolean; fileFilter?: Function; callback: Function }) => {
+  { dirPath: string; isDeep: boolean; fileFilter?: Function; callback: Function }) => {
   if (!dirPath || typeof callback !== 'function') {
     return
   }
@@ -206,7 +206,7 @@ const getVersion = ({ name, context, isVue2 }: { name: string; context: string; 
  * @returns 版本号
  */
 const getComponentVersion = ({ name, context = '..', dir = 'packages', isOrigin = false, isVue2 }:
-{ name: string; context?: string; dir?: string; isOrigin?: boolean; isVue2: boolean }) => {
+  { name: string; context?: string; dir?: string; isOrigin?: boolean; isVue2: boolean }) => {
   let version: string
   const packageJSONPath = pathJoin(context, dir, name, 'package.json')
 
@@ -248,10 +248,10 @@ const getPublichVersion = ({ version, isVue2 }: { version: string; isVue2: boole
 const getPackageVersion = ({ name, isRoot = false, isVue2 = false }: { name: string; isRoot: boolean; isVue2: boolean }) => {
   let version = isRoot ? getopentinyVersion({ key: name }) : getComponentVersion({ name, isOrigin: true, isVue2 })
 
-  return getBigVersion(version)
+  return getMinorVersion(version)
 }
 
-const getBigVersion = (version) => {
+const getMinorVersion = (version) => {
   return `~${semver.major(version)}.${semver.minor(version)}.0`
 }
 
@@ -386,7 +386,7 @@ const getLiblaryTagVersion = ({ tag, name }) => {
   const version = execSync(`npm v @opentiny/${name}@${tag} version`).toString('utf-8').replace(/\n/, '')
 
   if (tag === 'latest') {
-    return getBigVersion(version)
+    return getMinorVersion(version)
   }
 
   return version.includes(tag) ? version : ''
@@ -482,6 +482,23 @@ const filesFragmentReplace = (folderPath, regExpStr: Array<string | RegExp> | st
   }
 }
 
+/** 是否已打包 */
+const isCLIProduction = process.env.TINY_TSUP_ENV === 'production'
+
+/** 相对 `CLI` 工程目录解析路径 */
+const pathJoinFromCLI = (...args: string[]) => {
+  const cliDir = path.resolve(dirname, '../../', isCLIProduction ? '../' : '')
+  return path.join(cliDir, ...args)
+}
+
+/** 相对 `CLI` 入口文件解析目录 */
+const pathJoinFromCLIEntry = (...args: string[]) => {
+  return path.join(dirname, '../', ...args)
+}
+
+/** 模板所在路径 */
+const templatePath = isCLIProduction ? pathJoinFromCLIEntry('./template') : pathJoinFromCLI('./public/template')
+
 export {
   assetsPath,
   capitalize,
@@ -517,4 +534,8 @@ export {
   getBuildTag,
   getVueVersion,
   pathFromWorkspaceRoot,
+  getMinorVersion,
+  pathJoinFromCLI,
+  pathJoinFromCLIEntry,
+  templatePath,
 }

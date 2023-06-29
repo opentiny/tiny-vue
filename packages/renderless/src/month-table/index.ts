@@ -89,8 +89,11 @@ export const getRows = ({ props, state, vm }) => () => {
 }
 
 export const markRange = ({ props, state }) => (minDate, maxDate) => {
-  minDate = Math.min(getMonthTimestamp(minDate), getMonthTimestamp(maxDate))
-  maxDate = Math.max(getMonthTimestamp(minDate), getMonthTimestamp(maxDate))
+  minDate = getMonthTimestamp(minDate)
+  maxDate = getMonthTimestamp(maxDate)
+  if (minDate > maxDate) {
+    [minDate, maxDate] = [maxDate, minDate]
+  }
   const rows = state.rows
 
   for (let i = 0, len = rows.length; i < len; i++) {

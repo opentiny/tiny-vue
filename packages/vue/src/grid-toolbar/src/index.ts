@@ -24,7 +24,7 @@
  */
 import { isNumber } from '@opentiny/vue-renderless/common/type'
 import { iconMinscreen, iconFullscreen } from '@opentiny/vue-icon'
-import { h, hooks, $prefix, defineComponent } from '@opentiny/vue-common'
+import { h, hooks, $prefix, defineComponent, appProperties, $props, } from '@opentiny/vue-common'
 import { toStringJSON, isEmpty, isPlainObject, toJSONString, find } from '@opentiny/vue-renderless/grid/static/'
 import {
   getFuncText,
@@ -213,8 +213,19 @@ export default defineComponent({
     IconMinscreen: iconMinscreen()
   },
   props: {
+    ...$props,
     id: String,
-    loading: false,
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    customMode: {
+      type: String,
+      default: () => {
+        const ctx = appProperties()
+        return (ctx.aui_theme ? ctx.aui_theme.value : '') || 'aurora'
+      }
+    },
     resizable: {
       type: [Boolean, Object],
       default: () => GridConfig.toolbar.resizable

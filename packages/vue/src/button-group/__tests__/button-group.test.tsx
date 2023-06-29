@@ -11,7 +11,7 @@ const groupData = [
 
 describe('PC Mode', () => {
   const mount = mountPcMode
-  
+
   test('type & icon', async () => {
     const wrapper = mount(() => <ButtonGroup disabled data={groupData}></ButtonGroup>)
     expect(wrapper.find('button').classes()).toContain('disabled')
@@ -39,4 +39,12 @@ describe('PC Mode', () => {
     await buttons[buttons.length - 1].trigger('click')
     expect(handleEdit).toHaveBeenCalled()
   })
+
+  test.todo('size 设置按钮组尺寸')
+  test.todo('disabled 设置按钮组禁用状态')
+  test.todo('plain 设置按钮组为朴素按钮')
+  test.todo('text-field & value-field 若按钮组数据对象中的字段不是默认的 text 和 value ，则可通过 text-field、value-field 属性进行映射')
+  test.todo('show-edit 显示编辑按钮')
+  test.todo('change 按钮组的change事件')
+  test.todo('border 按钮组按钮有无边框')
 })

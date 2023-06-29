@@ -70,5 +70,13 @@
     "component": " Collapse 折叠面板",
     "findIntroStr": "内容区可指定动态页面或自定义 html 等，支持展开收起操作。",
     "demoId": "nested-form"
+  },
+  {
+    "title": "自定义面板标题右侧内容",
+    "content": "<p>在 <code>collapse-item</code> 元素上配置 <code>title-right</code> 属性可以指定每个折叠面板项标题的右侧内容。但同时也可以通过 <code>title-right</code> 插槽的方式自定义面板标题右侧内容，比如在标题右侧增加图标。</p>\n",
+    "link": "collapse/custom-title-right",
+    "component": " Collapse 折叠面板",
+    "findIntroStr": "内容区可指定动态页面或自定义 html 等，支持展开收起操作。",
+    "demoId": "custom-title-right"
   }
 ]

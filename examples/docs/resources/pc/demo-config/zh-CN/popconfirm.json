@@ -1,0 +1,82 @@
+[
+  {
+    "title": "基本用法",
+    "content": "<p>通过 <code>title</code> 设置标题内容，通过 <code>content</code> 设置正文内容，通过 <code>reference</code> 设置触发显示的元素。</p>\n",
+    "link": "popconfirm/basic-usage",
+    "component": "气泡确认框组件",
+    "findIntroStr": "使用说明文字及操作按钮对较简单的操作进行二次确认。",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "触发方式",
+    "content": "<p><code>trigger</code> 设置触发显示气泡确认框的方式。</p>\n",
+    "link": "popconfirm/trigger",
+    "component": "气泡确认框组件",
+    "findIntroStr": "使用说明文字及操作按钮对较简单的操作进行二次确认。",
+    "demoId": "trigger"
+  },
+  {
+    "title": "图标类型",
+    "content": "<p><code>type</code> 设置提示的图标类型。</p>\n",
+    "link": "popconfirm/type",
+    "component": "气泡确认框组件",
+    "findIntroStr": "使用说明文字及操作按钮对较简单的操作进行二次确认。",
+    "demoId": "type"
+  },
+  {
+    "title": "提示框显示位置",
+    "content": "<p>通过 <code>placement</code> 设置提示框显示位置。</p>\n",
+    "link": "popconfirm/placement",
+    "component": "气泡确认框组件",
+    "findIntroStr": "使用说明文字及操作按钮对较简单的操作进行二次确认。",
+    "demoId": "placement"
+  },
+  {
+    "title": "自定义类名",
+    "content": "<p>通过 <code>popper-class</code> 自定义气泡提示框的类名。</p>\n",
+    "link": "popconfirm/popper-class",
+    "component": "气泡确认框组件",
+    "findIntroStr": "使用说明文字及操作按钮对较简单的操作进行二次确认。",
+    "demoId": "popper-class"
+  },
+  {
+    "title": "底部插槽",
+    "content": "<p>通过 <code>footer</code> 插槽自定义底部内容。</p>\n",
+    "link": "popconfirm/slot-footer",
+    "component": "气泡确认框组件",
+    "findIntroStr": "使用说明文字及操作按钮对较简单的操作进行二次确认。",
+    "demoId": "slot-footer"
+  },
+  {
+    "title": "设置宽度",
+    "content": "<p>通过 <code>width</code> 设置提示框宽度。</p>\n",
+    "link": "popconfirm/width",
+    "component": "气泡确认框组件",
+    "findIntroStr": "使用说明文字及操作按钮对较简单的操作进行二次确认。",
+    "demoId": "width"
+  },
+  {
+    "title": "隐藏取消按钮",
+    "content": "<p>通过 <code>cancelButton</code> 设置是否展示取消按钮。</p>\n",
+    "link": "popconfirm/cancel-button",
+    "component": "气泡确认框组件",
+    "findIntroStr": "使用说明文字及操作按钮对较简单的操作进行二次确认。",
+    "demoId": "cancel-button"
+  },
+  {
+    "title": "隐藏、显示事件",
+    "content": "<p>当气泡确认框显示时触发 <code>show</code> 事件，当确认框隐藏时触发 <code>hide</code> 事件。</p>\n",
+    "link": "popconfirm/visible-event",
+    "component": "气泡确认框组件",
+    "findIntroStr": "使用说明文字及操作按钮对较简单的操作进行二次确认。",
+    "demoId": "visible-event"
+  },
+  {
+    "title": "确认事件",
+    "content": "<p>当点击底部确认按钮时触发 <code>confirm</code> 事件。</p>\n",
+    "link": "popconfirm/confirm-event",
+    "component": "气泡确认框组件",
+    "findIntroStr": "使用说明文字及操作按钮对较简单的操作进行二次确认。",
+    "demoId": "confirm-event"
+  }
+]

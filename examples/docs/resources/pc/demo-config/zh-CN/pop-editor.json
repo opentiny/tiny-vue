@@ -17,7 +17,7 @@
   },
   {
     "title": "布局与配置",
-    "content": "<p>通过 <code>condition</code> 项目里属性里的<code>span</code>配置栅格，<code>labelWidth</code> 配置label宽度。 <code>component</code>配置自定义组件，并通过 <code>attrs</code>配置组件属性</p>\n",
+    "content": "<p>通过 <code>conditions</code> 项目里属性里的<code>span</code>配置栅格，<code>labelWidth</code> 配置label宽度。 <code>component</code>配置自定义组件，并通过 <code>attrs</code>配置组件属性</p>\n",
     "link": "popeditor/condition-layout",
     "component": " PopEditor 弹出编辑",
     "findIntroStr": "该组件只能在弹出的面板中选择数据，不能手动输入数据；弹出面板中显示为 Tree 组件或者 Grid 组件。",
@@ -262,5 +262,13 @@
     "component": " PopEditor 弹出编辑",
     "findIntroStr": "该组件只能在弹出的面板中选择数据，不能手动输入数据；弹出面板中显示为 Tree 组件或者 Grid 组件。",
     "demoId": "auto-lookup"
+  },
+  {
+    "title": "联想查询",
+    "content": "<p>配置 <code>suggest</code> 开启联想功能，输入框输入后自动触发联想查询；该功能需要联合 <code>remoteSearch</code>使用\n",
+    "link": "popeditor/suggest",
+    "component": " PopEditor 弹出编辑",
+    "findIntroStr": "该组件只能在弹出的面板中选择数据，不能手动输入数据；弹出面板中显示为 Tree 组件或者 Grid 组件。配置suggest 开启联想功能，输入框输入后自动触发联想查询；该功能需要联合 remoteSearch 使用",
+    "demoId": "suggest"
   }
 ]

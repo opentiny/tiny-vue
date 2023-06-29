@@ -5,7 +5,13 @@
     </template>
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="公司名称" :filter="nameFilter"></tiny-grid-column>
+    <tiny-grid-column
+      field="name"
+      title="公司名称鼠标移入可以动态提示tooltip，公司名称鼠标移入可以动态提示tooltip"
+      show-header-overflow
+      sortable
+      :filter="nameFilter"
+    ></tiny-grid-column>
     <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
     <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
     <tiny-grid-column field="city" title="城市" :filter="cityFilter"></tiny-grid-column>

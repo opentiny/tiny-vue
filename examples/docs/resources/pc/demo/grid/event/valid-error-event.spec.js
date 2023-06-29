@@ -9,7 +9,7 @@ test('校验不通过事件', async ({ page }) => {
       name: '1 华东区 福州 公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
     })
     .getByRole('textbox')
-    .fill('')
-
+    .clear()
+  await page.waitForTimeout(400)
   await expect(page.getByText('触发校验不通过事件').first()).toBeVisible()
 })

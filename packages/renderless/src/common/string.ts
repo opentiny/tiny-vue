@@ -767,7 +767,7 @@ export const isKorean = (text) => /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi.test(
  * @param {*} w 字符串显示最大长度
  * @returns obj obj.t为处理后字符串，obj.o为是否已省略标志
  */
- export const omitText = (text, font, w) => {
+export const omitText = (text, font, w) => {
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
 
@@ -789,4 +789,3 @@ export const isKorean = (text) => /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi.test(
     }
   }
 }
-

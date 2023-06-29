@@ -14,7 +14,7 @@ export default {
   },
   data() {
     return {
-      value: [new Date(), new Date(2019, 12, 12)],
+      value: [new Date(2023, 4, 15), new Date(2023, 4, 21)],
       onPickOptions: {
         onPick: (val) => {
           if (val.maxDate) {

@@ -10,16 +10,41 @@
  *
 -->
 <template>
-  <div class="tiny-button-group" :class="[ size ? 'tiny-button-group--' + size : '' , border ? '' : 'tiny-button-group--borderless']" >
+  <div
+    class="tiny-button-group"
+    :class="[size ? 'tiny-button-group--' + size : '', border ? '' : 'tiny-button-group--borderless']"
+  >
     <slot>
       <ul v-if="!(showMore && showMore > 0)" class="tiny-group-item">
         <li v-for="(node, index) in data" :key="index" :class="{ active: state.value === node[valueField] }">
-          <button :class="state.attributeValue" :style="{
-            height: size == 'medium' ? '42px' : size == 'small' ? '36px' : size == 'mini' ? '24px' : '',
-            'line-height': size == 'medium' ? '40px' : size == 'small' ? '34px' : size == 'mini' ? '22px' : ''
-          }" type="button" @click="handleClick(node)">
+          <button
+            :class="state.attributeValue"
+            :style="{
+              height: size === 'medium' ? '42px' : size === 'small' ? '36px' : size === 'mini' ? '24px' : '',
+              'line-height': size === 'medium' ? '40px' : size === 'small' ? '34px' : size === 'mini' ? '22px' : ''
+            }"
+            type="button"
+            @click="handleClick(node)"
+          >
             {{ node[textField] }}
           </button>
+
+          <span
+            v-if="node.sup"
+            :class="[
+              'tiny-group-item__sup',
+              {
+                'tiny-group-item__sup-text': !node.sup.slot && !node.sup.icon && node.sup.text,
+                'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon,
+              },
+              typeof node.sup.class === 'string' ? node.sup.class : '',
+              ...(Array.isArray(node.sup.class) ? node.sup.class : [])
+            ]"
+          >
+            <slot v-if="node.sup.slot" :name="node.sup.slot" :sup="node.sup" />
+            <component v-else-if="node.sup.icon" :is="node.sup.icon"></component>
+            <span v-else-if="node.sup.text">{{ node.sup.text }}</span>
+          </span>
         </li>
       </ul>
       <ul v-else class="tiny-group-item show-more">
@@ -27,6 +52,23 @@
           <tiny-button :class="state.attributeValue" @click="handleClick(node)">
             {{ node[textField] }}
           </tiny-button>
+
+          <span
+            v-if="node.sup"
+            :class="[
+              'tiny-group-item__sup',
+              {
+                'tiny-group-item__sup-text': !node.sup.slot && !node.sup.icon && node.sup.text,
+                'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon,
+              },
+              typeof node.sup.class === 'string' ? node.sup.class : '',
+              ...(Array.isArray(node.sup.class) ? node.sup.class : [])
+            ]"
+          >
+            <slot v-if="node.sup.slot" :name="node.sup.slot" :sup="node.sup" />
+            <component v-else-if="node.sup.icon" :is="node.sup.icon"></component>
+            <span v-else-if="node.sup.text">{{ node.sup.text }}</span>
+          </span>
         </li>
         <li v-if="data.length > showMore" class="tiny-group-item__more">
           <tiny-popover :visible-arrow="false" width="200" popper-class="tiny-group-item__more-popover">
@@ -36,10 +78,12 @@
               </tiny-button>
             </template>
             <ul class="more-list">
-              <li v-for="(moreNode, index) in state.moreData" :key="index" :class="{
-                active: state.value === moreNode[valueField],
-                'more-item': true
-              }" @click="moreNodeClick(moreNode)">
+              <li
+                v-for="(moreNode, index) in state.moreData" :key="index" :class="{
+                  active: state.value === moreNode[valueField],
+                  'more-item': true
+                }" @click="moreNodeClick(moreNode)"
+              >
                 {{ moreNode[textField] }}
               </li>
             </ul>
@@ -63,7 +107,8 @@ import Button from '@opentiny/vue-button'
 import { iconPopup, iconWriting } from '@opentiny/vue-icon'
 
 export default defineComponent({
-  props: [...props, 'size', 'data', 'plain', 'modelValue', 'disabled', 'valueField', 'textField', 'showMore', 'showEdit','border'],
+  emits: ['change', 'edit', 'update:modelValue'],
+  props: [...props, 'size', 'data', 'plain', 'modelValue', 'disabled', 'valueField', 'textField', 'showMore', 'showEdit', 'border'],
   components: {
     TinyPopover: Popover,
     TinyButton: Button,

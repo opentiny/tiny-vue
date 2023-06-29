@@ -10,8 +10,8 @@ test('基本用法', async ({ page }) => {
     .getByText('公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。')
     .click()
   await page.getByText('区域：华南区').click()
-  await page.getByRole('row', { name: '3 TGBYX公司 华南区 360' }).locator('i').nth(1).click()
-  await page.getByRole('row', { name: '2 WWWW科技YX公司 华南区 500' }).locator('i').nth(1).click()
+  await page.getByRole('row', { name: '3 TGBYX公司 华南区 360' }).locator('i').click()
+  await page.getByRole('row', { name: '2 WWWW科技YX公司 华南区 500' }).locator('i').click()
 
   await expect(page.getByText('员工数：500')).toBeVisible()
 })

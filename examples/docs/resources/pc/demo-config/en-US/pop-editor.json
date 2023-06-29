@@ -262,5 +262,13 @@
     "component": "PopEditor pop-up editing",
     "findIntroStr": "This component can only select data in the pop-up panel. Data cannot be manually entered. The tree or grid component is displayed in the pop-up panel.",
     "demoId": "auto-lookup"
+  },
+  {
+    "title": "Associative query",
+    "content": "<p>Configure the <code>suggest</code> to enable the association function, automatically triggering association queries after input in the input box; This function needs to be used in conjunction with <code>remoteSearch</code>.</p>\n",
+    "link": "popeditor/suggest",
+    "component": "PopEditor pop-up editing",
+    "findIntroStr": "This component can only select data in the pop-up panel. Data cannot be manually entered. The tree or grid component is displayed in the pop-up panel.Configure the suggest to enable the association function, and automatically trigger the association query after entering the input box; This function needs to be used in conjunction with remoteSearch",
+    "demoId": "suggest"
   }
 ]

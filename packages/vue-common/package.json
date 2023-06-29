@@ -2,7 +2,28 @@
   "name": "@opentiny/vue-common",
   "private": true,
   "version": "3.7.0",
-  "description": "",
+  "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
+  "homepage": "https://opentiny.design/tiny-vue",
+  "keywords": [
+    "vue",
+    "vue3",
+    "frontend",
+    "component-library",
+    "components",
+    "vue-components",
+    "opentiny",
+    "renderless-components",
+    "headless-components"
+  ],
+  "author": "OpenTiny Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:opentiny/tiny-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/opentiny/tiny-vue/issues"
+  },
   "main": "src/index.ts",
   "sideEffects": false,
   "dependencies": {
@@ -12,7 +33,6 @@
     "@opentiny/vue-theme-mobile": "workspace:~",
     "tailwind-merge": "^1.8.0"
   },
-  "license": "MIT",
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"

@@ -13,13 +13,13 @@ test('滚动容器', async ({ page }) => {
   const { x: x1, y: y1 } = await container.boundingBox()
 
   await link2.click()
-  await page.waitForTimeout(300)
+  await page.waitForTimeout(400)
   const { x: x2, y: y2 } = await sec2.boundingBox()
-  await expect(x2 - 2).toEqual(x1)
+  await expect(x2).toEqual(x1)
   await expect(y2).toEqual(y1)
   await link3.click()
-  await page.waitForTimeout(350) // 滚动的距离较长，需要足够的等待时间
+  await page.waitForTimeout(400) // 滚动的距离较长，需要足够的等待时间
   const { x: x3, y: y3 } = await sec3.boundingBox()
-  await expect(x3 - 2).toEqual(x1)
+  await expect(x3).toEqual(x1)
   await expect(y3).toEqual(y1)
 })

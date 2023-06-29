@@ -11,10 +11,8 @@
           flex
           relative
           items-center
-          h-[2.875rem]
-          leading-[2.875rem]
-          sm:h-[3.375rem]
-          sm:leading-[3.375rem]
+          h-12
+          sm:h-14
           py-0
           sm:pr-0
           pl-4
@@ -28,13 +26,18 @@
         :id="`tiny-collapse-head-${state.id}`"
         :tabindex="disabled ? undefined : 0"
         @keyup.space.enter.stop="handleEnterClick"
-        :class="disabled ? 'text-color-text-disabled' : 'text-color-text-primary'"
+        :class="
+          disabled
+            ? 'text-color-text-disabled'
+            : 'text-color-text-primary [&:has(.peer:hover)_[role=title]]:text-color-brand'
+        "
         @focus="handleFocus"
         @blur="state.focusing = false"
       >
         <div
-          class="whitespace-nowrap overflow-hidden overflow-ellipsis inline-block"
-          :class="[disabled ? 'cursor-not-allowed' : 'cursor-pointer']"
+          class="whitespace-nowrap overflow-hidden overflow-ellipsis inline-block peer"
+          :class="[disabled ? 'cursor-not-allowed' : 'cursor-pointer hover:text-color-brand']"
+          role="title"
           @click="handleHeaderClick"
         >
           <slot name="title"> {{ title }}</slot>
@@ -42,15 +45,19 @@
         <div class="text-xs font-normal">
           <slot name="title-right">{{ titleRight }}</slot>
         </div>
-        <div class="absolute sm:left-0 right-5 text-xs mr-1 w-0">
+        <div
+          class="absolute sm:left-0 right-2 text-xs mr-1 w-3 peer"
+          :class="[
+            disabled
+              ? 'fill-color-text-disabled  cursor-not-allowed'
+              : 'fill-color-icon-secondary cursor-pointer peer-hover:fill-color-brand hover:fill-color-brand'
+          ]"
+          @click="handleHeaderClick"
+        >
           <slot name="icon" :active="state.isActive" :disabled="disabled">
             <icon-arrow-bottom
               class="w-2.5 h-2.5 sm:w-3 sm:h-3 transition-transform duration-300"
-              :class="[
-                state.isActive ? 'sm:rotate-0 rotate-180' : 'sm:-rotate-90 rotate-0',
-                disabled ? 'fill-color-text-disabled  cursor-not-allowed' : 'fill-color-icon-secondary cursor-pointer'
-              ]"
-              @click="handleHeaderClick"
+              :class="[state.isActive ? 'sm:rotate-0 rotate-180' : 'sm:-rotate-90 rotate-0']"
             />
           </slot>
         </div>

@@ -31,6 +31,7 @@ export default {
       // 地图热力图
       chartSettings: {
         key: 'oBvDtR6nzWtVchkY4cLHtnah1VVZQKRK',
+        url: 'https://api.map.baidu.com/api',
         bmap: {
           center: [120.14322240845, 30.236064370321],
           zoom: 14,

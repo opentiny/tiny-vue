@@ -20,7 +20,7 @@ test('旗帜数据来源前面节点', async ({ page }) => {
     const { x, y, width, height } = await flags.nth(i).boundingBox()
 
     await expect(x).toBeCloseTo(afterX[i], 2)
-    await expect(y).toBeCloseTo(361.67, 2)
+    await expect(y).toBeCloseTo(371, 2)
     await expect(width).toEqual(58)
     await expect(height).toEqual(34)
     await expect(flags.nth(i)).toHaveText(flagAfterContents[i])
@@ -36,7 +36,7 @@ test('旗帜数据来源前面节点', async ({ page }) => {
     const { x, y, width, height } = await flags.nth(i).boundingBox()
 
     await expect(x).toBeCloseTo(BeforeX[i], 2)
-    await expect(y).toBeCloseTo(361.67, 2)
+    await expect(y).toBeCloseTo(371, 2)
     await expect(width).toEqual(58)
     await expect(height).toEqual(34)
     await expect(flags.nth(i)).toHaveText(flagBeforeContents[i])

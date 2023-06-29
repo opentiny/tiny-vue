@@ -1,4 +1,4 @@
-import Popconfirm from './src/mobile-first.vue'
+import Popconfirm from './src/index'
 import { version } from './package.json'
 
 /* istanbul ignore next */

@@ -29,7 +29,7 @@ import { removeClass, addClass } from '@opentiny/vue-renderless/common/deps/dom'
 import { getDataset } from '@opentiny/vue-renderless/common/dataset'
 import { getListeners, emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import { extend } from '@opentiny/vue-renderless/common/object'
-import { h, hooks, emitter, $prefix, setup, defineComponent } from '@opentiny/vue-common'
+import { h, hooks, emitter, $prefix, $props, setup, defineComponent, resolveMode } from '@opentiny/vue-common'
 import Modal from '@opentiny/vue-modal'
 import Pager from '@opentiny/vue-pager'
 import { Buttons } from '../adapter'
@@ -37,6 +37,8 @@ import { error } from '../tools'
 import Table from '../table'
 import GlobalConfig from '../config'
 import methods, { setBodyRecords, invokeSaveDataApi, doRemoveOrShowMsg } from './methods'
+import { iconMarkOn } from '@opentiny/vue-icon'
+import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 
 const propKeys = Object.keys(Table.props)
 
@@ -90,11 +92,10 @@ function renderPager({ $slots, _vm, loading, pager, pagerConfig, tableLoading, v
 function renderColumnAnchor(params, _vm) {
   const { anchors = [], action = () => { } } = params || {}
   const { viewType } = _vm
-
   return h(
     'div',
     {
-      class: ['aui-grid__column-anchor', _vm.viewCls('columnAnchor')],
+      class: ['tiny-grid__column-anchor', _vm.viewCls('columnAnchor')],
       style: viewType === 'default' ? 'display:flex' : '',
       key: _vm.columnAnchorKey
     },
@@ -105,9 +106,9 @@ function renderColumnAnchor(params, _vm) {
         return render({ h, anchor, action })
       }
 
-      const itemClass = { 'aui-grid__column-anchor-item': true, 'aui-grid__column-anchor-item--active': active }
+      const itemClass = { 'tiny-grid__column-anchor-item': true, 'tiny-grid__column-anchor-item--active': active }
       const itemOn = { click: (e) => action(field, e) }
-      const iconVnode = active ? h(IconMarkOn(), { class: 'aui-grid__column-anchor-item-icon' }) : null
+      const iconVnode = active ? h(iconMarkOn(), { class: 'tiny-grid__column-anchor-item-icon' }) : null
       const spanVnode = h('span', label)
 
       return h('div', { class: itemClass, on: itemOn }, [iconVnode, spanVnode])
@@ -122,7 +123,7 @@ function createRender(opt) {
     'div',
     {
       class: [
-        `tiny-grid__wrapper view_${viewType}`,
+        `tiny-grid__wrapper tiny-grid view_${viewType}`,
         {
           [`size__${vSize}`]: vSize,
           'tiny-grid__animat': props.optimization.animat
@@ -156,6 +157,7 @@ export default defineComponent({
     return { $grid: this }
   },
   props: {
+    ...$props,
     columns: Array,
     proxyConfig: Object,
     fetchData: Object,
@@ -240,7 +242,7 @@ export default defineComponent({
     this.fetchOption = this.initFetchOption()
     this.pagerConfig = this.initPagerConfig()
 
-    let { customs, events } = this
+    let { customs, events, prefetch, fetchOption, autoLoad } = this
 
     // 初始化表格个性化配置，用户可以配置customs
     if (customs) {
@@ -265,9 +267,17 @@ export default defineComponent({
 
       this.listeners = listeners
     }
+
+    if (prefetch && fetchOption && autoLoad !== false) {
+      if (Array.isArray(prefetch)) {
+        this.commitProxy('prefetch', prefetch)
+      } else {
+        this.commitProxy('prefetch')
+      }
+    }
   },
   mounted() {
-    let { columns, fetchOption, autoLoad, pagerSlot } = this
+    let { columns, fetchOption, autoLoad, pagerSlot, prefetch } = this
 
     // pager插槽中内置pager组件事件处理
     if (pagerSlot) {
@@ -289,22 +299,29 @@ export default defineComponent({
       this.loadColumn(this.columns)
     }
 
-    if (fetchOption && autoLoad !== false) {
+    if (!prefetch && fetchOption && autoLoad !== false) {
       this.commitProxy('query', this.toolBarVm && this.toolBarVm.orderSetting())
     }
 
     if (this.isMultipleHistory) {
       this.initMultipleHistory()
     }
+
+    this.addIntersectionObserver()
   },
-  setup(props, { slots, listeners, attrs }) {
+  beforeUnmount() {
+    this.removeIntersectionObserver()
+  },
+  setup(props, context) {
+    const { listeners, attrs } = context
     // 处理表格用户传递过来的事件监听
     const tableListeners = getListeners(attrs, listeners)
+    resolveMode(props, context)
     const renderless = (props, hooks, { designConfig = null }) => {
       return ({ tableListeners, designConfig })
     }
 
-    return setup({ props, context: { slots, listeners, attrs }, renderless, api: ['designConfig', 'tableListeners'] })
+    return setup({ props, context, renderless, api: ['designConfig', 'tableListeners'] })
   },
   render() {
     const { editConfig, fetchOption, listeners, loading, optimization, pager, pagerConfig, remoteFilter, remoteSort, selectToolbar } = this as any
@@ -385,10 +402,22 @@ export default defineComponent({
         return { api, dataset, fields, loading }
       }
     },
-    getParentHeight() {
-      let { $el, $refs } = this
-      // 获取表格父级容器盒子的高度
-      return $el.parentNode.clientHeight - ($refs.toolbar ? $refs.toolbar.$el.clientHeight : 0) - ($refs.pager?.$el ? $refs.pager.$el.clientHeight : 0)
+    updateParentHeight() {
+      if (!this.tasks.updateParentHeight) {
+        this.tasks.updateParentHeight = debounce(10, () => {
+          const { $el, $refs } = this
+          const { tinyTable } = $refs
+
+          if (tinyTable) {
+            tinyTable.parentHeight =
+              $el.parentNode.clientHeight -
+              ($refs.toolbar ? $refs.toolbar.$el.clientHeight : 0) -
+              ($refs.pager ? $refs.pager.$el.clientHeight : 0)
+          }
+        })
+      }
+
+      this.tasks.updateParentHeight()
     },
     handleRowClassName(params) {
       let rowClassName = this.rowClassName
@@ -405,12 +434,17 @@ export default defineComponent({
     },
     handleFetch(code, sortArg) {
       let { pager, sortData, filterData, pagerConfig, fetchOption, fetchData, dataset } = this
-      this.clearRadioRow()
-      this.resetScrollTop()
+
+      if (code !== 'prefetch') {
+        this.clearRadioRow()
+        this.resetScrollTop()
+      }
+
       if (!fetchOption) {
         error('ui.grid.error.notQuery')
         return this.$nextTick()
       }
+
       let { args, loading } = fetchData || dataset.source || dataset.api || {}
       let { field, order, prop, property } = sortData
       let sortByData = { field, order, prop, property }
@@ -423,9 +457,11 @@ export default defineComponent({
       }
       let search
       this.tableLoading = loading
+
       if (pagerConfig) {
         params.page = pagerConfig
       }
+
       if (code === 'reload') {
         if (pager || args.page) {
           pagerConfig.currentPage = 1
@@ -435,14 +471,17 @@ export default defineComponent({
         this.pendingRecords = []
         this.clearAll()
       }
+
       if (sortArg && sortArg.length > 0) {
         params.sortBy = sortArg
       }
+
       if (fetchData && fetchData.api) {
         search = fetchData.api.apply(this, [params])
       } else {
         search = getDataset({ dataset, service: this.$service }, params)
       }
+
       return search.then(this.loadFetchData).catch((error) => {
         this.tableLoading = false
         throw error
@@ -577,7 +616,7 @@ export default defineComponent({
         this.exportCsv()
       } else if (code === 'reset_custom') {
         this.resetAll()
-      } else if (~['reload', 'query'].indexOf(code)) {
+      } else if (~['reload', 'query', 'prefetch'].indexOf(code)) {
         this.handleFetch(code, args)
       } else if (code === 'delete') {
         this.handleDelete(code, args)

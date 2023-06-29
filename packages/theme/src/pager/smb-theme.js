@@ -1,5 +1,6 @@
 export const tinyPagerSmbTheme = {
   'ti-pager-primary-bg-color': 'var(--ti-common-color-bg-white-emphasize)',
+  'ti-pager-active-bg-color': '#0000000D',
   'ti-pager-li-border-radius': '20px',
   'ti-pager-height': '32px',
   'ti-pager-input-height': '32px',

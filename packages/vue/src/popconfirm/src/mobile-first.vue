@@ -28,17 +28,25 @@
               "
             >
             </component>
-            <div class="flex-auto">{{ title }}</div>
+            <div class="flex-auto">
+              {{ title }}
+            </div>
           </div>
-          <div data-tag="tiny-popconfirm-content" class="text-color-text-secondary leading-6">{{ content }}</div>
+          <div data-tag="tiny-popconfirm-content" class="text-color-text-secondary leading-6">
+            {{ content }}
+          </div>
           <div class="flex mt-4 justify-end">
             <slot name="footer">
-              <tiny-button v-if="cancelButton" class="mr-2 w-16" size="mini" tiny_mode="mobile-first" @click="hide">{{
-                t('ui.buttonMessage.cancel')
-              }}</tiny-button>
-              <tiny-button class="w-16" size="mini" tiny_mode="mobile-first" type="primary" @click="confirm">{{
-                t('ui.buttonMessage.confirm')
-              }}</tiny-button>
+              <tiny-button v-if="cancelButton" class="mr-2 w-16" size="mini" tiny_mode="mobile-first" @click="hide">
+                {{
+                  t('ui.buttonMessage.cancel')
+                }}
+              </tiny-button>
+              <tiny-button class="w-16" size="mini" tiny_mode="mobile-first" type="primary" @click="confirm">
+                {{
+                  t('ui.buttonMessage.confirm')
+                }}
+              </tiny-button>
             </slot>
           </div>
         </div>
@@ -51,7 +59,9 @@
     </div>
 
     <div class="sm:hidden inline-block">
-      <div class="inline-block" @click="show('click')" @mouseover="show('hover')"><slot name="reference"></slot></div>
+      <div class="inline-block" @click="show('click')" @mouseover="show('hover')">
+        <slot name="reference"></slot>
+      </div>
 
       <tiny-modal
         ref="modal"
@@ -73,16 +83,18 @@
                 tiny_mode="mobile-first"
                 type="text"
                 @click="hide"
-                >{{ t('ui.buttonMessage.cancel') }}</tiny-button
               >
+                {{ t('ui.buttonMessage.cancel') }}
+              </tiny-button>
               <span v-if="cancelButton" class="border-r border-r-color-border-separator"></span>
               <tiny-button
                 class="flex-1 text-color-brand tiny-modal-mf-button"
                 tiny_mode="mobile-first"
                 type="text"
                 @click="confirm"
-                >{{ t('ui.buttonMessage.confirm') }}</tiny-button
               >
+                {{ t('ui.buttonMessage.confirm') }}
+              </tiny-button>
             </slot>
           </div>
         </template>
@@ -98,15 +110,6 @@ import Popover from '@opentiny/vue-popover'
 import Modal from '@opentiny/vue-modal'
 import Button from '@opentiny/vue-button'
 import { IconError, IconInfoSolid, IconWarning, IconSuccess } from '@opentiny/vue-icon'
-
-const $constants = {
-  ICON_MAP: {
-    success: 'icon-success',
-    error: 'icon-error',
-    info: 'icon-info-solid',
-    warning: 'icon-warning'
-  }
-}
 
 export default defineComponent({
   name: $prefix + 'Popconfirm',

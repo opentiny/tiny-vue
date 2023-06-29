@@ -72,11 +72,15 @@ export default defineComponent({
     title: {
       type: String,
       default: '下拉菜单'
+    },
+    inheritWidth: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['visible-change', 'item-click', 'button-click', 'menu-item-click', 'handle-click'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   },
   render() {
     const { hide, splitButton, type, disabled, handleMainButtonClick, slots, size, state, menuOptions, title } = this
@@ -86,6 +90,7 @@ export default defineComponent({
     const visibleClass = state.visible ? 'tiny-dropdown--visible tiny-dropdown-visible' : ''
 
     const IconDown = state?.designConfig?.icons?.downWard || iconDeltaDown()
+    const ButtonIconDown = state?.designConfig?.icons?.downWard || iconDownWard()
 
     if (splitButton) {
       triggerElm = (
@@ -105,7 +110,7 @@ export default defineComponent({
             class={`tiny-dropdown__caret-button ${triggerClass}`}
             disabled={disabled}
             reset-time={0}>
-            <icon-down-ward class={visibleClass}></icon-down-ward>
+            <ButtonIconDown class={visibleClass}></ButtonIconDown>
           </tiny-button>
         </tiny-button-group>
       )

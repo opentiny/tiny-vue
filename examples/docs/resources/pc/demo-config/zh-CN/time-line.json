@@ -1,1 +1,98 @@
-[{"title":"基本用法","content":"<p>通过 <code>data</code> 属性设置时间线步骤条数据，通过 <code>active</code> 属性设置步骤条的选中步骤。</p>\n","link":"time-line/basic-usage","component":" TimeLine 时间线","findIntroStr":"TimeLine 时间线","demoId":"basic-usage"},{"title":"横向时间线","content":"<p>通过 <code>horizontal</code> 属性设置横向时间线。</p>\n","link":"time-line/horizontal-step","component":" TimeLine 时间线","findIntroStr":"TimeLine 时间线","demoId":"horizontal-step"},{"title":"竖向时间线","content":"<p>通过 <code>vertical</code> 属性设置竖向时间线。</p>\n","link":"time-line/vertical-step","component":" TimeLine 时间线","findIntroStr":"TimeLine 时间线","demoId":"vertical-step"},{"title":"竖向时间线的方向","content":"<p>通过 <code>reverse</code> 属性设置竖向步骤条的方向。</p>\n","link":"time-line/vertical-step-reverse","component":" TimeLine 时间线","findIntroStr":"TimeLine 时间线","demoId":"vertical-step-reverse"},{"title":"宽度设置","content":"<p>通过 <code>space</code>属性设置步骤条的宽度。</p>\n","link":"time-line/set-step-width","component":" TimeLine 时间线","findIntroStr":"TimeLine 时间线","demoId":"set-step-width"},{"title":"数据映射","content":"<p>通过 <code>name-field</code> 属性设置节点信息中名称对应的字段名，通过 <code>time-field</code> 属性设置节点时间信息对应的字段名。</p>\n","link":"time-line/different-data","component":" TimeLine 时间线","findIntroStr":"TimeLine 时间线","demoId":"different-data"},{"title":"设置序号起始值","content":"<p>通过 <code>start</code> 属性设置步骤条序号起始值。</p>\n","link":"time-line/set-start-value","component":" TimeLine 时间线","findIntroStr":"TimeLine 时间线","demoId":"set-start-value"},{"title":"显示组件内部状态","content":"<p>通过 <code>show-status</code> 属性设置是否显示组件内部状态。默认为 <code>false</code>，表示不显示。</p>\n","link":"time-line/show-status","component":" TimeLine 时间线","findIntroStr":"TimeLine 时间线","demoId":"show-status"},{"title":"未完成的序号显示","content":"<p>通过 <code>show-number</code> 属性设置未完成的状态是否显示序号。</p>\n","link":"time-line/show-number","component":" TimeLine 时间线","findIntroStr":"TimeLine 时间线","demoId":"show-number"},{"title":"自定义横向时间线","content":"<p><code>slot</code> 为 <code>top</code>可以自定义步骤条顶部内容，<code>slot</code> 为 <code>bottom</code> 可以自定义步骤条底部内容。</p>\n","link":"time-line/custom-normal-step","component":" TimeLine 时间线","findIntroStr":"TimeLine 时间线","demoId":"custom-normal-step"},{"title":"自定义竖向时间线","content":"<p><code>slot</code> 为 <code>left</code>可以自定义步骤条左侧内容，<code>slot</code> 为 <code>right</code> 可以自定义步骤条右侧内容。</p>\n","link":"time-line/custom-vertical-step","component":" TimeLine 时间线","findIntroStr":"TimeLine 时间线","demoId":"custom-vertical-step"},{"title":"click 事件","content":"<p>单击时触发 click 事件</p>\n","link":"time-line/vertical-step-reverse","component":" TimeLine 时间线","findIntroStr":"TimeLine 时间线","demoId":"vertical-step-reverse1"}]
+[
+  {
+    "title": "基本用法",
+    "content": "<p>通过 <code>data</code> 属性设置时间线步骤条数据，通过 <code>active</code> 属性设置步骤条的选中步骤。</p>\n",
+    "link": "time-line/basic-usage",
+    "component": " TimeLine 时间线",
+    "findIntroStr": "TimeLine 时间线",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "横向时间线",
+    "content": "<p>通过 <code>horizontal</code> 属性设置横向时间线。</p>\n",
+    "link": "time-line/horizontal-step",
+    "component": " TimeLine 时间线",
+    "findIntroStr": "TimeLine 时间线",
+    "demoId": "horizontal-step"
+  },
+  {
+    "title": "竖向时间线",
+    "content": "<p>通过 <code>vertical</code> 属性设置竖向时间线。</p>\n",
+    "link": "time-line/vertical-step",
+    "component": " TimeLine 时间线",
+    "findIntroStr": "TimeLine 时间线",
+    "demoId": "vertical-step"
+  },
+  {
+    "title": "竖向时间线的方向",
+    "content": "<p>通过 <code>reverse</code> 属性设置竖向步骤条的方向。</p>\n",
+    "link": "time-line/vertical-step-reverse",
+    "component": " TimeLine 时间线",
+    "findIntroStr": "TimeLine 时间线",
+    "demoId": "vertical-step-reverse"
+  },
+  {
+    "title": "宽度设置",
+    "content": "<p>详细用法参考如下示例。</p>\n",
+    "link": "time-line/set-step-width",
+    "component": " TimeLine 时间线",
+    "findIntroStr": "TimeLine 时间线",
+    "demoId": "set-step-width"
+  },
+  {
+    "title": "数据映射",
+    "content": "<p>通过 <code>name-field</code> 属性设置节点信息中名称对应的字段名，通过 <code>time-field</code> 属性设置节点时间信息对应的字段名。</p>\n",
+    "link": "time-line/different-data",
+    "component": " TimeLine 时间线",
+    "findIntroStr": "TimeLine 时间线",
+    "demoId": "different-data"
+  },
+  {
+    "title": "设置序号起始值",
+    "content": "<p>通过 <code>start</code> 属性设置步骤条序号起始值。</p>\n",
+    "link": "time-line/set-start-value",
+    "component": " TimeLine 时间线",
+    "findIntroStr": "TimeLine 时间线",
+    "demoId": "set-start-value"
+  },
+  {
+    "title": "显示组件内部状态",
+    "content": "<p>通过 <code>show-status</code> 属性设置是否显示组件内部状态。默认为 <code>false</code>，表示不显示。</p>\n",
+    "link": "time-line/show-status",
+    "component": " TimeLine 时间线",
+    "findIntroStr": "TimeLine 时间线",
+    "demoId": "show-status"
+  },
+  {
+    "title": "未完成的序号显示",
+    "content": "<p>通过 <code>show-number</code> 属性设置未完成的状态是否显示序号。</p>\n",
+    "link": "time-line/show-number",
+    "component": " TimeLine 时间线",
+    "findIntroStr": "TimeLine 时间线",
+    "demoId": "show-number"
+  },
+  {
+    "title": "自定义横向时间线",
+    "content": "<p><code>slot</code> 为 <code>top</code>可以自定义步骤条顶部内容，<code>slot</code> 为 <code>bottom</code> 可以自定义步骤条底部内容。</p>\n",
+    "link": "time-line/custom-normal-step",
+    "component": " TimeLine 时间线",
+    "findIntroStr": "TimeLine 时间线",
+    "demoId": "custom-normal-step"
+  },
+  {
+    "title": "自定义竖向时间线",
+    "content": "<p><code>slot</code> 为 <code>left</code>可以自定义步骤条左侧内容，<code>slot</code> 为 <code>right</code> 可以自定义步骤条右侧内容。</p>\n",
+    "link": "time-line/custom-vertical-step",
+    "component": " TimeLine 时间线",
+    "findIntroStr": "TimeLine 时间线",
+    "demoId": "custom-vertical-step"
+  },
+  {
+    "title": "click 事件",
+    "content": "<p>单击时触发 click 事件</p>\n",
+    "link": "time-line/vertical-step-reverse",
+    "component": " TimeLine 时间线",
+    "findIntroStr": "TimeLine 时间线",
+    "demoId": "vertical-step-reverse1"
+  }
+]

@@ -68,7 +68,7 @@ export default {
     modeFn.loadPage()
     return {
       state,
-      modeState,
+      modeState
     }
   }
 }

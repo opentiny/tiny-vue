@@ -65,6 +65,10 @@ export default defineComponent({
     title: {
       type: String,
       default: '下拉菜单'
+    },
+    inheritWidth: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

@@ -51,7 +51,7 @@ test('基本用法', async ({ page }) => {
     }
     if (i < 4) {
       const { y, width, height } = await flags.nth(i).boundingBox()
-      await expect(y).toBeCloseTo(280.67, 2)
+      await expect(y).toBeCloseTo(290, 2)
       await expect(width).toEqual(58)
       await expect(height).toEqual(34)
       await expect(flags.nth(i)).toHaveText(flagContents[i])

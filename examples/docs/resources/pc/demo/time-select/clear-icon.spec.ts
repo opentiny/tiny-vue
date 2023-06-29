@@ -8,6 +8,6 @@ test('自定义清空图标', async ({ page }) => {
   await page.getByText('10:00').click()
   await timeInput.hover()
   //   点击图标，清除输入框内容
-  await page.locator('i.tiny-input__icon svg').first().click()
+  await page.locator('#preview').getByRole('img').nth(1).click()
   expect(await page.getByPlaceholder('选择时间').getAttribute('title')).toEqual('')
 })

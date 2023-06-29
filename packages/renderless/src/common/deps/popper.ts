@@ -15,7 +15,6 @@ import PopupManager from './popup-manager'
 import { typeOf } from '../type'
 import { xss } from '../xss'
 
-const win = window
 const positions = ['left', 'right', 'top', 'bottom']
 const modifiers = ['shift', 'offset', 'preventOverflow', 'keepTogether', 'arrow', 'flip', 'applyStyle']
 
@@ -52,7 +51,7 @@ const setStyle = (el, styles) => {
 
 const getSupportedPropertyName = (property) => {
   let prefixes = ['', 'ms', 'webkit', 'moz', 'o']
-  let bodyEl = win.document.body
+  let bodyEl = window.document.body
 
   for (let i = 0; i < prefixes.length; i++) {
     let toCheck = prefixes[i] ? prefixes[i] + property.charAt(0).toUpperCase() + property.slice(1) : property
@@ -82,7 +81,7 @@ const addAttributes = (el, attributes) => {
 const getOffsetParent = (el) => {
   let offsetParent = el.offsetParent
 
-  return offsetParent === win.document.body || !offsetParent ? win.document.documentElement : offsetParent
+  return offsetParent === window.document.body || !offsetParent ? window.document.documentElement : offsetParent
 }
 
 const getStyleComputedProperty = (el, property) => {
@@ -90,21 +89,24 @@ const getStyleComputedProperty = (el, property) => {
     return
   }
 
-  let css = win.getComputedStyle(el, null)
+  let css = window.getComputedStyle(el, null)
 
   return css[property]
 }
 
-const isFixed = (el) => {
-  if (el === win.document.body) {
+const isFixed = (el, offsetParent) => {
+  if (el === window.document.body) {
     return false
   }
 
   if (getStyleComputedProperty(el, 'position') === 'fixed') {
     return true
   }
-
-  return el.parentNode ? isFixed(el.parentNode) : el
+  // 如果 el 是最近的offsetParent，停止向上查找
+  if (el === offsetParent) {
+    return false
+  }
+  return el.parentNode ? isFixed(el.parentNode, offsetParent) : false
 }
 
 const getBoundingClientRect = (el) => {
@@ -141,11 +143,11 @@ export const getScrollParent = (el) => {
     return el
   }
 
-  if (parent === win.document) {
-    if (win.document.body.scrollTop || win.document.body.scrollLeft) {
-      return win.document.body
+  if (parent === window.document) {
+    if (window.document.body.scrollTop || window.document.body.scrollLeft) {
+      return window.document.body
     }
-    return win.document.documentElement
+    return window.document.documentElement
   }
 
   if (isScrollElement(parent)) {
@@ -198,7 +200,7 @@ const getOuterSizes = (el) => {
   el.style.display = 'block'
   el.style.visibility = 'hidden'
 
-  let styles = win.getComputedStyle(el)
+  let styles = window.getComputedStyle(el)
   let x = parseFloat(styles.marginTop) + parseFloat(styles.marginBottom)
   let y = parseFloat(styles.marginLeft) + parseFloat(styles.marginRight)
   let result = { width: el.offsetWidth + y, height: el.offsetHeight + x }
@@ -352,12 +354,12 @@ Popper.prototype.parse = function (config) {
     classNames: ['popper'],
     content: '',
     contentType: 'text',
-    parent: win.document.body,
+    parent: window.document.body,
     tagName: 'div'
   }
   config = { ...defaultConfig, ...config }
   const { tagName, classNames, attributes, contentType, content, arrowTagName } = config
-  let docEl = win.document
+  let docEl = window.document
   let popper = docEl.createElement(tagName)
   addClassNames(popper, classNames)
   addAttributes(popper, attributes)
@@ -393,13 +395,13 @@ Popper.prototype.parse = function (config) {
 }
 
 Popper.prototype._getPosition = function (popper, reference) {
-  let container = getOffsetParent(reference)
+  let offsetParent = getOffsetParent(reference)
 
   if (this._options.forceAbsolute) {
     return 'absolute'
   }
 
-  let isParentFixed = isFixed(reference, container)
+  let isParentFixed = isFixed(reference, offsetParent)
   return isParentFixed ? 'fixed' : 'absolute'
 }
 
@@ -445,13 +447,13 @@ Popper.prototype._getOffsets = function (popper, reference, placement) {
 Popper.prototype._setupEventListeners = function () {
   this.state.updateBound = this.update.bind(this)
 
-  on(win, 'resize', this.state.updateBound)
+  on(window, 'resize', this.state.updateBound)
 
   if (this._options.boundariesElement !== 'window') {
     let target = getScrollParent(this._reference)
 
-    if (target === win.document.body || target === win.document.documentElement) {
-      target = win
+    if (target === window.document.body || target === window.document.documentElement) {
+      target = window
     }
     this.state.scrollTarget = target
 
@@ -470,7 +472,7 @@ Popper.prototype._setupEventListeners = function () {
 }
 
 Popper.prototype._removeEventListeners = function () {
-  off(win, 'resize', this.state.updateBound)
+  off(window, 'resize', this.state.updateBound)
 
   if (this._options.boundariesElement !== 'window' && this.state.scrollTarget) {
     off(this.state.scrollTarget, 'scroll', this.state.updateBound)
@@ -494,8 +496,8 @@ Popper.prototype._getBoundaries = function (data, padding, boundariesElement) {
   let boundaries = {}
 
   if (boundariesElement === 'window') {
-    let body = win.document.body
-    let html = win.document.documentElement
+    let body = window.document.body
+    let html = window.document.documentElement
     let { width, height } = getMaxWH(body, html)
 
     boundaries = { top: 0, right: width, bottom: height, left: 0 }
@@ -509,8 +511,8 @@ Popper.prototype._getBoundaries = function (data, padding, boundariesElement) {
 
     boundaries = {
       top: 0 - (offsetParentRect.top - scrollTop),
-      right: win.document.documentElement.clientWidth - (offsetParentRect.left - scrollLeft),
-      bottom: win.document.documentElement.clientHeight - (offsetParentRect.top - scrollTop),
+      right: window.document.documentElement.clientWidth - (offsetParentRect.left - scrollLeft),
+      bottom: window.document.documentElement.clientHeight - (offsetParentRect.top - scrollTop),
       left: 0 - (offsetParentRect.left - scrollLeft)
     }
   } else {
@@ -779,13 +781,13 @@ Popper.prototype.modifiers.arrow = function (data) {
   let reference = data.offsets.reference //                   tiny-form-item__content 元素的屏幕尺寸。 不包含label
   let isVertical = ~['left', 'right'].indexOf(placement) //   true
   let calcProp = isVertical ? 'height' : 'width' //           calcProp:height
-  let opSide = isVertical ? 'bottom' : 'right'//              opSide:bottom
-  let altSide = isVertical ? 'left' : 'top'//                 altSide:left       left是无用的那个值
-  let side = isVertical ? 'top' : 'left'//                    side:top
+  let opSide = isVertical ? 'bottom' : 'right' //              opSide:bottom
+  let altSide = isVertical ? 'left' : 'top' //                 altSide:left       left是无用的那个值
+  let side = isVertical ? 'top' : 'left' //                    side:top
 
   let popperRect = this.popperOuterSize ? this.popperOuterSize : (this.popperOuterSize = getOuterSizes(this._popper)) // popper的大小
-  let arrowRect = getOuterSizes(arrow)//                      arrow的大小 {height: 11，width: 5}
-  let arrowSize = arrowRect[calcProp]//                       11
+  let arrowRect = getOuterSizes(arrow) //                      arrow的大小 {height: 11，width: 5}
+  let arrowSize = arrowRect[calcProp] //                       11
 
   // 如果reference 比 popper 更靠上，则popper上移到 ref.bottom - arrowSize （上边缘对齐）
   if (reference[opSide] - arrowSize < popper[side]) {

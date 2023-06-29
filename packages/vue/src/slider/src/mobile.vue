@@ -16,7 +16,10 @@
       :style="{ height: vertical ? height : '' }"
       @touchstart="bindMouseDown"
     >
-      <div :class="['tiny-mobile-slider__range', vertical ? 'tiny-mobile-slider__down' : 'tiny-mobile-slider__left']" :style="state.barStyle"></div>
+      <div
+        :class="['tiny-mobile-slider__range', vertical ? 'tiny-mobile-slider__down' : 'tiny-mobile-slider__left']"
+        :style="state.barStyle"
+      ></div>
       <div
         class="tiny-mobile-slider__handle"
         tabindex="0"
@@ -59,7 +62,21 @@ import '@opentiny/vue-theme-mobile/slider/index.less'
 
 export default defineComponent({
   emits: ['update:modelValue', 'change', 'start', 'stop'],
-  props: [...props, 'modelValue', 'disabled', 'max', 'min', 'vertical', 'step', 'numPages', 'showTip', 'showInput', 'height', 'range', 'formatTooltip'],
+  props: [
+    ...props,
+    'modelValue',
+    'disabled',
+    'max',
+    'min',
+    'vertical',
+    'step',
+    'numPages',
+    'showTip',
+    'showInput',
+    'height',
+    'range',
+    'formatTooltip'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

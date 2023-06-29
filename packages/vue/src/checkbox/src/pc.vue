@@ -16,7 +16,9 @@
       border && state.checkboxSize ? 'tiny-checkbox--' + state.checkboxSize : '',
       { 'is-disabled': state.isDisabled },
       { 'is-bordered': border },
-      { 'is-checked': state.isChecked }
+      { 'is-checked': state.isChecked },
+      { 'is-group-display-only': state.isGroupDisplayOnly },
+      { 'is-display-only': state.isDisplayOnly }
     ]"
     :id="id"
     tabindex="-1"
@@ -34,9 +36,9 @@
       :aria-checked="indeterminate ? 'mixed' : false"
     >
       <span class="tiny-checkbox__inner" tabindex="1">
-        <icon-check v-if="!state.isChecked && !indeterminate" class="tiny-svg-size" />
-        <icon-checked-sur v-if="state.isChecked" class="tiny-svg-size" />
-        <icon-halfselect v-if="indeterminate" class="tiny-svg-size" />
+        <icon-halfselect v-if="indeterminate" class="tiny-svg-size icon-halfselect" />
+        <icon-checked-sur v-else-if="state.isChecked" class="tiny-svg-size icon-checked-sur" />
+        <icon-check v-else class="tiny-svg-size icon-check" />
       </span>
       <input
         v-if="trueLabel || falseLabel"
@@ -68,7 +70,7 @@
         @click.stop
       />
     </span>
-    <span class="tiny-checkbox__label" v-if="(slots.default && slots.default()) || text || label">
+    <span class="tiny-checkbox__label tiny-checkbox-display-only" v-if="(slots.default && slots.default()) || text || label">
       <slot>{{ text || label }}</slot>
     </span>
   </label>
@@ -98,7 +100,8 @@ export default defineComponent({
     'controls',
     'size',
     'border',
-    'validateEvent'
+    'validateEvent',
+    'displayOnly'
   ],
   components: {
     IconHalfselect: iconHalfselect(),

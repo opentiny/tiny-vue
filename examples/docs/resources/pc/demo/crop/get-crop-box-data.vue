@@ -1,7 +1,7 @@
 <template>
   <div>
     <tiny-button @click="getCropBoxData" style="margin-bottom: 20px">获取裁剪框数据</tiny-button>
-    <tiny-button text="图片裁剪" @click="visible = !visible"></tiny-button>
+    <tiny-button text="图片裁剪" @click="visible = !visible" style="margin-bottom: 20px"></tiny-button>
     <tiny-crop ref="crop" :cropvisible="visible" @update:cropvisible="visible = $event" src="static/images/mountain.png"></tiny-crop>
   </div>
 </template>

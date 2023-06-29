@@ -34,13 +34,12 @@
 
     & li {
       line-height: 28px;
-      background: var(--ti-button-group-item-bg-color);
       float: left;
       position: relative;
       margin-top: var(--ti-button-group-item-margin-top);
 
       button {
-        border: 1px solid var(--ti-button-group-border-color);
+        border: var(--ti-button-group-border-weight) solid var(--ti-button-group-border-color);
         display: block;
         text-align: center;
         color: var(--ti-button-group-item-btn-text-color);
@@ -102,17 +101,22 @@
           }
         }
 
-        button:not(.disabled) {
-          background: var(--ti-button-group-item-active-bg-color);
-          color: var(--ti-button-group-item-active-text-color);
-          border-color: var(--ti-button-group-item-active-border-color);
-          outline: none;
-
-
-          &.plain,
-          &[plain] {
+        button {
+          &.disabled {
+            background: var(--ti-button-group-item-active-disabled-bg-color);
+          }
+          &:not(.disabled) {
+            background: var(--ti-button-group-item-active-bg-color);
             color: var(--ti-button-group-item-active-text-color);
-            background: none;
+            border-color: var(--ti-button-group-item-active-border-color);
+            outline: none;
+  
+  
+            &.plain,
+            &[plain] {
+              color: var(--ti-button-group-plain-active-text-color);
+              background: none;
+            }
           }
         }
       }
@@ -131,8 +135,37 @@
 
       &:not(:last-child) {
         margin-right: var(--ti-button-group-item-li-margin-right);
+        margin-bottom: var(--ti-button-group-item-li-margin-bottom);
       }
     }
+
+    &__sup {
+      position: absolute;
+      min-width: var(--ti-button-group-item-sup-height);
+      height: var(--ti-button-group-item-sup-height);
+      top: calc(-1 * var(--ti-button-group-item-sup-height) / 2);
+      color: var(--ti-button-group-item-sup-font-color);
+      right: 0;
+      font-size: var(--ti-common-font-size-base);
+      line-height: var(--ti-button-group-item-sup-height);
+      text-align: center;
+      background-color: #fa9841;
+      .tiny-svg {
+        vertical-align: unset;
+      }
+    }
+    &__sup-icon {
+      background-color: #fa9841;
+      border-radius: 2px;
+      fill: #fff;
+    }
+    &__sup-text {
+      background-color: #fa9841;
+      padding: 0 4px;
+      border-top-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+  
   }
 
   &>.@{button-prefix-cls} {
@@ -234,6 +267,7 @@
   &&--borderless {
     .@{group-item-prefix-cls} li button {
       border: 1px solid transparent;
+      background: transparent;
     }
 
     .@{group-item-prefix-cls} li:hover button:not(.disabled) {

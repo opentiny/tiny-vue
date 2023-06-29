@@ -10,9 +10,9 @@
 *
 */
 
-import { handleClick, moreNodeClick } from './index'
+import { handleClick, moreNodeClick, handleChange } from './index'
 
-export const api = ['state', 'handleClick', 'moreNodeClick']
+export const api = ['state', 'handleClick', 'moreNodeClick', 'handleChange']
 
 export const renderless = (props, { computed, reactive, watch, inject }, { emit, parent }) => {
   parent.tinyForm = parent.tinyForm || inject('form', null)
@@ -41,11 +41,16 @@ export const renderless = (props, { computed, reactive, watch, inject }, { emit,
     },
     { immediate: true }
   )
+  watch(
+    () => state.value,
+    () => api.handleChange()
+  )
 
   const api = {
     state,
     handleClick: handleClick({ emit, props, state }),
-    moreNodeClick: moreNodeClick({ emit, props, state })
+    moreNodeClick: moreNodeClick({ emit, props, state }),
+    handleChange: handleChange({ emit, state })
   }
 
   return api

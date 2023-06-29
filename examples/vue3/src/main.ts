@@ -13,6 +13,9 @@ app.config.globalProperties.tiny_mode = { value: mode }
 app.config.globalProperties.isPcMode = mode === 'pc'
 app.config.globalProperties.isMobileMode = mode === 'mobile'
 
+// 注入全局的saas主题变量
+app.config.globalProperties.tiny_theme = { value: import.meta.env.VITE_TINY_THEME }
+
 app.use(initI18n({ createI18n, i18n: {} } as any))
 app.use(Loading)
 app.mount('#app')

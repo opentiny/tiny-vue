@@ -1,8 +1,8 @@
 <template>
   <div>
-    <tiny-button @click="filterData">筛选华南区数据</tiny-button>
+    <tiny-button @click="filterData"> 筛选华南区数据 </tiny-button>
     <br /><br />
-    <tiny-grid ref="grid" :fetch-data="fetchData" :pager="pagerConfig">
+    <tiny-grid ref="grid" :fetch-data="fetchData" :prefetch="prefetchArgs" :pager="pagerConfig">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称"></tiny-grid-column>
       <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
@@ -23,6 +23,7 @@ export default {
   },
   data() {
     return {
+      prefetchArgs: [{ property: 'name', sort: 'desc' }],
       pagerConfig: {
         component: Pager,
         attrs: {
@@ -83,7 +84,7 @@ export default {
     }
   },
   methods: {
-    getData({ page, filterArgs }) {
+    getData({ page, filterArgs, sortBy }) {
       let curPage = page.currentPage
       let pageSize = page.pageSize
       let offset = (curPage - 1) * pageSize

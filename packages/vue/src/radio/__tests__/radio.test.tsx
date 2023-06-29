@@ -24,15 +24,33 @@ describe('PC Mode', () => {
     expect(wrapper.find('.des').text()).toBe('选项描述')
   })
 
-  test.todo('border 单选框是否带有边框')
-  test.todo('vertical 单选框列表垂直布局')
-  test.todo('text 单选框自定义文字内容')
-  test.todo('name 指定单选框的key值')
-  test.todo('change事件 当绑定值变化时，是否触发单选框change事件')
-  test.todo('name 指定单选框的key值')
-  test.todo('options 通过配置对象数组数据的形式来渲染单选组')
-  test.todo('text-color、fill 通过 text-color 属性设置文本颜色，通过 fill 属性设置填充色和边框色')
-  test.todo('label 通过label属性可以设置单选框的内容')
-  test.todo('size 设置单选框尺寸')
-  test.todo('options options传入配置数据，循环渲染单选框列表')
+  // 通过 v-model 绑定变量，设置的变量值为默认选中的 Radio，变量值对应 label 属性的值。通过 text 也可以配置显示文本，与默认插槽配置纯文本的结果一致 label 可以是 String、Number 或 Boolean
+  test.todo('v-model')
+
+  // 配置式单选组
+  test.todo('options')
+
+  // 可通过设置 border 属性，给单选框增加边框
+  test.todo('border')
+
+  // 可在 RadioGroup 组件上设置 vertical 属性，使单选框垂直布局
+  test.todo('vertical')
+
+  // 按钮形式的 Radio 激活时可通过 text-color 属性设置文本颜色，通过 fill 属性设置填充色和边框色
+  test.todo('text-color & fill')
+
+  // 可在 Radio 组件上设置 text 属性，设置内容
+  test.todo('text')
+
+  // 通过 label 属性可以设置 Radio 的内容
+  test.todo('label')
+
+  // name
+  test.todo('name')
+
+  // 可对按钮形式的 Radio 或带有边框的 Radio 设置 size 属性，以改变其尺寸，包括 medium、small、mini 三个选项
+  test.todo('size')
+
+  // 可在 Radio、RadioGroup 组件上设置 change 事件，当绑定值变化时触发，回调函数为选中的 Radio label 值
+  test.todo('change事件')
 })
