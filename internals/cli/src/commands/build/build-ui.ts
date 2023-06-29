@@ -33,7 +33,7 @@ export const getVuePlugins = (vueVersion: string) => {
             }
           }
         }),
-        vue2SvgPlugin({ svgoConfig: { plugins: ['prefixIds'] } })
+        vue2SvgPlugin()
       ]
     },
     '2.7': () => {
@@ -52,7 +52,7 @@ export const getVuePlugins = (vueVersion: string) => {
           }
         }),
         vue27JsxPlugin({ injectH: false }),
-        vue2SvgPlugin({ svgoConfig: { plugins: ['prefixIds'] } })
+        vue2SvgPlugin()
       ]
     },
     '3': () => {
@@ -68,7 +68,7 @@ export const getVuePlugins = (vueVersion: string) => {
           }
         }),
         vue3JsxPlugin(),
-        vue3SvgPlugin({ defaultImport: 'component', svgoConfig: { plugins: ['prefixIds'] } })
+        vue3SvgPlugin()
       ]
     }
   }
@@ -168,7 +168,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
 
             // 为主入口包添加readme和LICENSE
             if (filePath === 'vue') {
-              ;['README.md', 'README.zh-CN.md', 'LICENSE'].forEach((item) => {
+              ['README.md', 'README.zh-CN.md', 'LICENSE'].forEach((item) => {
                 fs.copySync(
                   pathFromWorkspaceRoot(item),
                   path.resolve(pathFromPackages(''), `dist${vueVersion}/@opentiny/vue/${item}`)
