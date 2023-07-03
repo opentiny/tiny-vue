@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   watchValue,
@@ -38,7 +38,18 @@ import {
   getDisplayedValue
 } from './index'
 
-export const api = ['state', 'decrease', 'increase', 'handleBlur', 'handleFocus', 'handleInput', 'handleInputChange', 'mouseEvent', 'focus', 'select']
+export const api = [
+  'state',
+  'decrease',
+  'increase',
+  'handleBlur',
+  'handleFocus',
+  'handleInput',
+  'handleInputChange',
+  'mouseEvent',
+  'focus',
+  'select'
+]
 
 const initState = ({ reactive, computed, props, api, $service, parent }) => {
   const state = reactive({
@@ -55,9 +66,9 @@ const initState = ({ reactive, computed, props, api, $service, parent }) => {
     displayValue: computed(() => api.displayValue()),
     numPrecision: computed(() => api.getNumPecision()),
 
-    minDisabled: computed(() => (!props.circulate && api.internalDecrease({ val: props.modelValue, step: props.step }) < props.min) || state.formDisabled),
+    minDisabled: computed(() => (!props.circulate && state.currentValue <= props.min) || state.formDisabled),
 
-    maxDisabled: computed(() => (!props.circulate && api.internalIncrease({ val: props.modelValue, step: props.step }) > props.max) || state.formDisabled),
+    maxDisabled: computed(() => (!props.circulate && state.currentValue >= props.max) || state.formDisabled),
 
     controlsAtRight: computed(() => props.controls && props.controlsPosition === 'right'),
 
@@ -100,7 +111,7 @@ const initApi = ({ api, props, state, parent, refs, emit, dispatch, constants })
   api.getDecimal(0)
 }
 
-const initWatch = ({state, watch, props, api }) => {
+const initWatch = ({ state, watch, props, api }) => {
   watch(() => props.modelValue, api.watchValue, { immediate: true })
 
   watch(() => state.isDisplayOnly, api.dispatchDisplayedValue)
@@ -118,7 +129,7 @@ export const renderless = (
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
   initApi({ api, props, state, parent, refs, emit, dispatch, constants })
-  initWatch({state, watch, props, api })
+  initWatch({ state, watch, props, api })
 
   onMounted(() => {
     api.dispatchDisplayedValue()
