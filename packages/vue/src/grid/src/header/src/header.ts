@@ -25,7 +25,7 @@
 
 import { isObject, isNull } from '@opentiny/vue-renderless/common/type'
 import { convertToRows } from '@opentiny/vue-renderless/grid/plugins/header'
-import { removeClass, addClass, hasClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { removeClass, addClass } from '@opentiny/vue-renderless/common/deps/dom'
 import { isBoolean, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { updateCellTitle, getOffsetPos, emitEvent, getClass } from '@opentiny/vue-renderless/grid/utils'
 import { h, $prefix } from '@opentiny/vue-common'
@@ -235,7 +235,7 @@ function getThHandler(args) {
   return (column, $columnIndex) => {
     let { showHeaderOverflow, showHeaderTip, headerAlign, align, headerClassName } = column
     let isColGroup = column.children && column.children.length
-    let fixedHiddenColumn = column.fixed && overflowX
+    let fixedHiddenColumn = column.fixed
     let headOverflow = isNull(showHeaderOverflow) ? allColumnHeaderOverflow : showHeaderOverflow
     let showEllipsis = headOverflow === 'ellipsis'
     let showTitle = headOverflow === 'title'

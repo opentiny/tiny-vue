@@ -236,9 +236,9 @@ export default {
     },
     buildParamFunc(opt) {
       let { $columnIndex, $rowIndex, $table, allAlign, allColumnOverflow, allFooterAlign } = opt
-      let { column, footerData, footerSpanMethod, overflowX, tableListeners } = opt
+      let { column, footerData, footerSpanMethod, tableListeners } = opt
       let { showOverflow, footerAlign, align, footerClassName } = column
-      let fixedHiddenColumn = column.fixed && overflowX
+      let fixedHiddenColumn = column.fixed
       let cellOverflowValue = isNull(showOverflow) ? allColumnOverflow : showOverflow
       let footAlign = footerAlign || align || allFooterAlign || allAlign
       let isShowEllipsis = cellOverflowValue === 'ellipsis'
