@@ -1,5 +1,5 @@
 <template>
-  <tiny-layout class="tiny-layout-gutter">
+  <tiny-layout>
     <tiny-row class="margin-bottom10">
       <tiny-col :span="3" id="test">
         <div class="col">默认</div>
@@ -47,3 +47,17 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.margin-bottom10 {
+  margin-bottom: 10px;
+}
+
+.col {
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+  background: #1f9ed8;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+</style>

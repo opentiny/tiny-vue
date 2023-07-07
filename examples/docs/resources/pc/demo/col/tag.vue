@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="content">
-      <tiny-layout class="tiny-layout-tag">
+      <tiny-layout>
         <tiny-row>
           <tiny-col :span="3">
             <div class="col">div element</div>
@@ -29,3 +29,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.col {
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+  background: #1f9ed8;
+  border-radius: 15px;
+}
+</style>

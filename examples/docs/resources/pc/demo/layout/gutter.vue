@@ -29,7 +29,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .tiny-row {
   margin-bottom: 20px;
 }
