@@ -10,21 +10,16 @@
 *
 */
 
-// @import '../mixins/common.less';
 @import '../custom.less';
-@import './var.less';
 
 @container-prefix-cls: ~'@{css-prefix}container';
 
 .@{container-prefix-cls} {
-  .component-css-vars-container();
-
   & &__header,
   & &__aside,
   & &__main,
   & &__footer {
     position: absolute;
-    border: 3px solid #ffffff;
     box-sizing: border-box;
     top: 0;
     left: 0;
@@ -33,39 +28,12 @@
     margin: 0;
   }
 
-  & {
-    height: 200px;
-    color: #5f6774;
-    text-align: center;
-    font-size: 18px;
-    position: relative;
-  }
-
-  & &__header {
-    background-color: var(--ti-container-bg-color);
-    color: var(--ti-container-color);
-  }
-
-  & &__aside {
-    background-color: var(--ti-container-aside-bg-color);
-    color: var(--ti-container-aside-color);
-  }
-
   & &__main {
-    background-color: var(--ti-container-main-bg-color);
-    color: var(--ti-container-main-color);
     overflow-y: auto;
   }
 
   & &__footer {
-    background-color: var(--ti-container-footer-bg-color);
-    color: var(--ti-container-footer-color);
     top: auto;
     width: auto;
-  }
-   & .main .changePattern .tiny-radio {
-    color: #a3a355;
-    font-size: 16px;
-    margin: 0 7px;
   }
 }
