@@ -22,9 +22,10 @@
  * SOFTWARE.
  *
  */
-import { h, $prefix } from '@opentiny/vue-common'
+import { h, $prefix, defineComponent } from '@opentiny/vue-common'
+import { iconRadio, iconRadioselected } from '@opentiny/vue-icon'
 
-export default {
+export default defineComponent({
   name: $prefix + 'GridRadio',
   emits: ['update:modelValue', 'change'],
   props: {
@@ -77,9 +78,12 @@ export default {
             }
           }
         }),
-        h('span', { class: 'tiny-grid-radio__icon' }),
+        h('span', { class: 'tiny-grid-radio__icon' }, [
+          h(iconRadio(), { class: ['tiny-svg-size', 'icon-radio'] }),
+          h(iconRadioselected(), { class: ['tiny-svg-size', 'icon-radio-selected'] })
+        ]),
         $slots.default ? h('span', { class: 'tiny-grid-radio__label' }, $slots.default()) : null
       ]
     )
   }
-}
+})
