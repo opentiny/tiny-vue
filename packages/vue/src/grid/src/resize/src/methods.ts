@@ -23,15 +23,15 @@
  *
  */
 import Resize from '@opentiny/vue-renderless/grid/plugins/resize'
-import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import GlobalConfig from '../../config'
 
 export default {
   bindResize() {
-    const resizeObserver = new Resize(debounce(16, () => {
+    const resizeObserver = new Resize(() => {
       this.updateParentHeight()
       this.updateTableBodyHeight()
       this.recalculate()
-    }))
+    }, GlobalConfig.resizeInterval)
 
     resizeObserver.observe(this.getParentElem())
     this.$resize = resizeObserver
