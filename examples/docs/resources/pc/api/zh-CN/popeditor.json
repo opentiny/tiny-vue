@@ -230,9 +230,16 @@
     },
     {
       "name": "close",
-      "sample": "events",
+      "sample": "close-event",
       "type": "Function",
       "desc": "Popeditor 组件弹框关闭时触发的事件。",
+      "defaultValue": ""
+    },
+    {
+      "name": "popup",
+      "sample": "popup-event",
+      "type": "Function",
+      "desc": "Popeditor 组件弹框打开时触发的事件。",
       "defaultValue": ""
     },
     {

@@ -307,6 +307,7 @@ export default defineComponent({
     'suggest',
     'beforeClose'
   ],
+  emits: ['change', 'close', 'page-change', 'popup'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
