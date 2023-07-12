@@ -112,6 +112,14 @@
     "demoId": "close-event"
   },
   {
+    "title": "popup 事件",
+    "content": "<p><code>popup</code> 弹框打开时触发的事件。</p>\n",
+    "link": "popeditor/popup-event",
+    "component": " PopEditor 弹出编辑",
+    "findIntroStr": "该组件只能在弹出的面板中选择数据，不能手动输入数据；弹出面板中显示为 Tree 组件或者 Grid 组件。",
+    "demoId": "popup-event"
+  },
+  {
     "title": "只读",
     "content": "<p>通过 <code>readonly</code> 属性设置为是否只读。</p>\n",
     "link": "popeditor/readonly",
