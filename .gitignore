@@ -25,7 +25,6 @@ vitest.config.ts.timestamp*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-lock.yaml
 yarn.lock
 
 # Editor directories and files
