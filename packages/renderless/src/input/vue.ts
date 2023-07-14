@@ -107,7 +107,7 @@ const initState = ({ reactive, computed, mode, props, parent, constants }) => {
     showWordLimit: computed(() => props.showWordLimit && parent.$attrs.maxlength),
     inputDisabled: computed(
       () =>
-        props.disabled || (parent.auiForm || {}).disabled || state.isDisplayOnly || (parent.tinyForm || {}).displayOnly
+        props.disabled || (parent.tinyForm || {}).disabled || state.isDisplayOnly || (parent.tinyForm || {}).displayOnly
     ),
     validateState: computed(() => (parent.formItem ? parent.formItem.validateState : '')),
     textareaStyle: computed(() => ({
