@@ -42,6 +42,7 @@
     "dev2.7": "pnpm build:entry && pnpm build:component-cssvar && pnpm -C examples/vue2.7 dev",
     "dev2.7:saas": "pnpm build:entry && pnpm build:component-cssvar && pnpm -C examples/vue2.7 dev:saas",
     "dev:docs": "pnpm -C examples/docs docs:dev",
+    "dev:react": "pnpm -C examples/react-docs run dev",
     "build:entry": "pnpm -C internals/cli build:entry",
     "create:ui": "pnpm -C internals/cli create:ui",
     "// ---------- 创建saas图标ts文件----------": "",
