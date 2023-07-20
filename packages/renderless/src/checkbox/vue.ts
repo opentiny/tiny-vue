@@ -28,7 +28,9 @@ import {
   mounted,
   toggleEvent,
   dispatchDisplayedValue,
-  getDisplayedValue
+  getDisplayedValue,
+  computedIsShowText,
+  computedShowText
 } from './index'
 
 export const api = ['state', 'handleChange', 'computedStore']
@@ -53,7 +55,9 @@ const initState = ({ reactive, computed, parent, api, inject, props }) => {
     model: computed({
       get: () => api.computedGetModelGet(),
       set: (value) => api.computedGetModelSet(value)
-    })
+    }),
+    showText: computed(() => api.computedShowText()),
+    isShowText: computed(() => api.computedIsShowText())
   })
 
   return state
@@ -78,7 +82,9 @@ const initApi = ({ vm, api, state, dispatch, props, parent, constants, formItemS
     mounted: mounted({ emit, props, api, parent }),
     handleChange: handleChange({ state, props, emit, nextTick, dispatch, constants }),
     dispatchDisplayedValue: dispatchDisplayedValue({ state, api, dispatch }),
-    getDisplayedValue: getDisplayedValue({ state, props, vm })
+    getDisplayedValue: getDisplayedValue({ state, props, vm }),
+    computedIsShowText: computedIsShowText({ props }),
+    computedShowText: computedShowText({ props }),
   })
 }
 

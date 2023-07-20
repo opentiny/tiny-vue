@@ -70,8 +70,9 @@
         @click.stop
       />
     </span>
-    <span class="tiny-checkbox__label tiny-checkbox-display-only" v-if="(slots.default && slots.default()) || text || label">
-      <slot>{{ text || label }}</slot>
+    {{ state.showText }}
+    <span v-if="(slots.default && slots.default()) || state.isShowText" class="tiny-checkbox__label tiny-checkbox-display-only">
+      <slot>{{ state.showText }}</slot>
     </span>
   </label>
 </template>

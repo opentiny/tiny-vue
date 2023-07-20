@@ -87,14 +87,14 @@
       />
     </span>
     <span
+      v-if="(slots.default && slots.default()) || state.isShowText"
       ref="label"
       :class="[
         'py-3 sm:py-0 pl-0 sm:pl-2 mr-5 flex-auto',
         state.isDisabled ? 'cursor-not-allowed text-color-text-disabled' : 'text-color-text-primary'
       ]"
-      v-if="(slots.default && slots.default()) || text || label"
     >
-      <slot>{{ text || label }}</slot>
+      <slot>{{ state.showText }}</slot>
     </span>
   </label>
 </template>
