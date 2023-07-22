@@ -400,6 +400,12 @@ const routerArr = [
         path: '/grid'
       },
       {
+        en: 'RichTextEditor',
+        zh: '富文本',
+        enSuffix: true,
+        path: '/rich-text-editor'
+      },
+      {
         en: 'Ordinal column',
         zh: '序号列',
         enSuffix: false,
