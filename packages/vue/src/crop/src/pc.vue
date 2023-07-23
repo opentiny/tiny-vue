@@ -11,7 +11,6 @@
  -->
 <template>
   <div class="tiny-crop__wrapper">
-    {{ state }}
     <div class="tiny-croppreview" :style="{ opacity: state.cropvisible ? 1 : 0 }" v-if="preview">
       <div class="croppreviewb">
         <div class="croppreview"></div>
