@@ -21,7 +21,7 @@ import {
   computedIsDisabled,
   toggleEvent
 } from './index'
-import { addToStore, computedIsChecked, computedStore, computedIsLimitDisabled } from '../checkbox'
+import { addToStore, computedIsChecked, computedStore, computedIsLimitDisabled, computedIsShowText, computedShowText } from '../checkbox'
 
 export const api = ['state', 'handleChange']
 
@@ -40,7 +40,9 @@ const initState = ({ reactive, computed, api }) => {
     isDisabled: computed(() => api.computedIsDisabled()),
     activeStyle: computed(() => api.computedActiveStyle()),
     checkboxGroup: computed(() => api.computedCheckboxGroup()),
-    isLimitDisabled: computed(() => api.computedIsLimitDisabled())
+    isLimitDisabled: computed(() => api.computedIsLimitDisabled()),
+    showText: computed(() => api.computedShowText()),
+    isShowText: computed(() => api.computedIsShowText())
   })
 
   return state
@@ -60,7 +62,9 @@ const initApi = ({ api, state, props, formItemSize, parent, constants, emit, nex
     computedGetModelGet: computedGetModelGet({ state, props }),
     computedCheckboxGroup: computedCheckboxGroup({ parent, constants }),
     handleChange: handleChange({ state, props, emit, nextTick, dispatch, constants }),
-    computedGetModelSet: computedGetModelSet({ state, props, emit, dispatch, constants })
+    computedGetModelSet: computedGetModelSet({ state, props, emit, dispatch, constants }),
+    computedIsShowText: computedIsShowText({ props }),
+    computedShowText: computedShowText({ props })
   })
 }
 
