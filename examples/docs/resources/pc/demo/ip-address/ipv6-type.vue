@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      value: '3FFE:FFFF:7654:FEDA:1245'
+      value: 'fe80::204:61ff:fe9d:f156'
     }
   }
 }
