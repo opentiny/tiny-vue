@@ -14,6 +14,9 @@ export const handleClick = ({ emit, props, state }) => (event) => {
   if (props.nativeType === 'button' && props.resetTime > 0) {
     state.disabled = true
 
+    setTimeout(() => {
+    })
+
     state.timer = setTimeout(() => {
       state.disabled = false
     }, props.resetTime)

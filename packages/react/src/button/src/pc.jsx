@@ -1,26 +1,31 @@
-import useRenderLess from '@opentiny/vue-renderless/button/react'
+import renderless from '@opentiny/vue-renderless/button/react'
+import { useSetup } from '@opentiny/react-common'
+import { IconLoading } from '@opentiny/react-icon'
 import '@opentiny/vue-theme/button/index.less'
 
 export default function Button(props) {
   const {
     children,
-    text
+    text,
+    loading,
+    autofocus,
+    round,
+    circle,
+    icon: Icon,
+    size,
+    nativeType = 'button',
   } = props
 
   const {
     handleClick,
     state,
-    loading,
-    autofocus,
-    nativeType,
     tabindex,
     type,
-    size,
-    round,
-    circle,
-    icon,
     $attrs
-  } = useRenderLess({ props })
+  } = useSetup({
+    props,
+    renderless
+  })
 
   const className = [
     'tiny-button',
@@ -31,7 +36,7 @@ export default function Button(props) {
     state.plain ? 'is-plain' : '',
     round ? 'is-round' : '',
     circle ? 'is-circle' : '',
-    (icon && !loading && (text || props.children)) ? 'is-icon' : '',
+    (Icon && !loading && (text || children)) ? 'is-icon' : '',
   ].join(' ').trim()
 
   return (
@@ -44,8 +49,8 @@ export default function Button(props) {
       tabIndex={tabindex}
       {...$attrs}
     >
-      {/* todo: 加载图标 */}
-      {/* todo: 按钮图标 */}
+      { loading ? <IconLoading className="tiny-icon-loading tiny-svg-size" /> : ''}
+      { (Icon && !loading) ? <Icon className={ (text || children) ? 'is-text' : '' }/> : '' }
       <span>{children || text}</span>
     </button>
   )
