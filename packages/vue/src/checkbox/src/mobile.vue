@@ -55,8 +55,8 @@
         @blur="state.focus = false"
       />
     </span>
-    <span class="tiny-mobile-checkbox__label" v-if="(slots.default && slots.default()) || text || label">
-      <slot>{{ text || label }}</slot>
+    <span v-if="(slots.default && slots.default()) || state.isShowText" class="tiny-mobile-checkbox__label">
+      <slot>{{ state.showText }}</slot>
     </span>
   </label>
 </template>

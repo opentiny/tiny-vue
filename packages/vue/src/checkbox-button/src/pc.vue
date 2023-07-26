@@ -48,8 +48,8 @@
       @blur="state.focus = false"
     />
 
-    <span class="tiny-checkbox-button__inner" v-if="slots.default || text || label" :style="state.isChecked ? state.activeStyle : null">
-      <slot>{{ text || label }}</slot>
+    <span v-if="slots.default || state.isShowText" class="tiny-checkbox-button__inner" :style="state.isChecked ? state.activeStyle : null">
+      <slot>{{ state.showText }}</slot>
     </span>
   </label>
 </template>
