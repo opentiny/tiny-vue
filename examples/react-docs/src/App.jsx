@@ -1,30 +1,31 @@
-import { Button } from '@opentiny/react'
-import { IconAdd } from '@opentiny/react-icon'
-import { useState } from 'react';
+import ButtonExample from './ButtonExample'
+import { useState, useEffect } from 'react'
+import { useNextTick } from '@opentiny/react-common'
 
 function App() {
-
-
-  const [loading, setLoading] = useState(false);
-
-  const click = () => {
-    console.log('button click');
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+  const [text, setText] = useState('默认文字')
+  const changeHandler = ({ target: { value } }) => {
+    setText(value)
+    useNextTick(() => {
+      console.log(document.querySelector('#text').innerHTML)
+    })
   }
+
+
+
   return (
     <>
-      <Button 
-        nativeType='button' 
-        resetTime={1000} 
-        type="danger"
-        autofocus
-        icon={IconAdd}
-        click={click}
-        loading={loading}
-      >主要按钮</Button>
+      {/* button 组件展示 */}
+      <ButtonExample />
+      {/* react nextTick 验证 */}
+      <p>
+        <span id='text'>{text}</span>
+      </p>
+      <input
+        type="text"
+        value={text}
+        onChange={changeHandler}
+      />
     </>
   )
 }

@@ -1,6 +1,7 @@
 import {
   useState,
-  useCallback
+  useCallback,
+  useEffect
 } from 'react'
 import * as hooks from 'react'
 import SvgRender from './SvgRender'
@@ -57,6 +58,25 @@ export const useReactive = (staticObject) => {
   })
 }
 
+// nextTick， 等待 dom 更新后触发回调
+export const useNextTick = (callback) => {
+  queueMicrotask(callback)
+}
+
+// emitEvent, dispath, broadcast
+export const emitEvent = () => {
+  const broadcast = () => {
+    return ''
+  }
+
+  return {
+    dispatch: () => {
+      return ''
+    },
+    broadcast
+  }
+}
+
 export const useSetup = ({
   props,
   // context,
@@ -71,7 +91,12 @@ export const useSetup = ({
     parent: {},
     emit: emit(props)
   }
-  const sdk = render(props, { ...hooks, useReactive }, utils, extendOptions)
+  const sdk = render(
+    props,
+    { ...hooks, useReactive, useNextTick },
+    utils,
+    extendOptions
+  )
   return {
     ...sdk,
     type: props.type ?? 'default'
