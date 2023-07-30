@@ -12,7 +12,9 @@
   "dependencies": {
     "@opentiny/react": "workspace:~",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-common": "workspace:~"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",
@@ -24,6 +26,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.0",
-    "vite-plugin-react": "^4.0.1"
+    "vite-plugin-react": "^4.0.1",
+    "vite-plugin-svgr": "^3.2.0"
   }
 }
