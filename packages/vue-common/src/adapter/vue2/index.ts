@@ -215,6 +215,7 @@ const createVm = (vm, instance, context = undefined) => {
 
 export const tools = (context, mode) => {
   const instance = hooks.getCurrentInstance()?.proxy as any
+  console.log(instance)
   const root = instance?.$root
   const { route, router } = useRouter(instance)
   const i18n = root?.$i18n

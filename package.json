@@ -105,7 +105,8 @@
     "// ---------- 手工构建发布指定组件 (Beta) ----------": "",
     "preci:deployBeta": "pnpm clean:build",
     "ci:deployBeta": "pnpm build:ui",
-    "postci:deployBeta": "lerna publish from-package --yes --dist-tag beta"
+    "postci:deployBeta": "lerna publish from-package --yes --dist-tag beta",
+    "analyse:depends": "pnpm --filter @opentiny/analyse_depends start"
   },
   "dependencies": {
     "@vue/composition-api": "1.2.2",
