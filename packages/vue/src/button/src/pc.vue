@@ -10,7 +10,11 @@
  *
  -->
 <template>
-  <button class="tiny-button" @click="handleClick" :disabled="state.buttonDisabled || loading" :autofocus="autofocus"
+  <button
+    class="tiny-button" 
+    @click="handleClick" 
+    :disabled="state.buttonDisabled || loading" 
+    :autofocus="autofocus"
     :type="nativeType" :class="[
       type ? 'tiny-button--' + type : '',
       size ? 'tiny-button--' + size : '',
