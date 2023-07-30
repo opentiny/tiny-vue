@@ -28,19 +28,6 @@ export const renderless = (
         autofocus: true,
         editable: true,
         injectCSS: false,
-        onUpdate({ editor }) {
-            // console.log(editor.state.doc);
-            // const json = editor.getJSON()
-            const html = editor.getHTML()
-            // 默认两个节点 nodes 之间两个换行符
-            const text = editor.getText()
-            // 可传入参数 blockSeparator 控制节点之间的连接
-            const lineText = editor.getText({ blockSeparator: '--' })
-            // console.log(json)
-            // console.log(html)
-            // console.log(text)
-            // console.log(lineText) // 文本一行内展示，可设置连接符，只能获得文本
-        }
     })
     const addImage = (editor) => {
         const url = window.prompt('URL')

@@ -6,13 +6,5 @@
         "component": " 富文本编辑器",
         "findIntroStr": "富文本编辑器",
         "demoId": "basic-usage"
-    },
-    {
-        "title": "函数式使用",
-        "content": "详细用法参考如下示例",
-        "link": "rich-text-editor/basic-usage",
-        "component": " Fullscreen 全屏显示",
-        "findIntroStr": "Fullscreen 全屏显示",
-        "demoId": "basic-usage"
     }
 ]
