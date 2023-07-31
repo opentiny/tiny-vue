@@ -10,12 +10,12 @@
  *
  -->
 <template>
-  <button
-    class="tiny-button"
-    @click="handleClick"
-    :disabled="state.buttonDisabled || loading"
+  <button 
+    class="tiny-button" 
+    @click="handleClick" 
+    :disabled="state.buttonDisabled || loading" 
     :autofocus="autofocus"
-    :type="nativeType"
+    :type="nativeType" 
     :class="[
       type ? 'tiny-button--' + type : '',
       size ? 'tiny-button--' + size : '',
@@ -28,8 +28,8 @@
         'is-icon': icon && !loading && (text || $slots.default),
         'is-only-icon': icon && !loading && !(text || $slots.default)
       }
-    ]"
-    :tabindex="tabindex"
+    ]" 
+    :tabindex="tabindex" 
     v-bind="a($attrs, ['class', 'style'], true)"
   >
     <icon-loading v-if="loading" class="tiny-icon-loading tiny-svg-size" />
