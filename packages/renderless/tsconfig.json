@@ -13,5 +13,5 @@
   },
   "include": [
     "src/**/*.ts"
-  ]
+, "src/button/react.js"  ]
 }
