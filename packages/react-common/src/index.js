@@ -7,6 +7,57 @@ const {
   useCallback
 } = hooks
 
+function findFiber(dom, ref, traverseUp = 0) {
+  const key = Object.keys(dom).find((key) => {
+    return (
+      key.startsWith("__reactFiber$") || // react 17+
+      key.startsWith("__reactInternalInstance$")
+    ); // react <17
+  });
+
+  const domFiber = dom[key];
+  if (domFiber == null) return null;
+
+  // react <16
+  if (domFiber._currentElement) {
+    let compFiber = domFiber._currentElement._owner;
+    for (let i = 0; i < traverseUp; i++) {
+      compFiber = compFiber._currentElement._owner;
+    }
+    return compFiber._instance;
+  }
+
+  // react 16+
+  const getFibier = (fiber) => {
+    let parentFiber = fiber.return;
+    while (typeof parentFiber.type == "string") {
+      parentFiber = parentFiber.return;
+    }
+    return parentFiber;
+  };
+  let compFiber = getFibier(domFiber);
+  for (let i = 0; i < traverseUp; i++) {
+    if (Object.is(compFiber.child.ref, ref)){
+      return getFibier(compFiber);
+    }
+    compFiber = getFibier(compFiber);
+  }
+  return compFiber;
+}
+
+export const useParent = () => {
+  const ref = hooks.useRef();
+  const [parent, setParent] = hooks.useState();
+  hooks.useEffect(() => {
+    if (ref.current) {
+      let node = findFiber(ref.current, ref, 1);
+      setParent(node);
+    }
+  }, []);
+
+  return { ref, parent };
+};
+
 export const emit = (props) => (evName, ...args) => {
   if (props[evName] && typeof props[evName] === 'function') {
     props[evName](...args)
