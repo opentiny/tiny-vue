@@ -50,7 +50,7 @@ export const useParent = () => {
   const [parent, setParent] = hooks.useState();
   hooks.useEffect(() => {
     if (ref.current) {
-      let node = FindReact(ref.current, ref, 1);
+      let node = findFiber(ref.current, ref, 1);
       setParent(node);
     }
   }, []);
