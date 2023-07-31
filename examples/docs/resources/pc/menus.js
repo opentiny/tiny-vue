@@ -303,6 +303,12 @@ const routerArr = [
         path: '/file-upload'
       },
       {
+        en: 'RichTextEditor',
+        zh: '富文本',
+        enSuffix: true,
+        path: '/rich-text-editor'
+      },
+      {
         en: 'Form',
         zh: '表单',
         enSuffix: true,
