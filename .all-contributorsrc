@@ -257,6 +257,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "KevinAndrewDong",
+      "name": "dong",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20911103?v=4",
+      "profile": "https://github.com/KevinAndrewDong",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 8,
