@@ -239,6 +239,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "pe-3",
+      "name": "peter G",
+      "avatar_url": "https://avatars.githubusercontent.com/u/103579791?v=4",
+      "profile": "https://github.com/pe-3",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 8,
