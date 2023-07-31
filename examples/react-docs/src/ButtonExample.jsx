@@ -12,6 +12,7 @@ export default function ButtonExample() {
       setLoading(false);
     }, 2000);
   }
+
   return (
     <>
       <Button 

@@ -18,7 +18,7 @@ export default function renderless(
     // 具有滞后性，所以从箭头函数参数里取当前的 state 对象
     buttonDisabled: (curState) => curState.disabled || !!props.disabled || curState.formDisabled
   })
-
+  
   useEffect(() => {
     state.disabled = !!props.disabled
   }, [props.disabled])

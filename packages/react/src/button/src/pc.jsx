@@ -38,7 +38,7 @@ export default function Button(props) {
     circle ? 'is-circle' : '',
     (Icon && !loading && (text || children)) ? 'is-icon' : '',
   ].join(' ').trim()
-
+  
   return (
     <button
       className={className}
