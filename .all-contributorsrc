@@ -239,6 +239,42 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "pe-3",
+      "name": "peter G",
+      "avatar_url": "https://avatars.githubusercontent.com/u/103579791?v=4",
+      "profile": "https://github.com/pe-3",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "gimmyhehe",
+      "name": "gimmyhehe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/26026184?v=4",
+      "profile": "https://github.com/gimmyhehe",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "KevinAndrewDong",
+      "name": "dong",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20911103?v=4",
+      "profile": "https://github.com/KevinAndrewDong",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "CatsAndMice",
+      "name": "凌览",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58327088?v=4",
+      "profile": "http://www.linglan01.cn",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 8,
