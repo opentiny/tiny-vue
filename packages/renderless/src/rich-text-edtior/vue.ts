@@ -3,7 +3,7 @@ export const renderless = (
     props,
     { computed, onMounted, onBeforeUnmount, reactive },
     { vm, emit, parent },
-    { useEditor, Collaboration, Y, WebrtcProvider, StarterKit, Table, TableCell, TableHeader, TableRow, Color, TextStyle, Image }
+    { useEditor, Collaboration, Y, WebrtcProvider, StarterKit, Table, TableCell, TableHeader, TableRow, Color, TextStyle, Image, Highlight, Link, Underline, Subscript, Superscript }
 ) => {
     const ydoc = new Y.Doc()
     const provider = new WebrtcProvider('tiny-examsple-document', ydoc)
@@ -23,22 +23,56 @@ export const renderless = (
             TableCell, TableHeader, TableRow,
             Color, TextStyle,
             Image,
+            Highlight,
+            Link,
+            Underline,
+            Subscript,
+            Superscript
         ],
         content: 'Example Tesxt',
         autofocus: true,
         editable: true,
         injectCSS: false,
     })
-    const addImage = (editor) => {
-        const url = window.prompt('URL')
-
-        if (url) {
-            editor.chain().focus().setImage({ src: url }).run()
+    const handleChange = (event) => {
+        const file = event.target.files[0];
+        if (!file.type.match("image.*")) {
+            alert("请选择图片文件！");
+            return;
         }
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            editor.value.chain().focus().setImage({ src: e.target.result }).run()
+        };
+        reader.readAsDataURL(file);
+    }
+    const setLink = () => {
+        const previousUrl = editor.value.getAttributes('link').href
+        const url = window.prompt('URL', previousUrl)
+        if (url === null) {
+            return
+        }
+        if (url === '') {
+            editor.value
+                .chain()
+                .focus()
+                .extendMarkRange('link')
+                .unsetLink()
+                .run()
+            return
+        }
+        // update link
+        editor.value
+            .chain()
+            .focus()
+            .extendMarkRange('link')
+            .setLink({ href: url })
+            .run()
     }
     const state = reactive({
         editor: null,
-        addImage: addImage,
+        setLink: setLink,
+        handleChange: handleChange,
     })
     state.editor = editor
     const api = {
