@@ -1,5 +1,6 @@
 import * as hooks from 'react'
 import SvgRender from './SvgRender'
+import { filterAttrs } from './utils.ts'
 import '@opentiny/vue-theme/base/index.less'
 
 const {
@@ -56,7 +57,7 @@ export const useParent = () => {
   }, []);
 
   return { ref, parent };
-};
+}
 
 export const emit = (props) => (evName, ...args) => {
   if (props[evName] && typeof props[evName] === 'function') {
@@ -111,7 +112,7 @@ export const useReactive = (staticObject) => {
 }
 
 // nextTick， 等待 dom 更新后触发回调
-export const useNextTick = (callback) => {
+export const nextTick = (callback) => {
   queueMicrotask(callback)
 }
 
@@ -133,7 +134,7 @@ export const useSetup = ({
   props,
   // context,
   renderless,
-  // api,
+  api,
   extendOptions = {},
   // mono = false,
   // classes = {}
@@ -145,14 +146,25 @@ export const useSetup = ({
   }
   const sdk = render(
     props,
-    { ...hooks, useReactive, useNextTick },
+    { ...hooks, useReactive, nextTick },
     utils,
     extendOptions
   )
-  return {
-    ...sdk,
-    type: props.type ?? 'default'
+  const attrs = {
+    a: filterAttrs
   }
+
+  if (Array.isArray(api)) {
+    api.forEach((name) => {
+      const value = sdk[name]
+
+      if (typeof value !== 'undefined') {
+        attrs[name] = value
+      }
+    })
+  }
+
+  return attrs
 }
 
 // react-svg 组件
