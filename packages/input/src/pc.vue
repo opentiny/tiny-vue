@@ -22,7 +22,8 @@
         'tiny-input-group-append': slots.append,
         'tiny-input-group-prepend': slots.prepend,
         'tiny-input-prefix': slots.prefix || prefixIcon,
-        'tiny-input-suffix': slots.suffix || suffixIcon || clearable || showPassword
+        'tiny-input-suffix': slots.suffix || suffixIcon || clearable || showPassword,
+        'is-display-only': state.isDisplayOnly
       }
     ]"
     :style="$attrs.style"
@@ -45,30 +46,43 @@
       <div class="tiny-input-group__prepend" v-if="slots.prepend">
         <slot name="prepend"></slot>
       </div>
-      <input
-        v-if="type !== 'textarea'"
-        ref="input"
-        :name="name"
-        v-bind="a($attrs, ['type', 'class', 'style', '^on\w+'])"
-        class="tiny-input__inner"
-        :tabindex="tabindex"
-        :type="showPassword ? (state.passwordVisible ? 'text' : 'password') : type"
-        :disabled="state.inputDisabled"
-        :readonly="readonly"
-        :unselectable="readonly ? 'on' : 'off'"
-        :autocomplete="autocomplete"
-        @compositionstart="handleCompositionStart"
-        @compositionupdate="handleCompositionUpdate"
-        @compositionend="handleCompositionEnd"
-        @input="handleInput"
-        @focus="handleFocus"
-        @blur="handleBlur"
-        @change="handleChange"
-        :aria-label="label"
-        @keyup="$emit('keyup', $event)"
-        @keydown="$emit('keydown', $event)"
-        @paste="$emit('paste', $event)"
-      />
+      <span class="tiny-input-display-only">
+        <tiny-tooltip
+          v-if="state.isDisplayOnly"
+          effect="light"
+          :content="state.displayOnlyTooltip"
+          :display="type === 'password'"
+          placement="top"
+          @mouseenter.native="handleEnterDisplayOnlyContent"
+        >
+          <span v-if="type === 'password'" class="tiny-input-display-only__content">{{ state.hiddenPassword }}</span>
+          <span v-else class="tiny-input-display-only__content">{{ displayOnlyContent || state.nativeInputValue }}</span>
+        </tiny-tooltip>
+        <input
+          v-if="type !== 'textarea'"
+          ref="input"
+          :name="name"
+          v-bind="a($attrs, ['type', 'class', 'style', '^on\w+'])"
+          class="tiny-input__inner"
+          :tabindex="tabindex"
+          :type="showPassword ? (state.passwordVisible ? 'text' : 'password') : type"
+          :disabled="state.inputDisabled"
+          :readonly="readonly"
+          :unselectable="readonly ? 'on' : 'off'"
+          :autocomplete="autocomplete"
+          @compositionstart="handleCompositionStart"
+          @compositionupdate="handleCompositionUpdate"
+          @compositionend="handleCompositionEnd"
+          @input="handleInput"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @change="handleChange"
+          :aria-label="label"
+          @keyup="$emit('keyup', $event)"
+          @keydown="$emit('keydown', $event)"
+          @paste="$emit('paste', $event)"
+        />
+      </span>
       <tiny-tall-storage
         v-if="isMemoryStorage"
         :name="name"
@@ -77,32 +91,34 @@
         @selected="selectedMemory"
       ></tiny-tall-storage>
       <!-- 前置内容 -->
-      <span class="tiny-input__prefix" v-if="slots.prefix || prefixIcon">
+      <span class="tiny-input__prefix" v-if="!state.isDisplayOnly && (slots.prefix || prefixIcon)">
         <slot name="prefix"></slot>
         <component v-if="prefixIcon" :is="prefixIcon" class="tiny-svg-size tiny-input__icon" />
       </span>
       <!-- 后置内容 -->
-      <transition name="tiny-transition-icon-out-in">
-        <span class="tiny-input__suffix" v-if="getSuffixVisible()">
-          <span class="tiny-input__suffix-inner">
-            <template v-if="!state.showClear || !state.showPwdVisible || !state.isWordLimitVisible">
-              <slot name="suffix"></slot>
-              <component v-if="suffixIcon" :is="suffixIcon" class="tiny-svg-size tiny-input__icon" />
-            </template>
-            <icon-close v-if="state.showClear" class="tiny-svg-size tiny-input__icon tiny-input__clear" @mousedown.prevent @click="clear"></icon-close>
-            <component
-              v-if="showPassword"
-              :is="state.passwordVisible ? 'icon-eyeopen' : 'icon-eyeclose'"
-              class="tiny-svg-size tiny-input__icon"
-              @click.native="handlePasswordVisible"
-            ></component>
-            <span v-if="state.isWordLimitVisible" class="tiny-input__count">
-              <span class="tiny-input__count-inner">{{ state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength }}</span>
+      <div v-if="!state.isDisplayOnly && getSuffixVisible()">
+        <transition name="tiny-transition-icon-out-in">
+          <span class="tiny-input__suffix" v-if="getSuffixVisible()">
+            <span class="tiny-input__suffix-inner">
+              <template v-if="!state.showClear || !state.showPwdVisible || !state.isWordLimitVisible">
+                <slot name="suffix"></slot>
+                <component v-if="suffixIcon" :is="suffixIcon" class="tiny-svg-size tiny-input__icon" />
+              </template>
+              <icon-close v-if="state.showClear" class="tiny-svg-size tiny-input__icon tiny-input__clear" @mousedown.prevent @click="clear"></icon-close>
+              <component
+                v-if="showPassword"
+                :is="state.passwordVisible ? 'icon-eyeopen' : 'icon-eyeclose'"
+                class="tiny-svg-size tiny-input__icon"
+                @click.native="handlePasswordVisible"
+              ></component>
+              <span v-if="state.isWordLimitVisible" class="tiny-input__count">
+                <span class="tiny-input__count-inner">{{ state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength }}</span>
+              </span>
             </span>
+            <i class="tiny-input__icon" v-if="state.validateState" :class="['tiny-input__validateIcon', validateIcon]"> </i>
           </span>
-          <i class="tiny-input__icon" v-if="state.validateState" :class="['tiny-input__validateIcon', validateIcon]"> </i>
-        </span>
-      </transition>
+        </transition>
+      </div>
       <!-- 后置元素 -->
       <div class="tiny-input-group__append" v-if="slots.append">
         <slot name="append"></slot>
@@ -112,30 +128,40 @@
         <slot name="panel"></slot>
       </div>
     </template>
-    <textarea
-      v-else
-      ref="textarea"
-      v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
-      :tabindex="tabindex"
-      class="tiny-textarea__inner"
-      @compositionstart="handleCompositionStart"
-      @compositionupdate="handleCompositionUpdate"
-      @compositionend="handleCompositionEnd"
-      @input="handleInput"
-      :disabled="state.inputDisabled"
-      :readonly="readonly"
-      :unselectable="readonly ? 'on' : 'off'"
-      :autocomplete="autocomplete"
-      :style="state.textareaStyle"
-      @focus="handleFocus"
-      @blur="handleBlur"
-      @change="handleChange"
-      :aria-label="label"
-    >
-    </textarea>
-    <span v-if="state.isWordLimitVisible && type === 'textarea'" class="tiny-input__count">{{
-      state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength
-    }}</span>
+    <span v-else :class="[autosize ? 'tiny-textarea-autosize-display-only' : 'tiny-textarea-display-only']">
+      <tiny-tooltip
+        v-if="state.isDisplayOnly"
+        effect="light"
+        :content="state.displayOnlyTooltip"
+        placement="top"
+        @mouseenter.native="handleEnterDisplayOnlyContent($event, 'textarea')"
+      >
+        <span class="tiny-textarea-display-only__content">{{ displayOnlyContent || state.nativeInputValue }}</span>
+      </tiny-tooltip>
+      <textarea
+        ref="textarea"
+        v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
+        :tabindex="tabindex"
+        class="tiny-textarea__inner"
+        @compositionstart="handleCompositionStart"
+        @compositionupdate="handleCompositionUpdate"
+        @compositionend="handleCompositionEnd"
+        @input="handleInput"
+        :disabled="state.inputDisabled"
+        :readonly="readonly"
+        :unselectable="readonly ? 'on' : 'off'"
+        :autocomplete="autocomplete"
+        :style="state.textareaStyle"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        @change="handleChange"
+        :aria-label="label"
+      >
+      </textarea>
+    </span>
+    <span v-if="state.isWordLimitVisible && type === 'textarea'" class="tiny-input__count">
+      {{ state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength }}
+    </span>
     <slot></slot>
   </div>
 </template>
@@ -144,6 +170,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/input/vue'
 import { props, setup } from '@opentiny/vue-common'
 import TinyTallStorage from './tall-storage.vue'
+import TinyTooltip from '@opentiny/vue-tooltip'
 import { iconClose, iconEyeopen, iconEyeclose } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/input/index.css'
 
@@ -154,7 +181,8 @@ export default {
     IconClose: iconClose(),
     IconEyeopen: iconEyeopen(),
     IconEyeclose: iconEyeclose(),
-    TinyTallStorage
+    TinyTallStorage,
+    TinyTooltip
   },
 
   props: [
@@ -178,7 +206,9 @@ export default {
     'autocomplete',
     'showPassword',
     'validateEvent',
-    'showWordLimit'
+    'showWordLimit',
+    'displayOnly',
+    'displayOnlyContent'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
