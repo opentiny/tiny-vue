@@ -252,14 +252,14 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants 
 
 const addApi = ({ api, props, state, refs, emit, constants, parent, nextTick, dispatch, vm, designConfig }) => {
   Object.assign(api, {
-    resetInputHeight: resetInputHeight({ api, constants, nextTick, props, refs, state }),
+    resetInputHeight: resetInputHeight({ constants, nextTick, props, refs, state }),
     calcOverFlow: calcOverFlow({ refs, props, state }),
     handleFocus: handleFocus({ api, emit, props, state }),
     deleteTag: deleteTag({ api, constants, emit, props, vm, state }),
     watchValue: watchValue({ api, constants, dispatch, props, refs, state }),
     toHide: toHide({ constants, state, props, vm, api }),
     toVisible: toVisible({ constants, state, props, vm, api, nextTick }),
-    setSelected: setSelected({ api, constants, nextTick, props, refs, state }),
+    setSelected: setSelected({ api, constants, nextTick, props, vm, state }),
     selectOption: selectOption({ api, state, props }),
     handleResize: handleResize({ api, props }),
     watchOptions: watchOptions({ api, constants, nextTick, parent, props, state }),
@@ -360,19 +360,25 @@ const initApi = ({
 const addWatch = ({ watch, props, api, state }) => {
   watch(() => [...state.options], api.watchOptions)
 
-  watch(() => state.gridData, api.setSelected, { immediate: true })
+  if (props.renderType === 'grid') {
+    watch(() => state.gridData, api.setSelected, { immediate: true })
+  }
 
-  watch(() => state.treeData, api.setSelected, { immediate: true })
+  if (props.renderType === 'tree') {
+    watch(() => state.treeData, api.setSelected, { immediate: true })
+  }
 
   watch(() => state.hoverIndex, api.watchHoverIndex)
 
-  props.options && watch(() => props.options, api.watchPropsOption, { immediate: true, deep: true })
+  if (props.options) {
+    watch(() => props.options, api.watchPropsOption, { immediate: true, deep: true })
+  }
 
   watch(() => state.optimizeOpts, api.watchOptimizeOpts)
 }
 
 const initWatch = ({ watch, props, api, state, nextTick, refs }) => {
-  props.treeOp.data &&
+  if (props.renderType === 'tree' && props.treeOp.data) {
     watch(
       () => props.treeOp.data,
       (data) => {
@@ -380,8 +386,9 @@ const initWatch = ({ watch, props, api, state, nextTick, refs }) => {
       },
       { immediate: true, deep: true }
     )
+  }
 
-  props.gridOp.data &&
+  if (props.renderType === 'grid' && props.gridOp.data) {
     watch(
       () => props.gridOp.data,
       (data) => {
@@ -389,6 +396,7 @@ const initWatch = ({ watch, props, api, state, nextTick, refs }) => {
       },
       { immediate: true, deep: true }
     )
+  }
 
   watch(
     () => state.selectDisabled,
