@@ -583,8 +583,9 @@ export const resetInputHeight =
           return
         }
 
-        let inputChildNodes = refs.reference.$el.childNodes
-        let input = [].filter.call(inputChildNodes, (item) => item.tagName === 'INPUT')[0]
+        const inputChildNodes = refs.reference.$el.childNodes
+        const inputContainer = [].filter.call(inputChildNodes, (item) => hasClass(item, 'tiny-input-display-only'))[0]
+        const input = inputContainer && inputContainer.querySelector('input')
         const tags = refs.tags
 
         if (!input) {
