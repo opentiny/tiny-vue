@@ -12,6 +12,7 @@
 
 import { find } from '../common/array'
 import { getObj, isEqual } from '../common/object'
+import { hasClass } from '../common/deps/dom'
 import { isKorean } from '../common/string'
 import scrollIntoView from '../common/deps/scroll-into-view'
 import PopupManager from '../common/deps/popup-manager'
