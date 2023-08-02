@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "collapse/basic-usage",
+    "component": "Collapse Panel",
+    "findIntroStr": "You can specify dynamic pages or customized HTML files in the content area. The content area can be expanded and collapsed.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Accordion Effect",
+    "content": "<p>After <code>accordion</code> is set to true, the collapsed panel displays the accordion effect. \nConfigure <code>v-model</code> to set the currently active panel. (In accordion mode, the binding value type must be string. Otherwise, the binding value type is array.) \n<code>change</code> event, which is triggered when the current active panel changes. The parameter is the current value.\n Configure the <code>name</code> attribute as the unique identifier of each collapse-item.</p>\n",
+    "link": "collapse/accordion",
+    "component": "Collapse Panel",
+    "findIntroStr": "You can specify dynamic pages or customized HTML files in the content area. The content area can be expanded and collapsed.",
+    "demoId": "accordion"
+  },
+  {
+    "title": "Disabled",
+    "content": "<p>When the <code>disabled</code> attribute is set to true on the <code>collapse-item</code> element, the specified collapse panel item is disabled. </p>\n",
+    "link": "collapse/dynamic-disable",
+    "component": "Collapse Panel",
+    "findIntroStr": "You can specify dynamic pages or customized HTML files in the content area. The content area can be expanded and collapsed.",
+    "demoId": "dynamic-disable"
+  },
+  {
+    "title": "Custom Panel Title",
+    "content": "<p>Configure the <code>title</code> attribute on the <code>collapse-item</code> element to specify the title of each collapse panel item. However, you can also customize the panel title by using the <code>title</code> slot, for example, adding an icon before the title. </p>\n",
+    "link": "collapse/custom-collapse-title",
+    "component": "Collapse Panel",
+    "findIntroStr": "You can specify dynamic pages or customized HTML files in the content area. The content area can be expanded and collapsed.",
+    "demoId": "custom-collapse-title"
+  },
+  {
+    "title": "Customize the expansion and collapse icon",
+    "content": "<p>On the <code>collapse-item</code> element, you can customize the folding icon icon by using the <code>icon</code> slot. </p>\n",
+    "link": "collapse/custom-collapse-icon",
+    "component": "Collapse Panel",
+    "findIntroStr": "You can specify dynamic pages or customized HTML files in the content area. The content area can be expanded and collapsed.",
+    "demoId": "custom-collapse-icon"
+  },
+  {
+    "title": "Fold Panel Event",
+    "content": "<p>When the value of the active panel changes, the <code>change</code> event is triggered. </p>\n",
+    "link": "collapse/collapse-events",
+    "component": "Collapse Panel",
+    "findIntroStr": "You can specify dynamic pages or customized HTML files in the content area. The content area can be expanded and collapsed.",
+    "demoId": "collapse-events"
+  },
+  {
+    "title": "Prevent the event of closing the folding panel",
+    "content": "<p>:before-close event before closing the folding panel. In the method, return true/false indicates whether the folding panel can be closed.</p>\n",
+    "link": "collapse/block-close",
+    "component": "Collapse Panel",
+    "findIntroStr": "You can specify dynamic pages or customized HTML files in the content area. The content area can be expanded and collapsed.",
+    "demoId": "block-close"
+  },
+  {
+    "title": "Nested Table",
+    "content": "<p>Embeds the table through the default slot of the <code>collapse-item</code> element. </p>\n",
+    "link": "collapse/nested-grid",
+    "component": "Collapse Panel",
+    "findIntroStr": "You can specify dynamic pages or customized HTML files in the content area. The content area can be expanded and collapsed.",
+    "demoId": "nested-grid"
+  },
+  {
+    "title": "Nested Form",
+    "content": "<p>Embed the form through the default slot of the <code>collapse-item</code> element. </p>\n",
+    "link": "collapse/nested-form",
+    "component": "Collapse Panel",
+    "findIntroStr": "You can specify dynamic pages or customized HTML files in the content area. The content area can be expanded and collapsed.",
+    "demoId": "nested-form"
+  }
+]

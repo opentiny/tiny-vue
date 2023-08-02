@@ -1,0 +1,78 @@
+{
+  "attrs": [
+    {
+      "name": "src",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "Set the path of the preview image. Image source, which is the same as the original image source",
+      "defaultValue": ""
+    },
+    {
+      "name": "fit",
+      "sample": "auto-fit-container-size",
+      "type": "String",
+      "desc": "Determine how the image adapts to the container frame, which is the same as the native object-fit. The optional values of this attribute are fill / contain / cover / none / scale-down",
+      "defaultValue": ""
+    },
+    {
+      "name": "lazy",
+      "sample": "lazy-load",
+      "type": "Boolean",
+      "desc": "Whether to enable lazy loading",
+      "defaultValue": ""
+    },
+    {
+      "name": "scroll-container",
+      "sample": "lazy-load",
+      "type": "String , HTMLElement",
+      "desc": "Container for listening to scroll events after lazy loading is enabled.",
+      "defaultValue": "The default value of this attribute is the parent element whose overflow value is auto or scroll."
+    },
+    {
+      "name": "preview-src-list",
+      "sample": "preview-src-list",
+      "type": "Array",
+      "desc": "Enable the image preview function.",
+      "defaultValue": ""
+    },
+    {
+      "name": "z-index",
+      "sample": "preview-z-index",
+      "type": "Number",
+      "desc": "Set the z-index of the image preview",
+      "defaultValue": "The default value of this attribute is 2000."
+    }
+  ],
+  "slots": [
+    {
+      "name": "placeholder",
+      "sample": "custom-placeholder",
+      "type": "",
+      "desc": "Placeholder content that is not loaded to the image",
+      "defaultValue": ""
+    },
+    {
+      "name": "error",
+      "sample": "custom-load-failed-text",
+      "type": "",
+      "desc": "Content that fails to be loaded",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "load",
+      "sample": "load-event",
+      "type": "",
+      "desc": "The image is loaded successfully.",
+      "defaultValue": ""
+    },
+    {
+      "name": "error",
+      "sample": "load-error",
+      "type": "",
+      "desc": "Image loading failure triggered",
+      "defaultValue": ""
+    }
+  ]
+}

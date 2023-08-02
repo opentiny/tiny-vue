@@ -1,0 +1,82 @@
+{
+  "breadcrumbAttrs": [
+    {
+      "name": "separator",
+      "sample": "separator",
+      "type": "String",
+      "desc": "Separator",
+      "defaultValue": "The default value of this attribute is >"
+    },
+    {
+      "name": "separator-icon",
+      "sample": "separator",
+      "type": "Object",
+      "desc": "Icon separator class",
+      "defaultValue": ""
+    },
+    {
+      "name": "options",
+      "sample": "options",
+      "type": "Array",
+      "desc": "Configure options. The tiny-breadcrumb component can be used independently.",
+      "defaultValue": "[]"
+    },
+    {
+      "name": "text-field",
+      "sample": "options",
+      "type": "String",
+      "desc": "Specify the breadcrumb display field. This field is used together with options. The component defaults to label.",
+      "defaultValue": "label"
+    }
+  ],
+  "breadcrumbEvents": [
+    {
+      "name": "select",
+      "sample": "options",
+      "type": "Function",
+      "desc": "This event is triggered when breadcrumb-item is clicked.",
+      "defaultValue": ""
+    }
+  ],
+  "breadcrumbItemAttrs": [
+    {
+      "name": "to",
+      "sample": "slot-default",
+      "type": "String , Object",
+      "desc": "Route redirection object, which is the same as to of vue-router",
+      "defaultValue": ""
+    },
+    {
+      "name": "replace",
+      "sample": "slot-default",
+      "type": "Boolean",
+      "desc": "When to is used for route redirection, if replace is enabled, no new record is added to history.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "label",
+      "sample": "base",
+      "type": "String",
+      "desc": "Define the breadcrumb display value.",
+      "defaultValue": ""
+    }
+  ],
+  "breadcrumbItemSlots": [
+    {
+      "name": "default",
+      "sample": "slot-default",
+      "type": "",
+      "desc": "Default slot",
+      "defaultValue": ""
+    }
+  ],
+  "breadcrumbItemEvents": [
+    {
+      "name": "select",
+      "sample": "base",
+      "type": "",
+      "desc": "This event is triggered when breadcrumb-item is clicked.",
+      "defaultValue": ""
+    }
+  ]
+}

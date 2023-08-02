@@ -1,0 +1,82 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@action-menu-prefix-cls: ~'@{css-prefix}action-menu';
+@dropdown-item-prefix-cls: ~'@{css-prefix}dropdown-item';
+
+.@{action-menu-prefix-cls} {
+  .component-css-vars-action-menu();
+
+  font-size: var(--ti-action-menu-font-size);
+  color: var(--ti-action-menu-text-color);
+
+  &__wrap {
+    display: flex;
+
+    .@{action-menu-prefix-cls}__item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .tiny-svg {
+        fill: var(--ti-action-menu-text-color); // TINY-TODO :没有使用--ti-base-color-brand-7的图标色
+        margin: var(--ti-action-menu-item-svg-margin-top) var(--ti-action-menu-item-svg-margin-right) var(--ti-action-menu-item-svg-margin-bottom) var(--ti-action-menu-item-svg-margin-left);
+      }
+
+      &:not(.is-disabled):hover {
+        color: var(--ti-action-menu-item-hover-text-color);
+
+        &.@{action-menu-prefix-cls}__item-visable {
+          .@{dropdown-item-prefix-cls} {
+            background-color: var(--ti-action-menu-item-hover-bg-color);
+
+            &__wrap {
+              color: var(--ti-action-menu-item-hover-text-color);
+            }
+          }
+        }
+
+        .tiny-svg {
+          fill: var(--ti-action-menu-item-hover-text-color); // TINY-TODO :没有使用--ti-base-color-brand-8的图标色
+        }
+      }
+
+      &.@{action-menu-prefix-cls}__item-visable {
+        .@{dropdown-item-prefix-cls}__wrap {
+          color: var(--ti-action-menu-text-color);
+          padding: var(--ti-action-menu-item-padding-top) var(--ti-action-menu-item-padding-right) var(--ti-action-menu-item-padding-bottom) var(--ti-action-menu-item-padding-left);
+
+          &:hover {
+            background-color: var(--ti-action-menu-item-hover-bg-color);
+          }
+        }
+
+        &.is-disabled {
+          .@{dropdown-item-prefix-cls}__wrap {
+              color: var(--ti-action-menu-item-disabled-text-color);
+          }
+        }
+      }
+
+      .@{action-menu-prefix-cls}__item-line {
+        position: relative;
+        width: 1px;
+        height: 12px;
+        background: var(--ti-action-menu-item-line-bg-color);
+        display: inline-block;
+      }
+    }
+  }
+}

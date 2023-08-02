@@ -1,0 +1,212 @@
+@import '../mixins/common.less';
+@import '../mixins/checkbox.less';
+@import '../custom.less';
+
+@checkbox-prefix-cls: ~'@{css-prefix}checkbox';
+
+.@{checkbox-prefix-cls} {
+  @apply relative;
+  @apply inline-flex;
+  @apply items-center;
+  @apply text-color-text-primary;
+  @apply font-medium;
+  font-size: 0; // 去除inline-block元素间间距
+  @apply whitespace-nowrap;
+  @apply mr-4;
+  @apply outline-0;
+  @apply cursor-pointer;
+  .user-select(none);
+
+  &:last-of-type {
+    @apply mr-0;
+  }
+
+  &.is-bordered {
+    padding: 9px 20px 9px 10px;
+    @apply rounded-sm;
+    @apply border border-solid border-color-border;
+    @apply box-border;
+    @apply leading-normal;
+    @apply h-10;
+
+    >.@{checkbox-prefix-cls}__label.@{checkbox-prefix-cls}-display-only {
+      @apply flex;
+    }
+
+    & + & {
+      @apply ~'ml-2.5';
+    }
+
+
+    &.is-checked {
+      @apply border-color-border-focus;
+    }
+
+    &.is-disabled {
+      .checkbox-border-disabled(theme('colors.color.text.disabled'), theme('colors.color.bg.2'));
+    }
+
+    &.@{checkbox-prefix-cls}--medium {
+      padding: 7px 20px 7px 10px;
+      @apply rounded;
+      @apply h-9;
+
+      .@{checkbox-prefix-cls}__label {
+        line-height: 17px;
+        @apply text-xs;
+      }
+
+      .@{checkbox-prefix-cls}__inner {
+        @apply ~'h-3.5';
+        @apply ~"w-3.5";
+      }
+    }
+
+    &.@{checkbox-prefix-cls}--small {
+      padding: 5px 15px 5px 10px;
+      border-radius: 3px;
+      @apply h-8;
+
+      .@{checkbox-prefix-cls}__label {
+        line-height: 15px;
+        @apply text-xs;
+      }
+
+      .@{checkbox-prefix-cls}__inner {
+        @apply h-3;
+        @apply w-3;
+
+        &::after {
+          @apply ~'h-1.5';
+          @apply ~'w-0.5';
+        }
+      }
+    }
+
+    &.@{checkbox-prefix-cls}--mini {
+      padding: 3px 15px 3px 10px;
+      border-radius: 3px;
+      @apply h-7;
+
+      .@{checkbox-prefix-cls}__label {
+        @apply leading-3;
+        @apply text-xs;
+      }
+
+      .@{checkbox-prefix-cls}__inner {
+        @apply h-3;
+        @apply w-3;
+
+        &::after {
+          @apply ~'h-1.5';
+          @apply ~'w-0.5';
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .@{checkbox-prefix-cls}__input:not(.is-disabled) {
+      .@{checkbox-prefix-cls}__inner {
+        svg {
+          @apply fill-color-icon-hover;
+        }
+      }
+    }
+  }
+
+  &:active {
+    .@{checkbox-prefix-cls}__input:not(.is-disabled) {
+      .@{checkbox-prefix-cls}__inner {
+        svg {
+          @apply fill-color-icon-active;
+        }
+      }
+    }
+  }
+
+  &__input {
+    @apply relative;
+    @apply whitespace-nowrap;
+    @apply align-middle;
+    @apply outline-0;
+    @apply leading-none;
+    @apply cursor-pointer;
+
+    // 兼容ie10-ie11
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      @apply inline-block;
+    }
+
+    // 兼容edge
+    @supports (-ms-ime-align: auto) {
+      @apply inline-block;
+    }
+
+    &.is-checked,
+    &.is-indeterminate {
+      .@{checkbox-prefix-cls}__inner {
+        @apply border-none;
+
+        svg {
+          @apply fill-color-brand;
+        }
+      }
+    }
+
+    &.is-disabled {
+      .checkbox-input-disabled(theme('colors.color.text.disabled'), theme('colors.color.icon.disabled'), theme('colors.color.brand.disabled'), theme('colors.color.bg.3'));
+    }
+  }
+
+  &__inner {
+    @apply inline-block;
+    @apply relative;
+    @apply box-border;
+    @apply outline-0;
+    @apply ~'z-[1]';
+    @apply w-4;
+    @apply text-base;
+    transition: border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
+      background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
+
+    > .tiny-svg {
+      @apply align-top;
+      @apply fill-color-icon-secondary;
+    }
+  }
+
+  &__original {
+    @apply opacity-0;
+    @apply outline-0;
+    @apply absolute;
+    @apply m-0;
+    @apply w-0;
+    @apply h-0;
+    @apply ~'-z-[1]';
+  }
+
+  &__label {
+    @apply pl-2;
+    @apply text-xs;
+  }
+  &.is-group-display-only {
+    @apply m-0;
+    @apply p-0;
+    @apply hidden;
+    &.is-checked {
+      @apply inline-block;
+    }
+    .@{checkbox-prefix-cls}__input {
+      @apply hidden;
+    }
+    .@{checkbox-prefix-cls}__label::after {
+      content: ';';
+      @apply inline-block;
+    }
+    & .@{checkbox-prefix-cls}__label{
+      @apply m-0;
+      @apply p-0;
+    }
+  }
+}

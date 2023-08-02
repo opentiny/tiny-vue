@@ -1,0 +1,178 @@
+[
+    {
+        "title": "基本用法",
+        "content": "详细用法参考如下示例",
+        "link": "pager/basic-usage",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "basic-usage"
+    },
+    {
+        "title": "当前页",
+        "content": "<p>通过 <code>current-page</code> 设置初始加载页码数, 通过 <code>total</code> 设置总条数</p>\n",
+        "link": "pager/current-page",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "current-page"
+    },
+    {
+        "title": "number 模式",
+        "content": "<p>通过 <code>mode=&quot;number&quot;</code> 设置组件渲染模式</p>\n",
+        "link": "pager/pager-mode-number",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "pager-mode-number"
+    },
+    {
+        "title": "fixed 模式",
+        "content": "<p>通过 <code>mode=&quot;fixed&quot;</code> 设置组件渲染模式</p>\n",
+        "link": "pager/pager-mode-fixed",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "pager-mode-fixed"
+    },
+    {
+        "title": "simple 模式",
+        "content": "<p>通过 <code>mode=&quot;simple&quot;</code> 设置组件渲染模式</p>\n",
+        "link": "pager/pager-mode-simple",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "pager-mode-simple"
+    },
+    {
+        "title": "complete 模式",
+        "content": "<p>通过 <code>mode=&quot;complete&quot;</code> 设置组件渲染模式</p>\n",
+        "link": "pager/pager-mode",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "pager-mode"
+    },
+    {
+        "title": "总页数",
+        "content": "<p>通过 <code>page-count</code> 设置总页数</p>\n",
+        "link": "pager/page-count",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "page-count"
+    },
+    {
+        "title": "分页事件size-change",
+        "content": "<p><code>size-change</code> 每页条数改变时触发</p>\n",
+        "link": "pager/pager-events",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "pager-events"
+    },
+    {
+        "title": "分页事件current-change",
+        "content": "<p><code>current-change</code> 切换当前页码时触发</p>\n",
+        "link": "pager/pager-events-current-change",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "pager-events-current-change"
+    },
+    {
+        "title": "分页事件prev-click",
+        "content": "<p><code>prev-click</code> 切换至前一页时触发</p>\n",
+        "link": "pager/pager-events-prev-click",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "pager-events-prev-click"
+    },
+    {
+        "title": "分页事件next-click",
+        "content": "<p><code>next-click</code> 切换至后一页时触发</p>\n",
+        "link": "pager/pager-events-nextclick",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "pager-events-nextclick"
+    },
+    {
+        "title": "分页事件before-page-change",
+        "content": "<p><code>before-page-change</code> 切换分页前事件</p>\n",
+        "link": "pager/before-page-change",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "before-page-change"
+    },
+    {
+        "title": "分页下拉框显示位置",
+        "content": "<p><code>popper-append-to-body</code> 分页下拉框元素是否追加到body元素节点下，该属性的默认值为 <code>true</code> ,默认追加到body元素节点下 。</p>\n<p>若不想追加到body元素节点下，设置 <code>:popper-append-to-body=\"false\"</code> </p>",
+        "link": "pager/page-append-to-body",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "popper-append-to-body"
+    },
+    {
+        "title": "自定义分页下拉框的类名",
+        "content": "<p><code>popper-class</code> 可以自定义分页下拉框的类名</p>",
+        "link": "pager/popper-class",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "popper-class"
+    },
+    {
+        "title": "自定义分页布局",
+        "content": "<p><code>layout</code> 设置分页布局，通过在<code>layout</code>里调整<code>slot</code>的位置，从而调整插槽内容渲染的位置</p>\n",
+        "link": "pager/custom-layout",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "custom-layout"
+    },
+    {
+        "title": "页码按钮数量",
+        "content": "<p><code>pager-count</code> 设置页码数量</p>\n",
+        "link": "pager/pager-count",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "pager-count"
+    },
+    {
+        "title": "每页显示数量",
+        "content": "<p><code>page-sizes</code> 和 <code>page-size</code> 结合使用调整每页显示数量</p>\n",
+        "link": "pager/page-size",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "page-size"
+    },
+    {
+        "title": "只有一页时隐藏分页",
+        "content": "<p><code>hide-on-single-page</code> 只有一页时隐藏分页</p>\n",
+        "link": "pager/hide-on-single-page",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "hide-on-single-page"
+    },
+    {
+        "title": "自定义上下页按钮文本",
+        "content": "<p><code>prev-text</code> ,<code>next-text</code> 自定义上下页按钮文本</p>\n",
+        "link": "pager/custom-next-prev-text",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "custom-next-prev-text"
+    },
+    {
+        "title": "Grid 表格分页",
+        "content": "<p>Grid 表格使用分页组件\n该示例中的 <code>services/getGridMockData</code> 服务需要自行实现，示例模拟了远程服务返回的数据\n</p>\n",
+        "link": "pager/pager-in-grid",
+        "component": " Pager 分页",
+        "findIntroStr": "当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。",
+        "demoId": "pager-in-grid"
+    },
+    {
+      "title": "尺寸",
+      "content": "<p>定义分页尺寸大小，可选值有 mini。</p>\n",
+      "link": "pager/pager-size",
+      "component": "Pager Pagination",
+      "findIntroStr": "支持默认和mini尺寸。",
+      "demoId": "pager-size"
+    },
+    {
+      "title": "禁用",
+      "content": "<p>禁用分页所有功能。</p>\n",
+      "link": "pager/pager-disabled",
+      "component": "Pager Pagination",
+      "findIntroStr": "禁用分页所有功能。",
+      "demoId": "pager-disabled"
+    }
+]

@@ -1,0 +1,290 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "input/basic-usage",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Can be cleared",
+    "content": "<p>You can set the <code>clearable</code> attribute to display the clear icon button in the text box. </p>\n",
+    "link": "input/clearable",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "clearable"
+  },
+  {
+    "title": "Password Display",
+    "content": "<p>When <code>type</code> is set to <code>password</code>, you can set the <code>show-password</code> attribute to display or hide the password switch button in the text box. </p>\n",
+    "link": "input/show-password",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "show-password"
+  },
+  {
+    "title": "type attribute",
+    "content": "<p>You can set the corresponding type through the corresponding <code>type</code> attribute. The default value is text. The options are text, textarea, and other type values of the native input</p>\n",
+    "link": "input/type",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "type"
+  },
+  {
+    "title": "Dimension",
+    "content": "<p>You can set the size through the <code>size</code> attribute. The options are as follows: <code>medium, small, and mini</code>. Note: This parameter is valid only when <code>type!=&quot;textarea&quot;</code> is used. </p>\n",
+    "link": "input/size",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "size"
+  },
+  {
+    "title": "form",
+    "content": "<p>You can set the native attribute form through the <code>form</code> attribute. </p>\n",
+    "link": "input/form",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "form"
+  },
+  {
+    "title": "Native Attribute",
+    "content": "<p>You can set native attributes such as <code>name</code> <code>disabled</code> <code>readonly</code> . </p>\n",
+    "link": "input/name",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "name"
+  },
+  {
+    "title": "Text associated with the text box",
+    "content": "<p>You can set the label text associated with the text box through the <code>label</code> attribute. </p>\n",
+    "link": "input/label",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "label"
+  },
+  {
+    "title": "Head icon",
+    "content": "<p>You can set the header icon of the text box through the <code>prefix-icon</code> attribute. </p>\n",
+    "link": "input/prefix-icon",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "prefix-icon"
+  },
+  {
+    "title": "Fall icon",
+    "content": "<p>You can set the icon at the end of the text box through the <code>suffix-icon</code> attribute. </p>\n",
+    "link": "input/suffix-icon",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "suffix-icon"
+  },
+  {
+    "title": "Scalable Text Field",
+    "content": "<p>You can use the <code>resize</code> property to set the zoom of the text field. The value can be <code>none / both / horizontal / vertical</code> . Note: This parameter is valid only when <code>type=&quot;textarea&quot;</code> is used. </p>\n",
+    "link": "input/resize",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "resize"
+  },
+  {
+    "title": "Lines of the text field",
+    "content": "<p>You can set the number of lines displayed in the text field through the <code>rows</code> property. Note: This parameter is valid only when <code>text=&quot;textarea&quot;</code> is used. </p>\n",
+    "link": "input/rows",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "rows"
+  },
+  {
+    "title": "Text Field Width",
+    "content": "<p>You can set the width of the text field through the <code>cols</code> attribute. Note: This parameter is valid only when <code>text=&quot;textarea&quot;</code> is used. </p>\n",
+    "link": "input/cols",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "cols"
+  },
+  {
+    "title": "Text field that can adapt to the text height",
+    "content": "<p>You can use the <code>autosize</code> attribute to set the text field to adapt to the content height. You can transfer an object, for example, <code>{minRows: 2, maxRows: 6}</code> . Note: This parameter is valid only for <code>type=&quot;textarea&quot;</code> . </p>\n",
+    "link": "input/autosize",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "autosize"
+  },
+  {
+    "title": "tabindex of the text box",
+    "content": "<p>You can use the <code>tabindex</code> attribute to set the tabindex</p>\n",
+    "link": "input/tabindex",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "tabindex"
+  },
+  {
+    "title": "Pre-content",
+    "content": "<p>Configure <code>prepend</code> slot to set the front content of the text box. Note: This parameter is valid only for <code>type=&quot;text&quot;</code> . </p>\n",
+    "link": "input/slot-prepend",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "slot-prepend"
+  },
+  {
+    "title": "Post Content",
+    "content": "<p>Configure <code>append</code> slot and set the content after the text box. Note: This parameter is valid only for <code>type=&quot;text&quot;</code> . </p>\n",
+    "link": "input/slot-append",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "slot-append"
+  },
+  {
+    "title": "Header Content",
+    "content": "<p>Configure <code>prefix</code> slot to set the text box header content. Note: This parameter is valid only for <code>type=&quot;text&quot;</code> . </p>\n",
+    "link": "input/slot-prefix",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "slot-prefix"
+  },
+  {
+    "title": "Follow Content",
+    "content": "<p>Configure the <code>suffix</code> slot and set the content at the end of the text box. Note: This parameter is valid only for <code>type=&quot;text&quot;</code> . </p>\n",
+    "link": "input/slot-suffix",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "slot-suffix"
+  },
+  {
+    "title": "Maximum value",
+    "content": "<p>You can set the maximum value of the text box through the <code>max</code> attribute. <code>max</code> is a native attribute. </p>\n",
+    "link": "input/max",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "max"
+  },
+  {
+    "title": "Minimum value",
+    "content": "<p>You can set the minimum value of the text box through the <code>min</code> attribute. <code>min</code> is a native attribute. </p>\n",
+    "link": "input/min",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "min"
+  },
+  {
+    "title": "Maximum input length",
+    "content": "<p>You can set the maximum length of the text box through the <code>maxlength</code> attribute. <code>maxlength</code> is a native attribute. </p>\n",
+    "link": "input/maxlength",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "maxlength"
+  },
+  {
+    "title": "Input word count",
+    "content": "<p>The <code>show-word-limit</code> attribute can be used to set whether to display the input word statistics, only when type = &quot;text&quot; or type = &quot;textarea&quot; is valid</p>\n",
+    "link": "input/show-word-limit",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "show-word-limit"
+  },
+  {
+    "title": "Counter",
+    "content": "<p>You can use the <code>counter</code> attribute to set the character counter for displaying the text box. </p>\n",
+    "link": "input/counter",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "counter"
+  },
+  {
+    "title": "Valid interval between digits in the input field",
+    "content": "<p>You can use the <code>step</code> attribute to set the valid digit interval of the input field. <code>step</code> is a native attribute. </p>\n",
+    "link": "input/step",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "step"
+  },
+  {
+    "title": "Form validation triggered upon input",
+    "content": "<p>You can set the <code>validate-event</code> attribute to trigger form validation upon input. Use <code>trigger</code> to configure the mode of triggering the validation rule. If <code>change</code> is used, the validation is triggered when the value in the text box changes. If <code>blur</code> is used, the validation is triggered after the focus is lost. </p>\n",
+    "link": "input/validate-event",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "validate-event"
+  },
+  {
+    "title": "Obtain focus automatically",
+    "content": "<p>You can set the <code>autofocus</code> attribute to automatically obtain the focus. <code>autofocus</code> is a native attribute. </p>\n",
+    "link": "input/autofocus",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "autofocus"
+  },
+  {
+    "title": "Auto Complete",
+    "content": "<p>The <code>autocomplete</code> attribute can be used to set automatic completion. The default value is off, and the option is on. </p>\n",
+    "link": "input/autocomplete",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "autocomplete"
+  },
+  {
+    "title": "Out of Focus Event",
+    "content": "The <code>blur</code> event is triggered when the text box loses focus. </p>\n",
+    "link": "input/event-blur",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "event-blur"
+  },
+  {
+    "title": "Value change event",
+    "content": "The <code>change</code> event is triggered when the value of the text box changes. </p>\n",
+    "link": "input/event-change",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "event-change"
+  },
+  {
+    "title": "Clear Event",
+    "content": "<p>The <code>clear</code> event is triggered when the clear button in the text box is clicked. </p>\n",
+    "link": "input/event-clear",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "event-clear"
+  },
+  {
+    "title": "Focus Event",
+    "content": "The <code>focus</code> event is triggered when the text box obtains the focus. </p>\n",
+    "link": "input/event-focus",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "event-focus"
+  },
+  {
+    "title": "Memory History Input",
+    "content": "For details, see the following example.",
+    "link": "input/method-addMemory",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "method-addMemory"
+  },
+  {
+    "title": "Lost Focus",
+    "content": "For details, see the following example.",
+    "link": "input/method-blur",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "method-blur"
+  },
+  {
+    "title": "Focus",
+    "content": "For details, see the following example.",
+    "link": "input/method-focus",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "method-focus"
+  },
+  {
+    "title": "Select text in the text box",
+    "content": "For details, see the following example.",
+    "link": "input/method-select",
+    "component": "Input text box",
+    "findIntroStr": "Enter characters using the mouse or keyboard.",
+    "demoId": "method-select"
+  }
+]

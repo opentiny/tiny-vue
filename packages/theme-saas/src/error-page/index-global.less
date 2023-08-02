@@ -1,0 +1,220 @@
+.aurora-popup__wrapper {
+  z-index: 2147483647 !important;
+  @apply bg-black bg-opacity-50;
+  @apply fixed;
+  @apply top-0;
+  @apply right-0;
+  @apply bottom-0;
+  @apply left-0;
+  @apply overflow-auto;
+  @apply m-0;
+
+  //错误提示页
+  .aurora-errortips__box {
+    @apply absolute;
+    width: 800px;
+    min-height: 450px;
+    max-height: 600px;
+    @apply top-0;
+    @apply left-0;
+    @apply right-0;
+    @apply bottom-0;
+    @apply m-auto;
+    @apply overflow-hidden;
+    @apply bg-color-bg-1;
+    @apply border border-solid border-transparent;
+    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2);
+    @apply text-center;
+    @apply overflow-y-auto;
+
+    .aurora-errortips__body {
+      @apply h-full;
+      text-align: initial;
+      @apply p-5;
+      color: #5a5e66;
+      @apply text-sm;
+      @apply table;
+      @apply m-auto;
+
+      .errortips {
+        @apply text-center;
+        @apply table-cell;
+        @apply align-middle;
+
+        .error-code {
+          font-size: 100px;
+          @apply text-color-brand;
+          margin: 0 auto -45px;
+          text-shadow: 0px 2px 0 #fff, -2px 0px 0 #fff, 2px 0px 0 #fff;
+        }
+
+        .error-img {
+          width: 260px;
+          height: 180px;
+          @apply my-0 mx-auto;
+          background: url(./images/errortips-bg.png) no-repeat;
+        }
+
+        .error-content {
+          @apply text-base;
+          @apply my-6 mx-0;
+          @apply font-bold;
+        }
+
+        .error-bottom {
+          a {
+            @apply font-extrabold;
+            @apply cursor-pointer;
+          }
+
+          span {
+            padding-right: 15px;
+          }
+        }
+      }
+    }
+  }
+
+  //sso 登录
+  .aurora-sso__box {
+    @apply absolute;
+    @apply bg-color-bg-1;
+    @apply border border-solid border-transparent;
+    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2);
+    @apply ~'left-1/2';
+    @apply ~"top-1/2";
+    @apply ~"-translate-x-2/4" ~"-translate-y-2/4";
+    .aurora-sso__body {
+      text-align: initial;
+      @apply p-5;
+      @apply text-color-text-primary;
+      @apply leading-8;
+      @apply text-sm;
+      .aurora-sso__body-iframe {
+        width: 350px;
+        height: 350px;
+        height: 460px\9; //兼容ie9-ie10
+        @apply overflow-hidden;
+
+        //兼容ie10-ie11
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+          height: 460px;
+        }
+
+        //兼容edge
+        @supports (-ms-ime-align: auto) {
+          height: 460px;
+        }
+      }
+    }
+  }
+
+  //非 sso 登录
+  &.login-not-sso {
+    @apply bg-color-bg-5;
+    @apply bg-cover;
+
+    .aurora-not-sso__box {
+      @apply w-full;
+      @apply h-full;
+      @apply overflow-hidden;
+
+      .aurora-not-sso__body {
+        width: 650px;
+        height: 400px;
+        @apply bg-color-bg-2;
+        @apply absolute;
+        @apply ~'left-1/2';
+        @apply ~"top-1/2";
+        @apply ~"-translate-x-2/4" ~"-translate-y-2/4";
+        @apply text-center;
+        @apply border border-solid border-color-border-separator;
+        box-shadow: 0px 2px 4px #989a9e;
+
+        .title {
+          @apply bg-color-bg-2;
+          background: linear-gradient(to bottom, #ecedf1, #dadde2);
+          @apply border border-solid border-color-border-separator;
+          @apply py-4 px-5;
+          @apply text-xl;
+        }
+
+        .tbl-login {
+          @apply w-full;
+          @apply border-collapse;
+          @apply border-spacing-0;
+          @apply text-base;
+          @apply mt-7;
+
+          .form-item {
+            height: 60px;
+            line-height: 60px;
+
+            td.label {
+              width: 30%;
+              @apply text-right;
+              @apply text-color-text-primary;
+            }
+
+            td.cell {
+              width: 70%;
+              @apply text-left;
+              @apply pl-3;
+
+              input {
+                @apply border border-solid border-color-border;
+                @apply rounded-sm;
+                @apply outline-0;
+                @apply w-9/12;
+                @apply h-10;
+                @apply leading-10;
+                @apply py-0 px-2;
+                @apply bg-transparent;
+                @apply text-color-text-primary;
+
+                &::-webkit-input-placeholder {
+                  @apply text-color-text-placeholder;
+                }
+
+                &:hover {
+                  @apply border-color-text-placeholder;
+                }
+
+                &:focus::-webkit-input-placeholder {
+                  @apply text-color-text-secondary;
+                }
+
+                &.text-danger {
+                  @apply border-color-error;
+                }
+              }
+
+              button {
+                @apply w-9/12;
+                @apply h-10;
+                @apply leading-10;
+                @apply py-0 px-6;
+                @apply text-center;
+                @apply text-color-text-inverse;
+                @apply bg-color-brand;
+                @apply border-none;
+                @apply rounded-sm;
+                @apply duration-300;
+                @apply outline-0;
+
+                &:hover {
+                  @apply bg-color-brand-hover;
+                }
+              }
+
+              .errmessage {
+                @apply text-color-error;
+                @apply leading-5;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

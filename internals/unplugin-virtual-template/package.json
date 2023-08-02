@@ -1,0 +1,89 @@
+{
+  "name": "@opentiny-internal/unplugin-virtual-template",
+  "type": "module",
+  "private": true,
+  "version": "0.1.1-beta.0",
+  "description": "Register global imports on demand for Vite and Webpack",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    },
+    "./vite": {
+      "types": "./dist/vite.d.ts",
+      "require": "./dist/vite.cjs",
+      "import": "./dist/vite.js"
+    },
+    "./webpack": {
+      "types": "./dist/webpack.d.ts",
+      "require": "./dist/webpack.cjs",
+      "import": "./dist/webpack.js"
+    },
+    "./rollup": {
+      "types": "./dist/rollup.d.ts",
+      "require": "./dist/rollup.cjs",
+      "import": "./dist/rollup.js"
+    },
+    "./esbuild": {
+      "types": "./dist/esbuild.d.ts",
+      "require": "./dist/esbuild.cjs",
+      "import": "./dist/esbuild.js"
+    },
+    "./nuxt": {
+      "types": "./dist/nuxt.d.ts",
+      "require": "./dist/nuxt.cjs",
+      "import": "./dist/nuxt.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "require": "./dist/types.cjs",
+      "import": "./dist/types.js"
+    },
+    "./*": "./*"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./*"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch src",
+    "lint": "eslint .",
+    "prepublishOnly": "npm run build",
+    "release": "bumpp && npm publish",
+    "start": "esno src/index.ts",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@rollup/pluginutils": "^5.0.2",
+    "magic-string": "^0.27.0",
+    "unplugin": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.13",
+    "bumpp": "^8.2.1",
+    "chalk": "^5.2.0",
+    "eslint": "^8.29.0",
+    "esno": "^0.16.3",
+    "fast-glob": "^3.2.12",
+    "nodemon": "^2.0.20",
+    "rimraf": "^3.0.2",
+    "rollup": "^3.7.3",
+    "tsup": "^6.5.0",
+    "typescript": "^5.0.0",
+    "vite": "^4.3.8",
+    "vitest": "^0.31.0",
+    "webpack": "^5.75.0"
+  }
+}

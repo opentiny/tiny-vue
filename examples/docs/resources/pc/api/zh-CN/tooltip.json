@@ -1,0 +1,153 @@
+{
+  "attrs": [
+    {
+      "name": "effect",
+      "sample": "tooltip-theme",
+      "type": "String",
+      "desc": "默认提供的主题;该属性的可选值为 dark/light",
+      "defaultValue": "该属性的默认值为 dark"
+    },
+    {
+      "name": "type",
+      "sample": "tooltip-theme",
+      "type": "String",
+      "desc": "默认提供的类型;该属性的可选值为 normal/warning/error/info/success 。type的优先级大于effect",
+      "defaultValue": ""
+    },
+    {
+      "name": "content",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "显示的内容，也可以通过 slot#content 传入 DOM",
+      "defaultValue": ""
+    },
+    {
+      "name": "append-to-body",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "是否添加到body上",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "placement",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "Tooltip 的出现位置;该属性的可选值为 top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end",
+      "defaultValue": "该属性的默认值为 bottom"
+    },
+    {
+      "name": "modelValue / v-model",
+      "sample": "manual-control-tip",
+      "type": "Boolean",
+      "desc": "状态是否可见",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "disabled",
+      "sample": "dynamic-disable",
+      "type": "Boolean",
+      "desc": "Tooltip 是否可用",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "offset",
+      "sample": "tooltip-offset",
+      "type": "Number",
+      "desc": "出现位置的偏移量",
+      "defaultValue": "该属性的默认值为 0"
+    },
+    {
+      "name": "transition",
+      "sample": "custom-transition",
+      "type": "String",
+      "desc": "定义渐变动画",
+      "defaultValue": "该属性的默认值为 tiny-fade-in-linear"
+    },
+    {
+      "name": "visible-arrow",
+      "sample": "visible-arrow",
+      "type": "Boolean",
+      "desc": "是否显示 Tooltip 箭头，popper.js 的参数",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "popper-options",
+      "sample": "popper-options",
+      "type": "Object",
+      "desc": "popper.js 的参数;该属性的可选值为 参考 popper.js 文档",
+      "defaultValue": "该属性的默认值为 { boundariesCBG XUI: 'body', gpuAcceleration: false }"
+    },
+    {
+      "name": "open-delay",
+      "sample": "open-delay",
+      "type": "Number",
+      "desc": "延迟出现，单位毫秒",
+      "defaultValue": "该属性的默认值为 0"
+    },
+    {
+      "name": "manual",
+      "sample": "manual-control-tip",
+      "type": "Boolean",
+      "desc": "手动控制模式，设置为 true 后，mouseenter 和 mouseleave 事件将不会生效",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "visible",
+      "sample": "visible-show",
+      "type": "String",
+      "desc": "提示的智能出现的模式；该属性的可选值为 auto/always",
+      "defaultValue": "该属性的默认值为 always"
+    },
+    {
+      "name": "popper-class",
+      "sample": "popper-class",
+      "type": "String",
+      "desc": "为 Tooltip 的 popper 添加类名",
+      "defaultValue": ""
+    },
+    {
+      "name": "enterable",
+      "sample": "enterable",
+      "type": "Boolean",
+      "desc": "鼠标是否可进入到 tooltip 中",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "hide-after",
+      "sample": "open-delay",
+      "type": "Number",
+      "desc": "Tooltip 出现后自动隐藏延时，单位毫秒，为 0 则不会自动隐藏",
+      "defaultValue": "该属性的默认值为 0"
+    },
+    {
+      "name": "tabindex",
+      "sample": "tabindex",
+      "type": "Number",
+      "desc": "配置该元素，配置的属性会自动添加到该组件的触发原上",
+      "defaultValue": ""
+    },
+    {
+      "name": "renderContent",
+      "sample": "tooltip-render-content",
+      "type": "Function(arg1,arg2)",
+      "desc": "自定义渲染函数,返回需要渲染的节点内容 arg1:Vue的渲染函数h arg2:传递给组件的content文本",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "tooltip-content",
+      "type": "",
+      "desc": "默认插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "content",
+      "sample": "tooltip-content",
+      "type": "",
+      "desc": "内容",
+      "defaultValue": ""
+    }
+  ]
+}

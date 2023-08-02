@@ -1,0 +1,137 @@
+{
+  "attrs": [
+    {
+      "name": "dialog-title",
+      "sample": "fill-button-text1",
+      "type": "String",
+      "desc": "Set the title of the file upload dialog box. The default value is file upload",
+      "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "size",
+      "type": "String",
+      "desc": "Set the component size",
+      "defaultValue": ""
+    },
+    {
+      "name": "submit-button-text",
+      "sample": "fill-button-text2",
+      "type": "String",
+      "desc": "Set the text of the Submit button in the file upload dialog box. The default value is Start uploading",
+      "defaultValue": ""
+    },
+    {
+      "name": "cancel-button-text",
+      "sample": "fill-button-text1",
+      "type": "String",
+      "desc": "Set the text of the Cancel button in the file upload dialog box. The default value is Cancel",
+      "defaultValue": ""
+    },
+    {
+      "name": "action",
+      "sample": "custom-request-headers",
+      "type": "String",
+      "desc": "This parameter is mandatory and specifies the upload address.",
+      "defaultValue": ""
+    },
+    {
+      "name": "headers",
+      "sample": "custom-request-headers",
+      "type": "Object",
+      "desc": "Set the upload request header",
+      "defaultValue": ""
+    },
+    {
+      "name": "limit",
+      "sample": "file-limit",
+      "type": "Number",
+      "desc": "Maximum number of files that can be uploaded",
+      "defaultValue": ""
+    },
+    {
+      "name": "multiple",
+      "sample": "file-limit",
+      "type": "Boolean",
+      "desc": "Specifies whether multiple files can be selected.",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "size",
+      "type": "Boolean",
+      "desc": "Whether to disable; The default value is false",
+      "defaultValue": ""
+    },
+    {
+      "name": "accept",
+      "sample": "file-type",
+      "type": "String",
+      "desc": "File type to be uploaded",
+      "defaultValue": ""
+    },
+    {
+      "name": "upload-file-type",
+      "sample": "file-type",
+      "type": "Array",
+      "desc": "Type of the uploaded file to be verified, for example, ['.png', '.jpg']",
+      "defaultValue": ""
+    },
+    {
+      "name": "max-upload-file-size",
+      "sample": "max-upload-file-size",
+      "type": "Number",
+      "desc": "Maximum size of files to be uploaded",
+      "defaultValue": ""
+    },
+    {
+      "name": "upload-name",
+      "sample": "upload-name",
+      "type": "String",
+      "desc": "Field name of the uploaded file",
+      "defaultValue": "The default value of this attribute is file."
+    },
+    {
+      "name": "upload-button-text",
+      "sample": "fill-button-text4",
+      "type": "String",
+      "desc": "Text configuration attribute of the button for opening a dialog box",
+      "defaultValue": "The default value of this attribute is Select File."
+    },
+    {
+      "name": "with-credentials",
+      "sample": "upload-name",
+      "type": "Boolean",
+      "desc": "Cookie credential information can be sent.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "before-remove",
+      "sample": "prevent-delete-file",
+      "type": "Function(arg1)",
+      "desc": "This event is triggered before the upload file list is deleted successfully. arg1:{Information about the file to be deleted by clicking Object}",
+      "defaultValue": ""
+    },
+    {
+      "name": "before-upload",
+      "sample": "before-upload",
+      "type": "Function(arg1)",
+      "desc": "Hook before uploading a file. The parameter is the file to be uploaded. If false is returned or Promise is returned and rejected, the upload stops. ;arg1:{Object uploaded file information}",
+      "defaultValue": ""
+    },
+    {
+      "name": "http-request",
+      "sample": "http-request",
+      "type": "Function",
+      "desc": "Overwrite the default upload behavior. You can customize the upload implementation.",
+      "defaultValue": ""
+    },
+    {
+      "name": "data",
+      "sample": "data",
+      "type": "Object",
+      "desc": "Extra parameters attached during upload",
+      "defaultValue": ""
+    }
+  ]
+}

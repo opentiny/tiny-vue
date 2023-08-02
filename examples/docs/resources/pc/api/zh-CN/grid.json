@@ -1,0 +1,1728 @@
+{
+  "gridattrs": [
+    {
+      "name": "pager",
+      "sample": "grid-pager#pager-inner-pager",
+      "type": "Object",
+      "desc": "设置分页配置项。通过 pager 的属性 {component: Pager} 注入分页组件，{attrs：{currentPage: 1,pageSize: 5,pageSizes: [5, 10], total: 0,layout: 'total, prev, pager, next, jumper, sizes'}}配置分页",
+      "defaultValue": ""
+    },
+    {
+      "name": "fetch-data",
+      "sample": "grid-data-source#tiny-first-menu-request-service",
+      "type": "Object",
+      "desc": "服务端数据查询方法",
+      "defaultValue": ""
+    },
+    {
+      "name": "save-data",
+      "sample": "grid-toolbar#tiny-first-menu-save-data",
+      "type": "Object",
+      "desc": "服务端数据保存方法",
+      "defaultValue": ""
+    },
+    {
+      "name": "delete-data",
+      "sample": "grid-toolbar#tiny-first-menu-save-data",
+      "type": "Object",
+      "desc": "服务端数据删除方法;({$grid,changeRecords},...args)=>{return new Promise((resolve,reject)=>{setTimeout(()=>{resolve()},300)})}",
+      "defaultValue": ""
+    },
+    {
+      "name": "row-group",
+      "sample": "grid-row-grouping#row-grouping",
+      "type": "Object",
+      "desc": "row-group 属性可以配置行分组，行分组会将具有相同值的列进行分组展示。",
+      "defaultValue": ""
+    },
+    {
+      "name": "toolbar",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "Object",
+      "desc": "工具栏配置",
+      "defaultValue": ""
+    },
+    {
+      "name": "align",
+      "sample": "grid-align#align-grid-align-left-grid-align",
+      "type": "String",
+      "desc": "所有的列对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）",
+      "defaultValue": "该属性的默认值为 left"
+    },
+    {
+      "name": "auto-resize",
+      "sample": "grid-width-height#tiny-first-menu-adaptive-grid-width-height",
+      "type": "Boolean",
+      "desc": "父元素响应式监听（对于父元素可能存在动态变化的场景可能会用到）",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "border",
+      "sample": "grid-grid-border#tiny-first-menu-grid-border",
+      "type": "Boolean",
+      "desc": "是否带有纵向边框",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "is-before-page-change",
+      "sample": "grid-event#event-page-change-event",
+      "type": "Boolean",
+      "desc": "是否打开页面改变时的前置处理特性。在值为true时，翻页操作或者改变页大小操作不会立即生效，留给用户处理业务逻辑，之后通过调用预留的callback或者rollback使之生效或者失效，详看事件before-page-change",
+      "defaultValue": ""
+    },
+    {
+      "name": "cell-class-name",
+      "sample": "grid-custom-style#custom-style-cell-style",
+      "type": "String, Function",
+      "desc": "给单元格附加 className，也可以是函数 Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex})",
+      "defaultValue": ""
+    },
+    {
+      "name": "column-key",
+      "sample": "grid-operation-column#tiny-first-menu-column-key",
+      "type": "Boolean",
+      "desc": "是否需要为每一列的 VNode 设置 key 属性（非特殊情况下不需要使用）",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "column-min-width",
+      "sample": "grid-width-height#tiny-first-menu-column-min-width",
+      "type": "Number , String",
+      "desc": "设置可以调整到的最小宽度，不设置时默认为列头 span 的宽度 + 36（头部固定宽度）。 ;所有最小列宽度；会自动将剩余空间按比例分配;该属性的可选值为 整数, px，%",
+      "defaultValue": ""
+    },
+    {
+      "name": "column-width",
+      "sample": "grid-width-height#tiny-first-menu-column-width",
+      "type": "Number, String",
+      "desc": "所有列宽度;该属性的可选值为 整数, px，%",
+      "defaultValue": "该属性的默认值为 默认均匀分配"
+    },
+    {
+      "name": "context-menu",
+      "sample": "grid-context-menu#grid_Example-shortcutMenu-footer-menu",
+      "type": "Object",
+      "desc": "快捷菜单配置项",
+      "defaultValue": ""
+    },
+    {
+      "name": "edit-rules",
+      "sample": "grid-validation#grid_Example-gridValid-editing-validation",
+      "type": "Object",
+      "desc": "校验规则配置项",
+      "defaultValue": ""
+    },
+    {
+      "name": "expand-config",
+      "sample": "grid-tree-grid#tree-table-tree-grid-expand-config",
+      "type": "Object",
+      "desc": "展开行配置项;{expandAll: false, // 是否默认展开所有行\n trigger: 'row', // 展开行的触发方式，可选项包括 cell（单击图标所在单元格触发） / row （点击行触发），默认点击图标触发\n expandRowKeys: [], // 默认展开指定行（需要有 row-id\n accordion: false // 对于同一级的节点，是否每次只能展开一个\n activeMethod: Function () {} // 自定义展开规则}",
+      "defaultValue": ""
+    },
+    {
+      "name": "fit",
+      "sample": "grid-width-height#tiny-first-menu-adaptive-column-width",
+      "type": "Boolean",
+      "desc": "所有列的宽度是否自撑开",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "footer-align",
+      "sample": "grid-align#align-footer-align-left-footer-align",
+      "type": "String",
+      "desc": "所有的表尾列的对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）",
+      "defaultValue": "该属性的默认值为 继承 align"
+    },
+    {
+      "name": "optimization",
+      "sample": "grid-grid-optimization#tiny-first-menu-grid-optimization",
+      "type": "Object",
+      "desc": "优化配置项",
+      "defaultValue": "该属性的默认值为 animat: true,delayHover: 250,scrollX: {gt: 100, 指定大于多少范围时自动启动虚拟滚动（启用 X 虚拟滚动，必须固定所有列宽，否则无法兼容）默认100, oSize: 2, 当剩余数据少于指定范围时触发重新渲染 默认自动计算 rSize: 2, 每次渲染条数 默认自动计算 vSize: 5  指定可视区域条数 }, scrollY: { gt: 500, 指定大于多少范围时自动启动虚拟滚动（启用 Y 虚拟滚动，必须固定所有行高，否则无法兼容）默认500 oSize: 2, 当剩余数据少于指定范围时触发重新渲染 默认自动计算 rSize: 2, 每次渲染条数 默认自动计算 vSize: 5, 指定可视区域条数 默认自动计算 rHeight: 50, 指定行高 默认自动计算adaptive: true 自动适配最优的渲染方式 默认true }"
+    },
+    {
+      "name": "params",
+      "sample": "grid-filter#grid-params",
+      "type": "Object",
+      "desc": "额外的参数",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer-cell-class-name",
+      "sample": "grid-custom-style#custom-style-footer-style-footer-cell-style",
+      "type": "String, Function",
+      "desc": "给表尾的单元格附加 className，也可以是函数 Function({$rowIndex, column, columnIndex, $columnIndex})",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer-method",
+      "sample": "grid-summary#summary-custom-summary",
+      "type": "Function",
+      "desc": "表尾合计的计算方法 Function({columns, data});params:{columns:所有的列配置数据 data： 当前所有的表格数据}",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer-row-class-name",
+      "sample": "grid-custom-style#custom-style-footer-style-footer-cell-style",
+      "type": "String, Function",
+      "desc": "给表尾的行附加 className，也可以是函数 Function({$rowIndex});通过 footer-cell-class-name 和 footer-row-class-name 设置表尾的单元格和行样式 params:{$rowIndex:行标}",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer-span-method",
+      "sample": "grid-footer#footer-footer-row-or-column-span",
+      "type": "Function",
+      "desc": "表尾合并行或列，该函数 Function({$rowIndex, column, columnIndex, $columnIndex, data}) 返回计算后的值;通过 footer-method 和 footer-span-method 设置表尾合计行或列逻辑 必须配置 show-footer。 parmas：{ $rowIndex: 行标 column：列数据 columnIndex：列下标 data：一个数组，保存了当前合并和计算的数据}",
+      "defaultValue": ""
+    },
+    {
+      "name": "header-align",
+      "sample": "grid-align#align-header-align-left-header-align",
+      "type": "String",
+      "desc": "所有的表头列的对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）",
+      "defaultValue": "该属性的默认值为 继承 align"
+    },
+    {
+      "name": "header-cell-class-name",
+      "sample": "grid-custom-style#custom-style-header-style-header-cell-style",
+      "type": "String, Function",
+      "desc": "给表头的单元格附加 className，也可以是函数 Function({$rowIndex, column, columnIndex, $columnIndex});参数说明 params{$rowIndex：行标,column：列数据, columnIndex：列下标, $columnIndex：列下标 }",
+      "defaultValue": ""
+    },
+    {
+      "name": "header-row-class-name",
+      "sample": "grid-custom-style#custom-style-header-style-header-cell-style",
+      "type": "String, Function",
+      "desc": "表头的行附加 className，也可以是函数 Function({$rowIndex});params：{$rowIndex:行标}",
+      "defaultValue": ""
+    },
+    {
+      "name": "height",
+      "sample": "grid-width-height#tiny-first-menu-fixed-grid-height",
+      "type": "Number , String",
+      "desc": "设置表格内容区域（不含表格头部，底部）的高度。 不设置时，表格内容区域的高度度自适应。 ;表格的高度；支持铺满父容器或者固定宽高;该属性的可选值为 整数, px，%",
+      "defaultValue": ""
+    },
+    {
+      "name": "highlight-cell",
+      "sample": "grid-highlight#highlight-highlight-cell",
+      "type": "Boolean",
+      "desc": "只对 editConfig 配置时有效，是否在编辑时高亮单元格边框",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "highlight-current-column",
+      "sample": "grid-highlight#highlight-highlight-current-column",
+      "type": "Boolean",
+      "desc": "是否要高亮当前列",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "highlight-current-row",
+      "sample": "grid-highlight#highlight-highlight-current-row",
+      "type": "Boolean",
+      "desc": "是否要高亮当前行",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "highlight-hover-column",
+      "sample": "grid-highlight#highlight-highlight-hover-column",
+      "type": "Boolean",
+      "desc": "鼠标移到列是否要高亮显示",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "highlight-hover-row",
+      "sample": "grid-highlight#highlight-highlight-hover-row",
+      "type": "Boolean",
+      "desc": "鼠标移到行是否要高亮显示",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "keyboard-config",
+      "sample": "grid-keyboard#keyboard-navigation",
+      "type": "Object",
+      "desc": "按键配置项;{isArrow: true // 启用方向键功能}",
+      "defaultValue": ""
+    },
+    {
+      "name": "loading",
+      "sample": "grid-grid-loading-tip#tiny-first-menu-grid-loading-off-tip",
+      "type": "Boolean",
+      "desc": "表格是否显示加载中",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "max-height",
+      "sample": "grid-width-height#tiny-first-menu-min-grid-height",
+      "type": "Number , String",
+      "desc": "设置表格内容区域（不含表格头部，底部）的最大高度。;该属性的可选值为 整数, px，%",
+      "defaultValue": ""
+    },
+    {
+      "name": "mouse-config",
+      "sample": "grid-keyboard#mouse-config",
+      "type": "Object",
+      "desc": "鼠标配置项;{selected: true // 是否开启左键选中单元格功能（只对 edit-config.mode=cell 有效），默认为 false}",
+      "defaultValue": ""
+    },
+    {
+      "name": "radio-config",
+      "sample": "grid-operation-column#tiny-first-menu-radio-config",
+      "type": "Object",
+      "desc": "单选框配置项;{trigger: 'cell', // 触发选中的方式，可选项包括 cell（单击图标所在单元格触发） / row（点击行触发），默认点击图标触发 \n labelField: '', // 单选框显示的字段名，可以直接显示在单选框中\n checkRowKey: '', // 默认选中指定行（只会在初始化时被触发一次，需要有 row-id）\n checkMethod: Function() {} // 是否允许选中的方法，该方法的返回值用来决定这一行的 Radio 是否可以选中}",
+      "defaultValue": ""
+    },
+    {
+      "name": "remote-filter",
+      "sample": "grid-filter#filter-server-filter",
+      "type": "Boolean",
+      "desc": "所有列是否使用服务端筛选，如果设置为 true 则不会对数据进行处理",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "remote-sort",
+      "sample": "grid-sort#sort-server-sort",
+      "type": "Boolean",
+      "desc": "是否将服务端的全部数据进行排序。默认为 false 不进行服务端排序。",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "resizable",
+      "sample": "grid-width-height#tiny-first-menu-resize-column-width",
+      "type": "Boolean",
+      "desc": "设置是否允许调整列宽",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "row-class-name",
+      "sample": "grid-custom-style#custom-style-row-style",
+      "type": "String, Function",
+      "desc": "自定义表格行类名，用于自定义表格的行样式的场景。可以直接设置字符串类名，也可以是用函数 Function({seq, row, rowIndex, $rowIndex})返回类名",
+      "defaultValue": ""
+    },
+    {
+      "name": "row-id",
+      "sample": "grid-sort#tiny-first-menu-row-id",
+      "type": "String",
+      "desc": "自定义行数据唯一主键的字段名（行数据必须要有唯一主键，默认自动生成）",
+      "defaultValue": "该属性的默认值为 _RID"
+    },
+    {
+      "name": "row-key",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "是否需要为每一行的 VNode 设置 key 属性（非特殊情况下没必要设置）",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "select-config",
+      "sample": "grid-operation-column#disable-selection",
+      "type": "Object",
+      "desc": "复选框配置项;{trigger: 'cell', // 触发选中的方式，可选项包括 cell（单击图标所在单元格触发） / row（点击行触发），默认点击图标触发 \n labelField: '', // 复选框显示的字段名，可以直接显示在复选框中\n checkRowKeys: [], // 默认勾选开指定行（只会在初始化时被触发一次，需要有 row-id）\n checkMethod: Function() {}, // 是否允许选中的方法，该方法的返回值用来决定这一行的 checkbox 是否可以勾选\n checkAll: true, // 默认勾选所有（只会在初始化时被触发一次）}\n showHeader: true, // 是否显示全选按钮（如果 checkStrictly=true 则默认为 false）\n checkStrictly: false, // 是否严格的遵循父子不互相关联的做法 \n reserve: false // 翻页操作是否保留历史选择数据}",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-footer",
+      "sample": "grid-summary#summary-cus tom-summary",
+      "type": "Boolean",
+      "desc": "是否显示表尾合计",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "show-header",
+      "sample": "grid-header#header-hide-grid-header",
+      "type": "Boolean",
+      "desc": "是否显示表头",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "show-header-overflow",
+      "sample": "grid-tip#tip-column-header-tip",
+      "type": "Boolean, String",
+      "desc": "设置表头所有内容过长时显示为省略号;该属性的可选值为 ellipsis（只显示省略号）,title（并且显示为原生 title）,tooltip（并且显示为 tooltip 提示）",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-overflow",
+      "sample": "grid-tip#tip-cell-tip",
+      "type": "Boolean, String",
+      "desc": "设置所有内容过长时显示为省略号（如果是固定列建议设置该值，提升渲染速度）;该属性的可选值为 ellipsis（只显示省略号）,title（并且显示为原生 title）,tooltip（并且显示为 tooltip 提示）",
+      "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "grid-grid-size#tiny-first-menu-grid-size",
+      "type": "String",
+      "desc": "表格的尺寸;该属性的可选值为 medium, small, mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "sort-config",
+      "sample": "grid-sort#sort-default-sort",
+      "type": "Object",
+      "desc": "排序配置项;{trigger: 'cell' // 排序触发方式，可配置为 cell（点击头部单元格触发排序），不配置时默认为点击上下箭头触发排序}",
+      "defaultValue": ""
+    },
+    {
+      "name": "sort-method",
+      "sample": "grid-sort#sort-custom-sort",
+      "type": "Function(arg1,arg2)",
+      "desc": "自定义所有列的排序方法，当触发排序时会调用该函数 Function(arg1, arg2) 返回排序后的结果;自定义排序方法，类似原生的sort排序，入参arguments: (arg1, arg2)  arg1: 前一个比较数据项 arg2: 后一个比较数据项",
+      "defaultValue": ""
+    },
+    {
+      "name": "span-method",
+      "sample": "grid-span#span-row-span-row-span",
+      "type": "Function",
+      "desc": "合并行或列，该函数 Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, data}) 返回计算后的值",
+      "defaultValue": "该属性的默认值为 { rowspan: 1, colspan: 1}"
+    },
+    {
+      "name": "start-index",
+      "sample": "grid-serial-column#tiny-first-menu-start-index",
+      "type": "Number",
+      "desc": "只对 type=index 的列有效，动态索引的起始值",
+      "defaultValue": "该属性的默认值为 0"
+    },
+    {
+      "name": "stripe",
+      "sample": "grid-grid-stripe#stripe-stripe",
+      "type": "Boolean",
+      "desc": "是否带有斑马纹",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "sync-resize",
+      "sample": "grid-width-height#tiny-first-menu-adaptive-grid-width-height",
+      "type": "Boolean",
+      "desc": "响应式跟随某个属性（对于通过某个属性来控制显示/隐藏切换的场景可能会用到）",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "tree-config",
+      "sample": "grid-tree-grid#tree-table-tree-grid-base",
+      "type": "Object",
+      "desc": "树形结构配置项,tree-config:{children:'children'}   children: 树表结构数据中用来定义数据下一级与子集的标识字符 ;{trigger: 'default', // 展开子级触发方式：'default'(点击按钮触发)；'cell'(点击单元格触发);'row'(点击行触发)\nordered: true, // 子级索引是否按数字递增显示：true(子级索引按数字递增显示，父级1，子级2)；false(子级索引在父级索引基础上增加，父级1，子级1.1)\nindent: 16, // 控制水平缩进距离，默认 16，单位 px\nchildren: 'children', // 指定子级数据的字段名\nexpandAll: false, // 是否展开所有行\nexpandRowKeys: [], // 默认展开所给数组中的指定行，需要有row-id，可以由行的'_RID'属性获取\naccordion: false, // 对于同一级的多个子节点，是否只能同时展开一个子节点}",
+      "defaultValue": ""
+    },
+    {
+      "name": "valid-config",
+      "sample": "grid-validation#grid_Example-gridValid-valid-config",
+      "type": "Object",
+      "desc": "校验配置项;{message: 'inline'// 校验提示类型，'inline'(内置提示)；'tooltip'(tooltip文字提示)}",
+      "defaultValue": ""
+    },
+    {
+      "name": "summary-config",
+      "sample": "grid-summary#summary-configuration-summary",
+      "type": "Object",
+      "desc": "表格统计功能配置项;{ fields: ['employees'], // 统计字段名\n fraction: 2, // 小数点后保留的小数位\n truncate: false, // 是否截断，默认为四舍五入，不截断\n text: '' // 统计显示的文本 }",
+      "defaultValue": ""
+    },
+    {
+      "name": "sortable",
+      "sample": "grid-customized#custom-column-sort",
+      "type": "Boolean",
+      "desc": "设置是否允许列数据排序。默认为 true 可排序",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "auto-load",
+      "sample": "grid-data-source#tiny-first-menu-auto-load",
+      "type": "Boolean",
+      "desc": "",
+      "defaultValue": "是否开启自动请求服务，配置 fetch-data 时有效，该属性的默认值为 true"
+    },
+    {
+      "name": "is-async-column",
+      "sample": "grid-data-source#tiny-first-menu-column-asyn-rendering",
+      "type": "Boolean",
+      "desc": "设置表格的列是否延迟加载;是否开启异步列功能，配合 scrollLoad 一起使用",
+      "defaultValue": ""
+    },
+    {
+      "name": "columns",
+      "sample": "grid-data-source#tiny-first-menu-columns",
+      "type": "Array",
+      "desc": "表格列的配置信息，具体参考列配置项",
+      "defaultValue": ""
+    },
+    {
+      "name": "scroll-load",
+      "sample": "grid-large-data#tiny-first-menu-scroll-paging",
+      "type": "Object",
+      "desc": "滚动加载配置;scrollLoad={ isInfinity: false //是否连续 , \npageSize: 10 //每次加载多少条};设置是否滚动加载分页，当 showPager 为 true 时有效。",
+      "defaultValue": ""
+    },
+    {
+      "name": "row-span",
+      "sample": "grid-span#span-row-span-row-span-easy",
+      "type": "Array",
+      "desc": "设置行合并,该属性仅适用于普通表格，不可与 tree-config 同时使用",
+      "defaultValue": ""
+    },
+    {
+      "name": "render-empty",
+      "sample": "grid-empty-data-tip#tiny-first-menu-empty-data-tip",
+      "type": "Function",
+      "desc": "空数据渲染",
+      "defaultValue": ""
+    },
+    {
+      "name": "events",
+      "sample": "grid-event#event-grid-events",
+      "type": "Object",
+      "desc": "事件对象",
+      "defaultValue": ""
+    },
+    {
+      "name": "data",
+      "sample": "grid-data-source#tiny-first-menu-static-data",
+      "type": "Array",
+      "desc": "设置表格的数据;",
+      "defaultValue": ""
+    },
+    {
+      "name": "min-height",
+      "sample": "grid-width-height#tiny-first-menu-min-grid-height",
+      "type": "Number , String",
+      "desc": "设置表格内容区域（不含表格头部，底部）的最小高度。",
+      "defaultValue": ""
+    },
+    {
+      "name": "drop-config",
+      "sample": "grid-drag#drag-row-drag",
+      "type": "Object",
+      "desc": "表格拖拽配置项;{plugin: Sortable, // sortablejs 插件\n row: true, // 开启行拖拽\n column: true, // 开启列拖拽\n onBeforeMove: Function() {return false}, // 拖拽前函数，返回 false 取消拖动\n filter: '.row__drag-disable', // 根据行的类名来控制是否可以拖动\n refresh: true // 如果变动了树层级，可以指定是否需要刷新数据}",
+      "defaultValue": ""
+    },
+    {
+      "name": "edit-config",
+      "sample": "grid-editor#grid_Example-gridEdit-inner-editor",
+      "type": "Object , Boolean",
+      "desc": "表格编辑配置项，当配置为 Object 时，可配置如下字段：;{trigger: 'click', // 激活触发方式，可选项包括 click / dblclick / manual\n mode: 'cell', // 激活类型单元格激活或者行，可选项包括 cell / row\n showStatus: true, // 是否显示状态\n activeMethod: Function () {} // 自定义编辑规则}",
+      "defaultValue": ""
+    },
+    {
+      "name": "seq-serial",
+      "sample": "grid-pager#pager-inner-pager",
+      "type": "Boolean",
+      "desc": "设置行序号是否连续，seqSerial 当 showSeq 为 true 时有效。",
+      "defaultValue": "设置行序号是否连续，开启分页时有效，该属性的默认值为 false"
+    },
+    {
+      "name": "show-save-msg",
+      "sample": "grid-pager#pager-showSaveMsg",
+      "type": "Boolean",
+      "desc": "切换分页时有未保存的数据时是否进行提示",
+      "defaultValue": ""
+    },
+    {
+      "name": "tooltip-config",
+      "sample": "grid-tip#tip-cell-tip",
+      "type": "Object",
+      "desc": "Grid 内置 tooltip 配置项，请参考 Tooltip 组件属性说明",
+      "defaultValue": ""
+    }
+  ],
+  "gridslots": [
+    {
+      "name": "default",
+      "sample": "grid-slot#slot-default-slot",
+      "type": "",
+      "desc": "默认插槽（表格列 <grid-column> ）",
+      "defaultValue": ""
+    },
+    {
+      "name": "toolbar",
+      "sample": "grid-slot#slot-buttons-slot",
+      "type": "",
+      "desc": "工具栏，（包含：缩放、个性化、刷新表格、自定义按钮）<grid-toolbar>",
+      "defaultValue": ""
+    },
+    {
+      "name": "pager",
+      "sample": "grid-pager#pager-inner-pager",
+      "type": "",
+      "desc": "分页插件，<pager>",
+      "defaultValue": ""
+    },
+    {
+      "name": "empty",
+      "sample": "grid-empty-data-tip#tiny-first-menu-empty-data-tip",
+      "type": "",
+      "desc": "空数据时显示的文本内容",
+      "defaultValue": ""
+    }
+  ],
+  "gridmethods": [
+    {
+      "name": "clearActived()",
+      "sample": "grid-edit#tiny-first-menu-trigger-mode-for-editing",
+      "type": "",
+      "desc": "手动清除单元格激活状态",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearAll()",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "手动清除表格所有条件，还原到初始状态（对于增删改查的场景中可能会用到，比如在数据保存之后清除表格缓存）",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearCurrentColumn()",
+      "sample": "grid-highlight#highlight-highlight-current-column",
+      "type": "",
+      "desc": "用于当前列，手动清空当前高亮的状态",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearCurrentRow()",
+      "sample": "grid-highlight#highlight-highlight-current-row",
+      "type": "",
+      "desc": "用于当前行，手动清空当前高亮的状态",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearData(rows, field)",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "手动清空单元格内容，如果不传参数，则清空整个表格内容，如果传了行则清空指定行内容，如果传了指定字段，则清空该字段内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearFilter(field)",
+      "sample": "grid-filter#filter-default-filter",
+      "type": "",
+      "desc": "手动清空筛选条件（如果不传 field 则清空所有筛选条件），数据会恢复成未筛选的状态",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearRadioRow()",
+      "sample": "grid-operation-column#tiny-first-menu-default-serial-column",
+      "type": "",
+      "desc": "用于单选行，手动清空用户的选择",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearRowExpand()",
+      "sample": "grid-nested-grid#grid_Example-nestedGrid",
+      "type": "",
+      "desc": "手动清空展开行状态，数据会恢复成未展开的状态",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearScroll()",
+      "sample": "grid-width-height#tiny-first-menu-min-grid-height",
+      "type": "",
+      "desc": "手动清除滚动相关信息，还原到初始状态",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearSelected()",
+      "sample": "grid-highlight#highlight-highlight-cell",
+      "type": "",
+      "desc": "手动清除单元格选中状态",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearSelection()",
+      "sample": "grid-operation-column#tiny-first-menu-custom-serial-column",
+      "type": "",
+      "desc": "用于多选行，手动清空用户的选择",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearSort()",
+      "sample": "grid-sort#sort-default-sort",
+      "type": "",
+      "desc": "手动清空排序条件，数据会恢复成未排序的状态",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearTreeExpand()",
+      "sample": "grid-tree-grid#tree-table-tree-grid-insert-delete-update",
+      "type": "",
+      "desc": "手动清空树形节点的展开状态，数据会恢复成未展开的状态",
+      "defaultValue": ""
+    },
+    {
+      "name": "closeFilter()",
+      "sample": "grid-filter#filter-default-filter",
+      "type": "",
+      "desc": "手动关闭筛选面板（某些特殊场景可能会用到）",
+      "defaultValue": ""
+    },
+    {
+      "name": "closeMenu()",
+      "sample": "grid-context-menu#grid_Example-shortcutMenu-cell-menu",
+      "type": "",
+      "desc": "手动关闭快捷菜单（某些特殊场景可能会用到）",
+      "defaultValue": ""
+    },
+    {
+      "name": "createData(records)",
+      "sample": "grid-data-source#tiny-first-menu-static-data",
+      "type": "",
+      "desc": "创建 data 对象（对于某些特殊场景可能会用到，会自动对数据的字段名进行检测，如果不存在就自动定义）",
+      "defaultValue": ""
+    },
+    {
+      "name": "createRow(records)",
+      "sample": "grid-data-source#tiny-first-menu-static-data",
+      "type": "",
+      "desc": "创建 Row|Rows 对象（对于某些特殊场景需要对数据进行手动插入时可能会用到）",
+      "defaultValue": ""
+    },
+    {
+      "name": "exportCsv(options)",
+      "sample": "grid-import-export#tiny-first-menu-export-excel",
+      "type": "",
+      "desc": "将表格数据导出为 .csv 文件（支持所有主流的浏览器，不支持合并行或列）",
+      "defaultValue": ""
+    },
+    {
+      "name": "fullValidate(rows, callback)",
+      "sample": "grid-validation#grid_Example-gridValid-before-submit-validation",
+      "type": "",
+      "desc": "表格完整校验函数，和 validate 的区别就是会对全量数据的所有规则进行完整校验",
+      "defaultValue": ""
+    },
+    {
+      "name": "getActiveRow()",
+      "sample": "grid-edit#tiny-first-menu-trigger-mode-for-editing",
+      "type": "",
+      "desc": "获取已激活的行数据",
+      "defaultValue": ""
+    },
+    {
+      "name": "getColumnByField(field)",
+      "sample": "grid-data-source#tiny-first-menu-columns",
+      "type": "",
+      "desc": "根据列的字段名获取列",
+      "defaultValue": ""
+    },
+    {
+      "name": "getColumnById(colid)",
+      "sample": "grid-data-source#tiny-first-menu-columns",
+      "type": "",
+      "desc": "根据列的唯一主键获取列",
+      "defaultValue": ""
+    },
+    {
+      "name": "getColumnIndex(column)",
+      "sample": "grid-data-source#tiny-first-menu-columns",
+      "type": "",
+      "desc": "根据 column 获取相对于 columns 中的索引",
+      "defaultValue": ""
+    },
+    {
+      "name": "getColumnNode(cell)",
+      "sample": "grid-data-source#tiny-first-menu-columns",
+      "type": "",
+      "desc": "根据 th/td 元素获取对应的 column 信息",
+      "defaultValue": ""
+    },
+    {
+      "name": "getColumns(columnIndex)",
+      "sample": "grid-data-source#tiny-first-menu-columns",
+      "type": "",
+      "desc": "获取表格的可视列，也可以指定索引获取列",
+      "defaultValue": ""
+    },
+    {
+      "name": "getCurrentRow()",
+      "sample": "grid-event#tiny-first-menu-get-row-method",
+      "type": "",
+      "desc": "用于当前行，获取当前行的数据",
+      "defaultValue": ""
+    },
+    {
+      "name": "getData(rowIndex)",
+      "sample": "grid-data-source#tiny-first-menu-columns",
+      "type": "",
+      "desc": "获取数据，和 data 的行为一致，也可以指定索引获取数据",
+      "defaultValue": ""
+    },
+    {
+      "name": "getInsertRecords()",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "获取新增的数据",
+      "defaultValue": ""
+    },
+    {
+      "name": "getRadioRow()",
+      "sample": "grid-event#tiny-first-menu-get-row-method",
+      "type": "",
+      "desc": "用于单选行，获取当已选中的数据",
+      "defaultValue": ""
+    },
+    {
+      "name": "getRecordset()",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "获取表格数据集（获取新增、删除、更改的数据，对于增删改查表格非常方便）",
+      "defaultValue": ""
+    },
+    {
+      "name": "getRemoveRecords()",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "获取已删除的数据",
+      "defaultValue": ""
+    },
+    {
+      "name": "getRowById(rowid)",
+      "sample": "grid-event#tiny-first-menu-get-row-method",
+      "type": "",
+      "desc": "根据行的唯一主键获取行",
+      "defaultValue": ""
+    },
+    {
+      "name": "getRowIndex(row:Object)",
+      "sample": "grid-event#tiny-first-menu-get-row-method",
+      "type": "",
+      "desc": "根据 row 获取相对于 data 中的索引",
+      "defaultValue": ""
+    },
+    {
+      "name": "getRowNode(tr)",
+      "sample": "grid-event#tiny-first-menu-get-row-method",
+      "type": "",
+      "desc": "根据 tr 元素获取对应的 row 信息",
+      "defaultValue": ""
+    },
+    {
+      "name": "getSelectRecords()",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "用于多选行，获取已选中的数据",
+      "defaultValue": ""
+    },
+    {
+      "name": "getTableColumn()",
+      "sample": "grid-data-source#tiny-first-menu-static-data",
+      "type": "",
+      "desc": "获取当前表格的列（完整的全量表头列、处理条件之后的全量表头列、当前渲染中的表头列）",
+      "defaultValue": ""
+    },
+    {
+      "name": "getTableData()",
+      "sample": "grid-data-source#tiny-first-menu-static-data",
+      "type": "",
+      "desc": "获取当前表格的数据（完整的全量表体数据、处理条件之后的全量表体数据、当前渲染中的表体数据、当前渲染中的表尾数据）",
+      "defaultValue": ""
+    },
+    {
+      "name": "getUpdateRecords()",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "获取已修改的数据",
+      "defaultValue": ""
+    },
+    {
+      "name": "handleFetch()",
+      "sample": "grid-data-source#tiny-first-menu-request-service",
+      "type": "",
+      "desc": "触发表格的fetch-data",
+      "defaultValue": ""
+    },
+    {
+      "name": "hasActiveRow(row)",
+      "sample": "grid-edit#tiny-first-menu-trigger-mode-for-editing",
+      "type": "",
+      "desc": "检查行是否已激活为编辑状态",
+      "defaultValue": ""
+    },
+    {
+      "name": "hasRowChange(row, field)",
+      "sample": "grid-edit#tiny-first-menu-row-editing",
+      "type": "",
+      "desc": "检查行或列数据是否发生改变",
+      "defaultValue": ""
+    },
+    {
+      "name": "hasRowExpand(row)",
+      "sample": "grid-nested-grid#grid_Example-nestedGrid",
+      "type": "",
+      "desc": "检查行是否已展开",
+      "defaultValue": ""
+    },
+    {
+      "name": "hasTreeExpand(row)",
+      "sample": "grid-tree-grid#tree-table-hasTreeExpand",
+      "type": "",
+      "desc": "检查树节点是否已展开",
+      "defaultValue": ""
+    },
+    {
+      "name": "hideColumn(column)",
+      "sample": "grid-customized#custom-column-visible-hidden",
+      "type": "",
+      "desc": "隐藏指定列",
+      "defaultValue": ""
+    },
+    {
+      "name": "insert(records)",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "在表格中新增数据。 ;往表格插入数据，从第一行新增一行或多行新数据",
+      "defaultValue": ""
+    },
+    {
+      "name": "insertAt(records, row)",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "往表格插入数据，从指定位置插入一行或多行；第二个参数：row 指定位置（不支持树表格）、null从第一行插入、-1 从最后插入",
+      "defaultValue": ""
+    },
+    {
+      "name": "loadColumn(columns)",
+      "sample": "grid-large-data#large-data-load-column",
+      "type": "",
+      "desc": "加载列配置（对于表格列需要重载、局部递增场景下可能会用到）",
+      "defaultValue": ""
+    },
+    {
+      "name": "loadData(data)",
+      "sample": "grid-large-data#tiny-first-menu-full-data-loading",
+      "type": "",
+      "desc": "加载数据（对于表格数据需要重载、局部递增场景下可能会用到）",
+      "defaultValue": ""
+    },
+    {
+      "name": "recalculate()",
+      "sample": "grid-width-height#recalculate",
+      "type": "",
+      "desc": "重新计算表格（对于某些特殊场景可能会用到，比如隐藏的表格、更新列宽...等）",
+      "defaultValue": ""
+    },
+    {
+      "name": "refreshColumn()",
+      "sample": "grid-customized#custom-column-visible-hidden",
+      "type": "",
+      "desc": "刷新列配置（对于显示/隐藏列场景下可能会用到）",
+      "defaultValue": ""
+    },
+    {
+      "name": "refreshData()",
+      "sample": "grid-tree-grid#tree-table-tree-grid-insert-delete-update",
+      "type": "",
+      "desc": "同步刷新 data 数据；如果用了该方法，那么组件将不再记录增删改的状态，只能自行实现对应逻辑（对于某些特殊的场景，比如深层树节点元素发生变动时可能会用到）",
+      "defaultValue": ""
+    },
+    {
+      "name": "reloadCustoms(customs)",
+      "sample": "grid-customized#custom-server-storage",
+      "type": "",
+      "desc": "初始化加载显示/隐藏列（对于异步更新的场景下可能会用到）",
+      "defaultValue": ""
+    },
+    {
+      "name": "remove(rows)",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "删除指定行数据，指定 row 或 [row, ...] 删除多条数据，如果为空则删除所有数据",
+      "defaultValue": ""
+    },
+    {
+      "name": "removeSelecteds()",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "删除已选中的所有行数据",
+      "defaultValue": ""
+    },
+    {
+      "name": "resetAll()",
+      "sample": "grid-customized#custom-column-width",
+      "type": "",
+      "desc": "手动重置列的所有操作，还原到初始状态（如果已关联工具栏，则会同步更新）",
+      "defaultValue": ""
+    },
+    {
+      "name": "resetCustoms()",
+      "sample": "grid-customized#custom-column-width",
+      "type": "",
+      "desc": "手动重置列的显示/隐藏操作，还原到初始状态（如果已关联工具栏，则会同步更新）",
+      "defaultValue": ""
+    },
+    {
+      "name": "resetResizable()",
+      "sample": "grid-customized#custom-column-width",
+      "type": "",
+      "desc": "手动重置列宽拖动的操作，还原到初始状态（如果已关联工具栏，则会同步更新）",
+      "defaultValue": ""
+    },
+    {
+      "name": "revertData(rows, field)",
+      "sample": "grid-edit#tiny-first-menu-row-editing",
+      "type": "",
+      "desc": "还原更改，还原指定行 row 或者整个表格的数据",
+      "defaultValue": ""
+    },
+    {
+      "name": "scrollTo(scrollLeft, scrollTop)",
+      "sample": "grid-large-data#large-data-scroll-to",
+      "type": "",
+      "desc": "如果有滚动条，则滚动到对应的位置",
+      "defaultValue": ""
+    },
+    {
+      "name": "scrollToColumn(column)",
+      "sample": "grid-large-data#large-data-scroll-to",
+      "type": "",
+      "desc": "如果有滚动条，则滚动到对应的列",
+      "defaultValue": ""
+    },
+    {
+      "name": "scrollToRow(row)",
+      "sample": "grid-large-data#large-data-scroll-to",
+      "type": "",
+      "desc": "如果有滚动条，则滚动到对应的行",
+      "defaultValue": ""
+    },
+    {
+      "name": "setActiveCell(row, field)",
+      "sample": "grid-edit#tiny-first-menu-cell-editing",
+      "type": "",
+      "desc": "激活单元格编辑",
+      "defaultValue": ""
+    },
+    {
+      "name": "setActiveRow(row)",
+      "sample": "grid-edit#tiny-first-menu-cell-editing",
+      "type": "",
+      "desc": "激活行编辑，如果是 mode=cell 则默认激活第一个单元格",
+      "defaultValue": ""
+    },
+    {
+      "name": "setAllRowExpansion(checked)",
+      "sample": "grid-nested-grid#grid_Example-nestedGrid",
+      "type": "",
+      "desc": "设置所有行的展开与否",
+      "defaultValue": ""
+    },
+    {
+      "name": "setAllSelection(checked)",
+      "sample": "grid-operation-column#tiny-first-menu-custom-serial-column",
+      "type": "",
+      "desc": "入参为boolean,用于多选行，设置所有行的选中状态,",
+      "defaultValue": ""
+    },
+    {
+      "name": "setAllTreeExpansion(checked)",
+      "sample": "grid-tree-grid#tree-table-tree-grid-operation-column",
+      "type": "",
+      "desc": "设置所有树节点的展开与否",
+      "defaultValue": ""
+    },
+    {
+      "name": "setCurrentRow(row)",
+      "sample": "grid-highlight#highlight-highlight-hover-row",
+      "type": "",
+      "desc": "用于当前行，设置某一行为高亮状态",
+      "defaultValue": ""
+    },
+    {
+      "name": "setRadioRow(row)",
+      "sample": "grid-operation-column#tiny-first-menu-default-serial-column",
+      "type": "",
+      "desc": "用于单选行，设置某一行为选中状态",
+      "defaultValue": ""
+    },
+    {
+      "name": "setRowExpansion(rows, checked)",
+      "sample": "grid-nested-grid#grid_Example-nestedGrid",
+      "type": "",
+      "desc": "设置展开行，二个参数设置这一行展开与否",
+      "defaultValue": ""
+    },
+    {
+      "name": "setSelection(rows, checked)",
+      "sample": "grid-operation-column#tiny-first-menu-custom-serial-column",
+      "type": "",
+      "desc": "用于多选行，设置行为选中状态，第二个参数为选中与否",
+      "defaultValue": ""
+    },
+    {
+      "name": "setTreeExpansion(rows, checked)",
+      "sample": "grid-tree-grid#tree-table-tree-grid-operation-column",
+      "type": "",
+      "desc": "设置展开树形节点，二个参数设置这一行展开与否",
+      "defaultValue": ""
+    },
+    {
+      "name": "showColumn(column)",
+      "sample": "grid-customized#custom-column-visible-hidden",
+      "type": "",
+      "desc": "显示指定列",
+      "defaultValue": ""
+    },
+    {
+      "name": "sort(field, order)",
+      "sample": "grid-sort#sort-custom-sort",
+      "type": "",
+      "desc": "手动对表格进行排序（如果 order 为空则自动切换排序）",
+      "defaultValue": ""
+    },
+    {
+      "name": "toggleAllSelection()",
+      "sample": "grid-operation-column#tiny-first-menu-custom-serial-column",
+      "type": "",
+      "desc": "用于多选行，切换所有行的选中状态",
+      "defaultValue": ""
+    },
+    {
+      "name": "toggleRowExpansion(row)",
+      "sample": "grid-nested-grid#grid_Example-nestedGrid",
+      "type": "",
+      "desc": "用于可展开表格，切换展开行",
+      "defaultValue": ""
+    },
+    {
+      "name": "toggleRowSelection(row)",
+      "sample": "grid-operation-column#tiny-first-menu-custom-serial-column",
+      "type": "",
+      "desc": "用于多选行，切换某一行的选中状态",
+      "defaultValue": ""
+    },
+    {
+      "name": "toggleTreeExpansion(row)",
+      "sample": "grid-tree-grid#tree-table-tree-grid-operation-column",
+      "type": "",
+      "desc": "用于可树形表格，切换展开树形节点",
+      "defaultValue": ""
+    },
+    {
+      "name": "validate(rows, callback)",
+      "sample": "grid-validation#grid_Example-gridValid-before-submit-validation",
+      "type": "",
+      "desc": "表格校验函数，如果指定 row 或 rows 则校验指定一行或多行，否则校验整个表格。该回调函数会在校验结束后被调用，并传入两个参数：（是否校验成功，最近一列未通过校验的字段）。若不传入回调函数，则会返回一个 promise",
+      "defaultValue": ""
+    }
+  ],
+  "gridevents": [
+    {
+      "name": "page-change",
+      "sample": "grid-event#event-page-change-event",
+      "type": "Object(arg)",
+      "desc": "只对 pager-config 配置时有效，分页发生改变时会触发该事件;//参数arg\n { $grid: VueComponent, //table组件vue实例 \ncurrentPage: 1 //当前页码 \nlayout: 'total, prev, pager, next, jumper, sizes' //当前分页组件布局信息 \npageSize: 10// 当前每页显示条数 \npageSizes:[5, 10] //可切换的每页条数 \ntotal: 10 //总数据条数 }",
+      "defaultValue": ""
+    },
+    {
+      "name": "before-page-change",
+      "sample": "grid-event#event-page-change-event",
+      "type": "Function(arg)",
+      "desc": "在打开页面改变时的前置处理特性，并且进行翻页操作或者改变页大小操作时触发;//参数arg:\n{ newPage, //新页码\nnewPageSize//为新的页大小\ncurrentPage,//当前页码\ncurrentPageSize, //当前的页大小\ncallback,//生效回调\nrollback//失效回调\nrollback,//回退，可能不存在}",
+      "defaultValue": ""
+    },
+    {
+      "name": "toolbar-button-click",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "Function(arg, event)",
+      "desc": "只对 toolbar.buttons 配置时有效，当工具栏的按钮被点击时会后触发该事件;//arg1：\n{ $grid: VueComponent, //表格组件实例对象信息 \nbutton, //按钮信息对象 \ncode// 按钮功能类型 \n}\n //arg2:\nevent//原生点击事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "cell-click",
+      "sample": "grid-event#event-cell-click-event",
+      "type": "Function(arg1, event)",
+      "desc": "单元格被点击时会触发该事件;arg1：{row: 当前行,rowIndex: 当前行的下标,column: 当前列,columnIndex: 当前列的下标}",
+      "defaultValue": ""
+    },
+    {
+      "name": "cancel-page-change",
+      "sample": "grid-pager#pager-inner-pager",
+      "type": "Function()",
+      "desc": "切换分页时有未保存的数据时，提示框确定按钮事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "cell-context-menu",
+      "sample": "grid-context-menu#grid_Example-shortcutMenu-menu-permissions",
+      "type": "Function(arg)",
+      "desc": "单元格被鼠标右键点击时触发该事件,arg:{row：当前行}",
+      "defaultValue": ""
+    },
+    {
+      "name": "cell-dblclick",
+      "sample": "grid-event#event-cell-dblclick-event",
+      "type": "Function(arg1,event)",
+      "desc": "单元格被双击时会触发该事件;//arg1\n{row,  //当前行\nrowIndex, //当前行的下标\ncolumn, // 当前列\ncolumnIndex// 当前列的下标\n},\nevent //点击事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "cell-mouseenter",
+      "sample": "grid-event#event-cell-mouseenter-event",
+      "type": "Function(arg1,event)",
+      "desc": "当单元格 hover 进入时会触发该事件;//arg1\n{row,  //当前行\nrowIndex, //当前行的下标\ncolumn, // 当前列\ncolumnIndex// 当前列的下标\n},\nevent //原生事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "cell-mouseleave",
+      "sample": "grid-event#event-cell-mouseleave-event",
+      "type": "",
+      "desc": "当单元格 hover 退出时会触发该事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "context-menu-click",
+      "sample": "grid-context-menu#grid_Example-shortcutMenu-header-menu",
+      "type": "Function(arg1)",
+      "desc": "只对 context-menu 配置时有效，当点击快捷菜单时会触发该事件;//arg1\n{table: VueComponent,  //table组件vue实例\ncell, //点击的单元格dom\ncolumn, // 列配置信息\ncolumnIndex:Number,// 点击所在列的索引\ncolumns: Array,//所有列信息},\nmenu: Object,// 当前显示上下文菜单的配置,options: Arry,// 上下文菜单的配置列表\nrow: Object, // 点击的单元格所在行的数据\nrowIndex: 1,// 点击的单元格所在行的索引\ntype: 'body'// 上下文菜单的显示位置}",
+      "defaultValue": ""
+    },
+    {
+      "name": "current-change",
+      "sample": "grid-highlight#highlight-highlight-cell",
+      "type": "Function(arg1,arg2)",
+      "desc": "只对 highlightCurrentRow 有效，当手动选中行并且值发生改变时触发的事件,arg1：Object 手动选中行的相关信息对象，arg2:event",
+      "defaultValue": ""
+    },
+    {
+      "name": "edit-actived",
+      "sample": "grid-event#event-edit-actived-event",
+      "type": "Function(arg1,arg2)",
+      "desc": "单元格被激活编辑时会触发该事件,arg1：Object 激活编辑单元格的相关信息对象,arg2:event",
+      "defaultValue": ""
+    },
+    {
+      "name": "edit-closed",
+      "sample": "grid-event#event-edit-closed-event",
+      "type": "Function(arg1,arg2)",
+      "desc": "单元格编辑状态下被关闭时会触发该事件,arg1：Object 激活编辑单元格的相关信息对象,arg2:event",
+      "defaultValue": ""
+    },
+    {
+      "name": "edit-disabled",
+      "sample": "grid-event#event-edit-disabled-event",
+      "type": "Function(arg1,arg2)",
+      "desc": "当单元格激活时如果是禁用状态时会触发该事件,arg1：Object 激活编辑单元格的相关信息对象,arg2:event",
+      "defaultValue": ""
+    },
+    {
+      "name": "filter-change",
+      "sample": "grid-filter#filter-server-filter",
+      "type": "Function(arg1,arg2)",
+      "desc": "当筛选条件发生变化时会触发该事件;//arg1:\n{$table:Object, //表格的信息对象\nfilters,//过滤列的过滤数据信息},//\narg2:\n{ $table:Object,// 表格的信息对象 \nfilters,//过滤列的过滤数据信息}",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer-cell-click",
+      "sample": "grid-event#event-footer-cell-context-menu-event",
+      "type": "Function(arg1,arg2)",
+      "desc": "表尾单元格被点击时会触发该事件;//arg1:当前表过table对象\n{\n$columnIndex: 2,$rowIndex: 0,$table: VueComponent, //table组件vue实例\ncell,// 当前单元格节点\ncolumn: ColumnConfig，// 当前列信息\ncolumnIndex: 2}\n//arg2:event //原生事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer-cell-context-menu",
+      "sample": "grid-context-menu#grid_Example-shortcutMenu-cell-menu",
+      "type": "Function(arg1,arg2)",
+      "desc": "表尾单元格被鼠标右键点击时触发该事件;//arg1:当前表过table对象\n{\n$columnIndex: 2,$rowIndex: 0,$table: VueComponent, //table组件vue实例\ncell,// 当前单元格节点\ncolumn: ColumnConfig，// 当前列信息\ncolumnIndex: 2, \noptions:Array,//配置清除等功能信息\ntype: 'footer'//表格区域类型\n}\n//arg2:event //原生事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer-cell-dblclick",
+      "sample": "grid-footer#footer-footer-summation",
+      "type": "Function(arg1,arg2)",
+      "desc": "表尾单元格被双击时会触发该事件;//arg1:当前表过table对象\n{\n$columnIndex: 2,$rowIndex: 0,$table: VueComponent, //table组件vue实例\ncell,// 当前单元格节点\ncolumn: ColumnConfig，// 当前列信息\ncolumnIndex: 2}\n//arg2:event //原生事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "header-cell-click",
+      "sample": "grid-event#event-header-click-event",
+      "type": "Function(arg1,arg2)",
+      "desc": "表头单元格被点击时会触发该事件;//arg1:当前表过table对象\n{\n$columnIndex: 2,$rowIndex: 0,$table: VueComponent, //table组件vue实例\ncell,// 点击表头单元格\ncolumn: ColumnConfig，// 当前列信息\ncolumnIndex: 2,\ntriggerFilter:false,//当前点击节点过滤标识\ntriggerSort:false,//当前点击节点排序标识}\n//arg2:event //原生事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "header-cell-context-menu",
+      "sample": "grid-event#event-header-cell-context-menu-event",
+      "type": "Function(arg1,arg2)",
+      "desc": "表头单元格被鼠标右键点击时触发该事件;//arg1:当前表过table对象\n{\n$columnIndex: 2,$rowIndex: 0,$table: VueComponent, //table组件vue实例\ncell,// 当前单元格节点\ncolumn: ColumnConfig，// 当前列信息\ncolumnIndex: 2, \noptions:Array,//配置清除等功能信息\ntype: 'header'//表格区域类型\n}\n//arg2:event //原生事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "header-cell-dblclick",
+      "sample": "grid-event#event-header-dblclick-event",
+      "type": "Function(arg1,arg2)",
+      "desc": "表头单元格被双击时会触发该事件;//arg1:\n{column,  // 列数据\ncolumnIndex, // 列索引\n$table,  // table组件 vue实例\ncell// 点击的单元格dom\n}\n//arg2:\nevent//原生事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "radio-change",
+      "sample": "grid-event#event-radio-change-event",
+      "type": "Function(arg1,arg2)",
+      "desc": "只对 type=radio 有效，当手动勾选并且值发生改变时触发的事件;//参数描述：\narg1 $table: VueComponent table组件vue实例\n arg2 event 原生radio的change事件对象",
+      "defaultValue": ""
+    },
+    {
+      "name": "resizable-change",
+      "sample": "grid-event#event-resizable-change-event",
+      "type": "Function(arg1)",
+      "desc": "当列宽拖动发生变化时会触发该事件;//参数描述 arg1\n{$table: VueComponent,// table组件的vue 实例 \ncolumn, //列配置信息 \ncolumnIndex:1//拖动列的索引\nfixed// 是否固定列}",
+      "defaultValue": ""
+    },
+    {
+      "name": "scroll",
+      "sample": "grid-event#event-grid-scroll-event",
+      "type": "Function(arg, event)",
+      "desc": "表格滚动时会触发该事件;//arg1：\n{\n $table: VueComponent（表格实例对象信息）\n fixed: undefined\n isX: false ：(X轴滚动)\n isY: true（Y轴滚动）\n scrollLeft: 0（X轴滚动距离）\n scrollTop: 66 （Y轴滚动距离）\n type: 'body'\n }\n arg2:event",
+      "defaultValue": ""
+    },
+    {
+      "name": "select-all",
+      "sample": "grid-event#event-select-all-event",
+      "type": "Function(arg,event)",
+      "desc": "只对 type=selection 有效，当手动勾选全选时触发的事件;//arg1：\n{\n $table: VueComponent 表格实例对象信息\n checked: 勾选状态\n selection: 选中的表格数据数组\n }\n arg2:event",
+      "defaultValue": ""
+    },
+    {
+      "name": "select-change",
+      "sample": "grid-event#event-select-change-event",
+      "type": "Function(arg,event)",
+      "desc": "只对 type=selection 有效，当手动勾选并且值发生改变时触发的事件;//arg1：\n{\n $columnIndex: 0\n $rowIndex: 0\n $seq: ''\n $table: VueComponent （表格实例对象信息）\n checked: true (勾选状态)\n column: ColumnConfig {…} （列信息）\n columnIndex: 0 （列下标）\n data: [{…}, {…}, {…}, {…}, {…}, {…}] （表格数据）\n fixed: undefined\n isHidden: undefined\n level: 0\n row: {…} （勾选项的行数据信息）\n rowIndex: 0 （勾选项的行下标）\n selection: [{…}] （选中的数据）\n seq: 1\n }\n arg2:event                ",
+      "defaultValue": ""
+    },
+    {
+      "name": "toggle-expand-change",
+      "sample": "grid-event#event-toggle-expand-change-event",
+      "type": "Function(arg,event)",
+      "desc": "当行展开或收起时会触发该事件;//参数arg1：\n{ $table: VueComponent,// 表格实例对象信息\nrow, //点击展开行的数据信息对象\nrowIndex,// 点击展开行的下标 } \n //参数arg2:\nevent//事件对象",
+      "defaultValue": ""
+    },
+    {
+      "name": "toggle-tree-change",
+      "sample": "grid-event#event-toggle-tree-change-event",
+      "type": "Function(arg,event)",
+      "desc": "当树节点展开或收起时会触发该事件;//参数 arg1：\n{ $table: VueComponent,// 表格实例对象信息\nrow,// 点击展开行的数据信息对象\nrowIndex,// 点击展开行的下标\n} \n//参数 arg2:\nevent:事件对象",
+      "defaultValue": ""
+    },
+    {
+      "name": "valid-error",
+      "sample": "grid-event#event-valid-error-event",
+      "type": "Function(arg)",
+      "desc": "当数据校验不通过时会触发该事件;//参数arg：\n{ cell,//校验的单元格信息对象\ncolumn,//校验单元格所在列的列配置信息对象\nrow,//校验单元格所在行的信息对象\nrule// 校验规则信息对象 }",
+      "defaultValue": ""
+    },
+    {
+      "name": "BeforeEdit",
+      "sample": "grid-event#event-edit-disabled-event",
+      "type": "",
+      "desc": "点击单元格，显示编辑组件前触发的事件。;点击单元格，显示编辑组件前触发的事件 —— edit-config 中的 activeMethod 方法",
+      "defaultValue": ""
+    },
+    {
+      "name": "CellClick",
+      "sample": "grid-event#event-cell-click-event",
+      "type": "Function(arg1,event)",
+      "desc": "点击单元格触发的事件。arg1:{row:  当前行,rowIndex: 当前行的下标,column: 当前列,columnIndex: 当前列的下标},event:点击事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "sort-change",
+      "sample": "grid-sort#sort-server-sort",
+      "type": "Function(arg)",
+      "desc": "点击列头，执行数据排序前触发的事件。;//参数arg1：\n{ $grid: VueComponent,// （表格实例对象信息\ncolumn: ColumnConfign,// （列信息） \nfield: 'name',// （排序的字段名） \norder: 'asc',//（排序类型升序或降序） \nprop: 'name',\n property: 'name'}",
+      "defaultValue": ""
+    },
+    {
+      "name": "fullscreen",
+      "sample": "grid-toolbar#tiny-first-menu-grid-full-screen",
+      "type": "",
+      "desc": "全屏时或关闭全屏时触发的时间",
+      "defaultValue": ""
+    }
+  ],
+  "columnattrs": [
+    {
+      "name": "align",
+      "sample": "grid-align#align-column-align",
+      "type": "String",
+      "desc": "列对其方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）",
+      "defaultValue": "该属性的默认值为 继承 table 的 align"
+    },
+    {
+      "name": "class-name",
+      "sample": "grid-custom-style#custom-style-cell-style",
+      "type": "String, Function",
+      "desc": "给单元格附加 className，也可以是函数 Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex})",
+      "defaultValue": ""
+    },
+    {
+      "name": "multi",
+      "sample": "grid-filter#filter-default-filter",
+      "type": "Boolean",
+      "desc": "是 filter 对象内置的属性，筛选是否允许多选;设置选择列是否显示复选框。当 columnType 为 'select' 时有效。",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "method",
+      "sample": "grid-filter#filter-custom-filter",
+      "type": "Function",
+      "desc": "是 filter 对象内置的自定义筛选方法 Function({value, row, column})",
+      "defaultValue": ""
+    },
+    {
+      "name": "fixed",
+      "sample": "grid-fixed#fixed-left-fixed",
+      "type": "String",
+      "desc": "将列固定在左侧，其中 freezable 可冻结可解冻，在表格个性化面板中可操作，而 frozen 只能冻结不能解冻，在个性化面板中不可操作;将列固定在左侧或者右侧（注意：固定列应该放在左右两侧的位置）;该属性的可选值为 left（固定左侧）, right（固定右侧）",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer-align",
+      "sample": "grid-align#align-footer-align-left-footer-align",
+      "type": "String",
+      "desc": "表尾列的对齐方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）",
+      "defaultValue": "该属性的默认值为 继承 align > 继承 table 的 footer-align"
+    },
+    {
+      "name": "footer-class-name",
+      "sample": "grid-footer#footer-footer-class-name",
+      "type": "String, Function",
+      "desc": "给表尾的单元格附加 className，也可以是函数 Function({$rowIndex, column, columnIndex, $columnIndex})",
+      "defaultValue": ""
+    },
+    {
+      "name": "header-align",
+      "sample": "grid-align#align-header-align-left-header-align",
+      "type": "String",
+      "desc": "表头列的对齐方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）",
+      "defaultValue": "该属性的默认值为 继承 align > 继承 table 的 header-align"
+    },
+    {
+      "name": "header-class-name",
+      "sample": "grid-header#header-header-class-name",
+      "type": "String, Function",
+      "desc": "设置列头样式名称;给表头的单元格附加 className，也可以是函数 Function({$rowIndex, column, columnIndex, $columnIndex})",
+      "defaultValue": ""
+    },
+    {
+      "name": "index-method",
+      "sample": "grid-serial-column#tiny-first-menu-custom-serial-column",
+      "type": "Function",
+      "desc": "只对 type=index 有效，自定义索引方法 Function({row, rowIndex, column, columnIndex})",
+      "defaultValue": ""
+    },
+    {
+      "name": "min-width",
+      "sample": "grid-width-height#tiny-first-menu-min-width",
+      "type": "Number, String",
+      "desc": "最小列宽度；会自动将剩余空间按比例分配;该属性的可选值为 整数, px，%",
+      "defaultValue": "该属性的默认值为 继承 table 的 column-min-width"
+    },
+    {
+      "name": "show-icon",
+      "sample": "grid-edit#tiny-first-menu-cell-editing",
+      "type": "Boolean",
+      "desc": "是否显示列头编辑图标，在编辑时有效",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "params",
+      "sample": "grid-filter#column-column-params",
+      "type": "Object",
+      "desc": "额外的参数（自定义一些数据参数，对于某些特殊的场景可能会用到）",
+      "defaultValue": ""
+    },
+    {
+      "name": "remote-sort",
+      "sample": "grid-sort#sort-server-sort",
+      "type": "Boolean",
+      "desc": "是否使用服务端排序，如果设置为 true 则不会对数据进行处理",
+      "defaultValue": "该属性的默认值为 继承 table 的 remote-sort"
+    },
+    {
+      "name": "resizable",
+      "sample": "grid-width-height#tiny-first-menu-resize-column-width",
+      "type": "Boolean",
+      "desc": "设置该列是否可以调整列宽;列是否允许拖动列宽调整大小",
+      "defaultValue": "该属性的默认值为 继承 table 的 resizable"
+    },
+    {
+      "name": "show-header-overflow",
+      "sample": "grid-tip#tip-column-header-tip",
+      "type": "String,Boolean",
+      "desc": "当表头内容过长时显示为省略号;该属性的可选值为 ellipsis（只显示省略号）, title（并且显示为原生 title）, tooltip（并且显示为 tooltip 提示）",
+      "defaultValue": "该属性的默认值为 继承 table 的 show-header-overflow"
+    },
+    {
+      "name": "show-overflow",
+      "sample": "grid-tip#tip-cell-tip",
+      "type": "String,Boolean",
+      "desc": "当内容过长时显示为省略号;该属性的可选值为 ellipsis（只显示省略号）, title（并且显示为原生 title）, tooltip（并且显示为 tooltip 提示）",
+      "defaultValue": "该属性的默认值为 继承 table 的 show-overflow"
+    },
+    {
+      "name": "sort-by",
+      "sample": "grid-sort#sort-combinations-sort",
+      "type": "String, Array",
+      "desc": "只对 sortable 有效，自定义排序的属性",
+      "defaultValue": ""
+    },
+    {
+      "name": "rules",
+      "sample": "",
+      "type": "Object",
+      "desc": "表单的验证功能",
+      "defaultValue": ""
+    },
+    {
+      "name": "required",
+      "sample": "grid-validation#grid_Example-gridValid-editing-validation",
+      "type": "Boolean",
+      "desc": "是否必填，如不设置，则会根据校验规则自动生成",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "sort-method",
+      "sample": "grid-sort#sort-custom-sort",
+      "type": "Function",
+      "desc": "自定义所有列的排序方法，当触发排序时会调用该函数 Function({ data, column, property, order }) 返回排序后的结果",
+      "defaultValue": ""
+    },
+    {
+      "name": "sortable",
+      "sample": "grid-sort#sort-default-sort",
+      "type": "Boolean",
+      "desc": "设置该列数据是否可以排序。;是否允许列排序",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "title",
+      "sample": "grid-data-source#tiny-first-menu-static-data",
+      "type": "String , Function",
+      "desc": "列标题（支持开启国际化），可以是函数 Function(h, params)",
+      "defaultValue": ""
+    },
+    {
+      "name": "tree-node",
+      "sample": "grid-tree-grid#tree-table-tree-grid-base",
+      "type": "Boolean",
+      "desc": "只对 tree-config 配置时有效，指定为树节点",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "format-value",
+      "sample": "grid-edit#tiny-first-menu-format-value",
+      "type": "Function",
+      "desc": "格式化单元格编辑器组件的传入值",
+      "defaultValue": ""
+    },
+    {
+      "name": "format-text",
+      "sample": "grid-renderer#grid_Example-gridRenderer-inner-renderer",
+      "type": "String , Function",
+      "desc": "设置当前表格列的显示获取编辑类型;设置当前表格列的显示获取编辑类型，也可以是函数 Function(params);该属性的可选值为 money / enum / select / number / integer / filesize / date / dateTime / longDateTime / time / longTime / yearMonth / ellipsis / rate / boole",
+      "defaultValue": ""
+    },
+    {
+      "name": "type",
+      "sample": "grid-serial-column#tiny-first-menu-default-serial-column",
+      "type": "String",
+      "desc": "设置内置列的类型;设置内置列的类型;该属性的可选值为 index（序号）/ selection（复选框）/ radio（单选框）/ expand（展开行）",
+      "defaultValue": ""
+    },
+    {
+      "name": "width",
+      "sample": "grid-width-height#tiny-first-menu-fixed-column-width",
+      "type": "Number , String",
+      "desc": "设置列的宽度，可以是像素或者百分比或者'auto'，设置为'auto'时，列宽会自动适应。;列宽度;该属性的可选值为 整数 / px /%",
+      "defaultValue": "该属性的默认值为 继承 table 的 column-width"
+    },
+    {
+      "name": "format-config",
+      "sample": "grid-data-source#tiny-first-menu-column-asyn-rendering",
+      "type": "Object",
+      "desc": "开启该列数据异步渲染。;{data: [], // 列数据源\n type: '', // 内置渲染器类型，与 format-text 属性取值相同\n async: true, // 配置为 true 后，支持动态修改 data 的数据。还可以配置为对象，配置为对象时，对象中可以配置 splitConfig.enabled（是否启用分隔配置）、splitConfig.valueSplit（指定 value 值的分隔符）、splitConfig.textSplit（指定 text 的分隔符）、fetch（列数据异步渲染，请求数据）\n label: '' // 单元格显示内容的映射\n value: '' // 单元格取值的映射}",
+      "defaultValue": ""
+    },
+    {
+      "name": "class-name",
+      "sample": "grid-custom-style#custom-style-cell-style",
+      "type": "String, Function",
+      "desc": "给单元格附加 className，也可以是函数 Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex})",
+      "defaultValue": ""
+    },
+    {
+      "name": "editor",
+      "sample": "grid-edit#tiny-first-menu-custom-editing",
+      "type": "Object , Function",
+      "desc": "单元格编辑渲染配置项，也可以是函数 Function(h, params);设置表格列的编辑类型。当 editMode 为 true，并且 editabele 为 true 是有效。",
+      "defaultValue": ""
+    },
+    {
+      "name": "filter",
+      "sample": "grid-filter#filter-default-filter",
+      "type": "Boolean , Object",
+      "desc": "设置表格列的筛选配置信息。默认值为 false 不配置筛选信息。",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "renderer",
+      "sample": "grid-renderer#grid_Example-gridRenderer-custom-renderer",
+      "type": "Object , Function",
+      "desc": "设置表格列的渲染类型。其优先级高于列的 type 属性配置;单元格渲染配置项，其优先级高于列的 formatText 属性配置，也可以是函数 Function(h, params)",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-tip",
+      "sample": "grid-tip#tip-cell-tip",
+      "type": "Boolean",
+      "desc": "表格列单元格是否需要提示",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "show-header-tip",
+      "sample": "grid-tip#tip-column-header-tip",
+      "type": "Boolean",
+      "desc": "表格列头是否需要提示",
+      "defaultValue": "该属性的默认值为 false"
+    }
+  ],
+  "columnslots": [
+    {
+      "name": "default",
+      "sample": "grid-header#header-custom-grid-header",
+      "type": "",
+      "desc": "自定义显示内容模板",
+      "defaultValue": ""
+    },
+    {
+      "name": "edit",
+      "sample": "grid-editor#grid_Example-gridEdit-custom-editor-select",
+      "type": "",
+      "desc": "自定义可编辑组件模板",
+      "defaultValue": ""
+    },
+    {
+      "name": "filter",
+      "sample": "grid-filter#filter-custom-filter",
+      "type": "",
+      "desc": "自定义筛选模板",
+      "defaultValue": ""
+    },
+    {
+      "name": "header",
+      "sample": "grid-header#header-slot-header",
+      "type": "",
+      "desc": "自定义表头内容的模板",
+      "defaultValue": ""
+    }
+  ],
+  "toolbarattrs": [
+    {
+      "name": "buttons",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "Array",
+      "desc": "按钮列表",
+      "defaultValue": ""
+    },
+    {
+      "name": "id",
+      "sample": "grid-customized#custom-column-width",
+      "type": "String",
+      "desc": "唯一 ID 标识",
+      "defaultValue": ""
+    },
+    {
+      "name": "loading",
+      "sample": "grid-toolbar#tiny-first-menu-refresh-grid",
+      "type": "Boolean",
+      "desc": "是否加载中",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "refresh",
+      "sample": "grid-toolbar#tiny-first-menu-refresh-grid",
+      "type": "Boolean",
+      "desc": "工具栏组件开启表格刷新功能。",
+      "defaultValue": ""
+    },
+    {
+      "name": "resizable",
+      "sample": "grid-customized#custom-column-width",
+      "type": "Boolean,Object",
+      "desc": "列宽拖动配置（需要设置 id）",
+      "defaultValue": ""
+    },
+    {
+      "name": "setting",
+      "sample": "grid-customized#custom-column-width",
+      "type": "Boolean/Object",
+      "desc": "设置表格属性是否显示个性化面板，当设置表格的name属性时有效;设置工具栏属性是否显示个性化配置（需要设置 id）",
+      "defaultValue": ""
+    },
+    {
+      "name": "full-screen",
+      "sample": "grid-toolbar#tiny-first-menu-grid-full-screen",
+      "type": "Boolean",
+      "desc": "设置表格是否可以全屏，或者需要全屏的容器。;设置工具栏属性是否显示全屏按钮",
+      "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "grid-toolbar#tiny-first-menu-copy-row-data",
+      "type": "String",
+      "desc": "尺寸;该属性的可选值为 medium,small,mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "before-open-full-screen",
+      "sample": "grid-toolbar#tiny-first-menu-grid-full-screen",
+      "type": "Function",
+      "desc": "全屏前的拦截方法 Function():Boolean，返回 false 则阻止全屏，返回 true 则不阻止",
+      "defaultValue": ""
+    },
+    {
+      "name": "before-close-full-screen",
+      "sample": "grid-toolbar#tiny-first-menu-grid-full-screen",
+      "type": "Function",
+      "desc": "关闭全屏前的拦截方法 Function():Boolean，返回 false 则阻止关闭全屏，返回 true 则不阻止",
+      "defaultValue": ""
+    }
+  ],
+  "toolbarslots": [
+    {
+      "name": "toolbar",
+      "sample": "grid-toolbar#tiny-first-menu-custom-toolbar",
+      "type": "",
+      "desc": "工具栏插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "buttons",
+      "sample": "grid-toolbar#tiny-first-menu-export-excel",
+      "type": "",
+      "desc": "按钮列表",
+      "defaultValue": ""
+    },
+    {
+      "name": "tools",
+      "sample": "grid-toolbar#tiny-first-menu-custom-toolbar",
+      "type": "",
+      "desc": "右侧工具列表",
+      "defaultValue": ""
+    }
+  ],
+  "toolbarevents": [
+    {
+      "name": "button-click",
+      "sample": "grid-event#event-toolbar-button-click-event",
+      "type": "Function(arg,event)",
+      "desc": "当工具栏的按钮被点击时会后触发该事件;arg1:{ $grid: VueComponent  表格组件实例对象信息 $table: VueComponent 表实例对象组件信息 button:按钮列表信息对象 code: 按钮类型 } arg2:event",
+      "defaultValue": ""
+    },
+    {
+      "name": "on-before-move",
+      "sample": "grid-customized#custom-prsonalized-drag",
+      "type": "Function(arg1,arg2)",
+      "desc": "个性化面板拖拽前事件;arg1:拖拽类型 arg2:拖拽行信息",
+      "defaultValue": ""
+    }
+  ]
+}

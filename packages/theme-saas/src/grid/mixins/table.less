@@ -1,0 +1,40 @@
+@import '../../custom.less';
+
+@grid-cell-prefix-cls: ~'@{css-prefix}grid-cell';
+@grid-checkbox-prefix-cls: ~'@{css-prefix}grid-checkbox';
+
+.TextEllipsis() {
+  @apply overflow-hidden;
+  @apply text-ellipsis;
+  @apply whitespace-nowrap;
+  @apply pl-2;
+  @apply box-border;
+}
+
+.DefaultColumnHeight() {
+  @apply h-9;
+}
+
+.MediumColumnHeight() {
+  @apply h-10;
+}
+
+.SmallColumnHeight() {
+  height: 30px;
+}
+
+.MiniColumnHeight() {
+  height: 26px;
+}
+
+.CellEllipsis() {
+  &:not(.col__actived) {
+    .@{grid-cell-prefix-cls} {
+      .TextEllipsis();
+      & > .@{grid-checkbox-prefix-cls} {
+        .TextEllipsis();
+        @apply pl-0;
+      }
+    }
+  }
+}

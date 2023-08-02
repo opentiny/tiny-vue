@@ -1,0 +1,146 @@
+{
+  "attrs": [
+    {
+      "name": "effect",
+      "sample": "tooltip-theme",
+      "type": "String",
+      "desc": "Default theme; The value of this attribute can be dark or light",
+      "defaultValue": "The default value of this attribute is dark."
+    },
+    {
+      "name": "type",
+      "sample": "tooltip-theme",
+      "type": "String",
+      "desc": "The default type is provided. The options for this attribute are normal, warning, error, information, and success. The priority of type is higher than that of effect.",
+      "defaultValue": ""
+    },
+    {
+      "name": "content",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "Displayed content. You can also use slot#content to transfer the content to the DOM.",
+      "defaultValue": ""
+    },
+    {
+      "name": "append-to-body",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "Whether to add to body",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "placement",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "Location where the tooltip appears; The optional value of this attribute is top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end",
+      "defaultValue": "The default value of this attribute is bottom."
+    },
+    {
+      "name": "modelValue / v-model",
+      "sample": "manual-control-tip",
+      "type": "Boolean",
+      "desc": "Whether the status is visible",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "disabled",
+      "sample": "dynamic-disable",
+      "type": "Boolean",
+      "desc": "Whether Tooltip is available",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "offset",
+      "sample": "tooltip-offset",
+      "type": "Number",
+      "desc": "Offset of the occurrence position",
+      "defaultValue": "The default value of this attribute is 0"
+    },
+    {
+      "name": "transition",
+      "sample": "custom-transition",
+      "type": "String",
+      "desc": "Define gradient animation",
+      "defaultValue": "The default value of this attribute is tiny-fade-in-linear."
+    },
+    {
+      "name": "visible-arrow",
+      "sample": "visible-arrow",
+      "type": "Boolean",
+      "desc": "Indicates whether to display the tooltip arrow. This parameter is a parameter in popper.js.",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "popper-options",
+      "sample": "popper-options",
+      "type": "Object",
+      "desc": "Parameters of popper.js; The optional value of this property is a reference to the popper.js document",
+      "defaultValue": "The default value of this attribute is {boundariesCBG XUI: 'body', gpuAcceleration: false}"
+    },
+    {
+      "name": "open-delay",
+      "sample": "open-delay",
+      "type": "Number",
+      "desc": "Delay, in milliseconds.",
+      "defaultValue": "The default value of this attribute is 0"
+    },
+    {
+      "name": "manual",
+      "sample": "manual-control-tip",
+      "type": "Boolean",
+      "desc": "Manual control mode. If this parameter is set to true, the mouseenter and mouseleave events do not take effect.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "visible",
+      "sample": "visible-show",
+      "type": "String",
+      "desc": "Indicated intelligent display mode; The value of this attribute can be auto or always",
+      "defaultValue": "The default value of this attribute is always."
+    },
+    {
+      "name": "popper-class",
+      "sample": "popper-class",
+      "type": "String",
+      "desc": "Add a class name for the tooltip popper.",
+      "defaultValue": ""
+    },
+    {
+      "name": "enterable",
+      "sample": "enterable",
+      "type": "Boolean",
+      "desc": "Whether the mouse can go to the tooltip",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "hide-after",
+      "sample": "open-delay",
+      "type": "Number",
+      "desc": "Delay for automatically hiding the tooltip, in milliseconds. If the value is 0, the tooltip is not automatically hidden.",
+      "defaultValue": "The default value of this attribute is 0"
+    },
+    {
+      "name": "tabindex",
+      "sample": "tabindex",
+      "type": "Number",
+      "desc": "Configure this element. The configured attributes will be automatically added to the trigger source of this component.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "tooltip-content",
+      "type": "",
+      "desc": "Default slot",
+      "defaultValue": ""
+    },
+    {
+      "name": "content",
+      "sample": "tooltip-content",
+      "type": "",
+      "desc": "Content",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+@import '../custom.less';
+@import '../mixins/common.less';
+
+@editor-wrapper-prefix-cls: ~'@{css-prefix}editor-wrapper';
+@editor-prefix-cls: ~'@{css-prefix}editor';
+
+.@{editor-wrapper-prefix-cls} {
+  @apply border border-solid border-color-border;
+  @apply rounded;
+
+  .ql-toolbar.ql-snow {
+    @apply pt-2 pr-4 pb-1 pl-4;
+    @apply border-none;
+
+    .ql-formats {
+      @apply mr-4;
+      @apply mb-1;
+
+      .ql-picker-label {
+        @apply p-0;
+        @apply border-none;
+        @apply pt-0 pr-7 pb-0 pl-2;
+
+        &:hover,
+        &.ql-active {
+          @apply text-color-text-primary;
+        }
+      }
+
+      span.ql-font,
+      span.ql-size,
+      span.ql-lineheight,
+      span.ql-header {
+        .ql-picker-label {
+          @apply text-color-text-primary;
+          @apply border border-solid border-transparent;
+          @apply rounded-sm;
+
+          > svg {
+            @apply hidden;
+          }
+
+          &::after {
+            @apply content-[''];
+            @apply absolute;
+            @apply ~"w-3.5";
+            @apply ~'h-3.5';
+            @apply right-2;
+            top: calc(50% + 1px);
+            @apply ~"-translate-y-2/4";
+            background: url(../images/chevron-down.svg) no-repeat center/100%;
+          }
+        }
+
+        .ql-picker-label:hover {
+          @apply border-color-border-hover;
+        }
+      }
+
+      span.ql-font {
+        @apply w-24;
+      }
+
+      span.ql-lineheight {
+        > span {
+          width: 60px;
+        }
+      }
+
+      span.ql-header {
+        width: 104px;
+      }
+
+      > span.ql-picker:not(:last-of-type) {
+        @apply mr-2;
+      }
+
+      span.ql-picker.ql-expanded,
+      span.ql-picker.ql-expanded:hover {
+        .ql-picker-label {
+          @apply border-color-brand-hover;
+
+          svg {
+            @apply fill-color-icon-hover;
+          }
+        }
+
+        .ql-picker-options {
+          @apply py-1 px-0;
+          @apply border-none;
+
+          > .ql-picker-item {
+            @apply h-6;
+            @apply leading-6;
+            @apply py-0 px-2;
+            @apply text-color-text-primary;
+
+            &:hover {
+              @apply bg-color-bg-3;
+              @apply text-color-text-primary;
+            }
+          }
+        }
+
+        &.ql-align {
+          .ql-picker-options {
+            > .ql-picker-item {
+              @apply w-full;
+              @apply py-0 ~'px-1.5';
+            }
+          }
+        }
+      }
+
+      .ql-color.ql-picker,
+      .ql-background.ql-picker,
+      .ql-align.ql-picker {
+        @apply w-auto;
+        @apply mr-2;
+
+        &:last-of-type {
+          @apply mr-0;
+        }
+
+        .ql-picker-label,
+        .ql-picker-options {
+          @apply p-0;
+
+          svg {
+            @apply relative;
+            @apply right-0;
+            @apply text-base;
+            @apply -top-px;
+          }
+        }
+      }
+
+      .ql-align.ql-picker {
+        .ql-picker-label {
+          @apply py-0 ~'px-1.5';
+        }
+      }
+
+      .ql-background.ql-picker {
+        @apply mr-0;
+      }
+
+      .ql-direction {
+        @apply pt-1;
+
+        &:not(.ql-active) {
+          > div:first-child {
+            svg {
+              @apply inline-block;
+            }
+          }
+        }
+
+        &.ql-active {
+          > div:last-child {
+            svg {
+              @apply inline-block;
+            }
+          }
+        }
+      }
+
+      > button {
+        @apply p-0;
+        @apply w-auto;
+        @apply mr-2;
+
+        svg {
+          @apply text-base;
+        }
+
+        &:hover {
+          svg {
+            @apply fill-color-icon-hover;
+          }
+        }
+        &.ql-fullscreen {
+          svg {
+            @apply text-xs;
+          }
+        }
+      }
+
+      button:last-child {
+        @apply mr-0;
+      }
+    }
+  }
+
+  .@{editor-prefix-cls} {
+    &.ql-container.ql-snow {
+      @apply border-none;
+    }
+
+    .ql-editor {
+      padding: 8px 0 86px 0;
+      @apply my-0 mx-4;
+      @apply border-t border-t-color-border;
+    }
+    .ql-tooltip {
+      a.ql-preview,
+      a.ql-remove {
+        @apply relative;
+        @apply h-7;
+
+        .icon-share,
+        .icon-delete {
+          &::before {
+            @apply hidden;
+          }
+
+          &::after {
+            @apply content-[''];
+            @apply absolute;
+            @apply ~"w-3.5";
+            @apply ~'h-3.5';
+            @apply right-0;
+            top: calc(50% + 1px);
+            @apply ~"-translate-y-2/4";
+          }
+        }
+
+        .icon-share {
+          &::after {
+            background: url(../images/share-arrow.svg) no-repeat center/100%;
+          }
+        }
+
+        .icon-delete {
+          &::after {
+            background: url(../images/del.svg) no-repeat center/100%;
+          }
+        }
+      }
+    }
+  }
+
+  .toolbar-icon {
+    @apply absolute;
+    @apply ~"-left-[9999px]";
+    @apply opacity-0;
+    @apply ~'-z-[1]';
+    @apply w-0;
+    @apply h-0;
+  }
+}
+
+#editor {
+  .ql-tooltip {
+    a.ql-preview,
+    a.ql-remove {
+      min-width: 16px;
+      @apply mt-0 mr-2 mb-0 ml-0;
+      @apply p-0;
+
+      &:hover {
+        @apply bg-color-bg-1;
+      }
+    }
+
+    a.ql-preview {
+      @apply ~'ml-1.5';
+    }
+  }
+}
+.fullscreen {
+  @apply fixed;
+  @apply top-0;
+  @apply left-0;
+  @apply w-full;
+  @apply h-full;
+  @apply bg-white;
+}

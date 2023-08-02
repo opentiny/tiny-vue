@@ -1,0 +1,81 @@
+@import '../custom.less';
+
+@dialog-select-prefix-cls: ~'@{css-prefix}dialog-select';
+@dialog-box-prefix-cls: ~'@{css-prefix}dialog-box';
+
+.@{dialog-select-prefix-cls} {
+  .@{dialog-box-prefix-cls}__body {
+    @apply mt-4;
+    @apply mb-0;
+  }
+
+  .@{dialog-box-prefix-cls}__footer {
+    @apply border-t-0;
+  }
+
+  .@{dialog-select-prefix-cls}__body {
+    &-search {
+      @apply mb-4;
+    }
+
+    &-tree {
+      @apply mr-2;
+    }
+
+    &-box {
+      @apply border border-solid border-color-bg-3;
+      @apply border-l-0;
+    }
+
+    &-tree-wrapper {
+      @apply overflow-auto;
+    }
+  }
+
+  .@{dialog-select-prefix-cls}__footer {
+    @apply flex;
+    @apply justify-between;
+    @apply items-center;
+
+    &-pager {
+      .tiny-pager {
+        @apply p-0;
+
+        &__btn-prev {
+          @apply ml-0;
+        }
+      }
+    }
+  }
+
+  .tiny-grid__body-wrapper {
+    @apply border-b-0;
+  }
+
+  .tiny-grid.tiny-grid__border:after {
+    @apply border-color-bg-3;
+  }
+
+  .tiny-split-trigger-con-vertical.tiny-split-trigger-con-simple {
+    @apply ~"pl-0.5";
+    @apply ~"pr-0.5";
+  }
+
+  .tiny-split-trigger-vertical {
+    @apply border-color-border;
+  }
+
+  .tiny-split-wrapper {
+    box-shadow: none;
+  }
+
+  &.radio-check {
+    .tiny-split-trigger-con-vertical.tiny-split-trigger-con-simple {
+      @apply hidden;
+    }
+
+    .tiny-dialog-select__body-tree {
+      @apply mr-0;
+    }
+  }
+}

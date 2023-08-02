@@ -1,0 +1,56 @@
+{
+  "name": "internal-cli",
+  "private": true,
+  "type": "commonjs",
+  "version": "1.0.5-mf.0",
+  "description": "internal-cli",
+  "devDependencies": {
+    "@opentiny-internal/unplugin-virtual-template": "workspace:*",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "7.16.7",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@types/fs-extra": "^11.0.1",
+    "@vue/tsconfig": "^0.4.0",
+    "chalk": "2.4.2",
+    "commander": "^10.0.0",
+    "esbuild-register": "^3.4.2",
+    "find-up": "^5.0.0",
+    "fs-extra": "^11.1.0",
+    "handlebars": "4.7.7",
+    "prettier": "2.3.0",
+    "rollup": "^3.7.3",
+    "semver": "^7.3.8",
+    "tsup": "^6.5.0",
+    "vite": "^4.3.8"
+  },
+  "bin": {
+    "cli": "./dist/cjs/index.js"
+  },
+  "main": "./dist/cjs/index.js",
+  "scripts": {
+    "build": "tsup",
+    "// -------注意带 # 开头的脚本命令不要直接执行------- ": "",
+    "build:entry": "esno src/index.ts build:entry",
+    "#build:entry1": "node dist/index.js build:entry",
+    "build:entry-app": "esno src/commands/build/build-entry-app.ts",
+    "// ---------------------build 构建--------------------- ": "",
+    "build:ui": "esno src/index.ts build:ui",
+    "build:ui1": "pnpm build && node dist/index.js build:ui",
+    "// #build:runtime-vue 构建适用于 Vue2/Vue3 的组件 Runtime (按需加载)": "",
+    "build:runtime": "pnpm build:entry-app && esno src/index.ts build:runtime",
+    "// ----------------------辅助脚本---------------------- ": "",
+    "create:ui": "esno src/commands/create/create-ui.ts",
+    "sync-icons": "esno src/commands/create/sync-icons.ts",
+    "create:icon-saas": "esno src/index.ts create:icon-saas",
+    "clean:build": "esno src/commands/clean.ts",
+    "create:mapping": "esno src/commands/create/create-mapping.ts"
+  },
+  "dependencies": {
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
+    "esno": "^0.16.3",
+    "fast-glob": "^3.2.12",
+    "vite-plugin-dts": "^2.3.0",
+    "vite-svg-loader": "^3.6.0"
+  }
+}

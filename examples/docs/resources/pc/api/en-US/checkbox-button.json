@@ -1,0 +1,76 @@
+{
+  "checkbox-button-attrs": [
+    {
+      "name": "label",
+      "sample": "checkbox-group",
+      "type": "String , Number , Boolean",
+      "desc": "Value in the selected state (This parameter is valid only when checkbox-group or the bound object type is array.) The optional value of this attribute is medium-",
+      "defaultValue": ""
+    },
+    {
+      "name": "true-label",
+      "sample": "text",
+      "type": "String , Number",
+      "desc": "Value when selected",
+      "defaultValue": ""
+    },
+    {
+      "name": "false-label",
+      "sample": "text",
+      "type": "String , Number",
+      "desc": "Value when no option is selected",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "with-border",
+      "type": "Boolean",
+      "desc": "Disable",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "name",
+      "sample": "checkbox-group",
+      "type": "String",
+      "desc": "Native name attribute",
+      "defaultValue": ""
+    },
+    {
+      "name": "text",
+      "sample": "text",
+      "type": "String",
+      "desc": "Text",
+      "defaultValue": "The default value of this attribute is Function."
+    },
+    {
+      "name": "modelValue / v-model",
+      "sample": "checkbox-button",
+      "type": "String , Number , Boolean",
+      "desc": "Bound Value",
+      "defaultValue": ""
+    },
+    {
+      "name": "events",
+      "sample": "checkbox-group",
+      "type": "Object",
+      "desc": "Native event",
+      "defaultValue": ""
+    },
+    {
+      "name": "checked",
+      "sample": "checkbox-button",
+      "type": "Boolean",
+      "desc": "Currently selected",
+      "defaultValue": "The default value of this attribute is false."
+    }
+  ],
+  "checkbox-button-slots": [
+    {
+      "name": "default",
+      "sample": "with-border",
+      "type": "",
+      "desc": "Checkbox-button content",
+      "defaultValue": ""
+    }
+  ]
+}

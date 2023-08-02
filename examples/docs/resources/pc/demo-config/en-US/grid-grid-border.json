@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>Table property setting <code>border</code>Adds a border to the table. </p>\n",
+    "link": "grid/tiny-first-menu/grid-border",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-grid-border"
+  }
+]

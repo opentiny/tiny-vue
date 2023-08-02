@@ -1,0 +1,477 @@
+@import '../mixins/common.less';
+@import '../custom.less';
+
+.@{css-prefix}menu.menu-hor {
+  @apply mb-0;
+  min-height: 30px; // 无数据时也显示蓝条
+  min-width: 300px; // 给菜单定义最小宽度，使之缩放有下拉箭头时候不会掉下来
+  @apply text-sm;
+
+  > ul {
+    > li {
+      @apply inline-block;
+      @apply -ml-1;
+      @apply relative;
+      @apply text-center;
+      @apply p-0;
+      @apply m-0;
+
+      > a {
+        @apply block;
+        @apply py-0 ~'px-2.5';
+        min-width: 120px;
+        @apply -mr-px;
+        @apply text-color-text-inverse;
+        @apply text-base;
+
+        span.menu-icon {
+          @apply mr-2;
+          @apply ~'-top-0.5';
+        }
+      }
+
+      .submenu {
+        > li {
+          > a {
+            @apply text-color-text-primary;
+
+            &:hover,
+            &:focus {
+              @apply bg-color-bg-6;
+            }
+
+            &.active,
+            &:active {
+              @apply bg-color-bg-2;
+            }
+          }
+
+          > span {
+            &.icon-starActive {
+              @apply left-2;
+            }
+
+            &.icon-transpond {
+              @apply right-2;
+            }
+          }
+        }
+      }
+
+      &.node-selected,
+      &:hover {
+        > a {
+          @apply border-r-0;
+        }
+      }
+
+      &:last-child {
+        > a {
+          @apply border-r-0;
+        }
+      }
+    }
+
+    li {
+      @apply p-0;
+      @apply h-12;
+      line-height: 48px;
+      @apply relative;
+
+      > a {
+        min-width: 60px;
+        @apply w-full;
+        @apply h-full;
+        @apply text-color-text-inverse;
+
+        &:hover,
+        &:focus,
+        &:active {
+          @apply text-color-text-inverse;
+          @apply no-underline;
+          @apply bg-color-bg-3;
+        }
+      }
+    }
+  }
+
+  ul {
+    @apply p-0;
+    @apply m-0;
+    @apply bg-color-bg-4;
+  }
+
+  // 设置此样式可使子菜单向左飘
+  .menus-left,
+  .menus-left .submenu {
+    @apply left-auto;
+    @apply right-full;
+  }
+
+  // 居顶导航菜单--垂直下拉
+  .node-selected {
+    > .submenu {
+      @apply left-auto;
+      @apply ~'mt-0.5';
+
+      > li {
+        &.node-selected {
+          @apply bg-color-bg-6;
+
+          a {
+            @apply text-color-text-primary;
+
+            &:hover {
+              @apply text-color-brand;
+              @apply bg-color-bg-1;
+            }
+          }
+        }
+
+        .submenu {
+          @apply -mt-10;
+          @apply ~'ml-0.5';
+        }
+      }
+
+      .node-selected > .submenu {
+        @apply left-full;
+      }
+    }
+
+    .submenu {
+      @apply bg-color-bg-1;
+      @apply border border-solid border-color-border;
+      @apply shadow-sm;
+    }
+  }
+
+  // 居顶导航菜单--多种类下拉
+  .menu-dropdown {
+    @apply mt-0;
+
+    .menu-group {
+      padding: 0 0 0 15px;
+      @apply table-cell;
+      @apply text-left;
+      @apply break-all;
+      min-width: 330px;
+      max-width: 350px;
+      @apply font-normal;
+      @apply align-top;
+
+      li {
+        line-height: 30px;
+        @apply inline-block;
+        @apply mr-2;
+
+        &.menu-row {
+          @apply block;
+          .clearfix();
+        }
+
+        a {
+          @apply pr-2;
+        }
+      }
+
+      &:last-child {
+        @apply border-r-0;
+      }
+    }
+
+    .memu-group-sub {
+      @apply font-normal;
+      @apply border-none;
+      line-height: 25px;
+      .clearfix();
+      @apply block;
+
+      li {
+        @apply border-0;
+      }
+    }
+  }
+
+  .submenu {
+    @apply mt-0;
+
+    li {
+      @apply p-0;
+      @apply h-10;
+      @apply leading-10;
+
+      .starActive-favorite {
+        @apply text-color-warning;
+      }
+
+      a {
+        padding: 0 35px 0 12px;
+        @apply whitespace-nowrap;
+        @apply text-left;
+      }
+
+      span {
+        @apply absolute;
+        @apply text-color-text-primary;
+      }
+    }
+  }
+
+  .submenu,
+  .menu-dropdown {
+    @apply absolute;
+    @apply z-10;
+    @apply border-t-0;
+    @apply mt-0;
+  }
+
+  span.icon-starActive,
+  span.icon-transpond {
+    @apply absolute;
+  }
+
+  span.icon-transpond {
+    right: 5px;
+    @apply mr-0;
+  }
+
+  span.icon-starActive {
+    @apply left-0;
+
+    & + a {
+      padding-left: 35px;
+    }
+  }
+}
+
+.menu-roll {
+  > ul {
+    .clearfix();
+
+    > li {
+      .clearfix();
+      @apply hidden;
+      @apply ml-0;
+
+      a {
+        height: 45px;
+        @apply font-bold;
+        min-width: 30px;
+        @apply m-0;
+        @apply py-0 ~'px-1.5';
+        @apply text-left;
+      }
+
+      &.node-selected > a {
+        @apply float-left;
+        @apply w-full;
+      }
+    }
+  }
+
+  .submenu {
+    @apply text-left;
+    line-height: 30px;
+    @apply left-full;
+    margin-top: 45px;
+    min-width: 180px;
+
+    .submenu {
+      margin-top: -31px;
+      top: inherit; // 菜单归popup管之后，位置重置
+    }
+
+    li {
+      @apply py-0 ~'px-2.5';
+      height: 45px;
+      line-height: 45px;
+
+      a {
+        @apply py-0 ~'px-1.5';
+        @apply block;
+        padding-right: 27px;
+      }
+
+      span {
+        float: right;
+        margin: 5px 0 0 10px;
+      }
+
+      span.@{css-prefix}icon {
+        @apply !float-none;
+      }
+
+      span.icon-starActive,
+      span.icon-transpond {
+        position: initial;
+      }
+    }
+  }
+
+  // 居顶导航菜单--水平二级菜单
+  .node-selected {
+    @apply block;
+
+    > .submenu {
+      @apply block;
+      @apply left-full;
+      @apply m-0;
+      min-width: 720px;
+
+      li {
+        @apply float-left;
+      }
+    }
+  }
+}
+
+.roll-popup {
+  > ul {
+    > li {
+      @apply block;
+
+      > .submenu {
+        @apply hidden;
+      }
+    }
+  }
+}
+
+// 居顶菜单出现下拉小三角时叠加的样式-与menu-hor同级
+.hor-dropdown {
+  @apply relative;
+  @apply ~'z-[100]'; // 由1改为100，使菜单在grid（z-inde:99）拖拽线上方显示
+
+  > ul,
+  .hor-dropdown-content {
+    @apply float-left;
+  }
+}
+
+.hor-dropdown-content {
+  @apply relative;
+  @apply text-color-text-inverse;
+
+  > span {
+    @apply w-20;
+    @apply text-center;
+    @apply inline-block;
+    line-height: 31px;
+    @apply relative;
+    @apply ~'z-[1]';
+    @apply bg-color-bg-3;
+    line-height: 46px;
+
+    i {
+      width: 15px;
+      @apply h-4;
+      @apply pt-px;
+      @apply rounded-sm;
+      @apply cursor-pointer;
+      @apply border border-solid border-color-border;
+    }
+  }
+
+  .dropdown-menu {
+    @apply absolute;
+    min-width: 140px;
+    padding: 5px;
+    @apply right-0;
+    @apply -mt-px;
+    @apply bg-color-bg-6;
+    padding: 5px 0;
+
+    li {
+      @apply leading-6;
+      @apply ~'py-0.5 px-2.5';
+      @apply bg-color-bg-6;
+
+      a {
+        @apply text-color-text-inverse;
+      }
+
+      &:hover {
+        .box-shadow(inset 0 0 4px theme('colors.color.bg.6'));
+        border-radius: 3px;
+        @apply border border-solid border-color-border;
+        @apply bg-color-bg-3;
+      }
+    }
+  }
+}
+
+// top menu ver end
+
+.menu-horline {
+  > ul {
+    > li {
+      a {
+        @apply font-normal;
+
+        span.@{css-prefix}icon {
+          margin-right: 5px;
+        }
+      }
+
+      position: inherit;
+
+      &.node-more {
+        @apply relative;
+
+        > .submenu {
+          @apply left-0;
+
+          > li {
+            @apply float-none;
+
+            > a {
+              @apply text-left;
+            }
+          }
+
+          span.@{css-prefix}icon {
+            @apply ~'ml-[5px]';
+          }
+        }
+      }
+
+      &.node-selected {
+        position: inherit;
+      }
+    }
+  }
+
+  .submenu {
+    @apply min-w-full;
+
+    li {
+      @apply float-left;
+
+      a {
+        @apply py-0 px-2;
+        margin: 5px 0;
+        line-height: 35px;
+        @apply text-center;
+      }
+
+      span.@{css-prefix}icon {
+        @apply !float-none;
+      }
+
+      span.icon-starActive,
+      span.icon-transpond {
+        position: initial;
+      }
+    }
+  }
+
+  .node-selected > .submenu {
+    height: 45px;
+    @apply left-0;
+
+    li {
+      line-height: 45px;
+    }
+  }
+}

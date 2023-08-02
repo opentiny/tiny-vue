@@ -1,0 +1,495 @@
+@import '../mixins/input.less';
+@import '../mixins/common.less';
+@import '../custom.less';
+@import '../transition/icon.less';
+
+@textarea-prefix-cls: ~'@{css-prefix}textarea';
+@input-prefix-cls: ~'@{css-prefix}input';
+@input-group-prefix-cls: ~'@{css-prefix}input-group';
+
+.@{textarea-prefix-cls} {
+  @apply relative;
+  @apply inline-block;
+  @apply w-full;
+  @apply align-bottom;
+  @apply text-xs;
+
+  &.is-disabled &__inner {
+    @apply bg-color-bg-4;
+    @apply border-color-border-disabled;
+    @apply text-color-text-secondary;
+    @apply cursor-not-allowed;
+    .placeholder(@color: theme('colors.color.text.placeholder'));
+  }
+
+  &.is-exceed {
+    .@{textarea-prefix-cls}__inner {
+      @apply border-color-error;
+    }
+
+    .@{input-prefix-cls}__count {
+      @apply border-color-error;
+    }
+  }
+
+  .@{input-prefix-cls}__count {
+    @apply text-color-text-secondary;
+    @apply bg-color-bg-1;
+    @apply text-xs;
+    @apply absolute;
+    @apply bottom-1;
+    @apply right-4;
+  }
+
+  &__inner {
+    @apply block;
+    @apply w-full;
+    min-height: 60px;
+    @apply text-color-text-primary;
+    @apply border border-solid border-color-border;
+    @apply rounded-sm;
+    @apply bg-color-bg-1;
+    @apply py-2 px-3;
+    @apply leading-normal;
+    font-size: inherit;
+    @apply resize-y;
+    @apply box-border;
+    transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    .placeholder(theme('colors.color.text.placeholder'));
+
+    &:hover,
+    &:focus {
+      @apply outline-0;
+      @apply border-color-border-hover;
+    }
+
+    &:focus {
+      @apply border-color-border-focus;
+      @apply caret-color-brand;
+    }
+
+    &:active {
+      @apply border-color-border-focus;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-1;
+
+    &:horizontal {
+      @apply h-1;
+    }
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-sm;
+    @apply w-1;
+    @apply bg-color-text-disabled;
+  }
+  &.is-display-only {
+    .@{textarea-prefix-cls}-display-only {
+      .@{textarea-prefix-cls}-display-only__content {
+        @apply left-0;
+        @apply max-w-full;
+        @apply text-ellipsis;
+        display: -webkit-box;
+        /* autoprefixer: ignore next */
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+        @apply overflow-hidden;
+        @apply break-words;
+        @apply whitespace-pre-wrap;
+      }
+    }
+    .@{textarea-prefix-cls}-autosize-display-only {
+      .@{textarea-prefix-cls}-display-only__content {
+        @apply left-0;
+        @apply max-w-full;
+        @apply absolute;
+        @apply break-words;
+        @apply whitespace-pre-line;
+        @apply leading-normal;
+      }
+    }
+    .@{textarea-prefix-cls}__inner {
+      @apply h-0;
+      @apply p-0;
+      @apply border-none;
+      @apply invisible;
+    }
+  }
+}
+
+.@{input-prefix-cls} {
+  @apply relative;
+  @apply text-xs;
+  @apply inline-table;
+  @apply w-full;
+
+  &::-webkit-scrollbar {
+    @apply ~'z-[11]';
+    @apply ~'w-1.5';
+
+    &:horizontal {
+      @apply ~'h-1.5';
+    }
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    @apply ~'w-1.5';
+    @apply bg-color-bg-2;
+  }
+
+  &::-webkit-scrollbar-corner {
+    @apply bg-color-bg-1;
+  }
+
+  &::-webkit-scrollbar-track {
+    @apply bg-color-bg-1;
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    @apply bg-color-bg-1;
+    @apply ~'w-1.5';
+  }
+
+  &.is-exceed &__suffix &__count {
+    @apply text-color-error;
+  }
+
+  &.is-disabled &__inner {
+    @apply cursor-not-allowed;
+    @apply border border-solid border-color-border-disabled;
+    @apply text-color-text-secondary;
+    @apply bg-color-bg-4;
+    .placeholder(@color:theme('colors.color.text.placeholder'));
+  }
+
+  &.is-disabled &__icon {
+    @apply cursor-not-allowed;
+
+    &.@{css-prefix}svg {
+      &,
+      &:hover {
+        @apply fill-color-icon-disabled;
+      }
+    }
+  }
+
+  &.is-disabled &__prefix,
+  &.is-disabled &__suffix {
+    .@{css-prefix}svg {
+      &,
+      &:hover {
+        @apply fill-color-icon-disabled;
+      }
+    }
+  }
+
+  &.is-exceed &__inner {
+    @apply border-color-error;
+  }
+
+  & &__clear {
+    @apply text-base;
+    @apply cursor-pointer;
+    transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    &,
+    &:hover {
+      @apply fill-color-text-placeholder;
+    }
+  }
+
+  & &__count {
+    @apply h-full;
+    @apply inline-flex;
+    @apply items-center;
+    @apply text-color-text-placeholder;
+    @apply text-xs;
+
+    .@{input-prefix-cls}__count-inner {
+      @apply bg-color-bg-1;
+      line-height: initial;
+      @apply inline-block;
+    }
+  }
+
+  &__inner {
+    @apply w-full;
+    @apply border border-solid border-color-border;
+    @apply rounded-sm;
+    @apply text-color-text-primary;
+    @apply bg-color-bg-1;
+    font-size: inherit;
+    @apply h-7;
+    line-height: 26px;
+    @apply py-0 px-3;
+    @apply outline-0;
+    @apply inline-block;
+    @apply box-border;
+    @apply appearance-none;
+    transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    .placeholder(@color: theme('colors.color.text.placeholder'));
+    @apply text-ellipsis;
+    @apply overflow-hidden;
+    @apply whitespace-nowrap;
+
+    &:hover,
+    &:focus {
+      @apply outline-0;
+      @apply border-color-border-hover;
+    }
+
+    &:focus {
+      @apply border-color-border-focus;
+      @apply caret-color-brand;
+    }
+
+    &:active {
+      @apply outline-0;
+      @apply border-color-border-focus;
+    }
+
+    &[type='password'] + .@{input-prefix-cls}__suffix {
+      .@{input-prefix-cls}__suffix-inner {
+        svg {
+          @apply fill-color-border;
+        }
+      }
+    }
+
+    &::-ms-clear {
+      @apply hidden;
+      @apply w-0;
+      @apply h-0;
+    }
+  }
+
+  &__prefix,
+  &__suffix {
+    @apply absolute;
+    @apply ~"top-1/2";
+    @apply ~"-translate-y-2/4";
+    @apply transition-all duration-300;
+    @apply text-center;
+    @apply text-color-text-secondary;
+    @apply flex;
+    @apply items-center;
+
+    svg {
+      @apply fill-color-text-placeholder;
+
+      &:hover {
+        @apply fill-color-brand-hover;
+      }
+    }
+  }
+
+  &.is-active &__inner,
+  &__inner:focus {
+    @apply border-color-border-focus;
+    @apply outline-0;
+  }
+
+  &__suffix {
+    @apply right-3;
+    @apply transition-all duration-300;
+    @apply pointer-events-none;
+    @apply ~'z-[1]';
+
+    &:hover {
+      @apply cursor-pointer;
+    }
+  }
+
+  &__suffix-inner {
+    pointer-events: all;
+    @apply flex;
+    @apply justify-start;
+    @apply items-center;
+
+    svg {
+      @apply text-base;
+    }
+  }
+
+  &__prefix {
+    @apply pl-3;
+    @apply transition-all duration-300;
+    @apply text-base;
+    & > div {
+      @apply flex;
+    }
+  }
+
+  &__icon {
+    @apply h-full;
+    line-height: 30px;
+    @apply text-center;
+    @apply transition-all duration-300;
+    @apply text-base;
+    @apply fill-color-border;
+
+    &:after {
+      @apply content-[''];
+      @apply h-full;
+      @apply w-0;
+      @apply inline-block;
+      @apply align-middle;
+    }
+
+    .svg-operationfaild {
+      &,
+      &:hover {
+        @apply fill-color-icon-secondary;
+      }
+    }
+  }
+
+  &__validateIcon {
+    @apply pointer-events-none;
+  }
+
+  &-suffix &__inner {
+    @apply pr-12;
+    @apply pl-3;
+  }
+
+  &-prefix &__inner {
+    @apply pl-12;
+    @apply pr-7;
+  }
+
+  &-medium {
+    .input-size(32px);
+  }
+
+  &-small {
+    .input-size(28px);
+  }
+
+  &-mini {
+    .input-size(24px);
+  }
+
+  &.is-display-only {
+    .@{input-prefix-cls}-display-only {
+      @apply relative;
+
+      .@{input-prefix-cls}__inner {
+        @apply invisible;
+        @apply h-auto;
+        @apply leading-none;
+        @apply border-0;
+      }
+
+      &__content {
+        @apply absolute;
+        @apply top-2/4;
+        @apply left-0;
+        @apply ~"-translate-y-2/4";
+        @apply max-w-full;
+        @apply truncate;
+      }
+    }
+  }
+}
+
+.@{input-group-prefix-cls} {
+  @apply leading-normal;
+  @apply inline-table;
+  @apply w-full;
+  @apply border-separate;
+  @apply border-spacing-0;
+
+  > .@{input-prefix-cls}__inner {
+    @apply align-middle;
+    @apply table-cell;
+  }
+
+  &__append,
+  &__prepend {
+    @apply bg-color-bg-2;
+    @apply text-color-text-secondary;
+    @apply border border-solid border-color-border;
+    @apply rounded-sm;
+    @apply py-0 px-5;
+    @apply w-px;
+    @apply align-middle;
+    @apply table-cell;
+    @apply relative;
+    @apply whitespace-nowrap;
+
+    &:focus {
+      @apply outline-0;
+    }
+
+    .@{css-prefix}button,
+    .@{css-prefix}select {
+      @apply inline-block;
+      @apply ~'-my-2.5' -mx-5;
+    }
+
+    .@{css-prefix}button,
+    .@{css-prefix}input {
+      font-size: inherit;
+    }
+
+    button.@{css-prefix}button,
+    div.@{css-prefix}select .@{input-prefix-cls}__inner,
+    div.@{css-prefix}select:hover .@{input-prefix-cls}__inner {
+      @apply border-transparent;
+      @apply bg-transparent;
+      color: inherit;
+      @apply border-t-0;
+      @apply border-b-0;
+    }
+
+    .@{css-prefix}select .@{css-prefix}input.is-focus .@{input-prefix-cls}__inner {
+      @apply border-transparent;
+    }
+  }
+
+  &-prepend .@{input-prefix-cls}__inner,
+  &__append {
+    @apply rounded-tl-none;
+    @apply rounded-bl-none;
+  }
+
+  &-append .@{input-prefix-cls}__suffix {
+    top: calc(50% - 7px);
+  }
+
+  &-append .@{input-prefix-cls}__inner,
+  &__prepend {
+    @apply rounded-tr-none;
+    @apply rounded-br-none;
+  }
+
+  &__prepend {
+    @apply border-r-0;
+  }
+
+  &__append {
+    @apply border-l-0;
+  }
+}
+
+.@{css-prefix-iconfont}-loading {
+  @apply text-sm;
+  @apply leading-none;
+  @apply align-text-top;
+  animation: rotating 2s linear infinite;
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "attrs": [
+    {
+      "name": "arrow",
+      "sample": "base",
+      "type": "Boolean ",
+      "desc": "是否显示工具提示的箭头",
+      "defaultValue": "true"
+    },
+    {
+      "name": "pop-position",
+      "sample": "arror-position",
+      "type": "String ",
+      "desc": "引导框箭头距离，该属性的可选值为 top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end",
+      "defaultValue": "bottom"
+    },
+    {
+      "name": "dom-data",
+      "sample": "base",
+      "type": "Array ",
+      "desc": "用户引导参数",
+      "defaultValue": "[]"
+    },
+    {
+      "name": "main-axis",
+      "sample": "guide-poistion-mainAxis",
+      "type": "Number ",
+      "desc": "设置引导框主轴（纵轴）距离",
+      "defaultValue": "18"
+    },
+    {
+      "name": "cross-axis",
+      "sample": "guide-poistion-crossAxis",
+      "type": "Number ",
+      "desc": "设置引导框横轴距离",
+      "defaultValue": "0"
+    },
+    {
+      "name": "alignment-axis",
+      "sample": "guide-poistion-alignmentAxis",
+      "type": "Number ",
+      "desc": "设置引导框对齐轴距离",
+      "defaultValue": "0"
+    },
+    {
+      "name": "width",
+      "sample": "size",
+      "type": "Number ",
+      "desc": "设置引导框宽度",
+      "defaultValue": "510"
+    },
+    {
+      "name": "height",
+      "sample": "size",
+      "type": "Number ",
+      "desc": "设置引导框高度",
+      "defaultValue": ""
+    },
+    {
+      "name": "modal-overlay-opening-padding",
+      "sample": "",
+      "type": "Number ",
+      "desc": "在模态叠加层开口周围添加的填充量",
+      "defaultValue": "0"
+    },
+    {
+      "name": "modal-overlay-opening-radius",
+      "sample": "",
+      "type": "Number ",
+      "desc": "在模态叠加层开口周围添加的边界半径量",
+      "defaultValue": "0"
+    },
+    {
+      "name": "light-class",
+      "sample": "",
+      "type": "String ",
+      "desc": "当元素突出显示时（即，当其步骤处于活动状态时）应用于元素的额外类",
+      "defaultValue": ""
+    }
+  ],
+  "domDataattrs": [
+    {
+      "name": "title",
+      "sample": "base",
+      "type": "String ",
+      "desc": "表示需要设置的头部标题名",
+      "defaultValue": ""
+    },
+    {
+      "name": "text",
+      "sample": "base",
+      "type": "String ",
+      "desc": "表示需要填入的内容区（可以是一个 html）",
+      "defaultValue": ""
+    },
+    {
+      "name": "domElement",
+      "sample": "base",
+      "type": "String ",
+      "desc": "表示需要绑定指引的元素类名（只能是类名，若未传入则显示为上下左右居中且无指示箭头）",
+      "defaultValue": ""
+    },
+    {
+      "name": "hightBox",
+      "sample": "dom-hight",
+      "type": "Array ",
+      "desc": "添加需要高亮的元素的类名",
+      "defaultValue": ""
+    },
+    {
+      "name": "classes",
+      "sample": "",
+      "type": "String ",
+      "desc": "要添加到步骤的内容元素的一串额外类",
+      "defaultValue": ""
+    },
+    {
+      "name": "beforeShow",
+      "sample": "callback",
+      "type": "Fnction ",
+      "desc": "展示前回调",
+      "defaultValue": ""
+    },
+    {
+      "name": "beforeHide",
+      "sample": "callback",
+      "type": "Fnction ",
+      "desc": "隐藏前回调",
+      "defaultValue": ""
+    },
+    {
+      "name": "hide",
+      "sample": "callback",
+      "type": "Fnction ",
+      "desc": "隐藏回调",
+      "defaultValue": ""
+    },
+    {
+      "name": "cancel",
+      "sample": "callback",
+      "type": "Fnction ",
+      "desc": "关闭取消回调",
+      "defaultValue": ""
+    },
+    {
+      "name": "destroy",
+      "sample": "callback",
+      "type": "Fnction ",
+      "desc": "销毁回调",
+      "defaultValue": ""
+    },
+    {
+      "name": "complete",
+      "sample": "callback",
+      "type": "Fnction ",
+      "desc": "完成回调",
+      "defaultValue": ""
+    },
+    {
+      "name": "button",
+      "sample": "base",
+      "type": "Array ",
+      "desc": "表示需要设置的按钮组",
+      "defaultValue": ""
+    },
+    {
+      "name": "button.text",
+      "sample": "base",
+      "type": "String ",
+      "desc": "表示需要设置的按钮名",
+      "defaultValue": ""
+    },
+    {
+      "name": "button.action",
+      "sample": "base",
+      "type": "String ",
+      "desc": "表示需要执行的步骤，包含'next(下一步)、back(返回)、complete(完成)'",
+      "defaultValue": ""
+    },
+    {
+      "name": "button.classes",
+      "sample": "",
+      "type": "String ",
+      "desc": "表示可以为按钮设置的样式类名",
+      "defaultValue": ""
+    },
+    {
+      "name": "button.secondary",
+      "sample": "content-steps",
+      "type": "Boolean ",
+      "desc": "表示为按钮设置透明样式",
+      "defaultValue": "false"
+    }
+  ],
+  "slots": [
+    {
+      "name": "main",
+      "sample": "dom-hight",
+      "type": "",
+      "desc": "设置引导框内容",
+      "defaultValue": ""
+    }
+  ]
+}

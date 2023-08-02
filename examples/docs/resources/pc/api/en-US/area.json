@@ -1,0 +1,104 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "Set the default value of a region.",
+      "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "size",
+      "type": "String",
+      "desc": "Set the component size. The options are medium, small, and mini.",
+      "defaultValue": ""
+    },
+    {
+      "name": "placeholder",
+      "sample": "custom-service",
+      "type": "String",
+      "desc": "Placeholder when data is empty",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-class",
+      "sample": "",
+      "type": "String",
+      "desc": "Add a class name for the popper. For details, see the popover component.",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-append-to-body",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "Indicates whether to insert the pop-up box to the body element. If a fault occurs in locating the fault in the dialog box that is displayed, set this parameter to false (for details, see the select component)",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled",
+      "type": "Boolean",
+      "desc": "Disable the text box. The default value is false",
+      "defaultValue": ""
+    },
+    {
+      "name": "props",
+      "sample": "custom-service",
+      "type": "Object",
+      "desc": "Set the data mapping field when customizing a service. The default value is {label:'name_cn', //Display the field corresponding to the text value:'org_id' //Display the field corresponding to the value}",
+      "defaultValue": ""
+    },
+    {
+      "name": "fetch-jcr",
+      "sample": "custom-service",
+      "type": "Function",
+      "desc": "User-defined service for obtaining regional JCRs",
+      "defaultValue": ""
+    },
+    {
+      "name": "fetch-region",
+      "sample": "custom-service",
+      "type": "Function",
+      "desc": "Obtain the service of a region.",
+      "defaultValue": ""
+    },
+    {
+      "name": "fetch-rep",
+      "sample": "custom-service",
+      "type": "Function",
+      "desc": "Obtain services of rep offices and rep offices.",
+      "defaultValue": ""
+    },
+    {
+      "name": "fetch-office",
+      "sample": "custom-service",
+      "type": "Function",
+      "desc": "User-defined Office service",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change-region",
+      "sample": "area-events",
+      "type": "Function(value, vm)",
+      "desc": "This event is triggered when the value of a region changes. The callback parameter is the changed value. value: new value, vm: Area component instance",
+      "defaultValue": ""
+    },
+    {
+      "name": "change-rep",
+      "sample": "area-events",
+      "type": "Function(value, vm)",
+      "desc": "This event is triggered when the value of Rep changes. The callback parameter is the changed value. value: new value, vm: Area component instance",
+      "defaultValue": ""
+    },
+    {
+      "name": "change-office",
+      "sample": "area-events",
+      "type": "Function(value, vm)",
+      "desc": "This event is triggered when the value of Office changes. The callback parameter is the changed value. value: new value, vm: Area component instance",
+      "defaultValue": ""
+    }
+  ]
+}

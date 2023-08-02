@@ -1,0 +1,34 @@
+[
+  {
+    "title": "基本用法",
+    "content": "详细用法参考如下示例",
+    "link": "breadcrumb/base",
+    "component": " Breadcrumb 面包屑",
+    "findIntroStr": "Breadcrumb 面包屑导航，作用是告诉访问者他们目前在网站中的位置以及如何返回。",
+    "demoId": "base"
+  },
+  {
+    "title": "自定义节点",
+    "content": "<p>设置子组件 BreadcrumbItem 的 默认插槽，自定义节点内容。<code>to</code> 设置路由跳转的对象，同时设置 <code>replace</code> 后将不会向 history 添加新记录。</p>\n",
+    "link": "breadcrumb/slot-default",
+    "component": " Breadcrumb 面包屑",
+    "findIntroStr": "Breadcrumb 面包屑导航，作用是告诉访问者他们目前在网站中的位置以及如何返回。",
+    "demoId": "slot-default"
+  },
+  {
+    "title": "自定义分隔符",
+    "content": "<p>设置 <code>separator</code> 或 <code>separator-icon</code> 属性，自定义分隔符。</p>\n",
+    "link": "breadcrumb/separator",
+    "component": " Breadcrumb 面包屑",
+    "findIntroStr": "Breadcrumb 面包屑导航，作用是告诉访问者他们目前在网站中的位置以及如何返回。",
+    "demoId": "separator"
+  },
+  {
+    "title": "options 配置",
+    "content": "<p>通过 <code>options</code> 总体配置每个 <code>BreadcrumbItem</code>。  </p> 设置<code>text-field</code> 指定显示字段，默认显示字段为 <code>label</code>\n",
+    "link": "breadcrumb/options",
+    "component": " Breadcrumb 面包屑",
+    "findIntroStr": "Breadcrumb 面包屑导航，作用是告诉访问者他们目前在网站中的位置以及如何返回。",
+    "demoId": "options"
+  }
+]

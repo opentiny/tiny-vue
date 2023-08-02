@@ -1,0 +1,55 @@
+{
+  "attrs": [
+    {
+      "name": "data",
+      "sample": "base-flow",
+      "type": "Array",
+      "desc": "Setting Flowchart Data",
+      "defaultValue": ""
+    },
+    {
+      "name": "base-flow",
+      "sample": "base-flow",
+      "type": "Boolean",
+      "desc": "Set the flow chart to the basic flow chart mode.",
+      "defaultValue": ""
+    },
+    {
+      "name": "page-guide",
+      "sample": "page-guide",
+      "type": "Boolean",
+      "desc": "Set the flowchart to a page wizard flowchart, which is used together with the base-flow attribute.",
+      "defaultValue": ""
+    },
+    {
+      "name": "vertical",
+      "sample": "vertical",
+      "type": "Boolean",
+      "desc": "Set the flowchart to a vertical flowchart.",
+      "defaultValue": ""
+    },
+    {
+      "name": "time-line-flow",
+      "sample": "time-line-flow",
+      "type": "Boolean",
+      "desc": "Set the flowchart to a timeline flowchart.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "base",
+      "sample": "slot-base",
+      "type": "",
+      "desc": "Basic Flowchart Slot",
+      "defaultValue": ""
+    },
+    {
+      "name": "stepbutton",
+      "sample": "slot-step-button",
+      "type": "",
+      "desc": "Page Wizard Flowchart Button Slot",
+      "defaultValue": ""
+    }
+  ]
+}

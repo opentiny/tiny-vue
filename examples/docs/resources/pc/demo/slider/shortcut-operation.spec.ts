@@ -1,0 +1,35 @@
+import { test, expect } from '@playwright/test'
+
+test('快捷键', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('http://localhost:7130/pc/slider/basic-usage')
+  const preview = page.locator('#preview')
+  const slider = preview.locator('.tiny-slider__wrapper > .tiny-slider')
+  const sliderBlock = slider.locator('div').nth(1)
+  //   鼠标按下滑块
+  await sliderBlock.hover()
+  await page.mouse.down()
+  //   快捷键左键向左移动
+  await page.keyboard.press('ArrowLeft')
+  await page.keyboard.press('ArrowLeft')
+  await page.keyboard.press('ArrowLeft')
+  await page.keyboard.press('ArrowLeft')
+  await page.keyboard.press('ArrowLeft')
+  await page.keyboard.press('ArrowLeft')
+  await page.keyboard.press('ArrowLeft')
+  await page.keyboard.press('ArrowLeft')
+  await page.keyboard.press('ArrowLeft')
+  await page.keyboard.press('ArrowLeft')
+  await page.waitForTimeout(300)
+  // 快捷键向右移动
+  await page.keyboard.press('ArrowRight')
+  await page.keyboard.press('ArrowRight')
+  await page.keyboard.press('ArrowRight')
+  await page.keyboard.press('ArrowRight')
+  await page.keyboard.press('ArrowRight')
+  await page.keyboard.press('ArrowRight')
+  await page.keyboard.press('ArrowRight')
+  await page.keyboard.press('ArrowRight')
+  await page.keyboard.press('ArrowRight')
+  await page.keyboard.press('ArrowRight')
+})

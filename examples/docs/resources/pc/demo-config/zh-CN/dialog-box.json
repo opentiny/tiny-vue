@@ -1,0 +1,154 @@
+[
+  {
+    "title": "基本用法",
+    "content": "详细用法参考如下示例",
+    "link": "dialog-box/basic-usage",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "二级弹窗",
+    "content": "<p>通过 default 默认插槽和底部操作区按钮实现二级弹窗。设置 <code>append-to-body</code> 属性后，二级弹窗的实体 DOM 结构将追加到 body 元素上。</p>\n",
+    "link": "dialog-box/secondary-dialog",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "secondary-dialog"
+  },
+  {
+    "title": "自定义标题",
+    "content": "<p>除 <code>title</code> 属性可以设置弹窗标题外，还可以通过 <code>title</code> 插槽自定义弹窗标题区的内容。</p>\n",
+    "link": "dialog-box/custom-dialog-title",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "custom-dialog-title"
+  },
+  {
+    "title": "自定义内容",
+    "content": "<p>通过 default 默认插槽自定义弹窗主体部分的内容。</p>\n",
+    "link": "dialog-box/custom-dialog-content",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "custom-dialog-content"
+  },
+  {
+    "title": "自定义底部",
+    "content": "<p>通过 <code>footer</code> 插槽自定义弹窗底部操作区内容。</p>\n",
+    "link": "dialog-box/custom-dialog-footer",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "custom-dialog-footer"
+  },
+  {
+    "title": "隐藏关闭按钮",
+    "content": "<p>默认弹窗右上角会显示关闭图标，单击可以关闭弹窗。若设置 <code>show-close</code> 为 false 后，将隐藏关闭图标，要实现关闭弹窗的功能可以通过底部操作区按钮的 click 事件切换 <code>visible</code> 属性的值为 false 。</p>\n",
+    "link": "dialog-box/hidden-close-buttons",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "hidden-close-buttons"
+  },
+  {
+    "title": "禁用 ESC 关闭",
+    "content": "<p>默认弹窗打开后，可以按下 Esc 键关闭弹窗，设置 <code>close-on-press-escape</code> 为 false 后将禁用该功能。</p>\n",
+    "link": "dialog-box/close-on-press-escape",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "close-on-press-escape"
+  },
+  {
+    "title": "弹窗距离顶部的高度",
+    "content": "<p>通过 <code>top</code> 属性指定弹窗距离窗口顶部的高度，默认为屏高的 15% 。</p>\n",
+    "link": "dialog-box/dialog-top-height",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "dialog-top-height"
+  },
+  {
+    "title": "弹窗的宽度",
+    "content": "<p>通过 <code>width</code> 属性指定弹窗的宽度。</p>\n",
+    "link": "dialog-box/dialog-width",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "dialog-width"
+  },
+  {
+    "title": "点击遮罩时不关闭弹窗",
+    "content": "<p>默认弹窗打开后，可以单击遮罩层关闭弹窗，设置 <code>close-on-click-modal</code> 为 false 后将禁用该功能。</p>\n",
+    "link": "dialog-box/close-on-click-modal",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "close-on-click-modal"
+  },
+  {
+    "title": "不启用遮罩层",
+    "content": "<p>默认弹窗打开时会显示遮罩层，设置 <code>modal</code> 为 false 后将不启用遮罩层。无遮罩层时，单击弹窗外部区域仍然可以关闭弹窗。</p>\n",
+    "link": "dialog-box/no-modal",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "no-modal"
+  },
+  {
+    "title": "右侧弹窗",
+    "content": "<p>设置 <code>right-slide</code> 属性为 true 后，弹窗将从窗口右侧弹出。\n设置 <code>modal-append-to-body</code> 属性默认为 true 遮罩层应用在 body 上。</p>\n",
+    "link": "dialog-box/right-dialog",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "right-dialog"
+  },
+  {
+    "title": "隐藏标题区域",
+    "content": "<p>弹窗默认有标题区域，设置 <code>show-header</code> 为 false 后，将隐藏标题区域。</p>\n",
+    "link": "dialog-box/hidden-header",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "hidden-header"
+  },
+  {
+    "title": "弹出时禁用滚动",
+    "content": "<p>弹窗弹出后，背景页面默认仍然是不可以滚动的，设置 <code>lock-scroll</code> 为 fasle 后将不锁定被遮罩内容的滚动。</p>\n",
+    "link": "dialog-box/lock-scroll",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "lock-scroll"
+  },
+  {
+    "title": "头部和底部水平居中",
+    "content": "<p>头部标题默认显示在区域左侧，设置 <code>center</code> 为 true 后，将居中显示。</p>\n",
+    "link": "dialog-box/center",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "center"
+  },
+  {
+    "title": "可拖拽的弹窗",
+    "content": "<p>默认弹窗不可拖拽，设置 <code>draggable</code> 属性为 true 后，鼠标移入标题区域单击可拖拽，拖拽事件有 <code>@drag-start</code>、<code>drag-move</code>、<code>drag-end</code>。</p>\n",
+    "link": "dialog-box/draggable",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "draggable"
+  },
+  {
+    "title": "全屏弹窗",
+    "content": "<p>设置 <code>fullscreen</code> 属性为 true 可显示全屏弹窗，默认弹窗宽度是 500px，此时设置宽度是不生效的。</p>\n",
+    "link": "dialog-box/fullscreen",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "fullscreen"
+  },
+  {
+    "title": "弹出与关闭事件",
+    "content": "<p><code>open</code> ：对话框打开时触发，<code>opened</code> ：对话框打开动画结束时触发，<code>close</code> ：对话框关闭时触发，<code>closed</code> ：对话框关闭动画结束时触发。</p>\n",
+    "link": "dialog-box/open-close-events",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "open-close-events"
+  },
+  {
+    "title": "弹窗表单",
+    "content": "<p>通过 default 默认插槽实现嵌套表单以及表单提交的逻辑。</p>\n<p>默认关闭弹窗的时候重置表单，设置<code>is-form-reset</code> 为false,则关闭弹窗的时候不重置表格</p>",
+    "link": "dialog-box/form-in-dialog",
+    "component": " DialogBox 对话框",
+    "findIntroStr": "模态对话框，在浮层中显示，引导用户进行相关操作。",
+    "demoId": "form-in-dialog"
+  }
+]

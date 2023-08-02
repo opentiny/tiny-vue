@@ -1,0 +1,161 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@radio-button-prefix-cls: ~'@{css-prefix}radio-button';
+
+.@{radio-button-prefix-cls} {
+  .component-css-vars-radio-button();
+
+  &:first-child &__inner {
+    border-left: 1px solid var(--ti-radio-button-border-color);
+    border-radius: var(--ti-radio-button-border-radius) 0 0 var(--ti-radio-button-border-radius);
+  }
+
+  &:first-child &__orig-radio:checked + &__inner {
+    box-shadow: none;
+  }
+
+  &:last-child &__inner {
+    border-radius: 0 var(--ti-radio-button-border-radius) var(--ti-radio-button-border-radius) 0;
+  }
+
+  &:first-child:last-child &__inner {
+    border-radius: var(--ti-radio-button-border-radius);
+  }
+
+  &,
+  &__inner {
+    display: inline-block;
+    position: relative;
+    outline: 0;
+  }
+
+  &__inner {
+    color: var(--ti-radio-button-text-color);
+    font-size: var(--ti-radio-button-font-size);
+    background: var(--ti-radio-button-bg-color);
+    border: 1px solid var(--ti-radio-button-border-color);
+    padding: 12px 20px;
+    font-weight: 500;
+    border-radius: 0;
+    border-left: 0;
+    line-height: 1;
+    white-space: nowrap;
+    vertical-align: middle;
+    appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    &.is-round {
+      padding: 12px 20px;
+    }
+
+    &:hover {
+      color: var(--ti-radio-button-hover-text-color);
+      background-color: var(--ti-radio-button-checked-hover-bg-color);
+      border-color: var(--ti-radio-button-checked-hover-border-color);
+      outline: 0;
+    }
+
+    [class*='tiny-icon'] {
+      line-height: 0.9;
+
+      & + span {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  &__orig-radio {
+    opacity: 0;
+    outline: 0;
+    position: absolute;
+    z-index: -1;
+
+    &:checked {
+      & + .@{radio-button-prefix-cls}__inner {
+        color: #fff;
+        background-color: var(--ti-radio-button-checked-normal-bg-color);
+        border-color: var(--ti-radio-button-checked-normal-border-color);
+        box-shadow: var(--ti-radio-button-checked-normal-box-shadow);
+
+        &:hover {
+          background-color: var(--ti-radio-button-checked-hover-bg-color);
+          border-color: var(--ti-radio-button-checked-hover-border-color);
+          box-shadow: var(--ti-radio-button-checked-hover-box-shadow);
+        }
+      }
+    }
+
+    &:disabled {
+      & + .@{radio-button-prefix-cls}__inner {
+        color: var(--ti-radio-button-disabled-text-color);
+        border-color: var(--ti-radio-button-border-color);
+        background-color: var(--ti-radio-button-disabled-bg-color);
+        background-image: none;
+        box-shadow: none;
+        cursor: not-allowed;
+      }
+    }
+
+    &:disabled:checked {
+      & + .@{radio-button-prefix-cls}__inner {
+        background-color: var(--ti-radio-input-checked-disabled-bg-color);
+
+        &,
+        &:hover {
+          border-color: var(--ti-radio-input-checked-disabled-border-color);
+        }
+      }
+    }
+  }
+
+  &--medium &__inner {
+    font-size: var(--ti-radio-button-medium-font-size);
+    padding: 10px 20px;
+    border-radius: 0;
+
+    &.is-round {
+      padding: 10px 20px;
+    }
+  }
+
+  &--small &__inner {
+    font-size: var(--ti-radio-button-font-size);
+    padding: 9px 15px;
+    border-radius: 0;
+
+    &.is-round {
+      padding: 9px 15px;
+    }
+  }
+
+  &--mini &__inner {
+    font-size: var(--ti-radio-button-font-size);
+    padding: 7px 15px;
+    border-radius: 0;
+
+    &.is-round {
+      padding: 7px 15px;
+    }
+  }
+
+  &:focus:not(.is-focus):not(:active):not(.is-disabled) {
+    box-shadow: 0 0 2px 2px var(--ti-radio-bordered-hover-border-color);
+  }
+}

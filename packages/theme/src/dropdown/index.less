@@ -1,0 +1,157 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@dropdown-prefix-cls: ~'@{css-prefix}dropdown';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+@button-prefix-cls: ~'@{css-prefix}button';
+
+.@{dropdown-prefix-cls} {
+  .component-css-vars-dropdown();
+
+  display: inline-block;
+  position: relative;
+  color: var(--ti-dropdown-text-color);
+  font-size: var(--ti-dropdown-font-size);
+
+  span {
+    display: inline-block;
+  }
+
+  &__trigger {
+    .@{dropdown-prefix-cls}__title {
+      margin-right: var(--ti-dropdown-trigger-title-margin-right);
+      line-height: var(--ti-dropdown-line-height);
+    }
+
+    .@{svg-prefix-cls} {
+      fill: var(--ti-dropdown-icon-color);
+      font-size: var(--ti-dropdown-icon-size);
+      vertical-align: middle;
+      margin-top: -4px;
+    }
+
+    &.@{css-prefix}button .@{svg-prefix-cls} {
+      fill: var(--ti-dropdown-button-icon-color);
+      font-size: var(--ti-dropdown-button-icon-size)
+    }
+
+    &.@{css-prefix}button--default .@{svg-prefix-cls} {
+      fill: var(--ti-button-normal-text-color);
+    }
+
+    &:not(.@{dropdown-prefix-cls}__caret-button):hover {
+      color: var(--ti-dropdown-text-color-hover);
+
+      .@{svg-prefix-cls} {
+        fill: var(--ti-dropdown-icon-color-hover);
+      }
+
+      &[disabled] {
+        color: var(--ti-dropdown-text-color-disabled);
+
+        .@{svg-prefix-cls} {
+          fill: var(--ti-dropdown-text-color-disabled);
+        }
+      }
+    }
+  }
+
+  .@{css-prefix}button-group {
+    display: block;
+
+    .@{css-prefix}button {
+      float: none;
+
+      &--medium {
+        &+.@{css-prefix}button.@{css-prefix}button--medium {
+          margin-left: 0;
+        }
+      }
+
+      &--small {
+        &+.@{css-prefix}button.@{css-prefix}button--small {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  .@{dropdown-prefix-cls}__title-button {
+    padding-left: var(--ti-dropdown-title-button-padding-left);
+    padding-right: var(--ti-dropdown-title-button-padding-right);
+  }
+
+  .@{dropdown-prefix-cls}__caret-button {
+    padding-left: var(--ti-dropdown-caret-button-padding-left);
+    padding-right: var(--ti-dropdown-caret-button-padding-right);
+    position: relative;
+    border-left: none;
+    min-width: var(--ti-dropdown-caret-button-min-width);
+
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: var(--ti-dropdown-caret-line-width);
+      top: 0;
+      bottom: 0;
+      left: 0;
+      margin-top: var(--ti-dropdown-caret-line-margin-top);
+      margin-bottom: var(--ti-dropdown-caret-line-margin-bottom);
+      background-color: var(--ti-dropdown-caret-line-bg-color);
+    }
+
+    &.@{css-prefix}button--default:before {
+      background: var(--ti-dropdown-caret-line-bg-color-default);
+    }
+
+    &.@{css-prefix}button--default:hover:before {
+      background-color: var(--ti-dropdown-caret-line-bg-color-default-hover);
+    }
+
+    &:hover:not(.is-disabled):before {
+      margin-top: var(--ti-dropdown-caret-line-margin-top-hover);
+      margin-bottom: var(--ti-dropdown-caret-line-margin-bottom-hover);
+    }
+
+    svg {
+      padding-left: var(--ti-dropdown-caret-svg-padding-left);
+      margin: var(--ti-dropdown-caret-svg-margin-vertical) var(--ti-dropdown-caret-svg-margin-horizontal);
+    }
+  }
+
+  .@{dropdown-prefix-cls}-selfdefine:focus:active,
+  .@{dropdown-prefix-cls}-selfdefine:focus:not(.focusing) {
+    outline-width: 0;
+  }
+
+  [disabled] {
+    cursor: not-allowed;
+    color: var(--ti-dropdown-text-color-disabled);
+
+    svg {
+      fill: var(--ti-dropdown-text-color-disabled);
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--visible {
+    transform: rotate(180deg);
+    transform-origin: center;
+  }
+}

@@ -1,0 +1,91 @@
+@import '../mixins/button.less';
+@import '../custom.less';
+
+.dialog-pbi {
+  &.@{css-prefix}dialog {
+    .dialog-body {
+      @apply text-xs;
+      @apply font-normal;
+    }
+  }
+
+  .@{css-prefix}selected {
+    @apply text-color-brand;
+    @apply bg-color-bg-3;
+  }
+
+  .pbi_col {
+    width: 200px;
+    @apply float-left;
+  }
+
+  .pbi_list {
+    height: 460px;
+    @apply overflow-y-auto;
+    @apply border border-solid border-color-border;
+    @apply p-1;
+  }
+}
+
+// dialog 基础样式
+.@{css-prefix}dialog {
+  @apply bg-color-bg-1;
+  @apply p-0;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  -webkit-animation: dialog-fade-in 0.3s;
+  animation: dialog-fade-in 0.3s;
+
+  .dialog-head {
+    @apply bg-color-bg-1;
+    @apply text-base;
+
+    .dialog-title {
+      @apply text-color-text-primary;
+      @apply inline-block;
+      @apply text-sm;
+      @apply font-bold;
+      @apply m-0;
+    }
+
+    .dialog-operation {
+      float: right;
+
+      > a {
+        @apply text-color-text-placeholder;
+
+        &:hover {
+          @apply text-color-brand;
+        }
+
+        .@{css-prefix}small-close {
+          @apply text-base;
+        }
+      }
+    }
+  }
+
+  .dialog-body {
+    @apply w-full;
+    @apply p-6;
+    min-height: 36px;
+    @apply text-base;
+    @apply font-bold;
+    @apply overflow-auto;
+    @apply overflow-x-hidden;
+    @apply text-color-text-primary;
+    max-height: 55vh !important; // erralert警告弹窗设置最高高度
+  }
+
+  .dialog-head-alert-confirm {
+    @apply py-0 px-6;
+    @apply h-10;
+    @apply leading-10;
+    @apply border-b border-b-color-border;
+  }
+}
+
+// button 基础样式
+.@{css-prefix}toolbar {
+  @apply clear-both;
+  @apply text-center;
+}

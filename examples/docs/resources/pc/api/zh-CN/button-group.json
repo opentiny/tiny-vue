@@ -1,0 +1,99 @@
+{
+  "attrs": [
+    {
+      "name": "disabled",
+      "sample": "disabled",
+      "type": "Boolean",
+      "desc": "设置按钮组是否被禁用。",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "size",
+      "sample": "size",
+      "type": "String",
+      "desc": "设置组件大小",
+      "defaultValue": ""
+    },
+    {
+      "name": "data",
+      "sample": "data",
+      "type": "Array",
+      "desc": "按钮组数据。例：[{text: '', value: ''}]。",
+      "defaultValue": ""
+    },
+    {
+      "name": "value-field",
+      "sample": "text-value-field",
+      "type": "String",
+      "desc": "按钮值的字段值。",
+      "defaultValue": "该属性的默认值为 value"
+    },
+    {
+      "name": "text-field",
+      "sample": "text-value-field",
+      "type": "String",
+      "desc": "按钮显示文字的字段值。",
+      "defaultValue": "该属性的默认值为 text"
+    },
+    {
+      "name": "modelValue / v-model",
+      "sample": "base",
+      "type": "Number , String",
+      "desc": "默认选中按钮的值。",
+      "defaultValue": ""
+    },
+    {
+      "name": "plain",
+      "sample": "plain",
+      "type": "Boolean",
+      "desc": "是否朴素按钮。",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "show-more",
+      "sample": "show-more",
+      "type": "Number",
+      "desc": "设置超过多少个显示更多按钮。",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-edit",
+      "sample": "show-edit",
+      "type": "Boolean",
+      "desc": "是否显示编辑按钮，只有在显示更多的情况下生效。",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "border",
+      "sample": "border",
+      "type": "Boolean",
+      "desc": "是否显示边框线。",
+      "defaultValue": "该属性的默认值为 true"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "slot-default",
+      "type": "",
+      "desc": "按钮组内容。",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "edit",
+      "sample": "event-edit",
+      "type": "",
+      "desc": "设置当编辑按钮被点击时触发的回调函数。",
+      "defaultValue": ""
+    },
+    {
+      "name": "change",
+      "sample": "change-event",
+      "type": "",
+      "desc": "当选中按钮发生改变时触发的回调函数。",
+      "defaultValue": ""
+    }
+  ]
+}

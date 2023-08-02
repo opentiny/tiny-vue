@@ -1,0 +1,1066 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import './base/common.less';
+@import './mixins/table.less';
+@import '../custom.less';
+
+@grid-prefix-cls: ~'@{css-prefix}grid';
+@grid-cell-prefix-cls: ~'@{css-prefix}grid-cell';
+@input-prefix-cls: ~'@{css-prefix}input';
+@select-prefix-cls: ~'@{css-prefix}select';
+@pager-prefix-cls: ~'@{css-prefix}pager';
+
+// table
+.@{grid-prefix-cls} {
+  position: relative;
+  overflow: hidden;
+  font-size: var(--ti-grid-font-size);
+  color: var(--ti-grid-text-color);
+  font-family: var(--ti-grid-font-family);
+  background-color: var(--ti-grid-light-color);
+
+  // 显示表尾
+  &.show__foot {
+    &.scroll__x {
+      .@{grid-prefix-cls}__body-wrapper {
+        overflow-x: auto;
+      }
+    }
+  }
+
+  // 表格列高亮显示
+  &.column__highlight {
+    .@{grid-prefix-cls}-header__column {
+      &:not(.col__index) {
+        &:hover {
+          background-color: var(--ti-grid-column-hover-background-color);
+        }
+      }
+    }
+  }
+
+  // 中等尺寸
+  &.size__medium {
+    .@{grid-prefix-cls}-header__column,
+    .@{grid-prefix-cls}-body__column,
+    .@{grid-prefix-cls}-footer__column {
+     
+      .DefaultTdPadding();
+    }
+
+    // 表格主体部分和表位单元格高度
+    .@{grid-prefix-cls}-body__column,
+    .@{grid-prefix-cls}-footer__column{
+      .MediumColumnHeight();
+    }
+
+    // 表头单元格高度
+    .@{grid-prefix-cls}-header__column{
+      .MediumHeaderColumnHeight();
+    }
+
+    .@{grid-prefix-cls}-loading {
+      .@{grid-prefix-cls}__spinner {
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    .@{grid-prefix-cls}-default-input,
+    .@{grid-prefix-cls}-default-textarea,
+    .@{grid-prefix-cls}-default-select,
+    .@{grid-prefix-cls}-input__wrapper {
+      .MediumColumnHeight();
+    }
+
+    .@{grid-header-prefix-cls}__column {
+      .@{grid-prefix-cls}-resizable {
+        .MediumColumnHeight();
+      }
+    }
+
+  }
+
+  // 小尺寸
+  &.size__small {
+    .@{grid-prefix-cls}-header__column,
+    .@{grid-prefix-cls}-body__column,
+    .@{grid-prefix-cls}-footer__column {
+
+      .DefaultTdPadding();
+    }
+
+    .@{grid-prefix-cls}-body__column,
+    .@{grid-prefix-cls}-footer__column {
+      .SmallColumnHeight();
+    }
+
+    // 表头单元格高度
+    .@{grid-prefix-cls}-header__column{
+      .SmallHeaderColumnHeight();
+    }
+
+    .@{grid-prefix-cls}-loading {
+      .@{grid-prefix-cls}__spinner {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    .@{grid-prefix-cls}-default-input,
+    .@{grid-prefix-cls}-default-textarea,
+    .@{grid-prefix-cls}-default-select,
+    .@{grid-prefix-cls}-input__wrapper {
+      .SmallColumnHeight();
+    }
+
+    .@{grid-header-prefix-cls}__column {
+      .@{grid-prefix-cls}-resizable {
+        .SmallColumnHeight();
+      }
+    }
+  }
+
+  // 超小尺寸
+  &.size__mini {
+    .@{grid-prefix-cls}-header__column,
+    .@{grid-prefix-cls}-body__column,
+    .@{grid-prefix-cls}-footer__column {
+      
+      .DefaultTdPadding();
+    }
+
+    .@{grid-prefix-cls}-body__column,
+    .@{grid-prefix-cls}-footer__column {
+      .MiniColumnHeight();
+    }
+
+    // 表头单元格高度
+    .@{grid-prefix-cls}-header__column{
+      .MiniHeaderColumnHeight();
+    }
+
+    .@{grid-prefix-cls}-loading {
+      .@{grid-prefix-cls}__spinner {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    .@{grid-prefix-cls}-default-input,
+    .@{grid-prefix-cls}-default-textarea,
+    .@{grid-prefix-cls}-default-select,
+    .@{grid-prefix-cls}-input__wrapper {
+      .MiniColumnHeight();
+    }
+
+    .@{grid-header-prefix-cls}__column {
+      .@{grid-prefix-cls}-resizable {
+        .MiniColumnHeight();
+      }
+    }
+
+  }
+
+  // 冻结列，采用sticky布局代替多表格渲染，至少少渲染一半的dom元素
+  .fixed__column {
+    position: sticky !important;
+    z-index: 1;
+    background-color: var(--ti-grid-light-color);
+
+    &.fixed-left-last__column:after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: -1px;
+      width: 30px;
+      transform: translate(100%);
+      transition: box-shadow .3s;
+      content: '';
+      pointer-events: none;
+    }
+
+    &.fixed-right-first__column:after {
+      position: absolute;
+      top: 0;
+      bottom: -1px;
+      left: 0;
+      width: 30px;
+      transform: translate(-100%);
+      transition: box-shadow .3s;
+      content: '';
+      pointer-events: none;
+    }
+
+  }
+
+  th.fixed__column {
+    background-color: var(--ti-grid-header-background-color);
+  }
+
+
+  &-fixed__left {
+    .fixed__column.fixed-left-last__column:after {
+      box-shadow: inset 10px 0 8px -8px #00000026;
+    }
+  }
+
+  &-fixed__right {
+    .fixed__column.fixed-right-first__column:after {
+      box-shadow: inset -10px 0 8px -8px #00000026;
+    }
+  }
+
+
+  table {
+    border-spacing: 0;
+    border-collapse: separate;
+    table-layout: fixed;
+  }
+
+  // 表格斑马条纹样式
+  &&__stripe {
+    .@{grid-prefix-cls}-body__row {
+      // 支持所有行 hover 背景颜色
+      &:not(.row__hover) {
+        &:nth-child(2n) {
+          background-color: var(--ti-grid-row-striped-background-color);
+        }
+
+        &.row__current{
+          background-color: var(--ti-grid-row-hover-background-color);
+        }
+      }
+
+
+      &.row__selected {
+        &:not(.row__hover) {
+          &:nth-child(2n) {
+            background-color: rgba(47, 143, 232, 0.1);
+          }
+
+          &:nth-child(2n + 1) {
+            background-color: rgba(47, 143, 232, 0.15);
+          }
+        }
+      }
+    }
+
+    &.row__highlight .@{grid-prefix-cls}-body__row:hover{
+      background-color: var(--ti-grid-row-hover-background-color);
+  
+      .fixed__column{
+        background-color: var(--ti-grid-row-hover-background-color);
+      }
+    }
+
+    &.mark-insert {
+      .@{grid-prefix-cls}-body__row.row__new {
+        background-color: var(--ti-grid-new-row-background-color);
+      }
+    }
+  }
+
+  // 开启表格边框
+  &&__border {
+    // 启用 border 只有表头生效，默认不建议启用 border 属性，另外如果内嵌列，则表头会自动启用 border 属性
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 0px;
+      z-index: 1;
+    }
+
+    &:before {
+      top: 0;
+      z-index: 2;
+      border-top: 1px solid var(--ti-grid-border-color);
+    }
+
+    &:after {
+      bottom: 0;
+      border-bottom: 1px solid var(--ti-grid-border-color);
+    }
+
+    .@{grid-prefix-cls}__header {
+      border: 0;
+      border-spacing: 0;
+      border-collapse: separate;
+    }
+
+    .@{grid-prefix-cls}-header__column,
+    .@{grid-prefix-cls}-body__column,
+    .@{grid-prefix-cls}-footer__column {
+      background-image: linear-gradient(
+          -90deg,
+          var(--ti-grid-border-color),
+          var(--ti-grid-border-color)
+        ),
+        linear-gradient(
+          -180deg,
+          var(--ti-grid-border-color),
+          var(--ti-grid-border-color)
+        );
+      background-repeat: no-repeat;
+      background-size: 1px 100%, 100% 1px;
+      background-position: 100% 0, 100% 100%;
+      border: none;
+    }
+
+    .@{grid-prefix-cls}__body-wrapper {
+      border-bottom: none;
+    }
+
+
+    .@{grid-prefix-cls}__border-line {
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 0;
+        height: 100%;
+        z-index: 1;
+      }
+
+      &:before {
+        left: 0;
+        border-left: 1px solid var(--ti-grid-border-color);
+      }
+
+      &:after {
+        right: 0;
+        border-right: 1px solid var(--ti-grid-border-color);
+      }
+    }
+  }
+
+  // 选中行样式
+  &&__checked {
+    user-select: none;
+
+    .@{grid-prefix-cls}-header__column,
+    .@{grid-prefix-cls}-body__column {
+      &.col__index {
+        text-align: center;
+        cursor: default;
+      }
+    }
+
+    .@{grid-prefix-cls}-header__column {
+      &.col__index {
+        .@{grid-prefix-cls}-cell {
+          visibility: hidden;
+        }
+      }
+    }
+
+    .@{grid-prefix-cls}-body__column {
+      &.col__index {
+        background-color: var(--ti-grid-header-background-color);
+
+        &.col__index-checked {
+          background-color: #dcdcdc;
+        }
+      }
+    }
+  }
+
+  // 表头和表尾影藏滚动条
+  & &__header-wrapper,
+  & &__footer-wrapper {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  & &__footer-wrapper {
+    border-top: 1px solid var(--ti-grid-border-color);
+    border-bottom: none;
+    overflow: hidden !important;
+
+    .@{grid-prefix-cls}-footer__row {
+      .@{grid-prefix-cls}-cell.cell__summary {
+        font-weight: 700;
+        text-align: right;
+      }
+    }
+  }
+
+  & &__header-wrapper,
+  & &__body-wrapper,
+  & &__footer-wrapper {
+    position: relative;
+  }
+
+  // 列宽度调整线
+  &&-cell__resize {
+    * {
+      cursor: col-resize;
+    }
+  }
+
+  // 设置每行样式
+  & &-body__row {
+    background-color: var(--ti-grid-row-background-color);
+
+    // 选中某一行时的背景颜色
+    &.row__current {
+      background-color: var(--ti-grid-row-hover-background-color);
+    }
+  }
+
+  &.row__highlight &-body__row:hover{
+    background-color: var(--ti-grid-row-hover-background-color);
+
+    .fixed__column{
+      background-color: var(--ti-grid-row-hover-background-color);
+    }
+  }
+
+  // 单元格样式(表格默认尺寸)
+  & &-header__column,
+  & &-body__column,
+  & &-footer__column {
+    // 默认文字居左对齐
+    text-align: left;
+
+    .DefaultTdPadding();
+
+    // 当前选中列
+    &.col__current {
+      background-color: var(--ti-grid-column-current-background-color);
+    }
+
+    // 文字居中
+    &.col__center {
+      text-align: center;
+    }
+
+    // 文字居右
+    &.col__right {
+      text-align: right;
+    }
+
+    // 单行省略
+    &.col__ellipsis {
+      .CellEllipsis();
+    }
+
+    border-bottom: 1px solid var(--ti-grid-body-td-border-color);
+  }
+
+  // 表头高度
+  & &-header__column{
+    height: var(--ti-grid-default-header-column-height);
+  }
+
+  & &-body__column,
+  & &-footer__column{
+    .DefaultColumnHeight();
+  }
+
+  // 单元格内部div
+  & &-cell {
+    line-height: var(--ti-grid-line-height-number);
+    white-space: normal;
+    word-break: break-word;
+
+    .@{grid-cell-prefix-cls}-text {
+      width: 100%;
+    }
+
+    .@{grid-prefix-cls}-checkbox {
+      vertical-align: bottom;
+    }
+
+    .@{grid-prefix-cls}__data-boole,
+    .@{grid-prefix-cls}__data-rate {
+      width: 100%;
+      position: relative;
+    }
+
+    // 内置渲染器boole
+    .@{grid-prefix-cls}__data-boole {
+      .icon-yes {
+        fill: var(--ti-grid-success-color);
+      }
+
+      .icon-close {
+        fill: var(--ti-grid-error-color);
+      }
+    }
+
+    // 内置渲染器rate
+    .@{grid-prefix-cls}__data-rate {
+      .@{grid-prefix-cls}__rate-chart {
+        opacity: 0.6;
+        background-color: var(--ti-grid-success-color);
+        height: 30px;
+        line-height: 30px;
+
+        &.@{grid-prefix-cls}__chart-completed {
+          background-color: var(--ti-grid-success-color);
+        }
+
+        &.@{grid-prefix-cls}__chart-danger {
+          background-color: var(--ti-grid-error-color);
+        }
+
+        &.@{grid-prefix-cls}__chart-warning {
+          background-color: var(--ti-grid-warning-color);
+        }
+
+        &.@{grid-prefix-cls}__chart-normal {
+          background-color: var(--ti-grid-primary-color);
+        }
+      }
+
+      .@{grid-prefix-cls}__rate-text {
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  & &-header__column:not(.col__selection) {
+    .@{grid-cell-prefix-cls} {
+      display: flex;
+      align-items: center;
+    }
+  
+    &.col__ellipsis {
+      .@{grid-cell-prefix-cls}-text {
+        .TextEllipsis();
+      }
+    }
+  }
+
+  & &-body__x-space {
+    width: 100%;
+    height: 1px;
+    margin-bottom: -1px;
+  }
+
+  & &-body__y-space {
+    width: 0;
+    float: left;
+  }
+
+  // 排序
+  & &-sort-wrapper {
+    padding-left: 4px;
+
+    .@{grid-prefix-cls}-sort__btn {
+      display: block;
+      font-size: var(--ti-grid-header-icon-font-size);
+      fill: var(--ti-grid-column-icon-text-color);
+      transform: scale(var(--ti-grid-column-icon-scale-size));
+      cursor: pointer;
+
+      &:hover {
+        fill: var(--ti-grid-icon-color);
+      }
+
+      &.sort__active {
+        fill: var(--ti-grid-primary-color);
+      }
+    }
+  }
+
+  // 列拖拽参考线
+  & &__resizable-bar {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    z-index: 4;
+
+    &:before {
+      content: '';
+      display: block;
+      height: 100%;
+      background-color: #d9dddf;
+    }
+  }
+
+  // 树形节点缩进
+  & &-tree__indent {
+    display: inline-block;
+  }
+
+  // 树形节点展开节点
+  & &-tree-wrapper {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 18px;
+    cursor: pointer;
+
+    &.is__active {
+      .@{grid-prefix-cls}-tree__node-btn {
+        transform: rotate(0);
+      }
+    }
+
+    .@{grid-prefix-cls}-tree__node-btn {
+      font-size: var(--ti-grid-font-size);
+      border-color: var(--ti-grid-tree-icon-color);
+      transform: rotate(-90deg);
+
+      &:hover {
+        border-color: var(--ti-grid-tree-icon-hover-color);
+      }
+    }
+  }
+
+  // 展开行
+  & &__expanded {
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+
+    .@{grid-prefix-cls}__expand-icon {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border: 1px solid #666;
+      vertical-align: middle;
+      border-width: 1px 1px 0 0;
+      transform: rotate(45deg);
+      background-color: transparent;
+    }
+
+    &.expand__active {
+      .@{grid-prefix-cls}__expand-icon {
+        transform: rotate(135deg);
+      }
+    }
+  }
+
+  // 展开行td
+  & &-body__expanded-column {
+    border-bottom: 1px solid var(--ti-grid-border-color);
+  }
+
+  & &-body__expanded-cell {
+    padding: 20px;
+  }
+
+  // 表格loading
+  &.is__loading {
+    .@{grid-prefix-cls}__empty-block {
+      visibility: hidden;
+    }
+  }
+
+  // 暂无数据
+  & &__empty-block {
+    display: none;
+    opacity: 0;
+    height: 100%;
+    min-height: 60px;
+    padding: 60px 0;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    &.is__visible {
+      display: flex;
+      flex-flow: row wrap;
+      opacity: 1;
+      &.is__center {
+        opacity: 0;
+      }
+    }
+  }
+
+  .empty-center-block {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 60px);
+
+    .@{grid-prefix-cls}__empty-text {
+      width: 100%;
+    }
+  }
+
+  // 表格无数据背景图
+  & &__empty-img {
+    width: 100%;
+    height: 100px;
+    margin: 0;
+    background: var(--ti-table-nodata-td-bg-img-url) 50% no-repeat;
+  }
+
+  & &__empty-text {
+    display: block;
+    margin-top: 8px;
+    width: 50%;
+  }
+
+  & &-body__column {
+    &.col__selected {
+      &:not(.col__checked) {
+        box-shadow: inset 0px 0px 0px 2px var(--ti-grid-primary-color);
+      }
+    }
+  }
+
+  // 校验不通过
+  & &-body__column {
+    &.col__actived,
+    &.col__selected,
+    &.col__dirty {
+      position: relative;
+    }
+
+    &.col__valid-error {
+      .@{grid-prefix-cls}-cell__valid {
+        width: 320px;
+        position: absolute;
+        bottom: calc(100% + 4px);
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        pointer-events: none;
+        z-index: 9;
+
+        .@{grid-prefix-cls}-cell__valid-msg {
+          display: inline-block;
+          border-radius: 4px;
+          padding: 8px 12px;
+          color: var(--ti-grid-light-color);
+          background-color: var(--ti-grid-error-color);
+          pointer-events: auto;
+        }
+      }
+
+      .@{grid-prefix-cls}-default-input,
+      .@{grid-prefix-cls}-default-textarea,
+      .@{grid-prefix-cls}-default-select {
+        border-color: var(--ti-grid-error-color);
+        background-color: var(--ti-grid-error-bg-color);
+      }
+
+      .@{grid-prefix-cls}-input__wrapper {
+        > .@{grid-prefix-cls}-input {
+          border-color: var(--ti-grid-error-color);
+          background-color: var(--ti-grid-error-bg-color);
+        }
+      }
+
+      .@{input-prefix-cls}__inner {
+        border-color: var(--ti-grid-error-color);
+        background-color: var(--ti-grid-error-bg-color);
+      }
+    }
+  }
+
+  & &-body__row {
+    &:first-child {
+      .@{grid-prefix-cls}-cell__valid {
+        bottom: auto;
+        top: calc(100% + 4px);
+      }
+    }
+  }
+
+  // 滚动加载
+  & &__body-wrapper {
+    &.body__wrapper.is__scrollload {
+      overflow-y: hidden;
+      position: static;
+    }
+  }
+  & .is__scrollload &-body__y-space {
+    position: absolute;
+    right: 0;
+    width: 12px;
+    overflow-y: scroll;
+  }
+
+  // 可编辑表格
+  &&-editable {
+    &.@{grid-prefix-cls}-cell__highlight {
+      .@{grid-prefix-cls}-body__column {
+        &.col__actived {
+          box-shadow: inset 0px 0px 0px 2px
+            var(--ti-grid-primary-color);
+
+          &.col__valid-error {
+            box-shadow: inset 0px 0px 0px 2px
+              var(--ti-grid-error-color);
+          }
+
+          .@{grid-prefix-cls}-cell {
+            .@{grid-prefix-cls}-default-input,
+            .@{grid-prefix-cls}-default-textarea {
+              border: 0;
+              padding: 0;
+            }
+
+            .@{grid-prefix-cls}-input__wrapper {
+              .@{grid-prefix-cls}-input,
+              .@{grid-prefix-cls}-textarea {
+                border: 0;
+                padding: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .@{grid-prefix-cls}-body__column {
+
+      .DefaultTdPadding();
+
+      &.col__actived {
+        .DefaultTdPadding();
+      }
+
+      &.col__ellipsis {
+        padding: 0;
+
+        &.col__actived {
+          padding: 0;
+        }
+      }
+
+      // 可编辑表格showStatus为true时,左上角的角标
+      &.col__dirty {
+        &:before {
+          content: '';
+          top: -5px;
+          left: -5px;
+          position: absolute;
+          border-width: 5px;
+          border-style: solid;
+          border-color: transparent var(--ti-grid-error-color)
+            transparent transparent;
+          transform: rotate(45deg);
+        }
+
+        &.col__valid-success:before {
+          border-color: transparent var(--ti-grid-success-color)
+            transparent transparent;
+        }
+      }
+    }
+
+    .@{grid-prefix-cls}__body-wrapper {
+      .@{grid-prefix-cls}-editor {
+        .@{css-prefix}select-dropdown {
+          left: 0 !important;
+        }
+      }
+    }
+  }
+
+  // 默认的和筛选面板渲染器和编辑器样式
+  &,
+  &__filter-wrapper {
+    .@{grid-prefix-cls}-default-input,
+    .@{grid-prefix-cls}-default-textarea,
+    .@{grid-prefix-cls}-default-select {
+      outline: 0;
+      height: var(--ti-grid-input-height);
+      padding: 0 var(--ti-grid-td-padding-horizontal);
+      width: 100%;
+      color: var(--ti-grid-text-color);
+      border-radius: var(--ti-grid-border-radius);
+      border: 1px solid var(--ti-grid-border-color);
+
+      &:focus {
+        border: 1px solid var(--ti-grid-primary-color);
+      }
+    }
+
+    .@{grid-prefix-cls}-editor {
+      width: 100%;
+      height: var(--ti-grid-input-height);
+      line-height: normal;
+      color: var(--ti-grid-text-color);
+
+      .@{input-prefix-cls} {
+        width: 100%;
+      }
+
+      .@{select-prefix-cls} {
+        z-index: 1;
+      }
+    }
+
+    .@{grid-prefix-cls}-default-textarea {
+      resize: none;
+      vertical-align: middle;
+    }
+
+    .@{grid-prefix-cls}-input__wrapper {
+      width: 100%;
+      display: block;
+
+      .@{grid-prefix-cls}-input,
+      .@{grid-prefix-cls}-textarea {
+        padding: 0 2px;
+      }
+
+      .@{grid-prefix-cls}-textarea {
+        resize: none;
+      }
+    }
+  }
+
+  // 筛选面板样式
+  &__filter-wrapper {
+    .@{grid-prefix-cls}-default-input,
+    .@{grid-prefix-cls}-default-textarea {
+      padding: 0 10px;
+    }
+  }
+
+  &-hidden-column {
+    display: none;
+  }
+
+  // 表格与分页上下间距
+  .@{pager-prefix-cls},
+  & + .@{pager-prefix-cls} {
+    padding-top: 24px;
+  }
+
+  & &__header {
+    // 部分场景下浏览器缩放比例导致表头和表体错位问题
+    th.col__gutter {
+      width: 0;
+    }
+  }
+
+  & &__selected-box-outer {
+    width: 100%;
+    display: grid;
+  }
+
+  & &__selected-box-outer-default {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  & &__selected-box-wrapper {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #eeeeee;
+  }
+
+  & &__selected-box-wrapper-default {
+    display: block;
+  }
+
+  & &__selected-box-table {
+    grid-column: span 3 / span 3;
+    height: max-content;
+  }
+
+  & &__column-anchor {
+    flex-wrap: nowrap;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    height: 2rem;
+    align-items: center;
+  }
+
+  & &__column-anchor-item {
+    flex-shrink: 0;
+    max-width: 20rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 1.5rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    color: #161e26;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+
+    &:hover {
+      color: #0072e8;
+
+      .@{grid-prefix-cls}__column-anchor-item-icon {
+        fill: #0072e8;
+      }
+    }
+
+    &--active {
+      padding-left: 1.25rem;
+      position: relative;
+      color: #005bba;
+    }
+  }
+
+  & &__column-anchor-item-icon {
+    position: absolute;
+    left: 0px;
+    bottom: 50%;
+    transform: translateY(50%);
+    fill: #005bba;
+  }
+
+  & &__oper-col-elps {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    cursor: pointer;
+  }
+
+  & &__oper-col-button {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    cursor: pointer;
+    margin-right: 0.5rem;
+
+    &--disabled {
+      cursor: not-allowed;
+      fill: rgba(51, 61, 72, 0.3);
+      color: rgba(22, 30, 38, 0.3);
+    }
+  } 
+}
+
+// 表格全屏样式
+.@{css-prefix}fullscreen-full {
+  z-index: 1000;
+  position: fixed;
+  overflow: auto;
+  background: var(--ti-grid-light-color);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 8px;
+}
+
+

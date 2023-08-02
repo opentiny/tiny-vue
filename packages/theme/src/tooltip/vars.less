@@ -1,0 +1,83 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+.component-css-vars-tooltip() {
+  // 弹框箭头的尺寸,(hide)
+  --ti-tooltip-popper-border-width: 6px;
+  // 弹框箭头的负尺寸,用于偏移(hide)
+  --ti-tooltip-popper-neg-border-width: calc(var(--ti-tooltip-popper-border-width) * -1);
+  // 弹框字体行高(hide)
+  --ti-tooltip-popper-font-line-height: var(--ti-common-line-height-3);
+  // 弹框字体(hide)
+  --ti-tooltip-popper-font-family: var(--ti-common-font-family);
+  // 悬浮弹出框圆角
+  --ti-tooltip-popper-border-radius: var(--ti-common-border-radius-1);
+  // 悬浮弹出框字号
+  --ti-tooltip-popper-font-size: var(--ti-common-font-size-base);
+  // 弹框三角默认边框色
+  --ti-tooltip-popper-border-color: var(--ti-common-color-bg-dark-deep);
+  // 正常背景色 (hide)
+  --ti-tooltip-popper-normal-bg-color: var(--ti-common-color-bg-dark-deep);
+  // 文字提示正常文本色(hide)
+  --ti-tooltip-popper-normal-text-color: var(--ti-tooltip-popper-dark-text-color);
+  // 弹框正常边框色 (hide)
+  --ti-tooltip-popper-normal-border-color: var(--ti-common-color-bg-dark-deep);
+
+  // info类型弹框背景色
+  --ti-tooltip-popper-info-bg-color:  var(--ti-common-color-prompt-border);
+  // info类型弹框文本色
+  --ti-tooltip-popper-info-text-color: var(--ti-common-color-light);
+  // info类型弹框三角边框色
+  --ti-tooltip-popper-info-border-color:  var(--ti-common-color-prompt-border);
+
+  // error类型弹框背景色
+  --ti-tooltip-popper-error-bg-color: var(--ti-common-color-bg-dark-deep);
+  // error类型弹框文本色
+  --ti-tooltip-popper-error-text-color: var(--ti-common-color-light);
+  // error类型弹框三角边框色
+  --ti-tooltip-popper-error-border-color: var(--ti-common-color-bg-dark-deep);
+
+  // warning类型弹框背景色
+  --ti-tooltip-popper-warning-bg-color: var(--ti-common-color-warning-normal);
+  // warning类型弹框文本色
+  --ti-tooltip-popper-warning-text-color: var(--ti-common-color-light);
+  // warning类型弹框三角边框色
+  --ti-tooltip-popper-warning-border-color:var(--ti-common-color-warning-normal);
+
+  // success类型弹框背景色
+  --ti-tooltip-popper-success-bg-color: var(--ti-common-color-success-normal);
+  // success类型弹框文本色
+  --ti-tooltip-popper-success-text-color: var(--ti-common-color-light);
+  // success类型弹框三角边框色
+  --ti-tooltip-popper-success-border-color: var(--ti-common-color-success-normal);
+
+  // dark主题弹框背景色
+  --ti-tooltip-popper-dark-bg-color: var(--ti-common-color-bg-dark-deep);
+  // dark主题弹框文本色
+  --ti-tooltip-popper-dark-text-color: var(--ti-common-color-light);
+  // light主题弹框背景色
+  --ti-tooltip-popper-light-bg-color: var(--ti-common-color-light);
+
+  // light主题|禁用弹框文本色
+  --ti-tooltip-popper-light-text-color: var(--ti-common-color-bg-dark-deep);
+  // light主题|禁用时弹框边框色
+  --ti-tooltip-popper-light-border-color: var(--ti-common-color-bg-dark-deep);
+
+  // 弹框阴影
+  --ti-tooltip-box-shadow:var(--ti-common-shadow-3-down);
+  // 弹框垂直内边距
+  --ti-tooltip-padding-vertical:var(--ti-common-space-3x);
+  // 弹框水平内边距
+  --ti-tooltip-padding-horizontal: var(--ti-common-space-4x);
+  // 文字提示错误图标色
+  --ti-tooltip-validate-icon-color: var(--ti-common-color-error);
+}

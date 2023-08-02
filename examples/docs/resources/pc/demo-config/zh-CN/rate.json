@@ -1,0 +1,138 @@
+[
+  {
+    "title": "基本用法",
+    "content": "详细用法参考如下示例",
+    "link": "rate/basic-usage",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "自定义 3 分段颜色",
+    "content": "<p>可通过 <code>colors</code> 定义 3 分段颜色。</p>\n",
+    "link": "rate/custom-3-threshold-colors",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "custom-3-threshold-colors"
+  },
+  {
+    "title": "自定义禁用时未选中图标颜色",
+    "content": "<p>可通过 <code>disabled-void-color</code> 自定义禁用时未选中图标颜色。</p>\n",
+    "link": "rate/disabled-not-selected-color",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "disabled-not-selected-color"
+  },
+  {
+    "title": "自定义禁用时未选中图标类名",
+    "content": "<p>可通过 <code>disabled-void-icon-class</code> 自定义禁用时未选中图标类名。</p>\n",
+    "link": "rate/disabled-not-selected-class",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "disabled-not-selected-class"
+  },
+  {
+    "title": "自定义 3 分段图标样式",
+    "content": "<p>可通过 <code>icon-classes</code> 自定义 3 分段图标样式。</p>\n",
+    "link": "rate/custom-3-threshold-icon",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "custom-3-threshold-icon"
+  },
+  {
+    "title": "辅助文字及颜色",
+    "content": "<p>可通过 <code>texts show-text text-color</code> 三个属性分别设置辅助文字内容、是否显示辅助文字及辅助文字颜色。</p>\n",
+    "link": "rate/texts-and-text-color",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "texts-and-text-color"
+  },
+  {
+    "title": "大小及占位宽度",
+    "content": "<p>可通过 <code>size space</code> 分别大小和占位宽度。</p>\n",
+    "link": "rate/size-and-space",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "size-and-space"
+  },
+  {
+    "title": "自定义未选中图标颜色",
+    "content": "<p>可通过 <code>void-color</code> 定义未选中图标颜色。</p>\n",
+    "link": "rate/not-selected-color",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "not-selected-color"
+  },
+  {
+    "title": "自定义未选中图标类名",
+    "content": "<p>可通过 <code>void-icon-class</code> 定义未选中图标类名。</p>\n",
+    "link": "rate/not-selected-class",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "not-selected-class"
+  },
+  {
+    "title": "图标下文字提示",
+    "content": "<p>可通过 <code>text-on-bottom</code> 定义是否在图标下显示文字提示。</p>\n",
+    "link": "rate/text-on-bottom",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "text-on-bottom"
+  },
+  {
+    "title": "半选",
+    "content": "<p>可通过 <code>allow-half</code> 定义是否支持半选。</p>\n",
+    "link": "rate/allow-half",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "allow-half"
+  },
+  {
+    "title": "禁用",
+    "content": "<p>可通过 <code>disabled</code> 定义是否禁用。</p>\n",
+    "link": "rate/dynamic-disable",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "dynamic-disable"
+  },
+  {
+    "title": "分数显示",
+    "content": "<p>可通过 <code>show-score score-template</code> 分别定义是否显示分数和显示的模板。</p>\n",
+    "link": "rate/show-score",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "show-score"
+  },
+  {
+    "title": "单选模式",
+    "content": "<p>可通过 <code>radio</code> 设置单选模式。</p>\n",
+    "link": "rate/radio-rate",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "radio-rate"
+  },
+  {
+    "title": "最大分值",
+    "content": "<p>可通过 <code>max</code> 设置最大分值。</p>\n",
+    "link": "rate/max-score",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "max-score"
+  },
+  {
+    "title": "界限值",
+    "content": "<p>可通过 <code>low-threshold high-threshold</code> 分别设置下限值和上限值，通过<code>colors</code>配置显示星的颜色</p>\n",
+    "link": "rate/threshold-value",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "threshold-value"
+  },
+  {
+    "title": "事件",
+    "content": "<p>监听 <code>change</code> 事件触发处理方法。</p>\n",
+    "link": "rate/rate-events",
+    "component": " Rate 评分",
+    "findIntroStr": "Rate 快速评级，对评价进行展示。",
+    "demoId": "rate-events"
+  }
+]

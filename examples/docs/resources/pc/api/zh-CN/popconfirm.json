@@ -1,0 +1,99 @@
+{
+  "attrs": [
+    {
+      "name": "title",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "设置气泡提示框的标题",
+      "defaultValue": ""
+    },
+    {
+      "name": "content",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "设置气泡提示框的内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "popperClass",
+      "sample": "popper-class",
+      "type": "String",
+      "desc": "为气泡提示框自定义类名",
+      "defaultValue": ""
+    },
+    {
+      "name": "trigger",
+      "sample": "trigger",
+      "type": "String",
+      "desc": "气泡提示框显示触发方式",
+      "defaultValue": "hover"
+    },
+    {
+      "name": "placement",
+      "sample": "placement",
+      "type": "String",
+      "desc": "气泡提示框显示位置",
+      "defaultValue": "top"
+    },
+    {
+      "name": "cancelButton",
+      "sample": "cancel-button",
+      "type": "Boolean",
+      "desc": "是否展示取消按钮",
+      "defaultValue": "true"
+    },
+    {
+      "name": "width",
+      "sample": "width",
+      "type": "String, Number",
+      "desc": "设置气泡提示框宽度",
+      "defaultValue": "350"
+    },
+    {
+      "name": "type",
+      "sample": "type",
+      "type": "String, Object",
+      "desc": "提示图标类型，可选值有info,success,warning,error。或者可以传入自定义图标",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "footer",
+      "sample": "slot-footer",
+      "type": "",
+      "desc": "底部插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "reference",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "触发气泡提示框显示的 HTML 元素",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "show",
+      "sample": "visible-event",
+      "type": "Function(params)",
+      "desc": "气泡确认框显示时触发",
+      "defaultValue": ""
+    },
+    {
+      "name": "hide",
+      "sample": "visible-event",
+      "type": "Function(params)",
+      "desc": "气泡确认框关闭时触发",
+      "defaultValue": ""
+    },
+    {
+      "name": "confirm",
+      "sample": "confirm-event",
+      "type": "Function(params)",
+      "desc": "点击确认按钮时触发",
+      "defaultValue": ""
+    }
+  ]
+}

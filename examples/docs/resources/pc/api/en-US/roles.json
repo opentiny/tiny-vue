@@ -1,0 +1,20 @@
+{
+  "attrs": [
+    {
+      "name": "fetch-role",
+      "sample": "fetch-role",
+      "type": "Function",
+      "desc": "Customized interface. A Promise object is returned. This parameter is mandatory when the framework service is not used.",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "base",
+      "type": "",
+      "desc": "This event is triggered when the selected value changes.",
+      "defaultValue": ""
+    }
+  ]
+}

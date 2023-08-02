@@ -1,0 +1,106 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "alert/base",
+    "component": "Alert",
+    "findIntroStr": "Alert alarms, including warning, error, info, and success.",
+    "demoId": "base"
+  },
+  {
+    "title": "Type",
+    "content": "<p>Set different types through <code>type</code>. The options are success, warning, info, and error. The default value is success. </p>\n",
+    "link": "alert/type",
+    "component": "Alert",
+    "findIntroStr": "Alert alarms, including warning, error, info, and success.",
+    "demoId": "type"
+  },
+  {
+    "title": "Large Size",
+    "content": "<p>Set different sizes through the <code>size</code> attribute. The options are nomal and large. The default value is nomal. </p>\n",
+    "link": "alert/size",
+    "component": "Alert",
+    "findIntroStr": "Alert alarms, including warning, error, info, and success.",
+    "demoId": "size"
+  },
+  {
+    "title": "Custom Title",
+    "content": "<p>When <code>size</code> is set to large, the title is displayed. You can set <code>title</code> or <code>slot</code> to customize the title. The default title is displayed according to the set <code>type</code>. </p>\n",
+    "link": "alert/title",
+    "component": "Alert",
+    "findIntroStr": "Alert alarms, including warning, error, info, and success.",
+    "demoId": "title"
+  },
+  {
+    "title": "Center text",
+    "content": "<p>You can use the <code>center</code> property to center the text. </p>\n",
+    "link": "alert/center",
+    "component": "Alert",
+    "findIntroStr": "Alert alarms, including warning, error, info, and success.",
+    "demoId": "center"
+  },
+  {
+    "title": "Customize the close button text",
+    "content": "<p>Customize the close button text through the <code>close-text</code> attribute. </p>\n",
+    "link": "alert/close-text",
+    "component": "Alert",
+    "findIntroStr": "Alert alarms, including warning, error, info, and success.",
+    "demoId": "close-text"
+  },
+  {
+    "title": "Customized warning icon",
+    "content": "<p>Customize the icon through the <code>icon</code> attribute. </p>\n",
+    "link": "alert/icon",
+    "component": "Alert",
+    "findIntroStr": "Alert alarms, including warning, error, info, and success.",
+    "demoId": "icon"
+  },
+  {
+    "title": "Cannot be closed",
+    "content": "<p>You can set whether to display the close button through the <code>closable</code> attribute. If there is no close button, the warning box cannot be closed. </p>\n",
+    "link": "alert/closable",
+    "component": "Alert",
+    "findIntroStr": "Alert alarms, including warning, error, info, and success.",
+    "demoId": "closable"
+  },
+  {
+    "title": "Customized prompt content",
+    "content": "<p>You can customize the prompt content through the <code>description</code> attribute or slot. </p>\n",
+    "link": "alert/custom-description",
+    "component": "Alert",
+    "findIntroStr": "Alert alarms, including warning, error, info, and success.",
+    "demoId": "custom-description"
+  },
+  {
+    "title": "Customized Interaction",
+    "content": "<p>When <code>size</code> is large, set the default slot custom interaction operation. </p>\n",
+    "link": "alert/slot-default",
+    "component": "Alert",
+    "findIntroStr": "Alert alarms, including warning, error, info, and success.",
+    "demoId": "slot-default"
+  },
+  {
+    "title": "Close Event",
+    "content": "<p><code>close</code> event, triggered when the warning dialog box is closed. </p>\n",
+    "link": "alert/close",
+    "component": "Alert",
+    "findIntroStr": "Alert alarms, including warning, error, info, and success.",
+    "demoId": "close-events"
+  },
+  {
+    "title": "Form submission result feedback",
+    "content": "<p>When <code>size</code> is set to large, the <code>description</code> attribute is used together with the default slot to render the feedback submission interface. </p>\n",
+    "link": "alert/feedback-of-result",
+    "component": "Alert",
+    "findIntroStr": "Alert alarms, including warning, error, info, and success.",
+    "demoId": "feedback-of-result"
+  },
+  {
+    "title": "Display icon",
+    "content": "<p>You can set the <code>show-icon</code> attribute to control whether to display the icon. </p>\n",
+    "link": "alert/show-icon",
+    "component": "Alert",
+    "findIntroStr": "Alert alarms, including warning, error, info, and success.",
+    "demoId": "show-icon"
+  }
+]

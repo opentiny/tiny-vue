@@ -1,0 +1,122 @@
+{
+  "attrs": [
+    {
+      "name": "prop",
+      "sample": "form-validation",
+      "type": "String",
+      "desc": "Form field model. This attribute is mandatory when the validate and resetFields methods are used. The optional value of this attribute is -",
+      "defaultValue": "The default value of this attribute is the field in the model of the Form component."
+    },
+    {
+      "name": "label",
+      "sample": "form-validation",
+      "type": "String",
+      "desc": "Label text; The optional value of this attribute is -",
+      "defaultValue": "The default value of this attribute is -"
+    },
+    {
+      "name": "label-width",
+      "sample": "form-clear-validate",
+      "type": "String",
+      "desc": "Width of the form field label, for example, '50px'. Auto is supported. The optional value of this attribute is -",
+      "defaultValue": "The default value of this attribute is -"
+    },
+    {
+      "name": "required",
+      "sample": "form-clear-validate",
+      "type": "Boolean",
+      "desc": "Indicates whether this parameter is mandatory. If this parameter is not set, the parameter is automatically generated based on the verification rule. The optional value of this attribute is -",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "rules",
+      "sample": "form-clear-validate",
+      "type": "Object",
+      "desc": "Form validation rule; The optional value of this attribute is -",
+      "defaultValue": "The default value of this attribute is -"
+    },
+    {
+      "name": "error",
+      "sample": "",
+      "type": "String",
+      "desc": "Form field verification error information. If this parameter is set, the form verification status changes to error and the error information is displayed. The optional value of this attribute is -",
+      "defaultValue": "The default value of this attribute is -"
+    },
+    {
+      "name": "show-message",
+      "sample": "form-validation",
+      "type": "Boolean",
+      "desc": "Whether to display verification error information; The optional value of this attribute is -",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "inline-message",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "The validation information is displayed in rows. The optional value of this attribute is -",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "size",
+      "sample": "",
+      "type": "String",
+      "desc": "Controls the size of the component in the form field. The optional values of this attribute are medium / small / mini",
+      "defaultValue": "The default value of this attribute is null."
+    },
+    {
+      "name": "validate-position",
+      "sample": "form-validation",
+      "type": "String",
+      "desc": "Specify the position where the verification dialog box is displayed. The value of this attribute can be top-start / top / top-end / left-start / left / left-end / right-start / right / right-end / bottom-start / bottom / bottom-end",
+      "defaultValue": "The default value of this attribute is top-end."
+    },
+    {
+      "name": "validate-type",
+      "sample": "validate-type",
+      "type": "String",
+      "desc": "Verification type; The optional values of this attribute are tip / text",
+      "defaultValue": "The default value of this attribute is tip."
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "size",
+      "type": "",
+      "desc": "Default slot",
+      "defaultValue": ""
+    },
+    {
+      "name": "label",
+      "sample": "slot-label",
+      "type": "",
+      "desc": "Label text content",
+      "defaultValue": ""
+    }
+  ],
+  "methods": [
+    {
+      "name": "resetField",
+      "sample": "form-validation",
+      "type": "",
+      "desc": "Reset the table item to the initial value and remove the verification result.",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearValidate",
+      "sample": "form-clear-validate",
+      "type": "",
+      "desc": "Remove the verification result of the table item.",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "validate",
+      "sample": "form-validation",
+      "type": "",
+      "desc": "This event is triggered after any form item is verified.",
+      "defaultValue": ""
+    }
+  ]
+}

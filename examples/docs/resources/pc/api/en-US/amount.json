@@ -1,0 +1,118 @@
+{
+  "attrs": [
+    {
+      "name": "placeholder",
+      "sample": "custom-service",
+      "type": "String",
+      "desc": "Placeholder when data is empty",
+      "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "size",
+      "type": "String",
+      "desc": "Set the component size",
+      "defaultValue": ""
+    },
+    {
+      "name": "format",
+      "sample": "",
+      "type": "Object",
+      "desc": "Number formatting configuration item. The following fields can be configured:; {\n fraction: 4, //Retain the number of decimal places. \n rounding: 0, //Round the number between 0 and 9. For example, if the value is set to 7, the value is rounded off to 6. The default value is 5 (rounded off). If this parameter is set to 0 or greater than 9, truncation is performed. \n prefix: '$', //Front identifier. \n groupSize: 3, //Integer part grouping interval, that is, the number of bits of the first grouping. \n secondaryGroupSize: 2, //Integer part second-level grouping interval. If this parameter is not set or is set to 0, the value of groupSize is automatically used. \n groupSeparator: ',', //Integer part grouping separator. \n decimalSeparator:' ', / / Decimal point symbol \n fractionGroupSize: 0, // Decimal part grouping interval \n fractionGroupSeparator: '', / / Decimal grouping separator \n suffix: '@' / / Post identifier \n}",
+      "defaultValue": ""
+    },
+    {
+      "name": "currency",
+      "sample": "custom-currency",
+      "type": "String",
+      "desc": "",
+      "defaultValue": "The default value of this attribute is CNY."
+    },
+    {
+      "name": "digits",
+      "sample": "digits-maxlen",
+      "type": "Number",
+      "desc": "Set the number of decimal places. The default value is two.",
+      "defaultValue": "The default value of this attribute is 2"
+    },
+    {
+      "name": "date",
+      "sample": "set-date",
+      "type": "String",
+      "desc": "Set the date box to be displayed in the pop-up box. The value can be of the String or Date() type.",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "amount-disable",
+      "type": "Boolean",
+      "desc": "Whether to disable the function. The default value is false.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "max-len",
+      "sample": "digits-maxlen",
+      "type": "Number",
+      "desc": "Maximum integer length. The default value is 15 characters.",
+      "defaultValue": "The default value of this attribute is 15"
+    },
+    {
+      "name": "negative",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "Indicates whether the value can be a negative number. The default value is true. The value can be a negative number.",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-class",
+      "sample": "",
+      "type": "String",
+      "desc": "Add a class name for the popper. For details, see the popover component.",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-append-to-body",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "Indicates whether to insert the pop-up box to the body element. When a fault occurs in the dialog box that is displayed, you can set this attribute to false (for details, see the select component).",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "value",
+      "sample": "digits-maxlen",
+      "type": "String , Number",
+      "desc": "Set the value of the amount component.",
+      "defaultValue": ""
+    },
+    {
+      "name": "rounding",
+      "sample": "digits-maxlen",
+      "type": "Boolean",
+      "desc": "Controls the rounding of the input amount.",
+      "defaultValue": ""
+    },
+    {
+      "name": "fetchCurrency",
+      "sample": "custom-service",
+      "type": "Function",
+      "desc": "Request service interface of the customized amount component. fetchCurrency returns a Promise object.",
+      "defaultValue": ""
+    },
+    {
+      "name": "fields",
+      "sample": "custom-service",
+      "type": "Object",
+      "desc": "Customized amount component data mapping. This parameter is mandatory when the framework service is not used.",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "set-date",
+      "type": "",
+      "desc": "This event is triggered when the value of a component changes.",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+@import '../custom.less';
+
+@roles-prefix-cls: ~'@{css-prefix}roles';
+@popover-prefix-cls: ~'@{css-prefix}popover';
+
+.@{roles-prefix-cls} {
+  @apply text-color-text-primary;
+  @apply text-sm;
+  svg {
+    @apply ml-2;
+    @apply fill-color-text-primary;
+  }
+
+  &__selector.@{popover-prefix-cls} {
+    @apply mt-2;
+    @apply border-0;
+    width: 216px;
+    @apply text-color-text-primary;
+
+    &.@{css-prefix}popper {
+      @apply p-0;
+    }
+
+    .popper__arrow {
+      @apply !border-b-transparent;
+    }
+  }
+
+  &__selector-body {
+    max-height: 300px;
+    @apply overflow-y-auto;
+    @apply overflow-x-hidden;
+    @apply py-1 px-0;
+  }
+
+  &__poplist {
+    min-width: 180px;
+  }
+
+  .reference-wrapper > .@{popover-prefix-cls}__reference {
+    @apply pl-3;
+  }
+
+  li&__poplist-item {
+    min-height: 32px;
+    @apply leading-8;
+    @apply !py-0 !px-3;
+    @apply ~"max-w-[100%]";
+    @apply overflow-hidden;
+    @apply text-ellipsis;
+    @apply whitespace-nowrap;
+    @apply cursor-pointer;
+    @apply box-border;
+
+    &:hover {
+      @apply bg-color-bg-3;
+    }
+  }
+}

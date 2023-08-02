@@ -1,0 +1,66 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>Sets loading on the specified <code>target</code> using the static method <code>Loading.service</code>. </p>\n",
+    "link": "loading/basic-usage",
+    "component": "Loading",
+    "findIntroStr": "Animation effect displayed when data is loaded.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Customized loading prompt text",
+    "content": "<p>Customize the prompt text of the loaded text through <code>text</code>. </p>\n",
+    "link": "loading/loading-tip-text",
+    "component": "Loading",
+    "findIntroStr": "Animation effect displayed when data is loaded.",
+    "demoId": "loading-tip-text"
+  },
+  {
+    "title": "Custom mask background color",
+    "content": "<p>Customize the background color and transparency through <code>background</code>. </p>\n",
+    "link": "loading/background",
+    "component": "Loading",
+    "findIntroStr": "Animation effect displayed when data is loaded.",
+    "demoId": "background"
+  },
+  {
+    "title": "Custom Style",
+    "content": "<p>Use <code>customClass</code> to specify the class name to modify the style. </p>\n",
+    "link": "loading/custom-class",
+    "component": "Loading",
+    "findIntroStr": "Animation effect displayed when data is loaded.",
+    "demoId": "custom-class"
+  },
+  {
+    "title": "Modifier",
+    "content": "For details, see the following example.",
+    "link": "loading/body",
+    "component": "Loading",
+    "findIntroStr": "Animation effect displayed when data is loaded.",
+    "demoId": "body"
+  },
+  {
+    "title": "Global loading",
+    "content": "<p>The <code>v-loading.lock.fullscreen</code> command mode or service mode is used for global loading. To use the command mode for global loading, perform the following operations: \n Add <code>Vue.use(Loading)</code>\n in the <code>Vue 2</code> environment and <code>app.use(Loading)</code></p>\n in the <code>Vue 3</code> environment",
+    "link": "loading/fullscreen",
+    "component": "Loading",
+    "findIntroStr": "Animation effect displayed when data is loaded.",
+    "demoId": "fullscreen"
+  },
+  {
+    "title": "Customized loading icon",
+    "content": "<p>Customize the loading icon through <code>spinner</code>. </p>\n",
+    "link": "loading/spinner",
+    "component": "Loading",
+    "findIntroStr": "Animation effect displayed when data is loaded.",
+    "demoId": "spinner"
+  },
+  {
+    "title": "Load Region",
+    "content": "<p>Use <code>target</code> to specify the DOM node to be overwritten by Loading. </p>\n",
+    "link": "loading/target",
+    "component": "Loading",
+    "findIntroStr": "Animation effect displayed when data is loaded.",
+    "demoId": "target"
+  }
+]

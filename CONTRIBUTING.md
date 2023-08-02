@@ -22,6 +22,7 @@ If you encounter problems in the process of using TinyVue components, you are we
 If it is a defect, select [Bug report](https://github.com/opentiny/tiny-vue/issues/new?template=bug-report.yml) template when creating a new Issue. The title follows the format of `[componentName] defect description`. For example: `[select] filtering function, the selected option cannot be selected again after it has been deleted`.
 
 Issue that reports defects mainly needs to fill in the following information:
+
 - Version numbers of `@opentiny/vue` and `vue`.
 - The performance of the defect can be illustrated by screenshot, and if there is an error, the error message can be posted.
 - Defect reproduction step, preferably with a minimum reproducible demo link.
@@ -29,6 +30,7 @@ Issue that reports defects mainly needs to fill in the following information:
 If it is a new feature, select [Feature request](https://github.com/opentiny/tiny-vue/issues/new?template=feature-request.yml) template. The title follows the format of `[componentName] new feature description`. For example: `[select] selection box is too long to display, hope to support the configuration of tips prompt`.
 
 The following information is required for the Issue of the new feature:
+
 - What problems does this feature mainly solve for users?
 - What is the api of this feature?
 
@@ -41,9 +43,9 @@ Local startup steps:
 - Click the Fork button in the upper right corner of the [TinyVue](https://github.com/opentiny/tiny-vue) code repository to Fork the upstream repository to the personal repository.
 - Clone personal repository to local.
 - Associated with the upstream repository to facilitate the synchronization of the latest code of the upstream repository.
-- Run `npm i --force` under the TinyVue root directory to install node dependencies.
-- Run `npm run dev:vue3` to launch the component library website.
-- Open the browser to visit: [http://127.0.0.1:5173/](http://127.0.0.1:5173/)
+- Run `pnpm i` under the TinyVue root directory to install node dependencies.
+- Run `pnpm dev` to launch the component library website.
+- Open the browser to visit: [http://127.0.0.1:7130/](http://127.0.0.1:7130/)
 
 ```shell
 # You need to replace username with your own user name
@@ -54,18 +56,18 @@ cd tiny-vue
 git remote add upstream git@github.com:opentiny/tiny-vue.git
 
 # Installation
-npm i
+pnpm i
 
 # Launch Vue.js 3
-npm run dev:vue3
+pnpm dev
 
 # Launch Vue.js 2
-npm run dev:vue2
+pnpm dev:vue2
 ```
 
 To submit a PR:
 
-- Make sure that you have completed the steps in local startup and can visit [http://127.0.0.1:5173/](http://127.0.0.1:5173/) normally.
+- Make sure that you have completed the steps in local startup and can visit [http://127.0.0.1:7130/](http://127.0.0.1:7130/) normally.
 - Synchronize upstream repository dev branch latest code: `git pull upstream dev`.
 - Create a new branch `git checkout-b username/feature1 upstream/ dev` from the upstream repository dev branch. The name of the branch should be `username/feat- xxx` / `username/fix- xxx`.
 - Local coding.
@@ -84,3 +86,11 @@ If you are interested in our open source project, you are welcome to join our op
 
 - Add official assistant WeChat: opentiny-official to join our technical exchange group.
 - Add to the mailing list: opentiny@googlegroups.com
+
+If you have submitted Issue or PR to OpenTiny, you can comment on Issue or Pull Request, asking @all-contributors to add a contributor:
+
+```
+@all-contributors please add @<username> for <contributions>
+```
+
+For detailed rules, please refer to [https://allcontributors.org/docs/en/bot/usage](https://allcontributors.org/docs/en/bot/usage)

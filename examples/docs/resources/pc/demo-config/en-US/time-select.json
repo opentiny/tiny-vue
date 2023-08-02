@@ -1,0 +1,130 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "time-select/basic-usage",
+    "component": "TimeSelect Time Selector",
+    "findIntroStr": "The time selection box is a special case of the drop-down list box. The drop-down list box is displayed in the time division format (customized format is not supported). Some parameters in the drop-down list box can be extended.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Fixed Time Range",
+    "content": "For details, see the following example.",
+    "link": "time-select/range-placeholder",
+    "component": "TimeSelect Time Selector",
+    "findIntroStr": "The time selection box is a special case of the drop-down list box. The drop-down list box is displayed in the time division format (customized format is not supported). Some parameters in the drop-down list box can be extended.",
+    "demoId": "range-placeholder"
+  },
+  {
+    "title": "Default time setting when the selector is enabled",
+    "content": "<p>Use <code>default-value</code> to set the selector to open the default display time</p>\n",
+    "link": "time-select/default-value",
+    "component": "TimeSelect Time Selector",
+    "findIntroStr": "The time selection box is a special case of the drop-down list box. The drop-down list box is displayed in the time division format (customized format is not supported). Some parameters in the drop-down list box can be extended.",
+    "demoId": "default-value"
+  },
+  {
+    "title": "Specified time point",
+    "content": "<p>picker-options Set Time</p>\n",
+    "link": "time-select/picker-options",
+    "component": "TimeSelect Time Selector",
+    "findIntroStr": "The time selection box is a special case of the drop-down list box. The drop-down list box is displayed in the time division format (customized format is not supported). Some parameters in the drop-down list box can be extended.",
+    "demoId": "picker-options"
+  },
+  {
+    "title": "Rear icon",
+    "content": "<p> uses the <code>suffix-icon</code> attribute to set the icon behind the date text box. An icon is imported from the <code>@opentiny/vue-icon</code>, initialized, and transferred to the <code>suffix-icon</code>. </p>\n",
+    "link": "time-select/suffix-icon",
+    "component": "TimeSelect Time Selector",
+    "findIntroStr": "The time selection box is a special case of the drop-down list box. The drop-down list box is displayed in the time division format (customized format is not supported). Some parameters in the drop-down list box can be extended.",
+    "demoId": "suffix-icon"
+  },
+  {
+    "title": "Customized Clear Icon",
+    "content": "<p>Clear the icon by <code>clear-icon</code></p>\n",
+    "link": "time-select/clear-icon",
+    "component": "TimeSelect Time Selector",
+    "findIntroStr": "The time selection box is a special case of the drop-down list box. The drop-down list box is displayed in the time division format (customized format is not supported). Some parameters in the drop-down list box can be extended.",
+    "demoId": "clear-icon"
+  },
+  {
+    "title": "Display the Clear button",
+    "content": "For details, see the following example.",
+    "link": "time-select/clear-icon",
+    "component": "TimeSelect Time Selector",
+    "findIntroStr": "The time selection box is a special case of the drop-down list box. The drop-down list box is displayed in the time division format (customized format is not supported). Some parameters in the drop-down list box can be extended.",
+    "demoId": "clearable"
+  },
+  {
+    "title": "Native Attribute",
+    "content": "For details, see the following example.",
+    "link": "time-select/clear-icon",
+    "component": "TimeSelect Time Selector",
+    "findIntroStr": "The time selection box is a special case of the drop-down list box. The drop-down list box is displayed in the time division format (customized format is not supported). Some parameters in the drop-down list box can be extended.",
+    "demoId": "name"
+  },
+  {
+    "title": "Event",
+    "content": "Triggered when the <p><code>focus</code> input frame is focused and when the input frame is out of focus</p>\n",
+    "link": "time-select/event-blur",
+    "component": "TimeSelect Time Selector",
+    "findIntroStr": "The time selection box is a special case of the drop-down list box. The drop-down list box is displayed in the time division format (customized format is not supported). Some parameters in the drop-down list box can be extended.",
+    "demoId": "event-blur"
+  },
+  {
+    "title": "The text box cannot be edited.",
+    "content": "By default, you can enter a date in the <p>Date text box. If you set <code>editable</code> to false, you cannot enter a date in the <p>Date text box. </p>\n",
+    "link": "time-select/editable",
+    "component": "TimeSelect Time Selector",
+    "findIntroStr": "The time selection box is a special case of the drop-down list box. The drop-down list box is displayed in the time division format (customized format is not supported). Some parameters in the drop-down list box can be extended.",
+    "demoId": "editable"
+  },
+  {
+    "title": "Disabled",
+    "content": "For details, see the following example.",
+    "link": "time-select/disabled",
+    "component": "TimeSelect Time Selector",
+    "findIntroStr": "The time selection box is a special case of the drop-down list box. The drop-down list box is displayed in the time division format (customized format is not supported). Some parameters in the drop-down list box can be extended.",
+    "demoId": "disabled"
+  },
+  {
+    "title": "Customized class name",
+    "content": "For details, see the following example.",
+    "link": "time-select/popper-class",
+    "component": "TimeSelect Time Selector",
+    "findIntroStr": "The time selection box is a special case of the drop-down list box. The drop-down list box is displayed in the time division format (customized format is not supported). Some parameters in the drop-down list box can be extended.",
+    "demoId": "popper-class"
+  },
+  {
+    "title": "mini size",
+    "content": "For details, see the following example.",
+    "link": "time-select/size-mini",
+    "component": "TimeSelect Time Selector",
+    "findIntroStr": "The time selection box is a special case of the drop-down list box. The drop-down list box is displayed in the time division format (customized format is not supported). Some parameters in the drop-down list box can be extended.",
+    "demoId": "size-mini"
+  },
+  {
+    "title": "small size",
+    "content": "For details, see the following example.",
+    "link": "time-select/size-small",
+    "component": "TimeSelect Time Selector",
+    "findIntroStr": "The time selection box is a special case of the drop-down list box. The drop-down list box is displayed in the time division format (customized format is not supported). Some parameters in the drop-down list box can be extended.",
+    "demoId": "size-small"
+  },
+  {
+    "title": "medium Size",
+    "content": "For details, see the following example.",
+    "link": "time-select/size-medium",
+    "component": "TimeSelect Time Selector",
+    "findIntroStr": "The time selection box is a special case of the drop-down list box. The drop-down list box is displayed in the time division format (customized format is not supported). Some parameters in the drop-down list box can be extended.",
+    "demoId": "size-medium"
+  },
+  {
+    "title": "Manually obtaining the focus",
+    "content": "For details, see the following example.",
+    "link": "time-select/focus",
+    "component": "TimeSelect Time Selector",
+    "findIntroStr": "The time selection box is a special case of the drop-down list box. The drop-down list box is displayed in the time division format (customized format is not supported). Some parameters in the drop-down list box can be extended.",
+    "demoId": "focus"
+  }
+]

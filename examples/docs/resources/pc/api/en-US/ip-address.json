@@ -1,0 +1,92 @@
+{
+  "attrs": [
+    {
+      "name": "delimiter",
+      "sample": "delimiter",
+      "type": "String,Object",
+      "desc": "Set the separator between IP address segments. The default value is '. '.;Set the class name of the separator between IP segments. The default value is'icon-dot-ipv4'.",
+      "defaultValue": "The default value of this attribute is icon-dot-ipv4."
+    },
+    {
+      "name": "size",
+      "sample": "size",
+      "type": "String",
+      "desc": "Set the component size. The optional values of this attribute are medium / small / mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled",
+      "type": "Boolean",
+      "desc": "Set the disabled attribute of the text. The default value is false.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "readonly",
+      "sample": "readonly",
+      "type": "Boolean",
+      "desc": "Set the read-only attribute of the text. The default value is false.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "type",
+      "sample": "ipv4-type",
+      "type": "String",
+      "desc": "Sets the type attribute in the IpAddress box. The default value is IPv4 and the value can be IPv6. ;The value of this attribute can be IPv4 or IPv6",
+      "defaultValue": "The default value of this attribute is IPv4."
+    },
+    {
+      "name": "value",
+      "sample": "ipv4-type",
+      "type": "String",
+      "desc": "Set the default text display value.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "slots",
+      "type": "",
+      "desc": "Separator between IP address segments",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "blur",
+      "sample": "blur",
+      "type": "Function",
+      "desc": "The event is triggered when the text box loses the focus; onBlur(){\n// do something you want...} ",
+      "defaultValue": ""
+    },
+    {
+      "name": "focus",
+      "sample": "focus",
+      "type": "Function",
+      "desc": "This event is triggered when a text box obtains the focus; onFocus(){\n// do something you want...}",
+      "defaultValue": ""
+    },
+    {
+      "name": "change",
+      "sample": "change",
+      "type": "Function(arg1)",
+      "desc": "Value of the ;onChange(arg1){\n// arg1 = value IP event after the text box content is changed.\n// do something you want...}",
+      "defaultValue": ""
+    },
+    {
+      "name": "input",
+      "sample": "input",
+      "type": "Function(arg1, arg2)",
+      "desc": "When the text box content is entered, the event is triggered. The value of the ;onInput(arg1, arg2){\n// arg1 = value IP address text box is changed. \n// arg2 = index Index of the IP address text box where the value is changed. \n// do something you want...}",
+      "defaultValue": ""
+    },
+    {
+      "name": "select",
+      "sample": "select",
+      "type": "Function(arg1)",
+      "desc": "The event is triggered when the text box content is selected. onSelect(arg1){\n// arg1 = target.value Value of the check box.\n// do something you want...}",
+      "defaultValue": ""
+    }
+  ]
+}

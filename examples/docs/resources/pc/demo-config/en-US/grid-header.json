@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Hide table headers.",
+    "content": "<p>Set <code>showHeader</code> to <code>fasle</code> to control the hidden table header. The default value is <code>true</code>. </p>\n",
+    "link": "grid/header/hide-grid-header",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "header-hide-grid-header"
+  },
+  {
+    "title": "User-defined table header",
+    "content": "<p>Customize the table header by column <code>slot</code> slot</p>\n",
+    "link": "grid/header/custom-grid-header",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "header-custom-grid-header"
+  },
+  {
+    "title": "Configure the template for customizing table header content",
+    "content": "<p>Set the <code>header</code> slot and configure the template of the customized table header content. </p>\n",
+    "link": "grid/header/slot-header",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "header-slot-header"
+  },
+  {
+    "title": "Basic Description",
+    "content": "<p>Add the class name to the cell of the table header through the column attribute <code>header-class-name</code>, or the function Function({$rowIndex, column, columnIndex, $columnIndex}) . \n</p>\n",
+    "link": "grid/header/header-class-name",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "header-header-class-name"
+  }
+]

@@ -1,0 +1,466 @@
+[
+  {
+    "title": "基本用法",
+    "content": "<p><code>v-model</code> 的值为当前被选中的 <code>tiny-option</code> 的 <code>value</code> 属性值。</p>\n",
+    "link": "select/basic-usage",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "下拉面板可搜索",
+    "content": "<p>通过 <code>searchable</code> 配置下拉面板是否显示搜索框</p>\n",
+    "link": "select/searchable",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "searchable"
+  },
+  {
+    "title": "多选",
+    "content": "<p>通过 <code>multiple</code> 属性启用多选功能，此时 <code>v-model</code> 的值为当前选中值所组成的数组。默认情况下选中值会以 Tag 的形式展现。</p>\n",
+    "link": "select/multiple",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "multiple"
+  },
+  {
+    "title": "折叠 Tag",
+    "content": "<p>多选时通过设置 <code>collapse-tags</code> 属性将选中值合并为一段文字。</p>\n",
+    "link": "select/collapse-tags",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "collapse-tags"
+  },
+  {
+    "title": "设置 tag 类型",
+    "content": "<p>通过 <code>tagType</code> 属性设置标签类型 </p>\n",
+    "link": "select/tag-type",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "tag-type"
+  },
+  {
+    "title": "设置输入框类型",
+    "content": "<p>通过设置 <code>input-box-type</code> 为underline,可以设置为下划线类型。</p>\n",
+    "link": "select/input-box-type",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "input-box-type"
+  },
+  {
+    "title": "选择个数限制",
+    "content": "<p><code>multiple-limit</code> 属性可指定多选时用户最多可以选择的项目数，默认为 0 不限制。</p>\n",
+    "link": "select/multiple-limit",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "multiple-limit"
+  },
+  {
+    "title": "大数据虚拟滚动",
+    "content": "<p>通过 <code>options</code> 设置下拉选项并且设置 <code>optimization</code> 开启大数据虚拟滚动功能。使用标签配置选项时不支持开启虚拟滚动。\n多选模式下，最大选中项数 <code>multiple-limit</code> 默认值为 20，如果选中项比较多，建议开启 <code>collapse-tags</code> 进行折叠显示。</p>\n",
+    "link": "select/optimization",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "optimization"
+  },
+  {
+    "title": "禁用",
+    "content": "<p>设置 <code>disabled</code> 属性后整个选择器不可用。</p>\n",
+    "link": "select/disabled",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "disabled"
+  },
+  {
+    "title": "下拉选项某些项禁用",
+    "content": "<p>tiny-options 标签设置 <code>disabled</code> 属性后该选项不可用。</p>\n",
+    "link": "select/disabled-options",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "disabled-options"
+  },
+  {
+    "title": "下拉多选默认选中且禁用",
+    "content": "<p>默认选中的标签设置 <code>disabled</code> 属性后，该选项禁用。</p>\n",
+    "link": "select/disabled-and-selected-options",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "disabled-and-selected-options"
+  },
+  {
+    "title": "medium",
+    "content": "<p>通过 <code>size</code> 属性定义输入框尺寸，可选项有 medium、small、mini 。\n通过 <code>options</code> 配置 Select 数据项，使用后不需要再配置 tiny-option。</p>\n",
+    "link": "select/size-medium",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "size-medium"
+  },
+  {
+    "title": "small",
+    "content": "详细用法参考如下示例",
+    "link": "select/size-small",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "size-small"
+  },
+  {
+    "title": "mini",
+    "content": "详细用法参考如下示例",
+    "link": "select/size-mini",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "size-mini"
+  },
+  {
+    "title": "分组",
+    "content": "<p>使用 <code>tiny-option-group</code> 对备选项进行分组，它的 <code>label</code> 属性为分组名，使用 <code>disabled</code> 属性设置该分组下所有选项为禁用。</p>\n",
+    "link": "select/option-group",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "option-group"
+  },
+  {
+    "title": "分组禁用部分选项",
+    "content": "<p>使用 <code>tiny-option-group</code> 对备选项进行分组，禁用部分分组。</p>\n",
+    "link": "select/option-group-disable",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "option-group-disable"
+  },
+  {
+    "title": "change clear blur focus 事件",
+    "content": "<div class=\"tip custom-block\"><p class=\"custom-block-title\">事件说明</p>\n<p>change：选中值发生变化时触发，回调参数为目前的选中值\nclear：可清空的单选模式下用户点击清空按钮时触发\nblur：当 input 失去焦点时触发\nfocus：当 input 获得焦点时触发</p>\n</div>\n",
+    "link": "select/envts-change",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "envts-change"
+  },
+  {
+    "title": "visible-change remove-tag 事件",
+    "content": "<div class=\"tip custom-block\"><p class=\"custom-block-title\">事件说明</p>\n<p>visible-change：下拉框出现/隐藏时触发，回调参数为：出现则为 true，隐藏则为 false\nremove-tag：多选模式下移除tag时触发，回调参数为移除的 tag 值</p>\n</div>\n",
+    "link": "select/envts-remove",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "envts-remove"
+  },
+  {
+    "title": "可搜索",
+    "content": "<p>通过 <code>filterable</code> 属性可启用搜索功能。默认情况下，Select 会找出所有 <code>label</code> 属性包含输入值的选项。如果希望使用其他的搜索逻辑，可以通过传入一个 <code>filter-method</code> 来实现。<code>filter-method</code> 为一个 Function，它会在输入值发生变化时调用，参数为当前输入值。</p>\n",
+    "link": "select/filter-method",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "filter-method"
+  },
+  {
+    "title": "搜索允许复制",
+    "content": "<p>搜索单选场景，不能复制输入框的内容，需要添加属性 <code>allow-copy</code> 才能复制。属性 <code>allow-copy</code> 默认为 <code>false</code>。\n在鼠标悬浮在输入框上时，按下鼠标左键并移动鼠标，可选中之前输入文本；\n在鼠标悬浮在输入框上时，点击鼠标左键，还是原有行为，即输入内容变为 placeholder，内容清空，进入输入状态；</p>\n",
+    "link": "select/search-allow-copy",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "search-allow-copy"
+  },
+  {
+    "title": "创建条目",
+    "content": "<p>通过 <code>allow-create</code> 属性可通过在输入框中输入文字来创建选项中并不存在的新的条目。注意此时 <code>filterable</code> 属性必须为真。而<code>default-first-option</code> 属性设置为 true 后，通过按下回车就可以选中当前选项列表中的第一个选项，无需使用鼠标或键盘方向键进行定位。</p>\n",
+    "link": "select/allow-create",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "allow-create"
+  },
+  {
+    "title": "远程搜索",
+    "content": "<p>为了启用远程搜索，需要将 <code>filterable</code> 和 <code>remote</code> 设置为 <code>true</code>，同时传入一个 <code>remote-method</code>。<code>remote-method</code> 为一个 Function，它会在输入值发生变化时调用，参数为当前输入值。<code>reserve-keyword</code> 属性在多选且可搜索时，可以在选中一个选项后保留当前的搜索关键词。</p>\n",
+    "link": "select/remote-method",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "remote-method"
+  },
+  {
+    "title": "获焦时触发远程搜索",
+    "content": "详细用法参考如下示例",
+    "link": "select/focus-remote-method",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "focus-remote-method"
+  },
+  {
+    "title": "远程搜索允许复制",
+    "content": "<p>远程搜索单选场景，不能复制输入框的内容，需要添加属性 <code>allow-copy</code> 才能复制。属性 <code>allow-copy</code> 默认为 <code>false</code>。\n在鼠标悬浮在输入框上时，按下鼠标左键并移动鼠标，可选中之前输入文本；\n在鼠标悬浮在输入框上时，点击鼠标左键，还是原有行为，即输入内容变为 placeholder，内容清空，进入输入状态；</p>\n",
+    "link": "select/remote-search-allow-copy",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "remote-search-allow-copy"
+  },
+  {
+    "title": "选项可清除",
+    "content": "<p>通过 <code>clearable</code> 属性可将选择器清空，鼠标悬停于选择器上时，会出现清除图标。需要注意的是，<code>clearable</code> 属性仅适用于单选。</p>\n",
+    "link": "select/clearable",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "clearable"
+  },
+  {
+    "title": "name",
+    "content": "<p>通过 <code>name</code> 属性可已设置 name 的属性</p>\n",
+    "link": "select/name",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "name"
+  },
+  {
+    "title": "Select选择器选项可复制",
+    "content": "<p>设置 <code>tag-selectable</code> 属性后，输入框中已选择的选项可通过鼠标选择，然后按 Ctrl + C 或右键进行复制。</p>\n",
+    "link": "select/tag-select",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "tag-select"
+  },
+  {
+    "title": "Select选择器选项支持复制所有",
+    "content": "<p>设置 <code>copyable</code> 属性后，可以复制所有的 <code>tag</code> 文本内容以逗号分隔</p>\n",
+    "link": "select/tag-copy-all",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "tag-copy-all"
+  },
+  {
+    "title": "绑定值为对象",
+    "content": "<p>如果绑定值为对象时，则必须要配置 <code>value-key</code> 属性指定 value 唯一标识的键名。</p>\n",
+    "link": "select/binding-obj",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "binding-obj"
+  },
+  {
+    "title": "自定义无匹配搜索文字",
+    "content": "<p>通过 <code>no-match-text</code> 属性可自定义搜索条件无匹配时显示的文字。</p>\n",
+    "link": "select/no-match-text",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "no-match-text"
+  },
+  {
+    "title": "自定义空数据显示文字",
+    "content": "<p>通过 <code>no-data-text</code> 属性可以自定义选项为空时显示的文字。</p>\n <p>通过 <code>show-empty-image</code> 属性可以设置显示空数据图片，默认不显示。</p>\n",
+    "link": "select/no-data-text",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "no-data-text"
+  },
+  {
+    "title": "弹出框样式与定位",
+    "content": "<p>通过 <code>popper-class</code> 属性可自定义下拉弹框的样式。<code>popper-append-to-body</code>\t指定是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false 。</p>\n",
+    "link": "select/popup-style-position",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "popup-style-position"
+  },
+  {
+    "title": "获取焦点既弹出下拉菜单",
+    "content": "<p>设置 <code>automatic-dropdown</code> 属性为 true 后，对于不可搜索的 Select，在输入框获得焦点后将自动弹出选项菜单。</p>\n",
+    "link": "select/automatic-dropdown",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "automatic-dropdown"
+  },
+  {
+    "title": "自定义头部内容",
+    "content": "<p>通过 <code>prefix</code> 插槽自定义输入框头部内容。</p>\n",
+    "link": "select/custom-prefix",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "custom-prefix"
+  },
+  {
+    "title": "自定义下拉内容",
+    "content": "<p>通过 Option 的默认插槽实现，将自定义的 HTML 模板插入 <code>tiny-option</code> 的 slot 中即可。</p>\n",
+    "link": "select/custom-options",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "custom-options"
+  },
+  {
+    "title": "自定义触发源插槽",
+    "content": "<p>通过 <code>reference</code> 插槽自定义触发源的 HTML 模板。</p>\n",
+    "link": "select/custom-reference-slot",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "custom-reference-slot"
+  },
+  {
+    "title": "不展示全选选项",
+    "content": "<p><code>show-alloption</code> 属性设置为 false 后将不展示 <code>全选</code> 选项，默认为 true 。</p>\n",
+    "link": "select/show-alloption",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "show-alloption"
+  },
+  {
+    "title": "改变输入框的值",
+    "content": "详细用法参考如下示例",
+    "link": "select/set-input-value",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "set-input-value"
+  },
+  {
+    "title": "手动获取焦点",
+    "content": "<p>通过调用 <code>focus()</code> 方法使 input 获取焦点。</p>\n",
+    "link": "select/manual-focus-blur",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "manual-focus-blur"
+  },
+  {
+    "title": "下拉列表跟随输入框宽度",
+    "content": "<p>通过 <code>is-drop-inherit-width</code> 属性设置下拉列表是否跟随输入框宽度。默认为 <code>false</code> 表示不跟随，内容可撑开下拉列表宽度，设置为 <code>true</code> 则跟随宽度。</p>\n",
+    "link": "select/is-drop-inherit-width",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "is-drop-inherit-width"
+  },
+  {
+    "title": "隐藏下拉",
+    "content": "<p>通过 <code>hide-drop</code> 属性设置下拉列表不显示。</p>\n",
+    "link": "select/hide-select-input-border",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "hide-select-input-border"
+  },
+  {
+    "title": "默认插槽",
+    "content": "<p>通过 <code>default</code> 默认插槽列表。</p>\n",
+    "link": "select/slot-default",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "slot-default"
+  },
+  {
+    "title": "底部插槽",
+    "content": "<p>通过 <code>footer</code> 使用底部插槽。</p>\n",
+    "link": "select/slot-footer",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "slot-footer"
+  },
+  {
+    "title": "空数据插槽",
+    "content": "<p>通过 <code>empty</code> 设置没有数据时显示的提示语。</p>\n",
+    "link": "select/slot-empty",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "slot-empty"
+  },
+  {
+    "title": "嵌套单选 Grid",
+    "content": "详细用法参考如下示例",
+    "link": "select/nest-radio-grid",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "nest-radio-grid"
+  },
+  {
+    "title": "嵌套单选 Grid，可搜索，可清除",
+    "content": "详细用法参考如下示例",
+    "link": "select/nest-checkbox-grid-clearable",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "nest-checkbox-grid-clearable"
+  },
+  {
+    "title": "嵌套多选 Grid",
+    "content": "详细用法参考如下示例",
+    "link": "select/nest-checkbox-grid",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "nest-checkbox-grid"
+  },
+  {
+    "title": "text-field",
+    "content": "详细用法参考如下示例",
+    "link": "select/nest-checkbox-grid",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "nest-checkbox-grid1"
+  },
+  {
+    "title": "value-field",
+    "content": "详细用法参考如下示例",
+    "link": "select/nest-checkbox-grid",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "nest-checkbox-grid2"
+  },
+  {
+    "title": "嵌套 Grid 数据项禁用",
+    "content": "<p>下拉表格多选模式，通过 <code>select-config</code> 配置项的属性 <code>checkMethod</code> ，传入自定义方法判断哪些数据项被禁用，方法会判断每个数据项，需返回值为 <code>true</code> 或者 <code>false</code>，代表此数据项启用或者禁用。下拉表格单选模式，通过 <code>radio-config</code> 配置项的属性 <code>checkMethod</code> ，传入自定义方法判断哪些数据项被禁用，方法会判断每个数据项，需返回值为 <code>true</code> 或者 <code>false</code>，代表此数据项启用或者禁用。</p>\n",
+    "link": "select/disable-grid-select-radio",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "disable-grid-select-radio"
+  },
+  {
+    "title": "嵌套 Grid 开启远程搜索(多选)",
+    "content": "<p>配置 <code>render-type</code> 为 <code>grid</code> 嵌套Grid；将 <code>filterable</code> 和 <code>remote</code> 设置为 <code>true</code>，同时传入 <code>remote-method</code> 方法，开启远程搜索。如需自动搜索和显示展开按钮，需设置 <code>remote-config</code> </p>\n",
+    "link": "select/nest-grid-remote-filter",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "nest-grid-remote-filter"
+  },
+  {
+    "title": "嵌套 Grid 开启远程搜索(单选)",
+    "content": "<p>配置 <code>render-type</code> 为 <code>grid</code> 嵌套Grid；将 <code>filterable</code> 和 <code>remote</code> 设置为 <code>true</code>，同时传入 <code>remote-method</code> 方法，开启远程搜索。如需自动搜索和显示展开按钮，需设置 <code>remote-config</code> </p>\n",
+    "link": "select/nest-remote-grid",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "nest-remote-grid"
+  },
+  {
+    "title": "嵌套 Grid 且数据量大",
+    "content": "详细用法参考如下示例",
+    "link": "select/nest-radio-grid-much-data",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "nest-radio-grid-much-data"
+  },
+  {
+    "title": "嵌套单选 Tree",
+    "content": "详细用法参考如下示例",
+    "link": "select/nest-radio-tree",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "nest-radio-tree"
+  },
+  {
+    "title": "嵌套多选 Tree",
+    "content": "详细用法参考如下示例",
+    "link": "select/nest-checkbox-tree",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "nest-checkbox-tree"
+  },
+  {
+    "title": "可搜索 tree",
+    "content": "详细用法参考如下示例",
+    "link": "select/nest-filterable-tree",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "nest-filterable-tree"
+  },
+  {
+    "title": "配置方式",
+    "content": "<p>通过设置 <code>cache-op</code> 开启缓存功能并且通过 <code>options</code> 设置下拉选项。</p>\n",
+    "link": "select/cache-usage",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "cache-usage"
+  },
+  {
+    "title": "插槽方式",
+    "content": "<p>通过 slot 设置列表渲染组件为 <code>vue-option</code> 来输出下拉列表，则需要手动加入缓存功能。</p>\n",
+    "link": "select/memoize-usage",
+    "component": " Select 选择器",
+    "findIntroStr": "Select 选择器是一种通过点击弹出下拉列表展示数据并进行选择的 UI 组件。",
+    "demoId": "memoize-usage"
+  }
+]

@@ -1,0 +1,67 @@
+{
+  "attrs": [
+    {
+      "name": "text",
+      "sample": "loading-tip-text",
+      "type": "String",
+      "desc": "通过 value 属性设置文字;显示在加载图标下方的加载文案",
+      "defaultValue": ""
+    },
+    {
+      "name": "fullscreen",
+      "sample": "fullscreen",
+      "type": "Boolean",
+      "desc": "设置 type 属性为 true 显示全屏;同 v-loading 指令中的 fullscreen 修饰符",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "size",
+      "sample": "size",
+      "type": "String",
+      "desc": "加载图标尺寸",
+      "defaultValue": "small"
+    },
+    {
+      "name": "target",
+      "sample": "target",
+      "type": "Object/String",
+      "desc": "Loading 需要覆盖的 DOM 节点。可传入一个 DOM 对象或字符串；若传入字符串，则会将其作为参数传入 document.querySelector以获取到对应 DOM 节点",
+      "defaultValue": "该属性的默认值为 document.body"
+    },
+    {
+      "name": "body",
+      "sample": "body",
+      "type": "Boolean",
+      "desc": "同 v-loading 指令中的 body 修饰符",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "lock",
+      "sample": "fullscreen",
+      "type": "Boolean",
+      "desc": "同 v-loading 指令中的 lock 修饰符",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "spinner",
+      "sample": "spinner",
+      "type": "String",
+      "desc": "自定义加载图标类名",
+      "defaultValue": ""
+    },
+    {
+      "name": "background",
+      "sample": "background",
+      "type": "String",
+      "desc": "遮罩背景色",
+      "defaultValue": ""
+    },
+    {
+      "name": "customClass",
+      "sample": "custom-class",
+      "type": "String",
+      "desc": "Loading 的自定义类名",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "@opentiny/vue-standard-list-item",
+  "version": "5.0.0-mf.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "^0.31.0"
+  },
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-tooltip": "workspace:~",
+    "@opentiny/vue-user-head": "workspace:~",
+    "@opentiny/vue-dropdown": "workspace:~",
+    "@opentiny/vue-dropdown-menu": "workspace:~",
+    "@opentiny/vue-dropdown-item": "workspace:~",
+    "@opentiny/vue-tag-group": "workspace:~"
+  },
+  "license": "MIT"
+}

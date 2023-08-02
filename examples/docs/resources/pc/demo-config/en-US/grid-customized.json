@@ -1,0 +1,106 @@
+[
+  {
+    "title": "Column Width",
+    "content": "<p>Configure <code>resizable=&quot;true&quot;</code> on the <code>grid</code> tag to adjust the column width, and configure <code>resizable=&quot;{storage: true}&quot;</code> on the <code>toolbar</code> tag to save the column width in <code>localStroage</code> on the local host. The column width of the table on the refreshed page is displayed based on the column width after being dragged.</p>\n",
+    "link": "grid/custom/column-width",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "custom-column-width"
+  },
+  {
+    "title": "Manually Reset Columns",
+    "content": "Description of the <div class=\"tip custom-block\"><p class=\"custom-block-title\"> method </p>\n<p><code>resetResizable()</code>: Manually reset the column width and drag the operation to the initial state \n<code>resetCustoms()</code>: Manually reset the display/hide operation of the column to the initial state.\n<code>resetAll()</code>: Manually reset all operations of the column. Restore to the initial state </p>\n</div>\n<p> Drag the column width or hide the column, and then click the corresponding button to view the effect. </p>\n",
+    "link": "grid/custom/resetResizable",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "custom-resetResizable"
+  },
+  {
+    "title": "Sort",
+    "content": "<p>Configure <code>sortable</code> on the <code>column</code> label to sort data. (For columns that are not configured, the sorting icon in the personalization panel is hidden.) and configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings. Sort the settings in the personalized panel. The sorting results are saved in the local <code>localStroage</code>. Refresh the page. The sorted data is displayed on the page.</p>\n",
+    "link": "grid/custom/column-sort",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "custom-column-sort"
+  },
+  {
+    "title": "Sort Type",
+    "content": "<p>Configure <code>sortable</code> on the <code>column</code> tab to enable sorting, and configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings. In the Personalization panel, select Other Settings. In Other Settings, you can select the sorting type. The sorting type includes the sorting on the current page and sorting on all data. The default value is Sort on the current page.</p>\n",
+    "link": "grid/custom/sort-type",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "custom-sort-type"
+  },
+  {
+    "title": "Column Freeze",
+    "content": "<p>Configure the <code>fixed=&quot;left&quot;</code> on the <code>column</code> tag to be fixed on the left, and configure <code>setting</code> on the <code>toolbar</code> tag to enable personalized settings. In the personalized panel, you can set whether the column is fixed.</p>\n",
+    "link": "grid/custom/column-fixed",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "custom-column-fixed"
+  },
+  {
+    "title": "Local Records",
+    "content": "<p>Set <code>sortable</code> of <code>setting</code> to <code>sortablejs</code> to implement the drag-and-drop sorting function. This function is invalid under multi-level column headers</p>\n",
+    "link": "grid/custom/ordercolumn-local",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "custom-ordercolumn-local"
+  },
+  {
+    "title": "Load Remote Data",
+    "content": "<p>Use the <code>reloadCustoms</code> method and set the second parameter to <code>true</code> to load columns in sequence</p>\n",
+    "link": "grid/custom/ordercolumn-remote",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "custom-ordercolumn-remote"
+  },
+  {
+    "title": "Display and hide columns",
+    "content": "<p>Configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings. In the personalized panel, you can set whether to display or hide columns</p>\n",
+    "link": "grid/custom/column-visible-hidden",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "custom-column-visible-hidden"
+  },
+  {
+    "title": "Manually hide the displayed column",
+    "content": "<p>Invoke the <code>hideColumn(column)</code> method to hide the specified column, and the <code>showColumn(column)</code> method to display the specified column. When you use the two methods to hide or display a column, you need to invoke the <code>refreshColumn()</code> method to refresh the column configuration for the modification to take effect. </p>\n",
+    "link": "grid/hide/hideColumn",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "hide-hideColumn"
+  },
+  {
+    "title": "Event triggered before dragging the personalized panel",
+    "content": "<p>Configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings, and configure the <code>onBeforeMove</code> event before dragging on the personalized panel. You can also configure <code>filter</code> to set the class name. If you drag a line on the personalized panel, the event before dragging the personalized panel is triggered. </p>\n",
+    "link": "grid/custom/prsonalized-drag",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "custom-prsonalized-drag"
+  },
+  {
+    "title": "Number of records on each page",
+    "content": "<p>On the <code>toolbar</code> tab, configure <code>setting</code> to enable personalized settings. In the personalized panel, select other settings. You can select the number of records to be displayed on each page. You can use the <code>other</code> attribute of <code>setting</code> to control the display of other settings. The default value of <code>Boolean</code> is <code>true</code></p>\n",
+    "link": "grid/custom/page-size",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "custom-page-size"
+  },
+  {
+    "title": "Local Storage",
+    "content": "<p>Configure <code>:setting=&quot;{storage:'local'}&quot; on the <code>toolbar</code> tag </code>Enable personalization and save to local <code>localSotrage</code> </p>\n<div class=\"danger custom-block\">\n</div>\n",
+    "link": "grid/custom/local-storage",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "custom-local-storage"
+  },
+  {
+    "title": "Server Storage",
+    "content": "<p>Configure <code>:setting=&quot;{storage:'remote'}&quot;</code> on the <code>toolbar</code> tab to enable personalization and remote services to obtain personalized data. Configure <code>@remote-setting</code> to invoke the <code>reloadCustoms</code> method to update personalized data. \n Note\n If the column is displayed or hidden based on the server data, you need to manually invoke the <code>reloadCustoms</code> method to update the personalized data after invoking the interface. In \n</p>\n<div class=\"danger custom-block\">\n</div>\n",
+    "link": "grid/custom/server-storage",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "custom-server-storage"
+  }
+]

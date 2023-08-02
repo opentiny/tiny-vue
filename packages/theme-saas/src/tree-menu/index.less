@@ -1,0 +1,222 @@
+@import '../custom.less';
+@import '../mixins/common.less';
+
+@tree-prefix-cls: ~'@{css-prefix}tree';
+@tree-node-prefix-cls: ~'@{css-prefix}tree-node';
+@input-prefix-cls: ~'@{css-prefix}input';
+@tree-menu-prefix-cls: ~'@{css-prefix}tree-menu';
+
+.@{tree-menu-prefix-cls} {
+  width: 248px;
+  @apply relative;
+  @apply text-xs;
+
+  &__show-filter {
+    @apply pt-4;
+  }
+
+  .@{input-prefix-cls} {
+    @apply py-0 px-4;
+
+    &__inner {
+      @apply pt-0 pr-12 pb-0 pl-3;
+      @apply border-none;
+      @apply border border-solid border-color-border;
+    }
+
+    &__prefix {
+      left: unset;
+      @apply right-8;
+
+      > svg {
+        @apply text-base;
+        @apply fill-color-text-placeholder;
+      }
+    }
+  }
+
+  .@{tree-prefix-cls} {
+    @apply pt-4;
+
+    .@{tree-node-prefix-cls} {
+      .@{tree-node-prefix-cls}__content {
+        @apply h-12;
+        line-height: 48px;
+        @apply overflow-hidden;
+
+        &:hover {
+          @apply bg-color-bg-2;
+        }
+
+        .tree-node-icon {
+          @apply order-1;
+          @apply mr-4;
+        }
+
+        .tree-node-number {
+          @apply order-1;
+          @apply absolute;
+          @apply right-4;
+          max-width: 36px;
+          @apply overflow-hidden;
+          @apply text-sm;
+        }
+
+        .tree-node {
+          @apply w-full;
+          .@{tree-node-prefix-cls}__label {
+            @apply ml-0;
+          }
+        }
+
+        .tree-node-name {
+          @apply py-0 px-3;
+          svg {
+            @apply ~"-mt-0.5";
+            @apply mr-4;
+          }
+        }
+
+        .@{css-prefix}checkbox {
+          @apply ml-4;
+
+          + .tree-node {
+            .tree-node-name {
+              @apply pl-2;
+            }
+          }
+        }
+      }
+
+      .@{tree-node-prefix-cls}__content-number {
+        .tree-node-name {
+          @apply pr-0;
+        }
+      }
+
+      .@{tree-node-prefix-cls}__expand-icon {
+        @apply fill-color-text-primary;
+        @apply text-base;
+      }
+
+      &.is-current {
+        & > .@{tree-node-prefix-cls}__content {
+          @apply relative;
+
+          &:after {
+            @apply content-[''];
+            @apply border-r-2 border-r-color-brand;
+            @apply absolute;
+            @apply top-0;
+            @apply left-0;
+            @apply h-full;
+            @apply ~'z-[1]';
+          }
+
+          .tree-node-body {
+            @apply text-color-brand;
+            @apply font-normal;
+            .tree-node-name {
+              svg {
+                @apply fill-color-brand;
+              }
+            }
+          }
+
+          .tree-node-number {
+            @apply text-color-brand;
+            @apply font-normal;
+          }
+
+          &:hover {
+            @apply bg-color-brand-hover-subtle;
+          }
+        }
+      }
+
+      .tree-node-body {
+        @apply text-color-text-primary;
+        @apply block;
+
+        &,
+        &:hover {
+          @apply no-underline;
+        }
+      }
+
+      &.is-loading {
+        .@{tree-node-prefix-cls}__content {
+          .tree-node-name {
+            @apply pl-0;
+          }
+        }
+      }
+    }
+
+    &.only-check-children {
+      .@{tree-prefix-cls}-node:has(.is-current) > .@{tree-prefix-cls}-node__content {
+        & .tree-node-body {
+          @apply text-color-brand;
+        }
+
+        & .@{tree-prefix-cls}-node__expand-icon {
+          @apply fill-color-brand;
+        }
+      }
+    }
+  }
+
+  & &__overflow {
+    &.@{tree-prefix-cls} {
+      .@{tree-node-prefix-cls} {
+        .@{tree-node-prefix-cls}__content {
+          .tree-node-name {
+            @apply whitespace-nowrap;
+            @apply overflow-hidden;
+            @apply text-ellipsis;
+            @apply block;
+          }
+
+          .tree-node {
+            width: calc(100% - 32px);
+          }
+        }
+
+        .@{tree-node-prefix-cls}__content-number {
+          .tree-node {
+            width: calc(100% - 60px);
+          }
+        }
+      }
+    }
+  }
+
+  & &__wrap {
+    &.@{tree-prefix-cls} {
+      .@{tree-node-prefix-cls}__content {
+        min-height: 40px;
+        @apply h-auto;
+      }
+
+      .tree-node-body {
+        min-height: 40px;
+        @apply flex;
+        @apply items-center;
+      }
+
+      .@{tree-node-prefix-cls}__label {
+        //兼容ie10-ie11
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+          @apply flex;
+        }
+      }
+
+      .tree-node-name {
+        @apply whitespace-normal;
+        @apply leading-normal;
+        @apply block;
+        @apply break-all;
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "attrs": [
+    {
+      "name": "default-value",
+      "sample": "",
+      "type": "String",
+      "desc": "设置搜索输入框内的默认搜索值。",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearable",
+      "sample": "clearable",
+      "type": "Boolean",
+      "desc": " 属性设置显示清空图标按钮",
+      "defaultValue": ""
+    },
+    {
+      "name": "v-model",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "设置绑定的值。",
+      "defaultValue": ""
+    },
+    {
+      "name": "mini",
+      "sample": "mini-mode",
+      "type": "Boolean",
+      "desc": "迷你模式，配置为true时，搜索默认显示为一个带图标的圆形按钮，点击后展开，默认 false 。",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "placeholder",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "设置搜索输入框内的提示占位文本 。",
+      "defaultValue": ""
+    },
+    {
+      "name": "search-types",
+      "sample": "search-types",
+      "type": "Array",
+      "desc": "搜索的类型选项，格式为[{text:'文档',value:1},...]，不配置时类型选择固定显示为All 。",
+      "defaultValue": ""
+    },
+    {
+      "name": "is-enter-search",
+      "sample": "search-events",
+      "type": "Boolean",
+      "desc": "是否在按下键盘Enter键的时候触发search事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "transparent",
+      "sample": "transparent-mode",
+      "type": "Boolean",
+      "desc": "设置为透明模式，配置为true时，边框变为透明且收缩后半透明显示，一般用在带有背景的场景，默认 false 。",
+      "defaultValue": "该属性的默认值为 false"
+    }
+  ],
+  "slots": [
+    {
+      "name": "poplist",
+      "sample": "custom-search-types",
+      "type": "",
+      "desc": "搜索的弹出列表插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "text",
+      "sample": "show-selected-types",
+      "type": "",
+      "desc": "默认搜索类型插槽",
+      "defaultValue": ""
+    },
+    {
+      "name": "prefix",
+      "sample": "slot-prefix",
+      "type": "",
+      "desc": "左侧插槽",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "change-events",
+      "type": "Function(arg1,arg2)",
+      "desc": "在 input 框中输入完成时触发的回调函数;arg1:{Object 搜索类型}，arg2:{String 当前input框中值}",
+      "defaultValue": ""
+    },
+    {
+      "name": "search",
+      "sample": "search-events",
+      "type": "Function(arg1,arg2)",
+      "desc": "在展开状态点击搜索按钮时触发的回调函数;arg1:{Object 搜索类型}，arg2:{String 当前input框中值}",
+      "defaultValue": ""
+    },
+    {
+      "name": "select",
+      "sample": "select-events",
+      "type": "Function(arg1)",
+      "desc": "在search组件切换类型时触发的回调函数;arg1:{Object 搜索类型}",
+      "defaultValue": ""
+    }
+  ]
+}

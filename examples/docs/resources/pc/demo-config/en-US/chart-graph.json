@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>It can run smoothly on PCs and mobile devices and is compatible with most browsers. (Internet Explorer 9/10/11, Chrome, Firefox, Safari, etc.) The bottom layer relies on the lightweight Canvas class library ZRender to provide intuitive, vivid, interactive, and highly personalized data visualization charts. The </p>\n<blockquote>\n<p> diagram supports only the <code>extend</code> configuration. The usage and attributes of the diagram are the same as those of the eCharts. For details, see the </p>\n</blockquote>\n",
+    "link": "chart/graph/base",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "graph-base"
+  },
+  {
+    "title": "Graph in Cartesian coordinate system",
+    "content": "For details, see the following example.",
+    "link": "chart/graph/demo2",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "graph-demo2"
+  },
+  {
+    "title": "Extend events in the topology view",
+    "content": "For details, see the following example.",
+    "link": "chart/graph/demo3",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "graph-demo3"
+  }
+]

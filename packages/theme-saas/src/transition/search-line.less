@@ -1,0 +1,16 @@
+@import '../custom.less';
+
+.@{css-prefix}transition-search-line-fade-enter,
+.@{css-prefix}transition-search-line-fade-enter-from,
+.@{css-prefix}transition-search-line-fade-leave-to {
+  @apply opacity-0;
+}
+
+.@{css-prefix}transition-search-line-fade-enter-to {
+  @apply opacity-0;
+}
+
+.@{css-prefix}transition-search-line-fade-enter-active,
+.@{css-prefix}transition-search-line-fade-leave-active {
+  @apply transition-opacity duration-300;
+}

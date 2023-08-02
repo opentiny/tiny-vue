@@ -1,0 +1,56 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import "../custom.less";
+@import "./vars.less";
+
+@loading-prefix-cls: ~"@{css-prefix}mobile-loading";
+
+.@{loading-prefix-cls} {
+  .component-css-vars-loading();
+
+  &-primary {
+    top: 50%;
+    text-align: center;
+    margin: 0 auto;
+    background-color: var(
+      --ti-mobile-loading-bg-color-primary,
+      rgba(0, 0, 0, 0.75)
+    );
+    color: var(--ti-mobile-loading-text-color-primary, #fff);
+    width: var(--ti-mobile-loading-width-primary, 140px);
+    height: var(--ti-mobile-loading-height-primary, 140px);
+    line-height: var(--ti-mobile-loading-line-height-primary, 55px);
+    border-radius: var(--ti-mobile-loading-border-radius, 16px);
+
+    svg {
+      width: var(--ti-mobile-loading-dot-width-primary, 3rem);
+      margin-top: var(--ti-mobile-loading-dot-height, 40px);
+    }
+  }
+
+  &-simple {
+    text-align: center;
+    color: var(--ti-mobile-loading-text-color-simple, #999);
+    svg {
+      width: var(--ti-mobile-loading-dot-width-simple, 2rem);
+    }
+  }
+
+  &-parent-relative {
+    position: relative;
+  }
+
+  &-parent-hidden {
+    overflow: hidden;
+  }
+}

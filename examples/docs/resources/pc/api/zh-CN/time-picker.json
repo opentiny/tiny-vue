@@ -1,0 +1,162 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "basic-usage",
+      "type": "date(DatePicker) / array(DateRangePicker)",
+      "desc": "日期选择器选中的日期值，可设置选择器的初始值",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled",
+      "type": "Boolean",
+      "desc": "禁用",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "editable",
+      "sample": "editable",
+      "type": "Boolean",
+      "desc": "文本框可输入",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "clearable",
+      "sample": "clearable",
+      "type": "Boolean",
+      "desc": "是否显示清除按钮",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "size",
+      "sample": "size-medium",
+      "type": "String",
+      "desc": "输入框尺寸;该属性的可选值为 medium,small, mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "placeholder",
+      "sample": "basic-usage",
+      "type": "String",
+      "desc": "非范围选择时的占位内容",
+      "defaultValue": "该属性的默认值为空"
+    },
+    {
+      "name": "start-placeholder",
+      "sample": "size-medium",
+      "type": "String",
+      "desc": "范围选择时开始日期的占位内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "end-placeholder",
+      "sample": "size-medium",
+      "type": "String",
+      "desc": "范围选择时结束日期的占位内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "is-range",
+      "sample": "is-range",
+      "type": "Boolean",
+      "desc": "是否为时间范围选择，仅对<tiny-time-picker>有效",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "arrow-control",
+      "sample": "clearable",
+      "type": "Boolean",
+      "desc": "是否使用箭头进行时间选择，仅对<tiny-time-picker>有效",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "popper-class",
+      "sample": "popper-class",
+      "type": "String",
+      "desc": "TimePicker 下拉框的 class 类名",
+      "defaultValue": ""
+    },
+    {
+      "name": "picker-options",
+      "sample": "basic-usage1",
+      "type": "Object",
+      "desc": "当前时间日期选择器特有的选项参考下表",
+      "defaultValue": "该属性的默认值为 {}"
+    },
+    {
+      "name": "range-separator",
+      "sample": "is-range",
+      "type": "String",
+      "desc": "选择范围时的分隔符",
+      "defaultValue": "该属性的默认值为 - "
+    },
+    {
+      "name": "default-value",
+      "sample": "default-value",
+      "type": "Date",
+      "desc": "可选，当选中的日期值为空时，选择器面板打开时默认显示的时间，需设置为可被new Date()解析的值",
+      "defaultValue": ""
+    },
+    {
+      "name": "name",
+      "sample": "name",
+      "type": "String",
+      "desc": "原生属性",
+      "defaultValue": ""
+    },
+    {
+      "name": "suffix-icon",
+      "sample": "suffix-icon",
+      "type": "String",
+      "desc": "自定义头部图标的类名",
+      "defaultValue": "该自定后置图标， 该属性的默认值为 IconCalendar"
+    },
+    {
+      "name": "clear-icon",
+      "sample": "clear-icon",
+      "type": "String",
+      "desc": "自定义清空图标",
+      "defaultValue": "该属性的默认值为 IconOperationfaild"
+    },
+    {
+      "name": "popper-append-to-body",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false",
+      "defaultValue": "该属性的默认值为 true"
+    }
+  ],
+  "methods": [
+    {
+      "name": "focus",
+      "sample": "event-blur",
+      "type": "",
+      "desc": "使 input 获取焦点",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "event-blur",
+      "type": "Function(arg)",
+      "desc": "用户确认选定的值时触发;arg:{Date|Array 非范围选择时，是当前选定值的时间对象；范围选择时，是当前选定值的时间对象数组}",
+      "defaultValue": ""
+    },
+    {
+      "name": "blur",
+      "sample": "event-blur",
+      "type": "Function(arg)",
+      "desc": "当 input 失去焦点时触发;arg:{Object 时间组件Vue对象}",
+      "defaultValue": ""
+    },
+    {
+      "name": "focus",
+      "sample": "event-blur",
+      "type": "Function(arg)",
+      "desc": "当 input 获得焦点时触发;arg:{Object 时间组件Vue对象}",
+      "defaultValue": ""
+    }
+  ]
+}

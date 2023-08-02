@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Left Freeze",
+    "content": "<p>Sets column freezing through the <code>fixed</code> property. The options are as follows: <code>left right</code>The default value is <code>left</code></p>\n",
+    "link": "grid/fixed/left-fixed",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "fixed-left-fixed"
+  },
+  {
+    "title": "Right Freeze",
+    "content": "<p>Sets column freezing through the <code>fixed</code> property. The options are as follows: <code>left right</code>The default value is <code>left</code></p>\n",
+    "link": "grid/fixed/right-fixed",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "fixed-right-fixed"
+  },
+  {
+    "title": "Frozen Operation Column",
+    "content": "<p>Sets column freezing through the <code>fixed</code> property. The options are as follows: <code>left right</code>The default value is <code>left</code></p>\n",
+    "link": "grid/fixed/multi-column-fixed",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "fixed-multi-column-fixed"
+  }
+]

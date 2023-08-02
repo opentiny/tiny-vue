@@ -1,0 +1,23 @@
+{
+  "name": "my-vue",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@opentiny/vue": "^3.5.2",
+    "vue": "^3.2.45"
+  },
+  "devDependencies": {
+    "@opentiny/vue-vite-import": "^1.0.1",
+    "@types/node": "^18.14.6",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^4.3.8",
+    "vue-tsc": "^1.6.5"
+  }
+}

@@ -1,0 +1,106 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "notify/basic-usage",
+    "component": "Notify Notification",
+    "findIntroStr": "Notify notification, which is mainly used for pop-up prompts.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Message Type",
+    "content": "<p>You can set different types by <code>type</code>. The options are success, warning, info, and error. The default value is info. </p>\n",
+    "link": "notify/type",
+    "component": "Notify Notification",
+    "findIntroStr": "Notify notification, which is mainly used for pop-up prompts.",
+    "demoId": "type"
+  },
+  {
+    "title": "Automatic shutdown delay",
+    "content": "<p>You can set the delay for automatic shutdown through the <code>duration</code> attribute. The default value is 4500 ms. </p>\n",
+    "link": "notify/duration",
+    "component": "Notify Notification",
+    "findIntroStr": "Notify notification, which is mainly used for pop-up prompts.",
+    "demoId": "duration"
+  },
+  {
+    "title": "Display position",
+    "content": "<p>You can set the position of the notification box through the <code>position</code> attribute. The default value is bottom-right. </p>\n",
+    "link": "notify/position",
+    "component": "Notify Notification",
+    "findIntroStr": "Notify notification, which is mainly used for pop-up prompts.",
+    "demoId": "position"
+  },
+  {
+    "title": "Title",
+    "content": "<p>You can set the title of the notification box through the <code>title</code> attribute. </p>\n",
+    "link": "notify/title",
+    "component": "Notify Notification",
+    "findIntroStr": "Notify notification, which is mainly used for pop-up prompts.",
+    "demoId": "title"
+  },
+  {
+    "title": "Custom Content",
+    "content": "<p>You can set the content of the notification box through the <code>message</code> attribute. </p>\n",
+    "link": "notify/message",
+    "component": "Notify Notification",
+    "findIntroStr": "Notify notification, which is mainly used for pop-up prompts.",
+    "demoId": "message"
+  },
+  {
+    "title": "The close button is not displayed.",
+    "content": "<p>showClose <code>message</code>: indicates whether the notification box displays the close button. The default value is true. </p>\n",
+    "link": "notify/showClose",
+    "component": "Notify Notification",
+    "findIntroStr": "Notify notification, which is mainly used for pop-up prompts.",
+    "demoId": "showClose"
+  },
+  {
+    "title": "The type icon is not displayed.",
+    "content": "<p>You can use the <code>showIcon</code> attribute to set whether to display the type icon in the notification box. The default value is true. </p>\n",
+    "link": "notify/showIcon",
+    "component": "Notify Notification",
+    "findIntroStr": "Notify notification, which is mainly used for pop-up prompts.",
+    "demoId": "showIcon"
+  },
+  {
+    "title": "Custom Close Icon",
+    "content": "<p>You can set the icon for closing the notification box through the <code>closeIcon</code> attribute. The default value is IconClose. </p>\n",
+    "link": "notify/closeIcon",
+    "component": "Notify Notification",
+    "findIntroStr": "Notify notification, which is mainly used for pop-up prompts.",
+    "demoId": "closeIcon"
+  },
+  {
+    "title": "Custom type icon",
+    "content": "<p>You can set the notification box type icon through the <code>statusIcon</code> attribute. The default value is IconInfoSolid. </p>\n",
+    "link": "notify/statusIcon",
+    "component": "Notify Notification",
+    "findIntroStr": "Notify notification, which is mainly used for pop-up prompts.",
+    "demoId": "statusIcon"
+  },
+  {
+    "title": "Event triggered before the notification box is closed",
+    "content": "<p>You can set the event before the notification box is closed through the <code>beforeClose</code> attribute. </p>\n",
+    "link": "notify/beforeClose",
+    "component": "Notify Notification",
+    "findIntroStr": "Notify notification, which is mainly used for pop-up prompts.",
+    "demoId": "beforeClose"
+  },
+  {
+    "title": "This event is triggered when the close button is clicked.",
+    "content": "<p>You can set the <code>onClose</code> attribute to trigger an event when the close button is clicked. </p>\n",
+    "link": "notify/onClose",
+    "component": "Notify Notification",
+    "findIntroStr": "Notify notification, which is mainly used for pop-up prompts.",
+    "demoId": "close"
+  },
+  {
+    "title": "Configure image stabilization",
+    "content": "<p>You can use <code>debounceDelay</code> to set the image stabilization time.\n",
+    "link": "notify/debounceDelay",
+    "component": "Notify Notification",
+    "findIntroStr": "Notify notification, which is mainly used for pop-up prompts.",
+    "demoId": "debounceDelay"
+  }
+]

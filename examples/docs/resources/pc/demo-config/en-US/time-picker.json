@@ -1,0 +1,154 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "time-picker/basic-usage",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Selection Range",
+    "content": "<p>picker-options Set the time range</p>\n",
+    "link": "time-picker/picker-options",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "picker-options"
+  },
+  {
+    "title": "Arrow Selection",
+    "content": "The <p><code>arrow-control</code> property specifies whether to use the arrow to select the time. This property is valid only for <code>&lt;tiny-time-picker&gt;</code> .</p>\n",
+    "link": "date-picker/clearable",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "clearable1"
+  },
+  {
+    "title": "Clear Input",
+    "content": "<p>Clear the icon by <code>clear-icon</code></p>\n",
+    "link": "time-picker/clear-icon",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "clear-icon"
+  },
+  {
+    "title": "Size setting medium",
+    "content": "<p>Customize the group price size by <code>size</code></p>\n",
+    "link": "time-picker/size-medium",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "size-medium"
+  },
+  {
+    "title": "Size setting small",
+    "content": "<p>Customize the group price size by <code>size</code></p>\n",
+    "link": "time-picker/size-small",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "size-small"
+  },
+  {
+    "title": "Size setting mini",
+    "content": "<p>Customize the group price size by <code>size</code></p>\n",
+    "link": "time-picker/size-mini",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "size-mini"
+  },
+  {
+    "title": "Clear button",
+    "content": "<p>Use the <code>clearable</code> attribute to set whether to display the Clear button. The default value is true</p>\n",
+    "link": "time-picker/clearable",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "clearable"
+  },
+  {
+    "title": "Customized rear icon",
+    "content": "<p> uses the <code>suffix-icon</code> attribute to set the icon behind the date text box. An icon is imported from the <code>@opentiny/vue-icon</code>, initialized, and transferred to the <code>suffix-icon</code>. </p>\n",
+    "link": "time-picker/suffix-icon",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "suffix-icon"
+  },
+  {
+    "title": "Time Format",
+    "content": "The <p><code>format</code> time format is displayed. \n<code>timestamp</code>JS timestamp is available only in value-format. The component binding value is of the number type</p>\n",
+    "link": "time-picker/format",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "format"
+  },
+  {
+    "title": "Time display type",
+    "content": "<p>You can set the 12-hour format through the <code>hh</code> attribute. The <code>HH</code> attribute is in the 24-hour format and must be used with A or a. The <code>h</code> and <code>H</code> attributes are not set to 0. \nYou can use the <code>mm</code> attribute to set the minute display format, for example, 01. The <code>m</code> attribute is not set to 0. \nYou can use the <code>ss</code> attribute to set the display format of seconds, for example, 01. The <code>s</code> attribute is not set to 0. \nThe <code>a</code> property can be used to set the display time to am/pm <code>A</code> property can be used to set the display time to AM/PM. </p>\n",
+    "link": "time-picker/time-low",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "time-low"
+  },
+  {
+    "title": "Date Display Format",
+    "content": "The <p><code>WW</code> attribute is set to week, for example, 01. The <code>W</code> attribute is set to zeros. \n<code>yyyy</code> The attribute sets the year, for example, 2020. \n<code>MM</code>: month. For example, 01 <code>M</code>: 0 is not added. \n<code>dd</code> attribute setting date, for example, 01 <code>d</code>. </p>\n",
+    "link": "time-picker/date",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "date"
+  },
+  {
+    "title": "Range Selection",
+    "content": "<p><code>is-range</code>: indicates whether to select a range. The default value is false. <code>range-separator</code>. Set the range-separator (optional) to '-' by default. </p>\n",
+    "link": "time-picker/is-range",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "is-range"
+  },
+  {
+    "title": "Default time setting when the selector is enabled",
+    "content": "<p>Use <code>default-value</code> to set the selector to open the default display time</p>\n",
+    "link": "time-picker/default-value",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "default-value"
+  },
+  {
+    "title": "Native Attribute",
+    "content": "<p>Set the default name through the <code>name</code> attribute</p>\n",
+    "link": "time-picker/name",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "name"
+  },
+  {
+    "title": "Class name of the drop-down list box",
+    "content": "<p>Set the class name of the drop-down list box through the <code>popper-class</code> attribute</p>\n",
+    "link": "time-picker/popper-class",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "popper-class"
+  },
+  {
+    "title": "The text box cannot be entered.",
+    "content": "By default, you can enter a date in the <p>Date text box. If you set <code>editable</code> to false, you cannot enter a date in the <p>Date text box. </p>\n",
+    "link": "time-picker/editable",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "editable"
+  },
+  {
+    "title": "Disabled status",
+    "content": "<p>You can set <code>disabled</code> to true, you can disabled the time picker。</p>\n",
+    "link": "time-picker/disabled",
+    "component": " TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "disabled"
+  },
+  {
+    "title": "Event",
+    "content": "<p>When focusing or out of focus, the focus and blur events are triggered. When the selected value is determined, the change event is triggered.</p>\n",
+    "link": "time-picker/event-blur",
+    "component": "TimePicker Time Selector",
+    "findIntroStr": "This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.",
+    "demoId": "event-blur"
+  }
+]

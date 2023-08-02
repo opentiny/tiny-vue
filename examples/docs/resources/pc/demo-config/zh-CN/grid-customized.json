@@ -1,0 +1,122 @@
+[
+  {
+    "title": "列宽",
+    "content": "<p>在 <code>grid</code> 标签上配置 <code>resizable=&quot;true&quot;</code> 可以调整列宽，并在 <code>toolbar</code> 标签上配置 <code>resizable=&quot;{storage: true}&quot;</code> 保存在本地的 <code>localStroage</code> 里，刷新页面表格的列宽按照拖动后的列宽显示</p>\n",
+    "link": "grid/custom/column-width",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "custom-column-width"
+  },
+  {
+    "title": "简化版列设置",
+    "content": "<p>在 <code>toolbar</code> 标签上配置 <code>:setting=&quot;{simple: true, customDisable: customDisable}&quot;</code> 开启简化版列设置 通过<code>customDisable</code> 方法自定义当前选项是否禁用</p>\n",
+    "link": "grid/custom/column-simple",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "custom-column-simple"
+  },
+  {
+    "title": "手动重置列操作",
+    "content": "<div class=\"tip custom-block\"><p class=\"custom-block-title\">方法说明</p>\n<p><code>resetResizable()</code>：手动重置列宽拖动的操作，还原到初始状态\n<code>resetCustoms()</code>：手动重置列的显示/隐藏操作，还原到初始状态\n<code>resetAll()</code>：手动重置列的所有操作，还原到初始状态</p>\n</div>\n<p>请先对列宽进行拖动、隐藏列等操作，然后单击对应按钮查看效果。</p>\n",
+    "link": "grid/custom/resetResizable",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "custom-resetResizable"
+  },
+  {
+    "title": "排序",
+    "content": "<p>在 <code>column</code> 标签上配置 <code>sortable</code> 可以排序（未配置的列，在个性化面板中的排序图标会隐藏），并在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里进行排序，排序过后会保存在本地的 <code>localStroage</code> 里，刷新页面页面上会显示排序过后的数据</p>\n",
+    "link": "grid/custom/column-sort",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "custom-column-sort"
+  },
+  {
+    "title": "排序类型",
+    "content": "<p>在 <code>column</code> 标签上配置 <code>sortable</code> 可以排序，并在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里选择其它设置，其它设置里可以选择排序类型，排序类型有当前页排序和所有数据排序选项，默认是当前页排序</p>\n",
+    "link": "grid/custom/sort-type",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "custom-sort-type"
+  },
+  {
+    "title": "列冻结",
+    "content": "<p>在 <code>column</code> 标签上配置 <code>fixed=&quot;left&quot;</code> 可以固定在左侧，并在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里可以设置是否固定列</p>\n",
+    "link": "grid/custom/column-fixed",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "custom-column-fixed"
+  },
+  {
+    "title": "本地记录",
+    "content": "<p>配置 <code>setting</code> 的 <code>sortable</code> 为 <code>sortablejs</code> 可实现拖拽排序列功能， 此功能在多级列头下无效</p>\n",
+    "link": "grid/custom/ordercolumn-local",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "custom-ordercolumn-local"
+  },
+  {
+    "title": "加载远端数据",
+    "content": "<p>通过 <code>reloadCustoms</code> 方法，将第二个参数置为 <code>true</code> 可按序加载列</p>\n",
+    "link": "grid/custom/ordercolumn-remote",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "custom-ordercolumn-remote"
+  },
+  {
+    "title": "列显示隐藏",
+    "content": "<p>在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里可以设置是否显示和隐藏列</p>\n",
+    "link": "grid/custom/column-visible-hidden",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "custom-column-visible-hidden"
+  },
+  {
+    "title": "手动隐藏显示列",
+    "content": "<p>通过调用 <code>hideColumn(column)</code> 方法隐藏指定列，<code>showColumn(column)</code> 方法显示指定列。使用这两个方法隐藏/显示列时，还需要再调用 <code>refreshColumn()</code> 方法刷新列配置才能实际生效。</p>\n",
+    "link": "grid/hide/hideColumn",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "hide-hideColumn"
+  },
+  {
+    "title": "个性化面板拖拽前事件",
+    "content": "<p>在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里配置 <code>onBeforeMove</code> 拖拽前事件，也可配置 <code>filter</code> 设置类名， 拖拽个性化面板某一行会触发个性化面板的拖拽前事件。</p>\n",
+    "link": "grid/custom/prsonalized-drag",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "custom-prsonalized-drag"
+  },
+  {
+    "title": "分页条数",
+    "content": "<p>在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里选择其它设置，其它设置里可以选择每页显示的条数，可以通过 <code>setting</code> 的 <code>other</code> 属性控制显示其他设置，<code>Boolean</code> 类型默认为 <code>true</code></p>\n",
+    "link": "grid/custom/page-size",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "custom-page-size"
+  },
+  {
+    "title": "本地存储",
+    "content": "<p>在 <code>toolbar</code> 标签上配置 <code>:setting=&quot;{storage:'local'}&quot;</code> 开启个性化并保存到本地 <code>localSotrage</code> 里</p>\n<div class=\"danger custom-block\">\n</div>\n",
+    "link": "grid/custom/local-storage",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "custom-local-storage"
+  },
+  {
+    "title": "服务端存储",
+    "content": "<p>在 <code>toolbar</code> 标签上配置 <code>:setting=&quot;{storage:'remote'}&quot;</code> 开启个性化并启用远程服务获取个性化数据，并配置 <code>@remote-setting</code> 调用 <code>reloadCustoms</code> 方法更新个性化数据。\n 注意\n如果是根据服务端数据控制显示/隐藏列，调用接口获取到个性化的数据后需手动调用 <code>reloadCustoms</code> 方法更新。\n</p>\n<div class=\"danger custom-block\">\n</div>\n",
+    "link": "grid/custom/server-storage",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "custom-server-storage"
+  },
+  {
+    "title": "自定义重置",
+    "content": "<p>通过工具栏属性 <code>reset-method</code>  配置一个方法，在重置个性化时调用，需要返回 <code>promise</code>，指定重置的个性化数据，参考示例：",
+    "link": "grid/custom/reset-method",
+    "component": " Grid 表格",
+    "findIntroStr": "表格组件，提供了非常强大数据表格功能，在 Grid 可以展示数据列表，可以对数据列表进行选择、编辑等。",
+    "demoId": "custom-reset-method"
+  }
+]

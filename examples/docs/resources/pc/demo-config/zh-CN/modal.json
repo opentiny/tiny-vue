@@ -1,0 +1,250 @@
+[
+  {
+    "title": "基本用法",
+    "content": "<p>可通过 <code>Modal.alert</code> 方法设置弹出框，通过 <code>Modal.confirm</code> 方法设置确认弹出框。函数返回一个 <code>Promise</code> 对象，其中属性 <code>vm</code> 可用来关闭当前模态框</p>\n",
+    "link": "modal/base",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "base"
+  },
+  {
+    "title": "最大化显示",
+    "content": "<p>可通过 <code>fullscreen</code> 属性设置是否最大化显示。</p>\n",
+    "link": "modal/fullscreen",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "fullscreen"
+  },
+  {
+    "title": "按 Esc 键关闭弹出框",
+    "content": "<p>可通过 <code>esc-closable</code> 属性设置是否允许按 Esc 键关闭窗口，默认为 <code>false</code>。</p>\n",
+    "link": "modal/esc-closable",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "esc-closable"
+  },
+  {
+    "title": "自动关闭延时",
+    "content": "<p>可通过 <code>duration</code> 属性设置自动关闭的延迟时间，只对 type=message 有效。</p>\n",
+    "link": "modal/duration",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "duration"
+  },
+  {
+    "title": "防止重复提示",
+    "content": "<p>如果不想窗口重复点击，可以设置唯一的 <code>id</code> 防止重复提示，只对 type=message 有效。</p>\n",
+    "link": "modal/id",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "id"
+  },
+  {
+    "title": "锁住滚动条",
+    "content": "<p>可通过 <code>lock-scroll</code> 属性设置是否锁住滚动条，不允许页面滚动。</p>\n",
+    "link": "modal/lock-scroll",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "lock-scroll"
+  },
+  {
+    "title": "锁住页面",
+    "content": "<p>可通过 <code>lock-view</code> 属性设置是否锁住页面，不允许窗口之外的任何操作。</p>\n",
+    "link": "modal/lock-view",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "lock-view"
+  },
+  {
+    "title": "显示遮罩层",
+    "content": "<p>可通过 <code>mask</code> 属性设置是否显示遮罩层，默认为 <code>true</code>。</p>\n",
+    "link": "modal/lock-view",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "lock-view1"
+  },
+  {
+    "title": "点击遮罩层关闭窗口",
+    "content": "<p>可通过 <code>mask-closable</code> 属性设置是否允许点击遮罩层关闭窗口。</p>\n",
+    "link": "modal/mask-closable",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "mask-closable"
+  },
+  {
+    "title": "自定义内容",
+    "content": "<p>可通过 <code>message</code> 属性设置窗口的内容。</p>\n",
+    "link": "modal/message",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "message"
+  },
+  {
+    "title": "调整窗口大小",
+    "content": "<p>可通过和<code>width</code>和<code>height</code>设置窗口的宽高，而通过 <code>resize</code> 设置是否允许拖动调整窗口大小。</p>\n",
+    "link": "modal/resize",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "resize"
+  },
+  {
+    "title": "调整窗口大小后窗口显示的最小宽度",
+    "content": "<p>配置 <code>resize</code> 可拖拽属性为 <code>true</code>后，可通过 <code>min-width</code> 属性设置拖拽后窗口的最小宽度。</p>\n",
+    "link": "modal/min-width",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "min-width"
+  },
+  {
+    "title": "调整窗口大小后窗口显示的最小高度",
+    "content": "<p>配置 <code>resize</code> 可拖拽属性为 <code>true</code>后，可通过 <code>min-height</code> 属性设置拖拽后窗口的最小高度。</p>\n",
+    "link": "modal/min-height",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "min-height"
+  },
+  {
+    "title": "不显示底部",
+    "content": "<p>可通过 <code>showFooter</code> 属性设置是否显示底部，默认为 <code>true</code>。</p>\n",
+    "link": "modal/showFooter",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "showFooter"
+  },
+  {
+    "title": "不显示头部",
+    "content": "<p>可通过 <code>showHeader</code> 属性设置是否显示头部，默认为 <code>true</code>。</p>\n",
+    "link": "modal/showHeader",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "showHeader"
+  },
+  {
+    "title": "消息状态",
+    "content": "<p>可通过 <code>status</code> 属性设置消息状态，可选值有 <code>info | success | warning | error | loading</code>。</p>\n",
+    "link": "modal/status",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "status"
+  },
+  {
+    "title": "标题",
+    "content": "<p>可通过 <code>title</code> 属性设置窗口的标题。</p>\n",
+    "link": "modal/title",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "title"
+  },
+  {
+    "title": "距离顶部的位置",
+    "content": "<p>可通过 <code>top</code> 属性设置消息距离顶部的位置，只对 type=message 有效。</p>\n",
+    "link": "modal/top",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "top"
+  },
+  {
+    "title": "窗口类型",
+    "content": "<p>可通过 <code>type</code> 属性设置窗口类型，可选值 <code>alert | confirm | message</code>。</p>\n",
+    "link": "modal/type",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "type"
+  },
+  {
+    "title": "绑定值",
+    "content": "<p>可通过 <code>value/v-model</code> 属性绑定值。</p>\n",
+    "link": "modal/value",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "value"
+  },
+  {
+    "title": "自定义堆叠顺序",
+    "content": "<p>可通过 <code>zIndex</code> 属性设置自定义堆叠顺序（对于某些特殊场景，比如被遮挡时可能会用到）。</p>\n",
+    "link": "modal/zIndex",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "zIndex"
+  },
+  {
+    "title": "取消按钮事件",
+    "content": "<p>点击取消按钮时触发 <code>cancel</code> 事件。</p>\n",
+    "link": "modal/cancel-event",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "cancel-event"
+  },
+  {
+    "title": "关闭按钮事件",
+    "content": "<p>点击关闭按钮时会触发 <code>close</code> 事件。</p>\n",
+    "link": "modal/close-event",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "close-event"
+  },
+  {
+    "title": "确定按钮事件",
+    "content": "<p>点击确定按钮时会触发 <code>confirm</code> 事件。</p>\n",
+    "link": "modal/confirm-event",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "confirm-event"
+  },
+  {
+    "title": "窗口关闭事件",
+    "content": "<p>窗口关闭时会触发 <code>hide</code> 事件。</p>\n",
+    "link": "modal/hide-event",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "hide-event"
+  },
+  {
+    "title": "窗口显示事件",
+    "content": "<p>在窗口显示时会触发 <code>show</code> 事件。</p>\n",
+    "link": "modal/show-event",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "show-event"
+  },
+  {
+    "title": "窗口缩放事件",
+    "content": "<p>窗口缩放时会触发 <code>zoom</code> 事件。</p>\n",
+    "link": "modal/zoom-event",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "zoom-event"
+  },
+  {
+    "title": "关闭弹窗，是否重置表单数据",
+    "content": "<p>Modal嵌套表单使用时，关闭弹窗时，重置表单数据</p>\n<p>设置  <code>is-form-reset</code> 为false,则关闭弹窗是不重置表单</p>",
+    "link": "modal/is-form-reset",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "is-form-reset"
+  },
+  {
+    "title": "默认插槽",
+    "content": "<p>可通过 <code>templete</code> 设置默认插槽。</p>\n",
+    "link": "modal/value",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "value1"
+  },
+  {
+    "title": "底部插槽",
+    "content": "<p>可通过 <code>slot=&quot;footer&quot;</code> 设置底部插槽。</p>\n",
+    "link": "modal/footer-slot",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "footer-slot"
+  },
+  {
+    "title": "嵌套 grid",
+    "content": "<p>可通过插槽嵌套 grid</p>\n",
+    "link": "modal/grid",
+    "component": " Modal 模态框",
+    "findIntroStr": "Modal 模态框",
+    "demoId": "grid"
+  }
+]

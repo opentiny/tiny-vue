@@ -1,0 +1,41 @@
+{
+  "attrs": [
+    {
+      "name": "direction",
+      "sample": "scroll-direction",
+      "type": "String",
+      "desc": "Scrolling direction; The optional values of this attribute are up / left / down / right",
+      "defaultValue": "The default value of this attribute is left."
+    },
+    {
+      "name": "hover-stop",
+      "sample": "hover-stop",
+      "type": "Boolean",
+      "desc": "Whether to stop scrolling. The value can be false or true. The default value is true.",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "time",
+      "sample": "scroll-time",
+      "type": "Number",
+      "desc": "Time taken for scrolling. The default value is 5s.",
+      "defaultValue": "The default value of this attribute is 5"
+    },
+    {
+      "name": "text",
+      "sample": "custom-scroll-text",
+      "type": "String",
+      "desc": "Scrolled text content",
+      "defaultValue": "The default value of this property is ScrollText"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "custom-scroll-text",
+      "type": "",
+      "desc": "Default slot",
+      "defaultValue": ""
+    }
+  ]
+}

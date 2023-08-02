@@ -1,3 +1,8 @@
-# Except myapp folder:
-dist/
-public/
+dist
+dist2
+dist3
+node_modules
+internal/template
+internal/runtime
+examples/docs/public/static
+pnpm-lock.yaml

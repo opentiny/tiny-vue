@@ -1,0 +1,173 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+@grid-prefix-cls: ~'@{css-prefix}grid';
+@grid-header-prefix-cls: ~'@{css-prefix}grid-header';
+@grid-cell-prefix-cls: ~'@{css-prefix}grid-cell';
+@grid-checkbox-prefix-cls: ~'@{css-prefix}grid-checkbox';
+@header-suffix: ~'@{grid-prefix-cls}-cell__header-suffix';
+@cell-tooltip: ~'@{grid-prefix-cls}-cell__tooltip';
+
+.@{grid-prefix-cls}__header-wrapper {
+  background-color: var(--ti-grid-header-background-color);
+
+  // x轴方向虚拟滚动适配线
+  .@{grid-prefix-cls}__repair {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    border-bottom: 1px solid var(--ti-grid-header-repair-border-color);
+  }
+}
+
+.@{grid-header-prefix-cls}__column {
+  position: relative;
+  font-size: var(--ti-grid-font-size);
+  color: var(--ti-grid-header-text-color);
+
+  // 去掉最后一个竖线
+  &:nth-last-of-type(2) {
+    .@{grid-prefix-cls}-resizable.is__line:before {
+      width: 0px;
+    }
+  }
+
+  &.col__title-checked {
+    background-color: #dcdcdc;
+
+    .@{grid-prefix-cls}-edit-icon {
+      &.@{grid-prefix-cls}-icon__edit-outline {
+        &:before {
+          background-color: #dcdcdc;
+        }
+      }
+    }
+  }
+
+  .@{grid-prefix-cls}-required-icon {
+    color: var(--ti-grid-error-color);
+    line-height: 14px;
+    font-size: var(--ti-common-font-size-1);
+    align-self: baseline;
+
+    &:before {
+      content: '*';
+      width: 10px;
+      height: 10px;
+      display: block;
+    }
+  }
+
+  .@{grid-prefix-cls}-edit-icon {
+    font-size: var(--ti-common-font-size-2);
+    margin-right: 4px;
+    order: -1;
+    fill: var(--ti-grid-column-icon-text-color);
+  }
+
+  .@{grid-prefix-cls}-thead-partition,
+  .@{grid-prefix-cls}-resizable {
+    position: absolute;
+    right: 0;
+    transform: translateX(50%);
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    width: 14px;
+    height: 100%;
+    text-align: center;
+    z-index: 1;
+    user-select: none;
+
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      margin: 0;
+    }
+
+    &.is__line {
+      &:before,
+      &:after {
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      &:before {
+        width: 1px;
+        height: var(--ti-grid-header-resizable-line-height);
+        background-color: var(--ti-grid-header-resizable-bg-color);
+      }
+
+      &:after {
+        width: 0;
+        height: 100%;
+      }
+    }
+  }
+
+  .@{grid-prefix-cls}-resizable {
+    cursor: col-resize;
+  }
+
+  .@{grid-checkbox-prefix-cls} {
+    > input {
+      &:not(:checked) {
+        & + .@{grid-checkbox-prefix-cls}__icon {
+          &:hover {
+            border-color: var(--ti-grid-border-color);
+          }
+        }
+      }
+    }
+  }
+
+  .@{grid-checkbox-prefix-cls}.is__indeterminate {
+    > input {
+      & + .@{grid-checkbox-prefix-cls}__icon {
+        &:hover {
+          border-color: var(--ti-grid-primary-color);
+        }
+      }
+    }
+  }
+}
+
+.@{grid-prefix-cls}__header {
+  .@{header-suffix} {
+    position: relative;
+    min-height: 16px;
+
+    .suffix-icon-1 {
+      position: absolute;
+      right: 12px;
+    }
+
+    .suffix-icon-0 {
+      position: absolute;
+      right: 0;
+    }
+  }
+}
+
+.@{grid-prefix-cls} {
+  th.col__selection > .@{grid-cell-prefix-cls} {
+    position: relative;
+
+    & > .selection-dropdown-wrapper {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}

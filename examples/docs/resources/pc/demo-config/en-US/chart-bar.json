@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p> can run smoothly on PCs and mobile devices and is compatible with most browsers. (Internet Explorer 9/10/11, Chrome, Firefox, Safari, etc.) The bottom layer relies on the lightweight Canvas class library ZRender to provide intuitive, vivid, interactive, and highly personalized data visualization charts. </p>\n",
+    "link": "chart/bar/base",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "bar-base"
+  },
+  {
+    "title": "Specify Indicator Dimension",
+    "content": "For details, see the following example.",
+    "link": "chart/bar/demo2",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "bar-demo2"
+  },
+  {
+    "title": "Sort Bar",
+    "content": "For details, see the following example.",
+    "link": "chart/bar/demo3",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "bar-demo3"
+  },
+  {
+    "title": "The bar axis is configured with two y-axises.",
+    "content": "For details, see the following example.",
+    "link": "chart/bar/demo4",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "bar-demo4"
+  },
+  {
+    "title": "Set legend alias",
+    "content": "For details, see the following example.",
+    "link": "chart/bar/demo5",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "bar-demo5"
+  },
+  {
+    "title": "Stack Bar",
+    "content": "For details, see the following example.",
+    "link": "chart/bar/demo6",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "bar-demo6"
+  },
+  {
+    "title": "Set the vertical axis to a continuous value axis.",
+    "content": "For details, see the following example.",
+    "link": "chart/bar/demo7",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "bar-demo7"
+  }
+]

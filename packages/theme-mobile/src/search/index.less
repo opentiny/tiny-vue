@@ -1,0 +1,198 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/input.less';
+@import '../mixins/common.less';
+@import '../mixins/hairline.less';
+@import '../custom.less';
+@import './vars.less';
+
+@search-prefix-cls: ~'@{css-prefix}mobile-search';
+
+.@{search-prefix-cls} {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: var(--ti-mobile-search-height);
+  outline: none;
+
+  & &__line {
+    position: relative;
+    flex: auto;
+    height: var(--ti-mobile-search-input-height);
+    margin-left: 16px;
+    border-radius: var(--ti-mobile-search-input-border-radius);
+    overflow: hidden;
+    box-sizing: border-box;
+    background: transparent;
+
+    &::after {
+      content: '';
+      width: 200%;
+      height: 200%;
+      box-sizing: border-box;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: scale(0.5);
+      transform-origin: 0 0;
+    }
+  }
+
+  & &__box {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    z-index: 2;
+    backdrop-filter: blur(5px);
+  }
+
+  &-gray &__box {
+    background: var(--ti-mobile-search-input-bg-color-gray);
+  }
+
+  &-primary &__box {
+    background: var(--ti-mobile-search-input-bg-color-primary);
+  }
+
+  & &__input {
+    box-sizing: content-box;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    margin-left: 8px;
+    padding-right: 15px;
+    color: var(--ti-mobile-search-text-color-primary);
+    background: transparent;
+    font-size: var(--ti-mobile-search-font-size);
+    outline: none;
+
+    &-primary {
+      color: var(--ti-mobile-search-text-color-primary);
+      caret-color: var(--ti-mobile-search-caret-color-primary);
+      .placeholder(@color: var(--ti-mobile-search-placeholder-text-color-primary));
+      &:focus {
+        .placeholder(@color: var(--ti-mobile-search-placeholder-text-color-primary));
+      }
+    }
+
+    &-gray {
+      color: var(--ti-mobile-search-text-color-gray);
+      caret-color: var(--ti-mobile-search-caret-color-gray);
+      .placeholder(@color: var(--ti-mobile-search-placeholder-text-color-gray));
+      &:focus {
+        .placeholder(@color: var(--ti-mobile-search-placeholder-text-color-gray));
+      }
+    }
+  }
+
+  &-primary {
+    background-color: var(--ti-mobile-search-bg-color-primary);
+  }
+
+  &-gray {
+    background-color: var(--ti-mobile-search-bg-color-gray);
+  }
+
+  & &__icon {
+    text-decoration: none;
+    display: flex;
+
+    .@{css-prefix}svg {
+      fill: var(--ti-mobile-search-placeholder-text-color-primary);
+    }
+  }
+
+  &-gray &__icon {
+    .@{css-prefix}svg {
+      fill: var(--ti-mobile-search-placeholder-text-color-gray);
+    }
+  }
+
+  & &__close-icon {
+    position: absolute;
+    right: 0;
+    padding: 0 8px;
+    cursor: pointer;
+    display: inline-flex;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &-primary {
+    .@{css-prefix}svg {
+      fill: var(--ti-mobile-search-icon-fill-color-primary);
+    }
+  }
+
+  &-gray {
+    .@{css-prefix}svg {
+      fill: var(--ti-mobile-search-icon-fill-color-gray);
+    }
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 100%;
+    color: var(--ti-mobile-search-text-color-primary);
+  }
+
+  &-gray {
+    color: var(--ti-mobile-search-text-color-gray);
+  }
+
+  & &__present {
+    color: var(--ti-mobile-search-text-color-primary);
+    font-size: var(--ti-mobile-search-font-size);
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+  }
+
+  &-gray &__present {
+    color: var(--ti-mobile-search-text-color-gray);
+  }
+
+  &.focus &__present {
+    display: block;
+  }
+
+  &.focus &__label {
+    display: none;
+  }
+
+  &.focus &__box {
+    opacity: 1;
+  }
+
+  &.collapse &__input {
+    padding: 0;
+    width: 30px;
+    float: right;
+  }
+
+  .fade-enter-to {
+    opacity: 0;
+  }
+
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
+  }
+}

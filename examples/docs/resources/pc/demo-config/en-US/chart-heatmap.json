@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p> can run smoothly on PCs and mobile devices and is compatible with most browsers. (Internet Explorer 9/10/11, Chrome, Firefox, Safari, etc.) The bottom layer relies on the lightweight Canvas class library ZRender to provide intuitive, vivid, interactive, and highly personalized data visualization charts. </p>\n",
+    "link": "chart/heatmap/base",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "heatmap-base"
+  },
+  {
+    "title": "Configure the coordinate axis",
+    "content": "For details, see the following example.",
+    "link": "chart/heatmap/demo2",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "heatmap-demo2"
+  },
+  {
+    "title": "Customized visualMap",
+    "content": "For details, see the following example.",
+    "link": "chart/heatmap/demo3",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "heatmap-demo3"
+  },
+  {
+    "title": "Map heat map",
+    "content": "For details, see the following example.",
+    "link": "chart/heatmap/demo4",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "heatmap-demo4"
+  },
+  {
+    "title": "Baidu Map Heat Map",
+    "content": "<p>Baidu Map and AutoNavi Map require the external network access permission.\n</p>\n",
+    "link": "chart/heatmap/demo5",
+    "component": "Chart",
+    "findIntroStr": "Encapsulated based on eCharts, a pure Javascript chart library.",
+    "demoId": "heatmap-demo5"
+  }
+]

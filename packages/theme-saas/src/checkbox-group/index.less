@@ -1,0 +1,51 @@
+@import '../custom.less';
+
+@checkbox-group-prefix-cls: ~'@{css-prefix}checkbox-group';
+@checkbox-button-prefix-cls: ~'@{css-prefix}checkbox-button';
+@checkbox-prefix-cls: ~'@{css-prefix}checkbox';
+
+.@{checkbox-group-prefix-cls} {
+  @apply flex;
+
+  &.is-vertical {
+    @apply inline-block;
+
+    .@{checkbox-prefix-cls} {
+      @apply flex;
+      @apply mr-0;
+
+      &:not(:last-child) {
+        @apply mb-2;
+      }
+    }
+
+    .@{checkbox-button-prefix-cls} {
+      @apply block;
+
+      &:first-child .@{checkbox-button-prefix-cls}__inner {
+        @apply rounded-tl-sm rounded-tr-sm rounded-br-none rounded-bl-none;
+        @apply border-t border-t-color-border;
+      }
+
+      &:last-child .@{checkbox-button-prefix-cls}__inner {
+        @apply rounded-tl-none rounded-tr-none rounded-br-sm rounded-bl-sm;
+      }
+
+      &.is-checked .@{checkbox-button-prefix-cls}__inner {
+        box-shadow: 0 -1px 0 0 theme('colors.color.brand.focus');
+        @apply border-color-border-focus;
+      }
+
+      &.is-checked.is-disabled .@{checkbox-button-prefix-cls}__inner {
+        box-shadow: 0 -1px 0 0 theme('colors.color.border.DEFAULT');
+        @apply border-color-border;
+        @apply bg-color-bg-2;
+      }
+    }
+
+    .@{checkbox-button-prefix-cls}__inner {
+      @apply border-t-0;
+      @apply border-l border-l-color-border;
+    }
+  }
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>The <code>value</code> attribute is used for bidirectional binding. The specified value is the default value and is displayed in the list on the right. \n\nThe <code>data</code> attribute provides the data source. It is an object array. The default fields in the object are key, label, and disabled. </p>\n",
+    "link": "transfer/basic-usage",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Data Source",
+    "content": "<p>You can request the service to obtain data and assign the data to <code>data</code>. </p>\n",
+    "link": "transfer/data-source",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "data-source"
+  },
+  {
+    "title": "Display All Move Buttons",
+    "content": "<p>You can set the <code>show-all-btn</code> attribute to display all mobile buttons. </p>\n",
+    "link": "transfer/show-all-btn",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "show-all-btn"
+  },
+  {
+    "title": "Customized List Title",
+    "content": "<p>You can use the <code>titles</code> attribute to customize the titles of the left and right lists. </p>\n",
+    "link": "transfer/custom-transfer-titles",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "custom-transfer-titles"
+  },
+  {
+    "title": "Custom Button Copywriting",
+    "content": "<p>The <code>button-texts</code> attribute is used to customize the left and right button text. </p>\n",
+    "link": "transfer/custom-button-texts",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "custom-button-texts"
+  },
+  {
+    "title": "Search box placeholder",
+    "content": "<p>Customize the search box placeholder through the <code>filter-placeholder</code> attribute. </p>\n",
+    "link": "transfer/filter-placeholder",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "filter-placeholder"
+  },
+  {
+    "title": "Custom Search Method",
+    "content": "<p>Provides the <code>filter-method</code> hook function to customize the search method. </p>\n",
+    "link": "transfer/custom-filter-method",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "custom-filter-method"
+  },
+  {
+    "title": "Default options",
+    "content": "<p>Use the <code>left-default-checked</code> and <code>right-default-checked</code> attributes to specify the default selected data in the left and right lists. </p>\n",
+    "link": "transfer/default-checked",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "default-checked"
+  },
+  {
+    "title": "Customized Data Item Rendering",
+    "content": "<p>Use render-content to customize data items</p>\n",
+    "link": "transfer/custom-render-content",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "custom-render-content"
+  },
+  {
+    "title": "Selected status copywriting at the top of the list",
+    "content": "<p>After the <code>format</code> attribute is specified, the ratio of the selected data to all data is displayed on the top of the left and right lists when data is selected. </p>\n",
+    "link": "transfer/checked-format-text",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "checked-format-text"
+  },
+  {
+    "title": "Searchable",
+    "content": "<p>The <code>filterable</code> attribute is used to enable the search function for the left and right lists. </p>\n",
+    "link": "transfer/filterable",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "filterable"
+  },
+  {
+    "title": "Field alias of the data source",
+    "content": "<p>When a field in a data object is inconsistent with the default value, the <code>props</code> attribute can be used for mapping. </p>\n",
+    "link": "transfer/props-of-data-source",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "props-of-data-source"
+  },
+  {
+    "title": "Right Sorting Policy",
+    "content": "<p>Use the <code>target-order</code> attribute to set the sorting policy of the elements in the list on the right. The options are original, push, and unshift. The default value is original. </p>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\"> Sorting Policy</p>\n<p>If the value is original, the sequence of the data source is the same as that of the data source.\nIf the value is push, the newly added elements are ranked last.\nIf the value is unshift, the newly added elements are ranked first </p>\n</div>\n",
+    "link": "transfer/target-order",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "target-order"
+  },
+  {
+    "title": "Drag left and right",
+    "content": "Before using the drag-and-drop function for the <div class=\"tip custom-block\"><p class=\"custom-block-title\">, install the sortablejs plug-in. The </p>\n</div>\n<p> uses the drop-config attribute to configure the sortablejs plug-in. </p>\n",
+    "link": "transfer/drop-config",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "drop-config"
+  },
+  {
+    "title": "Shuttle Box Event",
+    "content": "<p>There are three events: <code>change</code>, <code>left-check-change</code>, and <code>right-check-change</code>. </p>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\"> Event Description</p>\n<p>change: Triggered when an element in the list on the right changes.\nleft-check-change: Triggered when an element in the list on the left is selected or deselected.\nright-check-change: Triggered when an element in the list on the right is selected or deselected",
+    "link": "transfer/transfer-events",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "transfer-events"
+  },
+  {
+    "title": "Clear the search box manually",
+    "content": "<p>Invoke the <code>clearQuery()</code> method to clear the search boxes in the left and right lists. The parameter is left or right. </p>\n",
+    "link": "transfer/manual-clear-query",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "manual-clear-query"
+  },
+  {
+    "title": "Custom List Bottom",
+    "content": "<p>You can customize the bottom of the left and right lists through the <code>left-footer</code> and <code>right-footer</code> slots. </p>\n",
+    "link": "transfer/custom-footer",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "custom-footer"
+  },
+  {
+    "title": "Panel Slot",
+    "content": "<p>You can use <code>left-panel</code> and <code>right-panel</code> to customize the contents of the left and right panels. Use <code>button-panel</code> to customize the shuttle button</p>\n",
+    "link": "transfer/panel-slot",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "panel-slot"
+  },
+  {
+    "title": "Nested Table",
+    "content": "<p>When <code>plugin</code> in the <code>render</code> attribute is set to <code>Table</code>, the shuttle box is rendered as a table. For details, see the configuration of the <code>grid</code> component. </p>\n",
+    "link": "transfer/nested-table",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "nested-table"
+  },
+  {
+    "title": "Nested Tree",
+    "content": "<p>When <code>plugin</code> in the <code>render</code> attribute is set to <code>Tree</code>, the shuttle box is rendered as a tree. Configure tree-related configurations through the <code>treeConfig</code> attribute. (For details, see the configuration of the <code>tree</code> component.) </p>\n",
+    "link": "transfer/nested-tree",
+    "component": "Transfer shuttle box",
+    "findIntroStr": "Shuttle box, which provides bidirectional selection of table data.",
+    "demoId": "nested-tree"
+  }
+]

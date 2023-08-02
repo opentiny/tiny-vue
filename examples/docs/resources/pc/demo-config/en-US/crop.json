@@ -1,0 +1,170 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>The <code>src</code> attribute is used to set the default cropping image source path, and the <code>cropvisible</code> attribute is used to control whether the cropping dialog box is visible. </p>\n",
+    "link": "crop/basic-usage",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Aspect-to-height ratio of the crop box",
+    "content": "<p>You can use the <code>aspect-ratio</code> attribute to set the aspect ratio of the crop box. The default value is <code>16 / 9</code>. You can also set the aspect ratio of the trim box by calling the <code>setAspectRatio</code> method. \nThe <code>center</code> attribute can be used to set whether the crop frame is in the center of the image. </p>\n",
+    "link": "crop/aspect-ratio",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "aspect-ratio"
+  },
+  {
+    "title": "Minimum width and height of the crop box",
+    "content": "<p>Set the minimum width and height of the cropping frame through the <code>min-crop-box-width</code> and <code>min-crop-box-height</code> attributes. After this parameter is set, the width and height of the cropping box cannot be adjusted after the width and height are adjusted to the minimum value. \n Set the minimum width and height of the container through the <code>mmin-container-width</code> and <code>min-container-height</code> attributes. </p>\n",
+    "link": "crop/min-crop-box-width-height",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "min-crop-box-width-height"
+  },
+  {
+    "title": "Do not display the grid background.",
+    "content": "<p>When <code>background</code> is set to <code>false</code>, the grid background of the container is not displayed. </p>\n",
+    "link": "crop/no-background",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "no-background"
+  },
+  {
+    "title": "Do not display dotted lines.",
+    "content": "<p>Setting <code>guides</code> to <code>false</code> will cancel the dotted line above the crop box. </p>\n",
+    "link": "crop/no-guides",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "no-guides"
+  },
+  {
+    "title": "Do not display modal",
+    "content": "<p>Setting <code>modal</code> to <code>false</code> cancels the display of the modal layer above the image below the crop box. </p>\n",
+    "link": "crop/no-modal",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "no-modal"
+  },
+  {
+    "title": "View mode",
+    "content": "<p>You can set the view mode of the crop box through the <code>view-mode</code> attribute. There are four options: <code>0</code>, <code>1</code>, <code>2</code>, and <code>3</code>. The default value is <code>0</code>. </p>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\">view-mode option description </p>\n<p><code>0</code>: The crop box can be moved outside the image. \n<code>1</code>: The crop box can only be moved within the image. \n<code>2</code>: The image is not completely covered in the container. A gap may appear on one side when the image is zoomed out. \n<code>3</code>: fills the entire container with an image. </p>\n</div>\n",
+    "link": "crop/view-mode",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "view-mode"
+  },
+  {
+    "title": "Drag Mode",
+    "content": "<p>You can set the drag mode of the crop box through the <code>drag-mode</code> attribute. There are three options: <code>crop</code>, <code>move</code>, and <code>none</code>. The default value is <code>crop</code>. </p>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\">drag-mode Option Description </p>\n<p><code>crop</code>: After the cropping box is canceled, hold down the left mouse button and drag it in the image area to generate a new cropping box. \n<code>move</code>: After the cropping box is canceled, hold down the left mouse button to move the image. \n<code>none</code>: After the crop box is canceled, the image cannot be cropped or moved. \n<code>movable</code> specifies whether an image can be moved. The default value is true. </p>\n</div>\n",
+    "link": "crop/drag-mode",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "drag-mode"
+  },
+  {
+    "title": "Automatically Cropped Area",
+    "content": "<p>During initialization, the <code>auto-crop-area</code> attribute can be used to set the area of the cropping box. The default value is <code>0.8</code>. This parameter is valid only when <code>auto-crop</code> is set to <code>true</code>. </p>\n",
+    "link": "crop/auto-crop-area",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "auto-crop-area"
+  },
+  {
+    "title": "Obtain container data",
+    "content": "<p>Invoke the <code>getContainerData</code> method to obtain the container size data. </p>\n",
+    "link": "crop/get-container-data",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "get-container-data"
+  },
+  {
+    "title": "Obtain clip box data",
+    "content": "<p>Invoke the <code>getCropBoxData</code> method to obtain the position and size of the clip box. </p>\n",
+    "link": "crop/get-crop-box-data",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "get-crop-box-data"
+  },
+  {
+    "title": "Obtain the cropped image data",
+    "content": "<p>Invoke the <code>getCroppedCanvas</code> method to obtain the cropped image data. Use the <code>toDataURL</code> method to convert the cropped image data to Base64 image data. Use the <code>toBlob</code> method to generate Blob image data. </p>\n",
+    "link": "crop/get-cropped-canvas",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "get-cropped-canvas"
+  },
+  {
+    "title": "Obtain crop area data",
+    "content": "<p>Invoke the <code>getData</code> method to obtain the position and size of the cropping area. </p>\n",
+    "link": "crop/get-data",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "get-data"
+  },
+  {
+    "title": "Obtain Image Data",
+    "content": "<p>Invoke the <code>getImageData</code> method to obtain the image position, size, and other related data. To obtain the canvas position and size data, call the <code>getCanvasData</code> method. </p>\n",
+    "link": "crop/get-image-data",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "get-image-data"
+  },
+  {
+    "title": "Replace Image",
+    "content": "<p>Invoke the <code>replace</code> method to replace the image src and rebuild the cropper. The <code>rotatable</code> attribute is used to control image rotation. The default value is true. </p>\n",
+    "link": "crop/replace-image",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "replace-image"
+  },
+  {
+    "title": "Enlarge Image",
+    "content": "For details, see the following example.",
+    "link": "crop/replace-image",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "replace-image1"
+  },
+  {
+    "title": "Scale when the mouse wheel is used to zoom in or out an image",
+    "content": "<p><code>zoom-on-wheel</code> attribute is set to <code>true</code>, you can use the <code>wheel-zoom-ratio</code> attribute to set the scaling ratio. The default value is <code>0.1</code>. </p>\n",
+    "link": "crop/wheel-zoom-ratio",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "wheel-zoom-ratio"
+  },
+  {
+    "title": "Disable the mouse wheel to zoom in or out the image.",
+    "content": "<p>After the <code>zoom-on-wheel</code> attribute is set to <code>false</code>, the image cannot be zoomed in or out by scrolling the mouse wheel. </p>\n",
+    "link": "crop/zoom-on-wheel",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "zoom-on-wheel"
+  },
+  {
+    "title": "ready event",
+    "content": "<p>When a cropper instance is completely built, the <code>ready</code> event is triggered. </p>\n",
+    "link": "crop/event-ready",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "event-ready"
+  },
+  {
+    "title": "Crop box method event",
+    "content": "<p>When a cropper instance is completely built, the <code>disable</code> method is triggered to disable the cropping box. When the <code>enable</code> method is triggered to enable the cropping box</p>\n",
+    "link": "crop/crop-meth",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "crop-meth"
+  },
+  {
+    "title": "Cutout Event",
+    "content": "<div class=\"tip custom-block\"><p class=\"custom-block-title\">TIP</p>\n<p> Description: The <code>cropstart</code> event is triggered when the canvas or clipping box starts to change.\nThe <code>cropmove</code> event is triggered when the canvas or clipping box is changed.\nThe <code>cropen event is triggered when the canvas or clipping box ends. d</code>Event\nThe <code>crop</code> event is triggered when the canvas or crop box changes. \nThe <code>getCanvasData</code> event is triggered to obtain the position and size data of the canvas (image wrapper) </p>\n</div>\n",
+    "link": "crop/event-about-crop",
+    "component": "Crop Image Crop",
+    "findIntroStr": "Crop image cropping, preview, JPG and PNG formats are supported. You can manually adjust the selected avatar area when browsing images.",
+    "demoId": "event-about-crop"
+  }
+]

@@ -1,0 +1,154 @@
+[
+  {
+    "title": "基本用法",
+    "content": "详细用法参考如下示例",
+    "link": "time-picker/basic-usage",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "选择范围",
+    "content": "<p>picker-options 设置时间选择范围</p>\n",
+    "link": "time-picker/picker-options",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "picker-options"
+  },
+  {
+    "title": "箭头选择",
+    "content": "<p><code>arrow-control</code> 属性设置是否使用箭头进行时间选择，仅对 <code>&lt;tiny-time-picker&gt;</code> 有效</p>\n",
+    "link": "date-picker/clearable",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "clearable1"
+  },
+  {
+    "title": "清除输入",
+    "content": "<p>通过 <code>clear-icon</code> 自定义清空图标</p>\n",
+    "link": "time-picker/clear-icon",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "clear-icon"
+  },
+  {
+    "title": "尺寸设置medium",
+    "content": "<p>通过 <code>size</code> 自定义组价尺寸</p>\n",
+    "link": "time-picker/size-medium",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "size-medium"
+  },
+  {
+    "title": "尺寸设置small",
+    "content": "<p>通过 <code>size</code> 自定义组价尺寸</p>\n",
+    "link": "time-picker/size-small",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "size-small"
+  },
+  {
+    "title": "尺寸设置mini",
+    "content": "<p>通过 <code>size</code> 自定义组价尺寸</p>\n",
+    "link": "time-picker/size-mini",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "size-mini"
+  },
+  {
+    "title": "清除按钮",
+    "content": "<p>通过 <code>clearable</code> 属性设置是否显示清除按钮，默认值为 true</p>\n",
+    "link": "time-picker/clearable",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "clearable"
+  },
+  {
+    "title": "自定义后置图标",
+    "content": "<p>通过 <code>suffix-icon</code> 属性设置日期输入框后置图标，从 <code>@opentiny/vue-icon</code> 中导入一个图标并进行初始化后传给 <code>suffix-icon</code>。</p>\n",
+    "link": "time-picker/suffix-icon",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "suffix-icon"
+  },
+  {
+    "title": "时间格式化",
+    "content": "<p><code>format</code> 时间格式化显示\n<code>timestamp</code> JS 时间戳，仅 value-format 可用；组件绑定值为 number 类型</p>\n",
+    "link": "time-picker/format",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "format"
+  },
+  {
+    "title": "时间显示类型",
+    "content": "<p>通过 <code>hh</code> 属性可设置 12 小时制。 <code>HH</code> 属性为 24 小时制，须和 A 或 a 使用。 <code>h</code> 与 <code>H</code> 属性设置不补 0。\n通过 <code>mm</code> 属性可设置分钟显示格式，例如 01。 <code>m</code> 属性设置不补 0。\n通过 <code>ss</code> 属性可设置秒的显示格式，例如 01。 <code>s</code> 属性设置不补 0。\n通过 <code>a</code> 属性可设置显示时间为 am/pm <code>A</code>属性设置显示时间为 AM/PM。</p>\n",
+    "link": "time-picker/time-low",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "time-low"
+  },
+  {
+    "title": "日期显示格式",
+    "content": "<p><code>WW</code> 属性设置周，例如 01, <code>W</code> 属性设置不补 0。\n<code>yyyy</code> 属性设置年，例如 2020。\n<code>MM</code> 属性设置月，例如 01 <code>M</code> 属性设置不补 0。\n<code>dd</code> 属性设置日，例如 01 <code>d</code> 属性设置不补 0。</p>\n",
+    "link": "time-picker/date",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "date"
+  },
+  {
+    "title": "范围选择",
+    "content": "<p><code>is-range</code> 设置是否为范围选择，默认为 false，<code>range-separator</code>,设置范围选择分隔符（为可选值）默认为‘-’</p>\n",
+    "link": "time-picker/is-range",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "is-range"
+  },
+  {
+    "title": "选择器打开时默认时间设置",
+    "content": "<p>通过 <code>default-value</code> 设置选择器打开显示默认时间</p>\n",
+    "link": "time-picker/default-value",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "default-value"
+  },
+  {
+    "title": "原生属性",
+    "content": "<p>通过 <code>name</code> 属性设置默认 name</p>\n",
+    "link": "time-picker/name",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "name"
+  },
+  {
+    "title": "下拉框的类名",
+    "content": "<p>通过 <code>popper-class</code> 属性设置下拉框的类名</p>\n",
+    "link": "time-picker/popper-class",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "popper-class"
+  },
+  {
+    "title": "文本框不可输入",
+    "content": "<p>日期输入框默认可以输入日期，设置 <code>editable</code> 为 false 后，将不能输入。</p>\n",
+    "link": "time-picker/editable",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "editable"
+  },
+  {
+    "title": "禁用状态",
+    "content": "<p>通过设置 <code>disabled</code> 为 true 后，禁用时间输入框。</p>\n",
+    "link": "time-picker/disabled",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "disabled"
+  },
+  {
+    "title": "事件",
+    "content": "<p>当聚焦和失焦时会触发 focus 和 bulr 事件，当确定选值时会触发 change 事件</p>\n",
+    "link": "time-picker/event-blur",
+    "component": " TimePicker 时间选择器",
+    "findIntroStr": "用于设置/选择日期，包括年月/年月日/年月日时分/年月日时分秒日期格式。",
+    "demoId": "event-blur"
+  }
+]

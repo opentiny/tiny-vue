@@ -1,0 +1,154 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "dialog-box/basic-usage",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Level-2 pop-up window",
+    "content": "<p>The default slot and buttons in the operation area at the bottom are used to implement the level-2 pop-up window. After the <code>append-to-body</code> attribute is set, the entity DOM structure of the level-2 pop-up window is appended to the body element. </p>\n",
+    "link": "dialog-box/secondary-dialog",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "secondary-dialog"
+  },
+  {
+    "title": "Custom Title",
+    "content": "<p>In addition to the <code>title</code> attribute, you can set the pop-up window title and customize the content in the pop-up window title area through the <code>title</code> slot. </p>\n",
+    "link": "dialog-box/custom-dialog-title",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "custom-dialog-title"
+  },
+  {
+    "title": "Custom Content",
+    "content": "<p>The default slot is used to customize the content of the main part of the pop-up window. </p>\n",
+    "link": "dialog-box/custom-dialog-content",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "custom-dialog-content"
+  },
+  {
+    "title": "Custom bottom",
+    "content": "<p>Customize the content in the operation area at the bottom of the pop-up window through the <code>footer</code> slot. </p>\n",
+    "link": "dialog-box/custom-dialog-footer",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "custom-dialog-footer"
+  },
+  {
+    "title": "Hide the close button",
+    "content": "<p>The close icon is displayed in the upper right corner of the default pop-up window. You can click this icon to close the pop-up window. If <code>show-close</code> is set to false, the close icon is hidden. To close the pop-up window, you can switch the value of <code>visible</code> to false by clicking the button in the operation area. </p>\n",
+    "link": "dialog-box/hidden-close-buttons",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "hidden-close-buttons"
+  },
+  {
+    "title": "Disable ESC.",
+    "content": "<p>After the default pop-up window is opened, you can press Esc to close the pop-up window. If <code>close-on-press-escape</code> is set to false, this function is disabled. </p>\n",
+    "link": "dialog-box/close-on-press-escape",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "close-on-press-escape"
+  },
+  {
+    "title": "Height between the pop-up window and the top",
+    "content": "<p>The <code>top</code> attribute specifies the height of the pop-up window from the top of the window. The default value is 15% of the screen height. </p>\n",
+    "link": "dialog-box/dialog-top-height",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "dialog-top-height"
+  },
+  {
+    "title": "Wideness of the pop-up window",
+    "content": "<p>The <code>width</code> attribute specifies the width of the pop-up window. </p>\n",
+    "link": "dialog-box/dialog-width",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "dialog-width"
+  },
+  {
+    "title": "The pop-up window is not closed when the mask is clicked.",
+    "content": "<p>After the default pop-up window is opened, you can click the mask layer to close the pop-up window. If <code>close-on-click-modal</code> is set to false, this function is disabled. </p>\n",
+    "link": "dialog-box/close-on-click-modal",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "close-on-click-modal"
+  },
+  {
+    "title": "Disable the mask layer",
+    "content": "<p>The mask layer is displayed when the pop-up window is opened by default. If <code>modal</code> is set to false, the mask layer is not enabled. If there is no mask layer, you can click the outer area of the pop-up window to close the pop-up window. </p>\n",
+    "link": "dialog-box/no-modal",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "no-modal"
+  },
+  {
+    "title": "Right pop-up window",
+    "content": "<p>After <code>right-slide</code> is set to true, a pop-up window is displayed from the right of the window. \nSet the <code>modal-append-to-body</code> attribute to true by default. The mask layer is applied to the body. </p>\n",
+    "link": "dialog-box/right-dialog",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "right-dialog"
+  },
+  {
+    "title": "Hidden title area",
+    "content": "<p>The pop-up window has a title area by default. If <code>show-header</code> is set to false, the title area is hidden. </p>\n",
+    "link": "dialog-box/hidden-header",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "hidden-header"
+  },
+  {
+    "title": "Disable scrolling when pop-up",
+    "content": "<p>After a pop-up window is displayed, the background page cannot be scrolled by default. If <code>lock-scroll</code> is set to fasle, the scrolling of the masked content is not locked. </p>\n",
+    "link": "dialog-box/lock-scroll",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "lock-scroll"
+  },
+  {
+    "title": "The head and bottom are horizontally centered",
+    "content": "The <p> header is displayed on the left of the area by default. If <code>center</code> is set to true, the header is displayed in the center. </p>\n",
+    "link": "dialog-box/center",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "center"
+  },
+  {
+    "title": "Dragable pop-up window",
+    "content": "<p> By default, the pop-up window cannot be dragged. Set <code>draggable</code> to true and move the cursor to the title area to drag the pop-up window. Drag events include <code>@drag-start</code>, <code>drag-move</code>, and <code>drag-end</code>. </p>\n",
+    "link": "dialog-box/draggable",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "draggable"
+  },
+  {
+    "title": "Full-screen pop-up window",
+    "content": "<p>Set <code>fullscreen</code> to true to display the full-screen pop-up window. The default pop-up window width is 500px. In this case, the width setting does not take effect. </p>\n",
+    "link": "dialog-box/fullscreen",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "fullscreen"
+  },
+  {
+    "title": "Pop-up and Close Event",
+    "content": "<p><code>open</code>: triggered when the dialog box is opened. <code>opened</code>: triggered when the animation ends. <code>close</code>: triggered when the dialog box is closed. <code>closed</code>: triggered when the animation ends. </p>\n",
+    "link": "dialog-box/open-close-events",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "open-close-events"
+  },
+  {
+    "title": "Pop-up Window Form",
+    "content": "<p>The default slot is used to implement nested forms and form submission logic. </p>\n<p> By default, the form is reset when the pop-up window is closed. If <code>is-form-reset</code> is set to false, the form is not reset when the pop-up window is closed.</p>",
+    "link": "dialog-box/form-in-dialog",
+    "component": "DialogBox",
+    "findIntroStr": "The modal dialog box is displayed in the floating layer to guide users to perform related operations.",
+    "demoId": "form-in-dialog"
+  }
+]

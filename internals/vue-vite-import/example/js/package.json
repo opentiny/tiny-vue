@@ -1,0 +1,23 @@
+{
+  "name": "my-vue-app",
+  "description": "",
+  "author": "",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@opentiny/vue": "^3.0.0",
+    "vue": "^3.2.23",
+    "vue-i18n": "^9.2.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.10.2",
+    "@vitejs/plugin-vue-jsx": "^2.0.1",
+    "vite-plugin-inspect": "^0.7.10",
+    "vite": "^4.3.8"
+  },
+  "email": ""
+}

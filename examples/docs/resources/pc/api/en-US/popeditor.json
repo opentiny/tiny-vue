@@ -1,0 +1,246 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue / v-model",
+      "sample": "base",
+      "type": "String",
+      "desc": "Bound Value",
+      "defaultValue": ""
+    },
+    {
+      "name": "placeholder",
+      "sample": "base",
+      "type": "String",
+      "desc": "Placeholder",
+      "defaultValue": ""
+    },
+    {
+      "name": "tabindex",
+      "sample": "tabindex",
+      "type": "String",
+      "desc": "Sets whether focus can be obtained by pressing Tab and the focus sequence. This parameter is valid only when readonly is set to false.",
+      "defaultValue": "The default value of this attribute is 1."
+    },
+    {
+      "name": "remote-search",
+      "sample": "remote-search",
+      "type": "Function({page, conditions})",
+      "desc": "Configure remote search",
+      "defaultValue": ""
+    },
+    {
+      "name": "before-reset",
+      "sample": "before-reset",
+      "type": "Function",
+      "desc": "Hook function before reset",
+      "defaultValue": ""
+    },
+    {
+      "name": "resize",
+      "sample": "resize",
+      "type": "Boolean",
+      "desc": "Whether to display the full-screen button in the pop-up box",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "draggable",
+      "sample": "draggable",
+      "type": "Boolean",
+      "desc": "Set whether the pop-up window can be dragged.",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "showOverflow",
+      "sample": "showOverflow",
+      "type": "String,Object",
+      "desc": " (When a grid table is nested in popeditor, it is configured in columns of the gridOp attribute.) Sets the display problem caused by excessively long table data. The value can be tooltip, title, or ellipsis;1tooltip: The extra part is displayed.... The prompt layer on the left or right displays all information. 2title: The value is the same as the title attribute of the native tag. 3ellipsis: The part that exceeds the content is displayed as..., and no prompt is displayed. 4true: If the value is true, the effect is the same as that of the tooltip.",
+      "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "size",
+      "type": "String",
+      "desc": "Set the component size. The options are medium, small, and mini.",
+      "defaultValue": ""
+    },
+    {
+      "name": "trigger",
+      "sample": "trigger",
+      "type": "String",
+      "desc": "In the table in the dialog box that is displayed, the radio is selected. The options are as follows: default (default), cell (clicking a cell), and row (clicking a row)",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "disabled",
+      "type": "Boolean",
+      "desc": "Sets whether a component is disabled.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "conditions",
+      "sample": "conditions",
+      "type": "Array",
+      "desc": "When a table is configured on the pop-up panel, set the table query items in the pop-up panel.",
+      "defaultValue": ""
+    },
+    {
+      "name": "grid-op",
+      "sample": "grid",
+      "type": "Object",
+      "desc": "Set the configuration information of the table component in the pop-up panel.",
+      "defaultValue": ""
+    },
+    {
+      "name": "pager-op",
+      "sample": "pager",
+      "type": "Object",
+      "desc": "Setting Pagination Configuration",
+      "defaultValue": ""
+    },
+    {
+      "name": "icon",
+      "sample": "icon",
+      "type": "Object",
+      "desc": "Set the icon of the popEditor component. The default value is svg component",
+      "defaultValue": ""
+    },
+    {
+      "name": "multi",
+      "sample": "multi",
+      "type": "Boolean",
+      "desc": "Specifies whether multiple data can be selected in the pop-up panel.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "popseletor",
+      "sample": "tree",
+      "type": "String",
+      "desc": "Set the tree or table components that can be displayed in the pop-up panel.",
+      "defaultValue": "The default value of this attribute is grid."
+    },
+    {
+      "name": "readonly",
+      "sample": "readonly",
+      "type": "Boolean",
+      "desc": "Set [3.0] to read-only. If [3.0] is set to false, click the Ipunt box to display the selection box.",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "show-clear-btn",
+      "sample": "showClearBtn",
+      "type": "Boolean",
+      "desc": "Specifies whether to display the Clear button on the right of the text box.",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "show-pager",
+      "sample": "pager",
+      "type": "Boolean",
+      "desc": "Paging",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "show-history",
+      "sample": "show-history",
+      "type": "Boolean",
+      "desc": "Specifies whether to display tables on the History tab page when tables are configured on the pop-up panel.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "text-field",
+      "sample": "textField",
+      "type": "String",
+      "desc": "Set the text field in the text box. When data is submitted, the text is not submitted.",
+      "defaultValue": "The default value of this attribute is label."
+    },
+    {
+      "name": "text-split",
+      "sample": "multi",
+      "type": "String",
+      "desc": "Separator for displaying multiple records in the text box when multiple records are selected.",
+      "defaultValue": "The default value of this attribute is /"
+    },
+    {
+      "name": "title",
+      "sample": "title",
+      "type": "String",
+      "desc": "Set the title of the pop-up panel and support internationalization.",
+      "defaultValue": ""
+    },
+    {
+      "name": "value-field",
+      "sample": "title",
+      "type": "String",
+      "desc": "Set the field to which data is to be submitted in the text box.",
+      "defaultValue": "The default value of this attribute is id."
+    },
+    {
+      "name": "value-split",
+      "sample": "multi",
+      "type": "String",
+      "desc": "Separator for submitting multiple pieces of data in the text box when multiple pieces of data are selected.",
+      "defaultValue": "The default value of this attribute is;."
+    },
+    {
+      "name": "width",
+      "sample": "width",
+      "type": "Number , String",
+      "desc": "Wide of the pop-up panel, in pixels.When multi of a component is set to true, the minimum width is 900px. Otherwise, the minimum width is 600px.",
+      "defaultValue": ""
+    },
+    {
+      "name": "dialog-class",
+      "sample": "width",
+      "type": "String",
+      "desc": "Customized configuration pop-up window class name",
+      "defaultValue": ""
+    },
+    {
+      "name": "auto-lookup",
+      "sample": "auto-lookup",
+      "type": "Boolean",
+      "desc": "Set initialization not to request data",
+      "defaultValue": "true"
+    },
+    {
+      "name": "suggest",
+      "sample": "suggest",
+      "type": "Boolean",
+      "desc": "Configure the suggest to enable the association function, and automatically trigger the association query after entering the input box; This function needs to be used in conjunction with remoteSearch",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "search",
+      "sample": "slot",
+      "type": "",
+      "desc": "Query Condition Slot",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "events",
+      "type": "Function(arg1, arg2)",
+      "desc": "Change event in the input box of the Popeditor component. ; onChange(arg1, arg2){\n// arg1 = state.commitValue arg1 is the index of the submitted information. \n// arg2 = state.selectedDatas arg2 is the data of the submitted information. \n// do something you want...}",
+      "defaultValue": ""
+    },
+    {
+      "name": "close",
+      "sample": "events",
+      "type": "Function",
+      "desc": "Event triggered when the pop-up dialog box of the Popeditor component is closed.",
+      "defaultValue": ""
+    },
+    {
+      "name": "page-change",
+      "sample": "events",
+      "type": "Function(arg1)",
+      "desc": "Indicates that the table mode of the Popeditor component is switched by page. ; onPageChange (arg1) {// arg1 = val arg1 is the page number. // do something you want...}",
+      "defaultValue": ""
+    }
+  ]
+}

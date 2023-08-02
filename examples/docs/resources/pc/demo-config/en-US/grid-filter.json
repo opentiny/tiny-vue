@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Filter",
+    "content": "<div class=\"tip custom-block\"><p class=\"custom-block-title\">filter Configuration</p>\n<p>Customize filtering rules based on the scope slot of the customized <code>filter</code>.\nConfigurable items:\nMulti specifies whether to select multiple enumeration options. This parameter is valid only when enable:true is selected. \nenumable Sets the display of enumeration options in the filter panel. \ninputFilter Sets the display of the input filtered items in the filter panel. \ndefaultFilter Sets the default filter criteria to be displayed in the filter panel. \nvalues specifies the static data source under the display enumeration option function (enumable). \nlabel Sets the display value attribute field of enumerated data. The default value is label. \nvalue Sets the actual value attribute field of the enumerated data. The default value is'value'. </p>\n</div>\n",
+    "link": "grid/filter/default-filter",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "filter-default-filter"
+  },
+  {
+    "title": "Custom Parameter",
+    "content": "<p>Add custom parameters by <code>params</code></p>\n",
+    "link": "grid/column/column-params",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "column-column-params"
+  },
+  {
+    "title": "Advanced Filter Settings",
+    "content": "<p>You can use <code>inputFilter</code> to configure custom components and conditions for the input filter area, and use <code>extends</code> to add a shortcut filter list</p>\n",
+    "link": "grid/filter/advanced-filter",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "filter-advanced-filter"
+  },
+  {
+    "title": "Set Column Filtering Rules",
+    "content": "<p>Set the column filtering rule through the <code>filter</code> attribute</p>\n",
+    "link": "grid/filter/custom-filter",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "filter-custom-filter"
+  },
+  {
+    "title": "Custom Filter",
+    "content": "<p>Set additional parameters through the <code>params</code> attribute</p>\n",
+    "link": "grid/grid-params",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "grid-params"
+  },
+  {
+    "title": "Server Filter",
+    "content": "<p>Configure remote-filter to enable server-side filtering. The server-side filtering invokes the fetch-data table for query. The filter-change event is triggered after the server-side filtering.\nThe <code>services/getGridMockData</code> service in this example needs to be implemented. The example simulates the data returned by a remote service \n</p>\n",
+    "link": "grid/filter/server-filter",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "filter-server-filter"
+  },
+  {
+    "title": "Enter the default filtering options.",
+    "content": "<p>Set the default input filtering options through the <code>inputFilter.relation</code> attribute. \n Enter the built-in options for filtering: <code>equals</code>, <code>unequal</code>, <code>greaterThan</code>, <code>lessThan</code>, <code>equalToGreaterThan</code>, <code>equalToLessThan</code>, <code>contains</code>, <code>startwith</code>, <code>endwith</code>; Custom options can also be configured. \n When configuring custom options, you need to configure the filtering method through the <code>inputFilter.method</code> attribute. </p>\n",
+    "link": "grid/filter/default-relation",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "filter-default-relation"
+  }
+]

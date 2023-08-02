@@ -1,0 +1,34 @@
+{
+  "attrs": [
+    {
+      "name": "disabled",
+      "sample": "dynamic-disable",
+      "type": "Boolean",
+      "desc": "是否禁用",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "name",
+      "sample": "radio-text",
+      "type": "String",
+      "desc": "原生 name 属性",
+      "defaultValue": ""
+    },
+    {
+      "name": "label",
+      "sample": "radio-text",
+      "type": "String | Number",
+      "desc": "Radio 的 value",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "dynamic-disable",
+      "type": "",
+      "desc": "button按钮的内容",
+      "defaultValue": ""
+    }
+  ]
+}

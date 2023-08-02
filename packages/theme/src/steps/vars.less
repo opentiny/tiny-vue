@@ -1,0 +1,167 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+.component-css-vars-steps() {
+  // 节点圆圈尺寸
+  --ti-steps-circle-width-height: var(--ti-common-size-5x);
+  // 序号字号
+  --ti-steps-number-font-size: var(--ti-common-font-size-base);
+  // 节点内容字号
+  --ti-steps-font-size-base: var(--ti-common-font-size-base);
+  // 节点内容悬浮字号
+  --ti-steps-font-size-hover: var(--ti-common-font-weight-4);
+  // 节点内容悬浮字体色
+  --ti-steps-text-color-hover: var(--ti-common-color-primary-normal);
+  // 序号圆圈大小
+  --ti-steps-icon-size: var(--ti-common-size-5x);
+  // 步骤条字号(hide)
+  --ti-steps-font-size-7: var(--ti-common-font-size-7);
+  // 节点间横线厚度
+  --ti-steps-line-height: var(--ti-common-border-weight-normal);
+  // 节点间横线水平边距
+  --ti-steps-line-margin-horizontal: var(--ti-common-space-2x);
+  // 节点间横线最小宽度
+  --ti-steps-line-min-width: var(--ti-common-space-4x);
+  // 节点内容左边距
+  --ti-steps-text-margin-left: var(--ti-common-space-base);
+  // 节点间横线默认长度
+  --ti-steps-line-width: var(--ti-common-size-16x);
+  // 节点文本内容最大宽度
+  --ti-steps-content-max-width: calc(var(--ti-common-space-10) * 25);
+  // 节点文本内容上边距
+  --ti-steps-content-margin-top: var(--ti-common-space-6);
+  // 底部分隔线厚度
+  --ti-steps-bottom-divider-height: var(--ti-common-space-1);
+  // 底部分割线与主体间距
+  --ti-steps-bottom-divider-margin-top: var(--ti-common-space-4x);
+  // 底部分割线的颜色
+  --ti-steps-bottom-divider-bg-color: var(--ti-common-color-line-dividing);
+
+  // 活跃节点背景色
+  --ti-steps-advanced-active-bg-color: var(--ti-common-color-bg-emphasize);
+  // 活跃节点字重
+  --ti-steps-active-font-weight: var(--ti-common-font-weight-4);
+  // 活跃节点内容字体色
+  --ti-steps-advanced-active-text-color: var(--ti-common-color-primary-normal);
+
+  // 已完成节点文本色
+  --ti-steps-done-text-color: var(--ti-common-color-text-primary);
+  // 已完成节点线条色
+  --ti-steps-line-active-bg-color: var(--ti-common-color-line-active);
+  // 已完成节点边框色
+  --ti-steps-done-active-border-color: var(--ti-common-color-line-active);
+  // 已完成节点图标(或文本)色
+  --ti-steps-done-icon-color: var(--ti-common-color-icon-active);
+  // 已完成节点图标大小
+  --ti-steps-done-icon-size: var(--ti-common-font-size-1);
+  // 已完成节点背景色
+  --ti-steps-done-icon-bg-color: var(--ti-common-color-bg-white-normal);
+
+  // 未完成的线条色
+  --ti-steps-line-bg-color: var(--ti-common-color-bg-secondary);
+  // 未完成节点的背景色
+  --ti-steps-icon-bg-color: var(--ti-common-color-bg-white-normal);
+  // 未完成节点序号图标色
+  --ti-steps-unselected-icon-color: var(--ti-common-color-icon-normal);
+  // 未完成节点序号悬浮图标色
+  --ti-steps-unselected-hover-icon-color: var(--ti-common-color-icon-hover);
+  // 未完成节点边框色
+  --ti-steps-unselected-border-color: var(--ti-steps-unselected-icon-color);
+  // 未完成节点悬浮边框色
+  --ti-steps-unselected-hover-border-color: var(--ti-steps-unselected-hover-icon-color);
+  // 未完成节点内容文本色
+  --ti-steps-timeline-date-time-text-color: var(--ti-common-color-text-primary);
+
+  // 错误节点的背景色
+  --ti-steps-error-icon-bg-color: var(--ti-common-color-bg-white-normal);
+  // 错误节点图标色
+  --ti-steps-error-icon-color: var(--ti-common-color-error-text);
+  // 错误节点图标大小
+  --ti-steps-error-icon-size: var(--ti-common-font-size-1);
+  // 错误节点边框色
+  --ti-steps-error-border-color: var(--ti-common-color-error-border);
+  // 错误节点描述文本色
+  --ti-steps-error-text-color: var(--ti-common-color-error-text);
+
+  // 禁用节点的背景色
+  --ti-steps-disabled-icon-bg-color: var(--ti-common-color-bg-white-normal);
+  // 禁用节点序号文本色
+  --ti-steps-disabled-icon-color: var(--ti-common-color-text-disabled);
+  // 禁用节点边框色
+  --ti-steps-disabled-border-color: var(--ti-steps-disabled-icon-color);
+  // 禁用节点描述文本色
+  --ti-steps-disabled-text-color: var(--ti-common-color-text-disabled);
+
+  // mini尺寸序号圆圈大小
+  --ti-steps-mini-icon-size: var(--ti-common-font-size-5);
+  // mini尺寸序号字号
+  --ti-steps-mini-number-font-size: var(--ti-common-font-size-base);
+  // mini尺寸节点内容字号
+  --ti-steps-mini-font-size-base: var(--ti-common-font-size-base);
+
+  // 向导步骤条边框色
+  --ti-steps-advanced-border-color: var(--ti-common-color-line-normal);
+  // 向导步骤条未选中项文本色
+  --ti-steps-advanced-text-color: var(--ti-common-color-text-secondary);
+  // 向导步骤条行高
+  --ti-steps-advanced-line-height: var(--ti-common-size-7x);
+  // 向导步骤条边框圆角
+  --ti-steps-advanced-border-radius: calc(var(--ti-common-space-1) * 3);
+  // 向导步骤条未选中项背景色
+  --ti-steps-advanced-li-bg-color: var(--ti-common-color-bg-white-normal);
+  // 向导步骤条当前项和计数标记点的文本色
+  --ti-steps-advanced-li-text-color: var(--ti-common-color-selected-text-color);
+  // 向导步骤条节点悬浮文本色
+  --ti-steps-advanced-li-hover-text-color: var(--ti-common-color-text-secondary);
+  // 向导步骤条节点悬浮背景色
+  --ti-steps-advanced-li-hover-bg-color: var(--ti-common-color-bg-white-emphasize);
+  // 向导步骤条字号
+  --ti-steps-advanced-link-font-size: var(--ti-common-font-size-base);
+  // 向导步骤条节点里的图标高度
+  --ti-steps-advanced-dot-height: var(--ti-common-size-3x);
+  // 向导步骤条节点里的图标宽度
+  --ti-steps-advanced-dot-width: var(--ti-common-size-3x);
+  // 向导步骤条计数标记点背景色
+  --ti-steps-advanced-count-bg-color: var(--ti-common-bg-primary);
+  // 向导步骤条计数标记点边框圆角
+  --ti-steps-advanced-count-border-radius: var(--ti-common-space-10);
+  // 向导步骤条计数标记点字号
+  --ti-steps-advanced-count-font-size: var(--ti-common-font-size-base);
+  // 向导步骤条计数标记点高度
+  --ti-steps-advanced-count-height: calc(var(--ti-common-space-6) * 3);
+  // 向导步骤条厚度(hide)
+  --ti-steps-advanced-border-weight: calc(var(--ti-common-space-base) * 3.5);
+  // 时间线时间字号(hide)
+  --ti-steps-timeline-date-time-font-size: var(--ti-common-font-size-base);
+  // 向导步骤条正在处理节点背景色(hide)
+  --ti-steps-advanced-dot-doing-bg-color: var(--ti-common-color-warn);
+  // 向导步骤条待处理节点背景色(hide)
+  --ti-steps-advanced-dot-wait-bg-color: var(--ti-common-color-success-normal);
+  // 向导步骤条已完成节点背景色(hide)
+  --ti-steps-advanced-dot-done-bg-color: var(--ti-common-color-success-normal);
+
+  // 竖式步骤条节点左右字号
+  --ti-steps-timeline-name-font-size: var(--ti-common-font-size-1);
+  // 竖式步骤条节点左侧时间预留宽度
+  --ti-steps-timeline-vertical-time-width: var(--ti-common-size-25x);
+  // 竖式步骤条节点线条左间距
+  --ti-steps-timeline-vertical-line-margin-left: var(--ti-common-size-5x);
+  // 竖式步骤条节点线条右间距
+  --ti-steps-timeline-vertical-line-margin-right: var(--ti-steps-timeline-vertical-line-margin-left);
+
+  // 时间信息字体色
+  --ti-steps-time-text-color: var(--ti-common-color-text-weaken);
+  // 时间信息字号
+  --ti-steps-time-font-size: var(--ti-common-font-size-base);
+  // 时间信息下边距
+  --ti-steps-time-margin-bottom: var(--ti-common-space-6);
+}

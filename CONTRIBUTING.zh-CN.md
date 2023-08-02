@@ -3,7 +3,7 @@
 很高兴你有意愿参与 TinyVue 开源项目的贡献，参与贡献的形式有很多种，你可以根据自己的特长和兴趣选择其中的一个或多个：
 
 - 报告[新缺陷](https://github.com/opentiny/tiny-vue/issues/new?template=bug-report.yml)
-- 为[已有缺陷](https://github.com/opentiny/tiny-vue/labels/bug)提供更详细的信息，比如补充截图、提供更详细的复现步骤、提供最小可复现demo链接等
+- 为[已有缺陷](https://github.com/opentiny/tiny-vue/labels/bug)提供更详细的信息，比如补充截图、提供更详细的复现步骤、提供最小可复现 demo 链接等
 - 提交 Pull requests 修复文档中的错别字或让文档更清晰和完善
 - 添加官方小助手微信 opentiny-official，加入技术交流群参与讨论
 
@@ -22,6 +22,7 @@
 如果是一个缺陷，创建新 Issue 时选择 [Bug report](https://github.com/opentiny/tiny-vue/issues/new?template=bug-report.yml) 模板，标题遵循 `[componentName]缺陷简述` 的格式，比如：`[select]过滤功能中，选中的选项退格删除后，无法再次选中该选项`。
 
 报告缺陷的 Issue 主要需要填写以下信息：
+
 - tiny-vue 和 vue 的版本号
 - 缺陷的表现，可截图辅助说明，如果有报错可贴上报错信息
 - 缺陷的复现步骤，最好能提供一个最小可复现 demo 链接
@@ -29,6 +30,7 @@
 如果是一个新特性，则选择 [Feature request](https://github.com/opentiny/tiny-vue/issues/new?template=feature-request.yml) 模板，标题遵循 `[componentName]新特性简述` 的格式，比如：`[select]选择框内容太长展示不下时，希望能支持配置tips提示`。
 
 新特性的 Issue 主要需要填写以下信息：
+
 - 该特性主要解决用户的什么问题
 - 该特性的 api 是什么样的
 
@@ -41,9 +43,9 @@
 - 点击 [TinyVue](https://github.com/opentiny/tiny-vue) 代码仓库右上角的 Fork 按钮，将上游仓库 Fork 到个人仓库
 - Clone 个人仓库到本地
 - 关联上游仓库，方便同步上游仓库最新代码
-- 在 Tiny Vue 根目录下运行 `npm i --force`, 安装 node 依赖
-- 运行 npm run dev:vue3，启动组件库网站
-- 打开浏览器访问：[http://127.0.0.1:5173/](http://127.0.0.1:5173/)
+- 在 Tiny Vue 根目录下运行 `pnpm i`, 安装 node 依赖
+- 运行 `pnpm dev`，启动组件库网站
+- 打开浏览器访问：[http://127.0.0.1:7130/](http://127.0.0.1:7130/)
 
 ```shell
 # username 为用户名，执行前请替换
@@ -54,18 +56,18 @@ cd tiny-vue
 git remote add upstream git@github.com:opentiny/tiny-vue.git
 
 # 安装依赖
-npm i
+pnpm i
 
 # 启动 Vue3 项目
-npm run dev:vue3
+pnpm dev
 
 # 启动 Vue2 项目
-npm run dev:vue2
+pnpm dev:vue2
 ```
 
 提交 PR 的步骤：
 
-- 请确保你已经完成本地启动中的步骤，并能正常访问：[http://127.0.0.1:5173/](http://127.0.0.1:5173/)
+- 请确保你已经完成本地启动中的步骤，并能正常访问：[http://127.0.0.1:7130/](http://127.0.0.1:7130/)
 - 同步上游仓库 dev 分支最新代码：git pull upstream dev
 - 从上游仓库 dev 分支创建新分支 `git checkout -b username/feature1 upstream/dev`，分支名字建议为 `username/feat-xxx` / `username/fix-xxx`
 - 本地编码
@@ -84,3 +86,11 @@ npm run dev:vue2
 
 - 添加官方小助手微信：opentiny-official，加入我们的技术交流群
 - 加入邮件列表：opentiny@googlegroups.com
+
+如果你给 OpenTiny 提交过 Issue 或 PR，请通过以下方式添加自己到贡献者列表里。
+
+```
+@all-contributors please add @<username> for <contributions>
+```
+
+详细规则可以参考：[https://allcontributors.org/docs/en/bot/usage](https://allcontributors.org/docs/en/bot/usage)

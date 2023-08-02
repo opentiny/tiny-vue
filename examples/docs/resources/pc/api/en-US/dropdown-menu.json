@@ -1,0 +1,48 @@
+{
+  "attrs": [
+    {
+      "name": "type",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "Specifies whether to display arrows in the pop-up drop-down list box.",
+      "defaultValue": ""
+    },
+    {
+      "name": "arrow-offset",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "Set the offset of the pop-up drop-down arrow. The default value is 0.",
+      "defaultValue": ""
+    },
+    {
+      "name": "placement",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "Menu pop-up position. The value can be (top/top-start/top-end/bottom/bottom-start/bottom-end). The default value is bottom-end",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-class",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "Set the pop-up drop-down style.",
+      "defaultValue": ""
+    },
+    {
+      "name": "popper-append-to-body",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "Specifies whether the pop-up drop-down list box is created under the body element.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "basic-usage",
+      "type": "",
+      "desc": "The drop-down list is usually a <tiny-dropdown-item> component.",
+      "defaultValue": ""
+    }
+  ]
+}

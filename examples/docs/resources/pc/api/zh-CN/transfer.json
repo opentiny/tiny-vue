@@ -1,0 +1,241 @@
+{
+  "attrs": [
+    {
+      "name": "data",
+      "sample": "data-source",
+      "type": "Array",
+      "desc": "Transfer 的数据源",
+      "defaultValue": ""
+    },
+    {
+      "name": "modelValue / v-model",
+      "sample": "data-source",
+      "type": "Array",
+      "desc": "绑定值",
+      "defaultValue": ""
+    },
+    {
+      "name": "filterable",
+      "sample": "filterable",
+      "type": "Boolean",
+      "desc": "是否可搜索",
+      "defaultValue": "该属性的默认值为 true"
+    },
+    {
+      "name": "filter-placeholder",
+      "sample": "filter-placeholder",
+      "type": "String",
+      "desc": "搜索框占位符",
+      "defaultValue": "该属性的默认值为 请输入搜索内容"
+    },
+    {
+      "name": "filter-method",
+      "sample": "custom-filter-method",
+      "type": "Function(arg1,arg2)",
+      "desc": "设置穿梭框的搜索过滤字段, 此属性只在渲染类型（renderType）为 table 时生效;// 自定义搜索方法参数 \narg1:String 输入的过滤字串\narg2:Object 每一个数据项",
+      "defaultValue": ""
+    },
+    {
+      "name": "titles",
+      "sample": "custom-transfer-titles",
+      "type": "Array",
+      "desc": "自定义列表标题",
+      "defaultValue": "该属性的默认值为 ['列表 1', '列表 2']"
+    },
+    {
+      "name": "button-texts",
+      "sample": "custom-button-texts",
+      "type": "Array",
+      "desc": "自定义按钮文案",
+      "defaultValue": "该属性的默认值为 []"
+    },
+    {
+      "name": "render-content",
+      "sample": "custom-render-content",
+      "type": "Function(arg1,arg2)",
+      "desc": "自定义数据项渲染函数;arg1:{Function 创建虚拟节点的函数}，arg2:{Object 数据项}",
+      "defaultValue": ""
+    },
+    {
+      "name": "format",
+      "sample": "checked-format-text",
+      "type": "Object",
+      "desc": "列表顶部勾选状态文案",
+      "defaultValue": "该属性的默认值为 { noChecked: '${checked}/${total}', hasChecked: '${checked}/${total}' }"
+    },
+    {
+      "name": "props",
+      "sample": "props-of-data-source",
+      "type": "Object",
+      "desc": "数据源的字段别名",
+      "defaultValue": ""
+    },
+    {
+      "name": "left-default-checked",
+      "sample": "default-checked",
+      "type": "Array",
+      "desc": "初始状态下左侧列表的已勾选项的 key 数组",
+      "defaultValue": "该属性的默认值为 []"
+    },
+    {
+      "name": "right-default-checked",
+      "sample": "default-checked",
+      "type": "Array",
+      "desc": "初始状态下右侧列表的已勾选项的 key 数组",
+      "defaultValue": "该属性的默认值为 []"
+    },
+    {
+      "name": "target-order",
+      "sample": "target-order",
+      "type": "String",
+      "desc": "右侧列表元素的排序策略：若为 original，则保持与数据源相同的顺序；若为 push，则新加入的元素排在最后；若为 unshift，则新加入的元素排在最前;该属性的可选值为 original / push / unshift",
+      "defaultValue": "该属性的默认值为 original"
+    },
+    {
+      "name": "to-left-disable",
+      "sample": "data-source",
+      "type": "Boolean",
+      "desc": "提供给用户控制穿梭框按钮禁用状态的属性,组件初始化状态下未选中时显示禁用状态，默认值为true",
+      "defaultValue": ""
+    },
+    {
+      "name": "to-right-disable",
+      "sample": "data-source",
+      "type": "Boolean",
+      "desc": "提供给用户控制穿梭框按钮禁用状态的属性,组件初始化状态下未选中时显示禁用状态，默认值为true",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-all-btn",
+      "sample": "show-all-btn",
+      "type": "Boolean",
+      "desc": "展示全部移动按钮",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "drop-config",
+      "sample": "drop-config",
+      "type": "Object",
+      "desc": "设置穿梭框列表项可拖拽",
+      "defaultValue": ""
+    },
+    {
+      "name": "columns",
+      "sample": "nested-table",
+      "type": "Array",
+      "desc": "设置穿梭框的表格列配置, 此属性只在渲染类型（renderType）为 table 时生效;设置穿梭框的表格列配置, 此属性只在渲染类型（renderType）为 grid 时生效",
+      "defaultValue": ""
+    },
+    {
+      "name": "page-vo",
+      "sample": "nested-table",
+      "type": "Object",
+      "desc": "设置分页配置，此属性只在渲染类型为 grid 时生效,需要与 pager-op 一起使用",
+      "defaultValue": "该属性的默认值为 {currentPage:1,pageSize:10}"
+    },
+    {
+      "name": "show-pager",
+      "sample": "nested-table",
+      "type": "Boolean",
+      "desc": "设置是否显示分页，当渲染为表格时有效",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "pager-op",
+      "sample": "nested-table",
+      "type": "Object",
+      "desc": "设置分页配置，当渲染为表格时有效",
+      "defaultValue": "该属性的默认值为 {mode: 'fixed',pageVO: {currentPage: 1,pageSize: 10}"
+    },
+    {
+      "name": "render",
+      "sample": "nested-table",
+      "type": "Object",
+      "desc": "当plugin设置为Table时设置渲染为表格;当plugin设置为Tree渲染为树",
+      "defaultValue": ""
+    },
+    {
+      "name": "tree-op",
+      "sample": "nested-tree",
+      "type": "Object",
+      "desc": "当plugin设置为Tree渲染为树时，设置树的相关配置属性",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "left-footer",
+      "sample": "custom-footer",
+      "type": "",
+      "desc": "左侧列表底部的内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "right-footer",
+      "sample": "custom-footer",
+      "type": "",
+      "desc": "右侧列表底部的内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "button-panel",
+      "sample": "panel-slot",
+      "type": "",
+      "desc": "自定义穿梭按钮",
+      "defaultValue": ""
+    },
+    {
+      "name": "default",
+      "sample": "custom-render-content",
+      "type": "",
+      "desc": "自定义数据项的内容，参数为 { option }",
+      "defaultValue": ""
+    },
+    {
+      "name": "left-panel",
+      "sample": "panel-slot",
+      "type": "",
+      "desc": "左侧自定义内容",
+      "defaultValue": ""
+    },
+    {
+      "name": "right-panel",
+      "sample": "panel-slot",
+      "type": "",
+      "desc": "右侧自定义内容",
+      "defaultValue": ""
+    }
+  ],
+  "methods": [
+    {
+      "name": "clearQuery",
+      "sample": "manual-clear-query",
+      "type": "",
+      "desc": "清空某个面板的搜索关键词",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "sample": "transfer-events",
+      "type": "Function(arg1,arg2,arg3)",
+      "desc": "右侧列表元素变化时触发;//参数arg1:Array 穿梭框右侧数据值列表\n//参数arg2:String 数据移动方向，是left或者right\n//参数arg3:Array 被移动的数据值列表",
+      "defaultValue": ""
+    },
+    {
+      "name": "left-check-change",
+      "sample": "transfer-events",
+      "type": "Function(arg1,arg2)",
+      "desc": "左侧列表元素被用户选中 / 取消选中时触发;//参数arg1:Array 穿梭框左侧被选中的数据值列表\n//参数arg2:Array 穿梭框左侧选中状态发生变化的数据值列表",
+      "defaultValue": ""
+    },
+    {
+      "name": "right-check-change",
+      "sample": "transfer-events",
+      "type": "Function(arg1,arg2)",
+      "desc": "右侧列表元素被用户选中 / 取消选中时触发;//参数arg1:Array 穿梭框右侧被选中的数据值列表\n//参数arg2:Array 穿梭框右侧选中状态发生变化的数据值列表",
+      "defaultValue": ""
+    }
+  ]
+}

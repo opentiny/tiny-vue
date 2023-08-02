@@ -1,0 +1,27 @@
+{
+  "attrs": [
+    {
+      "name": "name",
+      "sample": "manual-play",
+      "type": "String",
+      "desc": "Slide name, which can be used as a parameter of setActiveItem.",
+      "defaultValue": ""
+    },
+    {
+      "name": "title",
+      "sample": "show-title",
+      "type": "String",
+      "desc": "Slide title.",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "manual-play",
+      "type": "",
+      "desc": "Default slot",
+      "defaultValue": ""
+    }
+  ]
+}

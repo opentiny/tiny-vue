@@ -1,0 +1,11 @@
+{
+  "attrs": [
+    {
+      "name": "getUserInfo",
+      "sample": "custom-service",
+      "type": "Function",
+      "desc": "Configure the interface for querying current system users.",
+      "defaultValue": ""
+    }
+  ]
+}

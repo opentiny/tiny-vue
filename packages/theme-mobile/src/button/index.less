@@ -1,0 +1,237 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/button.less';
+@import '../custom.less';
+@import './vars.less';
+
+@button-prefix-cls: ~'@{css-prefix}mobile-button';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{button-prefix-cls} {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: var(--ti-mobile-button-height);
+  line-height: var(--ti-mobile-button-height);
+  font-size: var(--ti-mobile-button-font-size-default);
+  -webkit-text-size-adjust: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-image: initial;
+  border-radius: 2px;
+  padding: 0 16px;
+  transition: border 0.3s ease 0s, color 0.3s ease 0s, background 0.3s ease 0s;
+  cursor: pointer;
+  outline: 0;
+  display: inline-block;
+  user-select: none;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    border: inherit;
+    border-color: #000;
+    border-radius: inherit;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    content: ' ';
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &:active,
+  &.is-active {
+    &::before {
+      opacity: 0.1;
+    }
+  }
+
+  &.is-disabled,
+  &.is-disabled:active,
+  &.is-disabled.is-active {
+    cursor: not-allowed;
+    .button-color(var(--ti-mobile-button-text-color-disabled),
+    var(--ti-mobile-button-bg-color-disabled),
+      var(--ti-mobile-button-bg-color-disabled));
+  }
+
+  .is-icon {
+    fill: var(--ti-mobile-button-text-color-white);
+    font-size: var(--ti-mobile-button-font-size-default);
+  }
+
+  &--default {
+    .button-color(var(--ti-mobile-button-text-color-default),
+      var(--ti-mobile-button-border-color),
+      var(--ti-mobile-button-bg-color-default));
+
+    .is-icon {
+      fill: var(--ti-mobile-button-text-color-default);
+    }
+
+    &.is-disabled .is-icon {
+      fill: var(--ti-mobile-button-text-color-white);
+    }
+  }
+
+  &&--default {
+    &.is-loading svg {
+      fill: #666;
+    }
+  }
+
+  &--primary {
+    .button-type(var(--ti-mobile-button-text-color-white),
+      var(--ti-mobile-button-bg-color-primary));
+
+    &.is-plain {
+      .button-plain(var(--ti-mobile-button-bg-color-primary));
+    }
+  }
+
+  &--success {
+    .button-type(var(--ti-mobile-button-text-color-white),
+      var(--ti-mobile-button-bg-color-success));
+
+    &.is-plain {
+      .button-plain(var(--ti-mobile-button-bg-color-success));
+    }
+  }
+
+  &--warning {
+    .button-type(var(--ti-mobile-button-text-color-white),
+      var(--ti-mobile-button-bg-color-warning));
+
+    &.is-plain {
+      .button-plain(var(--ti-mobile-button-bg-color-warning));
+    }
+  }
+
+  &--danger {
+    .button-type(var(--ti-mobile-button-text-color-white),
+      var(--ti-mobile-button-bg-color-danger));
+
+    &.is-plain {
+      .button-plain(var(--ti-mobile-button-bg-color-danger));
+    }
+  }
+
+  &--info {
+    .button-type(var(--ti-mobile-button-text-color-white),
+      var(--ti-mobile-button-bg-color-info));
+
+    &.is-plain {
+      .button-plain(var(--ti-mobile-button-bg-color-info));
+    }
+  }
+
+  &--text {
+    .button-text(var(--ti-mobile-button-text-color),
+      var(--ti-mobile-button-text-color-hover),
+      var(--ti-mobile-button-text-color-active),
+      var(--ti-mobile-button-text-color-disabled));
+  }
+
+  &--secondary {
+    .button-type(var(--ti-mobile-button-text-color-default),
+       var(--ti-mobile-button-bg-color-secondary));
+
+    &.is-plain {
+      .button-plain(var(--ti-mobile-button-bg-color-secondary));
+    }
+  }
+
+  &--default {
+    .button-color(var(--ti-mobile-button-text-color-default),
+      var(--ti-mobile-button-text-color-disabled),
+      var(--ti-mobile-button-text-color-white));
+
+    &.is-disabled {
+      .button-color(var(--ti-mobile-button-text-color-disabled),
+        var(--ti-mobile-button-text-color-disabled),
+        var(--ti-mobile-button-bg-color-white));
+    }
+  }
+
+  &--large {
+    padding: 0 20px;
+  }
+
+  &--medium {
+    padding: 0 16px;
+    line-height: 36px;
+
+    .button-size(var(--ti-mobile-button-height-medium),
+      var(--ti-mobile-button-font-size-medium,));
+  }
+
+  &--small {
+    padding: 0 12px;
+    line-height: 28px;
+
+    .button-size(var(--ti-mobile-button-height-small),
+      var(--ti-mobile-button-font-size-small));
+  }
+
+  &--mini {
+    padding: 0 8px;
+    line-height: 22px;
+
+    .button-size(var(--ti-mobile-button-height-mini),
+      var(--ti-mobile-button-font-size-mini));
+  }
+
+  &.is-loading {
+    position: relative;
+    pointer-events: none;
+
+    svg {
+      fill: var(--ti-mobile-button-text-color-white);
+      font-size: var(--ti-mobile-button-font-size-default);
+    }
+  }
+
+  &.is-round {
+    border-radius: 999px;
+  }
+}
+
+.@{css-prefix-iconfont}-loading {
+  margin-right: 4px;
+  font-size: 16px;
+  line-height: 1;
+  animation: rotating 2s linear infinite;
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}

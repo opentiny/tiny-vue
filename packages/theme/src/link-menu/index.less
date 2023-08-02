@@ -1,0 +1,188 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@link-menu-prefix-cls: ~'@{css-prefix}link-menu';
+@input-prefix-cls: ~'@{css-prefix}input';
+@button-prefix-cls: ~'@{css-prefix}button';
+@tree-prefix-cls: ~'@{css-prefix}tree';
+@tree-node-prefix-cls: ~'@{css-prefix}tree-node';
+@checkbox-prefix-cls: ~'@{css-prefix}checkbox';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{link-menu-prefix-cls} {
+  .component-css-vars-link-menu();
+
+  &__nav &__nav-item {
+    color: var(--ti-link-menu-nav-item-text-color);
+    font-size: var(--ti-common-font-size-1);
+    border-right: 1px solid var(--ti-link-menu-nav-item-border-color);
+    padding: 0 8px;
+    line-height: 1;
+    display: inline-block;
+    background: 0;
+    white-space: nowrap;
+    text-decoration: none;
+    outline: 0;
+    text-align: center;
+    cursor: pointer;
+
+    .@{svg-prefix-cls} {
+      fill: var(--ti-link-menu-nav-item-text-color);
+      margin-right: 4px;
+    }
+
+    span {
+      line-height: 1;
+      vertical-align: middle;
+    }
+  }
+
+  &__nav &__btn {
+    color: var(--ti-link-menu-btn-text-color);
+    background: var(--ti-link-menu-btn-bg-color);
+    padding: 0 8px;
+    line-height: 1;
+    outline: 0;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+
+    .@{svg-prefix-cls} {
+      fill: var(--ti-link-menu-nav-item-text-color);
+      font-size: var(--ti-common-font-size-3);
+    }
+  }
+
+  &__dialog-btn {
+    text-align: center;
+  }
+
+  .@{input-prefix-cls} {
+    width: 270px;
+    margin-bottom: 5px;
+
+    .@{input-prefix-cls}__inner {
+      height: var(--ti-link-menu-input-height);
+      line-height: var(--ti-link-menu-input-height);
+      font-size: var(--ti-link-menu-input-font-size);
+      color: var(--ti-link-menu-input-text-color);
+      background: var(--ti-link-menu-btn-bg-color);
+      border: 1px solid var(--ti-link-menu-input-border-color);
+      border-radius: var(--ti-link-menu-input-border-radius);
+      padding: 0 8px;
+      display: block;
+      white-space: nowrap;
+      user-select: auto;
+      transition: border 0.3s;
+      outline: 0;
+      box-sizing: border-box;
+    }
+  }
+
+  .@{button-prefix-cls} {
+    &:last-child {
+      color: var(--ti-link-menu-nav-item-text-color);
+      background-color: var(--ti-link-menu-btn-bg-color);
+      border-color: var(--ti-link-menu-input-border-color);
+    }
+  }
+
+  .@{tree-prefix-cls} {
+    .@{tree-node-prefix-cls} {
+      .@{checkbox-prefix-cls} {
+        transform: translateY(1px);
+      }
+
+      .tree-node-body {
+        display: block;
+        text-decoration: none;
+
+        & > .@{svg-prefix-cls} {
+          margin-left: 4px;
+        }
+      }
+
+      .tree-node-name {
+        color: var(--ti-link-menu-tree-node-text-color);
+        font-size: var(--ti-link-menu-input-font-size);
+        border-radius: var(--ti-link-menu-input-border-radius);
+        padding-left: 4px;
+        font-weight: 700;
+        vertical-align: middle;
+      }
+
+      &.is-focusable {
+        .tree-node-name {
+          color: var(--ti-link-menu-input-text-color);
+        }
+      }
+    }
+
+    &.@{link-menu-prefix-cls}__overflow {
+      .tree-node {
+        width: calc(100% - 36px);
+      }
+
+      .tree-node-name {
+        width: 100%;
+        display: inline-block;
+        .text-overflow();
+      }
+    }
+
+    &.@{link-menu-prefix-cls}__wrap {
+      .@{tree-node-prefix-cls}__content {
+        height: auto;
+        padding: 2px 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        .@{tree-node-prefix-cls}__expand-icon {
+          transform: translateY(-3px);
+
+          &.expanded {
+            transform: translateY(-3px) rotate(90deg);
+          }
+        }
+
+        .tree-node {
+          width: 100%;
+        }
+      }
+
+      .tree-node-body {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-decoration: none;
+
+        .@{svg-prefix-cls} {
+          flex-shrink: 0;
+          transform: translateY(2px);
+        }
+      }
+
+      .tree-node-name {
+        display: inline-block;
+        white-space: normal;
+        line-height: normal;
+        word-break: break-word;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}

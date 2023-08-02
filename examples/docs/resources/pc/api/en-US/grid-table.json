@@ -1,0 +1,1368 @@
+{
+  "attrs": [
+    {
+      "name": "pager",
+      "sample": "grid-pager#pager-inner-pager",
+      "type": "Object",
+      "desc": "Set the pagination configuration item. Use the pager attribute {component: Pager} to inject the pagination component and {attrs: {currentPage: 1,pageSize: 5,pageSizes: [5, 10], total: 0,layout:' total, prev, pager, next, jumper, sizes '} to configure pagination.",
+      "defaultValue": ""
+    },
+    {
+      "name": "fetch-data",
+      "sample": "grid-data-source#tiny-first-menu-request-service",
+      "type": "Object",
+      "desc": "Querying Data on the Server",
+      "defaultValue": ""
+    },
+    {
+      "name": "save-data",
+      "sample": "grid-toolbar#tiny-first-menu-save-data",
+      "type": "Object",
+      "desc": "Data storage method on the server",
+      "defaultValue": ""
+    },
+    {
+      "name": "delete-data",
+      "sample": "",
+      "type": "Object",
+      "desc": "Deleting Server Data",
+      "defaultValue": ""
+    },
+    {
+      "name": "row-group",
+      "sample": "grid-row-grouping#row-grouping",
+      "type": "Object",
+      "desc": "Set Row Group",
+      "defaultValue": ""
+    },
+    {
+      "name": "toolbar",
+      "sample": "",
+      "type": "Object",
+      "desc": "Toolbar Configuration",
+      "defaultValue": ""
+    },
+    {
+      "name": "align",
+      "sample": "grid-align#align-grid-align-left-grid-align",
+      "type": "String",
+      "desc": "All columns correspond to their modes. The optional values of this attribute are left (to the left), center (to the center), and right (to the right)",
+      "defaultValue": "The default value of this attribute is left."
+    },
+    {
+      "name": "auto-resize",
+      "sample": "grid-width-height#tiny-first-menu-adaptive-grid-width-height",
+      "type": "Boolean",
+      "desc": "Parent element responsive listening (It may be used in scenarios where the parent element may change dynamically.)",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "border",
+      "sample": "grid-grid-border#tiny-first-menu-grid-border",
+      "type": "Boolean",
+      "desc": "Whether to contain vertical borders",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "cell-class-name",
+      "sample": "grid-custom-style#custom-style-cell-style",
+      "type": "String, Function",
+      "desc": "Append a class name to a cell, or the function Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex})",
+      "defaultValue": ""
+    },
+    {
+      "name": "column-key",
+      "sample": "grid-operation-column#tiny-first-menu-column-key",
+      "type": "Boolean",
+      "desc": "Whether to set the key attribute for the VNode in each column (not required unless otherwise specified)",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "column-min-width",
+      "sample": "grid-width-height#tiny-first-menu-column-min-width",
+      "type": "Number , String",
+      "desc": "Set the minimum width that can be adjusted. If this parameter is not set, the width of the column header span + 36 (fixed width of the header) is used by default. ;All minimum column widths; The remaining space is automatically allocated proportionally. The optional values of this attribute are integers, px,%",
+      "defaultValue": ""
+    },
+    {
+      "name": "column-width",
+      "sample": "grid-width-height#tiny-first-menu-column-width",
+      "type": "Number, String",
+      "desc": "Width of all columns; The optional values of this attribute are integers, px,%",
+      "defaultValue": "The default value of this attribute is evenly distributed by default."
+    },
+    {
+      "name": "context-menu",
+      "sample": "grid-context-menu#grid_Example-shortcutMenu-footer-menu",
+      "type": "Object",
+      "desc": "Shortcut Menu Configuration Item",
+      "defaultValue": ""
+    },
+    {
+      "name": "edit-rules",
+      "sample": "grid-validation#grid_Example-gridValid-editing-validation",
+      "type": "Object",
+      "desc": "Validation Rule Configuration Item",
+      "defaultValue": ""
+    },
+    {
+      "name": "expand-config",
+      "sample": "grid-tree-grid#tree-table-tree-grid-expand-config",
+      "type": "Object",
+      "desc": "Expanding Configuration Items",
+      "defaultValue": ""
+    },
+    {
+      "name": "fit",
+      "sample": "grid-width-height#tiny-first-menu-adaptive-column-width",
+      "type": "Boolean",
+      "desc": "Whether the width of all columns is self-expanded",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "footer-align",
+      "sample": "grid-align#align-footer-align-left-footer-align",
+      "type": "String",
+      "desc": "Alignment mode of all table tail columns; The optional values of this attribute are left (to the left), center (to the center), and right (to the right)",
+      "defaultValue": "The default value of this attribute is inherited align."
+    },
+    {
+      "name": "optimization",
+      "sample": "grid-grid-optimization#tiny-first-menu-grid-optimization",
+      "type": "Object",
+      "desc": "Optimize configuration items",
+      "defaultValue": "The default value of this attribute is {animat: true, delayHover: 250, scrollX: {gt: 100}, scrollY: {gt: 500}"
+    },
+    {
+      "name": "params",
+      "sample": "",
+      "type": "Object",
+      "desc": "Extra Parameters",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer-cell-class-name",
+      "sample": "grid-custom-style#custom-style-footer-style-footer-cell-style",
+      "type": "String, Function",
+      "desc": "Add a class name to the cell at the end of the table, or the function Function({$rowIndex, column, columnIndex, $columnIndex})",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer-method",
+      "sample": "grid-summary#summary-custom-summary",
+      "type": "Function",
+      "desc": "Function({columns, data}) for calculating the total at the end of the table",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer-row-class-name",
+      "sample": "grid-custom-style#custom-style-footer-style-footer-cell-style",
+      "type": "String, Function",
+      "desc": "Attach className to the row at the end of the table. It can also be a function Function({$rowIndex})",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer-span-method",
+      "sample": "grid-footer#footer-footer-row-or-column-span",
+      "type": "Object",
+      "desc": "Combine rows or columns at the end of a table. The Function({$rowIndex, column, columnIndex, $columnIndex, data}) function returns the calculated value.",
+      "defaultValue": "The default value of this attribute is {rowspan: 1, colspan: 1}"
+    },
+    {
+      "name": "header-align",
+      "sample": "grid-align#align-header-align-left-header-align",
+      "type": "String",
+      "desc": "Alignment mode of all table header columns; The optional values of this attribute are left (to the left), center (to the center), and right (to the right)",
+      "defaultValue": "The default value of this attribute is inherited align."
+    },
+    {
+      "name": "header-cell-class-name",
+      "sample": "grid-custom-style#custom-style-header-style-header-cell-style",
+      "type": "String, Function",
+      "desc": "Append a class name or function Function({$rowIndex, column, columnIndex, $columnIndex}) to the cell in the table header",
+      "defaultValue": ""
+    },
+    {
+      "name": "header-row-class-name",
+      "sample": "grid-custom-style#custom-style-header-style-header-cell-style",
+      "type": "String, Function",
+      "desc": "Append className or function Function({$rowIndex}) to the row in the table header.",
+      "defaultValue": ""
+    },
+    {
+      "name": "height",
+      "sample": "grid-width-height#tiny-first-menu-fixed-grid-height",
+      "type": "Number , String",
+      "desc": "Set the height of the table content area (excluding the table header and bottom). If this parameter is not set, the height of the table content area is adaptive. ; height of the table; Parent containers can be covered or the width and height can be fixed. The optional values of this attribute are integers, px,%",
+      "defaultValue": ""
+    },
+    {
+      "name": "highlight-cell",
+      "sample": "grid-highlight#highlight-highlight-cell",
+      "type": "Boolean",
+      "desc": "This parameter is valid only when editConfig is configured. Whether to highlight the cell border during editing.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "highlight-current-column",
+      "sample": "grid-highlight#highlight-highlight-current-column",
+      "type": "Boolean",
+      "desc": "Are you sure you want to highlight the front column?",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "highlight-current-row",
+      "sample": "grid-highlight#highlight-highlight-current-row",
+      "type": "Boolean",
+      "desc": "Are you sure you want to highlight the current line?",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "highlight-hover-column",
+      "sample": "grid-highlight#highlight-highlight-hover-column",
+      "type": "Boolean",
+      "desc": "Do you want to highlight a column when you move the cursor to the column?",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "highlight-hover-row",
+      "sample": "grid-highlight#highlight-highlight-hover-row",
+      "type": "Boolean",
+      "desc": "Specify whether to highlight a row when you move the cursor to the row.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "keyboard-config",
+      "sample": "grid-tree-grid#tree-table-tree-grid-keyboard-operation",
+      "type": "Object",
+      "desc": "Key Configuration Item",
+      "defaultValue": ""
+    },
+    {
+      "name": "loading",
+      "sample": "grid-grid-loading-tip#tiny-first-menu-grid-loading-off-tip",
+      "type": "Boolean",
+      "desc": "Check whether the table is being loaded.",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "max-height",
+      "sample": "grid-width-height#tiny-first-menu-min-grid-height",
+      "type": "Number , String",
+      "desc": "Maximum height of the table content area (excluding the table header and bottom). ; The optional values of this attribute are integers, px,%",
+      "defaultValue": ""
+    },
+    {
+      "name": "mouse-config",
+      "sample": "grid-keyboard#mouse-config",
+      "type": "Object",
+      "desc": "Mouse Configuration Item",
+      "defaultValue": ""
+    },
+    {
+      "name": "radio-config",
+      "sample": "grid-operation-column#tiny-first-menu-default-serial-column",
+      "type": "Object",
+      "desc": "Option button configuration item",
+      "defaultValue": ""
+    },
+    {
+      "name": "remote-filter",
+      "sample": "grid-filter#filter-server-filter",
+      "type": "Boolean",
+      "desc": "Whether to use server-side filtering for all columns. If this parameter is set to true, data is not processed.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "remote-sort",
+      "sample": "grid-filter#filter-server-filter",
+      "type": "Boolean",
+      "desc": "Whether to sort all data on the server. The default value is false. The server-side sorting is not performed.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "resizable",
+      "sample": "grid-width-height#tiny-first-menu-resize-column-width",
+      "type": "Boolean",
+      "desc": "Set whether to allow column width adjustment",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "row-class-name",
+      "sample": "grid-custom-style#custom-style-row-style",
+      "type": "String, Function",
+      "desc": "Attach a class name to a row. It can also be a function Function({seq, row, rowIndex, $rowIndex})",
+      "defaultValue": ""
+    },
+    {
+      "name": "row-id",
+      "sample": "",
+      "type": "String",
+      "desc": "Field name of the unique primary key of user-defined row data (The row data must have a unique primary key, which is automatically generated by default.)",
+      "defaultValue": "The default value of this attribute is _XID"
+    },
+    {
+      "name": "row-key",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "Whether the key attribute needs to be set for each VNode in each line (not required unless otherwise specified)",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "select-config",
+      "sample": "grid-tree-grid#tree-table-tree-grid-operation-column",
+      "type": "Object",
+      "desc": "Check box configuration item",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-footer",
+      "sample": "grid-summary#summary-custom-summary",
+      "type": "Boolean",
+      "desc": "Whether to display the total at the end of the table",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "show-header",
+      "sample": "grid-header#header-hide-grid-header",
+      "type": "Boolean",
+      "desc": "Display table header",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "show-header-overflow",
+      "sample": "grid-tip#tip-column-header-tip",
+      "type": "Boolean, String",
+      "desc": "Sets the table header to be displayed as an ellipsis when it is too long. The optional values of this attribute are ellipsis (only the ellipsis is displayed), title (and the native title is displayed), and tooltip (and the tooltip is displayed)",
+      "defaultValue": ""
+    },
+    {
+      "name": "show-overflow",
+      "sample": "grid-tip#tip-cell-tip",
+      "type": "Boolean, String",
+      "desc": "All content is displayed as an ellipsis when it is too long. (If the column is fixed, you are advised to set this parameter to improve the rendering speed.) The optional values of this attribute are ellipsis (only the ellipsis is displayed), title (and the native title is displayed), and tooltip (and the tooltip is displayed)",
+      "defaultValue": ""
+    },
+    {
+      "name": "size",
+      "sample": "grid-grid-size#tiny-first-menu-grid-size",
+      "type": "String",
+      "desc": "Table size; The options of this attribute are medium, small, and mini",
+      "defaultValue": ""
+    },
+    {
+      "name": "sort-config",
+      "sample": "grid-sort#sort-default-sort",
+      "type": "Object",
+      "desc": "Sort Configuration Item",
+      "defaultValue": ""
+    },
+    {
+      "name": "sort-method",
+      "sample": "grid-sort#sort-custom-sort",
+      "type": "Function",
+      "desc": "Customize the sorting method of all columns. When sorting is triggered, the function Function({data, column, property, order}) is invoked to return the sorting result.",
+      "defaultValue": ""
+    },
+    {
+      "name": "span-method",
+      "sample": "grid-span#span-column-span",
+      "type": "Object",
+      "desc": "Combine rows or columns. The Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, data}) function returns the calculated value.",
+      "defaultValue": "The default value of this attribute is {rowspan: 1, colspan: 1}"
+    },
+    {
+      "name": "start-index",
+      "sample": "grid-serial-column#tiny-first-menu-custom-serial-column",
+      "type": "Number",
+      "desc": "This parameter is valid only for the column whose type is index. It is the start value of the dynamic index.",
+      "defaultValue": "The default value of this attribute is 0"
+    },
+    {
+      "name": "stripe",
+      "sample": "grid-grid-stripe#stripe-stripe",
+      "type": "Boolean",
+      "desc": "Whether the zebra print is displayed",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "sync-resize",
+      "sample": "grid-width-height#tiny-first-menu-adaptive-grid-width-height",
+      "type": "Boolean",
+      "desc": "Responsive mode follows an attribute. (This may be used in scenarios where an attribute is used to control the display/hide switch)",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "tree-config",
+      "sample": "grid-tree-grid#tree-table-tree-grid-base",
+      "type": "Object",
+      "desc": "Tree structure configuration item",
+      "defaultValue": ""
+    },
+    {
+      "name": "valid-config",
+      "sample": "grid-validation#grid_Example-gridValid-editing-validation",
+      "type": "Object",
+      "desc": "Verify configuration items",
+      "defaultValue": ""
+    },
+    {
+      "name": "summary-config",
+      "sample": "grid-summary#summary-configuration-summary",
+      "type": "Object",
+      "desc": "Configuration of the table statistics function",
+      "defaultValue": ""
+    },
+    {
+      "name": "sortable",
+      "sample": "grid-customized#custom-column-sort",
+      "type": "Boolean",
+      "desc": "Sets whether column data can be sorted. The default value is true. The value can be sorted.",
+      "defaultValue": "The default value of this attribute is true."
+    },
+    {
+      "name": "auto-load",
+      "sample": "grid-data-source#tiny-first-menu-auto-load",
+      "type": "Boolean",
+      "desc": "",
+      "defaultValue": "Whether to enable the automatic request service. This parameter is valid when fetch-data is configured. The default value of this parameter is true."
+    },
+    {
+      "name": "is-async-column",
+      "sample": "grid-data-source#tiny-first-menu-column-asyn-rendering",
+      "type": "Boolean",
+      "desc": "Sets whether the column of a table is loaded in lazy mode. Indicates whether to enable the asynchronous column function. This function is used together with scrollLoad.",
+      "defaultValue": ""
+    },
+    {
+      "name": "columns",
+      "sample": "grid-data-source#tiny-first-menu-columns",
+      "type": "Array",
+      "desc": "Configuration information in the table column. For details, see the configuration items in the column.",
+      "defaultValue": ""
+    },
+    {
+      "name": "scroll-load",
+      "sample": "grid-large-data#tiny-first-menu-scroll-paging",
+      "type": "Object",
+      "desc": "Rolling loading configuration; Indicates whether to load scrolling pages. This parameter is valid only when showPager is set to true.",
+      "defaultValue": ""
+    },
+    {
+      "name": "row-span",
+      "sample": "grid-span#span-row-span-row-span-easy",
+      "type": "Array",
+      "desc": "Set Row Merge",
+      "defaultValue": ""
+    },
+    {
+      "name": "render-empty",
+      "sample": "",
+      "type": "Function",
+      "desc": "Empty data rendering",
+      "defaultValue": ""
+    },
+    {
+      "name": "events",
+      "sample": "grid-event#event-grid-events",
+      "type": "Object",
+      "desc": "Event Object",
+      "defaultValue": ""
+    },
+    {
+      "name": "data",
+      "sample": "grid-data-source#tiny-first-menu-static-data",
+      "type": "Array",
+      "desc": "Set the table data. ",
+      "defaultValue": ""
+    },
+    {
+      "name": "expand-last-column",
+      "sample": "",
+      "type": "Boolean",
+      "desc": "Indicates whether the last column fills the entire table when scrolling horizontally. The default value is false. The last column does not fill the entire table.",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "head-custom",
+      "sample": "",
+      "type": "String",
+      "desc": "Set the container selector of the customized table header. ;User-defined table headers are implemented through columns internal hierarchy or <grid-column> nesting.",
+      "defaultValue": ""
+    },
+    {
+      "name": "summary-config",
+      "sample": "grid-summary#summary-configuration-summary",
+      "type": "Object",
+      "desc": "Set the table statistics function.",
+      "defaultValue": ""
+    },
+    {
+      "name": "context-menu",
+      "sample": "grid-context-menu#grid_Example-shortcutMenu-header-menu",
+      "type": "Object",
+      "desc": "Menu configuration information.",
+      "defaultValue": ""
+    },
+    {
+      "name": "min-height",
+      "sample": "grid-width-height#tiny-first-menu-min-grid-height",
+      "type": "Number , String",
+      "desc": "Set the minimum height of the table content area (excluding the table header and bottom)",
+      "defaultValue": ""
+    },
+    {
+      "name": "operation",
+      "sample": "",
+      "type": "Object",
+      "desc": "Table operation column configuration information; Set the renderer of columns to customize the column content or use the <grid-column> embedded component to customize the column content.",
+      "defaultValue": ""
+    },
+    {
+      "name": "render-util",
+      "sample": "",
+      "type": "Object",
+      "desc": "Grid rendering is the input template tool method object, which can be used in both renderer and content renderers. ; Use the renderer of the column configuration to configure the custom content display",
+      "defaultValue": ""
+    },
+    {
+      "name": "drop-config",
+      "sample": "grid-drag#drag-row-drag",
+      "type": "Object",
+      "desc": "Drag configuration information up and down in a table row.",
+      "defaultValue": ""
+    },
+    {
+      "name": "edit-config",
+      "sample": "grid-editor#grid_Example-gridEdit-inner-editor",
+      "type": "Object",
+      "desc": "Sets whether to enable row editing. That is, each cell is in the editing state. This parameter is valid only when editMode is set to true. ;Set mode = row to enable row editing",
+      "defaultValue": ""
+    },
+    {
+      "name": "seq-serial",
+      "sample": "grid-pager#pager-inner-pager",
+      "type": "Boolean",
+      "desc": "Specifies whether row sequence numbers are consecutive. The value of seqSerial is valid only when showSeq is set to true.",
+      "defaultValue": "Sets whether row sequence numbers are consecutive. This parameter is valid only when pagination is enabled. The default value of this parameter is false."
+    },
+    {
+      "name": "tooltip-config",
+      "sample": "",
+      "type": "Object",
+      "desc": "Component configuration information. For details, see Hae.Widget.Tip.op. ; Grid built-in tip configuration information",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "",
+      "type": "",
+      "desc": "Default slot (table column <grid-column>)",
+      "defaultValue": ""
+    },
+    {
+      "name": "toolbar",
+      "sample": "",
+      "type": "",
+      "desc": "Toolbar, (including: zoom, personalization, refresh table, and custom buttons) <grid-toolbar>",
+      "defaultValue": ""
+    },
+    {
+      "name": "pager",
+      "sample": "grid-pager#pager-inner-pager",
+      "type": "",
+      "desc": "Paging plug-in, <pager>",
+      "defaultValue": ""
+    },
+    {
+      "name": "empty",
+      "sample": "grid-empty-data-tip#tiny-first-menu-empty-data-tip",
+      "type": "",
+      "desc": "Text content displayed when data is empty",
+      "defaultValue": ""
+    }
+  ],
+  "methods": [
+    {
+      "name": "clearActived()",
+      "sample": "grid-edit#tiny-first-menu-trigger-mode-for-editing",
+      "type": "",
+      "desc": "Manually clear the cell activation status.",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearAll()",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "Manually clear all conditions in the table and restore the table to the initial state. (This parameter may be used in adding, deleting, modifying, and querying data, for example, clearing the table cache after data is saved.)",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearCurrentColumn()",
+      "sample": "grid-highlight#highlight-highlight-current-column",
+      "type": "",
+      "desc": "Manually clear the highlighted status of the current column.",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearCurrentRow()",
+      "sample": "grid-highlight#highlight-highlight-current-row",
+      "type": "",
+      "desc": "Used in the current line to manually clear the current highlighted status.",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearData(rows, field)",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "Manually clear the cell content. If no parameter is transferred, the entire table content is cleared. If a row is transferred, the specified row content is cleared. If a specified field is transferred, the field content is cleared.",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearFilter(field)",
+      "sample": "grid-filter#filter-default-filter",
+      "type": "",
+      "desc": "Manually clear the filter criteria (if field is not transferred, all filter criteria will be cleared). The data will be restored to the unfiltered state.",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearRadioRow()",
+      "sample": "grid-operation-column#tiny-first-menu-default-serial-column",
+      "type": "",
+      "desc": "Used to manually clear the selection of a single row.",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearRowExpand()",
+      "sample": "grid-nested-grid#grid_Example-nestedGrid",
+      "type": "",
+      "desc": "Manually clear the expanded row status. The data will be restored to the unexpanded state.",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearScroll()",
+      "sample": "grid-width-height#tiny-first-menu-min-grid-height",
+      "type": "",
+      "desc": "Manually clear scrolling information and restore it to the initial state.",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearSelected()",
+      "sample": "grid-highlight#highlight-highlight-cell",
+      "type": "",
+      "desc": "Manually clear the cell selection status.",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearSelection()",
+      "sample": "grid-operation-column#tiny-first-menu-custom-serial-column",
+      "type": "",
+      "desc": "Used to manually clear the selection of multiple rows.",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearSort()",
+      "sample": "grid-sort#sort-default-sort",
+      "type": "",
+      "desc": "If you manually clear the sorting criteria, data will be restored to the unsorted state.",
+      "defaultValue": ""
+    },
+    {
+      "name": "clearTreeExpand()",
+      "sample": "grid-tree-grid#tree-table-tree-grid-insert-delete-update",
+      "type": "",
+      "desc": "Manually clear the expanded status of tree nodes. Data will be restored to the unexpanded status.",
+      "defaultValue": ""
+    },
+    {
+      "name": "closeFilter()",
+      "sample": "grid-filter#filter-default-filter",
+      "type": "",
+      "desc": "Manually close the filtering panel (this may be used in some special scenarios).",
+      "defaultValue": ""
+    },
+    {
+      "name": "closeMenu()",
+      "sample": "grid-context-menu#grid_Example-shortcutMenu-header-menu",
+      "type": "",
+      "desc": "Close the shortcut menu manually (this may be used in some special scenarios).",
+      "defaultValue": ""
+    },
+    {
+      "name": "createData(records)",
+      "sample": "grid-data-source#tiny-first-menu-static-data",
+      "type": "",
+      "desc": "Create a data object. (This field may be used in some special scenarios. The system automatically checks the field name of the data. If the field name does not exist, the system automatically defines the field name.)",
+      "defaultValue": ""
+    },
+    {
+      "name": "createRow(records)",
+      "sample": "grid-data-source#tiny-first-menu-static-data",
+      "type": "",
+      "desc": "Create a Row|Rows object. (This parameter may be used when data needs to be manually inserted in some special scenarios.)",
+      "defaultValue": ""
+    },
+    {
+      "name": "exportCsv(options)",
+      "sample": "grid-import-export#tiny-first-menu-export-excel",
+      "type": "",
+      "desc": "Export table data to a .csv file. (All mainstream browsers are supported. Rows or columns cannot be merged.)",
+      "defaultValue": ""
+    },
+    {
+      "name": "fullValidate(rows, callback)",
+      "sample": "grid-validation#grid_Example-gridValid-before-submit-validation",
+      "type": "",
+      "desc": "Table integrity verification function. The difference between the function and validate is that all rules of full data are verified.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getActiveRow()",
+      "sample": "grid-edit#tiny-first-menu-trigger-mode-for-editing",
+      "type": "",
+      "desc": "Obtain activated row data",
+      "defaultValue": ""
+    },
+    {
+      "name": "getColumnByField(field)",
+      "sample": "grid-data-source#tiny-first-menu-columns",
+      "type": "",
+      "desc": "Obtain a column based on the column field name.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getColumnById(colid)",
+      "sample": "grid-data-source#tiny-first-menu-columns",
+      "type": "",
+      "desc": "Obtain a column based on its unique primary key.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getColumnIndex(column)",
+      "sample": "grid-data-source#tiny-first-menu-columns",
+      "type": "",
+      "desc": "Obtain indexes relative to columns based on columns.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getColumnNode(cell)",
+      "sample": "grid-data-source#tiny-first-menu-columns",
+      "type": "",
+      "desc": "Obtain the column information based on the th/td element.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getColumns(columnIndex)",
+      "sample": "grid-data-source#tiny-first-menu-columns",
+      "type": "",
+      "desc": "Obtains visible columns of a table. You can also specify an index to obtain columns.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getCurrentRow()",
+      "sample": "",
+      "type": "",
+      "desc": "Used for the current row to obtain the data of the current row.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getData(rowIndex)",
+      "sample": "grid-data-source#tiny-first-menu-columns",
+      "type": "",
+      "desc": "Obtain data. The behavior is the same as that of data. You can also specify an index to obtain data.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getInsertRecords()",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "Obtain the new data.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getRadioRow()",
+      "sample": "",
+      "type": "",
+      "desc": "Used to select a row and obtain the selected data.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getRecordset()",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "Obtain the table data set. (Obtain the added, deleted, and modified data, which is convenient for adding, deleting, modifying, and querying tables.)",
+      "defaultValue": ""
+    },
+    {
+      "name": "getRemoveRecords()",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "Obtain deleted data.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getRowById(rowid)",
+      "sample": "",
+      "type": "",
+      "desc": "Obtain a row based on its unique primary key.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getRowIndex(row:Object)",
+      "sample": "",
+      "type": "",
+      "desc": "Obtain the index relative to the data based on the row.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getRowNode(tr)",
+      "sample": "",
+      "type": "",
+      "desc": "Obtain row information based on the tr element.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getSelectRecords()",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "Used to select multiple rows and obtain the selected data.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getTableColumn()",
+      "sample": "grid-data-source#tiny-first-menu-static-data",
+      "type": "",
+      "desc": "Obtains the columns of the current table. (complete full table header column, full table header column after processing condition, table header column in current rendering)",
+      "defaultValue": ""
+    },
+    {
+      "name": "getTableData()",
+      "sample": "grid-data-source#tiny-first-menu-static-data",
+      "type": "",
+      "desc": "Obtain the data in the current table. (complete table body data, full table body data after processing conditions, table body data in current rendering, table tail data in current rendering)",
+      "defaultValue": ""
+    },
+    {
+      "name": "getUpdateRecords()",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "Obtain modified data.",
+      "defaultValue": ""
+    },
+    {
+      "name": "hasActiveRow(row)",
+      "sample": "grid-edit#tiny-first-menu-trigger-mode-for-editing",
+      "type": "",
+      "desc": "Check whether the row is in the editing state.",
+      "defaultValue": ""
+    },
+    {
+      "name": "hasRowChange(row, field)",
+      "sample": "grid-edit#tiny-first-menu-row-editing",
+      "type": "",
+      "desc": "Check whether the row or column data is changed.",
+      "defaultValue": ""
+    },
+    {
+      "name": "hasRowExpand(row)",
+      "sample": "grid-nested-grid#grid_Example-nestedGrid",
+      "type": "",
+      "desc": "Check whether the row is expanded.",
+      "defaultValue": ""
+    },
+    {
+      "name": "hasTreeExpand(row)",
+      "sample": "grid-tree-grid#tree-table-tree-grid-expand",
+      "type": "",
+      "desc": "Check whether the tree node is expanded.",
+      "defaultValue": ""
+    },
+    {
+      "name": "hideColumn(column)",
+      "sample": "grid-customized#custom-column-visible-hidden",
+      "type": "",
+      "desc": "Hide a specified column",
+      "defaultValue": ""
+    },
+    {
+      "name": "insert(records)",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "Add data to the table. ;Insert data to the table by adding one or more rows of new data from the first row.",
+      "defaultValue": ""
+    },
+    {
+      "name": "insertAt(records, row)",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "Insert one or more rows from the specified position to the table. Second parameter: row specifies the position (tree tables are not supported), null inserts from the first row, and - 1 inserts from the last",
+      "defaultValue": ""
+    },
+    {
+      "name": "loadColumn(columns)",
+      "sample": "grid-large-data#large-data-load-column",
+      "type": "",
+      "desc": "Load column configuration (This may be used in scenarios where table columns need to be overloaded and partially incremented.)",
+      "defaultValue": ""
+    },
+    {
+      "name": "loadData(data)",
+      "sample": "grid-large-data#tiny-first-menu-full-data-loading",
+      "type": "",
+      "desc": "Load data. (This parameter may be used when table data needs to be reloaded or partially incremented.)",
+      "defaultValue": ""
+    },
+    {
+      "name": "recalculate()",
+      "sample": "grid-width-height#recalculate",
+      "type": "",
+      "desc": "Recalculate the table. (This may be used in some special scenarios, such as hidden tables and column width update.)",
+      "defaultValue": ""
+    },
+    {
+      "name": "refreshColumn()",
+      "sample": "grid-customized#custom-column-visible-hidden",
+      "type": "",
+      "desc": "Refresh column configuration (This parameter may be used in the scenario of displaying or hiding columns.)",
+      "defaultValue": ""
+    },
+    {
+      "name": "refreshData()",
+      "sample": "grid-tree-grid#tree-table-tree-grid-insert-delete-update",
+      "type": "",
+      "desc": "Refresh data synchronously. If this method is used, the component does not record the addition, deletion, or modification status and can only implement the corresponding logic. (It may be used in some special scenarios, for example, when the elements of a deep tree node change)",
+      "defaultValue": ""
+    },
+    {
+      "name": "reloadCustoms(customs)",
+      "sample": "grid-customized#custom-server-storage",
+      "type": "",
+      "desc": "Display or hide columns during initialization loading (this parameter may be used in asynchronous update scenarios).",
+      "defaultValue": ""
+    },
+    {
+      "name": "remove(rows)",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "Delete data in a specified row or [row, ...] to delete multiple data records. If the value is empty, all data records are deleted.",
+      "defaultValue": ""
+    },
+    {
+      "name": "removeSelecteds()",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "Delete all selected rows.",
+      "defaultValue": ""
+    },
+    {
+      "name": "resetAll()",
+      "sample": "grid-customized#custom-column-width",
+      "type": "",
+      "desc": "Manually reset all operations on a column and restore the column to the initial state. (If the toolbar has been associated, the column will be updated accordingly.)",
+      "defaultValue": ""
+    },
+    {
+      "name": "resetCustoms()",
+      "sample": "grid-customized#custom-column-width",
+      "type": "",
+      "desc": "Manually reset the display/hide operation of a column to restore the initial state. (If the toolbar has been associated, the operation will be updated accordingly.)",
+      "defaultValue": ""
+    },
+    {
+      "name": "resetResizable()",
+      "sample": "grid-customized#custom-column-width",
+      "type": "",
+      "desc": "Manually reset the column width and drag the operation to the initial state. (If the toolbar has been associated, the operation will be updated accordingly.)",
+      "defaultValue": ""
+    },
+    {
+      "name": "revertData(rows, field)",
+      "sample": "grid-edit#tiny-first-menu-row-editing",
+      "type": "",
+      "desc": "Restore the data of a specified row or the entire table.",
+      "defaultValue": ""
+    },
+    {
+      "name": "scrollTo(scrollLeft, scrollTop)",
+      "sample": "grid-large-data#large-data-scroll-to",
+      "type": "",
+      "desc": "If there is a scroll bar, scroll to the corresponding position.",
+      "defaultValue": ""
+    },
+    {
+      "name": "scrollToColumn(column)",
+      "sample": "grid-large-data#large-data-scroll-to",
+      "type": "",
+      "desc": "If there is a scroll bar, scroll to the corresponding column.",
+      "defaultValue": ""
+    },
+    {
+      "name": "scrollToRow(row)",
+      "sample": "grid-large-data#large-data-scroll-to",
+      "type": "",
+      "desc": "If there is a scroll bar, scroll to the corresponding line.",
+      "defaultValue": ""
+    },
+    {
+      "name": "setActiveCell(row, field)",
+      "sample": "grid-edit#tiny-first-menu-cell-editing",
+      "type": "",
+      "desc": "Activate cell editing",
+      "defaultValue": ""
+    },
+    {
+      "name": "setActiveRow(row)",
+      "sample": "grid-edit#tiny-first-menu-cell-editing",
+      "type": "",
+      "desc": "Enable row editing. If mode is set to cell, the first cell is activated by default.",
+      "defaultValue": ""
+    },
+    {
+      "name": "setAllRowExpansion(checked)",
+      "sample": "grid-nested-grid#grid_Example-nestedGrid",
+      "type": "",
+      "desc": "Set whether to expand all lines.",
+      "defaultValue": ""
+    },
+    {
+      "name": "setAllSelection(checked)",
+      "sample": "grid-operation-column#tiny-first-menu-custom-serial-column",
+      "type": "",
+      "desc": "Used to select multiple rows and set the selected status of all rows.",
+      "defaultValue": ""
+    },
+    {
+      "name": "setAllTreeExpansion(checked)",
+      "sample": "grid-tree-grid#tree-table-tree-grid-operation-column",
+      "type": "",
+      "desc": "Set whether to expand all tree nodes.",
+      "defaultValue": ""
+    },
+    {
+      "name": "setCurrentRow(row)",
+      "sample": "grid-highlight#highlight-highlight-hover-row",
+      "type": "",
+      "desc": "This parameter is used to highlight a line in the current line.",
+      "defaultValue": ""
+    },
+    {
+      "name": "setRadioRow(row)",
+      "sample": "grid-operation-column#tiny-first-menu-default-serial-column",
+      "type": "",
+      "desc": "Used to select a single line and set the selected status of a line.",
+      "defaultValue": ""
+    },
+    {
+      "name": "setRowExpansion(rows, checked)",
+      "sample": "grid-nested-grid#grid_Example-nestedGrid",
+      "type": "",
+      "desc": "Set the row to be expanded. The two parameters specify whether to expand the row.",
+      "defaultValue": ""
+    },
+    {
+      "name": "setSelection(rows, checked)",
+      "sample": "grid-operation-column#tiny-first-menu-custom-serial-column",
+      "type": "",
+      "desc": "This parameter is used to select multiple lines. The second parameter indicates whether the line is selected.",
+      "defaultValue": ""
+    },
+    {
+      "name": "setTreeExpansion(rows, checked)",
+      "sample": "grid-tree-grid#tree-table-tree-grid-operation-column",
+      "type": "",
+      "desc": "Set the tree node to be expanded. The two parameters are used to set whether to expand the tree node.",
+      "defaultValue": ""
+    },
+    {
+      "name": "showColumn(column)",
+      "sample": "grid-customized#custom-column-visible-hidden",
+      "type": "",
+      "desc": "Display specified columns",
+      "defaultValue": ""
+    },
+    {
+      "name": "sort(field, order)",
+      "sample": "grid-sort#sort-custom-sort",
+      "type": "",
+      "desc": "Manually sort the table. If order is empty, the sorting is automatically switched.",
+      "defaultValue": ""
+    },
+    {
+      "name": "toggleAllSelection()",
+      "sample": "grid-operation-column#tiny-first-menu-custom-serial-column",
+      "type": "",
+      "desc": "Used to select multiple rows and switch the selection status of all rows.",
+      "defaultValue": ""
+    },
+    {
+      "name": "toggleRowExpansion(row)",
+      "sample": "grid-nested-grid#grid_Example-nestedGrid",
+      "type": "",
+      "desc": "Used to switch between expanded rows in a table.",
+      "defaultValue": ""
+    },
+    {
+      "name": "toggleRowSelection(row)",
+      "sample": "grid-operation-column#tiny-first-menu-custom-serial-column",
+      "type": "",
+      "desc": "Used to select multiple rows and switch the selection status of a row.",
+      "defaultValue": ""
+    },
+    {
+      "name": "toggleTreeExpansion(row)",
+      "sample": "grid-tree-grid#tree-table-tree-grid-operation-column",
+      "type": "",
+      "desc": "Used to switch between tree-shaped tables and expand tree-shaped nodes.",
+      "defaultValue": ""
+    },
+    {
+      "name": "validate(rows, callback)",
+      "sample": "grid-validation#grid_Example-gridValid-before-submit-validation",
+      "type": "",
+      "desc": "Table validation function. If row or rows are specified, one or more specified rows are verified. Otherwise, the entire table is verified. This callback function is invoked after the verification is complete and two parameters are transferred: (whether the verification is successful, that is, the most recent column of fields that fail to pass the verification). If the callback function is not passed, a promise is returned",
+      "defaultValue": ""
+    },
+    {
+      "name": "getSelectRecords",
+      "sample": "",
+      "type": "",
+      "desc": "Obtain the data of the selected identifier.",
+      "defaultValue": ""
+    },
+    {
+      "name": "getUpdateRecords",
+      "sample": "",
+      "type": "",
+      "desc": "Obtain data for updating identifiers (excluding data for deleting and adding identifiers).",
+      "defaultValue": ""
+    },
+    {
+      "name": "renderSort",
+      "sample": "",
+      "type": "",
+      "desc": "Group/Merge Rendering Sort. Prerequisites: Data has been grouped or combined.",
+      "defaultValue": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "current-page-change",
+      "sample": "",
+      "type": "",
+      "desc": "This event is valid only when pager-config is configured. This event is triggered when the current page changes.",
+      "defaultValue": ""
+    },
+    {
+      "name": "page-change",
+      "sample": "",
+      "type": "",
+      "desc": "This event is valid only when pager-config is configured. This event is triggered when paging changes.",
+      "defaultValue": ""
+    },
+    {
+      "name": "toolbar-button-click",
+      "sample": "grid-toolbar#tiny-first-menu-insert-delete-update",
+      "type": "",
+      "desc": "This event is triggered when a toolbar button is clicked.",
+      "defaultValue": ""
+    },
+    {
+      "name": "cell-click",
+      "sample": "grid-event#event-cell-click-event",
+      "type": "",
+      "desc": "This event is triggered when a cell is clicked.",
+      "defaultValue": ""
+    },
+    {
+      "name": "cell-context-menu",
+      "sample": "grid-context-menu#grid_Example-shortcutMenu-menu-permissions",
+      "type": "",
+      "desc": "This event is triggered when a cell is right-clicked.",
+      "defaultValue": ""
+    },
+    {
+      "name": "cell-dblclick",
+      "sample": "grid-event#event-cell-dblclick-event",
+      "type": "",
+      "desc": "This event is triggered when a cell is double-clicked.",
+      "defaultValue": ""
+    },
+    {
+      "name": "cell-mouseenter",
+      "sample": "grid-event#event-cell-mouseenter-event",
+      "type": "",
+      "desc": "This event is triggered when a cell is hovered.",
+      "defaultValue": ""
+    },
+    {
+      "name": "cell-mouseleave",
+      "sample": "grid-event#event-cell-mouseleave-event",
+      "type": "",
+      "desc": "This event is triggered when the hover cell exits.",
+      "defaultValue": ""
+    },
+    {
+      "name": "context-menu-click",
+      "sample": "grid-context-menu#grid_Example-shortcutMenu-header-menu",
+      "type": "",
+      "desc": "This event is valid only when context-menu is configured. This event is triggered when a shortcut menu is clicked.",
+      "defaultValue": ""
+    },
+    {
+      "name": "current-change",
+      "sample": "",
+      "type": "",
+      "desc": "This event is triggered when a row is manually selected and its value changes. This event is valid only for highlightCurrentRow.",
+      "defaultValue": ""
+    },
+    {
+      "name": "edit-actived",
+      "sample": "grid-event#event-edit-actived-event",
+      "type": "",
+      "desc": "This event is triggered when a cell is activated for editing.",
+      "defaultValue": ""
+    },
+    {
+      "name": "edit-closed",
+      "sample": "grid-event#event-edit-closed-event",
+      "type": "",
+      "desc": "This event is triggered when a cell is closed in editing state.",
+      "defaultValue": ""
+    },
+    {
+      "name": "edit-disabled",
+      "sample": "grid-event#event-edit-disabled-event",
+      "type": "",
+      "desc": "This event is triggered when a cell is activated and the cell is disabled.",
+      "defaultValue": ""
+    },
+    {
+      "name": "filter-change",
+      "sample": "grid-filter#filter-server-filter",
+      "type": "",
+      "desc": "This event is triggered when the filter criteria change.",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer-cell-click",
+      "sample": "",
+      "type": "",
+      "desc": "This event is triggered when a cell at the end of a table is clicked.",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer-cell-context-menu",
+      "sample": "grid-context-menu#grid_Example-shortcutMenu-cell-menu",
+      "type": "",
+      "desc": "This event is triggered when a cell at the end of a table is right-clicked.",
+      "defaultValue": ""
+    },
+    {
+      "name": "footer-cell-dblclick",
+      "sample": "",
+      "type": "",
+      "desc": "This event is triggered when a cell at the end of a table is double-clicked.",
+      "defaultValue": ""
+    },
+    {
+      "name": "header-cell-click",
+      "sample": "grid-event#event-header-click-event",
+      "type": "",
+      "desc": "This event is triggered when a table header cell is clicked.",
+      "defaultValue": ""
+    },
+    {
+      "name": "header-cell-context-menu",
+      "sample": "",
+      "type": "",
+      "desc": "This event is triggered when a cell in the table header is right-clicked.",
+      "defaultValue": ""
+    },
+    {
+      "name": "header-cell-dblclick",
+      "sample": "grid-event#event-header-dblclick-event",
+      "type": "",
+      "desc": "This event is triggered when a table header cell is double-clicked.",
+      "defaultValue": ""
+    },
+    {
+      "name": "radio-change",
+      "sample": "",
+      "type": "",
+      "desc": "This event is triggered when type=radio is selected manually and the value changes.",
+      "defaultValue": ""
+    },
+    {
+      "name": "resizable-change",
+      "sample": "",
+      "type": "",
+      "desc": "This event is triggered when the column width changes.",
+      "defaultValue": ""
+    },
+    {
+      "name": "scroll",
+      "sample": "grid-event#event-grid-scroll-event",
+      "type": "",
+      "desc": "This event is triggered when a table scrolls.",
+      "defaultValue": ""
+    },
+    {
+      "name": "select-all",
+      "sample": "",
+      "type": "",
+      "desc": "This parameter is valid only when type=selection is selected. This event is triggered when Select All is selected manually.",
+      "defaultValue": ""
+    },
+    {
+      "name": "select-change",
+      "sample": "",
+      "type": "",
+      "desc": "This event is triggered when type=selection is manually selected and the value changes.",
+      "defaultValue": ""
+    },
+    {
+      "name": "toggle-expand-change",
+      "sample": "",
+      "type": "",
+      "desc": "This event is triggered when a row is expanded or collapsed.",
+      "defaultValue": ""
+    },
+    {
+      "name": "toggle-tree-change",
+      "sample": "",
+      "type": "",
+      "desc": "This event is triggered when a tree node is expanded or collapsed.",
+      "defaultValue": ""
+    },
+    {
+      "name": "valid-error",
+      "sample": "",
+      "type": "",
+      "desc": "This event is triggered when data verification fails.",
+      "defaultValue": ""
+    },
+    {
+      "name": "BeforeEdit",
+      "sample": "",
+      "type": "",
+      "desc": "Click a cell to display the event triggered before editing the component. ;Click the cell to display the event triggered before editing the component, that is, the activeMethod method in edit-config",
+      "defaultValue": ""
+    },
+    {
+      "name": "CellClick",
+      "sample": "",
+      "type": "",
+      "desc": "This event is triggered when a cell is clicked.",
+      "defaultValue": ""
+    },
+    {
+      "name": "sort-change",
+      "sample": "grid-sort#sort-server-sort",
+      "type": "",
+      "desc": "This event is triggered before data sorting is performed when a column header is clicked. ;This event is triggered when the sorting condition changes.",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "@opentiny/vue-vite-import",
+  "version": "1.1.5",
+  "description": "A TinyVue vite import plugin",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "tsc -w -p .",
+    "build": "rimraf dist && tsup src/index.ts --dts --format cjs,esm",
+    "prepublishOnly": "npm run build"
+  },
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "author": "Tiny Vue Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:opentiny/tiny-vue.git"
+  },
+  "keywords": [
+    "vite-plugin",
+    "TinyVue",
+    "vite"
+  ],
+  "peerDependencies": {
+    "vite": ">=2"
+  },
+  "dependencies": {
+    "change-case": "^4.1.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "tsup": "^6.2.2",
+    "vite": "^4.3.8",
+    "rimraf": "^3.0.2"
+  }
+}

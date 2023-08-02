@@ -1,0 +1,90 @@
+[
+  {
+    "title": "基本用法",
+    "content": "ActionMenu 组件的基本用法。",
+    "link": "action-menu/basic-usage",
+    "component": " ActionMenu 菜单按钮",
+    "findIntroStr": "ActionMenu 菜单按钮",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "禁用",
+    "content": "通过 <code>disabled</code> 字段配置当前下拉选项是否为禁用状态",
+    "link": "action-menu/disabled",
+    "component": " ActionMenu 菜单按钮",
+    "findIntroStr": "ActionMenu 菜单按钮",
+    "demoId": "disabled"
+  },
+  {
+    "title": "显示文本",
+    "content": "通过属性 <code>text-field</code> 配置要显示文本的键值，默认值为 <code>label</code>。",
+    "link": "action-menu/text-field",
+    "component": " ActionMenu 菜单按钮",
+    "findIntroStr": "ActionMenu 菜单按钮",
+    "demoId": "text-field"
+  },
+  {
+    "title": "下拉按钮显示文本",
+    "content": "通过属性 <code>more-text</code> 配置下拉菜单显示文本,默认值为 <code>更多</code",
+    "link": "action-menu/more-text",
+    "component": " ActionMenu 菜单按钮",
+    "findIntroStr": "ActionMenu 菜单按钮",
+    "demoId": "more-text"
+  },
+  {
+    "title": "间距",
+    "content": "通过属性 <code>spacing</code> 配置菜单按钮之间的间距,默认值为 <code>5px</code>。",
+    "link": "action-menu/spacing",
+    "component": " ActionMenu 菜单按钮",
+    "findIntroStr": "ActionMenu 菜单按钮",
+    "demoId": "spacing"
+  },
+  {
+    "title": "自定义下拉面板样式",
+    "content": "通过属性 <code>popper-class</code> 设置下拉面板的类名，自定义样式",
+    "link": "action-menu/popper-class",
+    "component": " ActionMenu 菜单按钮",
+    "findIntroStr": "ActionMenu 菜单按钮",
+    "demoId": "popper-class"
+  },
+  {
+    "title": "显示个数",
+    "content": "通过属性 <code>max-show-num</code> 配置显示菜单按钮的最大个数，默认值为 <code>2</code> ",
+    "link": "action-menu/max-show-num",
+    "component": " ActionMenu 菜单按钮",
+    "findIntroStr": "ActionMenu 菜单按钮",
+    "demoId": "max-show-num"
+  },
+  {
+    "title": "菜单项点击事件",
+    "content": "当选中菜单项时触发 <code>item-click</code> 事件，传递出去的参数为当前选中项的数据",
+    "link": "action-menu/item-click",
+    "component": " ActionMenu 菜单按钮",
+    "findIntroStr": "ActionMenu 菜单按钮",
+    "demoId": "item-click"
+  },
+  {
+    "title": "更多按钮点击事件",
+    "content": "当点击下拉菜单按钮时触发 <code>more-click</code> 事件",
+    "link": "action-menu/more-click",
+    "component": " ActionMenu 菜单按钮",
+    "findIntroStr": "ActionMenu 菜单按钮",
+    "demoId": "more-click"
+  },
+  {
+    "title": "菜单项插槽",
+    "content": "通过 <code>#item</code> 配置下拉面板中选项的模板",
+    "link": "action-menu/slot-item",
+    "component": " ActionMenu 菜单按钮",
+    "findIntroStr": "ActionMenu 菜单按钮",
+    "demoId": "slot-item"
+  },
+  {
+    "title": "下拉面板显示事件",
+    "content": "当下拉面板出现或者隐藏时触发 <code>visible-change</code> 事件",
+    "link": "action-menu/visible-change",
+    "component": " ActionMenu 菜单按钮",
+    "findIntroStr": "ActionMenu 菜单按钮",
+    "demoId": "visible-change"
+  }
+]

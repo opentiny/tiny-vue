@@ -1,0 +1,76 @@
+{
+  "checkbox-button-attrs": [
+    {
+      "name": "label",
+      "sample": "checkbox-group",
+      "type": "String , Number , Boolean",
+      "desc": "选中状态的值（只有在checkbox-group或者绑定对象类型为array时有效）;该属性的可选值为 medium-",
+      "defaultValue": ""
+    },
+    {
+      "name": "true-label",
+      "sample": "text",
+      "type": "String , Number",
+      "desc": "选中时的值",
+      "defaultValue": ""
+    },
+    {
+      "name": "false-label",
+      "sample": "text",
+      "type": "String , Number",
+      "desc": "没有选中时的值",
+      "defaultValue": ""
+    },
+    {
+      "name": "disabled",
+      "sample": "with-border",
+      "type": "Boolean",
+      "desc": "是否禁用",
+      "defaultValue": "该属性的默认值为 false"
+    },
+    {
+      "name": "name",
+      "sample": "checkbox-group",
+      "type": "String",
+      "desc": "原生 name 属性",
+      "defaultValue": ""
+    },
+    {
+      "name": "text",
+      "sample": "text",
+      "type": "String",
+      "desc": "文本",
+      "defaultValue": "该属性的默认值为 Function"
+    },
+    {
+      "name": "modelValue / v-model",
+      "sample": "checkbox-button",
+      "type": "String , Number , Boolean",
+      "desc": "绑定值",
+      "defaultValue": ""
+    },
+    {
+      "name": "events",
+      "sample": "checkbox-group",
+      "type": "Object",
+      "desc": "原生事件",
+      "defaultValue": ""
+    },
+    {
+      "name": "checked",
+      "sample": "checkbox-button",
+      "type": "Boolean",
+      "desc": "当前是否勾选",
+      "defaultValue": "该属性的默认值为 false"
+    }
+  ],
+  "checkbox-button-slots": [
+    {
+      "name": "default",
+      "sample": "with-border",
+      "type": "",
+      "desc": "Checkbox-button的内容",
+      "defaultValue": ""
+    }
+  ]
+}

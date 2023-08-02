@@ -1,0 +1,34 @@
+{
+  "attrs": [
+    {
+      "name": "disabled",
+      "sample": "dynamic-disable",
+      "type": "Boolean",
+      "desc": "Disable",
+      "defaultValue": "The default value of this attribute is false."
+    },
+    {
+      "name": "name",
+      "sample": "radio-text",
+      "type": "String",
+      "desc": "Native name attribute",
+      "defaultValue": ""
+    },
+    {
+      "name": "label",
+      "sample": "radio-text",
+      "type": "String | Number",
+      "desc": "Radio value",
+      "defaultValue": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "sample": "dynamic-disable",
+      "type": "",
+      "desc": "button content",
+      "defaultValue": ""
+    }
+  ]
+}

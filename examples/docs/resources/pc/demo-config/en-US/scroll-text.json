@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "For details, see the following example.",
+    "link": "scroll-text/basic-usage",
+    "component": "ScrollText",
+    "findIntroStr": "This command is used to display text messages in scrolling mode.",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "Text scrolling direction",
+    "content": "<p>You can use <code>direction</code> to set the text scrolling direction. </p>\n",
+    "link": "scroll-text/scroll-direction",
+    "component": "ScrollText",
+    "findIntroStr": "This command is used to display text messages in scrolling mode.",
+    "demoId": "scroll-direction"
+  },
+  {
+    "title": "The text stops scrolling when the mouse is hovered.",
+    "content": "<p>You can use <code>hover-stop</code> to set whether the text stops scrolling when the mouse is hovered. </p>\n",
+    "link": "scroll-text/hover-stop",
+    "component": "ScrollText",
+    "findIntroStr": "This command is used to display text messages in scrolling mode.",
+    "demoId": "hover-stop"
+  },
+  {
+    "title": "Custom Text Content",
+    "content": "<p>You can use <code>text</code> to customize the text content. </p>\n",
+    "link": "scroll-text/custom-scroll-text",
+    "component": "ScrollText",
+    "findIntroStr": "This command is used to display text messages in scrolling mode.",
+    "demoId": "custom-scroll-text"
+  },
+  {
+    "title": "Customize the text content through the Solt slot",
+    "content": "<p>You can customize the text content through the solt slot. </p>\n",
+    "link": "scroll-text/slots",
+    "component": "ScrollText",
+    "findIntroStr": "This command is used to display text messages in scrolling mode.",
+    "demoId": "slots"
+  },
+  {
+    "title": "Scrolling Interval",
+    "content": "<p>You can use <code>time</code> to set the scrolling interval. </p>\n",
+    "link": "scroll-text/scroll-time",
+    "component": "ScrollText",
+    "findIntroStr": "This command is used to display text messages in scrolling mode.",
+    "demoId": "scroll-time"
+  },
+  {
+    "title": "Custom Text Style",
+    "content": "<p>You can use <code>class</code> to customize the text style. </p>\n",
+    "link": "scroll-text/custom-text-style",
+    "component": "ScrollText",
+    "findIntroStr": "This command is used to display text messages in scrolling mode.",
+    "demoId": "custom-text-style"
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Grid-editor-built-in editor",
+    "content": "Configure <code>edit-config</code> on the <p><code>grid</code> label. In the <code>grid-column</code> column, configure the <code>editor</code> object, <code>component</code> render the built-in editing component, and <code>events</code> configure component events. For details, see the following example. </p>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\"> Description</p>\n<p>The built-in editor supports only the <code>Input</code> and <code>Select</code> components. For details about how to use other components, see the custom editor </p>\n</div>\n",
+    "link": "grid/grid_Example/gridEdit/inner-editor",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "grid_Example-gridEdit-inner-editor"
+  },
+  {
+    "title": "Grid-Editor-Custom Editor",
+    "content": "Configure <code>edit-config</code> on the <p><code>grid</code> label. \n Configure the <code>editor</code> object in the <code>grid-column</code> column and render the custom editing component. \nThe default edit box is a small box. You can modify the edit box based on the style. \nFor details, see the following example. </p>\n",
+    "link": "grid/grid_Example/gridEdit/custom-editor",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "grid_Example-gridEdit-custom-editor"
+  },
+  {
+    "title": "Introducing the 3.0 component as the editor",
+    "content": "<p>Introduces the TinyVue <code>Select</code> component through <code>attribute configuration</code>. </p>\n",
+    "link": "grid/grid_Example/gridEdit/custom-editor-select",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "grid_Example-gridEdit-custom-editor-select"
+  },
+  {
+    "title": "Grid-editor-drop-down list",
+    "content": "<p> When multiple options are selected from the drop-down list box, cell rendering needs to be implemented. In the following example, <code>format-text</code> is used to render multiple enumerated values. You can also use <code>renderer</code> to implement customized components for rendering. </p>\n",
+    "link": "grid/edit/mutil-render",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "edit-mutil-render"
+  },
+  {
+    "title": "Grid-Editor-Custom Editor",
+    "content": "Configure <code>edit-config</code> on the <p><code>grid</code> label. \n Configure the <code>editor</code> object in the <code>grid-column</code> column, <code>component</code> render the custom editing component, and configure the events of the editor component through its events option. \nThe default edit box is a small box. You can modify the edit box based on the style. \nFor details, see the following example. </p>\n",
+    "link": "grid/news/editor-events",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "news-editor-events"
+  },
+  {
+    "title": "Popeditor pop-up window editing",
+    "content": "<p>Configure the <code>editor</code> attribute on the <code>grid-column</code> column element. In this object, you can specify <code>component</code> as <code>Popeditor</code> and <code>attrs</code> as attributes of the Popeditor component. Note that after the Popeditor component is introduced, it needs to be instantiated in <code>data()</code>. </p>\n",
+    "link": "grid/grid_Example/gridEdit/popeditor-in-grid",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "grid_Example-gridEdit-popeditor-in-grid"
+  },
+  {
+    "title": "Edit the Popeditor pop-up window and configure remote search.",
+    "content": "For details, see the following example.",
+    "link": "grid/grid_Example/gridEdit/popeditor-in-grid-remote-search",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "grid_Example-gridEdit-popeditor-in-grid-remote-search"
+  }
+]

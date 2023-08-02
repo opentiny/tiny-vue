@@ -1,0 +1,309 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/wizard.less';
+@import '../custom.less';
+@import './vars.less';
+
+@wizard-prefix-cls: ~'@{css-prefix}wizard';
+@user-contact-prefix-cls: ~'@{css-prefix}user-contact';
+@user-head-prefix-cls: ~'@{css-prefix}user-head';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+@svg-wrapper-prefix-cls: ~'@{css-prefix}wizard__chart-svg';
+
+.@{wizard-prefix-cls} {
+  .component-css-vars-wizard();
+
+  & &__nomarl {
+    .@{wizard-prefix-cls}__steps {
+      display: flex;
+      align-items: center;
+    }
+
+    .@{wizard-prefix-cls}__chart span {
+      display: inline-block;
+    }
+
+    .@{wizard-prefix-cls}__name {
+      margin-top: 6px;
+      overflow: hidden;
+      text-align: center;
+
+      .name {
+        font-size: var(--ti-wizard-font-size);
+        width: 100%;
+      }
+    }
+
+    .@{wizard-prefix-cls}__button {
+      margin-top: 10px;
+      text-align: right;
+    }
+  }
+
+  & &__vertical {
+    .@{wizard-prefix-cls}__steps-item {
+      &.is-doing {
+        .@{wizard-prefix-cls}__chart-icon {
+          .wizard-icon-color(
+            var(--ti-wizard-icon-color),
+            var(--ti-wizard-icon-bg-color)
+          );
+
+          .@{wizard-prefix-cls}__chart-line {
+            &,
+            &.is-time-line {
+              .wizard-line-color(var(--ti-wizard-icon-bg-color));
+            }
+          }
+        }
+      }
+
+      &:last-child > ul .@{wizard-prefix-cls}__chart-line {
+        background: none;
+      }
+    }
+
+    .@{wizard-prefix-cls}__chart-line {
+      height: 88px;
+      width: 4px;
+      top: 0px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .@{wizard-prefix-cls}__chart-name {
+      font-size: var(--ti-common-font-size-1);
+      margin-left: 15px;
+      display: inline-flex;
+      flex-direction: column;
+      transform: translateY(-50%);
+      position: relative;
+      top: -5px;
+    }
+
+    .@{wizard-prefix-cls}__chart-icon {
+      position: relative;
+      left: 50%;
+      top: -14px;
+      transform: translateX(-50%);
+    }
+
+    .@{wizard-prefix-cls}__time-wrapper {
+      position: relative;
+      left: 50%;
+      top: -14px;
+      transform: translateX(-50%);
+      fill: var(--ti-wizard-icon-bg-color);
+      font-size: var(--ti-common-font-size-5);
+      box-sizing: border-box;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      border-radius: 50%;
+      text-align: center;
+      background: var(--ti-wizard-icon-color);
+      border: 2px solid var(--ti-wizard-icon-bg-color);
+      justify-content: center;
+
+      .@{svg-prefix-cls} {
+        width: 16px;
+        height: 20px;
+      }
+    }
+
+    .@{wizard-prefix-cls}__chart-children {
+      position: relative;
+
+      .children-name {
+        position: absolute;
+        margin-left: 15px;
+      }
+    }
+  }
+
+  & &__date {
+    min-width: 100px;
+    width: auto;
+    color: var(--ti-wizard-text-color);
+    font-size: var(--ti-wizard-font-size);
+    line-height: 1.2em;
+    display: inline-block;
+    text-align: right;
+    position: relative;
+    top: -24px;
+    right: 15px;
+
+    .date-icon {
+      margin-left: 4px;
+    }
+
+    span {
+      vertical-align: middle;
+    }
+
+    &.time-line-text {
+      top: -14px;
+    }
+  }
+
+  & &__steps-item {
+    &.is-ready {
+      .name {
+        color: var(--ti-wizard-icon-bg-color);
+      }
+
+      .@{wizard-prefix-cls}__chart-icon {
+        .wizard-icon-color(
+          var(--ti-wizard-icon-color),
+          var(--ti-wizard-icon-bg-color)
+        );
+      }
+
+      .@{wizard-prefix-cls}__chart-line {
+        .wizard-line-color(var(--ti-wizard-icon-bg-color));
+      }
+    }
+
+    ul {
+      list-style: none;
+    }
+  }
+
+  & &__chart {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    & > .@{svg-wrapper-prefix-cls} {
+      & > .@{svg-prefix-cls} {
+        font-size: var(--ti-common-font-size-4);
+        fill: var(--ti-wizard-icon-bg-color);
+      }
+    }
+  }
+
+  & &__steps-item,
+  & &__chart-children {
+    &.is-ready,
+    &.is-doing {
+      .@{wizard-prefix-cls}__chart-icon {
+        .wizard-icon-color(
+          var(--ti-wizard-icon-color),
+          var(--ti-wizard-icon-bg-color)
+        );
+      }
+    }
+
+    &.is-doing .@{wizard-prefix-cls}__chart-line {
+      .wizard-line-color(var(--ti-wizard-icon-bg-color));
+    }
+  }
+
+  & &__chart-children.is-ready .@{wizard-prefix-cls}__chart-line,
+  & &__chart-line.is-time-line {
+    .wizard-line-color(var(--ti-wizard-icon-bg-color));
+  }
+
+  & &__chart-detail {
+    padding: 4px 8px;
+    border-radius: 2px;
+    border-radius: var(--ti-wizard-detail-border-radius, 2px);
+    min-height: 26px;
+    height: auto;
+    line-height: 1;
+    margin-left: 12px;
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+    top: -14px;
+
+    &:hover {
+      background: var(--ti-wizard-detail-bg-color);
+
+      &::before {
+        content: '';
+        width: 0;
+        height: 0;
+        margin-top: -4px;
+        border-style: solid;
+        border-width: 4px 4px 4px 0;
+        border-color: transparent var(--ti-wizard-detail-bg-color);
+        position: absolute;
+        left: -4px;
+        top: 10px;
+      }
+
+      .detail-title,
+      .@{user-contact-prefix-cls}__role {
+        color: var(--ti-wizard-icon-color);
+      }
+    }
+
+    .detail-title {
+      color: var(--ti-wizard-text-color);
+      font-size: var(--ti-common-font-size-1);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+  }
+
+  & &__chart-icon {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 50%;
+    font-size: var(--ti-common-font-size-base);
+    text-align: center;
+    background: var(--ti-wizard-chart-icon-bg-color);
+    color: var(--ti-wizard-icon-color);
+    box-sizing: content-box;
+    // 垂直简易流程图加
+    display: inline-block;
+
+    &.time-line-icon {
+      width: 10px;
+      height: 10px;
+      line-height: 10px;
+    }
+  }
+
+  & &__chart-icon,
+  & &__chart-name,
+  & &__date,
+  .@{svg-prefix-cls} {
+    cursor: pointer;
+  }
+
+  & &__chart-line {
+    height: 4px;
+    background: #c2c4c7;
+    width: 50px;
+  }
+
+  & &__chart-line &__chart-icon-time {
+    font-size: var(--ti-common-font-size-4);
+    fill: var(--ti-wizard-icon-bg-color);
+    background: var(--ti-wizard-icon-color);
+  }
+
+  .@{user-contact-prefix-cls} {
+    .dropdown-part .@{user-head-prefix-cls},
+    .@{svg-prefix-cls} {
+      display: none;
+    }
+
+    .@{user-contact-prefix-cls}__role span {
+      display: inline-block;
+    }
+  }
+}

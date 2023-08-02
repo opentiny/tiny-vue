@@ -1,0 +1,90 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>buttons</code> and configure the button group. \n3. Table event setting: The <code>@toolbar-button-click</code> obtains the <code>buttons</code> event on the toolbar. Users can customize the service logic for adding, deleting, and modifying operations. To mark a new line in the </p>\n<div class=\"tip custom-block\"><p class=\"custom-block-title\"> state, set markInsert in edit-config to true</p>\n</div>\n",
+    "link": "grid/tiny-first-menu/insert-delete-update",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-insert-delete-update"
+  },
+  {
+    "title": "Cancel deletion",
+    "content": "<p>Configure the code of <code>mark_cancel</code> on the toolbar, select the data, and click <code>Delete/Undelete</code>. The selected data is marked with strikethrough. Then click the <code>Save</code> button to request the service to delete the marked data. Select the data marked with strikethrough and click <code>Delete/Undelete</code> again to cancel the strikethrough. \nThe effect of marking and canceling strikethrough is available only when the fetch-data request service is configured.\n</p>\n",
+    "link": "grid/toolbar/cancel-delete",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "toolbar-cancel-delete"
+  },
+  {
+    "title": "Clear Data",
+    "content": "<p>clearData method manually clears the cell content. If no parameter is transferred, the entire table content is cleared. If a line is transferred, the specified line is cleared. If a field is transferred, the field is cleared. For details, see the following example. </p>\n",
+    "link": "grid/tiny-first-menu/clearData",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-clearData"
+  },
+  {
+    "title": "Insert data to a specified row and delete a specified row",
+    "content": "<p>You can use the <code>insertAt(records, row)</code> method to insert one or more rows of data to a specified row. The <code>remove(rows)</code> method can be used to delete one or more specified rows of data. If rows is an object, it is one row. If an array is an array, it is multiple rows of data. If the value is empty, all data is deleted. </p>\n",
+    "link": "grid/toolbar/insert-remove-rows",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "toolbar-insert-remove-rows"
+  },
+  {
+    "title": "Saving and Deleting Server Data",
+    "content": "<p>Use the table attribute <code>save-data</code> to save server data. \n Use the table attribute <code>delete-data</code> to delete server data. </p>\n",
+    "link": "grid/tiny-first-menu/save-data",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-save-data"
+  },
+  {
+    "title": "Set the toolbar size",
+    "content": "<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>buttons</code> and configure the button group. \n3. Set the table event <code>@toolbar-button-click</code> to obtain the <code>buttons</code> event on the toolbar. You can customize the service logic for copying rows. The </p>\n<ul>\n<li><code>size</code> property specifies the size of the toolbar. The options are large, medium, small, and mini. If this parameter is not set, the default size is used. </li>\n</ul>\n",
+    "link": "grid/tiny-first-menu/copy-row-data",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-copy-row-data"
+  },
+  {
+    "title": "Enable the table refresh function",
+    "content": "<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>refresh</code> to enable the table refresh function. </p>\n<ul>\n<li> Setting Toolbar Properties <code>loading</code>Enable/Disable Loading. \n <code>handleFetch('reload') </code></li>\n</ul>\n is invoked when the customized implementation is refreshed",
+    "link": "grid/tiny-first-menu/refresh-grid",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-refresh-grid"
+  },
+  {
+    "title": "Enable the full-screen function of the table.",
+    "content": "<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>full-screen</code> to enable the full-screen function. </p>\n",
+    "link": "grid/tiny-first-menu/grid-full-screen",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-grid-full-screen"
+  },
+  {
+    "title": "Change the table height in full screen mode",
+    "content": "For details, see the following example.",
+    "link": "grid/tiny-first-menu/grid-full-screen-height",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-grid-full-screen-height"
+  },
+  {
+    "title": "Toolbar Custom Slot",
+    "content": "<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component slot <code>#toolbar</code>. \n2. Customize content through the slot <code>#buttons</code> of the toolbar component. </p>\n",
+    "link": "grid/tiny-first-menu/custom-toolbar",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "tiny-first-menu-custom-toolbar"
+  },
+  {
+    "title": "Profile",
+    "content": "<p>The <code>v-bind</code> is bound to an object to implement the profile. In the bound object, the <code>toolbar</code> field is used to configure the toolbar. The <code>events</code> field can be used to configure the <code>toolbarButtonClick</code> event for buttons on the toolbar. In addition, the <code>pager</code> field is used for pagination configuration, and the <code>fetchData</code> field is used for service request. </p>\n",
+    "link": "grid/toolbar/toolbar-op-config",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "toolbar-toolbar-op-config"
+  }
+]

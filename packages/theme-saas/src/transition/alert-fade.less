@@ -1,0 +1,11 @@
+@import '../custom.less';
+
+.@{css-prefix}transition-alert-fade-enter,
+.@{css-prefix}transition-alert-fade-enter-from,
+.@{css-prefix}transition-alert-fade-leave-active {
+  @apply opacity-0;
+}
+
+.@{css-prefix}transition-alert-fade-leave-active {
+  @apply transition-opacity duration-300 ease-in;
+}

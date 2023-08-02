@@ -1,0 +1,14 @@
+{
+  "name": "@opentiny/vue-[[NAME]]",
+  "version": "5.[[MINOR]].0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "@opentiny/vue-renderless": "~5.[[MINOR]].0",
+    "@opentiny/vue-theme": "~5.[[MINOR]].0",
+    "@opentiny/vue-common": "~5.[[MINOR]].0"
+  },
+  "license": "MIT"
+}

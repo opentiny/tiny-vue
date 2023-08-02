@@ -1,2 +1,6 @@
 dist
 runtime
+dist-vue2/
+dist-vue3/
+node_modules
+examples/docs/public/assets/map/js

@@ -1,0 +1,155 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+@grid-checkbox-prefix-cls: ~'@{css-prefix}grid-checkbox';
+
+// 表格内部多选框
+.@{grid-checkbox-prefix-cls} {
+  display: inline-block;
+  user-select: none;
+  cursor: pointer;
+
+  &.size__small,
+  &.size__mini {
+    font-size: var(--ti-grid-font-size);
+
+    > input {
+      & + .@{grid-checkbox-prefix-cls}__icon {
+        font-size: var(--ti-grid-checkbox-icon-size);
+      }
+    }
+  }
+
+  & + & {
+    margin-left: 10px;
+  }
+
+  > input {
+    display: none;
+
+    & + .@{grid-checkbox-prefix-cls}__icon {
+      position: relative;
+      display: block;
+      width: 1em;
+      height: 1em;
+      border-radius: var(--ti-grid-checkbox-border-radius);
+      font-size: var(--ti-common-font-size-2);
+
+      &:hover {
+        border-color: var(--ti-grid-primary-hover-color);
+      }
+
+      & + .@{grid-checkbox-prefix-cls}__label {
+        display: none;
+      }
+
+      > svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        fill: var(--ti-grid-checkbox-border-color);
+
+        &:hover {
+          fill: var(--ti-grid-primary-color);
+        }
+
+        &.icon-checked-sur {
+          display: none;
+        }
+      }
+    }
+
+    &:checked + .@{grid-checkbox-prefix-cls}__icon {
+
+      & + .@{grid-checkbox-prefix-cls}__label {
+        color: var(--ti-grid-primary-color);
+      }
+
+      > svg {
+        &.icon-check {
+          display: block;
+        }
+
+        &.icon-checked-sur {
+          display: block;
+          fill: var(--ti-grid-primary-color);
+        }
+      }
+    }
+  }
+
+  &.is__indeterminate {
+    > input {
+      &:not(:checked) {
+        & + .@{grid-checkbox-prefix-cls}__icon {
+          border: none;
+
+          > svg {
+            fill: var(--ti-grid-primary-color);
+            border-radius: var(--ti-grid-checkbox-border-radius);
+          }
+        }
+      }
+    }
+  }
+
+  &.is__disabled:not(.is__indeterminate) {
+    cursor: not-allowed;
+
+    > input {
+      & + .@{grid-checkbox-prefix-cls}__icon {
+        > svg {
+          fill: var(--ti-grid-border-color);
+
+          path:first-of-type {
+            fill: var(--ti-grid-input-disabled-bg-color);
+          }
+        }
+
+        & + .@{grid-checkbox-prefix-cls}__label {
+          color: var(--ti-grid-disabled-color);
+        }
+      }
+
+      &:checked + .@{grid-checkbox-prefix-cls}__icon {
+        > svg {
+          fill: var(--ti-grid-disabled-color);
+
+          path:first-child {
+            fill: var(--ti-grid-disabled-color);
+          }
+        }
+      }
+    }
+  }
+
+  &.is__disabled.is__indeterminate {
+    cursor: not-allowed;
+
+    > input {
+      & + .@{grid-checkbox-prefix-cls}__icon {
+        > svg {
+          fill: var(--ti-grid-disabled-color);
+        }
+      }
+    }
+  }
+
+  & &__label {
+    padding-left: 5px;
+    vertical-align: middle;
+    display: inline-block;
+  }
+}

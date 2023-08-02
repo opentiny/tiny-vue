@@ -1,0 +1,24 @@
+<!-- <?xml version="1.0" encoding="utf-8"?> -->
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height='1em' viewBox='0 0 100 40' xml:space="preserve">
+  <g stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
+      <g transform='translate(-100.000000, -71.000000)'>
+          <g transform='translate(95.000000, 71.000000)'>
+              <g transform='translate(5.000000, 0.000000)'>
+                    <rect fill='currentColor' x='10' y='16' width='10' height='10' rx='5'>
+                      <animate attributeName='y' from='16' to='16' dur='2s' begin='0s' repeatCount='indefinite'
+                        values='16; 6; 26; 16; 16' keyTimes='0; 0.1; 0.3; 0.4; 1' />
+                    </rect>
+                    <rect fill='currentColor' x='46' y='16' width='10' height='10' rx='5'>
+                      <animate attributeName='y' from='16' to='16' dur='2s' begin='0.2s' repeatCount='indefinite'
+                        values='16; 6; 26; 16; 16' keyTimes='0; 0.1; 0.3; 0.4; 1' />
+                    </rect>
+                    <rect fill='currentColor' x='85' y='16' width='10' height='10' rx='5'>
+                      <animate attributeName='y' from='16' to='16' dur='2s' begin='0.4s' repeatCount='indefinite'
+                        values='16; 6; 26; 16; 16' keyTimes='0; 0.1; 0.3; 0.4; 1' />
+                    </rect>
+              </g>
+          </g>
+      </g>
+  </g>
+</svg>

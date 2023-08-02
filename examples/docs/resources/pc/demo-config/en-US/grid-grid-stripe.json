@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Basic Usage",
+    "content": "Whether the <p><code>stripe</code> has zebra prints is disabled by default. Enabled when <code>:stripe=\"true\" </code> is set. (Note: In the editable table scenario, the data inserted temporarily does not have the zebra pattern.) </p>\n",
+    "link": "grid/stripe/stripe",
+    "component": "Grid Table",
+    "findIntroStr": "Table component, which provides powerful data table functions. In Grid, data lists can be displayed, selected, and edited.",
+    "demoId": "stripe-stripe"
+  }
+]

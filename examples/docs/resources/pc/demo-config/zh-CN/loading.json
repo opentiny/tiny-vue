@@ -1,0 +1,74 @@
+[
+  {
+    "title": "基本用法",
+    "content": "<p>通过静态方法 <code>Loading.service</code> 在指定 <code>target</code> 上设置加载。</p>\n",
+    "link": "loading/basic-usage",
+    "component": " Loading 加载",
+    "findIntroStr": "加载数据时显示的动画效果。",
+    "demoId": "basic-usage"
+  },
+  {
+    "title": "尺寸",
+    "content": "<p>可通过 size 属性设置尺寸大小，可选值：medium / small / mini。</p>\n",
+    "link": "loading/size",
+    "component": " Loading 加载",
+    "findIntroStr": "加载数据时显示的动画效果。",
+    "demoId": "size"
+  },
+  {
+    "title": "自定义加载提示文本",
+    "content": "<p>通过 <code>text</code> 自定义加载文字的提示文本。</p>\n",
+    "link": "loading/loading-tip-text",
+    "component": " Loading 加载",
+    "findIntroStr": "加载数据时显示的动画效果。",
+    "demoId": "loading-tip-text"
+  },
+  {
+    "title": "自定义遮罩背景色",
+    "content": "<p>通过 <code>background</code> 自定义背景颜色和透明度。</p>\n",
+    "link": "loading/background",
+    "component": " Loading 加载",
+    "findIntroStr": "加载数据时显示的动画效果。",
+    "demoId": "background"
+  },
+  {
+    "title": "自定义样式",
+    "content": "<p>通过 <code>customClass</code> 指定类名进行样式修改。</p>\n",
+    "link": "loading/custom-class",
+    "component": " Loading 加载",
+    "findIntroStr": "加载数据时显示的动画效果。",
+    "demoId": "custom-class"
+  },
+  {
+    "title": "修饰符",
+    "content": "详细用法参考如下示例",
+    "link": "loading/body",
+    "component": " Loading 加载",
+    "findIntroStr": "加载数据时显示的动画效果。",
+    "demoId": "body"
+  },
+  {
+    "title": "全局加载",
+    "content": "<p>通过 <code>v-loading.lock.fullscreen</code> 指令方式或者服务方式进行全局加载，如需使用指令方式全局加载需要如下操作：\n在 <code>Vue 2</code> 版本环境中添加 <code>Vue.use(Loading)</code>\n在 <code>Vue 3</code> 版本环境中添加 <code>app.use(Loading)</code></p>\n",
+    "link": "loading/fullscreen",
+    "component": " Loading 加载",
+    "findIntroStr": "加载数据时显示的动画效果。",
+    "demoId": "fullscreen"
+  },
+  {
+    "title": "自定义加载图标",
+    "content": "<p>通过 <code>spinner</code> 自定义加载图标。</p>\n",
+    "link": "loading/spinner",
+    "component": " Loading 加载",
+    "findIntroStr": "加载数据时显示的动画效果。",
+    "demoId": "spinner"
+  },
+  {
+    "title": "区域加载",
+    "content": "<p>通过 <code>target</code> 指定 Loading 需要覆盖的 DOM 节点。</p>\n",
+    "link": "loading/target",
+    "component": " Loading 加载",
+    "findIntroStr": "加载数据时显示的动画效果。",
+    "demoId": "target"
+  }
+]
