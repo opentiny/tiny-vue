@@ -121,6 +121,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/gimmyhehe"><img src="https://avatars.githubusercontent.com/u/26026184?v=4?s=100" width="100px;" alt="gimmyhehe"/><br /><sub><b>gimmyhehe</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=gimmyhehe" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/KevinAndrewDong"><img src="https://avatars.githubusercontent.com/u/20911103?v=4?s=100" width="100px;" alt="dong"/><br /><sub><b>dong</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=KevinAndrewDong" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="http://www.linglan01.cn"><img src="https://avatars.githubusercontent.com/u/58327088?v=4?s=100" width="100px;" alt="凌览"/><br /><sub><b>凌览</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=CatsAndMice" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Caesar-ch"><img src="https://avatars.githubusercontent.com/u/74941512?v=4?s=100" width="100px;" alt="Caesar-ch"/><br /><sub><b>Caesar-ch</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Caesar-ch" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
