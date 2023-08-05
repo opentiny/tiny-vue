@@ -82,6 +82,10 @@ export default {
       total: 'Total',
       value: 'Value'
     },
+    colorPicker: {
+      confirm: 'Ok',
+      clear: 'Clear'
+    },
     creditCardForm: {
       submit: 'Submit'
     },

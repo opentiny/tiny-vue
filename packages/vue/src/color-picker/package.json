@@ -1,0 +1,15 @@
+{
+  "name": "@opentiny/vue-color-picker",
+  "version": "5.8.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-select": "workspace:~",
+    "@opentiny/vue-option": "workspace:~"
+  },
+  "license": "MIT"
+}
