@@ -12,7 +12,7 @@ export default {
   },
   setup() {
     return {
-      color: '#000',
+      color: '#66ccff',
       color2: '#fff'
     }
   }

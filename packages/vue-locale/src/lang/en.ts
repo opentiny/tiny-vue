@@ -82,7 +82,7 @@ export default {
     },
     colorPicker: {
       confirm: 'Ok',
-      clear: 'Clear'
+      cancel: 'Cancel'
     },
     creditCardForm: {
       submit: 'Submit'
