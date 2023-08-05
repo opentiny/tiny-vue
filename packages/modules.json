@@ -641,6 +641,11 @@
       "pc"
     ]
   },
+  "ColorPicker": {
+    "path": "vue/src/color-picker/index.ts",
+    "type": "component",
+    "exclude": false
+  },
   "ContainerPc": {
     "path": "vue/src/container/src/pc.vue",
     "type": "template",

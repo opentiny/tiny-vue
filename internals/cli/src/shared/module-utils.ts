@@ -117,7 +117,6 @@ const getSortModules = ({ filterIntercept, isSort = true }: { filterIntercept: F
   const importName = '@opentiny/vue'
   Object.entries(moduleMap).forEach(([key, module]) => {
     let component = module as Module
-
     component.name = key
     // filterIntercept过滤筛选命令行传过来的组件名称，只输出命令行传递过来的组件
     if (filterIntercept(component) === true && component.exclude !== true) {

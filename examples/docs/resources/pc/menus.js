@@ -385,6 +385,12 @@ const routerArr = [
         zh: '时间选择',
         enSuffix: true,
         path: '/time-select'
+      },
+      {
+        en: 'ColorPicker',
+        zh: '颜色选择器',
+        enSuffix: true,
+        path: '/color-picker'
       }
     ]
   },
