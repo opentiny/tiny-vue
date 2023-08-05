@@ -23,25 +23,20 @@ const normalizeHexColor = (color: string) => {
 
   return `#${hexR}${hexG}${hexB}`
 }
-const extraRgb = (str: string) => /(?:rgb\(|(?<r>\d*),\s*(?<g>\d*),\s*(?<b>\d*))/gim.exec(str)?.groups
-const extraRgba = (str: string) => /(?:rgba\s*)?(?<r>(\d{1,3}))\s*,\s*(?<g>(\d{1,3}))\s*,\s*(?<b>(\d{1,3}))\s*,?\s*(?<a>([01](?:\.\d+)?)?)/gim.exec(str)?.groups
-const extraHsl = (str: string) => /(?:hsl\(?\s*(?<h>(\d*)),?\s*(?<s>(\d*))%,?\s*(?<l>(\d*))%\)?)/gim.exec(str)?.groups
-const extraHsla = (str: string) => /(?:hsla\(?\s*(?<h>(\d*)),?\s*(?<s>(\d*))%,?\s*(?<l>(\d*))%,?(\s*(?<a>(\d*))\)?))/.exec(str)?.groups
+
 export type Format = 'rgb' | 'rgba' | 'hsl' | 'hsla'
 export default class Color {
-  private hex: string
+  private hex = '#000'
   private h = 0
   private s = 0
   private v = 0
   private a = 100
-  private cb: (hexa: string) => void
   constructor(value: string) {
     this.reset(value)
   }
 
   reset(hex: string) {
     this.hex = normalizeHexColor(hex)
-    console.log(this.hex)
     const { r, g, b } = hexToRgb(this.hex)
     const { h, s, v } = rgb([r, g, b]).hsv().object()
     this.h = h
