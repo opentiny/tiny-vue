@@ -1,8 +1,8 @@
 <template>
-  <div class="tiny-color-picker__trigger" v-clickoutside="() => changeVisible(false)" @click="() => changeVisible(!state.isShow)">
+  <div class="tiny-color-picker__trigger" v-clickoutside="onCancel" @click="() => changeVisible(!state.isShow)">
     <div
       class="tiny-color-picker__inner" :style="{
-        background: state.hex ?? ''
+        background: state.triggerBg ?? ''
       }"
     >
       <IconChevronDown />
@@ -15,12 +15,12 @@
           :color="state.hex"
         />
         <div class="tiny-color-picker__wrapper__tools">
-          <tiny-input v-model="state.hex" />
+          <tiny-input v-model="state.res" />
           <tiny-button-group>
-            <tiny-button type="text">
-              {{ $t('ui.colorPicker.clear') }}
+            <tiny-button type="text" @click="onCancel">
+              {{ $t('ui.colorPicker.cancel') }}
             </tiny-button>
-            <tiny-button @click="() => changeVisible(false)">
+            <tiny-button @click="onConfirm">
               {{ $t('ui.colorPicker.confirm') }}
             </tiny-button>
           </tiny-button-group>
@@ -43,7 +43,7 @@ import '@opentiny/vue-theme/color-picker/index.less'
 import { language } from '@opentiny/vue-locale'
 
 export default defineComponent({
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'onConfirm'],
   props: [...props, 'modelValue'],
   components: {
     IconChevronDown: IconChevronDown(),

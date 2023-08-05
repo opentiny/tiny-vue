@@ -84,7 +84,7 @@ export default {
     },
     colorPicker: {
       confirm: '选择',
-      clear: '清除'
+      cancel: '取消'
     },
     creditCardForm: {
       submit: '提交'
