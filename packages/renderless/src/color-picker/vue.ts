@@ -20,6 +20,7 @@ export const renderless = (
   const { modelValue, visible } = context.toRefs(props)
   const hex = context.ref(modelValue.value)
   const res = context.ref(modelValue.value)
+  const triggerBg = context.ref(modelValue.value)
   const isShow = context.ref(visible?.value ?? false)
   const cursor: Ref<HTMLElement> = context.ref()
   const changeVisible = (state: boolean) => {
@@ -38,13 +39,13 @@ export const renderless = (
     isShow,
     hex,
     color,
-    triggerBg: modelValue,
+    triggerBg,
     defaultValue: modelValue,
     res
   })
   const onConfirm = () => {
     hex.value = res.value
-    state.triggerBg = hex.value
+    triggerBg.value = hex.value
     changeVisible(false)
     emit('onConfirm', res.value)
   }
