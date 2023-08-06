@@ -18,9 +18,9 @@ export const renderless = (
   { emit }
 ) => {
   const { modelValue, visible } = context.toRefs(props)
-  const hex = context.ref(modelValue.value)
-  const res = context.ref(modelValue.value)
-  const triggerBg = context.ref(modelValue.value)
+  const hex = context.ref(modelValue?.value ?? 'transparent')
+  const res = context.ref(modelValue?.value ?? 'transparent')
+  const triggerBg = context.ref(modelValue?.value ?? 'transparent')
   const isShow = context.ref(visible?.value ?? false)
   const cursor: Ref<HTMLElement> = context.ref()
   const changeVisible = (state: boolean) => {
