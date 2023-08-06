@@ -43,7 +43,7 @@ import '@opentiny/vue-theme/color-picker/index.less'
 import { language } from '@opentiny/vue-locale'
 
 export default defineComponent({
-  emits: ['update:modelValue', 'onConfirm'],
+  emits: ['update:modelValue', 'confirm', 'cancel'],
   props: [...props, 'modelValue', 'visible'],
   components: {
     IconChevronDown: IconChevronDown(),
