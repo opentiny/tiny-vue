@@ -18,10 +18,10 @@
           <tiny-input v-model="state.res" />
           <tiny-button-group>
             <tiny-button type="text" @click="onCancel">
-              {{ $t('ui.colorPicker.cancel') }}
+              {{ t('ui.colorPicker.cancel') }}
             </tiny-button>
             <tiny-button @click="onConfirm">
-              {{ $t('ui.colorPicker.confirm') }}
+              {{ t('ui.colorPicker.confirm') }}
             </tiny-button>
           </tiny-button-group>
         </div>
@@ -44,7 +44,7 @@ import { language } from '@opentiny/vue-locale'
 
 export default defineComponent({
   emits: ['update:modelValue', 'onConfirm'],
-  props: [...props, 'modelValue'],
+  props: [...props, 'modelValue', 'visible'],
   components: {
     IconChevronDown: IconChevronDown(),
     ColorSelect: colorSelect,

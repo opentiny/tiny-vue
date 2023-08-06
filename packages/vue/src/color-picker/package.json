@@ -8,8 +8,10 @@
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-select": "workspace:~",
-    "@opentiny/vue-option": "workspace:~"
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-option": "workspace:~",
+    "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~"
   },
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",

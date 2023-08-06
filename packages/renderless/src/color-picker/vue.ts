@@ -26,12 +26,20 @@ export const renderless = (
     isShow.value = state
   }
   const color = new Color(hex.value)
+  context.watch(modelValue, (newValue) => {
+    hex.value = newValue
+    res.value = newValue
+    color.reset(hex.value)
+  })
+  context.watch(visible, (visible) => {
+    isShow.value = visible
+  })
   const state = context.reactive({
     isShow,
     hex,
     color,
-    triggerBg: context.unref(modelValue),
-    defaultValue: context.unref(modelValue),
+    triggerBg: modelValue,
+    defaultValue: modelValue,
     res
   })
   const onConfirm = () => {
