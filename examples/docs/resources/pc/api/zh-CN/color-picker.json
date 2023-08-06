@@ -8,7 +8,7 @@
     {
       "name": "visible",
       "type": "boolean",
-      "desc": "设置是否默认可见, 也可手动修改来强制切换visible来接管用户操作。但是不会触发任何事件",
+      "desc": "设置是否默认可见, 也可手动修改来强制切换visible来接管用户操作。会触发cancel事件",
       "defaultValue": "false"
     }
   ],
