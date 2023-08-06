@@ -47,12 +47,13 @@ export const renderless = (
     hex.value = res.value
     triggerBg.value = hex.value
     changeVisible(false)
-    emit('onConfirm', res.value)
+    emit('confirm', res.value)
   }
   const onCancel = () => {
     hex.value = state.triggerBg
     res.value = state.triggerBg
     changeVisible(false)
+    emit('cancel')
   }
   const onColorUpdate = () => {
     res.value = color.getHex()
