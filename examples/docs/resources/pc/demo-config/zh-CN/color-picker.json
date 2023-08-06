@@ -4,5 +4,22 @@
         "content": "Color picker组件的基础使用",
         "link": "color-picker/base",
         "demoId": "base-usage"
+    },
+    {
+        "title": "默认展示",
+        "content": "可以使用visible属性来调整是否要默认展示color-picker",
+        "link": "color-picker/default-visible",
+        "demoId": "default-visible"
+    },
+    {
+        "title": "颜色动态切换",
+        "content": "通过修改v-model来实现颜色的动态切换",
+        "link": "color-picker/dynamic-color-change",
+        "demoId": "dynamic-color-change"
+    },
+    {
+        "title": "事件",
+        "link": "color-picker/event",
+        "demoId": "event"
     }
 ]

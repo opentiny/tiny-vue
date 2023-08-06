@@ -1,0 +1,29 @@
+{
+  "attrs": [
+    {
+      "name": "modelValue",
+      "type": "String",
+      "desc": "default color. When is empty will is transparent"
+    },
+    {
+      "name": "visible",
+      "type": "boolean",
+      "desc": "Whether the setting is visible by default can also be manually modified to forcibly switch to visible to take over user actions. However, no events will be triggered",
+      "defaultValue": "false"
+    }
+  ],
+  "slots": [
+  ],
+  "events": [
+    {
+      "name": "confirm",
+      "type": "(hex:string)=>void",
+      "desc": "Event triggered when the user clicks on the confirm"
+    },
+    {
+      "name": "cancel",
+      "type": "()=>void",
+      "desc": "Event triggered when the user clicks on the cancel"
+    }
+  ]
+}

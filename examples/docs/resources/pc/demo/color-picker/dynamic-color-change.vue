@@ -1,23 +1,27 @@
 <template>
   <tiny-color-picker v-model="color" />
+  <tiny-button @click="changeColor">
+    切换
+  </tiny-button>
 </template>
 
 <script>
-import { ColorPicker } from '@opentiny/vue'
+import { ColorPicker, Button } from '@opentiny/vue'
 import { ref } from 'vue'
 
 export default {
   components: {
-    TinyColorPicker: ColorPicker
+    TinyColorPicker: ColorPicker,
+    TinyButton: Button
   },
   setup() {
     const color = ref('#66ccff')
-    const change = () => {
+    const changeColor = () => {
       color.value = color.value === '#66ccff' ? '#000' : '#66ccff'
     }
     return {
       color,
-      change
+      changeColor
     }
   }
 }
