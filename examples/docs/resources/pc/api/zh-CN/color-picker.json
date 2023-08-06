@@ -1,8 +1,29 @@
 {
   "attrs": [
+    {
+      "name": "modelValue",
+      "type": "String",
+      "desc": "设置颜色默认值"
+    },
+    {
+      "name": "visible",
+      "type": "boolean",
+      "desc": "设置是否默认可见, 也可手动修改来强制切换visible来接管用户操作。但是不会触发任何事件",
+      "defaultValue": "false"
+    }
   ],
   "slots": [
   ],
   "events": [
+    {
+      "name": "confirm",
+      "type": "(hex:string)=>void",
+      "desc": "当用户点击选择的时候触发的事件"
+    },
+    {
+      "name": "cancel",
+      "type": "()=>void",
+      "desc": "当用户点击取消时触发的事件"
+    }
   ]
 }
