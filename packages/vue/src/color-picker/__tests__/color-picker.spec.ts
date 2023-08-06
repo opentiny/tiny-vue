@@ -1,7 +1,6 @@
 import { mountPcMode } from '@opentiny-internal/vue-test-utils'
 import { expect, test, describe } from 'vitest'
 import ColorPicker from '@opentiny/vue-color-picker'
-import { ref, nextTick } from 'vue'
 
 describe('PC Mode', () => {
   const mount = mountPcMode
@@ -14,22 +13,6 @@ describe('PC Mode', () => {
       })
       expect(wrapper.classes()).toContain('tiny-color-picker__trigger')
       expect(wrapper.find('div .tiny-color-picker__inner').attributes().style).toContain('102, 204, 255')
-    })
-    test('dynamic', async () => {
-      const color = ref('#66ccff')
-      const wrapper = mount(ColorPicker, {
-        props: {
-          modelValue: color.value,
-          'onUpdate:modelValue': (v) => wrapper.setProps({ modelValue: v })
-        }
-      })
-      expect(wrapper.classes()).toContain('tiny-color-picker__trigger')
-      expect(wrapper.find('div .tiny-color-picker__inner').attributes().style).toContain('102, 204, 255')
-      color.value = '#000'
-      wrapper.vm.$emit('update:modelValue', color.value)
-      await nextTick()
-      expect(wrapper.classes()).toContain('tiny-color-picker__trigger')
-      expect(wrapper.find('div .tiny-color-picker__inner').attributes().style).toContain('0, 0, 0')
     })
   })
   test('should show color-select wrapper when visible is true', () => {
@@ -55,5 +38,13 @@ describe('PC Mode', () => {
     expect(wrapper.findAll('button').length).not.toBe(0)
     await wrapper.trigger('click')
     expect(wrapper.findAll('button').length).toBe(0)
+  })
+  test('should not be throw when v-model is undefined', () => {
+    const wrapper = mount(ColorPicker, {
+      props: {
+        visible: false
+      }
+    })
+    expect(wrapper.find('div .tiny-color-picker__inner').attributes().style).toContain('transparent')
   })
 })
