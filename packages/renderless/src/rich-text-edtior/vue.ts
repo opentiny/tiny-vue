@@ -1,4 +1,4 @@
-export const api = ['state']
+export const api = ['state', 'setLink', 'handleChange']
 export const renderless = (
   props,
   { computed, onMounted, onBeforeUnmount, reactive },
@@ -35,16 +35,16 @@ export const renderless = (
     injectCSS: false,
   })
   const handleChange = (event) => {
-    const file = event.target.files[0];
+    const file = event.target.files[0]
     if (!file.type.match("image.*")) {
-      alert("请选择图片文件！");
-      return;
+      console.log("请选择图片文件！")
+      return
     }
-    var reader = new FileReader();
+    const reader = new FileReader()
     reader.onload = function (e) {
       editor.value.chain().focus().setImage({ src: e.target?.result }).run()
-    };
-    reader.readAsDataURL(file);
+    }
+    reader.readAsDataURL(file)
   }
   const setLink = () => {
     const previousUrl = editor.value.getAttributes('link').href
@@ -61,7 +61,6 @@ export const renderless = (
         .run()
       return
     }
-    // update link
     editor.value
       .chain()
       .focus()
@@ -71,12 +70,12 @@ export const renderless = (
   }
   const state = reactive({
     editor: null,
-    setLink: setLink,
-    handleChange: handleChange,
   })
   state.editor = editor
   const api = {
     state,
+    setLink,
+    handleChange,
   }
   onBeforeUnmount(() => {
     state.editor.destroy()
