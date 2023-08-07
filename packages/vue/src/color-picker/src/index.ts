@@ -1,12 +1,7 @@
 import { $props, $setup, $prefix, defineComponent } from '@opentiny/vue-common'
-import PCTemplate from './pc.vue'
-import MobileTemplate from './mobile.vue'
+import template from 'virtual-template?pc|mobile'
 
 const $constants = {}
-
-const template = (mode) => {
-  return (process.env.TINY_MODE || mode) === 'mobile-first' ? MobileTemplate : PCTemplate
-}
 
 export default defineComponent({
   name: $prefix + 'ColorPicker',

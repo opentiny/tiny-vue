@@ -36,6 +36,13 @@ export default class Color {
   }
 
   reset(hex: string) {
+    if (this.hex === 'transparent') {
+      this.h = 0
+      this.s = 0
+      this.v = 0
+      this.a = 0
+      return
+    }
     this.hex = normalizeHexColor(hex)
     const { r, g, b } = hexToRgb(this.hex)
     const { h, s, v } = rgb([r, g, b]).hsv().object()
