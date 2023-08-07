@@ -14,6 +14,16 @@ describe('PC Mode', () => {
       expect(wrapper.classes()).toContain('tiny-color-picker__trigger')
       expect(wrapper.find('div .tiny-color-picker__inner').attributes().style).toContain('102, 204, 255')
     })
+    test('dynmaic', async () => {
+      const wrapper = mount(ColorPicker, {
+        props: {
+          modelValue: '#66ccff',
+        },
+      })
+      expect(wrapper.find('div .tiny-color-picker__inner').attributes().style).toContain('102, 204, 255')
+      await wrapper.setProps({ modelValue: '#000' })
+      expect(wrapper.find('div .tiny-color-picker__inner').attributes().style).not.toContain('102, 204, 255')
+    })
   })
   test('should show color-select wrapper when visible is true', () => {
     const wrapper = mount(ColorPicker, {
