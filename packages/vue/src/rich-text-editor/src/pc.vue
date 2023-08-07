@@ -1,118 +1,291 @@
 <template>
-    <div class="box tiny-rich-text-editor">
-        <div class="button-area">
-            <!-- starter-kit功能区 -->
-            <button @click="state.editor.chain().focus().toggleBold().run()">
-                bold加粗
+  <div class="box tiny-rich-text-editor">
+    <div class="button-area">
+      <!-- starter-kit功能区 -->
+      <button
+        title="bold"
+        @click="state.editor.chain().focus().toggleBold().run()"
+        :class="{ 'is-active': state.editor?.isActive('bold') }"
+      >
+        <TinyIconRichTextBold></TinyIconRichTextBold>
+      </button>
+      <button title="link" @click="setLink" :class="{ 'is-active': state.editor?.isActive('link') }">
+        <TinyIconRichTextLink></TinyIconRichTextLink>
+      </button>
+      <button
+        title="unlink"
+        @click="state.editor.chain().focus().unsetLink().run()"
+        :disabled="!state.editor?.isActive('link')"
+      >
+        <TinyIconRichTextLinkUnlink></TinyIconRichTextLinkUnlink>
+      </button>
+      <button
+        title="high light"
+        @click="state.editor.chain().focus().toggleHighlight().run()"
+        :class="{ 'is-active': state.editor?.isActive('highlight') }"
+      >
+        <TinyIconRichTextHighLight></TinyIconRichTextHighLight>
+      </button>
+      <button title="line height" @click="state.editor.chain().focus().toggleHeight().run()">
+        <TinyIconRichTextLineHeight></TinyIconRichTextLineHeight>
+      </button>
+      <button
+        @click="state.editor.chain().focus().toggleUnderline().run()"
+        :class="{ 'is-active': state.editor?.isActive('underline') }"
+      >
+        <TinyIconRichTextUnderline></TinyIconRichTextUnderline>
+      </button>
+      <button
+        title="strike through"
+        @click="state.editor.chain().focus().toggleStrike().run()"
+        :class="{ 'is-active': state.editor?.isActive('strike') }"
+      >
+        <TinyIconRichTextStrikeThrough></TinyIconRichTextStrikeThrough>
+      </button>
+      <button title="italic" @click="state.editor.chain().focus().toggleItalic().run()">
+        <TinyIconRichTextItalic></TinyIconRichTextItalic>
+      </button>
+      <button title="paragraph" @click="state.editor.chain().focus().setParagraph().run()">
+        <TinyIconRichTextParagraph></TinyIconRichTextParagraph>
+      </button>
+      <button title="h1" @click="state.editor.chain().focus().toggleHeading({ level: 1 }).run()">
+        <TinyIconRichTextH1></TinyIconRichTextH1>
+      </button>
+      <button title="h2" @click="state.editor.chain().focus().toggleHeading({ level: 2 }).run()">
+        <TinyIconRichTextH2></TinyIconRichTextH2>
+      </button>
+      <button title="h3" @click="state.editor.chain().focus().toggleHeading({ level: 3 }).run()">
+        <TinyIconRichTextH3></TinyIconRichTextH3>
+      </button>
+      <button title="h4" @click="state.editor.chain().focus().toggleHeading({ level: 4 }).run()">
+        <TinyIconRichTextH4></TinyIconRichTextH4>
+      </button>
+      <button title="h5" @click="state.editor.chain().focus().toggleHeading({ level: 5 }).run()">
+        <TinyIconRichTextH5></TinyIconRichTextH5>
+      </button>
+      <button title="h6" @click="state.editor.chain().focus().toggleHeading({ level: 6 }).run()">
+        <TinyIconRichTextH6></TinyIconRichTextH6>
+      </button>
+      <button
+        title="subscript"
+        @click="state.editor.chain().focus().toggleSubscript().run()"
+        :class="{ 'is-active': state.editor?.isActive('subscript') }"
+      >
+        <TinyIconRichTextSubscript></TinyIconRichTextSubscript>
+      </button>
+      <button
+        title="superscript"
+        @click="state.editor.chain().focus().toggleSuperscript().run()"
+        :class="{ 'is-active': state.editor?.isActive('superscript') }"
+      >
+        <TinyIconRichTextSuperscript></TinyIconRichTextSuperscript>
+      </button>
+      <button title="unordered list" @click="state.editor.chain().focus().toggleBulletList().run()">
+        <TinyIconRichTextListUnordered></TinyIconRichTextListUnordered>
+      </button>
+      <button title="ordered list" @click="state.editor.chain().focus().toggleOrderedList().run()">
+        <TinyIconRichTextListOrdered></TinyIconRichTextListOrdered>
+      </button>
+      <button title="quote" @click="state.editor.chain().focus().toggleBlockquote().run()">
+        <TinyIconRichTextQuoteText></TinyIconRichTextQuoteText>
+      </button>
+      <button title="code" @click="state.editor.chain().focus().toggleCode().run()">
+        <TinyIconRichTextCodeView></TinyIconRichTextCodeView>
+      </button>
+      <button title="code block" @click="state.editor.chain().focus().toggleCodeBlock().run()">
+        <TinyIconRichTextCodeBlock></TinyIconRichTextCodeBlock>
+      </button>
+      <button title="format clear" @click="state.editor.chain().focus().unsetAllMarks().run()">
+        <TinyIconRichTextFormatClear></TinyIconRichTextFormatClear>
+      </button>
+      <button title="node delete" @click="state.editor.chain().focus().clearNodes().run()">
+        <TinyIconRichTextNodeDelete></TinyIconRichTextNodeDelete>
+      </button>
+      <button title="undo" @click="state.editor.chain().focus().undo().run()">
+        <TinyIconRichTextUndo></TinyIconRichTextUndo>
+      </button>
+      <button title="redo" @click="state.editor.chain().focus().redo().run()">
+        <TinyIconRichTextRedo></TinyIconRichTextRedo>
+      </button>
+      <!-- 图片 -->
+      <button title="img" class="image-button">
+        <input @change="handleChange" id="img-btn" :placeholder="'啊飒飒'" type="file" accept="image/*" />
+        <label for="img-btn">
+          <TinyIconRichTextImage></TinyIconRichTextImage>
+        </label>
+      </button>
+      <!-- 颜色 -->
+      <button title="color" class="color-button">
+        <label for="tiny-color">
+          <TinyIconRichTextColor></TinyIconRichTextColor>
+        </label>
+        <input
+          id="tiny-color"
+          type="color"
+          @input="state.editor.chain().focus().setColor($event.target.value).run()"
+          :value="state.editor?.getAttributes('textStyle').color"
+        />
+      </button>
+      <!-- 表格功能按钮 -->
+      <button
+        title="table"
+        class="table-button"
+        @click="state.editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
+      >
+        <div class="table-box">
+          <div class="table-icon">
+            <TinyIconRichTextTable></TinyIconRichTextTable>
+            <!-- <svg t="1690619350901" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+							p-id="75921" width="16" height="20">
+							<path
+								d="M257.783111 431.783027L493.964228 145.503908c9.351995-11.336186 26.720571-11.336186 36.072567 0l236.181117 286.279119c12.58155 15.250332 1.733481 38.262442-18.036795 38.262442H275.818883c-19.770276 0-30.617321-23.01211-18.035772-38.262442zM766.216889 592.216973L530.036795 878.496092c-9.351995 11.336186-26.720571 11.336186-36.072567 0L257.783111 592.216973c-12.58155-15.250332-1.733481-38.262442 18.036795-38.262442h472.361211c19.770276 0 30.617321 23.01211 18.035772 38.262442z"
+								fill="#000000" p-id="75922"></path>
+						</svg> -->
+          </div>
+          <div class="table-option">
+            <button
+              title="add column before"
+              @click="state.editor.chain().focus().addColumnBefore().run()"
+              :disabled="!state.editor?.can().addColumnBefore()"
+            >
+              <TinyIconRichTextAddColumnBefore></TinyIconRichTextAddColumnBefore>
             </button>
-            <button @click="state.editor.chain().focus().toggleItalic().run()">
-                italic斜体
+            <button
+              title="add column after"
+              @click="state.editor.chain().focus().addColumnAfter().run()"
+              :disabled="!state.editor?.can().addColumnAfter()"
+            >
+              <TinyIconRichTextAddColumnAfter></TinyIconRichTextAddColumnAfter>
             </button>
-            <button @click="state.editor.chain().focus().setParagraph().run()">
-                paragraph
+            <button
+              title="delete column"
+              @click="state.editor.chain().focus().deleteColumn().run()"
+              :disabled="!state.editor?.can().deleteColumn()"
+            >
+              <TinyIconRichTextDeleteColumn></TinyIconRichTextDeleteColumn>
             </button>
-            <button @click="state.editor.chain().focus().toggleHeading({ level: 1 }).run()">
-                h1
+            <button
+              title="add row before"
+              @click="state.editor.chain().focus().addRowBefore().run()"
+              :disabled="!state.editor?.can().addRowBefore()"
+            >
+              <TinyIconRichTextAddRowBefore></TinyIconRichTextAddRowBefore>
             </button>
-            <button @click="state.editor.chain().focus().toggleHeading({ level: 2 }).run()">
-                h2
+            <button
+              title="add row after"
+              @click="state.editor.chain().focus().addRowAfter().run()"
+              :disabled="!state.editor?.can().addRowAfter()"
+            >
+              <TinyIconRichTextAddRowAfter></TinyIconRichTextAddRowAfter>
             </button>
-            <button @click="state.editor.chain().focus().toggleHeading({ level: 3 }).run()">
-                h3
+            <button
+              title="delete row"
+              @click="state.editor.chain().focus().deleteRow().run()"
+              :disabled="!state.editor?.can().deleteRow()"
+            >
+              <TinyIconRichTextDeleteRow></TinyIconRichTextDeleteRow>
             </button>
-            <button @click="state.editor.chain().focus().toggleBulletList().run()">
-                bullet list无序列表
+            <button
+              title="delete table"
+              @click="state.editor.chain().focus().deleteTable().run()"
+              :disabled="!state.editor?.can().deleteTable()"
+            >
+              <TinyIconRichTextDeleteTable></TinyIconRichTextDeleteTable>
             </button>
-            <button @click="state.editor.chain().focus().toggleOrderedList().run()">
-                ordered list有序列表
+            <button
+              title="toggle header cell"
+              @click="state.editor.chain().focus().toggleHeaderCell().run()"
+              :disabled="!state.editor?.can().toggleHeaderCell()"
+            >
+              toggleHeaderCell
             </button>
-            <button @click="state.editor.chain().focus().toggleBlockquote().run()">
-                blockquote引用
+            <button
+              title="merge Or split"
+              @click="state.editor.chain().focus().mergeOrSplit().run()"
+              :disabled="!state.editor?.can().mergeOrSplit()"
+            >
+              <TinyIconRichTextMergeCells></TinyIconRichTextMergeCells>
             </button>
-            <button @click="state.editor.chain().focus().toggleCode().run()">
-                code
-            </button>
-            <button @click="state.editor.chain().focus().toggleCodeBlock().run()">
-                code block
-            </button>
-            <button @click="state.editor.chain().focus().unsetAllMarks().run()">
-                clear marks
-            </button>
-            <button @click="state.editor.chain().focus().clearNodes().run()">
-                clear nodes
-            </button>
-            <button @click="state.editor.chain().focus().undo().run()">
-                undo
-            </button>
-            <button @click="state.editor.chain().focus().redo().run()">
-                redo
-            </button>
-            <!-- 图片 -->
-            <button @click="state.addImage(state.editor)">
-                setImage
-            </button>
-            <!-- 颜色 -->
-            <input type="color" @input="state.editor.chain().focus().setColor($event.target.value).run()"
-                :value="state.editor?.getAttributes('textStyle').color">
-            <!-- 表格功能按钮 -->
-            <button @click="state.editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()">
-                insertTable
-            </button>
-            <button @click="state.editor.chain().focus().addColumnBefore().run()"
-                :disabled="!state.editor?.can().addColumnBefore()">
-                addColumnBefore
-            </button>
-            <button @click="state.editor.chain().focus().addColumnAfter().run()"
-                :disabled="!state.editor?.can().addColumnAfter()">
-                addColumnAfter
-            </button>
-            <button @click="state.editor.chain().focus().deleteColumn().run()"
-                :disabled="!state.editor?.can().deleteColumn()">
-                deleteColumn
-            </button>
-            <button @click="state.editor.chain().focus().addRowBefore().run()"
-                :disabled="!state.editor?.can().addRowBefore()">
-                addRowBefore
-            </button>
-            <button @click="state.editor.chain().focus().addRowAfter().run()"
-                :disabled="!state.editor?.can().addRowAfter()">
-                addRowAfter
-            </button>
-            <button @click="state.editor.chain().focus().deleteRow().run()" :disabled="!state.editor?.can().deleteRow()">
-                deleteRow
-            </button>
-            <button @click="state.editor.chain().focus().deleteTable().run()"
-                :disabled="!state.editor?.can().deleteTable()">
-                deleteTable
-            </button>
-            <button @click="state.editor.chain().focus().toggleHeaderCell().run()"
-                :disabled="!state.editor?.can().toggleHeaderCell()">
-                toggleHeaderCell
-            </button>
-            <button @click="state.editor.chain().focus().mergeOrSplit().run()"
-                :disabled="!state.editor?.can().mergeOrSplit()">
-                mergeOrSplit
-            </button>
-            <button @click="state.editor.chain().focus().setCellAttribute('backgroundColor', '#FAF594').run()"
-                :disabled="!state.editor?.can().setCellAttribute('backgroundColor', '#FAF594')">
-                setCellAttribute
-            </button>
+            <!-- <button @click="state.editor.chain().focus().setCellAttribute('backgroundColor', '#FAF594').run()"
+							:disabled="!state.editor?.can().setCellAttribute('backgroundColor', '#FAF594')">
+							setCellAttribute
+						</button> -->
+          </div>
         </div>
-        <div class="small-box">
-            <EditorContent :editor="state.editor"></EditorContent>
-        </div>
+      </button>
     </div>
+    <div class="small-box">
+      <EditorContent :editor="state.editor"></EditorContent>
+    </div>
+  </div>
 </template> 
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/rich-text-edtior/vue'
+import {
+  iconRichTextAddColumnAfter,
+  iconRichTextAddColumnBefore,
+  iconRichTextAddRowAfter,
+  iconRichTextAddRowBefore,
+  iconRichTextAlignCenter,
+  iconRichTextAlignLeft,
+  iconRichTextAlignRight,
+  iconRichTextBold,
+  iconRichTextCodeBlock,
+  iconRichTextCodeView,
+  iconRichTextColor,
+  iconRichTextDeleteColumn,
+  iconRichTextDeleteRow,
+  iconRichTextDeleteTable,
+  iconRichTextFontSize,
+  iconRichTextFormatClear,
+  iconRichTextH1,
+  iconRichTextH2,
+  iconRichTextH3,
+  iconRichTextH4,
+  iconRichTextH5,
+  iconRichTextH6,
+  iconRichTextHeading,
+  iconRichTextHighLight,
+  iconRichTextItalic,
+  IconRichTextImage,
+  iconRichTextLineHeight,
+  iconRichTextLink,
+  iconRichTextLinkUnlink,
+  iconRichTextListOrdered,
+  iconRichTextListUnordered,
+  iconRichTextMergeCells,
+  iconRichTextMergeCellsVertical,
+  iconRichTextNodeDelete,
+  iconRichTextParagraph,
+  iconRichTextQuoteText,
+  iconRichTextRedo,
+  iconRichTextSplitCellsHorizontal,
+  iconRichTextSplitCellsVertical,
+  iconRichTextStrikeThrough,
+  iconRichTextSubscript,
+  iconRichTextSuperscript,
+  iconRichTextTable,
+  iconRichTextTaskList,
+  iconRichTextUnderline,
+  iconRichTextUndo
+} from '@opentiny/vue-icon'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 // image 包
 import Image from '@tiptap/extension-image'
+// -- HeighLight
+import Highlight from '@tiptap/extension-highlight'
 // color 包
 import { Color } from '@tiptap/extension-color'
 import TextStyle from '@tiptap/extension-text-style'
+// -- link
+import Link from '@tiptap/extension-link'
+// underline
+import Underline from '@tiptap/extension-underline'
+// subScript
+import Subscript from '@tiptap/extension-subscript'
+import Superscript from '@tiptap/extension-superscript'
 // table 包
 import Table from '@tiptap/extension-table'
 import TableCell from '@tiptap/extension-table-cell'
@@ -124,197 +297,86 @@ import * as Y from 'yjs'
 import { WebrtcProvider } from 'y-webrtc'
 
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import '@opentiny/vue-theme/button/index.less'
+import '@opentiny/vue-theme/rich-text-editor/index.less'
 
 export default defineComponent({
-    //   emits: ['click', 'hook-updated'],
-    //   props: [...props, 'type', 'text', 'size', 'icon', 'resetTime', 'nativeType', 'loading', 'disabled', 'plain', 'autofocus', 'round', 'circle', 'tabindex'],
-    components: { EditorContent },
-    setup(props, context) {
-        return setup({ props, context, renderless, api, extendOptions: { useEditor, Collaboration, StarterKit, Y, WebrtcProvider, Table, TableCell, TableHeader, TableRow, Color, TextStyle, Image } })
-    }
+  //   emits: ['click', 'hook-updated'],
+  //   props: [...props, 'type', 'text', 'size', 'icon', 'resetTime', 'nativeType', 'loading', 'disabled', 'plain', 'autofocus', 'round', 'circle', 'tabindex'],
+  components: {
+    EditorContent,
+    TinyIconRichTextAddColumnAfter: iconRichTextAddColumnAfter(),
+    TinyIconRichTextAddColumnBefore: iconRichTextAddColumnBefore(),
+    TinyIconRichTextAddRowAfter: iconRichTextAddRowAfter(),
+    TinyIconRichTextAddRowBefore: iconRichTextAddRowBefore(),
+    TinyIconRichTextAlignCenter: iconRichTextAlignCenter(),
+    TinyIconRichTextAlignLeft: iconRichTextAlignLeft(),
+    TinyIconRichTextAlignRight: iconRichTextAlignRight(),
+    TinyIconRichTextBold: iconRichTextBold(),
+    TinyIconRichTextCodeBlock: iconRichTextCodeBlock(),
+    TinyIconRichTextCodeView: iconRichTextCodeView(),
+    TinyIconRichTextColor: iconRichTextColor(),
+    TinyIconRichTextDeleteColumn: iconRichTextDeleteColumn(),
+    TinyIconRichTextDeleteRow: iconRichTextDeleteRow(),
+    TinyIconRichTextDeleteTable: iconRichTextDeleteTable(),
+    TinyIconRichTextFontSize: iconRichTextFontSize(),
+    TinyIconRichTextFormatClear: iconRichTextFormatClear(),
+    TinyIconRichTextH1: iconRichTextH1(),
+    TinyIconRichTextH2: iconRichTextH2(),
+    TinyIconRichTextH3: iconRichTextH3(),
+    TinyIconRichTextH4: iconRichTextH4(),
+    TinyIconRichTextH5: iconRichTextH5(),
+    TinyIconRichTextH6: iconRichTextH6(),
+    TinyIconRichTextHeading: iconRichTextHeading(),
+    TinyIconRichTextHighLight: iconRichTextHighLight(),
+    TinyIconRichTextItalic: iconRichTextItalic(),
+    TinyIconRichTextImage: IconRichTextImage(),
+    TinyIconRichTextLineHeight: iconRichTextLineHeight(),
+    TinyIconRichTextLink: iconRichTextLink(),
+    TinyIconRichTextLinkUnlink: iconRichTextLinkUnlink(),
+    TinyIconRichTextListOrdered: iconRichTextListOrdered(),
+    TinyIconRichTextListUnordered: iconRichTextListUnordered(),
+    TinyIconRichTextMergeCells: iconRichTextMergeCells(),
+    TinyIconRichTextMergeCellsVertical: iconRichTextMergeCellsVertical(),
+    TinyIconRichTextNodeDelete: iconRichTextNodeDelete(),
+    TinyIconRichTextParagraph: iconRichTextParagraph(),
+    TinyIconRichTextQuoteText: iconRichTextQuoteText(),
+    TinyIconRichTextRedo: iconRichTextRedo(),
+    TinyIconRichTextSplitCellsHorizontal: iconRichTextSplitCellsHorizontal(),
+    TinyIconRichTextSplitCellsVertical: iconRichTextSplitCellsVertical(),
+    TinyIconRichTextStrikeThrough: iconRichTextStrikeThrough(),
+    TinyIconRichTextSubscript: iconRichTextSubscript(),
+    TinyIconRichTextSuperscript: iconRichTextSuperscript(),
+    TinyIconRichTextTable: iconRichTextTable(),
+    TinyIconRichTextTaskList: iconRichTextTaskList(),
+    TinyIconRichTextUnderline: iconRichTextUnderline(),
+    TinyIconRichTextUndo: iconRichTextUndo()
+  },
+  setup(props, context) {
+    return setup({
+      props,
+      context,
+      renderless,
+      api,
+      extendOptions: {
+        useEditor,
+        Collaboration,
+        StarterKit,
+        Y,
+        WebrtcProvider,
+        Table,
+        TableCell,
+        TableHeader,
+        TableRow,
+        Color,
+        TextStyle,
+        Image,
+        Highlight,
+        Link,
+        Underline,
+        Subscript,
+        Superscript
+      }
+    })
+  }
 })
 </script>
-
-<style lang="less">
-.is-active {
-    border: 1px solid red;
-}
-
-.box {
-    width: 500px;
-    height: 350px;
-    margin: 0 auto;
-    outline: 3px solid rgb(203, 203, 203);
-
-    &:hover {
-        outline: 3px solid black;
-
-        button {
-            background-color: #383838;
-        }
-    }
-
-    border-radius: 8px 8px 0 0;
-
-    button {
-        background-color: #9e9e9e;
-        color: rgb(202, 202, 202);
-        margin: 1px 1px;
-        border-radius: 4px;
-    }
-
-    button:disabled {
-        background-color: rgba(239, 239, 239, 0.3);
-        color: rgba(16, 16, 16, 0.3);
-        border-color: rgba(118, 118, 118, 0.3);
-    }
-
-    .button-area {
-        text-align: center;
-    }
-}
-
-.small-box {
-    overflow: auto;
-    text-align: center;
-    height: 200px;
-    margin-right: 2px;
-
-    &::-webkit-scrollbar {
-        width: 4px;
-        height: 0px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: rgb(0, 0, 0);
-        border-radius: 8px;
-    }
-}
-
-.ProseMirror {
-    outline: none !important;
-}
-
-.ProseMirror {
-    >*+* {
-        margin-top: 0.75em;
-    }
-
-    ul,
-    ol {
-        padding: 0 1rem;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        line-height: 1.1;
-    }
-
-    code {
-        background-color: rgba(#616161, 0.1);
-        color: #616161;
-    }
-
-    pre {
-        background: #0D0D0D;
-        color: #FFF;
-        font-family: 'JetBrainsMono', monospace;
-        padding: 0.75rem 1rem;
-        border-radius: 0.5rem;
-
-        code {
-            color: inherit;
-            padding: 0;
-            background: none;
-            font-size: 0.8rem;
-        }
-    }
-
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-
-    blockquote {
-        padding-left: 1rem;
-        border-left: 2px solid rgba(#0D0D0D, 0.1);
-    }
-
-    hr {
-        border: none;
-        border-top: 2px solid rgba(#0D0D0D, 0.1);
-        margin: 2rem 0;
-    }
-}
-
-.ProseMirror {
-    table {
-        border-collapse: collapse;
-        table-layout: fixed;
-        width: 100%;
-        margin: 0;
-        overflow: hidden;
-
-        td,
-        th {
-            min-width: 1em;
-            border: 2px solid #ced4da;
-            padding: 3px 5px;
-            vertical-align: top;
-            box-sizing: border-box;
-            position: relative;
-
-            >* {
-                margin-bottom: 0;
-            }
-        }
-
-        th {
-            font-weight: bold;
-            text-align: left;
-            background-color: #f1f3f5;
-        }
-
-        .selectedCell:after {
-            z-index: 2;
-            position: absolute;
-            content: "";
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            background: rgba(200, 200, 255, 0.4);
-            pointer-events: none;
-        }
-
-        .column-resize-handle {
-            position: absolute;
-            right: -2px;
-            top: 0;
-            bottom: -2px;
-            width: 4px;
-            background-color: #adf;
-            pointer-events: none;
-        }
-
-        p {
-            margin: 0;
-        }
-    }
-
-    .tableWrapper {
-        padding: 1rem 0;
-        overflow-x: auto;
-    }
-
-    .resize-cursor {
-        cursor: ew-resize;
-        cursor: col-resize;
-    }
-}
-</style>
