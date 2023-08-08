@@ -151,7 +151,11 @@ export default defineComponent({
                     this.debounceClose()
                   }
 
-                  this.$nextTick(() => this.updatePopper())
+                  this.$nextTick(() => {
+                    if (!this.disabled && this.state.showPopper && content) {
+                      this.updatePopper()
+                    }
+                  })
 
                   return h('transition', propsData, [
                     <div
