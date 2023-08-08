@@ -1,5 +1,5 @@
 import { mountPcMode } from '@opentiny-internal/vue-test-utils'
-import { describe, expect, test } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
 import Alert from '@opentiny/vue-alert'
 import { iconBoat } from '@opentiny/vue-icon'
 
@@ -82,5 +82,14 @@ describe('PC Mode', () => {
       <Alert size='large' v-slots={{ description: () => text }}/>
     ))
     expect(wrapper.find('.tiny-alert__description').text()).toEqual(text)
+  })
+
+  test('close event', async () => {
+    const handleClose = vi.fn()
+    const wrapper = mount(() => (
+      <Alert size='large' onClose={handleClose}/>
+    ))
+    await wrapper.find('.tiny-alert__close').trigger('click')
+    expect(handleClose).toHaveBeenCalled()
   })
 })
