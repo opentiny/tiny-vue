@@ -10,8 +10,9 @@ export const onConfirm = (hex: Ref<string>, triggerBg: Ref<string>, res: Ref<str
   }
 }
 
-export const onCancel = (res: Ref<string>, triggerBg: Ref<string>, emit, isShow: Ref<boolean>) => {
+export const onCancel = (hex: Ref<string>, res: Ref<string>, triggerBg: Ref<string>, emit, isShow: Ref<boolean>) => {
   return () => {
+    hex.value = triggerBg.value
     res.value = triggerBg.value
     emit('cancel')
     isShow.value = false

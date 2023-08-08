@@ -25,6 +25,9 @@ export default defineComponent({
   props: {
     color: {
       type: String
+    },
+    alpha: {
+      type: Boolean
     }
   },
   setup(props, context) {

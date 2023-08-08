@@ -13,6 +13,7 @@
           @hue-update="onHueUpdate"
           @sv-update="onSVUpdate"
           :color="state.hex"
+          :alpha="alpha"
         />
         <alpha-select :color="state.res" @alpha-update="onAlphaUpdate" v-if="alpha" />
         <div class="tiny-color-picker__wrapper__tools">

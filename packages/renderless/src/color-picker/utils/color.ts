@@ -37,8 +37,10 @@ export default class Color {
   private s = 0
   private v = 0
   private a = 100
-  constructor(value: string) {
+  private enableAlpha = false
+  constructor(value: string, alpha = false) {
     this.reset(value)
+    this.enableAlpha = alpha
   }
 
   reset(hex: string) {
@@ -74,6 +76,9 @@ export default class Color {
   }
 
   getHex() {
+    if (!this.enableAlpha) {
+      return hsv(this.h, this.s, this.v).hex().toString()
+    }
     return hsv(this.h, this.s, this.v, this.a / 100).hexa().toString()
   }
 
