@@ -13,6 +13,7 @@ export default defineComponent({
     },
     modelValue: String,
     visible: Boolean,
+    alpha: Boolean
   },
   setup(props, context) {
     return $setup({ props, context, template })
