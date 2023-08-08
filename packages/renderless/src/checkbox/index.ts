@@ -165,3 +165,13 @@ export const computedIsDisplayOnly = ({ state, props }) => () => props.displayOn
 
 export const computedIsGroupDisplayOnly = ({ state }) => () =>
   state.isGroup && (state.checkboxGroup.displayOnly || state.formDisplayOnly)
+
+export const computedIsShowText = ({ props }) => () => props.text || props.label || !isNull(props.text) || !isNull(props.label)
+
+export const computedShowText = ({ props }) => () => {
+  if (props.text || !isNull(props.text)) {
+    return props.text
+  } else {
+    return props.label
+  }
+}

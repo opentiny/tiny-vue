@@ -33,6 +33,49 @@ describe('PC Mode', () => {
     expect(wrapper.find('.tiny-button').classes()).toContain('is-disabled')
   })
 
+  test('text', () => {
+    const TEXT = '危险按钮'
+    const wrapper = mount(() => <Button text={TEXT} type='danger'></Button>)
+    expect(wrapper.find('.tiny-button').text()).toBe(TEXT)
+  })
+
+  test('round', async () => {
+    const TEXT = '危险按钮'
+    const roundValue = ref(false)
+    const wrapper = mount(() => <Button round={roundValue.value}>{TEXT}</Button>)
+    expect(wrapper.find('.tiny-button').classes()).not.toContain('is-round')
+    roundValue.value = true
+    await nextTick()
+    expect(wrapper.find('.tiny-button').classes()).toContain('is-round')
+  })
+
+  test('img', () => {
+    const url = ref('/static/images/mountain.png')
+    const wrapper = mount(() => <Button><img src={url.value} /></Button>)
+    expect(wrapper.find('img').exists()).toBeTruthy()
+    expect(wrapper.find('img').attributes('src')).toBe(url.value)
+  })
+
+  test('loading', async () => {
+    const TEXT = '危险按钮'
+    const loadingValue = ref(false)
+    const wrapper = mount(() => <Button loading={loadingValue.value}>{TEXT}</Button>)
+    expect(wrapper.find('.tiny-button').classes()).not.toContain('is-loading')
+    loadingValue.value = true
+    await nextTick()
+    expect(wrapper.find('.tiny-button').classes()).toContain('is-loading')
+  })
+
+  test('autofocus', async () => {
+    const TEXT = '危险按钮'
+    const autofocusValue = ref(false)
+    const wrapper = mount(() => <Button autofocus={autofocusValue.value}>{TEXT}</Button>)
+    expect(wrapper.find('.tiny-button').element.hasAttribute('autofocus')).toBeFalsy()
+    autofocusValue.value = true
+    await nextTick()
+    expect(wrapper.find('.tiny-button').element.hasAttribute('autofocus')).toBeTruthy()
+  })
+
   test('events', async () => {
     const handleClick = vi.fn()
     const TEXT = '危险按钮'
@@ -41,10 +84,4 @@ describe('PC Mode', () => {
     await button.trigger('click')
     expect(handleClick).toBeCalled()
   })
-
-  test.todo('test 设置文字按钮')
-  test.todo('round 设置圆角按钮')
-  test.todo('img 设置图片按钮')
-  test.todo('loading 设置按钮为加载中状态')
-  test.todo('autofocus 设置按钮默认为聚焦状态')
 })

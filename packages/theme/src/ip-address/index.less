@@ -88,7 +88,7 @@
       display: inline-flex;
       align-items: center;
 
-      >input {
+      > input {
         border: none;
         text-align: center;
         outline: none;
@@ -127,20 +127,20 @@
       }
 
       &:last-child {
-        >svg {
+        margin-right: var(--ti-ip-address-padding-horizontal);
+        > svg {
           display: none;
         }
       }
 
-      &:only-child {
-        width: 100%;
-
-        >input {
-          width: 100%;
-          text-align: left;
-          padding: var(--ti-ip-address-only-child-padding-vertical) var(--ti-ip-address-only-child-padding-horizontal);
-        }
+      &:first-child {
+        margin-left: var(--ti-ip-address-padding-horizontal);
       }
+    }
+
+    &__ipv6-delimiter {
+      width: var(--ti-ip-address-icon-width);
+      text-align: center;
     }
   }
 }
