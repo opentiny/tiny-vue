@@ -124,6 +124,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/Caesar-ch"><img src="https://avatars.githubusercontent.com/u/74941512?v=4?s=100" width="100px;" alt="Caesar-ch"/><br /><sub><b>Caesar-ch</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Caesar-ch" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/chenqifeng66"><img src="https://avatars.githubusercontent.com/u/97503755?v=4?s=100" width="100px;" alt="chenqifeng66"/><br /><sub><b>chenqifeng66</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=chenqifeng66" title="Tests">⚠️</a></td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="12.5%"><a href="https://zz-zzzz.github.io/"><img src="https://avatars.githubusercontent.com/u/48228016?v=4?s=100" width="100px;" alt="Zz-ZzzZ"/><br /><sub><b>Zz-ZzzZ</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Zz-ZzzZ" title="Tests">⚠️</a></td>
+    </tr>
   </tbody>
 </table>
 
