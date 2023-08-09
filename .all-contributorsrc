@@ -293,6 +293,15 @@
       "contributions": [
         "test"
       ]
+    },
+    {
+      "login": "Zz-ZzzZ",
+      "name": "Zz-ZzzZ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48228016?v=4",
+      "profile": "https://zz-zzzz.github.io/",
+      "contributions": [
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 8,
