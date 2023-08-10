@@ -1,7 +1,16 @@
 import { mountPcMode } from '@opentiny-internal/vue-test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import Modal from '@opentiny/vue-modal'
-import { nextTick } from 'vue'
+import Form from '@opentiny/vue-form'
+import FormItem from '@opentiny/vue-form-item'
+import Input from '@opentiny/vue-input'
+import { nextTick, reactive, ref } from 'vue'
+
+const ASYNC_WAIT_TIME = 500
+
+const waitAsyncFunctionEnded = (time = 0) => {
+  return new Promise((resolve) => setTimeout(resolve, ASYNC_WAIT_TIME + time))
+}
 
 describe('PC Mode', () => {
   const mount = mountPcMode
@@ -13,67 +22,248 @@ describe('PC Mode', () => {
     let show = true
     const wrapper = mount(() => <Modal v-model={show}></Modal>)
     expect(wrapper.find('.tiny-modal__wrapper').isVisible()).toBe(true)
+    wrapper.unmount()
   })
 
-  test.todo('id 弹窗唯一ID')
+  test('id', async () => {
+    const handleClick = async () => {
+      Modal.message({
+        id: 'unique',
+        message: 'no repeat'
+      })
+    }
 
-  test.todo('is-form-reset 关闭弹窗，是否重置表单数据')
+    const wrapper = mount(() => <button onClick={handleClick}>open</button>)
 
-  test.todo('title 窗口的标题')
+    for (let i = 0; i < 5; i++) {
+      await wrapper.find('button').trigger('click')
+    }
 
-  test.todo('type 窗口类型')
+    expect(document.querySelectorAll('.tiny-modal__wrapper').length).toEqual(1)
+  })
 
-  test.todo('status 消息状态')
+  test('is-form-reset', async () => {
+    const visible = ref(true)
+    const form = reactive({
+      name: ''
+    })
 
-  test.todo('message 窗口的内容')
+    const handleClick = () => {
+      visible.value = false
+    }
 
-  test.todo('show-header 是否显示头部')
+    const wrapper = mount(() => (
+      <div>
+        <button onClick={handleClick}>close modal</button>
+        <Modal v-model={visible.value} isFormReset={true}>
+          <Form model={form}>
+            <FormItem prop="name">
+              <Input v-model={form.name} />
+            </FormItem>
+          </Form>
+        </Modal>
+      </div>
+    ))
 
-  test.todo('show-footer 是否显示底部')
+    form.name = 'Im TinyVue'
+    await wrapper.find('button').trigger('click')
 
-  test.todo('lock-view 是否锁住页面，不允许窗口之外的任何操作')
+    expect(form.name).toEqual('')
 
-  test.todo('lock-scroll 是否锁住滚动条，不允许页面滚动')
+    wrapper.unmount()
+  })
 
-  test.todo('mask 是否显示遮罩层')
+  test('title', () => {
+    let visible = true
+    const title = 'modal title'
 
-  test.todo('mask-closable 是否允许点击遮罩层关闭窗口')
+    const wrapper = mount(() => <Modal v-model={visible} title={title}></Modal>)
 
-  test.todo('esc-closable 是否允许按Esc键关闭窗口')
+    expect(wrapper.find('.tiny-modal__title').text()).toEqual(title)
+
+    wrapper.unmount()
+  })
+
+  test('type alert', () => {
+    const message = 'alert content'
+    let visible = true
+
+    const wrapper = mount(() => <Modal v-model={visible} type="alert" message={message}></Modal>)
+
+    expect(wrapper.find('.tiny-modal__text').text()).toEqual(message)
+
+    wrapper.unmount()
+  })
+
+  test('type confirm', () => {
+    const message = 'confirm content'
+    let visible = true
+
+    const wrapper = mount(() => <Modal v-model={visible} type="confirm" message={message}></Modal>)
+
+    expect(wrapper.find('.tiny-modal__text').text()).toEqual(message)
+
+    wrapper.unmount()
+  })
+
+  test('show-header', () => {
+    let visible = true
+
+    const wrapper = mount(() => <Modal v-model={visible} showHeader={false}></Modal>)
+
+    expect(wrapper.find('.tiny-modal__header').exists()).toBeFalsy()
+
+    wrapper.unmount()
+  })
+
+  test('show-footer', () => {
+    let visible = true
+
+    const wrapper = mount(() => <Modal v-model={visible} showFooter={false}></Modal>)
+
+    expect(wrapper.find('.tiny-modal__footer').exists()).toBeFalsy()
+
+    wrapper.unmount()
+  })
+
+  test('lock-view, lock-scroll, mask', () => {
+    let visible = true
+
+    const wrapper = mount(() => <Modal v-model={visible} lockView={true} lockScroll={true} mask={true}></Modal>)
+
+    expect(wrapper.find('.lock__view').exists()).toBeTruthy()
+    expect(wrapper.find('.lock__scroll').exists()).toBeTruthy()
+    expect(wrapper.find('.is__mask').exists()).toBeTruthy()
+
+    wrapper.unmount()
+  })
+
+  test('mask-closable', async () => {
+    let visible = true
+    const fn = vi.fn()
+
+    const wrapper = mount(() => <Modal v-model={visible} maskClosable={true} onHide={fn}></Modal>)
+
+    await wrapper.find('.tiny-modal').trigger('click')
+
+    // wait modal inside setTimeout (api.close())
+    await waitAsyncFunctionEnded()
+
+    expect(fn).toHaveBeenCalled()
+
+    wrapper.unmount()
+  })
+
+  test('esc-closable', async () => {
+    let visible = true
+    const fn = vi.fn()
+
+    const wrapper = mount(() => <Modal v-model={visible} escClosable={true} onHide={fn}></Modal>)
+
+    document.dispatchEvent(
+      new KeyboardEvent('keydown', {
+        keyCode: 27
+      })
+    )
+
+    // wait modal inside setTimeout (api.close())
+    await waitAsyncFunctionEnded()
+
+    expect(fn).toHaveBeenCalled()
+
+    wrapper.unmount()
+  })
 
   test.todo('resize 是否允许拖动调整窗口大小')
 
-  test.todo('duration 只对 type=message 有效，自动关闭的延时')
+  test('duration', async () => {
+    let visible = true
+    const fn = vi.fn()
+    const duration = 1000
 
-  test.todo('width 窗口的宽度')
+    const wrapper = mount(() => <Modal v-model={visible} type="message" duration={duration} onHide={fn}></Modal>)
 
-  test.todo('height 窗口的高度')
+    // need add modal inside setTimeout time
+    await waitAsyncFunctionEnded(duration)
+
+    expect(fn).toHaveBeenCalled()
+
+    wrapper.unmount()
+
+    // need wait to finish otherwise case 'top' will not pass
+    await waitAsyncFunctionEnded()
+  })
+
+  test('width & height', async () => {
+    let visible = true
+    const width = 300
+    const height = 200
+
+    const wrapper = mount(() => <Modal v-model={visible} width={width} height={height}></Modal>)
+
+    const style = wrapper.find('.tiny-modal__box').attributes('style')
+
+    expect(style).toContain(`width: ${width}px`)
+    expect(style).toContain(`height: ${height}px`)
+
+    wrapper.unmount()
+  })
 
   test.todo('min-width 窗口的最小宽度')
 
   test.todo('min-height 窗口的最小高度')
 
-  test.todo('top 消息距离顶部的位置')
+  test('top', async () => {
+    let visible = true
+    const top = 100
 
-  test.todo('z-index 自定义堆叠顺序')
+    const wrapper = mount(() => <Modal v-model={visible} type="message" top={top}></Modal>)
 
-  test.todo('fullscreen 是否最大化显示')
+    await nextTick()
 
-  test.todo('message-closable message信息是否显示关闭按钮')
+    expect(wrapper.find('.tiny-modal').attributes('style')).toContain(`top: ${top}px`)
+
+    wrapper.unmount()
+  })
+
+  test('message-closable', () => {
+    let visible = true
+
+    const wrapper = mount(() => <Modal v-model={visible} type="message" messageClosable={true}></Modal>)
+
+    expect(wrapper.find('.tiny-modal__close-btn').exists()).toBeTruthy()
+
+    wrapper.unmount()
+  })
 
   /**
    * slots
    */
   test('default', () => {
     let show = true
-    const wrapper = mount(() =><Modal v-model={show}  v-slots={{
-      default: () => <span class="custom-content">默认插槽-自定义内容</span>
-    }}>
-    </Modal>)
+    const wrapper = mount(() => (
+      <Modal
+        v-model={show}
+        v-slots={{
+          default: () => <span class="custom-content">默认插槽-自定义内容</span>
+        }}></Modal>
+    ))
     expect(wrapper.find('span.custom-content').isVisible()).toBe(true)
+
+    wrapper.unmount()
   })
 
-  test.todo('footer 窗口底部的模板')
+  test('footer', () => {
+    let visible = true
+
+    const wrapper = mount(() => (
+      <Modal v-model={visible} showFooter={true} v-slots={{ footer: () => <div class="slot-footer"></div> }}></Modal>
+    ))
+
+    expect(wrapper.find('.slot-footer').exists()).toBeTruthy()
+
+    wrapper.unmount()
+  })
 
   /**
    * events
@@ -84,14 +274,29 @@ describe('PC Mode', () => {
     const wrapper = mount(() => <Modal v-model={show} onShow={handleShow}></Modal>)
     await nextTick()
     expect(handleShow).toHaveBeenCalled()
+
+    wrapper.unmount()
   })
 
-  test.todo('hide 在窗口关闭时触发的事件')
+  test('confirm & cancel', async () => {
+    let visible = true
+    const confirmFn = vi.fn()
+    const cancelFn = vi.fn()
 
-  test.todo('confirm 点击关闭按钮时触发的事件')
+    const wrapper = mount(() => (
+      <Modal v-model={visible} showFooter={true} type="confirm" onConfirm={confirmFn} onCancel={cancelFn}></Modal>
+    ))
 
-  test.todo('cancel 点击取消按钮时触发的事件')
+    const [confirmButton, cancelButton] = wrapper.findAll('.tiny-button')
+
+    await confirmButton.trigger('click')
+    expect(confirmFn).toHaveBeenCalled()
+
+    await cancelButton.trigger('click')
+    expect(cancelFn).toHaveBeenCalled()
+
+    wrapper.unmount()
+  })
 
   test.todo('zoom 窗口缩放时触发的事件')
 })
-
