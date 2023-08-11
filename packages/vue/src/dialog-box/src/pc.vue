@@ -14,6 +14,7 @@
     <div v-show="visible" :class="['tiny-dialog-box__wrapper', dialogClass]" @click.self="handleWrapperClick">
       <div
         ref="dialog"
+        v-if="destroyOnClose ? visible : true"
         :class="[
           {
             'is-fullscreen': state.isFull,
@@ -29,17 +30,35 @@
           <slot name="title">
             <span class="tiny-dialog-box__title">{{ title }}</span>
           </slot>
-          <button v-if="showClose" type="button" class="tiny-dialog-box__headerbtn" aria-label="Close" @click="handleClose('close', $event)">
+          <button
+            v-if="showClose"
+            type="button"
+            class="tiny-dialog-box__headerbtn"
+            aria-label="Close"
+            @click="handleClose('close', $event)"
+          >
             <icon-close class="tiny-svg-size tiny-dialog-box__close" />
           </button>
-          <button v-if="resize && !state.isFull" type="button" class="tiny-dialog-box__headerbtn" aria-label="Resize" @click="state.isFull = true">
+          <button
+            v-if="resize && !state.isFull"
+            type="button"
+            class="tiny-dialog-box__headerbtn"
+            aria-label="Resize"
+            @click="state.isFull = true"
+          >
             <icon-fullscreen class="tiny-svg-size tiny-dialog-box__close" />
           </button>
-          <button v-if="resize && state.isFull" type="button" class="tiny-dialog-box__headerbtn" aria-label="Resize" @click="state.isFull = false">
+          <button
+            v-if="resize && state.isFull"
+            type="button"
+            class="tiny-dialog-box__headerbtn"
+            aria-label="Resize"
+            @click="state.isFull = false"
+          >
             <icon-minscreen class="tiny-svg-size tiny-dialog-box__close" />
           </button>
         </div>
-        <div class="tiny-dialog-box__body">
+        <div class="tiny-dialog-box__body" :style="state.bodyStyle">
           <slot></slot>
         </div>
         <div v-if="slots.footer" class="tiny-dialog-box__footer">
@@ -55,13 +74,27 @@ import { renderless, api } from '@opentiny/vue-renderless/dialog-box/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconClose, iconFullscreen, iconMinscreen } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/dialog-box/index.less'
+
 export default defineComponent({
   components: {
     IconClose: iconClose(),
     IconFullscreen: iconFullscreen(),
     IconMinscreen: iconMinscreen()
   },
-  emits: ['update:visible', 'change', 'before-close', 'open', 'close', 'opened', 'confirm', 'cancel', 'closed', 'drag-start', 'drag-move', 'drag-end'],
+  emits: [
+    'update:visible',
+    'change',
+    'before-close',
+    'open',
+    'close',
+    'opened',
+    'confirm',
+    'cancel',
+    'closed',
+    'drag-start',
+    'drag-move',
+    'drag-end'
+  ],
   props: [
     ...props,
     'resize',

@@ -6,5 +6,6 @@ export const tinyIpAddressSmbTheme = {
   'ti-ip-address-input-width': 'var(--ti-common-size-8x)',
   'ti-ip-address-disabled-bg-color': 'rgba(0,0,0,0.05)',
   'ti-ip-address-normal-font-family': '"Manrop","Manrope-Medium"',
-  'ti-ip-address-normal-border-color': 'var(--ti-common-color-line-normal)'
+  'ti-ip-address-normal-border-color': 'var(--ti-common-color-line-normal)',
+  'ti-ip-address-padding-horizontal': 'var(--ti-common-space-3x)'
 }

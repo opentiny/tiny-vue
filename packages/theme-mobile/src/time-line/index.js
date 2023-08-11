@@ -11,6 +11,5 @@ export default {
   'tiny-mobile-timeline-complete-icon-bgcolor': '#f8f8f8',
   'tiny-mobile-timeline-fail-icon-color': '#f36f64',
   'tiny-mobile-timeline-success-icon-color': '#50e3c2',
-  'tiny-mobile-timeline-current-icon-color':
-    'radial-gradient(#fff, #fff 15%, #36b2ef, #90d3f3, #cdebfa, #fff)'
+  'tiny-mobile-timeline-current-icon-color': 'radial-gradient(#fff, #fff 15%, #36b2ef, #90d3f3, #cdebfa, #fff)'
 }

@@ -13,11 +13,11 @@ import { Badge, Button } from '@opentiny/vue'
 export default {
   components: {
     TinyBadge: Badge,
-    TinyButton: Button,
+    TinyButton: Button
   },
   data() {
     return {
-      unread: 2,
+      unread: 2
     }
   },
   methods: {
@@ -25,8 +25,8 @@ export default {
       if (this.unread > 0) {
         this.unread = this.unread - 1
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

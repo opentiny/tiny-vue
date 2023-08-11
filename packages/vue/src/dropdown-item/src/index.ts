@@ -9,6 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
@@ -30,8 +31,16 @@ export default defineComponent({
     icon: [String, Object],
     disabled: Boolean,
     divided: Boolean,
-    command: {},
+    itemData: {
+      type: [String, Object],
+      default: ''
+    },
     title: String,
+    label: {
+      type: String,
+      default: ''
+    },
+    level: String,
     titleClass: String,
     options: {
       type: Array,
@@ -40,22 +49,6 @@ export default defineComponent({
     type: {
       type: String,
       default: 'selection'
-    },
-    label: {
-      type: String,
-      default: ''
-    },
-    itemData: {
-      type: Object,
-      default: () => ({})
-    },
-    appendToBody: {
-      type: Boolean,
-      default: true
-    },
-    textField: {
-      type: String,
-      default: 'label'
     },
     selected: {
       type: Boolean,
@@ -72,6 +65,22 @@ export default defineComponent({
     currentIndex: {
       type: Number,
       default: () => -1
+    },
+    appendToBody: {
+      type: Boolean,
+      default: true
+    },
+    textField: {
+      type: String,
+      default: 'label'
+    },
+    tip: {
+      type: [String, Function],
+      default: ''
+    },
+    tipPosition: {
+      type: String,
+      default: 'right'
     }
   },
   setup(props, context) {

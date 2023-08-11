@@ -34,8 +34,8 @@ export const api = [
 
 export const renderless = (props, hooks, instance) => {
   const api = {}
-  const { reactive, provide, onMounted } = hooks
-  const { nextTick, mode, vm, parent, dispatch, emit, refs } = instance
+  const { reactive, provide, onMounted, inject } = hooks
+  const { nextTick, mode, vm, parent, dispatch, emit } = instance
   const state = reactive({
     offset: 0,
     scroller: null,
@@ -48,22 +48,23 @@ export const renderless = (props, hooks, instance) => {
     selectedIndex: -1
   })
 
-  provide('dropdownMenu', vm)
+  provide('dropdownMenuVm', vm)
   provide('multiStage', props.multiStage)
+  const dropdownVm = inject('dropdownVm')
 
   if (mode === 'mobile') {
     nextTick(() => {
-      state.scroller = getScroller(refs.menu)
+      state.scroller = getScroller(vm.$refs.menu)
     })
   } else {
-    useVuePopper({ api, hooks, props, instance, state })
+    useVuePopper({ api, hooks, props, instance, state, dropdownVm })
   }
 
   Object.assign(api, {
     state,
     toggleItem: toggleItem(state),
-    clickOutside: clickOutside({ props, refs, state }),
-    updateOffset: updateOffset({ props, state, refs }),
+    clickOutside: clickOutside({ props, state }),
+    updateOffset: updateOffset({ props, state, vm }),
     mounted: mounted({ api, parent, state }),
     handleMouseenter: handleMouseenter({ emit }),
     handleMouseleave: handleMouseleave({ emit }),

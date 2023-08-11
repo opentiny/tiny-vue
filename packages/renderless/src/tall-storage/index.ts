@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { KEY_CODE } from '../common'
 
@@ -22,42 +22,46 @@ export const mousedown = (event) => {
   return false
 }
 
-export const selectItem = ({ emit, state }) => (value) => {
-  state.hoverValue = ''
-  emit('selected', value)
-}
-
-export const keydown = ({ emit, props, state }) => () => {
-  const key = window.event.keyCode
-  const index = props.localstorageData.indexOf(state.hoverValue)
-  const endIndex = props.localstorageData.length - 1
-
-  if (key === KEY_CODE.ArrowUp && props.isMemoryStorage) {
-    if (index > 0 && index <= endIndex) {
-      state.hoverValue = props.localstorageData[index - 1]
-    } else {
-      state.hoverValue = props.localstorageData[endIndex]
-    }
-
-    return false
+export const selectItem =
+  ({ emit, state }) =>
+  (value) => {
+    state.hoverValue = ''
+    emit('selected', value)
   }
 
-  if (key === KEY_CODE.ArrowDown && props.isMemoryStorage) {
-    if (index >= 0 && index < endIndex) {
-      state.hoverValue = props.localstorageData[index + 1]
-    } else {
-      state.hoverValue = props.localstorageData[0]
+export const keydown =
+  ({ emit, props, state }) =>
+  () => {
+    const key = window.event.keyCode
+    const index = props.localstorageData.indexOf(state.hoverValue)
+    const endIndex = props.localstorageData.length - 1
+
+    if (key === KEY_CODE.ArrowUp && props.isMemoryStorage) {
+      if (index > 0 && index <= endIndex) {
+        state.hoverValue = props.localstorageData[index - 1]
+      } else {
+        state.hoverValue = props.localstorageData[endIndex]
+      }
+
+      return false
     }
 
-    return false
-  }
+    if (key === KEY_CODE.ArrowDown && props.isMemoryStorage) {
+      if (index >= 0 && index < endIndex) {
+        state.hoverValue = props.localstorageData[index + 1]
+      } else {
+        state.hoverValue = props.localstorageData[0]
+      }
 
-  if (key === KEY_CODE.NumpadEnter) {
-    if (props.isMemoryStorage && state.hoverValue && state.hoverValue.length > 0) {
-      emit('selected', state.hoverValue)
+      return false
+    }
+
+    if (key === KEY_CODE.NumpadEnter) {
+      if (props.isMemoryStorage && state.hoverValue && state.hoverValue.length > 0) {
+        emit('selected', state.hoverValue)
+      }
     }
   }
-}
 
 const sortDeduplication = (array) => {
   const memorySpace = 5 // 一个name的记忆量
@@ -130,43 +134,47 @@ export const addMemory = (props) => (value) => {
   }
 }
 
-export const searchMemory = ({ props, state }) => (inputVal) => {
-  if (!props.name) {
-    return
-  }
-  const memoryBox = localStorage.getItem(props.name)
-  let storageData = []
-  let isMemoryStorage = true
+export const searchMemory =
+  ({ props, state }) =>
+  (inputVal) => {
+    if (!props.name) {
+      return
+    }
+    const memoryBox = localStorage.getItem(props.name)
+    let storageData = []
+    let isMemoryStorage = true
 
-  if (isJSONobject(memoryBox)) {
-    const memoryArry = JSON.parse(memoryBox)
+    if (isJSONobject(memoryBox)) {
+      const memoryArry = JSON.parse(memoryBox)
 
-    if (!inputVal) {
-      storageData = JSON.parse(memoryBox)
+      if (!inputVal) {
+        storageData = JSON.parse(memoryBox)
+      } else {
+        for (let i = 0, len = memoryArry.length; i < len; i++) {
+          memoryArry[i].includes(inputVal) && storageData.push(memoryArry[i])
+        }
+      }
+
+      if (storageData.length === 0) {
+        isMemoryStorage = false
+      }
     } else {
-      for (let i = 0, len = memoryArry.length; i < len; i++) {
-        memoryArry[i].includes(inputVal) && storageData.push(memoryArry[i])
+      if (memoryBox === null) {
+        isMemoryStorage = false
+      } else {
+        storageData.push(memoryBox)
       }
     }
 
-    if (storageData.length === 0) {
-      isMemoryStorage = false
-    }
-  } else {
-    if (memoryBox === null) {
-      isMemoryStorage = false
-    } else {
-      storageData.push(memoryBox)
-    }
+    state.storageData = storageData
+    state.isMemoryStorage = isMemoryStorage
   }
 
-  state.storageData = storageData
-  state.isMemoryStorage = isMemoryStorage
-}
-
-export const selectedMemory = ({ api, state }) => (value) => {
-  api.getInput().value = value
-  api.handleInput({ target: { value } })
-  api.handleChange({ target: { value } })
-  state.isMemoryStorage = false
-}
+export const selectedMemory =
+  ({ api, state }) =>
+  (value) => {
+    api.getInput().value = value
+    api.handleInput({ target: { value } })
+    api.handleChange({ target: { value } })
+    state.isMemoryStorage = false
+  }

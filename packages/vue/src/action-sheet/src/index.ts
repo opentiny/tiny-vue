@@ -59,7 +59,7 @@ export default defineComponent({
     },
     contentStyle: {
       type: Object,
-      default: () => ({}),
+      default: () => ({})
     }
   },
   setup(props, context) {

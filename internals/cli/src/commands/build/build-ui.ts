@@ -10,7 +10,7 @@ import { getAlias, pathFromWorkspaceRoot } from '../../config/vite'
 import { external } from '../../shared/config'
 import type { Module } from '../../shared/module-utils'
 import { getAllIcons, getAllModules, getByName } from '../../shared/module-utils'
-import { logGreen, kebabCase, capitalizeKebabCase, getMinorVersion } from '../../shared/utils'
+import { logGreen, kebabCase, capitalizeKebabCase, getMinorVersion, isValidVersion } from '../../shared/utils'
 import generatePackageJsonPlugin from './rollup/generate-package-json'
 import inlineChunksPlugin from './rollup/inline-chunks'
 import replaceModuleNamePlugin from './rollup/replace-module-name'
@@ -33,7 +33,7 @@ export const getVuePlugins = (vueVersion: string) => {
             }
           }
         }),
-        vue2SvgPlugin()
+        vue2SvgPlugin({ svgoConfig: { plugins: ['preset-default', 'prefixIds'] } })
       ]
     },
     '2.7': () => {
@@ -52,7 +52,7 @@ export const getVuePlugins = (vueVersion: string) => {
           }
         }),
         vue27JsxPlugin({ injectH: false }),
-        vue2SvgPlugin()
+        vue2SvgPlugin({ svgoConfig: { plugins: ['preset-default', 'prefixIds'] } })
       ]
     },
     '3': () => {
@@ -68,7 +68,7 @@ export const getVuePlugins = (vueVersion: string) => {
           }
         }),
         vue3JsxPlugin(),
-        vue3SvgPlugin()
+        vue3SvgPlugin({ defaultImport: 'component', svgoConfig: { plugins: ['preset-default', 'prefixIds'] } })
       ]
     }
   }
@@ -100,7 +100,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
       dts &&
         dtsPlugin({
           root: pathFromWorkspaceRoot(),
-          tsConfigFilePath: `tsconfig.vue${vueVersion}.json`,
+          tsconfigPath: `tsconfig.vue${vueVersion}.json`,
           aliasesExclude: [/@opentiny\/vue.+/],
           compilerOptions: {
             paths: {
@@ -113,8 +113,6 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
             }
           },
           include: [...dtsInclude, 'packages/vue/*.d.ts'],
-          // 忽略类型检查错误，保证生成不会阻断
-          skipDiagnostics: true,
           beforeWriteFile: (filePath, content) => {
             return {
               // "vue/src/alert/index.d.ts" ==> "alert/index.d.ts"
@@ -130,8 +128,8 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
       !isRuntime &&
         generatePackageJsonPlugin({
           beforeWriteFile: (filePath, content) => {
-            const versionTarget = `${ns(vueVersion)}.${buildTarget}`
-            const themeAndRenderlessVersion = `3.${buildTarget}`
+            const versionTarget = isValidVersion(buildTarget) ? buildTarget : `${ns(vueVersion)}.${buildTarget}`
+            const themeAndRenderlessVersion = isValidVersion(buildTarget) ? buildTarget : `3.${buildTarget}`
             const isThemeOrRenderless = (key) =>
               key.includes('@opentiny/vue-theme') || key.includes('@opentiny/vue-renderless')
 
@@ -155,6 +153,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
             // 如果是主入口或者svg图标则直接指向相同路径
             if (
               filePath === 'vue-icon' ||
+              filePath === 'vue-icon-saas' ||
               filePath === 'vue' ||
               filePath === 'design/smb' ||
               filePath === 'design/aurora'
@@ -168,7 +167,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
 
             // 为主入口包添加readme和LICENSE
             if (filePath === 'vue') {
-              ['README.md', 'README.zh-CN.md', 'LICENSE'].forEach((item) => {
+              ;['README.md', 'README.zh-CN.md', 'LICENSE'].forEach((item) => {
                 fs.copySync(
                   pathFromWorkspaceRoot(item),
                   path.resolve(pathFromPackages(''), `dist${vueVersion}/@opentiny/vue/${item}`)
@@ -210,9 +209,9 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
   })
 }
 
-async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir, dts, buildTarget }) {
+async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir, dts, buildTarget, npmScope }) {
   const rootDir = pathFromPackages('')
-  const outDir = path.resolve(rootDir, `dist${vueVersion}/@opentiny`)
+  const outDir = path.resolve(rootDir, `dist${vueVersion}/${npmScope}`)
   await batchBuild({
     vueVersion,
     tasks,
@@ -268,7 +267,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
             }
 
             // 子图标排除周边引用, 这里注意不要排除svg图标
-            if (/vue-icon\/.+\/index/.test(importer)) {
+            if (/vue-icon(-saas)?\/.+\/index/.test(importer)) {
               return !/\.svg/.test(source)
             }
 
@@ -349,7 +348,14 @@ function getTasks(names: string[]): Module[] {
 
 export async function buildUi(
   names: string[] = [],
-  { vueVersions = ['2', '3'], buildTarget = '8.0', formats = ['es'], clean = false, dts = true }: BuildUiOption
+  {
+    vueVersions = ['2', '3'],
+    buildTarget = '8.0',
+    formats = ['es'],
+    clean = false,
+    dts = true,
+    scope = '@opentiny'
+  }: BuildUiOption
 ) {
   // 是否清空构建目录
   let emptyOutDir = clean
@@ -370,7 +376,7 @@ export async function buildUi(
   // 要构建的vue框架版本
   for (const vueVersion of vueVersions) {
     const message = `TINY for vue${vueVersion}: ${JSON.stringify(names.length ? names : '全量')}`
-    await batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir, dts, buildTarget })
+    await batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir, dts, buildTarget, npmScope: scope })
     // 确保只运行一次
     emptyOutDir = false
   }

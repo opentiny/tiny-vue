@@ -4,7 +4,12 @@
     <p>值：{{ value }}</p>
     <p>格式化值：{{ formatValue }}</p>
 
-    <tiny-date-picker-mobile v-model="value" title="日期选择" :visible="boxVisibility" @update:visible="boxVisibility = $event">
+    <tiny-date-picker-mobile
+      v-model="value"
+      title="日期选择"
+      :visible="boxVisibility"
+      @update:visible="boxVisibility = $event"
+    >
     </tiny-date-picker-mobile>
   </div>
 </template>

@@ -82,7 +82,8 @@ export default defineComponent({
           selecting: false
         }
       }
-    }
+    },
+    formatWeeks: Function
   },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })

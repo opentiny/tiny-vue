@@ -1,20 +1,40 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
-import { initData, dialogTitle, disabledParentNode, filterNode, getValue, hideDialog, showDialog, sureNodevalue, disabledTreeNode, initService } from './index'
+import {
+  initData,
+  dialogTitle,
+  disabledParentNode,
+  filterNode,
+  getValue,
+  hideDialog,
+  showDialog,
+  sureNodevalue,
+  disabledTreeNode,
+  initService
+} from './index'
 import { copyArray } from '../common/object'
 import { setMenuKey } from '../tree-menu'
 
-export const api = ['state', 'initData', 'filterNode', 'getValue', 'hideDialog', 'setMenuKey', 'showDialog', 'sureNodevalue']
+export const api = [
+  'state',
+  'initData',
+  'filterNode',
+  'getValue',
+  'hideDialog',
+  'setMenuKey',
+  'showDialog',
+  'sureNodevalue'
+]
 
 const initState = ({ reactive, computed, api }) => {
   const state = reactive({
@@ -77,7 +97,11 @@ const initApi = ({ api, state, constants, props, t, service, vm }) => {
   })
 }
 
-export const renderless = (props, { computed, onMounted, reactive, watch }, { t, vm, service, constants, nextTick }) => {
+export const renderless = (
+  props,
+  { computed, onMounted, reactive, watch },
+  { t, vm, service, constants, nextTick }
+) => {
   service = initService({ props, service })
 
   const api = {}

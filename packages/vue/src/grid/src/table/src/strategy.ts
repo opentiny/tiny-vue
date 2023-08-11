@@ -47,7 +47,10 @@ const setTotalRows = (_vm) => {
     // 如果展开节点的父节点或者祖宗节点只要有一个处于关闭状态，则需要过滤此项，否则在虚拟滚动情况下，渲染条数会计算错误
     const newTreeExpandeds = treeExpandeds.filter((item) => isParentExpand(item, hasTreeExpand, parentRowMap))
 
-    Array.isArray(newTreeExpandeds) && newTreeExpandeds.forEach((expandRow) => Array.isArray(expandRow[children]) && (totalRows += expandRow[children].length))
+    Array.isArray(newTreeExpandeds) &&
+      newTreeExpandeds.forEach(
+        (expandRow) => Array.isArray(expandRow[children]) && (totalRows += expandRow[children].length)
+      )
   }
 
   TOTALROWS_MAP.set(_vm, totalRows)
@@ -102,7 +105,15 @@ const getChart = (_vm) => {
   return chart
 }
 
-const sliceTreeData = ({ afterFullData, renderSize, scrollYLoad, startIndex, treeConfig, treeExpandeds, parentRowMap }) => {
+const sliceTreeData = ({
+  afterFullData,
+  renderSize,
+  scrollYLoad,
+  startIndex,
+  treeConfig,
+  treeExpandeds,
+  parentRowMap
+}) => {
   const { temporaryChildren = TEMPORARY_CHILDREN, temporaryShow = TEMPORARY_SHOW } = treeConfig
   const chart = getChart({ afterFullData, scrollYLoad, treeConfig, treeExpandeds, parentRowMap })
   const subChart = chart.slice(startIndex, startIndex + renderSize)
@@ -158,12 +169,28 @@ const sliceTreeData = ({ afterFullData, renderSize, scrollYLoad, startIndex, tre
   return subTree
 }
 
-const sliceFullData = ({ afterFullData, renderSize, scrollYLoad, startIndex, treeConfig, treeExpandeds, parentRowMap }) => {
+const sliceFullData = ({
+  afterFullData,
+  renderSize,
+  scrollYLoad,
+  startIndex,
+  treeConfig,
+  treeExpandeds,
+  parentRowMap
+}) => {
   let result
 
   if (scrollYLoad) {
     if (treeConfig) {
-      result = sliceTreeData({ afterFullData, renderSize, scrollYLoad, startIndex, treeConfig, treeExpandeds, parentRowMap })
+      result = sliceTreeData({
+        afterFullData,
+        renderSize,
+        scrollYLoad,
+        startIndex,
+        treeConfig,
+        treeExpandeds,
+        parentRowMap
+      })
     } else {
       result = afterFullData.slice(startIndex, startIndex + renderSize)
     }

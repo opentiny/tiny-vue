@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 300px;">
+  <div style="height: 300px">
     <p><tiny-button @click="value = [2, 1, 2, [1, 4, 5]]">点击改变当前值</tiny-button> 值：{{ value }}</p>
     <br />
     <tiny-filter v-model="value" :data="data" @update:modelValue="aa"></tiny-filter>

@@ -15,7 +15,7 @@ import { $prefix, setup, h, defineComponent } from '@opentiny/vue-common'
 import Checkbox from '@opentiny/vue-checkbox'
 import Radio from '@opentiny/vue-radio'
 import { isEqual } from '@opentiny/vue-renderless/common/object'
-import { iconLoading, iconDeltaRight, iconYes } from '@opentiny/vue-icon'
+import { iconLoading, iconChevronRight, iconYes } from '@opentiny/vue-icon'
 
 export default defineComponent({
   name: $prefix + 'CascaderNode',
@@ -24,7 +24,7 @@ export default defineComponent({
     TinyRadio: Radio,
     IconYes: iconYes(),
     IconLoading: iconLoading(),
-    IconDeltaRight: iconDeltaRight()
+    IconChevronRight: iconChevronRight()
   },
   inheritAttrs: false,
   emits: ['expand', 'update:modelValue', 'expand-change', 'active-item-change', 'change'],
@@ -104,7 +104,7 @@ export default defineComponent({
 
     const renderLoadingIcon = () => <icon-loading class="tiny-cascader-node__postfix"></icon-loading>
 
-    const renderExpandIcon = () => <icon-delta-right class="tiny-cascader-node__postfix"></icon-delta-right>
+    const renderExpandIcon = () => <icon-chevron-right class="tiny-cascader-node__postfix"></icon-chevron-right>
 
     const renderContent = () => {
       const { panel, node } = this

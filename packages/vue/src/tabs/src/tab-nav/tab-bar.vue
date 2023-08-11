@@ -14,12 +14,13 @@
 </template>
 
 <script lang="tsx">
-import { $prefix, setup } from '@opentiny/vue-common'
+import { $prefix, setup, $props } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/tab-bar/vue'
 
 export default {
   name: $prefix + 'TabBar',
   props: {
+    ...$props,
     tabs: Array
   },
   setup(props, context) {

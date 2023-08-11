@@ -1,5 +1,5 @@
 <template>
-  <tiny-card title="这是卡片标题" type="image" src="static/images/dsj.png">
+  <tiny-card title="这是卡片标题" type="image" src="/static/images/dsj.png">
     <p>
       这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，
       这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，

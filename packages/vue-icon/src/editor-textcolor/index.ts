@@ -12,4 +12,4 @@
 import { svg } from '@opentiny/vue-common'
 import EditorTextcolor from '@opentiny/vue-theme/svgs/editor-textcolor.svg'
 
-export default svg({ name: 'EditorTextcolor', component: EditorTextcolor })
+export default () => svg({ name: 'EditorTextcolor', component: EditorTextcolor })()

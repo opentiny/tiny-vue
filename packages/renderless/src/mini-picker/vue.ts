@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   visibleHandle,
@@ -74,22 +74,22 @@ const initState = ({ reactive, computed, props, api }) => {
   return state
 }
 
-const initApi = ({ api, props, state, emit, refs }) => {
+const initApi = ({ api, props, state, emit, childrenPickerRefs }) => {
   Object.assign(api, {
     state,
-    getColumn: getColumn(refs),
-    getValues: getValues(refs),
-    getIndexes: getIndexes(refs),
+    getColumn: getColumn(childrenPickerRefs),
+    getValues: getValues(childrenPickerRefs),
+    getIndexes: getIndexes(childrenPickerRefs),
     getDataType: getDataType(state),
     visibleHandle: visibleHandle(emit),
     formatCascade: formatCascade({ state, props }),
-    getColumnValues: getColumnValues(refs),
-    setColumnValues: setColumnValues(refs),
+    getColumnValues: getColumnValues(childrenPickerRefs),
+    setColumnValues: setColumnValues(childrenPickerRefs),
     emitEvent: emitEvent({ api, state, emit }),
     change: change(api),
     onChange: onChange({ api, state, emit }),
     cancel: cancel({ api, emit }),
-    confirm: confirm({ api, refs }),
+    confirm: confirm({ api, childrenPickerRefs }),
     format: format({ state, api }),
     setValues: setValues(api),
     setIndexes: setIndexes(api),
@@ -121,16 +121,16 @@ const initWatch = ({ watch, props, state, api }) => {
 
 export const renderless = (props, { computed, onMounted, reactive, watch }, { emit, nextTick, vm, constants }) => {
   const api = {}
-  const refs = { childrenPicker: null }
+  const childrenPickerRefs = { childrenPicker: null }
   const state = initState({ reactive, computed, props, api })
 
-  initApi({ api, props, state, emit, refs })
+  initApi({ api, props, state, emit, childrenPickerRefs })
 
   initWatch({ watch, props, state, api })
 
   onMounted(() => {
     nextTick(() => {
-      refs.childrenPicker = getChildrenComponent({ state, vm, constants })
+      childrenPickerRefs.childrenPicker = getChildrenComponent({ state, vm, constants })
     })
 
     api.format()

@@ -32,5 +32,5 @@ export default {
   'tiny-mobile-steps-timeline-bg-color-success': '#5bd475',
   'tiny-mobile-steps-timeline-bg-color-error': '#eb5454',
   'tiny-mobile-steps-timeline-bg-color-handing': '#4a79fe',
-  'tiny-mobile-steps-arrow-btn-border-color': '#999',
+  'tiny-mobile-steps-arrow-btn-border-color': '#999'
 }

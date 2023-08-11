@@ -38,9 +38,9 @@ npm i @opentiny/vue@2
 
 在`App.vue`文件中使用 TinyVue 组件。
 
-```vue
+```html
 <script lang="ts" setup>
-import { Button as TinyButton } from '@opentiny/vue'
+  import { Button as TinyButton } from '@opentiny/vue'
 </script>
 
 <template>

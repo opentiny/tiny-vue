@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import debounce from '../common/deps/debounce'
 import {
@@ -57,7 +57,27 @@ import {
   clearCurrentStore,
   initIsCurrent,
   beforeUnmount,
-  wrapMounted
+  wrapMounted,
+  switchToggle,
+  initTreeStore,
+  getSameDataIndex,
+  loopGetTreeData,
+  cancelDelete,
+  deleteAction,
+  deleteConfirm,
+  openEdit,
+  saveNode,
+  addNode,
+  editNode,
+  closeEdit,
+  saveEdit,
+  setAddDisabledKeys,
+  setEditDisabledKeys,
+  setDeleteDisabledKeys,
+  initPlainNodeStore,
+  handleCheckPlainNode,
+  handleClickPlainNode,
+  setCheckedByNodeKey
 } from './index'
 
 export const api = [
@@ -88,16 +108,38 @@ export const api = [
   'handleKeydown',
   'setCurrentRadio',
   'expandAllNodes',
-  'clearCurrentStore'
+  'clearCurrentStore',
+  'switchToggle',
+  'initTreeStore',
+  'getSameDataIndex',
+  'loopGetTreeData',
+  'cancelDelete',
+  'deleteAction',
+  'deleteConfirm',
+  'openEdit',
+  'saveNode',
+  'addNode',
+  'editNode',
+  'closeEdit',
+  'saveEdit',
+  'setAddDisabledKeys',
+  'setEditDisabledKeys',
+  'setDeleteDisabledKeys',
+  'handleCheckPlainNode',
+  'handleClickPlainNode',
+  'setCheckedByNodeKey'
 ]
 
 const initState = ({ reactive, emitter, props, computed, api }) => {
   const state = reactive({
+    loaded: false,
+    checkEasily: false,
     root: null,
     store: null,
     treeItems: null,
     currentNode: null,
     checkboxItems: [],
+    isEmpty: false,
     emitter: emitter(),
     expandIcon: props.expandIcon,
     shrinkIcon: props.shrinkIcon,
@@ -110,9 +152,28 @@ const initState = ({ reactive, emitter, props, computed, api }) => {
       set: (data) => api.setChildren(data)
     }),
     treeItemArray: computed(() => api.computedTreeItemArray(props, state)),
-    isEmpty: computed(() => api.computedIsEmpty(props, state)),
     showEmptyText: computed(() => api.computedShowEmptyText(props, state)),
-    currentStore: { flag: false, node: null }
+    currentStore: { flag: false, node: null },
+    action: {
+      deleteDisabled: [],
+      editDisabled: [],
+      addDisabled: [],
+      show: false,
+      node: null,
+      data: [],
+      label: '',
+      type: '',
+      isLeaf: false,
+      isSaveChildNode: false,
+      referenceElm: null,
+      popoverVisible: false
+    },
+    treeEdit: {
+      addData: [],
+      deleteData: [],
+      editData: []
+    },
+    plainNodeStore: {}
   })
 
   return state
@@ -127,8 +188,8 @@ const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, re
   computedTreeItemArray: computedTreeItemArray(),
   computedIsEmpty: computedIsEmpty(),
   watchDefaultCheckedKeys: watchDefaultCheckedKeys(state),
-  watchData: watchData(state),
-  watchCheckboxItems: watchCheckboxItems(state),
+  watchData: watchData({ state }),
+  watchCheckboxItems: watchCheckboxItems(),
   watchCheckStrictly: watchCheckStrictly(state),
   updated: updated({ vm, state }),
   filter: filter({ props, state }),
@@ -156,52 +217,97 @@ const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, re
   setCurrentRadio: setCurrentRadio({ props, state }),
   expandAllNodes: expandAllNodes({ state }),
   dragStart: dragStart({ props, state, emit }),
-  dragOver: dragOver({ props, state, emit, refs, vm }),
+  dragOver: dragOver({ props, state, emit, vm }),
   dragEnd: dragEnd({ state, emit }),
   clearCurrentStore: clearCurrentStore(state),
-  initIsCurrent: debounce(20, initIsCurrent({ props, state }))
+  initIsCurrent: debounce(20, initIsCurrent({ props, state })),
+  setCheckedByNodeKey: setCheckedByNodeKey({ props, state })
 })
 
-const initWatcher = ({ watch, props, api }) => {
+const initWatcher = ({ watch, props, api, state }) => {
   watch(() => props.defaultCheckedKeys, api.watchDefaultCheckedKeys)
 
   watch(() => props.defaultExpandedKeys, api.watchDefaultExpandedKeys)
 
   watch(() => props.defaultExpandedKeysHighlight, api.initIsCurrent)
 
-  watch(() => props.data, api.watchData)
+  watch(() => props.data, api.watchData, { deep: true })
 
   watch(() => props.checkboxItems, api.watchCheckboxItems)
 
   watch(() => props.checkStrictly, api.watchCheckStrictly)
 
   watch(() => props.defaultCheckedKeys, api.setCurrentRadio, { immediate: true })
+
+  watch(
+    () => props.deleteDisabledKeys,
+    (value) => (state.action.deleteDisabled = value || []),
+    { immediate: true }
+  )
+  watch(
+    () => props.editDisabledKeys,
+    (value) => (state.action.editDisabled = value || []),
+    { immediate: true }
+  )
+  watch(
+    () => props.addDisabledKeys,
+    (value) => (state.action.addDisabled = value || []),
+    { immediate: true }
+  )
+
+  watch(
+    () => state.root,
+    () => {
+      state.isEmpty = api.computedIsEmpty(props, state)
+      api.initPlainNodeStore()
+    },
+    { deep: true }
+  )
 }
 
 export const renderless = (
   props,
   { computed, onMounted, onUpdated, reactive, watch, provide, onBeforeUnmount },
-  { vm, t, refs, emit, constants, broadcast, dispatch, service, emitter, nextTick }
+  { vm, t, emit, constants, broadcast, dispatch, service, emitter, nextTick }
 ) => {
   const api = {}
   const state = initState({ reactive, emitter, props, computed, api })
 
   provide('parentEmitter', state.emitter)
 
-  Object.assign(api, initApi({ state, dispatch, broadcast, props, vm, constants, t, emit, refs }), {
+  Object.assign(api, initApi({ state, dispatch, broadcast, props, vm, constants, t, emit }), {
     closeMenu: closeMenu(state),
     mounted: mounted({ api, vm }),
     created: created({ api, props, state }),
     getCurrentKey: getCurrentKey({ api, props }),
     handleNodeExpand: handleNodeExpand(emit),
-    beforeUnmount: beforeUnmount({ api, vm }),
+    beforeUnmount: beforeUnmount({ api, vm, state }),
     wrapMounted: wrapMounted({ api, props, service }),
-    watchDefaultExpandedKeys: watchDefaultExpandedKeys({ state, api, nextTick })
+    initTreeStore: initTreeStore({ api, props, state, emit }),
+    deleteAction: deleteAction({ state, api, emit }),
+    deleteConfirm: deleteConfirm({ state }),
+    getSameDataIndex,
+    loopGetTreeData,
+    cancelDelete: cancelDelete({ state }),
+    openEdit: openEdit({ props, state, api, emit }),
+    saveNode: saveNode({ state, emit, api }),
+    addNode: addNode({ api }),
+    editNode: editNode({ state }),
+    closeEdit: closeEdit({ props, state, api, emit }),
+    saveEdit: saveEdit({ props, state, emit }),
+    setAddDisabledKeys: setAddDisabledKeys({ state }),
+    setEditDisabledKeys: setEditDisabledKeys({ state }),
+    setDeleteDisabledKeys: setDeleteDisabledKeys({ state }),
+    watchDefaultExpandedKeys: watchDefaultExpandedKeys({ state, api, nextTick }),
+    switchToggle: switchToggle({ state }),
+    initPlainNodeStore: initPlainNodeStore({ props, state }),
+    handleCheckPlainNode: handleCheckPlainNode({ props, emit }),
+    handleClickPlainNode: handleClickPlainNode(emit)
   })
 
   api.created()
 
-  initWatcher({ watch, props, api })
+  initWatcher({ watch, props, api, state })
 
   onMounted(api.wrapMounted)
 

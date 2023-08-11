@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   resetView,
@@ -28,7 +28,17 @@ import {
 } from './index'
 import { nextYear } from '../common/deps/date-util'
 
-export const api = ['state', 'rightNextYear', 'rightPrevYear', 'handleRangePick', 'handleShortcutClick', 'handleChangeRange', 'leftPrevYear', 'leftNextYear']
+export const api = [
+  'state',
+  'rightNextYear',
+  'rightPrevYear',
+  'handleRangePick',
+  'handleShortcutClick',
+  'handleChangeRange',
+  'leftPrevYear',
+  'leftNextYear',
+  'isValidValue'
+]
 
 const initState = ({ reactive, computed, api, t }) => {
   const state = reactive({
@@ -48,14 +58,18 @@ const initState = ({ reactive, computed, api, t }) => {
     arrowControl: false,
     unlinkPanels: false,
 
-    btnDisabled: computed(() => !(state.minDate && state.maxDate && !state.selecting && api.isValidValue([state.minDate, state.maxDate]))),
+    btnDisabled: computed(
+      () => !(state.minDate && state.maxDate && !state.selecting && api.isValidValue([state.minDate, state.maxDate]))
+    ),
 
     leftLabel: computed(() => state.leftDate.getFullYear() + ' ' + t('ui.datepicker.year')),
     rightLabel: computed(() => state.rightDate.getFullYear() + ' ' + t('ui.datepicker.year')),
     leftYear: computed(() => state.leftDate.getFullYear()),
 
     rightYear: computed(() =>
-      state.rightDate.getFullYear() === state.leftDate.getFullYear() ? state.leftDate.getFullYear() + 1 : state.rightDate.getFullYear()
+      state.rightDate.getFullYear() === state.leftDate.getFullYear()
+        ? state.leftDate.getFullYear() + 1
+        : state.rightDate.getFullYear()
     ),
 
     enableYearArrow: computed(() => state.unlinkPanels && state.rightYear > state.leftYear + 1)

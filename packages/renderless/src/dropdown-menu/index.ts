@@ -41,13 +41,13 @@ export const toggleItem = (state) => (active, item) => {
 }
 
 export const updateOffset =
-  ({ props, state, refs }) =>
+  ({ props, state, vm }) =>
   () => {
-    if (!refs.menu) {
+    if (!vm.$refs.menu) {
       return
     }
 
-    const rect = refs.menu.getBoundingClientRect()
+    const rect = vm.$refs.menu.getBoundingClientRect()
 
     if (props.direction === 'down') {
       state.offset = rect.bottom
@@ -92,10 +92,9 @@ export const getScroller = (el, root) => {
   return root
 }
 
-export const useVuePopper = ({ api, props, hooks, instance, state }) => {
-  const { inject, nextTick, onBeforeUnmount, onDeactivated, onMounted, reactive, toRefs, watch } = hooks
+export const useVuePopper = ({ api, props, hooks, instance, state, dropdownVm }) => {
+  const { nextTick, onBeforeUnmount, onDeactivated, onMounted, reactive, toRefs, watch } = hooks
   const { emit, refs, slots, vm, parent } = instance
-  const dropdown = inject('dropdown')
 
   const popper = userPopper({
     emit,
@@ -116,12 +115,13 @@ export const useVuePopper = ({ api, props, hooks, instance, state }) => {
   })
 
   onMounted(() => {
-    dropdown.popperElm = popper.popperElm.value = vm.$el
-    popper.referenceElm.value = dropdown.$el
-    dropdown.initDomOperation()
+    dropdownVm.popperElm = popper.popperElm.value = vm.$el
+    nextTick(() => (popper.referenceElm.value = dropdownVm.$el))
 
-    if (dropdown.inheritWidth) {
-      dropdown.popperElm.style.minWidth = dropdown.$el.clientWidth + 'px'
+    !props.multiStage && dropdownVm.initDomOperation()
+
+    if (dropdownVm.inheritWidth) {
+      dropdownVm.popperElm.style.minWidth = dropdownVm.$el.clientWidth + 'px'
     }
   })
 
@@ -132,7 +132,7 @@ export const useVuePopper = ({ api, props, hooks, instance, state }) => {
   })
 
   api.doDestroy = popper.doDestroy
-  state.size = dropdown.size
+  state.size = dropdownVm.size
   state.showPopper = popper.showPopper.value
 
   parent.$on('updatePopper', () => {
@@ -173,11 +173,11 @@ export const mounted =
 
 export const handleMenuItemClick =
   ({ state, dispatch }) =>
-  (itemData, instance, label, showContent) => {
+  (itemData, instance, label, showContent, isDisabled) => {
     state.label = label
     state.showContent = showContent
 
-    dispatch('TinyDropdown', 'current-item-click', [itemData, instance])
+    dispatch('TinyDropdown', 'current-item-click', [itemData, instance, isDisabled]) // 统一参数格式为对象
   }
 
 export const handleMouseenter =

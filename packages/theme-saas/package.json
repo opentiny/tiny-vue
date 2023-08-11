@@ -1,7 +1,6 @@
 {
   "name": "@opentiny/vue-theme-saas",
-  "private": true,
-  "version": "3.7.0",
+  "version": "3.10.0",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "homepage": "https://opentiny.design/tiny-vue",
   "main": "index.css",
@@ -35,8 +34,9 @@
     "dev:theme": "gulp dev --gulpfile build/gulp-dist.js",
     "build": "npm run clean && npm run build:theme && node build/replace-img.js",
     "build:fast": "npm run build && npm run release",
-    "release": "node build/release.js",
+    "release": "node build/release.js && node build/postbuild.js && cp README.md dist",
     "format": "prettier --write src/**/*.less",
+    "stylelint": "stylelint \"**/*.less\" --fix",
     "postversion": "pnpm build"
   },
   "devDependencies": {
@@ -53,12 +53,13 @@
     "gulp-svg-inline": "^1.0.1",
     "postcss": "^8.4.16",
     "postcss-less": "^6.0.0",
-    "prettier": "2.3.0",
+    "prettier": "^2.7.1",
     "rimraf": "^2.6.2",
     "stylelint": "^14.14.0",
     "stylelint-config-standard": "^29.0.0",
     "tailwindcss": "3.2.4"
   },
+  "sideEffects": false,
   "resolutions": {
     "graceful-fs": "4.2.2"
   },

@@ -1,26 +1,26 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   getBoundary,
   clearDisplayValue,
-  showPickerAndlockSrcoll,
+  showPickerAndLockScroll,
   hookMounted,
   getMonthEndDay,
   getDisplayValue,
   getRanges,
   onConfirm,
   onCancel,
-  getOrigiCol,
+  getOriginColumns,
   getColumns,
   updateInnerValue,
   formatValue,
@@ -28,8 +28,23 @@ import {
   updateColumnValue
 } from './index'
 import { DATE } from '../common'
+import {
+  IDatePickerApi,
+  IDatePickerProps,
+  IDatePickerRenderlessParamUtils,
+  IDatePickerState,
+  ISharedRenderlessParamHooks
+} from '@/types'
 
-export const api = ['state', 'clearDisplayValue', 'showPickerAndlockSrcoll', 'hookMounted', 'onConfirm', 'onCancel', 'onChange']
+export const api = [
+  'state',
+  'clearDisplayValue',
+  'showPickerAndLockScroll',
+  'hookMounted',
+  'onConfirm',
+  'onCancel',
+  'onChange'
+]
 
 const setWatchFn = ({ api, watch, props, state, emit }) => {
   watch(
@@ -82,14 +97,22 @@ const setWatchFn = ({ api, watch, props, state, emit }) => {
   )
 }
 
-export const renderless = (props, context, { computed, onMounted, reactive, watch }, { constants, emit, nextTick, refs, parent }) => {
-  const api = { formatValue: formatValue(props), getMonthEndDay: getMonthEndDay(constants), hookMounted: hookMounted({ constants, parent, refs, nextTick }) }
+export const renderless = (
+  props: IDatePickerProps,
+  { computed, onMounted, reactive, watch }: ISharedRenderlessParamHooks,
+  { constants, emit, nextTick, refs, parent }: IDatePickerRenderlessParamUtils
+): IDatePickerApi => {
+  const api: IDatePickerApi = {
+    formatValue: formatValue(props),
+    getMonthEndDay: getMonthEndDay(constants),
+    hookMounted: hookMounted({ constants, parent, refs, nextTick })
+  }
 
-  const state = reactive({
+  const state: IDatePickerState = reactive({
     visible: false,
     innerValue: formatValue(props)(props.modelValue),
     ranges: computed(() => api.getRanges()),
-    originColumns: computed(() => api.getOrigiCol()),
+    originColumns: computed(() => api.getOriginColumns()),
     columns: computed(() => api.getColumns()),
     displayValue: '',
     isReadonly: false,
@@ -98,12 +121,12 @@ export const renderless = (props, context, { computed, onMounted, reactive, watc
 
   Object.assign(api, {
     state,
-    getOrigiCol: getOrigiCol(state),
+    getOriginColumns: getOriginColumns(state),
     onCancel: onCancel({ emit, state }),
     getColumns: getColumns({ props, state }),
     clearDisplayValue: clearDisplayValue(state),
     getDisplayValue: getDisplayValue({ constants, DATE, props, state }),
-    showPickerAndlockSrcoll: showPickerAndlockSrcoll({ constants, state }),
+    showPickerAndLockScroll: showPickerAndLockScroll({ constants, state }),
     updateColumnValue: updateColumnValue({ constants, nextTick, props, refs, state })
   })
 

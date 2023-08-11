@@ -19,14 +19,14 @@ export default defineConfig([
   {
     format: ['esm'],
     outDir: 'dist/esm',
-    outExtension: () => ({ js: '.js', }),
-    ...shared,
+    outExtension: () => ({ js: '.js' }),
+    ...shared
   },
   {
     format: ['cjs'],
     outDir: 'dist/cjs',
     shims: true,
-    outExtension: () => ({ js: '.js', }),
-    ...shared,
-  },
+    outExtension: () => ({ js: '.js' }),
+    ...shared
+  }
 ])

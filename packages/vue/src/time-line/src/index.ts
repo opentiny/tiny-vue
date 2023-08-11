@@ -83,7 +83,11 @@ export default defineComponent({
     subField: {
       type: Boolean,
       default: false
-    }
+    },
+    onlyNumber: {
+      type: Boolean,
+      default: false
+    },
   },
   setup(props, context) {
     return $setup({ props, context, template })

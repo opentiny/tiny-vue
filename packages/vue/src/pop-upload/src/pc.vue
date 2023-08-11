@@ -12,7 +12,13 @@
 <template>
   <div class="tiny-popupload">
     <tiny-button :size="size" @click="showDialog" :disabled="state.disabled">{{ state.uploadButtonText }}</tiny-button>
-    <tiny-modal class="tiny-popupload__modal" v-model="state.isShowDialog" :title="state.dialogTitle" width="648" @close="closeDialog">
+    <tiny-modal
+      class="tiny-popupload__modal"
+      v-model="state.isShowDialog"
+      :title="state.dialogTitle"
+      width="648"
+      @close="closeDialog"
+    >
       <div class="tiny-popupload__dialog">
         <div class="tiny-popupload__dialog-header">
           <tiny-alert
@@ -67,7 +73,9 @@
             :auto-upload="false"
           >
             <template #trigger>
-              <tiny-button size="small" type="primary">{{ state.multiple ? state.uploadsButtonText : state.uploadButtonText }}</tiny-button>
+              <tiny-button size="small" type="primary">{{
+                state.multiple ? state.uploadsButtonText : state.uploadButtonText
+              }}</tiny-button>
             </template>
           </tiny-file-upload>
           <div class="tiny-popupload__dialog-table">
@@ -92,7 +100,9 @@
           </div>
         </div>
         <div class="tiny-popupload__dialog-footer">
-          <tiny-button type="primary" :disabled="state.uploadList.length == 0" @click="uploadSubmit">{{ state.submitButtonText }}</tiny-button>
+          <tiny-button type="primary" :disabled="state.uploadList.length == 0" @click="uploadSubmit">{{
+            state.submitButtonText
+          }}</tiny-button>
           <tiny-button @click="closeDialog">{{ state.cancelButtonText }}</tiny-button>
         </div>
       </div>

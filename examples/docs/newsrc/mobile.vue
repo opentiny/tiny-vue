@@ -144,7 +144,7 @@ export default {
         }
       },
       openInVscode: (demo) => {
-        fetch(`/__open-in-editor?file=../docs/resources/mobile/app/${state.pathName}/${demo.codeFiles[0]}`)
+        fetch(`/__open-in-editor?file=../docs/resources/mobile/app/${modeState.pathName}/${demo.codeFiles[0]}`)
       }
     }
 

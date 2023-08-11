@@ -18,8 +18,8 @@ const $constants = {
   SELECT_DROPDOWN: $prefix + 'SelectDropdown',
   DROPDOWN_MENU: $prefix + 'DropdownMenu',
   DIALOG_BOX_CLASS: 'div.tiny-dialog-box',
-  PC_SCROLL_LOCK_CLASS: 'tiny-dialog-box__scroll-lock',
-  MOBILE_SCROLL_LOCK_CLASS: 'tiny-mobile-dialog-box__scroll-lock',
+  PC_SCROLL_LOCK_CLASS: 'dialog-box__scroll-lock',
+  MOBILE_SCROLL_LOCK_CLASS: 'mobile-dialog-box__scroll-lock',
   Mode: 'pc',
   scrollLockClass(mode) {
     return mode === this.Mode ? this.PC_SCROLL_LOCK_CLASS : this.MOBILE_SCROLL_LOCK_CLASS
@@ -55,7 +55,10 @@ export default defineComponent({
       type: Boolean,
       default: () => true
     },
-    destroyOnClose: Boolean,
+    destroyOnClose: {
+      Boolean,
+      default: () => false
+    },
     dialogClass: {
       type: String,
       default: () => ''
@@ -121,5 +124,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

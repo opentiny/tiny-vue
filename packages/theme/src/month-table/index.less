@@ -22,14 +22,23 @@
   .component-css-vars-date-picker();
   .component-css-vars-date-table();
 
+  .month-table();
+}
+
+.month-table() {
   font-size: var(--ti-date-picker-font-size);
   margin: -1px;
   border-collapse: collapse;
 
-  td {
+  tr, td {
     text-align: center;
     padding: 16px 0;
     cursor: pointer;
+
+    &.current {
+      padding-left: 3px;
+      padding-right: 3px;
+    }
 
     div {
       height: 32px;
@@ -94,16 +103,8 @@
     }
 
     &:not(.in-range) {
-
-      div {
-        height: auto;
-        padding: 0;
-      }
-
       .cell {
         width: auto;
-        height: 32px;
-        line-height: 32px;
         border-radius: 2px;
       }
     }

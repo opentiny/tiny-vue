@@ -7,5 +7,5 @@ export default {
   'tiny-mobile-action-sheet-item-border-color': '#ddd',
   'tiny-mobile-action-sheet-item-active-bg-color': '#ececec',
   'tiny-mobile-action-sheet-item-active-text-color': '#039be5',
-  'tiny-mobile-action-sheet-action-bg-color': '#fff',
+  'tiny-mobile-action-sheet-action-bg-color': '#fff'
 }

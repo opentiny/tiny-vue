@@ -1,7 +1,13 @@
 <template>
   <div date-tag="tiny-demo">
     <tiny-button @click="showCascader">点击显示级联选择</tiny-button>
-    <tiny-cascader-select v-model="value" :options="optionList" :visible="visible" @update:visible="visible = $event" :disabled="disabled"></tiny-cascader-select>
+    <tiny-cascader-select
+      v-model="value"
+      :options="optionList"
+      :visible="visible"
+      @update:visible="visible = $event"
+      :disabled="disabled"
+    ></tiny-cascader-select>
   </div>
 </template>
 

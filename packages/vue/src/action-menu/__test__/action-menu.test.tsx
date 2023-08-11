@@ -19,19 +19,12 @@ describe('PC Mode', () => {
     },
     {
       label: '网络设置',
-      children: [
-        { label: '更改安全组' },
-        { label: '切换VPC', divided: true }
-      ]
+      children: [{ label: '更改安全组' }, { label: '切换VPC', divided: true }]
     }
   ]
 
   test('base 基本用法', async () => {
-    const wrapper = mount(() =>
-      <ActionMenu
-        options={options}>
-      </ActionMenu>
-    )
+    const wrapper = mount(() => <ActionMenu options={options}></ActionMenu>)
 
     const triggerEle = wrapper.find('.tiny-dropdown__trigger')
     expect(triggerEle.exists()).toBe(true)
@@ -46,15 +39,14 @@ describe('PC Mode', () => {
   })
 
   test('slot', async () => {
-    const wrapper = mount(() =>
+    const wrapper = mount(() => (
       <ActionMenu
         options={options}
         v-slots={{
-          default: (data) => <span class='custom-label'> {data.name}</span>
+          default: (data) => <span class="custom-label"> {data.name}</span>
         }}
-      >
-      </ActionMenu>
-    )
+      ></ActionMenu>
+    ))
 
     const triggerEle = wrapper.find('.tiny-dropdown__trigger')
     const textItem = wrapper.find('.custom-label')
@@ -74,13 +66,7 @@ describe('PC Mode', () => {
 
   test('item-click', async () => {
     const itemClick = vi.fn()
-    const wrapper = mount(() =>
-      <ActionMenu
-        options={options}
-        onItemClick={itemClick}
-      >
-      </ActionMenu>
-    )
+    const wrapper = mount(() => <ActionMenu options={options} onItemClick={itemClick}></ActionMenu>)
 
     const triggerEle = wrapper.find('.tiny-dropdown__trigger')
     expect(triggerEle.exists()).toBe(true)

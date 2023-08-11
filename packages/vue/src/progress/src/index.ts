@@ -12,7 +12,7 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
-const $constants = {
+export const $constants = {
   PROGRESS_TYPE: {
     LINE: 'line',
     CIRCLE: 'circle',
@@ -56,57 +56,59 @@ const $constants = {
   STROKE_WIDTH_RATE: 0.4
 }
 
+export const progressProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  color: {
+    type: [String, Array, Function],
+    default: ''
+  },
+  info: String,
+  format: Function,
+  percentage: {
+    type: Number,
+    default: 0,
+    required: true,
+    validator: (val: number) => val >= 0 && val <= 100
+  },
+  showText: {
+    type: Boolean,
+    default: true
+  },
+  status: {
+    type: String,
+    validator: (value: string) => !!$constants.PROGRESS_STATUS[value.toUpperCase()]
+  },
+  strokeWidth: {
+    type: Number,
+    default: 0
+  },
+  textInside: {
+    type: Boolean,
+    default: false
+  },
+  type: {
+    type: String,
+    default: $constants.PROGRESS_TYPE.LINE,
+    validator: (value: string) => !!$constants.PROGRESS_TYPE[value.toUpperCase()]
+  },
+  size: {
+    type: String,
+    default: $constants.PROGRESS_SIZE.MEDIUM,
+    validator: (value) => !!$constants.PROGRESS_SIZE[value.toUpperCase()]
+  },
+  width: {
+    type: Number,
+    default: 0
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'Progress',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    color: {
-      type: [String, Array, Function],
-      default: ''
-    },
-    info: String,
-    format: Function,
-    percentage: {
-      type: Number,
-      default: 0,
-      required: true,
-      validator: (val: number) => val >= 0 && val <= 100
-    },
-    showText: {
-      type: Boolean,
-      default: true
-    },
-    status: {
-      type: String,
-      validator: (value: string) => !!$constants.PROGRESS_STATUS[value.toUpperCase()]
-    },
-    strokeWidth: {
-      type: Number,
-      default: 0
-    },
-    textInside: {
-      type: Boolean,
-      default: false
-    },
-    type: {
-      type: String,
-      default: $constants.PROGRESS_TYPE.LINE,
-      validator: (value: string) => !!$constants.PROGRESS_TYPE[value.toUpperCase()]
-    },
-    size: {
-      type: String,
-      default: $constants.PROGRESS_SIZE.MEDIUM,
-      validator: (value) => !!$constants.PROGRESS_SIZE[value.toUpperCase()]
-    },
-    width: {
-      type: Number,
-      default: 0
-    }
-  },
+  props: progressProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

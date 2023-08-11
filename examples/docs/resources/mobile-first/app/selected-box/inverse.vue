@@ -2,7 +2,14 @@
   <div date-tag="tiny-demo" style="height: 300px">
     <tiny-button @click="click1">提交增加数据项</tiny-button>
     <tiny-button @click="click2">提交减少数据项</tiny-button>
-    <tiny-selected-box ref="bar" inverse :total="500" :select="select" :config="config" @change="handleChange"></tiny-selected-box>
+    <tiny-selected-box
+      ref="bar"
+      inverse
+      :total="500"
+      :select="select"
+      :config="config"
+      @change="handleChange"
+    ></tiny-selected-box>
   </div>
 </template>
 

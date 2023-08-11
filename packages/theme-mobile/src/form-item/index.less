@@ -80,7 +80,7 @@
   &__value {
     float: right;
 
-    .tiny-mobile-input-form__input{
+    .tiny-mobile-input-form__input {
       text-align: left;
     }
   }
@@ -100,14 +100,14 @@
     }
   }
 
-  &__label.is-ellipsis{
+  &__label.is-ellipsis {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     display: initial;
   }
-  
-  &.is-error .is-vertical{
+
+  &.is-error .is-vertical {
     margin-bottom: 36px;
   }
 
@@ -183,7 +183,9 @@
   &mobile-zoom-in-top-leave-active {
     opacity: 1;
     transform: scaleY(1);
-    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transition:
+      transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+      opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     transform-origin: center top;
   }
 

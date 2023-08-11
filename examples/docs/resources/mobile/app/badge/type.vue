@@ -24,13 +24,13 @@ import { Badge } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBadge: Badge,
+    TinyBadge: Badge
   },
   data() {
     return {
-      value1: 2,
+      value1: 2
     }
-  },
+  }
 }
 </script>
 

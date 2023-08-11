@@ -18,7 +18,7 @@
       <ul v-if="!(showMore && showMore > 0)" class="tiny-group-item">
         <li v-for="(node, index) in data" :key="index" :class="{ active: state.value === node[valueField] }">
           <button
-            :class="state.attributeValue"
+            :class="getItemClass(node)"
             :style="{
               height: size === 'medium' ? '42px' : size === 'small' ? '36px' : size === 'mini' ? '24px' : '',
               'line-height': size === 'medium' ? '40px' : size === 'small' ? '34px' : size === 'mini' ? '22px' : ''
@@ -35,7 +35,7 @@
               'tiny-group-item__sup',
               {
                 'tiny-group-item__sup-text': !node.sup.slot && !node.sup.icon && node.sup.text,
-                'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon,
+                'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon
               },
               typeof node.sup.class === 'string' ? node.sup.class : '',
               ...(Array.isArray(node.sup.class) ? node.sup.class : [])
@@ -48,8 +48,12 @@
         </li>
       </ul>
       <ul v-else class="tiny-group-item show-more">
-        <li v-for="(node, index) in state.buttonData" :key="index" :class="{ active: state.value === node[valueField] }">
-          <tiny-button :class="state.attributeValue" @click="handleClick(node)">
+        <li
+          v-for="(node, index) in state.buttonData"
+          :key="index"
+          :class="{ active: state.value === node[valueField] }"
+        >
+          <tiny-button :class="getItemClass(node)" @click="handleClick(node)">
             {{ node[textField] }}
           </tiny-button>
 
@@ -59,7 +63,7 @@
               'tiny-group-item__sup',
               {
                 'tiny-group-item__sup-text': !node.sup.slot && !node.sup.icon && node.sup.text,
-                'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon,
+                'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon
               },
               typeof node.sup.class === 'string' ? node.sup.class : '',
               ...(Array.isArray(node.sup.class) ? node.sup.class : [])
@@ -79,10 +83,13 @@
             </template>
             <ul class="more-list">
               <li
-                v-for="(moreNode, index) in state.moreData" :key="index" :class="{
+                v-for="(moreNode, index) in state.moreData"
+                :key="index"
+                :class="{
                   active: state.value === moreNode[valueField],
                   'more-item': true
-                }" @click="moreNodeClick(moreNode)"
+                }"
+                @click="moreNodeClick(moreNode)"
               >
                 {{ moreNode[textField] }}
               </li>
@@ -108,7 +115,19 @@ import { iconPopup, iconWriting } from '@opentiny/vue-icon'
 
 export default defineComponent({
   emits: ['change', 'edit', 'update:modelValue'],
-  props: [...props, 'size', 'data', 'plain', 'modelValue', 'disabled', 'valueField', 'textField', 'showMore', 'showEdit', 'border'],
+  props: [
+    ...props,
+    'size',
+    'data',
+    'plain',
+    'modelValue',
+    'disabled',
+    'valueField',
+    'textField',
+    'showMore',
+    'showEdit',
+    'border'
+  ],
   components: {
     TinyPopover: Popover,
     TinyButton: Button,

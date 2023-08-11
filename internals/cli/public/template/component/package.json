@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "module": "index.ts",
   "sideEffects": false,
+  "type": "module",
   "dependencies": {
     "@opentiny/vue-renderless": "~5.[[MINOR]].0",
     "@opentiny/vue-theme": "~5.[[MINOR]].0",

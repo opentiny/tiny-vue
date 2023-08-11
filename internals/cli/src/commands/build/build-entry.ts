@@ -8,7 +8,7 @@ import {
   pathFromWorkspaceRoot,
   capitalizeKebabCase,
   prettierFormat,
-  logGreen,
+  logGreen
 } from '../../shared/utils'
 import { getComponents } from '../../shared/module-utils'
 import handlebarsRender from './handlebars.render'
@@ -97,7 +97,7 @@ const createEntry = (mode) => {
     template: MAIN_TEMPLATE,
     data: {
       include: includeTemplate.join(endOfLine),
-      components: componentsTemplate.join(',' + endOfLine),
+      components: componentsTemplate.join(',' + endOfLine)
     }
   })
 
@@ -107,7 +107,7 @@ const createEntry = (mode) => {
 }
 
 export function buildEntry() {
-  ['all', 'pc', 'mobile', 'mobile-first'].forEach(createEntry)
+  ;['all', 'pc', 'mobile', 'mobile-first'].forEach(createEntry)
 
   logGreen(
     `npm run build:entry done. [${outputDir}/index.ts,${outputDir}/pc.ts,${outputDir}/mobile.ts,${outputDir}/mobile-first.ts]`

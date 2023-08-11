@@ -6,15 +6,14 @@ describe('PC Mode', () => {
   const mount = mountPcMode
 
   test('base', () => {
-    const div = document.createElement("div");
-    div.id = "tiny-loading1";
-    document.body.appendChild(div);
+    const div = document.createElement('div')
+    div.id = 'tiny-loading1'
+    document.body.appendChild(div)
     Loading.service({
       target: document.getElementById('tiny-loading1')
     })
     expect(document.querySelector('.tiny-loading')).toBeDefined()
   })
-
 
   // 可通过 size 属性设置尺寸大小，可选值：medium / small / mini
   test.todo('size')

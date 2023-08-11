@@ -22,13 +22,11 @@ describe('PC Mode', () => {
     expect(wrapper.find('.tiny-collapse').exists()).toBeTruthy()
     expect(wrapper.find('.tiny-collapse-item').exists()).toBeTruthy()
     expect(wrapper.find('.tiny-collapse-item__header').text()).toBe('标题')
-    
   })
 
   test.todo('disabled ，禁用当前面板，默认值为false')
 
   test.todo('title-right, 自定义面板标题右侧内容')
-
 
   // slots
   test('default slot', async () => {
@@ -39,6 +37,6 @@ describe('PC Mode', () => {
   test.todo('icon 插槽，自定义当前面板展开折叠 icon 图标')
 
   test.todo('title 插槽，自定义面板标题，比如在标题前增加图标')
-  
+
   test.todo('title-right 插槽，自定义面板标题右侧内容')
 })

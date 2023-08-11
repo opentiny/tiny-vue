@@ -12,5 +12,5 @@ export default {
   'tiny-mobile-tabs-icon-color': '#bbb',
   'tiny-mobile-tabs-item-text-color': '#595959',
   'tiny-mobile-tabs-item-text-color-active': '#191919',
-  'tiny-mobile-tabs-line-bg-color-active': '#4a79fe',
+  'tiny-mobile-tabs-line-bg-color-active': '#4a79fe'
 }

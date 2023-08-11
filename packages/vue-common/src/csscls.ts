@@ -1,4 +1,6 @@
-type CssClassObject = { [k: string]: any }
+interface CssClassObject {
+  [k: string]: any
+}
 type CssClassArray = Array<string | CssClassObject>
 export type CssClass = string | CssClassObject | CssClassArray
 

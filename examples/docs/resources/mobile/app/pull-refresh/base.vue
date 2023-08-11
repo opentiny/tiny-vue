@@ -4,7 +4,12 @@
       <h1 class="page__title">Refresh</h1>
       <p class="page__desc">下拉刷新</p>
     </div>
-    <tiny-pull-refresh :pullDown="pullDownRefresh" success-text="刷新成功" animation-duration="500" success-duration="500">
+    <tiny-pull-refresh
+      :pullDown="pullDownRefresh"
+      success-text="刷新成功"
+      animation-duration="500"
+      success-duration="500"
+    >
       <h3>hello pull-refresh</h3>
     </tiny-pull-refresh>
   </div>

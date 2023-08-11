@@ -71,8 +71,7 @@ export default defineComponent({
         class={{
           'tiny-mobile-nav-bar': true,
           'tiny-mobile-nav-bar__fixed': fixed
-        }}
-      >
+        }}>
         <div class="tiny-mobile-nav-bar__left" onClick={clickLeftListener}>
           {LeftPart()}
         </div>

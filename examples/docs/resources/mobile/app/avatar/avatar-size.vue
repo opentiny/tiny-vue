@@ -1,12 +1,8 @@
 <template>
   <div class="avatar-wrap">
     <div class="page__hd">
-      <h1 class="page__title">
-        HeadIcon
-      </h1>
-      <p class="page__desc">
-        头像图标
-      </p>
+      <h1 class="page__title">HeadIcon</h1>
+      <p class="page__desc">头像图标</p>
     </div>
     <tiny-avatar :src="circleUrl" size="large"></tiny-avatar>
     <tiny-avatar :src="circleUrl" size="medium"></tiny-avatar>

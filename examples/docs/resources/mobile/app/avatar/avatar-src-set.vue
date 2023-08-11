@@ -14,20 +14,20 @@ import { iconClockWork } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyAvatar: Avatar,
+    TinyAvatar: Avatar
   },
   data() {
     return {
       IconClockWork: iconClockWork(),
-      circleUrl: 'static/images/circle.png',
+      circleUrl: '/static/images/circle.png',
       circleUrlfit: '/static/images/dog1.png',
       srcSet: '/static/images/dog1.png 100w,/static/images/dog2.png 300w,/static/images/dog3.png 500w',
       errorUrl: 'error.png', // 使用错误路径
       onError() {
         console.log('加载失败')
-      },
+      }
     }
-  },
+  }
 }
 </script>
 

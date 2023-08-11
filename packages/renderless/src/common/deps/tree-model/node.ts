@@ -1,20 +1,19 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { merge } from '../../object'
 import { markNodeData, NODE_KEY } from './util'
 import { indexOf } from '../../array'
 import { hasOwn, typeOf } from '../../type'
-import debounce from '../debounce'
 
 const defaultChildrenKey = 'children'
 
@@ -86,7 +85,6 @@ const reInitChecked = (node) => {
 }
 
 let nodeIdSeed = 0
-const lazyInitChecked = debounce(0, (node) => reInitChecked(node))
 
 export default class Node {
   constructor(options) {
@@ -464,13 +462,13 @@ export default class Node {
     return data[childrenKey]
   }
 
-  setChecked(value, isDeepChecked, recursion, passValue) {
+  setChecked(value, isDeepChecked, recursion, passValue, checkEasily) {
     this.checked = value === true
     this.indeterminate = value === 'half'
 
     const { checkStrictly, checkDescendants } = this.store
 
-    if (checkStrictly) {
+    if (checkStrictly && !checkEasily) {
       return
     }
 
@@ -478,13 +476,14 @@ export default class Node {
       checkDescendants,
       value,
       isDeepChecked,
-      passValue
+      passValue,
+      checkEasily
     })
     let returnFlag = ret.returnFlag
     passValue = ret.passValue
     value = ret.value
 
-    if (returnFlag) {
+    if (returnFlag || (checkStrictly && checkEasily)) {
       return
     }
 
@@ -494,11 +493,11 @@ export default class Node {
     }
 
     if (!recursion) {
-      this.store.lazy ? lazyInitChecked(parentNode) : reInitChecked(parentNode)
+      reInitChecked(parentNode)
     }
   }
 
-  setCheckedInner({ checkDescendants, value, isDeepChecked, passValue }) {
+  setCheckedInner({ checkDescendants, value, isDeepChecked, passValue, checkEasily }) {
     let returnFlag = false
 
     if (this.shouldLoadData() && !checkDescendants) {
@@ -507,7 +506,7 @@ export default class Node {
 
     const { all, allWithoutDisable } = getChildState(this.childNodes)
 
-    if (!this.isLeaf && !all && allWithoutDisable) {
+    if (!this.isLeaf && !all && allWithoutDisable && !checkEasily) {
       this.checked = false
       value = false
     }
@@ -523,12 +522,12 @@ export default class Node {
 
           const isCheck = childNode.disabled ? childNode.checked : passValue
 
-          childNode.setChecked(isCheck, isDeepChecked, true, passValue)
+          childNode.setChecked(isCheck, isDeepChecked, true, passValue, checkEasily)
         }
 
         const { half, all } = getChildState(childNodes)
 
-        if (!all) {
+        if (!all && !checkEasily) {
           this.checked = all
           this.indeterminate = half
         }
@@ -598,9 +597,26 @@ export default class Node {
         this.updateLeafState()
 
         callback && callback.call(this, children)
+        typeof this.store.afterLoad === 'function' && this.store.afterLoad({ data: children })
       })
     } else {
       callback && callback.call(this)
     }
+  }
+
+  getPathData(key) {
+    const nodes = [key ? this.data[key] : this.data]
+    let parentNode = this.parent
+
+    while (parentNode && parentNode.parent) {
+      nodes.unshift(key ? parentNode.data[key] : parentNode.data)
+      parentNode = parentNode.parent
+    }
+
+    return nodes
+  }
+
+  getPathText(key, separator = ',') {
+    return (this.getPathData(key) || []).join(separator)
   }
 }

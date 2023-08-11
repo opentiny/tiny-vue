@@ -12,18 +12,24 @@
 <template>
   <div class="tiny-mobile-badge">
     <slot />
-    <div v-if="!hidden && (value > 0 || isDot)" class="tiny-mobile-badge__content" :class="[
-      {
-        'is-dot': isDot,
-        'is-fixed': isFixed,
-        'is-mini': isMini
-      },
-      value < 10 ? 'is-circle' : '',
-      type ? 'tiny-mobile-badge--' + type : ''
-    ]">
+    <div
+      v-if="!hidden && (value > 0 || isDot)"
+      class="tiny-mobile-badge__content"
+      :class="[
+        {
+          'is-dot': isDot,
+          'is-fixed': isFixed,
+          'is-mini': isMini
+        },
+        value < 10 ? 'is-circle' : '',
+        type ? 'tiny-mobile-badge--' + type : ''
+      ]"
+    >
       <span v-if="!isDot">
         <slot name="content">
-          <a :href="state.href" :target="target" rel="noopener noreferrer" class="tiny-mobile-badge__link">{{ state.content }}</a>
+          <a :href="state.href" :target="target" rel="noopener noreferrer" class="tiny-mobile-badge__link">{{
+            state.content
+          }}</a>
         </slot>
       </span>
     </div>

@@ -240,11 +240,19 @@ export const getRowNodes = (trList, cellNode, targetCellNode) => {
   const targetRowIndex = targetCellNode.rowIndex
   const rows = []
 
-  for (let rowIndex = Math.min(startRowIndex, targetRowIndex), rowLen = Math.max(startRowIndex, targetRowIndex); rowIndex <= rowLen; rowIndex++) {
+  for (
+    let rowIndex = Math.min(startRowIndex, targetRowIndex), rowLen = Math.max(startRowIndex, targetRowIndex);
+    rowIndex <= rowLen;
+    rowIndex++
+  ) {
     const cells = []
     const trEl = trList[rowIndex]
 
-    for (let colIndex = Math.min(startColIndex, targetColIndex), colLen = Math.max(startColIndex, targetColIndex); colIndex <= colLen; colIndex++) {
+    for (
+      let colIndex = Math.min(startColIndex, targetColIndex), colLen = Math.max(startColIndex, targetColIndex);
+      colIndex <= colLen;
+      colIndex++
+    ) {
       cells.push(trEl.children[colIndex])
     }
 
@@ -268,6 +276,10 @@ export const getCell = ($table, { row, column }) =>
     $table.$nextTick(() => {
       const bodyElem = $table.$refs[`${column.fixed || 'table'}Body`]
 
-      resolve((bodyElem || $table.$refs.tableBody).$el.querySelector(`${ROW_CLS}[${ATTR_NAME}="${getRowid($table, row)}"] .${column.id}`))
+      resolve(
+        (bodyElem || $table.$refs.tableBody).$el.querySelector(
+          `${ROW_CLS}[${ATTR_NAME}="${getRowid($table, row)}"] .${column.id}`
+        )
+      )
     })
   })

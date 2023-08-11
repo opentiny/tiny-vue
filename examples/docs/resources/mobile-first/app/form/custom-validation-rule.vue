@@ -1,6 +1,13 @@
 <template>
   <div class="demo-form">
-    <tiny-form ref="ruleForm" :model="createData" :rules="rules" :validate-on-rule-change="isvalidate" label-width="100px" @validate="validate">
+    <tiny-form
+      ref="ruleForm"
+      :model="createData"
+      :rules="rules"
+      :validate-on-rule-change="isvalidate"
+      label-width="100px"
+      @validate="validate"
+    >
       <tiny-form-item label="用户名" prop="username">
         <tiny-input v-model="createData.username"></tiny-input>
       </tiny-form-item>
@@ -26,7 +33,7 @@ export default {
     TinyButton: Button
   },
   data() {
-    var validatePass = (rule, value, callback) => {
+    let validatePass = (rule, value, callback) => {
       if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(value)) {
         callback(new Error('最少八个字符，至少包含一个大写字母，一个小写字母和一个数字'))
       } else {

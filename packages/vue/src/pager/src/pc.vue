@@ -12,19 +12,17 @@
 <script lang="tsx">
 import Pager from '@opentiny/vue-pager-item'
 import Popover from '@opentiny/vue-popover'
+import Loading from '@opentiny/vue-loading'
 import { t } from '@opentiny/vue-locale'
-import { $prefix, h, setup, defineComponent } from '@opentiny/vue-common'
+import { $prefix, h, setup, defineComponent, $props } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/pager/vue'
-import {
-  iconTriangleDown,
-  iconChevronLeft,
-  iconChevronRight
-} from '@opentiny/vue-icon'
+import { iconTriangleDown, iconChevronLeft, iconChevronRight } from '@opentiny/vue-icon'
 import { emitEvent } from '@opentiny/vue-renderless/common/event'
 
 export default defineComponent({
   name: $prefix + 'Pager',
   props: {
+    ...$props,
     pageSize: {
       type: Number,
       default: 10
@@ -70,7 +68,20 @@ export default defineComponent({
     size: {
       type: String,
       default: ''
-    }
+    },
+    align: String,
+    showTotalLoading: {
+      type: Boolean,
+      default: () => false
+    },
+    customTotal: {
+      type: [Boolean, String],
+      default: () => false
+    },
+    accurateJumper: {
+      type: Boolean,
+      default: () => true
+    },
   },
   data() {
     return {
@@ -97,7 +108,11 @@ export default defineComponent({
 
     const TEMPLATE_MAP = {
       prev: <prev></prev>,
-      jumper: <jumper isBeforePageChange={this.isBeforePageChange} onBeforePageChange={this.beforeJumperChangeHandler} max={this.internalPageCount}></jumper>,
+      jumper: <jumper
+        ref="jumper"
+        isBeforePageChange={this.isBeforePageChange}
+        onBeforePageChange={this.beforeJumperChangeHandler}
+        max={this.internalPageCount}></jumper>,
       current: <current></current>,
       pager: (
         <pager
@@ -107,8 +122,7 @@ export default defineComponent({
           pageCount={this.internalPageCount}
           pagerCount={this.pagerCount}
           onChange={this.handleCurrentChange}
-          disabled={this.disabled}
-        ></pager>
+          disabled={this.disabled}></pager>
       ),
       next: <next></next>,
       sizes: (
@@ -118,8 +132,7 @@ export default defineComponent({
           onBeforePageChange={this.beforeSizeChangeHandler}
           popperAppendToBody={this.popperAppendToBody === false ? false : this.appendToBody}
           popperClass={this.popperClass}
-          pageSizes={this.pageSizes}
-        ></sizes>
+          pageSizes={this.pageSizes}></sizes>
       ),
       slot: typeof this.slots.default === 'function' ? this.slots.default() : this.slots.default,
       total: <total></total>
@@ -133,7 +146,17 @@ export default defineComponent({
       templateChildren.push(TEMPLATE_MAP[compo])
     })
 
-    return <div class={['tiny-pager tiny-pager__number', this.size ? 'tiny-pager--' + this.size : '', this.disabled ? 'is-disabled' : '']}>{templateChildren}</div>
+    return (
+      <div
+        class={[
+          'tiny-pager tiny-pager__number',
+          this.size ? 'tiny-pager--' + this.size : '',
+          this.disabled ? 'is-disabled' : ''
+        ]}
+        style={{ textAlign: this.align }}>
+        {templateChildren}
+      </div>
+    )
   },
   components: {
     Prev: {
@@ -145,8 +168,7 @@ export default defineComponent({
             type="button"
             class="tiny-pager__btn-prev"
             disabled={this.$parent.disabled || this.$parent.internalCurrentPage <= 1}
-            onClick={this.$parent.prev}
-          >
+            onClick={this.$parent.prev}>
             {this.$parent.prevText ? <span>{this.$parent.prevText}</span> : <ChevronLeft class="tiny-svg-size" />}
           </button>
         )
@@ -160,9 +182,12 @@ export default defineComponent({
           <button
             type="button"
             class="tiny-pager__btn-next"
-            disabled={this.$parent.disabled || this.$parent.internalCurrentPage === this.$parent.internalPageCount || this.$parent.internalPageCount === 0}
-            onClick={this.$parent.next}
-          >
+            disabled={
+              this.$parent.disabled ||
+              this.$parent.internalCurrentPage === this.$parent.internalPageCount ||
+              this.$parent.internalPageCount === 0
+            }
+            onClick={this.$parent.next}>
             {this.$parent.nextText ? <span>{this.$parent.nextText}</span> : <ChevronRight class="tiny-svg-size" />}
           </button>
         )
@@ -202,7 +227,9 @@ export default defineComponent({
           immediate: true,
           handler(newVal) {
             if (Array.isArray(newVal)) {
-              this.$parent.internalPageSize = newVal.includes(this.$parent.pageSize) ? this.$parent.pageSize : this.pageSizes[0]
+              this.$parent.internalPageSize = newVal.includes(this.$parent.pageSize)
+                ? this.$parent.pageSize
+                : this.pageSizes[0]
             }
           }
         }
@@ -214,8 +241,15 @@ export default defineComponent({
           reference: () => (
             <div slot="reference" class="tiny-pager__popover">
               <div class="tiny-pager__input">
-                <input disabled={this.$parent.disabled} type="text" readonly="readonly" value={this.$parent.internalPageSize} />
-                <div class="tiny-pager__input-btn"><TriangleDown class={['tiny-svg-size', this.showSizes ? 'tiny-svg-size__reverse-180' : '']} /></div>
+                <input
+                  disabled={this.$parent.disabled}
+                  type="text"
+                  readonly="readonly"
+                  value={this.$parent.internalPageSize}
+                />
+                <div class="tiny-pager__input-btn">
+                  <TriangleDown class={['tiny-svg-size', this.showSizes ? 'tiny-svg-size__reverse-180' : '']} />
+                </div>
               </div>
             </div>
           ),
@@ -227,8 +261,7 @@ export default defineComponent({
                     class={['list-item', item === this.$parent.internalPageSize ? 'is-selected select-pre' : '']}
                     val={item}
                     title={item}
-                    onClick={() => this.handleChange(item)}
-                  >
+                    onClick={() => this.handleChange(item)}>
                     {item}
                   </li>
                 ))}
@@ -291,7 +324,7 @@ export default defineComponent({
           }
         },
         handleShowPopover() {
-          if (this.$parent.disabled) return this.showSizes = false
+          if (this.$parent.disabled) return (this.showSizes = false)
           this.showSizes = true
         },
         handleHidePopover() {
@@ -364,6 +397,7 @@ export default defineComponent({
           }
         },
         handleClick() {
+          if (!this.$parent.canJumperGo()) return
           this.$parent.internalCurrentPage = this.$parent.getValidCurrentPage(this.value)
           this.$parent.emitChange()
         },
@@ -433,16 +467,47 @@ export default defineComponent({
       }
     },
     Total: {
+      watch: {
+        '$parent.showTotalLoading'() {
+          this.$nextTick(() => {
+            this.serviceLoading()
+          })
+        }
+      },
+      methods: {
+        serviceLoading() {
+          if (document.querySelector('.tiny-pager__total-loading')) {
+          Loading.service({
+            target: document.querySelector('.tiny-pager__total-loading')
+          })
+        }
+        }
+      },
+      mounted() {
+        this.serviceLoading()
+      },
       render() {
         return typeof this.$parent.internalTotal === 'number'
           ? (
+              this.$parent.showTotalLoading
+                ? (
+            <div class="tiny-pager__group tiny-pager__pull-left tiny-pager__loading">
+              <div class="tiny-pager__total">
+                <div class="tiny-pager__total-loading"></div>
+                <span class="tiny-pager__loading-text">{t('ui.page.loadingTotals')}</span>
+              </div>
+            </div>
+                  )
+                : (
           <div class={['tiny-pager__group', this.$parent.disabled ? 'is-disabled' : '']}>
             {' '}
             <div class={['tiny-pager__total', this.$parent.size ? 'tiny-pager--' + this.$parent.size : '']}>
               <span>{t('ui.page.total')}：</span>
-              <span class="tiny-pager__total-allpage">{this.$parent.internalTotal}</span>
+              <span class="tiny-pager__total-allpage">
+                {this.$parent.customTotal ? this.$parent.totalText : this.$parent.internalTotal}
+              </span>
             </div>
-          </div>
+          </div>)
             )
           : (
               ''
@@ -452,6 +517,11 @@ export default defineComponent({
     Pager
   },
   methods: {
+    canJumperGo() {
+      const inputValue = Number(this.$refs.jumper.$refs.input.value || 0)
+      const currentPage = Number(this.internalCurrentPage || 0)
+      return this.accurateJumper ? inputValue !== currentPage : true
+    },
     beforeSizeChangeHandler(params) {
       const { newPageSize, currentPageSize, callback } = params
       const newPage = 1
@@ -606,6 +676,26 @@ export default defineComponent({
     }
   },
   computed: {
+    totalText() {
+      if (typeof this.customTotal === 'string') return this.customTotal
+
+      const totals = parseInt(this.total)
+
+      if (isNaN(totals)) return 0
+
+      const HUNDRED_THOUSAND = 100000
+      const MILLION = 1000000
+      const TEN_MILLION = 10000000
+      if (totals <= HUNDRED_THOUSAND) {
+        return totals
+      } else if (totals <= MILLION) {
+        return t('ui.page.hundredThousand')
+      } else if (totals <= TEN_MILLION) {
+        return t('ui.page.million')
+      } else {
+        return t('ui.page.tenMillion')
+      }
+    },
     internalPageCount() {
       if (typeof this.internalTotal === 'number') {
         return Math.max(1, Math.ceil(this.internalTotal / this.internalPageSize))

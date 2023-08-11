@@ -1,62 +1,65 @@
 import { xss } from '../common/xss'
 
-export const createShepherd = ({ state, props, Shepherd, offset }) => () => {
-  const tour = newTour(state, Shepherd, offset)
+export const createShepherd =
+  ({ state, props, Shepherd, offset }) =>
+  () => {
+    const tour = newTour(state, Shepherd, offset)
 
-  state.tour = tour
+    state.tour = tour
 
-  const result = {}
-  const deepCopy = getItemCopy(props, tour, result)
+    const result = {}
+    const deepCopy = getItemCopy(props, tour, result)
 
-  if (state.domData && state.domData !== 0) {
-    state.domData.forEach((item, i) => {
-      let steps = itemStep(item, state, deepCopy, i, Shepherd)
+    if (state.domData && state.domData !== 0) {
+      state.domData.forEach((item, i) => {
+        let steps = itemStep(item, state, deepCopy, i, Shepherd)
 
-      const step = tour.addStep(steps)
-      if (steps.hightBox && steps.hightBox.length != 0) {
-        step.on('show', () => {
-          steps.hightBox.forEach((item) => {
-            document.querySelector(item).classList.add('tiny-guide__z-top')
+        const step = tour.addStep(steps)
+        if (steps.hightBox && steps.hightBox.length != 0) {
+          step.on('show', () => {
+            steps.hightBox.forEach((item) => {
+              document.querySelector(item).classList.add('tiny-guide__z-top')
+            })
           })
-        })
-        step.on('hide', () => {
-          steps.hightBox.forEach((item) => {
-            document.querySelector(item).classList.remove('tiny-guide__z-top')
+          step.on('hide', () => {
+            steps.hightBox.forEach((item) => {
+              document.querySelector(item).classList.remove('tiny-guide__z-top')
+            })
           })
-        })
-        step.on('complete', () => {
-          steps.hightBox.forEach((item) => {
-            document.querySelector(item).classList.remove('tiny-guide__z-top')
+          step.on('complete', () => {
+            steps.hightBox.forEach((item) => {
+              document.querySelector(item).classList.remove('tiny-guide__z-top')
+            })
           })
-        })
-        step.on('cancel', () => {
-          steps.hightBox.forEach((item) => {
-            document.querySelector(item).classList.remove('tiny-guide__z-top')
+          step.on('cancel', () => {
+            steps.hightBox.forEach((item) => {
+              document.querySelector(item).classList.remove('tiny-guide__z-top')
+            })
           })
-        })
-        step.on('destroy', () => {
-          steps.hightBox.forEach((item) => {
-            document.querySelector(item).classList.remove('tiny-guide__z-top')
+          step.on('destroy', () => {
+            steps.hightBox.forEach((item) => {
+              document.querySelector(item).classList.remove('tiny-guide__z-top')
+            })
           })
-        })
-      } else {
-        callBack(step, item)
-      }
-    })
+        }
+          callBack(step, item)
+      })
+    }
+
+    state.tour.start()
+    if (props.width || props.height) {
+      document.querySelector('.tiny-guide.shepherd-element').style.width = `${props.width}px`
+      document.querySelector('.tiny-guide.shepherd-element').style.height = `${props.height}px`
+    }
   }
 
-  state.tour.start()
-  if (props.width || props.height) {
-    document.querySelector('.tiny-guide.shepherd-element').style.width = `${props.width}px`
-    document.querySelector('.tiny-guide.shepherd-element').style.height = `${props.height}px`
+export const mounted =
+  ({ state, api }) =>
+  () => {
+    if (state.showStep) {
+      api.createShepherd()
+    }
   }
-}
-
-export const mounted = ({ state, api }) => () => {
-  if (state.showStep) {
-    api.createShepherd()
-  }
-}
 
 const getItemCopy = (props, tour, result) => {
   const { domData } = props
@@ -115,7 +118,7 @@ const itemStep = (item, state, deepCopy, index, Shepherd) => {
     id: item.id,
     scrollTo: true,
     scrollToHandler(el) {
-      if (el.getBoundingClientRect().top > document.documentElement.clientHeight) {
+      if (el && el.getBoundingClientRect().top > document.documentElement.clientHeight) {
         if (document.documentElement.scrollTop > 0) {
           window.scrollTo(0, document.documentElement.scrollTop + el.getBoundingClientRect().top / 2)
         } else {
@@ -130,8 +133,9 @@ const itemStep = (item, state, deepCopy, index, Shepherd) => {
         const footer = currentStepElement && currentStepElement.querySelector('.shepherd-footer')
         const progress = document.createElement('span')
         progress.classList.add('progress-style')
-        progress.innerText = `${Shepherd.activeTour && Shepherd.activeTour.steps.indexOf(currentStep) + 1}/${Shepherd.activeTour && Shepherd.activeTour.steps.length
-          }`
+        progress.innerText = `${Shepherd.activeTour && Shepherd.activeTour.steps.indexOf(currentStep) + 1}/${
+          Shepherd.activeTour && Shepherd.activeTour.steps.length
+        }`
         footer && footer.insertBefore(progress, currentStepElement.querySelector('.shepherd-button'))
       }
     }

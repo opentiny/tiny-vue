@@ -65,7 +65,12 @@
         <button type="button" class="tiny-time-panel__btn cancel" @click="handleCancel()">
           {{ t('ui.datepicker.cancel') }}
         </button>
-        <button type="button" class="tiny-time-panel__btn confirm" @click="handleConfirm()" :disabled="state.btnDisabled">
+        <button
+          type="button"
+          class="tiny-time-panel__btn confirm"
+          @click="handleConfirm()"
+          :disabled="state.btnDisabled"
+        >
           {{ t('ui.datepicker.confirm') }}
         </button>
       </div>

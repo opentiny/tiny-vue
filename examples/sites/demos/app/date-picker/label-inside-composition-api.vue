@@ -1,0 +1,21 @@
+<template>
+  <div>
+    <div>
+      <p>日期选择</p>
+      <tiny-date-picker v-model="dateValue" label="选择日期"></tiny-date-picker>
+    </div>
+    <br />
+    <div>
+      <p>日期范围选择</p>
+      <tiny-date-picker v-model="dateRangeValue" label="选择日期范围选择日期范围" type="daterange"></tiny-date-picker>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { DatePicker as TinyDatePicker } from '@opentiny/vue'
+
+const dateValue = ref(new Date())
+const dateRangeValue = ref([])
+</script>

@@ -10,7 +10,12 @@
  *
  -->
 <template>
-  <div class="tiny-mobile-tabbar-item" :class="{ 'is-active': state.renderActive }" :style="{ color: state.renderColor }" @click="onClick">
+  <div
+    class="tiny-mobile-tabbar-item"
+    :class="{ 'is-active': state.renderActive }"
+    :style="{ color: state.renderColor }"
+    @click="onClick"
+  >
     <div class="tiny-mobile-tabbar-item__icon">
       <slot name="icon" :active="state.renderActive">
         <component :is="icon" :style="{ fill: state.renderColor }"></component>

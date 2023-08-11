@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   changeSelectionRange,
@@ -49,7 +49,7 @@ const initState = ({ reactive, props, computed, api }) => {
   return state
 }
 
-export const renderless = (props, { computed, onMounted, reactive, watch, nextTick }, { t, emit: $emit, refs }) => {
+export const renderless = (props, { computed, onMounted, reactive, watch, nextTick }, { t, emit: $emit, vm }) => {
   const api = {}
   const emit = props.emitter ? props.emitter.emit : $emit
   const state = initState({ reactive, props, computed, api })
@@ -58,14 +58,14 @@ export const renderless = (props, { computed, onMounted, reactive, watch, nextTi
     t,
     state,
     compuAmPmMode: compuAmPmMode(state),
-    adjustSpinners: adjustSpinners(refs),
+    adjustSpinners: adjustSpinners(vm),
     handleCancel: handleCancel({ state, emit }),
     setSelectionRange: setSelectionRange({ state, emit }),
-    watchVisible: watchVisible({ nextTick, refs, state }),
+    watchVisible: watchVisible({ nextTick, vm, state }),
     isValidValue: isValidValue({ state }),
-    changeSelectionRange: changeSelectionRange({ refs, state }),
+    changeSelectionRange: changeSelectionRange({ vm, state }),
     handleConfirm: handleConfirm({ state, emit }),
-    handleKeydown: handleKeydown({ api, refs }),
+    handleKeydown: handleKeydown({ api, vm }),
     handleChange: handleChange({ api, emit, state }),
     watchValue: watchValue({ api, emit, nextTick, state })
   })
@@ -82,7 +82,7 @@ export const renderless = (props, { computed, onMounted, reactive, watch, nextTi
 
   watch(
     () => state.selectableRange,
-    (value) => (refs.spinner.state.selectableRange = value)
+    (value) => (vm.$refs.spinner.state.selectableRange = value)
   )
 
   watch(

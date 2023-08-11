@@ -12,7 +12,12 @@
 <template>
   <div class="credit-card-form">
     <div class="credit-card-list">
-      <tiny-credit-card :fields="state.fields" :labels="formData" :isCardNumberMasked="state.isCardNumberMasked" :backgroundImage="backgroundImage" />
+      <tiny-credit-card
+        :fields="state.fields"
+        :labels="formData"
+        :isCardNumberMasked="state.isCardNumberMasked"
+        :backgroundImage="backgroundImage"
+      />
     </div>
     <div class="credit-card-form__inner">
       <div class="credit-card-input">
@@ -64,11 +69,22 @@
               data-credit-card-field
             >
               <option value disabled selected>Month</option>
-              <option v-bind:value="n < 10 ? '0' + n : n" v-for="n in 12" v-bind:disabled="n < state.minCardMonth" v-bind:key="n">
+              <option
+                v-bind:value="n < 10 ? '0' + n : n"
+                v-for="n in 12"
+                v-bind:disabled="n < state.minCardMonth"
+                v-bind:key="n"
+              >
                 {{ generateMonthValue(n) }}
               </option>
             </select>
-            <select class="credit-card-input__input -select" :id="state.fields.cardYear" v-model="state.cardYear" @change="changeYear" data-credit-card-field>
+            <select
+              class="credit-card-input__input -select"
+              :id="state.fields.cardYear"
+              v-model="state.cardYear"
+              @change="changeYear"
+              data-credit-card-field
+            >
               <option value disabled selected>Year</option>
               <option v-bind:value="$index + state.minCardYear" v-for="(n, $index) in 12" v-bind:key="n">
                 {{ $index + state.minCardYear }}

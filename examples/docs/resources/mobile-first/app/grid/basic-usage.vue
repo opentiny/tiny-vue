@@ -3,7 +3,16 @@
     <!-- <tiny-radio v-model="viewType" label="default">默认视图</tiny-radio> -->
     <tiny-radio v-model="viewType" label="mf">表格视图</tiny-radio>
     <tiny-radio v-model="viewType" label="card">卡片视图</tiny-radio>
-    <tiny-grid :data="tableData" auto-resize :select-config="selectConfig" :view-type="viewType" :mf-show="mfShow" :card-config="cardConfig" @card-click="onCardClick" height="480">
+    <tiny-grid
+      :data="tableData"
+      auto-resize
+      :select-config="selectConfig"
+      :view-type="viewType"
+      :mf-show="mfShow"
+      :card-config="cardConfig"
+      @card-click="onCardClick"
+      height="480"
+    >
       <template #link>
         <icon-chevron-right class="mf-table-more cursor-pointer fill-brand"></icon-chevron-right>
       </template>

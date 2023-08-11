@@ -1,11 +1,7 @@
 <template>
   <div>
-    <tiny-radio v-model="value" label="1" @change="change">
-      选项一
-    </tiny-radio>
-    <tiny-radio v-model="value" label="2" @change="change">
-      选项二
-    </tiny-radio>
+    <tiny-radio v-model="value" label="1" @change="change"> 选项一 </tiny-radio>
+    <tiny-radio v-model="value" label="2" @change="change"> 选项二 </tiny-radio>
   </div>
 </template>
 

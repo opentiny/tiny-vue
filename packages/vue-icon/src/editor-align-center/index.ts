@@ -12,4 +12,4 @@
 import { svg } from '@opentiny/vue-common'
 import EditorAlignCenter from '@opentiny/vue-theme/svgs/editor-align-center.svg'
 
-export default svg({ name: 'EditorAlignCenter', component: EditorAlignCenter })
+export default () => svg({ name: 'EditorAlignCenter', component: EditorAlignCenter })()

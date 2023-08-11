@@ -26,7 +26,10 @@
     aria-valuemax="100"
   >
     <div class="tiny-progress-bar" v-if="type === 'line'">
-      <div class="tiny-progress-bar__outer" :style="{ height: state.strokeWidth + 'px', borderRadius: `${state.strokeWidth / 2}px` }">
+      <div
+        class="tiny-progress-bar__outer"
+        :style="{ height: state.strokeWidth + 'px', borderRadius: `${state.strokeWidth / 2}px` }"
+      >
         <transition
           appear
           appear-class="custom-appear-class"
@@ -34,7 +37,10 @@
           @appear="customAppearHook"
           @after-appear="customAfterAppearHook"
         >
-          <div class="tiny-progress-bar__inner" :style="{ ...state.barStyle, borderRadius: `${state.strokeWidth / 2}px` }">
+          <div
+            class="tiny-progress-bar__inner"
+            :style="{ ...state.barStyle, borderRadius: `${state.strokeWidth / 2}px` }"
+          >
             <div class="tiny-progress-bar__innerText" v-if="showText && textInside">
               {{ state.content }}
             </div>
@@ -71,7 +77,11 @@
         </transition>
       </svg>
     </div>
-    <div class="tiny-progress__text" v-if="showText && !textInside" :style="{ fontSize: state.progressTextSize + 'px' }">
+    <div
+      class="tiny-progress__text"
+      v-if="showText && !textInside"
+      :style="{ fontSize: state.progressTextSize + 'px' }"
+    >
       <template v-if="!status">
         {{ state.content }}
       </template>
@@ -87,7 +97,18 @@ import { iconClose, iconSuccess, iconError, iconYes, iconWarning } from '@openti
 import '@opentiny/vue-theme/progress/index.less'
 
 export default defineComponent({
-  props: [...props, 'type', 'percentage', 'status', 'strokeWidth', 'textInside', 'width', 'showText', 'color', 'format'],
+  props: [
+    ...props,
+    'type',
+    'percentage',
+    'status',
+    'strokeWidth',
+    'textInside',
+    'width',
+    'showText',
+    'color',
+    'format'
+  ],
   components: {
     IconClose: iconClose(),
     IconSuccess: iconSuccess(),

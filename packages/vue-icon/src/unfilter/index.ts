@@ -12,4 +12,4 @@
 import { svg } from '@opentiny/vue-common'
 import Unfilter from '@opentiny/vue-theme/svgs/unfilter.svg'
 
-export default svg({ name: 'IconUnfilter', component: Unfilter })
+export default () => svg({ name: 'IconUnfilter', component: Unfilter })()

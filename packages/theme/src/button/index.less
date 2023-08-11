@@ -29,7 +29,7 @@
   color: var(--ti-button-normal-text-color);
   fill: var(--ti-button-normal-text-color);
   font-size: var(--ti-button-font-size);
-  min-width: var(--ti-button-size-normal-mini-width);
+  min-width: var(--ti-button-size-normal-min-width);
   white-space: nowrap;
   text-overflow: ellipsis;
   cursor: pointer;
@@ -42,7 +42,10 @@
   background: var(--ti-button-normal-background-color);
   padding: var(--ti-button-padding-vertical) var(--ti-button-size-normal-padding-horizontal);
   overflow: hidden;
-  transition: border 0.3s ease 0s, color 0.3s ease 0s, background 0.3s ease 0s;
+  transition:
+    border 0.3s ease 0s,
+    color 0.3s ease 0s,
+    background 0.3s ease 0s;
   outline: 0;
   vertical-align: middle;
 
@@ -64,7 +67,7 @@
     .button-color(
       var(--ti-button-normal-hover-text-color),
       var(--ti-button-normal-hover-border-color),
-      var(--ti-button-normal-hover-background-color)
+      var(--ti-button-normal-hover-bg-color)
     );
   }
 
@@ -74,7 +77,7 @@
     .button-color(
       var(--ti-button-normal-active-text-color),
       var(--ti-button-normal-active-border-color),
-      var(--ti-button-normal-active-background-color)
+      var(--ti-button-normal-active-bg-color)
     );
   }
 
@@ -85,7 +88,7 @@
     .button-color(
       var(--ti-button-normal-disabled-text-color),
       var(--ti-button-normal-disabled-border-color),
-      var(--ti-button-normal-disabled-background-color)
+      var(--ti-button-normal-disabled-bg-color)
     );
   }
 
@@ -94,7 +97,7 @@
     .button-color(
       var(--ti-button-normal-hover-text-color),
       var(--ti-button-normal-hover-border-color),
-      var(--ti-button-normal-hover-background-color)
+      var(--ti-button-normal-hover-bg-color)
     );
   }
 
@@ -104,7 +107,7 @@
     .button-color(
       var(--ti-button-normal-disabled-text-color),
       var(--ti-button-normal-disabled-border-color),
-      var(--ti-button-normal-disabled-background-color)
+      var(--ti-button-normal-disabled-bg-color)
     );
   }
 
@@ -170,7 +173,7 @@
     line-height: 1;
     padding: var(--ti-button-size-normal-padding);
 
-    &.is-hide-boder{
+    &.is-hide-boder {
       border: none;
     }
   }
@@ -287,7 +290,6 @@
     );
 
     &.is-plain {
-
       &.is-disabled,
       &.is-disabled:active,
       &.is-disabled:focus,
@@ -329,6 +331,8 @@
 
     border-radius: var(--ti-button-text-hover-border-radius);
 
+    padding: 0 var(--ti-button-text-padding-horizontal);
+
     &:has(.@{svg-prefix-cls}) {
       padding: 0 var(--ti-button-text-svg-padding-horizontal);
     }
@@ -338,34 +342,34 @@
       border-radius: var(--ti-button-text-hover-border-radius);
 
       & .@{svg-prefix-cls} {
-        fill: var(--ti-button-text-svg-hover-fill);
+        fill: var(--ti-button-text-svg-hover-fill-color);
       }
     }
 
     &:has(.@{svg-prefix-cls}).is-disabled {
       background: transparent;
-      fill: var(--ti-button-text-svg-fill-disabled);
+      fill: var(--ti-button-text-svg-disabled-fill-color);
 
       & .@{svg-prefix-cls} {
-        fill: var(--ti-button-text-svg-fill-disabled);
+        fill: var(--ti-button-text-svg-disabled-fill-color);
       }
 
       &:hover {
-        fill: var(--ti-button-text-svg-fill-disabled);
+        fill: var(--ti-button-text-svg-disabled-fill-color);
         background: transparent;
       }
     }
 
     & .@{svg-prefix-cls} {
       vertical-align: middle;
-      fill: var(--ti-button-text-svg-fill);
+      fill: var(--ti-button-text-svg-fill-color);
     }
 
     &.@{button-prefix-cls}.@{button-prefix-cls}--large {
       min-width: var(--ti-button-text-size-large-min-width);
       height: var(--ti-button-text-size-large-height);
       line-height: calc(var(--ti-button-text-size-large-height) - 2px);
-  
+
       svg {
         width: var(--ti-button-text-size-large-svg-width);
         height: var(--ti-button-text-size-large-svg-height);
@@ -376,7 +380,7 @@
       min-width: var(--ti-button-text-size-medium-min-width);
       height: var(--ti-button-text-size-medium-height);
       line-height: calc(var(--ti-button-text-size-medium-height) - 2px);
-  
+
       svg {
         width: var(--ti-button-text-size-medium-svg-width);
         height: var(--ti-button-text-size-medium-svg-height);
@@ -387,7 +391,7 @@
       min-width: var(--ti-button-text-size-default-min-width);
       height: var(--ti-button-text-size-default-height);
       line-height: calc(var(--ti-button-text-size-default-height) - 2px);
-  
+
       svg {
         width: var(--ti-button-text-size-default-svg-width);
         height: var(--ti-button-text-size-default-svg-height);
@@ -398,7 +402,7 @@
       min-width: var(--ti-button-text-size-small-min-width);
       height: var(--ti-button-text-size-small-height);
       line-height: calc(var(--ti-button-text-size-small-height) - 2px);
-  
+
       svg {
         width: var(--ti-button-text-size-small-svg-width);
         height: var(--ti-button-text-size-small-svg-height);
@@ -409,7 +413,7 @@
       min-width: var(--ti-button-text-size-mini-min-width);
       height: var(--ti-button-text-size-mini-height);
       line-height: calc(var(--ti-button-text-size-mini-height) - 2px);
-  
+
       svg {
         width: var(--ti-button-text-size-mini-svg-width);
         height: var(--ti-button-text-size-mini-svg-height);
@@ -422,7 +426,7 @@
       var(--ti-button-size-large-font-size),
       var(--ti-button-size-large-height),
       var(--ti-button-size-large-padding-horizontal),
-      var(--ti-button-size-large-mini-width),
+      var(--ti-button-size-large-min-width),
     );
 
     & + & {
@@ -435,7 +439,7 @@
       var(--ti-button-size-medium-font-size),
       var(--ti-button-size-medium-height),
       var(--ti-button-size-medium-padding-horizontal),
-      var(--ti-button-size-medium-mini-width),
+      var(--ti-button-size-medium-min-width),
     );
 
     & + & {
@@ -448,7 +452,7 @@
       var(--ti-button-size-small-font-size),
       var(--ti-button-size-small-height),
       var(--ti-button-size-small-padding-horizontal),
-      var(--ti-button-size-small-mini-width),
+      var(--ti-button-size-small-min-width),
     );
 
     & + & {
@@ -461,7 +465,7 @@
       var(--ti-button-size-mini-font-size),
       var(--ti-button-size-mini-height),
       var(--ti-button-size-mini-padding-horizontal),
-      var(--ti-button-size-mini-mini-width),
+      var(--ti-button-size-mini-min-width),
     );
   }
 }

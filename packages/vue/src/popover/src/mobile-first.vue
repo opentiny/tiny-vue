@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import { setup, $prefix, defineComponent, $props, } from '@opentiny/vue-common'
+import { setup, $prefix, defineComponent, $props } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/popover/vue'
 import Modal from '@opentiny/vue-modal'
 import { classes } from './token'

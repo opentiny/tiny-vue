@@ -3,23 +3,26 @@
 
 // demo源码
 // 同web-doc的菜单资源
-import originMenuData from '../resources/pc/menus.js'
+import { cmpMenus } from '../../sites/demos/menus.js'
 
-export const demoStr = import.meta.glob('../resources/pc/demo/**/*.vue', { eager: false, as: 'raw' })
-export const demoVue = import.meta.glob('../resources/pc/demo/**/*.vue', { eager: false })
+export const demoStr = import.meta.glob('../../sites/demos/app/**/*.vue', { eager: false, as: 'raw' })
+export const demoVue = import.meta.glob('../../sites/demos/app/**/*.vue', { eager: false })
 
 // api属性
-export const zhApi = import.meta.glob('../resources/pc/api/zh-CN/**/*.json', { eager: false })
-// export const enApi = import.meta.glob('@resources/api/en-US/**/*.json', { eager: false })
+export const apis = import.meta.glob('../../sites/demos/app/*/webdoc/*.js', { eager: false })
 
-// // json, demo的配置文件
-export const zhDemo = import.meta.glob('../resources/pc/demo-config/zh-CN/**/*.json', { eager: false })
-// 格式：{zh,en,enSuffix,path}
-// path: '/breadcrumb' 对应着【 demo的配置文件】。每个path有多个示例
-const menuData = originMenuData.slice(0)
+// 组件的md
+const allMD = import.meta.glob('../../sites/demos/app/*/webdoc/*.cn.md', { eager: true })
+export const mds = {}
+for (const path in allMD) {
+  let key = path.split('/').slice(-1)[0]
+  mds[key] = allMD[path].default
+}
+
+const menuData = cmpMenus.slice(0)
 function processMenu(menu, isTop) {
-  menu.id = menu.en
-  menu.label = isTop ? menu.zh : `${menu.zh} ${menu.en}`
+  menu.id = menu.key
+  menu.label = isTop ? menu.label : `${menu.nameCn} ${menu.name}`
   if (menu.children && menu.children.length > 0) {
     menu.children.forEach((m) => processMenu(m, false))
   }

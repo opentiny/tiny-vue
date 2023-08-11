@@ -34,13 +34,13 @@ import Modal from '@opentiny/vue-modal'
 import Pager from '@opentiny/vue-pager'
 import { Buttons } from '../adapter'
 import { error } from '../tools'
-import Table from '../table'
+import TinyGridTable from '../table'
 import GlobalConfig from '../config'
 import methods, { setBodyRecords, invokeSaveDataApi, doRemoveOrShowMsg } from './methods'
 import { iconMarkOn } from '@opentiny/vue-icon'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 
-const propKeys = Object.keys(Table.props)
+const propKeys = Object.keys(TinyGridTable.props)
 
 // 表格工具栏渲染器
 function getRenderedToolbar({ $slots, _vm, loading, tableLoading, toolbar }) {
@@ -90,7 +90,7 @@ function renderPager({ $slots, _vm, loading, pager, pagerConfig, tableLoading, v
 }
 
 function renderColumnAnchor(params, _vm) {
-  const { anchors = [], action = () => { } } = params || {}
+  const { anchors = [], action = () => {} } = params || {}
   const { viewType } = _vm
   return h(
     'div',
@@ -118,7 +118,23 @@ function renderColumnAnchor(params, _vm) {
 
 // 渲染主入口，创建表格最外层节点
 function createRender(opt) {
-  const { h, _vm, vSize, props, selectToolbar, $slots, tableOns, renderedToolbar, loading, pagerConfig, pager, tableLoading, viewType, columnAnchorParams, columnAnchor } = opt
+  const {
+    h,
+    _vm,
+    vSize,
+    props,
+    selectToolbar,
+    $slots,
+    tableOns,
+    renderedToolbar,
+    loading,
+    pagerConfig,
+    pager,
+    tableLoading,
+    viewType,
+    columnAnchorParams,
+    columnAnchor
+  } = opt
   return h(
     'div',
     {
@@ -134,7 +150,7 @@ function createRender(opt) {
       selectToolbar ? null : renderedToolbar,
       columnAnchor ? renderColumnAnchor(columnAnchorParams, _vm) : null,
       // 这里会渲染tiny-grid-column插槽内容，从而获取列配置
-      h('tiny-grid-table', { props, on: tableOns, ref: 'tinyTable' }, $slots.default && $slots.default()),
+      h(TinyGridTable, { props, on: tableOns, ref: 'tinyTable' }, $slots.default && $slots.default()),
       renderPager({
         $slots,
         _vm,
@@ -150,9 +166,6 @@ function createRender(opt) {
 
 export default defineComponent({
   name: `${$prefix}Grid`,
-  components: {
-    TinyGridTable: Table
-  },
   provide() {
     return { $grid: this }
   },
@@ -175,7 +188,7 @@ export default defineComponent({
       default: false
     },
     events: Object,
-    ...Table.props,
+    ...TinyGridTable.props,
     isBeforePageChange: Boolean,
     showSaveMsg: {
       type: Boolean,
@@ -318,14 +331,37 @@ export default defineComponent({
     const tableListeners = getListeners(attrs, listeners)
     resolveMode(props, context)
     const renderless = (props, hooks, { designConfig = null }) => {
-      return ({ tableListeners, designConfig })
+      return { tableListeners, designConfig }
     }
 
     return setup({ props, context, renderless, api: ['designConfig', 'tableListeners'] })
   },
   render() {
-    const { editConfig, fetchOption, listeners, loading, optimization, pager, pagerConfig, remoteFilter, remoteSort, selectToolbar } = this as any
-    const { seqIndex, slots: $slots, tableCustoms, tableData, tableListeners, tableLoading, tableProps, toolbar, vSize, designConfig, viewType } = this as any
+    const {
+      editConfig,
+      fetchOption,
+      listeners,
+      loading,
+      optimization,
+      pager,
+      pagerConfig,
+      remoteFilter,
+      remoteSort,
+      selectToolbar
+    } = this
+    const {
+      seqIndex,
+      slots: $slots,
+      tableCustoms,
+      tableData,
+      tableListeners,
+      tableLoading,
+      tableProps,
+      toolbar,
+      vSize,
+      designConfig,
+      viewType
+    } = this
     const { columnAnchor, columnAnchorParams } = this
 
     // grid全局替换smb图标
@@ -364,7 +400,23 @@ export default defineComponent({
     let renderedToolbar = getRenderedToolbar({ $slots, _vm: this, loading, tableLoading, toolbar })
 
     // 创建表格最外层容器，并加载table组件
-    return createRender({ h, _vm: this, vSize, props, selectToolbar, renderedToolbar, tableOns, $slots, loading, pager, pagerConfig, tableLoading, viewType, columnAnchorParams, columnAnchor })
+    return createRender({
+      h,
+      _vm: this,
+      vSize,
+      props,
+      selectToolbar,
+      renderedToolbar,
+      tableOns,
+      $slots,
+      loading,
+      pager,
+      pagerConfig,
+      tableLoading,
+      viewType,
+      columnAnchorParams,
+      columnAnchor
+    })
   },
   methods: {
     ...methods,
@@ -430,7 +482,10 @@ export default defineComponent({
       return clss.concat(rowClassName ? rowClassName(params) : [])
     },
     handleActiveMethod(params) {
-      return !~this.pendingRecords.indexOf(params.row) && (!this.editConfig.activeMethod || this.editConfig.activeMethod(params))
+      return (
+        !~this.pendingRecords.indexOf(params.row) &&
+        (!this.editConfig.activeMethod || this.editConfig.activeMethod(params))
+      )
     },
     handleFetch(code, sortArg) {
       let { pager, sortData, filterData, pagerConfig, fetchOption, fetchData, dataset } = this
@@ -537,7 +592,17 @@ export default defineComponent({
           return
         }
 
-        let canInvoke = invokeSaveDataApi({ _vm: this, args, body, code, removeRecords, resolve, saveData, updateRecords, valid })
+        let canInvoke = invokeSaveDataApi({
+          _vm: this,
+          args,
+          body,
+          code,
+          removeRecords,
+          resolve,
+          saveData,
+          updateRecords,
+          valid
+        })
 
         doRemoveOrShowMsg({ _vm: this, canInvoke, code, isMsg, pendingRecords, resolve, valid })
       }
@@ -609,7 +674,9 @@ export default defineComponent({
       } else if (code === 'mark_cancel') {
         this.triggerPendingEvent(code)
       } else if (code === 'delete_selection') {
-        this.handleDeleteRow(code, 'ui.grid.deleteSelectRecord', () => this.commitProxy.apply(this, ['delete'].concat(args)))
+        this.handleDeleteRow(code, 'ui.grid.deleteSelectRecord', () =>
+          this.commitProxy.apply(this, ['delete'].concat(args))
+        )
       } else if (code === 'remove_selection') {
         this.handleDeleteRow(code, 'ui.grid.removeSelectRecord', () => this.removeSelecteds())
       } else if (code === 'export') {

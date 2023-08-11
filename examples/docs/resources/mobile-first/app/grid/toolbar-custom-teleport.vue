@@ -5,7 +5,12 @@
     <tiny-tab-item title="数据组件" name="second">
       <tiny-grid :data="tableData" :resizable="true">
         <template #toolbar>
-          <tiny-grid-toolbar id="custom-width" :resizable="{ storage: true }" :setting="{ showIndex: true }" teleport-to=".the-only-class"></tiny-grid-toolbar>
+          <tiny-grid-toolbar
+            id="custom-width"
+            :resizable="{ storage: true }"
+            :setting="{ showIndex: true }"
+            teleport-to=".the-only-class"
+          ></tiny-grid-toolbar>
         </template>
         <tiny-grid-column field="name" title="名称"></tiny-grid-column>
         <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>

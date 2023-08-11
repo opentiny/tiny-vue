@@ -489,7 +489,8 @@ function renderRowGroupData({ groupData, groupFolds, row, rowGroup, rowid, rows,
             }
           })
         }
-      }}>
+      }}
+    >
       {tds}
     </tr>
   )

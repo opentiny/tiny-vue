@@ -1,5 +1,12 @@
 <template>
-  <tiny-pager @next-click="nextClick" :current-page="currentPage" @update:current-page="currentPage = $event" :page-size="100" layout="total, sizes, prev, pager, next" :total="1000">
+  <tiny-pager
+    @next-click="nextClick"
+    :current-page="currentPage"
+    @update:current-page="currentPage = $event"
+    :page-size="100"
+    layout="total, sizes, prev, pager, next"
+    :total="1000"
+  >
   </tiny-pager>
 </template>
 

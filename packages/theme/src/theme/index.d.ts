@@ -1,8 +1,8 @@
 interface TinyTheme {
-  id: string;
-  name: string;
-  cnName: string;
-  data: object;
+  id: string
+  name: string
+  cnName: string
+  data: object
 }
 
 declare var tinySmbTheme: TinyTheme

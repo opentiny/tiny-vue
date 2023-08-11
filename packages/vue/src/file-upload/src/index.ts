@@ -11,12 +11,13 @@
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
-import streamSaver from 'streamsaver'
 
 const $constants = {
+  FILE_UPLOAD_INNER_TEMPLATE: 'file-upload-inner-template',
   UPLOAD_INNER: 'upload-inner',
   UPLOAD_INNER_TEMPLATE: 'upload-inner-template',
-  FILE_UPLOAD_INNER: 'file-upload-inner',
+  UPLOAD_LIST_INNER: 'upload-list-inner',
+  UPLOAD_LIST_INNER_TEMPLATE: 'upload-list-inner-template',
   FILE_STATUS: {
     READY: 'ready',
     SUCESS: 'success',
@@ -73,32 +74,30 @@ const $constants = {
     THEFILENAME: 'ui.fileUpload.fileName',
     CALCHASH: 'ui.fileUpload.calcHash',
     KIASTATUS: 12079,
-    FILE_PREVIEW_TYPE: {
-      ASPOSE: 'aspose',
-      WPS: 'wps'
-    }
+    NumberExceed: 'ui.fileUpload.numberExceed',
+    notSupport: 'ui.fileUpload.notSupport'
   },
   IMAGE_TYPE: 'image/*',
-  IMAGE_TYPES: [
-    'png',
-    'jpg',
-    'jpeg',
-    'gif',
-    'svg',
-    'webp',
-    'bmp',
-    'tif',
-    'pjp',
-    'apng',
-    'xbm',
-    'jxl',
-    'svgz',
-    'ico',
-    'tiff',
-    'jfif',
-    'pjpeg',
-    'avif'
-  ]
+  FILE_TYPE: {
+    EXCEL: 'xls/xlsx',
+    FILE: 'file',
+    PDF: 'pdf',
+    PICTURE: 'png/jpg/jpeg/gif/svg/webp/bmp/tif/pjp/apng/xbm/jxl/svgz/ico/tiff/jfif/pjpeg/avif',
+    PPT: 'ppt/pptx',
+    TEXT: 'txt',
+    WORD: 'doc/docx',
+    ZIP: 'zip/rar/arj/z/jar/lzh',
+    VIDEO: 'mp4/m4v/3gp/mpg/flv/f4v/swf/avi/wmv/rmvb/mov/mts/m2t/ogg/webm/mkv',
+    AUDIO: 'mp3/aac/ape/flac/wav/wma/amr/mid/pcm'
+  },
+  SOURCE_TYPE: {
+    SOURCE_VIDEO: 'video',
+    SOURCE_AUDIO: 'audio',
+    SOURCE_PICTURE: 'picture'
+  },
+  MODE: {
+    BUBBLE: 'bubble'
+  }
 }
 
 export default defineComponent({
@@ -212,10 +211,6 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    plugin: {
-      type: [Object, Function],
-      default: () => streamSaver
-    },
     listOption: {
       type: Object,
       default: () => ({
@@ -239,7 +234,7 @@ export default defineComponent({
       type: String,
       default: 'picture',
       validator(val) {
-        return Boolean(~['picture', 'video', 'audio'].indexOf(val))
+        return val.split('/').every((type) => ['picture', 'video', 'audio'].includes(type))
       }
     },
     showTitle: {
@@ -255,9 +250,28 @@ export default defineComponent({
       default: false
     },
     customClass: [String, Object, Array],
-    hwh5: Object
+    hwh5: Object,
+    mode: {
+      type: String,
+      default: '',
+      validator(val) {
+        return ['', 'bubble'].includes(val)
+      }
+    },
+    cacheToken: {
+      type: Boolean,
+      default: true
+    },
+    lockScroll: {
+      type: Boolean,
+      default: true
+    },
+    isHidden: {
+      type: Boolean,
+      default: false
+    }
   },
   setup(props, context) {
-    return $setup({ props, context, template, extend: { ref: 'file-upload-inner' } })
+    return $setup({ props, context, template, extend: { ref: 'file-upload-inner-template' } })
   }
 })

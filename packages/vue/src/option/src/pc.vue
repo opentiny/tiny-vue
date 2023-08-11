@@ -9,6 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  -->
+
 <template>
   <li
     ref="option"
@@ -21,12 +22,13 @@
       {
         selected: state.itemSelected,
         'is-disabled': disabled || state.groupDisabled || state.limitReached,
-        hover: state.hover
+        hover: state.hover,
+        'is-required': required
       },
       highlightClass
     ]"
   >
-    <span v-if="state.select.multiple && !state.select.state.multipleLimit">
+    <span v-if="state.select.multiple && (state.select.optimization || !state.select.state.multipleLimit)">
       <tiny-checkbox
         :model-value="state.itemSelected"
         :disabled="disabled || state.groupDisabled || state.limitReached"
@@ -67,7 +69,11 @@ export default defineComponent({
       type: Boolean,
       default: true
     },
-    highlightClass: String
+    highlightClass: String,
+    required: {
+      type: Boolean,
+      default: false
+    }
   },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })

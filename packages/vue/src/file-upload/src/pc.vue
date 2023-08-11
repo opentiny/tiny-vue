@@ -23,6 +23,10 @@ import Modal from '@opentiny/vue-modal'
 import DialogBox from '@opentiny/vue-dialog-box'
 import Popover from '@opentiny/vue-popover'
 import { iconAttachment, iconDownload, iconSuccessful, iconClose, iconFileCloudupload } from '@opentiny/vue-icon'
+import CryptoJS from 'crypto-js/core.js'
+import 'crypto-js/sha256.js'
+import 'crypto-js/lib-typedarrays.js'
+import Streamsaver from 'streamsaver'
 
 export default defineComponent({
   inheritAttrs: false,
@@ -53,13 +57,15 @@ export default defineComponent({
     'fileSize',
     'thumbOption',
     'isFolderTitle',
-    'plugin',
     'listOption',
     'maxNameLength',
-    'isHidden'
+    'isHidden',
+    'sourceType',
+    'cacheToken'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api, extendOptions: { Modal } })
+    // 内置crypto-js和streamsaver进行上传下载
+    return setup({ props, context, renderless, api, extendOptions: { Modal, CryptoJS, Streamsaver } })
   },
   components: {
     Progress,
@@ -76,7 +82,18 @@ export default defineComponent({
   render() {
     let uploadList
     const { exceed = () => {}, preview = undefined } = this.state.listeners
-    const { uploadFiles, isEdm, dialogConfigObj, isSuccess, uploadDisabled, url, accept, httpRequest, edmToken, iframeUrl } = this.state
+    const {
+      uploadFiles,
+      isEdm,
+      dialogConfigObj,
+      isSuccess,
+      uploadDisabled,
+      url,
+      accept,
+      httpRequest,
+      edmToken,
+      iframeUrl
+    } = this.state
     const { downloadFile, handleRemove, updateFile, slots, edm = {}, t, $attrs, a } = this
     const isPictureCard = this.listType === 'picture-card'
     const { showDel, showDownload, showTooltip, showUpdate, icon } = this.thumbOption
@@ -109,7 +126,10 @@ export default defineComponent({
       } else {
         return [
           <icon-successful class="thumb-success-icon" />,
-          <span class={['thumb-item-name', !showDel ? 'hide-close-icon' : '', !showDownload ? 'hide-download-icon' : '']}>{file.name}</span>,
+          <span
+            class={['thumb-item-name', !showDel ? 'hide-close-icon' : '', !showDownload ? 'hide-download-icon' : '']}>
+            {file.name}
+          </span>,
           getThumIcon(file)
         ]
       }
@@ -123,40 +143,40 @@ export default defineComponent({
           uploadFiles.length === 0
             ? ''
             : h('div', { class: 'tiny-upload--thumb__wrap' }, [
-              h('Popover', {
-                props: {
-                  trigger: 'hover',
-                  popperClass: this.thumbOption.popperClass,
-                  width: this.thumbOption.width
-                },
-                scopedSlots: {
-                  reference: () =>
-                    h('div', { class: 'tiny-upload--thumb__head' }, [
-                      h(icon || 'icon-attachment', {
-                        class: 'thumb-icon'
-                      }),
-                      getFileSize()
-                    ]),
-                  default: () =>
-                    h('div', { class: 'tiny-upload--thumb__body' }, [
-                      h('div', { class: 'tiny-upload--thumb__list' }, [
-                        uploadFiles.map((item) =>
-                          h('Popover', {
-                            props: {
-                              content: item.name,
-                              trigger: showTooltip ? 'hover' : 'manual',
-                              placement: 'top'
-                            },
-                            scopedSlots: {
-                              reference: () => h('div', { class: 'thumb-item' }, [getThumbList(item)])
-                            }
-                          })
-                        )
+                h('Popover', {
+                  props: {
+                    trigger: 'hover',
+                    popperClass: this.thumbOption.popperClass,
+                    width: this.thumbOption.width
+                  },
+                  scopedSlots: {
+                    reference: () =>
+                      h('div', { class: 'tiny-upload--thumb__head' }, [
+                        h(icon || 'icon-attachment', {
+                          class: 'thumb-icon'
+                        }),
+                        getFileSize()
+                      ]),
+                    default: () =>
+                      h('div', { class: 'tiny-upload--thumb__body' }, [
+                        h('div', { class: 'tiny-upload--thumb__list' }, [
+                          uploadFiles.map((item) =>
+                            h('Popover', {
+                              props: {
+                                content: item.name,
+                                trigger: showTooltip ? 'hover' : 'manual',
+                                placement: 'top'
+                              },
+                              scopedSlots: {
+                                reference: () => h('div', { class: 'thumb-item' }, [getThumbList(item)])
+                              }
+                            })
+                          )
+                        ])
                       ])
-                    ])
-                }
-              })
-            ])
+                  }
+                })
+              ])
       } else {
         uploadList = (
           <UploadList
@@ -171,8 +191,7 @@ export default defineComponent({
             onRemove={handleRemove}
             handlePreview={preview}
             openDownloadFile={this.openDownloadFile}
-            onUpdate={updateFile}
-          >
+            onUpdate={updateFile}>
             {(props) => {
               if (slots.file) {
                 return slots.file({
@@ -243,8 +262,7 @@ export default defineComponent({
               marginwidth="0"
               marginheight="0"
               scrolling="no"
-              src={iframeUrl}
-            ></iframe>
+              src={iframeUrl}></iframe>
           )
         }
       })

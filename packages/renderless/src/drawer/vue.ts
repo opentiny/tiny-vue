@@ -15,7 +15,11 @@ import {
 
 export const api = ['state', 'close', 'confirm']
 
-export const renderless = (props, { reactive, watch, onMounted, onBeforeUnmount, computed }, { emit, vm, mode, constants }) => {
+export const renderless = (
+  props,
+  { reactive, watch, onMounted, onBeforeUnmount, computed },
+  { emit, vm, mode, constants }
+) => {
   const lockScrollClass = constants.SCROLL_LOCK_CLASS(mode)
 
   const api = {}

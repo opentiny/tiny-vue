@@ -15,17 +15,19 @@
         <slot></slot>
       </div>
       <template #reference>
-        <tiny-filter-box
-          ref="filterBox"
-          @click="togglePanel"
-          @handle-clear="handleClear"
-          :show-close="clearable"
-          :disabled="disabled"
-          :label="label"
-          :tip="tip"
-          :value="value"
-          :drop-down-visible="state.visible"
-        ></tiny-filter-box>
+        <div>
+          <tiny-filter-box
+            ref="filterBox"
+            @click="togglePanel"
+            @handle-clear="handleClear"
+            :show-close="clearable"
+            :disabled="disabled"
+            :label="label"
+            :tip="tip"
+            :value="value"
+            :drop-down-visible="state.visible"
+          ></tiny-filter-box>
+        </div>
       </template>
     </tiny-popover>
   </div>

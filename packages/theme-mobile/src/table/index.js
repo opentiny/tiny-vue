@@ -22,5 +22,5 @@ export default {
   'tiny-mobile-table-td-font-size': '12px',
   'tiny-mobile-table-thead-bg-color': '#fafafa',
   'tiny-mobile-table-icon-font-size': '16px',
-  'tiny-mobile-table-check-icon-color': '#4a79fe',
+  'tiny-mobile-table-check-icon-color': '#4a79fe'
 }
