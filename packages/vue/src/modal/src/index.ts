@@ -92,8 +92,8 @@ export default defineComponent({
     modalBoxClass: String,
     confirmContent: String,
     cancelContent: String,
-    confirmBtnProps: { type: Object, default: {} },
-    cancelBtnProps: { type: Object, default: {} }
+    confirmBtnProps: { type: Object, default: () => ({}) },
+    cancelBtnProps: { type: Object, default: () => ({}) }
   },
   setup(props, context) {
     return $setup({ props, context, template })
