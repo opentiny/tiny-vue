@@ -1,9 +1,18 @@
 <template>
   <div>
     <tiny-button @click="fn" type="primary"> 页面选择器 </tiny-button> 值：{{ activeName }}
-    <tiny-select-view v-model="activeName" :menus="menus" value-field="employeeNumber" text-field="userName" :search-config="searchConfig" title="选择人员" :visible="boxVisibility" @update:visible="boxVisibility = $event">
+    <tiny-select-view
+      v-model="activeName"
+      :menus="menus"
+      value-field="employeeNumber"
+      text-field="userName"
+      :search-config="searchConfig"
+      title="选择人员"
+      :visible="boxVisibility"
+      @update:visible="boxVisibility = $event"
+    >
       <template #default="{ item }">
-        <div style="display: flex;">
+        <div style="display: flex">
           <div style="min-width: 60px">{{ item.userName }}</div>
           <div style="margin-left: 20px; color: #5c6976">{{ item.employeeNumber }}</div>
         </div>

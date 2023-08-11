@@ -20,11 +20,11 @@ describe('PC Mode', () => {
       const wrapper = mount(ConfigProvider, {
         props: {
           tag: {
-            enable: false,
+            enable: false
           }
         },
         slots: {
-          default: ['<button>just button</button>'],
+          default: ['<button>just button</button>']
         }
       })
       expect(wrapper.html()).not.contain('div')

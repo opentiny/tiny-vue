@@ -15,7 +15,11 @@ import {
   mounted,
   calcUploadListLiWidth,
   reUpload,
-  remove
+  remove,
+  handleTriggerClick,
+  chooseFile,
+  calcVisible,
+  getNotSuccessFiles
 } from './index'
 import { getToken, initService } from '../file-upload'
 import { getApi } from '../file-upload/vue'
@@ -37,17 +41,19 @@ export const api = [
   'getFileType',
   'getFileIcon',
   'reUpload',
-  'remove'
+  'remove',
+  'handleTriggerClick',
+  'chooseFile'
 ]
 
 export const renderless = (
   props,
-  { reactive, onMounted, onUnmounted, watch },
+  { reactive, onMounted, onUnmounted, watch, inject, computed },
   { t, parent, mode, emit, service, vm, nextTick },
   { Modal }
 ) => {
   const api = { getApi }
-  parent = parent.$parent
+  parent = inject('uploader').$children[0]
   const constants = parent.$constants
   const $service = initService({ props, service })
 
@@ -56,7 +62,11 @@ export const renderless = (
     shows: false,
     startPostion: 0,
     screenType: mode === 'mobile' ? true : false,
-    showPanel: false
+    showPanel: false,
+    showTriggerPanel: false,
+    triggerClickType: '',
+    showAudioPanel: false,
+    files: computed(() => api.getNotSuccessFiles())
   })
 
   parent.getToken = getToken({ constants, props: parent, state: parent.state, t, Modal })
@@ -68,18 +78,22 @@ export const renderless = (
     downloadFile: downloadFile($service),
     picturefilePreview: picturefilePreview(state),
     handleClick: handleClick({ props, api, parent }),
-    play: play({ vm, api }),
-    pause: pause({ vm }),
+    play: play({ vm, api, props }),
+    pause: pause({ vm, props }),
     handleLoadedmetadata: handleLoadedmetadata({ vm }),
     handleTimeupdate: handleTimeupdate(),
     destroyed: destroyed({ api, props, vm }),
     showOperatePanel: showOperatePanel({ state }),
     getFileType: getFileType(),
-    getFileIcon: getFileIcon(),
+    getFileIcon: getFileIcon({ constants }),
     mounted: mounted({ api, vm }),
     calcUploadListLiWidth: calcUploadListLiWidth({ vm, nextTick, props, constants }),
     reUpload: reUpload({ emit, props, parent }),
-    remove: remove({ emit })
+    remove: remove({ emit }),
+    handleTriggerClick: handleTriggerClick({ state, props }),
+    chooseFile: chooseFile({ state, constants }),
+    calcVisible: calcVisible({ props, constants, emit }),
+    getNotSuccessFiles: getNotSuccessFiles({ props, constants })
   })
 
   props.listType === constants.LIST_TYPE.DRAG_SINGLE &&
@@ -96,6 +110,10 @@ export const renderless = (
     )
 
   watch(() => props.files, api.calcUploadListLiWidth)
+
+  if (props.mode === constants.MODE.BUBBLE && props.listType === constants.LIST_TYPE.TEXT) {
+    constants && watch(() => props.files, api.calcVisible, { immediate: true, deep: true })
+  }
 
   onMounted(api.mounted)
 

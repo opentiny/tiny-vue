@@ -319,11 +319,11 @@ const setColumnEvents = (args1) => {
   let { row, rowIndex, rowLevel, seq } = args1
   let { editConfig, expandConfig = {} } = $table
   let { radioConfig = {}, showOverflow: allColumnOverflow } = $table
-  let { highlightCurrentRow, mouseConfig = {}, overflowX } = $table
+  let { highlightCurrentRow, mouseConfig = {} } = $table
   let { scrollXLoad, scrollYLoad, selectConfig = {} } = $table
   let { tableListeners, treeConfig = {} } = $table
   let tdOns = {}
-  let fixedHiddenColumn = column.fixed && overflowX
+  let fixedHiddenColumn = column.fixed
   let { editor, showOverflow, showTip } = column
   let cellOverflow = isNull(showOverflow) ? allColumnOverflow : showOverflow
   let showTitle = cellOverflow === 'title'
@@ -489,7 +489,8 @@ function renderRowGroupData({ groupData, groupFolds, row, rowGroup, rowid, rows,
             }
           })
         }
-      }}>
+      }}
+    >
       {tds}
     </tr>
   )

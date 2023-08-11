@@ -88,7 +88,8 @@
       display: inline-flex;
       align-items: center;
 
-      >input {
+      > input {
+        font-size: var(--ti-ip-address-font-size);
         border: none;
         text-align: center;
         outline: none;
@@ -122,25 +123,25 @@
       svg {
         vertical-align: middle;
         fill: var(--ti-ip-address-icon-color);
-        width: var(--ti-ip-address-icon-width);
-        height: var(--ti-ip-address-icon-height);
+        width: var(--ti-ip-address-icon-size);
+        height: var(--ti-ip-address-icon-size);
       }
 
       &:last-child {
-        >svg {
+        margin-right: var(--ti-ip-address-padding-horizontal);
+        > svg {
           display: none;
         }
       }
 
-      &:only-child {
-        width: 100%;
-
-        >input {
-          width: 100%;
-          text-align: left;
-          padding: var(--ti-ip-address-only-child-padding-vertical) var(--ti-ip-address-only-child-padding-horizontal);
-        }
+      &:first-child {
+        margin-left: var(--ti-ip-address-padding-horizontal);
       }
+    }
+
+    &__ipv6-delimiter {
+      width: var(--ti-ip-address-icon-width);
+      text-align: center;
     }
   }
 }

@@ -9,5 +9,5 @@ export default {
   'tiny-mobile-wheel-scroll-nofooter-line-height': '44px',
   'tiny-mobile-wheel-scroll-nofooter-height': '44px',
   'tiny-mobile-wheel-scroll-nofooter-text-color': '#191919',
-  'tiny-mobile-wheel-scroll-icon-font-size': '20px',
+  'tiny-mobile-wheel-scroll-icon-font-size': '20px'
 }

@@ -3,7 +3,9 @@
     <tiny-tabs v-model="activeName1" :swipeable="true">
       <tiny-tab-item v-for="(state, key) in states" :key="key" :title="state.title" :name="state.name">
         <div v-for="(item, index) in list" :key="index" class="tab-item-demo">
-          <tiny-button :class="[active === index ? 'is-active' : '']" @click="click(index)" round :reset-time="0"> {{ item }}</tiny-button>
+          <tiny-button :class="[active === index ? 'is-active' : '']" @click="click(index)" round :reset-time="0">
+            {{ item }}</tiny-button
+          >
         </div>
       </tiny-tab-item>
     </tiny-tabs>

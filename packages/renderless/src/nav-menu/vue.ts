@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   computedIsShowMore,
@@ -28,6 +28,7 @@ import {
   willHideSubMenu,
   stopHideSubMenu,
   setSubMenu,
+  leaveMoreMune,
   isHide,
   hidePopmenu,
   clickMenu,
@@ -52,6 +53,7 @@ export const api = [
   'willHideSubMenu',
   'stopHideSubMenu',
   'setSubMenu',
+  'leaveMoreMune',
   'isHide',
   'hidePopmenu',
   'clickMenu',
@@ -70,14 +72,19 @@ const initState = ({ reactive, api, computed }) =>
     data: [],
     more: [],
     width: -1,
+    enterMenu:false,
     popMenuTop: 0,
     subMenu: [],
     showMore: false,
     showPopmenu: false,
+    enterMoreMenu: false,
     timer: null,
     activeIndex: -1,
     subActiveIndex: -1,
     selectedIndex: -1,
+    subItemSelectedIndex: -1,
+    moreItemSelectedIndex: -1,
+    subIndex: -1,
     isShowSetting: false,
     marginLeft: 0,
     isShowMore: computed(() => api.computedIsShowMore()),
@@ -94,6 +101,7 @@ const initApi = ({ api, state, props, parent, fetchMenuData, fields, router, rou
     getTag: getTag(props),
     getRoute: getRoute(props),
     setSubMenu: setSubMenu(state),
+    leaveMoreMune: leaveMoreMune(state),
     isHide: isHide({ parent, state }),
     setActiveMenu: setActiveMenu(state),
     willHideSetting: willHideSetting(state),
@@ -110,7 +118,7 @@ const initApi = ({ api, state, props, parent, fetchMenuData, fields, router, rou
     skip: skip({ api, router, fields }),
     hidePopmenu: hidePopmenu(api),
     getPoint: getPoint({ api, parent }),
-    clickMenu: clickMenu({ api, props }),
+    clickMenu: clickMenu({ api, props, state }),
     unMounted: unMounted({ api, state, router }),
     mounted: mounted({ api, props, router, route, state }),
     classify: classify({ api, props, state }),
@@ -121,7 +129,11 @@ const initApi = ({ api, state, props, parent, fetchMenuData, fields, router, rou
   })
 }
 
-export const renderless = (props, { computed, onMounted, onUnmounted, reactive, watch }, { parent, nextTick, service, router, route }) => {
+export const renderless = (
+  props,
+  { computed, onMounted, onUnmounted, reactive, watch },
+  { parent, nextTick, service, router, route }
+) => {
   const api = {}
   const { fetchMenuData, fields } = initService({ props, service })
   const state = initState({ reactive, api, computed })

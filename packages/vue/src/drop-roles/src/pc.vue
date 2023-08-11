@@ -28,7 +28,17 @@ export default defineComponent({
     TinyOption: Option,
     IconAdministrator: IconAdministrator()
   },
-  props: [...props, 'size', 'modelValue', 'placeholder', 'fetchRole', 'fetchCurrentRole', 'fields', 'popperClass', 'popperAppendToBody'],
+  props: [
+    ...props,
+    'size',
+    'modelValue',
+    'placeholder',
+    'fetchRole',
+    'fetchCurrentRole',
+    'fields',
+    'popperClass',
+    'popperAppendToBody'
+  ],
   emits: ['change', 'render', 'update:modelValue'],
   setup(props, context) {
     return setup({ props, context, renderless, api })

@@ -5,7 +5,7 @@ const mount = (inputComponent: any, options: MountingOptions<any> = {}) => {
   let mount$ = _mount
 
   if (isVue2) {
-    (options as any).localVue = createLocalVue()
+    ;(options as any).localVue = createLocalVue()
 
     if (options.props) {
       options.propsData = options.props

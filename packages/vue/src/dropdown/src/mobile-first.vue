@@ -4,7 +4,7 @@ import { setup, $prefix, directive, h, $props, defineComponent } from '@opentiny
 import Button from '@opentiny/vue-button'
 import ButtonGroup from '@opentiny/vue-button-group'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
-import { IconChevronDown, IconChevronUp } from '@opentiny/vue-icon'
+import { iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
 
 export default defineComponent({
   name: $prefix + 'Dropdown',
@@ -12,8 +12,8 @@ export default defineComponent({
   components: {
     TinyButton: Button,
     TinyButtonGroup: ButtonGroup,
-    IconChevronDown: IconChevronDown(),
-    IconChevronUp: IconChevronUp()
+    IconChevronDown: iconChevronDown(),
+    IconChevronUp: iconChevronUp()
   },
   directives: directive({ Clickoutside }),
   props: {
@@ -28,6 +28,10 @@ export default defineComponent({
       default: ''
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    singleButton: {
       type: Boolean,
       default: false
     },
@@ -71,11 +75,12 @@ export default defineComponent({
     return setup({ props, context, renderless, api, h })
   },
   render() {
-    const { hide, splitButton, type, disabled, handleMainButtonClick, slots, size, state, border, round, m } = this
+    const { type, disabled, handleMainButtonClick, slots, size, state, border, round, m, clickOutside, singleButton } =
+      this
     const params = { visible: state.visible }
-    let triggerElm
+    let triggerElm = null
 
-    if (splitButton) {
+    if (singleButton) {
       triggerElm = (
         <tiny-button
           ref="trigger"
@@ -111,14 +116,16 @@ export default defineComponent({
       const suffixInner = state.showIcon && (
         <span
           class={[
-            'ml-1 sm:ml-2 [&>svg:nth-of-type(1)]:align-top w-4 h-4 inline-block',
+            'ml-1 sm:ml-2 [&>svg:nth-of-type(1)]:align-top w-4 h-4 inline-block [&_svg]:transition-transform [&_svg]:duration-300',
             {
               'fill-color-brand-focus [&>svg:nth-of-type(1)]:hover:fill-color-brand-hover [&>svg:nth-of-type(1)]:active:fill-color-brand-focus leading-4':
                 !disabled && !border
             },
+            border && (state.visible ? '[&_svg]:rotate-180' : '[&_svg]:rotate-0'),
             border &&
+              type !== 'primary' &&
               state.visible &&
-              '[&_svg]:fill-color-border-focus visited:[&_svg]:fill-color-border-focus active:[&_svg]:fill-color-border-focus [&_svg]:transition-transform [&_svg]:duration-300 [&_svg]:rotate-180'
+              '[&_svg]:fill-color-border-focus visited:[&_svg]:fill-color-border-focus active:[&_svg]:fill-color-border-focus'
           ]}>
           {suffixSlot || <icon-chevron-down />}
         </span>
@@ -133,10 +140,11 @@ export default defineComponent({
           disabled={disabled}
           class={[
             'rounded-sm inline-flex items-center justify-center',
-            state.visible && type !== 'primary'
+            type === 'primary'
+              ? '[&_svg]:fill-color-bg-1'
+              : state.visible
               ? 'active:border-color-border-focus text-color-text-primary active:text-color-brand-focus focus:border-color-border-focus focus:text-color-brand-focus'
-              : '[&_svg]:fill-color-icon-placeholder',
-            type === 'primary' && '[&_svg]:fill-color-bg-1'
+              : '[&_svg]:fill-color-icon-placeholder'
           ]}
           reset-time={0}>
           {defaultSlot}
@@ -146,11 +154,15 @@ export default defineComponent({
         <span
           ref="trigger"
           class={[
-            state.visible && '[&_svg]:transition-transform [&_svg]:duration-300 [&_svg]:rotate-180',
-            disabled && 'text-color-text-disabled cursor-not-allowe [&_svg]:fill-color-text-disabled',
-            'inline-flex'
+            state.visible ? '[&_svg]:rotate-180' : '[&_svg]:rotate-0',
+            disabled && 'cursor-not-allowed [&_svg]:fill-color-text-disabled',
+            'inline-flex [&_svg]:transition-transform [&_svg]:duration-300'
           ]}>
-          <span class="inline-flex hover:text-color-brand-hover active:text-color-brand-focus h-4 leading-4">
+          <span
+            class={[
+              'inline-flex h-4 leading-4',
+              disabled ? 'text-color-text-disabled' : 'hover:text-color-brand-hover active:text-color-brand-focus'
+            ]}>
             {defaultSlot}
           </span>
           <span class="align-bottom leading-4">{suffixInner}</span>
@@ -167,7 +179,7 @@ export default defineComponent({
           disabled && '[&>span:nth-of-type(1)]:text-color-brand-focus',
           state.showSelfIcon && 'leading-4 h-4 [&_svg]:align-top [&_svg]:rotate-0'
         ]}
-        v-clickoutside={hide}
+        v-clickoutside={clickOutside}
         aria-disabled={disabled}>
         {triggerElm}
         {menuElm}

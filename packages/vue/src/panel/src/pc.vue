@@ -22,7 +22,10 @@
       @click="toggle"
     >
       <slot name="collapse" :slot-scope="{ state, iconOpen, iconClose, isToggle }">
-        <component :is="state.isShow ? iconOpen : iconClose" :class="['panel-icon', 'tiny-svg-size', { 'head-span': state.isShow }]" />
+        <component
+          :is="state.isShow ? iconOpen : iconClose"
+          :class="['panel-icon', 'tiny-svg-size', { 'head-span': state.isShow }]"
+        />
       </slot>
       <slot name="header">
         <h3 class="tiny-panel__title">{{ head }}</h3>

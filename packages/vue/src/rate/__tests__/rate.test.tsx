@@ -8,7 +8,7 @@ describe('PC Mode', () => {
   // attrs
   test('render test & v-model', async () => {
     const value = 3
-    const wrapper = mount(() => <Rate modelValue={value} > </Rate>)
+    const wrapper = mount(() => <Rate modelValue={value}> </Rate>)
     const tinyRate = wrapper.findComponent({ name: 'TinyRate' })
     expect(wrapper.find('.tiny-rate').exists()).toBe(true)
     expect(wrapper.findAll('.tiny-rate__star')).toHaveLength(5)
@@ -17,7 +17,11 @@ describe('PC Mode', () => {
 
   test.todo('allow-half', async () => {
     const value = 2.5
-    const wrapper = mount(() => <Rate modelValue={value} allow-half> </Rate>)
+    const wrapper = mount(() => (
+      <Rate modelValue={value} allow-half>
+        {' '}
+      </Rate>
+    ))
     const tinyRate = wrapper.findComponent({ name: 'TinyRate' })
     expect(wrapper.find('.tiny-rate').exists()).toBe(true)
     expect(wrapper.findAll('.tiny-rate__star')).toHaveLength(5)

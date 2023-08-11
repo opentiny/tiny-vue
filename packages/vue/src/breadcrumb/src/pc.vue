@@ -12,7 +12,14 @@
 <template>
   <div class="tiny-breadcrumb" aria-label="Breadcrumb" role="navigation">
     <slot>
-      <tiny-breadcrumb-item v-for="(item, index) in options" :option="item" :label="item[textField]" :key="index" :to="item.to" :replace="item.replace">
+      <tiny-breadcrumb-item
+        v-for="(item, index) in options"
+        :option="item"
+        :label="item[textField]"
+        :key="index"
+        :to="item.to"
+        :replace="item.replace"
+      >
       </tiny-breadcrumb-item>
     </slot>
   </div>

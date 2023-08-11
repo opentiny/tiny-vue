@@ -46,6 +46,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .demo-split {
   height: 200px;

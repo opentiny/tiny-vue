@@ -1,9 +1,7 @@
 <template>
   <div>
     <div>
-      <tiny-button @click="showTest = !showTest">
-        {{ showTest ? '隐藏' : '显示' }}文字
-      </tiny-button>
+      <tiny-button @click="showTest = !showTest"> {{ showTest ? '隐藏' : '显示' }}文字 </tiny-button>
     </div>
     <br />
     <tiny-progress class="progress" :show-text="showTest" size="large" :percentage="50"></tiny-progress>

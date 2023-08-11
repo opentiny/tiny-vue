@@ -1,5 +1,10 @@
 <template>
-  <div :class="mergeClass(datas.rowClass, currentRowId === rowid ? 'border sm:border-2 border-color-brand' : '')" data-tag="tiny-table-row" :data-rowid="rowid" @click="handleClick">
+  <div
+    :class="mergeClass(datas.rowClass, currentRowId === rowid ? 'border sm:border-2 border-color-brand' : '')"
+    data-tag="tiny-table-row"
+    :data-rowid="rowid"
+    @click="handleClick"
+  >
     <column-layout :datas="datas" :row="row" />
   </div>
 </template>

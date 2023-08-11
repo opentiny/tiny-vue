@@ -12,4 +12,4 @@
 import { svg } from '@opentiny/vue-common'
 import EditorSubtitle from '@opentiny/vue-theme/svgs/editor-subtitle.svg'
 
-export default svg({ name: 'EditorSubtitle', component: EditorSubtitle })
+export default () => svg({ name: 'EditorSubtitle', component: EditorSubtitle })()

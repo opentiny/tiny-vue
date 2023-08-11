@@ -51,7 +51,19 @@ export default defineComponent({
     IconRefres: iconRefres(),
     IconYes: iconYes()
   },
-  props: [...props, 'vertical', 'showNumber', 'nameField', 'statusField', 'countField', 'start', 'data', 'space', 'active', 'reverse'],
+  props: [
+    ...props,
+    'vertical',
+    'showNumber',
+    'nameField',
+    'statusField',
+    'countField',
+    'start',
+    'data',
+    'space',
+    'active',
+    'reverse'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

@@ -1,7 +1,7 @@
 <template>
   <tiny-steps :data="data" :active="advancedActive" @click="advancedClick">
     <template #item="{ slotScope: node, index }">
-      <div style="padding: 10px;">
+      <div style="padding: 10px">
         <p>序号：{{ index }}</p>
         <p>名称：{{ node.name }}</p>
         <p>状态：{{ node.status }}</p>

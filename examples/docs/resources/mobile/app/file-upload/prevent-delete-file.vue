@@ -1,5 +1,11 @@
 <template>
-  <tiny-file-upload ref="upload" :action="action" :file-list="fileList" :auto-upload="false" :before-remove="beforeRemove">
+  <tiny-file-upload
+    ref="upload"
+    :action="action"
+    :file-list="fileList"
+    :auto-upload="false"
+    :before-remove="beforeRemove"
+  >
     <template #trigger>
       <icon-upload></icon-upload>
     </template>

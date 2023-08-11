@@ -1,59 +1,63 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
-export const initData = ({ state, props, service, api }) => () => {
-  if (props.data) {
-    state.data = props.data
-    return
+export const initData =
+  ({ state, props, service, api }) =>
+  () => {
+    if (props.data) {
+      state.data = props.data
+      return
+    }
+
+    if (typeof service.getMenuDataSync === 'function') {
+      const menuData = service.getMenuDataSync()
+
+      state.data = api.setMenuKey({ newData: [], menuData })
+    }
   }
 
-  if (typeof service.getMenuDataSync === 'function') {
-    const menuData = service.getMenuDataSync()
+export const setMenuKey =
+  (api) =>
+  ({ newData, menuData }) => {
+    Array.isArray(menuData) &&
+      menuData.forEach((data) => {
+        const item = {}
 
-    state.data = api.setMenuKey({ newData: [], menuData })
-  }
-}
-
-export const setMenuKey = (api) => ({ newData, menuData }) => {
-  Array.isArray(menuData) &&
-    menuData.forEach((data) => {
-      const item = {}
-
-      Object.keys(data).forEach((key) => {
-        if (key === 'name') {
-          item.label = data[key]
-        } else if (key === 'siteNodeId') {
-          item.id = data[key]
-        } else if (key === 'url' && data[key]) {
-          if (!data[key].includes('#')) {
-            item[key] = '#/' + data[key]
+        Object.keys(data).forEach((key) => {
+          if (key === 'name') {
+            item.label = data[key]
+          } else if (key === 'siteNodeId') {
+            item.id = data[key]
+          } else if (key === 'url' && data[key]) {
+            if (!data[key].includes('#')) {
+              item[key] = '#/' + data[key]
+            } else {
+              item[key] = data[key]
+            }
+          } else if (key === 'children' && data[key]) {
+            item.children = api.setMenuKey({
+              newData: [],
+              menuData: data.children
+            })
           } else {
             item[key] = data[key]
           }
-        } else if (key === 'children' && data[key]) {
-          item.children = api.setMenuKey({
-            newData: [],
-            menuData: data.children
-          })
-        } else {
-          item[key] = data[key]
-        }
+        })
+
+        newData.push({ ...data, ...item })
       })
 
-      newData.push({ ...data, ...item })
-    })
-
-  return newData
-}
+    return newData
+  }
 
 export const filterNode = () => (value, data) => {
   if (!value) {
@@ -111,3 +115,52 @@ export const currentChange = (emit) => (data, node) => {
 }
 
 export const getTitle = (props) => (label) => (props.showTitle ? label : '')
+
+export const collapseChange =
+  ({ state, props, emit }) =>
+  () => {
+    if (props.collapsible) {
+      state.isCollapsed = !state.isCollapsed
+      emit('collapse-change', state.isCollapsed)
+    }
+  }
+
+export const collapseMenu =
+  ({ state, props, api }) =>
+  () => {
+    if (props.collapsible && !state.isCollapsed) {
+      api.collapseChange()
+    }
+  }
+
+export const expandMenu =
+  ({ state, props, api }) =>
+  () => {
+    if (props.collapsible && state.isCollapsed) {
+      api.collapseChange()
+    }
+  }
+
+export const setCurrentKey =
+  ({ vm }) =>
+  (key: string) => {
+    vm.$refs.tree.setCurrentKey(key)
+  }
+
+export const getCurrentKey =
+  ({ vm }) =>
+  () => {
+    return vm.$refs.tree.getCurrentKey()
+  }
+
+export const setCurrentNode =
+  ({ vm }) =>
+  (key: string) => {
+    vm.$refs.tree.setCurrentKey(key)
+  }
+
+export const getCurrentNode =
+  ({ vm }) =>
+  () => {
+    return vm.$refs.tree.getCurrentNode()
+  }

@@ -9,7 +9,13 @@
         <tiny-input v-model="val" @focus="fn" placeholder="请选择" type="form" readonly vertical></tiny-input>
       </tiny-form-item>
     </tiny-form>
-    <tiny-mini-picker @confirm="getVal" title="我是基本选择器" :columns="columns1" :visible="boxVisibility" @update:visible="boxVisibility = $event">
+    <tiny-mini-picker
+      @confirm="getVal"
+      title="我是基本选择器"
+      :columns="columns1"
+      :visible="boxVisibility"
+      @update:visible="boxVisibility = $event"
+    >
       <template #toolbar>
         <div>toolbar 插槽</div>
       </template>

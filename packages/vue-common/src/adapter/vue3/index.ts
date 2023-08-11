@@ -22,7 +22,13 @@ export const defineAsyncComponent = hooks.defineAsyncComponent
 
 export const markRaw = hooks.markRaw
 
-export const renderComponent = ({ view = undefined as any, component = undefined as any, props, context: { attrs, slots }, extend = {} }) => {
+export const renderComponent = ({
+  view = undefined as any,
+  component = undefined as any,
+  props,
+  context: { attrs, slots },
+  extend = {}
+}) => {
   return () => hooks.h((view && view.value) || component, { ...props, ...attrs, ...extend }, slots)
 }
 
@@ -47,7 +53,7 @@ export const appContext = () =>
   hooks.getCurrentInstance()?.appContext || {
     component: () => {
       // do nothing
-    },
+    }
   }
 
 export const appProperties = () => {
@@ -65,24 +71,22 @@ export const useRouter = (instance = hooks.getCurrentInstance()) => {
 const setInstanceEmitter = (instance) => {
   const $emitter = emitter()
 
-  if (typeof instance.$emitter === 'undefined')
-    Object.defineProperty(instance, '$emitter', { get: () => $emitter })
+  if (typeof instance.$emitter === 'undefined') Object.defineProperty(instance, '$emitter', { get: () => $emitter })
 }
 
 const emitEvent = (vm) => {
   const broadcast = (vm, componentName, eventName, params) => {
     const children = (vm.subTree && vm.subTree.children) || vm.children
 
-    Array.isArray(children)
-      && children.forEach((child) => {
+    Array.isArray(children) &&
+      children.forEach((child) => {
         const name = child.type && child.type.componentName
         const component = child.component
 
         if (name === componentName) {
           component.emit(eventName, params)
           component.$emitter && component.$emitter.emit(eventName, params)
-        }
-        else {
+        } else {
           broadcast(child, componentName, eventName, params)
         }
       })
@@ -96,8 +100,7 @@ const emitEvent = (vm) => {
       while (parent && (!name || name !== componentName)) {
         parent = parent.parent
 
-        if (parent)
-          name = parent.type && parent.type.componentName
+        if (parent) name = parent.type && parent.type.componentName
       }
 
       if (parent) {
@@ -108,7 +111,7 @@ const emitEvent = (vm) => {
     },
     broadcast(componentName, eventName, params) {
       broadcast(vm, componentName, eventName, params)
-    },
+    }
   }
 }
 
@@ -117,7 +120,7 @@ const getRealParent = (vm) => {
     return vm.parent.type.name === 'AsyncComponentWrapper' && vm.parent.parent ? vm.parent.parent : vm.parent
 }
 
-const parent = vm => (handler) => {
+const parent = (vm) => (handler) => {
   let parent = getRealParent(vm)
   let level = 0
 
@@ -126,26 +129,23 @@ const parent = vm => (handler) => {
       level,
       vm: createVm({}, parent),
       el: parent.vnode.el,
-      options: parent.type,
+      options: parent.type
     }
   }
 
-  if (typeof handler !== 'function')
-    return parent ? parentObject(parent) : {}
+  if (typeof handler !== 'function') return parent ? parentObject(parent) : {}
 
   level++
 
   while (parent) {
-    if (handler(parentObject(parent)))
-      break
+    if (handler(parentObject(parent))) break
     parent = getRealParent(parent)
     level++
   }
 }
 
-const children = vm => (handler) => {
-  if (typeof handler !== 'function')
-    return generateChildren(vm.subTree)
+const children = (vm) => (handler) => {
+  if (typeof handler !== 'function') return generateChildren(vm.subTree)
 
   let layer = 1
   const broadcast = (subTree) => {
@@ -157,20 +157,20 @@ const children = vm => (handler) => {
         if (
           children.some((child) => {
             return (
-              child.component
-              && handler({
+              child.component &&
+              handler({
                 level,
                 vm: createVm({}, child.component),
                 el: child.el,
                 options: child.type,
-                isLevel1: true,
+                isLevel1: true
               })
             )
           })
         )
           return
 
-        children.forEach(child => broadcast(child))
+        children.forEach((child) => broadcast(child))
       }
     }
   }
@@ -214,8 +214,7 @@ const generateChildren = (subTree) => {
           child.props.ref && (children.refs[child.props.ref] = vm)
         }
       })
-    }
-    else if (subTree.component) {
+    } else if (subTree.component) {
       children.push(createVm({}, subTree.component))
     }
   }
@@ -225,21 +224,20 @@ const generateChildren = (subTree) => {
 
 const defineProperties = (vm, instance, property, filter) => {
   for (const name in instance[property]) {
-    if (typeof filter === 'function' && filter(name))
-      continue
+    if (typeof filter === 'function' && filter(name)) continue
 
     Object.defineProperty(vm, name, {
       configurable: true,
       enumerable: true,
       get: () => instance[property][name],
-      set: value => (instance[property][name] = value),
+      set: (value) => (instance[property][name] = value)
     })
   }
 
   return vm
 }
 
-const filter = name => name.indexOf('_') === 0
+const filter = (name) => name.indexOf('_') === 0
 
 const defineInstanceVm = (vm, instance) => {
   defineProperties(vm, instance, 'setupState', null)
@@ -281,14 +279,14 @@ const createVm = (vm, instance, context = null) => {
     $once: { get: () => $emitter.once },
     $options: { get: () => ({ componentName: instance.type.componentName }) },
     $parent: {
-      get: () => instance.parent && createVm({}, getRealParent(instance)),
+      get: () => instance.parent && createVm({}, getRealParent(instance))
     },
     $refs: { get: () => instance.refs },
     $renderless: { get: () => instance.props.tiny_renderless },
     $scopedSlots: { get: () => instance.slots },
     $set: { get: () => $set },
     $slots: { get: () => instance.slots },
-    $template: { get: () => instance.props.tiny_template },
+    $template: { get: () => instance.props.tiny_template }
   })
 
   return vm
@@ -337,6 +335,7 @@ export const tools = (context, mode) => {
   hooks.onMounted(() => onBeforeMount(instance, refs))
 
   return {
+    framework: 'vue3',
     vm,
     emit,
     emitter,
@@ -361,7 +360,7 @@ export const tools = (context, mode) => {
     getService: () => root?.$getService(vm),
     setParentAttribute,
     defineInstanceProperties,
-    defineParentInstanceProperties,
+    defineParentInstanceProperties
   }
 }
 
@@ -390,7 +389,7 @@ export const directive = (directives) => {
   return directives
 }
 
-export const parseVnode = vnode => vnode
+export const parseVnode = (vnode) => vnode
 
 const parseProps = (propsData) => {
   const props = {}
@@ -398,20 +397,15 @@ const parseProps = (propsData) => {
   for (const name in propsData) {
     if (name === 'class' || name === 'style') {
       props[name] = propsData[name]
-    }
-    else if (name === 'on' || name === 'nativeOn') {
+    } else if (name === 'on' || name === 'nativeOn') {
       const events = propsData[name]
 
-      for (const eventName in events)
-        props[`on${capitalize(camelize(eventName))}`] = events[eventName]
-    }
-    else if (name === 'attrs' || name === 'props' || name === 'domProps') {
+      for (const eventName in events) props[`on${capitalize(camelize(eventName))}`] = events[eventName]
+    } else if (name === 'attrs' || name === 'props' || name === 'domProps') {
       const attrs = propsData[name]
 
-      for (const key in attrs)
-        props[key] = attrs[key]
-    }
-    else {
+      for (const key in attrs) props[key] = attrs[key]
+    } else {
       props[name] = propsData[name]
     }
   }
@@ -427,23 +421,14 @@ const customResolveComponent = (component) => {
     const el = document.createElement(component)
     const svgTagNames = ['SVG', 'CIRCLE', 'PATH']
 
-    if (
-      (el instanceof HTMLUnknownElement && !svgTagNames.includes(el.nodeName))
-      || component.includes('-')
-    ) {
+    if ((el instanceof HTMLUnknownElement && !svgTagNames.includes(el.nodeName)) || component.includes('-')) {
       component = component.toLowerCase()
       customElement = true
 
-      if (component === 'transition')
-        type = hooks.Transition
-
-      else if (component === 'transition-group')
-        type = hooks.TransitionGroup
-
-      else
-        type = hooks.resolveComponent(component)
-    }
-    else {
+      if (component === 'transition') type = hooks.Transition
+      else if (component === 'transition-group') type = hooks.TransitionGroup
+      else type = hooks.resolveComponent(component)
+    } else {
       type = component
     }
   }
@@ -465,8 +450,7 @@ export const h: CreateElement = (component, propsData, childData) => {
   if (propsData && typeof propsData === 'object' && !Array.isArray(propsData)) {
     props = parseProps(propsData)
     propsData.scopedSlots && (children = propsData.scopedSlots)
-  }
-  else if (typeof propsData === 'string' || Array.isArray(propsData)) {
+  } else if (typeof propsData === 'string' || Array.isArray(propsData)) {
     childData = propsData
   }
 
@@ -494,4 +478,11 @@ export const isVue2 = false
 
 export const isVue3 = true
 
-export type { PropType, ExtractPropTypes, DefineComponent } from 'vue'
+export type {
+  PropType,
+  ExtractPropTypes,
+  DefineComponent,
+  ComponentPublicInstance,
+  SetupContext,
+  ComputedRef
+} from 'vue'

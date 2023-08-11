@@ -103,7 +103,7 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/month-range/vue'
-import { $prefix, setup, directive, defineComponent } from '@opentiny/vue-common'
+import { $prefix, setup, directive, $props, defineComponent } from '@opentiny/vue-common'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import MonthTable from '@opentiny/vue-month-table'
 import { iconDoubleRight, iconDoubleLeft } from '@opentiny/vue-icon'
@@ -117,6 +117,7 @@ export default defineComponent({
     IconDoubleLeft: iconDoubleLeft()
   },
   props: {
+    ...$props,
     emitter: Object
   },
   emits: ['dodestroy', 'pick'],

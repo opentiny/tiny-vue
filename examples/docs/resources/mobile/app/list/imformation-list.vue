@@ -84,6 +84,7 @@
 <script lang="jsx">
 import { List } from '@opentiny/vue'
 import { iconDialog } from '@opentiny/vue-icon'
+
 export default {
   components: {
     TinyList: List,

@@ -57,18 +57,7 @@
         >{{ text || label }}
         <tiny-tooltip effect="light" :content="tipContent" placement="top" v-if="state.showTips" class="sm:block hidden"
           ><IconHelpCircle
-            class="
-              absolute
-              right-3
-              top-1.5
-              bottom-1.5
-              text-sm
-              cursor-pointer
-              w-3.5
-              h-3.5
-              fill-color-border
-              hover:fill-color-brand-focus
-            " /></tiny-tooltip
+            class="absolute right-3 top-1.5 bottom-1.5 text-sm cursor-pointer w-3.5 h-3.5 fill-color-border hover:fill-color-brand-focus" /></tiny-tooltip
       ></template>
     </span>
   </label>
@@ -77,7 +66,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/radio-button/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { IconHelpCircle } from '@opentiny/vue-icon'
+import { iconHelpCircle } from '@opentiny/vue-icon'
 import Tooltip from '@opentiny/vue-tooltip'
 
 export default defineComponent({
@@ -85,7 +74,7 @@ export default defineComponent({
   props: [...props, 'label', 'events', 'text', 'disabled', 'name', 'tipContent'],
   components: {
     TinyTooltip: Tooltip,
-    IconHelpCircle: IconHelpCircle()
+    IconHelpCircle: iconHelpCircle()
   },
   inheritAttrs: false,
   setup(props, context): any {

@@ -1,21 +1,33 @@
 <template>
   <div>
     <div>
-      <tiny-button @click="boxVisibility1 = true">
-        单选
-      </tiny-button>
+      <tiny-button @click="boxVisibility1 = true"> 单选 </tiny-button>
       <p>值：{{ activeName1 }}</p>
     </div>
     <br />
     <div>
-      <tiny-button @click="boxVisibility2 = true">
-        多选
-      </tiny-button>
+      <tiny-button @click="boxVisibility2 = true"> 多选 </tiny-button>
       <p>值：{{ activeName2 }}</p>
     </div>
 
-    <tiny-action-sheet v-model="activeName1" title="标题1" :search-config="searchConfig" :menus="menus" :visible="boxVisibility1" @update:visible="boxVisibility1 = $event"></tiny-action-sheet>
-    <tiny-action-sheet v-model="activeName2" title="标题2" multiple :search-config="searchConfig" :show-footer="true" :menus="menus" :visible="boxVisibility2" @update:visible="boxVisibility2 = $event"></tiny-action-sheet>
+    <tiny-action-sheet
+      v-model="activeName1"
+      title="标题1"
+      :search-config="searchConfig"
+      :menus="menus"
+      :visible="boxVisibility1"
+      @update:visible="boxVisibility1 = $event"
+    ></tiny-action-sheet>
+    <tiny-action-sheet
+      v-model="activeName2"
+      title="标题2"
+      multiple
+      :search-config="searchConfig"
+      :show-footer="true"
+      :menus="menus"
+      :visible="boxVisibility2"
+      @update:visible="boxVisibility2 = $event"
+    ></tiny-action-sheet>
   </div>
 </template>
 

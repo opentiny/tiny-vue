@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="block">
-      <tiny-popconfirm title="这是气泡标题" content="这是气泡确认框提示内容文本描述，这是两行的样是两行的样式，内容很长很长。">
+      <tiny-popconfirm
+        title="这是气泡标题"
+        content="这是气泡确认框提示内容文本描述，这是两行的样是两行的样式，内容很长很长。"
+      >
         <template #reference>
           <tiny-button>悬浮我提示</tiny-button>
         </template>
@@ -9,7 +12,14 @@
     </div>
 
     <div class="block">
-      <tiny-popconfirm type="info" title="这是提示气泡" trigger="click" placement="right" :cancel-button="false" content="内容很短">
+      <tiny-popconfirm
+        type="info"
+        title="这是提示气泡"
+        trigger="click"
+        placement="right"
+        :cancel-button="false"
+        content="内容很短"
+      >
         <template #reference>
           <tiny-button>点击弹出，info 信息，右侧显示</tiny-button>
         </template>

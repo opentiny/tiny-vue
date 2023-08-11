@@ -77,12 +77,23 @@ export default defineComponent({
     vSize: String,
     width: [Number, String],
     zIndex: [Number, String],
+    tiny_theme: String,
     mode: null,
     description: String,
     options: Array,
     showClose: { type: Boolean, default: true },
+    position: {
+      type: String,
+      default: '',
+      validator(val) {
+        return ['', 'bottom-right'].includes(val)
+      }
+    },
+    modalBoxClass: String,
     confirmContent: String,
-    cancelContent: String
+    cancelContent: String,
+    confirmBtnProps: { type: Object, default: {} },
+    cancelBtnProps: { type: Object, default: {} }
   },
   setup(props, context) {
     return $setup({ props, context, template })

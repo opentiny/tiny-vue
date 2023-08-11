@@ -6,6 +6,7 @@
   "main": "lib/index.js",
   "module": "index.ts",
   "sideEffects": false,
+  "type": "module",
   "dependencies": {
     "@opentiny/vue-action-sheet": "workspace:~",
     "@opentiny/vue-button": "workspace:~",

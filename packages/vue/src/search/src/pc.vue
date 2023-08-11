@@ -10,7 +10,11 @@
  *
  -->
 <template>
-  <div :class="['tiny-search', { mini }, { collapse: state.collapse }]" @mouseenter="state.hovering = true" @mouseleave="state.hovering = false">
+  <div
+    :class="['tiny-search', { mini }, { collapse: state.collapse }]"
+    @mouseenter="state.hovering = true"
+    @mouseleave="state.hovering = false"
+  >
     <div :class="['tiny-search__line', { focus: state.focus }]">
       <div class="tiny-search__prefix" v-if="slots.prefix">
         <slot name="prefix"></slot>
@@ -31,9 +35,9 @@
         :style="
           transparent
             ? {
-              border: 'transparent',
-              background: state.collapse ? 'rgba(255,255,255,0.3)' : '#fff'
-            }
+                border: 'transparent',
+                background: state.collapse ? 'rgba(255,255,255,0.3)' : '#fff'
+              }
             : {}
         "
         :placeholder="placeholder"
@@ -49,14 +53,14 @@
       />
       <transition name="tiny-transition-icon-scale-in">
         <div class="tiny-search__input-btn" v-if="state.showClear && !state.collapse">
-          <a @click="clear">
+          <a @click="clear($event)">
             <icon-close @mousedown.prevent class="tiny-svg-size" />
           </a>
         </div>
       </transition>
       <slot v-if="slots.suffix" name="suffix"></slot>
       <div v-else-if="!slots.prefix && !slots.suffix" class="tiny-search__input-btn">
-        <a @click="searchClick">
+        <a @click="searchClick($event)">
           <icon-search :style="{ fill: state.collapse && transparent ? '#fff' : '' }" class="tiny-svg-size" />
         </a>
       </div>
@@ -65,7 +69,12 @@
       <div v-show="state.show && state.types.length" ref="selector" class="tiny-search__selector">
         <div class="tiny-search__selector-body">
           <ul class="tiny-search__poplist">
-            <li v-for="(item, index) in state.types" :key="index" class="tiny-search__poplist-item" @click="changeKey(item)">
+            <li
+              v-for="(item, index) in state.types"
+              :key="index"
+              class="tiny-search__poplist-item"
+              @click="changeKey(item)"
+            >
               <slot name="poplist" :slot-scope="item">
                 {{ item.text }}
               </slot>
@@ -84,8 +93,18 @@ import { iconChevronDown, iconSearch, iconClose } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/search/index.less'
 
 export default defineComponent({
-  props: [...props, 'mini', 'transparent', 'searchTypes', 'placeholder', 'modelValue', 'tabindex', 'clearable', 'isEnterSearch'],
-  emits: ['change', 'search', 'update:modelValue', 'clear', 'select'],
+  props: [
+    ...props,
+    'mini',
+    'transparent',
+    'searchTypes',
+    'placeholder',
+    'modelValue',
+    'tabindex',
+    'clearable',
+    'isEnterSearch'
+  ],
+  emits: ['change', 'search', 'update:modelValue', 'clear', 'select', 'input'],
   components: {
     IconChevronDown: iconChevronDown(),
     IconSearch: iconSearch(),

@@ -21,11 +21,23 @@
         :class="[round ? 'tiny-popup--round' : '', position ? 'tiny-popup--' + position : '', popupClass]"
       >
         <slot></slot>
-        <icon-close class="tiny-popup__close-icon tiny-popup__close-icon--top-right" v-if="closeable" fill="#c8c9cc" tabindex="0" @click="close"></icon-close>
+        <icon-close
+          class="tiny-popup__close-icon tiny-popup__close-icon--top-right"
+          v-if="closeable"
+          fill="#c8c9cc"
+          tabindex="0"
+          @click="close"
+        ></icon-close>
       </div>
     </transition>
     <transition name="tiny-fade">
-      <div v-show="state.opened && overlay" :style="state.overlayStyle" :class="overlayClass" class="tiny-overlay" @click="clickOverlay">
+      <div
+        v-show="state.opened && overlay"
+        :style="state.overlayStyle"
+        :class="overlayClass"
+        class="tiny-overlay"
+        @click="clickOverlay"
+      >
         <slot name="overlay"></slot>
       </div>
     </transition>

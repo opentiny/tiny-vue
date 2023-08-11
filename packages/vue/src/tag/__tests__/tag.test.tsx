@@ -18,14 +18,23 @@ describe('PC Mode', () => {
 
   // slots
   test('default 标签内容', async () => {
-    const wrapper = mount(() => <Tag hit={true}><IconTime/>标签</Tag>)
+    const wrapper = mount(() => (
+      <Tag hit={true}>
+        <IconTime />
+        标签
+      </Tag>
+    ))
     expect(wrapper.find('.tiny-svg').exists()).toBeTruthy()
   })
 
   // events
   test('close 关闭 Tag 时触发的事件', async () => {
     const handleClose = vi.fn()
-    const wrapper = mount(() => <Tag closable={true} onClose={handleClose}>标签</Tag>)
+    const wrapper = mount(() => (
+      <Tag closable={true} onClose={handleClose}>
+        标签
+      </Tag>
+    ))
     await nextTick()
     await wrapper.find('.tiny-tag__close').trigger('click')
     expect(handleClose).toBeCalled()

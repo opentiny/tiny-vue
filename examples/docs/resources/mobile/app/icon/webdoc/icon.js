@@ -6,13 +6,13 @@ export default {
       demoId: 'icon-set',
       name: {
         'zh-CN': '图标合集',
-        'en-US': 'button type',
+        'en-US': 'button type'
       },
       desc: {
         'zh-CN': '<p>点击图标复制图标文本</p>',
-        'en-US': '<p>button type</p>',
+        'en-US': '<p>button type</p>'
       },
-      codeFiles: ['icon-set.vue'],
-    },
-  ],
+      codeFiles: ['icon-set.vue']
+    }
+  ]
 }

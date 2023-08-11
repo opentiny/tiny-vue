@@ -12,7 +12,7 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
-const $constants = {
+export const $constants = {
   ICON_MAP: {
     success: 'icon-success',
     error: 'icon-error',
@@ -28,56 +28,58 @@ const $constants = {
   CONTENT_MAXHEUGHT: 252
 }
 
+export const alertProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  icon: [String, Object],
+  type: {
+    type: String,
+    default: 'success'
+  },
+  size: {
+    type: String,
+    default: 'normal'
+  },
+  description: {
+    type: String,
+    default: ''
+  },
+  title: {
+    type: String
+  },
+  center: Boolean,
+  showIcon: {
+    type: Boolean,
+    default: true
+  },
+  closable: {
+    type: Boolean,
+    default: true
+  },
+  closeText: {
+    type: String,
+    default: ''
+  },
+  singleLine: {
+    type: Boolean,
+    default: false
+  },
+  scrolling: {
+    type: Boolean,
+    default: false
+  },
+  showFoldable: {
+    type: Boolean,
+    default: false
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'Alert',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    icon: [String, Object],
-    type: {
-      type: String,
-      default: 'success'
-    },
-    size: {
-      type: String,
-      default: 'normal'
-    },
-    description: {
-      type: String,
-      default: ''
-    },
-    title: {
-      type: String
-    },
-    center: Boolean,
-    showIcon: {
-      type: Boolean,
-      default: true
-    },
-    closable: {
-      type: Boolean,
-      default: true
-    },
-    closeText: {
-      type: String,
-      default: ''
-    },
-    singleLine: {
-      type: Boolean,
-      default: false
-    },
-    scrolling: {
-      type: Boolean,
-      default: false
-    },
-    showFoldable: {
-      type: Boolean,
-      default: false
-    }
-  },
+  props: alertProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

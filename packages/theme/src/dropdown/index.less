@@ -31,7 +31,6 @@
 
   &__trigger {
     .@{dropdown-prefix-cls}__title {
-      margin-right: var(--ti-dropdown-trigger-title-margin-right);
       line-height: var(--ti-dropdown-line-height);
     }
 
@@ -40,11 +39,12 @@
       font-size: var(--ti-dropdown-icon-size);
       vertical-align: middle;
       margin-top: -4px;
+      margin-left: var(--ti-dropdown-trigger-svg-margin-left);
     }
 
     &.@{css-prefix}button .@{svg-prefix-cls} {
       fill: var(--ti-dropdown-button-icon-color);
-      font-size: var(--ti-dropdown-button-icon-size)
+      font-size: var(--ti-dropdown-button-icon-size);
     }
 
     &.@{css-prefix}button--default .@{svg-prefix-cls} {
@@ -75,13 +75,13 @@
       float: none;
 
       &--medium {
-        &+.@{css-prefix}button.@{css-prefix}button--medium {
+        & + .@{css-prefix}button.@{css-prefix}button--medium {
           margin-left: 0;
         }
       }
 
       &--small {
-        &+.@{css-prefix}button.@{css-prefix}button--small {
+        & + .@{css-prefix}button.@{css-prefix}button--small {
           margin-left: 0;
         }
       }

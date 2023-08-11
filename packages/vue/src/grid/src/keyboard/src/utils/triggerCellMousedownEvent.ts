@@ -27,18 +27,34 @@ import { hasClass } from '@opentiny/vue-renderless/common/deps/dom'
 import { getRowNodes, getCellNodeIndex, getEventTargetNode } from '@opentiny/vue-renderless/grid/utils'
 
 export function onCellMousedownGridEl(args) {
-  let { _vm, bodyList, cell, cellFirstElementChild, cellLastElementChild, flag, headStart, headerList, isIndex, startCellNode, targetElem } = args
+  let {
+    _vm,
+    bodyList,
+    cell,
+    cellFirstElementChild,
+    cellLastElementChild,
+    flag,
+    headStart,
+    headerList,
+    isIndex,
+    startCellNode,
+    targetElem
+  } = args
   if (flag) {
     if (isIndex) {
       let firstCell = targetElem.parentNode.firstElementChild
-      _vm.handleChecked(getRowNodes(bodyList, getCellNodeIndex(firstCell.nextElementSibling), getCellNodeIndex(cellLastElementChild)))
+      _vm.handleChecked(
+        getRowNodes(bodyList, getCellNodeIndex(firstCell.nextElementSibling), getCellNodeIndex(cellLastElementChild))
+      )
       _vm.handleIndexChecked(getRowNodes(bodyList, getCellNodeIndex(firstCell), getCellNodeIndex(cell)))
     } else if (!hasClass(targetElem, 'col__index')) {
       let firstCell = targetElem.parentNode.firstElementChild
       let colIndex = [].indexOf.call(targetElem.parentNode.children, targetElem)
       let head = headerList[0].children[colIndex]
       _vm.handleHeaderChecked(getRowNodes(headerList, getCellNodeIndex(head), getCellNodeIndex(headStart)))
-      _vm.handleIndexChecked(getRowNodes(bodyList, getCellNodeIndex(firstCell), getCellNodeIndex(cellFirstElementChild)))
+      _vm.handleIndexChecked(
+        getRowNodes(bodyList, getCellNodeIndex(firstCell), getCellNodeIndex(cellFirstElementChild))
+      )
       _vm.handleChecked(getRowNodes(bodyList, startCellNode, getCellNodeIndex(targetElem)))
     }
   }
@@ -120,7 +136,9 @@ export function onCellMousedownIndexColumn(args) {
     params.cell = cell.nextElementSibling
 
     _vm.handleSelected(params, event)
-    _vm.handleChecked(getRowNodes(bodyList, getCellNodeIndex(firstCell.nextElementSibling), getCellNodeIndex(cellLastElementChild)))
+    _vm.handleChecked(
+      getRowNodes(bodyList, getCellNodeIndex(firstCell.nextElementSibling), getCellNodeIndex(cellLastElementChild))
+    )
     _vm.handleHeaderChecked([headerList[0].querySelectorAll('.tiny-grid-header__column:not(.col__index)')])
     _vm.handleIndexChecked(getRowNodes(bodyList, getCellNodeIndex(firstCell), getCellNodeIndex(cell)))
   }

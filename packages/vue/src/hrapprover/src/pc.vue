@@ -54,7 +54,18 @@ import { t } from '@opentiny/vue-locale'
 
 export default defineComponent({
   inheritAttrs: false,
-  props: [...props, 'modelValue', 'disabled', 'approvalPerson', 'category', 'fetchDeptList', 'fetchHrapprover', 'fetchDeptByValue', 'fetchDept', 'title'],
+  props: [
+    ...props,
+    'modelValue',
+    'disabled',
+    'approvalPerson',
+    'category',
+    'fetchDeptList',
+    'fetchHrapprover',
+    'fetchDeptByValue',
+    'fetchDept',
+    'title'
+  ],
   components: {
     Dept,
     Radio

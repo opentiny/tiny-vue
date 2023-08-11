@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-common",
   "private": true,
-  "version": "3.7.0",
+  "version": "3.10.0",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "homepage": "https://opentiny.design/tiny-vue",
   "keywords": [
@@ -26,6 +26,7 @@
   },
   "main": "src/index.ts",
   "sideEffects": false,
+  "type": "module",
   "dependencies": {
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",

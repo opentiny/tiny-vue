@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { getFormated, getStackMap, getLegend, hexToRgb, set } from '../chart-core/deps/utils'
 import { isNull } from '../common/type'
@@ -139,7 +139,9 @@ const getLineTooltip = (args) => {
   const { axisSite, yAxisType, digit, labelMap, tooltipFormatter } = args
   const rightItemsArr = axisSite.right || []
 
-  const rightListArr = labelMap ? rightItemsArr.map((item) => (labelMap[item] === undefined ? item : labelMap[item])) : rightItemsArr
+  const rightListArr = labelMap
+    ? rightItemsArr.map((item) => (labelMap[item] === undefined ? item : labelMap[item]))
+    : rightItemsArr
 
   return {
     formatter(items) {
@@ -204,7 +206,8 @@ export const line = (columns, rows, settings, extra) => {
 
   const legend = legendVisible && getLegend({ legendName, metrics, labelMap, legendItemStyle })
 
-  const tooltip = tooltipVisible && getLineTooltip({ axisSite, digit, labelMap, tooltipFormatter, xAxisType, yAxisType })
+  const tooltip =
+    tooltipVisible && getLineTooltip({ axisSite, digit, labelMap, tooltipFormatter, xAxisType, yAxisType })
 
   const xAxis = getLineXAxis({ axisVisible, dimension, xAxisName, xAxisType, rows })
 

@@ -12,4 +12,4 @@
 import { svg } from '@opentiny/vue-common'
 import SortTriangleAscending from '@opentiny/vue-theme/svgs/sort-triangle-ascending.svg'
 
-export default svg({ name: 'IconSortTriangleAscending', component: SortTriangleAscending })
+export default () => svg({ name: 'IconSortTriangleAscending', component: SortTriangleAscending })()

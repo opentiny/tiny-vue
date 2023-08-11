@@ -141,22 +141,18 @@ export default defineComponent({
       <div class="tiny-mobile-file-upload__header">
         <div class="tiny-mobile-file-upload__header-title">{fileTitle}</div>
         <div class="tiny-mobile-file-upload__header-upload">
-          {successStatistics
-            ? (
+          {successStatistics ? (
             <span class="upload-status">
               {successNum}/{uploaArr.length}
             </span>
-              )
-            : (
-                ''
-              )}
-          {this.listType !== 'picture-card' && uploadIcon
-            ? (
+          ) : (
+            ''
+          )}
+          {this.listType !== 'picture-card' && uploadIcon ? (
             <span class="upload-icon">{h(Upload, { ...uploadData }, trigger || <icon-upload />)}</span>
-              )
-            : (
-                ''
-              )}
+          ) : (
+            ''
+          )}
         </div>
       </div>
     )
@@ -168,8 +164,7 @@ export default defineComponent({
           class={{
             'tiny-mobile-file-upload__wrap': true,
             'is-card': this.listType === 'picture-card'
-          }}
-        >
+          }}>
           {this.listType === 'picture-card' ? uploadList : ''}
           {this.slots.trigger ? [uploadComponent, this.slots.default && this.slots.default()] : uploadComponent}
           {this.slots.tip && this.slots.tip()}

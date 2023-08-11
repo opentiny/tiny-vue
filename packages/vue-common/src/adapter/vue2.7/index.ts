@@ -12,7 +12,7 @@
 import Vue from 'vue'
 import * as hooks from 'vue'
 
-import type { } from 'vue-router' // https://github.com/microsoft/TypeScript/issues/47663#issuecomment-1270716220
+import type {} from 'vue-router' // https://github.com/microsoft/TypeScript/issues/47663#issuecomment-1270716220
 import { emitter, bindFilter, getElementCssClass, getElementStatusClass } from '../utils'
 import teleport from '../teleport'
 
@@ -24,9 +24,18 @@ export const defineAsyncComponent = hooks.defineAsyncComponent
 
 export const markRaw = (ref) => ref
 
-export const renderComponent = ({ view = null as any, component = null as any, props, context: { attrs, listeners: on, slots }, extend = {} }) => {
+export const renderComponent = ({
+  view = null as any,
+  component = null as any,
+  props,
+  context: { attrs, listeners: on, slots },
+  extend = {}
+}) => {
   return () =>
-    hooks.h((view && view.value) || component, Object.assign({ props, attrs, [extend.isSvg ? 'nativeOn' : 'on']: on, scopedSlots: { ...slots } }, extend))
+    hooks.h(
+      (view && view.value) || component,
+      Object.assign({ props, attrs, [extend.isSvg ? 'nativeOn' : 'on']: on, scopedSlots: { ...slots } }, extend)
+    )
 }
 
 export const rootConfig = () => hooks.getCurrentInstance()?.proxy.$root
@@ -260,6 +269,7 @@ export const tools = (context, mode) => {
   hooks.onMounted(() => onBeforeMount(instance, refs))
 
   return {
+    framework: 'vue2.7',
     vm,
     emit: customEmit(context, emit),
     emitter,
@@ -351,4 +361,11 @@ export const isVue2 = true
 
 export const isVue3 = false
 
-export type { PropType, ExtractPropTypes, DefineComponent } from 'vue'
+export type {
+  PropType,
+  ExtractPropTypes,
+  DefineComponent,
+  ComponentPublicInstance,
+  SetupContext,
+  ComputedRef
+} from 'vue'

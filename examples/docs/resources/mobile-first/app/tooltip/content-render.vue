@@ -1,8 +1,6 @@
 <template>
   <tiny-tooltip :render-content="renderContent" :content="content" placement="bottom" effect="light">
-    <tiny-button type="primary">
-      文本自定义渲染
-    </tiny-button>
+    <tiny-button type="primary"> 文本自定义渲染 </tiny-button>
   </tiny-tooltip>
 </template>
 

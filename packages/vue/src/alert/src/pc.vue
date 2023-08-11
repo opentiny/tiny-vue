@@ -11,7 +11,10 @@
  -->
 <template>
   <transition name="tiny-transition-alert-fade">
-    <div v-if="state.show" :class="['tiny-alert', 'tiny-alert--' + type, 'tiny-alert--' + size, { 'is-center': center }]">
+    <div
+      v-if="state.show"
+      :class="['tiny-alert', 'tiny-alert--' + type, 'tiny-alert--' + size, { 'is-center': center }]"
+    >
       <component v-if="showIcon" :is="state.getIcon" class="tiny-svg-size tiny-alert__icon" />
       <div class="tiny-alert__content">
         <div v-if="size === 'large'" class="tiny-alert__title">
@@ -19,12 +22,14 @@
             {{ state.getTitle }}
           </slot>
         </div>
-        <div :class="[
-          'tiny-alert__description',
-          {
-            'is-hide': size === 'large' && !description && !slots.description
-          }
-        ]">
+        <div
+          :class="[
+            'tiny-alert__description',
+            {
+              'is-hide': size === 'large' && !description && !slots.description
+            }
+          ]"
+        >
           <slot name="description">
             {{ description }}
           </slot>
@@ -38,6 +43,7 @@
         @click="handleClose"
         class="tiny-svg-size tiny-alert__icon tiny-alert__close"
       ></icon-close>
+      <span class="is-custom" v-else-if="!closeText && !closable"><slot name="close"></slot></span>
       <span v-else-if="closeText && closable" @click="handleClose" class="is-custom">{{ closeText }}</span>
     </div>
   </transition>
@@ -50,18 +56,7 @@ import { iconClose, iconSuccess, iconError, iconHelp, iconWarning } from '@opent
 import '@opentiny/vue-theme/alert/index.less'
 
 export default defineComponent({
-  props: [
-    ...props,
-    'icon',
-    'type',
-    'size',
-    'description',
-    'title',
-    'closable',
-    'center',
-    'showIcon',
-    'closeText'
-  ],
+  props: [...props, 'icon', 'type', 'size', 'description', 'title', 'closable', 'center', 'showIcon', 'closeText'],
   components: {
     IconClose: iconClose(),
     IconSuccess: iconSuccess(),

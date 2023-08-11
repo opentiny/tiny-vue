@@ -162,7 +162,7 @@
       &:active {
         background: var(--ti-mobile-popover-list-bg-color-active);
       }
-      
+
       .icon {
         margin-right: var(--ti-mobile-popover-icon-margin-right);
         width: var(--ti-mobile-popover-icon-size);
@@ -172,7 +172,7 @@
       .label-view {
         display: flex;
         flex-direction: column;
-        
+
         .main {
           color: var(--ti-mobile-common-color-text-primary, #191919);
           font-size: var(--ti-mobile-popover-font-size, 14px);
@@ -190,13 +190,16 @@
         height: 1px;
         bottom: 0;
         right: 0;
-        width: calc(100% - var(--ti-mobile-popover-icon-size) - var(--ti-mobile-popover-icon-margin-right) - var(--ti-mobile-popover-list-padding-left));
+        width: calc(
+          100% - var(--ti-mobile-popover-icon-size) - var(--ti-mobile-popover-icon-margin-right) -
+            var(--ti-mobile-popover-list-padding-left)
+        );
         background: var(--ti-mobile-popover-line-bg-color, #eeeeee);
       }
     }
 
     .list-view-height {
-        height: 68px;
+      height: 68px;
     }
   }
 }

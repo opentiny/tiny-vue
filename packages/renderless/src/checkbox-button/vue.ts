@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   handleChange,
@@ -21,7 +21,7 @@ import {
   computedIsDisabled,
   toggleEvent
 } from './index'
-import { addToStore, computedIsChecked, computedStore, computedIsLimitDisabled } from '../checkbox'
+import { addToStore, computedIsChecked, computedStore, computedIsLimitDisabled, computedIsShowText, computedShowText } from '../checkbox'
 
 export const api = ['state', 'handleChange']
 
@@ -40,7 +40,9 @@ const initState = ({ reactive, computed, api }) => {
     isDisabled: computed(() => api.computedIsDisabled()),
     activeStyle: computed(() => api.computedActiveStyle()),
     checkboxGroup: computed(() => api.computedCheckboxGroup()),
-    isLimitDisabled: computed(() => api.computedIsLimitDisabled())
+    isLimitDisabled: computed(() => api.computedIsLimitDisabled()),
+    showText: computed(() => api.computedShowText()),
+    isShowText: computed(() => api.computedIsShowText())
   })
 
   return state
@@ -60,11 +62,17 @@ const initApi = ({ api, state, props, formItemSize, parent, constants, emit, nex
     computedGetModelGet: computedGetModelGet({ state, props }),
     computedCheckboxGroup: computedCheckboxGroup({ parent, constants }),
     handleChange: handleChange({ state, props, emit, nextTick, dispatch, constants }),
-    computedGetModelSet: computedGetModelSet({ state, props, emit, dispatch, constants })
+    computedGetModelSet: computedGetModelSet({ state, props, emit, dispatch, constants }),
+    computedIsShowText: computedIsShowText({ props }),
+    computedShowText: computedShowText({ props })
   })
 }
 
-export const renderless = (props, { computed, onMounted, onBeforeUnmount, reactive }, { parent, emit, dispatch, constants, nextTick }) => {
+export const renderless = (
+  props,
+  { computed, onMounted, onBeforeUnmount, reactive },
+  { parent, emit, dispatch, constants, nextTick }
+) => {
   const api = {}
   const formItemSize = computed(() => api.computedFormItemSize())
   const state = initState({ reactive, computed, api })

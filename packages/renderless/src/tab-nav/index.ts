@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { KEY_CODE, POSITION } from '../common'
 import { capitalize } from '../common/string'
@@ -20,7 +20,7 @@ export const computedNavStyle = (state) => {
 
   if (state.mode === 'mobile') {
     return {
-      transform: `translate${dir}(${state.lineOffset}px) translate${dir}(-50%)`,
+      transform: `translate${dir}(${state.lineOffset}px) translate${dir}(-50%)`
     }
   } else {
     return {
@@ -29,75 +29,88 @@ export const computedNavStyle = (state) => {
   }
 }
 
-export const scrollIntoView = ({ parent, refs, state }) => () => {
-  if (!state.scrollable) {
-    return
+export const scrollIntoView =
+  ({ parent, refs, state }) =>
+  () => {
+    if (!state.scrollable) {
+      return
+    }
+
+    const nav = refs.nav
+    const activeTab = parent.$el.querySelector('.is-active')
+
+    if (!activeTab) {
+      return
+    }
+
+    const to = activeTab.offsetLeft - (nav.offsetWidth - activeTab.offsetWidth) / 2
+    const from = nav.scrollLeft
+
+    if (state.mode === 'mobile') {
+      nav.scrollLeft += to - from
+      state.lineOffset = activeTab.offsetLeft + activeTab.offsetWidth / 2
+    }
   }
 
-  const nav = refs.nav
-  const activeTab = parent.$el.querySelector('.is-active')
-
-  if (!activeTab) {
-    return
-  }
-
-  const to = activeTab.offsetLeft - (nav.offsetWidth - activeTab.offsetWidth) / 2
-  const from = nav.scrollLeft
-
-  if (state.mode === 'mobile') {
-    nav.scrollLeft += to - from
-    state.lineOffset = activeTab.offsetLeft + activeTab.offsetWidth / 2
-  }
-}
-
-export const computedSizeName = (state) => (~[POSITION.Top, POSITION.Bottom].indexOf(state.rootTabs.position) ? 'width' : 'height')
+export const computedSizeName = (state) =>
+  ~[POSITION.Top, POSITION.Bottom].indexOf(state.rootTabs.position) ? 'width' : 'height'
 
 /* istanbul ignore next */
-export const updated = ({ api, refs, state }) => () => {
-  if (!refs.nav) {
-    return
-  }
+export const updated =
+  ({ api, refs, state }) =>
+  () => {
+    if (!refs.nav || state.dragging) {
+      return
+    }
 
-  let navSize = refs.nav[`offset${capitalize(state.sizeName)}`] // taList 列表容器
+    let navSize = refs.nav[`offset${capitalize(state.sizeName)}`] // taList 列表容器
 
-  if (state.mode === 'mobile') {
-    Array.prototype.forEach.call(refs.nav.children, (item) => {
-      if (item.classList && item.classList.contains('tiny-mobile-tabs__item')) {
-        navSize += item.offsetWidth
-      }
+    if (state.mode === 'mobile') {
+      Array.prototype.forEach.call(refs.nav.children, (item) => {
+        if (item.classList && item.classList.contains('tiny-mobile-tabs__item')) {
+          navSize += item.offsetWidth
+        }
 
-      if (item.classList && item.classList.contains('is-active')) {
-        const line = item.querySelector('.tiny-mobile-tabs__name')
+        if (item.classList && item.classList.contains('is-active')) {
+          const line = item.querySelector('.tiny-mobile-tabs__name')
 
-        state.isActive = true
-        state.lineOffset = item.offsetLeft + item.offsetWidth / 2
-      }
-    })
-  }
+          state.isActive = true
+          state.lineOffset = item.offsetLeft + item.offsetWidth / 2
+        }
+      })
+    }
 
-  const containerSize = refs.navScroll[`offset${capitalize(state.sizeName)}`] // 父容器宽度
-  const currentOffset = state.navOffset
-
-  if (containerSize < navSize) {
+    const containerSize = refs.navScroll[`offset${capitalize(state.sizeName)}`] // 父容器宽度
     const currentOffset = state.navOffset
 
-    state.scrollable = state.scrollable || {}
-    state.scrollable.prev = currentOffset
-    state.scrollable.next = currentOffset + containerSize < navSize
+    if (containerSize < navSize) {
+      const currentOffset = state.navOffset
 
-    if (navSize - currentOffset < containerSize) {
-      state.navOffset = navSize - containerSize
+      state.scrollable = state.scrollable || {}
+      state.scrollable.prev = currentOffset
+      state.scrollable.next = currentOffset + containerSize < navSize
+
+      if (navSize - currentOffset < containerSize) {
+        state.navOffset = navSize - containerSize
+      }
+    } else {
+      state.scrollable = false
+
+      if (currentOffset > 0) {
+        state.navOffset = 0
+      }
     }
-  } else {
-    state.scrollable = false
 
-    if (currentOffset > 0) {
-      state.navOffset = 0
+    state.isActive && api.scrollIntoView()
+
+    if (refs.tabBar) {
+      // active-bar动画滚动
+      refs.tabBar.state.barStyle = refs.tabBar.computedBarStyle(refs.tabBar, state)
+    } else {
+      const line = refs.nav.querySelector('tiny-mobile-tabs__line')
+      line && line.style && (line.style.transform = api.computedNavStyle(state).transform)
     }
   }
-
-  state.isActive && api.scrollIntoView()
-}
 
 export const mounted = ({ api, parent }) => {
   const el = parent.$refs.nav.$el
@@ -150,72 +163,79 @@ export const windowFocusHandler = (state) => () => {
 }
 
 /* istanbul ignore next */
-export const scrollToActiveTab = ({ parent, refs, state }) => () => {
-  if (!state.scrollable) {
-    return
-  }
-
-  const nav = refs.nav
-  const activeTab = parent.$el.querySelector('.is-active')
-
-  if (!activeTab) {
-    return
-  }
-
-  const navScroll = refs.navScroll
-  const activeTabBounding = activeTab.getBoundingClientRect()
-  const navScrollBounding = navScroll.getBoundingClientRect()
-  let maxOffset = nav.offsetWidth - navScrollBounding.width
-
-  if (state.mode === 'mobile') {
-    if (activeTabBounding.left > navScrollBounding.width) {
-      maxOffset = activeTabBounding.left - navScrollBounding.width + activeTabBounding.width
-    } else {
-      maxOffset = activeTabBounding.width
+export const scrollToActiveTab =
+  ({ parent, refs, state }) =>
+  () => {
+    if (!state.scrollable) {
+      return
     }
+
+    const nav = refs.nav
+    const activeTab = parent.$el.querySelector('.is-active')
+
+    if (!activeTab) {
+      return
+    }
+
+    const navScroll = refs.navScroll
+    const activeTabBounding = activeTab.getBoundingClientRect()
+    const navScrollBounding = navScroll.getBoundingClientRect()
+    let maxOffset = nav.offsetWidth - navScrollBounding.width
+
+    if (state.mode === 'mobile') {
+      if (activeTabBounding.left > navScrollBounding.width) {
+        maxOffset = activeTabBounding.left - navScrollBounding.width + activeTabBounding.width
+      } else {
+        maxOffset = activeTabBounding.width
+      }
+    }
+
+    const currentOffset = state.navOffset
+    let newOffset = currentOffset
+
+    if (activeTabBounding.left < navScrollBounding.left) {
+      newOffset = currentOffset - (navScrollBounding.left - activeTabBounding.left)
+    }
+
+    if (activeTabBounding.right > navScrollBounding.right) {
+      newOffset = currentOffset + activeTabBounding.right - navScrollBounding.right
+    }
+
+    newOffset = Math.max(newOffset, 0)
+    state.navOffset = Math.min(newOffset, maxOffset)
   }
 
-  const currentOffset = state.navOffset
-  let newOffset = currentOffset
+export const scrollPrev =
+  ({ refs, state }) =>
+  () => {
+    const containerSize = refs.navScroll[`offset${capitalize(state.sizeName)}`]
+    const currentOffset = state.navOffset
 
-  if (activeTabBounding.left < navScrollBounding.left) {
-    newOffset = currentOffset - (navScrollBounding.left - activeTabBounding.left)
+    if (!currentOffset) {
+      return
+    }
+
+    const newOffset = currentOffset > containerSize ? currentOffset - containerSize : 0
+
+    state.navOffset = newOffset
   }
 
-  if (activeTabBounding.right > navScrollBounding.right) {
-    newOffset = currentOffset + activeTabBounding.right - navScrollBounding.right
+export const scrollNext =
+  ({ refs, state }) =>
+  () => {
+    const navSize = refs.nav[`offset${capitalize(state.sizeName)}`]
+    const containerSize = refs.navScroll[`offset${capitalize(state.sizeName)}`]
+    const currentOffset = state.navOffset
+
+    if (navSize - currentOffset <= containerSize) {
+      return
+    }
+
+    const newOffset =
+      navSize - currentOffset > containerSize * 2 ? currentOffset + containerSize : navSize - containerSize
+
+    state.navOffset = newOffset
   }
-
-  newOffset = Math.max(newOffset, 0)
-  state.navOffset = Math.min(newOffset, maxOffset)
-}
-
-export const scrollPrev = ({ refs, state }) => () => {
-  const containerSize = refs.navScroll[`offset${capitalize(state.sizeName)}`]
-  const currentOffset = state.navOffset
-
-  if (!currentOffset) {
-    return
-  }
-
-  const newOffset = currentOffset > containerSize ? currentOffset - containerSize : 0
-
-  state.navOffset = newOffset
-}
-
-export const scrollNext = ({ refs, state }) => () => {
-  const navSize = refs.nav[`offset${capitalize(state.sizeName)}`]
-  const containerSize = refs.navScroll[`offset${capitalize(state.sizeName)}`]
-  const currentOffset = state.navOffset
-
-  if (navSize - currentOffset <= containerSize) {
-    return
-  }
-
-  const newOffset = navSize - currentOffset > containerSize * 2 ? currentOffset + containerSize : navSize - containerSize
-
-  state.navOffset = newOffset
-}
 
 /* istanbul ignore next */
 export const changeTab = (api) => (event) => {
@@ -269,107 +289,119 @@ export const moreTabShow = (state) => () => {
 }
 
 // mobile-展示展开选项的功能
-export const expandTabShow = ({ api, state }) => () => {
-  state.showExpandItem = !state.showExpandItem
-  if (state.showExpandItem) {
-    api.computedHeaderStyle()
-  }
-}
-
-export const expandTabHide = (state) => () => state.showExpandItem = false
-
-export const computedHeaderStyle = ({ refs, state }) => () => {
-  if (refs.nav) {
-    state.expandHeaderStyle[state.sizeName] = refs.nav[`offset${capitalize(state.sizeName)}`] + 'px'
+export const expandTabShow =
+  ({ api, state }) =>
+  () => {
+    state.showExpandItem = !state.showExpandItem
+    if (state.showExpandItem) {
+      api.computedHeaderStyle()
+    }
   }
 
-  return state.expandHeaderStyle
-}
+export const expandTabHide = (state) => () => (state.showExpandItem = false)
 
-export const handleTabDragStart = ({ state, vm, emit }) => (event) => {
-  state.dragging = true
+export const computedHeaderStyle =
+  ({ refs, state }) =>
+  () => {
+    if (refs.nav) {
+      state.expandHeaderStyle[state.sizeName] = refs.nav[`offset${capitalize(state.sizeName)}`] + 'px'
+    }
 
-  if ([POSITION.Top, POSITION.Bottom].indexOf(state.rootTabs.position) === -1) {
+    return state.expandHeaderStyle
+  }
+
+export const handleTabDragStart =
+  ({ state, refs, emit }) =>
+  (event) => {
+    state.dragging = true
+
+    if (![POSITION.Top, POSITION.Bottom].includes(state.rootTabs.position)) {
+      emit('tab-drag-start', event)
+      return
+    }
+
+    const navContainer = refs.navScroll
+    const nav = refs.nav
+
+    const containerWidth = navContainer.offsetWidth
+    const navWidth = nav.offsetWidth
+
+    if (navWidth > containerWidth) {
+      const navHeight = nav.offsetHeight
+
+      navContainer.style.height = navHeight + 'px'
+      nav.style.transition = 'none'
+      nav.style.transform = ''
+      nav.style.width = containerWidth + 'px'
+      nav.style.overflowX = 'scroll'
+
+      nav.scrollTo(state.navOffset, 0)
+    }
+
     emit('tab-drag-start', event)
-    return
   }
 
-  const navContainer = vm.$refs.navScroll
-  const nav = vm.$refs.nav
+export const handleTabDragEnd =
+  ({ refs, state, nextTick }) =>
+  () => {
+    state.dragging = false
 
-  const containerWidth = navContainer.offsetWidth
-  const navWidth = nav.offsetWidth
+    if (![POSITION.Top, POSITION.Bottom].includes(state.rootTabs.position)) {
+      return
+    }
 
-  if (navWidth > containerWidth) {
-    const navHeight = nav.offsetHeight
+    const nav = refs.nav
 
-    navContainer.style.height = navHeight + 'px'
-    nav.style.transition = 'none'
-    nav.style.transform = ''
-    nav.style.width = containerWidth + 'px'
-    nav.style.overflowX = 'scroll'
+    if (nav.style.width) {
+      const navOffset = nav.scrollLeft
+      const navContainer = refs.navScroll
 
-    nav.scrollTo(state.navOffset, 0)
+      navContainer.style.height = ''
+      nav.style.width = ''
+      nav.style.overflowX = ''
+      state.navOffset = navOffset
+
+      nextTick(() => {
+        nav.style.transition = ''
+      })
+    }
   }
 
-  emit('tab-drag-start', event)
-}
+export const sortableEvent =
+  ({ api, props, state, refs, emit, markRaw }) =>
+  () => {
+    if (!props.dropConfig || typeof props.dropConfig.plugin !== 'function') {
+      return
+    }
 
-export const handleTabDragEnd = ({ vm, state, nextTick }) => () => {
-  state.dragging = false
+    const navSortableObj = new props.dropConfig.plugin(refs.nav, {
+      sort: true,
+      draggable: '.tiny-tabs__item',
+      onUpdate(event) {
+        emit('tab-drag-end', event)
+      },
+      onMove(event) {
+        emit('tab-drag-over', event)
+      },
+      onStart(event) {
+        api.handleTabDragStart(event)
+      },
+      onEnd(event) {
+        api.handleTabDragEnd(event)
+      }
+    })
 
-  if ([POSITION.Top, POSITION.Bottom].indexOf(state.rootTabs.position) === -1) {
-    return
+    state.navSortableObj = markRaw(navSortableObj)
   }
 
-  const nav = vm.$refs.nav
-
-  if (nav.style.width) {
-    const navOffset = nav.scrollLeft
-    const navContainer = vm.$refs.navScroll
-
-    navContainer.style.height = ''
-    nav.style.width = ''
-    nav.style.overflowX = ''
-    state.navOffset = navOffset
-
+export const watchCurrentName =
+  ({ nextTick, refs, state }) =>
+  () => {
     nextTick(() => {
-      nav.style.transition = ''
+      const tabBarVnode = refs.tabBar
+
+      if (tabBarVnode) {
+        tabBarVnode.state.barStyle = tabBarVnode.computedBarStyle(tabBarVnode, state)
+      }
     })
   }
-}
-
-export const sortableEvent = ({ api, props, state, vm, emit, markRaw }) => () => {
-  if (!props.dropConfig || typeof props.dropConfig.plugin !== 'function') {
-    return
-  }
-
-  const navSortableObj = new props.dropConfig.plugin(vm.$refs.nav, {
-    sort: true,
-    draggable: '.tiny-tabs__item',
-    onUpdate(event) {
-      emit('tab-drag-end', event)
-    },
-    onMove(event) {
-      emit('tab-drag-over', event)
-    },
-    onStart(event) {
-      api.handleTabDragStart(event)
-    },
-    onEnd(event) {
-      api.handleTabDragEnd(event)
-    }
-  })
-
-  state.navSortableObj = markRaw(navSortableObj)
-}
-
-export const watchCurrentName = ({ nextTick, vm, state }) => () => {
-  nextTick(() => {
-    const tabBarVnode = vm.$refs.tabBar
-
-    if (tabBarVnode) {
-      tabBarVnode.state.barStyle = tabBarVnode.computedBarStyle(tabBarVnode, state)
-    }
-  })
-}

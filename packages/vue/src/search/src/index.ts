@@ -21,6 +21,10 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    big: {
+      type: Boolean,
+      default: false
+    },
     buttonText: {
       type: String,
       default: () => t('ui.search.placeholder')

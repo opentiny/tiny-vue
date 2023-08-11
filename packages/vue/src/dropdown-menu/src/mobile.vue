@@ -9,6 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  -->
+
 <template>
   <div ref="menu" class="tiny-mobile-dropdown-menu">
     <div class="tiny-mobile-dropdown-menu__bar tiny-mobile-dropdown-menu__bar--opened">
@@ -34,13 +35,25 @@
             <span v-if="!slots.title">
               <span class="tiny-mobile-dropdown-menu__title-text">{{ item.state.displayTitle }}</span>
               <span class="tiny-mobile-dropdown-menu__title-icon" v-if="item.type === 'sort'">
-                <icon-delta-up class="up" :fill="item.state.sort === 'asc' ? (activeColor ? activeColor : '#f36f64') : '#ccc'"></icon-delta-up>
-                <icon-delta-down class="down" :fill="item.state.sort === 'desc' ? (activeColor ? activeColor : '#f36f64') : '#ccc'"></icon-delta-down>
+                <icon-delta-up
+                  class="up"
+                  :fill="item.state.sort === 'asc' ? (activeColor ? activeColor : '#f36f64') : '#ccc'"
+                ></icon-delta-up>
+                <icon-delta-down
+                  class="down"
+                  :fill="item.state.sort === 'desc' ? (activeColor ? activeColor : '#f36f64') : '#ccc'"
+                ></icon-delta-down>
               </span>
               <component
                 v-else
                 :fill="item.state.showPopup ? (activeColor ? activeColor : '#f36f64') : '#ccc'"
-                :is="item.type === 'filter' ? 'IconUnfilter' : item.type === 'selection' && item.state.showPopup ? 'IconUp' : 'IconDown'"
+                :is="
+                  item.type === 'filter'
+                    ? 'IconUnfilter'
+                    : item.type === 'selection' && item.state.showPopup
+                    ? 'IconUp'
+                    : 'IconDown'
+                "
                 :class="[item.type === 'filter' ? 'filter-icon' : '']"
               />
             </span>
@@ -61,7 +74,16 @@ import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import '@opentiny/vue-theme-mobile/dropdown-menu/index.less'
 
 export default defineComponent({
-  props: [...props, 'activeColor', 'closeOnClickOutside', 'closeOnClickOverlay', 'direction', 'duration', 'overlay', 'zIndex'],
+  props: [
+    ...props,
+    'activeColor',
+    'closeOnClickOutside',
+    'closeOnClickOverlay',
+    'direction',
+    'duration',
+    'overlay',
+    'zIndex'
+  ],
   components: {
     IconUp: iconUp(),
     IconDown: iconDown(),

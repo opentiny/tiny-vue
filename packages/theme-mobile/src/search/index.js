@@ -14,5 +14,5 @@ export default {
   'tiny-mobile-search-bg-color-primary': '#3168f1',
   'tiny-mobile-search-bg-color-gray': '#fff',
   'tiny-mobile-search-placeholder-text-color-primary': '#dbe5fc',
-  'tiny-mobile-search-placeholder-text-color-gray': '#acacac',
+  'tiny-mobile-search-placeholder-text-color-gray': '#acacac'
 }

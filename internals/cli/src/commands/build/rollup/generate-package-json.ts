@@ -21,7 +21,7 @@ export default function generatePackageJson({ beforeWriteFile }): Plugin {
           let packageJson
           try {
             packageJson = JSON.parse(fs.readFileSync(packageJsonFile, { encoding: 'utf-8' }))
-          } catch { }
+          } catch {}
 
           const { filePath, content } = beforeWriteFile(path.dirname(item.fileName), packageJson)
 

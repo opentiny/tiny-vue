@@ -3,11 +3,12 @@
  * 启动命令：pnpm run build:themejson
  * 检查结果：查看 theme-result.txt ,发现未写注释的变量
  */
-const fs = require('fs')
-const path = require('path')
+const fs = require('node:fs')
+const path = require('node:path')
 const fg = require('fast-glob')
 const aliasCompName = require('./components')
 const xlsx = require('node-xlsx')
+
 const themeConfFile = path.resolve(__dirname, './theme.json')
 
 // 指定哪些目录的`vars.less`不需要处理

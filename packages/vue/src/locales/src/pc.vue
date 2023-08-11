@@ -21,7 +21,12 @@
         ></span>
       </template>
       <div class="poplist">
-        <li v-for="lang in state.locales" :key="lang" :class="{ selected: state.current === lang }" @click="switchLanguage(lang)">
+        <li
+          v-for="lang in state.locales"
+          :key="lang"
+          :class="{ selected: state.current === lang }"
+          @click="switchLanguage(lang)"
+        >
           {{ t(lang) }}
         </li>
       </div>

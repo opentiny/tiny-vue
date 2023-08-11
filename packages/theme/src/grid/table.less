@@ -54,18 +54,17 @@
     .@{grid-prefix-cls}-header__column,
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
-     
       .DefaultTdPadding();
     }
 
     // 表格主体部分和表位单元格高度
     .@{grid-prefix-cls}-body__column,
-    .@{grid-prefix-cls}-footer__column{
+    .@{grid-prefix-cls}-footer__column {
       .MediumColumnHeight();
     }
 
     // 表头单元格高度
-    .@{grid-prefix-cls}-header__column{
+    .@{grid-prefix-cls}-header__column {
       .MediumHeaderColumnHeight();
     }
 
@@ -88,7 +87,6 @@
         .MediumColumnHeight();
       }
     }
-
   }
 
   // 小尺寸
@@ -96,7 +94,6 @@
     .@{grid-prefix-cls}-header__column,
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
-
       .DefaultTdPadding();
     }
 
@@ -106,7 +103,7 @@
     }
 
     // 表头单元格高度
-    .@{grid-prefix-cls}-header__column{
+    .@{grid-prefix-cls}-header__column {
       .SmallHeaderColumnHeight();
     }
 
@@ -136,7 +133,6 @@
     .@{grid-prefix-cls}-header__column,
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
-      
       .DefaultTdPadding();
     }
 
@@ -146,7 +142,7 @@
     }
 
     // 表头单元格高度
-    .@{grid-prefix-cls}-header__column{
+    .@{grid-prefix-cls}-header__column {
       .MiniHeaderColumnHeight();
     }
 
@@ -169,7 +165,6 @@
         .MiniColumnHeight();
       }
     }
-
   }
 
   // 冻结列，采用sticky布局代替多表格渲染，至少少渲染一半的dom元素
@@ -185,7 +180,7 @@
       bottom: -1px;
       width: 30px;
       transform: translate(100%);
-      transition: box-shadow .3s;
+      transition: box-shadow 0.3s;
       content: '';
       pointer-events: none;
     }
@@ -197,17 +192,21 @@
       left: 0;
       width: 30px;
       transform: translate(-100%);
-      transition: box-shadow .3s;
+      transition: box-shadow 0.3s;
       content: '';
       pointer-events: none;
     }
 
+    &.fixed-right-first__column + .col__gutter {
+      position: sticky;
+      right: 0;
+      background-color: var(--ti-grid-header-background-color);
+    }
   }
 
   th.fixed__column {
     background-color: var(--ti-grid-header-background-color);
   }
-
 
   &-fixed__left {
     .fixed__column.fixed-left-last__column:after {
@@ -220,7 +219,6 @@
       box-shadow: inset -10px 0 8px -8px #00000026;
     }
   }
-
 
   table {
     border-spacing: 0;
@@ -237,11 +235,10 @@
           background-color: var(--ti-grid-row-striped-background-color);
         }
 
-        &.row__current{
+        &.row__current {
           background-color: var(--ti-grid-row-hover-background-color);
         }
       }
-
 
       &.row__selected {
         &:not(.row__hover) {
@@ -256,10 +253,10 @@
       }
     }
 
-    &.row__highlight .@{grid-prefix-cls}-body__row:hover{
+    &.row__highlight .@{grid-prefix-cls}-body__row:hover {
       background-color: var(--ti-grid-row-hover-background-color);
-  
-      .fixed__column{
+
+      .fixed__column {
         background-color: var(--ti-grid-row-hover-background-color);
       }
     }
@@ -280,7 +277,7 @@
       position: absolute;
       left: 0;
       width: 100%;
-      height: 0px;
+      height: 0;
       z-index: 1;
     }
 
@@ -304,26 +301,21 @@
     .@{grid-prefix-cls}-header__column,
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
-      background-image: linear-gradient(
-          -90deg,
-          var(--ti-grid-border-color),
-          var(--ti-grid-border-color)
-        ),
-        linear-gradient(
-          -180deg,
-          var(--ti-grid-border-color),
-          var(--ti-grid-border-color)
-        );
+      background-image: linear-gradient(-90deg, var(--ti-grid-border-color), var(--ti-grid-border-color)),
+        linear-gradient(-180deg, var(--ti-grid-border-color), var(--ti-grid-border-color));
       background-repeat: no-repeat;
-      background-size: 1px 100%, 100% 1px;
-      background-position: 100% 0, 100% 100%;
+      background-size:
+        1px 100%,
+        100% 1px;
+      background-position:
+        100% 0,
+        100% 100%;
       border: none;
     }
 
     .@{grid-prefix-cls}__body-wrapper {
       border-bottom: none;
     }
-
 
     .@{grid-prefix-cls}__border-line {
       &:before,
@@ -422,10 +414,10 @@
     }
   }
 
-  &.row__highlight &-body__row:hover{
+  &.row__highlight &-body__row:hover {
     background-color: var(--ti-grid-row-hover-background-color);
 
-    .fixed__column{
+    .fixed__column {
       background-color: var(--ti-grid-row-hover-background-color);
     }
   }
@@ -463,12 +455,25 @@
   }
 
   // 表头高度
-  & &-header__column{
+  & &-header__column {
     height: var(--ti-grid-default-header-column-height);
+    // 文字居中
+    &.col__center {
+      .@{grid-prefix-cls}-cell {
+        justify-content: center;
+      }
+    }
+
+    // 文字居右
+    &.col__right {
+      .@{grid-prefix-cls}-cell {
+        justify-content: right;
+      }
+    }
   }
 
   & &-body__column,
-  & &-footer__column{
+  & &-footer__column {
     .DefaultColumnHeight();
   }
 
@@ -477,6 +482,10 @@
     line-height: var(--ti-grid-line-height-number);
     white-space: normal;
     word-break: break-word;
+
+    .@{grid-cell-prefix-cls}-text {
+      width: 100%;
+    }
 
     .@{grid-prefix-cls}-checkbox {
       vertical-align: bottom;
@@ -538,7 +547,7 @@
       display: flex;
       align-items: center;
     }
-  
+
     &.col__ellipsis {
       .@{grid-cell-prefix-cls}-text {
         .TextEllipsis();
@@ -801,12 +810,10 @@
     &.@{grid-prefix-cls}-cell__highlight {
       .@{grid-prefix-cls}-body__column {
         &.col__actived {
-          box-shadow: inset 0px 0px 0px 2px
-            var(--ti-grid-primary-color);
+          box-shadow: inset 0px 0px 0px 2px var(--ti-grid-primary-color);
 
           &.col__valid-error {
-            box-shadow: inset 0px 0px 0px 2px
-              var(--ti-grid-error-color);
+            box-shadow: inset 0px 0px 0px 2px var(--ti-grid-error-color);
           }
 
           .@{grid-prefix-cls}-cell {
@@ -829,7 +836,6 @@
     }
 
     .@{grid-prefix-cls}-body__column {
-
       .DefaultTdPadding();
 
       &.col__actived {
@@ -853,14 +859,12 @@
           position: absolute;
           border-width: 5px;
           border-style: solid;
-          border-color: transparent var(--ti-grid-error-color)
-            transparent transparent;
+          border-color: transparent var(--ti-grid-error-color) transparent transparent;
           transform: rotate(45deg);
         }
 
         &.col__valid-success:before {
-          border-color: transparent var(--ti-grid-success-color)
-            transparent transparent;
+          border-color: transparent var(--ti-grid-success-color) transparent transparent;
         }
       }
     }
@@ -1042,7 +1046,7 @@
       fill: rgba(51, 61, 72, 0.3);
       color: rgba(22, 30, 38, 0.3);
     }
-  } 
+  }
 }
 
 // 表格全屏样式
@@ -1058,5 +1062,3 @@
   margin: 0;
   padding: 8px;
 }
-
-

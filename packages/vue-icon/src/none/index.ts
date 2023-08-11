@@ -12,4 +12,4 @@
 import { svg } from '@opentiny/vue-common'
 import None from '@opentiny/vue-theme/svgs/none.svg'
 
-export default svg({ name: 'IconNone', component: None })
+export default () => svg({ name: 'IconNone', component: None })()

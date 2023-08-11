@@ -1,7 +1,12 @@
 <template>
   <div class="tiny-mobile-dialog-box-demo">
     <tiny-button @click="boxVisibility = true">弹出Dialog {{ boxVisibility }}</tiny-button>
-    <tiny-dialog-box :visible="boxVisibility" @update:visible="boxVisibility = $event" :modal-append-to-body="false" :append-to-body="false">
+    <tiny-dialog-box
+      :visible="boxVisibility"
+      @update:visible="boxVisibility = $event"
+      :modal-append-to-body="false"
+      :append-to-body="false"
+    >
       <template #title>
         <div style="width: 80%; height: 100%; background: #dddddd">自定义title区域</div>
       </template>

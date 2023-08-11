@@ -119,7 +119,7 @@ const kebabCase = ({ str, splitChar = '-' }: { str: string; splitChar?: string }
 
       if (charCod < 65 || charCod > 122) return char
 
-      return (charCod >= 65 && charCod <= 90) ? (index !== 0 ? splitChar : '') + char.toLowerCase() : char
+      return charCod >= 65 && charCod <= 90 ? (index !== 0 ? splitChar : '') + char.toLowerCase() : char
     })
     .join('')
 }
@@ -156,8 +156,17 @@ const prettierFormat = ({ str, options = {} }: { str: string; options?: object }
  * @param {Function} fileFilter 文件筛选拦截函数
  * @param {Function} callback 遍历回调
  */
-const walkFileTree = ({ dirPath, isDeep = false, fileFilter, callback }:
-  { dirPath: string; isDeep: boolean; fileFilter?: Function; callback: Function }) => {
+const walkFileTree = ({
+  dirPath,
+  isDeep = false,
+  fileFilter,
+  callback
+}: {
+  dirPath: string
+  isDeep: boolean
+  fileFilter?: Function
+  callback: Function
+}) => {
   if (!dirPath || typeof callback !== 'function') {
     return
   }
@@ -205,8 +214,19 @@ const getVersion = ({ name, context, isVue2 }: { name: string; context: string; 
  * @param {Boolean} 是否为 vue2 环境
  * @returns 版本号
  */
-const getComponentVersion = ({ name, context = '..', dir = 'packages', isOrigin = false, isVue2 }:
-  { name: string; context?: string; dir?: string; isOrigin?: boolean; isVue2: boolean }) => {
+const getComponentVersion = ({
+  name,
+  context = '..',
+  dir = 'packages',
+  isOrigin = false,
+  isVue2
+}: {
+  name: string
+  context?: string
+  dir?: string
+  isOrigin?: boolean
+  isVue2: boolean
+}) => {
   let version: string
   const packageJSONPath = pathJoin(context, dir, name, 'package.json')
 
@@ -245,7 +265,15 @@ const getPublichVersion = ({ version, isVue2 }: { version: string; isVue2: boole
  * @param {Boolean} 是否为 vue2 环境
  * @returns 版本号
  */
-const getPackageVersion = ({ name, isRoot = false, isVue2 = false }: { name: string; isRoot: boolean; isVue2: boolean }) => {
+const getPackageVersion = ({
+  name,
+  isRoot = false,
+  isVue2 = false
+}: {
+  name: string
+  isRoot: boolean
+  isVue2: boolean
+}) => {
   let version = isRoot ? getopentinyVersion({ key: name }) : getComponentVersion({ name, isOrigin: true, isVue2 })
 
   return getMinorVersion(version)
@@ -472,7 +500,11 @@ const fragmentReplace = (filePath, regExpStr, targetStr) => {
  * @param {Array<string> | string} regExpStr
  * @param {Array<string> | string} targetStr
  */
-const filesFragmentReplace = (folderPath, regExpStr: Array<string | RegExp> | string | RegExp, targetStr: Array<string> | string) => {
+const filesFragmentReplace = (
+  folderPath,
+  regExpStr: Array<string | RegExp> | string | RegExp,
+  targetStr: Array<string> | string
+) => {
   let filesPath = getFilesPath(folderPath)
 
   if (filesPath) {
@@ -498,6 +530,8 @@ const pathJoinFromCLIEntry = (...args: string[]) => {
 
 /** 模板所在路径 */
 const templatePath = isCLIProduction ? pathJoinFromCLIEntry('./template') : pathJoinFromCLI('./public/template')
+
+export const isValidVersion = (version: string): boolean => /^\d+(\.\d+){2}(-[a-zA-Z0-9\.]+)?$/.test(version)
 
 export {
   assetsPath,
@@ -537,5 +571,5 @@ export {
   getMinorVersion,
   pathJoinFromCLI,
   pathJoinFromCLIEntry,
-  templatePath,
+  templatePath
 }

@@ -25,7 +25,7 @@
 
 import { isObject, isNull } from '@opentiny/vue-renderless/common/type'
 import { convertToRows } from '@opentiny/vue-renderless/grid/plugins/header'
-import { removeClass, addClass, hasClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { removeClass, addClass } from '@opentiny/vue-renderless/common/deps/dom'
 import { isBoolean, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { updateCellTitle, getOffsetPos, emitEvent, getClass } from '@opentiny/vue-renderless/grid/utils'
 import { h, $prefix } from '@opentiny/vue-common'
@@ -43,12 +43,18 @@ function addListenerMousedown({ $table, mouseConfig, params, thOns }) {
 
 function addListenerDblclick({ $table, params, tableListeners, thOns }) {
   if (tableListeners['header-cell-dblclick']) {
-    thOns.dblclick = (event) => emitEvent($table, 'header-cell-dblclick', [{ cell: event.currentTarget, ...params }, event])
+    thOns.dblclick = (event) =>
+      emitEvent($table, 'header-cell-dblclick', [{ cell: event.currentTarget, ...params }, event])
   }
 }
 
 function addListenerClick({ $table, highlightCurrentColumn, mouseConfig, params, sortOpts, tableListeners, thOns }) {
-  if (highlightCurrentColumn || tableListeners['header-cell-click'] || mouseConfig.checked || sortOpts.trigger === 'cell') {
+  if (
+    highlightCurrentColumn ||
+    tableListeners['header-cell-click'] ||
+    mouseConfig.checked ||
+    sortOpts.trigger === 'cell'
+  ) {
     thOns.click = (event) =>
       $table.triggerHeaderCellClickEvent(event, {
         cell: event.currentTarget,
@@ -108,7 +114,9 @@ function renderTableColgroup(tableColumn) {
     {
       ref: 'colgroup'
     },
-    tableColumn.map((column, columnIndex) => h('col', { attrs: { name: column.id }, key: columnIndex })).concat([h('col', { attrs: { name: 'col_gutter' } })])
+    tableColumn
+      .map((column, columnIndex) => h('col', { attrs: { name: column.id }, key: columnIndex }))
+      .concat([h('col', { attrs: { name: 'col_gutter' } })])
   )
 }
 
@@ -229,13 +237,31 @@ function renderThResize({ _vm, border, column, fixedHiddenColumn, isColGroup, pa
 }
 
 function getThHandler(args) {
-  let { $rowIndex, $table, _vm, allAlign, allColumnHeaderOverflow, allHeaderAlign, border, columnKey, headerCellClassName } = args
-  let { headerSuffixIconAbsolute, highlightCurrentColumn, isDragHeaderSorting, mouseConfig, overflowX, resizable, sortOpts, tableListeners } = args
+  let {
+    $rowIndex,
+    $table,
+    _vm,
+    allAlign,
+    allColumnHeaderOverflow,
+    allHeaderAlign,
+    border,
+    columnKey,
+    headerCellClassName
+  } = args
+  let {
+    headerSuffixIconAbsolute,
+    highlightCurrentColumn,
+    isDragHeaderSorting,
+    mouseConfig,
+    resizable,
+    sortOpts,
+    tableListeners
+  } = args
 
   return (column, $columnIndex) => {
     let { showHeaderOverflow, showHeaderTip, headerAlign, align, headerClassName } = column
     let isColGroup = column.children && column.children.length
-    let fixedHiddenColumn = column.fixed && overflowX
+    let fixedHiddenColumn = column.fixed
     let headOverflow = isNull(showHeaderOverflow) ? allColumnHeaderOverflow : showHeaderOverflow
     let showEllipsis = headOverflow === 'ellipsis'
     let showTitle = headOverflow === 'title'
@@ -297,7 +323,11 @@ function renderTableThead(args) {
         {
           class: [
             'tiny-grid-header__row',
-            headerRowClassName ? (isFunction(headerRowClassName) ? headerRowClassName({ $table, $rowIndex }) : headerRowClassName) : ''
+            headerRowClassName
+              ? isFunction(headerRowClassName)
+                ? headerRowClassName({ $table, $rowIndex })
+                : headerRowClassName
+              : ''
           ]
         },
         cols.map(getThHandler(args1)).concat([h('th', { class: 'col__gutter' })])
@@ -340,7 +370,16 @@ function renderTable(args) {
   )
 }
 
-const documentOnmouseup = function ({ oldMousemove, oldMouseup, column, dragPosLeft, dragLeft, resizeBarElem, $table, params }) {
+const documentOnmouseup = function ({
+  oldMousemove,
+  oldMouseup,
+  column,
+  dragPosLeft,
+  dragLeft,
+  resizeBarElem,
+  $table,
+  params
+}) {
   document.onmousemove = oldMousemove
   document.onmouseup = oldMouseup
 
@@ -413,7 +452,8 @@ export default {
       {
         class: ['tiny-grid__header-wrapper', 'body__wrapper']
       },
-      [ // 表格主体内容x轴方向虚拟滚动条占位元素，在表头中属于无效元素，待删除
+      [
+        // 表格主体内容x轴方向虚拟滚动条占位元素，在表头中属于无效元素，待删除
         renderXSpace(),
         renderTable(args),
         // x轴方向虚拟滚动适配线

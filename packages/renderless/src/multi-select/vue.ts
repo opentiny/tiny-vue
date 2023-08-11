@@ -1,24 +1,16 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
-import {
-  created,
-  handleClick,
-  confirm,
-  reset,
-  wheelChange,
-  clickWheelItem,
-  loadDefault
-} from './index'
+import { created, handleClick, confirm, reset, wheelChange, clickWheelItem, loadDefault } from './index'
 
 export const api = [
   'state',
@@ -43,7 +35,7 @@ const initState = (reactive) => {
     wheelText: '',
     headerInfo: [],
     defaultSelectedIndexs: [],
-    defaultSelectedArray: [],
+    defaultSelectedArray: []
   })
 
   return state
@@ -58,7 +50,7 @@ const initApi = ({ api, props, state, emit, nextTick, refs }) => {
     reset: reset({ api, props, state, emit }),
     wheelChange: wheelChange(state),
     clickWheelItem: clickWheelItem({ state, emit }),
-    loadDefault: loadDefault({ props, state }),
+    loadDefault: loadDefault({ props, state })
   })
 }
 

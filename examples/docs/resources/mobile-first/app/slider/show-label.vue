@@ -1,6 +1,12 @@
 <template>
   <div class="mt-10">
-    <tiny-slider v-model="value" :show-steps="true" :show-label="true" :step="10" :format-label="formatLabel"></tiny-slider>
+    <tiny-slider
+      v-model="value"
+      :show-steps="true"
+      :show-label="true"
+      :step="10"
+      :format-label="formatLabel"
+    ></tiny-slider>
   </div>
 </template>
 

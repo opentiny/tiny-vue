@@ -10,7 +10,7 @@ export default defineComponent({
     type: String,
     trigger: {
       type: String,
-      default: 'hover'
+      default: 'hover' // 此处aui默认更改为 click
     },
     size: {
       type: String,
@@ -21,6 +21,10 @@ export default defineComponent({
       default: false
     },
     splitButton: Boolean,
+    singleButton: {
+      type: Boolean,
+      default: false
+    },
     showTimeout: {
       type: Number,
       default: 250

@@ -121,13 +121,13 @@ describe('PC Mode', () => {
    * slots
    */
   test('node slot', async () => {
-    const wrapper = mount(() =>
+    const wrapper = mount(() => (
       <ToggleMenu data={toggleMenuMockData.value}>
         {{
           node: ({ label }) => <div>菜单项：{label}</div>
         }}
       </ToggleMenu>
-    )
+    ))
     await nextTick()
     const treeNodes = wrapper.find('.tiny-tree-node')
     const firstOption = toggleMenuMockData.value[0]
@@ -139,9 +139,7 @@ describe('PC Mode', () => {
    */
   test('node click', async () => {
     const clickHandler = vi.fn()
-    const wrapper = mount(() => (
-      <ToggleMenu data={toggleMenuMockData.value} onNodeClick={clickHandler}></ToggleMenu>
-    ))
+    const wrapper = mount(() => <ToggleMenu data={toggleMenuMockData.value} onNodeClick={clickHandler}></ToggleMenu>)
     await nextTick()
     await wrapper.find('.tiny-tree-node .tiny-toggle-menu__body').trigger('click')
     expect(clickHandler).toBeCalled()

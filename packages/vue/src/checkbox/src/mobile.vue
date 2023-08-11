@@ -55,8 +55,8 @@
         @blur="state.focus = false"
       />
     </span>
-    <span class="tiny-mobile-checkbox__label" v-if="(slots.default && slots.default()) || text || label">
-      <slot>{{ text || label }}</slot>
+    <span v-if="(slots.default && slots.default()) || state.isShowText" class="tiny-mobile-checkbox__label">
+      <slot>{{ state.showText }}</slot>
     </span>
   </label>
 </template>
@@ -68,7 +68,20 @@ import '@opentiny/vue-theme-mobile/checkbox/index.less'
 
 export default defineComponent({
   inheritAttrs: false,
-  props: [...props, 'modelValue', 'text', 'events', 'label', 'indeterminate', 'disabled', 'checked', 'name', 'trueLabel', 'falseLabel', 'id'],
+  props: [
+    ...props,
+    'modelValue',
+    'text',
+    'events',
+    'label',
+    'indeterminate',
+    'disabled',
+    'checked',
+    'name',
+    'trueLabel',
+    'falseLabel',
+    'id'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

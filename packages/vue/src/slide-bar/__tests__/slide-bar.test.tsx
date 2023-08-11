@@ -17,12 +17,8 @@ describe('PC Mode', () => {
     { title: 'i', lang: 'en_US' }
   ]
 
-  const _mount = (
-    props: any = {}
-  ) => {
-    return mount(() => (
-        <SlideBar modelValue={slideBarMockData} {...props}></SlideBar>
-    ))
+  const _mount = (props: any = {}) => {
+    return mount(() => <SlideBar modelValue={slideBarMockData} {...props}></SlideBar>)
   }
 
   /**
@@ -30,7 +26,7 @@ describe('PC Mode', () => {
    */
   test('value', async () => {
     const wrapper = _mount()
-    const slideBar = wrapper.findComponent({ name : 'TinySlideBar' })
+    const slideBar = wrapper.findComponent({ name: 'TinySlideBar' })
     expect(slideBar.vm.modelValue.length).toBe(9)
   })
 
@@ -47,15 +43,16 @@ describe('PC Mode', () => {
    */
   test('default slot', async () => {
     const wrapper = mount(() => (
-        <SlideBar modelValue={slideBarMockData}>
-            {{
-                default: ({slotData}) =>
-                    <div>
-                        <span>标题：{slotData.title}</span>
-                        <div>语言：{slotData.lang}</div>
-                    </div>
-            }}
-        </SlideBar>
+      <SlideBar modelValue={slideBarMockData}>
+        {{
+          default: ({ slotData }) => (
+            <div>
+              <span>标题：{slotData.title}</span>
+              <div>语言：{slotData.lang}</div>
+            </div>
+          )
+        }}
+      </SlideBar>
     ))
     const items = wrapper.findAll('.tiny-slide-bar__list > li')
     expect(items.length).toBe(9)
@@ -67,7 +64,7 @@ describe('PC Mode', () => {
   test('before-click', async () => {
     const beforeClickHandler = vi.fn()
     const wrapper = _mount({
-        onBeforeClick: beforeClickHandler
+      onBeforeClick: beforeClickHandler
     })
     const item = wrapper.find('.tiny-slide-bar__list > li')
     await item.trigger('click')

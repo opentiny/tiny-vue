@@ -1,8 +1,6 @@
 <template>
   <div>
-    <tiny-button @click="openRecord">
-      打开录音
-    </tiny-button>
+    <tiny-button @click="openRecord"> 打开录音 </tiny-button>
     <tiny-record v-model="show" @confirm="handleConfirm"></tiny-record>
   </div>
 </template>

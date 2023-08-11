@@ -25,7 +25,9 @@
 import { get } from '@opentiny/vue-renderless/grid/static/'
 
 export function mapFetchColumnPromise({ _vm, fetchColumns, tableColumn }) {
-  return fetchColumns.map(({ format, columnValues }) => format.async.fetch({ columns: tableColumn, columnValues, $table: _vm }))
+  return fetchColumns.map(({ format, columnValues }) =>
+    format.async.fetch({ columns: tableColumn, columnValues, $table: _vm })
+  )
 }
 
 export function preprocessDataObjectFormat({ columnCount, columnValues, columnValuesMap, fields }) {

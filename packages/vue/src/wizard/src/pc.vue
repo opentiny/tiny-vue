@@ -30,7 +30,9 @@
             <span v-if="pageGuide && item.status === state.doing" class="tiny-wizard__chart-svg">
               <tiny-icon-mark-on @click="nodeClick(item, index, $event)"></tiny-icon-mark-on>
             </span>
-            <span v-else class="tiny-wizard__chart-icon statues" @click="nodeClick(item, index, $event)">{{ index + 1 }}</span>
+            <span v-else class="tiny-wizard__chart-icon statues" @click="nodeClick(item, index, $event)">{{
+              index + 1
+            }}</span>
             <span class="tiny-wizard__chart-line"></span>
           </div>
           <div class="tiny-wizard__name">
@@ -45,7 +47,9 @@
           <tiny-button :reset-time="0" @click="lastStepHandle">{{ t('ui.wizard.previousStep') }}</tiny-button>
           <tiny-button :reset-time="0" @click="btnSaveHandle">{{ t('ui.wizard.save') }}</tiny-button>
           <tiny-button :reset-time="0" @click="nextStepHandle">{{ t('ui.wizard.nextStep') }}</tiny-button>
-          <tiny-button :reset-time="0" v-if="state.submitShow" @click="submitHandle">{{ t('ui.wizard.submit') }}</tiny-button>
+          <tiny-button :reset-time="0" v-if="state.submitShow" @click="submitHandle">{{
+            t('ui.wizard.submit')
+          }}</tiny-button>
         </slot>
       </div>
     </div>

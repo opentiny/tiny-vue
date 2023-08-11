@@ -49,7 +49,7 @@ export const translateItem =
       state.animating = index === activeIndex || index === oldIndex
     }
 
-    state.animatingMf = [activeIndex, oldIndex].indexOf(index) < 0
+    state.animatingMf = ![activeIndex, oldIndex].includes(index)
 
     if (index !== activeIndex && length > 2 && vnode.loop) {
       index = api.processIndex({ index, activeIndex, length })

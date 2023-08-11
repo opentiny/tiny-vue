@@ -1,7 +1,5 @@
 <template>
-  <tiny-badge :value="value1">
-    默认类型
-  </tiny-badge>
+  <tiny-badge :value="value1"> 默认类型 </tiny-badge>
 </template>
 
 <script>

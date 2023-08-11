@@ -1,10 +1,11 @@
 {
   "name": "@opentiny/vue-recycle-scroller",
-  "version": "5.0.0-mf.0",
+  "version": "3.7.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
   "sideEffects": false,
+  "type": "module",
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
     "vitest": "^0.31.0"

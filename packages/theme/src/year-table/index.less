@@ -14,6 +14,8 @@
 @import './vars.less';
 @import '../date-picker/vars.less';
 @import '../date-table/vars.less';
+@import '../month-table/index.less';
+@import '../month-table/vars.less';
 
 @year-table-prefix-cls: ~'@{css-prefix}year-table';
 
@@ -21,58 +23,7 @@
   .component-css-vars-year-table();
   .component-css-vars-date-picker();
   .component-css-vars-date-table();
+  .component-css-vars-month-table();
 
-  font-size: var(--ti-date-picker-font-size);
-  margin: -1px;
-  border-collapse: collapse;
-
-  td {
-    text-align: center;
-    cursor: pointer;
-
-    &.today {
-      .cell {
-        color: var(--ti-year-table-td-text-color);
-        font-weight: 700;
-      }
-    }
-
-    &.disabled {
-      .cell {
-        background-color: var(--ti-date-picker-disabled-bg-color);
-        cursor: not-allowed;
-        color: var(--ti-date-picker-disabled-text-color);
-
-        &:hover {
-          color: var(--ti-date-picker-disabled-text-color);
-        }
-      }
-    }
-
-    .cell {
-      width: 48px;
-      height: 24px;
-      line-height: 24px;
-      display: block;
-      color: var(--ti-date-picker-text-color);
-      margin: 0 auto;
-      border-radius: 2px;
-      &:hover {
-        background: var(--ti-date-picker-hover-bg-color);
-      }
-    }
-
-    &.current:not(.disabled) .cell {
-      color: var(--ti-date-table-td-normal-text-color);
-      background: var(--ti-date-picker-current-select-bg-color);
-    }
-  }
-
-  td.available {
-    padding: 16px 3px;
-  }
-
-  .@{css-prefix}icon {
-    color: var(--ti-year-table-td-icon-color);
-  }
+  .month-table();
 }

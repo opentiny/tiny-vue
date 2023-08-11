@@ -20,119 +20,125 @@ if (typeof window !== 'undefined') {
   }
 }
 
-export const handleVisibilityChange = ({ api, emit, state }) => (isVisible, entry) => {
-  if (state.ready) {
-    if (isVisible || entry.boundingClientRect.width !== 0 || entry.boundingClientRect.height !== 0) {
-      emit('visible')
-      requestAnimationFrame(() => {
-        api.updateVisibleItems(false)
-      })
-    } else {
-      emit('hidden')
+export const handleVisibilityChange =
+  ({ api, emit, state }) =>
+  (isVisible, entry) => {
+    if (state.ready) {
+      if (isVisible || entry.boundingClientRect.width !== 0 || entry.boundingClientRect.height !== 0) {
+        emit('visible')
+        requestAnimationFrame(() => {
+          api.updateVisibleItems(false)
+        })
+      } else {
+        emit('hidden')
+      }
     }
   }
-}
 
-export const updateVisibleItems = ({ api, emit, props, state, vm }) => (checkItem, checkPositionDiff = false) => {
-  const itemSize = props.itemSize
-  const gridItems = props.gridItems || 1
-  const itemSecondarySize = props.itemSecondarySize || itemSize
-  const minItemSize = state.temporary.computedMinItemSize
-  const typeField = props.typeField
-  const keyField = state.simpleArray ? null : props.keyField
-  const items = props.items
-  const count = items.length
-  const sizes = state.sizes
-  const views = state.temporary.views
-  const unusedViews = state.temporary.unusedViews
-  const pool = state.pool
-  const itemIndexByKey = state.itemIndexByKey
-  let startIndex, endIndex, visibleStartIndex, visibleEndIndex, totalSize
-
-  if (!count) {
-    startIndex = endIndex = visibleStartIndex = visibleEndIndex = totalSize = 0
-  } else if (state.temporary.prerender) {
-    startIndex = visibleStartIndex = 0
-    visibleEndIndex = endIndex = Math.min(props.prerender, items.length)
-    totalSize = null
-  } else {
-    const scroll = api.getScroll()
-
-    if (doCheckPositionDiff({ checkPositionDiff, scroll, state, itemSize, minItemSize })) {
-      return { continuous: true }
-    }
-
-    state.temporary.lastUpdateScrollPosition = scroll.start
-
-    const args = { props, scroll, vm, itemSize, count, sizes, startIndex, totalSize }
-
-    Object.assign(args, { endIndex, items, visibleStartIndex, visibleEndIndex, gridItems })
-
-    const ret = computeRange(args)
-
-    startIndex = ret.startIndex
-    endIndex = ret.endIndex
-    visibleStartIndex = ret.visibleStartIndex
-    visibleEndIndex = ret.visibleEndIndex
-    totalSize = ret.totalSize
-  }
-
-  if (endIndex - startIndex > props.itemsLimit) {
-    throw new Error('[TINY Error][RecycleScroller] Rendered items limit reached')
-  }
-
-  state.totalSize = totalSize
-
-  const continuous = startIndex <= state.temporary.endIndex && endIndex >= state.temporary.startIndex
-  const args = { continuous, pool, checkItem, itemIndexByKey, keyField, startIndex }
-
-  Object.assign(args, { endIndex, api, items, views, itemSize, sizes, typeField, unusedViews })
-  Object.assign(args, { emit, gridItems, itemSecondarySize })
-
-  computePool(args)
-
-  state.temporary.startIndex = startIndex
-  state.temporary.endIndex = endIndex
-
-  if (props.emitUpdate) {
-    emit('update', startIndex, endIndex, visibleStartIndex, visibleEndIndex)
-  }
-
-  clearTimeout(state.temporary.sortTimer)
-
-  state.temporary.sortTimer = setTimeout(api.sortViews, props.updateInterval + 300)
-
-  return { continuous }
-}
-
-export const computedSizes = ({ props, state }) => () => {
-  if (props.itemSize === null) {
-    const sizes = { '-1': { accumulator: 0 } }
+export const updateVisibleItems =
+  ({ api, emit, props, state, vm }) =>
+  (checkItem, checkPositionDiff = false) => {
+    const itemSize = props.itemSize
+    const gridItems = props.gridItems || 1
+    const itemSecondarySize = props.itemSecondarySize || itemSize
+    const minItemSize = state.temporary.computedMinItemSize
+    const typeField = props.typeField
+    const keyField = state.simpleArray ? null : props.keyField
     const items = props.items
-    const field = props.sizeField
-    const minItemSize = props.minItemSize
-    let computedMinSize = 10000
-    let accumulator = 0
-    let current
+    const count = items.length
+    const sizes = state.sizes
+    const views = state.temporary.views
+    const unusedViews = state.temporary.unusedViews
+    const pool = state.pool
+    const itemIndexByKey = state.itemIndexByKey
+    let startIndex, endIndex, visibleStartIndex, visibleEndIndex, totalSize
 
-    for (let i = 0, l = items.length; i < l; i++) {
-      current = items[i][field] || minItemSize
+    if (!count) {
+      startIndex = endIndex = visibleStartIndex = visibleEndIndex = totalSize = 0
+    } else if (state.temporary.prerender) {
+      startIndex = visibleStartIndex = 0
+      visibleEndIndex = endIndex = Math.min(props.prerender, items.length)
+      totalSize = null
+    } else {
+      const scroll = api.getScroll()
 
-      if (current < computedMinSize) {
-        computedMinSize = current
+      if (doCheckPositionDiff({ checkPositionDiff, scroll, state, itemSize, minItemSize })) {
+        return { continuous: true }
       }
 
-      accumulator += current
-      sizes[i] = { accumulator, size: current }
+      state.temporary.lastUpdateScrollPosition = scroll.start
+
+      const args = { props, scroll, vm, itemSize, count, sizes, startIndex, totalSize }
+
+      Object.assign(args, { endIndex, items, visibleStartIndex, visibleEndIndex, gridItems })
+
+      const ret = computeRange(args)
+
+      startIndex = ret.startIndex
+      endIndex = ret.endIndex
+      visibleStartIndex = ret.visibleStartIndex
+      visibleEndIndex = ret.visibleEndIndex
+      totalSize = ret.totalSize
     }
 
-    state.temporary.computedMinItemSize = computedMinSize
+    if (endIndex - startIndex > props.itemsLimit) {
+      throw new Error('[TINY Error][RecycleScroller] Rendered items limit reached')
+    }
 
-    return sizes
+    state.totalSize = totalSize
+
+    const continuous = startIndex <= state.temporary.endIndex && endIndex >= state.temporary.startIndex
+    const args = { continuous, pool, checkItem, itemIndexByKey, keyField, startIndex }
+
+    Object.assign(args, { endIndex, api, items, views, itemSize, sizes, typeField, unusedViews })
+    Object.assign(args, { emit, gridItems, itemSecondarySize })
+
+    computePool(args)
+
+    state.temporary.startIndex = startIndex
+    state.temporary.endIndex = endIndex
+
+    if (props.emitUpdate) {
+      emit('update', startIndex, endIndex, visibleStartIndex, visibleEndIndex)
+    }
+
+    clearTimeout(state.temporary.sortTimer)
+
+    state.temporary.sortTimer = setTimeout(api.sortViews, props.updateInterval + 300)
+
+    return { continuous }
   }
 
-  return []
-}
+export const computedSizes =
+  ({ props, state }) =>
+  () => {
+    if (props.itemSize === null) {
+      const sizes = { '-1': { accumulator: 0 } }
+      const items = props.items
+      const field = props.sizeField
+      const minItemSize = props.minItemSize
+      let computedMinSize = 10000
+      let accumulator = 0
+      let current
+
+      for (let i = 0, l = items.length; i < l; i++) {
+        current = items[i][field] || minItemSize
+
+        if (current < computedMinSize) {
+          computedMinSize = current
+        }
+
+        accumulator += current
+        sizes[i] = { accumulator, size: current }
+      }
+
+      state.temporary.computedMinItemSize = computedMinSize
+
+      return sizes
+    }
+
+    return []
+  }
 
 export const computedItemIndexByKey = (props) => () => {
   const { keyField, items } = props
@@ -145,180 +151,202 @@ export const computedItemIndexByKey = (props) => () => {
   return result
 }
 
-export const getScroll = ({ props, vm }) => () => {
-  const { $el: el } = vm
-  const direction = props.direction
-  const isVertical = direction === 'vertical'
-  let scrollRange
+export const getScroll =
+  ({ props, vm }) =>
+  () => {
+    const { $el: el } = vm
+    const direction = props.direction
+    const isVertical = direction === 'vertical'
+    let scrollRange
 
-  if (props.pageMode) {
-    const bounds = el.getBoundingClientRect()
-    const boundsSize = isVertical ? bounds.height : bounds.width
-    let size = isVertical ? window.innerHeight : window.innerWidth
-    let start = -(isVertical ? bounds.top : bounds.left)
+    if (props.pageMode) {
+      const bounds = el.getBoundingClientRect()
+      const boundsSize = isVertical ? bounds.height : bounds.width
+      let size = isVertical ? window.innerHeight : window.innerWidth
+      let start = -(isVertical ? bounds.top : bounds.left)
 
-    if (start < 0) {
-      size += start
-      start = 0
+      if (start < 0) {
+        size += start
+        start = 0
+      }
+
+      if (start + size > boundsSize) {
+        size = boundsSize - start
+      }
+
+      scrollRange = { start, end: start + size }
+    } else if (isVertical) {
+      scrollRange = { start: el.scrollTop, end: el.scrollTop + el.clientHeight }
+    } else {
+      scrollRange = { start: el.scrollLeft, end: el.scrollLeft + el.clientWidth }
     }
 
-    if (start + size > boundsSize) {
-      size = boundsSize - start
+    return scrollRange
+  }
+
+export const unuseView =
+  (state) =>
+  (view, fake = false) => {
+    const unusedViews = state.temporary.unusedViews
+    const type = view.nr.type
+    let unusedPool = unusedViews.get(type)
+
+    if (!unusedPool) {
+      unusedPool = []
+      unusedViews.set(type, unusedPool)
     }
 
-    scrollRange = { start, end: start + size }
-  } else if (isVertical) {
-    scrollRange = { start: el.scrollTop, end: el.scrollTop + el.clientHeight }
-  } else {
-    scrollRange = { start: el.scrollLeft, end: el.scrollLeft + el.clientWidth }
+    unusedPool.push(view)
+
+    if (!fake) {
+      view.nr.used = false
+      view.position = -9999
+    }
   }
-
-  return scrollRange
-}
-
-export const unuseView = (state) => (view, fake = false) => {
-  const unusedViews = state.temporary.unusedViews
-  const type = view.nr.type
-  let unusedPool = unusedViews.get(type)
-
-  if (!unusedPool) {
-    unusedPool = []
-    unusedViews.set(type, unusedPool)
-  }
-
-  unusedPool.push(view)
-
-  if (!fake) {
-    view.nr.used = false
-    view.position = -9999
-  }
-}
 
 let uid = 0
 
-export const addView = ({ markRaw, shallowReactive }) => (pool, index, item, key, type) => {
-  const nr = markRaw({ id: uid++, index, used: true, key, type })
-  const view = shallowReactive({ item, position: 0, nr })
+export const addView =
+  ({ markRaw, shallowReactive }) =>
+  (pool, index, item, key, type) => {
+    const nr = markRaw({ id: uid++, index, used: true, key, type })
+    const view = shallowReactive({ item, position: 0, nr })
 
-  pool.push(view)
+    pool.push(view)
 
-  return view
-}
+    return view
+  }
 
 export const sortViews = (state) => () => {
   state.pool.sort((viewA, viewB) => viewA.nr.index - viewB.nr.index)
 }
 
-export const handleScroll = ({ api, props, state }) => () => {
-  if (!state.temporary.scrollDirty) {
-    state.temporary.scrollDirty = true
+export const handleScroll =
+  ({ api, props, state }) =>
+  () => {
+    if (!state.temporary.scrollDirty) {
+      state.temporary.scrollDirty = true
 
-    if (state.temporary.updateTimeout) return
+      if (state.temporary.updateTimeout) return
 
-    const requestUpdate = () =>
-      requestAnimationFrame(() => {
-        state.temporary.scrollDirty = false
+      const requestUpdate = () =>
+        requestAnimationFrame(() => {
+          state.temporary.scrollDirty = false
 
-        const { continuous } = api.updateVisibleItems(false, true)
+          const { continuous } = api.updateVisibleItems(false, true)
 
-        if (!continuous) {
-          cancelAnimationFrame(state.temporary.refreshTimeout)
+          if (!continuous) {
+            cancelAnimationFrame(state.temporary.refreshTimeout)
 
-          state.temporary.refreshTimeout = requestAnimationFrame(() => api.updateVisibleItems(false))
-        }
-      })
+            state.temporary.refreshTimeout = requestAnimationFrame(() => api.updateVisibleItems(false))
+          }
+        })
 
-    requestUpdate()
+      requestUpdate()
 
-    if (props.updateInterval) {
-      state.temporary.updateTimeout = setTimeout(() => {
-        state.temporary.updateTimeout = 0
+      if (props.updateInterval) {
+        state.temporary.updateTimeout = setTimeout(() => {
+          state.temporary.updateTimeout = 0
 
-        if (state.temporary.scrollDirty) requestUpdate()
-      }, props.updateInterval)
+          if (state.temporary.scrollDirty) requestUpdate()
+        }, props.updateInterval)
+      }
     }
   }
-}
 
-export const handleResize = ({ api, emit, state }) => () => {
-  emit('resize')
-  if (state.ready) api.updateVisibleItems(false)
-}
-
-export const applyPageMode = ({ api, props }) => () => {
-  if (props.pageMode) {
-    api.addListeners()
-  } else {
-    api.removeListeners()
-  }
-}
-
-export const addListeners = ({ api, state }) => () => {
-  state.listenerTarget = api.getListenerTarget()
-
-  const options = supportsPassive ? { passive: true } : false
-
-  state.listenerTarget.addEventListener('scroll', api.handleScroll, options)
-  state.listenerTarget.addEventListener('resize', api.handleResize)
-}
-
-export const removeListeners = ({ api, state }) => () => {
-  if (!state.listenerTarget) {
-    return
+export const handleResize =
+  ({ api, emit, state }) =>
+  () => {
+    emit('resize')
+    if (state.ready) api.updateVisibleItems(false)
   }
 
-  state.listenerTarget.removeEventListener('scroll', api.handleScroll)
-  state.listenerTarget.removeEventListener('resize', api.handleResize)
-
-  state.listenerTarget = null
-}
-
-export const getListenerTarget = ({ props, vm }) => () => {
-  let target = getScrollContainer(vm.$el.parentNode, props.direction === 'vertical')
-
-  if (window.document && (target === window.document.documentElement || target === window.document.body)) {
-    target = window
+export const applyPageMode =
+  ({ api, props }) =>
+  () => {
+    if (props.pageMode) {
+      api.addListeners()
+    } else {
+      api.removeListeners()
+    }
   }
 
-  return target
-}
+export const addListeners =
+  ({ api, state }) =>
+  () => {
+    state.listenerTarget = api.getListenerTarget()
 
-export const scrollToPosition = ({ props, vm }) => (position) => {
-  const direction =
-    props.direction === 'vertical' ? { scroll: 'scrollTop', start: 'top' } : { scroll: 'scrollLeft', start: 'left' }
-  let viewport, scrollDirection, scrollDistance
+    const options = supportsPassive ? { passive: true } : false
 
-  if (props.pageMode) {
-    const viewportEl = getScrollContainer(vm.$el.parentNode, props.direction === 'vertical')
-    const scrollTop = viewportEl.tagName === 'HTML' ? 0 : viewportEl[direction.scroll]
-    const bounds = viewportEl.getBoundingClientRect()
-    const scroller = vm.$el.getBoundingClientRect()
-    const scrollerPosition = scroller[direction.start] - bounds[direction.start]
-
-    viewport = viewportEl
-    scrollDirection = direction.scroll
-    scrollDistance = position + scrollTop + scrollerPosition
-  } else {
-    viewport = vm.$el
-    scrollDirection = direction.scroll
-    scrollDistance = position
+    state.listenerTarget.addEventListener('scroll', api.handleScroll, options)
+    state.listenerTarget.addEventListener('resize', api.handleResize)
   }
 
-  viewport[scrollDirection] = scrollDistance
-}
+export const removeListeners =
+  ({ api, state }) =>
+  () => {
+    if (!state.listenerTarget) {
+      return
+    }
 
-export const scrollToItem = ({ api, props, state }) => (index) => {
-  const gridItems = props.gridItems || 1
-  let scroll
+    state.listenerTarget.removeEventListener('scroll', api.handleScroll)
+    state.listenerTarget.removeEventListener('resize', api.handleResize)
 
-  if (props.itemSize === null) {
-    scroll = index > 0 ? state.sizes[index - 1].accumulator : 0
-  } else {
-    scroll = Math.floor(index / gridItems) * props.itemSize
+    state.listenerTarget = null
   }
 
-  api.scrollToPosition(scroll)
-}
+export const getListenerTarget =
+  ({ props, vm }) =>
+  () => {
+    let target = getScrollContainer(vm.$el.parentNode, props.direction === 'vertical')
+
+    if (window.document && (target === window.document.documentElement || target === window.document.body)) {
+      target = window
+    }
+
+    return target
+  }
+
+export const scrollToPosition =
+  ({ props, vm }) =>
+  (position) => {
+    const direction =
+      props.direction === 'vertical' ? { scroll: 'scrollTop', start: 'top' } : { scroll: 'scrollLeft', start: 'left' }
+    let viewport, scrollDirection, scrollDistance
+
+    if (props.pageMode) {
+      const viewportEl = getScrollContainer(vm.$el.parentNode, props.direction === 'vertical')
+      const scrollTop = viewportEl.tagName === 'HTML' ? 0 : viewportEl[direction.scroll]
+      const bounds = viewportEl.getBoundingClientRect()
+      const scroller = vm.$el.getBoundingClientRect()
+      const scrollerPosition = scroller[direction.start] - bounds[direction.start]
+
+      viewport = viewportEl
+      scrollDirection = direction.scroll
+      scrollDistance = position + scrollTop + scrollerPosition
+    } else {
+      viewport = vm.$el
+      scrollDirection = direction.scroll
+      scrollDistance = position
+    }
+
+    viewport[scrollDirection] = scrollDistance
+  }
+
+export const scrollToItem =
+  ({ api, props, state }) =>
+  (index) => {
+    const gridItems = props.gridItems || 1
+    let scroll
+
+    if (props.itemSize === null) {
+      scroll = index > 0 ? state.sizes[index - 1].accumulator : 0
+    } else {
+      scroll = Math.floor(index / gridItems) * props.itemSize
+    }
+
+    api.scrollToPosition(scroll)
+  }
 
 const doCheckPositionDiff = ({ checkPositionDiff, scroll, state, itemSize, minItemSize }) => {
   if (checkPositionDiff) {
@@ -566,26 +594,30 @@ const computePoolView = (args) => {
   return { view, unusedPool, newlyUsedView }
 }
 
-export const computeViewStyle = ({ props, state }) => (view) => {
-  const { direction, gridItems, itemSecondarySize, itemSize } = props
+export const computeViewStyle =
+  ({ props, state }) =>
+  (view) => {
+    const { direction, gridItems, itemSecondarySize, itemSize } = props
 
-  let transform = `translate${direction === 'vertical' ? 'Y' : 'X'}(${view.position}px)`
+    let transform = `translate${direction === 'vertical' ? 'Y' : 'X'}(${view.position}px)`
 
-  transform = `${transform} translate${direction === 'vertical' ? 'X' : 'Y'}(${view.offset}px)`
+    transform = `${transform} translate${direction === 'vertical' ? 'X' : 'Y'}(${view.offset}px)`
 
-  let width = gridItems ? `${direction === 'vertical' ? itemSecondarySize || itemSize : itemSize}px` : undefined
-  let height = gridItems ? `${direction === 'horizontal' ? itemSecondarySize || itemSize : itemSize}px` : undefined
+    let width = gridItems ? `${direction === 'vertical' ? itemSecondarySize || itemSize : itemSize}px` : undefined
+    let height = gridItems ? `${direction === 'horizontal' ? itemSecondarySize || itemSize : itemSize}px` : undefined
 
-  return state.ready ? { transform, width, height } : null
-}
+    return state.ready ? { transform, width, height } : null
+  }
 
-export const computeViewEvent = ({ props, state }) => (view) => {
-  if (props.skipHover) {
-    return {}
-  } else {
-    return {
-      mouseenter: () => (state.hoverKey = view.nr.key),
-      mouseleave: () => (state.hoverKey = null)
+export const computeViewEvent =
+  ({ props, state }) =>
+  (view) => {
+    if (props.skipHover) {
+      return {}
+    } else {
+      return {
+        mouseenter: () => (state.hoverKey = view.nr.key),
+        mouseleave: () => (state.hoverKey = null)
+      }
     }
   }
-}

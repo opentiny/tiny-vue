@@ -86,7 +86,7 @@ describe('PC Mode', () => {
    * attrs
    */
   test('render & data', async () => {
-    const wrapper = mount(() => (<LinkMenu data={linkMenuMockData.value}></LinkMenu>))
+    const wrapper = mount(() => <LinkMenu data={linkMenuMockData.value}></LinkMenu>)
     const tinyLinkMenu = wrapper.findComponent({ name: 'TinyLinkMenu' })
     expect(tinyLinkMenu).toBeTruthy()
     expect(tinyLinkMenu.vm.state.datas.length).toBe(5)
@@ -106,7 +106,9 @@ describe('PC Mode', () => {
 
   test.todo('wrap 菜单内容超长时换行显示，默认为 false')
 
-  test.todo('keep-selected-nodes 树节点勾选内容后，点击取消按钮，再次打开弹窗是否保留取消前勾选的内容的状态，默认为 true')
+  test.todo(
+    'keep-selected-nodes 树节点勾选内容后，点击取消按钮，再次打开弹窗是否保留取消前勾选的内容的状态，默认为 true'
+  )
 
   test.todo('get-menu-data-sync 自定义菜单数据服务，直接返回数据')
 
@@ -114,11 +116,13 @@ describe('PC Mode', () => {
    * slots
    */
   test('foot slot', async () => {
-    const wrapper = mount(() => (<LinkMenu data={linkMenuMockData.value}>
+    const wrapper = mount(() => (
+      <LinkMenu data={linkMenuMockData.value}>
         {{
-            foot: () => <div>自定义插槽内容</div>
+          foot: () => <div>自定义插槽内容</div>
         }}
-    </LinkMenu>))
+      </LinkMenu>
+    ))
     const tinyLinkMenu = wrapper.findComponent({ name: 'TinyLinkMenu' })
     await tinyLinkMenu.find('.tiny-link-menu__btn').trigger('click')
     expect(tinyLinkMenu.find('.tiny-dialog-box__footer div').text().includes('自定义插槽内容')).toBeTruthy()

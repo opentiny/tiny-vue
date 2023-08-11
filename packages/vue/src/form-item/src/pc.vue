@@ -10,7 +10,7 @@
  *
  -->
 <script lang="tsx">
-import { $prefix, setup, parseVnode, h, defineComponent } from '@opentiny/vue-common'
+import { $props, $prefix, setup, parseVnode, h, defineComponent, isVue2 } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/form-item/vue'
 import LabelWrap from './label-wrap'
 import Tooltip from '@opentiny/vue-tooltip'
@@ -28,6 +28,7 @@ export default defineComponent({
     Tooltip
   },
   props: {
+    ...$props,
     _constants: {
       type: Object,
       default: () => $constants
@@ -99,6 +100,8 @@ export default defineComponent({
 
     const FormContent = defaultSlots
       ? defaultSlots.map((vnode) => {
+          if (isVue2 && !vnode.componentOptions) return vnode
+
           const item = parseVnode(vnode)
           item.props = item.props || {}
           const { type, props, data = {} } = item
@@ -256,6 +259,7 @@ export default defineComponent({
           [`${classPrefix}form-item`]: true,
           [`${classPrefix}form-item--feedback`]: state.formInstance && state.formInstance.statusIcon,
           'is-error': state.validateState === 'error',
+          'is-text': state.getValidateType === 'text',
           'is-validating': state.validateState === 'validating',
           'is-success': state.validateState === 'success',
           'is-required': state.isRequired || required,

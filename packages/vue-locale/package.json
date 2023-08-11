@@ -1,11 +1,12 @@
 {
   "name": "@opentiny/vue-locale",
   "private": true,
-  "version": "3.7.0",
+  "version": "3.10.0",
   "description": "",
   "main": "src/index.ts",
   "license": "MIT",
   "sideEffects": false,
+  "type": "module",
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",

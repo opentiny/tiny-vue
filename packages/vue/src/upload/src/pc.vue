@@ -75,7 +75,8 @@ export default defineComponent({
       uploadFiles,
       fileList,
       limit,
-      isHidden
+      isHidden,
+      type
     } = this
 
     const defaultSlot = (this.slots.default && this.slots.default()) || []
@@ -85,19 +86,16 @@ export default defineComponent({
     return (
       <div
         class={['tiny-upload', `tiny-upload--${listType}`, disabled ? 'is-disabled' : '', hidden ? 'is-hidden' : '']}
-        onClick={handleClick}
+        onClick={($event) => handleClick($event, type)}
         onKeydown={handleKeydown}
-        tabindex="0"
-      >
-        {drag
-          ? (
+        tabindex="0">
+        {drag ? (
           <UploadDragger disabled={disabled} onFile={uploadFiles}>
             {defaultSlot}
           </UploadDragger>
-            )
-          : (
-              defaultSlot
-            )}
+        ) : (
+          defaultSlot
+        )}
         <input
           class="tiny-upload__input"
           type="file"

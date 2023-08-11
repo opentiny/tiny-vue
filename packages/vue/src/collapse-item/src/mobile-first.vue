@@ -7,22 +7,7 @@
       :aria-describedby="`tiny-collapse-content-${state.id}`"
     >
       <div
-        class="
-          flex
-          relative
-          items-center
-          h-12
-          sm:h-14
-          py-0
-          sm:pr-0
-          pl-4
-          sm:pl-4
-          pr-14
-          text-sm
-          font-bold
-          justify-between
-          whitespace-nowrap
-        "
+        class="flex relative items-center h-12 sm:h-14 py-0 sm:pr-0 pl-4 sm:pl-4 pr-14 text-sm font-bold justify-between whitespace-nowrap"
         :id="`tiny-collapse-head-${state.id}`"
         :tabindex="disabled ? undefined : 0"
         @keyup.space.enter.stop="handleEnterClick"

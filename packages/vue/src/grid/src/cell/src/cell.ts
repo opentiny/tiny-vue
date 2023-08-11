@@ -30,9 +30,13 @@ import { getCellLabel } from '../../tools'
 import GLOBAL_CONFIG from '../../config'
 import { hooks } from '@opentiny/vue-common'
 import {
-  iconCheckedSur, iconHalfselect,
-  iconCheck, iconEllipsis, iconArrowBottom, iconRadio,
-  iconRadioselected,
+  iconCheckedSur,
+  iconHalfselect,
+  iconCheck,
+  iconEllipsis,
+  iconArrowBottom,
+  iconRadio,
+  iconRadioselected
 } from '@opentiny/vue-icon'
 import Dropdown from '@opentiny/vue-dropdown'
 import DropdownMenu from '@opentiny/vue-dropdown-menu'
@@ -40,7 +44,8 @@ import DropdownItem from '@opentiny/vue-dropdown-item'
 
 const insertedField = GLOBAL_CONFIG.constant.insertedField
 
-const getCellRender = (isTreeNode, treeCellRender, treeRender, context) => context[isTreeNode ? treeCellRender : treeRender]
+const getCellRender = (isTreeNode, treeCellRender, treeRender, context) =>
+  context[isTreeNode ? treeCellRender : treeRender]
 
 function processRenderer({ h, params, renderer, value }) {
   let result = { flag: false, vnodes: null }
@@ -121,7 +126,12 @@ function getColumnRuleTypeSelection({ _vm, isTreeNode, renMaps, selectConfig, ty
       renMaps.renderCell = getCellRender(isTreeNode, 'renderTreeSelectionCell', 'renderSelectionCell', _vm)
 
       if (selectConfig && selectConfig.checkField) {
-        renMaps.renderCell = getCellRender(isTreeNode, 'renderTreeSelectionCellByProp', 'renderSelectionCellByProp', _vm)
+        renMaps.renderCell = getCellRender(
+          isTreeNode,
+          'renderTreeSelectionCellByProp',
+          'renderSelectionCellByProp',
+          _vm
+        )
       }
     }
   }
@@ -175,7 +185,8 @@ function getColumnRuleTypeOther({ $table, _vm, colProps, editor, filter, isTreeN
 }
 
 const isCheckStrictly = (selectConfig) =>
-  (selectConfig && selectConfig.checkStrictly && !selectConfig.showHeader) || (selectConfig && !selectConfig.checkStrictly && selectConfig.showHeader === false)
+  (selectConfig && selectConfig.checkStrictly && !selectConfig.showHeader) ||
+  (selectConfig && !selectConfig.checkStrictly && selectConfig.showHeader === false)
 
 export const Cell = {
   createColumn($table, colProps) {
@@ -290,11 +301,13 @@ export const Cell = {
     let iconVNode = []
 
     if (rowChildren && rowChildren.length) {
-      iconVNode = [renderIcon
-        ? renderIcon(h, { active: isActive, ...params })
-        : h(iconArrowBottom(), {
-          class: ['tiny-grid-tree__node-btn', icon.tree, { 'is__active': isActive }]
-        })]
+      iconVNode = [
+        renderIcon
+          ? renderIcon(h, { active: isActive, ...params })
+          : h(iconArrowBottom(), {
+              class: ['tiny-grid-tree__node-btn', icon.tree, { 'is__active': isActive }]
+            })
+      ]
     }
     const map = {
       isActive: 'is__active'
@@ -619,7 +632,9 @@ export const Cell = {
   renderSortAndFilterHeader(h, params) {
     const suffixCls = Cell.getSuffixCls(params)
 
-    return Cell.renderHeader(h, params).concat(Cell.renderFilterIcon(h, params, suffixCls[0])).concat(Cell.renderSortIcon(h, params, suffixCls[1]))
+    return Cell.renderHeader(h, params)
+      .concat(Cell.renderFilterIcon(h, params, suffixCls[0]))
+      .concat(Cell.renderSortIcon(h, params, suffixCls[1]))
   },
   // 排序
   renderSortHeader(h, params) {
@@ -638,37 +653,47 @@ export const Cell = {
         isColGroup
           ? []
           : [
-            (column.order === 'desc' || !icon.sortDefault) ?
-              h(icon.sortAsc, {
-                class: [
-                  'tiny-grid-sort__btn',
-                  {
-                    'sort__active': column.order === (!icon.sortDefault ? 'asc' : 'desc')
-                  }
-                ],
-                on: { click(event) { $table.triggerSortEvent(event, column, !icon.sortDefault ? 'asc' : '') } }
-              })
-              : '',
-            (column.order === 'asc' || !icon.sortDefault) ?
-              h(icon.sortDesc, {
-                class: [
-                  'tiny-grid-sort__btn',
-                  {
-                    'sort__active': column.order === (!icon.sortDefault ? 'desc' : 'asc')
-                  }
-                ],
-                on: { click(event) { $table.triggerSortEvent(event, column, 'desc') } }
-              })
-              : '',
-            (!column.order && icon.sortDefault)
-              ? h(icon.sortDefault, {
-                class: [
-                  'tiny-grid-sort__btn'
-                ],
-                on: { click(event) { $table.triggerSortEvent(event, column, 'asc') } }
-              })
-              : ''
-          ]
+              column.order === 'desc' || !icon.sortDefault
+                ? h(icon.sortAsc, {
+                    class: [
+                      'tiny-grid-sort__btn',
+                      {
+                        'sort__active': column.order === (!icon.sortDefault ? 'asc' : 'desc')
+                      }
+                    ],
+                    on: {
+                      click(event) {
+                        $table.triggerSortEvent(event, column, !icon.sortDefault ? 'asc' : '')
+                      }
+                    }
+                  })
+                : '',
+              column.order === 'asc' || !icon.sortDefault
+                ? h(icon.sortDesc, {
+                    class: [
+                      'tiny-grid-sort__btn',
+                      {
+                        'sort__active': column.order === (!icon.sortDefault ? 'desc' : 'asc')
+                      }
+                    ],
+                    on: {
+                      click(event) {
+                        $table.triggerSortEvent(event, column, 'desc')
+                      }
+                    }
+                  })
+                : '',
+              !column.order && icon.sortDefault
+                ? h(icon.sortDefault, {
+                    class: ['tiny-grid-sort__btn'],
+                    on: {
+                      click(event) {
+                        $table.triggerSortEvent(event, column, 'asc')
+                      }
+                    }
+                  })
+                : ''
+            ]
       )
     ]
   },
@@ -745,11 +770,15 @@ export const Cell = {
 
     let vNodes = [
       isRequired && showAsterisk ? h('i', { class: `tiny-icon ${icon.required}` }) : null,
-      editConfig && !editConfig.showIcon && !column.showIcon ? null : h(icon.edit, { class: 'tiny-grid-edit-icon tiny-svg-size' })
+      editConfig && !editConfig.showIcon && !column.showIcon
+        ? null
+        : h(icon.edit, { class: 'tiny-grid-edit-icon tiny-svg-size' })
     ]
 
     vNodes = vNodes.concat(Cell.renderHeader(h, params))
-    vNodes = vNodes.concat(filter ? Cell.renderFilterIcon(h, params, isRenderSortIcon ? suffixCls[0] : suffixCls[1]) : [])
+    vNodes = vNodes.concat(
+      filter ? Cell.renderFilterIcon(h, params, isRenderSortIcon ? suffixCls[0] : suffixCls[1]) : []
+    )
     vNodes = vNodes.concat(isRenderSortIcon ? Cell.renderSortIcon(h, params, suffixCls[1]) : [])
 
     return vNodes
@@ -841,7 +870,9 @@ export const Cell = {
 
       classes = classes.join('\u{20}')
 
-      const clazz = isDisabled(buttonConfig) ? [classes, 'tiny-grid__oper-col-button--disabled', disabledClass] : classes
+      const clazz = isDisabled(buttonConfig)
+        ? [classes, 'tiny-grid__oper-col-button--disabled', disabledClass]
+        : classes
       const childNodes =
         typeof buttonConfig.icon === 'function' ? [buttonConfig.icon(h, mergeParams)] : [h(buttonConfig.icon)]
 
