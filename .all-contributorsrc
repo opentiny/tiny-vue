@@ -293,24 +293,6 @@
       "contributions": [
         "test"
       ]
-    },
-    {
-      "login": "Zz-ZzzZ",
-      "name": "Zz-ZzzZ",
-      "avatar_url": "https://avatars.githubusercontent.com/u/48228016?v=4",
-      "profile": "https://zz-zzzz.github.io/",
-      "contributions": [
-        "test"
-      ]
-    },
-    {
-      "login": "lyx-jay",
-      "name": "Lyx",
-      "avatar_url": "https://avatars.githubusercontent.com/u/39766860?v=4",
-      "profile": "https://github.com/lyx-jay",
-      "contributions": [
-        "code"
-      ]
     }
   ],
   "contributorsPerLine": 8,

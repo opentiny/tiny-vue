@@ -18,17 +18,17 @@ export default defineConfig((config) => {
     plugins: [
       virtualTemplatePlugin({ include: ['**/packages/vue/**/src/index.ts'], env }),
       vue2Plugin({
-        include: [/\.vue$/, /\.md$/],
+        include: [/\.vue$/, /\.md$/]
       }),
       vue2JsxPlugin({
-        injectH: false,
+        injectH: false
       }),
       vue2SvgPlugin(),
       importPlugin([
         {
           libraryName: '@opentiny/vue'
         },
-        ...['icon', 'icon-saas'].map(lib => ({
+        ...['icon', 'icon-saas'].map((lib) => ({
           libraryName: `@opentiny/vue-${lib}`,
           customName: (name: string) => {
             return name === 'default' ? `@opentiny/vue-${lib}$` : `@opentiny/vue-${lib}/${name.replace(/^icon-/, '')}`
@@ -41,10 +41,10 @@ export default defineConfig((config) => {
       })
     ],
     optimizeDeps: {
-      disabled: true,
+      disabled: true
     },
     define: {
-      'process.env': env,
+      'process.env': env
     },
     test: {
       open: false,
@@ -52,19 +52,15 @@ export default defineConfig((config) => {
       environment: 'jsdom',
       setupFiles: ['./vitest.setup.ts'],
       transformMode: {
-        web: [/\.[jt]sx$/],
+        web: [/\.[jt]sx$/]
       },
-      include: [
-        '../../packages/vue/src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'
-      ],
-      exclude: [
-        '../../packages/vue/src/**/{node_modules,dist}/**',
-      ],
+      include: ['../../packages/vue/src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+      exclude: ['../../packages/vue/src/**/{node_modules,dist}/**'],
       alias: {
         'vue': path.resolve('node_modules/vue/dist/vue.esm.js'),
         '@vue/test-utils': path.resolve('node_modules/@vue/test-utils'),
-        ...getAlias(2.7),
+        ...getAlias(2.7)
       }
-    },
+    }
   }
 })

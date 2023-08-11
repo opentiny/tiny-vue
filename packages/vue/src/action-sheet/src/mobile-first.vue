@@ -1,15 +1,30 @@
 <template>
   <div data-tag="tiny-action-sheet" class="text-sm">
-    <tiny-drawer ref="drawer" :title="title" :mask="mask" :mask-closable="maskClosable" :show-header="false" :custom-class="
-      m(
-        'max-h-[95%] rounded-t-lg',
-        { 'min-h-[15.625rem]': type !== 'action' },
-        { 'py-4': showHeader && type !== 'action' },
-        customClass
-      )
-    " placement="bottom" :visible="visible" @update:visible="$emit('update:visible', $event)">
+    <tiny-drawer
+      ref="drawer"
+      :title="title"
+      :mask="mask"
+      :mask-closable="maskClosable"
+      :show-header="false"
+      :custom-class="
+        m(
+          'max-h-[95%] rounded-t-lg',
+          { 'min-h-[15.625rem]': type !== 'action' },
+          { 'py-4': showHeader && type !== 'action' },
+          customClass
+        )
+      "
+      placement="bottom"
+      :visible="visible"
+      @update:visible="$emit('update:visible', $event)"
+    >
       <!-- header -->
-      <div data-tag="action-sheet-header" ref="header" v-if="showHeader && type !== 'action'" class="flex leading-6 pb-4 px-4 text-base items-center">
+      <div
+        data-tag="action-sheet-header"
+        ref="header"
+        v-if="showHeader && type !== 'action'"
+        class="flex leading-6 pb-4 px-4 text-base items-center"
+      >
         <div class="flex-1 flex items-center text-left">
           <slot name="header-left"></slot>
         </div>
@@ -24,40 +39,29 @@
       <div data-tag="action-sheet-body" ref="body" class="flex-auto overflow-auto">
         <template v-if="type === 'action'">
           <div data-tag="action-box" class="flex flex-col h-full text-center">
-            <div v-if="title" data-tag="action-title" class="
-                      flex-none flex
-                      items-center
-                      justify-center
-                      py-2.5
-                      leading-5
-                      text-sm text-color-none-hover
-                      border-b-0.5 border-color-bg-2
-                    ">
+            <div
+              v-if="title"
+              data-tag="action-title"
+              class="flex-none flex items-center justify-center py-2.5 leading-5 text-sm text-color-none-hover border-b-0.5 border-color-bg-2"
+            >
               <span class="px-4">{{ title }}</span>
             </div>
             <div class="flex-auto min-h-[3.5rem]">
-              <div v-for="(item, index) in menus" :key="index" class="
-                        flex-none flex
-                        items-center
-                        justify-center
-                        h-14
-                        text-base
-                        border-b-0.5 border-color-bg-2
-                        cursor-pointer
-                      " @click.stop="actionSelectOption(item, index)">
-                <slot :data="item" :index="index"><span class="truncate px-4">{{ item }}</span></slot>
+              <div
+                v-for="(item, index) in menus"
+                :key="index"
+                class="flex-none flex items-center justify-center h-14 text-base border-b-0.5 border-color-bg-2 cursor-pointer"
+                @click.stop="actionSelectOption(item, index)"
+              >
+                <slot :data="item" :index="index"
+                  ><span class="truncate px-4">{{ item }}</span></slot
+                >
               </div>
             </div>
-            <div class="
-                      flex-none flex
-                      items-center
-                      justify-center
-                      h-16
-                      text-base
-                      border-t-8 border-color-bg-2
-                      px-4
-                      cursor-pointer
-                    " @click.stop="close">
+            <div
+              class="flex-none flex items-center justify-center h-16 text-base border-t-8 border-color-bg-2 px-4 cursor-pointer"
+              @click.stop="close"
+            >
               {{ t('ui.base.cancel') }}
             </div>
           </div>

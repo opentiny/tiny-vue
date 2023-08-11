@@ -10,10 +10,10 @@
 *
 */
 
-@import "../custom.less";
-@import "./vars.less";
+@import '../custom.less';
+@import './vars.less';
 
-@loading-prefix-cls: ~"@{css-prefix}mobile-loading";
+@loading-prefix-cls: ~'@{css-prefix}mobile-loading';
 
 .@{loading-prefix-cls} {
   .component-css-vars-loading();
@@ -22,10 +22,7 @@
     top: 50%;
     text-align: center;
     margin: 0 auto;
-    background-color: var(
-      --ti-mobile-loading-bg-color-primary,
-      rgba(0, 0, 0, 0.75)
-    );
+    background-color: var(--ti-mobile-loading-bg-color-primary, rgba(0, 0, 0, 0.75));
     color: var(--ti-mobile-loading-text-color-primary, #fff);
     width: var(--ti-mobile-loading-width-primary, 140px);
     height: var(--ti-mobile-loading-height-primary, 140px);

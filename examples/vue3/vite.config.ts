@@ -23,12 +23,12 @@ export default defineConfig((config) => {
   return {
     server: {
       host: 'localhost',
-      open: false,
+      open: false
     },
     plugins: [
       virtualTemplatePlugin({ include: ['**/packages/vue/**/src/index.ts'], env }),
       vue3Plugin({
-        include: [/\.vue$/, /\.md$/],
+        include: [/\.vue$/, /\.md$/]
       }),
       vue3JsxPlugin(),
       vue3SvgPlugin(),
@@ -36,7 +36,7 @@ export default defineConfig((config) => {
         {
           libraryName: '@opentiny/vue'
         },
-        ...['icon', 'icon-saas'].map(lib => ({
+        ...['icon', 'icon-saas'].map((lib) => ({
           libraryName: `@opentiny/vue-${lib}`,
           customName: (name: string) => {
             return name === 'default' ? `@opentiny/vue-${lib}$` : `@opentiny/vue-${lib}/${name.replace(/^icon-/, '')}`
@@ -48,8 +48,8 @@ export default defineConfig((config) => {
         markdownItOptions: {
           html: true,
           linkify: true,
-          typographer: true,
-        },
+          typographer: true
+        }
       }),
       Unocss({
         include: [/\.js$/, /\.ts$/, /\.vue$/, /\.html$/, /\.jsx$/, /\.tsx$/], // 增加js ,ts扫描
@@ -57,10 +57,13 @@ export default defineConfig((config) => {
         rules,
         shortcuts,
         variants,
-        safelist: [...Array.from({ length: 24 }, (_, i) => `c-rand${i + 1}`), ...Array.from({ length: 24 }, (_, i) => `bg-rand${i + 1}`)]
+        safelist: [
+          ...Array.from({ length: 24 }, (_, i) => `c-rand${i + 1}`),
+          ...Array.from({ length: 24 }, (_, i) => `bg-rand${i + 1}`)
+        ]
       }),
       inspectPlugin(),
-      checkerPlugin({ overlay: { initialIsOpen: false }, terminal: false, typescript: false, vueTsc: false }),
+      checkerPlugin({ overlay: { initialIsOpen: false }, terminal: false, typescript: false, vueTsc: false })
     ],
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.vue'],
@@ -68,13 +71,13 @@ export default defineConfig((config) => {
         'vue': path.resolve('node_modules/vue/dist/vue.esm-bundler.js'),
         'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
         '@': pathFromWorkspaceRoot('examples/docs/newsrc'),
-        ...getAlias(3, env.VITE_TINY_THEME),
-      },
+        ...getAlias(3, env.VITE_TINY_THEME)
+      }
     },
     define: {
-      'process.env': env,
+      'process.env': env
     },
     publicDir: '../public',
-    optimizeDeps: getOptimizeDeps(3),
+    optimizeDeps: getOptimizeDeps(3)
   }
 })

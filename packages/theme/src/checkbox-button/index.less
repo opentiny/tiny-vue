@@ -26,11 +26,13 @@
   margin-top: var(--ti-checkbox-button-margin-top);
 
   &:first-child &__inner {
-    border-radius: var(--ti-common-border-radius-normal) var(--ti-checkbox-button-right-border-radius) var(--ti-checkbox-button-right-border-radius) var(--ti-common-border-radius-normal);
+    border-radius: var(--ti-common-border-radius-normal) var(--ti-checkbox-button-right-border-radius)
+      var(--ti-checkbox-button-right-border-radius) var(--ti-common-border-radius-normal);
   }
 
   &:last-child &__inner {
-    border-radius: var(--ti-checkbox-button-left-border-radius) var(--ti-common-border-radius-normal) var(--ti-common-border-radius-normal) var(--ti-checkbox-button-left-border-radius);
+    border-radius: var(--ti-checkbox-button-left-border-radius) var(--ti-common-border-radius-normal)
+      var(--ti-common-border-radius-normal) var(--ti-checkbox-button-left-border-radius);
   }
 
   &:not(.is-disabled).is-checked {
@@ -62,7 +64,9 @@
       position: absolute;
       margin-left: var(--ti-checkbox-icon-margin-left);
       margin-top: var(--ti-checkbox-icon-margin-top);
-      transition: transform 0.15s ease-in 0.05s, -webkit-transform 0.15s ease-in 0.05s;
+      transition:
+        transform 0.15s ease-in 0.05s,
+        -webkit-transform 0.15s ease-in 0.05s;
       transform-origin: center;
       z-index: 3;
       transform: rotate(45deg) scale(0.7);
@@ -174,16 +178,18 @@
   }
 
   &&--mini:first-child &__inner {
-    border-radius: var(--ti-checkbox-button-mini-left-border-radius) var(--ti-checkbox-button-mini-right-border-radius) var(--ti-checkbox-button-mini-right-border-radius) var(--ti-checkbox-button-mini-left-border-radius);
+    border-radius: var(--ti-checkbox-button-mini-left-border-radius) var(--ti-checkbox-button-mini-right-border-radius)
+      var(--ti-checkbox-button-mini-right-border-radius) var(--ti-checkbox-button-mini-left-border-radius);
   }
 
   &&--mini:last-child &__inner {
-    border-radius: var(--ti-checkbox-button-mini-last-left-border-radius) var(--ti-checkbox-button-mini-right-border-radius) var(--ti-checkbox-button-mini-last-right-border-radius) var(--ti-checkbox-button-mini-last-left-border-radius);
+    border-radius: var(--ti-checkbox-button-mini-last-left-border-radius)
+      var(--ti-checkbox-button-mini-right-border-radius) var(--ti-checkbox-button-mini-last-right-border-radius)
+      var(--ti-checkbox-button-mini-last-left-border-radius);
   }
 
   &--mini {
     &:not(.is-disabled).is-checked {
-
       &::after {
         border-bottom: 16px solid transparent;
         border-right: 16px solid #000;

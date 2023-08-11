@@ -34,7 +34,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(row, rowIndex) in data" :key="rowIndex" :class="['handlerCls', state.selectedKeys.indexOf(row[keys]) > -1 ? '' : 'is-disabled']">
+        <tr
+          v-for="(row, rowIndex) in data"
+          :key="rowIndex"
+          :class="['handlerCls', state.selectedKeys.indexOf(row[keys]) > -1 ? '' : 'is-disabled']"
+        >
           <td v-for="(col, colIndex) in columns" :key="colIndex">
             <div
               :class="['tiny-table-cell', { overflow: col.showOverflow }]"
@@ -51,7 +55,11 @@
               <component
                 v-else-if="col.type === 'selection'"
                 :is="state.selected.indexOf(row) === -1 ? 'icon-check' : 'icon-checked-sur'"
-                :class="['tiny-svg-size', { 'is-check': state.selected.indexOf(row) > -1 }, { 'is-disabled': state.selectedKeys.indexOf(keys) > -1 }]"
+                :class="[
+                  'tiny-svg-size',
+                  { 'is-check': state.selected.indexOf(row) > -1 },
+                  { 'is-disabled': state.selectedKeys.indexOf(keys) > -1 }
+                ]"
                 @click="togeSelected(row)"
               />
               <template v-else>{{ row[col.field] }}</template>

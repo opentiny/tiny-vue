@@ -6,7 +6,12 @@
     </div>
     <div class="cls">
       <tiny-button @click="boxVisibility1 = true" type="primary" size="large">输入类类提示框</tiny-button>
-      <tiny-dialog-box :visible="boxVisibility1" @update:visible="boxVisibility1 = $event" :modal-append-to-body="false" title="标题">
+      <tiny-dialog-box
+        :visible="boxVisibility1"
+        @update:visible="boxVisibility1 = $event"
+        :modal-append-to-body="false"
+        title="标题"
+      >
         <tiny-input v-model="input" placeholder="请输入内容" clearable></tiny-input>
       </tiny-dialog-box>
     </div>

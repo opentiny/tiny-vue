@@ -5,7 +5,7 @@ const $constants = {
   STATUS: {
     READY: 'ready',
     RECORDING: 'recording',
-    PAUSE: 'pause',
+    PAUSE: 'pause'
   },
   HWH5_STATUS: {
     START: 'start',

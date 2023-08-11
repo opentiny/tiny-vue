@@ -18,15 +18,6 @@ const svgInlineOption = {
   maxImageSize: 1 * 1024 * 1024,
   extensions: [/\.svg/gi]
 }
-
-// 将组件下的index.less合并到src.less
-const fileList = fg.sync('../src/**/index.less')
-const importStr = fileList
-  .map((filePath) => filePath.replace('../src/', ''))
-  .filter((path) => path !== 'index.less')
-  .map((path) => `@import './${path}';`)
-fs.writeFileSync('../src/index.less', importStr.join('\n'))
-
 const allLessFiles = [`${source}/**/*.less`]
 const lessFiles = [`${source}/**/index.less`, `${source}/index.less`]
 const jsFiles = [`${source}/**/*.js`, `${source}/index.js`, '../tailwind.config.js']
@@ -36,6 +27,15 @@ const pluginFiles = [`${plugin}/**`]
 
 const devDist = '../../tiny-vue/node_modules/@opentiny/vue-theme'
 let syncToTinyVueProject = false
+
+// 将所有组件下的index.less合并到src下的index.less
+const fileList = fg.sync('../src/*/index.less')
+const importStr = fileList
+  .map((filePath) => filePath.replace('../src/', './'))
+  .map((path) => `@import '${path}';`)
+  .join('\n')
+const note = fs.readFileSync('../src/index.less', { encoding: 'utf-8' }).match(/(^\/\*\*.+?\*\/)/s)[0]
+fs.writeFileSync('../src/index.less', `${note}\n\n${importStr}`)
 
 function compile() {
   const tailwindcss = require('tailwindcss')

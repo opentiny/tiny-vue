@@ -1,0 +1,146 @@
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body li {
+  list-style: circle;
+}
+// 切换md中,这2个类的显示隐藏. used-config  used-tiny 类
+.md-config .markdown-body {
+  .used-tiny {
+    display: none;
+  }
+}
+.md-tiny .markdown-body {
+  .used-config {
+    display: none;
+  }
+}
+// 表格组件demo区会将其父容器(.n-layout-scroll-container)宽度撑开超出中间内容区，设置此样式限制demo区容器的宽度
+.md-tiny .n-layout-scroll-container {
+  width: 100%;
+  scroll-behavior: smooth;
+}
+.n-code pre {
+  line-height: 1.5;
+}
+.markdown-body {
+  font-size: 15px;
+  h1,
+  h2,
+  h3 {
+    border-bottom: none;
+  }
+  p {
+    font-size: 14px;
+  }
+  code {
+    margin: 0 4px;
+    padding: 0.2em 0.4em;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(5, 5, 5, 0.06);
+    border-radius: 3px;
+  }
+  pre {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+  a {
+    color: #5073e5;
+    &:hover {
+      color: #69b1ff;
+      text-decoration: none;
+    }
+  }
+}
+
+// 以下是提示块的样式
+.theme-light {
+  .markdown-body {
+    --color-tip-bg: #f3f5f7;
+    --color-tip-fg: #24292f;
+    --color-tip-bd: #3eaf7c;
+    --color-tip-title: #24292f;
+
+    --color-info-bg: #f3f5f7;
+    --color-info-fg: #24292f;
+    --color-info-bd: #476582;
+    --color-info-title: #24292f;
+
+    --color-warning-bg: #ffe5644d;
+    --color-warning-fg: #6b5900;
+    --color-warning-bd: #e7c000;
+    --color-warning-title: #b29400;
+
+    --color-danger-bg: #ffe6e6;
+    --color-danger-fg: #4d0000;
+    --color-danger-bd: #c00;
+    --color-danger-title: #900;
+  }
+}
+.theme-dark {
+  .markdown-body {
+    --color-tip-fg: #d3d5d6;
+    --color-tip-bg: #24292f;
+    --color-tip-bd: #3eaf7c;
+    --color-tip-title: #f3f5f7;
+
+    --color-info-fg: #d3d5d6;
+    --color-info-bg: #24292f;
+    --color-info-bd: #476582;
+    --color-info-title: #f3f5f7;
+
+    --color-warning-fg: #ffe564;
+    --color-warning-bg: #6b59004d;
+    --color-warning-bd: #e7c000;
+    --color-warning-title: #b89e1d;
+
+    --color-danger-fg: #f17070;
+    --color-danger-bg: #6b0b0b;
+    --color-danger-bd: #c00;
+    --color-danger-title: #df8686;
+  }
+}
+.markdown-body .custom-block.tip,
+.custom-block.info,
+.custom-block.warning,
+.custom-block.danger {
+  margin: 1rem 0;
+  border-left: 0.5rem solid;
+  padding: 0.1rem 1.5rem;
+  overflow-x: auto;
+}
+.markdown-body {
+  .custom-block.tip {
+    background-color: var(--color-tip-bg);
+    color: var(--color-tip-fg);
+    border-color: var(--color-tip-bd);
+    .custom-block-title {
+      color: var(--color-tip-title);
+    }
+  }
+
+  .custom-block.info {
+    background-color: var(--color-info-bg);
+    color: var(--color-info-fg);
+    border-color: var(--color-info-bd);
+    .custom-block-title {
+      color: var(--color-info-title);
+    }
+  }
+
+  .custom-block.warning {
+    background-color: var(--color-warning-bg);
+    color: var(--color-warning-fg);
+    border-color: var(--color-warning-bd);
+    .custom-block-title {
+      color: var(--color-warning-title);
+    }
+  }
+
+  .custom-block.danger {
+    background-color: var(--color-danger-bg);
+    color: var(--color-danger-fg);
+    border-color: var(--color-danger-bd);
+    .custom-block-title {
+      color: var(--color-danger-title);
+    }
+  }
+}

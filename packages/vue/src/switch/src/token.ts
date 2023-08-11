@@ -39,5 +39,5 @@ export const classes = {
   'switch-inner-false-icon-mini': '-left-[0.02rem]',
 
   'switch-inner-true-loading': 'left-[1.0625rem]',
-  'switch-inner-true-loading-mini': 'left-3 sm:left-3.5',
+  'switch-inner-true-loading-mini': 'left-3 sm:left-3.5'
 }

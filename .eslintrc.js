@@ -2,7 +2,7 @@
 
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
-  extends: '@antfu',
+  extends: ['@antfu', 'plugin:prettier/recommended'],
   rules: {
     'vue/component-tags-order': [
       'error',
@@ -20,6 +20,7 @@ module.exports = {
     'vue/prefer-separate-static-class': 'off',
     'vue/comma-dangle': 'off',
     'vue/prefer-template': 'off',
+    'vue/singleline-html-element-content-newline': 'off',
     'curly': 'off',
     'sort-imports': 'off',
     'prefer-template': 'off',
@@ -31,6 +32,7 @@ module.exports = {
     'import/no-duplicates': 'off',
     'quote-props': 'off',
     'prefer-const': 'off',
+    'multiline-ternary': 'off',
     '@typescript-eslint/comma-dangle': 'off',
     // '@typescript-eslint/indent': 'off',
     '@typescript-eslint/no-unsafe-assignment': 'off',

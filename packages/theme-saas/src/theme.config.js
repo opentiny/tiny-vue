@@ -47,7 +47,7 @@ export default [
   'nav-menu',
   'option-group',
   'option',
-  'pop-editor',
+  'popeditor',
   'popup-horiz-menu',
   'popup-menu',
   'picker-panel',

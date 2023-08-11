@@ -13,7 +13,12 @@
           <tiny-input v-model="createData.title2" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="标题" prop="title3" vertical>
-          <tiny-input v-model="createData.title3" @blur="handleSubmit('ruleForm')" placeholder="错误信息文本，右对齐" type="form"></tiny-input>
+          <tiny-input
+            v-model="createData.title3"
+            @blur="handleSubmit('ruleForm')"
+            placeholder="错误信息文本，右对齐"
+            type="form"
+          ></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="标题" prop="title4" vertical>
           <tiny-input
@@ -26,7 +31,14 @@
       </tiny-form>
     </div>
     <div class="demo-form-writeone-padds">
-      <tiny-form ref="ruleForm1" :model="createData" :rules="rules" label-width="60px" label-position="top" validate-position="left">
+      <tiny-form
+        ref="ruleForm1"
+        :model="createData"
+        :rules="rules"
+        label-width="60px"
+        label-position="top"
+        validate-position="left"
+      >
         <tiny-form-item label="标题" prop="title4" vertical>
           <tiny-input
             v-model="createData.title4"
@@ -37,11 +49,22 @@
           ></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="标题" prop="title5" id="title5" vertical>
-          <tiny-input v-model="createData.title5" placeholder="错误信息文本左对齐" type="form" readonly @blur="handleSubmit('ruleForm1')"></tiny-input>
+          <tiny-input
+            v-model="createData.title5"
+            placeholder="错误信息文本左对齐"
+            type="form"
+            readonly
+            @blur="handleSubmit('ruleForm1')"
+          ></tiny-input>
         </tiny-form-item>
       </tiny-form>
     </div>
-    <tiny-dialog-box :visible="boxVisibility" @update:visible="boxVisibility = $event" :modal-append-to-body="false" title="消息提示">
+    <tiny-dialog-box
+      :visible="boxVisibility"
+      @update:visible="boxVisibility = $event"
+      :modal-append-to-body="false"
+      title="消息提示"
+    >
       <span>校验通过！</span>
     </tiny-dialog-box>
   </div>
@@ -49,6 +72,7 @@
 
 <script lang="jsx">
 import { Form, FormItem, Input, DialogBox } from '@opentiny/vue'
+
 export default {
   components: {
     TinyForm: Form,

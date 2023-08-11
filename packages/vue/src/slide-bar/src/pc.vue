@@ -11,10 +11,19 @@
  -->
 <template>
   <div class="tiny-slide-bar" @mousewheel.prevent="mouseEvent" ref="wrapper">
-    <icon-chevron-left :class="[state.showLeft ? '' : 'tiny-disabled']" class="tiny-svg-size icon-chevron-left" @click="leftClick" />
+    <icon-chevron-left
+      :class="[state.showLeft ? '' : 'tiny-disabled']"
+      class="tiny-svg-size icon-chevron-left"
+      @click="leftClick"
+    />
     <div class="tiny-slide-bar__content">
       <transition>
-        <component :is="tag" class="tiny-slide-bar__list tiny-repeat rightAni-enter-active" :style="{ width: state.blockWrapper + 'px' }" ref="insider">
+        <component
+          :is="tag"
+          class="tiny-slide-bar__list tiny-repeat rightAni-enter-active"
+          :style="{ width: state.blockWrapper + 'px' }"
+          ref="insider"
+        >
           <component
             :is="subTag"
             v-for="(item, key) in modelValue"
@@ -42,7 +51,11 @@
         </component>
       </transition>
     </div>
-    <icon-chevron-right :class="[state.showRight ? 'tiny-disabled' : '']" class="tiny-svg-size icon-chevron-right" @click="rightClick" />
+    <icon-chevron-right
+      :class="[state.showRight ? 'tiny-disabled' : '']"
+      class="tiny-svg-size icon-chevron-right"
+      @click="rightClick"
+    />
   </div>
 </template>
 

@@ -96,9 +96,9 @@ export default {
                 [
                   active
                     ? h(IconMarkOn(), {
-                      class:
-                        'absolute left-0 bottom-1/2 translate-y-1/2 fill-color-icon-active group-hover:fill-color-icon-hover'
-                    })
+                        class:
+                          'absolute left-0 bottom-1/2 translate-y-1/2 fill-color-icon-active group-hover:fill-color-icon-hover'
+                      })
                     : null,
                   h('span', label)
                 ]

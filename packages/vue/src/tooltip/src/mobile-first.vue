@@ -1,6 +1,15 @@
 <script lang="tsx">
 import { renderless, api } from '@opentiny/vue-renderless/tooltip/vue'
-import { $prefix, setup, createComponent, parseVnode, h, mergeClass, defineComponent, $props } from '@opentiny/vue-common'
+import {
+  $prefix,
+  setup,
+  createComponent,
+  parseVnode,
+  h,
+  mergeClass,
+  defineComponent,
+  $props
+} from '@opentiny/vue-common'
 import { classes } from './token'
 
 export default defineComponent({
@@ -145,8 +154,7 @@ export default defineComponent({
                       role="tooltip"
                       aria-hidden={this.disabled || !this.state.showPopper ? 'true' : 'false'}
                       onMouseenter={() => mouseenter()}
-                      onMouseleave={() => mouseleave()}
-                    >
+                      onMouseleave={() => mouseleave()}>
                       {content}
                       {this.visibleArrow ? (
                         <div
@@ -156,8 +164,7 @@ export default defineComponent({
                             classes['placement-' + xPlacement.split('-')[0]],
                             this.effect === 'light' ? classes['placement-' + xPlacement.split('-')[0] + '-light'] : '',
                             this.effect === 'dark' ? classes['placement-' + xPlacement.split('-')[0] + '-dark'] : ''
-                          ])}
-                        ></div>
+                          ])}></div>
                       ) : (
                         ''
                       )}

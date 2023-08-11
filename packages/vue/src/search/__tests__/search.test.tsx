@@ -5,7 +5,7 @@ import { nextTick } from 'vue'
 
 describe('PC Mode', () => {
   const mount = mountPcMode
-  
+
   test('searchTypes', async () => {
     const searchTypes = [
       {
@@ -21,7 +21,6 @@ describe('PC Mode', () => {
     expect(wrapper.find('.tiny-search__text').exists()).toBe(true)
   })
 
-
   test('slot', async () => {
     const searchTypes1 = [
       {
@@ -33,9 +32,14 @@ describe('PC Mode', () => {
         value: 2
       }
     ]
-    const wrapper = mount(() => <Search search-types={searchTypes1} v-slots={{
-      poplist: (slotScope) => <b>{slotScope.slotScope.text}</b>
-    }}></Search>)
+    const wrapper = mount(() => (
+      <Search
+        search-types={searchTypes1}
+        v-slots={{
+          poplist: (slotScope) => <b>{slotScope.slotScope.text}</b>
+        }}
+      ></Search>
+    ))
     expect(wrapper.find('.tiny-search__selector').attributes().style).toBe('display: none;')
     await wrapper.find('.tiny-search__present').trigger('click')
     await nextTick()

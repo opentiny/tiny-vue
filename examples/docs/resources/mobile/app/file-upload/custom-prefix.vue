@@ -1,6 +1,13 @@
 <template>
   <div>
-    <tiny-file-upload :action="action" :before-remove="beforeRemove" :before-upload="beforeAvatarUpload" multiple :limit="3" :file-list="fileList">
+    <tiny-file-upload
+      :action="action"
+      :before-remove="beforeRemove"
+      :before-upload="beforeAvatarUpload"
+      multiple
+      :limit="3"
+      :file-list="fileList"
+    >
       <template #trigger>
         <icon-upload></icon-upload>
       </template>

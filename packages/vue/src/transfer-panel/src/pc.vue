@@ -67,17 +67,32 @@
             ]"
           >
             <span class="tiny-checkbox__inner">
-              <icon-check v-if="!(state.checked.length > 0 && state.checked.indexOf(item[state.keyProp]) > -1)" class="tiny-svg-size" />
+              <icon-check
+                v-if="!(state.checked.length > 0 && state.checked.indexOf(item[state.keyProp]) > -1)"
+                class="tiny-svg-size"
+              />
               <icon-checked-sur v-else class="tiny-svg-size" />
             </span>
-            <input type="checkbox" aria-hidden="false" :disabled="item[state.disabledProp]" class="tiny-checkbox__original" :value="item[state.keyProp]" />
+            <input
+              type="checkbox"
+              aria-hidden="false"
+              :disabled="item[state.disabledProp]"
+              class="tiny-checkbox__original"
+              :value="item[state.keyProp]"
+            />
           </span>
           <span class="tiny-checkbox__label">
             <option-content :option="optionRender(item)"></option-content>
           </span>
         </label>
       </transition-group>
-      <component ref="plugin" v-if="render && render.plugin" :is="markRaw(toRaw(render.plugin))" v-bind="state.render" v-on="state.render.on"></component>
+      <component
+        ref="plugin"
+        v-if="render && render.plugin"
+        :is="markRaw(toRaw(render.plugin))"
+        v-bind="state.render"
+        v-on="state.render.on"
+      ></component>
       <tiny-pager
         v-show="showPager && state.renderType === 'TinyTable'"
         @size-change="sizesChange"

@@ -7,6 +7,7 @@
     <tiny-button @click="handleClick">点击打开 Modal 弹窗</tiny-button>
   </div>
 </template>
+
 <script lang="jsx">
 import { Radio, Modal, Button } from '@opentiny/vue'
 

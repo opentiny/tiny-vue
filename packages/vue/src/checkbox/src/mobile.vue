@@ -68,7 +68,20 @@ import '@opentiny/vue-theme-mobile/checkbox/index.less'
 
 export default defineComponent({
   inheritAttrs: false,
-  props: [...props, 'modelValue', 'text', 'events', 'label', 'indeterminate', 'disabled', 'checked', 'name', 'trueLabel', 'falseLabel', 'id'],
+  props: [
+    ...props,
+    'modelValue',
+    'text',
+    'events',
+    'label',
+    'indeterminate',
+    'disabled',
+    'checked',
+    'name',
+    'trueLabel',
+    'falseLabel',
+    'id'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

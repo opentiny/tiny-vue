@@ -12,4 +12,4 @@
 import { svg } from '@opentiny/vue-common'
 import LineThrought from '@opentiny/vue-theme/svgs/line-throught.svg'
 
-export default svg({ name: 'IconLineThrought', component: LineThrought })
+export default () => svg({ name: 'IconLineThrought', component: LineThrought })()

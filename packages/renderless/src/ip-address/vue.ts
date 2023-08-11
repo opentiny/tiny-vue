@@ -36,7 +36,14 @@ const initState = ({ reactive, computed, handleValue, parent, props }) => {
     active: false,
     isSelected: false,
 
-    filterKeyCodes: [KEY_CODE.AtMark, KEY_CODE.Backspace, KEY_CODE.ArrowLeft, KEY_CODE.ArrowRight, KEY_CODE.Tab, KEY_CODE.Delete],
+    filterKeyCodes: [
+      KEY_CODE.AtMark,
+      KEY_CODE.Backspace,
+      KEY_CODE.ArrowLeft,
+      KEY_CODE.ArrowRight,
+      KEY_CODE.Tab,
+      KEY_CODE.Delete
+    ],
 
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
     disabled: computed(() => props.disabled || state.formDisabled),
@@ -104,7 +111,11 @@ export const useHandleValue = ({ componentName, dispatch, eventName, props, reac
   }
 }
 
-export const renderless = (props, { reactive, toRefs, watch, inject, computed }, { $prefix, emit, parent, broadcast, dispatch }) => {
+export const renderless = (
+  props,
+  { reactive, toRefs, watch, inject, computed },
+  { $prefix, emit, parent, broadcast, dispatch }
+) => {
   const api = {}
   const componentName = 'FormItem'
   const eventName = {

@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { isPlainObject, isNumber, isNumeric, isNull } from './type'
 import { getObj, toJsonStr } from './object'
@@ -33,7 +33,7 @@ export const escapeChars = {
   '<': '&#60;',
   '>': '&#62;',
   '"': '&#34;',
-  '\'': '&#x27;',
+  "'": '&#x27;',
   '[': '&#91;',
   ']': '&#93;'
 }
@@ -46,7 +46,8 @@ export const escapeChars = {
  * @param {Object} value 需判断的对象
  * @return {Boolean}
  */
-export const isNullOrEmpty = (value) => value === null || value === undefined || (typeof value === 'string' && value.trim().length === 0)
+export const isNullOrEmpty = (value) =>
+  value === null || value === undefined || (typeof value === 'string' && value.trim().length === 0)
 
 function cached(fn) {
   let cache = Object.create(null)
@@ -98,7 +99,7 @@ function getLengthInUtf16(string) {
     let charCode = string.charCodeAt(i)
 
     /* istanbul ignore else */
-    if (charCode <= 0xFFFF) {
+    if (charCode <= 0xffff) {
       count += 2
     } else {
       count += 4
@@ -116,11 +117,11 @@ function getLengthInUtf8(string) {
     let charCode = string.charCodeAt(i)
 
     /* istanbul ignore else */
-    if (charCode <= 0x007F) {
+    if (charCode <= 0x007f) {
       count += 1
-    } else if (charCode <= 0x07FF) {
+    } else if (charCode <= 0x07ff) {
       count += 2
-    } else if (charCode <= 0xFFFF) {
+    } else if (charCode <= 0xffff) {
       count += 3
     } else {
       count += 4
@@ -525,7 +526,8 @@ export const tryToConvert = (convert, defaultValue, ...args) => {
  * @param {Number|String} value 要解析的字符串
  * @returns {Number}
  */
-export const toInt = (value) => (isNumber(value) ? Number(value.toFixed(0)) : typeof value === 'string' ? parseInt(value, 10) : NaN)
+export const toInt = (value) =>
+  isNumber(value) ? Number(value.toFixed(0)) : typeof value === 'string' ? parseInt(value, 10) : NaN
 
 /**
  * 尝试将字符串解析成十进制整数。如果 value 是个无效的整数，则返回 defaultValue。
@@ -625,7 +627,8 @@ export const toDecimal = (value, fraction = 2, isTruncate = false) => {
  * @param {Number|String} [defaultValue] 若为 NaN 时，返回的缺省值
  * @returns {Number|String}
  */
-export const tryToDecimal = (value, fraction, isTruncate, defaultValue) => tryToConvert(toDecimal, defaultValue, value, fraction, isTruncate)
+export const tryToDecimal = (value, fraction, isTruncate, defaultValue) =>
+  tryToConvert(toDecimal, defaultValue, value, fraction, isTruncate)
 
 /**
  * 将数字或字符串转换成货币格式。
@@ -666,7 +669,8 @@ export const toCurrency = (value, fraction, placeholder, isTruncate) => {
  * @param {Number|String} [defaultValue] 若为 NaN 时，返回的缺省值
  * @returns {Number|String}
  */
-export const tryToCurrency = (value, fraction, placeholder, defaultValue) => (isNaN(toNumber(value)) ? defaultValue : toCurrency(value, fraction, placeholder))
+export const tryToCurrency = (value, fraction, placeholder, defaultValue) =>
+  isNaN(toNumber(value)) ? defaultValue : toCurrency(value, fraction, placeholder)
 
 /**
  * 转换成布尔值或0（表示false），1（表示true）。
@@ -705,7 +709,8 @@ export const toBoolValue = (value) => {
  * @param {Number} [fraction=2] 数值的小数部分，默认为2
  * @returns {String}
  */
-export const toRate = (value, total = 1, fraction = 2) => (isNumber(value) && isNumber(total) ? `${toDecimal((value * 100) / total, fraction)}%` : value)
+export const toRate = (value, total = 1, fraction = 2) =>
+  isNumber(value) && isNumber(total) ? `${toDecimal((value * 100) / total, fraction)}%` : value
 
 /**
  * 文件大小值 单位互相转换。

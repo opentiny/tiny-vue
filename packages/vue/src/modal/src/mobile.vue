@@ -100,31 +100,31 @@ export default defineComponent({
           [
             showHeader
               ? h(
-                'div',
-                {
-                  class: 'tiny-mobile-modal__header',
-                  on: {
-                    mousedown: this.mousedownEvent
-                  }
-                },
-                [
-                  h(
-                    'span',
-                    {
-                      class: 'tiny-mobile-modal__title'
-                    },
-                    title || t('ui.alert.title')
-                  ),
-                  resize
-                    ? h(zoomLocat ? iconMinscreenLeft() : iconFullscreenLeft(), {
-                      class: ['tiny-mobile-modal__zoom-btn', 'trigger__btn'],
-                      on: {
-                        click: this.toggleZoomEvent
-                      }
-                    })
-                    : null
-                ]
-              )
+                  'div',
+                  {
+                    class: 'tiny-mobile-modal__header',
+                    on: {
+                      mousedown: this.mousedownEvent
+                    }
+                  },
+                  [
+                    h(
+                      'span',
+                      {
+                        class: 'tiny-mobile-modal__title'
+                      },
+                      title || t('ui.alert.title')
+                    ),
+                    resize
+                      ? h(zoomLocat ? iconMinscreenLeft() : iconFullscreenLeft(), {
+                          class: ['tiny-mobile-modal__zoom-btn', 'trigger__btn'],
+                          on: {
+                            click: this.toggleZoomEvent
+                          }
+                        })
+                      : null
+                  ]
+                )
               : null,
             h(
               'div',
@@ -134,8 +134,8 @@ export default defineComponent({
               [
                 isMsg
                   ? h('div', {
-                    class: 'tiny-mobile-modal__status-wrapper'
-                  })
+                      class: 'tiny-mobile-modal__status-wrapper'
+                    })
                   : null,
                 h(
                   'div',
@@ -144,63 +144,69 @@ export default defineComponent({
                   },
                   defaultSlot
                     ? defaultSlot.call(this, { $modal: this }, h)
-                    : [h('div', { class: 'tiny-mobile-modal__text' }, typeof message === 'function' ? message.call(this, h) : message)]
+                    : [
+                        h(
+                          'div',
+                          { class: 'tiny-mobile-modal__text' },
+                          typeof message === 'function' ? message.call(this, h) : message
+                        )
+                      ]
                 )
               ]
             ),
             showFooter
               ? h(
-                'div',
-                {
-                  class: 'tiny-mobile-modal__footer'
-                },
-                footerSlot
-                  ? footerSlot.call(this, { $modal: this, beforeClose: this.beforeClose }, h)
-                  : [
-                      type === 'confirm'
-                        ? h(
+                  'div',
+                  {
+                    class: 'tiny-mobile-modal__footer'
+                  },
+                  footerSlot
+                    ? footerSlot.call(this, { $modal: this, beforeClose: this.beforeClose }, h)
+                    : [
+                        type === 'confirm'
+                          ? h(
+                              Button,
+                              {
+                                props: {
+                                  class: ['tiny-mobile-button', 'tiny-mobile-button--default']
+                                },
+                                on: {
+                                  click: this.cancelEvent
+                                }
+                              },
+                              t('ui.button.cancel')
+                            )
+                          : null,
+                        h(
                           Button,
                           {
                             props: {
-                              class: ['tiny-mobile-button', 'tiny-mobile-button--default']
+                              type: 'primary',
+                              class: ['tiny-mobile-button', type !== 'confirm' ? 'tiny-mobile-button__single' : '']
                             },
                             on: {
-                              click: this.cancelEvent
+                              click: this.confirmEvent
                             }
                           },
-                          t('ui.button.cancel')
+                          t('ui.button.confirm')
                         )
-                        : null,
-                      h(
-                        Button,
-                        {
-                          props: {
-                            type: 'primary',
-                            class: ['tiny-mobile-button', type !== 'confirm' ? 'tiny-mobile-button__single' : '']
-                          },
-                          on: {
-                            click: this.confirmEvent
-                          }
-                        },
-                        t('ui.button.confirm')
-                      )
-                    ]
-              )
+                      ]
+                )
               : null,
             !isMsg && resize
               ? h(
-                'span',
-                {
-                  class: 'tiny-mobile-modal__resize'
-                },
-                ['wl', 'wr', 'swst', 'sest', 'st', 'swlb', 'selb', 'sb'].map((type) =>
-                  h('span', {
-                    class: `${type}-resize`,
-                    attrs: { 'data-type': type },
-                    on: { mousedown: this.dragEvent }
-                  })
+                  'span',
+                  {
+                    class: 'tiny-mobile-modal__resize'
+                  },
+                  ['wl', 'wr', 'swst', 'sest', 'st', 'swlb', 'selb', 'sb'].map((type) =>
+                    h('span', {
+                      class: `${type}-resize`,
+                      attrs: { 'data-type': type },
+                      on: { mousedown: this.dragEvent }
+                    })
+                  )
                 )
-              )
               : null
           ]
         )

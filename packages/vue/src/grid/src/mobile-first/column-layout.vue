@@ -1,10 +1,15 @@
 <template>
-  <div ref="layout" data-tag="tiny-table-column-layout" class="grid" :class="[
-    datas.hasType && showLink ? 'grid-cols-[theme(spacing.7)_auto_theme(spacing.7)]' : '',
-    datas.hasType && !showLink ? 'grid-cols-[theme(spacing.7)_auto]' : '',
-    !datas.hasType && showLink ? 'grid-cols-[auto_theme(spacing.7)]' : '',
-    !datas.hasType && !showLink ? 'grid-cols-[auto]' : ''
-  ]">
+  <div
+    ref="layout"
+    data-tag="tiny-table-column-layout"
+    class="grid"
+    :class="[
+      datas.hasType && showLink ? 'grid-cols-[theme(spacing.7)_auto_theme(spacing.7)]' : '',
+      datas.hasType && !showLink ? 'grid-cols-[theme(spacing.7)_auto]' : '',
+      !datas.hasType && showLink ? 'grid-cols-[auto_theme(spacing.7)]' : '',
+      !datas.hasType && !showLink ? 'grid-cols-[auto]' : ''
+    ]"
+  >
     <column-type v-if="datas.hasType" ref="type" :datas="datas" :row="row" />
     <column-content :datas="datas" :row="row" />
     <column-link v-if="showLink" ref="link" :datas="datas" :row="row" />

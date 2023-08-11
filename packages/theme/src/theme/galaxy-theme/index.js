@@ -14,7 +14,7 @@ export const galaxyTheme = {
   'ti-base-color-bg-1': '#1A1A1C',
   'ti-base-color-common-7': '#CED1DB',
   'ti-button-normal-background-color': '#393a3e',
-  'ti-button-normal-hover-background-color': '#4e5057',
+  'ti-button-normal-hover-bg-color': '#4e5057',
   'ti-common-color-border': '#353638',
   'ti-common-color-light': '#292A2E',
   'ti-common-color-info-normal': 'var(--ti-base-color-common-7)',

@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   computedWrapperStyle,
@@ -64,7 +64,7 @@ const initState = ({ reactive, computed, props, api }) => {
   return state
 }
 
-const initApi = ({ api, props, state, refs, emit }) => {
+const initApi = ({ api, props, state, vm, emit }) => {
   Object.assign(api, {
     state,
     getValue: getValue(state),
@@ -81,8 +81,8 @@ const initApi = ({ api, props, state, refs, emit }) => {
     momentum: momentum({ api, state, props }),
     setIndex: setIndex({ api, state, emit }),
     onClickItem: onClickItem({ api, state }),
-    mountedHandler: mountedHandler({ api, state, refs }),
-    beforeUnmountHandler: beforeUnmountHandler({ api, refs })
+    mountedHandler: mountedHandler({ api, state, vm }),
+    beforeUnmountHandler: beforeUnmountHandler({ api, vm })
   })
 }
 
@@ -106,11 +106,11 @@ const initWatch = ({ watch, props, state, api }) => {
   )
 }
 
-export const renderless = (props, { computed, onMounted, reactive, watch, onBeforeUnmount }, { emit, refs }) => {
+export const renderless = (props, { computed, onMounted, reactive, watch, onBeforeUnmount }, { emit, vm }) => {
   const api = {}
   const state = initState({ reactive, computed, props, api })
 
-  initApi({ api, props, state, refs, emit })
+  initApi({ api, props, state, vm, emit })
 
   api.setIndex(state.currentIndex)
   state.columnsItem = deepClone(props.columnsItem)

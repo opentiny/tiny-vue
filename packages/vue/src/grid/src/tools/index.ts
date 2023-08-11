@@ -66,7 +66,9 @@ function notHasCacheVal({ cellLabel, cellValue, column, formatText, hasCacheVal,
       formatParams.cellLabel = cellText
     }
 
-    cellLabel = isString(renderType) ? Formatter[renderType].call(column, cellValue) : formatText(Object.assign(formatParams, params))
+    cellLabel = isString(renderType)
+      ? Formatter[renderType].call(column, cellValue)
+      : formatText(Object.assign(formatParams, params))
   }
 
   return cellLabel

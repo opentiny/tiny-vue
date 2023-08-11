@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 export const setSubitemAttrValue = ({ className, item, value }) => {
   if (value) {
@@ -43,51 +43,53 @@ export const setGlobalAttrValue = ({ attr, className, value }) => {
   className[`col-xl-${attr}`] = value
 }
 
-export const getClassName = ({ api, props }) => () => {
-  const span = props.span
-  const offset = props.offset
-  const push = props.move ? props.move : 0
-  const pull = props.move ? 0 : -props.move
+export const getClassName =
+  ({ api, props }) =>
+  () => {
+    const span = props.span
+    const offset = props.offset
+    const push = props.move ? props.move : 0
+    const pull = props.move ? 0 : -props.move
 
-  const subitems = {
-    xs: props.xs,
-    sm: props.sm,
-    md: props.md,
-    lg: props.lg,
-    xl: props.xl
+    const subitems = {
+      xs: props.xs,
+      sm: props.sm,
+      md: props.md,
+      lg: props.lg,
+      xl: props.xl
+    }
+
+    const className = {}
+    const result = []
+    let item = {}
+
+    if (span) {
+      api.setGlobalAttrValue({ attr: '', value: span, className })
+    }
+
+    if (offset) {
+      api.setGlobalAttrValue({ attr: 'offset', value: offset, className })
+    }
+
+    if (push) {
+      api.setGlobalAttrValue({ attr: 'push', value: push, className })
+    }
+
+    /* istanbul ignore if  */
+    if (pull) {
+      api.setGlobalAttrValue({ attr: 'pull', value: pull, className })
+    }
+
+    for (item of Object.keys(subitems)) {
+      api.setSubitemAttrValue({ item, value: subitems[item], className })
+    }
+
+    for (item of Object.keys(className)) {
+      result.push(item + className[item])
+    }
+
+    return result.join(' ')
   }
-
-  const className = {}
-  const result = []
-  let item = {}
-
-  if (span) {
-    api.setGlobalAttrValue({ attr: '', value: span, className })
-  }
-
-  if (offset) {
-    api.setGlobalAttrValue({ attr: 'offset', value: offset, className })
-  }
-
-  if (push) {
-    api.setGlobalAttrValue({ attr: 'push', value: push, className })
-  }
-
-  /* istanbul ignore if  */
-  if (pull) {
-    api.setGlobalAttrValue({ attr: 'pull', value: pull, className })
-  }
-
-  for (item of Object.keys(subitems)) {
-    api.setSubitemAttrValue({ item, value: subitems[item], className })
-  }
-
-  for (item of Object.keys(className)) {
-    result.push(item + className[item])
-  }
-
-  return result.join(' ')
-}
 
 export const row = (pcontext) => () => {
   const ROW_NAME = 'Row'
@@ -110,27 +112,29 @@ export const row = (pcontext) => () => {
   return parentName === ROW_NAME ? parent : null
 }
 
-export const getStyle = ({ props, state }) => () => {
-  const parent = state.row
-  const no = props.no
-  const styles = []
-  let gutter = parent ? parent.gutter : null
-  let noSpace = parent ? parent.noSpace : null
-  let order = ''
+export const getStyle =
+  ({ props, state }) =>
+  () => {
+    const parent = state.row
+    const no = props.no
+    const styles = []
+    let gutter = parent ? parent.gutter : null
+    let noSpace = parent ? parent.noSpace : null
+    let order = ''
 
-  if (gutter) {
-    gutter = gutter / 2
-    styles.push(`padding-left:${gutter}px;padding-right:${gutter}px;`)
-  } else if (noSpace) {
-    styles.push('padding-left:0;padding-right:0;')
+    if (gutter) {
+      gutter = gutter / 2
+      styles.push(`padding-left:${gutter}px;padding-right:${gutter}px;`)
+    } else if (noSpace) {
+      styles.push('padding-left:0;padding-right:0;')
+    }
+
+    if (parent && parent.flex && parent.order) {
+      /* istanbul ignore next  */
+      order = parent.order === 'asc' ? no : -no
+
+      styles.push(`order:${order};-webkit-order:${order};-ms-order:${order};-moz-order:${order};`)
+    }
+
+    return styles.join('')
   }
-
-  if (parent && parent.flex && parent.order) {
-    /* istanbul ignore next  */
-    order = parent.order === 'asc' ? no : -no
-
-    styles.push(`order:${order};-webkit-order:${order};-ms-order:${order};-moz-order:${order};`)
-  }
-
-  return styles.join('')
-}

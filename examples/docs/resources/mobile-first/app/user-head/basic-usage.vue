@@ -10,8 +10,7 @@
     </div>
     <div class="mt-1.5">
       <span class="text-center mb-2 block">英文</span>
-      <tiny-user-head class="flex flex-col items-center" type="label" v-model="textEn">
-      </tiny-user-head>
+      <tiny-user-head class="flex flex-col items-center" type="label" v-model="textEn"> </tiny-user-head>
     </div>
     <div class="mt-1.5">
       <span class="text-center mb-2 block">图片</span>

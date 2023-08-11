@@ -12,7 +12,7 @@
 
 <script lang="tsx">
 import { renderless, api } from '@opentiny/vue-renderless/dropdown/vue'
-import { setup, $prefix, directive, defineComponent } from '@opentiny/vue-common'
+import { setup, $prefix, directive, defineComponent, h } from '@opentiny/vue-common'
 import Button from '@opentiny/vue-button'
 import ButtonGroup from '@opentiny/vue-button-group'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
@@ -60,6 +60,18 @@ export default defineComponent({
       type: Number,
       default: 0
     },
+    border: {
+      type: Boolean,
+      default: false
+    },
+    round: {
+      type: Boolean,
+      default: false
+    },
+    showIcon: {
+      type: Boolean,
+      default: true
+    },
     menuOptions: {
       type: Object,
       default: () => ({
@@ -80,17 +92,20 @@ export default defineComponent({
   },
   emits: ['visible-change', 'item-click', 'button-click', 'menu-item-click', 'handle-click'],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api, mono: true, h })
   },
   render() {
-    const { hide, splitButton, type, disabled, handleMainButtonClick, slots, size, state, menuOptions, title } = this
+    const { splitButton, type, disabled, handleMainButtonClick, menuOptions, title } = this
+    const { slots, size, state, border, showIcon, round, clickOutside } = this
+    const params = { visible: state.visible }
     let triggerElm = null
     // TINY-TODO tiny-dropdown类名整改,统一tiny-组件名为前缀
     const triggerClass = 'tiny-dropdown__trigger tiny-dropdown-trigger'
     const visibleClass = state.visible ? 'tiny-dropdown--visible tiny-dropdown-visible' : ''
 
-    const IconDown = state?.designConfig?.icons?.downWard || iconDeltaDown()
-    const ButtonIconDown = state?.designConfig?.icons?.downWard || iconDownWard()
+    const IconDown = state?.designConfig?.icons?.dropdownIcon || iconDeltaDown()
+    const ButtonIconDown = state?.designConfig?.icons?.dropdownIcon || iconDownWard()
+    const defaultSlot = slots.default && slots.default(params)
 
     if (splitButton) {
       triggerElm = (
@@ -101,7 +116,7 @@ export default defineComponent({
             onClick={handleMainButtonClick}
             disabled={disabled}
             class="tiny-dropdown__title-button">
-            {slots.default && slots.default()}
+            {defaultSlot}
           </tiny-button>
           <tiny-button
             ref="trigger"
@@ -115,23 +130,42 @@ export default defineComponent({
         </tiny-button-group>
       )
     } else {
-      const defaultTriggerElm = (
-        <span>
-          <span class={'tiny-dropdown__title'}>{title}</span>
-          <IconDown class={visibleClass}></IconDown>
-        </span>
-      )
+      const suffixSlot = slots['suffix-icon'] && slots['suffix-icon']()
+      const vnodeData = (defaultSlot && defaultSlot[0]?.data) || {}
+      const { attrs = {} } = vnodeData
 
-      triggerElm = (slots.default && slots.default()) || [defaultTriggerElm]
+      if (disabled && !attrs.disabled) {
+        attrs.disabled = true
+        vnodeData.attrs = attrs
+      }
 
       // 增加一层，vue3 环境中无法使用 slots.default 的方式获取原生 DOM 元素
-      triggerElm = disabled ? (
-        <span ref="trigger" disabled class={triggerClass}>
-          {triggerElm}
-        </span>
+      const suffixInner = showIcon ? (
+        <span class="tiny-dropdown__suffix-inner">{suffixSlot || <IconDown class={visibleClass}></IconDown>}</span>
       ) : (
-        <span ref="trigger" class={triggerClass}>
-          {triggerElm}
+        ''
+      )
+
+      const defaultTriggerElm = defaultSlot || <span class={'tiny-dropdown__title'}>{title}</span>
+
+      triggerElm = border ? (
+        <tiny-button
+          ref="trigger"
+          round={round}
+          disabled={disabled}
+          class={`${state.visible ? 'is-expand' : ''}${showIcon ? ' is-show-icon' : ''}`}
+          reset-time={0}>
+          {defaultTriggerElm}
+          {suffixInner}
+        </tiny-button>
+      ) : (
+        <span
+          ref="trigger"
+          class={`is-text${state.visible ? ' is-expand' : ' is-hide'}${
+            disabled ? ' is-disabled' : ''
+          } ${triggerClass}`}>
+          {defaultTriggerElm}
+          {suffixInner}
         </span>
       )
     }
@@ -147,7 +181,7 @@ export default defineComponent({
     const menuElm = disabled ? null : (slots.dropdown && slots.dropdown()) || defaulMenuElm
 
     return (
-      <div class="tiny-dropdown" v-clickoutside={hide} aria-disabled={disabled}>
+      <div class="tiny-dropdown" v-clickoutside={clickOutside} aria-disabled={disabled}>
         {triggerElm}
         {menuElm}
       </div>

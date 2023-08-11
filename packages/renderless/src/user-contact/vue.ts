@@ -30,7 +30,7 @@ export const renderless = (props, { reactive, ref }, { service }) => {
 
   Object.assign(api, {
     state,
-    testUID: testUID,
+    testUID,
     show: ref(false),
     getUserHref: getUserHref({ api, props }),
     initEspaceLink: initEspaceLink({ api, props, state, eSpaceCtrl, eSpaceCtrlDisabled }),

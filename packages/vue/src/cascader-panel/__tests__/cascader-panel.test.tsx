@@ -70,36 +70,37 @@ const options = [
             label: 'Icon 图标'
           }
         ]
-      }]
-  }]
+      }
+    ]
+  }
+]
 
 let value = ['zhinan', 'anzhuang']
 
 describe('PC Mode', () => {
   const mount = mountPcMode
-  
+
   test('options', async () => {
     const separators = '+'
     const medium = 'medium'
-    const wrapper = mount(() => <CascaderPanel
-      options={options}
-    ></CascaderPanel>)
+    const wrapper = mount(() => <CascaderPanel options={options}></CascaderPanel>)
     expect(wrapper.findAll('.tiny-cascader-node').length).toBe(2)
-
   })
 
   test('triggerOnFocus', async () => {
     const handleChange = vi.fn()
-    const wrapper = mount(() => <CascaderPanel
-      v-model={value}
-      options={options}
-      props={{ checkStrictly: true }}
-      onExpand-change={handleChange}
-    ></CascaderPanel>)
+    const wrapper = mount(() => (
+      <CascaderPanel
+        v-model={value}
+        options={options}
+        props={{ checkStrictly: true }}
+        onExpand-change={handleChange}
+      ></CascaderPanel>
+    ))
 
     const list = wrapper.findAll('.tiny-cascader-node')
     const [znNode, zjNode] = list
-    '.arrow-right.el-cascader-node__postfix'
+    ;('.arrow-right.el-cascader-node__postfix')
     await znNode.trigger('click')
     expect(handleChange).toBeCalled()
   })
@@ -107,13 +108,19 @@ describe('PC Mode', () => {
   test('slot', async () => {
     const value = 'pppppppppp'
     const text = '请输入内容'
-    const wrapper = mount(() => <CascaderPanel
-      options={options}
-      v-slots={{
-        default: (scopeData) => <><span class='only-slot' > {scopeData.data.label}自定义</span>
-          !scopeData.node.isLeaf&& <span> ({scopeData.data.children.length})</ span></>
-      }}
-    ></CascaderPanel >)
+    const wrapper = mount(() => (
+      <CascaderPanel
+        options={options}
+        v-slots={{
+          default: (scopeData) => (
+            <>
+              <span class="only-slot"> {scopeData.data.label}自定义</span>
+              !scopeData.node.isLeaf&& <span> ({scopeData.data.children.length})</span>
+            </>
+          )
+        }}
+      ></CascaderPanel>
+    ))
     expect(wrapper.find('.only-slot').exists()).toBe(true)
   })
 

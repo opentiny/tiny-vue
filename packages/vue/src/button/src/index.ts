@@ -12,6 +12,48 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
+export const buttonProps = {
+  ...$props,
+  type: {
+    type: String,
+    default: 'default'
+  },
+  tabindex: { type: String, default: '1' },
+  icon: {
+    type: [Object, String],
+    default: ''
+  },
+  text: {
+    type: String,
+    default: ''
+  },
+  resetTime: {
+    type: Number,
+    default: 1000
+  },
+  nativeType: {
+    type: String,
+    default: 'button'
+  },
+  size: {
+    type: String,
+    default: '',
+    validator(val: string) {
+      return ['large', 'medium', 'small', 'mini', ''].includes(val)
+    }
+  },
+  round: Boolean,
+  plain: Boolean,
+  circle: Boolean,
+  loading: Boolean,
+  disabled: Boolean,
+  autofocus: Boolean,
+  buttonClass: {
+    type: String,
+    default: ''
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'Button',
   inject: {
@@ -19,49 +61,8 @@ export default defineComponent({
       default: ''
     }
   },
-  props: {
-    ...$props,
-    type: {
-      type: String,
-      default: 'default'
-    },
-    tabindex: { type: String, default: '1' },
-    icon: {
-      type: [Object, String],
-      default: ''
-    },
-    text: {
-      type: String,
-      default: ''
-    },
-    resetTime: {
-      type: Number,
-      default: 1000
-    },
-    nativeType: {
-      type: String,
-      default: 'button'
-    },
-    size: {
-      type: String,
-      default: '',
-      validator(val: string) {
-        return ['large', 'medium', 'small', 'mini', ''].includes(val)
-      }
-    },
-    round: Boolean,
-    plain: Boolean,
-    circle: Boolean,
-    loading: Boolean,
-    disabled: Boolean,
-    autofocus: Boolean,
-    buttonClass: {
-      type: String,
-      default: ''
-    }
-  },
+  props: buttonProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

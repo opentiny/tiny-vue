@@ -3,10 +3,37 @@
     <tiny-button @click="fn1" type="primary"> 同步数据滚动 </tiny-button>
     <tiny-button @click="fn2" type="primary"> 异步请求滚动 </tiny-button>
     <p>值：{{ value }}</p>
-    <tiny-select-view v-model="value" multiple :menus="menus" value-field="employeeNumber" text-field="userName" text-field2="employeeNumber" text-field3="dept" title="选择人员" :search-config="searchConfig" :infinite-scroll="infiniteScroll" :visible="boxVisibility" @update:visible="boxVisibility = $event">
+    <tiny-select-view
+      v-model="value"
+      multiple
+      :menus="menus"
+      value-field="employeeNumber"
+      text-field="userName"
+      text-field2="employeeNumber"
+      text-field3="dept"
+      title="选择人员"
+      :search-config="searchConfig"
+      :infinite-scroll="infiniteScroll"
+      :visible="boxVisibility"
+      @update:visible="boxVisibility = $event"
+    >
     </tiny-select-view>
 
-    <tiny-select-view ref="selectViewRef" v-model="value" multiple :menus="menus" value-field="employeeNumber" text-field="userName" text-field2="employeeNumber" text-field3="dept" title="选择人员" :search-config="searchConfig" :infinite-scroll="infiniteScroll" :visible="boxVisibility2" @update:visible="boxVisibility2 = $event">
+    <tiny-select-view
+      ref="selectViewRef"
+      v-model="value"
+      multiple
+      :menus="menus"
+      value-field="employeeNumber"
+      text-field="userName"
+      text-field2="employeeNumber"
+      text-field3="dept"
+      title="选择人员"
+      :search-config="searchConfig"
+      :infinite-scroll="infiniteScroll"
+      :visible="boxVisibility2"
+      @update:visible="boxVisibility2 = $event"
+    >
     </tiny-select-view>
   </div>
 </template>

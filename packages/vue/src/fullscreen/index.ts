@@ -14,7 +14,18 @@ import FullscreenApi from '@opentiny/vue-renderless/common/deps/fullscreen/apis'
 import '@opentiny/vue-theme/fullscreen/index.less'
 import { version } from './package.json'
 
-const apis = ['exit', 'enter', 'element', 'getState', 'isEnabled', 'isFullscreen', 'options', 'request', 'support', 'toggle']
+const apis = [
+  'exit',
+  'enter',
+  'element',
+  'getState',
+  'isEnabled',
+  'isFullscreen',
+  'options',
+  'request',
+  'support',
+  'toggle'
+]
 
 apis.forEach((api) => {
   if (FullscreenApi[api] && !Fullscreen[api]) {

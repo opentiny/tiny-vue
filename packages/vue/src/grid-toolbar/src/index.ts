@@ -24,7 +24,7 @@
  */
 import { isNumber } from '@opentiny/vue-renderless/common/type'
 import { iconMinscreen, iconFullscreen } from '@opentiny/vue-icon'
-import { h, hooks, $prefix, defineComponent, appProperties, $props, } from '@opentiny/vue-common'
+import { h, hooks, $prefix, defineComponent, appProperties, $props } from '@opentiny/vue-common'
 import { toStringJSON, isEmpty, isPlainObject, toJSONString, find } from '@opentiny/vue-renderless/grid/static/'
 import {
   getFuncText,
@@ -91,15 +91,15 @@ function renderCustomWrapper({ _vm, settingStore, settingsBtnOns, tableFullColum
       h('div', { class: 'tiny-grid-custom__setting-btn', on: settingsBtnOns }, [
         setting?.simple
           ? h('tiny-grid-custom-select', {
-            on: {
-              saveSettings: _vm.handleSaveSettings
-            },
-            props: {
-              data: tableFullColumn,
-              setting,
-              value: settingStore.customVisible
-            }
-          })
+              on: {
+                saveSettings: _vm.handleSaveSettings
+              },
+              props: {
+                data: tableFullColumn,
+                setting,
+                value: settingStore.customVisible
+              }
+            })
           : h(GridConfig.icon.custom, { class: 'tiny-svg-size' })
       ]),
       h('div', { class: 'tiny-grid-custom__option-wrapper' }, [
@@ -223,7 +223,7 @@ export default defineComponent({
       type: String,
       default: () => {
         const ctx = appProperties()
-        return (ctx.aui_theme ? ctx.aui_theme.value : '') || 'aurora'
+        return (ctx.tiny_theme ? ctx.tiny_theme.value : '') || 'aurora'
       }
     },
     resizable: {

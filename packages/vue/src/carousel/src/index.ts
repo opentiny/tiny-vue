@@ -68,7 +68,7 @@ export default defineComponent({
       type: String,
       default: 'light',
       validator: (value: string) => Boolean(!value || ~['light', 'dark'].indexOf(value))
-    },
+    }
   },
   setup(props, context) {
     return $setup({

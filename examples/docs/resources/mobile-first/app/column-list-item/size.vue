@@ -1,6 +1,15 @@
 <template>
   <div>
-    <tiny-column-list-item v-model="checked" :show-checkbox="true" image="webnova/static/images/1.jpg" :size="size" :options="options" :flex-grow="[1, 3]" class="mb-3" @icon-click="iconClick">
+    <tiny-column-list-item
+      v-model="checked"
+      :show-checkbox="true"
+      image="webnova/static/images/1.jpg"
+      :size="size"
+      :options="options"
+      :flex-grow="[1, 3]"
+      class="mb-3"
+      @icon-click="iconClick"
+    >
       <template #column1>
         <ul>
           <li class="text-sm mb-1 sm:mb-1.5">智能手机智能手机</li>

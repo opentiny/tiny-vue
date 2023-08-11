@@ -151,7 +151,9 @@ export default defineComponent({
                     this.debounceClose()
                   }
 
+                  // 直接 updatePopper 会造成scroll事件的绑定，即使tooltip不显示，也在滚动时带来性能影响
                   this.$nextTick(() => {
+                    // 取 v-show的条件， v-show时，要更新一下位置
                     if (!this.disabled && this.state.showPopper && content) {
                       this.updatePopper()
                     }
@@ -163,7 +165,14 @@ export default defineComponent({
                       id={this.state.tooltipId}
                       v-show={!this.disabled && this.state.showPopper && content}
                       appendToBody={this.appendToBody}
-                      class={['tiny-tooltip', 'tiny-tooltip__popper', typeClass, this.popperClass]}
+                      class={[
+                        'tiny-tooltip',
+                        'tiny-tooltip__popper',
+                        typeClass,
+                        this.popperClass,
+                        { 'tiny-tooltip__show-tips': this.state.showContent }
+                      ]}
+                      style={`max-width:${this.state.tipsMaxWidth}px`}
                       role="tooltip"
                       aria-hidden={this.disabled || !this.state.showPopper ? 'true' : 'false'}
                       onMouseenter={() => mouseenter()}

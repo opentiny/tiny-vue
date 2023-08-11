@@ -71,8 +71,7 @@ export default defineComponent({
     } = this
 
     const newButton =
-      editable || withAdd
-        ? (
+      editable || withAdd ? (
         <span
           class="tiny-tabs__new-tab"
           onClick={handleTabAdd}
@@ -81,12 +80,10 @@ export default defineComponent({
             if (ev.keyCode === 13) {
               handleTabAdd()
             }
-          }}
-        >
+          }}>
           <icon-plus />
         </span>
-          )
-        : null
+      ) : null
 
     const navData = {
       props: {

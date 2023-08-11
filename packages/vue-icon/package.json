@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-icon",
   "private": true,
-  "version": "3.7.0",
+  "version": "3.10.0",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "homepage": "https://opentiny.design/tiny-vue",
   "main": "index.ts",
@@ -29,6 +29,8 @@
     ".": "./index.ts",
     "./*": "./src/*"
   },
+  "sideEffects": false,
+  "type": "module",
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"

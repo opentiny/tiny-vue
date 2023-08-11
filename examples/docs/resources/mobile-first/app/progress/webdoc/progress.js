@@ -34,7 +34,8 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p><code>type="circle"</code>显示为 circle 类型。<code>width<code>可以调整环形进度条画布宽度，默认值为 96px。<p>',
+        'zh-CN':
+          '<p><code>type="circle"</code>显示为 circle 类型。<code>width<code>可以调整环形进度条画布宽度，默认值为 96px。<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['progress-type-circle.vue']

@@ -11,7 +11,11 @@
  -->
 <template>
   <div ref="item" class="tiny-card-template">
-    <div v-if="slots.header || header || (tools && tools.length)" :class="{ 'is-line': headerLine }" class="tiny-card-template__header">
+    <div
+      v-if="slots.header || header || (tools && tools.length)"
+      :class="{ 'is-line': headerLine }"
+      class="tiny-card-template__header"
+    >
       <slot name="header">
         <span class="tiny-card-template__title">{{ header }}</span>
       </slot>
@@ -21,9 +25,20 @@
             <component class="tiny-svg-size" :is="item.icon" />
           </li>
         </ul>
-        <div v-show="state.moreTools && state.moreTools.length && state.showMoreTools" ref="selector" class="tiny-selector tiny-card-template__more" @mouseleave="state.showMoreTools = false">
+        <div
+          v-show="state.moreTools && state.moreTools.length && state.showMoreTools"
+          ref="selector"
+          class="tiny-selector tiny-card-template__more"
+          @mouseleave="state.showMoreTools = false"
+        >
           <ul class="tiny-poplist">
-            <li v-for="(item, index) in state.moreTools" :key="index" :title="item.title" :class="{ 'select-pre': state.isEnter }" @click="toolClick(item.click)">
+            <li
+              v-for="(item, index) in state.moreTools"
+              :key="index"
+              :title="item.title"
+              :class="{ 'select-pre': state.isEnter }"
+              @click="toolClick(item.click)"
+            >
               <component class="tiny-svg-size" :is="item.icon" />
               {{ item.title }}
             </li>

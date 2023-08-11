@@ -81,5 +81,5 @@ export default {
   ...UploadDragger,
   ...UploadList,
   ...MultiSelect,
-  ...Wheel,
+  ...Wheel
 }

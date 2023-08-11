@@ -35,7 +35,11 @@
         <tiny-date-picker v-model="createData.datepicker"></tiny-date-picker>
       </tiny-form-item>
       <tiny-form-item label="TimePicker">
-        <tiny-time-picker v-model="createData.timePicker" :picker-options="{ selectableRange: '18:30:00 - 20:30:00' }" placeholder="任意时间点"></tiny-time-picker>
+        <tiny-time-picker
+          v-model="createData.timePicker"
+          :picker-options="{ selectableRange: '18:30:00 - 20:30:00' }"
+          placeholder="任意时间点"
+        ></tiny-time-picker>
       </tiny-form-item>
       <tiny-form-item label="Tooltip">
         <tiny-tooltip effect="light" content="TINY Form Demo" placement="right">
@@ -46,7 +50,11 @@
         <tiny-input v-model="createData.textarea" type="textarea" maxlength="15"> </tiny-input>
       </tiny-form-item>
       <tiny-form-item label="Autocomplete">
-        <tiny-autocomplete v-model="createData.autocomplete" placeholder="请输入内容" :fetch-suggestions="querySearch"></tiny-autocomplete>
+        <tiny-autocomplete
+          v-model="createData.autocomplete"
+          placeholder="请输入内容"
+          :fetch-suggestions="querySearch"
+        ></tiny-autocomplete>
       </tiny-form-item>
       <tiny-form-item label="ButtonGroup">
         <tiny-button-group :data="groupData"></tiny-button-group>
@@ -58,7 +66,13 @@
         <tiny-link>默认链接</tiny-link>
       </tiny-form-item>
       <tiny-form-item label="PopEditor">
-        <tiny-popeditor v-model="createData.popEditor" placeholder="请选择" :grid-op="gridOp" text-field="name" value-field="id"></tiny-popeditor>
+        <tiny-popeditor
+          v-model="createData.popEditor"
+          placeholder="请选择"
+          :grid-op="gridOp"
+          text-field="name"
+          value-field="id"
+        ></tiny-popeditor>
       </tiny-form-item>
       <tiny-form-item label="Slider">
         <tiny-slider v-model="createData.slider"></tiny-slider>
@@ -180,7 +194,7 @@ export default {
     }
   },
   methods: {
-    submitClick() { },
+    submitClick() {},
     querySearch(queryString, cb) {
       cb(queryString ? this.restaurants.filter(this.createFilter(queryString)) : this.restaurants)
     },

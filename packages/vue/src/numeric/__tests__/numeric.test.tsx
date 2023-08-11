@@ -7,7 +7,7 @@ let value = 1
 
 describe('PC Mode', () => {
   const mount = mountPcMode
-  
+
   /**
    * attrs
    */
@@ -31,7 +31,6 @@ describe('PC Mode', () => {
   test.todo('step-strictly 是否只能输入 step 的倍数')
 
   test.todo('numeric-size 计数器尺寸')
-
 
   test.todo('disabled 是否禁用计数器')
 

@@ -1,18 +1,19 @@
 <template>
   <div>
-    <tiny-button @click="showTip">
-      手动控制tooltip的显示和隐藏
-    </tiny-button>
+    <tiny-button @click="showTip"> 手动控制tooltip的显示和隐藏 </tiny-button>
 
     <div class="h-[31.25rem] overflow-auto">
       <div class="h-[31.25rem] bg-color-bg-6 overflow-auto">
         <div class="h-[31.25rem] bg-color-info-secondary overflow-auto">
           <div class="h-[31.25rem] bg-color-bg-3">
             <div class="mt-24">
-              <tiny-tooltip v-model="showTooltip" content="手动控制模式" :manual="true" :popper-options="{ bubbling: true }">
-                <tiny-button type="primary">
-                  手动控制模式
-                </tiny-button>
+              <tiny-tooltip
+                v-model="showTooltip"
+                content="手动控制模式"
+                :manual="true"
+                :popper-options="{ bubbling: true }"
+              >
+                <tiny-button type="primary"> 手动控制模式 </tiny-button>
               </tiny-tooltip>
             </div>
           </div>

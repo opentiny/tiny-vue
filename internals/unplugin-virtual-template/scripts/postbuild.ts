@@ -10,7 +10,7 @@ async function run() {
   const files = await fg('*.cjs', {
     ignore: ['chunk-*'],
     absolute: true,
-    cwd: resolve(dirname(fileURLToPath(import.meta.url)), '../dist'),
+    cwd: resolve(dirname(fileURLToPath(import.meta.url)), '../dist')
   })
   for (const file of files) {
     console.log(chalk.cyan.inverse(' POST '), `Fix ${basename(file)}`)

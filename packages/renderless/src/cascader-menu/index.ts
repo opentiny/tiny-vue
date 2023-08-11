@@ -1,41 +1,43 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 export const handleExpand = (state) => (e) => (state.activeNode = e.target)
 
-export const handleMouseMove = ({ api, parent, refs, state, svg }) => (e) => {
-  const { hoverZone } = refs
+export const handleMouseMove =
+  ({ api, parent, refs, state, svg }) =>
+  (e) => {
+    const { hoverZone } = refs
 
-  if (!state.activeNode || !hoverZone) {
-    return
-  }
+    if (!state.activeNode || !hoverZone) {
+      return
+    }
 
-  if (state.activeNode.contains(e.target)) {
-    clearTimeout(state.hoverTimer)
+    if (state.activeNode.contains(e.target)) {
+      clearTimeout(state.hoverTimer)
 
-    const { left } = refs.cascaderMenu.$parent.$el.getBoundingClientRect()
-    const startX = e.clientX - left
-    const { offsetWidth, offsetHeight } = refs.cascaderMenu.$parent.$el
-    const top = state.activeNode.offsetTop
-    const bottom = top + state.activeNode.offsetHeight
+      const { left } = refs.cascaderMenu.$parent.$el.getBoundingClientRect()
+      const startX = e.clientX - left
+      const { offsetWidth, offsetHeight } = refs.cascaderMenu.$parent.$el
+      const top = state.activeNode.offsetTop
+      const bottom = top + state.activeNode.offsetHeight
 
-    hoverZone.innerHTML = `
+      hoverZone.innerHTML = `
       ${svg}${startX} ${top} L${offsetWidth} 0 V${top} Z" />
       ${svg}${startX} ${bottom} L${offsetWidth} ${offsetHeight} V${bottom} Z" />
     `
-  } else if (!state.hoverTimer) {
-    state.hoverTimer = setTimeout(api.clearHoverZone, parent.state.config.hoverThreshold)
+    } else if (!state.hoverTimer) {
+      state.hoverTimer = setTimeout(api.clearHoverZone, parent.state.config.hoverThreshold)
+    }
   }
-}
 
 export const clearHoverZone = (refs) => () => {
   const { hoverZone } = refs

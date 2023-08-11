@@ -24,7 +24,16 @@
  */
 import { set, eachTree } from '@opentiny/vue-renderless/grid/static/'
 
-function pushSelectRow({ afterFullData, checkMethod, checkStrictly, property, selectRows, selection, treeConfig, value }) {
+function pushSelectRow({
+  afterFullData,
+  checkMethod,
+  checkStrictly,
+  property,
+  selectRows,
+  selection,
+  treeConfig,
+  value
+}) {
   if (!checkStrictly && !property && treeConfig && value) {
     eachTree(
       afterFullData,
@@ -50,7 +59,15 @@ function pushSelectRow({ afterFullData, checkMethod, checkStrictly, property, se
   }
 }
 
-export function hasCheckFieldNoStrictly({ afterFullData, checkMethod, checkStrictly, property, selection, treeConfig, value }) {
+export function hasCheckFieldNoStrictly({
+  afterFullData,
+  checkMethod,
+  checkStrictly,
+  property,
+  selection,
+  treeConfig,
+  value
+}) {
   if (!checkStrictly && property) {
     let indexKey = `${treeConfig ? '$' : ''}rowIndex`
 
@@ -74,7 +91,16 @@ export function hasCheckFieldNoStrictly({ afterFullData, checkMethod, checkStric
   }
 }
 
-function filterSelectRow({ afterFullData, checkMethod, checkStrictly, property, selectRows, selection, treeConfig, value }) {
+function filterSelectRow({
+  afterFullData,
+  checkMethod,
+  checkStrictly,
+  property,
+  selectRows,
+  selection,
+  treeConfig,
+  value
+}) {
   if (!checkStrictly && !property && !treeConfig && value && checkMethod) {
     selectRows = afterFullData.filter((row, rowIndex) => selection.includes(row) || checkMethod({ row, rowIndex }))
   }
@@ -90,7 +116,15 @@ function filterSelectRow({ afterFullData, checkMethod, checkStrictly, property, 
   return selectRows
 }
 
-export function hasNoCheckFieldNoStrictly({ afterFullData, checkMethod, checkStrictly, property, selection, treeConfig, value }) {
+export function hasNoCheckFieldNoStrictly({
+  afterFullData,
+  checkMethod,
+  checkStrictly,
+  property,
+  selection,
+  treeConfig,
+  value
+}) {
   let selectRows = []
 
   pushSelectRow({
@@ -120,6 +154,7 @@ export function hasNoCheckFieldNoStrictly({ afterFullData, checkMethod, checkStr
 
 export function setSelectionNoStrictly({ _vm, checkStrictly, reserve, selectRows, selection, value }) {
   if (!checkStrictly) {
-    _vm.selection = value && reserve ? selection.concat(selectRows.filter((row) => !selection.includes(row))) : selectRows
+    _vm.selection =
+      value && reserve ? selection.concat(selectRows.filter((row) => !selection.includes(row))) : selectRows
   }
 }

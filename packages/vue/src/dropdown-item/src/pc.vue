@@ -12,65 +12,94 @@
 
 <template>
   <!-- TINY-TODO:  tiny-dropdown-menu__item命名不规范，后续统一有个迭代去掉 -->
-  <li
-    class="tiny-dropdown-item tiny-dropdown-menu__item"
-    :class="{
-      'is-disabled': disabled,
-      'tiny-dropdown-item--divided tiny-dropdown-menu__item--divided': divided,
-      'has-children': itemData.children && itemData.children.length
-    }"
-    ref="dropdownItem"
-    @click="handleClick"
-    @mousedown.stop
-    :aria-disabled="disabled"
-    :tabindex="disabled ? null : -1"
-  >
-    <div class="tiny-dropdown-item__wrap">
-      <span
-        v-if="itemData.children && itemData.children.length"
-        class="tiny-dropdown-item__expand tiny-dropdown-menu__item-expand"
-      >
-        <component :is="state.getIcon" />
-      </span>
-      <div class="tiny-dropdown-item__content tiny-dropdown-menu__item-content">
-        <component v-if="icon" :is="icon" class="tiny-svg-size" />
-        <slot :item-data="itemData">
-          <span>{{ label }}</span>
-        </slot>
-      </div>
-      <ul
-        v-if="itemData.children && itemData.children.length"
-        :class="['tiny-dropdown-menu', 'tiny-dropdown-item--child tiny-dropdown-menu__item--child', state.popperClass]"
-      >
-        <tiny-dropdown-item
-          v-for="(item, index) in itemData.children"
-          :key="index"
-          :label="item[state.textField]"
-          :item-data="item"
-          :icon="item.icon"
-          :disabled="item.disabled"
-          :divided="item.divided"
+  <tiny-tooltip :content="getTip" :placement="tipPosition">
+    <li
+      class="tiny-dropdown-item tiny-dropdown-menu__item"
+      :class="{
+        'is-disabled': disabled,
+        'tiny-dropdown-item--divided tiny-dropdown-menu__item--divided': divided,
+        'has-children': itemData.children && itemData.children.length
+      }"
+      ref="dropdownItem"
+      @click.stop="handleClick"
+      @mousedown.stop
+      :aria-disabled="disabled"
+      :tabindex="disabled ? null : -1"
+    >
+      <div class="tiny-dropdown-item__wrap">
+        <span
+          v-if="itemData.children && itemData.children.length"
+          class="tiny-dropdown-item__expand tiny-dropdown-menu__item-expand"
         >
-          <slot :item-data="item"></slot>
-        </tiny-dropdown-item>
-      </ul>
-    </div>
-  </li>
+          <component :is="state.getIcon" />
+        </span>
+        <div class="tiny-dropdown-item__content tiny-dropdown-menu__item-content">
+          <component v-if="icon" :is="icon" class="tiny-svg-size" />
+          <slot :item-data="itemData">
+            <span>{{ label }}</span>
+          </slot>
+        </div>
+        <ul
+          v-if="itemData.children && itemData.children.length"
+          :class="[
+            'tiny-dropdown-menu',
+            'tiny-dropdown-item--child tiny-dropdown-menu__item--child',
+            state.popperClass
+          ]"
+        >
+          <tiny-dropdown-item
+            v-for="(item, index) in itemData.children"
+            :key="index"
+            :label="item[state.textField]"
+            :item-data="item"
+            :icon="item.icon"
+            :disabled="item.disabled"
+            :divided="item.divided"
+            :tip="item.tip"
+            :tip-position="item.tipPosition"
+          >
+            <slot :item-data="item"></slot>
+          </tiny-dropdown-item>
+        </ul>
+      </div>
+    </li>
+  </tiny-tooltip>
 </template>
 
 <script lang="ts">
 import { props, setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/dropdown-item/vue'
 import { iconDeltaLeft } from '@opentiny/vue-icon'
+import TinyTooltip from '@opentiny/vue-tooltip'
 import '@opentiny/vue-theme/dropdown-item/index.less'
 
 export default defineComponent({
   name: $prefix + 'DropdownItem',
   componentName: $prefix + 'DropdownItem',
   emits: ['item-click'],
-  props: [...props, 'command', 'disabled', 'divided', 'icon', 'label', 'itemData', 'appendToBody', 'textField'],
+  props: [
+    ...props,
+    'disabled',
+    'divided',
+    'icon',
+    'itemData',
+    'title',
+    'titleClass',
+    'options',
+    'type',
+    'label',
+    'appendToBody',
+    'textField',
+    'selected',
+    'selectedField',
+    'multiStage',
+    'currentIndex',
+    'tip',
+    'tipPosition'
+  ],
   components: {
-    IconDeltaLeft: iconDeltaLeft()
+    IconDeltaLeft: iconDeltaLeft(),
+    TinyTooltip
   },
   setup(props, context) {
     return setup({ props, context, renderless, api })

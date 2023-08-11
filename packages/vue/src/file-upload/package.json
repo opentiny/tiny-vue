@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "module": "index.ts",
   "sideEffects": false,
+  "type": "module",
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
     "vitest": "^0.31.0"
@@ -19,6 +20,9 @@
     "@opentiny/vue-progress": "workspace:~",
     "@opentiny/vue-upload-list": "workspace:~",
     "@opentiny/vue-upload": "workspace:~",
+    "@opentiny/vue-tooltip": "workspace:~",
+    "@opentiny/vue-modal": "workspace:~",
+    "@opentiny/vue-dialog-box": "workspace:~",
     "streamsaver": "2.0.6",
     "crypto-js": "4.1.1"
   },

@@ -10,7 +10,12 @@
  *
  -->
 <template>
-  <div class="tiny-mobile-checkbox-group" :class="vertical ? 'is-vertical' : ''" role="group" aria-label="checkbox-group">
+  <div
+    class="tiny-mobile-checkbox-group"
+    :class="vertical ? 'is-vertical' : ''"
+    role="group"
+    aria-label="checkbox-group"
+  >
     <slot>
       <template v-if="type === 'checkbox'">
         <checkbox v-for="(item, index) in options" :key="index" v-bind="item"></checkbox>

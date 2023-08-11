@@ -15,7 +15,7 @@ import template from 'virtual-template?pc|mobile'
 
 const currentYear = new Date().getFullYear()
 
-const $constants = {
+export const $constants = {
   MonthDay: 32,
   Minutes: 59,
   Hours: 23,
@@ -51,93 +51,110 @@ const validator = (value) => {
   return result
 }
 
+export const datePickerProps = {
+  ...$props,
+  type: {
+    type: String,
+    default: 'date'
+  },
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  timeArrowControl: Boolean,
+  size: String,
+  format: String,
+  valueFormat: String,
+  readonly: Boolean,
+  placeholder: String,
+  startPlaceholder: String,
+  endPlaceholder: String,
+  prefixIcon: Object,
+  clearIcon: {
+    type: Object,
+    default() {
+      return iconOperationfaild()
+    }
+  },
+  name: {
+    default: '',
+    validator
+  },
+  disabled: Boolean,
+  clearable: {
+    type: Boolean,
+    default: true
+  },
+  id: {
+    default: '',
+    validator
+  },
+  popperClass: String,
+  editable: {
+    type: Boolean,
+    default: true
+  },
+  align: {
+    type: String,
+    default: 'left'
+  },
+  modelValue: {},
+  defaultValue: {},
+  defaultTime: {},
+  rangeSeparator: {
+    type: [Object, String],
+    default: '-'
+  },
+  pickerOptions: {},
+  unlinkPanels: Boolean,
+  validateEvent: {
+    type: Boolean,
+    default: true
+  },
+  isRange: Boolean,
+  arrowControl: Boolean,
+  timezoneData: {},
+  showTimezone: {
+    type: Boolean,
+    default: false
+  },
+  defaultTimezone: {},
+  visible: Boolean,
+  minDate: {
+    type: Date,
+    default: () => new Date(currentYear - 10, 0, 1),
+    validator: (val: Date) => Object.prototype.toString.call(val) === '[object Date]' && !isNaN(val.getTime())
+  },
+  maxDate: {
+    type: Date,
+    default: () => new Date(currentYear + 10, 11, 31),
+    validator: (val: Date) => Object.prototype.toString.call(val) === '[object Date]' && !isNaN(val.getTime())
+  },
+  formatter: {
+    type: Function,
+    default: (type, value) => value
+  },
+  componentName: { type: String, default: 'DatePicker' },
+  displayOnly: {
+    type: Boolean,
+    default: false
+  },
+  step: {
+    type: Object,
+    default() {
+      return { hour: 1, minute: 1, second: 1 }
+    }
+  },
+  showWeekNumber: {
+    type: Boolean,
+    default: false
+  },
+  formatWeeks: Function
+}
+
 export default defineComponent({
   name: $prefix + 'DatePicker',
-  props: {
-    ...$props,
-    type: {
-      type: String,
-      default: 'date'
-    },
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    timeArrowControl: Boolean,
-    size: String,
-    format: String,
-    valueFormat: String,
-    readonly: Boolean,
-    placeholder: String,
-    startPlaceholder: String,
-    endPlaceholder: String,
-    prefixIcon: Object,
-    clearIcon: {
-      type: Object,
-      default() {
-        return iconOperationfaild()
-      }
-    },
-    name: {
-      default: '',
-      validator
-    },
-    disabled: Boolean,
-    clearable: {
-      type: Boolean,
-      default: true
-    },
-    id: {
-      default: '',
-      validator
-    },
-    popperClass: String,
-    editable: {
-      type: Boolean,
-      default: true
-    },
-    align: {
-      type: String,
-      default: 'left'
-    },
-    modelValue: {},
-    defaultValue: {},
-    defaultTime: {},
-    rangeSeparator: {
-      type: [Object, String],
-      default: '-'
-    },
-    pickerOptions: {},
-    unlinkPanels: Boolean,
-    validateEvent: {
-      type: Boolean,
-      default: true
-    },
-    isRange: Boolean,
-    arrowControl: Boolean,
-    timezoneData: {},
-    showTimezone: {
-      type: Boolean,
-      default: false
-    },
-    defaultTimezone: {},
-    visible: Boolean,
-    minDate: {
-      type: Date,
-      default: () => new Date(currentYear - 10, 0, 1),
-      validator: (val: Date) => Object.prototype.toString.call(val) === '[object Date]' && !isNaN(val.getTime())
-    },
-    maxDate: {
-      type: Date,
-      default: () => new Date(currentYear + 10, 11, 31),
-      validator: (val: Date) => Object.prototype.toString.call(val) === '[object Date]' && !isNaN(val.getTime())
-    },
-    formatter: {
-      type: Function,
-      default: (type, value) => value
-    },
-    componentName: { type: String, default: 'DatePicker' }
-  },
+  props: datePickerProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

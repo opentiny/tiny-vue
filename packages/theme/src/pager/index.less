@@ -66,9 +66,8 @@
       color: var(--ti-pager-text-color);
       padding: var(--ti-pager-poplist-item-padding-vertical) var(--ti-pager-poplist-item-padding-horizontal);
       box-sizing: border-box;
-      border: 1px solid  var(--ti-pager-li-border-color);
+      border: 1px solid var(--ti-pager-li-border-color);
       transition: all 0.5s ease;
-
 
       a {
         color: var(--ti-pager-text-color);
@@ -97,7 +96,6 @@
         }
 
         &.is-popup {
-
           svg {
             display: var(--ti-pager-dot-is-popup-display);
           }
@@ -119,6 +117,19 @@
     }
     li:last-child {
       margin-right: 0;
+    }
+  }
+
+  &__loading {
+    .@{pager-prefix-cls}__total {
+      display: flex;
+    }
+    .@{pager-prefix-cls}__total-loading {
+      width: 30px;
+    }
+    .tiny-loading__spinner {
+      top: 0;
+      margin-top: 2px;
     }
   }
 
@@ -174,7 +185,10 @@
       overflow: hidden;
       text-overflow: ellipsis;
       cursor: pointer;
-      transition: border 0.3s, color 0.3s, background 0.3s;
+      transition:
+        border 0.3s,
+        color 0.3s,
+        background 0.3s;
       outline: 0;
       .user-select(none);
       &:hover {
@@ -214,7 +228,7 @@
     }
 
     svg {
-      fill: var(--ti-pager-btn-svg-color);
+      fill: var(--ti-pager-btn-svg-fill-color);
       font-size: var(--ti-pager-svg-font-size);
       vertical-align: middle;
     }
@@ -253,7 +267,7 @@
 
   &__selector {
     .component-css-vars-pager();
-    
+
     &.@{popover-prefix-cls}.@{popper-prefix-cls} {
       width: var(--ti-pager-sizes-input-width);
       padding: 0;
@@ -396,7 +410,7 @@
 
       svg {
         font-size: var(--ti-pager-svg-font-size);
-        fill: var(--ti-pager-total-svg-color);
+        fill: var(--ti-pager-total-svg-fill-color);
         vertical-align: middle;
       }
     }
@@ -424,7 +438,8 @@
       font-size: 12px;
     }
 
-    .@{pager-prefix-cls}__btn-prev svg, .@{pager-prefix-cls}__btn-next svg {
+    .@{pager-prefix-cls}__btn-prev svg,
+    .@{pager-prefix-cls}__btn-next svg {
       font-size: 14px;
     }
 
@@ -438,7 +453,7 @@
       line-height: 22px;
     }
   }
-  
+
   &.is-disabled {
     .@{pager-prefix-cls}__total {
       color: var(--ti-base-color-common-3);
@@ -449,7 +464,8 @@
       color: var(--ti-base-color-common-3);
       background-color: transparent;
 
-      &.is-active, &:not(.dot):not(.is-active):hover {
+      &.is-active,
+      &:not(.dot):not(.is-active):hover {
         color: var(--ti-base-color-common-3);
         font-weight: normal;
         background-color: transparent;

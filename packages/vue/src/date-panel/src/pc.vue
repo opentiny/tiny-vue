@@ -58,6 +58,7 @@
               />
               <time-picker
                 ref="timepicker"
+                :step="step"
                 :time-arrow-control="state.arrowControl"
                 :show="state.timePickerVisible"
                 v-if="state.timePickerVisible"
@@ -70,7 +71,7 @@
           <div
             class="tiny-date-picker__header"
             :class="{
-              'tiny-date-picker__header--bordered': state.currentView === 'year' || state.currentView === 'month'
+              'tiny-date-picker__header--bordered': ['month', 'year', 'years', 'yearrange'].includes(state.currentView)
             }"
             v-show="state.currentView !== 'time'"
           >
@@ -123,7 +124,8 @@
 
           <div class="tiny-picker-panel__content">
             <date-table
-              v-show="state.currentView === 'date'"
+              ref="dateTable"
+              v-if="state.currentView === 'date'"
               @pick="handleDatePick"
               :selection-mode="state.selectionMode"
               :first-day-of-week="state.firstDayOfWeek"
@@ -132,20 +134,25 @@
               :date="state.date"
               :cell-class-name="state.cellClassName"
               :disabled-date="state.disabledDate"
+              :show-week-number="showWeekNumber"
+              :format-weeks="formatWeeks"
             >
             </date-table>
             <year-table
-              v-show="state.currentView === 'year'"
-              @pick="handleYearPick"
+              ref="yearTable"
+              v-if="['year', 'years', 'yearrange'].includes(state.currentView)"
               :value="state.value"
               :default-value="state.defaultValue ? new Date(state.defaultValue) : null"
               :date="state.date"
               :disabled-date="state.disabledDate"
+              :selection-mode="state.selectionMode"
               :start-year="state.startYear"
+              @pick="handleYearPick"
             >
             </year-table>
             <month-table
-              v-show="state.currentView === 'month'"
+              ref="monthTable"
+              v-if="state.currentView === 'month'"
               @pick="handleMonthPick"
               :value="state.value"
               :default-value="state.defaultValue ? new Date(state.defaultValue) : null"
@@ -198,7 +205,7 @@
           type="text"
           class="tiny-picker-panel__link-btn"
           @click="changeToNow"
-          v-show="state.selectionMode !== 'dates'"
+          v-show="!['dates', 'years'].includes(state.selectionMode)"
         >
           {{ t('ui.datepicker.now') }}
         </tiny-button>
@@ -212,7 +219,7 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/date-panel/vue'
-import { $prefix, setup, directive, defineComponent } from '@opentiny/vue-common'
+import { $prefix, setup, directive, defineComponent, $props } from '@opentiny/vue-common'
 import { language } from '@opentiny/vue-locale'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import TimePicker from '@opentiny/vue-time'
@@ -251,7 +258,19 @@ export default defineComponent({
     IconChevronUp: iconChevronUp()
   },
   props: {
-    emitter: Object
+    ...$props,
+    emitter: Object,
+    step: {
+      type: Object,
+      default() {
+        return { hour: 1, minute: 1, second: 1 }
+      }
+    },
+    showWeekNumber: {
+      type: Boolean,
+      default: false
+    },
+    formatWeeks: Function
   },
   emits: ['pick', 'select-change', 'dodestroy'],
   setup(props, context) {

@@ -225,7 +225,11 @@ export default {
     getCell(this, params).then((cellRes) => {
       params.cell = cellRes
       this.handleSelected(params, event)
-      let rowNodes = getRowNodes(bodyList, getCellNodeIndex(firstCell), getCellNodeIndex(lastTr.querySelector('.col__index')))
+      let rowNodes = getRowNodes(
+        bodyList,
+        getCellNodeIndex(firstCell),
+        getCellNodeIndex(lastTr.querySelector('.col__index'))
+      )
       this.handleIndexChecked(rowNodes)
       this.handleChecked(getRowNodes(bodyList, getCellNodeIndex(startCell), getCellNodeIndex(lastCell)))
     })
@@ -240,7 +244,12 @@ export default {
     let isLeftBtn = button === 0
     let args
 
-    if (editConfig && (actived.row !== row || !(editConfig.mode === 'cell' && actived.column === column)) && isLeftBtn && mouseConfig.checked) {
+    if (
+      editConfig &&
+      (actived.row !== row || !(editConfig.mode === 'cell' && actived.column === column)) &&
+      isLeftBtn &&
+      mouseConfig.checked
+    ) {
       event.preventDefault()
       event.stopPropagation()
 
@@ -417,9 +426,23 @@ export default {
 
       this.handleSelected(params, event)
 
-      this.handleHeaderChecked(getRowNodes(headerList, getCellNodeIndex(cell.nextElementSibling), getCellNodeIndex(cell.parentNode.lastElementChild)))
-      this.handleIndexChecked(getRowNodes(bodyList, getCellNodeIndex(firstCell), getCellNodeIndex(lastTrElem.querySelector(selectorColumnId))))
-      this.handleChecked(getRowNodes(bodyList, getCellNodeIndex(firstCell.nextElementSibling), getCellNodeIndex(lastTrElem.lastElementChild)))
+      this.handleHeaderChecked(
+        getRowNodes(
+          headerList,
+          getCellNodeIndex(cell.nextElementSibling),
+          getCellNodeIndex(cell.parentNode.lastElementChild)
+        )
+      )
+      this.handleIndexChecked(
+        getRowNodes(bodyList, getCellNodeIndex(firstCell), getCellNodeIndex(lastTrElem.querySelector(selectorColumnId)))
+      )
+      this.handleChecked(
+        getRowNodes(
+          bodyList,
+          getCellNodeIndex(firstCell.nextElementSibling),
+          getCellNodeIndex(lastTrElem.lastElementChild)
+        )
+      )
     })
   },
   handleIndexChecked(rowNodes) {

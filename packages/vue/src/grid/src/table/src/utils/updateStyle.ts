@@ -130,7 +130,7 @@ function layoutBodyWrapper({
   minHeight,
   parentHeight,
   wrapperElem,
-  scrollbarWidth,
+  scrollbarWidth
 }) {
   if (wrapperElem) {
     if (customHeight > 0) {
@@ -203,7 +203,18 @@ function layoutBody(options) {
 }
 
 export function handleLayout(params) {
-  let { _vm, columnStore, customHeight, fixedColumn, fixedWrapperElem, layout, maxHeight, minHeight, parentHeight, tableColumn } = params
+  let {
+    _vm,
+    columnStore,
+    customHeight,
+    fixedColumn,
+    fixedWrapperElem,
+    layout,
+    maxHeight,
+    minHeight,
+    parentHeight,
+    tableColumn
+  } = params
   let { elemStore, footerHeight, fullColumnIdData, headerHeight, showFooter } = _vm
   let { overflowX, overflowY, scrollXLoad, scrollbarHeight, scrollbarWidth } = _vm
   let { showOverflow: allColumnOverflow, tableHeight, tableWidth } = _vm
@@ -220,7 +231,18 @@ export function handleLayout(params) {
     let ret = layoutBody({
       ...{ allColumnOverflow, columnStore, customHeight, elemStore, fixedColumn, fixedWrapperElem },
       ...{ footerHeight, headerHeight, layout, maxHeight, minHeight, overflowX, overflowY },
-      ...{ parentHeight, scrollXLoad, scrollbarHeight, scrollbarWidth, showFooter, tableColumn, tableElem, tableHeight, tableWidth, wrapperElem }
+      ...{
+        parentHeight,
+        scrollXLoad,
+        scrollbarHeight,
+        scrollbarWidth,
+        showFooter,
+        tableColumn,
+        tableElem,
+        tableHeight,
+        tableWidth,
+        wrapperElem
+      }
     })
 
     maxHeight = ret.maxHeight

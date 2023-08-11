@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-theme",
-  "version": "3.8.0",
+  "version": "3.10.0",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "main": "index.css",
   "homepage": "https://opentiny.design/tiny-vue",
@@ -16,6 +16,7 @@
     "headless-components"
   ],
   "author": "OpenTiny Team",
+  "sideEffects": false,
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "publishTgz": "node .cloudbuild/publish-tgzs.js",
     "postversion": "pnpm build",
     "build:themejson": "node scripts/build-theme-json",
+    "stylelint": "stylelint \"**/*.less\" --fix",
     "build:component-cssvar": "node scripts/build-component-cssvar"
   },
   "devDependencies": {
@@ -49,6 +51,40 @@
     "gulp-less": "^5.0.0",
     "gulp-svg-inline": "^1.0.1",
     "rimraf": "^2.6.2",
-    "fast-glob": "^3.2.12"
+    "fast-glob": "^3.2.12",
+    "stylelint": "^14.14.0",
+    "stylelint-config-standard": "^29.0.0"
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.less"
+        ],
+        "customSyntax": "postcss-less"
+      }
+    ],
+    "rules": {
+      "selector-pseudo-element-colon-notation": "single",
+      "import-notation": null,
+      "string-quotes": "single",
+      "selector-class-pattern": null,
+      "declaration-empty-line-before": null,
+      "at-rule-empty-line-before": null,
+      "at-rule-no-unknown": [
+        true,
+        {
+          "ignoreAtRules": [
+            "apply",
+            "variants",
+            "responsive",
+            "screen"
+          ]
+        }
+      ]
+    }
   }
 }

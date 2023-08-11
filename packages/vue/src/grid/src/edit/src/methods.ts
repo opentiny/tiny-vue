@@ -26,12 +26,27 @@ import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import { hooks } from '@opentiny/vue-common'
 import { addClass } from '@opentiny/vue-renderless/common/deps/dom'
 import browser from '@opentiny/vue-renderless/common/browser'
-import { isArray, destructuring, set, get, remove, filterTree, find, clone } from '@opentiny/vue-renderless/grid/static/'
+import {
+  isArray,
+  destructuring,
+  set,
+  get,
+  remove,
+  filterTree,
+  find,
+  clone
+} from '@opentiny/vue-renderless/grid/static/'
 import { getCell, getCellValue, setCellValue, emitEvent, getRowid } from '@opentiny/vue-renderless/grid/utils'
 import { Renderer } from '../../adapter'
 import { error, warn } from '../../tools'
 import GlobalConfig from '../../config'
-import { handleActivedCheckCell, handleActivedCanActive, handleActivedDoActive, handleActivedClearActive, handleActivedTryActive } from './utils/handleActived'
+import {
+  handleActivedCheckCell,
+  handleActivedCanActive,
+  handleActivedDoActive,
+  handleActivedClearActive,
+  handleActivedTryActive
+} from './utils/handleActived'
 
 function operArrs({ _vm, editStore, newRecords, newRecordsCopy, nowData, row, tableFullData, tableSourceData }) {
   if (row === -1) {
@@ -540,7 +555,10 @@ export default {
     let { actived, selected } = editStore
     let { cell, column, row } = params || {}
     let selectMethod = () => {
-      if ((selected.row === row && selected.column === column) || (actived.row === row && (editConfig.mode !== 'cell' || actived.column === column))) {
+      if (
+        (selected.row === row && selected.column === column) ||
+        (actived.row === row && (editConfig.mode !== 'cell' || actived.column === column))
+      ) {
         return this.$nextTick()
       }
 

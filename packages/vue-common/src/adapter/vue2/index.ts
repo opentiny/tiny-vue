@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import * as hooks from '@vue/composition-api'
-import type { } from 'vue-router'
+import type {} from 'vue-router'
 import { bindFilter, emitter, getElementCssClass, getElementStatusClass } from '../utils'
 import teleport from '../teleport'
 
@@ -8,7 +8,9 @@ const Teleport = teleport(hooks)
 
 export { emitter, bindFilter, getElementCssClass, getElementStatusClass, Teleport }
 
-Vue.use(hooks.default)
+if (!hooks.default['__composition_api_installed__']) {
+  Vue.use(hooks.default)
+}
 
 export const defineAsyncComponent = ({ loader, loadingComponent, errorComponent, delay, timeout }) => {
   return () => ({
@@ -16,15 +18,24 @@ export const defineAsyncComponent = ({ loader, loadingComponent, errorComponent,
     loading: loadingComponent,
     error: errorComponent,
     delay,
-    timeout,
+    timeout
   })
 }
 
-export const markRaw = ref => ref
+export const markRaw = (ref) => ref
 
-export const renderComponent = ({ view = null as any, component = null as any, props, context: { attrs, listeners: on, slots }, extend = {} }) => {
+export const renderComponent = ({
+  view = null as any,
+  component = null as any,
+  props,
+  context: { attrs, listeners: on, slots },
+  extend = {}
+}) => {
   return () =>
-    hooks.h((view && view.value) || component, Object.assign({ props, attrs, [extend.isSvg ? 'nativeOn' : 'on']: on, scopedSlots: { ...slots } }, extend))
+    hooks.h(
+      (view && view.value) || component,
+      Object.assign({ props, attrs, [extend.isSvg ? 'nativeOn' : 'on']: on, scopedSlots: { ...slots } }, extend)
+    )
 }
 
 export const rootConfig = () => hooks.getCurrentInstance()?.proxy.$root
@@ -47,7 +58,7 @@ export const appProperties = () => Vue.prototype
 export const useRouter = (instance = hooks.getCurrentInstance()?.proxy) => {
   return {
     route: instance?.$route,
-    router: instance?.$router,
+    router: instance?.$router
   }
 }
 
@@ -56,11 +67,8 @@ const emitEvent = (vm) => {
     vm.$children.forEach((child) => {
       const name = child.$options.componentName
 
-      if (name === componentName)
-        child.$emit(eventName, params)
-
-      else
-        broadcast(child, componentName, eventName, params)
+      if (name === componentName) child.$emit(eventName, params)
+      else broadcast(child, componentName, eventName, params)
     })
   }
 
@@ -72,20 +80,18 @@ const emitEvent = (vm) => {
       while (parent && (!name || name !== componentName)) {
         parent = parent.$parent
 
-        if (parent)
-          name = parent.$options.componentName
+        if (parent) name = parent.$options.componentName
       }
 
-      if (parent)
-        parent.$emit(...[eventName].concat(params))
+      if (parent) parent.$emit(...[eventName].concat(params))
     },
     broadcast(componentName, eventName, params) {
       broadcast(vm, componentName, eventName, params)
-    },
+    }
   }
 }
 
-const parent = vm => (handler) => {
+const parent = (vm) => (handler) => {
   let parent = vm.$parent
   let level = 0
 
@@ -94,27 +100,24 @@ const parent = vm => (handler) => {
       level,
       vm: createVm({}, parent),
       el: parent.$el,
-      options: parent.$options,
+      options: parent.$options
     }
   }
 
-  if (typeof handler !== 'function')
-    return parent ? parentObject(parent) : {}
+  if (typeof handler !== 'function') return parent ? parentObject(parent) : {}
 
   level++
 
   while (parent) {
-    if (handler(parentObject(parent)))
-      break
+    if (handler(parentObject(parent))) break
 
     parent = parent.$parent
     level++
   }
 }
 
-const children = vm => (handler) => {
-  if (typeof handler !== 'function')
-    return generateChildren(vm.$children)
+const children = (vm) => (handler) => {
+  if (typeof handler !== 'function') return generateChildren(vm.$children)
 
   let layer = 1
 
@@ -128,13 +131,13 @@ const children = vm => (handler) => {
           vm: createVm({}, child),
           el: child.$el,
           options: child.$options,
-          isLevel1: level === 1,
+          isLevel1: level === 1
         })
       })
     )
       return
 
-    $children.forEach(child => broadcast(child.$children))
+    $children.forEach((child) => broadcast(child.$children))
   }
 
   broadcast(vm.$children)
@@ -157,29 +160,27 @@ const generateChildren = ($children) => {
 
 const defineProperties = (vm, instance, filter) => {
   for (const name in instance) {
-    if (typeof filter === 'function' && filter(name))
-      continue
+    if (typeof filter === 'function' && filter(name)) continue
 
     Object.defineProperty(vm, name, {
       configurable: true,
       enumerable: true,
       get: () => instance[name],
-      set: value => (instance[name] = value),
+      set: (value) => (instance[name] = value)
     })
   }
 
   return vm
 }
 
-const filter = name => name.indexOf('$') === 0 || name.indexOf('_') === 0 || name === 'constructor'
+const filter = (name) => name.indexOf('$') === 0 || name.indexOf('_') === 0 || name === 'constructor'
 
 const customEmit = (context, emit) => {
   return function (...args) {
     emit.apply(context, args)
 
     // vue3 下 emit('update:modelValue') 会同时触发 input 事件，vue2 不会
-    if (args[0] === 'update:modelValue')
-      emit.apply(context, ['input'].concat(args.slice(1)))
+    if (args[0] === 'update:modelValue') emit.apply(context, ['input'].concat(args.slice(1)))
   }
 }
 
@@ -199,7 +200,7 @@ const createVm = (vm, instance, context = undefined) => {
     $on: { get: () => instance.$on.bind(instance) },
     $once: { get: () => instance.$once.bind(instance) },
     $options: {
-      get: () => ({ componentName: instance.$options.componentName }),
+      get: () => ({ componentName: instance.$options.componentName })
     },
     $parent: { get: () => instance.$parent && createVm({}, instance.$parent) },
     $refs: { get: () => instance.$refs },
@@ -207,7 +208,7 @@ const createVm = (vm, instance, context = undefined) => {
     $scopedSlots: { get: () => instance.$scopedSlots },
     $set: { get: () => instance.$set },
     $slots: { get: () => instance.$scopedSlots },
-    $template: { get: () => instance.tiny_template },
+    $template: { get: () => instance.tiny_template }
   })
 
   return vm
@@ -242,6 +243,7 @@ export const tools = (context, mode) => {
   hooks.onBeforeMount(() => defineProperties(vm, instance, filter))
 
   return {
+    framework: 'vue2',
     vm,
     emit: customEmit(context, emit),
     emitter,
@@ -266,7 +268,7 @@ export const tools = (context, mode) => {
     getService: () => instance?.$getService(vm),
     setParentAttribute,
     defineInstanceProperties,
-    defineParentInstanceProperties,
+    defineParentInstanceProperties
   }
 }
 
@@ -298,7 +300,7 @@ export const directive = (directives) => {
 const bindVnodeData = ({ props, data, name, attr = name }) => {
   Object.defineProperty(props, attr, {
     get: () => data[name],
-    set: value => (data[name] = value),
+    set: (value) => (data[name] = value)
   })
 }
 
@@ -306,8 +308,7 @@ export const parseVnode = (vnode) => {
   const props = {}
   const data = (vnode.componentOptions && vnode.componentOptions.propsData) || {}
 
-  for (const name in data)
-    bindVnodeData({ props, data, name })
+  for (const name in data) bindVnodeData({ props, data, name })
 
   vnode.props = props
   vnode.type = { name: vnode.componentOptions && vnode.componentOptions.tag }
@@ -332,6 +333,12 @@ export const isVue2 = true
 
 export const isVue3 = false
 
-export type { PropType, ExtractPropTypes } from '@vue/composition-api'
+export type {
+  PropType,
+  ExtractPropTypes,
+  ComponentPublicInstance,
+  SetupContext,
+  ComputedRef
+} from '@vue/composition-api'
 
 export type DefineComponent = typeof defineComponent

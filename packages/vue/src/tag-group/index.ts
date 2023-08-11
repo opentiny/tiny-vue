@@ -1,4 +1,4 @@
-import TagGroup from './src/mobile-first.vue'
+import TagGroup from './src/index'
 import { version } from './package.json'
 
 /* istanbul ignore next */

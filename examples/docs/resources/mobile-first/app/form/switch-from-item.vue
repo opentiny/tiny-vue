@@ -1,6 +1,13 @@
 <template>
   <div class="demo-form">
-    <tiny-form ref="ruleForm" hide-required-asterisk :model="createData" :rules="rules" label-width="100px" show-message>
+    <tiny-form
+      ref="ruleForm"
+      hide-required-asterisk
+      :model="createData"
+      :rules="rules"
+      label-width="100px"
+      show-message
+    >
       <tiny-form-item label="等级" prop="radio">
         <tiny-radio-group v-model="createData.radio" :options="options" @change="change"></tiny-radio-group>
       </tiny-form-item>

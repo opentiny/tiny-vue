@@ -2,7 +2,7 @@ import MagicString from 'magic-string'
 
 export const transformConditionalTemplate = (code: string, id: string, env: any = {}) => {
   const source = new MagicString(code, {
-    filename: id,
+    filename: id
   })
 
   source.replace(
@@ -37,8 +37,8 @@ export const transformConditionalTemplate = (code: string, id: string, env: any 
       map: source.generateMap({
         source: id,
         file: `${id}.map`,
-        includeContent: true,
-      }),
+        includeContent: true
+      })
     }
   }
 }

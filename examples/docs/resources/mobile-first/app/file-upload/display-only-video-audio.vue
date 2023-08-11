@@ -1,10 +1,22 @@
 <template>
   <div>
-    <tiny-file-upload :action="action" display-only list-type="picture-single" source-type="video" :file-list="fileList1">
+    <tiny-file-upload
+      :action="action"
+      display-only
+      list-type="picture-single"
+      source-type="video"
+      :file-list="fileList1"
+    >
     </tiny-file-upload>
     <br />
     <br />
-    <tiny-file-upload :action="action" display-only list-type="picture-single" source-type="audio" :file-list="fileList2">
+    <tiny-file-upload
+      :action="action"
+      display-only
+      list-type="picture-single"
+      source-type="audio"
+      :file-list="fileList2"
+    >
     </tiny-file-upload>
   </div>
 </template>

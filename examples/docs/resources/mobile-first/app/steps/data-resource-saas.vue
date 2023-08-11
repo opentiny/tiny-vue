@@ -4,9 +4,7 @@
     <br /><br />
     <tiny-steps :data="data" :active="advancedActive" @click="advancedClick"></tiny-steps>
 
-    <p style="margin-top: 50px">
-      &nbsp;
-    </p>
+    <p style="margin-top: 50px">&nbsp;</p>
 
     <p>垂直单链型</p>
     <br /><br />

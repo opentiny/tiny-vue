@@ -2,6 +2,9 @@ import { iconDownWard } from '@opentiny/vue-icon'
 
 export default {
   icons: {
-    downWard: iconDownWard()
+    dropdownIcon: iconDownWard()
+  },
+  state: {
+    initialInputHeight: 32
   }
 }

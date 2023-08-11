@@ -13,6 +13,29 @@
 @import '../custom.less';
 @import './basic-var.less';
 
+// 为了防止这些图标失去默认值，需要全局设置默认值
+
+.tiny-icon-success {
+  fill: #5cb300;
+}
+
+.tiny-icon-error {
+  fill: #f23030;
+}
+
+.tiny-icon-warning-triangle {
+  fill: #ff8800;
+}
+
+.tiny-icon-prompt {
+  fill: #1476ff;
+}
+
+.tiny-icon-text-type {
+  fill: #9185f0;
+}
+
+
 [class*=~'@{css-prefix}'] {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -128,6 +151,7 @@
   }
 
   .popper__arrow {
+
     &,
     &:after {
       position: absolute;

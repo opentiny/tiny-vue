@@ -44,7 +44,11 @@
             @click.stop="doSuggesstNow"
             class="tiny-svg-size tiny-svg__popeditor tiny-chevron"
           ></icon-chevron-down>
-          <icon-close v-if="showClearBtn && !!state.display && !suggest" @click.stop="handleClear" class="tiny-svg-size tiny-svg__popeditor"></icon-close>
+          <icon-close
+            v-if="showClearBtn && !!state.display && !suggest"
+            @click.stop="handleClear"
+            class="tiny-svg-size tiny-svg__popeditor"
+          ></icon-close>
           <component
             v-if="!(showClearBtn && !!state.display && !suggest) || (!suggest && !readonly)"
             :is="icon"
@@ -68,6 +72,7 @@
           :row-id="valueField"
           :select-config="{ checkRowKeys: state.selectedValues }"
           :radio-config="{ checkRowKey: state.commitValue, trigger }"
+          :tooltip-config="tooltipConfig"
           @select-all="sourceGridSelectAll"
           @select-change="sourceGridSelectChange"
           @radio-change="suggestRadioChange"
@@ -84,15 +89,26 @@
       :close-on-click-modal="false"
       :width="state.modalWidth"
       @close="$parent.$emit('close')"
+      @closed="state.showContent = false"
       :before-close="handleBeforeClose"
       :dialog-class="dialogClass"
     >
-      <template v-if="state.open">
+      <template v-if="state.showContent">
         <div class="tiny-popeditor-top" v-if="state.conditions.length && popseletor === 'grid'">
           <slot name="search" :search-op="state.searchOp">
             <ul class="tiny-popeditor__search-lists">
-              <li class="tiny-popeditor__search-item" v-for="item in conditions" :key="item.field" :style="{ width: 100 * ((item.span || 6) / 12) + '%' }">
-                <label class="tiny-popeditor__search-label" :title="item.label" :style="{ width: item.labelWidth || '160px' }">{{ item.label }}</label>
+              <li
+                class="tiny-popeditor__search-item"
+                v-for="item in conditions"
+                :key="item.field"
+                :style="{ width: 100 * ((item.span || 6) / 12) + '%' }"
+              >
+                <label
+                  class="tiny-popeditor__search-label"
+                  :title="item.label"
+                  :style="{ width: item.labelWidth || '160px' }"
+                  >{{ item.label }}</label
+                >
                 <component
                   :is="item.component || 'tiny-input'"
                   v-model="state.search[item.field]"
@@ -103,7 +119,15 @@
                 ></component>
               </li>
             </ul>
-            <div class="tiny-popeditor__search-footer">
+            <div class="tiny-popeditor__search-footer" v-if="state.theme === 'saas'">
+              <button type="button" @click="handleReset" class="tiny-button tiny-button--default">
+                <span>{{ t('ui.popeditor.reset') }}</span>
+              </button>
+              <button type="button" @click="handleSearch" class="tiny-button tiny-button--primary">
+                <span>{{ t('ui.popeditor.search') }}</span>
+              </button>
+            </div>
+            <div class="tiny-popeditor__search-footer" v-else>
               <button type="button" @click="handleSearch" class="tiny-button tiny-button--primary">
                 <span>{{ t('ui.popeditor.search') }}</span>
               </button>
@@ -148,6 +172,7 @@
                     :data="state.historyGridDataset"
                     :row-id="valueField"
                     :select-config="{ checkRowKeys: state.selectedValues }"
+                    :tooltip-config="tooltipConfig"
                     @select-all="sourceGridSelectAll"
                     @select-change="sourceGridSelectChange"
                   ></tiny-grid>
@@ -165,6 +190,7 @@
                     :data="state.sourceGridDataset"
                     :row-id="valueField"
                     :select-config="{ checkRowKeys: state.selectedValues }"
+                    :tooltip-config="tooltipConfig"
                     @select-all="sourceGridSelectAll"
                     @select-change="sourceGridSelectChange"
                   ></tiny-grid>
@@ -180,8 +206,14 @@
                     :data="state.sourceGridDataset"
                     :row-id="valueField"
                     :radio-config="{ checkRowKey: state.commitValue, trigger }"
+                    :tooltip-config="tooltipConfig"
                   ></tiny-grid>
-                  <tiny-pager v-if="showPager" v-bind="state.pagerConfig" @current-change="handleSizeChange" @size-change="handleNumberPageChange"></tiny-pager>
+                  <tiny-pager
+                    v-if="showPager"
+                    v-bind="state.pagerConfig"
+                    @current-change="handleSizeChange"
+                    @size-change="handleNumberPageChange"
+                  ></tiny-pager>
                 </div>
               </div>
             </div>
@@ -197,7 +229,34 @@
               </div>
               <div class="tiny-popeditor__tabs-body">
                 <div class="tabs-body-item">
+                  <tiny-selected-box
+                    v-if="showSelectedBox"
+                    ref="selectedBox"
+                    style="height: 290px"
+                    :select="state.selectedDatas"
+                    @clear="selectedBoxClear"
+                    @delete="selectedBoxDelete"
+                    @drag="selectedBoxDrag"
+                    v-bind="selectedBoxOp"
+                  >
+                    <template v-if="slots.select" #select="params">
+                      <slot name="select" v-bind="params"></slot>
+                    </template>
+                    <template v-if="slots.button" #button="params">
+                      <slot name="button" v-bind="params"></slot>
+                    </template>
+                    <template v-if="slots.clear" #clear="params">
+                      <slot name="clear" v-bind="params"></slot>
+                    </template>
+                    <template v-if="slots.option" #option="params">
+                      <slot name="option" v-bind="params"></slot>
+                    </template>
+                    <template v-if="slots.close" #close="params">
+                      <slot name="close" v-bind="params"></slot>
+                    </template>
+                  </tiny-selected-box>
                   <tiny-grid
+                    v-else
                     ref="selectedGrid"
                     auto-resize
                     :columns="state.baseColumns"
@@ -206,6 +265,7 @@
                     size="mini"
                     :row-id="valueField"
                     :select-config="{ checkRowKeys: state.selectedValues }"
+                    :tooltip-config="tooltipConfig"
                     @select-all="selectedGridSelectAll"
                     @select-change="selectedGridSelectChange"
                   ></tiny-grid>
@@ -226,7 +286,17 @@
         </div>
       </template>
       <template #footer>
-        <span class="tiny-toolbar">
+        <span class="tiny-toolbar" v-if="state.theme === 'saas'">
+          <slot name="footer" :confirm="handleConfirm" :cancel="handleCancel">
+            <button type="button" @click="handleCancel" class="tiny-button tiny-button--default">
+              <span>{{ t('ui.popeditor.cancel') }}</span>
+            </button>
+            <button type="button" @click="handleConfirm" class="tiny-button tiny-button--primary">
+              <span>{{ t('ui.popeditor.confirm') }}</span>
+            </button>
+          </slot>
+        </span>
+        <span class="tiny-toolbar" v-else>
           <slot name="footer" :confirm="handleConfirm" :cancel="handleCancel">
             <button type="button" @click="handleConfirm" class="tiny-button tiny-button--primary">
               <span>{{ t('ui.popeditor.confirm') }}</span>
@@ -250,6 +320,7 @@ import DialogBox from '@opentiny/vue-dialog-box'
 import Grid from '@opentiny/vue-grid'
 import Pager from '@opentiny/vue-pager'
 import Tree from '@opentiny/vue-tree'
+import SelectedBox from '@opentiny/vue-selected-box'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 
 export default defineComponent({
@@ -261,7 +332,8 @@ export default defineComponent({
     TinyGrid: Grid,
     TinyPager: Pager,
     TinyDialogBox: DialogBox,
-    TinyTree: Tree
+    TinyTree: Tree,
+    TinySelectedBox: SelectedBox
   },
   directives: {
     Clickoutside
@@ -305,7 +377,10 @@ export default defineComponent({
     'placement',
     'popperAppendToBody',
     'suggest',
-    'beforeClose'
+    'beforeClose',
+    'showSelectedBox',
+    'selectedBoxOp',
+    'tooltipConfig'
   ],
   emits: ['change', 'close', 'page-change', 'popup'],
   setup(props, context) {

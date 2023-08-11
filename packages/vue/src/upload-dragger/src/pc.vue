@@ -23,12 +23,13 @@
 </template>
 
 <script lang="ts">
-import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
+import { $props, $prefix, setup, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/upload-dragger/vue'
 
 export default defineComponent({
   name: $prefix + 'UploadDragger',
   props: {
+    ...$props,
     disabled: Boolean
   },
   setup(props, context) {

@@ -14,7 +14,7 @@
     class="tiny-checkbox"
     :class="[
       border && state.checkboxSize ? 'tiny-checkbox--' + state.checkboxSize : '',
-      { 'is-disabled': state.isDisabled },
+      { 'is-disabled': state.isDisabled || state.isDisplayOnly },
       { 'is-bordered': border },
       { 'is-checked': state.isChecked },
       { 'is-group-display-only': state.isGroupDisplayOnly },
@@ -27,7 +27,7 @@
     <span
       class="tiny-checkbox__input"
       :class="{
-        'is-disabled': state.isDisabled,
+        'is-disabled': state.isDisabled || state.isDisplayOnly,
         'is-checked': state.isChecked,
         'is-indeterminate': indeterminate,
         'is-focus': state.focus
@@ -46,7 +46,7 @@
         type="checkbox"
         :aria-hidden="indeterminate ? 'true' : 'false'"
         :name="name"
-        :disabled="state.isDisabled"
+        :disabled="state.isDisabled || state.isDisplayOnly"
         :true-value="trueLabel"
         :false-value="falseLabel"
         v-model="state.model"
@@ -60,7 +60,7 @@
         class="tiny-checkbox__original"
         type="checkbox"
         :aria-hidden="indeterminate ? 'true' : 'false'"
-        :disabled="state.isDisabled"
+        :disabled="state.isDisabled || state.isDisplayOnly"
         :value="label"
         :name="name"
         v-model="state.model"
@@ -70,8 +70,10 @@
         @click.stop
       />
     </span>
-    {{ state.showText }}
-    <span v-if="(slots.default && slots.default()) || state.isShowText" class="tiny-checkbox__label tiny-checkbox-display-only">
+    <span
+      v-if="(slots.default && slots.default()) || state.isShowText"
+      class="tiny-checkbox__label tiny-checkbox-display-only"
+    >
       <slot>{{ state.showText }}</slot>
     </span>
   </label>

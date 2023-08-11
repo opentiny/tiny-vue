@@ -3,6 +3,7 @@ import { provideDesignConfig, type PropType, hooks, props as _props, isVue2 } fr
 import type { Tag, TextDirection, breakPoint } from './props'
 import { $prefix, defineComponent } from '@opentiny/vue-common'
 import { configProviderContextKey } from '../index'
+import '@opentiny/vue-theme/config-provider/index.less'
 
 export default defineComponent({
   name: $prefix + 'ConfigProvider',
@@ -67,7 +68,7 @@ export default defineComponent({
     })
     const classNames = hooks.reactive({
       'tiny-config-provider': true,
-      'tiny-config-provider--rtl': isRTL
+      'tiny-config-provider__rtl': isRTL
     })
     hooks.provide(configProviderContextKey, props)
     return {
@@ -95,10 +96,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style>
-.tiny-config-provider--rtl {
-  direction: var(--text-direction);
-  transform: translateY(-1);
-}
-</style>

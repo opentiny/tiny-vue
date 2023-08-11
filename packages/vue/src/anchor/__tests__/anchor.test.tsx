@@ -49,7 +49,9 @@ describe('PC Mode', () => {
   test.todo('mask-class 自定义滚动的目标元素类名')
 
   // events
-  test.todo('link-click 锚点点击事件, 点击后触发的回调函数;//参数arg1:点击事件对象 //参数arg2: {link: 点击锚点的链接, title: 点击节点的标题文字 }')
+  test.todo(
+    'link-click 锚点点击事件, 点击后触发的回调函数;//参数arg1:点击事件对象 //参数arg2: {link: 点击锚点的链接, title: 点击节点的标题文字 }'
+  )
 
   test.todo('on-change 监听锚点链接的改变；锚点改变后的回调函数; // 参数arg1: 当前锚点的id值')
 })

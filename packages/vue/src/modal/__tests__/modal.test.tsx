@@ -61,15 +61,27 @@ describe('PC Mode', () => {
 
   test.todo('message-closable message信息是否显示关闭按钮')
 
+  test.todo('confirm-content 确定按钮内容')
+
+  test.todo('cancel-content 取消按钮内容')
+
+  test.todo('confirm-btn-props 确定按钮props')
+
+  test.todo('cancel-btn-props 取消按钮props')
+
   /**
    * slots
    */
   test('default', () => {
     let show = true
-    const wrapper = mount(() =><Modal v-model={show}  v-slots={{
-      default: () => <span class="custom-content">默认插槽-自定义内容</span>
-    }}>
-    </Modal>)
+    const wrapper = mount(() => (
+      <Modal
+        v-model={show}
+        v-slots={{
+          default: () => <span class="custom-content">默认插槽-自定义内容</span>
+        }}
+      ></Modal>
+    ))
     expect(wrapper.find('span.custom-content').isVisible()).toBe(true)
   })
 
@@ -94,4 +106,3 @@ describe('PC Mode', () => {
 
   test.todo('zoom 窗口缩放时触发的事件')
 })
-

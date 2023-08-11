@@ -47,7 +47,9 @@ export default defineComponent({
           }
 
           const type = row[colorField] || ''
-          const tagProps = { props: { size: 'mini', customClass: 'inline-block truncate max-w-[theme(spacing.28)] h-4.5' } }
+          const tagProps = {
+            props: { size: 'mini', customClass: 'inline-block truncate max-w-[theme(spacing.28)] h-4.5' }
+          }
 
           if (type) {
             Object.assign(tagProps.props, { type })

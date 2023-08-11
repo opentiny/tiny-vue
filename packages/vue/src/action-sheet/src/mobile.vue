@@ -12,17 +12,27 @@
 <template>
   <div class="tiny-mobile-action-sheet" v-show="visible" @click="visibleHandle">
     <div class="tiny-mobile-action-sheet__mask" :style="state.sheetMaskStyle" v-if="!contentPosition"></div>
-    <div :class="[
-      'tiny-mobile-action-sheet__content',
-      state.toggle ? 'is-toggle' : '',
-      contentPosition ? '' : 'is-not-content'
-    ]" :style="[state.sheetContentStyle]" ref="scrollMenu">
+    <div
+      :class="[
+        'tiny-mobile-action-sheet__content',
+        state.toggle ? 'is-toggle' : '',
+        contentPosition ? '' : 'is-not-content'
+      ]"
+      :style="[state.sheetContentStyle]"
+      ref="scrollMenu"
+    >
       <div :class="['tiny-mobile-action-sheet__menu', ellipsis ? 'is-ellipsis' : '']">
-        <div :class="[
-          'tiny-mobile-action-sheet__item',
-          item.warn ? 'is-warn' : '',
-          item.id === modelValue || item.id === state.active ? 'is-active' : ''
-        ]" :style="state.contentStyle" v-for="(item, index) in menus" :key="index" @click="menuHandle(item, index)">
+        <div
+          :class="[
+            'tiny-mobile-action-sheet__item',
+            item.warn ? 'is-warn' : '',
+            item.id === modelValue || item.id === state.active ? 'is-active' : ''
+          ]"
+          :style="state.contentStyle"
+          v-for="(item, index) in menus"
+          :key="index"
+          @click="menuHandle(item, index)"
+        >
           <slot name="item" :item="item">
             {{ item.label }}
           </slot>
@@ -47,16 +57,7 @@ import BScroll from '@better-scroll/core'
 
 export default defineComponent({
   name: $prefix + 'ActionSheet',
-  props: [
-    ...props,
-    'menus',
-    'modelValue',
-    'visible',
-    'ellipsis',
-    'height',
-    'contentPosition',
-    'contentStyle'
-  ],
+  props: [...props, 'menus', 'modelValue', 'visible', 'ellipsis', 'height', 'contentPosition', 'contentStyle'],
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true, extendOptions: { BScroll } })
   }

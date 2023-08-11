@@ -184,7 +184,10 @@ const utilRules = [
 const _s5 = { c: 'color', bg: 'background-color' }
 const colorRules = [
   // 颜色  #不建议使用            c-black  bg-primary  c#123456  c-theme-color
-  [/^(c|bg)-rand(\d+)$/, ([, attr, seed]) => ({ [`${_s5[attr]}`]: `#${Math.floor(Math.random() * 255 * 255 * 255).toString(16)}` })],
+  [
+    /^(c|bg)-rand(\d+)$/,
+    ([, attr, seed]) => ({ [`${_s5[attr]}`]: `#${Math.floor(Math.random() * 255 * 255 * 255).toString(16)}` })
+  ],
   [/^(c|bg)-([\w|-]+)$/, ([, attr, color]) => ({ [`${_s5[attr]}`]: `var(--${color})` })],
   [/^(c|bg)#(\w+)$/, ([, attr, color]) => ({ [`${_s5[attr]}`]: `#${color}` })]
 ]

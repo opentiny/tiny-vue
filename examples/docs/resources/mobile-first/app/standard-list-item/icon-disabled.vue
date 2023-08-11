@@ -1,6 +1,12 @@
 <template>
   <div class="h-64 w-full p-5 bg-color-bg-5">
-    <tiny-standard-list-item :show-image="true" :options="iconOptions" :data="data" @icon-click="iconClick" class="bg-color-bg-1">
+    <tiny-standard-list-item
+      :show-image="true"
+      :options="iconOptions"
+      :data="data"
+      @icon-click="iconClick"
+      class="bg-color-bg-1"
+    >
     </tiny-standard-list-item>
   </div>
 </template>

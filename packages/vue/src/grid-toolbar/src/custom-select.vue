@@ -10,11 +10,25 @@
  *
  -->
 <template>
-  <tiny-select v-model="multivalue" @change="columnChange" placeholder="请选择" placement="bottom-end" :searchable="true" multiple>
+  <tiny-select
+    v-model="multivalue"
+    @change="columnChange"
+    placeholder="请选择"
+    placement="bottom-end"
+    :searchable="true"
+    multiple
+  >
     <template #reference>
       <tiny-icon-setting></tiny-icon-setting>
     </template>
-    <tiny-option v-for="item in columns" :key="item.property" :disabled="item.disabled" :label="item.title" :value="item.property"> </tiny-option>
+    <tiny-option
+      v-for="item in columns"
+      :key="item.property"
+      :disabled="item.disabled"
+      :label="item.title"
+      :value="item.property"
+    >
+    </tiny-option>
   </tiny-select>
 </template>
 
@@ -22,6 +36,7 @@
 import Select from '@opentiny/vue-select'
 import Option from '@opentiny/vue-option'
 import { GridConfig } from '@opentiny/vue-grid'
+
 export default {
   name: 'TinyGridCustomSelect',
   components: {
