@@ -126,6 +126,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center" valign="top" width="12.5%"><a href="https://zz-zzzz.github.io/"><img src="https://avatars.githubusercontent.com/u/48228016?v=4?s=100" width="100px;" alt="Zz-ZzzZ"/><br /><sub><b>Zz-ZzzZ</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Zz-ZzzZ" title="Tests">⚠️</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/lyx-jay"><img src="https://avatars.githubusercontent.com/u/39766860?v=4?s=100" width="100px;" alt="Lyx"/><br /><sub><b>Lyx</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=lyx-jay" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
