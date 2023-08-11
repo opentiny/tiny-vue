@@ -15,7 +15,7 @@ export const watchVisible = ({ state }) => (bool) => {
 export const watchToggle = ({ emit }) => (bool) => {
   setTimeout(() => {
     emit('update:visible', bool)
-  }, 200)
+  }, 0)
 }
 
 export const confirm = ({ emit, state }) => () => {
