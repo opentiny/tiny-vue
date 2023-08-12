@@ -7,7 +7,7 @@ export const api = ['state', 'color', 'slider', 'alphaWrapper', 'alphaThumb']
 
 export const renderless = (props, context, { emit }) => {
   const hex = props.color
-  const color = new Color(hex)
+  const color = new Color(hex, props.alpha)
   const [rr, gg, bb] = color.getRGB()
   const r = context.ref(rr)
   const g = context.ref(gg)

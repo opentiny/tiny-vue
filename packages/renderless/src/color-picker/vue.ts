@@ -29,7 +29,7 @@ export const renderless = (
   const changeVisible = (state: boolean) => {
     isShow.value = state
   }
-  const color = new Color(hex.value)
+  const color = new Color(hex.value, props.alpha)
   const state = context.reactive({
     isShow,
     hex,
@@ -55,7 +55,7 @@ export const renderless = (
     onHueUpdate,
     onSVUpdate,
     onConfirm: onConfirm(hex, triggerBg, res, emit, isShow),
-    onCancel: onCancel(res, triggerBg, emit, isShow),
+    onCancel: onCancel(hex, res, triggerBg, emit, isShow),
     onAlphaUpdate: update,
     cursor,
     alpha: props.alpha
