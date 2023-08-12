@@ -21,5 +21,10 @@
         "title": "事件",
         "link": "color-picker/event",
         "demoId": "event"
+    },
+    {
+        "title": "alpha",
+        "link": "color-picker/alpha",
+        "demoId": "alpha"
     }
 ]

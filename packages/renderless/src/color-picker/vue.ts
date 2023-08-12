@@ -1,6 +1,6 @@
 import type { Ref } from '@vue/composition-api'
 import Color from './utils/color'
-import { onConfirm, onCancel, onHSVUpdate } from '.'
+import { onConfirm, onCancel, onHSVUpdate, onAlphaUpdate } from '.'
 
 export const api = [
   'state',
@@ -10,7 +10,9 @@ export const api = [
   'onHueUpdate',
   'onSVUpdate',
   'onConfirm',
-  'onCancel'
+  'onCancel',
+  'onAlphaUpdate',
+  'alpha'
 ]
 
 export const renderless = (
@@ -45,7 +47,8 @@ export const renderless = (
   context.watch(visible, (visible) => {
     isShow.value = visible
   })
-  const { onHueUpdate, onSVUpdate } = onHSVUpdate(color, res)
+  const { onHueUpdate, onSVUpdate } = onHSVUpdate(color, res, hex)
+  const { update } = onAlphaUpdate(color, res)
   const api = {
     state,
     changeVisible,
@@ -53,7 +56,9 @@ export const renderless = (
     onSVUpdate,
     onConfirm: onConfirm(hex, triggerBg, res, emit, isShow),
     onCancel: onCancel(res, triggerBg, emit, isShow),
+    onAlphaUpdate: update,
     cursor,
+    alpha: props.alpha
   }
   return api
 }

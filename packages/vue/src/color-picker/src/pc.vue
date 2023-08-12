@@ -14,6 +14,7 @@
           @sv-update="onSVUpdate"
           :color="state.hex"
         />
+        <alpha-select :color="state.res" @alpha-update="onAlphaUpdate" v-if="alpha" />
         <div class="tiny-color-picker__wrapper__tools">
           <tiny-input v-model="state.res" />
           <tiny-button-group>
@@ -35,6 +36,7 @@ import { renderless, api } from '@opentiny/vue-renderless/color-picker/vue'
 import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
 import { IconChevronDown } from '@opentiny/vue-icon'
 import colorSelect from './components/color-select.vue'
+import alphaSelect from './components/alpha-select.vue'
 import Button from '@opentiny/vue-button'
 import ButtonGroup from '@opentiny/vue-button-group'
 import Input from '@opentiny/vue-input'
@@ -44,10 +46,11 @@ import { language } from '@opentiny/vue-locale'
 
 export default defineComponent({
   emits: ['update:modelValue', 'confirm', 'cancel'],
-  props: [...props, 'modelValue', 'visible'],
+  props: [...props, 'modelValue', 'visible', 'alpha'],
   components: {
     IconChevronDown: IconChevronDown(),
     ColorSelect: colorSelect,
+    AlphaSelect: alphaSelect,
     TinyButton: Button,
     TinyButtonGroup: ButtonGroup,
     TinyInput: Input

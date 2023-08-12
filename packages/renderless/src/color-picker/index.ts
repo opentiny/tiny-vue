@@ -21,14 +21,24 @@ export const onColorUpdate = (color: Color, res: Ref<string>) => {
   res.value = color.getHex()
 }
 
-export const onHSVUpdate = (color: Color, res: Ref<string>) => {
+export const onHSVUpdate = (color: Color, res: Ref<string>, hex: Ref<string>) => {
   return {
     onHueUpdate: (hue: number) => {
       color.set({ h: hue })
       onColorUpdate(color, res)
+      hex.value = color.getHex()
     },
     onSVUpdate: ({ s, v }: { s: number; v: number }) => {
       color.set({ s, v })
+      onColorUpdate(color, res)
+    }
+  }
+}
+
+export const onAlphaUpdate = (color: Color, res: Ref<string>) => {
+  return {
+    update: (alpha: number) => {
+      color.set({ a: alpha })
       onColorUpdate(color, res)
     }
   }

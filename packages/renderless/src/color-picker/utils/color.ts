@@ -1,10 +1,11 @@
 import { hsv, rgb } from 'color'
 
-function hexToRgb(hex) {
+function hexToRgb(hex: string) {
   let r = parseInt(hex.substring(1, 3), 16)
   let g = parseInt(hex.substring(3, 5), 16)
   let b = parseInt(hex.substring(5, 7), 16)
-  return { r, g, b }
+  let a = parseInt(hex.slice(7), 16) / 255
+  return { r, g, b, a: a * 100 }
 }
 const normalizeHexColor = (color: string) => {
   let normalizedColor: string = color.replace('#', '')
@@ -16,12 +17,17 @@ const normalizeHexColor = (color: string) => {
   const r = parseInt(normalizedColor.substr(0, 2), 16)
   const g = parseInt(normalizedColor.substr(2, 2), 16)
   const b = parseInt(normalizedColor.substr(4, 2), 16)
+  let a = 255
+  if (normalizedColor.length === 8) {
+    a = parseInt(normalizedColor.slice(6), 16)
+  }
 
   const hexR = ('0' + r.toString(16)).slice(-2)
   const hexG = ('0' + g.toString(16)).slice(-2)
   const hexB = ('0' + b.toString(16)).slice(-2)
+  const alpha = ('0' + a.toString(16)).slice(-2)
 
-  return `#${hexR}${hexG}${hexB}`
+  return `#${hexR}${hexG}${hexB}${alpha}`
 }
 
 export type Format = 'rgb' | 'rgba' | 'hsl' | 'hsla'
@@ -44,11 +50,12 @@ export default class Color {
       return
     }
     this.hex = normalizeHexColor(hex)
-    const { r, g, b } = hexToRgb(this.hex)
-    const { h, s, v } = rgb([r, g, b]).hsv().object()
+    const { r, g, b, a } = hexToRgb(this.hex)
+    const { h, s, v } = rgb([r, g, b, a]).hsv().object()
     this.h = h
     this.s = s
     this.v = v
+    this.a = a
   }
 
   set({ h, s, v, a }: { h?: number; s?: number; v?: number; a?: number }) {
@@ -63,11 +70,11 @@ export default class Color {
    * @returns [R,G,B]
    */
   getRGB() {
-    return hsv(this.h, this.s, this.v).rgb().unitArray()
+    return hsv(this.h, this.s, this.v).rgb().array()
   }
 
   getHex() {
-    return hsv(this.h, this.s, this.v).hex().toString()
+    return hsv(this.h, this.s, this.v, this.a / 100).hexa().toString()
   }
 
   /**
