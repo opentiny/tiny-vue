@@ -13,7 +13,6 @@
   <div class="tiny-badge__wrapper">
     <span v-if="data">{{ data }}</span>
     <slot v-else />
-    <slot />
     <div
       v-if="!hidden && (state.content || state.content === 0 || isDot)"
       class="tiny-badge"
