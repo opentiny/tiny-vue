@@ -1,5 +1,5 @@
 <template>
-  <div class="box tiny-rich-text-editor">
+  <div class="tiny-rich-text-editor">
     <div class="button-area">
       <!-- starter-kit功能区 -->
       <button
@@ -80,17 +80,24 @@
       >
         <TinyIconRichTextSuperscript></TinyIconRichTextSuperscript>
       </button>
-      <button title="unordered list" @click="state.editor.chain().focus().toggleBulletList().run()">
+      <!-- 无序列表 -->
+      <button title="code" @click="state.editor.chain().focus().toggleCode().run()">
+        <TinyIconRichTextCodeView></TinyIconRichTextCodeView>
+      </button>
+      <button title="unordered list" @click.stop="state.editor.chain().focus().toggleBulletList().run()">
         <TinyIconRichTextListUnordered></TinyIconRichTextListUnordered>
       </button>
       <button title="ordered list" @click="state.editor.chain().focus().toggleOrderedList().run()">
         <TinyIconRichTextListOrdered></TinyIconRichTextListOrdered>
       </button>
+      <button
+        @click="state.editor.chain().focus().toggleTaskList().run()"
+        :class="{ 'is-active': state.editor?.isActive('taskList') }"
+      >
+        <TinyIconRichTextTaskList></TinyIconRichTextTaskList>
+      </button>
       <button title="quote" @click="state.editor.chain().focus().toggleBlockquote().run()">
         <TinyIconRichTextQuoteText></TinyIconRichTextQuoteText>
-      </button>
-      <button title="code" @click="state.editor.chain().focus().toggleCode().run()">
-        <TinyIconRichTextCodeView></TinyIconRichTextCodeView>
       </button>
       <button title="code block" @click="state.editor.chain().focus().toggleCodeBlock().run()">
         <TinyIconRichTextCodeBlock></TinyIconRichTextCodeBlock>
@@ -114,6 +121,25 @@
           <TinyIconRichTextImage></TinyIconRichTextImage>
         </label>
       </button>
+      <!-- 文本对齐 -->
+      <button
+        @click="state.editor.chain().focus().setTextAlign('left').run()"
+        :class="{ 'is-active': state.editor?.isActive({ textAlign: 'left' }) }"
+      >
+        <TinyIconRichTextAlignLeft></TinyIconRichTextAlignLeft>
+      </button>
+      <button
+        @click="state.editor.chain().focus().setTextAlign('center').run()"
+        :class="{ 'is-active': state.editor?.isActive({ textAlign: 'center' }) }"
+      >
+        <TinyIconRichTextAlignCenter></TinyIconRichTextAlignCenter>
+      </button>
+      <button
+        @click="state.editor.chain().focus().setTextAlign('right').run()"
+        :class="{ 'is-active': state.editor?.isActive({ textAlign: 'right' }) }"
+      >
+        <TinyIconRichTextAlignRight></TinyIconRichTextAlignRight>
+      </button>
       <!-- 颜色 -->
       <button title="color" class="color-button">
         <label for="tiny-color">
@@ -127,92 +153,95 @@
         />
       </button>
       <!-- 表格功能按钮 -->
-      <button
-        title="table"
-        class="table-button"
-        @click="state.editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
-      >
-        <div class="table-box">
+      <button title="table" class="table-button">
+        <div class="table-box" @click="handleClick">
           <div class="table-icon">
             <TinyIconRichTextTable></TinyIconRichTextTable>
-            <!-- <svg t="1690619350901" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-							p-id="75921" width="16" height="20">
-							<path
-								d="M257.783111 431.783027L493.964228 145.503908c9.351995-11.336186 26.720571-11.336186 36.072567 0l236.181117 286.279119c12.58155 15.250332 1.733481 38.262442-18.036795 38.262442H275.818883c-19.770276 0-30.617321-23.01211-18.035772-38.262442zM766.216889 592.216973L530.036795 878.496092c-9.351995 11.336186-26.720571 11.336186-36.072567 0L257.783111 592.216973c-12.58155-15.250332-1.733481-38.262442 18.036795-38.262442h472.361211c19.770276 0 30.617321 23.01211 18.035772 38.262442z"
-								fill="#000000" p-id="75922"></path>
-						</svg> -->
           </div>
-          <div class="table-option">
-            <button
-              title="add column before"
-              @click="state.editor.chain().focus().addColumnBefore().run()"
-              :disabled="!state.editor?.can().addColumnBefore()"
-            >
-              <TinyIconRichTextAddColumnBefore></TinyIconRichTextAddColumnBefore>
-            </button>
-            <button
-              title="add column after"
-              @click="state.editor.chain().focus().addColumnAfter().run()"
-              :disabled="!state.editor?.can().addColumnAfter()"
-            >
-              <TinyIconRichTextAddColumnAfter></TinyIconRichTextAddColumnAfter>
-            </button>
-            <button
-              title="delete column"
-              @click="state.editor.chain().focus().deleteColumn().run()"
-              :disabled="!state.editor?.can().deleteColumn()"
-            >
-              <TinyIconRichTextDeleteColumn></TinyIconRichTextDeleteColumn>
-            </button>
-            <button
-              title="add row before"
-              @click="state.editor.chain().focus().addRowBefore().run()"
-              :disabled="!state.editor?.can().addRowBefore()"
-            >
-              <TinyIconRichTextAddRowBefore></TinyIconRichTextAddRowBefore>
-            </button>
-            <button
-              title="add row after"
-              @click="state.editor.chain().focus().addRowAfter().run()"
-              :disabled="!state.editor?.can().addRowAfter()"
-            >
-              <TinyIconRichTextAddRowAfter></TinyIconRichTextAddRowAfter>
-            </button>
-            <button
-              title="delete row"
-              @click="state.editor.chain().focus().deleteRow().run()"
-              :disabled="!state.editor?.can().deleteRow()"
-            >
-              <TinyIconRichTextDeleteRow></TinyIconRichTextDeleteRow>
-            </button>
-            <button
-              title="delete table"
-              @click="state.editor.chain().focus().deleteTable().run()"
-              :disabled="!state.editor?.can().deleteTable()"
-            >
-              <TinyIconRichTextDeleteTable></TinyIconRichTextDeleteTable>
-            </button>
-            <button
-              title="toggle header cell"
-              @click="state.editor.chain().focus().toggleHeaderCell().run()"
-              :disabled="!state.editor?.can().toggleHeaderCell()"
-            >
-              toggleHeaderCell
-            </button>
-            <button
-              title="merge Or split"
-              @click="state.editor.chain().focus().mergeOrSplit().run()"
-              :disabled="!state.editor?.can().mergeOrSplit()"
-            >
-              <TinyIconRichTextMergeCells></TinyIconRichTextMergeCells>
-            </button>
-            <!-- <button @click="state.editor.chain().focus().setCellAttribute('backgroundColor', '#FAF594').run()"
-							:disabled="!state.editor?.can().setCellAttribute('backgroundColor', '#FAF594')">
-							setCellAttribute
-						</button> -->
+          <div class="table-option" ref="box" v-if="state.isShow" @mousemove="handleMove">
+            <div class="item" :class="{ isActive: 1 <= state.flagX && 1 <= state.flagY }"></div>
+            <div class="item" :class="{ isActive: 2 <= state.flagX && 1 <= state.flagY }"></div>
+            <div class="item" :class="{ isActive: 3 <= state.flagX && 1 <= state.flagY }"></div>
+            <div class="item" :class="{ isActive: 1 <= state.flagX && 2 <= state.flagY }"></div>
+            <div class="item" :class="{ isActive: 2 <= state.flagX && 2 <= state.flagY }"></div>
+            <div class="item" :class="{ isActive: 3 <= state.flagX && 2 <= state.flagY }"></div>
+            <div class="item" :class="{ isActive: 1 <= state.flagX && 3 <= state.flagY }"></div>
+            <div class="item" :class="{ isActive: 2 <= state.flagX && 3 <= state.flagY }"></div>
+            <div class="item" :class="{ isActive: 3 <= state.flagX && 3 <= state.flagY }"></div>
           </div>
         </div>
       </button>
+      <BubbleMenu
+        :editor="state.editor"
+        :tippy-options="{ duration: 100 }"
+        v-if="state.editor"
+        :should-show="shouldShow"
+        class="bubble-menu"
+      >
+        <button
+          title="add column before"
+          @click="state.editor.chain().focus().addColumnBefore().run()"
+          :disabled="!state.editor?.can().addColumnBefore()"
+        >
+          <TinyIconRichTextAddColumnBefore></TinyIconRichTextAddColumnBefore>
+        </button>
+        <button
+          title="add column after"
+          @click="state.editor.chain().focus().addColumnAfter().run()"
+          :disabled="!state.editor?.can().addColumnAfter()"
+        >
+          <TinyIconRichTextAddColumnAfter></TinyIconRichTextAddColumnAfter>
+        </button>
+        <button
+          title="delete column"
+          @click="state.editor.chain().focus().deleteColumn().run()"
+          :disabled="!state.editor?.can().deleteColumn()"
+        >
+          <TinyIconRichTextDeleteColumn></TinyIconRichTextDeleteColumn>
+        </button>
+        <button
+          title="add row before"
+          @click="state.editor.chain().focus().addRowBefore().run()"
+          :disabled="!state.editor?.can().addRowBefore()"
+        >
+          <TinyIconRichTextAddRowBefore></TinyIconRichTextAddRowBefore>
+        </button>
+        <button
+          title="add row after"
+          @click="state.editor.chain().focus().addRowAfter().run()"
+          :disabled="!state.editor?.can().addRowAfter()"
+        >
+          <TinyIconRichTextAddRowAfter></TinyIconRichTextAddRowAfter>
+        </button>
+        <button
+          title="delete row"
+          @click="state.editor.chain().focus().deleteRow().run()"
+          :disabled="!state.editor?.can().deleteRow()"
+        >
+          <TinyIconRichTextDeleteRow></TinyIconRichTextDeleteRow>
+        </button>
+        <button
+          title="delete table"
+          @click="state.editor.chain().focus().deleteTable().run()"
+          :disabled="!state.editor?.can().deleteTable()"
+        >
+          <TinyIconRichTextDeleteTable></TinyIconRichTextDeleteTable>
+        </button>
+        <button
+          title="toggle header cell"
+          @click="state.editor.chain().focus().toggleHeaderCell().run()"
+          :disabled="!state.editor?.can().toggleHeaderCell()"
+        >
+          <TinyIconRichTextHeading></TinyIconRichTextHeading>
+        </button>
+        <button
+          title="merge Or split"
+          @click="state.editor.chain().focus().mergeOrSplit().run()"
+          :disabled="!state.editor?.can().mergeOrSplit()"
+        >
+          <TinyIconRichTextMergeCells></TinyIconRichTextMergeCells>
+        </button>
+      </BubbleMenu>
     </div>
     <div class="small-box">
       <EditorContent :editor="state.editor"></EditorContent>
@@ -270,7 +299,7 @@ import {
   iconRichTextUnderline,
   iconRichTextUndo
 } from '@opentiny/vue-icon'
-import { useEditor, EditorContent } from '@tiptap/vue-3'
+import { useEditor, EditorContent, BubbleMenu } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 // image 包
 import Image from '@tiptap/extension-image'
@@ -291,6 +320,11 @@ import Table from '@tiptap/extension-table'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
+// task list
+import TaskItem from '@tiptap/extension-task-item'
+import TaskList from '@tiptap/extension-task-list'
+// textalign
+import TextAlign from '@tiptap/extension-text-align'
 // collaboration 包
 import Collaboration from '@tiptap/extension-collaboration'
 import * as Y from 'yjs'
@@ -304,6 +338,7 @@ export default defineComponent({
   //   props: [...props, 'type', 'text', 'size', 'icon', 'resetTime', 'nativeType', 'loading', 'disabled', 'plain', 'autofocus', 'round', 'circle', 'tabindex'],
   components: {
     EditorContent,
+    BubbleMenu,
     TinyIconRichTextAddColumnAfter: iconRichTextAddColumnAfter(),
     TinyIconRichTextAddColumnBefore: iconRichTextAddColumnBefore(),
     TinyIconRichTextAddRowAfter: iconRichTextAddRowAfter(),
@@ -374,7 +409,10 @@ export default defineComponent({
         Link,
         Underline,
         Subscript,
-        Superscript
+        Superscript,
+        TaskItem,
+        TaskList,
+        TextAlign
       }
     })
   }

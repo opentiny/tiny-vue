@@ -1,4 +1,4 @@
-.box {
+.tiny-rich-text-editor {
   width: 500px;
   height: 350px;
   margin: 0 auto;
@@ -50,7 +50,7 @@
 }
 
 // 表格区域样式
-.box {
+.tiny-rich-text-editor {
   .table-button {
     width: 2.75rem !important;
 
@@ -64,27 +64,35 @@
 
       .table-option {
         position: absolute;
-        border: red;
-        background-color: white;
-        border-radius: .4rem;
-        display: none;
-        border: 1px solid gray;
-        left: 0px;
-        top: 1.75rem;
+        background: white;
+        display: flex;
+        left: 0;
+        top: 2.00rem;
         z-index: 999;
+        width: 90px;
+        flex-wrap: wrap;
+        border-top: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+
+        .item {
+          width: 30px;
+          height: 30px;
+          box-sizing: border-box;
+          border-right: 1px solid #ccc;
+          border-bottom: 1px solid #ccc;
+        }
+
+        .isActive {
+          background-color: rgba(32, 122, 183, .5);
+          border-color: rgba(32, 122, 183, .5);
+        }
       }
     }
 
     &:hover {
       .table-box {
-        .table-option {
-          display: flex;
-          flex-direction: column;
-
-          button {
-            width: auto;
-            color: black;
-          }
+        .table-icon {
+          background-color: #d2e4ff;
         }
       }
     }
@@ -93,7 +101,7 @@
 }
 
 // 颜色选择样式
-.box {
+.tiny-rich-text-editor {
   .color-button {
     position: relative;
     padding-right: 2.5rem;
@@ -117,7 +125,7 @@
 }
 
 // 图片样式
-.box {
+.tiny-rich-text-editor {
   .image-button {
     position: relative;
 
@@ -131,10 +139,17 @@
   }
 }
 
+.bubble-menu {
+
+  button {
+    background-color: #f1f3f5;
+  }
+}
+
 // 富文本编辑器的主题区域，需要对高度进行调整，达到融为一体
 .small-box {
   overflow: auto;
-  text-align: center;
+  padding: 0 10px;
   height: 200px;
   margin-right: 2px;
 
@@ -161,6 +176,14 @@
   ul,
   ol {
     padding: 0 1rem;
+  }
+
+  ol {
+    list-style: auto;
+  }
+
+  ul {
+    list-style: disc;
   }
 
   h1,
@@ -210,6 +233,11 @@
 }
 
 .ProseMirror {
+  .img-button {
+    resize: both;
+    overflow: hidden;
+  }
+
   table {
     border-collapse: collapse;
     table-layout: fixed;
@@ -272,5 +300,28 @@
   .resize-cursor {
     cursor: ew-resize;
     cursor: col-resize;
+  }
+}
+
+.ProseMirror {
+
+  ul[data-type="taskList"] {
+    list-style: none;
+    padding: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+
+      >label {
+        flex: 0 0 auto;
+        margin-right: 0.5rem;
+        user-select: none;
+      }
+
+      >div {
+        flex: 1 1 auto;
+      }
+    }
   }
 }
