@@ -1,5 +1,5 @@
 <template>
-  <div class="box rich-text-editor">
+  <div class="tiny-rich-text-editor">
     <div class="button-area">
       <!-- starter-kit功能区 -->
       <button
@@ -132,7 +132,7 @@
         @click="state.editor.chain().focus().setTextAlign('center').run()"
         :class="{ 'is-active': state.editor?.isActive({ textAlign: 'center' }) }"
       >
-        <TinyIconRichTextAlignLeft></TinyIconRichTextAlignLeft>
+        <TinyIconRichTextAlignCenter></TinyIconRichTextAlignCenter>
       </button>
       <button
         @click="state.editor.chain().focus().setTextAlign('right').run()"
@@ -343,7 +343,7 @@ export default defineComponent({
     TinyIconRichTextAddColumnBefore: iconRichTextAddColumnBefore(),
     TinyIconRichTextAddRowAfter: iconRichTextAddRowAfter(),
     TinyIconRichTextAddRowBefore: iconRichTextAddRowBefore(),
-    c: iconRichTextAlignCenter(),
+    TinyIconRichTextAlignCenter: iconRichTextAlignCenter(),
     TinyIconRichTextAlignLeft: iconRichTextAlignLeft(),
     TinyIconRichTextAlignRight: iconRichTextAlignRight(),
     TinyIconRichTextBold: iconRichTextBold(),

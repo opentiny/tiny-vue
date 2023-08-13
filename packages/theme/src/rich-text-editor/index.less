@@ -1,4 +1,4 @@
-.box {
+.tiny-rich-text-editor {
   width: 500px;
   height: 350px;
   margin: 0 auto;
@@ -50,7 +50,7 @@
 }
 
 // 表格区域样式
-.box {
+.tiny-rich-text-editor {
   .table-button {
     width: 2.75rem !important;
 
@@ -101,7 +101,7 @@
 }
 
 // 颜色选择样式
-.box {
+.tiny-rich-text-editor {
   .color-button {
     position: relative;
     padding-right: 2.5rem;
@@ -125,7 +125,7 @@
 }
 
 // 图片样式
-.box {
+.tiny-rich-text-editor {
   .image-button {
     position: relative;
 
@@ -176,6 +176,14 @@
   ul,
   ol {
     padding: 0 1rem;
+  }
+
+  ol {
+    list-style: auto;
+  }
+
+  ul {
+    list-style: disc;
   }
 
   h1,
@@ -301,12 +309,9 @@
     list-style: none;
     padding: 0;
 
-    p {
-      margin: 0;
-    }
-
     li {
       display: flex;
+      align-items: center;
 
       >label {
         flex: 0 0 auto;
