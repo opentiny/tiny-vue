@@ -1,0 +1,1 @@
+export type Ref<T=any> = {value: T}

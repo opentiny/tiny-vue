@@ -1,4 +1,5 @@
-import type { Ref } from '@vue/composition-api'
+// import type { Ref } from '@vue/composition-api'
+import {Ref} from '@/types';
 import type Color from './utils/color'
 
 export const onConfirm = (hex: Ref<string>, triggerBg: Ref<string>, res: Ref<string>, emit, isShow: Ref<boolean>) => {
