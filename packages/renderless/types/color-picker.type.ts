@@ -1,1 +1,1 @@
-export type Ref<T=any> = {value: T}
+export type IColorPickerRef<T> = {value: T}
