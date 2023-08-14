@@ -307,6 +307,6 @@ describe('PC Mode', () => {
     document.dispatchEvent(new MouseEvent('mousemove'))
     document.dispatchEvent(new MouseEvent('mouseup'))
 
-    expect(fn).toBeCalled()
+    expect(fn).toHaveBeenCalled()
   })
 })
