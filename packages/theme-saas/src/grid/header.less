@@ -37,6 +37,11 @@
     }
   }
 
+  &:not(.fixed__column) {
+    left: unset !important;
+    right: unset !important;
+  }
+
   &.col__title-checked {
     @apply bg-color-bg-2;
     .@{grid-prefix-cls}-edit-icon {

@@ -41,8 +41,13 @@
   // 去掉最后一个竖线
   &:nth-last-of-type(2) {
     .@{grid-prefix-cls}-resizable.is__line:before {
-      width: 0px;
+      width: 0;
     }
+  }
+
+  &:not(.fixed__column) {
+    left: unset !important;
+    right: unset !important;
   }
 
   &.col__title-checked {
