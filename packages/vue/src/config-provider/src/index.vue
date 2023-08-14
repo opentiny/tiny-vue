@@ -94,5 +94,5 @@ export default defineComponent({
     const tagName = this.props.tag.name ?? 'div'
     return hooks.h(tagName, attr, slots)
   }
-})
+}) as any
 </script>

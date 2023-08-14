@@ -41,7 +41,7 @@ export const i18n = (fn) => {
 
 export const extend = _extend
 
-interface InitI18nOption {
+export interface InitI18nOption {
   app?: any
   createI18n?: Function
   messages?: Record<string, any>

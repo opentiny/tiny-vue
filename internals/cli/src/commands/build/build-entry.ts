@@ -64,7 +64,7 @@ function getMainTemplate({ mode }) {
   export default {
     {{{components}}},
     install
-  }
+  } as any
   `
 }
 

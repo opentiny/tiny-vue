@@ -434,4 +434,4 @@ export default {
   UserHead,
   UserHeadGroup,
   install
-}
+} as any

@@ -1,8 +1,8 @@
 interface ComponentType<P> {}
 interface ForwardRefExoticComponent<P> {}
 interface VueMouseEvent extends Event {}
-interface VueNode {}
-interface Ref<T> {}
+export interface VueNode {}
+export interface Ref<T> {}
 interface RefAttributes<T> {}
 
 import type {

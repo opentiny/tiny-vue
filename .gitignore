@@ -11,6 +11,7 @@ coverage/
 /packages/vue/index.ts
 /packages/vue/pc.ts
 /packages/vue/mobile.ts
+/packages/vue/mobile-first.ts
 /packages/vue/app.ts
 
 /examples/**/playwright-report
