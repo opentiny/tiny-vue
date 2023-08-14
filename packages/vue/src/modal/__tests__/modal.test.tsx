@@ -174,8 +174,6 @@ describe('PC Mode', () => {
     wrapper.unmount()
   })
 
-  test.todo('resize 是否允许拖动调整窗口大小')
-
   test('duration', async () => {
     let visible = true
     const fn = vi.fn()
@@ -298,5 +296,17 @@ describe('PC Mode', () => {
     wrapper.unmount()
   })
 
-  test.todo('zoom 窗口缩放时触发的事件')
+  test('zoom', async () => {
+    let visible = true
+    const fn = vi.fn()
+
+    const wrapper = mount(() => <Modal v-model={visible} onZoom={fn} resize={true} type="confirm"></Modal>)
+
+    await wrapper.find('.sest-resize').trigger('mousedown')
+
+    document.dispatchEvent(new MouseEvent('mousemove'))
+    document.dispatchEvent(new MouseEvent('mouseup'))
+
+    expect(fn).toBeCalled()
+  })
 })
