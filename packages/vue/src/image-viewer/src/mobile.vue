@@ -22,7 +22,11 @@
     >
       <div class="tiny-mobile-image-viewer__mask"></div>
       <!-- CLOSE -->
-      <span class="tiny-mobile-image-viewer__btn tiny-mobile-image-viewer__close" v-if="closeShow" @click.stop="handleVisible">
+      <span
+        class="tiny-mobile-image-viewer__btn tiny-mobile-image-viewer__close"
+        v-if="closeShow"
+        @click.stop="handleVisible"
+      >
         <icon-close class="tiny-svg-size" />
       </span>
       <!-- IMAGEINDEX -->
@@ -109,7 +113,16 @@
 <script lang="tsx">
 import { renderless, api } from '@opentiny/vue-renderless/image-viewer/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { iconClose, iconChevronLeft, iconChevronRight, iconZoomOut, iconZoomIn, iconRepeat, iconRefres, iconDel } from '@opentiny/vue-icon'
+import {
+  iconClose,
+  iconChevronLeft,
+  iconChevronRight,
+  iconZoomOut,
+  iconZoomIn,
+  iconRepeat,
+  iconRefres,
+  iconDel
+} from '@opentiny/vue-icon'
 import touchDeactives from './mobileTouch.js'
 import '@opentiny/vue-theme-mobile/image-viewer/index.less'
 

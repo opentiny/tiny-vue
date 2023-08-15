@@ -33,7 +33,8 @@ export default function (version: string): Plugin {
         code = code.replace(/^(import.+@opentiny\/vue-theme.+index)\.less/gm, '$1.css')
 
         // from "./src/xxx" 替换为 from "./lib/xxx"
-        code = code.replace(/from "\.\/src\//g, 'from "./lib/')
+        code = code
+          .replace(/from "\.\/src\//g, 'from "./lib/')
           .replace(/".*\.\/.*\/label-wrap"/, '"./label-wrap"')
           .replace(/".*\.\/.*\/tall-storage.vue"/, '"./tall-storage"')
 

@@ -1,22 +1,35 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
-import { getStyle, watchValue, open, opened, closed, onTouchMove, close, renderOverlay, clickOverlay, updateZIndex } from './index'
+import {
+  getStyle,
+  watchValue,
+  open,
+  opened,
+  closed,
+  onTouchMove,
+  close,
+  renderOverlay,
+  clickOverlay,
+  updateZIndex
+} from './index'
 
 export const api = ['state', 'open', 'close', 'clickOverlay', 'onTouchMove', 'opened', 'closed']
 
 const initState = ({ reactive, computed, props, api }) => {
   const state = reactive({
-    transitionName: computed(() => (props.transition || props.position === 'center' ? 'tiny-fade' : `tiny-popup-slide-${props.position}`)),
+    transitionName: computed(() =>
+      props.transition || props.position === 'center' ? 'tiny-fade' : `tiny-popup-slide-${props.position}`
+    ),
     style: computed(() => api.getStyle()),
     inited: computed(() => state.inited || props.modelValue),
     opened: false,

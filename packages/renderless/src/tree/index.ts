@@ -16,6 +16,7 @@ import TreeStore from '../common/deps/tree-model/tree-store'
 import { addClass, removeClass } from '../common/deps/dom'
 import { on, off } from '../common/deps/dom'
 import { getDataset } from '../common/dataset'
+import { copyArray } from '../common/object'
 
 export const setChildren = (props) => (data) => (props.data = data)
 
@@ -23,32 +24,44 @@ export const getChildren = () => (props) => props.data
 
 export const computedTreeItemArray = () => (props, state) => Array.prototype.slice.call(state.treeItems)
 
-export const computedShowEmptyText = ({ constants, t }) => (props) => props.emptyText || t(constants.EMPTY_TEXT_LOCAL)
+export const computedShowEmptyText =
+  ({ constants, t }) =>
+    (props) =>
+      props.emptyText || t(constants.EMPTY_TEXT_LOCAL)
 
 export const computedIsEmpty = () => (props, state) => {
   const { childNodes } = state.root
 
-  return !childNodes || childNodes.length === 0 || childNodes.every(({ visible }) => !visible)
+  return (
+    !childNodes ||
+    childNodes.length === 0 ||
+    childNodes.every(({ visible }) => !visible) ||
+    (props.viewType === 'plain' && state.plainNodeStore.filteredNodes.length === 0)
+  )
 }
 
 export const watchDefaultCheckedKeys = (state) => (value) => {
   state.store.setDefaultCheckedKey(value)
 }
 
-export const watchDefaultExpandedKeys = ({ state, api, nextTick }) => (value) => {
-  api.expandAllNodes(false)
+export const watchDefaultExpandedKeys =
+  ({ state, api, nextTick }) =>
+    (value) => {
+      api.expandAllNodes(false)
 
-  nextTick(() => {
-    state.store.defaultExpandedKeys = value
-    state.store.setDefaultExpandedKeys(value)
+    nextTick(() => {
+      state.store.defaultExpandedKeys = value
+      state.store.setDefaultExpandedKeys(value)
 
-    api.initIsCurrent()
-  })
-}
+      api.initIsCurrent()
+    })
+  }
 
-export const watchData = (state) => (value) => {
-  state.store.setData(value)
-}
+export const watchData =
+  ({ state }) =>
+    (data) => {
+      state.store.setData(data)
+    }
 
 export const watchCheckboxItems = () => (value) => {
   Array.prototype.forEach.call(value, (checkbox) => {
@@ -60,28 +73,30 @@ export const watchCheckStrictly = (state) => (value) => {
   state.store.checkStrictly = value
 }
 
-export const dragStart = ({ props, state, emit }) => (event, treeNode) => {
-  if (typeof props.allowDrag === 'function' && !props.allowDrag(treeNode.node)) {
-    event.preventDefault()
-    return false
+export const dragStart =
+  ({ props, state, emit }) =>
+    (event, treeNode) => {
+      if (typeof props.allowDrag === 'function' && !props.allowDrag(treeNode.node)) {
+        event.preventDefault()
+        return false
+      }
+
+    if (!event.dataTransfer) {
+      return false
+    }
+
+    event.dataTransfer.effectAllowed = 'copy'
+
+    try {
+      event.dataTransfer.setData('text/plain', '')
+    } catch (e) {
+      // do nothing
+    }
+
+    state.dragState.draggingNode = treeNode
+
+    emit('node-drag-start', treeNode.node, event)
   }
-
-  if (!event.dataTransfer) {
-    return false
-  }
-
-  event.dataTransfer.effectAllowed = 'copy'
-
-  try {
-    event.dataTransfer.setData('text/plain', '')
-  } catch (e) {
-    // do nothing
-  }
-
-  state.dragState.draggingNode = treeNode
-
-  emit('node-drag-start', treeNode.node, event)
-}
 
 // 移动时，判断释放在目标元素的前，后，或inner。 刚移动未离开拖动元素时，为none。
 const getDropType = (dropPrev, dropInner, dropNext, dropNode) => {
@@ -104,8 +119,9 @@ const getDropType = (dropPrev, dropInner, dropNext, dropNode) => {
   return dropType
 }
 
-const setDropIndicatorTop = (dropNode, dropIndicator, parent, dropType) => {
+const setDropIndicatorTop = (dropNode, parent, dropType) => {
   const iconElement = dropNode.$el.querySelector('.tiny-tree-node')
+  const dropIndicator = parent.$refs.dropIndicator
 
   if (iconElement) {
     const treePosition = parent.$el.getBoundingClientRect()
@@ -170,114 +186,136 @@ const getDragDir = ({ draggingNode, dropNode, allowDrop, emit, dragState }) => {
   return { dropPrev, dropInner, dropNext, userAllowDropInner }
 }
 
-export const dragOver = ({ state, emit, props, refs, vm }) => (event, dropNode) => {
-  const dragState = state.dragState
-  const oldDropNode = dragState.dropNode
+export const dragOver =
+  ({ state, emit, props, vm }) =>
+    (event, dropNode) => {
+      const dragState = state.dragState
+      const oldDropNode = dragState.dropNode
 
-  if (oldDropNode && oldDropNode !== dropNode) {
-    removeClass(oldDropNode.$el, 'is-drop-inner')
-  }
-
-  const draggingNode = dragState.draggingNode
-
-  if (!draggingNode || !dropNode) {
-    return
-  }
-
-  const { dropPrev, dropInner, dropNext, userAllowDropInner } = getDragDir({
-    draggingNode,
-    dropNode,
-    allowDrop: props.allowDrop,
-    emit,
-    dragState
-  })
-
-  const dropType = getDropType(dropPrev, dropInner, dropNext, dropNode)
-
-  setDropIndicatorTop(dropNode, refs.dropIndicator, vm, dropType)
-
-  dragState.showDropIndicator = dropType === 'before' || dropType === 'after'
-  dragState.allowDrop = dragState.showDropIndicator || userAllowDropInner
-  dragState.dropType = dropType
-
-  emit('node-drag-over', draggingNode.node, dropNode.node, event)
-}
-
-export const dragEnd = ({ state, emit }) => (event) => {
-  const dragState = state.dragState
-  const { draggingNode, dropType, dropNode } = dragState
-
-  event.preventDefault()
-
-  if (!event.dataTransfer) {
-    return
-  }
-
-  event.dataTransfer.dropEffect = 'copy'
-
-  if (draggingNode && dropNode) {
-    const draggingNodeCopy = { data: draggingNode.node.data }
-    const normalType = dropType !== 'none'
-
-    normalType && draggingNode.node.remove()
-
-    if (dropType === 'before') {
-      dropNode.node.parent.insertBefore(draggingNodeCopy, dropNode.node)
-    } else if (dropType === 'after') {
-      dropNode.node.parent.insertAfter(draggingNodeCopy, dropNode.node)
-    } else if (dropType === 'inner') {
-      dropNode.node.insertChild(draggingNodeCopy)
+    if (oldDropNode && oldDropNode !== dropNode) {
+      removeClass(oldDropNode.$el, 'is-drop-inner')
     }
 
-    normalType && state.store.registerNode(draggingNodeCopy)
+    const draggingNode = dragState.draggingNode
 
-    removeClass(dropNode.$el, 'is-drop-inner')
+    if (!draggingNode || !dropNode) {
+      return
+    }
 
-    emit('node-drag-end', draggingNode.node, dropNode.node, dropType, event)
+    const { dropPrev, dropInner, dropNext, userAllowDropInner } = getDragDir({
+      draggingNode,
+      dropNode,
+      allowDrop: props.allowDrop,
+      emit,
+      dragState
+    })
 
-    normalType && emit('node-drop', draggingNode.node, dropNode.node, dropType, event)
+    const dropType = getDropType(dropPrev, dropInner, dropNext, dropNode)
+
+    setDropIndicatorTop(dropNode, vm, dropType)
+
+    dragState.showDropIndicator = dropType === 'before' || dropType === 'after'
+    dragState.allowDrop = dragState.showDropIndicator || userAllowDropInner
+    dragState.dropType = dropType
+
+    emit('node-drag-over', draggingNode.node, dropNode.node, event)
   }
 
-  if (draggingNode && !dropNode) {
-    emit('node-drag-end', draggingNode.node, null, dropType, event)
+export const dragEnd =
+  ({ state, emit }) =>
+    (event) => {
+      const dragState = state.dragState
+      const { draggingNode, dropType, dropNode } = dragState
+
+    event.preventDefault()
+
+    if (!event.dataTransfer) {
+      return
+    }
+
+    event.dataTransfer.dropEffect = 'copy'
+
+    if (draggingNode && dropNode) {
+      const draggingNodeCopy = { data: draggingNode.node.data }
+      const normalType = dropType !== 'none'
+
+      normalType && draggingNode.node.remove()
+
+      if (dropType === 'before') {
+        dropNode.node.parent.insertBefore(draggingNodeCopy, dropNode.node)
+      } else if (dropType === 'after') {
+        dropNode.node.parent.insertAfter(draggingNodeCopy, dropNode.node)
+      } else if (dropType === 'inner') {
+        dropNode.node.insertChild(draggingNodeCopy)
+      }
+
+      normalType && state.store.registerNode(draggingNodeCopy)
+
+      removeClass(dropNode.$el, 'is-drop-inner')
+
+      emit('node-drag-end', draggingNode.node, dropNode.node, dropType, event)
+
+      normalType && emit('node-drop', draggingNode.node, dropNode.node, dropType, event)
+    }
+
+    if (draggingNode && !dropNode) {
+      emit('node-drag-end', draggingNode.node, null, dropType, event)
+    }
+
+      dragState.draggingNode = null
+      dragState.dropNode = null
+      dragState.allowDrop = true
+      dragState.showDropIndicator = false
+    }
+
+export const initTreeStore =
+  ({ api, props, state, emit }) =>
+    () => {
+      const { nodeKey, data, lazy, load, afterLoad, currentNodeKey, checkStrictly, checkDescendants } = props
+      const { defaultCheckedKeys, defaultExpandedKeys, autoExpandParent, defaultExpandAll, filterNodeMethod } = props
+
+    state.store = new TreeStore({
+      key: nodeKey,
+      data,
+      lazy,
+      props: props.props,
+      load,
+      afterLoad(params) {
+        !state.loaded && (state.loaded = true)
+        emit('load-data', params)
+        afterLoad && afterLoad(params)
+      },
+      currentNodeKey,
+      checkStrictly,
+      checkDescendants,
+      defaultCheckedKeys,
+      defaultExpandedKeys,
+      autoExpandParent,
+      defaultExpandAll,
+      filterNodeMethod
+    })
+
+    state.root = state.store.root
+
+    api.initIsCurrent()
+    api.initPlainNodeStore()
   }
 
-  dragState.draggingNode = null
-  dragState.dropNode = null
-  dragState.allowDrop = true
-  dragState.showDropIndicator = false
-}
+export const created =
+  ({ api, state }) =>
+    () => {
+      state.isTree = true
+      api.initTreeStore()
 
-export const created = ({ api, props, state }) => () => {
-  state.isTree = true
+    state.emitter.on('tree-node-drag-start', api.dragStart)
+    state.emitter.on('tree-node-drag-over', api.dragOver)
+    state.emitter.on('tree-node-drag-end', api.dragEnd)
 
-  const { nodeKey, data, lazy, load, currentNodeKey, checkStrictly, checkDescendants } = props
-  const { defaultCheckedKeys, defaultExpandedKeys, autoExpandParent, defaultExpandAll, filterNodeMethod } = props
-
-  state.store = new TreeStore({
-    key: nodeKey,
-    data,
-    lazy,
-    props: props.props,
-    load,
-    currentNodeKey,
-    checkStrictly,
-    checkDescendants,
-    defaultCheckedKeys,
-    defaultExpandedKeys,
-    autoExpandParent,
-    defaultExpandAll,
-    filterNodeMethod
-  })
-
-  state.root = state.store.root
-
-  api.initIsCurrent()
-
-  state.emitter.on('tree-node-drag-start', api.dragStart)
-  state.emitter.on('tree-node-drag-over', api.dragOver)
-  state.emitter.on('tree-node-drag-end', api.dragEnd)
-}
+    state.emitter.on('tree-node-save', api.saveNode)
+    state.emitter.on('tree-node-edit', api.editNode)
+    state.emitter.on('tree-node-delete', api.deleteConfirm)
+    state.emitter.on('tree-node-add', api.addNode)
+  }
 
 const doClearCurrentStore = (state) => {
   if (state.currentStore.node) {
@@ -308,87 +346,110 @@ const setIsCurrent = (root, defaultExpandedKeys, defaultExpandedKeysHighlight, c
   }
 }
 
-export const initIsCurrent = ({ props, state }) => () => {
-  if (state.currentStore.flag) {
-    doClearCurrentStore(state)
-  }
+export const initIsCurrent =
+  ({ props, state }) =>
+    () => {
+      if (state.currentStore.flag) {
+        doClearCurrentStore(state)
+      }
 
-  if (state.store.getCurrentNode() && props.defaultExpandedKeysHighlight) {
-    state.store.setCurrentNode(null)
-  }
-
-  if (
-    props.defaultExpandedKeysHighlight &&
-    Array.isArray(props.defaultExpandedKeys) &&
-    ~props.defaultExpandedKeys.indexOf(props.defaultExpandedKeysHighlight)
-  ) {
-    setIsCurrent(state.root, props.defaultExpandedKeys, props.defaultExpandedKeysHighlight, state.currentStore, props.nodeKey)
-  }
-}
-
-export const mounted = ({ api, vm }) => () => {
-  api.initTabIndex()
-  on(vm.$el, 'keydown', api.handleKeydown)
-}
-
-export const beforeUnmount = ({ api, vm }) => () => {
-  off(vm.$el, 'keydown', api.handleKeydown)
-}
-
-export const wrapMounted = ({ api, props, service }) => () => {
-  const { data, nodeKey: key, parentKey } = props
-
-  if (!data && props.dataset) {
-    const dataset = {
-      service,
-      dataset: props.dataset,
-      tree: { key, parentKey }
+    if (state.store.getCurrentNode() && props.defaultExpandedKeysHighlight) {
+      state.store.setCurrentNode(null)
     }
 
-    getDataset(dataset).then(api.watchData)
+    if (
+      props.defaultExpandedKeysHighlight &&
+      Array.isArray(props.defaultExpandedKeys) &&
+      (~props.defaultExpandedKeys.indexOf(props.defaultExpandedKeysHighlight) || props.lazyCurrent)
+    ) {
+      setIsCurrent(
+        state.root,
+        props.defaultExpandedKeys,
+        props.defaultExpandedKeysHighlight,
+        state.currentStore,
+        props.nodeKey
+      )
+    }
   }
 
-  api.mounted()
-}
+export const mounted =
+  ({ api, vm }) =>
+    () => {
+      api.initTabIndex()
+      on(vm.$el, 'keydown', api.handleKeydown)
+    }
 
-export const updated = ({ vm, state }) => () => {
-  state.treeItems = vm.$el.querySelectorAll('[role=treeitem]')
-  state.checkboxItems = vm.$el.querySelectorAll('input[type=checkbox]')
-}
+export const beforeUnmount =
+  ({ api, vm, state }) =>
+    () => {
+      state.action.popoverVisible = false
 
-export const filter = ({ props, state }) => (value) => {
-  if (!props.filterNodeMethod) {
-    throw new Error('[Tree] filterNodeMethod is required when filter')
+      off(vm.$el, 'keydown', api.handleKeydown)
+    }
+
+export const wrapMounted =
+  ({ api, props, service }) =>
+    () => {
+      const { data, nodeKey: key, parentKey } = props
+
+    if (!data && props.dataset) {
+      const dataset = {
+        service,
+        dataset: props.dataset,
+        tree: { key, parentKey }
+      }
+
+      getDataset(dataset).then(api.watchData)
+    }
+
+    api.mounted()
   }
 
-  state.store.filter(value)
-}
+export const updated =
+  ({ vm, state }) =>
+    () => {
+      state.treeItems = vm.$el.querySelectorAll('[role=treeitem]')
+      state.checkboxItems = vm.$el.querySelectorAll('input[type=checkbox]')
+    }
+
+export const filter =
+  ({ props, state }) =>
+    (value) => {
+      if (!props.filterNodeMethod) {
+        throw new Error('[Tree] filterNodeMethod is required when filter')
+      }
+
+    state.store.filter(value)
+  }
 
 export const getNodeKey = (props) => (node) => innerGetNodekey(props.nodekey, node.data)
 
-export const getNodePath = ({ props, state }) => (data) => {
-  if (!props.nodeKey) {
-    throw new Error('[Tree] nodeKey is required in getNodePath')
+export const getNodePath =
+  ({ props, state }) =>
+    (data) => {
+      if (!props.nodeKey) {
+        throw new Error('[Tree] nodeKey is required in getNodePath')
+      }
+
+    const node = state.store.getNode(data)
+
+    if (!node) {
+      return []
+    }
+
+    const path = [node.data]
+    let parent = node.parent
+
+    while (parent && parent !== state.root) {
+      path.push(parent.data)
+      parent = parent.parent
+    }
+
+    return path.reverse()
   }
 
-  const node = state.store.getNode(data)
-
-  if (!node) {
-    return []
-  }
-
-  const path = [node.data]
-  let parent = node.parent
-
-  while (parent && parent !== state.root) {
-    path.push(parent.data)
-    parent = parent.parent
-  }
-
-  return path.reverse()
-}
-
-export const getCheckedNodes = (state) => (leafOnly, includeHalfChecked) => state.store.getCheckedNodes(leafOnly, includeHalfChecked)
+export const getCheckedNodes = (state) => (leafOnly, includeHalfChecked) =>
+  state.store.getCheckedNodes(leafOnly, includeHalfChecked)
 
 export const getCheckedKeys = (state) => (leafOnly) => state.store.getCheckedKeys(leafOnly)
 
@@ -398,31 +459,37 @@ export const getCurrentNode = (state) => () => {
   return currentNode ? currentNode.data : null
 }
 
-export const getCurrentKey = ({ api, props }) => () => {
-  if (!props.nodeKey) {
-    throw new Error('[Tree] nodeKey is required in getCurrentKey')
+export const getCurrentKey =
+  ({ api, props }) =>
+    () => {
+      if (!props.nodeKey) {
+        throw new Error('[Tree] nodeKey is required in getCurrentKey')
+      }
+
+    const currentNode = api.getCurrentNode()
+
+    return currentNode ? currentNode[props.nodeKey] : null
   }
 
-  const currentNode = api.getCurrentNode()
+export const setCheckedNodes =
+  ({ props, state }) =>
+    (nodes, leafOnly) => {
+      if (!props.nodeKey) {
+        throw new Error('[Tree] nodeKey is required in setCheckedNodes')
+      }
 
-  return currentNode ? currentNode[props.nodeKey] : null
-}
-
-export const setCheckedNodes = ({ props, state }) => (nodes, leafOnly) => {
-  if (!props.nodeKey) {
-    throw new Error('[Tree] nodeKey is required in setCheckedNodes')
+    state.store.setCheckedNodes(nodes, leafOnly)
   }
 
-  state.store.setCheckedNodes(nodes, leafOnly)
-}
+export const setCheckedKeys =
+  ({ props, state }) =>
+    (keys, leafOnly) => {
+      if (!props.nodeKey) {
+        throw new Error('[Tree] nodeKey is required in setCheckedKeys')
+      }
 
-export const setCheckedKeys = ({ props, state }) => (keys, leafOnly) => {
-  if (!props.nodeKey) {
-    throw new Error('[Tree] nodeKey is required in setCheckedKeys')
+    state.store.setCheckedKeys(keys, leafOnly)
   }
-
-  state.store.setCheckedKeys(keys, leafOnly)
-}
 
 export const setChecked = (state) => (data, checked, deep) => {
   state.store.setChecked(data, checked, deep)
@@ -432,30 +499,34 @@ export const getHalfCheckedNodes = (state) => () => state.store.getHalfCheckedNo
 
 export const getHalfCheckedKeys = (state) => () => state.store.getHalfCheckedKeys()
 
-export const setCurrentNode = ({ props, state }) => (node) => {
-  if (!props.nodeKey) {
-    throw new Error('[Tree] nodeKey is required in setCurrentNode')
+export const setCurrentNode =
+  ({ props, state }) =>
+    (node) => {
+      if (!props.nodeKey) {
+        throw new Error('[Tree] nodeKey is required in setCurrentNode')
+      }
+
+    state.store.setUserCurrentNode(node)
   }
 
-  state.store.setUserCurrentNode(node)
-}
+export const setCurrentKey =
+  ({ props, state }) =>
+    (key) => {
+      if (!props.nodeKey) {
+        throw new Error('[Tree] nodeKey is required in setCurrentKey')
+      }
 
-export const setCurrentKey = ({ props, state }) => (key) => {
-  if (!props.nodeKey) {
-    throw new Error('[Tree] nodeKey is required in setCurrentKey')
+    state.store.setCurrentNodeKey(key)
   }
-
-  state.store.setCurrentNodeKey(key)
-}
 
 export const getNode = (state) => (data) => state.store.getNode(data)
 
-export const remove = (state) => (data) => {
-  state.store.remove(data)
+export const remove = (state) => (data, isSaveChildNode, isNode) => {
+  state.store.remove(data, isSaveChildNode, isNode)
 }
 
 export const append = (state) => (data, parentNode) => {
-  state.store.append(data, parentNode)
+  state.store.append(data, parentNode, 0)
 }
 
 export const insertBefore = (state) => (data, refNode) => {
@@ -470,65 +541,71 @@ export const handleNodeExpand = (emit) => (nodeData, node, instance) => {
   emit('node-expand', nodeData, node, instance)
 }
 
-export const updateKeyChildren = ({ props, state }) => (key, data) => {
-  if (!props.nodeKey) {
-    throw new Error('[Tree] nodeKey is required in updateKeyChild')
+export const updateKeyChildren =
+  ({ props, state }) =>
+    (key, data) => {
+      if (!props.nodeKey) {
+        throw new Error('[Tree] nodeKey is required in updateKeyChild')
+      }
+
+    state.store.updateChildren(key, data)
   }
 
-  state.store.updateChildren(key, data)
-}
+export const initTabIndex =
+  ({ vm, state }) =>
+    () => {
+      state.treeItems = vm.$el.querySelectorAll('.is-focusable[role=treeitem]')
+      state.checkboxItems = vm.$el.querySelectorAll('input[type=checkbox]')
 
-export const initTabIndex = ({ vm, state }) => () => {
-  state.treeItems = vm.$el.querySelectorAll('.is-focusable[role=treeitem]')
-  state.checkboxItems = vm.$el.querySelectorAll('input[type=checkbox]')
+    const checkedItem = vm.$el.querySelectorAll('.is-checked[role=treeitem]')
 
-  const checkedItem = vm.$el.querySelectorAll('.is-checked[role=treeitem]')
-
-  if (checkedItem.length) {
-    checkedItem[0].setAttribute('tabindex', 0)
-    return
-  }
-
-  state.treeItems[0] && state.treeItems[0].setAttribute('tabindex', 0)
-}
-
-export const handleKeydown = ({ vm, state }) => (event) => {
-  const currentItem = event.target
-
-  if (!JSON.stringify(currentItem.className).includes('tiny-tree-node')) {
-    return
-  }
-
-  const keyCode = event.keyCode
-
-  state.treeItems = vm.$el.querySelectorAll('.is-focusable[role=treeitem]')
-
-  if ([KEY_CODE.ArrowUp, KEY_CODE.ArrowDown].includes(keyCode)) {
-    let nextIndex
-    const currentIndex = state.treeItemArray.indexOf(currentItem)
-
-    event.preventDefault()
-
-    if (keyCode === KEY_CODE.ArrowUp) {
-      nextIndex = currentIndex !== 0 ? currentIndex - 1 : 0
-    } else {
-      nextIndex = currentIndex < state.treeItemArray.length - 1 ? currentIndex + 1 : 0
+    if (checkedItem.length) {
+      checkedItem[0].setAttribute('tabindex', 0)
+      return
     }
 
-    state.treeItemArray[nextIndex].focus()
-  } else if ([KEY_CODE.ArrowLeft, KEY_CODE.ArrowRight].includes(keyCode)) {
-    event.preventDefault()
-    currentItem.click()
-  } else if ([KEY_CODE.NumpadEnter, KEY_CODE.Space].includes(keyCode)) {
-    const hasInput = currentItem.querySelector('[type="checkbox"]')
+    state.treeItems[0] && state.treeItems[0].setAttribute('tabindex', 0)
+  }
 
-    if (hasInput) {
-      // space enter选中checkbox
+export const handleKeydown =
+  ({ vm, state }) =>
+    (event) => {
+      const currentItem = event.target
+
+    if (!JSON.stringify(currentItem.className).includes('tiny-tree-node')) {
+      return
+    }
+
+    const keyCode = event.keyCode
+
+    state.treeItems = vm.$el.querySelectorAll('.is-focusable[role=treeitem]')
+
+    if ([KEY_CODE.ArrowUp, KEY_CODE.ArrowDown].includes(keyCode)) {
+      let nextIndex
+      const currentIndex = state.treeItemArray.indexOf(currentItem)
+
       event.preventDefault()
-      hasInput.click()
+
+      if (keyCode === KEY_CODE.ArrowUp) {
+        nextIndex = currentIndex !== 0 ? currentIndex - 1 : 0
+      } else {
+        nextIndex = currentIndex < state.treeItemArray.length - 1 ? currentIndex + 1 : 0
+      }
+
+      state.treeItemArray[nextIndex].focus()
+    } else if ([KEY_CODE.ArrowLeft, KEY_CODE.ArrowRight].includes(keyCode)) {
+      event.preventDefault()
+      currentItem.click()
+    } else if ([KEY_CODE.NumpadEnter, KEY_CODE.Space].includes(keyCode)) {
+      const hasInput = currentItem.querySelector('[type="checkbox"]')
+
+      if (hasInput) {
+        // space enter选中checkbox
+        event.preventDefault()
+        hasInput.click()
+      }
     }
   }
-}
 
 const initRadio = ({ node, nodeKey, checkedKey, state }) => {
   let isFound = false
@@ -573,25 +650,27 @@ const init = ({ state, nodeKey, checkedKey }) => {
   }
 }
 
-export const setCurrentRadio = ({ props, state }) => () => {
-  if (!props.showRadio) {
-    return
+export const setCurrentRadio =
+  ({ props, state }) =>
+    () => {
+      if (!props.showRadio) {
+        return
+      }
+
+    if (!props.nodeKey) {
+      throw new Error('[Tree] nodeKey is required in setCurrentRadio')
+    }
+
+    const nodeKey = props.nodeKey
+    const defaultCheckedKeys = props.defaultCheckedKeys || []
+    const checkedKey = defaultCheckedKeys.length ? defaultCheckedKeys[0] : null
+
+    if (!checkedKey) {
+      return
+    }
+
+    init({ state, nodeKey, checkedKey })
   }
-
-  if (!props.nodeKey) {
-    throw new Error('[Tree] nodeKey is required in setCurrentRadio')
-  }
-
-  const nodeKey = props.nodeKey
-  const defaultCheckedKeys = props.defaultCheckedKeys || []
-  const checkedKey = defaultCheckedKeys.length ? defaultCheckedKeys[0] : null
-
-  if (!checkedKey) {
-    return
-  }
-
-  init({ state, nodeKey, checkedKey })
-}
 
 export const closeMenu = (state) => () => state.emitter.emit('closeMenu')
 
@@ -615,16 +694,271 @@ const innerExpandAllNodes = (nodes, expandFlag) => {
   })
 }
 
-export const expandAllNodes = ({ state }) => (expandFlag) => {
-  const nodes = state.root.childNodes
+export const expandAllNodes =
+  ({ state }) =>
+    (expandFlag) => {
+      const nodes = state.root.childNodes
 
-  if (Array.isArray(nodes) && nodes.length) {
-    innerExpandAllNodes(nodes, expandFlag)
+    if (Array.isArray(nodes) && nodes.length) {
+      innerExpandAllNodes(nodes, expandFlag)
 
-    nodes.forEach((node) => {
-      if (expandFlag && node.childNodes.length) {
-        node.expand()
-      }
-    })
+      nodes.forEach((node) => {
+        if (expandFlag && node.childNodes.length) {
+          node.expand()
+        }
+      })
+    }
   }
+
+export const switchToggle =
+  ({ state }) =>
+    (val) => {
+      state.checkEasily = val
+    }
+
+export const getSameDataIndex = (list, data, key = '$treeNodeId') => {
+  let index = -1
+
+  list.forEach((item, i) => {
+    if (item[key] === data[key]) {
+      index = i
+    }
+  })
+
+  return index
 }
+
+export const editNode =
+  ({ state }) =>
+    (node) => {
+      state.action.type = 'edit'
+      state.action.label = (node && node.data.label) || ''
+      state.action.node = node
+      state.action.popoverVisible = false
+    }
+
+export const saveNode =
+  ({ state, emit, api }) =>
+    () => {
+      const node = state.action.node
+
+    if (!node) {
+      return
+    } else if (state.action.label) {
+      node.data.label = state.action.label
+
+      if (node.data._isNewNode) {
+        const index = api.getSameDataIndex(state.treeEdit.addData, node.data)
+
+        index === -1 ? state.treeEdit.addData.push(node.data) : state.treeEdit.addData.splice(index, 1, node.data)
+        emit('add-node', node)
+      } else {
+        const index = api.getSameDataIndex(state.treeEdit.editData, node.data)
+
+        index === -1 ? state.treeEdit.editData.push(node.data) : state.treeEdit.editData.splice(index, 1, node.data)
+        emit('edit-node', node)
+      }
+    } else if (node && node.data && node.data._isNewNode) {
+      api.remove(node, false, true)
+    }
+
+    state.action.node = null
+  }
+
+export const addNode =
+  ({ api }) =>
+    (node) => {
+      const newNode = { label: '' }
+
+    Object.defineProperty(newNode, '_isNewNode', {
+      value: true,
+      enumerable: false,
+      configurable: false,
+      writable: false
+    })
+    api.append(newNode, node.data)
+
+    setTimeout(() => {
+      const childs = node.childNodes
+      const child = childs[0]
+      api.editNode(child)
+    }, 100)
+  }
+
+export const cancelDelete =
+  ({ state }) =>
+    () => {
+      state.action.referenceElm = null
+      state.action.popoverVisible = false
+    }
+
+export const loopGetTreeData = (result = [], nodes = [], childKey = 'childNodes') => {
+  nodes.forEach((node) => {
+    const index = getSameDataIndex(result, node.data)
+    index === -1 && result.push(node.data)
+
+    if (node[childKey] && node[childKey].length) {
+      result = loopGetTreeData(result, node[childKey])
+    }
+  })
+
+  return result
+}
+
+export const deleteAction =
+  ({ state, api, emit }) =>
+    () => {
+      const { node, isSaveChildNode } = state.action
+
+    state.action.referenceElm = null
+    state.action.popoverVisible = false
+
+    if (!node.data._isNewNode) {
+      state.treeEdit.deleteData.push(node.data)
+      if (!isSaveChildNode) {
+        state.treeEdit.deleteData = loopGetTreeData(state.treeEdit.deleteData, node.childNodes)
+      }
+    }
+
+    emit('delete-node', node)
+    api.remove(state.action.node, isSaveChildNode, true)
+  }
+
+export const deleteConfirm =
+  ({ state }) =>
+    (event, node) => {
+      state.action.type = 'delete'
+      state.action.node = node
+      state.action.isLeaf = !node.childNodes || !node.childNodes.length
+      state.action.referenceElm = event.currentTarget
+      state.action.popoverVisible = false
+      state.action.isSaveChildNode = false
+
+    setTimeout(() => {
+      state.action.popoverVisible = true
+    }, 300)
+  }
+
+export const openEdit =
+  ({ props, state, api, emit }) =>
+    () => {
+      state.action.show = true
+      state.action.data = copyArray(props.data)
+
+    api.watchData(state.action.data)
+    emit('open-edit')
+  }
+
+export const closeEdit =
+  ({ props, state, api, emit }) =>
+    () => {
+      state.action.show = false
+      state.action.popoverVisible = false
+      api.watchData(props.data)
+      emit('close-edit')
+      state.treeEdit = { addData: [], deleteData: [], editData: [] }
+    }
+
+export const saveEdit =
+  ({ state, emit, props }) =>
+    () => {
+      const data = copyArray(state.action.show ? state.action.data : props.data)
+
+    state.action.show = false
+    state.action.popoverVisible = false
+    emit('save-edit', state.treeEdit, data)
+    state.treeEdit = { addData: [], deleteData: [], editData: [] }
+
+    return data
+  }
+
+export const setAddDisabledKeys =
+  ({ state }) =>
+    (data) => {
+      state.action.addDisabled = data || []
+    }
+
+export const setEditDisabledKeys =
+  ({ state }) =>
+    (data) => {
+      state.action.editDisabled = data || []
+    }
+
+export const setDeleteDisabledKeys =
+  ({ state }) =>
+    (data) => {
+      state.action.deleteDisabled = data || []
+    }
+
+export const initPlainNodeStore =
+  ({ props, state }) =>
+    () => {
+      const { nodeKey, pathSplit, filterPlainMethod } = props
+      const prefixReg = new RegExp(`^\\${pathSplit}+`)
+      const plainNodeStore = { nodes: [], filteredNodes: [] }
+
+    const walkTree = (node, labelPath, nodeKeyPath) => {
+      if (node && node.data) {
+        labelPath += `${pathSplit}${node.data.label || ''}`
+        nodeKeyPath += `${pathSplit}${node.data[nodeKey] || ''}`
+
+        labelPath = labelPath.replace(prefixReg, '')
+        nodeKeyPath = nodeKeyPath.replace(prefixReg, '')
+
+        if (labelPath) {
+          const plainNode = { labelPath, nodeKeyPath, node }
+          const paths = labelPath.split(pathSplit)
+          const nodeKeyType = typeof node.data[nodeKey]
+          const nodeKeys = nodeKeyPath.split(pathSplit).map(nodeKeyType === 'number' ? Number : String)
+
+          plainNode.title = paths[paths.length - 1]
+          plainNode.auxi = paths.slice(0, paths.length - 1).join(pathSplit)
+          plainNode.nodeKeyType = nodeKeyType
+          plainNode.nodeKey = node.data[nodeKey]
+          plainNode.nodeKeys = nodeKeys
+          plainNode.parentNodeKeys = nodeKeys.slice(0, nodeKeys.length - 1)
+
+          plainNodeStore.nodes.push(plainNode)
+        }
+      }
+
+      if (node.childNodes && node.childNodes.length) {
+        node.childNodes.forEach((n) => walkTree(n, labelPath, nodeKeyPath))
+      }
+    }
+
+    walkTree(state.root, '', '')
+
+    const filterPlainNode = (data) =>
+      !filterPlainMethod || (typeof filterPlainMethod === 'function' && filterPlainMethod(data))
+
+    plainNodeStore.filteredNodes = plainNodeStore.nodes.filter(
+      (plainNode) => plainNode.node.visible && filterPlainNode(plainNode.node.data)
+    )
+
+    state.plainNodeStore = plainNodeStore
+  }
+
+export const handleCheckPlainNode =
+  ({ props, emit }) =>
+    (e, plainNode) => {
+      plainNode.node.setChecked(e, !props.checkStrictly)
+
+    emit('check-plain', plainNode, e)
+  }
+
+export const handleClickPlainNode = (emit) => (e, plainNode) => {
+  emit('leave-plain-view', plainNode, e)
+}
+
+export const setCheckedByNodeKey =
+  ({ props, state }) =>
+    (key, checked) => {
+      const { nodeKey, checkStrictly } = props
+      const { nodes: plainNodes } = state.plainNodeStore
+      const plainNode = plainNodes.find((plainNode) => plainNode.node.data[nodeKey] === key)
+
+    if (plainNode) {
+      plainNode.node.setChecked(checked, !checkStrictly)
+    }
+  }

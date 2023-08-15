@@ -57,7 +57,13 @@
     }
 
     & > span {
-      background: repeating-linear-gradient(135deg, transparent, transparent 3px, var(--ti-grid-primary-color) 3px, var(--ti-grid-primary-color) 9px);
+      background: repeating-linear-gradient(
+        135deg,
+        transparent,
+        transparent 3px,
+        var(--ti-grid-primary-color) 3px,
+        var(--ti-grid-primary-color) 9px
+      );
       animation: shine 1s infinite linear;
     }
   }
@@ -65,7 +71,6 @@
 
 .@{grid-body-prefix-cls}__row {
   .@{grid-body-prefix-cls}__column {
-
     // 设置鼠标或者键盘选中时，单元格的背景颜色
     &.col__selected {
       background-color: var(--ti-grid-light-color);

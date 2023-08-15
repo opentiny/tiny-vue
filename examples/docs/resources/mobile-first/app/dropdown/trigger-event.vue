@@ -38,13 +38,31 @@
           <template #dropdown>
             <tiny-dropdown-menu checked-status>
               <template #default="{ selectedIndex }">
-                <tiny-dropdown-item :icon="IconPlus" :current-index="0" :selected="selectedIndex === '0'">这是一级这是一级这是一级这是一级这是一级这是一级这是一级这是一级这是一级这是一级</tiny-dropdown-item>
-                <tiny-dropdown-item :icon="IconPlusCircle" :current-index="1" :selected="selectedIndex === '1'" disabled>这是一级不可点击</tiny-dropdown-item>
+                <tiny-dropdown-item :icon="IconPlus" :current-index="0" :selected="selectedIndex === '0'"
+                  >这是一级这是一级这是一级这是一级这是一级这是一级这是一级这是一级这是一级这是一级</tiny-dropdown-item
+                >
+                <tiny-dropdown-item :icon="IconPlusCircle" :current-index="1" :selected="selectedIndex === '1'" disabled
+                  >这是一级不可点击</tiny-dropdown-item
+                >
                 <tiny-dropdown-menu multi-stage checked-status>
-                  <tiny-dropdown-item :icon="IconPlusSquare" level="2" :current-index="0" :selected="selectedIndex === '2-0'">这是二级</tiny-dropdown-item>
-                  <tiny-dropdown-item :icon="IconCheckedLinear" level="2" :current-index="1" :selected="selectedIndex === '2-1'">这是二级</tiny-dropdown-item>
+                  <tiny-dropdown-item
+                    :icon="IconPlusSquare"
+                    level="2"
+                    :current-index="0"
+                    :selected="selectedIndex === '2-0'"
+                    >这是二级</tiny-dropdown-item
+                  >
+                  <tiny-dropdown-item
+                    :icon="IconCheckedLinear"
+                    level="2"
+                    :current-index="1"
+                    :selected="selectedIndex === '2-1'"
+                    >这是二级</tiny-dropdown-item
+                  >
                 </tiny-dropdown-menu>
-                <tiny-dropdown-item :icon="IconCheckedSur" :current-index="3" :selected="selectedIndex === '3'">这是一级</tiny-dropdown-item>
+                <tiny-dropdown-item :icon="IconCheckedSur" :current-index="3" :selected="selectedIndex === '3'"
+                  >这是一级</tiny-dropdown-item
+                >
               </template>
             </tiny-dropdown-menu>
           </template>

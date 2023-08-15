@@ -1,11 +1,6 @@
 import path from 'node:path'
 import { removeSync } from 'fs-extra'
-import {
-  walkFileTree,
-  logGreen,
-  logRed,
-  pathJoinFromCLI
-} from '../shared/utils'
+import { walkFileTree, logGreen, logRed, pathJoinFromCLI } from '../shared/utils'
 
 /**
  * 删除 packages 项目包下插件内部的 dist、runtime、node_modules 文件

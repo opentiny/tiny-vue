@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   computedNavStyle,
@@ -52,9 +52,14 @@ export const api = [
   'swiperHandle'
 ]
 
-export const renderless = (props, { computed, inject, onBeforeUnmount, onMounted, onUpdated, reactive, markRaw }, { parent, vm, nextTick, refs, mode: tinyMode, emit }) => {
+export const renderless = (
+  props,
+  { computed, inject, onBeforeUnmount, onMounted, onUpdated, reactive, markRaw },
+  { parent, nextTick, refs, mode: tinyMode, emit }
+) => {
   const api = { mounted, beforeUnmount, computedNavStyle, computedSizeName }
   const state = reactive({
+    dragging: false,
     navOffset: 0,
     lineOffset: 0,
     scrollable: false,
@@ -66,7 +71,7 @@ export const renderless = (props, { computed, inject, onBeforeUnmount, onMounted
     showExpandItem: false,
     showExpandTabs: props.showExpandTabs,
     expandHeaderStyle: {},
-    mode: props._mode || parent.$mode || (tinyMode || 'pc'),
+    mode: props._mode || parent.$mode || tinyMode || 'pc',
     rootTabs: inject('rootTabs'),
     sizeName: computed(() => api.computedSizeName(state)),
     navStyle: computed(() => api.computedNavStyle(state))
@@ -83,16 +88,16 @@ export const renderless = (props, { computed, inject, onBeforeUnmount, onMounted
     windowBlurHandler: windowBlurHandler(state),
     windowFocusHandler: windowFocusHandler(state),
     visibilityChangeHandler: visibilityChangeHandler(state),
-    scrollToActiveTab: scrollToActiveTab({ props, parent, refs, state }),
-    scrollIntoView: scrollIntoView({ props, parent, refs, state }),
+    scrollToActiveTab: scrollToActiveTab({ parent, refs, state }),
+    scrollIntoView: scrollIntoView({ parent, refs, state }),
     computedHeaderStyle: computedHeaderStyle({ refs, state }),
-    watchCurrentName: watchCurrentName({ nextTick, vm, state }),
-    handleTabDragStart: handleTabDragStart({ state, vm, emit }),
-    handleTabDragEnd: handleTabDragEnd({ state, vm, nextTick }),
-    sortableEvent: sortableEvent({ api, props, state, vm, emit, markRaw })
+    watchCurrentName: watchCurrentName({ nextTick, refs, state }),
+    handleTabDragStart: handleTabDragStart({ state, refs, emit }),
+    handleTabDragEnd: handleTabDragEnd({ state, refs, nextTick }),
+    sortableEvent: sortableEvent({ api, props, state, refs, emit, markRaw })
   })
 
-  Object.assign(api, { updated: updated({ api, props, refs, state }), changeTab: changeTab(api) })
+  Object.assign(api, { updated: updated({ api, refs, state }), changeTab: changeTab(api) })
   onUpdated(() => api.updated())
   onMounted(() => api.mounted({ api, parent }))
   onBeforeUnmount(() => api.beforeUnmount({ api, parent }))

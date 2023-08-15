@@ -6,14 +6,14 @@ let value = ''
 
 describe('PC Mode', () => {
   const mount = mountPcMode
-  
+
   test('readonly', async () => {
-    const wrapper = mount(() => <Popeditor readonly={true} ></Popeditor>)
+    const wrapper = mount(() => <Popeditor readonly={true}></Popeditor>)
     expect(wrapper.find('.tiny-popeditor-readonly').exists()).toBe(true)
   })
 
   test('disabled', async () => {
-    const wrapper = mount(() => <Popeditor readonly={true} ></Popeditor>)
+    const wrapper = mount(() => <Popeditor readonly={true}></Popeditor>)
     expect(wrapper.find('.tiny-popeditor-readonly').exists()).toBe(true)
   })
 
@@ -75,8 +75,18 @@ describe('PC Mode', () => {
 
   test.todo('dialog-class ，自定义配置弹窗类名')
 
+  test.todo('before-close ，拦截弹窗关闭，配置一个拦截弹窗关闭的方法')
+
+  test.todo('show-selected-box ，多选场景,是否将已选表格显示为已选栏，默认值为false')
+
+  test.todo(
+    'selected-box-op ，通过属性 selected-box-op 指定 SelectedBox 组件配置，可以把已选表格显示为已选栏,与 show-selected-box 属性组合使用'
+  )
+
   // slots
   test.todo('search 插槽，设置查询条件插槽')
+
+  test.todo('footer 插槽，自定义弹出面板底部按钮栏结构')
 
   //events
   test.todo('测试 change 事件，Popeditor 组件 Input 框的 change 事件')

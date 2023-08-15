@@ -2,9 +2,24 @@
   <div>
     <tiny-button @click="fn" type="primary"> 页面选择器 </tiny-button>
     <p>值：{{ value }}</p>
-    <p>文本分隔符设置为：/ </p>
+    <p>文本分隔符设置为：/</p>
     <p>文本：{{ text }}</p>
-    <tiny-select-view v-model="value" :menus="menus" multiple value-field="employeeNumber" text-field="userName" text-field2="employeeNumber" text-field3="dept" title="选择人员" :search-config="searchConfig" :top-config="topConfig" :visible="boxVisibility" @update:visible="boxVisibility = $event" text-split=" / " @update:text="text = $event">
+    <tiny-select-view
+      v-model="value"
+      :menus="menus"
+      multiple
+      value-field="employeeNumber"
+      text-field="userName"
+      text-field2="employeeNumber"
+      text-field3="dept"
+      title="选择人员"
+      :search-config="searchConfig"
+      :top-config="topConfig"
+      :visible="boxVisibility"
+      @update:visible="boxVisibility = $event"
+      text-split=" / "
+      @update:text="text = $event"
+    >
     </tiny-select-view>
   </div>
 </template>

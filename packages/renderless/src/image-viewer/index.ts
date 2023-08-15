@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { on, off } from '../common/deps/dom'
 import { KEY_CODE } from '../common'
@@ -35,58 +35,62 @@ export const rafThrottle = (fn) => {
   }
 }
 
-export const hide = ({ props, api }) => () => {
-  api.deviceSupportUninstall()
-  props.onClose()
-}
+export const hide =
+  ({ props, api }) =>
+  () => {
+    api.deviceSupportUninstall()
+    props.onClose()
+  }
 
-export const deviceSupportInstall = ({ state, api }) => () => {
-  state._keyDownHandler = rafThrottle((event) => {
-    const keyCode = event.keyCode
+export const deviceSupportInstall =
+  ({ state, api }) =>
+  () => {
+    state._keyDownHandler = rafThrottle((event) => {
+      const keyCode = event.keyCode
 
-    switch (keyCode) {
-      case KEY_CODE.Escape:
-        api.hide()
-        break
-      case KEY_CODE.Space:
-        api.toggleMode()
-        break
-      case KEY_CODE.ArrowLeft:
-        api.prev()
-        break
-      case KEY_CODE.ArrowUp:
-        api.handleActions('zoomIn')
-        break
-      case KEY_CODE.ArrowRight:
-        api.next()
-        break
-      case KEY_CODE.ArrowDown:
-        api.handleActions('zoomOut')
-        break
-      default:
-        break
-    }
-  })
+      switch (keyCode) {
+        case KEY_CODE.Escape:
+          api.hide()
+          break
+        case KEY_CODE.Space:
+          api.toggleMode()
+          break
+        case KEY_CODE.ArrowLeft:
+          api.prev()
+          break
+        case KEY_CODE.ArrowUp:
+          api.handleActions('zoomIn')
+          break
+        case KEY_CODE.ArrowRight:
+          api.next()
+          break
+        case KEY_CODE.ArrowDown:
+          api.handleActions('zoomOut')
+          break
+        default:
+          break
+      }
+    })
 
-  state._mouseWheelHandler = rafThrottle((event) => {
-    const delta = event.wheelDelta ? event.wheelDelta : -event.detail
+    state._mouseWheelHandler = rafThrottle((event) => {
+      const delta = event.wheelDelta ? event.wheelDelta : -event.detail
 
-    if (delta > 0) {
-      api.handleActions('zoomIn', {
-        zoomRate: 0.015,
-        enableTransition: false
-      })
-    } else {
-      api.handleActions('zoomOut', {
-        zoomRate: 0.015,
-        enableTransition: false
-      })
-    }
-  })
+      if (delta > 0) {
+        api.handleActions('zoomIn', {
+          zoomRate: 0.015,
+          enableTransition: false
+        })
+      } else {
+        api.handleActions('zoomOut', {
+          zoomRate: 0.015,
+          enableTransition: false
+        })
+      }
+    })
 
-  on(document, 'keydown', state._keyDownHandler)
-  on(document, mousewheelEventName, state._mouseWheelHandler)
-}
+    on(document, 'keydown', state._keyDownHandler)
+    on(document, mousewheelEventName, state._mouseWheelHandler)
+  }
 
 export const deviceSupportUninstall = (state) => () => {
   off(document, 'keydown', state._keyDownHandler)
@@ -98,10 +102,12 @@ export const deviceSupportUninstall = (state) => () => {
 
 export const handleImgLoad = (state) => () => (state.loading = false)
 
-export const handleImgError = ({ state, t }) => (event) => {
-  state.loading = false
-  event.target.alt = t('ui.imageViewer.loadErrorAlt')
-}
+export const handleImgError =
+  ({ state, t }) =>
+  (event) => {
+    state.loading = false
+    event.target.alt = t('ui.imageViewer.loadErrorAlt')
+  }
 
 export const handleMouseDown = (state) => (event) => {
   if (state.loading || event.button !== 0) {
@@ -132,253 +138,279 @@ export const reset = (state) => () =>
     enableTransition: false
   })
 
-export const toggleMode = ({ state, constants, api }) => () => {
-  if (state.loading) {
-    return
-  }
-
-  const MODE = constants.MODE
-  const modeNames = Object.keys(MODE)
-  const modeValues = []
-
-  modeNames.forEach((key) => {
-    modeValues.push(MODE[key])
-  })
-
-  let index = -1
-
-  modeValues.forEach((item, inx) => {
-    if (item.name === state.mode.name) {
-      index = inx
+export const toggleMode =
+  ({ state, constants, api }) =>
+  () => {
+    if (state.loading) {
+      return
     }
-  })
 
-  const nextIndex = (index + 1) % modeNames.length
+    const MODE = constants.MODE
+    const modeNames = Object.keys(MODE)
+    const modeValues = []
 
-  state.mode = MODE[modeNames[nextIndex]]
+    modeNames.forEach((key) => {
+      modeValues.push(MODE[key])
+    })
 
-  api.reset()
-}
+    let index = -1
 
-export const prev = ({ state, props }) => () => {
-  if (state.isFirst && !state.infinite) {
-    return
+    modeValues.forEach((item, inx) => {
+      if (item.name === state.mode.name) {
+        index = inx
+      }
+    })
+
+    const nextIndex = (index + 1) % modeNames.length
+
+    state.mode = MODE[modeNames[nextIndex]]
+
+    api.reset()
   }
 
-  const len = props.urlList.length
-
-  state.index = (state.index - 1 + len) % len
-}
-
-export const next = ({ state, props }) => () => {
-  if (state.isLast && !state.infinite) {
-    return
-  }
-
-  const len = props.urlList.length
-
-  state.index = (state.index + 1) % len
-}
-
-export const handleActions = (state) => (action, options = {}) => {
-  if (state.loading) {
-    return
-  }
-
-  const { zoomRate, rotateDeg, enableTransition } = {
-    zoomRate: 0.2,
-    rotateDeg: 90,
-    enableTransition: true,
-    ...options
-  }
-  const { transform } = state
-
-  if (action === 'zoomOut') {
-    if (transform.scale > 0.2) {
-      transform.scale = parseFloat((transform.scale - zoomRate).toFixed(3))
+export const prev =
+  ({ state, props }) =>
+  () => {
+    if (state.isFirst && !state.infinite) {
+      return
     }
-  } else if (action === 'zoomIn') {
-    transform.scale = parseFloat((transform.scale + zoomRate).toFixed(3))
-  } else if (action === 'clocelise') {
-    transform.deg += rotateDeg
-  } else if (action === 'anticlocelise') {
-    transform.deg -= rotateDeg
+
+    const len = props.urlList.length
+
+    state.index = (state.index - 1 + len) % len
   }
 
-  transform.enableTransition = enableTransition
-}
+export const next =
+  ({ state, props }) =>
+  () => {
+    if (state.isLast && !state.infinite) {
+      return
+    }
+
+    const len = props.urlList.length
+
+    state.index = (state.index + 1) % len
+  }
+
+export const handleActions =
+  (state) =>
+  (action, options = {}) => {
+    if (state.loading) {
+      return
+    }
+
+    const { zoomRate, rotateDeg, enableTransition } = {
+      zoomRate: 0.2,
+      rotateDeg: 90,
+      enableTransition: true,
+      ...options
+    }
+    const { transform } = state
+
+    if (action === 'zoomOut') {
+      if (transform.scale > 0.2) {
+        transform.scale = parseFloat((transform.scale - zoomRate).toFixed(3))
+      }
+    } else if (action === 'zoomIn') {
+      transform.scale = parseFloat((transform.scale + zoomRate).toFixed(3))
+    } else if (action === 'clocelise') {
+      transform.deg += rotateDeg
+    } else if (action === 'anticlocelise') {
+      transform.deg -= rotateDeg
+    }
+
+    transform.enableTransition = enableTransition
+  }
 
 export const computedIsSingle = (props) => () => props.urlList.length <= 1
 
 export const computedIsFirst = (state) => () => state.index === 0
 
-export const computedIsLast = ({ state, props }) => () => state.index === props.urlList.length - 1
+export const computedIsLast =
+  ({ state, props }) =>
+  () =>
+    state.index === props.urlList.length - 1
 
-export const computedCurrentImg = ({ state, props }) => () => props.urlList[state.index]
+export const computedCurrentImg =
+  ({ state, props }) =>
+  () =>
+    props.urlList[state.index]
 
-export const computedImgStyle = ({ state, constants }) => () => {
-  const { offsetX, offsetY, scale, deg, enableTransition } = state.transform
-  const transition = enableTransition ? 'transform .3s' : ''
+export const computedImgStyle =
+  ({ state, constants }) =>
+  () => {
+    const { offsetX, offsetY, scale, deg, enableTransition } = state.transform
+    const transition = enableTransition ? 'transform .3s' : ''
 
-  const style = {
-    transform: `scale(${scale}) rotate(${deg}deg)`,
-    transition,
-    'margin-top': `${offsetY}px`,
-    'margin-left': `${offsetX}px`
+    const style = {
+      transform: `scale(${scale}) rotate(${deg}deg)`,
+      transition,
+      'margin-top': `${offsetY}px`,
+      'margin-left': `${offsetX}px`
+    }
+
+    if (JSON.stringify(state.mode) === JSON.stringify(constants.MODE.CONTAIN)) {
+      style.maxWidth = style.maxHeight = '100%'
+    }
+
+    return style
   }
-
-  if (JSON.stringify(state.mode) === JSON.stringify(constants.MODE.CONTAIN)) {
-    style.maxWidth = style.maxHeight = '100%'
-  }
-
-  return style
-}
 
 export const watchVisible = (state) => (value) => (state.previewVisible = value)
 
-export const handleVisible = ({ state, emit, props }) => () => {
-  state.transform.scale = 1
-  state.transform.deg = 0
+export const handleVisible =
+  ({ state, emit, props }) =>
+  () => {
+    state.transform.scale = 1
+    state.transform.deg = 0
 
-  setTimeout(() => {
+    setTimeout(() => {
+      if (props.startPosition !== 0) {
+        state.index = (props.startPosition - 1 + state.urlList.length) % state.urlList.length
+        state.imageTransform = state.index * state.imageItemWidth
+        state.imageTransformSize = -state.index * state.imageItemWidth
+      } else {
+        state.index = 0
+        state.imageTransform = state.index * state.imageItemWidth
+        state.imageTransformSize = -state.index * state.imageItemWidth
+      }
+    }, 300)
+
+    emit('update:preview-visible', false)
+    emit('close', state.index, state.urlList[state.index])
+  }
+
+export const getImageWidth =
+  ({ state, parent, props }) =>
+  () => {
+    let imageW = 0
+    const len = state.urlList.length
+
+    imageW = parent.$el.querySelector('.tiny-mobile-image-viewer__canvas').offsetWidth
+
+    state.imageList = parent.$el.querySelectorAll('.tiny-mobile-image-viewer__item')
+
+    state.imageItemWidth = imageW
+    state.iamgeAllWidth = state.urlList.length * imageW
+
     if (props.startPosition !== 0) {
-      state.index = (props.startPosition - 1 + state.urlList.length) % state.urlList.length
-      state.imageTransform = state.index * state.imageItemWidth
-      state.imageTransformSize = -state.index * state.imageItemWidth
-    } else {
-      state.index = 0
-      state.imageTransform = state.index * state.imageItemWidth
-      state.imageTransformSize = -state.index * state.imageItemWidth
+      state.index = props.startPosition
+      state.imageTransition = 0
+
+      const transformX = state.index * state.imageItemWidth
+
+      state.imageTransform = transformX
+      state.imageTransformSize = -transformX
     }
-  }, 300)
 
-  emit('update:preview-visible', false)
-  emit('close', state.index, state.urlList[state.index])
-}
+    if (state.index === 0 && props.deleteButton && state.delete) {
+      state.imageTransition = 0
 
-export const getImageWidth = ({ state, parent, props }) => () => {
-  let imageW = 0
-  const len = state.urlList.length
+      const transformX = state.index * state.imageItemWidth
 
-  imageW = parent.$el.querySelector('.tiny-mobile-image-viewer__canvas').offsetWidth
+      state.imageTransform = transformX
+      state.imageTransformSize = -transformX
+    }
 
-  state.imageList = parent.$el.querySelectorAll('.tiny-mobile-image-viewer__item')
+    setTimeout(() => {
+      state.imageTransition = 300
+    }, 0)
 
-  state.imageItemWidth = imageW
-  state.iamgeAllWidth = state.urlList.length * imageW
+    if (props.startPosition === 0) {
+      state.arrowStyle = 'N'
+    }
 
-  if (props.startPosition !== 0) {
-    state.index = props.startPosition
-    state.imageTransition = 0
+    if (props.startPosition === len - 1) {
+      state.arrowStyle = 'Y'
+    }
+  }
+
+export const swipeLeft =
+  ({ state, emit }) =>
+  () => {
+    if (state.isLast && !state.infinite) {
+      return
+    }
+
+    const len = state.urlList.length
+
+    if (state.index >= state.urlList.length - 2) {
+      state.arrowStyle = 'Y'
+    } else {
+      state.arrowStyle = null
+    }
+
+    if (state.imageTransform === state.iamgeAllWidth) {
+      state.imageTransformSize = state.imageTransform = 0
+      state.imageList[0].style.transform = null
+
+      return
+    }
+
+    if (state.imageTransform == state.iamgeAllWidth - state.imageItemWidth && state.index == state.urlList.length - 1) {
+      return
+    }
+
+    state.index = (state.index + 1) % len
 
     const transformX = state.index * state.imageItemWidth
 
     state.imageTransform = transformX
     state.imageTransformSize = -transformX
+
+    emit('change', state.index, state.urlList[state.index])
   }
 
-  if (state.index === 0 && props.deleteButton && state.delete) {
-    state.imageTransition = 0
+export const swipeRight =
+  ({ state, emit }) =>
+  () => {
+    if (state.isFirst && !state.infinite) {
+      return
+    }
+
+    const len = state.urlList.length
+
+    if (state.index <= 1) {
+      state.arrowStyle = 'N'
+    } else {
+      state.arrowStyle = null
+    }
+
+    if (state.imageTransform == 0 && state.index == 0) {
+      return
+    }
+
+    state.index = (state.index - 1 + len) % len
 
     const transformX = state.index * state.imageItemWidth
 
     state.imageTransform = transformX
     state.imageTransformSize = -transformX
+
+    emit('change', state.index, state.urlList[state.index])
   }
 
-  setTimeout(() => {
-    state.imageTransition = 300
-  }, 0)
+export const handleDelete =
+  ({ api, emit, state }) =>
+  () => {
+    if (state.urlList.length <= 1) {
+      state.delete = false
+      return
+    }
 
-  if (props.startPosition === 0) {
-    state.arrowStyle = 'N'
+    state.delete = true
+
+    const currenIndex = state.index
+    const urlList = state.urlList
+
+    urlList.splice(currenIndex, 1)
+    state.urlList = urlList
+    state.index = 0
+
+    api.getImageWidth()
+
+    emit('newImageList', state.urlList, currenIndex)
   }
-
-  if (props.startPosition === len - 1) {
-    state.arrowStyle = 'Y'
-  }
-}
-
-export const swipeLeft = ({ state, emit }) => () => {
-  if (state.isLast && !state.infinite) {
-    return
-  }
-
-  const len = state.urlList.length
-
-  if (state.index >= state.urlList.length - 2) {
-    state.arrowStyle = 'Y'
-  } else {
-    state.arrowStyle = null
-  }
-
-  if (state.imageTransform === state.iamgeAllWidth) {
-    state.imageTransformSize = state.imageTransform = 0
-    state.imageList[0].style.transform = null
-
-    return
-  }
-
-  if (state.imageTransform == state.iamgeAllWidth - state.imageItemWidth && state.index == state.urlList.length - 1) {
-    return
-  }
-
-  state.index = (state.index + 1) % len
-
-  const transformX = state.index * state.imageItemWidth
-
-  state.imageTransform = transformX
-  state.imageTransformSize = -transformX
-
-  emit('change', state.index, state.urlList[state.index])
-}
-
-export const swipeRight = ({ state, emit }) => () => {
-  if (state.isFirst && !state.infinite) {
-    return
-  }
-
-  const len = state.urlList.length
-
-  if (state.index <= 1) {
-    state.arrowStyle = 'N'
-  } else {
-    state.arrowStyle = null
-  }
-
-  if (state.imageTransform == 0 && state.index == 0) {
-    return
-  }
-
-  state.index = (state.index - 1 + len) % len
-
-  const transformX = state.index * state.imageItemWidth
-
-  state.imageTransform = transformX
-  state.imageTransformSize = -transformX
-
-  emit('change', state.index, state.urlList[state.index])
-}
-
-export const handleDelete = ({ api, emit, state }) => () => {
-  if (state.urlList.length <= 1) {
-    state.delete = false
-    return
-  }
-
-  state.delete = true
-
-  const currenIndex = state.index
-  const urlList = state.urlList
-
-  urlList.splice(currenIndex, 1)
-  state.urlList = urlList
-  state.index = 0
-
-  api.getImageWidth()
-
-  emit('newImageList', state.urlList, currenIndex)
-}
 
 const preventDefault = (event, isStopPropagation) => {
   if (typeof event.cancelable !== 'boolean' || event.cancelable) {
@@ -470,5 +502,7 @@ export const touchend = (state) => () => {
   state.pageY2 = 0
 }
 
-export const computeZIndex = ({ constants, props }) => () =>
-  props.zIndex === constants.DEFAULT_POPPER_ZINDEX || props.zIndex < 1 ? PopupManager.nextZIndex() : props.zIndex
+export const computeZIndex =
+  ({ constants, props }) =>
+  () =>
+    props.zIndex === constants.DEFAULT_POPPER_ZINDEX || props.zIndex < 1 ? PopupManager.nextZIndex() : props.zIndex

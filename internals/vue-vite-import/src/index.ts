@@ -34,10 +34,7 @@ export type PluginOptions = Array<PluginOption>
 
 type ModeType = 'pc' | 'mobile' | undefined
 
-export default function vitePluginBabelImport(
-  plgOptions: PluginOptions,
-  mode?: ModeType
-): Plugin {
+export default function vitePluginBabelImport(plgOptions: PluginOptions, mode?: ModeType): Plugin {
   return {
     name: '@opentiny/vue-vite-import',
     transform(code, id) {
@@ -45,10 +42,7 @@ export default function vitePluginBabelImport(
       // 不处理node_modules内的依赖
       if (/\.(?:[jt]sx?|vue)$/.test(id) && !/(node_modules)/.test(id)) {
         return {
-          code: transformCode(
-            code,
-            transformOptions(plgOptions)
-          ),
+          code: transformCode(code, transformOptions(plgOptions)),
           map: null
         }
       } else if (isCheckMode) {
@@ -72,9 +66,7 @@ function generateOptions(caseFnObj: CaseFnObjType, opt: PluginOption) {
     caseFnObj.libraryCaseFn = opt.libraryChangeCase
   } else {
     caseFnObj.libraryCaseFn = (name) => {
-      return changeCase[
-        (opt.libraryChangeCase || 'paramCase') as ChangeCaseType
-      ](name)
+      return changeCase[(opt.libraryChangeCase || 'paramCase') as ChangeCaseType](name)
     }
   }
 }
@@ -110,21 +102,24 @@ function transformOptions(options: PluginOptions): PluginInnerOptions {
 }
 
 const transformImport = (matchRes: string, opt: PluginInnerOption) => {
-  const componentsArr = matchRes.split(',').filter(item => item.trim()).map(item => {
-    let itemName = item.trim()
-    let asName = ''
+  const componentsArr = matchRes
+    .split(',')
+    .filter((item) => item.trim())
+    .map((item) => {
+      let itemName = item.trim()
+      let asName = ''
 
-    // 处理import { Alert as TinyAlert } from '@opentiny/vue' --> import TinyAlert from '@opentiny/vue'
-    const isImportWithAs = itemName.includes(' as ')
-    if (isImportWithAs) {
-      const allName = itemName.split(' as ')
-      itemName = allName[0]
-      asName = allName[1]
-    }
-    const importName = opt.customName?.(itemName) || opt.libraryResolve(itemName)
-    const compImportName = isImportWithAs ? asName : itemName
-    return `import ${compImportName} from '${importName}'`
-  })
+      // 处理import { Alert as TinyAlert } from '@opentiny/vue' --> import TinyAlert from '@opentiny/vue'
+      const isImportWithAs = itemName.includes(' as ')
+      if (isImportWithAs) {
+        const allName = itemName.split(' as ')
+        itemName = allName[0]
+        asName = allName[1]
+      }
+      const importName = opt.customName?.(itemName) || opt.libraryResolve(itemName)
+      const compImportName = isImportWithAs ? asName : itemName
+      return `import ${compImportName} from '${importName}'`
+    })
   return componentsArr.join('\n') + '\n'
 }
 
@@ -133,15 +128,13 @@ const transformDefaultImport = (matchRes: string, opt: PluginInnerOption) => {
   return `import ${matchRes} from '${importName}'`
 }
 
-const getCompRegExp = (libraryName: any) => new RegExp(`import\\s+?{*([\\w ,\\s]+)}*\\s+?from\\s+?('|")${libraryName}('|")`, 'g')
+const getCompRegExp = (libraryName: any) =>
+  new RegExp(`import\\s+?{*([\\w ,\\s]+)}*\\s+?from\\s+?('|")${libraryName}('|")`, 'g')
 
-function transformCode(
-  code: string,
-  plgOptions: PluginInnerOptions
-): string {
+function transformCode(code: string, plgOptions: PluginInnerOptions): string {
   let resultCode = code
 
-  plgOptions.forEach(opt => {
+  plgOptions.forEach((opt) => {
     const compRegexp = getCompRegExp(opt.libraryName)
     if (compRegexp.test(resultCode)) {
       const newCode = resultCode.replace(compRegexp, (_all, matchRes): string => {

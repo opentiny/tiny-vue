@@ -6,6 +6,12 @@
         'inline-flex sm:items-center text-sm leading-5 cursor-pointer',
         state.size === 'medium' ? 'sm:text-sm' : 'sm:text-xs',
         { 'sm:py-2': state.vertical },
+        state.isDisplayOnly || state.isGroupDisplayOnly
+          ? state.isChecked
+            ? `cursor-default after:content-[';'] after:inline-block last:after:content-['']`
+            : 'hidden'
+          : '',
+        state.showLabel ? 'inline-flex' : '',
         customClass
       )
     "
@@ -14,7 +20,11 @@
     v-bind="a($attrs, ['class', 'style', 'onClick'], true)"
   >
     <span
-      :class="['relative', state.size === 'medium' ? 'sm:w-6 sm:h-6' : 'sm:h-4 sm:w-4']"
+      :class="[
+        'relative',
+        state.size === 'medium' ? 'sm:w-6 sm:h-6' : 'sm:h-4 sm:w-4',
+        state.isDisplayOnly || state.isGroupDisplayOnly ? 'hidden' : ''
+      ]"
       :role="indeterminate ? 'checkbox' : false"
       :aria-checked="indeterminate ? 'mixed' : false"
     >
@@ -62,7 +72,7 @@
         type="checkbox"
         :aria-hidden="indeterminate ? 'true' : 'false'"
         :name="name"
-        :disabled="state.isDisabled"
+        :disabled="state.inputDisabled"
         :true-value="trueLabel"
         :false-value="falseLabel"
         v-model="state.model"
@@ -76,7 +86,7 @@
         class="absolute left-0 right-0 top-0 bottom-0 w-0 h-0 -z-10 opacity-0"
         type="checkbox"
         :aria-hidden="indeterminate ? 'true' : 'false'"
-        :disabled="state.isDisabled"
+        :disabled="state.inputDisabled"
         :value="label"
         :name="name"
         v-model="state.model"
@@ -89,13 +99,19 @@
     <span
       v-if="(slots.default && slots.default()) || state.isShowText"
       ref="label"
-      :class="[
-        'py-3 sm:py-0 pl-0 sm:pl-2 mr-5 flex-auto',
-        state.isDisabled ? 'cursor-not-allowed text-color-text-disabled' : 'text-color-text-primary'
-      ]"
+      :class="
+        m(
+          'py-3 sm:py-0 pl-0 sm:pl-2 mr-5 flex-auto',
+          state.isDisabled ? 'cursor-not-allowed text-color-text-disabled' : 'text-color-text-primary',
+          state.isDisplayOnly || state.isGroupDisplayOnly ? 'p-0 sm:p-0 m-0 text-color-text-primary cursor-default' : ''
+        )
+      "
     >
       <slot>{{ state.showText }}</slot>
     </span>
+    <template v-else>
+      <span v-if="state.isDisplayOnly" class="text-color-text-primary cursor-default"> {{ state.displayLabel }}</span>
+    </template>
   </label>
 </template>
 
@@ -124,7 +140,8 @@ export default defineComponent({
     'size',
     'border',
     'validateEvent',
-    'customClass'
+    'customClass',
+    'displayOnly'
   ],
   components: {
     IconHalfselect: iconHalfselect(),

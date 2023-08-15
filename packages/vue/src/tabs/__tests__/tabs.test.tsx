@@ -39,10 +39,11 @@ describe('PC Mode', () => {
   const mount = mountPcMode
   // props
   test('tab-style 标签页样式', async () => {
-    const wrapper = mount(() =>
+    const wrapper = mount(() => (
       <Tabs active-name={activeName} tab-style="border-card">
         {createTabList()}
-      </Tabs>)
+      </Tabs>
+    ))
     const tinyTabs = wrapper.findComponent({ name: 'TinyTabs' })
     expect(tinyTabs.vm.tabStyle).toEqual('border-card')
     expect(wrapper.find('.tiny-tabs--border-card').exists()).toBeTruthy()
@@ -50,10 +51,11 @@ describe('PC Mode', () => {
 
   // slots
   test('title 自定义title内容', async () => {
-    const wrapper = mount(() =>
+    const wrapper = mount(() => (
       <Tabs active-name={activeName} tab-style="border-card">
-        <TabItem name='single' v-slots={{ title: () => <span class="item-title">我是表头</span> }}></TabItem>
-      </Tabs>)
+        <TabItem name="single" v-slots={{ title: () => <span class="item-title">我是表头</span> }}></TabItem>
+      </Tabs>
+    ))
     await nextTick()
     expect(wrapper.find('.item-title').exists()).toBeTruthy()
   })
@@ -61,10 +63,11 @@ describe('PC Mode', () => {
   // events
   test('click 点击tabitem时触发事件', async () => {
     const handleClick = vi.fn()
-    const wrapper = mount(() =>
+    const wrapper = mount(() => (
       <Tabs active-name={activeName} tab-style="card" onClick={handleClick}>
         {createTabList()}
-      </Tabs>)
+      </Tabs>
+    ))
     await nextTick()
     await wrapper.find('.tiny-tabs__item').trigger('click')
     expect(handleClick).toBeCalled()
@@ -95,7 +98,9 @@ describe('PC Mode', () => {
 
   test.todo('drop-config 启用标签页拖拽功能，对标签页进行重新排序')
 
-  test.todo('tooltip-config 设置文字超出提示, Object类型的值参考tooltip组件配置，如果想使用默认的title属性，可设置为String 类型，值为title')
+  test.todo(
+    'tooltip-config 设置文字超出提示, Object类型的值参考tooltip组件配置，如果想使用默认的title属性，可设置为String 类型，值为title'
+  )
 
   // slots
   test.todo('moreIcon 自定义更多图标')
@@ -111,5 +116,7 @@ describe('PC Mode', () => {
 
   test.todo('close 删除tabitem时触发事件;点击 tab 移除按钮后触发;arguments: arg1:删除的tab名称')
 
-  test.todo('edit 点击 tabs 的新增按钮或 tab 被关闭后触发;arguments: arg1:null或删除的tab名称, arg2:"add" 或者 "remove"')
+  test.todo(
+    'edit 点击 tabs 的新增按钮或 tab 被关闭后触发;arguments: arg1:null或删除的tab名称, arg2:"add" 或者 "remove"'
+  )
 })

@@ -1,7 +1,6 @@
 <template>
   <div style="display: flex; justify-content: space-between">
-    <tiny-time-line :data="data1" show-icon>
-    </tiny-time-line>
+    <tiny-time-line :data="data1" show-icon> </tiny-time-line>
     <tiny-time-line :data="data2" show-icon>
       <template #show-icon>
         <icon-copy />

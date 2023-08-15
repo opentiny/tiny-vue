@@ -1,5 +1,5 @@
 <template>
-  <tiny-search :mini="true"></tiny-search>
+  <tiny-search mini></tiny-search>
 </template>
 
 <script>

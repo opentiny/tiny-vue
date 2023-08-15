@@ -35,7 +35,19 @@ import Option from '@opentiny/vue-option'
 export default defineComponent({
   inheritAttrs: false,
   emits: ['clear', 'update:modelValue', 'visible-change', 'change'],
-  props: [...props, 'modelValue', 'max', 'placeholder', 'size', 'clearable', 'disabled', 'fetchCompany', 'fields', 'popperClass', 'popperAppendToBody'],
+  props: [
+    ...props,
+    'modelValue',
+    'max',
+    'placeholder',
+    'size',
+    'clearable',
+    'disabled',
+    'fetchCompany',
+    'fields',
+    'popperClass',
+    'popperAppendToBody'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   },

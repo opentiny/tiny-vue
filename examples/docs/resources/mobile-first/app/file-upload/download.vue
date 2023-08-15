@@ -1,5 +1,10 @@
 <template>
-  <tiny-file-upload ref="upload" :action="action" :file-list="fileList" @download-file="handleDownloadFile"></tiny-file-upload>
+  <tiny-file-upload
+    ref="upload"
+    :action="action"
+    :file-list="fileList"
+    @download-file="handleDownloadFile"
+  ></tiny-file-upload>
 </template>
 
 <script>

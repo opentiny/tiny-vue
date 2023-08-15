@@ -14,17 +14,37 @@
       </div>
     </div>
     <div ref="list" :class="['tiny-selected-box__list', { 'tiny-selected-box__list--inverse': state.inverse }]">
-      <div v-for="(option, i) in state.select" :key="`o${i}-${state.refresh}`" :data-key="keyOption(option)" data-tag="tiny-selected-box-item" class="tiny-selected-box__item">
+      <div
+        v-for="(option, i) in state.select"
+        :key="`o${i}-${state.refresh}`"
+        :data-key="keyOption(option)"
+        data-tag="tiny-selected-box-item"
+        class="tiny-selected-box__item"
+      >
         <div class="tiny-selected-box__item-grid">
           <div class="tiny-selected-box__item-grid-left">
-            <slot name="option" :params="state.slotParams" :option="option" :mouseenter="handleMouseenter" :mouseleave="handleMouseleave">
+            <slot
+              name="option"
+              :params="state.slotParams"
+              :option="option"
+              :mouseenter="handleMouseenter"
+              :mouseleave="handleMouseleave"
+            >
               <div class="tiny-selected-box__item-grid-left-label">
-                <div class="tiny-selected-box__item-grid-left-label-pri" @mouseenter="handleMouseenter" @mouseleave="handleMouseleave">
+                <div
+                  class="tiny-selected-box__item-grid-left-label-pri"
+                  @mouseenter="handleMouseenter"
+                  @mouseleave="handleMouseleave"
+                >
                   {{ textPrimary(option) }}
                 </div>
               </div>
               <div v-if="state.showAuxi" class="tiny-selected-box__item-grid-left-text">
-                <div class="tiny-selected-box__item-grid-left-text-aux" @mouseenter="handleMouseenter" @mouseleave="handleMouseleave">
+                <div
+                  class="tiny-selected-box__item-grid-left-text-aux"
+                  @mouseenter="handleMouseenter"
+                  @mouseleave="handleMouseleave"
+                >
                   {{ textAuxi(option) }}
                 </div>
               </div>
@@ -40,7 +60,13 @@
         </div>
       </div>
     </div>
-    <tiny-popover ref="popover" trigger="manual" class="tiny-selected-box__popover" :content="state.popoverContent" v-model="state.popoverVisible"></tiny-popover>
+    <tiny-popover
+      ref="popover"
+      trigger="manual"
+      class="tiny-selected-box__popover"
+      :content="state.popoverContent"
+      v-model="state.popoverVisible"
+    ></tiny-popover>
   </div>
 </template>
 

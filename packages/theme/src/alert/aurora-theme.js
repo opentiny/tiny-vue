@@ -9,5 +9,7 @@ export const tinyAlertAuroraTheme = {
   'ti-alert-large-padding-top': 'calc(var(--ti-common-space-base) * 4.5)',
   'ti-alert-large-padding-bottom': 'calc(var(--ti-common-space-base) * 3.5)',
   'ti-alert-large-padding-left': 'var(--ti-common-space-6x)',
-  'ti-alert-description-margin-top': 'var(--ti-common-space-3x)'
+  'ti-alert-description-margin-top': 'var(--ti-common-space-3x)',
+  'ti-alert-icon-margin-top': 'var(--ti-common-space-0)',
+  'ti-alert-close-position-top': 'var(--ti-common-space-3x)'
 }

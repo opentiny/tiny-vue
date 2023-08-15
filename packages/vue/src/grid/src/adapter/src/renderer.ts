@@ -47,7 +47,12 @@ function autoRefresh(renderOpts, params) {
   let { $table, row } = params
   let { editConfig = {} } = $table
 
-  return $table.isTemporaryRow(row) || !editConfig.showStatus || (typeof refresh === 'boolean' && refresh) || (typeof refresh === 'function' && refresh(params))
+  return (
+    $table.isTemporaryRow(row) ||
+    !editConfig.showStatus ||
+    (typeof refresh === 'boolean' && refresh) ||
+    (typeof refresh === 'function' && refresh(params))
+  )
 }
 
 function getEvents(renderOpts, params, context) {
@@ -186,7 +191,9 @@ function renderSelectEdit(h, renderOpts, params, context) {
     class: 'tiny-grid-default-select',
     on: getEvents(renderOpts, params, context)
   }
-  let children = renderOpts.optionGroups ? renderOptgroups(h, renderOpts, params, context) : renderOptions(h, renderOpts.options, renderOpts, params, context)
+  let children = renderOpts.optionGroups
+    ? renderOptgroups(h, renderOpts, params, context)
+    : renderOptions(h, renderOpts.options, renderOpts, params, context)
 
   return [h('select', props, children)]
 }
@@ -259,7 +266,9 @@ let buildRenderMap = () => {
         class: 'tiny-grid-default-select',
         on: getFilterEvents(item, renderOpts, params, context)
       }
-      let children = renderOpts.optionGroups ? renderOptgroups(h, renderOpts, params) : renderOptions(h, renderOpts.options, renderOpts, params)
+      let children = renderOpts.optionGroups
+        ? renderOptgroups(h, renderOpts, params)
+        : renderOptions(h, renderOpts.options, renderOpts, params)
 
       return h('select', props, children)
     })

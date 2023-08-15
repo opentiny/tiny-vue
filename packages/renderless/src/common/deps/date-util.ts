@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import fecha from './date'
 import { isNull } from '../type'
@@ -218,7 +218,15 @@ export const modifyWithTimeString = (date, time, t) => {
 export const clearTime = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate())
 
 export const clearMilliseconds = (date) =>
-  new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), 0)
+  new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    date.getHours(),
+    date.getMinutes(),
+    date.getSeconds(),
+    0
+  )
 
 export const limitTimeRange = (date, ranges, format = defaultHMS) => {
   if (ranges.length === 0) {
@@ -286,7 +294,8 @@ export const prevYear = (date, prev = 1) => {
   return changeYearMonthAndClampDate(date, year - prev, month)
 }
 
-export const extractTimeFormat = (dateFormat) => dateFormat.replace(/\W?D{1,2}|\W?Do|\W?d{1,4}|\W?M{1,4}|\W?y{2,4}/g, '').trim()
+export const extractTimeFormat = (dateFormat) =>
+  dateFormat.replace(/\W?D{1,2}|\W?Do|\W?d{1,4}|\W?M{1,4}|\W?y{2,4}/g, '').trim()
 
 export const extractDateFormat = (dateFormat) =>
   dateFormat
@@ -294,4 +303,5 @@ export const extractDateFormat = (dateFormat) =>
     .replace(/\W?h{1,2}|\W?s{1,3}|\W?a/gi, '')
     .trim()
 
-export const validateRangeInOneMonth = (startDate, endDate) => startDate.getMonth() === endDate.getMonth() && startDate.getFullYear() === endDate.getFullYear()
+export const validateRangeInOneMonth = (startDate, endDate) =>
+  startDate.getMonth() === endDate.getMonth() && startDate.getFullYear() === endDate.getFullYear()

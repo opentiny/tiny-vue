@@ -105,7 +105,14 @@
     <li
       v-for="file in files"
       :key="file.uid"
-      :class="['tiny-upload-list__item', 'is-' + file.status, state.focusing ? 'focusing' : '', { isEdm }]"
+      :class="[
+        'tiny-upload-list__item',
+        'is-' + file.status,
+        state.focusing ? 'focusing' : '',
+        { isEdm: isEdm },
+        { showUpdate: listOption.showUpdate },
+        { showDel: listOption.showDel }
+      ]"
       tabindex="0"
       @keydown.delete="!disabled && $emit('remove', file)"
       @focus="state.focusing = true"
@@ -121,14 +128,14 @@
         />
         <a
           :class="['tiny-upload-list__item-name', { isFail: isEdm && file.status === 'fail' }]"
-          @click="handleClick(file)"
+          @click="handleClick($event, file)"
           :title="isFolderTitle ? (file.path || '') + file.name : file.name"
         >
           <icon-attachment
             v-if="!isFolder"
             :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"
             class="tiny-svg-size"
-          />{{ file.name }}
+          />{{ file.name.length > maxNameLength ? file.name.substring(0, maxNameLength) + '...' : file.name }}
         </a>
         <div :class="['tiny-upload-list__item-edminfo', { isFail: isEdm && file.status === 'fail' }]" v-if="isEdm">
           <span>{{ file.docId }}</span>
@@ -142,7 +149,7 @@
           <icon-yes class="tiny-svg-size tiny-icon-check" v-if="['picture-card', 'picture'].indexOf(listType) > -1" />
         </label>
         <span
-          v-if="isEdm && !isFolder && !disabled && file.status !== 'fail'"
+          v-if="isEdm && !isFolder && !disabled && file.status !== 'fail' && listOption.showUpdate"
           :title="t('ui.fileUpload.updateFile')"
           @click="$emit('update', file)"
         >
@@ -151,13 +158,17 @@
             :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"
           ></icon-file-cloudupload>
         </span>
-        <span v-if="!disabled" :title="t('ui.fileUpload.deleteFile')" @click="$emit('remove', file)">
+        <span
+          v-if="!disabled && listOption.showDel"
+          :title="t('ui.fileUpload.deleteFile')"
+          @click="$emit('remove', file)"
+        >
           <icon-close
             class="tiny-svg-size icon-close"
             :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"
           ></icon-close>
         </span>
-        <i class="tiny-icon-close-tip" v-if="!disabled"> {{ t('ui.fileUpload.deleteTip') }}</i>
+        <i class="tiny-icon-close-tip" v-if="!disabled && listOption.showDel"> {{ t('ui.fileUpload.deleteTip') }}</i>
         <Progress
           v-if="file.status === 'uploading' || file.status === 'downloading'"
           :type="listType === 'picture-card' ? 'circle' : 'line'"
@@ -253,7 +264,8 @@ export default defineComponent({
     'srcList',
     'isFolderTitle',
     'listOption',
-    'maxNameLength'
+    'maxNameLength',
+    'mode'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, extendOptions: { Modal } })

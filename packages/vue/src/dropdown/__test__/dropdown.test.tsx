@@ -8,20 +8,22 @@ describe('PC Mode', () => {
   const mount = mountPcMode
 
   test('base 基本用法', async () => {
-    const wrapper = mount(() =>
+    const wrapper = mount(() => (
       <Dropdown
         v-slots={{
-          dropdown: () => (<DropdownMenu>
-            <DropdownItem>老友粉</DropdownItem>
-            <DropdownItem>黄金糕</DropdownItem>
-            <DropdownItem>狮子头</DropdownItem>
-            <DropdownItem>螺蛳粉</DropdownItem>
-            <DropdownItem>双皮奶</DropdownItem>
-            <DropdownItem>蚵仔煎</DropdownItem>
-          </DropdownMenu>)
-        }}>
-      </Dropdown>
-    )
+          dropdown: () => (
+            <DropdownMenu>
+              <DropdownItem>老友粉</DropdownItem>
+              <DropdownItem>黄金糕</DropdownItem>
+              <DropdownItem>狮子头</DropdownItem>
+              <DropdownItem>螺蛳粉</DropdownItem>
+              <DropdownItem>双皮奶</DropdownItem>
+              <DropdownItem>蚵仔煎</DropdownItem>
+            </DropdownMenu>
+          )
+        }}
+      ></Dropdown>
+    ))
 
     const triggerEle = wrapper.find('.tiny-dropdown__trigger')
     expect(triggerEle.exists()).toBe(true)
@@ -31,22 +33,23 @@ describe('PC Mode', () => {
   })
 
   test('slot-default', async () => {
-    const wrapper = mount(() =>
+    const wrapper = mount(() => (
       <Dropdown
         v-slots={{
-          default: () => <span class='test-default'>默认插槽</span>,
-          dropdown: () => (<DropdownMenu>
-            <DropdownItem>老友粉</DropdownItem>
-            <DropdownItem>黄金糕</DropdownItem>
-            <DropdownItem>狮子头</DropdownItem>
-            <DropdownItem>螺蛳粉</DropdownItem>
-            <DropdownItem>双皮奶</DropdownItem>
-            <DropdownItem>蚵仔煎</DropdownItem>
-          </DropdownMenu >)
+          default: () => <span class="test-default">默认插槽</span>,
+          dropdown: () => (
+            <DropdownMenu>
+              <DropdownItem>老友粉</DropdownItem>
+              <DropdownItem>黄金糕</DropdownItem>
+              <DropdownItem>狮子头</DropdownItem>
+              <DropdownItem>螺蛳粉</DropdownItem>
+              <DropdownItem>双皮奶</DropdownItem>
+              <DropdownItem>蚵仔煎</DropdownItem>
+            </DropdownMenu>
+          )
         }}
-      >
-      </Dropdown >
-    )
+      ></Dropdown>
+    ))
 
     const triggerEle = wrapper.find('.test-default')
     expect(triggerEle.exists()).toBe(true)
@@ -58,21 +61,23 @@ describe('PC Mode', () => {
   test('events-visible-change', async () => {
     const visibleChange = vi.fn()
 
-    const wrapper = mount(() =>
+    const wrapper = mount(() => (
       <Dropdown
         onVisibleChange={visibleChange}
         v-slots={{
-          dropdown: () => (<DropdownMenu>
-            <DropdownItem>老友粉</DropdownItem>
-            <DropdownItem>黄金糕</DropdownItem>
-            <DropdownItem>狮子头</DropdownItem>
-            <DropdownItem>螺蛳粉</DropdownItem>
-            <DropdownItem>双皮奶</DropdownItem>
-            <DropdownItem>蚵仔煎</DropdownItem>
-          </DropdownMenu>)
-        }}>
-      </Dropdown>
-    )
+          dropdown: () => (
+            <DropdownMenu>
+              <DropdownItem>老友粉</DropdownItem>
+              <DropdownItem>黄金糕</DropdownItem>
+              <DropdownItem>狮子头</DropdownItem>
+              <DropdownItem>螺蛳粉</DropdownItem>
+              <DropdownItem>双皮奶</DropdownItem>
+              <DropdownItem>蚵仔煎</DropdownItem>
+            </DropdownMenu>
+          )
+        }}
+      ></Dropdown>
+    ))
 
     const triggerEle = wrapper.find('.tiny-dropdown__trigger')
     expect(triggerEle.exists()).toBe(true)

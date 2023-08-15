@@ -2,6 +2,7 @@ import * as echarts from 'echarts'
 import AMapCoordSys from './AMapCoordSys'
 import './AMapModel.js'
 import './AMapView.js'
+
 echarts.registerCoordinateSystem('amap', AMapCoordSys)
 
 echarts.registerAction(

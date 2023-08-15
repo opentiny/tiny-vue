@@ -9,6 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
 import template from 'virtual-template?pc'
@@ -41,18 +42,20 @@ const $constants = {
     destroyPopper: 'destroyPopper',
     visibleChange: 'visible-change',
     handleOptionClick: 'handleOptionClick',
-    handleGroupDisabled: 'handleGroupDisabled'
+    handleGroupDisabled: 'handleGroupDisabled',
+    initValue: 'initValue'
   },
   TYPE: {
     Grid: 'grid',
     Tree: 'tree'
   },
+  MAX_WIDTH: 132,
   InputBoxType: {
     Input: 'input',
     Underline: 'underline'
   },
   ICON_MAP: {
-    downWard: 'icon-delta-down'
+    dropdownIcon: 'icon-delta-down'
   }
 }
 
@@ -92,6 +95,9 @@ export default defineComponent({
         }
       }
     },
+    shape: String,
+    tip: String,
+    label: String,
     loading: Boolean,
     disabled: Boolean,
     options: Array,
@@ -174,7 +180,7 @@ export default defineComponent({
     },
     delay: {
       type: Number,
-      default: 0
+      default: 200
     },
     readonly: Boolean,
     dropStyle: {
@@ -221,7 +227,33 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    dropdownIcon: {
+      type: [Object, String],
+      default: ''
+    },
+    disabledTooltipContent: String,
+    hoverExpand: {
+      type: Boolean,
+      default: false
+    },
     optimization: [Boolean, Object],
+    displayOnly: {
+      type: Boolean,
+      default: false
+    },
+    initQuery: Function,
+    extraQueryParams: {
+      type: [Object, String, Boolean, Array, Number],
+      default: ''
+    },
+    updateDelay: {
+      type: Number,
+      default: 0
+    },
+    showTips: {
+      type: Boolean,
+      default: true
+    },
     searchable: {
       type: Boolean,
       default: false
@@ -236,7 +268,7 @@ export default defineComponent({
     },
     tagType: {
       type: String,
-      default: ''
+      default: '' // aui 默认 info
     }
   },
   setup(props, context) {

@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import debounce from '../common/deps/debounce'
 import userPopper from '../common/deps/vue-popper'
@@ -49,7 +49,12 @@ import {
   updateSuggestWidth,
   handlePager,
   initSearchOption,
-  mounted
+  mounted,
+  doDestroy,
+  selectedBoxInit,
+  selectedBoxClear,
+  selectedBoxDelete,
+  selectedBoxDrag
 } from './index'
 
 export const api = [
@@ -75,11 +80,16 @@ export const api = [
   'closeSuggestPanel',
   'popper',
   'doSuggesstNow',
-  'suggestRadioChange'
+  'suggestRadioChange',
+  'doDestroy',
+  'selectedBoxClear',
+  'selectedBoxDelete',
+  'selectedBoxDrag'
 ]
 
-const initState = ({ reactive, computed, props, api, constants, t, parent }) => {
+const initState = ({ reactive, computed, props, api, constants, t, parent, vm }) => {
   const state = reactive({
+    showContent: false,
     open: false,
     display: '',
     getTitle: computed(() => api.computedGetTitle({ constants, props, t })),
@@ -97,7 +107,7 @@ const initState = ({ reactive, computed, props, api, constants, t, parent }) => 
     historyGridDataset: [],
     filterText: '',
     treeOp: computed(() => api.computedTreeOp(props, state)),
-
+    theme: vm.theme,
     pagerConfig: reactive({
       currentPage: 1,
       pageSize: 10,
@@ -154,8 +164,8 @@ const initApi = ({ api, props, state, parent, refs, emit, popper, constants, vm,
     doSearch: doSearch({ api, state, props }),
     doClear: doClear({ api, state, props }),
     updateSuggestWidth: updateSuggestWidth({ refs }),
-    doSuggesstNow: doSuggesst({ api, state, props, popper }),
-    doSuggesst: debounce(1000, doSuggesst({ api, state, props, popper })),
+    doSuggesstNow: doSuggesst({ api, state, props, popper, nextTick }),
+    doSuggesst: debounce(1000, doSuggesst({ api, state, props, popper, nextTick })),
     closeSuggestPanel: closeSuggestPanel({ api, state, refs }),
     sourceGridSelectChange: sourceGridSelectChange({ props, state, api }),
     sourceGridSelectAll: sourceGridSelectAll({ props, state, api }),
@@ -163,7 +173,12 @@ const initApi = ({ api, props, state, parent, refs, emit, popper, constants, vm,
     suggestRadioChange: suggestRadioChange({ api, state }),
     handlePager: handlePager({ api, props, state }),
     initSearchOption: initSearchOption({ api, state }),
-    mounted: mounted({ api, props })
+    mounted: mounted({ api, props }),
+    doDestroy: doDestroy({ popper }),
+    selectedBoxInit: selectedBoxInit(refs),
+    selectedBoxClear: selectedBoxClear(api),
+    selectedBoxDelete: selectedBoxDelete(api),
+    selectedBoxDrag: selectedBoxDrag({ props, state })
   })
 
   state.search = api.createSearchForm(false)
@@ -201,7 +216,7 @@ export const renderless = (
   { t, refs, parent, emit, constants, vm, nextTick, slots }
 ) => {
   const api = {}
-  const state = initState({ reactive, computed, props, api, constants, t, parent })
+  const state = initState({ reactive, computed, props, api, constants, t, parent, vm })
   const popper = userPopper({
     emit,
     refs,

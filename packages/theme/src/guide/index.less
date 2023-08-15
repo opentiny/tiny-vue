@@ -255,7 +255,9 @@
     width: 510px;
     outline: none;
     border-radius: 4px;
-    transition: opacity 0.3s, visibility 0.3s;
+    transition:
+      opacity 0.3s,
+      visibility 0.3s;
   }
 
   &.shepherd-enabled.shepherd-element {
@@ -318,12 +320,18 @@
   position: fixed;
   z-index: 9997;
   top: 0;
-  transition: all 0.3s ease-out, height 0ms 0.3s, opacity 0.3s 0ms;
+  transition:
+    all 0.3s ease-out,
+    height 0ms 0.3s,
+    opacity 0.3s 0ms;
 
   &.shepherd-modal-is-visible {
     opacity: 0.5;
     transform: translateZ(0);
-    transition: all 0.3s ease-out, height 0s 0s, opacity 0.3s 0s;
+    transition:
+      all 0.3s ease-out,
+      height 0s 0s,
+      opacity 0.3s 0s;
 
     path {
       pointer-events: all;

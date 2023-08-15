@@ -23,5 +23,5 @@ export default {
   'tiny--mobile-modal-btn-width': '112px',
   'tiny--mobile-modal-single-btn-width': '144px',
   'tiny--mobile-modal-btn-height': '36px',
-  'tiny--mobile-modal-cancel-btn-bg-color': '#f5f5f5',
+  'tiny--mobile-modal-cancel-btn-bg-color': '#f5f5f5'
 }

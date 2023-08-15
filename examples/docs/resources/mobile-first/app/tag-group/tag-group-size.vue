@@ -1,16 +1,13 @@
 <template>
   <div>
     <span class="label">中等标签：medium </span>
-    <tiny-tag-group :data="items" size="medium">
-    </tiny-tag-group>
+    <tiny-tag-group :data="items" size="medium"> </tiny-tag-group>
     <br />
     <span class="label">小型标签：small </span>
-    <tiny-tag-group :data="items" size="small">
-    </tiny-tag-group>
+    <tiny-tag-group :data="items" size="small"> </tiny-tag-group>
     <br />
     <span class="label">超小标签：mini </span>
-    <tiny-tag-group :data="items" size="mini">
-    </tiny-tag-group>
+    <tiny-tag-group :data="items" size="mini"> </tiny-tag-group>
   </div>
 </template>
 

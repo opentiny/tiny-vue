@@ -1,5 +1,15 @@
 <template>
-  <tiny-popover placement="bottom" title="标题" width="200" @show="show" @hide="hide" @after-leave="leave" @after-enter="enter" trigger="hover" :content="content">
+  <tiny-popover
+    placement="bottom"
+    title="标题"
+    width="200"
+    @show="show"
+    @hide="hide"
+    @after-leave="leave"
+    @after-enter="enter"
+    trigger="hover"
+    :content="content"
+  >
     <template #reference>
       <tiny-button>悬浮我触发</tiny-button>
     </template>

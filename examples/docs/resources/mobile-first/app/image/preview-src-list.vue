@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { Image, Message } from '@opentiny/vue'
+import { Image } from '@opentiny/vue'
 
 export default {
   components: {

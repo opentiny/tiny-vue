@@ -5,12 +5,25 @@
       <p class="page__desc">表单（设置标签宽度）</p>
     </div>
     <div class="demo-form-padds">
-      <tiny-form ref="ruleForm" :model="createData" :rules="rules" label-width="100px" label-position="left" label-suffix="自定义后缀">
+      <tiny-form
+        ref="ruleForm"
+        :model="createData"
+        :rules="rules"
+        label-width="100px"
+        label-position="left"
+        label-suffix="自定义后缀"
+      >
         <tiny-form-item label="优秀" prop="users">
           <tiny-input v-model="createData.users" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="优秀">
-          <tiny-input v-model="createData.user" is-select :select-menu="menus" placeholder="请输入内容" type="form"></tiny-input>
+          <tiny-input
+            v-model="createData.user"
+            is-select
+            :select-menu="menus"
+            placeholder="请输入内容"
+            type="form"
+          ></tiny-input>
         </tiny-form-item>
         <tiny-form-item>
           <tiny-button type="primary" @click="handleSubmit('ruleForm')">提交</tiny-button>

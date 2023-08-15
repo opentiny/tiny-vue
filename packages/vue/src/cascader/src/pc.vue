@@ -58,12 +58,12 @@
           <icon-close
             v-if="state.clearBtnVisible"
             key="clear"
-            class="tiny-input__icon"
+            :class="['tiny-input__icon', 'tiny-input__icon-close']"
             @click.stop="handleClear"
           ></icon-close>
           <component
             v-else
-            :is="state.dropDownVisible ? 'icon-delta-up' : 'icon-delta-down'"
+            :is="state.dropDownVisible ? 'icon-chevron-up' : 'icon-chevron-down'"
             key="arrow-down"
             :class="['tiny-input__icon', state.dropDownVisible && 'is-reverse']"
             @click.stop="toggleDropDownVisible()"
@@ -162,7 +162,10 @@
               :tabindex="-1"
               @click="handleSuggestionClick(index)"
             >
-              <span>{{ item.text }}</span>
+              <!-- <span v-html="item.text"></span> -->
+              <slot name="filter" :item="item.text">
+                {{ item.text }}
+              </slot>
               <icon-yes v-if="item.checked" class="icon-check"></icon-yes>
             </li>
           </template>
@@ -187,7 +190,7 @@ import Scrollbar from '@opentiny/vue-scrollbar'
 import CascaderPanel from '@opentiny/vue-cascader-panel'
 import FilterBox from '@opentiny/vue-filter-box'
 import Tooltip from '@opentiny/vue-tooltip'
-import { iconClose, iconDeltaDown, iconDeltaUp, iconYes } from '@opentiny/vue-icon'
+import { iconClose, iconChevronDown, iconChevronUp, iconYes } from '@opentiny/vue-icon'
 
 export default defineComponent({
   props: [
@@ -245,8 +248,8 @@ export default defineComponent({
     TinyFilterBox: FilterBox,
     TinyCascaderPanel: CascaderPanel,
     IconClose: iconClose(),
-    iconDeltaDown: iconDeltaDown(),
-    iconDeltaUp: iconDeltaUp(),
+    IconChevronDown: iconChevronDown(),
+    IconChevronUp: iconChevronUp(),
     IconYes: iconYes(),
     TinyTooltip: Tooltip
   },

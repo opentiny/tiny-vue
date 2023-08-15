@@ -41,9 +41,17 @@ export const i18n = (fn) => {
 
 export const extend = _extend
 
-export const initI18n = ({ app, createI18n, messages = {}, i18n = {} as any, merge }) => {
+export interface InitI18nOption {
+  app?: any
+  createI18n?: Function
+  messages?: Record<string, any>
+  i18n?: { locale: string }
+  merge?: Function
+}
+
+export const initI18n = ({ app, createI18n, messages = {}, i18n = {} as any, merge }: InitI18nOption) => {
   if (typeof merge !== 'function') {
-    merge = ({ lang, i18n, messages }) => extend.call(null, true, lang, i18n.messages, messages)
+    merge = ({ lang, i18n, messages }) => extend(true, lang, i18n.messages, messages)
   }
 
   const lang = { zhCN, enUS }

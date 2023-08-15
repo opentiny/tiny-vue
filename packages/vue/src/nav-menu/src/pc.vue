@@ -65,13 +65,14 @@
       >
         <li v-if="state.showMore" class="more-menu">
           <ul>
-            <li v-for="(item, index) in state.more" :key="index" :class="{ active: index === state.subActiveIndex }">
+            <li v-for="(item, index) in state.more" :key="index" :class="{ active: index === state.subActiveIndex, selected: index === state.moreItemSelectedIndex }">
               <component
                 :is="getTag(item)"
                 :to="getRoute(item)"
                 :class="{ showicon: item.children }"
                 @mouseenter="setSubMenu(item.children, index)"
-                @click="clickMenu(item)"
+                @mouseleave="leaveMoreMune"
+                @click="clickMenu(item, index)"
               >
                 {{ item.title }}
               </component>
@@ -93,12 +94,12 @@
                   class="tiny-nav-menu__sub-menu-title"
                   :class="!!group.title ? '' : 'tiny-nav-menu__sub-menu-title-blank'"
                 >
-                  <component :is="getTag(group)" :to="getRoute(group)" @click="clickMenu(group)">{{
+                  <component :is="getTag(group)" :to="getRoute(group)" @click="clickMenu(group,-1, index)" :class="{selected: index === state.subIndex && state.subItemSelectedIndex === -1 }">{{
                     group.title
                   }}</component>
                 </li>
-                <li v-for="(item, i) in group.children" :key="i" class="sub-item">
-                  <component :is="getTag(item)" :to="getRoute(item)" @click="clickMenu(item)">{{
+                <li v-for="(item, i) in group.children" :key="i" class="sub-item" :class="!group.title && !state.subMenu[i].children? 'only-secondary-title' : ''">
+                  <component :is="getTag(item)" :to="getRoute(item)" @click="clickMenu(item,i,index)" :class="{selected: i === state.subItemSelectedIndex && index ===state.subIndex }">{{
                     item.title
                   }}</component>
                 </li>

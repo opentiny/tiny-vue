@@ -74,6 +74,16 @@
       padding: 12px 8px 8px;
       border-bottom: solid 1px var(--ti-grid-border-color);
 
+      .@{grid-prefix-cls}__filter-search {
+        margin-bottom: 4px;
+        .tiny-input__inner {
+          border-width: 0;
+          background-color: var(--ti-grid-header-background-color);
+          padding-right: 54px;
+          padding-left: 8px;
+        }
+      }
+
       &.filter-panel__default {
         padding: 8px 20px 4px;
       }
@@ -193,6 +203,20 @@
           text-align: center;
         }
       }
+
+      &.filter-panel__simple {
+        padding: 0;
+
+        .@{grid-prefix-cls}__filter-option {
+          &.filter-option__btns {
+            padding: var(--ti-grid-filter-button-group-size) 0;
+            margin: 0 var(--ti-grid-filter-button-group-size);
+            border-top: 1px solid var(--ti-grid-popup-border-color);
+            text-align: left;
+            height: auto;
+          }
+        }
+      }
     }
 
     .filter-option__input > input {
@@ -234,6 +258,45 @@
       &.is__disabled {
         color: var(--ti-grid-column-icon-text-color);
         cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.@{grid-prefix-cls}__filter-simple {
+  background-color: white;
+
+  min-width: 80px;
+
+  .@{grid-prefix-cls}__filter-body {
+    .filter-panel__simple {
+      border-bottom: none;
+
+      .@{grid-prefix-cls}__filter-date-title {
+        padding: var(--ti-grid-filter-button-group-size);
+        color: var(--ti-grid-filter-date-title-color);
+      }
+
+      .@{grid-prefix-cls}__filter-date {
+        padding: 0 var(--ti-grid-filter-button-group-size);
+        min-width: 270px;
+        .@{grid-prefix-cls}__filter-date-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: var(--ti-grid-filter-button-group-size);
+          color: var(--ti-grid-filter-date-color);
+
+          .@{grid-prefix-cls}__filter-date-pick {
+            width: 160px;
+          }
+        }
+      }
+
+      .@{grid-prefix-cls}__filter-option {
+        &.filter-option__date-button.filter-option__btns {
+          text-align: right;
+        }
       }
     }
   }

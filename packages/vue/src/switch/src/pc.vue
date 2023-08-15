@@ -10,7 +10,12 @@
  *
  -->
 <template>
-  <span :class="[state.wrapClasses, state.showText ? 'tiny-switch__text' : '']" :tabindex="tabindex" @click="toggle" @keydown.space="toggle">
+  <span
+    :class="[state.wrapClasses, state.showText ? 'tiny-switch__text' : '']"
+    :tabindex="tabindex"
+    @click="toggle"
+    @keydown.space="toggle"
+  >
     <span :class="state.innerClasses">
       <div v-if="!mini && state.showText">
         <slot v-if="state.currentValue === trueValue" name="open">ON</slot>
@@ -27,7 +32,18 @@ import '@opentiny/vue-theme/switch/index.less'
 
 export default defineComponent({
   emits: ['change', 'update:modelValue'],
-  props: [...props, 'modelValue', 'trueValue', 'falseValue', 'disabled', 'mini', 'tabindex', 'showText', 'beforeChange'],
+  props: [
+    ...props,
+    'modelValue',
+    'trueValue',
+    'falseValue',
+    'disabled',
+    'mini',
+    'tabindex',
+    'showText',
+    'beforeChange',
+    'displayOnly'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

@@ -102,7 +102,13 @@ export default defineComponent({
     },
     texts: {
       type: Array,
-      default: () => [t('ui.rate.level.poor'), t('ui.rate.level.fair'), t('ui.rate.level.average'), t('ui.rate.level.good'), t('ui.rate.level.excellent')]
+      default: () => [
+        t('ui.rate.level.poor'),
+        t('ui.rate.level.fair'),
+        t('ui.rate.level.average'),
+        t('ui.rate.level.good'),
+        t('ui.rate.level.excellent')
+      ]
     },
     voidColor: {
       type: String,
@@ -116,5 +122,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

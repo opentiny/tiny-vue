@@ -31,71 +31,73 @@ export const parseType = (props) => (values) => {
   return values.map(valueType === 'number' ? Number : valueType === 'string' ? String : (i) => i)
 }
 
-export const init = ({ api, props, state }) => (valuesCopy) => {
-  if (!validProps(props)) return
+export const init =
+  ({ api, props, state }) =>
+  (valuesCopy) => {
+    if (!validProps(props)) return
 
-  const { modelValue, options, cycleRoll, valueField, textField } = props
-  const { visibleOptionCount } = state
-  let { disabled } = props
+    const { modelValue, options, cycleRoll, valueField, textField } = props
+    const { visibleOptionCount } = state
+    let { disabled } = props
 
-  disabled = typeof disabled === 'function' ? disabled : () => false
+    disabled = typeof disabled === 'function' ? disabled : () => false
 
-  const values = api.parseType(valuesCopy || modelValue.slice(0))
-  const types = Array.from({ length: values.length })
-  const ranges = Array.from({ length: values.length })
-  const indices = Array.from({ length: values.length })
+    const values = api.parseType(valuesCopy || modelValue.slice(0))
+    const types = Array.from({ length: values.length })
+    const ranges = Array.from({ length: values.length })
+    const indices = Array.from({ length: values.length })
 
-  const visibleOptions = options.map((opt, i) => {
-    let slicedValues, existOption
+    const visibleOptions = options.map((opt, i) => {
+      let slicedValues, existOption
 
-    if (Array.isArray(opt)) {
-      if (opt.length === 0) return []
+      if (Array.isArray(opt)) {
+        if (opt.length === 0) return []
 
-      let index = opt.findIndex((item) => item[valueField] === values[i])
+        let index = opt.findIndex((item) => item[valueField] === values[i])
 
-      index = index === -1 ? 0 : index
-      types[i] = 'a'
-      ranges[i] = [0, opt.length - 1]
-      indices[i] = index
-      slicedValues = sliceValue(index, 0, opt.length - 1, visibleOptionCount, cycleRoll)
-      existOption = (i) => ({ ...opt[i], disabled: disabled(opt[i][valueField], ...values) })
-    } else if (opt && typeof opt === 'object') {
-      let range
+        index = index === -1 ? 0 : index
+        types[i] = 'a'
+        ranges[i] = [0, opt.length - 1]
+        indices[i] = index
+        slicedValues = sliceValue(index, 0, opt.length - 1, visibleOptionCount, cycleRoll)
+        existOption = (i) => ({ ...opt[i], disabled: disabled(opt[i][valueField], ...values) })
+      } else if (opt && typeof opt === 'object') {
+        let range
 
-      if (Array.isArray(opt.range)) {
-        range = opt.range.slice(0, 2)
-      } else if (typeof opt.rangeMethod === 'function') {
-        range = opt.rangeMethod(...values)
+        if (Array.isArray(opt.range)) {
+          range = opt.range.slice(0, 2)
+        } else if (typeof opt.rangeMethod === 'function') {
+          range = opt.rangeMethod(...values)
+        }
+
+        types[i] = 'o'
+        ranges[i] = api.parseType(range)
+        slicedValues = sliceValue(values[i], ranges[i][0], ranges[i][1], visibleOptionCount, cycleRoll)
+        existOption = (i) => opt.optionMethod(i, ...values)
       }
 
-      types[i] = 'o'
-      ranges[i] = api.parseType(range)
-      slicedValues = sliceValue(values[i], ranges[i][0], ranges[i][1], visibleOptionCount, cycleRoll)
-      existOption = (i) => opt.optionMethod(i, ...values)
-    }
+      if (!slicedValues || !existOption) return []
 
-    if (!slicedValues || !existOption) return []
+      return slicedValues.map((slicedValue, i) => {
+        const option = slicedValue === null ? { [valueField]: null, [textField]: '' } : existOption(slicedValue)
 
-    return slicedValues.map((slicedValue, i) => {
-      const option = slicedValue === null ? { [valueField]: null, [textField]: '' } : existOption(slicedValue)
+        option._$font = getFont(i + 1, visibleOptionCount)
+        option._$status = option.disabled ? 'disabled' : option._$font === 0 ? 'focus' : 'normal'
 
-      option._$font = getFont(i + 1, visibleOptionCount)
-      option._$status = option.disabled ? 'disabled' : option._$font === 0 ? 'focus' : 'normal'
-
-      return option
+        return option
+      })
     })
-  })
 
-  state.selectorCount = values.length
+    state.selectorCount = values.length
 
-  values.map((value, i) => {
-    const index = indices[i]
-    const opts = options[i]
-    const vOpts = visibleOptions[i]
+    values.map((value, i) => {
+      const index = indices[i]
+      const opts = options[i]
+      const vOpts = visibleOptions[i]
 
-    state[`selector${i}`] = { index, options: opts, ranges, types, value, values, visibleOptions: vOpts }
-  })
-}
+      state[`selector${i}`] = { index, options: opts, ranges, types, value, values, visibleOptions: vOpts }
+    })
+  }
 
 export const calcSelector = (api) => (cycleRoll, dy, pos, selector, valueField) => {
   const { index, options, ranges, types, value, values } = selector
@@ -137,67 +139,73 @@ export const handleTouchend = (state) => () => {
   state.accrueDy = 0
 }
 
-export const handleTouchmove = ({ api, props, state }) => (e, pos) => {
-  if (!state.touching) return
+export const handleTouchmove =
+  ({ api, props, state }) =>
+  (e, pos) => {
+    if (!state.touching) return
 
-  const { cycleRoll, valueField } = props
-  const { touchPos, optionHeight } = state
-  const { clientY } = e.changedTouches[0]
-  const dy = clientY - touchPos.clientY
+    const { cycleRoll, valueField } = props
+    const { touchPos, optionHeight } = state
+    const { clientY } = e.changedTouches[0]
+    const dy = clientY - touchPos.clientY
 
-  state.touchPos = { clientY }
-  state.accrueDy += dy
+    state.touchPos = { clientY }
+    state.accrueDy += dy
 
-  const absDy = Math.abs(state.accrueDy)
-  const threshold = optionHeight / 4
+    const absDy = Math.abs(state.accrueDy)
+    const threshold = optionHeight / 4
 
-  if (absDy > threshold) {
-    const selector = state[`selector${pos}`]
+    if (absDy > threshold) {
+      const selector = state[`selector${pos}`]
 
-    api.calcSelector(cycleRoll, state.accrueDy, pos, selector, valueField)
-    state.accrueDy = 0
+      api.calcSelector(cycleRoll, state.accrueDy, pos, selector, valueField)
+      state.accrueDy = 0
+    }
   }
-}
 
-export const watchActionSheetVisible = ({ emit, state, vm }) => (visible) => {
-  emit('update:visible', visible)
+export const watchActionSheetVisible =
+  ({ emit, state, vm }) =>
+  (visible) => {
+    emit('update:visible', visible)
 
-  if (!visible) return
+    if (!visible) return
 
-  setTimeout(() => {
-    const optionRef = vm.$el.querySelector('[data-tag="tiny-mobile-cs-option"]')
-    optionRef && (state.optionHeight = optionRef.offsetHeight)
-  })
-}
+    setTimeout(() => {
+      const optionRef = vm.$el.querySelector('[data-tag="tiny-mobile-cs-option"]')
+      optionRef && (state.optionHeight = optionRef.offsetHeight)
+    })
+  }
 
 export const close = (state) => () => state.actionSheetVisible && (state.actionSheetVisible = false)
 
-export const confirm = ({ api, emit, props, state, vm }) => () => {
-  const { confirmDisabled } = state
+export const confirm =
+  ({ api, emit, props, state, vm }) =>
+  () => {
+    const { confirmDisabled } = state
 
-  if (confirmDisabled) return
+    if (confirmDisabled) return
 
-  const { modelValue } = props
-  let focusOpts = vm.$el.querySelectorAll('[date-status="focus"]')
-  let values
+    const { modelValue } = props
+    let focusOpts = vm.$el.querySelectorAll('[date-status="focus"]')
+    let values
 
-  if (focusOpts && focusOpts.length) {
-    focusOpts = [...focusOpts]
-    values = focusOpts.map((focusOpt) => focusOpt.dataset.option)
-    values = api.parseType(values)
+    if (focusOpts && focusOpts.length) {
+      focusOpts = [...focusOpts]
+      values = focusOpts.map((focusOpt) => focusOpt.dataset.option)
+      values = api.parseType(values)
+    }
+
+    if (
+      validArr(values) &&
+      validArr(modelValue) &&
+      values.length === modelValue.length &&
+      values.join() !== modelValue.join()
+    ) {
+      emit('update:modelValue', values)
+    }
+
+    api.close()
   }
-
-  if (
-    validArr(values) &&
-    validArr(modelValue) &&
-    values.length === modelValue.length &&
-    values.join() !== modelValue.join()
-  ) {
-    emit('update:modelValue', values)
-  }
-
-  api.close()
-}
 
 export const styleOpt = (option) => option._$font
 

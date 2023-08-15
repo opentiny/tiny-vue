@@ -14,7 +14,9 @@
     <slot :slot-scope="{ data: state.data }">
       <ul class="navs">
         <li v-for="(item, index) in state.data" :key="index" class="nav-item">
-          <a v-if="item.url" :href="item.url" :target="item.target" rel="noopener noreferrer" class="nav-link">{{ item.title }}</a>
+          <a v-if="item.url" :href="item.url" :target="item.target" rel="noopener noreferrer" class="nav-link">{{
+            item.title
+          }}</a>
           <span v-else class="nav-text">{{ item.title }}</span>
         </li>
       </ul>

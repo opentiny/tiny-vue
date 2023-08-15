@@ -3,7 +3,6 @@ import { describe, expect, test, vi } from 'vitest'
 import Switch from '@opentiny/vue-switch'
 import { nextTick } from 'vue'
 
-
 let value = false
 
 describe('PC Mode', () => {
@@ -15,10 +14,16 @@ describe('PC Mode', () => {
   })
 
   test('slot', async () => {
-    const wrapper = mount(() => <Switch v-model={value} show-text={true} v-slots={{
-      open: () => <span class="yes">是</span>,
-      close: () => <span class="no">否</span>
-    }}></Switch>)
+    const wrapper = mount(() => (
+      <Switch
+        v-model={value}
+        show-text={true}
+        v-slots={{
+          open: () => <span class="yes">是</span>,
+          close: () => <span class="no">否</span>
+        }}
+      ></Switch>
+    ))
     expect(wrapper.find('.no').exists()).toBe(true)
   })
 

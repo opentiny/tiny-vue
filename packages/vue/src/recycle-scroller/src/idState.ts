@@ -34,7 +34,7 @@ const buildInstanceTemporary = (store) => {
 
       return data
     } else {
-      throw new Error('[TINY Error][Mixin IdState] Missing `idState` function on component definition')
+      throw new TypeError('[TINY Error][Mixin IdState] Missing `idState` function on component definition')
     }
   }
 

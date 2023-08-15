@@ -1,7 +1,18 @@
 <template>
   <div data-tag="tiny-table-wrapper" class="scrollbar-size-0" :class="wrapperClass" :style="wrapperStyle">
-    <exception aui_mode="mobile-first" v-if="exceptionVisible" class="min-h-[theme(spacing.72)]" component-page type="nodata"></exception>
-    <div data-tag="tiny-table" :class="tableClass" :style="listView || ganttView ? '' : 'grid-template-columns: repeat(auto-fit, minmax(theme(spacing.80), 1fr))'" ref="table">
+    <exception
+      tiny_mode="mobile-first"
+      v-if="exceptionVisible"
+      class="min-h-[theme(spacing.72)]"
+      component-page
+      type="nodata"
+    ></exception>
+    <div
+      data-tag="tiny-table"
+      :class="tableClass"
+      :style="listView || ganttView ? '' : 'grid-template-columns: repeat(auto-fit, minmax(theme(spacing.80), 1fr))'"
+      ref="table"
+    >
       <template v-if="listView">
         <list-view />
       </template>
@@ -9,7 +20,13 @@
         <gantt-view />
       </template>
       <template v-else>
-        <table-row v-for="(row, i) in tableData" :key="`${rowKey}${i}`" :datas="cfg(row)" :current-row-id="currentRowId" @card-click="handleCardClick" />
+        <table-row
+          v-for="(row, i) in tableData"
+          :key="`${rowKey}${i}`"
+          :datas="cfg(row)"
+          :current-row-id="currentRowId"
+          @card-click="handleCardClick"
+        />
       </template>
     </div>
     <tooltip ref="tooltip" v-model="tooltipVisible" :content="tooltipContent" manual></tooltip>

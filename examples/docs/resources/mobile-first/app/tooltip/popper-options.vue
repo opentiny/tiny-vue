@@ -1,8 +1,6 @@
 <template>
   <tiny-tooltip content="popper-options配置" :popper-options="options">
-    <tiny-button type="primary">
-      popper-options配置
-    </tiny-button>
+    <tiny-button type="primary"> popper-options配置 </tiny-button>
   </tiny-tooltip>
 </template>
 

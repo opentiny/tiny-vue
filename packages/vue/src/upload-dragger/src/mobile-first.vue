@@ -2,7 +2,7 @@
   <div
     :class="
       m(
-        'min-w-[18.75rem] min-h-[8.75rem] border border-dashed rounded',
+        'min-w-[theme(spacing.72)] min-h-[theme(spacing.36)] border border-dashed rounded',
         state.dragover ? 'border-color-brand' : 'border-color-none-hover',
         customClass
       )

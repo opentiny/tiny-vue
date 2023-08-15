@@ -12,7 +12,12 @@
 <template>
   <div class="credit-card-item" :class="{ '-active': state.isCardFlipped }">
     <div class="credit-card-item__side -front">
-      <div class="credit-card-item__focus" :class="{ '-active': state.focusElementStyle }" :style="state.focusElementStyle" ref="focusElement"></div>
+      <div
+        class="credit-card-item__focus"
+        :class="{ '-active': state.focusElementStyle }"
+        :style="state.focusElementStyle"
+        ref="focusElement"
+      ></div>
       <div class="credit-card-item__cover">
         <img class="credit-card-item__bg" :src="backgroundImage || images.background" />
       </div>
@@ -21,7 +26,13 @@
           <img :src="images.chip" class="credit-card-item__chip" />
           <div class="credit-card-item__type">
             <transition name="slide-fade-up">
-              <img v-if="state.cardType" class="credit-card-item__typeImg" :src="images[state.cardType]" :key="state.cardType" alt />
+              <img
+                v-if="state.cardType"
+                class="credit-card-item__typeImg"
+                :src="images[state.cardType]"
+                :key="state.cardType"
+                alt
+              />
             </transition>
           </div>
         </div>
@@ -37,7 +48,12 @@
               >
                 {{ labels.cardNumber[$index] }}
               </div>
-              <div v-else class="credit-card-item__numberItem" :class="{ '-active': n.trim() === '' }" :key="state.currentPlaceholder + 1">
+              <div
+                v-else
+                class="credit-card-item__numberItem"
+                :class="{ '-active': n.trim() === '' }"
+                :key="state.currentPlaceholder + 1"
+              >
                 {{ n }}
               </div>
             </transition>
@@ -49,7 +65,12 @@
             <transition name="slide-fade-up">
               <div class="credit-card-item__name" v-if="labels.cardName.length" key="1">
                 <transition-group name="slide-fade-right">
-                  <span class="credit-card-item__nameItem" v-for="(n, $index) in labels.cardName.replace(/\s\s+/g, ' ')" :key="$index + 1">{{ n }}</span>
+                  <span
+                    class="credit-card-item__nameItem"
+                    v-for="(n, $index) in labels.cardName.replace(/\s\s+/g, ' ')"
+                    :key="$index + 1"
+                    >{{ n }}</span
+                  >
                 </transition-group>
               </div>
               <div class="credit-card-item__name" v-else key="2">Full Name</div>

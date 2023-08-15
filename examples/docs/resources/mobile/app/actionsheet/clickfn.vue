@@ -59,6 +59,7 @@ export default {
   }
 }
 </script>
+
 <style>
 .page__hd {
   padding: 40px;

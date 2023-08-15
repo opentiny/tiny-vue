@@ -37,9 +37,14 @@ describe('PC Mode', () => {
 
   // slots
   test('base 基本流程图插槽', async () => {
-    const wrapper = mount(() => <Wizard data={dataSet} v-slots={{
-      base: (data) => <span>{data.slotScope.status}</span>
-    }}></Wizard>)
+    const wrapper = mount(() => (
+      <Wizard
+        data={dataSet}
+        v-slots={{
+          base: (data) => <span>{data.slotScope.status}</span>
+        }}
+      ></Wizard>
+    ))
     expect(wrapper.find('.tiny-wizard__name').text()).toEqual('ready')
   })
 

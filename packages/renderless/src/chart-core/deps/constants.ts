@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 const sf = () => ({ show: false })
 const DEFAULT_THEME = {
@@ -26,7 +26,18 @@ const HEAT_MAP_COLOR = ['#5990FD', '#2DA769', '#EEBA18', '#F43146']
 
 const HEAT_BMAP_COLOR = ['blue', 'blue', 'green', 'yellow', 'red']
 
-const SAAS_DEFAULT_COLORS_10 = ['#6d8ff0', '#00a874', '#bd72f0', '#54bcce', '#fdc000', '#9185f0', '#82dbb1', '#f46087', '#2070f3', '#ee8ddb']
+const SAAS_DEFAULT_COLORS_10 = [
+  '#6d8ff0',
+  '#00a874',
+  '#bd72f0',
+  '#54bcce',
+  '#fdc000',
+  '#9185f0',
+  '#82dbb1',
+  '#f46087',
+  '#2070f3',
+  '#ee8ddb'
+]
 
 const SAAS_DEFAULT_COLORS_18 = [
   '#2070f3',
@@ -86,9 +97,17 @@ const itemPoint = (color) =>
   ].join('')
 
 const itemLabel = (seriesName, onlyLabel) =>
-  ['<span style="', 'display:inline-block;', 'font-size:12px;', 'color:#4E4E4E;', `${onlyLabel ? '' : 'margin-right:25px;'}`, `">${seriesName}</span>`].join('')
+  [
+    '<span style="',
+    'display:inline-block;',
+    'font-size:12px;',
+    'color:#4E4E4E;',
+    `${onlyLabel ? '' : 'margin-right:25px;'}`,
+    `">${seriesName}</span>`
+  ].join('')
 
-const itemContent = (content) => ['<span style="', 'float:right;', 'font-size:14px;', 'color:#191919;', `">${content}</span>`].join('')
+const itemContent = (content) =>
+  ['<span style="', 'float:right;', 'font-size:14px;', 'color:#191919;', `">${content}</span>`].join('')
 
 const STATIC_PROPS = ['initOptions', 'loading', 'dataEmpty', 'judgeWidth', 'widthChangeDelay']
 

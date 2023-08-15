@@ -4,7 +4,13 @@
       <slot></slot>
     </div>
     <tab-bar ref="tabbar"></tab-bar>
-    <tab-panel data-tag="tiny-tab-panel" class="w-full" :item="state.currentItem" :key="state.key"></tab-panel>
+    <keep-alive>
+      <template v-for="item in state.items">
+        <template v-if="item === state.currentItem">
+          <tab-panel data-tag="tiny-tab-panel" class="w-full" :item="item" :key="item.name"></tab-panel>
+        </template>
+      </template>
+    </keep-alive>
   </div>
 </template>
 

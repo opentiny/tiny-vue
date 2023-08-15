@@ -1,18 +1,41 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
-import { setSheetStyle, initScrollMenu, visibleHandle, watchVisible, menuHandle, close, selectOption, confirm, actionSelectOption, hide } from './index'
+import {
+  setSheetStyle,
+  initScrollMenu,
+  visibleHandle,
+  watchVisible,
+  menuHandle,
+  close,
+  selectOption,
+  confirm,
+  actionSelectOption,
+  hide
+} from './index'
 
-export const api = ['state', 'setSheetStyle', 'initScrollMenu', 'visibleHandle', 'watchVisible', 'menuHandle', 'close', 'selectOption', 'confirm', 'actionSelectOption', 'hide']
+export const api = [
+  'state',
+  'setSheetStyle',
+  'initScrollMenu',
+  'visibleHandle',
+  'watchVisible',
+  'menuHandle',
+  'close',
+  'selectOption',
+  'confirm',
+  'actionSelectOption',
+  'hide'
+]
 
 export const renderless = (props, { reactive, watch }, { emit, nextTick, refs, vm }, { BScroll }) => {
   const api = {}
@@ -21,7 +44,7 @@ export const renderless = (props, { reactive, watch }, { emit, nextTick, refs, v
     active: null,
     sheetMaskStyle: {},
     sheetContentStyle: {},
-    scroll: null,
+    scroll: null
   })
 
   Object.assign(api, {
@@ -38,14 +61,15 @@ export const renderless = (props, { reactive, watch }, { emit, nextTick, refs, v
     hide: hide(emit)
   })
 
-  watch(() => props.visible,
+  watch(
+    () => props.visible,
     (value) => {
       if (value) {
         api.setSheetStyle({ state, props })
         api.initScrollMenu({ state, nextTick, refs, BScroll })
       }
       api.watchVisible(value)
-    },
+    }
   )
 
   watch(() => props.visible, api.watchVisible, { immediate: true })

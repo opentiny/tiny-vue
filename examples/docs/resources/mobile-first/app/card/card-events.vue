@@ -1,6 +1,14 @@
 <template>
   <div>
-    <tiny-card title="这是卡片标题" v-model="value" check-type="checkbox" label="1" :options="options" @change="change" @icon-click="iconClick">
+    <tiny-card
+      title="这是卡片标题"
+      v-model="value"
+      check-type="checkbox"
+      label="1"
+      :options="options"
+      @change="change"
+      @icon-click="iconClick"
+    >
       <p>
         这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，
         这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，

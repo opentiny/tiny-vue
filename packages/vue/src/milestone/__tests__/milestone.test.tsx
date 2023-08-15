@@ -71,25 +71,32 @@ describe('PC Mode', () => {
   const mount = mountPcMode
   // props
   test('completed-field 设置里程碑完成状态对应的取值', async () => {
-    const wrapper = mount(() =>
-      <Milestone data={milestoneData} milestones-status={statusMap} completed-field='done'></Milestone>)
+    const wrapper = mount(() => (
+      <Milestone data={milestoneData} milestones-status={statusMap} completed-field="done"></Milestone>
+    ))
     expect(wrapper.find('.node-status-done').exists()).toBeTruthy()
   })
 
   // slot
   test('top 节点上方内容', async () => {
-    const wrapper = mount(() =>
-      <Milestone data={milestoneData} milestones-status={statusMap} v-slots={{
-        top: (data) => (<span style="margin-left: 50px">{ data.slotScope.status }</span>)
-      }}></Milestone>)
+    const wrapper = mount(() => (
+      <Milestone
+        data={milestoneData}
+        milestones-status={statusMap}
+        v-slots={{
+          top: (data) => <span style="margin-left: 50px">{data.slotScope.status}</span>
+        }}
+      ></Milestone>
+    ))
     expect(wrapper.find('.tiny-milestone__node > span').text()).toBe('done')
   })
 
   // events
   test('flag-click', async () => {
     const flagClick = vi.fn()
-    const wrapper = mount(() =>
-      <Milestone data={milestoneData} milestones-status={statusMap} onFlagClick={flagClick}></Milestone>)
+    const wrapper = mount(() => (
+      <Milestone data={milestoneData} milestones-status={statusMap} onFlagClick={flagClick}></Milestone>
+    ))
     await wrapper.find('.tiny-milestone__flag-content').trigger('click')
     expect(flagClick).toBeCalled()
   })

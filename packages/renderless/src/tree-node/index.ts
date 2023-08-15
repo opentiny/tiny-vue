@@ -73,13 +73,18 @@ export const handleSelectChange = ({ props, state }) => (checked, indeterminate)
   state.indeterminate = indeterminate
 }
 
-export const handleClick = ({ api, vm, props, state, refs }) => (e) => {
+export const handleClick = ({ api, vm, props, state }) => (e) => {
   const store = state.tree.state.store
 
   state.tree.clearCurrentStore(props.node)
-  store.setCurrentNode(props.node)
-
-  !props.node.disabled && state.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode)
+  if (!state.tree.onlyCheckChildren) {
+    store.setCurrentNode(props.node)
+    !props.node.disabled &&
+      state.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode)
+  } else if (props.node.isLeaf && !props.node.disabled) {
+    store.setCurrentNode(props.node)
+    state.tree.$emit('current-change', store.currentNode ? store.currentNode.data : null, store.currentNode)
+  }
 
   state.tree.currentNode = vm
 
@@ -89,11 +94,28 @@ export const handleClick = ({ api, vm, props, state, refs }) => (e) => {
     api.handleCheckChange(null, e)
   }
 
-  const isCheck = props.showCheckbox ? refs.checkbox && !refs.checkbox.$el.contains(e.target) : true
+  const isCheck = props.showCheckbox ? vm.$refs.checkbox && !vm.$refs.checkbox.$el.contains(e.target) : true
 
-  state.tree.expandOnClickNode
-    ? isCheck && api.handleExpandClick(isCheck)
-    : !props.node.disabled && state.tree.$emit('node-click', props.node.data, props.node, vm)
+  if (state.tree.onlyCheckChildren) {
+    if (props.node.isLeaf && !props.node.disabled) {
+      state.tree.$emit('node-click', props.node.data, props.node, vm)
+      return
+    }
+  } else {
+    if (!state.tree.collapsible || !state.tree.expandOnClickNode) {
+      !props.node.disabled && state.tree.$emit('node-click', props.node.data, props.node, vm)
+
+      return
+    }
+  }
+
+  if (!state.tree.onlyCheckChildren) {
+    if (state.tree.expandOnClickNode && isCheck) {
+      api.handleExpandClick(isCheck)
+    }
+  } else {
+    api.handleExpandClick(false)
+  }
 }
 
 export const closeMenu = (state) => () => {
@@ -102,7 +124,6 @@ export const closeMenu = (state) => () => {
 
 export const handleContextMenu = ({ treeRoot, vm, props, state, nextTick }) => (event) => {
   const listeners = treeRoot.vm.$listeners
-  const refs = vm.$refs
 
   if (treeRoot.showContextmenu || listeners['node-contextmenu']) {
     event.stopPropagation()
@@ -119,11 +140,11 @@ export const handleContextMenu = ({ treeRoot, vm, props, state, nextTick }) => (
   state.tree.$parent.menuInstance = vm
 
   nextTick(() => {
-    const menuWidth = refs.menuContext.offsetWidth
+    const menuWidth = vm.$refs.menuContext.offsetWidth
     const treeWidth = state.tree.$parent.$el.offsetWidth
 
     if (event.clientY > -10) {
-      state.menuposition.top = `${refs.node.offsetTop + refs.node.childNodes[0].offsetHeight / 2}px`
+      state.menuposition.top = `${vm.$refs.node.offsetTop + vm.$refs.node.childNodes[0].offsetHeight / 2}px`
     }
 
     if (event.clientX > -10) {
@@ -164,10 +185,13 @@ export const handleExpandClick = ({ emit, vm, props, state }) => (nodeClickFlag)
 export const handleCheckChange = ({ nextTick, props, state }) => (value, event = {}) => {
   if (event.type === 'click' || event.type === 'mousedown') {
     props.node.setChecked(event.target.checked, !state.tree.checkStrictly)
-    return
   }
 
-  !state.tree.checkOnClickNode && props.node.setChecked(event.target.checked, !state.tree.checkStrictly)
+  if (props.checkEasily && state.tree.checkStrictly) {
+    !state.tree.checkOnClickNode && props.node.setChecked(event.target.checked, true, false, false, true)
+  } else {
+    !state.tree.checkOnClickNode && props.node.setChecked(event.target.checked, !state.tree.checkStrictly)
+  }
 
   nextTick(() => {
     const store = state.tree.state.store
@@ -247,4 +271,49 @@ export const watchExpandedChange = ({ state, props }) => (value) => {
     isExpand: value,
     sibling: props.node
   })
+}
+
+export const openEdit = ({ state, vm }) => (node) => {
+  state.tree.state.emitter.emit('tree-node-edit', node)
+
+  setTimeout(() => {
+    const inputRef = vm.$refs.editInput || vm.$el.querySelector('input')
+    inputRef && inputRef.focus()
+  }, 300)
+}
+
+export const closeEdit = ({ state }) => () => {
+  state.tree.state.emitter.emit('tree-node-edit', null)
+}
+
+export const saveEdit = ({ state }) => (event) => {
+  event.stopPropagation()
+
+  state.tree.state.emitter.emit('tree-node-save')
+}
+
+export const deleteNode = ({ state }) => (event, node) => {
+  state.tree.state.emitter.emit('tree-node-delete', event, node)
+}
+
+export const addNode = ({ state, props, api }) => (event, node) => {
+  props.node.expand()
+  api.openEdit()
+  state.tree.state.emitter.emit('tree-node-add', event, node)
+}
+
+export const computedExpandIcon = () => ({ showLine }, { tree, expanded, isSaaSTheme }) => {
+  if (tree.icon) {
+    return tree.icon
+  }
+
+  if (showLine) {
+    return expanded ? 'icon-minus-square' : 'icon-plus-square'
+  }
+
+  return isSaaSTheme ? 'icon-arrow-bottom' : 'icon-chevron-right'
+}
+
+export const computedIndent = () => ({ node, showLine }, { tree }) => {
+  return (node.level > 1 ? 1 : 0) * (tree.indent + (showLine ? 8 : 0)) + tree.baseIndent + 'px'
 }

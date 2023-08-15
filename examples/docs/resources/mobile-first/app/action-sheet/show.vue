@@ -2,15 +2,34 @@
   <div>
     <span>
       <tiny-button @click="boxVisibility4 = true">默认属性配置</tiny-button>
-      <tiny-action-sheet v-model="activeName" :menus="menus" :visible="boxVisibility4" @update:visible="boxVisibility4 = $event"></tiny-action-sheet>
+      <tiny-action-sheet
+        v-model="activeName"
+        :menus="menus"
+        :visible="boxVisibility4"
+        @update:visible="boxVisibility4 = $event"
+      ></tiny-action-sheet>
     </span>
     <span>
       <tiny-button @click="boxVisibility1 = true">隐藏头部</tiny-button>
-      <tiny-action-sheet v-model="activeName" title="标题1" :show-header="false" :menus="menus" :visible="boxVisibility1" @update:visible="boxVisibility1 = $event"></tiny-action-sheet>
+      <tiny-action-sheet
+        v-model="activeName"
+        title="标题1"
+        :show-header="false"
+        :menus="menus"
+        :visible="boxVisibility1"
+        @update:visible="boxVisibility1 = $event"
+      ></tiny-action-sheet>
     </span>
     <span>
       <tiny-button @click="boxVisibility2 = true">显示底部</tiny-button>
-      <tiny-action-sheet v-model="activeName" title="标题1" :show-footer="true" :menus="menus" :visible="boxVisibility2" @update:visible="boxVisibility2 = $event"></tiny-action-sheet>
+      <tiny-action-sheet
+        v-model="activeName"
+        title="标题1"
+        :show-footer="true"
+        :menus="menus"
+        :visible="boxVisibility2"
+        @update:visible="boxVisibility2 = $event"
+      ></tiny-action-sheet>
     </span>
   </div>
 </template>
@@ -52,7 +71,6 @@ export default {
       ]
     }
   },
-  methods: {
-  }
+  methods: {}
 }
 </script>

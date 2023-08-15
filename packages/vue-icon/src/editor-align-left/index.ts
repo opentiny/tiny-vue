@@ -12,4 +12,4 @@
 import { svg } from '@opentiny/vue-common'
 import EditorAlignLeft from '@opentiny/vue-theme/svgs/editor-align-left.svg'
 
-export default svg({ name: 'EditorAlignLeft', component: EditorAlignLeft })
+export default () => svg({ name: 'EditorAlignLeft', component: EditorAlignLeft })()

@@ -4,7 +4,22 @@
     <p>选中值：{{ value }}</p>
     <p>必选项： {{ requiredSelectedList }}</p>
 
-    <tiny-select-view v-model="value" :menus="menus" multiple value-field="employeeNumber" text-field="userName" text-field2="employeeNumber" text-field3="dept" title="选择人员" :search-config="searchConfig" :required-selected-list="requiredSelectedList" :top-config="topConfig" :visible="boxVisibility" @update:visible="boxVisibility = $event" @search-click="searchClick">
+    <tiny-select-view
+      v-model="value"
+      :menus="menus"
+      multiple
+      value-field="employeeNumber"
+      text-field="userName"
+      text-field2="employeeNumber"
+      text-field3="dept"
+      title="选择人员"
+      :search-config="searchConfig"
+      :required-selected-list="requiredSelectedList"
+      :top-config="topConfig"
+      :visible="boxVisibility"
+      @update:visible="boxVisibility = $event"
+      @search-click="searchClick"
+    >
     </tiny-select-view>
   </div>
 </template>

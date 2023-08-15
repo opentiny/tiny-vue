@@ -41,13 +41,13 @@ describe('PC Mode', () => {
 
   test.todo('popper-append-to-body 是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false')
 
-/**
- * events
- */
+  /**
+   * events
+   */
   test('events', async () => {
     const handleFocus = vi.fn()
     const handleBlur = vi.fn()
-    const wrapper = mount(() => <TimeSelect v-model={value} onFocus={handleFocus} onBlur={handleBlur} ></TimeSelect>)
+    const wrapper = mount(() => <TimeSelect v-model={value} onFocus={handleFocus} onBlur={handleBlur}></TimeSelect>)
     await wrapper.find('input').trigger('focus')
     await nextTick()
     expect(handleFocus).toHaveBeenCalled()
@@ -71,5 +71,4 @@ describe('PC Mode', () => {
    * events
    */
   test.todo('change 用户确认选定的值时触发')
-
 })

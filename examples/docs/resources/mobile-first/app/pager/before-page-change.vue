@@ -1,5 +1,13 @@
 <template>
-  <tiny-pager is-before-page-change @before-page-change="onBeforePageChange" :current-page="currentPage" @update:current-page="currentPage = $event" :page-size="100" layout="total, sizes, prev, pager, next, jumper" :total="1000">
+  <tiny-pager
+    is-before-page-change
+    @before-page-change="onBeforePageChange"
+    :current-page="currentPage"
+    @update:current-page="currentPage = $event"
+    :page-size="100"
+    layout="total, sizes, prev, pager, next, jumper"
+    :total="1000"
+  >
   </tiny-pager>
 </template>
 

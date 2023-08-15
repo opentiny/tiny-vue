@@ -1,5 +1,11 @@
 <template>
-  <tiny-file-upload class="upload-demo" :action="action" @sucess="handleAvatarSuccess" :show-file-list="false" :header-show="false">
+  <tiny-file-upload
+    class="upload-demo"
+    :action="action"
+    @sucess="handleAvatarSuccess"
+    :show-file-list="false"
+    :header-show="false"
+  >
     <img v-if="imageUrl" :src="imageUrl" class="upload-avatar-demo" />
     <icon-plus class="tiny-svg-size" />
   </tiny-file-upload>

@@ -2,7 +2,13 @@
   <div>
     <span>
       <tiny-button @click="boxVisibility3 = true">头部左侧插槽</tiny-button>
-      <tiny-action-sheet v-model="activeName" title="标题1" :menus="menus" :visible="boxVisibility3" @update:visible="boxVisibility3 = $event">
+      <tiny-action-sheet
+        v-model="activeName"
+        title="标题1"
+        :menus="menus"
+        :visible="boxVisibility3"
+        @update:visible="boxVisibility3 = $event"
+      >
         <template #header-left>
           <div @click="activeName = ''">清空</div>
         </template>
@@ -10,7 +16,14 @@
     </span>
     <span>
       <tiny-button @click="boxVisibility4 = true">头部右侧插槽</tiny-button>
-      <tiny-action-sheet ref="actionSheet4" v-model="activeName" title="标题1" :menus="menus" :visible="boxVisibility4" @update:visible="boxVisibility4 = $event">
+      <tiny-action-sheet
+        ref="actionSheet4"
+        v-model="activeName"
+        title="标题1"
+        :menus="menus"
+        :visible="boxVisibility4"
+        @update:visible="boxVisibility4 = $event"
+      >
         <template #header-right>
           <div @click="$refs.actionSheet4.close()">自定义关闭</div>
         </template>
@@ -18,7 +31,13 @@
     </span>
     <span>
       <tiny-button @click="boxVisibility5 = true">内容插槽</tiny-button>
-      <tiny-action-sheet v-model="activeName" title="标题1" :menus="menus" :visible="boxVisibility5" @update:visible="boxVisibility5 = $event">
+      <tiny-action-sheet
+        v-model="activeName"
+        title="标题1"
+        :menus="menus"
+        :visible="boxVisibility5"
+        @update:visible="boxVisibility5 = $event"
+      >
         <div class="text-center">
           <div>选项1</div>
           <div>选项2</div>
@@ -29,7 +48,14 @@
     </span>
     <span>
       <tiny-button @click="boxVisibility6 = true">底部插槽</tiny-button>
-      <tiny-action-sheet v-model="activeName" title="标题1" :show-footer="true" :menus="menus" :visible="boxVisibility6" @update:visible="boxVisibility6 = $event">
+      <tiny-action-sheet
+        v-model="activeName"
+        title="标题1"
+        :show-footer="true"
+        :menus="menus"
+        :visible="boxVisibility6"
+        @update:visible="boxVisibility6 = $event"
+      >
         <template #footer>
           <tiny-button>自定义按钮1</tiny-button> &nbsp;&nbsp; <tiny-button>自定义按钮2</tiny-button>
         </template>
@@ -75,7 +101,6 @@ export default {
       ]
     }
   },
-  methods: {
-  }
+  methods: {}
 }
 </script>

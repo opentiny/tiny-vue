@@ -1,10 +1,20 @@
 <template>
   <div>
-    <tiny-file-upload :action="action" list-type="picture-single" :file-list="fileList1" @download-file="handleDownloadFile">
+    <tiny-file-upload
+      :action="action"
+      list-type="picture-single"
+      :file-list="fileList1"
+      @download-file="handleDownloadFile"
+    >
     </tiny-file-upload>
     <br />
     <br />
-    <tiny-file-upload :action="action" list-type="picture-card" :file-list="fileList2" @download-file="handleDownloadFile">
+    <tiny-file-upload
+      :action="action"
+      list-type="picture-card"
+      :file-list="fileList2"
+      @download-file="handleDownloadFile"
+    >
     </tiny-file-upload>
   </div>
 </template>

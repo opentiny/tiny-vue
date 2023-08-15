@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   getPanel,
@@ -59,9 +59,12 @@ import {
   computedFormat,
   computedTriggerClass,
   computedHaveTrigger,
-  intiPopper,
+  initPopper,
   initGlobalTimezone,
-  emitDbTime
+  emitDbTime,
+  handleEnterDisplayOnlyContent,
+  handleEnterPickerlabel,
+  setInputPaddingLeft
 } from './index'
 import { DATEPICKER } from '../common'
 
@@ -83,11 +86,19 @@ export const api = [
   'handlePick',
   'handleSelectRange',
   'handleSelectChange',
-  'popperElm'
+  'popperElm',
+  'handleEnterDisplayOnlyContent',
+  'handleEnterPickerlabel'
 ]
 
-const initState = ({ api, reactive, refs, computed, props, utils }) => {
+const initState = ({ api, reactive, vm, computed, props, utils, parent }) => {
   const state = reactive({
+    historyValue: [],
+    historyInput: [],
+    historyUserInput: [],
+    historyUserValue: [],
+    startStatus: false,
+    endStatus: false,
     date: null,
     pickerVisible: false,
     showClose: false,
@@ -96,7 +107,7 @@ const initState = ({ api, reactive, refs, computed, props, utils }) => {
     popperElm: null,
     unwatchPickerOptions: null,
     ranged: computed(() => state.type.includes(DATEPICKER.Range)),
-    reference: computed(() => refs.reference.$el || refs.reference),
+    reference: computed(() => vm.$refs.reference.$el || vm.$refs.reference),
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
     refInput: computed(() => (state.reference ? [].slice.call(state.reference.querySelectorAll('input')) : [])),
     valueIsEmpty: computed(() => api.getValueEmpty()),
@@ -106,13 +117,16 @@ const initState = ({ api, reactive, refs, computed, props, utils }) => {
     displayValue: computed(() => api.displayValue()),
     parsedValue: computed(() => api.parsedValue()),
     pickerSize: computed(() => props.size),
-    pickerDisabled: computed(() => props.disabled || state.formDisabled),
+    pickerDisabled: computed(() => props.disabled || state.formDisabled || state.isDisplayOnly),
     firstInputId: computed(() => api.firstInputId()),
     secondInputId: computed(() => api.secondInputId()),
     type: computed(() => api.getType()),
     timezone: computed(() => api.getTimezone()),
     valueFormat: computed(() => getValueFormat({ props, utils })),
-    format: computed(() => api.computedFormat())
+    format: computed(() => api.computedFormat()),
+    labelTooltip: '',
+    displayOnlyTooltip: '',
+    isDisplayOnly: computed(() => props.displayOnly || (parent.auiForm || {}).displayOnly)
   })
 
   return state
@@ -137,14 +151,16 @@ const initApi2 = ({ api, props, state, t }) => {
     handleMouseEnter: handleMouseEnter({ props, state }),
     initGlobalTimezone: initGlobalTimezone({ api, state, props }),
     parseValue: parseValue({ api, props, state }),
-    handleSelectRange: handleSelectRange(state)
+    handleSelectRange: handleSelectRange(state),
+    handleEnterPickerlabel: handleEnterPickerlabel({ state, props }),
+    handleEnterDisplayOnlyContent: handleEnterDisplayOnlyContent({ state, props, t })
   })
 }
 
 const initApi = ({ api, props, hooks, state, vnode, others, utils }) => {
-  const { t, emit, refs, dispatch, nextTick, vm } = vnode
+  const { t, emit, dispatch, nextTick, vm } = vnode
   const { TimePanel, TimeRangePanel } = others
-  const { destroyPopper, popperElm, updatePopper } = intiPopper({ props, hooks, vnode })
+  const { destroyPopper, popperElm, updatePopper } = initPopper({ props, hooks, vnode })
 
   state.popperElm = popperElm
   state.picker = null
@@ -155,14 +171,14 @@ const initApi = ({ api, props, hooks, state, vnode, others, utils }) => {
     hidePicker: hidePicker({ destroyPopper, state }),
     handleSelectChange: ({ tz, date }) => emit('select-change', { tz, date }),
     getPanel: getPanel(others),
-    handleFocus: handleFocus({ emit, refs, state }),
+    handleFocus: handleFocus({ emit, vm, state }),
     getTimezone: getTimezone({ props, utils }),
     emitChange: emitChange({ api, dispatch, emit, props, state }),
     parsedValue: parsedValue({ api, props, state, t }),
     parseAsFormatAndType: parseAsFormatAndType({ api }),
     typeValueResolveMap: typeValueResolveMap({ api, t }),
     updateOptions: updateOptions({ api, props, state }),
-    focus: focus({ api, props, refs }),
+    focus: focus({ api, props, vm }),
     handleChange: handleChange({ api, state }),
     isValidValue: isValidValue({ api, state }),
     emitInput: emitInput({ api, emit, props, state }),
@@ -184,7 +200,8 @@ const initApi = ({ api, props, hooks, state, vnode, others, utils }) => {
     watchModelValue: watchModelValue({ api, props, state, dispatch }),
     computedFormat: computedFormat({ props, utils }),
     computedTriggerClass: computedTriggerClass({ props, state }),
-    computedHaveTrigger: computedHaveTrigger({ props })
+    computedHaveTrigger: computedHaveTrigger({ props }),
+    setInputPaddingLeft: setInputPaddingLeft({ props, state, vm, nextTick })
   })
 
   initApi2({ api, props, state, t })
@@ -215,14 +232,16 @@ const initWatch = ({ api, state, props, watch, markRaw }) => {
   watch(() => props.modelValue, api.watchModelValue)
 
   watch(() => props.pickerOptions, api.updateOptions, { deep: true })
+
+  watch(() => props.label, api.setInputPaddingLeft)
 }
 
 export const renderless = (props, hooks, vnode, others) => {
   const api = {}
-  const { reactive, computed, watch, onBeforeUnmount, inject, markRaw } = hooks
-  const { refs, service, parent } = vnode
+  const { reactive, computed, watch, onBeforeUnmount, inject, markRaw, onMounted } = hooks
+  const { vm, service, parent } = vnode
   const { utils = {} } = service || {}
-  const state = initState({ api, reactive, refs, computed, props, utils })
+  const state = initState({ api, reactive, vm, computed, props, utils, parent })
 
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
@@ -230,6 +249,15 @@ export const renderless = (props, hooks, vnode, others) => {
   initWatch({ api, state, props, watch, markRaw })
 
   api.initGlobalTimezone()
+
+  onMounted(() => {
+    api.setInputPaddingLeft()
+  })
+
+  vm.$on('handle-clear', (event) => {
+    state.showClose = true
+    api.handleClickIcon(event)
+  })
 
   onBeforeUnmount(() => {
     api.destroyPopper('remove')

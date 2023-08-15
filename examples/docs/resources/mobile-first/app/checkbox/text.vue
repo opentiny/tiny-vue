@@ -28,7 +28,7 @@ export default {
   }
 }
 </script>
- 
+
 <style scoped>
 .demo-checkbox .btn {
   margin-left: 20px;

@@ -19,7 +19,14 @@
       <slot name="tool" :slot-scope="state">
         <ul class="tiny-calendar__tool">
           <li>
-            <Popover v-model="state.showYear" placement="bottom-start" trigger="click" transition="tiny-transition-zoom-in-top" popper-class="tiny-calendar is-popover" :visible-arrow="false">
+            <Popover
+              v-model="state.showYear"
+              placement="bottom-start"
+              trigger="click"
+              transition="tiny-transition-zoom-in-top"
+              popper-class="tiny-calendar is-popover"
+              :visible-arrow="false"
+            >
               <template #reference>
                 <div class="tiny-calendar__input">
                   <input :value="state.activeYear + t('ui.datepicker.year')" type="text" readonly />
@@ -31,12 +38,18 @@
               <template #default>
                 <div class="tiny-calendar__selector">
                   <ul class="tiny-calendar__poplist">
-                    <li v-for="year in state.dropdownYear" :key="year" :class="['tiny-calendar__list-item', { 'is-selected': state.activeYear === year }]" @click="
-                      () => {
-                        state.activeYear = year
-                        state.showYear = false
-                      }
-                    " :title="year + t('ui.datepicker.year')">
+                    <li
+                      v-for="year in state.dropdownYear"
+                      :key="year"
+                      :class="['tiny-calendar__list-item', { 'is-selected': state.activeYear === year }]"
+                      @click="
+                        () => {
+                          state.activeYear = year
+                          state.showYear = false
+                        }
+                      "
+                      :title="year + t('ui.datepicker.year')"
+                    >
                       {{ year + t('ui.datepicker.year') }}
                     </li>
                   </ul>
@@ -45,7 +58,14 @@
             </Popover>
           </li>
           <li v-show="state.displayMode === 'month'">
-            <Popover v-model="state.showMonth" transition="tiny-transition-zoom-in-top" placement="bottom-start" trigger="click" popper-class="tiny-calendar is-popover" :visible-arrow="false">
+            <Popover
+              v-model="state.showMonth"
+              transition="tiny-transition-zoom-in-top"
+              placement="bottom-start"
+              trigger="click"
+              popper-class="tiny-calendar is-popover"
+              :visible-arrow="false"
+            >
               <template #reference>
                 <div class="tiny-calendar__input">
                   <input :value="t('ui.datepicker.month' + state.activeMonth)" type="text" readonly />
@@ -57,12 +77,18 @@
               <template #default>
                 <div class="tiny-calendar__selector">
                   <ul class="tiny-calendar__poplist">
-                    <li v-for="month in 12" :key="month" :class="['tiny-calendar__list-item', { 'is-selected': state.activeMonth === month }]" @click="
-                      () => {
-                        state.activeMonth = month
-                        state.showMonth = false
-                      }
-                    " :title="t('ui.datepicker.month' + month)">
+                    <li
+                      v-for="month in 12"
+                      :key="month"
+                      :class="['tiny-calendar__list-item', { 'is-selected': state.activeMonth === month }]"
+                      @click="
+                        () => {
+                          state.activeMonth = month
+                          state.showMonth = false
+                        }
+                      "
+                      :title="t('ui.datepicker.month' + month)"
+                    >
                       {{ t('ui.datepicker.month' + month) }}
                     </li>
                   </ul>
@@ -71,7 +97,9 @@
             </Popover>
           </li>
           <li>
-            <Button type="primary" @click="toToday">{{ state.displayMode === 'month' ? t('ui.datepicker.today') : t('ui.datepicker.currentMonth') }}</Button>
+            <Button type="primary" @click="toToday">{{
+              state.displayMode === 'month' ? t('ui.datepicker.today') : t('ui.datepicker.currentMonth')
+            }}</Button>
           </li>
           <li>
             <ul class="tiny-calendar__tabs">
@@ -101,28 +129,44 @@
         </tr>
         <tr v-for="(item, index) of state.calendar" :key="index">
           <td v-for="(day, i) of item" :key="i" @click="selectDay(day)" width="14.2857%">
-            <div :class="[
-              'tiny-calendar__day',
-              {
-                selected: !(day.isLast || day.isNext) && state.selectedDate === getTime(day.value),
-                disable: day.isLast || day.isNext,
-                today: isToday(day)
-              }
-            ]">
+            <div
+              :class="[
+                'tiny-calendar__day',
+                {
+                  selected: !(day.isLast || day.isNext) && state.selectedDate === getTime(day.value),
+                  disable: day.isLast || day.isNext,
+                  today: isToday(day)
+                }
+              ]"
+            >
               <div class="label">{{ day.value }}</div>
               <ul class="tiny-calendar__events tiny-min-scrollbar" v-if="!(day.isLast || day.isNext)">
-                <li v-for="({ type, title, content, parseTime: { year, month, day, hours, minutes } }, j) of getEventByDay(day.value)" :key="j">
-                  <slot name="day" :slot-scope="{
-                    type,
-                    title,
-                    content,
-                    year,
-                    month,
-                    day,
-                    hours,
-                    minutes
-                  }">
-                    <tooltip :type="type" placement="right" class="tiny-calendar__tip" popper-class="tiny-calendar__tip" mode="hover">
+                <li
+                  v-for="(
+                    { type, title, content, parseTime: { year, month, day, hours, minutes } }, j
+                  ) of getEventByDay(day.value)"
+                  :key="j"
+                >
+                  <slot
+                    name="day"
+                    :slot-scope="{
+                      type,
+                      title,
+                      content,
+                      year,
+                      month,
+                      day,
+                      hours,
+                      minutes
+                    }"
+                  >
+                    <tooltip
+                      :type="type"
+                      placement="right"
+                      class="tiny-calendar__tip"
+                      popper-class="tiny-calendar__tip"
+                      mode="hover"
+                    >
                       <template #content>
                         <div>
                           <div class="tiny-calendar__tip-header">
@@ -155,27 +199,43 @@
       <table v-show="state.displayMode === 'year'" style="table-layout: fixed">
         <tr v-for="(item, i) of genMonths()" :key="i">
           <td v-for="(mth, j) of item" :key="j" @click="selectMonth(mth)" width="25%">
-            <div :class="[
-              'tiny-calendar__day',
-              {
-                selected: state.activeMonth === mth,
-                'this-month': isThisMonth(mth)
-              }
-            ]">
+            <div
+              :class="[
+                'tiny-calendar__day',
+                {
+                  selected: state.activeMonth === mth,
+                  'this-month': isThisMonth(mth)
+                }
+              ]"
+            >
               <div class="label">{{ t('ui.datepicker.month' + mth) }}</div>
               <ul class="tiny-calendar__events tiny-min-scrollbar">
-                <li v-for="({ type, title, content, parseTime: { year, month, day, hours, minutes } }, k) of getEventByMonth(mth)" :key="k">
-                  <slot name="month" :slot-scope="{
-                    type,
-                    title,
-                    content,
-                    year,
-                    month,
-                    day,
-                    hours,
-                    minutes
-                  }">
-                    <tooltip :type="type" class="tiny-calendar__tip" placement="right" popper-class="tiny-calendar__tip" mode="hover">
+                <li
+                  v-for="(
+                    { type, title, content, parseTime: { year, month, day, hours, minutes } }, k
+                  ) of getEventByMonth(mth)"
+                  :key="k"
+                >
+                  <slot
+                    name="month"
+                    :slot-scope="{
+                      type,
+                      title,
+                      content,
+                      year,
+                      month,
+                      day,
+                      hours,
+                      minutes
+                    }"
+                  >
+                    <tooltip
+                      :type="type"
+                      class="tiny-calendar__tip"
+                      placement="right"
+                      popper-class="tiny-calendar__tip"
+                      mode="hover"
+                    >
                       <template #content>
                         <div>
                           <div class="tiny-calendar__tip-header">

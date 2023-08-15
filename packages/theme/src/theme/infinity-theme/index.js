@@ -40,8 +40,7 @@ export const infinityTheme = {
   'ti-button-normal-border-color': 'var(--ti-base-color-transparent)',
   'ti-button-normal-text-color': 'var(--ti-base-color-common-7)',
   'ti-button-padding-vertical': '0',
-  'ti-button-padding-horizontal': 'var(--ti-common-space-4x)',
-  'ti-button-normal-hover-background-color': '#d1d1d1',
+  'ti-button-normal-hover-bg-color': '#d1d1d1',
   'ti-button-normal-hover-border-color': 'var(--ti-base-color-transparent)',
   'ti-button-normal-hover-text-color': 'var(--ti-base-color-common-7)',
   'ti-button-text-color': '#526ecc',
@@ -101,7 +100,7 @@ export const infinityTheme = {
   'ti-time-panel-btn-height': '24px',
   'ti-time-panel-btn-min-width': '56px',
   'ti-time-panel-btn-font-weight': 'normal',
-  'ti-time-panel-btn-confirm-hover-bg-color': 'var(--ti-button-normal-hover-background-color)',
+  'ti-time-panel-btn-confirm-hover-bg-color': 'var(--ti-button-normal-hover-bg-color)',
   'ti-tree-node-content-current-bg-color': 'var(--ti-common-color-selected-background)',
   'ti-tree-node-content-hover-bg-color': 'var(--ti-common-color-hover-background)',
   // tabs

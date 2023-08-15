@@ -31,4 +31,4 @@ export default echarts.extendComponentModel({
     center: [116.397475, 39.908695],
     zoom: 4
   }
-})
+}) as any

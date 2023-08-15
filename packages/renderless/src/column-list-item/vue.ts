@@ -1,4 +1,13 @@
-import { handelIconClick, handleChange, getIsGroup, getSize, isDisabled, getModel, setModel, computedStore } from './index'
+import {
+  handelIconClick,
+  handleChange,
+  getIsGroup,
+  getSize,
+  isDisabled,
+  getModel,
+  setModel,
+  computedStore
+} from './index'
 
 export const api = ['state', 'handelIconClick']
 

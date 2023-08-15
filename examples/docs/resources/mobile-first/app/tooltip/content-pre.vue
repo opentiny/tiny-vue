@@ -1,8 +1,6 @@
 <template>
   <tiny-tooltip pre :content="content" placement="bottom" effect="light">
-    <tiny-button class="tiny-button tiny-button--primary">
-      文本预格式化
-    </tiny-button>
+    <tiny-button class="tiny-button tiny-button--primary"> 文本预格式化 </tiny-button>
   </tiny-tooltip>
 </template>
 

@@ -6,86 +6,86 @@ export default {
       demoId: 'onlytext',
       name: {
         'zh-CN': '纯文本',
-        'en-US': 'button type',
+        'en-US': 'button type'
       },
       desc: {
         'zh-CN': '<p>纯文本标签</p>',
-        'en-US': '<p>button type</p>',
+        'en-US': '<p>button type</p>'
       },
-      codeFiles: ['onlytext.vue'],
+      codeFiles: ['onlytext.vue']
     },
     {
       demoId: 'active-inactive-color',
       name: {
         'zh-CN': '自定义颜色',
-        'en-US': 'button round',
+        'en-US': 'button round'
       },
       desc: {
         'zh-CN': '<p>自定义颜色</p>',
-        'en-US': '<p>button round</p>',
+        'en-US': '<p>button round</p>'
       },
-      codeFiles: ['active-inactive-color.vue'],
+      codeFiles: ['active-inactive-color.vue']
     },
     {
       demoId: 'badge',
       name: {
         'zh-CN': '徽标提示',
-        'en-US': 'events',
+        'en-US': 'events'
       },
       desc: {
         'zh-CN': '<p>徽标提示<p>',
-        'en-US': '<p>bbutton click</p>',
+        'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['badge.vue'],
+      codeFiles: ['badge.vue']
     },
     {
       demoId: 'border',
       name: {
         'zh-CN': '无边框',
-        'en-US': 'events',
+        'en-US': 'events'
       },
       desc: {
         'zh-CN': '<p>无边框<p>',
-        'en-US': '<p>bbutton click</p>',
+        'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['border.vue'],
+      codeFiles: ['border.vue']
     },
     {
       demoId: 'event-change',
       name: {
         'zh-CN': '切换事件',
-        'en-US': 'events',
+        'en-US': 'events'
       },
       desc: {
         'zh-CN': '<p>切换事件<p>',
-        'en-US': '<p>bbutton click</p>',
+        'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['event-change.vue'],
+      codeFiles: ['event-change.vue']
     },
     {
       demoId: 'route',
       name: {
         'zh-CN': '路由跳转',
-        'en-US': 'events',
+        'en-US': 'events'
       },
       desc: {
         'zh-CN': '<p>路由跳转<p>',
-        'en-US': '<p>bbutton click</p>',
+        'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['route.vue'],
+      codeFiles: ['route.vue']
     },
     {
       demoId: 'slot-icon',
       name: {
         'zh-CN': '自定义图标',
-        'en-US': 'events',
+        'en-US': 'events'
       },
       desc: {
         'zh-CN': '<p>自定义图标<p>',
-        'en-US': '<p>bbutton click</p>',
+        'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['slot-icon.vue'],
-    },
+      codeFiles: ['slot-icon.vue']
+    }
   ],
   apis: [
     {
@@ -98,9 +98,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>选中标签的颜色</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'active-inactive-color',
+          demoId: 'active-inactive-color'
         },
         {
           name: 'border',
@@ -108,9 +108,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>是否显示外边框，该属性默认为true</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'border',
+          demoId: 'border'
         },
         {
           name: 'fixed',
@@ -118,9 +118,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>是否固定在底部，该属性默认为true</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'border',
+          demoId: 'border'
         },
         {
           name: 'inactive-color',
@@ -128,9 +128,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>未选中标签的颜色</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'active-inactive-color',
+          demoId: 'active-inactive-color'
         },
         {
           name: 'route',
@@ -138,9 +138,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>是否开启路由模式，该属性默认为false</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'route',
+          demoId: 'route'
         },
         {
           name: 'z-index',
@@ -148,10 +148,10 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>元素 z-index</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'border',
-        },
+          demoId: 'border'
+        }
       ],
       events: [
         {
@@ -160,10 +160,10 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>切换标签时触发,value: 当前选中标签的名称或索引值</p>',
-            'en-US': 'Click',
+            'en-US': 'Click'
           },
-          demoId: 'event-change',
-        },
+          demoId: 'event-change'
+        }
       ],
       slot: [
         {
@@ -172,11 +172,11 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>自定义图标</p>',
-            'en-US': 'Click',
+            'en-US': 'Click'
           },
-          demoId: 'slot-icon',
-        },
-      ],
-    },
-  ],
+          demoId: 'slot-icon'
+        }
+      ]
+    }
+  ]
 }

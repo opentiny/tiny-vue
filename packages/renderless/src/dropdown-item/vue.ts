@@ -28,7 +28,8 @@ import {
   clickWrapper,
   getItemStyle,
   handleClick,
-  computedGetIcon
+  computedGetIcon,
+  getTip
 } from './index'
 
 export const api = [
@@ -45,10 +46,11 @@ export const api = [
   'opened',
   'close',
   'closed',
-  'handleClick'
+  'handleClick',
+  'getTip'
 ]
 
-const initState = ({ reactive, computed, api, props, parent, dropdownMenu }) => {
+const initState = ({ reactive, computed, api, props, parent, dropdownMenuVm }) => {
   const state = reactive({
     sort: props.modelValue,
     transition: true,
@@ -63,9 +65,8 @@ const initState = ({ reactive, computed, api, props, parent, dropdownMenu }) => 
     itemStyle: computed(() => api.getItemStyle()),
     activeColor: computed(() => parent.activeColor),
     closeOnClickOverlay: computed(() => parent.closeOnClickOverlay),
-    children: [],
-    textField: dropdownMenu?.textField || props.textField,
-    popperClass: dropdownMenu?.popperClass || '',
+    textField: dropdownMenuVm?.textField || props.textField,
+    popperClass: dropdownMenuVm?.popperClass || '',
     getIcon: computed(() => api.computedGetIcon())
   })
 
@@ -92,7 +93,8 @@ const initApi = ({ api, state, emit, props, parent, dispatch, vm, constants, des
     bindScroll: bindScroll({ api, parent }),
     confirm: confirm({ emit, props, state }),
     handleClick: handleClick({ props, dispatch, vm, emit }),
-    computedGetIcon: computedGetIcon({ constants, designConfig })
+    computedGetIcon: computedGetIcon({ constants, designConfig }),
+    getTip: getTip({ props, vm })
   })
 }
 
@@ -102,14 +104,14 @@ export const renderless = (
   { parent, emit, vm, dispatch, mode, constants, designConfig }
 ) => {
   const api = {}
-  const dropdownMenu = inject('dropdownMenu', null)
+  const dropdownMenuVm = inject('dropdownMenuVm', null)
 
   if (mode === 'mobile') {
-    dropdownMenu.state.children = [...dropdownMenu.state.children, vm]
+    dropdownMenuVm.state.children = [...dropdownMenuVm.state.children, vm]
   }
   parent = parent.$parent
 
-  const state = initState({ reactive, computed, api, props, parent, dropdownMenu })
+  const state = initState({ reactive, computed, api, props, parent, dropdownMenuVm })
 
   initApi({ api, state, emit, props, parent, dispatch, vm, constants, designConfig })
 

@@ -5,7 +5,14 @@
       <p class="page__desc">弹出式菜单</p>
     </div>
     <tiny-button @click="fn" type="primary"> 面板选择器 </tiny-button>
-    <tiny-select-mobile v-model="activeName" :menus="menus" :search-config="searchConfig" title="标题" :visible="boxVisibility" @update:visible="boxVisibility = $event"></tiny-select-mobile>
+    <tiny-select-mobile
+      v-model="activeName"
+      :menus="menus"
+      :search-config="searchConfig"
+      title="标题"
+      :visible="boxVisibility"
+      @update:visible="boxVisibility = $event"
+    ></tiny-select-mobile>
   </div>
 </template>
 
@@ -53,6 +60,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .page__hd {
   padding: 40px;

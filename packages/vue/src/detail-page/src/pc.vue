@@ -18,23 +18,43 @@
       </div>
     </div>
     <ul class="tiny-detail-page__content">
-      <li class="tiny-detail-page__content-item" v-for="(item, index) in state.value" :key="index" v-show="!item.hidden">
+      <li
+        class="tiny-detail-page__content-item"
+        v-for="(item, index) in state.value"
+        :key="index"
+        v-show="!item.hidden"
+      >
         <span class="tiny-detail-page__content-item-span">{{ item.label }}{{ state.textSplit }}</span
         >{{ item.value }}
       </li>
     </ul>
-    <tiny-modal v-model="state.isShowDialog" class="tiny-detail-dialog__wrapper" :lock-scroll="false" :title="state.dialogTitle">
+    <tiny-modal
+      v-model="state.isShowDialog"
+      class="tiny-detail-dialog__wrapper"
+      :lock-scroll="false"
+      :title="state.dialogTitle"
+    >
       <div class="tiny-detail-dialog">
         <div class="tiny-detail-dialog__header">
           <span>{{ state.labelTitle }}</span>
           <div class="tiny-detail-dialog__header-check">
-            <tiny-checkbox v-model="state.checkAll" @change="checkAllHander" :indeterminate="state.indeterminate">{{ state.valueTitle }}</tiny-checkbox>
+            <tiny-checkbox v-model="state.checkAll" @change="checkAllHander" :indeterminate="state.indeterminate">{{
+              state.valueTitle
+            }}</tiny-checkbox>
           </div>
         </div>
         <ul class="tiny-detail-dialog__content">
-          <li v-for="(item, index) in state.cloneValue" :key="index" :class="['tiny-detail-dialog__content-item', { active: item.hidden }]">
+          <li
+            v-for="(item, index) in state.cloneValue"
+            :key="index"
+            :class="['tiny-detail-dialog__content-item', { active: item.hidden }]"
+          >
             <span>{{ item.label }}</span>
-            <tiny-checkbox v-model="item.hidden" @click.prevent="checkValueHiddenItem(index)" style="margin-right: 113px"></tiny-checkbox>
+            <tiny-checkbox
+              v-model="item.hidden"
+              @click.prevent="checkValueHiddenItem(index)"
+              style="margin-right: 113px"
+            ></tiny-checkbox>
           </li>
         </ul>
         <div class="tiny-detail-dialog__footer">
@@ -61,7 +81,18 @@ export default defineComponent({
     TinyModal: Modal,
     TinyCheckbox: Checkbox
   },
-  props: [...props, 'modelValue', 'valueTitle', 'title', 'textSplit', 'dialogTitle', 'labelTitle', 'tips', 'saveButton', 'cancelButton'],
+  props: [
+    ...props,
+    'modelValue',
+    'valueTitle',
+    'title',
+    'textSplit',
+    'dialogTitle',
+    'labelTitle',
+    'tips',
+    'saveButton',
+    'cancelButton'
+  ],
   emits: ['saveWarning'],
   setup(props, context) {
     return setup({

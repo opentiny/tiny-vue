@@ -43,7 +43,19 @@ import '@opentiny/vue-theme-mobile/dialog-box/index.less'
 
 export default defineComponent({
   emits: ['update:visible', 'change', 'before-close', 'open', 'close', 'opened', 'confirm', 'cancel', 'closed'],
-  props: [...props, 'visible', 'title', 'modal', 'closeOnClickModal', 'modalAppendToBody', 'appendToBody', 'width', 'top', 'showHeader', 'destroyOnClose'],
+  props: [
+    ...props,
+    'visible',
+    'title',
+    'modal',
+    'closeOnClickModal',
+    'modalAppendToBody',
+    'appendToBody',
+    'width',
+    'top',
+    'showHeader',
+    'destroyOnClose'
+  ],
   model: {
     prop: 'visible',
     event: 'update:visible'
