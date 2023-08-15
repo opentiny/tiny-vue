@@ -25,7 +25,6 @@
     "url": "https://github.com/opentiny/tiny-vue/issues"
   },
   "sideEffects": false,
-  "type": "module",
   "scripts": {
     "build": "tsup",
     "build:fast": "npm run build && npm run release",
