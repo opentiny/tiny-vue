@@ -16,7 +16,6 @@
     "headless-components"
   ],
   "author": "OpenTiny Team",
-  "sideEffects": false,
   "license": "MIT",
   "repository": {
     "type": "git",

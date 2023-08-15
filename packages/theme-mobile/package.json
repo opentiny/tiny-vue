@@ -17,7 +17,6 @@
   ],
   "author": "OpenTiny Team",
   "license": "MIT",
-  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "git@github.com:opentiny/tiny-vue.git"
