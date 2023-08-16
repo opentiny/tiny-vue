@@ -14,12 +14,14 @@ export const onConfirm = (
 }
 
 export const onCancel = (
-  res: IColorPickerRef<string>, triggerBg: IColorPickerRef<string>, emit, isShow: IColorPickerRef<boolean>, hex: IColorPickerRef<string>
+  res: IColorPickerRef<string>, triggerBg: IColorPickerRef<string>, emit, isShow: IColorPickerRef<boolean>,
+  hex: IColorPickerRef<string>, color: Color
 ) => {
   return () => {
-    res.value = triggerBg.value
-    hex.value = triggerBg.value
     if (isShow.value){
+      res.value = triggerBg.value
+      hex.value = triggerBg.value
+      color.reset(hex.value)
       emit('cancel')
     }
     isShow.value = false
