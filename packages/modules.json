@@ -602,6 +602,11 @@
       "pc"
     ]
   },
+  "ColorPicker": {
+    "path": "vue/src/color-picker/index.ts",
+    "type": "component",
+    "exclude": false
+  },
   "ColumnListGroup": {
     "path": "vue/src/column-list-group/index.ts",
     "type": "component",
