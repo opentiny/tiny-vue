@@ -46,7 +46,10 @@ export const renderless = (props, context, { emit }) => {
     draggable(slider.value, {
       drag(event) {
         onDrag(event as MouseEvent, slider, alphaThumb, alpha)
-      }
+      },
+      start(event) {
+        onDrag(event as MouseEvent, slider, alphaThumb, alpha)
+      },
     })
   })
   return api
