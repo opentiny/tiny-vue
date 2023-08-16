@@ -55,7 +55,7 @@ export const renderless = (
     onHueUpdate,
     onSVUpdate,
     onConfirm: onConfirm(hex, triggerBg, res, emit, isShow),
-    onCancel: onCancel(res, triggerBg, emit, isShow),
+    onCancel: onCancel(res, triggerBg, emit, isShow, hex),
     onAlphaUpdate: update,
     cursor,
     alpha: props.alpha
