@@ -1,8 +1,10 @@
-import { watch } from 'vue'
+import { watch, computed } from 'vue'
 import TinyThemeTool from '@opentiny/vue-theme/theme-tool'
 import { tinyAuroraTheme, tinySmbTheme, tinyInfinityTheme } from '@opentiny/vue-theme/theme'
 import { hooks } from '@opentiny/vue-common'
 import { Notify } from '@opentiny/vue'
+import designSmbConfig from '@opentiny/vue-design-smb';
+import designAuroraConfig from '@opentiny/vue-design-aurora';
 import { appData } from './appData'
 
 const CURRENT_THEME_KEY = 'tiny-current-theme'
@@ -16,6 +18,12 @@ const themeData = [
   { value: 'tiny-smb-theme', label: isEn ? 'SMB Theme' : 'SMB 主题' }
 ]
 
+const designConfigMap = {
+  'tiny-default-theme': {},
+  'tiny-infinity-theme': {},
+  'tiny-aurora-theme': designAuroraConfig,
+  'tiny-smb-theme': designSmbConfig
+}
 let isShowTip = false
 function showTip() {
   Notify({
@@ -33,6 +41,9 @@ export default function useTheme() {
   const theme = new TinyThemeTool()
   const lastThemeKey = localStorage.getItem(CURRENT_THEME_KEY)
   const currThemeLabel = hooks.ref(lastThemeKey || 'tiny-default-theme')
+  const designConfig = computed(() => {
+    return designConfigMap[currThemeLabel.value]
+  })
 
   const THEME_MAP = {
     'tiny-aurora-theme': tinyAuroraTheme,
@@ -67,6 +78,7 @@ export default function useTheme() {
   return {
     getThemeData,
     changeTheme,
-    currThemeLabel
+    currThemeLabel,
+    designConfig
   }
 }
