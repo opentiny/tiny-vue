@@ -57,7 +57,7 @@ export const renderless = (props, context, { emit }) => {
         update.thumb(event as MouseEvent)
       },
       start(event){
-        update.cursor(color, event as MouseEvent);
+        update.thumb(event as MouseEvent);
       }
     })
   })
