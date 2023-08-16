@@ -32,7 +32,8 @@
     "marked": "^4.3.0",
     "dompurify": "^3.0.1",
     "@playwright/test": "^1.29.2",
-    "sortablejs": "1.15.0"
+    "sortablejs": "1.15.0",
+    "@opentiny/vue-repl": "^1.0.2"
   },
   "devDependencies": {
     "@opentiny-internal/unplugin-virtual-template": "workspace:~",
