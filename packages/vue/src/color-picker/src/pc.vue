@@ -42,7 +42,7 @@ import ButtonGroup from '@opentiny/vue-button-group'
 import Input from '@opentiny/vue-input'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import '@opentiny/vue-theme/color-picker/index.less'
-import { language } from '@opentiny/vue-locale'
+import { t } from '@opentiny/vue-locale'
 
 export default defineComponent({
   emits: ['update:modelValue', 'confirm', 'cancel'],
@@ -57,7 +57,7 @@ export default defineComponent({
   },
   directives: directive({ Clickoutside }),
   setup(props, context) {
-    return setup({ props, context, renderless, api, extendOptions: { language } })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>
