@@ -12,6 +12,7 @@
 <script lang="jsx">
 import { Progress, Button } from '@opentiny/vue'
 import { iconMinus, iconPlus } from '@opentiny/vue-icon'
+
 export default {
   components: {
     TinyProgress: Progress,

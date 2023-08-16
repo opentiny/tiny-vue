@@ -21,7 +21,8 @@ import {
   computedConfig,
   doAutoLookup,
   multiTreeRadio,
-  multiGridRadioChange
+  multiGridRadioChange,
+  watchMulti
 } from './index'
 
 export const api = [
@@ -47,7 +48,7 @@ export const api = [
 
 export const renderless = (props, { reactive, computed, watch }, { vm, nextTick, emit }) => {
   const state = reactive({
-    splitValue: props.multi ? 0.7 : 1,
+    splitValue: 0,
     gridColumns: computed(() => api.computedGridColumns()),
     selectedChanged: false,
     selectedDatas: [],
@@ -70,6 +71,8 @@ export const renderless = (props, { reactive, computed, watch }, { vm, nextTick,
       datas: []
     }
   })
+
+  state.temporary = {}
 
   const api = {
     state,
@@ -98,7 +101,8 @@ export const renderless = (props, { reactive, computed, watch }, { vm, nextTick,
     onFooterConfirm: onFooterConfirm({ api, props }),
     queryGridData: queryGridData({ api, props, state }),
     setChecked: setChecked({ api, props, state }),
-    multiTreeRadio: multiTreeRadio({ api, props })
+    multiTreeRadio: multiTreeRadio({ api, props }),
+    watchMulti: watchMulti({ api, state, props })
   })
 
   watch(
@@ -106,7 +110,11 @@ export const renderless = (props, { reactive, computed, watch }, { vm, nextTick,
     (value) => value && !state.multiGridStore.inited && api.queryGridData()
   )
 
-  api.doAutoLookup()
+  watch(
+    () => props.multi,
+    () => api.watchMulti(),
+    { immediate: true }
+  )
 
   return api
 }

@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { hasOwn, typeOf, isObject, isPlainObject, isNull } from './type'
 
@@ -126,7 +126,11 @@ export const setObj = (data, names, value, isMerge) => {
 
     item = names[len]
 
-    isMerge ? (isPlainObject(tmpl[item]) ? extend(true, tmpl[item], value) : (tmpl[item] = value)) : (tmpl[item] = value)
+    isMerge
+      ? isPlainObject(tmpl[item])
+        ? extend(true, tmpl[item], value)
+        : (tmpl[item] = value)
+      : (tmpl[item] = value)
   } else {
     isMerge ? (isPlainObject(obj[item]) ? extend(true, obj[item], value) : (obj[item] = value)) : (obj[item] = value)
   }
@@ -178,7 +182,9 @@ export const copyField = (data, fields, isMerge, isExclude) => {
   }
 
   if (isPlainObject(data)) {
-    return Array.isArray(fields) ? innerCopyFields(data, fields, isMerge, isExclude) : extend(isMerge !== false, {}, data)
+    return Array.isArray(fields)
+      ? innerCopyFields(data, fields, isMerge, isExclude)
+      : extend(isMerge !== false, {}, data)
   }
 
   return data

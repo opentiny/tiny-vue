@@ -1,86 +1,96 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { cloneDeep } from '../chart-core/deps/utils'
 
-export const created = ({ props, state, refs, nextTick }) => () => {
-  nextTick(() => {
-    state.dataSource = cloneDeep(props.dataSource)
-    state.defaultSelectedArray = cloneDeep(props.defaultSelectedArray)
-    state.labelLevelsInfo = getLabelLevelsInfo(refs)
-    state.labelsStyle = getLabelsStyle(state)
-    state.headerInfo = state.dataSource.map((item) => {
-      return { isSelected: false, title: item.title, isUP: false }
+export const created =
+  ({ props, state, refs, nextTick }) =>
+  () => {
+    nextTick(() => {
+      state.dataSource = cloneDeep(props.dataSource)
+      state.defaultSelectedArray = cloneDeep(props.defaultSelectedArray)
+      state.labelLevelsInfo = getLabelLevelsInfo(refs)
+      state.labelsStyle = getLabelsStyle(state)
+      state.headerInfo = state.dataSource.map((item) => {
+        return { isSelected: false, title: item.title, isUP: false }
+      })
     })
-  })
-}
-
-export const handleClick = ({ api, props, state }) => (value) => {
-  state.wheelData = props.dataSource[value]?.children
-  if (state.headerIndex === -1) {
-    // 首次点击
-    state.showWheel = true
-    state.headerIndex = value
-    state.headerInfo[value] = getNewHeaderInfo(state.headerInfo, value, true)
-    state.defaultSelectedIndexs = state.defaultSelectedArray[value] ?? api.loadDefault(value)
-  } else if (state.headerIndex !== value) {
-    // 切换
-    state.showWheel = true
-    state.headerInfo[state.headerIndex] = getNewHeaderInfo(state.headerInfo, state.headerIndex, false) // 上一个
-    state.headerIndex = value
-    state.headerInfo[value] = getNewHeaderInfo(state.headerInfo, value, true)
-    state.defaultSelectedIndexs = state.defaultSelectedArray[value] ?? api.loadDefault(value) // 下一个
-  } else {
-    // 收起与展开
-    state.showWheel = !state.showWheel
-    const { isUP } = state.headerInfo[value]
-    state.headerInfo[value] = getNewHeaderInfo(state.headerInfo, value, !isUP)
   }
-}
 
-export const confirm = ({ state, emit }) => () => {
-  const wheelLevelItems = getWheelLevelItems(state.wheelData, state.defaultSelectedIndexs)
-  const { selectedLabels, selectedItems } = getSelected(wheelLevelItems, state.defaultSelectedIndexs)
-  state.headerInfo[state.headerIndex] = { isSelected: true, title: selectedLabels, isUP: false }
-  state.defaultSelectedArray[state.headerIndex] = state.defaultSelectedIndexs
-  emit('confirm', selectedItems, state.headerIndex, state.defaultSelectedIndexs)
-  state.showWheel = false
-}
+export const handleClick =
+  ({ api, props, state }) =>
+  (value) => {
+    state.wheelData = props.dataSource[value]?.children
+    if (state.headerIndex === -1) {
+      // 首次点击
+      state.showWheel = true
+      state.headerIndex = value
+      state.headerInfo[value] = getNewHeaderInfo(state.headerInfo, value, true)
+      state.defaultSelectedIndexs = state.defaultSelectedArray[value] ?? api.loadDefault(value)
+    } else if (state.headerIndex !== value) {
+      // 切换
+      state.showWheel = true
+      state.headerInfo[state.headerIndex] = getNewHeaderInfo(state.headerInfo, state.headerIndex, false) // 上一个
+      state.headerIndex = value
+      state.headerInfo[value] = getNewHeaderInfo(state.headerInfo, value, true)
+      state.defaultSelectedIndexs = state.defaultSelectedArray[value] ?? api.loadDefault(value) // 下一个
+    } else {
+      // 收起与展开
+      state.showWheel = !state.showWheel
+      const { isUP } = state.headerInfo[value]
+      state.headerInfo[value] = getNewHeaderInfo(state.headerInfo, value, !isUP)
+    }
+  }
 
-export const reset = ({ api, props, state, emit }) => () => {
-  state.headerInfo[state.headerIndex] = { isSelected: false, title: '', isUP: false }
-  state.defaultSelectedIndexs = props.defaultSelectedArray[state.headerIndex] ?? api.loadDefault(state.headerIndex)
-  state.defaultSelectedArray[state.headerIndex] = state.defaultSelectedIndexs
-  emit('reset', [], state.headerIndex, state.defaultSelectedIndexs)
-  state.showWheel = false
-}
+export const confirm =
+  ({ state, emit }) =>
+  () => {
+    const wheelLevelItems = getWheelLevelItems(state.wheelData, state.defaultSelectedIndexs)
+    const { selectedLabels, selectedItems } = getSelected(wheelLevelItems, state.defaultSelectedIndexs)
+    state.headerInfo[state.headerIndex] = { isSelected: true, title: selectedLabels, isUP: false }
+    state.defaultSelectedArray[state.headerIndex] = state.defaultSelectedIndexs
+    emit('confirm', selectedItems, state.headerIndex, state.defaultSelectedIndexs)
+    state.showWheel = false
+  }
+
+export const reset =
+  ({ api, props, state, emit }) =>
+  () => {
+    state.headerInfo[state.headerIndex] = { isSelected: false, title: '', isUP: false }
+    state.defaultSelectedIndexs = props.defaultSelectedArray[state.headerIndex] ?? api.loadDefault(state.headerIndex)
+    state.defaultSelectedArray[state.headerIndex] = state.defaultSelectedIndexs
+    emit('reset', [], state.headerIndex, state.defaultSelectedIndexs)
+    state.showWheel = false
+  }
 
 export const wheelChange = (state) => (indexs) => {
   state.defaultSelectedIndexs = indexs
 }
 
-export const clickWheelItem = ({ state, emit }) => (indexs, text, item) => {
-  if (indexs.length === 0) {
-    // 反选
-    state.defaultSelectedIndexs = [-1]
-    state.headerInfo[state.headerIndex] = { isSelected: false, title: '', isUP: false }
-  } else {
-    state.defaultSelectedIndexs = indexs
-    state.headerInfo[state.headerIndex] = { isSelected: true, title: text, isUP: false }
+export const clickWheelItem =
+  ({ state, emit }) =>
+  (indexs, text, item) => {
+    if (indexs.length === 0) {
+      // 反选
+      state.defaultSelectedIndexs = [-1]
+      state.headerInfo[state.headerIndex] = { isSelected: false, title: '', isUP: false }
+    } else {
+      state.defaultSelectedIndexs = indexs
+      state.headerInfo[state.headerIndex] = { isSelected: true, title: text, isUP: false }
+    }
+    state.defaultSelectedArray[state.headerIndex] = state.defaultSelectedIndexs
+    emit('confirm', item, state.headerIndex, indexs)
+    state.showWheel = false
   }
-  state.defaultSelectedArray[state.headerIndex] = state.defaultSelectedIndexs
-  emit('confirm', item, state.headerIndex, indexs)
-  state.showWheel = false
-}
 
 export const getWheelLevelItems = (wheelData, newIndexs) => {
   const level_1 = wheelData
@@ -114,28 +124,30 @@ export const getSelected = (wheelLevelItems, selectedIndexs) => {
       selectedItems.push(levelItem[index])
     }
   })
-  const selectedLabels = selectedItems.map(item => item?.label).join(' ')
+  const selectedLabels = selectedItems.map((item) => item?.label).join(' ')
   return { selectedLabels, selectedItems }
 }
 
-export const loadDefault = ({ props, state }) => (value) => {
-  const current = props.defaultSelectedArray[value] ?? []
-  let defaultSelectedIndexs = []
-  if (state.dataSource[state.headerIndex]?.hasFooter) {
-    // 有确认，重置按钮。此情况不可点击，可滚动，且初始化默认选中每列第一个
-    const defaultL = current.length
-    const dataSL = getMaxFloor(state.wheelData)
-    if (defaultL <= dataSL) {
-      defaultSelectedIndexs = current.concat(new Array(dataSL - defaultL).fill(0))
+export const loadDefault =
+  ({ props, state }) =>
+  (value) => {
+    const current = props.defaultSelectedArray[value] ?? []
+    let defaultSelectedIndexs = []
+    if (state.dataSource[state.headerIndex]?.hasFooter) {
+      // 有确认，重置按钮。此情况不可点击，可滚动，且初始化默认选中每列第一个
+      const defaultL = current.length
+      const dataSL = getMaxFloor(state.wheelData)
+      if (defaultL <= dataSL) {
+        defaultSelectedIndexs = current.concat(new Array(dataSL - defaultL).fill(0))
+      } else {
+        defaultSelectedIndexs = current.slice(0, dataSL)
+      }
     } else {
-      defaultSelectedIndexs = current.slice(0, dataSL)
+      // 无确认，重置按钮。此情况默认为单列，可点击，且初始化默认不选中
+      defaultSelectedIndexs = current.length > 0 ? current : [-1]
     }
-  } else {
-    // 无确认，重置按钮。此情况默认为单列，可点击，且初始化默认不选中
-    defaultSelectedIndexs = current.length > 0 ? current : [-1]
+    return defaultSelectedIndexs
   }
-  return defaultSelectedIndexs
-}
 
 export const getMaxFloor = (treeData) => {
   let maxFloor = 0

@@ -11,8 +11,16 @@
  -->
 
 <template>
-  <div class="tiny-tree-menu">
-    <tiny-input v-model="state.filterText" v-if="showFilter" :placeholder="t('ui.treeMenu.placeholder')" :prefix-icon="searchIcon" />
+  <div class="tiny-tree-menu" :class="{ 'is-collapsed': state.isCollapsed }">
+    <div v-if="collapsible" class="tiny-tree-menu__toggle-button" @click.stop="collapseChange">
+      <icon-arrow></icon-arrow>
+    </div>
+    <tiny-input
+      v-if="showFilter"
+      v-model="state.filterText"
+      :placeholder="t('ui.treeMenu.placeholder')"
+      :prefix-icon="searchIcon"
+    />
     <tiny-tree
       ref="tree"
       :class="{
@@ -74,13 +82,14 @@ import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/tree-menu/vue'
 import Tree from '@opentiny/vue-tree'
 import Input from '@opentiny/vue-input'
-import { iconSearch } from '@opentiny/vue-icon'
+import { iconSearch, iconLeftWardArrow } from '@opentiny/vue-icon'
 
 export default defineComponent({
   name: $prefix + 'TreeMenu',
   components: {
     TinyTree: Tree,
-    TinyInput: Input
+    TinyInput: Input,
+    IconArrow: iconLeftWardArrow()
   },
   props: {
     data: Array,
@@ -139,6 +148,10 @@ export default defineComponent({
     showFilter: {
       type: Boolean,
       default: true
+    },
+    collapsible: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

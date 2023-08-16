@@ -18,10 +18,40 @@
       <p>设置文本分隔符为 / <br />text 文本：{{ text3 }}</p>
     </div>
 
-    <tiny-select-mobile v-model="activeName1" title="标题1" :search-config="searchConfig" :menus="menus" :visible="boxVisibility1" @update:visible="boxVisibility1 = $event" @update:text="text1 = $event"></tiny-select-mobile>
-    <tiny-select-mobile v-model="activeName2" title="标题2" multiple :search-config="searchConfig" :show-footer="true" :menus="menus" :visible="boxVisibility2" @update:visible="boxVisibility2 = $event" @update:text="text2 = $event"></tiny-select-mobile>
+    <tiny-select-mobile
+      v-model="activeName1"
+      title="标题1"
+      :search-config="searchConfig"
+      :menus="menus"
+      :visible="boxVisibility1"
+      @update:visible="boxVisibility1 = $event"
+      @update:text="text1 = $event"
+    ></tiny-select-mobile>
+    <tiny-select-mobile
+      v-model="activeName2"
+      title="标题2"
+      multiple
+      :search-config="searchConfig"
+      :show-footer="true"
+      :menus="menus"
+      :visible="boxVisibility2"
+      @update:visible="boxVisibility2 = $event"
+      @update:text="text2 = $event"
+    ></tiny-select-mobile>
 
-    <tiny-select-mobile v-model="activeName3" title="标题3" multiple :search-config="searchConfig" :show-footer="true" :menus="menus" text-field="label" :visible="boxVisibility3" @update:visible="boxVisibility3 = $event" text-split=" / " @update:text="text3 = $event"></tiny-select-mobile>
+    <tiny-select-mobile
+      v-model="activeName3"
+      title="标题3"
+      multiple
+      :search-config="searchConfig"
+      :show-footer="true"
+      :menus="menus"
+      text-field="label"
+      :visible="boxVisibility3"
+      @update:visible="boxVisibility3 = $event"
+      text-split=" / "
+      @update:text="text3 = $event"
+    ></tiny-select-mobile>
   </div>
 </template>
 

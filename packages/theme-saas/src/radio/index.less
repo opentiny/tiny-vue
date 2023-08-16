@@ -13,22 +13,6 @@
   @apply cursor-pointer;
   .user-select(none);
 
-  &:hover {
-    .@{radio-prefix-cls}__inner {
-      > svg {
-        @apply fill-color-icon-hover;
-      }
-    }
-  }
-
-  &:active {
-    .@{radio-prefix-cls}__inner {
-      > svg {
-        @apply fill-color-icon-active;
-      }
-    }
-  }
-
   &:last-child {
     @apply mr-0;
   }
@@ -79,19 +63,22 @@
 
     &.is-checked {
       .@{radio-prefix-cls}__inner {
-        & > svg {
-          @apply fill-color-brand;
-        }
+        @apply bg-color-brand;
+        @apply border-color-brand;
 
-        &:hover {
-          & > svg {
-            @apply fill-color-icon-hover;
-          }
+        &::after {
+          transform: translate(-50%, -50%) scale(1);
+          @apply bg-color-bg-1;
         }
+      }
+      &:hover .@{radio-prefix-cls}__inner::after {
+        @apply bg-color-bg-1;
+      }
 
-        &:active {
-          & > svg {
-            @apply fill-color-icon-active;
+      &:not(.is-disabled) {
+        .@{radio-prefix-cls}__inner {
+          &:hover {
+            @apply bg-color-brand;
           }
         }
       }
@@ -99,15 +86,13 @@
 
     &.is-disabled {
       .@{radio-prefix-cls}__inner {
-        @apply cursor-not-allowed;
-        & > svg {
-          @apply fill-color-text-disabled;
-        }
+        @apply border-color-text-disabled;
+        @apply bg-color-bg-3;
 
-        &:not(.is-checked) > svg {
-          path:last-child {
-            @apply fill-color-bg-3;
-          }
+        &,
+        &::after {
+          @apply cursor-not-allowed;
+          @apply bg-color-bg-3;
         }
 
         & + .@{radio-prefix-cls}__label {
@@ -116,8 +101,11 @@
       }
 
       &.is-checked .@{radio-prefix-cls}__inner {
-        & > svg {
-          @apply fill-color-brand-disabled;
+        @apply bg-color-brand-disabled;
+        @apply border-transparent;
+
+        &::after {
+          @apply bg-color-bg-1;
         }
       }
 
@@ -129,21 +117,37 @@
   }
 
   &__inner {
-    & > svg {
-      @apply text-base;
-      @apply fill-color-icon-secondary;
-    }
+    border: 1px solid var(--ti-radio-bordered-border-color);
+    @apply border border-solid border-color-border;
+    @apply rounded-full;
+    @apply ~'w-3.5';
+    @apply ~'h-3.5';
+    @apply bg-color-bg-1;
+    @apply relative;
+    @apply inline-block;
+    @apply cursor-pointer;
+    @apply box-border;
+    @apply outline-0;
 
     &:hover {
-      > svg {
-        @apply fill-color-icon-hover;
-      }
+      @apply border-color-brand;
     }
 
     &:active {
-      > svg {
-        @apply fill-color-icon-active;
-      }
+      @apply border-color-brand;
+    }
+
+    &::after {
+      @apply ~'w-1.5';
+      @apply ~'h-1.5';
+      @apply rounded-full;
+      @apply bg-color-bg-1;
+      content: '';
+      @apply absolute;
+      @apply left-1/2;
+      @apply top-1/2;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.15s ease-in;
     }
   }
 
@@ -165,12 +169,12 @@
 
   &--medium {
     &.is-bordered {
+      @apply rounded-full;
       @apply h-9;
 
       .@{radio-prefix-cls}__inner {
-        > svg {
-          @apply text-lg;
-        }
+        @apply ~'w-3.5';
+        @apply ~'h-3.5';
       }
 
       .@{radio-prefix-cls}__label {
@@ -181,6 +185,7 @@
 
   &--small {
     &.is-bordered {
+      @apply rounded-full;
       @apply h-8;
 
       .@{radio-prefix-cls}__label {

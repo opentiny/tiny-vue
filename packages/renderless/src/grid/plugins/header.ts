@@ -23,7 +23,8 @@
  *
  */
 
-const columnIsVisible = (children) => Array.isArray(children) && children.length && children.some((column) => column.visible)
+const columnIsVisible = (children) =>
+  Array.isArray(children) && children.length && children.some((column) => column.visible)
 
 export const getAllColumns = (columns) => {
   const result = []

@@ -16,10 +16,10 @@ describe('PC Mode', () => {
         },
         template,
         data,
-        ...otherObj,
+        ...otherObj
       },
       {
-        attachTo: 'body',
+        attachTo: 'body'
       }
     )
 
@@ -56,9 +56,14 @@ describe('PC Mode', () => {
 
   test('slot', async () => {
     let value = ''
-    const wrapper = mount(() => <Select v-model={value} v-slots={{
-      empty: () => <div class="tips">没有选项</div>
-    }}></Select>)
+    const wrapper = mount(() => (
+      <Select
+        v-model={value}
+        v-slots={{
+          empty: () => <div class="tips">没有选项</div>
+        }}
+      ></Select>
+    ))
     await wrapper.find('input').trigger('click')
     expect(wrapper.find('.tips').exists()).toBe(true)
   })

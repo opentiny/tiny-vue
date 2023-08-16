@@ -1,8 +1,24 @@
 <template>
   <div ref="root" class="tiny-amount" v-bind="a($attrs, ['^on[A-Z]'])">
-    <tiny-popover v-model="state.visible" placement="bottom-start" :popper-class="'tiny-amount-popper' + (popperClass ? ' ' + popperClass : '')" trigger="manual" :append-to-body="popperAppendToBody">
+    <tiny-popover
+      v-model="state.visible"
+      placement="bottom-start"
+      :popper-class="'tiny-amount-popper' + (popperClass ? ' ' + popperClass : '')"
+      trigger="manual"
+      :append-to-body="popperAppendToBody"
+    >
       <template #reference>
-        <tiny-input :tabindex="tabindex" :size="size" :modelValue="getAmountText()" :maxlength="maxLen" :placeholder="placeholder" :disabled="disabled" @focus="inputFocus" @blur="inputBlur" @update:modelValue="onInput">
+        <tiny-input
+          :tabindex="tabindex"
+          :size="size"
+          :modelValue="getAmountText()"
+          :maxlength="maxLen"
+          :placeholder="placeholder"
+          :disabled="disabled"
+          @focus="inputFocus"
+          @blur="inputBlur"
+          @update:modelValue="onInput"
+        >
           <template #suffix>
             <div @click="toggleVisible" class="tiny-amount-input-icon">
               <icon-coin class="tiny-svg-size" />
@@ -13,15 +29,34 @@
       <div class="popover-con" ref="popover">
         <div class="module" v-if="popUp">
           <div class="popover-left">{{ t('ui.amount.currency') }}</div>
-          <tiny-currency class="popover-right" v-model="editorState.currency" :clearable="false" :fields="fields" :fetch-currency="fetchCurrency" :popper-class="popperClass" :popper-append-to-body="popperAppendToBody" :currency="currency"></tiny-currency>
+          <tiny-currency
+            class="popover-right"
+            v-model="editorState.currency"
+            :clearable="false"
+            :fields="fields"
+            :fetch-currency="fetchCurrency"
+            :popper-class="popperClass"
+            :popper-append-to-body="popperAppendToBody"
+            :currency="currency"
+          ></tiny-currency>
         </div>
         <div v-if="date || dateAllowEmpty" class="module">
           <div class="popover-left">{{ t('ui.amount.date') }}</div>
-          <tiny-date-picker class="popover-right" v-model="editorState.date" :popper-class="'tiny-amount-popper' + (popperClass ? ' ' + popperClass : '')" :popper-append-to-body="popperAppendToBody"></tiny-date-picker>
+          <tiny-date-picker
+            class="popover-right"
+            v-model="editorState.date"
+            :popper-class="'tiny-amount-popper' + (popperClass ? ' ' + popperClass : '')"
+            :popper-append-to-body="popperAppendToBody"
+          ></tiny-date-picker>
         </div>
         <div class="module">
           <div class="popover-left">{{ t('ui.amount.amount') }}</div>
-          <tiny-input class="popover-right" v-model="editorState.amount" @update:modelValue="popInput" :maxlength="maxLen"></tiny-input>
+          <tiny-input
+            class="popover-right"
+            v-model="editorState.amount"
+            @update:modelValue="popInput"
+            :maxlength="maxLen"
+          ></tiny-input>
         </div>
         <div class="module">
           <tiny-button type="primary" @click="save">{{ t('ui.base.confirm') }}</tiny-button>

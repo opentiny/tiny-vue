@@ -1,0 +1,7 @@
+.tinyui-design-header {
+  z-index: 1000 !important;
+}
+
+.tiny-grid td,.tiny-grid th { 
+  vertical-align: middle;
+}

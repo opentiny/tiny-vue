@@ -25,12 +25,16 @@
     >
       <div class="tiny-picker-panel__body-wrapper">
         <slot name="sidebar" class="tiny-picker-panel__sidebar"></slot>
-        <div class="tiny-picker-panel__sidebar" v-if="state.shortcuts">
+        <div ref="shortcut" class="tiny-picker-panel__sidebar" v-if="state.shortcuts">
           <button
             type="button"
             class="tiny-picker-panel__shortcut"
             v-for="(shortcut, key) in state.shortcuts"
             :key="key"
+            :class="{
+              'tiny-picker-panel__shortcut-selected':
+                state.singleSelect && shortcut.type === state.shortcutType && shortcut.text === state.shortcutText
+            }"
             @click="handleShortcutClick(shortcut)"
           >
             {{ shortcut.text }}
@@ -64,6 +68,7 @@
                 />
                 <time-picker
                   ref="minTimePicker"
+                  :step="step"
                   :time-arrow-control="state.arrowControl"
                   :show="state.minTimePickerVisible"
                   :value="state.minDate"
@@ -100,6 +105,7 @@
                 />
                 <time-picker
                   ref="maxTimePicker"
+                  :step="step"
                   :time-arrow-control="state.arrowControl"
                   :show="state.maxTimePickerVisible"
                   :value="state.maxDate"
@@ -150,6 +156,8 @@
               :cell-class-name="state.cellClassName"
               @changerange="handleChangeRange"
               :first-day-of-week="state.firstDayOfWeek"
+              :show-week-number="showWeekNumber"
+              :format-weeks="formatWeeks"
               @pick="handleRangePick"
             >
             </date-table>
@@ -195,6 +203,8 @@
               :cell-class-name="state.cellClassName"
               @changerange="handleChangeRange"
               :first-day-of-week="state.firstDayOfWeek"
+              :show-week-number="showWeekNumber"
+              :format-weeks="formatWeeks"
               @pick="handleRangePick"
             >
             </date-table>
@@ -205,7 +215,13 @@
         <tiny-button size="mini" type="text" class="tiny-picker-panel__link-btn" @click="handleClear">
           {{ t('ui.datepicker.clear') }}
         </tiny-button>
-        <tiny-button plain size="mini" class="tiny-picker-panel__link-btn" :disabled="state.btnDisabled" @click="handleConfirm(false)">
+        <tiny-button
+          plain
+          size="mini"
+          class="tiny-picker-panel__link-btn"
+          :disabled="state.btnDisabled"
+          @click="handleConfirm(false)"
+        >
           {{ t('ui.datepicker.confirm') }}
         </tiny-button>
       </div>
@@ -223,6 +239,10 @@ import Input from '@opentiny/vue-input'
 import Button from '@opentiny/vue-button'
 import { iconPagerLast, iconPagerFirst, iconPagerPrev, iconPagerNext } from '@opentiny/vue-icon'
 
+const $constants = {
+  startDate: new Date('1970-01-01'),
+  endDate: new Date('2099-12-31')
+}
 export default defineComponent({
   name: $prefix + 'DateRange',
   directives: directive({ Clickoutside }),
@@ -237,7 +257,22 @@ export default defineComponent({
     IconPagerNext: iconPagerNext()
   },
   props: {
-    emitter: Object
+    _constants: {
+      type: Object,
+      default: () => $constants
+    },
+    emitter: Object,
+    step: {
+      type: Object,
+      default() {
+        return { hour: 1, minute: 1, second: 1 }
+      }
+    },
+    showWeekNumber: {
+      type: Boolean,
+      default: false
+    },
+    formatWeeks: Function
   },
   emits: ['dodestroy', 'pick'],
   setup(props, context) {

@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   initStore,
@@ -83,7 +83,10 @@ const initState = ({ reactive, props, computed, parent, slots }) => {
     leafOnly: computed(() => !state.checkStrictly),
     isHoverMenu: computed(() => state.config.expandTrigger === 'hover'),
     renderLabelFn: computed(
-      () => props.renderLabel || slots.default || (parent.$parent?.$options.componentName === 'TinyCascader' && parent.$parent.$scopedSlots.default)
+      () =>
+        props.renderLabel ||
+        slots.default ||
+        (parent.$parent?.$options.componentName === 'TinyCascader' && parent.$parent.$scopedSlots.default)
     )
   })
 
@@ -142,7 +145,11 @@ const initWatch = ({ watch, state, props, api }) => {
   )
 }
 
-export const renderless = (props, { computed, onMounted, reactive, watch }, { nextTick, emit, parent, childrenHandler, slots }) => {
+export const renderless = (
+  props,
+  { computed, onMounted, reactive, watch },
+  { nextTick, emit, parent, childrenHandler, slots }
+) => {
   const api = {}
   const menus = []
   const state = initState({ reactive, props, computed, parent, slots })

@@ -11,6 +11,7 @@
  -->
 <template>
   <label
+    v-if="!state.isDisplayOnly || state.model === label"
     class="tiny-radio"
     :class="[
       border && state.radioSize ? 'tiny-radio--' + state.radioSize : '',

@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   proxyTimePickerDataProperties,
@@ -115,11 +115,11 @@ const initState = ({ reactive, computed, api, i18n }) => {
     selectedTz: null,
     animationName: '',
     startYear: Math.floor(new Date().getFullYear() / 10) * 10,
-    year: computed(() => state.date.getFullYear()),
-    month: computed(() => state.date.getMonth()),
+    year: computed(() => !Array.isArray(state.date) && state.date.getFullYear()),
+    month: computed(() => !Array.isArray(state.date) && state.date.getMonth()),
     week: computed(() => getWeekNumber(state.date)),
     monthDate: computed(() => state.date.getDate()),
-    footerVisible: computed(() => state.showTime || state.selectionMode === DATEPICKER.Dates),
+    footerVisible: computed(() => state.showTime || [DATEPICKER.Dates, DATEPICKER.Years].includes(state.selectionMode)),
     visibleTime: computed(() => api.computerVisibleTime()),
     visibleDate: computed(() => api.computerVisibleDate()),
     yearLabel: computed(() => api.getYearLabel()),
@@ -127,7 +127,7 @@ const initState = ({ reactive, computed, api, i18n }) => {
     dateFormat: computed(() => (state.format ? extractDateFormat(state.format.replace(state.timefmt, '')) : DATE.Date)),
     lang: computed(() => (i18n ? i18n.locale.replace(/_/g, '-') : 'zh-CN')),
     isShowTz: computed(() => state.showTimezone && state.showTime),
-    isShowFooter: computed(() => state.footerVisible && state.currentView === 'date')
+    isShowFooter: computed(() => state.footerVisible && [DATEPICKER.Date, DATEPICKER.Year].includes(state.currentView))
   })
 
   state.needChangeTimezoneData = true // 控制重新渲染时区列表
@@ -171,7 +171,7 @@ const initWatch = ({ watch, state, api, nextTick }) => {
   watch(() => state.visible, api.watchVisible)
 }
 
-const initApi = ({ api, state, t, emit, nextTick, vm, refs, watch }) => {
+const initApi = ({ api, state, t, emit, nextTick, vm, watch }) => {
   Object.assign(api, {
     t,
     state,
@@ -196,7 +196,7 @@ const initApi = ({ api, state, t, emit, nextTick, vm, refs, watch }) => {
     watchTimePickerVisible: watchTimePickerVisible({ nextTick, vm }),
     checkDateWithinRange: checkDateWithinRange({ state }),
     watchSelectionMode: watchSelectionMode({ state }),
-    proxyTimePickerDataProperties: proxyTimePickerDataProperties({ refs, state, watch }),
+    proxyTimePickerDataProperties: proxyTimePickerDataProperties({ vm, state, watch }),
     handleKeyControl: handleKeyControl({ state, emit }),
     doPick: doPick(emit),
     searchTz: searchTz({ api, state }),
@@ -211,22 +211,22 @@ const initApi = ({ api, state, t, emit, nextTick, vm, refs, watch }) => {
     handleMonthPick: handleMonthPick({ api, state }),
     handleVisibleDateChange: handleVisibleDateChange({ api, state, t }),
     handleTimePick: handleTimePick({ api, state, t }),
-    handleVisibleTimeChange: handleVisibleTimeChange({ api, refs, state, t }),
     handleYearPick: handleYearPick({ api, state }),
     handleDatePick: handleDatePick({ api, state, t }),
-    handleShortcutClick: handleShortcutClick(api),
     computerVisibleTime: computerVisibleTime({ state, t }),
+    handleShortcutClick: handleShortcutClick(api),
     computerVisibleDate: computerVisibleDate({ state, t }),
+    handleVisibleTimeChange: handleVisibleTimeChange({ api, vm, state, t }),
     computerTimeFormat: computerTimeFormat({ state })
   })
 }
 
-export const renderless = (props, { computed, reactive, watch, nextTick }, { t, refs, emit: $emit, vm, i18n }) => {
+export const renderless = (props, { computed, reactive, watch, nextTick }, { t, emit: $emit, vm, i18n }) => {
   const api = {}
   const emit = props.emitter ? props.emitter.emit : $emit
   const state = initState({ reactive, computed, api, i18n })
 
-  initApi({ api, state, t, emit, nextTick, vm, refs, watch })
+  initApi({ api, state, t, emit, nextTick, vm, watch })
   initWatch({ watch, state, api, nextTick })
 
   return api

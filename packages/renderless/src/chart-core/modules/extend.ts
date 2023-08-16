@@ -27,7 +27,20 @@ export default ({ options, extend }) => {
     } else if (typeof value === 'function') {
       options[key] = value(options[key])
     } else if (isArr(options[key]) && isArr(value)) {
-      const attrList = ['series', 'yAxis', 'xAxis', 'color', 'dataZoom', 'legend', 'toolbox', 'grid', 'graphic', 'timeline', 'visualMap', 'brush']
+      const attrList = [
+        'series',
+        'yAxis',
+        'xAxis',
+        'color',
+        'dataZoom',
+        'legend',
+        'toolbox',
+        'grid',
+        'graphic',
+        'timeline',
+        'visualMap',
+        'brush'
+      ]
       if (~attrList.indexOf(key)) {
         options[key] = merge(options[key], value)
       }

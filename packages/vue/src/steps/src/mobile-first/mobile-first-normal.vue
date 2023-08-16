@@ -17,20 +17,7 @@
         ></div>
         <div data-tag="tiny-steps-icon" class="w-6 h-6 flex-none flex relative z-10">
           <div
-            class="
-              w-full
-              h-full
-              flex
-              items-center
-              justify-center
-              rounded-full
-              border-0.5 border-color-brand
-              text-color-brand
-              bg-white
-              font-medium
-              relative
-              z-10
-            "
+            class="w-full h-full flex items-center justify-center rounded-full border-0.5 border-color-brand text-color-brand bg-white font-medium relative z-10"
           >
             {{ state.startIndex }}
           </div>
@@ -196,20 +183,7 @@
         ></div>
         <div data-tag="tiny-steps-icon" class="w-6 h-6 flex-none flex relative z-10">
           <div
-            class="
-              w-full
-              h-full
-              flex
-              items-center
-              justify-center
-              rounded-full
-              border-0.5 border-color-brand
-              text-color-brand
-              bg-white
-              font-medium
-              relative
-              z-[9999]
-            "
+            class="w-full h-full flex items-center justify-center rounded-full border-0.5 border-color-brand text-color-brand bg-white font-medium relative z-[9999]"
           >
             {{ state.endIndex + 1 }}
           </div>

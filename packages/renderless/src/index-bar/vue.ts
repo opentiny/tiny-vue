@@ -10,7 +10,14 @@
  *
  */
 
-import { handleScroll, updateAnchorChildren, handleTouchDown, handleTouchMove, handleTouchUp, handleIndexClick } from './index'
+import {
+  handleScroll,
+  updateAnchorChildren,
+  handleTouchDown,
+  handleTouchMove,
+  handleTouchUp,
+  handleIndexClick
+} from './index'
 
 export const api = [
   'state',
@@ -23,7 +30,11 @@ export const api = [
   'handleIndexClick'
 ]
 
-export const renderless = (props, { computed, reactive, onMounted, onUnmounted, onUpdated, watch }, { emit, parent, refs }) => {
+export const renderless = (
+  props,
+  { computed, reactive, onMounted, onUnmounted, onUpdated, watch },
+  { emit, parent, refs }
+) => {
   const state = reactive({
     index: 0,
     childrenAnchor: [],

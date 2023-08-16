@@ -4,7 +4,13 @@
     <p>值：{{ value }}</p>
     <p>格式化值：{{ formatValue }}</p>
 
-    <tiny-date-picker-mobile v-model="value" title="日期选择" type="daterange" :visible="boxVisibility" @update:visible="boxVisibility = $event">
+    <tiny-date-picker-mobile
+      v-model="value"
+      title="日期选择"
+      type="daterange"
+      :visible="boxVisibility"
+      @update:visible="boxVisibility = $event"
+    >
     </tiny-date-picker-mobile>
   </div>
 </template>
@@ -28,8 +34,9 @@ export default {
       if (!this.value || this.value.length === 0) return ''
       const date1 = new Date(this.value[0])
       const date2 = new Date(this.value[1])
-      return `[${date1.getFullYear()}/${date1.getMonth() + 1}/${date1.getDate()}, ${date2.getFullYear()}/${date2.getMonth() + 1
-        }/${date2.getDate()}]`
+      return `[${date1.getFullYear()}/${date1.getMonth() + 1}/${date1.getDate()}, ${date2.getFullYear()}/${
+        date2.getMonth() + 1
+      }/${date2.getDate()}]`
     }
   },
   methods: {

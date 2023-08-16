@@ -1033,7 +1033,7 @@ export {
   IconZoomIn,
   IconZoomIn as iconZoomIn,
   IconZoomOut,
-  IconZoomOut as iconZoomOut,
+  IconZoomOut as iconZoomOut
 }
 
 export default {

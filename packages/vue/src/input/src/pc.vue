@@ -161,7 +161,7 @@
       </tiny-tooltip>
       <textarea
         ref="textarea"
-        v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
+        v-bind="a($attrs, ['type', 'class', 'style'])"
         :tabindex="tabindex"
         class="tiny-textarea__inner"
         @compositionstart="handleCompositionStart"
@@ -176,8 +176,6 @@
         @focus="handleFocus"
         @blur="handleBlur"
         @change="handleChange"
-        @drop.stop="handleDrop"
-        @dragstart.stop="handleDragStart"
         :aria-label="label"
       >
       </textarea>
@@ -207,7 +205,6 @@ import '@opentiny/vue-theme/input/index.less'
 import '@opentiny/vue-theme/textarea/index.less'
 
 export default defineComponent({
-  inheritAttrs: false,
   emits: [
     'update:modelValue',
     'change',

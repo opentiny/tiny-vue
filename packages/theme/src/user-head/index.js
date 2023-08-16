@@ -16,5 +16,5 @@ export default {
   'tiny-userhead-head-icon-size-normal': '40px',
   'tiny-userhead-head-icon-small-size': '14px',
   'tiny-userhead-head-border-radius': '4px',
-  'tiny-userhead-head-bg-color': '#bbbbbb',
+  'tiny-userhead-head-bg-color': '#bbbbbb'
 }

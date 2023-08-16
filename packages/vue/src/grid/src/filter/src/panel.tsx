@@ -24,74 +24,14 @@
  */
 
 import Radio from '../../radio'
-import Button from '../../button'
+import Button from '@opentiny/vue-button'
 import PopperJS from '@opentiny/vue-renderless/common/deps/popper'
 import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
 import { extend } from '@opentiny/vue-renderless/common/object'
 import { t } from '@opentiny/vue-locale'
 import { hooks, h, $prefix } from '@opentiny/vue-common'
-import { iconCheck, iconCheckedSur, iconDefinedFiltration, iconLeftWard, iconDeltaDown } from '@opentiny/vue-icon'
+import { iconCheck, iconCheckedSur, iconHalfselect, iconSearch } from '@opentiny/vue-icon'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-
-function renderAdvancePanelAdvList({ _vm }) {
-  return _vm.showAdvList && _vm.showAdvItems ? (
-    <ul class="adv-list" ref="advlist">
-      {['等于', '不等于', '包含', '不包含', '开头是', '结尾是'].map((item) => (
-        <li class="adv-item">{item}</li>
-      ))}
-    </ul>
-  ) : null
-}
-
-function renderAdvancePanelButtons({ _vm }) {
-  return (
-    <li class="adv-row adv-btn">
-      <Button type="primary" onClick={_vm.filterInput}>
-        {_vm.i18n('ui.base.confirm')}
-      </Button>
-      <Button onClick={_vm.close}>{_vm.i18n('ui.base.cancel')}</Button>
-    </li>
-  )
-}
-
-function renderAdvancePanelRadios() {
-  return (
-    <ul class="adv-row">
-      <li class="tiny-grid__filter-option filter-option__radios">
-        <Radio modelValue={'and'} label="startwith">
-          And
-        </Radio>
-        <Radio modelValue={'or'} label="equals">
-          Or
-        </Radio>
-      </li>
-    </ul>
-  )
-}
-
-function renderAdvancePanelAdvHeader({ _vm, ArrowLeft }) {
-  return (
-    <div
-      class="adv-header"
-      onClick={() => {
-        _vm.showAdvance = false
-        _vm.showAdvItems = false
-        _vm.updatePanel()
-      }}>
-      <ArrowLeft></ArrowLeft>自定义筛选方式
-    </div>
-  )
-}
-
-function renderAdvancePanelAdvRow({ _vm, DeltaDown }) {
-  return (
-    <div class="adv-row">
-      <input class="filter-option__input" readonly onFocus={_vm.showAdvList} onBlur={_vm.hideAdvList} />
-      <DeltaDown class="drop-arrow"></DeltaDown>
-      <input class="filter-option__input"></input>
-    </div>
-  )
-}
 
 function renderInputArgs({ _vm, inputFilter }) {
   let isAddbyProgram = false
@@ -152,30 +92,86 @@ function renderInputProps({ InputComponent, condition, event, inputFilter, isNat
   return { inputProps, InputComponent }
 }
 
-function renderEnumableEmpty({ _vm }) {
-  return [<li class="tiny-grid__filter-empty">{_vm.i18n('ui.grid.emptyText')}</li>]
+const iconRender = function (checked, index, halfChecked) {
+  const CheckedSur = iconCheckedSur()
+  const Check = iconCheck()
+  const HalfCheck = iconHalfselect()
+
+  const props = {
+    class: 'tiny-svg-size',
+    tabindex: index
+  }
+
+  if (typeof halfChecked === 'undefined') {
+    return checked ? <CheckedSur {...props} class="is-checked" /> : <Check {...props} />
+  } else {
+    return checked ? (
+      <CheckedSur {...props} class="is-checked" />
+    ) : halfChecked ? (
+      <HalfCheck {...props} class="is-checked" />
+    ) : (
+      <Check {...props} />
+    )
+  }
 }
 
-function renderEnumableOptions({ iconRender, _vm, filterStore }) {
-  return filterStore.options.map((item, index) => (
-    <li
-      class={['tiny-grid__filter-option', { selected: item.checked }]}
-      onClick={() => {
-        if (!filterStore.multi) {
-          // 单选
-          filterStore.options.forEach((option) => {
-            option.checked = option === item
-          })
-          _vm.filterEnum()
-        } else {
-          // 多选
-          item.checked = !item.checked
-        }
-      }}>
-      {filterStore.multi ? iconRender(item.checked, index) : null}
-      <a title={item.label}> {item.label} </a>
-    </li>
-  ))
+function renderEnumableOptions({ iconRender, _vm, filterStore, selectAll, searchable }) {
+  const resultList = filterStore.options.filter((value) => value.label?.toString().includes(_vm.searchValue))
+
+  if (resultList.length) {
+    const filterList = resultList.map((item, index) => (
+      <li
+        class={['tiny-grid__filter-option', { selected: item.checked }]}
+        onClick={() => {
+          if (!filterStore.multi) {
+            // 单选
+            filterStore.options.forEach((option: { checked: boolean }) => {
+              option.checked = option === item
+            })
+            _vm.filterEnum()
+          } else {
+            // 多选
+            item.checked = !item.checked
+          }
+        }}
+      >
+        {filterStore.multi ? iconRender(item.checked, index + 1) : null}
+        <a title={item.label}> {item.label} </a>
+      </li>
+    ))
+    const isShowAllSelect = selectAll && (!filterStore.multi || (!searchable && filterStore.multi))
+
+    return isShowAllSelect
+      ? [
+          <li
+            class="tiny-grid__filter-option"
+            onClick={() => {
+              const isAllSelected = filterStore.options.every((item) => item.checked)
+              filterStore.options.forEach((option) => {
+                option.checked = !isAllSelected
+              })
+
+              // 单选直接触发筛选
+              if (!filterStore.multi) {
+                _vm.filterEnum()
+              }
+            }}
+          >
+            {filterStore.multi
+              ? iconRender(
+                  filterStore.options.every((item) => item.checked),
+                  0,
+                  filterStore.options.some((item) => item.checked)
+                )
+              : null}
+            <a title={_vm.i18n('ui.grid.filter.allSelect')}> {_vm.i18n('ui.grid.filter.allSelect')}</a>
+          </li>,
+          ...filterList
+        ]
+      : filterList
+  } else {
+    return [<li class="tiny-grid__filter-empty">{_vm.i18n('ui.grid.emptyText')}</li>]
+  }
 }
 
 export default {
@@ -203,20 +199,37 @@ export default {
       popperJS: null,
       showAdvance: false,
       showAdvItems: false,
-      listPopper: null
+      listPopper: null,
+      searchValue: '',
+      startDate: '',
+      endDate: ''
     }
   },
   render() {
-    const { filterStore, $grid, optimizeOpts } = this
-    let { args, column, options } = filterStore
+    const {
+      filterStore,
+      $grid,
+      optimizeOpts,
+      renderInput,
+      renderEnumable,
+      renderDefault,
+      renderExtends,
+      renderBase,
+      renderSimple
+    } = this as any
+    const { args, column, options, layout = 'input,enum,default,extends,base' } = filterStore
 
-    const quickFilter = [
-      this.renderInput(),
-      this.renderEnumable(),
-      this.renderDefault(),
-      this.renderExtends(),
-      this.renderBase()
-    ]
+    const layoutMap = {
+      input: renderInput,
+      enum: renderEnumable,
+      default: renderDefault,
+      extends: renderExtends,
+      base: renderBase,
+      simple: renderSimple
+    }
+
+    // 支持用户自定义筛选项的个数和显示顺序和位置
+    const quickFilter = layout.split(',').map((item) => layoutMap[item] && layoutMap[item].call(this))
 
     const map = {
       filterActive: 'filter__active'
@@ -230,10 +243,12 @@ export default {
           'filter__prevent-default',
           {
             'tiny-grid__animat': optimizeOpts.animat,
-            [map.filterActive]: filterStore.visible
+            [map.filterActive]: filterStore.visible,
+            'tiny-grid__filter-simple': layout.includes('simple')
           }
         ]}
-        style={filterStore.style}>
+        style={filterStore.style}
+      >
         {filterStore.visible ? (
           <div class={['tiny-grid__filter-body', { 'show-addvance': this.showAdvance }]}>
             {column.slots && column.slots.filter
@@ -285,12 +300,14 @@ export default {
 
         popper.style.zIndex = PopupManager.nextZIndex()
 
-        this.visible &&
-          (this.popperJS = new PopperJS(reference, popper, {
+        if (this.visible) {
+          this.popperJS = new PopperJS(reference, popper, {
             placement: 'bottom-end'
-          }).update())
+          }).update()
+        }
       })
     }),
+    // 基础清除选项
     renderBase() {
       return (
         <ul class="tiny-grid__filter-panel filter-panel__clear">
@@ -303,6 +320,7 @@ export default {
         </ul>
       )
     },
+    // 设置筛选条件为空和不为空
     renderDefault() {
       const { condition, filterStore } = this
 
@@ -316,19 +334,22 @@ export default {
             class={['tiny-grid__filter-option', { active: condition.empty === true }]}
             onClick={() => {
               this.filterNull(true)
-            }}>
+            }}
+          >
             <a class="item-content">{this.i18n('ui.grid.filter.empty')}</a>
           </li>
           <li
             class={['tiny-grid__filter-option', { active: condition.empty === false }]}
             onClick={() => {
               this.filterNull(false)
-            }}>
+            }}
+          >
             <a class="item-content">{this.i18n('ui.grid.filter.unempty')}</a>
           </li>
         </ul>
       )
     },
+    // 筛选扩展项
     renderExtends() {
       const { filterStore } = this
 
@@ -343,63 +364,18 @@ export default {
               class="tiny-grid__filter-option"
               onClick={() => {
                 this.filterExtends(item)
-              }}>
+              }}
+            >
               <a class="item-content">{item.label}</a>
             </li>
           ))}
         </ul>
       )
     },
-    renderAdvance() {
-      const DefinedFiltration = iconDefinedFiltration()
-      const { filterStore } = this
-
-      if (!filterStore.advancedFilter) {
-        return null
-      }
-
-      return (
-        <ul class="tiny-grid__filter-panel">
-          <li class="contextmenu-item =">
-            <DefinedFiltration class="tiny-svg-size defined-filtration" />
-            <a
-              onClick={() => {
-                this.showAdvance = true
-                this.updatePanel()
-              }}
-              class="item-content">
-              高级筛选
-            </a>
-          </li>
-        </ul>
-      )
-    },
-    renderAdvancePanel() {
-      const ArrowLeft = iconLeftWard()
-      const DeltaDown = iconDeltaDown()
-
-      if (!this.showAdvance) {
-        return null
-      }
-
-      let _vm = this
-
-      const AdvRow = renderAdvancePanelAdvRow({ _vm, DeltaDown })
-
-      return (
-        <div class="tiny-grid__filter-advance">
-          {renderAdvancePanelAdvHeader({ _vm, ArrowLeft })}
-          <AdvRow></AdvRow>
-          {renderAdvancePanelRadios()}
-          <AdvRow></AdvRow>
-          {renderAdvancePanelButtons({ _vm })}
-          {renderAdvancePanelAdvList({ _vm })}
-        </div>
-      )
-    },
+    // 输入筛选项
     renderInput() {
       this.correctRelations()
-      const { condition, filterStore } = this
+      const { condition, filterStore } = this as any
       const { inputFilter } = filterStore
 
       if (!inputFilter) return null
@@ -429,7 +405,8 @@ export default {
                       function () {
                         return true
                       }
-                  }}>
+                  }}
+                >
                   {label}
                 </Radio>
               ))}
@@ -446,29 +423,15 @@ export default {
         </ul>
       )
     },
+    // 选择筛选项
     renderEnumable() {
       const { filterStore } = this
 
       if (!filterStore.enumable) return null
 
-      const CheckedSur = iconCheckedSur()
-      const Check = iconCheck()
-
-      const iconRender = function (checked, index) {
-        const props = {
-          class: 'tiny-svg-size',
-          tabindex: index
-        }
-        return checked ? <CheckedSur {...props} class="is-checked" /> : <Check {...props} />
-      }
-
       return (
         <div class="tiny-grid__filter-panel filter-panel__enum">
-          <ul class="tiny-grid__filter-options">
-            {!filterStore.options.length
-              ? renderEnumableEmpty({ _vm: this })
-              : renderEnumableOptions({ iconRender, _vm: this, filterStore })}
-          </ul>
+          <ul class="tiny-grid__filter-options">{renderEnumableOptions({ iconRender, _vm: this, filterStore })}</ul>
           {filterStore.multi ? (
             <div class="tiny-grid__filter-option filter-option__btns">
               <Button type="primary" onClick={this.filterEnum}>
@@ -477,7 +440,8 @@ export default {
               <Button
                 onClick={() => {
                   filterStore.visible = false
-                }}>
+                }}
+              >
                 {this.i18n('ui.base.cancel')}
               </Button>
             </div>
@@ -485,23 +449,122 @@ export default {
         </div>
       )
     },
-    showAdvList(e) {
-      this.showAdvItems = true
-      this.listPopper && this.listPopper.destroy() && (this.listPopper = null)
+    // 简化版筛选按钮对齐，对齐管理侧规范
+    renderSimple() {
+      const { filterStore } = this as any
+      const { simpleFilter } = filterStore
 
-      this.$nextTick(() => {
-        const reference = e.target
-        const popper = this.$refs.advlist
+      if (!simpleFilter) {
+        return null
+      }
 
-        popper.style.zIndex = PopupManager.nextZIndex()
-        this.listPopper = new PopperJS(reference, popper, {
-          placement: 'bottom-start'
-        }).update()
-      })
-    },
-    hideAdvList() {
-      this.listPopper && this.listPopper.destroy() && (this.listPopper = null)
-      this.showAdvItems = false
+      if (simpleFilter.isDatetime) {
+        const DatePickComponents = simpleFilter?.datetimeConfig?.component
+          ? hooks.toRaw(simpleFilter.datetimeConfig.component)
+          : null
+
+        const format = simpleFilter?.datetimeConfig?.format
+        const valueFormat = simpleFilter?.datetimeConfig?.valueFormat
+        const type = simpleFilter?.datetimeConfig?.type
+        const max = simpleFilter?.datetimeConfig?.max
+        const min = simpleFilter?.datetimeConfig?.min
+
+        const pickerOptions = {
+          disabledDate(time) {
+            return time.getTime() < min || time.getTime() > max
+          }
+        }
+
+        return (
+          <div class="tiny-grid__filter-panel filter-panel__enum filter-panel__simple">
+            <div class="tiny-grid__filter-date-title">{this.i18n('ui.grid.filter.dateTips')}</div>
+            <ul class="tiny-grid__filter-date">
+              <li class="tiny-grid__filter-date-item">
+                <span>{this.i18n('ui.grid.filter.startDate')}</span>
+                <DatePickComponents
+                  format={format}
+                  type={type}
+                  value-format={valueFormat}
+                  picker-options={pickerOptions}
+                  class="tiny-grid__filter-date-pick"
+                  v-model={this.startDate}
+                ></DatePickComponents>
+              </li>
+              <li class="tiny-grid__filter-date-item">
+                <span>{this.i18n('ui.grid.filter.endDate')}</span>
+                <DatePickComponents
+                  format={format}
+                  type={type}
+                  value-format={valueFormat}
+                  picker-options={pickerOptions}
+                  class="tiny-grid__filter-date-pick"
+                  v-model={this.endDate}
+                ></DatePickComponents>
+              </li>
+            </ul>
+            <div class="tiny-grid__filter-option filter-option__btns filter-option__date-button">
+              <Button size="mini" onClick={this.filterDate}>
+                {this.i18n('ui.base.confirm')}
+              </Button>
+              <Button
+                size="mini"
+                onClick={() => {
+                  filterStore.visible = false
+                }}
+              >
+                {this.i18n('ui.base.cancel')}
+              </Button>
+            </div>
+          </div>
+        )
+      } else {
+        const IconSearch = iconSearch()
+
+        const InputComponents = simpleFilter?.searchConfig?.component
+          ? hooks.toRaw(simpleFilter.searchConfig.component)
+          : null
+
+        return (
+          <div class="tiny-grid__filter-panel filter-panel__enum filter-panel__simple">
+            {InputComponents ? (
+              <InputComponents
+                v-model={this.searchValue}
+                class="tiny-grid__filter-search"
+                clearable
+                v-slots={{
+                  suffix: () => {
+                    return <IconSearch></IconSearch>
+                  }
+                }}
+              />
+            ) : null}
+            <ul class="tiny-grid__filter-options">
+              {renderEnumableOptions({
+                iconRender,
+                _vm: this,
+                filterStore,
+                selectAll: simpleFilter.selectAll,
+                searchable: Boolean(InputComponents)
+              })}
+            </ul>
+            {filterStore.multi ? (
+              <div class="tiny-grid__filter-option filter-option__btns">
+                <Button size="mini" onClick={this.filterEnum}>
+                  {this.i18n('ui.base.confirm')}
+                </Button>
+                <Button
+                  size="mini"
+                  onClick={() => {
+                    filterStore.visible = false
+                  }}
+                >
+                  {this.i18n('ui.base.cancel')}
+                </Button>
+              </div>
+            ) : null}
+          </div>
+        )
+      }
     },
     renderSlot(h) {
       let { $parent: $table, filterStore } = this
@@ -565,9 +628,9 @@ export default {
     },
     // 确认筛选
     confirmFilter(type) {
-      let {
+      const {
         filterStore: { column }
-      } = this
+      } = this as any
 
       this.condition.type = type
       column.filter.condition = extend(true, {}, this.condition)
@@ -611,6 +674,23 @@ export default {
       this.condition.value = []
       this.condition.empty = null
       this.confirmFilter('input')
+    },
+    filterDate() {
+      const { startDate, endDate } = this
+      this.condition.input = ''
+      this.condition.value = []
+      this.condition.empty = null
+      this.condition.dateList = [this.startDate, this.endDate]
+
+      if (startDate && !endDate) {
+        this.condition.relation = 'greaterThan'
+      } else if (!startDate && endDate) {
+        this.condition.relation = 'greaterThan'
+      } else if (startDate && endDate) {
+        this.condition.relation = 'interveningBetween'
+      }
+
+      this.confirmFilter('date')
     },
     filterEnum() {
       this.condition.input = ''

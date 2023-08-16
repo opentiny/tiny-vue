@@ -5,7 +5,7 @@ export default {
     // aurora不需要默认排序图标
     sortDefault: null,
     sortAsc: iconChevronUp(),
-    sortDesc: iconChevronDown(),
+    sortDesc: iconChevronDown()
   },
   stripe: true
 }

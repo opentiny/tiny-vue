@@ -10,7 +10,7 @@
  *
  */
 import { renderless, api } from '@opentiny/vue-renderless/cascader-menu/vue'
-import { $prefix, h, setup, defineComponent} from '@opentiny/vue-common'
+import { $prefix, h, setup, defineComponent } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
 import Scrollbar from '@opentiny/vue-scrollbar'
 import CascaderNode from '@opentiny/vue-cascader-node'

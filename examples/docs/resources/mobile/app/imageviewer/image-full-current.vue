@@ -18,18 +18,18 @@ import { ImageViewer, Button } from '@opentiny/vue'
 export default {
   components: {
     TinyImageViewer: ImageViewer,
-    TinyButton: Button,
+    TinyButton: Button
   },
   data() {
     return {
       srcList: ['/static/images/dog1.png', '/static/images/dog2.png', '/static/images/dog3.png'],
-      shows: false,
+      shows: false
     }
   },
   methods: {
     fn() {
       this.shows = true
-    },
-  },
+    }
+  }
 }
 </script>

@@ -1,6 +1,14 @@
 <template>
   <div class="demo-form">
-    <tiny-form style="height: 2000px; overflow-y: auto" ref="ruleForm" hide-required-asterisk :model="createData" :rules="rules" label-width="100px" show-message>
+    <tiny-form
+      style="height: 2000px; overflow-y: auto"
+      ref="ruleForm"
+      hide-required-asterisk
+      :model="createData"
+      :rules="rules"
+      label-width="100px"
+      show-message
+    >
       <tiny-form-item label="必填" prop="users" required :popper-options="{ bubbling: false }">
         <tiny-input v-model="createData.users"></tiny-input>
       </tiny-form-item>

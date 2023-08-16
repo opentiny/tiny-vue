@@ -9,5 +9,5 @@ export default {
   'tiny-mobile-exception-image-height': '100px',
   'tiny-mobile-exception-content-width': '234px',
   'tiny-mobile-exception-button-width': '136px',
-  'tiny-mobile-exception-button-height': '42px',
+  'tiny-mobile-exception-button-height': '42px'
 }

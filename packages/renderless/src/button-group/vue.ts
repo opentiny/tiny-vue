@@ -1,18 +1,18 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
-import { handleClick, moreNodeClick, handleChange } from './index'
+import { handleClick, moreNodeClick, handleChange, getItemClass } from './index'
 
-export const api = ['state', 'handleClick', 'moreNodeClick', 'handleChange']
+export const api = ['state', 'handleClick', 'moreNodeClick', 'handleChange', 'getItemClass']
 
 export const renderless = (props, { computed, reactive, watch, inject }, { emit, parent }) => {
   parent.tinyForm = parent.tinyForm || inject('form', null)
@@ -22,14 +22,7 @@ export const renderless = (props, { computed, reactive, watch, inject }, { emit,
     buttonData: props.data?.slice(0, props.showMore) || [],
     moreData: props.data?.slice(props.showMore, props.data.length) || [],
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
-    disabled: computed(() => props.disabled || state.formDisabled),
-    attributeValue: computed(() => {
-      if (state.disabled) {
-        return { disabled: state.disabled }
-      }
-
-      return props.plain ? { plain: props.plain } : ''
-    })
+    disabled: computed(() => props.disabled || state.formDisabled)
   })
 
   watch(
@@ -50,7 +43,8 @@ export const renderless = (props, { computed, reactive, watch, inject }, { emit,
     state,
     handleClick: handleClick({ emit, props, state }),
     moreNodeClick: moreNodeClick({ emit, props, state }),
-    handleChange: handleChange({ emit, state })
+    handleChange: handleChange({ emit, state }),
+    getItemClass: getItemClass({ props, state })
   }
 
   return api

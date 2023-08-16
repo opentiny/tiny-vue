@@ -23,10 +23,21 @@
       <component
         :is="state.classes[item - 1]"
         :style="getIconStyle(item)"
-        :class="['tiny-svg-size', 'tiny-rate__icon', { hover: state.hoverIndex === item }, disabled ? 'disabled' : '', showDecimalIcon(item) ? 'ratehalf' : '']"
+        :class="[
+          'tiny-svg-size',
+          'tiny-rate__icon',
+          { hover: state.hoverIndex === item },
+          disabled ? 'disabled' : '',
+          showDecimalIcon(item) ? 'ratehalf' : ''
+        ]"
       >
       </component>
-      <component v-if="showDecimalIcon(item)" :is="state.decimalIconClass" :style="state.decimalStyle" class="tiny-svg-size tiny-rate__decimal"></component>
+      <component
+        v-if="showDecimalIcon(item)"
+        :is="state.decimalIconClass"
+        :style="state.decimalStyle"
+        class="tiny-svg-size tiny-rate__decimal"
+      ></component>
       <div v-if="textOnBottom && !radio" :style="{ color: textColor }" class="tiny-rate__bottom-text">
         {{ texts[item - 1] }}
       </div>
@@ -34,7 +45,9 @@
         {{ texts[item - 1] }}
       </div>
     </span>
-    <span v-if="(!textOnBottom && showText) || showScore" :style="{ color: textColor }" class="tiny-rate__text">{{ state.text }}</span>
+    <span v-if="(!textOnBottom && showText) || showScore" :style="{ color: textColor }" class="tiny-rate__text">{{
+      state.text
+    }}</span>
   </div>
 </template>
 

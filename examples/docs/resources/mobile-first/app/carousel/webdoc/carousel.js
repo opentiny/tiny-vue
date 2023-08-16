@@ -181,7 +181,8 @@ export default {
         'en-US': 'Carousel Events'
       },
       desc: {
-        'zh-CN': '<p>主要包含<code>change</code>事件。</p>\n<p>当幻灯片切换时会触发该事件，回调函数可接收两个参数：<code>当前幻灯片索引</code>和<code>上一张幻灯片索引</code>。</p>\n',
+        'zh-CN':
+          '<p>主要包含<code>change</code>事件。</p>\n<p>当幻灯片切换时会触发该事件，回调函数可接收两个参数：<code>当前幻灯片索引</code>和<code>上一张幻灯片索引</code>。</p>\n',
         'en-US': '<p>After the <code>type</code> attribute is set to card, the lantern is displayed as a card.</p>'
       },
       codeFiles: ['carousel-events.vue']

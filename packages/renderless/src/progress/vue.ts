@@ -9,7 +9,13 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-
+import {
+  IProgressProps,
+  IProgressState,
+  IProgressApi,
+  ISharedRenderlessParamHooks,
+  IProgressRenderlessParamUtils
+} from '@/types'
 import {
   computedBarStyle,
   computedRelativeStrokeWidth,
@@ -34,11 +40,23 @@ import {
   customAfterAppearHook
 } from './index'
 
-export const api = ['state', 'getCurrentColor', 'getLevelColor', 'getColorArray', 'customBeforeAppearHook', 'customAppearHook', 'customAfterAppearHook']
+export const api = [
+  'state',
+  'getCurrentColor',
+  'getLevelColor',
+  'getColorArray',
+  'customBeforeAppearHook',
+  'customAppearHook',
+  'customAfterAppearHook'
+]
 
-export const renderless = (props, { computed, reactive }, { constants, mode }) => {
-  const api = {}
-  const state = reactive({
+export const renderless = (
+  props: IProgressProps,
+  { computed, reactive }: ISharedRenderlessParamHooks,
+  { constants, mode }: IProgressRenderlessParamUtils
+): IProgressApi => {
+  const api = {} as IProgressApi
+  const state: IProgressState = reactive({
     percentTextSize: constants.TEXT_XS,
     rate: computed(() => api.computedRate()),
     radius: computed(() => api.computedRadius()),
@@ -65,14 +83,14 @@ export const renderless = (props, { computed, reactive }, { constants, mode }) =
     state,
     customAppearHook,
     computedContent: computedContent({ props }),
-    getColorArray: getColorArray(props),
+    getColorArray: getColorArray({ props }),
     computedRate: computedRate({ constants, props }),
     computedPerimeter: computedPerimeter({ state }),
     computedRadius: computedRadius({ constants, props, state }),
     computedTrackPath: computedTrackPath({ constants, props, state }),
     computedIconClass: computedIconClass({ constants, props, mode }),
     computedIconStyle: computedIconStyle({ constants, props, state }),
-    computedCircleStyle: computedCircleStyle({ props, state }),
+    computedCircleStyle: computedCircleStyle({ state }),
     computedCirclePathStyle: computedCirclePathStyle({ props, state }),
     computedStrokeDashoffset: computedStrokeDashoffset({ state }),
     computedTrailPathStyle: computedTrailPathStyle({ state }),
@@ -80,7 +98,7 @@ export const renderless = (props, { computed, reactive }, { constants, mode }) =
     computedProgressTextSize: computedProgressTextSize({ state, constants, props, mode }),
     customAfterAppearHook: customAfterAppearHook({ state, props }),
     customBeforeAppearHook: customBeforeAppearHook({ props, state }),
-    getLevelColor: getLevelColor(api),
+    getLevelColor: getLevelColor({ api }),
     computedBarStyle: computedBarStyle({ api, props }),
     getCurrentColor: getCurrentColor({ api, props }),
     computedStroke: computedStroke({ api, constants, props })

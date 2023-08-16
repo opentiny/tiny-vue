@@ -6,26 +6,26 @@ export default {
       demoId: 'base',
       name: {
         'zh-CN': '基础用法',
-        'en-US': 'button type',
+        'en-US': 'button type'
       },
       desc: {
         'zh-CN': '<p>基础用法</p>',
-        'en-US': '<p>button type</p>',
+        'en-US': '<p>button type</p>'
       },
-      codeFiles: ['base.vue'],
+      codeFiles: ['base.vue']
     },
     {
       demoId: 'event',
       name: {
         'zh-CN': '事件',
-        'en-US': 'button type',
+        'en-US': 'button type'
       },
       desc: {
         'zh-CN': '<p>事件</p>',
-        'en-US': '<p>button type</p>',
+        'en-US': '<p>button type</p>'
       },
-      codeFiles: ['event.vue'],
-    },
+      codeFiles: ['event.vue']
+    }
   ],
   apis: [
     {
@@ -38,10 +38,10 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>索引文字列表</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
-        },
+          demoId: 'base'
+        }
       ],
       IndexBarEvents: [
         {
@@ -50,9 +50,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>选中新的索引触发</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'event',
+          demoId: 'event'
         },
         {
           name: 'change',
@@ -60,10 +60,10 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>	当前索引改变触发</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'event',
-        },
+          demoId: 'event'
+        }
       ],
       IndexBarEvents: [
         {
@@ -72,10 +72,10 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>	自定义内容</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'event',
-        },
+          demoId: 'event'
+        }
       ],
       IndexBarAnchorProperties: [
         {
@@ -84,11 +84,11 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>索引文字</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
-        },
-      ],
+          demoId: 'base'
+        }
+      ]
     }
   ]
 }

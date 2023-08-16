@@ -1,14 +1,37 @@
 <template>
   <div>
-    <tiny-grid ref="basicGrid" seq-serial :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }" :data="tableData">
+    <tiny-grid
+      ref="basicGrid"
+      seq-serial
+      :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
+      :data="tableData"
+    >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column type="selection" width="50"></tiny-grid-column>
-      <tiny-grid-column field="name" show-overflow title="名称" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
+      <tiny-grid-column
+        field="name"
+        show-overflow
+        title="名称"
+        :editor="{ component: 'input', autoselect: true }"
+      ></tiny-grid-column>
       <tiny-grid-column field="area" title="区域" :editor="{ component: 'input' }"></tiny-grid-column>
       <tiny-grid-column field="address" title="地址" :editor="{ component: 'input' }"></tiny-grid-column>
-      <tiny-grid-column field="introduction" title="公司简介" :editor="{ component: 'input', autoselect: true }" show-overflow></tiny-grid-column>
+      <tiny-grid-column
+        field="introduction"
+        title="公司简介"
+        :editor="{ component: 'input', autoselect: true }"
+        show-overflow
+      ></tiny-grid-column>
     </tiny-grid>
-    <tiny-pager :current-page="custPager.currentPage" :page-size="custPager.pageSize" :total="custPager.total" :page-sizes="[5, 10, 20, 50]" @current-change="currentChange" @size-change="sizeChange" layout="total, prev, pager, next, jumper, sizes"></tiny-pager>
+    <tiny-pager
+      :current-page="custPager.currentPage"
+      :page-size="custPager.pageSize"
+      :total="custPager.total"
+      :page-sizes="[5, 10, 20, 50]"
+      @current-change="currentChange"
+      @size-change="sizeChange"
+      layout="total, prev, pager, next, jumper, sizes"
+    ></tiny-pager>
   </div>
 </template>
 

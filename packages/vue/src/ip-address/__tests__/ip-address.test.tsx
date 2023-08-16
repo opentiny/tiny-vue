@@ -7,7 +7,7 @@ let value = ''
 
 describe('PC Mode', () => {
   const mount = mountPcMode
-  
+
   // attrs
   test('readonly', async () => {
     const wrapper = mount(() => <IpAddress v-model={value} readonly={true}></IpAddress>)
@@ -26,9 +26,14 @@ describe('PC Mode', () => {
 
   // slots
   test('default slot', async () => {
-    const wrapper = mount(() => <IpAddress v-model={value} v-slots={{
-      default: () => <i>--</i>
-    }}></IpAddress>)
+    const wrapper = mount(() => (
+      <IpAddress
+        v-model={value}
+        v-slots={{
+          default: () => <i>--</i>
+        }}
+      ></IpAddress>
+    ))
     expect(wrapper.find('i').text()).toBe('--')
   })
 

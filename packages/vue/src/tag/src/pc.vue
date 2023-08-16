@@ -19,12 +19,12 @@ export default defineComponent({
     IconClose: iconClose()
   },
   emits: ['click', 'close'],
-  props: [...props, 'text', 'closable', 'type', 'hit', 'disabled', 'color', 'size', 'effect', 'beforeDelete'],
+  props: [...props, 'text', 'closable', 'type', 'hit', 'disabled', 'color', 'size', 'effect', 'value', 'beforeDelete'],
   setup(props, context) {
     return setup({ props, context, renderless, api, h })
   },
   render() {
-    const { type, size, hit, effect, slots, closable, color, handleClose, handleClick, disabled } = this
+    const { type, size, hit, effect, slots, closable, color, handleClose, handleClick, disabled, state, value } = this
 
     const classes = [
       'tiny-tag',
@@ -36,8 +36,11 @@ export default defineComponent({
     ]
 
     const tagElement = (
-      <span class={classes} style={{ backgroundColor: color }} onClick={handleClick}>
-        {slots.default()}
+      <span
+        class={classes}
+        style={{ backgroundColor: color, display: state.show ? null : 'none' }}
+        onClick={handleClick}>
+        {value ? <span>{value}</span> : slots.default && slots.default()}
         {closable && <icon-close class="tiny-svg-size tiny-tag__close " onClick={handleClose}></icon-close>}
       </span>
     )

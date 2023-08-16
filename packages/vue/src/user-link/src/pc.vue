@@ -14,9 +14,17 @@
   <div class="tiny-userlink">
     <li v-for="(user, index) in state.options" :key="index">
       <span v-if="!card">{{ user[textField] + (index !== state.options.length - 1 ? textSplit : '') }}</span>
-      <tiny-popover v-else trigger="click" :visible-arrow="false" placement="bottom-start" popper-class="tiny-user-card">
+      <tiny-popover
+        v-else
+        trigger="click"
+        :visible-arrow="false"
+        placement="bottom-start"
+        popper-class="tiny-user-card"
+      >
         <template #reference>
-          <a @click="showCard(user)">{{ user[textField] + (index !== state.options.length - 1 ? textSplit : '') }} </a>
+          <a @click="showCard($event, user)"
+            >{{ user[textField] + (index !== state.options.length - 1 ? textSplit : '') }}
+          </a>
         </template>
         <div class="card-box" v-loading="state.spinner">
           <div class="card-box__header"></div>

@@ -6,7 +6,7 @@
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/column-list-group/vue'
-import { $props, $prefix, setup, defineComponent} from '@opentiny/vue-common'
+import { $props, $prefix, setup, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
   name: $prefix + 'ColumnListGroup',

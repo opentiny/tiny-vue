@@ -5,7 +5,7 @@
       <template #header-right>
         <div @click="$refs.tinyDrawer.close()">自定义关闭</div>
       </template>
-      <div style="height: 200px; text-align: center;">内容区域</div>
+      <div style="height: 200px; text-align: center">内容区域</div>
     </tiny-drawer>
   </div>
 </template>

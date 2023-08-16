@@ -33,5 +33,4 @@ export default defineComponent({
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

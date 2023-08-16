@@ -1,8 +1,6 @@
 <template>
   <div>
-    <tiny-button type="text" href="/">
-      超链接按钮
-    </tiny-button>
+    <tiny-button type="text" href="/"> 超链接按钮 </tiny-button>
   </div>
 </template>
 

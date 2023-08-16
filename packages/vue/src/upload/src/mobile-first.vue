@@ -37,7 +37,9 @@ export default defineComponent({
     'scale',
     'sourceType',
     'displayOnly',
-    'customClass'
+    'customClass',
+    'handleTriggerClick',
+    'mode'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, h, extendOptions: { Modal } })
@@ -55,17 +57,30 @@ export default defineComponent({
       uploadFiles,
       listType,
       displayOnly,
-      customClass
+      customClass,
+      sourceType,
+      mode
     } = this as any
 
     const defaultSlot = (this as any).slots.default && (this as any).slots.default()
     const tipSlot = (this as any).slots.tip && (this as any).slots.tip()
     const operateSlot = (this as any).slots.operate && (this as any).slots.operate()
 
+    const isBubbleMode = mode === 'bubble'
+
     return (
-      <div class={!displayOnly && listType === 'text' ? 'flex justify-between mt-4 mb-2 sm:my-3' : 'h-full'}>
+      <div
+        class={
+          !displayOnly && listType === 'text'
+            ? `flex justify-between mt-4 mb-2 ${isBubbleMode ? 'sm:my-0' : 'sm:my-3'}`
+            : 'h-full'
+        }>
         {tipSlot && <div class="flex items-center sm:hidden inline-block text-sm">{tipSlot}</div>}
-        <div class="h-full" onClick={handleClick} onKeydown={handleKeydown} tabindex="0">
+        <div
+          class="h-full"
+          onClick={($event) => handleClick($event, sourceType)}
+          onKeydown={handleKeydown}
+          tabindex="0">
           {listType === 'drag-single' ? (
             <UploadDragger customClass={customClass} disabled={disabled} onFile={uploadFiles}>
               {defaultSlot}

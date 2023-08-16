@@ -42,7 +42,13 @@
     >
       <component :is="state.controlsAtRight ? 'icon-chevron-up' : 'icon-plus'" />
     </span>
-    <div :class="['tiny-mobile-numeric__input', state.inputSize ? `tiny-input-${state.inputSize}` : '', state.inputDisabled ? 'is-disabled' : '']">
+    <div
+      :class="[
+        'tiny-mobile-numeric__input',
+        state.inputSize ? `tiny-input-${state.inputSize}` : '',
+        state.inputDisabled ? 'is-disabled' : ''
+      ]"
+    >
       <input
         class="tiny-mobile-numeric__input-inner"
         ref="input"

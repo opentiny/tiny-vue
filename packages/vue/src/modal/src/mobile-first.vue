@@ -71,7 +71,7 @@ export default defineComponent({
       default: ''
     },
     title: String,
-    top: { type: [Number, String], default: 15 },
+    top: { type: [Number, String], default: 80 },
     type: { type: String, default: 'alert' },
     vSize: String,
     width: [Number, String],
@@ -111,11 +111,14 @@ export default defineComponent({
       showClose,
       confirmContent,
       cancelContent,
-      m
+      m,
+      position,
+      modalBoxClass
     } = this
     let { zoomLocat, visible, contentVisible, modalTop, isMsg } = state
     let defaultSlot = slots.default
     let footerSlot = slots.footer
+    const isBottomRight = position === 'bottom-right'
 
     const statusIcon = typeof status === 'string' ? STATUS_MAPPING_COMPINENT[status.toUpperCase()] : status
     const mobileStatusIcon = typeof status === 'string' ? MOBILE_STATUS_MAPPING_COMPINENT[status.toUpperCase()] : status
@@ -166,7 +169,7 @@ export default defineComponent({
             ? h(
                 Button,
                 {
-                  class: 'ml-2 min-w-[4.5rem]',
+                  class: 'ml-2 min-w-[theme(spacing.18)]',
                   props: {
                     tiny_mode: 'mobile-first'
                   },
@@ -180,7 +183,7 @@ export default defineComponent({
           h(
             Button,
             {
-              class: 'ml-2 min-w-[4.5rem]',
+              class: 'ml-2 min-w-[theme(spacing.18)]',
               props: {
                 tiny_mode: 'mobile-first',
                 type: 'primary'
@@ -263,21 +266,25 @@ export default defineComponent({
           {
             ref: 'modalBox',
             attrs: { 'data-tag': 'tiny-grid-modal__box' },
-            class: [
-              'absolute p-3 pointer-events-auto box-border',
+            class: m(
+              'absolute pointer-events-auto box-border',
               { 'bottom-0 sm:bottom-auto top-auto w-full flex sm:block max-h-full': !isMsg },
               { 'h-full': zoomLocat },
-              { 'sm:max-h-[60%] sm:w-[25.875rem] left-1/2 -translate-x-1/2': !zoomLocat },
-              { 'sm:top-1/2 sm:-translate-y-1/2': !isMsg && !zoomLocat },
+              { 'sm:max-h-[60%]': !zoomLocat },
+              { 'sm:w-[theme(spacing.112)]': !zoomLocat && type !== 'message' },
+              { 'left-1/2 -translate-x-1/2': !isBottomRight && !zoomLocat },
+              { 'sm:top-1/2 sm:-translate-y-1/2': !isBottomRight && !isMsg && !zoomLocat },
+              { 'sm:bottom-0 sm:right-0': isBottomRight },
               {
-                'rounded m-0 px-3 py-2 sm:py-2.5 sm:w-auto min-w-[88px] max-w-[248px] sm:min-w-[100px] sm:max-w-[600px] box-border sm:shadow-lg':
+                'rounded m-0 px-3 py-2 sm:px-4 sm:py-2.5 sm:w-auto min-w-[theme(spacing.20)] max-w-[theme(spacing.64)] sm:min-w-[theme(spacing.32)] sm:max-w-[theme(spacing.144)] box-border sm:shadow-lg':
                   type === 'message'
               },
               {
                 'bg-color-icon-primary opacity-80 sm:opacity-100 text-white sm:text-color-text-primary sm:bg-white ':
                   type === 'message'
-              }
-            ]
+              },
+              modalBoxClass
+            )
           },
           [
             h(
@@ -299,7 +306,7 @@ export default defineComponent({
                             'flex text-sm items-center',
                             { 'px-6 pt-5 sm:pt-6 leading-6': type !== 'message' },
                             {
-                              ' leading-4 text-sm sm:text-xs bg-color-icon-primary text-white sm:text-color-text-primary sm:bg-white':
+                              'leading-4 sm:leading-5.5 sm:h-auto bg-color-icon-primary text-white sm:text-color-text-primary sm:bg-white':
                                 type === 'message'
                             }
                           ],
@@ -315,30 +322,22 @@ export default defineComponent({
                                     tiny_mode: 'mobile-first'
                                   },
                                   class: m(
-                                    'h-4 w-4 hidden sm:inline-block',
-                                    'mr-2 w-auto fill-current',
-                                    { 'h-6': type !== 'message' },
+                                    'hidden sm:inline-block mr-2 fill-current',
+                                    type === 'message' ? 'h-4.5 w-4.5 self-start shrink-0 mt-0.5' : 'h-6 w-auto',
                                     { 'text-color-success': status === 'success' },
-                                    { 'text-color-info-secondary': ['info', 'question'].indexOf(status) !== -1 },
+                                    { 'text-color-info-secondary': ['info', 'question'].includes(status) },
                                     { 'text-color-warning': status === 'warning' },
-                                    { 'text-color-error': status === 'error' },
-                                    {
-                                      'h-4 self-start': type === 'message'
-                                    }
+                                    { 'text-color-error': status === 'error' }
                                   )
                                 }),
                                 h(mobileStatusIcon, {
                                   props: {
                                     tiny_mode: 'mobile-first'
                                   },
-                                  class: m(
-                                    'h-4 w-4 inline-block sm:hidden',
-                                    'mr-1.5 w-auto fill-current',
-                                    { 'h-6': type !== 'message' },
-                                    {
-                                      'w-5 h-5 self-center shrink-0': type === 'message'
-                                    }
-                                  )
+                                  class: [
+                                    'inline-block sm:hidden mr-1.5 fill-current',
+                                    type === 'message' ? 'w-5 h-5 self-center shrink-0' : 'h-6 w-auto'
+                                  ]
                                 })
                               ]
                             : null,
@@ -349,8 +348,7 @@ export default defineComponent({
                                 'flex-auto text-base sm:text-sm',
                                 { 'truncate font-semibold': type !== 'message' },
                                 {
-                                  'line-clamp-2 text-center leading-[22px] sm:text-left sm:leading-4 sm:max-w-[520px]':
-                                    type === 'message'
+                                  'line-clamp-2 text-center leading-5.5 sm:text-left': type === 'message'
                                 }
                               ],
                               attrs: {
@@ -370,9 +368,12 @@ export default defineComponent({
                           showClose
                             ? h(IconClose(mode), {
                                 class: [
-                                  'flex-none  cursor-pointer',
+                                  'flex-none cursor-pointer',
                                   { 'h-4 w-4 ml-2': type !== 'message' },
-                                  { 'hidden sm:block sm:w-4 sm:h-4 sm:ml-4 self-start': type === 'message' }
+                                  {
+                                    'hidden sm:block w-4 h-4 ml-4 self-start sm:mt-0.5 sm:translate-y-px':
+                                      type === 'message'
+                                  }
                                 ],
                                 on: {
                                   click: this.closeEvent
@@ -392,6 +393,7 @@ export default defineComponent({
                           status ? h('div', { class: 'hidden sm:block mr-8' }) : null,
                           h(
                             'div',
+                            { class: 'w-full' },
                             defaultSlot
                               ? defaultSlot.call(this, { $modal: this }, h)
                               : [

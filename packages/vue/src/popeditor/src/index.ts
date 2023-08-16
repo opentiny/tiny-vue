@@ -197,10 +197,18 @@ export default defineComponent({
     beforeClose: {
       type: Function,
       default: () => () => true
+    },
+    showSelectedBox: Boolean,
+    selectedBoxOp: {
+      type: Object,
+      default: () => ({})
+    },
+    tooltipConfig: {
+      type: Object,
+      default: () => ({})
     }
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

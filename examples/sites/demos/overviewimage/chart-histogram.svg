@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="125px" height="125px" viewBox="0 0 125 125" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>chart-histogram 柱状图</title>
+    <defs>
+        <linearGradient x1="50%" y1="45.9685271%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#ECF3FB" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50.3956523%" y1="35.9331967%" x2="50%" y2="64.0668033%" id="linearGradient-2">
+            <stop stop-color="#E3EFFD" stop-opacity="0.00575352382" offset="0%"></stop>
+            <stop stop-color="#E5F0FD" offset="34.0601199%"></stop>
+            <stop stop-color="#F0F6FE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="33.3333333%" y1="34.495573%" x2="96.9740837%" y2="65.4421891%" id="linearGradient-3">
+            <stop stop-color="#D5E6F9" offset="0%"></stop>
+            <stop stop-color="#F7FBFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="90.9912104%" y1="29.4309598%" x2="33.3333333%" y2="67.7472684%" id="linearGradient-4">
+            <stop stop-color="#D5E6F9" offset="0%"></stop>
+            <stop stop-color="#E7F0F9" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-5.8027489%" y1="27.0499439%" x2="103.630422%" y2="71.1332543%" id="linearGradient-5">
+            <stop stop-color="#CEE6FE" offset="0%"></stop>
+            <stop stop-color="#8AB5F2" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-5.8027489%" y1="27.0499439%" x2="103.630422%" y2="71.1332543%" id="linearGradient-6">
+            <stop stop-color="#BFD6F9" offset="0%"></stop>
+            <stop stop-color="#F3F6FE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="89.8473889%" y1="61.7348066%" x2="0%" y2="61.7348066%" id="linearGradient-7">
+            <stop stop-color="#CAD9F3" offset="0%"></stop>
+            <stop stop-color="#D5E3F7" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-18.5%" y="-60.0%" width="136.9%" height="220.0%" filterUnits="objectBoundingBox" id="filter-8">
+            <feGaussianBlur stdDeviation="4" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <linearGradient x1="49.2449784%" y1="86.8386573%" x2="60.0810628%" y2="-43.8247114%" id="linearGradient-9">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="49.8050884%" y1="86.8386573%" x2="52.6024637%" y2="-43.8247114%" id="linearGradient-10">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="49.64056%" y1="86.8386573%" x2="54.7992497%" y2="-43.8247114%" id="linearGradient-11">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="49.7468289%" y1="86.8386573%" x2="53.3803447%" y2="-43.8247114%" id="linearGradient-12">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="44.0988019%" y1="50.1136996%" x2="128.792906%" y2="49.7104176%" id="linearGradient-13">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面一" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-TinyUI-Vue-组件总览3" transform="translate(-1088.000000, -609.000000)">
+            <g id="编组-25备份-4" transform="translate(989.000000, 576.000000)">
+                <g id="chart-histogram-柱状图" transform="translate(99.000000, 33.000000)">
+                    <g id="编组">
+                        <g transform="translate(9.000000, 1.000000)" id="多边形">
+                            <polygon fill="url(#linearGradient-1)" opacity="0.54620216" points="53.2605623 0 106.521125 30.75 53.2605623 62 0 30.75"></polygon>
+                            <polygon fill="url(#linearGradient-2)" points="53.2605623 61.5 106.521125 86.75 53.2605623 118 0 86.75"></polygon>
+                            <polygon fill="url(#linearGradient-3)" opacity="0.600606283" points="53.2605623 62 53.2605623 123 7.39138783e-15 92.25 0 30.75"></polygon>
+                            <polygon fill="url(#linearGradient-4)" opacity="0.791265578" points="53.2605623 62 106.521125 30.75 106.521125 92.25 53.2605623 123"></polygon>
+                            <polygon fill="url(#linearGradient-5)" points="53.2605623 118.007802 53.2605623 123 7.39138783e-15 92.25 0 86.9161706"></polygon>
+                            <polygon fill="url(#linearGradient-6)" transform="translate(79.630281, 104.958085) scale(-1, 1) translate(-79.630281, -104.958085) " points="106.260562 118.007802 106.260562 123 53 92.25 53 86.9161706"></polygon>
+                        </g>
+                        <ellipse id="椭圆形" fill="url(#linearGradient-7)" filter="url(#filter-8)" cx="62.5" cy="90" rx="32.5" ry="10"></ellipse>
+                    </g>
+                    <g id="图表-(3)" transform="translate(26.000000, 46.189995)">
+                        <path d="M17.5769231,19.8699645 C19.5524031,19.8699645 21.1538462,21.4714075 21.1538462,23.4468875 L21.1538462,39.8699645 L21.1538462,39.8699645 L14,39.8699645 L14,23.4468875 C14,21.4714075 15.601443,19.8699645 17.5769231,19.8699645 Z" id="矩形" fill="url(#linearGradient-9)" opacity="0.303770519"></path>
+                        <path d="M40.5769231,19.8699645 C42.5524031,19.8699645 44.1538462,21.4714075 44.1538462,23.4468875 L44.1538462,39.8699645 L44.1538462,39.8699645 L37,39.8699645 L37,23.4468875 C37,21.4714075 38.601443,19.8699645 40.5769231,19.8699645 Z" id="矩形备份-12" fill="url(#linearGradient-9)" opacity="0.204287574"></path>
+                        <path d="M63.5769231,19.8699645 C65.5524031,19.8699645 67.1538462,21.4714075 67.1538462,23.4468875 L67.1538462,39.8699645 L67.1538462,39.8699645 L60,39.8699645 L60,23.4468875 C60,21.4714075 61.601443,19.8699645 63.5769231,19.8699645 Z" id="矩形备份-13" fill="url(#linearGradient-9)" opacity="0.204287574"></path>
+                        <path d="M8.57692308,0 C10.5524031,-3.62889801e-16 12.1538462,1.60144301 12.1538462,3.57692308 L12.1538462,39.3632379 L12.1538462,39.3632379 L5,39.3632379 L5,3.57692308 C5,1.60144301 6.60144301,3.62889801e-16 8.57692308,0 Z" id="矩形备份-10" fill="url(#linearGradient-10)" opacity="0.604724702"></path>
+                        <path d="M31.5769231,10.8699645 C33.5524031,10.8699645 35.1538462,12.4714075 35.1538462,14.4468875 L35.1538462,39.8565113 L35.1538462,39.8565113 L28,39.8565113 L28,14.4468875 C28,12.4714075 29.601443,10.8699645 31.5769231,10.8699645 Z" id="矩形备份-11" fill="url(#linearGradient-11)" opacity="0.604724702"></path>
+                        <path d="M54.5769231,4.86996447 C56.5524031,4.86996447 58.1538462,6.47140748 58.1538462,8.44688754 L58.1538462,39.4083998 L58.1538462,39.4083998 L51,39.4083998 L51,8.44688754 C51,6.47140748 52.601443,4.86996447 54.5769231,4.86996447 Z" id="矩形备份-14" fill="url(#linearGradient-12)" opacity="0.604724702"></path>
+                        <rect id="矩形" fill="url(#linearGradient-13)" x="0" y="35.8699645" width="72" height="4" rx="2"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

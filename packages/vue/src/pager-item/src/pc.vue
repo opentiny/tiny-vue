@@ -13,11 +13,28 @@
   <div class="tiny-pager__group tiny-unselect">
     <ul class="tiny-pager__pages" @click="onPagerClick">
       <li :class="{ 'is-active': currentPage === 1 }" v-if="pageCount > 0" v-text="'1'"></li>
-      <li class="dot quickprev" v-if="state.showPrevMore" @mouseenter="onMouseenter('left')" @mouseleave="state.quickprevIconClass = popupIcon" :class="[ state.quickprevIconClass === popupIcon && 'is-popup' ]">
+      <li
+        class="dot quickprev"
+        v-if="state.showPrevMore"
+        @mouseenter="onMouseenter('left')"
+        @mouseleave="state.quickprevIconClass = popupIcon"
+        :class="[state.quickprevIconClass === popupIcon && 'is-popup']"
+      >
         <component :is="state.quickprevIconClass" />
       </li>
-      <li v-for="pager in state.pagers" :key="pager" :class="{ 'is-active': currentPage === pager }" v-text="`${pager}`"></li>
-      <li class="dot quicknext" v-if="state.showNextMore" @mouseenter="onMouseenter('right')" @mouseleave="state.quicknextIconClass = popupIcon" :class="[ state.quicknextIconClass === popupIcon && 'is-popup' ]">
+      <li
+        v-for="pager in state.pagers"
+        :key="pager"
+        :class="{ 'is-active': currentPage === pager }"
+        v-text="`${pager}`"
+      ></li>
+      <li
+        class="dot quicknext"
+        v-if="state.showNextMore"
+        @mouseenter="onMouseenter('right')"
+        @mouseleave="state.quicknextIconClass = popupIcon"
+        :class="[state.quicknextIconClass === popupIcon && 'is-popup']"
+      >
         <component :is="state.quicknextIconClass" />
       </li>
       <li :class="{ 'is-active': pageCount === currentPage }" v-if="pageCount > 1" v-text="`${pageCount}`"></li>

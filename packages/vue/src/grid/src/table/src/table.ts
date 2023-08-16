@@ -183,6 +183,7 @@ const renderResizeBarFn = (opt) => {
 const renderPluginWrapperFn = (opt) => {
   const { hasFilter, optimizeOpts, filterStore, isCtxMenu, ctxMenuStore, hasTip, tooltipContentOpts } = opt
   const { editRules, validOpts, height, tableData, vaildTipOpts, id, _vm } = opt
+
   return () => {
     let filterVnode = [null]
     let ctxMenuVnode = [null]
@@ -284,7 +285,8 @@ function getRenderer(opt) {
   } = _vm
   const { selectToolbar, renderedToolbar } = $grid
 
-  const renderHeader = () => (showHeader ? h(GridHeader, { ref: 'tableHeader', props, class: _vm.viewCls('tableHeader') }) : [null])
+  const renderHeader = () =>
+    showHeader ? h(GridHeader, { ref: 'tableHeader', props, class: _vm.viewCls('tableHeader') }) : [null]
   const renderEmptyPart = renderEmptyPartFn({ _vm, tableData, $slots, renderEmpty })
   const renderFooter = renderFooterFn({ showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize })
   const renderResizeBar = renderResizeBarFn({ isResizable, overflowX, scrollbarHeight })
@@ -482,7 +484,7 @@ const gridData = {
   validTipContent: '',
   // 在编辑模式下 单元格在失去焦点验证的状态
   validatedMap: {},
-  // 显示的列
+  // 需要显示的列 （横向开启虚拟滚动的时候表示需要渲染的列，并不是真正被内部v-for循环的列）
   visibleColumn: [],
   // 表尾边框线是否显示和位置
   showFooterBorder: false,
@@ -777,8 +779,7 @@ export default {
         true,
         {
           content: this.tooltipContent,
-          pre: this.tooltipContentPre,
-          renderContent: this.tooltipConfig.renderContent,
+          pre: this.tooltipContentPre, //  pre 元素可定义预格式化的文本
           placement: 'right',
           type: this.tooltipConfig.effect ? undefined : 'normal'
         },
@@ -830,9 +831,9 @@ export default {
       }
     },
     'data.length': {
-      handler() {
-        // 此处考虑性能问题不能深度监听data属性，再结合表格内部显示数据都是来自data的浅拷贝，所以只需要监听data的长度即可
-        if (Array.isArray(this.data)) {
+      handler(newValue, oldValue) {
+        // 如果监听的data引用地址发生改变则不需要执行以下逻辑
+        if (Array.isArray(this.data) && newValue === oldValue) {
           !this._isUpdateData && this.loadTableData(this.data, true).then(this.handleDefault)
           this._isUpdateData = false
         }
@@ -865,6 +866,8 @@ export default {
     verifyConfig(this)
     mergeScrollDirStore(scrollX, scrollXStore)
     mergeScrollDirStore(scrollY, scrollYStore)
+
+    // 初始化表格渲染数据
     loadStatic(data, this)
     mergeTreeConfig(this)
 
@@ -949,10 +952,10 @@ export default {
     return { slots, tableListeners }
   },
   render() {
-    let { border, collectColumn, columnStore, editConfig, highlightCell, highlightHoverColumn } = (this as any)
-    let { highlightHoverRow, isGroup, loading, loadingComponent, mouseConfig = {}, optimizeOpts } = (this as any)
-    let { overflowX, overflowY, showFooter, showHeader, showHeaderOverflow, showOverflow, tinyTheme } = (this as any)
-    let { stripe, tableColumn, tableData, vSize, visibleColumn, slots, $slots, stripeSaas, borderSaas } = (this as any)
+    let { border, collectColumn, columnStore, editConfig, highlightCell, highlightHoverColumn } = this as any
+    let { highlightHoverRow, isGroup, loading, loadingComponent, mouseConfig = {}, optimizeOpts } = this as any
+    let { overflowX, overflowY, showFooter, showHeader, showHeaderOverflow, showOverflow, tinyTheme } = this as any
+    let { stripe, tableColumn, tableData, vSize, visibleColumn, slots, $slots, stripeSaas, borderSaas } = this as any
     let { borderVertical, cardConfig, listConfig, ganttConfig } = this
     let { leftList, rightList } = columnStore
     const props = { tableData, tableColumn, visibleColumn, collectColumn, size: vSize, isGroup }
@@ -972,7 +975,11 @@ export default {
 
     return h('div', getTableAttrs(args), [
       // 隐藏列
-      h('div', { class: ['tiny-grid-hidden-column', this.viewCls('hiddenColumn')], ref: 'hideColumn' }, typeof $slots.default === 'function' ? $slots.default() : $slots.default),
+      h(
+        'div',
+        { class: ['tiny-grid-hidden-column', this.viewCls('hiddenColumn')], ref: 'hideColumn' },
+        typeof $slots.default === 'function' ? $slots.default() : $slots.default
+      ),
       // 主头部
       renderHeader(),
       // 居中显示空数据

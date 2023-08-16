@@ -1,15 +1,17 @@
 <template>
   <div>
     <div class="page__hd">
-      <h1 class="page__title">
-        MultiSelect
-      </h1>
-      <p class="page__desc">
-        下拉选择器
-      </p>
+      <h1 class="page__title">MultiSelect</h1>
+      <p class="page__desc">下拉选择器</p>
     </div>
     <div class="page__content">
-      <tiny-multi-select ref="multiSelect" :data-source="data" :default-selected-array="defaultSelectedArray" @confirm="confirm" @reset="reset">
+      <tiny-multi-select
+        ref="multiSelect"
+        :data-source="data"
+        :default-selected-array="defaultSelectedArray"
+        @confirm="confirm"
+        @reset="reset"
+      >
       </tiny-multi-select>
     </div>
   </div>
@@ -246,4 +248,5 @@ export default {
   width: 375px;
   height: 48px;
   background-color: #fff;
-}</style>
+}
+</style>

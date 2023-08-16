@@ -152,7 +152,7 @@ export default defineComponent({
     watch(
       () => props.formatConfig,
       () => {
-        state.columnConfig = instance.createColumn($table, props)
+        state.columnConfig = Cell.createColumn($table, props)
       }
     )
 

@@ -11,13 +11,28 @@
       </div>
       <div>
         <tiny-input v-model="createData.title1" readonly></tiny-input>
-        <tiny-input v-model="createData.text2" type="textarea" placeholder="请输入内容" show-word-limit :maxlength="20"></tiny-input>
+        <tiny-input
+          v-model="createData.text2"
+          type="textarea"
+          placeholder="请输入内容"
+          show-word-limit
+          :maxlength="20"
+        ></tiny-input>
       </div>
       <div class="demo-form-textarea">
         <p>文本域</p>
-        <tiny-input v-model="createData.text3" type="textarea" placeholder="请输入内容" counter show-word-limit :maxlength="20">
+        <tiny-input
+          v-model="createData.text3"
+          type="textarea"
+          placeholder="请输入内容"
+          counter
+          show-word-limit
+          :maxlength="20"
+        >
           <template #content>
-            <span class="content-class" v-for="item in createData.arr" :key="item" @click="check(item)">{{ item }}</span>
+            <span class="content-class" v-for="item in createData.arr" :key="item" @click="check(item)">{{
+              item
+            }}</span>
           </template>
         </tiny-input>
       </div>
@@ -27,6 +42,7 @@
 
 <script lang="jsx">
 import { Input } from '@opentiny/vue'
+
 export default {
   components: {
     TinyInput: Input

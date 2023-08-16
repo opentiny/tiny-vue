@@ -234,6 +234,14 @@ describe('PC Mode', () => {
     wrapper.unmount()
   })
 
+  test.todo('confirm-content 确定按钮内容')
+
+  test.todo('cancel-content 取消按钮内容')
+
+  test.todo('confirm-btn-props 确定按钮props')
+
+  test.todo('cancel-btn-props 取消按钮props')
+
   /**
    * slots
    */

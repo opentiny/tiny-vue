@@ -35,7 +35,9 @@
         <p v-else v-html="state.message" class="tiny-top-box__content"></p>
       </slot>
       <div v-if="state.buttons && state.buttons.length" class="tiny-top-box__toolbar">
-        <tiny-button v-for="(item, key) in state.buttons" :key="key" :type="item.type || ''" @click="item.onClick">{{ item.text }}</tiny-button>
+        <tiny-button v-for="(item, key) in state.buttons" :key="key" :type="item.type || ''" @click="item.onClick">{{
+          item.text
+        }}</tiny-button>
       </div>
       <icon-close v-if="state.showClose" @click="close" class="tiny-svg-size tiny-top-box__closeBtn"></icon-close>
     </div>

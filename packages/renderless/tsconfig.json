@@ -9,7 +9,19 @@
     "strict": true,
     "strictNullChecks": true,
     "resolveJsonModule": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "../vue/src/*"
+      ],
+      "@/types": [
+        "./types"
+      ],
+      "@opentiny/vue-*": [
+        "../vue-*"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts"

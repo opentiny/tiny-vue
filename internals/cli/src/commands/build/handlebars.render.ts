@@ -63,13 +63,19 @@ Object.defineProperty(Handlebars, 'setDelimiter', {
  * @param {Object} delimiter
  * @returns {String}
  */
-export default function ({ delimiter, template, options, data }: {
+export default function ({
+  delimiter,
+  template,
+  options,
+  data
+}: {
   delimiter?: string[]
   template: string
   options?: CompileOptions
   data: any
 }) {
-  delimiter && (Handlebars as typeof Handlebars & { setDelimiter: (delimiter: string[]) => any }).setDelimiter(delimiter)
+  delimiter &&
+    (Handlebars as typeof Handlebars & { setDelimiter: (delimiter: string[]) => any }).setDelimiter(delimiter)
   const compile = Handlebars.compile(template, options)
   return compile(data)
 }

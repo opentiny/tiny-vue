@@ -62,13 +62,7 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    sourceType: {
-      type: String,
-      default: 'picture',
-      validator(val) {
-        return ~['picture', 'video', 'audio'].indexOf(val)
-      }
-    },
+    types: Array,
     displayOnly: {
       type: Boolean,
       default: false
@@ -76,9 +70,26 @@ export default defineComponent({
     handleDownloadFile: Function,
     handleReUpload: Function,
     isDragover: Boolean,
-    selected: Object
+    selected: Object,
+    triggerClick: {
+      type: Function,
+      default: () => {}
+    },
+    isHwh5: {
+      type: Boolean,
+      default: false
+    },
+    triggerPlay: {
+      type: Function,
+      default: () => {}
+    },
+    mode: String,
+    lockScroll: {
+      type: Boolean,
+      default: true
+    }
   },
   setup(props, context) {
-    return $setup({ props, context, template })
+    return $setup({ props, context, template, extend: { ref: 'upload-list-inner-template' } })
   }
 })

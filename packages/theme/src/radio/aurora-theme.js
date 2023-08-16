@@ -5,5 +5,6 @@ export const tinyRadioAuroraTheme = {
   'ti-radio-inner-height': '14px',
   'ti-radio-inner-size': '6px',
   'ti-radio-input-checked-disabled-bg-color': '#bfbfbf',
-  'ti-radio-inner-checked-disabled-bg-color': '#fff'
+  'ti-radio-inner-checked-disabled-bg-color': '#fff',
+  'ti-radio-inner-checked-hover-bg-color': '#fff'
 }

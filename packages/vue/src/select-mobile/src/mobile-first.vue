@@ -1,47 +1,101 @@
 <template>
-  <div data-tag="tiny-select-mobile" v-show="visible">
-    <tiny-action-sheet tiny_mode="mobile-first" :title="title" :visible="state.toggle" @update:visible="$emit('update:visible', $event)" @close="hide" :show-header="!state.search.show" :show-footer="multiple" :custom-class="[{ 'min-h-[95%]': state.search.show }]">
+  <div data-tag="tiny-select-mobile">
+    <tiny-cell
+      :placeholder="placeholder"
+      v-if="mode === 'form'"
+      :data="state.selectedLabel"
+      @click="$emit('update:visible', true)"
+    ></tiny-cell>
+    <tiny-action-sheet
+      v-show="visible"
+      tiny_mode="mobile-first"
+      :title="title"
+      :lock-scroll="lockScroll"
+      :visible="state.toggle"
+      @update:visible="$emit('update:visible', $event)"
+      @close="hide"
+      :show-header="!state.search.show"
+      :show-footer="multiple"
+      :custom-class="[{ 'min-h-[90%]': state.search.show }, { 'pb-4': state.search.show && multiple }]"
+    >
       <div v-show="!state.search.show" :class="['flex flex-col px-4']">
-        <div v-if="multiple" :class="['flex items-start leading-6 py-3 cursor-pointer select-none']" @click="allCheckHandler">
-          <component v-if="multiple" :is="
-            state.checkList.length === 0
-              ? 'icon-check'
-              : state.checkList.length === menus.length
+        <div
+          v-if="multiple"
+          :class="['flex items-start leading-6 py-3 cursor-pointer select-none']"
+          @click="allCheckHandler"
+        >
+          <component
+            v-if="multiple"
+            :is="
+              state.checkList.length === 0
+                ? 'icon-check'
+                : state.checkList.length === menus.length
                 ? 'icon-checked-sur'
                 : 'icon-halfselect'
-          " :class="[
-  'flex-none mt-1 mr-2',
-  state.checkList.length ? 'fill-color-brand' : 'fill-color-icon-disabled'
-]" custom-class="w-4.5 h-4.5" />
+            "
+            :class="['flex-none mt-1 mr-2', state.checkList.length ? 'fill-color-brand' : 'fill-color-icon-disabled']"
+            custom-class="w-4.5 h-4.5"
+          />
           <div :class="['flex-auto', { 'truncate': ellipsis }]">{{ t('ui.base.all') }}</div>
         </div>
-        <tiny-option v-for="(item, index) in menus" :key="item[valueField]" :multiple="multiple" :ellipsis="ellipsis" :selected="multiple ? includeOptionIndex(state.checkList, item) > -1 : item[valueField] === modelValue" @click="selectOption(item, index)">
-          {{ item[textField] }}
+        <tiny-option
+          v-for="(item, index) in menus"
+          :key="item[valueField]"
+          :multiple="multiple"
+          :ellipsis="ellipsis"
+          :textField="textField"
+          :textField2="textField2"
+          :textField3="textField3"
+          :option="item"
+          :selected="isSelected(item)"
+          @click="selectOption(item, index)"
+        >
+          <slot :item="item" :index="index"></slot>
         </tiny-option>
       </div>
       <!-- search box -->
       <div :class="[state.search.show ? 'flex flex-col flex-auto' : 'hidden']">
         <!-- search header -->
-        <div class="flex leading-6 pb-4 px-4 text-base items-center">
-          <div class="flex-auto flex items-center h-7 py-1 px-3 bg-color-bg-4 rounded">
-            <IconSearch custom-class="h-5 w-5" class="mr-1 fill-color-icon-disabled"></IconSearch>
-            <input v-model="state.search.input" class="h-5 flex-auto text-xs bg-transparent outline-0" placeholder="请搜索" @input="searchMethod" />
+        <div class="flex leading-6 pt-4 pb-4 px-4 text-base items-center">
+          <div class="flex-auto flex items-center h-8 py-1 px-3 bg-color-bg-4 rounded">
+            <IconSearch custom-class="h-4 w-4" class="mr-1 fill-color-icon-disabled"></IconSearch>
+            <input
+              v-model="state.search.input"
+              class="h-5 flex-auto text-xs bg-transparent outline-0"
+              :placeholder="t('ui.select.pleaseSearch')"
+              @input="searchMethod"
+            />
           </div>
           <div class="flex items-center pl-3 cursor-pointer">
-            <div @click="searchBoxToggle(false)">取消</div>
+            <div @click="searchBoxToggle(false)">{{ t('ui.base.cancel') }}</div>
           </div>
         </div>
         <!-- search body -->
-        <div class="flex-auto overflow-auto">
+        <div class="flex-auto overflow-auto flex flex-col">
           <div v-show="state.search.filterOptions.length" :class="['flex flex-col px-4']">
-            <tiny-option v-for="(item, index) in state.search.filterOptions" :key="item[valueField]" :multiple="multiple" :ellipsis="ellipsis" :selected="multiple ? includeOptionIndex(state.checkList, item) > -1 : item[valueField] === modelValue" @click="searchSelectHandler(item, index)">
-              {{ item[textField] }}
+            <tiny-option
+              v-for="(item, index) in state.search.filterOptions"
+              :key="item[valueField]"
+              :multiple="multiple"
+              :ellipsis="ellipsis"
+              :textField="textField"
+              :textField2="textField2"
+              :textField3="textField3"
+              :option="item"
+              :selected="isSelected(item)"
+              @click="searchSelectHandler(item, index)"
+            >
+              <slot v-if="searchConfig.openSearchSlot" name="search-item" :item="item" :index="index"></slot>
+              <slot v-else :item="item" :index="index"></slot>
             </tiny-option>
           </div>
-          <div v-show="!state.search.filterOptions.length" class="w-full flex justify-center items-center text-center">
-            <div>
-              <p>无相关搜索结果，请重新输入</p>
-            </div>
+          <div
+            v-show="!state.search.filterOptions.length"
+            class="w-full flex justify-center items-center text-center flex-auto"
+          >
+            <tiny-exception component-page type="nodata">
+              <template #content>{{ t('ui.select.noSearchData') }}</template>
+            </tiny-exception>
           </div>
         </div>
       </div>
@@ -49,7 +103,15 @@
         <IconSearch custom-class="h-5 w-5" class="cursor-pointer" @click="searchBoxToggle(true)"></IconSearch>
       </template>
       <template #footer>
-        <tiny-button v-if="multiple" tiny_mode="mobile-first" class="flex-1" type="primary" :reset-time="0" @click="confirm">{{ t('ui.button.confirm') }}</tiny-button>
+        <tiny-button
+          v-if="multiple"
+          tiny_mode="mobile-first"
+          class="flex-1 mx-4 sm:mx-0"
+          type="primary"
+          :reset-time="0"
+          @click="confirm"
+          >{{ t('ui.button.confirm') }}</tiny-button
+        >
       </template>
     </tiny-action-sheet>
   </div>

@@ -1,5 +1,5 @@
 export const tinyGridSmbTheme = {
-  'ti-grid-header-background-color': 'var(--ti-common-color-bg-white-emphasize)',
+  'ti-grid-header-background-color': '#F5F5F5',
   'ti-grid-medium-header-column-height': '46px',
   'ti-grid-default-header-column-height': 'var(--ti-common-size-height-medium)',
   'ti-grid-small-header-column-height': 'var(--ti-common-size-height-normal)',
@@ -15,7 +15,7 @@ export const tinyGridSmbTheme = {
   'ti-grid-header-repair-border-color': 'var(--ti-common-color-transparent)',
   'ti-grid-td-padding-horizontal': 'var(--ti-common-space-3x)',
   'ti-grid-header-text-color': 'var(--ti-common-color-text-secondary)',
-  'ti-grid-row-hover-background-color': 'var(--ti-common-color-bg-white-emphasize)',
+  'ti-grid-row-hover-background-color': '#F5F5F5',
   'ti-grid-icon-color': 'var(--ti-common-color-icon)',
-  'ti-grid-checkbox-icon-size': 'var(--ti-common-font-size-2)',
+  'ti-grid-checkbox-icon-size': 'var(--ti-common-font-size-2)'
 }

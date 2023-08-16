@@ -51,7 +51,9 @@
     width: 100%;
     height: 100%;
     z-index: 1;
-    transition: border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46), background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
+    transition:
+      border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
+      background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
 
     &:hover {
       border-color: var(--ti-mobile-checkbox-checked-border-color, #4a79fe);
@@ -96,7 +98,7 @@
     vertical-align: middle;
   }
 
-  &.is-checked &__inner{
+  &.is-checked &__inner {
     background-color: var(--ti-mobile-checkbox-checked-bg-color, #4a79fe);
   }
 

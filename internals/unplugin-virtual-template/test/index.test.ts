@@ -4,29 +4,41 @@ import { transformVirtualTemplate, transformVirtualTemplateForBuild } from '../s
 describe('index', () => {
   describe('transformVirtualTemplate', () => {
     it('pc|mobile|mobile-first', () => {
-      expect(transformVirtualTemplate('import template from \'virtual:template?pc|mobile|mobile-first\'')).toMatchSnapshot()
+      expect(
+        transformVirtualTemplate("import template from 'virtual:template?pc|mobile|mobile-first'")
+      ).toMatchSnapshot()
     })
 
     it('pc|mobile=pc|mobile-first', () => {
-      expect(transformVirtualTemplate('import template from \'virtual:template?pc|mobile=pc|mobile-first\'')).toMatchSnapshot()
+      expect(
+        transformVirtualTemplate("import template from 'virtual:template?pc|mobile=pc|mobile-first'")
+      ).toMatchSnapshot()
     })
 
     it('pc|mobile|mobile-first=pc', () => {
-      expect(transformVirtualTemplate('import template from \'virtual:template?pc|mobile|mobile-first=pc\'')).toMatchSnapshot()
+      expect(
+        transformVirtualTemplate("import template from 'virtual:template?pc|mobile|mobile-first=pc'")
+      ).toMatchSnapshot()
     })
   })
 
   describe('transformVirtualTemplateForBuild', () => {
     it('pc|mobile|mobile-first', () => {
-      expect(transformVirtualTemplateForBuild('import template from \'virtual:template?pc|mobile|mobile-first\'')).toMatchSnapshot()
+      expect(
+        transformVirtualTemplateForBuild("import template from 'virtual:template?pc|mobile|mobile-first'")
+      ).toMatchSnapshot()
     })
 
     it('pc|mobile=pc|mobile-first', () => {
-      expect(transformVirtualTemplateForBuild('import template from \'virtual:template?pc|mobile=pc|mobile-first\'')).toMatchSnapshot()
+      expect(
+        transformVirtualTemplateForBuild("import template from 'virtual:template?pc|mobile=pc|mobile-first'")
+      ).toMatchSnapshot()
     })
 
     it('pc|mobile|mobile-first=pc', () => {
-      expect(transformVirtualTemplateForBuild('import template from \'virtual:template?pc|mobile|mobile-first=pc\'')).toMatchSnapshot()
+      expect(
+        transformVirtualTemplateForBuild("import template from 'virtual:template?pc|mobile|mobile-first=pc'")
+      ).toMatchSnapshot()
     })
   })
 })

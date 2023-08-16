@@ -12,11 +12,16 @@
 <template>
   <span ref="root">
     <transition :name="transition" @after-enter="handleAfterEnter" @after-leave="handleAfterLeave">
-      <div class="tiny-popover tiny-popper"
-        :class="[popperClass, content && 'tiny-popover__plain', { 'no-arrow': !visibleArrow }]" ref="popper"
+      <div
+        class="tiny-popover tiny-popper"
+        :class="[popperClass, content && 'tiny-popover__plain', { 'no-arrow': !visibleArrow }]"
+        ref="popper"
         v-show="!disabled && state.showPopper"
         :style="{ width: width === 'auto' ? width : width + 'px', height: height === 'auto' ? height : height + 'px' }"
-        role="tooltip" :id="state.tooltipId" :aria-hidden="disabled || !state.showPopper ? 'true' : 'false'">
+        role="tooltip"
+        :id="state.tooltipId"
+        :aria-hidden="disabled || !state.showPopper ? 'true' : 'false'"
+      >
         <div class="tiny-popover__title" v-if="title" v-text="title"></div>
         <slot>{{ content }}</slot>
       </div>
@@ -34,7 +39,31 @@ import '@opentiny/vue-theme/popover/index.less'
 
 export default defineComponent({
   emits: ['update:modelValue', 'hide', 'show', 'after-enter', 'after-leave', 'created'],
-  props: [...props, 'appendToBody', 'arrowOffset', 'boundariesPadding', 'closeDelay', 'content', 'disabled', 'modelValue', 'offset', 'openDelay', 'placement', 'popper', 'popperClass', 'popperOptions', 'reference', 'tabindex', 'title', 'transformOrigin', 'transition', 'trigger', 'visibleArrow', 'width', 'height'],
+  props: [
+    ...props,
+    'appendToBody',
+    'arrowOffset',
+    'boundariesPadding',
+    'closeDelay',
+    'content',
+    'disabled',
+    'modelValue',
+    'offset',
+    'openDelay',
+    'placement',
+    'popper',
+    'popperClass',
+    'popperOptions',
+    'reference',
+    'tabindex',
+    'title',
+    'transformOrigin',
+    'transition',
+    'trigger',
+    'visibleArrow',
+    'width',
+    'height'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

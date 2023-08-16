@@ -1,5 +1,16 @@
 <template>
-  <tiny-file-upload ref="upload" :action="action" :file-list="fileList" @trigger-click="handleTriggerClick" @preview="handlePreview" @download-file="handleDownloadFile" @download-all="handleDownloadAll" @re-upload="handleReUpload" @click-file-list="handleClickFileList" @remove="handleRemove"></tiny-file-upload>
+  <tiny-file-upload
+    ref="upload"
+    :action="action"
+    :file-list="fileList"
+    @trigger-click="handleTriggerClick"
+    @preview="handlePreview"
+    @download-file="handleDownloadFile"
+    @download-all="handleDownloadAll"
+    @re-upload="handleReUpload"
+    @click-file-list="handleClickFileList"
+    @remove="handleRemove"
+  ></tiny-file-upload>
 </template>
 
 <script>

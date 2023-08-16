@@ -13,5 +13,5 @@ export const tinyCheckboxSmbTheme = {
   'ti-checkbox-button-checked-text-color': '#191919',
   'ti-checkbox-button-text-color': '#595959',
   'ti-checkbox-button-bg-color-hover': '#FFFFFF',
-  'ti-checkbox-button-hover-text-color': '#191919',
+  'ti-checkbox-button-hover-text-color': '#191919'
 }

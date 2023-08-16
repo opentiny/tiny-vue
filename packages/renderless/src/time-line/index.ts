@@ -17,11 +17,13 @@ export const getDate = (dateTime) => ({
   time: format(dateTime, 'hh:mm')
 })
 
-export const getStatus = ({ state, t }) => (value) => {
-  const status = state.current - value
+export const getStatus =
+  ({ state, t }) =>
+  (value) => {
+    const status = state.current - value
 
-  return status > 0 ? t('ui.steps.done') : status === 0 ? t('ui.steps.doing') : t('ui.steps.wait')
-}
+    return status > 0 ? t('ui.steps.done') : status === 0 ? t('ui.steps.doing') : t('ui.steps.wait')
+  }
 
 export const computedSpace = ({ props }) => {
   const { space } = props
@@ -32,47 +34,85 @@ export const computedSpace = ({ props }) => {
   return space
 }
 
-export const handleClick = ({ emit, state }) => ({ index, node }) => {
-  if (!node.disabled) {
-    emit('click', state.isReverse ? state.nodes.length - index - 1 : index, node)
+export const handleClick =
+  ({ emit, state }) =>
+  ({ index, node }) => {
+    if (!node.disabled) {
+      emit('click', state.isReverse ? state.nodes.length - index - 1 : index, node)
+    }
   }
-}
 
 export const getStatusCls =
   ({ constants, state }) =>
-    (index, node?) => {
-      const { PROCESS_DONE_CLS, PROCESS_CUR_CLS, PROCESS_WAIT_CLS, PROCESS_DISABLED_CLS, PROCESS_ERROR_CLS } = constants
-      const cls = {}
-      const reverse = state.isReverse
+  (index, node?) => {
+    const { PROCESS_DONE_CLS, PROCESS_CUR_CLS, PROCESS_WAIT_CLS, PROCESS_DISABLED_CLS, PROCESS_ERROR_CLS } = constants
+    const cls = {}
+    const reverse = state.isReverse
 
-      if (node?.disabled) {
-        cls[PROCESS_DISABLED_CLS] = true
-      } else if (node?.error) {
-        cls[PROCESS_ERROR_CLS] = true
-      } else {
-        cls[PROCESS_DONE_CLS] = reverse ? index > state.current : index < state.current
-        cls[PROCESS_CUR_CLS] = index === state.current
-        cls[PROCESS_WAIT_CLS] = reverse ? index < state.current : index > state.current
-      }
-
-      return cls
+    if (node?.disabled) {
+      cls[PROCESS_DISABLED_CLS] = true
+    } else if (node?.error) {
+      cls[PROCESS_ERROR_CLS] = true
+    } else {
+      cls[PROCESS_DONE_CLS] = reverse ? index > state.current : index < state.current
+      cls[PROCESS_CUR_CLS] = index === state.current
+      cls[PROCESS_WAIT_CLS] = reverse ? index < state.current : index > state.current
     }
 
-export const computedData = ({ props, state }) => () => (state.isReverse ? props.data.map((item, i) => props.data[props.data.length - 1 - i]) : props.data)
+    return cls
+  }
 
-export const computedCurrent = ({ props, state }) => () => (state.isReverse ? state.nodes.length - props.active - 1 : props.active)
+export const computedData =
+  ({ props, state }) =>
+  () => {
+    if (props.data) {
+      return state.isReverse
+        ? props.data.map((item, i) => ({ ...props.data[props.data.length - 1 - i], index: i }))
+        : props.data.map((item, i) => ({ ...item, index: i }))
+    }
+
+    return state.timelineItems
+  }
+
+export const computedCurrent =
+  ({ props, state }) =>
+  () =>
+    state.isReverse ? state.nodes.length - props.active - 1 : props.active
 
 export const computedIsReverse = (props) => () => props.reverse && props.vertical
 
-export const computedStackNodes = ({ state, constants }) => () => {
-  if (state.nodes.length >= constants.STACK_NODES_MAX) {
-    state.showData = true
-    return state.nodes.slice(0, constants.LIMITED_STACK_NODES)
+export const computedStackNodes =
+  ({ state, constants }) =>
+  () => {
+    if (state.nodes.length >= constants.STACK_NODES_MAX) {
+      state.showData = true
+      return state.nodes.slice(0, constants.LIMITED_STACK_NODES)
+    }
+    return state.nodes
   }
-  return state.nodes
-}
 
-export const changeStatus = ({ state }) => () => {
-  state.showAll = !state.showAll
-  return state.showAll
-}
+export const changeStatus =
+  ({ state }) =>
+  () => {
+    state.showAll = !state.showAll
+    return state.showAll
+  }
+
+export const computedWrapperClass =
+  ({ props }) =>
+  () => {
+    const { vertical, reverse, textPosition, showDivider } = props
+    const wrapperClass: (string | object)[] = []
+
+    if (vertical) {
+      wrapperClass.push('tiny-steps-timeline', { reverse })
+    } else {
+      wrapperClass.push('tiny-steps-normal', textPosition === 'right' ? 'text-right' : 'text-bottom')
+    }
+
+    if (showDivider && textPosition === 'right') {
+      wrapperClass.push('show-divider')
+    }
+
+    return wrapperClass
+  }

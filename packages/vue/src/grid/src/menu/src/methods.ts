@@ -108,7 +108,11 @@ export default {
       this.closeFilter()
       return
     }
-    if (ctxMenuStore.visible && this.$refs.ctxWrapper && this.getEventTargetNode(event, this.$refs.ctxWrapper.$el).flag) {
+    if (
+      ctxMenuStore.visible &&
+      this.$refs.ctxWrapper &&
+      this.getEventTargetNode(event, this.$refs.ctxWrapper.$el).flag
+    ) {
       event.preventDefault()
       return
     }
@@ -180,7 +184,15 @@ export default {
       let left = clientX + scrollLeft
       let top = clientY + scrollTop
       const style = { left: `${left}px`, top: `${top}px` }
-      Object.assign(ctxMenuStore, { args: params, list: options, selected: null, selectChild: null, showChild: false, style, visible: true })
+      Object.assign(ctxMenuStore, {
+        args: params,
+        list: options,
+        selected: null,
+        selectChild: null,
+        showChild: false,
+        style,
+        visible: true
+      })
       let next = () => {
         let ctxElem = this.$refs.ctxWrapper.$el
         let { clientWidth, clientHeight } = ctxElem

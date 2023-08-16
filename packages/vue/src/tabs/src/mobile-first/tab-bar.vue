@@ -41,14 +41,14 @@ export default defineComponent({
           })
         ]
       ),
-      h('div', { class: 'invisible sm:visible absolute w-full h-px bottom-0 bg-color-border-separator z-10' }),
+      h('div', { class: 'invisible sm:visible absolute w-full h-px bottom-px bg-color-border-separator z-10' }),
       h(
         'div',
         {
           ref: 'tabMore',
           attrs: { 'data-tag': 'tiny-tab-more' },
           class: [
-            'inline-flex w-max h-11 sm:h-10 absolute top-0 right-0 z-0 bg-white',
+            'inline-flex w-max h-11 sm:h-10 absolute top-0 right-0 z-0 bg-color-bg-1',
             state.moreRight ? 'shadow-[-1px_-10px_4px_4px_rgba(0,0,0,0.08)]' : ''
           ]
         },
@@ -60,7 +60,10 @@ export default defineComponent({
                     h('span', {}, [h(IconPopup(), { class: 'fill-color-icon-focus text-base' })]),
                     h(
                       DropdownMenu,
-                      { slot: 'dropdown', props: { popperClass: 'max-h-[20rem] overflow-x-hidden overflow-y-auto' } },
+                      {
+                        slot: 'dropdown',
+                        props: { popperClass: 'max-h-[theme(spacing.80)] overflow-x-hidden overflow-y-auto' }
+                      },
                       state.moreOptions.map((opt: NavItem) =>
                         h(DropdownItem, { key: key(opt), props: { itemData: opt.name } }, [
                           opt.slotTitle ? opt.slotTitle() : opt.title

@@ -39,7 +39,18 @@ export default defineComponent({
     TinyOption: Option
   },
   emits: ['change', 'clear', 'visible-change', 'update:modelValue'],
-  props: [...props, 'modelValue', 'placeholder', 'size', 'clearable', 'disabled', 'fetchCountry', 'fields', 'popperClass', 'popperAppendToBody'],
+  props: [
+    ...props,
+    'modelValue',
+    'placeholder',
+    'size',
+    'clearable',
+    'disabled',
+    'fetchCountry',
+    'fields',
+    'popperClass',
+    'popperAppendToBody'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

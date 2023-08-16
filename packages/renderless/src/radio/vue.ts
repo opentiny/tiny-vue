@@ -36,12 +36,14 @@ export const renderless = (
   const api = {}
 
   const state = reactive({
+    vertical: inject('radioVertical', false),
+    size: props.size || inject('size', null),
     focus: false,
     radioGroup: '',
     isGroup: computed(() => api.isGroup()),
     radioSize: computed(() => api.radioSize()),
     isDisabled: computed(() => api.isDisabled()),
-    isDisplayOnly: computed(() => api.isDisplayOnly() || (parent.auiForm || {}).displayOnly),
+    isDisplayOnly: computed(() => api.isDisplayOnly() || (parent.tinyForm || {}).displayOnly),
     tabIndex: computed(() => api.tabIndex()),
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
     model: computed({

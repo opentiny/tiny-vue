@@ -16,7 +16,7 @@ export default {
       lock: true,
       text: '加载中',
       target: '#boxeight', // 可传DOM节点对应ID名或类名字符串，也可以传入DOM对象，例如：domObj，let domObj = document.getElementById('boxeight')
-      size: ''  //可设置large、medium、small、mini四种尺寸大小 
+      size: '' // 可设置large、medium、small、mini四种尺寸大小
     })
   }
 }

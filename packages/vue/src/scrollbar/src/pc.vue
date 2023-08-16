@@ -85,7 +85,11 @@ export default defineComponent({
     )
 
     const wrap = (
-      <div ref="wrap" style={style} onScroll={handleScroll} class={[wrapClass, 'tiny-scrollbar__wrap', gutter ? '' : 'tiny-scrollbar__wrap--hidden-default']}>
+      <div
+        ref="wrap"
+        style={style}
+        onScroll={handleScroll}
+        class={[wrapClass, 'tiny-scrollbar__wrap', gutter ? '' : 'tiny-scrollbar__wrap--hidden-default']}>
         {[view]}
       </div>
     )
@@ -99,7 +103,11 @@ export default defineComponent({
         </div>
       ]
     } else {
-      nodes = [wrap, <Bar move={state.moveX} size={state.sizeWidth}></Bar>, <Bar vertical move={state.moveY} size={state.sizeHeight}></Bar>]
+      nodes = [
+        wrap,
+        <Bar move={state.moveX} size={state.sizeWidth}></Bar>,
+        <Bar vertical move={state.moveY} size={state.sizeHeight}></Bar>
+      ]
     }
 
     return (
@@ -110,8 +118,7 @@ export default defineComponent({
         }}
         onMousemove={(e) => {
           this.$emit('mousemove', e)
-        }}
-      >
+        }}>
         {nodes}
       </div>
     )

@@ -6,7 +6,7 @@ const iconTest = 'IconDel()'
 
 describe('PC Mode', () => {
   const mount = mountPcMode
-  
+
   /**
    * attrs
    */
@@ -27,9 +27,13 @@ describe('PC Mode', () => {
    * slots
    */
   test('default slot', async () => {
-    const wrapper = mount(() => <Link v-slots={{
-      icon: () => iconTest
-    }}></Link>)
+    const wrapper = mount(() => (
+      <Link
+        v-slots={{
+          icon: () => iconTest
+        }}
+      ></Link>
+    ))
     expect(wrapper.text()).toContain(iconTest)
   })
 

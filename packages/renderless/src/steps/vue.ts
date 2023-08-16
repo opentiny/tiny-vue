@@ -7,7 +7,7 @@ export const renderless = (props, { reactive, watch, computed }) => {
     startIndex: 0,
     endIndex: computed(() => state.startIndex + props.visibleNum),
     rightNodePositions: computed(() => api.computedRightNodePos()),
-    computedSpace: computed(() => computedSpace({ props })),
+    computedSpace: computed(() => computedSpace({ props }))
   })
 
   const api = {

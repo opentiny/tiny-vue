@@ -6,26 +6,26 @@ export default {
       demoId: 'base',
       name: {
         'zh-CN': '基础用法',
-        'en-US': 'button type',
+        'en-US': 'button type'
       },
       desc: {
         'zh-CN': '<p>基础用法</p>',
-        'en-US': '<p>button type</p>',
+        'en-US': '<p>button type</p>'
       },
-      codeFiles: ['base.vue'],
+      codeFiles: ['base.vue']
     },
     {
       demoId: 'type',
       name: {
         'zh-CN': '类型',
-        'en-US': 'button type',
+        'en-US': 'button type'
       },
       desc: {
         'zh-CN': '<p>类型</p>',
-        'en-US': '<p>button type</p>',
+        'en-US': '<p>button type</p>'
       },
-      codeFiles: ['type.vue'],
-    },
+      codeFiles: ['type.vue']
+    }
   ],
   apis: [
     {
@@ -38,9 +38,9 @@ export default {
           defaultValue: 'primary',
           desc: {
             'zh-CN': '<p>通过type设置不同的加载样式</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'type',
+          demoId: 'type'
         },
         {
           name: 'target',
@@ -48,9 +48,9 @@ export default {
           defaultValue: 'DOM	document.getElementById("id")',
           desc: {
             'zh-CN': '<p>通过document.getElementById绑定div的DOM节点</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'type',
+          demoId: 'type'
         },
         {
           name: 'tiny_mode',
@@ -58,10 +58,10 @@ export default {
           defaultValue: 'pc',
           desc: {
             'zh-CN': '<p>通配置项pc,mobile表示不同设备</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'type',
-        },
+          demoId: 'type'
+        }
       ],
       method: [
         {
@@ -70,10 +70,10 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>关闭Loading</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'type',
-        },
+          demoId: 'type'
+        }
       ]
     }
   ]

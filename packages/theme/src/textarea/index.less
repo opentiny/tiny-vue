@@ -29,10 +29,9 @@
   font-size: var(--ti-textarea-font-size);
   border: 1px solid var(--ti-textarea-border-color);
   border-radius: var(--ti-textarea-border-radius);
-  &:hover{
+  &:hover {
     border-color: var(--ti-textarea-hover-border-color);
   }
-
 
   &.is-disabled &__inner {
     background-color: var(--ti-textarea-disabled-bg-color);
@@ -42,7 +41,7 @@
     .placeholder(@color: var(--ti-textarea-placeholder-text-color));
   }
 
-  &.is-disabled{
+  &.is-disabled {
     background-color: var(--ti-textarea-disabled-bg-color);
     &:hover {
       border-color: var(--ti-textarea-border-color);
@@ -56,7 +55,7 @@
 
     .@{input-prefix-cls}__count {
       color: var(--ti-textarea-exceed-text-color);
-      &-text-length{
+      &-text-length {
         color: var(--ti-textarea-exceed-text-color);
       }
     }
@@ -73,7 +72,7 @@
     width: var(--ti-textarea-count-width);
     border-bottom-left-radius: var(--ti-textarea-count-border-radius);
     padding-right: var(--ti-textarea-count-padding-right);
-    &-text-length{
+    &-text-length {
       color: var(--ti-textarea-count-text-length-color);
     }
   }
@@ -117,25 +116,33 @@
 
   &.is-display-only {
     .@{textarea-prefix-cls}-display-only {
-      position: relative;
-    }
-    .@{textarea-prefix-cls}-display-only__content {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      -webkit-transform: translateY(-50%);
-      transform: translateY(-50%);
-      max-width: 100%;
-      -webkit-line-clamp: 5;
-      display: -webkit-box;
-      /* autoprefixer: ignore next */
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .@{textarea-prefix-cls}__inner {
-      visibility: hidden;
+      .@{textarea-prefix-cls}-display-only__content {
+        left: 0;
+        max-width: 100%;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        /* autoprefixer: ignore next */
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+        overflow: hidden;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+      }
+      .@{textarea-prefix-cls}-autosize-display-only {
+        .@{textarea-prefix-cls}-display-only__content {
+          left: 0;
+          max-width: 100%;
+          position: absolute;
+          white-space: pre-line;
+          line-height: 1.5;
+        }
+      }
+      .@{textarea-prefix-cls}__inner {
+        height: 0;
+        padding: 0;
+        border-style: none;
+        visibility: hidden;
+      }
     }
   }
 }
-

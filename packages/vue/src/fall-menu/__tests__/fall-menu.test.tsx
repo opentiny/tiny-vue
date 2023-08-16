@@ -161,14 +161,12 @@ describe('PC Mode', () => {
     { title: '工具', url: '' },
     { title: '资源列表', url: '' }
   ]
-  
+
   /**
    * attrs
    */
   test('data', async () => {
-    const wrapper = mount(() => (
-        <FallMenu data={fallMenuMockData}></FallMenu>
-    ))
+    const wrapper = mount(() => <FallMenu data={fallMenuMockData}></FallMenu>)
     const items = wrapper.findAll('.tiny-fall-menu__list ul > li')
     expect(items.length).toBe(14)
   })
@@ -178,13 +176,11 @@ describe('PC Mode', () => {
    */
   test('level1 slot', async () => {
     const wrapper = mount(() => (
-        <FallMenu data={fallMenuMockData}>
-            {{
-                level1: ({slotScope}) => (
-                    <a>{slotScope.title + '-level-1'}</a>
-                )
-            }}
-        </FallMenu>
+      <FallMenu data={fallMenuMockData}>
+        {{
+          level1: ({ slotScope }) => <a>{slotScope.title + '-level-1'}</a>
+        }}
+      </FallMenu>
     ))
     const item = wrapper.find('.tiny-fall-menu__list ul > li a')
     expect(item.text()).contain('-level-1')

@@ -5,5 +5,5 @@ export const tinyCheckboxAuroraTheme = {
   'ti-checkbox-width': 'calc(var(--ti-common-size-3x) + 2px)',
   'ti-checkbox-height': 'calc(var(--ti-common-size-3x) + 2px)',
   'ti-checkbox-icon-margin-left': '3px',
-  'ti-checkbox-icon-margin-top': '-1px',
+  'ti-checkbox-icon-margin-top': '-1px'
 }

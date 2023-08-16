@@ -13,14 +13,14 @@
   <div class="tiny-badge__wrapper">
     <span v-if="data">{{ data }}</span>
     <slot v-else />
-    <slot />
     <div
       v-if="!hidden && (state.content || state.content === 0 || isDot)"
       class="tiny-badge"
       :class="[
         isDot ? 'tiny-badge--default' : '',
         state.isOverstep ? 'tiny-badge--max' : '',
-        type ? 'tiny-badge--' + type : '', badgeClass || ''
+        type ? 'tiny-badge--' + type : '',
+        badgeClass || ''
       ]"
       :style="{
         transform: `translate(
@@ -43,7 +43,20 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/badge/index.less'
 
 export default defineComponent({
-  props: [...props, 'isDot', 'hidden', 'type', 'max', 'value', 'modelValue', 'href', 'target', 'badgeClass', 'offset', 'data'],
+  props: [
+    ...props,
+    'isDot',
+    'hidden',
+    'type',
+    'max',
+    'value',
+    'modelValue',
+    'href',
+    'target',
+    'badgeClass',
+    'offset',
+    'data'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

@@ -142,19 +142,19 @@ export default {
 
     return $slots.dropdowns
       ? renderHasSlotDropdowns({
-        $slots,
-        _vm: this,
-        buttonBase,
-        tableListeners,
-        vSize
-      })
+          $slots,
+          _vm: this,
+          buttonBase,
+          tableListeners,
+          vSize
+        })
       : renderNoSlotDropdowns({
-        $slots,
-        _vm: this,
-        buttonBase,
-        loading,
-        tableListeners
-      })
+          $slots,
+          _vm: this,
+          buttonBase,
+          loading,
+          tableListeners
+        })
   },
   methods: {
     clickDropdownEvent(event) {

@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   getTextStyle,
@@ -29,9 +29,30 @@ import {
 } from './index'
 import { on, off } from '../common/deps/dom'
 
-export const api = ['state', 'showDecimalIcon', 'getIconStyle', 'getTextStyle', 'selectValue', 'handelKey', 'setCurrentValue', 'resetCurrentValue']
-
-export const useChangeValue = ({ constants, emit, props, reactive, toRefs, watch, onMounted, onUnmounted, parent }) => {
+export const api = [
+  'state',
+  'showDecimalIcon',
+  'getIconStyle',
+  'getTextStyle',
+  'selectValue',
+  'handelKey',
+  'setCurrentValue',
+  'resetCurrentValue'
+]
+export const useChangeValue = ({
+  computed,
+  constants,
+  emit,
+  props,
+  reactive,
+  toRefs,
+  watch,
+  onMounted,
+  onUnmounted,
+  parent,
+  inject
+}) => {
+  parent.tinyForm = parent.tinyForm || inject('form', null)
   const state = reactive({
     hoverIndex: -1,
     currentValue: props.modelValue
@@ -79,7 +100,11 @@ export const useChangeValue = ({ constants, emit, props, reactive, toRefs, watch
   }
 }
 
-export const renderless = (props, { computed, reactive, toRefs, watch, onMounted, onUnmounted }, { constants, emit, parent }) => {
+export const renderless = (
+  props,
+  { computed, reactive, toRefs, watch, onMounted, onUnmounted, inject },
+  { constants, emit, parent }
+) => {
   const api = {}
   const changeValue = useChangeValue({
     computed,
@@ -91,9 +116,9 @@ export const renderless = (props, { computed, reactive, toRefs, watch, onMounted
     watch,
     onMounted,
     onUnmounted,
-    parent
+    parent,
+    inject
   })
-
   const state = reactive({
     pointerAtLeftHalf: true,
     colorMap: computed(() => api.computedColorMap(props)),
