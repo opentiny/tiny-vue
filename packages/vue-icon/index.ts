@@ -262,6 +262,52 @@ import IconRightO from './src/right-o'
 import IconRight from './src/right'
 import IconRightward from './src/rightward'
 import IconRowReverse from './src/row-reverse'
+import IconRichTextAddColumnAfter from './src/rich-text-add-column-after'
+import IconRichTextAddColumnBefore from './src/rich-text-add-column-before'
+import IconRichTextAddRowAfter from './src/rich-text-add-row-after'
+import IconRichTextAddRowBefore from './src/rich-text-add-row-before'
+import IconRichTextAlignCenter from './src/rich-text-align-center'
+import IconRichTextAlignLeft from './src/rich-text-align-left'
+import IconRichTextAlignRight from './src/rich-text-align-right'
+import IconRichTextBold from './src/rich-text-bold'
+import IconRichTextCodeBlock from './src/rich-text-code-block'
+import IconRichTextCodeView from './src/rich-text-code-view'
+import IconRichTextColor from './src/rich-text-color'
+import IconRichTextDeleteColumn from './src/rich-text-delete-column'
+import IconRichTextDeleteRow from './src/rich-text-delete-row'
+import IconRichTextDeleteTable from './src/rich-text-delete-table'
+import IconRichTextFontSize from './src/rich-text-font-size'
+import IconRichTextFormatClear from './src/rich-text-format-clear'
+import IconRichTextH1 from './src/rich-text-h1'
+import IconRichTextH2 from './src/rich-text-h2'
+import IconRichTextH3 from './src/rich-text-h3'
+import IconRichTextH4 from './src/rich-text-h4'
+import IconRichTextH5 from './src/rich-text-h5'
+import IconRichTextH6 from './src/rich-text-h6'
+import IconRichTextHeading from './src/rich-text-heading'
+import IconRichTextHighLight from './src/rich-text-high-light'
+import IconRichTextItalic from './src/rich-text-italic'
+import IconRichTextImage from './src/rich-text-image'
+import IconRichTextLineHeight from './src/rich-text-line-height'
+import IconRichTextLink from './src/rich-text-link'
+import IconRichTextLinkUnlink from './src/rich-text-link-unlink'
+import IconRichTextListOrdered from './src/rich-text-list-ordered'
+import IconRichTextListUnordered from './src/rich-text-list-unordered'
+import IconRichTextMergeCells from './src/rich-text-merge-cells'
+import IconRichTextMergeCellsVertical from './src/rich-text-merge-cells-vertical'
+import IconRichTextNodeDelete from './src/rich-text-node-delete'
+import IconRichTextParagraph from './src/rich-text-paragraph'
+import IconRichTextQuoteText from './src/rich-text-quote-text'
+import IconRichTextRedo from './src/rich-text-redo'
+import IconRichTextSplitCellsHorizontal from './src/rich-text-split-cells-horizontal'
+import IconRichTextSplitCellsVertical from './src/rich-text-split-cells-vertical'
+import IconRichTextStrikeThrough from './src/rich-text-strike-through'
+import IconRichTextSubscript from './src/rich-text-subscript'
+import IconRichTextSuperscript from './src/rich-text-superscript'
+import IconRichTextTable from './src/rich-text-table'
+import IconRichTextTaskList from './src/rich-text-task-list'
+import IconRichTextUnderline from './src/rich-text-underline'
+import IconRichTextUndo from './src/rich-text-undo'
 import IconSandwichCollapse from './src/sandwich-collapse'
 import IconSandwichExpand from './src/sandwich-expand'
 import IconSave from './src/save'
@@ -912,6 +958,98 @@ export {
   IconRightward as iconRightward,
   IconRowReverse,
   IconRowReverse as iconRowReverse,
+  IconRichTextAddColumnAfter,
+  IconRichTextAddColumnAfter as iconRichTextAddColumnAfter,
+  IconRichTextAddColumnBefore,
+  IconRichTextAddColumnBefore as iconRichTextAddColumnBefore,
+  IconRichTextAddRowAfter,
+  IconRichTextAddRowAfter as iconRichTextAddRowAfter,
+  IconRichTextAddRowBefore,
+  IconRichTextAddRowBefore as iconRichTextAddRowBefore,
+  IconRichTextAlignCenter,
+  IconRichTextAlignCenter as iconRichTextAlignCenter,
+  IconRichTextAlignLeft,
+  IconRichTextAlignLeft as iconRichTextAlignLeft,
+  IconRichTextAlignRight,
+  IconRichTextAlignRight as iconRichTextAlignRight,
+  IconRichTextBold,
+  IconRichTextBold as iconRichTextBold,
+  IconRichTextCodeBlock,
+  IconRichTextCodeBlock as iconRichTextCodeBlock,
+  IconRichTextCodeView,
+  IconRichTextCodeView as iconRichTextCodeView,
+  IconRichTextColor,
+  IconRichTextColor as iconRichTextColor,
+  IconRichTextDeleteColumn,
+  IconRichTextDeleteColumn as iconRichTextDeleteColumn,
+  IconRichTextDeleteRow,
+  IconRichTextDeleteRow as iconRichTextDeleteRow,
+  IconRichTextDeleteTable,
+  IconRichTextDeleteTable as iconRichTextDeleteTable,
+  IconRichTextFontSize,
+  IconRichTextFontSize as iconRichTextFontSize,
+  IconRichTextFormatClear,
+  IconRichTextFormatClear as iconRichTextFormatClear,
+  IconRichTextH1,
+  IconRichTextH1 as iconRichTextH1,
+  IconRichTextH2,
+  IconRichTextH2 as iconRichTextH2,
+  IconRichTextH3,
+  IconRichTextH3 as iconRichTextH3,
+  IconRichTextH4,
+  IconRichTextH4 as iconRichTextH4,
+  IconRichTextH5,
+  IconRichTextH5 as iconRichTextH5,
+  IconRichTextH6,
+  IconRichTextH6 as iconRichTextH6,
+  IconRichTextHeading,
+  IconRichTextHeading as iconRichTextHeading,
+  IconRichTextHighLight,
+  IconRichTextHighLight as iconRichTextHighLight,
+  IconRichTextItalic,
+  IconRichTextItalic as iconRichTextItalic,
+  IconRichTextImage,
+  IconRichTextImage as iconRichTextImage,
+  IconRichTextLineHeight,
+  IconRichTextLineHeight as iconRichTextLineHeight,
+  IconRichTextLink,
+  IconRichTextLink as iconRichTextLink,
+  IconRichTextLinkUnlink,
+  IconRichTextLinkUnlink as iconRichTextLinkUnlink,
+  IconRichTextListOrdered,
+  IconRichTextListOrdered as iconRichTextListOrdered,
+  IconRichTextListUnordered,
+  IconRichTextListUnordered as iconRichTextListUnordered,
+  IconRichTextMergeCells,
+  IconRichTextMergeCells as iconRichTextMergeCells,
+  IconRichTextMergeCellsVertical,
+  IconRichTextMergeCellsVertical as iconRichTextMergeCellsVertical,
+  IconRichTextNodeDelete,
+  IconRichTextNodeDelete as iconRichTextNodeDelete,
+  IconRichTextParagraph,
+  IconRichTextParagraph as iconRichTextParagraph,
+  IconRichTextQuoteText,
+  IconRichTextQuoteText as iconRichTextQuoteText,
+  IconRichTextRedo,
+  IconRichTextRedo as iconRichTextRedo,
+  IconRichTextSplitCellsHorizontal,
+  IconRichTextSplitCellsHorizontal as iconRichTextSplitCellsHorizontal,
+  IconRichTextSplitCellsVertical,
+  IconRichTextSplitCellsVertical as iconRichTextSplitCellsVertical,
+  IconRichTextStrikeThrough,
+  IconRichTextStrikeThrough as iconRichTextStrikeThrough,
+  IconRichTextSubscript,
+  IconRichTextSubscript as iconRichTextSubscript,
+  IconRichTextSuperscript,
+  IconRichTextSuperscript as iconRichTextSuperscript,
+  IconRichTextTable,
+  IconRichTextTable as iconRichTextTable,
+  IconRichTextTaskList,
+  IconRichTextTaskList as iconRichTextTaskList,
+  IconRichTextUnderline,
+  IconRichTextUnderline as iconRichTextUnderline,
+  IconRichTextUndo,
+  IconRichTextUndo as iconRichTextUndo,
   IconSandwichCollapse,
   IconSandwichCollapse as iconSandwichCollapse,
   IconSandwichExpand,
@@ -1315,6 +1453,52 @@ export default {
   IconRight,
   IconRightward,
   IconRowReverse,
+  IconRichTextAddColumnAfter,
+  IconRichTextAddColumnBefore,
+  IconRichTextAddRowAfter,
+  IconRichTextAddRowBefore,
+  IconRichTextAlignCenter,
+  IconRichTextAlignLeft,
+  IconRichTextAlignRight,
+  IconRichTextBold,
+  IconRichTextCodeBlock,
+  IconRichTextCodeView,
+  IconRichTextColor,
+  IconRichTextDeleteColumn,
+  IconRichTextDeleteRow,
+  IconRichTextDeleteTable,
+  IconRichTextFontSize,
+  IconRichTextFormatClear,
+  IconRichTextH1,
+  IconRichTextH2,
+  IconRichTextH3,
+  IconRichTextH4,
+  IconRichTextH5,
+  IconRichTextH6,
+  IconRichTextHeading,
+  IconRichTextHighLight,
+  IconRichTextItalic,
+  IconRichTextImage,
+  IconRichTextLineHeight,
+  IconRichTextLink,
+  IconRichTextLinkUnlink,
+  IconRichTextListOrdered,
+  IconRichTextListUnordered,
+  IconRichTextMergeCells,
+  IconRichTextMergeCellsVertical,
+  IconRichTextNodeDelete,
+  IconRichTextParagraph,
+  IconRichTextQuoteText,
+  IconRichTextRedo,
+  IconRichTextSplitCellsHorizontal,
+  IconRichTextSplitCellsVertical,
+  IconRichTextStrikeThrough,
+  IconRichTextSubscript,
+  IconRichTextSuperscript,
+  IconRichTextTable,
+  IconRichTextTaskList,
+  IconRichTextUnderline,
+  IconRichTextUndo,
   IconSandwichCollapse,
   IconSandwichExpand,
   IconSave,
