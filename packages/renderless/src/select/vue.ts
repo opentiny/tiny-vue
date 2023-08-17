@@ -82,13 +82,34 @@ import {
   getScrollListener,
   computeCollapseTags,
   computeMultipleLimit,
+  handleDropdownClick,
+  handleEnterTag,
+  calcCollapseTags,
+  initValue,
+  watchInputHover,
+  initQuery,
+  updateModelValue,
+  getLabelSlotValue,
+  computedTagsStyle,
+  computedReadonly,
+  computedShowClose,
+  computedCollapseTagSize,
+  computedShowNewOption,
+  computedShowCopy,
+  computedOptionsAllDisabled,
+  computedDisabledTooltipContent,
+  computedSelectDisabled,
+  computedIsExpandAll,
+  watchInitValue,
+  watchShowClose,
+  loadTreeData,
   resetFilter,
-  computedGetIcon
+  computedGetIcon,
+  computedGetTagType,
+  computedShowDropdownIcon
 } from './index'
-import { BROWSER_NAME } from '../common'
-import browserInfo from '../common/browser'
 import debounce from '../common/deps/debounce'
-import { isNumber, isNull } from '../common/type'
+import { isNumber } from '../common/type'
 
 export const api = [
   'state',
@@ -142,10 +163,15 @@ export const api = [
   'onMouseenterNative',
   'onMouseleaveNative',
   'onCopying',
-  'resetFilter'
+  'handleDropdownClick',
+  'handleEnterTag',
+  'getLabelSlotValue',
+  'loadTreeData',
+  'resetFilter',
+  'computedGetIcon'
 ]
 
-const initStateAdd = ({ computed, props, api, parent, emitter }) => ({
+const initStateAdd = ({ computed, props, api, parent }) => ({
   selectedTags: [],
   tips: '',
   showTip: false,
@@ -156,21 +182,23 @@ const initStateAdd = ({ computed, props, api, parent, emitter }) => ({
   overflow: null,
   completed: false,
   inputWidth: 0,
+  inputPaddingRight: 0,
   hoverIndex: -1,
   hoverOption: -1,
   inputLength: 20,
   optionsCount: 0,
   selectFiexd: {},
+  createdLabel: null,
   isSilentBlur: false,
   cachedOptions: [],
   selectedLabel: '',
   previousQuery: null,
   inputHovering: false,
-  createdLabel: null,
   createdSelected: false,
   isOnComposition: false,
   cachedPlaceHolder: props.placeholder,
-  initialInputHeight: 0,
+  inputHeight: 0,
+  initialInputHeight: 28,
   currentPlaceholder: props.placeholder,
   filteredOptionsCount: 0,
   gridData: [],
@@ -179,116 +207,108 @@ const initStateAdd = ({ computed, props, api, parent, emitter }) => ({
   currentKey: props.modelValue,
   updateId: '',
   popperElm: null,
-  selectEmitter: emitter(),
   debounce: computed(() => (isNumber(props.queryDebounce) ? props.queryDebounce : props.remote ? 300 : 0)),
   emptyText: computed(() => api.emptyText()),
   formItemSize: computed(() => (parent.formItem || {}).formItemSize),
-  selectDisabled: computed(() => props.disabled || (parent.form || {}).disabled),
+  selectDisabled: computed(() => api.computedSelectDisabled()),
+  isDisplayOnly: computed(() => props.displayOnly || (parent.form || {}).displayOnly),
   gridCheckedData: computed(() => api.getcheckedData()),
-  isExpandAll: computed(() =>
-    props.treeOp && props.treeOp.defaultExpandAll !== undefined ? props.treeOp.defaultExpandAll : true
-  ),
+  isExpandAll: computed(() => api.computedIsExpandAll()),
   searchSingleCopy: computed(() => props.allowCopy && !props.multiple && props.filterable),
+  tooltipContent: {},
+  isHidden: false,
+  defaultCheckedKeys: [],
   filterOrSearch: computed(() => props.filterable || props.searchable)
 })
 
-const initState = ({ reactive, computed, props, api, emitter, parent, constants }) => {
-  const stateAdd = initStateAdd({ computed, props, api, parent, emitter })
+const initState = ({ reactive, computed, props, api, emitter, parent, constants, designConfig }) => {
+  const stateAdd = initStateAdd({ computed, props, api, parent })
   const state = reactive({
     ...stateAdd,
+    selectEmitter: emitter(),
     datas: [],
     query: '',
     options: [],
     visible: false,
-    showCopy: computed(() => props.multiple && props.copyable && state.inputHovering && state.selected.length),
+    showCopy: computed(() => api.computedShowCopy()),
     showWarper: true, // 显示下拉外层控制
     selected: props.multiple ? [] : {},
     softFocus: false,
     hover: false,
-    firstAutoSeach: props.remoteConfig.autoSeach,
-    tagsStyle: computed(() => ({ 'max-width': state.inputWidth - 32 + 'px', width: '100%' })),
-
-    readonly: computed(
-      () =>
-        props.readonly ||
-        !props.filterable ||
-        props.searchable ||
-        props.multiple ||
-        (browserInfo.name !== BROWSER_NAME.IE && browserInfo.name !== BROWSER_NAME.Edge && !state.visible)
-    ),
+    firstAutoSearch: props.remoteConfig.autoSearch,
+    tagsStyle: computed(() => api.computedTagsStyle()),
+    readonly: computed(() => api.computedReadonly()),
     iconClass: computed(() => (state.visible ? '' : constants.CLASS.IsReverse)),
-    showClose: computed(
-      () =>
-        props.clearable &&
-        !state.selectDisabled &&
-        state.inputHovering &&
-        (props.multiple
-          ? Array.isArray(props.modelValue) && props.modelValue.length > 0
-          : !isNull(props.modelValue) && props.modelValue !== '')
-    ),
-    optionsAllDisabled: computed(() =>
-      state.options.filter((option) => option.visible).every((option) => option.disabled)
-    ),
-    collapseTagSize: computed(() => state.selectSize),
-    showNewOption: computed(
-      () =>
-        props.filterable &&
-        props.allowCreate &&
-        state.query !== '' &&
-        !state.options.filter((option) => !option.created).some((option) => option.state.currentLabel === state.query)
-    ),
+    showClose: computed(() => api.computedShowClose()),
+    optionsAllDisabled: computed(() => api.computedOptionsAllDisabled()),
+    collapseTagSize: computed(() => api.computedCollapseTagSize()),
+    showNewOption: computed(() => api.computedShowNewOption()),
     selectSize: computed(() => props.size || state.formItemSize),
     optimizeOpts: computed(() => api.computeOptimizeOpts()),
     optimizeStore: { flag: false, valueIndex: 0, startIndex: 0, viewStyle: '', datas: [] },
     collapseTags: computed(() => api.computeCollapseTags()),
     multipleLimit: computed(() => api.computeMultipleLimit()),
+    disabledTooltipContent: computed(() => api.computedDisabledTooltipContent()),
+    collapseTagsLength: 0,
+    initValue: [],
+    key: 0,
     isSelectAll: computed(() => state.selectCls === 'checked-sur'),
     isHalfSelect: computed(() => state.selectCls === 'halfselect'),
-    getIcon: computed(() => api.computedGetIcon())
+    getIcon: computed(() => api.computedGetIcon((name = 'dropdownIcon'))),
+    getTagType: computed(() => api.computedGetTagType()),
+    isShowDropdownIcon: computed(() => api.computedShowDropdownIcon())
   })
 
   return state
 }
 
-const addApi = ({ api, props, state, refs, emit, constants, parent, nextTick, dispatch, vm, designConfig }) => {
+const addApi = ({ api, props, state, emit, constants, parent, nextTick, dispatch, vm, designConfig }) => {
   Object.assign(api, {
-    resetInputHeight: resetInputHeight({ api, constants, nextTick, props, refs, state }),
-    calcOverFlow: calcOverFlow({ refs, props, state }),
+    resetInputHeight: resetInputHeight({ api, constants, nextTick, props, vm, state, designConfig }),
+    calcOverFlow: calcOverFlow({ vm, props, state }),
     handleFocus: handleFocus({ api, emit, props, state }),
-    deleteTag: deleteTag({ api, constants, emit, props, vm, state }),
-    watchValue: watchValue({ api, constants, dispatch, props, refs, state }),
+    deleteTag: deleteTag({ api, constants, emit, props, vm, nextTick, state }),
+    watchValue: watchValue({ api, constants, dispatch, props, vm, state }),
     toHide: toHide({ constants, state, props, vm, api }),
     toVisible: toVisible({ constants, state, props, vm, api, nextTick }),
-    setSelected: setSelected({ api, constants, nextTick, props, refs, state }),
+    setSelected: setSelected({ api, constants, nextTick, props, vm, state }),
     selectOption: selectOption({ api, state, props }),
-    handleResize: handleResize({ api, props }),
+    handleResize: handleResize({ api, props, state }),
     watchOptions: watchOptions({ api, constants, nextTick, parent, props, state }),
-    watchVisible: watchVisible({ api, constants, emit, state, refs }),
-    deletePrevTag: deletePrevTag({ api, constants, emit, props, state, vm }),
+    watchVisible: watchVisible({ api, constants, emit, state, vm, props }),
+    deletePrevTag: deletePrevTag({ api, constants, props, state, vm }),
     onInputChange: onInputChange({ api, props, state, constants, nextTick }),
     deleteSelected: deleteSelected({ api, constants, emit, props, vm, state }),
     handleMenuEnter: handleMenuEnter({ api, nextTick, state }),
-    resetInputState: resetInputState({ api, refs, state }),
+    resetInputState: resetInputState({ api, vm, state }),
     navigateOptions: navigateOptions({ api, nextTick, state }),
     handleClearClick: handleClearClick(api),
     handleComposition: handleComposition({ api, nextTick, state }),
     handleQueryChange: handleQueryChange({ api, constants, nextTick, props, vm, state }),
-    handleOptionSelect: handleOptionSelect({ api, emit, nextTick, props, refs, state }),
+    handleOptionSelect: handleOptionSelect({ api, nextTick, props, vm, state }),
     getPluginOption: getPluginOption({ api, props, state }),
-    toggleCheckAll: toggleCheckAll({ api, emit, state }),
+    toggleCheckAll: toggleCheckAll({ api, emit, state, props }),
     debouncedQueryChange: debounce(state.debounce, (event) => {
-      api.handleQueryChange(event.target.value)
+      api.handleQueryChange(props.shape ? event : event.target.value)
     }),
     debouncedOnInputChange: debounce(state.debounce, () => {
       api.onInputChange()
     }),
     debouncRquest: debouncRquest({ api, state, props }),
     defaultOnQueryChange: defaultOnQueryChange({ props, state, constants, api }),
-    mounted: mounted({ api, parent, state, props, refs }),
-    unMount: unMount({ api, parent, refs, state }),
-    watchOptimizeOpts: watchOptimizeOpts({ api, props, refs, state }),
+    mounted: mounted({ api, parent, state, props, vm }),
+    unMount: unMount({ api, parent, vm, state }),
+    watchOptimizeOpts: watchOptimizeOpts({ api, props, vm, state }),
+    handleDropdownClick: handleDropdownClick({ emit }),
+    handleEnterTag: handleEnterTag({ state }),
+    calcCollapseTags: calcCollapseTags({ state, vm }),
+    initValue: initValue({ state }),
+    getLabelSlotValue: getLabelSlotValue({ props, state }),
+    loadTreeData: loadTreeData({ state, vm, props, api }),
     resetFilter: resetFilter({ state, api }),
-    computedGetIcon: computedGetIcon({ constants, designConfig })
+    computedGetIcon: computedGetIcon({ constants, designConfig, props }),
+    computedGetTagType: computedGetTagType({ designConfig, props }),
+    computedShowDropdownIcon: computedShowDropdownIcon({ props, state })
   })
 }
 
@@ -296,7 +316,6 @@ const initApi = ({
   api,
   props,
   state,
-  refs,
   emit,
   maskState,
   constants,
@@ -310,30 +329,30 @@ const initApi = ({
   Object.assign(api, {
     state,
     maskState,
-    doDestroy: doDestroy(refs),
+    doDestroy: doDestroy(vm),
     getTreeData: getTreeData(props),
-    blur: blur({ refs, state }),
-    focus: focus({ refs, state }),
+    blur: blur({ vm, state }),
+    focus: focus({ vm, state }),
     getValueKey: getValueKey(props),
     handleClose: handleClose(state),
     getValueIndex: getValueIndex(props),
     getChildValue: getChildValue(),
     getOption: getOption({ props, state }),
     emitChange: emitChange({ emit, props, state, constants }),
-    toggleMenu: toggleMenu({ refs, state, props }),
-    showTip: showTip({ props, state, refs }),
+    toggleMenu: toggleMenu({ vm, state, props }),
+    showTip: showTip({ props, state, vm }),
     onOptionDestroy: onOptionDestroy(state),
-    setSoftFocus: setSoftFocus({ refs, state }),
+    setSoftFocus: setSoftFocus({ vm, state }),
     getcheckedData: getcheckedData({ props, state }),
-    resetInputWidth: resetInputWidth({ refs, state }),
+    resetInputWidth: resetInputWidth({ vm, state }),
     resetHoverIndex: resetHoverIndex({ props, state }),
-    scrollToOption: scrollToOption({ refs, constants }),
-    selectChange: selectChange({ emit, props, refs, state }),
-    radioChange: radioChange({ emit, props, state }),
+    scrollToOption: scrollToOption({ vm, constants }),
+    selectChange: selectChange({ emit, props, vm, state, api }),
+    radioChange: radioChange({ emit, props, state, api }),
     handleCopyClick: handleCopyClick({ parent, props, state }),
-    treeNodeClick: treeNodeClick({ emit, props, state }),
-    managePlaceholder: managePlaceholder({ refs, state }),
-    nodeCheckClick: nodeCheckClick({ emit, props, state }),
+    treeNodeClick: treeNodeClick({ emit, props, state, api, vm }),
+    managePlaceholder: managePlaceholder({ vm, state }),
+    nodeCheckClick: nodeCheckClick({ emit, props, state, api }),
     checkDefaultFirstOption: checkDefaultFirstOption(state),
     nodeExpand: nodeExpand({ state, constants, nextTick }),
     nodeCollapse: nodeCollapse({ state, constants, nextTick }),
@@ -345,50 +364,82 @@ const initApi = ({
     buildRadioConfig: buildRadioConfig({ props, state }),
     onMouseenterNative: onMouseenterNative({ state }),
     onMouseleaveNative: onMouseleaveNative({ state }),
-    onCopying: onCopying({ state, refs }),
-    gridOnQueryChange: gridOnQueryChange({ props, refs, constants, state }),
+    onCopying: onCopying({ state, vm }),
+    gridOnQueryChange: gridOnQueryChange({ props, vm, constants, state }),
     watchHoverIndex: watchHoverIndex({ state }),
     computeOptimizeOpts: computeOptimizeOpts({ props, state }),
-    getScrollListener: getScrollListener({ props, refs, state }),
+    getScrollListener: getScrollListener({ props, vm, state }),
     computeCollapseTags: computeCollapseTags(props),
-    computeMultipleLimit: computeMultipleLimit({ props, state })
+    computeMultipleLimit: computeMultipleLimit({ props, state }),
+    watchInputHover: watchInputHover({ vm }),
+    initQuery: initQuery({ props, state, constants, vm }),
+    updateModelValue: updateModelValue({ emit, state }),
+    computedTagsStyle: computedTagsStyle({ props, parent, state }),
+    computedReadonly: computedReadonly({ props, state }),
+    computedShowClose: computedShowClose({ props, state }),
+    computedCollapseTagSize: computedCollapseTagSize(state),
+    computedShowNewOption: computedShowNewOption({ props, state }),
+    computedShowCopy: computedShowCopy({ props, state }),
+    computedOptionsAllDisabled: computedOptionsAllDisabled(state),
+    computedDisabledTooltipContent: computedDisabledTooltipContent(state),
+    computedSelectDisabled: computedSelectDisabled({ props, parent }),
+    computedIsExpandAll: computedIsExpandAll(props),
+    watchInitValue: watchInitValue({ props, emit }),
+    watchShowClose: watchShowClose({ nextTick, state, parent })
   })
 
-  addApi({ api, props, state, refs, emit, constants, parent, nextTick, dispatch, vm, designConfig })
+  addApi({ api, props, state, emit, constants, parent, nextTick, dispatch, vm, designConfig })
 }
 
-const addWatch = ({ watch, props, api, state }) => {
+const addWatch = ({ watch, props, api, state, nextTick }) => {
   watch(() => [...state.options], api.watchOptions)
 
-  watch(() => state.gridData, api.setSelected, { immediate: true })
+  if (props.renderType === 'grid') {
+    watch(() => state.gridData, api.setSelected, { immediate: true })
+  }
 
-  watch(() => state.treeData, api.setSelected, { immediate: true })
+  if (props.renderType === 'tree') {
+    watch(() => state.treeData, api.setSelected, { immediate: true })
+  }
 
   watch(() => state.hoverIndex, api.watchHoverIndex)
 
-  props.options && watch(() => props.options, api.watchPropsOption, { immediate: true, deep: true })
+  if (props.options) {
+    watch(() => props.options, api.watchPropsOption, { immediate: true, deep: true })
+  }
 
   watch(() => state.optimizeOpts, api.watchOptimizeOpts)
+
+  watch([() => state.inputHovering, () => state.visible], api.watchInputHover)
+
+  watch(() => state.showClose, api.watchShowClose, { immediate: true })
+
+  watch(
+    () => state.selectHover,
+    () => props.hoverExpand && !props.disabled && !state.isDisplayOnly && nextTick(api.resetInputHeight)
+  )
 }
 
-const initWatch = ({ watch, props, api, state, nextTick, refs }) => {
-  props.treeOp.data &&
+const initWatch = ({ watch, props, api, state, nextTick }) => {
+  if (props.renderType === 'tree' && props.treeOp.data) {
     watch(
       () => props.treeOp.data,
       (data) => {
-        state.treeData = data
+        data && (state.treeData = data)
       },
       { immediate: true, deep: true }
     )
+  }
 
-  props.gridOp.data &&
+  if (props.renderType === 'grid' && props.gridOp.data) {
     watch(
       () => props.gridOp.data,
       (data) => {
-        state.gridData = data
+        data && (state.gridData = data)
       },
       { immediate: true, deep: true }
     )
+  }
 
   watch(
     () => state.selectDisabled,
@@ -405,37 +456,40 @@ const initWatch = ({ watch, props, api, state, nextTick, refs }) => {
   watch(() => props.modelValue, api.watchValue)
 
   watch(
-    () => state.visible,
-    (value) => {
-      if ((state.filterOrSearch || props.remote) && !value) {
-        refs.reference?.blur()
-      }
-
-      api.watchVisible(value)
-    }
+    () => props.extraQueryParams,
+    () => api.handleQueryChange(state.previousQuery, true),
+    { deep: true }
   )
 
-  addWatch({ watch, props, api, state })
+  watch(() => state.visible, api.watchVisible)
+
+  watch(() => state.initValue, api.watchInitValue, { deep: true })
+
+  addWatch({ watch, props, api, state, nextTick })
 }
 
 export const renderless = (
   props,
   { computed, onBeforeUnmount, onMounted, reactive, watch, provide },
-  { vm, refs, parent, emit, constants, nextTick, dispatch, t, emitter, designConfig }
+  { vm, parent, emit, constants, nextTick, dispatch, t, emitter, designConfig }
 ) => {
   const api = {}
-  const state = initState({ reactive, computed, props, api, emitter, parent, constants })
+  const state = initState({ reactive, computed, props, api, emitter, parent, constants, designConfig })
 
   provide('selectEmitter', state.selectEmitter)
   provide('selectVm', vm)
 
   const maskState = reactive({ width: '', height: '', top: '' })
 
-  initApi({ api, props, state, refs, emit, maskState, constants, parent, nextTick, dispatch, t, vm, designConfig })
-  initWatch({ watch, props, api, state, nextTick, refs })
+  initApi({ api, props, state, emit, maskState, constants, parent, nextTick, dispatch, t, vm, designConfig })
+  initWatch({ watch, props, api, state, nextTick })
 
   onMounted(api.mounted)
   onBeforeUnmount(api.unMount)
+
+  parent.$on('handle-clear', (event) => {
+    api.handleClearClick(event)
+  })
 
   if (props.multiple && !Array.isArray(props.modelValue)) {
     emit('update:modelValue', [])
@@ -447,6 +501,7 @@ export const renderless = (
 
   state.selectEmitter.on(constants.EVENT_NAME.handleOptionClick, api.handleOptionSelect)
   state.selectEmitter.on(constants.EVENT_NAME.setSelected, api.setSelected)
+  state.selectEmitter.on(constants.EVENT_NAME.initValue, api.initValue)
 
   return api
 }

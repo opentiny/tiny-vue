@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { KEY_CODE } from '../common'
 import { on, off, addClass, hasClass, removeClass } from '../common/deps/dom'
@@ -32,75 +32,91 @@ export const computedIsMsg = () => (props) => props.type === 'message'
 
 export const watchValue = (api) => (visible) => (visible ? api.open() : api.close('hide'))
 
-export const created = ({ api, props, state }) => () => {
-  if (props.modelValue) {
-    api.open()
+export const created =
+  ({ api, props, state }) =>
+  () => {
+    if (props.modelValue) {
+      api.open()
+    }
+
+    state.modalZindex = props.zIndex || PopupManager.nextZIndex()
   }
 
-  state.modalZindex = props.zIndex || PopupManager.nextZIndex()
-}
+export const mounted =
+  ({ api, parent, props, isMobileFirstMode }) =>
+  () => {
+    if (!isMobileFirstMode) {
+      let modalBoxElem = api.getBox()
 
-export const mounted = ({ api, parent, props, isMobileFirstMode }) => () => {
-  if (!isMobileFirstMode) {
-    let modalBoxElem = api.getBox()
+      Object.assign(modalBoxElem.style, {
+        width: props.width ? (isNaN(props.width) ? props.width : `${props.width}px`) : null,
 
-    Object.assign(modalBoxElem.style, {
-      width: props.width ? (isNaN(props.width) ? props.width : `${props.width}px`) : null,
+        height: props.height ? (isNaN(props.height) ? props.height : `${props.height}px`) : null
+      })
+    } else {
+      on(window, 'resize', api.resetDragStyle)
+    }
 
-      height: props.height ? (isNaN(props.height) ? props.height : `${props.height}px`) : null
-    })
-  } else {
-    on(window, 'resize', api.resetDragStyle)
+    if (props.escClosable) {
+      on(document, 'keydown', api.handleGlobalKeydownEvent)
+    }
+
+    document.body.appendChild(parent.$el)
   }
 
-  if (props.escClosable) {
-    on(document, 'keydown', api.handleGlobalKeydownEvent)
+export const beforeUnmouted =
+  ({ api, parent, isMobileFirstMode }) =>
+  () => {
+    isMobileFirstMode && off(window, 'resize', api.resetDragStyle)
+    off(document, 'keydown', api.handleGlobalKeydownEvent)
+    api.removeMsgQueue()
+
+    if (parent.$el.parentNode) {
+      parent.$el.parentNode.removeChild(parent.$el)
+    }
   }
 
-  document.body.appendChild(parent.$el)
-}
-
-export const beforeUnmouted = ({ api, parent, isMobileFirstMode }) => () => {
-  isMobileFirstMode && off(window, 'resize', api.resetDragStyle)
-  off(document, 'keydown', api.handleGlobalKeydownEvent)
-  api.removeMsgQueue()
-
-  if (parent.$el.parentNode) {
-    parent.$el.parentNode.removeChild(parent.$el)
-  }
-}
-
-export const selfClickEvent = ({ api, parent, props }) => (event) => {
-  if (props.maskClosable && event.target === parent.$el) {
-    api.close('mask')
-  }
-}
-
-export const updateZindex = ({ state, props }) => () => {
-  state.modalZindex = props.zIndex || PopupManager.nextZIndex()
-}
-
-export const handleEvent = ({ api, emit, parent, props, isMobileFirstMode }) => (type, event, options) => {
-  // close,confirm,cancel
-  if (~['close', 'confirm', 'cancel'].indexOf(type) && typeof props.beforeClose === 'function' && props.beforeClose(type) === false) {
-    return
+export const selfClickEvent =
+  ({ api, parent, props }) =>
+  (event) => {
+    if (props.maskClosable && event.target === parent.$el) {
+      api.close('mask')
+    }
   }
 
-  const { events = {} } = parent
-
-  const params = {
-    type,
-    $modal: parent
+export const updateZindex =
+  ({ state, props }) =>
+  () => {
+    state.modalZindex = props.zIndex || PopupManager.nextZIndex()
   }
 
-  if (isMobileFirstMode && type === 'confirm') {
-    params.options = options
-  }
+export const handleEvent =
+  ({ api, emit, parent, props, isMobileFirstMode }) =>
+  (type, event, options) => {
+    // close,confirm,cancel
+    if (
+      ~['close', 'confirm', 'cancel'].indexOf(type) &&
+      typeof props.beforeClose === 'function' &&
+      props.beforeClose(type) === false
+    ) {
+      return
+    }
 
-  emit(type, params, event)
-  events[type] && events[type].call(parent, params)
-  api.close(type)
-}
+    const { events = {} } = parent
+
+    const params = {
+      type,
+      $modal: parent
+    }
+
+    if (isMobileFirstMode && type === 'confirm') {
+      params.options = options
+    }
+
+    emit(type, params, event)
+    events[type] && events[type].call(parent, params)
+    api.close(type)
+  }
 
 export const closeEvent = (api) => (event) => {
   api.handleEvent('close', event)
@@ -114,121 +130,137 @@ export const cancelEvent = (api) => (event) => {
   api.handleEvent('cancel', event)
 }
 
-export const open = ({ api, emit, nextTick, parent, props, state, isMobileFirstMode }) => () => {
-  let { $listeners, events = {} } = parent
+export const open =
+  ({ api, emit, nextTick, parent, props, state, isMobileFirstMode }) =>
+  () => {
+    let { $listeners, events = {} } = parent
 
-  if (!state.visible) {
-    let params = { type: 'show', $modal: parent }
+    if (!state.visible) {
+      let params = { type: 'show', $modal: parent }
 
-    state.visible = true
-    state.contentVisible = false
-    api.updateZindex()
+      state.visible = true
+      state.contentVisible = false
+      api.updateZindex()
 
-    if (!events.show) {
-      emit('update:modelValue', true)
-      emit('show', params)
-    }
-
-    setTimeout(() => {
-      state.contentVisible = true
-
-      if (!$listeners.show && events.show) {
-        nextTick(() => {
-          events.show.call(parent, params)
-        })
+      if (!events.show) {
+        emit('update:modelValue', true)
+        emit('show', params)
       }
-    }, 10)
-
-    if (state.isMsg) {
-      api.addMsgQueue()
 
       setTimeout(() => {
-        api.close(params.type)
-      }, parseFloat(props.duration))
-    } else {
-      nextTick(() => {
-        if (!isMobileFirstMode) {
-          let modalBoxElem = api.getBox()
+        state.contentVisible = true
 
-          let clientVisibleWidth = document.documentElement.clientWidth || document.body.clientWidth
+        if (!$listeners.show && events.show) {
+          nextTick(() => {
+            events.show.call(parent, params)
+          })
+        }
+      }, 10)
 
-          let clientVisibleHeight = document.documentElement.clientHeight || document.body.clientHeight
+      if (state.isMsg) {
+        api.addMsgQueue()
 
-          modalBoxElem.style.left = `${clientVisibleWidth / 2 - modalBoxElem.offsetWidth / 2}px`
+        setTimeout(() => {
+          api.close(params.type)
+        }, parseFloat(props.duration))
+      } else {
+        nextTick(() => {
+          if (!isMobileFirstMode) {
+            let modalBoxElem = api.getBox()
 
-          if (modalBoxElem.offsetHeight + modalBoxElem.offsetTop + props.marginSize > clientVisibleHeight) {
-            modalBoxElem.style.top = `${props.marginSize}px`
+            let clientVisibleWidth = document.documentElement.clientWidth || document.body.clientWidth
+
+            let clientVisibleHeight = document.documentElement.clientHeight || document.body.clientHeight
+
+            modalBoxElem.style.left = `${clientVisibleWidth / 2 - modalBoxElem.offsetWidth / 2}px`
+
+            if (modalBoxElem.offsetHeight + modalBoxElem.offsetTop + props.marginSize > clientVisibleHeight) {
+              modalBoxElem.style.top = `${props.marginSize}px`
+            }
           }
-        }
 
-        if (props.fullscreen) {
-          nextTick(api.maximize)
-        }
-      })
+          if (props.fullscreen) {
+            nextTick(api.maximize)
+          }
+        })
+      }
     }
   }
-}
 
-export const addMsgQueue = ({ api, parent }) => () => {
-  if (!~MsgQueue.indexOf(parent)) {
-    MsgQueue.push(parent)
+export const addMsgQueue =
+  ({ api, parent }) =>
+  () => {
+    if (!~MsgQueue.indexOf(parent)) {
+      MsgQueue.push(parent)
+    }
+
+    api.updateStyle()
   }
 
-  api.updateStyle()
-}
+export const removeMsgQueue =
+  ({ api, parent }) =>
+  () => {
+    const index = MsgQueue.indexOf(parent)
 
-export const removeMsgQueue = ({ api, parent }) => () => {
-  const index = MsgQueue.indexOf(parent)
+    if (~index) {
+      MsgQueue.splice(index, 1)
+    }
 
-  if (~index) {
-    MsgQueue.splice(index, 1)
+    api.updateStyle()
   }
 
-  api.updateStyle()
-}
+export const updateStyle =
+  ({ nextTick, props }) =>
+  () => {
+    nextTick(() => {
+      let offsetTop = 0
+      let distance = props.top
 
-export const updateStyle = (nextTick) => () => {
-  nextTick(() => {
-    let offsetTop = 0
+      MsgQueue.forEach((comp) => {
+        offsetTop += parseFloat(distance)
+        comp.state.modalTop = offsetTop
 
-    MsgQueue.forEach((comp) => {
-      offsetTop += parseFloat(comp.top)
-      comp.state.modalTop = offsetTop
+        const modalBox = comp.$refs.modalBox
 
-      const modalBox = comp.$el.querySelector('.tiny-modal__box')
-
-      offsetTop += modalBox.clientHeight
+        offsetTop += modalBox.clientHeight
+        distance = 15
+      })
     })
-  })
-}
-
-export const close = ({ emit, parent, props, state }) => (type) => {
-  // esc,hide,mask,show,...
-  if (!~['close', 'confirm', 'cancel'].indexOf(type) && typeof props.beforeClose === 'function' && props.beforeClose(type) === false) {
-    return
   }
 
-  let { events = {} } = parent
+export const close =
+  ({ emit, parent, props, state }) =>
+  (type) => {
+    // esc,hide,mask,show,...
+    if (
+      !~['close', 'confirm', 'cancel'].indexOf(type) &&
+      typeof props.beforeClose === 'function' &&
+      props.beforeClose(type) === false
+    ) {
+      return
+    }
 
-  state.emitter.emit('boxclose', props.isFormReset)
+    let { events = {} } = parent
 
-  if (state.visible) {
-    state.contentVisible = false
+    state.emitter.emit('boxclose', props.isFormReset)
 
-    setTimeout(() => {
-      state.visible = false
+    if (state.visible) {
+      state.contentVisible = false
 
-      let params = { type, $modal: parent }
+      setTimeout(() => {
+        state.visible = false
 
-      if (events.hide) {
-        events.hide.call(parent, params)
-      } else {
-        emit('update:modelValue', false)
-        emit('hide', params)
-      }
-    }, 200)
+        let params = { type, $modal: parent }
+
+        if (events.hide) {
+          events.hide.call(parent, params)
+        } else {
+          emit('update:modelValue', false)
+          emit('hide', params)
+        }
+      }, 200)
+    }
   }
-}
 
 export const handleGlobalKeydownEvent = (api) => (event) => {
   if (event.keyCode === KEY_CODE.Escape) {
@@ -238,65 +270,71 @@ export const handleGlobalKeydownEvent = (api) => (event) => {
 
 export const getBox = (refs) => () => refs.modalBox
 
-export const maximize = ({ api, nextTick, props, state, isMobileFirstMode }) => () =>
-  nextTick().then(() => {
-    if (!state.zoomLocat) {
-      let marginSize = props.marginSize
-      let modalBoxElement = api.getBox()
-      let { visibleHeight, visibleWidth } = getDomNode()
+export const maximize =
+  ({ api, nextTick, props, state, isMobileFirstMode }) =>
+  () =>
+    nextTick().then(() => {
+      if (!state.zoomLocat) {
+        let marginSize = props.marginSize
+        let modalBoxElement = api.getBox()
+        let { visibleHeight, visibleWidth } = getDomNode()
 
-      state.zoomLocat = {
-        top: modalBoxElement.offsetTop,
-        left: modalBoxElement.offsetLeft,
-        width: modalBoxElement.clientWidth,
-        height: modalBoxElement.clientHeight
+        state.zoomLocat = {
+          top: modalBoxElement.offsetTop,
+          left: modalBoxElement.offsetLeft,
+          width: modalBoxElement.clientWidth,
+          height: modalBoxElement.clientHeight
+        }
+
+        if (!isMobileFirstMode) {
+          Object.assign(modalBoxElement.style, {
+            width: `${visibleWidth - marginSize * 2}px`,
+            height: `${visibleHeight - marginSize * 2}px`,
+            top: `${marginSize}px`,
+            left: `${marginSize}px`
+          })
+        }
+
+        state.emitter.emit('boxdrag')
       }
+    })
 
-      if (!isMobileFirstMode) {
-        Object.assign(modalBoxElement.style, {
-          width: `${visibleWidth - marginSize * 2}px`,
-          height: `${visibleHeight - marginSize * 2}px`,
-          top: `${marginSize}px`,
-          left: `${marginSize}px`
-        })
+export const revert =
+  ({ api, nextTick, state, isMobileFirstMode }) =>
+  () =>
+    nextTick().then(() => {
+      let zoomLocat = state.zoomLocat
+
+      if (zoomLocat) {
+        let modalBoxElement = api.getBox()
+
+        state.zoomLocat = null
+
+        if (!isMobileFirstMode) {
+          Object.assign(modalBoxElement.style, {
+            width: `${zoomLocat.width}px`,
+            height: `${zoomLocat.height}px`,
+            top: `${zoomLocat.top}px`,
+            left: `${zoomLocat.left}px`
+          })
+        }
+
+        state.emitter.emit('boxdrag')
       }
+    })
 
-      state.emitter.emit('boxdrag')
-    }
-  })
+export const toggleZoomEvent =
+  ({ api, emit, parent, state, isMobileFirstMode }) =>
+  (event) => {
+    let params = { type: state.zoomLocat ? 'min' : 'max', $modal: parent }
+    const callback = state.zoomLocat ? api.revert : api.maximize
 
-export const revert = ({ api, nextTick, state, isMobileFirstMode }) => () =>
-  nextTick().then(() => {
-    let zoomLocat = state.zoomLocat
+    isMobileFirstMode && api.resetDragStyle()
 
-    if (zoomLocat) {
-      let modalBoxElement = api.getBox()
-
-      state.zoomLocat = null
-
-      if (!isMobileFirstMode) {
-        Object.assign(modalBoxElement.style, {
-          width: `${zoomLocat.width}px`,
-          height: `${zoomLocat.height}px`,
-          top: `${zoomLocat.top}px`,
-          left: `${zoomLocat.left}px`
-        })
-      }
-
-      state.emitter.emit('boxdrag')
-    }
-  })
-
-export const toggleZoomEvent = ({ api, emit, parent, state, isMobileFirstMode }) => (event) => {
-  let params = { type: state.zoomLocat ? 'min' : 'max', $modal: parent }
-  const callback = state.zoomLocat ? api.revert : api.maximize
-
-  isMobileFirstMode && api.resetDragStyle()
-
-  return callback().then(() => {
-    emitZoom({ params, parent, emit, event })
-  })
-}
+    return callback().then(() => {
+      emitZoom({ params, parent, emit, event })
+    })
+  }
 
 function getEventTargetNode(event, container, queryCls) {
   let targetElem
@@ -319,69 +357,70 @@ function getEventTargetNode(event, container, queryCls) {
   return { flag: false }
 }
 
-export const mousedownEvent = ({ api, nextTick, props, state, emit, isMobileFirstMode }) => (event) => {
-  let modalBoxElement = api.getBox()
-  if (!state.zoomLocat && event.button === 0 && !getEventTargetNode(event, modalBoxElement, 'trigger__btn').flag) {
-    event.preventDefault()
-    let demMousemove = document.onmousemove
-    let demMouseup = document.onmouseup
-    let disX = event.clientX - modalBoxElement.offsetLeft
-    let disY = event.clientY - modalBoxElement.offsetTop
-    let { visibleHeight, visibleWidth } = getDomNode()
-    document.onmousemove = (event) => {
+export const mousedownEvent =
+  ({ api, nextTick, props, state, emit, isMobileFirstMode }) =>
+  (event) => {
+    let modalBoxElement = api.getBox()
+    if (!state.zoomLocat && event.button === 0 && !getEventTargetNode(event, modalBoxElement, 'trigger__btn').flag) {
       event.preventDefault()
-      state.emitter.emit('boxdrag')
-      let offsetWidth = modalBoxElement.offsetWidth
-      let offsetHeight = modalBoxElement.offsetHeight
-      let left = event.clientX - disX
-      let top = event.clientY - disY
-      let minX, maxX, minY, maxY
+      let demMousemove = document.onmousemove
+      let demMouseup = document.onmouseup
+      let disX = event.clientX - modalBoxElement.offsetLeft
+      let disY = event.clientY - modalBoxElement.offsetTop
+      let { visibleHeight, visibleWidth } = getDomNode()
+      document.onmousemove = (event) => {
+        event.preventDefault()
+        state.emitter.emit('boxdrag')
+        let offsetWidth = modalBoxElement.offsetWidth
+        let offsetHeight = modalBoxElement.offsetHeight
+        let left = event.clientX - disX
+        let top = event.clientY - disY
+        let minX, maxX, minY, maxY
 
-      
-      if (isMobileFirstMode) {
-        minX = offsetWidth / 2 + props.marginSize
-        maxX = visibleWidth - offsetWidth / 2 - props.marginSize
-        minY = offsetHeight / 2 + props.marginSize
-        maxY = visibleHeight - offsetHeight / 2 - props.marginSize
-      } else {
-        minX = props.marginSize
-        maxX = visibleWidth - offsetWidth - props.marginSize
-        minY = props.marginSize
-        maxY = visibleHeight - offsetHeight - props.marginSize
+        if (isMobileFirstMode) {
+          minX = offsetWidth / 2 + props.marginSize
+          maxX = visibleWidth - offsetWidth / 2 - props.marginSize
+          minY = offsetHeight / 2 + props.marginSize
+          maxY = visibleHeight - offsetHeight / 2 - props.marginSize
+        } else {
+          minX = props.marginSize
+          maxX = visibleWidth - offsetWidth - props.marginSize
+          minY = props.marginSize
+          maxY = visibleHeight - offsetHeight - props.marginSize
+        }
+
+        if (left < minX) {
+          left = minX
+        }
+        if (left > maxX) {
+          left = maxX
+        }
+        if (top < minY) {
+          top = minY
+        }
+        if (top > maxY) {
+          top = maxY
+        }
+
+        modalBoxElement.style.left = `${left}px`
+        modalBoxElement.style.top = `${top}px`
+
+        addClass(modalBoxElement, DragClass)
+
+        emit('custom-mousemove', event)
       }
 
-      if (left < minX) {
-        left = minX
+      document.onmouseup = (event) => {
+        document.onmousemove = demMousemove
+        document.onmouseup = demMouseup
+        nextTick(() => {
+          removeClass(modalBoxElement, DragClass)
+        })
+        emit('custom-mouseup', event)
       }
-      if (left > maxX) {
-        left = maxX
-      }
-      if (top < minY) {
-        top = minY
-      }
-      if (top > maxY) {
-        top = maxY
-      }
-
-      modalBoxElement.style.left = `${left}px`
-      modalBoxElement.style.top = `${top}px`
-
-      addClass(modalBoxElement, DragClass)
-
-      emit('custom-mousemove', event)
+      emit('custom-mousedown', event)
     }
-
-    document.onmouseup = (event) => {
-      document.onmousemove = demMousemove
-      document.onmouseup = demMouseup
-      nextTick(() => {
-        removeClass(modalBoxElement, DragClass)
-      })
-      emit('custom-mouseup', event)
-    }
-    emit('custom-mousedown', event)
   }
-}
 
 const computeLeft = ({ width, offsetWidth, x, minWidth, temp, offsetLeft, marginSize, left }) => {
   width = offsetWidth - x
@@ -584,55 +623,57 @@ export const updateFormTip = (parent) => {
   }
 }
 
-export const dragEvent = ({ api, emit, parent, props, state }) => (event) => {
-  event.preventDefault()
+export const dragEvent =
+  ({ api, emit, parent, props, state }) =>
+  (event) => {
+    event.preventDefault()
 
-  const delta = { x: 0, y: 0 }
-  const { visibleHeight, visibleWidth } = getDomNode()
-  const modalBoxElem = api.getBox()
-  const demMousemove = document.onmousemove
-  const demMouseup = document.onmouseup
+    const delta = { x: 0, y: 0 }
+    const { visibleHeight, visibleWidth } = getDomNode()
+    const modalBoxElem = api.getBox()
+    const demMousemove = document.onmousemove
+    const demMouseup = document.onmouseup
 
-  const params = {
-    props,
-    offsetTop: modalBoxElem.offsetTop,
-    offsetLeft: modalBoxElem.offsetLeft,
-    visibleWidth,
-    modalBoxElem,
-    visibleHeight,
-    disX: event.clientX,
-    disY: event.clientY,
-    type: event.target.dataset.type
+    const params = {
+      props,
+      offsetTop: modalBoxElem.offsetTop,
+      offsetLeft: modalBoxElem.offsetLeft,
+      visibleWidth,
+      modalBoxElem,
+      visibleHeight,
+      disX: event.clientX,
+      disY: event.clientY,
+      type: event.target.dataset.type
+    }
+
+    document.onmousemove = (event) => {
+      updateFormTip(parent)
+      updateDelta({ event, delta, state })
+      setModalBoxStyle({ params, delta })
+
+      delta.x = delta.y = 0
+
+      addClass(modalBoxElem, DragClass)
+
+      emitZoom({
+        params: { type: 'resize', $modal: parent },
+        parent,
+        emit,
+        event
+      })
+    }
+
+    document.onmouseup = () => {
+      state.zoomLocat = null
+      document.onmousemove = demMousemove
+      document.onmouseup = demMouseup
+
+      setTimeout(() => {
+        removeClass(modalBoxElem, DragClass)
+        state.prevEvent = null
+      }, 50)
+    }
   }
-
-  document.onmousemove = (event) => {
-    updateFormTip(parent)
-    updateDelta({ event, delta, state })
-    setModalBoxStyle({ params, delta })
-
-    delta.x = delta.y = 0
-
-    addClass(modalBoxElem, DragClass)
-
-    emitZoom({
-      params: { type: 'resize', $modal: parent },
-      parent,
-      emit,
-      event
-    })
-  }
-
-  document.onmouseup = () => {
-    state.zoomLocat = null
-    document.onmousemove = demMousemove
-    document.onmouseup = demMouseup
-
-    setTimeout(() => {
-      removeClass(modalBoxElem, DragClass)
-      state.prevEvent = null
-    }, 50)
-  }
-}
 
 export const resetFormTip = (parent, isFormReset = true) => {
   const formList = findFormComponent(parent)

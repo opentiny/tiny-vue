@@ -32,7 +32,19 @@ export function handleActivedCanActive({ editConfig, params }) {
   return !editConfig.activeMethod || editConfig.activeMethod(params)
 }
 
-export function handleActivedDoActive({ _vm, actived, canActive, cell, column, editConfig, event, params, row, tableColumn, type }) {
+export function handleActivedDoActive({
+  _vm,
+  actived,
+  canActive,
+  cell,
+  column,
+  editConfig,
+  event,
+  params,
+  row,
+  tableColumn,
+  type
+}) {
   if (canActive) {
     if (_vm.keyboardConfig || _vm.mouseConfig) {
       _vm.clearCopyed(event)

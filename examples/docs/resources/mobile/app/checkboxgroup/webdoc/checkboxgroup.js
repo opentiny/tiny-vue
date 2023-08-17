@@ -6,49 +6,49 @@ export default {
       demoId: 'disabled',
       name: {
         'zh-CN': '是否禁用',
-        'en-US': 'button type',
+        'en-US': 'button type'
       },
       desc: {
         'zh-CN': '<p>是否禁用</p>',
-        'en-US': '<p>button type</p>',
+        'en-US': '<p>button type</p>'
       },
-      codeFiles: ['disabled.vue'],
+      codeFiles: ['disabled.vue']
     },
     {
       demoId: 'event-change',
       name: {
         'zh-CN': '事件',
-        'en-US': 'button round',
+        'en-US': 'button round'
       },
       desc: {
         'zh-CN': '<p>事件</p>',
-        'en-US': '<p>button round</p>',
+        'en-US': '<p>button round</p>'
       },
-      codeFiles: ['event-change.vue'],
+      codeFiles: ['event-change.vue']
     },
     {
       demoId: 'min-max',
       name: {
         'zh-CN': '可选数量',
-        'en-US': 'events',
+        'en-US': 'events'
       },
       desc: {
         'zh-CN': '<p>可选数量</p>',
-        'en-US': '<p>bbutton click</p>',
+        'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['min-max.vue'],
+      codeFiles: ['min-max.vue']
     },
     {
       demoId: 'vertical',
       name: {
         'zh-CN': '垂直排列',
-        'en-US': 'events',
+        'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>垂直排列</p>',
+        'zh-CN': '<p>垂直排列</p>'
       },
-      codeFiles: ['vertical.vue'],
-    },
+      codeFiles: ['vertical.vue']
+    }
   ],
   apis: [
     {
@@ -61,9 +61,9 @@ export default {
           defaultValue: 'false',
           desc: {
             'zh-CN': '<p>是否禁用，该属性默认为false</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'disabled',
+          demoId: 'disabled'
         },
 
         {
@@ -72,9 +72,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>可被勾选的 checkbox 的最大数量</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'min-max',
+          demoId: 'min-max'
         },
         {
           name: 'min',
@@ -82,9 +82,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>可被勾选的 checkbox 的最小数量</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'min-max',
+          demoId: 'min-max'
         },
         {
           name: 'value / v-model',
@@ -92,9 +92,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>绑定值</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'dedisabled',
+          demoId: 'dedisabled'
         },
 
         {
@@ -103,10 +103,10 @@ export default {
           defaultValue: 'false',
           desc: {
             'zh-CN': '<p>是否竖向模式</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'vertical',
-        },
+          demoId: 'vertical'
+        }
       ],
       events: [
         {
@@ -115,11 +115,11 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>当绑定值变化时触发的事件,该事件可获取更新后的值</p>',
-            'en-US': 'Click',
+            'en-US': 'Click'
           },
-          demoId: 'event-change',
-        },
-      ],
-    },
-  ],
+          demoId: 'event-change'
+        }
+      ]
+    }
+  ]
 }

@@ -8,8 +8,8 @@
 .@{tree-prefix-cls} {
   @apply relative;
   @apply cursor-default;
-  @apply bg-color-bg-1; 
-  @apply text-color-text-primary; 
+  @apply bg-color-bg-1;
+  @apply text-color-text-primary;
 
   &__empty-block {
     @apply relative;
@@ -65,10 +65,10 @@
       @apply items-center;
       padding: 7px 0 7px 12px;
 
-      .@{switch-prefix-cls}.mini{
+      .@{switch-prefix-cls}.mini {
         @apply grow-0 shrink-0 ~"basis-[auto]";
       }
-      
+
       .@{tree-prefix-cls}__bottom-text {
         @apply ~"ml-2.5";
       }
@@ -142,7 +142,7 @@
 .@{tree-prefix-cls}__del-popover {
   .@{tree-prefix-cls}__del-body {
     @apply flex;
-    
+
     .@{tree-prefix-cls}__del-icon {
       @apply mr-2;
 
@@ -154,14 +154,12 @@
     .@{tree-prefix-cls}__del-checkbox {
       @apply mt-3;
     }
-    
   }
   .@{tree-prefix-cls}__del-footer {
     @apply flex;
     @apply justify-end;
     @apply mt-3;
   }
-
 }
 
 .@{tree-node-prefix-cls} {
@@ -180,7 +178,7 @@
 
   &.is-current > &__content {
     @apply text-color-brand;
-    @apply bg-color-brand-hover-subtler; 
+    @apply bg-color-brand-hover-subtler;
   }
 
   &:not(.is-focusable) {
@@ -193,7 +191,7 @@
 
   &.is-drop-inner > &__content &__label {
     @apply bg-color-brand-hover;
-    @apply text-color-text-inverse; 
+    @apply text-color-text-inverse;
   }
 
   &__content {
@@ -232,14 +230,13 @@
     }
   }
 
-  
   .tree-node-icon {
     @apply flex;
   }
 
   &__expand-icon {
     @apply cursor-pointer;
-    @apply fill-color-none-active; 
+    @apply fill-color-none-active;
     @apply text-xs;
     @apply rotate-0;
     transition: transform 0.3s ease-in-out;
@@ -248,7 +245,7 @@
     &.expanded {
       @apply rotate-90;
     }
-    
+
     &.is-saas-theme {
       @apply -rotate-90;
 
@@ -260,7 +257,7 @@
     &.is-leaf {
       @apply invisible;
     }
-    
+
     &:hover {
       @apply fill-color-brand;
     }
@@ -274,7 +271,7 @@
   &__loading.circular {
     @apply my-0 mx-2;
     @apply text-2xl;
-    @apply fill-color-brand; 
+    @apply fill-color-brand;
     animation: loading-rotate 2s linear infinite;
 
     .path {
@@ -322,7 +319,9 @@
   }
 
   .collapse-transition {
-    transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out,
+    transition:
+      0.3s height ease-in-out,
+      0.3s padding-top ease-in-out,
       0.3s padding-bottom ease-in-out;
   }
 }

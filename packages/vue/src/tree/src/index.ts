@@ -75,12 +75,16 @@ export default defineComponent({
     nodeKey: String,
     parentKey: String,
     props: {
-      default() {
-        return {
+      default(context) {
+        const ctx = this || context
+        const { lazy } = ctx
+        const defaultProps = {
           children: 'children',
           label: 'label',
           disabled: 'disabled'
         }
+        lazy && Object.assign(defaultProps, { isLeaf: 'isLeaf' })
+        return defaultProps
       }
     },
     renderAfterExpand: {
@@ -100,7 +104,47 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    shrinkIcon: Object
+    showNumber: {
+      type: Boolean,
+      default: false
+    },
+    collapsible: {
+      type: Boolean,
+      default: true
+    },
+    showCheckEasily: {
+      type: Boolean,
+      default: false
+    },
+    nodeHeight: Number,
+    shrinkIcon: Object,
+    expandIconColor: String,
+    shrinkIconColor: String,
+    size: {
+      type: String,
+      default: 'medium'
+    },
+    deleteDisabledKeys: Array,
+    editDisabledKeys: Array,
+    addDisabledKeys: Array,
+    theme: String,
+    viewType: {
+      type: String,
+      default: 'tree',
+      validator: (value) => ~['tree', 'plain'].indexOf(value)
+    },
+    pathSplit: {
+      type: String,
+      default: '/'
+    },
+    filterPlainMethod: Function,
+    afterLoad: Function,
+    lazyCurrent: Boolean,
+    baseIndent: {
+      type: Number,
+      default: 0
+    },
+    showLine: Boolean
   },
   setup(props, context) {
     return $setup({ props, context, template })

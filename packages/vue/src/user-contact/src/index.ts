@@ -27,9 +27,9 @@ export default defineComponent({
     },
 
     /**
-     * 是否显示 userDescription, colType 为 false 时生效
+     *  是否显示 roleNumber, colType 为 false 时生效
      */
-    showDescription: {
+    showNumber: {
       type: Boolean,
       default: true
     },

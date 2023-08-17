@@ -48,7 +48,11 @@ export const api = [
   'clickA'
 ]
 
-export const renderless = (props, { reactive, watch, computed, onMounted }, { t, service, nextTick, constants, emit, refs }) => {
+export const renderless = (
+  props,
+  { reactive, watch, computed, onMounted },
+  { t, service, nextTick, constants, emit, refs }
+) => {
   const api = {}
 
   const state = reactive({

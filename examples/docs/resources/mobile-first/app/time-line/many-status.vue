@@ -1,6 +1,5 @@
 <template>
-  <tiny-time-line :data="data" :show-number="false">
-  </tiny-time-line>
+  <tiny-time-line :data="data" :show-number="false"> </tiny-time-line>
 </template>
 
 <script>

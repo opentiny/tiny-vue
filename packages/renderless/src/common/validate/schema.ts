@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { format, complementError, asyncMap, warning, deepMerge, convertFieldsError } from './util'
 import { hasOwn, isFunction } from '../type'
@@ -51,7 +51,9 @@ const getCompleteFn = (validCallback) => (results) => {
 }
 
 const isDeep = (rule, data) => {
-  let deep = (rule.type === 'object' || rule.type === 'array') && (typeof rule.fields === 'object' || typeof rule.defaultField === 'object')
+  let deep =
+    (rule.type === 'object' || rule.type === 'array') &&
+    (typeof rule.fields === 'object' || typeof rule.defaultField === 'object')
 
   deep = deep && (rule.required || (!rule.required && data.value))
 
@@ -119,55 +121,59 @@ const setDataRuleOptions = ({ data, options }) => {
   }
 }
 
-const getValidateCallback = ({ failds, doIt }) => (errs) => {
-  const finalErrors = []
+const getValidateCallback =
+  ({ failds, doIt }) =>
+  (errs) => {
+    const finalErrors = []
 
-  if (failds && failds.length) {
-    finalErrors.push(...failds)
+    if (failds && failds.length) {
+      finalErrors.push(...failds)
+    }
+
+    if (errs && errs.length) {
+      finalErrors.push(...errs)
+    }
+
+    doIt(finalErrors.length ? finalErrors : null)
   }
 
-  if (errs && errs.length) {
-    finalErrors.push(...errs)
-  }
+const asyncCallback =
+  (options, rule, errorFields, doIt, data) =>
+  (e = []) => {
+    let failds = e
+    const deep = isDeep(rule, data)
 
-  doIt(finalErrors.length ? finalErrors : null)
-}
+    failds = arrayed(failds)
 
-const asyncCallback = (options, rule, errorFields, doIt, data) => (e = []) => {
-  let failds = e
-  const deep = isDeep(rule, data)
+    if (!options.suppressWarning && failds.length) {
+      Schema.warning('async-validator:', failds)
+    }
 
-  failds = arrayed(failds)
+    if (failds.length && rule.message) {
+      failds = [].concat(rule.message)
+    }
 
-  if (!options.suppressWarning && failds.length) {
-    Schema.warning('async-validator:', failds)
-  }
+    failds = failds.map(complementError(rule))
 
-  if (failds.length && rule.message) {
-    failds = [].concat(rule.message)
-  }
-
-  failds = failds.map(complementError(rule))
-
-  if (options.first && failds.length) {
-    errorFields[rule.field] = 1
-    return doIt(failds)
-  }
-
-  if (deep) {
-    if (rule.required && !data.value) {
-      failds = getRequiredErrorFeilds({ rule, failds, options })
-
+    if (options.first && failds.length) {
+      errorFields[rule.field] = 1
       return doIt(failds)
     }
-    const schema = new Schema(getFieldsSchema(rule, data))
-    schema.messages(options.messages)
-    setDataRuleOptions({ data, options })
-    schema.validate(data.value, data.rule.options || options, getValidateCallback({ failds, doIt }))
-  } else {
-    doIt(failds)
+
+    if (deep) {
+      if (rule.required && !data.value) {
+        failds = getRequiredErrorFeilds({ rule, failds, options })
+
+        return doIt(failds)
+      }
+      const schema = new Schema(getFieldsSchema(rule, data))
+      schema.messages(options.messages)
+      setDataRuleOptions({ data, options })
+      schema.validate(data.value, data.rule.options || options, getValidateCallback({ failds, doIt }))
+    } else {
+      doIt(failds)
+    }
   }
-}
 
 Schema.prototype = {
   messages(messages) {

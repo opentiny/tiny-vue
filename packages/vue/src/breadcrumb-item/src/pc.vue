@@ -16,8 +16,11 @@
         <span>{{ label }}</span>
       </slot>
     </span>
-    <component v-if="breadcrumb.separatorIcon" :is="breadcrumb.separatorIcon"
-      class="tiny-svg-size tiny-breadcrumb__separator-cls" />
+    <component
+      v-if="breadcrumb.separatorIcon"
+      :is="breadcrumb.separatorIcon"
+      class="tiny-svg-size tiny-breadcrumb__separator-cls"
+    />
     <span v-else class="tiny-breadcrumb__separator">{{ breadcrumb.separator }}</span>
   </span>
 </template>

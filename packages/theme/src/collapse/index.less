@@ -57,7 +57,8 @@
   &zoom-in-top-leave-active {
     opacity: 1;
     transform: scaleY(1);
-    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    transition:
+      transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
       opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     transform-origin: center top;
   }
@@ -73,7 +74,8 @@
   &zoom-in-bottom-leave-active {
     opacity: 1;
     transform: scaleY(1);
-    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    transition:
+      transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
       opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     transform-origin: center bottom;
   }
@@ -89,7 +91,8 @@
   &zoom-in-left-leave-active {
     opacity: 1;
     transform: scale(1, 1);
-    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    transition:
+      transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
       opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     transform-origin: top left;
   }
@@ -119,12 +122,16 @@
 }
 
 .collapse-transition {
-  transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out,
+  transition:
+    0.3s height ease-in-out,
+    0.3s padding-top ease-in-out,
     0.3s padding-bottom ease-in-out;
 }
 
 .horizontal-collapse-transition {
-  transition: 0.3s width ease-in-out, 0.3s padding-left ease-in-out,
+  transition:
+    0.3s width ease-in-out,
+    0.3s padding-left ease-in-out,
     0.3s padding-right ease-in-out;
 }
 

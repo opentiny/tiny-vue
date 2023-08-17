@@ -140,6 +140,22 @@ export const renderless = (
   })
 
   watch(() => props.modelValue, api.watchModelValue, { immediate: true })
+  watch(
+    () => props.min,
+    (min) => {
+      const value = Math.max(props.modelValue, min)
+      api.initSlider(value)
+      api.setActiveButtonValue(value)
+    }
+  )
+  watch(
+    () => props.max,
+    (max) => {
+      const value = Math.min(props.modelValue, max)
+      api.initSlider(Math.min(props.modelValue, max))
+      api.setActiveButtonValue(value)
+    }
+  )
   watch(() => state.activeValue, api.watchActiveValue, { immediate: true })
 
   onMounted(() => {

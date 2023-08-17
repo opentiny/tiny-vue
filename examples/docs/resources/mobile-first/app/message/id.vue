@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { Button, Modal } from '@opentiny/vue'
+import { Button } from '@opentiny/vue'
 
 export default {
   components: {

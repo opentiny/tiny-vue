@@ -18,7 +18,13 @@
             <div class="tiny-mobile-wheel__wheel__wrapper" ref="wheelWrapper">
               <div class="wheel" v-for="(data, index) in state.pickerData" :key="index">
                 <ul class="wheel__scroll_hasFooter" v-if="hasFooter">
-                  <li v-for="item in data" :key="item.label" :class="[item.selected ? 'wheel__item__selected' : '', 'wheel__item']">{{ item.label }}</li>
+                  <li
+                    v-for="item in data"
+                    :key="item.label"
+                    :class="[item.selected ? 'wheel__item__selected' : '', 'wheel__item']"
+                  >
+                    {{ item.label }}
+                  </li>
                 </ul>
                 <ul class="wheel__scroll_noFooter" v-else>
                   <li
@@ -46,6 +52,7 @@ import { renderless, api } from '@opentiny/vue-renderless/wheel/vue'
 import { IconYes } from '@opentiny/vue-icon'
 import BScroll from '@better-scroll/core'
 import Wheel from '@better-scroll/wheel'
+
 BScroll.use(Wheel)
 
 export default defineComponent({

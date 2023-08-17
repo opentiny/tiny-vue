@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { TimeLine, Modal } from '@opentiny/vue'
+import { TimeLine } from '@opentiny/vue'
 
 export default {
   components: {

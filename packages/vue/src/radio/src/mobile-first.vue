@@ -20,8 +20,16 @@
     @keydown.space.stop.prevent="state.model = state.isDisabled ? state.model : label"
     v-bind="a($attrs, ['class', 'style', 'onClick'], true)"
   >
-    <span :class="m(gcls('radio-left-circle'), gcls(state.isDisplayOnly && state.model === label && 'hidden-radio'))">
-      <span :class="m(gcls('radio-left-circle-child'))" :tabindex="tabindex">
+    <span
+      :class="
+        m(
+          gcls('radio-label-common'),
+          gcls(state.size === 'medium' ? 'radio-label-size-medium' : 'radio-label-size-common'),
+          gcls(state.isDisplayOnly && state.model === label && 'hidden-radio')
+        )
+      "
+    >
+      <span :class="m(gcls('radio-label-circle'))" :tabindex="tabindex">
         <icon-radioselected
           v-if="state.model === label"
           :class="
@@ -31,7 +39,8 @@
               gcls({ 'radio-active-selected': !state.isDisabled }),
               gcls('icon-radioselected-common'),
               gcls({ 'icon-radioselected-disabled': state.isDisabled }),
-              gcls({ 'icon-radioselected-default': !state.isDisabled })
+              gcls({ 'icon-radioselected-default': !state.isDisabled }),
+              gcls(state.size === 'medium' ? 'icon-radioselected-size-medium' : 'icon-radioselected-size-common')
             )
           "
         />
@@ -44,7 +53,8 @@
               gcls({ 'radio-hover': !state.isDisabled }),
               gcls({ 'icon-radio-disabled': state.isDisabled }),
               gcls({ 'icon-radio-default': !state.isDisabled }),
-              gcls('icon-radio-common')
+              gcls('icon-radio-common'),
+              gcls(state.size === 'medium' ? 'icon-radio-size-medium' : 'icon-radio-size-common')
             )
           "
         />
@@ -91,6 +101,7 @@
       :class="
         m(
           gcls('radio-text-common'),
+          gcls(state.size === 'medium' ? 'radio-text-size-medium' : 'radio-text-size-common'),
           gcls({ 'label-disabled': state.isDisabled }),
           gcls(
             state.isDisplayOnly ? (state.model === label ? 'readonly-checked-label' : '') : 'not-readly-common-label'
@@ -106,10 +117,9 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/radio/vue'
-import { props, setup } from '@opentiny/vue-common'
-import { IconRadio, IconRadioselected, IconMobileRadio, IconMobileRadioSelected } from '@opentiny/vue-icon'
+import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { iconRadio, iconRadioselected, iconMobileRadio, iconMobileRadioSelected } from '@opentiny/vue-icon'
 import { classes } from './token'
-import { defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
   emits: ['change', 'update:modelValue'],
@@ -128,10 +138,10 @@ export default defineComponent({
   ],
   inheritAttrs: false,
   components: {
-    IconRadio: IconRadio(),
-    IconRadioselected: IconRadioselected(),
-    IconMobileRadio: IconMobileRadio(),
-    IconMobileRadioSelected: IconMobileRadioSelected()
+    IconRadio: iconRadio(),
+    IconRadioselected: iconRadioselected(),
+    IconMobileRadio: iconMobileRadio(),
+    IconMobileRadioSelected: iconMobileRadioSelected()
   },
   setup(props, context): any {
     return setup({ props, context, renderless, api, classes })

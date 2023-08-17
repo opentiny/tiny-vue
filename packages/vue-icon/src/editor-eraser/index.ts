@@ -12,4 +12,4 @@
 import { svg } from '@opentiny/vue-common'
 import EditorEraser from '@opentiny/vue-theme/svgs/editor-eraser.svg'
 
-export default svg({ name: 'EditorEraser', component: EditorEraser })
+export default () => svg({ name: 'EditorEraser', component: EditorEraser })()

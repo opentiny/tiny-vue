@@ -22,9 +22,7 @@
   top: @top;
 }
 
-.hairline(@direction, @color: @border-color-base, @position: relative)
-  when
-  (@direction ='top') {
+.hairline(@direction, @color: @border-color-base, @position: relative) when (@direction ='top') {
   border-top: 1px solid @color;
 
   html:not([data-scale]) & {
@@ -118,9 +116,7 @@
   }
 }
 
-.hairline(@direction, @color: @border-color-base, @radius: 0)
-  when
-  (@direction ='all') {
+.hairline(@direction, @color: @border-color-base, @radius: 0) when (@direction ='all') {
   border-radius: @radius;
   border: 1px solid @color;
 

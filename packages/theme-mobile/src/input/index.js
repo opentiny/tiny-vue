@@ -19,5 +19,5 @@ export default {
   'tiny-mobile-textarea-title-text-color': '#333',
   'tiny-mobile-textarea-showlimit-inner-height': '70px',
   'tiny-mobile-textarea-showcontent-inner-height': '66px',
-  'tiny-mobile-input-form-bg-color-error': 'rgba(230, 34, 34, 0.04)',
+  'tiny-mobile-input-form-bg-color-error': 'rgba(230, 34, 34, 0.04)'
 }

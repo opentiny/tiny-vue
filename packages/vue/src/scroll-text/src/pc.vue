@@ -12,7 +12,12 @@
 <template>
   <div class="tiny-scroll-text__wrapper">
     <div ref="wrap" class="tiny-scroll-text" @mouseenter="stopAnimation" @mouseleave="startAnimation">
-      <div ref="content" :class="[{ stop: state.isStop }, direction]" :style="state.bindStyle" class="tiny-scroll-text__content">
+      <div
+        ref="content"
+        :class="[{ stop: state.isStop }, direction]"
+        :style="state.bindStyle"
+        class="tiny-scroll-text__content"
+      >
         <slot>
           <p>{{ text }}</p>
         </slot>

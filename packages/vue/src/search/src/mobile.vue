@@ -71,12 +71,21 @@ import { iconSearch, iconOperationfaild } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme-mobile/search/index.less'
 
 export default defineComponent({
-  props: [...props, 'transparent', 'searchTypes', 'placeholder', 'buttonText', 'modelValue', 'themeType', 'isEnterSearch'],
+  props: [
+    ...props,
+    'transparent',
+    'searchTypes',
+    'placeholder',
+    'buttonText',
+    'modelValue',
+    'themeType',
+    'isEnterSearch'
+  ],
   components: {
     IconSearch: iconSearch(),
     IconOperationfaild: iconOperationfaild()
   },
-  emits: ['change', 'search', 'update:modelValue', 'clear', 'select'],
+  emits: ['change', 'search', 'update:modelValue', 'clear', 'select', 'input'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

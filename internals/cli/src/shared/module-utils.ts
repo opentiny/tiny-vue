@@ -6,13 +6,7 @@ import * as fs from 'fs-extra'
 import path from 'node:path'
 import { createRequire } from 'node:module'
 import fg from 'fast-glob'
-import {
-  pathFromWorkspaceRoot,
-  capitalizeKebabCase,
-  kebabCase,
-  prettierFormat,
-  pathJoinFromCLI
-} from './utils'
+import { pathFromWorkspaceRoot, capitalizeKebabCase, kebabCase, prettierFormat, pathJoinFromCLI } from './utils'
 
 const require = createRequire(import.meta.url)
 const moduleMap = require(pathFromWorkspaceRoot('packages/modules.json'))
@@ -72,8 +66,17 @@ const getModuleInfo = (key: string) => {
  * @param {Boolean} isOriginal 是否取原始数据
  * @param {Boolean} isSort 是否需要排序
  */
-const getByName = ({ name, isSort = true, inversion = false, isOriginal = false }:
-{ name: string; isSort: boolean; inversion?: boolean; isOriginal?: boolean }) => {
+const getByName = ({
+  name,
+  isSort = true,
+  inversion = false,
+  isOriginal = false
+}: {
+  name: string
+  isSort: boolean
+  inversion?: boolean
+  isOriginal?: boolean
+}) => {
   const callback = (item) => {
     const result = new RegExp(`/${name}/|^vue-${name}/`).test(item.path)
     return inversion ? !result : result
@@ -173,9 +176,7 @@ const getSortModules = ({ filterIntercept, isSort = true }: { filterIntercept: F
 
       // "vue-common/src/index.ts" ==> "vue-common/lib/index"
       if (component.type === 'module') {
-        component.libPath = component.path
-          .replace('/src/', '/lib/')
-          .replace('index.ts', 'index')
+        component.libPath = component.path.replace('/src/', '/lib/').replace('index.ts', 'index')
       }
 
       // "vue/src/button/index.ts" ==> "button/lib/index"
@@ -336,7 +337,7 @@ const isNotArrayObject = (sortData, key, setIndex) => {
       let sortItem = {}
 
       if (typeof dataItem !== 'object') {
-        (sortItem as unknown as Record<string, any>).__real_value = dataItem
+        ;(sortItem as unknown as Record<string, any>).__real_value = dataItem
       } else {
         sortItem = {
           ...sortData[sortKey]
@@ -369,10 +370,11 @@ const isNotArrayNotObject = (sortData) => {
 const getComponents = (mode, isSort = true) => {
   const modules = getAllModules(isSort)
 
-  const components = modules.filter(item => item.type === 'component')
+  const components = modules
+    .filter((item) => item.type === 'component')
     // 以下3种情况，均写入entry js文件。
     // 1、入参all，  2、chart组件，item.mode不存在  3、item.mode包含要输出的entry
-    .filter(item => mode === 'all' || !item.mode || item.mode.includes(mode))
+    .filter((item) => mode === 'all' || !item.mode || item.mode.includes(mode))
   return components
 }
 
@@ -382,8 +384,17 @@ const getComponents = (mode, isSort = true) => {
  * @param {Oject} newObj 新增对象
  * @returns 模块对象
  */
-export const addModule = ({ componentName, templateName, newObj = {}, isMobile }:
-{ componentName: string; templateName?: string; newObj?: object; isMobile: boolean }) => {
+export const addModule = ({
+  componentName,
+  templateName,
+  newObj = {},
+  isMobile
+}: {
+  componentName: string
+  templateName?: string
+  newObj?: object
+  isMobile: boolean
+}) => {
   const isEntry = templateName?.endsWith('index') ?? false
   return {
     path: `vue/src/${componentName}/` + (isEntry ? `${templateName}.ts` : `src/${templateName}.vue`),

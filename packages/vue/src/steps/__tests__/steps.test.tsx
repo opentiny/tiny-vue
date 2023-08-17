@@ -40,9 +40,14 @@ describe('PC Mode', () => {
    * slots
    */
   test('item', () => {
-    const wrapper = mount(() => <Steps data={data} v-slots={{
-      item: (scopeData) => <a class="label">{scopeData.slotScope.name}</a>
-    }}></Steps>)
+    const wrapper = mount(() => (
+      <Steps
+        data={data}
+        v-slots={{
+          item: (scopeData) => <a class="label">{scopeData.slotScope.name}</a>
+        }}
+      ></Steps>
+    ))
     expect(wrapper.find('a.label').exists()).toBe(true)
   })
 
@@ -59,4 +64,3 @@ describe('PC Mode', () => {
     expect(handleClick).toHaveBeenCalled()
   })
 })
-

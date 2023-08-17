@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "module": "index.ts",
   "sideEffects": false,
+  "type": "module",
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
     "vitest": "^0.31.0"
@@ -18,7 +19,10 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-progress": "workspace:~",
-    "@opentiny/vue-image-viewer": "workspace:~"
+    "@opentiny/vue-image-viewer": "workspace:~",
+    "@opentiny/vue-action-sheet": "workspace:~",
+    "@opentiny/vue-record": "workspace:~",
+    "@opentiny/vue-modal": "workspace:~"
   },
   "license": "MIT"
 }

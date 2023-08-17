@@ -32,23 +32,30 @@ export default defineComponent({
 
       buttons.forEach((buttonConfig: any) => !isHidden(buttonConfig) && visibleButtons.push(buttonConfig))
 
-      vnode = h(Dropdown, { on: { 'item-click': handleItemClick }, props: { trigger: 'hover', showSelfIcon: true, aui_mode: 'mobile-first', aui_mode_root: true } }, [
-        h(IconEllipsis(), { class: 'mf-table-more outline-none text-base cursor-pointer' }),
-        h(
-          DropdownMenu,
-          { slot: 'dropdown' },
-          visibleButtons.map((buttonConfig) =>
-            h(
-              DropdownItem,
-              {
-                class: { [disabledClass || '']: isDisabled(buttonConfig) },
-                props: { itemData: buttonConfig, disabled: isDisabled(buttonConfig) }
-              },
-              buttonConfig.name
+      vnode = h(
+        Dropdown,
+        {
+          on: { 'item-click': handleItemClick },
+          props: { trigger: 'hover', showSelfIcon: true, tiny_mode: 'mobile-first', tiny_mode_root: true }
+        },
+        [
+          h(IconEllipsis(), { class: 'mf-table-more outline-none text-base cursor-pointer' }),
+          h(
+            DropdownMenu,
+            { slot: 'dropdown' },
+            visibleButtons.map((buttonConfig) =>
+              h(
+                DropdownItem,
+                {
+                  class: { [disabledClass || '']: isDisabled(buttonConfig) },
+                  props: { itemData: buttonConfig, disabled: isDisabled(buttonConfig) }
+                },
+                buttonConfig.name
+              )
             )
           )
-        )
-      ])
+        ]
+      )
     } else {
       vnode = slotLink({ row, h })
     }

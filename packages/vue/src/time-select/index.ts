@@ -11,12 +11,13 @@
  */
 import Picker from '@opentiny/vue-picker'
 import { extend } from '@opentiny/vue-renderless/common/object'
-import { $prefix } from '@opentiny/vue-common'
+import { $prefix, $props } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/time-select/index.less'
 import { version } from './package.json'
 
 const TimeSelect = extend(true, { props: { componentName: { type: String, default: 'TimeSelect' } } }, Picker, {
   props: {
+    ...$props,
     type: {
       type: String,
       default: 'time'

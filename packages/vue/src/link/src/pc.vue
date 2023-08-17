@@ -11,12 +11,23 @@
  -->
 <template>
   <a
-    :class="['tiny-link', 'tiny-link--additional', type ? `tiny-link--${type}` : '', state.disabled && 'is-disabled', underline && !state.disabled && 'is-underline']"
+    :class="[
+      'tiny-link',
+      'tiny-link--additional',
+      type ? `tiny-link--${type}` : '',
+      state.disabled && 'is-disabled',
+      underline && !state.disabled && 'is-underline'
+    ]"
     :href="state.disabled ? null : href"
     v-bind="a($attrs, ['^on[A-Z]'])"
     @click="handleClick"
   >
-    <component :is="icon" v-if="icon" class="tiny-svg-size tiny-link-svg" :class="{ 'tiny-link-svg-only': !slots.default }" />
+    <component
+      :is="icon"
+      v-if="icon"
+      class="tiny-svg-size tiny-link-svg"
+      :class="{ 'tiny-link-svg-only': !slots.default }"
+    />
 
     <span v-if="slots.default" class="tiny-link__inner">
       <slot></slot>

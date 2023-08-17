@@ -15,30 +15,43 @@
   --ti-tree-text-color: var(--ti-common-color-text-primary);
   // 背景色
   --ti-tree-bg-color: var(--ti-common-color-bg-white-normal);
-  // 数据为空时文本色(hide) 
+  // 数据为空时文本色(hide)
   --ti-tree-empty-text-color: var(--ti-common-color-text-secondary);
   // 数据为空时整体最小高度
   --ti-tree-empty-min-height: var(--ti-common-size-15x);
   // 选中节点背景色
-  --ti-tree-node-content-current-bg-color: var(--ti-common-color-selected-background);
+  --ti-tree-node-content-current-bg-color: var(--ti-common-color-bg-light-normal);
   // 节点悬浮背景色
   --ti-tree-node-content-hover-bg-color: var(--ti-common-color-hover-background);
   // 节点字号
   --ti-tree-node-label-font-size: var(--ti-common-font-size-1);
   // 节点内容间距
   --ti-tree-node-label-margin-left: var(--ti-common-space-base);
-  // 节点文本背景色(hide) 
+  // 节点右侧区域左边距(hide)
+  --ti-tree-node-right-content-margin-left: var(--ti-common-space-base);
+  // 节点文本背景色(hide)
   --ti-tree-node-label-bg-color: var(--ti-common-color-bg-white-normal);
-  // 节点文本色(hide) 
+  // 节点文本色(hide)
   --ti-tree-node-label-text-color: var(--ti-common-color-text-secondary);
   // 展开按钮图标尺寸
   --ti-tree-node-icon-font-size: var(--ti-common-font-size-1);
-  // 加载图标色(hide) 
+  // 加载图标色(hide)
   --ti-tree-node-loading-icon-color: var(--ti-common-color-icon-active);
   // 展开按钮图标色
   --ti-tree-node-expand-icon-color: var(--ti-common-color-icon-normal);
+  // 收起按钮图标色
+  --ti-tree-node-collapse-icon-color: var(--ti-common-color-icon-active);
+  // 编辑、删除、添加图标尺寸
+  --ti-tree-node-operate-icon-font-size: var(--ti-common-font-size-2);
+  // 编辑、删除、添加图标间距
+  --ti-tree-node-operate-icon-margin-left: var(--ti-common-space-base);
+  // 编辑、删除、添加图标色
+  --ti-tree-node-operate-icon-color: var(--ti-common-color-icon-normal);
   // 悬浮图标色
   --ti-tree-node-checked-icon-color: var(--ti-common-color-icon-hover);
+
+  // 节点左内边距
+  --ti-tree-node-padding-left: var(--ti-common-space-2x);
   // 节点高亮背景色
   --ti-tree-node-highlight-bg-color: var(--ti-common-color-bg-light-normal);
   // 节点内容高度
@@ -53,4 +66,53 @@
   --ti-tree-node-menu-font-family: Helvetica, Arial, 'Microsoft YaHei', sans-serif;
   // 节点右键菜单阴影
   --ti-tree-node-menu-box-shadow: 2px 2px 4px -2px rgb(0, 0, 0, 0.2);
+  // 节点缩进
+  --ti-tree-node-indent: var(--ti-common-space-4x);
+  // 节点连接线颜色
+  --ti-tree-node-guide-line-border-color: var(--ti-common-color-line-dividing);
+  // 节点连接线宽度
+  --ti-tree-node-guide-line-width: var(--ti-common-space-2x);
+
+  // 底部分割线颜色
+  --ti-tree-bottom-divider-bg-color: var(--ti-common-color-line-dividing);
+  // 底部水平内边距
+  --ti-tree-bottom-padding-horizontal: var(--ti-common-space-3x);
+  // 底部垂直内边距
+  --ti-tree-bottom-padding-vertical: calc(var(--ti-common-space-2x) - 1px);
+  // 底部文本内容左外边距
+  --ti-tree-bottom-text-margin-left: var(--ti-common-space-10);
+
+  // small尺寸节点高度
+  --ti-tree-small-node-content-height: calc(var(--ti-common-space-base) * 7);
+  // small尺寸节点高度
+  --ti-tree-small-node-font-size: var(--ti-common-line-height-base);
+
+  // 平铺模式节点高度
+  --ti-tree-plain-node-height: calc(var(--ti-common-space-base) * 7);
+  // 平铺模式节点字号
+  --ti-tree-plain-font-size: var(--ti-common-line-height-base);
+  // 平铺模式节点左边距
+  --ti-tree-plain-node-padding-left: var(--ti-common-space-3x);
+  // 平铺模式节点边框圆角
+  --ti-tree-plain-node-border-radius: var(--ti-common-border-radius-1);
+  // 平铺模式节点标题图标尺寸
+  --ti-tree-plain-node-auxi-icon-font-size: var(--ti-common-font-size-2);
+  // 平铺模式辅助文本左边距
+  --ti-tree-plain-node-auxi-margin-left: var(--ti-common-space-6x);
+  // 平铺模式辅助文本色
+  --ti-tree-plain-node-auxi-text-color: var(--ti-common-color-text-secondary);
+}
+
+// 删除节点提示框
+.component-css-vars-tree-popover() {
+  // 警告图标尺寸
+  --ti-tree-popover-warn-icon-font-size: var(--ti-common-font-size-2);
+  // 警告图标色
+  --ti-tree-popover-warn-icon-bg-color: var(--ti-common-color-warn);
+  // 警告图标右边距
+  --ti-tree-popover-warn-icon-margin-right: var(--ti-common-space-base);
+  // 复选框上边距
+  --ti-tree-popover-checkbox-margin-top: var(--ti-common-space-3x);
+  // 底部上边距
+  --ti-tree-popover-footer-margin-top: var(--ti-common-space-3x);
 }

@@ -12,4 +12,4 @@
 import { svg } from '@opentiny/vue-common'
 import EditorList from '@opentiny/vue-theme/svgs/editor-list.svg'
 
-export default svg({ name: 'EditorList', component: EditorList })
+export default () => svg({ name: 'EditorList', component: EditorList })()

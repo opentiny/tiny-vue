@@ -1,6 +1,7 @@
 <template>
   <div>
-    <tiny-file-upload :action="action" list-type="picture-single" :file-list="fileList1" display-only> </tiny-file-upload>
+    <tiny-file-upload :action="action" list-type="picture-single" :file-list="fileList1" display-only>
+    </tiny-file-upload>
     <br />
     <br />
     <tiny-file-upload :action="action" list-type="picture-card" :file-list="fileList2" display-only> </tiny-file-upload>

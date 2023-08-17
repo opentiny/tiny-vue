@@ -1,37 +1,43 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { emitEvent } from '../common/event'
 
-export const toggle = ({ api, state }) => () => {
-  state.isShow ? api.collapse() : api.expand()
-}
-
-export const expand = ({ emit, state }) => () => {
-  if (!emitEvent(emit, 'before-expand')) {
-    return
+export const toggle =
+  ({ api, state }) =>
+  () => {
+    state.isShow ? api.collapse() : api.expand()
   }
 
-  state.isShow = true
+export const expand =
+  ({ emit, state }) =>
+  () => {
+    if (!emitEvent(emit, 'before-expand')) {
+      return
+    }
 
-  emit('expand', true)
-}
+    state.isShow = true
 
-export const collapse = ({ emit, state }) => () => {
-  if (!emitEvent(emit, 'before-collapse')) {
-    return
+    emit('expand', true)
   }
 
-  state.isShow = false
+export const collapse =
+  ({ emit, state }) =>
+  () => {
+    if (!emitEvent(emit, 'before-collapse')) {
+      return
+    }
 
-  emit('collapse', false)
-}
+    state.isShow = false
+
+    emit('collapse', false)
+  }

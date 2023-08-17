@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@opentiny/vue": "^3.5.2",
-    "vue": "^3.2.45"
+    "vue": "^3.3.4"
   },
   "devDependencies": {
     "@opentiny/vue-vite-import": "^1.0.1",

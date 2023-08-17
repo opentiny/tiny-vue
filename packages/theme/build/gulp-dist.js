@@ -7,6 +7,8 @@ const less = require('gulp-less')
 const cssmin = require('gulp-clean-css')
 const svgInline = require('gulp-svg-inline')
 const prefixer = require('gulp-autoprefixer')
+const fg = require('fast-glob')
+const fs = require('node:fs')
 
 const source = '../src'
 const dist = '../dist'
@@ -14,6 +16,15 @@ const svgInlineOption = {
   maxImageSize: 1 * 1024 * 1024,
   extensions: [/\.svg/gi]
 }
+
+// 将所有组件下的index.less合并到src下的index.less
+const fileList = fg.sync('../src/*/index.less')
+const importStr = fileList
+  .map((filePath) => filePath.replace('../src/', './'))
+  .map((path) => `@import '${path}';`)
+  .join('\n')
+const note = fs.readFileSync('../src/index.less', { encoding: 'utf-8' }).match(/(^\/\*\*.+?\*\/)/s)[0]
+fs.writeFileSync('../src/index.less', `${note}\n\n${importStr}`)
 
 gulp.task('compile', () => {
   return gulp

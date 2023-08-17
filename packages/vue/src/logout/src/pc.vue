@@ -9,7 +9,18 @@ import { renderless, api } from '@opentiny/vue-renderless/logout/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
-  props: [...props, 'guestRole', 'beforeLogout', 'getLogoutUrl', 'redirectUrl', 'isLocal', 'network', 'isMock', 'isGuestUser', 'showLogin'],
+  props: [
+    ...props,
+    'guestRole',
+    'beforeLogout',
+    'getLogoutUrl',
+    'redirectUrl',
+    'isLocal',
+    'network',
+    'isMock',
+    'isGuestUser',
+    'showLogin'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

@@ -42,42 +42,44 @@ const processTrigger = ({ api, state, props, nextTick }) => {
 }
 
 /* istanbul ignore next */
-export const mounted = ({ api, state, constants, props, nextTick, mode }) => () => {
-  state.mounted = true
+export const mounted =
+  ({ api, state, constants, props, nextTick, mode }) =>
+  () => {
+    state.mounted = true
 
-  const { referenceElm, popperElm, tooltipId } = state
+    const { referenceElm, popperElm, tooltipId } = state
 
-  if (referenceElm) {
-    if (mode !== 'mobile-first') {
-      addClass(referenceElm, `${constants.IDPREFIX}__reference`)
+    if (referenceElm) {
+      if (mode !== 'mobile-first') {
+        addClass(referenceElm, `${constants.IDPREFIX}__reference`)
+      }
+
+      referenceElm.setAttribute('aria-describedby', tooltipId)
+      referenceElm.setAttribute('tabindex', props.tabindex)
+      popperElm.setAttribute('tabindex', 0)
+
+      if (props.trigger !== 'click') {
+        on(referenceElm, 'focusin', () => {
+          api.handleFocus()
+
+          const instance = referenceElm.__vue__
+
+          if (instance && typeof instance.focus === 'function') {
+            instance.focus()
+          }
+        })
+
+        on(popperElm, 'focusin', api.handleFocus)
+        on(referenceElm, 'focusout', api.handleBlur)
+        on(popperElm, 'focusout', api.handleBlur)
+      }
+
+      on(referenceElm, 'keydown', api.handleKeydown)
+      on(referenceElm, 'click', api.handleClick)
     }
 
-    referenceElm.setAttribute('aria-describedby', tooltipId)
-    referenceElm.setAttribute('tabindex', props.tabindex)
-    popperElm.setAttribute('tabindex', 0)
-
-    if (props.trigger !== 'click') {
-      on(referenceElm, 'focusin', () => {
-        api.handleFocus()
-
-        const instance = referenceElm.__vue__
-
-        if (instance && typeof instance.focus === 'function') {
-          instance.focus()
-        }
-      })
-
-      on(popperElm, 'focusin', api.handleFocus)
-      on(referenceElm, 'focusout', api.handleBlur)
-      on(popperElm, 'focusout', api.handleBlur)
-    }
-
-    on(referenceElm, 'keydown', api.handleKeydown)
-    on(referenceElm, 'click', api.handleClick)
+    processTrigger({ api, state, props, nextTick })
   }
-
-  processTrigger({ api, state, props, nextTick })
-}
 
 export const doToggle = (state) => () => {
   state.showPopper = !state.showPopper
@@ -91,13 +93,15 @@ export const doClose = (state) => () => {
   state.showPopper = false
 }
 
-export const handleFocus = ({ props, state }) => () => {
-  addClass(state.referenceElm, 'focusing')
+export const handleFocus =
+  ({ props, state }) =>
+  () => {
+    addClass(state.referenceElm, 'focusing')
 
-  if (props.trigger === 'click' || props.trigger === 'focus') {
-    state.showPopper = true
+    if (props.trigger === 'click' || props.trigger === 'focus') {
+      state.showPopper = true
+    }
   }
-}
 
 /* istanbul ignore next */
 export const handleClick = (state) => (event) => {
@@ -109,62 +113,79 @@ export const handleClick = (state) => (event) => {
   removeClass(state.referenceElm, 'focusing')
 }
 
-export const handleBlur = ({ props, state }) => () => {
-  removeClass(state.referenceElm, 'focusing')
+export const handleBlur =
+  ({ props, state }) =>
+  () => {
+    removeClass(state.referenceElm, 'focusing')
 
-  if (props.trigger === 'click' || props.trigger === 'focus') {
-    state.showPopper = false
-  }
-}
-
-export const handleMouseEnter = ({ props, state }) => () => {
-  clearTimeout(state.timer)
-
-  if (props.openDelay) {
-    state.timer = setTimeout(() => {
-      state.showPopper = true
-    }, props.openDelay)
-  } else {
-    state.showPopper = true
-  }
-}
-
-export const handleKeydown = ({ api, props }) => (event) => {
-  if (event.keyCode === KEY_CODE.Escape && props.trigger !== 'manual') {
-    api.doClose()
-  }
-}
-
-export const handleMouseLeave = ({ props, state }) => () => {
-  clearTimeout(state.timer)
-
-  if (props.closeDelay) {
-    state.timer = setTimeout(() => {
+    if (props.trigger === 'click' || props.trigger === 'focus') {
       state.showPopper = false
-    }, props.closeDelay)
-  } else {
-    state.showPopper = false
+    }
   }
-}
+
+export const handleMouseEnter =
+  ({ props, state }) =>
+  () => {
+    clearTimeout(state.timer)
+
+    if (props.openDelay) {
+      state.timer = setTimeout(() => {
+        state.showPopper = true
+      }, props.openDelay)
+    } else {
+      state.showPopper = true
+    }
+  }
+
+export const handleKeydown =
+  ({ api, props }) =>
+  (event) => {
+    if (event.keyCode === KEY_CODE.Escape && props.trigger !== 'manual') {
+      api.doClose()
+    }
+  }
+
+export const handleMouseLeave =
+  ({ props, state }) =>
+  () => {
+    clearTimeout(state.timer)
+
+    if (props.closeDelay) {
+      state.timer = setTimeout(() => {
+        state.showPopper = false
+      }, props.closeDelay)
+    } else {
+      state.showPopper = false
+    }
+  }
 
 /* istanbul ignore next */
-export const handleDocumentClick = ({ refs, state }) => (event) => {
-  const reference = state.referenceElm
-  const popperElm = state.popperElm
-  const $el = refs.root
-  let target = event.target
+export const handleDocumentClick =
+  ({ refs, state }) =>
+  (event) => {
+    const reference = state.referenceElm
+    const popperElm = state.popperElm
+    const $el = refs.root
+    let target = event.target
 
-  // 解决组件在webcomponents中触发document的click事件，但是e.target始终是webcomponents自定义标签，从而引起的判断失效的bug
-  if (target?.shadowRoot && popperElm) {
-    target = popperElm.webCompEventTarget
+    // 解决组件在webcomponents中触发document的click事件，但是e.target始终是webcomponents自定义标签，从而引起的判断失效的bug
+    if (target?.shadowRoot && popperElm) {
+      target = popperElm.webCompEventTarget
+    }
+
+    if (
+      !$el ||
+      !reference ||
+      $el.contains(target) ||
+      reference.contains(target) ||
+      !popperElm ||
+      popperElm.contains(target)
+    ) {
+      return
+    }
+
+    state.showPopper = false
   }
-
-  if (!$el || !reference || $el.contains(target) || reference.contains(target) || !popperElm || popperElm.contains(target)) {
-    return
-  }
-
-  state.showPopper = false
-}
 
 export const handleAfterEnter = (emit) => () => {
   emit('after-enter')
@@ -174,60 +195,70 @@ export const handleAfterLeave = (emit) => () => {
   emit('after-leave')
 }
 
-export const handleItemClick = ({ emit, state }) => (item) => {
-  state.showPopper = false
-  emit('item-click', item)
-}
-
-export const cleanup = ({ props, state }) => () => {
-  if (props.openDelay) {
-    clearTimeout(state.timer)
+export const handleItemClick =
+  ({ emit, state }) =>
+  (item) => {
+    state.showPopper = false
+    emit('item-click', item)
   }
-}
+
+export const cleanup =
+  ({ props, state }) =>
+  () => {
+    if (props.openDelay) {
+      clearTimeout(state.timer)
+    }
+  }
 
 /* istanbul ignore next */
-export const destroyed = ({ state, api }) => () => {
-  const { referenceElm, popperElm } = state
+export const destroyed =
+  ({ state, api }) =>
+  () => {
+    const { referenceElm, popperElm } = state
 
-  // 原来
-  off(referenceElm, 'click', api.doToggle)
-  off(referenceElm, 'mouseup', api.doClose)
-  off(referenceElm, 'mousedown', api.doShow)
-  off(referenceElm, 'focusin', api.doShow)
-  off(referenceElm, 'focusout', api.doClose)
-  off(referenceElm, 'mouseleave', api.handleMouseLeave)
-  off(referenceElm, 'mouseenter', api.handleMouseEnter)
-  off(document, 'click', api.handleDocumentClick)
+    // 原来
+    off(referenceElm, 'click', api.doToggle)
+    off(referenceElm, 'mouseup', api.doClose)
+    off(referenceElm, 'mousedown', api.doShow)
+    off(referenceElm, 'focusin', api.doShow)
+    off(referenceElm, 'focusout', api.doClose)
+    off(referenceElm, 'mouseleave', api.handleMouseLeave)
+    off(referenceElm, 'mouseenter', api.handleMouseEnter)
+    off(document, 'click', api.handleDocumentClick)
 
-  // 同步补充
-  off(popperElm, 'focusin', api.handleFocus) //
-  off(popperElm, 'focusout', api.handleBlur)
-  off(popperElm, 'mouseenter', api.handleMouseEnter)
-  off(popperElm, 'mouseleave', api.handleMouseLeave)
-  off(referenceElm, 'click', api.handleClick)
-  off(referenceElm, 'focusout', api.handleBlur)
-  off(referenceElm, 'keydown', api.handleKeydown)
-}
+    // 同步补充
+    off(popperElm, 'focusin', api.handleFocus) //
+    off(popperElm, 'focusout', api.handleBlur)
+    off(popperElm, 'mouseenter', api.handleMouseEnter)
+    off(popperElm, 'mouseleave', api.handleMouseLeave)
+    off(referenceElm, 'click', api.handleClick)
+    off(referenceElm, 'focusout', api.handleBlur)
+    off(referenceElm, 'keydown', api.handleKeydown)
+  }
 
 export const computedTooltipId = (constants) => () => `${constants.IDPREFIX}-${guid('', 4)}`
 
-export const wrapMounted = ({ api, props, refs, state }) => () => {
-  const { reference, popper, wrapper } = refs
-  const referenceElm = (state.referenceElm = props.reference || reference)
+export const wrapMounted =
+  ({ api, props, refs, state }) =>
+  () => {
+    const { reference, popper, wrapper } = refs
+    const referenceElm = (state.referenceElm = props.reference || reference)
 
-  state.popperElm = state.popperEl || popper
+    state.popperElm = state.popperEl || popper
 
-  if (!referenceElm && wrapper.children) {
-    state.referenceElm = wrapper.children[0] || wrapper
+    if (!referenceElm && wrapper.children) {
+      state.referenceElm = wrapper.children[0] || wrapper
+    }
+
+    state.referenceElm && api.mounted()
   }
 
-  state.referenceElm && api.mounted()
-}
-
-export const observeCallback = ({ state, vm }) => (mutationsList) => {
-  for (let mutation of mutationsList) {
-    if (mutation.type === 'attributes' && mutation.attributeName === 'x-placement') {
-      state.xPlacement = vm.$refs.popper.getAttribute('x-placement') || 'bottom'
+export const observeCallback =
+  ({ state, vm }) =>
+  (mutationsList) => {
+    for (let mutation of mutationsList) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'x-placement') {
+        state.xPlacement = vm.$refs.popper.getAttribute('x-placement') || 'bottom'
+      }
     }
   }
-}

@@ -1,5 +1,11 @@
 import * as echarts from 'echarts/core'
-import { GraphicComponent, GridComponent, DataZoomComponent, MarkLineComponent, MarkPointComponent } from 'echarts/components'
+import {
+  GraphicComponent,
+  GridComponent,
+  DataZoomComponent,
+  MarkLineComponent,
+  MarkPointComponent
+} from 'echarts/components'
 import { BarChart, CandlestickChart, LineChart } from 'echarts/charts'
 import { UniversalTransition } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
@@ -28,5 +34,4 @@ export default defineComponent({
       return {}
     }
   }
-}
-)
+})

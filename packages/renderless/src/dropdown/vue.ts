@@ -29,15 +29,16 @@ import {
   triggerElmFocus,
   initDomOperation,
   mounted,
-  beforeDistory
+  beforeDistory,
+  clickOutside
 } from './index'
 
-export const api = ['state', 'handleMainButtonClick', 'hide', 'show', 'initDomOperation', 'handleClick']
+export const api = ['state', 'handleMainButtonClick', 'hide', 'show', 'initDomOperation', 'handleClick', 'clickOutside']
 
 export const renderless = (
   props,
   { reactive, watch, provide, onMounted },
-  { emit, parent, broadcast, vm, nextTick, designConfig }
+  { emit, parent, broadcast, vm, nextTick, mode, designConfig }
 ) => {
   const api = {}
   const state = reactive({
@@ -49,10 +50,13 @@ export const renderless = (
     triggerElm: null,
     dropdownElm: null,
     listId: `dropdown-menu-${guid()}`,
+    showIcon: props.showIcon,
+    showSelfIcon: props.showSelfIcon,
+    isDisabled: false,
     designConfig
   })
 
-  provide('dropdown', vm)
+  provide('dropdownVm', vm)
 
   Object.assign(api, {
     state,
@@ -60,19 +64,20 @@ export const renderless = (
     watchFocusing: watchFocusing({ parent }),
     show: show({ props, state }),
     hide: hide({ api, props, state }),
-    mounted: mounted({ api, vm }),
+    mounted: mounted({ api, vm, state, broadcast }),
     handleClick: handleClick({ api, props, state, emit }),
     handleTriggerKeyDown: handleTriggerKeyDown({ api, state }),
     handleItemKeyDown: handleItemKeyDown({ api, props, state }),
     resetTabindex: resetTabindex({ api }),
     removeTabindex: removeTabindex({ state }),
     initAria: initAria({ state, props }),
-    initEvent: initEvent({ api, props, state, vm }),
+    initEvent: initEvent({ api, props, state, vm, mode }),
     handleMenuItemClick: handleMenuItemClick({ props, state, emit }),
     handleMainButtonClick: handleMainButtonClick({ api, emit }),
     triggerElmFocus: triggerElmFocus({ state }),
     initDomOperation: initDomOperation({ api, state, vm }),
-    beforeDistory: beforeDistory({ api, state })
+    beforeDistory: beforeDistory({ api, state }),
+    clickOutside: clickOutside({ state, props, api })
   })
 
   watch(() => state.visible, api.watchVisible)

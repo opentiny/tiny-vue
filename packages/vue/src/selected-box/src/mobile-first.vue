@@ -13,21 +13,44 @@
         </slot>
       </div>
     </div>
-    <div ref="list" :class="[
-      'overflow-x-hidden overflow-y-auto text-xs text-color-text-primary',
-      { 'line-through decoration-solid decoration-color-text-primary': state.inverse }
-    ]">
-      <div v-for="(option, i) in state.select" :key="`o${i}-${state.refresh}`" :data-key="keyOption(option)" data-tag="tiny-selected-box-item" class="cursor-pointer hover:bg-color-bg-2 px-2 rounded-sm">
+    <div
+      ref="list"
+      :class="[
+        'overflow-x-hidden overflow-y-auto text-xs text-color-text-primary',
+        { 'line-through decoration-solid decoration-color-text-primary': state.inverse }
+      ]"
+    >
+      <div
+        v-for="(option, i) in state.select"
+        :key="`o${i}-${state.refresh}`"
+        :data-key="keyOption(option)"
+        data-tag="tiny-selected-box-item"
+        class="cursor-pointer hover:bg-color-bg-2 px-2 rounded-sm"
+      >
         <div class="grid grid-cols-[auto_24px]">
           <div class="truncate">
-            <slot name="option" :params="state.slotParams" :option="option" :mouseenter="handleMouseenter" :mouseleave="handleMouseleave">
+            <slot
+              name="option"
+              :params="state.slotParams"
+              :option="option"
+              :mouseenter="handleMouseenter"
+              :mouseleave="handleMouseleave"
+            >
               <div class="h-7 truncate translate-y-1">
-                <div class="truncate relative top-1/2 -translate-y-1/2" @mouseenter="handleMouseenter" @mouseleave="handleMouseleave">
+                <div
+                  class="truncate relative top-1/2 -translate-y-1/2"
+                  @mouseenter="handleMouseenter"
+                  @mouseleave="handleMouseleave"
+                >
                   {{ textPrimary(option) }}
                 </div>
               </div>
               <div v-if="state.showAuxi" class="h-7 truncate -translate-y-1">
-                <div class="truncate text-color-text-placeholder relative top-1/2 -translate-y-1/2" @mouseenter="handleMouseenter" @mouseleave="handleMouseleave">
+                <div
+                  class="truncate text-color-text-placeholder relative top-1/2 -translate-y-1/2"
+                  @mouseenter="handleMouseenter"
+                  @mouseleave="handleMouseleave"
+                >
                   {{ textAuxi(option) }}
                 </div>
               </div>
@@ -35,10 +58,12 @@
           </div>
           <div>
             <slot name="close" :params="state.slotParams" :option="option" :close="handleDelete">
-              <div :class="[
-                'h-7 translate-y-1 flex items-center justify-end',
-                'fill-color-icon-primary hover:fill-color-icon-hover'
-              ]">
+              <div
+                :class="[
+                  'h-7 translate-y-1 flex items-center justify-end',
+                  'fill-color-icon-primary hover:fill-color-icon-hover'
+                ]"
+              >
                 <icon-close @click="handleDelete(option)"></icon-close>
               </div>
             </slot>
@@ -46,7 +71,13 @@
         </div>
       </div>
     </div>
-    <tiny-popover ref="popover" trigger="manual" class="hidden" :content="state.popoverContent" v-model="state.popoverVisible"></tiny-popover>
+    <tiny-popover
+      ref="popover"
+      trigger="manual"
+      class="hidden"
+      :content="state.popoverContent"
+      v-model="state.popoverVisible"
+    ></tiny-popover>
   </div>
 </template>
 

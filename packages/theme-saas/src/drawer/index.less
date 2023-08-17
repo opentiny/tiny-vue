@@ -1,0 +1,176 @@
+@import '../custom.less';
+
+@drawer-prefix-cls: ~'@{css-prefix}drawer';
+@button-prefix-cls: ~'@{css-prefix}button';
+
+.@{drawer-prefix-cls} {
+  .@{drawer-prefix-cls}__mask {
+    @apply fixed;
+    @apply z-50;
+    @apply left-0;
+    @apply right-0;
+    @apply top-0;
+    @apply bottom-0;
+    @apply w-full;
+    @apply h-full;
+    @apply transition-opacity;
+    @apply ease-linear;
+    @apply duration-200;
+
+    &.show-bg-color {
+      @apply bg-color-bg-7;
+    }
+  }
+
+  .@{drawer-prefix-cls}__main {
+    @apply fixed;
+    @apply w-full;
+    @apply max-w-full;
+    @apply flex;
+    @apply flex-col;
+    @apply bg-color-bg-1;
+    @apply z-50;
+    @apply shadow-sm;
+    @apply border-color-border-separator;
+
+    &.drag-effects {
+      @apply transition-all;
+      @apply ease-linear;
+      @apply duration-200;
+    }
+
+    &.is-left,
+    &.is-right {
+      @apply h-full;
+    }
+
+    &.is-top,
+    &.is-bottom {
+      @apply max-h-full;
+    }
+
+    &.is-right {
+      @apply right-0;
+      @apply top-0;
+      @apply ~'border-l-0.5';
+
+      .@{drawer-prefix-cls}__drag-bar {
+        @apply -left-1;
+      }
+    }
+
+    &.is-left {
+      @apply left-0;
+      @apply top-0;
+      @apply -translate-x-full;
+      @apply ~'border-r-0.5';
+
+      .@{drawer-prefix-cls}__drag-bar {
+        @apply -right-1;
+      }
+    }
+
+    &.is-top {
+      @apply left-0;
+      @apply top-0;
+      @apply -translate-y-full;
+      @apply ~'border-b-0.5';
+    }
+
+    &.is-bottom {
+      @apply left-0;
+      @apply bottom-0;
+      @apply translate-y-full;
+      @apply ~'border-t-0.5';
+    }
+
+    .@{drawer-prefix-cls}__drag-bar {
+      @apply h-full;
+      @apply absolute;
+      @apply top-0;
+      @apply w-2;
+      @apply cursor-e-resize;
+    }
+
+    .@{drawer-prefix-cls}__box {
+      @apply flex-auto;
+      @apply flex-col;
+      @apply flex;
+      @apply max-h-full;
+      @apply overflow-hidden;
+
+      .@{drawer-prefix-cls}__header,
+      .@{drawer-prefix-cls}__body,
+      .@{drawer-prefix-cls}__footer {
+        margin-left: var(--ti-drawer-padding-left);
+        margin-right: var(--ti-drawer-padding-right);
+      }
+
+      .@{drawer-prefix-cls}__header-wrapper {
+        @apply flex-none;
+
+        .@{drawer-prefix-cls}__header {
+          @apply flex-none;
+          @apply flex;
+          @apply leading-6;
+          @apply p-4;
+          @apply text-base;
+          @apply items-center;
+
+          .@{drawer-prefix-cls}__title {
+            @apply ~'max-w-[80%]';
+            @apply pr-4;
+            @apply text-left;
+            @apply truncate;
+          }
+
+          .@{drawer-prefix-cls}__header-right {
+            @apply flex-1;
+            @apply flex;
+            @apply items-center;
+            @apply justify-end;
+          }
+        }
+
+        .@{drawer-prefix-cls}__headerbtn {
+          @apply border-none;
+          @apply outline-0;
+          @apply bg-transparent;
+          @apply p-0;
+          @apply absolute;
+          @apply top-4;
+          @apply right-4;
+          @apply w-5;
+          @apply h-5;
+          @apply flex;
+          @apply items-center;
+          @apply justify-center;
+        }
+
+        .@{drawer-prefix-cls}__close {
+          @apply h-4;
+          @apply w-4;
+          @apply cursor-pointer;
+        }
+      }
+
+      .@{drawer-prefix-cls}__body {
+        @apply flex-auto;
+        @apply overflow-auto;
+        @apply ~'flex';
+        @apply flex-col;
+      }
+
+      .@{drawer-prefix-cls}__footer {
+        @apply px-4;
+        @apply py-3;
+        @apply flex-none;
+        @apply text-right;
+
+        .@{button-prefix-cls}:not(:first-of-type) {
+          @apply ml-2;
+        }
+      }
+    }
+  }
+}

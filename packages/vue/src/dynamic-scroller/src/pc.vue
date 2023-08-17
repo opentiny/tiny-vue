@@ -1,5 +1,17 @@
 <template>
-  <tiny-recycle-scroller ref="scroller" class="tiny-dynamic-scroller" :items="state.itemsWithSize" :min-item-size="minItemSize" :direction="direction" :key-field="keyField" :list-tag="listTag" :item-tag="itemTag" v-bind="$attrs" @resize="onScrollerResize" @visible="onScrollerVisible">
+  <tiny-recycle-scroller
+    ref="scroller"
+    class="tiny-dynamic-scroller"
+    :items="state.itemsWithSize"
+    :min-item-size="minItemSize"
+    :direction="direction"
+    :key-field="keyField"
+    :list-tag="listTag"
+    :item-tag="itemTag"
+    v-bind="$attrs"
+    @resize="onScrollerResize"
+    @visible="onScrollerVisible"
+  >
     <template #default="{ item: itemWithSize, index, active }">
       <slot v-bind="{ item: itemWithSize.item, index, active, itemWithSize }" />
     </template>

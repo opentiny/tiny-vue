@@ -52,7 +52,16 @@
             @mouseout="overContent(false)"
           >
             <div class="contbox">
-              <tiny-col v-for="(level2, index) in state.level2data" :key="index" :xs="6" :sm="3" :md="3" :lg="3" :xl="2" class="cont">
+              <tiny-col
+                v-for="(level2, index) in state.level2data"
+                :key="index"
+                :xs="6"
+                :sm="3"
+                :md="3"
+                :lg="3"
+                :xl="2"
+                class="cont"
+              >
                 <ul class="sublist clearfix">
                   <li>
                     <h3 class="mcate-item-hd">
@@ -62,7 +71,9 @@
                     </h3>
                     <p class="mcate-item-bd">
                       <slot name="level3" :slot-scope="level2.children">
-                        <a v-for="(level3, index) in level2.children" :href="level3.url" :key="index">{{ level3.title }}</a>
+                        <a v-for="(level3, index) in level2.children" :href="level3.url" :key="index">{{
+                          level3.title
+                        }}</a>
                       </slot>
                     </p>
                   </li>

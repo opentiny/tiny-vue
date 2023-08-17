@@ -70,7 +70,7 @@ const columnfilters = (visibleColumn) => {
 
     if (filter) {
       const {
-        condition: { type, input, relation, value, empty }
+        condition: { type, input, relation, value, empty, dateList }
       } = filter
 
       if (type === 'input') {
@@ -81,6 +81,8 @@ const columnfilters = (visibleColumn) => {
         filters[property] = { type, value: empty }
       } else if (type === 'custom') {
         filters[property] = { type }
+      } else if (type === 'date') {
+        filters[property] = { type, value: { dateList, relation } }
       } else if (type === 'extend') {
         filters[property] = { type, value }
       } else if (type === 'extend1') {
@@ -89,7 +91,8 @@ const columnfilters = (visibleColumn) => {
         filters[property] = { type, value }
       }
 
-      filter.hasFilter = value.length || input || input === 0 || empty !== null || type === 'custom'
+      filter.hasFilter =
+        value.length || input || dateList?.some(Boolean) || input === 0 || empty !== null || type === 'custom'
     }
   })
 
@@ -175,13 +178,20 @@ export default {
       this.getOptions(column).then((options) => {
         Object.assign(filterStore, {
           args: params,
+          layout: filter.layout, // 布局配置，用户可以自定义想要的筛选项
           enumable: filter.enumable,
           inputFilter: filter.inputFilter,
+          simpleFilter: filter.simpleFilter,
           onResetInputFilter: filter.onResetInputFilter,
-          advancedFilter: filter.advancedFilter,
           extends: filter.extends,
           defaultFilter: isBoolean(filter.defaultFilter) ? filter.defaultFilter : true,
-          options: options.map(({ value, label }) => ({ value, label, checked: ~filter.condition.value.indexOf(value) })),
+          options: options.map(({ value, label }) => {
+            return {
+              value,
+              label,
+              checked: filter.condition.value.includes(value)
+            }
+          }),
           condition: { ...filter.condition },
           multi: isBoolean(filter.multi) ? filter.multi : true,
           column,
@@ -195,7 +205,7 @@ export default {
   },
   // 确认筛选
   confirmFilterEvent() {
-    let { visibleColumn, filterStore, scrollXLoad, scrollYLoad, remoteFilter, lastScrollLeft } = this
+    let { visibleColumn, filterStore, scrollXLoad, scrollYLoad, remoteFilter, lastScrollLeft } = this as any
 
     filterStore.visible = false
 

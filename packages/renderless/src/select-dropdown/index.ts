@@ -10,21 +10,23 @@
  *
  */
 
-export const mounted = ({ selectEmitter, constants, state, selectVm, updatePopper, destroyPopper, parent }) => () => {
-  selectEmitter.on(constants.EVENT_NAME.updatePopper, (keepZIndex) => {
-    let hideDrop = false
+export const mounted =
+  ({ selectEmitter, constants, state, selectVm, updatePopper, destroyPopper, parent }) =>
+  () => {
+    selectEmitter.on(constants.EVENT_NAME.updatePopper, (keepZIndex) => {
+      let hideDrop = false
 
-    if (!state.referenceElm || state.referenceElm.nodeType !== 1) {
-      // 触发源如果是用户传递的插槽，则赋值为外侧div
-      state.referenceElm = selectVm.$refs.reference ? selectVm.$refs.reference.$el : selectVm.$refs.select
-      selectVm.popperElm = selectVm.state.popperElm = state.popperElm = parent.$el
-    }
+      if (!state.referenceElm || state.referenceElm.nodeType !== 1) {
+        // 触发源如果是用户传递的插槽，则赋值为外侧div
+        state.referenceElm = selectVm.$refs.reference ? selectVm.$refs.reference.$el : selectVm.$refs.select
+        selectVm.popperElm = selectVm.state.popperElm = state.popperElm = parent.$el
+      }
 
-    if (parent.select.state.visible && !hideDrop) {
-      updatePopper(keepZIndex)
-      hideDrop = true
-    }
-  })
+      if (parent.select.state.visible && !hideDrop) {
+        updatePopper(keepZIndex)
+        hideDrop = true
+      }
+    })
 
-  selectEmitter.on(constants.EVENT_NAME.destroyPopper, destroyPopper)
-}
+    selectEmitter.on(constants.EVENT_NAME.destroyPopper, destroyPopper)
+  }

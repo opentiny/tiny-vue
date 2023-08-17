@@ -63,8 +63,8 @@ export default defineComponent({
     sourceType: {
       type: String,
       default: 'picture',
-      validator(val:string) {
-        return Boolean(~['picture', 'video', 'audio'].indexOf(val))
+      validator(val: string) {
+        return val.split('/').every((type) => ['picture', 'video', 'audio'].includes(type))
       }
     },
     displayOnly: {
@@ -75,7 +75,8 @@ export default defineComponent({
     handleTriggerClick: {
       type: Function,
       default: () => {}
-    }
+    },
+    mode: String
   },
   setup(props, context) {
     return $setup({ props, context, template, extend: { ref: 'upload-inner-template' } })

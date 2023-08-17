@@ -28,6 +28,7 @@ import staticDocument from '../static/staticDocument'
 import staticWindow from '../static/staticWindow'
 import assign from '../object/assign'
 import arrayEach from '../array/arrayEach'
+
 function isBrowseStorage(storage) {
   try {
     let testKey = '__tiny_t'

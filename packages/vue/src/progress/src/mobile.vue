@@ -55,7 +55,11 @@
         ></path>
       </svg>
     </div>
-    <div class="tiny-mobile-progress-text" v-if="showText && !textInside" :style="{ fontSize: state.progressTextSize + 'px' }">
+    <div
+      class="tiny-mobile-progress-text"
+      v-if="showText && !textInside"
+      :style="{ fontSize: state.progressTextSize + 'px' }"
+    >
       <template v-if="!status">{{ state.content }}</template>
       <component v-else :is="state.iconClass" />
     </div>
@@ -69,7 +73,18 @@ import { iconClose, iconSuccessful, iconError, iconYes, iconWarning } from '@ope
 import '@opentiny/vue-theme-mobile/progress/index.less'
 
 export default defineComponent({
-  props: [...props, 'type', 'percentage', 'status', 'strokeWidth', 'textInside', 'width', 'showText', 'color', 'format'],
+  props: [
+    ...props,
+    'type',
+    'percentage',
+    'status',
+    'strokeWidth',
+    'textInside',
+    'width',
+    'showText',
+    'color',
+    'format'
+  ],
   components: {
     IconClose: iconClose(),
     IconSuccessful: iconSuccessful(),

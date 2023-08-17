@@ -12,17 +12,35 @@
     </tiny-form-item>
     <tiny-form-item label="日期选择">
       <tiny-cell :data="formatDate(formData.date)" @click="dateVisibility = true"></tiny-cell>
-      <tiny-date-picker-mobile v-model="formData.date" title="日期选择" :visible="dateVisibility" @update:visible="dateVisibility = $event">
+      <tiny-date-picker-mobile
+        v-model="formData.date"
+        title="日期选择"
+        :visible="dateVisibility"
+        @update:visible="dateVisibility = $event"
+      >
       </tiny-date-picker-mobile>
     </tiny-form-item>
     <tiny-form-item label="日期时间选择">
       <tiny-cell :data="formatDatetime(formData.datetime)" @click="datetimeVisibility = true"></tiny-cell>
-      <tiny-date-picker-mobile v-model="formData.datetime" type="datetime" title="日期时间选择" :visible="datetimeVisibility" @update:visible="datetimeVisibility = $event">
+      <tiny-date-picker-mobile
+        v-model="formData.datetime"
+        type="datetime"
+        title="日期时间选择"
+        :visible="datetimeVisibility"
+        @update:visible="datetimeVisibility = $event"
+      >
       </tiny-date-picker-mobile>
     </tiny-form-item>
     <tiny-form-item label="下拉单选">
       <tiny-cell :data="getSelectLabel(formData.selectValue)" @click="selectVisibility = true"></tiny-cell>
-      <tiny-select-mobile v-model="formData.selectValue" title="下拉单选" :search-config="searchConfig" :menus="menus" :visible="selectVisibility" @update:visible="selectVisibility = $event"></tiny-select-mobile>
+      <tiny-select-mobile
+        v-model="formData.selectValue"
+        title="下拉单选"
+        :search-config="searchConfig"
+        :menus="menus"
+        :visible="selectVisibility"
+        @update:visible="selectVisibility = $event"
+      ></tiny-select-mobile>
     </tiny-form-item>
   </tiny-form>
 </template>

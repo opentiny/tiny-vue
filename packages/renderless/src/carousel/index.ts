@@ -167,7 +167,7 @@ export const watchActiveIndex =
     emit('change', value, oldValue)
   }
 
-export const watchAutoplay = (api) => (value) => value ? api.startTimer() : api.pauseTimer()
+export const watchAutoplay = (api) => (value) => (value ? api.startTimer() : api.pauseTimer())
 
 export const throttledArrowClick = (api) => throttle(300, true, (index) => api.setActiveItem(index))
 

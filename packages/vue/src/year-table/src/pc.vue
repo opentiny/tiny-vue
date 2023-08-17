@@ -10,7 +10,7 @@
  *
  -->
 
- <template>
+<template>
   <table class="tiny-year-table" @mousemove="handleMouseMove" @click="handleYearTableClick">
     <tbody>
       <tr v-for="(row, key) in state.rows" :key="key">
@@ -57,4 +57,3 @@ export default defineComponent({
   }
 })
 </script>
-

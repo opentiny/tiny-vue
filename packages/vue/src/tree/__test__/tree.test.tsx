@@ -37,7 +37,7 @@ const data = [
         ]
       }
     ]
-  },
+  }
 ]
 
 describe('PC Mode', () => {
@@ -111,18 +111,20 @@ describe('PC Mode', () => {
    * slots
    */
   test('slot-default', () => {
-    const wrapper = mount(() => <Tree
-      data={data}
-      v-slots={{
-        default: (scopeData: any) => <div class="custom-label">{scopeData.data.label}</div>
-      }}
-    ></Tree>)
+    const wrapper = mount(() => (
+      <Tree
+        data={data}
+        v-slots={{
+          default: (scopeData: any) => <div class="custom-label">{scopeData.data.label}</div>
+        }}
+      ></Tree>
+    ))
     expect(wrapper.find('.custom-label').exists()).toBe(true)
   })
 
   test.todo('empty 自定义空数据文本')
 
-  /** 
+  /**
    * events
    */
   test('node-click', async () => {

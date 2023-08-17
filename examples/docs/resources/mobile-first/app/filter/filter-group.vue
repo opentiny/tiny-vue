@@ -3,7 +3,13 @@
     <p>值：{{ value }}</p>
     <p>过滤组值：{{ filterValue }}</p>
     <br />
-    <tiny-filter v-model="value" :data="data" :filter-value="filterValue" @update:filter-value="filterValue = $event" :filter-group="filterGroup"></tiny-filter>
+    <tiny-filter
+      v-model="value"
+      :data="data"
+      :filter-value="filterValue"
+      @update:filter-value="filterValue = $event"
+      :filter-group="filterGroup"
+    ></tiny-filter>
   </div>
 </template>
 

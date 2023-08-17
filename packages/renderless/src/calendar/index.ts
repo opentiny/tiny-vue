@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { isLeapYear } from '../common/date'
 import { copyArray } from '../common/object'
@@ -20,7 +20,8 @@ import { copyArray } from '../common/object'
  * @param {Number} month - 月
  * @returns {Number} - 总天数
  */
-export const getDays = (year, month) => [31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month - 1]
+export const getDays = (year, month) =>
+  [31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month - 1]
 
 /**
  * 根据日期获取星期
@@ -161,48 +162,52 @@ export const parseDate = (time) => {
   }
 }
 
-export const computedCalendar = ({ state }) => () => {
-  const calendar = getCalendar(state.activeYear, state.activeMonth)
-  const result = []
+export const computedCalendar =
+  ({ state }) =>
+  () => {
+    const calendar = getCalendar(state.activeYear, state.activeMonth)
+    const result = []
 
-  if (calendar) {
-    const { last, current, next } = calendar
+    if (calendar) {
+      const { last, current, next } = calendar
 
-    if (last && calendar.last.end >= calendar.last.start) {
-      for (let i = last.start; i <= last.end; i++) {
-        result.push({ value: i, isLast: true })
+      if (last && calendar.last.end >= calendar.last.start) {
+        for (let i = last.start; i <= last.end; i++) {
+          result.push({ value: i, isLast: true })
+        }
+      }
+      /* istanbul ignore else */
+      if (current) {
+        for (let i = current.start; i <= current.end; i++) {
+          result.push({ value: i })
+        }
+      }
+
+      if (next.end >= next.start) {
+        for (let i = next.start; i <= next.end; i++) {
+          result.push({ value: i, isNext: true })
+        }
       }
     }
-    /* istanbul ignore else */
-    if (current) {
-      for (let i = current.start; i <= current.end; i++) {
-        result.push({ value: i })
-      }
-    }
 
-    if (next.end >= next.start) {
-      for (let i = next.start; i <= next.end; i++) {
-        result.push({ value: i, isNext: true })
-      }
-    }
+    return transformArray(result)
   }
 
-  return transformArray(result)
-}
+export const computedEventList =
+  ({ props, state }) =>
+  () => {
+    let result = []
 
-export const computedEventList = ({ props, state }) => () => {
-  let result = []
+    if (props.events && props.events.length) {
+      result = props.events.filter((item) => {
+        const { year, month } = parseDate(item.time)
 
-  if (props.events && props.events.length) {
-    result = props.events.filter((item) => {
-      const { year, month } = parseDate(item.time)
+        return Number(state.activeYear) === year && Number(state.activeMonth) === month
+      })
+    }
 
-      return Number(state.activeYear) === year && Number(state.activeMonth) === month
-    })
+    return result
   }
-
-  return result
-}
 
 export const toggeModel = (state) => (mode) => {
   const isYearOrMonth = /^(year|month)$/.test(mode)
@@ -262,7 +267,11 @@ export const getEventByDay = (state) => (day) => {
       .filter(({ time }) => {
         const date = new Date(time)
 
-        return date.getDate() === day && date.getFullYear() === Number(state.activeYear) && date.getMonth() + 1 === Number(state.activeMonth)
+        return (
+          date.getDate() === day &&
+          date.getFullYear() === Number(state.activeYear) &&
+          date.getMonth() + 1 === Number(state.activeMonth)
+        )
       })
       .map((event) => {
         event.parseTime = parseDate(event.time)
@@ -279,24 +288,26 @@ export const getEventByDay = (state) => (day) => {
  * @param {Number} month
  * @returns {Array}
  */
-export const getEventByMonth = ({ props, state }) => (month) => {
-  let events = []
+export const getEventByMonth =
+  ({ props, state }) =>
+  (month) => {
+    let events = []
 
-  if (props.events) {
-    events = copyArray(props.events)
-      .filter(({ time }) => {
-        const date = new Date(time)
+    if (props.events) {
+      events = copyArray(props.events)
+        .filter(({ time }) => {
+          const date = new Date(time)
 
-        return date.getFullYear() === Number(state.activeYear) && date.getMonth() + 1 === month
-      })
-      .map((event) => {
-        event.parseTime = parseDate(event.time)
-        return event
-      })
+          return date.getFullYear() === Number(state.activeYear) && date.getMonth() + 1 === month
+        })
+        .map((event) => {
+          event.parseTime = parseDate(event.time)
+          return event
+        })
+    }
+
+    return events
   }
-
-  return events
-}
 
 /**
  * 获取时间戳

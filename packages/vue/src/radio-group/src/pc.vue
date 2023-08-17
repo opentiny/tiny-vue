@@ -10,7 +10,14 @@
  *
  -->
 <template>
-  <component :is="state.tag" class="tiny-radio-group" :class="[vertical ? 'list-inline' : '']" role="radiogroup" @keydown="handleKeydown" ref="group">
+  <component
+    :is="state.tag"
+    class="tiny-radio-group"
+    :class="[vertical ? 'list-inline' : '']"
+    role="radiogroup"
+    @keydown="handleKeydown"
+    ref="group"
+  >
     <slot>
       <template v-if="type === 'radio'">
         <radio v-for="(item, index) in options" :key="index" v-bind="item"></radio>

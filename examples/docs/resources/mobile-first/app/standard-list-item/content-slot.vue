@@ -1,13 +1,18 @@
 <template>
   <div class="h-64 w-full p-5 bg-color-bg-5">
-    <tiny-standard-list-item :show-image="true" :user-head="userHeadOption" :options="iconOptions" class="bg-color-bg-1">
+    <tiny-standard-list-item
+      :show-image="true"
+      :user-head="userHeadOption"
+      :options="iconOptions"
+      class="bg-color-bg-1"
+    >
       <div>内容区域插槽，可以自定义想展示的内容</div>
     </tiny-standard-list-item>
   </div>
 </template>
 
 <script>
-import { StandardListItem, Modal } from '@opentiny/vue'
+import { StandardListItem } from '@opentiny/vue'
 import { IconDel, IconWriting, IconAscending, IconShare } from '@opentiny/vue-icon'
 
 export default {

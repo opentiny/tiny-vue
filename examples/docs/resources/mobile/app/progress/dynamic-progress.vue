@@ -13,6 +13,7 @@
 
 <script lang="jsx">
 import { Progress, Button } from '@opentiny/vue'
+
 // import { setInterval, clearInterval } from 'timers'
 
 export default {

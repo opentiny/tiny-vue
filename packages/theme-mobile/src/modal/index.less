@@ -13,7 +13,6 @@
 @import '../custom.less';
 @import './vars.less';
 
-
 @modal-prefix-cls: ~'@{css-prefix}mobile-modal';
 
 @button-default-prefix-cls: ~'@{css-prefix}mobile-button--default';
@@ -21,7 +20,7 @@
 @button-default-prefix-cls: ~'@{css-prefix}mobile-button--default';
 @button-prefix-cls: ~'@{css-prefix}mobile-button';
 
-.@{modal-prefix-cls}{
+.@{modal-prefix-cls} {
   .component-css-vars-modal();
 }
 
@@ -57,7 +56,9 @@
       &:not(.type__message) {
         .@{modal-prefix-cls}__box:not(.is__drag) {
           top: 15vh;
-          transition: top 0s ease-in, opacity 0.4s ease-in;
+          transition:
+            top 0s ease-in,
+            opacity 0.4s ease-in;
         }
       }
 
@@ -258,7 +259,6 @@
     opacity: 0;
     padding-top: 12px;
 
-
     &.is__drag {
       cursor: move;
 
@@ -342,7 +342,7 @@
 
     &:hover {
       fill: var(--ti-mobile-modal-text-color);
-      background-color:var(--ti-mobile-modal-close-btn-bg-color-hover)
+      background-color: var(--ti-mobile-modal-close-btn-bg-color-hover);
     }
   }
 
@@ -360,7 +360,7 @@
     text-align: center;
     padding-bottom: 32px;
 
-    .@{button-prefix-cls}{
+    .@{button-prefix-cls} {
       border-radius: 18px;
       width: var(--ti-mobile-modal-btn-width);
       height: var(--ti-mobile-modal-btn-height);
@@ -370,7 +370,7 @@
         width: var(--ti-mobile-modal-single-btn-width);
       }
     }
-    .@{button-default-prefix-cls}{
+    .@{button-default-prefix-cls} {
       display: inline-block;
       margin-right: 16px;
       background-color: var(--ti-mobile-modal-cancel-btn-bg-color, #f5f5f5);

@@ -1,22 +1,34 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
-import { handleChange, getValue, setValue, getGroup, getStyle, toggleEvents,keydownHandle,
+import {
+  handleChange,
+  getValue,
+  setValue,
+  getGroup,
+  getStyle,
+  toggleEvents,
+  keydownHandle,
   handleFocus,
-  handleBlur } from './index'
+  handleBlur
+} from './index'
 
-export const api = ['state', 'handleChange']
+export const api = ['state', 'handleChange', 'keydownHandle', 'handleFocus', 'handleBlur']
 
-export const renderless = (props, { computed, reactive, onMounted, onBeforeUnmount, inject }, { emit, parent, dispatch, constants, nextTick, refs }) => {
+export const renderless = (
+  props,
+  { computed, reactive, onMounted, onBeforeUnmount, inject },
+  { emit, parent, dispatch, constants, nextTick, refs }
+) => {
   const api = {
     getGroup: getGroup({ constants, parent }),
     toggleEvents: toggleEvents({ refs, props })

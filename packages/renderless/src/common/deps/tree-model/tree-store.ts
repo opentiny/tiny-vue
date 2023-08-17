@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { hasOwn, isNull } from '../../type'
 import { getNodeKey } from './util'
@@ -33,6 +33,7 @@ export default class TreeStore {
       this.load(this.root, (data) => {
         this.root.doCreateChildren(data)
         this._initDefaultCheckedNodes()
+        typeof this.afterLoad === 'function' && this.afterLoad({ data, init: true })
       })
     } else {
       this._initDefaultCheckedNodes()
@@ -116,22 +117,28 @@ export default class TreeStore {
     refNode.parent.insertAfter({ data }, refNode)
   }
 
-  remove(data) {
-    const treeNode = this.getNode(data)
+  remove(data, isSaveChildNode, isNode) {
+    const treeNode = isNode ? data : this.getNode(data)
 
     if (treeNode && treeNode.parent) {
       if (treeNode === this.currentNode) {
         this.currentNode = null
       }
 
+      if (isSaveChildNode && treeNode.childNodes) {
+        treeNode.childNodes.forEach((child) => {
+          treeNode.parent.insertChild({ data: child.data })
+        })
+      }
+
       treeNode.parent.removeChild(treeNode)
     }
   }
 
-  append(data, parentData) {
+  append(data, parentData, index) {
     const parentNode = parentData ? this.getNode(parentData) : this.root
 
-    parentNode && parentNode.insertChild({ data })
+    parentNode && parentNode.insertChild({ data }, index)
   }
 
   setDefaultCheckedKey(newValue) {
@@ -191,7 +198,7 @@ export default class TreeStore {
     }
   }
 
-  getCheckedNodes(leafOnly = false, includeHalfChecked = false) {
+  getCheckedNodes(leafOnly = false, includeHalfChecked = false, isNode = false) {
     const checkedNodes = []
 
     const walkTree = (node) => {
@@ -201,7 +208,7 @@ export default class TreeStore {
         const { checked, indeterminate, isLeaf, data } = child
 
         if ((checked || (includeHalfChecked && indeterminate)) && (!leafOnly || (leafOnly && isLeaf))) {
-          checkedNodes.push(data)
+          checkedNodes.push(isNode ? child : data)
         }
 
         walkTree(child)
@@ -385,5 +392,20 @@ export default class TreeStore {
     const currNode = this.nodesMap[key]
 
     this.setCurrentNode(currNode)
+  }
+
+  getData(data) {
+    return (this.getNode(data) || {}).data
+  }
+
+  getAllData() {
+    const children = this.props.children
+    const walkTree = (nodes) => {
+      return nodes.map(node => {
+        return { ...node.data, [children]: walkTree(node.childNodes) }
+      })
+    }
+
+    return walkTree(this.root.childNodes)
   }
 }

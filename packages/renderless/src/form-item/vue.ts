@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   validate,
@@ -137,10 +137,12 @@ const initApi = ({ api, state, dispatch, broadcast, refs, props, constants, inst
   })
 }
 
-const initWatch = ({ watch, api, props }) => {
+const initWatch = ({ watch, api, props, state }) => {
   watch(() => props.error, api.watchError, { immediate: true })
 
   watch(() => props.validateStatus, api.watchValidateStatus)
+
+  watch(() => state.formInstance.displayOnly, api.clearDisplayedValue)
 }
 
 export const renderless = (
@@ -154,9 +156,12 @@ export const renderless = (
   provide('formItem', instance)
 
   initApi({ api, state, dispatch, broadcast, refs, props, constants, instance, t, nextTick })
-  initWatch({ watch, api, props })
+  initWatch({ watch, api, props, state })
 
   onMounted(api.mounted)
+  instance.$on('displayed-value-changed', (param) => {
+    api.getDisplayedValue(param)
+  })
   onUnmounted(api.unmounted)
 
   return api

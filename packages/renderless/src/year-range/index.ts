@@ -11,50 +11,54 @@ export const calcDefaultValue = (value) => {
   return [new Date(), nextMonth(new Date())]
 }
 
-export const watchValue = ({ state }) => (data) => {
-  if (!data) {
-    state.minDate = null
-    state.maxDate = null
-  } else if (Array.isArray(data)) {
-    if (isDate(data[1])) {
-      state.maxDate = new Date(data[1])
-    } else {
-      state.maxDate = null
-    }
-
-    if (isDate(data[0])) {
-      state.minDate = new Date(data[0])
-    } else {
+export const watchValue =
+  ({ state }) =>
+  (data) => {
+    if (!data) {
       state.minDate = null
-    }
-
-    if (!state.minDate) {
-      state.leftDate = calcDefaultValue(state.defaultValue)[0]
-      state.rightDate = nextYear(state.leftDate)
-    } else {
-      state.leftDate = state.minDate
-
-      if (state.maxDate && state.unlinkPanels) {
-        const minDateYear = state.minDate.getFullYear()
-        const maxDateYear = state.maxDate.getFullYear()
-
-        state.rightDate = maxDateYear === minDateYear ? nextYear(state.maxDate) : state.maxDate
+      state.maxDate = null
+    } else if (Array.isArray(data)) {
+      if (isDate(data[1])) {
+        state.maxDate = new Date(data[1])
       } else {
+        state.maxDate = null
+      }
+
+      if (isDate(data[0])) {
+        state.minDate = new Date(data[0])
+      } else {
+        state.minDate = null
+      }
+
+      if (!state.minDate) {
+        state.leftDate = calcDefaultValue(state.defaultValue)[0]
         state.rightDate = nextYear(state.leftDate)
+      } else {
+        state.leftDate = state.minDate
+
+        if (state.maxDate && state.unlinkPanels) {
+          const minDateYear = state.minDate.getFullYear()
+          const maxDateYear = state.maxDate.getFullYear()
+
+          state.rightDate = maxDateYear === minDateYear ? nextYear(state.maxDate) : state.maxDate
+        } else {
+          state.rightDate = nextYear(state.leftDate)
+        }
       }
     }
   }
-}
 
-export const handleClear = ({ emit, state }) => () => {
-  state.maxDate = null
-  state.minDate = null
+export const handleClear =
+  ({ emit, state }) =>
+  () => {
+    state.maxDate = null
+    state.minDate = null
 
-  state.leftDate = calcDefaultValue(state.defaultValue)[0]
-  state.rightDate = nextYear(state.leftDate)
+    state.leftDate = calcDefaultValue(state.defaultValue)[0]
+    state.rightDate = nextYear(state.leftDate)
 
-  emit('pick', null)
-}
+    emit('pick', null)
+  }
 
 export const handleChangeRange = (state) => (val) => {
   state.rangeState = val.rangeState
@@ -62,45 +66,49 @@ export const handleChangeRange = (state) => (val) => {
   state.maxDate = val.maxDate
 }
 
-export const watchDefaultValue = ({ state }) => (data) => {
-  if (!Array.isArray(state.value)) {
-    const [left, right] = calcDefaultValue(data)
+export const watchDefaultValue =
+  ({ state }) =>
+  (data) => {
+    if (!Array.isArray(state.value)) {
+      const [left, right] = calcDefaultValue(data)
 
-    state.leftDate = left
+      state.leftDate = left
 
-    state.rightDate =
-      data && data[1] && left.getFullYear() !== right.getFullYear() && state.unlinkPanels
-        ? right
-        : nextYear(state.leftDate)
-  }
-}
-
-export const handleRangePick = ({ api, state }) => (val, close = true) => {
-  const maxDate = val.maxDate
-  const minDate = val.minDate
-
-  if (state.minDate === minDate && state.maxDate === maxDate) {
-    return
+      state.rightDate =
+        data && data[1] && left.getFullYear() !== right.getFullYear() && state.unlinkPanels
+          ? right
+          : nextYear(state.leftDate)
+    }
   }
 
-  if (state.onPick) {
-    state.onPick(val)
-  }
+export const handleRangePick =
+  ({ api, state }) =>
+  (val, close = true) => {
+    const maxDate = val.maxDate
+    const minDate = val.minDate
 
-  state.minDate = minDate
-  state.maxDate = maxDate
+    if (state.minDate === minDate && state.maxDate === maxDate) {
+      return
+    }
 
-  setTimeout(() => {
+    if (state.onPick) {
+      state.onPick(val)
+    }
+
     state.minDate = minDate
     state.maxDate = maxDate
-  }, 10)
 
-  if (!close) {
-    return
+    setTimeout(() => {
+      state.minDate = minDate
+      state.maxDate = maxDate
+    }, 10)
+
+    if (!close) {
+      return
+    }
+
+    api.handleConfirm()
   }
-
-  api.handleConfirm()
-}
 
 export const handleShortcutClick = (api) => (shortcutEvent) => {
   if (shortcutEvent.onClick) {
@@ -126,11 +134,13 @@ export const rightNextYear = (state) => () => {
   state.leftStartYear = state.leftStartYear + DATEPICKER.PanelYearNum * 2
 }
 
-export const handleConfirm = ({ api, emit, state }) => (show = false) => {
-  const { minDate, maxDate } = state
+export const handleConfirm =
+  ({ api, emit, state }) =>
+  (show = false) => {
+    const { minDate, maxDate } = state
 
-  api.isValidValue([minDate, maxDate]) && emit('pick', [new Date(minDate, 0, 2), new Date(maxDate, 0, 2)], show)
-}
+    api.isValidValue([minDate, maxDate]) && emit('pick', [new Date(minDate, 0, 2), new Date(maxDate, 0, 2)], show)
+  }
 
 export const isValidValue = (state) => (data) => {
   return (

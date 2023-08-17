@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { extend } from '../../common/object'
 import browser from '../../common/browser'
@@ -53,18 +53,18 @@ function funcFromCodePoint() {
   for (let i = 0, length = arguments.length; i !== length; ++i) {
     let cp = Number(arguments[i])
 
-    if (!(cp < 0x10FFFF && cp >>> 0 === cp)) {
+    if (!(cp < 0x10ffff && cp >>> 0 === cp)) {
       throw new RangeError('Invalid code point: ' + cp)
     }
 
-    if (cp <= 0xFFFF) {
+    if (cp <= 0xffff) {
       codeLength = codeUnitArr.push(cp)
     } else {
       cp -= 0x10000
-      codeLength = codeUnitArr.push((cp >> 10) + 0xD800, (cp % 0x400) + 0xDC00)
+      codeLength = codeUnitArr.push((cp >> 10) + 0xd800, (cp % 0x400) + 0xdc00)
     }
 
-    if (codeLength >= 0x3FFF) {
+    if (codeLength >= 0x3fff) {
       resultStr += String.fromCharCode.apply(null, codeUnitArr)
       codeUnitArr.length = 0
     }
@@ -94,7 +94,7 @@ function s2ab(s) {
   const view = new Uint8Array(buf)
 
   for (let i = 0; i !== s.length; i++) {
-    view[i] = s.charCodeAt(i) & 0xFF
+    view[i] = s.charCodeAt(i) & 0xff
   }
 
   return buf
@@ -197,12 +197,16 @@ function buildColids({ $table, colids, columnWidthMethod, datas, ths, ws }) {
 
           columnWidth = columnWidthMethod
             ? columnWidthMethod({
-              columnIndex: colids.length - 1,
-              width: columnWidth
-            })
+                columnIndex: colids.length - 1,
+                width: columnWidth
+              })
             : columnWidth
           ws['!cols'].push({ wch: Math.round(columnWidth / 10) })
-          datas[level].splice(colids.length - 1, 1, typeof column.title === 'string' ? column.title : ths[i].textContent)
+          datas[level].splice(
+            colids.length - 1,
+            1,
+            typeof column.title === 'string' ? column.title : ths[i].textContent
+          )
 
           break
         }
@@ -337,7 +341,16 @@ function buildRef({ colids, datas, excelColNames, ws }) {
   ws['!ref'] = fullref
 }
 
-function updateCellStyle({ bodyRowCount, bodyTrBgcArr, footerTrBgc, headerRowCount, headerWrapperBgc, rowIndex, showBorder, style }) {
+function updateCellStyle({
+  bodyRowCount,
+  bodyTrBgcArr,
+  footerTrBgc,
+  headerRowCount,
+  headerWrapperBgc,
+  rowIndex,
+  showBorder,
+  style
+}) {
   style.font = { name: 'Microsoft YaHei', sz: 12, color: { rgb: '000000' } }
 
   if (rowIndex < headerRowCount) {
@@ -362,7 +375,20 @@ function updateCellStyle({ bodyRowCount, bodyTrBgcArr, footerTrBgc, headerRowCou
   style.alignment = { vertical: 'center', horizontal: 'left', wrapText: false }
 }
 
-function buildDatas({ showBorder, bodyRowCount, bodyTrBgcArr, headerRowCount, colids, datas, footerTrBgc, headerWrapperBgc, excelColNames, opts, $table, ws }) {
+function buildDatas({
+  showBorder,
+  bodyRowCount,
+  bodyTrBgcArr,
+  headerRowCount,
+  colids,
+  datas,
+  footerTrBgc,
+  headerWrapperBgc,
+  excelColNames,
+  opts,
+  $table,
+  ws
+}) {
   if (datas.length === 0) {
     return
   }
@@ -370,7 +396,8 @@ function buildDatas({ showBorder, bodyRowCount, bodyTrBgcArr, headerRowCount, co
   const styleMethod = opts.table.styleMethod
   const formatMethod = opts.table.formatMethod
   const fullColumn = $table.getTableColumn().fullColumn
-  const isIndexColData = (i, j, indexColIndex, headerRowCount, bodyRowCount) => indexColIndex === j && i >= headerRowCount && i < headerRowCount + bodyRowCount
+  const isIndexColData = (i, j, indexColIndex, headerRowCount, bodyRowCount) =>
+    indexColIndex === j && i >= headerRowCount && i < headerRowCount + bodyRowCount
   let indexColIndex
 
   for (let i = 0; i < fullColumn.length; i++) {
@@ -383,10 +410,22 @@ function buildDatas({ showBorder, bodyRowCount, bodyTrBgcArr, headerRowCount, co
   for (let i = 0; i < datas.length; i++) {
     for (let j = 0; j < datas[i].length; j++) {
       let type = isIndexColData(i, j, indexColIndex, headerRowCount, bodyRowCount) ? 'n' : 's'
-      let value = isIndexColData(i, j, indexColIndex, headerRowCount, bodyRowCount) ? parseInt(datas[i][j]) : datas[i][j].trim()
+      let value = isIndexColData(i, j, indexColIndex, headerRowCount, bodyRowCount)
+        ? parseInt(datas[i][j])
+        : datas[i][j].trim()
       let style = {}
 
-      updateCellStyle({ bodyRowCount, bodyTrBgcArr, columnIndex: j, footerTrBgc, headerRowCount, headerWrapperBgc, rowIndex: i, showBorder, style })
+      updateCellStyle({
+        bodyRowCount,
+        bodyTrBgcArr,
+        columnIndex: j,
+        footerTrBgc,
+        headerRowCount,
+        headerWrapperBgc,
+        rowIndex: i,
+        showBorder,
+        style
+      })
 
       if (styleMethod) {
         style = styleMethod({ rowIndex: i, columnIndex: j, style })
@@ -486,9 +525,9 @@ function buildColidsByVisibleColumn({ $table, bodyRowCount, bodyTrs, colids, opt
 
         columnWidth = columnWidthMethod
           ? columnWidthMethod({
-            columnIndex: colids.length - 1,
-            width: columnWidth
-          })
+              columnIndex: colids.length - 1,
+              width: columnWidth
+            })
           : columnWidth
         ws['!cols'].push({ wch: Math.round(columnWidth / 10) })
 
@@ -552,7 +591,20 @@ function createExcelFromDom($table, opts) {
 
   buildRef({ colids, datas, excelColNames, ws })
 
-  buildDatas({ $table, bodyRowCount, bodyTrBgcArr, colids, datas, excelColNames, footerTrBgc, headerRowCount, headerWrapperBgc, opts, showBorder, ws })
+  buildDatas({
+    $table,
+    bodyRowCount,
+    bodyTrBgcArr,
+    colids,
+    datas,
+    excelColNames,
+    footerTrBgc,
+    headerRowCount,
+    headerWrapperBgc,
+    opts,
+    showBorder,
+    ws
+  })
 
   return buildWb({ XLSXX, opts, ws })
 }

@@ -44,17 +44,35 @@
       </tiny-form-item>
       <tiny-form-item label="日期选择">
         <tiny-cell :data="formatDate(createData.date)" @click="dateVisibility = true"></tiny-cell>
-        <tiny-date-picker-mobile v-model="createData.date" title="日期选择" :visible="dateVisibility" @update:visible="dateVisibility = $event">
+        <tiny-date-picker-mobile
+          v-model="createData.date"
+          title="日期选择"
+          :visible="dateVisibility"
+          @update:visible="dateVisibility = $event"
+        >
         </tiny-date-picker-mobile>
       </tiny-form-item>
       <tiny-form-item label="日期时间选择日期时间选择日期时间选择">
         <tiny-cell :data="formatDatetime(createData.datetime)" @click="datetimeVisibility = true"></tiny-cell>
-        <tiny-date-picker-mobile v-model="createData.datetime" type="datetime" title="日期时间选择" :visible="datetimeVisibility" @update:visible="datetimeVisibility = $event">
+        <tiny-date-picker-mobile
+          v-model="createData.datetime"
+          type="datetime"
+          title="日期时间选择"
+          :visible="datetimeVisibility"
+          @update:visible="datetimeVisibility = $event"
+        >
         </tiny-date-picker-mobile>
       </tiny-form-item>
       <tiny-form-item label="下拉单选">
         <tiny-cell :data="getSelectLabel(createData.selectValue)" @click="selectVisibility = true"></tiny-cell>
-        <tiny-select-mobile v-model="createData.selectValue" title="下拉单选" :search-config="searchConfig" :menus="menus" :visible="selectVisibility" @update:visible="selectVisibility = $event"></tiny-select-mobile>
+        <tiny-select-mobile
+          v-model="createData.selectValue"
+          title="下拉单选"
+          :search-config="searchConfig"
+          :menus="menus"
+          :visible="selectVisibility"
+          @update:visible="selectVisibility = $event"
+        ></tiny-select-mobile>
       </tiny-form-item>
       <tiny-form-item>
         <tiny-button type="primary" @click="submitClick">提交</tiny-button>
@@ -150,9 +168,9 @@ export default {
       formDisabled: false
     }
   },
-  mounted() { },
+  mounted() {},
   methods: {
-    submitClick() { },
+    submitClick() {},
     getSelectLabel(value) {
       if (!value) return ''
       return this.menus.find((item) => item.id === value)?.label

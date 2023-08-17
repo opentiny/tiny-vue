@@ -11,7 +11,8 @@ const getBuildEntryFile = (file, dirs, subPath) => {
   const isMainEntry = file.includes('index') && dirs.includes('package.json')
   const isPcEntry = file.includes('pc.') && subPath.includes(`src${path.sep}pc.`) && isTemplatePath
   const isMobileEntry = file.includes('mobile.') && subPath.includes(`src${path.sep}mobile.`) && isTemplatePath
-  const isMobileFirstEntry = file.includes('mobile-first.') && subPath.includes(`src${path.sep}mobile-first.`) && isTemplatePath
+  const isMobileFirstEntry =
+    file.includes('mobile-first.') && subPath.includes(`src${path.sep}mobile-first.`) && isTemplatePath
   return {
     isBuildEntryFile: isMainEntry || isPcEntry || isMobileEntry || isMobileFirstEntry,
     isMainEntry,
@@ -28,7 +29,7 @@ const getTemplateName = (currentPaths, entryObj) => {
     isMobileFirstEntry: 'MobileFirst',
     isMainEntry: ''
   }
-  const mapKey = Object.keys(entryObj).filter(item => entryObj[item] && item !== 'isBuildEntryFile')[0]
+  const mapKey = Object.keys(entryObj).filter((item) => entryObj[item] && item !== 'isBuildEntryFile')[0]
   const subFix = entryMaps[mapKey]
   return `${currentPaths.split('-').map(capitalize).join('')}${subFix}`
 }
@@ -36,7 +37,7 @@ const getTemplateName = (currentPaths, entryObj) => {
 const tempMap = {
   'pc.vue': 'pc',
   'mobile.vue': 'mobile',
-  'mobile-first.vue': 'mobile-first',
+  'mobile-first.vue': 'mobile-first'
 }
 
 /**
@@ -63,7 +64,7 @@ const makeModules = () => {
       if (entryObj.isMainEntry && dirs.includes('src')) {
         const srcPath = subPath.replace(file, 'src')
         const srcFiles = fs.readdirSync(srcPath) || []
-        srcFiles.forEach(item => {
+        srcFiles.forEach((item) => {
           if (tempMap[item]) {
             mode.push(tempMap[item])
           }

@@ -37,11 +37,11 @@
         <g id="编组" filter="url(#filter-1)" transform="translate(4.634300, 4.625000)">
             <g id="Stroke-2">
                 <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
-                <use stroke="#808080" stroke-width="1" xlink:href="#path-2"></use>
+                <use stroke="currentColor" stroke-width="1" xlink:href="#path-2"></use>
             </g>
             <g id="Stroke-3">
                 <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
-                <use stroke="#808080" stroke-width="1" xlink:href="#path-4"></use>
+                <use stroke="currentColor" stroke-width="1" xlink:href="#path-4"></use>
             </g>
         </g>
     </g>

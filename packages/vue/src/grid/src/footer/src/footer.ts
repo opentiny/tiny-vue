@@ -88,27 +88,42 @@ function renderColgroup(tableColumn) {
   return h(
     'colgroup',
     { ref: 'colgroup' },
-    tableColumn.map((column, columnIndex) => h('col', { attrs: { name: column.id }, key: columnIndex })).concat([h('col', { attrs: { name: 'col_gutter' } })])
+    tableColumn
+      .map((column, columnIndex) => h('col', { attrs: { name: column.id }, key: columnIndex }))
+      .concat([h('col', { attrs: { name: 'col_gutter' } })])
   )
 }
 
 const renderfoots = (opt) => {
   const { $table, allAlign, allColumnOverflow, allFooterAlign, buildParamFunc, columnKey } = opt
-  const { footerCellClassName, footerData, footerRowClassName, footerSpanMethod, overflowX, tableColumn, tableListeners } = opt
+  const {
+    footerCellClassName,
+    footerData,
+    footerRowClassName,
+    footerSpanMethod,
+    overflowX,
+    tableColumn,
+    tableListeners
+  } = opt
   return (list, $rowIndex) =>
     h(
       'tr',
       {
         class: [
           'tiny-grid-footer__row',
-          footerRowClassName ? (isFunction(footerRowClassName) ? footerRowClassName({ $table, $rowIndex }) : footerRowClassName) : ''
+          footerRowClassName
+            ? isFunction(footerRowClassName)
+              ? footerRowClassName({ $table, $rowIndex })
+              : footerRowClassName
+            : ''
         ]
       },
       tableColumn
         .map((column, $columnIndex) => {
           const arg1 = { $columnIndex, $rowIndex, $table, allAlign, allColumnOverflow, allFooterAlign }
           const arg2 = { column, footerData, footerSpanMethod, overflowX, tableListeners }
-          const { attrs, columnIndex, fixedHiddenColumn, footAlign, footerClassName, hasEllipsis, params, tfOns } = buildParamFunc(Object.assign(arg1, arg2))
+          const { attrs, columnIndex, fixedHiddenColumn, footAlign, footerClassName, hasEllipsis, params, tfOns } =
+            buildParamFunc(Object.assign(arg1, arg2))
           return h(
             'td',
             {
@@ -169,13 +184,28 @@ export default {
   },
   render() {
     let { $parent: $table, buildParamFunc, footerData, tableColumn } = this
-    let { align: allAlign, columnKey, footerAlign: allFooterAlign, footerCellClassName, footerRowClassName, footerSpanMethod } = $table
+    let {
+      align: allAlign,
+      columnKey,
+      footerAlign: allFooterAlign,
+      footerCellClassName,
+      footerRowClassName,
+      footerSpanMethod
+    } = $table
     let { overflowX, showOverflow: allColumnOverflow, tableLayout, tableListeners } = $table
 
     let tableAttrs = { cellspacing: 0, cellpadding: 0, border: 0 }
     let colgroupVNode = renderColgroup(tableColumn)
     let arg1 = { $table, allAlign, allColumnOverflow, allFooterAlign, buildParamFunc, columnKey }
-    let arg2 = { footerCellClassName, footerData, footerRowClassName, footerSpanMethod, overflowX, tableColumn, tableListeners }
+    let arg2 = {
+      footerCellClassName,
+      footerData,
+      footerRowClassName,
+      footerSpanMethod,
+      overflowX,
+      tableColumn,
+      tableListeners
+    }
     let tfootVNode = renderTfoot(Object.assign(arg1, arg2))
 
     return h(

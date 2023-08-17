@@ -34,7 +34,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
       '@vue/composition-api': 'VueCompositionAPI',
       '@opentiny/vue-locale': 'TinyVueLocale',
       '@opentiny/vue-common': 'TinyVueCommon',
-      '@opentiny/vue-icon': 'TinyVueIcon',
+      '@opentiny/vue-icon': 'TinyVueIcon'
     }
   }
 
@@ -60,17 +60,19 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
     })
 
     baseConfig.plugins?.push(
-      ...[
+      ...([
         commonjs({
           include: /node_modules/,
           requireReturnsDefault: true,
-          defaultIsModuleExports: true
+          defaultIsModuleExports: true,
+          // echarts模块本身是esmodules格式不需要经过commonjs转换
+          exclude: ['node_modules/echarts/**', 'node_modules/echarts']
         }),
         babel({
           extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
           presets: ['@babel/preset-env']
         })
-      ] as any[]
+      ] as any[])
     )
 
     await build({

@@ -66,9 +66,17 @@ const initState = ({ reactive, computed, props, api, $service, parent }) => {
     displayValue: computed(() => api.displayValue()),
     numPrecision: computed(() => api.getNumPecision()),
 
-    minDisabled: computed(() => (!props.circulate && state.currentValue <= props.min) || state.formDisabled),
+    minDisabled: computed(
+      () =>
+        (!props.circulate && state.currentValue <= props.min) ||
+        state.formDisabled
+    ),
 
-    maxDisabled: computed(() => (!props.circulate && state.currentValue >= props.max) || state.formDisabled),
+    maxDisabled: computed(
+      () =>
+        (!props.circulate && state.currentValue >= props.max) ||
+        state.formDisabled
+    ),
 
     controlsAtRight: computed(() => props.controls && props.controlsPosition === 'right'),
 

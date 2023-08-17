@@ -7,7 +7,13 @@
         <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
         <tiny-grid-column field="created_date" title="创建日期"></tiny-grid-column>
         <tiny-grid-column field="city" title="城市"></tiny-grid-column>
-        <tiny-grid-column field="boole" title="布尔值" align="center" format-text="boole" :editor="checkboxEdit"></tiny-grid-column>
+        <tiny-grid-column
+          field="boole"
+          title="布尔值"
+          align="center"
+          format-text="boole"
+          :editor="checkboxEdit"
+        ></tiny-grid-column>
       </tiny-grid>
     </tiny-collapse-item>
   </tiny-collapse>

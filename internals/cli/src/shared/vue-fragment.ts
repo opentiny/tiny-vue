@@ -19,16 +19,8 @@ if (replaceVue3Type === 'typings') {
     if (fs.existsSync(vue2demiDir)) {
       filesFragmentReplace(
         vue2demiDir,
-        [
-          /'virtual:common\/adapter\/vue'/g,
-          /'virtual:common\/types\/vue'/g,
-          /'virtual:locale\/vue'/g
-        ],
-        [
-          '\'./vue2\'',
-          '\'./types/vue2\'',
-          '\'./vue2\''
-        ]
+        [/'virtual:common\/adapter\/vue'/g, /'virtual:common\/types\/vue'/g, /'virtual:locale\/vue'/g],
+        ["'./vue2'", "'./types/vue2'", "'./vue2'"]
       )
     } else {
       logYellow(`${vue2demiDir} does not exist.`)
@@ -48,16 +40,8 @@ if (replaceVue3Type === 'typings') {
     if (fs.existsSync(vue3demiDir)) {
       filesFragmentReplace(
         vue3demiDir,
-        [
-          /'virtual:common\/adapter\/vue'/g,
-          /'virtual:common\/types\/vue'/g,
-          /'virtual:locale\/vue'/g
-        ],
-        [
-          '\'./vue3\'',
-          '\'./types/vue3\'',
-          '\'./vue3\''
-        ]
+        [/'virtual:common\/adapter\/vue'/g, /'virtual:common\/types\/vue'/g, /'virtual:locale\/vue'/g],
+        ["'./vue3'", "'./types/vue3'", "'./vue3'"]
       )
     } else {
       logYellow(`${vue3demiDir} directory does not exist.`)

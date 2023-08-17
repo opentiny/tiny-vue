@@ -7,14 +7,13 @@ const pathFromWorkspaceRoot = (...args) => path.resolve(workspaceRoot, ...args)
 
 const getComponentAlias = (alias = {}) => {
   getAllModules(false).forEach((item) => {
-    if (item.type === 'component')
-      alias[item.importName] = pathFromWorkspaceRoot('packages', item.path)
+    if (item.type === 'component') alias[item.importName] = pathFromWorkspaceRoot('packages', item.path)
   })
   return alias
 }
 
 const getAlias = (vueVersion: string | number, theme = '') => {
-  const ns = (t: string) => t ? '-' + t : ''
+  const ns = (t: string) => (t ? '-' + t : '')
 
   return {
     // 主模块映射
@@ -37,7 +36,7 @@ const getAlias = (vueVersion: string | number, theme = '') => {
     '@opentiny/vue-mobile-first-example/docs': pathFromWorkspaceRoot('examples/docs/components/mobile-first'),
     '@opentiny/vue-mobile-example/docs': pathFromWorkspaceRoot('examples/docs/components/mobile'),
     '@opentiny/vue-example/docs': pathFromWorkspaceRoot('examples/docs/components/pc'),
-    ...getComponentAlias(),
+    ...getComponentAlias()
   }
 }
 
@@ -53,8 +52,8 @@ const createContainer = (klass, defaultTitle) => {
           return `<div class="${klass} custom-block"><p class="custom-block-title">${info || defaultTitle}</p>\n`
 
         return '</div>\n'
-      },
-    },
+      }
+    }
   ]
 }
 
@@ -75,13 +74,8 @@ const getOptimizeDeps = (vueVersion: string | number) => {
       'crypto-js/lib-typedarrays.js',
       'streamsaver',
       vueVersion === 2 ? '@vue/babel-helper-vue-jsx-merge-props' : ''
-    ].filter(item => !!item)
+    ].filter((item) => !!item)
   }
 }
 
-export {
-  pathFromWorkspaceRoot,
-  getAlias,
-  createContainer,
-  getOptimizeDeps,
-}
+export { pathFromWorkspaceRoot, getAlias, createContainer, getOptimizeDeps }

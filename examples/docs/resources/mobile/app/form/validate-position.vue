@@ -10,14 +10,25 @@
           <tiny-input v-model="createData.users" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
         <tiny-form-item label="优秀" vertical>
-          <tiny-input v-model="createData.user" is-select :select-menu="menus" placeholder="请输入内容" type="form"></tiny-input>
+          <tiny-input
+            v-model="createData.user"
+            is-select
+            :select-menu="menus"
+            placeholder="请输入内容"
+            type="form"
+          ></tiny-input>
         </tiny-form-item>
         <tiny-form-item class="demo-form-item">
           <tiny-button type="primary" @click="handleSubmit('ruleForm')">提交</tiny-button>
         </tiny-form-item>
       </tiny-form>
     </div>
-    <tiny-dialog-box :visible="boxVisibility" @update:visible="boxVisibility = $event" :modal-append-to-body="false" title="消息提示">
+    <tiny-dialog-box
+      :visible="boxVisibility"
+      @update:visible="boxVisibility = $event"
+      :modal-append-to-body="false"
+      title="消息提示"
+    >
       <span>提交成功！</span>
     </tiny-dialog-box>
   </div>

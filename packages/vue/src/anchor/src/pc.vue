@@ -44,13 +44,12 @@ export default defineComponent({
                 class={[`${anchorClass}-link-title`, currentLink === item.link && `${anchorClass}-link-title--active`]}
                 title={item.title}
                 onClick={(e) => linkClick(e, item)}
-                ref={item.link}
-              >
+                ref={item.link}>
                 {item.title}
               </a>
               {item.children ? renderLinks(item.children) : null}
             </div>
-        ))
+          ))
         : null
 
     return (

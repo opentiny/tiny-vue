@@ -12,31 +12,34 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
+export const tagProps = {
+  ...$props,
+  hit: Boolean,
+  text: String,
+  type: String,
+  theme: String,
+  size: String,
+  color: String,
+  closable: Boolean,
+  operable: Boolean,
+  disabled: Boolean,
+  selectable: Boolean,
+  customClass: {
+    type: String,
+    default: ''
+  },
+  effect: {
+    type: String,
+    default: 'light',
+    validator: (value: string) => Boolean(~['dark', 'light', 'plain'].indexOf(value))
+  },
+  beforeDelete: Function,
+  value: [Number, String]
+}
+
 export default defineComponent({
   name: $prefix + 'Tag',
-  props: {
-    ...$props,
-    hit: Boolean,
-    text: String,
-    type: String,
-    theme: String,
-    size: String,
-    color: String,
-    closable: Boolean,
-    operable: Boolean,
-    disabled: Boolean,
-    selectable: Boolean,
-    customClass: {
-      type: String,
-      default: ''
-    },
-    effect: {
-      type: String,
-      default: 'light',
-      validator: (value: string) => Boolean(~['dark', 'light', 'plain'].indexOf(value))
-    },
-    beforeDelete: Function
-  },
+  props: tagProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

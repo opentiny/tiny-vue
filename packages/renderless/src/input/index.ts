@@ -88,9 +88,7 @@ export const calcTextareaHeight =
     let height = hiddenTextarea.scrollHeight
     const textareaStyle = {}
 
-    if (boxSizing === STYLE.BorderBox) {
-      height = height + borderSize * 2 + paddingSize
-    } else if (boxSizing === STYLE.ContentBox) {
+    if (boxSizing === STYLE.ContentBox) {
       height = height - paddingSize
     }
 
@@ -395,11 +393,3 @@ export const getDisplayedValue =
       return props.displayOnlyContent || state.nativeInputValue || '-'
     }
   }
-
-export const handleDrop = (emit) => (event) => {
-  emit('drop', event)
-}
-
-export const handleDragStart = (emit) => (event) => {
-  emit('dragstart', event)
-}

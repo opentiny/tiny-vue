@@ -7,16 +7,21 @@ let value = ''
 
 describe('PC Mode', () => {
   const mount = mountPcMode
-  
+
   test('maxlength', async () => {
     const wrapper = mount(() => <Input v-model={value} maxlength={5}></Input>)
     expect(wrapper.find('input').attributes().maxlength).toBe('5')
   })
 
   test('slot', async () => {
-    const wrapper = mount(() => <Input v-model={value} v-slots={{
-      prepend: () => <>Http://</>
-    }}></Input>)
+    const wrapper = mount(() => (
+      <Input
+        v-model={value}
+        v-slots={{
+          prepend: () => <>Http://</>
+        }}
+      ></Input>
+    ))
     expect(wrapper.find('.tiny-input-group__prepend').text()).toBe('Http://')
   })
 
@@ -82,8 +87,8 @@ describe('PC Mode', () => {
   // 可通过 max 属性设置输入框最大值。max 是原生属性
   test.todo('max')
 
-   // 可通过 min 属性设置输入框最大值。min 是原生属性
-   test.todo('min')
+  // 可通过 min 属性设置输入框最大值。min 是原生属性
+  test.todo('min')
 
   // 可通过 show-word-limit 属性设置是否显示输入字数统计，只在 type = "text" 或 type = "textarea" 时有效
   test.todo('show-word-limit')
@@ -100,6 +105,6 @@ describe('PC Mode', () => {
   // 可通过 autofocus 属性设置自动获取焦点。autofocus 是原生属性
   test.todo('autofocus')
 
-  // 可通过 autocomplete 属性设置自动补全，默认值为 off ，可选 on 
+  // 可通过 autocomplete 属性设置自动补全，默认值为 off ，可选 on
   test.todo('autocomplete')
 })

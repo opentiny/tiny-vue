@@ -207,7 +207,8 @@
     background-color: var(--ti-checkbox-bg-color);
     outline: none;
     z-index: 1;
-    transition: border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
+    transition:
+      border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
       background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
 
     &:hover {
@@ -247,12 +248,12 @@
     font-size: var(--ti-checkbox-font-size);
   }
 
-    &.is-display-only {
+  &.is-display-only {
     .@{checkbox-prefix-cls}__input {
       &.is-disabled {
         & + span {
-          &.aui-checkbox__label {
-            color: #161E26;
+          &.tiny-checkbox__label {
+            color: #161e26;
           }
         }
       }
@@ -272,7 +273,7 @@
       display: inline-block;
       content: ';';
     }
-    & .@{checkbox-prefix-cls}__label{
+    & .@{checkbox-prefix-cls}__label {
       margin: 0;
       padding: 0;
     }
