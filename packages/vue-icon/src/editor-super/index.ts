@@ -12,4 +12,4 @@
 import { svg } from '@opentiny/vue-common'
 import EditorSuper from '@opentiny/vue-theme/svgs/editor-super.svg'
 
-export default svg({ name: 'EditorSuper', component: EditorSuper })
+export default () => svg({ name: 'EditorSuper', component: EditorSuper })()

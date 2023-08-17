@@ -8,19 +8,28 @@ describe('PC Mode', () => {
   const mount = mountPcMode
 
   test('base 基本用法', () => {
-    const wrapper = mount(() => <Radio v-model={value} label={'1'}>1</Radio>)
+    const wrapper = mount(() => (
+      <Radio v-model={value} label={'1'}>
+        1
+      </Radio>
+    ))
     expect(wrapper.find('.tiny-radio').exists()).toBe(true)
   })
-  
+
   test('disabled 禁用状态', () => {
     const wrapper = mount(() => <Radio v-model={value} disabled={true}></Radio>)
     expect(wrapper.find('.is-disabled').exists()).toBe(true)
   })
 
   test('slot 默认插槽', () => {
-    const wrapper = mount(() => <Radio v-model={value} v-slots={{
-      default: () => <span class='des'>选项描述</span>
-    }}></Radio>)
+    const wrapper = mount(() => (
+      <Radio
+        v-model={value}
+        v-slots={{
+          default: () => <span class="des">选项描述</span>
+        }}
+      ></Radio>
+    ))
     expect(wrapper.find('.des').text()).toBe('选项描述')
   })
 

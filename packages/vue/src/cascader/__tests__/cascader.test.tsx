@@ -71,33 +71,27 @@ const options = [
             label: 'Icon 图标'
           }
         ]
-      }]
-  }]
+      }
+    ]
+  }
+]
 
 let value = ['zhinan', 'anzhuang']
 
 describe('PC Mode', () => {
   const mount = mountPcMode
-  
+
   test('size', async () => {
     const separators = '+'
     const medium = 'medium'
-    const wrapper = mount(() => <Cascader
-      v-model={value}
-      options={options}
-      separator={separators}
-      size={medium}
-    ></Cascader>)
+    const wrapper = mount(() => (
+      <Cascader v-model={value} options={options} separator={separators} size={medium}></Cascader>
+    ))
     expect(wrapper.find('.tiny-cascader--medium').exists()).toBe(true)
-
   })
   test('triggerOnFocus', async () => {
     const triggerOnFocus = vi.fn()
-    const wrapper = mount(() => <Cascader
-      v-model={value}
-      options={options}
-      onFocus={triggerOnFocus}
-    ></Cascader>)
+    const wrapper = mount(() => <Cascader v-model={value} options={options} onFocus={triggerOnFocus}></Cascader>)
 
     await nextTick()
     await wrapper.find('input').trigger('focus')
@@ -108,14 +102,16 @@ describe('PC Mode', () => {
   test('slot', async () => {
     const value = 'pppppppppp'
     const text = '请输入内容'
-    const wrapper = mount(() => <Cascader
-      v-model={value}
-      options={options}
-      filterable={true}
-      v-slots={{
-        empty: () => <div>没有选项</div>
-      }}
-    ></Cascader>)
+    const wrapper = mount(() => (
+      <Cascader
+        v-model={value}
+        options={options}
+        filterable={true}
+        v-slots={{
+          empty: () => <div>没有选项</div>
+        }}
+      ></Cascader>
+    ))
 
     expect(wrapper.find('.tiny-cascader__empty-text').exists()).toBe(true)
   })
@@ -149,7 +145,7 @@ describe('PC Mode', () => {
 
   // 在多选模式下同时取消父子节点关联，选择任意一级选项
   test.todo('check-strictly-multiple')
-  
+
   // 当选中某一级时，动态加载该级下的选项。通过 props 属性中的 lazy 开启动态加载，并通过 lazyload 来设置加载数据源的方法。lazyload 方法有两个参数，第一个参数 node 为当前点击的节点，第二个 resolve 为数据加载完成的回调(必须调用)。为了更准确的显示节点的状态，还可以对节点数据添加是否为叶子节点的标志位 (默认字段为 leaf，可通过 props.leaf 修改)，否则会简单的以有无子节点来判断是否为叶子节点
   test.todo('auto-load')
 

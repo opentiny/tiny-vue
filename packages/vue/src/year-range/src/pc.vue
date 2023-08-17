@@ -80,8 +80,9 @@ import { $prefix, setup, directive, $props } from '@opentiny/vue-common'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import YearTable from '@opentiny/vue-year-table'
 import { IconDoubleRight, IconDoubleLeft } from '@opentiny/vue-icon'
+import { defineComponent } from '@opentiny/vue-common'
 
-export default {
+export default defineComponent({
   name: $prefix + 'YearRange',
   directives: directive({ Clickoutside }),
   components: {
@@ -97,5 +98,5 @@ export default {
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
   }
-}
+})
 </script>

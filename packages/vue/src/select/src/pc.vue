@@ -9,6 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  -->
+
 <template>
   <div
     ref="select"
@@ -19,6 +20,11 @@
       state.collapseTags ? 'tiny-select__collapse-tags' : '',
       filterable ? 'tiny-select__filterable' : '',
       multiple ? 'tiny-select__multiple' : '',
+      state.inputHovering || state.visible ? 'is-hover' : '',
+      state.isDisplayOnly ? 'is-display-only' : '',
+      hoverExpand ? 'is-hover-expand' : '',
+      state.selectDisabled ? 'is-disabled' : '',
+      state.selectSize ? 'tiny-select--' + state.selectSize : '',
       inputBoxType === 'underline' ? 'tiny-select__underline' : '',
       $parent.$attrs.class
     ]"
@@ -38,60 +44,156 @@
     v-clickoutside="handleClose"
     v-bind="a($attrs, ['class', 'style'], true)"
   >
-    <div :style="state.selectFiexd">
+    <div
+      ref="tagsGroup"
+      :style="state.selectFiexd"
+      :class="[
+        'tiny-select__tags-group',
+        { 'is-expand': (state.selectHover || state.visible) && hoverExpand && !disabled }
+      ]"
+    >
       <slot name="reference">
+        <tiny-filter-box
+          v-if="shape === 'filter'"
+          ref="reference"
+          @click="toggleMenu"
+          :show-close="clearable"
+          :disabled="state.selectDisabled"
+          :label="label"
+          :tip="tip"
+          :value="
+            multiple
+              ? state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join('; ')
+              : state.selectedLabel
+          "
+          :drop-down-visible="state.visible"
+        >
+        </tiny-filter-box>
         <div
           ref="tags"
-          :class="['tiny-select__tags', { 'is-showicon': slots.prefix }]"
-          v-if="multiple"
+          :class="['tiny-select__tags', { 'is-showicon': slots.prefix }, { 'not-selected': !state.selected.length }]"
+          v-if="multiple && !state.isDisplayOnly && !shape"
           :style="state.tagsStyle"
         >
-          <span v-if="state.collapseTags && state.selected.length">
-            <tiny-tag
-              :type="tagType"
-              :closable="!state.selectDisabled && !state.selected[0].disabled"
-              :size="state.collapseTagSize"
-              :hit="state.selected[0].state ? state.selected[0].state.hitState : state.selected[0].hitState"
-              @close="deleteTag($event, state.selected[0])"
-              disable-transitions
-            >
-              <span class="tiny-select__tags-text">
-                {{ state.selected[0].state ? state.selected[0].state.currentLabel : state.selected[0].currentLabel }}
-              </span>
-            </tiny-tag>
-            <tiny-tag
-              v-if="state.selected.length > 1"
-              :type="tagType"
-              :closable="false"
-              :size="state.collapseTagSize"
-              disable-transitions
-            >
-              <span class="tiny-select__tags-text">+ {{ state.selected.length - 1 }}</span>
-            </tiny-tag>
+          <span v-if="!state.selectDisabled">
+            <span v-if="state.collapseTags && state.selected.length">
+              <tiny-tag
+                :type="state.getTagType"
+                :closable="!state.selectDisabled && !state.selected[0].disabled"
+                :size="state.collapseTagSize"
+                :hit="state.selected[0].state ? state.selected[0].state.hitState : state.selected[0].hitState"
+                :key="state.key"
+                @close="deleteTag($event, state.selected[0])"
+                disable-transitions
+              >
+                <tiny-tooltip
+                  effect="light"
+                  placement="top"
+                  @mouseenter.native="handleEnterTag($event, getValueKey(state.selected[0]))"
+                >
+                  <span class="tiny-select__tags-text">
+                    <slot name="label" :item="getLabelSlotValue(state.selected[0])">
+                      {{
+                        state.selected[0].state ? state.selected[0].state.currentLabel : state.selected[0].currentLabel
+                      }}
+                    </slot>
+                  </span>
+                  <template v-if="state.tooltipContent[getValueKey(state.selected[0])]" #content>
+                    <span class="tiny-select__tags-text">
+                      <slot name="label" :item="getLabelSlotValue(state.selected[0])">
+                        {{
+                          state.selected[0].state
+                            ? state.selected[0].state.currentLabel
+                            : state.selected[0].currentLabel
+                        }}
+                      </slot>
+                    </span>
+                  </template>
+                </tiny-tooltip>
+              </tiny-tag>
+              <tiny-tag
+                v-if="state.selected.length > 1"
+                :type="state.getTagType"
+                :closable="false"
+                :size="state.collapseTagSize"
+                disable-transitions
+              >
+                <span class="tiny-select__tags-text">+ {{ state.selected.length - 1 }}</span>
+              </tiny-tag>
+            </span>
+            <span ref="tags-content" v-if="!state.collapseTags">
+              <tiny-tag
+                v-if="hoverExpand"
+                :class="['tiny-select__tags-collapse', { 'is-hidden': state.isHidden }]"
+                type="info"
+                key="tags-collapse"
+                :closable="false"
+                :size="state.collapseTagSize"
+              >
+                + {{ state.collapseTagsLength }}
+              </tiny-tag>
+              <!-- TINY-TODO: state.selectDisabled 同步为 item.selectDisabled 此处同步有疑问 -->
+              <tiny-tag
+                v-for="(item, index) in state.selected"
+                :key="getValueKey(item)"
+                :type="state.getTagType"
+                :closable="!item.selectDisabled && !item.disabled && !item.required"
+                :size="state.collapseTagSize"
+                :hit="item.state ? item.state.hitState : item.hitState"
+                @close="deleteTag($event, item)"
+                disable-transitions
+              >
+                <tiny-tooltip
+                  effect="light"
+                  placement="top"
+                  @mouseenter.native="handleEnterTag($event, getValueKey(item))"
+                >
+                  <span v-if="!state.visible && state.overflow === index" class="tiny-select__tags-text">
+                    {{ item.state ? item.state.currentLabel + '... ' : item.currentLabel + '... ' }}
+                  </span>
+                  <span v-else class="tiny-select__tags-text">
+                    <slot name="label" :item="getLabelSlotValue(item)">
+                      {{ item.state ? item.state.currentLabel : item.currentLabel }}
+                    </slot>
+                  </span>
+                  <template v-if="state.tooltipContent[getValueKey(item)]" #content>
+                    <span v-if="!state.visible && state.overflow === index" class="tiny-select__tags-text">{{
+                      item.state ? item.state.currentLabel + '... ' : item.currentLabel + '... '
+                    }}</span>
+                    <span v-else class="tiny-select__tags-text">
+                      <slot name="label" :item="getLabelSlotValue(item)">{{
+                        item.state ? item.state.currentLabel : item.currentLabel
+                      }}</slot>
+                    </span>
+                  </template>
+                </tiny-tooltip>
+              </tiny-tag>
+            </span>
           </span>
-          <span v-if="!state.collapseTags">
-            <tiny-tag
-              v-for="(item, index) in state.selected"
-              :key="getValueKey(item)"
-              :type="tagType"
-              :closable="!state.selectDisabled && !item.disabled"
-              :size="state.collapseTagSize"
-              :hit="item.state ? item.state.hitState : item.hitState"
-              @close="deleteTag($event, item)"
-              disable-transitions
-            >
-              <span v-if="!state.visible && state.overflow === index" class="tiny-select__tags-text">
-                {{ item.state ? item.state.currentLabel + '... ' : item.currentLabel + '... ' }}
+          <span v-else class="tiny-select__tags-text is-disabled">
+            <tiny-tooltip effect="light" placement="top" :disabled="!showTips">
+              <span>
+                <span v-for="item in state.selected" :key="item.value">
+                  <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot
+                  >;
+                </span>
               </span>
-              <span v-else class="tiny-select__tags-text">
-                {{ item.state ? item.state.currentLabel : item.currentLabel }}
-              </span>
-            </tiny-tag>
-          </span>
 
+              <template #content>
+                <div :class="[state.showTips && 'tiny-select__show-tips', 'tiny-select__show-common']">
+                  <span v-if="slots.label">
+                    <span v-for="item in state.selected" :key="getValueKey(item)">
+                      <slot name="label" :item="item"></slot>
+                    </span>
+                  </span>
+                  <span v-else>{{ disabledTooltipContent || state.disabledTooltipContent }}</span>
+                </div>
+              </template>
+            </tiny-tooltip>
+          </span>
           <input
             ref="input"
-            v-if="filterable"
+            v-if="filterable && !state.selectDisabled"
             v-model="state.query"
             type="text"
             class="tiny-select__input"
@@ -115,11 +217,13 @@
             :style="{
               'flex-grow': '1',
               width: state.inputLength / (state.inputWidth - 32) + '%',
-              'max-width': state.inputWidth - 42 + 'px'
+              'max-width': state.inputWidth - 42 + 'px',
+              height: 'auto'
             }"
           />
         </div>
         <tiny-input
+          v-if="!shape"
           ref="reference"
           v-model="state.selectedLabel"
           type="text"
@@ -130,9 +234,15 @@
           :size="state.selectSize"
           :disabled="state.selectDisabled"
           :readonly="state.readonly"
+          :display-only="state.isDisplayOnly"
+          :display-only-content="
+            multiple
+              ? state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join('; ')
+              : ''
+          "
           :unselectable="state.readonly ? 'on' : 'off'"
           :validate-event="false"
-          :class="{ 'is-focus': state.visible, overflow: state.overflow }"
+          :class="{ 'is-focus': state.visible, overflow: state.overflow, 'is-show-close': state.showClose }"
           :tabindex="multiple && filterable ? '-1' : tabindex"
           @focus="handleFocus"
           @blur="handleBlur"
@@ -154,17 +264,19 @@
             <span v-if="state.showCopy" class="tiny-select__copy" @click.stop="handleCopyClick">
               <icon-copy class="tiny-svg-size tiny-select__caret"></icon-copy>
             </span>
-            <component
-              v-show="!state.showClose && !(remote && filterable && !remoteConfig.showIcon)"
-              :is="state.getIcon"
-              :class="['tiny-svg-size', 'tiny-select__caret', state.iconClass]"
-            ></component>
             <icon-close
               v-if="state.showClose"
-              class="tiny-svg-size tiny-select__caret"
+              class="tiny-svg-size tiny-select__caret tiny-select__close"
               @click="handleClearClick"
               @mouseenter="state.inputHovering = true"
             ></icon-close>
+            <!-- 下拉图标  -->
+            <component
+              v-show="state.isShowDropdownIcon"
+              :is="state.getIcon"
+              :class="['tiny-svg-size', 'tiny-select__caret', state.iconClass]"
+              @click="handleDropdownClick"
+            ></component>
           </template>
         </tiny-input>
       </slot>
@@ -177,6 +289,21 @@
           v-show="!onCopying() && !hideDrop && state.visible && state.emptyText !== false"
           :style="dropStyle"
         >
+          <div
+            v-if="shape && filterable"
+            class="tiny-select__filter-input"
+            :class="[remote && !state.options.length ? 'tiny-select__remote-input' : '']"
+          >
+            <tiny-input
+              ref="input"
+              type="text"
+              v-model="state.query"
+              :placeholder="placeholder"
+              @input="debouncedQueryChange"
+              @focus="handleFocus"
+              autofocus
+            ></tiny-input>
+          </div>
           <tiny-grid
             v-if="renderType === 'grid'"
             auto-resize
@@ -197,16 +324,17 @@
           <tiny-tree
             v-if="renderType === 'tree'"
             :filter-node-method="filterMethod"
-            :props="{ label: textField }"
+            :props="{ label: textField, isLeaf: 'isLeaf', ...treeOp.props }"
             :expand-on-click-node="false"
             :icon-trigger-click-node="false"
             :node-key="valueField"
             :default-expand-all="state.isExpandAll"
             :check-strictly="treeOp.checkStrictly"
-            :default-checked-keys="state.gridCheckedData"
+            :default-checked-keys="state.defaultCheckedKeys"
             ref="selectTree"
             :current-node-key="!multiple ? state.currentKey : ''"
             :show-checkbox="multiple"
+            @load-data="loadTreeData"
             @node-collapse="nodeCollapse"
             @node-expand="nodeExpand"
             @check="nodeCheckClick"
@@ -273,15 +401,16 @@
             </li>
             <slot>
               <tiny-option
-                v-for="(item, index) in state.optimizeStore.flag ? state.optimizeStore.datas : state.datas"
+                v-for="item in state.optimizeStore.flag ? state.optimizeStore.datas : state.datas"
                 :class="{
                   virtual: state.optimizeStore.flag,
                   'virtual-hidden': state.optimizeStore.flag && ~state.optimizeStore.hiddenOptions.indexOf(item)
                 }"
-                :key="state.optimizeStore.flag ? `${item[valueField]}` : index"
+                :key="`${item[valueField]}`"
                 :label="item[textField]"
                 :value="item[valueField]"
                 :disabled="item.disabled"
+                :required="item.required"
                 :highlight-class="item._highlightClass"
                 :events="item.events"
                 @mousedown.stop
@@ -297,18 +426,32 @@
               (!allowCreate || loading || (allowCreate && state.options.length === 0))
             "
           >
-            <slot name="empty">
-              <div class="tiny-select-dropdown__empty-wrap">
+            <div v-if="loading" class="tiny-select-dropdown__loading">
+              <div v-if="loadingText" class="tiny-select-dropdown__empty">
+                {{ state.emptyText }}
+              </div>
+
+              <div
+                v-loading.tiny-select-dropdown__loading="loading && !loadingText"
+                class="tiny-select-dropdown__loading-svg"
+              ></div>
+            </div>
+            <div v-else>
+              <slot v-if="slots.empty" name="empty"></slot>
+              <div v-else class="tiny-select-dropdown__empty-wrap">
                 <span v-if="showEmptyImage" class="tiny-select-dropdown__empty-images"></span>
-                <div class="tiny-select-dropdown__empty">
+                <div v-else class="tiny-select-dropdown__empty">
                   {{ state.emptyText }}
                 </div>
               </div>
-            </slot>
+            </div>
           </template>
           <slot name="footer"></slot>
         </tiny-select-dropdown>
       </transition>
+    </div>
+    <div v-if="hoverExpand && !state.isDisplayOnly" class="tiny-select__placeholder">
+      <input class="tiny-input__inner" disabled />
     </div>
   </div>
 </template>
@@ -317,6 +460,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/select/vue'
 import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
 import TinyTag from '@opentiny/vue-tag'
+import Loading from '@opentiny/vue-loading'
 import TinyInput from '@opentiny/vue-input'
 import TinyOption from '@opentiny/vue-option'
 import TinyScrollbar from '@opentiny/vue-scrollbar'
@@ -324,6 +468,8 @@ import TinySelectDropdown from '@opentiny/vue-select-dropdown'
 import TinySearch from '@opentiny/vue-search'
 import TinyGrid from '@opentiny/vue-grid'
 import TinyTree from '@opentiny/vue-tree'
+import TinyTooltip from '@opentiny/vue-tooltip'
+import TinyFilterBox from '@opentiny/vue-filter-box'
 import TinyCheckbox from '@opentiny/vue-checkbox'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import {
@@ -333,7 +479,8 @@ import {
   iconCheckedSur,
   iconCopy,
   iconSearch,
-  iconDeltaDown
+  iconDeltaDown,
+  iconLoadingShadow
 } from '@opentiny/vue-icon'
 
 const getReference = (el, binding, vnode) => {
@@ -350,9 +497,21 @@ const getReference = (el, binding, vnode) => {
 }
 
 export default defineComponent({
-  emits: ['update:modelValue', 'change', 'focus', 'blur', 'clear', 'remove-tag', 'visible-change'],
+  inheritAttrs: false,
+  emits: [
+    'update:modelValue',
+    'change',
+    'focus',
+    'blur',
+    'clear',
+    'remove-tag',
+    'visible-change',
+    'handleDropdownClick',
+    'dropdown-click'
+  ],
   directives: directive({
     Clickoutside,
+    Loading,
     popover: {
       bind(el, binding, vnode) {
         getReference(el, binding, vnode)
@@ -372,13 +531,16 @@ export default defineComponent({
     TinyGrid,
     TinyTree,
     TinyCheckbox,
+    TinyTooltip,
+    TinyFilterBox,
     IconClose: iconClose(),
     IconCopy: iconCopy(),
     IconHalfselect: iconHalfselect(),
     IconCheck: iconCheck(),
     IconCheckedSur: iconCheckedSur(),
     IconSearch: iconSearch(),
-    IconDeltaDown: iconDeltaDown()
+    IconDeltaDown: iconDeltaDown(),
+    IconLoadingShadow: iconLoadingShadow()
   },
   props: [
     ...props,
@@ -438,7 +600,18 @@ export default defineComponent({
     'autoClose',
     'queryDebounce',
     'ignoreEnter',
+    'dropdownIcon',
+    'disabledTooltipContent',
+    'hoverExpand',
     'optimization',
+    'displayOnly',
+    'initQuery',
+    'extraQueryParams',
+    'shape',
+    'label',
+    'tip',
+    'updateDelay',
+    'showTips',
     'searchable',
     'showEmptyImage',
     'inputBoxType',

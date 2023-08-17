@@ -1,9 +1,24 @@
 <template>
   <div class="tiny-mobile-dropdown-menu-demo">
     <tiny-dropdown-menu>
-      <tiny-dropdown-item v-model="value1" :options="option1" @open="open" @change="change" @opened="opened" @close="close"> </tiny-dropdown-item>
+      <tiny-dropdown-item
+        v-model="value1"
+        :options="option1"
+        @open="open"
+        @change="change"
+        @opened="opened"
+        @close="close"
+      >
+      </tiny-dropdown-item>
       <tiny-dropdown-item v-model="value3" title="发布时间" type="sort" @click="sort"></tiny-dropdown-item>
-      <tiny-dropdown-item v-model="value4" :options="options4" title="筛选" type="filter" @confirm="confirm" @reset="reset"></tiny-dropdown-item>
+      <tiny-dropdown-item
+        v-model="value4"
+        :options="options4"
+        title="筛选"
+        type="filter"
+        @confirm="confirm"
+        @reset="reset"
+      ></tiny-dropdown-item>
     </tiny-dropdown-menu>
   </div>
 </template>

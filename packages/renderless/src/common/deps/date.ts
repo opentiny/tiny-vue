@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { DATEPICKER } from '../index'
 import { isNull, isDate } from '../type'
@@ -243,7 +243,9 @@ fecha.format = (dateObj, mask, i18nSettings) => {
     return '@@@'
   })
 
-  mask = mask.replace(fullTimeReg, ($0) => ($0 in formatFlags ? formatFlags[$0](dateObj, i18n) : $0.slice(1, $0.length - 1)))
+  mask = mask.replace(fullTimeReg, ($0) =>
+    $0 in formatFlags ? formatFlags[$0](dateObj, i18n) : $0.slice(1, $0.length - 1)
+  )
 
   return mask.replace(/@@@/g, () => literals.shift())
 }
@@ -276,11 +278,21 @@ const getDate = (dateInfo) => {
 
     const { year, month, day, hour, minute, second, millisecond } = dateInfo
 
-    date = new Date(Date.UTC(year || today.getFullYear(), month || 0, day || 1, hour || 0, minute || 0, second || 0, millisecond || 0))
+    date = new Date(
+      Date.UTC(year || today.getFullYear(), month || 0, day || 1, hour || 0, minute || 0, second || 0, millisecond || 0)
+    )
   } else {
     const { year, month, day, hour, minute, second, millisecond } = dateInfo
 
-    date = new Date(year || today.getFullYear(), month || 0, day || 1, hour || 0, minute || 0, second || 0, millisecond || 0)
+    date = new Date(
+      year || today.getFullYear(),
+      month || 0,
+      day || 1,
+      hour || 0,
+      minute || 0,
+      second || 0,
+      millisecond || 0
+    )
   }
   return date
 }

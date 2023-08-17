@@ -66,19 +66,22 @@ export const getFilters = (filters) =>
   }))
 
 export const initFilter = (filter) => {
-  const filterOpt = extend({}, filter, true)
-
-  filterOpt.condition = {
-    input: '',
-    relation: 'equals',
-    empty: null,
-    type: null,
-    value: []
-  }
-  filterOpt.hasFilter = false
-  filterOpt.custom = null
-
-  return filterOpt
+  // 改成这种方式可以让用户配置一些筛选的默认行为，如果用户不配置就采用默认的
+  return extend(
+    {
+      condition: {
+        input: '',
+        relation: 'equals',
+        empty: null,
+        type: null,
+        value: []
+      },
+      hasFilter: false,
+      custom: null
+    },
+    filter,
+    true
+  )
 }
 
 export const formatText = (value) => `${isNull(value) ? '' : value}`

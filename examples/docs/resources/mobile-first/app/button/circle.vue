@@ -1,24 +1,12 @@
 <template>
   <tiny-layout>
     <tiny-row>
-      <tiny-button circle>
-        C
-      </tiny-button>
-      <tiny-button type="primary" circle>
-        C
-      </tiny-button>
-      <tiny-button type="success" circle>
-        C
-      </tiny-button>
-      <tiny-button type="info" circle>
-        C
-      </tiny-button>
-      <tiny-button type="warning" circle>
-        C
-      </tiny-button>
-      <tiny-button type="danger" circle>
-        C
-      </tiny-button>
+      <tiny-button circle> C </tiny-button>
+      <tiny-button type="primary" circle> C </tiny-button>
+      <tiny-button type="success" circle> C </tiny-button>
+      <tiny-button type="info" circle> C </tiny-button>
+      <tiny-button type="warning" circle> C </tiny-button>
+      <tiny-button type="danger" circle> C </tiny-button>
     </tiny-row>
     <tiny-row>
       <tiny-button :icon="IconSearch" circle></tiny-button>

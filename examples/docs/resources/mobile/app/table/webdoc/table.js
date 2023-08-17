@@ -6,13 +6,13 @@ export default {
       demoId: 'base',
       name: {
         'zh-CN': '基础用法',
-        'en-US': 'button type',
+        'en-US': 'button type'
       },
       desc: {
         'zh-CN': '<p>基础用法</p>',
-        'en-US': '<p>button type</p>',
+        'en-US': '<p>button type</p>'
       },
-      codeFiles: ['base.vue'],
+      codeFiles: ['base.vue']
     }
   ],
   apis: [
@@ -26,9 +26,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>列数据</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
+          demoId: 'base'
         },
         {
           name: 'data',
@@ -36,9 +36,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>表格数据</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
+          demoId: 'base'
         },
         {
           name: 'width',
@@ -46,9 +46,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>表格宽度</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
+          demoId: 'base'
         },
         {
           name: 'defaultChecked',
@@ -56,9 +56,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>默认选中项</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
+          demoId: 'base'
         },
         {
           name: 'keys',
@@ -66,10 +66,10 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>数据标识</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
-        },
+          demoId: 'base'
+        }
       ]
     }
   ]

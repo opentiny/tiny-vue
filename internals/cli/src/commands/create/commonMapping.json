@@ -9,6 +9,11 @@
     "type": "module",
     "exclude": false
   },
+  "IconSaas": {
+    "path": "vue-icon-saas/index.ts",
+    "type": "module",
+    "exclude": false
+  },
   "Common": {
     "path": "vue-common/src/index.ts",
     "type": "module",

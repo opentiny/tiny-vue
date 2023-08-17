@@ -3,20 +3,34 @@
     <div data-tag="tag-group-label" class="h-5" v-if="label">{{ label }}</div>
     <div data-tag="tag-group-tags" class="text-left -mr-3 overflow-hidden clear-both leading-[1.125rem]">
       <div v-show="type === 'tag' && multiple" :class="['h-9 mt-3 float-left']" :style="{ width: state.tagWidth }">
-        <span :class="[
-          'h-full block p-2 text-center rounded-sm truncate cursor-pointer border-0.5 mr-3',
-          state.selected.length === 0
-            ? 'border-current text-color-brand bg-color-info-secondary-subtle'
-            : 'border-transparent bg-gray-50'
-        ]" @click.stop="selectOptionAll">{{ t('ui.base.all') }}</span>
+        <span
+          :class="[
+            'h-full block p-2 text-center rounded-sm truncate cursor-pointer border-0.5 mr-3',
+            state.selected.length === 0
+              ? 'border-current text-color-brand bg-color-info-secondary-subtle'
+              : 'border-transparent bg-gray-50'
+          ]"
+          @click.stop="selectOptionAll"
+          >{{ t('ui.base.all') }}</span
+        >
       </div>
-      <div v-for="(item, index) in data" :key="index" :class="['h-9 mt-3 float-left']" :style="{ width: state.tagWidth }">
-        <span :class="[
-          'h-full block p-2 text-center rounded-sm truncate cursor-pointer border-0.5 mr-3',
-          state.selected.indexOf(item.value) !== -1
-            ? 'border-current text-color-brand bg-color-info-secondary-subtle'
-            : 'border-transparent bg-gray-50'
-        ]" :title="item.label" @click.stop="selectOption(item.value)">{{ item.label }}</span>
+      <div
+        v-for="(item, index) in data"
+        :key="index"
+        :class="['h-9 mt-3 float-left']"
+        :style="{ width: state.tagWidth }"
+      >
+        <span
+          :class="[
+            'h-full block p-2 text-center rounded-sm truncate cursor-pointer border-0.5 mr-3',
+            state.selected.indexOf(item.value) !== -1
+              ? 'border-current text-color-brand bg-color-info-secondary-subtle'
+              : 'border-transparent bg-gray-50'
+          ]"
+          :title="item.label"
+          @click.stop="selectOption(item.value)"
+          >{{ item.label }}</span
+        >
       </div>
     </div>
   </div>

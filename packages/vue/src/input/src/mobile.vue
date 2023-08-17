@@ -73,12 +73,23 @@
             @mousedown.prevent
             @click="clear"
           ></icon-operationfaild>
-          <icon-eyeopen v-if="state.showPwdVisible" class="tiny-mobile-input__icon" @click="handlePasswordVisible"></icon-eyeopen>
+          <icon-eyeopen
+            v-if="state.showPwdVisible"
+            class="tiny-mobile-input__icon"
+            @click="handlePasswordVisible"
+          ></icon-eyeopen>
           <span v-if="state.isWordLimitVisible" class="tiny-mobile-input__count">
-            <span class="tiny-mobile-input__count-inner">{{ state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength }}</span>
+            <span class="tiny-mobile-input__count-inner">{{
+              state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength
+            }}</span>
           </span>
         </span>
-        <i class="tiny-mobile-input__icon" v-if="state.validateState" :class="['tiny-mobile-input__validateIcon', validateIcon]"> </i>
+        <i
+          class="tiny-mobile-input__icon"
+          v-if="state.validateState"
+          :class="['tiny-mobile-input__validateIcon', validateIcon]"
+        >
+        </i>
       </span>
       <!-- 后置元素 -->
       <div class="tiny-mobile-input-group__append" v-if="slots.append">
@@ -186,7 +197,18 @@ import '@opentiny/vue-theme-mobile/input/index.less'
 
 export default defineComponent({
   inheritAttrs: false,
-  emits: ['update:modelValue', 'change', 'clear', 'focus', 'blur', 'keyup', 'keydown', 'paste', 'mouseenter', 'mouseleave'],
+  emits: [
+    'update:modelValue',
+    'change',
+    'clear',
+    'focus',
+    'blur',
+    'keyup',
+    'keydown',
+    'paste',
+    'mouseenter',
+    'mouseleave'
+  ],
   components: {
     IconOperationfaild: iconOperationfaild(),
     IconChevronRight: iconChevronRight(),

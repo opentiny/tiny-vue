@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { downloadFile as ordinaryDownload } from '../upload-list'
 
@@ -75,7 +75,10 @@ import {
   previewImageBatch,
   abortDownload,
   createDownloadCancelToken,
-  handleClickFileList
+  handleClickFileList,
+  computedSourcetype,
+  getFileSourceType,
+  handleTriggerClick
 } from './index'
 import { isEmptyObject } from '../common/type'
 
@@ -100,7 +103,8 @@ export const api = [
   'updateFile',
   'handleChange',
   'abortDownload',
-  'handleClickFileList'
+  'handleClickFileList',
+  'handleTriggerClick'
 ]
 
 const initState = ({ api, reactive, computed, inject, ref, vm, props, httpRequest, service }) => {
@@ -147,12 +151,16 @@ const initState = ({ api, reactive, computed, inject, ref, vm, props, httpReques
     downloadReplayAtoms: {},
     errorStatusCodes: [0, 401, 429], // 0：上传异常 401：没权限（token过期）429：超限
     hasFileInfoInterface: computed(() => service.setting.services.EDM && service.setting.services.EDM.DocumentInfoUrl),
-    currentDownloadFile: '',    
+    currentDownloadFile: '',
     isDragover: false,
     downloadCancelToken: {}, // 取消下载token
     downloadCancelData: {}, // 取消下载时需要清空的缓存数据
     isHwh5: computed(() => !isEmptyObject(props.hwh5)),
-    selected: null
+    selected: null,
+    types: computed(() => api.computedSourcetype()),
+    triggerClickType: '',
+    visible: false,
+    downloadParamsWhitelist: ['docId', 'wmType', 'docVersion']
   })
 
   return state
@@ -167,8 +175,8 @@ const initApi = ({ api, state, props, constants, vm, $service, t, Modal }) => {
     handleClick: handleClick({ constants, vm }),
     getFile: getFile(state),
     clearFiles: clearFiles(state),
-    watchFileList: watchFileList({ constants, state, props }),
-    watchListType: watchListType({ constants, state }),
+    watchFileList: watchFileList({ constants, state, props, api }),
+    watchListType: watchListType({ constants, state, api }),
     onBeforeDestroy: onBeforeDestroy(state),
     computedUploadDisabled: computedUploadDisabled({ props, state }),
     computedUploadingSize: computedUploadingSize({ state, constants }),
@@ -188,7 +196,9 @@ const initApi = ({ api, state, props, constants, vm, $service, t, Modal }) => {
     previewImageSingle: previewImageSingle({ state, props, service: $service }),
     previewImageBatch: previewImageBatch({ service: $service, api }),
     abortDownload: abortDownload({ state }),
-    createDownloadCancelToken: createDownloadCancelToken({ state, service: $service })
+    createDownloadCancelToken: createDownloadCancelToken({ state, service: $service }),
+    computedSourcetype: computedSourcetype({ props, constants }),
+    getFileSourceType: getFileSourceType({ state, props, constants })
   })
 }
 
@@ -221,14 +231,15 @@ const mergeApi = ({ api, props, $service, state, constants, emit, mode, Modal, t
     setWriterFile: setWriterFile({ state, emit, Streamsaver }),
     afterDownload: afterDownload({ api, state }),
     getFileHash: getFileHash({ emit, Modal, constants, t, CryptoJS, state }),
-    modifyServiceUrlSingle: modifyServiceUrlSingle({ constants }),
+    modifyServiceUrlSingle: modifyServiceUrlSingle({ state, props, constants }),
     getKiaScanTip: getKiaScanTip({ Modal, constants, t }),
     downloadFileSingle: downloadFileSingle({ service: $service, constants, props, state, api, emit }),
     downloadFileBatch: downloadFileBatch({ api, service: $service, props, state, emit }),
     downloadFileSingleHwh5: downloadFileSingleHwh5({ state, props, emit, constants }),
     validateDownloadStatus: validateDownloadStatus({ state, Modal }),
-    handleChange: handleChange({  vm, constants }),
-    handleClickFileList: handleClickFileList({ state, emit })
+    handleChange: handleChange({ vm, constants }),
+    handleClickFileList: handleClickFileList({ state, emit }),
+    handleTriggerClick: handleTriggerClick({ vm, state, constants, props, emit })
   })
 }
 
@@ -274,7 +285,7 @@ export const renderless = (
   { t, vm, parent, emit, service, mode, constants },
   { Modal, CryptoJS, Streamsaver }
 ) => {
-  const api = {}
+  let api = {}
   const $service = initService({ props, service })
   const httpRequest = $service.httpRequest
   const state = initState({ reactive, computed, api, inject, ref, vm, props, httpRequest, service })
@@ -288,7 +299,10 @@ export const renderless = (
   onMounted(api.mounted)
 
   // 注册生命周期函数必须要在（watch）异步函数/组件之前，否则会 Vue3 警告
-  onBeforeUnmount(api.onBeforeDestroy)
+  onBeforeUnmount(() => {
+    api.onBeforeDestroy()
+    api = null
+  })
 
   initWatch({ watch, state, api, props, $service })
 

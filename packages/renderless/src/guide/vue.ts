@@ -20,7 +20,7 @@ export const renderless = (props, { reactive, onMounted, watch }, utils, { Sheph
 
   let baseApi = {
     state,
-    createShepherd: createShepherd({ state, props, Shepherd, offset }),
+    createShepherd: createShepherd({ state, props, Shepherd, offset })
   }
 
   const api = {

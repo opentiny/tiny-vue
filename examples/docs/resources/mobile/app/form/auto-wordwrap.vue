@@ -17,7 +17,12 @@
         </tiny-form-item>
       </tiny-form>
     </div>
-    <tiny-dialog-box :visible="boxVisibility" @update:visible="boxVisibility = $event" :modal-append-to-body="false" title="消息提示">
+    <tiny-dialog-box
+      :visible="boxVisibility"
+      @update:visible="boxVisibility = $event"
+      :modal-append-to-body="false"
+      title="消息提示"
+    >
       <span>提交成功！</span>
     </tiny-dialog-box>
   </div>

@@ -6,26 +6,26 @@ export default {
       demoId: 'base',
       name: {
         'zh-CN': '基础用法',
-        'en-US': 'button type',
+        'en-US': 'button type'
       },
       desc: {
         'zh-CN': '<p>基础用法</p>',
-        'en-US': '<p>button type</p>',
+        'en-US': '<p>button type</p>'
       },
-      codeFiles: ['base.vue'],
+      codeFiles: ['base.vue']
     },
     {
       demoId: 'direction',
       name: {
         'zh-CN': '方向',
-        'en-US': 'button type',
+        'en-US': 'button type'
       },
       desc: {
         'zh-CN': '<p>展开方向</p>',
-        'en-US': '<p>button type</p>',
+        'en-US': '<p>button type</p>'
       },
-      codeFiles: ['direction.vue'],
-    },
+      codeFiles: ['direction.vue']
+    }
   ],
   apis: [
     {
@@ -38,9 +38,9 @@ export default {
           defaultValue: 'click',
           desc: {
             'zh-CN': '<p>触发方式;该属性的可选值为 click / focus / hover / manual</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: '',
+          demoId: ''
         },
         {
           name: 'title',
@@ -48,9 +48,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>标题</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
+          demoId: 'base'
         },
         {
           name: 'content',
@@ -58,9 +58,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>显示的内容，也可以通过 slot 传入 DOM</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: '',
+          demoId: ''
         },
         {
           name: 'width',
@@ -68,19 +68,20 @@ export default {
           defaultValue: 'auto',
           desc: {
             'zh-CN': '<p>宽度，该属性的默认值为auto，最小宽度 150px</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
+          demoId: 'base'
         },
         {
           name: 'placement',
           type: 'String',
           defaultValue: 'bottom',
           desc: {
-            'zh-CN': '<p>出现位置;该属性的可选值为 top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end</p>',
-            'en-US': 'display different button',
+            'zh-CN':
+              '<p>出现位置;该属性的可选值为 top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end</p>',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
+          demoId: 'base'
         },
         {
           name: 'disabled',
@@ -88,9 +89,9 @@ export default {
           defaultValue: 'false',
           desc: {
             'zh-CN': '<p>Popover 是否可用</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: '',
+          demoId: ''
         },
         {
           name: 'modelValue / v-model',
@@ -98,9 +99,9 @@ export default {
           defaultValue: 'false',
           desc: {
             'zh-CN': '<p>状态是否可见</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: '',
+          demoId: ''
         },
         {
           name: 'offset',
@@ -108,9 +109,9 @@ export default {
           defaultValue: '0',
           desc: {
             'zh-CN': '<p>出现位置的偏移量</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: '',
+          demoId: ''
         },
         {
           name: 'arrow-offset',
@@ -118,9 +119,9 @@ export default {
           defaultValue: '0',
           desc: {
             'zh-CN': '<p>箭头的位置偏移</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: '',
+          demoId: ''
         },
         {
           name: 'transform-origin',
@@ -128,9 +129,9 @@ export default {
           defaultValue: 'true',
           desc: {
             'zh-CN': '<p>组件的旋转中心点</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: '',
+          demoId: ''
         },
         {
           name: 'append-to-body',
@@ -138,9 +139,9 @@ export default {
           defaultValue: 'true',
           desc: {
             'zh-CN': '<p>是否添加到body上</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: '',
+          demoId: ''
         },
         {
           name: 'transition',
@@ -148,9 +149,9 @@ export default {
           defaultValue: 'fade-in-linear',
           desc: {
             'zh-CN': '<p>定义渐变动画</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: '',
+          demoId: ''
         },
         {
           name: 'visible-arrow',
@@ -158,9 +159,9 @@ export default {
           defaultValue: 'true',
           desc: {
             'zh-CN': '<p>是否显示 Tooltip 箭头</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: '',
+          demoId: ''
         },
         {
           name: 'popper-options',
@@ -168,9 +169,9 @@ export default {
           defaultValue: '{ boundariesElement: "body", gpuAcceleration: false }',
           desc: {
             'zh-CN': '<p>popper.js 的参数;该属性的可选值为 参考popper.js文档</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: '',
+          demoId: ''
         },
         {
           name: 'popper-class',
@@ -178,9 +179,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>为 popper 添加类名</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: '',
+          demoId: ''
         },
         {
           name: 'open-delay',
@@ -188,9 +189,9 @@ export default {
           defaultValue: '0',
           desc: {
             'zh-CN': '<p>触发方式为 hover 时的显示延迟，单位为毫秒</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: '',
+          demoId: ''
         },
         {
           name: 'close-delay',
@@ -198,9 +199,9 @@ export default {
           defaultValue: '200',
           desc: {
             'zh-CN': '<p>触发方式为 hover 时的隐藏延迟，单位为毫秒</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: '',
+          demoId: ''
         },
         {
           name: 'maxHeight',
@@ -208,9 +209,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>最大高度</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
+          demoId: 'base'
         },
         {
           name: 'listData',
@@ -218,10 +219,10 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>内容对象列表，对象字段包含：icon图片地址、label标题、subLabel子标题</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
-        },
+          demoId: 'base'
+        }
       ],
       events: [
         {
@@ -230,9 +231,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>显示时触发</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
+          demoId: 'base'
         },
         {
           name: 'hide',
@@ -240,9 +241,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>隐藏时触发</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
+          demoId: 'base'
         },
         {
           name: 'after-enter',
@@ -250,9 +251,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>显示动画播放完毕后触发</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
+          demoId: 'base'
         },
         {
           name: 'after-leave',
@@ -260,10 +261,10 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>隐藏动画播放完毕后触发</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
-        },
+          demoId: 'base'
+        }
       ],
       slots: [
         {
@@ -272,9 +273,9 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>Popover 内嵌 HTML 文本</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
+          demoId: 'base'
         },
         {
           name: 'reference',
@@ -282,10 +283,10 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '<p>触发 Popover 显示的 HTML 元素</p>',
-            'en-US': 'display different button',
+            'en-US': 'display different button'
           },
-          demoId: 'base',
-        },
+          demoId: 'base'
+        }
       ]
     }
   ]

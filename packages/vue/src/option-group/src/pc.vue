@@ -9,6 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  -->
+
 <template>
   <!-- TINY-TODO: tiny-select-group的类名命名不规范，应定在后续的某个版本去掉 -->
   <ul class="tiny-option-group tiny-select-group__wrap" v-show="state.visible">

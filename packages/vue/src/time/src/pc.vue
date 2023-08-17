@@ -15,6 +15,7 @@
       <div class="tiny-time-panel__content" :class="{ 'has-seconds': state.showSeconds }">
         <time-spinner
           ref="spinner"
+          :step="step"
           @change="handleChange"
           :arrow-control="state.useArrow"
           :show-seconds="state.showSeconds"
@@ -28,7 +29,12 @@
         <button type="button" class="tiny-time-panel__btn cancel" @click="handleCancel">
           {{ t('ui.datepicker.cancel') }}
         </button>
-        <button type="button" class="tiny-time-panel__btn" :class="{ confirm: !state.disabled }" @click="handleConfirm()">
+        <button
+          type="button"
+          class="tiny-time-panel__btn"
+          :class="{ confirm: !state.disabled }"
+          @click="handleConfirm()"
+        >
           {{ t('ui.datepicker.confirm') }}
         </button>
       </div>
@@ -51,7 +57,11 @@ export default defineComponent({
     show: Boolean,
     timeArrowControl: Boolean,
     emitter: Object,
-    value: Date
+    value: Date,
+    step: {
+      type: Object,
+      default() { return { hour: 1, minute: 1, second: 1 } }
+    }
   },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })

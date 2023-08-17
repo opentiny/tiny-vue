@@ -11,15 +11,15 @@
           : '',
         state.labelPosition === 'top' && !state.hideRequiredAsterisk ? 'pl-0' : '',
         ['small', 'mini'].indexOf(state.formItemSize) >= 0 ? 'mb-2' : '',
-        !slots.label && !this.label ? 'border-none' : '',
+        !slots.label && !label ? 'border-none' : '',
         state.isDisplayOnly ? 'border-none py-0.5' : ''
       )
     "
   >
     <label-wrap
-      :isAutoWidth="state.labelStyle && state.labelStyle.width === 'auto'"
-      :updateAll="state.labelWidth === 'auto'"
-      :isMobileFirst="true"
+      :is-auto-width="state.labelStyle && state.labelStyle.width === 'auto'"
+      :update-all="state.labelWidth === 'auto'"
+      :is-mobile-first="true"
     >
       <label
         v-if="slots.label || label"
@@ -27,7 +27,9 @@
           m(
             'py-3 sm:py-1.5 min-h-[2.25rem] sm:min-h-[1.75rem] relative align-bottom float-left text-sm sm:text-xs text-color-text-secondary pr-1 sm:pr-4 box-border',
             'overflow-hidden text-ellipsis text-left sm:text-right',
-            state.labelPosition === 'top' ? 'float-none inline-block text-left leading-none px-0 pt-0 pb-2 h-auto' : '',
+            state.labelPosition === 'top'
+              ? 'float-none inline-block text-left leading-none px-0 pt-0 pb-1.5 h-auto min-h-0'
+              : 'min-h-[theme(spacing.9)]',
             state.labelPosition === 'left' ? 'text-left' : '',
             state.formInline && state.labelPosition === 'top' ? 'block' : '',
             state.isDisplayOnly ? 'leading-none h-auto align-[inherit] pr-4' : '',
@@ -43,7 +45,7 @@
         <span
           :class="
             m(
-              'max-h-[2.5rem] line-clamp-2 inline-block relative pl-2 sm:pl-0 leading-normal',
+              'max-h-[theme(spacing.10)] line-clamp-2 inline-block relative top-px pl-2 sm:pl-0 leading-normal',
               (state.isRequired || required) && !state.hideRequiredAsterisk
                 ? `before:content-['*'] before:text-color-error before:absolute before:left-0 before:sm:relative`
                 : '',
@@ -57,7 +59,8 @@
         </span>
         <tiny-tooltip v-if="tipContent" effect="light" :content="tipContent" placement="top">
           <icon-help-circle
-            custom-class="h-4 w-4 ml-0.5 absolute top-1.5 right-2 align-text-bottom fill-color-text-secondary"
+            custom-class="h-4 w-4 ml-0.5 absolute right-1 sm:right-2 align-text-bottom fill-color-text-secondary"
+            :class="[state.labelPosition === 'top' ? 'top-0.5 sm:top-1.5' : 'top-3.5 sm:top-1.5']"
           ></icon-help-circle>
         </tiny-tooltip>
       </label>
@@ -86,10 +89,10 @@
       <div
         v-show="!(state.isDisplayOnly && state.isBasicComp)"
         :class="[
-          'leading-[0] [&_[data-tag=tiny-checkbox]]:relative [&_[data-tag=tiny-checkbox]]:top-0.5 [&_[aria-label=checkbox-group]]:pl-0.5 sm:[&_[aria-label=checkbox-group]]:pl-0',
-          '[&_>:first-child[data-tag=tiny-checkbox]]:pl-0.5 sm:[&_>:first-child[data-tag=tiny-checkbox]]:pl-0',
+          '[&_[aria-label=checkbox-group]]:pl-0.5 sm:[&_[aria-label=checkbox-group]]:pl-0',
+          '[&_>:first-child[data-tag=aui-checkbox]]:pl-0.5 sm:[&_>:first-child[data-tag=aui-checkbox]]:pl-0',
           !state.isDisplayOnly
-            ? '[&_[data-tag=tiny-switch]]:ml-2.5 sm:[&_[data-tag=tiny-switch]]:ml-0 [&_[data-tag=tiny-numeric]]:ml-2.5 sm:[&_[data-tag=tiny-numeric]]:ml-0'
+            ? '[&_[data-tag=aui-switch]]:ml-2.5 sm:[&_[data-tag=aui-switch]]:ml-0 [&_[data-tag=aui-numeric]]:ml-2.5 sm:[&_[data-tag=aui-numeric]]:ml-0'
             : ''
         ]"
       >
@@ -116,7 +119,7 @@
 </template>
 
 <script lang="ts">
-import { $props, $prefix, setup } from '@opentiny/vue-common'
+import { $props, $prefix, setup, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/form-item/vue'
 import LabelWrap from './label-wrap'
 import Tooltip from '@opentiny/vue-tooltip'
@@ -126,7 +129,7 @@ const $constants = {
   FORM_NAME: 'Form',
   FORM_ITEM_NAME: 'FormItem'
 }
-export default {
+export default defineComponent({
   name: $prefix + 'FormItem',
   componentName: 'FormItem',
   components: {
@@ -177,5 +180,5 @@ export default {
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
-}
+})
 </script>

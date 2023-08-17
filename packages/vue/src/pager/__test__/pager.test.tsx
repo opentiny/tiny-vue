@@ -14,18 +14,19 @@ describe('PC Mode', () => {
 
   test('current-change 当前页码发生改变时，触发current-change事件', async () => {
     const currentChange = vi.fn()
-    const wrapper = mount(() => <Pager layout="prev, pager, next" onCurrentChange={currentChange} total={1000}>
-      </Pager>)
+    const wrapper = mount(() => <Pager layout="prev, pager, next" onCurrentChange={currentChange} total={1000}></Pager>)
     const nextBtn = wrapper.find('.tiny-pager__btn-next')
     await nextBtn.trigger('click')
     expect(currentChange).toHaveBeenCalled()
   })
 
   test('layout 自定义分页布局', () => {
-    const SlotContent = () => (<span>默认插槽</span>)
-    const wrapper = mount(() => <Pager layout="sizes,slot, prev, pager, next, jumper, ->, total" total={1000}>
+    const SlotContent = () => <span>默认插槽</span>
+    const wrapper = mount(() => (
+      <Pager layout="sizes,slot, prev, pager, next, jumper, ->, total" total={1000}>
         <SlotContent></SlotContent>
-      </Pager>)
+      </Pager>
+    ))
     expect(wrapper.findComponent(SlotContent).exists()).toBe(true)
   })
 
@@ -34,7 +35,7 @@ describe('PC Mode', () => {
   test.todo('simple 设置分页组件为simple渲染模式')
   test.todo('complete 设置分页组件为complete渲染模式')
   test.todo('page-count 设置分页组件的总页数')
-  test.todo('size-change 每页条数改变时触发size-change事件') 
+  test.todo('size-change 每页条数改变时触发size-change事件')
   test.todo('prev-click 切换至前一页时触发prev-click事件')
   test.todo('next-click 切换至后一页时触发next-click事件')
   test.todo('before-page-change 切换分页前事件')

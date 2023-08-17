@@ -27,7 +27,7 @@
         background-color: var(--ti-option-bg-color-selected);
 
         &:hover {
-          background-color: var(--ti-option-hover-bg-color-selected)
+          background-color: var(--ti-option-hover-bg-color-selected);
         }
 
         &.is-disabled {
@@ -68,7 +68,6 @@
     &.is-disabled {
       background-color: var(--ti-option-disabled-bg-color);
     }
-
   }
 
   &:not(.is-disabled):not(.selected):hover {
@@ -101,6 +100,10 @@
   }
 
   &.memorize-highlight {
-    color: var(--ti-option-icon-color-selected);
+    color: var(--ti-option-highlight-text-color);
+  }
+
+  &.memorize-highlight.selected {
+    color: var(--ti-option-highlight-selected-text-color);
   }
 }

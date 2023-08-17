@@ -64,7 +64,10 @@ export default defineComponent({
     'title',
     'displayOnly',
     'customClass',
-    'hwh5'
+    'hwh5',
+    'mode',
+    'cacheToken',
+    'lockScroll'
   ],
   emits: ['change', 'hash-progress', 'progress', 'success', 'error', 'remove', 'download'],
   setup(props, context) {
@@ -87,7 +90,8 @@ export default defineComponent({
     IconPicture: IconPicture(),
     IconMic: IconMic(),
     IconStartCircle: IconStartCircle(),
-    IconHelpQuery: IconHelpQuery()
+    IconHelpQuery: IconHelpQuery(),
+    TinyModal: Modal
   },
   render() {
     const {
@@ -96,7 +100,8 @@ export default defineComponent({
       'download-file': downloadFile,
       'download-all': downloadAll,
       're-upload': reUpload,
-      'trigger-click': triggerClick
+      'trigger-click': triggerClick,
+      play
     } = this.state.listeners
 
     const {
@@ -111,7 +116,9 @@ export default defineComponent({
       edmToken,
       iframeUrl,
       isDragover,
-      selected
+      selected,
+      types,
+      isHwh5
     } = this.state
 
     const {
@@ -121,7 +128,6 @@ export default defineComponent({
       edm = {},
       $attrs,
       a,
-      sourceType,
       t,
       listType,
       showTitle,
@@ -147,14 +153,16 @@ export default defineComponent({
       fileSize,
       displayOnly,
       customClass,
-      handleClickFileList
+      handleClickFileList,
+      handleTriggerClick,
+      showFileList,
+      mode,
+      lockScroll
     } = this
 
     const title = this.title || t('ui.fileUpload.attachment')
     const isDragSingle = listType === 'drag-single'
     const isText = listType === 'text'
-    const isPictureCard = listType === 'picture-card'
-    const isPictureSingle = listType === 'picture-single'
     const isFolder = edm.upload ? edm.upload.isFolder : false
 
     // 标题
@@ -163,13 +171,15 @@ export default defineComponent({
       title,
       showTitle,
       isInside = false,
-      displayOnly = false
+      displayOnly = false,
+      mode
     }: {
       listType: string
       title: string
       showTitle: boolean
       isInside?: boolean
       displayOnly?: boolean
+      mode?: String
     }) => {
       let defaultTitle
 
@@ -190,12 +200,13 @@ export default defineComponent({
           !displayOnly || !showTitle ? (cls += 'hidden') : (cls += 'mt-4 mb-2 px-4')
         }
 
-        defaultTitle = (
-          <div class={cls}>
-            <span class="mr-1">{title}</span>
-            {displayOnly && getDisplayOnlyTip({ isEdm, fileSize })}
-          </div>
-        )
+        defaultTitle =
+          mode !== 'bubble' ? (
+            <div class={cls}>
+              <span class="mr-1">{title}</span>
+              {displayOnly && getDisplayOnlyTip({ isEdm, fileSize })}
+            </div>
+          ) : null
       }
 
       return defaultTitle
@@ -217,7 +228,7 @@ export default defineComponent({
       let fileSizeTip = ''
       if (typeof fileSize === 'number') {
         fileSizeTip = `${t('ui.fileUpload.fileNotLessThan')}${(fileSize / 1024).toFixed(2)}M`
-      } else if (fileSize instanceof Array) {
+      } else if (Array.isArray(fileSize)) {
         let minSize = (fileSize[0] as any) / 1024
         minSize = Math.floor(minSize) === minSize ? minSize : Number(minSize.toFixed(2))
         let maxSize = (fileSize[1] as any) / 1024
@@ -248,7 +259,7 @@ export default defineComponent({
       slots: any
     }) => {
       let defaultTip
-      const tipMsg = getTipMessage({ accept: isEdm ? accept : this.accept, fileSize: fileSize })
+      const tipMsg = getTipMessage({ accept: isEdm ? accept : this.accept, fileSize })
 
       if (listType === 'text') {
         defaultTip = (
@@ -268,8 +279,7 @@ export default defineComponent({
         defaultTip = (
           <div
             title={tipMsg}
-            class="leading-5 text-color-text-placeholder overflow-hidden text-ellipsis whitespace-nowrap"
-          >
+            class="leading-5 text-color-text-placeholder overflow-hidden text-ellipsis whitespace-nowrap">
             {(slots.tip && slots.tip()) || tipMsg}
           </div>
         )
@@ -285,16 +295,26 @@ export default defineComponent({
         <tiny-tooltip
           class="inline-block sm:hidden"
           effect="dark"
-          content={getTipMessage({ accept: isEdm ? accept : this.accept, fileSize: fileSize })}
-          placement="top"
-        >
+          content={getTipMessage({ accept: isEdm ? accept : this.accept, fileSize })}
+          placement="top">
           <icon-help-query class="-mt-0.5  fill-color-none-hover" />
         </tiny-tooltip>
       )
     }
 
-    // trigger插槽
-    const getTrigger = ({ listType, t, sourceType }: { listType: string; t: any; sourceType: string }) => {
+    // trigger插槽content
+
+    const getTriggerContent = ({
+      listType,
+      t,
+      type,
+      disabled
+    }: {
+      listType: string
+      t: any
+      type: string
+      disabled: Boolean
+    }) => {
       const defaultList = {
         'picture': (
           <div>
@@ -320,7 +340,7 @@ export default defineComponent({
       if (listType === 'text') {
         defaultContent = (
           <div class="inline-block">
-            <tiny-button class="hidden sm:block">
+            <tiny-button disabled={disabled} class="hidden sm:block">
               <icon-plus class="align-top" />
               <span class="ml-2">{t('ui.fileUpload.uploadFile')}</span>
             </tiny-button>
@@ -337,7 +357,7 @@ export default defineComponent({
         defaultContent = (
           <div class={defaultClass}>
             <div class="absolute w-full top-1/2 left-0 -translate-y-1/2 z-[1] text-center">
-              {defaultList[sourceType || 'picture']}
+              {defaultList[type || 'picture']}
             </div>
           </div>
         )
@@ -373,12 +393,28 @@ export default defineComponent({
       return operateContent
     }
 
-    const trigger =
-      !displayOnly || (displayOnly && (isPictureSingle || isPictureCard))
+    // trigger插槽
+    const getTrigger = ({
+      displayOnly,
+      slots,
+      listType,
+      t,
+      type,
+      disabled
+    }: {
+      displayOnly: boolean
+      slots: any
+      listType: string
+      t: any
+      type: string
+      disabled: Boolean
+    }) => {
+      return !displayOnly || (displayOnly && ['picture-card', 'picture-single'].includes(type))
         ? slots.trigger
           ? slots.trigger()
-          : getTrigger({ listType, t, sourceType })
+          : getTriggerContent({ listType, t, type, disabled })
         : null
+    }
 
     const tip = !displayOnly ? getDefaultTip({ listType, title, showTitle, isEdm, accept, fileSize, slots }) : null
     tip && tip.data && (tip.data.slot = 'tip')
@@ -387,94 +423,142 @@ export default defineComponent({
 
     operate && operate.data && (operate.data.slot = 'operate')
 
-    const childNodes = isVue3
-      ? { default: () => trigger, tip: () => !isDragSingle && tip, operate: () => operate }
-      : [trigger, !isDragSingle && tip, operate]
+    // 获取children
+    const getChildren = (type: string) => {
+      const trigger = getTrigger({ displayOnly, slots, listType, t, type, disabled: uploadDisabled })
+      const childNodes = isVue3
+        ? { default: () => trigger, tip: () => !isDragSingle && tip, operate: () => operate }
+        : [trigger, !isDragSingle && tip, operate]
+
+      return childNodes
+    }
 
     const uploadData = {
       props: {
-        type: type,
-        drag: drag,
+        type,
+        drag,
         action: url,
-        multiple: multiple,
-        withCredentials: withCredentials,
-        headers: headers,
-        name: name,
-        data: data,
-        edm: edm,
+        multiple,
+        withCredentials,
+        headers,
+        name,
+        data,
+        edm,
         accept: isEdm ? accept : this.accept,
         fileList: uploadFiles,
-        autoUpload: autoUpload,
-        listType: listType,
+        autoUpload,
+        listType,
         disabled: uploadDisabled,
-        limit: limit,
+        limit,
         onExceed: exceed,
         onStart: handleStart,
         onProgress: handleProgress,
         onSuccess: handleSuccess,
         onError: handleError,
         onPreview: preview,
-        httpRequest: httpRequest,
-        isFolder: isFolder,
-        edmToken: edmToken,
-        scale: scale,
-        sourceType: sourceType,
+        httpRequest,
+        isFolder,
+        edmToken,
+        scale,
         displayOnly,
-        customClass
-      },
-      on: {
-        'trigger-click': (e: Event) => {
-          triggerClick && triggerClick(e)
-        }
+        customClass,
+        handleTriggerClick,
+        mode
       },
       ref: 'upload-inner'
     }
 
-    const uploadComponent = h(Upload, uploadData, childNodes)
+    const createUploadComponent = (type: string) => {
+      uploadData.props.sourceType = type
+      return h(Upload, uploadData, getChildren(type))
+    }
 
     const uploadListDate = {
       props: {
         disabled: uploadDisabled,
-        isFolder: isFolder,
-        isEdm: isEdm,
-        edm: edm,
-        displayOnly: displayOnly,
-        listType: listType,
+        isFolder,
+        isEdm,
+        edm,
+        displayOnly,
+        listType,
         files: uploadFiles,
-        isFolderTitle: isFolderTitle,
-        listOption: listOption,
-        maxNameLength: maxNameLength,
-        scale: scale,
-        showName: showName,
-        sourceType: sourceType,
-        isDragover: isDragover,
+        isFolderTitle,
+        listOption,
+        maxNameLength,
+        scale,
+        showName,
+        types,
+        isDragover,
         handlePreview: preview,
         handleDownloadFile: downloadFile,
         handleReUpload: reUpload,
-        openDownloadFile: openDownloadFile,
-        selected
+        openDownloadFile,
+        selected,
+        triggerClick,
+        isHwh5,
+        triggerPlay: play,
+        mode,
+        lockScroll
       },
       scopedSlots: {
-        default: (props) => {
+        default: (props: any) => {
           if (slots.file) {
             return slots.file({
               file: props.file
             })
           }
         },
-        upload: () => {
-          return !isText ? uploadComponent : null
+        upload: ({ type }: any) => {
+          return !isText ? createUploadComponent(type) : null
         },
-        tip: () => tip
+        tip: () => tip,
+        'assist-content': (props: any) => {
+          if (slots['assist-content']) {
+            return slots['assist-content']({ file: props.file })
+          }
+        },
+        operate: (props: any) => {
+          if (slots.operate) {
+            return slots.operate({ file: props.file })
+          }
+        }
       },
       on: {
         remove: handleRemove,
         update: updateFile,
         start: handleStart,
-        'click-file-list': handleClickFileList
+        'click-file-list': handleClickFileList,
+        'update:visible': (visible: Boolean) => (this.state.visible = visible)
+      },
+      ref: 'upload-list-inner'
+    }
+
+    let uploadList
+
+    if (showFileList) {
+      uploadList = h(UploadList, uploadListDate)
+
+      if (mode === 'bubble') {
+        uploadList = h(
+          'tiny-modal',
+          {
+            props: {
+              modalBoxClass: 'sm:w-[theme(spacing.112)]',
+              title: t('ui.fileUpload.uploadList'),
+              position: 'bottom-right',
+              mask: false,
+              showClose: false,
+              showFooter: false,
+              modelValue: this.state.visible
+            },
+            on: {
+              'update:modelValue': (val: Boolean) => (this.state.visible = val)
+            }
+          },
+          [uploadList]
+        )
       }
     }
-    const uploadList = h(UploadList, uploadListDate)
 
     let previewComponent = null
 
@@ -501,8 +585,7 @@ export default defineComponent({
                 marginwidth="0"
                 marginheight="0"
                 scrolling="no"
-                src={iframeUrl}
-              ></iframe>
+                src={iframeUrl}></iframe>
             )
           }
         }
@@ -513,8 +596,8 @@ export default defineComponent({
 
     return (
       <div {...attrs} class={isDragSingle ? 'relative inline-block' : ''}>
-        {getDefaultTitle({ listType, title, showTitle, displayOnly })}
-        {isText ? (slots.trigger ? [uploadComponent] : uploadComponent) : null}
+        {getDefaultTitle({ listType, title, showTitle, displayOnly, mode })}
+        {isText ? (slots.trigger ? [createUploadComponent()] : createUploadComponent()) : null}
         {uploadList}
         {previewComponent}
       </div>

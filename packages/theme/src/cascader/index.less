@@ -37,7 +37,7 @@
 
     .@{input-prefix-cls}__inner {
       text-overflow: ellipsis;
-      
+
       &:focus {
         border-color: var(--ti-cascader-focus-border-color);
       }
@@ -62,6 +62,10 @@
 
     .@{css-prefix}icon-circle-close:hover {
       color: var(--ti-cascader-icon-color);
+    }
+
+    .@{input-prefix-cls}__icon-close:hover {
+      fill: var(--ti-cascader-close-hover-icon-color);
     }
   }
 
@@ -188,19 +192,19 @@
     .@{cascader-prefix-cls}-content {
       position: relative;
     }
-    
+
     .@{cascader-prefix-cls}__tags {
       height: 26px;
       overflow: hidden;
- 
+
       .@{tag-prefix-cls} {
         max-width: 180px;
       }
- 
+
       &-collapse {
         visibility: visible;
         position: static;
- 
+
         &.is-hidden {
           visibility: hidden;
           position: absolute;
@@ -225,7 +229,7 @@
         height: 16px;
       }
     }
-    
+
     & .@{cascader-prefix-cls}__tags.is-expand-content {
       height: auto;
       max-height: 96px;
@@ -234,7 +238,10 @@
   }
 
   &__suggestion-panel {
-    border-radius: var(--ti-cascader-border-radius);
+    border-radius: calc(var(--ti-cascader-border-radius) + 4px);
+    min-height: 240px;
+    background: var(--ti-cascader-dropdown-bg-color);
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08);
   }
 
   &__suggestion-list {

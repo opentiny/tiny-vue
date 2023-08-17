@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { getFormated } from '../chart-core/deps/utils'
 import { isNull } from '../common/type'
@@ -20,7 +20,10 @@ const getWaterfallTooltip = (dataType, digit) => {
   let formatter = function (items) {
     const item = items[1]
 
-    return [`${itemContent(item.name)}<br/>${itemLabel(item.seriesName)}`, `${itemContent(getFormated(item.value, dataType, digit))}`].join('')
+    return [
+      `${itemContent(item.name)}<br/>${itemLabel(item.seriesName)}`,
+      `${itemContent(getFormated(item.value, dataType, digit))}`
+    ].join('')
   }
 
   return { trigger, axisPointer, formatter }
@@ -101,7 +104,8 @@ const getWaterfallSeries = (args) => {
   return series
 }
 
-const getWaterfallRemainStatus = (dataSum, totalNum) => (!totalNum ? 'not-total' : totalNum <= dataSum ? 'none-remain' : 'have-remain')
+const getWaterfallRemainStatus = (dataSum, totalNum) =>
+  !totalNum ? 'not-total' : totalNum <= dataSum ? 'none-remain' : 'have-remain'
 
 export const waterfall = (columns, rows, settings, extra) => {
   const { tooltipVisible, t } = extra

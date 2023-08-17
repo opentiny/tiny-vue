@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   dragEvent,
@@ -57,7 +57,12 @@ export const api = [
   'resetDragStyle'
 ]
 
-export const renderless = (props, { computed, onMounted, onBeforeUnmount, reactive, watch }, { refs, emit, emitter, nextTick, broadcast, vm: parent }, { isMobileFirstMode }) => {
+export const renderless = (
+  props,
+  { computed, onMounted, onBeforeUnmount, reactive, watch },
+  { refs, emit, emitter, nextTick, broadcast, vm: parent },
+  { isMobileFirstMode }
+) => {
   const api = {}
   const state = reactive({
     emitter: emitter(),
@@ -68,14 +73,16 @@ export const renderless = (props, { computed, onMounted, onBeforeUnmount, reacti
     modalZindex: 0,
     zoomLocat: null,
     isMsg: computed(() => api.computedIsMsg(props)),
-    prevEvent: null
+    prevEvent: null,
+    options: [],
+    theme: props.tiny_theme
   })
 
   Object.assign(api, {
     state,
     broadcast,
     computedIsMsg: computedIsMsg(),
-    updateStyle: updateStyle(nextTick),
+    updateStyle: updateStyle({ nextTick, props }),
     getBox: getBox(refs),
     watchValue: watchValue(api),
     created: created({ api, props, state }),

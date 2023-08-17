@@ -12,4 +12,4 @@
 import { svg } from '@opentiny/vue-common'
 import ChevronRight from '@opentiny/vue-theme/svgs/chevron-right.svg'
 
-export default svg({ name: 'IconChevronRight', component: ChevronRight })
+export default () => svg({ name: 'IconChevronRight', component: ChevronRight })()

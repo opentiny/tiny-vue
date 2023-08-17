@@ -276,7 +276,11 @@ export default {
     }
 
     let onfulfilled = () => {
-      editConfig.mode === 'row' && validStore.visible && validStore.row === row && validStore.column === column && this.clearValidate()
+      editConfig.mode === 'row' &&
+        validStore.visible &&
+        validStore.row === row &&
+        validStore.column === column &&
+        this.clearValidate()
     }
     let onrejected = ({ rule }) => {
       // 如果校验不通过与触发方式一致，则聚焦提示错误，否则跳过并不作任何处理

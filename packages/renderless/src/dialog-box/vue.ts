@@ -26,11 +26,21 @@ import {
   updatePopper,
   handleDrag,
   showScrollbar,
-  hideScrollbar
+  hideScrollbar,
+  computedBodyStyle
 } from './index'
 import usePopup from '../common/deps/vue-popup'
 
-export const api = ['afterEnter', 'afterLeave', 'handleClose', 'handleWrapperClick', 'handleCancel', 'handleConfirm', 'handleDrag', 'state']
+export const api = [
+  'afterEnter',
+  'afterLeave',
+  'handleClose',
+  'handleWrapperClick',
+  'handleCancel',
+  'handleConfirm',
+  'handleDrag',
+  'state'
+]
 
 const initState = ({ reactive, computed, api, emitter, props }) => {
   const state = reactive({
@@ -46,6 +56,7 @@ const initState = ({ reactive, computed, api, emitter, props }) => {
     dragable: null,
     isFull: props.fullscreen,
     style: computed(() => api.computedStyle()),
+    bodyStyle: computed(() => api.computedBodyStyle()),
     animationName: computed(() => api.computedAnimationName())
   })
 
@@ -67,7 +78,19 @@ const mergeState = ({ reactive, state, toRefs, usePopups }) => {
   return merge
 }
 
-const initApi = ({ emit, api, state, parent, props, lockScrollClass, constants, usePopups, nextTick, refs, broadcast }) => {
+const initApi = ({
+  emit,
+  api,
+  state,
+  parent,
+  props,
+  lockScrollClass,
+  constants,
+  usePopups,
+  nextTick,
+  broadcast,
+  vm
+}) => {
   const { open, close, doOpen, doClose } = usePopups
   const { doAfterOpen, doAfterClose, restoreBodyStyle } = usePopups
   Object.assign(api, {
@@ -93,10 +116,11 @@ const initApi = ({ emit, api, state, parent, props, lockScrollClass, constants, 
       nextTick,
       parent,
       props,
-      refs,
+      vm,
       state
     }),
     computedStyle: computedStyle({ state, props }),
+    computedBodyStyle: computedBodyStyle({ props }),
     mounted: mounted({ api, parent, props }),
     unMounted: unMounted({ api, parent, props }),
     computedAnimationName: computedAnimationName({ constants, props }),
@@ -122,7 +146,7 @@ const initWatch = ({ watch, state, api, props }) => {
 export const renderless = (
   props,
   { computed, onBeforeUnmount, onMounted, toRefs, reactive, watch },
-  { vm, emitter, parent, emit, constants, nextTick, refs, mode, broadcast }
+  { vm, emitter, parent, emit, constants, nextTick, mode, broadcast }
 ) => {
   const api = {}
   const lockScrollClass = constants.scrollLockClass(mode)
@@ -150,7 +174,7 @@ export const renderless = (
     usePopups,
     lockScrollClass,
     nextTick,
-    refs,
+    vm,
     broadcast
   })
 

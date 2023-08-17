@@ -3,12 +3,21 @@ import { DatasetComponent, GridComponent, DataZoomComponent, TransformComponent 
 import { BoxplotChart, ScatterChart } from 'echarts/charts'
 import { UniversalTransition } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
-import { prepareBoxplotData } from 'echarts/dist/extension/dataTool'
+import { prepareBoxplotData } from 'echarts/extension/dataTool'
 import { boxplot } from '@opentiny/vue-renderless/chart-boxplot'
 import Core from '@opentiny/vue-chart-core'
 import { $prefix, defineComponent } from '@opentiny/vue-common'
 
-echarts.use([DatasetComponent, GridComponent, DataZoomComponent, TransformComponent, BoxplotChart, ScatterChart, CanvasRenderer, UniversalTransition])
+echarts.use([
+  DatasetComponent,
+  GridComponent,
+  DataZoomComponent,
+  TransformComponent,
+  BoxplotChart,
+  ScatterChart,
+  CanvasRenderer,
+  UniversalTransition
+])
 
 export default defineComponent({
   ...Core,
@@ -20,5 +29,4 @@ export default defineComponent({
       return {}
     }
   }
-}
-)
+})

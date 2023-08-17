@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="125px" height="125px" viewBox="0 0 125 125" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>TimePicker 时间选择器</title>
+    <defs>
+        <linearGradient x1="50%" y1="45.9685271%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#ECF3FB" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50.3956523%" y1="35.9331967%" x2="50%" y2="64.0668033%" id="linearGradient-2">
+            <stop stop-color="#E3EFFD" stop-opacity="0.00575352382" offset="0%"></stop>
+            <stop stop-color="#E5F0FD" offset="34.0601199%"></stop>
+            <stop stop-color="#F0F6FE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="33.3333333%" y1="34.495573%" x2="96.9740837%" y2="65.4421891%" id="linearGradient-3">
+            <stop stop-color="#D5E6F9" offset="0%"></stop>
+            <stop stop-color="#F7FBFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="90.9912104%" y1="29.4309598%" x2="33.3333333%" y2="67.7472684%" id="linearGradient-4">
+            <stop stop-color="#D5E6F9" offset="0%"></stop>
+            <stop stop-color="#E7F0F9" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-5.8027489%" y1="27.0499439%" x2="103.630422%" y2="71.1332543%" id="linearGradient-5">
+            <stop stop-color="#CEE6FE" offset="0%"></stop>
+            <stop stop-color="#8AB5F2" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-5.8027489%" y1="27.0499439%" x2="103.630422%" y2="71.1332543%" id="linearGradient-6">
+            <stop stop-color="#BFD6F9" offset="0%"></stop>
+            <stop stop-color="#F3F6FE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="89.8473889%" y1="61.7348066%" x2="0%" y2="61.7348066%" id="linearGradient-7">
+            <stop stop-color="#CAD9F3" offset="0%"></stop>
+            <stop stop-color="#D5E3F7" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-18.5%" y="-60.0%" width="136.9%" height="220.0%" filterUnits="objectBoundingBox" id="filter-8">
+            <feGaussianBlur stdDeviation="4" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <linearGradient x1="44.0988019%" y1="59.2096643%" x2="128.792906%" y2="26.5438221%" id="linearGradient-9">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="44.0988019%" y1="59.2096643%" x2="128.792906%" y2="26.5438221%" id="linearGradient-10">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="47.3372781%" x2="6.58643108%" y2="52.6627219%" id="linearGradient-11">
+            <stop stop-color="#FFCC00" offset="0%"></stop>
+            <stop stop-color="#FF9D00" offset="100%"></stop>
+        </linearGradient>
+        <path d="M26.5,41 L36.5,41 C37.3284271,41 38,41.6715729 38,42.5 C38,43.3284271 37.3284271,44 36.5,44 L26.5,44 C25.6715729,44 25,43.3284271 25,42.5 C25,41.6715729 25.6715729,41 26.5,41 Z" id="path-12"></path>
+        <filter x="-26.9%" y="-83.3%" width="153.8%" height="333.3%" filterUnits="objectBoundingBox" id="filter-13">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.661752894   0 0 0 0 0.324547702   0 0 0 0 0.00489962574  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="44.0988019%" y1="60.2046142%" x2="128.792906%" y2="24.0097752%" id="linearGradient-14">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="44.0988019%" y1="51.961822%" x2="128.792906%" y2="45.0034177%" id="linearGradient-15">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="44.1013011%" y1="86.8386573%" x2="128.759538%" y2="-43.8247114%" id="linearGradient-16">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面一" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-TinyUI-Vue-组件总览" transform="translate(-1870.000000, -1708.000000)">
+            <g id="编组-14" transform="translate(1771.000000, 1675.000000)">
+                <g id="TimePicker-时间选择器" transform="translate(99.000000, 33.000000)">
+                    <g id="编组">
+                        <g transform="translate(9.000000, 1.000000)" id="多边形">
+                            <polygon fill="url(#linearGradient-1)" opacity="0.54620216" points="53.2605623 0 106.521125 30.75 53.2605623 62 0 30.75"></polygon>
+                            <polygon fill="url(#linearGradient-2)" points="53.2605623 61.5 106.521125 86.75 53.2605623 118 0 86.75"></polygon>
+                            <polygon fill="url(#linearGradient-3)" opacity="0.600606283" points="53.2605623 62 53.2605623 123 7.39138783e-15 92.25 0 30.75"></polygon>
+                            <polygon fill="url(#linearGradient-4)" opacity="0.791265578" points="53.2605623 62 106.521125 30.75 106.521125 92.25 53.2605623 123"></polygon>
+                            <polygon fill="url(#linearGradient-5)" points="53.2605623 118.007802 53.2605623 123 7.39138783e-15 92.25 0 86.9161706"></polygon>
+                            <polygon fill="url(#linearGradient-6)" transform="translate(79.630281, 104.958085) scale(-1, 1) translate(-79.630281, -104.958085) " points="106.260562 118.007802 106.260562 123 53 92.25 53 86.9161706"></polygon>
+                        </g>
+                        <ellipse id="椭圆形" fill="url(#linearGradient-7)" filter="url(#filter-8)" cx="62.5" cy="90" rx="32.5" ry="10"></ellipse>
+                    </g>
+                    <rect id="矩形" fill="url(#linearGradient-9)" x="25" y="33" width="36" height="18" rx="4"></rect>
+                    <rect id="矩形备份-12" fill="url(#linearGradient-10)" opacity="0.303770519" x="65" y="33" width="36" height="18" rx="4"></rect>
+                    <g id="形状结合备份-19" transform="translate(31.500000, 42.500000) rotate(-90.000000) translate(-31.500000, -42.500000) ">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-13)" xlink:href="#path-12"></use>
+                        <use fill="url(#linearGradient-11)" fill-rule="evenodd" xlink:href="#path-12"></use>
+                    </g>
+                    <path d="M27,55 L99,55 C100.104569,55 101,55.8954305 101,57 L101,93 C101,94.1045695 100.104569,95 99,95 L27,95 C25.8954305,95 25,94.1045695 25,93 L25,57 C25,55.8954305 25.8954305,55 27,55 Z" id="矩形" fill="url(#linearGradient-14)" opacity="0.303770519"></path>
+                    <path d="M70,65 L90,65 C91.6568542,65 93,66.3431458 93,68 C93,69.6568542 91.6568542,71 90,71 L70,71 C68.3431458,71 67,69.6568542 67,68 C67,66.3431458 68.3431458,65 70,65 Z" id="形状结合备份-9" fill="#5073E5"></path>
+                    <path d="M70,79 L90,79 C91.6568542,79 93,80.3431458 93,82 C93,83.6568542 91.6568542,85 90,85 L70,85 C68.3431458,85 67,83.6568542 67,82 C67,80.3431458 68.3431458,79 70,79 Z" id="形状结合备份-36" fill="url(#linearGradient-15)" opacity="0.604724702"></path>
+                    <path d="M53.1628641,62.3756557 C53.626699,61.7603685 54.5953883,61.9307557 54.8225728,62.6691003 L54.8225728,62.6691003 L56.1604369,67.0139744 C56.3497573,67.6324169 55.8796117,68.2540147 55.2359223,68.2382381 L55.2359223,68.2382381 L50.6890777,68.1372679 C49.9160194,68.118336 49.4868932,67.2348467 49.9538835,66.6195595 L49.9538835,66.6195595 L50.9791027,65.2654156 C50.9664531,65.2586039 50.9539159,65.2514133 50.9415049,65.2438405 C49.1587379,64.1521002 47.1014563,63.5778322 45,63.5778322 C38.7019417,63.5778322 33.5776699,68.70207 33.5776699,75.0000864 C33.5776699,81.2981028 38.7019417,86.4223406 45,86.4223406 C51.2980583,86.4223406 56.4223301,81.2981028 56.4223301,75.0000864 C56.4223301,74.7037869 56.4099234,74.4054197 56.3867839,74.1100064 L55.2314545,74.1105225 C54.6834575,74.1105225 54.2314545,73.6585225 54.2314545,73.1105225 C54.2314545,72.5625225 54.6794575,72.1105225 55.2314545,72.1105225 L55.2314545,72.1105225 L58.9383943,72.1105225 C59.4863979,72.1105225 59.9384009,72.5625225 59.9384009,73.1105225 C59.9384009,73.6585225 59.4903979,74.1105225 58.9383943,74.1105225 L58.9383943,74.1105225 L57.968,74.11 L57.97242,74.1656798 C57.9901834,74.4433479 58,74.7224183 58,75.0000864 C58,76.7544436 57.656068,78.4583158 56.9776699,80.0612178 C56.3213592,81.6104793 55.3842233,82.9988196 54.1915049,84.1946855 C52.9987864,85.387396 51.6072816,86.3245257 50.0580097,86.980832 C48.4582524,87.6560702 46.7543689,88 45,88 C43.2456311,88 41.5417476,87.6560702 39.938835,86.9776767 C38.3895631,86.3213704 37.0012136,85.3842407 35.8053398,84.1915302 C34.6126214,82.9988196 33.6754854,81.607324 33.0191748,80.0580625 C32.343932,78.4583158 32,76.7544436 32,75.0000864 C32,73.2457291 32.343932,71.5418569 33.0223301,69.9389549 C33.6786408,68.3896934 34.6157767,67.0013531 35.8084951,65.8054873 C37.0012136,64.6127767 38.3927184,63.675647 39.9419903,63.0193407 C41.5417476,62.3441025 43.2456311,62.0001727 45,62.0001727 C47.3917476,62.0001727 49.7330097,62.6564791 51.7650485,63.8965194 C51.823074,63.9319245 51.874892,63.9736137 51.9201682,64.0201776 Z M44.8832524,68.7210019 C45.3186893,68.7210019 45.6720874,69.0775529 45.6720874,69.5098316 L45.6720874,69.5098316 L45.672,75.015 L50.8184466,75.015863 C51.2175971,75.015863 51.5478122,75.3154649 51.6000761,75.6983632 L51.6072816,75.8046927 C51.6072816,76.2369714 51.2538835,76.5935224 50.8184466,76.5935224 L50.8184466,76.5935224 L44.8832524,76.5935224 C44.6175841,76.5935224 44.3824543,76.460798 44.2394926,76.259128 C44.1483407,76.1309565 44.0944175,75.9740281 44.0944175,75.8046927 L44.0944175,75.8046927 L44.0944175,69.5098316 C44.0944175,69.0775529 44.4478155,68.7210019 44.8832524,68.7210019 Z" id="形状结合" stroke="#5073E5" stroke-width="0.65625" fill="#5073E5" fill-rule="nonzero"></path>
+                    <path d="M36.9970352,75 C36.9970352,79.418278 40.5779987,83 44.9953411,83 C49.4126834,83 52.9936469,79.418278 52.9936469,75 C52.9936469,70.581722 49.4126834,67 44.9953411,67 C40.5779987,67 36.9970352,70.581722 36.9970352,75 L36.9970352,75 Z" id="路径" fill="url(#linearGradient-16)" opacity="0.303770519"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

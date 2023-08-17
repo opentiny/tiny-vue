@@ -11,59 +11,71 @@
     <div class="fi-1 f-c px20 pb30 f-c pr200 of-auto" ref="rightRef">
       <!-- 标题 -->
       <div class="py20 f24 fw-bold text-center">
-        {{ state.demos[0]?.component }}
+        <component :is="state.currMd" class="component-md"></component>
       </div>
       <div id="preview" class="bg-white f-c">
         <!-- 标题 + 组件说明  -->
         <div class="mb20 py10 pl16 child<code>p4 child<code>bg-lightless">
           <div class="mr20 fw-bold">
-            {{ state.currDemo?.title }}( <span class="allselect">{{ state.currDemo?.demoId }}</span>.vue ):
+            {{ state.currDemo?.name['zh-CN'] }}
+            (<span class="allselect">{{ state.currDemo?.codeFiles[0] }}</span
+            >):
           </div>
-          <div v-html="state.currDemo?.content"></div>
+          <div v-html="state.currDemo?.desc['zh-CN']"></div>
         </div>
         <!-- 预览  -->
-        <div class="rel px20 py60 of-auto b-a bs-dotted">
+        <div class="rel px20 py60 b-a bs-dotted">
           <div class="abs top10 right10">
             <span title="点击在vscode中打开">
               <IconOpeninVscode @click="fn.openInVscode(state.currDemo)" class="ml12 cur-hand" />
             </span>
           </div>
           <config-provider :design="design">
-            <component :is="state.comp"></component>
+            <component :is="state.comp" v-loading="state.demoLoading"></component>
           </config-provider>
         </div>
       </div>
       <!-- API表格 -->
-      <div v-if="state.currApi" class="mt20 f24 fw-bold">
-        组件API
-      </div>
-      <div v-for="(apiTable, key) in state.currApi" :key="key">
-        <div class="my8 f22 fw-bold">
-          {{ key }}
+      <div v-if="state.currApi?.length" class="mt20 f24 fw-bold">组件API</div>
+      <div v-for="(oneGroup, idx) in state.currApi" :key="idx">
+        <div class="f-r f-pos-start fw-bold">
+          <div :id="oneGroup.name" class="f18">
+            {{ oneGroup.name }}
+          </div>
+          <div class="ml12 b-a-primary c-primary px8 py4">
+            {{ oneGroup.type }}
+          </div>
         </div>
-        <table class="api-table">
-          <thead>
-            <tr>
-              <th width="15%">名称</th>
-              <th width="20%">类型</th>
-              <th width="20%">默认值</th>
-              <th width="55%">说明</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="row in apiTable" :key="row.name">
-              <td>
-                <a v-if="row.sample" class="c-primary h:c-error cur-hand" @click="fn.selectDemo(row.sample)">{{
-                  row.name
-                }}</a>
-                <span v-else>{{ row.name }}</span>
-              </td>
-              <td>{{ row.type }}</td>
-              <td>{{ row.defaultValue }}</td>
-              <td>{{ row.desc }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div v-for="(oneApiArr, key) in oneGroup" :key="key">
+          <div v-if="key !== 'name' && key !== 'type' && oneApiArr.length > 0">
+            <div class="f18 py28">
+              {{ key }}
+            </div>
+            <table class="api-table">
+              <thead>
+                <tr>
+                  <th width="20%">名称</th>
+                  <th width="15%">类型</th>
+                  <th width="20%">默认值</th>
+                  <th width="55%">说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="row in oneApiArr" :key="row.name">
+                  <td>
+                    <a v-if="row.demoId" class="c-primary h:c-error cur-hand" @click="fn.selectDemo(row.demoId)">{{
+                      row.name
+                    }}</a>
+                    <span v-else>{{ row.name }}</span>
+                  </td>
+                  <td>{{ row.type }}</td>
+                  <td>{{ row.defaultValue }}</td>
+                  <td v-html="row.desc['zh-CN']"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
     <!-- 右边浮动所有的demos -->
@@ -77,7 +89,7 @@
           :class="{ 'c-error': state.currDemo === demo }"
         >
           <div class="link-primary h:c-error h:td-under ellipsis">
-            {{ demo.title }}
+            {{ demo.name['zh-CN'] }}
             <Icon-star-icon v-if="state.currDemo === demo" style="fill: #ee343f" />
           </div>
           <IconOpeninVscode @click.stop="fn.openInVscode(demo)" class="f18 cur-hand" />
@@ -131,11 +143,21 @@ import {
   ConfigProvider
 } from '@opentiny/vue'
 import { iconStarActive, iconSelect } from '@opentiny/vue-icon'
-import { menuData, zhDemo, demoVue, demoStr, zhApi } from './resourcePc.js'
-import { useTheme, useModeCtx } from './uses'
-import SvgTheme from './assets/theme.svg'
+import Loading from '@opentiny/vue-loading'
 import designSmbConfig from '@opentiny/vue-design-smb'
 import designAuroraConfig from '@opentiny/vue-design-aurora'
+import { menuData, apis, demoStr, demoVue, mds } from './resourcePc.js'
+import { useTheme, useModeCtx } from './uses'
+import SvgTheme from './assets/theme.svg'
+
+const getPath = (path) => {
+  if (path.startsWith('grid-')) {
+    return 'grid'
+  } else if (path.startsWith('chart-')) {
+    return 'chart'
+  }
+  return path
+}
 
 export default {
   components: {
@@ -151,6 +173,9 @@ export default {
     IconOpeninVscode: iconSelect(),
     ConfigProvider
   },
+  directives: {
+    loading: Loading.directive
+  },
   setup() {
     const { state: modeState, fn: modeFn } = useModeCtx()
     const { changeTheme, currThemeLabel } = useTheme()
@@ -160,7 +185,9 @@ export default {
       currDemo: null, // 选中的demo
       currApi: [], // 当前path下的api
       comp: null, // 当前示例的组件实例
-      currDemoSrc: ''
+      currDemoSrc: '',
+      currMd: hooks.computed(() => mds[`${modeState.pathName}.cn.md`]),
+      demoLoading: false
     })
     const fn = {
       // 菜单搜索：忽略大小写
@@ -170,8 +197,8 @@ export default {
       },
       // 点击菜单：如果是二级菜单，根据path 刷新整个页面内容
       clickMenu: async (menu) => {
-        if (menu.path && menu.path !== modeState.pathName) {
-          modeState.pathName = menu.path.slice(1)
+        if (menu.nameCn && menu.key !== state.key) {
+          modeState.pathName = menu.key
           await _switchPath()
         }
       },
@@ -184,7 +211,7 @@ export default {
         }
       },
       openInVscode: (demo) => {
-        fetch(`/__open-in-editor?file=../docs/resources/pc/demo/${demo.link}.vue`)
+        fetch(`/__open-in-editor?file=../sites/demos/app/${getPath(modeState.pathName)}/${demo.codeFiles[0]}`)
       }
     }
 
@@ -194,34 +221,33 @@ export default {
 
     // 以下私有方法，无须传递给vue模板的。
     async function _switchPath() {
+      state.demoLoading = true
       // 查找API
-      const apiModule = zhApi[`../resources/pc/api/zh-CN/${modeState.pathName}.json`]
+      const apiModule = apis[`../../sites/demos/app/${getPath(modeState.pathName)}/webdoc/${modeState.pathName}.js`]
+
       if (apiModule) {
-        const api = await apiModule()
-        state.currApi = api.default
+        const module = await apiModule()
+        const apiRoot = module.default
+        state.currApi = apiRoot.apis
+        state.demos = apiRoot.demos || []
+        state.currDemo = state.demos.find((d) => d.demoId === modeState.demoId) || state.demos?.[0]
       } else {
         state.currApi = null
+        state.currDemos = []
       }
 
-      // 查找demo配置，并默认进入第一个 demo
-      const demosJson = await zhDemo[`../resources/pc/demo-config/zh-CN/${modeState.pathName}.json`]()
-      state.demos = demosJson.default
-      state.currDemo = state.demos.find((d) => d.demoId === modeState.demoId) || state.demos[0]
-      state.comp = null
       await _switchDemo()
     }
     async function _switchDemo() {
       modeState.demoId = state.currDemo.demoId
-      // 查找源码
-      state.currDemoSrc = await demoStr[`../resources/pc/demo/${state.currDemo.link}.vue`]()
+      const path = `../../sites/demos/app/${getPath(modeState.pathName)}/${state.currDemo?.codeFiles[0]}`
 
-      // 查找组件
-      const comp = await demoVue[`../resources/pc/demo/${state.currDemo.link}.vue`]()
+      // 查找源码  查找组件
+      state.currDemoSrc = await demoStr[path]()
+      const comp = await demoVue[path]()
+
+      state.demoLoading = false
       state.comp = hooks.markRaw(comp.default)
-
-      // 让内容区滚动到顶部
-      setTimeout(() => rightRef.value && rightRef.value.scrollTo({ left: 0, top: 0, behavior: 'smooth' }), 0)
-
       modeFn.cacheCtx()
       modeFn.pushToUrl()
     }

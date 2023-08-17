@@ -213,7 +213,9 @@ describe('PC Mode', () => {
     expect(navMenu.vm.state.data.length).toBe(3)
   })
 
-  test.todo('overflow 设置一级菜单无法在当前菜单容器里显示完全时的处理策略。可选项有 auto / retract / fixed / hidden。默认为 auto')
+  test.todo(
+    'overflow 设置一级菜单无法在当前菜单容器里显示完全时的处理策略。可选项有 auto / retract / fixed / hidden。默认为 auto'
+  )
 
   test.todo('before-skip 点击菜单跳转前的钩子函数，返回 false 将无法跳转')
 
@@ -225,13 +227,13 @@ describe('PC Mode', () => {
    * slots
    */
   test('logo slot', async () => {
-    const wrapper = mount(() =>
-        <NavMenu data={navMenuMockData}>
-            {{
-                logo: () => <IconTotalComponent></IconTotalComponent>
-            }}
-        </NavMenu>
-    )
+    const wrapper = mount(() => (
+      <NavMenu data={navMenuMockData}>
+        {{
+          logo: () => <IconTotalComponent></IconTotalComponent>
+        }}
+      </NavMenu>
+    ))
     const iconTotalSvg = wrapper.find('.slot-logo')
     expect(iconTotalSvg.exists()).toBeTruthy()
   })

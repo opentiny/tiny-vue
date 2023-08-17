@@ -2,13 +2,16 @@
   <tiny-collapse v-model="activeNames">
     <tiny-collapse-item name="1" title="一致性 Consistency">
       <template #icon="{ active }">
-        <icon-arrow-bottom class="tiny-svg-size" :style="{
-          fill: 'red',
-          width: '10px',
-          height: '10px',
-          transition: 'all 0.2s',
-          transform: active ? 'rotate(0deg)' : 'rotate(-90deg)'
-        }"></icon-arrow-bottom>
+        <icon-arrow-bottom
+          class="tiny-svg-size"
+          :style="{
+            fill: 'red',
+            width: '10px',
+            height: '10px',
+            transition: 'all 0.2s',
+            transform: active ? 'rotate(0deg)' : 'rotate(-90deg)'
+          }"
+        ></icon-arrow-bottom>
       </template>
 
       <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
@@ -24,6 +27,7 @@
 <script>
 import { Collapse, CollapseItem } from '@opentiny/vue'
 import { IconArrowBottom } from '@opentiny/vue-icon'
+
 export default {
   components: {
     TinyCollapse: Collapse,

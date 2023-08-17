@@ -24,6 +24,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
+  "stylelint.validate": ["css", "less", "postcss", "scss", "sass"],
   "better-comments.highlightPlainText": true,
   "better-comments.tags": [
     {

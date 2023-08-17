@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style scoped>
-.tiny-tag+.tiny-tag {
+.tiny-tag + .tiny-tag {
   margin-left: 10px;
 }
 </style>

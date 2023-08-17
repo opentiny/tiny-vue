@@ -1,5 +1,17 @@
 <template>
-  <tiny-tabs v-model="tabName" tab-style="card" :drop-config="dropConfig" :editable="false" :with-add="true" @add="handleAdd" style="width: 500px" :show-more-tabs="more" @tab-drag-start="handleStart" @tab-drag-over="handleOver" @tab-drag-end="handleEnd">
+  <tiny-tabs
+    v-model="tabName"
+    tab-style="card"
+    :drop-config="dropConfig"
+    :editable="false"
+    :with-add="true"
+    @add="handleAdd"
+    style="width: 500px"
+    :show-more-tabs="more"
+    @tab-drag-start="handleStart"
+    @tab-drag-over="handleOver"
+    @tab-drag-end="handleEnd"
+  >
     <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>

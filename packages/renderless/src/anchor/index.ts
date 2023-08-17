@@ -58,10 +58,10 @@ const updateSkidPosition = ({ vm, state, emit }) => {
   const offsetTop = linkTitleClientTop - anchorClientTop
   const offsetLeft = linkTitleClientLeft - anchorClientLeft
   addClass(skidRef, 'tiny-anchor-orbit-skid--active')
-  skidRef.style.top = `${offsetTop}px`
+  skidRef.style.transform = `translateY(${offsetTop}px)`
   skidRef.style.height = `${offsetHeight}px`
   if (maskRef) {
-    maskRef.style.top = `${offsetTop}px`
+    maskRef.style.transform = `translateY(${offsetTop}px)`
     maskRef.style.height = `${offsetHeight}px`
     maskRef.style.maxWidth = `${offsetWidth + offsetLeft}px`
   }
@@ -106,7 +106,7 @@ const handleScroll = (state) => {
   state.scrollTimer = setTimeout(() => {
     state.isScroll = false
     clearTimeout(state.scrollTimer)
-  }, 500)
+  }, 2000)
 }
 
 // 设置滚动偏移量
@@ -116,91 +116,91 @@ const setChildOffsetTop = ({ state, props }) => {
 
 export const getContainer =
   ({ props }) =>
-    () =>
-      props.containerId ? document.querySelector(props.containerId) : document.body
+  () =>
+    props.containerId ? document.querySelector(props.containerId) : document.body
 
 export const mounted =
   ({ vm, state, api, props }) =>
-    () => {
-      setScrollContainer({ state, api })
-      setFixAnchor({ vm })
-      api.onItersectionObserver()
-      setCurrentHash(state)
-      setChildOffsetTop({ state, props })
-    }
+  () => {
+    setScrollContainer({ state, api })
+    setFixAnchor({ vm })
+    api.onItersectionObserver()
+    setCurrentHash(state)
+    setChildOffsetTop({ state, props })
+  }
 
 export const updated =
   ({ state, api }) =>
-    () => {
-      const cb = api.onItersectionObserver
-      setScrollContainer({ state, api, cb })
-    }
+  () => {
+    const cb = api.onItersectionObserver
+    setScrollContainer({ state, api, cb })
+  }
 
 export const unmounted =
   ({ state }) =>
-    () => {
-      const { intersectionObserver } = state
-      intersectionObserver.disconnect()
-      state.scrollContainer.removeEventListener('scroll', handleScroll(state))
-    }
+  () => {
+    const { intersectionObserver } = state
+    intersectionObserver.disconnect()
+    state.scrollContainer.removeEventListener('scroll', handleScroll(state))
+  }
 
 export const onItersectionObserver =
   ({ vm, state, props, emit }) =>
-    () => {
-      const { expandLink, scrollContainer } = state
-      state.intersectionObserver = new IntersectionObserver(
-        (entries) => {
-          const { top } = scrollContainer.getBoundingClientRect()
-          const scrollStartTop = top + state.offsetTop
-          entries.forEach((item) => {
-            const key = item.target.id
-            state.observerLinks[key] = item
-          })
+  () => {
+    const { expandLink, scrollContainer } = state
+    state.intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        const { top } = scrollContainer.getBoundingClientRect()
+        const scrollStartTop = top + state.offsetTop
+        entries.forEach((item) => {
+          const key = item.target.id
+          state.observerLinks[key] = item
+        })
 
-          for (let key in state.observerLinks) {
-            if (Object.prototype.hasOwnProperty.call(state.observerLinks, key)) {
-              const item = state.observerLinks[key]
-              if (
-                item.isIntersecting &&
-                item.intersectionRatio >= 0 &&
-                item.target.getBoundingClientRect().top < scrollStartTop
-              ) {
-                const link = `#${item.target.id}`
-                if (!expandLink[link].children) {
-                  getCurrentAnchor({ vm, state, link, emit })
-                  break
-                } else {
-                  getCurrentAnchor({ vm, state, link, emit })
-                }
+        for (let key in state.observerLinks) {
+          if (Object.prototype.hasOwnProperty.call(state.observerLinks, key)) {
+            const item = state.observerLinks[key]
+            if (
+              item.isIntersecting &&
+              item.intersectionRatio >= 0 &&
+              item.target.getBoundingClientRect().top < scrollStartTop
+            ) {
+              const link = `#${item.target.id}`
+              if (!expandLink[link].children) {
+                getCurrentAnchor({ vm, state, link, emit })
+                break
+              } else {
+                getCurrentAnchor({ vm, state, link, emit })
               }
             }
           }
-        },
-        { root: scrollContainer, threshold: [0] }
-      )
+        }
+      },
+      { root: scrollContainer, threshold: [0] }
+    )
 
-      addObserver({ props, state })
-    }
+    addObserver({ props, state })
+  }
 
 export const linkClick =
   ({ state, vm, emit, props }) =>
-    (e, item) => {
-      state.isScroll = true
-      const { link, title } = item
-      const emitLink = { link, title }
-      emit('linkClick', e, emitLink)
+  (e, item) => {
+    state.isScroll = true
+    const { link, title } = item
+    const emitLink = { link, title }
+    emit('linkClick', e, emitLink)
 
-      const isChangeHash = setCurrentHash(state)
-      const { scrollContainer } = state
-      state.currentLink = link
-      updateSkidPosition({ vm, state, emit })
-      setMarkClass({ state, props })
+    const isChangeHash = setCurrentHash(state)
+    const { scrollContainer } = state
+    state.currentLink = link
+    updateSkidPosition({ vm, state, emit })
+    setMarkClass({ state, props })
 
-      if (scrollContainer !== document.body && !isChangeHash) {
-        const linkEl = scrollContainer.querySelector(item.link)
-        const top = linkEl.offsetTop - scrollContainer.offsetTop // 修复横向锚点无法滚动到顶部
-        const param = { top, left: 0, behavior: 'smooth' }
-        scrollContainer.scrollTo(param)
-        scrollContainer.addEventListener('scroll', handleScroll(state))
-      }
+    if (scrollContainer !== document.body && !isChangeHash) {
+      const linkEl = scrollContainer.querySelector(item.link)
+      const top = linkEl.offsetTop - scrollContainer.offsetTop // 修复横向锚点无法滚动到顶部
+      const param = { top, left: 0, behavior: 'smooth' }
+      scrollContainer.scrollTo(param)
+      scrollContainer.addEventListener('scroll', handleScroll(state))
     }
+  }

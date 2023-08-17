@@ -8,7 +8,7 @@ import {
   pathFromWorkspaceRoot,
   capitalizeKebabCase,
   prettierFormat,
-  logGreen,
+  logGreen
 } from '../../shared/utils'
 import { getComponents } from '../../shared/module-utils'
 import handlebarsRender from './handlebars.render'
@@ -54,17 +54,14 @@ const buildFullRuntime = () => {
   const componentsTemplate: string[] = []
 
   // 导出公共模块
-  components.push(
-    {
-      name: 'Renderless',
-      importName: '@opentiny/vue-renderless/common/runtime',
-      path: 'packages/renderless'
-    }
-  )
+  components.push({
+    name: 'Renderless',
+    importName: '@opentiny/vue-renderless/common/runtime',
+    path: 'packages/renderless'
+  })
 
   components.forEach((item) => {
-    // 暂时排除 chart 类组件
-    if (item.inEntry !== false && !item.path.includes('chart') && !item.path.includes('river')) {
+    if (item.inEntry !== false && !item.path.includes('river')) {
       const component = capitalizeKebabCase(item.name)
 
       componentsTemplate.push(`  ${component}`)

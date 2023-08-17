@@ -16,7 +16,7 @@ export default defineComponent({
     },
     tabindex: { type: String, default: '1' },
     modelValue: {
-      type: [String, Number],
+      type: [String, Number, Array],
       required: false
     },
     multiple: {
@@ -117,6 +117,14 @@ export default defineComponent({
     ignoreEnter: {
       type: Boolean,
       default: true
+    },
+    showTips: {
+      type: Boolean,
+      default: true
+    },
+    maxWidth: {
+      type: [String, Number],
+      default: 200
     }
   },
   setup(props, context) {

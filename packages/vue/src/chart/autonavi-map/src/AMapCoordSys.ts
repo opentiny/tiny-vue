@@ -105,7 +105,7 @@ export default class AMapCoordSys {
     return [pt.lng, pt.lat]
   }
 
-  getViewRect() {
+  getViewRect(): any {
     let api = this._api
 
     return new echarts.graphic.BoundingRect(0, 0, api.getWidth(), api.getHeight())

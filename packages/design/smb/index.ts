@@ -4,7 +4,6 @@ import Dropdown from './src/dropdown'
 import DropdownItem from './src/dropdown-item'
 import Select from './src/select'
 import { version } from './package.json'
-import Grid from './src/grid'
 
 export default {
   name: 'smb',
@@ -14,7 +13,6 @@ export default {
     Popconfirm,
     Dropdown,
     DropdownItem,
-    Select,
-    Grid
+    Select
   }
 }

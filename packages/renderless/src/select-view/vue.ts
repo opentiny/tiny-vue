@@ -1,7 +1,6 @@
 import {
   close,
   watchVisible,
-  selectOption,
   confirm,
   searchMethod,
   searchSelectHandler,
@@ -19,7 +18,6 @@ export const api = [
   'state',
   'allCheckHandler',
   'close',
-  'selectOption',
   'confirm',
   'searchMethod',
   'searchSelectHandler',
@@ -53,7 +51,6 @@ export const renderless = (props, { computed, reactive, watch }, { emit, vm }) =
   Object.assign(api, {
     state,
     confirm: confirm({ state, emit, props, api }),
-    selectOption: selectOption({ state, emit, props, api }),
     close: close({ state, emit, vm }),
     watchVisible: watchVisible({ emit, state, props, api }),
     watchModelValue: watchModelValue({ props, state, emit }),

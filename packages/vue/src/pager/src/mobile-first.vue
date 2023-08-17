@@ -74,8 +74,7 @@ export default defineComponent({
           ref="jumper"
           isBeforePageChange={this.isBeforePageChange}
           onBeforePageChange={this.beforeJumperChangeHandler}
-          max={this.internalPageCount}
-        ></jumper>
+          max={this.internalPageCount}></jumper>
       ),
       pager: (
         <pager
@@ -85,8 +84,7 @@ export default defineComponent({
           pageCount={this.internalPageCount}
           pagerCount={this.pagerCount}
           onChange={this.handleCurrentChange}
-          disabled={this.disabled}
-        ></pager>
+          disabled={this.disabled}></pager>
       ),
       next: <next></next>,
       sizes: (
@@ -96,8 +94,7 @@ export default defineComponent({
           onBeforePageChange={this.beforeSizeChangeHandler}
           popperAppendToBody={this.popperAppendToBody === false ? false : this.appendToBody}
           popperClass={this.popperClass}
-          pageSizes={this.pageSizes}
-        ></sizes>
+          pageSizes={this.pageSizes}></sizes>
       ),
       slot: <slot>{typeof this.$slots.default === 'function' ? this.$slots.default() : this.$slots.default}</slot>,
       total: <total></total>
@@ -141,8 +138,7 @@ export default defineComponent({
               'align-bottom cursor-pointer hover:border-color-icon-primary disabled:bg-color-bg-4 disabled:border-color-border disabled:cursor-default disabled:opacity-50'
             ]}
             disabled={this.$parent.disabled || this.$parent.internalCurrentPage <= 1}
-            onClick={this.$parent.prev}
-          >
+            onClick={this.$parent.prev}>
             {this.$parent.prevText ? (
               <span class="text-color-brand">{this.$parent.prevText}</span>
             ) : (
@@ -168,8 +164,7 @@ export default defineComponent({
               this.$parent.internalCurrentPage === this.$parent.internalPageCount ||
               this.$parent.internalPageCount === 0
             }
-            onClick={this.$parent.next}
-          >
+            onClick={this.$parent.next}>
             {this.$parent.nextText ? (
               <span class="text-color-brand">{this.$parent.nextText}</span>
             ) : (
@@ -200,8 +195,9 @@ export default defineComponent({
           immediate: true,
           handler(newVal) {
             if (Array.isArray(newVal)) {
-              this.$parent.internalPageSize =
-                newVal.indexOf(this.$parent.pageSize) > -1 ? this.$parent.pageSize : this.pageSizes[0]
+              this.$parent.internalPageSize = newVal.includes(this.$parent.pageSize)
+                ? this.$parent.pageSize
+                : this.pageSizes[0]
             }
           }
         }
@@ -218,8 +214,7 @@ export default defineComponent({
                   'rounded-sm bg-white text-xs pl-3 pr-1 py-0 align-middle relative top-px whitespace-nowrap transition-[border] duration-300 box-border select-none',
                   'hover:border-color-border-hover',
                   this.showSizes ? 'border-color-brand-hover hover:border-color-brand-hover' : ''
-                ]}
-              >
+                ]}>
                 <span class="mr-[0.375rem]">{this.$parent.internalPageSize}</span>
                 <span>{t('ui.page.page')}</span>
                 <span class="w-7 h-7 leading-7 float-right box-border text-center overflow-hidden">
@@ -245,8 +240,7 @@ export default defineComponent({
                   ]}
                   val={item}
                   title={item}
-                  onClick={() => this.handleChange(item)}
-                >
+                  onClick={() => this.handleChange(item)}>
                   {item}
                 </p>
               ))}
@@ -336,7 +330,7 @@ export default defineComponent({
         }
       },
       watch: {
-        '$parent.internalCurrentPage'(currentPage) {
+        '$parent.internalCurrentPage': function (currentPage) {
           const value = currentPage
 
           if (this.value !== value) {
@@ -450,8 +444,7 @@ export default defineComponent({
             class={[
               'inline-block align-middle text-xs h-7',
               this.$parent.mode === 'simple' ? '' : 'text-color-text-primary text-xs float-left'
-            ]}
-          >
+            ]}>
             {' '}
             <div class="h-7 leading-7 text-xs text-color-text-primary">
               <span class="mr-1">{t('ui.page.totals')}</span>

@@ -28,10 +28,10 @@ import {
   iconConmentRefresh,
   iconUnfilter,
   iconMinscreen,
-  iconAscending,
+  iconSortTriangleAscending,
   iconFullscreen,
-  iconDescending,
-  iconSortDefault
+  iconSortTriangleDescending,
+  iconSortTriangle
 } from '@opentiny/vue-icon'
 
 const GlobalConfig = {
@@ -68,9 +68,9 @@ const GlobalConfig = {
     }
   },
   icon: {
-    sortAsc: iconAscending(),
-    sortDesc: iconDescending(),
-    sortDefault: iconSortDefault(),
+    sortAsc: iconSortTriangleDescending(),
+    sortDesc: iconSortTriangleAscending(),
+    sortDefault: iconSortTriangle(),
     required: 'tiny-grid-required-icon',
     filter: iconUnfilter(),
     edit: iconEdit(),

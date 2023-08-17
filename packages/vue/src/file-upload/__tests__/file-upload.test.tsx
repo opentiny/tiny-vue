@@ -4,30 +4,25 @@ import FileUpload from '@opentiny/vue-file-upload'
 
 describe('PC Mode', () => {
   const mount = mountPcMode
-  
+
   test('drag', async () => {
     const action = 'http://localhost:3000/api/upload'
-    const wrapper = mount(() => <FileUpload
-      drag={true}
-      action={action}
-      auto-upload={false}
-    >
-    </FileUpload>)
+    const wrapper = mount(() => <FileUpload drag={true} action={action} auto-upload={false}></FileUpload>)
     expect(wrapper.find('.tiny-upload-dragger').exists()).toBe(true)
   })
 
-
   test('slot', async () => {
     const action = 'http://localhost:3000/api/upload'
-    const wrapper = mount(() => <FileUpload
-      drag={true}
-      action={action}
-      auto-upload={false}
-      v-slots={{
-        tip: () => <div class="tiny-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-      }}
-    >
-    </FileUpload>)
+    const wrapper = mount(() => (
+      <FileUpload
+        drag={true}
+        action={action}
+        auto-upload={false}
+        v-slots={{
+          tip: () => <div class="tiny-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+        }}
+      ></FileUpload>
+    ))
     expect(wrapper.find('.tiny-upload__tip').exists()).toBe(true)
   })
 
@@ -44,8 +39,9 @@ describe('PC Mode', () => {
       }
     ]
     const action = 'http://localhost:3000/api/upload'
-    const wrapper = mount(() => <FileUpload onRemove={handleDelete} auto-upload={false} action={action} file-list={fileList}>
-    </FileUpload>)
+    const wrapper = mount(() => (
+      <FileUpload onRemove={handleDelete} auto-upload={false} action={action} file-list={fileList}></FileUpload>
+    ))
     await wrapper.find('span').trigger('click')
     expect(handleDelete).toHaveBeenCalled()
   })

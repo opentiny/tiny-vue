@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   getMinVisibleDate,
@@ -49,7 +49,8 @@ import {
   setTimeFormat,
   computerBtnDisabled,
   computerLabel,
-  computerEnableYearArrow
+  computerEnableYearArrow,
+  watchPickerVisible
 } from './index'
 import { nextMonth, extractDateFormat, extractTimeFormat } from '../common/deps/date-util'
 
@@ -78,7 +79,7 @@ export const api = [
   'handleMaxTimeClose'
 ]
 
-const initState = ({ reactive, computed, api }) => {
+const initState = ({ reactive, computed, api, constants }) => {
   const state = reactive({
     popperElm: null,
     popperClass: '',
@@ -87,6 +88,11 @@ const initState = ({ reactive, computed, api }) => {
     defaultTime: null,
     minDate: '',
     maxDate: '',
+    shortcutType: '',
+    shortcutText: '',
+    singleSelect: false,
+    minRangeDate: constants.startDate,
+    maxRangeDate: constants.endDate,
     leftDate: new Date(),
     rightDate: nextMonth(new Date()),
     rangeState: { endDate: null, selecting: false, row: null, column: null },
@@ -133,9 +139,10 @@ const initWatch = ({ watch, state, api }) => {
   watch(() => state.value, api.watchValue)
   watch(() => state.defaultValue, api.watchDefault)
   watch(() => state.showTime, api.setTimeFormat)
+  watch(() => state.visible, api.watchPickerVisible)
 }
 
-const initApi = ({ api, state, t, vm, nextTick, refs, emit }) => {
+const initApi = ({ api, state, t, vm, nextTick, emit, constants }) => {
   Object.assign(api, {
     t,
     state,
@@ -164,7 +171,7 @@ const initApi = ({ api, state, t, vm, nextTick, refs, emit }) => {
     handleDateChange: handleDateChange({ state, t }),
     handleTimeChange: handleTimeChange({ state, t, vm }),
     watchMinDate: watchMinDate({ state, t, vm }),
-    handleTimeInput: handleTimeInput({ nextTick, refs, state, t }),
+    handleTimeInput: handleTimeInput({ state, t }),
     watchMaxTimePickerVisible: watchMaxTimePickerVisible({ nextTick, state, vm }),
     watchMinTimePickerVisible: watchMinTimePickerVisible({ nextTick, state, vm }),
     handleDateInput: handleDateInput({ state, t }),
@@ -175,18 +182,19 @@ const initApi = ({ api, state, t, vm, nextTick, refs, emit }) => {
     setTimeFormat: setTimeFormat({ nextTick, vm, state }),
     handleConfirm: handleConfirm({ api, emit, state }),
     handleRangePick: handleRangePick({ api, state, t }),
-    handleShortcutClick: handleShortcutClick(api),
+    handleShortcutClick: handleShortcutClick(state, api),
     computerBtnDisabled: computerBtnDisabled({ state, api }),
-    computerEnableYearArrow: computerEnableYearArrow(state)
+    computerEnableYearArrow: computerEnableYearArrow(state),
+    watchPickerVisible: watchPickerVisible({ state, constants })
   })
 }
 
-export const renderless = (props, { computed, reactive, watch, nextTick }, { t, refs, emit: $emit, vm }) => {
+export const renderless = (props, { computed, reactive, watch, nextTick }, { t, emit: $emit, vm, constants }) => {
   const api = {}
   const emit = props.emitter ? props.emitter.emit : $emit
-  const state = initState({ reactive, computed, api })
+  const state = initState({ reactive, computed, api, constants })
 
-  initApi({ api, state, t, vm, nextTick, refs, emit })
+  initApi({ api, state, t, vm, nextTick, emit, constants })
   initWatch({ watch, state, api })
 
   return api

@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import {
   calcMorePanes,
@@ -82,7 +82,11 @@ const initWatcher = ({ watch, props, api, state, nextTick, refs }) => {
   )
 }
 
-export const renderless = (props, { onMounted, onUpdated, provide, reactive, watch }, { refs, parent, emit, constants, nextTick, childrenHandler }) => {
+export const renderless = (
+  props,
+  { onMounted, onUpdated, provide, reactive, watch },
+  { refs, parent, emit, constants, nextTick, childrenHandler }
+) => {
   const api = {}
   const state = initState({ reactive, props })
 
@@ -92,7 +96,7 @@ export const renderless = (props, { onMounted, onUpdated, provide, reactive, wat
     handleTabRemove: handleTabRemove(emit),
     changeDirection: changeDirection({ props, state }),
     changeCurrentName: changeCurrentName({ emit, state }),
-    calcMorePanes: calcMorePanes({ parent, props, state, refs }),
+    calcMorePanes: calcMorePanes({ parent, props, state, refs, nextTick }),
     calcExpandPanes: calcExpandPanes({ parent, props, state }),
     calcPaneInstances: calcPaneInstances({ constants, parent, state, childrenHandler }),
     handleTabDragStart: handleTabDragStart({ emit }),
@@ -108,10 +112,6 @@ export const renderless = (props, { onMounted, onUpdated, provide, reactive, wat
   provide('rootTabs', parent)
 
   initWatcher({ watch, props, api, state, nextTick, refs })
-
-  if (!state.currentName) {
-    api.setCurrentName('0')
-  }
 
   onMounted(() => {
     api.calcPaneInstances()

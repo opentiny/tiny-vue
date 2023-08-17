@@ -74,18 +74,20 @@ const getBuildDay = (args) => (year, month, date) => {
   return day
 }
 
-const getPadCalendarDays = ({ calendarDays, buildDay }) => (flag, count, cur) => {
-  const sign = flag === 's' ? -1 : 1
+const getPadCalendarDays =
+  ({ calendarDays, buildDay }) =>
+  (flag, count, cur) => {
+    const sign = flag === 's' ? -1 : 1
 
-  Array.from({ length: count }).map((v, i) => {
-    const d = new Date(cur.getTime() + (i + 1) * sign * 86400000)
-    const year = d.getFullYear()
-    const month = d.getMonth() + 1
-    const date = d.getDate()
+    Array.from({ length: count }).map((v, i) => {
+      const d = new Date(cur.getTime() + (i + 1) * sign * 86400000)
+      const year = d.getFullYear()
+      const month = d.getMonth() + 1
+      const date = d.getDate()
 
-    calendarDays[flag === 's' ? 'unshift' : 'push'](buildDay(year, month, date))
-  })
-}
+      calendarDays[flag === 's' ? 'unshift' : 'push'](buildDay(year, month, date))
+    })
+  }
 
 const equalArr = (arr1, arr2) => Array.isArray(arr1) && Array.isArray(arr2) && arr1.join(',') === arr2.join(',')
 
@@ -202,25 +204,29 @@ export const handleDraggerClick = (state) => () => {
   }
 }
 
-export const handleClickDay = ({ api, emit, props }) => (day) => {
-  if (day.isCur || day.disabled) return
+export const handleClickDay =
+  ({ api, emit, props }) =>
+  (day) => {
+    if (day.isCur || day.disabled) return
 
-  if (typeof day.dateStr === 'string') {
-    api.getCalendarDays(day.dateStr, props.config)
+    if (typeof day.dateStr === 'string') {
+      api.getCalendarDays(day.dateStr, props.config)
 
-    emit('update:modelValue', day.dateStr)
+      emit('update:modelValue', day.dateStr)
+    }
   }
-}
 
-export const calcCalendarItemHeight = ({ state, vm }) => () => {
-  const calendarPanel = vm.$refs.calendarPanel
+export const calcCalendarItemHeight =
+  ({ state, vm }) =>
+  () => {
+    const calendarPanel = vm.$refs.calendarPanel
 
-  if (calendarPanel && calendarPanel.childNodes instanceof NodeList && calendarPanel.childNodes.length > 1) {
-    setTimeout(() => {
-      state.itemHeight = calendarPanel.childNodes[1].offsetHeight
-    })
+    if (calendarPanel && calendarPanel.childNodes instanceof NodeList && calendarPanel.childNodes.length > 1) {
+      setTimeout(() => {
+        state.itemHeight = calendarPanel.childNodes[1].offsetHeight
+      })
+    }
   }
-}
 
 export const computedTotalRows = (state) => () => {
   const { calendarDays, dayOfWeek } = state
@@ -266,70 +272,84 @@ const dragMove = ({ state, vm, clientX, clientY }) => {
   state.visibleRows = stackRowsCopy.slice(0).concat(currentRow).reverse().slice(0, showRows)
 }
 
-export const handleDraggerMousedown = ({ api, state, vm }) => (e) => {
-  const { clientX, clientY } = e
+export const handleDraggerMousedown =
+  ({ api, state, vm }) =>
+  (e) => {
+    const { clientX, clientY } = e
 
-  dragStart({ state, vm, clientX, clientY })
+    dragStart({ state, vm, clientX, clientY })
 
-  document.addEventListener('mouseup', api.handleMouseup)
-  document.addEventListener('mousemove', api.throttledHandleMousemove)
-}
+    document.addEventListener('mouseup', api.handleMouseup)
+    document.addEventListener('mousemove', api.throttledHandleMousemove)
+  }
 
-export const handleMouseup = ({ api, state, vm }) => (e) => {
-  setTimeout(() => (state.dragging = false))
+export const handleMouseup =
+  ({ api, state, vm }) =>
+  (e) => {
+    setTimeout(() => (state.dragging = false))
 
-  document.removeEventListener('mouseup', api.handleMouseup)
-  document.removeEventListener('mousemove', api.throttledHandleMousemove)
+    document.removeEventListener('mouseup', api.handleMouseup)
+    document.removeEventListener('mousemove', api.throttledHandleMousemove)
 
-  dragEnd({ state, vm, clientY: e.clientY })
-}
+    dragEnd({ state, vm, clientY: e.clientY })
+  }
 
-export const handleMousemove = ({ state, vm }) => (e) => {
-  state.dragging = true
+export const handleMousemove =
+  ({ state, vm }) =>
+  (e) => {
+    state.dragging = true
 
-  const { clientX, clientY } = e
+    const { clientX, clientY } = e
 
-  dragMove({ state, vm, clientX, clientY })
-}
+    dragMove({ state, vm, clientX, clientY })
+  }
 
-export const handleDraggerTouchstart = ({ state, vm }) => (e) => {
-  const { clientX, clientY } = e.changedTouches[0]
+export const handleDraggerTouchstart =
+  ({ state, vm }) =>
+  (e) => {
+    const { clientX, clientY } = e.changedTouches[0]
 
-  state.touching = true
+    state.touching = true
 
-  dragStart({ state, vm, clientX, clientY })
-}
+    dragStart({ state, vm, clientX, clientY })
+  }
 
-export const handleDraggerTouchend = ({ state, vm }) => (e) => {
-  const { clientY } = e.changedTouches[0]
+export const handleDraggerTouchend =
+  ({ state, vm }) =>
+  (e) => {
+    const { clientY } = e.changedTouches[0]
 
-  state.touching = false
+    state.touching = false
 
-  dragEnd({ state, vm, clientY })
-}
+    dragEnd({ state, vm, clientY })
+  }
 
-export const handleDraggerTouchmove = ({ state, vm }) => (e) => {
-  const { clientX, clientY } = e.changedTouches[0]
+export const handleDraggerTouchmove =
+  ({ state, vm }) =>
+  (e) => {
+    const { clientX, clientY } = e.changedTouches[0]
 
-  dragMove({ state, vm, clientX, clientY })
-}
+    dragMove({ state, vm, clientX, clientY })
+  }
 
 export const setCascaderVisible = (state) => (value) => (state.cascaderVisible = !!value)
 
-export const handleCascaderChange = ({ api, emit, props, state }) => (val) => {
-  const { currentDate } = state
-  let dateStr = `${val[0]}-${pad0(val[1])}-${pad0(currentDate)}`
-  const numberCurrentDate = Number(currentDate)
-  const { currentFullYear: curYear, currentMonth: curMonth, currentDate: curDate } = splitDate(new Date(dateStr))
+export const handleCascaderChange =
+  ({ api, emit, props, state }) =>
+  (val) => {
+    const { currentDate } = state
+    let dateStr = `${val[0]}-${pad0(val[1])}-${pad0(currentDate)}`
+    const numberCurrentDate = Number(currentDate)
+    const { currentFullYear: curYear, currentMonth: curMonth, currentDate: curDate } = splitDate(new Date(dateStr))
 
-  if (curYear !== val[0] || curMonth !== val[1] || curDate !== numberCurrentDate) {
-    dateStr = `${val[0]}-${pad0(val[1])}-01`
+    if (curYear !== val[0] || curMonth !== val[1] || curDate !== numberCurrentDate) {
+      dateStr = `${val[0]}-${pad0(val[1])}-01`
+    }
+
+    api.getCalendarDays(dateStr, props.config)
+
+    emit('update:modelValue', dateStr)
   }
-
-  api.getCalendarDays(dateStr, props.config)
-
-  emit('update:modelValue', dateStr)
-}
 
 export const computeCascaderOptions = (t) => () => [
   {
@@ -339,13 +359,15 @@ export const computeCascaderOptions = (t) => () => [
   { range: [1, 12], optionMethod: (i) => ({ id: i, label: t(`ui.calendarBar.month.${i}`) }) }
 ]
 
-export const i18nYearMonth = ({ state, t }) => () => {
-  const { currentYear, currentMonth } = state
-  let template = t('ui.calendarBar.yearMonth')
-  const monthAbbr = t(`ui.calendarBar.monthAbbr.${currentMonth}`)
+export const i18nYearMonth =
+  ({ state, t }) =>
+  () => {
+    const { currentYear, currentMonth } = state
+    let template = t('ui.calendarBar.yearMonth')
+    const monthAbbr = t(`ui.calendarBar.monthAbbr.${currentMonth}`)
 
-  template = template.replace('%y', currentYear)
-  template = template.replace('%m', monthAbbr)
+    template = template.replace('%y', currentYear)
+    template = template.replace('%m', monthAbbr)
 
-  return template
-}
+    return template
+  }

@@ -1,6 +1,12 @@
 <template>
   <div data-tag="tiny-time-picker-mobile" v-show="visible">
-    <tiny-cascader-select v-model="state.dateArr" :options="state.optionList" :visible="state.visible" @update:visible="updateVisible" @update:modelValue="confirm"></tiny-cascader-select>
+    <tiny-cascader-select
+      v-model="state.dateArr"
+      :options="state.optionList"
+      :visible="state.visible"
+      @update:visible="updateVisible"
+      @update:modelValue="confirm"
+    ></tiny-cascader-select>
   </div>
 </template>
 

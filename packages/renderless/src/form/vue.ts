@@ -41,15 +41,18 @@ export const api = [
   'hideTooltip'
 ]
 
-export const renderless = (props, { computed, inject, provide, reactive, watch }, { vm, parent }) => {
+export const renderless = (props, { computed, inject, provide, reactive, watch, onBeforeUnmount }, { vm, parent }) => {
   const api = {}
   const dialog = inject('dialog', null)
 
   const state = reactive({
+    showAutoWidth: props.showAutoWidth,
     fields: [],
     timer: null,
+    tooltipVisible: false,
     potentialLabelWidthArr: [],
     autoLabelWidth: computed(() => api.computedAutoLabelWidth()),
+    isDisplayOnly: computed(() => props.displayOnly),
     hasRequired: computed(() => {
       if (props.rules) {
         return Object.values(props.rules).find((ruleOrRules) => {
@@ -86,7 +89,11 @@ export const renderless = (props, { computed, inject, provide, reactive, watch }
 
   provide('form', parent)
 
-  bindDialogEvent({ api, dialog, state })
+  provide('showAutoWidth', state.showAutoWidth)
+
+  const unbindDialogEvent = bindDialogEvent({ api, dialog, state })
+
+  onBeforeUnmount(unbindDialogEvent)
 
   watch(() => props.rules, api.watchRules)
 

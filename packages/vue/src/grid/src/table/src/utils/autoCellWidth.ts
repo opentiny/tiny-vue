@@ -133,7 +133,7 @@ const setLeftOrRightPosition = ({ columnList, direction, headerEl, bodyEl, scrol
     const isLastLeftFixed = direction === 'left' && index === colLength - 1
     const isFirstRightFixed = direction === 'right' && index === colLength - 1
 
-    allFixed.forEach(td => {
+    allFixed.forEach((td) => {
       // 有纵向滚动条时，表头右冻结列需要补偿right定位
       let compensatingWidth = 0
       if (direction === 'right' && scrollbarWidth && td.className.includes('header__column')) {

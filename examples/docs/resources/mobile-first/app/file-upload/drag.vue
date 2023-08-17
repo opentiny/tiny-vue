@@ -1,6 +1,5 @@
 <template>
-  <tiny-file-upload :action="action" list-type="drag-single">
-  </tiny-file-upload>
+  <tiny-file-upload :action="action" list-type="drag-single"> </tiny-file-upload>
 </template>
 
 <script>

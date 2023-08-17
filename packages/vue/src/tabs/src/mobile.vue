@@ -89,8 +89,7 @@ export default defineComponent({
     } = this
 
     const newButton =
-      editable || withAdd
-        ? (
+      editable || withAdd ? (
         <span
           class="tiny-mobile-tabs__new-tab"
           onClick={handleTabAdd}
@@ -99,12 +98,10 @@ export default defineComponent({
             if (ev.keyCode === 13) {
               handleTabAdd()
             }
-          }}
-        >
+          }}>
           <icon-plus />
         </span>
-          )
-        : null
+      ) : null
 
     const navData = {
       props: {
@@ -152,8 +149,7 @@ export default defineComponent({
         class={{
           'tiny-mobile-tabs': true,
           [`tiny-mobile--${position}`]: true
-        }}
-      >
+        }}>
         {[header, panels]}
       </div>
     )

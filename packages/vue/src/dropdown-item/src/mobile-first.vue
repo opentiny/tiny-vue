@@ -2,18 +2,18 @@
   <li
     @mouseenter="mouseEnter"
     @mouseleave="mouseLeave"
-    :class="[
-      'list-none leading-10 sm:leading-8 m-0 cursor-pointer outline-0 min-w-[4.5rem] max-w-[13.5rem] w-full [&_svg]:sm:w-3.5 [&_svg]:sm:h-3.5 [&_svg]:sm:mr-1.5 [&_svg]:mr-2 [&_svg]:align-text-bottom',
-      {
-        'text-color-text-primary active:bg-color-bg-4 visited:text-color-brand hover:bg-color-bg-4 focus:bg-color-bg-4':
-          !disabled
-      },
-      { 'cursor-not-allowed text-color-text-disabled [&_svg]:fill-color-text-disabled': disabled },
-      {
-        'text-color-brand-focus': dataStore.checkedStatus && selected
-      },
-      { '!px-0 sm:!px-0': dataStore.multiStage }
-    ]"
+    :class="
+      m(
+        'list-none leading-10 sm:leading-8 m-0 outline-0 min-w-[theme(spacing.18)] max-w-[theme(spacing.52)] w-full [&_svg]:sm:w-3.5 [&_svg]:sm:h-3.5 [&_svg]:sm:mr-1.5 [&_svg]:mr-2 [&_svg]:align-text-bottom',
+        disabled
+          ? 'cursor-not-allowed text-color-text-disabled [&_svg]:fill-color-text-disabled'
+          : 'text-color-text-primary active:bg-color-bg-4 visited:text-color-brand hover:bg-color-bg-4 focus:bg-color-bg-4 cursor-pointer',
+        {
+          'text-color-brand-focus': dataStore.checkedStatus && selected
+        },
+        { '!px-0': dataStore.multiStage }
+      )
+    "
     @click.stop="handleClick"
     :aria-disabled="disabled"
     :tabindex="disabled ? null : -1"

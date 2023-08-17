@@ -124,58 +124,60 @@ const createPopperFn =
     nextTick,
     updatePopper,
     nextZIndex,
-    parent
+    parent,
+    followHide
   }) =>
-    (dom) => {
-      if (isServer) {
-        return
-      }
-
-      state.currentPlacement = state.currentPlacement || props.placement
-
-      if (!/^(top|bottom|left|right)(-start|-end)?$/g.test(state.currentPlacement)) {
-        return
-      }
-
-      const options = props.popperOptions || { gpuAcceleration: false }
-      state.popperElm = state.popperElm || props.popper || refs.popper || dom
-      const popper = state.popperElm
-      let reference = getReference({ state, props, refs, slots })
-
-      if (!popper || !reference || reference.nodeType !== Node.ELEMENT_NODE) {
-        return
-      }
-
-      if (props.visibleArrow) {
-        appendArrow(popper)
-      }
-
-      appendPopper({ options, props, state, parent })
-
-      if (props.popperJS && state.popperJS.destroy) {
-        state.popperJS.destroy()
-      }
-
-      options.placement = state.currentPlacement
-      options.offset = props.offset || 0
-      options.arrowOffset = props.arrowOffset || 0
-      options.adjustArrow = props.adjustArrow || false
-
-      state.popperJS = new PopperJS(reference, popper, options)
-      state.popperJS.onCreate(() => {
-        emit('created', state)
-        resetTransformOrigin()
-        // 原来代码逻辑会触发2次updatePopper,暂时注释掉这一处，待观察
-        // new PopperJS 内部已经调用this.update了，所以屏蔽： nextTick(updatePopper)
-      })
-
-      if (typeof options.onUpdate === 'function') {
-        state.popperJS.onUpdate(options.onUpdate)
-      }
-
-      state.popperJS._popper.style.zIndex = nextZIndex(state.popperJS._reference)
-      on(state.popperElm, 'click', stop)
+  (dom) => {
+    if (isServer) {
+      return
     }
+
+    state.currentPlacement = state.currentPlacement || props.placement
+
+    if (!/^(top|bottom|left|right)(-start|-end)?$/g.test(state.currentPlacement)) {
+      return
+    }
+
+    const options = props.popperOptions || { gpuAcceleration: false }
+    state.popperElm = state.popperElm || props.popper || refs.popper || dom
+    const popper = state.popperElm
+    let reference = getReference({ state, props, refs, slots })
+
+    if (!popper || !reference || reference.nodeType !== Node.ELEMENT_NODE) {
+      return
+    }
+
+    if (props.visibleArrow) {
+      appendArrow(popper)
+    }
+
+    appendPopper({ options, props, state, parent })
+
+    if (props.popperJS && state.popperJS.destroy) {
+      state.popperJS.destroy()
+    }
+
+    options.placement = state.currentPlacement
+    options.offset = props.offset || 0
+    options.arrowOffset = props.arrowOffset || 0
+    options.adjustArrow = props.adjustArrow || false
+
+    state.popperJS = new PopperJS(reference, popper, options)
+    state.popperJS.onCreate(() => {
+      emit('created', state)
+      resetTransformOrigin()
+      // 原来代码逻辑会触发2次updatePopper,暂时注释掉这一处，待观察
+      // new PopperJS 内部已经调用this.update了，所以屏蔽： nextTick(updatePopper)
+    })
+
+    if (typeof options.onUpdate === 'function') {
+      state.popperJS.onUpdate(options.onUpdate)
+    }
+
+    state.popperJS._popper.style.zIndex = nextZIndex(state.popperJS._reference)
+    followHide(state.popperJS)
+    on(state.popperElm, 'click', stop)
+  }
 
 const appendArrowFn = (state) => (el) => {
   let hash
@@ -246,6 +248,18 @@ export default ({
     props.zIndex === 'relative' ? getReferMaxZIndex(reference) : PopupManager.nextZIndex()
   const appendArrow = appendArrowFn(state)
   const resetTransformOrigin = resetTransformOriginFn(state, props)
+
+  // 如果触发源是隐藏的，其弹出层也设置为隐藏
+  const followHide = (popperInstance) => {
+    const { popperOptions = {} } = props
+    const { followReferenceHide = true } = popperOptions
+    const { _popper: popper, _reference: reference } = popperInstance
+
+    if (followReferenceHide && getComputedStyle(reference).position !== 'fixed' && reference.offsetParent === null) {
+      popper.style.display = 'none'
+    }
+  }
+
   let createPopper
   const updatePopper = (dom) => {
     const popperJS = state.popperJS
@@ -254,6 +268,7 @@ export default ({
       if (popperJS._popper && dom !== true) {
         // dom===true的场景仅在select组件动态更新面版时，不更新zIndex
         popperJS._popper.style.zIndex = nextZIndex(popperJS._reference)
+        followHide(popperJS)
       }
     } else {
       createPopper(dom)
@@ -270,7 +285,8 @@ export default ({
     nextTick,
     updatePopper,
     nextZIndex,
-    parent
+    parent,
+    followHide
   })
   const doDestroy = (forceDestroy) => {
     if (!state.popperJS || (state.showPopper && !forceDestroy)) {
@@ -293,6 +309,7 @@ export default ({
       }
     }
   }
+
   setWatchFn({
     watch,
     props,

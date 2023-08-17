@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { log as uLog, xss } from './xss.js'
 
@@ -127,13 +127,16 @@ export const DATE = {
   YearMonth: 'yyyy-MM'
 }
 
-const TriggerTypes = 'date,datetime,time,time-select,week,month,year,daterange,monthrange,timerange,datetimerange,dates'
+const TriggerTypes = 'date,datetime,time,time-select,week,month,year,years,yearrange,daterange,monthrange,timerange,datetimerange,dates'
 
 export const DATEPICKER = {
   Day: 'day',
   Date: 'date',
   Dates: 'dates',
   Year: 'year',
+  Years: 'years',
+  YearRange: 'yearrange',
+  PanelYearNum: 12,
   Month: 'month',
   Week: 'week',
   Normal: 'normal',
@@ -166,6 +169,8 @@ export const DATEPICKER = {
   TriggerTypes: TriggerTypes.split(','),
   DateFormats: {
     year: 'yyyy',
+    years: 'yyyy',
+    yearrange: 'yyyy',
     month: 'yyyy-MM',
     time: 'HH:mm:ss',
     week: 'yyyywWW',
@@ -241,39 +246,6 @@ export const CASCADER = {
   PropsCheckStric: 'checkStrictly',
   PropsHover: 'hoverThreshold',
   MenuConnector: 'cascader-menu-'
-}
-
-export const EDOC = {
-  uploadFlag: 'uploadDocument',
-  edocFlag: 'edoc_flag_',
-  edocUrl: 'edoc_url_',
-  action: '/EdocAction.do?methodFlag=getJsonp&timestamp=',
-  name: 'edocupload',
-  path: '',
-  updateFlag: 'updateDocumentContent',
-  docVersion: '&docVersion=',
-  preview: 'edoc/preview',
-  docId: '?docId=',
-  formName: 'previewForm',
-  formAction: '<form action="',
-  formMethod: '" method="post" target=\'',
-  formInput: '<input type="hidden" name="methodFlag" value="view">',
-  formInutValue: '<input type="hidden" name="hw_document_code" value="',
-  closeDom: '"/>',
-  formClose: '</form>',
-  hwVersion: '&hw_doc_version=',
-  heightStr: '&tmb_height=',
-  widthStr: '&hw_thumb_width=',
-  imgPreview: 'edoc/previewImage',
-  hwId: '?hw_doc_id=',
-  viewThumb: 'viewThumb',
-  viewImage: 'viewImage',
-  methodFlag: '?methodFlag=',
-  code: '&hw_document_code=',
-  imgDom: '<img src="',
-  imgClose: '">',
-  constants: 320,
-  twenty: 20
 }
 
 export const version = process.env.RUNTIME_VERSION

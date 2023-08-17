@@ -11,7 +11,7 @@
  -->
 
 <template>
-  <div>
+  <div class="tiny-tree-node__wrapper">
     <div
       class="tiny-tree-node"
       :class="{
@@ -21,7 +21,10 @@
         'is-checked': !node.disabled && node.checked,
         'is-indeterminate': !node.disabled && node.indeterminate,
         'is-focusable': !node.disabled,
-        'is-expanded': state.expanded
+        'is-expanded': state.expanded,
+        'is-checked': !node.disabled && node.checked,
+        'is-loading': node.loading,
+        'show-line': showLine
       }"
       role="treeitem"
       tabindex="-1"
@@ -39,73 +42,163 @@
       ref="node"
     >
       <div
-        class="tiny-tree-node__content"
-        :style="{ 'padding-left': (node.level - 1) * state.tree.indent + 'px' }"
+        :class="{
+          'tiny-tree-node__content': true,
+          'tiny-tree-node__content-number': showNumber
+        }"
+        :style="{
+          'margin-left': state.computedIndent,
+          'height': nodeHeight ? nodeHeight + 'px' : undefined,
+          'line-height': nodeHeight ? nodeHeight + 'px' : undefined
+        }"
         @click="handleContentClick(node, currentRadio)"
       >
-        <span class="tree-node-icon" @click="handleExpandIconClick($event, node)">
-          <template v-if="state.expandIcon !== undefined && state.shrinkIcon !== undefined">
-            <component :is="state.expanded ? state.shrinkIcon : state.expandIcon" :class="['tiny-tree-node__expand-icon', { 'is-leaf': node.isLeaf }]" />
+        <span v-if="showLine" class="tiny-tree-node__content-indent" :style="{ width: state.computedIndent }"></span>
+        <div class="tiny-tree-node__content-left">
+          <template v-if="showNumber">
+            <span class="tree-node-number">{{ node.data.number }}</span>
           </template>
           <template v-else>
-            <component
-              :is="state.tree.icon ? state.tree.icon : 'icon-chevron-right'"
-              :class="[
-                'tiny-tree-node__expand-icon',
-                {
-                  'is-leaf': node.isLeaf,
-                  expanded: !node.isLeaf && state.expanded
-                }
-              ]"
+            <span class="tree-node-icon" @click="handleExpandIconClick($event, node)">
+              <template v-if="state.expandIcon !== undefined && state.shrinkIcon !== undefined">
+                <component
+                  :is="state.expanded ? state.shrinkIcon : state.expandIcon"
+                  :fill="state.expanded ? state.shrinkIconColor : state.expandIconColor"
+                  :class="['tiny-tree-node__expand-icon', { 'is-leaf': node.isLeaf }]"
+                />
+              </template>
+              <template v-else>
+                <component
+                  :is="state.computedExpandIcon"
+                  :class="[
+                    'tiny-tree-node__expand-icon',
+                    {
+                      'is-leaf': node.isLeaf,
+                      expanded: !node.isLeaf && state.expanded,
+                      'is-saas-theme': state.isSaaSTheme
+                    }
+                  ]"
+                />
+              </template>
+            </span>
+          </template>
+
+          <checkbox
+            v-if="showCheckbox"
+            :modelValue="node.checked"
+            ref="checkbox"
+            :indeterminate="node.indeterminate"
+            :disabled="!!node.disabled"
+            :validate-event="false"
+            @change="handleCheckChange"
+          >
+          </checkbox>
+          <tiny-radio
+            v-if="showRadio"
+            :model-value="currentRadio.value"
+            @update:model-value="$emit('radio-change', $event)"
+            :validate-event="false"
+            :label="node.id"
+            :disabled="!!node.disabled"
+          ></tiny-radio>
+          <svg v-if="node.loading" class="tiny-tree-node__loading tiny-svg circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="24" fill="none"></circle>
+          </svg>
+          <slot name="prefix" :node="node"></slot>
+          <template v-if="action.type === 'edit' && action.node && action.node === node">
+            <tiny-input
+              v-model="action.label"
+              ref="editInput"
+              autofocus
+              clearable
+              @keyup.enter="saveEdit($event)"
+              @blur="saveEdit($event)"
+              @click.stop="($event) => $event.stopPropagation()"
             />
           </template>
-        </span>
-        <checkbox
-          v-if="showCheckbox"
-          :modelValue="node.checked"
-          ref="checkbox"
-          :indeterminate="node.indeterminate"
-          :disabled="!!node.disabled"
-          :validate-event="false"
-          @change="handleCheckChange"
-        >
-        </checkbox>
-        <tiny-radio
-          v-if="showRadio"
-          :model-value="currentRadio.value"
-          @update:model-value="$emit('radio-change', $event)"
-          :validate-event="false"
-          :label="node.id"
-          :disabled="!!node.disabled"
-        ></tiny-radio>
-        <icon-loading v-if="node.loading" class="tiny-tree-node__loading-icon tiny-svg-size"></icon-loading>
-        <node-content :node="node" :render-content="renderContent"></node-content>
-      </div>
-      <collapse-transition>
-        <div
-          class="tiny-tree-node__children"
-          v-if="!renderAfterExpand || state.childNodeRendered"
-          v-show="state.expanded"
-          role="group"
-          :aria-expanded="state.expanded"
-        >
-          <tree-node
-            :showRadio="showRadio"
-            :currentRadio="currentRadio"
-            @radio-change="$emit('radio-change', $event)"
-            :render-content="renderContent"
-            v-for="child in node.childNodes"
-            :expandIcon="state.expandIcon"
-            :shrinkIcon="state.shrinkIcon"
-            :render-after-expand="renderAfterExpand"
-            :show-checkbox="showCheckbox"
-            :key="getNodeKey(child)"
-            :node="child"
-            @node-expand="handleChildNodeExpand"
-          >
-          </tree-node>
+          <template v-else>
+            <node-content :node="node" :render-content="renderContent"></node-content>
+          </template>
+          <slot name="suffix" :node="node"></slot>
         </div>
-      </collapse-transition>
+        <div class="tiny-tree-node__content-right">
+          <slot name="operation" :node="node"></slot>
+          <template v-if="action.show">
+            <span :title="t('ui.base.edit')">
+              <icon-edit
+                v-if="!action.deleteDisabled.includes(node.data[nodeKey])"
+                @click.stop="openEdit(node)"
+              ></icon-edit>
+            </span>
+            <span :title="t('ui.base.delete')">
+              <icon-minus-square
+                v-if="!action.editDisabled.includes(node.data[nodeKey])"
+                @click.stop="deleteNode($event, node)"
+              ></icon-minus-square>
+            </span>
+            <span :title="t('ui.tree.newNodeTitle')">
+              <icon-plus-square
+                v-if="!node.data._isNewNode && !action.addDisabled.includes(node.data[nodeKey])"
+                @click.stop="addNode(node)"
+              ></icon-plus-square>
+            </span>
+          </template>
+        </div>
+      </div>
+
+      <template v-if="node.childNodes.length">
+        <collapse-transition>
+          <div
+            class="tiny-tree-node__children"
+            v-if="!renderAfterExpand || state.childNodeRendered"
+            v-show="state.expanded"
+            role="group"
+            :aria-expanded="state.expanded"
+            :style="{
+              'margin-left': state.computedIndent
+            }"
+          >
+            <span
+              v-if="showLine"
+              class="tiny-tree-node__children-indent"
+              :style="{ width: state.computedIndent, left: `-${state.computedIndent}` }"
+            ></span>
+            <tree-node
+              v-for="child in node.childNodes"
+              :action="action"
+              :show-radio="showRadio"
+              :theme="theme"
+              :current-radio="currentRadio"
+              :render-content="renderContent"
+              :expand-icon="state.expandIcon"
+              :shrink-icon="state.shrinkIcon"
+              :expand-icon-color="state.expandIconColor"
+              :shrink-icon-color="state.shrinkIconColor"
+              :render-after-expand="renderAfterExpand"
+              :show-checkbox="showCheckbox"
+              :show-number="showNumber"
+              :node-height="nodeHeight"
+              :key="getNodeKey(child)"
+              :node-key="nodeKey"
+              :check-easily="checkEasily"
+              :node="child"
+              :show-line="showLine"
+              @node-expand="handleChildNodeExpand"
+              @radio-change="$emit('radio-change', $event)"
+            >
+              <template #prefix="slotScoped">
+                <slot name="prefix" :node="slotScoped.node"></slot>
+              </template>
+              <template #suffix="slotScoped">
+                <slot name="suffix" :node="slotScoped.node"></slot>
+              </template>
+              <template #operation="slotScoped">
+                <slot name="operation" :node="slotScoped.node"></slot>
+              </template>
+            </tree-node>
+          </div>
+        </collapse-transition>
+      </template>
     </div>
     <div
       ref="menuContext"
@@ -125,9 +218,17 @@
 import { setup, directive, h } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/tree-node/vue'
 import CollapseTransition from '@opentiny/vue-collapse-transition'
+import {
+  iconChevronRight,
+  iconLoading,
+  iconArrowBottom,
+  iconEdit,
+  iconMinusSquare,
+  iconPlusSquare
+} from '@opentiny/vue-icon'
 import Checkbox from '@opentiny/vue-checkbox'
-import { iconChevronRight, iconLoading } from '@opentiny/vue-icon'
 import Radio from '@opentiny/vue-radio'
+import Input from '@opentiny/vue-input'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 
 export default {
@@ -150,6 +251,8 @@ export default {
     props: {},
     expandIcon: Object,
     shrinkIcon: Object,
+    expandIconColor: String,
+    shrinkIconColor: String,
     renderContent: Function,
     renderAfterExpand: {
       type: Boolean,
@@ -170,14 +273,36 @@ export default {
           value: null
         }
       }
-    }
+    },
+    showNumber: {
+      type: Boolean,
+      default: false
+    },
+    collapsible: {
+      type: Boolean,
+      default: true
+    },
+    nodeHeight: Number,
+    checkEasily: {
+      type: Boolean,
+      default: false
+    },
+    action: Object,
+    nodeKey: String,
+    theme: String,
+    showLine: Boolean
   },
   components: {
     CollapseTransition,
     Checkbox,
     TinyRadio: Radio,
+    TinyInput: Input,
     IconChevronRight: iconChevronRight(),
     IconLoading: iconLoading(),
+    IconArrowBottom: iconArrowBottom(),
+    IconEdit: iconEdit(),
+    IconMinusSquare: iconMinusSquare(),
+    IconPlusSquare: iconPlusSquare(),
     MenuContext: {
       props: {
         node: {
@@ -188,7 +313,12 @@ export default {
         const tree = this.$parent.state.tree
         const { data } = this.node
 
-        return tree && tree.scopedSlots && tree.scopedSlots.contextmenu && tree.scopedSlots.contextmenu({ data })
+        return (
+          tree &&
+          tree.scopedSlots &&
+          tree.scopedSlots.contextmenu &&
+          tree.scopedSlots.contextmenu({ data, node: this.node })
+        )
       }
     },
     NodeContent: {
@@ -207,7 +337,8 @@ export default {
 
         return this.renderContent
           ? this.renderContent(h, { _self: this, node, data, store })
-          : (tree.scopedSlots.default && tree.scopedSlots.default({ node, data })) || h('span', { class: 'tiny-tree-node__label' }, node.label)
+          : (tree.scopedSlots.default && tree.scopedSlots.default({ node, data })) ||
+              h('span', { class: 'tiny-tree-node__label' }, node.label)
       }
     }
   },

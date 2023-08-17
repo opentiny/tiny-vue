@@ -17,7 +17,12 @@
     </div>
     <div ref="slideMain" data-tag="slide-main" class="flex-auto overflow-auto scrollbar-size-0">
       <div class="flex">
-        <div :ref="'block' + index" v-for="(node, index) in data" :key="index" :style="{ width: flex ? 100 / data.length + '%' : null }">
+        <div
+          :ref="'block' + index"
+          v-for="(node, index) in data"
+          :key="index"
+          :style="{ width: flex ? 100 / data.length + '%' : null }"
+        >
           <slot
             name="block"
             :slot-scoped="{

@@ -10,16 +10,23 @@
  *
  -->
 <template>
-  <button class="tiny-mobile-button" @click="handleClick" :disabled="state.buttonDisabled || loading" :type="nativeType" :class="[
-    type ? 'tiny-mobile-button--' + type : '',
-    size ? 'tiny-mobile-button--' + size : '',
-    {
-      'is-disabled': state.buttonDisabled,
-      'is-loading': loading,
-      'is-plain': state.plain,
-      'is-round': round
-    }
-  ]" v-bind="a($attrs, ['class', 'style'], true)">
+  <button
+    class="tiny-mobile-button"
+    @click="handleClick"
+    :disabled="state.buttonDisabled || loading"
+    :type="nativeType"
+    :class="[
+      type ? 'tiny-mobile-button--' + type : '',
+      size ? 'tiny-mobile-button--' + size : '',
+      {
+        'is-disabled': state.buttonDisabled,
+        'is-loading': loading,
+        'is-plain': state.plain,
+        'is-round': round
+      }
+    ]"
+    v-bind="a($attrs, ['class', 'style'], true)"
+  >
     <icon-loading v-if="loading" class="tiny-icon-loading" />
     <component v-if="icon && !loading" :is="icon" class="tiny-icon is-icon" />
     <slot>

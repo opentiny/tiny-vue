@@ -10,6 +10,7 @@ import CardGroup from '@opentiny/vue-card-group'
 import Carousel from '@opentiny/vue-carousel'
 import CarouselItem from '@opentiny/vue-carousel-item'
 import CascaderMenu from '@opentiny/vue-cascader-menu'
+import CascaderMobile from '@opentiny/vue-cascader-mobile'
 import CascaderSelect from '@opentiny/vue-cascader-select'
 import Cell from '@opentiny/vue-cell'
 import Chart from '@opentiny/vue-chart'
@@ -38,6 +39,7 @@ import Checkbox from '@opentiny/vue-checkbox'
 import CheckboxGroup from '@opentiny/vue-checkbox-group'
 import Collapse from '@opentiny/vue-collapse'
 import CollapseItem from '@opentiny/vue-collapse-item'
+import ColorPicker from '@opentiny/vue-color-picker'
 import ColumnListGroup from '@opentiny/vue-column-list-group'
 import ColumnListItem from '@opentiny/vue-column-list-item'
 import ConfigProvider from '@opentiny/vue-config-provider'
@@ -50,6 +52,7 @@ import Exception from '@opentiny/vue-exception'
 import FileUpload from '@opentiny/vue-file-upload'
 import Filter from '@opentiny/vue-filter'
 import FilterBar from '@opentiny/vue-filter-bar'
+import FloatingButton from '@opentiny/vue-floating-button'
 import Flowchart from '@opentiny/vue-flowchart'
 import Form from '@opentiny/vue-form'
 import FormItem from '@opentiny/vue-form-item'
@@ -80,6 +83,8 @@ import SelectMobile from '@opentiny/vue-select-mobile'
 import SelectView from '@opentiny/vue-select-view'
 import SelectedBox from '@opentiny/vue-selected-box'
 import Slider from '@opentiny/vue-slider'
+import SliderButton from '@opentiny/vue-slider-button'
+import SliderButtonGroup from '@opentiny/vue-slider-button-group'
 import StandardListItem from '@opentiny/vue-standard-list-item'
 import Steps from '@opentiny/vue-steps'
 import Switch from '@opentiny/vue-switch'
@@ -110,6 +115,7 @@ const components = [
   Carousel,
   CarouselItem,
   CascaderMenu,
+  CascaderMobile,
   CascaderSelect,
   Cell,
   Chart,
@@ -138,6 +144,7 @@ const components = [
   CheckboxGroup,
   Collapse,
   CollapseItem,
+  ColorPicker,
   ColumnListGroup,
   ColumnListItem,
   ConfigProvider,
@@ -150,6 +157,7 @@ const components = [
   FileUpload,
   Filter,
   FilterBar,
+  FloatingButton,
   Flowchart,
   Form,
   FormItem,
@@ -180,6 +188,8 @@ const components = [
   SelectView,
   SelectedBox,
   Slider,
+  SliderButton,
+  SliderButtonGroup,
   StandardListItem,
   Steps,
   Switch,
@@ -217,7 +227,7 @@ export const install = (app, opts = {}) => {
   })
 }
 
-export const version = '3.8.1'
+export const version = '3.10.0'
 
 export {
   ActionSheet,
@@ -232,6 +242,7 @@ export {
   Carousel,
   CarouselItem,
   CascaderMenu,
+  CascaderMobile,
   CascaderSelect,
   Cell,
   Chart,
@@ -260,6 +271,7 @@ export {
   CheckboxGroup,
   Collapse,
   CollapseItem,
+  ColorPicker,
   ColumnListGroup,
   ColumnListItem,
   ConfigProvider,
@@ -272,6 +284,7 @@ export {
   FileUpload,
   Filter,
   FilterBar,
+  FloatingButton,
   Flowchart,
   Form,
   FormItem,
@@ -302,6 +315,8 @@ export {
   SelectView,
   SelectedBox,
   Slider,
+  SliderButton,
+  SliderButtonGroup,
   StandardListItem,
   Steps,
   Switch,
@@ -332,6 +347,7 @@ export default {
   Carousel,
   CarouselItem,
   CascaderMenu,
+  CascaderMobile,
   CascaderSelect,
   Cell,
   Chart,
@@ -360,6 +376,7 @@ export default {
   CheckboxGroup,
   Collapse,
   CollapseItem,
+  ColorPicker,
   ColumnListGroup,
   ColumnListItem,
   ConfigProvider,
@@ -372,6 +389,7 @@ export default {
   FileUpload,
   Filter,
   FilterBar,
+  FloatingButton,
   Flowchart,
   Form,
   FormItem,
@@ -402,6 +420,8 @@ export default {
   SelectView,
   SelectedBox,
   Slider,
+  SliderButton,
+  SliderButtonGroup,
   StandardListItem,
   Steps,
   Switch,
@@ -418,4 +438,4 @@ export default {
   UserHead,
   UserHeadGroup,
   install
-}
+} as any

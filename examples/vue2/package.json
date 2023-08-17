@@ -25,7 +25,6 @@
     "@opentiny/vue-theme": "workspace:~",
     "@opentiny/vue-theme-saas": "workspace:~",
     "@opentiny/vue-theme-mobile": "workspace:~",
-    "@opentiny/vue-docs": "workspace:~",
     "@opentiny/vue-vite-import": "workspace:~",
     "@opentiny/vue-design-smb": "workspace:~",
     "@playwright/test": "^1.29.2",

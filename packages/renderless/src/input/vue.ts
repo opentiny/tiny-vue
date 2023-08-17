@@ -38,9 +38,7 @@ import {
   handleEnterDisplayOnlyContent,
   hiddenPassword,
   dispatchDisplayedValue,
-  getDisplayedValue,
-  handleDrop,
-  handleDragStart
+  getDisplayedValue
 } from './index'
 import useStorageBox from '../tall-storage/vue-storage-box'
 
@@ -74,12 +72,10 @@ export const api = [
   'isMemoryStorage',
   'hasSelection',
   'handleEnterDisplayOnlyContent',
-  'hiddenPassword',
-  'handleDrop',
-  'handleDragStart'
+  'hiddenPassword'
 ]
 
-const initState = ({ reactive, computed, mode, props, parent, constants }) => {
+const initState = ({ reactive, computed, mode, props, parent, constants, api }) => {
   const state = reactive({
     mode,
     focused: false,
@@ -158,9 +154,7 @@ const initApi = ({ api, state, dispatch, broadcast, emit, refs, props, CLASS_PRE
     handleCompositionStart: handleCompositionStart(state),
     handleCompositionUpdate: handleCompositionUpdate(state),
     dispatchDisplayedValue: dispatchDisplayedValue({ state, props, dispatch, api }),
-    getDisplayedValue: getDisplayedValue({ state, props }),
-    handleDrop: handleDrop(emit),
-    handleDragStart: handleDragStart(emit)
+    getDisplayedValue: getDisplayedValue({ state, props })
   })
 }
 
@@ -275,7 +269,7 @@ export const renderless = (
     Input: constants.inputMode(mode),
     InputGroup: constants.inputGroupMode(mode)
   }
-  const state = initState({ reactive, computed, mode, props, parent, constants })
+  const state = initState({ reactive, computed, mode, props, parent, constants, api })
 
   initApi({ api, state, dispatch, broadcast, emit, refs, props, CLASS_PREFIX, parent })
 

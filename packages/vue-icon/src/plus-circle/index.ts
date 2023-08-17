@@ -12,4 +12,4 @@
 import { svg } from '@opentiny/vue-common'
 import PlusCircle from '@opentiny/vue-theme/svgs/plus-circle.svg'
 
-export default svg({ name: 'IconPlusCircle', component: PlusCircle })
+export default () => svg({ name: 'IconPlusCircle', component: PlusCircle })()

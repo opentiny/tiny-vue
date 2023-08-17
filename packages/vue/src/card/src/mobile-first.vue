@@ -1,15 +1,17 @@
 <template>
-  <div :class="
-    m(
-      gcls('card'),
-      gcls(`size-${state.size}`),
-      gcls(`status-${state.status}`),
-      gcls(!state.autoWidth && `size-${state.size}-width`),
-      state.itemChecked ? 'border-color-brand' : '',
-      state.disabled ? 'bg-color-bg-2' : '',
-      state.cardClass
-    )
-  ">
+  <div
+    :class="
+      m(
+        gcls('card'),
+        gcls(`size-${state.size}`),
+        gcls(`status-${state.status}`),
+        gcls(!state.autoWidth && `size-${state.size}-width`),
+        state.itemChecked ? 'border-color-brand' : '',
+        state.disabled ? 'bg-color-bg-2' : '',
+        state.cardClass
+      )
+    "
+  >
     <div :class="[state.type === 'text' ? 'flex' : 'block']">
       <div v-if="state.checkType === 'checkbox' && state.type === 'text'" :class="gcls('checkbox')">
         <tiny-checkbox v-model="state.model" :label="label" :disabled="state.disabled"></tiny-checkbox>
@@ -27,7 +29,11 @@
         <div v-if="state.type === 'logo'" :class="gcls('logo')">
           <img :src="src" class="bg-contain" />
         </div>
-        <div v-if="title || slots.title" class="flex items-start" :class="[state.type === 'logo' && 'text-center justify-center']">
+        <div
+          v-if="title || slots.title"
+          class="flex items-start"
+          :class="[state.type === 'logo' && 'text-center justify-center']"
+        >
           <slot name="title-left"> </slot>
           <slot name="title">
             <p :class="gcls('title')">{{ title }}</p>
@@ -44,12 +50,27 @@
         <slot name="footer"> </slot>
       </div>
       <div v-if="state.effectOptions.length" :class="gcls('options')">
-        <div class="cursor-pointer" v-for="(item, index) in state.effectOptions.slice(0, state.sliceNum)" :key="item.text + index" :class="[item.disabled ? 'text-color-text-disabled cursor-not-allowed' : '']" @click="handelIconClick(item, index, $event)">
+        <div
+          class="cursor-pointer"
+          v-for="(item, index) in state.effectOptions.slice(0, state.sliceNum)"
+          :key="item.text + index"
+          :class="[item.disabled ? 'text-color-text-disabled cursor-not-allowed' : '']"
+          @click="handelIconClick(item, index, $event)"
+        >
           <component :is="item.icon" class="w-4 h-4" :class="[item.disabled ? 'fill-color-icon-disabled' : '']" />
           <span v-if="item.text" class="ml-1 align-middle">{{ item.text }}</span>
         </div>
-        <div class="cursor-pointer" :class="[state.effectOptions[state.sliceNum].disabled ? 'text-color-text-disabled cursor-not-allowed' : '']" v-if="state.effectOptions.length === state.iconNum" @click="handelIconClick(state.effectOptions[state.sliceNum], state.sliceNum, $event)">
-          <component :is="state.effectOptions[state.sliceNum].icon" class="w-4 h-4" :class="[state.effectOptions[state.sliceNum].disabled ? 'fill-color-icon-disabled' : '']" />
+        <div
+          class="cursor-pointer"
+          :class="[state.effectOptions[state.sliceNum].disabled ? 'text-color-text-disabled cursor-not-allowed' : '']"
+          v-if="state.effectOptions.length === state.iconNum"
+          @click="handelIconClick(state.effectOptions[state.sliceNum], state.sliceNum, $event)"
+        >
+          <component
+            :is="state.effectOptions[state.sliceNum].icon"
+            class="w-4 h-4"
+            :class="[state.effectOptions[state.sliceNum].disabled ? 'fill-color-icon-disabled' : '']"
+          />
           <span v-if="state.effectOptions[state.sliceNum].text" class="ml-1 align-middle">{{
             state.effectOptions[state.sliceNum].text
           }}</span>
@@ -59,9 +80,19 @@
           <span v-if="state.effectOptions[0].text" class="ml-1 text-color-text-primary">{{ t('ui.base.more') }}</span>
           <template #dropdown>
             <tiny-dropdown-menu placement="bottom">
-              <tiny-dropdown-item v-for="(item, index) in state.effectOptions.slice(state.sliceNum)" :key="item.text + index">
-                <div @click="handelIconClick(item, index + state.sliceNum, $event)" :class="['px-2', item.disabled ? 'text-color-text-disabled cursor-not-allowed' : '']">
-                  <component :is="item.icon" class="w-4 h-4" :class="[item.disabled ? 'fill-color-icon-disabled' : '']" />
+              <tiny-dropdown-item
+                v-for="(item, index) in state.effectOptions.slice(state.sliceNum)"
+                :key="item.text + index"
+              >
+                <div
+                  @click="handelIconClick(item, index + state.sliceNum, $event)"
+                  :class="['px-2', item.disabled ? 'text-color-text-disabled cursor-not-allowed' : '']"
+                >
+                  <component
+                    :is="item.icon"
+                    class="w-4 h-4"
+                    :class="[item.disabled ? 'fill-color-icon-disabled' : '']"
+                  />
                   <span v-if="item.text">{{ item.text }}</span>
                 </div>
               </tiny-dropdown-item>
@@ -83,6 +114,7 @@ import DropdownItem from '@opentiny/vue-dropdown-item'
 import Checkbox from '@opentiny/vue-checkbox'
 import Radio from '@opentiny/vue-radio'
 import { IconEllipsis } from '@opentiny/vue-icon'
+
 const $constants = {
   CARD_GROUP: 'CardGroup'
 }

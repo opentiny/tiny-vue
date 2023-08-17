@@ -5,10 +5,10 @@ import { nextTick } from 'vue'
 
 describe('PC Mode', () => {
   const mount = mountPcMode
-  
+
   test('size', async () => {
     let value = ''
-    const wrapper = mount(() => <DropTimes v-model={value} size='medium'></DropTimes>)
+    const wrapper = mount(() => <DropTimes v-model={value} size="medium"></DropTimes>)
     expect(wrapper.find('.tiny-select--medium').exists()).toBe(true)
   })
 

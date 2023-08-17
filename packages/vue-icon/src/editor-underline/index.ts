@@ -12,4 +12,4 @@
 import { svg } from '@opentiny/vue-common'
 import EditorUnderline from '@opentiny/vue-theme/svgs/editor-underline.svg'
 
-export default svg({ name: 'EditorUnderline', component: EditorUnderline })
+export default () => svg({ name: 'EditorUnderline', component: EditorUnderline })()

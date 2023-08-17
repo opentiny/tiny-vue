@@ -65,7 +65,8 @@ types.forEach((type, index) => {
     defOpts = {
       mask: false,
       lockView: false,
-      showHeader: false
+      showHeader: false,
+      showClose: false
     }
   }
 

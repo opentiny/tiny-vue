@@ -4,7 +4,7 @@ import BulletinBoard from '@opentiny/vue-bulletin-board'
 
 describe('PC Mode', () => {
   const mount = mountPcMode
-  
+
   const tabTitle = ['TINY 更新日志', '他们都在用', 'TINY 特性']
   const data = [
     [

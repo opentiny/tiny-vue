@@ -624,7 +624,7 @@ export default {
           })
           result.push({
             label: item.label,
-            data: data
+            data
           })
         })
       } else {

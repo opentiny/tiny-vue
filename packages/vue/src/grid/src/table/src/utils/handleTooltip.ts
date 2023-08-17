@@ -52,19 +52,15 @@ export function createTooltipRange({ _vm, cell, column, isHeader }) {
  * 3、返回 null 或 undefined，则按之前默认逻辑处理
  */
 export function processContentMethod({ _vm, column, content, contentMethod, event, isHeader, row, showTip }) {
-  let tooltipContent
-
   if (contentMethod) {
-    tooltipContent = contentMethod({ event, column, row, showTip, isHeader, content })
+    // 自定义表格tip提示，既支持字符串也支持jsx或者h函数写法
+    _vm.tooltipConfig.renderContent = (h, content) =>
+      contentMethod({ event, column, row, showTip, isHeader, content }, h)
 
-    if (tooltipContent === '') return
-  }
-
-  if (tooltipContent) {
-    _vm.tooltipContent = tooltipContent
     _vm.tooltipContentPre = true
   } else {
-    _vm.tooltipContent = content
     _vm.tooltipContentPre = false
   }
+
+  _vm.tooltipContent = content
 }

@@ -20,11 +20,11 @@ export const classes = {
   'numeric_input-default-unit': 'px-2',
   'numeric_input-default-num': 'px-8 sm:px-9',
 
-  'numeric_input-active': 'border-0.5 sm:border border-solid rounded-sm border-color-border-separator sm:border-color-border ',
+  'numeric_input-active':
+    'border-0.5 sm:border border-solid rounded-sm border-color-border-separator sm:border-color-border ',
   'numeric_input-disabled': 'bg-inherit sm:bg-color-bg-4 cursor-not-allowed',
 
-  'numeric_input_inner':
-    'w-full z-10 h-7 leading-7 sm:text-xs inline-block overflow-hidden outline-0',
+  'numeric_input_inner': 'w-full z-10 h-7 leading-7 sm:text-xs inline-block overflow-hidden outline-0',
   'numeric-text-center': 'text-center',
   'numeric-text-left': 'text-left',
   'numeric_input_inner_size': 'h-7 leading-7 text-sm',

@@ -92,8 +92,7 @@ const initWatch = ({ watch, props, state, emit, api, nextTick }) => {
       }
 
       val ? emit('show') : emit('hide')
-    },
-    { immediate: true }
+    }
   )
 
   watch(

@@ -6,9 +6,7 @@
     <div class="flex items-center my-4">
       <tiny-badge>点标记 :</tiny-badge>
       <div class="flex justify-between items-center w-80">
-        <tiny-badge is-dot>
-          我的待办
-        </tiny-badge>
+        <tiny-badge is-dot> 我的待办 </tiny-badge>
         <tiny-badge type="icon" is-dot>
           <tiny-user-head type="icon"></tiny-user-head>
         </tiny-badge>
@@ -23,9 +21,7 @@
     <div class="flex items-center my-4">
       <span>数字标记 : </span>
       <div class="flex justify-between items-center w-80">
-        <tiny-badge :value="0">
-          我的待办
-        </tiny-badge>
+        <tiny-badge :value="0"> 我的待办 </tiny-badge>
         <tiny-badge :value="0" type="icon">
           <tiny-user-head type="icon" round></tiny-user-head>
         </tiny-badge>

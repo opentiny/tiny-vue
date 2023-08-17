@@ -1,7 +1,5 @@
 <template>
-  <tiny-checkbox v-model="checked">
-    复选框
-  </tiny-checkbox>
+  <tiny-checkbox v-model="checked"> 复选框 </tiny-checkbox>
 </template>
 
 <script>

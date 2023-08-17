@@ -1,7 +1,13 @@
 <template>
   <div>
     <div class="single">
-      <tiny-file-upload file-title="单张图片上传" :file-list="fileList1" class="upload-demo picture-demo" :action="action" list-type="picture-card">
+      <tiny-file-upload
+        file-title="单张图片上传"
+        :file-list="fileList1"
+        class="upload-demo picture-demo"
+        :action="action"
+        list-type="picture-card"
+      >
         <icon-plus class="tiny-svg-size" />
       </tiny-file-upload>
       <tiny-dialog-box v-model="dialogVisible1">

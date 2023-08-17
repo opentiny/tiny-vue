@@ -1,8 +1,15 @@
 <template>
-  <div :style="{ 'width': `${groupSize * 2 + 2}px`, 'min-height': `${groupSize * 2 + 2}px` }" :class="[state.list.length === 3 ? 'block text-center' : 'flex items-center justify-around flex-wrap']">
+  <div
+    :style="{ 'width': `${groupSize * 2 + 2}px`, 'min-height': `${groupSize * 2 + 2}px` }"
+    :class="[state.list.length === 3 ? 'block text-center' : 'flex items-center justify-around flex-wrap']"
+  >
     <template v-if="state.list.length === 3">
       <div class="leading-[0] mb-px">
-        <tiny-user-head :round="state.list[0].round" :type="state.list[0].type" v-model="state.list[0].modelValue"></tiny-user-head>
+        <tiny-user-head
+          :round="state.list[0].round"
+          :type="state.list[0].type"
+          v-model="state.list[0].modelValue"
+        ></tiny-user-head>
       </div>
       <div class="flex items-center justify-around">
         <div v-for="(item, i) in state.list.slice(1, 3)" :key="i" class="inline-block leading-[0]">

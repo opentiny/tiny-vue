@@ -1,5 +1,5 @@
 import { mountPcMode } from '@opentiny-internal/vue-test-utils'
-import { describe, expect, test, vi, } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
 import TimeLine from '@opentiny/vue-time-line'
 import { nextTick } from 'vue'
 
@@ -41,13 +41,24 @@ describe('PC Mode', () => {
 
   test.todo('reverse 设置竖向步骤条的方向')
 
+  test.todo('text-position 设置节点文本内容的位置')
+
+  test.todo('show-divider 设置是否显示步骤条底部分割线')
+
+  test.todo('only-number 节点序号是否只显示数字')
+
   /**
    * slots
    */
   test('top', () => {
-    const wrapper = mount(() => <TimeLine data={data} v-slots={{
-      top: (scopeData) => <a class="custom-top">{scopeData.slotScope.name}</a>
-    }}></TimeLine>)
+    const wrapper = mount(() => (
+      <TimeLine
+        data={data}
+        v-slots={{
+          top: (scopeData) => <a class="custom-top">{scopeData.slotScope.name}</a>
+        }}
+      ></TimeLine>
+    ))
     expect(wrapper.findAll('.custom-top').length).toBe(data.length)
     expect(wrapper.find('.custom-top').text()).toBe(data[0].name)
   })
@@ -57,6 +68,10 @@ describe('PC Mode', () => {
   test.todo('left 定义步骤条左侧内容')
 
   test.todo('right 定义步骤条右侧内容')
+
+  test.todo('description 节点描述信息插槽')
+
+  test.todo('active-node-desc 当前节点描述信息插槽')
 
   /**
    * events
@@ -69,4 +84,3 @@ describe('PC Mode', () => {
     expect(handleClick).toHaveBeenCalled()
   })
 })
-

@@ -9,6 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
@@ -17,6 +18,14 @@ export default defineComponent({
   componentName: $prefix + 'DropdownMenu',
   props: {
     ...$props,
+    multiStage: {
+      type: Boolean,
+      default: false
+    },
+    checkedStatus: {
+      type: Boolean,
+      default: false
+    },
     visibleArrow: {
       type: Boolean,
       default: false
@@ -27,7 +36,7 @@ export default defineComponent({
     },
     placement: {
       type: String,
-      default: 'bottom-end'
+      default: 'bottom-end' // aui的默认值为bottom-start
     },
     popperClass: String,
     popperAppendToBody: {
@@ -56,6 +65,10 @@ export default defineComponent({
       default: true
     },
     zIndex: [Number, String],
+    maxHeight: {
+      type: [Number, String],
+      default: '400'
+    },
     options: {
       type: Array,
       default: () => []
@@ -63,14 +76,9 @@ export default defineComponent({
     textField: {
       type: String,
       default: 'label'
-    },
-    maxHeight: {
-      type: [Number, String],
-      default: '400'
     }
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

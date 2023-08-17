@@ -30,6 +30,8 @@ import {
 } from './index'
 import userPopper from '../common/deps/vue-popper'
 import { guid } from '../common/string'
+import { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from 'types/shared.type'
+import { ITooltipApi, ITooltipProps, ITooltipState } from 'types/tooltip.type'
 
 export const api = [
   'state',
@@ -65,11 +67,21 @@ const initState = ({ reactive, showPopper, popperElm, referenceElm, props, markR
   })
 
 export const renderless = (
-  props,
-  { watch, toRefs, reactive, onBeforeUnmount, onDeactivated, onMounted, onUnmounted, markRaw, inject },
-  { vm, emit, refs, slots, nextTick, parent }
+  props: ITooltipProps,
+  {
+    watch,
+    toRefs,
+    reactive,
+    onBeforeUnmount,
+    onDeactivated,
+    onMounted,
+    onUnmounted,
+    markRaw,
+    inject
+  }: ISharedRenderlessParamHooks,
+  { vm, emit, refs, slots, nextTick, parent }: ISharedRenderlessParamUtils<never>
 ) => {
-  const api = {}
+  const api = {} as ITooltipApi
   // 因为tootip组件由单层组件变成双层组件，所以parent需要再往上找一层
   const popperParam = { emit, props, nextTick, toRefs, reactive, parent: parent.$parent, refs }
 
@@ -77,8 +89,8 @@ export const renderless = (
 
   Object.assign(popperParam, { slots, onBeforeUnmount, onDeactivated, watch })
 
-  const { showPopper, updatePopper, popperElm, referenceElm, doDestroy } = userPopper(popperParam)
-  const state = initState({ reactive, showPopper, popperElm, referenceElm, props, markRaw, inject })
+  const { showPopper, updatePopper, popperElm, referenceElm, doDestroy } = userPopper(popperParam as any)
+  const state: ITooltipState = initState({ reactive, showPopper, popperElm, referenceElm, props, markRaw, inject })
 
   Object.assign(api, {
     state,

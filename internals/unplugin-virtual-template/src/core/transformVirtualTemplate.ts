@@ -1,18 +1,23 @@
 export function transformVirtualTemplate(code: string) {
   return code.replace(/import\s+(\w+)\s+from\s+'virtual-template\?(.+)'/, (all, localName, url) => {
-    const params = url.split('|').map((item: string) => item.split('=')).reduce((result: Record<string, string>, [key, value]: [string, string]) => {
-      result[key] = value || key
-      return result
-    }, {})
+    const params = url
+      .split('|')
+      .map((item: string) => item.split('='))
+      .reduce((result: Record<string, string>, [key, value]: [string, string]) => {
+        result[key] = value || key
+        return result
+      }, {})
 
     const getTemplate = (params: Record<string, string>) => {
-      return Object.entries(params).map(([key, value]) => {
-        return `  
+      return Object.entries(params)
+        .map(([key, value]) => {
+          return `  
   // #v-ifdef VITE_TINY_MODE=${key}
   result = import.meta.glob('./${value}.vue', { eager: true })
   // #v-endif
         `
-      }).join('')
+        })
+        .join('')
     }
 
     const result = `

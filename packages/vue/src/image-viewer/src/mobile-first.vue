@@ -5,26 +5,7 @@
         <div class="absolute w-full h-full top-0 left-0 sm:opacity-30 bg-black"></div>
         <!-- CLOSE -->
         <span
-          class="
-            flex
-            absolute
-            items-center
-            justify-center
-            rounded-full
-            box-border
-            select-none
-            top-20
-            right-20
-            bottom-10
-            text-xl
-            cursor-pointer
-            w-8
-            h-8
-            hover:bg-color-text-primary
-            active:bg-color-border
-            fill-color-bg-1
-            bg-color-border
-          "
+          class="flex absolute items-center justify-center rounded-full box-border select-none top-20 right-20 bottom-10 text-xl cursor-pointer w-8 h-8 hover:bg-color-text-primary active:bg-color-border fill-color-bg-1 bg-color-border"
           @click="hide"
         >
           <icon-close class="fill-color-bg-1 cursor-pointer" />
@@ -32,51 +13,14 @@
         <!-- ARROW -->
         <template v-if="!state.isSingle">
           <span
-            class="
-              absolute
-              flex
-              items-center
-              justify-center
-              rounded-full
-              box-border
-              select-none
-              top-1/2
-              w-8
-              h-8
-              bg-color-border
-              -translate-y-1/2
-              left-20
-              hover:bg-color-text-primary
-              active:bg-color-border
-              fill-color-bg-1
-              cursor-pointer
-            "
+            class="absolute flex items-center justify-center rounded-full box-border select-none top-1/2 w-8 h-8 bg-color-border -translate-y-1/2 left-20 hover:bg-color-text-primary active:bg-color-border fill-color-bg-1 cursor-pointer"
             :class="{ 'is-disabled': !state.infinite && state.isFirst }"
             @click="prev"
           >
             <icon-chevron-left />
           </span>
           <span
-            class="
-              absolute
-              flex
-              items-center
-              justify-center
-              rounded-full
-              box-border
-              select-none
-              top-1/2
-              w-8
-              h-8
-              -translate-y-1/2
-              right-20
-              indent-0.5
-              hover:bg-color-text-primary
-              active:bg-color-border
-              fill-color-bg-1
-              bg-color-border
-              cursor-pointer
-            "
+            class="absolute flex items-center justify-center rounded-full box-border select-none top-1/2 w-8 h-8 -translate-y-1/2 right-20 indent-0.5 hover:bg-color-text-primary active:bg-color-border fill-color-bg-1 bg-color-border cursor-pointer"
             :class="{ 'is-disabled': !state.infinite && state.isLast }"
             @click="next"
           >
@@ -85,25 +29,7 @@
         </template>
         <!-- ACTIONS -->
         <div
-          class="
-            z-10
-            absolute
-            inline-flex
-            items-center
-            justify-center
-            box-border
-            select-none
-            left-1/2
-            bottom-12
-            -translate-x-1/2
-            w-60
-            h-10
-            px-4
-            opacity-50
-            bg-black
-            rounded-[1.375rem]
-            cursor-pointer
-          "
+          class="z-10 absolute inline-flex items-center justify-center box-border select-none left-1/2 bottom-12 -translate-x-1/2 w-60 h-10 px-4 opacity-50 bg-black rounded-[1.375rem] cursor-pointer"
         >
           <div
             class="w-full h-full text-justify cursor-default text-2xl flex items-center justify-between fill-color-bg-1"
@@ -182,17 +108,7 @@
                   "
                 >
                   <div
-                    class="
-                      absolute
-                      top-0
-                      left-0
-                      right-0
-                      bottom-0
-                      text-center
-                      transition-transform
-                      inline-block
-                      duration-300
-                    "
+                    class="absolute top-0 left-0 right-0 bottom-0 text-center transition-transform inline-block duration-300"
                   >
                     <img
                       v-if="i === state.index"

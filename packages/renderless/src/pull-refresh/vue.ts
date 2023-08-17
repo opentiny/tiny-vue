@@ -1,16 +1,25 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
-import { mountedHandler, beforeUnmountHandler, handlerModelValue, onTouchstart, onTouchmove, onTouchend, initPullRefresh, clearPullRefresh } from './index'
+import {
+  mountedHandler,
+  beforeUnmountHandler,
+  handlerModelValue,
+  onTouchstart,
+  onTouchmove,
+  onTouchend,
+  initPullRefresh,
+  clearPullRefresh
+} from './index'
 
 export const api = ['state']
 
@@ -43,7 +52,7 @@ export const renderless = (props, { watch, onMounted, reactive, onBeforeUnmount 
     beforeUnmountHandler: beforeUnmountHandler({ api, refs }),
     handlerModelValue: handlerModelValue({ api, state }),
     initPullRefresh: initPullRefresh({ t, props, state }),
-    clearPullRefresh: clearPullRefresh(state),
+    clearPullRefresh: clearPullRefresh(state)
   })
 
   watch(
@@ -54,7 +63,7 @@ export const renderless = (props, { watch, onMounted, reactive, onBeforeUnmount 
         state.noMoreText = t('ui.pullRefresh.noMore')
         api.clearPullRefresh()
       }
-    },
+    }
   )
 
   onMounted(() => {

@@ -110,8 +110,7 @@
             color: var(--ti-button-group-item-active-text-color);
             border-color: var(--ti-button-group-item-active-border-color);
             outline: none;
-  
-  
+
             &.plain,
             &[plain] {
               color: var(--ti-button-group-plain-active-text-color);
@@ -123,13 +122,15 @@
 
       &:first-child {
         button {
-          border-radius: var(--ti-button-group-border-radius) var(--ti-button-group-right-border-radius) var(--ti-button-group-right-border-radius) var(--ti-button-group-border-radius);
+          border-radius: var(--ti-button-group-border-radius) var(--ti-button-group-right-border-radius)
+            var(--ti-button-group-right-border-radius) var(--ti-button-group-border-radius);
         }
       }
 
       &:last-child {
         button {
-          border-radius: var(--ti-button-group-left-border-radius) var(--ti-button-group-border-radius) var(--ti-button-group-border-radius) var(--ti-button-group-left-border-radius);
+          border-radius: var(--ti-button-group-left-border-radius) var(--ti-button-group-border-radius)
+            var(--ti-button-group-border-radius) var(--ti-button-group-left-border-radius);
         }
       }
 
@@ -165,14 +166,13 @@
       border-top-left-radius: 4px;
       border-bottom-right-radius: 4px;
     }
-  
   }
 
-  &>.@{button-prefix-cls} {
+  & > .@{button-prefix-cls} {
     float: left;
     position: relative;
 
-    &+.@{button-prefix-cls} {
+    & + .@{button-prefix-cls} {
       margin-left: 0;
     }
 
@@ -245,7 +245,7 @@
       margin-right: -1px;
     }
 
-    &>.@{dropdown-prefix-cls}>.@{button-prefix-cls} {
+    & > .@{dropdown-prefix-cls} > .@{button-prefix-cls} {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
       border-left-color: var(--ti-button-group-info-border-color);

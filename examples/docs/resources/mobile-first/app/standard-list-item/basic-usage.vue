@@ -1,6 +1,13 @@
 <template>
   <div class="h-64 w-full p-5 bg-color-bg-5">
-    <tiny-standard-list-item :show-image="true" :user-head="userHeadOption" :options="iconOptions" :tag="tagOption" :data="data" class="bg-color-bg-1">
+    <tiny-standard-list-item
+      :show-image="true"
+      :user-head="userHeadOption"
+      :options="iconOptions"
+      :tag="tagOption"
+      :data="data"
+      class="bg-color-bg-1"
+    >
     </tiny-standard-list-item>
     <tiny-standard-list-item :show-image="true" :icon="icon" :options="iconOptions" :data="data" class="bg-color-bg-1">
     </tiny-standard-list-item>
