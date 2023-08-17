@@ -1,12 +1,16 @@
+@import './vars.less';
+
 .tiny-rich-text-editor {
+  .component-css-vars-rich-text-editor();
+
   width: 500px;
   height: 350px;
   margin: 0 auto;
-  outline: 3px solid rgb(203, 203, 203);
+  outline: 3px solid var(--ti-rich-text-editor-box-outline-color);
   border-radius: 8px 8px 0 0;
 
   &:hover {
-    outline: 3px solid black;
+    outline: 3px solid var(--ti-rich-text-editor-box-outline-hover-color);
   }
 
   .button-area {
@@ -26,18 +30,18 @@
     cursor: pointer;
 
     &:hover {
-      background-color: #d2e4ff;
+      background-color: var(--ti-rich-text-editor-button-hover);
     }
   }
 
   button:disabled {
     // color: rgba(34, 47, 62, .5);
-    background-color: rgba(203, 203, 203, .3);
+    background-color: var(--ti-rich-text-editor-button-disabled);
     cursor: not-allowed;
   }
 
   button.is-active {
-    background-color: #d2e4ff;
+    background-color: var(--ti-rich-text-editor-button-active);
   }
 
   .tiny-svg {
