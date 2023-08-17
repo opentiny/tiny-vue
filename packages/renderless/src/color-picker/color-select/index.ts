@@ -41,3 +41,40 @@ export const resetCursor = (
   thumb.value.style.top = `${thummbTop}px`
   h.value = color.get('h')
 }
+
+export const updateCursor = (wrapper: IColorPickerRef<HTMLElement>, cursor: IColorPickerRef<HTMLElement>, emit) => {
+  return (color: Color, event: MouseEvent)=>{
+    const rect = wrapper.value.getBoundingClientRect();
+    const {x,y} = updatePosition(event, rect, cursor)
+    color.set({
+      s: calcSaturation(x, rect.width) * 100,
+      v: calcBrightness(y, rect.height)
+    })
+    emit('sv-update', {
+      s: color.get('s'),
+      v: color.get('v')
+    })
+  }
+}
+
+export const updateThumb = (
+  bar: IColorPickerRef<HTMLElement>,
+  thumb: IColorPickerRef<HTMLElement>,
+  h: IColorPickerRef<Number>,
+  emit
+) => {
+  return (event: MouseEvent)=>{
+    const e = event as MouseEvent
+        const rect = bar.value.getBoundingClientRect()
+        let top = e.clientY - rect.top
+        top = Math.min(top, rect.height - thumb.value.offsetHeight / 2)
+        top = Math.max(thumb.value.offsetHeight / 2, top)
+        thumb.value.style.top = `${top}px`
+        h.value = Math.round(
+          ((top - thumb.value.offsetHeight / 2) /
+          (rect.height - thumb.value.offsetHeight)) *
+          360
+        )
+        emit('hue-update', h.value)
+  }
+}
