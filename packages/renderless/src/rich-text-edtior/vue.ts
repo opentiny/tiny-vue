@@ -1,3 +1,4 @@
+import { handleChange, setLink, handleMove, handleClickOutside, removeClickOutside, handleClick, shouldShow } from './index'
 export const api = ['state', 'setLink', 'handleChange', 'box', 'handleMove', 'handleClickOutside', 'removeClickOutside', 'handleClick', 'shouldShow']
 export const renderless = (
   props,
@@ -47,6 +48,7 @@ export const renderless = (
     editable: true,
     injectCSS: false,
   })
+<<<<<<< HEAD
   const handleChange = (event) => {
     const file = event.target.files[0]
     if (!file.type.match("image.*")) {
@@ -115,6 +117,9 @@ export const renderless = (
     // 仅在无序列表选中的时候才显示 气泡菜单
     return editor.isActive("table");
   };
+=======
+
+>>>>>>> 176a04d02f3abff878bcfb7b0a70822bd77e22b9
   const box = ref(null)
   const state = reactive({
     editor: null,
@@ -126,6 +131,7 @@ export const renderless = (
   state.editor = editor
   const api = {
     state,
+<<<<<<< HEAD
     setLink,
     handleChange,
     // table处理函数
@@ -136,6 +142,18 @@ export const renderless = (
     handleClick,
     // bubble 菜单
     shouldShow,
+=======
+    setLink: setLink(editor),
+    handleChange: handleChange(editor),
+    // table处理函数
+    box,
+    handleMove: handleMove(state, box),
+    handleClickOutside: handleClickOutside(state, box),
+    removeClickOutside: removeClickOutside(state, box),
+    handleClick: handleClick(state, box),
+    // bubble 菜单
+    shouldShow: shouldShow,
+>>>>>>> 176a04d02f3abff878bcfb7b0a70822bd77e22b9
   }
   onBeforeUnmount(() => {
     state.editor.destroy()
