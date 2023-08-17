@@ -53,6 +53,42 @@
   }
 }
 
+// p-h1~6
+.tiny-rich-text-editor {
+  .h-box {
+    position: relative;
+
+    .h-options {
+      position: absolute;
+      background-color: #dfdede;
+      padding: .15rem;
+      top: 2.00rem;
+      left: 0px;
+      display: none;
+      border-radius: .4rem;
+      z-index: 999;
+
+      button {
+        margin: 0;
+      }
+    }
+
+    &:hover {
+      background-color: #d2e4ff;
+
+      .h-options {
+        display: flex;
+        flex-direction: column;
+
+        button {
+          width: auto;
+          color: black;
+        }
+      }
+    }
+  }
+}
+
 // 表格区域样式
 .tiny-rich-text-editor {
   .table-button {
@@ -139,6 +175,41 @@
       height: 100%;
       left: 0px;
       opacity: 0;
+    }
+  }
+}
+
+.tiny-rich-text-editor {
+  .line-height-button {
+    position: relative;
+
+    .line-height-options {
+      position: absolute;
+      background-color: #dfdede;
+      padding: .15rem;
+      top: 2.00rem;
+      left: 0px;
+      display: none;
+      border-radius: .4rem;
+      z-index: 999;
+
+      button {
+        margin: 0;
+      }
+    }
+
+    &:hover {
+      background-color: var(--ti-rich-text-editor-button-active);
+
+      .line-height-options {
+        display: flex;
+        flex-direction: column;
+
+        button {
+          width: auto;
+          color: black;
+        }
+      }
     }
   }
 }

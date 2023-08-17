@@ -4,7 +4,7 @@ export const renderless = (
   props,
   { computed, onMounted, onBeforeUnmount, reactive, ref },
   { vm, emit, parent },
-  { useEditor, Collaboration, Y, WebrtcProvider, StarterKit, Table, TableCell, TableHeader, TableRow, Color, TextStyle, Image, Highlight, Link, Underline, Subscript, Superscript, TaskItem, TaskList, TextAlign }
+  { useEditor, Collaboration, Y, WebrtcProvider, StarterKit, Table, TableCell, TableHeader, TableRow, Color, TextStyle, Image, Highlight, Link, Underline, Subscript, Superscript, TaskItem, TaskList, TextAlign, Paragraph, mergeAttributes }
 ) => {
   const ydoc = new Y.Doc()
   const provider = new WebrtcProvider('tiny-examsple-document', ydoc)
@@ -13,6 +13,35 @@ export const renderless = (
     renderHTML({ HTMLAttributes }) {
       return ['div', { class: 'img-button' }, ['img', HTMLAttributes]]
     }
+  })
+  const CustomParagraph = Paragraph.extend({
+    addOptions() {
+      return {
+        levels: [1, 1.5, 2, 2.5, 3],
+      }
+    },
+    addAttributes() {
+      return {
+        level: {
+          default: 1,
+        },
+      }
+    },
+    renderHTML({ node, HTMLAttributes }) {
+      const hasLevel = this.options.levels.includes(node.attrs.level)
+      const level = hasLevel
+        ? node.attrs.level
+        : this.options.levels[0]
+      console.log('2', node, HTMLAttributes, this.options);
+      return ['p', mergeAttributes({ style: `line-height: ${level}` }, HTMLAttributes), 0]
+    },
+    addCommands() {
+      return {
+        setP: attributes => ({ commands }) => {
+          return commands.setNode(this.name, attributes)
+        },
+      }
+    },
   })
   const editor = useEditor({
     extensions: [
@@ -42,6 +71,7 @@ export const renderless = (
       TextAlign.configure({
         types: ['heading', 'paragraph'],
       }),
+      CustomParagraph,
     ],
     content: 'Example Tesxt',
     autofocus: true,
