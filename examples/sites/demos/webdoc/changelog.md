@@ -2,22 +2,75 @@
 
 ## v2.10.0/v3.10.0
 
-### Other Changes
+`2023/08/14`
 
-- fix: 主题变量 token 命名变更，默认按钮最小宽度 --ti-button-size-normal-mini-width 改为 --ti-button-size-normal-min-width
-- fix: 主题变量 token 命名变更，超大按钮最小宽度 --ti-button-size-large-mini-width 改为 --ti-button-size-large-min-width
-- fix: 主题变量 token 命名变更，中等按钮最小宽度 --ti-button-size-medium-mini-width 改为 --ti-button-size-medium-min-width
-- fix: 主题变量 token 命名变更，小尺寸按钮最小宽度 --ti-button-size-small-mini-width 改为 --ti-button-size-small-min-width
-- fix: 主题变量 token 命名变更，迷你尺寸按钮最小宽度 --ti-button-size-mini-mini-width 改为 --ti-button-size-mini-min-width
-- fix: 主题变量 token 命名变更， 默认按钮悬浮背景色 --ti-button-normal-hover-background-color 改为 --ti-button-normal-hover-bg-color
-- fix: 主题变量 token 命名变更，默认按钮点击瞬间背景色 --ti-button-normal-active-background-color 改为 --ti-button-normal-active-bg-color
-- fix: 主题变量 token 命名变更，禁用类默认按钮背景色 --ti-button-normal-disabled-background-color 改为 --ti-button-normal-disabled-bg-color
-- fix: 主题变量 token 命名变更，文字按钮图标填充色 --ti-button-text-svg-fill 改为 --ti-button-text-svg-fill-color
-- fix: 主题变量 token 命名变更，文字按钮图标悬浮填充色 --ti-button-text-svg-hover-fill 改为 --ti-button-text-svg-hover-fill-color
-- fix: 主题变量 token 命名变更，文字按钮禁用时图标填充色 --ti-button-text-svg-fill-disabled 改为 --ti-button-text-svg-disabled-fill-color
-- fix: 主题变量 token 命名变更，分页上一页和下一页图标填充色 --ti-pager-btn-svg-color 改为 --ti-pager-btn-svg-fill-color
-- fix: 主题变量 token 命名变更，文字按钮禁用时图标填充色 --ti-pager-total-svg-color 改为 --ti-pager-total-svg-fill-color
-- fix: 主题变量 token 命名变更，IP 地址输入框图标尺寸 --ti-ip-address-icon-width 改为 --ti-ip-address-icon-size
+### Exciting New Features 🎉
+
+* feat(pop-editor): 当编辑框弹出时添加自定义事件 fix #268 by @yuanningning in https://github.com/opentiny/tiny-vue/pull/315
+* feat(ip-address): 更改ipAddress组件的IPv6类型 close #272 by @yuanningning in https://github.com/opentiny/tiny-vue/pull/337
+* feat(filter-panel): 新增过滤器面板组件
+* feat(dialog-select): 新增 DialogSelect 组件
+* feat(infinite-scroll): 新增 InfiniteScroll 无限滚动组件
+* feat(tag-group): 新增 TagGroup 标签组组件
+* feat(docs): 官网添加示例composition-api写法，支持切换composition-api和option-api
+* feat(docs): 组件demo支持playground
+* feat(grid): 表格增加快捷筛选面板，可以支持多选框筛选和日期筛选 ，同时支持用户配置默认筛选项
+* feat(grid): 表格排序按钮默认为x-design最新规范图标
+* feat(grid): 表格提示现在支持自定义tooltip内容显示，支持字符串或者jsx
+* feat(tree-menu): TreeMenu新增设置与获取当前选中节点的方法
+* feat(tree-menu): 树形菜单新增可折叠特性
+* feat(tree): Tree新增连接线设置
+* feat(timeline-item): 新增timeline-item组件
+* feat(modal): modal支持配置底部按钮props与文字
+* feat(button-group): 按钮组新增单个disabled特性
+* feat(alert): 新增close插槽，实现外部控制显示或隐藏 
+* feat(alert): 组件图标取消垂直居中，采用固定定位 
+* feat(time-picker): 支持设置步长 `step`
+* feat(date-picker): 增加 label 内置功能 `label`
+* feat(date-picker): 支持设置时间选择的步长 `step`
+* feat(date-picker): 支持显示周次 `show-week-number`
+* feat(date-picker): 支持过滤器模式 `shape="filter"`
+* feat(date-picker): 支持年份多选和年份范围选择 `type="years" | type="yearrange"`
+* feat(date-picker): 支持某日起始/某日为止功能 `type: 'startFrom'`
+
+### Bug Fixes 🐛
+* fix(numeric): 修复当前值+Step>max时不能取max的问题 by @Huangyilin19 in https://github.com/opentiny/tiny-vue/pull/297
+* fix(grid): 修复了列冻结且没有滚动条时表格组件中的异常样式 by @zzcr in https://github.com/opentiny/tiny-vue/pull/298
+* fix(button): 修复了朴素按钮图标禁用颜色的问题 by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/299
+* fix(grid): 修复了表过滤器面板的错误样式，修复了webpack本地环境下ResizeWatch接口的警告问题 by @zzcr in https://github.com/opentiny/tiny-vue/pull/305
+* fix(theme): 从容器、布局中删除样式 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/306
+* fix(vue-theme): 在文本区域组件中修复 `@apply`  by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/319
+* fix(input): 修复了禁用的输入在表单错误中不生效的问题 by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/322
+* fix(checkbox): 修复了复选框标签为0时不显示错误的问题 by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/331
+* fix(select): 修复了计算选择组件的高度和错误创建项目的问题 by @MomoPoppy in https://github.com/opentiny/tiny-vue/pull/358
+* fix(carousel): 将箭头圆宽度调整为28px by @lyx-jay in https://github.com/opentiny/tiny-vue/pull/376
+* fix(drawer): 蒙版消失的速度比内容更快 by @lyx-jay in https://github.com/opentiny/tiny-vue/pull/375
+* fix(badge): 修复显示重复内容的问题 by @lyx-jay in https://github.com/opentiny/tiny-vue/pull/382
+* fix: 修复了执行 pnpm build:ui vue 命令时的ts声明错误 by @kagol in https://github.com/opentiny/tiny-vue/pull/386
+* fix(grid): 修复表格冻结列在x-design规范显示异常问题
+* fix(grid): 修复表格冻结列在表格有纵向滚动条时
+* fix(grid):修复表格fetchdata情况下，表格数据被处理两次问题
+* fix(tree): 修复isEmpty属性在节点数据变化后没响应变化的问题
+* fix(button-group): XDesign主题朴素按钮字体颜色修复
+* fix(input): 修复input在表单禁用状态时不生效bug
+* fix(popover): 避免初始加载时，触发的hide事件
+* fix(dialog-box): 不在body上增加class，可以避免引起的页面抖动
+* fix(tabs): 取消初始化赋值，修复超出页签栏显示问题，优化更多弹出框 
+* fix(icons): 优化图标部分的自定义宽度和颜色
+* fix(theme): 取消主题切换后自动刷新页面
+* fix(anchor): 修复锚点异步获取数据导致监听bug，增加切换动画效果
+* fix(dropdown): 修复设置箭头显示不生效
+* fix(select): 修复组件初始化创建条目的场景，同时设置option 和value，有匹配项却自动创建的问题 
+* fix(select): 修复 select 组件多选多行时input框高度计算有误的问题
+* fix(popEditor): 编辑框关闭时先隐藏了内容的问题
+
+### Other Changes
+* perf(tooltip): Tooltip 组件性能优化 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/368
+* chore(row): 恢复演示示例中的样式 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/311
+* feat(pnpm-lock): 添加 pnpm-lock.ymal 文件 by @zzcr in https://github.com/opentiny/tiny-vue/pull/320
+* feat(button): 完善单元测试 by @chenqifeng66 in https://github.com/opentiny/tiny-vue/pull/364
+* test(alert): 增加 Alert 组件单元测试 by @Zz-ZzzZ in https://github.com/opentiny/tiny-vue/pull/369
+* docs(tag): 增加标签灵活用法，超出隐藏，显示title示例
 
 ## v2.9.0/v3.9.0
 
