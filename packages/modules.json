@@ -7,6 +7,14 @@
       "pc"
     ]
   },
+  "RichTextEditor": {
+    "path": "vue/src/rich-text-editor/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
   "ActionSheet": {
     "path": "vue/src/action-sheet/index.ts",
     "type": "component",

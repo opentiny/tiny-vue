@@ -101,6 +101,7 @@ export const cmpMenus = [
       { 'nameCn': '弹出编辑', 'name': 'PopEditor', 'key': 'popeditor' },
       { 'nameCn': '弹出框上传', 'name': 'PopUpload', 'key': 'pop-upload' },
       { 'nameCn': '单选框', 'name': 'Radio', 'key': 'radio' },
+      { 'nameCn': '富文本', 'name': 'RichTextEditor', 'key': 'rich-text-editor' },
       { 'nameCn': '搜索', 'name': 'Search', 'key': 'search' },
       { 'nameCn': '选择器', 'name': 'Select', 'key': 'select' },
       { 'nameCn': '滑块', 'name': 'Slider', 'key': 'slider' },

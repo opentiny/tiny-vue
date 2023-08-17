@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import { Repl, useStore, File } from '@opentiny/vue-repl'
 import '@opentiny/vue-repl/dist/style.css'
 import Monaco from '@vue/repl/monaco-editor'
@@ -65,6 +65,9 @@ function versionChange(version) {
   const importMap = createImportMap(version)
   store.setImportMap(importMap)
 
+  // 分享加载时，iframe并不存在
+  if (!document.querySelector('iframe')) return
+
   const iframeWin = document.querySelector('iframe').contentWindow
   const styleDom = iframeWin.document.getElementById('tiny-theme')
   if (styleDom) {
@@ -105,9 +108,7 @@ const loadFileCode = async ({ cmpId, fileName, apiMode }) => {
 }
 
 // 初始加载,有分享则加载分享，否则加载默认版本的默认文件
-if (shareData.length === 2) {
-  versionChange(shareData[0])
-} else {
+if (shareData.length !== 2) {
   const searchObj = new URLSearchParams(location.search)
   const fileName = searchObj.get('fileName')
   const cmpId = searchObj.get('cmpId')
@@ -117,10 +118,19 @@ if (shareData.length === 2) {
   }
 }
 
+onMounted(() => {
+  if (shareData.length === 2) {
+    // 此时 iframe 插入到dom中，内部的html还未加载，所以延时处理
+    setTimeout(() => {
+      versionChange(shareData[0])
+    }, 100)
+  }
+})
+
 // 分享功能
 function share() {
-  const hash = store.serialize().slice(1)
-  const shareUrl = location.origin + '/tiny-vue/playground.html#' + state.selectVersion + '|' + hash
+  const hash = store.serialize()
+  const shareUrl = location.origin + '/tiny-vue/playground#' + state.selectVersion + '|' + hash
 
   navigator.clipboard.writeText(shareUrl)
   Notify({
