@@ -119,7 +119,7 @@ if (shareData.length !== 2) {
 }
 
 onMounted(() => {
-  if (shareData.length !== 2) {
+  if (shareData.length === 2) {
     // 此时 iframe 插入到dom中，内部的html还未加载，所以延时处理
     setTimeout(() => {
       versionChange(shareData[0])
