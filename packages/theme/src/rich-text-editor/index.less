@@ -214,6 +214,34 @@
   }
 }
 
+.tiny-rich-text-editor {
+  .font-siez-box {
+    position: relative;
+
+    .font-size-options {
+      display: none;
+      position: absolute;
+      border-radius: 0.4rem;
+      background-color: #dfdede;
+
+      button {
+        color: black;
+        margin: 0;
+        text-align: center;
+      }
+    }
+
+    &:hover {
+      background-color: #d2e4ff;
+
+      .font-size-options {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
+
 .bubble-menu {
 
   button {
