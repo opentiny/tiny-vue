@@ -22,7 +22,8 @@ const createImportMap = (version) => {
       '@opentiny/vue': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue.mjs`,
       '@opentiny/vue-icon': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-icon.mjs`,
       '@opentiny/vue-locale': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-locale.mjs`,
-      '@opentiny/vue-common': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-common.mjs`
+      '@opentiny/vue-common': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-common.mjs`,
+      'sortablejs': `${cdnHost}/sortablejs@1.15.0/modular/sortable.esm.js`
     }
   }
 }
@@ -63,22 +64,18 @@ const state = reactive({
 
 function versionChange(version) {
   const importMap = createImportMap(version)
-  store.setImportMap(importMap)
+  store.state.files['import-map.json'] = new File('', JSON.stringify(importMap))
 
-  // 分享加载时，iframe并不存在
-  if (!document.querySelector('iframe')) return
+  setTimeout(() => {
+    if (!document.querySelector('iframe')) return
 
-  const iframeWin = document.querySelector('iframe').contentWindow
-  const styleDom = iframeWin.document.getElementById('tiny-theme')
-  if (styleDom) {
-    styleDom.href = `${cdnHost}/@opentiny/vue-theme@${version}/index.css`
-  } else {
+    const iframeWin = document.querySelector('iframe').contentWindow
     const link = iframeWin.document.createElement('link')
     link.id = 'tiny-theme'
     link.rel = 'stylesheet'
     link.href = `${cdnHost}/@opentiny/vue-theme@${version}/index.css`
     iframeWin.document.head.append(link)
-  }
+  }, 300)
 }
 
 function getDemoName(name, apiMode) {
@@ -92,7 +89,7 @@ const getDemoCode = async ({ cmpId, fileName, apiMode }) => {
     .then((code) => {
       return code
     })
-    .catch((error) => {
+    .catch(() => {
       return `${demoName}示例资源不存在，请检查文件名是否正确？`
     })
 
@@ -107,23 +104,18 @@ const loadFileCode = async ({ cmpId, fileName, apiMode }) => {
   versionChange(latestVersion)
 }
 
-// 初始加载,有分享则加载分享，否则加载默认版本的默认文件
-if (shareData.length !== 2) {
-  const searchObj = new URLSearchParams(location.search)
-  const fileName = searchObj.get('fileName')
-  const cmpId = searchObj.get('cmpId')
-  const apiMode = searchObj.get('apiMode')
-  if (fileName && cmpId && apiMode) {
-    loadFileCode({ cmpId, fileName, apiMode })
-  }
-}
-
 onMounted(() => {
+  // 初始加载,有分享则加载分享，否则加载默认版本的默认文件
   if (shareData.length === 2) {
-    // 此时 iframe 插入到dom中，内部的html还未加载，所以延时处理
-    setTimeout(() => {
-      versionChange(shareData[0])
-    }, 100)
+    versionChange(shareData[0])
+  } else {
+    const searchObj = new URLSearchParams(location.search)
+    const fileName = searchObj.get('fileName')
+    const cmpId = searchObj.get('cmpId')
+    const apiMode = searchObj.get('apiMode')
+    if (fileName && cmpId && apiMode) {
+      loadFileCode({ cmpId, fileName, apiMode })
+    }
   }
 })
 
