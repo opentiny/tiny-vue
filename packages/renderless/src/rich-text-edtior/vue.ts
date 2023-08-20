@@ -1,10 +1,11 @@
 import { handleChange, setLink, handleMove, handleClickOutside, removeClickOutside, handleClick, shouldShow } from './index'
+import Codehighlight from './codehighlight.tsx'
 export const api = ['state', 'setLink', 'handleChange', 'box', 'handleMove', 'handleClickOutside', 'removeClickOutside', 'handleClick', 'shouldShow']
 export const renderless = (
   props,
   { computed, onMounted, onBeforeUnmount, reactive, ref },
   { vm, emit, parent },
-  { useEditor, Collaboration, Y, WebrtcProvider, StarterKit, Table, TableCell, TableHeader, TableRow, Color, TextStyle, Image, Highlight, Link, Underline, Subscript, Superscript, TaskItem, TaskList, TextAlign, Paragraph, mergeAttributes }
+  { useEditor, Collaboration, Y, WebrtcProvider, StarterKit, Table, TableCell, TableHeader, TableRow, Color, TextStyle, Image, Highlight, Link, Underline, Subscript, Superscript, TaskItem, TaskList, TextAlign, Paragraph, mergeAttributes, CodeBlockLowlight, lowlight, VueNodeViewRenderer, NodeViewContent, nodeViewProps, NodeViewWrapper }
 ) => {
   const ydoc = new Y.Doc()
   const provider = new WebrtcProvider('tiny-examsple-document', ydoc)
@@ -72,11 +73,18 @@ export const renderless = (
         types: ['heading', 'paragraph'],
       }),
       CustomParagraph,
+      CodeBlockLowlight.extend({
+        addNodeView() {
+          return VueNodeViewRenderer(Codehighlight(NodeViewContent, nodeViewProps, NodeViewWrapper))
+        },
+      })
+        .configure({ lowlight }),
     ],
     content: 'Example Tesxt',
     autofocus: true,
     editable: true,
     injectCSS: false,
+
   })
 
   const box = ref(null)
