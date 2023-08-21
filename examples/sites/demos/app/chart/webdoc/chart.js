@@ -28,7 +28,7 @@ export default {
             'en-US':
               'Data consists of indicators and dimensions. Dimension refers to data attributes, and indicator refers to quantitative measurement standards.'
           },
-          'demoId': 'chart/attributes-demo#props-demo10'
+          'demoId': 'chart-attributes-demo#props-demo10'
         },
         {
           'name': 'settings ',
@@ -45,42 +45,42 @@ export default {
           'type': 'String',
           'defaultValue': '该属性的默认值为 auto',
           'desc': { 'zh-CN': '设置图表容器的宽度。', 'en-US': 'Set the width of the chart container.' },
-          'demoId': 'chart/attributes-demo#props-demo10'
+          'demoId': 'chart-attributes-demo#props-demo10'
         },
         {
           'name': 'height',
           'type': 'String',
           'defaultValue': '该属性的默认值为 400px',
           'desc': { 'zh-CN': '设置图表容器的高度。', 'en-US': 'Set the height of the chart container.' },
-          'demoId': 'chart/attributes-demo#props-demo10'
+          'demoId': 'chart-attributes-demo#props-demo10'
         },
         {
           'name': 'events',
           'type': 'Object',
           'defaultValue': '',
           'desc': { 'zh-CN': '事件绑定', 'en-US': 'Event binding' },
-          'demoId': 'chart/events#events-base'
+          'demoId': 'chart-events#events-base'
         },
         {
           'name': 'init-options',
           'type': 'Object',
           'defaultValue': '',
           'desc': { 'zh-CN': 'init 附加参数', 'en-US': 'Init Additional Parameters' },
-          'demoId': 'chart/attributes-demo#props-demo10'
+          'demoId': 'chart-attributes-demo#props-demo10'
         },
         {
           'name': 'tooltip-visible',
           'type': 'Boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否显示提示框', 'en-US': 'Display dialog box' },
-          'demoId': 'chart/attributes-demo#props-demo10'
+          'demoId': 'chart-attributes-demo#props-demo10'
         },
         {
           'name': 'legend-visible',
           'type': 'Boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否显示图例', 'en-US': 'Display legend' },
-          'demoId': 'chart/attributes-demo#props-demo10'
+          'demoId': 'chart-attributes-demo#props-demo10'
         },
         {
           'name': 'theme',
@@ -110,21 +110,21 @@ export default {
             'zh-CN': '是否处理生成图表时的宽度问题',
             'en-US': 'Do you want to process the width issue when generating charts?'
           },
-          'demoId': 'chart/events#events-base'
+          'demoId': 'chart-events#events-base'
         },
         {
           'name': 'width-change-delay',
           'type': 'Number',
           'defaultValue': '该属性的默认值为 300',
           'desc': { 'zh-CN': '容器宽度变化的延迟', 'en-US': 'Container width change delay' },
-          'demoId': 'chart/question#question-base'
+          'demoId': 'chart-question#question-base'
         },
         {
           'name': 'resizeable',
           'type': 'Boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否处理窗口 resize 事件', 'en-US': 'Whether to process the window resize event' },
-          'demoId': 'chart/question#question-base'
+          'demoId': 'chart-question#question-base'
         },
         {
           'name': 'cancel-resize-check',
@@ -134,14 +134,14 @@ export default {
             'zh-CN': '是否禁用 resize 时的容器检测',
             'en-US': 'Whether to disable container detection during resize'
           },
-          'demoId': 'chart/question#question-base'
+          'demoId': 'chart-question#question-base'
         },
         {
           'name': 'resize-delay',
           'type': 'Number',
           'defaultValue': '该属性的默认值为 200',
           'desc': { 'zh-CN': '窗口 resize 事件回调的延迟', 'en-US': 'Delay of the window resize event callback' },
-          'demoId': 'chart/attributes-demo#props-demo10'
+          'demoId': 'chart-attributes-demo#props-demo10'
         },
         {
           'name': 'change-delay',
@@ -151,7 +151,7 @@ export default {
             'zh-CN': '属性修改触发图表重绘回调的延迟',
             'en-US': 'Delay for triggering chart redrawing callback after attribute modification'
           },
-          'demoId': 'chart/question#question-base'
+          'demoId': 'chart-question#question-base'
         },
         {
           'name': 'set-option-opts',
