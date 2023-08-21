@@ -31,7 +31,7 @@ const reactive = (
       })
 
       if (typeof targetVal === 'object') {
-        return reactive(targetVal, handler, path, rootStaticObject)
+        return reactive(targetVal, handler, _path, rootStaticObject)
       }
       return targetVal
     },
