@@ -36,6 +36,17 @@ export default {
       'codeFiles': ['form-validation.vue']
     },
     {
+      'demoId': 'form-validate-field',
+      'name': { 'zh-CN': '特定表单项校验', 'en-US': 'Form field Validation' },
+      'desc': {
+        'zh-CN':
+          "<p>用于校验表单中一个或多个特定表单项。</p>\n",
+        'en-US':
+          '<p>Validate one or several formItems of the form</p>\n'
+      },
+      'codeFiles': ['form-validate-field.vue']
+    },
+    {
       'demoId': 'custom-validation-rule',
       'name': { 'zh-CN': '自定义校验规则', 'en-US': 'Customized Verification Rule' },
       'desc': {
@@ -390,7 +401,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '对部分表单字段进行校验的方法', 'en-US': 'Method for verifying some fields in a form' },
-          'demoId': 'form-validation'
+          'demoId': 'form-validate-field'
         },
         {
           'name': 'resetFields',
