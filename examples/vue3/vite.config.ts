@@ -25,6 +25,11 @@ export default defineConfig((config) => {
       host: 'localhost',
       open: false
     },
+    devServer: {
+      proxy: {
+        ws: false,
+      },
+    },
     plugins: [
       virtualTemplatePlugin({ include: ['**/packages/vue/**/src/index.ts'], env }),
       vue3Plugin({

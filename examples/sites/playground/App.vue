@@ -1,8 +1,8 @@
 <script setup>
-import { reactive, ref } from 'vue'
-import { Repl, ReplStore, File } from '@vue/repl'
+import { onMounted, reactive, ref } from 'vue'
+import { Repl, useStore, File } from '@opentiny/vue-repl'
+import '@opentiny/vue-repl/dist/style.css'
 import Monaco from '@vue/repl/monaco-editor'
-import '@vue/repl/style.css'
 import { ButtonGroup as TinyButtonGroup, Select as TinySelect, Option as TinyOption, Notify } from '@opentiny/vue'
 import { staticDemoPath, getWebdocPath } from '@/views/components/cmpConfig'
 import { fetchDemosFile } from '@/tools/utils'
@@ -12,16 +12,17 @@ import Sun from './icons/Sun.vue'
 import Moon from './icons/Moon.vue'
 import Share from './icons/Share.vue'
 
-const versions = ['3.9.1', '3.8.4']
+const versions = ['3.10.0', '3.9.1', '3.8.4']
 const latestVersion = versions[0]
+const cdnHost = 'https://unpkg.com'
 
 const createImportMap = (version) => {
   return {
     imports: {
-      '@opentiny/vue': `https://unpkg.com/@opentiny/vue@${version}/runtime/tiny-vue.mjs`,
-      '@opentiny/vue-icon': `https://unpkg.com/@opentiny/vue@${version}/runtime/tiny-vue-icon.mjs`,
-      '@opentiny/vue-locale': `https://unpkg.com/@opentiny/vue@${version}/runtime/tiny-vue-locale.mjs`,
-      '@opentiny/vue-common': `https://unpkg.com/@opentiny/vue@${version}/runtime/tiny-vue-common.mjs`
+      '@opentiny/vue': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue.mjs`,
+      '@opentiny/vue-icon': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-icon.mjs`,
+      '@opentiny/vue-locale': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-locale.mjs`,
+      '@opentiny/vue-common': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-common.mjs`
     }
   }
 }
@@ -29,10 +30,15 @@ const createImportMap = (version) => {
 const hash = location.hash.slice(1)
 const shareData = hash.split('|')
 
-const store = new ReplStore({
+const store = new useStore({
   serializedState: shareData.length === 2 ? shareData[1] : '',
   showOutput: true,
-  outputMode: 'preview'
+  outputMode: 'preview',
+  versions: {
+    vue: '3.2.47',
+    opentiny: latestVersion,
+    typescript: '5.1.3'
+  }
 })
 
 // 切换主题
@@ -58,10 +64,22 @@ const state = reactive({
 function versionChange(version) {
   const importMap = createImportMap(version)
   store.setImportMap(importMap)
-  state.previewOptions.headHTML = `<link rel="stylesheet" href="https://unpkg.com/@opentiny/vue-theme@${version}/index.css">`
-}
 
-const langReg = / lang="jsx"/
+  // 分享加载时，iframe并不存在
+  if (!document.querySelector('iframe')) return
+
+  const iframeWin = document.querySelector('iframe').contentWindow
+  const styleDom = iframeWin.document.getElementById('tiny-theme')
+  if (styleDom) {
+    styleDom.href = `${cdnHost}/@opentiny/vue-theme@${version}/index.css`
+  } else {
+    const link = iframeWin.document.createElement('link')
+    link.id = 'tiny-theme'
+    link.rel = 'stylesheet'
+    link.href = `${cdnHost}/@opentiny/vue-theme@${version}/index.css`
+    iframeWin.document.head.append(link)
+  }
+}
 
 function getDemoName(name, apiMode) {
   return name.replace(/\.vue$/, `${apiMode === 'Options' ? '' : '-composition-api'}.vue`)
@@ -83,17 +101,14 @@ const getDemoCode = async ({ cmpId, fileName, apiMode }) => {
 
 const loadFileCode = async ({ cmpId, fileName, apiMode }) => {
   const code = await getDemoCode({ cmpId, fileName, apiMode })
-  const resultCode = code.replace(langReg, '')
   store.state.mainFile = fileName
   store.state.activeFile = fileName
-  store.addFile(new File(fileName, resultCode, false))
+  store.addFile(new File(fileName, code, false))
   versionChange(latestVersion)
 }
 
 // 初始加载,有分享则加载分享，否则加载默认版本的默认文件
-if (shareData.length === 2) {
-  versionChange(shareData[0])
-} else {
+if (shareData.length !== 2) {
   const searchObj = new URLSearchParams(location.search)
   const fileName = searchObj.get('fileName')
   const cmpId = searchObj.get('cmpId')
@@ -103,10 +118,19 @@ if (shareData.length === 2) {
   }
 }
 
+onMounted(() => {
+  if (shareData.length === 2) {
+    // 此时 iframe 插入到dom中，内部的html还未加载，所以延时处理
+    setTimeout(() => {
+      versionChange(shareData[0])
+    }, 100)
+  }
+})
+
 // 分享功能
 function share() {
-  const hash = store.serialize().slice(1)
-  const shareUrl = location.origin + '/tiny-vue/playground.html#' + state.selectVersion + '|' + hash
+  const hash = store.serialize()
+  const shareUrl = location.origin + '/tiny-vue/playground#' + state.selectVersion + '|' + hash
 
   navigator.clipboard.writeText(shareUrl)
   Notify({

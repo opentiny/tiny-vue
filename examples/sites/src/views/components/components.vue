@@ -324,6 +324,7 @@ export default defineComponent({
     text-align: left;
     font-size: 14px;
     line-height: 1.5;
+    word-break: break-word;
   }
   td {
     font-size: 14px;
