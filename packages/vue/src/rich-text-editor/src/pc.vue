@@ -314,7 +314,15 @@ import {
   iconRichTextUnderline,
   iconRichTextUndo
 } from '@opentiny/vue-icon'
-import { useEditor, EditorContent, BubbleMenu, VueNodeViewRenderer } from '@tiptap/vue-3'
+import {
+  useEditor,
+  EditorContent,
+  BubbleMenu,
+  VueNodeViewRenderer,
+  NodeViewContent,
+  nodeViewProps,
+  NodeViewWrapper
+} from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 // 段落包
 import Paragraph from '@tiptap/extension-paragraph'
@@ -343,6 +351,17 @@ import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
 // textalign
 import TextAlign from '@tiptap/extension-text-align'
+// code high light
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
+import css from 'highlight.js/lib/languages/css'
+import js from 'highlight.js/lib/languages/javascript'
+import ts from 'highlight.js/lib/languages/typescript'
+import html from 'highlight.js/lib/languages/xml'
+import { lowlight } from 'lowlight'
+lowlight.registerLanguage('html', html)
+lowlight.registerLanguage('css', css)
+lowlight.registerLanguage('js', js)
+lowlight.registerLanguage('ts', ts)
 // collaboration 包
 import Collaboration from '@tiptap/extension-collaboration'
 import * as Y from 'yjs'
@@ -432,7 +451,13 @@ export default defineComponent({
         TaskList,
         TextAlign,
         Paragraph,
-        mergeAttributes
+        mergeAttributes,
+        CodeBlockLowlight,
+        lowlight,
+        VueNodeViewRenderer,
+        NodeViewContent,
+        nodeViewProps,
+        NodeViewWrapper
       }
     })
   }

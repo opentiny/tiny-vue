@@ -1,8 +1,9 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
-    "allowJs": true ,
+    "allowJs": true,
     "noImplicitAny": false,
+    "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
       "@opentiny/vue-autonavi-map": [
