@@ -26,8 +26,16 @@
       >
         <TinyIconRichTextHighLight></TinyIconRichTextHighLight>
       </button>
-      <button title="line height" @click="state.editor.chain().focus().toggleHeight().run()">
-        <TinyIconRichTextLineHeight></TinyIconRichTextLineHeight>
+      <button class="line-height-button" title="line height" @click="state.editor.chain().focus().toggleHeight().run()">
+        <div class="line-height-icon">
+          <TinyIconRichTextLineHeight></TinyIconRichTextLineHeight>
+        </div>
+        <div class="line-height-options">
+          <button class="line-1.0" @click.stop="state.editor.chain().focus().setP({ level: 1 }).run()">1.0</button>
+          <button class="line-1.5" @click.stop="state.editor.chain().focus().setP({ level: 1.5 }).run()">1.5</button>
+          <button class="line-2.0" @click.stop="state.editor.chain().focus().setP({ level: 2 }).run()">2.0</button>
+          <button class="line-2.5" @click.stop="state.editor.chain().focus().setP({ level: 2.5 }).run()">2.5</button>
+        </div>
       </button>
       <button
         @click="state.editor.chain().focus().toggleUnderline().run()"
@@ -45,26 +53,33 @@
       <button title="italic" @click="state.editor.chain().focus().toggleItalic().run()">
         <TinyIconRichTextItalic></TinyIconRichTextItalic>
       </button>
-      <button title="paragraph" @click="state.editor.chain().focus().setParagraph().run()">
-        <TinyIconRichTextParagraph></TinyIconRichTextParagraph>
-      </button>
-      <button title="h1" @click="state.editor.chain().focus().toggleHeading({ level: 1 }).run()">
-        <TinyIconRichTextH1></TinyIconRichTextH1>
-      </button>
-      <button title="h2" @click="state.editor.chain().focus().toggleHeading({ level: 2 }).run()">
-        <TinyIconRichTextH2></TinyIconRichTextH2>
-      </button>
-      <button title="h3" @click="state.editor.chain().focus().toggleHeading({ level: 3 }).run()">
-        <TinyIconRichTextH3></TinyIconRichTextH3>
-      </button>
-      <button title="h4" @click="state.editor.chain().focus().toggleHeading({ level: 4 }).run()">
-        <TinyIconRichTextH4></TinyIconRichTextH4>
-      </button>
-      <button title="h5" @click="state.editor.chain().focus().toggleHeading({ level: 5 }).run()">
-        <TinyIconRichTextH5></TinyIconRichTextH5>
-      </button>
-      <button title="h6" @click="state.editor.chain().focus().toggleHeading({ level: 6 }).run()">
-        <TinyIconRichTextH6></TinyIconRichTextH6>
+      <button class="h-box">
+        <div class="h-ico">
+          <TinyIconRichTextHeading></TinyIconRichTextHeading>
+        </div>
+        <div class="h-options">
+          <button title="paragraph" @click="state.editor.chain().focus().setParagraph().run()">
+            <TinyIconRichTextParagraph></TinyIconRichTextParagraph>
+          </button>
+          <button title="h1" @click="state.editor.chain().focus().toggleHeading({ level: 1 }).run()">
+            <TinyIconRichTextH1></TinyIconRichTextH1>
+          </button>
+          <button title="h2" @click="state.editor.chain().focus().toggleHeading({ level: 2 }).run()">
+            <TinyIconRichTextH2></TinyIconRichTextH2>
+          </button>
+          <button title="h3" @click="state.editor.chain().focus().toggleHeading({ level: 3 }).run()">
+            <TinyIconRichTextH3></TinyIconRichTextH3>
+          </button>
+          <button title="h4" @click="state.editor.chain().focus().toggleHeading({ level: 4 }).run()">
+            <TinyIconRichTextH4></TinyIconRichTextH4>
+          </button>
+          <button title="h5" @click="state.editor.chain().focus().toggleHeading({ level: 5 }).run()">
+            <TinyIconRichTextH5></TinyIconRichTextH5>
+          </button>
+          <button title="h6" @click="state.editor.chain().focus().toggleHeading({ level: 6 }).run()">
+            <TinyIconRichTextH6></TinyIconRichTextH6>
+          </button>
+        </div>
       </button>
       <button
         title="subscript"
@@ -299,8 +314,11 @@ import {
   iconRichTextUnderline,
   iconRichTextUndo
 } from '@opentiny/vue-icon'
-import { useEditor, EditorContent, BubbleMenu } from '@tiptap/vue-3'
+import { useEditor, EditorContent, BubbleMenu, VueNodeViewRenderer } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
+// 段落包
+import Paragraph from '@tiptap/extension-paragraph'
+import { mergeAttributes } from '@tiptap/core'
 // image 包
 import Image from '@tiptap/extension-image'
 // -- HeighLight
@@ -412,7 +430,9 @@ export default defineComponent({
         Superscript,
         TaskItem,
         TaskList,
-        TextAlign
+        TextAlign,
+        Paragraph,
+        mergeAttributes
       }
     })
   }
