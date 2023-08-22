@@ -107,8 +107,7 @@ export const cmpMenus = [
       { 'nameCn': '滑块', 'name': 'Slider', 'key': 'slider' },
       { 'nameCn': '开关', 'name': 'Switch', 'key': 'switch' },
       { 'nameCn': '时间选择器', 'name': 'TimePicker', 'key': 'time-picker' },
-      { 'nameCn': '时间选择', 'name': 'TimeSelect', 'key': 'time-select' },
-      { 'nameCn': '颜色选择器', 'name': 'ColorPicker', 'key': 'color-picker' }
+      { 'nameCn': '时间选择', 'name': 'TimeSelect', 'key': 'time-select' }
     ]
   },
   {

@@ -6,8 +6,7 @@
 </template>
 
 <script lang="jsx">
-import { Alert } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
+import { Alert, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -15,7 +14,7 @@ export default {
   },
   methods: {
     close() {
-      alert('关闭了')
+      Modal.alert('关闭了')
     }
   }
 }

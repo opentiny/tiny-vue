@@ -15,8 +15,7 @@
 </template>
 
 <script lang="jsx">
-import { FileUpload, Button } from '@opentiny/vue'
-import { message } from '@opentiny/vue-modal'
+import { FileUpload, Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -40,11 +39,11 @@ export default {
   },
   methods: {
     beforeRemove() {
-      message('触发删除文件前回调事件')
+      Modal.message('触发删除文件前回调事件')
       return true
     },
     beforeAvatarUpload() {
-      message('触发上传前回调事件')
+      Modal.message('触发上传前回调事件')
       return true
     }
   }

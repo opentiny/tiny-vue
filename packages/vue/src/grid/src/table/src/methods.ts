@@ -1100,11 +1100,11 @@ const Methods = {
     const content = cell.innerText.trim() || cell.textContent.trim()
     const { contentMethod } = this.tooltipConfig
     const range = createTooltipRange({ _vm: this, cell, column, isHeader })
-    const rangeWidth = range.getBoundingClientRect().width - (browser.name === 'ie' ? 5 : 0)
+    const rangeWidth = range.getBoundingClientRect().width
     const padding =
       (parseInt(getStyle(cell, 'paddingLeft'), 10) || 0) + (parseInt(getStyle(cell, 'paddingRight'), 10) || 0)
     const isOverflow = rangeWidth + padding > cell.offsetWidth || wrapperElem.scrollWidth > wrapperElem.clientWidth
-    if (content && (showTip || isOverflow)) {
+    if ((contentMethod || content) && (showTip || isOverflow)) {
       Object.assign(this.tooltipStore, { row, column, visible: true })
 
       if (tooltip) {
