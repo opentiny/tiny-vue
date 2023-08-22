@@ -270,8 +270,10 @@ export const getOption =
     const isNull = Object.prototype.toString.call(value).toLowerCase() === '[object null]'
     const isUndefined = Object.prototype.toString.call(value).toLowerCase() === '[object undefined]'
 
-    for (let i = state.cachedOptions.length - 1; i >= 0; i--) {
-      const cachedOption = state.cachedOptions[i]
+    const optionsList = props.optimization ? props.options : state.cachedOptions
+
+    for (let i = optionsList.length - 1; i >= 0; i--) {
+      const cachedOption = optionsList[i]
       const isEqual = isObject
         ? getObj(cachedOption.value, props.valueKey) === getObj(value, props.valueKey)
         : cachedOption.value === value
@@ -283,6 +285,10 @@ export const getOption =
     }
 
     if (option) {
+      if(!option.currentLabel){
+        option.currentLabel = option[props.textField]
+      }
+
       return option
     }
 
