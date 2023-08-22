@@ -20,8 +20,7 @@
 </template>
 
 <script lang="jsx">
-import { FileUpload, Button } from '@opentiny/vue'
-import { message } from '@opentiny/vue-modal'
+import { FileUpload, Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -45,28 +44,28 @@ export default {
   },
   methods: {
     handleRemove() {
-      message('触发删除文件回调事件')
+      Modal.message('触发删除文件回调事件')
     },
     handlePreview(file) {
-      message(file.url)
+      Modal.message(file.url)
     },
     progressEvent() {
-      message('文件上传时的回调 返回进程')
+      Modal.message('文件上传时的回调 返回进程')
     },
     errorEvent() {
-      message('文件上传失败回调')
+      Modal.message('文件上传失败回调')
     },
     handleExceed() {
-      message('触发文件超出个数限制回调事件')
+      Modal.message('触发文件超出个数限制回调事件')
     },
     handleAvatarSuccess() {
-      message('触发上传文件成功回调事件')
+      Modal.message('触发上传文件成功回调事件')
     },
     handleChange() {
-      message('触发上传文件改变回调事件')
+      Modal.message('触发上传文件改变回调事件')
     },
     handleHashProgress() {
-      message('文件上传生成hash值时的回调 返回进程')
+      Modal.message('文件上传生成hash值时的回调 返回进程')
     }
   }
 }

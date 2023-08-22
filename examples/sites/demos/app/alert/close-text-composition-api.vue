@@ -6,10 +6,9 @@
 </template>
 
 <script setup lang="jsx">
-import { Alert as TinyAlert } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
+import { Alert as TinyAlert, Modal } from '@opentiny/vue'
 
 function close() {
-  alert('关闭了')
+  Modal.alert('关闭了')
 }
 </script>

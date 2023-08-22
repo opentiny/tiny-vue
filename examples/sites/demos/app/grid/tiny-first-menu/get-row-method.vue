@@ -18,8 +18,7 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Button } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
+import { Grid, GridColumn, Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -79,32 +78,32 @@ export default {
     getCurrentRow(hideMessage) {
       const data = this.$refs.theGrid.getCurrentRow()
 
-      !hideMessage && alert(`当前行数据是：${JSON.stringify(data)}`)
+      !hideMessage && Modal.alert(`当前行数据是：${JSON.stringify(data)}`)
 
       return data
     },
     getRadioRow() {
       const data = this.$refs.theGrid.getRadioRow()
 
-      alert(`单选选中行数据是：${JSON.stringify(data)}`)
+      Modal.alert(`单选选中行数据是：${JSON.stringify(data)}`)
     },
     getRowIndex() {
       const row = this.getCurrentRow(true)
       const data = this.$refs.theGrid.getRowIndex(row)
 
-      alert(`当前选中行号是：${JSON.stringify(data)}`)
+      Modal.alert(`当前选中行号是：${JSON.stringify(data)}`)
     },
     getRowById() {
       const row = this.getCurrentRow(true) || {}
       const data = this.$refs.theGrid.getRowById(row._RID)
 
-      alert(`根据 rowId 获取的当前行：${JSON.stringify(data)}`)
+      Modal.alert(`根据 rowId 获取的当前行：${JSON.stringify(data)}`)
     },
     getRowNode() {
       const tr = this.$el.querySelector('.tiny-grid-body__row')
       const data = this.$refs.theGrid.getRowNode(tr)
 
-      alert(`根据 tr 元素获取对应的 row 信息：${JSON.stringify(data)}`)
+      Modal.alert(`根据 tr 元素获取对应的 row 信息：${JSON.stringify(data)}`)
     }
   }
 }

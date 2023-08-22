@@ -24,8 +24,7 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, GridToolbar, Input } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
+import { Grid, GridColumn, GridToolbar, Input, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -169,9 +168,9 @@ export default {
         case 'save': {
           this.$refs.basicGrid.validate((valid) => {
             if (valid) {
-              alert('校验成功！')
+              Modal.alert('校验成功！')
             } else {
-              alert('校验不通过')
+              Modal.alert('校验不通过')
             }
           })
           break

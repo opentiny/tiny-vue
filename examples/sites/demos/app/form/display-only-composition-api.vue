@@ -111,7 +111,6 @@ import {
   Option as TinyOption,
   Modal
 } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
 
 const displayOnly = ref(true)
 const top = ref(false)
@@ -420,7 +419,7 @@ onMounted(() => {
 })
 
 function submitClick() {
-  alert('提交')
+  Modal.alert('提交')
 }
 
 function querySearch(queryString, cb) {

@@ -5,8 +5,7 @@
 </template>
 
 <script lang="jsx">
-import { FileUpload, Button } from '@opentiny/vue'
-import { message } from '@opentiny/vue-modal'
+import { FileUpload, Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -21,7 +20,7 @@ export default {
   },
   methods: {
     handleExceed() {
-      message(`文件个数不能超过${this.limit}个`)
+      Modal.message(`文件个数不能超过${this.limit}个`)
     }
   }
 }

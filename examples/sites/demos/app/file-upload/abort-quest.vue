@@ -9,8 +9,7 @@
 </template>
 
 <script lang="jsx">
-import { FileUpload, Button } from '@opentiny/vue'
-import { message } from '@opentiny/vue-modal'
+import { FileUpload, Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -24,7 +23,7 @@ export default {
   },
   methods: {
     cancelUpload() {
-      message('手动取消上传')
+      Modal.message('手动取消上传')
       this.$refs.upload.abort()
     }
   }
