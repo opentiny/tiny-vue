@@ -272,7 +272,6 @@ export const getOption =
 
     const optionsList = props.optimization ? props.options : state.cachedOptions
 
-
     for (let i = optionsList.length - 1; i >= 0; i--) {
       const cachedOption = optionsList[i]
       const isEqual = isObject
