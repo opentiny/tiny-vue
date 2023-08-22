@@ -21,7 +21,6 @@
 <script setup lang="jsx">
 import { ref } from 'vue'
 import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
 
 const headerMenus = ref([
   [
@@ -155,7 +154,7 @@ function contextMenuClickEvent({ menu, row, column }) {
       }
       break
     default:
-      alert(`点击了 ${menu.name} 选项`)
+      Modal.alert(`点击了 ${menu.name} 选项`)
   }
 }
 </script>

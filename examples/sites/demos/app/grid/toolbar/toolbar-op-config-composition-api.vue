@@ -4,8 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, Pager, GridToolbar } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
+import { Grid as TinyGrid, Pager, GridToolbar, Modal } from '@opentiny/vue'
 
 const op = ref({
   seqSerial: true,
@@ -183,7 +182,7 @@ function toolbarButtonClickEvent({ code, $grid }) {
       break
     case 'copy': {
       if (data.length === 0) {
-        alert('请至少选中一条记录')
+        Modal.alert('请至少选中一条记录')
       }
       data.forEach((item) => {
         delete item._RID
@@ -197,13 +196,13 @@ function toolbarButtonClickEvent({ code, $grid }) {
     }
     case 'delete': {
       if (data.length === 0) {
-        alert('请至少选中一条记录')
+        Modal.alert('请至少选中一条记录')
       }
       break
     }
     case 'save': {
       if (update.length === 0) {
-        alert('没有修改记录')
+        Modal.alert('没有修改记录')
       }
       break
     }

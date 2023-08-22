@@ -53,8 +53,8 @@ import {
   Input as TinyInput,
   Select as TinySelect,
   Option as TinyOption
-} from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
+} from '@opentiny/vue',Modal
+
 
 const reset = ref(false)
 const ruleForm = reactive({
@@ -105,9 +105,9 @@ const ruleFormRef = ref()
 function submitForm() {
   ruleFormRef.value.validate((valid) => {
     if (valid) {
-      alert('submit!')
+      Modal.alert('submit!')
     } else {
-      alert('error submit!!')
+      Modal.alert('error submit!!')
       return false
     }
   })

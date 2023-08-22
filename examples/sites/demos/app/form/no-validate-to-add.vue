@@ -51,9 +51,9 @@ import {
   DatePicker,
   Input,
   Select,
-  Option
+  Option,
+  Modal
 } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
 
 export default {
   components: {
@@ -123,9 +123,9 @@ export default {
     submitForm() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          alert('submit!')
+          Modal.alert('submit!')
         } else {
-          alert('error submit!!')
+          Modal.alert('error submit!!')
           return false
         }
       })

@@ -30,8 +30,7 @@
 </template>
 
 <script lang="jsx">
-import { Form, FormItem, Numeric, Radio, DatePicker, DropTimes, Tooltip, Input, Button } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
+import { Form, FormItem, Numeric, Radio, DatePicker, DropTimes, Tooltip, Input, Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -59,7 +58,7 @@ export default {
   },
   methods: {
     submitClick() {
-      alert('提交')
+      Modal.alert('提交')
     }
   }
 }

@@ -8,15 +8,14 @@
 </template>
 
 <script setup lang="jsx">
-import { Dept as TinyDept } from '@opentiny/vue'
-import { confirm } from '@opentiny/vue-modal'
+import { Dept as TinyDept, Modal } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const value = ref('022471')
 
 function beforeConfirm() {
   return new Promise((resolve, reject) => {
-    confirm('确定关闭弹框？').then((res) => {
+    Modal.confirm('确定关闭弹框？').then((res) => {
       res === 'confirm' ? resolve() : reject(new Error())
     })
   })

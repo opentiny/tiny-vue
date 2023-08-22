@@ -30,8 +30,7 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, GridToolbar } from '@opentiny/vue'
-import { Modal } from '@opentiny/vue-modal'
+import { Grid, GridColumn, GridToolbar, Modal } from '@opentiny/vue'
 
 export default {
   components: {

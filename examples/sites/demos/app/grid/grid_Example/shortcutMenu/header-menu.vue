@@ -20,7 +20,6 @@
 
 <script lang="jsx">
 import { Grid, GridColumn, Modal } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
 
 export default {
   components: {
@@ -163,7 +162,7 @@ export default {
           }
           break
         default:
-          alert(`点击了 ${menu.name} 选项`)
+          Modal.alert(`点击了 ${menu.name} 选项`)
       }
     }
   }

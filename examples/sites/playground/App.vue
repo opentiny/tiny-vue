@@ -107,6 +107,18 @@ const loadFileCode = async ({ cmpId, fileName, apiMode }) => {
 onMounted(() => {
   // 初始加载,有分享则加载分享，否则加载默认版本的默认文件
   if (shareData.length === 2) {
+    const demoFile = Object.values(store.state.files).find(
+      (file) =>
+        file.filename.startsWith('src/') &&
+        file.filename.endsWith('.vue') &&
+        file.filename !== 'src/App.vue' &&
+        file.filename !== 'src/PlaygroundMain.vue'
+    )
+    if (demoFile) {
+      store.state.mainFile = demoFile.filename
+      store.state.activeFile = demoFile
+    }
+
     versionChange(shareData[0])
   } else {
     const searchObj = new URLSearchParams(location.search)
