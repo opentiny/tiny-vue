@@ -52,8 +52,9 @@ import {
   DatePicker as TinyDatePicker,
   Input as TinyInput,
   Select as TinySelect,
-  Option as TinyOption
-} from '@opentiny/vue',Modal
+  Option as TinyOption,
+  Modal
+} from '@opentiny/vue'
 
 
 const reset = ref(false)
