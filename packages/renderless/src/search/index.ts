@@ -16,70 +16,70 @@ import { isObject, typeOf } from '../common/type'
 
 export const emitInput =
   (emit) =>
-  (...args) => {
-    emit('update:modelValue', ...args)
-    emit('input', ...args)
-  }
+    (...args) => {
+      emit('update:modelValue', ...args)
+      emit('input', ...args)
+    }
 
 // change跟tinyInput组件的change是同步的，所以此处不建议同步aui
 export const handleChange =
   ({ emit, state }) =>
-  (event) => {
-    const value = event.target.value
-    emit('change', state.searchValue, value)
-  }
+    (event) => {
+      const value = event.target.value
+      emit('change', state.searchValue, value)
+    }
 
 export const handleInput =
   ({ api, state }) =>
-  (event) => {
-    const value = event.target.value
-    api.emitInput(value, state.searchValue)
-  }
+    (event) => {
+      const value = event.target.value
+      api.emitInput(value, state.searchValue)
+    }
 
 export const showSelector =
   ({ refs, state }) =>
-  () => {
-    refs.selector.style.zIndex = PopupManager.nextZIndex()
-    state.show = true
-  }
+    () => {
+      refs.selector.style.zIndex = PopupManager.nextZIndex()
+      state.show = true
+    }
 
 export const changeKey =
   ({ emit, state }) =>
-  (key) => {
-    state.searchValue = key
-    state.show = false
+    (key) => {
+      state.searchValue = key
+      state.show = false
 
-    emit('select', key)
-  }
+      emit('select', key)
+    }
 
 export const searchClick =
   ({ emit, props, state }) =>
-  (e) => {
-    e.preventDefault()
-    if (props.mini && state.collapse) {
-      state.collapse = false
-    } else {
-      emit('search', state.searchValue, state.currentValue)
+    (e) => {
+      e.preventDefault()
+      if (props.mini && state.collapse) {
+        state.collapse = false
+      } else {
+        emit('search', state.searchValue, state.currentValue)
+      }
     }
-  }
 
 export const searchEnterKey =
   ({ api, props, refs, nextTick }) =>
-  () => {
-    if (props.isEnterSearch) {
-      api.searchClick()
-      nextTick(() => refs.input.blur())
+    (event: Event) => {
+      if (props.isEnterSearch) {
+        api.searchClick(event)
+        nextTick(() => refs.input.blur())
+      }
     }
-  }
 
 export const clickOutside =
   ({ parent, props, state }) =>
-  (event) => {
-    if (!parent.$el.contains(event.target)) {
-      state.show = false
-      props.mini && !state.currentValue && (state.collapse = true)
+    (event) => {
+      if (!parent.$el.contains(event.target)) {
+        state.show = false
+        props.mini && !state.currentValue && (state.collapse = true)
+      }
     }
-  }
 
 export const setDefaultType = (searchTypes) => {
   let type = {}
@@ -126,13 +126,13 @@ export const beforeDestroy = (api) => () => {
 
 export const clear =
   ({ api, emit, refs, state }) =>
-  (e) => {
-    e.preventDefault()
-    state.currentValue = ''
-    refs.input.focus()
-    state.focus = true
+    (e) => {
+      e.preventDefault()
+      state.currentValue = ''
+      refs.input.focus()
+      state.focus = true
 
-    emit('change', [], '')
-    api.emitInput('', state.searchValue)
-    emit('clear')
-  }
+      emit('change', [], '')
+      api.emitInput('', state.searchValue)
+      emit('clear')
+    }
