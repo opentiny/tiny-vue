@@ -72,9 +72,22 @@ function collectRefs(fiber) {
   }, {})
 }
 
-function getParentFiber(fiber, isFirst = true) {
-  if (typeof fiber.type !== 'string' && !isFirst) return fiber
+const parentMap = new WeakMap()
+export function getParentFiber(fiber, isFirst = true, child = fiber) {
+  if (parentMap.has(child)) return parentMap.get(child)
+  if (typeof fiber.type !== 'string' && !isFirst) {
+    parentMap.set(child, fiber)
+    return fiber
+  }
   return getParentFiber(fiber.return, false)
+}
+
+export function creatFiberCombine(fiber) {
+  return {
+    fiber,
+    refs: fiber && collectRefs(fiber.child),
+    children: fiber && collectChildren(fiber.child),
+  }
 }
 
 export function useFiber() {
@@ -95,15 +108,7 @@ export function useFiber() {
 
   return {
     ref,
-    parent: {
-      fiber: parent,
-      refs: parent && collectRefs(parent.child),
-      children: parent && collectChildren(parent.child),
-    },
-    current: {
-      fiber: current,
-      refs: current && collectRefs(current.child),
-      children: current && collectChildren(current.child),
-    }
+    parent: creatFiberCombine(parent),
+    current: creatFiberCombine(current)
   }
 }
