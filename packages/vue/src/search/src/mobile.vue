@@ -39,7 +39,7 @@
           :placeholder="placeholder"
           type="text"
           :class="['tiny-mobile-search__input', `tiny-mobile-search__input-${themeType}`]"
-          @keyup.enter="searchEnterKey"
+          @keyup.enter="searchEnterKey($event)"
           @change="handleChange"
           @input="handleInput"
           @focus="state.focus = true"
