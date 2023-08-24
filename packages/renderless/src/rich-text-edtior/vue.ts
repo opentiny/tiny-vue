@@ -1,6 +1,6 @@
-import { handleChange, setLink, handleMove, handleClickOutside, removeClickOutside, handleClick, shouldShow } from './index'
+import { handleChange, setLink, handleMove, handleClickOutside, removeClickOutside, handleClick, shouldShow, handleFontSize } from './index'
 import Codehighlight from './code-highlight'
-export const api = ['state', 'setLink', 'handleChange', 'box', 'handleMove', 'handleClickOutside', 'removeClickOutside', 'handleClick', 'shouldShow']
+export const api = ['state', 'setLink', 'handleChange', 'box', 'handleMove', 'handleClickOutside', 'removeClickOutside', 'handleClick', 'shouldShow', 'handleFontSize', 'fontSize']
 export const renderless = (
   props,
   { computed, onMounted, onBeforeUnmount, reactive, ref },
@@ -88,6 +88,7 @@ export const renderless = (
   })
 
   const box = ref(null)
+  const fontSize = ref('16px')
   const state = reactive({
     editor: null,
     // table 变量
@@ -108,6 +109,9 @@ export const renderless = (
     handleClick: handleClick(state, box),
     // bubble 菜单
     shouldShow: shouldShow,
+    //
+    fontSize,
+    handleFontSize: handleFontSize(fontSize),
   }
   onBeforeUnmount(() => {
     state.editor.destroy()
