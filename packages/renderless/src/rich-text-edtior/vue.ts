@@ -1,5 +1,5 @@
 import { handleChange, setLink, handleMove, handleClickOutside, removeClickOutside, handleClick, shouldShow } from './index'
-import Codehighlight from './codehighlight.tsx'
+import Codehighlight from './code-highlight'
 export const api = ['state', 'setLink', 'handleChange', 'box', 'handleMove', 'handleClickOutside', 'removeClickOutside', 'handleClick', 'shouldShow']
 export const renderless = (
   props,
