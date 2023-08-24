@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-docs",
-  "version": "2.0.3",
+  "version": "2.0.8",
   "scripts": {
     "start": "node ./scripts/copy.js && vite",
     "start:open": "node ./scripts/copy.js && vite --mode opendev",
