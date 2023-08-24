@@ -1,6 +1,6 @@
 <template>
   <div class="tiny-rich-text-editor">
-    <div class="button-area">
+    <div class="tiny-rich-text-editor__toolbar">
       <!-- starter-kit功能区 -->
       <button
         title="bold"
@@ -258,7 +258,7 @@
         </button>
       </BubbleMenu>
     </div>
-    <div class="small-box">
+    <div class="tiny-rich-text-editor__container">
       <EditorContent :editor="state.editor"></EditorContent>
     </div>
   </div>

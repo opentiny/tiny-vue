@@ -233,6 +233,11 @@ export const svg = ({ name = 'Icon', component }) => {
             extend.nativeOn = context.listeners
           }
 
+          // 解决富文本组件工具栏图标大小不正确的问题
+          if (name.indexOf('IconRichText') !== -1) {
+            extend.viewBox = '0 0 24 24'
+          }
+
           return renderComponent({
             component,
             props: mergeProps,
