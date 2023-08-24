@@ -3,25 +3,17 @@
 .tiny-rich-text-editor {
   .component-css-vars-rich-text-editor();
 
-  width: 500px;
-  height: 350px;
-  margin: 0 auto;
-  outline: 3px solid var(--ti-rich-text-editor-box-outline-color);
-  border-radius: 8px 8px 0 0;
+  height: 100%;
 
-  &:hover {
-    outline: 3px solid var(--ti-rich-text-editor-box-outline-hover-color);
-  }
-
-  .button-area {
-    text-align: center;
+  &__toolbar {
+    padding: 8px;
+    border: 1px solid var(--ti-rich-text-editor-box-outline-color);
   }
 
   button {
     // color: #fff;
     // color: black;
-    width: 2.00rem;
-    height: 2.00rem;
+    height: 24px;
     padding: .25rem;
     margin-right: .25rem;
     border: none;
@@ -29,24 +21,21 @@
     background: transparent;
     cursor: pointer;
 
-    &:hover {
-      background-color: var(--ti-rich-text-editor-button-hover);
+    &:not(:disabled):hover, &.is-active {
+      svg, path {
+        fill: var(--ti-rich-text-editor-button-hover);
+      }
+    }
+
+    &:disabled {
+      color: var(--ti-rich-text-editor-button-disabled);
+      cursor: not-allowed;
     }
   }
 
-  button:disabled {
-    // color: rgba(34, 47, 62, .5);
-    background-color: var(--ti-rich-text-editor-button-disabled);
-    cursor: not-allowed;
-  }
-
-  button.is-active {
-    background-color: var(--ti-rich-text-editor-button-active);
-  }
-
   .tiny-svg {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     vertical-align: middle;
     overflow: hidden;
     display: inline-block;
@@ -199,8 +188,6 @@
     }
 
     &:hover {
-      background-color: var(--ti-rich-text-editor-button-active);
-
       .line-height-options {
         display: flex;
         flex-direction: column;
@@ -224,11 +211,12 @@
 }
 
 // 富文本编辑器的主题区域，需要对高度进行调整，达到融为一体
-.small-box {
+.tiny-rich-text-editor__container {
   overflow: auto;
   padding: 0 10px;
-  height: 200px;
-  margin-right: 2px;
+  height: 100%;
+  border: 1px solid var(--ti-rich-text-editor-box-outline-color);
+  border-top: 0;
 
   &::-webkit-scrollbar {
     width: 4px;
