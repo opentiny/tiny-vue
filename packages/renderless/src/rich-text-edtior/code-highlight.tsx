@@ -1,6 +1,6 @@
-export default function(NodeViewContent, nodeViewProps, NodeViewWrapper){
+export default function (NodeViewContent, nodeViewProps, NodeViewWrapper) {
   return {
-    name: 'bcpns',
+    name: 'CodeHighlight',
     components: {
       NodeViewWrapper,
       NodeViewContent,
@@ -31,7 +31,7 @@ export default function(NodeViewContent, nodeViewProps, NodeViewWrapper){
             <option disabled>
               —
             </option>
-            {this.languages.map((item,index) => <option value={item} key={index}> {item} </option>)}
+            {this.languages.map((item, index) => <option value={item} key={index}> {item} </option>)}
           </select>
           <pre><code><NodeViewContent /></code></pre>
         </NodeViewWrapper>
