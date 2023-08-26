@@ -9,6 +9,18 @@
       >
         <TinyIconRichTextBold></TinyIconRichTextBold>
       </button>
+      <button class="font-size-box">
+        <TinyIconRichTextFontSize></TinyIconRichTextFontSize>
+        <div class="font-size-options">
+          <button @click="handleFontSize(12)">12px</button>
+          <button @click="handleFontSize(14)">14px</button>
+          <button @click="handleFontSize(16)">16px</button>
+          <button @click="handleFontSize(18)">18px</button>
+          <button @click="handleFontSize(20)">20px</button>
+          <button @click="handleFontSize(24)">24px</button>
+          <button @click="handleFontSize(30)">30px</button>
+        </div>
+      </button>
       <button title="link" @click="setLink" :class="{ 'is-active': state.editor?.isActive('link') }">
         <TinyIconRichTextLink></TinyIconRichTextLink>
       </button>
@@ -258,7 +270,7 @@
         </button>
       </BubbleMenu>
     </div>
-    <div class="tiny-rich-text-editor__container">
+    <div class="tiny-rich-text-editor__container" :style="{ fontSize: fontSize }">
       <EditorContent :editor="state.editor"></EditorContent>
     </div>
   </div>
