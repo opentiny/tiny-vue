@@ -38,6 +38,44 @@
   &:last-of-type {
     margin-right: 0;
   }
+  
+  .@{checkbox-prefix-cls}__inner {
+    text-align: left;
+    display: inline-block;
+    position: relative;
+    border: 1px solid var(--ti-checkbox-border-color);
+    border-radius: var(--ti-checkbox-border-radius);
+    box-sizing: border-box;
+    width: var(--ti-checkbox-width);
+    height: var(--ti-checkbox-height);
+    background-color: var(--ti-checkbox-bg-color);
+    outline: none;
+    z-index: 1;
+    transition:
+      border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
+      background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
+
+    &:hover {
+      border-color: var(--ti-checkbox-border-color-hover);
+    }
+
+    &::after {
+      box-sizing: content-box;
+      content: '';
+      border: 1px solid #fff;
+      border-width: 0 var(--ti-checkbox-checkline-width) var(--ti-checkbox-checkline-width) 0; // 对勾的线宽
+      border-left: 0;
+      border-top: 0;
+      height: var(--ti-checkbox-icon-height);
+      width: var(--ti-checkbox-icon-width);
+      position: absolute;
+      margin-left: var(--ti-checkbox-icon-margin-left);
+      margin-top: var(--ti-checkbox-icon-margin-top);
+      transform: rotate(45deg) scaleY(0);
+      transition: transform 0.15s ease-in 0.05s;
+      transform-origin: center;
+    }
+  }
 
   &.is-bordered {
     padding: 9px 20px 9px 10px;
@@ -193,43 +231,6 @@
           border-color: var(--ti-checkbox-border-color-hover-checked);
         }
       }
-    }
-  }
-
-  .@{checkbox-prefix-cls}__inner {
-    display: inline-block;
-    position: relative;
-    border: 1px solid var(--ti-checkbox-border-color);
-    border-radius: var(--ti-checkbox-border-radius);
-    box-sizing: border-box;
-    width: var(--ti-checkbox-width);
-    height: var(--ti-checkbox-height);
-    background-color: var(--ti-checkbox-bg-color);
-    outline: none;
-    z-index: 1;
-    transition:
-      border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
-      background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
-
-    &:hover {
-      border-color: var(--ti-checkbox-border-color-hover);
-    }
-
-    &::after {
-      box-sizing: content-box;
-      content: '';
-      border: 1px solid #fff;
-      border-width: 0 var(--ti-checkbox-checkline-width) var(--ti-checkbox-checkline-width) 0; // 对勾的线宽
-      border-left: 0;
-      border-top: 0;
-      height: var(--ti-checkbox-icon-height);
-      width: var(--ti-checkbox-icon-width);
-      position: absolute;
-      margin-left: var(--ti-checkbox-icon-margin-left);
-      margin-top: var(--ti-checkbox-icon-margin-top);
-      transform: rotate(45deg) scaleY(0);
-      transition: transform 0.15s ease-in 0.05s;
-      transform-origin: center;
     }
   }
 
