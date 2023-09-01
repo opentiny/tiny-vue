@@ -64,7 +64,7 @@
           v-if="type !== 'textarea'"
           ref="input"
           :name="name"
-          v-bind="a($attrs, ['type', 'class', 'style', '^on\w+'])"
+          v-bind="a($attrs, ['type', 'class', 'style', '^on\w+', 'id'])"
           class="tiny-input__inner"
           :tabindex="tabindex"
           :type="showPassword ? (state.passwordVisible ? 'text' : 'password') : type"
@@ -161,7 +161,7 @@
       </tiny-tooltip>
       <textarea
         ref="textarea"
-        v-bind="a($attrs, ['type', 'class', 'style'])"
+        v-bind="a($attrs, ['type', 'class', 'style', 'id'])"
         :tabindex="tabindex"
         class="tiny-textarea__inner"
         @compositionstart="handleCompositionStart"
