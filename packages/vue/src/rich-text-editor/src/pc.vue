@@ -2,11 +2,8 @@
   <div class="tiny-rich-text-editor">
     <div class="tiny-rich-text-editor__toolbar">
       <!-- starter-kit功能区 -->
-      <button
-        title="bold"
-        @click="state.editor.chain().focus().toggleBold().run()"
-        :class="{ 'is-active': state.editor?.isActive('bold') }"
-      >
+      <button title="bold" @click="state.editor.chain().focus().toggleBold().run()"
+        :class="{ 'is-active': state.editor?.isActive('bold') }">
         <TinyIconRichTextBold></TinyIconRichTextBold>
       </button>
       <button class="font-size-box">
@@ -24,18 +21,12 @@
       <button title="link" @click="setLink" :class="{ 'is-active': state.editor?.isActive('link') }">
         <TinyIconRichTextLink></TinyIconRichTextLink>
       </button>
-      <button
-        title="unlink"
-        @click="state.editor.chain().focus().unsetLink().run()"
-        :disabled="!state.editor?.isActive('link')"
-      >
+      <button title="unlink" @click="state.editor.chain().focus().unsetLink().run()"
+        :disabled="!state.editor?.isActive('link')">
         <TinyIconRichTextLinkUnlink></TinyIconRichTextLinkUnlink>
       </button>
-      <button
-        title="high light"
-        @click="state.editor.chain().focus().toggleHighlight().run()"
-        :class="{ 'is-active': state.editor?.isActive('highlight') }"
-      >
+      <button title="high light" @click="state.editor.chain().focus().toggleHighlight().run()"
+        :class="{ 'is-active': state.editor?.isActive('highlight') }">
         <TinyIconRichTextHighLight></TinyIconRichTextHighLight>
       </button>
       <button class="line-height-button" title="line height" @click="state.editor.chain().focus().toggleHeight().run()">
@@ -49,17 +40,12 @@
           <button class="line-2.5" @click.stop="state.editor.chain().focus().setP({ level: 2.5 }).run()">2.5</button>
         </div>
       </button>
-      <button
-        @click="state.editor.chain().focus().toggleUnderline().run()"
-        :class="{ 'is-active': state.editor?.isActive('underline') }"
-      >
+      <button @click="state.editor.chain().focus().toggleUnderline().run()"
+        :class="{ 'is-active': state.editor?.isActive('underline') }">
         <TinyIconRichTextUnderline></TinyIconRichTextUnderline>
       </button>
-      <button
-        title="strike through"
-        @click="state.editor.chain().focus().toggleStrike().run()"
-        :class="{ 'is-active': state.editor?.isActive('strike') }"
-      >
+      <button title="strike through" @click="state.editor.chain().focus().toggleStrike().run()"
+        :class="{ 'is-active': state.editor?.isActive('strike') }">
         <TinyIconRichTextStrikeThrough></TinyIconRichTextStrikeThrough>
       </button>
       <button title="italic" @click="state.editor.chain().focus().toggleItalic().run()">
@@ -93,18 +79,12 @@
           </button>
         </div>
       </button>
-      <button
-        title="subscript"
-        @click="state.editor.chain().focus().toggleSubscript().run()"
-        :class="{ 'is-active': state.editor?.isActive('subscript') }"
-      >
+      <button title="subscript" @click="state.editor.chain().focus().toggleSubscript().run()"
+        :class="{ 'is-active': state.editor?.isActive('subscript') }">
         <TinyIconRichTextSubscript></TinyIconRichTextSubscript>
       </button>
-      <button
-        title="superscript"
-        @click="state.editor.chain().focus().toggleSuperscript().run()"
-        :class="{ 'is-active': state.editor?.isActive('superscript') }"
-      >
+      <button title="superscript" @click="state.editor.chain().focus().toggleSuperscript().run()"
+        :class="{ 'is-active': state.editor?.isActive('superscript') }">
         <TinyIconRichTextSuperscript></TinyIconRichTextSuperscript>
       </button>
       <!-- 无序列表 -->
@@ -117,10 +97,8 @@
       <button title="ordered list" @click="state.editor.chain().focus().toggleOrderedList().run()">
         <TinyIconRichTextListOrdered></TinyIconRichTextListOrdered>
       </button>
-      <button
-        @click="state.editor.chain().focus().toggleTaskList().run()"
-        :class="{ 'is-active': state.editor?.isActive('taskList') }"
-      >
+      <button @click="state.editor.chain().focus().toggleTaskList().run()"
+        :class="{ 'is-active': state.editor?.isActive('taskList') }">
         <TinyIconRichTextTaskList></TinyIconRichTextTaskList>
       </button>
       <button title="quote" @click="state.editor.chain().focus().toggleBlockquote().run()">
@@ -149,22 +127,16 @@
         </label>
       </button>
       <!-- 文本对齐 -->
-      <button
-        @click="state.editor.chain().focus().setTextAlign('left').run()"
-        :class="{ 'is-active': state.editor?.isActive({ textAlign: 'left' }) }"
-      >
+      <button @click="state.editor.chain().focus().setTextAlign('left').run()"
+        :class="{ 'is-active': state.editor?.isActive({ textAlign: 'left' }) }">
         <TinyIconRichTextAlignLeft></TinyIconRichTextAlignLeft>
       </button>
-      <button
-        @click="state.editor.chain().focus().setTextAlign('center').run()"
-        :class="{ 'is-active': state.editor?.isActive({ textAlign: 'center' }) }"
-      >
+      <button @click="state.editor.chain().focus().setTextAlign('center').run()"
+        :class="{ 'is-active': state.editor?.isActive({ textAlign: 'center' }) }">
         <TinyIconRichTextAlignCenter></TinyIconRichTextAlignCenter>
       </button>
-      <button
-        @click="state.editor.chain().focus().setTextAlign('right').run()"
-        :class="{ 'is-active': state.editor?.isActive({ textAlign: 'right' }) }"
-      >
+      <button @click="state.editor.chain().focus().setTextAlign('right').run()"
+        :class="{ 'is-active': state.editor?.isActive({ textAlign: 'right' }) }">
         <TinyIconRichTextAlignRight></TinyIconRichTextAlignRight>
       </button>
       <!-- 颜色 -->
@@ -172,12 +144,8 @@
         <label for="tiny-color">
           <TinyIconRichTextColor></TinyIconRichTextColor>
         </label>
-        <input
-          id="tiny-color"
-          type="color"
-          @input="state.editor.chain().focus().setColor($event.target.value).run()"
-          :value="state.editor?.getAttributes('textStyle').color"
-        />
+        <input id="tiny-color" type="color" @input="state.editor.chain().focus().setColor($event.target.value).run()"
+          :value="state.editor?.getAttributes('textStyle').color" />
       </button>
       <!-- 表格功能按钮 -->
       <button title="table" class="table-button">
@@ -198,74 +166,42 @@
           </div>
         </div>
       </button>
-      <BubbleMenu
-        :editor="state.editor"
-        :tippy-options="{ duration: 100 }"
-        v-if="state.editor"
-        :should-show="shouldShow"
-        class="bubble-menu"
-      >
-        <button
-          title="add column before"
-          @click="state.editor.chain().focus().addColumnBefore().run()"
-          :disabled="!state.editor?.can().addColumnBefore()"
-        >
+      <BubbleMenu :editor="state.editor" :tippy-options="{ duration: 100 }" v-if="state.editor" :should-show="shouldShow"
+        class="bubble-menu">
+        <button title="add column before" @click="state.editor.chain().focus().addColumnBefore().run()"
+          :disabled="!state.editor?.can().addColumnBefore()">
           <TinyIconRichTextAddColumnBefore></TinyIconRichTextAddColumnBefore>
         </button>
-        <button
-          title="add column after"
-          @click="state.editor.chain().focus().addColumnAfter().run()"
-          :disabled="!state.editor?.can().addColumnAfter()"
-        >
+        <button title="add column after" @click="state.editor.chain().focus().addColumnAfter().run()"
+          :disabled="!state.editor?.can().addColumnAfter()">
           <TinyIconRichTextAddColumnAfter></TinyIconRichTextAddColumnAfter>
         </button>
-        <button
-          title="delete column"
-          @click="state.editor.chain().focus().deleteColumn().run()"
-          :disabled="!state.editor?.can().deleteColumn()"
-        >
+        <button title="delete column" @click="state.editor.chain().focus().deleteColumn().run()"
+          :disabled="!state.editor?.can().deleteColumn()">
           <TinyIconRichTextDeleteColumn></TinyIconRichTextDeleteColumn>
         </button>
-        <button
-          title="add row before"
-          @click="state.editor.chain().focus().addRowBefore().run()"
-          :disabled="!state.editor?.can().addRowBefore()"
-        >
+        <button title="add row before" @click="state.editor.chain().focus().addRowBefore().run()"
+          :disabled="!state.editor?.can().addRowBefore()">
           <TinyIconRichTextAddRowBefore></TinyIconRichTextAddRowBefore>
         </button>
-        <button
-          title="add row after"
-          @click="state.editor.chain().focus().addRowAfter().run()"
-          :disabled="!state.editor?.can().addRowAfter()"
-        >
+        <button title="add row after" @click="state.editor.chain().focus().addRowAfter().run()"
+          :disabled="!state.editor?.can().addRowAfter()">
           <TinyIconRichTextAddRowAfter></TinyIconRichTextAddRowAfter>
         </button>
-        <button
-          title="delete row"
-          @click="state.editor.chain().focus().deleteRow().run()"
-          :disabled="!state.editor?.can().deleteRow()"
-        >
+        <button title="delete row" @click="state.editor.chain().focus().deleteRow().run()"
+          :disabled="!state.editor?.can().deleteRow()">
           <TinyIconRichTextDeleteRow></TinyIconRichTextDeleteRow>
         </button>
-        <button
-          title="delete table"
-          @click="state.editor.chain().focus().deleteTable().run()"
-          :disabled="!state.editor?.can().deleteTable()"
-        >
+        <button title="delete table" @click="state.editor.chain().focus().deleteTable().run()"
+          :disabled="!state.editor?.can().deleteTable()">
           <TinyIconRichTextDeleteTable></TinyIconRichTextDeleteTable>
         </button>
-        <button
-          title="toggle header cell"
-          @click="state.editor.chain().focus().toggleHeaderCell().run()"
-          :disabled="!state.editor?.can().toggleHeaderCell()"
-        >
+        <button title="toggle header cell" @click="state.editor.chain().focus().toggleHeaderCell().run()"
+          :disabled="!state.editor?.can().toggleHeaderCell()">
           <TinyIconRichTextHeading></TinyIconRichTextHeading>
         </button>
-        <button
-          title="merge Or split"
-          @click="state.editor.chain().focus().mergeOrSplit().run()"
-          :disabled="!state.editor?.can().mergeOrSplit()"
-        >
+        <button title="merge Or split" @click="state.editor.chain().focus().mergeOrSplit().run()"
+          :disabled="!state.editor?.can().mergeOrSplit()">
           <TinyIconRichTextMergeCells></TinyIconRichTextMergeCells>
         </button>
       </BubbleMenu>

@@ -10,9 +10,7 @@
     border: 1px solid var(--ti-rich-text-editor-box-outline-color);
   }
 
-  button {
-    // color: #fff;
-    // color: black;
+  &__toolbar button {
     height: 24px;
     padding: .25rem;
     margin-right: .25rem;
@@ -30,9 +28,17 @@
       }
     }
 
+    &:hover {
+      background-color: #d2e4ff;
+    }
+
     &:disabled {
       color: var(--ti-rich-text-editor-button-disabled);
       cursor: not-allowed;
+
+      svg {
+        fill: gray;
+      }
     }
   }
 
@@ -54,7 +60,6 @@
       position: absolute;
       background-color: #dfdede;
       padding: .15rem;
-      top: 2.00rem;
       left: 0px;
       display: none;
       border-radius: .4rem;
@@ -84,7 +89,6 @@
 // 表格区域样式
 .tiny-rich-text-editor {
   .table-button {
-    width: 2.75rem !important;
 
     .table-box {
       display: flex;
@@ -99,7 +103,7 @@
         background: white;
         display: flex;
         left: 0;
-        top: 2.00rem;
+        top: 1.00rem;
         z-index: 999;
         width: 90px;
         flex-wrap: wrap;
@@ -136,16 +140,15 @@
 .tiny-rich-text-editor {
   .color-button {
     position: relative;
-    padding-right: 2.5rem;
+    padding-right: 1.2rem;
 
     #tiny-color {
       position: absolute;
       border-radius: 50%;
-      height: 20px;
-      width: 20px;
+      height: 18px;
+      width: 18px;
       border: 0;
       top: 4px;
-      right: 0;
     }
 
     &:hover {
@@ -171,7 +174,7 @@
   }
 }
 
-.tiny-rich-text-editor {
+.tiny-rich-text-editor .tiny-rich-text-editor__toolbar {
   .line-height-button {
     position: relative;
 
@@ -179,7 +182,6 @@
       position: absolute;
       background-color: #dfdede;
       padding: .15rem;
-      top: 2.00rem;
       left: 0px;
       display: none;
       border-radius: .4rem;
@@ -213,7 +215,7 @@
   }
 }
 
-.tiny-rich-text-editor {
+.tiny-rich-text-editor .tiny-rich-text-editor__toolbar {
   .font-size-box {
     position: relative;
 
@@ -222,6 +224,7 @@
       position: absolute;
       border-radius: 0.4rem;
       background-color: #dfdede;
+      z-index: 99;
 
       button {
         color: black;
