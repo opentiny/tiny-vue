@@ -53,13 +53,12 @@ export const renderless = (
       Collaboration?.configure({
         document: ydoc,
       }),
-      CustomImage,
       Table.configure({
         resizable: true,
       }),
       TableCell, TableHeader, TableRow,
       Color, TextStyle,
-      Image,
+      CustomImage,
       Highlight,
       Link,
       Underline,
