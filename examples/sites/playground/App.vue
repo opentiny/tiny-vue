@@ -26,8 +26,8 @@ const createImportMap = (version) => {
     }
   }
 }
-// 如果hash有效，它格式为： 3.8.4|eNqIVV9p.............
-const hash = location.hash.slice(1)
+// 如果hash有效，它格式为： 3.8.4|eNqIVV9p...... 如果'|' 被转义成'%7C' 则再转义回来
+const hash = location.hash.slice(1).replace('%7C', '|')
 const shareData = hash.split('|')
 
 const store = new useStore({
