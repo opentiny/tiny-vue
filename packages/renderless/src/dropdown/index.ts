@@ -218,14 +218,15 @@ export const initEvent =
 
 export const handleMenuItemClick =
   ({ props, state, emit }) =>
-  (itemData, instance, isDisabled) => {
-    state.isDisabled = isDisabled
-
-    if (props.hideOnClick) {
-      !state.isDisabled && (state.visible = false)
+  ({ itemData, vm, disabled }) => {
+    if (props.hideOnClick && !disabled) {
+      state.visible = false
     }
 
-    emit('item-click', itemData, instance)
+    if (!disabled) {
+      const data = { itemData, vm, disabled }
+      emit('item-click', data)
+    }
   }
 
 export const triggerElmFocus =
@@ -292,9 +293,9 @@ export const beforeDistory =
   }
 
 export const clickOutside =
-  ({ props, api, state }) =>
-  (value) => {
+  ({ props, api }) =>
+  (disabled) => {
     if (props.hideOnClick) {
-      state.isDisabled ? (value ? api.show() : api.hide()) : api.hide()
+      disabled ? api.show() : api.hide()
     }
   }

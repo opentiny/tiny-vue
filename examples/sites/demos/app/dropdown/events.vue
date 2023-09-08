@@ -27,7 +27,7 @@ export default {
       Notify({
         type: 'info',
         title: 'itemClick 回调事件',
-        message: `使用 dropdown-item 的label属性：${data.vm.label},\n 使用 dropdown-item 的默认插槽：${data.vm.$el.innerText}`,
+        message: `使用 dropdown-item 的label属性：${data.vm.label}`,
         position: 'top-right',
         duration: 2000
       })
