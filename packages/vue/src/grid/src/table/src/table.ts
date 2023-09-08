@@ -831,9 +831,9 @@ export default {
       }
     },
     'data.length': {
-      handler(newValue, oldValue) {
+      handler() {
         // 如果监听的data引用地址发生改变则不需要执行以下逻辑
-        if (Array.isArray(this.data) && newValue === oldValue) {
+        if (Array.isArray(this.data)) {
           !this._isUpdateData && this.loadTableData(this.data, true).then(this.handleDefault)
           this._isUpdateData = false
         }

@@ -43,7 +43,7 @@
         :placeholder="placeholder"
         type="text"
         class="tiny-search__input"
-        @keyup.enter="searchEnterKey"
+        @keyup.enter="searchEnterKey($event)"
         @change="handleChange"
         @input="handleInput"
         @focus="state.focus = true"

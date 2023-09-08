@@ -94,7 +94,7 @@ const getStyleComputedProperty = (el, property) => {
   return css[property]
 }
 
-const isFixed = (el, offsetParent) => {
+const isFixed = (el) => {
   if (el === window.document.body) {
     return false
   }
@@ -102,11 +102,8 @@ const isFixed = (el, offsetParent) => {
   if (getStyleComputedProperty(el, 'position') === 'fixed') {
     return true
   }
-  // 如果 el 是最近的offsetParent，停止向上查找
-  if (el === offsetParent) {
-    return false
-  }
-  return el.parentNode ? isFixed(el.parentNode, offsetParent) : false
+
+  return el.parentNode ? isFixed(el.parentNode) : false
 }
 
 const getBoundingClientRect = (el) => {
@@ -395,13 +392,11 @@ Popper.prototype.parse = function (config) {
 }
 
 Popper.prototype._getPosition = function (popper, reference) {
-  let offsetParent = getOffsetParent(reference)
-
   if (this._options.forceAbsolute) {
     return 'absolute'
   }
 
-  let isParentFixed = isFixed(reference, offsetParent)
+  let isParentFixed = isFixed(reference)
   return isParentFixed ? 'fixed' : 'absolute'
 }
 

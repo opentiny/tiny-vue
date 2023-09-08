@@ -27,7 +27,7 @@ export const getRouteActive =
 export const onClick =
   ({ api, emit, parent, props, router, state }) =>
   () => {
-    parent.$parent.onChange(props.name || parent.index || state.index)
+    parent.onChange(props.name || parent.index || state.index)
 
     emit('click', event)
 
@@ -35,11 +35,11 @@ export const onClick =
   }
 
 export const bindChildren = (parent) => () => {
-  if (!parent.$parent) {
+  if (!parent) {
     return
   }
 
-  parent.$parent.state.children = parent.$parent.getChildrens()
+  parent.state.children = parent.getChildrens()
 }
 
 export const routeTab = (props, state) => (router) => {

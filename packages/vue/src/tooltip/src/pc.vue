@@ -45,7 +45,7 @@ export default defineComponent({
       type: Number,
       default: () => 300
     },
-    content: { type: String },
+    content: { type: [String, Object] },
     disabled: { type: Boolean },
     effect: {
       type: String,

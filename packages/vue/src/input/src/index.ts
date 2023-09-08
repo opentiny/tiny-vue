@@ -36,7 +36,6 @@ const $constants = {
 
 export default defineComponent({
   name: $prefix + 'Input',
-  inheritAttrs: false,
   props: {
     ...$props,
     _constants: {
