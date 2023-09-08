@@ -3,8 +3,7 @@
 </template>
 
 <script>
-import { Anchor } from '@opentiny/vue'
-import { message } from '@opentiny/vue-modal'
+import { Anchor, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -50,7 +49,7 @@ export default {
   },
   methods: {
     handleChange(link) {
-      message(`change${link}`)
+      Modal.message(`change${link}`)
     }
   }
 }

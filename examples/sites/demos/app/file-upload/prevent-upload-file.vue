@@ -7,8 +7,7 @@
 </template>
 
 <script lang="jsx">
-import { FileUpload, Button } from '@opentiny/vue'
-import { confirm } from '@opentiny/vue-modal'
+import { FileUpload, Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -29,7 +28,7 @@ export default {
   methods: {
     beforeUpload(file) {
       return new Promise((resolve, reject) => {
-        confirm(`确定要上传 ${file.name}？`).then((res) => {
+        Modal.confirm(`确定要上传 ${file.name}？`).then((res) => {
           res === 'confirm' ? resolve() : reject()
         })
       })

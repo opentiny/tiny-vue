@@ -51,9 +51,6 @@ export default defineConfig((config) => {
       }),
       Unocss(UnoCssConfig)
     ],
-    define: {
-      'process.env': {}
-    },
     optimizeDeps: getOptimizeDeps(3),
     build: {
       rollupOptions: {

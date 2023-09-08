@@ -4,8 +4,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Anchor as TinyAnchor } from '@opentiny/vue'
-import { message } from '@opentiny/vue-modal'
+import { Anchor as TinyAnchor, Modal } from '@opentiny/vue'
 
 const links = ref([
   {
@@ -43,6 +42,6 @@ const links = ref([
 ])
 
 function handleChange(link) {
-  message(`change${link}`)
+  Modal.message(`change${link}`)
 }
 </script>

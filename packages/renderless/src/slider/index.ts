@@ -250,19 +250,24 @@ const calcCurrentValue = ({ currentValue, props, state }) => {
 export const setActiveButtonValue =
   ({ api, emit, props, state }) =>
   (value) => {
-    let currentValue = value
-    currentValue = calcCurrentValue({ currentValue, props, state })
-    if (!state.isDouble) {
-      state.leftBtnValue = currentValue
+    if (Array.isArray(value)) {
+      // 在组件初始化和emit('update:modelValue')会发生modelValue为数组的情况
+      ;[state.leftBtnValue, state.rightBtnValue] = value
     } else {
-      if (state.activeIndex === 0) {
+      let currentValue = calcCurrentValue({ currentValue: value, props, state })
+      if (!state.isDouble) {
         state.leftBtnValue = currentValue
       } else {
-        state.rightBtnValue = currentValue
+        if (state.activeIndex === 0) {
+          state.leftBtnValue = currentValue
+        } else {
+          state.rightBtnValue = currentValue
+        }
       }
+
+      state.activeValue = currentValue
     }
 
-    state.activeValue = currentValue
     state.innerTrigger = true // 防止触发 watch
 
     emit('update:modelValue', api.getActiveButtonValue()) // 添加了一个emit触发input事件，实现双向绑定

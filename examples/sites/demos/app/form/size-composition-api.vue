@@ -43,9 +43,9 @@ import {
   DropTimes as TinyDropTimes,
   Tooltip as TinyTooltip,
   Input as TinyInput,
-  Button as TinyButton
+  Button as TinyButton,
+  Modal
 } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
 
 const sizeList = ref(['mini', 'small', 'medium'])
 const createData = reactive({
@@ -58,7 +58,7 @@ const createData = reactive({
 })
 
 function submitClick() {
-  alert('提交')
+  Modal.alert('提交')
 }
 </script>
 

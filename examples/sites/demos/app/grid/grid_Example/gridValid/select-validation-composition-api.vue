@@ -21,8 +21,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, GridToolbar as TinyGridToolbar } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
+import { Grid as TinyGrid, GridColumn as TinyGridColumn, GridToolbar as TinyGridToolbar, Modal } from '@opentiny/vue'
 
 const validRules = {
   name: [
@@ -159,13 +158,13 @@ function toolbarButtonClickEvent({ code }) {
       if (selectRecords.length > 0) {
         basicGridRef.value.validate(selectRecords, (valid) => {
           if (valid) {
-            alert('校验成功！')
+            Modal.alert('校验成功！')
           } else {
-            alert('校验不通过')
+            Modal.alert('校验不通过')
           }
         })
       } else {
-        alert('未选中数据！')
+        Modal.alert('未选中数据！')
       }
       break
     }

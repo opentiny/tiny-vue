@@ -66,7 +66,7 @@
         :placeholder="placeholder"
         type="text"
         data-tag="tiny-search__input"
-        @keyup.enter="searchEnterKey"
+        @keyup.enter="searchEnterKey($event)"
         @input="handleInput"
         @change="handleInput"
         @focus="state.focus = true"
