@@ -54,6 +54,7 @@
   &&--additional {
     &:after {
       content: '';
+      width: var(--ti-link-underline-width);
       position: absolute;
       left: 0;
       right: 0;
@@ -69,6 +70,10 @@
       color: var(--ti-link-default-hover-text-color);
       fill: var(--ti-link-default-hover-text-color);
 
+      g {
+        fill: var(--ti-link-default-hover-text-color);
+      }
+
       &:after {
         border-bottom-color: var(--ti-link-default-hover-border-color);
       }
@@ -78,6 +83,10 @@
       &:hover {
         color: var(--ti-link-default-disabled-text-color);
         fill: var(--ti-link-default-disabled-text-color);
+
+        g {
+          fill: var(--ti-link-default-disabled-text-color);
+        }
       }
 
       &:after {
@@ -93,6 +102,11 @@
       font-weight: var(--ti-link-icon-hover-text-weight);
       color: var(--ti-link-has-svg-hover-text-color);
       fill: var(--ti-link-has-svg-hover-text-color);
+
+      g {
+        fill: var(--ti-link-has-svg-hover-text-color);
+      }
+
     }
 
     &:has(.@{svg-cls}).is-disabled {
@@ -101,11 +115,22 @@
         color: var(--ti-link-default-disabled-text-color);
         fill: var(--ti-link-default-disabled-text-color);
       }
+
+      g {
+        fill: var(--ti-link-default-disabled-text-color);
+      }
+    }
+
+    &:has(.@{svg-cls}) {
+      g {
+        fill: var(--ti-link-default-disabled-text-color);
+      }
     }
   }
 
   &.is-underline:hover:after {
     content: '';
+    width: var(--ti-link-underline-width);
     position: absolute;
     left: 0;
     right: 0;
@@ -126,6 +151,12 @@
       var(--ti-link-default-hover-text-color),
       var(--ti-link-default-disabled-text-color)
     );
+
+    .@{svg-cls} {
+      g {
+        fill: var(--ti-link-default-text-color);
+      }
+    }
   }
 
   &&--primary {

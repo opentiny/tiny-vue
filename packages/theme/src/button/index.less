@@ -329,6 +329,14 @@
       var(--ti-button-text-hover-weight),
     );
 
+    &:hover {
+      text-decoration: var(--ti-button-text-hover-text-decoration);
+    }
+
+    &.is-disabled:hover {
+      text-decoration: none;
+    }
+
     border-radius: var(--ti-button-text-hover-border-radius);
 
     padding: 0 var(--ti-button-text-padding-horizontal);
