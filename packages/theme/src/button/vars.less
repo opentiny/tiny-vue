@@ -115,7 +115,7 @@
   // 文字按钮悬浮文本修饰(hide)
   --ti-button-text-hover-text-decoration: none;
   // 文字按钮悬浮文本色
-  --ti-button-text-color-hover: var(--ti-base-color-brand-5);
+  --ti-button-text-color-hover: var(--ti-common-color-text-link-hover);
   // 文字按钮悬浮文本字重
   --ti-button-text-hover-weight: var(--ti-common-font-weight-4);
   // 文字按钮点击瞬间文本色
@@ -130,14 +130,22 @@
   --ti-button-text-size-mini-svg-width: 1em;
   // 文字按钮悬浮背景色
   --ti-button-text-hover-bg-color: transparent;
+  // 文字按钮只有图标悬浮背景色
+  --ti-button-text-only-icon-hover-bg-color: transparent;
   // 文字按钮悬浮圆角
   --ti-button-text-hover-border-radius: 0px;
   // 文字按钮图标填充色
-  --ti-button-text-svg-fill-color: var(--ti-button-text-color);
+  --ti-button-text-svg-fill-color: var(--ti-common-color-text-secondary);
   // 文字按钮图标悬浮填充色
   --ti-button-text-svg-hover-fill-color: var(--ti-button-text-color-hover);
   // 文字按钮禁用时图标填充色
   --ti-button-text-svg-disabled-fill-color: var(--ti-common-color-text-disabled);
+  // 图标加文字按钮图标右侧外边距
+  --ti-button-text-has-svg-icon-margin-right: var(--ti-common-size-2x);
+  // 图标加文字按钮字体颜色
+  --ti-button-text-has-svg-text-color: var(--ti-common-color-text-primary);
+  // 图标加文字按钮悬浮时字体颜色
+  --ti-button-text-has-svg-hover-text-color: var(--ti-common-color-text-link);
   // 文字按钮只有svg时水平内边距
   --ti-button-text-svg-padding-horizontal: var(--ti-common-size-2x);
 
@@ -358,4 +366,17 @@
   --ti-button-text-size-small-svg-width: 1em;
   // 纯文本按钮迷你尺寸图标高度
   --ti-button-text-size-small-svg-height: 1em;
+
+  // 纯图标按钮最小宽度
+  --ti-button-only-icon-min-width: unset;
+  // 纯图标按钮水平内边距
+  --ti-button-only-icon-padding-horizontal: 7px;
+  // 纯图标按钮边框圆角
+  --ti-button-only-icon-border-radius: 2px;
+  // 纯图标按钮边框颜色
+  --ti-button-only-icon-border-color: var(--ti-common-color-border);
+  // 纯图标按钮悬浮时边框颜色
+  --ti-button-only-icon-hover-border-color: var(--ti-common-color-primary-normal);
+  // 纯图标按钮禁用时边框颜色
+  --ti-button-only-icon-disabled-border-color: var(--ti-common-color-line-disabled);
 }

@@ -27,4 +27,5 @@ export const tinyCheckboxButtonSmbTheme = {
   'ti-checkbox-button-mini-last-left-border-radius': '4px',
   'ti-checkbox-button-mini-last-right-border-radius': '4px',
   'ti-checkbox-button-checked-border-color': '#1476FF',
+  'ti-checkbox-shadow-color': 'transparent'
 }
