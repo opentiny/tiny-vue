@@ -97,7 +97,7 @@
       </div>
     </tiny-floatbar>
     <!-- 切换主题 -->
-    <tiny-dropdown class="!fixed bottom20 right140" @item-click="changeTheme">
+    <tiny-dropdown class="!fixed bottom20 right140" :show-icon="false" @item-click="changeTheme">
       <span title="切换主题">
         <SvgTheme></SvgTheme>
       </span>
