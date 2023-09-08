@@ -150,6 +150,7 @@ import IconFile from './src/file'
 import IconFilesCircle from './src/files-circle'
 import IconFiles from './src/files'
 import IconFiletext from './src/filetext'
+import IconFilletExternalLink from './src/fillet-external-link'
 import IconFileupload from './src/fileupload'
 import IconFiltered from './src/filtered'
 import IconFlag from './src/flag'
@@ -676,6 +677,8 @@ export {
   IconEditorVideo as iconEditorVideo,
   IconFileCloudupload,
   IconFileCloudupload as iconFileCloudupload,
+  IconFilletExternalLink,
+  IconFilletExternalLink as iconFilletExternalLink,
   IconFileExcel,
   IconFileExcel as iconFileExcel,
   IconFile,
@@ -1197,6 +1200,7 @@ export default {
   IconEditorUndo,
   IconEditorVideo,
   IconFileCloudupload,
+  IconFilletExternalLink,
   IconFileExcel,
   IconFile,
   IconFilesCircle,
