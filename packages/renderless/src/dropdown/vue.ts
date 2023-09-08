@@ -52,7 +52,6 @@ export const renderless = (
     listId: `dropdown-menu-${guid()}`,
     showIcon: props.showIcon,
     showSelfIcon: props.showSelfIcon,
-    isDisabled: false,
     designConfig
   })
 
@@ -77,7 +76,7 @@ export const renderless = (
     triggerElmFocus: triggerElmFocus({ state }),
     initDomOperation: initDomOperation({ api, state, vm }),
     beforeDistory: beforeDistory({ api, state }),
-    clickOutside: clickOutside({ state, props, api })
+    clickOutside: clickOutside({ props, api })
   })
 
   watch(() => state.visible, api.watchVisible)

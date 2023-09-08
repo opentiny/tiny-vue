@@ -173,11 +173,12 @@ export const mounted =
 
 export const handleMenuItemClick =
   ({ state, dispatch }) =>
-  (itemData, instance, label, showContent, isDisabled) => {
+  ({ itemData, vm, label, showContent, disabled }) => {
     state.label = label
     state.showContent = showContent
 
-    dispatch('TinyDropdown', 'current-item-click', [itemData, instance, isDisabled]) // 统一参数格式为对象
+    const data = { itemData, vm, disabled }
+    dispatch('TinyDropdown', 'current-item-click', data) // 统一参数格式为对象
   }
 
 export const handleMouseenter =

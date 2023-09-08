@@ -151,7 +151,9 @@ export const handleClick =
 
     const data = { itemData: props.itemData, vm, disabled: props.disabled }
 
-    emit('item-click', data)
+    if (!props.disabled) {
+      emit('item-click', data)
+    }
     // 此处需要传递一个对象，如果是数组[param1,param2],会导致vue2和vue3的表现形式不一样,aui 目前还是数组形式
     dispatch('TinyDropdown', 'menu-item-click', data)
     dispatch('TinyDropdown', 'is-disabled', [props.disabled])

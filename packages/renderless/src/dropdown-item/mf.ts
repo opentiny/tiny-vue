@@ -42,13 +42,14 @@ export const renderless = (props, { reactive, inject }, { dispatch, vm }) => {
 
       dispatch('TinyDropdown', 'selectedIndex', [dataStore.currentIndex])
 
-      dispatch('TinyDropdownMenu', 'menu-item-click', [
-        dataStore.itemData,
+      const data = {
+        itemData: dataStore.itemData,
         vm,
-        dataStore.itemLabel,
-        dataStore.showContent,
-        props.disabled
-      ])
+        label: dataStore.itemLabel,
+        showContent: dataStore.showContent,
+        disabled: props.disabled
+      }
+      dispatch('TinyDropdownMenu', 'menu-item-click', data)
 
       dispatch('TinyDropdown', 'is-disabled', [props.disabled])
     }
