@@ -21,6 +21,7 @@
 
     &:not(:disabled):hover,
     &.is-active {
+      background-color: #d2e4ff;
 
       svg,
       path {
@@ -103,7 +104,7 @@
         background: white;
         display: flex;
         left: 0;
-        top: 1.00rem;
+        top: 1.25rem;
         z-index: 999;
         width: 90px;
         flex-wrap: wrap;
@@ -510,5 +511,13 @@
         font-weight: 700;
       }
     }
+  }
+
+  .ProseMirror p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    float: left;
+    color: #9a9a9a;
+    pointer-events: none;
+    height: 0;
   }
 }

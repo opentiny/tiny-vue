@@ -2,170 +2,102 @@
   <div class="tiny-rich-text-editor">
     <div class="tiny-rich-text-editor__toolbar">
       <!-- starter-kit功能区 -->
-      <button title="bold" @click="state.editor.chain().focus().toggleBold().run()"
-        :class="{ 'is-active': state.editor?.isActive('bold') }">
-        <TinyIconRichTextBold></TinyIconRichTextBold>
-      </button>
-      <button class="font-size-box">
-        <TinyIconRichTextFontSize></TinyIconRichTextFontSize>
-        <div class="font-size-options">
-          <button @click="handleFontSize(12)">12px</button>
-          <button @click="handleFontSize(14)">14px</button>
-          <button @click="handleFontSize(16)">16px</button>
-          <button @click="handleFontSize(18)">18px</button>
-          <button @click="handleFontSize(20)">20px</button>
-          <button @click="handleFontSize(24)">24px</button>
-          <button @click="handleFontSize(30)">30px</button>
-        </div>
-      </button>
-      <button title="link" @click="setLink" :class="{ 'is-active': state.editor?.isActive('link') }">
-        <TinyIconRichTextLink></TinyIconRichTextLink>
-      </button>
-      <button title="unlink" @click="state.editor.chain().focus().unsetLink().run()"
-        :disabled="!state.editor?.isActive('link')">
-        <TinyIconRichTextLinkUnlink></TinyIconRichTextLinkUnlink>
-      </button>
-      <button title="high light" @click="state.editor.chain().focus().toggleHighlight().run()"
-        :class="{ 'is-active': state.editor?.isActive('highlight') }">
-        <TinyIconRichTextHighLight></TinyIconRichTextHighLight>
-      </button>
-      <button class="line-height-button" title="line height" @click="state.editor.chain().focus().toggleHeight().run()">
-        <div class="line-height-icon">
-          <TinyIconRichTextLineHeight></TinyIconRichTextLineHeight>
-        </div>
-        <div class="line-height-options">
-          <button class="line-1.0" @click.stop="state.editor.chain().focus().setP({ level: 1 }).run()">1.0</button>
-          <button class="line-1.5" @click.stop="state.editor.chain().focus().setP({ level: 1.5 }).run()">1.5</button>
-          <button class="line-2.0" @click.stop="state.editor.chain().focus().setP({ level: 2 }).run()">2.0</button>
-          <button class="line-2.5" @click.stop="state.editor.chain().focus().setP({ level: 2.5 }).run()">2.5</button>
-        </div>
-      </button>
-      <button @click="state.editor.chain().focus().toggleUnderline().run()"
-        :class="{ 'is-active': state.editor?.isActive('underline') }">
-        <TinyIconRichTextUnderline></TinyIconRichTextUnderline>
-      </button>
-      <button title="strike through" @click="state.editor.chain().focus().toggleStrike().run()"
-        :class="{ 'is-active': state.editor?.isActive('strike') }">
-        <TinyIconRichTextStrikeThrough></TinyIconRichTextStrikeThrough>
-      </button>
-      <button title="italic" @click="state.editor.chain().focus().toggleItalic().run()">
-        <TinyIconRichTextItalic></TinyIconRichTextItalic>
-      </button>
-      <button class="h-box">
-        <div class="h-ico">
-          <TinyIconRichTextHeading></TinyIconRichTextHeading>
-        </div>
-        <div class="h-options">
-          <button title="paragraph" @click="state.editor.chain().focus().setParagraph().run()">
-            <TinyIconRichTextParagraph></TinyIconRichTextParagraph>
-          </button>
-          <button title="h1" @click="state.editor.chain().focus().toggleHeading({ level: 1 }).run()">
-            <TinyIconRichTextH1></TinyIconRichTextH1>
-          </button>
-          <button title="h2" @click="state.editor.chain().focus().toggleHeading({ level: 2 }).run()">
-            <TinyIconRichTextH2></TinyIconRichTextH2>
-          </button>
-          <button title="h3" @click="state.editor.chain().focus().toggleHeading({ level: 3 }).run()">
-            <TinyIconRichTextH3></TinyIconRichTextH3>
-          </button>
-          <button title="h4" @click="state.editor.chain().focus().toggleHeading({ level: 4 }).run()">
-            <TinyIconRichTextH4></TinyIconRichTextH4>
-          </button>
-          <button title="h5" @click="state.editor.chain().focus().toggleHeading({ level: 5 }).run()">
-            <TinyIconRichTextH5></TinyIconRichTextH5>
-          </button>
-          <button title="h6" @click="state.editor.chain().focus().toggleHeading({ level: 6 }).run()">
-            <TinyIconRichTextH6></TinyIconRichTextH6>
-          </button>
-        </div>
-      </button>
-      <button title="subscript" @click="state.editor.chain().focus().toggleSubscript().run()"
-        :class="{ 'is-active': state.editor?.isActive('subscript') }">
-        <TinyIconRichTextSubscript></TinyIconRichTextSubscript>
-      </button>
-      <button title="superscript" @click="state.editor.chain().focus().toggleSuperscript().run()"
-        :class="{ 'is-active': state.editor?.isActive('superscript') }">
-        <TinyIconRichTextSuperscript></TinyIconRichTextSuperscript>
-      </button>
-      <!-- 无序列表 -->
-      <button title="code" @click="state.editor.chain().focus().toggleCode().run()">
-        <TinyIconRichTextCodeView></TinyIconRichTextCodeView>
-      </button>
-      <button title="unordered list" @click.stop="state.editor.chain().focus().toggleBulletList().run()">
-        <TinyIconRichTextListUnordered></TinyIconRichTextListUnordered>
-      </button>
-      <button title="ordered list" @click="state.editor.chain().focus().toggleOrderedList().run()">
-        <TinyIconRichTextListOrdered></TinyIconRichTextListOrdered>
-      </button>
-      <button @click="state.editor.chain().focus().toggleTaskList().run()"
-        :class="{ 'is-active': state.editor?.isActive('taskList') }">
-        <TinyIconRichTextTaskList></TinyIconRichTextTaskList>
-      </button>
-      <button title="quote" @click="state.editor.chain().focus().toggleBlockquote().run()">
-        <TinyIconRichTextQuoteText></TinyIconRichTextQuoteText>
-      </button>
-      <button title="code block" @click="state.editor.chain().focus().toggleCodeBlock().run()">
-        <TinyIconRichTextCodeBlock></TinyIconRichTextCodeBlock>
-      </button>
-      <button title="format clear" @click="state.editor.chain().focus().unsetAllMarks().run()">
-        <TinyIconRichTextFormatClear></TinyIconRichTextFormatClear>
-      </button>
-      <button title="node delete" @click="state.editor.chain().focus().clearNodes().run()">
-        <TinyIconRichTextNodeDelete></TinyIconRichTextNodeDelete>
-      </button>
-      <button title="undo" @click="state.editor.chain().focus().undo().run()">
-        <TinyIconRichTextUndo></TinyIconRichTextUndo>
-      </button>
-      <button title="redo" @click="state.editor.chain().focus().redo().run()">
-        <TinyIconRichTextRedo></TinyIconRichTextRedo>
-      </button>
-      <!-- 图片 -->
-      <button title="img" class="image-button">
-        <input @change="handleChange" id="img-btn" :placeholder="'啊飒飒'" type="file" accept="image/*" />
-        <label for="img-btn">
-          <TinyIconRichTextImage></TinyIconRichTextImage>
-        </label>
-      </button>
-      <!-- 文本对齐 -->
-      <button @click="state.editor.chain().focus().setTextAlign('left').run()"
-        :class="{ 'is-active': state.editor?.isActive({ textAlign: 'left' }) }">
-        <TinyIconRichTextAlignLeft></TinyIconRichTextAlignLeft>
-      </button>
-      <button @click="state.editor.chain().focus().setTextAlign('center').run()"
-        :class="{ 'is-active': state.editor?.isActive({ textAlign: 'center' }) }">
-        <TinyIconRichTextAlignCenter></TinyIconRichTextAlignCenter>
-      </button>
-      <button @click="state.editor.chain().focus().setTextAlign('right').run()"
-        :class="{ 'is-active': state.editor?.isActive({ textAlign: 'right' }) }">
-        <TinyIconRichTextAlignRight></TinyIconRichTextAlignRight>
-      </button>
-      <!-- 颜色 -->
-      <button title="color" class="color-button">
-        <label for="tiny-color">
-          <TinyIconRichTextColor></TinyIconRichTextColor>
-        </label>
-        <input id="tiny-color" type="color" @input="state.editor.chain().focus().setColor($event.target.value).run()"
-          :value="state.editor?.getAttributes('textStyle').color" />
-      </button>
-      <!-- 表格功能按钮 -->
-      <button title="table" class="table-button">
-        <div class="table-box" @click="handleClick">
-          <div class="table-icon">
-            <TinyIconRichTextTable></TinyIconRichTextTable>
+      <template v-for="item in toolBar">
+        <button v-if="(item.name ?? item) === 'font-size'" class="font-size-box">
+          <TinyIconRichTextFontSize></TinyIconRichTextFontSize>
+          <div class="font-size-options">
+            <button @click="handleFontSize(12)">12px</button>
+            <button @click="handleFontSize(14)">14px</button>
+            <button @click="handleFontSize(16)">16px</button>
+            <button @click="handleFontSize(18)">18px</button>
+            <button @click="handleFontSize(20)">20px</button>
+            <button @click="handleFontSize(24)">24px</button>
+            <button @click="handleFontSize(30)">30px</button>
           </div>
-          <div class="table-option" ref="box" v-if="state.isShow" @mousemove="handleMove">
-            <div class="item" :class="{ isActive: 1 <= state.flagX && 1 <= state.flagY }"></div>
-            <div class="item" :class="{ isActive: 2 <= state.flagX && 1 <= state.flagY }"></div>
-            <div class="item" :class="{ isActive: 3 <= state.flagX && 1 <= state.flagY }"></div>
-            <div class="item" :class="{ isActive: 1 <= state.flagX && 2 <= state.flagY }"></div>
-            <div class="item" :class="{ isActive: 2 <= state.flagX && 2 <= state.flagY }"></div>
-            <div class="item" :class="{ isActive: 3 <= state.flagX && 2 <= state.flagY }"></div>
-            <div class="item" :class="{ isActive: 1 <= state.flagX && 3 <= state.flagY }"></div>
-            <div class="item" :class="{ isActive: 2 <= state.flagX && 3 <= state.flagY }"></div>
-            <div class="item" :class="{ isActive: 3 <= state.flagX && 3 <= state.flagY }"></div>
+        </button>
+        <button v-else-if="(item.name ?? item) === 'line-hight'" class="line-height-button" title="line height">
+          <div class="line-height-icon">
+            <TinyIconRichTextLineHeight></TinyIconRichTextLineHeight>
           </div>
-        </div>
-      </button>
+          <div class="line-height-options">
+            <button class="line-1.0" @click.stop="state.editor.chain().focus().setP({ level: 1 }).run()">1.0</button>
+            <button class="line-1.5" @click.stop="state.editor.chain().focus().setP({ level: 1.5 }).run()">1.5</button>
+            <button class="line-2.0" @click.stop="state.editor.chain().focus().setP({ level: 2 }).run()">2.0</button>
+            <button class="line-2.5" @click.stop="state.editor.chain().focus().setP({ level: 2.5 }).run()">2.5</button>
+          </div>
+        </button>
+        <button v-else-if="(item.name ?? item) === 'h-box'" class="h-box">
+          <div class="h-ico">
+            <TinyIconRichTextHeading></TinyIconRichTextHeading>
+          </div>
+          <div class="h-options">
+            <button title="paragraph" @click="state.editor.chain().focus().setParagraph().run()">
+              <TinyIconRichTextParagraph></TinyIconRichTextParagraph>
+            </button>
+            <button title="h1" @click="state.editor.chain().focus().toggleHeading({ level: 1 }).run()">
+              <TinyIconRichTextH1></TinyIconRichTextH1>
+            </button>
+            <button title="h2" @click="state.editor.chain().focus().toggleHeading({ level: 2 }).run()">
+              <TinyIconRichTextH2></TinyIconRichTextH2>
+            </button>
+            <button title="h3" @click="state.editor.chain().focus().toggleHeading({ level: 3 }).run()">
+              <TinyIconRichTextH3></TinyIconRichTextH3>
+            </button>
+            <button title="h4" @click="state.editor.chain().focus().toggleHeading({ level: 4 }).run()">
+              <TinyIconRichTextH4></TinyIconRichTextH4>
+            </button>
+            <button title="h5" @click="state.editor.chain().focus().toggleHeading({ level: 5 }).run()">
+              <TinyIconRichTextH5></TinyIconRichTextH5>
+            </button>
+            <button title="h6" @click="state.editor.chain().focus().toggleHeading({ level: 6 }).run()">
+              <TinyIconRichTextH6></TinyIconRichTextH6>
+            </button>
+          </div>
+        </button>
+        <button v-else-if="(item.name ?? item) === 'img'" title="img" class="image-button">
+          <input @change="handleChange" id="img-btn" :placeholder="'啊飒飒'" type="file" accept="image/*" />
+          <label for="img-btn">
+            <TinyIconRichTextImage></TinyIconRichTextImage>
+          </label>
+        </button>
+        <button v-else-if="(item.name ?? item) === 'color'" title="color" class="color-button">
+          <label for="tiny-color">
+            <TinyIconRichTextColor></TinyIconRichTextColor>
+          </label>
+          <input id="tiny-color" type="color" @input="state.editor.chain().focus().setColor($event.target.value).run()"
+            :value="state.editor?.getAttributes('textStyle').color" />
+        </button>
+        <button v-else-if="(item.name ?? item) === 'table'" title="table" class="table-button">
+          <div class="table-box" @click="handleClick">
+            <div class="table-icon">
+              <TinyIconRichTextTable></TinyIconRichTextTable>
+            </div>
+            <div class="table-option" ref="box" v-if="state.isShow" @mousemove="handleMove">
+              <div class="item" :class="{ isActive: 1 <= state.flagX && 1 <= state.flagY }"></div>
+              <div class="item" :class="{ isActive: 2 <= state.flagX && 1 <= state.flagY }"></div>
+              <div class="item" :class="{ isActive: 3 <= state.flagX && 1 <= state.flagY }"></div>
+              <div class="item" :class="{ isActive: 1 <= state.flagX && 2 <= state.flagY }"></div>
+              <div class="item" :class="{ isActive: 2 <= state.flagX && 2 <= state.flagY }"></div>
+              <div class="item" :class="{ isActive: 3 <= state.flagX && 2 <= state.flagY }"></div>
+              <div class="item" :class="{ isActive: 1 <= state.flagX && 3 <= state.flagY }"></div>
+              <div class="item" :class="{ isActive: 2 <= state.flagX && 3 <= state.flagY }"></div>
+              <div class="item" :class="{ isActive: 3 <= state.flagX && 3 <= state.flagY }"></div>
+            </div>
+          </div>
+        </button>
+        <button v-else-if="(item.name ?? item) === 'unlink'" :title="item.name" @click="eventClick(state.editor, item)"
+          :disabled="!state.editor?.isActive(Active(item))">
+          <img v-if="item.img" :src="eventImg(item)" alt="" srcset="" />
+          <component v-else :is='eventImg(item)'></component>
+        </button>
+        <button v-else :title="item.name" @click="eventClick(state.editor, item)"
+          :class="{ 'is-active': state.editor?.isActive(Active(item)) }">
+          <img v-if="item.img" :src="eventImg(item)" alt="" srcset="" />
+          <component v-else :is='eventImg(item)'></component>
+        </button>
+      </template>
+      <!-- 插槽传出editor实例 -->
+      <slot name="toolBar" :option="state.editor"></slot>
       <BubbleMenu :editor="state.editor" :tippy-options="{ duration: 100 }" v-if="state.editor" :should-show="shouldShow"
         class="bubble-menu">
         <button title="add column before" @click="state.editor.chain().focus().addColumnBefore().run()"
@@ -310,6 +242,8 @@ lowlight.registerLanguage('html', html)
 lowlight.registerLanguage('css', css)
 lowlight.registerLanguage('js', js)
 lowlight.registerLanguage('ts', ts)
+// Placeholder
+import Placeholder from '@tiptap/extension-placeholder'
 // collaboration 包
 import Collaboration from '@tiptap/extension-collaboration'
 import * as Y from 'yjs'
@@ -319,8 +253,8 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/rich-text-editor/index.less'
 
 export default defineComponent({
-  //   emits: ['click', 'hook-updated'],
-  //   props: [...props, 'type', 'text', 'size', 'icon', 'resetTime', 'nativeType', 'loading', 'disabled', 'plain', 'autofocus', 'round', 'circle', 'tabindex'],
+  emits: ['beforeCreate', 'create', 'update:modelValue', 'focus', 'blur', 'selectionUpdate', 'transaction', 'destroy', 'update'],
+  props: [...props, 'modelValue', 'collaboration', 'placeholder', 'toolBar', 'options'],
   components: {
     EditorContent,
     BubbleMenu,
@@ -405,7 +339,8 @@ export default defineComponent({
         VueNodeViewRenderer,
         NodeViewContent,
         nodeViewProps,
-        NodeViewWrapper
+        NodeViewWrapper,
+        Placeholder
       }
     })
   }
