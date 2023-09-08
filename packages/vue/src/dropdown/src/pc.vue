@@ -103,8 +103,8 @@ export default defineComponent({
     const triggerClass = 'tiny-dropdown__trigger tiny-dropdown-trigger'
     const visibleClass = state.visible ? 'tiny-dropdown--visible tiny-dropdown-visible' : ''
 
-    const IconDown = state?.designConfig?.icons?.dropdownIcon || iconDeltaDown()
-    const ButtonIconDown = state?.designConfig?.icons?.dropdownIcon || iconDownWard()
+    const IconDown = state.designConfig?.icons?.dropdownIcon || iconDeltaDown()
+    const ButtonIconDown = state.designConfig?.icons?.dropdownIcon || iconDownWard()
     const defaultSlot = slots.default && slots.default(params)
 
     if (splitButton) {
