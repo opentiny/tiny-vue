@@ -268,8 +268,8 @@ export const handleDrag =
 
       let offsetWidth = modalBoxElem.offsetWidth
       let offsetHeight = modalBoxElem.offsetHeight
-      let maxX = visibleWidth - offsetWidth
-      let maxY = visibleHeight - offsetHeight
+      let maxX = Math.max(visibleWidth - offsetWidth, 0)
+      let maxY = Math.max(visibleHeight - offsetHeight, 0)
       let left = event.clientX - disX
       let top = event.clientY - disY
 
