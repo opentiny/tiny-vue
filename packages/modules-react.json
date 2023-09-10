@@ -1,0 +1,51 @@
+{
+  "Alert": {
+    "path": "react/src/alert/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "pc"
+    ]
+  },
+  "AlertMobileFirst": {
+    "path": "react/src/alert/src/mobile-first.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "AlertPc": {
+    "path": "react/src/alert/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Button": {
+    "path": "react/src/button/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "mobile",
+      "pc"
+    ]
+  },
+  "ButtonMobile": {
+    "path": "react/src/button/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "ButtonMobileFirst": {
+    "path": "react/src/button/src/mobile-first.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "ButtonPc": {
+    "path": "react/src/button/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Icon": {
+    "path": "react-icon/index.ts",
+    "type": "module",
+    "exclude": false
+  }
+}

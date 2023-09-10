@@ -1,5 +1,5 @@
 {
-  "name": "@opentiny/react-button",
+  "name": "@opentiny/react-alert",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
@@ -11,9 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~",
     "@opentiny/react-common": "workspace:~",
     "@opentiny/react-icon": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~"
+    "@opentiny/vue-theme": "workspace:~"
   }
 }

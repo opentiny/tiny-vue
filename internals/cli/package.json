@@ -44,7 +44,10 @@
     "sync-icons": "esno src/commands/create/sync-icons.ts",
     "create:icon-saas": "esno src/index.ts create:icon-saas",
     "clean:build": "esno src/commands/clean.ts",
-    "create:mapping": "esno src/commands/create/create-mapping.ts"
+    "create:mapping": "esno src/commands/create/create-mapping.ts",
+    "build:entry-react": "esno src/index.ts build:entry-react",
+    "create:mapping-react": "esno src/commands/create/create-mapping-react.ts",
+    "build:react": "esno src/index.ts build:react"
   },
   "dependencies": {
     "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
