@@ -1,7 +1,7 @@
 ---
-title: TimePicker Time Selector
+title: TimePicker
 ---
 
-# TimePicker Time Selector
+# TimePicker
 
-<div>This command is used to set or select a date, including the date format of year, month, month, day, hour, minute, and second.</div>
+<div>Used to select time (hours, minutes and seconds).</div>
