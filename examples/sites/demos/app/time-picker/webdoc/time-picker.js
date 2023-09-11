@@ -202,14 +202,42 @@ export default {
       'type': 'component',
       'properties': [
         {
-          'name': 'modelValue / v-model',
-          'type': 'date(DatePicker) / array(DateRangePicker)',
+          'name': 'arrow-control',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 false',
+          'desc': {
+            'zh-CN': '是否使用箭头进行时间选择，仅对<tiny-time-picker>有效',
+            'en-US': 'Class name of the TimePicker drop-down list box'
+          },
+          'demoId': 'clearable'
+        },
+        {
+          'name': 'clearable',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 true',
+          'desc': { 'zh-CN': '是否显示清除按钮', 'en-US': 'Display Clear Button' },
+          'demoId': 'clearable'
+        },
+        {
+          'name': 'clear-icon',
+          'type': 'String',
+          'defaultValue': '该属性的默认值为 IconOperationfaild',
+          'desc': {
+            'zh-CN': '自定义清空图标',
+            'en-US':
+              'Indicates whether to insert a pop-up box to the body element. If a fault occurs in locating the fault in the dialog box that is displayed, you can set this attribute to false'
+          },
+          'demoId': 'clear-icon'
+        },
+        {
+          'name': 'default-value',
+          'type': 'Date',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '日期选择器选中的日期值，可设置选择器的初始值',
-            'en-US': 'Date value selected by the date selector. You can set the initial value of the selector.'
+            'zh-CN': '可选，当选中的日期值为空时，选择器面板打开时默认显示的时间，需设置为可被new Date()解析的值',
+            'en-US': 'Native attribute'
           },
-          'demoId': 'basic-usage'
+          'demoId': 'default-value'
         },
         {
           'name': 'disabled',
@@ -226,11 +254,87 @@ export default {
           'demoId': 'editable'
         },
         {
-          'name': 'clearable',
+          'name': 'end-placeholder',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '范围选择时结束日期的占位内容',
+            'en-US': 'Placeholder of the end date when the range is selected'
+          },
+          'demoId': 'size-medium'
+        },
+        {
+          'name': 'is-range',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 false',
+          'desc': {
+            'zh-CN': '是否为时间范围选择，仅对<tiny-time-picker>有效',
+            'en-US':
+              'Indicates whether to use arrows to select time. This parameter is valid only for <tiny-time-picker>.'
+          },
+          'demoId': 'is-range'
+        },
+        {
+          'name': 'modelValue / v-model',
+          'type': 'date(DatePicker) / array(DateRangePicker)',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '日期选择器选中的日期值，可设置选择器的初始值',
+            'en-US': 'Date value selected by the date selector. You can set the initial value of the selector.'
+          },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'name',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '原生 input <code>name</code> 属性', 'en-US': 'Native input <code>name</code> attribute' },
+          'demoId': 'name'
+        },
+        {
+          'name': 'picker-options',
+          'type': 'Object',
+          'defaultValue': '该属性的默认值为 {}',
+          'desc': { 'zh-CN': '当前时间日期选择器特有的选项参考下表', 'en-US': 'Separator for selecting a range' },
+          'demoId': 'basic-usage1'
+        },
+        {
+          'name': 'placeholder',
+          'type': 'String',
+          'defaultValue': '该属性的默认值为空',
+          'desc': { 'zh-CN': '非范围选择时的占位内容', 'en-US': 'Placeholder content for non-range selection' },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'popper-append-to-body',
           'type': 'Boolean',
           'defaultValue': '该属性的默认值为 true',
-          'desc': { 'zh-CN': '是否显示清除按钮', 'en-US': 'Display Clear Button' },
-          'demoId': 'clearable'
+          'desc': {
+            'zh-CN': '是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false',
+            'en-US': ''
+          },
+          'demoId': ''
+        }
+        {
+          'name': 'popper-class',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': 'TimePicker 下拉框的 class 类名',
+            'en-US': 'The following table lists the options of the current time and date selector.'
+          },
+          'demoId': 'popper-class'
+        },
+        {
+          'name': 'range-separator',
+          'type': 'String',
+          'defaultValue': '该属性的默认值为 - ',
+          'desc': {
+            'zh-CN': '选择范围时的分隔符',
+            'en-US':
+              'Optional. When the selected date is empty, the time displayed by default when the selector panel is opened. Set it to a value that can be parsed by new Date().'
+          },
+          'demoId': 'is-range'
         },
         {
           'name': 'size',
@@ -243,29 +347,12 @@ export default {
           'demoId': 'size-medium'
         },
         {
-          'name': 'placeholder',
-          'type': 'String',
-          'defaultValue': '该属性的默认值为空',
-          'desc': { 'zh-CN': '非范围选择时的占位内容', 'en-US': 'Placeholder content for non-range selection' },
-          'demoId': 'basic-usage'
-        },
-        {
           'name': 'start-placeholder',
           'type': 'String',
           'defaultValue': '',
           'desc': {
             'zh-CN': '范围选择时开始日期的占位内容',
             'en-US': 'Placeholder of the start date when the range is selected'
-          },
-          'demoId': 'size-medium'
-        },
-        {
-          'name': 'end-placeholder',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '范围选择时结束日期的占位内容',
-            'en-US': 'Placeholder of the end date when the range is selected'
           },
           'demoId': 'size-medium'
         },
@@ -280,101 +367,24 @@ export default {
           'demoId': 'step'
         },
         {
-          'name': 'is-range',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': {
-            'zh-CN': '是否为时间范围选择，仅对<tiny-time-picker>有效',
-            'en-US':
-              'Indicates whether to use arrows to select time. This parameter is valid only for <tiny-time-picker>.'
-          },
-          'demoId': 'is-range'
-        },
-        {
-          'name': 'arrow-control',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': {
-            'zh-CN': '是否使用箭头进行时间选择，仅对<tiny-time-picker>有效',
-            'en-US': 'Class name of the TimePicker drop-down list box'
-          },
-          'demoId': 'clearable'
-        },
-        {
-          'name': 'popper-class',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': 'TimePicker 下拉框的 class 类名',
-            'en-US': 'The following table lists the options of the current time and date selector.'
-          },
-          'demoId': 'popper-class'
-        },
-        {
-          'name': 'picker-options',
-          'type': 'Object',
-          'defaultValue': '该属性的默认值为 {}',
-          'desc': { 'zh-CN': '当前时间日期选择器特有的选项参考下表', 'en-US': 'Separator for selecting a range' },
-          'demoId': 'basic-usage1'
-        },
-        {
-          'name': 'range-separator',
-          'type': 'String',
-          'defaultValue': '该属性的默认值为 - ',
-          'desc': {
-            'zh-CN': '选择范围时的分隔符',
-            'en-US':
-              'Optional. When the selected date is empty, the time displayed by default when the selector panel is opened. Set it to a value that can be parsed by new Date().'
-          },
-          'demoId': 'is-range'
-        },
-        {
-          'name': 'default-value',
-          'type': 'Date',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '可选，当选中的日期值为空时，选择器面板打开时默认显示的时间，需设置为可被new Date()解析的值',
-            'en-US': 'Native attribute'
-          },
-          'demoId': 'default-value'
-        },
-        {
-          'name': 'name',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '原生属性', 'en-US': 'Class name of the customized header icon' },
-          'demoId': 'name'
-        },
-        {
           'name': 'suffix-icon',
           'type': 'String',
           'defaultValue': '该自定后置图标， 该属性的默认值为 IconCalendar',
           'desc': { 'zh-CN': '自定义头部图标的类名', 'en-US': 'Custom Clear Icon' },
           'demoId': 'suffix-icon'
         },
-        {
-          'name': 'clear-icon',
-          'type': 'String',
-          'defaultValue': '该属性的默认值为 IconOperationfaild',
-          'desc': {
-            'zh-CN': '自定义清空图标',
-            'en-US':
-              'Indicates whether to insert a pop-up box to the body element. If a fault occurs in locating the fault in the dialog box that is displayed, you can set this attribute to false'
-          },
-          'demoId': 'clear-icon'
-        },
-        {
-          'name': 'popper-append-to-body',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 true',
-          'desc': {
-            'zh-CN': '是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false',
-            'en-US': ''
-          },
-          'demoId': ''
-        }
       ],
       'events': [
+        {
+          'name': 'blur',
+          'type': 'Function(arg)',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '当 input 失去焦点时触发;arg:{Object 时间组件Vue对象}',
+            'en-US': 'This event is triggered when the input loses focus. arg:{Object Time Component Vue Object}'
+          },
+          'demoId': 'event-blur'
+        },
         {
           'name': 'change',
           'type': 'Function(arg)',
@@ -384,16 +394,6 @@ export default {
               '用户确认选定的值时触发;arg:{Date|Array 非范围选择时，是当前选定值的时间对象；范围选择时，是当前选定值的时间对象数组}',
             'en-US':
               'This event is triggered when the user confirms the selected value. arg:{Date|Array is the time object of the currently selected value when it is not selected in a range. When the range is selected, it is the time object array of the currently selected value}'
-          },
-          'demoId': 'event-blur'
-        },
-        {
-          'name': 'blur',
-          'type': 'Function(arg)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '当 input 失去焦点时触发;arg:{Object 时间组件Vue对象}',
-            'en-US': 'This event is triggered when the input loses focus. arg:{Object Time Component Vue Object}'
           },
           'demoId': 'event-blur'
         },
