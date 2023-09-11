@@ -16,7 +16,8 @@
     "types": [
       "node",
       "vite/client"
-    ]
+    ],
+    "jsx": "react-jsx"
   },
   "include": [
     "packages/**/*.ts",

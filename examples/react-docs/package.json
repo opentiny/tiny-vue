@@ -14,7 +14,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "@opentiny/react-icon": "workspace:~",
-    "@opentiny/react-common": "workspace:~"
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",

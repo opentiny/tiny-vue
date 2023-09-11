@@ -300,7 +300,7 @@ const getReactPlugins = (reactVersion: string) => {
       const react18Plugin = requireModules('examples/react-docs/node_modules/@vitejs/plugin-react')
       const react18SvgPlugin = svgr
 
-      return [react18Plugin, react18SvgPlugin]
+      return [react18Plugin(), react18SvgPlugin()]
     }
   }
 
@@ -311,7 +311,6 @@ function getBaseConfig({
   dtsInclude,
   dts
 }) {
-
   return defineConfig({
     publicDir: false,
     resolve: {
@@ -338,7 +337,6 @@ async function batchBuild({
   logGreen(`====== 开始构建 ${message} ======`)
   const entry = toEntry(tasks)
   const dtsInclude = toTsInclued(tasks)
-  console.log(entry)
   await build({
     ...getBaseConfig({ dtsInclude, dts }),
     configFile: false,
@@ -356,10 +354,35 @@ async function batchBuild({
           strict: false,
           manualChunks: {}
         },
-        external: [
-          'react',
-          /^@opentiny/
-        ]
+        external: (source, importer, isResolved) => {
+          // vite打包入口文件或者没有解析过得包不能排除依赖
+          if (isResolved || !importer) {
+            return false
+          }
+
+          // 图标入口排除子图标
+          if (/react-icon\/index/.test(importer)) {
+            return /^\.\//.test(source)
+          }
+
+          // 子图标排除周边引用, 这里注意不要排除svg图标
+          if (/react-icon\/.+\/index/.test(importer)) {
+            return !/\.svg/.test(source)
+          }
+
+          // todo: 绕开
+          if (/src\/index/.test(importer)) {
+            // 模块入口，pc/mobile 文件要分离，同时排除 node_modules 依赖
+            return /^\.\/(pc|mobile|mobile-first)/.test(source) || external(source)
+          }
+
+          // @opentiny/vue 总入口，需要排除所有依赖
+          if (/react\/(index|pc|mobile|mobile-first)\.ts$/.test(importer)) {
+            return true
+          }
+
+          return external(source)
+        },
       },
       lib: {
         entry,
