@@ -9,6 +9,8 @@ import dtsPlugin from 'vite-plugin-dts'
 import type { Plugin, NormalizedOutputOptions, OutputBundle } from 'rollup'
 import fs from 'node:fs'
 import { sync as findUpSync } from 'find-up'
+import svgr from 'vite-plugin-svgr'
+import { requireModules } from './build-ui'
 
 const moduleMap = require(pathFromWorkspaceRoot('packages/modules-react.json'))
 type mode = 'pc' | 'mobile' | 'mobile-first'
@@ -284,6 +286,26 @@ function generatePackageJson({ beforeWriteFile }): Plugin {
   }
 }
 
+const getComponentAlias = (alias = {}) => {
+  getAllModules().forEach((item) => {
+    if (item.type === 'component')
+      alias[item.importName] = pathFromWorkspaceRoot('packages', item.path)
+  })
+  return alias
+}
+
+const getReactPlugins = (reactVersion: string) => {
+  const pluginMap = {
+    '18': () => {
+      const react18Plugin = requireModules('examples/react-docs/node_modules/@vitejs/plugin-react')
+      const react18SvgPlugin = svgr
+
+      return [react18Plugin, react18SvgPlugin]
+    }
+  }
+
+  return pluginMap[reactVersion]()
+}
 
 function getBaseConfig({
   dtsInclude,
@@ -293,23 +315,13 @@ function getBaseConfig({
   return defineConfig({
     publicDir: false,
     resolve: {
-      extensions: ['.js', '.ts', '.tsx', '.vue'],
+      extensions: ['.js', '.ts', '.tsx', '.jsx'],
     },
     define: {
       'process.env.BUILD_TARGET': JSON.stringify('component')
     },
     plugins: [
-      dts && dtsPlugin({
-        root: pathFromWorkspaceRoot(),
-        tsconfigPath: `tsconfig.react.json`,
-        aliasesExclude: [/@opentiny\/react.+/],
-        compilerOptions: {
-          paths: {
-            'react': [`packages/react/node_modules/react`]
-          }
-        },
-        include: [...dtsInclude, 'packages/react/*.d.ts']
-      })
+      ...getReactPlugins('18')
     ]
   })
 }
@@ -326,7 +338,7 @@ async function batchBuild({
   logGreen(`====== 开始构建 ${message} ======`)
   const entry = toEntry(tasks)
   const dtsInclude = toTsInclued(tasks)
-  console.log(outDir)
+  console.log(entry)
   await build({
     ...getBaseConfig({ dtsInclude, dts }),
     configFile: false,
@@ -340,33 +352,14 @@ async function batchBuild({
             presets: [['@babel/preset-env', { loose: true, modules: false }]]
           }) as any
         ],
-        external: (source, importer, isResolved) => {
-          // vite打包入口文件或者没有解析过得包不能排除依赖
-          if (isResolved || !importer) {
-            return false
-          }
-
-          // 图标入口排除子图标
-          if (/react-icon\/index/.test(importer)) {
-            return /^\.\//.test(source)
-          }
-
-          if (/src\/index/.test(importer)) {
-            // 模块入口，pc/mobile 文件要分离，同时排除 node_modules 依赖
-            return /^\.\/(pc|mobile|mobile-first)/.test(source) || external(source)
-          }
-
-          // @opentiny/vue 总入口，需要排除所有依赖
-          if (/react\/(index|pc|mobile|mobile-first)\.ts$/.test(importer)) {
-            return true
-          }
-
-          return external(source)
-        },
         output: {
           strict: false,
           manualChunks: {}
-        }
+        },
+        external: [
+          'react',
+          /^@opentiny/
+        ]
       },
       lib: {
         entry,
@@ -397,7 +390,6 @@ async function batchBuildAll({
     outDir
   })
 }
-
 
 export async function buildReact(
   names: string[] = [],

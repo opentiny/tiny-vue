@@ -7,11 +7,15 @@ import { Reactive } from './reactive.js'
 import { emit, on, off, once } from './event.js'
 
 const vmProxy = {
-  $parent: ({ fiber }) => createVmProxy(
-    creatFiberCombine(
-      getParentFiber(fiber)
+  $parent: ({ fiber }) => {
+    const parentFiber = getParentFiber(fiber)
+    if (!parentFiber) return null
+    return createVmProxy(
+      creatFiberCombine(
+        parentFiber
+      )
     )
-  ),
+  },
   $el: ({ fiber }) => fiber.child?.stateNode,
   $refs: ({ refs, fiber }) => createRefsProxy(refs, fiber.constructor),
   $children: ({ children }) => children.map((fiber) => createVmProxy(

@@ -1,30 +1,19 @@
-import ButtonExample from './ButtonExample'
-import { useState, useEffect } from 'react'
-import { useNextTick } from '@opentiny/react-common'
+import { Alert, Button } from '@opentiny/react'
 
 function App() {
-  const [text, setText] = useState('默认文字')
-  const changeHandler = ({ target: { value } }) => {
-    setText(value)
-    useNextTick(() => {
-      console.log(document.querySelector('#text').innerHTML)
-    })
-  }
-
   return (
-    <>
-      {/* button 组件展示 */}
-      <ButtonExample />
-      {/* react nextTick 验证 */}
-      <p>
-        <span id='text'>{text}</span>
-      </p>
-      <input
-        type="text"
-        value={text}
-        onChange={changeHandler}
-      />
-    </>
+    <div
+      className='app'
+    >
+      <Alert
+        type='success'
+        description='设置警告的提示内容，默认为空'
+        slots={{
+          description: () => '设置警告的提示内容，默认为空；'
+        }}
+      ></Alert>
+      <Button>按钮</Button>
+    </div>
   )
 }
 

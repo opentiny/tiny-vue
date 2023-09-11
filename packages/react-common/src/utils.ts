@@ -66,7 +66,7 @@ export const eventBus = () => {
  * 实现 vue 中 :class 的用法
  */
 
-function VueClassName(className) {
+export function VueClassName(className) {
   if (typeof className === 'string') {
     return className
   }
@@ -95,3 +95,16 @@ function VueClassName(className) {
 }
 
 export const vc = VueClassName
+
+export const getElementCssClass = (classes = {}, key) => {
+  if (typeof key === 'object') {
+    const keys = Object.keys(key)
+    let cls = ''
+    keys.forEach((k) => {
+      if (key[k] && classes[k]) cls += `${classes[k]} `
+    })
+    return cls
+  } else {
+    return classes[key] || ''
+  }
+}

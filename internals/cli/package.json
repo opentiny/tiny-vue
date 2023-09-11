@@ -54,6 +54,7 @@
     "esno": "^0.16.3",
     "fast-glob": "^3.2.12",
     "vite-plugin-dts": "^2.3.0",
-    "vite-svg-loader": "^3.6.0"
+    "vite-svg-loader": "^3.6.0",
+    "vite-plugin-svgr": "^3.2.0"
   }
 }

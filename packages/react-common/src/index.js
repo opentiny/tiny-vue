@@ -1,114 +1,96 @@
 import * as hooks from 'react'
-import SvgRender from './SvgRender'
+import { Svg } from './svg-render.jsx'
+
+import { nextTick, ref, computed, readonly, watchEffect } from './vue-hooks.js'
+import { emit, on, off, once, emitEvent } from './event.js'
+import { If, Component, Slot, For, Transition } from './virtual-comp.jsx'
+import { filterAttrs, vc, getElementCssClass } from './utils.ts'
+import { useFiber } from './fiber'
+import { useVm } from './vm'
+import { useReactive } from './reactive'
+import { twMerge } from 'tailwind-merge'
+import { stringifyCssClass } from './csscls.ts'
+
 import '@opentiny/vue-theme/base/index.less'
 
-const {
-  useState,
-  useCallback
-} = hooks
-
-export const emit = (props) => (evName, ...args) => {
-  if (props[evName] && typeof props[evName] === 'function') {
-    props[evName](...args)
-  }
-}
-
-export const useSetState = (
-  initialState
-) => {
-  const [state, setState] = useState(initialState)
-
-  const setMergeState = useCallback((patch) => {
-    setState((prevState) => { // 参数取之前的对象，用 展开运算符合并 新旧属性
-      const newState = typeof patch === 'function' ? patch(prevState) : patch
-      return newState ? { ...prevState, ...newState } : prevState
-    })
-  }, [])
-
-  return [state, setMergeState]
-}
-
-// props 应该不用做处理， props 都是 . 访问。
-export const useReactive = (staticObject) => {
-  const [state, setMergeState] = useSetState(staticObject)
-
-  // todo: 考虑 vue 对某些操作的封装，如 array.push
-  return new Proxy(state, {
-    get(
-      target,
-      property,
-    ) {
-      if (typeof target[property] === 'function') {
-        // 模拟 computed
-        return target[property](target)
-      }
-      else {
-        return target[property]
-      }
-    },
-    set(
-      target,
-      property,
-      value
-    ) {
-      setMergeState({
-        [property]: value
-      })
-      return true
-    }
-  })
-}
-
-// nextTick， 等待 dom 更新后触发回调
-export const useNextTick = (callback) => {
-  queueMicrotask(callback)
-}
+const vue_hooks = { nextTick, ref, computed, readonly, watchEffect }
 
 // emitEvent, dispath, broadcast
-export const emitEvent = () => {
-  const broadcast = () => {
-    return ''
-  }
+export const $prefix = 'Tiny'
 
-  return {
-    dispatch: () => {
-      return ''
-    },
-    broadcast
-  }
-}
+export const mergeClass = (...cssClasses) => twMerge(stringifyCssClass(cssClasses))
 
 export const useSetup = ({
   props,
   // context,
   renderless,
-  // api,
+  api,
   extendOptions = {},
   // mono = false,
-  // classes = {}
+  classes = {},
+  constants,
+  vm,
+  parent
 }) => {
   const render = typeof props.tiny_renderless === 'function' ? props.tiny_renderless : renderless
+  const { dispath, broadcast } = emitEvent(vm)
+
   const utils = {
-    parent: {},
-    emit: emit(props)
+    vm,
+    parent,
+    emit: emit(props),
+    constants,
+    nextTick,
+    dispath,
+    broadcast,
+    t() { },
+    mergeClass
   }
   const sdk = render(
     props,
-    { ...hooks, useReactive, useNextTick },
+    { ...hooks, useReactive, ...vue_hooks },
     utils,
     extendOptions
   )
-  return {
-    ...sdk,
-    type: props.type ?? 'default'
+  const attrs = {
+    a: filterAttrs,
+    m: mergeClass,
+    vm: utils.vm,
+    gcls: (key) => getElementCssClass(classes, key),
   }
+
+  if (Array.isArray(api)) {
+    api.forEach((name) => {
+      const value = sdk[name]
+
+      if (typeof value !== 'undefined') {
+        attrs[name] = value
+      }
+    })
+  }
+
+  return attrs
 }
 
-// react-svg 组件
-export const Svg = ({ name = 'Icon', component }) => {
-  return (
-    props
-  ) => {
-    return SvgRender(component, props)
-  }
+export {
+  Svg,
+  vc,
+  If,
+  Component,
+  Slot,
+  For,
+  Transition,
+  emit,
+  on,
+  off,
+  once,
+  emitEvent,
+  useVm,
+  nextTick,
+  useFiber,
+  ref,
+  computed,
+  readonly,
+  watchEffect,
+  useReactive
 }
