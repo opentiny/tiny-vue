@@ -19,9 +19,9 @@ program
   .description('同步生成 icon-saas')
   .action(createIconSaas)
 
-program.command('build:entry').description('生成组件库入口').action(buildEntry)
-
 program.command('build:entry-react').description('生成 react 组件库入口').action(buildEntryReact)
+
+program.command('build:entry').description('生成组件库入口').action(buildEntry)
 
 program
   .command('build:ui')

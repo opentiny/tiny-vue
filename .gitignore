@@ -4,6 +4,7 @@ dist/
 dist2/
 dist2.7/
 dist3/
+dist-react/
 allDist/
 packages/**/runtime
 coverage/
@@ -12,6 +13,11 @@ coverage/
 /packages/vue/pc.ts
 /packages/vue/mobile.ts
 /packages/vue/app.ts
+
+/packages/react/index.ts
+/packages/react/pc.ts
+/packages/react/mobile.ts
+/packages/react/app.ts
 
 /examples/**/playwright-report
 vite.config.ts.timestamp*

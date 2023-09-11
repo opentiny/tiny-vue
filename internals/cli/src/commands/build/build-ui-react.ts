@@ -10,8 +10,6 @@ import type { Plugin, NormalizedOutputOptions, OutputBundle } from 'rollup'
 import fs from 'node:fs'
 import { sync as findUpSync } from 'find-up'
 
-console.log(pathFromWorkspaceRoot(), 'asdasd')
-
 const moduleMap = require(pathFromWorkspaceRoot('packages/modules-react.json'))
 type mode = 'pc' | 'mobile' | 'mobile-first'
 
