@@ -1,14 +1,10 @@
 <template>
-  <div>
-    <tiny-time-picker
-      v-model="value1"
-      :picker-options="{ selectableRange: '18:30:00 - 20:30:00' }"
-      placeholder="任意时间点"
-    ></tiny-time-picker>
+  <div class="demo-date-picker-wrap">
+    <tiny-time-picker v-model="value1"></tiny-time-picker>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { TimePicker } from '@opentiny/vue'
 
 export default {
@@ -22,3 +18,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-date-picker-wrap {
+  width: 182px;
+}
+</style>

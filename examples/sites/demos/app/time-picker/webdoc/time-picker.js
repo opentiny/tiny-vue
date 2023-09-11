@@ -194,7 +194,7 @@ export default {
         'en-US': ''
       },
       'codeFiles': ['event-blur.vue']
-    }
+    },
   ],
   apis: [
     {
@@ -314,7 +314,7 @@ export default {
             'en-US': ''
           },
           'demoId': ''
-        }
+        },
         {
           'name': 'popper-class',
           'type': 'String',
