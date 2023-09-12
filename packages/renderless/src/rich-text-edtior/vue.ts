@@ -1,11 +1,69 @@
-import { handleChange, setLink, handleMove, handleClickOutside, removeClickOutside, handleClick, shouldShow, handleFontSize, eventImg, eventClick, Active } from './index'
+import {
+  handleChange,
+  setLink,
+  handleMove,
+  handleClickOutside,
+  removeClickOutside,
+  handleClick,
+  shouldShow,
+  handleFontSize,
+  eventImg,
+  eventClick,
+  Active
+} from './index'
 import Codehighlight from './code-highlight'
-export const api = ['toolBar', 'state', 'setLink', 'handleChange', 'box', 'handleMove', 'handleClickOutside', 'removeClickOutside', 'handleClick', 'shouldShow', 'handleFontSize', 'fontSize', 'eventImg', 'eventClick', 'Active']
+export const api = [
+  'toolBar',
+  'state',
+  'setLink',
+  'handleChange',
+  'box',
+  'handleMove',
+  'handleClickOutside',
+  'removeClickOutside',
+  'handleClick',
+  'shouldShow',
+  'handleFontSize',
+  'fontSize',
+  'eventImg',
+  'eventClick',
+  'Active'
+]
 export const renderless = (
   props,
   { computed, onMounted, onBeforeUnmount, reactive, ref },
   { vm, emit, parent },
-  { useEditor, Collaboration, Y, WebrtcProvider, StarterKit, Table, TableCell, TableHeader, TableRow, Color, TextStyle, Image, Highlight, Link, Underline, Subscript, Superscript, TaskItem, TaskList, TextAlign, Paragraph, mergeAttributes, CodeBlockLowlight, lowlight, VueNodeViewRenderer, NodeViewContent, nodeViewProps, NodeViewWrapper, Placeholder }
+  {
+    useEditor,
+    Collaboration,
+    Y,
+    WebrtcProvider,
+    StarterKit,
+    Table,
+    TableCell,
+    TableHeader,
+    TableRow,
+    Color,
+    TextStyle,
+    Image,
+    Highlight,
+    Link,
+    Underline,
+    Subscript,
+    Superscript,
+    TaskItem,
+    TaskList,
+    TextAlign,
+    Paragraph,
+    mergeAttributes,
+    CodeBlockLowlight,
+    lowlight,
+    VueNodeViewRenderer,
+    NodeViewContent,
+    nodeViewProps,
+    NodeViewWrapper,
+    Placeholder
+  }
 ) => {
   let toolBar = [
     'bold',
@@ -31,11 +89,11 @@ export const renderless = (
     'center',
     'right',
     'font-size',
-    'line-hight',
+    'line-height',
     'h-box',
     'img',
     'color',
-    'table',
+    'table'
   ]
   if (props.customToolBar) {
     toolBar = props.customToolBar
@@ -54,45 +112,48 @@ export const renderless = (
   const CustomParagraph = Paragraph.extend({
     addOptions() {
       return {
-        levels: [1, 1.5, 2, 2.5, 3],
+        levels: [1, 1.5, 2, 2.5, 3]
       }
     },
     addAttributes() {
       return {
         level: {
-          default: 1,
-        },
+          default: 1
+        }
       }
     },
     renderHTML({ node, HTMLAttributes }) {
       const hasLevel = this.options.levels.includes(node.attrs.level)
-      const level = hasLevel
-        ? node.attrs.level
-        : this.options.levels[0]
+      const level = hasLevel ? node.attrs.level : this.options.levels[0]
       return ['p', mergeAttributes({ style: `line-height: ${level}` }, HTMLAttributes), 0]
     },
     addCommands() {
       return {
-        setP: attributes => ({ commands }) => {
-          return commands.setNode(this.name, attributes)
-        },
+        setP:
+          (attributes) =>
+          ({ commands }) => {
+            return commands.setNode(this.name, attributes)
+          }
       }
-    },
+    }
   })
   const editor = useEditor({
     extensions: [
       StarterKit?.configure({
         // 开启多人协作功能要关闭默认的history模式
-        history: false,
+        history: false
       }),
       Collaboration?.configure({
-        document: ydoc,
+        document: ydoc
       }),
       Table.configure({
-        resizable: true,
+        resizable: true
       }),
-      TableCell, TableHeader, TableRow,
-      Color, TextStyle,
+      TableCell,
+      TableHeader,
+      TableRow,
+      Color,
+      TextStyle,
       CustomImage,
       Highlight,
       Link,
@@ -101,21 +162,20 @@ export const renderless = (
       Superscript,
       TaskList,
       TaskItem.configure({
-        nested: true,
+        nested: true
       }),
       TextAlign.configure({
-        types: ['heading', 'paragraph'],
+        types: ['heading', 'paragraph']
       }),
       CustomParagraph,
       CodeBlockLowlight.extend({
         addNodeView() {
           return VueNodeViewRenderer(Codehighlight(NodeViewContent, nodeViewProps, NodeViewWrapper))
-        },
-      })
-        .configure({ lowlight }),
+        }
+      }).configure({ lowlight }),
       Placeholder.configure({
-        placeholder: props.placeholder ?? 'Write something …',
-      }),
+        placeholder: props.placeholder ?? 'Write something …'
+      })
     ],
     content: '',
     autofocus: true,
@@ -123,19 +183,19 @@ export const renderless = (
     injectCSS: false,
     // 事件
     onBeforeCreate({ editor }) {
-      console.log('Before the view is created.');
+      console.log('Before the view is created.')
       emit('beforeCreate', { editor })
     },
     onCreate({ editor }) {
-      console.log('The editor is ready');
+      console.log('The editor is ready')
       emit('create', { editor })
     },
     onUpdate({ editor }) {
       const json = editor.getJSON()
-      const html = editor.getHTML();
-      const text = editor.getText();
+      const html = editor.getHTML()
+      const text = editor.getText()
       // 可传入参数 blockSeparator 控制节点之间的连接
-      const lineText = editor.getText({ blockSeparator: "--" });
+      const lineText = editor.getText({ blockSeparator: '--' })
       // console.log(json)
       // console.log(html)
       // console.log(text)
@@ -172,7 +232,7 @@ export const renderless = (
     // table 变量
     isShow: false,
     flagX: 0,
-    flagY: 0,
+    flagY: 0
   })
   state.editor = editor
   const api = {
@@ -191,7 +251,9 @@ export const renderless = (
     //
     fontSize,
     handleFontSize: handleFontSize(fontSize),
-    eventImg, eventClick, Active
+    eventImg,
+    eventClick,
+    Active
   }
   onBeforeUnmount(() => {
     state.editor.destroy()

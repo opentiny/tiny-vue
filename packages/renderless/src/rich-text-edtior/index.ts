@@ -1,13 +1,17 @@
 export const handleChange = (editor) => {
   return (event) => {
     const file = event.target.files[0]
-    if (!file.type.match("image.*")) {
-      console.log("请选择图片文件！")
+    if (!file.type.match('image.*')) {
+      console.log('请选择图片文件！')
       return
     }
     const reader = new FileReader()
     reader.onload = function (e) {
-      editor.value.chain().focus().setImage({ src: e.target?.result }).run()
+      editor.value
+        .chain()
+        .focus()
+        .setImage({ src: e.target?.result })
+        .run()
     }
     reader.readAsDataURL(file)
   }
@@ -20,20 +24,10 @@ export const setLink = (editor) => {
       return
     }
     if (url === '') {
-      editor
-        .chain()
-        .focus()
-        .extendMarkRange('link')
-        .unsetLink()
-        .run()
+      editor.chain().focus().extendMarkRange('link').unsetLink().run()
       return
     }
-    editor
-      .chain()
-      .focus()
-      .extendMarkRange('link')
-      .setLink({ href: url })
-      .run()
+    editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
   }
 }
 // table 处理逻辑
@@ -51,7 +45,6 @@ export const handleClickOutside = (state, box) => {
       removeClickOutside(state, box)()
     }
   }
-
 }
 export const removeClickOutside = (state, box) => {
   return () => {
@@ -60,7 +53,7 @@ export const removeClickOutside = (state, box) => {
 }
 export const handleClick = (state, box) => {
   return (e) => {
-    e.stopPropagation();
+    e.stopPropagation()
     if (state.isShow) {
       if (state.flagX && state.flagY) {
         state.editor.chain().focus().insertTable({ rows: state.flagX, cols: state.flagY, withHeaderRow: true }).run()
@@ -77,14 +70,14 @@ export const handleClick = (state, box) => {
 // bubble菜单
 export const shouldShow = ({ editor, view, state, oldState, from, to }) => {
   // 仅在无序列表选中的时候才显示 气泡菜单
-  return editor.isActive("table");
-};
+  return editor.isActive('table')
+}
 // font-size 设置
 export const handleFontSize = (fontSize) => {
   return (value) => {
-    console.log('123', value);
+    console.log('123', value)
 
-    fontSize.value = value + "px";
+    fontSize.value = value + 'px'
   }
 }
 
@@ -206,39 +199,38 @@ export const Active = (item) => {
     switch (item.name) {
       case 'unlink':
         result = 'link'
-        break;
+        break
       case 'left':
         result = { textAlign: 'left' }
-        break;
+        break
       case 'center':
         result = { textAlign: 'center' }
-        break;
+        break
       case 'right':
         result = { textAlign: 'right' }
-        break;
+        break
       default:
         result = item.name
-        break;
+        break
     }
   } else {
     switch (item) {
       case 'unlink':
         result = 'link'
-        break;
+        break
       case 'left':
         result = { textAlign: 'left' }
-        break;
+        break
       case 'center':
         result = { textAlign: 'center' }
-        break;
+        break
       case 'right':
         result = { textAlign: 'right' }
-        break;
+        break
       default:
         result = item
-        break;
+        break
     }
   }
-  console.log('1', result);
   return result
 }

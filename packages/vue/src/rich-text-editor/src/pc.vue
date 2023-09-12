@@ -15,7 +15,7 @@
             <button @click="handleFontSize(30)">30px</button>
           </div>
         </button>
-        <button v-else-if="(item.name ?? item) === 'line-hight'" class="line-height-button" title="line height">
+        <button v-else-if="(item.name ?? item) === 'line-height'" class="line-height-button" title="line height">
           <div class="line-height-icon">
             <TinyIconRichTextLineHeight></TinyIconRichTextLineHeight>
           </div>
@@ -55,7 +55,7 @@
           </div>
         </button>
         <button v-else-if="(item.name ?? item) === 'img'" title="img" class="image-button">
-          <input @change="handleChange" id="img-btn" :placeholder="'啊飒飒'" type="file" accept="image/*" />
+          <input @change="handleChange" id="img-btn" type="file" accept="image/*" />
           <label for="img-btn">
             <TinyIconRichTextImage></TinyIconRichTextImage>
           </label>

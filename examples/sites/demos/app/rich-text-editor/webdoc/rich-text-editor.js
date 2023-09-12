@@ -71,7 +71,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '当内容更新时',
+            'zh-CN': '当编辑器状态改变完成后，将会触发该事件,
             'en-US': 'When the content is updated.'
           },
           'demoId': 'base'
@@ -81,7 +81,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '视图创造之前',
+            'zh-CN': '当编辑器视图创造之前，将会触发该事件',
             'en-US': 'Before view creation.'
           },
           'demoId': 'base'
@@ -91,7 +91,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '编辑器已经挂载好',
+            'zh-CN': '当编辑器已经挂载好，将会触发该事件',
             'en-US': 'The editor is mounted.'
           },
           'demoId': 'base'
@@ -101,7 +101,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '编辑器获得焦点',
+            'zh-CN': '当编辑器获得焦点，将会触发该事件',
             'en-US': 'The editor gets focus.'
           },
           'demoId': 'base'
@@ -111,7 +111,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '编辑器失去焦点',
+            'zh-CN': '当编辑器失去焦点，将会触发该事件',
             'en-US': 'The editor loses focus.'
           },
           'demoId': 'base'
@@ -121,7 +121,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '选择区改变',
+            'zh-CN': '当编辑器选区改变，将会触发该事件',
             'en-US': 'The selection has changed.'
           },
           'demoId': 'base'
@@ -131,7 +131,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '编辑器状态已更改。',
+            'zh-CN': '当编辑器状态改变，将会触发该事件。',
             'en-US': 'The editor state has changed.'
           },
           'demoId': 'base'
@@ -141,7 +141,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '编辑器销毁了',
+            'zh-CN': '当编辑器编辑器销毁了，将会触发该事件',
             'en-US': 'The editor is being destroyed.'
           },
           'demoId': 'base'
