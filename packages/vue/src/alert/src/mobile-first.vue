@@ -93,10 +93,10 @@
       </div>
       <icon-close
         v-if="!closeText && closable"
-        @click="close"
+        @click="handleClose"
         class="h-4 w-4 mt-1 cursor-pointer fill-color-text-primary opacity-70"
       ></icon-close>
-      <span v-else-if="closeText && closable" @click="close" class="leading-6 text-sm cursor-pointer">{{
+      <span v-else-if="closeText && closable" @click="handleClose" class="leading-6 text-sm cursor-pointer">{{
         closeText
       }}</span>
     </div>
