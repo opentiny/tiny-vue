@@ -40,40 +40,21 @@ export default {
     },
     {
       'demoId': 'clear-icon',
-      'name': { 'zh-CN': '清除输入', 'en-US': 'Size setting medium' },
+      'name': { 'zh-CN': '自定义清空图标', 'en-US': 'Custom clear icon' },
       'desc': {
         'zh-CN': '<p>通过 <code>clear-icon</code> 自定义清空图标</p>\n',
-        'en-US': '<p>Customize the group price size by <code>size</code></p>\n'
+        'en-US': '<p>Customize clear icon by <code>clear-icon</code></p>\n'
       },
       'codeFiles': ['clear-icon.vue']
     },
     {
-      'demoId': 'size-medium',
-      'name': { 'zh-CN': '尺寸设置medium', 'en-US': 'Size setting small' },
+      'demoId': 'size',
+      'name': { 'zh-CN': '尺寸', 'en-US': 'Size' },
       'desc': {
         'zh-CN': '<p>通过 <code>size</code> 自定义组件尺寸</p>\n',
-        'en-US': '<p>Customize the group price size by <code>size</code></p>\n'
+        'en-US': '<p>Customize size by <code>size</code></p>\n'
       },
-      'codeFiles': ['size-medium.vue']
-    },
-    {
-      'demoId': 'size-small',
-      'name': { 'zh-CN': '尺寸设置small', 'en-US': 'Size setting mini' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>size</code> 自定义组件尺寸</p>\n',
-        'en-US': '<p>Customize the group price size by <code>size</code></p>\n'
-      },
-      'codeFiles': ['size-small.vue']
-    },
-    {
-      'demoId': 'size-mini',
-      'name': { 'zh-CN': '尺寸设置mini', 'en-US': 'Clear button' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>size</code> 自定义组件尺寸</p>\n',
-        'en-US':
-          '<p>Use the <code>clearable</code> attribute to set whether to display the Clear button. The default value is true</p>\n'
-      },
-      'codeFiles': ['size-mini.vue']
+      'codeFiles': ['size.vue']
     },
     {
       'demoId': 'clearable',
@@ -261,7 +242,7 @@ export default {
             'zh-CN': '范围选择时结束日期的占位内容',
             'en-US': 'Placeholder of the end date when the range is selected'
           },
-          'demoId': 'size-medium'
+          'demoId': ''
         },
         {
           'name': 'is-range',
@@ -303,7 +284,7 @@ export default {
           'type': 'String',
           'defaultValue': '该属性的默认值为空',
           'desc': { 'zh-CN': '非范围选择时的占位内容', 'en-US': 'Placeholder content for non-range selection' },
-          'demoId': 'basic-usage'
+          'demoId': ''
         },
         {
           'name': 'popper-append-to-body',
@@ -334,7 +315,7 @@ export default {
             'en-US':
               'Optional. When the selected date is empty, the time displayed by default when the selector panel is opened. Set it to a value that can be parsed by new Date().'
           },
-          'demoId': 'is-range'
+          'demoId': ''
         },
         {
           'name': 'size',
@@ -344,7 +325,7 @@ export default {
             'zh-CN': '输入框尺寸;该属性的可选值为 medium,small, mini',
             'en-US': 'Text box size; The values of this attribute are medium, small, and mini'
           },
-          'demoId': 'size-medium'
+          'demoId': 'size'
         },
         {
           'name': 'start-placeholder',
@@ -354,7 +335,7 @@ export default {
             'zh-CN': '范围选择时开始日期的占位内容',
             'en-US': 'Placeholder of the start date when the range is selected'
           },
-          'demoId': 'size-medium'
+          'demoId': ''
         },
         {
           'name': 'step',

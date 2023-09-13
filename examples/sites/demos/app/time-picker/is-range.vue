@@ -3,15 +3,11 @@
     <tiny-time-picker
       is-range
       v-model="value1"
-      range-separator="至"
-      start-placeholder="开始时间"
-      end-placeholder="结束时间"
-      placeholder="选择时间范围"
     ></tiny-time-picker>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { TimePicker } from '@opentiny/vue'
 
 export default {
