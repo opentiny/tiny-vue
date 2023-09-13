@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('设置无清楚按钮', async ({ page }) => {
+test('隐藏清除按钮', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('http://localhost:7130/pc/time-picker/clearable')
 

@@ -34,18 +34,9 @@ export default {
       'desc': {
         'zh-CN':
           '<p>通过 <code>step</code> 设置步长，默认值为 <code>{ hour: 1, minute: 1, second: 1 }</code>，其中 <code>hour</code> 的设置范围是 <code>0-23</code>，<code>minute</code>、<code>second</code> 的设置范围是 <code>0-60</code>。可单独设置其中的一项或多项值，未设置的默认值为 <code>1</code>。</p>\n',
-        'en-US': '<p>Clear the icon by <code>clear-icon</code></p>\n'
+        'en-US': '<p>Set the step size through <code> step </code>. The default value is <code> {hour: 1, minute: 1, second: 1} </code>, where the setting range of <code> hour </code> is <code> 0-23 </code>, <code> minute </code>, <code> second </code> is <code> 0-60 </code>. One or more of these values can be set separately, and the unset default value is <code> 1 </code>.</p>\n'
       },
       'codeFiles': ['step.vue']
-    },
-    {
-      'demoId': 'clear-icon',
-      'name': { 'zh-CN': '自定义清空图标', 'en-US': 'Custom clear icon' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>clear-icon</code> 自定义清空图标</p>\n',
-        'en-US': '<p>Customize clear icon by <code>clear-icon</code></p>\n'
-      },
-      'codeFiles': ['clear-icon.vue']
     },
     {
       'demoId': 'size',
@@ -60,9 +51,9 @@ export default {
       'demoId': 'clearable',
       'name': { 'zh-CN': '清除按钮', 'en-US': 'Customized rear icon' },
       'desc': {
-        'zh-CN': '<p>通过 <code>clearable</code> 属性设置是否显示清除按钮，默认值为 true</p>\n',
+        'zh-CN': '<p>通过 <code>clearable</code> 属性设置是否显示清除按钮，默认值为 true。通过 <code>clear-icon</code> 属性可以自定义清除按钮的图标。</p>\n',
         'en-US':
-          '<p> uses the <code>suffix-icon</code> attribute to set the icon behind the date text box. An icon is imported from the <code>@opentiny/vue-icon</code>, initialized, and transferred to the <code>suffix-icon</code>. </p>\n'
+          '<p>Set whether the clear button is displayed through the <code> clearable </code> property, which defaults to true. You can customize the icon of the clear button through the <code> clear-icon </code> property.</p>\n'
       },
       'codeFiles': ['clearable.vue']
     },
