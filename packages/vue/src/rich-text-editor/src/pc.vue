@@ -254,7 +254,7 @@ import '@opentiny/vue-theme/rich-text-editor/index.less'
 
 export default defineComponent({
   emits: ['beforeCreate', 'create', 'update:modelValue', 'focus', 'blur', 'selectionUpdate', 'transaction', 'destroy', 'update'],
-  props: [...props, 'modelValue', 'collaboration', 'placeholder', 'toolBar', 'options'],
+  props: [...props, 'modelValue', 'collaboration', 'placeholder', 'customToolBar', 'options'],
   components: {
     EditorContent,
     BubbleMenu,

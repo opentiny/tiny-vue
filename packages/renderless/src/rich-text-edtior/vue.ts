@@ -183,11 +183,9 @@ export const renderless = (
     injectCSS: false,
     // 事件
     onBeforeCreate({ editor }) {
-      console.log('Before the view is created.')
       emit('beforeCreate', { editor })
     },
     onCreate({ editor }) {
-      console.log('The editor is ready')
       emit('create', { editor })
     },
     onUpdate({ editor }) {

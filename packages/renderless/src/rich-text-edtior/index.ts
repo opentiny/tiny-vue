@@ -75,8 +75,6 @@ export const shouldShow = ({ editor, view, state, oldState, from, to }) => {
 // font-size 设置
 export const handleFontSize = (fontSize) => {
   return (value) => {
-    console.log('123', value)
-
     fontSize.value = value + 'px'
   }
 }
