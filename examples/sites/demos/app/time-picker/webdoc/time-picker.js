@@ -18,15 +18,15 @@ export default {
       'codeFiles': ['picker-options.vue']
     },
     {
-      'demoId': 'clearable1',
+      'demoId': 'arrow-control',
       'name': { 'zh-CN': '箭头选择', 'en-US': 'Arrow Selection' },
       'desc': {
         'zh-CN':
-          '<p><code>arrow-control</code> 属性设置是否使用箭头进行时间选择，仅对 <code>&lt;tiny-time-picker&gt;</code> 有效</p>\n',
+          '<p><code>arrow-control</code> 属性设置是否使用箭头进行时间选择</p>\n',
         'en-US':
-          'The <p><code>arrow-control</code> property specifies whether to use the arrow to select the time. This property is valid only for <code>&lt;tiny-time-picker&gt;</code> .</p>\n'
+          'The <p><code>arrow-control</code> property specifies whether to use the arrow to select the time.</p>\n'
       },
-      'codeFiles': ['clearable.vue']
+      'codeFiles': ['arrow-control.vue']
     },
     {
       'demoId': 'step',
@@ -187,10 +187,10 @@ export default {
           'type': 'Boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
-            'zh-CN': '是否使用箭头进行时间选择，仅对<tiny-time-picker>有效',
-            'en-US': 'Class name of the TimePicker drop-down list box'
+            'zh-CN': '是否使用箭头进行时间选择',
+            'en-US': 'Whether to use arrows for time selection'
           },
-          'demoId': 'clearable'
+          'demoId': 'arrow-control'
         },
         {
           'name': 'clearable',
