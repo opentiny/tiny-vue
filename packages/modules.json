@@ -7,14 +7,6 @@
       "pc"
     ]
   },
-  "RichTextEditor": {
-    "path": "vue/src/rich-text-editor/index.ts",
-    "type": "component",
-    "exclude": false,
-    "mode": [
-      "pc"
-    ]
-  },
   "ActionSheet": {
     "path": "vue/src/action-sheet/index.ts",
     "type": "component",
@@ -360,13 +352,13 @@
       "mobile"
     ]
   },
-  "CascaderSelectMobileFirst": {
-    "path": "vue/src/cascader-select/src/mobile-first.vue",
+  "CascaderSelectMobile": {
+    "path": "vue/src/cascader-select/src/mobile.vue",
     "type": "template",
     "exclude": false
   },
-  "CascaderSelectMobile": {
-    "path": "vue/src/cascader-select/src/mobile.vue",
+  "CascaderSelectMobileFirst": {
+    "path": "vue/src/cascader-select/src/mobile-first.vue",
     "type": "template",
     "exclude": false
   },
@@ -613,6 +605,20 @@
   "ColorPicker": {
     "path": "vue/src/color-picker/index.ts",
     "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile",
+      "pc"
+    ]
+  },
+  "ColorPickerMobile": {
+    "path": "vue/src/color-picker/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "ColorPickerPc": {
+    "path": "vue/src/color-picker/src/pc.vue",
+    "type": "template",
     "exclude": false
   },
   "ColumnListGroup": {
@@ -843,6 +849,19 @@
   },
   "DialogSelectPc": {
     "path": "vue/src/dialog-select/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Divider": {
+    "path": "vue/src/divider/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "DividerPc": {
+    "path": "vue/src/divider/src/pc.vue",
     "type": "template",
     "exclude": false
   },
@@ -1910,6 +1929,14 @@
     "path": "vue/src/recycle-scroller/src/pc.vue",
     "type": "template",
     "exclude": false
+  },
+  "RichTextEditor": {
+    "path": "vue/src/rich-text-editor/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "River": {
     "path": "vue/src/river/index.ts",

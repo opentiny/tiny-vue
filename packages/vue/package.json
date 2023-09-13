@@ -107,6 +107,7 @@
     "@opentiny/vue-detail-page": "workspace:~",
     "@opentiny/vue-dialog-box": "workspace:~",
     "@opentiny/vue-dialog-select": "workspace:~",
+    "@opentiny/vue-divider": "workspace:~",
     "@opentiny/vue-drawer": "workspace:~",
     "@opentiny/vue-drop-roles": "workspace:~",
     "@opentiny/vue-drop-times": "workspace:~",

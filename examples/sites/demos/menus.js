@@ -241,7 +241,8 @@ export const cmpMenus = [
       { 'nameCn': '联系人', 'name': 'UserContact', 'key': 'user-contact' },
       { 'nameCn': '用户头像', 'name': 'UserHead', 'key': 'user-head' },
       { 'nameCn': '全屏显示', 'name': 'Fullscreen', 'key': 'fullscreen' },
-      { 'nameCn': '全局设置', 'name': 'ConfigProvider', 'key': 'config-provider' }
+      { 'nameCn': '全局设置', 'name': 'ConfigProvider', 'key': 'config-provider' },
+      { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' }
     ]
   }
 ]
