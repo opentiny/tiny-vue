@@ -115,8 +115,8 @@ export default {
       'name': { 'zh-CN': '范围选择', 'en-US': 'Default time setting when the selector is enabled' },
       'desc': {
         'zh-CN':
-          '<p><code>is-range</code> 设置是否为范围选择，默认为 false，<code>range-separator</code>,设置范围选择分隔符（为可选值）默认为‘-’</p>\n',
-        'en-US': '<p>Use <code>default-value</code> to set the selector to open the default display time</p>\n'
+          '<p><code>is-range</code> 设置是否为范围选择，默认为 false，<code>range-separator</code>，设置范围选择分隔符（为可选值）默认为 \'-\'</p>\n',
+        'en-US': '<p><code> is-range </code> whether the setting is range selection. Default is false, <code> range-separator </code>, and the range selection delimiter (optional) defaults to\'-\'</p>\n'
       },
       'codeFiles': ['is-range.vue']
     },
