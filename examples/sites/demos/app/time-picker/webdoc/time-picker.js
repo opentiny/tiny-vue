@@ -22,7 +22,7 @@ export default {
       'name': { 'zh-CN': '箭头选择', 'en-US': 'Arrow Selection' },
       'desc': {
         'zh-CN':
-          '<p><code>arrow-control</code> 属性设置是否使用箭头进行时间选择</p>\n',
+          '<p><code>arrow-control</code> 属性设置是否使用箭头进行时间选择。</p>\n',
         'en-US':
           'The <p><code>arrow-control</code> property specifies whether to use the arrow to select the time.</p>\n'
       },
@@ -30,7 +30,7 @@ export default {
     },
     {
       'demoId': 'step',
-      'name': { 'zh-CN': '设置步长', 'en-US': 'Clear Input' },
+      'name': { 'zh-CN': '步长', 'en-US': 'Clear Input' },
       'desc': {
         'zh-CN':
           '<p>通过 <code>step</code> 设置步长，默认值为 <code>{ hour: 1, minute: 1, second: 1 }</code>，其中 <code>hour</code> 的设置范围是 <code>0-23</code>，<code>minute</code>、<code>second</code> 的设置范围是 <code>0-60</code>。可单独设置其中的一项或多项值，未设置的默认值为 <code>1</code>。</p>\n',
