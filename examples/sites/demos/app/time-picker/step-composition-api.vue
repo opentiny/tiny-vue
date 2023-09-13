@@ -1,7 +1,6 @@
 <template>
   <div class="demo-date-picker-wrap">
     <tiny-time-picker v-model="value" :step="step" placeholder="任意时间点"></tiny-time-picker>
-    <br />
   </div>
 </template>
 
