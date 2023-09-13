@@ -161,9 +161,9 @@ export default {
       'demoId': 'disabled',
       'name': { 'zh-CN': '禁用状态', 'en-US': 'Event' },
       'desc': {
-        'zh-CN': '<p>通过设置 <code>disabled</code> 为 true 后，禁用时间输入框。</p>\n',
+        'zh-CN': '<p>通过设置 <code>disabled</code> 为 true 后，禁用时间输入框。</p><p>通过设置 <code>picker-options</code> 的 <code>selectableRange</code> 属性，可以实现部分禁用，此时只能选择一部分时间。</p>\n',
         'en-US':
-          '<p>When focusing or out of focus, the focus and blur events are triggered. When the selected value is determined, the change event is triggered.</p>\n'
+          '<p>Disable the time input box by setting <code> disabled </code> to true.</p><p>Partial disable can be achieved by setting the <code>selectableRange<code> property of <code>picker-options<code>, and only a part of time can be selected at this time.</p>\n'
       },
       'codeFiles': ['disabled.vue']
     },
