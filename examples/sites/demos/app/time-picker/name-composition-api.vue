@@ -1,12 +1,18 @@
 <template>
-  <div>
-    <tiny-time-picker v-model="value1" name="name" placeholder="选择时间范围"></tiny-time-picker>
+  <div class="demo-date-picker-wrap">
+    <tiny-time-picker v-model="value1" name="name"></tiny-time-picker>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { TimePicker as TinyTimePicker } from '@opentiny/vue'
 
 const value1 = ref(new Date(2016, 9, 10, 18, 40))
 </script>
+
+<style scoped>
+.demo-date-picker-wrap {
+  width: 182px;
+}
+</style>

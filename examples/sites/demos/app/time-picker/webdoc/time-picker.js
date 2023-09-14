@@ -9,15 +9,6 @@ export default {
       'codeFiles': ['basic-usage.vue']
     },
     {
-      'demoId': 'picker-options',
-      'name': { 'zh-CN': '选择范围', 'en-US': 'Selection Range' },
-      'desc': {
-        'zh-CN': '<p>picker-options 设置时间选择范围</p>\n',
-        'en-US': '<p>picker-options Set the time range</p>\n'
-      },
-      'codeFiles': ['picker-options.vue']
-    },
-    {
       'demoId': 'arrow-control',
       'name': { 'zh-CN': '箭头选择', 'en-US': 'Arrow Selection' },
       'desc': {
@@ -73,33 +64,14 @@ export default {
       'name': { 'zh-CN': '时间格式化', 'en-US': 'Time display type' },
       'desc': {
         'zh-CN':
-          '<p><code>format</code> 时间格式化显示\n<code>timestamp</code> JS 时间戳，仅 value-format 可用；组件绑定值为 number 类型</p>\n',
+          `
+            <p><code>format</code> 时间格式化显示\n<code>timestamp</code> JS 时间戳，仅 value-format 可用；组件绑定值为 number 类型</p>\n
+            <p>通过 <code>hh</code> 属性可设置 12 小时制。 <code>HH</code> 属性为 24 小时制，须和 A 或 a 使用。 <code>h</code> 与 <code>H</code> 属性设置不补 0。\n通过 <code>mm</code> 属性可设置分钟显示格式，例如 01。 <code>m</code> 属性设置不补 0。\n通过 <code>ss</code> 属性可设置秒的显示格式，例如 01。 <code>s</code> 属性设置不补 0。\n通过 <code>a</code> 属性可设置显示时间为 am/pm <code>A</code>属性设置显示时间为 AM/PM。</p>\n
+          `,
         'en-US':
           '<p>You can set the 12-hour format through the <code>hh</code> attribute. The <code>HH</code> attribute is in the 24-hour format and must be used with A or a. The <code>h</code> and <code>H</code> attributes are not set to 0. \nYou can use the <code>mm</code> attribute to set the minute display format, for example, 01. The <code>m</code> attribute is not set to 0. \nYou can use the <code>ss</code> attribute to set the display format of seconds, for example, 01. The <code>s</code> attribute is not set to 0. \nThe <code>a</code> property can be used to set the display time to am/pm <code>A</code> property can be used to set the display time to AM/PM. </p>\n'
       },
       'codeFiles': ['format.vue']
-    },
-    {
-      'demoId': 'time-low',
-      'name': { 'zh-CN': '时间显示类型', 'en-US': 'Date Display Format' },
-      'desc': {
-        'zh-CN':
-          '<p>通过 <code>hh</code> 属性可设置 12 小时制。 <code>HH</code> 属性为 24 小时制，须和 A 或 a 使用。 <code>h</code> 与 <code>H</code> 属性设置不补 0。\n通过 <code>mm</code> 属性可设置分钟显示格式，例如 01。 <code>m</code> 属性设置不补 0。\n通过 <code>ss</code> 属性可设置秒的显示格式，例如 01。 <code>s</code> 属性设置不补 0。\n通过 <code>a</code> 属性可设置显示时间为 am/pm <code>A</code>属性设置显示时间为 AM/PM。</p>\n',
-        'en-US':
-          'The <p><code>WW</code> attribute is set to week, for example, 01. The <code>W</code> attribute is set to zeros. \n<code>yyyy</code> The attribute sets the year, for example, 2020. \n<code>MM</code>: month. For example, 01 <code>M</code>: 0 is not added. \n<code>dd</code> attribute setting date, for example, 01 <code>d</code>. </p>\n'
-      },
-      'codeFiles': ['time-low.vue']
-    },
-    {
-      'demoId': 'date',
-      'name': { 'zh-CN': '日期显示格式', 'en-US': 'Range Selection' },
-      'desc': {
-        'zh-CN':
-          '<p><code>WW</code> 属性设置周，例如 01, <code>W</code> 属性设置不补 0。\n<code>yyyy</code> 属性设置年，例如 2020。\n<code>MM</code> 属性设置月，例如 01 <code>M</code> 属性设置不补 0。\n<code>dd</code> 属性设置日，例如 01 <code>d</code> 属性设置不补 0。</p>\n',
-        'en-US':
-          "<p><code>is-range</code>: indicates whether to select a range. The default value is false. <code>range-separator</code>. Set the range-separator (optional) to '-' by default. </p>\n"
-      },
-      'codeFiles': ['date.vue']
     },
     {
       'demoId': 'is-range',
@@ -169,13 +141,13 @@ export default {
       'codeFiles': ['placeholder.vue']
     },
     {
-      'demoId': 'event-blur',
+      'demoId': 'event',
       'name': { 'zh-CN': '事件', 'en-US': '' },
       'desc': {
         'zh-CN': '<p>当聚焦和失焦时会触发 focus 和 bulr 事件，当确定选值时会触发 change 事件</p>\n',
         'en-US': ''
       },
-      'codeFiles': ['event-blur.vue']
+      'codeFiles': ['event.vue']
     },
   ],
   apis: [
@@ -316,7 +288,7 @@ export default {
             'en-US':
               'Optional. When the selected date is empty, the time displayed by default when the selector panel is opened. Set it to a value that can be parsed by new Date().'
           },
-          'demoId': ''
+          'demoId': 'is-range'
         },
         {
           'name': 'size',
@@ -365,7 +337,7 @@ export default {
             'zh-CN': '当 input 失去焦点时触发;arg:{Object 时间组件Vue对象}',
             'en-US': 'This event is triggered when the input loses focus. arg:{Object Time Component Vue Object}'
           },
-          'demoId': 'event-blur'
+          'demoId': 'event'
         },
         {
           'name': 'change',
@@ -377,7 +349,7 @@ export default {
             'en-US':
               'This event is triggered when the user confirms the selected value. arg:{Date|Array is the time object of the currently selected value when it is not selected in a range. When the range is selected, it is the time object array of the currently selected value}'
           },
-          'demoId': 'event-blur'
+          'demoId': 'event'
         },
         {
           'name': 'focus',
@@ -387,7 +359,7 @@ export default {
             'zh-CN': '当 input 获得焦点时触发;arg:{Object 时间组件Vue对象}',
             'en-US': 'This event is triggered when the input is focused. arg:{Object Time Component Vue Object}'
           },
-          'demoId': 'event-blur'
+          'demoId': 'event'
         }
       ],
       'slots': [],
@@ -397,8 +369,60 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '使 input 获取焦点', 'en-US': 'Enable input to focus.' },
-          'demoId': 'event-blur'
+          'demoId': 'event'
         }
+      ],
+      'props format': [
+        {
+          'name': 'a',
+          'desc': { 'zh-CN': 'am/pm', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'A',
+          'desc': { 'zh-CN': 'AM/PM', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'h',
+          'desc': { 'zh-CN': '小时，12小时制，需要和 A 或 a 一起使用，不补0', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'H',
+          'desc': { 'zh-CN': '小时，24小时制，不补0', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'hh',
+          'desc': { 'zh-CN': '小时，12小时制，需要和 A 或 a 一起使用', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'HH',
+          'desc': { 'zh-CN': '小时，24小时制', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'm',
+          'desc': { 'zh-CN': '分钟，不补0', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'mm',
+          'desc': { 'zh-CN': '分钟', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 's',
+          'desc': { 'zh-CN': '秒，不补0', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'ss',
+          'desc': { 'zh-CN': '秒', 'en-US': '' },
+          'demoId': ''
+        },
       ]
     }
   ]

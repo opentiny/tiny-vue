@@ -1,23 +1,40 @@
 <template>
   <div>
-    <tiny-time-picker
-      v-model="value1"
-      placeholder="任意时间点"
-      :picker-options="{
-        format: 'HH:mm',
-        selectableRange: '18:30:00 - 20:30:00'
-      }"
-      value-format="timestamp"
-    ></tiny-time-picker>
-    <span class="select-time">当前选中时间：{{ value1 }}</span>
+    <p>时间输入框中显示的格式：</p>
+    <div class="demo-date-picker-wrap">
+      <tiny-time-picker v-model="value" format="hh:mm:ss a"></tiny-time-picker>
+      <tiny-time-picker v-model="value" format="HH:mm:ss a"></tiny-time-picker>
+
+      <tiny-time-picker v-model="value" format="h:m:s A"></tiny-time-picker>
+      <tiny-time-picker v-model="value" format="H:m:s A"></tiny-time-picker>
+    </div>
+
+    <p>选中值的格式：</p>
+    <div class="demo-date-picker-wrap">
+      <tiny-time-picker
+        v-model="selectedValue"
+        value-format="timestamp"
+      ></tiny-time-picker>
+    </div>
+    <span class="select-time">当前选中时间：{{ selectedValue }}</span>
+
+    <p>下拉框中显示的格式：</p>
+    <div class="demo-date-picker-wrap">
+      <tiny-time-picker
+        v-model="pickerValue"
+        :picker-options="{
+          format: 'HH:mm'
+        }"
+      ></tiny-time-picker>
+    </div>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { TimePicker as TinyTimePicker } from '@opentiny/vue'
 
-const startTime = Number(new Date(2016, 9, 10, 18, 30))
-
-const value1 = ref(startTime)
+const value = ref(new Date(2016, 9, 10, 18, 40))
+const selectedValue = ref(Number(new Date(2016, 9, 10, 18, 30)))
+const pickerValue = ref(new Date(2016, 9, 10, 18, 40))
 </script>

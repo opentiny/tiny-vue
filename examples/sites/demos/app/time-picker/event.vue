@@ -1,18 +1,17 @@
 <template>
-  <div>
+  <div class="demo-date-picker-wrap">
     <tiny-button @click="handleFocus">focus</tiny-button>
     <tiny-time-picker
       v-model="value1"
-      ref="timePicker"
-      @blur="bulr"
+      ref="timePickerRef"
+      @blur="blur"
       @change="change"
       @focus="focus"
-      placeholder="选择时间范围"
     ></tiny-time-picker>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { TimePicker, Modal, Button } from '@opentiny/vue'
 
 export default {
@@ -27,9 +26,9 @@ export default {
   },
   methods: {
     handleFocus() {
-      this.$refs.timePicker.focus()
+      this.$refs.timePickerRef.focus()
     },
-    bulr() {
+    blur() {
       Modal.message('blur事件')
     },
     change() {
@@ -41,3 +40,13 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="less">
+.demo-date-picker-wrap {
+  width: 182px;
+
+  & > * {
+    margin-top: 12px;
+  }
+}
+</style>
