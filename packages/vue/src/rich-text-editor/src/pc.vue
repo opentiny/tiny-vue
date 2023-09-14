@@ -195,14 +195,14 @@ import {
   iconRichTextUndo
 } from '@opentiny/vue-icon'
 import {
-  useEditor,
+  Editor,
   EditorContent,
   BubbleMenu,
   VueNodeViewRenderer,
   NodeViewContent,
   nodeViewProps,
   NodeViewWrapper
-} from '@tiptap/vue-3'
+} from '@tiptap/vue'
 import StarterKit from '@tiptap/starter-kit'
 // 段落包
 import Paragraph from '@tiptap/extension-paragraph'
@@ -312,7 +312,7 @@ export default defineComponent({
       renderless,
       api,
       extendOptions: {
-        useEditor,
+        Editor,
         Collaboration,
         StarterKit,
         Y,

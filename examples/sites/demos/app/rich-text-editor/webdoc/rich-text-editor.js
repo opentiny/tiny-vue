@@ -63,7 +63,7 @@ export default {
             'en-US': 'See tiptap extension notes to overwrite the useEditor configuration item'
           },
           demoId: 'basic-usage'
-        },
+        }
       ],
       'events': [
         {
@@ -71,7 +71,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '当编辑器状态改变完成后，将会触发该事件,
+            'zh-CN': '当编辑器状态改变完成后，将会触发该事件',
             'en-US': 'When the content is updated.'
           },
           'demoId': 'base'
@@ -145,7 +145,7 @@ export default {
             'en-US': 'The editor is being destroyed.'
           },
           'demoId': 'base'
-        },
+        }
       ],
       'methods': [],
       'slots': [
@@ -155,7 +155,7 @@ export default {
           'defaultValue': '',
           'desc': { 'zh-CN': 'toolBar添加按钮,会传出editor实例，详情见tiptap', 'en-US': 'toolBar Add Button' },
           'demoId': 'custom-search-types'
-        },
+        }
       ]
     }
   ]
