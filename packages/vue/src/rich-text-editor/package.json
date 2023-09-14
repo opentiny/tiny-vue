@@ -36,6 +36,7 @@
     "@tiptap/extension-code-block-lowlight": "^2.0.4",
     "highlight.js": "^11.8.0",
     "lowlight": "^2.9.0",
+    "@tiptap/extension-placeholder": "^2.1.7",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
