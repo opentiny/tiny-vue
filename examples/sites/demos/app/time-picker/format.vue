@@ -59,4 +59,9 @@ export default {
     margin-top: 12px;
   }
 }
+
+.select-time {
+  display: inline-block;
+  margin-top: 12px;
+}
 </style>

@@ -38,3 +38,18 @@ const value = ref(new Date(2016, 9, 10, 18, 40))
 const selectedValue = ref(Number(new Date(2016, 9, 10, 18, 30)))
 const pickerValue = ref(new Date(2016, 9, 10, 18, 40))
 </script>
+
+<style scoped lang="less">
+.demo-date-picker-wrap {
+  width: 182px;
+
+  & > * {
+    margin-top: 12px;
+  }
+}
+
+.select-time {
+  display: inline-block;
+  margin-top: 12px;
+}
+</style>
