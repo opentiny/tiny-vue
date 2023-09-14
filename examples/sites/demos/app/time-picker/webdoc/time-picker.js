@@ -113,10 +113,10 @@ export default {
     },
     {
       'demoId': 'default-value',
-      'name': { 'zh-CN': '选择器打开时默认时间设置', 'en-US': 'Native Attribute' },
+      'name': { 'zh-CN': '默认时间', 'en-US': 'Default value' },
       'desc': {
-        'zh-CN': '<p>通过 <code>default-value</code> 设置选择器打开显示默认时间</p>\n',
-        'en-US': '<p>Set the default name through the <code>name</code> attribute</p>\n'
+        'zh-CN': '<p>通过 <code>default-value</code> 设置选择器打开显示默认时间。</p>\n',
+        'en-US': '<p>Open and display the default time through the <code> default-value </code> setting selector.</p>\n'
       },
       'codeFiles': ['default-value.vue']
     },
@@ -131,7 +131,7 @@ export default {
     },
     {
       'demoId': 'popper-class',
-      'name': { 'zh-CN': '下拉框的类名', 'en-US': 'The text box cannot be entered.' },
+      'name': { 'zh-CN': '下拉框的类名', 'en-US': 'Popper class' },
       'desc': {
         'zh-CN': '<p>通过 <code>popper-class</code> 属性设置下拉框的类名。通过 <code>popper-append-to-body</code> 属性设置是否将下拉框放到 body 元素上，默认值为 true，下拉框挂在 body 元素上。</p>\n',
         'en-US':
@@ -157,6 +157,16 @@ export default {
           '<p>Disable the time input box by setting <code> disabled </code> to true.</p><p>Partial disable can be achieved by setting the <code>selectableRange<code> property of <code>picker-options<code>, and only a part of time can be selected at this time.</p>\n'
       },
       'codeFiles': ['disabled.vue']
+    },
+    {
+      'demoId': 'placeholder',
+      'name': { 'zh-CN': '占位符', 'en-US': 'Placeholder' },
+      'desc': {
+        'zh-CN': '<p>通过 <code> placeholder </code> 属性设置时间输入框的占位符，通过 <code> start-placeholder </code> / <code> end-placeholder </code> 设置时间范围输入框的开始和结束时间的占位符。</p>\n',
+        'en-US':
+          '<p>Set the placeholder for the time input box through the <code> placeholder </code> property, and set the placeholder for the start and end time of the time range input box through <code> start-placeholder </code> / <code> end-placeholder </code>.</p>\n'
+      },
+      'codeFiles': ['placeholder.vue']
     },
     {
       'demoId': 'event-blur',
@@ -233,7 +243,7 @@ export default {
             'zh-CN': '范围选择时结束日期的占位内容',
             'en-US': 'Placeholder of the end date when the range is selected'
           },
-          'demoId': ''
+          'demoId': 'placeholder'
         },
         {
           'name': 'is-range',
@@ -275,7 +285,7 @@ export default {
           'type': 'String',
           'defaultValue': '该属性的默认值为空',
           'desc': { 'zh-CN': '非范围选择时的占位内容', 'en-US': 'Placeholder content for non-range selection' },
-          'demoId': ''
+          'demoId': 'placeholder'
         },
         {
           'name': 'popper-append-to-body',
@@ -326,7 +336,7 @@ export default {
             'zh-CN': '范围选择时开始日期的占位内容',
             'en-US': 'Placeholder of the start date when the range is selected'
           },
-          'demoId': ''
+          'demoId': 'placeholder'
         },
         {
           'name': 'step',
