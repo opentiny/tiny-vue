@@ -133,9 +133,9 @@ export default {
       'demoId': 'popper-class',
       'name': { 'zh-CN': '下拉框的类名', 'en-US': 'The text box cannot be entered.' },
       'desc': {
-        'zh-CN': '<p>通过 <code>popper-class</code> 属性设置下拉框的类名</p>\n',
+        'zh-CN': '<p>通过 <code>popper-class</code> 属性设置下拉框的类名。通过 <code>popper-append-to-body</code> 属性设置是否将下拉框放到 body 元素上，默认值为 true，下拉框挂在 body 元素上。</p>\n',
         'en-US':
-          'By default, you can enter a date in the <p>Date text box. If you set <code>editable</code> to false, you cannot enter a date in the <p>Date text box. </p>\n'
+          '<p>Set the class name of the drop-down box through the <code> popper-class </code> attribute, and set whether the drop-down box is placed on the body element through the <code> popper-append-to-body </code> attribute. The default value is true, and the drop-down box hangs on the body element.</p>\n'
       },
       'codeFiles': ['popper-class.vue']
     },
@@ -285,7 +285,7 @@ export default {
             'zh-CN': '是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false',
             'en-US': ''
           },
-          'demoId': ''
+          'demoId': 'popper-class'
         },
         {
           'name': 'popper-class',
