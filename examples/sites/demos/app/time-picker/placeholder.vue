@@ -1,15 +1,17 @@
 <template>
   <div>
-    <p>整体禁用</p>
+    <p>选择时间</p>
     <div class="demo-date-picker-wrap">
-      <tiny-time-picker v-model="value1" disabled></tiny-time-picker>
+      <tiny-time-picker v-model="value" placeholder="请选择时间"></tiny-time-picker>
     </div>
 
-    <p>部分禁用</p>
+    <p>选择时间范围</p>
     <div class="demo-date-picker-wrap">
       <tiny-time-picker
-        v-model="value1"
-        :picker-options="{ selectableRange: '18:30:00 - 20:30:00' }"
+        v-model="rangeValue"
+        is-range
+        start-placeholder="请选择开始时间"
+        end-placeholder="请选择结束时间"
       ></tiny-time-picker>
     </div>
   </div>
@@ -24,18 +26,15 @@ export default {
   },
   data() {
     return {
-      value1: new Date(2016, 9, 10, 18, 40)
+      value: '',
+      rangeValue: ['', '']
     }
   }
 }
 </script>
 
-<style scoped lang="less">
+<style scoped>
 .demo-date-picker-wrap {
   width: 182px;
-
-  & > * {
-    margin-top: 12px;
-  }
 }
 </style>

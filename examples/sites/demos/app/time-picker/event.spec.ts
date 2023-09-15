@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test'
 
-test('聚焦和失焦事件', async ({ page }) => {
+test('事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/time-picker/event-blur')
+  await page.goto('http://localhost:7130/pc/time-picker/event')
 
   const preview = page.locator('#preview')
   const timePicker = preview.locator('.tiny-date-editor > input')
