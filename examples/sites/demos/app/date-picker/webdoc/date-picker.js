@@ -9,6 +9,26 @@ export default {
       'codeFiles': ['basic-usage.vue']
     },
     {
+      'demoId': 'date-range',
+      'name': { 'zh-CN': '范围选择', 'en-US': 'Select date range' },
+      'desc': {
+        'zh-CN':
+          '<p>设置 <code>type</code> 属性为 daterange，可以设置以日期范围的形式进行选择。\n通过 <code>onPick</code> 获取选中日期后会执行的回调，需要与 <code>daterange</code> 或 <code>datetimerange</code> 才生效，需要配置在 <code>picker-options</code> 中。</p>\n',
+        'en-US':
+          '<p>Set <code>type</code> to daterange. You can select a date range. \n Callback that will be executed after the selected date is obtained through <code>onPick</code>. The callback takes effect only when <code>daterange</code> or <code>datetimerange</code> is used. This parameter must be configured in <code>picker-options</code>. </p>\n'
+      },
+      'codeFiles': ['date-range.vue']
+    },
+    {
+      'demoId': 'dates',
+      'name': { 'zh-CN': '多日期选择', 'en-US': 'Select multiple dates' },
+      'desc': {
+        'zh-CN': '',
+        'en-US': ''
+      },
+      'codeFiles': ['multiple-dates.vue']
+    },
+    {
       'demoId': 'date-shortcuts',
       'name': { 'zh-CN': '选择日带快捷选项', 'en-US': 'Select the shortcut option of the day band' },
       'desc': {
@@ -40,17 +60,6 @@ export default {
           '<p>You can set the time zone of the date selection panel through the <code>show-timezone</code> attribute, and import timezoneData time zone data</p>\n'
       },
       'codeFiles': ['timezone.vue']
-    },
-    {
-      'demoId': 'date-range',
-      'name': { 'zh-CN': '选择日期范围', 'en-US': 'Select Date Range' },
-      'desc': {
-        'zh-CN':
-          '<p>设置 <code>type</code> 属性为 daterange，可以设置以日期范围的形式进行选择。\n通过 <code>onPick</code> 获取选中日期后会执行的回调，需要与 <code>daterange</code> 或 <code>datetimerange</code> 才生效，需要配置在 <code>picker-options</code> 中。</p>\n',
-        'en-US':
-          '<p>Set <code>type</code> to daterange. You can select a date range. \n Callback that will be executed after the selected date is obtained through <code>onPick</code>. The callback takes effect only when <code>daterange</code> or <code>datetimerange</code> is used. This parameter must be configured in <code>picker-options</code>. </p>\n'
-      },
-      'codeFiles': ['date-range.vue']
     },
     {
       'demoId': 'date-range-shortcuts',
