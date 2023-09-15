@@ -49,17 +49,6 @@ export default {
       'codeFiles': ['shortcuts.vue']
     },
     {
-      'demoId': 'other-picker-type',
-      'name': { 'zh-CN': '其他日期单位', 'en-US': 'Other date units' },
-      'desc': {
-        'zh-CN':
-          '<p>通过 <code>type</code> 属性可以设置不同的日期单位，如下示例中配置的有 week、year、month、dates。</p>\n',
-        'en-US':
-          '<p>You can set different date units through the <code>type</code> attribute. In the following example, the date units are week, year, month, and dates. </p>\n'
-      },
-      'codeFiles': ['other-picker-type.vue']
-    },
-    {
       'demoId': 'timezone',
       'name': { 'zh-CN': '时区选择', 'en-US': 'Time Zone Selection' },
       'desc': {
@@ -160,17 +149,6 @@ export default {
       'name': { 'zh-CN': '自定义下拉框的类名', 'en-US': 'Class name of the customized drop-down list box' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['custom-suffix-icon.vue']
-    },
-    {
-      'demoId': 'custom-range',
-      'name': { 'zh-CN': '范围选择自定义相关', 'en-US': 'Select Customized' },
-      'desc': {
-        'zh-CN':
-          '<p>范围选择时，<code>start-placeholder</code> 和 <code>end-placeholder</code> 属性可分别指定开始日期和结束日期输入框的占位符。<code>range-separator</code> 属性指定开始日期和结束日期输入框之间的分隔符。</p>\n',
-        'en-US':
-          '<p>When the range is selected, the <code>start-placeholder</code> and <code>end-placeholder</code> attributes can specify the placeholders of the start date and end date text boxes, respectively. The <code>range-separator</code> property specifies the separator between the start date and end date input boxes. </p>\n'
-      },
-      'codeFiles': ['custom-range.vue']
     },
     {
       'demoId': 'custom-weeks',
@@ -307,16 +285,6 @@ export default {
       'name': { 'zh-CN': '设置是否显示为东八区时间', 'en-US': '' },
       'desc': { 'zh-CN': '<p>通过 <code>isutc8</code> 属性可以设置是否显示为东八区时间</p>\n', 'en-US': '' },
       'codeFiles': ['utc8.vue']
-    },
-    {
-      'demoId': 'year-type',
-      'name': { 'zh-CN': '年份选择器', 'en-US': '' },
-      'desc': {
-        'zh-CN':
-          '<p>通过 <code>type</code> 属性可以设置为 <code>year</code>、<code>years</code>、<code>yearrange</code> 分别开启年份选择器单选、多选、范围选择功能。</p>\n',
-        'en-US': ''
-      },
-      'codeFiles': ['year-type.vue']
     }
   ],
   apis: [
@@ -392,7 +360,7 @@ export default {
             'zh-CN': '范围选择时结束日期的占位内容',
             'en-US': 'Placeholder of the end date when the range is selected'
           },
-          'demoId': 'custom-range'
+          'demoId': 'date-range'
         },
         {
           'name': 'format',
@@ -465,7 +433,7 @@ export default {
           'type': 'String',
           'defaultValue': '该属性的默认值为 []',
           'desc': { 'zh-CN': '非范围选择时的占位内容', 'en-US': 'Placeholder content for non-range selection' },
-          'demoId': 'other-picker-type'
+          'demoId': 'basic-usage'
         },
         {
           'name': 'popper-append-to-body',
@@ -494,7 +462,7 @@ export default {
           'type': 'String',
           'defaultValue': '该属性的默认值为 - ',
           'desc': { 'zh-CN': '选择范围时的分隔符', 'en-US': 'Custom Clear Icon' },
-          'demoId': 'custom-range'
+          'demoId': 'date-range'
         },
         {
           'name': 'readonly',
@@ -545,7 +513,7 @@ export default {
             'zh-CN': '范围选择时开始日期的占位内容',
             'en-US': 'Placeholder of the start date when the range is selected'
           },
-          'demoId': 'custom-range'
+          'demoId': 'date-range'
         },
         {
           'name': 'step',
@@ -608,7 +576,7 @@ export default {
             'en-US':
               'Display type; The optional value of this attribute is year / month / dates / week / daterange / date / datetime / datetimerange / monthrange'
           },
-          'demoId': 'other-picker-type'
+          'demoId': 'basic-usage'
         },
         {
           'name': 'unlink-panels',
