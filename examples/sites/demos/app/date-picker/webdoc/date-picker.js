@@ -348,47 +348,14 @@ export default {
       'type': 'component',
       'properties': [
         {
-          'name': 'modelValue / v-model',
-          'type': 'Date / Array',
-          'defaultValue': '',
+          'name': 'align',
+          'type': 'String',
+          'defaultValue': '该属性的默认值为 left',
           'desc': {
-            'zh-CN': '设置日历组件的初始值。;绑定值',
-            'en-US': 'Set the initial value of the calendar component. ;Bound Value'
+            'zh-CN': '对齐方式;该属性的可选值为 left / center / right',
+            'en-US': 'Alignment mode; The optional values of this attribute are left / center / right'
           },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'disabled',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
-          'demoId': 'focus'
-        },
-        {
-          'name': 'popper-append-to-body',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 true',
-          'desc': {
-            'zh-CN':
-              '是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)',
-            'en-US':
-              'Indicates whether to insert a pop-up box to the body element. When a fault occurs in the dialog box that is displayed, you can set this attribute to false (for details, see the select component).'
-          },
-          'demoId': 'popup-style-position'
-        },
-        {
-          'name': 'readonly',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '设置日历组件是否只读。', 'en-US': 'Set whether the calendar component is read-only.' },
-          'demoId': 'readonly'
-        },
-        {
-          'name': 'editable',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 true',
-          'desc': { 'zh-CN': '文本框可输入', 'en-US': 'The text box can be entered.' },
-          'demoId': 'editable'
+          'demoId': 'align'
         },
         {
           'name': 'clearable',
@@ -398,31 +365,47 @@ export default {
           'demoId': 'about-clear'
         },
         {
-          'name': 'size',
+          'name': 'clear-icon',
+          'type': 'String',
+          'defaultValue': '该属性的默认值为 IconOperationfaild',
+          'desc': { 'zh-CN': '自定义清空图标', 'en-US': '' },
+          'demoId': 'about-clear'
+        },
+        {
+          'name': 'default-time',
           'type': 'String',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '输入框尺寸;该属性的可选值为 medium,small, mini',
-            'en-US': 'Text box size; The values of this attribute are medium, small, and mini'
+            'zh-CN': '范围选择时选中日期所使用的当日内具体时刻;该属性的可选值为 见日期格式',
+            'en-US':
+              'Specifies whether the date selector triggers form validation during input. The default value is true.'
           },
-          'demoId': 'set-size'
+          'demoId': 'default-time-of-range'
         },
         {
-          'name': 'placeholder',
-          'type': 'String',
-          'defaultValue': '该属性的默认值为 []',
-          'desc': { 'zh-CN': '非范围选择时的占位内容', 'en-US': 'Placeholder content for non-range selection' },
-          'demoId': 'other-picker-type'
-        },
-        {
-          'name': 'start-placeholder',
-          'type': 'String',
+          'name': 'default-value',
+          'type': 'Date',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '范围选择时开始日期的占位内容',
-            'en-US': 'Placeholder of the start date when the range is selected'
+            'zh-CN': '可选，当选中的日期值为空时，选择器面板打开时默认显示的时间，需设置为可被new Date()解析的值',
+            'en-US':
+              'Use the arrow button to select the time. This parameter is used when type is set to datetime or datetimerange. By default, the time is selected by scrolling the mouse wheel'
           },
-          'demoId': 'custom-range'
+          'demoId': 'default-value'
+        },
+        {
+          'name': 'disabled',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 false',
+          'desc': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
+          'demoId': 'focus'
+        },
+        {
+          'name': 'editable',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 true',
+          'desc': { 'zh-CN': '文本框可输入', 'en-US': 'The text box can be entered.' },
+          'demoId': 'editable'
         },
         {
           'name': 'end-placeholder',
@@ -435,18 +418,6 @@ export default {
           'demoId': 'custom-range'
         },
         {
-          'name': 'type',
-          'type': 'String',
-          'defaultValue': '该属性的默认值为 date',
-          'desc': {
-            'zh-CN':
-              '显示类型;该属性的可选值为 year / month / dates / week / daterange / date / datetime / datetimerange / monthrange',
-            'en-US':
-              'Display type; The optional value of this attribute is year / month / dates / week / daterange / date / datetime / datetimerange / monthrange'
-          },
-          'demoId': 'other-picker-type'
-        },
-        {
           'name': 'format',
           'type': 'String',
           'defaultValue': '该属性的默认值为 yyyy-MM-dd',
@@ -454,26 +425,15 @@ export default {
           'demoId': 'about-format'
         },
         {
-          'name': 'value-format',
-          'type': 'String',
-          'defaultValue': '该属性的默认值为 Date 对象',
-          'desc': {
-            'zh-CN': '指定绑定值的格式。不指定则绑定值为 Date 对象',
-            'en-US':
-              'Specifies the format of the binding value. If this parameter is not specified, the binding value is Date'
-          },
-          'demoId': 'about-format'
-        },
-        {
-          'name': 'time-format',
-          'type': 'String',
+          'name': 'format-weeks',
+          'type': 'Function',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '当自定义的format格式无法自动区分时间与日期时可配置该选项用来辅助确定格式',
-            'en-US':
-              'If the user-defined format cannot automatically distinguish the time and date, you can set this parameter to assist in determining the format.'
+            'zh-CN':
+              '格式化周次序号，该回调函数有两个参数，customWeeks 用来设置自定义周次的序号，weekFirstDays 用来获取每周次中的首个日期',
+            'en-US': 'The following table lists the options of the current time and date selector.'
           },
-          'demoId': ''
+          'demoId': 'custom-weeks'
         },
         {
           'name': 'isutc8',
@@ -488,14 +448,90 @@ export default {
           'demoId': 'utc8'
         },
         {
-          'name': 'align',
+          'name': 'label',
           'type': 'String',
-          'defaultValue': '该属性的默认值为 left',
+          'defaultValue': '',
           'desc': {
-            'zh-CN': '对齐方式;该属性的可选值为 left / center / right',
-            'en-US': 'Alignment mode; The optional values of this attribute are left / center / right'
+            'zh-CN':
+              "设置 shape='filter' 属性之后，代表过滤器模式下显示的标题，单独设置 label 属性可以使 label 放置在组件的开始位置。",
+            'en-US':
+              'Optional. When the selected date is empty, the time displayed by default when the selector panel is opened. Set it to a value that can be parsed by new Date().'
           },
-          'demoId': 'align'
+          'demoId': 'filter-mode'
+        },
+        {
+          'name': 'modelValue / v-model',
+          'type': 'Date / Array',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '设置日历组件的初始值。;绑定值',
+            'en-US': 'Set the initial value of the calendar component. ;Bound Value'
+          },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'name',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '原生属性', 'en-US': '' },
+          'demoId': 'timezone'
+        },
+        {
+          'name': 'picker-options',
+          'type': 'Object',
+          'defaultValue': '该属性的默认值为 {}',
+          'desc': { 'zh-CN': '当前时间日期选择器特有的选项参考下表', 'en-US': "Custom selector's rear icon" },
+          'demoId': 'date-range-shortcuts'
+        },
+        {
+          'name': 'placeholder',
+          'type': 'String',
+          'defaultValue': '该属性的默认值为 []',
+          'desc': { 'zh-CN': '非范围选择时的占位内容', 'en-US': 'Placeholder content for non-range selection' },
+          'demoId': 'other-picker-type'
+        },
+        {
+          'name': 'popper-append-to-body',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 true',
+          'desc': {
+            'zh-CN':
+              '是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)',
+            'en-US':
+              'Indicates whether to insert a pop-up box to the body element. When a fault occurs in the dialog box that is displayed, you can set this attribute to false (for details, see the select component).'
+          },
+          'demoId': 'popup-style-position'
+        },
+        {
+          'name': 'popper-class',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '为 DatePicker 下拉弹框添加的 class 类名',
+            'en-US': 'Cancel the linkage between two date panels in the range selector.'
+          },
+          'demoId': 'custom-suffix-icon1'
+        },
+        {
+          'name': 'range-separator',
+          'type': 'String',
+          'defaultValue': '该属性的默认值为 - ',
+          'desc': { 'zh-CN': '选择范围时的分隔符', 'en-US': 'Custom Clear Icon' },
+          'demoId': 'custom-range'
+        },
+        {
+          'name': 'readonly',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 false',
+          'desc': { 'zh-CN': '设置日历组件是否只读。', 'en-US': 'Set whether the calendar component is read-only.' },
+          'demoId': 'readonly'
+        },
+        {
+          'name': 'shape',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': { 'zh-CN': "通过 shape='filter' 属性切换至过滤器模式。", 'en-US': 'Separator for selecting a range' },
+          'demoId': 'filter-mode'
         },
         {
           'name': 'show-timezone',
@@ -515,45 +551,24 @@ export default {
           'demoId': 'custom-weeks'
         },
         {
-          'name': 'format-weeks',
-          'type': 'Function',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '格式化周次序号，该回调函数有两个参数，customWeeks 用来设置自定义周次的序号，weekFirstDays 用来获取每周次中的首个日期',
-            'en-US': 'The following table lists the options of the current time and date selector.'
-          },
-          'demoId': 'custom-weeks'
-        },
-        {
-          'name': 'shape',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': { 'zh-CN': "通过 shape='filter' 属性切换至过滤器模式。", 'en-US': 'Separator for selecting a range' },
-          'demoId': 'filter-mode'
-        },
-        {
-          'name': 'label',
+          'name': 'size',
           'type': 'String',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              "设置 shape='filter' 属性之后，代表过滤器模式下显示的标题，单独设置 label 属性可以使 label 放置在组件的开始位置。",
-            'en-US':
-              'Optional. When the selected date is empty, the time displayed by default when the selector panel is opened. Set it to a value that can be parsed by new Date().'
+            'zh-CN': '输入框尺寸;该属性的可选值为 medium,small, mini',
+            'en-US': 'Text box size; The values of this attribute are medium, small, and mini'
           },
-          'demoId': 'filter-mode'
+          'demoId': 'set-size'
         },
         {
-          'name': 'tip',
+          'name': 'start-placeholder',
           'type': 'String',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '过滤器模式下显示的提示信息。',
-            'en-US':
-              'The specific time of the current day used by the selected date during range selection; The optional value of this attribute is see date format'
+            'zh-CN': '范围选择时开始日期的占位内容',
+            'en-US': 'Placeholder of the start date when the range is selected'
           },
-          'demoId': 'filter-mode'
+          'demoId': 'custom-range'
         },
         {
           'name': 'step',
@@ -567,78 +582,11 @@ export default {
           'demoId': 'step'
         },
         {
-          'name': 'popper-class',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '为 DatePicker 下拉弹框添加的 class 类名',
-            'en-US': 'Cancel the linkage between two date panels in the range selector.'
-          },
-          'demoId': 'custom-suffix-icon1'
-        },
-        {
-          'name': 'picker-options',
-          'type': 'Object',
-          'defaultValue': '该属性的默认值为 {}',
-          'desc': { 'zh-CN': '当前时间日期选择器特有的选项参考下表', 'en-US': "Custom selector's rear icon" },
-          'demoId': 'date-range-shortcuts'
-        },
-        {
-          'name': 'range-separator',
-          'type': 'String',
-          'defaultValue': '该属性的默认值为 - ',
-          'desc': { 'zh-CN': '选择范围时的分隔符', 'en-US': 'Custom Clear Icon' },
-          'demoId': 'custom-range'
-        },
-        {
-          'name': 'default-value',
-          'type': 'Date',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '可选，当选中的日期值为空时，选择器面板打开时默认显示的时间，需设置为可被new Date()解析的值',
-            'en-US':
-              'Use the arrow button to select the time. This parameter is used when type is set to datetime or datetimerange. By default, the time is selected by scrolling the mouse wheel'
-          },
-          'demoId': 'default-value'
-        },
-        {
-          'name': 'default-time',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '范围选择时选中日期所使用的当日内具体时刻;该属性的可选值为 见日期格式',
-            'en-US':
-              'Specifies whether the date selector triggers form validation during input. The default value is true.'
-          },
-          'demoId': 'default-time-of-range'
-        },
-        {
-          'name': 'name',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '原生属性', 'en-US': '' },
-          'demoId': 'timezone'
-        },
-        {
-          'name': 'unlink-panels',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '在范围选择器里取消两个日期面板之间的联动', 'en-US': '' },
-          'demoId': 'unlink-panels'
-        },
-        {
           'name': 'suffix-icon ',
           'type': 'Object',
           'defaultValue': '该属性的默认值为 IconCalendar，',
           'desc': { 'zh-CN': '自定义选择器的后置图标', 'en-US': '' },
           'demoId': 'custom-suffix-icon'
-        },
-        {
-          'name': 'clear-icon',
-          'type': 'String',
-          'defaultValue': '该属性的默认值为 IconOperationfaild',
-          'desc': { 'zh-CN': '自定义清空图标', 'en-US': '' },
-          'demoId': 'about-clear'
         },
         {
           'name': 'time-arrow-control',
@@ -652,14 +600,76 @@ export default {
           'demoId': 'time-arrow-control'
         },
         {
+          'name': 'time-format',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '当自定义的format格式无法自动区分时间与日期时可配置该选项用来辅助确定格式',
+            'en-US':
+              'If the user-defined format cannot automatically distinguish the time and date, you can set this parameter to assist in determining the format.'
+          },
+          'demoId': ''
+        },
+        {
+          'name': 'tip',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '过滤器模式下显示的提示信息。',
+            'en-US':
+              'The specific time of the current day used by the selected date during range selection; The optional value of this attribute is see date format'
+          },
+          'demoId': 'filter-mode'
+        },
+        {
+          'name': 'type',
+          'type': 'String',
+          'defaultValue': '该属性的默认值为 date',
+          'desc': {
+            'zh-CN':
+              '显示类型;该属性的可选值为 year / month / dates / week / daterange / date / datetime / datetimerange / monthrange',
+            'en-US':
+              'Display type; The optional value of this attribute is year / month / dates / week / daterange / date / datetime / datetimerange / monthrange'
+          },
+          'demoId': 'other-picker-type'
+        },
+        {
+          'name': 'unlink-panels',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 false',
+          'desc': { 'zh-CN': '在范围选择器里取消两个日期面板之间的联动', 'en-US': '' },
+          'demoId': 'unlink-panels'
+        },
+        {
           'name': 'validate-event',
           'type': 'Boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置日期选择器在输入时是否会触发表单校验;默认为 true', 'en-US': '' },
           'demoId': 'validate-event'
+        },
+        {
+          'name': 'value-format',
+          'type': 'String',
+          'defaultValue': '该属性的默认值为 Date 对象',
+          'desc': {
+            'zh-CN': '指定绑定值的格式。不指定则绑定值为 Date 对象',
+            'en-US':
+              'Specifies the format of the binding value. If this parameter is not specified, the binding value is Date'
+          },
+          'demoId': 'about-format'
         }
       ],
       'events': [
+        {
+          'name': 'blur',
+          'type': 'Function',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '当 input 失去焦点时触发;blur() { \n//do something you want...\n}',
+            'en-US': 'This event is triggered when the input loses focus; blur() {\n//do something you want...\n}'
+          },
+          'demoId': 'date-picker-events'
+        },
         {
           'name': 'change',
           'type': 'Function(arg1)',
@@ -668,16 +678,6 @@ export default {
             'zh-CN': '用户确认选定的值时触发;change（arg1）{ // arg1为datepicker改变后的日期或者是日期集}',
             'en-US':
               'This event is triggered when the user confirms the selected value. change (arg1) {//arg1 is the changed date or date set of datepicker}'
-          },
-          'demoId': 'date-picker-events'
-        },
-        {
-          'name': 'blur',
-          'type': 'Function',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '当 input 失去焦点时触发;blur() { \n//do something you want...\n}',
-            'en-US': 'This event is triggered when the input loses focus; blur() {\n//do something you want...\n}'
           },
           'demoId': 'date-picker-events'
         },
