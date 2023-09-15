@@ -10,9 +10,6 @@ import { DatePicker as TinyDatePicker } from '@opentiny/vue'
 
 const value = ref('')
 const pickerOptions = ref({
-  disabledDate(time) {
-    return time.getTime() > Date.now()
-  },
   shortcuts: [
     {
       text: '今天',

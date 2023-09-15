@@ -29,6 +29,15 @@ export default {
       'codeFiles': ['multiple-dates.vue']
     },
     {
+      'demoId': 'disabled',
+      'name': { 'zh-CN': '禁用状态', 'en-US': 'Disabled status' },
+      'desc': {
+        'zh-CN': '',
+        'en-US': ''
+      },
+      'codeFiles': ['disabled.vue']
+    },
+    {
       'demoId': 'date-shortcuts',
       'name': { 'zh-CN': '选择日带快捷选项', 'en-US': 'Select the shortcut option of the day band' },
       'desc': {
@@ -84,15 +93,6 @@ export default {
       'codeFiles': ['default-time-of-range.vue']
     },
     {
-      'demoId': 'month-range',
-      'name': { 'zh-CN': '选择月份范围', 'en-US': 'Select Month Range' },
-      'desc': {
-        'zh-CN': '<p>设置 <code>type</code> 属性为 monthrange，可以设置以月份范围的形式进行选择。</p>\n',
-        'en-US': '<p>Set the <code>type</code> attribute to monthrange. You can set the value to a month range. </p>\n'
-      },
-      'codeFiles': ['month-range.vue']
-    },
-    {
       'demoId': 'month-range-shortcuts',
       'name': { 'zh-CN': '月份范围快捷选项', 'en-US': 'Month Range Shortcut Options' },
       'desc': {
@@ -111,17 +111,6 @@ export default {
           '<p>Sets whether the calendar component is read-only through the <code>readonly</code> property. </p>\n'
       },
       'codeFiles': ['readonly.vue']
-    },
-    {
-      'demoId': 'max-min',
-      'name': { 'zh-CN': '最大最小值', 'en-US': 'Maximum/Minimum' },
-      'desc': {
-        'zh-CN':
-          '<p>配置 <code>picker-options</code> 属性，在对象中的 <code>disabledDate</code> 方法中根据日期进行判断来禁用指定的日期段，通过这种方式来实现最大最小值。</p>\n',
-        'en-US':
-          '<p>Configure the <code>picker-options</code> attribute to disable the specified date segment based on the date in the <code>disabledDate</code> method of the object. In this way, the maximum and minimum values are implemented. </p>\n'
-      },
-      'codeFiles': ['max-min.vue']
     },
     {
       'demoId': 'align',
