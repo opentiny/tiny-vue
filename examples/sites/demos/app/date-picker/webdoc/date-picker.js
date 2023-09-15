@@ -38,15 +38,15 @@ export default {
       'codeFiles': ['disabled.vue']
     },
     {
-      'demoId': 'date-shortcuts',
-      'name': { 'zh-CN': '选择日带快捷选项', 'en-US': 'Select the shortcut option of the day band' },
+      'demoId': 'shortcuts',
+      'name': { 'zh-CN': '快捷选项', 'en-US': 'Select the shortcut option of the day band' },
       'desc': {
         'zh-CN':
           '<p>通过 <code>picker-options</code> 属性，该属性是一个对象，在其中指定 <code>shortcuts</code> 对象数组可以设置快捷选项。同时可以根据需要设置 <code>disabledDate</code> 方法禁用日期。</p>\n',
         'en-US':
           '<p>With the <code>picker-options</code> attribute, which is an object in which you specify an array of <code>shortcuts</code> objects to set shortcut options. In addition, you can set the date when the <code>disabledDate</code> method is disabled as required. </p>\n'
       },
-      'codeFiles': ['date-shortcuts.vue']
+      'codeFiles': ['shortcuts.vue']
     },
     {
       'demoId': 'other-picker-type',
@@ -71,17 +71,6 @@ export default {
       'codeFiles': ['timezone.vue']
     },
     {
-      'demoId': 'date-range-shortcuts',
-      'name': { 'zh-CN': '日期范围快捷选项', 'en-US': 'Date Range Shortcut Options' },
-      'desc': {
-        'zh-CN':
-          '<p>通过 <code>picker-options</code> 对象设置日期范围快捷选项。\n通过 <code>firstDayOfWeek</code> 周起始日,该属性可选值为 1 到 7，默认值为 7。</p>\n',
-        'en-US':
-          '<p>Sets the date range shortcut through the <code>picker-options</code> object. \n <code>firstDayOfWeek</code>. The value ranges from 1 to 7. The default value is 7. </p>\n'
-      },
-      'codeFiles': ['date-range-shortcuts.vue']
-    },
-    {
       'demoId': 'default-time-of-range',
       'name': { 'zh-CN': '日期范围默认时刻', 'en-US': 'Default Time of the Date Range' },
       'desc': {
@@ -91,16 +80,6 @@ export default {
           '<p>When using <code>datetimerange</code> to set the date range, you can use <code>default-time</code> to set the start and end time. The default time is 00:00 on the selected date. 00 as the start and end time. <code>default-time</code> takes an array. Each item in the array is a string. The first item controls the time of the start date and the second item controls the time of the end date. </p>\n'
       },
       'codeFiles': ['default-time-of-range.vue']
-    },
-    {
-      'demoId': 'month-range-shortcuts',
-      'name': { 'zh-CN': '月份范围快捷选项', 'en-US': 'Month Range Shortcut Options' },
-      'desc': {
-        'zh-CN': '<p>同样通过 <code>picker-options</code> 对象设置月份范围快捷选项。</p>\n',
-        'en-US':
-          '<p>Also, the <code>picker-options</code> object is used to set the month range shortcut options. </p>\n'
-      },
-      'codeFiles': ['month-range-shortcuts.vue']
     },
     {
       'demoId': 'readonly',
@@ -479,7 +458,7 @@ export default {
           'type': 'Object',
           'defaultValue': '该属性的默认值为 {}',
           'desc': { 'zh-CN': '当前时间日期选择器特有的选项参考下表', 'en-US': "Custom selector's rear icon" },
-          'demoId': 'date-range-shortcuts'
+          'demoId': 'shortcuts'
         },
         {
           'name': 'placeholder',
