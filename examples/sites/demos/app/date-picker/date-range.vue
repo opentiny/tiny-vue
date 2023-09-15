@@ -1,12 +1,14 @@
 <template>
-  <div>
-    <p>日期值：{{ value }}</p>
-    <tiny-date-picker v-model="value" type="daterange" :picker-options="onPickOptions"></tiny-date-picker>
+  <div class="demo-date-picker-wrap">
+    <tiny-date-picker v-model="value" type="daterange" start-placeholder="开始日期" end-placeholder="结束日期"></tiny-date-picker>
+    <tiny-date-picker v-model="dateTimeValue" type="datetimerange" start-placeholder="开始日期" end-placeholder="结束日期"></tiny-date-picker>
+    <tiny-date-picker v-model="value" type="monthrange" start-placeholder="开始月份" end-placeholder="结束月份"></tiny-date-picker>
+    <tiny-date-picker v-model="value" type="yearrange" start-placeholder="开始年份" end-placeholder="结束年份"></tiny-date-picker>
   </div>
 </template>
 
 <script>
-import { DatePicker, Modal } from '@opentiny/vue'
+import { DatePicker } from '@opentiny/vue'
 
 export default {
   components: {
@@ -14,22 +16,21 @@ export default {
   },
   data() {
     return {
-      value: [new Date(2023, 4, 15), new Date(2023, 4, 21)],
-      onPickOptions: {
-        onPick: (val) => {
-          if (val.maxDate) {
-            Modal.message({
-              message: '当前获取的值 maxDate' + val.maxDate,
-              status: 'info'
-            })
-            Modal.message({
-              message: '当前获取的值 minDate：' + val.minDate,
-              status: 'info'
-            })
-          }
-        }
-      }
+      value: '',
+      dateTimeValue: '',
+      monthValue: '',
+      yearValue: ''
     }
   }
 }
 </script>
+
+<style scoped lang="less">
+.demo-date-picker-wrap {
+  width: 350px;
+
+  & > * {
+    margin-top: 12px;
+  }
+}
+</style>
