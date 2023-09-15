@@ -13,7 +13,7 @@
   </tiny-layout>
 </template>
 
-<script lang="jsx">
+<script>
 import { Layout, Row, Col, DatePicker } from '@opentiny/vue'
 import { IconMinus } from '@opentiny/vue-icon'
 

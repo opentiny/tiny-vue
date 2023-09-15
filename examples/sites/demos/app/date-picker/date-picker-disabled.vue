@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { DatePicker, Button } from '@opentiny/vue'
 
 export default {

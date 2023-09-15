@@ -2,7 +2,7 @@
   <tiny-date-picker v-model="value" type="daterange" :picker-options="pickerOptionsDateRange"></tiny-date-picker>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { DatePicker as TinyDatePicker } from '@opentiny/vue'
 

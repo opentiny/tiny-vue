@@ -33,7 +33,7 @@
   </tiny-form>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import {
   Form as TinyForm,

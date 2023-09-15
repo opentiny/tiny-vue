@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { TimePicker as TinyTimePicker } from '@opentiny/vue'
 

@@ -10,7 +10,7 @@
   </tiny-form>
 </template>
 
-<script lang="jsx">
+<script>
 import { DatePicker, Form, FormItem } from '@opentiny/vue'
 
 export default {

@@ -17,7 +17,7 @@
   </tiny-layout>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import {
   Layout as TinyLayout,

@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { DatePicker as TinyDatePicker, Button as TinyButton } from '@opentiny/vue'
 

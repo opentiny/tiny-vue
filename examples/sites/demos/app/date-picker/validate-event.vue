@@ -33,7 +33,7 @@
   </tiny-form>
 </template>
 
-<script lang="jsx">
+<script>
 import { Form, FormItem, Button, Col, TimePicker, DatePicker, Input, Modal } from '@opentiny/vue'
 
 export default {

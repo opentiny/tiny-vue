@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { DatePicker, Modal } from '@opentiny/vue'
 import tzData from '@opentiny/vue-renderless/picker/timezone'
 

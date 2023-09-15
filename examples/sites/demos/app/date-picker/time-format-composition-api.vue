@@ -21,7 +21,7 @@
   </tiny-layout>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { DatePicker as TinyDatePicker, Layout as TinyLayout, Row as TinyRow, Col as TinyCol } from '@opentiny/vue'
 

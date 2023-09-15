@@ -2,7 +2,7 @@
   <tiny-date-picker v-model="value" disabled></tiny-date-picker>
 </template>
 
-<script lang="jsx">
+<script>
 import { DatePicker } from '@opentiny/vue'
 
 export default {

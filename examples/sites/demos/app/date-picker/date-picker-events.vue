@@ -17,7 +17,7 @@
   </tiny-layout>
 </template>
 
-<script lang="jsx">
+<script>
 import { Layout, Row, Col, DatePicker, Modal } from '@opentiny/vue'
 
 export default {
