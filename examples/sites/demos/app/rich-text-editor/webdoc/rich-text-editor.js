@@ -71,7 +71,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '当编辑器状态改变完成后，将会触发该事件,
+            'zh-CN': '当编辑器状态改变完成后，将会触发该事件',
             'en-US': 'When the content is updated.'
           },
           'demoId': 'base'
