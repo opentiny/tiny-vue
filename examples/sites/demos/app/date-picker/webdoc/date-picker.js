@@ -81,14 +81,14 @@ export default {
       'codeFiles': ['align.vue']
     },
     {
-      'demoId': 'set-size',
-      'name': { 'zh-CN': '尺寸设置', 'en-US': 'Size Settings' },
+      'demoId': 'size',
+      'name': { 'zh-CN': '尺寸', 'en-US': 'Size' },
       'desc': {
         'zh-CN': '<p>通过 <code>size</code> 属性可以设置日期输入框的尺寸，可选值有 medium、small、mini。</p>\n',
         'en-US':
           '<p>You can set the size of the date text box through the <code>size</code> attribute. The options are medium, small, and mini. </p>\n'
       },
-      'codeFiles': ['set-size.vue']
+      'codeFiles': ['size.vue']
     },
     {
       'demoId': 'about-clear',
@@ -497,7 +497,7 @@ export default {
             'zh-CN': '输入框尺寸;该属性的可选值为 medium,small, mini',
             'en-US': 'Text box size; The values of this attribute are medium, small, and mini'
           },
-          'demoId': 'set-size'
+          'demoId': 'size'
         },
         {
           'name': 'start-placeholder',
