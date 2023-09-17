@@ -32,8 +32,23 @@ export default {
       'demoId': 'disabled',
       'name': { 'zh-CN': '禁用状态', 'en-US': 'Disabled status' },
       'desc': {
-        'zh-CN': '',
-        'en-US': ''
+        'zh-CN': `
+          <p>通过设置 <code>disabled</code> 为 true 后，禁用日期输入框。</p>
+          <p>通过设置 <code>picker-options</code> 的 <code>disabledDate</code> 属性，可以实现部分禁用，此时只能选择一部分日期。</p>
+          <p>日期输入框默认可以输入日期，设置 <code>editable</code> 为 false 后，将不能输入。</p>
+          <p>通过 <code>readonly</code> 属性设置日历组件是否只读。</p>
+        `,
+        'en-US': `
+          <p>After setting <code>disabled</code> to true, disable the date input box.</p>
+          <p>Partial disabling can be achieved by setting the <code>disabledDate</code> property of <code>picker-options</code>, and only part of the date can be selected at this time.</p>
+          <p>You can enter a date by default in the date input box, but it cannot be entered when <code> editable </code> is set to false.</p>
+          <p>Sets whether the calendar component is read-only through the <code>readonly</code> property. </p>
+        `
+      },
+      'desc': {
+        'zh-CN': '<p>通过 <code>readonly</code> 属性设置日历组件是否只读。</p>\n',
+        'en-US':
+          '<p>Sets whether the calendar component is read-only through the <code>readonly</code> property. </p>\n'
       },
       'codeFiles': ['disabled.vue']
     },
@@ -58,16 +73,6 @@ export default {
           '<p>You can set the time zone of the date selection panel through the <code>show-timezone</code> attribute, and import timezoneData time zone data</p>\n'
       },
       'codeFiles': ['timezone.vue']
-    },
-    {
-      'demoId': 'readonly',
-      'name': { 'zh-CN': '只读', 'en-US': 'Read-only' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>readonly</code> 属性设置日历组件是否只读。</p>\n',
-        'en-US':
-          '<p>Sets whether the calendar component is read-only through the <code>readonly</code> property. </p>\n'
-      },
-      'codeFiles': ['readonly.vue']
     },
     {
       'demoId': 'align',
@@ -169,15 +174,6 @@ export default {
         `
       },
       'codeFiles': ['default-value.vue']
-    },
-    {
-      'demoId': 'editable',
-      'name': { 'zh-CN': '文本框不可输入', 'en-US': 'Event' },
-      'desc': {
-        'zh-CN': '<p>日期输入框默认可以输入日期，设置 <code>editable</code> 为 false 后，将不能输入。</p>\n',
-        'en-US': '<p>The main events include change, blur, and focus. </p>\n'
-      },
-      'codeFiles': ['editable.vue']
     },
     {
       'demoId': 'filter-mode',
@@ -331,14 +327,14 @@ export default {
           'type': 'Boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
-          'demoId': 'focus'
+          'demoId': 'disabled'
         },
         {
           'name': 'editable',
           'type': 'Boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '文本框可输入', 'en-US': 'The text box can be entered.' },
-          'demoId': 'editable'
+          'demoId': 'disabled'
         },
         {
           'name': 'end-placeholder',
@@ -457,7 +453,7 @@ export default {
           'type': 'Boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '设置日历组件是否只读。', 'en-US': 'Set whether the calendar component is read-only.' },
-          'demoId': 'readonly'
+          'demoId': 'disabled'
         },
         {
           'name': 'shape',
