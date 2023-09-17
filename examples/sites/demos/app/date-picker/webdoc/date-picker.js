@@ -195,32 +195,22 @@ export default {
     },
     {
       'demoId': 'filter-mode',
-      'name': { 'zh-CN': '过滤器模式', 'en-US': 'Focus' },
+      'name': { 'zh-CN': '过滤器模式', 'en-US': 'Filter mode' },
       'desc': {
-        'zh-CN':
-          "<p>通过 <code>shape='filter'</code> 属性切换至过滤器模式。</p><p>过滤器模式下可传入 label 显示标题，tip 显示提示信息，clearable 是否显示清除按钮。</p>\n",
-        'en-US': '<p>Use the <code>focus</code> method to enable the input to obtain the focus. </p>\n'
+        'zh-CN': '<p>通过 <code>shape=\'filter\'</code> 属性切换至过滤器模式。</p><p>过滤器模式下可传入 label 显示标题，tip 显示提示信息，clearable 是否显示清除按钮。</p>',
+        'en-US': '<p>Switch to filter mode through the <code> shape=\'filter\' </code> attribute. </p><p> in filter mode, label display caption can be passed in, tip displays prompt information, and whether clearable displays the clear button.</p>'
       },
       'codeFiles': ['filter-mode.vue']
     },
     {
-      'demoId': 'date-picker-events',
-      'name': { 'zh-CN': '事件', 'en-US': 'Do not trigger form validation' },
+      'demoId': 'events',
+      'name': { 'zh-CN': '事件', 'en-US': 'Events' },
       'desc': {
-        'zh-CN': '<p>主要事件有 change、blur、focus。</p>\n',
+        'zh-CN': '<p>主要事件有 focus、blur、change。</p>',
         'en-US':
-          '<p>The date selector triggers form validation by default. The triggering modes include blur and change. If <code>validate-event</code> is set to false, form validation is not triggered. </p>\n'
+          '<p>The main events are focus, blur and change.</p>'
       },
-      'codeFiles': ['date-picker-events.vue']
-    },
-    {
-      'demoId': 'focus',
-      'name': { 'zh-CN': '获取焦点', 'en-US': 'Set whether to display the GMT+8 time' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>focus</code> 方法设置使 input 获取焦点。</p>\n',
-        'en-US': '<p>You can use the <code>isutc8</code> attribute to set whether to display the GMT+8 time.</p>\n'
-      },
-      'codeFiles': ['focus.vue']
+      'codeFiles': ['events.vue']
     },
     {
       'demoId': 'label-inside',
@@ -585,7 +575,7 @@ export default {
             'zh-CN': '当 input 失去焦点时触发;blur() { \n//do something you want...\n}',
             'en-US': 'This event is triggered when the input loses focus; blur() {\n//do something you want...\n}'
           },
-          'demoId': 'date-picker-events'
+          'demoId': 'events'
         },
         {
           'name': 'change',
@@ -596,7 +586,7 @@ export default {
             'en-US':
               'This event is triggered when the user confirms the selected value. change (arg1) {//arg1 is the changed date or date set of datepicker}'
           },
-          'demoId': 'date-picker-events'
+          'demoId': 'events'
         },
         {
           'name': 'focus',
@@ -607,7 +597,7 @@ export default {
             'en-US':
               'This event is triggered when the input is focused. focus(arg1}{\n// arg1 = to component vue instance\n//do something you want...\n}'
           },
-          'demoId': 'date-picker-events'
+          'demoId': 'events'
         }
       ],
       'slots': [],
@@ -617,7 +607,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '使 input 获取焦点', 'en-US': 'Enable input to focus.' },
-          'demoId': 'focus'
+          'demoId': ''
         }
       ],
       'props format': [
