@@ -56,10 +56,18 @@ export default {
       'demoId': 'shortcuts',
       'name': { 'zh-CN': '快捷选项', 'en-US': 'Select the shortcut option of the day band' },
       'desc': {
-        'zh-CN':
-          '<p>通过 <code>picker-options</code> 属性，该属性是一个对象，在其中指定 <code>shortcuts</code> 对象数组可以设置快捷选项。同时可以根据需要设置 <code>disabledDate</code> 方法禁用日期。</p>\n',
-        'en-US':
-          '<p>With the <code>picker-options</code> attribute, which is an object in which you specify an array of <code>shortcuts</code> objects to set shortcut options. In addition, you can set the date when the <code>disabledDate</code> method is disabled as required. </p>\n'
+        'zh-CN': `
+          <p>通过 <code>picker-options</code> 属性，该属性是一个对象，在其中指定 <code>shortcuts</code> 对象数组可以设置快捷选项。</p>
+          <p>通过设置 <code>type: 'startFrom'</code> 为某日起始，设置 <code>type: 'endAt'</code> 为某日为止，</p>
+          <p>startDate 属性可设置开始的日期，endDate 属性设置结束日期，startDate 默认为 1970-01-01，endDate 默认为 2099-12-31</p>
+          <p>设置某日起始、某日为止时不用传入 onClick 函数，因为此函数不会被执行。</p>
+        `,
+        'en-US': `
+          <p>With the <code>picker-options</code> attribute, which is an object in which you specify an array of <code>shortcuts</code> objects to set shortcut options.</p>
+          <p>By setting <code> type: 'startFrom' </code> to a certain day, setting <code> type:' endAt' </code> to a certain day, </p>
+          <p> startDate property to set the start date, and the endDate property to set the end date, startDate defaults to 1970-01-01-01. EndDate defaults to 2099-12-31</p>
+          <p> to set the start and end of a certain day without passing the onClick function, because this function will not be executed.</p>
+        `
       },
       'codeFiles': ['shortcuts.vue']
     },
@@ -218,16 +226,6 @@ export default {
         'en-US': ''
       },
       'codeFiles': ['label-inside.vue']
-    },
-    {
-      'demoId': 'start-from-end-at',
-      'name': { 'zh-CN': '某日起始、某日为止', 'en-US': '' },
-      'desc': {
-        'zh-CN':
-          "<p>通过 <code>picker-options</code> 对象设置日期范围快捷选项。</p><p>通过设置 <code>type: 'startFrom'</code> 为某日起始，设置 <code>type: 'endAt'</code> 为某日为止，</p><p>startDate 属性可设置开始的日期，endDate 属性设置结束日期，startDate 默认为 1970-01-01，endDate 默认为 2099-12-31</p><p>设置某日起始、某日为止时不用传入 onClick 函数，因为此函数不会被执行</p>\n",
-        'en-US': ''
-      },
-      'codeFiles': ['start-from-end-at.vue']
     },
     {
       'demoId': 'step',

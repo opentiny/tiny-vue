@@ -1,10 +1,6 @@
 <template>
   <div class="demo-date-picker-wrap">
-    <tiny-date-picker
-      v-model="value"
-      :picker-options="pickerOptions"
-      placeholder="请选择日期"
-    ></tiny-date-picker>
+    <tiny-date-picker v-model="value" :picker-options="pickerOptions" placeholder="请选择日期"></tiny-date-picker>
     <tiny-date-picker
       v-model="dateRangeValue"
       type="daterange"
@@ -18,6 +14,17 @@
       :picker-options="pickerOptionsMonthRange"
       start-placeholder="开始月份"
       end-placeholder="结束月份"
+    ></tiny-date-picker>
+  </div>
+
+  <p>某日起始、某日为止：</p>
+  <div class="demo-date-picker-wrap">
+    <tiny-date-picker
+      v-model="startFromValue"
+      type="daterange"
+      :picker-options="pickerOptionsStartFrom"
+      start-placeholder="开始日期"
+      end-placeholder="结束日期"
     ></tiny-date-picker>
   </div>
 </template>
@@ -34,6 +41,7 @@ export default {
       value: '',
       dateRangeValue: '',
       monthRangeValue: '',
+      startFromValue: '',
       pickerOptions: {
         shortcuts: [
           {
@@ -121,6 +129,28 @@ export default {
               start.setMonth(start.getMonth() - 6)
               picker.$emit('pick', [start, end])
             }
+          }
+        ]
+      },
+      pickerOptionsStartFrom: {
+        shortcuts: [
+          {
+            text: '某日起始', // text可以自定义
+            type: 'startFrom'
+          },
+          {
+            text: '某日为止', // text可以自定义
+            type: 'endAt'
+          },
+          {
+            text: '自定义结束日期',
+            type: 'startFrom',
+            endDate: new Date('2030-10-10') // 传入的日期必须为一个日期对象
+          },
+          {
+            text: '自定义开始日期',
+            type: 'endAt',
+            startDate: new Date('2000-10-10') // 传入的日期必须为一个日期对象
           }
         ]
       }
