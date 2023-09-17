@@ -157,7 +157,7 @@ export default {
     },
     {
       'demoId': 'unlink-panels',
-      'name': { 'zh-CN': '范围选择取消面板联动', 'en-US': 'Default time setting when the selector is enabled' },
+      'name': { 'zh-CN': '面板联动', 'en-US': 'Default time setting when the selector is enabled' },
       'desc': {
         'zh-CN':
           '<p>范围选择时，默认情况下，在开始日期面板中单击上一月或上一年箭头图标时，结束日期面板中日期也联动切换到上一月或上一年。在结束日期面板中切换下一月或下一年时，开始日期面板也随之联动。但若配置 <code>unlink-panels</code> 属性为 true ，面板之间就不再联动，切换年月时只对当前面板生效。</p>\n',
