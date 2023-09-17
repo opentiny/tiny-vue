@@ -1,12 +1,25 @@
 <template>
   <div>
-    {{ eachWeekFirstDay }}
-    <tiny-date-picker
-      v-model="value"
-      :picker-options="pickerOptionsDateRange"
-      show-week-number
-      :format-weeks="formatWeeks"
-    ></tiny-date-picker>
+    <p>默认隐藏周次序号：</p>
+    <div class="demo-date-picker-wrap">
+      <tiny-date-picker v-model="value"></tiny-date-picker>
+    </div>
+  
+    <p>显示周次序号：</p>
+    <div class="demo-date-picker-wrap">
+      <tiny-date-picker v-model="value" show-week-number></tiny-date-picker>
+    </div>
+  
+    <p>自定义周次序号的格式：</p>
+    <div class="demo-date-picker-wrap">
+      <tiny-date-picker v-model="value" show-week-number :format-weeks="formatWeeks"></tiny-date-picker>
+    </div>
+    <p>weekFirstDays: {{ eachWeekFirstDay }}</p>
+  
+    <p>自定义每周第一天是星期几：</p>
+    <div class="demo-date-picker-wrap">
+      <tiny-date-picker v-model="value" :picker-options="pickerOptions"></tiny-date-picker>
+    </div>
   </div>
 </template>
 
@@ -21,8 +34,8 @@ export default {
     return {
       eachWeekFirstDay: [],
       value: '',
-      pickerOptionsDateRange: {
-        firstDayOfWeek: 7
+      pickerOptions: {
+        firstDayOfWeek: 1
       }
     }
   },
@@ -34,3 +47,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-date-picker-wrap {
+  width: 280px;
+}
+</style>

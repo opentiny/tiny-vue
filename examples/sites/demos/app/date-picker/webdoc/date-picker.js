@@ -138,12 +138,20 @@ export default {
     },
     {
       'demoId': 'custom-weeks',
-      'name': { 'zh-CN': '自定义周次序号', 'en-US': 'Select a range to cancel panel linkage' },
+      'name': { 'zh-CN': '周次序号', 'en-US': 'Weekly serial number' },
       'desc': {
-        'zh-CN':
-          '<p>通过 <code>show-week-number</code> 属性展示原始周次序号，通过<code>format-weeks</code>属性传入两个参数</p><p>参数设置如下：customWeeks：设置自定义周次的序号；weekFirstDays：获取每周次中的首个日期</p>\n',
-        'en-US':
-          '<p>When the range is selected, by default, when you click the previous month or previous year arrow icon in the start date panel, the date in the end date panel is also switched to the previous month or previous year. When you switch the next month or the next year in the end date panel, the start date panel is also linked. However, if <code>unlink-panels</code> is set to true, panels are not associated with each other. When the year and month are changed, the change takes effect only for the current panel. </p>\n'
+        'zh-CN': `
+          <p>通过 <code>show-week-number</code> 属性展示原始周次序号，通过<code>format-weeks</code>属性传入两个参数</p>
+          <p>参数设置如下：</p>
+          <ul><li>customWeeks：设置自定义周次的序号</li><li>weekFirstDays：获取每周次中的首个日期</li></ul>
+          <p>通过 <code>picker-options</code> 的 <code> firstDayOfWeek </code> 属性来设置每周的第一天时星期几，默认值是7，也就是星期天</p>
+        `,
+        'en-US': `
+          <p>Display the original weekly sequence number through the <code> show-week-number </code> attribute, and pass in two parameters through the <code> format-weeks </code> attribute.</p>
+          <p>The parameters are set as follows: </p>
+          <ul><li>customWeeks: set the sequence number of the custom week</li><li>weekFirstDays: get the first date of each week</li></ul>
+          <p>Set the day of the week on the first day of the week through the <code> firstDayOfWeek </code> property of <code> picker-options </code>. The default value is 7, which is Sunday.</p>
+        `
       },
       'codeFiles': ['custom-weeks.vue']
     },
