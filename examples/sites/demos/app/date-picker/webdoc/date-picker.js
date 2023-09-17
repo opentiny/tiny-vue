@@ -60,17 +60,6 @@ export default {
       'codeFiles': ['timezone.vue']
     },
     {
-      'demoId': 'default-time-of-range',
-      'name': { 'zh-CN': '日期范围默认时刻', 'en-US': 'Default Time of the Date Range' },
-      'desc': {
-        'zh-CN':
-          '<p>使用 <code>datetimerange</code> 设置日期范围时，可以通过 <code>default-time</code> 属性设置起始与结束的时刻，默认是选定日期的 00:00:00 作为起始与结束的时刻。<code>default-time</code> 接受一个数组，数组的每一项都为一个字符串，第一项控制起始日期的时刻，第二项控制结束日期的时刻。</p>\n',
-        'en-US':
-          '<p>When using <code>datetimerange</code> to set the date range, you can use <code>default-time</code> to set the start and end time. The default time is 00:00 on the selected date. 00 as the start and end time. <code>default-time</code> takes an array. Each item in the array is a string. The first item controls the time of the start date and the second item controls the time of the end date. </p>\n'
-      },
-      'codeFiles': ['default-time-of-range.vue']
-    },
-    {
       'demoId': 'readonly',
       'name': { 'zh-CN': '只读', 'en-US': 'Read-only' },
       'desc': {
@@ -174,11 +163,16 @@ export default {
     },
     {
       'demoId': 'default-value',
-      'name': { 'zh-CN': '选择器打开时默认时间设置', 'en-US': 'The text box cannot be entered.' },
+      'name': { 'zh-CN': '默认值', 'en-US': 'Default value' },
       'desc': {
-        'zh-CN': '<p><code>default-value</code> 属性指定日期选择器面板打开时默认选中的日期。</p>\n',
-        'en-US':
-          'By default, you can enter a date in the <p>Date text box. If you set <code>editable</code> to false, you cannot enter a date in the <p>Date text box. </p>\n'
+        'zh-CN': `
+          <p><code>default-value</code> 属性指定日期选择器面板打开时默认选中的日期。</p>\n
+          <p>使用 <code>datetimerange</code> 设置日期范围时，可以通过 <code>default-time</code> 属性设置起始与结束的时刻，默认是选定日期的 00:00:00 作为起始与结束的时刻。<code>default-time</code> 接受一个数组，数组的每一项都为一个字符串，第一项控制起始日期的时刻，第二项控制结束日期的时刻。</p>\n
+        `,
+        'en-US': `
+          <p>By default, you can enter a date in the Date text box. If you set <code>editable</code> to false, you cannot enter a date in the <p>Date text box. </p>\n
+          <p>When using <code>datetimerange</code> to set the date range, you can use <code>default-time</code> to set the start and end time. The default time is 00:00 on the selected date. 00 as the start and end time. <code>default-time</code> takes an array. Each item in the array is a string. The first item controls the time of the start date and the second item controls the time of the end date. </p>\n
+        `
       },
       'codeFiles': ['default-value.vue']
     },
@@ -325,7 +319,7 @@ export default {
             'en-US':
               'Specifies whether the date selector triggers form validation during input. The default value is true.'
           },
-          'demoId': 'default-time-of-range'
+          'demoId': 'default-value'
         },
         {
           'name': 'default-value',

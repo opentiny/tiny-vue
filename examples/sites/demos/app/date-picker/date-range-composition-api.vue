@@ -15,14 +15,14 @@
       range-separator="至"
     ></tiny-date-picker>
     <tiny-date-picker
-      v-model="value"
+      v-model="monthValue"
       type="monthrange"
       start-placeholder="开始月份"
       end-placeholder="结束月份"
       range-separator="至"
     ></tiny-date-picker>
     <tiny-date-picker
-      v-model="value"
+      v-model="yearValue"
       type="yearrange"
       start-placeholder="开始年份"
       end-placeholder="结束年份"
