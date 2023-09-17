@@ -231,23 +231,20 @@ export default {
     },
     {
       'demoId': 'step',
-      'name': { 'zh-CN': '设置步长', 'en-US': '' },
+      'name': { 'zh-CN': '步长', 'en-US': 'Step' },
       'desc': {
-        'zh-CN':
-          '<p>通过 <code>step</code> 设置步长，默认值为 <code>{ hour: 1, minute: 1, second: 1 }</code>，其中 <code>hour</code> 的设置范围是 <code>0-23</code>，<code>minute</code>、<code>second</code> 的设置范围是 <code>0-60</code>。可单独设置其中的一项或多项值，未设置的默认值为 <code>1</code>。</p>\n',
-        'en-US': ''
+        'zh-CN': `
+          <p><code>step</code> 和 <code>time-arrow-control</code> 都是当 type 为 datetime、datetimerange 时使用。</p>
+          <p>通过 <code>step</code> 设置步长，默认值为 <code>{ hour: 1, minute: 1, second: 1 }</code>，其中 <code>hour</code> 的设置范围是 <code>0-23</code>，<code>minute</code>、<code>second</code> 的设置范围是 <code>0-60</code>。可单独设置其中的一项或多项值，未设置的默认值为 <code>1</code>。</p>
+          <p>将 <code>time-arrow-control</code> 设为 true 可以设置通过箭头按钮控制时间选择，默认为通过鼠标滚轮滚动选择时间。</p>
+        `,
+        'en-US': `
+          <p><code> step </code> and <code> time-arrow-control </code> are used when type is datetime or datetimerange.</p>
+          <p>Set the step size through <code> step </code>. The default value is <code> {hour: 1, minute: 1, second: 1} </code>, where the setting range of <code> hour </code> is <code> 0-23 </code>, <code> minute </code>, <code> second </code> is <code> 0-60 </code>. One or more of these values can be set separately, and the unset default value is <code> 1 </code>.</p>
+          <p>Setting <code>time-arrow-control</code> to true sets the time selection to be controlled by arrow buttons, and the default is to scroll through the mouse wheel to select time.</p>
+        `
       },
       'codeFiles': ['step.vue']
-    },
-    {
-      'demoId': 'time-arrow-control',
-      'name': { 'zh-CN': '箭头按钮控制时间选择', 'en-US': '' },
-      'desc': {
-        'zh-CN':
-          '<p>当 <code>type</code> 为 datetime、datetimerange 时，设置 <code>time-arrow-control</code> 属性为 true，在时间面板中将显示箭头按钮，通过箭头按钮控制时间选择。默认为滚动选择时间。</p>\n',
-        'en-US': ''
-      },
-      'codeFiles': ['time-arrow-control.vue']
     },
     {
       'demoId': 'validate-event',
@@ -521,7 +518,7 @@ export default {
               '通过箭头按钮控制时间选择，当 type 为 datetime、datetimerange 时使用;默认为 通过鼠标滚轮滚动选择时间',
             'en-US': ''
           },
-          'demoId': 'time-arrow-control'
+          'demoId': 'step'
         },
         {
           'name': 'time-format',
