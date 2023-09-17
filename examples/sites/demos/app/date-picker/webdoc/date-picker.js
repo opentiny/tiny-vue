@@ -240,7 +240,7 @@ export default {
     },
     {
       'demoId': 'validate-event',
-      'name': { 'zh-CN': '不触发表单校验', 'en-US': '' },
+      'name': { 'zh-CN': '表单校验', 'en-US': 'Validate event' },
       'desc': {
         'zh-CN':
           '<p>日期选择器在输入时默认会触发表单校验，触发方式有 blur、change。但若设置 <code>validate-event</code> 属性为 false，将不再触发表单校验。</p>\n',
