@@ -1,31 +1,33 @@
 <template>
-  <div class="demo-date-picker-wrap">
-    <tiny-date-picker v-model="value" :picker-options="pickerOptions" placeholder="请选择日期"></tiny-date-picker>
-    <tiny-date-picker
-      v-model="dateRangeValue"
-      type="daterange"
-      :picker-options="pickerOptionsDateRange"
-      start-placeholder="开始日期"
-      end-placeholder="结束日期"
-    ></tiny-date-picker>
-    <tiny-date-picker
-      v-model="monthRangeValue"
-      type="monthrange"
-      :picker-options="pickerOptionsMonthRange"
-      start-placeholder="开始月份"
-      end-placeholder="结束月份"
-    ></tiny-date-picker>
-  </div>
+  <div>
+    <div class="demo-date-picker-wrap">
+      <tiny-date-picker v-model="value" :picker-options="pickerOptions" placeholder="请选择日期"></tiny-date-picker>
+      <tiny-date-picker
+        v-model="dateRangeValue"
+        type="daterange"
+        :picker-options="pickerOptionsDateRange"
+        start-placeholder="开始日期"
+        end-placeholder="结束日期"
+      ></tiny-date-picker>
+      <tiny-date-picker
+        v-model="monthRangeValue"
+        type="monthrange"
+        :picker-options="pickerOptionsMonthRange"
+        start-placeholder="开始月份"
+        end-placeholder="结束月份"
+      ></tiny-date-picker>
+    </div>
 
-  <p>某日起始、某日为止：</p>
-  <div class="demo-date-picker-wrap">
-    <tiny-date-picker
-      v-model="startFromValue"
-      type="daterange"
-      :picker-options="pickerOptionsStartFrom"
-      start-placeholder="开始日期"
-      end-placeholder="结束日期"
-    ></tiny-date-picker>
+    <p>某日起始、某日为止：</p>
+    <div class="demo-date-picker-wrap">
+      <tiny-date-picker
+        v-model="startFromValue"
+        type="daterange"
+        :picker-options="pickerOptionsStartFrom"
+        start-placeholder="开始日期"
+        end-placeholder="结束日期"
+      ></tiny-date-picker>
+    </div>
   </div>
 </template>
 

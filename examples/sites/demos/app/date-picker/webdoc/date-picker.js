@@ -75,10 +75,14 @@ export default {
       'demoId': 'timezone',
       'name': { 'zh-CN': '时区选择', 'en-US': 'Time Zone Selection' },
       'desc': {
-        'zh-CN':
-          '<p>通过 <code>show-timezone</code> 属性可以设置日期选择面板时区选择，同时需要引入 timezoneData 时区数据</p>\n',
-        'en-US':
-          '<p>You can set the time zone of the date selection panel through the <code>show-timezone</code> attribute, and import timezoneData time zone data</p>\n'
+        'zh-CN': `
+          <p>通过 <code>show-timezone</code> 属性可以设置日期选择面板时区选择，同时需要引入 timezoneData 时区数据。</p>
+          <p>通过 <code>isutc8</code> 属性可以设置是否显示为东八区时间。</p>
+        `,
+        'en-US': `
+          <p>You can set the time zone of the date selection panel through the <code>show-timezone</code> attribute, and import timezoneData time zone data</p>
+          <p>The <code> isutc8 </code> property allows you to set whether it is displayed as East eighth District time.</p>
+        `
       },
       'codeFiles': ['timezone.vue']
     },
@@ -131,7 +135,7 @@ export default {
     },
     {
       'demoId': 'custom-suffix-icon',
-      'name': { 'zh-CN': '自定义后置图标', 'en-US': 'Customized rear icon' },
+      'name': { 'zh-CN': '后置图标', 'en-US': 'Customized rear icon' },
       'desc': {
         'zh-CN': `
           <p>通过 <code>suffix-icon</code> 属性设置日期输入框后置图标，从 <code>@opentiny/vue-icon</code> 中导入一个图标并进行初始化后传给 <code>suffix-icon</code>。</p>
@@ -253,12 +257,6 @@ export default {
         'en-US': ''
       },
       'codeFiles': ['validate-event.vue']
-    },
-    {
-      'demoId': 'utc8',
-      'name': { 'zh-CN': '设置是否显示为东八区时间', 'en-US': '' },
-      'desc': { 'zh-CN': '<p>通过 <code>isutc8</code> 属性可以设置是否显示为东八区时间</p>\n', 'en-US': '' },
-      'codeFiles': ['utc8.vue']
     }
   ],
   apis: [
