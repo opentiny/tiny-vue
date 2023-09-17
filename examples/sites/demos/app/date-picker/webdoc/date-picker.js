@@ -5,7 +5,7 @@ export default {
     {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '主要支持选择日期、日期时间、周、月份、年份', 'en-US': 'Mainly supports the selection of date, date time, week, month and year.' },
       'codeFiles': ['basic-usage.vue']
     },
     {
@@ -23,8 +23,8 @@ export default {
       'demoId': 'dates',
       'name': { 'zh-CN': '多日期选择', 'en-US': 'Select multiple dates' },
       'desc': {
-        'zh-CN': '',
-        'en-US': ''
+        'zh-CN': '支持选择多个日期和年份',
+        'en-US': 'Support for selecting multiple dates and years'
       },
       'codeFiles': ['multiple-dates.vue']
     },
@@ -352,7 +352,7 @@ export default {
             'en-US':
               'The default value is false. If this parameter is set to true, the time in GMT+8 is still displayed when the default time zone is switched. Applicable scenario: The GMT+8 time is displayed in regions outside China'
           },
-          'demoId': 'utc8'
+          'demoId': 'isutc8'
         },
         {
           'name': 'label',
@@ -381,7 +381,7 @@ export default {
           'type': 'String',
           'defaultValue': '',
           'desc': { 'zh-CN': '原生属性', 'en-US': '' },
-          'demoId': 'timezone'
+          'demoId': ''
         },
         {
           'name': 'picker-options',
@@ -407,7 +407,7 @@ export default {
             'en-US':
               'Indicates whether to insert a pop-up box to the body element. When a fault occurs in the dialog box that is displayed, you can set this attribute to false (for details, see the select component).'
           },
-          'demoId': 'popup-style-position'
+          'demoId': ''
         },
         {
           'name': 'popper-class',
