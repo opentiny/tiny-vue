@@ -91,7 +91,7 @@ export default {
       'codeFiles': ['size.vue']
     },
     {
-      'demoId': 'about-clear',
+      'demoId': 'clear',
       'name': { 'zh-CN': '清除输入', 'en-US': 'Clear Input' },
       'desc': {
         'zh-CN':
@@ -99,7 +99,7 @@ export default {
         'en-US':
           '<p>After you select a date, the clear icon is displayed by default when you hover the cursor over the text box. You can click the icon to clear the text box. If <code>clearable</code> is set to false, the clear icon is not displayed and cannot be cleared. The <code>clear-icon</code> property allows you to customize the clear icon. </p>\n'
       },
-      'codeFiles': ['about-clear.vue']
+      'codeFiles': ['clear.vue']
     },
     {
       'demoId': 'format',
@@ -295,14 +295,14 @@ export default {
           'type': 'Boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否显示清除按钮', 'en-US': 'Display Clear Button' },
-          'demoId': 'about-clear'
+          'demoId': 'clear'
         },
         {
           'name': 'clear-icon',
           'type': 'String',
           'defaultValue': '该属性的默认值为 IconOperationfaild',
           'desc': { 'zh-CN': '自定义清空图标', 'en-US': '' },
-          'demoId': 'about-clear'
+          'demoId': 'clear'
         },
         {
           'name': 'default-time',
