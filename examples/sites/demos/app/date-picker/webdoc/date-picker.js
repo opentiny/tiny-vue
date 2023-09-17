@@ -72,32 +72,6 @@ export default {
       'codeFiles': ['shortcuts.vue']
     },
     {
-      'demoId': 'timezone',
-      'name': { 'zh-CN': '时区选择', 'en-US': 'Time Zone Selection' },
-      'desc': {
-        'zh-CN': `
-          <p>通过 <code>show-timezone</code> 属性可以设置日期选择面板时区选择，同时需要引入 timezoneData 时区数据。</p>
-          <p>通过 <code>isutc8</code> 属性可以设置是否显示为东八区时间。</p>
-        `,
-        'en-US': `
-          <p>You can set the time zone of the date selection panel through the <code>show-timezone</code> attribute, and import timezoneData time zone data</p>
-          <p>The <code> isutc8 </code> property allows you to set whether it is displayed as East eighth District time.</p>
-        `
-      },
-      'codeFiles': ['timezone.vue']
-    },
-    {
-      'demoId': 'align',
-      'name': { 'zh-CN': '对齐方式', 'en-US': 'Alignment' },
-      'desc': {
-        'zh-CN':
-          '<p>通过 <code>align</code> 属性可以设置日期选择面板与输入框之间的对齐方式，可选值有 left、right、center，默认为 left 左对齐。</p>\n',
-        'en-US':
-          '<p>You can use the <code>align</code> attribute to set the alignment mode between the date selection panel and the text box. The options are left, right, and center. The default value is left. </p>\n'
-      },
-      'codeFiles': ['align.vue']
-    },
-    {
       'demoId': 'size',
       'name': { 'zh-CN': '尺寸', 'en-US': 'Size' },
       'desc': {
@@ -134,19 +108,19 @@ export default {
       'codeFiles': ['format.vue']
     },
     {
-      'demoId': 'custom-suffix-icon',
-      'name': { 'zh-CN': '后置图标', 'en-US': 'Customized rear icon' },
+      'demoId': 'default-value',
+      'name': { 'zh-CN': '默认值', 'en-US': 'Default value' },
       'desc': {
         'zh-CN': `
-          <p>通过 <code>suffix-icon</code> 属性设置日期输入框后置图标，从 <code>@opentiny/vue-icon</code> 中导入一个图标并进行初始化后传给 <code>suffix-icon</code>。</p>
-          <p>通过 <code>popper-class</code> 属性可以为 DatePicker 下拉弹框添加 class 类名</p>
+          <p><code>default-value</code> 属性指定日期选择器面板打开时默认选中的日期。</p>\n
+          <p>使用 <code>datetimerange</code> 设置日期范围时，可以通过 <code>default-time</code> 属性设置起始与结束的时刻，默认是选定日期的 00:00:00 作为起始与结束的时刻。<code>default-time</code> 接受一个数组，数组的每一项都为一个字符串，第一项控制起始日期的时刻，第二项控制结束日期的时刻。</p>\n
         `,
         'en-US': `
-          <p>Uses the <code>suffix-icon</code> attribute to set the icon behind the date text box. An icon is imported from the <code>@opentiny/vue-icon</code>, initialized, and transferred to the <code>suffix-icon</code>. </p>
-          <p>Uses the <code>popper-class</code> attribute to add the class name to the DatePicker drop-down box</p>
+          <p>By default, you can enter a date in the Date text box. If you set <code>editable</code> to false, you cannot enter a date in the <p>Date text box. </p>\n
+          <p>When using <code>datetimerange</code> to set the date range, you can use <code>default-time</code> to set the start and end time. The default time is 00:00 on the selected date. 00 as the start and end time. <code>default-time</code> takes an array. Each item in the array is a string. The first item controls the time of the start date and the second item controls the time of the end date. </p>\n
         `
       },
-      'codeFiles': ['custom-suffix-icon.vue']
+      'codeFiles': ['default-value.vue']
     },
     {
       'demoId': 'custom-weeks',
@@ -168,32 +142,6 @@ export default {
       'codeFiles': ['custom-weeks.vue']
     },
     {
-      'demoId': 'unlink-panels',
-      'name': { 'zh-CN': '面板联动', 'en-US': 'Default time setting when the selector is enabled' },
-      'desc': {
-        'zh-CN':
-          '<p>范围选择时，默认情况下，在开始日期面板中单击上一月或上一年箭头图标时，结束日期面板中日期也联动切换到上一月或上一年。在结束日期面板中切换下一月或下一年时，开始日期面板也随之联动。但若配置 <code>unlink-panels</code> 属性为 true ，面板之间就不再联动，切换年月时只对当前面板生效。</p>\n',
-        'en-US':
-          '<p><code>default-value</code> property specifies the date that is selected by default when the date picker panel opens. </p>\n'
-      },
-      'codeFiles': ['unlink-panels.vue']
-    },
-    {
-      'demoId': 'default-value',
-      'name': { 'zh-CN': '默认值', 'en-US': 'Default value' },
-      'desc': {
-        'zh-CN': `
-          <p><code>default-value</code> 属性指定日期选择器面板打开时默认选中的日期。</p>\n
-          <p>使用 <code>datetimerange</code> 设置日期范围时，可以通过 <code>default-time</code> 属性设置起始与结束的时刻，默认是选定日期的 00:00:00 作为起始与结束的时刻。<code>default-time</code> 接受一个数组，数组的每一项都为一个字符串，第一项控制起始日期的时刻，第二项控制结束日期的时刻。</p>\n
-        `,
-        'en-US': `
-          <p>By default, you can enter a date in the Date text box. If you set <code>editable</code> to false, you cannot enter a date in the <p>Date text box. </p>\n
-          <p>When using <code>datetimerange</code> to set the date range, you can use <code>default-time</code> to set the start and end time. The default time is 00:00 on the selected date. 00 as the start and end time. <code>default-time</code> takes an array. Each item in the array is a string. The first item controls the time of the start date and the second item controls the time of the end date. </p>\n
-        `
-      },
-      'codeFiles': ['default-value.vue']
-    },
-    {
       'demoId': 'filter-mode',
       'name': { 'zh-CN': '过滤器模式', 'en-US': 'Filter mode' },
       'desc': {
@@ -201,16 +149,6 @@ export default {
         'en-US': '<p>Switch to filter mode through the <code> shape=\'filter\' </code> attribute. </p><p> in filter mode, label display caption can be passed in, tip displays prompt information, and whether clearable displays the clear button.</p>'
       },
       'codeFiles': ['filter-mode.vue']
-    },
-    {
-      'demoId': 'events',
-      'name': { 'zh-CN': '事件', 'en-US': 'Events' },
-      'desc': {
-        'zh-CN': '<p>主要事件有 focus、blur、change。</p>',
-        'en-US':
-          '<p>The main events are focus, blur and change.</p>'
-      },
-      'codeFiles': ['events.vue']
     },
     {
       'demoId': 'label-inside',
@@ -239,6 +177,58 @@ export default {
       'codeFiles': ['step.vue']
     },
     {
+      'demoId': 'align',
+      'name': { 'zh-CN': '对齐方式', 'en-US': 'Alignment' },
+      'desc': {
+        'zh-CN':
+          '<p>通过 <code>align</code> 属性可以设置日期选择面板与输入框之间的对齐方式，可选值有 left、right、center，默认为 left 左对齐。</p>\n',
+        'en-US':
+          '<p>You can use the <code>align</code> attribute to set the alignment mode between the date selection panel and the text box. The options are left, right, and center. The default value is left. </p>\n'
+      },
+      'codeFiles': ['align.vue']
+    },
+    {
+      'demoId': 'custom-suffix-icon',
+      'name': { 'zh-CN': '后置图标', 'en-US': 'Customized rear icon' },
+      'desc': {
+        'zh-CN': `
+          <p>通过 <code>suffix-icon</code> 属性设置日期输入框后置图标，从 <code>@opentiny/vue-icon</code> 中导入一个图标并进行初始化后传给 <code>suffix-icon</code>。</p>
+          <p>通过 <code>popper-class</code> 属性可以为 DatePicker 下拉弹框添加 class 类名</p>
+        `,
+        'en-US': `
+          <p>Uses the <code>suffix-icon</code> attribute to set the icon behind the date text box. An icon is imported from the <code>@opentiny/vue-icon</code>, initialized, and transferred to the <code>suffix-icon</code>. </p>
+          <p>Uses the <code>popper-class</code> attribute to add the class name to the DatePicker drop-down box</p>
+        `
+      },
+      'codeFiles': ['custom-suffix-icon.vue']
+    },
+    {
+      'demoId': 'unlink-panels',
+      'name': { 'zh-CN': '面板联动', 'en-US': 'Default time setting when the selector is enabled' },
+      'desc': {
+        'zh-CN':
+          '<p>范围选择时，默认情况下，在开始日期面板中单击上一月或上一年箭头图标时，结束日期面板中日期也联动切换到上一月或上一年。在结束日期面板中切换下一月或下一年时，开始日期面板也随之联动。但若配置 <code>unlink-panels</code> 属性为 true ，面板之间就不再联动，切换年月时只对当前面板生效。</p>\n',
+        'en-US':
+          '<p><code>default-value</code> property specifies the date that is selected by default when the date picker panel opens. </p>\n'
+      },
+      'codeFiles': ['unlink-panels.vue']
+    },
+    {
+      'demoId': 'timezone',
+      'name': { 'zh-CN': '时区选择', 'en-US': 'Time Zone Selection' },
+      'desc': {
+        'zh-CN': `
+          <p>通过 <code>show-timezone</code> 属性可以设置日期选择面板时区选择，同时需要引入 timezoneData 时区数据。</p>
+          <p>通过 <code>isutc8</code> 属性可以设置是否显示为东八区时间。</p>
+        `,
+        'en-US': `
+          <p>You can set the time zone of the date selection panel through the <code>show-timezone</code> attribute, and import timezoneData time zone data</p>
+          <p>The <code> isutc8 </code> property allows you to set whether it is displayed as East eighth District time.</p>
+        `
+      },
+      'codeFiles': ['timezone.vue']
+    },
+    {
       'demoId': 'validate-event',
       'name': { 'zh-CN': '表单校验', 'en-US': 'Validate event' },
       'desc': {
@@ -247,6 +237,16 @@ export default {
         'en-US': ''
       },
       'codeFiles': ['validate-event.vue']
+    },
+    {
+      'demoId': 'events',
+      'name': { 'zh-CN': '事件', 'en-US': 'Events' },
+      'desc': {
+        'zh-CN': '<p>主要事件有 focus、blur、change。</p>',
+        'en-US':
+          '<p>The main events are focus, blur and change.</p>'
+      },
+      'codeFiles': ['events.vue']
     }
   ],
   apis: [
