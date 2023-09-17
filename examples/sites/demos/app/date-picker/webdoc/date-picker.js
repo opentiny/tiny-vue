@@ -102,25 +102,19 @@ export default {
       'codeFiles': ['about-clear.vue']
     },
     {
-      'demoId': 'about-format',
-      'name': { 'zh-CN': '格式化相关', 'en-US': 'Formatting' },
+      'demoId': 'format',
+      'name': { 'zh-CN': '格式化', 'en-US': 'Formatting' },
       'desc': {
-        'zh-CN':
-          '<p>通过 <code>format</code> 属性设置输入框的格式，<code>value-format</code> 属性设置绑定值的格式。Date Format 属性列表</p>',
-        'en-US':
-          '<p> uses the <code>format</code> attribute to set the format of the text box, and the <code>value-format</code> attribute to set the format of the bound value. Date Format Attribute List</p>'
+        'zh-CN': `
+          <p>通过 <code>format</code> 属性设置输入框的格式，<code>value-format</code> 属性设置绑定值的格式。Date Format 属性列表</p>
+          <p>通过 <code>time-format</code> 属性设置日期选择面板的时间显示格式</p>
+        `,
+        'en-US': `
+          <p> uses the <code>format</code> attribute to set the format of the text box, and the <code>value-format</code> attribute to set the format of the bound value. Date Format Attribute List</p>
+          <p>Set the time display format of the date selection panel through the <code>time-format</code> attribute</p>
+        `
       },
-      'codeFiles': ['about-format.vue']
-    },
-    {
-      'demoId': 'time-format',
-      'name': { 'zh-CN': 'timeFormat格式化', 'en-US': 'timeFormat formatting' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>time-format</code> 属性设置日期选择面板的时间显示格式</p>',
-        'en-US':
-          '<p>Set the time display format of the date selection panel through the <code>time-format</code> attribute</p>'
-      },
-      'codeFiles': ['time-format.vue']
+      'codeFiles': ['format.vue']
     },
     {
       'demoId': 'custom-suffix-icon',
@@ -361,7 +355,7 @@ export default {
           'type': 'String',
           'defaultValue': '该属性的默认值为 yyyy-MM-dd',
           'desc': { 'zh-CN': '显示在输入框中的格式', 'en-US': 'Display format in the text box' },
-          'demoId': 'about-format'
+          'demoId': 'format'
         },
         {
           'name': 'format-weeks',
@@ -547,7 +541,7 @@ export default {
             'en-US':
               'If the user-defined format cannot automatically distinguish the time and date, you can set this parameter to assist in determining the format.'
           },
-          'demoId': ''
+          'demoId': 'format'
         },
         {
           'name': 'tip',
@@ -595,7 +589,7 @@ export default {
             'en-US':
               'Specifies the format of the binding value. If this parameter is not specified, the binding value is Date'
           },
-          'demoId': 'about-format'
+          'demoId': 'format'
         }
       ],
       'events': [
@@ -641,6 +635,86 @@ export default {
           'desc': { 'zh-CN': '使 input 获取焦点', 'en-US': 'Enable input to focus.' },
           'demoId': 'focus'
         }
+      ],
+      'props format': [
+        {
+          'name': 'a',
+          'desc': { 'zh-CN': 'am/pm', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'A',
+          'desc': { 'zh-CN': 'AM/PM', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'd',
+          'desc': { 'zh-CN': '日，不补0', 'en-US': '' },
+        },
+        {
+          'name': 'dd',
+          'desc': { 'zh-CN': '日', 'en-US': '' },
+        },
+        {
+          'name': 'h',
+          'desc': { 'zh-CN': '小时，12小时制，需要和 A 或 a 一起使用，不补0', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'H',
+          'desc': { 'zh-CN': '小时，24小时制，不补0', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'hh',
+          'desc': { 'zh-CN': '小时，12小时制，需要和 A 或 a 一起使用', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'HH',
+          'desc': { 'zh-CN': '小时，24小时制', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'm',
+          'desc': { 'zh-CN': '分钟，不补0', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'M',
+          'desc': { 'zh-CN': '月，不补0', 'en-US': '' },
+        },
+        {
+          'name': 'mm',
+          'desc': { 'zh-CN': '分钟', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'MM',
+          'desc': { 'zh-CN': '月', 'en-US': '' },
+        },
+        {
+          'name': 's',
+          'desc': { 'zh-CN': '秒，不补0', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'ss',
+          'desc': { 'zh-CN': '秒', 'en-US': '' },
+          'demoId': ''
+        },
+        {
+          'name': 'W',
+          'desc': { 'zh-CN': '周，不补0', 'en-US': '' },
+        },
+        {
+          'name': 'WW',
+          'desc': { 'zh-CN': '周', 'en-US': '' },
+        },
+        {
+          'name': 'yyyy',
+          'desc': { 'zh-CN': '年', 'en-US': '' },
+        },
       ]
     }
   ]
