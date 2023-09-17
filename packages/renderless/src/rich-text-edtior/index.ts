@@ -72,12 +72,6 @@ export const shouldShow = ({ editor, view, state, oldState, from, to }) => {
   // 仅在无序列表选中的时候才显示 气泡菜单
   return editor.isActive('table')
 }
-// font-size 设置
-export const handleFontSize = (fontSize) => {
-  return (value) => {
-    fontSize.value = value + 'px'
-  }
-}
 
 // 处理参数实现自定义展示
 const eventMap = new Map()

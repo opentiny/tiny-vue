@@ -6,12 +6,10 @@ import {
   removeClickOutside,
   handleClick,
   shouldShow,
-  handleFontSize,
   eventImg,
   eventClick,
   Active
 } from './index'
-import Codehighlight from './code-highlight'
 export const api = [
   'toolBar',
   'state',
@@ -23,7 +21,6 @@ export const api = [
   'removeClickOutside',
   'handleClick',
   'shouldShow',
-  'handleFontSize',
   'fontSize',
   'eventImg',
   'eventClick',
@@ -62,7 +59,8 @@ export const renderless = (
     NodeViewContent,
     nodeViewProps,
     NodeViewWrapper,
-    Placeholder
+    Placeholder,
+    codeHighlight
   }
 ) => {
   let toolBar = [
@@ -131,9 +129,37 @@ export const renderless = (
       return {
         setP:
           (attributes) =>
-          ({ commands }) => {
-            return commands.setNode(this.name, attributes)
-          }
+            ({ commands }) => {
+              return commands.setNode(this.name, attributes)
+            }
+      }
+    }
+  })
+  const CustomSize = Paragraph.extend({
+    addOptions() {
+      return {
+        size: [12, 14, 16, 18, 20]
+      }
+    },
+    addAttributes() {
+      return {
+        size: {
+          default: 16
+        }
+      }
+    },
+    renderHTML({ node, HTMLAttributes }) {
+      const hasSize = this.options.size.includes(node.attrs.size)
+      const size = hasSize ? node.attrs.size : this.options.size[2]
+      return ['p', mergeAttributes({ style: `font-size: ${size}px` }, HTMLAttributes), 0]
+    },
+    addCommands() {
+      return {
+        setSize:
+          (attributes) =>
+            ({ commands }) => {
+              return commands.setNode(this.name, attributes)
+            }
       }
     }
   })
@@ -168,9 +194,10 @@ export const renderless = (
         types: ['heading', 'paragraph']
       }),
       CustomParagraph,
+      CustomSize,
       CodeBlockLowlight.extend({
         addNodeView() {
-          return VueNodeViewRenderer(Codehighlight(NodeViewContent, nodeViewProps, NodeViewWrapper))
+          return VueNodeViewRenderer(codeHighlight)
         }
       }).configure({ lowlight }),
       Placeholder.configure({
@@ -248,7 +275,6 @@ export const renderless = (
     shouldShow: shouldShow,
     //
     fontSize,
-    handleFontSize: handleFontSize(fontSize),
     eventImg,
     eventClick,
     Active

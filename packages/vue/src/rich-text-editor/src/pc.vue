@@ -6,13 +6,13 @@
         <button v-if="(item.name ?? item) === 'font-size'" class="font-size-box">
           <TinyIconRichTextFontSize></TinyIconRichTextFontSize>
           <div class="font-size-options">
-            <button @click="handleFontSize(12)">12px</button>
-            <button @click="handleFontSize(14)">14px</button>
-            <button @click="handleFontSize(16)">16px</button>
-            <button @click="handleFontSize(18)">18px</button>
-            <button @click="handleFontSize(20)">20px</button>
-            <button @click="handleFontSize(24)">24px</button>
-            <button @click="handleFontSize(30)">30px</button>
+            <button @click="state.editor.chain().focus().setSize({ size: 12 }).run()">12px</button>
+            <button @click="state.editor.chain().focus().setSize({ size: 14 }).run()">14px</button>
+            <button @click="state.editor.chain().focus().setSize({ size: 16 }).run()">16px</button>
+            <button @click="state.editor.chain().focus().setSize({ size: 18 }).run()">18px</button>
+            <button @click="state.editor.chain().focus().setSize({ size: 20 }).run()">20px</button>
+            <button @click="state.editor.chain().focus().setSize({ size: 24 }).run()">24px</button>
+            <button @click="state.editor.chain().focus().setSize({ size: 30 }).run()">30px</button>
           </div>
         </button>
         <button v-else-if="(item.name ?? item) === 'line-height'" class="line-height-button" title="line height">
@@ -146,6 +146,7 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/rich-text-edtior/vue'
+import codeHighlight from './code-highlight.vue'
 import {
   iconRichTextAddColumnAfter,
   iconRichTextAddColumnBefore,
@@ -340,7 +341,8 @@ export default defineComponent({
         NodeViewContent,
         nodeViewProps,
         NodeViewWrapper,
-        Placeholder
+        Placeholder,
+        codeHighlight,
       }
     })
   }
