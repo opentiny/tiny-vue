@@ -125,17 +125,15 @@ export default {
       'demoId': 'custom-suffix-icon',
       'name': { 'zh-CN': '自定义后置图标', 'en-US': 'Customized rear icon' },
       'desc': {
-        'zh-CN':
-          '<p>通过 <code>suffix-icon</code> 属性设置日期输入框后置图标，从 <code>@opentiny/vue-icon</code> 中导入一个图标并进行初始化后传给 <code>suffix-icon</code>。</p>\n',
-        'en-US':
-          '<p> uses the <code>suffix-icon</code> attribute to set the icon behind the date text box. An icon is imported from the <code>@opentiny/vue-icon</code>, initialized, and transferred to the <code>suffix-icon</code>. </p>\n'
+        'zh-CN': `
+          <p>通过 <code>suffix-icon</code> 属性设置日期输入框后置图标，从 <code>@opentiny/vue-icon</code> 中导入一个图标并进行初始化后传给 <code>suffix-icon</code>。</p>
+          <p>通过 <code>popper-class</code> 属性可以为 DatePicker 下拉弹框添加 class 类名</p>
+        `,
+        'en-US': `
+          <p>Uses the <code>suffix-icon</code> attribute to set the icon behind the date text box. An icon is imported from the <code>@opentiny/vue-icon</code>, initialized, and transferred to the <code>suffix-icon</code>. </p>
+          <p>Uses the <code>popper-class</code> attribute to add the class name to the DatePicker drop-down box</p>
+        `
       },
-      'codeFiles': ['custom-suffix-icon.vue']
-    },
-    {
-      'demoId': 'custom-suffix-icon1',
-      'name': { 'zh-CN': '自定义下拉框的类名', 'en-US': 'Class name of the customized drop-down list box' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['custom-suffix-icon.vue']
     },
     {
@@ -428,7 +426,7 @@ export default {
             'zh-CN': '为 DatePicker 下拉弹框添加的 class 类名',
             'en-US': 'Cancel the linkage between two date panels in the range selector.'
           },
-          'demoId': 'custom-suffix-icon1'
+          'demoId': 'custom-suffix-icon'
         },
         {
           'name': 'range-separator',
@@ -500,7 +498,7 @@ export default {
           'demoId': 'step'
         },
         {
-          'name': 'suffix-icon ',
+          'name': 'suffix-icon',
           'type': 'Object',
           'defaultValue': '该属性的默认值为 IconCalendar，',
           'desc': { 'zh-CN': '自定义选择器的后置图标', 'en-US': '' },
