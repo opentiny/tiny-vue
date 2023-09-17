@@ -186,17 +186,6 @@ export default {
       'codeFiles': ['filter-mode.vue']
     },
     {
-      'demoId': 'filter-mode-range',
-      'name': { 'zh-CN': '日期范围选择器-过滤器模式', 'en-US': 'The arrow button controls the time selection.' },
-      'desc': {
-        'zh-CN':
-          "<p>通过 <code>shape='filter'</code> 属性切换至过滤器模式。</p><p>过滤器模式下可传入 label 显示标题，tip 显示提示信息，clearable 是否显示清除按钮。</p>\n",
-        'en-US':
-          '<p>When <code>type</code> is set to datetime or datetimerange, set <code>time-arrow-control</code> to true. The arrow button is displayed on the time panel to control the time selection. By default, the scrolling selection time is selected. </p>\n'
-      },
-      'codeFiles': ['filter-mode-range.vue']
-    },
-    {
       'demoId': 'date-picker-events',
       'name': { 'zh-CN': '事件', 'en-US': 'Do not trigger form validation' },
       'desc': {
