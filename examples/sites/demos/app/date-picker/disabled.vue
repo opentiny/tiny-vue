@@ -2,19 +2,11 @@
   <div>
     <p>整体禁用</p>
     <div class="demo-date-picker-wrap">
-      <tiny-date-picker
-        v-model="disabledValue"
-        disabled
-        placeholder="请选择日期"
-      ></tiny-date-picker>
+      <tiny-date-picker v-model="disabledValue" disabled placeholder="请选择日期"></tiny-date-picker>
     </div>
     <p>部分禁用</p>
     <div class="demo-date-picker-wrap">
-      <tiny-date-picker
-        v-model="value"
-        :picker-options="pickerOptions"
-        placeholder="请选择日期"
-      ></tiny-date-picker>
+      <tiny-date-picker v-model="value" :picker-options="pickerOptions" placeholder="请选择日期"></tiny-date-picker>
     </div>
     <div class="demo-date-picker-wrap">
       <tiny-date-picker
