@@ -106,7 +106,11 @@
     "preci:deployBeta": "pnpm clean:build",
     "ci:deployBeta": "pnpm build:ui",
     "postci:deployBeta": "lerna publish from-package --yes --dist-tag beta",
-    "analyse:depends": "pnpm --filter @opentiny/analyse_depends start"
+    "analyse:depends": "pnpm --filter @opentiny/analyse_depends start",
+    "build:entry-react": "pnpm -C internals/cli build:entry-react",
+    "create:mapping-react": "pnpm -C internals/cli create:mapping-react",
+    "build:react": "pnpm -C internals/cli build:react",
+    "build:ui-react": "pnpm create:mapping-react && pnpm build:entry-react && pnpm build:react"
   },
   "dependencies": {
     "@vue/composition-api": "1.2.2",
