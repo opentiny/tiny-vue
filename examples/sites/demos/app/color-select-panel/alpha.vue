@@ -2,7 +2,7 @@
   <div>
     <Button @click="changeVisible">Show Color select panel</Button>
     <div style="position: relative">
-      <tiny-color-select-panel v-model="color" :visible="visible" @confirm="hidden" @cancel="hidden" />
+      <tiny-color-select-panel v-model="color" :visible="visible" @confirm="hidden" @cancel="hidden" alpha />
     </div>
   </div>
 </template>
