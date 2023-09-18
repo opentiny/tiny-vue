@@ -99,6 +99,8 @@ export const renderless = (
   if (!window._yDoc) {
     window._yDoc = new Y.Doc()
   }
+  console.log('props', props);
+
   const ydoc = window._yDoc
   const provider = new WebrtcProvider('tiny-examsple-document', ydoc)
   // 自定义图片

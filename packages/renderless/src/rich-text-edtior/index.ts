@@ -1,13 +1,15 @@
 export const handleChange = (editor) => {
   return (event) => {
     const file = event.target.files[0]
+    console.log(file);
+
     if (!file.type.match('image.*')) {
       console.log('请选择图片文件！')
       return
     }
     const reader = new FileReader()
     reader.onload = function (e) {
-      editor.value
+      editor
         .chain()
         .focus()
         .setImage({ src: e.target?.result })
