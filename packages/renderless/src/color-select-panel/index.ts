@@ -17,6 +17,8 @@ export const onCancel = (
 ) => {
   return () => {
     if (isShow.value){
+      res.value = triggerBg.value
+      hex.value = triggerBg.value
       color.reset(hex.value)
       emit('cancel')
     }
