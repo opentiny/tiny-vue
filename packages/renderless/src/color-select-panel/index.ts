@@ -7,7 +7,6 @@ export const onConfirm = (
 ) => {
   return () => {
     emit('confirm', res.value)
-    isShow.value = false;
   }
 }
 
@@ -22,7 +21,6 @@ export const onCancel = (
       color.reset(hex.value)
       emit('cancel')
     }
-    isShow.value = false
   }
 }
 export const onColorUpdate = (color: Color, res: IColorSelectPanelRef<string>) => {
