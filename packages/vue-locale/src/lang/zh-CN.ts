@@ -82,7 +82,7 @@ export default {
       total: '总计',
       value: '数值'
     },
-    colorPicker: {
+    colorSelectPanel:{
       confirm: '选择',
       cancel: '取消'
     },

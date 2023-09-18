@@ -82,7 +82,7 @@ export default {
       total: 'Total',
       value: 'Value'
     },
-    colorPicker: {
+    colorSelectPanel: {
       confirm: 'Ok',
       cancel: 'Cancel'
     },

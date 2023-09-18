@@ -1,4 +1,4 @@
-import type { IColorSelectPanel } from "@/types";
+import type { IColorSelectPanelRef } from "@/types";
 
 export const calcLeftByAlpha = (wrapper: HTMLElement, thumb: HTMLElement, alpha: number) => {
   return Math.round(
@@ -11,8 +11,8 @@ export const updateThumb = (alpha: number, thumb: HTMLElement, wrapper: HTMLElem
 }
 
 export const onDrag = (
-  event: MouseEvent, bar: IColorSelectPanel<HTMLElement>, thumb: IColorSelectPanel<HTMLElement>,
-  alpha: IColorSelectPanel<number>
+  event: MouseEvent, bar: IColorSelectPanelRef<HTMLElement>, thumb: IColorSelectPanelRef<HTMLElement>,
+  alpha: IColorSelectPanelRef<number>
 ) => {
   const rect = bar.value.getBoundingClientRect()
   const { clientX } = event

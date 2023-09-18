@@ -21,9 +21,9 @@ export const renderless = (
   { emit }
 ) => {
   const { modelValue, visible } = context.toRefs(props)
-  const hex = context.ref(modelValue.value ?? 'transparent')
-  const res = context.ref(modelValue.value ?? 'transparent')
-  const triggerBg = context.ref(modelValue.value ?? 'transparent')
+  const hex = context.ref(modelValue?.value ?? 'transparent')
+  const res = context.ref(modelValue?.value ?? 'transparent')
+  const triggerBg = context.ref(modelValue?.value ?? 'transparent')
   const isShow = context.ref(visible?.value ?? false)
   const cursor: Ref<HTMLElement> = context.ref()
   const changeVisible = (state: boolean) => {
@@ -47,7 +47,7 @@ export const renderless = (
   context.watch(visible, (visible) => {
     isShow.value = visible
   })
-  const { onHueUpdate, onSVUpdate } = onHSVUpdate(color, res, hex)
+  const { onHueUpdate, onSVUpdate } = onHSVUpdate(color, res, hex, emit)
   const { update } = onAlphaUpdate(color, res)
   const api = {
     state,

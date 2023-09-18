@@ -39,7 +39,6 @@ import Checkbox from '@opentiny/vue-checkbox'
 import CheckboxGroup from '@opentiny/vue-checkbox-group'
 import Collapse from '@opentiny/vue-collapse'
 import CollapseItem from '@opentiny/vue-collapse-item'
-import ColorPicker from '@opentiny/vue-color-picker'
 import ColumnListGroup from '@opentiny/vue-column-list-group'
 import ColumnListItem from '@opentiny/vue-column-list-item'
 import ConfigProvider from '@opentiny/vue-config-provider'
@@ -144,7 +143,6 @@ const components = [
   CheckboxGroup,
   Collapse,
   CollapseItem,
-  ColorPicker,
   ColumnListGroup,
   ColumnListItem,
   ConfigProvider,
@@ -271,7 +269,6 @@ export {
   CheckboxGroup,
   Collapse,
   CollapseItem,
-  ColorPicker,
   ColumnListGroup,
   ColumnListItem,
   ConfigProvider,
@@ -376,7 +373,6 @@ export default {
   CheckboxGroup,
   Collapse,
   CollapseItem,
-  ColorPicker,
   ColumnListGroup,
   ColumnListItem,
   ConfigProvider,
