@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { RichTextEditor } from '@opentiny/vue'
+import { RichTextEditor, Notify } from '@opentiny/vue'
 
 export default {
   components: {
@@ -13,28 +13,68 @@ export default {
   },
   methods: {
     beforeCreate(editor) {
-      console.log('beforeCreate', editor);
+      Notify({
+        type: 'info',
+        message: 'beforeCreate',
+        position: 'top',
+        duration: 3000,
+      })
     },
     create(editor) {
-      console.log('create', editor);
+      Notify({
+        type: 'info',
+        message: 'create',
+        position: 'top',
+        duration: 3000,
+      })
     },
     focus(editor) {
-      console.log('focus', editor);
+      Notify({
+        type: 'info',
+        message: 'focus',
+        position: 'top',
+        duration: 3000,
+      })
     },
     blur(editor) {
-      console.log('blur', editor);
+      Notify({
+        type: 'info',
+        message: 'blur',
+        position: 'top',
+        duration: 3000,
+      })
     },
     selectionUpdate(editor) {
-      console.log('selectionUpdate', editor);
+      Notify({
+        type: 'info',
+        message: 'selectionUpdate',
+        position: 'top',
+        duration: 3000,
+      })
     },
     transaction(editor) {
-      console.log('transaction', editor);
+      Notify({
+        type: 'info',
+        message: 'transaction',
+        position: 'top',
+        duration: 3000,
+      })
     },
     destroy(editor) {
-      console.log('destroy', editor);
+      Notify({
+        type: 'info',
+        message: 'destroy',
+        position: 'top',
+        duration: 3000,
+      })
     },
     update(editor) {
-      console.log('update', editor);
+      Notify({
+        type: 'info',
+        message: 'update',
+        position: 'top',
+        duration: 3000,
+      })
     },
   },
 }

@@ -5,29 +5,69 @@
 </template>
 
 <script setup lang="jsx">
-import { RichTextEditor as TinyRichTextEditor } from '@opentiny/vue'
+import { RichTextEditor as TinyRichTextEditor, Notify } from '@opentiny/vue'
 const beforeCreate = function (editor) {
-  console.log('beforeCreate', editor);
+  Notify({
+    type: 'info',
+    message: 'beforeCreate',
+    position: 'top',
+    duration: 3000,
+  })
 }
 const create = function (editor) {
-  console.log('create', editor);
+  Notify({
+    type: 'info',
+    message: 'create',
+    position: 'top',
+    duration: 3000,
+  })
 }
 const focus = function (editor) {
-  console.log('focus', editor);
+  Notify({
+    type: 'info',
+    message: 'focus',
+    position: 'top',
+    duration: 3000,
+  })
 }
 const blur = function (editor) {
-  console.log('blur', editor);
+  Notify({
+    type: 'info',
+    message: 'blur',
+    position: 'top',
+    duration: 3000,
+  })
 }
 const selectionUpdate = function (editor) {
-  console.log('selectionUpdate', editor);
+  Notify({
+    type: 'info',
+    message: 'selectionUpdate',
+    position: 'top',
+    duration: 3000,
+  })
 }
 const transaction = function (editor) {
-  console.log('transaction', editor);
+  Notify({
+    type: 'info',
+    message: 'transaction',
+    position: 'top',
+    duration: 3000,
+  })
 }
 const destroy = function (editor) {
-  console.log('destroy', editor);
+  Notify({
+    type: 'info',
+    message: 'destroy',
+    position: 'top',
+    duration: 3000,
+  })
 }
 const update = function (editor) {
-  console.log('update', editor);
+  Notify({
+    type: 'info',
+    message: 'update',
+    position: 'top',
+    duration: 3000,
+  })
 }
 </script>
