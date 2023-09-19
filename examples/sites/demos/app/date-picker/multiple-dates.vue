@@ -1,7 +1,7 @@
 <template>
   <div class="demo-date-picker-wrap">
-    <tiny-date-picker v-model="value" shape="filter" label="日期选择"></tiny-date-picker>
-    <tiny-date-picker v-model="rangeValue" type="daterange" shape="filter" label="日期范围选择"></tiny-date-picker>
+    <tiny-date-picker v-model="datesValue" type="dates" placeholder="请选择日期"></tiny-date-picker>
+    <tiny-date-picker v-model="yearsValue" type="years" placeholder="请选择年份"></tiny-date-picker>
   </div>
 </template>
 
@@ -14,8 +14,8 @@ export default {
   },
   data() {
     return {
-      value: '',
-      rangeValue: ''
+      datesValue: '',
+      yearsValue: ''
     }
   }
 }

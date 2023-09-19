@@ -1,10 +1,12 @@
 <template>
-  <tiny-date-picker v-model="value" :suffix-icon="IconMinus" popper-class="Mydatepicker"></tiny-date-picker>
+  <div class="demo-date-picker-wrap">
+    <tiny-date-picker v-model="value" :suffix-icon="IconMinus" popper-class="my-date-picker"></tiny-date-picker>
+  </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { DatePicker } from '@opentiny/vue'
-import { IconMinus } from '@opentiny/vue-icon'
+import { iconMinus } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -13,8 +15,18 @@ export default {
   data() {
     return {
       value: '',
-      IconMinus: IconMinus()
+      IconMinus: iconMinus()
     }
   }
 }
 </script>
+
+<style>
+.demo-date-picker-wrap {
+  width: 280px;
+}
+
+.my-date-picker {
+  background-color: #ddd;
+}
+</style>
