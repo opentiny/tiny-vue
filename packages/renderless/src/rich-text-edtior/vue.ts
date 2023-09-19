@@ -91,18 +91,14 @@ export const renderless = (
     'h-box',
     'img',
     'color',
-    'table'
+    'table',
+    'backgroundColor'
   ]
   if (props.customToolBar) {
     toolBar = props.customToolBar
   }
-  if (!window._yDoc) {
-    window._yDoc = new Y.Doc()
-  }
-  console.log('props', props);
-
-  const ydoc = window._yDoc
-  const provider = new WebrtcProvider('tiny-examsple-document', ydoc)
+  let ydoc = null
+  let provider = null
   // 自定义图片
   const CustomImage = Image.extend({
     renderHTML({ HTMLAttributes }) {
@@ -165,14 +161,37 @@ export const renderless = (
       }
     }
   })
-  const editor = new Editor({
+  const CustomBackgroundColor = Highlight.extend({
+    addAttributes() {
+      return {
+        bgColor: {
+          default: null,
+          renderHTML: attributes => {
+            if (!attributes.bgColor) {
+              return {}
+            }
+            return {
+              style: `background: ${attributes.bgColor}`,
+            }
+          },
+        }
+      }
+    },
+    addCommands() {
+      return {
+        setBackColor:
+          attributes =>
+            ({ commands }) => {
+              return commands.setMark(this.name, attributes)
+            }
+      }
+    }
+  })
+  const defaultOptions = {
     extensions: [
       StarterKit?.configure({
         // 开启多人协作功能要关闭默认的history模式
         history: false
-      }),
-      Collaboration?.configure({
-        document: ydoc
       }),
       Table.configure({
         resizable: true
@@ -197,6 +216,7 @@ export const renderless = (
       }),
       CustomParagraph,
       CustomSize,
+      CustomBackgroundColor,
       CodeBlockLowlight.extend({
         addNodeView() {
           return VueNodeViewRenderer(codeHighlight)
@@ -250,7 +270,20 @@ export const renderless = (
       emit('destroy')
     },
     ...props.options
-  })
+  }
+  if (props.Collaboration) {
+    if (!window._yDoc) {
+      window._yDoc = new Y.Doc()
+    }
+    ydoc = window._yDoc
+    provider = new WebrtcProvider('tiny-examsple-document', ydoc)
+    defaultOptions.extensions.push(
+      Collaboration?.configure({
+        document: ydoc
+      }),
+    )
+  }
+  const editor = new Editor(props.options ? props.options : defaultOptions)
 
   const box = ref(null)
   const fontSize = ref('16px')

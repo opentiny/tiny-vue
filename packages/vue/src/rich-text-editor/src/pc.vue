@@ -67,6 +67,13 @@
           <input id="tiny-color" type="color" @input="state.editor.chain().focus().setColor($event.target.value).run()"
             :value="state.editor?.getAttributes('textStyle').color" />
         </button>
+        <button v-else-if="(item.name ?? item) === 'backgroundColor'" title="color" class="color-button">
+          <label for="tiny--back-color">
+            <TinyIconRichTextColor></TinyIconRichTextColor>
+          </label>
+          <input id="tiny-back-color" type="color"
+            @input="state.editor.chain().focus().setBackColor({ bgColor: $event.target.value }).run()" />
+        </button>
         <button v-else-if="(item.name ?? item) === 'table'" title="table" class="table-button">
           <div class="table-box" @click="handleClick">
             <div class="table-icon">
