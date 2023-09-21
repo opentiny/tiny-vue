@@ -1,8 +1,8 @@
 {
-  "name": "@opentiny/react-common",
+  "name": "@pe-3/react-common",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

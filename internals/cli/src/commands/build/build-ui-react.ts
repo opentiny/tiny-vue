@@ -7,10 +7,11 @@ import { getBabelOutputPlugin } from '@rollup/plugin-babel'
 import { external } from '../../shared/config'
 import dtsPlugin from 'vite-plugin-dts'
 import type { Plugin, NormalizedOutputOptions, OutputBundle } from 'rollup'
-import fs from 'node:fs'
+import fs from 'fs-extra'
 import { sync as findUpSync } from 'find-up'
 import svgr from 'vite-plugin-svgr'
 import { requireModules } from './build-ui'
+import replace from 'rollup-plugin-replace'
 
 const moduleMap = require(pathFromWorkspaceRoot('packages/modules-react.json'))
 type mode = 'pc' | 'mobile' | 'mobile-first'
@@ -66,7 +67,7 @@ export function getAllModules(): Module[] {
 const getSortModules = ({ filterIntercept }: { filterIntercept: Function; }) => {
   let modules: Module[] = []
   let componentCount = 0
-  const importName = '@opentiny/react'
+  const importName = '@pe-3/react'
   Object.entries(moduleMap).forEach(([key, module]) => {
     let component = module as Module
 
@@ -111,7 +112,7 @@ const getSortModules = ({ filterIntercept }: { filterIntercept: Function; }) => 
       }
 
       // importName: '@opentiny/vue-tag/pc'
-      component.importName = importName + '-' + component.libName
+      component.importName = '@pe-3/react' + '-' + component.libName
 
       // libName: '@opentiny/vue/todo/pc'
       component.libName = importName + '/' + component.libName
@@ -122,7 +123,7 @@ const getSortModules = ({ filterIntercept }: { filterIntercept: Function; }) => 
       // global: 'TinyTodoPc'
       component.global = 'Tiny' + key
 
-      component.importName = `@opentiny/react-${kebabCase({ str: key })}`
+      component.importName = `@pe-3/react-${kebabCase({ str: key })}`
 
       // "vue-common/src/index.ts" ==> "vue-common/lib/index"
       if (component.type === 'module') {
@@ -258,7 +259,7 @@ function generatePackageJson({ beforeWriteFile }): Plugin {
           let packageJson
           try {
             packageJson = JSON.parse(fs.readFileSync(packageJsonFile, { encoding: 'utf-8' }))
-          } catch {}
+          } catch { }
 
           const { filePath, content } = beforeWriteFile(path.dirname(item.fileName), packageJson)
 
@@ -320,7 +321,74 @@ function getBaseConfig({
       'process.env.BUILD_TARGET': JSON.stringify('component')
     },
     plugins: [
-      ...getReactPlugins('18')
+      ...getReactPlugins('18'),
+      generatePackageJson({
+        beforeWriteFile: (filePath, content) => {
+          // const themeAndRenderlessVersion = `3.${buildTarget}`
+          const dependencies: any = {}
+
+          Object.entries(content.dependencies).forEach(([key, value]) => {
+            // dependencies里的@opentiny,统一使用：~x.x.0
+            // if (isThemeOrRenderless(key)) {
+            //   dependencies[key] = getMinorVersion(themeAndRenderlessVersion)
+            // } else if ((value as string).includes('workspace:~')) {
+            //   dependencies[key] = getMinorVersion(versionTarget)
+            // } else {
+            //  dependencies[key] = value
+            // }
+            if ((value as string).includes('workspace:~')) {
+              dependencies[key] = '*'
+            }
+            else {
+              dependencies[key] = value
+            }
+          })
+
+          if (filePath.includes('react-common')) {
+            dependencies.react = '18.2.0'
+          }
+
+          // 如果是主入口或者svg图标则直接指向相同路径
+          if (
+            filePath === 'react' ||
+            filePath === 'react-icon'
+          ) {
+            content.main = './index.js'
+            content.module = './index.js'
+          } else {
+            content.main = './lib/index.js'
+            content.module = './lib/index.js'
+          }
+
+          // 为主入口包添加readme和LICENSE
+          // if (filePath === 'vue') {
+          //   ['README.md', 'README.zh-CN.md', 'LICENSE'].forEach((item) => {
+          //     fs.copySync(
+          //       pathFromWorkspaceRoot(item),
+          //       path.resolve(pathFromPackages(''), `dist${vueVersion}/@opentiny/vue/${item}`)
+          //     )
+          //   })
+          // }
+
+          // content.types = 'index.d.ts'
+
+          // if (filePath.includes('vue-common') || filePath.includes('vue-locale')) {
+          //   content.types = './src/index.d.ts'
+          // }
+
+          content.version = '1.0.12'
+          content.dependencies = dependencies
+
+          delete content.devDependencies
+          delete content.private
+          delete content.exports
+
+          return {
+            filePath: filePath.replace(/[\\/]lib$/, ''),
+            content
+          }
+        }
+      })
     ]
   })
 }
@@ -337,6 +405,8 @@ async function batchBuild({
   logGreen(`====== 开始构建 ${message} ======`)
   const entry = toEntry(tasks)
   const dtsInclude = toTsInclued(tasks)
+  console.log(entry)
+
   await build({
     ...getBaseConfig({ dtsInclude, dts }),
     configFile: false,
@@ -348,7 +418,10 @@ async function batchBuild({
         plugins: [
           getBabelOutputPlugin({
             presets: [['@babel/preset-env', { loose: true, modules: false }]]
-          }) as any
+          }) as any,
+          replace({
+            '.less': '.css'
+          })
         ],
         output: {
           strict: false,
@@ -361,9 +434,9 @@ async function batchBuild({
           }
 
           // 图标入口排除子图标
-          if (/react-icon\/index/.test(importer)) {
-            return /^\.\//.test(source)
-          }
+          // if (/react-icon\/index/.test(importer)) {
+          //   return /^\.\//.test(source)
+          // }
 
           // 子图标排除周边引用, 这里注意不要排除svg图标
           if (/react-icon\/.+\/index/.test(importer)) {

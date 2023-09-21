@@ -16,10 +16,10 @@ export const api = ['handleClose', 'state', 'handleHeaderClick']
 
 export const renderless = (
   props,
-  { useReactive, computed },
+  { reactive, computed },
   { t, emit, constants, vm, designConfig }
 ) => {
-  const state = useReactive({
+  const state = reactive({
     show: true,
     getIcon: computed(() => api.computedGetIcon()),
     getTitle: computed(() => api.computedGetTitle()),

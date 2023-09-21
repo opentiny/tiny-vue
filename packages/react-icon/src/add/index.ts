@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { Svg } from '@opentiny/react-common'
+import { Svg } from '@pe-3/react-common'
 import { ReactComponent as AddLoading } from '@opentiny/vue-theme/svgs/add.svg'
 
 export default Svg({ name: 'AddLoading', component: AddLoading })

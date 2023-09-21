@@ -1,8 +1,23 @@
-import { renderless, api } from '@opentiny/vue-renderless/button/react'
-import { useSetup, vc, If, Component, Slot } from '@opentiny/react-common'
-import { IconLoading } from '@opentiny/react-icon'
-import define_props from './props'
+import { renderless, api } from '@opentiny/vue-renderless/button/vue'
+import { useSetup, vc, If, Component, Slot, useVm } from '@pe-3/react-common'
+import { IconLoading } from '@pe-3/react-icon'
 import { classes } from './token'
+
+const define_props = [
+  'children',
+  'text',
+  'loading',
+  'autofocus',
+  'plain',
+  'round',
+  'circle',
+  'icon',
+  'size',
+  'type',
+  'nativeType',
+  'resetTime',
+  /^on/
+]
 
 export default function Button(props) {
   const {
@@ -19,12 +34,19 @@ export default function Button(props) {
     type,
     nativeType = 'button',
     resetTime = 1000
-  } = props;
+  } = props
+
   const defaultProps = Object.assign({
     nativeType,
     resetTime,
-  }, props);
-  
+  }, props)
+
+  const {
+    ref,
+    parent,
+    current: vm
+  } = useVm()
+
   const {
     handleClick,
     state,
@@ -35,7 +57,10 @@ export default function Button(props) {
     api,
     renderless,
     props: defaultProps,
-    classes
+    classes,
+    ref,
+    parent,
+    vm
   })
 
   const $attrs = a(props, define_props, false)

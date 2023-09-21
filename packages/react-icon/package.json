@@ -1,5 +1,5 @@
 {
-  "name": "@opentiny/react-icon",
+  "name": "@pe-3/react-icon",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@opentiny/react-common": "workspace:~",
+    "@pe-3/react-common": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
   }
 }

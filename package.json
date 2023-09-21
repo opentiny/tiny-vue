@@ -64,6 +64,7 @@
     "pub2": "pnpm --filter=\"./packages/dist2/**\" publish --tag v2-latest --no-git-checks --access=public",
     "pub3": "pnpm --filter=\"./packages/dist3/**\" publish --no-git-checks --access=public",
     "pub2.7": "pnpm --filter=\"./packages/dist2.7/**\" publish --tag v2.7-latest --no-git-checks --access=public",
+    "pub:react": "pnpm --filter=\"./packages/dist-react/**\" publish --no-git-checks --access=public",
     "// ---------- unit单元测试 ----------": "",
     "test:unit2": "pnpm -C examples/vue2 test:unit",
     "test:unit2.7": "pnpm -C examples/vue2.7 test:unit",
@@ -111,7 +112,6 @@
     "create:mapping-react": "pnpm -C internals/cli create:mapping-react",
     "build:react": "pnpm -C internals/cli build:react",
     "build:ui-react": "pnpm create:mapping-react && pnpm build:entry-react && pnpm build:react"
-
   },
   "dependencies": {
     "@vue/composition-api": "1.2.2",

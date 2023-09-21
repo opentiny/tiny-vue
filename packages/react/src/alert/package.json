@@ -1,5 +1,5 @@
 {
-  "name": "@opentiny/react-alert",
+  "name": "@pe-3/react-alert",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
@@ -11,8 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/react-common": "workspace:~",
-    "@opentiny/react-icon": "workspace:~",
+    "@pe-3/react-common": "workspace:~",
+    "@pe-3/react-icon": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
   }
 }

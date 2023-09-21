@@ -1,19 +1,27 @@
 import * as hooks from 'react'
 import { Svg } from './svg-render.jsx'
 
-import { nextTick, ref, computed, readonly, watchEffect } from './vue-hooks.js'
+import { nextTick, ref, computed, readonly, watch, onBeforeUnmount, inject } from './vue-hooks.js'
 import { emit, on, off, once, emitEvent } from './event.js'
 import { If, Component, Slot, For, Transition } from './virtual-comp.jsx'
-import { filterAttrs, vc, getElementCssClass } from './utils.ts'
-import { useFiber } from './fiber'
-import { useVm } from './vm'
-import { useReactive } from './reactive'
+import { filterAttrs, vc, getElementCssClass } from './utils.js'
+import { useFiber } from './fiber.js'
+import { useVm } from './vm.js'
+import { useReactive } from './reactive.js'
 import { twMerge } from 'tailwind-merge'
-import { stringifyCssClass } from './csscls.ts'
+import { stringifyCssClass } from './csscls.js'
 
 import '@opentiny/vue-theme/base/index.less'
 
-const vue_hooks = { nextTick, ref, computed, readonly, watchEffect }
+const vue_hooks = {
+  nextTick,
+  ref,
+  computed,
+  readonly,
+  watch,
+  onBeforeUnmount,
+  inject
+}
 
 // emitEvent, dispath, broadcast
 export const $prefix = 'Tiny'
@@ -48,7 +56,12 @@ export const useSetup = ({
   }
   const sdk = render(
     props,
-    { ...hooks, useReactive, ...vue_hooks },
+    {
+      ...hooks,
+      useReactive,
+      ...vue_hooks,
+      reactive: useReactive
+    },
     utils,
     extendOptions
   )
@@ -91,6 +104,8 @@ export {
   ref,
   computed,
   readonly,
-  watchEffect,
-  useReactive
+  useReactive,
+  watch
 }
+
+export const reactive = useReactive

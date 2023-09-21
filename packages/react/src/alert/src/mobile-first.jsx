@@ -1,5 +1,5 @@
-import { renderless, api } from '@opentiny/vue-renderless/alert/react'
-import { IconClose, IconSuccess, IconError, IconHelp, IconWarning, IconChevronDown } from '@opentiny/react-icon'
+import { renderless, api } from '@opentiny/vue-renderless/alert/vue'
+import { IconClose, IconSuccess, IconError, IconHelp, IconWarning, IconChevronDown } from '@pe-3/react-icon'
 import {
   vc,
   If,
@@ -7,7 +7,7 @@ import {
   Slot,
   useSetup,
   useVm,
-} from '@opentiny/react-common'
+} from '@pe-3/react-common'
 
 const $constants = {
   ICON_MAP: {

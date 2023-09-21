@@ -55,10 +55,28 @@ function createVmProxy(fiberCombine) {
           return target.fiber.memoizedProps[property]
         }
         return vmProxy[property](target, receiver)
+      },
+      set(
+        target,
+        property,
+        value
+      ) {
+        return true
       }
     }))
   }
   return vmProxyMap.get(fiberCombine)
+}
+
+function createEmptyProxy() {
+  return new Proxy({}, {
+    get() {
+      return undefined
+    },
+    set() {
+      return true
+    }
+  })
 }
 
 function createRefsProxy(refs, FiberNode) {
@@ -94,6 +112,13 @@ function findStateInHooks(hookStart) {
 
 export function useVm() {
   const { ref, current, parent } = useFiber()
+  if (!ref.current) {
+    return {
+      ref,
+      current: createEmptyProxy(),
+      parent: createEmptyProxy()
+    }
+  }
   return {
     ref,
     current: current.fiber && createVmProxy(current),

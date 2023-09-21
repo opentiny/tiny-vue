@@ -10,11 +10,11 @@ function Readonly(target) {
   Create.call(this, target)
 }
 
-const useDepChange = (dependencies) => {
+const useDepChange = (dependencies, immediate = false) => {
   let isDepChange = false
   const pre_dep = useRef()
   if (!pre_dep.current) {
-    isDepChange = true
+    isDepChange = true && immediate
   }
   else {
     for (let i in dependencies) {
@@ -137,7 +137,7 @@ export const watchEffect = (effect, dependencies, options) => {
 
 export const watchPostEffect = (effect, dependencies) => watchEffect(effect, dependencies, { flush: 'post' })
 
-export const watch = (source, callback) => {
+export const watch = (source, callback, options = {}) => {
   const cache = useRef()
   let source_value
   if (Array.isArray(source)) {
@@ -146,9 +146,14 @@ export const watch = (source, callback) => {
   else {
     source_value = [(typeof source === 'function' && source())]
   }
-  const isDepChange = useDepChange(source_value)
+  const isDepChange = useDepChange(source_value, options.immediate)
   if (!cache.current) cache.current = { clear: false }
-  if (isDepChange && cache.current.clear) callback(source_value, cache.current.pre)
+  if (isDepChange && !cache.current.clear) {
+    callback(
+      source_value.length === 1 ? source_value[0] : source_value,
+      cache.current.pre
+    )
+  }
   cache.current.pre = source_value
   return () => cache.current.clear = true
 }

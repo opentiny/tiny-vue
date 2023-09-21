@@ -242,62 +242,62 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
     if (tasks.length === 0) return
     logGreen(`====== 开始构建 ${message} ======`)
     const entry = toEntry(tasks)
-
+    console.log(entry)
     const dtsInclude = toTsInclude(tasks) as BaseConfig['dtsInclude']
-    await build({
-      configFile: false,
-      ...getBaseConfig({ vueVersion, dtsInclude, dts, buildTarget, isRuntime: false }),
-      build: {
-        emptyOutDir,
-        minify: false,
-        rollupOptions: {
-          plugins: [
-            getBabelOutputPlugin({
-              presets: [['@babel/preset-env', { loose: true, modules: false }]]
-            }) as any
-          ],
-          external: (source, importer, isResolved) => {
-            // vite打包入口文件或者没有解析过得包不能排除依赖
-            if (isResolved || !importer) {
-              return false
-            }
+    // await build({
+    //   configFile: false,
+    //   ...getBaseConfig({ vueVersion, dtsInclude, dts, buildTarget, isRuntime: false }),
+    //   build: {
+    //     emptyOutDir,
+    //     minify: false,
+    //     rollupOptions: {
+    //       plugins: [
+    //         getBabelOutputPlugin({
+    //           presets: [['@babel/preset-env', { loose: true, modules: false }]]
+    //         }) as any
+    //       ],
+    //       external: (source, importer, isResolved) => {
+    //         // vite打包入口文件或者没有解析过得包不能排除依赖
+    //         if (isResolved || !importer) {
+    //           return false
+    //         }
 
-            // 图标入口排除子图标
-            if (/vue-icon\/index/.test(importer)) {
-              return /^\.\//.test(source)
-            }
+    //         // 图标入口排除子图标
+    //         if (/vue-icon\/index/.test(importer)) {
+    //           return /^\.\//.test(source)
+    //         }
 
-            // 子图标排除周边引用, 这里注意不要排除svg图标
-            if (/vue-icon\/.+\/index/.test(importer)) {
-              return !/\.svg/.test(source)
-            }
+    //         // 子图标排除周边引用, 这里注意不要排除svg图标
+    //         if (/vue-icon\/.+\/index/.test(importer)) {
+    //           return !/\.svg/.test(source)
+    //         }
 
-            if (/src\/index/.test(importer)) {
-              // 模块入口，pc/mobile 文件要分离，同时排除 node_modules 依赖
-              return /^\.\/(pc|mobile|mobile-first)/.test(source) || external(source)
-            }
+    //         if (/src\/index/.test(importer)) {
+    //           // 模块入口，pc/mobile 文件要分离，同时排除 node_modules 依赖
+    //           return /^\.\/(pc|mobile|mobile-first)/.test(source) || external(source)
+    //         }
 
-            // @opentiny/vue 总入口，需要排除所有依赖
-            if (/vue\/(index|pc|mobile|mobile-first)\.ts$/.test(importer)) {
-              return true
-            }
+    //         // @opentiny/vue 总入口，需要排除所有依赖
+    //         if (/vue\/(index|pc|mobile|mobile-first)\.ts$/.test(importer)) {
+    //           return true
+    //         }
 
-            return external(source)
-          },
-          output: {
-            strict: false,
-            manualChunks: {}
-          }
-        },
-        lib: {
-          // 这里可以多入口打包，也可以单入口打包
-          entry,
-          formats,
-          fileName: (format, entryName) => `${entryName}.js`
-        },
-        outDir
-      }
-    })
+    //         return external(source)
+    //       },
+    //       output: {
+    //         strict: false,
+    //         manualChunks: {}
+    //       }
+    //     },
+    //     lib: {
+    //       // 这里可以多入口打包，也可以单入口打包
+    //       entry,
+    //       formats,
+    //       fileName: (format, entryName) => `${entryName}.js`
+    //     },
+    //     outDir
+    //   }
+    // })
   }
 }
 

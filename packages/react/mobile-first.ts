@@ -1,6 +1,6 @@
-import Alert from '@opentiny/react-alert/src/mobile-first'
-import Button from '@opentiny/react-button/src/mobile-first'
-import { $prefix } from '@opentiny/react-common'
+import Alert from '@pe-3/react-alert/src/mobile-first'
+import Button from '@pe-3/react-button/src/mobile-first'
+import { $prefix } from '@pe-3/react-common'
 
 const components = [Alert, Button]
 

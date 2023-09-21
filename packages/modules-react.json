@@ -43,6 +43,11 @@
     "type": "template",
     "exclude": false
   },
+  "Common": {
+    "path": "react-common/src/index.ts",
+    "type": "module",
+    "exclude": false
+  },
   "Icon": {
     "path": "react-icon/index.ts",
     "type": "module",

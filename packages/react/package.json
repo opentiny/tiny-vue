@@ -1,5 +1,5 @@
 {
-  "name": "@opentiny/react",
+  "name": "@pe-3/react",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@opentiny/react-common": "workspace:~",
-    "@opentiny/react-alert": "workspace:~",
-    "@opentiny/react-button": "workspace:~"
+    "@pe-3/react-common": "workspace:~",
+    "@pe-3/react-alert": "workspace:~",
+    "@pe-3/react-button": "workspace:~"
   }
 }
