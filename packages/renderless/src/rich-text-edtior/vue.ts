@@ -34,7 +34,7 @@ export const renderless = (
   { computed, onMounted, onBeforeUnmount, reactive, ref },
   { vm, emit, parent },
   {
-    useEditor,
+    Editor,
     Collaboration,
     Y,
     WebrtcProvider,
@@ -137,7 +137,7 @@ export const renderless = (
       }
     }
   })
-  const editor = useEditor({
+  const editor = new Editor({
     extensions: [
       StarterKit?.configure({
         // 开启多人协作功能要关闭默认的history模式
