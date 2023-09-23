@@ -1,18 +1,19 @@
 export const handleChange = (editor) => {
   return (event) => {
     const file = event.target.files[0]
-    console.log(file);
-
-    if (!file.type.match('image.*')) {
-      console.log('请选择图片文件！')
-      return
+    if (!file) return
+    let type = 'image'
+    if (file?.type.match('image.*')) {
+      type = 'image'
+    } else if (file?.type.match('video.*')) {
+      type = 'video'
     }
     const reader = new FileReader()
     reader.onload = function (e) {
       editor
         .chain()
         .focus()
-        .setImage({ src: e.target?.result })
+        .setImage({ src: e.target?.result, type: type })
         .run()
     }
     reader.readAsDataURL(file)
@@ -58,7 +59,7 @@ export const handleClick = (state, box) => {
     e.stopPropagation()
     if (state.isShow) {
       if (state.flagX && state.flagY) {
-        state.editor.chain().focus().insertTable({ rows: state.flagX, cols: state.flagY, withHeaderRow: true }).run()
+        state.editor.chain().focus().insertTable({ rows: state.flagY, cols: state.flagX, withHeaderRow: true }).run()
       }
       state.flagX = 0
       state.flagY = 0

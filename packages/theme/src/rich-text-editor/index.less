@@ -102,14 +102,15 @@
       .table-option {
         position: absolute;
         background: white;
-        display: flex;
         left: 0;
         top: 1.25rem;
         z-index: 999;
-        width: 90px;
-        flex-wrap: wrap;
         border-top: 1px solid #ccc;
         border-left: 1px solid #ccc;
+
+        .table-row {
+          display: flex;
+        }
 
         .item {
           width: 30px;
@@ -340,6 +341,14 @@
     .img-button {
       resize: both;
       overflow: hidden;
+
+      video {
+        width: 100%;
+      }
+
+      img {
+        width: 100%;
+      }
     }
 
     table {

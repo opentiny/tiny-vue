@@ -101,8 +101,20 @@ export const renderless = (
   let provider = null
   // 自定义图片
   const CustomImage = Image.extend({
-    renderHTML({ HTMLAttributes }) {
-      return ['div', { class: 'img-button' }, ['img', HTMLAttributes]]
+    addAttributes() {
+      return {
+        ...this.parent?.(),
+        type: {
+          default: 'img'
+        }
+      }
+    },
+    renderHTML({ node, HTMLAttributes }) {
+      if (node.attrs.type === 'video') {
+        return ['div', { class: 'img-button' }, ['video', mergeAttributes({ controls: true }, HTMLAttributes)]]
+      } else {
+        return ['div', { class: 'img-button' }, ['img', HTMLAttributes]]
+      }
     }
   })
   const CustomParagraph = Paragraph.extend({

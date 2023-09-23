@@ -55,7 +55,7 @@
           </div>
         </button>
         <button v-else-if="(item.name ?? item) === 'img'" title="img" class="image-button">
-          <input @change="handleChange" id="img-btn" type="file" accept="image/*" />
+          <input @change="handleChange" id="img-btn" type="file" accept="image/*, video/*" />
           <label for="img-btn">
             <TinyIconRichTextImage></TinyIconRichTextImage>
           </label>
@@ -80,15 +80,30 @@
               <TinyIconRichTextTable></TinyIconRichTextTable>
             </div>
             <div class="table-option" ref="box" v-if="state.isShow" @mousemove="handleMove">
-              <div class="item" :class="{ isActive: 1 <= state.flagX && 1 <= state.flagY }"></div>
-              <div class="item" :class="{ isActive: 2 <= state.flagX && 1 <= state.flagY }"></div>
-              <div class="item" :class="{ isActive: 3 <= state.flagX && 1 <= state.flagY }"></div>
-              <div class="item" :class="{ isActive: 1 <= state.flagX && 2 <= state.flagY }"></div>
-              <div class="item" :class="{ isActive: 2 <= state.flagX && 2 <= state.flagY }"></div>
-              <div class="item" :class="{ isActive: 3 <= state.flagX && 2 <= state.flagY }"></div>
-              <div class="item" :class="{ isActive: 1 <= state.flagX && 3 <= state.flagY }"></div>
-              <div class="item" :class="{ isActive: 2 <= state.flagX && 3 <= state.flagY }"></div>
-              <div class="item" :class="{ isActive: 3 <= state.flagX && 3 <= state.flagY }"></div>
+              <div class="table-row">
+                <div class="item" :class="{ isActive: 1 <= state.flagX && 1 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 2 <= state.flagX && 1 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 3 <= state.flagX && 1 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 4 <= state.flagX && 1 <= state.flagY }"></div>
+              </div>
+              <div class="table-row">
+                <div class="item" :class="{ isActive: 1 <= state.flagX && 2 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 2 <= state.flagX && 2 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 3 <= state.flagX && 2 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 4 <= state.flagX && 2 <= state.flagY }"></div>
+              </div>
+              <div class="table-row">
+                <div class="item" :class="{ isActive: 1 <= state.flagX && 3 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 2 <= state.flagX && 3 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 3 <= state.flagX && 3 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 4 <= state.flagX && 3 <= state.flagY }"></div>
+              </div>
+              <div class="table-row">
+                <div class="item" :class="{ isActive: 1 <= state.flagX && 4 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 2 <= state.flagX && 4 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 3 <= state.flagX && 4 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 4 <= state.flagX && 4 <= state.flagY }"></div>
+              </div>
             </div>
           </div>
         </button>
