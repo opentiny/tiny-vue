@@ -56,10 +56,16 @@
           </div>
         </button>
         <button v-else-if="(item.name ?? item) === 'img'" :title="t('ui.richTextEditor.img')" class="image-button">
-          <input @change="handleChange" id="img-btn" type="file" accept="image/*, video/*" />
-          <label for="img-btn">
-            <TinyIconRichTextImage></TinyIconRichTextImage>
-          </label>
+          <TinyIconRichTextImage></TinyIconRichTextImage>
+          <div class="img-option">
+            <div class="img-item">
+              <input @change="handleChange" id="img-btn" type="file" accept="image/*, video/*" />
+              <label for="img-btn">本地资源</label>
+            </div>
+            <div @click.stop="handleChange(null)" class="img-item">
+              <div>资源链接</div>
+            </div>
+          </div>
         </button>
         <button v-else-if="(item.name ?? item) === 'color'" :title="t('ui.richTextEditor.color')" class="color-button">
           <label for="tiny-color">

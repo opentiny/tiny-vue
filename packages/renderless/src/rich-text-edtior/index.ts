@@ -1,5 +1,24 @@
 export const handleChange = (editor) => {
   return (event) => {
+    if (!event) {
+      const url = window.prompt('URL')
+      let type = 'image';
+      const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'svg'];
+      const videoExtensions = ['mp4', 'avi', 'mov', 'wmv', 'mpeg', '3gp', 'mkv'];
+
+      const imageRegex = new RegExp(`\\.(${imageExtensions.join('|')})$`, 'i');
+      const videoRegex = new RegExp(`\\.(${videoExtensions.join('|')})$`, 'i');
+
+      if (imageRegex.test(url)) {
+        type = 'image';
+      } else if (videoRegex.test(url)) {
+        type = 'video';
+      }
+      if (url) {
+        editor.chain().focus().setImage({ src: url, type: type }).run()
+      }
+      return
+    }
     const file = event.target.files[0]
     if (!file) return
     let type = 'image'
