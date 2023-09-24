@@ -114,7 +114,7 @@
           <img v-if="item.img" :src="eventImg(item)" alt="" srcset="" />
           <component v-else :is='eventImg(item)'></component>
         </button>
-        <button v-else :title="item.name" @click="eventClick(state.editor, item)"
+        <button v-else :title="t(`ui.richTextEditor.${item.name ?? item}`)" @click="eventClick(state.editor, item)"
           :class="{ 'is-active': state.editor?.isActive(Active(item)) }">
           <img v-if="item.img" :src="eventImg(item)" alt="" srcset="" />
           <component v-else :is='eventImg(item)'></component>

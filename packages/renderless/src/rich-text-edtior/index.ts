@@ -120,13 +120,13 @@ eventMap.set('taskList', (editor) => {
 eventMap.set('quote', (editor) => {
   editor.chain().focus().toggleBlockquote().run()
 })
-eventMap.set('code-block', (editor) => {
+eventMap.set('codeBlock', (editor) => {
   editor.chain().focus().toggleCodeBlock().run()
 })
-eventMap.set('format-clear', (editor) => {
+eventMap.set('formatClear', (editor) => {
   editor.chain().focus().unsetAllMarks().run()
 })
-eventMap.set('node-delete', (editor) => {
+eventMap.set('nodeDelete', (editor) => {
   editor.chain().focus().clearNodes().run()
 })
 eventMap.set('undo', (editor) => {
@@ -168,9 +168,9 @@ imgMap.set('unorderedlist', 'TinyIconRichTextListUnordered')
 imgMap.set('orderedlist', 'TinyIconRichTextListOrdered')
 imgMap.set('taskList', 'TinyIconRichTextTaskList')
 imgMap.set('quote', 'TinyIconRichTextQuoteText')
-imgMap.set('code-block', 'TinyIconRichTextCodeBlock')
-imgMap.set('format-clear', 'TinyIconRichTextFormatClear')
-imgMap.set('node-delete', 'TinyIconRichTextNodeDelete')
+imgMap.set('codeBlock', 'TinyIconRichTextCodeBlock')
+imgMap.set('formatClear', 'TinyIconRichTextFormatClear')
+imgMap.set('nodeDelete', 'TinyIconRichTextNodeDelete')
 imgMap.set('undo', 'TinyIconRichTextUndo')
 imgMap.set('redo', 'TinyIconRichTextRedo')
 imgMap.set('left', 'TinyIconRichTextAlignLeft')
