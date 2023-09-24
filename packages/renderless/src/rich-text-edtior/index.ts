@@ -1,16 +1,19 @@
 export const handleChange = (editor) => {
   return (event) => {
     const file = event.target.files[0]
-    if (!file.type.match('image.*')) {
-      console.log('请选择图片文件！')
-      return
+    if (!file) return
+    let type = 'image'
+    if (file?.type.match('image.*')) {
+      type = 'image'
+    } else if (file?.type.match('video.*')) {
+      type = 'video'
     }
     const reader = new FileReader()
     reader.onload = function (e) {
-      editor.value
+      editor
         .chain()
         .focus()
-        .setImage({ src: e.target?.result })
+        .setImage({ src: e.target?.result, type: type })
         .run()
     }
     reader.readAsDataURL(file)
@@ -56,7 +59,7 @@ export const handleClick = (state, box) => {
     e.stopPropagation()
     if (state.isShow) {
       if (state.flagX && state.flagY) {
-        state.editor.chain().focus().insertTable({ rows: state.flagX, cols: state.flagY, withHeaderRow: true }).run()
+        state.editor.chain().focus().insertTable({ rows: state.flagY, cols: state.flagX, withHeaderRow: true }).run()
       }
       state.flagX = 0
       state.flagY = 0
@@ -71,12 +74,6 @@ export const handleClick = (state, box) => {
 export const shouldShow = ({ editor, view, state, oldState, from, to }) => {
   // 仅在无序列表选中的时候才显示 气泡菜单
   return editor.isActive('table')
-}
-// font-size 设置
-export const handleFontSize = (fontSize) => {
-  return (value) => {
-    fontSize.value = value + 'px'
-  }
 }
 
 // 处理参数实现自定义展示
@@ -123,13 +120,13 @@ eventMap.set('taskList', (editor) => {
 eventMap.set('quote', (editor) => {
   editor.chain().focus().toggleBlockquote().run()
 })
-eventMap.set('code-block', (editor) => {
+eventMap.set('codeBlock', (editor) => {
   editor.chain().focus().toggleCodeBlock().run()
 })
-eventMap.set('format-clear', (editor) => {
+eventMap.set('formatClear', (editor) => {
   editor.chain().focus().unsetAllMarks().run()
 })
-eventMap.set('node-delete', (editor) => {
+eventMap.set('nodeDelete', (editor) => {
   editor.chain().focus().clearNodes().run()
 })
 eventMap.set('undo', (editor) => {
@@ -171,9 +168,9 @@ imgMap.set('unorderedlist', 'TinyIconRichTextListUnordered')
 imgMap.set('orderedlist', 'TinyIconRichTextListOrdered')
 imgMap.set('taskList', 'TinyIconRichTextTaskList')
 imgMap.set('quote', 'TinyIconRichTextQuoteText')
-imgMap.set('code-block', 'TinyIconRichTextCodeBlock')
-imgMap.set('format-clear', 'TinyIconRichTextFormatClear')
-imgMap.set('node-delete', 'TinyIconRichTextNodeDelete')
+imgMap.set('codeBlock', 'TinyIconRichTextCodeBlock')
+imgMap.set('formatClear', 'TinyIconRichTextFormatClear')
+imgMap.set('nodeDelete', 'TinyIconRichTextNodeDelete')
 imgMap.set('undo', 'TinyIconRichTextUndo')
 imgMap.set('redo', 'TinyIconRichTextRedo')
 imgMap.set('left', 'TinyIconRichTextAlignLeft')

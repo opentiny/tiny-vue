@@ -6,12 +6,10 @@ import {
   removeClickOutside,
   handleClick,
   shouldShow,
-  handleFontSize,
   eventImg,
   eventClick,
   Active
 } from './index'
-import Codehighlight from './code-highlight'
 export const api = [
   'toolBar',
   'state',
@@ -23,7 +21,6 @@ export const api = [
   'removeClickOutside',
   'handleClick',
   'shouldShow',
-  'handleFontSize',
   'fontSize',
   'eventImg',
   'eventClick',
@@ -62,7 +59,8 @@ export const renderless = (
     NodeViewContent,
     nodeViewProps,
     NodeViewWrapper,
-    Placeholder
+    Placeholder,
+    codeHighlight
   }
 ) => {
   let toolBar = [
@@ -80,9 +78,9 @@ export const renderless = (
     'orderedlist',
     'taskList',
     'quote',
-    'code-block',
-    'format-clear',
-    'node-delete',
+    'codeBlock',
+    'formatClear',
+    'nodeDelete',
     'undo',
     'redo',
     'left',
@@ -93,20 +91,30 @@ export const renderless = (
     'h-box',
     'img',
     'color',
-    'table'
+    'table',
+    'backgroundColor'
   ]
   if (props.customToolBar) {
     toolBar = props.customToolBar
   }
-  if (!window._yDoc) {
-    window._yDoc = new Y.Doc()
-  }
-  const ydoc = window._yDoc
-  const provider = new WebrtcProvider('tiny-examsple-document', ydoc)
+  let ydoc = null
+  let provider = null
   // 自定义图片
   const CustomImage = Image.extend({
-    renderHTML({ HTMLAttributes }) {
-      return ['div', { class: 'img-button' }, ['img', HTMLAttributes]]
+    addAttributes() {
+      return {
+        ...this.parent?.(),
+        type: {
+          default: 'img'
+        }
+      }
+    },
+    renderHTML({ node, HTMLAttributes }) {
+      if (node.attrs.type === 'video') {
+        return ['div', { class: 'img-button' }, ['video', mergeAttributes({ controls: true }, HTMLAttributes)]]
+      } else {
+        return ['div', { class: 'img-button' }, ['img', HTMLAttributes]]
+      }
     }
   })
   const CustomParagraph = Paragraph.extend({
@@ -131,20 +139,71 @@ export const renderless = (
       return {
         setP:
           (attributes) =>
-          ({ commands }) => {
-            return commands.setNode(this.name, attributes)
-          }
+            ({ commands }) => {
+              return commands.setNode(this.name, attributes)
+            }
       }
     }
   })
-  const editor = new Editor({
+  const CustomSize = Paragraph.extend({
+    addOptions() {
+      return {
+        size: [12, 14, 16, 18, 20]
+      }
+    },
+    addAttributes() {
+      return {
+        size: {
+          default: 16
+        }
+      }
+    },
+    renderHTML({ node, HTMLAttributes }) {
+      const hasSize = this.options.size.includes(node.attrs.size)
+      const size = hasSize ? node.attrs.size : this.options.size[2]
+      return ['p', mergeAttributes({ style: `font-size: ${size}px` }, HTMLAttributes), 0]
+    },
+    addCommands() {
+      return {
+        setSize:
+          (attributes) =>
+            ({ commands }) => {
+              return commands.setNode(this.name, attributes)
+            }
+      }
+    }
+  })
+  const CustomBackgroundColor = Highlight.extend({
+    addAttributes() {
+      return {
+        bgColor: {
+          default: null,
+          renderHTML: attributes => {
+            if (!attributes.bgColor) {
+              return {}
+            }
+            return {
+              style: `background: ${attributes.bgColor}`,
+            }
+          },
+        }
+      }
+    },
+    addCommands() {
+      return {
+        setBackColor:
+          attributes =>
+            ({ commands }) => {
+              return commands.setMark(this.name, attributes)
+            }
+      }
+    }
+  })
+  const defaultOptions = {
     extensions: [
       StarterKit?.configure({
         // 开启多人协作功能要关闭默认的history模式
         history: false
-      }),
-      Collaboration?.configure({
-        document: ydoc
       }),
       Table.configure({
         resizable: true
@@ -168,9 +227,11 @@ export const renderless = (
         types: ['heading', 'paragraph']
       }),
       CustomParagraph,
+      CustomSize,
+      CustomBackgroundColor,
       CodeBlockLowlight.extend({
         addNodeView() {
-          return VueNodeViewRenderer(Codehighlight(NodeViewContent, nodeViewProps, NodeViewWrapper))
+          return VueNodeViewRenderer(codeHighlight)
         }
       }).configure({ lowlight }),
       Placeholder.configure({
@@ -221,7 +282,20 @@ export const renderless = (
       emit('destroy')
     },
     ...props.options
-  })
+  }
+  if (props.Collaboration) {
+    if (!window._yDoc) {
+      window._yDoc = new Y.Doc()
+    }
+    ydoc = window._yDoc
+    provider = new WebrtcProvider('tiny-examsple-document', ydoc)
+    defaultOptions.extensions.push(
+      Collaboration?.configure({
+        document: ydoc
+      }),
+    )
+  }
+  const editor = new Editor(props.options ? props.options : defaultOptions)
 
   const box = ref(null)
   const fontSize = ref('16px')
@@ -248,7 +322,6 @@ export const renderless = (
     shouldShow: shouldShow,
     //
     fontSize,
-    handleFontSize: handleFontSize(fontSize),
     eventImg,
     eventClick,
     Active

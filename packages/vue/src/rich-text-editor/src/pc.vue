@@ -3,19 +3,20 @@
     <div class="tiny-rich-text-editor__toolbar">
       <!-- starter-kit功能区 -->
       <template v-for="item in toolBar">
-        <button v-if="(item.name ?? item) === 'font-size'" class="font-size-box">
+        <button v-if="(item.name ?? item) === 'font-size'" :title="t('ui.richTextEditor.fontSize')" class="font-size-box">
           <TinyIconRichTextFontSize></TinyIconRichTextFontSize>
           <div class="font-size-options">
-            <button @click="handleFontSize(12)">12px</button>
-            <button @click="handleFontSize(14)">14px</button>
-            <button @click="handleFontSize(16)">16px</button>
-            <button @click="handleFontSize(18)">18px</button>
-            <button @click="handleFontSize(20)">20px</button>
-            <button @click="handleFontSize(24)">24px</button>
-            <button @click="handleFontSize(30)">30px</button>
+            <button @click="state.editor.chain().focus().setSize({ size: 12 }).run()">12px</button>
+            <button @click="state.editor.chain().focus().setSize({ size: 14 }).run()">14px</button>
+            <button @click="state.editor.chain().focus().setSize({ size: 16 }).run()">16px</button>
+            <button @click="state.editor.chain().focus().setSize({ size: 18 }).run()">18px</button>
+            <button @click="state.editor.chain().focus().setSize({ size: 20 }).run()">20px</button>
+            <button @click="state.editor.chain().focus().setSize({ size: 24 }).run()">24px</button>
+            <button @click="state.editor.chain().focus().setSize({ size: 30 }).run()">30px</button>
           </div>
         </button>
-        <button v-else-if="(item.name ?? item) === 'line-height'" class="line-height-button" title="line height">
+        <button v-else-if="(item.name ?? item) === 'line-height'" class="line-height-button"
+          :title="t('ui.richTextEditor.lineHeight')">
           <div class="line-height-icon">
             <TinyIconRichTextLineHeight></TinyIconRichTextLineHeight>
           </div>
@@ -26,7 +27,7 @@
             <button class="line-2.5" @click.stop="state.editor.chain().focus().setP({ level: 2.5 }).run()">2.5</button>
           </div>
         </button>
-        <button v-else-if="(item.name ?? item) === 'h-box'" class="h-box">
+        <button v-else-if="(item.name ?? item) === 'h-box'" :title="t('ui.richTextEditor.hBox')" class="h-box">
           <div class="h-ico">
             <TinyIconRichTextHeading></TinyIconRichTextHeading>
           </div>
@@ -54,43 +55,66 @@
             </button>
           </div>
         </button>
-        <button v-else-if="(item.name ?? item) === 'img'" title="img" class="image-button">
-          <input @change="handleChange" id="img-btn" type="file" accept="image/*" />
+        <button v-else-if="(item.name ?? item) === 'img'" :title="t('ui.richTextEditor.img')" class="image-button">
+          <input @change="handleChange" id="img-btn" type="file" accept="image/*, video/*" />
           <label for="img-btn">
             <TinyIconRichTextImage></TinyIconRichTextImage>
           </label>
         </button>
-        <button v-else-if="(item.name ?? item) === 'color'" title="color" class="color-button">
+        <button v-else-if="(item.name ?? item) === 'color'" :title="t('ui.richTextEditor.color')" class="color-button">
           <label for="tiny-color">
             <TinyIconRichTextColor></TinyIconRichTextColor>
           </label>
           <input id="tiny-color" type="color" @input="state.editor.chain().focus().setColor($event.target.value).run()"
             :value="state.editor?.getAttributes('textStyle').color" />
         </button>
-        <button v-else-if="(item.name ?? item) === 'table'" title="table" class="table-button">
+        <button v-else-if="(item.name ?? item) === 'backgroundColor'" :title="t('ui.richTextEditor.backgroundColor')"
+          class="color-button">
+          <label for="tiny--back-color">
+            <TinyIconRichTextColor></TinyIconRichTextColor>
+          </label>
+          <input id="tiny-back-color" type="color"
+            @input="state.editor.chain().focus().setBackColor({ bgColor: $event.target.value }).run()" />
+        </button>
+        <button v-else-if="(item.name ?? item) === 'table'" :title="t('ui.richTextEditor.table')" class="table-button">
           <div class="table-box" @click="handleClick">
             <div class="table-icon">
               <TinyIconRichTextTable></TinyIconRichTextTable>
             </div>
             <div class="table-option" ref="box" v-if="state.isShow" @mousemove="handleMove">
-              <div class="item" :class="{ isActive: 1 <= state.flagX && 1 <= state.flagY }"></div>
-              <div class="item" :class="{ isActive: 2 <= state.flagX && 1 <= state.flagY }"></div>
-              <div class="item" :class="{ isActive: 3 <= state.flagX && 1 <= state.flagY }"></div>
-              <div class="item" :class="{ isActive: 1 <= state.flagX && 2 <= state.flagY }"></div>
-              <div class="item" :class="{ isActive: 2 <= state.flagX && 2 <= state.flagY }"></div>
-              <div class="item" :class="{ isActive: 3 <= state.flagX && 2 <= state.flagY }"></div>
-              <div class="item" :class="{ isActive: 1 <= state.flagX && 3 <= state.flagY }"></div>
-              <div class="item" :class="{ isActive: 2 <= state.flagX && 3 <= state.flagY }"></div>
-              <div class="item" :class="{ isActive: 3 <= state.flagX && 3 <= state.flagY }"></div>
+              <div class="table-row">
+                <div class="item" :class="{ isActive: 1 <= state.flagX && 1 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 2 <= state.flagX && 1 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 3 <= state.flagX && 1 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 4 <= state.flagX && 1 <= state.flagY }"></div>
+              </div>
+              <div class="table-row">
+                <div class="item" :class="{ isActive: 1 <= state.flagX && 2 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 2 <= state.flagX && 2 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 3 <= state.flagX && 2 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 4 <= state.flagX && 2 <= state.flagY }"></div>
+              </div>
+              <div class="table-row">
+                <div class="item" :class="{ isActive: 1 <= state.flagX && 3 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 2 <= state.flagX && 3 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 3 <= state.flagX && 3 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 4 <= state.flagX && 3 <= state.flagY }"></div>
+              </div>
+              <div class="table-row">
+                <div class="item" :class="{ isActive: 1 <= state.flagX && 4 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 2 <= state.flagX && 4 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 3 <= state.flagX && 4 <= state.flagY }"></div>
+                <div class="item" :class="{ isActive: 4 <= state.flagX && 4 <= state.flagY }"></div>
+              </div>
             </div>
           </div>
         </button>
-        <button v-else-if="(item.name ?? item) === 'unlink'" :title="item.name" @click="eventClick(state.editor, item)"
-          :disabled="!state.editor?.isActive(Active(item))">
+        <button v-else-if="(item.name ?? item) === 'unlink'" :title="t('ui.richTextEditor.unlink')"
+          @click="eventClick(state.editor, item)" :disabled="!state.editor?.isActive(Active(item))">
           <img v-if="item.img" :src="eventImg(item)" alt="" srcset="" />
           <component v-else :is='eventImg(item)'></component>
         </button>
-        <button v-else :title="item.name" @click="eventClick(state.editor, item)"
+        <button v-else :title="t(`ui.richTextEditor.${item.name ?? item}`)" @click="eventClick(state.editor, item)"
           :class="{ 'is-active': state.editor?.isActive(Active(item)) }">
           <img v-if="item.img" :src="eventImg(item)" alt="" srcset="" />
           <component v-else :is='eventImg(item)'></component>
@@ -146,6 +170,7 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/rich-text-edtior/vue'
+import codeHighlight from './code-highlight.vue'
 import {
   iconRichTextAddColumnAfter,
   iconRichTextAddColumnBefore,
@@ -250,6 +275,7 @@ import * as Y from 'yjs'
 import { WebrtcProvider } from 'y-webrtc'
 
 import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { t } from '@opentiny/vue-locale'
 import '@opentiny/vue-theme/rich-text-editor/index.less'
 
 export default defineComponent({
@@ -340,7 +366,8 @@ export default defineComponent({
         NodeViewContent,
         nodeViewProps,
         NodeViewWrapper,
-        Placeholder
+        Placeholder,
+        codeHighlight,
       }
     })
   }
