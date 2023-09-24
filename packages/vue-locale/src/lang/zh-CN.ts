@@ -151,6 +151,37 @@ export default {
       year: '年',
       to: '至'
     },
+    richTextEditor: {
+      bold: '加粗',
+      italic: '斜体',
+      link: '链接',
+      unlink: '移除链接',
+      highlight: '高亮',
+      underline: '下划线',
+      strike: '中划线',
+      subscript: '下标',
+      superscript: '上标',
+      code: '代码',
+      unorderedlist: '无序列表',
+      orderedlist: '有序列表',
+      taskList: '任务列表',
+      quote: '引用',
+      codeBlock: '代码块',
+      formatClear: '清楚标记',
+      nodeDelete: '删除节点',
+      undo: '回退',
+      redo: '前进',
+      left: '左对齐',
+      center: '居中',
+      right: '右对齐',
+      fontSize: '字号',
+      lineHeight: '行高',
+      hBox: '段落标题',
+      img: '图片',
+      color: '颜色',
+      table: '表格',
+      backgroundColor: '文字背景色'
+    },
     calendar: {
       showType: {
         year: '年'

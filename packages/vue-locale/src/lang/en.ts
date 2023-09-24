@@ -151,6 +151,37 @@ export default {
       year: '',
       to: 'to'
     },
+    richTextEditor: {
+      bold: 'bold',
+      italic: 'italic',
+      link: 'link',
+      unlink: 'unlink',
+      highlight: 'highlight',
+      underline: 'underline',
+      strike: 'strike',
+      subscript: 'subscript',
+      superscript: 'superscript',
+      code: 'code',
+      unorderedlist: 'unorderedlist',
+      orderedlist: 'orderedlist',
+      taskList: 'taskList',
+      quote: 'quote',
+      codeBlock: 'code-block',
+      formatClear: 'format-clear',
+      nodeDelete: 'node-delete',
+      undo: 'undo',
+      redo: 'redo',
+      left: 'left',
+      center: 'center',
+      right: 'right',
+      fontSize: 'font-size',
+      lineHeight: 'line-height',
+      hBox: 'h-box',
+      img: 'img',
+      color: 'color',
+      table: 'table',
+      backgroundColor: 'backgroundColor'
+    },
     calendar: {
       showType: {
         year: 'year'

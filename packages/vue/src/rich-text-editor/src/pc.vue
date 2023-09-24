@@ -273,6 +273,7 @@ import * as Y from 'yjs'
 import { WebrtcProvider } from 'y-webrtc'
 
 import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { t } from '@opentiny/vue-locale'
 import '@opentiny/vue-theme/rich-text-editor/index.less'
 
 export default defineComponent({
