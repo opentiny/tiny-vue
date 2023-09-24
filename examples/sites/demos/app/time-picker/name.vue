@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <tiny-time-picker v-model="value1" name="name" placeholder="选择时间范围"></tiny-time-picker>
+  <div class="demo-date-picker-wrap">
+    <tiny-time-picker v-model="value1" name="name"></tiny-time-picker>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { TimePicker } from '@opentiny/vue'
 
 export default {
@@ -18,3 +18,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-date-picker-wrap {
+  width: 182px;
+}
+</style>

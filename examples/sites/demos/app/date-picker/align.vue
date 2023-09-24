@@ -1,30 +1,27 @@
 <template>
-  <tiny-layout>
-    <tiny-row>
-      <tiny-col :span="6">
-        <label>左对齐：</label>
-        <tiny-date-picker v-model="value" align="left"></tiny-date-picker>
-      </tiny-col>
-      <tiny-col :span="6">
-        <label>右对齐：</label>
-        <tiny-date-picker v-model="value" align="right"></tiny-date-picker>
-      </tiny-col>
-      <tiny-col :span="6">
-        <label>居中对齐：</label>
-        <tiny-date-picker v-model="value" align="center"></tiny-date-picker>
-      </tiny-col>
-    </tiny-row>
-  </tiny-layout>
+  <div>
+    <p>左对齐：</p>
+    <div class="demo-date-picker-wrap">
+      <tiny-date-picker v-model="value" align="left"></tiny-date-picker>
+    </div>
+
+    <p>居中对齐：</p>
+    <div class="demo-date-picker-wrap">
+      <tiny-date-picker v-model="value" align="center"></tiny-date-picker>
+    </div>
+
+    <p>右对齐：</p>
+    <div class="demo-date-picker-wrap">
+      <tiny-date-picker v-model="value" align="right"></tiny-date-picker>
+    </div>
+  </div>
 </template>
 
-<script lang="jsx">
-import { Layout, Row, Col, DatePicker } from '@opentiny/vue'
+<script>
+import { DatePicker } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLayout: Layout,
-    TinyRow: Row,
-    TinyCol: Col,
     TinyDatePicker: DatePicker
   },
   data() {
@@ -34,3 +31,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-date-picker-wrap {
+  width: 350px;
+}
+</style>
