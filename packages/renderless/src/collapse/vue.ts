@@ -33,7 +33,7 @@ export const renderless = (props, { reactive, watch }, { parent, emit, constants
     (value) => {
       state.activeNames = value || value === 0 ? [].concat(value) : []
     },
-    { immediate: true }
+    { immediate: true, deep: true  }
   )
 
   parent.$on(eventName, api.handleItemClick)
