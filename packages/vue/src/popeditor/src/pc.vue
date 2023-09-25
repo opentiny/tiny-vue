@@ -313,7 +313,7 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/popeditor/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
 import { iconClose, iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
 import Input from '@opentiny/vue-input'
 import DialogBox from '@opentiny/vue-dialog-box'
@@ -335,9 +335,7 @@ export default defineComponent({
     TinyTree: Tree,
     TinySelectedBox: SelectedBox
   },
-  directives: {
-    Clickoutside
-  },
+  directives: directive({ Clickoutside }),
   props: [
     ...props,
     'dataset',

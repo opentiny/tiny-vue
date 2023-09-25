@@ -182,7 +182,7 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/cascader/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import Input from '@opentiny/vue-input'
 import Tag from '@opentiny/vue-tag'
@@ -235,7 +235,7 @@ export default defineComponent({
     'remove-tag',
     'created'
   ],
-  directives: { Clickoutside },
+  directives: directive({ Clickoutside }),
   provide() {
     return {
       cascaderRoot: this
