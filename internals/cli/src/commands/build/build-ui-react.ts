@@ -1,11 +1,10 @@
-import { logGreen, kebabCase, capitalizeKebabCase, getMinorVersion, isValidVersion } from '../../shared/utils'
+import { logGreen, kebabCase, capitalizeKebabCase } from '../../shared/utils'
 import { pathFromWorkspaceRoot } from '../../shared/utils'
 import fg from 'fast-glob'
 import path from 'node:path'
 import { build, defineConfig } from 'vite'
 import { getBabelOutputPlugin } from '@rollup/plugin-babel'
 import { external } from '../../shared/config'
-import dtsPlugin from 'vite-plugin-dts'
 import type { Plugin, NormalizedOutputOptions, OutputBundle } from 'rollup'
 import fs from 'fs-extra'
 import { sync as findUpSync } from 'find-up'
@@ -67,7 +66,7 @@ export function getAllModules(): Module[] {
 const getSortModules = ({ filterIntercept }: { filterIntercept: Function; }) => {
   let modules: Module[] = []
   let componentCount = 0
-  const importName = '@pe-3/react'
+  const importName = '@opentiny/react'
   Object.entries(moduleMap).forEach(([key, module]) => {
     let component = module as Module
 
@@ -112,7 +111,7 @@ const getSortModules = ({ filterIntercept }: { filterIntercept: Function; }) => 
       }
 
       // importName: '@opentiny/vue-tag/pc'
-      component.importName = '@pe-3/react' + '-' + component.libName
+      component.importName = '@opentiny/react' + '-' + component.libName
 
       // libName: '@opentiny/vue/todo/pc'
       component.libName = importName + '/' + component.libName
@@ -123,7 +122,7 @@ const getSortModules = ({ filterIntercept }: { filterIntercept: Function; }) => 
       // global: 'TinyTodoPc'
       component.global = 'Tiny' + key
 
-      component.importName = `@pe-3/react-${kebabCase({ str: key })}`
+      component.importName = `@opentiny/react-${kebabCase({ str: key })}`
 
       // "vue-common/src/index.ts" ==> "vue-common/lib/index"
       if (component.type === 'module') {
@@ -324,18 +323,9 @@ function getBaseConfig({
       ...getReactPlugins('18'),
       generatePackageJson({
         beforeWriteFile: (filePath, content) => {
-          // const themeAndRenderlessVersion = `3.${buildTarget}`
           const dependencies: any = {}
 
           Object.entries(content.dependencies).forEach(([key, value]) => {
-            // dependencies里的@opentiny,统一使用：~x.x.0
-            // if (isThemeOrRenderless(key)) {
-            //   dependencies[key] = getMinorVersion(themeAndRenderlessVersion)
-            // } else if ((value as string).includes('workspace:~')) {
-            //   dependencies[key] = getMinorVersion(versionTarget)
-            // } else {
-            //  dependencies[key] = value
-            // }
             if ((value as string).includes('workspace:~')) {
               dependencies[key] = '*'
             }
@@ -360,22 +350,6 @@ function getBaseConfig({
             content.module = './lib/index.js'
           }
 
-          // 为主入口包添加readme和LICENSE
-          // if (filePath === 'vue') {
-          //   ['README.md', 'README.zh-CN.md', 'LICENSE'].forEach((item) => {
-          //     fs.copySync(
-          //       pathFromWorkspaceRoot(item),
-          //       path.resolve(pathFromPackages(''), `dist${vueVersion}/@opentiny/vue/${item}`)
-          //     )
-          //   })
-          // }
-
-          // content.types = 'index.d.ts'
-
-          // if (filePath.includes('vue-common') || filePath.includes('vue-locale')) {
-          //   content.types = './src/index.d.ts'
-          // }
-
           content.version = '1.0.12'
           content.dependencies = dependencies
 
@@ -399,12 +373,14 @@ async function batchBuild({
   message,
   emptyOutDir,
   dts,
-  outDir
+  outDir,
+  buildTarget
 }) {
   if (tasks.length === 0) return
   logGreen(`====== 开始构建 ${message} ======`)
   const entry = toEntry(tasks)
   const dtsInclude = toTsInclued(tasks)
+
   await build({
     ...getBaseConfig({ dtsInclude, dts }),
     configFile: false,
@@ -431,21 +407,10 @@ async function batchBuild({
             return false
           }
 
-          // 图标入口排除子图标
-          // if (/react-icon\/index/.test(importer)) {
-          //   return /^\.\//.test(source)
-          // }
-
           // 子图标排除周边引用, 这里注意不要排除svg图标
           if (/react-icon\/.+\/index/.test(importer)) {
             return !/\.svg/.test(source)
           }
-
-          // todo: 绕开
-          // if (/src\/index/.test(importer)) {
-          //   // 模块入口，pc/mobile 文件要分离，同时排除 node_modules 依赖
-          //   return /^\.\/(pc|mobile|mobile-first)/.test(source) || external(source)
-          // }
 
           // @opentiny/vue 总入口，需要排除所有依赖
           if (/react\/(index|pc|mobile|mobile-first)\.ts$/.test(importer)) {
@@ -481,7 +446,8 @@ async function batchBuildAll({
     message,
     emptyOutDir,
     dts,
-    outDir
+    outDir,
+    buildTarget
   })
 }
 

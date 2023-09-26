@@ -30,7 +30,7 @@ const fileNames = {
 
 function getMainTemplate({ mode }) {
   return `{{{include}}}
-  import { $prefix } from '@pe-3/react-common'
+  import { $prefix } from '@opentiny/react-common'
 
   const components = [{{{components}}}]
 
@@ -65,7 +65,7 @@ function createEntry(mode) {
   const PKG_PATH = pathFromWorkspaceRoot(outputDir, 'package.json')
   const PKGContent = fs.readJSONSync(PKG_PATH)
   const PKGDeps = {
-    '@pe-3/react-common': 'workspace:~'
+    '@opentiny/react-common': 'workspace:~'
   }
 
   components.forEach((item) => {

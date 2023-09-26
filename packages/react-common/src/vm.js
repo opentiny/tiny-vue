@@ -7,11 +7,15 @@ import { Reactive } from './reactive.js'
 import { emit, on, off, once } from './event.js'
 
 const vmProxy = {
-  $parent: ({ fiber }) => createVmProxy(
-    creatFiberCombine(
-      getParentFiber(fiber)
+  $parent: ({ fiber }) => {
+    const parentFiber = getParentFiber(fiber)
+    if (!parentFiber) return null
+    return createVmProxy(
+      creatFiberCombine(
+        parentFiber
+      )
     )
-  ),
+  },
   $el: ({ fiber }) => fiber.child?.stateNode,
   $refs: ({ refs, fiber }) => createRefsProxy(refs, fiber.constructor),
   $children: ({ children }) => children.map((fiber) => createVmProxy(
@@ -51,10 +55,28 @@ function createVmProxy(fiberCombine) {
           return target.fiber.memoizedProps[property]
         }
         return vmProxy[property](target, receiver)
+      },
+      set(
+        target,
+        property,
+        value
+      ) {
+        return true
       }
     }))
   }
   return vmProxyMap.get(fiberCombine)
+}
+
+function createEmptyProxy() {
+  return new Proxy({}, {
+    get() {
+      return undefined
+    },
+    set() {
+      return true
+    }
+  })
 }
 
 function createRefsProxy(refs, FiberNode) {
@@ -90,6 +112,13 @@ function findStateInHooks(hookStart) {
 
 export function useVm() {
   const { ref, current, parent } = useFiber()
+  if (!ref.current) {
+    return {
+      ref,
+      current: createEmptyProxy(),
+      parent: createEmptyProxy()
+    }
+  }
   return {
     ref,
     current: current.fiber && createVmProxy(current),

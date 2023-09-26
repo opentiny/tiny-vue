@@ -10,11 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/react": "workspace:~",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "@opentiny/react-common": "workspace:~",
     "@opentiny/react-icon": "workspace:~",
-    "@opentiny/react-common": "workspace:~"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",
@@ -22,8 +25,11 @@
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
     "@vitejs/plugin-react": "^4.0.1",
+    "autoprefixer": "^10.4.12",
     "eslint": "^8.44.0",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "postcss": "^8.4.16",
+    "tailwindcss": "^3.3.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.0",
     "vite-plugin-react": "^4.0.1",

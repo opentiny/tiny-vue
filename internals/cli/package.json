@@ -5,9 +5,9 @@
   "version": "1.0.5-mf.0",
   "description": "internal-cli",
   "devDependencies": {
-    "@opentiny-internal/unplugin-virtual-template": "workspace:*",
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "7.16.7",
+    "@opentiny-internal/unplugin-virtual-template": "workspace:*",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-commonjs": "^24.0.1",
     "@types/fs-extra": "^11.0.1",
@@ -53,7 +53,9 @@
     "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
     "esno": "^0.16.3",
     "fast-glob": "^3.2.12",
+    "rollup-plugin-replace": "^2.2.0",
     "vite-plugin-dts": "^2.3.0",
+    "vite-plugin-svgr": "^3.2.0",
     "vite-svg-loader": "^3.6.0"
   }
 }

@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
+import { compWhiteList } from './virtual-comp.jsx'
 
 function getFiberByDom(dom) {
   const key = Object.keys(dom).find((key) => {
@@ -25,7 +26,12 @@ function collectFiber(fiber, collector, mapper) {
   const collect = []
   traverseFiber(
     fiber,
-    ({ type }) => typeof type !== 'string',
+    ({ type }) => {
+      if (type && typeof type !== 'string') {
+        return !compWhiteList.includes(type.name)
+      }
+      return false
+    },
     (fiber) => {
       if (typeof collector === 'function' && collector(fiber)) {
         collect.push(fiber)
@@ -74,12 +80,13 @@ function collectRefs(fiber) {
 
 const parentMap = new WeakMap()
 export function getParentFiber(fiber, isFirst = true, child = fiber) {
+  if (!fiber || !fiber.return) return null
   if (parentMap.has(child)) return parentMap.get(child)
-  if (typeof fiber.type !== 'string' && !isFirst) {
+  if (fiber.type && typeof fiber.type !== 'string' && !isFirst) {
     parentMap.set(child, fiber)
     return fiber
   }
-  return getParentFiber(fiber.return, false)
+  return getParentFiber(fiber.return, false, fiber)
 }
 
 export function creatFiberCombine(fiber) {

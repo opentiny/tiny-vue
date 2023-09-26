@@ -2,7 +2,7 @@
   "name": "@opentiny/react-button",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,6 +13,7 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
     "@opentiny/react-common": "workspace:~",
-    "@opentiny/react-icon": "workspace:~"
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
   }
 }

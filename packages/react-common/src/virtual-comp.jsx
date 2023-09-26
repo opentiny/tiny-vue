@@ -8,7 +8,7 @@ export function If(props) {
 }
 
 export function Component(props) {
-  const Is = props.is
+  const Is = props.is || (() => '')
   return <If v-if={props['v-if']}>
     <Is className={props.className} />
   </If>
@@ -17,17 +17,25 @@ export function Component(props) {
 export function Slot(props) {
   const {
     name = 'default',
-    slots = {}
+    slots = {},
+    parent_children
   } = props
 
-  const Slot = slots[name] || (() => '')
+  const EmptySlot = () => '';
+
+  const S = slots[name] || EmptySlot
 
   return (<>
-    <If v-if={slots[name]}>
-      <Slot {...props} />
+    <If v-if={name === 'default'}>
+      {parent_children || props.children}
     </If>
-    <If v-if={!slots[name]}>
-      {props.children}
+    <If v-if={name !== 'default'}>
+      <If v-if={S !== EmptySlot}>
+        <S {...props} />
+      </If>
+      <If v-if={S === EmptySlot}>
+        {props.children}
+      </If>
     </If>
   </>)
 }
@@ -54,3 +62,11 @@ export function Transition(props) {
 
   return <>{props.children}</>
 }
+
+export const compWhiteList = [
+  'If',
+  'Component',
+  'Slot',
+  'For',
+  'Transition'
+]
