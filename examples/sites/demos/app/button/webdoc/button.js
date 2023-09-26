@@ -143,11 +143,39 @@ export default {
       'type': 'component',
       'properties': [
         {
+          'name': 'autofocus',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 false',
+          'desc': { 'zh-CN': '是否默认聚焦', 'en-US': 'Whether to focus by default' },
+          'demoId': 'autofocus'
+        },
+        {
+          'name': 'circle',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 false',
+          'desc': { 'zh-CN': '是否圆形按钮', 'en-US': 'Round button' },
+          'demoId': 'circle'
+        },
+        {
           'name': 'disabled',
           'type': 'Boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '设置按钮是否被禁用。', 'en-US': 'Sets whether the button is disabled.' },
           'demoId': 'dynamic-disabled'
+        },
+        {
+          'name': 'icon',
+          'type': 'Object , String',
+          'defaultValue': '',
+          'desc': { 'zh-CN': 'svg 图片对象', 'en-US': 'svg Image Object' },
+          'demoId': 'icon'
+        },
+        {
+          'name': 'loading',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 false',
+          'desc': { 'zh-CN': '是否加载中状态', 'en-US': 'Loading status' },
+          'demoId': 'loading'
         },
         {
           'name': 'native-type',
@@ -162,6 +190,13 @@ export default {
           'demoId': 'icon'
         },
         {
+          'name': 'plain',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 false',
+          'desc': { 'zh-CN': '是否朴素按钮', 'en-US': 'Simple button' },
+          'demoId': 'plain'
+        },
+        {
           'name': 'reset-time',
           'type': 'Number',
           'defaultValue': '该属性的默认值为 1000',
@@ -170,7 +205,14 @@ export default {
             'en-US': 'Set the button disable time, in milliseconds, to prevent repeated submission.'
           },
           'demoId': 'reset-time'
-        },
+        },     
+        {
+          'name': 'round',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 false',
+          'desc': { 'zh-CN': '是否圆角按钮', 'en-US': 'Whether to round the corner button' },
+          'demoId': 'round'
+        },  
         {
           'name': 'text',
           'type': 'String',
@@ -182,16 +224,6 @@ export default {
           'demoId': 'text'
         },
         {
-          'name': 'size',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '定义按钮尺寸;该属性的可选值为 large / medium / small / mini',
-            'en-US': 'Define the button size. The value of this attribute can be large, medium, small, or mini'
-          },
-          'demoId': 'size'
-        },
-        {
           'name': 'type',
           'type': 'String',
           'defaultValue': '',
@@ -201,48 +233,6 @@ export default {
               'Displays different button states. The optional values of this attribute are primary / success / warning / danger / info / text'
           },
           'demoId': 'type'
-        },
-        {
-          'name': 'plain',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否朴素按钮', 'en-US': 'Simple button' },
-          'demoId': 'plain'
-        },
-        {
-          'name': 'round',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否圆角按钮', 'en-US': 'Whether to round the corner button' },
-          'demoId': 'round'
-        },
-        {
-          'name': 'circle',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否圆形按钮', 'en-US': 'Round button' },
-          'demoId': 'circle'
-        },
-        {
-          'name': 'loading',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否加载中状态', 'en-US': 'Loading status' },
-          'demoId': 'loading'
-        },
-        {
-          'name': 'icon',
-          'type': 'Object , String',
-          'defaultValue': '',
-          'desc': { 'zh-CN': 'svg 图片对象', 'en-US': 'svg Image Object' },
-          'demoId': 'icon'
-        },
-        {
-          'name': 'autofocus',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否默认聚焦', 'en-US': 'Whether to focus by default' },
-          'demoId': 'autofocus'
         }
       ],
       'events': [
