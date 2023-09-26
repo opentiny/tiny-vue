@@ -1,6 +1,6 @@
-import pc from './pc.jsx'
-import mobile from './mobile.jsx'
-import mobileFirst from './mobile-first.jsx'
+import pc from './pc.tsx'
+import mobile from './mobile.tsx'
+import mobileFirst from './mobile-first.tsx'
 
 export default function (props) {
   const {
