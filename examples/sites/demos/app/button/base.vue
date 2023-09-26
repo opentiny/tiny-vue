@@ -24,17 +24,36 @@
       <tiny-button type="warning" round> 警告按钮 </tiny-button>
       <tiny-button type="danger" round> 危险按钮 </tiny-button>
     </tiny-row>
+    <tiny-row>
+      <tiny-button :icon="IconSearch" circle></tiny-button>
+      <tiny-button type="primary" :icon="IconEdit" circle></tiny-button>
+      <tiny-button type="success" :icon="IconYes" circle></tiny-button>
+      <tiny-button type="info" :icon="IconMail" circle></tiny-button>
+      <tiny-button type="warning" :icon="IconStarO" circle></tiny-button>
+      <tiny-button type="danger" :icon="IconDel" circle></tiny-button>
+    </tiny-row>
   </tiny-layout>
 </template>
 
-<script>
+<script >
 import { Button, Layout, Row } from '@opentiny/vue'
+import { IconDel, IconYes, IconEdit, IconMail, IconStarO, IconSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyButton: Button,
     TinyLayout: Layout,
     TinyRow: Row
+  },
+  data() {
+    return {
+      IconDel: IconDel(),
+      IconYes: IconYes(),
+      IconEdit: IconEdit(),
+      IconMail: IconMail(),
+      IconStarO: IconStarO(),
+      IconSearch: IconSearch()
+    }
   }
 }
 </script>

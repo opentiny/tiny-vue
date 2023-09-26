@@ -5,7 +5,7 @@ export default {
     {
       'demoId': 'base',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '使用 <code>type</code>、<code>plain</code>、<code>round</code> 和 <code>circle</code> 来定义按钮的样式。', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['base.vue']
     },
     {
@@ -78,15 +78,6 @@ export default {
           '<p>Use the <code>size</code> attribute to set the button size, including large, medium, small, and mini. If this parameter is not set, the default size is used. </p>\n'
       },
       'codeFiles': ['size.vue']
-    },
-    {
-      'demoId': 'circle',
-      'name': { 'zh-CN': '圆形按钮', 'en-US': 'Round Button' },
-      'desc': {
-        'zh-CN': '<p>直接配置 <code>circle</code> 属性为 true，即可展示为圆形按钮的形式。</p>\n',
-        'en-US': '<p>Set the <code>circle</code> attribute to true. The button is displayed as a round button. </p>\n'
-      },
-      'codeFiles': ['circle.vue']
     },
     {
       'demoId': 'plain',
