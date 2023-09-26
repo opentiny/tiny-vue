@@ -50,7 +50,7 @@ program
   .addOption(new Option('-t --build-target <buildTarget>', '组件的目标版本'))
   .option('-s, --scope <scope>', 'npm scope，默认是 opentiny，会以 @opentiny 发布到 npm')
   .option('-c, --clean', '清空构建目录')
-  .option('--no-dts', '不生成 dts')- 
+  .option('--no-dts', '不生成 dts')
   .action(buildReact)
 
 program.parse()
