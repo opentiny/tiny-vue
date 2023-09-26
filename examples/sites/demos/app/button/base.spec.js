@@ -35,11 +35,11 @@ test('测试圆角按钮', async ({ page }) => {
 
 test('测试是否是圆形按钮', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button/circle')
-  await expect(page.locator('.tiny-button').first()).toHaveClass(/is-circle/)
-  await expect(page.locator('button:nth-child(2)').first()).toHaveClass(/is-circle/)
-  await expect(page.locator('button:nth-child(3)').first()).toHaveClass(/is-circle/)
-  await expect(page.locator('button:nth-child(4)').first()).toHaveClass(/is-circle/)
-  await expect(page.locator('button:nth-child(5)').first()).toHaveClass(/is-circle/)
-  await expect(page.locator('button:nth-child(6)').first()).toHaveClass(/is-circle/)
+  await page.goto('http://localhost:7130/pc/button/base')
+  await expect(page.locator('.tiny-button').first()).toHaveClass(/tiny-button--default/)
+  await expect(page.locator('button:nth-child(2)').first()).toHaveClass(/tiny-button--primary/)
+  await expect(page.locator('button:nth-child(3)').first()).toHaveClass(/tiny-button--success/)
+  await expect(page.locator('button:nth-child(4)').first()).toHaveClass(/tiny-button--info/)
+  await expect(page.locator('button:nth-child(5)').first()).toHaveClass(/tiny-button--warning/)
+  await expect(page.locator('button:nth-child(6)').first()).toHaveClass(/tiny-button--danger/)
 })
