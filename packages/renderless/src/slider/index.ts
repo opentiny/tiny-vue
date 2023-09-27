@@ -213,6 +213,9 @@ export const getActiveButtonIndex =
   }
 
 const calcCurrentValue = ({ currentValue, props, state }) => {
+  if(Array.isArray(currentValue)){
+    currentValue = currentValue[state.activeIndex]
+  }
   if (currentValue <= props.min) {
     currentValue = props.min
   } else if (currentValue >= props.max) {
