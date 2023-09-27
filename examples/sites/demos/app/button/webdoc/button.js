@@ -24,7 +24,7 @@ export default {
       'name': { 'zh-CN': '文字按钮', 'en-US': 'Text button' },
       'desc': {
         'zh-CN':
-          '<p>设置 <code>type</code> 属性为 <code>text</code> 即为文字按钮，可在标签子级或者通过 <code>text</code> 属性设置显示内容。</p>\n',
+          '<p><code>type</code> 属性为 <code>text</code> 为文字按钮，可在标签子级或者通过 <code>text</code> 属性设置显示内容。</p>\n',
         'en-US':
           '<p>Set the <code>type</code> attribute to <code>text</code>, which is a text button. You can set the content to be displayed at the tag child level or through the <code>text</code> attribute. </p>\n'
       },
