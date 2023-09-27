@@ -35,7 +35,7 @@
   </tiny-layout>
 </template>
 
-<script >
+<script>
 import { Button, Layout, Row } from '@opentiny/vue'
 import { IconDel, IconYes, IconEdit, IconMail, IconStarO, IconSearch } from '@opentiny/vue-icon'
 
