@@ -81,7 +81,7 @@ export default {
     },
     {
       'demoId': 'click',
-      'name': { 'zh-CN': '事件', 'en-US': 'Event' },
+      'name': { 'zh-CN': '点击事件', 'en-US': 'Event' },
       'desc': {
         'zh-CN': '<p>按钮的单击事件，该示例中单击按钮将会出现提示信息。</p>\n',
         'en-US':
@@ -93,7 +93,7 @@ export default {
       'demoId': 'dynamic-disabled',
       'name': { 'zh-CN': '动态禁用按钮', 'en-US': 'Dynamic Disable Button' },
       'desc': {
-        'zh-CN': '<p>设置 <code>disabled</code> 属性为 true 后，可以禁用按钮。</p>\n',
+        'zh-CN': '<p>设置 <code>disabled</code> 属性为 true ，可以禁用按钮。</p>\n',
         'en-US': '<p>After <code>disabled</code> is set to true, the button can be disabled. </p>\n'
       },
       'codeFiles': ['dynamic-disabled.vue']
