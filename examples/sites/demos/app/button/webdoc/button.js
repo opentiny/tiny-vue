@@ -40,17 +40,6 @@ export default {
       'codeFiles': ['image.vue']
     },
     {
-      'demoId': 'type',
-      'name': { 'zh-CN': '主题样式', 'en-US': 'Theme Style' },
-      'desc': {
-        'zh-CN':
-          '<p>通过 <code>type</code> 属性可以设置不同的主题样式，主要包括 primary、success、info、warning、danger、text。</p>\n',
-        'en-US':
-          '<p>You can set different theme styles through the <code>type</code> attribute, including primary, success, info, warning, danger, and text. </p>\n'
-      },
-      'codeFiles': ['type.vue']
-    },
-    {
       'demoId': 'loading',
       'name': { 'zh-CN': '显示加载中', 'en-US': 'Display Loading' },
       'desc': {
