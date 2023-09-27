@@ -72,11 +72,11 @@ export const emitEvent = (vm) => {
 
   return {
     dispatch(componentName, eventName, ...args) {
-      let parent = vm.parent
+      let parent = vm.$parent
       if (parent.type === null) return
       let name = parent.$options && parent.$options.componentName
       while (parent && parent.type && (!name || name !== componentName)) {
-        parent = parent.parent
+        parent = parent.$parent
 
         if (parent)
           name = parent.$options && parent.$options.componentName

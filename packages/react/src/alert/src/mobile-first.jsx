@@ -1,4 +1,4 @@
-import { renderless, api } from '@opentiny/vue-renderless/alert/react'
+import { renderless, api } from '@opentiny/vue-renderless/alert/vue'
 import { IconClose, IconSuccess, IconError, IconHelp, IconWarning, IconChevronDown } from '@opentiny/react-icon'
 import {
   vc,

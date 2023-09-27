@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { useReload } from './reactive'
 
 function Create(target) {
@@ -10,11 +10,11 @@ function Readonly(target) {
   Create.call(this, target)
 }
 
-const useDepChange = (dependencies) => {
+const useDepChange = (dependencies, immediate = false) => {
   let isDepChange = false
   const pre_dep = useRef()
   if (!pre_dep.current) {
-    isDepChange = true
+    isDepChange = true && immediate
   }
   else {
     for (let i in dependencies) {
@@ -54,14 +54,50 @@ export const ref = (value) => {
   return proxy.current
 }
 
-export const computed = (getter, dependencies) => {
-  if (typeof getter !== 'function') return
-  const memoried = useRef()
-  const isDepChange = useDepChange(dependencies)
-  if (isDepChange) {
-    memoried.current = getter()
+export function computed(getter) {
+  const thisObj = {}
+  Object.setPrototypeOf(thisObj, computed.prototype)
+  if (typeof getter === 'function') {
+    thisObj.get = getter
   }
-  return memoried.current
+  else if (typeof getter === 'object') {
+    if (typeof getter.get === 'function') {
+      thisObj.get = getter.get
+    }
+    if (typeof getter.set === 'function') {
+      thisObj.set = getter.set
+    }
+  }
+  return new Proxy({
+    value: ''
+  }, {
+    get(
+      target,
+      property,
+      receiver
+    ) {
+      if (property === 'v-hooks-type') {
+        return computed
+      }
+      else if (property === 'value') {
+        return thisObj.get()
+      }
+    },
+    set(
+      target,
+      property,
+      value,
+      receiver
+    ) {
+      if (property === 'value') {
+        if (typeof thisObj.set === 'function') {
+          thisObj.set(value)
+        }
+        return true
+      }
+      return true
+    }
+  })
 }
 
 export const readonly = (target) => {
@@ -101,7 +137,7 @@ export const watchEffect = (effect, dependencies, options) => {
 
 export const watchPostEffect = (effect, dependencies) => watchEffect(effect, dependencies, { flush: 'post' })
 
-export const watch = (source, callback) => {
+export const watch = (source, callback, options = {}) => {
   const cache = useRef()
   let source_value
   if (Array.isArray(source)) {
@@ -110,9 +146,54 @@ export const watch = (source, callback) => {
   else {
     source_value = [(typeof source === 'function' && source())]
   }
-  const isDepChange = useDepChange(source_value)
+  const isDepChange = useDepChange(source_value, options.immediate)
   if (!cache.current) cache.current = { clear: false }
-  if (isDepChange && cache.current.clear) callback(source_value, cache.current.pre)
+  if (isDepChange && !cache.current.clear) {
+    callback(
+      source_value.length === 1 ? source_value[0] : source_value,
+      cache.current.pre
+    )
+  }
   cache.current.pre = source_value
   return () => cache.current.clear = true
+}
+
+const provideMap = new WeakMap()
+export const provide = (vm) => (key, value) => {
+  if (!provideMap.has(vm)) {
+    provideMap.set(vm, {})
+  }
+  const provideObj = provideMap.get(vm)
+  provideObj[key] = value
+}
+
+export const inject = (_parent) => (key, defaultValue, treatDefaultAsFactory) => {
+  let parent = _parent
+  let context = null
+
+  while (parent) {
+    parent = parent.$parent
+    if (provideMap.has(parent)) {
+      context = provideMap.get(parent)
+      break
+    }
+  }
+
+  let val = context && context[key]
+  if (!val) {
+    val = treatDefaultAsFactory ? defaultValue() : defaultValue
+  }
+  return val
+}
+
+export const onBeforeUnmount = (callback) => {
+  useEffect(() => {
+    return callback
+  }, [])
+}
+
+export const onMounted = (callback) => {
+  useEffect(() => {
+    callback()
+  }, [])
 }

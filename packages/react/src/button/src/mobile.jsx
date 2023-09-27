@@ -1,7 +1,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/button/vue'
-import { useSetup, If, Component, vc, useVm } from '@opentiny/react-common'
+import { useSetup, vc, If, Component, Slot, useVm } from '@opentiny/react-common'
 import { IconLoading } from '@opentiny/react-icon'
-import '@opentiny/vue-theme/button/index.less'
+import '@opentiny/vue-theme-mobile/button/index.less'
 
 const define_props = [
   'children',
@@ -21,15 +21,11 @@ const define_props = [
 
 export default function Button(props) {
   const {
-    children,
     text,
     loading,
-    autofocus,
     round,
-    circle,
     icon,
     size,
-    tabindex,
     type = 'default',
     nativeType = 'button',
     resetTime = 1000
@@ -55,8 +51,8 @@ export default function Button(props) {
     props: defaultProps,
     renderless,
     api,
-    vm,
-    parent
+    parent,
+    vm
   })
 
   const $attrs = a(props, define_props, false)
@@ -64,36 +60,29 @@ export default function Button(props) {
   return (
     <button
       ref={ref}
+      onClick={handleClick}
+      disabled={state.buttonDisabled || loading}
+      type={nativeType}
       className={vc([
-        'tiny-button',
-        type ? 'tiny-button--' + type : '',
-        size ? 'tiny-button--' + size : '',
+        'tiny-mobile-button',
+        type ? 'tiny-mobile-button--' + type : '',
+        size ? 'tiny-mobile-button--' + size : '',
         {
           'is-disabled': state.buttonDisabled,
           'is-loading': loading,
           'is-plain': state.plain,
-          'is-round': round,
-          'is-circle': circle,
-          'is-icon': icon && !loading && (text || $slots.default),
-          'is-only-icon': icon && !loading && !(text || $slots.default)
+          'is-round': round
         }
       ])}
-      onClick={handleClick}
-      disabled={state.buttonDisabled || loading}
-      autoFocus={autofocus}
-      type={nativeType}
-      tabIndex={tabindex}
       {...a($attrs, ['class', 'style'], true)}
     >
       <If v-if={loading}>
-        <IconLoading className="tiny-icon-loading tiny-svg-size" />
+        <IconLoading class='tiny-icon-loading' />
       </If>
-      <Component
-        v-if={icon && !loading}
-        is={icon}
-        className={(text || children) ? 'is-text' : ''}
-      />
-      <span>{children || text}</span>
+      <Component v-if={icon && !loading} is={icon} class='tiny-icon is-icon' />
+      <Slot slots={props.slots} parent_children={props.children}>
+        <span style={{ marginLeft: text && (icon || loading) ? '4px' : 0 }}>{ text }</span>
+      </Slot>
     </button>
   )
 }

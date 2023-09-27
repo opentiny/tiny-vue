@@ -19,6 +19,8 @@ program
   .description('同步生成 icon-saas')
   .action(createIconSaas)
 
+program.command('build:entry-react').description('生成 react 组件库入口').action(buildEntryReact)
+
 program.command('build:entry').description('生成组件库入口').action(buildEntry)
 
 program
@@ -39,8 +41,6 @@ program
   .addOption(new Option('-v --vue-versions <vueVersions...>', '目标框架，默认所有').choices(['2', '2.7', '3']))
   .option('-m, --min', '是否压缩输出文件', false)
   .action(buildRuntime)
-
-program.command('build:entry-react').description('生成 react 组件库入口').action(buildEntryReact)
 
 program
   .command('build:react')

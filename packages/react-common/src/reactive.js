@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { computed } from './vue-hooks'
 
 // 响应式核心
 const reactiveMap = new WeakMap()
@@ -15,6 +16,10 @@ const reactive = (
       receiver
     ) {
       const targetVal = target[property]
+      if (targetVal && targetVal['v-hooks-type'] === computed) {
+        return targetVal.value
+      }
+
       const _path = [...path, property]
       const res = typeof targetVal === 'object'
         ? reactive(targetVal, handler, _path, rootStaticObject)
@@ -30,10 +35,7 @@ const reactive = (
         receiver
       })
 
-      if (typeof targetVal === 'object') {
-        return reactive(targetVal, handler, _path, rootStaticObject)
-      }
-      return targetVal
+      return res
     },
     set(
       target,
@@ -41,6 +43,12 @@ const reactive = (
       value,
       receiver
     ) {
+      const targetVal = target[property]
+      if (targetVal && targetVal['v-hooks-type'] === computed) {
+        targetVal.value = value
+        return true
+      }
+
       const _path = [...path, property]
 
       // 监听修改
@@ -62,9 +70,9 @@ const reactive = (
   return reactiveMap.get(staticObject)
 }
 
-const useReload = () => {
-  const setReload = useState(false)[1]
-  return () => setReload(pre => !pre)
+export const useReload = () => {
+  const setReload = useState(0)[1]
+  return () => setReload(pre => pre + 1)
 }
 
 const isObject = (val) => val !== null && typeof val === 'object'
@@ -83,7 +91,7 @@ export const useReactive = (initalObject) => {
   const memoried = useRef()
   const proxy = useRef()
   const reload = useReload()
-  // 只调用一次
+
   if (!memoried.current && !proxy.current) {
     memoried.current = new Reactive(initalObject)
     proxy.current = reactive(memoried.current, {

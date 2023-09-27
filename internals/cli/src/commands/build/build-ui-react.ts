@@ -1,11 +1,10 @@
-import { logGreen, kebabCase, capitalizeKebabCase, getMinorVersion, isValidVersion } from '../../shared/utils'
+import { logGreen, kebabCase, capitalizeKebabCase } from '../../shared/utils'
 import { pathFromWorkspaceRoot } from '../../shared/utils'
 import fg from 'fast-glob'
 import path from 'node:path'
 import { build, defineConfig } from 'vite'
 import { getBabelOutputPlugin } from '@rollup/plugin-babel'
 import { external } from '../../shared/config'
-import dtsPlugin from 'vite-plugin-dts'
 import type { Plugin, NormalizedOutputOptions, OutputBundle } from 'rollup'
 import fs from 'fs-extra'
 import { sync as findUpSync } from 'find-up'
@@ -17,6 +16,9 @@ const moduleMap = require(pathFromWorkspaceRoot('packages/modules-react.json'))
 type mode = 'pc' | 'mobile' | 'mobile-first'
 
 const pathFromPackages = (...args) => pathFromWorkspaceRoot('packages', ...args)
+
+let scopeName = '@opentiny'
+let buildVersion = '1.0.0'
 
 export interface Module {
   /** 源码路径，如 vue/src/button/index.ts */
@@ -54,9 +56,9 @@ function getEntryTasks(): Module[] {
     dtsRoot: true,
     libPath: `react/${mode}`,
     type: 'module',
-    name: kebabCase({ str: '@opentiny/react' }),
+    name: kebabCase({ str: `${scopeName}/react` }),
     global: capitalizeKebabCase('opentinyReact'),
-    importName: '@opentiny/react'
+    importName: `${scopeName}/react`
   }))
 }
 
@@ -67,7 +69,7 @@ export function getAllModules(): Module[] {
 const getSortModules = ({ filterIntercept }: { filterIntercept: Function; }) => {
   let modules: Module[] = []
   let componentCount = 0
-  const importName = '@pe-3/react'
+  const importName = `${scopeName}/react`
   Object.entries(moduleMap).forEach(([key, module]) => {
     let component = module as Module
 
@@ -112,7 +114,7 @@ const getSortModules = ({ filterIntercept }: { filterIntercept: Function; }) => 
       }
 
       // importName: '@opentiny/vue-tag/pc'
-      component.importName = '@pe-3/react' + '-' + component.libName
+      component.importName = `${scopeName}/react` + '-' + component.libName
 
       // libName: '@opentiny/vue/todo/pc'
       component.libName = importName + '/' + component.libName
@@ -123,7 +125,7 @@ const getSortModules = ({ filterIntercept }: { filterIntercept: Function; }) => 
       // global: 'TinyTodoPc'
       component.global = 'Tiny' + key
 
-      component.importName = `@pe-3/react-${kebabCase({ str: key })}`
+      component.importName = `${scopeName}/react-${kebabCase({ str: key })}`
 
       // "vue-common/src/index.ts" ==> "vue-common/lib/index"
       if (component.type === 'module') {
@@ -220,7 +222,7 @@ const getAllIcons = () => {
       componentType: 'icon',
       name: kebabCase({ str: name }),
       global: capitalizeKebabCase(name),
-      importName: '@opentiny/vue-' + item
+      importName: '@opentiny/react-' + item
     } as Module
   })
 }
@@ -309,8 +311,8 @@ const getReactPlugins = (reactVersion: string) => {
 }
 
 function getBaseConfig({
-  dtsInclude,
-  dts
+  dts,
+  dtsInclude
 }) {
   return defineConfig({
     publicDir: false,
@@ -324,23 +326,17 @@ function getBaseConfig({
       ...getReactPlugins('18'),
       generatePackageJson({
         beforeWriteFile: (filePath, content) => {
-          // const themeAndRenderlessVersion = `3.${buildTarget}`
           const dependencies: any = {}
 
           Object.entries(content.dependencies).forEach(([key, value]) => {
-            // dependencies里的@opentiny,统一使用：~x.x.0
-            // if (isThemeOrRenderless(key)) {
-            //   dependencies[key] = getMinorVersion(themeAndRenderlessVersion)
-            // } else if ((value as string).includes('workspace:~')) {
-            //   dependencies[key] = getMinorVersion(versionTarget)
-            // } else {
-            //  dependencies[key] = value
-            // }
+            // 只替换 react 系的依赖，方便调试
+            // 其他公用的依赖，vue 之前可能发过包
+            const newKey = key.replace('@opentiny/react', `${scopeName}/react`)
             if ((value as string).includes('workspace:~')) {
-              dependencies[key] = '*'
+              dependencies[newKey] = '*'
             }
             else {
-              dependencies[key] = value
+              dependencies[newKey] = value
             }
           })
 
@@ -360,24 +356,9 @@ function getBaseConfig({
             content.module = './lib/index.js'
           }
 
-          // 为主入口包添加readme和LICENSE
-          // if (filePath === 'vue') {
-          //   ['README.md', 'README.zh-CN.md', 'LICENSE'].forEach((item) => {
-          //     fs.copySync(
-          //       pathFromWorkspaceRoot(item),
-          //       path.resolve(pathFromPackages(''), `dist${vueVersion}/@opentiny/vue/${item}`)
-          //     )
-          //   })
-          // }
-
-          // content.types = 'index.d.ts'
-
-          // if (filePath.includes('vue-common') || filePath.includes('vue-locale')) {
-          //   content.types = './src/index.d.ts'
-          // }
-
-          content.version = '1.0.12'
+          content.version = buildVersion
           content.dependencies = dependencies
+          content.name = content.name.replace('@opentiny/react', `${scopeName}/react`)
 
           delete content.devDependencies
           delete content.private
@@ -405,8 +386,9 @@ async function batchBuild({
   logGreen(`====== 开始构建 ${message} ======`)
   const entry = toEntry(tasks)
   const dtsInclude = toTsInclued(tasks)
+
   await build({
-    ...getBaseConfig({ dtsInclude, dts }),
+    ...getBaseConfig({ dts, dtsInclude }),
     configFile: false,
     build: {
       outDir,
@@ -419,7 +401,19 @@ async function batchBuild({
           }) as any,
           replace({
             '.less': '.css'
-          })
+          }),
+          {
+            name: 'replace-scope',
+            transform(code) {
+              let modifiedCode = code
+              while (modifiedCode.match(/@opentiny\/react/g)) {
+                modifiedCode = modifiedCode.replace('@opentiny/react', `${scopeName}/react`)
+              }
+              return {
+                code: modifiedCode
+              }
+            }
+          }
         ],
         output: {
           strict: false,
@@ -431,24 +425,24 @@ async function batchBuild({
             return false
           }
 
-          // 图标入口排除子图标
-          // if (/react-icon\/index/.test(importer)) {
-          //   return /^\.\//.test(source)
-          // }
-
           // 子图标排除周边引用, 这里注意不要排除svg图标
           if (/react-icon\/.+\/index/.test(importer)) {
             return !/\.svg/.test(source)
           }
 
-          // todo: 绕开
-          // if (/src\/index/.test(importer)) {
-          //   // 模块入口，pc/mobile 文件要分离，同时排除 node_modules 依赖
-          //   return /^\.\/(pc|mobile|mobile-first)/.test(source) || external(source)
-          // }
-
           // @opentiny/vue 总入口，需要排除所有依赖
           if (/react\/(index|pc|mobile|mobile-first)\.ts$/.test(importer)) {
+            return true
+          }
+
+          if ([
+            'react',
+            'react/jsx-runtime'
+          ].includes(source)) {
+            return true
+          }
+
+          if (source.indexOf(scopeName) === 0) {
             return true
           }
 
@@ -470,7 +464,6 @@ async function batchBuildAll({
   message,
   emptyOutDir,
   dts,
-  buildTarget,
   npmScope
 }) {
   const rootDir = pathFromPackages('')
@@ -488,13 +481,15 @@ async function batchBuildAll({
 export async function buildReact(
   names: string[] = [],
   {
-    buildTarget = '8.0',
+    buildTarget = '1.0.0',
     formats = ['es'],
     clean = false,
     dts = true,
     scope = '@opentiny'
   }
 ) {
+  scopeName = scope
+  buildVersion = buildTarget
   // 要构建的模块
   let tasks = getTasks(names)
 
@@ -504,7 +499,7 @@ export async function buildReact(
   }
 
   // 构建 @opentiny/react
-  if (names.some((name) => ['@opentiny/react', 'react'].includes(name))) {
+  if (names.some((name) => [`${scopeName}/react`, 'react'].includes(name))) {
     tasks.push(...getEntryTasks())
   }
 
@@ -516,7 +511,6 @@ export async function buildReact(
     message,
     emptyOutDir: clean,
     dts,
-    buildTarget,
     npmScope: scope
   })
 }
