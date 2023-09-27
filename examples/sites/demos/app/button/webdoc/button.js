@@ -53,7 +53,7 @@ export default {
       'name': { 'zh-CN': '尺寸', 'en-US': 'Dimension' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>size</code> 属性设置按钮不同的大小尺寸，包括 large、medium、small、mini 四种不同大小。不设置时为默认尺寸。</p>\n',
+          '<p>通过 <code>size</code> 属性设置<code>large</code> 、<code>medium</code> 、<code>small</code> 、<code>mini</code>  四种不同大小尺寸。不设置时为默认尺寸。</p>\n',
         'en-US':
           '<p>Use the <code>size</code> attribute to set the button size, including large, medium, small, and mini. If this parameter is not set, the default size is used. </p>\n'
       },
