@@ -71,15 +71,6 @@ export default {
       'codeFiles': ['size.vue']
     },
     {
-      'demoId': 'plain',
-      'name': { 'zh-CN': '朴素按钮', 'en-US': 'Simple button' },
-      'desc': {
-        'zh-CN': '<p>配置 <code>plain</code> 属性为 true，即可展示为朴素按钮的形式。</p>\n',
-        'en-US': '<p>Set the <code>plain</code> attribute to true. The button is displayed as a simple button. </p>\n'
-      },
-      'codeFiles': ['plain.vue']
-    },
-    {
       'demoId': 'reset-time',
       'name': { 'zh-CN': '防止表单重复提交', 'en-US': 'Prevent repeated submission of forms' },
       'desc': {
