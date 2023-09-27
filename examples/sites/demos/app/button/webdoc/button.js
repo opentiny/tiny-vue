@@ -31,15 +31,6 @@ export default {
       'codeFiles': ['text.vue']
     },
     {
-      'demoId': 'round',
-      'name': { 'zh-CN': '按钮圆角', 'en-US': 'Button Fillet' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>round</code> 属性设置是否圆角按钮。</p>\n',
-        'en-US': '<p>The <code>round</code> attribute is used to set whether to round the button. </p>\n'
-      },
-      'codeFiles': ['round.vue']
-    },
-    {
       'demoId': 'image',
       'name': { 'zh-CN': '图片按钮', 'en-US': 'Picture button' },
       'desc': {
