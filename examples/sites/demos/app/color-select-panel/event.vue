@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import {ref} from 'vue';
 import {ColorSelectPanel,Button,Notify} from '@opentiny/vue';
 export default {
