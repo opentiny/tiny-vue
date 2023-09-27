@@ -1,7 +1,7 @@
 <template>
-  <div class="tiny-color-picker__wrapper__inner">
+      <div class="tiny-color-select-panel__wrapper__inner">
     <div
-      class="tiny-color-picker__wrapper__inner__color-select" ref="wrapper" :style="{
+      class="tiny-color-select-panel__wrapper__inner__color-select" ref="wrapper" :style="{
         background: state.background,
       }"
     >
@@ -9,16 +9,15 @@
       <div class="black"></div>
       <div class="cursor" ref="cursor"></div>
     </div>
-    <div class="tiny-color-picker__wrapper__inner__hue-select" ref="bar">
+    <div class="tiny-color-select-panel__wrapper__inner__hue-select" ref="bar">
       <div ref="thumb"></div>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, setup } from '@opentiny/vue-common'
-import { renderless, api } from '@opentiny/vue-renderless/color-picker/color-select/vue'
-import '@opentiny/vue-theme/color-picker/index.less'
+import { renderless, api } from '@opentiny/vue-renderless/color-select-panel/hue-select/vue'
+import { setup, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
   emits: ['hue-update', 'sv-update'],
@@ -32,6 +31,6 @@ export default defineComponent({
   },
   setup(props, context) {
     return setup({ props, context, renderless, api })
-  },
+  }
 })
 </script>

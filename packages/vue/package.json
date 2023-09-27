@@ -88,6 +88,7 @@
     "@opentiny/vue-collapse-item": "workspace:~",
     "@opentiny/vue-collapse-transition": "workspace:~",
     "@opentiny/vue-color-picker": "workspace:~",
+    "@opentiny/vue-color-select-panel": "workspace:~",
     "@opentiny/vue-column-list-group": "workspace:~",
     "@opentiny/vue-column-list-item": "workspace:~",
     "@opentiny/vue-company": "workspace:~",

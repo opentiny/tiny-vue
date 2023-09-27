@@ -1,4 +1,4 @@
-import { IColorSelectPanel } from '@/types'
+import { IColorSelectPanelRef } from '@/types'
 import type Color from '../utils/color'
 
 export const setPosition = (el: HTMLElement, x: number, y: number) => {
@@ -7,7 +7,7 @@ export const setPosition = (el: HTMLElement, x: number, y: number) => {
 }
 export const getXBySaturation = (s: number, width: number) => (s * width) / 100
 export const getYByLight = (l: number, height: number) => ((100 - l) * height) / 100
-export const updatePosition = (event: MouseEvent | TouchEvent, rect: DOMRect, cursor: IColorSelectPanel<HTMLElement>) => {
+export const updatePosition = (event: MouseEvent | TouchEvent, rect: DOMRect, cursor: IColorSelectPanelRef<HTMLElement>) => {
   let x = (event as MouseEvent).clientX - rect.left
   let y = (event as MouseEvent).clientY - rect.top
   x = Math.max(0, x)
@@ -28,10 +28,10 @@ export const getThumbTop = (wrapper: HTMLElement, thumb: HTMLElement, hue: numbe
 
 export const resetCursor = (
   s: number, v: number,
-  wrapper: IColorSelectPanel<HTMLElement>,
-  cursor: IColorSelectPanel<HTMLElement>,
-  thumb: IColorSelectPanel<HTMLElement>,
-  color: Color, h: IColorSelectPanel<number>
+  wrapper: IColorSelectPanelRef<HTMLElement>,
+  cursor: IColorSelectPanelRef<HTMLElement>,
+  thumb: IColorSelectPanelRef<HTMLElement>,
+  color: Color, h: IColorSelectPanelRef<number>
 ) => {
   const { width, height } = wrapper.value.getBoundingClientRect()
   const x = getXBySaturation(s, width) - 1 / 2 * cursor.value.offsetWidth
@@ -42,7 +42,7 @@ export const resetCursor = (
   h.value = color.get('h')
 }
 
-export const updateCursor = (wrapper: IColorSelectPanel<HTMLElement>, cursor: IColorSelectPanel<HTMLElement>, emit) => {
+export const updateCursor = (wrapper: IColorSelectPanelRef<HTMLElement>, cursor: IColorSelectPanelRef<HTMLElement>, emit) => {
   return (color: Color, event: MouseEvent)=>{
     const rect = wrapper.value.getBoundingClientRect();
     const {x,y} = updatePosition(event, rect, cursor)
@@ -58,9 +58,9 @@ export const updateCursor = (wrapper: IColorSelectPanel<HTMLElement>, cursor: IC
 }
 
 export const updateThumb = (
-  bar: IColorSelectPanel<HTMLElement>,
-  thumb: IColorSelectPanel<HTMLElement>,
-  h: IColorSelectPanel<Number>,
+  bar: IColorSelectPanelRef<HTMLElement>,
+  thumb: IColorSelectPanelRef<HTMLElement>,
+  h: IColorSelectPanelRef<Number>,
   emit
 ) => {
   return (event: MouseEvent)=>{
