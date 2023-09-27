@@ -97,7 +97,7 @@ export default {
           '<p>Click event of the button. In this example, a message is displayed when a button is clicked. </p>\n'
       },
       'codeFiles': ['click.vue']
-    },
+    }
   ],
   apis: [
     {
@@ -116,7 +116,7 @@ export default {
           'type': 'Boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否圆形按钮', 'en-US': 'Round button' },
-          'demoId': 'circle'
+          'demoId': 'base'
         },
         {
           'name': 'disabled',
@@ -156,7 +156,7 @@ export default {
           'type': 'Boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否朴素按钮', 'en-US': 'Simple button' },
-          'demoId': 'plain'
+          'demoId': 'base'
         },
         {
           'name': 'reset-time',
@@ -173,7 +173,7 @@ export default {
           'type': 'Boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否圆角按钮', 'en-US': 'Whether to round the corner button' },
-          'demoId': 'round'
+          'demoId': 'base'
         },  
         {
           'name': 'text',
@@ -194,7 +194,7 @@ export default {
             'en-US':
               'Displays different button states. The optional values of this attribute are primary / success / warning / danger / info / text'
           },
-          'demoId': 'type'
+          'demoId': 'base'
         }
       ],
       'events': [
