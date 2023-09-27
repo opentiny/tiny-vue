@@ -9,6 +9,15 @@ export default {
       'codeFiles': ['base.vue']
     },
     {
+      'demoId': 'dynamic-disabled',
+      'name': { 'zh-CN': '动态禁用按钮', 'en-US': 'Dynamic Disable Button' },
+      'desc': {
+        'zh-CN': '<p>设置 <code>disabled</code> 属性为 true ，可以禁用按钮。</p>\n',
+        'en-US': '<p>After <code>disabled</code> is set to true, the button can be disabled. </p>\n'
+      },
+      'codeFiles': ['dynamic-disabled.vue']
+    },
+    {
       'demoId': 'icon',
       'name': { 'zh-CN': '图标按钮', 'en-US': 'Icon Button' },
       'desc': {
@@ -89,15 +98,6 @@ export default {
       },
       'codeFiles': ['click.vue']
     },
-    {
-      'demoId': 'dynamic-disabled',
-      'name': { 'zh-CN': '动态禁用按钮', 'en-US': 'Dynamic Disable Button' },
-      'desc': {
-        'zh-CN': '<p>设置 <code>disabled</code> 属性为 true ，可以禁用按钮。</p>\n',
-        'en-US': '<p>After <code>disabled</code> is set to true, the button can be disabled. </p>\n'
-      },
-      'codeFiles': ['dynamic-disabled.vue']
-    }
   ],
   apis: [
     {
