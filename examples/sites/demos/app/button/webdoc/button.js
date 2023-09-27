@@ -64,7 +64,7 @@ export default {
       'name': { 'zh-CN': '防止表单重复提交', 'en-US': 'Prevent repeated submission of forms' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>reset-time</code> 属性可设置单击后按钮禁用的时长，默认的禁用时长为 1000 毫秒。\n可用于防止按钮连续点击出现表单重复提交的问题。</p>\n',
+          '<p>通过 <code>reset-time</code> 属性设置单击后按钮禁用的时长，默认禁用时长为 1000 毫秒。\n可用于防止按钮连续点击出现表单重复提交的问题。</p>\n',
         'en-US':
           '<p>You can use the <code>reset-time</code> attribute to set the duration for which the button is disabled. The default duration is 1000 ms. \n This parameter can be used to prevent repeated submission of the form when you click the button continuously. </p>\n'
       },
