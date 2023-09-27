@@ -17,6 +17,9 @@ type mode = 'pc' | 'mobile' | 'mobile-first'
 
 const pathFromPackages = (...args) => pathFromWorkspaceRoot('packages', ...args)
 
+let scopeName = '@opentiny'
+let buildVersion = '1.0.0'
+
 export interface Module {
   /** 源码路径，如 vue/src/button/index.ts */
   path: string
@@ -53,9 +56,9 @@ function getEntryTasks(): Module[] {
     dtsRoot: true,
     libPath: `react/${mode}`,
     type: 'module',
-    name: kebabCase({ str: '@opentiny/react' }),
+    name: kebabCase({ str: `${scopeName}/react` }),
     global: capitalizeKebabCase('opentinyReact'),
-    importName: '@opentiny/react'
+    importName: `${scopeName}/react`
   }))
 }
 
@@ -66,7 +69,7 @@ export function getAllModules(): Module[] {
 const getSortModules = ({ filterIntercept }: { filterIntercept: Function; }) => {
   let modules: Module[] = []
   let componentCount = 0
-  const importName = '@opentiny/react'
+  const importName = `${scopeName}/react`
   Object.entries(moduleMap).forEach(([key, module]) => {
     let component = module as Module
 
@@ -111,7 +114,7 @@ const getSortModules = ({ filterIntercept }: { filterIntercept: Function; }) => 
       }
 
       // importName: '@opentiny/vue-tag/pc'
-      component.importName = '@opentiny/react' + '-' + component.libName
+      component.importName = `${scopeName}/react` + '-' + component.libName
 
       // libName: '@opentiny/vue/todo/pc'
       component.libName = importName + '/' + component.libName
@@ -122,7 +125,7 @@ const getSortModules = ({ filterIntercept }: { filterIntercept: Function; }) => 
       // global: 'TinyTodoPc'
       component.global = 'Tiny' + key
 
-      component.importName = `@opentiny/react-${kebabCase({ str: key })}`
+      component.importName = `${scopeName}/react-${kebabCase({ str: key })}`
 
       // "vue-common/src/index.ts" ==> "vue-common/lib/index"
       if (component.type === 'module') {
@@ -219,7 +222,7 @@ const getAllIcons = () => {
       componentType: 'icon',
       name: kebabCase({ str: name }),
       global: capitalizeKebabCase(name),
-      importName: '@opentiny/vue-' + item
+      importName: '@opentiny/react-' + item
     } as Module
   })
 }
@@ -308,8 +311,8 @@ const getReactPlugins = (reactVersion: string) => {
 }
 
 function getBaseConfig({
-  dtsInclude,
-  dts
+  dts,
+  dtsInclude
 }) {
   return defineConfig({
     publicDir: false,
@@ -326,11 +329,14 @@ function getBaseConfig({
           const dependencies: any = {}
 
           Object.entries(content.dependencies).forEach(([key, value]) => {
+            // 只替换 react 系的依赖，方便调试
+            // 其他公用的依赖，vue 之前可能发过包
+            const newKey = key.replace('@opentiny/react', `${scopeName}/react`)
             if ((value as string).includes('workspace:~')) {
-              dependencies[key] = '*'
+              dependencies[newKey] = '*'
             }
             else {
-              dependencies[key] = value
+              dependencies[newKey] = value
             }
           })
 
@@ -350,8 +356,9 @@ function getBaseConfig({
             content.module = './lib/index.js'
           }
 
-          content.version = '1.0.12'
+          content.version = buildVersion
           content.dependencies = dependencies
+          content.name = content.name.replace('@opentiny/react', `${scopeName}/react`)
 
           delete content.devDependencies
           delete content.private
@@ -373,8 +380,7 @@ async function batchBuild({
   message,
   emptyOutDir,
   dts,
-  outDir,
-  buildTarget
+  outDir
 }) {
   if (tasks.length === 0) return
   logGreen(`====== 开始构建 ${message} ======`)
@@ -382,7 +388,7 @@ async function batchBuild({
   const dtsInclude = toTsInclued(tasks)
 
   await build({
-    ...getBaseConfig({ dtsInclude, dts }),
+    ...getBaseConfig({ dts, dtsInclude }),
     configFile: false,
     build: {
       outDir,
@@ -395,7 +401,19 @@ async function batchBuild({
           }) as any,
           replace({
             '.less': '.css'
-          })
+          }),
+          {
+            name: 'replace-scope',
+            transform(code) {
+              let modifiedCode = code
+              while (modifiedCode.match(/@opentiny\/react/g)) {
+                modifiedCode = modifiedCode.replace('@opentiny/react', `${scopeName}/react`)
+              }
+              return {
+                code: modifiedCode
+              }
+            }
+          }
         ],
         output: {
           strict: false,
@@ -424,6 +442,10 @@ async function batchBuild({
             return true
           }
 
+          if (source.indexOf(scopeName) === 0) {
+            return true
+          }
+
           return external(source)
         },
       },
@@ -442,7 +464,6 @@ async function batchBuildAll({
   message,
   emptyOutDir,
   dts,
-  buildTarget,
   npmScope
 }) {
   const rootDir = pathFromPackages('')
@@ -453,21 +474,22 @@ async function batchBuildAll({
     message,
     emptyOutDir,
     dts,
-    outDir,
-    buildTarget
+    outDir
   })
 }
 
 export async function buildReact(
   names: string[] = [],
   {
-    buildTarget = '8.0',
+    buildTarget = '1.0.0',
     formats = ['es'],
     clean = false,
     dts = true,
     scope = '@opentiny'
   }
 ) {
+  scopeName = scope
+  buildVersion = buildTarget
   // 要构建的模块
   let tasks = getTasks(names)
 
@@ -477,7 +499,7 @@ export async function buildReact(
   }
 
   // 构建 @opentiny/react
-  if (names.some((name) => ['@opentiny/react', 'react'].includes(name))) {
+  if (names.some((name) => [`${scopeName}/react`, 'react'].includes(name))) {
     tasks.push(...getEntryTasks())
   }
 
@@ -489,7 +511,6 @@ export async function buildReact(
     message,
     emptyOutDir: clean,
     dts,
-    buildTarget,
     npmScope: scope
   })
 }
