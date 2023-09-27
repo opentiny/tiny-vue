@@ -5,7 +5,7 @@ export default {
     {
       'demoId': 'base',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '使用 <code>type</code>、<code>plain</code>、<code>round</code> 和 <code>circle</code> 来定义按钮的样式。', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '使用 <code>type</code>、<code>plain</code>、<code>round</code> 和 <code>circle</code> 来定义按钮的样式。', 'en-US': 'Use <code>type</code>, <code>plain</code>, <code>round</code> and <code>circle</code> to define the style of the button.' },
       'codeFiles': ['base.vue']
     },
     {
@@ -55,7 +55,7 @@ export default {
         'zh-CN':
           '<p>通过 <code>size</code> 属性设置<code>large</code> 、<code>medium</code> 、<code>small</code> 、<code>mini</code>  四种不同大小尺寸。不设置时为默认尺寸。</p>\n',
         'en-US':
-          '<p>Use the <code>size</code> attribute to set the button size, including large, medium, small, and mini. If this parameter is not set, the default size is used. </p>\n'
+          '<p>Set four different sizes, <code>large</code>, <code>medium</code>, <code>small</code>, and <code>mini</code>, with the <code>size</code> attribute. If this parameter is not set, the default size is used. </p>\n'
       },
       'codeFiles': ['size.vue']
     },
@@ -85,7 +85,7 @@ export default {
       'desc': {
         'zh-CN': '<p>按钮的单击事件，该示例中单击按钮将会出现提示信息。</p>\n',
         'en-US':
-          'Click event of the <p> button. In this example, a message is displayed when a button is clicked. </p>\n'
+          '<p>Click event of the button. In this example, a message is displayed when a button is clicked. </p>\n'
       },
       'codeFiles': ['click.vue']
     },
