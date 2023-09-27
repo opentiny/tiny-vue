@@ -417,6 +417,13 @@ async function batchBuild({
             return true
           }
 
+          if ([
+            'react',
+            'react/jsx-runtime'
+          ].includes(source)) {
+            return true
+          }
+
           return external(source)
         },
       },
