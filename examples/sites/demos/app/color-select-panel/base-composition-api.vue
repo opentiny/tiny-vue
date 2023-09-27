@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script lang="jsx" setup>
+<script setup>
 import {ref} from 'vue';
 import {ColorSelectPanel as TinyColorSelectPanel,Button} from '@opentiny/vue';
 const color = ref('#66ccff');
