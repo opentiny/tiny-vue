@@ -62,7 +62,9 @@ const useAutoStore = (type, key, defaultValue) => {
   watch(refVar, (curr, prev) => {
     typeMatcher[type][key] = curr
   })
-  if (typeof refVar.value === 'undefined') refVar.value = defaultValue
+
+  refVar.value = refVar.value ?? defaultValue
+  
   return refVar
 }
 
