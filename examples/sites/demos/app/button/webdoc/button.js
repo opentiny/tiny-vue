@@ -122,7 +122,7 @@ export default {
           'name': 'disabled',
           'type': 'Boolean',
           'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '设置按钮是否被禁用。', 'en-US': 'Sets whether the button is disabled.' },
+          'desc': { 'zh-CN': '设置按钮是否被禁用', 'en-US': 'Sets whether the button is disabled' },
           'demoId': 'dynamic-disabled'
         },
         {
@@ -164,7 +164,7 @@ export default {
           'defaultValue': '该属性的默认值为 1000',
           'desc': {
             'zh-CN': '设置按钮禁用时间，防止重复提交，单位毫秒',
-            'en-US': 'Set the button disable time, in milliseconds, to prevent repeated submission.'
+            'en-US': 'Set the button disable time, in milliseconds, to prevent repeated submission'
           },
           'demoId': 'reset-time'
         },     
@@ -180,8 +180,8 @@ export default {
           'type': 'String',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置按钮显示的文本，可配置国际化。',
-            'en-US': 'Sets the text displayed on the button. The text can be internationalized.'
+            'zh-CN': '设置按钮显示的文本，可配置国际化',
+            'en-US': 'Sets the text displayed on the button. The text can be internationalized'
           },
           'demoId': 'text'
         },
@@ -203,8 +203,8 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置当按钮被点击时触发的回调函数。',
-            'en-US': 'Sets the callback function triggered when a button is clicked.'
+            'zh-CN': '设置当按钮被点击时触发的回调函数',
+            'en-US': 'Sets the callback function triggered when a button is clicked'
           },
           'demoId': 'click'
         }
