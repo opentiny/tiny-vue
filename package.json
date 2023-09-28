@@ -42,6 +42,8 @@
     "dev2:saas": "pnpm build:entry && pnpm build:component-cssvar && pnpm -C examples/vue2 dev:saas",
     "dev2.7": "pnpm build:entry && pnpm build:component-cssvar && pnpm -C examples/vue2.7 dev",
     "dev2.7:saas": "pnpm build:entry && pnpm build:component-cssvar && pnpm -C examples/vue2.7 dev:saas",
+    "dev:docs": "pnpm -C examples/docs docs:dev",
+    "dev:react": "pnpm build:entry-react && pnpm -C examples/react-docs run dev",
     "// ---------- 启动官网文档 ----------": "",
     "dev:site": "pnpm build:entry && pnpm build:component-cssvar && pnpm -C examples/sites start",
     "dev:open-site": "pnpm build:entry && pnpm build:component-cssvar && pnpm -C examples/sites start:open",
@@ -108,7 +110,15 @@
     "// ---------- 手工构建发布指定组件 (Beta) ----------": "",
     "preci:deployBeta": "pnpm clean:build",
     "ci:deployBeta": "pnpm build:ui",
-    "postci:deployBeta": "lerna publish from-package --yes --dist-tag beta"
+    "postci:deployBeta": "lerna publish from-package --yes --dist-tag beta",
+    "analyse:depends": "pnpm --filter @opentiny/analyse_depends start",
+    "build:entry-react": "pnpm -C internals/cli build:entry-react",
+    "create:mapping-react": "pnpm -C internals/cli create:mapping-react",
+    "build:react": "pnpm -C internals/cli build:react",
+    "build:ui-react": "pnpm create:mapping-react && pnpm build:entry-react && pnpm build:react",
+    "pub:react": "pnpm --filter=\"./packages/dist-react/**\" publish --no-git-checks --access=public",
+    "dev:react-site": "pnpm --filter @opentiny/react-site start",
+    "build:react-site": "pnpm --filter @opentiny/react-site build"
   },
   "dependencies": {
     "@vue/composition-api": "1.2.2",
