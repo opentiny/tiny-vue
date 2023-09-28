@@ -14,11 +14,11 @@
       </tiny-button-group>
     </div>
     <tiny-collapse>
-      <tiny-collapse-item :title="t('ui.colorSelectPanel.history')" name="history" v-if="state.stack.size">
+      <tiny-collapse-item :title="t('ui.colorSelectPanel.history')" name="history" v-if="state.enableHistory">
         <div class="tiny-color-select-panel__history">
           <div
             class="tiny-color-select-panel__history__color-block"
-            v-if="state.stack.size"
+            v-if="state.stack.length"
             v-for="color in state.stack"
             :style="{
               background: color
@@ -28,11 +28,11 @@
           <span v-else>{{ t('ui.colorSelectPanel.empty') }}</span>
         </div>
       </tiny-collapse-item>
-      <tiny-collapse-item :title="t('ui.colorSelectPanel.predefine')" name="predefine" v-if="state.predefineStack.size">
+      <tiny-collapse-item :title="t('ui.colorSelectPanel.predefine')" name="predefine" v-if="state.enablePredefineColor">
         <div class="tiny-color-select-panel__predefine">
           <div
             class="tiny-color-select-panel__predefine__color-block"
-            v-if="state.predefineStack.size"
+            v-if="state.predefineStack.length"
             v-for="color in state.predefineStack"
             :style="{
               background: color

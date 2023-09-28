@@ -3,14 +3,18 @@ import type Color from './utils/color'
 
 export const onConfirm = (
   hex: IColorSelectPanelRef<string>, triggerBg: IColorSelectPanelRef<string>,
-  res: IColorSelectPanelRef<string>, emit, stack: IColorSelectPanelRef<Set<string>>,
+  res: IColorSelectPanelRef<string>, emit, stack: IColorSelectPanelRef<string[]>,
   enableHistory: boolean
 ) => {
   return () => {
     hex.value = res.value;
     triggerBg.value = res.value;
     if (enableHistory){
-      stack.value.add(res.value);
+      const itemIdx = Math.max(stack.value.indexOf(res.value), stack.value.indexOf(res.value.toLowerCase()), stack.value.indexOf(res.value.toUpperCase()));
+      if (itemIdx !== -1){
+        stack.value.splice(itemIdx,1)
+      }
+      stack.value.unshift(res.value);
     }
     emit('confirm', res.value)
   }
@@ -80,20 +84,4 @@ export const handlePredefineClick = (
     res.value=selectedColor;
     color.reset(selectedColor);
   }
-}
-
-export const diff = (a:string[],b:Set<string>) => {
-  const ans:{fn:string,arg:string}[] = [];
-  if (a.length < b.size){
-    for (const item of b.values()){
-      if (!a.includes(item)){
-        ans.push({fn: 'delete', arg: item})
-      }
-    }
-  } else {
-    for (let i=0;i<a.length;i++){
-      ans.push({fn: 'add', arg: a[i]});
-    }
-  }
-  return ans;
 }

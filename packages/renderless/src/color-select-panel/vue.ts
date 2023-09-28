@@ -1,6 +1,13 @@
 import {IColorSelectPanelRef as Ref} from '@/types';
-import Color, { normalizeHexColor } from './utils/color'
-import { onConfirm, onCancel, onHSVUpdate, onAlphaUpdate, handleHistoryClick, handlePredefineClick, diff } from '.'
+import Color from './utils/color'
+import {
+  onConfirm,
+  onCancel,
+  onHSVUpdate,
+  onAlphaUpdate,
+  handleHistoryClick,
+  handlePredefineClick,
+} from '.'
 
 export const api = [
   'state',
@@ -28,17 +35,14 @@ export const renderless = (
   const triggerBg = context.ref(modelValue?.value ?? 'transparent')
   const isShow = context.ref(visible?.value ?? false)
   const cursor: Ref<HTMLElement> = context.ref()
-  const stack:Ref<Set<string>> = context.ref(
-    new Set(
-      history?.value ?? []
-    )
+  const stack:Ref<string[]> = context.ref(
+    [...(history?.value ?? [])]
   )
-  const predefineStack: Ref<Set<string>> = context.ref(
-    new Set(
-      predefine?.value ?? []
-    )
+  const predefineStack: Ref<string[]> = context.ref(
+    [...(predefine?.value ?? [])]
   )
-  const enableHistory:Ref<boolean> = context.ref(history?.value);
+  const enableHistory = history?.value;
+  const enablePredefineColor = predefine?.value;
   const changeVisible = (state: boolean) => {
     isShow.value = state
   }
@@ -51,19 +55,15 @@ export const renderless = (
     defaultValue: modelValue,
     res,
     stack,
-    predefineStack
+    predefineStack,
+    enableHistory,
+    enablePredefineColor
   })
   context.watch(predefine, (newPredefine: string[])=>{
-    diff(newPredefine, predefineStack.value)
-    .map(({fn, arg}) => {
-      predefineStack.value[fn](arg)
-    });
+    predefineStack.value = [...newPredefine];
   }, {deep: true})
   context.watch(history, (newHistory:string[]) => {
-    diff(newHistory, stack.value)
-    .map(({fn, arg}) => {
-      stack.value[fn](arg)
-    });
+    stack.value = [...newHistory]
   }, {deep: true})
   context.watch(modelValue, (newValue) => {
     hex.value = newValue
@@ -81,7 +81,7 @@ export const renderless = (
     changeVisible,
     onHueUpdate,
     onSVUpdate,
-    onConfirm: onConfirm(hex, triggerBg, res, emit, stack, enableHistory.value),
+    onConfirm: onConfirm(hex, triggerBg, res, emit, stack, enableHistory),
     onCancel: onCancel(res, triggerBg, emit, isShow, hex, color),
     onAlphaUpdate: update,
     onHistoryClick: handleHistoryClick(hex, res, color),
