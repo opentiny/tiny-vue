@@ -23,6 +23,17 @@
         @click="() => onHistoryClick(color)"
       ></div>
     </div>
+    <div class="tiny-color-select-panel__wrapper__predefine">
+      <div
+        class="tiny-color-select-panel__wrapper__predefine__color-block"
+        v-for="color in state.predefineStack"
+        :style="{
+          background: color
+        }"
+        @click="()=>onPredefineColorClick(color)"
+      >
+      </div>
+    </div>
   </div>
 </template>
 
@@ -41,7 +52,7 @@ import { t } from '@opentiny/vue-locale'
 
 export default defineComponent({
   emits: ['update:modelValue', 'cancel', 'confirm', 'hue-update', 'sv-update'],
-  props: [...props, 'modelValue', 'visible', 'alpha','history'],
+  props: [...props, 'modelValue', 'visible', 'alpha', 'history', 'predefine'],
   components: {
     hueSelect: HueSelect,
     alphaSelect: AlphaSelect,

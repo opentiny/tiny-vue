@@ -14,7 +14,8 @@ export default defineComponent({
     modelValue: String,
     visible: Boolean,
     alpha: Boolean,
-    history: Array
+    history: Array,
+    predefine: Array,
   },
   setup(props, context) {
     return $setup({ props, context, template })

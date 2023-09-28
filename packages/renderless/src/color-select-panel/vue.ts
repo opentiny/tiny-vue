@@ -1,6 +1,6 @@
 import {IColorSelectPanelRef as Ref} from '@/types';
 import Color, { normalizeHexColor } from './utils/color'
-import { onConfirm, onCancel, onHSVUpdate, onAlphaUpdate, handleHistoryClick } from '.'
+import { onConfirm, onCancel, onHSVUpdate, onAlphaUpdate, handleHistoryClick, handlePredefineClick, diff } from '.'
 
 export const api = [
   'state',
@@ -13,6 +13,7 @@ export const api = [
   'onCancel',
   'onAlphaUpdate',
   'onHistoryClick',
+  'onPredefineColorClick',
   'alpha'
 ]
 
@@ -21,7 +22,7 @@ export const renderless = (
   context,
   { emit }
 ) => {
-  const { modelValue, visible, history } = context.toRefs(props)
+  const { modelValue, visible, history, predefine } = context.toRefs(props)
   const hex = context.ref(modelValue?.value ?? 'transparent')
   const res = context.ref(modelValue?.value ?? 'transparent')
   const triggerBg = context.ref(modelValue?.value ?? 'transparent')
@@ -30,6 +31,11 @@ export const renderless = (
   const stack:Ref<Set<string>> = context.ref(
     new Set(
       history?.value ?? []
+    )
+  )
+  const predefineStack: Ref<Set<string>> = context.ref(
+    new Set(
+      predefine?.value ?? []
     )
   )
   const enableHistory:Ref<boolean> = context.ref(history?.value);
@@ -44,21 +50,20 @@ export const renderless = (
     triggerBg,
     defaultValue: modelValue,
     res,
-    stack
+    stack,
+    predefineStack
   })
+  context.watch(predefine, (newPredefine: string[])=>{
+    diff(newPredefine, predefineStack.value)
+    .map(({fn, arg}) => {
+      predefineStack.value[fn](arg)
+    });
+  }, {deep: true})
   context.watch(history, (newHistory:string[]) => {
-    if (newHistory.length < stack.value.size){
-      console.log(newHistory.length ,stack.value.size)
-      for (const item of stack.value.values()){
-        if (!newHistory.includes(item)){
-          stack.value.delete(item);
-        }
-      }
-    } else {
-      for(let i=0;i<newHistory.length;i++){
-        stack.value.add(newHistory[i]);
-      }
-    }
+    diff(newHistory, stack.value)
+    .map(({fn, arg}) => {
+      stack.value[fn](arg)
+    });
   }, {deep: true})
   context.watch(modelValue, (newValue) => {
     hex.value = newValue
@@ -79,7 +84,8 @@ export const renderless = (
     onConfirm: onConfirm(hex, triggerBg, res, emit, stack, enableHistory.value),
     onCancel: onCancel(res, triggerBg, emit, isShow, hex, color),
     onAlphaUpdate: update,
-    onHistoryClick: handleHistoryClick(hex, res, color, triggerBg),
+    onHistoryClick: handleHistoryClick(hex, res, color),
+    onPredefineColorClick: handlePredefineClick(hex,res,color),
     cursor,
     alpha: props.alpha
   }

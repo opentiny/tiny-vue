@@ -23,8 +23,23 @@ export default {
     {
       'demoId': 'history',
       'name': { 'zh-CN': '历史记录', 'en-US': 'history' },
-      'desc': { 'zh-CN': '点击确认是将会触发confirm事件, 取消时触发cancel事件', 'en-US': 'When click confirm will trigger confirm event. When click outside or cancel will trigger cancel event' },
+      'desc': {
+        'zh-CN': '当history不为undefined时, 将会启用历史记录功能。当用户点击确认时, 将会自动将颜色插入到history. 用户行为会更改历史记录, 外部可以更改历史记录',
+        'en-US': 'When history is not undefined, the history function will be enabled. When the user clicks confirm, the color will automatically be inserted into the history User behavior can change history, and external users can also change history'
+      },
       'codeFiles': ['history.vue']
+    },
+    {
+      'demoId': 'predefine',
+      'name': { 
+        'zh-CN': '预定义颜色',
+        'en-US': 'predefine color' 
+      },
+      'desc': { 
+        'zh-CN': '提供给一些定义颜色, 用户行为不会更改预定义颜色, 但外部可以更改',
+        'en-US': 'Provide some defined colors, user behavior will not change the predefined colors, but can be changed externally' 
+      },
+      'codeFiles': ['predefine.vue']
     },
   ],
   apis: [
@@ -60,6 +75,26 @@ export default {
             'en-US': 'enable alpha select or not'
           },
           demoId: 'alpha'
+        },
+        {
+          name: 'history',
+          type: 'string[] | undefined',
+          defaultValue: 'undefined',
+          desc:{
+            'zh-CN': '时候启用历史记录,',
+            'en-US': 'enable history or not'
+          },
+          demoId: 'history'
+        },
+        {
+          name: 'predefine',
+          type: 'string[] | undefined',
+          defaultValue: 'undefined',
+          desc:{
+            'zh-CN': '时候启用历史记录,',
+            'en-US': 'enable predefine or not'
+          },
+          demoId: 'predefine'
         }
       ],
       'events': [

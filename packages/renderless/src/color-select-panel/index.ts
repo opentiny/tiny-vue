@@ -70,3 +70,30 @@ export const handleHistoryClick = (
     color.reset(history);
   }
 }
+
+export const handlePredefineClick = (
+  hex: IColorSelectPanelRef<string>, res:IColorSelectPanelRef<string>,
+  color: Color
+) => {
+  return (selectedColor: string) => {
+    hex.value=selectedColor;
+    res.value=selectedColor;
+    color.reset(selectedColor);
+  }
+}
+
+export const diff = (a:string[],b:Set<string>) => {
+  const ans:{fn:string,arg:string}[] = [];
+  if (a.length < b.size){
+    for (const item of b.values()){
+      if (!a.includes(item)){
+        ans.push({fn: 'delete', arg: item})
+      }
+    }
+  } else {
+    for (let i=0;i<a.length;i++){
+      ans.push({fn: 'add', arg: a[i]});
+    }
+  }
+  return ans;
+}
