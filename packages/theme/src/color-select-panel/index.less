@@ -99,16 +99,28 @@
         border-radius: 1px;
       }
     }
-    &__history,
-    &__predefine{
-      display: flex;
-      flex-wrap: wrap;
-      height: auto;
-      gap: var(--ti-color-select-panel-spacing);
-      &__color-block{
-        width: 20px;
-        height: 20px;
-        border-radius: var(--ti-color-select-panel-border-radius-sm);;
+    .tiny-collapse-item__wrap{
+      background: transparent;
+    }
+    .tiny-collapse-item{
+      background: transparent;
+      border: none;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .tiny-collapse-item__content{
+      background: transparent;
+      .@{colorSelectPanelPrefix}__history,
+      .@{colorSelectPanelPrefix}__predefine{
+        display: flex;
+        flex-wrap: wrap;
+        height: auto;
+        gap: var(--ti-color-select-panel-spacing);
+        &__color-block{
+          width: 20px;
+          height: 20px;
+          border-radius: var(--ti-color-select-panel-border-radius-sm);;
+        }
       }
     }
-  }
+}

@@ -13,33 +13,45 @@
         </tiny-button>
       </tiny-button-group>
     </div>
-    <div class="tiny-color-select-panel__wrapper__history">
-      <div
-        class="tiny-color-select-panel__wrapper__history__color-block"
-        v-for="color in state.stack"
-        :style="{
-          background: color
-        }"
-        @click="() => onHistoryClick(color)"
-      ></div>
-    </div>
-    <div class="tiny-color-select-panel__wrapper__predefine">
-      <div
-        class="tiny-color-select-panel__wrapper__predefine__color-block"
-        v-for="color in state.predefineStack"
-        :style="{
-          background: color
-        }"
-        @click="()=>onPredefineColorClick(color)"
-      >
-      </div>
-    </div>
+    <tiny-collapse>
+      <tiny-collapse-item :title="t('ui.colorSelectPanel.history')" name="history" v-if="state.stack.size">
+        <div class="tiny-color-select-panel__history">
+          <div
+            class="tiny-color-select-panel__history__color-block"
+            v-if="state.stack.size"
+            v-for="color in state.stack"
+            :style="{
+              background: color
+            }"
+            @click="() => onHistoryClick(color)"
+          ></div>
+          <span v-else>{{ t('ui.colorSelectPanel.empty') }}</span>
+        </div>
+      </tiny-collapse-item>
+      <tiny-collapse-item :title="t('ui.colorSelectPanel.predefine')" name="predefine" v-if="state.predefineStack.size">
+        <div class="tiny-color-select-panel__predefine">
+          <div
+            class="tiny-color-select-panel__predefine__color-block"
+            v-if="state.predefineStack.size"
+            v-for="color in state.predefineStack"
+            :style="{
+              background: color
+            }"
+            @click="()=>onPredefineColorClick(color)"
+          >
+          </div>
+          <span v-else>{{ t('ui.colorSelectPanel.empty') }}</span>
+        </div>
+      </tiny-collapse-item>
+    </tiny-collapse>    
   </div>
 </template>
 
 <script>
 import Button from '@opentiny/vue-button'
 import ButtonGroup from '@opentiny/vue-button-group'
+import Collapse from '@opentiny/vue-collapse';
+import CollapseItem from '@opentiny/vue-collapse-item';
 import Input from '@opentiny/vue-input'
 import { renderless, api } from '@opentiny/vue-renderless/color-select-panel/vue'
 import { props, setup, defineComponent,directive } from '@opentiny/vue-common'
@@ -58,7 +70,9 @@ export default defineComponent({
     alphaSelect: AlphaSelect,
     TinyButton: Button,
     TinyButtonGroup: ButtonGroup,
-    TinyInput: Input
+    TinyInput: Input,
+    TinyCollapse: Collapse,
+    TinyCollapseItem: CollapseItem
   },
   directives: directive({ Clickoutside }),
   setup(props, context) {
