@@ -69,6 +69,7 @@ export default defineConfig((config) => {
       alias: {
         '@': path.resolve('src'),
         '@demos': path.resolve('./demos'),
+        '@tiptap/vue': '@tiptap/vue-3',
         ...getAlias(3, env.VITE_TINY_THEME)
       }
     },
