@@ -1,7 +1,8 @@
 import { Alert } from '@opentiny/react'
 
-function App() {
+// 从 @opentiny/react 导入组件去调试
 
+function App() {
   return (
     <div
       className='app'

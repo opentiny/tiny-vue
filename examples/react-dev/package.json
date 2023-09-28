@@ -10,12 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/react": "workspace:~",
-    "@opentiny/react-common": "workspace:~",
-    "@opentiny/react-icon": "workspace:~",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
