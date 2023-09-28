@@ -1,6 +1,5 @@
 <template>
   <div>
-    <tiny-button :icon="IconSearch" type="text" size="mini"> </tiny-button>
     <tiny-button :icon="IconSearch" type="text"> </tiny-button>
     <tiny-button type="primary" :icon="IconEdit"> 图标按钮 </tiny-button>
     <tiny-button type="success" native-type="submit" :icon="IconYes"> 图标按钮 </tiny-button>
@@ -10,7 +9,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button } from '@opentiny/vue'
 import { IconDel, IconYes, IconEdit, IconMail, IconStarO, IconSearch } from '@opentiny/vue-icon'
 

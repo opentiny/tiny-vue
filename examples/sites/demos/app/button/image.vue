@@ -5,7 +5,7 @@
   </tiny-button>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button } from '@opentiny/vue'
 
 export default {
