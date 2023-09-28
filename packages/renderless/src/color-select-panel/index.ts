@@ -62,13 +62,11 @@ export const onAlphaUpdate = (color: Color, res: IColorSelectPanelRef<string>) =
 
 export const handleHistoryClick = (
   hex:IColorSelectPanelRef<string>, res:IColorSelectPanelRef<string>,
-  color:Color, triggerBg: IColorSelectPanelRef<string>
+  color:Color
   )=>{
   return (history: string)=>{
     hex.value = history;
     res.value = history;
-    // triggerBg.value = history;
-    // triggerBg.value = history
     color.reset(history);
   }
 }
