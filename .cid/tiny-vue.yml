@@ -89,6 +89,7 @@ artifacts:
     # - config_path: ./dist/dept/package.json
     # - config_path: ./dist/detail-page/package.json
     # - config_path: ./dist/dialog-box/package.json
+    # - config_path: ./dist/dialog-select/package.json
     # - config_path: ./dist/drop-roles/package.json
     # - config_path: ./dist/drop-times/package.json
     # - config_path: ./dist/dropdown/package.json
@@ -97,6 +98,7 @@ artifacts:
     # - config_path: ./dist/espace/package.json
     # - config_path: ./dist/exception/package.json
     # - config_path: ./dist/file-upload/package.json
+    # - config_path: ./dist/filter-panel/package.json
     # - config_path: ./dist/floatbar/package.json
     # - config_path: ./dist/form/package.json
     # - config_path: ./dist/form-item/package.json
@@ -108,6 +110,7 @@ artifacts:
     # - config_path: ./dist/grid-toolbar/package.json
     # - config_path: ./dist/hrapprover/package.json
     # - config_path: ./dist/icon/package.json
+    # - config_path: ./dist/infinite-scroll/package.json
     # - config_path: ./dist/image/package.json
     # - config_path: ./dist/image-viewer/package.json
     # - config_path: ./dist/input/package.json
@@ -166,6 +169,7 @@ artifacts:
     # - config_path: ./dist/table/package.json
     # - config_path: ./dist/tabs/package.json
     # - config_path: ./dist/tag/package.json
+    # - config_path: ./dist/tag-group/package.json
     # - config_path: ./dist/text-popup/package.json
     # - config_path: ./dist/time/package.json
     # - config_path: ./dist/time-line/package.json

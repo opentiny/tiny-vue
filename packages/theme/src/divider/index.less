@@ -1,0 +1,49 @@
+@import '../custom.less';
+@import './vars.less';
+
+@divider-prefix-cls: ~'@{css-prefix}divider';
+
+.@{divider-prefix-cls} {
+  .component-css-vars-divider();
+  position: relative;
+
+  &&--horizontal {
+    display: block;
+    height: 1px;
+    margin: 24px 0;
+    border-top: var(--ti-divider-dividing-line);
+  }
+
+  &&--vertical {
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    margin: 0 8px;
+    vertical-align: middle;
+    border-left: var(--ti-divider-dividing-line);
+  }
+
+  &__text {
+    position: absolute;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ti-divider-text-color);
+    background-color: var(--ti-divider-text-bg);
+
+    &.is-left {
+      left: 20px;
+      transform: translateY(-50%);
+    }
+
+    &.is-center {
+      left: 50%;
+      transform: translate(-50%) translateY(-50%);
+    }
+
+    &.is-right {
+      right: 20px;
+      transform: translateY(-50%);
+    }
+  }
+}

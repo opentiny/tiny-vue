@@ -12,5 +12,4 @@ export default defineComponent({
       return {}
     }
   }
-}
-)
+})

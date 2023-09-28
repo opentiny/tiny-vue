@@ -29,14 +29,13 @@
     @apply leading-normal;
     @apply h-10;
 
-    >.@{checkbox-prefix-cls}__label.@{checkbox-prefix-cls}-display-only {
+    > .@{checkbox-prefix-cls}__label.@{checkbox-prefix-cls}-display-only {
       @apply flex;
     }
 
     & + & {
       @apply ~'ml-2.5';
     }
-
 
     &.is-checked {
       @apply border-color-border-focus;
@@ -167,7 +166,8 @@
     @apply ~'z-[1]';
     @apply w-4;
     @apply text-base;
-    transition: border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
+    transition:
+      border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
       background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
 
     > .tiny-svg {
@@ -204,7 +204,7 @@
       content: ';';
       @apply inline-block;
     }
-    & .@{checkbox-prefix-cls}__label{
+    & .@{checkbox-prefix-cls}__label {
       @apply m-0;
       @apply p-0;
     }

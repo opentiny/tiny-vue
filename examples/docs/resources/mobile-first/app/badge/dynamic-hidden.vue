@@ -1,12 +1,8 @@
 <template>
   <div>
-    <tiny-badge :value="unread" :hidden="unread === 0">
-      我的待办
-    </tiny-badge>
+    <tiny-badge :value="unread" :hidden="unread === 0"> 我的待办 </tiny-badge>
     <br />
-    <tiny-button :disabled="unread === 0" @click="read">
-      读取一条消息
-    </tiny-button>
+    <tiny-button :disabled="unread === 0" @click="read"> 读取一条消息 </tiny-button>
   </div>
 </template>
 

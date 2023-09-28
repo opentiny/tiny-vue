@@ -58,7 +58,6 @@
     }
 
     &.poplist-language li {
-
       a,
       span {
         display: inline-block;
@@ -131,15 +130,14 @@
 
   .@{css-prefix}tree {
     &.radio {
-      &>.tree-menus {
+      & > .tree-menus {
         .tree-node {
           &.node-selected {
-
-            >.tree-menus-link,
-            >.tree-menus-link:hover,
-            >.tree-menus-link .tree-node-name,
-            >.tree-menus-link .tree-node-name:hover,
-            >.tree-menus-link .tree-node-body:hover .tree-node-name {
+            > .tree-menus-link,
+            > .tree-menus-link:hover,
+            > .tree-menus-link .tree-node-name,
+            > .tree-menus-link .tree-node-name:hover,
+            > .tree-menus-link .tree-node-body:hover .tree-node-name {
               background: var(--ti-selector-selected-hover-bg-color);
             }
           }

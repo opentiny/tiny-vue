@@ -4,10 +4,7 @@ import type { UserOptions } from './types'
 import { transformVirtualTemplate, transformConditionalTemplate, transformVirtualTemplateForBuild } from './core'
 
 export default createUnplugin<UserOptions>((options = {}) => {
-  const filter = createFilter(
-    options.include || ['**/*'],
-    options.exclude || [],
-  )
+  const filter = createFilter(options.include || ['**/*'], options.exclude || [])
 
   return {
     name: '@opentiny/unplugin-virtual-template',
@@ -29,6 +26,6 @@ export default createUnplugin<UserOptions>((options = {}) => {
 
       code = transformVirtualTemplate(code)
       return transformConditionalTemplate(code, id, options.env)
-    },
+    }
   }
 })

@@ -1,33 +1,35 @@
 import debounce from '../common/deps/debounce'
 import { omitText as omit } from '../common/string'
 
-export const compute = ({ api, markRaw, props, state }) => () => {
-  const { data, config } = props
-  const { nodes, links } = data
+export const compute =
+  ({ api, markRaw, props, state }) =>
+  () => {
+    const { data, config } = props
+    const { nodes, links } = data
 
-  const seg = (qty, segs) => {
-    const rmd = qty % segs
-    const quot = (qty - rmd) / segs
-    const rmdHalf = rmd / 2
-    const rmd1 = Math.floor(rmdHalf)
-    const rmd2 = Math.ceil(rmdHalf)
+    const seg = (qty, segs) => {
+      const rmd = qty % segs
+      const quot = (qty - rmd) / segs
+      const rmdHalf = rmd / 2
+      const rmd1 = Math.floor(rmdHalf)
+      const rmd2 = Math.ceil(rmdHalf)
 
-    return Array.from({ length: segs }).map((o, i) => quot + (i === 0 ? rmd1 : i === segs - 1 ? rmd2 : 0))
+      return Array.from({ length: segs }).map((o, i) => quot + (i === 0 ? rmd1 : i === segs - 1 ? rmd2 : 0))
+    }
+
+    const widths = seg(config.width, config.cols)
+    const heights = seg(config.height, config.rows)
+
+    const afterNodes = api.buildAfterNode(nodes, widths, heights)
+    const afterLinks = api.buildAfterLink(links, widths, heights, afterNodes)
+    const hoverState = api.buildHoverState(afterLinks)
+    const allItem = api.getAllItem(nodes)
+    const dropdowns = api.initDropdowns(nodes)
+
+    state.afterData = markRaw({ afterNodes, afterLinks, widths, heights, allItem, hoverState })
+    state.wrapperStyle = `width:${config.width}px;height:${config.height}px`
+    state.dropdowns = dropdowns
   }
-
-  const widths = seg(config.width, config.cols)
-  const heights = seg(config.height, config.rows)
-
-  const afterNodes = api.buildAfterNode(nodes, widths, heights)
-  const afterLinks = api.buildAfterLink(links, widths, heights, afterNodes)
-  const hoverState = api.buildHoverState(afterLinks)
-  const allItem = api.getAllItem(nodes)
-  const dropdowns = api.initDropdowns(nodes)
-
-  state.afterData = markRaw({ afterNodes, afterLinks, widths, heights, allItem, hoverState })
-  state.wrapperStyle = `width:${config.width}px;height:${config.height}px`
-  state.dropdowns = dropdowns
-}
 
 export const buildAfterNode = (props) => (nodes, widths, heights) => {
   const { config } = props
@@ -132,92 +134,96 @@ export const buildAfterLink = () => (links, widths, heights, afterNodes) => {
   return links.map((link) => path(link, widths[1], heights[1], afterNodes))
 }
 
-export const drawAfterLink = ({ api, props, state, vm }) => () => {
-  const { config } = props
-  const { afterData } = state
-  const { $refs } = vm
-  const { afterLinks, afterNodes, graph } = afterData
-  const mmap = { m: 'moveTo', l: 'lineTo', a: 'arcTo' }
-  const dpr = window.devicePixelRatio
+export const drawAfterLink =
+  ({ api, props, state, vm }) =>
+  () => {
+    const { config } = props
+    const { afterData } = state
+    const { $refs } = vm
+    const { afterLinks, afterNodes, graph } = afterData
+    const mmap = { m: 'moveTo', l: 'lineTo', a: 'arcTo' }
+    const dpr = window.devicePixelRatio
 
-  const drawLinePart = (ctx, p) => {
-    const paths = p.split(',')
-    ctx[mmap[paths[0]]](...paths.slice(1).map(Number))
-  }
-
-  const draw = (ctx, afterLink) => {
-    const { p, raw } = afterLink
-    const { status, style } = raw.info
-    const color = config.colors[status]
-
-    ctx.save()
-    ctx.beginPath()
-
-    if (typeof config.drawLink === 'function') {
-      config.drawLink(ctx, afterLink, afterNodes)
-    } else {
-      if (typeof config.styleLink === 'function') {
-        config.styleLink(ctx)
-      } else {
-        ctx.strokeStyle = color
-        style !== 'solid' && ctx.setLineDash(api.isMf() ? [6, 6] : [2, 4])
-      }
-
-      if (api.isLinkHover(afterLink) && typeof config.styleHoverLink === 'function') {
-        config.styleHoverLink(ctx)
-      }
-
-      p.map((p) => drawLinePart(ctx, p))
+    const drawLinePart = (ctx, p) => {
+      const paths = p.split(',')
+      ctx[mmap[paths[0]]](...paths.slice(1).map(Number))
     }
 
-    ctx.stroke()
-    ctx.restore()
-  }
+    const draw = (ctx, afterLink) => {
+      const { p, raw } = afterLink
+      const { status, style } = raw.info
+      const color = config.colors[status]
 
-  if ($refs.canvas && $refs.canvas.getContext) {
-    const ctx = $refs.canvas.getContext('2d')
-    const width = graph ? graph.width : config.width
-    const height = graph ? graph.height : config.height
-
-    if (ctx) {
       ctx.save()
       ctx.beginPath()
-      ctx.clearRect(0, 0, width, height)
-      ctx.fillStyle = config.background
-      ctx.fillRect(0, 0, width, height)
-      ctx.imageSmoothingEnabled = true
-      ctx.webkitImageSmoothingEnabled = true
-      ctx.imageSmoothingQuality = 'high'
-      ctx.webkitImageSmoothingQuality = 'high'
-      ctx.lineCap = 'round'
-      ctx.lineJoin = 'round'
-      ctx.lineWidth = api.isMf() ? (config.lineWidth || 1) / dpr : 2
-      ctx.miterLimit = 0
-      ctx.lineDashOffset = 0
-      afterLinks.map((afterLink) => draw(ctx, afterLink))
+
+      if (typeof config.drawLink === 'function') {
+        config.drawLink(ctx, afterLink, afterNodes)
+      } else {
+        if (typeof config.styleLink === 'function') {
+          config.styleLink(ctx)
+        } else {
+          ctx.strokeStyle = color
+          style !== 'solid' && ctx.setLineDash(api.isMf() ? [6, 6] : [2, 4])
+        }
+
+        if (api.isLinkHover(afterLink) && typeof config.styleHoverLink === 'function') {
+          config.styleHoverLink(ctx)
+        }
+
+        p.map((p) => drawLinePart(ctx, p))
+      }
+
+      ctx.stroke()
       ctx.restore()
     }
+
+    if ($refs.canvas && $refs.canvas.getContext) {
+      const ctx = $refs.canvas.getContext('2d')
+      const width = graph ? graph.width : config.width
+      const height = graph ? graph.height : config.height
+
+      if (ctx) {
+        ctx.save()
+        ctx.beginPath()
+        ctx.clearRect(0, 0, width, height)
+        ctx.fillStyle = config.background
+        ctx.fillRect(0, 0, width, height)
+        ctx.imageSmoothingEnabled = true
+        ctx.webkitImageSmoothingEnabled = true
+        ctx.imageSmoothingQuality = 'high'
+        ctx.webkitImageSmoothingQuality = 'high'
+        ctx.lineCap = 'round'
+        ctx.lineJoin = 'round'
+        ctx.lineWidth = api.isMf() ? (config.lineWidth || 1) / dpr : 2
+        ctx.miterLimit = 0
+        ctx.lineDashOffset = 0
+        afterLinks.map((afterLink) => draw(ctx, afterLink))
+        ctx.restore()
+      }
+    }
+
+    api.isMf() && api.drawArrow()
   }
 
-  api.isMf() && api.drawArrow()
-}
+export const refresh =
+  ({ api, nextTick, state }) =>
+  () => {
+    api.removeListeners()
 
-export const refresh = ({ api, nextTick, state }) => () => {
-  api.removeListeners()
+    if (api.isMf()) {
+      api.computeMf()
+    } else {
+      api.compute()
+    }
 
-  if (api.isMf()) {
-    api.computeMf()
-  } else {
-    api.compute()
+    state.refreshKey++
+
+    nextTick(() => {
+      api.drawAfterLink()
+      api.addListeners()
+    })
   }
-
-  state.refreshKey++
-
-  nextTick(() => {
-    api.drawAfterLink()
-    api.addListeners()
-  })
-}
 
 export const getAllItem = (props) => (nodes) => {
   const allItem = {}
@@ -322,113 +328,125 @@ export const buildHoverState = (props) => (afterLinks) => {
   return { hoverMap, hoverList }
 }
 
-export const addListeners = ({ api, state, vm }) => () => {
-  api.setListeners()
+export const addListeners =
+  ({ api, state, vm }) =>
+  () => {
+    api.setListeners()
 
-  vm.$refs.canvas.addEventListener('mousemove', state.mousemoveListener)
-  vm.$refs.canvas.addEventListener('click', state.mousemoveListener)
-  vm.$refs.canvas.addEventListener('click', state.clickListener)
-}
-
-export const removeListeners = ({ state, vm }) => () => {
-  vm.$refs.canvas.removeEventListener('mousemove', state.mousemoveListener)
-  vm.$refs.canvas.removeEventListener('click', state.mousemoveListener)
-  vm.$refs.canvas.removeEventListener('click', state.clickListener)
-}
-
-export const setListeners = ({ api, emit, props, state, vm }) => () => {
-  const { config } = props
-  const { delay } = config
-
-  state.mousemoveListener = debounce(delay, (e) => {
-    const { left, top } = vm.$refs.canvas.getBoundingClientRect()
-    const { clientX, clientY } = e
-    let x = clientX - left
-    let y = clientY - top
-
-    if (api.isMf() && state.afterData.graph && state.afterData.graph.thin) {
-      x *= state.afterData.graph.thinValue
-      y *= state.afterData.graph.thinValue
-    }
-
-    api.hitTest(x, y)
-  })
-
-  state.clickListener = debounce(delay, (e) => {
-    const afterLink = state.hoverAfterLink
-
-    if (afterLink) {
-      emit('click-link', afterLink, e)
-    } else {
-      emit('click-blank', null, e)
-    }
-
-    api.clearDropdown()
-  })
-}
-
-export const hitTest = ({ api, state, vm }) => (x, y) => {
-  const { afterData } = state
-  const { hoverState } = afterData
-  const { hoverMap, hoverList } = hoverState
-
-  const pointInTriangle = (x0, y0, x1, y1, x2, y2, px, py) => {
-    const v0 = [x2 - x0, y2 - y0]
-    const v1 = [x1 - x0, y1 - y0]
-    const v2 = [px - x0, py - y0]
-    const dot00 = v0[0] * v0[0] + v0[1] * v0[1]
-    const dot01 = v0[0] * v1[0] + v0[1] * v1[1]
-    const dot02 = v0[0] * v2[0] + v0[1] * v2[1]
-    const dot11 = v1[0] * v1[0] + v1[1] * v1[1]
-    const dot12 = v1[0] * v2[0] + v1[1] * v2[1]
-    const inverDeno = 1 / (dot00 * dot11 - dot01 * dot01)
-    const u = (dot11 * dot02 - dot01 * dot12) * inverDeno
-
-    if (u < 0 || u > 1) {
-      return false
-    }
-
-    const v = (dot00 * dot12 - dot01 * dot02) * inverDeno
-
-    if (v < 0 || v > 1) {
-      return false
-    }
-
-    return u + v <= 1
+    vm.$refs.canvas.addEventListener('mousemove', state.mousemoveListener)
+    vm.$refs.canvas.addEventListener('click', state.mousemoveListener)
+    vm.$refs.canvas.addEventListener('click', state.clickListener)
   }
 
-  const tri = hoverList.find((item) => pointInTriangle(...item, x, y))
+export const removeListeners =
+  ({ state, vm }) =>
+  () => {
+    vm.$refs.canvas.removeEventListener('mousemove', state.mousemoveListener)
+    vm.$refs.canvas.removeEventListener('click', state.mousemoveListener)
+    vm.$refs.canvas.removeEventListener('click', state.clickListener)
+  }
 
-  state.hoverAfterLink = tri ? hoverMap.get(tri) : null
+export const setListeners =
+  ({ api, emit, props, state, vm }) =>
+  () => {
+    const { config } = props
+    const { delay } = config
 
-  if (state.hoverAfterLink) {
+    state.mousemoveListener = debounce(delay, (e) => {
+      const { left, top } = vm.$refs.canvas.getBoundingClientRect()
+      const { clientX, clientY } = e
+      let x = clientX - left
+      let y = clientY - top
+
+      if (api.isMf() && state.afterData.graph && state.afterData.graph.thin) {
+        x *= state.afterData.graph.thinValue
+        y *= state.afterData.graph.thinValue
+      }
+
+      api.hitTest(x, y)
+    })
+
+    state.clickListener = debounce(delay, (e) => {
+      const afterLink = state.hoverAfterLink
+
+      if (afterLink) {
+        emit('click-link', afterLink, e)
+      } else {
+        emit('click-blank', null, e)
+      }
+
+      api.clearDropdown()
+    })
+  }
+
+export const hitTest =
+  ({ api, state, vm }) =>
+  (x, y) => {
+    const { afterData } = state
+    const { hoverState } = afterData
+    const { hoverMap, hoverList } = hoverState
+
+    const pointInTriangle = (x0, y0, x1, y1, x2, y2, px, py) => {
+      const v0 = [x2 - x0, y2 - y0]
+      const v1 = [x1 - x0, y1 - y0]
+      const v2 = [px - x0, py - y0]
+      const dot00 = v0[0] * v0[0] + v0[1] * v0[1]
+      const dot01 = v0[0] * v1[0] + v0[1] * v1[1]
+      const dot02 = v0[0] * v2[0] + v0[1] * v2[1]
+      const dot11 = v1[0] * v1[0] + v1[1] * v1[1]
+      const dot12 = v1[0] * v2[0] + v1[1] * v2[1]
+      const inverDeno = 1 / (dot00 * dot11 - dot01 * dot01)
+      const u = (dot11 * dot02 - dot01 * dot12) * inverDeno
+
+      if (u < 0 || u > 1) {
+        return false
+      }
+
+      const v = (dot00 * dot12 - dot01 * dot02) * inverDeno
+
+      if (v < 0 || v > 1) {
+        return false
+      }
+
+      return u + v <= 1
+    }
+
+    const tri = hoverList.find((item) => pointInTriangle(...item, x, y))
+
+    state.hoverAfterLink = tri ? hoverMap.get(tri) : null
+
+    if (state.hoverAfterLink) {
+      api.drawAfterLink()
+
+      vm.$refs.canvas.style.cursor = 'pointer'
+    } else {
+      api.clearHoverAfterLink()
+    }
+  }
+
+export const clearHoverAfterLink =
+  ({ api, state, vm }) =>
+  () => {
+    if (state.hoverAfterLink) {
+      state.hoverAfterLink = null
+    }
+
     api.drawAfterLink()
 
-    vm.$refs.canvas.style.cursor = 'pointer'
-  } else {
-    api.clearHoverAfterLink()
-  }
-}
-
-export const clearHoverAfterLink = ({ api, state, vm }) => () => {
-  if (state.hoverAfterLink) {
-    state.hoverAfterLink = null
+    if (vm.$refs.canvas.style.cursor) {
+      vm.$refs.canvas.style.cursor = ''
+    }
   }
 
-  api.drawAfterLink()
+export const clickNode =
+  ({ api, emit }) =>
+  (params, e) => {
+    const { node, afterNode } = params
 
-  if (vm.$refs.canvas.style.cursor) {
-    vm.$refs.canvas.style.cursor = ''
+    !api.isMf() && api.clearDropdown(node.name)
+
+    emit('click-node', afterNode, e)
   }
-}
-
-export const clickNode = ({ api, emit }) => (params, e) => {
-  const { node, afterNode } = params
-
-  !api.isMf() && api.clearDropdown(node.name)
-
-  emit('click-node', afterNode, e)
-}
 
 export const clearDropdown = (state) => (nodeName) => {
   const { dropdowns } = state
@@ -442,35 +460,37 @@ export const clearDropdown = (state) => (nodeName) => {
 
 // --- mobile-first ---
 
-export const computeMf = ({ api, markRaw, props, state }) => () => {
-  const { data, config } = props
-  const { nodes, links } = hideNodeLink(data)
-  const { gap = 0, align = '', width = 0, height = 0, padding = 0 } = config
-  const { prior = '', radius = 4, font, showArrow = true, lineWidth = 1, arrowEdge = 4 } = config
-  const thin = false
+export const computeMf =
+  ({ api, markRaw, props, state }) =>
+  () => {
+    const { data, config } = props
+    const { nodes, links } = hideNodeLink(data)
+    const { gap = 0, align = '', width = 0, height = 0, padding = 0 } = config
+    const { prior = '', radius = 4, font, showArrow = true, lineWidth = 1, arrowEdge = 4 } = config
+    const thin = false
 
-  const getRow = buildGetRow(gap)
-  const getCol = buildGetCol(gap)
-  const rectRow = buildRectRow({ getRow, gap })
-  const rectNode = buildRectNode({ rectRow, gap, align, getRow })
+    const getRow = buildGetRow(gap)
+    const getCol = buildGetCol(gap)
+    const rectRow = buildRectRow({ getRow, gap })
+    const rectNode = buildRectNode({ rectRow, gap, align, getRow })
 
-  const { afterNodes, graph } = buildAfterNodeGraph({ nodes, thin, getRow, getCol, rectNode, padding, width, height })
-  const { afterLinks, arrows } = buildAfterLinkArrow({
-    links,
-    afterNodes,
-    graph,
-    prior,
-    radius,
-    showArrow,
-    lineWidth,
-    arrowEdge
-  })
+    const { afterNodes, graph } = buildAfterNodeGraph({ nodes, thin, getRow, getCol, rectNode, padding, width, height })
+    const { afterLinks, arrows } = buildAfterLinkArrow({
+      links,
+      afterNodes,
+      graph,
+      prior,
+      radius,
+      showArrow,
+      lineWidth,
+      arrowEdge
+    })
 
-  const hoverState = api.buildHoverState(afterLinks)
+    const hoverState = api.buildHoverState(afterLinks)
 
-  state.afterData = markRaw({ afterNodes, afterLinks, hoverState, graph, arrows })
-  state.wrapperStyle = `width:${graph.width}px;height:${graph.height}px;font:${font}`
-}
+    state.afterData = markRaw({ afterNodes, afterLinks, hoverState, graph, arrows })
+    state.wrapperStyle = `width:${graph.width}px;height:${graph.height}px;font:${font}`
+  }
 
 export const isMf = (mode) => () => mode === 'mobile-first'
 
@@ -535,43 +555,47 @@ const buildGetCol = (gap) => (afterNodes, col, type) => {
   return 0
 }
 
-const buildRectRow = ({ getRow, gap }) => (afterNodes, row, graph) => {
-  const accrueRowHeight = Array.from({ length: row })
-    .map((c, i) => i)
-    .map((i) => getRow(afterNodes, i, 'height'))
-    .reduce((p, c) => p + c, 0)
-  const accrueGapHeight = row > 0 ? row * gap : 0
+const buildRectRow =
+  ({ getRow, gap }) =>
+  (afterNodes, row, graph) => {
+    const accrueRowHeight = Array.from({ length: row })
+      .map((c, i) => i)
+      .map((i) => getRow(afterNodes, i, 'height'))
+      .reduce((p, c) => p + c, 0)
+    const accrueGapHeight = row > 0 ? row * gap : 0
 
-  return {
-    x: 0,
-    y: accrueRowHeight + accrueGapHeight,
-    width: graph.width,
-    height: getRow(afterNodes, row, 'height')
+    return {
+      x: 0,
+      y: accrueRowHeight + accrueGapHeight,
+      width: graph.width,
+      height: getRow(afterNodes, row, 'height')
+    }
   }
-}
 
-const buildRectNode = ({ rectRow, gap, align, getRow }) => (afterNode, afterNodes, graph) => {
-  const { row, col } = afterNode
-  const prevRowRect = rectRow(afterNodes, row - 1, graph)
-  const rowRect = rectRow(afterNodes, row, graph)
-  const width = getNode(afterNode.raw, 'width')
-  const height = getNode(afterNode.raw, 'height')
-  const y = prevRowRect.y + prevRowRect.height + (row > 0 ? gap : 0) + (rowRect.height - height) / 2
-  const rowAfterNodes = afterNodes.filter((afterNode) => afterNode.row === row)
-  const get = (i) => rowAfterNodes.find((rowAfterNode) => rowAfterNode.col === i)
-  const accrueColWidth = Array.from({ length: col })
-    .map((c, i) => i)
-    .map((i) => {
-      const afterNode = get(i)
-      return afterNode ? getNode(afterNode.raw, 'width') : 0
-    })
-    .reduce((p, c) => p + c, 0)
-  const accrueGapWidth = col > 0 ? col * gap : 0
-  const dx = align === 'center' ? (graph.width - getRow(afterNodes, row, 'width')) / 2 : 0
-  const x = accrueColWidth + accrueGapWidth + dx
+const buildRectNode =
+  ({ rectRow, gap, align, getRow }) =>
+  (afterNode, afterNodes, graph) => {
+    const { row, col } = afterNode
+    const prevRowRect = rectRow(afterNodes, row - 1, graph)
+    const rowRect = rectRow(afterNodes, row, graph)
+    const width = getNode(afterNode.raw, 'width')
+    const height = getNode(afterNode.raw, 'height')
+    const y = prevRowRect.y + prevRowRect.height + (row > 0 ? gap : 0) + (rowRect.height - height) / 2
+    const rowAfterNodes = afterNodes.filter((afterNode) => afterNode.row === row)
+    const get = (i) => rowAfterNodes.find((rowAfterNode) => rowAfterNode.col === i)
+    const accrueColWidth = Array.from({ length: col })
+      .map((c, i) => i)
+      .map((i) => {
+        const afterNode = get(i)
+        return afterNode ? getNode(afterNode.raw, 'width') : 0
+      })
+      .reduce((p, c) => p + c, 0)
+    const accrueGapWidth = col > 0 ? col * gap : 0
+    const dx = align === 'center' ? (graph.width - getRow(afterNodes, row, 'width')) / 2 : 0
+    const x = accrueColWidth + accrueGapWidth + dx
 
-  return { x, y, width, height }
-}
+    return { x, y, width, height }
+  }
 
 const normalRowCol = (nodes) => {
   let rows = new Set()
@@ -646,26 +670,28 @@ const buildAfterNodeGraph = ({ nodes, thin, getRow, getCol, rectNode, padding, w
   return { afterNodes, graph }
 }
 
-const adjustLine = ({ lineWidth }) => (f, t) => {
-  const dpr = window.devicePixelRatio
-  const isOdd = lineWidth & 0x01
-  const dx = Math.abs(f.x - t.x)
-  const isVertical = dx < Number.EPSILON
+const adjustLine =
+  ({ lineWidth }) =>
+  (f, t) => {
+    const dpr = window.devicePixelRatio
+    const isOdd = lineWidth & 0x01
+    const dx = Math.abs(f.x - t.x)
+    const isVertical = dx < Number.EPSILON
 
-  if (isOdd) {
-    if (isVertical) {
-      f.x = t.x = Math.floor(f.x) + 0.5 / dpr
+    if (isOdd) {
+      if (isVertical) {
+        f.x = t.x = Math.floor(f.x) + 0.5 / dpr
+      } else {
+        f.y = t.y = Math.floor(f.y) + 0.5 / dpr
+      }
     } else {
-      f.y = t.y = Math.floor(f.y) + 0.5 / dpr
-    }
-  } else {
-    if (isVertical) {
-      f.x = t.x = Math.floor(f.x)
-    } else {
-      f.y = t.y = Math.floor(f.y)
+      if (isVertical) {
+        f.x = t.x = Math.floor(f.x)
+      } else {
+        f.y = t.y = Math.floor(f.y)
+      }
     }
   }
-}
 
 const buildAfterLinkArrow = ({ links, afterNodes, graph, prior, radius, showArrow, lineWidth, arrowEdge }) => {
   const arrows = []
@@ -778,42 +804,44 @@ const point = (afterNode, joint, graph) => {
   return res
 }
 
-const getBuildArrow = ({ arrows, arrowEdge }) => (from, to, link) => {
-  const p0 = [0, 0]
-  const p2 = [0, 0]
-  const dx = from[0] - to[0]
-  const dy = from[1] - to[1]
-  const absx = Math.abs(dx)
-  const absy = Math.abs(dy)
-  let t = 1
-  const edge = arrowEdge
+const getBuildArrow =
+  ({ arrows, arrowEdge }) =>
+  (from, to, link) => {
+    const p0 = [0, 0]
+    const p2 = [0, 0]
+    const dx = from[0] - to[0]
+    const dy = from[1] - to[1]
+    const absx = Math.abs(dx)
+    const absy = Math.abs(dy)
+    let t = 1
+    const edge = arrowEdge
 
-  if (absx < Number.EPSILON) {
-    t = dy > 0 ? 1 : dy < 0 ? -1 : 1
+    if (absx < Number.EPSILON) {
+      t = dy > 0 ? 1 : dy < 0 ? -1 : 1
 
-    p0[0] = to[0] - edge
-    p0[1] = to[1] + Math.sqrt(3) * edge * t
-    p2[0] = to[0] + edge
-    p2[1] = p0[1]
+      p0[0] = to[0] - edge
+      p0[1] = to[1] + Math.sqrt(3) * edge * t
+      p2[0] = to[0] + edge
+      p2[1] = p0[1]
 
-    if (dy !== 0) {
-      arrows.push({ p0, p1: to, p2, link })
+      if (dy !== 0) {
+        arrows.push({ p0, p1: to, p2, link })
+      }
+    }
+
+    if (absy < Number.EPSILON) {
+      t = dx > 0 ? 1 : dx < 0 ? -1 : 1
+
+      p0[0] = to[0] + Math.sqrt(3) * edge * t
+      p0[1] = to[1] - edge
+      p2[0] = p0[0]
+      p2[1] = to[1] + edge
+
+      if (dx !== 0) {
+        arrows.push({ p0, p1: to, p2, link })
+      }
     }
   }
-
-  if (absy < Number.EPSILON) {
-    t = dx > 0 ? 1 : dx < 0 ? -1 : 1
-
-    p0[0] = to[0] + Math.sqrt(3) * edge * t
-    p0[1] = to[1] - edge
-    p2[0] = p0[0]
-    p2[1] = to[1] + edge
-
-    if (dx !== 0) {
-      arrows.push({ p0, p1: to, p2, link })
-    }
-  }
-}
 
 const hideNodeLink = (data) => {
   let { nodes, links } = data
@@ -825,33 +853,35 @@ const hideNodeLink = (data) => {
   return { nodes, links }
 }
 
-export const drawArrow = ({ state, vm, props }) => () => {
-  const { $refs } = vm
-  const { config } = props
-  const { showArrow = true } = config
-  const { afterData } = state
-  const { arrows } = afterData
+export const drawArrow =
+  ({ state, vm, props }) =>
+  () => {
+    const { $refs } = vm
+    const { config } = props
+    const { showArrow = true } = config
+    const { afterData } = state
+    const { arrows } = afterData
 
-  if (showArrow && $refs.canvas && $refs.canvas.getContext) {
-    const ctx = $refs.canvas.getContext('2d')
+    if (showArrow && $refs.canvas && $refs.canvas.getContext) {
+      const ctx = $refs.canvas.getContext('2d')
 
-    if (ctx) {
-      ctx.save()
+      if (ctx) {
+        ctx.save()
 
-      arrows.forEach((arrow) => {
-        ctx.beginPath()
-        ctx.moveTo(...arrow.p0)
-        ctx.lineTo(...arrow.p1)
-        ctx.lineTo(...arrow.p2)
-        ctx.closePath()
-        ctx.fillStyle = config.colors[arrow.link.info.status]
-        ctx.fill()
-      })
+        arrows.forEach((arrow) => {
+          ctx.beginPath()
+          ctx.moveTo(...arrow.p0)
+          ctx.lineTo(...arrow.p1)
+          ctx.lineTo(...arrow.p2)
+          ctx.closePath()
+          ctx.fillStyle = config.colors[arrow.link.info.status]
+          ctx.fill()
+        })
 
-      ctx.restore()
+        ctx.restore()
+      }
     }
   }
-}
 
 export const antialiasing = (vm) => () => {
   const canvas = vm.$refs.canvas

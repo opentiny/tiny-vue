@@ -9,5 +9,5 @@ export const tinyButtonGroupAuroraTheme = {
   'ti-button-group-item-active-disabled-bg-color': 'var(--ti-common-color-bg-disabled)',
   'ti-button-group-item-btn-hover-bg-color': 'var(--ti-common-color-primary-hover)',
   'ti-button-group-item-btn-hover-text-color': 'var(--ti-common-color-light)',
-  'ti-button-group-no-border-hover-bg-color': 'var(--ti-common-color-primary-hover)',
+  'ti-button-group-no-border-hover-bg-color': 'var(--ti-common-color-primary-hover)'
 }

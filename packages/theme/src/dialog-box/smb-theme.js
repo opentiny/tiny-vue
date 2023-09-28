@@ -9,5 +9,5 @@ export const tinyDialogBoxSmbTheme = {
   'ti-dialog-box-close-icon-color-hover': 'var(--ti-common-color-icon-hover)',
   'ti-dialog-box-body-text-color': 'var(--ti-common-color-text-primary)',
   'ti-dialog-box-footer-btn-min-width': 'calc(var(--ti-common-space-base) * 24)',
-  'ti-dialog-box-drawer-divider-border-color': 'transparent',
+  'ti-dialog-box-drawer-divider-border-color': 'transparent'
 }

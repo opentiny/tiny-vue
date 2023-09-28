@@ -57,10 +57,10 @@ export default defineComponent({
     dropConfig: {
       type: Object,
       default: () => null
-    }
+    },
+    tooltipConfig: [String, Object]
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
-)
+})

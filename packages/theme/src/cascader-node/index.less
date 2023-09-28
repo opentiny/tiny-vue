@@ -37,8 +37,6 @@
     background: var(--ti-cascader-node-selectable-hover-bg-color);
   }
 
-  
-
   &:not(.is-disabled):not(.in-active-path):not(.is-active) {
     &:focus,
     &:hover {
@@ -56,6 +54,10 @@
     fill: var(--ti-cascader-node-disabled-text-color);
     background-color: var(--ti-cascader-node-disabled-bg-color);
     cursor: not-allowed;
+    .@{cascader-node-prefix-cls}__prefix,
+    .@{cascader-node-prefix-cls}__postfix {
+      fill: var(--ti-cascader-node-disabled-icon-color);
+    }
   }
 
   &__prefix,
@@ -64,9 +66,13 @@
     fill: var(--ti-cascader-node-icon-color);
   }
 
-  &.in-active-path {
+  &.in-active-path,
+  &.is-active {
     .@{cascader-node-prefix-cls}__postfix {
       fill: var(--ti-cascader-node-active-icon-color);
+    }
+    .@{cascader-node-prefix-cls}__label {
+      font-weight: var(--ti-cascader-node-active-font-weight);
     }
   }
 
@@ -81,12 +87,12 @@
   &__postfix {
     position: absolute;
     top: 50%;
-    right: 10px;
+    right: var(--ti-cascader-node-postfix-right);
     transform: translateY(-50%);
   }
 
   &__label {
-    max-width: 360px;
+    max-width: var(--ti-cascader-node-label-max-width);
     flex: 1;
     flex-basis: auto\9;
     padding: var(--ti-cascader-node-label-padding-vertical) var(--ti-cascader-node-label-padding-horizontal);

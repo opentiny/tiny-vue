@@ -10,7 +10,7 @@
  *
  -->
 <script lang="tsx">
-import { $prefix, setup, h } from '@opentiny/vue-common'
+import { $prefix, setup, h, $props } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
 import { renderless, api } from '@opentiny/vue-renderless/tab-nav/vue'
 import Dropdown from '@opentiny/vue-dropdown'
@@ -18,6 +18,7 @@ import DropdownMenu from '@opentiny/vue-dropdown-menu'
 import DropdownItem from '@opentiny/vue-dropdown-item'
 import Tooltip from '@opentiny/vue-tooltip'
 import { iconChevronLeft, iconChevronRight, iconClose } from '@opentiny/vue-icon'
+import TabBar from './tab-bar.vue'
 
 const getOrderedPanes = (state, panes) => {
   const slotDefault = state.rootTabs.$slots.default
@@ -72,6 +73,7 @@ const getOrderedPanes = (state, panes) => {
 export default {
   name: $prefix + 'TabNav',
   components: {
+    TabBar,
     Dropdown,
     DropdownMenu,
     DropdownItem,
@@ -81,6 +83,7 @@ export default {
     IconClose: iconClose()
   },
   props: {
+    ...$props,
     panes: {
       type: Array,
       default: () => []
@@ -100,10 +103,6 @@ export default {
     showMoreTabs: Boolean,
     showPanesCount: Number,
     popperClass: String,
-    popperAppendToBody: {
-      type: Boolean,
-      default: true
-    },
     dropConfig: {
       type: Object,
       default: () => null
@@ -128,7 +127,7 @@ export default {
       changeTab,
       tooltipConfig
     } = this
-    let { panes, setFocus, removeFocus, showMoreTabs, popperClass, popperAppendToBody, moreIcon } = this
+    let { panes, setFocus, removeFocus, showMoreTabs, popperClass, moreIcon } = this
 
     const spans = [
       <span class={['tiny-tabs__nav-prev', state.scrollable.prev ? '' : 'is-disabled']} onClick={scrollPrev}>
@@ -152,9 +151,12 @@ export default {
           <span class="tiny-tabs__more">{t('ui.tabs.moreItem')}</span>
         )
 
+      const dropdowpList = panes.slice(showPanesCount)
+      const isShowDropDown = showPanesCount !== -1 && Boolean(dropdowpList.length)
+
       const menuSlot = () =>
-        ~showPanesCount
-          ? panes.slice(showPanesCount).map((pane, index) => {
+        isShowDropDown
+          ? dropdowpList.map((pane, index) => {
               const tabName = pane.name || pane.state.index || index
               const tabLabelContent = pane.$slots.title || pane.title
               const tabindex = pane.state.active ? 0 : -1
@@ -182,23 +184,29 @@ export default {
           : null
 
       const dropdownSlot = () =>
-        h(DropdownMenu, {
-          attrs: {
-            popperClass: 'tiny-tabs-dropdown tiny-tabs__more-dropdown' + (popperClass ? ' ' + popperClass : ''),
-            placement: 'bottom-start'
-          },
-          scopedSlots: { default: menuSlot }
-        })
+        isShowDropDown
+          ? h(DropdownMenu, {
+              attrs: {
+                popperClass: 'tiny-tabs-dropdown tiny-tabs__more-dropdown' + (popperClass ? ' ' + popperClass : ''),
+                placement: 'bottom-start'
+              },
+              scopedSlots: { default: menuSlot }
+            })
+          : null
 
-      moreTabs = (
-        <div class="tiny-tabs__more-container" ref="more">
-          {' '}
-          {h(Dropdown, {
+      // 防止没有内容也显示下拉框
+      const moreContent = isShowDropDown
+        ? h(Dropdown, {
             attrs: {
               trigger: 'hover'
             },
             scopedSlots: { default: reference, dropdown: dropdownSlot }
-          })}{' '}
+          })
+        : reference()
+
+      moreTabs = (
+        <div class="tiny-tabs__more-container" ref="more">
+          {moreContent}
         </div>
       )
     }
@@ -306,6 +314,7 @@ export default {
             style={state.navStyle}
             role="tablist"
             on-keydown={changeTab}>
+            {!tabStyle ? <tab-bar ref="tabBar" tabs={panes} /> : null}
             {tabs}
           </div>
         </div>

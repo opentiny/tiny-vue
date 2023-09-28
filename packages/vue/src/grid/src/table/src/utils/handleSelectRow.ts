@@ -93,7 +93,16 @@ function getVItemsOnParentSelection({ checkMethod, matchObj }) {
   return vItems
 }
 
-function onFullSelection({ checkMethod, checkStrictly, property, row, selection, treeConfig, treeIndeterminates, value }) {
+function onFullSelection({
+  checkMethod,
+  checkStrictly,
+  property,
+  row,
+  selection,
+  treeConfig,
+  treeIndeterminates,
+  value
+}) {
   if (!property && treeConfig && !checkStrictly && value !== -1) {
     // 更新子节点状态
     eachTree(

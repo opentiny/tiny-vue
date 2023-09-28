@@ -8,7 +8,7 @@ import {
   pathFromWorkspaceRoot,
   capitalizeKebabCase,
   prettierFormat,
-  logGreen,
+  logGreen
 } from '../../shared/utils'
 import { getComponents } from '../../shared/module-utils'
 import handlebarsRender from './handlebars.render'
@@ -64,7 +64,7 @@ function getMainTemplate({ mode }) {
   export default {
     {{{components}}},
     install
-  }
+  } as any
   `
 }
 
@@ -90,14 +90,14 @@ const createEntry = (mode) => {
   if (mode === 'all') {
     // 重写package.json, 并格式化
     PKGContent.dependencies = PKGDeps
-    fs.writeFileSync(PKG_PATH, JSON.stringify(PKGContent, null, '\t'))
+    fs.writeFileSync(PKG_PATH, JSON.stringify(PKGContent, null, 2))
   }
 
   const template = handlebarsRender({
     template: MAIN_TEMPLATE,
     data: {
       include: includeTemplate.join(endOfLine),
-      components: componentsTemplate.join(',' + endOfLine),
+      components: componentsTemplate.join(',' + endOfLine)
     }
   })
 
@@ -107,7 +107,7 @@ const createEntry = (mode) => {
 }
 
 export function buildEntry() {
-  ['all', 'pc', 'mobile', 'mobile-first'].forEach(createEntry)
+  ;['all', 'pc', 'mobile', 'mobile-first'].forEach(createEntry)
 
   logGreen(
     `npm run build:entry done. [${outputDir}/index.ts,${outputDir}/pc.ts,${outputDir}/mobile.ts,${outputDir}/mobile-first.ts]`

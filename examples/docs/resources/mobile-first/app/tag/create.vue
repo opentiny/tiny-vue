@@ -1,18 +1,29 @@
 <template>
   <div class="flex">
-    <tiny-tag :key="'tiny-tag-' + tag + index" v-for="(tag, index) in dynamicTags" :size="size" closable @close="closeHandler(tag)">
+    <tiny-tag
+      :key="'tiny-tag-' + tag + index"
+      v-for="(tag, index) in dynamicTags"
+      :size="size"
+      closable
+      @close="closeHandler(tag)"
+    >
       {{ tag }}
     </tiny-tag>
-    <tiny-input v-show="inputVisible" v-model="inputValue" ref="saveTagInput" :class="[getClass()]" @keyup.enter.native="inputConfirm" @blur="inputConfirm">
+    <tiny-input
+      v-show="inputVisible"
+      v-model="inputValue"
+      ref="saveTagInput"
+      :class="[getClass()]"
+      @keyup.enter.native="inputConfirm"
+      @blur="inputConfirm"
+    >
     </tiny-input>
-    <div v-show="!inputVisible" class="
-          flex
-          justify-center
-          items-center
-          cursor-pointer
-          border border-color-border border-dashed
-          hover:bg-color-bg-2
-        " :class="[getClass()]" @click="showInput">
+    <div
+      v-show="!inputVisible"
+      class="flex justify-center items-center cursor-pointer border border-color-border border-dashed hover:bg-color-bg-2"
+      :class="[getClass()]"
+      @click="showInput"
+    >
       <icon-plus class="mr-1 fill-color-icon-secondary"></icon-plus> 添加标签
     </div>
   </div>

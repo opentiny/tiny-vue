@@ -32,7 +32,7 @@
         >
           <slot name="text" :slot-scope="state.searchValue">
             <span data-tag="tiny-search__text" :class="m(gcls('pc-search-present-pointer'))">{{
-              state.searchValue['text']
+              state.searchValue.text
             }}</span>
           </slot>
           <span data-tag="tiny-icon-outer" :class="m(gcls('pc-search-present-icon-outer'))">
@@ -168,7 +168,6 @@
       <tiny-input
         v-model="state.currentValue"
         @input="handleInput"
-        clearable
         :input-class="m(gcls('mobile-search-input'), gcls({ 'mobile-search-input-bg-change': changeBgColor }))"
         :placeholder="placeholder"
       >
@@ -180,13 +179,23 @@
             data-tag="tiny-svg-size"
           />
         </template>
+        <template v-if="state.showClear && !state.collapse" #suffix>
+          <span class="inline-block w-3.5 h-3.5 rounded-full bg-color-none-hover">
+            <icon-close
+              data-tag="tiny-svg-size"
+              custom-class="w-3 h-3 fill-color-bg-1 relative -top-0.5"
+              @click="clear"
+            />
+          </span>
+        </template>
       </tiny-input>
       <tiny-button
         type="text"
         @click="searchClick"
         :class="m(gcls('mobile-search-button'), gcls({ 'mobile-search-button-notShowButton': !showButton }))"
-        >搜索</tiny-button
       >
+        搜索
+      </tiny-button>
     </div>
   </div>
 </template>
@@ -222,7 +231,7 @@ export default defineComponent({
     TinyInput: Input,
     TinyButton: Button
   },
-  emits: ['change', 'update:modelValue', 'select', 'search', 'clear'],
+  emits: ['change', 'update:modelValue', 'select', 'search', 'clear', 'input'],
   setup(props: any, context: any) {
     return setup({ props, context, renderless, api, classes })
   }

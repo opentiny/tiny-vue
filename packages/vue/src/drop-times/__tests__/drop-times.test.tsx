@@ -37,10 +37,10 @@ describe('PC Mode', () => {
     let value = '12:00'
     const wrapper = mount(() => <DropTimes modelValue={value} onChange={handleChange}></DropTimes>)
     await wrapper.trigger('click')
-    const option = document.querySelector(".tiny-drop-times .tiny-select-dropdown__wrap li:first-child")
+    const option = document.querySelector('.tiny-drop-times .tiny-select-dropdown__wrap li:first-child')
     const event = new MouseEvent('click', {
       bubbles: true,
-      cancelable: true,
+      cancelable: true
     })
     option?.dispatchEvent(event)
     await nextTick()

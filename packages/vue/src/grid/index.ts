@@ -38,8 +38,6 @@ GridAdapter.t = t
 // 把各个插件的方法都合并会$table
 components.map((component) => component.install(Table))
 
-
-
 Grid.version = version
 
 Grid.install = function (Vue) {

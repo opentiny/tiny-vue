@@ -1,6 +1,13 @@
 <template>
   <div class="demo-form">
-    <tiny-form ref="ruleForm" hide-required-asterisk :model="createData" :rules="rules" label-width="100px" show-message>
+    <tiny-form
+      ref="ruleForm"
+      hide-required-asterisk
+      :model="createData"
+      :rules="rules"
+      label-width="100px"
+      show-message
+    >
       <tiny-form-item label="必填项必填项必填项必填项必填项必填项" prop="users" required>
         <tiny-input v-model="createData.users"></tiny-input>
       </tiny-form-item>

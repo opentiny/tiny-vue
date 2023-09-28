@@ -26,7 +26,7 @@
       >
         <li
           @click="handleClick('hours', { value: hour, disabled })"
-          v-for="(disabled, hour) in state.hoursList"
+          v-for="({ disabled, hour }) in state.hoursList"
           class="tiny-time-spinner__item"
           :key="hour"
           :class="{ active: hour === state.hours, disabled }"
@@ -46,13 +46,13 @@
         ref="minutes"
       >
         <li
-          @click="handleClick('minutes', { value: key, disabled: false })"
-          v-for="(enabled, key) in state.minutesList"
-          :key="key"
+          @click="handleClick('minutes', { value: minute, disabled: false })"
+          v-for="({ disabled, minute }) in state.minutesList"
+          :key="minute"
           class="tiny-time-spinner__item"
-          :class="{ active: key === state.minutes, disabled: !enabled }"
+          :class="{ active: minute === state.minutes, disabled: !disabled }"
         >
-          <span>{{ ('0' + key).slice(-2) }}</span>
+          <span>{{ ('0' + minute).slice(-2) }}</span>
         </li>
       </tiny-scrollbar>
       <tiny-scrollbar
@@ -68,13 +68,13 @@
         ref="seconds"
       >
         <li
-          @click="handleClick('seconds', { value: key, disabled: false })"
-          v-for="(second, key) in 60"
+          @click="handleClick('seconds', { value: second, disabled: false })"
+          v-for="{ second } in state.secondsList"
           class="tiny-time-spinner__item"
-          :class="{ active: key === state.seconds }"
-          :key="key"
+          :class="{ active: second === state.seconds }"
+          :key="second"
         >
-          <span>{{ ('0' + key).slice(-2) }}</span>
+          <span>{{ ('0' + second).slice(-2) }}</span>
         </li>
       </tiny-scrollbar>
     </template>
@@ -92,12 +92,14 @@
             class="tiny-time-spinner__item"
             :class="{
               active: hour === state.hours,
-              disabled: state.hoursList[hour]
+              disabled: state.hoursList.find(item => item.hour === hour) && state.hoursList.find(item => item.hour === hour).disabled
             }"
             v-for="(hour, key) in state.arrowHourList"
             :key="key"
           >
-            <span>{{ hour === undefined ? '' : ('0' + (amPmMode ? hour % 12 || 12 : hour)).slice(-2) + amPm(hour) }}</span>
+            <span>{{
+              hour === undefined ? '' : ('0' + (amPmMode ? hour % 12 || 12 : hour)).slice(-2) + amPm(hour)
+            }}</span>
           </li>
         </ul>
       </div>
@@ -109,7 +111,12 @@
           <icon-chevron-down></icon-chevron-down>
         </i>
         <ul class="tiny-time-spinner__list" ref="minutes" :class="[state.animationName + '-up']">
-          <li class="tiny-time-spinner__item" :class="{ active: minute === state.minutes }" v-for="(minute, key) in state.arrowMinuteList" :key="key">
+          <li
+            class="tiny-time-spinner__item"
+            :class="{ active: minute === state.minutes }"
+            v-for="(minute, key) in state.arrowMinuteList"
+            :key="key"
+          >
             <span>{{ minute === undefined ? '' : ('0' + minute).slice(-2) }}</span>
           </li>
         </ul>
@@ -122,7 +129,12 @@
           <icon-chevron-down></icon-chevron-down>
         </i>
         <ul class="tiny-time-spinner__list" ref="seconds" :class="[state.animationName]">
-          <li v-for="(second, key) in state.arrowSecondList" class="tiny-time-spinner__item" :class="{ active: second === state.seconds }" :key="key">
+          <li
+            v-for="(second, key) in state.arrowSecondList"
+            class="tiny-time-spinner__item"
+            :class="{ active: second === state.seconds }"
+            :key="key"
+          >
             <span>{{ second === undefined ? '' : ('0' + second).slice(-2) }}</span>
           </li>
         </ul>
@@ -168,6 +180,14 @@ export default defineComponent({
     amPmMode: {
       type: String,
       default: '' // 'a': am/pm; 'A': AM/PM
+    },
+    step: {
+      type: Object,
+      default() { return { hour: 1, minute: 1, second: 1 } },
+      validator: ({ hour, minute, second }) => {
+        const validateArray = [{ value: hour, range: 24 }, { value: minute, range: 60 }, { value: second, range: 60 }]
+        return validateArray.every(({ value, range }) => value || value == 0 ? Math.floor(value) === value && value > 0 && value <= range : true)
+      }
     }
   },
   setup(props, context) {

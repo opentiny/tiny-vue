@@ -12,7 +12,11 @@
 <template>
   <form
     class="tiny-mobile-form"
-    :class="[labelPosition ? 'tiny-mobile-form--label-' + labelPosition : '', { 'tiny-mobile-form--inline': inline }, { 'label-align': labelAlign }]"
+    :class="[
+      labelPosition ? 'tiny-mobile-form--label-' + labelPosition : '',
+      { 'tiny-mobile-form--inline': inline },
+      { 'label-align': labelAlign }
+    ]"
   >
     <slot></slot>
   </form>

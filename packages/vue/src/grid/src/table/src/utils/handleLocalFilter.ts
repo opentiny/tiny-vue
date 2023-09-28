@@ -106,7 +106,7 @@ function handleDefaultCheckStr({ column, input, relation, relationMethod, relati
  * 开头是startwith 结尾是endwith
  */
 export function handleFilterCheckStr({ column, relationMethod, relations, row }) {
-  return (value, input, relation) => {
+  return (value, input, relation, dateList) => {
     let result = false
     value = modifyValueCheckStr(value)
     switch (relation) {
@@ -128,6 +128,9 @@ export function handleFilterCheckStr({ column, relationMethod, relations, row })
       case 'equalToLessThan':
         result = value <= input
         break
+      case 'interveningBetween':
+        result = value >= dateList[0] && value <= dateList[1]
+        break
       case 'contains':
         result = value.toString().includes(input)
         break
@@ -147,7 +150,7 @@ export function handleFilterCheckStr({ column, relationMethod, relations, row })
   }
 }
 
-export function handleFilterCheck({ checkStr, empty, input, property, relation, row, valueList }) {
+export function handleFilterCheck({ checkStr, empty, input, property, relation, row, valueList, dateList }) {
   return () => {
     const value = get(row, property)
 
@@ -156,6 +159,15 @@ export function handleFilterCheck({ checkStr, empty, input, property, relation, 
     }
     if (empty === false) {
       return !!value
+    }
+
+    // 新增时间段筛选逻辑
+    if (dateList) {
+      // 如果开始和结束时间为空则不执行过滤逻辑
+      if (!dateList[0] && !dateList[1]) {
+        return true
+      }
+      return checkStr(value, dateList[0] || dateList[1], relation, dateList)
     }
 
     const checkInput = (!input && input !== 0) || checkStr(value, input, relation) // inputFilter

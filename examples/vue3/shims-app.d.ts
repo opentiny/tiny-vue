@@ -13,22 +13,22 @@ declare module '*.svg' {
 }
 
 declare module '*.jpg' {
-  const src: string;
-  export default src;
+  const src: string
+  export default src
 }
 
 declare module '*.jpeg' {
-  const src: string;
-  export default src;
+  const src: string
+  export default src
 }
 
 declare module '*.png' {
-  const src: string;
-  export default src;
+  const src: string
+  export default src
 }
 
 declare module 'virtual-template?*' {
   import type { DefineComponent } from '@vue/runtime-core'
-  const src: (mode: string) => DefineComponent<{}, {}, any>;
-  export default src;
+  const src: (mode: string) => DefineComponent<{}, {}, any>
+  export default src
 }

@@ -10,6 +10,7 @@
     </template>
   </tiny-dropdown>
 </template>
+
 <script>
 import { IconEllipsis } from '@opentiny/vue-icon'
 import { Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'

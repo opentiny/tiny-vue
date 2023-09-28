@@ -20,13 +20,13 @@ export default defineConfig((config) => {
   return {
     server: {
       host: 'localhost',
-      open: false,
+      open: false
     },
     plugins: [
       virtualTemplatePlugin({ include: ['**/packages/vue/**/src/index.ts'], env }),
       vue2Plugin({
         jsx: true,
-        include: [/\.vue$/, /\.md$/],
+        include: [/\.vue$/, /\.md$/]
       }),
       scriptSetupPlugin(),
       vue2SvgPlugin(),
@@ -34,7 +34,7 @@ export default defineConfig((config) => {
         {
           libraryName: '@opentiny/vue'
         },
-        ...['icon', 'icon-saas'].map(lib => ({
+        ...['icon', 'icon-saas'].map((lib) => ({
           libraryName: `@opentiny/vue-${lib}`,
           customName: (name: string) => {
             return name === 'default' ? `@opentiny/vue-${lib}$` : `@opentiny/vue-${lib}/${name.replace(/^icon-/, '')}`
@@ -48,14 +48,17 @@ export default defineConfig((config) => {
         rules,
         shortcuts,
         variants,
-        safelist: [...Array.from({ length: 24 }, (_, i) => `c-rand${i + 1}`), ...Array.from({ length: 24 }, (_, i) => `bg-rand${i + 1}`)]
+        safelist: [
+          ...Array.from({ length: 24 }, (_, i) => `c-rand${i + 1}`),
+          ...Array.from({ length: 24 }, (_, i) => `bg-rand${i + 1}`)
+        ]
       }),
       Markdown({
         markdownItOptions: {
           html: true,
           linkify: true,
-          typographer: true,
-        },
+          typographer: true
+        }
       }),
       inspectPlugin()
     ],
@@ -65,14 +68,17 @@ export default defineConfig((config) => {
         '@vue/composition-api': path.resolve('node_modules/@vue/composition-api'),
         'vue': path.resolve('node_modules/vue/dist/vue.esm.js'),
         '@': pathFromWorkspaceRoot('examples/docs/newsrc'),
-        '@vue/babel-helper-vue-jsx-merge-props': path.resolve('node_modules/@vue/babel-helper-vue-jsx-merge-props/dist/helper.js'),
-        ...getAlias(2, env.VITE_TINY_THEME),
-      },
+        '@vue/babel-helper-vue-jsx-merge-props': path.resolve(
+          'node_modules/@vue/babel-helper-vue-jsx-merge-props/dist/helper.js'
+        ),
+        '@tiptap/vue': '@tiptap/vue-2',
+        ...getAlias(2, env.VITE_TINY_THEME)
+      }
     },
     define: {
-      'process.env': env,
+      'process.env': env
     },
     publicDir: '../public',
-    optimizeDeps: getOptimizeDeps(2),
+    optimizeDeps: getOptimizeDeps(2)
   }
 })

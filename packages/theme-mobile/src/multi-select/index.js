@@ -8,5 +8,5 @@ export default {
   'tiny-mobile-multi-select-header-label-font-size': '12px',
   'tiny-mobile-multi-select-svg-fill-color': '#c2c2c2',
   'tiny-mobile-multi-select-content-height': '226px',
-  'tiny-mobile-multi-select-footer-width': '164px',
+  'tiny-mobile-multi-select-footer-width': '164px'
 }

@@ -19,9 +19,11 @@ export const filterNode = (props) => (value, data) => {
   return node.includes(value)
 }
 
-export const searchNodeText = ({ state, refs, nextTick }) => () => {
-  nextTick(() => refs.tree.filter(state.filterText))
-}
+export const searchNodeText =
+  ({ state, refs, nextTick }) =>
+  () => {
+    nextTick(() => refs.tree.filter(state.filterText))
+  }
 
 export const hideNodeText = (state) => () => {
   if (state.toggleIcon && state.showNode) {
@@ -33,27 +35,32 @@ export const hideNodeText = (state) => () => {
   }
 }
 
-export const initData = ({ state, props, service, api }) => () => {
-  if (props.data) {
-    state.datas = props.data
-    return
-  }
+export const initData =
+  ({ state, props, service, api }) =>
+  () => {
+    if (props.data) {
+      state.datas = props.data
+      return
+    }
 
-  // deprecated v3.4.0废弃, v3.16.0移除；移除原因：如果是同步数据则和:data功能重复
-  if (typeof service.getMenuDataSync === 'function') {
-    const menuData = service.getMenuDataSync()
-    state.datas = api.setMenuKey({ newData: [], menuData })
-  } else if (typeof service.getMenuDataAsync === 'function') {
-    const asyncMenuData = service.getMenuDataAsync()
-    if (isObject(asyncMenuData) && asyncMenuData.then) {
-      asyncMenuData.then((data) => {
-        state.datas = api.setMenuKey({ newData: [], menuData: data })
-      })
+    // deprecated v3.4.0废弃, v3.16.0移除；移除原因：如果是同步数据则和:data功能重复
+    if (typeof service.getMenuDataSync === 'function') {
+      const menuData = service.getMenuDataSync()
+      state.datas = api.setMenuKey({ newData: [], menuData })
+    } else if (typeof service.getMenuDataAsync === 'function') {
+      const asyncMenuData = service.getMenuDataAsync()
+      if (isObject(asyncMenuData) && asyncMenuData.then) {
+        asyncMenuData.then((data) => {
+          state.datas = api.setMenuKey({ newData: [], menuData: data })
+        })
+      }
     }
   }
-}
 
-export const computedPlaceholder = ({ constants, props, t }) => () => props.placeholder || t(constants.LOCALE_PLACEHOLDER)
+export const computedPlaceholder =
+  ({ constants, props, t }) =>
+  () =>
+    props.placeholder || t(constants.LOCALE_PLACEHOLDER)
 
 export const nodeClick = (emit) => (nodeData, node) => {
   emit('node-click', nodeData, node)

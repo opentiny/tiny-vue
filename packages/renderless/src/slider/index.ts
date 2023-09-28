@@ -25,7 +25,7 @@ export const unBindEvent = (api) => () => off(window, 'resize', api.bindResize)
 export const bindResize =
   ({ parent, props, state }) =>
   () => {
-    const handleEl = (parent.$el as HTMLElement).querySelector('div[role=tiny-slider]')
+    const handleEl = (parent.$el as HTMLElement).querySelector('div.tiny-slider')
 
     state.sliderSize = handleEl['client' + (props.vertical ? 'Height' : 'Width')]
     state.sliderOffset = handleEl.getBoundingClientRect()
@@ -213,6 +213,9 @@ export const getActiveButtonIndex =
   }
 
 const calcCurrentValue = ({ currentValue, props, state }) => {
+  if(Array.isArray(currentValue)){
+    currentValue = currentValue[state.activeIndex]
+  }
   if (currentValue <= props.min) {
     currentValue = props.min
   } else if (currentValue >= props.max) {

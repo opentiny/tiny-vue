@@ -11,13 +11,20 @@
  -->
 <template>
   <transition name="tiny-mobile-alert-fade">
-    <div v-if="state.show" :class="['tiny-mobile-alert', 'tiny-mobile-alert--' + type, 'tiny-mobile-alert--' + size, 'is-center']">
+    <div
+      v-if="state.show"
+      :class="['tiny-mobile-alert', 'tiny-mobile-alert--' + type, 'tiny-mobile-alert--' + size, 'is-center']"
+    >
       <component v-if="showIcon" :is="state.getIcon" class="tiny-mobile-alert__icon" />
       <div :class="['tiny-mobile-alert__content', { 'is-hideicon': !showIcon }]">
         <slot>{{ description }}</slot>
       </div>
-      <icon-close v-if="!closeText && closable" @click="close" class="tiny-mobile-alert__icon tiny-mobile-alert__close"></icon-close>
-      <span v-else-if="closeText && closable" @click="close" class="is-custom">{{ closeText }}</span>
+      <icon-close
+        v-if="!closeText && closable"
+        @click="handleClose"
+        class="tiny-mobile-alert__icon tiny-mobile-alert__close"
+      ></icon-close>
+      <span v-else-if="closeText && closable" @click="handleClose" class="is-custom">{{ closeText }}</span>
     </div>
   </transition>
 </template>

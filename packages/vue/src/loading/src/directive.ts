@@ -57,7 +57,11 @@ const appendLoadingToBody = (el, binding) => {
   direction.forEach((property) => {
     const scroll = property === 'top' ? 'scrollTop' : 'scrollLeft'
     el.maskStyle[property] =
-      clientRect[property] + document.body[scroll] + document.documentElement[scroll] - parseInt(getStyle(document.body, `margin-${property}`), 10) + 'px'
+      clientRect[property] +
+      document.body[scroll] +
+      document.documentElement[scroll] -
+      parseInt(getStyle(document.body, `margin-${property}`), 10) +
+      'px'
   })
   const size = ['height', 'width']
 

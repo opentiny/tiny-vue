@@ -16,6 +16,7 @@
 
 <script lang="jsx">
 import { List } from '@opentiny/vue'
+
 export default {
   components: {
     TinyList: List

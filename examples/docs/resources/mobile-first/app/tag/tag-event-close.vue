@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style scoped>
-.demo-tag-event-close .tiny-tag+.tiny-tag {
+.demo-tag-event-close .tiny-tag + .tiny-tag {
   margin-left: 10px;
 }
 </style>

@@ -47,7 +47,9 @@ function rule3(args) {
 
   return {
     match: () =>
-      isKeyEnter && (keyboardConfig.isArrow || keyboardConfig.isTab) && (selected.row || actived.row || (treeConfig && highlightCurrentRow && currentRow)),
+      isKeyEnter &&
+      (keyboardConfig.isArrow || keyboardConfig.isTab) &&
+      (selected.row || actived.row || (treeConfig && highlightCurrentRow && currentRow)),
     action: () => _vm.handleEnterKeyDown({ event, selected, actived })
   }
 }
@@ -85,7 +87,8 @@ function rule8(args) {
   const { isKeyBack, keyboardConfig, _vm, event, selected } = args
 
   return {
-    match: () => isKeyDel || (treeConfig && highlightCurrentRow && currentRow ? isKeyBack && keyboardConfig.isArrow : isKeyBack),
+    match: () =>
+      isKeyDel || (treeConfig && highlightCurrentRow && currentRow ? isKeyBack && keyboardConfig.isArrow : isKeyBack),
     action: () => _vm.handleDelKeyDown({ event, selected })
   }
 }

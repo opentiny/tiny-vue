@@ -12,7 +12,18 @@ import { waterfall } from '@opentiny/vue-renderless/chart-waterfall/index'
 import Core from '@opentiny/vue-chart-core'
 import { $prefix, defineComponent } from '@opentiny/vue-common'
 
-echarts.use([ToolboxComponent, GridComponent, BarChart, FunnelChart, LineChart, PieChart, RadarChart, LabelLayout, UniversalTransition, CanvasRenderer])
+echarts.use([
+  ToolboxComponent,
+  GridComponent,
+  BarChart,
+  FunnelChart,
+  LineChart,
+  PieChart,
+  RadarChart,
+  LabelLayout,
+  UniversalTransition,
+  CanvasRenderer
+])
 
 export default defineComponent({
   ...Core,
@@ -33,5 +44,4 @@ export default defineComponent({
       return {}
     }
   }
-}
-)
+})

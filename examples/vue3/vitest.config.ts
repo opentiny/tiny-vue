@@ -18,7 +18,7 @@ export default defineConfig((config) => {
     plugins: [
       virtualTemplatePlugin({ include: ['**/packages/vue/**/src/index.ts'], env }),
       vue3Plugin({
-        include: [/\.vue$/, /\.md$/],
+        include: [/\.vue$/, /\.md$/]
       }),
       vue3JsxPlugin(),
       vue3SvgPlugin(),
@@ -26,7 +26,7 @@ export default defineConfig((config) => {
         {
           libraryName: '@opentiny/vue'
         },
-        ...['icon', 'icon-saas'].map(lib => ({
+        ...['icon', 'icon-saas'].map((lib) => ({
           libraryName: `@opentiny/vue-${lib}`,
           customName: (name: string) => {
             return name === 'default' ? `@opentiny/vue-${lib}$` : `@opentiny/vue-${lib}/${name.replace(/^icon-/, '')}`
@@ -35,14 +35,14 @@ export default defineConfig((config) => {
       ]),
       TailwindCSSVitePlugin({
         config: pathResolve('tailwind.config.cjs'),
-        entry: pathResolve('src/index.css'),
-      }),
+        entry: pathResolve('src/index.css')
+      })
     ],
     optimizeDeps: {
-      disabled: true,
+      disabled: true
     },
     define: {
-      'process.env': env,
+      'process.env': env
     },
     test: {
       open: false,
@@ -50,19 +50,15 @@ export default defineConfig((config) => {
       environment: 'jsdom',
       setupFiles: ['./vitest.setup.ts'],
       transformMode: {
-        web: [/\.[jt]sx$/],
+        web: [/\.[jt]sx$/]
       },
-      include: [
-        '../../packages/vue/src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'
-      ],
-      exclude: [
-        '../../packages/vue/src/**/{node_modules,dist}/**',
-      ],
+      include: ['../../packages/vue/src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+      exclude: ['../../packages/vue/src/**/{node_modules,dist}/**'],
       alias: {
         'vue': path.resolve('node_modules/vue/dist/vue.esm-bundler.js'),
         '@vue/test-utils': path.resolve('node_modules/@vue/test-utils'),
-        ...getAlias(3),
+        ...getAlias(3)
       }
-    },
+    }
   }
 })

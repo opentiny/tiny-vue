@@ -1,0 +1,11 @@
+<template>
+  <div>
+    <tiny-button>默认禁用</tiny-button>
+    <tiny-button :reset-time="0">无禁用</tiny-button>
+    <tiny-button :reset-time="5000">禁用 5 秒</tiny-button>
+  </div>
+</template>
+
+<script setup>
+import { Button as TinyButton } from '@opentiny/vue'
+</script>

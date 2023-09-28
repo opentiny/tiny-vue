@@ -24,6 +24,7 @@
 <script>
 import { Collapse, CollapseItem } from '@opentiny/vue'
 import { IconWriting } from '@opentiny/vue-icon'
+
 export default {
   components: {
     TinyCollapse: Collapse,

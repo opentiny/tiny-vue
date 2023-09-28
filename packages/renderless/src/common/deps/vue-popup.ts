@@ -1,24 +1,22 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { merge } from '../object'
 import PopupManager from './popup-manager'
-import getScrollBarWidth from './scrollbar-width'
-import { getStyle, addClass, removeClass, hasClass } from './dom'
+import { addClass, removeClass } from './dom'
 
 let idSeed = 1
-let scrollBarWidth
 const isServer = typeof window === 'undefined'
-const popLockClass = 'tiny-popup-parent--hidden'
+const popLockClass = 'popup-parent--hidden'
 
 const setWatchFn = ({ onMounted, onBeforeUnmount, watch, vm, api, props, state, nextTick }) => {
   onMounted(() => {
@@ -55,11 +53,6 @@ const setWatchFn = ({ onMounted, onBeforeUnmount, watch, vm, api, props, state, 
   )
 }
 
-const modifyBodyStyle = ({ bodyHasOverflow, bodyOverflowY, state }) => {
-  if (scrollBarWidth > 0 && (bodyHasOverflow || bodyOverflowY === 'scroll') && state.withoutHiddenClass) {
-    document.body.style.paddingRight = `${state.computedBodyPaddingRight + scrollBarWidth}px`
-  }
-}
 
 const openFn = (state, vm, api) => (options) => {
   if (!state.rendered) {
@@ -86,15 +79,6 @@ const openFn = (state, vm, api) => (options) => {
     api.doOpen(props)
   }
 }
-const modifyStateOnLockScroll = (state) => {
-  state.withoutHiddenClass = !hasClass(document.body, popLockClass)
-
-  if (state.withoutHiddenClass) {
-    state.bodyPaddingRight = document.body.style.paddingRight
-
-    state.computedBodyPaddingRight = parseInt(getStyle(document.body, 'paddingRight'), 10)
-  }
-}
 
 const doOpenFn = (vm, state, props, api) => (properties) => {
   if (isServer || (vm.willOpen && !vm.willOpen()) || state.opened) {
@@ -117,19 +101,15 @@ const doOpenFn = (vm, state, props, api) => (properties) => {
       vm._closing = false
     }
 
-    PopupManager.openModal(vm._popupId, PopupManager.nextZIndex(), props.modalAppendToBody ? undefined : dom, properties.modalClass, properties.modalFade)
+    PopupManager.openModal(
+      vm._popupId,
+      PopupManager.nextZIndex(),
+      props.modalAppendToBody ? undefined : dom,
+      properties.modalClass,
+      properties.modalFade
+    )
 
     if (properties.lockScroll) {
-      modifyStateOnLockScroll(state)
-
-      scrollBarWidth = getScrollBarWidth()
-
-      const bodyHasOverflow = document.documentElement.clientHeight < document.body.scrollHeight
-
-      const bodyOverflowY = getStyle(document.body, 'overflowY')
-
-      modifyBodyStyle({ bodyHasOverflow, bodyOverflowY, state })
-
       addClass(document.body, popLockClass)
     }
   }
@@ -170,7 +150,13 @@ const closeFn = (api, vm) => () => {
 }
 
 export default ({ api, nextTick, onBeforeUnmount, onMounted, props, reactive, toRefs, vm, watch }) => {
-  const state = reactive({ opened: false, rendered: false, bodyPaddingRight: null, withoutHiddenClass: true, computedBodyPaddingRight: 0 })
+  const state = reactive({
+    opened: false,
+    rendered: false,
+    bodyPaddingRight: null,
+    withoutHiddenClass: true,
+    computedBodyPaddingRight: 0
+  })
 
   setWatchFn({ onMounted, onBeforeUnmount, watch, vm, api, props, state, nextTick })
 

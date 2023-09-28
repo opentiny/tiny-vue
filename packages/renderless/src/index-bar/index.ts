@@ -24,40 +24,40 @@ export const switchIndex = (index, state, emit) => {
 
 export const handleTouchDown =
   ({ state }) =>
-    () => {
-      state.isMouseDown = true
-    }
+  () => {
+    state.isMouseDown = true
+  }
 
 export const handleTouchMove =
   ({ emit, state }) =>
-    (e) => {
-      console.log(e, state.isMouseDown)
-      if (state.isMouseDown && e.target.id) {
-        switchIndex(Number(e.target.id), state, emit)
-      }
+  (e) => {
+    console.log(e, state.isMouseDown)
+    if (state.isMouseDown && e.target.id) {
+      switchIndex(Number(e.target.id), state, emit)
     }
+  }
 
 export const handleTouchUp =
   ({ state }) =>
-    () => {
-      state.isMouseDown = false
-    }
+  () => {
+    state.isMouseDown = false
+  }
 
 export const handleIndexClick =
   ({ emit, state }) =>
-    (value) => {
-      switchIndex(value.index, state, emit)
-    }
+  (value) => {
+    switchIndex(value.index, state, emit)
+  }
 
 export const updateAnchorChildren =
   ({ state, refs }) =>
-    () => {
-      const node = refs.indexBarContent
-      if (node) {
-        state.childrenAnchor = []
-        getAnchorChildren(node, state)
-      }
+  () => {
+    const node = refs.indexBarContent
+    if (node) {
+      state.childrenAnchor = []
+      getAnchorChildren(node, state)
     }
+  }
 
 export const getAnchorChildren = (node, state) => {
   node.childNodes.forEach((ele) => {
@@ -71,9 +71,9 @@ export const getAnchorChildren = (node, state) => {
 
 export const handleScroll =
   ({ state }) =>
-    () => {
-      findTopAnchor(state)
-    }
+  () => {
+    findTopAnchor(state)
+  }
 
 export const findTopAnchor = (state) => {
   const scrollTop = document.documentElement.scrollTop

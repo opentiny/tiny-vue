@@ -1,0 +1,1 @@
+export type IColorSelectPanelRef<T> = {value: T}

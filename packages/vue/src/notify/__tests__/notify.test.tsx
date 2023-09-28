@@ -17,7 +17,7 @@ describe('PC Mode', () => {
     expect(document.querySelector('.tiny-notify')).toBeDefined()
   })
 
-  // 可通过 type 设置不同的类型。可选值：success、warning、info、error，默认值：info 
+  // 可通过 type 设置不同的类型。可选值：success、warning、info、error，默认值：info
   test.todo('type')
 
   // 可通过 duration 属性设置自动关闭的延迟时间，默认值：4500ms

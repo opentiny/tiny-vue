@@ -16,7 +16,7 @@ export default {
       total: 1000000
     }
   },
-  created() { }
+  created() {}
 }
 </script>
 

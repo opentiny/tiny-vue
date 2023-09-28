@@ -11,7 +11,10 @@
  -->
 <template>
   <div :class="{ 'tiny-mobile-tabbar-placeholder': placeholder }" :style="{ height: state.height }">
-    <div class="tiny-mobile-tabbar" :class="[{ 'is-border': border }, { unfit: !state.fit, 'tiny-mobile-tabbar--fixed': fixed }]">
+    <div
+      class="tiny-mobile-tabbar"
+      :class="[{ 'is-border': border }, { unfit: !state.fit, 'tiny-mobile-tabbar--fixed': fixed }]"
+    >
       <slot></slot>
     </div>
   </div>

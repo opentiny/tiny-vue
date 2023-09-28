@@ -46,8 +46,8 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      height: 2px;
-      background-color: var(--ti-tabs-header-text-color);
+      height: var(--ti-tabs-item-active-border-weight);
+      background-color: var(--ti-tabs-item-active-border-color);
       z-index: 1;
       transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
       list-style: none;
@@ -165,7 +165,7 @@
     position: absolute;
     cursor: pointer;
     line-height: var(--ti-tabs-height);
-    font-size: var(--ti-common-font-size-base);
+    font-size: var(--ti-tabs-prev-next-btn-icon-size);
     color: var(--ti-tabs-header-font-normal-text-color);
   }
 
@@ -205,10 +205,6 @@
     }
     &.is-show-active-bar .@{tabs-prefix-cls}__item {
       margin-right: var(--ti-tabs-item-margin-right);
-      &.is-active {
-        border-bottom: var(--ti-tabs-item-active-border-weight) var(--ti-tabs-item-active-border-style)
-          var(--ti-tabs-item-active-border-color);
-      }
     }
   }
 
@@ -324,6 +320,9 @@
     font-size: var(--ti-tabs-font-size-base);
     color: var(--ti-tabs-header-font-normal-text-color);
     line-height: var(--ti-tabs-height);
+    .tiny-dropdown__suffix-inner {
+      display: none;
+    }
   }
 
   &__more {
@@ -356,6 +355,9 @@
       width: 4px;
       height: var(--ti-tabs-more-left-box-height);
       box-shadow: var(--ti-tabs-more-left-box-shadow);
+    }
+    .tiny-svg {
+      font-size: var(--ti-tabs-more-icon-size);
     }
   }
 
@@ -433,7 +435,9 @@
         border-left: 1px solid var(--ti-tabs-item-card-border-color); // aurora新增
         border-right: var(--ti-tabs-item-top-right-border-weight) solid transparent; // aurora新增
         border-top: 1px solid transparent;
-        transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        transition:
+          color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+          padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
         &:first-child {
           border-left: none;
@@ -614,6 +618,11 @@
       height: var(--ti-tabs-small-height);
       line-height: var(--ti-tabs-small-height);
     }
+    .@{tabs-prefix-cls}__nav-prev,
+    .@{tabs-prefix-cls}__nav-next {
+      line-height: var(--ti-tabs-small-height);
+      font-size: var(--ti-tabs-prev-next-btn-icon-size);
+    }
   }
 
   // 竖排tab页签
@@ -630,13 +639,10 @@
 
     .@{tabs-prefix-cls}__item {
       text-align: left;
+      padding: 0 var(--ti-tabs-item-vertical-padding-horizontal);
     }
 
     &.@{tabs-prefix-cls}--card {
-      .@{tabs-prefix-cls}__item {
-        padding: 0 var(--ti-tabs-item-vertical-padding-horizontal);
-      }
-
       > .@{tabs-prefix-cls}__header {
         .@{tabs-prefix-cls}__item {
           border-left: 1px solid var(--ti-tabs-border-color);

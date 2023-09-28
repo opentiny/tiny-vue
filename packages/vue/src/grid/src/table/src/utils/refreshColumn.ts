@@ -31,7 +31,11 @@ export function onGroupHeader({ _vm, isGroup, headerProps }) {
       _vm.collectColumn,
       (column) => {
         if (column.children && column.children.length) {
-          column.visible = !!findTree(column.children, (subColumn) => (subColumn.children && subColumn.children.length ? 0 : subColumn.visible), headerProps)
+          column.visible = !!findTree(
+            column.children,
+            (subColumn) => (subColumn.children && subColumn.children.length ? 0 : subColumn.visible),
+            headerProps
+          )
         }
       },
       headerProps

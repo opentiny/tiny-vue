@@ -32,9 +32,9 @@
               <user-head :round="true" v-model="data.imgUrl" type="image"></user-head>
               <div class="tiny-user-contact__role">
                 <span v-show="showName" class="tiny-user-contact__role-name">{{ data.userName }}</span>
-                <span v-show="showNumber" class="tiny-user-contact__role-number"
-                  >{{ t('ui.usercard.empno') }}：{{ data.roleNumber }}</span
-                >
+                <span v-show="showNumber" class="tiny-user-contact__role-number">
+                  {{ t('ui.usercard.empno') }}：{{ data.roleNumber }}
+                </span>
               </div>
             </div>
           </div>
@@ -61,7 +61,6 @@ import CardTemplate from '@opentiny/vue-card-template'
 import Espace from '@opentiny/vue-espace'
 import Popover from '@opentiny/vue-popover'
 import { IconChevronUp, IconChevronDown } from '@opentiny/vue-icon'
-
 import { defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({

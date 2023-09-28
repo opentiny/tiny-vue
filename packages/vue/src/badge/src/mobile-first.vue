@@ -23,7 +23,8 @@
           :href="state.href"
           :target="target"
           rel="noopener noreferrer"
-        >{{ state.content }}</a>
+          >{{ state.content }}</a
+        >
         <span :class="m(gcls('state-not-href'))" v-else>{{ state.content }}</span>
       </slot>
     </div>

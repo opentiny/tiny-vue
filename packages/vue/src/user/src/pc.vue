@@ -33,6 +33,7 @@
       :auto-close="autoClose"
       :query-debounce="queryDebounce"
       :ignore-enter="ignoreEnter"
+      :show-tips="showTips"
     >
       <template #prefix>
         <div>
@@ -109,7 +110,9 @@ export default defineComponent({
     'autoClose',
     'queryDebounce',
     'hideSelected',
-    'ignoreEnter'
+    'ignoreEnter',
+    'showTips',
+    'maxWidth'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

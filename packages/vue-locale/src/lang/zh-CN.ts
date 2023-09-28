@@ -55,8 +55,10 @@ export default {
       all: '全部',
       cancel: '取消',
       confirm: '确定',
+      delete: '删除',
+      edit: '编辑',
       more: '更多',
-      reset: '重置'
+      reset: '重置',
     },
     button: {
       cancel: '取消',
@@ -79,6 +81,10 @@ export default {
       summation: '总量',
       total: '总计',
       value: '数值'
+    },
+    colorSelectPanel:{
+      confirm: '选择',
+      cancel: '取消'
     },
     creditCardForm: {
       submit: '提交'
@@ -145,6 +151,37 @@ export default {
       year: '年',
       to: '至'
     },
+    richTextEditor: {
+      bold: '加粗',
+      italic: '斜体',
+      link: '链接',
+      unlink: '移除链接',
+      highlight: '高亮',
+      underline: '下划线',
+      strike: '中划线',
+      subscript: '下标',
+      superscript: '上标',
+      code: '代码',
+      unorderedlist: '无序列表',
+      orderedlist: '有序列表',
+      taskList: '任务列表',
+      quote: '引用',
+      codeBlock: '代码块',
+      formatClear: '清楚标记',
+      nodeDelete: '删除节点',
+      undo: '回退',
+      redo: '前进',
+      left: '左对齐',
+      center: '居中',
+      right: '右对齐',
+      fontSize: '字号',
+      lineHeight: '行高',
+      hBox: '段落标题',
+      img: '图片',
+      color: '颜色',
+      table: '表格',
+      backgroundColor: '文字背景色'
+    },
     calendar: {
       showType: {
         year: '年'
@@ -206,8 +243,8 @@ export default {
       folder: '文件所在文件夹层数已超过 5 层，将不会上传该文件',
       init: '服务报错，请重试',
       token: '请先进行 EDM 鉴权，获取 token',
-      exceed: '文件超过最大限制',
-      largeFile: '文件大小超出限制 2G ！',
+      exceed: '文件上传失败：大小超过限制（{maxSize}MB）',
+      largeFile: '文件大小超出限制 2G ！！！',
       fileSize: '{name}大小不能小于 ',
       deleteTip: '按 delete 键可删除',
       downloadFile: '下载文件',
@@ -224,8 +261,10 @@ export default {
       onlySupport: '仅支持{type}格式文件',
       fileNotLessThan: '文件不能小于',
       fileNotMoreThan: '文件不能超过',
-      notSupport: '不支持上传该格式的文件，请重新上传',
-      attachment: '附件'
+      notSupport: '文件上传失败：不支持该格式（.{format}）',
+      attachment: '附件',
+      uploadList: '上传列表',
+      numberExceed: '文件上传失败：批量上传个数超过限制（{number}）'
     },
     uploadList: {
       pictureUploading: '图片上传中',
@@ -240,7 +279,8 @@ export default {
       releaseAndUpload: '释放鼠标，上传文件',
       dragOrClickImport: '将文件拖到此处，或点击导入',
       shoot: '拍摄',
-      selectFromAlbum: '从相册选择'
+      selectFromAlbum: '从相册选择',
+      uploadFailedAndReupload: '上传失败，点击重新上传'
     },
     upload: {
       addPicture: '添加图片',
@@ -281,6 +321,10 @@ export default {
       },
       filter: {
         allFilter: '全部',
+        allSelect: '(全选)',
+        endDate: '结束日期',
+        startDate: '开始日期',
+        dateTips: '请至少输入一个日期',
         clear: '清除当前列筛选',
         clearAll: '清除所有列筛选',
         confirmFilter: '筛选',
@@ -463,7 +507,11 @@ export default {
     },
     tree: {
       emptyText: '暂无数据',
-      switchText: '同时勾选下级'
+      switchText: '同时勾选下级',
+      deleteTip: '删除后数据不可恢复，确定删除吗？',
+      preserveSubnodeTip: '该节点存在下级节点，是否保留下级节点数据？',
+      preserveSubnodeData: '保留下级节点数据',
+      newNodeTitle: '新增下级'
     },
     usercard: {
       address: '地址',

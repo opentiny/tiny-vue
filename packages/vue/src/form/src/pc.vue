@@ -16,7 +16,8 @@
       labelPosition ? 'tiny-form--label-' + labelPosition : '',
       { 'tiny-form--inline': inline },
       { 'label-align': labelAlign },
-      { 'has-required': state.hasRequired }
+      { 'has-required': state.hasRequired },
+      { 'is-display-only': state.isDisplayOnly }
     ]"
   >
     <slot></slot>
@@ -51,7 +52,9 @@ export default defineComponent({
     'validateType',
     'manual',
     'appendToBody',
-    'popperOptions'
+    'popperOptions',
+    'displayOnly',
+    'showAutoWidth'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

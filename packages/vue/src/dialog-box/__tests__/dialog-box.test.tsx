@@ -11,9 +11,11 @@ describe('PC Mode', () => {
    */
   test('visible', () => {
     const visible = true
-    const wrapper = mount(() =>  <DialogBox v-model:visible={visible}>
-      <span>dialog-box内容</span>
-    </DialogBox>)
+    const wrapper = mount(() => (
+      <DialogBox v-model:visible={visible}>
+        <span>dialog-box内容</span>
+      </DialogBox>
+    ))
     expect(wrapper.find('.tiny-dialog-box').exists()).toBe(true)
   })
 
@@ -52,9 +54,11 @@ describe('PC Mode', () => {
    */
   test('default', () => {
     const visible = true
-    const wrapper = mount(() =>  <DialogBox v-model:visible={visible}>
-      <span class="custom-content">默认插槽内容</span>
-    </DialogBox>)
+    const wrapper = mount(() => (
+      <DialogBox v-model:visible={visible}>
+        <span class="custom-content">默认插槽内容</span>
+      </DialogBox>
+    ))
     expect(wrapper.find('span.custom-content').exists()).toBe(true)
   })
 
@@ -86,4 +90,3 @@ describe('PC Mode', () => {
 
   test.todo('drag-end 拖拽结束事件')
 })
-

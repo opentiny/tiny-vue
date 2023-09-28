@@ -11,7 +11,14 @@
  -->
 <template>
   <div>
-    <tiny-input @hook-mounted="hookMounted" v-model="state.displayValue" ref="refrence" @focus="showPickerAndlockSrcoll" readOnly="true" :_mode="_mode">
+    <tiny-input
+      @hook-mounted="hookMounted"
+      v-model="state.displayValue"
+      ref="refrence"
+      @focus="showPickerAndLockScroll"
+      readOnly="true"
+      :_mode="_mode"
+    >
       <icon-close slot="suffix" v-if="!state.clearable" @click="clearDisplayValue"></icon-close>
     </tiny-input>
     <tiny-mini-picker

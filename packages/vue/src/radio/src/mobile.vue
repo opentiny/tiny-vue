@@ -12,7 +12,12 @@
 <template>
   <label
     class="tiny-mobile-radio"
-    :class="[{ 'is-disabled': state.isDisabled }, { 'is-focus': state.focus }, { 'is-bordered': border }, { 'is-checked': state.model === label }]"
+    :class="[
+      { 'is-disabled': state.isDisabled },
+      { 'is-focus': state.focus },
+      { 'is-bordered': border },
+      { 'is-checked': state.model === label }
+    ]"
     role="radio"
     :aria-checked="state.model === label"
     :aria-disabled="state.isDisabled"

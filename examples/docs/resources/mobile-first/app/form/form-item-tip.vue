@@ -1,6 +1,13 @@
 <template>
   <div class="demo-form">
-    <tiny-form ref="ruleForm" :model="createData" :rules="rules" :validate-on-rule-change="isvalidate" label-width="80px" @validate="validate">
+    <tiny-form
+      ref="ruleForm"
+      :model="createData"
+      :rules="rules"
+      :validate-on-rule-change="isvalidate"
+      label-width="80px"
+      @validate="validate"
+    >
       <tiny-form-item label="用户名" prop="username" tip-content="请输入用户名">
         <tiny-input v-model="createData.username"></tiny-input>
       </tiny-form-item>

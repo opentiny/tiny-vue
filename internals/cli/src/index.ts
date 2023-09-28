@@ -2,22 +2,13 @@
 import { Command, Option } from 'commander'
 import { createIconSaas } from './commands/create/index.js'
 import { buildUi, buildEntry, buildRuntime, buildReact, buildEntryReact } from './commands/build'
+import { releaseAurora } from './commands/release/releaseAurora'
 
 const program = new Command()
 
-// program
-//   .command('create')
-//   .description('创建一个组件模板或配置文件')
-//   .option('-t --type <type>', `创建类型，可选值：${CREATE_SUPPORT_TYPES.join(', ')}`, validateCreateType)
-//   .option('-e --env <env>', '环境，可选值：dev, prod')
-//   .option('--ignore-parse-error', '忽略解析错误', false)
-//   .option('--cover', '覆盖原文件', false)
-//   .action(create)
+program.command('release:aurora').description('转换为aurora的包').action(releaseAurora)
 
-program
-  .command('create:icon-saas')
-  .description('同步生成 icon-saas')
-  .action(createIconSaas)
+program.command('create:icon-saas').description('同步生成 icon-saas').action(createIconSaas)
 
 program.command('build:entry-react').description('生成 react 组件库入口').action(buildEntryReact)
 

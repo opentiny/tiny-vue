@@ -27,9 +27,43 @@ import { toDecimal } from '@opentiny/vue-renderless/common/string'
 import { getStyle } from '@opentiny/vue-renderless/common/deps/dom'
 import { addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import { isNumber, filterTree, remove, isArray, isBoolean, findTree, set, get, has, eachTree, arrayEach, sortBy, isUndefined, toNumber, isEqual, mapTree, clone, destructuring, clear, sum, find, toStringJSON, toArray } from '@opentiny/vue-renderless/grid/static/'
+import {
+  isNumber,
+  filterTree,
+  remove,
+  isArray,
+  isBoolean,
+  findTree,
+  set,
+  get,
+  has,
+  eachTree,
+  arrayEach,
+  sortBy,
+  isUndefined,
+  toNumber,
+  isEqual,
+  mapTree,
+  clone,
+  destructuring,
+  clear,
+  sum,
+  find,
+  toStringJSON,
+  toArray
+} from '@opentiny/vue-renderless/grid/static/'
 import browser from '@opentiny/vue-renderless/common/browser'
-import { isPx, isScale, colToVisible, getCell, getEventTargetNode, rowToVisible, setCellValue, getRowid, emitEvent } from '@opentiny/vue-renderless/grid/utils'
+import {
+  isPx,
+  isScale,
+  colToVisible,
+  getCell,
+  getEventTargetNode,
+  rowToVisible,
+  setCellValue,
+  getRowid,
+  emitEvent
+} from '@opentiny/vue-renderless/grid/utils'
 import Cell from '../../cell'
 import { error, warn } from '../../tools'
 import TINYGrid, { Interceptor } from '../../adapter'
@@ -37,7 +71,15 @@ import GlobalConfig from '../../config'
 import { handleLayout } from './utils/updateStyle'
 import { createTooltipRange, processContentMethod } from './utils/handleTooltip'
 import { hasCheckField, hasNoCheckField } from './utils/handleSelectRow'
-import { isTargetRadioOrCheckbox, onClickExpandColumn, onClickTreeNodeColumn, onHighlightCurrentRow, onClickRadioColumn, onClickSelectColumn, onClickCellSelect } from './utils/triggerCellClickEvent'
+import {
+  isTargetRadioOrCheckbox,
+  onClickExpandColumn,
+  onClickTreeNodeColumn,
+  onHighlightCurrentRow,
+  onClickRadioColumn,
+  onClickSelectColumn,
+  onClickCellSelect
+} from './utils/triggerCellClickEvent'
 import {
   onGroupHeader,
   reassignNotFixed,
@@ -46,7 +88,13 @@ import {
   showGroupFixedError,
   onScrollXLoad
 } from './utils/refreshColumn'
-import { handleFilterConditionCustom, handleFilterConditionExtend, handleFilterRelations, handleFilterCheckStr, handleFilterCheck } from './utils/handleLocalFilter'
+import {
+  handleFilterConditionCustom,
+  handleFilterConditionExtend,
+  handleFilterRelations,
+  handleFilterCheckStr,
+  handleFilterCheck
+} from './utils/handleLocalFilter'
 import { hasCheckFieldNoStrictly, hasNoCheckFieldNoStrictly, setSelectionNoStrictly } from './utils/setAllSelection'
 import { mapFetchColumnPromise } from './utils/handleResolveColumn'
 import { computeScrollYLoad, computeScrollXLoad } from './utils/computeScrollLoad'
@@ -200,6 +248,7 @@ const Methods = {
     let { renderSize, startIndex } = scrollYStore
     let afterFullData = force ? this.updateAfterFullData() : this.afterFullData
 
+    // 经过筛选、排序、虚拟滚动等一系列操作，最后计算出来的表格数据
     this.tableData = sliceFullData({
       afterFullData,
       renderSize,
@@ -215,9 +264,10 @@ const Methods = {
   },
   // 全量加载表格数据
   loadTableData(datas, notRefresh) {
-    let { $refs, editStore, height, maxHeight } = this
-    let { lastScrollLeft, lastScrollTop } = this
+    let { $refs, editStore, height, maxHeight } = this as any
+    let { lastScrollLeft, lastScrollTop } = this as any
     let { scrollY } = this.optimizeOpts
+    // 原始全量数据
     let tableFullData = isArray(datas) ? datas.slice(0) : []
     let scrollYLoad = scrollY && scrollY.gt > 0 && scrollY.gt <= tableFullData.length
 
@@ -583,11 +633,11 @@ const Methods = {
     if (ret.flag) {
       return ret.result
     }
-    let { empty, input, relation, value } = condition
+    let { empty, input, relation, value, dateList } = condition
     let { method: relationMethod } = condition
     let relations = handleFilterRelations({ inputFilter })
     let checkStr = handleFilterCheckStr({ column, relationMethod, relations, row })
-    let check = handleFilterCheck({ checkStr, empty, input, property, relation, row, valueList: value })
+    let check = handleFilterCheck({ checkStr, empty, input, property, relation, row, valueList: value, dateList })
     return check()
   },
   // 对数据进行筛选和排序，获取处理后数据。服务端筛选和排序，在接口调用时已传入参数
@@ -754,6 +804,8 @@ const Methods = {
     this.refreshColumn()
     this.handleTableData(true)
     $toolbar && $toolbar.updateColumn(fullColumn)
+
+    // 树结构的固定列与展开行功能有冲突
     if (
       treeConfig &&
       fullColumn.some((column) => column.fixed) &&
@@ -780,16 +832,22 @@ const Methods = {
     tableFullColumn
       .filter((column) => column.visible)
       .forEach((column, columnIndex) => {
+        // 收集左侧冻结列
         let ret = reassignFixedLeft({ column, columnIndex, isColspan, leftList, leftStartIndex, letIndex })
         leftStartIndex = ret.leftStartIndex
         letIndex = ret.letIndex
         isColspan = ret.isColspan
+
+        // 收集右侧冻结列
         ret = reassignFixedRight({ column, columnIndex, isColspan, rightEndIndex, rightList })
         isColspan = ret.isColspan
         rightEndIndex = ret.rightEndIndex
+
+        // 收集非冻结列
         reassignNotFixed({ centerList, column })
       })
-    let visibleColumn = leftList.concat(centerList).concat(rightList)
+
+    const visibleColumn = leftList.concat(centerList).concat(rightList)
 
     // 是否开启x轴方向上的虚拟滚动
     let scrollXLoad = scrollX && scrollX.gt && scrollX.gt < tableFullColumn.length
@@ -1028,18 +1086,20 @@ const Methods = {
   },
   // 显示 tooltip
   handleTooltip(event, column, row, showTip, isHeader) {
-    let cell = isHeader ? event.currentTarget.querySelector('.tiny-grid-cell-text') : event.currentTarget.querySelector('.tiny-grid-cell')
+    const cell = isHeader
+      ? event.currentTarget.querySelector('.tiny-grid-cell-text')
+      : event.currentTarget.querySelector('.tiny-grid-cell')
 
     // 当用户悬浮在排序或者筛选图标按钮时不应该显示tooltip
     if (isHeader && event.target !== cell) {
       return
     }
 
-    let tooltip = this.$refs.tooltip
-    let wrapperElem = cell
-    let content = cell.innerText.trim() || cell.textContent.trim()
-    let contentMethod = (this.tooltipConfig || {}).contentMethod
-    let range = createTooltipRange({ _vm: this, cell, column, isHeader })
+    const tooltip = this.$refs.tooltip
+    const wrapperElem = cell
+    const content = cell.innerText.trim() || cell.textContent.trim()
+    const { contentMethod } = this.tooltipConfig
+    const range = createTooltipRange({ _vm: this, cell, column, isHeader })
     const rangeWidth = range.getBoundingClientRect().width - (browser.name === 'ie' ? 5 : 0)
     const padding =
       (parseInt(getStyle(cell, 'paddingLeft'), 10) || 0) + (parseInt(getStyle(cell, 'paddingRight'), 10) || 0)
@@ -1051,6 +1111,7 @@ const Methods = {
         processContentMethod({ _vm: this, column, content, contentMethod, event, isHeader, row, showTip })
         tooltip.state.referenceElm = cell
         tooltip.state.popperElm && (tooltip.state.popperElm.style.display = 'none')
+
         focusSingle = true
         this.activateTooltip(tooltip)
       }

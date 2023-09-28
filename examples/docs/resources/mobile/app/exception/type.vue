@@ -3,7 +3,7 @@
     <tiny-exception
       type="nodata"
       button-text="重试"
-      imageUrl="static/images/planet1.jpg"
+      imageUrl="/static/images/planet1.jpg"
       message="网络异常，请稍后再试，或者联系管理员给您处理"
     ></tiny-exception>
   </div>

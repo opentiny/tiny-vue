@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import { mounted } from './index'
 import userPopper from '../common/deps/vue-popper'
@@ -41,11 +41,13 @@ const initApi = ({ api, popper, state, selectEmitter, constants, selectVm, paren
   })
 }
 
-const initWatch = ({ watch, selectVm, state }) => {
+const initWatch = ({ watch, selectVm, state, nextTick }) => {
   watch(
     () => selectVm.state.inputWidth,
-    () => {
-      state.minWidth = (selectVm && selectVm.$el && selectVm.$el.getBoundingClientRect().width) + 'px'
+    (val) => {
+      nextTick(() => {
+        state.minWidth = ((selectVm && selectVm.$el && selectVm.$el.getBoundingClientRect().width) || val) + 'px'
+      })
     },
     { immediate: true }
   )
@@ -54,7 +56,7 @@ const initWatch = ({ watch, selectVm, state }) => {
 export const renderless = (
   props,
   { computed, onBeforeUnmount, onDeactivated, onMounted, reactive, toRefs, watch, inject },
-  { refs, slots, parent, emit, nextTick }
+  { vm, slots, parent, emit, nextTick }
 ) => {
   const api = {}
   const constants = parent.select._constants
@@ -68,7 +70,7 @@ export const renderless = (
     onDeactivated,
     props,
     reactive,
-    refs,
+    vm,
     slots,
     toRefs,
     watch
@@ -77,7 +79,7 @@ export const renderless = (
   const state = initState({ reactive, computed, popper, selectVm })
 
   initApi({ api, popper, state, selectEmitter, constants, selectVm, parent })
-  initWatch({ watch, selectVm, state })
+  initWatch({ watch, selectVm, state, nextTick })
 
   onBeforeUnmount(() => {
     popper.destroyPopper('remove')

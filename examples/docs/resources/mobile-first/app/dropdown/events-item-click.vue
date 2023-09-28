@@ -12,6 +12,7 @@
     </template>
   </tiny-dropdown>
 </template>
+
 <script>
 import { Dropdown, DropdownMenu, DropdownItem, Modal } from '@opentiny/vue'
 

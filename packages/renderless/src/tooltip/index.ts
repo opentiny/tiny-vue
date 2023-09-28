@@ -185,7 +185,7 @@ export const focusHandler =
 export const bindEvent =
   ({ api, state, vm }) =>
   (reference) => {
-    let referenceElm = null
+    let referenceElm: HTMLElement = null as any
 
     if (vm.$el.nodeType === 8) {
       referenceElm = reference
@@ -224,19 +224,18 @@ export const bindPopper =
   (el) => {
     nextTick(() => vm.bindEvent(el))
 
-    if (vm.popperVM) {
-      if (!vm.$refs.popper) {
-        popperVmRef.popper = vm.popperVM.$el
-      } else {
-        popperVmRef.popper = vm.$refs.popper
-      }
-
-      refs.popper || (refs.popper = vm.popperVM.$el)
-
-      nextTick(() => {
-        if (vm.modelValue) {
-          vm.updatePopper()
-        }
-      })
+    // vm.popperVM 是一个get 方法，所以必须缓存下来，不能频繁访问
+    let popperVM = vm.popperVM
+    if (!vm.$refs.popper) {
+      popperVmRef.popper = popperVM.$el
+    } else {
+      popperVmRef.popper = vm.$refs.popper
     }
+    refs.popper || (refs.popper = popperVM.$el)
+
+    nextTick(() => {
+      if (vm.modelValue) {
+        vm.updatePopper()
+      }
+    })
   }

@@ -16,10 +16,14 @@
 @import '../transition/timepicker.less';
 @import '../date-picker/vars.less';
 
-
+@date-container-prefix-cls: ~'@{css-prefix}date-container';
 @date-editor-prefix-cls: ~'@{css-prefix}date-editor';
 @range-editor-prefix-cls: ~'@{css-prefix}range-editor';
 @range-prefix-cls: ~'@{css-prefix}range';
+
+.@{date-container-prefix-cls} {
+  position: relative;
+}
 
 .@{date-editor-prefix-cls} {
   .component-css-vars-picker();
@@ -37,7 +41,7 @@
   &--monthrange {
     &.@{input-prefix-cls},
     &.@{input-prefix-cls}__inner {
-      width: 300px;
+      width: 350px;
     }
   }
 
@@ -60,6 +64,23 @@
     .@{input-prefix-cls}__inner {
       .text-overflow();
     }
+  }
+
+  &.show-auto-width {
+    &.@{input-prefix-cls},
+    &.@{input-prefix-cls}__inner {
+      width: 100%;
+    }
+  }
+
+  .@{input-prefix-cls}__label {
+    color: #8d959e;
+    font-size: 12px;
+    margin-right: 8px;
+    max-width: 100px;
+    display: inline-block;
+    text-align: left;
+    .text-overflow();
   }
 
   .@{input-prefix-cls}__icon-container {
@@ -339,7 +360,9 @@
   &zoom-in-top-leave-active {
     opacity: 1;
     transform: scaleY(1);
-    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transition:
+      transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+      opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     transform-origin: center top;
   }
 
@@ -354,7 +377,9 @@
   &zoom-in-bottom-leave-active {
     opacity: 1;
     transform: scaleY(1);
-    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transition:
+      transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+      opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     transform-origin: center bottom;
   }
 
@@ -369,7 +394,9 @@
   &zoom-in-left-leave-active {
     opacity: 1;
     transform: scale(1, 1);
-    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transition:
+      transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+      opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     transform-origin: top left;
   }
 
@@ -398,11 +425,17 @@
 }
 
 .collapse-transition {
-  transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out, 0.3s padding-bottom ease-in-out;
+  transition:
+    0.3s height ease-in-out,
+    0.3s padding-top ease-in-out,
+    0.3s padding-bottom ease-in-out;
 }
 
 .horizontal-collapse-transition {
-  transition: 0.3s width ease-in-out, 0.3s padding-left ease-in-out, 0.3s padding-right ease-in-out;
+  transition:
+    0.3s width ease-in-out,
+    0.3s padding-left ease-in-out,
+    0.3s padding-right ease-in-out;
 }
 
 .fade-in-linear-enter,

@@ -10,6 +10,7 @@
     </template>
   </tiny-dropdown>
 </template>
+
 <script>
 import { Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
 

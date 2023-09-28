@@ -87,7 +87,8 @@ describe('PC Mode', () => {
                 {data.row.name}
               </span>
             )
-          }}></GridColumn>
+          }}
+        ></GridColumn>
         <GridColumn field="city" titile="城市" width="100"></GridColumn>
       </Grid>
     ))

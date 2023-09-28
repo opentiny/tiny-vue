@@ -19,10 +19,18 @@
       </span>
       <!-- ARROW -->
       <template v-if="!state.isSingle">
-        <span class="tiny-image-viewer__btn tiny-image-viewer__prev" :class="{ 'is-disabled': !state.infinite && state.isFirst }" @click="prev">
+        <span
+          class="tiny-image-viewer__btn tiny-image-viewer__prev"
+          :class="{ 'is-disabled': !state.infinite && state.isFirst }"
+          @click="prev"
+        >
           <icon-chevron-left class="tiny-svg-size" />
         </span>
-        <span class="tiny-image-viewer__btn tiny-image-viewer__next" :class="{ 'is-disabled': !state.infinite && state.isLast }" @click="next">
+        <span
+          class="tiny-image-viewer__btn tiny-image-viewer__next"
+          :class="{ 'is-disabled': !state.infinite && state.isLast }"
+          @click="next"
+        >
           <icon-chevron-right class="tiny-svg-size" />
         </span>
       </template>

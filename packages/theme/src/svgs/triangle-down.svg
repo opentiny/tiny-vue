@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg  viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g id="icon/16/箭头/默认" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M5,3 L10.8,3 C10.9104569,3 11,3.08954305 11,3.2 L11,9 L11,9" id="路径" stroke="#808080" transform="translate(8.000000, 6.000000) rotate(135.000000) translate(-8.000000, -6.000000) "></path>
+        <path d="M5,3 L10.8,3 C10.9104569,3 11,3.08954305 11,3.2 L11,9 L11,9" id="路径" stroke="currentColor" transform="translate(8.000000, 6.000000) rotate(135.000000) translate(-8.000000, -6.000000) "></path>
     </g>
 </svg>

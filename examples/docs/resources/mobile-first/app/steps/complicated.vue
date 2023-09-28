@@ -1,6 +1,13 @@
 <template>
   <div>
-    <tiny-steps ref="steps" advanced :data="data" :visible-num="4" :active="advancedActive" @click="advancedClick"></tiny-steps>
+    <tiny-steps
+      ref="steps"
+      advanced
+      :data="data"
+      :visible-num="4"
+      :active="advancedActive"
+      @click="advancedClick"
+    ></tiny-steps>
 
     <tiny-popover ref="popover" :reference="referenceElm" width="200" trigger="click">
       <div>
@@ -41,7 +48,13 @@ export default {
           field4: '信息4说明1',
           field5: '信息5说明1'
         },
-        { name: '错误 BBQ Info', status: 'error', description: 'error 错误', field4: '信息4说明2', field5: '信息5说明2' },
+        {
+          name: '错误 BBQ Info',
+          status: 'error',
+          description: 'error 错误',
+          field4: '信息4说明2',
+          field5: '信息5说明2'
+        },
         {
           name: '已禁用 Involved Parties Involved Parties Involved Parties',
           status: 'disabled',

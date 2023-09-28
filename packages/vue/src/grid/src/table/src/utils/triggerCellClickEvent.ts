@@ -25,7 +25,12 @@
 export function isTargetRadioOrCheckbox(event, column, colType, targetType) {
   const target = event.target
 
-  return target && column.type === colType && target.tagName.toLowerCase() === 'input' && target.type === (targetType || colType)
+  return (
+    target &&
+    column.type === colType &&
+    target.tagName.toLowerCase() === 'input' &&
+    target.type === (targetType || colType)
+  )
 }
 
 export function onClickExpandColumn({ $el, _vm, column, event, expandConfig, params }) {
@@ -47,7 +52,8 @@ export function onHighlightCurrentRow({ $el, _vm, event, highlightCurrentRow, pa
   if (highlightCurrentRow) {
     if (
       radioConfig.trigger === 'row' ||
-      (!_vm.getEventTargetNode(event, $el, 'tiny-grid-checkbox').flag && !_vm.getEventTargetNode(event, $el, 'tiny-grid-radio').flag)
+      (!_vm.getEventTargetNode(event, $el, 'tiny-grid-checkbox').flag &&
+        !_vm.getEventTargetNode(event, $el, 'tiny-grid-radio').flag)
     ) {
       _vm.triggerCurrentRowEvent(event, params)
     }

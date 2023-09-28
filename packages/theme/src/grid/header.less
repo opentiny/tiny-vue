@@ -28,6 +28,7 @@
     left: 0;
     bottom: 0;
     height: 0;
+    z-index: 1;
     border-bottom: 1px solid var(--ti-grid-header-repair-border-color);
   }
 }
@@ -40,8 +41,13 @@
   // 去掉最后一个竖线
   &:nth-last-of-type(2) {
     .@{grid-prefix-cls}-resizable.is__line:before {
-      width: 0px;
+      width: 0;
     }
+  }
+
+  &:not(.fixed__column) {
+    left: unset !important;
+    right: unset !important;
   }
 
   &.col__title-checked {

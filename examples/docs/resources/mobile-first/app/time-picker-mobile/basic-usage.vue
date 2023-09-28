@@ -1,12 +1,15 @@
 <template>
   <div>
-    <tiny-button @click="fn" type="primary">
-      时间选择器组件
-    </tiny-button>
+    <tiny-button @click="fn" type="primary"> 时间选择器组件 </tiny-button>
     <p>值：{{ value }}</p>
     <p>格式化值：{{ formatValue }}</p>
 
-    <tiny-time-picker-mobile v-model="value" title="日期选择" :visible="boxVisibility" @update:visible="boxVisibility = $event">
+    <tiny-time-picker-mobile
+      v-model="value"
+      title="日期选择"
+      :visible="boxVisibility"
+      @update:visible="boxVisibility = $event"
+    >
     </tiny-time-picker-mobile>
   </div>
 </template>
@@ -28,7 +31,7 @@ export default {
   computed: {
     formatValue() {
       if (!this.value) return ''
-      return this.value.map(item => this.addZero(item)).join(':')
+      return this.value.map((item) => this.addZero(item)).join(':')
     }
   },
   methods: {

@@ -12,7 +12,13 @@
 
 <template>
   <transition name="tiny-zoom-in-top" @after-leave="doDestroy">
-    <ul class="tiny-dropdown-menu tiny-popper" :class="[state.size && `tiny-dropdown-menu--${state.size}`, popperClass]" v-show="state.showPopper">
+    <ul
+      class="tiny-dropdown-menu tiny-popper"
+      :class="[state.size && `tiny-dropdown-menu--${state.size}`, popperClass]"
+      v-show="state.showPopper"
+      @mouseenter="handleMouseenter"
+      @mouseleave="handleMouseleave"
+    >
       <slot>
         <tiny-dropdown-item
           v-for="(item, index) in options"
@@ -22,6 +28,8 @@
           :icon="item.icon"
           :disabled="item.disabled"
           :divided="item.divided"
+          :tip="item.tip"
+          :tip-position="item.tipPosition"
         >
         </tiny-dropdown-item>
       </slot>
@@ -39,12 +47,17 @@ export default defineComponent({
   components: {
     TinyDropdownItem: DropdownItem
   },
-  props: [...props, 'visibleArrow', 'arrowOffset', 'placement', 'popperClass', 'popperAppendToBody', 'textField', 'options'],
-  provide() {
-    return {
-      dropdownMenu: this
-    }
-  },
+  emits: ['mouseenter', 'mouseleave'],
+  props: [
+    ...props,
+    'visibleArrow',
+    'arrowOffset',
+    'placement',
+    'popperClass',
+    'popperAppendToBody',
+    'textField',
+    'options'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

@@ -141,7 +141,14 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
   const globalDesignConfig: DesignConfig = hooks.inject(design.configKey, {})
   const designConfig = globalDesignConfig?.components?.[getComponentName().replace($prefix, '')]
 
-  const utils = { $prefix, t, ...tools(context, resolveMode(props, context)), mergeClass, designConfig, globalDesignConfig }
+  const utils = {
+    $prefix,
+    t,
+    ...tools(context, resolveMode(props, context)),
+    mergeClass,
+    designConfig,
+    globalDesignConfig
+  }
 
   resolveTheme({ props, context, utils })
   resolveChartTheme({ props, context, utils })
@@ -199,40 +206,51 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
 
 export const svg = ({ name = 'Icon', component }) => {
   return (propData?) =>
-    markRaw(defineComponent({
-      name: $prefix + name,
-      setup: (props, context) => {
-        const { fill, width, height, 'custom-class': customClass } = context.attrs || {}
-        const mergeProps = Object.assign({}, props, propData || null)
-        const mode = resolveMode(mergeProps, context)
-        const isMobileFirst = mode === 'mobile-first'
-        const tinyTag = { 'data-tag': isMobileFirst ? 'tiny-svg' : null }
-        const attrs = isVue3 ? tinyTag : { attrs: tinyTag }
-        const className = isMobileFirst
-          ? mergeClass('h-4 w-4 inline-block', customClass || '', mergeProps.class || '')
-          : 'tiny-svg'
-        const extend = Object.assign(
-          {
-            style: { fill, width, height },
-            class: className,
-            isSvg: true
-          },
-          attrs
-        )
+    markRaw(
+      defineComponent({
+        name: $prefix + name,
+        setup: (props, context) => {
+          const { fill, width, height, 'custom-class': customClass } = context.attrs || {}
+          const mergeProps = Object.assign({}, props, propData || null)
+          const mode = resolveMode(mergeProps, context)
+          const isMobileFirst = mode === 'mobile-first'
+          const tinyTag = { 'data-tag': isMobileFirst ? 'tiny-svg' : null }
+          const attrs = isVue3 ? tinyTag : { attrs: tinyTag }
+          const className = isMobileFirst
+            ? mergeClass('h-4 w-4 inline-block', customClass || '', mergeProps.class || '')
+            : 'tiny-svg'
+          const extend = Object.assign(
+            {
+              style: { fill, width, height },
+              class: className,
+              isSvg: true
+            },
+            attrs
+          )
 
-        // 解决本地运行会报大量警告的问题
-        if (process.env.BUILD_TARGET) {
-          extend.nativeOn = context.listeners
+          // 解决本地运行会报大量警告的问题
+          if (process.env.BUILD_TARGET) {
+            extend.nativeOn = context.listeners
+          }
+
+          // 解决富文本组件工具栏图标大小不正确的问题
+          if (name.indexOf('IconRichText') !== -1) {
+            if (!isVue3) {
+              extend.attrs.viewBox = '0 0 24 24'
+            } else {
+              extend.viewBox = '0 0 24 24'
+            }
+          }
+
+          return renderComponent({
+            component,
+            props: mergeProps,
+            context,
+            extend
+          })
         }
-
-        return renderComponent({
-          component,
-          props: mergeProps,
-          context,
-          extend
-        })
-      }
-    }))
+      })
+    )
 }
 
 export const filterAttrs = (attrs, filters, include) => {
@@ -273,7 +291,14 @@ export const $install = (component) => {
   }
 }
 
-export type { PropType, ExtractPropTypes, DefineComponent } from './adapter'
+export type {
+  PropType,
+  ExtractPropTypes,
+  DefineComponent,
+  ComponentPublicInstance,
+  SetupContext,
+  ComputedRef
+} from './adapter'
 
 export {
   h,

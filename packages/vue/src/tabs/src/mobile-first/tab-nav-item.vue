@@ -12,8 +12,7 @@ export default defineComponent({
     selected: Boolean,
     navItem: Object
   },
-  components: { IconClose: IconClose() },
-  setup(props, context): any {
+  setup(props: any, context: any) {
     return setup({ props, context, renderless, api, mono: true })
   },
   render() {
@@ -27,7 +26,7 @@ export default defineComponent({
         class: [
           'w-max h-11 sm:h-10 inline-flex flex-col justify-center pl-3 pr-3 group',
           'first:ml-3 last:mr-3 hover:cursor-pointer sm:first:pl-0 sm:last:pr-0 sm:first:ml-0 sm:last:mr-0',
-          state.tabSize === 'big' ? 'min-w-[2rem]' : 'min-w-[1.75rem]'
+          state.tabSize === 'big' ? 'min-w-[theme(spacing.8)]' : 'min-w-[theme(spacing.7)]'
         ],
         on: { click: handleNavItemClick }
       },
@@ -36,7 +35,7 @@ export default defineComponent({
           'div',
           {
             class: [
-              'inline-block text-sm group-hover:text-color-brand',
+              'inline-block text-base sm:text-sm group-hover:text-color-brand',
               selected ? 'text-color-brand' : 'text-color-text-primary sm:text-color-text-secondary'
             ],
             style: state.tabSize === 'big' ? 'font-size: 1rem' : ''
@@ -55,7 +54,7 @@ export default defineComponent({
                     class: [
                       'pl-2 inline-flex translate-y-0.5 text-xs fill-color-icon-primary',
                       'hover:fill-color-icon-hover focus:fill-color-icon-focus',
-                      navItem.slotSetting ? '-translate-y-[0.125rem]' : ''
+                      navItem.slotSetting ? '-translate-y-0.5' : ''
                     ],
                     on: {
                       click: navItem.slotSetting ? settingClick : handleNavItemClose

@@ -1,14 +1,14 @@
 /**
-* Copyright (c) 2022 - present TinyVue Authors.
-* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
-*
-* Use of this source code is governed by an MIT-style license.
-*
-* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
-* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
-*
-*/
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
 
 import debounce from '../common/deps/debounce'
 import { toDateStr } from '../common/date'
@@ -195,76 +195,80 @@ export const suggestUser = (api) => (query) => {
   })
 }
 
-export const updateOptions = ({ props, state, nextTick }) => (usersList) => {
-  const { noDataText } = props
-  const { valueField, textField } = state
-  const values = [].concat(state.user || [])
-  const options = [].concat(state.selected)
-  const hides = []
-  let count = 0
+export const updateOptions =
+  ({ props, state, nextTick }) =>
+  (usersList) => {
+    const { noDataText } = props
+    const { valueField, textField } = state
+    const values = [].concat(state.user || [])
+    const options = [].concat(state.selected)
+    const hides = []
+    let count = 0
 
-  usersList.forEach((users) => {
-    users.forEach((user) => {
-      const u = user[valueField]
+    usersList.forEach((users) => {
+      users.forEach((user) => {
+        const u = user[valueField]
 
-      user._show = true
-      count++
+        user._show = true
+        count++
 
-      if (!~values.indexOf(u)) {
-        values.push(u)
-        options.push(user)
-      } else {
-        hides.push(u)
+        if (!~values.indexOf(u)) {
+          values.push(u)
+          options.push(user)
+        } else {
+          hides.push(u)
+        }
+      })
+    })
+
+    state.selected.forEach((us) => {
+      us._show = !!~hides.indexOf(us[valueField])
+    })
+
+    !count && !noDataText && (state.visible = false)
+
+    if (!props.sortByFetchData) {
+      options.sort((a, b) => (a[textField] > b[textField] ? 1 : -1))
+    }
+
+    state.options = options
+
+    return nextTick()
+  }
+
+export const autoSelect =
+  ({ props, state, nextTick }) =>
+  (usersList) => {
+    if (!usersList.length) {
+      return nextTick()
+    }
+
+    const values = props.multiple ? [].concat(state.user) : []
+
+    usersList.forEach((list) => {
+      if (list.length === 1) {
+        const value = list[0][state.valueField]
+
+        !~values.indexOf(value) && values.push(value)
+
+        if (props.autoClose) {
+          state.visible = false
+        }
       }
     })
-  })
 
-  state.selected.forEach((us) => {
-    us._show = !!~hides.indexOf(us[valueField])
-  })
-
-  !count && !noDataText && (state.visible = false)
-
-  if (!props.sortByFetchData) {
-    options.sort((a, b) => (a[textField] > b[textField] ? 1 : -1))
-  }
-
-  state.options = options
-
-  return nextTick()
-}
-
-export const autoSelect = ({ props, state, nextTick }) => (usersList) => {
-  if (!usersList.length) {
-    return nextTick()
-  }
-
-  const values = props.multiple ? [].concat(state.user) : []
-
-  usersList.forEach((list) => {
-    if (list.length === 1) {
-      const value = list[0][state.valueField]
-
-      !~values.indexOf(value) && values.push(value)
-
-      if (props.autoClose) {
-        state.visible = false
-      }
+    if (!values.length) {
+      return nextTick()
     }
-  })
 
-  if (!values.length) {
+    if (props.multiple) {
+      state.user.length !== values.length && (state.user = values)
+    } else {
+      state.user = values[0]
+    }
+
     return nextTick()
   }
-
-  if (props.multiple) {
-    state.user.length !== values.length && (state.user = values)
-  } else {
-    state.user = values[0]
-  }
-
-  return nextTick()
-}
 
 export const searchMethod = ({ api, props, state, emit }) =>
   debounce(props.delay, (query) => {
@@ -308,262 +312,288 @@ export const searchMethod = ({ api, props, state, emit }) =>
     }
   })
 
-export const setSelected = ({ api, props, state }) => (value) => {
-  const values = Array.isArray(value)
-    ? value.map((v) => (v + '').toLocaleLowerCase())
-    : (value + '').toLocaleLowerCase().split(props.valueSplit)
+export const setSelected =
+  ({ api, props, state }) =>
+  (value) => {
+    const values = Array.isArray(value)
+      ? value.map((v) => (v + '').toLocaleLowerCase())
+      : (value + '').toLocaleLowerCase().split(props.valueSplit)
 
-  state.selected = state.options.filter((user) => {
-    return ~values.indexOf((user[state.valueField] + '').toLocaleLowerCase())
-  })
+    state.selected = state.options.filter((user) => {
+      return ~values.indexOf((user[state.valueField] + '').toLocaleLowerCase())
+    })
 
-  props.cache && api.cacheUser(state.selected)
-}
-
-export const userChange = ({ api, emit, props, state }) => (value) => {
-  const { multiple } = props
-
-  let newVal = multiple && Array.isArray(value) ? value.join(props.valueSplit) : (value || '') + ''
-
-  api.setSelected(newVal)
-
-  if (
-    typeof state.lastValue === 'string' &&
-    state.lastValue !== null &&
-    state.lastValue.toLocaleLowerCase() !== newVal.toLocaleLowerCase()
-  ) {
-    emit('update:modelValue', newVal)
-    emit('change', newVal, state.selected)
+    props.cache && api.cacheUser(state.selected)
   }
 
-  state.lastValue = newVal
-}
+export const userChange =
+  ({ api, emit, props, state }) =>
+  (value) => {
+    const { multiple } = props
 
-export const syncCacheIds = ({ props, state }) => (ids, queryIds, cacheData) => {
-  const { cacheFields, cacheKey } = props
-  const { valueField } = state
-  const cacheUsers = toJson(window.localStorage.getItem(cacheKey)) || {}
-  ids.forEach((id) => {
-    // 如果存在cache 但是cache中不存在自定义cacheFields的字段需要优化 TODO
-    if (cacheUsers[id]) {
-      const cacheUser = cacheUsers[id]
+    let newVal = multiple && Array.isArray(value) ? value.join(props.valueSplit) : (value || '') + ''
 
-      const textField =
-        state.textField === 'userCN' || state.textField === 'userId' || state.textField === 'dept'
-          ? ''
-          : state.textField
+    api.setSelected(newVal)
 
-      if (textField !== '' && !cacheUser.a) {
-        window.localStorage.removeItem(cacheKey)
+    if (
+      typeof state.lastValue === 'string' &&
+      state.lastValue !== null &&
+      state.lastValue.toLocaleLowerCase() !== newVal.toLocaleLowerCase()
+    ) {
+      emit('update:modelValue', newVal)
+      emit('change', newVal, state.selected)
+    }
+
+    state.lastValue = newVal
+  }
+
+export const syncCacheIds =
+  ({ props, state }) =>
+  (ids, queryIds, cacheData) => {
+    const { cacheFields, cacheKey } = props
+    const { valueField } = state
+    const cacheUsers = toJson(window.localStorage.getItem(cacheKey)) || {}
+    ids.forEach((id) => {
+      // 如果存在cache 但是cache中不存在自定义cacheFields的字段需要优化 TODO
+      if (cacheUsers[id]) {
+        const cacheUser = cacheUsers[id]
+
+        const textField =
+          state.textField === 'userCN' || state.textField === 'userId' || state.textField === 'dept'
+            ? ''
+            : state.textField
+
+        if (textField !== '' && !cacheUser.a) {
+          window.localStorage.removeItem(cacheKey)
+          queryIds.push(id)
+        }
+
+        const user = {
+          userId: cacheUser.i,
+          userCN: cacheUser.u,
+          dept: cacheUser.d,
+          employeeNumber: cacheUser.e,
+          [textField]: cacheUser.a
+        }
+
+        cacheFields.forEach((field) => {
+          user[field] = cacheUser[field]
+        })
+
+        cacheData.push(
+          Object.assign(user, {
+            [valueField]: cacheUsers[id].p || cacheUsers[id].i
+          })
+        )
+      } else {
         queryIds.push(id)
       }
-
-      const user = {
-        userId: cacheUser.i,
-        userCN: cacheUser.u,
-        dept: cacheUser.d,
-        employeeNumber: cacheUser.e,
-        [textField]: cacheUser.a
-      }
-
-      cacheFields.forEach((field) => {
-        user[field] = cacheUser[field]
-      })
-
-      cacheData.push(
-        Object.assign(user, {
-          [valueField]: cacheUsers[id].p || cacheUsers[id].i
-        })
-      )
-    } else {
-      queryIds.push(id)
-    }
-  })
-}
-
-export const getUsers = ({ api, props, state }) => (value) => {
-  const { cache } = props
-  const { valueField } = state
-  const ids = Array.isArray(value) ? value : value.split(props.valueSplit)
-  const cacheData = []
-  const queryIds = cache ? [] : ids
-
-  if (cache) {
-    api.syncCacheIds(ids, queryIds, cacheData)
-    request.setCache(cacheData, valueField)
-
-    if (!queryIds.length) {
-      return Promise.resolve(cacheData)
-    }
+    })
   }
 
-  const param = { valueSplit: props.valueSplit, valueField, queryIds }
+export const getUsers =
+  ({ api, props, state }) =>
+  (value) => {
+    const { cache } = props
+    const { valueField } = state
+    const ids = Array.isArray(value) ? value : value.split(props.valueSplit)
+    const cacheData = []
+    const queryIds = cache ? [] : ids
 
-  return new Promise((resolve, reject) => {
-    const cb = (data) => {
-      if (data.error) {
-        reject(data.error)
-      } else {
-        const filterData = cacheData.filter((cache) => !~data.findIndex((d) => d[valueField] === cache[valueField]))
-        resolve(data.concat(filterData))
+    if (cache) {
+      api.syncCacheIds(ids, queryIds, cacheData)
+      request.setCache(cacheData, valueField)
+
+      if (!queryIds.length) {
+        return Promise.resolve(cacheData)
       }
     }
 
-    request.getusers({ param, api, batch: state.batch, cb })
-  })
-}
+    const param = { valueSplit: props.valueSplit, valueField, queryIds }
 
-export const updateCache = ({ props, state }) => () => {
-  const users = toJson(window.localStorage.getItem(props.cacheKey)) || {}
-  const currDate = toDateStr(new Date(), 'yyyyMMdd')
-
-  if (currDate !== users.t) {
-    users.t = currDate
-
-    for (let u in users) {
-      if (u !== 't') {
-        let user = users[u]
-
-        if (user.r > 0) {
-          user.r = 0
+    return new Promise((resolve, reject) => {
+      const cb = (data) => {
+        if (data.error) {
+          reject(data.error)
         } else {
-          user.r--
+          const filterData = cacheData.filter((cache) => !~data.findIndex((d) => d[valueField] === cache[valueField]))
+          resolve(data.concat(filterData))
+        }
+      }
+
+      request.getusers({ param, api, batch: state.batch, cb })
+    })
+  }
+
+export const updateCache =
+  ({ props, state }) =>
+  () => {
+    const users = toJson(window.localStorage.getItem(props.cacheKey)) || {}
+    const currDate = toDateStr(new Date(), 'yyyyMMdd')
+
+    if (currDate !== users.t) {
+      users.t = currDate
+
+      for (let u in users) {
+        if (u !== 't') {
+          let user = users[u]
+
+          if (user.r > 0) {
+            user.r = 0
+          } else {
+            user.r--
+          }
         }
       }
     }
+
+    state.cache = users
   }
 
-  state.cache = users
-}
+export const saveCache =
+  ({ props }) =>
+  (cache) => {
+    window.localStorage.setItem(props.cacheKey, toJsonStr(cache))
+  }
 
-export const saveCache = ({ props }) => (cache) => {
-  window.localStorage.setItem(props.cacheKey, toJsonStr(cache))
-}
+export const cacheUser =
+  ({ api, props, service, state }) =>
+  (users) => {
+    const { cacheKey } = props
+    const { valueField } = state
+    const cacheUser = toJson(window.localStorage.getItem(cacheKey)) || {}
+    const cacheFields = service.userCache
+    let user
 
-export const cacheUser = ({ api, props, service, state }) => (users) => {
-  const { cacheKey } = props
-  const { valueField } = state
-  const cacheUser = toJson(window.localStorage.getItem(cacheKey)) || {}
-  const cacheFields = service.userCache
-  let user
+    for (let i = 0; i < users.length; i++) {
+      const u = users[i]
+      const key = u[valueField]
 
-  for (let i = 0; i < users.length; i++) {
-    const u = users[i]
-    const key = u[valueField]
+      user = cacheUser[key]
 
-    user = cacheUser[key]
+      if (user) {
+        user.r++
+      } else {
+        const us = {
+          p: u[valueField], // 增加一个主键
+          i: u[cacheFields.userId],
+          u: u[cacheFields.userCN],
+          d: u[cacheFields.dept],
+          e: u[cacheFields.eno],
+          a: ~['userCN', 'userId', 'dept'].indexOf(state.textField) ? null : u[state.textField],
+          r: 0
+        }
 
-    if (user) {
-      user.r++
-    } else {
-      const us = {
-        p: u[valueField], // 增加一个主键
-        i: u[cacheFields.userId],
-        u: u[cacheFields.userCN],
-        d: u[cacheFields.dept],
-        e: u[cacheFields.eno],
-        a: ~['userCN', 'userId', 'dept'].indexOf(state.textField) ? null : u[state.textField],
-        r: 0
+        props.cacheFields.forEach((field) => {
+          us[field] = u[field]
+        })
+
+        cacheUser[key] = us
+      }
+    }
+    try {
+      api.saveCache(cacheUser)
+    } catch (e) {
+      const sortUsers = Object.keys(cacheUser).sort((a, b) => {
+        return cacheUser[a].r < cacheUser[b].r ? 1 : -1
+      })
+
+      const cutUser = sortUsers.splice(0, sortUsers.length / 2)
+      const newCache = {}
+
+      for (let i in cutUser) {
+        newCache[cutUser[i]] = cacheUser[cutUser[i]]
       }
 
-      props.cacheFields.forEach((field) => {
-        us[field] = u[field]
-      })
-
-      cacheUser[key] = us
+      api.saveCache(newCache)
     }
   }
-  try {
-    api.saveCache(cacheUser)
-  } catch (e) {
-    const sortUsers = Object.keys(cacheUser).sort((a, b) => {
-      return cacheUser[a].r < cacheUser[b].r ? 1 : -1
-    })
 
-    const cutUser = sortUsers.splice(0, sortUsers.length / 2)
-    const newCache = {}
+export const useSortable =
+  ({ api, props, state, vm }) =>
+  () => {
+    const selectDom = vm.$refs.select.$el
 
-    for (let i in cutUser) {
-      newCache[cutUser[i]] = cacheUser[cutUser[i]]
+    if (props.sortable && props.multiple && !state.sortable) {
+      const tagsDom = selectDom.querySelector('.tiny-select__tags>span>span')
+
+      state.sortable = props.sortable.create(tagsDom, {
+        handle: '.tiny-tag',
+        ghostClass: 'tiny-user__ghost',
+        onEnd: ({ newIndex, oldIndex }) => {
+          let currUser = state.user.splice(oldIndex, 1)[0]
+          state.user.splice(newIndex, 0, currUser)
+          api.userChange(state.user)
+        }
+      })
+    }
+  }
+
+export const visibleChange =
+  ({ state, emit }) =>
+  (show) => {
+    if (!show) {
+      state.visible = show
+      state.options = state.selected.map((user) => Object.assign(user, { _show: true }))
     }
 
-    api.saveCache(newCache)
-  }
-}
-
-export const useSortable = ({ api, props, state, vm }) => () => {
-  const selectDom = vm.$refs.select.$el
-
-  if (props.sortable && props.multiple && !state.sortable) {
-    const tagsDom = selectDom.querySelector('.tiny-select__tags>span>span')
-
-    state.sortable = props.sortable.create(tagsDom, {
-      handle: '.tiny-tag',
-      ghostClass: 'tiny-user__ghost',
-      onEnd: ({ newIndex, oldIndex }) => {
-        let currUser = state.user.splice(oldIndex, 1)[0]
-        state.user.splice(newIndex, 0, currUser)
-        api.userChange(state.user)
-      }
-    })
-  }
-}
-
-export const visibleChange = ({ state, emit }) => (show) => {
-  if (!show) {
-    state.visible = show
-    state.options = state.selected.map((user) => Object.assign(user, { _show: true }))
+    emit('visible-change', show)
   }
 
-  emit('visible-change', show)
-}
+export const initUser =
+  ({ api, props, state }) =>
+  (value) => {
+    if (value === state.lastValue) {
+      return
+    }
 
-export const initUser = ({ api, props, state }) => (value) => {
-  if (value === state.lastValue) {
-    return
-  }
+    state.user = !props.multiple ? '' : []
 
-  state.user = !props.multiple ? '' : []
+    if (typeof value === 'number') {
+      value += ''
+    }
 
-  if (typeof value === 'number') {
-    value += ''
-  }
-
-  if (!value) {
-    state.options = []
-    state.selected = []
-    api.userChange(value)
-    return
-  }
-
-  value &&
-    api.getUsers(value).then((info) => {
-      // 按value排序
-      info.sort((a, b) => {
-        return value.indexOf(a[state.valueField] + '') > value.indexOf(b[state.valueField] + '') ? 1 : -1
-      })
-
-      const list = info.map((user) => {
-        user._show = true
-        return user[state.valueField]
-      })
-
-      state.options = info
-      state.user = props.multiple ? list : list[0]
-
+    if (!value) {
+      state.options = []
+      state.selected = []
       api.userChange(value)
-    })
-}
-export const handleBlur = ({ constants, dispatch, state }) => () => {
-  dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.FormBlur, state.user)
-}
+      return
+    }
+
+    value &&
+      api.getUsers(value).then((info) => {
+        // 按value排序
+        info.sort((a, b) => {
+          return value.indexOf(a[state.valueField] + '') > value.indexOf(b[state.valueField] + '') ? 1 : -1
+        })
+
+        const list = info.map((user) => {
+          user._show = true
+          return user[state.valueField]
+        })
+
+        state.options = info
+        state.user = props.multiple ? list : list[0]
+
+        api.userChange(value)
+      })
+  }
+export const handleBlur =
+  ({ constants, dispatch, state }) =>
+  () => {
+    dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.FormBlur, state.user)
+  }
 
 export const initService = ({ props, service }) => {
   const noopFnCreator = (propName) => () => {
     if (propName) {
-      return Promise.reject(new Error(`[TINY Error][User]] Prop ${propName} is not configured`))
+      return Promise.reject(
+        new Error(`[TINY Error][User]] Prop ${propName} is mandatory when the framework service is not used`)
+      )
     } else {
-      return Promise.reject(new Error('[TINY Error][User]] This component depends on @opentiny/service'))
+      return Promise.reject(
+        new Error('[TINY Error][User]] Prop service is mandatory when the framework service is not used')
+      )
     }
   }
 
@@ -592,20 +622,30 @@ export const initService = ({ props, service }) => {
   }
 }
 
-export const filter = ({ props, state }) => () => {
-  if (props.multiple && props.hideSelected) {
-    const selectedUsers = state.user.map((value) => (typeof value === 'string' ? value.toLocaleLowerCase() : value))
+export const filter =
+  ({ props, state }) =>
+  () => {
+    if (props.multiple && props.hideSelected) {
+      const selectedUsers = state.user.map((value) => (typeof value === 'string' ? value.toLocaleLowerCase() : value))
 
-    return state.options.filter((user) => {
-      return !~selectedUsers.indexOf(
-        typeof user[state.valueField] === 'string' ? user[state.valueField].toLocaleLowerCase() : user[state.textField]
-      )
-    })
+      return state.options.filter((user) => {
+        return !~selectedUsers.indexOf(
+          typeof user[state.valueField] === 'string'
+            ? user[state.valueField].toLocaleLowerCase()
+            : user[state.textField]
+        )
+      })
+    }
+
+    return state.options
   }
 
-  return state.options
-}
+export const computedTextField =
+  ({ service, props }) =>
+  () =>
+    props.textField || service.textField || 'userCN'
 
-export const computedTextField = ({ service, props }) => () => props.textField || service.textField || 'userCN'
-
-export const computedValueField = ({ service, props }) => () => props.valueField || service.valueField || 'userId'
+export const computedValueField =
+  ({ service, props }) =>
+  () =>
+    props.valueField || service.valueField || 'userId'

@@ -12,4 +12,4 @@
 import { svg } from '@opentiny/vue-common'
 import Ascending from '@opentiny/vue-theme/svgs/ascending.svg'
 
-export default svg({ name: 'IconAscending', component: Ascending })
+export default () => svg({ name: 'IconAscending', component: Ascending })()

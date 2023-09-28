@@ -12,4 +12,4 @@
 import { svg } from '@opentiny/vue-common'
 import PrompExclamation from '@opentiny/vue-theme/svgs/prompt-exclamation.svg'
 
-export default svg({ name: 'IconPrompExclamation', component: PrompExclamation })
+export default () => svg({ name: 'IconPrompExclamation', component: PrompExclamation })()

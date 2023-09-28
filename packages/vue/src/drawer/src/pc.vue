@@ -20,7 +20,7 @@
           'is-right': placement === 'right',
           'is-top': placement === 'top',
           'is-bottom': placement === 'bottom',
-          'drag-effects': !state.dragEvent.isDrag,
+          'drag-effects': !state.dragEvent.isDrag
         },
         customClass
       ]"
@@ -55,9 +55,7 @@
         <!-- footer -->
         <div data-tag="drawer-footer" ref="footer" v-if="showFooter" class="tiny-drawer__footer">
           <slot name="footer">
-            <tiny-button type="primary" @click="confirm">{{
-              t('ui.button.confirm')
-            }}</tiny-button>
+            <tiny-button type="primary" @click="confirm">{{ t('ui.button.confirm') }}</tiny-button>
             <tiny-button plain @click="close">{{ t('ui.button.cancel') }}</tiny-button>
           </slot>
         </div>
@@ -93,7 +91,7 @@ export default {
     'lockScroll',
     'flex',
     'showClose',
-    'zIndex',
+    'zIndex'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

@@ -55,6 +55,8 @@ export default {
       all: 'All',
       cancel: 'Cancel',
       confirm: 'OK',
+      delete: 'Delete',
+      edit: 'Edit',
       more: 'More',
       reset: 'Reset'
     },
@@ -79,6 +81,10 @@ export default {
       summation: 'Summation',
       total: 'Total',
       value: 'Value'
+    },
+    colorSelectPanel: {
+      confirm: 'Ok',
+      cancel: 'Cancel'
     },
     creditCardForm: {
       submit: 'Submit'
@@ -145,6 +151,37 @@ export default {
       year: '',
       to: 'to'
     },
+    richTextEditor: {
+      bold: 'bold',
+      italic: 'italic',
+      link: 'link',
+      unlink: 'unlink',
+      highlight: 'high light',
+      underline: 'underline',
+      strike: 'strike',
+      subscript: 'subscript',
+      superscript: 'superscript',
+      code: 'code',
+      unorderedlist: 'unorderedlist',
+      orderedlist: 'orderedlist',
+      taskList: 'taskList',
+      quote: 'quote',
+      codeBlock: 'code block',
+      formatClear: 'format clear',
+      nodeDelete: 'node delete',
+      undo: 'undo',
+      redo: 'redo',
+      left: 'left',
+      center: 'center',
+      right: 'right',
+      fontSize: 'font size',
+      lineHeight: 'line height',
+      hBox: 'h box',
+      img: 'img',
+      color: 'color',
+      table: 'table',
+      backgroundColor: 'backgroundColor'
+    },
     calendar: {
       showType: {
         year: 'year'
@@ -206,8 +243,8 @@ export default {
       folder: ' has more than five layers of folders. The file will not be uploaded',
       init: 'Service error. Please try again.',
       token: 'Perform EDM authentication first and obtain the token',
-      exceed: 'size exceeds the limit, max size config is',
-      largeFile: 'The file size exceeds the upper limit by 2 GB !!',
+      exceed: 'Failed to upload the file. The file size exceeds the upper limit ({maxSize} MB).',
+      largeFile: 'The file size exceeds the upper limit by 2 GB !!!',
       fileSize: 'The file size of {name} cannot be less than ',
       deleteTip: 'Press delete to remove',
       downloadFile: 'DownLoad file',
@@ -225,8 +262,11 @@ export default {
       onlySupport: 'Only support {type} file',
       fileNotLessThan: 'The file cannot be less than',
       fileNotMoreThan: 'The file cannot be more than',
-      notSupport: 'The file in this format cannot be uploaded. Upload the file again.',
-      attachment: 'Attachment'
+      notSupport: 'File upload failed: The format (.{format}) is not supported.',
+      attachment: 'Attachment',
+      uploadList: 'Upload List',
+      numberExceed:
+        'Failed to upload the file. The number of files to be uploaded in batches exceeds the upper limit ({number}).'
     },
     uploadList: {
       pictureUploading: 'Picture uploading',
@@ -241,7 +281,8 @@ export default {
       releaseAndUpload: 'Release the mouse and upload the file',
       dragOrClickImport: 'Drag the file here, or click Import',
       shoot: 'Shoot',
-      selectFromAlbum: 'Select from album'
+      selectFromAlbum: 'Select from album',
+      uploadFailedAndReupload: 'Upload failed. Click Upload again'
     },
     upload: {
       addPicture: 'Add picture',
@@ -283,6 +324,10 @@ export default {
       },
       filter: {
         allFilter: 'All',
+        allSelect: '(All)',
+        endDate: 'End Date',
+        startDate: 'Start Date',
+        dateTips: 'Please enter at least one date',
         clear: 'Clear Current Filter',
         clearAll: 'Clear All Filters',
         confirmFilter: 'OK',
@@ -466,7 +511,11 @@ export default {
     },
     tree: {
       emptyText: 'No data',
-      switchText: 'check easily'
+      switchText: 'check easily',
+      deleteTip: 'Data will be permanently deleted, are you sure you want to proceed with the deletion?',
+      preserveSubnodeTip: 'This node have child nodes, Would you like to preserve the data of the child nodes?',
+      preserveSubnodeData: 'To preserve child nodes\' data.',
+      newNodeTitle: 'Add Child Nodes'
     },
     usercard: {
       address: 'Address',

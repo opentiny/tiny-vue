@@ -10,6 +10,6 @@
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
     "@vue/test-utils": "^2.2.7",
-    "vue": "^3.2.31"
+    "vue": "^3.3.4"
   }
 }
