@@ -22,6 +22,7 @@ export const renderless = (props, context, { emit }) => {
     r.value = rr
     g.value = gg
     b.value = bb
+    alpha.value = color.get('a');
   })
   context.watch(alpha, (newAlpha) => {
     updateThumb(newAlpha, alphaThumb.value, alphaWrapper.value)

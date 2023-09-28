@@ -10,6 +10,7 @@
         @confirm="onConfirm"
         @cancel="onCancel"
         :history="history"
+        alpha
     />
     </div>
   </div>
@@ -45,7 +46,7 @@ export default {
       });
       hidden();
     }
-    const history = ref(['#66ccff']);
+    const history = ref(['#66ccff25']);
     const randomHex = () => "#" + Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0");
     const addHistoryColor = () => {
       history.value.push(
