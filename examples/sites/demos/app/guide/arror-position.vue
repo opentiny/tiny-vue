@@ -1,15 +1,7 @@
 <template>
   <div>
-    <div class="guide-content">
-      <tiny-alert
-        class="pos"
-        :closable="false"
-        type="success"
-        size="large"
-        description="提交结果页用于反馈一系列操作任务的处理结果。"
-      >
-      </tiny-alert>
-    </div>
+    <tiny-alert class="pos" :closable="false" type="success" size="large" description="提交结果页用于反馈一系列操作任务的处理结果。">
+    </tiny-alert>
     <div class="guide-title">
       <tiny-button plain @click="stepStart1">默认</tiny-button>
       <tiny-button plain @click="stepStart2">上居中</tiny-button>
@@ -115,9 +107,5 @@ export default {
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
-  width: 600px;
-}
-.guide-content {
-  width: 600px;
 }
 </style>

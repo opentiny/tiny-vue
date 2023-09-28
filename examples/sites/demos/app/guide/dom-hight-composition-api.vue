@@ -8,12 +8,7 @@
         <tiny-button plain class="hight3">新手引导3</tiny-button>
         <tiny-alert class="hight4" :closable="false" description="type 为默认值 info"></tiny-alert>
         <div class="hight11 tiny-hight-content-item">
-          <tiny-alert
-            type="success"
-            size="large"
-            :closable="false"
-            description="提交结果页用于反馈一系列操作任务的处理结果。"
-          >
+          <tiny-alert type="success" size="large" :closable="false" description="提交结果页用于反馈一系列操作任务的处理结果。">
             <tiny-button size="mini" type="primary">继续提交</tiny-button>
             <tiny-button size="mini">取消操作</tiny-button>
           </tiny-alert>
@@ -76,11 +71,12 @@ function stepStart() {
 <style scoped>
 .tiny-hight-content {
   height: 500px;
-  widows: 500px;
 }
+
 .tiny-hight-content-item {
   margin-top: 200px;
 }
+
 .hight4 {
   width: auto;
   height: 36px;
