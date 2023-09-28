@@ -405,6 +405,8 @@ async function batchBuild({
           {
             name: 'replace-scope',
             transform(code) {
+              if (scopeName === '@opentiny') return code
+
               let modifiedCode = code
               while (modifiedCode.match(/@opentiny\/react/g)) {
                 modifiedCode = modifiedCode.replace('@opentiny/react', `${scopeName}/react`)
