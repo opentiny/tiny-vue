@@ -20,6 +20,12 @@ export default {
       'desc': { 'zh-CN': '点击确认是将会触发confirm事件, 取消时触发cancel事件', 'en-US': 'When click confirm will trigger confirm event. When click outside or cancel will trigger cancel event' },
       'codeFiles': ['event.vue']
     },
+    {
+      'demoId': 'history',
+      'name': { 'zh-CN': '历史记录', 'en-US': 'history' },
+      'desc': { 'zh-CN': '点击确认是将会触发confirm事件, 取消时触发cancel事件', 'en-US': 'When click confirm will trigger confirm event. When click outside or cancel will trigger cancel event' },
+      'codeFiles': ['history.vue']
+    },
   ],
   apis: [
     {

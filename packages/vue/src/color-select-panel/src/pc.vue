@@ -13,6 +13,16 @@
         </tiny-button>
       </tiny-button-group>
     </div>
+    <div class="tiny-color-select-panel__wrapper__history">
+      <div
+        class="tiny-color-select-panel__wrapper__history__color-block"
+        v-for="color in state.stack"
+        :style="{
+          background: color
+        }"
+        @click="() => onHistoryClick(color)"
+      ></div>
+    </div>
   </div>
 </template>
 
@@ -31,7 +41,7 @@ import { t } from '@opentiny/vue-locale'
 
 export default defineComponent({
   emits: ['update:modelValue', 'cancel', 'confirm', 'hue-update', 'sv-update'],
-  props: [...props, 'modelValue', 'visible', 'alpha'],
+  props: [...props, 'modelValue', 'visible', 'alpha','history'],
   components: {
     hueSelect: HueSelect,
     alphaSelect: AlphaSelect,

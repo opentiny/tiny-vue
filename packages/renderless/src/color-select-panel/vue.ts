@@ -1,6 +1,6 @@
 import {IColorSelectPanelRef as Ref} from '@/types';
-import Color from './utils/color'
-import { onConfirm, onCancel, onHSVUpdate, onAlphaUpdate } from '.'
+import Color, { normalizeHexColor } from './utils/color'
+import { onConfirm, onCancel, onHSVUpdate, onAlphaUpdate, handleHistoryClick } from '.'
 
 export const api = [
   'state',
@@ -12,6 +12,7 @@ export const api = [
   'onConfirm',
   'onCancel',
   'onAlphaUpdate',
+  'onHistoryClick',
   'alpha'
 ]
 
@@ -20,12 +21,18 @@ export const renderless = (
   context,
   { emit }
 ) => {
-  const { modelValue, visible } = context.toRefs(props)
+  const { modelValue, visible, history } = context.toRefs(props)
   const hex = context.ref(modelValue?.value ?? 'transparent')
   const res = context.ref(modelValue?.value ?? 'transparent')
   const triggerBg = context.ref(modelValue?.value ?? 'transparent')
   const isShow = context.ref(visible?.value ?? false)
   const cursor: Ref<HTMLElement> = context.ref()
+  const stack:Ref<Set<string>> = context.ref(
+    new Set(
+      history?.value ?? []
+    )
+  )
+  const enableHistory:Ref<boolean> = context.ref(history?.value);
   const changeVisible = (state: boolean) => {
     isShow.value = state
   }
@@ -36,8 +43,23 @@ export const renderless = (
     color,
     triggerBg,
     defaultValue: modelValue,
-    res
+    res,
+    stack
   })
+  context.watch(history, (newHistory:string[]) => {
+    if (newHistory.length < stack.value.size){
+      console.log(newHistory.length ,stack.value.size)
+      for (const item of stack.value.values()){
+        if (!newHistory.includes(item)){
+          stack.value.delete(item);
+        }
+      }
+    } else {
+      for(let i=0;i<newHistory.length;i++){
+        stack.value.add(newHistory[i]);
+      }
+    }
+  }, {deep: true})
   context.watch(modelValue, (newValue) => {
     hex.value = newValue
     res.value = newValue
@@ -54,9 +76,10 @@ export const renderless = (
     changeVisible,
     onHueUpdate,
     onSVUpdate,
-    onConfirm: onConfirm(hex, triggerBg, res, emit, isShow),
+    onConfirm: onConfirm(hex, triggerBg, res, emit, stack, enableHistory.value),
     onCancel: onCancel(res, triggerBg, emit, isShow, hex, color),
     onAlphaUpdate: update,
+    onHistoryClick: handleHistoryClick(hex, res, color, triggerBg),
     cursor,
     alpha: props.alpha
   }

@@ -3,9 +3,15 @@ import type Color from './utils/color'
 
 export const onConfirm = (
   hex: IColorSelectPanelRef<string>, triggerBg: IColorSelectPanelRef<string>,
-  res: IColorSelectPanelRef<string>, emit, isShow: IColorSelectPanelRef<boolean>
+  res: IColorSelectPanelRef<string>, emit, stack: IColorSelectPanelRef<Set<string>>,
+  enableHistory: boolean
 ) => {
   return () => {
+    hex.value = res.value;
+    triggerBg.value = res.value;
+    if (enableHistory){
+      stack.value.add(res.value);
+    }
     emit('confirm', res.value)
   }
 }
@@ -51,5 +57,18 @@ export const onAlphaUpdate = (color: Color, res: IColorSelectPanelRef<string>) =
       color.set({ a: alpha })
       onColorUpdate(color, res)
     }
+  }
+}
+
+export const handleHistoryClick = (
+  hex:IColorSelectPanelRef<string>, res:IColorSelectPanelRef<string>,
+  color:Color, triggerBg: IColorSelectPanelRef<string>
+  )=>{
+  return (history: string)=>{
+    hex.value = history;
+    res.value = history;
+    // triggerBg.value = history;
+    // triggerBg.value = history
+    color.reset(history);
   }
 }
