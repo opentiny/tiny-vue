@@ -45,14 +45,11 @@ export default {
     {
       'name': 'breadcrumb',
       'type': 'component',
-      'properties': [],
-      'events': [],
-      'slots': [],
-      'breadcrumb-attrs': [
+      'props': [
         {
           'name': 'options',
           'type': 'Array',
-          'defaultValue': '[]',
+          'defaultValue': '该属性的默认值为 []',
           'desc': {
             'zh-CN': '配置 options ,可以单独使用 tiny-breadcrumb 组件',
             'en-US': 'Configure options. The tiny-breadcrumb component can be used independently.'
@@ -85,7 +82,7 @@ export default {
           'demoId': 'options'
         }
       ],
-      'breadcrumb-events': [
+      'events': [
         {
           'name': 'select',
           'type': 'Function',
@@ -96,8 +93,12 @@ export default {
           },
           'demoId': 'options'
         }
-      ],
-      'breadcrumbItem-attrs': [
+      ]
+    },
+    {
+      'name': 'breadcrumbItem',
+      'type': 'component',
+      'props': [
         {
           'name': 'label',
           'type': 'String',
@@ -126,7 +127,7 @@ export default {
           'demoId': 'slot-default'
         }
       ],
-      'breadcrumbItem-slots': [
+      'slots': [
         {
           'name': 'default',
           'type': '',
@@ -135,7 +136,7 @@ export default {
           'demoId': 'slot-default'
         }
       ],
-      'breadcrumbItem-events': [
+      'events': [
         {
           'name': 'select',
           'type': '',
