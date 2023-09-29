@@ -132,6 +132,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/gweesin"><img src="https://avatars.githubusercontent.com/u/42909374?v=4?s=100" width="100px;" alt="Gweesin Chan"/><br /><sub><b>Gweesin Chan</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=gweesin" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/Binks123"><img src="https://avatars.githubusercontent.com/u/103343025?v=4?s=100" width="100px;" alt="Binks_"/><br /><sub><b>Binks_</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Binks123" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/yoyo201626"><img src="https://avatars.githubusercontent.com/u/104079404?v=4?s=100" width="100px;" alt="yoyo"/><br /><sub><b>yoyo</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=yoyo201626" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://hexo.kifroom.icu/"><img src="https://avatars.githubusercontent.com/u/62132584?v=4?s=100" width="100px;" alt="Kif"/><br /><sub><b>Kif</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=wkif" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
