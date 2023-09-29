@@ -6,7 +6,7 @@
   </tiny-breadcrumb>
 </template>
 
-<script lang="jsx">
+<script>
 import { Breadcrumb, BreadcrumbItem } from '@opentiny/vue'
 
 export default {

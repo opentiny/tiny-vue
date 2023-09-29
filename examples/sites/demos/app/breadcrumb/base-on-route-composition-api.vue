@@ -6,7 +6,7 @@
   </tiny-breadcrumb>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { Breadcrumb as TinyBreadcrumb, BreadcrumbItem as TinyBreadcrumbItem } from '@opentiny/vue'

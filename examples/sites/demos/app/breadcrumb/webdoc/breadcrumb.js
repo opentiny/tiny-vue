@@ -34,9 +34,9 @@ export default {
       'name': { 'zh-CN': 'options 配置', 'en-US': 'options configuration' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>options</code> 总体配置每个 <code>BreadcrumbItem</code>。  </p> 设置<code>text-field</code> 指定显示字段，默认显示字段为 <code>label</code>\n',
+          '<p>通过 <code>options</code> 总体配置每个 <code>BreadcrumbItem</code>。  </p> 设置<code>text-field</code> 指定显示字段，默认显示字段为 <code>label</code>。\n',
         'en-US':
-          '<p>Totally configure each <code>BreadcrumbItem</code> via <code>options</code>. </p>Set <code>text-field</code> to specify the field to be displayed. The default field to be displayed is <code>label</code>\n'
+          '<p>Totally configure each <code>BreadcrumbItem</code> via <code>options</code>. </p>Set <code>text-field</code> to specify the field to be displayed. The default field to be displayed is <code>label</code>.\n'
       },
       'codeFiles': ['options.vue']
     }
