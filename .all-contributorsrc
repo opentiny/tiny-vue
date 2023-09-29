@@ -339,6 +339,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Binks123",
+      "name": "Binks_",
+      "avatar_url": "https://avatars.githubusercontent.com/u/103343025?v=4",
+      "profile": "https://github.com/Binks123",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 8,
