@@ -50,6 +50,16 @@ export default {
       'slots': [],
       'breadcrumb-attrs': [
         {
+          'name': 'options',
+          'type': 'Array',
+          'defaultValue': '[]',
+          'desc': {
+            'zh-CN': '配置 options ,可以单独使用 tiny-breadcrumb 组件',
+            'en-US': 'Configure options. The tiny-breadcrumb component can be used independently.'
+          },
+          'demoId': 'options'
+        },
+        {
           'name': 'separator',
           'type': 'String',
           'defaultValue': '该属性的默认值为 >',
@@ -62,16 +72,6 @@ export default {
           'defaultValue': '',
           'desc': { 'zh-CN': '图标分隔符 class', 'en-US': 'Icon separator class' },
           'demoId': 'separator'
-        },
-        {
-          'name': 'options',
-          'type': 'Array',
-          'defaultValue': '[]',
-          'desc': {
-            'zh-CN': '配置 options ,可以单独使用 tiny-breadcrumb 组件',
-            'en-US': 'Configure options. The tiny-breadcrumb component can be used independently.'
-          },
-          'demoId': 'options'
         },
         {
           'name': 'text-field',
@@ -99,14 +99,11 @@ export default {
       ],
       'breadcrumbItem-attrs': [
         {
-          'name': 'to',
-          'type': 'String , Object',
+          'name': 'label',
+          'type': 'String',
           'defaultValue': '',
-          'desc': {
-            'zh-CN': '路由跳转对象，同 vue-router 的 to',
-            'en-US': 'Route redirection object, which is the same as to of vue-router'
-          },
-          'demoId': 'slot-default'
+          'desc': { 'zh-CN': '定义面包屑的显示值', 'en-US': 'Define the breadcrumb display value.' },
+          'demoId': 'base'
         },
         {
           'name': 'replace',
@@ -119,11 +116,14 @@ export default {
           'demoId': 'slot-default'
         },
         {
-          'name': 'label',
-          'type': 'String',
+          'name': 'to',
+          'type': 'String , Object',
           'defaultValue': '',
-          'desc': { 'zh-CN': '定义面包屑的显示值', 'en-US': 'Define the breadcrumb display value.' },
-          'demoId': 'base'
+          'desc': {
+            'zh-CN': '路由跳转对象，同 vue-router 的 to',
+            'en-US': 'Route redirection object, which is the same as to of vue-router'
+          },
+          'demoId': 'slot-default'
         }
       ],
       'breadcrumbItem-slots': [
