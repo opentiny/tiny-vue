@@ -127,15 +127,6 @@ export default {
           'demoId': 'slot-default'
         }
       ],
-      'slots': [
-        {
-          'name': 'default',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '默认插槽', 'en-US': 'Default slot' },
-          'demoId': 'slot-default'
-        }
-      ],
       'events': [
         {
           'name': 'select',
@@ -146,6 +137,15 @@ export default {
             'en-US': 'This event is triggered when breadcrumb-item is clicked.'
           },
           'demoId': 'base'
+        }
+      ],
+      'slots': [
+        {
+          'name': 'default',
+          'type': '',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '默认插槽', 'en-US': 'Default slot' },
+          'demoId': 'slot-default'
         }
       ]
     }
