@@ -4,4 +4,4 @@ title: Anchor
 
 # Anchor
 
-<div>Used to jump to the specified position on the page</div>
+<div>Jump to the specified position on the page.</div>

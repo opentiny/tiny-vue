@@ -47,14 +47,11 @@ export default {
       'type': 'component',
       'properties': [
         {
-          'name': 'links',
-          'type': '{ key, link, title, children }[]',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '数据配置项，可通过children嵌套',
-            'en-US': 'Data configuration item, which can be nested by children.'
-          },
-          'demoId': 'basic-usage'
+          'name': 'container-id',
+          'type': 'String',
+          'defaultValue': 'document.body',
+          'desc': { 'zh-CN': '指定滚动容器的id值', 'en-US': 'Specify the scrolling container ID.' },
+          'demoId': 'set-container'
         },
         {
           'name': 'is-affix',
@@ -64,11 +61,14 @@ export default {
           'demoId': 'is-affix'
         },
         {
-          'name': 'container-id',
-          'type': 'String',
-          'defaultValue': 'document.body',
-          'desc': { 'zh-CN': '指定滚动容器的id值', 'en-US': 'Specify the scrolling container ID.' },
-          'demoId': 'set-container'
+          'name': 'links',
+          'type': '{ key, link, title, children }[]',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '数据配置项，可通过children嵌套',
+            'en-US': 'Data configuration item, which can be nested by children.'
+          },
+          'demoId': 'basic-usage'
         },
         {
           'name': 'mask-class',
