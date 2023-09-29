@@ -329,6 +329,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "gweesin",
+      "name": "Gweesin Chan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42909374?v=4",
+      "profile": "https://github.com/gweesin",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 8,
