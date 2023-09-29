@@ -357,6 +357,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "wkif",
+      "name": "Kif",
+      "avatar_url": "https://avatars.githubusercontent.com/u/62132584?v=4",
+      "profile": "https://hexo.kifroom.icu/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 8,
