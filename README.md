@@ -130,6 +130,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/chenguang1994"><img src="https://avatars.githubusercontent.com/u/31501915?v=4?s=100" width="100px;" alt="Spark Bill"/><br /><sub><b>Spark Bill</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=chenguang1994" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/Zuowendong"><img src="https://avatars.githubusercontent.com/u/45628596?v=4?s=100" width="100px;" alt="wendZzoo"/><br /><sub><b>wendZzoo</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Zuowendong" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/gweesin"><img src="https://avatars.githubusercontent.com/u/42909374?v=4?s=100" width="100px;" alt="Gweesin Chan"/><br /><sub><b>Gweesin Chan</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=gweesin" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Binks123"><img src="https://avatars.githubusercontent.com/u/103343025?v=4?s=100" width="100px;" alt="Binks_"/><br /><sub><b>Binks_</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Binks123" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
