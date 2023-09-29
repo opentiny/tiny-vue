@@ -348,6 +348,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "yoyo201626",
+      "name": "yoyo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/104079404?v=4",
+      "profile": "https://github.com/yoyo201626",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 8,
