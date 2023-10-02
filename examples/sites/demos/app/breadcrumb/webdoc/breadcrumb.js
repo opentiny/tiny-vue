@@ -34,9 +34,9 @@ export default {
       'name': { 'zh-CN': 'options 配置', 'en-US': 'options configuration' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>options</code> 总体配置每个 <code>BreadcrumbItem</code>。  </p> 设置<code>text-field</code> 指定显示字段，默认显示字段为 <code>label</code>\n',
+          '<p>通过 <code>options</code> 总体配置每个 <code>BreadcrumbItem</code>。  </p> 设置<code>text-field</code> 指定显示字段，默认显示字段为 <code>label</code>。\n',
         'en-US':
-          '<p>Totally configure each <code>BreadcrumbItem</code> via <code>options</code>. </p>Set <code>text-field</code> to specify the field to be displayed. The default field to be displayed is <code>label</code>\n'
+          '<p>Totally configure each <code>BreadcrumbItem</code> via <code>options</code>. </p>Set <code>text-field</code> to specify the field to be displayed. The default field to be displayed is <code>label</code>.\n'
       },
       'codeFiles': ['options.vue']
     }
@@ -45,10 +45,17 @@ export default {
     {
       'name': 'breadcrumb',
       'type': 'component',
-      'properties': [],
-      'events': [],
-      'slots': [],
-      'breadcrumb-attrs': [
+      'props': [
+        {
+          'name': 'options',
+          'type': 'Array',
+          'defaultValue': '该属性的默认值为 []',
+          'desc': {
+            'zh-CN': '配置 options ,可以单独使用 tiny-breadcrumb 组件',
+            'en-US': 'Configure options. The tiny-breadcrumb component can be used independently.'
+          },
+          'demoId': 'options'
+        },
         {
           'name': 'separator',
           'type': 'String',
@@ -64,16 +71,6 @@ export default {
           'demoId': 'separator'
         },
         {
-          'name': 'options',
-          'type': 'Array',
-          'defaultValue': '[]',
-          'desc': {
-            'zh-CN': '配置 options ,可以单独使用 tiny-breadcrumb 组件',
-            'en-US': 'Configure options. The tiny-breadcrumb component can be used independently.'
-          },
-          'demoId': 'options'
-        },
-        {
           'name': 'text-field',
           'type': 'String',
           'defaultValue': 'label',
@@ -85,7 +82,7 @@ export default {
           'demoId': 'options'
         }
       ],
-      'breadcrumb-events': [
+      'events': [
         {
           'name': 'select',
           'type': 'Function',
@@ -96,17 +93,18 @@ export default {
           },
           'demoId': 'options'
         }
-      ],
-      'breadcrumbItem-attrs': [
+      ]
+    },
+    {
+      'name': 'breadcrumbItem',
+      'type': 'component',
+      'props': [
         {
-          'name': 'to',
-          'type': 'String , Object',
+          'name': 'label',
+          'type': 'String',
           'defaultValue': '',
-          'desc': {
-            'zh-CN': '路由跳转对象，同 vue-router 的 to',
-            'en-US': 'Route redirection object, which is the same as to of vue-router'
-          },
-          'demoId': 'slot-default'
+          'desc': { 'zh-CN': '定义面包屑的显示值', 'en-US': 'Define the breadcrumb display value.' },
+          'demoId': 'base'
         },
         {
           'name': 'replace',
@@ -119,23 +117,17 @@ export default {
           'demoId': 'slot-default'
         },
         {
-          'name': 'label',
-          'type': 'String',
+          'name': 'to',
+          'type': 'String , Object',
           'defaultValue': '',
-          'desc': { 'zh-CN': '定义面包屑的显示值', 'en-US': 'Define the breadcrumb display value.' },
-          'demoId': 'base'
-        }
-      ],
-      'breadcrumbItem-slots': [
-        {
-          'name': 'default',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '默认插槽', 'en-US': 'Default slot' },
+          'desc': {
+            'zh-CN': '路由跳转对象，同 vue-router 的 to',
+            'en-US': 'Route redirection object, which is the same as to of vue-router'
+          },
           'demoId': 'slot-default'
         }
       ],
-      'breadcrumbItem-events': [
+      'events': [
         {
           'name': 'select',
           'type': '',
@@ -145,6 +137,15 @@ export default {
             'en-US': 'This event is triggered when breadcrumb-item is clicked.'
           },
           'demoId': 'base'
+        }
+      ],
+      'slots': [
+        {
+          'name': 'default',
+          'type': '',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '默认插槽', 'en-US': 'Default slot' },
+          'demoId': 'slot-default'
         }
       ]
     }
