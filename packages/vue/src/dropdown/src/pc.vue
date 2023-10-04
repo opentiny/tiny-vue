@@ -85,6 +85,10 @@ export default defineComponent({
       type: String,
       default: '下拉菜单'
     },
+    visibleArrow: {
+      type: Boolean,
+      default: false
+    },
     inheritWidth: {
       type: Boolean,
       default: false
@@ -96,7 +100,7 @@ export default defineComponent({
   },
   render() {
     const { splitButton, type, disabled, handleMainButtonClick, menuOptions, title } = this
-    const { slots, size, state, border, showIcon, round, clickOutside } = this
+    const { slots, size, state, border, visibleArrow, round, clickOutside } = this
     const params = { visible: state.visible }
     let triggerElm = null
     // TINY-TODO tiny-dropdown类名整改,统一tiny-组件名为前缀
@@ -140,7 +144,7 @@ export default defineComponent({
       }
 
       // 增加一层，vue3 环境中无法使用 slots.default 的方式获取原生 DOM 元素
-      const suffixInner = showIcon ? (
+      const suffixInner = visibleArrow ? (
         <span class="tiny-dropdown__suffix-inner">{suffixSlot || <IconDown class={visibleClass}></IconDown>}</span>
       ) : (
         ''
@@ -153,7 +157,7 @@ export default defineComponent({
           ref="trigger"
           round={round}
           disabled={disabled}
-          class={`${state.visible ? 'is-expand' : ''}${showIcon ? ' is-show-icon' : ''}`}
+          class={`${state.visible ? 'is-expand' : ''}${visibleArrow ? ' is-show-icon' : ''}`}
           reset-time={0}>
           {defaultTriggerElm}
           {suffixInner}

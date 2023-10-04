@@ -1,7 +1,7 @@
 <template>
-  <tiny-dropdown>
+  <tiny-dropdown visible-arrow>
     <template #dropdown>
-      <tiny-dropdown-menu popper-class="my-class" placement="top" :visible-arrow="true">
+      <tiny-dropdown-menu popper-class="my-class" placement="top" >
         <tiny-dropdown-item label="老友粉"></tiny-dropdown-item>
         <tiny-dropdown-item>黄金糕</tiny-dropdown-item>
         <tiny-dropdown-item>狮子头</tiny-dropdown-item>

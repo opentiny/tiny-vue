@@ -70,6 +70,10 @@ export default defineComponent({
       type: String,
       default: '下拉菜单'
     },
+    visibleArrow: {
+      type: Boolean,
+      default: false
+    },
     inheritWidth: {
       type: Boolean,
       default: false
