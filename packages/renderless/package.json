@@ -29,7 +29,7 @@
     "build": "tsup",
     "build:fast": "npm run build && npm run release",
     "postversion": "pnpm build",
-    "release": "esno ./scripts/postbuild.ts && cp README.md dist"
+    "release": "esno ./scripts/postbuild.ts && shx cp README.md dist"
   },
   "dependencies": {
     "xss": "1.0.11"

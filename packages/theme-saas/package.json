@@ -34,7 +34,7 @@
     "dev:theme": "gulp dev --gulpfile build/gulp-dist.js",
     "build": "npm run clean && npm run build:theme && node build/replace-img.js",
     "build:fast": "npm run build && npm run release",
-    "release": "node build/release.js && node build/postbuild.js && cp README.md dist",
+    "release": "node build/release.js && node build/postbuild.js && shx cp README.md dist",
     "format": "prettier --write src/**/*.less",
     "stylelint": "stylelint \"**/*.less\" --fix",
     "postversion": "pnpm build"
