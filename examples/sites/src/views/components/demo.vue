@@ -57,7 +57,7 @@
 </template>
 
 <script lang="jsx">
-import { defineComponent, reactive, computed, toRefs, shallowRef, onMounted, watch } from 'vue'
+import { defineComponent, reactive, computed, toRefs, shallowRef, onMounted, watch, nextTick } from 'vue'
 import { $t, $t2 } from '@/i18n'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
@@ -146,6 +146,9 @@ export default defineComponent({
         } else {
           demo.isOpen = !demo.isOpen
         }
+
+        await nextTick()
+        window.dispatchEvent(new Event('resize'))
       },
       async copyCode(demo) {
         if (demo.isOpen) {
