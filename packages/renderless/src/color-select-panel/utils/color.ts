@@ -7,7 +7,7 @@ function hexToRgb(hex: string) {
   let a = parseInt(hex.slice(7), 16) / 255
   return { r, g, b, a: a * 100 }
 }
-const normalizeHexColor = (color: string) => {
+export const normalizeHexColor = (color: string) => {
   let normalizedColor: string = color.replace('#', '')
   if (normalizedColor.length === 3) {
     normalizedColor = normalizedColor.split('').map(char => char + char).join('')
