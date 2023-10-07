@@ -242,6 +242,10 @@ export const getAllScrollParents = (el, parents = []) => {
 
   if (parent) {
     isScrollElement(parent) && parents.push(parent)
+    // 如果祖先元素是fixed，则不再继续往上查找
+    if(getStyleComputedProperty(parent, 'position') === 'fixed') {
+      return parents
+    }
     return getAllScrollParents(parent, parents)
   }
 
@@ -408,7 +412,6 @@ Popper.prototype._getOffsets = function (popper, reference, placement) {
 
   let isParentFixed = popperOffsets.position === 'fixed'
   let referenceOffsets = getOffsetRectRelativeToCustomParent(reference, getOffsetParent(popper), isParentFixed)
-
   // 利用 popperOuterSize 来减少一次outerSize的计算
   let { width, height } = this.popperOuterSize ? this.popperOuterSize : (this.popperOuterSize = getOuterSizes(popper))
 
