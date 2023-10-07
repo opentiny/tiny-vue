@@ -12,70 +12,20 @@ function getFiberByDom(dom) {
   return dom[key]
 }
 
-function traverseFiber(fiber, breaker, handler) {
+function defaultBreaker({ type }) {
+  if (type && typeof type !== 'string') {
+    return !compWhiteList.includes(type.name)
+  }
+}
+
+function traverseFiber(fiber, handler, breaker = defaultBreaker) {
   if (!fiber) return
   typeof handler === 'function' && handler(fiber)
-  if (typeof breaker !== 'function') {
-    breaker = () => { }
-  }
-  traverseFiber(fiber.sibling, breaker, handler)
-  breaker(fiber) || traverseFiber(fiber.child, breaker, handler)
-}
-
-function collectFiber(fiber, collector, mapper) {
-  const collect = []
-  traverseFiber(
-    fiber,
-    ({ type }) => {
-      if (type && typeof type !== 'string') {
-        return !compWhiteList.includes(type.name)
-      }
-      return false
-    },
-    (fiber) => {
-      if (typeof collector === 'function' && collector(fiber)) {
-        collect.push(fiber)
-      }
-    }
-  )
-  return typeof mapper === 'function'
-    ? collect.map(mapper)
-    : collect
-}
-
-function collectChildren(fiber) {
-  return collectFiber(fiber, (fiber) => {
-    return fiber.type && typeof fiber.type !== 'string'
+  Array.isArray(handler) && handler.forEach(task => {
+    typeof task === 'function' && task(fiber)
   })
-}
-
-function collectRefs(fiber) {
-  return collectFiber(
-    fiber,
-    (fiber) => {
-      if (typeof fiber.type === 'string') {
-        return fiber.stateNode.getAttribute('v_ref')
-      }
-      else {
-        return fiber.memoizedProps.v_ref
-      }
-    },
-    (fiber) => {
-      if (typeof fiber.type === 'string') {
-        return {
-          [fiber.stateNode.getAttribute('v_ref')]: fiber.stateNode
-        }
-      }
-      else {
-        return {
-          [fiber.memoizedProps.v_ref]: fiber
-        }
-      }
-    }
-  ).reduce((pre, cur) => {
-    Object.assign(pre, cur)
-    return pre
-  }, {})
+  traverseFiber(fiber.sibling, handler, breaker)
+  breaker(fiber) || traverseFiber(fiber.child, handler, breaker)
 }
 
 const parentMap = new WeakMap()
@@ -90,10 +40,30 @@ export function getParentFiber(fiber, isFirst = true, child = fiber) {
 }
 
 export function creatFiberCombine(fiber) {
+  if(!fiber) return 
+  const refs = {};
+  const children = [];
+
+  traverseFiber(fiber.child, [
+    (fiber) => {
+      if (typeof fiber.type === 'string' && fiber.stateNode.getAttribute('v_ref')) {
+        refs[fiber.stateNode.getAttribute('v_ref')] = fiber.stateNode;
+      }
+      else if (fiber.memoizedProps.v_ref) {
+        refs[fiber.memoizedProps.v_ref] = fiber;
+      }
+    },
+    (fiber) => {
+      if (fiber.type && typeof fiber.type !== 'string') {
+        children.push(fiber);
+      }
+    }
+  ])
+
   return {
     fiber,
-    refs: fiber && collectRefs(fiber.child),
-    children: fiber && collectChildren(fiber.child),
+    refs,
+    children
   }
 }
 
