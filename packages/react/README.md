@@ -119,7 +119,7 @@ packages/react-common
         /fiber.ts 对 fiber 的一些读取操作
         /reactive.ts 实现数据响应式
         /resolveProps.js 从 react 的 props 上解析事件或属性
-        /svg-render.jsx 渲染 svg 组建的公共函数
+        /svg-render.jsx 渲染 svg 组件的公共函数
         /utils.ts 工具函数
         /virtual-comp.jsx 虚拟组件，用于实现 vue 的指令系统
         /vm.js 用户模拟 vue 的 vm 对象
@@ -130,7 +130,7 @@ packages/react-common
 
 ## 在项目中使用所有组件
 
-- 1.下载整个组建库
+- 1.下载整个组件库
 ```bash
 npm i @pe-3/react
 ```
@@ -150,7 +150,7 @@ function App() {
 }
 ```
 
-## 在项目中使用单个组建
+## 在项目中使用单个组件
 
 - 1. 下载单个组件
 
@@ -175,7 +175,7 @@ function App() {
 }
 ```
 
-## 组建 api 文档地址：
+## 组件 api 文档地址：
 
 https://opentiny.design/
 
