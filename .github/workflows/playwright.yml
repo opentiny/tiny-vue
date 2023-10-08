@@ -1,0 +1,25 @@
+name: Playwright Tests
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches: [ main ]
+jobs:
+  playwright:
+    name: 'Playwright Tests'
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.38.0-jammy
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: |
+          npm install -g pnpm
+          npm ci
+      - name: Run your tests
+        run: |
+          pnpm install
+          pnpm dev
+          pnpm test:e2e3
