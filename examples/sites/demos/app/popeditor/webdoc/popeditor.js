@@ -372,6 +372,16 @@ export default {
         'en-US': ''
       },
       'codeFiles': ['suggest.vue']
+    },
+    {
+      'demoId': 'auto-reset',
+      'name': { 'zh-CN': '自动重置', 'en-US': 'auto reset' },
+      'desc': {
+        'zh-CN':
+          '<p>配置 <code>autoReset</code> 开启自动重置筛选项，筛选后点击关闭弹窗即可重置\n',
+        'en-US': ''
+      },
+      'codeFiles': ['auto-reset.vue']
     }
   ],
   apis: [
@@ -685,6 +695,16 @@ export default {
             'en-US': ''
           },
           'demoId': 'selected-box-op'
+        },
+        {
+          'name': 'autoReset',
+          'type': 'Boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '筛选后点击关闭是否自动重置筛选条件',
+            'en-US': 'After filtering, click Off to reset the filter automatically'
+          },
+          'demoId': 'auto-reset'
         }
       ],
       'events': [

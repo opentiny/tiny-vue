@@ -206,6 +206,10 @@ export default defineComponent({
     tooltipConfig: {
       type: Object,
       default: () => ({})
+    },
+    autoReset: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
