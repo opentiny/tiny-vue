@@ -43,7 +43,7 @@
     "dev2.7": "pnpm build:entry && pnpm build:component-cssvar && pnpm -C examples/vue2.7 dev",
     "dev2.7:saas": "pnpm build:entry && pnpm build:component-cssvar && pnpm -C examples/vue2.7 dev:saas",
     "dev:docs": "pnpm -C examples/docs docs:dev",
-    "dev:react": "pnpm build:entry-react && pnpm -C examples/react-docs run dev",
+    "dev:react": "pnpm create:mapping-react && pnpm build:entry-react && pnpm -C examples/react-docs run dev",
     "// ---------- 启动官网文档 ----------": "",
     "dev:site": "pnpm build:entry && pnpm build:component-cssvar && pnpm -C examples/sites start",
     "dev:open-site": "pnpm build:entry && pnpm build:component-cssvar && pnpm -C examples/sites start:open",
