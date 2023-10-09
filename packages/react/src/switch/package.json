@@ -1,8 +1,8 @@
 {
-  "name": "@opentiny/react",
+  "name": "@opentiny/react-switch",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,9 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
     "@opentiny/react-common": "workspace:~",
-    "@opentiny/react-alert": "workspace:~",
-    "@opentiny/react-button": "workspace:~",
-    "@opentiny/react-switch": "workspace:~"
+    "@opentiny/react-icon": "workspace:~"
   }
 }
