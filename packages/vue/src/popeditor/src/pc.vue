@@ -380,7 +380,8 @@ export default defineComponent({
     'beforeClose',
     'showSelectedBox',
     'selectedBoxOp',
-    'tooltipConfig'
+    'tooltipConfig',
+    'autoReset'
   ],
   emits: ['change', 'close', 'page-change', 'popup'],
   setup(props, context) {
