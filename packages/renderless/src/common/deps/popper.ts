@@ -33,6 +33,8 @@ const DEFAULTS = {
   modifiersIgnored: []
 }
 
+const getRealWindow = () => (window.tinyGetRealWindow ? window.tinyGetRealWindow() : window)
+
 const getRealElement = (el) => (el.jquery ? el[0] : el)
 
 const setStyle = (el, styles) => {
@@ -156,15 +158,19 @@ export const getScrollParent = (el) => {
 
 const getOffsetRectRelativeToCustomParent = (el, parent, fixed) => {
   let { top, left, width, height } = getBoundingClientRect(el)
-  let parentRect = getBoundingClientRect(parent)
 
   if (fixed) {
-    let { scrollTop, scrollLeft } = getScrollParent(parent)
-    parentRect.top += scrollTop
-    parentRect.bottom += scrollTop
-    parentRect.left += scrollLeft
-    parentRect.right += scrollLeft
+    return {
+      top: top,
+      left: left,
+      bottom: top + height,
+      right: left + width,
+      width,
+      height
+    }
   }
+
+  let parentRect = getBoundingClientRect(parent)
 
   let rect = {
     top: top - parentRect.top,
@@ -242,6 +248,10 @@ export const getAllScrollParents = (el, parents = []) => {
 
   if (parent) {
     isScrollElement(parent) && parents.push(parent)
+    // 如果祖先元素是fixed，则不再继续往上查找
+    if(getStyleComputedProperty(parent, 'position') === 'fixed') {
+      return parents
+    }
     return getAllScrollParents(parent, parents)
   }
 
@@ -408,7 +418,6 @@ Popper.prototype._getOffsets = function (popper, reference, placement) {
 
   let isParentFixed = popperOffsets.position === 'fixed'
   let referenceOffsets = getOffsetRectRelativeToCustomParent(reference, getOffsetParent(popper), isParentFixed)
-
   // 利用 popperOuterSize 来减少一次outerSize的计算
   let { width, height } = this.popperOuterSize ? this.popperOuterSize : (this.popperOuterSize = getOuterSizes(popper))
 
@@ -504,10 +513,11 @@ Popper.prototype._getBoundaries = function (data, padding, boundariesElement) {
     let scrollTop = isFixed ? 0 : getScrollTopValue(scrollParent)
     let scrollLeft = isFixed ? 0 : getScrollLeftValue(scrollParent)
 
+    const viewportWindow = getRealWindow()
     boundaries = {
       top: 0 - (offsetParentRect.top - scrollTop),
-      right: window.document.documentElement.clientWidth - (offsetParentRect.left - scrollLeft),
-      bottom: window.document.documentElement.clientHeight - (offsetParentRect.top - scrollTop),
+      right: viewportWindow.document.documentElement.clientWidth - (offsetParentRect.left - scrollLeft),
+      bottom: viewportWindow.document.documentElement.clientHeight - (offsetParentRect.top - scrollTop),
       left: 0 - (offsetParentRect.left - scrollLeft)
     }
   } else {
