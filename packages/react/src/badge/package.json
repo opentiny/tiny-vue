@@ -1,8 +1,8 @@
 {
-  "name": "@opentiny/react-alert",
+  "name": "@opentiny/react-badge",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,9 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/react-common": "workspace:~",
-    "@opentiny/react-icon": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~"
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~"
   }
 }

@@ -3,9 +3,19 @@ import type Color from './utils/color'
 
 export const onConfirm = (
   hex: IColorSelectPanelRef<string>, triggerBg: IColorSelectPanelRef<string>,
-  res: IColorSelectPanelRef<string>, emit, isShow: IColorSelectPanelRef<boolean>
+  res: IColorSelectPanelRef<string>, emit, stack: IColorSelectPanelRef<string[]>,
+  enableHistory: boolean
 ) => {
   return () => {
+    hex.value = res.value;
+    triggerBg.value = res.value;
+    if (enableHistory){
+      const itemIdx = Math.max(stack.value.indexOf(res.value), stack.value.indexOf(res.value.toLowerCase()), stack.value.indexOf(res.value.toUpperCase()));
+      if (itemIdx !== -1){
+        stack.value.splice(itemIdx,1)
+      }
+      stack.value.unshift(res.value);
+    }
     emit('confirm', res.value)
   }
 }
@@ -51,5 +61,27 @@ export const onAlphaUpdate = (color: Color, res: IColorSelectPanelRef<string>) =
       color.set({ a: alpha })
       onColorUpdate(color, res)
     }
+  }
+}
+
+export const handleHistoryClick = (
+  hex:IColorSelectPanelRef<string>, res:IColorSelectPanelRef<string>,
+  color:Color
+  )=>{
+  return (history: string)=>{
+    hex.value = history;
+    res.value = history;
+    color.reset(history);
+  }
+}
+
+export const handlePredefineClick = (
+  hex: IColorSelectPanelRef<string>, res:IColorSelectPanelRef<string>,
+  color: Color
+) => {
+  return (selectedColor: string) => {
+    hex.value=selectedColor;
+    res.value=selectedColor;
+    color.reset(selectedColor);
   }
 }

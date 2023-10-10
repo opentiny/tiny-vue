@@ -1,6 +1,5 @@
 import pc from './pc.jsx'
 import mobile from './mobile.jsx'
-import mobileFirst from './mobile-first.jsx'
 
 export default function (props) {
   const {
@@ -9,8 +8,7 @@ export default function (props) {
 
   const S = ({
     pc,
-    mobile,
-    'mobile-first': mobileFirst
+    mobile
   })[tiny_mode]
 
   return (S(props))

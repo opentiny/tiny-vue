@@ -34,7 +34,7 @@
     "build:fast": "npm run build && npm run release",
     "publishTgz": "node .cloudbuild/publish-tgzs.js",
     "stylelint": "stylelint \"**/*.less\" --fix",
-    "release": "node build/release.js && node build/postbuild.js && cp README.md dist",
+    "release": "node build/release.js && node build/postbuild.js && shx cp README.md dist",
     "postversion": "pnpm build"
   },
   "devDependencies": {

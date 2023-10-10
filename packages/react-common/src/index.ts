@@ -1,7 +1,7 @@
 import * as hooks from 'react'
 import { Svg } from './svg-render.jsx'
 
-import { nextTick, ref, computed, readonly, watch, onBeforeUnmount, inject } from './vue-hooks.js'
+import { nextTick, ref, computed, readonly, watch, onBeforeUnmount, inject, provide } from './vue-hooks.js'
 import { emit, on, off, once, emitEvent } from './event.js'
 import { If, Component, Slot, For, Transition } from './virtual-comp.jsx'
 import { filterAttrs, vc, getElementCssClass } from './utils.js'
@@ -20,7 +20,8 @@ const vue_hooks = {
   readonly,
   watch,
   onBeforeUnmount,
-  inject
+  inject,
+  provide
 }
 
 // emitEvent, dispath, broadcast
@@ -52,7 +53,8 @@ export const useSetup = ({
     dispath,
     broadcast,
     t() { },
-    mergeClass
+    mergeClass,
+    mode: props.tiny_mode
   }
   const sdk = render(
     props,

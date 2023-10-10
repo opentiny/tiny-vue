@@ -84,7 +84,10 @@ export default {
     },
     colorSelectPanel: {
       confirm: 'Ok',
-      cancel: 'Cancel'
+      cancel: 'Cancel',
+      predefine: 'Predefine Color',
+      history: 'History',
+      empty: 'Empty'
     },
     creditCardForm: {
       submit: 'Submit'

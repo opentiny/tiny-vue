@@ -1,6 +1,13 @@
 import {IColorSelectPanelRef as Ref} from '@/types';
 import Color from './utils/color'
-import { onConfirm, onCancel, onHSVUpdate, onAlphaUpdate } from '.'
+import {
+  onConfirm,
+  onCancel,
+  onHSVUpdate,
+  onAlphaUpdate,
+  handleHistoryClick,
+  handlePredefineClick,
+} from '.'
 
 export const api = [
   'state',
@@ -12,6 +19,8 @@ export const api = [
   'onConfirm',
   'onCancel',
   'onAlphaUpdate',
+  'onHistoryClick',
+  'onPredefineColorClick',
   'alpha'
 ]
 
@@ -20,12 +29,20 @@ export const renderless = (
   context,
   { emit }
 ) => {
-  const { modelValue, visible } = context.toRefs(props)
+  const { modelValue, visible, history, predefine } = context.toRefs(props)
   const hex = context.ref(modelValue?.value ?? 'transparent')
   const res = context.ref(modelValue?.value ?? 'transparent')
   const triggerBg = context.ref(modelValue?.value ?? 'transparent')
   const isShow = context.ref(visible?.value ?? false)
   const cursor: Ref<HTMLElement> = context.ref()
+  const stack:Ref<string[]> = context.ref(
+    [...(history?.value ?? [])]
+  )
+  const predefineStack: Ref<string[]> = context.ref(
+    [...(predefine?.value ?? [])]
+  )
+  const enableHistory = history?.value;
+  const enablePredefineColor = predefine?.value;
   const changeVisible = (state: boolean) => {
     isShow.value = state
   }
@@ -36,8 +53,18 @@ export const renderless = (
     color,
     triggerBg,
     defaultValue: modelValue,
-    res
+    res,
+    stack,
+    predefineStack,
+    enableHistory,
+    enablePredefineColor
   })
+  context.watch(predefine, (newPredefine: string[])=>{
+    predefineStack.value = [...newPredefine];
+  }, {deep: true})
+  context.watch(history, (newHistory:string[]) => {
+    stack.value = [...newHistory]
+  }, {deep: true})
   context.watch(modelValue, (newValue) => {
     hex.value = newValue
     res.value = newValue
@@ -54,9 +81,11 @@ export const renderless = (
     changeVisible,
     onHueUpdate,
     onSVUpdate,
-    onConfirm: onConfirm(hex, triggerBg, res, emit, isShow),
+    onConfirm: onConfirm(hex, triggerBg, res, emit, stack, enableHistory),
     onCancel: onCancel(res, triggerBg, emit, isShow, hex, color),
     onAlphaUpdate: update,
+    onHistoryClick: handleHistoryClick(hex, res, color),
+    onPredefineColorClick: handlePredefineClick(hex,res,color),
     cursor,
     alpha: props.alpha
   }

@@ -7,9 +7,18 @@ export function If(props) {
   }
 }
 
+function defaultVIfAsTrue(props) {
+  if (typeof props === 'object' && props.hasOwnProperty('v-if')) {
+    return props['v-if'];
+  }
+  else {
+    return true
+  }
+}
+
 export function Component(props) {
   const Is = props.is || (() => '')
-  return <If v-if={props['v-if']}>
+  return <If v-if={defaultVIfAsTrue(props)}>
     <Is className={props.className} />
   </If>
 }
@@ -25,7 +34,7 @@ export function Slot(props) {
 
   const S = slots[name] || EmptySlot
 
-  return (<>
+  return (<If v-if={defaultVIfAsTrue(props)}>
     <If v-if={name === 'default'}>
       {parent_children || props.children}
     </If>
@@ -37,7 +46,7 @@ export function Slot(props) {
         {props.children}
       </If>
     </If>
-  </>)
+  </If>)
 }
 
 export function For(props) {
@@ -47,10 +56,10 @@ export function For(props) {
   } = props
 
   const listItems = list.map((item, index, list) => {
-    return (<Item item={item} key={index} />)
+    return (<Item item={item} key={index} index={index} list={list} />)
   })
 
-  return (<>{listItems}</>)
+  return (<If v-if={defaultVIfAsTrue(props)}>{listItems}</If>)
 }
 
 export function Transition(props) {
@@ -58,9 +67,8 @@ export function Transition(props) {
     name
   } = props
 
-  // 在 useEffect 里监听 dom 变化，拿到变化的 dom，给上面添加样式
-
-  return <>{props.children}</>
+  // todo: improve tarnsiton comp
+  return <If v-if={defaultVIfAsTrue(props)}>{props.children}</If>
 }
 
 export const compWhiteList = [

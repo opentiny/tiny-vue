@@ -84,7 +84,10 @@ export default {
     },
     colorSelectPanel:{
       confirm: '选择',
-      cancel: '取消'
+      cancel: '取消',
+      predefine: '预定义颜色',
+      history: '历史记录',
+      empty: '暂无'
     },
     creditCardForm: {
       submit: '提交'

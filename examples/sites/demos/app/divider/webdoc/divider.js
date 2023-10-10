@@ -21,7 +21,7 @@ export default {
       'demoId': 'content-position',
       'name': { 'zh-CN': '分隔线文案的位置', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': '通过 props content-position 可以分隔线文案的位置',
+        'zh-CN': '通过 props content-position 可以设置分隔线文案的位置',
         'en-US': 'The position of the divider content can be set using the prop "content-position".'
       },
       'codeFiles': ['contentPosition.vue']
@@ -46,7 +46,7 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置分隔线的颜色', 'en-US': 'Set the color of the divider.' },
-          'demoId': 'basic-usage'
+          'demoId': 'custom-style'
         },
         {
           'name': 'direction',
@@ -68,7 +68,7 @@ export default {
             'en-US':
               'Set the position of the divider content; the possible values for this property are "left", "center", or "right".'
           },
-          'demoId': 'contentPosition'
+          'demoId': 'content-position'
         },
         {
           'name': 'border-style',
