@@ -14,6 +14,7 @@ import {
   getFormData,
   isImage,
   handleChange,
+  handlePaste,
   uploadFiles,
   upload,
   abort,
@@ -29,6 +30,7 @@ export const api = [
   'state',
   'isImage',
   'handleChange',
+  'handlePaste',
   'uploadFiles',
   'upload',
   'abort',
@@ -81,6 +83,7 @@ export const renderless = (
     uploadFiles: uploadFiles({ constants, Modal, props, state, t }),
     post: post({ api, constants, props, state, service }),
     handleChange: handleChange(api),
+    handlePaste: handlePaste({ api, props }),
     handleKeydown: handleKeydown(api),
     upload: upload({ api, props, refs }),
     mounted: mounted({ state, props, api })

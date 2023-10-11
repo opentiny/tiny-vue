@@ -269,6 +269,10 @@ export default defineComponent({
     isHidden: {
       type: Boolean,
       default: false
+    },
+    pasteUpload: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

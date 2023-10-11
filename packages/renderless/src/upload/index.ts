@@ -24,6 +24,31 @@ export const handleChange = (api) => (event) => {
   api.uploadFiles(files)
 }
 
+export const handlePaste =
+  ({ api, props }) =>
+  (event: ClipboardEvent) => {
+    event.preventDefault()
+
+    if (!props.pasteUpload) {
+      return
+    }
+
+    const items = (event.clipboardData || event.originalEvent.clipboardData).items
+    const files = []
+    for (let i = 0; i < items.length; i++) {
+      const file = items[i].getAsFile()
+      if (Object.prototype.toString.call(file) === '[object File]') {
+        files.push(file)
+      }
+    }
+
+    if (!files.length) {
+      return
+    }
+
+    api.uploadFiles(files)
+  }
+
 export const getFormData =
   ({ constants, state, props }) =>
   ({ formData, file, type }) => {

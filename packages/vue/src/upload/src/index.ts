@@ -13,6 +13,7 @@ export default defineComponent({
     },
     autoUpload: Boolean,
     beforeUpload: Function,
+    pasteUpload: Boolean,
     data: Object,
     disabled: Boolean,
     drag: Boolean,

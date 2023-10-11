@@ -61,7 +61,8 @@ export default defineComponent({
     'maxNameLength',
     'isHidden',
     'sourceType',
-    'cacheToken'
+    'cacheToken',
+    'pasteUpload'
   ],
   setup(props, context) {
     // 内置crypto-js和streamsaver进行上传下载
@@ -230,6 +231,7 @@ export default defineComponent({
         httpRequest,
         isFolder,
         edmToken,
+        pasteUpload: this.pasteUpload,
         isHidden: this.isHidden
       },
       ref: 'upload-inner'
