@@ -11,7 +11,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal as TinyModal } from '@opentiny/vue'
 
 const tableData = ref([
   {
@@ -73,7 +73,7 @@ const tableData = ref([
 ])
 
 function footerCellDblclick() {
-  alert('触发表尾单元格双击事件')
+  TinyModal.alert('触发表尾单元格双击事件')
 }
 
 function footerMethod({ columns, data }) {

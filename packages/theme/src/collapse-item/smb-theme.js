@@ -11,5 +11,6 @@ export const tinyCollapseItemSmbTheme = {
   'ti-collapse-item-content-padding-right': 'var(--ti-common-space-5x)',
   'ti-collapse-item-content-padding-bottom': 'var(--ti-common-space-6x)',
   'ti-collapse-item-content-padding-left': 'var(--ti-common-space-5x)',
-  'ti-collapse-item-arrow-hover-text-color': '#191919'
+  'ti-collapse-item-arrow-hover-text-color': '#191919',
+  'ti-collapse-item-arrow-margin-right': 'var(--ti-common-space-2x)'
 }

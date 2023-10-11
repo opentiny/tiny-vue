@@ -19,12 +19,14 @@
         'is-current': node.isCurrent,
         'is-hidden': !node.visible,
         'is-checked': !node.disabled && node.checked,
-        'is-indeterminate': !node.disabled && node.indeterminate,
         'is-focusable': !node.disabled,
         'is-expanded': state.expanded,
-        'is-checked': !node.disabled && node.checked,
         'is-loading': node.loading,
-        'show-line': showLine
+        'is-disabled': node.disabled,
+        'is-leaf': node.isLeaf,
+        'is-root': node.level === 1,
+        'show-line': showLine,
+        'show-checkbox': showCheckbox
       }"
       role="treeitem"
       tabindex="-1"
@@ -47,19 +49,22 @@
           'tiny-tree-node__content-number': showNumber
         }"
         :style="{
-          'margin-left': state.computedIndent,
           'height': nodeHeight ? nodeHeight + 'px' : undefined,
           'line-height': nodeHeight ? nodeHeight + 'px' : undefined
         }"
         @click="handleContentClick(node, currentRadio)"
       >
-        <span v-if="showLine" class="tiny-tree-node__content-indent" :style="{ width: state.computedIndent }"></span>
+        <span
+          class="tiny-tree-node__content-indent"
+          v-for="i in showLine ? 1 : node.level - 1"
+          :style="{ width: state.computedIndent }"
+        ></span>
         <div class="tiny-tree-node__content-left">
           <template v-if="showNumber">
             <span class="tree-node-number">{{ node.data.number }}</span>
           </template>
           <template v-else>
-            <span class="tree-node-icon" @click="handleExpandIconClick($event, node)">
+            <span v-if="!node.isLeaf" class="tree-node-icon" @click="handleExpandIconClick($event, node)">
               <template v-if="state.expandIcon !== undefined && state.shrinkIcon !== undefined">
                 <component
                   :is="state.expanded ? state.shrinkIcon : state.expandIcon"
@@ -116,9 +121,9 @@
               @click.stop="($event) => $event.stopPropagation()"
             />
           </template>
-          <template v-else>
+          <div v-else class="tiny-tree-node__content-box">
             <node-content :node="node" :render-content="renderContent"></node-content>
-          </template>
+          </div>
           <slot name="suffix" :node="node"></slot>
         </div>
         <div class="tiny-tree-node__content-right">
@@ -155,7 +160,7 @@
             role="group"
             :aria-expanded="state.expanded"
             :style="{
-              'margin-left': state.computedIndent
+              'margin-left': showLine ? state.computedIndent : 0
             }"
           >
             <span

@@ -165,14 +165,14 @@
   // 冻结列，采用sticky布局代替多表格渲染，至少少渲染一半的dom元素
   .fixed__column {
     position: sticky !important;
-    z-index: 1;
+    z-index: 2;
     @apply bg-color-bg-1;
 
     &.fixed-left-last__column:after {
       position: absolute;
       top: 0;
       right: 0;
-      bottom: -1px;
+      bottom: 0;
       width: 30px;
       transform: translate(100%);
       transition: box-shadow 0.3s;
@@ -183,7 +183,7 @@
     &.fixed-right-first__column:after {
       position: absolute;
       top: 0;
-      bottom: -1px;
+      bottom: 0;
       left: 0;
       width: 30px;
       transform: translate(-100%);
@@ -200,7 +200,7 @@
   }
 
   th.fixed__column {
-    @apply bg-color-bg-5;
+    background-color: #f4f6fb;
   }
 
   &-fixed__left {
@@ -491,10 +491,10 @@
   }
 
   &.row__highlight &-body__row:hover {
-    @apply bg-color-brand-hover-subtle;
+    background-color: #f3f3f3;
 
     .fixed__column {
-      @apply bg-color-brand-hover-subtle;
+      background-color: #f3f3f3;
     }
   }
 
@@ -530,6 +530,10 @@
     @apply whitespace-normal;
     -ms-word-break: break-all;
     word-break: break-word;
+
+    .@{grid-cell-prefix-cls}-text {
+      width: 100%;
+    }
 
     .@{grid-prefix-cls}-checkbox {
       @apply align-bottom;

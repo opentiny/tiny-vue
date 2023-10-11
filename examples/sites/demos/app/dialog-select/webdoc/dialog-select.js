@@ -57,7 +57,7 @@ export default {
       'properties': [
         {
           'name': 'auto-lookup ',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否通过初始化选中数据的id加载初始化选中数据，默认true',
@@ -78,7 +78,7 @@ export default {
         },
         {
           'name': 'dialog-op',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '{}',
           'desc': {
             'zh-CN': '属性 dialogOp 用于配置 DialogBox 对话框组件的属性，对话框事件和插槽已透传',
@@ -88,7 +88,7 @@ export default {
         },
         {
           'name': 'grid-op',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '{}',
           'desc': {
             'zh-CN': '子组件 Grid 的配置对象',
@@ -98,7 +98,7 @@ export default {
         },
         {
           'name': 'gridOp.radioConfig.checkRowKey',
-          'type': 'String|Number',
+          'type': 'string|number',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -109,7 +109,7 @@ export default {
         },
         {
           'name': 'gridOp.selectConfig.checkRowKeys ',
-          'type': 'Array<String|Number>',
+          'type': 'Array<string|number>',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN':
@@ -131,7 +131,7 @@ export default {
         },
         {
           'name': 'main-height',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '配置表格或树区域的高度',
@@ -141,7 +141,7 @@ export default {
         },
         {
           'name': 'multi',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否多选',
@@ -152,7 +152,7 @@ export default {
         },
         {
           'name': 'pager-op',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '该属性的默认值为 {}',
           'desc': {
             'zh-CN': '使用表格展示数据时，属性 pagerOp 用于配置 Pager 分页组件的属性，分页事件已透传',
@@ -163,7 +163,7 @@ export default {
         },
         {
           'name': 'popseletor',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '弹窗内展示数据的组件类型，目前支持：grid/tree',
@@ -183,7 +183,7 @@ export default {
         },
         {
           'name': 'selected-box-op',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '该属性的默认值为 {}',
           'desc': {
             'zh-CN': '使用表格展示数据时，属性 selectedBoxOp 用于配置 SelectedBox 已选栏组件的属性，已选栏插槽已透传',
@@ -193,7 +193,7 @@ export default {
         },
         {
           'name': 'show-pager',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '使用表格展示数据时，是否显示分页组件，默认true',
@@ -203,7 +203,7 @@ export default {
         },
         {
           'name': 'show-selected-box',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '使用表格展示数据时，是否显示已选栏组件，默认true',
@@ -214,7 +214,7 @@ export default {
         },
         {
           'name': 'text-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 label',
           'desc': {
             'zh-CN': '数据项的 Label 字段，默认是label',
@@ -224,7 +224,7 @@ export default {
         },
         {
           'name': 'text-split',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '/',
           'desc': {
             'zh-CN': '多选时用于拼接数据项的 Label 字段，默认是 / ',
@@ -234,7 +234,7 @@ export default {
         },
         {
           'name': 'tree-op',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '{}',
           'desc': {
             'zh-CN': '使用树展示数据时，树组件的配置对象',
@@ -285,7 +285,7 @@ export default {
         },
         {
           'name': 'value-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '默认是 id',
           'desc': {
             'zh-CN': '数据项的 Value 字段，默认是id',
@@ -295,7 +295,7 @@ export default {
         },
         {
           'name': 'value-split',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '默认是;',
           'desc': {
             'zh-CN': '多选时用于拼接数据项的 Value 字段，默认是 ; ',
@@ -305,7 +305,7 @@ export default {
         },
         {
           'name': 'visible',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '控制弹出框显示与关闭',

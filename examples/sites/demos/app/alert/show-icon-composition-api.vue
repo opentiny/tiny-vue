@@ -5,6 +5,6 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { Alert as TinyAlert } from '@opentiny/vue'
 </script>

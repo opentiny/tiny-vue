@@ -48,35 +48,35 @@ export default {
       'properties': [
         {
           'name': 'value',
-          'type': 'String ',
+          'type': 'string ',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置权签人的值。', 'en-US': 'Set the approver.' },
           'demoId': 'disabled'
         },
         {
           'name': 'approval-person',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '权签人', 'en-US': 'Approval' },
           'demoId': 'category-type'
         },
         {
           'name': 'title',
-          'type': 'String ',
+          'type': 'string ',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置弹窗标题', 'en-US': 'Set the pop-up window title.' },
           'demoId': ''
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '设置组件是否为禁用状态。', 'en-US': 'Sets whether the component is disabled.' },
           'demoId': 'disabled'
         },
         {
           'name': 'category',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 0303',
           'desc': { 'zh-CN': '默认权签类别。', 'en-US': 'Default approval type.' },
           'demoId': 'category-type'

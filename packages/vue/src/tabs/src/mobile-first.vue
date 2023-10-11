@@ -19,13 +19,14 @@ import { renderless, api } from '@opentiny/vue-renderless/tabs-mf/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import TabBar from './mobile-first/tab-bar.vue'
 import TabPanel from './mobile-first/tab-panel.vue'
+import type { ITabsApi } from '@opentiny/vue-renderless/types/tabs.type'
 
 export default defineComponent({
   props: [...props, 'activeName', 'modelValue', 'size', 'withClose', 'withAdd', 'beforeLeave'],
   emits: ['update:activeName', 'update:modelValue'],
   components: { TabBar, TabPanel },
   setup(props, context): any {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as ITabsApi
   }
 })
 </script>

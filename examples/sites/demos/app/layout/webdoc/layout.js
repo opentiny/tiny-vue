@@ -133,14 +133,14 @@ export default {
       'layout-attrs': [
         {
           'name': 'tag',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 div',
           'desc': { 'zh-CN': '标签', 'en-US': '' },
           'demoId': 'tag1'
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 medium',
           'desc': { 'zh-CN': '大小;该属性的可选值为 medium / small / mini', 'en-US': '' },
           'demoId': ''
@@ -158,7 +158,7 @@ export default {
       'row-attrs': [
         {
           'name': 'flex',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '是否为flex容器', 'en-US': '' },
           'demoId': 'alignment'
@@ -172,7 +172,7 @@ export default {
         },
         {
           'name': 'justify',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'start',
           'desc': {
             'zh-CN': "子项的主轴对齐方向，可取值：'start', 'center', 'end', 'space-between', 'space-around'",
@@ -182,28 +182,28 @@ export default {
         },
         {
           'name': 'align',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'top',
           'desc': { 'zh-CN': "子项的副轴对齐方向，可取值：'top', 'middle', 'bottom'", 'en-US': '' },
           'demoId': 'alignment'
         },
         {
           'name': 'order',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': "子项的排序方式，可取值：'asc', 'des'。 不设置时，保留子项在模板中的顺序。", 'en-US': '' },
           'demoId': 'order1'
         },
         {
           'name': 'tag',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'div',
           'desc': { 'zh-CN': '定义 Row 元素的渲染后的标签，默认为div', 'en-US': '' },
           'demoId': 'tag1'
         },
         {
           'name': 'noSpace',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '子项没有间隔，相当于gutter=0的时候', 'en-US': '' },
           'demoId': ''
@@ -212,42 +212,42 @@ export default {
       'col-attrs': [
         {
           'name': 'span',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '12',
           'desc': { 'zh-CN': '子项占据的列数', 'en-US': '' },
           'demoId': 'base'
         },
         {
           'name': 'offset',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '0',
           'desc': { 'zh-CN': '子项的左偏移量', 'en-US': '' },
           'demoId': 'offset'
         },
         {
           'name': 'no',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '0',
           'desc': { 'zh-CN': '子项排序编号', 'en-US': '' },
           'demoId': 'order1'
         },
         {
           'name': 'move',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '0',
           'desc': { 'zh-CN': '子项的右偏移量', 'en-US': '' },
           'demoId': 'col-move'
         },
         {
           'name': 'xs/sm/md/lg/xl',
-          'type': 'Number, Object',
+          'type': 'number, object',
           'defaultValue': '',
           'desc': { 'zh-CN': '响应式栅格数或者栅格属性对象', 'en-US': '' },
           'demoId': 'responsive-layout'
         },
         {
           'name': 'tag',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'div',
           'desc': { 'zh-CN': '子项渲染后的标签', 'en-US': '' },
           'demoId': ''

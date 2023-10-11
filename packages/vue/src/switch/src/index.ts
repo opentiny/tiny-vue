@@ -12,7 +12,7 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
-const $constants = {
+export const $constants = {
   PC_PREFIXCLS: 'tiny-switch',
   MOBILE_PREFIXCLS: 'tiny-mobile-switch',
   Mode: 'pc',
@@ -21,51 +21,56 @@ const $constants = {
   }
 }
 
+export const switchProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  showText: {
+    type: Boolean || undefined,
+    default: undefined
+  },
+  types: {
+    type: String
+  },
+  falseColor: String,
+  falseValue: {
+    type: [String, Number, Boolean],
+    default: false
+  },
+  mini: {
+    type: Boolean,
+    default: false
+  },
+  modelValue: {
+    type: [String, Number, Boolean],
+    default: false
+  },
+  size: [Number, String],
+  tabindex: {
+    type: String,
+    default: '1'
+  },
+  trueColor: String,
+  trueValue: {
+    type: [String, Number, Boolean],
+    default: true
+  },
+  beforeChange: Function,
+  displayOnly: {
+    type: Boolean,
+    default: false
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'Switch',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    showText: {
-      type: Boolean || undefined,
-      default: undefined
-    },
-    falseColor: String,
-    falseValue: {
-      type: [String, Number, Boolean],
-      default: false
-    },
-    mini: {
-      type: Boolean,
-      default: false
-    },
-    modelValue: {
-      type: [String, Number, Boolean],
-      default: false
-    },
-    size: [Number, String],
-    tabindex: {
-      type: String,
-      default: '1'
-    },
-    trueColor: String,
-    trueValue: {
-      type: [String, Number, Boolean],
-      default: true
-    },
-    beforeChange: Function,
-    displayOnly: {
-      type: Boolean,
-      default: false
-    }
-  },
+  props: switchProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

@@ -27,7 +27,11 @@ const findAllpage = (packagesPath) => {
       .replace(/@opentiny\/vue-renderless/g, '@aurora/renderless')
       .replace(/@opentiny\/vue-theme/g, '@aurora/theme')
       .replace(/@opentiny/g, '@aurora')
-      .replace(/tiny_/g, 'aui_')
+      .replace(/TINY/g, 'AUI')
+      .replace(/Tiny/g, 'Aui')
+      .replace(/tiny/g, 'aui')
+      .replace(/zhCN/g, 'zh_CN')
+      .replace(/enUS/g, 'en_US')
 
     fs.writeFileSync(packagesPath, result)
   }

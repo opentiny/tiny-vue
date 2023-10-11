@@ -40,6 +40,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/badge/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
+import type { IBadgeApi } from '@opentiny/vue-renderless/types/badge.type'
 import '@opentiny/vue-theme/badge/index.less'
 
 export default defineComponent({
@@ -58,7 +59,7 @@ export default defineComponent({
     'data'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IBadgeApi
   }
 })
 </script>

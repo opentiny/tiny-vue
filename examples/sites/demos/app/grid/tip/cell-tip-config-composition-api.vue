@@ -11,7 +11,12 @@
   >
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="公司名称" show-tip></tiny-grid-column>
+    <tiny-grid-column
+      field="name"
+      title="公司名称公司名称公司名称公司名称公司名称公司名称公司名称公司名称公司名称公司名称公司名称公司名称"
+      show-header-overflow="tooltip"
+      show-tip
+    ></tiny-grid-column>
     <tiny-grid-column field="address" title="地址" show-overflow="title"></tiny-grid-column>
     <tiny-grid-column field="createdDate" title="创建日期" show-overflow="tooltip"></tiny-grid-column>
     <tiny-grid-column field="city" title="城市文字" show-overflow="ellipsis"></tiny-grid-column>
@@ -81,9 +86,11 @@ const tableData = ref([
   }
 ])
 
-function contentMethod({ row, column }, h) {
+function contentMethod({ row, column, isHeader, content }, h) {
   // 自定义表格tip提示，既支持字符串也支持jsx或者h函数写法
-  return (
+  return isHeader ? (
+    content
+  ) : (
     <div style="color:red;">
       自定义提示：{row[column.property]}-----{column.property}
     </div>

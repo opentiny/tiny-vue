@@ -14,30 +14,32 @@ export const computedStyle =
   ({ state, props }) =>
   () => {
     return {
-      fill: props.color,
-      color: props.color,
-      backgroundColor: props.backgroundColor,
+      fill: state.color,
+      color: state.color,
+      backgroundColor: state.backgroundColor,
       backgroundImage: /^(image)$/.test(props.type) && state.internalValue ? `url(${state.internalValue})` : 'none'
     }
   }
 
-export const computedMessage = (props) => () => {
-  let result = ''
-  const total = Math.floor(props.messageTotal)
+export const computedMessage =
+  ({ props }) =>
+  () => {
+    let result = ''
+    const total = Math.floor(props.messageTotal)
 
-  if (props.messageType === 'details' && !isNaN(total) && total > 0) {
-    result = total
+    if (props.messageType === 'details' && !isNaN(total) && total > 0) {
+      result = total
 
-    if (props.messageUpperLimit && total > props.messageUpperLimit) {
-      result = `${props.messageUpperLimit}+`
+      if (props.messageUpperLimit && total > props.messageUpperLimit) {
+        result = `${props.messageUpperLimit}+`
+      }
     }
+
+    return result
   }
 
-  return result
-}
-
 export const computedFontSize =
-  ({ props, state }) =>
+  ({ props, state, mode }) =>
   () => {
     let fontSize = ''
 
@@ -52,7 +54,20 @@ export const computedFontSize =
         6: '16px'
       }
 
-      fontSize = sizeMap[length]
+      const mfsizeMap = {
+        1: `${state.size / 1.5}px`,
+        2: `${state.size / 3}px`,
+        3: `${state.size / 4.5}px`,
+        4: `${state.size / 6}px`,
+        5: `${state.size / 7.5}px`,
+        6: `${state.size / 9}px`
+      }
+
+      if (mode === 'mobile-first') {
+        fontSize = mfsizeMap[length]
+      } else {
+        fontSize = sizeMap[length]
+      }
     }
 
     return { fontSize }
@@ -63,42 +78,24 @@ export const computedLabel =
   () =>
     props.min ? state.internalValue.substr(0, 2) : state.internalValue.substr(0, 6)
 
-export const getInternalValue = (props) => () => {
-  if (!props.modelValue) {
-    let result = ''
-
-    if (props.type === 'icon') {
-      result = 'icon-user'
-    } else if (props.type === 'label') {
-      result = 'U'
-    }
-
-    return result
-  } else {
-    return props.modelValue
-  }
-}
-
-export const computedSize =
-  ({ props, state }) =>
+export const getInternalValue =
+  ({ props }) =>
   () => {
-    let size = props.size
+    if (props.modelValue === null) {
+      let result = ''
 
-    if (typeof size === 'string') {
-      switch (size) {
-        case 'large':
-          size = 64
-          break
-        case 'medium':
-          size = 40
-          break
-        case 'small':
-          size = 22
-          break
-        default:
-          size = 40
-          break
+      if (props.type === 'icon') {
+        result = 'icon-user'
+      } else if (props.type === 'label') {
+        result = 'U'
       }
+
+      return result
+    } else {
+      return props.modelValue
     }
-    return size
   }
+
+export const handleClick = (emit) => (event) => emit('click', event)
+
+export const mouseEnter = (emit) => (event) => emit('mouseenter', event)

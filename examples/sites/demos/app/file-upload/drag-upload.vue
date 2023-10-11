@@ -6,9 +6,8 @@
 </template>
 
 <script lang="jsx">
-import { FileUpload } from '@opentiny/vue'
+import { FileUpload, Modal } from '@opentiny/vue'
 import { IconFileupload } from '@opentiny/vue-icon'
-import { message } from '@opentiny/vue-modal'
 
 export default {
   components: {
@@ -22,7 +21,7 @@ export default {
   },
   methods: {
     dropErrorHandler(files) {
-      message(`有${files.length}个文件拖拽失败`)
+      Modal.message(`有${files.length}个文件拖拽失败`)
     }
   }
 }

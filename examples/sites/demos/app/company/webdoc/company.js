@@ -37,21 +37,21 @@ export default {
       'properties': [
         {
           'name': 'modelValue / v-model',
-          'type': 'String , Number',
+          'type': 'string , number',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置下拉框的值。', 'en-US': 'Set the value of the drop-down list box.' },
           'demoId': 'custom-show-num'
         },
         {
           'name': 'placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置输入框内的提示占位文本。', 'en-US': 'Set the placeholder text in the text box.' },
           'demoId': 'custom-service'
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '为 popper 添加类名(可参考 popover 组件)',
@@ -61,7 +61,7 @@ export default {
         },
         {
           'name': 'popper-append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN':
@@ -73,7 +73,7 @@ export default {
         },
         {
           'name': 'max',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 1000',
           'desc': { 'zh-CN': '原生属性，设置最大值', 'en-US': 'Native attribute. Set the maximum value.' },
           'demoId': 'custom-show-num'
@@ -90,7 +90,7 @@ export default {
         },
         {
           'name': 'fields',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '自定义公司数据映射，未使用框架服务时必填',
@@ -101,14 +101,14 @@ export default {
         },
         {
           'name': 'clearable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否显示清除按钮;是否可清空', 'en-US': 'Whether to display the Clear button; Clearable' },
           'demoId': 'custom-show-num'
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
           'demoId': ''

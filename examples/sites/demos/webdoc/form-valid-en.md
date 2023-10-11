@@ -256,9 +256,6 @@ validatePass(rule, value, callback) {
   if (!/^(?=._[a-z])(?=._[A-Z])(?=.\*\\d)[a-zA-Z\d]{8,}$/.test(value)) {
     callback(new Error('At least eight characters, including at least one uppercase letter, one lowercase letter, and one digit'))
   } else {
-    if (this.ruleForm.password !== '') {
-      this.$refs.ruleForm.validateField('password')
-    }
     callback()
   }
 }

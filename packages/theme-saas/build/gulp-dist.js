@@ -106,5 +106,7 @@ gulp.task('copyplugin', copyPlugin)
 gulp.task('build', gulp.series('compile', 'copycssvar', 'copysvgs', 'copyimage', 'copyplugin'))
 
 gulp.task('dev', () => {
+  syncToTinyVueProject = true
+
   return gulp.watch(allLessFiles, gulp.series('compile'))
 })

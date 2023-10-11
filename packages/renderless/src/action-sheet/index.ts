@@ -41,6 +41,12 @@ export const initScrollMenu =
   () => {
     nextTick(() => {
       const { scrollMenu } = refs
+
+      // mobile-first是不使用BS优化的，没有这个ref节点。 所以直接返回
+      if (!scrollMenu) {
+        return
+      }
+
       if (!state.scroll) {
         state.scroll = new BScroll(scrollMenu, {
           probeType: 3,

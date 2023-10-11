@@ -1,0 +1,661 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@calendar-view-prefix-cls: ~'@{css-prefix}calendar-view';
+
+.@{calendar-view-prefix-cls} {
+  .component-css-vars-calendar-view();
+
+  width: 100%;
+  height: auto;
+
+  &__header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  &__picker {
+    margin-left: 20px;
+    flex-shrink: 0;
+  }
+
+  &__tool {
+    font-size: 12px;
+    flex: 1;
+    margin: 0 20px;
+  }
+
+  &__radio {
+    flex-shrink: 0;
+
+    .fill-brand{
+      fill:#fff;
+    }
+  }
+
+  .@{calendar-view-prefix-cls}-month {
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.08);
+
+    &__header {
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    height: 40px;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.08);
+
+      .header-left{
+        position: absolute;
+        left: 12px;
+        top: 10px;
+        cursor: pointer;
+
+        >svg{
+          height: 16px;
+          width: 16px;
+        }
+      }
+
+      .header-main{
+        display: flex;
+        justify-content: space-around;
+        flex: 1;
+        height: 100%;
+
+        >li{
+          line-height: 40px;
+
+          >span{
+            font-size: 14px;
+            color: #161e26;
+          }
+        }
+      }
+
+      .header-right{
+        position: absolute;
+        right: 12px;
+        top: 10px;
+        cursor: pointer;
+
+        >svg{
+          height: 16px;
+          width: 16px;
+        }
+      }
+    }
+
+    &__main {
+      width: 100%;
+      overflow: hidden;
+
+      .main-container{
+        width: 100%;
+        margin-top: 2px;
+        
+        >ul{
+          width: 100%;
+          display: flex;
+          justify-content: space-around;
+          border-bottom: 1px solid #f5f6f8;
+
+          >li{
+            font-size: 12px;
+            padding: 2px 0;
+            position: relative;
+            height: 80px;
+            overflow: hidden;
+            border-right: 1px solid #f5f6f8;
+            background-color: #fff;
+
+            &.is-weekends {
+              background-color: rgba(245,246,248,0.5);
+            }
+
+            &.is-selected{
+              background-color: rgba(0,103,209,0.1);
+
+              &:hover{
+                background-color: rgba(0,103,209,0.1);
+              }
+            }
+
+            &.not-selected{
+              &:hover{
+                background-color: rgba(0,103,209,0.05);
+              }
+            }
+
+            &.bg-blue {
+              background-color: rgba(0,103,209,0.1);
+            }
+
+            &.bg-green {
+              background-color: rgba(0,168,116,0.1);
+            }
+
+            &.bg-red {
+              background-color: rgba(235,23,31,0.1);
+            }
+
+            &.bg-yellow {
+              background-color: rgba(243,105,0,0.1);
+            }
+
+            &.bg-purple {
+              background-color: rgba(116,94,246,0.1);
+            }
+
+            &.bg-cyan {
+              background-color: rgba(0,162,181,0.1);
+            }
+
+            &.bg-grey {
+              background-color: rgba(141,149,158,0.3);
+            }
+
+            &.bg-white{
+              background-color:#fff;
+            }
+          }
+        }
+
+        .day-selected{
+          position: absolute;
+          top: 0;
+          right: 0;
+          background-color: #1890ff;
+          height: 16px;
+          width: 16px;
+          overflow: hidden;
+          border-bottom-left-radius:8px;
+
+          >svg{
+            width: 16px;
+            height: 16px;
+            fill: #1890ff;
+            position: relative;
+            right: -1px;
+            top: -6px;
+          }
+        }
+
+        .date{
+          padding: 6px 0 6px 8px;
+          color: #161e26;
+
+          &.is-next-or-last{
+            color: #161e26;
+            opacity: 0.3;
+          }
+
+          &.is-selected{
+            color: #1890ff;
+          }
+
+          &.is-disabled{
+            color: #b5bbc1;
+          }
+        }
+
+        .day-events {
+          overflow-y: auto;
+          width: 100%;
+
+          &::-webkit-scrollbar{
+            width: 0;
+            height: 0;
+          }
+
+          .events-container{
+            margin-bottom: 2px;
+          }
+
+          .events-start{
+            padding: 0 2px;
+
+            &.multi-day{
+              padding-right: 0;
+            }
+          }
+
+          .events-title{
+            padding: 0 6px;
+            display: inline-block;
+            border-radius:2px;
+            line-height: 20px;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            &.theme-blue {
+              color: #1890ff;
+              border-left: 2px solid #1890ff;
+              background-color: rgba(0,103,209,0.1);
+            }
+
+            &.theme-green {
+              color: #00A874;
+              border-left: 2px solid #00A874;
+              background-color: rgba(0,168,116,0.1);
+            }
+
+            &.theme-red {
+              color: #EB171F;
+              border-left: 2px solid #EB171F;
+              background-color: rgba(235,23,31,0.1);
+            }
+
+            &.theme-yellow {
+              color: #F36900;
+              border-left: 2px solid #F36900;
+              background-color: rgba(243,105,0,0.1);
+            }
+
+            &.theme-purple {
+              color: #745EF7;
+              border-left: 2px solid #745EF7;
+              background-color: rgba(116,94,246,0.1);
+            }
+
+            &.theme-cyan {
+              color: #00A2B5;
+              border-left: 2px solid #00A2B5;
+              background-color: rgba(0,162,181,0.1);
+            }
+
+            &.theme-grey {
+              color: #8D959E;
+              border-left: 2px solid #8D959E;
+              background-color: rgba(141,149,158,0.3);
+            }
+          }
+
+          .events-end{
+            height: 20px;
+            line-height: 20px;
+            margin-right: 0;
+
+            &.is-end{
+              margin-right: 2px;
+            }
+
+            &.bg-blue {
+              background-color: rgba(0,103,209,0.1);
+            }
+
+            &.bg-green {
+              background-color: rgba(0,168,116,0.1);
+            }
+
+            &.bg-red {
+              background-color: rgba(235,23,31,0.1);
+            }
+
+            &.bg-yellow {
+              background-color: rgba(243,105,0,0.1);
+            }
+
+            &.bg-purple {
+              background-color: rgba(116,94,246,0.1);
+            }
+
+            &.bg-cyan {
+              background-color: rgba(0,162,181,0.1);
+            }
+
+            &.bg-grey {
+              background-color: rgba(141,149,158,0.3);
+            }
+
+            &.bg-white{
+              background-color:#fff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .@{calendar-view-prefix-cls}-week {
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.08);
+
+    &__header {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 40px;
+      box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.08);
+    }
+
+    .header-left{
+      width: 28px;
+      flex-shrink: 0;
+      text-align: right;
+      cursor: pointer;
+
+      >svg{
+        height: 16px;
+        width: 16px;
+      }
+    }
+
+    .header-main{
+      display: flex;
+      justify-content: space-around;
+      flex: 1;
+      height: 100%;
+
+      >li{
+        line-height: 40px;
+
+        .date{
+          position: relative;
+          margin-right: 10px;
+          font-size: 16px;
+          color: #161e26;
+
+          &.is-today{
+            color: #1890ff;
+          }
+        }
+        
+        .mark{
+          width: 6px;
+          height: 6px;
+          position: absolute;
+          bottom: -8px;
+          left: 2px;
+          border-radius: 9999px;
+
+          &.is-two-digit{
+            left: 8px;
+          }
+
+          &.mark-blue {
+            background-color: #1890ff;
+          }
+
+          &.mark-green {
+            background-color: #00A874
+          }
+
+          &.mark-red {
+            background-color: #EB171F;
+          }
+
+          &.mark-yellow {
+            background-color: #F36900;
+          }
+
+          &.mark-purple {
+            background-color: #745EF7
+          }
+
+          &.mark-cyan {
+            background-color: #00A2B5;
+          }
+
+          &.mark-grey {
+            background-color: #8D959E;
+          }
+        }
+        
+        .week-day{
+          font-size: 14px;
+          color: #8d959e;
+
+          &.is-today{
+            color: #1890ff;
+          }
+        }
+      }
+    }
+
+    .header-right{
+      width: 28px;
+      flex-shrink: 0;
+      text-align: left;
+      cursor: pointer;
+
+      >svg{
+        height: 16px;
+        width: 16px;
+      }
+    }
+  }
+
+  .@{calendar-view-prefix-cls}-week__timeline {
+      width: 100%;
+      height: 448px;
+      display: flex;
+      overflow-y: auto;
+      margin-top: 4px;
+
+      .day-times{
+        width: 48px;
+
+        ul>li{
+          height: 20px;
+          text-align: center;
+          border-bottom-width: 1px;
+          border-bottom-style: solid;
+          border-bottom-color: #fff;
+
+          &.is-odd-num{
+            border-bottom-color: #f5f6f8;
+          }
+
+          span{
+            font-size: 14px;
+            color: #161e26;
+          }
+        }
+      }
+
+      .day-events{
+        flex: 1;
+
+        >ul{
+          width: 100%;
+          display: flex;
+          justify-content: space-around;
+
+          >li{
+            position: relative;
+
+            &.is-weekends{
+              background-color: rgba(245,246,248,0.5);
+            }
+          }
+        }
+
+        .events-list{
+          >li{
+            position: relative;
+            height: 16px;
+            padding: 2px;
+            list-style-type: none;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: #f5f6f8;
+
+            &.is-even-num{
+              border-bottom-style: dashed;
+            }
+          }
+
+          .events-item{
+            font-size: 12px;
+            width: 92%;
+            display: flex;
+            align-items: center;
+            padding: 0 6px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            line-height: 1.5;
+            border-radius: 2px;
+
+            &.theme-blue {
+              color: #1890ff;
+              border-left: 2px solid #1890ff;
+              background-color: rgba(0,103,209,0.1);
+            }
+
+            &.theme-green {
+              color: #00A874;
+              border-left: 2px solid #00A874;
+              background-color: rgba(0,168,116,0.1);
+            }
+
+            &.theme-red {
+              color: #EB171F;
+              border-left: 2px solid #EB171F;
+              background-color: rgba(235,23,31,0.1);
+            }
+
+            &.theme-yellow {
+              color: #F36900;
+              border-left: 2px solid #F36900;
+              background-color: rgba(243,105,0,0.1);
+            }
+
+            &.theme-purple {
+              color: #745EF7;
+              border-left: 2px solid #745EF7;
+              background-color: rgba(116,94,246,0.1);
+            }
+
+            &.theme-cyan {
+              color: #00A2B5;
+              border-left: 2px solid #00A2B5;
+              background-color: rgba(0,162,181,0.1);
+            }
+
+            &.theme-grey {
+              color: #8D959E;
+              border-left: 2px solid #8D959E;
+              background-color: rgba(141,149,158,0.3);
+            }
+          }
+        }
+      }
+  }
+  
+  .@{calendar-view-prefix-cls}-week__schedule {
+    width: 100%;
+    padding: 0 24px 16px 24px;
+    overflow-y: auto;
+    height: 448px;
+
+    >ul{
+      display: flex;
+      width: 100%;
+
+      >li{
+        height: 100%;
+        padding: 12px 8px;
+      }
+    }
+
+    .day-events{
+      font-size: 12px;
+      padding: 6px 0;
+      height: auto;
+      border: 1px solid #e8ebef;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.08);
+
+      .title{
+        padding: 0 6px;
+        margin-bottom: 6px;
+        border-left-width: 2px;
+        border-left-color: #1890ff;
+      }
+
+      .date{
+        margin-bottom: 6px;
+        padding: 0 8px;
+        color: #8d959e;
+      }
+
+      .content{
+        padding: 0 8px;
+        color: #8d959e;
+        overflow : hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* autoprefixer: ignore next */
+        -webkit-box-orient: vertical;
+      }
+    }
+
+    .new-schedule{
+      height: 32px;
+      text-align: center;
+      line-height: 32px;
+      width: 100%;
+      margin-top: 8px;
+      border: 1px solid #e8ebef;
+      border-radius: 4px;
+      cursor: pointer;
+
+      >svg{
+        width: 16px;
+        height: 16px;
+        vertical-align: sub;
+        fill:#8d959e;
+      }
+
+      >span{
+        margin-left: 4px;
+        color: #8d959e;
+      }
+    }
+  }
+}
+
+.@{calendar-view-prefix-cls}-tooltip{
+  position: absolute;
+  max-width: 320px;
+
+  .tooltip-main{
+    padding: 8px;
+
+    .title{
+      padding: 0 6px;
+      margin-bottom: 6px;
+      border-left-width: 2px;
+      border-left-color: #1890ff;
+    }
+
+    .date{
+      margin-bottom: 6px;
+      padding: 0 8px;
+      color: #8d959e;
+    }
+
+    .content{
+      padding: 0 8px;
+      color: #8d959e;
+    }
+  }
+}

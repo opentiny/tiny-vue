@@ -138,9 +138,9 @@ export default {
       'name': { 'zh-CN': '弹出时禁用滚动', 'en-US': 'Disable scrolling when pop-up' },
       'desc': {
         'zh-CN':
-          '<p>弹窗弹出后，背景页面默认仍然是不可以滚动的，设置 <code>lock-scroll</code> 为 fasle 后将不锁定被遮罩内容的滚动。</p>\n',
+          '<p>弹窗弹出后，背景页面默认仍然是不可以滚动的。</p><p>通过设置 <code>lock-scroll: false</code>,遮罩后的内容可以滚动，body保持原来的滚动条,且鼠标移动和点击可以传递到遮罩层后的元素上。</p>\n',
         'en-US':
-          '<p>After a pop-up window is displayed, the background page cannot be scrolled by default. If <code>lock-scroll</code> is set to fasle, the scrolling of the masked content is not locked. </p>\n'
+          '<p>After a pop-up window is displayed, the background page cannot be scrolled by default. </p><p>By setting <code>lock-scroll: false</code>, the masked content can be scrolled, and the body remains the original scroll bar, and mouse movements and clicks can be passed to the element behind the mask layer.</p>\n'
       },
       'codeFiles': ['lock-scroll.vue']
     },
@@ -216,7 +216,7 @@ export default {
       'properties': [
         {
           'name': 'visible',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '控制弹出框显示与关闭',
@@ -227,7 +227,7 @@ export default {
         },
         {
           'name': 'center',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '设置为 true 时 弹出框的头部与底部内容会自动居中',
@@ -237,14 +237,14 @@ export default {
         },
         {
           'name': 'is-form-reset',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '关闭弹窗，默认重置表单数据', 'en-US': 'Whether to display the close button' },
           'demoId': 'form-in-dialog'
         },
         {
           'name': 'show-close',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否显示关闭按钮',
@@ -254,7 +254,7 @@ export default {
         },
         {
           'name': 'draggable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否开启弹窗的拖拽功能，默认值为 false 。',
@@ -264,14 +264,14 @@ export default {
         },
         {
           'name': 'fullscreen',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '弹出框是否全屏', 'en-US': 'Whether to enable the mask layer' },
           'demoId': 'fullscreen'
         },
         {
           'name': 'modal',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否启用遮罩层',
@@ -282,7 +282,7 @@ export default {
         },
         {
           'name': 'close-on-click-modal',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN':
@@ -293,7 +293,7 @@ export default {
         },
         {
           'name': 'close-on-press-escape',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否可以通过 ESC 键关闭遮罩层',
@@ -304,7 +304,7 @@ export default {
         },
         {
           'name': 'modal-append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '遮罩层是否应用到 body 上，为 false 时遮罩层会应用到 DialogBox 的父元素上',
@@ -315,7 +315,7 @@ export default {
         },
         {
           'name': 'append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': 'DialogBox 本身是否插入到 body 上，嵌套的 Dialog 必须指定该属性并赋值为 true',
@@ -325,7 +325,7 @@ export default {
         },
         {
           'name': 'right-slide',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否开启弹出右侧滑出功能，默认值为 false 。',
@@ -335,7 +335,7 @@ export default {
         },
         {
           'name': 'lock-scroll',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': 'Dialog弹出时是否禁用滚动条',
@@ -345,14 +345,14 @@ export default {
         },
         {
           'name': 'show-header',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否显示弹窗头部 header，默认值为 true 。', 'en-US': 'Pop-up dialog box title.' },
           'demoId': 'hidden-header'
         },
         {
           'name': 'title',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '弹出框标题。',
@@ -363,7 +363,7 @@ export default {
         },
         {
           'name': 'top',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 15vh',
           'desc': {
             'zh-CN': '设置弹出框距离窗口顶部的高度，默认为屏高的 15%',
@@ -373,21 +373,21 @@ export default {
         },
         {
           'name': 'width',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 500px',
           'desc': { 'zh-CN': '弹出框的宽度。', 'en-US': 'Wideness of the dialog box that is displayed.' },
           'demoId': 'dialog-width'
         },
         {
           'name': 'dialog-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '自定义配置弹窗类名', 'en-US': 'Customized configuration pop-up window class name' },
           'demoId': 'dialog-width'
         },
         {
           'name': 'destroy-on-close',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '关闭时销毁对话框内的元素，而非隐藏', 'en-US': '' },
           'demoId': 'destroy-on-close'

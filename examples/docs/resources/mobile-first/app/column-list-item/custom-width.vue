@@ -1,11 +1,6 @@
 <template>
   <div>
-    <tiny-column-list-item
-      image="webnova/static/images/1.jpg"
-      :flex-grow="[0, 0]"
-      :flex-basis="['25%', '25%']"
-      class="mb-3"
-    >
+    <tiny-column-list-item image="/static/images/1.jpg" :flex-grow="[0, 0]" :flex-basis="['25%', '25%']" class="mb-3">
       <template #column1>
         <ul>
           <li class="text-sm mb-1 sm:mb-1.5">智能手机智能手机</li>

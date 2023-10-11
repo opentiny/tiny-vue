@@ -4,11 +4,11 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Input as TinyInput } from '@opentiny/vue'
 
-const input = ref('')
+const input = ref('123456')
 </script>
 
 <style scoped>

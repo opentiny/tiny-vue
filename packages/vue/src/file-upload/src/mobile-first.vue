@@ -25,6 +25,7 @@ import 'crypto-js/sha256.js'
 import 'crypto-js/lib-typedarrays.js'
 import Streamsaver from 'streamsaver'
 import Button from '@opentiny/vue-button'
+import type { IFileUploadApi } from '@opentiny/vue-renderless/types/file-upload.type'
 
 export default defineComponent({
   inheritAttrs: false,
@@ -71,7 +72,13 @@ export default defineComponent({
   ],
   emits: ['change', 'hash-progress', 'progress', 'success', 'error', 'remove', 'download'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, extendOptions: { Modal, CryptoJS, Streamsaver } })
+    return setup({
+      props,
+      context,
+      renderless,
+      api,
+      extendOptions: { Modal, CryptoJS, Streamsaver }
+    }) as unknown as IFileUploadApi
   },
   components: {
     Progress,

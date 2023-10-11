@@ -1,22 +1,24 @@
-import { on, off } from '../common/deps/dom'
 import {
   initPanel,
-  getFormatDate,
+  formatDate,
   getCurrentDate,
   getSelectedPosition,
   getWeeksByMonth,
   getDaysByWeek,
   getDate,
   watchVisible,
+  scrollToCurrentDate,
   watchModelValue,
   selectOption,
   timeToggle,
   timeConfirm,
   selectedComputed,
-  scrollLoadHandler,
   loadingDate,
+  scrollStart,
+  scrollEnd,
   confirm
 } from './index'
+import { initYearMonthPanel, getOffsetMonth, loadYearMonth } from './year-month'
 
 export const api = [
   'state',
@@ -28,19 +30,25 @@ export const api = [
   'confirm',
   'timeToggle',
   'timeConfirm',
-  'getFormatDate'
+  'scrollStart',
+  'scrollEnd',
+  'loadingDate',
+  'formatDate'
 ]
 
 export const renderless = (
   props,
-  { computed, reactive, watch, onMounted, onBeforeUnmount },
-  { emit, vm, nextTick }
+  { computed, reactive, watch, onMounted },
+  { emit, vm, nextTick, constants }
 ) => {
+  const { DATE_RANGE, DATE_TIME_RANGE, YEAR_MONTH_RANGE, YEAR_MONTH } = constants.TYPE
   const api = {}
   const state = reactive({
+    scrollerHeight: window.innerHeight || 1000,
     toggle: false,
     date: null,
     loading: false,
+    ready: false,
     dateList: {},
     timeVisible: false,
     showTimeIndex: 0,
@@ -49,43 +57,55 @@ export const renderless = (
       ['00', '00', '00'],
       ['00', '00', '00']
     ],
+    years: [],
+    isYearMonthPanel: computed(() => [YEAR_MONTH_RANGE, YEAR_MONTH].includes(props.type)),
+    yearNum: computed(() => ([YEAR_MONTH, YEAR_MONTH_RANGE].includes(props.type) ? 40 : 10)),
+    itemSize: computed(() => ([YEAR_MONTH, YEAR_MONTH_RANGE].includes(props.type) ? 150 : 300)),
+    buffer: 200,
     selected: computed(() => api.selectedComputed()),
-    months: computed(() => Object.keys(state.dateList)),
+    months: computed(() => Object.keys(state.dateList).map((item) => ({ id: item, yearMonth: item }))),
     btnDisabled: computed(
-      () => ['daterange', 'datetimerange'].includes(props.type) && state.date && state.date.length === 1
-    )
+      () =>
+        [DATE_RANGE, DATE_TIME_RANGE, YEAR_MONTH_RANGE].includes(props.type) && state.date && state.date.length === 1
+    ),
+    computedYears: computed(() => Object.keys(state.years).map((item) => ({ id: item, year: item })))
   })
 
   Object.assign(api, {
     state,
     initPanel: initPanel({ state, api }),
-    getCurrentDate: getCurrentDate(),
+    initYearMonthPanel: initYearMonthPanel({ state, props }),
+    getCurrentDate: getCurrentDate({ api, props }),
     getWeeksByMonth: getWeeksByMonth({ state }),
     getDate: getDate({ state }),
     getDaysByWeek: getDaysByWeek({ state, api }),
-    getSelectedPosition: getSelectedPosition({ state }),
-    confirm: confirm({ state, emit, props, api }),
+    getSelectedPosition: getSelectedPosition({ state, api }),
+    confirm: confirm({ state, emit, props, api, constants }),
     timeConfirm: timeConfirm({ state, emit }),
-    selectOption: selectOption({ state, emit, props }),
+    scrollStart: scrollStart({ state, api, props, constants }),
+    scrollEnd: scrollEnd({ state, api, props, constants }),
+    selectOption: selectOption({ state, emit, props, constants }),
     timeToggle: timeToggle({ state }),
-    watchVisible: watchVisible({ emit, api, nextTick, vm }),
-    watchModelValue: watchModelValue({ props, state }),
-    selectedComputed: selectedComputed({ props, state }),
-    scrollLoadHandler: scrollLoadHandler({ state, vm, api }),
+    watchVisible: watchVisible({ emit, api, state }),
+    scrollToCurrentDate: scrollToCurrentDate({ state, vm, nextTick }),
+    watchModelValue: watchModelValue({ props, state, constants }),
+    selectedComputed: selectedComputed({ props, state, constants, api }),
     loadingDate: loadingDate({ state, api }),
-    getFormatDate
+    loadYearMonth: loadYearMonth({ state, api }),
+    getOffsetMonth: getOffsetMonth(),
+    formatDate: formatDate({ props, constants })
   })
 
   watch(() => props.visible, api.watchVisible)
   watch(() => props.modelValue, api.watchModelValue, { immediate: true })
 
   onMounted(() => {
-    api.initPanel()
-    on(vm.$refs.datePickerBody, 'scroll', api.scrollLoadHandler)
-  })
-
-  onBeforeUnmount(() => {
-    off(vm.$refs.datePickerBody, 'scroll', api.scrollLoadHandler)
+    state.isYearMonthPanel ? api.initYearMonthPanel({ isInit: true }) : api.initPanel({ isInit: true })
+    props.visible &&
+      api.scrollToCurrentDate({ date: (Array.isArray(state.date) ? state.date[0] : state.date) || new Date() })
+    nextTick(() => {
+      state.ready = true
+    })
   })
 
   return api

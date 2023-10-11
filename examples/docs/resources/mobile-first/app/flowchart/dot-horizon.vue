@@ -79,6 +79,7 @@ const chartConfig = createConfig()
 
 Object.assign(chartConfig, {
   width: 0,
+  extraWidth: 100, // 图形预留宽度，用于图形最小宽度计算，适当修改保证图形宽度不被过分挤压
   height: 0,
   gap: 60,
   padding: 12,

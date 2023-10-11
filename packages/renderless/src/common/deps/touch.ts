@@ -12,7 +12,7 @@
 
 const MIN_DISTANCE = 10
 
-function getDirection(w, h) {
+export function getDirection(w, h) {
   if (h > w && h > MIN_DISTANCE) {
     return 'vertical'
   } else if (w > h && w > MIN_DISTANCE) {

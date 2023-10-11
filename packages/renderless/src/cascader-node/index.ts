@@ -10,9 +10,11 @@
  *
  */
 
+import { ICascaderNodeRenderlessParams, ICascaderPanelNode } from '@/types'
+
 export const comptCheckPath =
-  ({ api, parent, state }) =>
-  () => {
+  ({ api, parent, state }: Pick<ICascaderNodeRenderlessParams, 'api' | 'parent' | 'state'>) =>
+  (): boolean => {
     if (!state.config.checkStrictly) {
       return false
     }
@@ -21,8 +23,8 @@ export const comptCheckPath =
   }
 
 export const handleExpand =
-  ({ api, parent, props, state }) =>
-  () => {
+  ({ api, parent, props, state }: Pick<ICascaderNodeRenderlessParams, 'api' | 'parent' | 'props' | 'state'>) =>
+  (): void => {
     const { multiple, checkStrictly } = state.config
 
     if ((!checkStrictly && state.isDisabled) || props.node.loading) {
@@ -37,7 +39,7 @@ export const handleExpand =
 
         if (multiple) {
           const checked = state.isLeaf ? props.node.checked : false
-          api.handleMultiCheckChange(checked)
+          api.handleMultiCheckChange(Boolean(checked))
         }
       })
     } else {
@@ -46,7 +48,7 @@ export const handleExpand =
   }
 
 export const handleCheckChange =
-  ({ api, parent, dispatch, state }) =>
+  ({ api, parent, dispatch, state }: Pick<ICascaderNodeRenderlessParams, 'api' | 'parent' | 'dispatch' | 'state'>) =>
   () => {
     parent.handleCheckChange(state.value)
     api.handleExpand()
@@ -54,13 +56,15 @@ export const handleCheckChange =
   }
 
 export const handleMultiCheckChange =
-  ({ parent, props }) =>
-  (checked) => {
+  ({ parent, props }: Pick<ICascaderNodeRenderlessParams, 'parent' | 'props'>) =>
+  (checked: boolean): void => {
     props.node.doCheck(checked)
     parent.calculateMultiCheckedValue()
   }
 
-export const isInPath = (props) => (pathNodes) => {
-  const selectedPathNode = pathNodes[props.node.level - 1] || {}
-  return selectedPathNode.uid === props.node.uid
-}
+export const isInPath =
+  (props: ICascaderNodeRenderlessParams['props']) =>
+  (pathNodes: ICascaderPanelNode[]): boolean => {
+    const selectedPathNode = pathNodes[props.node.level - 1] || {}
+    return selectedPathNode.uid === props.node.uid
+  }

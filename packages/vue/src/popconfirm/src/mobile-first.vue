@@ -147,7 +147,7 @@ export default defineComponent({
   },
   emits: ['hide', 'show', 'confirm'],
   setup(props, context): any {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>

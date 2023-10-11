@@ -4,9 +4,9 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
-import { Input as TinyInput } from '@opentiny/vue'
+import { Input as TinyInput} from '@opentiny/vue'
 
 const input = ref('')
 </script>

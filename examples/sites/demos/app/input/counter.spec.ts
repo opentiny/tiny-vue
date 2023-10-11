@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('计数器', async ({ page }) => {
+test('[Input]counter', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('http://localhost:7130/pc/input/counter')
   await page.locator('#preview').getByRole('textbox').click()

@@ -33,6 +33,7 @@ export const renderless = (
   {
     Editor,
     Collaboration,
+    CodehighComp,
     Y,
     WebrtcProvider,
     StarterKit,
@@ -255,10 +256,7 @@ export const renderless = (
       const text = editor.getText()
       // 可传入参数 blockSeparator 控制节点之间的连接
       const lineText = editor.getText({ blockSeparator: '--' })
-      // console.log(json)
-      // console.log(html)
-      // console.log(text)
-      // console.log(lineText) // 文本一行内展示，可设置连接符，只能获得文本
+      // 文本一行内展示，可设置连接符，只能获得文本
       emit('update', { editor })
       emit('update:modelValue', html)
     },

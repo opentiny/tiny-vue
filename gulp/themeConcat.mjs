@@ -10,16 +10,14 @@ themeConcat.flags = {
 
 export default function themeConcat(cb) {
   const argv = minimist(process.argv.slice(2))
-  
+  concat(cb)
   if (argv.w || argv.watch) {
-    gulp.watch('packages/theme/**/*-theme.js', concat)
-  } else {
-    concat(cb)
+    gulp.watch('packages/theme/src/**/*-theme.js', concat)
   }
 }
 
 function concat(cb) {
-  fg(['packages/theme/**/*-theme.js']).then((files) => {
+  fg(['packages/theme/src/**/*-theme.js']).then((files) => {
     const ignoreNames = ['base', 'theme']
     // 1、遍历，返回全部 [{ name:'button', theme:'smb-theme'} ......]
     const components = files

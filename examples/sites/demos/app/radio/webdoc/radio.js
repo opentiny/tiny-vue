@@ -7,9 +7,9 @@ export default {
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>v-model</code> 绑定变量，设置的变量值为默认选中的 Radio，变量值对应 <code>label</code> 属性的值。通过 <code>text</code> 也可以配置显示文本，与默认插槽配置纯文本的结果一致\n\n<code>label</code> 可以是 <code>String</code>、<code>Number</code> 或 <code>Boolean</code>。</p>\n',
+          '<p>通过 <code>v-model</code> 绑定变量，设置的变量值为默认选中的 Radio，变量值对应 <code>label</code> 属性的值。通过 <code>text</code> 也可以配置显示文本，与默认插槽配置纯文本的结果一致\n\n<code>label</code> 可以是 <code>string</code>、<code>number</code> 或 <code>boolean</code>。</p>\n',
         'en-US':
-          '<p> uses <code>v-model</code> to bind a variable. The variable value is the default radio selected. The variable value corresponds to the value of <code>label</code>. You can also use <code>text</code> to configure the display text, which is the same as the result of the default slot configuration plain text.\n\n<code>label</code> can be <code>String</code>, <code>Number</code>, or <code> Boolean</code>. </p>\n'
+          '<p> uses <code>v-model</code> to bind a variable. The variable value is the default radio selected. The variable value corresponds to the value of <code>label</code>. You can also use <code>text</code> to configure the display text, which is the same as the result of the default slot configuration plain text.\n\n<code>label</code> can be <code>string</code>, <code>number</code>, or <code> boolean</code>. </p>\n'
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -137,7 +137,7 @@ export default {
       'properties': [
         {
           'name': 'label',
-          'type': 'Boolean|Number|String',
+          'type': 'boolean|number|string',
           'defaultValue': '',
           'desc': { 'zh-CN': 'Radio 的 value', 'en-US': 'Radio value' },
           'demoId': 'with-border'
@@ -151,28 +151,28 @@ export default {
         },
         {
           'name': 'text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '文本', 'en-US': 'Text' },
           'demoId': 'radio-text'
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否禁用', 'en-US': 'Disable' },
           'demoId': 'dynamic-disable'
         },
         {
           'name': 'border',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否显示边框', 'en-US': 'Display Border' },
           'demoId': 'with-border'
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': 'Radio 的尺寸，仅在 border 为真时有效;该属性的可选值为 medium / small / mini',
@@ -183,7 +183,7 @@ export default {
         },
         {
           'name': 'name',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '原生 name 属性', 'en-US': 'Native name attribute' },
           'demoId': 'radio-button1'

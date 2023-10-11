@@ -21,7 +21,7 @@
   display: inline-block;
   width: var(--ti-switch-width);
   height: var(--ti-switch-height);
-  line-height: var(--ti-switch-height);
+  line-height: calc(var(--ti-switch-height) - var(--ti-switch-border-weight) * 2);
   border-radius: var(--ti-switch-border-radius);
   vertical-align: middle;
   border: var(--ti-switch-border-weight) solid var(--ti-switch-off-bg-color);
@@ -36,7 +36,6 @@
     font-size: var(--ti-switch-inner-font-size);
     position: absolute;
     left: calc(var(--ti-switch-inner-position-left) + 4px);
-    top: -1px;
   }
 
   &__text {

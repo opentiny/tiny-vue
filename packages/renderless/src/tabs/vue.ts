@@ -11,6 +11,14 @@
  */
 
 import {
+  ITabsState,
+  ITabsApi,
+  ITabsProps,
+  ISharedRenderlessParamHooks,
+  ITabsRenderlessParamUtils,
+  ITabsRenderlessParams
+} from '@/types'
+import {
   calcMorePanes,
   calcExpandPanes,
   calcPaneInstances,
@@ -39,7 +47,7 @@ export const api = [
   'getNavRefs'
 ]
 
-const initState = ({ reactive, props }) =>
+const initState = ({ reactive, props }: Pick<ITabsRenderlessParams, 'reactive' | 'props'>): ITabsState =>
   reactive({
     panes: [],
     currentName: props.modelValue || props.activeName,
@@ -53,9 +61,16 @@ const initState = ({ reactive, props }) =>
     offsetY: 0,
     direction: '',
     expandPanesWidth: ''
-  })
+  }) as ITabsState
 
-const initWatcher = ({ watch, props, api, state, nextTick, refs }) => {
+const initWatcher = ({
+  watch,
+  props,
+  api,
+  state,
+  nextTick,
+  refs
+}: Pick<ITabsRenderlessParams, 'watch' | 'props' | 'api' | 'state' | 'nextTick' | 'refs'>) => {
   watch(() => props.modelValue, api.setCurrentName)
 
   watch(() => props.activeName, api.setCurrentName)
@@ -83,12 +98,12 @@ const initWatcher = ({ watch, props, api, state, nextTick, refs }) => {
 }
 
 export const renderless = (
-  props,
-  { onMounted, onUpdated, provide, reactive, watch },
-  { refs, parent, emit, constants, nextTick, childrenHandler }
-) => {
-  const api = {}
-  const state = initState({ reactive, props })
+  props: ITabsProps,
+  { onMounted, onUpdated, provide, reactive, watch }: ISharedRenderlessParamHooks,
+  { refs, parent, emit, constants, nextTick, childrenHandler }: ITabsRenderlessParamUtils
+): ITabsApi => {
+  const api = {} as ITabsApi
+  const state: ITabsState = initState({ reactive, props })
 
   Object.assign(api, {
     state,

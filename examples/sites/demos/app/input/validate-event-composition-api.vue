@@ -6,7 +6,7 @@
   </tiny-form>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Input as TinyInput, Form as TinyForm, FormItem as TinyFormItem } from '@opentiny/vue'
 

@@ -112,7 +112,7 @@ export default {
       'properties': [
         {
           'name': 'value',
-          'type': 'String ',
+          'type': 'string ',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置部门组件的初始化时的显示值。',
@@ -122,14 +122,14 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String ',
+          'type': 'string ',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置组件大小', 'en-US': 'Set the component size' },
           'demoId': 'size'
         },
         {
           'name': 'title',
-          'type': 'String ',
+          'type': 'string ',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置弹窗标题', 'en-US': 'Set the pop-up window title.' },
           'demoId': ''

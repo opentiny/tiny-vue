@@ -10,13 +10,27 @@
  *
  */
 
+import type {
+  INumericProps,
+  INumericState,
+  INumericRenderlessParamUtils,
+  INumericRenderlessParams,
+  INumericGetEmitValueParams,
+  INumericUnitPrecision
+} from '@/types'
+import { BigIntDecimal } from '../common/bigInt'
 import { formatNumber, roundFixed } from '../common/decimal'
 import { getMiniDecimal, lessEquals, equalsDecimal } from '../common/bigInt'
 import { isNumber, isNull } from '../common/type'
 import { MOUSEDELTA } from '../common'
 import { on, off } from '../common/deps/dom'
 
-export const initService = (service) => {
+export const initService = (
+  service: INumericRenderlessParamUtils['service']
+): {
+  getUnitPrecision: Function
+  getNumberFormat: Function
+} => {
   const { utils = {} } = service || {}
   const noopFn = () => null
 
@@ -26,11 +40,14 @@ export const initService = (service) => {
   }
 }
 
-export const getDecimal = (props) => (value) => getMiniDecimal(value, props.plugin)
+export const getDecimal =
+  (props: INumericProps) =>
+  (value: number): BigIntDecimal =>
+    getMiniDecimal(value, props.plugin)
 
 export const watchValue =
-  ({ api, state }) =>
-  (value) => {
+  ({ api, state }: Pick<INumericRenderlessParams, 'api' | 'state'>) =>
+  (value: number): void => {
     if (value === state.currentValue) {
       return
     }
@@ -39,8 +56,8 @@ export const watchValue =
   }
 
 export const toPrecision =
-  (state) =>
-  ({ num, precision }) => {
+  (state: INumericState) =>
+  ({ num, precision }: { num: number; precision: number }) => {
     if (precision === undefined) {
       precision = state.numPrecision
     }
@@ -48,25 +65,27 @@ export const toPrecision =
     return parseFloat(Math.round(num * 10 ** precision) / 10 ** precision)
   }
 
-export const getPrecision = () => (value) => {
-  if (value === undefined) {
-    return 0
+export const getPrecision =
+  () =>
+  (value: number): number => {
+    if (value === undefined) {
+      return 0
+    }
+
+    const valueString = value.toString()
+    const dotPosition = valueString.indexOf('.')
+    let precision = 0
+
+    if (dotPosition !== -1) {
+      precision = valueString.length - dotPosition - 1
+    }
+
+    return precision
   }
-
-  const valueString = value.toString()
-  const dotPosition = valueString.indexOf('.')
-  let precision = 0
-
-  if (dotPosition !== -1) {
-    precision = valueString.length - dotPosition - 1
-  }
-
-  return precision
-}
 
 export const internalIncrease =
-  ({ api, state }) =>
-  ({ val, step }) => {
+  ({ api, state }: Pick<INumericRenderlessParams, 'api' | 'state'>) =>
+  ({ val, step }: { val: number; step: number }): string => {
     const decimal = api.getDecimal(val)
 
     if (decimal.isNaN() && val !== undefined) {
@@ -77,8 +96,8 @@ export const internalIncrease =
   }
 
 export const internalDecrease =
-  ({ api, state }) =>
-  ({ val, step }) => {
+  ({ api, state }: Pick<INumericRenderlessParams, 'api' | 'state'>) =>
+  ({ val, step }: { val: number; step: number }): string | number => {
     const decimal = api.getDecimal(val)
 
     if (decimal.isNaN() && val !== undefined) {
@@ -89,8 +108,8 @@ export const internalDecrease =
   }
 
 export const increase =
-  ({ api, props, state }) =>
-  () => {
+  ({ api, props, state }: Pick<INumericRenderlessParams, 'api' | 'props' | 'state'>) =>
+  (): void => {
     if (state.inputDisabled || state.maxDisabled) {
       return
     }
@@ -116,8 +135,8 @@ export const increase =
   }
 
 export const decrease =
-  ({ api, props, state }) =>
-  () => {
+  ({ api, props, state }: Pick<INumericRenderlessParams, 'api' | 'props' | 'state'>) =>
+  (): void => {
     if (state.inputDisabled || state.minDisabled) {
       return
     }
@@ -142,8 +161,15 @@ export const decrease =
   }
 
 export const handleBlur =
-  ({ constants, dispatch, emit, props, state, api }) =>
-  (event) => {
+  ({
+    constants,
+    dispatch,
+    emit,
+    props,
+    state,
+    api
+  }: Pick<INumericRenderlessParams, 'constants' | 'dispatch' | 'emit' | 'props' | 'state' | 'api'>) =>
+  (event: FocusEvent): void => {
     state.inputStatus = false
     api.setCurrentValue(event.target.value)
     emit('blur', event)
@@ -154,8 +180,8 @@ export const handleBlur =
   }
 
 export const handleFocus =
-  ({ emit, state, props, api, refs }) =>
-  (event) => {
+  ({ emit, state, props, api, refs }: Pick<INumericRenderlessParams, 'emit' | 'state' | 'props' | 'api' | 'refs'>) =>
+  (event: FocusEvent): void => {
     if (props.disabled) {
       refs.input.blur()
     }
@@ -179,14 +205,15 @@ export const handleFocus =
     emit('focus', event)
   }
 
-export const focus = (refs) => () => {
+export const focus = (refs: INumericRenderlessParams['refs']) => (): void => {
   refs.input.focus()
 }
 
-const getEmitValue = (args) => {
+const getEmitValue = (
+  args: INumericGetEmitValueParams
+): { newVal: number | string | undefined; emitValue: number | string | undefined } => {
   let { newVal, emitValue, allowEmpty, defaultVal, bigNew, oldVal } = args
   let { max, min, api, props, format, plugin, stringMode } = args
-
   if (!newVal && newVal !== 0) {
     emitValue = allowEmpty ? undefined : defaultVal
   } else if (bigNew.isNaN()) {
@@ -219,8 +246,15 @@ const getEmitValue = (args) => {
 }
 
 export const setCurrentValue =
-  ({ api, constants, dispatch, emit, props, state }) =>
-  (newVal) => {
+  ({
+    api,
+    constants,
+    dispatch,
+    emit,
+    props,
+    state
+  }: Pick<INumericRenderlessParams, 'api' | 'constants' | 'dispatch' | 'emit' | 'props' | 'state'>) =>
+  (newVal: number): void => {
     const { max, min, allowEmpty, validateEvent, stringMode, plugin } = props
     const { format } = state
     const oldVal = state.currentValue
@@ -264,8 +298,8 @@ export const setCurrentValue =
   }
 
 export const handleInput =
-  ({ state, api, emit, props }) =>
-  (event) => {
+  ({ state, api, emit, props }: Pick<INumericRenderlessParams, 'state' | 'api' | 'emit' | 'props'>) =>
+  (event: InputEvent): void => {
     const { fraction } = state.format
     const emitError = () => {
       if (state.pasting) {
@@ -299,18 +333,18 @@ export const handleInput =
   }
 
 export const handleInputChange =
-  ({ api }) =>
-  (event) => {
+  ({ api }: Pick<INumericRenderlessParams, 'api'>) =>
+  (event: Event): void => {
     const value = event.target.value
 
     api.setCurrentValue(value === '-' ? 0 : value)
   }
 
-export const select = (refs) => () => refs.input.select()
+export const select = (refs: INumericRenderlessParams['refs']) => () => refs.input.select()
 
 export const mounted =
-  ({ constants, parent, props, state }) =>
-  () => {
+  ({ constants, parent, props, state }: Pick<INumericRenderlessParams, 'constants' | 'parent' | 'props' | 'state'>) =>
+  (): void => {
     const innerInput = parent.$el.querySelector('input')
 
     innerInput.setAttribute(constants.KEY, constants.VALUE)
@@ -328,24 +362,24 @@ export const mounted =
   }
 
 export const unmounted =
-  ({ parent, state }) =>
-  () => {
+  ({ parent, state }: Pick<INumericRenderlessParams, 'parent' | 'state'>) =>
+  (): void => {
     const innerInput = parent.$el.querySelector('input')
 
     off(innerInput, 'paste', state.onPase)
   }
 
 export const updated =
-  ({ constants, parent, state }) =>
-  () => {
+  ({ constants, parent, state }: Pick<INumericRenderlessParams, 'constants' | 'parent' | 'state'>) =>
+  (): void => {
     const innerInput = parent.$el.querySelector('input')
 
     innerInput && innerInput.setAttribute(constants.VALUENOW, state.currentValue)
   }
 
 export const displayValue =
-  ({ props, state }) =>
-  () => {
+  ({ props, state }: Pick<INumericRenderlessParams, 'props' | 'state'>) =>
+  (): string | number => {
     const { currentValue, inputStatus, userInput } = state
 
     if (inputStatus) {
@@ -360,8 +394,8 @@ export const displayValue =
   }
 
 export const getNumPecision =
-  ({ api, props }) =>
-  () => {
+  ({ api, props }: Pick<INumericRenderlessParams, 'api' | 'props'>) =>
+  (): number => {
     const stepPrecision = api.getPrecision(props.step)
 
     if (props.precision !== undefined) {
@@ -372,8 +406,8 @@ export const getNumPecision =
   }
 
 export const mouseEvent =
-  ({ api, props, state }) =>
-  (event) => {
+  ({ api, props, state }: Pick<INumericRenderlessParams, 'api' | 'props' | 'state'>) =>
+  (event: MouseEvent): void | boolean => {
     if (props.mouseWheel && state.inputStatus) {
       let delta = 0
 
@@ -387,7 +421,10 @@ export const mouseEvent =
     }
   }
 
-export const getUnitPrecision = ({ service, props }) => {
+export const getUnitPrecision = ({
+  service,
+  props
+}: Pick<INumericRenderlessParams, 'service' | 'props'>): INumericUnitPrecision => {
   let fraction, rounding
   const { format = {}, precision, unit } = props
   const defaultFmt = {
@@ -407,15 +444,15 @@ export const getUnitPrecision = ({ service, props }) => {
 }
 
 export const dispatchDisplayedValue =
-  ({ state, api, dispatch }) =>
-  () => {
+  ({ state, api, dispatch }: Pick<INumericRenderlessParams, 'state' | 'api' | 'dispatch'>) =>
+  (): void => {
     if (state.isDisplayOnly) {
       dispatch('FormItem', 'displayed-value-changed', { type: 'numeric', val: api.getDisplayedValue() })
     }
   }
 
 export const getDisplayedValue =
-  ({ state, props }) =>
-  () => {
+  ({ state, props }: Pick<INumericRenderlessParams, 'state' | 'props'>) =>
+  (): string => {
     return state.displayValue || state.displayValue === 0 ? state.displayValue + ' ' + (props.unit || '') : '-'
   }

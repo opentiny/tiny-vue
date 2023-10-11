@@ -179,10 +179,8 @@ export const toggleDropDownVisible =
     if (visible !== state.dropDownVisible) {
       state.dropDownVisible = visible
       if (visible) {
-        nextTick(() => {
-          updatePopper()
-          state.panel.scrollIntoView()
-        })
+        updatePopper()
+        state.panel.scrollIntoView()
       }
 
       input && input.getInput && input.getInput().setAttribute('aria-expanded', visible)

@@ -47,6 +47,17 @@ export default {
       'codeFiles': ['custom/column-sort.vue']
     },
     {
+      'demoId': 'custom-multiple-column-sort',
+      'name': { 'zh-CN': '多列排序', 'en-US': 'Multi-column sorting' },
+      'desc': {
+        'zh-CN': `<p><code>表头排序</code> 只支持单列排序，<code>个性化排序</code> 可以通过配置 <code>sortConfig.multipleColumnSort</code> 开启多列排序，
+          <code>sortConfig.multipleColumnSort</code> 支持配置为 <code>true</code> 或者 <code>方法</code>，配置为方法时可以自定义多列排序。</p>\n`,
+        'en-US': `<p><code>Table header sorting</code> supports only single-column sorting. <code>Personalized sorting</code>You can configure <code>sortConfig.multipleColumnSort</code> to enable multi-column sorting,
+          <code>sortConfig.multipleColumnSort</code> can be set to <code>true</code> or <code>method</code>. When this parameter is set to a method, you can customize multi-column sorting. </p>\n`
+      },
+      'codeFiles': ['custom/multiple-column-sort.vue']
+    },
+    {
       'demoId': 'custom-sort-type',
       'name': { 'zh-CN': '排序类型', 'en-US': 'Column Freeze' },
       'desc': {
@@ -70,12 +81,17 @@ export default {
     },
     {
       'demoId': 'custom-ordercolumn-local',
-      'name': { 'zh-CN': '本地记录', 'en-US': 'Load Remote Data' },
+      'name': {
+        'zh-CN': '本地记录和个性化面板按钮点击事件监听',
+        'en-US': 'Local Record and Personalization Panel Button Click Event Listening'
+      },
       'desc': {
-        'zh-CN':
-          '<p>配置 <code>setting</code> 的 <code>sortable</code> 为 <code>sortablejs</code> 可实现拖拽排序列功能， 此功能在多级列头下无效</p>\n',
-        'en-US':
-          '<p>Use the <code>reloadCustoms</code> method and set the second parameter to <code>true</code> to load columns in sequence</p>\n'
+        'zh-CN': `<p>配置 <code>setting</code> 的 <code>storage</code> 为 <code>local</code> 可实个性化的本地存储，
+          配置 <code>setting</code> 的 <code>sortable</code> 为 <code>sortablejs</code> 可实现拖拽排序列功能，此功能在多级列头下无效，
+          并且可以通过三个事件<code>save-setting</code>、<code>cancel-setting</code>、<code>reset-setting</code>来分别监听确认、取消、重置按钮的点击事件</p>\n`,
+        'en-US': `<p>Configure <code>storage</code> of <code>setting</code> to <code>local</code> as a personalized local storage,
+          Set <code>sortable</code> of <code>setting</code> to <code>sortablejs</code> to implement the drag-and-drop sorting function. This function is invalid in multi-level column headers,
+          In addition, three events <code>save-setting</code>, <code>cancel-setting</code>, and <code>reset-setting</code> can be used to listen to the click events of the confirmation, cancellation, and reset buttons.</p>\n`
       },
       'codeFiles': ['custom/ordercolumn-local.vue']
     },
@@ -118,7 +134,7 @@ export default {
         'zh-CN':
           '<p>在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里配置 <code>onBeforeMove</code> 拖拽前事件，也可配置 <code>filter</code> 设置类名， 拖拽个性化面板某一行会触发个性化面板的拖拽前事件。</p>\n',
         'en-US':
-          '<p>On the <code>toolbar</code> tab, configure <code>setting</code> to enable personalized settings. In the personalized panel, select other settings. You can select the number of records to be displayed on each page. You can use the <code>other</code> attribute of <code>setting</code> to control the display of other settings. The default value of <code>Boolean</code> is <code>true</code></p>\n'
+          '<p>On the <code>toolbar</code> tab, configure <code>setting</code> to enable personalized settings. In the personalized panel, select other settings. You can select the number of records to be displayed on each page. You can use the <code>other</code> attribute of <code>setting</code> to control the display of other settings. The default value of <code>boolean</code> is <code>true</code></p>\n'
       },
       'codeFiles': ['custom/prsonalized-drag.vue']
     },
@@ -127,7 +143,7 @@ export default {
       'name': { 'zh-CN': '分页条数', 'en-US': 'Local Storage' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里选择其它设置，其它设置里可以选择每页显示的条数，可以通过 <code>setting</code> 的 <code>other</code> 属性控制显示其他设置，<code>Boolean</code> 类型默认为 <code>true</code></p>\n',
+          '<p>在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里选择其它设置，其它设置里可以选择每页显示的条数，可以通过 <code>setting</code> 的 <code>other</code> 属性控制显示其他设置，<code>boolean</code> 类型默认为 <code>true</code></p>\n',
         'en-US':
           '<p>Configure <code>:setting=&quot;{storage:\'local\'}&quot; on the <code>toolbar</code> tag </code>Enable personalization and save to local <code>localSotrage</code> </p>\n<div class="danger custom-block">\n</div>\n'
       },

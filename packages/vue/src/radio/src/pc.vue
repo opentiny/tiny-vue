@@ -60,6 +60,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/radio/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
+import type { IRadioApi } from '@opentiny/vue-renderless/types/radio.type'
 import '@opentiny/vue-theme/radio/index.less'
 
 export default defineComponent({
@@ -78,7 +79,7 @@ export default defineComponent({
     'displayOnly'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IRadioApi
   }
 })
 </script>

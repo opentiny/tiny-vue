@@ -38,7 +38,45 @@ export default function builder(option) {
       ['show', { visibility: 'visible' }],
       // 透明度                               op100
       [/^op(\d+)$/, ([, val]) => ({ opacity: clamp(val / 100, 0, 1) })],
-      ['decoration-none', { 'text-decoration': 'none' }]
+
+      // 小三角  caret-t-l/c/r  先边后位置，dom需要有relative   caret-tc caret-rb
+      //         caret-l-t/c/b
+      //         caret-r-t/c/b
+      //         caret-b-l/c/r
+      [
+        /^caret-(t|l|r|b)(t|l|r|b|c)$/,
+        ([, side, offset], { rawSelector, currentSelector, variantHandlers, theme }) => {
+          const selector = e(rawSelector)
+          const altSideProp = { t: 'bottom', l: 'right', r: 'left', b: 'top' }[side]
+
+          let sideProp = { t: 'top', l: 'left', r: 'right', b: 'bottom' }[side]
+          let offsetProp =
+            offset === 'c' //
+              ? { t: 'left', b: 'left', l: 'top', r: 'top' }[side] //
+              : { t: 'top', l: 'left', r: 'right', b: 'bottom' }[offset]
+
+          const colorCss = `border-${altSideProp}-color: var(--caret-color);`
+          const positionCss = `${sideProp}: calc(-2 * var(--caret-width));`
+          const offsetCss =
+            offset === 'c' //
+              ? `${offsetProp}:calc(50% - var(--caret-offset));` //
+              : `${offsetProp}:var(--caret-offset);`
+          return `
+${selector}::before {
+  position: absolute;
+  display: block;
+  content: " ";
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: var(--caret-width);
+  ${colorCss}
+  ${positionCss}
+  ${offsetCss}
+}`
+        }
+      ]
     ],
     shortcuts: []
   }

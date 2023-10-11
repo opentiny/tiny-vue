@@ -74,7 +74,7 @@ export default {
     },
     {
       'demoId': 'event-grid-events',
-      'name': { 'zh-CN': '事件对象', 'en-US': 'Event Object' },
+      'name': { 'zh-CN': '事件对象', 'en-US': 'Event object' },
       'desc': {
         'zh-CN': '<p>表格属性 <code>envents</code> 设置表格的事件对象。\n</p>\n',
         'en-US': '<p>Table Properties<code>envents</code>Sets the event object of the table. \n</p>\n'

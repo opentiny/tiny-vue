@@ -13,6 +13,7 @@
 import IconPromptExclamation from './src/prompt-exclamation'
 import IconAdd from './src/add'
 import IconAdministrator from './src/administrator'
+import IconAgendaView from './src/agenda-view'
 import IconAlignBaseline from './src/align-baseline'
 import IconAlignCenter from './src/align-center'
 import IconAlignFlexCenter from './src/align-flex-center'
@@ -70,6 +71,7 @@ import IconCustom from './src/custom'
 import IconCustomerService from './src/customer-service'
 import IconCrop from './src/crop'
 import IconDataSource from './src/data-source'
+import IconDayView from './src/day-view'
 import IconDefault from './src/default'
 import IconDefinedFiltration from './src/defined-filtration'
 import IconDel from './src/del'
@@ -150,6 +152,7 @@ import IconFile from './src/file'
 import IconFilesCircle from './src/files-circle'
 import IconFiles from './src/files'
 import IconFiletext from './src/filetext'
+import IconFilletExternalLink from './src/fillet-external-link'
 import IconFileupload from './src/fileupload'
 import IconFiltered from './src/filtered'
 import IconFlag from './src/flag'
@@ -217,6 +220,7 @@ import IconMinusSquare from './src/minus-square'
 import IconMinus from './src/minus'
 import IconMobileView from './src/mobile-view'
 import IconMobile from './src/mobile'
+import IconMonthView from './src/month-view'
 import IconMore from './src/more'
 import IconNew from './src/new'
 import IconNoPremission from './src/no-premission'
@@ -456,6 +460,8 @@ export {
   IconAdd as iconAdd,
   IconAdministrator,
   IconAdministrator as iconAdministrator,
+  IconAgendaView,
+  IconAgendaView as iconAgendaView,
   IconAlignBaseline,
   IconAlignBaseline as iconAlignBaseline,
   IconAlignCenter,
@@ -570,6 +576,8 @@ export {
   IconCustomerService as iconCustomerService,
   IconDataSource,
   IconDataSource as iconDataSource,
+  IconDayView,
+  IconDayView as iconDayView,
   IconDefault,
   IconDefault as iconDefault,
   IconDefinedFiltration,
@@ -722,6 +730,8 @@ export {
   IconEditorVideo as iconEditorVideo,
   IconFileCloudupload,
   IconFileCloudupload as iconFileCloudupload,
+  IconFilletExternalLink,
+  IconFilletExternalLink as iconFilletExternalLink,
   IconFileExcel,
   IconFileExcel as iconFileExcel,
   IconFile,
@@ -868,6 +878,8 @@ export {
   IconMobileView as iconMobileView,
   IconMobile,
   IconMobile as iconMobile,
+  IconMonthView,
+  IconMonthView as iconMonthView,
   IconMore,
   IconMore as iconMore,
   IconNew,
@@ -1335,6 +1347,7 @@ export default {
   IconEditorUndo,
   IconEditorVideo,
   IconFileCloudupload,
+  IconFilletExternalLink,
   IconFileExcel,
   IconFile,
   IconFilesCircle,

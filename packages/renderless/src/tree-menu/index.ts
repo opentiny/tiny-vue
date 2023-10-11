@@ -66,9 +66,11 @@ export const filterNode = () => (value, data) => {
   return data.label.includes(value)
 }
 
-export const watchFilterText = (refs) => (value) => {
-  refs.tree.filter(value)
-}
+export const watchFilterText =
+  ({ vm }) =>
+  (value) => {
+    vm.$refs.tree.filter(value)
+  }
 
 export const nodeDragStart = (emit) => (node, event) => {
   emit('node-drag-start', node, event)
@@ -119,7 +121,7 @@ export const getTitle = (props) => (label) => (props.showTitle ? label : '')
 export const collapseChange =
   ({ state, props, emit }) =>
   () => {
-    if (props.collapsible) {
+    if (props.menuCollapsible) {
       state.isCollapsed = !state.isCollapsed
       emit('collapse-change', state.isCollapsed)
     }
@@ -128,7 +130,7 @@ export const collapseChange =
 export const collapseMenu =
   ({ state, props, api }) =>
   () => {
-    if (props.collapsible && !state.isCollapsed) {
+    if (props.menuCollapsible && !state.isCollapsed) {
       api.collapseChange()
     }
   }
@@ -136,7 +138,7 @@ export const collapseMenu =
 export const expandMenu =
   ({ state, props, api }) =>
   () => {
-    if (props.collapsible && state.isCollapsed) {
+    if (props.menuCollapsible && state.isCollapsed) {
       api.collapseChange()
     }
   }

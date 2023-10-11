@@ -12,31 +12,33 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
-export default defineComponent({
-  name: $prefix + 'NavMenu',
-  props: {
-    ...$props,
-    data: Array,
-    overflow: {
-      type: String,
-      default: 'auto',
-      validator(value) {
-        return /^(auto|retract|fixed|hidden)$/.test(value)
-      }
-    },
-    parentKey: String,
-    beforeSkip: Function,
-    fetchMenuData: Function,
-    fields: Object,
-    prevent: {
-      type: Boolean,
-      default: false
-    },
-    allowFullUrl: {
-      type: Boolean,
-      default: false
+export const navMenuProps = {
+  ...$props,
+  data: Array,
+  overflow: {
+    type: String,
+    default: 'auto',
+    validator(value) {
+      return /^(auto|retract|fixed|hidden)$/.test(value)
     }
   },
+  parentKey: String,
+  beforeSkip: Function,
+  fetchMenuData: Function,
+  fields: Object,
+  prevent: {
+    type: Boolean,
+    default: false
+  },
+  allowFullUrl: {
+    type: Boolean,
+    default: false
+  }
+}
+
+export default defineComponent({
+  name: $prefix + 'NavMenu',
+  props: navMenuProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

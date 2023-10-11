@@ -175,7 +175,7 @@ import Button from '@opentiny/vue-button'
 import Modal from '@opentiny/vue-modal'
 import { t } from '@opentiny/vue-locale'
 import Grid, { GridRadio, GridColumn } from '@opentiny/vue-grid'
-import { find, mapTree } from '@opentiny/vue-renderless/grid/static'
+import { arrayEach, find, mapTree, isNull } from '@opentiny/vue-renderless/grid/static'
 import {
   IconEyeopen,
   IconEyeclose,
@@ -192,9 +192,7 @@ import Select from '@opentiny/vue-select'
 import Option from '@opentiny/vue-option'
 import CustomSwitch from './custom-switch.vue'
 import { extend } from '@opentiny/vue-renderless/common/object'
-import { isNull } from '@opentiny/vue-renderless/grid/static'
-import { appProperties } from '@opentiny/vue-common'
-import { $props, defineComponent } from '@opentiny/vue-common'
+import { $props, defineComponent, appProperties } from '@opentiny/vue-common'
 
 export default defineComponent({
   components: {
@@ -468,6 +466,36 @@ export default defineComponent({
         }
       }
     },
+    handleOrder(column) {
+      const { columns, tinyTable } = this
+      const { sortOpts } = tinyTable
+      const { multipleColumnSort } = sortOpts
+
+      // 设置当前列排序类型
+      column.order = tinyTable.toggleColumnOrder(column)
+
+      // 如果当前列排序类型存在，并且是单列排序，就清空其它列的排序类型
+      if (column.order && !multipleColumnSort) {
+        arrayEach(columns, (col) => col !== column && (col.order = null))
+      }
+    },
+    handleVisible(column) {
+      const invisibleCols = this.fullColumn.filter((item) => item.visible).length
+
+      if (column.visible && invisibleCols === 1) {
+        // 最后一条显示的列不能隐藏
+        Modal.message({ id: 'customSetting', message: t('ui.grid.individuation.hideMsg'), status: 'warning' })
+      } else {
+        column.visible = !column.visible
+      }
+    },
+    showOrHideAllColumns(visible: boolean) {
+      this.columns.forEach((col) => {
+        col.visible = visible
+      })
+
+      this.showAll = visible
+    },
     handlerSetting(type, column) {
       const invisibleCols = this.fullColumn.filter((item) => item.visible).length
 
@@ -556,6 +584,7 @@ export default defineComponent({
         return props1.length === props2.length && props1.sort().join(',') === props2.sort().join(',')
       }
 
+      // 用户自定义重置方法
       if (typeof this.resetMethod === 'function') {
         this.resetMethod().then((sourceSettings) => {
           this.buildSettings()

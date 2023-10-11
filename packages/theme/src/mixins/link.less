@@ -14,18 +14,18 @@
   color: @color;
   fill: @color;
 
-  &.is-underline:hover:after,
-  &:after {
-    border-color: @border-color;
+  &.is-underline:hover {
+    &:after {
+      border-color: @border-color;
+    }
   }
 
   &:hover {
-    color: @hover-color;
-    fill: @hover-color;
     text-decoration: none;
   }
 
-  &.is-disabled {
+  &.is-disabled,
+  &.is-disabled:hover {
     color: @disabled-color;
     fill: @disabled-color;
   }

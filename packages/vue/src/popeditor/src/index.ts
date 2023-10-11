@@ -13,7 +13,7 @@ import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import { iconPopup, iconSearch } from '@opentiny/vue-icon'
 import template from 'virtual-template?pc'
 
-const $constants = {
+export const $constants = {
   TITLE: 'ui.popeditor.title',
   COLUMNS_TYPE: {
     selection: 'selection',
@@ -40,178 +40,180 @@ const $constants = {
   LABEL: 'label'
 }
 
-export default defineComponent({
-  name: $prefix + 'Popeditor',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    modelValue: {
-      type: [String, Number, Array],
-      default: ''
-    },
-    tabindex: {
-      type: String,
-      default: '1'
-    },
-    placeholder: {
-      type: String,
-      default: ''
-    },
-    size: String,
-    trigger: {
-      type: String,
-      default: 'default'
-    },
-    icon: {
-      type: Object,
-      default() {
-        return iconPopup()
-      }
-    },
-    iconSearch: {
-      type: Object,
-      default() {
-        return iconSearch()
-      }
-    },
-    title: {
-      type: String,
-      default: ''
-    },
-    textField: {
-      type: String,
-      default: 'label'
-    },
-    textSplit: {
-      type: String,
-      default: '/'
-    },
-    valueField: {
-      type: String,
-      default: 'id'
-    },
-    valueSplit: {
-      type: String,
-      default: ';'
-    },
-    popseletor: {
-      type: String,
-      default: 'grid',
-      validator(value) {
-        return ['grid', 'tree'].includes(value)
-      }
-    },
-    conditions: {
-      type: Array,
-      default() {
-        return []
-      }
-    },
-    width: {
-      type: [String, Number],
-      default: ''
-    },
-    gridOp: {
-      type: Object,
-      default() {
-        return {
-          columns: [],
-          data: []
-        }
-      }
-    },
-    remoteSearch: Function,
-    dataset: Object,
-    alwaysLoad: {
-      type: Boolean,
-      default: false
-    },
-    treeOp: {
-      type: Object,
-      default() {
-        return {
-          data: []
-        }
-      }
-    },
-    pagerOp: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    readonly: {
-      type: Boolean,
-      default: true
-    },
-    multi: {
-      type: Boolean,
-      default: false
-    },
-    showClearBtn: {
-      type: Boolean,
-      default: true
-    },
-    showPager: {
-      type: Boolean,
-      default: false
-    },
-    showHistory: {
-      type: Boolean,
-      default: false
-    },
-    autoLookup: {
-      type: Boolean,
-      default: true
-    },
-    beforeReset: Function,
-    resize: {
-      type: Boolean,
-      default: false
-    },
-    dialogClass: {
-      type: String,
-      default: ''
-    },
-    textRenderSource: Function,
-    draggable: {
-      type: Boolean,
-      default: true
-    },
-    placement: {
-      type: String,
-      default: 'bottom-start'
-    },
-    popperAppendToBody: {
-      type: Boolean,
-      default: true
-    },
-    suggest: Boolean,
-    beforeClose: {
-      type: Function,
-      default: () => () => true
-    },
-    showSelectedBox: Boolean,
-    selectedBoxOp: {
-      type: Object,
-      default: () => ({})
-    },
-    tooltipConfig: {
-      type: Object,
-      default: () => ({})
-    },
-    autoReset: {
-      type: Boolean,
-      default: false
+export const popeditorProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  modelValue: {
+    type: [String, Number, Array],
+    default: ''
+  },
+  tabindex: {
+    type: String,
+    default: '1'
+  },
+  placeholder: {
+    type: String,
+    default: ''
+  },
+  size: String,
+  trigger: {
+    type: String,
+    default: 'default'
+  },
+  icon: {
+    type: Object,
+    default() {
+      return iconPopup()
     }
   },
+  iconSearch: {
+    type: Object,
+    default() {
+      return iconSearch()
+    }
+  },
+  title: {
+    type: String,
+    default: ''
+  },
+  textField: {
+    type: String,
+    default: 'label'
+  },
+  textSplit: {
+    type: String,
+    default: '/'
+  },
+  valueField: {
+    type: String,
+    default: 'id'
+  },
+  valueSplit: {
+    type: String,
+    default: ';'
+  },
+  popseletor: {
+    type: String,
+    default: 'grid',
+    validator(value) {
+      return ['grid', 'tree'].includes(value)
+    }
+  },
+  conditions: {
+    type: Array,
+    default() {
+      return []
+    }
+  },
+  width: {
+    type: [String, Number],
+    default: ''
+  },
+  gridOp: {
+    type: Object,
+    default() {
+      return {
+        columns: [],
+        data: []
+      }
+    }
+  },
+  remoteSearch: Function,
+  dataset: Object,
+  alwaysLoad: {
+    type: Boolean,
+    default: false
+  },
+  treeOp: {
+    type: Object,
+    default() {
+      return {
+        data: []
+      }
+    }
+  },
+  pagerOp: {
+    type: Object,
+    default() {
+      return {}
+    }
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  readonly: {
+    type: Boolean,
+    default: true
+  },
+  multi: {
+    type: Boolean,
+    default: false
+  },
+  showClearBtn: {
+    type: Boolean,
+    default: true
+  },
+  showPager: {
+    type: Boolean,
+    default: false
+  },
+  showHistory: {
+    type: Boolean,
+    default: false
+  },
+  autoLookup: {
+    type: Boolean,
+    default: true
+  },
+  beforeReset: Function,
+  resize: {
+    type: Boolean,
+    default: false
+  },
+  dialogClass: {
+    type: String,
+    default: ''
+  },
+  textRenderSource: Function,
+  draggable: {
+    type: Boolean,
+    default: true
+  },
+  placement: {
+    type: String,
+    default: 'bottom-start'
+  },
+  popperAppendToBody: {
+    type: Boolean,
+    default: true
+  },
+  suggest: Boolean,
+  beforeClose: {
+    type: Function,
+    default: () => () => true
+  },
+  showSelectedBox: Boolean,
+  selectedBoxOp: {
+    type: Object,
+    default: () => ({})
+  },
+  tooltipConfig: {
+    type: Object,
+    default: () => ({})
+  },
+  autoReset: {
+    type: Boolean,
+    default: false
+  }
+}
+
+export default defineComponent({
+  name: $prefix + 'Popeditor',
+  props: popeditorProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

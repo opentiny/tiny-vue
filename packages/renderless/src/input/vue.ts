@@ -9,7 +9,16 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-
+import {
+  IInputApi,
+  IInputProps,
+  IInputState,
+  ISharedRenderlessParamHooks,
+  IInputRenderlessParamUtils,
+  IInputClassPrefixConstants,
+  IInputEventNameConstants,
+  IInputRenderlessParams
+} from '@/types'
 import {
   blur,
   showBox,
@@ -75,7 +84,15 @@ export const api = [
   'hiddenPassword'
 ]
 
-const initState = ({ reactive, computed, mode, props, parent, constants, api }) => {
+const initState = ({
+  reactive,
+  computed,
+  mode,
+  props,
+  parent,
+  constants,
+  api
+}: Pick<IInputRenderlessParams, 'reactive' | 'computed' | 'mode' | 'props' | 'parent' | 'constants' | 'api'>) => {
   const state = reactive({
     mode,
     focused: false,
@@ -135,10 +152,22 @@ const initState = ({ reactive, computed, mode, props, parent, constants, api }) 
     hiddenPassword: computed(() => api.hiddenPassword())
   })
 
-  return state
+  return state as IInputState
 }
 
-const initApi = ({ api, state, dispatch, broadcast, emit, refs, props, CLASS_PREFIX, parent }) => {
+const initApi = ({
+  api,
+  state,
+  dispatch,
+  broadcast,
+  emit,
+  refs,
+  props,
+  CLASS_PREFIX,
+  parent
+}: Pick<IInputRenderlessParams, 'api' | 'state' | 'dispatch' | 'broadcast' | 'emit' | 'refs' | 'props' | 'parent'> & {
+  CLASS_PREFIX: IInputClassPrefixConstants
+}) => {
   Object.assign(api, {
     state,
     dispatch,
@@ -158,7 +187,22 @@ const initApi = ({ api, state, dispatch, broadcast, emit, refs, props, CLASS_PRE
   })
 }
 
-const mergeApi = ({ storages, api, componentName, props, emit, eventName, nextTick, parent, state, refs }) => {
+const mergeApi = ({
+  storages,
+  api,
+  componentName,
+  props,
+  emit,
+  eventName,
+  nextTick,
+  parent,
+  state,
+  refs
+}: Pick<IInputRenderlessParams, 'api' | 'emit' | 'props' | 'state' | 'nextTick' | 'parent' | 'refs'> & {
+  storages: ReturnType<typeof useStorageBox>
+  componentName: string
+  eventName: IInputEventNameConstants
+}) => {
   const { storageData, isMemoryStorage, addMemory, searchMemory, selectedMemory } = storages
 
   return Object.assign(api, {
@@ -197,7 +241,19 @@ const mergeApi = ({ storages, api, componentName, props, emit, eventName, nextTi
   })
 }
 
-const initWatch = ({ watch, state, api, props, nextTick, emit, componentName, eventName }) => {
+const initWatch = ({
+  watch,
+  state,
+  api,
+  props,
+  nextTick,
+  emit,
+  componentName,
+  eventName
+}: Pick<IInputRenderlessParams, 'watch' | 'state' | 'api' | 'props' | 'nextTick' | 'emit'> & {
+  componentName: string
+  eventName: IInputEventNameConstants
+}) => {
   watch(
     () => props.modelValue,
     (value) => {
@@ -258,14 +314,14 @@ const initWatch = ({ watch, state, api, props, nextTick, emit, componentName, ev
 }
 
 export const renderless = (
-  props,
-  { computed, onMounted, onUpdated, reactive, toRefs, watch, inject },
-  { vm, refs, parent, emit, constants, nextTick, broadcast, dispatch, mode }
-) => {
-  const api = {}
+  props: IInputProps,
+  { computed, onMounted, onUpdated, reactive, toRefs, watch, inject }: ISharedRenderlessParamHooks,
+  { vm, refs, parent, emit, constants, nextTick, broadcast, dispatch, mode }: IInputRenderlessParamUtils
+): IInputApi => {
+  const api = {} as IInputApi
   const componentName = constants.COMPONENT_NAME.FormItem
-  const eventName = { change: 'form.change', blur: 'form.blur' }
-  const CLASS_PREFIX = {
+  const eventName: IInputEventNameConstants = { change: 'form.change', blur: 'form.blur' }
+  const CLASS_PREFIX: IInputClassPrefixConstants = {
     Input: constants.inputMode(mode),
     InputGroup: constants.inputGroupMode(mode)
   }

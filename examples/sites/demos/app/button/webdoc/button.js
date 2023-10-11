@@ -120,7 +120,7 @@ export default {
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '设置按钮是否被禁用', 'en-US': 'Sets whether the button is disabled' },
           'demoId': 'dynamic-disabled'
@@ -141,7 +141,7 @@ export default {
         },
         {
           'name': 'native-type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 button',
           'desc': {
             'zh-CN':
@@ -160,7 +160,7 @@ export default {
         },
         {
           'name': 'reset-time',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 1000',
           'desc': {
             'zh-CN': '设置按钮禁用时间，防止重复提交，单位毫秒',
@@ -174,10 +174,20 @@ export default {
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否圆角按钮', 'en-US': 'Whether to round the corner button' },
           'demoId': 'base'
-        },  
+        },
+        {
+          'name': 'size',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '定义按钮尺寸;该属性的可选值为 large / medium / small / mini',
+            'en-US': 'Define the button size. The value of this attribute can be large, medium, small, or mini'
+          },
+          'demoId': 'size'
+        },
         {
           'name': 'text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置按钮显示的文本，可配置国际化',
@@ -187,7 +197,7 @@ export default {
         },
         {
           'name': 'type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '展示按钮不同的状态;该属性的可选值为 primary / success / warning / danger / info / text',

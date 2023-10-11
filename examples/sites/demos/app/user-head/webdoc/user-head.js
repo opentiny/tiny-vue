@@ -114,28 +114,28 @@ export default {
       'properties': [
         {
           'name': 'background-color',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 #d9d9d9',
           'desc': { 'zh-CN': '背景色 。', 'en-US': 'Background color.' },
           'demoId': 'custom-background-color'
         },
         {
           'name': 'color',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 #ffffff',
           'desc': { 'zh-CN': '文字颜色 。', 'en-US': 'Text color.' },
           'demoId': 'color'
         },
         {
           'name': 'message-total',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': { 'zh-CN': '消息计数 。', 'en-US': 'Number of messages.' },
           'demoId': 'message-count-total'
         },
         {
           'name': 'message-type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 details',
           'desc': {
             'zh-CN': '消息类型 details|basic 可选 。;该属性的可选值为 details / basic',
@@ -145,28 +145,28 @@ export default {
         },
         {
           'name': 'message-upper-limit',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': { 'zh-CN': '消息显示上限 。', 'en-US': 'Maximum number of displayed messages.' },
           'demoId': 'message-count-limit'
         },
         {
           'name': 'min',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '小尺寸模式 。', 'en-US': 'Small size mode.' },
           'demoId': 'min-user-head'
         },
         {
           'name': 'round',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '圆形模式 。', 'en-US': 'Circular mode.' },
           'demoId': 'round-user-head'
         },
         {
           'name': 'type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 label',
           'desc': {
             'zh-CN': '头像类型，icon|image|label 可选。;该属性的可选值为 icon / image / label',
@@ -177,7 +177,7 @@ export default {
         },
         {
           'name': 'value',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': 'type=icon 时为图标类名，type=label时为字体串，type=image时为资源路径',

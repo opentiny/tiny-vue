@@ -295,7 +295,7 @@ export default {
         'zh-CN':
           '<p>通过 <code>popseletor</code> 属性开启树模式，然后 <code>tree-op</code> 属性是 <code>Tree</code> 组件的 <code>op 配置方式</code>。</p>\n',
         'en-US':
-          '<p>Configure the <code>showOverflow</code> attribute on the data column to set the display and hiding of the data when the data exceeds the column width. Values can be of type Boolean or String, with three values to choose from, as shown below. By default, all content is displayed in a new line. </p>\n<div class="tip custom-block"><p class="custom-block-title"> optional value description</p>\n<p>tooltip: The extra part is displayed...., and all information is displayed on the left or right. \ntitle: The value is the same as the title attribute of the native tag. \nellipsis: \'...\' is displayed, and no message is displayed. \ntrue: If the value is true, the effect is the same as that of the tooltip. </p>\n</div>\n'
+          '<p>Configure the <code>showOverflow</code> attribute on the data column to set the display and hiding of the data when the data exceeds the column width. Values can be of type boolean or string, with three values to choose from, as shown below. By default, all content is displayed in a new line. </p>\n<div class="tip custom-block"><p class="custom-block-title"> optional value description</p>\n<p>tooltip: The extra part is displayed...., and all information is displayed on the left or right. \ntitle: The value is the same as the title attribute of the native tag. \nellipsis: \'...\' is displayed, and no message is displayed. \ntrue: If the value is true, the effect is the same as that of the tooltip. </p>\n</div>\n'
       },
       'codeFiles': ['tree.vue']
     },
@@ -326,7 +326,7 @@ export default {
       'name': { 'zh-CN': '数据超出隐藏', 'en-US': 'Remote Data Request' },
       'desc': {
         'zh-CN':
-          '<p>在数据的列上配置 <code>showOverflow</code> 属性用于设置数据超出列宽时的显示和隐藏。值的类型可以为 Boolean 和 String，有三个值可以选择，如下所示。默认为换行显示全部内容。</p>\n<div class="tip custom-block"><p class="custom-block-title">可选值说明</p>\n<p>tooltip：内容超出部分显示 ...，左侧/右侧弹出提示层显示全部信息。\ntitle：和原生标签的 title 属性一致。\nellipsis：内容超出部分显示 ...，没有提示。\ntrue：为 true 时，效果和 tooltip 一致。</p>\n</div>\n',
+          '<p>在数据的列上配置 <code>showOverflow</code> 属性用于设置数据超出列宽时的显示和隐藏。值的类型可以为 boolean 和 string，有三个值可以选择，如下所示。默认为换行显示全部内容。</p>\n<div class="tip custom-block"><p class="custom-block-title">可选值说明</p>\n<p>tooltip：内容超出部分显示 ...，左侧/右侧弹出提示层显示全部信息。\ntitle：和原生标签的 title 属性一致。\nellipsis：内容超出部分显示 ...，没有提示。\ntrue：为 true 时，效果和 tooltip 一致。</p>\n</div>\n',
         'en-US':
           '<p>Configure the <code>auto-lookup</code> to false, set initialization to not request data, or call this $ref.popuptor.handleSearch() Proactively calls the request method</p>\n'
       },
@@ -391,21 +391,21 @@ export default {
       'properties': [
         {
           'name': 'modelValue / v-model',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '绑定值', 'en-US': 'Bound Value' },
           'demoId': 'base'
         },
         {
           'name': 'placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '占位符', 'en-US': 'Placeholder' },
           'demoId': 'base'
         },
         {
           'name': 'tabindex',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 1',
           'desc': {
             'zh-CN': '设置是否可通过 Tab 键获焦及获焦顺序（readonly 属性设置为 false 时有效）',
@@ -430,7 +430,7 @@ export default {
         },
         {
           'name': 'resize',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否显示弹框全屏按钮',
@@ -440,14 +440,14 @@ export default {
         },
         {
           'name': 'draggable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '设置弹出窗口是否可拖动', 'en-US': 'Set whether the pop-up window can be dragged.' },
           'demoId': 'draggable'
         },
         {
           'name': 'showOverflow',
-          'type': 'String,Object',
+          'type': 'string,object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -459,7 +459,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置组件的size大小，三种类型可以选择：medium，small，mini',
@@ -469,7 +469,7 @@ export default {
         },
         {
           'name': 'trigger',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -481,7 +481,7 @@ export default {
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '设置组件是否为禁用状态。', 'en-US': 'Sets whether a component is disabled.' },
           'demoId': 'disabled'
@@ -498,7 +498,7 @@ export default {
         },
         {
           'name': 'grid-op',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置弹出面板中表格组件的配置信息。',
@@ -508,14 +508,14 @@ export default {
         },
         {
           'name': 'pager-op',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置分页配置', 'en-US': 'Setting Pagination Configuration' },
           'demoId': 'pager'
         },
         {
           'name': 'icon',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': 'popEditor 组件的 Icon 图标设置。默认为 svg 组件',
@@ -525,7 +525,7 @@ export default {
         },
         {
           'name': 'multi',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '设置弹出面板中的数据是否可多选。',
@@ -535,7 +535,7 @@ export default {
         },
         {
           'name': 'popseletor',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 grid',
           'desc': {
             'zh-CN': '设置弹出面板中可显示的树或者表格组件。',
@@ -545,7 +545,7 @@ export default {
         },
         {
           'name': 'readonly',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '设置是否只读，【3.0】设置为 false 后点击 Ipunt 框可以弹出选择框',
@@ -556,7 +556,7 @@ export default {
         },
         {
           'name': 'show-clear-btn',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '设置输入框中右侧是否显示清除按钮。',
@@ -566,14 +566,14 @@ export default {
         },
         {
           'name': 'show-pager',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '展示分页', 'en-US': 'Paging' },
           'demoId': 'pager'
         },
         {
           'name': 'show-history',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '当弹出面板配置的是表格时，设置历史记录标签页是否显示表格。',
@@ -584,7 +584,7 @@ export default {
         },
         {
           'name': 'text-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 label',
           'desc': {
             'zh-CN': '设置输入框中显示文本的字段，提交数据时，不提交该显示文本。',
@@ -594,7 +594,7 @@ export default {
         },
         {
           'name': 'text-split',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 /',
           'desc': {
             'zh-CN': '在多选的情况下，设置输入框中要显示多个数据时的分隔符。',
@@ -604,7 +604,7 @@ export default {
         },
         {
           'name': 'title',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置弹出面板的标题，并且支持国际化。',
@@ -614,7 +614,7 @@ export default {
         },
         {
           'name': 'value-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 id',
           'desc': {
             'zh-CN': '设置输入框要提交数据的字段。',
@@ -624,7 +624,7 @@ export default {
         },
         {
           'name': 'value-split',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 ;',
           'desc': {
             'zh-CN': '在多选的情况下，设置输入框要提交多个数据时的分隔符。',
@@ -635,7 +635,7 @@ export default {
         },
         {
           'name': 'width',
-          'type': 'Number , String',
+          'type': 'number , string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置弹出面板的宽度（单位像素）。当组件的 multi = true 时，宽度最小为900px；否则宽度最小为600px;',
@@ -646,21 +646,21 @@ export default {
         },
         {
           'name': 'dialog-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '自定义配置弹窗类名', 'en-US': 'Customized configuration pop-up window class name' },
           'demoId': 'width'
         },
         {
           'name': 'auto-lookup',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'true',
           'desc': { 'zh-CN': '设置初始化不请求数据', 'en-US': 'Set initialization not to request data' },
           'demoId': 'auto-lookup'
         },
         {
           'name': 'suggest',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '配置suggest 开启联想功能，输入框输入后自动触发联想查询；该功能需要联合 remoteSearch 使用',
@@ -671,7 +671,7 @@ export default {
         },
         {
           'name': 'before-close',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '可以配置一个拦截弹窗关闭的方法。如果方法返回 false 值，则拦截弹窗关闭；否则不拦截',
@@ -681,14 +681,14 @@ export default {
         },
         {
           'name': 'show-selected-box',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '多选场景,是否将已选表格显示为已选栏，默认值为false', 'en-US': '' },
           'demoId': 'show-selected-box'
         },
         {
           'name': 'selected-box-op',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '通过属性 selected-box-op 指定 SelectedBox 组件配置，可以把已选表格显示为已选栏',

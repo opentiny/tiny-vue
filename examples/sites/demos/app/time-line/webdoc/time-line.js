@@ -145,21 +145,21 @@ export default {
         },
         {
           'name': 'vertical',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '竖式步骤条', 'en-US': 'vertical step bar' },
           'demoId': 'vertical-step'
         },
         {
           'name': 'horizontal',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否为横向步骤条', 'en-US': 'Whether it is a horizontal step bar' },
           'demoId': 'horizontal-step'
         },
         {
           'name': 'show-number',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '设置未完成的状态是否显示序号',
@@ -169,14 +169,14 @@ export default {
         },
         {
           'name': 'name-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 name',
           'desc': { 'zh-CN': '设置节点信息中名称对应的字段名', 'en-US': 'Set the field name in the node information.' },
           'demoId': 'different-data'
         },
         {
           'name': 'time-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 time',
           'desc': {
             'zh-CN': '设置节点时间信息对应的字段名',
@@ -186,14 +186,14 @@ export default {
         },
         {
           'name': 'start',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 1',
           'desc': { 'zh-CN': '设置步骤条序号起始值', 'en-US': 'Set the start step sequence number.' },
           'demoId': 'set-start-value'
         },
         {
           'name': 'space',
-          'type': 'String， Numer',
+          'type': 'string， Numer',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置时间线节点的宽度, 取值为数字、带长度单位数值与百分比，数字会默认以px为长度单位。',
@@ -203,17 +203,28 @@ export default {
         },
         {
           'name': 'active',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 -1',
           'desc': { 'zh-CN': '设置步骤条的选中步骤', 'en-US': 'Set the selected step of the step bar' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'reverse',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '设置竖向步骤条的方向', 'en-US': 'Set the direction of the vertical step bar' },
           'demoId': 'vertical-step-reverse'
+        },
+        {
+          'name': 'line-width',
+          'type': 'string | number',
+          'defaultValue': '--',
+          'desc': {
+            'zh-CN': '连接线长度，仅text-position取值为true时生效，设置后space属性失效。',
+            'en-US':
+              'The length of the connection line and it is valid only when text-position is set to true. After setting, the space property is invalid'
+          },
+          'demoId': ''
         }
       ],
       'events': [

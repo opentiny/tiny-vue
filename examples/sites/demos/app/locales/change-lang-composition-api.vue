@@ -7,11 +7,11 @@ import { getCurrentInstance } from 'vue'
 import { Locales as TinyLocales } from '@opentiny/vue'
 
 const instance = getCurrentInstance()
-const { $i18n } = instance.appContext.config.globalProperties
+const i18n = instance.appContext.config.globalProperties.$i18n
 
 function changeLang(lang) {
-  if ($i18n) {
-    $i18n.locale = lang
+  if (i18n) {
+    i18n.locale = lang
   }
 }
 

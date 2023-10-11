@@ -45,11 +45,10 @@ export const api = [
   'handleClosePopper',
   'setExpectedState',
   'updatePopper',
-  'focusHandler',
-  'markRaw'
+  'focusHandler'
 ]
 
-const initState = ({ reactive, showPopper, popperElm, referenceElm, props, markRaw, inject }) =>
+const initState = ({ reactive, showPopper, popperElm, referenceElm, props, inject }) =>
   reactive({
     showPopper,
     popperElm,
@@ -57,11 +56,9 @@ const initState = ({ reactive, showPopper, popperElm, referenceElm, props, markR
     timeout: null,
     focusing: false,
     expectedState: undefined,
-    mounted: false,
     tooltipId: guid('tiny-tooltip-', 4),
     tabindex: props.tabindex,
     xPlacement: 'bottom',
-    poppers: markRaw([]),
     showContent: inject('showContent', null),
     tipsMaxWidth: inject('tips-max-width', null)
   })
@@ -76,7 +73,6 @@ export const renderless = (
     onDeactivated,
     onMounted,
     onUnmounted,
-    markRaw,
     inject
   }: ISharedRenderlessParamHooks,
   { vm, emit, refs, slots, nextTick, parent }: ISharedRenderlessParamUtils<never>
@@ -85,16 +81,15 @@ export const renderless = (
   // 因为tootip组件由单层组件变成双层组件，所以parent需要再往上找一层
   const popperParam = { emit, props, nextTick, toRefs, reactive, parent: parent.$parent, refs }
 
-  const popperVmRef = {}
+  const popperVmRef = {} as { popper: HTMLElement }
 
   Object.assign(popperParam, { slots, onBeforeUnmount, onDeactivated, watch })
 
   const { showPopper, updatePopper, popperElm, referenceElm, doDestroy } = userPopper(popperParam as any)
-  const state: ITooltipState = initState({ reactive, showPopper, popperElm, referenceElm, props, markRaw, inject })
+  const state: ITooltipState = initState({ reactive, showPopper, popperElm, referenceElm, props, inject })
 
   Object.assign(api, {
     state,
-    markRaw,
     doDestroy,
     updatePopper,
     show: show({ api, state, props }),
@@ -106,7 +101,7 @@ export const renderless = (
     handleBlur: handleBlur({ api, state }),
     handleFocus: handleFocus({ api, state }),
     debounceClose: debounceClose({ api, props }),
-    setExpectedState: setExpectedState({ api, state }),
+    setExpectedState: setExpectedState({ state }),
     handleShowPopper: handleShowPopper({ props, state }),
     handleClosePopper: handleClosePopper({ api, props, state }),
     bindEvent: bindEvent({ api, state, vm }),

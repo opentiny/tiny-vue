@@ -23,6 +23,11 @@ function Schema(descriptor, translate) {
   this.define(descriptor)
 }
 
+/**
+ * @description 封装一下调用方传入的回调
+ * @param validCallback
+ * @returns 新的回调
+ */
 const getCompleteFn = (validCallback) => (results) => {
   let idx
   let errors = []
@@ -50,6 +55,9 @@ const getCompleteFn = (validCallback) => (results) => {
   validCallback(errors, fields)
 }
 
+/**
+ * @description 判断是否有嵌套的检验规则
+ */
 const isDeep = (rule, data) => {
   let deep =
     (rule.type === 'object' || rule.type === 'array') &&
@@ -60,6 +68,9 @@ const isDeep = (rule, data) => {
   return deep
 }
 
+/**
+ * @description 为嵌套规则新构造一个校验实例
+ */
 const getFieldsSchema = (rule, data) => {
   let schema = {}
   function addFullfield(key, item) {
@@ -93,6 +104,9 @@ const getFieldsSchema = (rule, data) => {
   return schema
 }
 
+/**
+ * @description 工具方法，将入参变成数组
+ */
 const arrayed = (failds) => {
   if (!Array.isArray(failds)) {
     failds = [failds]
@@ -101,6 +115,9 @@ const arrayed = (failds) => {
   return failds
 }
 
+/**
+ * @description 处理嵌套规则的错误message
+ */
 const getRequiredErrorFeilds = ({ rule, failds, options }) => {
   if (rule.message) {
     failds = [].concat(rule.message).map(complementError(rule))
@@ -113,6 +130,9 @@ const getRequiredErrorFeilds = ({ rule, failds, options }) => {
   return failds
 }
 
+/**
+ * @description 处理嵌套规则的option
+ */
 const setDataRuleOptions = ({ data, options }) => {
   if (data.rule.options) {
     let { messages, error } = options
@@ -121,6 +141,9 @@ const setDataRuleOptions = ({ data, options }) => {
   }
 }
 
+/**
+ * @description 处理嵌套规则的回调函数
+ */
 const getValidateCallback =
   ({ failds, doIt }) =>
   (errs) => {
@@ -137,6 +160,9 @@ const getValidateCallback =
     doIt(finalErrors.length ? finalErrors : null)
   }
 
+/**
+ * @description 单条检验规则的回调函数
+ */
 const asyncCallback =
   (options, rule, errorFields, doIt, data) =>
   (e = []) => {
@@ -183,6 +209,9 @@ Schema.prototype = {
 
     return this._messages
   },
+  /** 格式化检验规则并添加到实例上。
+   *  rules格式化后的数据结构: { key: [ { type: 'xx', ...others } ] }
+   */
   define(rules) {
     if (!rules) {
       throw new Error('Cannot configure a schema with no rules')
@@ -202,6 +231,10 @@ Schema.prototype = {
       }
     })
   },
+  /** 将检验规则和源数据合并转化成新数据
+   *  rules: { key: [rule1, rule2] }, source: { key: sourceData, key2: sourceData2 }
+   *  series { key: [{ rule: rule1, value: sourceData, source, field: key }, ...] }
+   */
   getSeries(options, source, source_) {
     let arr
     let value
@@ -343,6 +376,7 @@ Schema.prototype = {
   }
 }
 
+/**注册的新类型的检验 */
 Schema.register = (type, validator) => {
   if (typeof validator !== 'function') {
     throw new TypeError('Cannot register a validator by type, validator is not a function')

@@ -71,7 +71,7 @@ export default {
       'properties': [
         {
           'name': 'direction',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 left',
           'desc': {
             'zh-CN': '滚动的方向;该属性的可选值为 up / left / down / right',
@@ -81,7 +81,7 @@ export default {
         },
         {
           'name': 'hover-stop',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': 'hover 滚动是否停止，可选值为 false 或 true；默认值true。',
@@ -91,7 +91,7 @@ export default {
         },
         {
           'name': 'time',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 5',
           'desc': {
             'zh-CN': '整个滚动过程所用的时间，默认值 5s 。',
@@ -101,7 +101,7 @@ export default {
         },
         {
           'name': 'text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 ScrollText',
           'desc': { 'zh-CN': '滚动的文本内容', 'en-US': 'Scrolled text content' },
           'demoId': 'custom-scroll-text'

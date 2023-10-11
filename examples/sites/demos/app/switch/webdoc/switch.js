@@ -53,28 +53,28 @@ export default {
       'properties': [
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否禁用', 'en-US': 'Disable' },
           'demoId': 'dynamic-disable'
         },
         {
           'name': 'false-value',
-          'type': 'Boolean , String , Number',
+          'type': 'boolean , string , number',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': 'switch 关闭时的值', 'en-US': 'Value when switch is disabled' },
           'demoId': 'custom-true-false-value'
         },
         {
           'name': 'true-value',
-          'type': 'Boolean , String , Number',
+          'type': 'boolean , string , number',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': 'switch 打开时的值', 'en-US': 'Value when switch is enabled' },
           'demoId': 'custom-true-false-value'
         },
         {
           'name': 'show-text',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': 'switch 是否显示内容里面的文字',
@@ -84,7 +84,7 @@ export default {
         },
         {
           'name': 'mini',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '设置是否显示为 mini 模式。mini 模式下不会显示 slot 的内容。',
@@ -94,7 +94,7 @@ export default {
         },
         {
           'name': 'modelValue / v-model',
-          'type': 'Boolean , String , Number',
+          'type': 'boolean , string , number',
           'defaultValue': '',
           'desc': { 'zh-CN': '绑定值', 'en-US': 'Bound Value' },
           'demoId': 'basic-usage'

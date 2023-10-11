@@ -10,9 +10,10 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
+import type { IImageApi } from '@opentiny/vue-renderless/types/image.type'
 import template from 'virtual-template?pc|mobile-first'
 
-const $constants = {
+export const $constants = {
   NONE: 'none',
   CONTAIN: 'contain',
   COVER: 'cover',
@@ -21,48 +22,52 @@ const $constants = {
   DEFAULT_POPPER_ZINDEX: Number.POSITIVE_INFINITY
 }
 
+export const imageProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  fit: String,
+  lazy: Boolean,
+  previewSrcList: {
+    type: Array,
+    default: () => []
+  },
+  scrollContainer: {
+    type: [String, HTMLElement],
+    default: null
+  },
+  src: String,
+  zIndex: {
+    type: Number,
+    default: $constants.DEFAULT_POPPER_ZINDEX
+  },
+  showIndex: {
+    type: Boolean,
+    default: false
+  },
+  showHover: {
+    type: Boolean,
+    default: false
+  },
+  previewVisible: {
+    type: Boolean,
+    default: false
+  },
+  round: {
+    type: Boolean,
+    default: false
+  },
+  imageSize: {
+    type: Number,
+    default: 100
+  }
+}
 export default defineComponent({
   name: $prefix + 'Image',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    fit: String,
-    lazy: Boolean,
-    previewSrcList: {
-      type: Array,
-      default: () => []
-    },
-    scrollContainer: {},
-    src: String,
-    zIndex: {
-      type: Number,
-      default: $constants.DEFAULT_POPPER_ZINDEX
-    },
-    showIndex: {
-      type: Boolean,
-      default: false
-    },
-    showHover: {
-      type: Boolean,
-      default: false
-    },
-    previewVisible: {
-      type: Boolean,
-      default: false
-    },
-    round: {
-      type: Boolean,
-      default: false
-    },
-    imageSize: {
-      type: Number,
-      default: 100
-    }
-  },
+  props: imageProps,
   setup(props, context) {
-    return $setup({ props, context, template })
+    return $setup({ props, context, template }) as unknown as IImageApi
   }
 })

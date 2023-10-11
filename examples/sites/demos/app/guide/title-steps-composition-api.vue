@@ -2,11 +2,11 @@
   <div class="guide-content">
     <tiny-button @click="stepStart">多步骤新手引导开始</tiny-button>
     <br />
-    <tiny-button plain class="box111">新手引导1</tiny-button>
+    <tiny-button plain class="guide1-title-steps">新手引导1</tiny-button>
     <br />
-    <tiny-button plain class="box222">新手引导2</tiny-button>
+    <tiny-button plain class="guide2-title-steps">新手引导2</tiny-button>
     <br />
-    <tiny-button plain class="box333">新手引导3</tiny-button>
+    <tiny-button plain class="guide3-title-steps">新手引导3</tiny-button>
     <tiny-guide :show-step="showStep" :dom-data="domData"></tiny-guide>
   </div>
 </template>
@@ -20,7 +20,7 @@ const domData = ref([
   {
     title: '新手引导标题1',
     text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案',
-    domElement: '.box111',
+    domElement: '.guide1-title-steps',
     button: [
       {
         text: '下一步',
@@ -32,7 +32,7 @@ const domData = ref([
   {
     title: '新手引导标题2',
     text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案',
-    domElement: '.box222',
+    domElement: '.guide2-title-steps',
     button: [
       {
         text: '上一步',
@@ -48,7 +48,7 @@ const domData = ref([
   {
     title: '新手引导标题3',
     text: '这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案',
-    domElement: '.box333',
+    domElement: '.guide3-title-steps',
     button: [
       {
         text: '上一步',

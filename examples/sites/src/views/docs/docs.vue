@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="f-r pt48 pl48 pr48">
-      <component id="doc_wrap" :is="docCmp" class="w0 fi-1" />
+    <div class="ti-f-r ti-pt48 ti-pl48 ti-pr48">
+      <component id="doc_wrap" :is="docCmp" class="ti-w0 ti-fi-1" />
       <!-- 目录列表 TODO: 需要锚点组件配置整改，处理id中的特殊字符 -->
       <!-- <div v-if="anchorLinks.length > 0" class="docs-page-anchor catalog w128 sticky top32 ml24">
         <tiny-anchor :is-affix="true" :links="anchorLinks"> </tiny-anchor>
@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { ref, nextTick, effectScope, watch, onMounted, onUnmounted, computed, shallowRef } from 'vue'
+import { ref, nextTick, watch, onMounted, computed, shallowRef } from 'vue'
 import { Anchor as TinyAnchor } from '@opentiny/vue'
 import { $t2 } from '@/tools'
 import docMDs, { transformIdSelector } from './docConfig.js'
@@ -20,32 +20,20 @@ import { router } from '@/router.js'
 
 const isOpen = import.meta.env.VITE_BUILD_TARGET === 'open'
 const openDocMap = {
-  'envpreparation': 'envpreparation-open',
-  'installation': 'installation-open'
-}
-const getDocName = (docKey) => {
-  if (isOpen && openDocMap[docKey]) {
-    return openDocMap[docKey]
-  } else {
-    return docKey
-  }
+  'envpreparation': 'envpreparation-open'
 }
 
-const currPage = ref('')
+let currPage = ''
 const catalog = ref([])
 const docCmp = shallowRef(null)
-const anchorLinks = computed(() => {
-  return catalog.value.map((cat) => ({
-    key: cat.id,
-    title: cat.text,
-    link: `#${transformIdSelector(cat.id)}`
-  }))
-})
+
 async function loadPage() {
   let suffix = $t2('', '-en')
-  currPage.value = `${getDocName(router.currentRoute.value.params.docId)}${suffix}.md`
+  const docKey = router.currentRoute.value.params.docId
+  const docName = isOpen && openDocMap[docKey] ? openDocMap[docKey] : docKey
 
-  docCmp.value = (await docMDs?.[currPage.value]?.())?.default
+  currPage = `${docName}${suffix}.md`
+  docCmp.value = (await docMDs?.[currPage]?.())?.default
 
   nextTick(() => {
     if (document.getElementById('doc_wrap')) {
@@ -56,26 +44,24 @@ async function loadPage() {
     }
   })
 }
-const scope = effectScope()
-scope.run(() => {
-  watch([router.currentRoute.value.params.docId, () => appData.configMode], () => {
-    loadPage()
-  })
+
+watch([() => router.currentRoute.value, () => router.currentRoute.value.params.docId], () => {
+  loadPage()
 })
-scope.run(() => {
-  watch(
-    () => router.currentRoute.value,
-    () => {
-      loadPage()
-    }
-  )
-})
+
 onMounted(() => {
   loadPage()
   const common = new window.TDCommon(['#footer'], {})
   common.renderFooter()
 })
-onUnmounted(() => scope.stop())
+
+const anchorLinks = computed(() => {
+  return catalog.value.map((cat) => ({
+    key: cat.id,
+    title: cat.text,
+    link: `#${transformIdSelector(cat.id)}`
+  }))
+})
 </script>
 
 <style lang="less">

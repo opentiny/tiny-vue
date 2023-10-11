@@ -34,8 +34,10 @@ import {
   confirmEvent,
   cancelEvent,
   open,
-  resetDragStyle
+  resetDragStyle,
+  computedBoxStyle
 } from './index'
+import type { IModalApi, IModalProps, IModalRenderlessParamUtils, ISharedRenderlessParamHooks } from '@/types'
 
 export const api = [
   'state',
@@ -58,12 +60,12 @@ export const api = [
 ]
 
 export const renderless = (
-  props,
-  { computed, onMounted, onBeforeUnmount, reactive, watch },
-  { refs, emit, emitter, nextTick, broadcast, vm: parent },
+  props: IModalProps,
+  { computed, onMounted, onBeforeUnmount, reactive, watch }: ISharedRenderlessParamHooks,
+  { vm, emit, emitter, nextTick, broadcast, vm: parent }: IModalRenderlessParamUtils,
   { isMobileFirstMode }
 ) => {
-  const api = {}
+  const api = {} as IModalApi
   const state = reactive({
     emitter: emitter(),
     visible: false,
@@ -75,7 +77,8 @@ export const renderless = (
     isMsg: computed(() => api.computedIsMsg(props)),
     prevEvent: null,
     options: [],
-    theme: props.tiny_theme
+    theme: props.tiny_theme,
+    boxStyle: computed(() => api.computedBoxStyle())
   })
 
   Object.assign(api, {
@@ -83,7 +86,7 @@ export const renderless = (
     broadcast,
     computedIsMsg: computedIsMsg(),
     updateStyle: updateStyle({ nextTick, props }),
-    getBox: getBox(refs),
+    getBox: getBox({ vm }),
     watchValue: watchValue(api),
     created: created({ api, props, state }),
     mounted: mounted({ api, parent, props, isMobileFirstMode }),
@@ -92,7 +95,7 @@ export const renderless = (
     updateZindex: updateZindex({ state, props }),
     handleEvent: handleEvent({ api, emit, parent, props, isMobileFirstMode }),
     closeEvent: closeEvent(api),
-    confirmEvent: confirmEvent(api),
+    confirmEvent: confirmEvent({ api, state }),
     cancelEvent: cancelEvent(api),
     open: open({ api, emit, nextTick, parent, props, state, isMobileFirstMode }),
     addMsgQueue: addMsgQueue({ api, parent }),
@@ -104,7 +107,8 @@ export const renderless = (
     toggleZoomEvent: toggleZoomEvent({ api, emit, parent, state, isMobileFirstMode }),
     mousedownEvent: mousedownEvent({ api, nextTick, props, state, emit, isMobileFirstMode }),
     dragEvent: dragEvent({ api, emit, parent, props, state }),
-    resetDragStyle: resetDragStyle(api)
+    resetDragStyle: resetDragStyle(api),
+    computedBoxStyle: computedBoxStyle({ props, isMobileFirstMode })
   })
 
   watch(() => props.modelValue, api.watchValue)

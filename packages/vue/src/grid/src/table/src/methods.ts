@@ -133,11 +133,45 @@ import {
 } from './strategy'
 
 let run = (names, $table) => names.forEach((name) => $table[name].apply($table))
-let isWebkit = browser['-webkit'] && browser.name !== 'edge'
+let isWebkit = browser['-webkit']
 let debounceScrollDirDuration = browser.name === 'ie' ? 40 : 20
 let debounceScrollLoadDuration = 200
 let AsyncCollectTimeout = 100
 let focusSingle = null
+
+// 多字段排序
+const sortMultiple = (rows, columns, _vm) => {
+  const greaterThan = (valueP, valueQ) => {
+    let typeP
+
+    return (typeP = typeof valueP) === typeof valueQ && ['number', 'string', 'boolean'].includes(typeP)
+      ? valueP > valueQ
+      : String(valueP) > String(valueQ)
+  }
+
+  const { multipleColumnSort } = _vm.sortOpts
+
+  if (typeof multipleColumnSort === 'function') {
+    rows = multipleColumnSort({ $table: _vm, tableData: rows, sortColumns: columns })
+  } else {
+    rows = rows.sort((p, q) => {
+      for (let i = 0; i < columns.length; i++) {
+        const { property, order } = columns[i]
+        const flag = order === 'asc' ? 1 : -1
+        const valueP = p[property]
+        const valueQ = q[property]
+
+        if (!Object.is(valueP, valueQ)) {
+          return greaterThan(valueP, valueQ) ? flag : -flag
+        }
+      }
+
+      return 0
+    })
+  }
+
+  return rows
+}
 
 const Methods = {
   // 处理列拖拽
@@ -642,20 +676,35 @@ const Methods = {
   },
   // 对数据进行筛选和排序，获取处理后数据。服务端筛选和排序，在接口调用时已传入参数
   updateAfterFullData() {
-    let { remoteFilter, remoteSort, tableFullData, visibleColumn } = this
+    let { remoteFilter, remoteSort, tableFullData, visibleColumn, sortOpts } = this
     let tableData = tableFullData
     let sortColumn = find(visibleColumn, (column) => column.order)
     let filterColumn = visibleColumn.filter(({ filter }) => !!filter)
     let doTableSort = () => {
       let { order, property } = sortColumn
       let params = { $table: this, column: sortColumn, data: tableData, order, property }
+
       tableData = this.sortMethod(params) || tableData
     }
     let doColumnSort = () => {
-      let sorted = sortColumn.sortMethod
-        ? tableData.sort(sortColumn.sortMethod)
-        : sortBy(tableData, sortColumn.sortBy ? sortColumn.sortBy : sortColumn.property)
-      tableData = sortColumn.order === 'desc' ? sorted.reverse() : sorted
+      let sortedFlag = false
+
+      // 如果开启了多列排序，并且排序列数量大于1，就进行多列排序
+      if (sortOpts.multipleColumnSort) {
+        let sortColumns = visibleColumn.filter(({ order }) => !!order)
+
+        if (sortColumns.length > 1) {
+          tableData = sortMultiple(tableData, sortColumns, this)
+          sortedFlag = true
+        }
+      }
+
+      if (!sortedFlag) {
+        let columnSortMethod = sortColumn.sortMethod
+        let sorted = columnSortMethod ? tableData.sort(columnSortMethod) : sortBy(tableData, sortColumn.property)
+
+        tableData = sortColumn.order === 'desc' ? sorted.reverse() : sorted
+      }
     }
 
     tableData = tableData.filter((row) =>
@@ -664,35 +713,37 @@ const Methods = {
 
     if (sortColumn && sortColumn.order) {
       let isRemote = isBoolean(sortColumn.remoteSort) ? sortColumn.remoteSort : remoteSort
+
       !isRemote && this.sortMethod && doTableSort()
       !isRemote && !this.sortMethod && doColumnSort()
     }
+
     this.afterFullData = tableData
+
     setTreeScrollYCache(this)
+
     return tableData
   },
+  // 组装表格分组映射表
   buildGroupData() {
-    let { rowGroup, tableData } = this
+    const { rowGroup, tableData } = this
     Object.assign(this, { groupData: {}, groupFolds: [] })
     if (!rowGroup) {
       return
     }
     let { groups = {}, current = '' } = {}
-    for (let rowIndex in tableData) {
-      if (Object.prototype.hasOwnProperty.call(tableData, rowIndex)) {
-        let row = tableData[rowIndex]
-        let rowid = getRowid(this, row)
-        let { field } = rowGroup
-        let prevRow = tableData[rowIndex - 1]
+    tableData.forEach((row, rowIndex) => {
+      const rowid = getRowid(this, row)
+      const { field } = rowGroup
+      let prevRow = tableData[rowIndex - 1]
 
-        if (!prevRow || prevRow[field] !== row[field]) {
-          current = rowid
-          groups[rowid] = { fold: false, children: [row] }
-        } else {
-          groups[current].children.push(row)
-        }
+      if (!prevRow || prevRow[field] !== row[field]) {
+        current = rowid
+        groups[rowid] = { fold: false, children: [row] }
+      } else {
+        groups[current].children.push(row)
       }
-    }
+    })
     this.groupData = groups
   },
   getRowById(rowid) {
@@ -1094,17 +1145,18 @@ const Methods = {
     if (isHeader && event.target !== cell) {
       return
     }
-
     const tooltip = this.$refs.tooltip
     const wrapperElem = cell
     const content = cell.innerText.trim() || cell.textContent.trim()
     const { contentMethod } = this.tooltipConfig
     const range = createTooltipRange({ _vm: this, cell, column, isHeader })
-    const rangeWidth = range.getBoundingClientRect().width - (browser.name === 'ie' ? 5 : 0)
+    const rangeWidth = range.getBoundingClientRect().width
     const padding =
       (parseInt(getStyle(cell, 'paddingLeft'), 10) || 0) + (parseInt(getStyle(cell, 'paddingRight'), 10) || 0)
     const isOverflow = rangeWidth + padding > cell.offsetWidth || wrapperElem.scrollWidth > wrapperElem.clientWidth
-    if (content && (showTip || isOverflow)) {
+
+    // content如果是空字符串，但是用户配置了contentMethod，则同样也可以触发提示
+    if ((contentMethod || content) && (showTip || isOverflow)) {
       Object.assign(this.tooltipStore, { row, column, visible: true })
 
       if (tooltip) {
@@ -1371,9 +1423,17 @@ const Methods = {
   triggerHeaderCellClickEvent(event, params) {
     let { _lastResizeTime: lastTime, highlightCurrentColumn } = this
     let { cell, column } = params
+    const { trigger } = this.sortOpts
     let isResizable = lastTime && lastTime > Date.now() - 300
     let isSort = this.getEventTargetNode(event, cell, 'tiny-grid-sort-wrapper').flag
     let isFilter = this.getEventTargetNode(event, cell, 'tiny-grid-filter-wrapper').flag
+
+    if (trigger === 'cell' && !(isResizable || isSort || isFilter)) {
+      let nextOrder = this.toggleColumnOrder(column)
+
+      this.triggerSortEvent(event, column, nextOrder)
+    }
+
     let eventParams = {
       triggerResizable: isResizable,
       triggerSort: isSort,
@@ -1504,8 +1564,9 @@ const Methods = {
     return this.$nextTick()
   },
   clearSort() {
-    this.tableFullColumn.forEach((column) => (column.order = null))
+    arrayEach(this.tableFullColumn, (column) => (column.order = null))
     this.$grid && (this.$grid.sortData = {})
+
     return this.handleTableData(true).then(this.refreshStyle)
   },
   // 关闭筛选
@@ -2339,6 +2400,10 @@ const Methods = {
     }
 
     this.tasks.updateTableBodyHeight()
+  },
+  // 按顺序切换列的排序状态（null --> asc --> desc --> null --> ...）
+  toggleColumnOrder(column) {
+    return column.order ? (column.order === 'asc' ? 'desc' : null) : 'asc'
   }
 }
 funcs.forEach((name) => {

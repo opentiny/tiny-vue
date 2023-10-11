@@ -9,6 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+
 import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
 import { getStyle, addClass } from '@opentiny/vue-renderless/common/deps/dom'
 import { createComponent, hooks } from '@opentiny/vue-common'

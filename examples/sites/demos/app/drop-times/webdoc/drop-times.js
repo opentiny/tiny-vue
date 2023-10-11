@@ -43,7 +43,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置组件大小，可以设置为：medium，small，mini',
@@ -53,7 +53,7 @@ export default {
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '为 DropTimes 下拉弹框添加的 class 类名',
@@ -64,7 +64,7 @@ export default {
         },
         {
           'name': 'popper-append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN':
@@ -75,7 +75,7 @@ export default {
         },
         {
           'name': 'placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置输入框内的提示占位文本',
@@ -85,7 +85,7 @@ export default {
         },
         {
           'name': 'end',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 1440',
           'desc': {
             'zh-CN': '结束时间，以分钟计算，默认值为 1440。',
@@ -95,7 +95,7 @@ export default {
         },
         {
           'name': 'start',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': {
             'zh-CN': '开始时间，以分钟计算，默认值为 0。',
@@ -105,7 +105,7 @@ export default {
         },
         {
           'name': 'step',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 15',
           'desc': {
             'zh-CN': '间隔时间，以分钟计算，默认值为 15。',

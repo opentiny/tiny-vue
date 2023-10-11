@@ -47,14 +47,14 @@ export default {
       'properties': [
         {
           'name': 'data',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置的数据;数据设置', 'en-US': 'Setted data; Data Settings' },
           'demoId': 'data-source'
         },
         {
           'name': 'show-img',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否显示头像，默认 true',
@@ -64,7 +64,7 @@ export default {
         },
         {
           'name': 'show-name',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否显示姓名 userName,默认 true',
@@ -74,7 +74,7 @@ export default {
         },
         {
           'name': 'show-number',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否显示工号 roleNumber,默认 true',
@@ -84,7 +84,7 @@ export default {
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '为 popper 添加类名(可参考 popover 组件)',
@@ -94,7 +94,7 @@ export default {
         },
         {
           'name': 'popper-append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN':

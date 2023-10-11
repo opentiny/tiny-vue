@@ -72,6 +72,7 @@ import { renderless, api } from '@opentiny/vue-renderless/dropdown-item/vue'
 import { iconDeltaLeft } from '@opentiny/vue-icon'
 import TinyTooltip from '@opentiny/vue-tooltip'
 import '@opentiny/vue-theme/dropdown-item/index.less'
+import type { IDropdownItemApi } from '@opentiny/vue-renderless/types/dropdown-item.type'
 
 export default defineComponent({
   name: $prefix + 'DropdownItem',
@@ -102,7 +103,7 @@ export default defineComponent({
     TinyTooltip
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IDropdownItemApi
   }
 })
 </script>

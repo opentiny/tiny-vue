@@ -80,4 +80,5 @@ export type IProgressRenderlessParamUtils = ISharedRenderlessParamUtils<IProgres
 export type IProgressRenderlessParams = ISharedRenderlessFunctionParams<IProgressConstants> & {
   state: IProgressState
   props: IProgressProps
+  api: IProgressApi
 }

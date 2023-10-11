@@ -49,7 +49,7 @@ export default {
         {
           'name': 'options',
           'type': 'Array',
-          'defaultValue': '该属性的默认值为 []',
+          'defaultValue': '[]',
           'desc': {
             'zh-CN': '配置 options ,可以单独使用 tiny-breadcrumb 组件',
             'en-US': 'Configure options. The tiny-breadcrumb component can be used independently.'
@@ -58,21 +58,21 @@ export default {
         },
         {
           'name': 'separator',
-          'type': 'String',
-          'defaultValue': '该属性的默认值为 >',
+          'type': 'string',
+          'defaultValue': '>',
           'desc': { 'zh-CN': '分隔符', 'en-US': 'Separator' },
           'demoId': 'separator'
         },
         {
           'name': 'separator-icon',
-          'type': 'Object',
-          'defaultValue': '',
+          'type': 'object',
+          'defaultValue': '--',
           'desc': { 'zh-CN': '图标分隔符 class', 'en-US': 'Icon separator class' },
           'demoId': 'separator'
         },
         {
           'name': 'text-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'label',
           'desc': {
             'zh-CN': '指定面包屑的显示字段，结合 options 使用，组件默认 label ',
@@ -86,7 +86,7 @@ export default {
         {
           'name': 'select',
           'type': 'Function',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '点击 breadcrumb-item 时触发',
             'en-US': 'This event is triggered when breadcrumb-item is clicked.'
@@ -108,7 +108,7 @@ export default {
         },
         {
           'name': 'replace',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '在使用 to 进行路由跳转时，启用 replace 将不会向 history 添加新记录',
@@ -130,8 +130,8 @@ export default {
       'events': [
         {
           'name': 'select',
-          'type': '',
-          'defaultValue': '',
+          'type': 'Function()',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '点击 breadcrumb-item 时触发',
             'en-US': 'This event is triggered when breadcrumb-item is clicked.'

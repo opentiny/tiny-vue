@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="arrow-offset-container">
     <tiny-popover placement="top-start" content="这是一段内容" trigger="manual" v-model="show">
       <template #reference>
         <tiny-button>默认</tiny-button>
@@ -26,12 +26,15 @@ const show = ref(true)
 </script>
 
 <style>
-.container .reference-wrapper {
+.arrow-offset-container {
+  margin-top: 50px;
+}
+.arrow-offset-container .reference-wrapper {
   display: block;
   margin-bottom: 80px;
 }
 
-.container .reference-wrapper button {
+.arrow-offset-container .reference-wrapper button {
   width: 200px;
 }
 </style>

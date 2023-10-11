@@ -31,15 +31,15 @@ export const $props = {
   'tiny_chart_theme': Object
 }
 
-export const props = [
-  'tiny_mode',
-  'tiny_mode_root',
-  'tiny_template',
-  'tiny_renderless',
-  '_constants',
-  'tiny_theme',
-  'tiny_chart_theme'
-]
+export const props: Array<
+  | 'tiny_mode'
+  | 'tiny_mode_root'
+  | 'tiny_template'
+  | 'tiny_renderless'
+  | '_constants'
+  | 'tiny_theme'
+  | 'tiny_chart_theme'
+> = ['tiny_mode', 'tiny_mode_root', 'tiny_template', 'tiny_renderless', '_constants', 'tiny_theme', 'tiny_chart_theme']
 
 export const resolveMode = (props, context) => {
   let isRightMode = (mode) => ~['pc', 'mobile', 'mobile-first'].indexOf(mode)

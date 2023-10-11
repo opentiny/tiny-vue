@@ -9,13 +9,22 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import type {
+  IUploadRenderlessParams,
+  IFileUploadModalVm,
+  IUploadRenderlessOtherParams,
+  IFileUploadFile,
+  IUploadFormData,
+  IUploadOptionsOfPost,
+  IUploadOptionsOfHwh5
+} from '@/types'
 
 import { KEY_CODE } from '../common'
 
-export const isImage = (str) => str.indexOf('image') !== -1
+export const isImage = (str: string): boolean => str.indexOf('image') !== -1
 
-export const handleChange = (api) => (event) => {
-  const files = event.target.files
+export const handleChange = (api: IUploadRenderlessParams['api']) => (event: Event) => {
+  const files = (<HTMLInputElement>event.target).files
 
   if (!files) {
     return
@@ -25,8 +34,8 @@ export const handleChange = (api) => (event) => {
 }
 
 export const getFormData =
-  ({ constants, state, props }) =>
-  ({ formData, file, type }) => {
+  ({ constants, state, props }: Pick<IUploadRenderlessParams, 'constants' | 'state' | 'props'>) =>
+  ({ formData, file, type }: { formData: IUploadFormData; file: IFileUploadFile; type: string }) => {
     const uploaderInner = state.uploader.$refs[constants.FILE_UPLOAD_INNER_TEMPLATE]
     if (uploaderInner.edm.upload) {
       const params = uploaderInner.edm.upload.params
@@ -66,8 +75,14 @@ export const getFormData =
   }
 
 export const uploadFiles =
-  ({ state, constants, Modal, props, t }) =>
-  (files) => {
+  ({
+    state,
+    constants,
+    Modal,
+    props,
+    t
+  }: Pick<IUploadRenderlessParams, 'state' | 'constants' | 'props' | 't'> & IFileUploadModalVm) =>
+  (files: FileList) => {
     if (state.updateId === '') {
       if (props.limit && props.fileList.length + files.length > props.limit) {
         const fileUploadTem = state.uploader.$refs[constants.FILE_UPLOAD_INNER_TEMPLATE]
@@ -109,12 +124,14 @@ export const uploadFiles =
       return
     }
 
-    props.onStart(postFiles, state.updateId)
+    if (props.onStart) {
+      props.onStart(postFiles, state.updateId)
+    }
   }
 
 export const upload =
-  ({ api, props, refs }) =>
-  (rawFile) => {
+  ({ api, props, refs }: Pick<IUploadRenderlessParams, 'api' | 'props' | 'refs'>) =>
+  (rawFile: File) => {
     refs.input.value = null
 
     if (!props.beforeUpload) {
@@ -158,12 +175,15 @@ export const upload =
   }
 
 export const abort =
-  ({ state, props, constants }) =>
-  (file) => {
+  ({ state, props, constants }: Pick<IUploadRenderlessParams, 'state' | 'props' | 'constants'>) =>
+  (file: IFileUploadFile) => {
     const { reqs } = state
     const cancel = function (uid) {
-      const fn = (reqs[uid] && reqs[uid].abort) || state.cancelToken[uid]
-      fn && fn()
+      if (reqs[uid]) {
+        reqs[uid].abort()
+      } else if (state.cancelToken[uid]) {
+        state.cancelToken[uid]()
+      }
       delete reqs[uid]
       delete state.cancelToken[uid]
     }
@@ -184,7 +204,7 @@ export const abort =
       const { READY, UPLOADING, FAIL } = constants.FILE_STATUS
       Object.keys(reqs).forEach((uid) => cancel(uid))
 
-      props.fileList.forEach((file) => {
+      props.fileList.forEach((file: any) => {
         file.cancelToken && file.cancelToken.forEach((cancel) => cancel())
         if ([READY, UPLOADING].includes(file.status)) {
           file.status = FAIL
@@ -193,38 +213,63 @@ export const abort =
     }
   }
 
-const getOptionsOfPost = ({ props, state, rawFile, uploaderInner, uid }) => {
+const getOptionsOfPost = ({
+  props,
+  state,
+  rawFile,
+  uploaderInner,
+  uid
+}: Pick<IUploadRenderlessParams, 'props' | 'state'> & IUploadRenderlessOtherParams): IUploadOptionsOfPost => {
   return {
-    headers: Object.assign(props.headers, state.headers),
+    headers: Object.assign(props.headers || {}, state.headers || {}),
     withCredentials: props.withCredentials,
     file: rawFile,
     data: props.data,
     filename: props.name,
     action: uploaderInner.action || props.action,
     onSuccess: (res) => {
-      props.onSuccess(res, rawFile)
+      if (props.onSuccess) {
+        props.onSuccess(res, rawFile)
+      }
       delete state.reqs[uid]
     },
     onProgress: (event) => {
-      props.onProgress(event, rawFile)
+      if (props.onProgress) {
+        props.onProgress(event, rawFile)
+      }
     },
     onError: (error) => {
-      props.onError(error, rawFile)
+      if (props.onError) {
+        props.onError(error, rawFile)
+      }
       delete state.reqs[uid]
     }
   }
 }
 
-const modifyOptionsOfPost = ({ service, props, options, rawFile, state, uid, uploaderInner, api, constants }) => {
+const modifyOptionsOfPost = ({
+  service,
+  props,
+  options,
+  rawFile,
+  state,
+  uid,
+  uploaderInner,
+  api,
+  constants
+}: Pick<IUploadRenderlessParams, 'service' | 'props' | 'state' | 'api' | 'constants'> &
+  IUploadRenderlessOtherParams & { options: IUploadOptionsOfPost }) => {
   if (service && service.network && props.httpRequest === service.network.request) {
     options.method = 'post'
     options.url = options.action
     options.onUploadProgress = (event) => {
-      props.onProgress(event, rawFile)
+      if (props.onProgress) {
+        props.onProgress(event, rawFile)
+      }
     }
     delete options.action
     delete options.onProgress
-    const formData = new FormData()
+    const formData = new FormData() as IUploadFormData
     const source = service.network.CancelToken.source()
     options.cancelToken = source.token
     state.cancelToken[uid] = source.cancel
@@ -254,7 +299,13 @@ const modifyOptionsOfPost = ({ service, props, options, rawFile, state, uid, upl
   }
 }
 
-const getOptionsOfHwh5 = ({ state, props, rawFile, uploaderInner, uid }) => {
+const getOptionsOfHwh5 = ({
+  state,
+  props,
+  rawFile,
+  uploaderInner,
+  uid
+}: Pick<IUploadRenderlessParams, 'props' | 'state'> & IUploadRenderlessOtherParams): IUploadOptionsOfHwh5 => {
   return {
     edmAuth: {
       edmToken: props.edmToken.edmToken,
@@ -263,22 +314,34 @@ const getOptionsOfHwh5 = ({ state, props, rawFile, uploaderInner, uid }) => {
     filePath: rawFile.filePath,
     progress: 1,
     onProgress: (data) => {
-      props.onProgress(data, rawFile)
+      if (props.onProgress) {
+        props.onProgress(data, rawFile)
+      }
     },
     onSuccess: (res) => {
-      props.onSuccess(res, rawFile)
+      if (props.onSuccess) {
+        props.onSuccess(res, rawFile)
+      }
       delete state.reqs[uid]
     },
     onError: (error) => {
-      props.onError(error, rawFile)
+      if (props.onProgress) {
+        props.onProgress(error, rawFile)
+      }
       delete state.reqs[uid]
     }
   }
 }
 
 export const post =
-  ({ api, constants, props, state, service }) =>
-  (rawFile) => {
+  ({
+    api,
+    constants,
+    props,
+    state,
+    service
+  }: Pick<IUploadRenderlessParams, 'api' | 'constants' | 'props' | 'state' | 'service'>) =>
+  (rawFile: IFileUploadFile) => {
     const { uid } = rawFile
     const uploaderInner = state.uploader.$refs[constants.FILE_UPLOAD_INNER_TEMPLATE]
 
@@ -291,12 +354,14 @@ export const post =
     }
 
     const excuteReq = (options) => {
-      const req = props.httpRequest(options)
+      if (props.httpRequest) {
+        const req = props.httpRequest(options)
 
-      state.reqs[uid] = req
+        state.reqs[uid] = req
 
-      if (req && req.then) {
-        req.then(options.onSuccess, options.onError)
+        if (req && req.then) {
+          req.then(options.onSuccess, options.onError)
+        }
       }
     }
 
@@ -311,8 +376,8 @@ export const post =
   }
 
 export const handleClick =
-  ({ props, refs }) =>
-  ($event, type) => {
+  ({ props, refs }: Pick<IUploadRenderlessParams, 'props' | 'refs'>) =>
+  ($event: Event, type: string) => {
     if (!props.disabled && !props.displayOnly) {
       props.handleTriggerClick($event, type)
       refs.input.value = null
@@ -320,39 +385,38 @@ export const handleClick =
     }
   }
 
-export const handleKeydown = (api) => (event) => {
+export const handleKeydown = (api: IUploadRenderlessParams['api']) => (event: KeyboardEvent) => {
   if (event.target !== event.currentTarget) {
     return
   }
 
   if (event.keyCode === KEY_CODE.Enter || event.keyCode === KEY_CODE.Space) {
-    api.handleClick()
+    api.handleClick(event, '')
   }
 }
 
 export const handleUpdate =
-  ({ props, state }) =>
-  (file) => {
-    if (!props.disabled) {
-      state.updateInput.value = null
+  ({ props, state }: Pick<IUploadRenderlessParams, 'props' | 'state'>) =>
+  (file: IFileUploadFile) => {
+    if (!props.disabled && state.updateInput) {
+      state.updateInput.value = ''
       state.updateId = file.docId
       state.updateInput.click()
     }
   }
 
 export const mounted =
-  ({ state, props, api }) =>
+  ({ state, props, api }: Pick<IUploadRenderlessParams, 'state' | 'props' | 'api'>) =>
   () => {
     let updateInput = document.createElement('input')
     updateInput.type = 'file'
     updateInput.name = props.name
-    updateInput.accept = props.accept
+    updateInput.accept = props.accept || ''
     updateInput.onchange = api.handleChange
 
     state.updateInput = Object.freeze(updateInput)
   }
 
-export const onBeforeDestroy = (state) => () => {
-  state.updateInput.onchange = null
+export const onBeforeDestroy = (state: IUploadRenderlessParams['state']) => () => {
   state.updateInput = null
 }

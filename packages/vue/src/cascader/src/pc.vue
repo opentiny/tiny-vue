@@ -37,7 +37,7 @@
       :value="state.multiple ? state.presentTags.map((item) => item.text).join('; ') : state.inputValue"
       :drop-down-visible="state.dropDownVisible"
     ></tiny-filter-box>
-    <div ref="reference" class="tiny-cascader-content">
+    <div class="tiny-cascader-content">
       <tiny-input
         v-if="shape !== 'filter'"
         ref="input"
@@ -121,6 +121,7 @@
       placement="top"
     >
     </tiny-tooltip>
+    <!-- 弹出层 popper  -->
     <transition name="tiny-zoom-in-top" @after-leave="handleDropdownLeave">
       <div
         v-show="state.dropDownVisible"
@@ -182,8 +183,8 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/cascader/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
+import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside' // 没有进行vue3，vue2适配
 import Input from '@opentiny/vue-input'
 import Tag from '@opentiny/vue-tag'
 import Scrollbar from '@opentiny/vue-scrollbar'
@@ -235,7 +236,7 @@ export default defineComponent({
     'remove-tag',
     'created'
   ],
-  directives: { Clickoutside },
+  directives: directive({ Clickoutside }),
   provide() {
     return {
       cascaderRoot: this

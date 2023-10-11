@@ -28,28 +28,16 @@ export default {
       codeFiles: ['clearable.vue']
     },
     {
-      demoId: 'mini-mode',
+      demoId: 'big-mode',
       name: {
-        'zh-CN': '迷你模式',
+        'zh-CN': '大尺寸',
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>可通过 `mini` 设置组件为 mini 模式。<p>',
+        'zh-CN': '<p>可通过 `big` 设置组件为 big 模式。<p>',
         'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['mini-mode.vue']
-    },
-    {
-      demoId: 'transparent-mode',
-      name: {
-        'zh-CN': '透明模式',
-        'en-US': 'events'
-      },
-      desc: {
-        'zh-CN': '<p>可通过 `transparent` 设置组件为透明模式（`mini`模式下有效）。<p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['transparent-mode.vue']
+      codeFiles: ['big-mode.vue']
     },
     {
       demoId: 'default-value',

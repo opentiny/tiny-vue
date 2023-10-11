@@ -1,10 +1,10 @@
 @import '../custom.less';
 @import '../grid/icon.less';
 
-@grid-modal-prefix-cls: ~'@{css-prefix}grid-modal';
-@grid-custom-prefix-cls: ~'@{css-prefix}grid-custom';
+@modal-prefix-cls: ~'@{css-prefix}modal';
+@custom-prefix-cls: ~'@{css-prefix}custom';
 
-.@{grid-modal-prefix-cls} {
+.@{modal-prefix-cls} {
   &__wrapper {
     @apply hidden;
     @apply fixed;
@@ -29,24 +29,22 @@
       }
 
       &.type__message {
-        .@{grid-modal-prefix-cls}__box {
+        .@{modal-prefix-cls}__box {
           @apply translate-y-0;
         }
       }
 
       &:not(.type__message) {
-        .@{grid-modal-prefix-cls}__box {
+        .@{modal-prefix-cls}__box {
           top: 15vh;
 
           &:not(.is__drag) {
-            transition:
-              top 0s ease-in,
-              opacity 0.4s ease-in;
+            transition: top 0s ease-in, opacity 0.4s ease-in;
           }
         }
       }
 
-      .@{grid-modal-prefix-cls}__box {
+      .@{modal-prefix-cls}__box {
         @apply opacity-100;
         @apply visible;
       }
@@ -65,10 +63,10 @@
     }
 
     &:not(.type__message) {
-      .@{grid-modal-prefix-cls}__text {
+      .@{modal-prefix-cls}__text {
         @apply text-sm;
       }
-      .@{grid-custom-prefix-cls} {
+      .@{custom-prefix-cls} {
         @apply text-sm;
         @apply font-normal;
       }
@@ -103,7 +101,7 @@
       }
 
       &.type__message {
-        .@{grid-modal-prefix-cls}__box {
+        .@{modal-prefix-cls}__box {
           &:not(.is__drag) {
             @apply transition-all duration-200 ease-out;
           }
@@ -115,25 +113,25 @@
     &.size__mini {
       @apply text-xs;
 
-      .@{grid-modal-prefix-cls}__box {
+      .@{modal-prefix-cls}__box {
         @apply ~'py-1.5' px-0;
       }
 
-      .@{grid-modal-prefix-cls}__body {
+      .@{modal-prefix-cls}__body {
         @apply ~'pt-1 pr-3.5 pb-2.5 pl-3.5';
       }
 
-      .@{grid-modal-prefix-cls}__footer {
+      .@{modal-prefix-cls}__footer {
         @apply ~'pt-1 pr-3.5 pb-2 pl-3.5';
       }
 
-      .@{grid-modal-prefix-cls}__header {
+      .@{modal-prefix-cls}__header {
         @apply text-sm;
         padding: 6px 30px 8px 14px;
       }
 
-      .@{grid-modal-prefix-cls}__zoom-btn,
-      .@{grid-modal-prefix-cls}__close-btn {
+      .@{modal-prefix-cls}__zoom-btn,
+      .@{modal-prefix-cls}__close-btn {
         @apply text-base;
         @apply ~'top-2.5';
       }
@@ -142,7 +140,7 @@
     &.type__message,
     &.type__alert,
     &.type__confirm {
-      .@{grid-modal-prefix-cls}__body {
+      .@{modal-prefix-cls}__body {
         @apply whitespace-normal;
         word-wrap: break-word;
         @apply break-all;
@@ -152,7 +150,7 @@
     &.type__message {
       @apply text-center;
 
-      .@{grid-modal-prefix-cls}__box {
+      .@{modal-prefix-cls}__box {
         @apply inline-block;
         @apply ~'py-0.5 px-0';
         @apply mt-0;
@@ -160,7 +158,7 @@
         @apply shadow-lg;
         transform: translateY(-10%);
 
-        .@{grid-modal-prefix-cls}__body {
+        .@{modal-prefix-cls}__body {
           &:after {
             @apply content-[''];
             @apply block;
@@ -171,13 +169,13 @@
           }
         }
 
-        .@{grid-modal-prefix-cls}__content {
+        .@{modal-prefix-cls}__content {
           max-width: 800px;
           @apply float-left;
         }
       }
 
-      .@{grid-modal-prefix-cls}__status-wrapper {
+      .@{modal-prefix-cls}__status-wrapper {
         @apply text-base;
         @apply ~'pr-2.5';
       }
@@ -186,7 +184,7 @@
     &.type__modal,
     &.type__alert,
     &.type__confirm {
-      .@{grid-modal-prefix-cls}__box {
+      .@{modal-prefix-cls}__box {
         @apply flex;
         @apply flex-col;
         @apply absolute;
@@ -196,17 +194,17 @@
         @apply border-none;
         @apply shadow-xl;
 
-        .@{grid-modal-prefix-cls}__header {
+        .@{modal-prefix-cls}__header {
           @apply cursor-move;
         }
       }
     }
 
     &.type__modal {
-      .@{grid-modal-prefix-cls}__body {
+      .@{modal-prefix-cls}__body {
         @apply overflow-auto;
 
-        .@{grid-modal-prefix-cls}__content {
+        .@{modal-prefix-cls}__content {
           @apply overflow-auto;
         }
       }
@@ -214,7 +212,7 @@
 
     &.type__alert,
     &.type__confirm {
-      .@{grid-modal-prefix-cls}__status-wrapper {
+      .@{modal-prefix-cls}__status-wrapper {
         @apply text-2xl;
         @apply pr-2;
         @apply pl-0;
@@ -226,32 +224,32 @@
     }
 
     &.status__info {
-      .@{grid-modal-prefix-cls}__status-wrapper {
+      .@{modal-prefix-cls}__status-wrapper {
         @apply fill-color-info-secondary;
       }
     }
 
     &.status__warning,
     &.status__question {
-      .@{grid-modal-prefix-cls}__status-wrapper {
+      .@{modal-prefix-cls}__status-wrapper {
         @apply fill-color-warning;
       }
     }
 
     &.status__success {
-      .@{grid-modal-prefix-cls}__status-wrapper {
+      .@{modal-prefix-cls}__status-wrapper {
         @apply fill-color-success;
       }
     }
 
     &.status__error {
-      .@{grid-modal-prefix-cls}__status-wrapper {
+      .@{modal-prefix-cls}__status-wrapper {
         @apply fill-color-error;
       }
     }
 
     &.status__loading {
-      .@{grid-modal-prefix-cls}__status-wrapper {
+      .@{modal-prefix-cls}__status-wrapper {
         @apply fill-color-info-secondary;
       }
 
@@ -261,13 +259,13 @@
     }
 
     &.is__maximize {
-      .@{grid-modal-prefix-cls}__box {
-        .@{grid-modal-prefix-cls}__header {
+      .@{modal-prefix-cls}__box {
+        .@{modal-prefix-cls}__header {
           @apply cursor-default;
         }
       }
 
-      .@{grid-modal-prefix-cls}__resize {
+      .@{modal-prefix-cls}__resize {
         .wl-resize,
         .wr-resize,
         .swst-resize,
@@ -296,8 +294,8 @@
     &.is__drag {
       @apply cursor-move;
 
-      .@{grid-modal-prefix-cls}__body,
-      .@{grid-modal-prefix-cls}__footer {
+      .@{modal-prefix-cls}__body,
+      .@{modal-prefix-cls}__footer {
         &:after {
           @apply content-[''];
           @apply absolute;
@@ -308,17 +306,17 @@
         }
       }
 
-      .@{grid-modal-prefix-cls}__body {
+      .@{modal-prefix-cls}__body {
         @apply overflow-hidden;
 
-        .@{grid-modal-prefix-cls}__content {
+        .@{modal-prefix-cls}__content {
           @apply overflow-hidden;
         }
       }
     }
 
-    .@{grid-modal-prefix-cls}__body {
-      .@{grid-modal-prefix-cls}__content {
+    .@{modal-prefix-cls}__body {
+      .@{modal-prefix-cls}__content {
         @apply flex;
         @apply items-center;
       }
@@ -363,7 +361,7 @@
     @apply flex;
   }
 
-  &__header-icon + .@{grid-modal-prefix-cls}__body {
+  &__header-icon + .@{modal-prefix-cls}__body {
     @apply pl-14;
   }
 

@@ -27,10 +27,7 @@
       @click="clickHandler"
       :src="src"
       :style="state.getImageStyle"
-      :class="[
-        'align-top w-full h-full rounded cursor-pointer',
-        { 'relative left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 block': state.getAlignCenter }
-      ]"
+      :class="['align-top w-full h-full rounded cursor-pointer']"
     />
     <div
       :class="[

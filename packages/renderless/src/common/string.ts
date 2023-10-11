@@ -13,7 +13,6 @@
 import { isPlainObject, isNumber, isNumeric, isNull } from './type'
 import { getObj, toJsonStr } from './object'
 import { toFixed } from './decimal'
-import { nanoid } from './xss'
 
 /**
  * 文本替换格式类型
@@ -241,6 +240,11 @@ export const fillChar = (string, length, append, chr = '0') => {
   }
 }
 
+export const random = () => {
+  let MAX_UINT32_PLUS_ONE = 4294967296
+  return window.crypto.getRandomValues(new window.Uint32Array(1))[0] / MAX_UINT32_PLUS_ONE
+}
+
 /**
  * 生成一个guid。
  *
@@ -250,10 +254,15 @@ export const fillChar = (string, length, append, chr = '0') => {
  * @param {Number} [length] 生成的guid的长度，可选值，默认为8
  * @returns {String}
  */
-export const random = nanoid.random
-
-export const guid = (prefix = '', length = 8) => prefix + random().toString().substr(2, length)
-
+export const guid = (prefix = '', length = 8) => {
+  return 'xxxxxxxx'.replace(/[x]/g, (c) => {
+    const random = parseFloat('0.' + crypto.getRandomValues(new Uint32Array(1))[0])
+    const r = (random * 16) | 0
+    const v = c === 'x' ? r : (r & 0x3) | 0x8
+    const randomStr = v.toString(16)
+    return prefix + randomStr.substring(0, length)
+  })
+}
 /**
  * 将HTML字符串进行编码。
  *

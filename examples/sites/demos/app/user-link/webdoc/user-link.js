@@ -95,14 +95,14 @@ export default {
       'properties': [
         {
           'name': 'value',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '配置默认值，默认为空', 'en-US': 'The default value is empty.' },
           'demoId': 'custom-service'
         },
         {
           'name': 'cache',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否开启用户数据缓存，默认为 ture 缓存用户数据',
@@ -112,7 +112,7 @@ export default {
         },
         {
           'name': 'cache-key',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 tiny-user',
           'desc': {
             'zh-CN': '自定义缓存 key 默认值为 tiny-user',
@@ -129,7 +129,7 @@ export default {
         },
         {
           'name': 'value-split',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 ,',
           'desc': {
             'zh-CN':
@@ -141,7 +141,7 @@ export default {
         },
         {
           'name': 'value-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 userId',
           'desc': {
             'zh-CN': '设置下拉框的值所对应数据源的字段名称',
@@ -151,7 +151,7 @@ export default {
         },
         {
           'name': 'text-split',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 ,',
           'desc': {
             'zh-CN': '在多选的情况下，设置输入框显示多个文本时的分隔符',
@@ -161,7 +161,7 @@ export default {
         },
         {
           'name': 'text-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 userCN',
           'desc': {
             'zh-CN': '设置下拉框的文本对应的数据源的字段名称',

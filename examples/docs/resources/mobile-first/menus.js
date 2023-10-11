@@ -29,6 +29,7 @@ export const cmpMenus = [
     labelEn: 'Container',
     key: 'cmp_container',
     children: [
+      { name: 'Cell', nameCn: '单元格', key: 'cell' },
       { name: 'ActionSheet', nameCn: '动作面板', key: 'action-sheet' },
       { name: 'Drawer', nameCn: '抽屉', key: 'drawer' },
       { name: 'Card', nameCn: '卡片', key: 'card' },

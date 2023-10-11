@@ -10,9 +10,12 @@
  *
  */
 
+import type { IFormApi, IFormProps, IFormState, IFormRenderlessParams, IFormRenderlessParamUtils } from '@/types'
+
 import {
   watchRules,
   computedAutoLabelWidth,
+  computedHideRequiredAsterisk,
   created,
   resetFields,
   clearValidate,
@@ -41,17 +44,23 @@ export const api = [
   'hideTooltip'
 ]
 
-export const renderless = (props, { computed, inject, provide, reactive, watch, onBeforeUnmount }, { vm, parent }) => {
-  const api = {}
+export const renderless = (
+  props: IFormProps,
+  { computed, inject, provide, reactive, watch, onBeforeUnmount }: IFormRenderlessParams,
+  { vm, parent, designConfig }: IFormRenderlessParamUtils
+): IFormApi => {
+  const api = {} as IFormApi
   const dialog = inject('dialog', null)
 
-  const state = reactive({
+  const state: IFormState = reactive({
     showAutoWidth: props.showAutoWidth,
     fields: [],
-    timer: null,
+    timer: 0,
     tooltipVisible: false,
+    displayedValue: '',
     potentialLabelWidthArr: [],
     autoLabelWidth: computed(() => api.computedAutoLabelWidth()),
+    hideRequiredAsterisk: computed(() => api.computedHideRequiredAsterisk()),
     isDisplayOnly: computed(() => props.displayOnly),
     hasRequired: computed(() => {
       if (props.rules) {
@@ -72,6 +81,7 @@ export const renderless = (props, { computed, inject, provide, reactive, watch, 
     state,
     updateTip: updateTip({ props, state }),
     computedAutoLabelWidth: computedAutoLabelWidth({ state }),
+    computedHideRequiredAsterisk: computedHideRequiredAsterisk({ props, designConfig }),
     created: created({ parent, state }),
     resetFields: resetFields({ props, state }),
     clearValidate: clearValidate(state),

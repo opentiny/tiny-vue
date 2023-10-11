@@ -40,9 +40,9 @@ yarn add @opentiny/vue-vite-import
 npm install @opentiny/vue-vite-import
 ```
 
-修改项目的 `vite.config.js` ，添加以下代码突出显示的部分：
+修改项目的 `vite.config.js` ，添加以下代码：
 
-```js {2, 8-30}
+```js
 import vue from '@vitejs/plugin-vue'
 import importPlugin from '@opentiny/vue-vite-import'
 

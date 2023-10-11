@@ -1,6 +1,6 @@
 <template>
   <div class="demo-form">
-    <tiny-form :disabled="false" label-position="right" ref="createDataRef" label-width="100px">
+    <tiny-form label-width="100px">
       <tiny-form-item label="数字">
         <tiny-numeric v-model="createData.quantity"></tiny-numeric>
       </tiny-form-item>
@@ -30,8 +30,18 @@
 </template>
 
 <script lang="jsx">
-import { Form, FormItem, Numeric, Radio, DatePicker, DropTimes, Tooltip, Input, Button } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
+import {
+  Form,
+  FormItem,
+  Numeric,
+  Radio,
+  DatePicker,
+  DropTimes,
+  Tooltip,
+  Input,
+  Button,
+  Modal as TinyModal
+} from '@opentiny/vue'
 
 export default {
   components: {
@@ -59,7 +69,7 @@ export default {
   },
   methods: {
     submitClick() {
-      alert('提交')
+      TinyModal.alert('提交')
     }
   }
 }

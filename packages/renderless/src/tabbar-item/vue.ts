@@ -22,8 +22,8 @@ export const renderless = (props, { computed, onMounted, reactive }, { parent, e
     info: computed(() => (props.dot ? '' : !props.dot && props.badge)),
     url: computed(() => xss.filterUrl(props.url)),
     routeActive: computed(() => api.getRouteActive()),
-    renderActive: computed(() => (parent.$parent.route ? state.routeActive : state.active)),
-    renderColor: computed(() => parent.$parent[state.active ? 'activeColor' : 'inactiveColor'])
+    renderActive: computed(() => (parent.route ? state.routeActive : state.active)),
+    renderColor: computed(() => parent[state.active ? 'activeColor' : 'inactiveColor'])
   })
 
   Object.assign(api, {

@@ -39,10 +39,12 @@ export default {
   created() {
     if (window._map_china) {
       this.chartSettings.mapOrigin = window._map_china
-    } else {
+    } else if (this.$service?.network) {
       this.$service.network.get('services/mapChina').then(({ data }) => {
         this.chartSettings.mapOrigin = data
       })
+    } else {
+      // 没有this.$service.network则空操作，防止js报错
     }
   }
 }

@@ -9,15 +9,21 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-
-import { handleClick, flagOprate, getMileIcon, getMileContent, getLineColor, handleFlagClick } from './index'
+import {
+  IMilestoneProps,
+  IMilestoneApi,
+  IMilestoneState,
+  ISharedRenderlessParamHooks,
+  IMilestoneRenderlessParamUtils
+} from '@/types'
+import { handleClick, flagOperate, getMileIcon, getMileContent, getLineColor, handleFlagClick } from './index'
 
 export const api = [
   'state',
   'showTip',
   'handleClick',
   'handleFlagClick',
-  'flagOprate',
+  'flagOperate',
   'getMileIcon',
   'getMileContent',
   'getMileFlagStyle',
@@ -25,19 +31,23 @@ export const api = [
   'getStatus'
 ]
 
-export const renderless = (props, { reactive }, { emit, refs, constants }) => {
-  const state = reactive({
+export const renderless = (
+  props: IMilestoneProps,
+  { reactive }: ISharedRenderlessParamHooks,
+  { emit, refs, constants }: IMilestoneRenderlessParamUtils
+): IMilestoneApi => {
+  const state: IMilestoneState = reactive({
     tipContent: ''
   })
 
-  const api = {
+  const api: IMilestoneApi = {
     state,
     getLineColor: getLineColor(props),
     getMileContent: getMileContent(props),
     handleFlagClick: handleFlagClick(emit),
     handleClick: handleClick({ emit }),
     getMileIcon: getMileIcon({ constants, props }),
-    flagOprate: flagOprate({ constants, refs, state })
+    flagOperate: flagOperate({ constants, refs, state })
   }
 
   return api

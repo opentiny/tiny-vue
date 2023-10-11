@@ -24,7 +24,7 @@ export default {
       userHeadOption: {
         type: 'image',
         size: 40,
-        value: 'webnova/static/images/1.jpg',
+        value: '/static/images/1.jpg',
         round: true
       },
       iconOptions: [

@@ -1,0 +1,22 @@
+diff --git a/dist/rollup.js b/dist/rollup.js
+index 0f6400eedfad49091ca952ee5863bd027e3b8417..b744bf7119bdf64576d3609845ad6b9ffb7d1b18 100644
+--- a/dist/rollup.js
++++ b/dist/rollup.js
+@@ -7932,7 +7932,6 @@ var getRollupConfig = async (options) => {
+         dtsPlugin.default({
+           tsconfig: options.tsconfig,
+           compilerOptions: {
+-            ...compilerOptions,
+             baseUrl: compilerOptions.baseUrl || ".",
+             // Ensure ".d.ts" modules are generated
+             declaration: true,
+@@ -7947,7 +7946,8 @@ var getRollupConfig = async (options) => {
+             skipLibCheck: true,
+             preserveSymlinks: false,
+             // Ensure we can parse the latest code
+-            target: _typescript2.default.ScriptTarget.ESNext
++            target: _typescript2.default.ScriptTarget.ESNext,
++            ...compilerOptions
+           }
+         })
+       ].filter(Boolean),

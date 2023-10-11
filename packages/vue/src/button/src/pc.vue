@@ -44,6 +44,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/button/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconLoading } from '@opentiny/vue-icon'
+import type { IButtonApi } from '@opentiny/vue-renderless/types/button.type'
 import '@opentiny/vue-theme/button/index.less'
 
 export default defineComponent({
@@ -62,11 +63,12 @@ export default defineComponent({
     'autofocus',
     'round',
     'circle',
-    'tabindex'
+    'tabindex',
+    'customClass'
   ],
   components: { IconLoading: iconLoading() },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IButtonApi
   }
 })
 </script>

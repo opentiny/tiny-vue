@@ -128,6 +128,7 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import Button from '@opentiny/vue-button'
 import UserContact from '@opentiny/vue-user-contact'
 import { iconTriangleDown, iconMarkOn, iconSuccessful } from '@opentiny/vue-icon'
+import type { IWizardApi } from '@opentiny/vue-renderless/types/wizard.type'
 
 export default defineComponent({
   props: [...props, 'data', 'pageGuide', 'timeLineFlow', 'vertical'],
@@ -140,7 +141,7 @@ export default defineComponent({
     TinyIconTriangleDown: iconTriangleDown()
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IWizardApi
   }
 })
 </script>

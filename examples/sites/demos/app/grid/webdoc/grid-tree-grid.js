@@ -4,10 +4,13 @@ export default {
   demos: [
     {
       'demoId': 'tree-table-tree-grid-base',
-      'name': { 'zh-CN': '有子级的数据结构', 'en-US': 'Data structure with children' },
+      'name': {
+        'zh-CN': '有子级的数据结构，自定义树表展开收缩图标',
+        'en-US': 'Data structure with children, Custom Tree Table Expand and Collapse Icon'
+      },
       'desc': {
         'zh-CN':
-          "<p>在 grid 标签上配置 tree-config=&quot;{children: 'children'}&quot;以树的形式来展示数据,还需要在展示树节点的字段上配置 tree-node 属性</p>\n",
+          "<p>在 grid 标签上配置 tree-config=&quot;{children: 'children',renderIcon}&quot;以树的形式来展示数据,还需要在展示树节点的字段上配置 tree-node 属性</p>\n",
         'en-US':
           "<p>Configure tree-config=&quot;{children:'children'}&quot; on the grid tab to display data in a tree. In addition, you need to configure the tree-node attribute</p>\n on the field that displays the tree node"
       },
@@ -108,7 +111,7 @@ export default {
     },
     {
       'demoId': 'tree-table-tree-grid-expand-config',
-      'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
+      'name': { 'zh-CN': '设置展开行配置项', 'en-US': 'Basic Usage' },
       'desc': {
         'zh-CN': '<p>表格属性 <code>expand-config</code> 设置展开行配置项。</p>\n',
         'en-US': '<p>Table property<code>expand-config</code>Set the configuration item of the expanded line. </p>\n'

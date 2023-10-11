@@ -3,7 +3,7 @@ import { tagProps } from '@/tag/src'
 import { ISharedRenderlessFunctionParams } from './shared.type'
 
 export interface ITagState {
-  type: string
+  type: string | undefined
   show: boolean
   selected: boolean
 }
@@ -19,4 +19,5 @@ export type ITagProps = ExtractPropTypes<typeof tagProps>
 export type ITagRenderlessParams = ISharedRenderlessFunctionParams<never> & {
   state: ITagState
   props: ITagProps
+  api: ITagApi
 }

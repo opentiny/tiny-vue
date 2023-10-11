@@ -128,70 +128,70 @@ export default {
       'carousel-attrs': [
         {
           'name': 'arrow',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 hover',
           'desc': { 'zh-CN': '切换箭头的显示时机;该属性的可选值为 always / hover / never', 'en-US': '' },
           'demoId': 'up-down-carousel'
         },
         {
           'name': 'autoplay',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否自动切换', 'en-US': '' },
           'demoId': 'autoplay'
         },
         {
           'name': 'height',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '走马灯的高度', 'en-US': '' },
           'demoId': 'indicator-trigger'
         },
         {
           'name': 'indicator-position',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '指示器的位置。该属性的可选值为 outside / none', 'en-US': '' },
           'demoId': 'indicator-trigger'
         },
         {
           'name': 'initial-index',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': { 'zh-CN': '初始状态激活的幻灯片的索引，从 0 开始', 'en-US': '' },
           'demoId': 'manual-play'
         },
         {
           'name': 'interval',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 3000',
           'desc': { 'zh-CN': '自动切换的时间间隔，单位为毫秒', 'en-US': '' },
           'demoId': 'play-interval'
         },
         {
           'name': 'show-title',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否显示标题', 'en-US': '' },
           'demoId': 'show-title'
         },
         {
           'name': 'trigger',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 hover',
           'desc': { 'zh-CN': '指示器的触发方式，默认为 hover。该属性的可选值为 click', 'en-US': '' },
           'demoId': 'indicator-trigger'
         },
         {
           'name': 'type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 horizontal',
           'desc': { 'zh-CN': '走马灯的类型;该属性的可选值为 horizontal / vertical / card', 'en-US': '' },
           'demoId': 'card-mode'
         },
         {
           'name': 'loop',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否循环显示', 'en-US': '' },
           'demoId': 'close-loop'
@@ -241,14 +241,14 @@ export default {
       'carouselItem-attrs': [
         {
           'name': 'title',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '幻灯片标题', 'en-US': '' },
           'demoId': 'show-title'
         },
         {
           'name': 'name',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '幻灯片名称', 'en-US': '' },
           'demoId': 'show-title'

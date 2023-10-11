@@ -58,14 +58,14 @@ export default {
         },
         {
           'name': 'init-blocks',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': { 'zh-CN': '初始时需要显示的块数。', 'en-US': 'Number of blocks to be displayed initially.' },
           'demoId': 'wheel-blocks'
         },
         {
           'name': 'wheel-blocks',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 1',
           'desc': {
             'zh-CN': '鼠标滚轮上下滚动的时候，滚动的块数长度。',
@@ -75,14 +75,14 @@ export default {
         },
         {
           'name': 'tag',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 ul',
           'desc': { 'zh-CN': '设置组件的 Dom 标签', 'en-US': 'Setting the Dom Label of a Component' },
           'demoId': 'custom-tag'
         },
         {
           'name': 'sub-tag',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 li',
           'desc': { 'zh-CN': '设置组件的子级 Dom 标签', 'en-US': 'Setting the Dom Label of a Component' },
           'demoId': 'custom-tag'

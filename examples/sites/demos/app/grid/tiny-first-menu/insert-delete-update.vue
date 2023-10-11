@@ -34,7 +34,6 @@
 
 <script>
 import { Grid, GridColumn, GridToolbar, Modal } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
 
 export default {
   components: {
@@ -135,7 +134,7 @@ export default {
         }
         case 'delete': {
           if (data.length === 0) {
-            alert('请至少选中一条记录')
+            Modal.alert('请至少选中一条记录')
           }
           $grid.removeSelecteds()
           break
@@ -146,7 +145,7 @@ export default {
         }
         case 'save': {
           if (!updateData.length && !insertData.length) {
-            alert('没有修改记录')
+            Modal.alert('没有修改记录')
           } else {
             Modal.message({
               message: '点击保存触发, 新增的数据',
@@ -160,7 +159,7 @@ export default {
         }
         case 'getRecordset': {
           const records = $grid.getRecordset()
-          alert('增删改记录集合：' + JSON.stringify(records))
+          Modal.alert('增删改记录集合：' + JSON.stringify(records))
           break
         }
       }

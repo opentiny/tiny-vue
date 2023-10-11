@@ -166,6 +166,11 @@
         border: 1px solid var(--ti-pager-primary-border-color);
         box-shadow: 0 0 0 rgba(0, 0, 0, 0);
       }
+      &[disabled] {
+        color: var(--ti-pager-disabled-text-color);
+        border-color: var(--ti-pager-disabled-border-color);
+        cursor: not-allowed;
+      }
     }
 
     button {
@@ -194,6 +199,11 @@
       &:hover {
         border: 1px solid var(--ti-pager-goto-btn-border-hover-color);
         color: var(--ti-pager-goto-btn-text-hover-color);
+      }
+      &.is-disabled {
+        color: var(--ti-pager-disabled-text-color);
+        border-color: var(--ti-pager-disabled-border-color);
+        cursor: not-allowed;
       }
     }
   }
@@ -352,46 +362,39 @@
     }
   }
 
-  &__input {
+  &__page-size {
     width: var(--ti-pager-sizes-input-width);
-    vertical-align: middle;
+    max-width: 200px;
     position: relative;
+    text-align: left;
 
-    input {
-      width: 100%;
-      height: var(--ti-pager-input-height);
-      line-height: var(--ti-pager-input-height);
-      border: 1px solid var(--ti-pager-input-border-color);
-      color: var(--ti-pager-normal-text-color);
-      border-radius: var(--ti-pager-input-border-radius);
-      background: #fff;
-      font-size: var(--ti-pager-font-size, 12px);
-      padding: 0 8px;
-      display: block;
-      stop-color: var(--ti-pager-input-stop-color);
-      lighting-color: var(--ti-pager-input-lighting-color);
-      padding: 6px var(--ti-pager-input-padding-vertical);
-      padding-top: 6px;
-      padding-right: 40px;
-      padding-bottom: 6px;
-      padding-left: var(--ti-pager-input-padding-vertical);
-      white-space: nowrap;
-      transition: border 0.3s;
+    height: var(--ti-pager-input-height);
+    line-height: calc(var(--ti-pager-input-height) - 2px);
+    border: 1px solid var(--ti-pager-input-border-color);
+    color: var(--ti-pager-normal-text-color);
+    border-radius: var(--ti-pager-input-border-radius);
+    background: #fff;
+    font-size: var(--ti-pager-font-size, 12px);
+    padding: 0;
+    padding-left: 12px;
+    padding-right: 4px;
+    display: block;
+    white-space: nowrap;
+    transition: border 0.3s;
+    outline: 0;
+    box-sizing: border-box;
+    .user-select(none);
+
+    &:hover {
       outline: 0;
-      box-sizing: border-box;
-      .user-select(none);
+      color: var(--ti-pager-sizes-input-hover-text-color);
+      border-color: var(--ti-pager-input-hover-border-color);
+    }
 
-      &:hover {
-        outline: 0;
-        color: var(--ti-pager-sizes-input-hover-text-color);
-        border-color: var(--ti-pager-input-hover-border-color);
-      }
-
-      &:active,
-      &:focus {
-        outline: 0;
-        border-color: var(--ti-pager-input-hover-border-color);
-      }
+    &:active,
+    &:focus {
+      outline: 0;
+      border-color: var(--ti-pager-input-hover-border-color);
     }
 
     &-btn {
@@ -400,8 +403,7 @@
       line-height: calc(var(--ti-pager-height) - 2px);
       position: absolute;
       right: var(--ti-pager-input-btn-right);
-      bottom: 0;
-      top: 0;
+      top: -1px;
       outline: 0;
       box-sizing: border-box;
       text-align: center;
@@ -456,33 +458,35 @@
 
   &.is-disabled {
     .@{pager-prefix-cls}__total {
-      color: var(--ti-base-color-common-3);
+      color: var(--ti-pager-disabled-text-color);
     }
 
     ul li {
       cursor: not-allowed;
-      color: var(--ti-base-color-common-3);
+      color: var(--ti-pager-disabled-text-color);
       background-color: transparent;
+      border-color: var(--ti-pager-disabled-border-color);
 
       &.is-active,
       &:not(.dot):not(.is-active):hover {
-        color: var(--ti-base-color-common-3);
+        color: var(--ti-pager-disabled-text-color);
         font-weight: normal;
         background-color: transparent;
+        border-color: var(--ti-pager-disabled-border-color);
       }
     }
 
-    .@{pager-prefix-cls}__input input {
-      color: var(--ti-base-color-common-3);
+    .@{pager-prefix-cls}__page-size {
+      color: var(--ti-pager-disabled-text-color);
       cursor: not-allowed;
-      border-color: #dbdbdb;
+      border-color: var(--ti-pager-disabled-border-color);
       background-color: var(--ti-base-color-bg-1);
     }
 
-    .@{pager-prefix-cls}__input-btn {
+    .@{pager-prefix-cls}__page-size-btn {
       svg {
-        fill: var(--ti-base-color-common-3);
-        color: var(--ti-base-color-common-3);
+        fill: var(--ti-pager-disabled-text-color);
+        color: var(--ti-pager-disabled-text-color);
         cursor: not-allowed;
       }
     }

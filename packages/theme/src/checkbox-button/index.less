@@ -35,7 +35,7 @@
       var(--ti-common-border-radius-normal) var(--ti-checkbox-button-left-border-radius);
   }
 
-  &:not(.is-disabled).is-checked {
+  &.is-checked {
     &::after {
       content: '';
       position: absolute;
@@ -44,7 +44,7 @@
       right: 4px;
       top: 0;
       border-bottom: 20px solid transparent;
-      border-right: 20px solid #191919;
+      border-right: 20px solid var(--ti-checkbox-button-checked-border-color);
       border-top-right-radius: 6px;
       display: var(--ti-checkbox-button-checked-display);
     }
@@ -91,12 +91,22 @@
       cursor: not-allowed;
       background-image: none;
       background-color: var(--ti-checkbox-button-disabled-bg-color);
-      border-color: var(--ti-checkbox-border-color);
+      border-color: var(--ti-checkbox-disabled-border-color);
       box-shadow: none;
     }
 
     &:first-child .@{checkbox-button-prefix-cls}__inner {
       border-left-color: var(--ti-checkbox-border-color);
+    }
+  }
+  &.is-disabled.is-checked{
+    &::after {
+      border-right: 20px solid var(--ti-checkbox-disabled-border-color);
+    }
+    .@{checkbox-button-prefix-cls}__inner {
+      color: var(--ti-checkbox-button-disabled-text-color);
+      border-color: var(--ti-checkbox-disabled-border-color);
+      background-color: var(--ti-checkbox-button-disabled-bg-color);
     }
   }
 
@@ -119,8 +129,7 @@
     margin: 0 var(--ti-checkbox-button-margin-horizontal);
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     padding: 12px 20px;
-    font-size: var(--ti-common-font-size-2);
-    min-width: 80px;
+    font-size: var(--ti-checkbox-button-font-size);
     border-radius: var(--ti-checkbox-button-border-radius);
     .user-select(none);
 
@@ -189,19 +198,18 @@
   }
 
   &--mini {
-    &:not(.is-disabled).is-checked {
+    &.is-checked {
       &::after {
         border-bottom: 16px solid transparent;
-        border-right: 16px solid #000;
+        border-right: 16px solid var(--ti-checkbox-button-checked-border-color);
         border-top-right-radius: 4px;
-        top: 2px;
-        right: 2px;
+        right: 3px;
       }
 
       &::before {
         height: 8px;
         width: 4px;
-        right: 4px;
+        right: 3px;
         top: 1px;
       }
     }

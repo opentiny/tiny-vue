@@ -1,0 +1,990 @@
+{
+  "version": "1.0.0",
+  "themeName": "华为SaaS设计系统主题",
+  "themeColor": [
+    {
+      "mode": "light",
+      "data": {
+        "brandColor": "#0067D1",
+        "backgroundColor": "#FFFFFF",
+        "sceneColors": [
+          {
+            "title": "品牌色 Brand Colors",
+            "colors": {
+              "color-brand": "brand-500,100",
+              "color-brand-hover": "brand-400,100",
+              "color-brand-active": "brand-600,100",
+              "color-brand-focus": "brand-500,100",
+              "color-brand-disabled": "brand-100,100",
+              "color-brand-hover-subtle": "brand-500,15",
+              "color-brand-hover-subtler": "brand-500,5"
+            }
+          },
+          {
+            "title": "背景色 Background Colors",
+            "colors": {
+              "color-bg-1": "white,100",
+              "color-bg-2": "coolgray-50,100",
+              "color-bg-3": "gray-50,100",
+              "color-bg-4": "gray-50,100",
+              "color-bg-5": "blue-50,50",
+              "color-bg-6": "gray-50,50",
+              "color-bg-7": "gray-900,30",
+              "color-bg-8": "gray-900,15"
+            }
+          },
+          {
+            "title": "填充色 Fill Colors",
+            "colors": {
+              "color-fill-1": "gray-100,100",
+              "color-fill-2": "coolgray-50,100",
+              "color-fill-3": "gray-100,50",
+              "color-fill-4": "gray-50,50",
+              "color-fill-5": "white,50",
+              "color-fill-6": "brand-50,100",
+              "color-fill-7": "gray-300,100",
+              "color-fill-8": "blue-50,50",
+              "color-fill-primary": "gray-900,100",
+              "color-fill-secondary": "gray-400,100"
+            }
+          },
+          {
+            "title": "文本色 Text Colors",
+            "colors": {
+              "color-text-primary": "gray-900,100",
+              "color-text-secondary": "gray-500,100",
+              "color-text-placeholder": "gray-300,100",
+              "color-text-disabled": "gray-300,100",
+              "color-text-inverse": "white,100",
+              "color-link": "skyblue-500,100",
+              "color-link-hover": "skyblue-400,100",
+              "color-link-focus": "skyblue-500,100",
+              "color-link-active": "skyblue-600,100"
+            }
+          },
+          {
+            "title": "图标色 Icon Colors",
+            "colors": {
+              "color-icon-primary": "gray-700,100",
+              "color-icon-secondary": "gray-500,100",
+              "color-icon-tertiary": "gray-300,100",
+              "color-icon-placeholder": "gray-300,100",
+              "color-icon-disabled": "gray-100,100",
+              "color-icon-inverse": "white,100",
+              "color-icon-hover": "brand-400,100",
+              "color-icon-focus": "brand-500,100",
+              "color-icon-active": "brand-600,100"
+            }
+          },
+          {
+            "title": "边框色 Border Colors",
+            "colors": {
+              "color-border": "gray-200,100",
+              "color-border-hover": "gray-900,100",
+              "color-border-focus": "brand-500,100",
+              "color-border-disabled": "gray-50,100",
+              "color-border-separator": "gray-100,100",
+              "color-border-separator-subtle": "gray-50,100"
+            }
+          },
+          {
+            "title": "功能色 Functional Colors",
+            "children": [
+              {
+                "title": "功能色 - 错误 Functional Color - Error",
+                "colors": {
+                  "color-error": "red-500,100",
+                  "color-error-hover": "red-400,100",
+                  "color-error-active": "red-600,100",
+                  "color-error-disabled": "red-100,100",
+                  "color-error-subtle": "red-200,100",
+                  "color-error-subtler": "red-50,100"
+                }
+              },
+              {
+                "title": "功能色 - 告警 Functional Color - Alert",
+                "colors": {
+                  "color-alert": "orange-500,100",
+                  "color-alert-hover": "orange-400,100",
+                  "color-alert-active": "orange-600,100",
+                  "color-alert-disabled": "orange-50,100",
+                  "color-alert-subtle": "orange-200,100",
+                  "color-alert-subtler": "orange-100,100"
+                }
+              },
+              {
+                "title": "功能色 - 提醒 Functional Color - Warning",
+                "colors": {
+                  "color-warning": "yellow-500,100",
+                  "color-warning-hover": "yellow-400,100",
+                  "color-warning-active": "yellow-600,100",
+                  "color-warning-disabled": "yellow-100,100",
+                  "color-warning-bold": "yellow-700,100",
+                  "color-warning-subtle": "yellow-200,100",
+                  "color-warning-subtler": "yellow-50,100"
+                }
+              },
+              {
+                "title": "功能色 - 成功 Functional Color - Success",
+                "colors": {
+                  "color-success": "mint-500,100",
+                  "color-success-hover": "mint-400,100",
+                  "color-success-active": "mint-600,100",
+                  "color-success-disabled": "mint-100,100",
+                  "color-success-subtle": "mint-200,100",
+                  "color-success-subtler": "mint-50,100"
+                }
+              },
+              {
+                "title": "功能色 - 信息 Functional Color - Info",
+                "colors": {
+                  "color-info-primary": "blue-500,100",
+                  "color-info-primary-subtle": "blue-300,100",
+                  "color-info-primary-subtler": "blue-50,100",
+                  "color-info-secondary": "blue-300,100",
+                  "color-info-secondary-hover": "blue-200,100",
+                  "color-info-secondary-active": "blue-400,100",
+                  "color-info-secondary-disabled": "blue-100,100",
+                  "color-info-secondary-subtle": "blue-200,100"
+                }
+              },
+              {
+                "title": "功能色 - 缺省 Functional Color - None",
+                "colors": {
+                  "color-none": "gray-300,100",
+                  "color-none-subtle": "gray-50,100",
+                  "color-none-hover": "gray-200,100",
+                  "color-none-active": "gray-400,100",
+                  "color-none-disabled": "gray-100,100"
+                }
+              }
+            ]
+          },
+          {
+            "title": "基础图表色 Base Chart Colors",
+            "colors": {
+              "color-discrepancy-1": "skyblue-400,100",
+              "color-discrepancy-2": "green-300,100",
+              "color-discrepancy-3": "indigo-400,100",
+              "color-discrepancy-4": "yellow-200,100",
+              "color-discrepancy-5": "cyan-400,100",
+              "color-discrepancy-6": "orange-300,100",
+              "color-discrepancy-7": "blue-500,100",
+              "color-discrepancy-8": "rose-400,100",
+              "color-discrepancy-9": "blue-600,100",
+              "color-discrepancy-10": "mint-400,100",
+              "color-discrepancy-11": "indigo-500,100",
+              "color-discrepancy-12": "skyblue-300,100",
+              "color-discrepancy-13": "yellow-300,100",
+              "color-discrepancy-14": "pink-300,100",
+              "color-discrepancy-15": "cyan-300,100",
+              "color-discrepancy-16": "green-400,100",
+              "color-discrepancy-17": "red-300,100"
+            }
+          },
+          {
+            "title": "同色系图表色A Homochrome Chart Colors A",
+            "colors": {
+              "color-homochromeA-1": "blue-700,100",
+              "color-homochromeA-2": "blue-600,100",
+              "color-homochromeA-3": "blue-500,100",
+              "color-homochromeA-4": "skyblue-400,100",
+              "color-homochromeA-5": "skyblue-300,100",
+              "color-homochromeA-6": "skyblue-200,100",
+              "color-homochromeA-7": "skyblue-100,100"
+            }
+          },
+          {
+            "title": "同色系图表色B Homochrome Chart Colors B",
+            "colors": {
+              "color-homochromeB-1": "mint-700,100",
+              "color-homochromeB-2": "mint-600,100",
+              "color-homochromeB-3": "mint-500,100",
+              "color-homochromeB-4": "mint-400,100",
+              "color-homochromeB-5": "mint-300,100",
+              "color-homochromeB-6": "mint-200,100",
+              "color-homochromeB-7": "mint-100,100"
+            }
+          },
+          {
+            "title": "基础图表色 Chart Colors",
+            "colors": {
+              "color-chart-1": "blue-700,100",
+              "color-chart-1-subtle": "blue-500,30",
+              "color-chart-1-sublter": "blue-500,5",
+              "color-chart-2": "cyan-400,100",
+              "color-chart-2-subtle": "cyan-400,30",
+              "color-chart-2-subtler": "cyan-400,5",
+              "color-chart-3": "indigo-500,100",
+              "color-chart-3-subtle": "indigo-500,30",
+              "color-chart-3-subtler": "indigo-500,5",
+              "color-chart-4": "brand-200,100",
+              "color-chart-4-subtle": "brand-200,30",
+              "color-chart-4-subtler": "brand-200,5",
+              "color-chart-5": "pink-300,100",
+              "color-chart-5-subtle": "pink-300,30",
+              "color-chart-5-subtler": "pink-300,5",
+              "color-chart-6": "green-400,100",
+              "color-chart-6-subtle": "green-400,30",
+              "color-chart-6-subtler": "green-400,5",
+              "color-chart-7": "yellow-600,100",
+              "color-chart-7-subtle": "yellow-600,30",
+              "color-chart-7-subtler": "yellow-600,5",
+              "color-chart-8": "mint-400,100",
+              "color-chart-8-subtle": "mint-400,30",
+              "color-chart-8-subtler": "mint-400,5",
+              "color-chart-9": "purple-300,100",
+              "color-chart-9-subtle": "purple-300,30",
+              "color-chart-9-subtler": "purple-300,5",
+              "color-chart-10": "rose-400,100",
+              "color-chart-10-subtle": "rose-400,30",
+              "color-chart-10-subtler": "rose-400,5",
+              "color-chart-11": "orange-300,100",
+              "color-chart-11-subtle": "orange-300,30",
+              "color-chart-11-subtler": "orange-300,5",
+              "color-chart-12": "red-400,100",
+              "color-chart-12-subtle": "red-400,30",
+              "color-chart-12-subtler": "red-400,5",
+              "color-chart-17": "pink-300,100",
+              "color-chart-17-subtle": "pink-300,50",
+              "color-chart-17-subtler": "pink-300,10"
+            }
+          }
+        ],
+        "colorList": {
+          "black": "#000000",
+          "white": "#FFFFFF",
+          "transparent": "transparent",
+          "inherit": "inherit",
+          "current": "currentColor",
+          "brand": {
+            "50": "#E6F1FD",
+            "100": "#B8D9F9",
+            "200": "#8ABEF3",
+            "300": "#5CA2E9",
+            "400": "#2E86DE",
+            "500": "#0067D1",
+            "600": "#004EA8",
+            "700": "#003D83",
+            "800": "#002E6A",
+            "900": "#00214B"
+          },
+          "gray": {
+            "50": "#F3F3F3",
+            "100": "#DFDFDF",
+            "200": "#C9C9C9",
+            "300": "#AEAEAE",
+            "400": "#939393",
+            "500": "#777777",
+            "600": "#595959",
+            "700": "#393939",
+            "800": "#2A2A2A",
+            "900": "#191919"
+          },
+          "coolgray": {
+            "50": "#F5F6F8",
+            "100": "#E8EBEF",
+            "200": "#B5BBC1",
+            "300": "#8D959E",
+            "400": "#78828D",
+            "500": "#5C6976",
+            "600": "#46515D",
+            "700": "#333D48",
+            "800": "#232C36",
+            "900": "#161E26"
+          },
+          "red": {
+            "50": "#FEE7E8",
+            "100": "#FABDC1",
+            "200": "#F59297",
+            "300": "#EE696F",
+            "400": "#E7434A",
+            "500": "#E02128",
+            "600": "#C7000B",
+            "700": "#850F12",
+            "800": "#59080A",
+            "900": "#350305"
+          },
+          "orange": {
+            "50": "#FEF5E8",
+            "100": "#FDE2BD",
+            "200": "#FCCE92",
+            "300": "#FC916E",
+            "400": "#F69E39",
+            "500": "#F4840C",
+            "600": "#C76207",
+            "700": "#954304",
+            "800": "#642802",
+            "900": "#3D1601"
+          },
+          "yellow": {
+            "50": "#FEFCE0",
+            "100": "#FEF8B8",
+            "200": "#FEF08A",
+            "300": "#FDE55C",
+            "400": "#FCD72E",
+            "500": "#FCC800",
+            "600": "#D19F00",
+            "700": "#9E7400",
+            "800": "#614500",
+            "900": "#2E1F00"
+          },
+          "green": {
+            "50": "#F2FBE9",
+            "100": "#DFF4CC",
+            "200": "#C6E9A8",
+            "300": "#A8DB81",
+            "400": "#87C859",
+            "500": "#62B42E",
+            "600": "#488E20",
+            "700": "#316614",
+            "800": "#1B3E0A",
+            "900": "#0C2004"
+          },
+          "mint": {
+            "50": "#E7FBF2",
+            "100": "#BCF2DB",
+            "200": "#8FE5C2",
+            "300": "#63D5A8",
+            "400": "#36C18D",
+            "500": "#09AA71",
+            "600": "#058358",
+            "700": "#036142",
+            "800": "#02422E",
+            "900": "#00291D"
+          },
+          "cyan": {
+            "50": "#E8FCFD",
+            "100": "#C9F6F9",
+            "200": "#A4ECF1",
+            "300": "#7DDFE7",
+            "400": "#55CCD9",
+            "500": "#2CB8C9",
+            "600": "#1C94A4",
+            "700": "#127180",
+            "800": "#094C57",
+            "900": "#04282F"
+          },
+          "skyblue": {
+            "50": "#E6F1FD",
+            "100": "#B8D9F9",
+            "200": "#8ABEF3",
+            "300": "#5CA2E9",
+            "400": "#2E86DE",
+            "500": "#0067D1",
+            "600": "#004EA8",
+            "700": "#003D83",
+            "800": "#002E6A",
+            "900": "#00214B"
+          },
+          "blue": {
+            "50": "#EEF3FE",
+            "100": "#D0D8FD",
+            "200": "#B0BFFD",
+            "300": "#8CA3FA",
+            "400": "#668CF7",
+            "500": "#2070F3",
+            "600": "#1F55B5",
+            "700": "#1B3F86",
+            "800": "#112857",
+            "900": "#081635"
+          },
+          "indigo": {
+            "50": "#EEEEFE",
+            "100": "#D5D3FD",
+            "200": "#BFB9FA",
+            "300": "#A89FF9",
+            "400": "#8E81F4",
+            "500": "#715AFB",
+            "600": "#5531EB",
+            "700": "#3F21B5",
+            "800": "#281675",
+            "900": "#160B48"
+          },
+          "purple": {
+            "50": "#F7EDFE",
+            "100": "#E8CFFE",
+            "200": "#D9B1FD",
+            "300": "#CB8EFB",
+            "400": "#BF68FA",
+            "500": "#B62BF7",
+            "600": "#8A21BC",
+            "700": "#651B8B",
+            "800": "#41125A",
+            "900": "#260937"
+          },
+          "pink": {
+            "50": "#FDE6FC",
+            "100": "#F9C5F6",
+            "200": "#F39DEC",
+            "300": "#EB74DF",
+            "400": "#E049CE",
+            "500": "#D41DBC",
+            "600": "#9F1C8D",
+            "700": "#751868",
+            "800": "#4C0F43",
+            "900": "#2E0728"
+          },
+          "rose": {
+            "50": "#FEE5F2",
+            "100": "#FCC3E0",
+            "200": "#F99AC7",
+            "300": "#F470AB",
+            "400": "#ED448A",
+            "500": "#E61866",
+            "600": "#C40054",
+            "700": "#811439",
+            "800": "#540D24",
+            "900": "#330614"
+          }
+        }
+      }
+    },
+    {
+      "mode": "dark",
+      "data": {
+        "brandColor": "#8BC3FF",
+        "backgroundColor": "#232C36",
+        "sceneColors": [
+          {
+            "title": "品牌色 Brand Colors",
+            "colors": {
+              "color-brand": "brand-500,100",
+              "color-brand-hover": "brand-400,100",
+              "color-brand-active": "brand-600,100",
+              "color-brand-focus": "brand-500,100",
+              "color-brand-disabled": "brand-100,100",
+              "color-brand-hover-subtle": "brand-500,15",
+              "color-brand-hover-subtler": "brand-500,5"
+            }
+          },
+          {
+            "title": "背景色 Background Colors",
+            "colors": {
+              "color-bg-1": "white,100",
+              "color-bg-2": "coolgray-50,100",
+              "color-bg-3": "gray-50,100",
+              "color-bg-4": "gray-50,100",
+              "color-bg-5": "blue-50,50",
+              "color-bg-6": "gray-50,50",
+              "color-bg-7": "gray-900,30",
+              "color-bg-8": "gray-900,15"
+            }
+          },
+          {
+            "title": "填充色 Fill Colors",
+            "colors": {
+              "color-fill-1": "gray-100,100",
+              "color-fill-2": "coolgray-50,100",
+              "color-fill-3": "gray-100,50",
+              "color-fill-4": "gray-50,50",
+              "color-fill-5": "white,50",
+              "color-fill-6": "brand-50,100",
+              "color-fill-7": "gray-300,100",
+              "color-fill-8": "blue-50,50",
+              "color-fill-primary": "gray-900,100",
+              "color-fill-secondary": "gray-400,100"
+            }
+          },
+          {
+            "title": "文本色 Text Colors",
+            "colors": {
+              "color-text-primary": "gray-900,100",
+              "color-text-secondary": "gray-500,100",
+              "color-text-placeholder": "gray-300,100",
+              "color-text-disabled": "gray-300,100",
+              "color-text-inverse": "white,100",
+              "color-link": "skyblue-500,100",
+              "color-link-hover": "skyblue-400,100",
+              "color-link-focus": "skyblue-500,100",
+              "color-link-active": "skyblue-600,100"
+            }
+          },
+          {
+            "title": "图标色 Icon Colors",
+            "colors": {
+              "color-icon-primary": "gray-700,100",
+              "color-icon-secondary": "gray-500,100",
+              "color-icon-tertiary": "gray-300,100",
+              "color-icon-placeholder": "gray-300,100",
+              "color-icon-disabled": "gray-100,100",
+              "color-icon-inverse": "white,100",
+              "color-icon-hover": "brand-400,100",
+              "color-icon-focus": "brand-500,100",
+              "color-icon-active": "brand-600,100"
+            }
+          },
+          {
+            "title": "边框色 Border Colors",
+            "colors": {
+              "color-border": "gray-200,100",
+              "color-border-hover": "gray-900,100",
+              "color-border-focus": "brand-500,100",
+              "color-border-disabled": "gray-50,100",
+              "color-border-separator": "gray-100,100",
+              "color-border-separator-subtle": "gray-50,100"
+            }
+          },
+          {
+            "title": "功能色 Functional Colors",
+            "children": [
+              {
+                "title": "功能色 - 错误 Functional Color - Error",
+                "colors": {
+                  "color-error": "red-500,100",
+                  "color-error-hover": "red-400,100",
+                  "color-error-active": "red-600,100",
+                  "color-error-disabled": "red-100,100",
+                  "color-error-subtle": "red-200,100",
+                  "color-error-subtler": "red-50,100"
+                }
+              },
+              {
+                "title": "功能色 - 告警 Functional Color - Alert",
+                "colors": {
+                  "color-alert": "orange-500,100",
+                  "color-alert-hover": "orange-400,100",
+                  "color-alert-active": "orange-600,100",
+                  "color-alert-disabled": "orange-50,100",
+                  "color-alert-subtle": "orange-200,100",
+                  "color-alert-subtler": "orange-100,100"
+                }
+              },
+              {
+                "title": "功能色 - 提醒 Functional Color - Warning",
+                "colors": {
+                  "color-warning": "yellow-500,100",
+                  "color-warning-hover": "yellow-400,100",
+                  "color-warning-active": "yellow-600,100",
+                  "color-warning-disabled": "yellow-100,100",
+                  "color-warning-bold": "yellow-700,100",
+                  "color-warning-subtle": "yellow-200,100",
+                  "color-warning-subtler": "yellow-50,100"
+                }
+              },
+              {
+                "title": "功能色 - 成功 Functional Color - Success",
+                "colors": {
+                  "color-success": "mint-500,100",
+                  "color-success-hover": "mint-400,100",
+                  "color-success-active": "mint-600,100",
+                  "color-success-disabled": "mint-100,100",
+                  "color-success-subtle": "mint-200,100",
+                  "color-success-subtler": "mint-50,100"
+                }
+              },
+              {
+                "title": "功能色 - 信息 Functional Color - Info",
+                "colors": {
+                  "color-info-primary": "blue-500,100",
+                  "color-info-primary-subtle": "blue-300,100",
+                  "color-info-primary-subtler": "blue-50,100",
+                  "color-info-secondary": "blue-300,100",
+                  "color-info-secondary-hover": "blue-200,100",
+                  "color-info-secondary-active": "blue-400,100",
+                  "color-info-secondary-disabled": "blue-100,100",
+                  "color-info-secondary-subtle": "blue-200,100"
+                }
+              },
+              {
+                "title": "功能色 - 缺省 Functional Color - None",
+                "colors": {
+                  "color-none": "gray-300,100",
+                  "color-none-subtle": "gray-50,100",
+                  "color-none-hover": "gray-200,100",
+                  "color-none-active": "gray-400,100",
+                  "color-none-disabled": "gray-100,100"
+                }
+              }
+            ]
+          },
+          {
+            "title": "基础图表色 Base Chart Colors",
+            "colors": {
+              "color-discrepancy-1": "skyblue-400,100",
+              "color-discrepancy-2": "green-300,100",
+              "color-discrepancy-3": "indigo-400,100",
+              "color-discrepancy-4": "yellow-200,100",
+              "color-discrepancy-5": "cyan-400,100",
+              "color-discrepancy-6": "orange-300,100",
+              "color-discrepancy-7": "blue-500,100",
+              "color-discrepancy-8": "rose-400,100",
+              "color-discrepancy-9": "blue-600,100",
+              "color-discrepancy-10": "mint-400,100",
+              "color-discrepancy-11": "indigo-500,100",
+              "color-discrepancy-12": "skyblue-300,100",
+              "color-discrepancy-13": "yellow-300,100",
+              "color-discrepancy-14": "pink-300,100",
+              "color-discrepancy-15": "cyan-300,100",
+              "color-discrepancy-16": "green-400,100",
+              "color-discrepancy-17": "red-300,100"
+            }
+          },
+          {
+            "title": "同色系图表色A Homochrome Chart Colors A",
+            "colors": {
+              "color-homochromeA-1": "blue-700,100",
+              "color-homochromeA-2": "blue-600,100",
+              "color-homochromeA-3": "blue-500,100",
+              "color-homochromeA-4": "skyblue-400,100",
+              "color-homochromeA-5": "skyblue-300,100",
+              "color-homochromeA-6": "skyblue-200,100",
+              "color-homochromeA-7": "skyblue-100,100"
+            }
+          },
+          {
+            "title": "同色系图表色B Homochrome Chart Colors B",
+            "colors": {
+              "color-homochromeB-1": "mint-700,100",
+              "color-homochromeB-2": "mint-600,100",
+              "color-homochromeB-3": "mint-500,100",
+              "color-homochromeB-4": "mint-400,100",
+              "color-homochromeB-5": "mint-300,100",
+              "color-homochromeB-6": "mint-200,100",
+              "color-homochromeB-7": "mint-100,100"
+            }
+          },
+          {
+            "title": "基础图表色 Chart Colors",
+            "colors": {
+              "color-chart-1": "blue-700,100",
+              "color-chart-1-subtle": "blue-500,30",
+              "color-chart-1-sublter": "blue-500,5",
+              "color-chart-2": "cyan-400,100",
+              "color-chart-2-subtle": "cyan-400,30",
+              "color-chart-2-subtler": "cyan-400,5",
+              "color-chart-3": "indigo-500,100",
+              "color-chart-3-subtle": "indigo-500,30",
+              "color-chart-3-subtler": "indigo-500,5",
+              "color-chart-4": "brand-200,100",
+              "color-chart-4-subtle": "brand-200,30",
+              "color-chart-4-subtler": "brand-200,5",
+              "color-chart-5": "pink-300,100",
+              "color-chart-5-subtle": "pink-300,30",
+              "color-chart-5-subtler": "pink-300,5",
+              "color-chart-6": "green-400,100",
+              "color-chart-6-subtle": "green-400,30",
+              "color-chart-6-subtler": "green-400,5",
+              "color-chart-7": "yellow-600,100",
+              "color-chart-7-subtle": "yellow-600,30",
+              "color-chart-7-subtler": "yellow-600,5",
+              "color-chart-8": "mint-400,100",
+              "color-chart-8-subtle": "mint-400,30",
+              "color-chart-8-subtler": "mint-400,5",
+              "color-chart-9": "purple-300,100",
+              "color-chart-9-subtle": "purple-300,30",
+              "color-chart-9-subtler": "purple-300,5",
+              "color-chart-10": "rose-400,100",
+              "color-chart-10-subtle": "rose-400,30",
+              "color-chart-10-subtler": "rose-400,5",
+              "color-chart-11": "orange-300,100",
+              "color-chart-11-subtle": "orange-300,30",
+              "color-chart-11-subtler": "orange-300,5",
+              "color-chart-12": "red-400,100",
+              "color-chart-12-subtle": "red-400,30",
+              "color-chart-12-subtler": "red-400,5",
+              "color-chart-17": "pink-300,100",
+              "color-chart-17-subtle": "pink-300,50",
+              "color-chart-17-subtler": "pink-300,10"
+            }
+          }
+        ],
+        "colorList": {
+          "white": "#000000",
+          "black": "#FFFFFF",
+          "transparent": "transparent",
+          "inherit": "inherit",
+          "current": "currentColor",
+          "brand": {
+            "50": "#0050A3",
+            "100": "#005BBA",
+            "200": "#0067D1",
+            "300": "#0072E8",
+            "400": "#007DFF",
+            "500": "#2E94FF",
+            "600": "#5CACFF",
+            "700": "#8BC3FF",
+            "800": "#B9DBFF",
+            "900": "#D0E7FF"
+          },
+          "gray": {
+            "50": "#161E26",
+            "100": "#232C36",
+            "200": "#333D48",
+            "300": "#46515D",
+            "400": "#5C6976",
+            "500": "#78828D",
+            "600": "#8D959E",
+            "700": "#B5BBC1",
+            "800": "#E8EBEF",
+            "900": "#F5F6F8"
+          },
+          "coolgray": {
+            "50": "#191919",
+            "100": "#2A2A2A",
+            "200": "#393939",
+            "300": "#595959",
+            "400": "#777777",
+            "500": "#939393",
+            "600": "#AEAEAE",
+            "700": "#C9C9C9",
+            "800": "#DFDFDF",
+            "900": "#F3F3F3"
+          },
+          "red": {
+            "50": "#350506",
+            "100": "#570C0D",
+            "200": "#841316",
+            "300": "#B2161B",
+            "400": "#EB171F",
+            "500": "#F46465",
+            "600": "#F09596",
+            "700": "#F0BDBD",
+            "800": "#F3DADA",
+            "900": "#F9F2F2"
+          },
+          "orange": {
+            "50": "#2B1005",
+            "100": "#471E0B",
+            "200": "#6E3011",
+            "300": "#944114",
+            "400": "#C45613",
+            "500": "#F36900",
+            "600": "#FC916E",
+            "700": "#FABAAA",
+            "800": "#FCD8CE",
+            "900": "#FDF1EF"
+          },
+          "yellow": {
+            "50": "#201603",
+            "100": "#362807",
+            "200": "#543F0F",
+            "300": "#715516",
+            "400": "#96711B",
+            "500": "#B98C1D",
+            "600": "#DAA61B",
+            "700": "#FDC000",
+            "800": "#FCDBAA",
+            "900": "#FDF2E5"
+          },
+          "green": {
+            "50": "#0F1B0A",
+            "100": "#1A2F12",
+            "200": "#2A4A1C",
+            "300": "#376422",
+            "400": "#478625",
+            "500": "#4FA700",
+            "600": "#71C14C",
+            "700": "#97DA7E",
+            "800": "#BCEDAC",
+            "900": "#EEF6EB"
+          },
+          "mint": {
+            "50": "#0B1B13",
+            "100": "#1B2B21",
+            "200": "#1D4A37",
+            "300": "#236549",
+            "400": "#278661",
+            "500": "#00A874",
+            "600": "#50C291",
+            "700": "#82DBB1",
+            "800": "#AFEDCE",
+            "900": "#ECF6F1"
+          },
+          "cyan": {
+            "50": "#0C1A1C",
+            "100": "#152E32",
+            "200": "#1F484F",
+            "300": "#26616B",
+            "400": "#2A8290",
+            "500": "#00A2B5",
+            "600": "#54BCCE",
+            "700": "#87D5E5",
+            "800": "#C6E5EC",
+            "900": "#EFF4F6"
+          },
+          "skyblue": {
+            "50": "#0050A3",
+            "100": "#005BBA",
+            "200": "#0067D1",
+            "300": "#0072E8",
+            "400": "#007DFF",
+            "500": "#2E94FF",
+            "600": "#5CACFF",
+            "700": "#8BC3FF",
+            "800": "#B9DBFF",
+            "900": "#D0E7FF"
+          },
+          "blue": {
+            "50": "#081635",
+            "100": "#112857",
+            "200": "#1B3F86",
+            "300": "#1F55B5",
+            "400": "#2070F3",
+            "500": "#6D8FF0",
+            "600": "#99ABED",
+            "700": "#BFC8EE",
+            "800": "#DBDFF2",
+            "900": "#F4F3F9"
+          },
+          "indigo": {
+            "50": "#160B48",
+            "100": "#281675",
+            "200": "#3F21B5",
+            "300": "#5531EB",
+            "400": "#745EF7",
+            "500": "#9185F0",
+            "600": "#ADA6ED",
+            "700": "#C9C5EE",
+            "800": "#DFDEF2",
+            "900": "#F3F3F9"
+          },
+          "purple": {
+            "50": "#260937",
+            "100": "#41125A",
+            "200": "#651B8B",
+            "300": "#8A21BC",
+            "400": "#B62BF7",
+            "500": "#BD72F0",
+            "600": "#C99CED",
+            "700": "#D8C0EE",
+            "800": "#E7DBF2",
+            "900": "#F6F2F9"
+          },
+          "pink": {
+            "50": "#2E0728",
+            "100": "#4C0F43",
+            "200": "#751868",
+            "300": "#9F1C8D",
+            "400": "#D41DBC",
+            "500": "#F14FD8",
+            "600": "#EE8DDB",
+            "700": "#EFB9E3",
+            "800": "#F2D8EC",
+            "900": "#F9F1F7"
+          },
+          "rose": {
+            "50": "#330614",
+            "100": "#540D24",
+            "200": "#811439",
+            "300": "#AD184D",
+            "400": "#E61866",
+            "500": "#F46087",
+            "600": "#EF93A7",
+            "700": "#EFBCC5",
+            "800": "#F3DADA",
+            "900": "#F9F2F3"
+          }
+        }
+      }
+    }
+  ],
+  "baseLayout": {
+    "textLayout": {
+      "fontSize": {
+        "--tiny-fontSize-2xs": "0.625rem",
+        "--tiny-fontSize-xs": "0.750rem",
+        "--tiny-fontSize-sm": "0.875rem",
+        "--tiny-fontSize-md": "1.000rem",
+        "--tiny-fontSize-lg": "1.125rem",
+        "--tiny-fontSize-xl": "1.250rem",
+        "--tiny-fontSize-2xl": "1.500rem",
+        "--tiny-fontSize-3xl": "1.875rem",
+        "--tiny-fontSize-4xl": "2.250rem",
+        "--tiny-fontSize-5xl": "3.000rem",
+        "--tiny-fontSize-6xl": "3.750rem"
+      },
+      "lineHeight": {
+        "--tiny-lineHeight-3": "0.750rem",
+        "--tiny-lineHeight-4": "1.000rem",
+        "--tiny-lineHeight-5": "1.250rem",
+        "--tiny-lineHeight-5_5": "1.375rem",
+        "--tiny-lineHeight-6": "1.500rem",
+        "--tiny-lineHeight-6_5": "1.625rem",
+        "--tiny-lineHeight-7": "1.750rem",
+        "--tiny-lineHeight-8": "2.000rem",
+        "--tiny-lineHeight-9": "2.250rem",
+        "--tiny-lineHeight-10": "2.500rem"
+      }
+    },
+    "borderWidth": {
+      "--tiny-borderWidth-0_5": "0.5px",
+      "--tiny-borderWidth-DEFAULT": "1px",
+      "--tiny-borderWidth-2": "2px",
+      "--tiny-borderWidth-4": "4px",
+      "--tiny-borderWidth-8": "8px"
+    },
+    "radius": {
+      "--tiny-borderRadius-none": "0.000rem",
+      "--tiny-borderRadius-sm": "0.125rem",
+      "--tiny-borderRadius-DEFAULT": "0.250rem",
+      "--tiny-borderRadius-md": "0.375rem",
+      "--tiny-borderRadius-lg": "0.500rem",
+      "--tiny-borderRadius-full": "126.000rem"
+    },
+    "space": {
+      "--tiny-spacing-px": "0.0625rem",
+      "--tiny-spacing-0_5": "0.125rem",
+      "--tiny-spacing-1": "0.250rem",
+      "--tiny-spacing-1_5": "0.375rem",
+      "--tiny-spacing-2": "0.500rem",
+      "--tiny-spacing-2_5": "0.625rem",
+      "--tiny-spacing-3": "0.750rem",
+      "--tiny-spacing-3_5": "0.875rem",
+      "--tiny-spacing-4": "1.000rem",
+      "--tiny-spacing-4_5": "1.1250rem",
+      "--tiny-spacing-5": "1.250rem",
+      "--tiny-spacing-6": "1.500rem",
+      "--tiny-spacing-7": "1.750rem",
+      "--tiny-spacing-8": "2.000rem",
+      "--tiny-spacing-9": "2.25rem",
+      "--tiny-spacing-10": "2.500rem",
+      "--tiny-spacing-11": "2.750rem",
+      "--tiny-spacing-12": "3.000rem",
+      "--tiny-spacing-14": "3.500rem",
+      "--tiny-spacing-16": "4.000rem",
+      "--tiny-spacing-18": "4.500rem",
+      "--tiny-spacing-20": "5.000rem",
+      "--tiny-spacing-24": "6.000rem",
+      "--tiny-spacing-28": "7.000rem",
+      "--tiny-spacing-32": "8.000rem",
+      "--tiny-spacing-36": "9.000rem",
+      "--tiny-spacing-40": "10.000rem",
+      "--tiny-spacing-44": "11.000rem",
+      "--tiny-spacing-48": "12.000rem",
+      "--tiny-spacing-52": "13.000rem",
+      "--tiny-spacing-54": "13.500rem",
+      "--tiny-spacing-56": "14.000rem",
+      "--tiny-spacing-60": "15.000rem",
+      "--tiny-spacing-64": "16.000rem",
+      "--tiny-spacing-72": "18.000rem",
+      "--tiny-spacing-80": "20.000rem",
+      "--tiny-spacing-96": "24.000rem",
+      "--tiny-spacing-108": "27.000rem",
+      "--tiny-spacing-112": "28.000rem",
+      "--tiny-spacing-144": "36.000rem"
+    },
+    "boxShadow": {
+      "--tiny-boxShadow-sm": "0px 1px 6px 0px rgba(0, 0, 0, 0.08)",
+      "--tiny-boxShadow-DEFAULT": "0px 4px 12px 0px rgba(0, 0, 0, 0.08)",
+      "--tiny-boxShadow-md": "1px 4px 12px 0px rgba(0, 0, 0, 0.16)",
+      "--tiny-boxShadow-lg": "0px 8px 24px 0px rgba(0, 0, 0, 0.16)",
+      "--tiny-boxShadow-xl": "0px 16px 48px 0px rgba(0, 0, 0, 0.16)",
+      "--tiny-boxShadow-2xl": "0px 24px 40px 0px rgba(0, 0, 0, 0.12)",
+      "--tiny-boxShadow-r-sm": "1px 0px 6px 0px rgba(0, 0, 0, 0.08)",
+      "--tiny-boxShadow-t-sm": "0px -1px 6px 0px rgba(0, 0, 0, 0.08)",
+      "--tiny-boxShadow-l": "-2px 0px 12px 0px rgba(0, 0, 0, 0.08)",
+      "--tiny-boxShadow-xsm": "0px 1px 3px 0px rgba(0, 0, 0, 0.30)"
+    },
+    "opacity": {
+      "--tiny-opacity-0": "0",
+      "--tiny-opacity-5": "0.05",
+      "--tiny-opacity-10": "0.1",
+      "--tiny-opacity-20": "0.2",
+      "--tiny-opacity-25": "0.25",
+      "--tiny-opacity-50": "0.5",
+      "--tiny-opacity-75": "0.75",
+      "--tiny-opacity-100": "1"
+    }
+  }
+}

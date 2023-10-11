@@ -2,7 +2,7 @@
   <tiny-ip-address v-model="valueForIPv4" @focus="focusForIPv4"></tiny-ip-address>
 </template>
 
-<script lang="jsx">
+<script>
 import { IpAddress, Modal } from '@opentiny/vue'
 
 export default {
