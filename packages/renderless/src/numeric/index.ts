@@ -97,7 +97,7 @@ export const increase =
 
     const value = (props.mouseWheel ? state.displayValue : props.modelValue) || 0
 
-    if (value.toString().indexOf('e') !== -1) {
+    if (value.toString().includes('e')) {
       return
     }
 
@@ -123,7 +123,7 @@ export const decrease =
     }
     const value = (props.mouseWheel ? state.displayValue : props.modelValue) || 0
 
-    if (value.toString().indexOf('e') !== -1) {
+    if (value.toString().includes('e')) {
       return
     }
 
@@ -278,7 +278,7 @@ export const handleInput =
       emitError()
 
       if (!(value === '' && props.allowEmpty)) {
-        value = value.indexOf('e') == -1 ? state.lastInput : value
+        value = value.indexOf('e') === -1 ? state.lastInput : value
       }
     } else {
       value = value
