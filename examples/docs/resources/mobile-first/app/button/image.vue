@@ -14,7 +14,7 @@ export default {
   },
   data() {
     return {
-      image: 'webnova/static/images/hae-logo.png'
+      image: '/static/images/hae-logo.png'
     }
   }
 }

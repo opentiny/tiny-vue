@@ -4,4 +4,4 @@ title: Breadcrumb
 
 # Breadcrumb
 
-<div>Breadcrumb navigation, which tells visitors where they are currently on the site and how to get back.</div>
+<div>Shows the location of the current page and can return to any previous page.</div>

@@ -10,9 +10,10 @@
  *
  */
 
-let scrollBarWidth
+let scrollBarWidth: number
 const isServer = typeof window === 'undefined'
 
+// 通过构造2层div,计算出来滚动条的宽度,并全局缓存值
 export default function () {
   if (isServer) {
     return 0
@@ -42,7 +43,7 @@ export default function () {
   outer.appendChild(inner)
 
   const widthWithScroll = inner.offsetWidth
-  outer.parentNode.removeChild(outer)
+  ;(outer.parentNode as HTMLElement).removeChild(outer)
   scrollBarWidth = widthNoScroll - widthWithScroll
 
   return scrollBarWidth

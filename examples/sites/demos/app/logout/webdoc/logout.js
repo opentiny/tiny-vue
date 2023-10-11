@@ -41,7 +41,7 @@ export default {
         },
         {
           'name': 'redirectUrl',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '自定义配置注销后跳转地址',

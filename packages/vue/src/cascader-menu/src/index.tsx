@@ -14,9 +14,11 @@ import { $prefix, h, setup, defineComponent } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
 import Scrollbar from '@opentiny/vue-scrollbar'
 import CascaderNode from '@opentiny/vue-cascader-node'
+import type { ICascaderMenuApi, ICascaderMenuRenderlessParams } from '@opentiny/vue-renderless/types/cascader-menu.type'
+import type { ICascaderPanelNode } from '@opentiny/vue-renderless/types/cascader-panel.type'
 
-const renderNodeListFunc = (_vm) => () => {
-  const events = { on: {} }
+const renderNodeListFunc = (_vm: InstanceType<typeof CascaderMenu>) => () => {
+  const events = { on: {} } as { on: { [key: string]: (...args: any[]) => any } }
   const menuId = _vm.state.menuId
   const isHoverMenu = _vm.panel.state.isHoverMenu
 
@@ -24,7 +26,7 @@ const renderNodeListFunc = (_vm) => () => {
     events.on.expand = _vm.handleExpand
   }
 
-  const mapHandler = (node, index) => {
+  const mapHandler = (node: ICascaderPanelNode, index: number) => {
     const uid = node.uid
     const hasChildren = node.hasChildren
 
@@ -35,8 +37,7 @@ const renderNodeListFunc = (_vm) => () => {
         node-id={`${menuId}-${index}`}
         data-haspopup={hasChildren}
         data-owns={hasChildren ? menuId : null}
-        {...events}
-      ></cascader-node>
+        {...events}></cascader-node>
     )
   }
 
@@ -45,7 +46,7 @@ const renderNodeListFunc = (_vm) => () => {
   return [...nodes, isHoverMenu ? <svg ref="hoverZone" class="tiny-cascader-menu__hover-zone"></svg> : null]
 }
 
-export default defineComponent({
+const CascaderMenu = defineComponent({
   name: $prefix + 'CascaderMenu',
   components: {
     TinyScrollbar: Scrollbar,
@@ -53,14 +54,15 @@ export default defineComponent({
   },
   props: {
     nodes: {
-      type: Array,
+      type: Array<ICascaderPanelNode>,
       required: true
     },
     index: Number
   },
   inject: ['panel'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api, mono: true }) as unknown as ICascaderMenuApi &
+      Pick<ICascaderMenuRenderlessParams, 'panel'>
   },
   render() {
     const renderEmptyText = () => <div class="tiny-cascader-menu__empty-text">{t('ui.cascader.noData')}</div>
@@ -68,7 +70,7 @@ export default defineComponent({
     const renderNodeList = renderNodeListFunc(this)
 
     const { state } = this
-    const events = { nativeOn: {} }
+    const events = { nativeOn: {} } as { nativeOn: { [key: string]: (...args: any[]) => any } }
 
     if (this.panel.state.isHoverMenu) {
       events.nativeOn.mousemove = this.handleMouseMove
@@ -93,7 +95,9 @@ export default defineComponent({
         },
         ...events
       },
-      [state.isEmpty ? renderEmptyText(h) : renderNodeList(h)]
+      [state.isEmpty ? renderEmptyText() : renderNodeList()]
     )
   }
 })
+
+export default CascaderMenu

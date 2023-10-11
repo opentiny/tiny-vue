@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-
+import { INavMenuApi, INavMenuProps, INavMenuState, ISharedRenderlessParamHooks, INavMenuRenderlessParamUtils } from '@/types'
 import {
   computedIsShowMore,
   computedPopClass,
@@ -67,12 +67,12 @@ export const api = [
   'setActiveMenu'
 ]
 
-const initState = ({ reactive, api, computed }) =>
+const initState = ({ reactive, api, computed }): INavMenuState =>
   reactive({
     data: [],
     more: [],
     width: -1,
-    enterMenu:false,
+    enterMenu: false,
     popMenuTop: 0,
     subMenu: [],
     showMore: false,
@@ -130,10 +130,10 @@ const initApi = ({ api, state, props, parent, fetchMenuData, fields, router, rou
 }
 
 export const renderless = (
-  props,
-  { computed, onMounted, onUnmounted, reactive, watch },
-  { parent, nextTick, service, router, route }
-) => {
+  props: INavMenuProps,
+  { computed, onMounted, onUnmounted, reactive, watch }: ISharedRenderlessParamHooks,
+  { parent, nextTick, service, router, route }: INavMenuRenderlessParamUtils
+): INavMenuApi => {
   const api = {}
   const { fetchMenuData, fields } = initService({ props, service })
   const state = initState({ reactive, api, computed })

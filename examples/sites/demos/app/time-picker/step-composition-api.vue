@@ -1,7 +1,6 @@
 <template>
-  <div>
+  <div class="demo-date-picker-wrap">
     <tiny-time-picker v-model="value" :step="step" placeholder="任意时间点"></tiny-time-picker>
-    <br />
   </div>
 </template>
 
@@ -17,3 +16,9 @@ const step = ref({
 // value: new Date(2016, 9, 10, Math.floor(19 / 2) * 2, Math.floor(40 / 5) * 5)
 const value = ref(new Date(2016, 9, 10, 18, 40))
 </script>
+
+<style scoped>
+.demo-date-picker-wrap {
+  width: 182px;
+}
+</style>

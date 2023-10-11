@@ -4,7 +4,7 @@
       <span>是</span>
     </template>
     <template #close>
-      <span style="position: relative">否</span>
+      <span>否</span>
     </template>
   </tiny-switch>
 </template>

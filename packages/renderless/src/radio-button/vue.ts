@@ -11,6 +11,13 @@
  */
 
 import {
+  IRadioButtonApi,
+  IRadioButtonProps,
+  IRadioButtonState,
+  ISharedRenderlessParamHooks,
+  IRadioButtonRenderlessParamUtils
+} from '@/types'
+import {
   handleChange,
   getValue,
   setValue,
@@ -25,16 +32,16 @@ import {
 export const api = ['state', 'handleChange', 'keydownHandle', 'handleFocus', 'handleBlur']
 
 export const renderless = (
-  props,
-  { computed, reactive, onMounted, onBeforeUnmount, inject },
-  { emit, parent, dispatch, constants, nextTick, refs }
-) => {
-  const api = {
+  props: IRadioButtonProps,
+  { computed, reactive, onMounted, onBeforeUnmount, inject }: ISharedRenderlessParamHooks,
+  { emit, parent, dispatch, constants, nextTick, refs }: IRadioButtonRenderlessParamUtils
+): IRadioButtonApi => {
+  const api: IRadioButtonApi = {
     getGroup: getGroup({ constants, parent }),
     toggleEvents: toggleEvents({ refs, props })
-  }
+  } as IRadioButtonApi
 
-  const state = reactive({
+  const state: IRadioButtonState = reactive({
     focus: false,
     value: computed({
       get: () => api.getValue(),
@@ -42,24 +49,26 @@ export const renderless = (
     }),
     radioGroup: computed(() => api.getGroup()),
     activeStyle: computed(() => api.getStyle()),
-    size: computed(() => state.radioGroup.state.radioGroupSize),
-    isDisabled: computed(() => props.disabled || state.radioGroup.disabled),
+    size: computed(() => state.radioGroup?.state.radioGroupSize),
+    isDisabled: computed(() => props.disabled || state.radioGroup?.disabled),
     tabIndex: computed(() => (state.isDisabled || (state.radioGroup && state.value !== props.label) ? -1 : 0)),
-    showTips: inject('showTips', null),
+    showTips: inject('showTips', false),
     tipContent: props.tipContent
   })
   Object.assign(api, {
     state,
     getValue: getValue(state),
     getStyle: getStyle(state),
-    setValue: setValue({ emit, state }),
+    setValue: setValue({ state }),
     handleChange: handleChange({ constants, dispatch, nextTick, state }),
     keydownHandle: keydownHandle({ state, props }),
     handleFocus: handleFocus(state),
     handleBlur: handleBlur(state)
   })
 
-  onMounted(api.toggleEvents)
+  onMounted(() => {
+    api.toggleEvents(false)
+  })
 
   onBeforeUnmount(() => {
     api.toggleEvents(true)

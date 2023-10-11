@@ -47,6 +47,20 @@ export default {
       'type': 'component',
       'properties': [
         {
+          'name': 'container-id',
+          'type': 'string',
+          'defaultValue': 'document.body',
+          'desc': { 'zh-CN': '指定滚动容器的id值', 'en-US': 'Specify the scrolling container ID.' },
+          'demoId': 'set-container'
+        },
+        {
+          'name': 'is-affix',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': { 'zh-CN': '固定模式', 'en-US': 'Fixed mode' },
+          'demoId': 'is-affix'
+        },
+        {
           'name': 'links',
           'type': '{ key, link, title, children }[]',
           'defaultValue': '',
@@ -57,22 +71,8 @@ export default {
           'demoId': 'basic-usage'
         },
         {
-          'name': 'is-affix',
-          'type': 'Boolean',
-          'defaultValue': 'false',
-          'desc': { 'zh-CN': '固定模式', 'en-US': 'Fixed mode' },
-          'demoId': 'is-affix'
-        },
-        {
-          'name': 'container-id',
-          'type': 'String',
-          'defaultValue': 'document.body',
-          'desc': { 'zh-CN': '指定滚动容器的id值', 'en-US': 'Specify the scrolling container ID.' },
-          'demoId': 'set-container'
-        },
-        {
           'name': 'mask-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '自定义滚动的目标元素类名',

@@ -59,7 +59,7 @@ export default defineComponent({
   name: $prefix + 'ActionSheet',
   props: [...props, 'menus', 'modelValue', 'visible', 'ellipsis', 'height', 'contentPosition', 'contentStyle'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true, extendOptions: { BScroll } })
+    return setup({ props, context, renderless, api, extendOptions: { BScroll } })
   }
 })
 </script>

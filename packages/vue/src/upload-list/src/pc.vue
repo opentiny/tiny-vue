@@ -233,6 +233,7 @@ import {
   iconDownload
 } from '@opentiny/vue-icon'
 import Modal from '@opentiny/vue-modal'
+import type { IUploadListApi } from '@opentiny/vue-renderless/types/upload-list.type'
 
 export default defineComponent({
   name: $prefix + 'UploadList',
@@ -268,7 +269,7 @@ export default defineComponent({
     'mode'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api, extendOptions: { Modal } })
+    return setup({ props, context, renderless, api, extendOptions: { Modal } }) as unknown as IUploadListApi
   }
 })
 </script>

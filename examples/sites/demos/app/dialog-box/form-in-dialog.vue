@@ -40,8 +40,18 @@
 </template>
 
 <script lang="jsx">
-import { Button, DialogBox, Form, FormItem, Input, Radio, RadioGroup, Checkbox, CheckboxGroup } from '@opentiny/vue'
-import Notify from '@opentiny/vue-notify'
+import {
+  Button,
+  DialogBox,
+  Form,
+  FormItem,
+  Input,
+  Radio,
+  RadioGroup,
+  Checkbox,
+  CheckboxGroup,
+  Notify
+} from '@opentiny/vue'
 
 export default {
   components: {

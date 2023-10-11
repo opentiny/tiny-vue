@@ -116,6 +116,7 @@ const camelizeRE = /-(\w)/g
 
 const camelize = cached((str) => str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : '')))
 
+/** TINY_DUP  dom.ts*/
 const getElementStyle = (elem, styleKey) => {
   if (!elem || !styleKey) return ''
 
@@ -135,13 +136,13 @@ const getElementStyle = (elem, styleKey) => {
     return elem.style[key]
   }
 }
-
+/** TINY_DUP  dom.ts*/
 const canScroll = (el, isVertical) => {
   const overflowKey = { undefined: 'overflow', true: 'overflow-y', false: 'overflow-x' }[String(isVertical)]
   const overflowVal = getElementStyle(el, overflowKey)
   return ['scroll', 'auto', 'overlay'].some((s) => overflowVal.includes(s))
 }
-
+/** TINY_DUP  dom.ts*/
 export const getScrollContainer = (el, isVertical) => {
   let parentEl = el
 

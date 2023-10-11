@@ -157,7 +157,7 @@ export default {
       'properties': [
         {
           'name': 'completed-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 completed',
           'desc': {
             'zh-CN': "设置里程碑完成状态对应的取值，默认为 'completed'",
@@ -167,7 +167,7 @@ export default {
         },
         {
           'name': 'data',
-          'type': 'Object , Array',
+          'type': 'object , Array',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置步骤条的数据 。;设置步骤条的数据 。',
@@ -177,7 +177,7 @@ export default {
         },
         {
           'name': 'flag-before',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '设置里程碑上活动即旗子上的数据从前面还是后面节点上获取，默认为 false 取后面节点上的数据。',
@@ -188,7 +188,7 @@ export default {
         },
         {
           'name': 'flag-content-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 content',
           'desc': {
             'zh-CN': "设置节点旗子数据中描述对应的字段名，默认为 'content'",
@@ -199,7 +199,7 @@ export default {
         },
         {
           'name': 'flag-status-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 status',
           'desc': {
             'zh-CN': "设置节点旗子数据中状态对应的字段名，默认为 'status'",
@@ -209,7 +209,7 @@ export default {
         },
         {
           'name': 'flag-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 flags',
           'desc': {
             'zh-CN': "设置节点信息中旗子数据所在字段名，默认为 'flags'",
@@ -220,7 +220,7 @@ export default {
         },
         {
           'name': 'flag-name-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 name',
           'desc': {
             'zh-CN': "设置节点旗子数据中名称对应的字段名，默认为 'name'",
@@ -230,7 +230,7 @@ export default {
         },
         {
           'name': 'line-style',
-          'type': 'String , Number',
+          'type': 'string , number',
           'defaultValue': '该属性的默认值为 1',
           'desc': {
             'zh-CN':
@@ -242,7 +242,7 @@ export default {
         },
         {
           'name': 'milestones-status',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '该属性的默认值为 Function',
           'desc': {
             'zh-CN': "定义里程碑的状态与颜色对应关系，颜色取值必需为 16进制 如：{completed: '#1890FF'}",
@@ -253,7 +253,7 @@ export default {
         },
         {
           'name': 'name-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 name',
           'desc': {
             'zh-CN': "设置节点信息中名称对应的字段名，默认为 'name'",
@@ -263,7 +263,7 @@ export default {
         },
         {
           'name': 'show-number',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '设置未完成的状态是否显示序号，默认为 true',
@@ -273,7 +273,7 @@ export default {
         },
         {
           'name': 'solid',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '在里程碑模式下，设置已经完成节点显示为实心，且光晕不透明，默认为 false',
@@ -284,14 +284,14 @@ export default {
         },
         {
           'name': 'space',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置步骤条的宽度。', 'en-US': 'Set the width of the step bar.' },
           'demoId': 'milestone-space'
         },
         {
           'name': 'start',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 -1',
           'desc': {
             'zh-CN': '设置步骤条序号起始值，默认为 -1 。',
@@ -301,7 +301,7 @@ export default {
         },
         {
           'name': 'status-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 status',
           'desc': {
             'zh-CN': "设置数据状态对应的字段名，默认为 'status'",
@@ -311,7 +311,7 @@ export default {
         },
         {
           'name': 'time-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 time',
           'desc': {
             'zh-CN': "设置节点时间信息对应的字段名，默认为 'time'",

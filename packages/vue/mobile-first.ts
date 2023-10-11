@@ -1,10 +1,12 @@
 import ActionSheet from '@opentiny/vue-action-sheet'
 import Alert from '@opentiny/vue-alert'
+import AsyncFlowchart from '@opentiny/vue-async-flowchart'
 import AutonaviMap from '@opentiny/vue-autonavi-map'
 import Badge from '@opentiny/vue-badge'
 import BaiduMap from '@opentiny/vue-baidu-map'
 import Button from '@opentiny/vue-button'
 import CalendarBar from '@opentiny/vue-calendar-bar'
+import CalendarView from '@opentiny/vue-calendar-view'
 import Card from '@opentiny/vue-card'
 import CardGroup from '@opentiny/vue-card-group'
 import Carousel from '@opentiny/vue-carousel'
@@ -104,11 +106,13 @@ import { $prefix } from '@opentiny/vue-common'
 const components = [
   ActionSheet,
   Alert,
+  AsyncFlowchart,
   AutonaviMap,
   Badge,
   BaiduMap,
   Button,
   CalendarBar,
+  CalendarView,
   Card,
   CardGroup,
   Carousel,
@@ -225,16 +229,18 @@ export const install = (app, opts = {}) => {
   })
 }
 
-export const version = '3.10.0'
+export const version = '3.11.0'
 
 export {
   ActionSheet,
   Alert,
+  AsyncFlowchart,
   AutonaviMap,
   Badge,
   BaiduMap,
   Button,
   CalendarBar,
+  CalendarView,
   Card,
   CardGroup,
   Carousel,
@@ -334,11 +340,13 @@ export {
 export default {
   ActionSheet,
   Alert,
+  AsyncFlowchart,
   AutonaviMap,
   Badge,
   BaiduMap,
   Button,
   CalendarBar,
+  CalendarView,
   Card,
   CardGroup,
   Carousel,
@@ -434,4 +442,4 @@ export default {
   UserHead,
   UserHeadGroup,
   install
-}
+} as any

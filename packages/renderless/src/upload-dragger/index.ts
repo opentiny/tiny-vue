@@ -9,15 +9,16 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import type { IUploadDraggerRenderlessParams } from '@/types'
 
 export const onDragOver =
-  ({ props, state }) =>
-  () =>
+  ({ props, state }: Pick<IUploadDraggerRenderlessParams, 'props' | 'state'>) =>
+  (): boolean =>
     !props.disabled && (state.dragover = true)
 
 export const onDrop =
-  ({ emit, props, state }) =>
-  (event) => {
+  ({ emit, props, state }: Pick<IUploadDraggerRenderlessParams, 'emit' | 'props' | 'state'>) =>
+  (event: DragEvent): null | boolean | undefined => {
     if (props.disabled || !state.uploader) {
       return
     }
@@ -26,16 +27,16 @@ export const onDrop =
 
     state.dragover = false
 
-    const files = event.dataTransfer.files
+    const files = event.dataTransfer?.files
 
     if (!accept) {
       emit('file', files)
       return
     }
 
-    const notAcceptedFiles = []
+    const notAcceptedFiles = [] as File[]
 
-    const filteredFile = [].slice.call(files).filter((file) => {
+    const filteredFile = [].slice.call(files).filter((file: File) => {
       const { type, name } = file
       const extension = name.includes('.') ? `.${name.split('.').pop()}` : ''
       const baseType = type.replace(/\/.*$/, '')
@@ -71,7 +72,7 @@ export const onDrop =
   }
 
 export const watchDragover =
-  ({ state, constants }) =>
+  ({ state, constants }: Pick<IUploadDraggerRenderlessParams, 'state' | 'constants'>) =>
   () => {
     state.uploader.$refs[constants.FILE_UPLOAD_INNER_TEMPLATE].$emit('drag-over', state.dragover)
   }

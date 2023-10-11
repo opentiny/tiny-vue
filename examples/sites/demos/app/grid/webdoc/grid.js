@@ -25,7 +25,7 @@ export default {
       'grid-attrs': [
         {
           'name': 'pager',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -37,21 +37,21 @@ export default {
         },
         {
           'name': 'fetch-data',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '服务端数据查询方法', 'en-US': 'Querying Server Data' },
           'demoId': 'grid-data-source#tiny-first-menu-request-service'
         },
         {
           'name': 'save-data',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '服务端数据保存方法', 'en-US': 'Method of saving server data' },
           'demoId': 'grid-toolbar#tiny-first-menu-save-data'
         },
         {
           'name': 'delete-data',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -63,7 +63,7 @@ export default {
         },
         {
           'name': 'row-group',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': 'row-group 属性可以配置行分组，行分组会将具有相同值的列进行分组展示。',
@@ -74,14 +74,14 @@ export default {
         },
         {
           'name': 'toolbar',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '工具栏配置', 'en-US': 'Toolbar configuration' },
           'demoId': 'grid-toolbar#tiny-first-menu-insert-delete-update'
         },
         {
           'name': 'align',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 left',
           'desc': {
             'zh-CN': '所有的列对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
@@ -92,7 +92,7 @@ export default {
         },
         {
           'name': 'auto-resize',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '父元素响应式监听（对于父元素可能存在动态变化的场景可能会用到）',
@@ -103,14 +103,14 @@ export default {
         },
         {
           'name': 'border',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否带有纵向边框', 'en-US': 'Whether there is a vertical border' },
           'demoId': 'grid-grid-border#tiny-first-menu-grid-border'
         },
         {
           'name': 'is-before-page-change',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -122,7 +122,7 @@ export default {
         },
         {
           'name': 'cell-class-name',
-          'type': 'String, Function',
+          'type': 'string, Function',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -134,7 +134,7 @@ export default {
         },
         {
           'name': 'column-key',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否需要为每一列的 VNode 设置 key 属性（非特殊情况下不需要使用）',
@@ -144,7 +144,7 @@ export default {
         },
         {
           'name': 'column-min-width',
-          'type': 'Number , String',
+          'type': 'number , string',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -156,7 +156,7 @@ export default {
         },
         {
           'name': 'column-width',
-          'type': 'Number, String',
+          'type': 'number, string',
           'defaultValue': '该属性的默认值为 默认均匀分配',
           'desc': {
             'zh-CN': '所有列宽度;该属性的可选值为 整数, px，%',
@@ -166,21 +166,21 @@ export default {
         },
         {
           'name': 'context-menu',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '快捷菜单配置项', 'en-US': 'Shortcut menu configuration item' },
           'demoId': 'grid-context-menu#grid_Example-shortcutMenu-footer-menu'
         },
         {
           'name': 'edit-rules',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '校验规则配置项', 'en-US': 'Check rule configuration item' },
           'demoId': 'grid-validation#grid_Example-gridValid-editing-validation'
         },
         {
           'name': 'expand-config',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -192,7 +192,7 @@ export default {
         },
         {
           'name': 'fit',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '所有列的宽度是否自撑开',
@@ -202,7 +202,7 @@ export default {
         },
         {
           'name': 'footer-align',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 继承 align',
           'desc': {
             'zh-CN': '所有的表尾列的对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
@@ -213,7 +213,7 @@ export default {
         },
         {
           'name': 'optimization',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue':
             '该属性的默认值为 animat: true,delayHover: 250,scrollX: {gt: 100, 指定大于多少范围时自动启动虚拟滚动（启用 X 虚拟滚动，必须固定所有列宽，否则无法兼容）默认100, oSize: 2, 当剩余数据少于指定范围时触发重新渲染 默认自动计算 rSize: 2, 每次渲染条数 默认自动计算 vSize: 5  指定可视区域条数 }, scrollY: { gt: 500, 指定大于多少范围时自动启动虚拟滚动（启用 Y 虚拟滚动，必须固定所有行高，否则无法兼容）默认500 oSize: 2, 当剩余数据少于指定范围时触发重新渲染 默认自动计算 rSize: 2, 每次渲染条数 默认自动计算 vSize: 5, 指定可视区域条数 默认自动计算 rHeight: 50, 指定行高 默认自动计算adaptive: true 自动适配最优的渲染方式 默认true }',
           'desc': { 'zh-CN': '优化配置项', 'en-US': 'Optimize configuration items' },
@@ -221,14 +221,14 @@ export default {
         },
         {
           'name': 'params',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '额外的参数', 'en-US': 'Additional parameters' },
           'demoId': 'grid-filter#grid-params'
         },
         {
           'name': 'footer-cell-class-name',
-          'type': 'String, Function',
+          'type': 'string, Function',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -252,7 +252,7 @@ export default {
         },
         {
           'name': 'footer-row-class-name',
-          'type': 'String, Function',
+          'type': 'string, Function',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -276,7 +276,7 @@ export default {
         },
         {
           'name': 'header-align',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 继承 align',
           'desc': {
             'zh-CN': '所有的表头列的对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
@@ -287,7 +287,7 @@ export default {
         },
         {
           'name': 'header-cell-class-name',
-          'type': 'String, Function',
+          'type': 'string, Function',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -299,7 +299,7 @@ export default {
         },
         {
           'name': 'header-row-class-name',
-          'type': 'String, Function',
+          'type': 'string, Function',
           'defaultValue': '',
           'desc': {
             'zh-CN': '表头的行附加 className，也可以是函数 Function({$rowIndex});params：{$rowIndex:行标}',
@@ -310,7 +310,7 @@ export default {
         },
         {
           'name': 'height',
-          'type': 'Number , String',
+          'type': 'number , string',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -322,7 +322,7 @@ export default {
         },
         {
           'name': 'highlight-cell',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '只对 editConfig 配置时有效，是否在编辑时高亮单元格边框',
@@ -333,21 +333,21 @@ export default {
         },
         {
           'name': 'highlight-current-column',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否要高亮当前列', 'en-US': 'Do you want to highlight the current column?' },
           'demoId': 'grid-highlight#highlight-highlight-current-column'
         },
         {
           'name': 'highlight-current-row',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否要高亮当前行', 'en-US': 'Do you want to highlight the current line?' },
           'demoId': 'grid-highlight#highlight-highlight-current-row'
         },
         {
           'name': 'highlight-hover-column',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '鼠标移到列是否要高亮显示',
@@ -357,7 +357,7 @@ export default {
         },
         {
           'name': 'highlight-hover-row',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '鼠标移到行是否要高亮显示',
@@ -367,7 +367,7 @@ export default {
         },
         {
           'name': 'keyboard-config',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '按键配置项;{isArrow: true // 启用方向键功能}',
@@ -377,14 +377,14 @@ export default {
         },
         {
           'name': 'loading',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '表格是否显示加载中', 'en-US': 'Whether the table is being loaded.' },
           'demoId': 'grid-grid-loading-tip#tiny-first-menu-grid-loading-off-tip'
         },
         {
           'name': 'max-height',
-          'type': 'Number , String',
+          'type': 'number , string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置表格内容区域（不含表格头部，底部）的最大高度。;该属性的可选值为 整数, px，%',
@@ -395,7 +395,7 @@ export default {
         },
         {
           'name': 'mouse-config',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -407,7 +407,7 @@ export default {
         },
         {
           'name': 'radio-config',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -419,7 +419,7 @@ export default {
         },
         {
           'name': 'remote-filter',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '所有列是否使用服务端筛选，如果设置为 true 则不会对数据进行处理',
@@ -430,7 +430,7 @@ export default {
         },
         {
           'name': 'remote-sort',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否将服务端的全部数据进行排序。默认为 false 不进行服务端排序。',
@@ -441,14 +441,14 @@ export default {
         },
         {
           'name': 'resizable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '设置是否允许调整列宽', 'en-US': 'Set whether to allow column width adjustment' },
           'demoId': 'grid-width-height#tiny-first-menu-resize-column-width'
         },
         {
           'name': 'row-class-name',
-          'type': 'String, Function',
+          'type': 'string, Function',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -460,7 +460,7 @@ export default {
         },
         {
           'name': 'row-id',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 _RID',
           'desc': {
             'zh-CN': '自定义行数据唯一主键的字段名（行数据必须要有唯一主键，默认自动生成）',
@@ -471,7 +471,7 @@ export default {
         },
         {
           'name': 'row-key',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否需要为每一行的 VNode 设置 key 属性（非特殊情况下没必要设置）',
@@ -481,7 +481,7 @@ export default {
         },
         {
           'name': 'select-config',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -493,21 +493,21 @@ export default {
         },
         {
           'name': 'show-footer',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否显示表尾合计', 'en-US': 'Display the total at the end of the table' },
           'demoId': 'grid-summary#summary-cus tom-summary'
         },
         {
           'name': 'show-header',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否显示表头', 'en-US': 'Whether to display the table header' },
           'demoId': 'grid-header#header-hide-grid-header'
         },
         {
           'name': 'show-header-overflow',
-          'type': 'Boolean, String',
+          'type': 'boolean, string',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -519,7 +519,7 @@ export default {
         },
         {
           'name': 'show-overflow',
-          'type': 'Boolean, String',
+          'type': 'boolean, string',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -531,7 +531,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '表格的尺寸;该属性的可选值为 medium, small, mini',
@@ -541,7 +541,7 @@ export default {
         },
         {
           'name': 'sort-config',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -577,7 +577,7 @@ export default {
         },
         {
           'name': 'start-index',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': {
             'zh-CN': '只对 type=index 的列有效，动态索引的起始值',
@@ -588,14 +588,14 @@ export default {
         },
         {
           'name': 'stripe',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否带有斑马纹', 'en-US': 'Zebra pattern' },
           'demoId': 'grid-grid-stripe#stripe-stripe'
         },
         {
           'name': 'sync-resize',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '响应式跟随某个属性（对于通过某个属性来控制显示/隐藏切换的场景可能会用到）',
@@ -606,7 +606,7 @@ export default {
         },
         {
           'name': 'tree-config',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -618,7 +618,7 @@ export default {
         },
         {
           'name': 'valid-config',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': "校验配置项;{message: 'inline'// 校验提示类型，'inline'(内置提示)；'tooltip'(tooltip文字提示)}",
@@ -629,7 +629,7 @@ export default {
         },
         {
           'name': 'summary-config',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -641,7 +641,7 @@ export default {
         },
         {
           'name': 'sortable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '设置是否允许列数据排序。默认为 true 可排序',
@@ -651,14 +651,14 @@ export default {
         },
         {
           'name': 'auto-load',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '是否开启自动请求服务，配置 fetch-data 时有效，该属性的默认值为 true',
           'desc': { 'zh-CN': '', 'en-US': '' },
           'demoId': 'grid-data-source#tiny-first-menu-auto-load'
         },
         {
           'name': 'is-async-column',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置表格的列是否延迟加载;是否开启异步列功能，配合 scrollLoad 一起使用',
@@ -679,7 +679,7 @@ export default {
         },
         {
           'name': 'scroll-load',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -709,9 +709,9 @@ export default {
         },
         {
           'name': 'events',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
-          'desc': { 'zh-CN': '事件对象', 'en-US': 'Event Object' },
+          'desc': { 'zh-CN': '事件对象', 'en-US': 'Event object' },
           'demoId': 'grid-event#event-grid-events'
         },
         {
@@ -723,7 +723,7 @@ export default {
         },
         {
           'name': 'min-height',
-          'type': 'Number , String',
+          'type': 'number , string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置表格内容区域（不含表格头部，底部）的最小高度。',
@@ -733,7 +733,7 @@ export default {
         },
         {
           'name': 'drop-config',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -745,19 +745,19 @@ export default {
         },
         {
           'name': 'edit-config',
-          'type': 'Object , Boolean',
+          'type': 'object , boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              "表格编辑配置项，当配置为 Object 时，可配置如下字段：;{trigger: 'click', // 激活触发方式，可选项包括 click / dblclick / manual\n mode: 'cell', // 激活类型单元格激活或者行，可选项包括 cell / row\n showStatus: true, // 是否显示状态\n activeMethod: Function () {} // 自定义编辑规则}",
+              "表格编辑配置项，当配置为 object 时，可配置如下字段：;{trigger: 'click', // 激活触发方式，可选项包括 click / dblclick / manual\n mode: 'cell', // 激活类型单元格激活或者行，可选项包括 cell / row\n showStatus: true, // 是否显示状态\n activeMethod: Function () {} // 自定义编辑规则}",
             'en-US':
-              "Configuration item for editing the table. When Object is configured, the following fields can be configured: {trigger:'click', //Activation triggering mode. The options include click, dblclick, manual\n mode:'cell', //Activation type. The options include cell / row\n showStatus: true, // Display Status\n activeMethod: Function () {} //User-defined editing rule}"
+              "Configuration item for editing the table. When object is configured, the following fields can be configured: {trigger:'click', //Activation triggering mode. The options include click, dblclick, manual\n mode:'cell', //Activation type. The options include cell / row\n showStatus: true, // Display Status\n activeMethod: Function () {} //User-defined editing rule}"
           },
           'demoId': 'grid-editor#grid_Example-gridEdit-inner-editor'
         },
         {
           'name': 'seq-serial',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '设置行序号是否连续，开启分页时有效，该属性的默认值为 false',
           'desc': {
             'zh-CN': '设置行序号是否连续，seqSerial 当 showSeq 为 true 时有效。',
@@ -768,7 +768,7 @@ export default {
         },
         {
           'name': 'show-save-msg',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '切换分页时有未保存的数据时是否进行提示',
@@ -778,7 +778,7 @@ export default {
         },
         {
           'name': 'tooltip-config',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': 'Grid 内置 tooltip 配置项，请参考 Tooltip 组件属性说明',
@@ -824,7 +824,7 @@ export default {
           'demoId': 'grid-empty-data-tip#tiny-first-menu-empty-data-tip'
         }
       ],
-      'gridmethods': [
+      'grid-methods': [
         {
           'name': 'clearActived()',
           'type': '',
@@ -1140,7 +1140,7 @@ export default {
           'demoId': 'grid-event#tiny-first-menu-get-row-method'
         },
         {
-          'name': 'getRowIndex(row:Object)',
+          'name': 'getRowIndex(row:object)',
           'type': '',
           'defaultValue': '',
           'desc': {
@@ -1588,10 +1588,10 @@ export default {
           'demoId': 'grid-validation#grid_Example-gridValid-before-submit-validation'
         }
       ],
-      'gridevents': [
+      'grid-events': [
         {
           'name': 'page-change',
-          'type': 'Object(arg)',
+          'type': 'object(arg)',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -1698,9 +1698,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              "只对 context-menu 配置时有效，当点击快捷菜单时会触发该事件;//arg1\n{table: VueComponent,  //table组件vue实例\ncell, //点击的单元格dom\ncolumn, // 列配置信息\ncolumnIndex:Number,// 点击所在列的索引\ncolumns: Array,//所有列信息},\nmenu: Object,// 当前显示上下文菜单的配置,options: Arry,// 上下文菜单的配置列表\nrow: Object, // 点击的单元格所在行的数据\nrowIndex: 1,// 点击的单元格所在行的索引\ntype: 'body'// 上下文菜单的显示位置}",
+              "只对 context-menu 配置时有效，当点击快捷菜单时会触发该事件;//arg1\n{table: VueComponent,  //table组件vue实例\ncell, //点击的单元格dom\ncolumn, // 列配置信息\ncolumnIndex:number,// 点击所在列的索引\ncolumns: Array,//所有列信息},\nmenu: object,// 当前显示上下文菜单的配置,options: Arry,// 上下文菜单的配置列表\nrow: object, // 点击的单元格所在行的数据\nrowIndex: 1,// 点击的单元格所在行的索引\ntype: 'body'// 上下文菜单的显示位置}",
             'en-US':
-              "This event is valid only when context-menu is configured. This event is triggered when the shortcut menu is clicked. //arg1\n{table: VueComponent, //table component vue instance\ncell, //Dom\ncolumn of the clicked cell, //Column configuration information\ncolumnIndex:Number,//Click the index of the column\ncolumns:Array,//Information about all columns}, \nmenu:Object,//Configuration of the current context menu, options: Arry,//Configuration list of the context menu\nrow: Object, //Data of the row where the clicked cell is located\nrowIndex: 1,//Index of the row where the clicked cell is located\ntype:'body'//Display position of the context menu}"
+              "This event is valid only when context-menu is configured. This event is triggered when the shortcut menu is clicked. //arg1\n{table: VueComponent, //table component vue instance\ncell, //Dom\ncolumn of the clicked cell, //Column configuration information\ncolumnIndex:number,//Click the index of the column\ncolumns:Array,//Information about all columns}, \nmenu:object,//Configuration of the current context menu, options: Arry,//Configuration list of the context menu\nrow: object, //Data of the row where the clicked cell is located\nrowIndex: 1,//Index of the row where the clicked cell is located\ntype:'body'//Display position of the context menu}"
           },
           'demoId': 'grid-context-menu#grid_Example-shortcutMenu-header-menu'
         },
@@ -1710,9 +1710,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '只对 highlightCurrentRow 有效，当手动选中行并且值发生改变时触发的事件,arg1：Object 手动选中行的相关信息对象，arg2:event',
+              '只对 highlightCurrentRow 有效，当手动选中行并且值发生改变时触发的事件,arg1：object 手动选中行的相关信息对象，arg2:event',
             'en-US':
-              'This parameter is valid only for highlightCurrentRow. This parameter is triggered when a row is manually selected and the value changes. arg1:Object: The information object related to the row is manually selected. arg2:event.'
+              'This parameter is valid only for highlightCurrentRow. This parameter is triggered when a row is manually selected and the value changes. arg1:object: The information object related to the row is manually selected. arg2:event.'
           },
           'demoId': 'grid-highlight#highlight-highlight-cell'
         },
@@ -1721,9 +1721,9 @@ export default {
           'type': 'Function(arg1,arg2)',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '单元格被激活编辑时会触发该事件,arg1：Object 激活编辑单元格的相关信息对象,arg2:event',
+            'zh-CN': '单元格被激活编辑时会触发该事件,arg1：object 激活编辑单元格的相关信息对象,arg2:event',
             'en-US':
-              'This event is triggered when a cell is activated for editing. arg1: Object activates and edits the related information object of the cell, arg2: event'
+              'This event is triggered when a cell is activated for editing. arg1: object activates and edits the related information object of the cell, arg2: event'
           },
           'demoId': 'grid-event#event-edit-actived-event'
         },
@@ -1732,9 +1732,9 @@ export default {
           'type': 'Function(arg1,arg2)',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '单元格编辑状态下被关闭时会触发该事件,arg1：Object 激活编辑单元格的相关信息对象,arg2:event',
+            'zh-CN': '单元格编辑状态下被关闭时会触发该事件,arg1：object 激活编辑单元格的相关信息对象,arg2:event',
             'en-US':
-              'This event is triggered when a cell is closed in the editing state. arg1: Object activates the information object of the editing cell, arg2: event'
+              'This event is triggered when a cell is closed in the editing state. arg1: object activates the information object of the editing cell, arg2: event'
           },
           'demoId': 'grid-event#event-edit-closed-event'
         },
@@ -1743,9 +1743,9 @@ export default {
           'type': 'Function(arg1,arg2)',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '当单元格激活时如果是禁用状态时会触发该事件,arg1：Object 激活编辑单元格的相关信息对象,arg2:event',
+            'zh-CN': '当单元格激活时如果是禁用状态时会触发该事件,arg1：object 激活编辑单元格的相关信息对象,arg2:event',
             'en-US':
-              'This event is triggered when a cell is activated and is disabled. arg1: Object activates and edits the related information object of the cell. arg2: event'
+              'This event is triggered when a cell is activated and is disabled. arg1: object activates and edits the related information object of the cell. arg2: event'
           },
           'demoId': 'grid-event#event-edit-disabled-event'
         },
@@ -1755,9 +1755,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '当筛选条件发生变化时会触发该事件;//arg1:\n{$table:Object, //表格的信息对象\nfilters,//过滤列的过滤数据信息},//\narg2:\n{ $table:Object,// 表格的信息对象 \nfilters,//过滤列的过滤数据信息}',
+              '当筛选条件发生变化时会触发该事件;//arg1:\n{$table:object, //表格的信息对象\nfilters,//过滤列的过滤数据信息},//\narg2:\n{ $table:object,// 表格的信息对象 \nfilters,//过滤列的过滤数据信息}',
             'en-US':
-              'This event is triggered when the filter condition changes. Information object of the //arg1:\n{$table:Object, // table\nfilters,//filtering data information of the filter column},//\narg2:\n{$table:Object,// table\nfilters,//filtering data information of the filter column}'
+              'This event is triggered when the filter condition changes. Information object of the //arg1:\n{$table:object, // table\nfilters,//filtering data information of the filter column},//\narg2:\n{$table:object,// table\nfilters,//filtering data information of the filter column}'
           },
           'demoId': 'grid-filter#filter-server-filter'
         },
@@ -1979,7 +1979,7 @@ export default {
       'column-attrs': [
         {
           'name': 'align',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 继承 table 的 align',
           'desc': {
             'zh-CN': '列对其方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）',
@@ -1989,7 +1989,7 @@ export default {
         },
         {
           'name': 'class-name',
-          'type': 'String, Function',
+          'type': 'string, Function',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -2001,7 +2001,7 @@ export default {
         },
         {
           'name': 'multi',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN':
@@ -2023,7 +2023,7 @@ export default {
         },
         {
           'name': 'fixed',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -2035,7 +2035,7 @@ export default {
         },
         {
           'name': 'footer-align',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 继承 align > 继承 table 的 footer-align',
           'desc': {
             'zh-CN': '表尾列的对齐方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）',
@@ -2046,7 +2046,7 @@ export default {
         },
         {
           'name': 'footer-class-name',
-          'type': 'String, Function',
+          'type': 'string, Function',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -2058,7 +2058,7 @@ export default {
         },
         {
           'name': 'header-align',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 继承 align > 继承 table 的 header-align',
           'desc': {
             'zh-CN': '表头列的对齐方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）',
@@ -2069,7 +2069,7 @@ export default {
         },
         {
           'name': 'header-class-name',
-          'type': 'String, Function',
+          'type': 'string, Function',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -2092,7 +2092,7 @@ export default {
         },
         {
           'name': 'min-width',
-          'type': 'Number, String',
+          'type': 'number, string',
           'defaultValue': '该属性的默认值为 继承 table 的 column-min-width',
           'desc': {
             'zh-CN': '最小列宽度；会自动将剩余空间按比例分配;该属性的可选值为 整数, px，%',
@@ -2103,7 +2103,7 @@ export default {
         },
         {
           'name': 'show-icon',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否显示列头编辑图标，在编辑时有效',
@@ -2113,7 +2113,7 @@ export default {
         },
         {
           'name': 'params',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '额外的参数（自定义一些数据参数，对于某些特殊的场景可能会用到）',
@@ -2123,7 +2123,7 @@ export default {
         },
         {
           'name': 'remote-sort',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 继承 table 的 remote-sort',
           'desc': {
             'zh-CN': '是否使用服务端排序，如果设置为 true 则不会对数据进行处理',
@@ -2133,7 +2133,7 @@ export default {
         },
         {
           'name': 'resizable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 继承 table 的 resizable',
           'desc': {
             'zh-CN': '设置该列是否可以调整列宽;列是否允许拖动列宽调整大小',
@@ -2144,7 +2144,7 @@ export default {
         },
         {
           'name': 'show-header-overflow',
-          'type': 'String,Boolean',
+          'type': 'string,boolean',
           'defaultValue': '该属性的默认值为 继承 table 的 show-header-overflow',
           'desc': {
             'zh-CN':
@@ -2156,7 +2156,7 @@ export default {
         },
         {
           'name': 'show-overflow',
-          'type': 'String,Boolean',
+          'type': 'string,boolean',
           'defaultValue': '该属性的默认值为 继承 table 的 show-overflow',
           'desc': {
             'zh-CN':
@@ -2168,7 +2168,7 @@ export default {
         },
         {
           'name': 'sort-by',
-          'type': 'String, Array',
+          'type': 'string, Array',
           'defaultValue': '',
           'desc': {
             'zh-CN': '只对 sortable 有效，自定义排序的属性',
@@ -2178,14 +2178,14 @@ export default {
         },
         {
           'name': 'rules',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '表单的验证功能', 'en-US': 'Form verification function' },
           'demoId': ''
         },
         {
           'name': 'required',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否必填，如不设置，则会根据校验规则自动生成',
@@ -2208,7 +2208,7 @@ export default {
         },
         {
           'name': 'sortable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '设置该列数据是否可以排序。;是否允许列排序',
@@ -2218,7 +2218,7 @@ export default {
         },
         {
           'name': 'title',
-          'type': 'String , Function',
+          'type': 'string , Function',
           'defaultValue': '',
           'desc': {
             'zh-CN': '列标题（支持开启国际化），可以是函数 Function(h, params)',
@@ -2228,7 +2228,7 @@ export default {
         },
         {
           'name': 'tree-node',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '只对 tree-config 配置时有效，指定为树节点',
@@ -2248,7 +2248,7 @@ export default {
         },
         {
           'name': 'format-text',
-          'type': 'String , Function',
+          'type': 'string , Function',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -2260,7 +2260,7 @@ export default {
         },
         {
           'name': 'type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -2272,7 +2272,7 @@ export default {
         },
         {
           'name': 'width',
-          'type': 'Number , String',
+          'type': 'number , string',
           'defaultValue': '该属性的默认值为 继承 table 的 column-width',
           'desc': {
             'zh-CN':
@@ -2284,7 +2284,7 @@ export default {
         },
         {
           'name': 'format-config',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -2296,7 +2296,7 @@ export default {
         },
         {
           'name': 'class-name',
-          'type': 'String, Function',
+          'type': 'string, Function',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -2308,7 +2308,7 @@ export default {
         },
         {
           'name': 'editor',
-          'type': 'Object , Function',
+          'type': 'object , Function',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -2320,7 +2320,7 @@ export default {
         },
         {
           'name': 'filter',
-          'type': 'Boolean , Object',
+          'type': 'boolean , object',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '设置表格列的筛选配置信息。默认值为 false 不配置筛选信息。',
@@ -2331,7 +2331,7 @@ export default {
         },
         {
           'name': 'renderer',
-          'type': 'Object , Function',
+          'type': 'object , Function',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -2343,14 +2343,14 @@ export default {
         },
         {
           'name': 'show-tip',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '表格列单元格是否需要提示', 'en-US': 'Does the table column cells require prompts?' },
           'demoId': 'grid-tip#tip-cell-tip'
         },
         {
           'name': 'show-header-tip',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '表格列头是否需要提示', 'en-US': 'Whether to prompt the table column header.' },
           'demoId': 'grid-tip#tip-column-header-tip'
@@ -2412,21 +2412,21 @@ export default {
         },
         {
           'name': 'id',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '唯一 ID 标识', 'en-US': 'Unique ID' },
           'demoId': 'grid-customized#custom-column-width'
         },
         {
           'name': 'loading',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否加载中', 'en-US': 'Loading' },
           'demoId': 'grid-toolbar#tiny-first-menu-refresh-grid'
         },
         {
           'name': 'refresh',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '工具栏组件开启表格刷新功能。',
@@ -2436,7 +2436,7 @@ export default {
         },
         {
           'name': 'resizable',
-          'type': 'Boolean,Object',
+          'type': 'boolean,object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '列宽拖动配置（需要设置 id）',
@@ -2446,7 +2446,7 @@ export default {
         },
         {
           'name': 'setting',
-          'type': 'Boolean/Object',
+          'type': 'boolean/object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -2458,7 +2458,7 @@ export default {
         },
         {
           'name': 'full-screen',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置表格是否可以全屏，或者需要全屏的容器。;设置工具栏属性是否显示全屏按钮',
@@ -2469,7 +2469,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '尺寸;该属性的可选值为 medium,small,mini',
@@ -2482,9 +2482,9 @@ export default {
           'type': 'Function',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '全屏前的拦截方法 Function():Boolean，返回 false 则阻止全屏，返回 true 则不阻止',
+            'zh-CN': '全屏前的拦截方法 Function():boolean，返回 false 则阻止全屏，返回 true 则不阻止',
             'en-US':
-              'Intercept method before full screen Function():Boolean. If false is returned, the full screen is blocked. If true is returned, the full screen is not blocked.'
+              'Intercept method before full screen Function():boolean. If false is returned, the full screen is blocked. If true is returned, the full screen is not blocked.'
           },
           'demoId': 'grid-toolbar#tiny-first-menu-grid-full-screen'
         },
@@ -2493,9 +2493,9 @@ export default {
           'type': 'Function',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '关闭全屏前的拦截方法 Function():Boolean，返回 false 则阻止关闭全屏，返回 true 则不阻止',
+            'zh-CN': '关闭全屏前的拦截方法 Function():boolean，返回 false 则阻止关闭全屏，返回 true 则不阻止',
             'en-US':
-              'Intercept method Function():Boolean before full screen is disabled. If false is returned, the full screen is disabled. If true is returned, the full screen is not disabled.'
+              'Intercept method Function():boolean before full screen is disabled. If false is returned, the full screen is disabled. If true is returned, the full screen is not disabled.'
           },
           'demoId': 'grid-toolbar#tiny-first-menu-grid-full-screen'
         }
@@ -2523,7 +2523,7 @@ export default {
           'demoId': 'grid-toolbar#tiny-first-menu-custom-toolbar'
         }
       ],
-      'toolbarevents': [
+      'toolbar-events': [
         {
           'name': 'button-click',
           'type': 'Function(arg,event)',
@@ -2535,6 +2535,38 @@ export default {
               'This event is triggered when a button on the toolbar is clicked. arg1:{$grid: VueComponent table component instance object information $table: VueComponent table instance object component information button: button list information object code: button type} arg2:event'
           },
           'demoId': 'grid-event#event-toolbar-button-click-event'
+        },
+        {
+          'name': 'save-setting',
+          'type': 'Function(settingConfigs)',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '点击个性化面板的确认按钮触发该事件;settingConfigs:表格的个性化数据',
+            'en-US':
+              'Click the OK button on the personalized panel to trigger the event. settingConfigs: personalized data of the table'
+          },
+          'demoId': 'grid-customized#custom-ordercolumn-local'
+        },
+        {
+          'name': 'cancel-setting',
+          'type': 'Function(settingConfigs)',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '点击个性化面板的取消按钮触发该事件;settingConfigs:表格的个性化数据',
+            'en-US':
+              'Click the Cancel button on the personalized panel to trigger the event. settingConfigs: personalized data of the table'
+          },
+          'demoId': 'grid-customized#custom-ordercolumn-local'
+        },
+        {
+          'name': 'reset-setting',
+          'type': 'Function()',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '点击个性化面板的重置按钮触发该事件。',
+            'en-US': 'Click the Reset button on the personalized panel to trigger the event.'
+          },
+          'demoId': 'grid-customized#custom-ordercolumn-local'
         },
         {
           'name': 'on-before-move',

@@ -14,8 +14,7 @@
 </template>
 
 <script lang="jsx">
-import { Transfer } from '@opentiny/vue'
-import Tree from '@opentiny/vue-tree'
+import { Transfer, Tree } from '@opentiny/vue'
 
 export default {
   components: {

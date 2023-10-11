@@ -8,8 +8,6 @@ const enPath = LANG_PATH_MAP[EN_US_LANG]
 const appData = reactive({
   lang: useAutoStore('local', LANG_KEY, ZH_CN_LANG),
   theme: useAutoStore('local', '_theme', 'light'),
-  configMode: false,
-  configType: computed(() => 'tiny'),
   bpState: useMediaQuery([640, 1024, 1280]).matches // 3点4区间， bp0,bp1,bp2,bp3
 })
 const isZhCn = computed(() => appData.lang === ZH_CN_LANG)

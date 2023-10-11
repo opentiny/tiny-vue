@@ -1,8 +1,13 @@
 <template>
-  <tiny-ip-address v-model="value" :delimiter="IconBoat"></tiny-ip-address>
+  <tiny-ip-address v-model="value" :delimiter="IconBoat" style="margin-bottom: 8px;"></tiny-ip-address><br>
+  <tiny-ip-address v-model="value">
+    <template #default>
+      <i>-</i>
+    </template>
+  </tiny-ip-address>
 </template>
 
-<script lang="jsx">
+<script>
 import { IpAddress } from '@opentiny/vue'
 import { IconBoat } from '@opentiny/vue-icon'
 

@@ -36,7 +36,7 @@
   </tiny-collapse>
 </template>
 
-<script lang="jsx">
+<script>
 import {
   Collapse,
   CollapseItem,

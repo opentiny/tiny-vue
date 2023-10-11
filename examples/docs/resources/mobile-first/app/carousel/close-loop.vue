@@ -2,16 +2,16 @@
   <div class="w-80">
     <tiny-carousel aspect-ratio="2:1" :loop="false">
       <tiny-carousel-item class="">
-        <img src="webnova/static/images/dsj.png" alt="" />
+        <img src="/static/images/dsj.png" alt="" />
       </tiny-carousel-item>
       <tiny-carousel-item class="">
-        <img src="webnova/static/images/jz.png" alt="" />
+        <img src="/static/images/jz.png" alt="" />
       </tiny-carousel-item>
       <tiny-carousel-item class="">
-        <img src="webnova/static/images/ld.png" alt="" />
+        <img src="/static/images/ld.png" alt="" />
       </tiny-carousel-item>
       <tiny-carousel-item class="">
-        <img src="webnova/static/images/px.png" alt="" />
+        <img src="/static/images/px.png" alt="" />
       </tiny-carousel-item>
     </tiny-carousel>
   </div>

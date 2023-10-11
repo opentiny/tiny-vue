@@ -12,11 +12,18 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
+const $constants = {
+  ITEM_NAME: '.user-head-item'
+}
+
 export default defineComponent({
   name: $prefix + 'UserHead',
   props: {
     ...$props,
-
+    _constants: {
+      type: Object,
+      default: () => $constants
+    },
     /**
      * @property {Boolean} [min=false] - 小尺寸模式
      */
@@ -38,7 +45,10 @@ export default defineComponent({
     /**
      * @property {String} [backgroundColor=#BBBBBB] - 背景色
      */
-    backgroundColor: String,
+    backgroundColor: {
+      type: String,
+      default: '#B5BBC1'
+    },
 
     /**
      * @property {String} [type=label] - 头像类型，icon|image|label 可选
@@ -54,6 +64,11 @@ export default defineComponent({
      * type=icon 时为图标类名，type=label时为字体串，type=image时为资源路径
      */
     value: {
+      type: [Object, String],
+      default: null
+    },
+
+    modelValue: {
       type: [Object, String],
       default: null
     },
@@ -79,16 +94,9 @@ export default defineComponent({
       type: Number,
       default: 0
     },
-
-    /**
-     * @property {String, Number} [size=normal] - 头像尺寸
-     */
     size: {
-      type: [Number, String],
-      default: 'medium',
-      validator(val) {
-        return Boolean(typeof val === 'string' ? ~['large', 'medium', 'small'].indexOf(val) : typeof val === 'number')
-      }
+      type: Number,
+      default: 40
     }
   },
   setup(props, context) {

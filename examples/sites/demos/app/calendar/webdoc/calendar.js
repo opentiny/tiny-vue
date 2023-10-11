@@ -76,7 +76,7 @@ export default {
         },
         {
           'name': 'mode',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '显示模式，month / year 可选，默认 month',
@@ -86,7 +86,7 @@ export default {
         },
         {
           'name': 'month',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '指定月份，默认当月',
@@ -96,14 +96,14 @@ export default {
         },
         {
           'name': 'show-selected',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '显示选中的日期', 'en-US': 'Display the selected date.' },
           'demoId': 'show-selected-date'
         },
         {
           'name': 'year',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': { 'zh-CN': '指定年份，默认今年', 'en-US': 'Specified year. The default year is this year.' },
           'demoId': 'custom-day-cell'

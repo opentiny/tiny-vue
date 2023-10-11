@@ -9,10 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile'
 
-const $constants = {
+export const $constants = {
   DIALOG_SLIDER_RIGHT: 'dialog-slideRight',
   DIALOG_FADE: 'dialog-fade',
   SELECT_DROPDOWN: $prefix + 'SelectDropdown',
@@ -26,101 +27,103 @@ const $constants = {
   }
 }
 
+export const dialogBoxProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  appendToBody: {
+    type: Boolean,
+    default: () => false
+  },
+  beforeClose: Function,
+  center: {
+    type: Boolean,
+    default: () => false
+  },
+  closeOnClickModal: {
+    type: Boolean,
+    default: () => true
+  },
+  closeOnPressEscape: {
+    type: Boolean,
+    default: () => true
+  },
+  destroyOnClose: {
+    Boolean,
+    default: () => false
+  },
+  dialogClass: {
+    type: String,
+    default: () => ''
+  },
+  draggable: {
+    type: Boolean,
+    default: () => false
+  },
+  fullscreen: {
+    type: Boolean,
+    default: () => false
+  },
+  isFormReset: {
+    type: Boolean,
+    default: () => true
+  },
+  lockScroll: {
+    type: Boolean,
+    default: () => true
+  },
+  modal: {
+    type: Boolean,
+    default: () => true
+  },
+  modalAppendToBody: {
+    type: Boolean,
+    default: () => true
+  },
+  resize: {
+    type: Boolean,
+    default: () => false
+  },
+  rightSlide: {
+    type: Boolean,
+    default: () => false
+  },
+  showClose: {
+    type: Boolean,
+    default: () => true
+  },
+  showHeader: {
+    type: Boolean,
+    default: () => true
+  },
+  title: {
+    type: String,
+    default: () => ''
+  },
+  top: String,
+  visible: {
+    type: Boolean,
+    default: () => false
+  },
+  width: {
+    type: String,
+    default: () => '500px'
+  },
+  maxHeight: {
+    type: String,
+    default: () => ''
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'DialogBox',
   model: {
     prop: 'visible',
     event: 'update:visible'
   },
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    appendToBody: {
-      type: Boolean,
-      default: () => false
-    },
-    beforeClose: Function,
-    center: {
-      type: Boolean,
-      default: () => false
-    },
-    closeOnClickModal: {
-      type: Boolean,
-      default: () => true
-    },
-    closeOnPressEscape: {
-      type: Boolean,
-      default: () => true
-    },
-    destroyOnClose: {
-      Boolean,
-      default: () => false
-    },
-    dialogClass: {
-      type: String,
-      default: () => ''
-    },
-    draggable: {
-      type: Boolean,
-      default: () => false
-    },
-    fullscreen: {
-      type: Boolean,
-      default: () => false
-    },
-    isFormReset: {
-      type: Boolean,
-      default: () => true
-    },
-    lockScroll: {
-      type: Boolean,
-      default: () => true
-    },
-    modal: {
-      type: Boolean,
-      default: () => true
-    },
-    modalAppendToBody: {
-      type: Boolean,
-      default: () => true
-    },
-    resize: {
-      type: Boolean,
-      default: () => false
-    },
-    rightSlide: {
-      type: Boolean,
-      default: () => false
-    },
-    showClose: {
-      type: Boolean,
-      default: () => true
-    },
-    showHeader: {
-      type: Boolean,
-      default: () => true
-    },
-    title: {
-      type: String,
-      default: () => ''
-    },
-    top: String,
-    visible: {
-      type: Boolean,
-      default: () => false
-    },
-    width: {
-      type: String,
-      default: () => '500px'
-    },
-    maxHeight: {
-      type: String,
-      default: () => ''
-    }
-  },
+  props: dialogBoxProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

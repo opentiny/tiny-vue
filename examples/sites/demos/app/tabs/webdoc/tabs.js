@@ -219,7 +219,7 @@ export default {
       'properties': [
         {
           'name': 'tab-style',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '标签页样式;该属性的可选值为 card / border-card / button-card',
@@ -229,7 +229,7 @@ export default {
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '为 popper 添加类名(可参考 popover 组件)',
@@ -239,14 +239,14 @@ export default {
         },
         {
           'name': 'with-add',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '标签是否可增加', 'en-US': 'Whether tags can be added' },
           'demoId': 'with-add'
         },
         {
           'name': 'with-close',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '标签是否可关闭;标签是否可关闭',
@@ -256,7 +256,7 @@ export default {
         },
         {
           'name': 'editable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '标签是否同时可增加和关闭',
@@ -266,7 +266,7 @@ export default {
         },
         {
           'name': 'show-more-tabs',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '当标签页超过一定宽度时将显示 更多 ，鼠标悬停到 更多 时，将显示超出宽度的标签页。',
@@ -277,7 +277,7 @@ export default {
         },
         {
           'name': 'modelValue / v-model',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 第一个选项卡的 name',
           'desc': {
             'zh-CN': '绑定值，选中选项卡的 name',
@@ -287,7 +287,7 @@ export default {
         },
         {
           'name': 'position',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 top',
           'desc': {
             'zh-CN': '选项卡所在位置;该属性的可选值为 top/right/bottom/left',
@@ -297,7 +297,7 @@ export default {
         },
         {
           'name': 'stretch',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '标签的宽度是否自撑开', 'en-US': 'Whether the label width is self-expanded' },
           'demoId': 'stretch-wh'
@@ -315,14 +315,14 @@ export default {
         },
         {
           'name': 'active-name',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '激活当前页面', 'en-US': 'Activate the current page' },
           'demoId': 'tab-style-card'
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置 tabs 标签页尺寸,当与 tabStyle 为 card 或者 border-card 时生效, 该属性可选值为 small',
@@ -333,7 +333,7 @@ export default {
         },
         {
           'name': 'drop-config',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -345,13 +345,13 @@ export default {
         },
         {
           'name': 'tooltip-config',
-          'type': 'Object , String',
+          'type': 'object , string',
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '设置文字超出提示, Object类型的值参考tooltip组件配置，如果想使用默认的title属性，可设置为String 类型，值为title，【3.8.0版本新增】',
+              '设置文字超出提示, object类型的值参考tooltip组件配置，如果想使用默认的title属性，可设置为String 类型，值为title，【3.8.0版本新增】',
             'en-US':
-              'Set the message indicating that the text exceeds the limit. For details about the value of the Object type, see the configuration of the tooltip component. If you want to use the default title attribute, set it to the String type and set it to title. [Added in 3.8.0]'
+              'Set the message indicating that the text exceeds the limit. For details about the value of the object type, see the configuration of the tooltip component. If you want to use the default title attribute, set it to the string type and set it to title. [Added in 3.8.0]'
           },
           'demoId': 'position-left'
         }

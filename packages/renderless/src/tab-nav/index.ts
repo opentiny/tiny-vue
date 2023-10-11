@@ -9,13 +9,13 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-
+import { ITabNavRenderlessParams } from '@/types'
 import { KEY_CODE, POSITION } from '../common'
 import { capitalize } from '../common/string'
 import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
 import { on, off } from '../common/deps/dom'
 
-export const computedNavStyle = (state) => {
+export const computedNavStyle = (state: ITabNavRenderlessParams['state']): { transform: string } => {
   const dir = ~[POSITION.Top, POSITION.Bottom].indexOf(state.rootTabs.position) ? 'X' : 'Y'
 
   if (state.mode === 'mobile') {
@@ -30,14 +30,14 @@ export const computedNavStyle = (state) => {
 }
 
 export const scrollIntoView =
-  ({ parent, refs, state }) =>
+  ({ parent, refs, state }: Pick<ITabNavRenderlessParams, 'parent' | 'refs' | 'state'>) =>
   () => {
     if (!state.scrollable) {
       return
     }
 
     const nav = refs.nav
-    const activeTab = parent.$el.querySelector('.is-active')
+    const activeTab = parent.$el.querySelector('.is-active') as HTMLElement
 
     if (!activeTab) {
       return
@@ -52,12 +52,12 @@ export const scrollIntoView =
     }
   }
 
-export const computedSizeName = (state) =>
+export const computedSizeName = (state: ITabNavRenderlessParams['state']): 'width' | 'height' =>
   ~[POSITION.Top, POSITION.Bottom].indexOf(state.rootTabs.position) ? 'width' : 'height'
 
 /* istanbul ignore next */
 export const updated =
-  ({ api, refs, state }) =>
+  ({ api, refs, state }: Pick<ITabNavRenderlessParams, 'api' | 'refs' | 'state'>) =>
   () => {
     if (!refs.nav || state.dragging) {
       return
@@ -86,9 +86,12 @@ export const updated =
     if (containerSize < navSize) {
       const currentOffset = state.navOffset
 
-      state.scrollable = state.scrollable || {}
-      state.scrollable.prev = currentOffset
-      state.scrollable.next = currentOffset + containerSize < navSize
+      if (!state.scrollable) {
+        state.scrollable = {
+          prev: currentOffset,
+          next: currentOffset + containerSize < navSize
+        }
+      }
 
       if (navSize - currentOffset < containerSize) {
         state.navOffset = navSize - containerSize
@@ -112,7 +115,7 @@ export const updated =
     }
   }
 
-export const mounted = ({ api, parent }) => {
+export const mounted = ({ api, parent }: Pick<ITabNavRenderlessParams, 'api' | 'parent'>) => {
   const el = parent.$refs.nav.$el
 
   /* istanbul ignore next */
@@ -126,7 +129,7 @@ export const mounted = ({ api, parent }) => {
   api.sortableEvent()
 }
 
-export const beforeUnmount = ({ api, parent }) => {
+export const beforeUnmount = ({ api, parent }: Pick<ITabNavRenderlessParams, 'api' | 'parent'>) => {
   const el = parent.$refs.nav && parent.$refs.nav.$el
 
   /* istanbul ignore next */
@@ -139,7 +142,7 @@ export const beforeUnmount = ({ api, parent }) => {
   off(window, 'focus', api.windowFocusHandler)
 }
 
-export const visibilityChangeHandler = (state) => () => {
+export const visibilityChangeHandler = (state: ITabNavRenderlessParams['state']) => () => {
   const visibility = document.visibilityState
 
   /* istanbul ignore next */
@@ -152,11 +155,11 @@ export const visibilityChangeHandler = (state) => () => {
   }
 }
 
-export const windowBlurHandler = (state) => () => {
+export const windowBlurHandler = (state: ITabNavRenderlessParams['state']) => () => {
   state.focusable = false
 }
 
-export const windowFocusHandler = (state) => () => {
+export const windowFocusHandler = (state: ITabNavRenderlessParams['state']) => () => {
   setTimeout(() => {
     state.focusable = true
   }, 50)
@@ -164,7 +167,7 @@ export const windowFocusHandler = (state) => () => {
 
 /* istanbul ignore next */
 export const scrollToActiveTab =
-  ({ parent, refs, state }) =>
+  ({ parent, refs, state }: Pick<ITabNavRenderlessParams, 'parent' | 'refs' | 'state'>) =>
   () => {
     if (!state.scrollable) {
       return
@@ -206,7 +209,7 @@ export const scrollToActiveTab =
   }
 
 export const scrollPrev =
-  ({ refs, state }) =>
+  ({ refs, state }: Pick<ITabNavRenderlessParams, 'refs' | 'state'>) =>
   () => {
     const containerSize = refs.navScroll[`offset${capitalize(state.sizeName)}`]
     const currentOffset = state.navOffset
@@ -221,7 +224,7 @@ export const scrollPrev =
   }
 
 export const scrollNext =
-  ({ refs, state }) =>
+  ({ refs, state }: Pick<ITabNavRenderlessParams, 'refs' | 'state'>) =>
   () => {
     const navSize = refs.nav[`offset${capitalize(state.sizeName)}`]
     const containerSize = refs.navScroll[`offset${capitalize(state.sizeName)}`]
@@ -238,13 +241,17 @@ export const scrollNext =
   }
 
 /* istanbul ignore next */
-export const changeTab = (api) => (event) => {
+export const changeTab = (api: ITabNavRenderlessParams['api']) => (event: KeyboardEvent) => {
   const keyCode = event.keyCode
   let nextIndex
   let currentIndex, tabList
 
-  if (~[KEY_CODE.ArrowLeft, KEY_CODE.ArrowRight, KEY_CODE.ArrowUp, KEY_CODE.ArrowDown].indexOf(keyCode)) {
-    tabList = event.currentTarget.querySelectorAll('[role=tab]')
+  if (
+    ~[KEY_CODE.ArrowLeft, KEY_CODE.ArrowRight, KEY_CODE.ArrowUp, KEY_CODE.ArrowDown].indexOf(keyCode) &&
+    event.currentTarget
+  ) {
+    const target = event.currentTarget as HTMLElement
+    tabList = target.querySelectorAll('[role=tab]')
     currentIndex = Array.prototype.indexOf.call(tabList, event.target)
   } else {
     return
@@ -269,18 +276,18 @@ export const changeTab = (api) => (event) => {
   api.setFocus()
 }
 
-export const setFocus = (state) => () => {
+export const setFocus = (state: ITabNavRenderlessParams['state']) => () => {
   if (state.focusable) {
     state.isFocus = true
   }
 }
 
-export const removeFocus = (state) => () => {
+export const removeFocus = (state: ITabNavRenderlessParams['state']) => () => {
   state.isFocus = true
 }
 
 // pc-展示更多的功能
-export const moreTabShow = (state) => () => {
+export const moreTabShow = (state: ITabNavRenderlessParams['state']) => () => {
   if (state.showMoreItem) {
     state.showMoreItem = false
   } else {
@@ -290,7 +297,7 @@ export const moreTabShow = (state) => () => {
 
 // mobile-展示展开选项的功能
 export const expandTabShow =
-  ({ api, state }) =>
+  ({ api, state }: Pick<ITabNavRenderlessParams, 'api' | 'state'>) =>
   () => {
     state.showExpandItem = !state.showExpandItem
     if (state.showExpandItem) {
@@ -298,10 +305,10 @@ export const expandTabShow =
     }
   }
 
-export const expandTabHide = (state) => () => (state.showExpandItem = false)
+export const expandTabHide = (state: ITabNavRenderlessParams['state']) => () => (state.showExpandItem = false)
 
 export const computedHeaderStyle =
-  ({ refs, state }) =>
+  ({ refs, state }: Pick<ITabNavRenderlessParams, 'refs' | 'state'>) =>
   () => {
     if (refs.nav) {
       state.expandHeaderStyle[state.sizeName] = refs.nav[`offset${capitalize(state.sizeName)}`] + 'px'
@@ -311,8 +318,8 @@ export const computedHeaderStyle =
   }
 
 export const handleTabDragStart =
-  ({ state, refs, emit }) =>
-  (event) => {
+  ({ state, refs, emit }: Pick<ITabNavRenderlessParams, 'state' | 'refs' | 'emit'>) =>
+  (event: DragEvent) => {
     state.dragging = true
 
     if (![POSITION.Top, POSITION.Bottom].includes(state.rootTabs.position)) {
@@ -342,7 +349,7 @@ export const handleTabDragStart =
   }
 
 export const handleTabDragEnd =
-  ({ refs, state, nextTick }) =>
+  ({ refs, state, nextTick }: Pick<ITabNavRenderlessParams, 'refs' | 'state' | 'nextTick'>) =>
   () => {
     state.dragging = false
 
@@ -368,7 +375,14 @@ export const handleTabDragEnd =
   }
 
 export const sortableEvent =
-  ({ api, props, state, refs, emit, markRaw }) =>
+  ({
+    api,
+    props,
+    state,
+    refs,
+    emit,
+    markRaw
+  }: Pick<ITabNavRenderlessParams, 'api' | 'props' | 'state' | 'refs' | 'emit' | 'markRaw'>) =>
   () => {
     if (!props.dropConfig || typeof props.dropConfig.plugin !== 'function') {
       return
@@ -387,7 +401,7 @@ export const sortableEvent =
         api.handleTabDragStart(event)
       },
       onEnd(event) {
-        api.handleTabDragEnd(event)
+        api.handleTabDragEnd()
       }
     })
 
@@ -395,7 +409,7 @@ export const sortableEvent =
   }
 
 export const watchCurrentName =
-  ({ nextTick, refs, state }) =>
+  ({ nextTick, refs, state }: Pick<ITabNavRenderlessParams, 'nextTick' | 'refs' | 'state'>) =>
   () => {
     nextTick(() => {
       const tabBarVnode = refs.tabBar

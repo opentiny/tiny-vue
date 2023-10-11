@@ -1,7 +1,7 @@
 <script lang="ts">
-import { provideDesignConfig, type PropType, hooks, props as _props, isVue2 } from '@opentiny/vue-common'
+import { provideDesignConfig, hooks, props as _props, isVue2, $prefix, defineComponent } from '@opentiny/vue-common'
+import type { PropType } from '@opentiny/vue-common'
 import type { Tag, TextDirection, breakPoint } from './props'
-import { $prefix, defineComponent } from '@opentiny/vue-common'
 import { configProviderContextKey } from '../index'
 import '@opentiny/vue-theme/config-provider/index.less'
 
@@ -94,5 +94,5 @@ export default defineComponent({
     const tagName = this.props.tag.name ?? 'div'
     return hooks.h(tagName, attr, slots)
   }
-})
+}) as any
 </script>

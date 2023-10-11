@@ -1,6 +1,6 @@
 <template>
   <div class="demo-form">
-    <tiny-form :disabled="false" label-position="right" ref="createDataRef" label-width="100px">
+    <tiny-form label-width="100px">
       <tiny-form-item label="数字">
         <tiny-numeric v-model="createData.quantity"></tiny-numeric>
       </tiny-form-item>
@@ -40,9 +40,9 @@ import {
   DropTimes as TinyDropTimes,
   Tooltip as TinyTooltip,
   Input as TinyInput,
-  Button as TinyButton
+  Button as TinyButton,
+  Modal as TinyModal
 } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
 
 const createData = reactive({
   quantity: '',
@@ -54,7 +54,7 @@ const createData = reactive({
 })
 
 function submitClick() {
-  alert('提交')
+  TinyModal.alert('提交')
 }
 </script>
 

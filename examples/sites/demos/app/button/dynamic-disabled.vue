@@ -26,7 +26,7 @@
   </tiny-layout>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button, Layout, Row } from '@opentiny/vue'
 import { IconSearch } from '@opentiny/vue-icon'
 

@@ -83,56 +83,56 @@ export default {
       'properties': [
         {
           'name': 'title',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置气泡提示框的标题', 'en-US': 'Set the pop confirm title.' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'content',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置气泡提示框的内容', 'en-US': 'Set the pop confirm content.' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'popperClass',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '为气泡提示框自定义类名', 'en-US': 'Set the pop confirm popper class name.' },
           'demoId': 'popper-class'
         },
         {
           'name': 'trigger',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'hover',
           'desc': { 'zh-CN': '气泡提示框显示触发方式', 'en-US': 'How to show the pop confirm.' },
           'demoId': 'trigger'
         },
         {
           'name': 'placement',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'top',
           'desc': { 'zh-CN': '气泡提示框显示位置', 'en-US': 'Set the pop confirm placement.' },
           'demoId': 'placement'
         },
         {
           'name': 'cancelButton',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'true',
           'desc': { 'zh-CN': '是否展示取消按钮', 'en-US': 'Is show the cancel button' },
           'demoId': 'cancel-button'
         },
         {
           'name': 'width',
-          'type': 'String, Number',
+          'type': 'string, number',
           'defaultValue': '350',
           'desc': { 'zh-CN': '设置气泡提示框宽度', 'en-US': 'Set the pop confirm box with.' },
           'demoId': 'width'
         },
         {
           'name': 'type',
-          'type': 'String, Object',
+          'type': 'string, object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '提示图标类型，可选值有info,success,warning,error。或者可以传入自定义图标',

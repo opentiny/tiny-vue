@@ -59,14 +59,14 @@ export default {
       'properties': [
         {
           'name': 'modelValue / v-model',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置片区默认值', 'en-US': 'Set the default value of a region.' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置组件大小，可设置值为：medium，small，mini',
@@ -76,14 +76,14 @@ export default {
         },
         {
           'name': 'placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '当数据为空时的占位符', 'en-US': 'Placeholder when data is empty' },
           'demoId': 'custom-service'
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '为 popper 添加类名(可参考 popover 组件)',
@@ -93,7 +93,7 @@ export default {
         },
         {
           'name': 'popper-append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN':
@@ -105,14 +105,14 @@ export default {
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '禁用输入框;默认为 false', 'en-US': 'Disable the text box. The default value is false' },
           'demoId': 'disabled'
         },
         {
           'name': 'props',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':

@@ -82,6 +82,13 @@ export default {
       total: 'Total',
       value: 'Value'
     },
+    colorSelectPanel: {
+      confirm: 'Ok',
+      cancel: 'Cancel',
+      predefine: 'Predefine Color',
+      history: 'History',
+      empty: 'Empty'
+    },
     creditCardForm: {
       submit: 'Submit'
     },
@@ -145,7 +152,40 @@ export default {
       },
       timezone: 'selecting a timezone',
       year: '',
-      to: 'to'
+      to: 'to',
+      yearMonth: '{year} / {month}',
+      yearMonthDay: '{year} / {month} / {day}'
+    },
+    richTextEditor: {
+      bold: 'bold',
+      italic: 'italic',
+      link: 'link',
+      unlink: 'unlink',
+      highlight: 'high light',
+      underline: 'underline',
+      strike: 'strike',
+      subscript: 'subscript',
+      superscript: 'superscript',
+      code: 'code',
+      unorderedlist: 'unorderedlist',
+      orderedlist: 'orderedlist',
+      taskList: 'taskList',
+      quote: 'quote',
+      codeBlock: 'code block',
+      formatClear: 'format clear',
+      nodeDelete: 'node delete',
+      undo: 'undo',
+      redo: 'redo',
+      left: 'left',
+      center: 'center',
+      right: 'right',
+      fontSize: 'font size',
+      lineHeight: 'line height',
+      hBox: 'h box',
+      img: 'img',
+      color: 'color',
+      table: 'table',
+      backgroundColor: 'backgroundColor'
     },
     calendar: {
       showType: {
@@ -479,7 +519,7 @@ export default {
       switchText: 'check easily',
       deleteTip: 'Data will be permanently deleted, are you sure you want to proceed with the deletion?',
       preserveSubnodeTip: 'This node have child nodes, Would you like to preserve the data of the child nodes?',
-      preserveSubnodeData: 'To preserve child nodes\' data.',
+      preserveSubnodeData: "To preserve child nodes' data.",
       newNodeTitle: 'Add Child Nodes'
     },
     usercard: {
@@ -621,6 +661,16 @@ export default {
         11: 'Nov',
         12: 'Dec'
       }
+    },
+    calendarView: {
+      week: { 0: 'SUN', 1: 'MON', 2: 'TUE', 3: 'WED', 4: 'THU', 5: 'FRI', 6: 'SAT' },
+      weekDays: { 0: 'SUN', 1: 'MON', 2: 'TUE', 3: 'WED', 4: 'THU', 5: 'FRI', 6: 'SAT' },
+      backToday: 'back to today',
+      new: 'New',
+      noSchedule: 'No Schedule',
+      year: 'year',
+      month: 'month',
+      dateFormat: 'yyyy-MM'
     },
     selectedBox: {
       select: 'Selected (%s)',

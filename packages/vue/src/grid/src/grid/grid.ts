@@ -766,11 +766,26 @@ export default defineComponent({
       }
     },
     pageChangeEvent(params) {
-      let eventParams = extend(false, { $grid: this }, params)
+      // 这里需要做下防抖操作，防止在pageSize从小变大的时候导致fetch-data触发多次
+      if (!this.tasks.updatePage) {
+        this.tasks.updatePage = debounce(200, () => {
+          const eventParams = { $grid: this, ...params }
 
-      emitEvent(this, 'page-change', eventParams)
-      this.emitter.emit('page-change', eventParams)
-      this.commitProxy('query', this.toolBarVm && this.toolBarVm.orderSetting())
+          // 处理标签式监听事件的：@page-change
+          emitEvent(this, 'page-change', eventParams)
+
+          // 处理配置式表格的监听事件
+          this.emitter.emit('page-change', eventParams)
+
+          // 触发fetchData
+          this.commitProxy('query')
+
+          if (this.toolBarVm) {
+            this.toolBarVm.orderSetting()
+          }
+        })
+      }
+      this.tasks.updatePage()
     },
     // size为页大小，load为false则触发change事件与查询，在个性化初始化时根据autoload控制是否加载数据
     pageSizeChange(size, load) {

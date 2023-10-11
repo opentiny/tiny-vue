@@ -230,7 +230,7 @@ export default {
       'properties': [
         {
           'name': 'crop-type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置图片裁剪后返回的类型，可配置为 blob 和 base64，默认为 base64 。',
@@ -241,7 +241,7 @@ export default {
         },
         {
           'name': 'preview',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置裁剪区域图片是否可预览，默认为 false 。',
@@ -251,7 +251,7 @@ export default {
         },
         {
           'name': 'quality',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置图片裁剪后的压缩比例，值在 0-1 之间，默认为 0.92 。',
@@ -262,14 +262,14 @@ export default {
         },
         {
           'name': 'src',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '默认裁剪的源图片', 'en-US': 'Default cropped source image' },
           'demoId': 'no-background'
         },
         {
           'name': 'view-mode',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -281,7 +281,7 @@ export default {
         },
         {
           'name': 'drag-mode',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -293,7 +293,7 @@ export default {
         },
         {
           'name': 'aspect-ratio',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '裁剪框的宽高比;默认为 16 / 9',
@@ -303,7 +303,7 @@ export default {
         },
         {
           'name': 'max-size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置待裁剪图片的最大大小，默认为 1M ;默认为 1M',
@@ -314,7 +314,7 @@ export default {
         },
         {
           'name': 'modal',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '是否显示图片上方裁剪框下方的黑色模态;默认为 true',
@@ -325,7 +325,7 @@ export default {
         },
         {
           'name': 'guides',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '是否在裁剪框上方显示虚线;默认为 true',
@@ -335,7 +335,7 @@ export default {
         },
         {
           'name': 'center',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '裁剪框是否在图片正中心;默认为 true',
@@ -345,7 +345,7 @@ export default {
         },
         {
           'name': 'background',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '是否显示容器的网格背景;默认为 true',
@@ -355,7 +355,7 @@ export default {
         },
         {
           'name': 'movable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '是否允许可以移动后面的图片;默认为 true',
@@ -365,7 +365,7 @@ export default {
         },
         {
           'name': 'rotatable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '是否允许旋转图像;默认为 true',
@@ -375,7 +375,7 @@ export default {
         },
         {
           'name': 'zoomable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '是否允许放大图像;默认为 true',
@@ -385,7 +385,7 @@ export default {
         },
         {
           'name': 'zoom-on-wheel',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '是否可以通过滚动鼠标滚轮来缩放图像;默认为 true',
@@ -396,7 +396,7 @@ export default {
         },
         {
           'name': 'wheel-zoom-ratio',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '用鼠标移动图像时，定义缩放比例;默认为 0.1',
@@ -406,7 +406,7 @@ export default {
         },
         {
           'name': 'min-container-width',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '容器的最小宽度;默认为 652',
@@ -416,7 +416,7 @@ export default {
         },
         {
           'name': 'min-container-height',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '容器的最小高度;默认为 300',
@@ -426,7 +426,7 @@ export default {
         },
         {
           'name': 'min-crop-box-width',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '裁剪层的最小宽度;默认为 0',
@@ -436,7 +436,7 @@ export default {
         },
         {
           'name': 'min-crop-box-height',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '裁剪层的最小高度;默认为 0',
@@ -446,7 +446,7 @@ export default {
         },
         {
           'name': 'auto-crop',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '初始化时，是否自动显示裁剪框;默认为 true',
@@ -457,7 +457,7 @@ export default {
         },
         {
           'name': 'auto-crop-area',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '定义自动裁剪面积大小（百分比）;默认为 0.8',
@@ -467,7 +467,7 @@ export default {
         },
         {
           'name': 'cropvisible',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置裁剪弹框是否可见;默认为 false',
@@ -580,9 +580,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '获取最终裁剪的区域位置和大小数据（根据原始图像的自然大小）;参数为 (rounded) ，默认 false，设置 true 可以获取其所有数据;返回的数据类型为 Object',
+              '获取最终裁剪的区域位置和大小数据（根据原始图像的自然大小）;参数为 (rounded) ，默认 false，设置 true 可以获取其所有数据;返回的数据类型为 object',
             'en-US':
-              'Obtain the position and size of the final cropped region (based on the natural size of the original image). The parameter is rounded. The default value is false. If this parameter is set to true, all data can be obtained. The returned data type is Object'
+              'Obtain the position and size of the final cropped region (based on the natural size of the original image). The parameter is rounded. The default value is false. If this parameter is set to true, all data can be obtained. The returned data type is object'
           },
           'demoId': 'get-data'
         },
@@ -591,8 +591,8 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '获取 container 容器大小数据;返回的数据类型为 Object',
-            'en-US': 'Obtain the container size data. The returned data type is Object'
+            'zh-CN': '获取 container 容器大小数据;返回的数据类型为 object',
+            'en-US': 'Obtain the container size data. The returned data type is object'
           },
           'demoId': 'get-container-data'
         },
@@ -601,8 +601,8 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '获取图像 image 位置、大小和其他相关数据;返回的数据类型为 Object',
-            'en-US': 'Obtain the image position, size, and other related data. The returned data type is Object'
+            'zh-CN': '获取图像 image 位置、大小和其他相关数据;返回的数据类型为 object',
+            'en-US': 'Obtain the image position, size, and other related data. The returned data type is object'
           },
           'demoId': 'get-image-data'
         },
@@ -611,9 +611,9 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '获取画布 Canvas（图像包装器）位置和大小数据;返回的数据类型为 Object',
+            'zh-CN': '获取画布 Canvas（图像包装器）位置和大小数据;返回的数据类型为 object',
             'en-US':
-              'Obtain the position and size of the canvas Canvas (image wrapper). The returned data type is Object'
+              'Obtain the position and size of the canvas Canvas (image wrapper). The returned data type is object'
           },
           'demoId': 'get-image-data'
         },
@@ -622,8 +622,8 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '获取剪切框的位置和大小数据;返回的数据类型为 Object',
-            'en-US': 'Obtain the position and size of the clip box. The returned data type is Object'
+            'zh-CN': '获取剪切框的位置和大小数据;返回的数据类型为 object',
+            'en-US': 'Obtain the position and size of the clip box. The returned data type is object'
           },
           'demoId': 'get-crop-box-data'
         },
@@ -632,9 +632,9 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '改变裁切框的宽高比;参数为(aspectRatio)，类型 Number，是一个正数',
+            'zh-CN': '改变裁切框的宽高比;参数为(aspectRatio)，类型 number，是一个正数',
             'en-US':
-              'Change the aspect ratio of the cutting frame; The parameter is (aspectRatio) and the type is Number. The value is a positive number.'
+              'Change the aspect ratio of the cutting frame; The parameter is (aspectRatio) and the type is number. The value is a positive number.'
           },
           'demoId': 'aspect-ratio'
         },

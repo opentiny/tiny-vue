@@ -157,7 +157,7 @@ export default {
       'properties': [
         {
           'name': 'dialog-title',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置文件上传弹框的标题;默认为 文件上传',
@@ -167,14 +167,14 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置组件大小', 'en-US': 'Set the component size' },
           'demoId': 'size'
         },
         {
           'name': 'submit-button-text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置文件上传弹框中提交按钮的文本;默认为 开始上传',
@@ -185,7 +185,7 @@ export default {
         },
         {
           'name': 'cancel-button-text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置文件上传弹框中取消按钮的文本;默认为 取消',
@@ -195,7 +195,7 @@ export default {
         },
         {
           'name': 'action',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '必选参数，设置上传的地址',
@@ -205,35 +205,35 @@ export default {
         },
         {
           'name': 'headers',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置上传的请求头部', 'en-US': 'Set the upload request header' },
           'demoId': 'custom-request-headers'
         },
         {
           'name': 'limit',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': { 'zh-CN': '最大允许上传个数', 'en-US': 'Maximum number of files that can be uploaded' },
           'demoId': 'file-limit'
         },
         {
           'name': 'multiple',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '是否支持多选文件', 'en-US': 'Specifies whether multiple files can be selected.' },
           'demoId': 'file-limit'
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '是否禁用;默认为 false', 'en-US': 'Whether to disable; The default value is false' },
           'demoId': 'size'
         },
         {
           'name': 'accept',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '接受上传的文件类型', 'en-US': 'File type to be uploaded' },
           'demoId': 'file-type'
@@ -250,21 +250,21 @@ export default {
         },
         {
           'name': 'max-upload-file-size',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': { 'zh-CN': '最大上传文件大小', 'en-US': 'Maximum size of files to be uploaded' },
           'demoId': 'max-upload-file-size'
         },
         {
           'name': 'upload-name',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 file',
           'desc': { 'zh-CN': '上传的文件字段名', 'en-US': 'Field name of the uploaded file' },
           'demoId': 'upload-name'
         },
         {
           'name': 'upload-button-text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 选择文件',
           'desc': {
             'zh-CN': '打开弹出框的按钮的文本配置属性',
@@ -274,7 +274,7 @@ export default {
         },
         {
           'name': 'with-credentials',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '支持发送 cookie 凭证信息', 'en-US': 'Cookie credential information can be sent.' },
           'demoId': 'upload-name'
@@ -284,9 +284,9 @@ export default {
           'type': 'Function(arg1)',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '在上传文件列表点击删除成功前触发;arg1:{Object 点击删除的文件信息}',
+            'zh-CN': '在上传文件列表点击删除成功前触发;arg1:{object 点击删除的文件信息}',
             'en-US':
-              'This event is triggered before the upload file list is deleted successfully. arg1:{Information about the file to be deleted by clicking Object}'
+              'This event is triggered before the upload file list is deleted successfully. arg1:{Information about the file to be deleted by clicking object}'
           },
           'demoId': 'prevent-delete-file'
         },
@@ -296,9 +296,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '上传文件之前的钩子，参数为上传的文件，若返回 false 或者返回 Promise 且被 reject，则停止上传。;arg1:{Object 上传的文件信息}',
+              '上传文件之前的钩子，参数为上传的文件，若返回 false 或者返回 Promise 且被 reject，则停止上传。;arg1:{object 上传的文件信息}',
             'en-US':
-              'Hook before uploading a file. The parameter is the file to be uploaded. If false is returned or Promise is returned and rejected, the upload stops. ;arg1:{Object uploaded file information}'
+              'Hook before uploading a file. The parameter is the file to be uploaded. If false is returned or Promise is returned and rejected, the upload stops. ;arg1:{object uploaded file information}'
           },
           'demoId': 'before-upload'
         },
@@ -314,7 +314,7 @@ export default {
         },
         {
           'name': 'data',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '上传时附带的额外参数', 'en-US': 'Extra parameters attached during upload' },
           'demoId': 'data'

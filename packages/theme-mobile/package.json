@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-theme-mobile",
-  "version": "3.10.0",
+  "version": "3.11.0",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "homepage": "https://opentiny.design/tiny-vue",
   "main": "index.css",
@@ -17,7 +17,6 @@
   ],
   "author": "OpenTiny Team",
   "license": "MIT",
-  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "git@github.com:opentiny/tiny-vue.git"
@@ -35,7 +34,7 @@
     "build:fast": "npm run build && npm run release",
     "publishTgz": "node .cloudbuild/publish-tgzs.js",
     "stylelint": "stylelint \"**/*.less\" --fix",
-    "release": "node build/release.js && node build/postbuild.js && cp README.md dist",
+    "release": "node build/release.js && node build/postbuild.js && shx cp README.md dist",
     "postversion": "pnpm build"
   },
   "devDependencies": {

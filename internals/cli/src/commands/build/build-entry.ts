@@ -64,7 +64,7 @@ function getMainTemplate({ mode }) {
   export default {
     {{{components}}},
     install
-  }
+  } as any
   `
 }
 
@@ -90,7 +90,7 @@ const createEntry = (mode) => {
   if (mode === 'all') {
     // 重写package.json, 并格式化
     PKGContent.dependencies = PKGDeps
-    fs.writeFileSync(PKG_PATH, JSON.stringify(PKGContent, null, '\t'))
+    fs.writeFileSync(PKG_PATH, JSON.stringify(PKGContent, null, 2))
   }
 
   const template = handlebarsRender({

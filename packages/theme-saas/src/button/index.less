@@ -9,10 +9,10 @@
   @apply appearance-none;
   @apply text-center;
   @apply box-border;
-  min-width: 72px;
-  max-width: 144px;
+  @apply ~"min-w-[theme(spacing.18)]";
+  @apply ~"max-w-[theme(spacing.36)]";
   @apply h-7;
-  line-height: 26px;
+  @apply ~"leading-[calc(theme(spacing.7)-2*theme(borderWidth.DEFAULT))]";
   @apply text-color-text-primary;
   @apply fill-color-text-primary;
   @apply text-xs;
@@ -24,25 +24,24 @@
   @apply border-solid;
   @apply border-color-border;
   border-image: initial;
-  @apply rounded-sm;
+  @apply rounded;
   @apply bg-color-bg-1;
-  @apply py-0 px-3;
+  @apply py-0;
+  @apply px-3;
   @apply overflow-hidden;
-  transition:
-    border 0.3s ease 0s,
-    color 0.3s ease 0s,
-    background 0.3s ease 0s;
+  transition: border 0.3s ease 0s, color 0.3s ease 0s, background 0.3s ease 0s;
   @apply outline-0;
 
   .@{svg-prefix-cls} {
     @apply align-middle;
     @apply text-base;
-    margin-top: -3px;
+    @apply -mt-px;
   }
 
   & > img {
     @apply mr-1;
     @apply align-middle;
+    @apply inline-block;
   }
 
   &::-moz-focus-inner {
@@ -72,13 +71,13 @@
   &.is-disabled:focus,
   &.is-disabled:hover {
     @apply cursor-not-allowed;
-    .button-color(theme('colors.color.text.disabled'), theme('colors.color.bg.3'), theme('colors.color.bg.4'));
+    .button-color(theme('colors.color.text.disabled'), theme('colors.color.text.disabled'), theme('colors.color.bg.4'));
   }
 
   &.is-disabled.is-plain,
   &.is-disabled.is-plain:focus,
   &.is-disabled.is-plain:hover {
-    .button-color(theme('colors.color.text.disabled'), theme('colors.color.bg.3'), theme('colors.color.bg.1'));
+    .button-color(theme('colors.color.text.disabled'), theme('colors.color.text.disabled'), theme('colors.color.bg.1'));
   }
 
   & + & {
@@ -127,7 +126,7 @@
     @apply ~"min-w-[auto]";
     max-width: initial;
     line-height: inherit;
-    @apply h-auto;
+    @apply h-4;
     @apply bg-transparent;
     @apply border-0;
     @apply p-0;
@@ -261,19 +260,19 @@
   }
 
   &&--large {
-    .button-size(16px, 48px, 80px, 130px, 16px);
+    .button-size(theme('fontSize.base'), theme('spacing.12'), theme('spacing.20'), theme('spacing.32'), theme('spacing.4'));
   }
 
   &&--medium {
-    .button-size(14px, 32px, 88px, 172px, 16px);
+    .button-size(theme('fontSize.sm'), theme('spacing.8'), theme('spacing.24'), theme('spacing.44'), theme('spacing.4'));
   }
 
   &&--small {
-    .button-size(12px, 28px, 64px, 136px, 8px);
+    .button-size(theme('fontSize.xs'), theme('spacing.7'), theme('spacing.16'), theme('spacing.36'), theme('spacing.2'));
   }
 
   &&--mini {
-    .button-size(12px, 24px, 80px, 120px, 8px);
+    .button-size(theme('fontSize.xs'), theme('spacing.6'), theme('spacing.20'), theme('spacing.32'), theme('spacing.2'));
   }
 }
 

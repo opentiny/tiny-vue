@@ -30,7 +30,7 @@ export default {
     return {
       text: '中文',
       textEn: 'Meta',
-      imgUrl: 'https:/webnova/static/img/tiny3bg.b5dd307.jpg'
+      imgUrl: '/static/images/1.jpg'
     }
   }
 }

@@ -101,12 +101,15 @@ export const cmpMenus = [
       { 'nameCn': '弹出编辑', 'name': 'PopEditor', 'key': 'popeditor' },
       { 'nameCn': '弹出框上传', 'name': 'PopUpload', 'key': 'pop-upload' },
       { 'nameCn': '单选框', 'name': 'Radio', 'key': 'radio' },
+      { 'nameCn': '富文本', 'name': 'RichTextEditor', 'key': 'rich-text-editor' },
       { 'nameCn': '搜索', 'name': 'Search', 'key': 'search' },
       { 'nameCn': '选择器', 'name': 'Select', 'key': 'select' },
       { 'nameCn': '滑块', 'name': 'Slider', 'key': 'slider' },
       { 'nameCn': '开关', 'name': 'Switch', 'key': 'switch' },
       { 'nameCn': '时间选择器', 'name': 'TimePicker', 'key': 'time-picker' },
-      { 'nameCn': '时间选择', 'name': 'TimeSelect', 'key': 'time-select' }
+      { 'nameCn': '时间选择', 'name': 'TimeSelect', 'key': 'time-select' },
+      { 'nameCn': '颜色选择器', 'name': 'ColorPicker', 'key': 'color-picker' },
+      { 'nameCn': '颜色选择面板', 'name': 'ColorSelectPanel', 'key': 'color-select-panel' }
     ]
   },
   {
@@ -226,6 +229,7 @@ export const cmpMenus = [
     'children': [
       { 'nameCn': '公告牌', 'name': 'BulletinBoard', 'key': 'bulletin-board' },
       { 'nameCn': '日历', 'name': 'Calendar', 'key': 'calendar' },
+      { 'nameCn': '日历视图', 'name': 'CalendarView', 'key': 'calendar-view' },
       { 'nameCn': '信用卡表单', 'name': 'CreditCardForm', 'key': 'credit-card-form' },
       { 'nameCn': '图片裁剪', 'name': 'Crop', 'key': 'crop' },
       { 'nameCn': '表头详情栏', 'name': 'DetailPage', 'key': 'detail-page' },
@@ -239,7 +243,8 @@ export const cmpMenus = [
       { 'nameCn': '联系人', 'name': 'UserContact', 'key': 'user-contact' },
       { 'nameCn': '用户头像', 'name': 'UserHead', 'key': 'user-head' },
       { 'nameCn': '全屏显示', 'name': 'Fullscreen', 'key': 'fullscreen' },
-      { 'nameCn': '全局设置', 'name': 'ConfigProvider', 'key': 'config-provider' }
+      { 'nameCn': '全局设置', 'name': 'ConfigProvider', 'key': 'config-provider' },
+      { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' }
     ]
   }
 ]

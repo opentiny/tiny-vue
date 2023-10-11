@@ -45,6 +45,10 @@
     fill: var(--ti-collapse-item-disabled-text-color);
   }
 
+  &.is-disabled &__word-overflow {
+    cursor: not-allowed;
+  }
+
   &__header {
     display: flex;
     border: 1px solid var(--ti-collapse-item-header-border-color);
@@ -64,6 +68,14 @@
 
     &.focusing:focus:not(:hover) {
       color: var(--ti-collapse-item-header-focus-text-color);
+    }
+
+    .@{collapse-item-prefix-cls}__word-overflow {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+      cursor: pointer;
     }
 
     .@{collapse-item-prefix-cls}__arrow {

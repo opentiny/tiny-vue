@@ -36,6 +36,7 @@
 import { setup, props, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/popover/vue'
 import '@opentiny/vue-theme/popover/index.less'
+import type { IPopoverApi } from '@opentiny/vue-renderless/types/popover.type'
 
 export default defineComponent({
   emits: ['update:modelValue', 'hide', 'show', 'after-enter', 'after-leave', 'created'],
@@ -57,7 +58,6 @@ export default defineComponent({
     'reference',
     'tabindex',
     'title',
-    'transformOrigin',
     'transition',
     'trigger',
     'visibleArrow',
@@ -65,7 +65,7 @@ export default defineComponent({
     'height'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IPopoverApi
   }
 })
 </script>

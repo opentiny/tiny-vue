@@ -26,8 +26,8 @@ export default {
     }
   },
   methods: {
-    fn(placement) {
-      this.placement = placement
+    fn(side) {
+      this.placement = side
       this.visible = true
     }
   }

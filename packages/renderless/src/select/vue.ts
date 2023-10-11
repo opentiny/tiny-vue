@@ -106,7 +106,8 @@ import {
   resetFilter,
   computedGetIcon,
   computedGetTagType,
-  computedShowDropdownIcon
+  computedShowDropdownIcon,
+  clearNoMatchValue
 } from './index'
 import debounce from '../common/deps/debounce'
 import { isNumber } from '../common/type'
@@ -296,7 +297,7 @@ const addApi = ({ api, props, state, emit, constants, parent, nextTick, dispatch
     }),
     debouncRquest: debouncRquest({ api, state, props }),
     defaultOnQueryChange: defaultOnQueryChange({ props, state, constants, api }),
-    mounted: mounted({ api, parent, state, props, vm }),
+    mounted: mounted({ api, parent, state, props, vm, constants }),
     unMount: unMount({ api, parent, vm, state }),
     watchOptimizeOpts: watchOptimizeOpts({ api, props, vm, state }),
     handleDropdownClick: handleDropdownClick({ emit }),
@@ -308,7 +309,8 @@ const addApi = ({ api, props, state, emit, constants, parent, nextTick, dispatch
     resetFilter: resetFilter({ state, api }),
     computedGetIcon: computedGetIcon({ constants, designConfig, props }),
     computedGetTagType: computedGetTagType({ designConfig, props }),
-    computedShowDropdownIcon: computedShowDropdownIcon({ props, state })
+    computedShowDropdownIcon: computedShowDropdownIcon({ props, state }),
+    clearNoMatchValue: clearNoMatchValue({ props, emit })
   })
 }
 

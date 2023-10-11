@@ -30,8 +30,7 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, GridToolbar } from '@opentiny/vue'
-import { message } from '@opentiny/vue-modal'
+import { Grid, GridColumn, GridToolbar, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -100,7 +99,7 @@ export default {
       switch (code) {
         case 'copy': {
           if (data.length === 0) {
-            message({ message: '请至少选中一条记录', status: 'info' })
+            Modal.message({ message: '请至少选中一条记录', status: 'info' })
           }
 
           data.forEach((item) => {

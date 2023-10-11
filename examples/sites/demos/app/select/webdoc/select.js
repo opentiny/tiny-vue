@@ -53,6 +53,17 @@ export default {
       'codeFiles': ['tag-type.vue']
     },
     {
+      'demoId': 'clear-no-match-value',
+      'name': { 'zh-CN': '自动清除不匹配的值', 'en-US': 'Set the text box type' },
+      'desc': {
+        'zh-CN':
+          '<p>设置 <code>clearNoMatchValue</code> 属性为 <code>true</code>,则在options中无法找到匹配项的值会被自动清除 </p>\n',
+        'en-US':
+          '<p>If <code>clearNoMatchValue</code> is set to <code>true</code>, values that cannot be found in options are automatically cleared. </p>\n'
+      },
+      'codeFiles': ['clear-no-match-value.vue']
+    },
+    {
       'demoId': 'input-box-type',
       'name': { 'zh-CN': '设置输入框类型', 'en-US': 'Maximum number of options' },
       'desc': {
@@ -280,7 +291,7 @@ export default {
     },
     {
       'demoId': 'tag-copy-all',
-      'name': { 'zh-CN': 'Select选择器选项支持复制所有', 'en-US': 'Bound Value Object' },
+      'name': { 'zh-CN': 'Select选择器选项支持复制所有', 'en-US': 'Bound Value object' },
       'desc': {
         'zh-CN': '<p>设置 <code>copyable</code> 属性后，可以复制所有的 <code>tag</code> 文本内容以逗号分隔</p>\n',
         'en-US':
@@ -579,7 +590,7 @@ export default {
       'properties': [
         {
           'name': 'tag-selectable',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '下拉框内选中项支持复制功能',
@@ -589,14 +600,14 @@ export default {
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否禁用', 'en-US': 'Disable' },
           'demoId': 'disabled'
         },
         {
           'name': 'multiple',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '设置是否允许输入框输入或选择多个项，默认为 false。;是否多选',
@@ -607,7 +618,7 @@ export default {
         },
         {
           'name': 'tag-type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -619,7 +630,7 @@ export default {
         },
         {
           'name': 'placement',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -631,7 +642,7 @@ export default {
         },
         {
           'name': 'clearable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '设置是否显示清除文本的按钮，默认为 true。;是否可以清空选项',
@@ -641,8 +652,19 @@ export default {
           'demoId': 'clearable'
         },
         {
+          'name': 'clear-no-match-value',
+          'type': 'Boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '设置是否自动清空无法在options中找到匹配项的值。默认不自动清空，设置为true时生效。',
+            'en-US':
+              'Sets whether to automatically clear the values that cannot be found in options. By default, this parameter is not automatically cleared. This parameter is valid only when this parameter is set to true.'
+          },
+          'demoId': 'clear-no-match-value'
+        },
+        {
           'name': 'text-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置下拉框的文本对应的数据源的字段名称。',
@@ -652,7 +674,7 @@ export default {
         },
         {
           'name': 'modelValue / v-model',
-          'type': 'Boolean , String , Number',
+          'type': 'boolean , string , number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置下拉框的默认值。;绑定值',
@@ -662,7 +684,7 @@ export default {
         },
         {
           'name': 'value-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置下拉框的值所对应数据源的字段名称,下拉框的值用于提交到服务器。',
@@ -673,7 +695,7 @@ export default {
         },
         {
           'name': 'value-key',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 value',
           'desc': {
             'zh-CN': '作为 value 唯一标识的键名，绑定值为对象类型时必填',
@@ -684,7 +706,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '输入框尺寸;该属性的可选值为 medium/small/mini',
@@ -694,7 +716,7 @@ export default {
         },
         {
           'name': 'collapse-tags',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '多选时是否将选中值按文字的形式展示',
@@ -704,7 +726,7 @@ export default {
         },
         {
           'name': 'multiple-limit',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': {
             'zh-CN': '多选时用户最多可以选择的项目数，为 0 则不限制',
@@ -715,35 +737,35 @@ export default {
         },
         {
           'name': 'name',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': 'select input 的 name 属性', 'en-US': 'name attribute of select input' },
           'demoId': 'name'
         },
         {
           'name': 'autocomplete',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 off',
           'desc': { 'zh-CN': 'select input 的 autocomplete 属性', 'en-US': 'autocomplete attribute of select input' },
           'demoId': ''
         },
         {
           'name': 'placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 请选择',
           'desc': { 'zh-CN': '占位符', 'en-US': 'Placeholder' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'filterable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否可搜索', 'en-US': 'Searchable' },
           'demoId': 'filter-method'
         },
         {
           'name': 'searchable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否下拉面板可搜索',
@@ -753,12 +775,12 @@ export default {
         },
         {
           'name': 'allow-create',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否允许用户创建新条目，需配合 filterable 使用',
             'en-US':
-              'User-defined search method; arg1:{String value in the current input box}, arg2:{a node in the Object tree}'
+              'User-defined search method; arg1:{string value in the current input box}, arg2:{a node in the object tree}'
           },
           'demoId': 'allow-create'
         },
@@ -767,14 +789,14 @@ export default {
           'type': 'Function(arg1,arg2)',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '自定义搜索方法;arg1:{String 当前input框中值}，arg2:{Object 树的某个节点}',
+            'zh-CN': '自定义搜索方法;arg1:{string 当前input框中值}，arg2:{object 树的某个节点}',
             'en-US': 'Remote search'
           },
           'demoId': 'filter-method'
         },
         {
           'name': 'remote',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否为远程搜索', 'en-US': 'Remote search method' },
           'demoId': 'remote-method'
@@ -788,14 +810,14 @@ export default {
         },
         {
           'name': 'loading',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否正在从远程获取数据', 'en-US': 'Text displayed during remote loading' },
           'demoId': 'remote-method'
         },
         {
           'name': 'loading-text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 加载中',
           'desc': {
             'zh-CN': '远程加载时显示的文字',
@@ -805,7 +827,7 @@ export default {
         },
         {
           'name': 'no-match-text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 无匹配数据',
           'desc': {
             'zh-CN': '搜索条件无匹配时显示的文字，也可以使用slot="empty"设置',
@@ -815,7 +837,7 @@ export default {
         },
         {
           'name': 'no-data-text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 无数据',
           'desc': {
             'zh-CN': '选项为空时显示的文字，也可以使用slot="empty"设置',
@@ -826,7 +848,7 @@ export default {
         },
         {
           'name': 'show-empty-image',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '默认不显示空数据图片，设置为 true 的时候显示',
@@ -837,7 +859,7 @@ export default {
         },
         {
           'name': 'input-box-type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'input',
           'desc': {
             'zh-CN': '设置输入框的显示类型，包含 input / underline 两种，默认为input',
@@ -847,7 +869,7 @@ export default {
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为空',
           'desc': {
             'zh-CN': 'Select 下拉框的类名',
@@ -858,7 +880,7 @@ export default {
         },
         {
           'name': 'reserve-keyword',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '多选且可搜索时，是否在选中一个选项后保留当前的搜索关键词',
@@ -869,7 +891,7 @@ export default {
         },
         {
           'name': 'default-first-option',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '在输入框按下回车，选择第一个匹配项。需配合 filterable 或 remote 使用',
@@ -880,7 +902,7 @@ export default {
         },
         {
           'name': 'popper-append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false',
@@ -891,7 +913,7 @@ export default {
         },
         {
           'name': 'automatic-dropdown',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '对于不可搜索的 Select，是否在输入框获得焦点后自动弹出选项菜单',
@@ -911,7 +933,7 @@ export default {
         },
         {
           'name': 'show-alloption',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '展示 `全选` 选项，默认为 true 。',
@@ -922,7 +944,7 @@ export default {
         },
         {
           'name': 'is-drop-inherit-width',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -934,7 +956,7 @@ export default {
         },
         {
           'name': 'cache-op',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -945,7 +967,7 @@ export default {
         },
         {
           'name': 'render-type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置下拉列表嵌套 Grid 或 Tree 时的组件类型',
@@ -955,7 +977,7 @@ export default {
         },
         {
           'name': 'grid-op',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '下拉列表嵌套 Grid 组件时，用来配置 Grid 的数据信息',
@@ -966,7 +988,7 @@ export default {
         },
         {
           'name': 'tree-op',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '下拉列表嵌套 Tree 组件时，用来配置 Tree 的数据信息',
@@ -976,7 +998,7 @@ export default {
         },
         {
           'name': 'allow-copy',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false，表示不能复制',
           'desc': {
             'zh-CN': '搜索单选场景，是否允许复制输入框的内容',
@@ -987,7 +1009,7 @@ export default {
         },
         {
           'name': 'copyable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '是开启复制功能，配置后会在输入框右侧鼠标上浮后有个复制按钮。（只能用于多选模式）',
@@ -997,7 +1019,7 @@ export default {
         },
         {
           'name': 'text-split',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '在配置 copyable 的情况下可相当于选中项的分隔符', 'en-US': '' },
           'demoId': ''
@@ -1032,9 +1054,9 @@ export default {
           'type': 'Function(arg)',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '下拉框出现/隐藏时触发;arg:{Boolean 下拉框出现时为true；下拉框隐藏时为false}',
+            'zh-CN': '下拉框出现/隐藏时触发;arg:{boolean 下拉框出现时为true；下拉框隐藏时为false}',
             'en-US':
-              'This event is triggered when the drop-down list box is displayed or hidden. arg:{The value is true when the Boolean drop-down list box appears. If the drop-down list box is hidden, the value is false}'
+              'This event is triggered when the drop-down list box is displayed or hidden. arg:{The value is true when the boolean drop-down list box appears. If the drop-down list box is hidden, the value is false}'
           },
           'demoId': 'envts-change'
         },

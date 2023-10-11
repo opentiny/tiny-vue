@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  -->
- 
+
 <template>
   <div
     class="tiny-select-dropdown tiny-popper"
@@ -36,7 +36,6 @@ export default defineComponent({
     'popperOptions',
     'visibleArrow',
     'appendToBody',
-    'transformOrigin',
     'reference',
     'popper',
     'offset',

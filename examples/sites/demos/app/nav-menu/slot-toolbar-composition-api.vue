@@ -2,16 +2,17 @@
   <div class="preview-nav">
     <tiny-nav-menu :data="menuData">
       <template #toolbar>
+        <tiny-icon-administrator class="icon-administrator"></tiny-icon-administrator>
         <tiny-icon-setting class="icon-setting"></tiny-icon-setting>
       </template>
     </tiny-nav-menu>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { NavMenu as TinyNavMenu } from '@opentiny/vue'
-import { iconSetting } from '@opentiny/vue-icon'
+import { iconSetting, iconAdministrator } from '@opentiny/vue-icon'
 
 const menuData = ref([
   {
@@ -307,6 +308,7 @@ const menuData = ref([
 ])
 
 const TinyIconSetting = iconSetting()
+const TinyIconAdministrator = iconAdministrator()
 </script>
 
 <style>
@@ -320,7 +322,8 @@ const TinyIconSetting = iconSetting()
   vertical-align: middle;
 }
 
-.preview-nav .icon-setting {
+.preview-nav .icon-setting, .preview-nav .icon-administrator{
+  margin-right:20px;
   fill: white;
   font-size: 24px;
 }

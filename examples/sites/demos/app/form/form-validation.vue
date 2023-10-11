@@ -1,13 +1,9 @@
 <template>
   <div class="demo-form">
-    <tiny-form
-      ref="ruleFormRef"
-      hide-required-asterisk
-      :model="createData"
-      :rules="rules"
-      label-width="100px"
-      show-message
-    >
+    <div class="mb-12">
+      <div>validate用法：<tiny-button-group :data="validTypeList" v-model="validType"></tiny-button-group></div>
+    </div>
+    <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="100px">
       <tiny-form-item label="必填" prop="users" required :validate-icon="validateIcon">
         <tiny-input v-model="createData.users"></tiny-input>
       </tiny-form-item>
@@ -23,17 +19,6 @@
       <tiny-form-item label="邮件" prop="email">
         <tiny-input v-model="createData.email"></tiny-input>
       </tiny-form-item>
-      <tiny-form-item label="文本">
-        <tiny-input v-model="createData.textarea" type="textarea" maxlength="15"></tiny-input>
-      </tiny-form-item>
-      <tiny-form-item label="级联选择器" prop="cascader">
-        <tiny-cascader
-          v-model="createData.cascader"
-          :options="options2"
-          :popper-append-to-body="true"
-          filterable
-        ></tiny-cascader>
-      </tiny-form-item>
       <tiny-form-item label="Numeric字段" prop="num1">
         <tiny-numeric v-model="createData.num1"></tiny-numeric>
       </tiny-form-item>
@@ -41,7 +26,10 @@
         <tiny-ip-address v-model="createData.ip"></tiny-ip-address>
       </tiny-form-item>
       <tiny-form-item>
-        <tiny-button type="primary" @click="handleSubmit()"> 提交 </tiny-button>
+        <tiny-button type="primary" @click="validType === 'callback' ? handleSubmit() : handleSubmitPromise()">
+          提交
+        </tiny-button>
+        <tiny-button type="success" @click="clearFormValid"> 移除校验 </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>
@@ -56,9 +44,9 @@ import {
   Button,
   Modal,
   RadioGroup,
-  Cascader,
   Numeric,
-  IpAddress
+  IpAddress,
+  ButtonGroup
 } from '@opentiny/vue'
 import { iconWarning } from '@opentiny/vue-icon'
 
@@ -70,13 +58,18 @@ export default {
     TinyDatePicker: DatePicker,
     TinyButton: Button,
     TinyRadioGroup: RadioGroup,
-    TinyCascader: Cascader,
     TinyNumeric: Numeric,
-    TinyIpAddress: IpAddress
+    TinyIpAddress: IpAddress,
+    TinyButtonGroup: ButtonGroup
   },
   data() {
     return {
       validateIcon: iconWarning(),
+      validType: 'promise',
+      validTypeList: [
+        { text: 'promise', value: 'promise' },
+        { text: '回调', value: 'callback' }
+      ],
       options: [
         { label: 'A', text: '很好', events: { click: this.handleClick } },
         { label: 'B', text: '一般' }
@@ -103,10 +96,8 @@ export default {
         url: '',
         email: '',
         datepicker: '',
-        textarea: '',
         ip: '',
-        num1: 0,
-        cascader: [] // 注意:级联选择器放在表单中校验时，默认值必须是数组
+        num1: 0
       },
       rules: {
         radio: [{ required: true, message: '必填', trigger: 'change' }],
@@ -117,7 +108,6 @@ export default {
         datepicker: { type: 'date' },
         url: { type: 'url' },
         email: { type: 'email' },
-        cascader: [{ required: true, message: '必填', trigger: 'blur' }],
         ip: [
           {
             validator: (rule, value, cb) => (value === '1.1.1.1' ? cb() : cb(new Error('必填1.1.1.1'))),
@@ -132,9 +122,24 @@ export default {
     handleSubmit() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          Modal.alert('提交成功')
+          Modal.alert('回调用法：提交成功')
+        } else {
+          Modal.alert('回调用法：提交失败')
         }
       })
+    },
+    handleSubmitPromise() {
+      this.$refs.ruleFormRef
+        .validate()
+        .then(() => {
+          Modal.alert('promise用法:提交成功')
+        })
+        .catch(() => {
+          Modal.alert('promise用法:提交失败')
+        })
+    },
+    clearFormValid() {
+      this.$refs.ruleFormRef.clearValidate()
     }
   }
 }
@@ -143,5 +148,8 @@ export default {
 <style scoped>
 .demo-form {
   width: 380px;
+}
+.mb-12 {
+  margin-bottom: 12px;
 }
 </style>

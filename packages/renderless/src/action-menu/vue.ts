@@ -10,25 +10,34 @@
  *
  */
 
+import {
+  IActionMenuApi,
+  IActionMenuProps,
+  IActionMenuState,
+  ISharedRenderlessParamHooks,
+  IActionMenuRenderlessParamUtils
+} from '@/types'
 import { handleMoreClick, handleItemClick, visibleChange } from './index'
 
 export const api = ['state', 'handleMoreClick', 'handleItemClick', 'visibleChange']
 
-export const renderless = (props, { computed, reactive }, { emit, nextTick }) => {
-  const api = {
-    handleMoreClick: handleMoreClick(emit),
-    handleItemClick: handleItemClick(emit),
-    visibleChange: visibleChange(emit)
-  }
-  const state = reactive({
+export const renderless = (
+  props: IActionMenuProps,
+  { computed, reactive }: ISharedRenderlessParamHooks,
+  { emit }: IActionMenuRenderlessParamUtils
+): IActionMenuApi => {
+  const state: IActionMenuState = reactive({
     visibleOptions: computed(() => props.options.slice(0, props.maxShowNum)),
     moreOptions: computed(() => props.options.slice(props.maxShowNum)),
     spacing: computed(() => (String(props.spacing).includes('px') ? props.spacing : props.spacing + 'px'))
   })
 
-  Object.assign(api, {
+  const api: IActionMenuApi = {
+    handleMoreClick: handleMoreClick(emit),
+    handleItemClick: handleItemClick(emit),
+    visibleChange: visibleChange(emit),
     state
-  })
+  }
 
   return api
 }

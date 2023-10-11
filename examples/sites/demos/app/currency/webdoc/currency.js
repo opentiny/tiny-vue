@@ -46,14 +46,14 @@ export default {
       'properties': [
         {
           'name': 'modelValue / v-model',
-          'type': 'String , Number',
+          'type': 'string , number',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置下拉框的值。', 'en-US': 'Set the value of the drop-down list box.' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置输入框内的提示占位文本。',
@@ -63,7 +63,7 @@ export default {
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '为 popper 添加类名(可参考 popover 组件)',
@@ -73,7 +73,7 @@ export default {
         },
         {
           'name': 'popper-append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN':
@@ -95,7 +95,7 @@ export default {
         },
         {
           'name': 'fields',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '自定义数据映射，在没有使用框架服务时必填',
@@ -105,7 +105,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '输入框尺寸，只在 type!="textarea" 时有效;该属性的可选值为 medium / small / mini',
@@ -116,7 +116,7 @@ export default {
         },
         {
           'name': 'clearable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否显示清除按钮;是否可清空', 'en-US': 'Whether to display the Clear button; Clearable' },
           'demoId': 'custom-service'

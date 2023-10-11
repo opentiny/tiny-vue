@@ -82,7 +82,7 @@ export default {
         },
         {
           'name': 'props',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '配置选项，具体见 CascaderPanel Props 表 ',
@@ -151,7 +151,7 @@ export default {
       'caspanelprops': [
         {
           'name': 'expandTrigger',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'click',
           'desc': {
             'zh-CN': '次级菜单的展开方式;该属性的可选值为 click / hover',
@@ -161,14 +161,14 @@ export default {
         },
         {
           'name': 'multiple',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '是否多选', 'en-US': 'Whether to select multiple options' },
           'demoId': 'default-multiple'
         },
         {
           'name': 'checkStrictly',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': ' false',
           'desc': {
             'zh-CN': '是否严格的遵守父子节点不互相关联',
@@ -179,7 +179,7 @@ export default {
         },
         {
           'name': 'emitPath',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': ' true',
           'desc': {
             'zh-CN':
@@ -191,7 +191,7 @@ export default {
         },
         {
           'name': 'lazy',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否动态加载子节点，需与 lazyLoad 方法结合使用',
@@ -214,7 +214,7 @@ export default {
         },
         {
           'name': 'value',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': "'value'",
           'desc': {
             'zh-CN': '指定选项的值为选项对象的某个属性值',
@@ -224,7 +224,7 @@ export default {
         },
         {
           'name': 'label',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': "'label'",
           'desc': {
             'zh-CN': '指定选项标签为选项对象的某个属性值',
@@ -234,7 +234,7 @@ export default {
         },
         {
           'name': 'children',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': "'children'",
           'desc': {
             'zh-CN': '指定选项的子选项为选项对象的某个属性值',
@@ -244,7 +244,7 @@ export default {
         },
         {
           'name': 'disabled',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': "'disabled'",
           'desc': {
             'zh-CN': '指定选项的禁用为选项对象的某个属性值',
@@ -254,7 +254,7 @@ export default {
         },
         {
           'name': 'leaf',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': "'leaf'",
           'desc': {
             'zh-CN': '指定选项的叶子节点的标志位为选项对象的某个属性值',

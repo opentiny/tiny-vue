@@ -6,8 +6,8 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': '<p>属性 action(type：String) 上传服务器地址。</p>\n',
-        'en-US': '<p>Attribute action (type: String) upload server address. </p>\n'
+        'zh-CN': '<p>属性 action(type：string) 上传服务器地址。</p>\n',
+        'en-US': '<p>Attribute action (type: string) upload server address. </p>\n'
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -103,7 +103,7 @@ export default {
       'desc': {
         'zh-CN': '<p>通过 <code>file</code> 插槽自定义文件列表</p>\n',
         'en-US':
-          '<p>You can use <code>show-file-list</code> to configure whether to display the list of uploaded files. The default value is true. This parameter must be used together with file-list.\nYou can configure <code>:file-list (type: Object) </code> to display the name and address of the uploaded file</p>\n'
+          '<p>You can use <code>show-file-list</code> to configure whether to display the list of uploaded files. The default value is true. This parameter must be used together with file-list.\nYou can configure <code>:file-list (type: object) </code> to display the name and address of the uploaded file</p>\n'
       },
       'codeFiles': ['upload-file-list.vue']
     },
@@ -112,9 +112,9 @@ export default {
       'name': { 'zh-CN': '自定义文件列表', 'en-US': 'User-defined File List' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>show-file-list</code> 配置是否显示是否显示已上传文件列表，默认值为 true ，需要与 file-list 同时使用\n可配置 <code>:file-list（type：Object）</code>来显示已上传的文件名和地址</p>\n',
+          '<p>通过 <code>show-file-list</code> 配置是否显示是否显示已上传文件列表，默认值为 true ，需要与 file-list 同时使用\n可配置 <code>:file-list（type：object）</code>来显示已上传的文件名和地址</p>\n',
         'en-US':
-          '<p>You can use <code>show-file-list</code> to configure whether to display the list of uploaded files. The default value is true and must be used together with file-list.\nYou can configure <code>:file-list (type: Object) </code> to display the name and address of the uploaded file</p>\n'
+          '<p>You can use <code>show-file-list</code> to configure whether to display the list of uploaded files. The default value is true and must be used together with file-list.\nYou can configure <code>:file-list (type: object) </code> to display the name and address of the uploaded file</p>\n'
       },
       'codeFiles': ['upload-file-list-slot.vue']
     },
@@ -186,9 +186,9 @@ export default {
       'demoId': 'max-file-count',
       'name': { 'zh-CN': '最大上传文件数', 'en-US': 'Maximum number of files to be uploaded' },
       'desc': {
-        'zh-CN': '<p>\n可通过配置limit（type:Number，大于0的整数）来限制上传文件的个数</p>\n',
+        'zh-CN': '<p>\n可通过配置limit（type:number，大于0的整数）来限制上传文件的个数</p>\n',
         'en-US':
-          '<p>\nYou can set limit (type:Number, an integer greater than 0) to limit the number of files to be uploaded.</p>\n'
+          '<p>\nYou can set limit (type:number, an integer greater than 0) to limit the number of files to be uploaded.</p>\n'
       },
       'codeFiles': ['max-file-count.vue']
     },
@@ -294,7 +294,7 @@ export default {
       'properties': [
         {
           'name': 'action',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '上传的地址，当不配置 action 时，会生成默认网关链接',
@@ -304,7 +304,7 @@ export default {
         },
         {
           'name': 'open-download-file',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '是否开启点击下载文件，默认不开启 false',
@@ -314,7 +314,7 @@ export default {
         },
         {
           'name': 'headers',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -326,49 +326,49 @@ export default {
         },
         {
           'name': 'multiple',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '是否支持多选文件', 'en-US': 'Specifies whether multiple files can be selected.' },
           'demoId': 'multiple-file'
         },
         {
           'name': 'data',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '上传时附带的额外参数', 'en-US': 'Extra parameters attached during upload' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'name',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 file',
           'desc': { 'zh-CN': '上传的文件字段名', 'en-US': 'Field name of the uploaded file' },
           'demoId': 'upload-file-list'
         },
         {
           'name': 'with-credentials',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '支持发送 cookie 凭证信息', 'en-US': 'Cookie credential information can be sent.' },
           'demoId': 'upload-request1'
         },
         {
           'name': 'show-file-list',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否显示已上传文件列表', 'en-US': 'Whether to display the list of uploaded files' },
           'demoId': 'upload-file-list'
         },
         {
           'name': 'drag',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否启用拖拽上传', 'en-US': 'Whether to enable drag-and-drop upload' },
           'demoId': 'drag-upload'
         },
         {
           'name': 'accept',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '接受上传的文件类型（thumbnail-mode 模式下此参数无效）',
@@ -389,7 +389,7 @@ export default {
         },
         {
           'name': 'list-type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 text',
           'desc': {
             'zh-CN': '文件列表的类型;该属性的可选值为 text / picture / picture-card / thumb',
@@ -399,13 +399,13 @@ export default {
         },
         {
           'name': 'thumb-option',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
               '文件列表的显示类型为 thumb 时，相关配置;popperClass 弹窗列表自定义类名;width 弹窗宽度，默认270,number类型;showDownload 是否显示下载按钮,布尔值默认为false;showDel 是否显示删除按钮,布尔值默认为false;downloadFile 点击下载按钮执行函数,开启 EDM 模式配置必要的token后即可下载，可省略该配置;show-tooltip 文件名超出隐藏显示时是否启用tip,默认值为false;列表结果前 icon,默认为 icon-attachment',
             'en-US':
-              'Configure the file list when the display type is thumb. popperClass pop-up window list custom class name; width: width of the pop-up window. The default value is 270. The value is of the number type. ShowDownload indicates whether to display the download button. The default Boolean value is false. ShowDel indicates whether to display the delete button. The default Boolean value is false. DownloadFile: Click the download button to execute the function. Enable the EDM mode and configure the necessary token. This configuration can be omitted. show-tooltip: Indicates whether to enable tip when the file name exceeds the hidden value. The default value is false. The icon before the list result. The default value is icon-attachment'
+              'Configure the file list when the display type is thumb. popperClass pop-up window list custom class name; width: width of the pop-up window. The default value is 270. The value is of the number type. ShowDownload indicates whether to display the download button. The default boolean value is false. ShowDel indicates whether to display the delete button. The default boolean value is false. DownloadFile: Click the download button to execute the function. Enable the EDM mode and configure the necessary token. This configuration can be omitted. show-tooltip: Indicates whether to enable tip when the file name exceeds the hidden value. The default value is false. The icon before the list result. The default value is icon-attachment'
           },
           'demoId': 'upload-file-list-thumb'
         },
@@ -423,7 +423,7 @@ export default {
         },
         {
           'name': 'auto-upload',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否在选取文件后立即进行上传',
@@ -455,21 +455,21 @@ export default {
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否禁用', 'en-US': 'Disable' },
           'demoId': ''
         },
         {
           'name': 'limit',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': { 'zh-CN': '最大允许上传个数', 'en-US': 'Maximum number of files that can be uploaded' },
           'demoId': 'upload-limit'
         },
         {
           'name': 'is-hidden',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '达到最大上传个数时，是否隐藏上传按钮，默认不隐藏',
@@ -480,7 +480,7 @@ export default {
         },
         {
           'name': 'edm',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '使用 EDM 的上传下载预览功能，可在该对象里边配置上传、下载、预览功能的参数',
@@ -501,7 +501,7 @@ export default {
         },
         {
           'name': 'isFolder',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -513,13 +513,13 @@ export default {
         },
         {
           'name': 'fileSize',
-          'type': 'Number | Array',
+          'type': 'number | Array',
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '限制文件大,小单位为 KB;启用 EDM 上传时设置有效;当为 Number 类型时，小于该值停止上传;为数组时[min,max] 设置上传范围,值为 Number 类型；最大值不能超过 2G;设置为数组时最大值将与 EDM 服务侧设置的值做对比，取最小值',
+              '限制文件大,小单位为 KB;启用 EDM 上传时设置有效;当为 number 类型时，小于该值停止上传;为数组时[min,max] 设置上传范围,值为 number 类型；最大值不能超过 2G;设置为数组时最大值将与 EDM 服务侧设置的值做对比，取最小值',
             'en-US':
-              'Restrict the file size. The unit is KB. This parameter is valid when EDM upload is enabled. When the value is of the Number type, the upload stops if the value is less than the value of this parameter. When the value is an array, [min,max] sets the upload range. The value is of the Number type. The maximum value cannot exceed 2 GB. When this parameter is set to an array, the maximum value is compared with the value set on the EDM server and the minimum value is used.'
+              'Restrict the file size. The unit is KB. This parameter is valid when EDM upload is enabled. When the value is of the number type, the upload stops if the value is less than the value of this parameter. When the value is an array, [min,max] sets the upload range. The value is of the number type. The maximum value cannot exceed 2 GB. When this parameter is set to an array, the maximum value is compared with the value set on the EDM server and the minimum value is used.'
           },
           'demoId': ''
         },
@@ -536,7 +536,7 @@ export default {
         },
         {
           'name': 'upload',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -548,7 +548,7 @@ export default {
         },
         {
           'name': 'download',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '配置 EDM 下载功能所需的参数,例如：edm:{download:{token:()=>{}}},token为鉴权token',
@@ -559,7 +559,7 @@ export default {
         },
         {
           'name': 'preivew',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -571,7 +571,7 @@ export default {
         },
         {
           'name': 'mergeService',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '配置 mergeService 为true 且开启多文件上传走默认服务会将多个上传服务合并为一个服务上传',
@@ -582,14 +582,14 @@ export default {
         },
         {
           'name': 'updateId',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': 'EDM 需要更新文档的 docId', 'en-US': 'DocId of the document to be updated on the EDM' },
           'demoId': ''
         },
         {
           'name': 'max-name-length',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': { 'zh-CN': '文件名最大的显示长度', 'en-US': 'Maximum length of a file name' },
           'demoId': ''

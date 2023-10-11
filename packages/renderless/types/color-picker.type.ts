@@ -1,0 +1,1 @@
+export type IColorPickerRef<T> = {value: T}

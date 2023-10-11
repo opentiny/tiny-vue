@@ -38,7 +38,7 @@ export default {
         },
         {
           'name': 'title',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': "详情栏标题;默认为 '带表头的详情栏'",
@@ -48,7 +48,7 @@ export default {
         },
         {
           'name': 'text-split',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': "详情栏标题分隔符;默认为 ':'",
@@ -58,7 +58,7 @@ export default {
         },
         {
           'name': 'dialog-title',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': "个性化弹窗标题;默认为 '个性化设置'",
@@ -68,7 +68,7 @@ export default {
         },
         {
           'name': 'label-title',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': "个性化弹窗表头文本标题栏字段;默认为 '字段'",
@@ -78,7 +78,7 @@ export default {
         },
         {
           'name': 'tips',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': "提示不能全部隐藏的提示语;默认为 '至少显示一个'",
@@ -88,7 +88,7 @@ export default {
         },
         {
           'name': 'value-title',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': "个性化弹窗表头文本操作栏字段;默认为 '隐藏'",
@@ -98,7 +98,7 @@ export default {
         },
         {
           'name': 'save-button',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': "个性化弹窗确定按钮的文本;默认为 '确 定'",
@@ -108,7 +108,7 @@ export default {
         },
         {
           'name': 'cancel-button',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': "个性化弹窗取消按钮的文本;默认为 '取 消'",

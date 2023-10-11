@@ -5,7 +5,7 @@
 </template>
 
 <script lang="jsx">
-import { FileUpload, Button } from '@opentiny/vue'
+import { FileUpload, Button, Modal as TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -24,7 +24,7 @@ export default {
       const isLt2M = file.size / 1024 / 1024 < 2
       const allow = isJPG && isLt2M
 
-      !allow && alert('自定义提示：该文件不合规范，文件类型或大小超出限制')
+      !allow && TinyModal.alert('自定义提示：该文件不合规范，文件类型或大小超出限制')
 
       return allow
     }

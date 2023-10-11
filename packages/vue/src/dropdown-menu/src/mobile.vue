@@ -68,7 +68,7 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/dropdown-menu/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
 import { iconUp, iconDown, iconUnfilter, iconSort, iconDeltaDown, iconDeltaUp } from '@opentiny/vue-icon'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import '@opentiny/vue-theme-mobile/dropdown-menu/index.less'
@@ -92,7 +92,7 @@ export default defineComponent({
     IconDeltaDown: iconDeltaDown(),
     IconDeltaUp: iconDeltaUp()
   },
-  directives: { Clickoutside },
+  directives: directive({ Clickoutside }),
   emits: ['open'],
   setup(props, context) {
     return setup({ props, context, renderless, api })

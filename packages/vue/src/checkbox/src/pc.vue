@@ -32,7 +32,7 @@
         'is-indeterminate': indeterminate,
         'is-focus': state.focus
       }"
-      :role="indeterminate ? 'checkbox' : false"
+      :role="indeterminate ? 'checkbox' : undefined"
       :aria-checked="indeterminate ? 'mixed' : false"
     >
       <span class="tiny-checkbox__inner" tabindex="1">
@@ -84,6 +84,7 @@ import { renderless, api } from '@opentiny/vue-renderless/checkbox/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/checkbox/index.less'
 import { iconHalfselect, iconCheckedSur, iconCheck } from '@opentiny/vue-icon'
+import type { ICheckboxApi } from '@opentiny/vue-renderless/types/checkbox.type'
 
 export default defineComponent({
   emits: ['change', 'update:modelValue', 'complete'],
@@ -112,7 +113,7 @@ export default defineComponent({
     IconCheck: iconCheck()
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as ICheckboxApi
   }
 })
 </script>

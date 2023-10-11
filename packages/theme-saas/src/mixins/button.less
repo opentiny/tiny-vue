@@ -2,7 +2,7 @@
   min-width: @min-width;
   max-width: @max-width;
   height: @height;
-  line-height: @height - 2;
+  line-height: calc(@height - theme('borderWidth.DEFAULT') * 2);
   font-size: @font-size;
   padding: 0 @padding;
 

@@ -143,7 +143,7 @@ export default {
       'properties': [
         {
           'name': 'type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'info',
           'desc': {
             'zh-CN': '通知消息类型，可选值为 info、success、warning、error',
@@ -153,7 +153,7 @@ export default {
         },
         {
           'name': 'title',
-          'type': '[String, Function]',
+          'type': '[string, Function]',
           'defaultValue': 'undefined',
           'desc': {
             'zh-CN': '通知消息标题，可用 jsx 定制',
@@ -163,7 +163,7 @@ export default {
         },
         {
           'name': 'message',
-          'type': '[String, Function]',
+          'type': '[string, Function]',
           'defaultValue': 'undefined',
           'desc': {
             'zh-CN': '通知消息文本，可用 jsx 定制',
@@ -173,7 +173,7 @@ export default {
         },
         {
           'name': 'position',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'bottom-right',
           'desc': {
             'zh-CN': '通知显示位置，可选值为 top-right、bottom-right',
@@ -183,56 +183,56 @@ export default {
         },
         {
           'name': 'duration',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '4500',
           'desc': { 'zh-CN': '自动关闭延时毫秒数', 'en-US': 'Automatic shutdown delay in milliseconds' },
           'demoId': 'duration'
         },
         {
           'name': 'customClass',
-          'type': '[String, Object]',
+          'type': '[string, object]',
           'defaultValue': 'undefined',
           'desc': { 'zh-CN': '自定义样式类', 'en-US': 'Custom style class' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'showClose',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'true',
           'desc': { 'zh-CN': '是否显示关闭按钮', 'en-US': 'Whether to display the close button' },
           'demoId': 'showClose'
         },
         {
           'name': 'showIcon',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'true',
           'desc': { 'zh-CN': '是否显示类型图标', 'en-US': 'Display Type Icon' },
           'demoId': 'showIcon'
         },
         {
           'name': 'closeIcon',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': 'IconClose',
           'desc': { 'zh-CN': '关闭图标组件对象', 'en-US': 'Close icon component object' },
           'demoId': 'closeIcon'
         },
         {
           'name': 'statusIcon',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': 'IconInfoSolid',
           'desc': { 'zh-CN': '类型图标组件对象', 'en-US': 'Type icon component object' },
           'demoId': 'statusIcon'
         },
         {
           'name': 'debounceDelay',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '0',
           'desc': { 'zh-CN': '启用防抖', 'en-US': 'Enable image stabilization' },
           'demoId': 'debounceDelay'
         },
         {
           'name': 'verticalOffset',
-          'type': '[Number,String]',
+          'type': '[number,string]',
           'defaultValue': 16,
           'desc': { 'zh-CN': '设置垂直方向偏离距离,单位px', 'en-US': '' },
           'demoId': 'verticalOffset'
@@ -251,7 +251,7 @@ export default {
         },
         {
           'name': 'close',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': 'undefined',
           'desc': {
             'zh-CN': '关闭 notify 时触发的事件',

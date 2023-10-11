@@ -9,10 +9,17 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import { IRadioRenderlessParams, IRadioState } from '@/types'
 
 export const handleChange =
-  ({ constants, dispatch, emit, state, nextTick }) =>
-  () => {
+  ({
+    constants,
+    dispatch,
+    emit,
+    state,
+    nextTick
+  }: Pick<IRadioRenderlessParams, 'constants' | 'dispatch' | 'emit' | 'state' | 'nextTick'>) =>
+  (): void => {
     nextTick(() => {
       emit('change', state.model)
 
@@ -21,15 +28,15 @@ export const handleChange =
   }
 
 export const isGroup =
-  ({ constants, parent: $parent, state }) =>
-  () => {
+  ({ constants, parent: $parent, state }: Pick<IRadioRenderlessParams, 'constants' | 'parent' | 'state'>) =>
+  (): boolean => {
     let parent = $parent.$parent.$parent
 
     while (parent) {
       if (parent.$options.componentName !== constants.RADIO_GROUP) {
         parent = parent.$parent
       } else {
-        state.radioGroup = parent
+        state.radioGroup = parent as unknown as IRadioRenderlessParams['parent']
 
         return true
       }
@@ -39,33 +46,45 @@ export const isGroup =
   }
 
 export const radioSize =
-  ({ props, state }) =>
-  () =>
-    state.isGroup ? state.radioGroup.state.radioGroupSize || props.size : props.size
+  ({ props, state }: Pick<IRadioRenderlessParams, 'props' | 'state'>) =>
+  (): IRadioState['radioSize'] => {
+    if (state.isGroup && state.radioGroup?.state?.radioGroupSize) {
+      return state.radioGroup.state.radioGroupSize
+    } else {
+      return props.size
+    }
+  }
 
 export const isDisabled =
-  ({ props, state }) =>
-  () =>
-    props.disabled || state.radioGroup.disabled || state.formDisabled
+  ({ props, state }: Pick<IRadioRenderlessParams, 'props' | 'state'>) =>
+  (): boolean =>
+    props.disabled || state.radioGroup?.disabled || state.formDisabled
 
 export const isDisplayOnly =
-  ({ props }) =>
-  () =>
+  ({ props }: Pick<IRadioRenderlessParams, 'props'>) =>
+  (): boolean =>
     props.displayOnly
 
 export const tabIndex =
-  ({ props, state }) =>
-  () =>
+  ({ props, state }: Pick<IRadioRenderlessParams, 'props' | 'state'>) =>
+  (): number =>
     state.isDisabled || (state.isGroup && state.model !== props.label) ? -1 : 0
 
 export const getModel =
-  ({ props, state }) =>
-  () =>
-    state.isGroup ? state.radioGroup.modelValue : props.modelValue
+  ({ props, state }: Pick<IRadioRenderlessParams, 'props' | 'state'>) =>
+  (): IRadioState['model'] =>
+    state.isGroup && state.radioGroup ? state.radioGroup.modelValue : props.modelValue
 
 export const setModel =
-  ({ constants, dispatch, emit, props, refs, state }) =>
-  (val) => {
+  ({
+    constants,
+    dispatch,
+    emit,
+    props,
+    refs,
+    state
+  }: Pick<IRadioRenderlessParams, 'constants' | 'dispatch' | 'emit' | 'props' | 'refs' | 'state'>) =>
+  (val: IRadioState['model']): void => {
     if (state.isGroup) {
       dispatch(constants.RADIO_GROUP, 'update:modelValue', [val])
     } else {
@@ -75,7 +94,7 @@ export const setModel =
     refs.radio && (refs.radio.checked = state.model === props.label)
   }
 
-export const toggleEvent = ({ props, refs, type }) => {
+export const toggleEvent = ({ props, refs, type }: Pick<IRadioRenderlessParams, 'props' | 'refs' | 'type'>) => {
   const radioEl = refs.radio
 
   Object.keys(props.events).forEach((ev) => {
@@ -84,8 +103,8 @@ export const toggleEvent = ({ props, refs, type }) => {
 }
 
 export const dispatchDisplayedValue =
-  ({ state, dispatch, api }) =>
-  () => {
+  ({ state, dispatch, api }: Pick<IRadioRenderlessParams, 'state' | 'dispatch' | 'api'>) =>
+  (): void => {
     if (state.isDisplayOnly) {
       dispatch('FormItem', 'displayed-value-changed', {
         type: 'radio',
@@ -95,8 +114,8 @@ export const dispatchDisplayedValue =
   }
 
 export const getDisplayedValue =
-  ({ vm, state, props }) =>
-  () => {
+  ({ vm, state, props }: Pick<IRadioRenderlessParams, 'vm' | 'props' | 'state'>) =>
+  (): string => {
     if (state.model === props.label) {
       return (vm.$refs.label && vm.$refs.label.innerText) || props.text || props.label
     } else {

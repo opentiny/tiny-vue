@@ -75,7 +75,6 @@ export default defineComponent({
     'reference',
     'tabindex',
     'title',
-    'transformOrigin',
     'transition',
     'trigger',
     'visibleArrow',

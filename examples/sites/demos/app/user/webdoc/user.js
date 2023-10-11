@@ -200,14 +200,14 @@ export default {
       'properties': [
         {
           'name': 'value',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '配置默认值', 'en-US': 'Default value' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'tag-selectable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否开启输入框中已选择的选项可复制',
@@ -217,7 +217,7 @@ export default {
         },
         {
           'name': 'multiple',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否开启多用户形式，默认为 false ',
@@ -227,21 +227,21 @@ export default {
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否禁用户组件', 'en-US': 'Whether to disable the user component' },
           'demoId': 'dynamic-disable'
         },
         {
           'name': 'value-split',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 ,',
           'desc': { 'zh-CN': '值分隔符', 'en-US': 'Value Separator' },
           'demoId': 'value-split'
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '为 popper 添加类名(可参考 popover 组件)',
@@ -251,7 +251,7 @@ export default {
         },
         {
           'name': 'popper-append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN':
@@ -263,7 +263,7 @@ export default {
         },
         {
           'name': 'sort-by-fetch-data',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '联想时下拉框的数据顺序和接口返回的数据顺序一致',
@@ -274,49 +274,49 @@ export default {
         },
         {
           'name': 'textSplit',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '文本粘贴复制查询时的分割符，该属性的默认值为 ,',
           'desc': { 'zh-CN': '文本分隔符', 'en-US': 'Text separator' },
           'demoId': 'value-split'
         },
         {
           'name': 'value-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 userId',
           'desc': { 'zh-CN': '取值字段映射', 'en-US': 'Value Field Mapping' },
           'demoId': 'value-field'
         },
         {
           'name': 'text-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 userCN',
           'desc': { 'zh-CN': '显示字段映射', 'en-US': 'Display field mapping' },
           'demoId': 'text-field'
         },
         {
           'name': 'cache',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否缓存用户数据', 'en-US': 'Whether to cache user data' },
           'demoId': 'cache-users'
         },
         {
           'name': 'cache-key',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 tiny-user',
           'desc': { 'zh-CN': '设置缓存数据的 key 值', 'en-US': 'Set the key value of cached data.' },
           'demoId': 'cache-users'
         },
         {
           'name': 'delay',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 600 毫秒',
           'desc': { 'zh-CN': '设置延时加载的时间', 'en-US': 'Set the loading delay time.' },
           'demoId': 'delay-load'
         },
         {
           'name': 'suggest-length',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 3',
           'desc': { 'zh-CN': '设置输入指定长度完成后进行加载', 'en-US': 'Load after the input length is set.' },
           'demoId': 'load-after-input-the-length'
@@ -344,14 +344,14 @@ export default {
         },
         {
           'name': 'placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置输入框占位文本', 'en-US': 'Set the placeholder text in the text box' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'collapse-tags',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '多用户时是否折叠标签',
@@ -361,7 +361,7 @@ export default {
         },
         {
           'name': 'collapse-show-overflow-tooltip',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否省略显示超出一行的数据并有tooltip提示',
@@ -381,14 +381,14 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置用户组件尺寸', 'en-US': 'Set the user component size' },
           'demoId': 'user-select-size'
         },
         {
           'name': 'allow-copy',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false，表示不能复制',
           'desc': {
             'zh-CN': '搜索单选场景，是否允许复制输入框的内容;属性会透传给内部的 Select 组件，参考 Select 示例',

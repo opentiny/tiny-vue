@@ -91,7 +91,7 @@ export default {
       'properties': [
         {
           'name': 'text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '通过 value 属性设置文字;显示在加载图标下方的加载文案',
@@ -101,7 +101,7 @@ export default {
         },
         {
           'name': 'fullscreen',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '设置 type 属性为 true 显示全屏;同 v-loading 指令中的 fullscreen 修饰符',
@@ -112,14 +112,14 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'small',
           'desc': { 'zh-CN': '加载图标尺寸', 'en-US': 'Load icon size' },
           'demoId': 'size'
         },
         {
           'name': 'target',
-          'type': 'Object/String',
+          'type': 'object/string',
           'defaultValue': '该属性的默认值为 document.body',
           'desc': {
             'zh-CN':
@@ -131,7 +131,7 @@ export default {
         },
         {
           'name': 'body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '同 v-loading 指令中的 body 修饰符',
@@ -141,7 +141,7 @@ export default {
         },
         {
           'name': 'lock',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '同 v-loading 指令中的 lock 修饰符',
@@ -151,21 +151,21 @@ export default {
         },
         {
           'name': 'spinner',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '自定义加载图标类名', 'en-US': 'Customized loading icon class name' },
           'demoId': 'spinner'
         },
         {
           'name': 'background',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '遮罩背景色', 'en-US': 'Mask background color' },
           'demoId': 'background'
         },
         {
           'name': 'customClass',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': 'Loading 的自定义类名', 'en-US': 'User-defined loading class name' },
           'demoId': 'custom-class'

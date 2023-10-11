@@ -34,9 +34,9 @@ export default {
       'name': { 'zh-CN': 'options 配置', 'en-US': 'options configuration' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>options</code> 总体配置每个 <code>BreadcrumbItem</code>。  </p> 设置<code>text-field</code> 指定显示字段，默认显示字段为 <code>label</code>\n',
+          '<p>通过 <code>options</code> 总体配置每个 <code>BreadcrumbItem</code>。  </p> 设置<code>text-field</code> 指定显示字段，默认显示字段为 <code>label</code>。\n',
         'en-US':
-          '<p>Totally configure each <code>BreadcrumbItem</code> via <code>options</code>. </p>Set <code>text-field</code> to specify the field to be displayed. The default field to be displayed is <code>label</code>\n'
+          '<p>Totally configure each <code>BreadcrumbItem</code> via <code>options</code>. </p>Set <code>text-field</code> to specify the field to be displayed. The default field to be displayed is <code>label</code>.\n'
       },
       'codeFiles': ['options.vue']
     }
@@ -45,24 +45,7 @@ export default {
     {
       'name': 'breadcrumb',
       'type': 'component',
-      'properties': [],
-      'events': [],
-      'slots': [],
-      'breadcrumb-attrs': [
-        {
-          'name': 'separator',
-          'type': 'String',
-          'defaultValue': '该属性的默认值为 >',
-          'desc': { 'zh-CN': '分隔符', 'en-US': 'Separator' },
-          'demoId': 'separator'
-        },
-        {
-          'name': 'separator-icon',
-          'type': 'Object',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '图标分隔符 class', 'en-US': 'Icon separator class' },
-          'demoId': 'separator'
-        },
+      'props': [
         {
           'name': 'options',
           'type': 'Array',
@@ -74,8 +57,22 @@ export default {
           'demoId': 'options'
         },
         {
+          'name': 'separator',
+          'type': 'string',
+          'defaultValue': '>',
+          'desc': { 'zh-CN': '分隔符', 'en-US': 'Separator' },
+          'demoId': 'separator'
+        },
+        {
+          'name': 'separator-icon',
+          'type': 'object',
+          'defaultValue': '--',
+          'desc': { 'zh-CN': '图标分隔符 class', 'en-US': 'Icon separator class' },
+          'demoId': 'separator'
+        },
+        {
           'name': 'text-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'label',
           'desc': {
             'zh-CN': '指定面包屑的显示字段，结合 options 使用，组件默认 label ',
@@ -85,19 +82,40 @@ export default {
           'demoId': 'options'
         }
       ],
-      'breadcrumb-events': [
+      'events': [
         {
           'name': 'select',
           'type': 'Function',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '点击 breadcrumb-item 时触发',
             'en-US': 'This event is triggered when breadcrumb-item is clicked.'
           },
           'demoId': 'options'
         }
-      ],
-      'breadcrumbItem-attrs': [
+      ]
+    },
+    {
+      'name': 'breadcrumbItem',
+      'type': 'component',
+      'props': [
+        {
+          'name': 'label',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '定义面包屑的显示值', 'en-US': 'Define the breadcrumb display value.' },
+          'demoId': 'base'
+        },
+        {
+          'name': 'replace',
+          'type': 'boolean',
+          'defaultValue': '该属性的默认值为 false',
+          'desc': {
+            'zh-CN': '在使用 to 进行路由跳转时，启用 replace 将不会向 history 添加新记录',
+            'en-US': 'When to is used for route redirection, if replace is enabled, no new record is added to history.'
+          },
+          'demoId': 'slot-default'
+        },
         {
           'name': 'to',
           'type': 'String , Object',
@@ -107,44 +125,27 @@ export default {
             'en-US': 'Route redirection object, which is the same as to of vue-router'
           },
           'demoId': 'slot-default'
-        },
+        }
+      ],
+      'events': [
         {
-          'name': 'replace',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'name': 'select',
+          'type': 'Function()',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '在使用 to 进行路由跳转时，启用 replace 将不会向 history 添加新记录',
-            'en-US': 'When to is used for route redirection, if replace is enabled, no new record is added to history.'
+            'zh-CN': '点击 breadcrumb-item 时触发',
+            'en-US': 'This event is triggered when breadcrumb-item is clicked.'
           },
-          'demoId': 'slot-default'
-        },
-        {
-          'name': 'label',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '定义面包屑的显示值', 'en-US': 'Define the breadcrumb display value.' },
           'demoId': 'base'
         }
       ],
-      'breadcrumbItem-slots': [
+      'slots': [
         {
           'name': 'default',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '默认插槽', 'en-US': 'Default slot' },
           'demoId': 'slot-default'
-        }
-      ],
-      'breadcrumbItem-events': [
-        {
-          'name': 'select',
-          'type': '',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '点击 breadcrumb-item 时触发',
-            'en-US': 'This event is triggered when breadcrumb-item is clicked.'
-          },
-          'demoId': 'base'
         }
       ]
     }

@@ -12,37 +12,39 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
-const $constants = {
+export const $constants = {
   DOING_STATUS: 'doing',
   READY_STATUS: 'ready',
   WAIT_STATUS: 'wait'
 }
 
+export const wizardProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  data: {
+    type: Array,
+    default: () => []
+  },
+  pageGuide: {
+    type: Boolean,
+    default: false
+  },
+  vertical: {
+    type: Boolean,
+    default: false
+  },
+  timeLineFlow: {
+    type: Boolean,
+    default: false
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'Wizard',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    data: {
-      type: Array,
-      default: () => []
-    },
-    pageGuide: {
-      type: Boolean,
-      default: false
-    },
-    vertical: {
-      type: Boolean,
-      default: false
-    },
-    timeLineFlow: {
-      type: Boolean,
-      default: false
-    }
-  },
+  props: wizardProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

@@ -88,7 +88,7 @@ export default {
       'properties': [
         {
           'name': 'active-name',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 1',
           'desc': {
             'zh-CN': "默认显示第1栏，可选'1' '2' '3'等",
@@ -105,7 +105,7 @@ export default {
         },
         {
           'name': 'icon',
-          'type': 'Object , String',
+          'type': 'object , string',
           'defaultValue': '',
           'desc': {
             'zh-CN': 'tab-item中第一条信息的字体图标;tab-item中第一条信息的字体图标',
@@ -116,7 +116,7 @@ export default {
         },
         {
           'name': 'show-more',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否显示更多按钮，默认显示,需要与 more-link 同时使用',
@@ -127,7 +127,7 @@ export default {
         },
         {
           'name': 'more-link',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -146,7 +146,7 @@ export default {
         },
         {
           'name': 'title',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '公告牌的标题', 'en-US': 'Billboard title' },
           'demoId': 'title'

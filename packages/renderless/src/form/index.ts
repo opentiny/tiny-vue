@@ -12,9 +12,11 @@
 
 import { merge } from '../common/object'
 
+import type { IFormRenderlessParams } from '@/types'
+
 export const watchRules =
-  ({ api, props, state }) =>
-  (newRules = {}, oldRules = {}) => {
+  ({ api, props, state }: Pick<IFormRenderlessParams, 'api' | 'props' | 'state'>) =>
+  (newRules = {}, oldRules = {}): void => {
     const newValidFields = Object.keys(newRules)
     const oldValidFields = Object.keys(oldRules)
     const removeValidFields = oldValidFields.filter((item) => !newValidFields.includes(item))
@@ -31,10 +33,10 @@ export const watchRules =
   }
 
 export const computedAutoLabelWidth =
-  ({ state }) =>
-  () => {
+  ({ state }: Pick<IFormRenderlessParams, 'state'>) =>
+  (): string => {
     if (!state.potentialLabelWidthArr.length) {
-      return 0
+      return '0'
     }
 
     const max = Math.max(...state.potentialLabelWidthArr)
@@ -42,9 +44,15 @@ export const computedAutoLabelWidth =
     return max ? `${max}px` : ''
   }
 
+export const computedHideRequiredAsterisk =
+  ({ props, designConfig }: Pick<IFormRenderlessParams, 'props' | 'designConfig'>) =>
+  (): boolean => {
+    return props.hideRequiredAsterisk ?? designConfig?.hideRequiredAsterisk ?? false
+  }
+
 export const created =
-  ({ parent, state }) =>
-  () => {
+  ({ parent, state }: Pick<IFormRenderlessParams, 'parent' | 'state'>) =>
+  (): void => {
     parent.$on('form:addField', (field) => {
       if (field) {
         state.fields.push(field)
@@ -59,8 +67,8 @@ export const created =
   }
 
 export const resetFields =
-  ({ props, state }) =>
-  () => {
+  ({ props, state }: Pick<IFormRenderlessParams, 'props' | 'state'>) =>
+  (): void => {
     if (!props.model) {
       return
     }
@@ -71,8 +79,8 @@ export const resetFields =
   }
 
 export const updateTip =
-  ({ props, state }) =>
-  () => {
+  ({ props, state }: Pick<IFormRenderlessParams, 'props' | 'state'>) =>
+  (): void => {
     if (!props.model) {
       return
     }
@@ -83,13 +91,18 @@ export const updateTip =
   }
 
 export const clearValidate =
-  (state) =>
-  (props = []) => {
-    const fields = props.length
-      ? typeof props === 'string'
-        ? state.fields.filter((field) => props === field.prop)
-        : state.fields.filter((field) => props.includes(field.prop))
-      : state.fields
+  (state: IFormRenderlessParams['state']) =>
+  (props: string | string[] = []): void => {
+    let fields
+    // 如果没赋值，默认就是清除全部
+    if (props.length) {
+      fields =
+        typeof props === 'string'
+          ? state.fields.filter((field) => props === field.prop)
+          : state.fields.filter((field) => field.prop && props.includes(field.prop))
+    } else {
+      fields = state.fields
+    }
 
     fields.forEach((field) => {
       field.clearValidate()
@@ -97,8 +110,8 @@ export const clearValidate =
   }
 
 export const validate =
-  ({ props, state }) =>
-  (callback) => {
+  ({ props, state }: Pick<IFormRenderlessParams, 'props' | 'state'>) =>
+  (callback?: (valid: boolean, invalidFields?: any) => void): Promise<boolean> | void => {
     if (!props.model) {
       return
     }
@@ -142,33 +155,37 @@ export const validate =
     }
   }
 
-export const validateField = (state) => (props, cb) => {
-  props = [].concat(props)
+export const validateField =
+  (state: IFormRenderlessParams['state']) =>
+  (props, cb): void => {
+    props = [].concat(props)
 
-  const fields = state.fields.filter((field) => props.includes(field.prop))
+    const fields = state.fields.filter((field) => props.includes(field.prop))
 
-  if (!fields.length) {
-    return
+    if (!fields.length) {
+      return
+    }
+
+    fields.forEach((field) => {
+      field.validate('', cb)
+    })
   }
 
-  fields.forEach((field) => {
-    field.validate('', cb)
-  })
-}
+export const getLabelWidthIndex =
+  (state: IFormRenderlessParams['state']) =>
+  (width: number): number => {
+    const index = state.potentialLabelWidthArr.indexOf(width)
 
-export const getLabelWidthIndex = (state) => (width) => {
-  const index = state.potentialLabelWidthArr.indexOf(width)
+    if (index === -1) {
+      throw new Error('unpected width ', width as ErrorOptions)
+    }
 
-  if (index === -1) {
-    throw new Error('unpected width ', width)
+    return index
   }
-
-  return index
-}
 
 export const registerLabelWidth =
-  ({ api, state }) =>
-  (val, oldVal) => {
+  ({ api, state }: Pick<IFormRenderlessParams, 'api' | 'state'>) =>
+  (val: number, oldVal: number): void => {
     if (val && oldVal) {
       const index = api.getLabelWidthIndex(oldVal)
       state.potentialLabelWidthArr.splice(index, 1, val)
@@ -178,13 +195,13 @@ export const registerLabelWidth =
   }
 
 export const deregisterLabelWidth =
-  ({ api, state }) =>
-  (val) => {
+  ({ api, state }: Pick<IFormRenderlessParams, 'api' | 'state'>) =>
+  (val: number): void => {
     const index = api.getLabelWidthIndex(val)
     state.potentialLabelWidthArr.splice(index, 1)
   }
 
-export const bindDialogEvent = ({ api, dialog, state }) => {
+export const bindDialogEvent = ({ api, dialog, state }: Pick<IFormRenderlessParams, 'api' | 'dialog' | 'state'>) => {
   let unbindDialogEvent = () => {
     // empty
   }
@@ -195,8 +212,8 @@ export const bindDialogEvent = ({ api, dialog, state }) => {
     }
     const boxDragHandler = () => {
       if (!state.timer) {
-        state.timer = setTimeout(() => {
-          state.timer = null
+        state.timer = window.setTimeout(() => {
+          state.timer = 0
           api.updateTip()
         }, 10)
       }
@@ -215,8 +232,8 @@ export const bindDialogEvent = ({ api, dialog, state }) => {
 }
 
 export const showTooltip =
-  ({ vm, state }) =>
-  (dom, val) => {
+  ({ vm, state }: Pick<IFormRenderlessParams, 'vm' | 'state'>) =>
+  (dom: HTMLElement, val: string): void => {
     const tooltip = vm.$refs.tooltip
     tooltip.state.referenceElm = dom
     tooltip.state.popperElm && (tooltip.state.popperElm.style.display = 'none')
@@ -229,7 +246,7 @@ export const showTooltip =
   }
 
 export const hideTooltip =
-  ({ state }) =>
-  () => {
+  ({ state }: Pick<IFormRenderlessParams, 'state'>) =>
+  (): void => {
     state.tooltipVisible = false
   }

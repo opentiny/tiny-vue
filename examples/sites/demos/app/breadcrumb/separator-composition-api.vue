@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { Breadcrumb as TinyBreadcrumb, BreadcrumbItem as TinyBreadcrumbItem } from '@opentiny/vue'
 import { iconBoat } from '@opentiny/vue-icon'
 

@@ -47,7 +47,7 @@ export default {
       'properties': [
         {
           'name': 'data',
-          'type': 'Object , Array',
+          'type': 'object , Array',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置瀑布菜单的数据。;设置瀑布菜单的数据。',

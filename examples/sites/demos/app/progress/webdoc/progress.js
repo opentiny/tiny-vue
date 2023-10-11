@@ -104,7 +104,7 @@ export default {
       'properties': [
         {
           'name': 'percentage',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': {
             'zh-CN': '百分比（必填）;该属性的可选值为 0-100',
@@ -114,7 +114,7 @@ export default {
         },
         {
           'name': 'type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 line',
           'desc': {
             'zh-CN': '进度条类型;该属性的可选值为 line / circle / dashboard',
@@ -124,14 +124,14 @@ export default {
         },
         {
           'name': 'stroke-width',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 6',
           'desc': { 'zh-CN': '进度条的宽度，单位 px', 'en-US': 'Progress bar width, in px' },
           'demoId': 'progress-width'
         },
         {
           'name': 'text-inside',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '进度条显示文字内置在进度条内（只在 type=line 时可用）',
@@ -142,7 +142,7 @@ export default {
         },
         {
           'name': 'status',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '进度条当前状态;该属性的可选值为 success / exception / warning',
@@ -153,7 +153,7 @@ export default {
         },
         {
           'name': 'color',
-          'type': 'String , Function , Array',
+          'type': 'string , Function , Array',
           'defaultValue': '',
           'desc': {
             'zh-CN': '进度条背景色（会覆盖 status 状态颜色）',
@@ -163,7 +163,7 @@ export default {
         },
         {
           'name': 'width',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 126',
           'desc': {
             'zh-CN': '环形进度条画布宽度（只在 type 为 circle 或 dashboard 时可用）',
@@ -173,7 +173,7 @@ export default {
         },
         {
           'name': 'show-text',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否显示进度条文字内容', 'en-US': 'Display progress bar text' },
           'demoId': 'text-inside-or-no-text'

@@ -8,7 +8,7 @@
   </tiny-breadcrumb>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { Breadcrumb as TinyBreadcrumb, BreadcrumbItem as TinyBreadcrumbItem, Notify } from '@opentiny/vue'
 
 function breadcrumbClick(value) {

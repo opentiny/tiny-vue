@@ -2,11 +2,7 @@
 
 TinyVue 是一个基于 `Vue` 的 UI 组件库，可以同时支持 `Vue 2.0` 和 `Vue 3.0`。
 
-:::warning
-
 浏览器兼容性 `TinyVue` 支持主流浏览器的最新版本：Chrome、Edge、Firefox、Opera、Safari 不支持 IE 浏览器
-
-:::
 
 ### 安装 Node.js
 
@@ -24,8 +20,4 @@ node -v
 npm install -g yarn
 ```
 
-:::warning
-
 包管理器的选择 `yarn` 和 `npm` 建议只选择使用一种包管理器，以免在安装过程中出现无法升级依赖包等问题。
-
-:::

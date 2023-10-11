@@ -3,6 +3,20 @@ const fg = require('fast-glob')
 
 const ignoreNames = ['base', 'theme']
 
+function groupBy(array, fn) {
+  const map = {}
+  array.forEach((item) => {
+    const key = fn(item)
+    const collection = map[key]
+    if (!collection) {
+      map[key] = [item]
+    } else {
+      collection.push(item)
+    }
+  })
+  return map
+}
+
 fg(['**/*-theme.js']).then((files) => {
   const components = files
     .map((file) => {
@@ -40,17 +54,3 @@ fg(['**/*-theme.js']).then((files) => {
     fs.writeFileSync(`src/theme/${themeKey}/component.js`, contents)
   })
 })
-
-function groupBy(array, fn) {
-  const map = {}
-  array.forEach((item) => {
-    const key = fn(item)
-    const collection = map[key]
-    if (!collection) {
-      map[key] = [item]
-    } else {
-      collection.push(item)
-    }
-  })
-  return map
-}

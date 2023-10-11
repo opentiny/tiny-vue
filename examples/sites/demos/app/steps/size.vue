@@ -27,7 +27,7 @@ export default {
       normalActive: 0,
       data: [
         {
-          name: 'Basic Info. sdfsdjgh jiojfoisjlksdfks sdfksdljk sjviosdjvii bin sfdihsdi tin sdfsdsd '
+          name: 'Basic Info. '
         },
         {
           name: 'AAAAA'

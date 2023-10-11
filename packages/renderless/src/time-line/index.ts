@@ -11,40 +11,49 @@
  */
 
 import { format } from '../common/date'
+import type {
+  ITimelineProps,
+  ITimelineRenderlessParams,
+  ITimelineItem,
+  ITimelineStatusCls,
+  ITimelineCustomCls
+} from '@/types'
 
-export const getDate = (dateTime) => ({
+export const getDate = (dateTime: string): { date: string; time: string } => ({
   date: format(dateTime, 'yyyy-MM-dd'),
   time: format(dateTime, 'hh:mm')
 })
 
 export const getStatus =
-  ({ state, t }) =>
-  (value) => {
+  ({ state, t }: Pick<ITimelineRenderlessParams, 'state' | 't'>) =>
+  (value: number): string => {
     const status = state.current - value
 
     return status > 0 ? t('ui.steps.done') : status === 0 ? t('ui.steps.doing') : t('ui.steps.wait')
   }
 
-export const computedSpace = ({ props }) => {
-  const { space } = props
-  if (/^\d+$/.test(space)) {
-    return `${space}px`
+export const computedSpace =
+  ({ props }: Pick<ITimelineRenderlessParams, 'props'>) =>
+  (): string | number => {
+    const { space } = props
+    if (/^\d+$/.test(space)) {
+      return `${space}px`
+    }
+
+    return space
   }
 
-  return space
-}
-
 export const handleClick =
-  ({ emit, state }) =>
-  ({ index, node }) => {
+  ({ emit, state }: Pick<ITimelineRenderlessParams, 'emit' | 'state'>) =>
+  ({ index, node }: { index: number; node: ITimelineItem }): void => {
     if (!node.disabled) {
       emit('click', state.isReverse ? state.nodes.length - index - 1 : index, node)
     }
   }
 
 export const getStatusCls =
-  ({ constants, state }) =>
-  (index, node?) => {
+  ({ constants, state }: Pick<ITimelineRenderlessParams, 'constants' | 'state'>) =>
+  (index: number, node?: ITimelineItem): ITimelineStatusCls => {
     const { PROCESS_DONE_CLS, PROCESS_CUR_CLS, PROCESS_WAIT_CLS, PROCESS_DISABLED_CLS, PROCESS_ERROR_CLS } = constants
     const cls = {}
     const reverse = state.isReverse
@@ -63,8 +72,8 @@ export const getStatusCls =
   }
 
 export const computedData =
-  ({ props, state }) =>
-  () => {
+  ({ props, state }: Pick<ITimelineRenderlessParams, 'props' | 'state'>) =>
+  (): ITimelineItem[] => {
     if (props.data) {
       return state.isReverse
         ? props.data.map((item, i) => ({ ...props.data[props.data.length - 1 - i], index: i }))
@@ -75,15 +84,15 @@ export const computedData =
   }
 
 export const computedCurrent =
-  ({ props, state }) =>
-  () =>
+  ({ props, state }: Pick<ITimelineRenderlessParams, 'props' | 'state'>) =>
+  (): number =>
     state.isReverse ? state.nodes.length - props.active - 1 : props.active
 
-export const computedIsReverse = (props) => () => props.reverse && props.vertical
+export const computedIsReverse = (props: ITimelineProps) => (): boolean => props.reverse && props.vertical
 
 export const computedStackNodes =
-  ({ state, constants }) =>
-  () => {
+  ({ state, constants }: Pick<ITimelineRenderlessParams, 'state' | 'constants'>) =>
+  (): ITimelineItem[] => {
     if (state.nodes.length >= constants.STACK_NODES_MAX) {
       state.showData = true
       return state.nodes.slice(0, constants.LIMITED_STACK_NODES)
@@ -92,17 +101,17 @@ export const computedStackNodes =
   }
 
 export const changeStatus =
-  ({ state }) =>
-  () => {
+  ({ state }: Pick<ITimelineRenderlessParams, 'state'>) =>
+  (): boolean => {
     state.showAll = !state.showAll
     return state.showAll
   }
 
 export const computedWrapperClass =
-  ({ props }) =>
-  () => {
+  ({ props }: Pick<ITimelineRenderlessParams, 'props'>) =>
+  (): ITimelineCustomCls => {
     const { vertical, reverse, textPosition, showDivider } = props
-    const wrapperClass: (string | object)[] = []
+    const wrapperClass = [] as ITimelineCustomCls
 
     if (vertical) {
       wrapperClass.push('tiny-steps-timeline', { reverse })

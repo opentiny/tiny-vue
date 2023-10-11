@@ -41,8 +41,14 @@
   // 去掉最后一个竖线
   &:nth-last-of-type(2) {
     .@{grid-prefix-cls}-resizable.is__line:before {
-      width: 0px;
+      width: 0;
     }
+  }
+
+  // 在表格个性化场景，动态的设置冻结列，这里需要在非冻结列情况下消除之前设置的left和right样式，并提升权重覆盖style属性
+  &:not(.fixed__column) {
+    left: unset !important;
+    right: unset !important;
   }
 
   &.col__title-checked {

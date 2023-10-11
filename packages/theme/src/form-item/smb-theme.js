@@ -4,7 +4,6 @@ export const tinyFormItemSmbTheme = {
   'ti-form-item-margin-bottom-mini': '12px',
   'ti-form-item-margin-bottom-small': '20px',
   'ti-form-item-margin-bottom-medium': '24px',
-  'ti-form-item-error-star-display': 'none', // smb要求不显示 *
   'ti-form-item-input-mini-height': '20px',
   'ti-form-item-input-small-height': '24px',
   'ti-form-item-input-medium-height': '32px',

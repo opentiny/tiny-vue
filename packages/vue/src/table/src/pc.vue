@@ -90,7 +90,7 @@ export default defineComponent({
   },
   props: [...props, 'columns', 'data', 'width', 'defaultChecked', 'keys'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>

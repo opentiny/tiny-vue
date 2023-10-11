@@ -246,7 +246,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/103579791?v=4",
       "profile": "https://github.com/pe-3",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -292,6 +293,78 @@
       "profile": "https://github.com/chenqifeng66",
       "contributions": [
         "test"
+      ]
+    },
+    {
+      "login": "Zz-ZzzZ",
+      "name": "Zz-ZzzZ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48228016?v=4",
+      "profile": "https://zz-zzzz.github.io/",
+      "contributions": [
+        "test"
+      ]
+    },
+    {
+      "login": "lyx-jay",
+      "name": "Lyx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39766860?v=4",
+      "profile": "https://github.com/lyx-jay",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "chenguang1994",
+      "name": "Spark Bill",
+      "avatar_url": "https://avatars.githubusercontent.com/u/31501915?v=4",
+      "profile": "https://github.com/chenguang1994",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Zuowendong",
+      "name": "wendZzoo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/45628596?v=4",
+      "profile": "https://github.com/Zuowendong",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "gweesin",
+      "name": "Gweesin Chan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42909374?v=4",
+      "profile": "https://github.com/gweesin",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Binks123",
+      "name": "Binks_",
+      "avatar_url": "https://avatars.githubusercontent.com/u/103343025?v=4",
+      "profile": "https://github.com/Binks123",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "yoyo201626",
+      "name": "yoyo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/104079404?v=4",
+      "profile": "https://github.com/yoyo201626",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "wkif",
+      "name": "Kif",
+      "avatar_url": "https://avatars.githubusercontent.com/u/62132584?v=4",
+      "profile": "https://hexo.kifroom.icu/",
+      "contributions": [
+        "code"
       ]
     }
   ],

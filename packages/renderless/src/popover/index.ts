@@ -9,12 +9,17 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-
+import { IPopoverRenderlessParams, IPopoverState } from 'types/popover.type'
 import { on, off, addClass, removeClass } from '../common/deps/dom'
 import { guid } from '../common/string'
 import { KEY_CODE } from '../common'
 
-const processTrigger = ({ api, state, props, nextTick }) => {
+const processTrigger = ({
+  api,
+  state,
+  props,
+  nextTick
+}: Pick<IPopoverRenderlessParams, 'api' | 'state' | 'props' | 'nextTick'>) => {
   const { referenceElm, popperElm } = state
 
   if (props.trigger === 'click') {
@@ -43,7 +48,16 @@ const processTrigger = ({ api, state, props, nextTick }) => {
 
 /* istanbul ignore next */
 export const mounted =
-  ({ api, state, constants, props, nextTick, mode }) =>
+  ({
+    api,
+    state,
+    constants,
+    props,
+    nextTick,
+    mode
+  }: Pick<IPopoverRenderlessParams, 'api' | 'state' | 'props' | 'nextTick' | 'mode'> & {
+    constants: { IDPREFIX: string }
+  }) =>
   () => {
     state.mounted = true
 
@@ -55,13 +69,14 @@ export const mounted =
       }
 
       referenceElm.setAttribute('aria-describedby', tooltipId)
-      referenceElm.setAttribute('tabindex', props.tabindex)
+      referenceElm.setAttribute('tabindex', props.tabindex.toString())
       popperElm.setAttribute('tabindex', 0)
 
       if (props.trigger !== 'click') {
         on(referenceElm, 'focusin', () => {
           api.handleFocus()
 
+          // 仅vue2有 __vue__
           const instance = referenceElm.__vue__
 
           if (instance && typeof instance.focus === 'function') {
@@ -81,20 +96,20 @@ export const mounted =
     processTrigger({ api, state, props, nextTick })
   }
 
-export const doToggle = (state) => () => {
+export const doToggle = (state: IPopoverState) => () => {
   state.showPopper = !state.showPopper
 }
 
-export const doShow = (state) => () => {
+export const doShow = (state: IPopoverState) => () => {
   state.showPopper = true
 }
 
-export const doClose = (state) => () => {
+export const doClose = (state: IPopoverState) => () => {
   state.showPopper = false
 }
 
 export const handleFocus =
-  ({ props, state }) =>
+  ({ props, state }: Pick<IPopoverRenderlessParams, 'state' | 'props'>) =>
   () => {
     addClass(state.referenceElm, 'focusing')
 
@@ -104,17 +119,17 @@ export const handleFocus =
   }
 
 /* istanbul ignore next */
-export const handleClick = (state) => (event) => {
+export const handleClick = (state: IPopoverState) => (event: MouseEvent) => {
   const popperElm = state.popperElm
   // 在webcomponents环境中，在事件传播到document之前对正确的target进行缓存
   if (event?.target && popperElm) {
-    popperElm.webCompEventTarget = event.target
+    state.webCompEventTarget = event.target as HTMLElement
   }
   removeClass(state.referenceElm, 'focusing')
 }
 
 export const handleBlur =
-  ({ props, state }) =>
+  ({ props, state }: Pick<IPopoverRenderlessParams, 'state' | 'props'>) =>
   () => {
     removeClass(state.referenceElm, 'focusing')
 
@@ -124,12 +139,12 @@ export const handleBlur =
   }
 
 export const handleMouseEnter =
-  ({ props, state }) =>
+  ({ props, state }: Pick<IPopoverRenderlessParams, 'state' | 'props'>) =>
   () => {
     clearTimeout(state.timer)
 
     if (props.openDelay) {
-      state.timer = setTimeout(() => {
+      state.timer = window.setTimeout(() => {
         state.showPopper = true
       }, props.openDelay)
     } else {
@@ -138,20 +153,20 @@ export const handleMouseEnter =
   }
 
 export const handleKeydown =
-  ({ api, props }) =>
-  (event) => {
+  ({ api, props }: Pick<IPopoverRenderlessParams, 'api' | 'props'>) =>
+  (event: KeyboardEvent) => {
     if (event.keyCode === KEY_CODE.Escape && props.trigger !== 'manual') {
       api.doClose()
     }
   }
 
 export const handleMouseLeave =
-  ({ props, state }) =>
+  ({ props, state }: Pick<IPopoverRenderlessParams, 'state' | 'props'>) =>
   () => {
     clearTimeout(state.timer)
 
     if (props.closeDelay) {
-      state.timer = setTimeout(() => {
+      state.timer = window.setTimeout(() => {
         state.showPopper = false
       }, props.closeDelay)
     } else {
@@ -161,16 +176,16 @@ export const handleMouseLeave =
 
 /* istanbul ignore next */
 export const handleDocumentClick =
-  ({ refs, state }) =>
-  (event) => {
+  ({ refs, state }: Pick<IPopoverRenderlessParams, 'state' | 'refs'>) =>
+  (event: MouseEvent) => {
     const reference = state.referenceElm
     const popperElm = state.popperElm
     const $el = refs.root
-    let target = event.target
+    let target = event.target as HTMLElement
 
     // 解决组件在webcomponents中触发document的click事件，但是e.target始终是webcomponents自定义标签，从而引起的判断失效的bug
     if (target?.shadowRoot && popperElm) {
-      target = popperElm.webCompEventTarget
+      target = state.webCompEventTarget as HTMLElement
     }
 
     if (
@@ -187,23 +202,24 @@ export const handleDocumentClick =
     state.showPopper = false
   }
 
-export const handleAfterEnter = (emit) => () => {
+export const handleAfterEnter = (emit: IPopoverRenderlessParams['emit']) => () => {
   emit('after-enter')
 }
 
-export const handleAfterLeave = (emit) => () => {
+export const handleAfterLeave = (emit: IPopoverRenderlessParams['emit']) => () => {
   emit('after-leave')
 }
 
+/** mobile.vue中，给listData项的点击事件 */
 export const handleItemClick =
-  ({ emit, state }) =>
+  ({ emit, state }: Pick<IPopoverRenderlessParams, 'state' | 'emit'>) =>
   (item) => {
     state.showPopper = false
     emit('item-click', item)
   }
 
 export const cleanup =
-  ({ props, state }) =>
+  ({ props, state }: Pick<IPopoverRenderlessParams, 'state' | 'props'>) =>
   () => {
     if (props.openDelay) {
       clearTimeout(state.timer)
@@ -212,7 +228,7 @@ export const cleanup =
 
 /* istanbul ignore next */
 export const destroyed =
-  ({ state, api }) =>
+  ({ state, api }: Pick<IPopoverRenderlessParams, 'state' | 'api'>) =>
   () => {
     const { referenceElm, popperElm } = state
 
@@ -236,15 +252,15 @@ export const destroyed =
     off(referenceElm, 'keydown', api.handleKeydown)
   }
 
-export const computedTooltipId = (constants) => () => `${constants.IDPREFIX}-${guid('', 4)}`
+export const computedTooltipId = (constants: { IDPREFIX: string }) => () => `${constants.IDPREFIX}-${guid('', 4)}`
 
 export const wrapMounted =
-  ({ api, props, refs, state }) =>
+  ({ api, props, refs, state }: Pick<IPopoverRenderlessParams, 'state' | 'api' | 'props' | 'refs'>) =>
   () => {
     const { reference, popper, wrapper } = refs
     const referenceElm = (state.referenceElm = props.reference || reference)
 
-    state.popperElm = state.popperEl || popper
+    state.popperElm = state.popperElm || popper
 
     if (!referenceElm && wrapper.children) {
       state.referenceElm = wrapper.children[0] || wrapper
@@ -254,8 +270,8 @@ export const wrapMounted =
   }
 
 export const observeCallback =
-  ({ state, vm }) =>
-  (mutationsList) => {
+  ({ state, vm }: Pick<IPopoverRenderlessParams, 'state' | 'vm'>) =>
+  (mutationsList: any) => {
     for (let mutation of mutationsList) {
       if (mutation.type === 'attributes' && mutation.attributeName === 'x-placement') {
         state.xPlacement = vm.$refs.popper.getAttribute('x-placement') || 'bottom'

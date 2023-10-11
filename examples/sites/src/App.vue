@@ -1,16 +1,23 @@
 <template>
   <div class="hp100 of-hidden">
-    <router-view />
+    <tiny-config-provider :design="designConfig">
+      <router-view />
+    </tiny-config-provider>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { defineComponent, reactive, computed, onMounted, toRefs } from 'vue'
+import { ConfigProvider } from '@opentiny/vue'
 import { appData } from './tools'
+import useTheme from './tools/useTheme'
 
 export default defineComponent({
   name: 'AppVue',
   props: [],
+  components: {
+    TinyConfigProvider: ConfigProvider
+  },
   setup() {
     onMounted(() => {
       // 加载header
@@ -25,8 +32,10 @@ export default defineComponent({
       })
       common.renderHeader()
     })
+    const { designConfig } = useTheme()
     return {
-      appData
+      appData,
+      designConfig
     }
   }
 })

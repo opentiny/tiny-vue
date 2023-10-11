@@ -1,10 +1,10 @@
 <template>
   <div class="demo-input">
-    <tiny-input v-model="input" placeholder="请输入内容"></tiny-input>
+    <tiny-input v-model="input" placeholder="Please input"></tiny-input>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Input } from '@opentiny/vue'
 
 export default {

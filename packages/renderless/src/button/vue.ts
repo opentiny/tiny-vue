@@ -27,8 +27,8 @@ export const renderless = (
 ) => {
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
-  const state: IButtonState = reactive({
-    timer: undefined,
+  const state = reactive({
+    timer: 0,
     disabled: props.disabled,
     plain: computed(() => props.plain || (parent.buttonGroup || {}).plain),
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),

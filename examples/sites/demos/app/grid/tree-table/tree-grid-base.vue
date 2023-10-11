@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-grid :data="tableData" :tree-config="{ children: 'children' }">
+    <tiny-grid :data="tableData" :tree-config="{ children: 'children', renderIcon }">
       <tiny-grid-column field="id" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="公司名称" tree-node></tiny-grid-column>
       <tiny-grid-column field="area" title="区域"></tiny-grid-column>
@@ -11,11 +11,19 @@
 
 <script lang="jsx">
 import { Grid, GridColumn } from '@opentiny/vue'
+import { iconRightO, iconDeltaDownO } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyGrid: Grid,
     TinyGridColumn: GridColumn
+  },
+  methods: {
+    renderIcon(h, { active }) {
+      const IconRightO = iconRightO()
+      const IconDeltaDownO = iconDeltaDownO()
+      return active ? <IconDeltaDownO /> : <IconRightO />
+    }
   },
   data() {
     return {

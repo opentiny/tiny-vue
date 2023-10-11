@@ -92,7 +92,7 @@ export default defineComponent({
   },
   emits: ['visible-change', 'item-click', 'button-click', 'menu-item-click', 'handle-click'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true, h })
+    return setup({ props, context, renderless, api, h })
   },
   render() {
     const { splitButton, type, disabled, handleMainButtonClick, menuOptions, title } = this
@@ -103,8 +103,8 @@ export default defineComponent({
     const triggerClass = 'tiny-dropdown__trigger tiny-dropdown-trigger'
     const visibleClass = state.visible ? 'tiny-dropdown--visible tiny-dropdown-visible' : ''
 
-    const IconDown = state?.designConfig?.icons?.dropdownIcon || iconDeltaDown()
-    const ButtonIconDown = state?.designConfig?.icons?.dropdownIcon || iconDownWard()
+    const IconDown = state.designConfig?.icons?.dropdownIcon || iconDeltaDown()
+    const ButtonIconDown = state.designConfig?.icons?.dropdownIcon || iconDownWard()
     const defaultSlot = slots.default && slots.default(params)
 
     if (splitButton) {

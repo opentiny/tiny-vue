@@ -48,7 +48,7 @@ export default defineComponent({
                 DropdownItem,
                 {
                   class: { [disabledClass || '']: isDisabled(buttonConfig) },
-                  props: { itemData: buttonConfig, disabled: isDisabled(buttonConfig) }
+                  props: { itemData: buttonConfig.name, disabled: isDisabled(buttonConfig) }
                 },
                 buttonConfig.name
               )

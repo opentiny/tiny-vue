@@ -18,6 +18,7 @@
 
   & &__group {
     @apply inline-block;
+    @apply ml-2;
     @apply align-middle;
     @apply text-xs;
     @apply h-7;
@@ -72,9 +73,8 @@
       @apply ml-2;
       @apply cursor-pointer;
       @apply text-center;
-      line-height: 26px;
       @apply h-7;
-      min-width: 28px;
+      @apply ~"min-w-[theme(spacing.7)]";
       @apply text-color-text-primary;
       @apply py-0 px-1;
       @apply box-border;
@@ -128,7 +128,7 @@
   }
 
   &__goto {
-    font-size: 0;
+    @apply text-xs;
 
     input[type='text'] {
       @apply w-8;
@@ -138,7 +138,6 @@
       @apply inline-block;
       position: inherit;
       @apply h-7;
-      line-height: 26px;
       @apply border border-solid border-color-border;
       @apply text-color-text-primary;
       @apply text-xs;
@@ -146,6 +145,7 @@
       @apply outline-0;
       @apply box-border;
       @apply mr-0;
+      @apply bg-color-bg-1;
 
       &:hover {
         @apply border border-solid border-color-icon-primary;
@@ -169,10 +169,9 @@
     }
 
     button {
-      min-width: 40px;
-      width: 37px;
+      @apply ~"min-w-[theme('spacing.10')]";
+      @apply w-11;
       @apply h-7;
-      line-height: 26px;
       @apply border border-solid border-color-border;
       @apply text-color-text-primary;
       @apply rounded-sm;
@@ -186,10 +185,7 @@
       @apply overflow-hidden;
       @apply text-ellipsis;
       @apply cursor-pointer;
-      transition:
-        border 0.3s,
-        color 0.3s,
-        background 0.3s;
+      @apply transition-all duration-300;
       @apply outline-0;
       .user-select(none);
       @apply ml-2;
@@ -198,7 +194,7 @@
 
   &__btn-prev,
   &__btn-next {
-    min-width: 28px;
+    @apply ~"min-w-[theme('spacing.7')]";
     @apply h-7;
     @apply text-xs;
     @apply text-color-text-primary;
@@ -268,7 +264,7 @@
 
   &__selector {
     &.@{popover-prefix-cls}.@{popper-prefix-cls} {
-      width: 90px;
+      @apply w-24;
       @apply p-0;
 
       &[x-placement^='bottom'] {
@@ -281,14 +277,14 @@
     }
 
     &-body {
-      max-height: 300px;
+      @apply ~"max-h-[theme('spacing.72')]";
       @apply overflow-y-auto;
       @apply overflow-x-hidden;
     }
 
     &-poplist {
       .list-item {
-        min-height: 32px;
+        @apply ~"min-h-[theme('spacing.8')]";
         @apply py-0 px-2;
         @apply leading-8;
         @apply ~"max-w-[100%]";
@@ -326,10 +322,9 @@
   }
 
   &__page-size {
-    min-width: 90px;
-    max-width: 200px;
+    @apply ~"min-w-[theme('spacing.18')]";
+    @apply ~"max-w-[theme('spacing.36')]";
     @apply relative;
-    @apply -top-px;
     @apply text-left;
     @apply h-7;
     @apply leading-7;

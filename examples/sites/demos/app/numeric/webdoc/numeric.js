@@ -163,7 +163,7 @@ export default {
       'properties': [
         {
           'name': 'circulate',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '向上到达最大值后从最小值开始，或反过来',
@@ -173,7 +173,7 @@ export default {
         },
         {
           'name': 'mouse-wheel',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '设置鼠标滚动滑轮是否改变数值',
@@ -183,7 +183,7 @@ export default {
         },
         {
           'name': 'v-model',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': {
             'zh-CN': '设置输入组件的默认值，默认为 0。',
@@ -193,7 +193,7 @@ export default {
         },
         {
           'name': 'min',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 -Infinity',
           'desc': {
             'zh-CN': '规定组件可输入的最小数值，来创建合法值的范围，支持整数和小数。;设置计数器允许的最小值',
@@ -204,7 +204,7 @@ export default {
         },
         {
           'name': 'max',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 Infinity',
           'desc': {
             'zh-CN': '规定组件可输入的最大数值，来创建合法值的范围，支持整数和小数。;设置计数器允许的最大值',
@@ -215,7 +215,7 @@ export default {
         },
         {
           'name': 'step',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 1',
           'desc': {
             'zh-CN': '设置按上下方向键或点击上下按钮增减的数值，默认步长为 1。',
@@ -226,14 +226,14 @@ export default {
         },
         {
           'name': 'step-strictly',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否只能输入 step 的倍数', 'en-US': 'Whether to enter only multiples of step' },
           'demoId': 'about-step'
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '计数器尺寸;该属性的可选值为 medium / small / mini',
@@ -243,21 +243,21 @@ export default {
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否禁用计数器', 'en-US': 'Whether to disable the counter' },
           'demoId': 'dynamic-disabled'
         },
         {
           'name': 'controls',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否使用控制按钮', 'en-US': 'Whether to use the control button' },
           'demoId': 'controls'
         },
         {
           'name': 'controls-position',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '控制按钮位置;该属性的可选值为 right',
@@ -267,35 +267,35 @@ export default {
         },
         {
           'name': 'name',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '原生属性', 'en-US': 'Native attribute' },
           'demoId': 'controls2'
         },
         {
           'name': 'label',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框关联的label文字', 'en-US': 'Label text associated with the text box' },
           'demoId': 'controls'
         },
         {
           'name': 'placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置输入框内的提示占位文本 。', 'en-US': 'Set the placeholder text in the text box.' },
           'demoId': 'calculate-according-to-num-of-goods'
         },
         {
           'name': 'precision',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': { 'zh-CN': '数值精度', 'en-US': 'Numeric precision' },
           'demoId': 'precision'
         },
         {
           'name': 'format',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -307,14 +307,14 @@ export default {
         },
         {
           'name': 'allow-empty',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false，表示不可清空',
           'desc': { 'zh-CN': '计数器内容的可清空', 'en-US': 'The counter can be cleared.' },
           'demoId': 'allow-empty'
         },
         {
           'name': 'unit',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置计数器的单位。在设置单位时，控制按钮将不可用。', 'en-US': '' },
           'demoId': 'unit'

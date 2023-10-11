@@ -12,7 +12,7 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
-const $constants = {
+export const $constants = {
   MAX: 'aria-valuemax',
   MIN: 'aria-valuemin',
   VALUENOW: 'aria-valuenow',
@@ -26,101 +26,103 @@ const $constants = {
   COMPONENT_NAME: 'FormItem'
 }
 
-export default defineComponent({
-  name: $prefix + 'Numeric',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    allowEmpty: {
-      type: Boolean,
-      default: false
-    },
-    circulate: Boolean,
-    controls: {
-      type: Boolean,
-      default: true
-    },
-    controlsPosition: {
-      type: String,
-      default: ''
-    },
-    disabled: Boolean,
-    format: [Object, String],
-    hideUnit: {
-      type: Boolean,
-      default: false
-    },
-    holdZero: {
-      type: Boolean,
-      default: true
-    },
-    label: String,
-    max: {
-      type: [Number, String],
-      default: Infinity
-    },
-    min: {
-      type: [Number, String],
-      default: -Infinity
-    },
-    modelTruncation: {
-      type: Boolean,
-      default: true
-    },
-    modelValue: {},
-    mouseWheel: Boolean,
-    name: String,
-    placeholder: String,
-    plugin: Function,
-    precision: {
-      type: Number,
-      validator(val) {
-        return val >= 0 && val === parseInt(val, 10)
-      }
-    },
-    size: String,
-    step: {
-      type: [Number, String],
-      default: 1
-    },
-    stepStrictly: {
-      type: Boolean,
-      default: false
-    },
-    strictInput: {
-      type: Boolean,
-      default: false
-    },
-    stringMode: Boolean,
-    tabindex: {
-      type: String,
-      default: '1'
-    },
-    theme: {
-      type: String,
-      default: ''
-    },
-    unit: String,
-    unitCenter: {
-      type: Boolean,
-      default: false
-    },
-    validateEvent: {
-      type: Boolean,
-      default: true
-    },
-    displayOnly: {
-      type: Boolean,
-      default: false
-    },
-    showLeft: {
-      type: Boolean,
-      default: false
+export const numericProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  allowEmpty: {
+    type: Boolean,
+    default: false
+  },
+  circulate: Boolean,
+  controls: {
+    type: Boolean,
+    default: true
+  },
+  controlsPosition: {
+    type: String,
+    default: ''
+  },
+  disabled: Boolean,
+  format: [Object, String],
+  hideUnit: {
+    type: Boolean,
+    default: false
+  },
+  holdZero: {
+    type: Boolean,
+    default: true
+  },
+  label: String,
+  max: {
+    type: [Number, String],
+    default: Infinity
+  },
+  min: {
+    type: [Number, String],
+    default: -Infinity
+  },
+  modelTruncation: {
+    type: Boolean,
+    default: true
+  },
+  modelValue: {},
+  mouseWheel: Boolean,
+  name: String,
+  placeholder: String,
+  plugin: Function,
+  precision: {
+    type: Number,
+    validator(val) {
+      return val >= 0 && val === parseInt(val, 10)
     }
   },
+  size: String,
+  step: {
+    type: [Number, String],
+    default: 1
+  },
+  stepStrictly: {
+    type: Boolean,
+    default: false
+  },
+  strictInput: {
+    type: Boolean,
+    default: false
+  },
+  stringMode: Boolean,
+  tabindex: {
+    type: String,
+    default: '1'
+  },
+  theme: {
+    type: String,
+    default: ''
+  },
+  unit: String,
+  unitCenter: {
+    type: Boolean,
+    default: false
+  },
+  validateEvent: {
+    type: Boolean,
+    default: true
+  },
+  displayOnly: {
+    type: Boolean,
+    default: false
+  },
+  showLeft: {
+    type: Boolean,
+    default: false
+  }
+}
+
+export default defineComponent({
+  name: $prefix + 'Numeric',
+  props: numericProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

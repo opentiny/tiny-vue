@@ -41,7 +41,7 @@ export default {
       'properties': [
         {
           'name': 'local',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否本地', 'en-US': 'Local or not' },
           'demoId': 'basic-usage'
@@ -66,7 +66,7 @@ export default {
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '为 popper 添加类名(可参考 popover 组件)',
@@ -76,7 +76,7 @@ export default {
         },
         {
           'name': 'popper-append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN':

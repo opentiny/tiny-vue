@@ -229,14 +229,14 @@ export default {
         },
         {
           'name': 'filterable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否可搜索', 'en-US': 'Searchable' },
           'demoId': 'filterable'
         },
         {
           'name': 'filter-placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 请输入搜索内容',
           'desc': { 'zh-CN': '搜索框占位符', 'en-US': 'Search box placeholder' },
           'demoId': 'filter-placeholder'
@@ -247,9 +247,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '设置穿梭框的搜索过滤字段, 此属性只在渲染类型（renderType）为 table 时生效;// 自定义搜索方法参数 \narg1:String 输入的过滤字串\narg2:Object 每一个数据项',
+              '设置穿梭框的搜索过滤字段, 此属性只在渲染类型（renderType）为 table 时生效;// 自定义搜索方法参数 \narg1:string 输入的过滤字串\narg2:object 每一个数据项',
             'en-US':
-              'Set the search filtering field of the shuttle box. This attribute is valid only when RenderType is set to table. //Customize the search method parameter \narg1:String Input filter string \narg2:Object Each data item'
+              'Set the search filtering field of the shuttle box. This attribute is valid only when RenderType is set to table. //Customize the search method parameter \narg1:string Input filter string \narg2:object Each data item'
           },
           'demoId': 'custom-filter-method'
         },
@@ -272,22 +272,22 @@ export default {
           'type': 'Function(arg1,arg2)',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '自定义数据项渲染函数;arg1:{Function 创建虚拟节点的函数}，arg2:{Object 数据项}',
+            'zh-CN': '自定义数据项渲染函数;arg1:{Function 创建虚拟节点的函数}，arg2:{object 数据项}',
             'en-US':
-              'Customized data item rendering function; arg1:{Function for creating a virtual node}, arg2:{Object data item}'
+              'Customized data item rendering function; arg1:{Function for creating a virtual node}, arg2:{object data item}'
           },
           'demoId': 'custom-render-content'
         },
         {
           'name': 'format',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': "该属性的默认值为 { noChecked: '${checked}/${total}', hasChecked: '${checked}/${total}' }",
           'desc': { 'zh-CN': '列表顶部勾选状态文案', 'en-US': 'Selected status copywriting at the top of the list' },
           'demoId': 'checked-format-text'
         },
         {
           'name': 'props',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '数据源的字段别名', 'en-US': 'Field alias of the data source' },
           'demoId': 'props-of-data-source'
@@ -314,7 +314,7 @@ export default {
         },
         {
           'name': 'target-order',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 original',
           'desc': {
             'zh-CN':
@@ -326,7 +326,7 @@ export default {
         },
         {
           'name': 'to-left-disable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '提供给用户控制穿梭框按钮禁用状态的属性,组件初始化状态下未选中时显示禁用状态，默认值为true',
@@ -337,7 +337,7 @@ export default {
         },
         {
           'name': 'to-right-disable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '提供给用户控制穿梭框按钮禁用状态的属性,组件初始化状态下未选中时显示禁用状态，默认值为true',
@@ -348,14 +348,14 @@ export default {
         },
         {
           'name': 'show-all-btn',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '展示全部移动按钮', 'en-US': 'All Move Buttons' },
           'demoId': 'show-all-btn'
         },
         {
           'name': 'drop-config',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置穿梭框列表项可拖拽',
@@ -377,7 +377,7 @@ export default {
         },
         {
           'name': 'page-vo',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '该属性的默认值为 {currentPage:1,pageSize:10}',
           'desc': {
             'zh-CN': '设置分页配置，此属性只在渲染类型为 grid 时生效,需要与 pager-op 一起使用',
@@ -388,7 +388,7 @@ export default {
         },
         {
           'name': 'show-pager',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '设置是否显示分页，当渲染为表格时有效',
@@ -398,7 +398,7 @@ export default {
         },
         {
           'name': 'pager-op',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': "该属性的默认值为 {mode: 'fixed',pageVO: {currentPage: 1,pageSize: 10}",
           'desc': {
             'zh-CN': '设置分页配置，当渲染为表格时有效',
@@ -408,7 +408,7 @@ export default {
         },
         {
           'name': 'render',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '当plugin设置为Table时设置渲染为表格;当plugin设置为Tree渲染为树',
@@ -418,7 +418,7 @@ export default {
         },
         {
           'name': 'tree-op',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '当plugin设置为Tree渲染为树时，设置树的相关配置属性',
@@ -434,9 +434,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '右侧列表元素变化时触发;//参数arg1:Array 穿梭框右侧数据值列表\n//参数arg2:String 数据移动方向，是left或者right\n//参数arg3:Array 被移动的数据值列表',
+              '右侧列表元素变化时触发;//参数arg1:Array 穿梭框右侧数据值列表\n//参数arg2:string 数据移动方向，是left或者right\n//参数arg3:Array 被移动的数据值列表',
             'en-US':
-              'Triggered when an element in the list on the right changes. //Parameter arg1: Data value list on the right of the Array shuttle box.\n//Parameter arg2: String Data movement direction, which can be left or right\n//Parameter arg3: Array data value list to be moved'
+              'Triggered when an element in the list on the right changes. //Parameter arg1: Data value list on the right of the Array shuttle box.\n//Parameter arg2: string Data movement direction, which can be left or right\n//Parameter arg3: Array data value list to be moved'
           },
           'demoId': 'transfer-events'
         },

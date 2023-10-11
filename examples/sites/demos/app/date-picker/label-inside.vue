@@ -1,14 +1,7 @@
 <template>
-  <div>
-    <div>
-      <p>日期选择</p>
-      <tiny-date-picker v-model="dateValue" label="选择日期"></tiny-date-picker>
-    </div>
-    <br />
-    <div>
-      <p>日期范围选择</p>
-      <tiny-date-picker v-model="dateRangeValue" label="选择日期范围选择日期范围" type="daterange"></tiny-date-picker>
-    </div>
+  <div class="demo-date-picker-wrap">
+    <tiny-date-picker v-model="dateValue" label="选择日期"></tiny-date-picker>
+    <tiny-date-picker v-model="dateRangeValue" label="选择日期范围" type="daterange"></tiny-date-picker>
   </div>
 </template>
 
@@ -27,3 +20,13 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="less">
+.demo-date-picker-wrap {
+  width: 280px;
+
+  & > * {
+    margin-top: 12px;
+  }
+}
+</style>

@@ -124,7 +124,7 @@ export default {
         },
         {
           'name': 'label',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '菜单项的显示值', 'en-US': 'Display value of a menu item' },
           'demoId': 'basic-usage'
@@ -138,14 +138,14 @@ export default {
         },
         {
           'name': 'divided',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '显示分割线。默认值：false', 'en-US': 'Displays the split line. Default value: false' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否禁用。默认：false',
@@ -155,7 +155,7 @@ export default {
         },
         {
           'name': 'text-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'label',
           'desc': {
             'zh-CN': '设置菜单按钮显示文本的键值,默认值为 label',
@@ -165,7 +165,7 @@ export default {
         },
         {
           'name': 'more-text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '更多',
           'desc': {
             'zh-CN': '配置下拉按钮显示文本,默认值为“更多”',
@@ -175,7 +175,7 @@ export default {
         },
         {
           'name': 'spacing',
-          'type': '[String,Number]',
+          'type': '[string,number]',
           'defaultValue': '5px',
           'desc': {
             'zh-CN': '配置菜单按钮之间的间距,默认值为 5px',
@@ -185,7 +185,7 @@ export default {
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置下拉面板的类名，自定义样式',
@@ -195,7 +195,7 @@ export default {
         },
         {
           'name': 'max-show-num',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '2',
           'desc': {
             'zh-CN': ' 配置显示菜单按钮的最大个数，默认值为2',
@@ -208,10 +208,10 @@ export default {
         {
           'name': 'item-click',
           'type': 'Function',
-          'defaultValue': 'Function(data:Object)',
+          'defaultValue': 'Function(data:object)',
           'desc': {
             'zh-CN':
-              '当选中菜单项时触发。返回数据data为Object类型，对象包含字段 itemData 和 vm 字段，itemData 为当前选中项的数据（仅配置式时生效），vm 为当前选中项的实例',
+              '当选中菜单项时触发。返回数据data为object类型，对象包含字段 itemData 和 vm 字段，itemData 为当前选中项的数据（仅配置式时生效），vm 为当前选中项的实例',
             'en-US':
               'The itemClick event is triggered when a menu item is selected. The transferred parameter is the data of the selected item.'
           },

@@ -15,8 +15,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Transfer as TinyTransfer } from '@opentiny/vue'
-import Tree from '@opentiny/vue-tree'
+import { Transfer as TinyTransfer, Tree } from '@opentiny/vue'
 
 const value = ref([3, 4, 5])
 const renderTree = ref({

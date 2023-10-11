@@ -173,14 +173,14 @@ export default {
       'properties': [
         {
           'name': 'modelValue / v-model',
-          'type': 'String , Number , Boolean',
+          'type': 'string , number , boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '绑定值', 'en-US': 'Bound Value' },
           'demoId': 'checkbox-group'
         },
         {
           'name': 'label',
-          'type': 'String , Number , Boolean',
+          'type': 'string , number , boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '选中状态的值（只有在checkbox-group或者绑定对象类型为array时有效）',
@@ -191,35 +191,35 @@ export default {
         },
         {
           'name': 'true-label',
-          'type': 'String , Number',
+          'type': 'string , number',
           'defaultValue': '',
           'desc': { 'zh-CN': '选中时的值', 'en-US': 'Value when selected' },
           'demoId': 'text'
         },
         {
           'name': 'false-label',
-          'type': 'String , Number',
+          'type': 'string , number',
           'defaultValue': '',
           'desc': { 'zh-CN': '没有选中时的值', 'en-US': 'Value when no option is selected' },
           'demoId': 'text'
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否禁用', 'en-US': 'Disable' },
           'demoId': 'checked'
         },
         {
           'name': 'border',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否显示边框', 'en-US': 'Display border' },
           'demoId': 'content-overflow'
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': 'Checkbox 的尺寸，仅在 border 为真时有效;该属性的可选值为 medium / small / mini',
@@ -230,21 +230,21 @@ export default {
         },
         {
           'name': 'name',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '原生 name 属性', 'en-US': 'Native name attribute' },
           'demoId': 'checkbox-group'
         },
         {
           'name': 'checked',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '当前是否勾选', 'en-US': 'Currently selected' },
           'demoId': 'checked'
         },
         {
           'name': 'indeterminate',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '设置 indeterminate 状态，只负责样式控制',
@@ -254,7 +254,7 @@ export default {
         },
         {
           'name': 'text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为空',
           'desc': { 'zh-CN': '复选框显示的文本', 'en-US': 'Text displayed in the check box' },
           'demoId': 'text'
@@ -284,7 +284,7 @@ export default {
       'checkbox-button-attrs': [
         {
           'name': 'label',
-          'type': 'String , Number , Boolean',
+          'type': 'string , number , boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '选中状态的值（只有在checkbox-group或者绑定对象类型为array时有效）;该属性的可选值为 medium-',
@@ -295,56 +295,56 @@ export default {
         },
         {
           'name': 'true-label',
-          'type': 'String , Number',
+          'type': 'string , number',
           'defaultValue': '',
           'desc': { 'zh-CN': '选中时的值', 'en-US': 'Value when selected' },
           'demoId': 'text'
         },
         {
           'name': 'false-label',
-          'type': 'String , Number',
+          'type': 'string , number',
           'defaultValue': '',
           'desc': { 'zh-CN': '没有选中时的值', 'en-US': 'Value when no option is selected' },
           'demoId': 'text'
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否禁用', 'en-US': 'Disable' },
           'demoId': 'with-border'
         },
         {
           'name': 'name',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '原生 name 属性', 'en-US': 'Native name attribute' },
           'demoId': 'checkbox-group'
         },
         {
           'name': 'text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 Function',
           'desc': { 'zh-CN': '文本', 'en-US': 'Text' },
           'demoId': 'text'
         },
         {
           'name': 'modelValue / v-model',
-          'type': 'String , Number , Boolean',
+          'type': 'string , number , boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '绑定值', 'en-US': 'Bound Value' },
           'demoId': 'checkbox-button'
         },
         {
           'name': 'events',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '原生事件', 'en-US': 'Native event' },
           'demoId': 'checkbox-group'
         },
         {
           'name': 'checked',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '当前是否勾选', 'en-US': 'Currently selected' },
           'demoId': 'checkbox-button'
@@ -369,7 +369,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -381,14 +381,14 @@ export default {
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否禁用', 'en-US': 'Disable' },
           'demoId': 'with-border'
         },
         {
           'name': 'min',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '可被勾选的 checkbox 的最小数量',
@@ -398,7 +398,7 @@ export default {
         },
         {
           'name': 'max',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '可被勾选的 checkbox 的最大数量',
@@ -408,7 +408,7 @@ export default {
         },
         {
           'name': 'text-color',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 #ffffff',
           'desc': {
             'zh-CN': '按钮形式的 Checkbox 激活时的文本颜色',
@@ -418,7 +418,7 @@ export default {
         },
         {
           'name': 'fill',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 #409EFF',
           'desc': {
             'zh-CN': '按钮形式的 Checkbox 激活时的填充色和边框色',
@@ -435,7 +435,7 @@ export default {
         },
         {
           'name': 'type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 checkbox,配合 options 属性一起使用',
           'desc': {
             'zh-CN': ' checkbox组件类型（button/checkbox）',
@@ -445,7 +445,7 @@ export default {
         },
         {
           'name': 'vertical',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '设置组件排列方式;设置复选框是否垂直排列;该属性的可选值为 true / false',

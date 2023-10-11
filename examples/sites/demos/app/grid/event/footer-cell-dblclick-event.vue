@@ -23,7 +23,7 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+import { Grid, GridColumn, Modal as TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -165,7 +165,7 @@ export default {
   },
   methods: {
     footerCellDbClick() {
-      alert('触发表尾双击点击事件')
+      TinyModal.alert('触发表尾双击点击事件')
     },
     footerMethod({ columns, data }) {
       return [
@@ -209,11 +209,11 @@ export default {
       switch (menu.code) {
         case 'copy':
           if (row && column) {
-            alert(`copy ${row}`)
+            TinyModal.alert(`copy ${row}`)
           }
           break
         default:
-          alert(`点击了 ${menu.name} 选项`)
+          TinyModal.alert(`点击了 ${menu.name} 选项`)
       }
     }
   }

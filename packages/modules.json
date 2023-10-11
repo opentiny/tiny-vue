@@ -7,6 +7,11 @@
       "pc"
     ]
   },
+  "ActionMenuPc": {
+    "path": "vue/src/action-menu/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "ActionSheet": {
     "path": "vue/src/action-sheet/index.ts",
     "type": "component",
@@ -67,6 +72,11 @@
       "pc"
     ]
   },
+  "AnchorPc": {
+    "path": "vue/src/anchor/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "Area": {
     "path": "vue/src/area/index.ts",
     "type": "component",
@@ -74,6 +84,19 @@
     "mode": [
       "pc"
     ]
+  },
+  "AsyncFlowchart": {
+    "path": "vue/src/async-flowchart/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first"
+    ]
+  },
+  "AsyncFlowchartMobileFirst": {
+    "path": "vue/src/async-flowchart/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
   },
   "Autocomplete": {
     "path": "vue/src/autocomplete/index.ts",
@@ -234,6 +257,25 @@
     "type": "template",
     "exclude": false
   },
+  "CalendarView": {
+    "path": "vue/src/calendar-view/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "pc"
+    ]
+  },
+  "CalendarViewMobileFirst": {
+    "path": "vue/src/calendar-view/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "CalendarViewPc": {
+    "path": "vue/src/calendar-view/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "Card": {
     "path": "vue/src/card/index.ts",
     "type": "component",
@@ -352,13 +394,13 @@
       "mobile"
     ]
   },
-  "CascaderSelectMobileFirst": {
-    "path": "vue/src/cascader-select/src/mobile-first.vue",
+  "CascaderSelectMobile": {
+    "path": "vue/src/cascader-select/src/mobile.vue",
     "type": "template",
     "exclude": false
   },
-  "CascaderSelectMobile": {
-    "path": "vue/src/cascader-select/src/mobile.vue",
+  "CascaderSelectMobileFirst": {
+    "path": "vue/src/cascader-select/src/mobile-first.vue",
     "type": "template",
     "exclude": false
   },
@@ -602,6 +644,38 @@
       "pc"
     ]
   },
+  "ColorPicker": {
+    "path": "vue/src/color-picker/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile",
+      "pc"
+    ]
+  },
+  "ColorPickerMobile": {
+    "path": "vue/src/color-picker/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "ColorPickerPc": {
+    "path": "vue/src/color-picker/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "ColorSelectPanel": {
+    "path": "vue/src/color-select-panel/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "ColorSelectPanelPc": {
+    "path": "vue/src/color-select-panel/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "ColumnListGroup": {
     "path": "vue/src/column-list-group/index.ts",
     "type": "component",
@@ -830,6 +904,19 @@
   },
   "DialogSelectPc": {
     "path": "vue/src/dialog-select/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Divider": {
+    "path": "vue/src/divider/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "DividerPc": {
+    "path": "vue/src/divider/src/pc.vue",
     "type": "template",
     "exclude": false
   },
@@ -1897,6 +1984,14 @@
     "path": "vue/src/recycle-scroller/src/pc.vue",
     "type": "template",
     "exclude": false
+  },
+  "RichTextEditor": {
+    "path": "vue/src/rich-text-editor/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "River": {
     "path": "vue/src/river/index.ts",

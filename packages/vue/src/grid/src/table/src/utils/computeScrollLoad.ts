@@ -25,7 +25,7 @@
 import { toNumber } from '@opentiny/vue-renderless/grid/static/'
 import browser from '@opentiny/vue-renderless/common/browser'
 
-let isWebkit = browser['-webkit'] && browser.name !== 'edge'
+let isWebkit = browser['-webkit']
 
 export function computeScrollYLoad({ _vm, scrollLoad, scrollY, scrollYLoad, scrollYStore, tableBodyElem }) {
   if (scrollYLoad || scrollLoad) {
@@ -46,7 +46,7 @@ export function computeScrollYLoad({ _vm, scrollLoad, scrollY, scrollYLoad, scro
 
     // scrollY.rSize用户配置的每次渲染行数
     if (!scrollY.rSize) {
-      // 如果是webkit内核浏览器则渲染行数*2否则就+2行（ie浏览器）
+      // 如果是webkit内核浏览器则渲染行数+2,性能差的浏览器就*2，防止滚动时出现较多白屏
       scrollYStore.renderSize = visibleYSize + (isWebkit ? 2 : visibleYSize)
     }
 

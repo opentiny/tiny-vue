@@ -102,7 +102,7 @@ export default {
         },
         {
           'name': 'icon',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '自定义节点展开折叠的图标。',
@@ -112,7 +112,7 @@ export default {
         },
         {
           'name': 'max-item',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置可收藏的栏目的最大数量。',
@@ -122,7 +122,7 @@ export default {
         },
         {
           'name': 'title',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置收藏夹菜单的标题，默认为空。',
@@ -132,7 +132,7 @@ export default {
         },
         {
           'name': 'default-expand-all',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置打开菜单弹窗时默认是否展开所有节点，默认为 true 。',
@@ -143,14 +143,14 @@ export default {
         },
         {
           'name': 'search-icon',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '自定义搜索图标。', 'en-US': 'Customize the search icon.' },
           'demoId': 'custom-icon'
         },
         {
           'name': 'ellipsis',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '菜单内容超长时省略显示，默认为 true 。',
@@ -160,7 +160,7 @@ export default {
         },
         {
           'name': 'wrap',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '菜单内容超长时换行显示，默认为 false 。',
@@ -170,7 +170,7 @@ export default {
         },
         {
           'name': 'keep-selected-nodes',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '树节点勾选内容后，点击取消按钮，再次打开弹窗是否保留取消前勾选的内容的状态，默认为 true 。',

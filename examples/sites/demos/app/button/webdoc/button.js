@@ -5,8 +5,17 @@ export default {
     {
       'demoId': 'base',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '使用 <code>type</code>、<code>plain</code>、<code>round</code> 和 <code>circle</code> 来定义按钮的样式。', 'en-US': 'Use <code>type</code>, <code>plain</code>, <code>round</code> and <code>circle</code> to define the style of the button.' },
       'codeFiles': ['base.vue']
+    },
+    {
+      'demoId': 'dynamic-disabled',
+      'name': { 'zh-CN': '动态禁用按钮', 'en-US': 'Dynamic Disable Button' },
+      'desc': {
+        'zh-CN': '<p>设置 <code>disabled</code> 属性为 true ，可以禁用按钮。</p>\n',
+        'en-US': '<p>After <code>disabled</code> is set to true, the button can be disabled. </p>\n'
+      },
+      'codeFiles': ['dynamic-disabled.vue']
     },
     {
       'demoId': 'icon',
@@ -24,20 +33,11 @@ export default {
       'name': { 'zh-CN': '文字按钮', 'en-US': 'Text button' },
       'desc': {
         'zh-CN':
-          '<p>设置 <code>type</code> 属性为 <code>text</code> 即为文字按钮，可在标签子级或者通过 <code>text</code> 属性设置显示内容。</p>\n',
+          '<p><code>type</code> 属性为 <code>text</code> 为文字按钮，可在标签子级或者通过 <code>text</code> 属性设置显示内容。</p>\n',
         'en-US':
           '<p>Set the <code>type</code> attribute to <code>text</code>, which is a text button. You can set the content to be displayed at the tag child level or through the <code>text</code> attribute. </p>\n'
       },
       'codeFiles': ['text.vue']
-    },
-    {
-      'demoId': 'round',
-      'name': { 'zh-CN': '按钮圆角', 'en-US': 'Button Fillet' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>round</code> 属性设置是否圆角按钮。</p>\n',
-        'en-US': '<p>The <code>round</code> attribute is used to set whether to round the button. </p>\n'
-      },
-      'codeFiles': ['round.vue']
     },
     {
       'demoId': 'image',
@@ -47,17 +47,6 @@ export default {
         'en-US': '<p>Embeds the img tag with the default slot usage and introduces the image. </p>\n'
       },
       'codeFiles': ['image.vue']
-    },
-    {
-      'demoId': 'type',
-      'name': { 'zh-CN': '主题样式', 'en-US': 'Theme Style' },
-      'desc': {
-        'zh-CN':
-          '<p>通过 <code>type</code> 属性可以设置不同的主题样式，主要包括 primary、success、info、warning、danger、text。</p>\n',
-        'en-US':
-          '<p>You can set different theme styles through the <code>type</code> attribute, including primary, success, info, warning, danger, and text. </p>\n'
-      },
-      'codeFiles': ['type.vue']
     },
     {
       'demoId': 'loading',
@@ -73,36 +62,18 @@ export default {
       'name': { 'zh-CN': '尺寸', 'en-US': 'Dimension' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>size</code> 属性设置按钮不同的大小尺寸，包括 large、medium、small、mini 四种不同大小。不设置时为默认尺寸。</p>\n',
+          '<p>通过 <code>size</code> 属性设置<code>large</code> 、<code>medium</code> 、<code>small</code> 、<code>mini</code>  四种不同大小尺寸。不设置时为默认尺寸。</p>\n',
         'en-US':
-          '<p>Use the <code>size</code> attribute to set the button size, including large, medium, small, and mini. If this parameter is not set, the default size is used. </p>\n'
+          '<p>Set four different sizes, <code>large</code>, <code>medium</code>, <code>small</code>, and <code>mini</code>, with the <code>size</code> attribute. If this parameter is not set, the default size is used. </p>\n'
       },
       'codeFiles': ['size.vue']
-    },
-    {
-      'demoId': 'circle',
-      'name': { 'zh-CN': '圆形按钮', 'en-US': 'Round Button' },
-      'desc': {
-        'zh-CN': '<p>直接配置 <code>circle</code> 属性为 true，即可展示为圆形按钮的形式。</p>\n',
-        'en-US': '<p>Set the <code>circle</code> attribute to true. The button is displayed as a round button. </p>\n'
-      },
-      'codeFiles': ['circle.vue']
-    },
-    {
-      'demoId': 'plain',
-      'name': { 'zh-CN': '朴素按钮', 'en-US': 'Simple button' },
-      'desc': {
-        'zh-CN': '<p>配置 <code>plain</code> 属性为 true，即可展示为朴素按钮的形式。</p>\n',
-        'en-US': '<p>Set the <code>plain</code> attribute to true. The button is displayed as a simple button. </p>\n'
-      },
-      'codeFiles': ['plain.vue']
     },
     {
       'demoId': 'reset-time',
       'name': { 'zh-CN': '防止表单重复提交', 'en-US': 'Prevent repeated submission of forms' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>reset-time</code> 属性可设置单击后按钮禁用的时长，默认的禁用时长为 1000 毫秒。\n可用于防止按钮连续点击出现表单重复提交的问题。</p>\n',
+          '<p>通过 <code>reset-time</code> 属性设置单击后按钮禁用的时长，默认禁用时长为 1000 毫秒。\n可用于防止按钮连续点击出现表单重复提交的问题。</p>\n',
         'en-US':
           '<p>You can use the <code>reset-time</code> attribute to set the duration for which the button is disabled. The default duration is 1000 ms. \n This parameter can be used to prevent repeated submission of the form when you click the button continuously. </p>\n'
       },
@@ -119,22 +90,13 @@ export default {
     },
     {
       'demoId': 'click',
-      'name': { 'zh-CN': '事件', 'en-US': 'Event' },
+      'name': { 'zh-CN': '点击事件', 'en-US': 'Event' },
       'desc': {
         'zh-CN': '<p>按钮的单击事件，该示例中单击按钮将会出现提示信息。</p>\n',
         'en-US':
-          'Click event of the <p> button. In this example, a message is displayed when a button is clicked. </p>\n'
+          '<p>Click event of the button. In this example, a message is displayed when a button is clicked. </p>\n'
       },
       'codeFiles': ['click.vue']
-    },
-    {
-      'demoId': 'dynamic-disabled',
-      'name': { 'zh-CN': '动态禁用按钮', 'en-US': 'Dynamic Disable Button' },
-      'desc': {
-        'zh-CN': '<p>设置 <code>disabled</code> 属性为 true 后，可以禁用按钮。</p>\n',
-        'en-US': '<p>After <code>disabled</code> is set to true, the button can be disabled. </p>\n'
-      },
-      'codeFiles': ['dynamic-disabled.vue']
     }
   ],
   apis: [
@@ -143,15 +105,43 @@ export default {
       'type': 'component',
       'properties': [
         {
-          'name': 'disabled',
+          'name': 'autofocus',
           'type': 'Boolean',
           'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '设置按钮是否被禁用。', 'en-US': 'Sets whether the button is disabled.' },
+          'desc': { 'zh-CN': '是否默认聚焦', 'en-US': 'Whether to focus by default' },
+          'demoId': 'autofocus'
+        },
+        {
+          'name': 'circle',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 false',
+          'desc': { 'zh-CN': '是否圆形按钮', 'en-US': 'Round button' },
+          'demoId': 'base'
+        },
+        {
+          'name': 'disabled',
+          'type': 'boolean',
+          'defaultValue': '该属性的默认值为 false',
+          'desc': { 'zh-CN': '设置按钮是否被禁用', 'en-US': 'Sets whether the button is disabled' },
           'demoId': 'dynamic-disabled'
         },
         {
+          'name': 'icon',
+          'type': 'Object , String',
+          'defaultValue': '',
+          'desc': { 'zh-CN': 'svg 图片对象', 'en-US': 'svg Image Object' },
+          'demoId': 'icon'
+        },
+        {
+          'name': 'loading',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 false',
+          'desc': { 'zh-CN': '是否加载中状态', 'en-US': 'Loading status' },
+          'demoId': 'loading'
+        },
+        {
           'name': 'native-type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 button',
           'desc': {
             'zh-CN':
@@ -162,28 +152,32 @@ export default {
           'demoId': 'icon'
         },
         {
+          'name': 'plain',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 false',
+          'desc': { 'zh-CN': '是否朴素按钮', 'en-US': 'Simple button' },
+          'demoId': 'base'
+        },
+        {
           'name': 'reset-time',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 1000',
           'desc': {
             'zh-CN': '设置按钮禁用时间，防止重复提交，单位毫秒',
-            'en-US': 'Set the button disable time, in milliseconds, to prevent repeated submission.'
+            'en-US': 'Set the button disable time, in milliseconds, to prevent repeated submission'
           },
           'demoId': 'reset-time'
-        },
+        },     
         {
-          'name': 'text',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '设置按钮显示的文本，可配置国际化。',
-            'en-US': 'Sets the text displayed on the button. The text can be internationalized.'
-          },
-          'demoId': 'text'
+          'name': 'round',
+          'type': 'Boolean',
+          'defaultValue': '该属性的默认值为 false',
+          'desc': { 'zh-CN': '是否圆角按钮', 'en-US': 'Whether to round the corner button' },
+          'demoId': 'base'
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '定义按钮尺寸;该属性的可选值为 large / medium / small / mini',
@@ -192,57 +186,25 @@ export default {
           'demoId': 'size'
         },
         {
+          'name': 'text',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '设置按钮显示的文本，可配置国际化',
+            'en-US': 'Sets the text displayed on the button. The text can be internationalized'
+          },
+          'demoId': 'text'
+        },
+        {
           'name': 'type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '展示按钮不同的状态;该属性的可选值为 primary / success / warning / danger / info / text',
             'en-US':
               'Displays different button states. The optional values of this attribute are primary / success / warning / danger / info / text'
           },
-          'demoId': 'type'
-        },
-        {
-          'name': 'plain',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否朴素按钮', 'en-US': 'Simple button' },
-          'demoId': 'plain'
-        },
-        {
-          'name': 'round',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否圆角按钮', 'en-US': 'Whether to round the corner button' },
-          'demoId': 'round'
-        },
-        {
-          'name': 'circle',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否圆形按钮', 'en-US': 'Round button' },
-          'demoId': 'circle'
-        },
-        {
-          'name': 'loading',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否加载中状态', 'en-US': 'Loading status' },
-          'demoId': 'loading'
-        },
-        {
-          'name': 'icon',
-          'type': 'Object , String',
-          'defaultValue': '',
-          'desc': { 'zh-CN': 'svg 图片对象', 'en-US': 'svg Image Object' },
-          'demoId': 'icon'
-        },
-        {
-          'name': 'autofocus',
-          'type': 'Boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否默认聚焦', 'en-US': 'Whether to focus by default' },
-          'demoId': 'autofocus'
+          'demoId': 'base'
         }
       ],
       'events': [
@@ -251,8 +213,8 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置当按钮被点击时触发的回调函数。',
-            'en-US': 'Sets the callback function triggered when a button is clicked.'
+            'zh-CN': '设置当按钮被点击时触发的回调函数',
+            'en-US': 'Sets the callback function triggered when a button is clicked'
           },
           'demoId': 'click'
         }

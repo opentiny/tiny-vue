@@ -135,28 +135,28 @@ export default {
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
           'demoId': 'disabled'
         },
         {
           'name': 'editable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '文本框可输入', 'en-US': 'The text box can be entered.' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'clearable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否显示清除按钮', 'en-US': 'Display Clear Button' },
           'demoId': 'clear-icon'
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '输入框尺寸;该属性的可选值为 medium,small, mini',
@@ -166,14 +166,14 @@ export default {
         },
         {
           'name': 'placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为空',
           'desc': { 'zh-CN': '非范围选择时的占位内容', 'en-US': 'Placeholder content for non-range selection' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': 'TimePicker 下拉框的 class 类名',
@@ -183,7 +183,7 @@ export default {
         },
         {
           'name': 'picker-options',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '该属性的默认值为 {}',
           'desc': {
             'zh-CN': '当前时间日期选择器特有的选项参考下表',
@@ -204,28 +204,28 @@ export default {
         },
         {
           'name': 'name',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '原生属性', 'en-US': 'Native attribute' },
           'demoId': 'name'
         },
         {
           'name': 'suffix-icon',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该自定后置图标，该属性的默认值为 IconCalendar',
           'desc': { 'zh-CN': '自定义头部图标', 'en-US': 'Custom header icon' },
           'demoId': 'suffix-icon'
         },
         {
           'name': 'clear-icon',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 IconOperationfaild',
           'desc': { 'zh-CN': '自定义清空图标', 'en-US': 'Customized clear icon' },
           'demoId': 'clear-icon'
         },
         {
           'name': 'popper-append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false',

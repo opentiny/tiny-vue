@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Breadcrumb as TinyBreadcrumb, Notify } from '@opentiny/vue'
 

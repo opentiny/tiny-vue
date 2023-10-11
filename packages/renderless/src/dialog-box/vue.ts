@@ -30,6 +30,17 @@ import {
   computedBodyStyle
 } from './index'
 import usePopup from '../common/deps/vue-popup'
+import type {
+  IDialogBoxApi,
+  IDialogBoxProps,
+  IDialogBoxRenderlessParamUtils,
+  IDialogBoxRenderlessParams,
+  IDialogBoxState,
+  IDialogBoxMergeStateParam,
+  ISharedRenderlessParamHooks,
+  IDialogBoxInitApiParam,
+  IDialogBoxInitWatchParam
+} from '@/types'
 
 export const api = [
   'afterEnter',
@@ -42,8 +53,14 @@ export const api = [
   'state'
 ]
 
-const initState = ({ reactive, computed, api, emitter, props }) => {
-  const state = reactive({
+const initState = ({
+  reactive,
+  computed,
+  api,
+  emitter,
+  props
+}: Pick<IDialogBoxRenderlessParams, 'reactive' | 'computed' | 'api' | 'emitter' | 'props'>): IDialogBoxState => {
+  const state: IDialogBoxState = reactive({
     emitter: emitter(),
     key: 0,
     x: null,
@@ -53,7 +70,7 @@ const initState = ({ reactive, computed, api, emitter, props }) => {
     max: null,
     move: false,
     closed: false,
-    dragable: null,
+    dragable: false,
     isFull: props.fullscreen,
     style: computed(() => api.computedStyle()),
     bodyStyle: computed(() => api.computedBodyStyle()),
@@ -63,15 +80,13 @@ const initState = ({ reactive, computed, api, emitter, props }) => {
   return state
 }
 
-const mergeState = ({ reactive, state, toRefs, usePopups }) => {
-  const { bodyPaddingRight, computedBodyPaddingRight, opened, rendered, withoutHiddenClass } = usePopups
+const mergeState = ({ reactive, state, toRefs, usePopups }: IDialogBoxMergeStateParam): IDialogBoxState => {
+  // 由于 usePopups返回的值已经是 toRefs过了，所以这里可以直接解构
+  const { opened, rendered } = usePopups
 
   const merge = reactive({
-    bodyPaddingRight,
-    computedBodyPaddingRight,
     opened,
     rendered,
-    withoutHiddenClass,
     ...toRefs(state)
   })
 
@@ -90,18 +105,12 @@ const initApi = ({
   nextTick,
   broadcast,
   vm
-}) => {
-  const { open, close, doOpen, doClose } = usePopups
-  const { doAfterOpen, doAfterClose, restoreBodyStyle } = usePopups
+}: IDialogBoxInitApiParam): void => {
+  const { open, close } = usePopups
   Object.assign(api, {
     state,
     open,
     close,
-    doOpen,
-    doClose,
-    doAfterOpen,
-    doAfterClose,
-    restoreBodyStyle,
     broadcast,
     handleCancel: handleCancel({ api, emit }),
     handleConfirm: handleConfirm({ api, emit }),
@@ -132,23 +141,23 @@ const initApi = ({
   })
 }
 
-const initWatch = ({ watch, state, api, props }) => {
+const initWatch = ({ watch, state, api, props }: IDialogBoxInitWatchParam) => {
   watch(() => props.visible, api.watchVisible)
 
   watch(
     () => props.fullscreen,
-    (value) => {
+    (value: boolean) => {
       state.isFull = value
     }
   )
 }
 
 export const renderless = (
-  props,
-  { computed, onBeforeUnmount, onMounted, toRefs, reactive, watch },
-  { vm, emitter, parent, emit, constants, nextTick, mode, broadcast }
-) => {
-  const api = {}
+  props: IDialogBoxProps,
+  { computed, onBeforeUnmount, onMounted, toRefs, reactive, watch }: ISharedRenderlessParamHooks,
+  { vm, emitter, parent, emit, constants, nextTick, mode, broadcast }: IDialogBoxRenderlessParamUtils
+): IDialogBoxApi => {
+  const api = {} as IDialogBoxApi
   const lockScrollClass = constants.scrollLockClass(mode)
   let state = initState({ reactive, computed, api, emitter, props })
   const usePopups = usePopup({
@@ -158,7 +167,6 @@ export const renderless = (
     onMounted,
     props,
     reactive,
-    state,
     toRefs,
     vm,
     watch

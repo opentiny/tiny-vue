@@ -8,8 +8,7 @@
 </template>
 
 <script lang="jsx">
-import { Dept } from '@opentiny/vue'
-import { confirm } from '@opentiny/vue-modal'
+import { Dept, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -23,7 +22,7 @@ export default {
   methods: {
     beforeConfirm() {
       return new Promise((resolve, reject) => {
-        confirm('确定关闭弹框？').then((res) => {
+        Modal.confirm('确定关闭弹框？').then((res) => {
           res === 'confirm' ? resolve() : reject(new Error())
         })
       })

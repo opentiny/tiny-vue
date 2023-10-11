@@ -13,6 +13,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/tag/vue'
 import { props, setup, h, defineComponent } from '@opentiny/vue-common'
 import { iconClose } from '@opentiny/vue-icon'
+import type { ITagApi } from '@opentiny/vue-renderless/types/tag.type'
 
 export default defineComponent({
   components: {
@@ -21,7 +22,7 @@ export default defineComponent({
   emits: ['click', 'close'],
   props: [...props, 'text', 'closable', 'type', 'hit', 'disabled', 'color', 'size', 'effect', 'value', 'beforeDelete'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, h })
+    return setup({ props, context, renderless, api, h }) as unknown as ITagApi
   },
   render() {
     const { type, size, hit, effect, slots, closable, color, handleClose, handleClick, disabled, state, value } = this

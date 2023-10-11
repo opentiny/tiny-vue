@@ -107,14 +107,14 @@ export default {
       'properties': [
         {
           'name': 'arrow',
-          'type': 'Boolean ',
+          'type': 'boolean ',
           'defaultValue': 'true',
           'desc': { 'zh-CN': '是否显示工具提示的箭头', 'en-US': '' },
           'demoId': 'base'
         },
         {
           'name': 'pop-position',
-          'type': 'String ',
+          'type': 'string ',
           'defaultValue': 'bottom',
           'desc': {
             'zh-CN':
@@ -132,56 +132,56 @@ export default {
         },
         {
           'name': 'main-axis',
-          'type': 'Number ',
+          'type': 'number ',
           'defaultValue': '18',
           'desc': { 'zh-CN': '设置引导框主轴（纵轴）距离', 'en-US': '' },
           'demoId': 'guide-poistion-mainAxis'
         },
         {
           'name': 'cross-axis',
-          'type': 'Number ',
+          'type': 'number ',
           'defaultValue': '0',
           'desc': { 'zh-CN': '设置引导框横轴距离', 'en-US': '' },
           'demoId': 'guide-poistion-crossAxis'
         },
         {
           'name': 'alignment-axis',
-          'type': 'Number ',
+          'type': 'number ',
           'defaultValue': '0',
           'desc': { 'zh-CN': '设置引导框对齐轴距离', 'en-US': '' },
           'demoId': 'guide-poistion-alignmentAxis'
         },
         {
           'name': 'width',
-          'type': 'Number ',
+          'type': 'number ',
           'defaultValue': '510',
           'desc': { 'zh-CN': '设置引导框宽度', 'en-US': '' },
           'demoId': 'size'
         },
         {
           'name': 'height',
-          'type': 'Number ',
+          'type': 'number ',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置引导框高度', 'en-US': '' },
           'demoId': 'size'
         },
         {
           'name': 'modal-overlay-opening-padding',
-          'type': 'Number ',
+          'type': 'number ',
           'defaultValue': '0',
           'desc': { 'zh-CN': '在模态叠加层开口周围添加的填充量', 'en-US': '' },
           'demoId': 'set-modal-overlay-opening'
         },
         {
           'name': 'modal-overlay-opening-radius',
-          'type': 'Number ',
+          'type': 'number ',
           'defaultValue': '0',
           'desc': { 'zh-CN': '在模态叠加层开口周围添加的边界半径量', 'en-US': '' },
           'demoId': 'set-modal-overlay-opening'
         },
         {
           'name': 'light-class',
-          'type': 'String ',
+          'type': 'string ',
           'defaultValue': '',
           'desc': { 'zh-CN': '当元素突出显示时（即，当其步骤处于活动状态时）应用于元素的额外类', 'en-US': '' },
           'demoId': 'activeDom'
@@ -200,21 +200,21 @@ export default {
       'domData-attrs': [
         {
           'name': 'title',
-          'type': 'String ',
+          'type': 'string ',
           'defaultValue': '',
           'desc': { 'zh-CN': '表示需要设置的头部标题名', 'en-US': '' },
           'demoId': 'base'
         },
         {
           'name': 'text',
-          'type': 'String ',
+          'type': 'string ',
           'defaultValue': '',
           'desc': { 'zh-CN': '表示需要填入的内容区（可以是一个 html）', 'en-US': '' },
           'demoId': 'base'
         },
         {
           'name': 'domElement',
-          'type': 'String ',
+          'type': 'string ',
           'defaultValue': '',
           'desc': {
             'zh-CN': '表示需要绑定指引的元素类名（只能是类名，若未传入则显示为上下左右居中且无指示箭头）',
@@ -231,7 +231,7 @@ export default {
         },
         {
           'name': 'classes',
-          'type': 'String ',
+          'type': 'string ',
           'defaultValue': '',
           'desc': { 'zh-CN': '要添加到步骤的内容元素的一串额外类', 'en-US': '' },
           'demoId': 'guide-poistion-crossAxis'
@@ -287,28 +287,28 @@ export default {
         },
         {
           'name': 'button.text',
-          'type': 'String ',
+          'type': 'string ',
           'defaultValue': '',
           'desc': { 'zh-CN': '表示需要设置的按钮名', 'en-US': '' },
           'demoId': 'base'
         },
         {
           'name': 'button.action',
-          'type': 'String ',
+          'type': 'string ',
           'defaultValue': '',
           'desc': { 'zh-CN': "表示需要执行的步骤，包含'next(下一步)、back(返回)、complete(完成)'", 'en-US': '' },
           'demoId': 'base'
         },
         {
           'name': 'button.classes',
-          'type': 'String ',
+          'type': 'string ',
           'defaultValue': '',
           'desc': { 'zh-CN': '表示可以为按钮设置的样式类名', 'en-US': '' },
           'demoId': 'title-steps'
         },
         {
           'name': 'button.secondary',
-          'type': 'Boolean ',
+          'type': 'boolean ',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '表示为按钮设置透明样式', 'en-US': '' },
           'demoId': 'content-steps'

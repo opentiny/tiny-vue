@@ -24,7 +24,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal as TinyModal } from '@opentiny/vue'
 
 const bodyMenus = ref([
   [
@@ -157,7 +157,7 @@ const tableData = ref([
 ])
 
 function footerCellDbClick() {
-  alert('触发表尾双击点击事件')
+  TinyModal.alert('触发表尾双击点击事件')
 }
 
 function footerMethod({ columns, data }) {
@@ -204,11 +204,11 @@ function contextMenuClickEvent({ menu, row, column }) {
   switch (menu.code) {
     case 'copy':
       if (row && column) {
-        alert(`copy ${row}`)
+        TinyModal.alert(`copy ${row}`)
       }
       break
     default:
-      alert(`点击了 ${menu.name} 选项`)
+      TinyModal.alert(`点击了 ${menu.name} 选项`)
   }
 }
 </script>

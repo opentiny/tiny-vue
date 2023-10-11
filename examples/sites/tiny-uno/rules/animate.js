@@ -42,9 +42,9 @@ export default function builder(option) {
       [/^ani-(d|delay)#(-?\d+\.?\d*)s$/, ([, tag, time]) => ({ 'animation-delay': `${time}s` })],
       // 次数  count  ani-c#3  ani-count#3.5 ani-c#infinite  ani-c#keep  默认1     小数表示执行一半就结束
       [/^ani-(c|count)#(\d+\.?\d*)$/, ([, tag, time]) => ({ 'animation-iteration-count': `${time}` })],
-      [/^ani-(c|count)#(infinite|keep)$/, ([, tag]) => ({ 'animation-iteration-count': 'infinite' })],
+      [/^ani-(c|count)#(infinite|loop|keep)$/, ([, tag]) => ({ 'animation-iteration-count': 'infinite' })],
 
-      // 是否循环往返   ani-round    添加则往返。                          默认为： ani-normal 。不添加则每次循环，即每个周期都从头开始
+      // 是否循环往返   ani-round 添加则往返。名字起的不好，不建议用           默认为： ani-normal 。不添加则每次循环，即每个周期都从头开始
       ['ani-round', { 'animation-direction': 'alternate' }],
       ['ani-normal', { 'animation-direction': 'normal' }],
 

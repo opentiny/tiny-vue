@@ -3,11 +3,13 @@
     <tiny-alert description="type 为默认值 success"></tiny-alert>
     <tiny-alert type="error" description="type 为 error"></tiny-alert>
     <tiny-alert type="info" description="type 为 info"></tiny-alert>
-    <tiny-alert type="warning" description="type 为 warning"></tiny-alert>
+    <tiny-alert type="warning">
+      <template #description> type 为 warning </template>
+    </tiny-alert>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Alert } from '@opentiny/vue'
 
 export default {

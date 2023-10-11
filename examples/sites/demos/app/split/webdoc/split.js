@@ -50,6 +50,17 @@ export default {
       'codeFiles': ['moveend-event.vue']
     },
     {
+      'demoId': 'event-click',
+      'name': { 'zh-CN': '点击事件', 'en-US': 'click event' },
+      'desc': {
+        'zh-CN':
+          '<p><code>left-top-click</code>事件点击左箭头收起时触发， <code>right-bottom-click</code>事件点击右箭头收起时触发</p>\n',
+        'en-US':
+          '<p> <code>left-top-click</code>事件点击左箭头收起时触发，<code>right-bottom-click</code>事件点击右箭头收起时触发</p>\n'
+      },
+      'codeFiles': ['event-click.vue']
+    },
+    {
       'demoId': 'left-right-slot',
       'name': { 'zh-CN': '左右面板插槽', 'en-US': 'Slots on the left and right panels' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
@@ -72,6 +83,53 @@ export default {
       'name': { 'zh-CN': '嵌套使用', 'en-US': 'Nested' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['nested-use.vue']
+    },
+    {
+      'demoId': 'disabled-drag',
+      'name': { 'zh-CN': '禁用拖拽', 'en-US': 'disabled drag' },
+      'desc': {
+        'zh-CN': '通过 <code> disabled </code> 来禁用拖拽',
+        'en-US': 'Use <code>disabled</code> to disable drag and drop.'
+      },
+      'codeFiles': ['disabled-drag.vue']
+    },
+    {
+      'demoId': 'trigger-simple',
+      'name': { 'zh-CN': '简易模式', 'en-US': 'Simple mode' },
+      'desc': {
+        'zh-CN': '通过 <code> trigger-simple </code> 来启用简易模式',
+        'en-US': 'Use <code>trigger-simple </code> to enable the simple mode.'
+      },
+      'codeFiles': ['trigger-simple.vue']
+    },
+    {
+      'demoId': 'horizontal-collapse',
+      'name': { 'zh-CN': '简易模式中，双向展开', 'en-US': 'In simple mode, two-way deployment' },
+      'desc': {
+        'zh-CN': '通过 <code> collapse-left-top、collapse-right-bottom  </code> 来启用简易模式的双向展开按钮',
+        'en-US':
+          'Use <code>collapse-left-top, collapse-right-bottom </code> to enable the bidirectional expansion button in simple mode.'
+      },
+      'codeFiles': ['horizontal-collapse.vue']
+    },
+    {
+      'demoId': 'horizontal-collapse-left-top',
+      'name': { 'zh-CN': '简易模式中，单向展开', 'en-US': 'In simple mode, one-way deployment' },
+      'desc': {
+        'zh-CN': '通过 <code> collapse-left-top 或 collapse-right-bottom  </code> 来启用简易模式的单向展开按钮',
+        'en-US':
+          'Use <code>collapse-left-top or collapse-right-bottom </code> to enable one-way expansion buttons in simple mode'
+      },
+      'codeFiles': ['horizontal-collapse-left-top.vue']
+    },
+    {
+      'demoId': 'three-areas',
+      'name': { 'zh-CN': '支持配置3个区块', 'en-US': 'Three blocks can be configured' },
+      'desc': {
+        'zh-CN': '通过 <code> three-areas </code> 来启用三个区块模式',
+        'en-US': 'Use <code>three-areas </code> to enable the three-area mode.'
+      },
+      'codeFiles': ['three-areas.vue']
     }
   ],
   apis: [
@@ -80,16 +138,9 @@ export default {
       'type': 'component',
       'properties': [
         {
-          'name': 'left-top-min',
-          'type': 'Number , String',
-          'defaultValue': '该属性的默认值为 40px',
-          'desc': { 'zh-CN': '左面板 / 上面板最小阈值。', 'en-US': 'Minimum threshold on the left or upper panel.' },
-          'demoId': 'split-threshold'
-        },
-        {
           'name': 'mode',
-          'type': 'String',
-          'defaultValue': '该属性的默认值为 horizontal',
+          'type': 'string',
+          'defaultValue': 'horizontal',
           'desc': {
             'zh-CN':
               '分割类型，可选值为 horizontal 或 vertical；默认值horizontal。;该属性的可选值为 horizontal / vertical',
@@ -99,18 +150,69 @@ export default {
           'demoId': 'split-mode'
         },
         {
+          'name': 'collapse-left-top',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '简易模式启用左/上展开收起按钮。',
+            'en-US': 'Easy Mode Enables Left/Top Expand Collapse Button'
+          },
+          'demoId': 'split-threshold'
+        },
+        {
+          'name': 'collapse-right-bottom',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '简易模式启用右/下展开收起按钮',
+            'en-US': 'Easy Mode Enables Right/Down Expand Collapse Button'
+          },
+          'demoId': 'split-threshold'
+        },
+        {
+          'name': ' disabled',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '分割线是否禁用拖拽',
+            'en-US': 'Indicates whether to disable dragging of the split line.'
+          },
+          'demoId': 'split-threshold'
+        },
+        {
+          'name': 'left-top-min',
+          'type': 'number , string',
+          'defaultValue': '40px',
+          'desc': { 'zh-CN': '左面板 / 上面板最小阈值。', 'en-US': 'Minimum threshold on the left or upper panel.' },
+          'demoId': 'split-threshold'
+        },
+        {
           'name': 'right-bottom-min',
-          'type': 'Number , String',
-          'defaultValue': '该属性的默认值为 40px',
+          'type': 'number , string',
+          'defaultValue': '40px',
           'desc': { 'zh-CN': '右面板 / 下面板最小阈值。', 'en-US': 'Minimum threshold on the right or lower panel.' },
           'demoId': 'split-threshold'
         },
         {
           'name': 'modelValue',
-          'type': 'Number , String',
-          'defaultValue': '该属性的默认值为 0.5',
+          'type': 'number , string',
+          'defaultValue': '0.5',
           'desc': { 'zh-CN': '分割面板的位置。', 'en-US': 'Position of the split panel.' },
           'demoId': 'basic-usage'
+        },
+        {
+          'name': 'three-areas',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': { 'zh-CN': '配置3个区块', 'en-US': 'Three blocks are configured.' },
+          'demoId': 'split-threshold'
+        },
+        {
+          'name': 'trigger-simple ',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': { 'zh-CN': '分割线是否为简易模式', 'en-US': 'Indicates whether the split line is in simple mode.' },
+          'demoId': 'split-threshold'
         }
       ],
       'events': [
@@ -139,8 +241,28 @@ export default {
           'type': 'Function(arg)',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '拖拽中的事件。;拖拽中的事件。;arg1:event (类型Object)',
-            'en-US': 'Draging events. ;Drag the event in. ; arg1:event (type Object)'
+            'zh-CN': '拖拽中的事件。;拖拽中的事件。;arg1:event (类型object)',
+            'en-US': 'Draging events. ;Drag the event in. ; arg1:event (type object)'
+          },
+          'demoId': 'moving-event'
+        },
+        {
+          'name': 'left-top-click',
+          'type': 'Function(arg)',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '左箭头收起时触发',
+            'en-US': 'Triggered when the left arrow is folded'
+          },
+          'demoId': 'moving-event'
+        },
+        {
+          'name': '右箭头收起时触发',
+          'type': 'Function(arg)',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '拖拽中的事件。;拖拽中的事件。;arg1:event (类型object)',
+            'en-US': 'Triggered when the right arrow is folded'
           },
           'demoId': 'moving-event'
         }

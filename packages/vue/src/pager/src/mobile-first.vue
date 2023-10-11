@@ -134,7 +134,7 @@ export default defineComponent({
           <button
             type="button"
             class={[
-              'group min-w-[1.75rem] h-7 text-xs py-0 px-1 text-color-text-primary bg-white border border-solid border-color-border rounded-sm outline-0 ml-2',
+              'group min-w-[1.75rem] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 border border-solid border-color-border rounded-sm outline-0 ml-2',
               'align-bottom cursor-pointer hover:border-color-icon-primary disabled:bg-color-bg-4 disabled:border-color-border disabled:cursor-default disabled:opacity-50'
             ]}
             disabled={this.$parent.disabled || this.$parent.internalCurrentPage <= 1}
@@ -156,7 +156,7 @@ export default defineComponent({
           <button
             type="button"
             class={[
-              'group min-w-[1.75rem] h-7 text-xs py-0 px-1 text-color-text-primary bg-white border border-solid border-color-border rounded-sm outline-0 ml-2',
+              'group min-w-[1.75rem] h-7 text-xs py-0 px-1 text-color-text-primary bg-color-bg-1 border border-solid border-color-border rounded-sm outline-0 ml-2',
               'align-bottom cursor-pointer hover:border-color-icon-primary disabled:bg-color-bg-4 disabled:border-color-border disabled:cursor-default disabled:opacity-50'
             ]}
             disabled={
@@ -195,9 +195,8 @@ export default defineComponent({
           immediate: true,
           handler(newVal) {
             if (Array.isArray(newVal)) {
-              this.$parent.internalPageSize = newVal.includes(this.$parent.pageSize)
-                ? this.$parent.pageSize
-                : this.pageSizes[0]
+              this.$parent.internalPageSize =
+                newVal.indexOf(this.$parent.pageSize) > -1 ? this.$parent.pageSize : this.pageSizes[0]
             }
           }
         }
@@ -207,11 +206,11 @@ export default defineComponent({
 
         const scopedSlots = {
           reference: () => (
-            <div slot="reference" class="my-0 mr-0 ml-4">
+            <div data-tag="tiny-pager-reference" slot="reference" class="my-0 mr-0 ml-4">
               <div
                 class={[
                   'min-w-[6.125rem] max-w-[12.5rem] h-7 cursor-pointer leading-7 border border-solid border-color-border text-left text-color-text-primary',
-                  'rounded-sm bg-white text-xs pl-3 pr-1 py-0 align-middle relative top-px whitespace-nowrap transition-[border] duration-300 box-border select-none',
+                  'rounded-sm bg-color-bg-1 text-xs pl-3 pr-1 py-0 align-middle relative top-px whitespace-nowrap transition-[border] duration-300 box-border select-none',
                   'hover:border-color-border-hover',
                   this.showSizes ? 'border-color-brand-hover hover:border-color-brand-hover' : ''
                 ]}>
@@ -231,7 +230,9 @@ export default defineComponent({
             </div>
           ),
           default: () => (
-            <div class="max-h-[18.75rem] overflow-y-auto overflow-x-hidden mx-[-1rem] my-[-0.75rem]">
+            <div
+              data-tag="tiny-pager-size"
+              class="max-h-[18.75rem] overflow-y-auto overflow-x-hidden mx-[-1rem] my-[-0.75rem]">
               {this.pageSizes.map((item) => (
                 <p
                   class={[
@@ -249,7 +250,9 @@ export default defineComponent({
         }
 
         return (
-          <div class={['inline-block align-middle text-xs h-7', 'text-xs text-color-text-primary relative -top-px']}>
+          <div
+            data-tag="tiny-pager-popover"
+            class={['inline-block align-middle text-xs h-7', 'text-xs text-color-text-primary relative -top-px']}>
             {h(Popover, {
               props: {
                 placement: 'bottom-start',
@@ -330,7 +333,7 @@ export default defineComponent({
         }
       },
       watch: {
-        '$parent.internalCurrentPage': function (currentPage) {
+        '$parent.internalCurrentPage'(currentPage) {
           const value = currentPage
 
           if (this.value !== value) {
@@ -441,6 +444,7 @@ export default defineComponent({
       render() {
         return typeof this.$parent.internalTotal === 'number' ? (
           <div
+            data-tag="tiny-pager"
             class={[
               'inline-block align-middle text-xs h-7',
               this.$parent.mode === 'simple' ? '' : 'text-color-text-primary text-xs float-left'

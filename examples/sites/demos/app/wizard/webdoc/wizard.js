@@ -80,7 +80,7 @@ export default {
         },
         {
           'name': 'base-flow',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置流程图为基本流程图模式',
@@ -90,7 +90,7 @@ export default {
         },
         {
           'name': 'page-guide',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置流程图为页向导流程图，配合 base-flow 属性使用',
@@ -101,14 +101,14 @@ export default {
         },
         {
           'name': 'vertical',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置流程图为垂直流程图', 'en-US': 'Set the flowchart to a vertical flowchart.' },
           'demoId': 'vertical'
         },
         {
           'name': 'time-line-flow',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置流程图为时间线流程图', 'en-US': 'Set the flowchart to a timeline flowchart.' },
           'demoId': 'time-line-flow'

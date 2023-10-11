@@ -11,8 +11,6 @@
  */
 import Vue from 'vue'
 import * as hooks from 'vue'
-
-import type {} from 'vue-router' // https://github.com/microsoft/TypeScript/issues/47663#issuecomment-1270716220
 import { emitter, bindFilter, getElementCssClass, getElementStatusClass } from '../utils'
 import teleport from '../teleport'
 
@@ -231,11 +229,9 @@ const createVm = (vm, instance, context = undefined) => {
 }
 
 const onBeforeMount = (instance, refs) => {
-  for (let name in instance.refs) {
-    if (Object.prototype.hasOwnProperty.call(instance.refs, name)) {
-      refs[name] = instance.refs[name]
-    }
-  }
+  Object.keys(instance.$refs).forEach((key) => {
+    refs[key] = instance.$refs[key]
+  })
 }
 
 export const tools = (context, mode) => {

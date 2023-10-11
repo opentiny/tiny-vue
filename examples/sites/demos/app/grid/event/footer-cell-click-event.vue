@@ -208,11 +208,11 @@ export default {
       switch (menu.code) {
         case 'copy':
           if (row && column) {
-            alert(`copy ${row}`)
+            Modal.alert(`copy ${row}`)
           }
           break
         default:
-          alert(`点击了 ${menu.name} 选项`)
+          Modal.alert(`点击了 ${menu.name} 选项`)
       }
     }
   }
