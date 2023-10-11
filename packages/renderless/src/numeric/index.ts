@@ -96,6 +96,11 @@ export const increase =
     }
 
     const value = (props.mouseWheel ? state.displayValue : props.modelValue) || 0
+
+    if (value.toString().includes('e')) {
+      return
+    }
+
     let newVal = api.internalIncrease({ val: value, step: props.step })
 
     if (!props.circulate || !isFinite(props.max) || !isFinite(props.min)) {
@@ -116,8 +121,12 @@ export const decrease =
     if (state.inputDisabled || state.minDisabled) {
       return
     }
-
     const value = (props.mouseWheel ? state.displayValue : props.modelValue) || 0
+
+    if (value.toString().includes('e')) {
+      return
+    }
+
     let newVal = api.internalDecrease({ val: value, step: props.step })
 
     if (!props.circulate || !isFinite(props.max) || !isFinite(props.min)) {
@@ -269,7 +278,7 @@ export const handleInput =
       emitError()
 
       if (!(value === '' && props.allowEmpty)) {
-        value = state.lastInput
+        value = value.indexOf('e') === -1 ? state.lastInput : value
       }
     } else {
       value = value
