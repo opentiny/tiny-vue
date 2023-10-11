@@ -48,8 +48,9 @@ export const createShepherd =
 
     state.tour.start()
     if (props.width || props.height) {
-      document.querySelector('.tiny-guide.shepherd-element').style.width = `${props.width}px`
-      document.querySelector('.tiny-guide.shepherd-element').style.height = `${props.height}px`
+      const dom = document.querySelector('.tiny-guide.shepherd-element') as HTMLElement
+      document.documentElement.style.setProperty('--tiny-guide-shepherd-element-size', `${props.width}px`)
+      dom.style.height = `${props.height}px`
     }
   }
 
