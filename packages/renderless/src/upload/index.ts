@@ -34,7 +34,7 @@ export const handleChange = (api: IUploadRenderlessParams['api']) => (event: Eve
 }
 
 export const handlePaste =
-  ({ api, props }) =>
+  ({ api, props }: Pick<IUploadRenderlessParams, 'api' | 'props'>) =>
   (event: ClipboardEvent) => {
     event.preventDefault()
 
@@ -43,7 +43,7 @@ export const handlePaste =
     }
 
     const items = (event.clipboardData || event.originalEvent.clipboardData).items
-    const files = []
+    const files = [] as IFileUploadFile[]
     for (let i = 0; i < items.length; i++) {
       const file = items[i].getAsFile()
       if (Object.prototype.toString.call(file) === '[object File]') {
@@ -107,7 +107,7 @@ export const uploadFiles =
     props,
     t
   }: Pick<IUploadRenderlessParams, 'state' | 'constants' | 'props' | 't'> & IFileUploadModalVm) =>
-  (files: FileList) => {
+  (files: FileList | IFileUploadFile[]) => {
     if (state.updateId === '') {
       if (props.limit && props.fileList.length + files.length > props.limit) {
         const fileUploadTem = state.uploader.$refs[constants.FILE_UPLOAD_INNER_TEMPLATE]
