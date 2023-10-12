@@ -7,15 +7,14 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { FileUpload as TinyFileUpload } from '@opentiny/vue'
+import { FileUpload as TinyFileUpload, Modal } from '@opentiny/vue'
 import { iconFileupload } from '@opentiny/vue-icon'
-import { message } from '@opentiny/vue-modal'
 
 const action = ref('http://localhost:3000/api/upload')
 
 const TinyIconFileupload = iconFileupload()
 
 function dropErrorHandler(files) {
-  message(`有${files.length}个文件拖拽失败`)
+  Modal.message(`有${files.length}个文件拖拽失败`)
 }
 </script>

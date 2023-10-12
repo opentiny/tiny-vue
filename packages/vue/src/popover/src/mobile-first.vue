@@ -92,10 +92,6 @@ export default defineComponent({
       default: 0
     },
     title: String,
-    transformOrigin: {
-      type: [Boolean, String],
-      default: true
-    },
     transition: {
       type: String,
       default: 'fade-in-linear'

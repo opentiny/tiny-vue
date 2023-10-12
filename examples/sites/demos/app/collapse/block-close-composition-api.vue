@@ -20,7 +20,7 @@
   </tiny-collapse>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Collapse as TinyCollapse, CollapseItem as TinyCollapseItem, Modal } from '@opentiny/vue'
 

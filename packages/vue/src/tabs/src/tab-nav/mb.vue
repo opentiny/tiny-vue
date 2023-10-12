@@ -10,9 +10,11 @@
  *
  -->
 <script lang="tsx">
-import { $prefix, setup, h, $props } from '@opentiny/vue-common' // 此处引入 h 是为了防止打包后 h 被重命名导致组件报错的问题
+import { $prefix, setup, h } from '@opentiny/vue-common' // 此处引入 h 是为了防止打包后 h 被重命名导致组件报错的问题
 import { renderless, api } from '@opentiny/vue-renderless/tab-nav/vue'
 import { iconClose, iconChevronDown } from '@opentiny/vue-icon'
+import type { ITabNavApi } from '@opentiny/vue-renderless/types/tab-nav.type'
+import { tabNavMobileProps } from './index'
 
 export default {
   name: $prefix + 'TabNav',
@@ -20,41 +22,9 @@ export default {
     IconClose: iconClose(),
     IconChevronDown: iconChevronDown()
   },
-  props: {
-    ...$props,
-    panes: {
-      type: Array,
-      default: () => []
-    },
-    currentName: String,
-    activeColor: {
-      type: String,
-      default: ''
-    },
-    onTabClick: {
-      type: Function,
-      default: () => {}
-    },
-    onTabRemove: {
-      type: Function,
-      default: () => {}
-    },
-    showExpandTabs: Boolean,
-    expandPanesWidth: {
-      type: String,
-      default: ''
-    },
-    expandTabsTitle: {
-      type: String,
-      default: '请选择'
-    },
-    expandTabsMode: {
-      type: String,
-      default: 'columns'
-    }
-  },
+  props: tabNavMobileProps,
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true, h })
+    return setup({ props, context, renderless, api, mono: true, h }) as unknown as ITabNavApi
   },
   render() {
     const {

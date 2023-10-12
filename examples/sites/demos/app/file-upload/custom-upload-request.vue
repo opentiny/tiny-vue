@@ -13,8 +13,7 @@
 </template>
 
 <script lang="jsx">
-import { FileUpload, Button } from '@opentiny/vue'
-import { message } from '@opentiny/vue-modal'
+import { FileUpload, Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -38,7 +37,7 @@ export default {
   },
   methods: {
     beforeUpload() {
-      message('查看请求头示例请打开浏览器开发者工具 network 的 upload 请求')
+      Modal.message('查看请求头示例请打开浏览器开发者工具 network 的 upload 请求')
       return true
     }
   }

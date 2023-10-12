@@ -16,7 +16,7 @@ export default {
       'demoId': 'tiny-first-menu-row-id',
       'name': { 'zh-CN': '唯一主键', 'en-US': 'Unique Primary Key' },
       'desc': {
-        'zh-CN': '<p>通过表格设置 <code>row-id</code> 自定义行数据唯一主键的字段名。该属性的默认值为 _XID</p>\n',
+        'zh-CN': '<p>通过表格设置 <code>row-id</code> 自定义行数据唯一主键的字段名。该属性的默认值为 _RID</p>\n',
         'en-US':
           '<p>Set the <code>row-id</code> field name of the unique primary key of user-defined row data in a table. The default value of this property is _XID</p>\n'
       },

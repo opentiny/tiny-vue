@@ -27,6 +27,7 @@ import CryptoJS from 'crypto-js/core.js'
 import 'crypto-js/sha256.js'
 import 'crypto-js/lib-typedarrays.js'
 import Streamsaver from 'streamsaver'
+import type { IFileUploadApi } from '@opentiny/vue-renderless/types/file-upload.type'
 
 export default defineComponent({
   inheritAttrs: false,
@@ -66,7 +67,13 @@ export default defineComponent({
   ],
   setup(props, context) {
     // 内置crypto-js和streamsaver进行上传下载
-    return setup({ props, context, renderless, api, extendOptions: { Modal, CryptoJS, Streamsaver } })
+    return setup({
+      props,
+      context,
+      renderless,
+      api,
+      extendOptions: { Modal, CryptoJS, Streamsaver }
+    }) as unknown as IFileUploadApi
   },
   components: {
     Progress,

@@ -1,16 +1,17 @@
-import type { ComputedRef, ExtractPropTypes } from '@opentiny/vue-common'
+import type { ComputedRef, ExtractPropTypes } from 'vue'
 import { buttonProps } from '@/button/src'
 import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { clearTimer, handleClick } from '../src/button'
 
 export interface IButtonState {
-  timer: ReturnType<typeof setTimeout>
+  timer: number
   disabled: boolean
   plain: ComputedRef<boolean>
   formDisabled: ComputedRef<boolean>
   buttonDisabled: ComputedRef<boolean>
 }
 
-export type IButtonRenderlessParams = ISharedRenderlessFunctionParams & {
+export type IButtonRenderlessParams = ISharedRenderlessFunctionParams<never> & {
   state: IButtonState
   props: IButtonProps
 }
@@ -19,8 +20,8 @@ export type IButtonProps = ExtractPropTypes<typeof buttonProps>
 
 export interface IButtonApi {
   state: IButtonState
-  clearTimer: () => void
-  handleClick: (event: MouseEvent) => void
+  clearTimer: ReturnType<typeof clearTimer>
+  handleClick: ReturnType<typeof handleClick>
 }
 
-export type IButtonRenderlessParamUtils = ISharedRenderlessParamUtils
+export type IButtonRenderlessParamUtils = ISharedRenderlessParamUtils<never>

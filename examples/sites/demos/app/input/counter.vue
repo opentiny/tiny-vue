@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Input } from '@opentiny/vue'
 
 export default {

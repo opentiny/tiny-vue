@@ -9,13 +9,14 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import { IWizardRenderlessParams, IWizardPropsDataNode, IWizardNodesItem } from '@/types'
 
 import { format } from '../common/date'
 import { copyArray, extend } from '../common/object'
 import { isObject } from '../common/type'
 
 export const lastStepHandle =
-  ({ state, emit }) =>
+  ({ state, emit }: Pick<IWizardRenderlessParams, 'state' | 'emit'>) =>
   () => {
     for (let i = 0; i < state.datas.length; i++) {
       if (state.datas[0].status === state.doing) {
@@ -33,7 +34,7 @@ export const lastStepHandle =
   }
 
 export const nextStepHandle =
-  ({ state, emit }) =>
+  ({ state, emit }: Pick<IWizardRenderlessParams, 'state' | 'emit'>) =>
   () => {
     for (let i = 0; i < state.datas.length; i++) {
       if (state.datas[state.datas.length - 1].status === state.doing) {
@@ -52,25 +53,27 @@ export const nextStepHandle =
   }
 
 export const btnSaveHandle =
-  ({ state, emit }) =>
+  ({ state, emit }: Pick<IWizardRenderlessParams, 'state' | 'emit'>) =>
   () => {
     emit('btnSave', state.datas)
   }
 
 export const submitHandle =
-  ({ state, emit }) =>
+  ({ state, emit }: Pick<IWizardRenderlessParams, 'state' | 'emit'>) =>
   () => {
     emit('btnSubmit', state.datas)
   }
 
-export const showNode = (emit) => (node, index, event) => {
-  node.showNode = !node.showNode
-  emit('node-click', node, index, event)
-}
+export const showNode =
+  (emit: IWizardRenderlessParams['emit']) => (node: IWizardPropsDataNode, index: number, event: Event) => {
+    node.showNode = !node.showNode
+    emit('node-click', node, index, event)
+  }
 
-export const nodeClick = (emit) => (node, index, event) => {
-  emit('node-click', node, index, event)
-}
+export const nodeClick =
+  (emit: IWizardRenderlessParams['emit']) => (node: IWizardPropsDataNode, index: number, event: Event) => {
+    emit('node-click', node, index, event)
+  }
 
 export const cloneDeep = (data) => {
   if (isObject(data)) {
@@ -83,7 +86,7 @@ export const cloneDeep = (data) => {
 }
 
 export const timelineflowData =
-  ({ state, props, api }) =>
+  ({ state, props, api }: Pick<IWizardRenderlessParams, 'state' | 'props' | 'api'>) =>
   () => {
     if (!props.timeLineFlow) {
       return
@@ -125,7 +128,7 @@ export const timelineflowData =
     state.datas = newArr
   }
 
-export const setTimelineflowNodeStatus = (state) => (nodes) => {
+export const setTimelineflowNodeStatus = (state: IWizardRenderlessParams['state']) => (nodes: IWizardNodesItem[]) => {
   const isNormalArray = (arr) => Array.isArray(arr) && arr.length
 
   if (isNormalArray(nodes)) {

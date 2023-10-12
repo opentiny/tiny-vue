@@ -12,11 +12,15 @@
 import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
+export const floatbarProps = {
+  ...$props,
+  data: Array,
+  position: Object
+}
+
 export default defineComponent({
   name: $prefix + 'Floatbar',
-  props: {
-    ...$props
-  },
+  props: floatbarProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

@@ -10,6 +10,15 @@
  *
  */
 
+import type {
+  INumericApi,
+  INumericProps,
+  INumericState,
+  ISharedRenderlessParamHooks,
+  INumericRenderlessParamUtils,
+  INumericRenderlessParams,
+  INumericInitStateParams
+} from '@/types'
 import {
   watchValue,
   toPrecision,
@@ -51,7 +60,7 @@ export const api = [
   'select'
 ]
 
-const initState = ({ reactive, computed, props, api, $service, parent }) => {
+const initState = ({ reactive, computed, props, api, $service, parent }: INumericInitStateParams): INumericState => {
   const state = reactive({
     currentValue: props.modelValue,
     userInput: props.modelValue,
@@ -66,17 +75,9 @@ const initState = ({ reactive, computed, props, api, $service, parent }) => {
     displayValue: computed(() => api.displayValue()),
     numPrecision: computed(() => api.getNumPecision()),
 
-    minDisabled: computed(
-      () =>
-        (!props.circulate && state.currentValue <= props.min) ||
-        state.formDisabled
-    ),
+    minDisabled: computed(() => (!props.circulate && state.currentValue <= props.min) || state.formDisabled),
 
-    maxDisabled: computed(
-      () =>
-        (!props.circulate && state.currentValue >= props.max) ||
-        state.formDisabled
-    ),
+    maxDisabled: computed(() => (!props.circulate && state.currentValue >= props.max) || state.formDisabled),
 
     controlsAtRight: computed(() => props.controls && props.controlsPosition === 'right'),
 
@@ -84,19 +85,30 @@ const initState = ({ reactive, computed, props, api, $service, parent }) => {
 
     isDisplayOnly: computed(() => props.displayOnly || (parent.tinyForm || {}).displayOnly)
   })
-
   return state
 }
 
-const initApi = ({ api, props, state, parent, refs, emit, dispatch, constants }) => {
+const initApi = ({
+  api,
+  props,
+  state,
+  parent,
+  refs,
+  emit,
+  dispatch,
+  constants
+}: Pick<
+  INumericRenderlessParams,
+  'api' | 'props' | 'state' | 'parent' | 'refs' | 'emit' | 'dispatch' | 'constants'
+>): void => {
   Object.assign(api, {
     state,
     focus: focus(refs),
     select: select(refs),
     getPrecision: getPrecision(),
     toPrecision: toPrecision(state),
-    updated: updated({ constants, parent, props, refs, state }),
-    mounted: mounted({ constants, parent, props, refs, state }),
+    updated: updated({ constants, parent, state }),
+    mounted: mounted({ constants, parent, props, state }),
     unmounted: unmounted({ parent, state }),
     getDecimal: getDecimal(props),
     handleFocus: handleFocus({ emit, state, props, api, refs }),
@@ -119,18 +131,23 @@ const initApi = ({ api, props, state, parent, refs, emit, dispatch, constants })
   api.getDecimal(0)
 }
 
-const initWatch = ({ state, watch, props, api }) => {
+const initWatch = ({
+  state,
+  watch,
+  props,
+  api
+}: Pick<INumericRenderlessParams, 'state' | 'watch' | 'props' | 'api'>): void => {
   watch(() => props.modelValue, api.watchValue, { immediate: true })
 
   watch(() => state.isDisplayOnly, api.dispatchDisplayedValue)
 }
 
 export const renderless = (
-  props,
-  { computed, onMounted, onUpdated, onUnmounted, reactive, watch, inject },
-  { parent, emit, refs, constants, dispatch, service }
-) => {
-  const api = {}
+  props: INumericProps,
+  { computed, onMounted, onUpdated, onUnmounted, reactive, watch, inject }: ISharedRenderlessParamHooks,
+  { parent, emit, refs, constants, dispatch, service }: INumericRenderlessParamUtils
+): INumericApi => {
+  const api = {} as INumericApi
   const $service = initService(service)
   const state = initState({ reactive, computed, props, api, $service, parent })
 

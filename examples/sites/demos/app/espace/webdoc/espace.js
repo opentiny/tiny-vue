@@ -32,7 +32,7 @@ export default {
       'properties': [
         {
           'name': 'data',
-          'type': 'Array , Object',
+          'type': 'Array , object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置组件数据，数组对象中包含选项有 type、value、icon。type 的可选择值有：im、sip、mailto',

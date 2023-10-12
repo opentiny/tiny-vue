@@ -13,6 +13,14 @@
 .component-css-vars-tree() {
   // 默认文本色
   --ti-tree-text-color: var(--ti-common-color-text-primary);
+  // 选中文本色
+  --ti-tree-selected-text-color: var(--ti-common-color-text-primary);
+  // 选中文本字重
+  --ti-tree-selected-font-weight: var(--ti-common-font-weight-4);
+  // 禁用文本色
+  --ti-tree-disabled-text-color: var(--ti-common-color-text-disabled);
+  // 文本行高
+  --ti-tree-text-line-height: var(--ti-common-line-height-number);
   // 背景色
   --ti-tree-bg-color: var(--ti-common-color-bg-white-normal);
   // 数据为空时文本色(hide)
@@ -23,12 +31,16 @@
   --ti-tree-node-content-current-bg-color: var(--ti-common-color-bg-light-normal);
   // 节点悬浮背景色
   --ti-tree-node-content-hover-bg-color: var(--ti-common-color-hover-background);
+  // 节点悬浮外层背景色(hide)
+  --ti-tree-node-hover-outter-bg-color: var(--ti-common-color-transparent);
+  // 节点悬浮内层背景色(hide)
+  --ti-tree-node-hover-inner-bg-color: var(--ti-tree-node-content-hover-bg-color);
   // 节点字号
   --ti-tree-node-label-font-size: var(--ti-common-font-size-1);
-  // 节点内容间距
-  --ti-tree-node-label-margin-left: var(--ti-common-space-base);
-  // 节点右侧区域左边距(hide)
-  --ti-tree-node-right-content-margin-left: var(--ti-common-space-base);
+  // 节点内容左边距
+  --ti-tree-node-label-margin-left: var(--ti-common-space-2x);
+  // 节点内容右边距
+  --ti-tree-node-content-padding-right: var(--ti-common-space-4x);
   // 节点文本背景色(hide)
   --ti-tree-node-label-bg-color: var(--ti-common-color-bg-white-normal);
   // 节点文本色(hide)
@@ -57,7 +69,7 @@
   // 节点内容高度
   --ti-tree-node-content-height: calc(var(--ti-common-space-10) * 3);
   // 节点内容边框弧度
-  --ti-tree-node-content-border-radius: var(--ti-common-border-radius-normal);
+  --ti-tree-node-content-border-radius: 0;
   // 节点右键菜单内容字号
   --ti-tree-node-menu-font-size: var(--ti-common-font-size-base);
   // 节点右键菜单字体色
@@ -72,6 +84,8 @@
   --ti-tree-node-guide-line-border-color: var(--ti-common-color-line-dividing);
   // 节点连接线宽度
   --ti-tree-node-guide-line-width: var(--ti-common-space-2x);
+  // 显示连接线时图标字号(hide)
+  --ti-tree-node-showline-icon-size: var(--ti-common-font-size-2);
 
   // 底部分割线颜色
   --ti-tree-bottom-divider-bg-color: var(--ti-common-color-line-dividing);

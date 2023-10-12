@@ -230,7 +230,7 @@ export default {
       'properties': [
         {
           'name': 'page-size',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 10',
           'desc': {
             'zh-CN': '每页显示条目个数，支持 .sync 修饰符',
@@ -240,7 +240,7 @@ export default {
         },
         {
           'name': 'align',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': "分页对齐方式，可选值有['left', 'center', 'right']",
@@ -251,7 +251,7 @@ export default {
         },
         {
           'name': 'is-before-page-change',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -262,7 +262,7 @@ export default {
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '为 popper 添加类名(可参考 popover 组件)',
@@ -273,7 +273,7 @@ export default {
         },
         {
           'name': 'popper-append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN':
@@ -284,7 +284,7 @@ export default {
         },
         {
           'name': 'total',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '总条目数',
@@ -295,7 +295,7 @@ export default {
         },
         {
           'name': 'custom-total',
-          'type': 'Boolean, String',
+          'type': 'boolean, string',
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '自定义总条数，传值为true显示10万+、100万+，传值为字符串则显示传入的字符串',
@@ -306,14 +306,14 @@ export default {
         },
         {
           'name': 'show-total-loading',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '总条数是否加载中', 'en-US': 'Number of current pages. The .sync modifier is supported.' },
           'demoId': 'show-total-loading'
         },
         {
           'name': 'page-count',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -325,7 +325,7 @@ export default {
         },
         {
           'name': 'pager-count',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 7',
           'desc': {
             'zh-CN':
@@ -337,7 +337,7 @@ export default {
         },
         {
           'name': 'current-page',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 1',
           'desc': {
             'zh-CN': '当前页数，支持 .sync 修饰符',
@@ -347,7 +347,7 @@ export default {
         },
         {
           'name': 'layout',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 prev, pager, next, jumper, ->, total',
           'desc': {
             'zh-CN': '组件布局，子组件名用逗号分隔;该属性的可选值为 sizes, prev, pager, next, jumper, ->, total, slot',
@@ -367,7 +367,7 @@ export default {
         },
         {
           'name': 'prev-text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '替代图标显示的上一页文字',
@@ -378,7 +378,7 @@ export default {
         },
         {
           'name': 'next-text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '替代图标显示的下一页文字',
@@ -388,14 +388,14 @@ export default {
         },
         {
           'name': 'hide-on-single-page',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '只有一页时是否隐藏', 'en-US': 'Disabled pager' },
           'demoId': 'hide-on-single-page'
         },
         {
           'name': 'mode',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -406,14 +406,14 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '定义分页尺寸;该属性的可选值为 mini', 'en-US': '' },
           'demoId': 'pager-size'
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为false',
           'desc': { 'zh-CN': '禁用分页', 'en-US': '' },
           'demoId': 'pager-disabled'

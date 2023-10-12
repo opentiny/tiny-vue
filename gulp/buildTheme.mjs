@@ -7,6 +7,8 @@ import minimist from 'minimist'
 import shell from 'shelljs'
 import themeConcat from './themeConcat.mjs'
 
+const argv = minimist(process.argv.slice(2))
+
 const build = gulp.series(
   changeDir,
   themeConcat,
@@ -25,13 +27,13 @@ build.flags = {
 }
 export default build
 
-function changeDir() {
-  const argv = minimist(process.argv.slice(2))
+function changeDir(cb) {
   if (argv.m || argv.mobile) {
     shell.cd('packages/theme-mobile')
   } else {
     shell.cd('packages/theme')
   }
+  cb()
 }
 
 function cleanDist(cb) {

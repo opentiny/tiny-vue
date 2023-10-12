@@ -46,7 +46,7 @@ export default {
       'properties': [
         {
           'name': 'modelValue',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'transparent',
           desc: {
             'zh-CN': '默认颜色',

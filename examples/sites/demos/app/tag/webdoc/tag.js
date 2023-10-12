@@ -110,21 +110,21 @@ export default {
       'properties': [
         {
           'name': 'hit',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否有边框描边', 'en-US': 'Whether there is a border stroke' },
           'demoId': 'hit'
         },
         {
           'name': 'closeable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '是否可关闭', 'en-US': 'Can be disabled' },
           'demoId': 'create'
         },
         {
           'name': 'color',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '颜色，支持 rgb,rgba,hex 三种格式;背景色',
@@ -134,7 +134,7 @@ export default {
         },
         {
           'name': 'type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '显示类型;该属性的可选值为 success / info / warning / danger',
@@ -144,7 +144,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '尺寸;该属性的可选值为 medium / small / mini',
@@ -154,7 +154,7 @@ export default {
         },
         {
           'name': 'effect',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 light',
           'desc': {
             'zh-CN': '主题;该属性的可选值为 dark / light / plain',
@@ -164,14 +164,14 @@ export default {
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否禁用', 'en-US': 'Whether to disable' },
           'demoId': 'disabled'
         },
         {
           'name': 'value',
-          'type': 'Number, String',
+          'type': 'number, string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '通过绑定此属性设置自定义内容【3.9.1新增】',

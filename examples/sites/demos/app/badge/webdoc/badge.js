@@ -100,7 +100,7 @@ export default {
       'properties': [
         {
           'name': 'value',
-          'type': 'Number | String',
+          'type': 'number | string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '数据集对象，支持静态及动态数据。;显示值',
@@ -110,26 +110,26 @@ export default {
         },
         {
           'name': 'href',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '指定跳转的目标页面地址。', 'en-US': 'Specify the URL of the target page.' },
           'demoId': 'target'
         },
         {
           'name': 'max',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '指定徽章显示的最大值,如果实际获取的徽章值超过该最大值，则以最大值后接一个"+"的形式显示徽章数;最大值，超过最大值会显示 \'{max}+\'，要求 value 是 Number 类型',
+              '指定徽章显示的最大值,如果实际获取的徽章值超过该最大值，则以最大值后接一个"+"的形式显示徽章数;最大值，超过最大值会显示 \'{max}+\'，要求 value 是 number 类型',
             'en-US':
-              'Specifies the maximum number of badges to be displayed. If the actual badge value exceeds the maximum value, the number of badges is displayed in the format of "+". Maximum value. If the value exceeds the maximum value, \'{max}+\' is displayed. The value must be of the Number type.'
+              'Specifies the maximum number of badges to be displayed. If the actual badge value exceeds the maximum value, the number of badges is displayed in the format of "+". Maximum value. If the value exceeds the maximum value, \'{max}+\' is displayed. The value must be of the number type.'
           },
           'demoId': 'max'
         },
         {
           'name': 'is-dot',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '设置是否有默认的新消息提示。;小圆点',
@@ -139,14 +139,14 @@ export default {
         },
         {
           'name': 'hidden',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '隐藏 badge', 'en-US': 'Hide badge' },
           'demoId': 'dynamic-hidden'
         },
         {
           'name': 'type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '该属性的可选值为 primary / success / warning / danger / info',
@@ -156,7 +156,7 @@ export default {
         },
         {
           'name': 'target',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '指定点击徽章 Dom 节点时链接到目标页面的跳转方式，仅在 href 属性存在时使用。',

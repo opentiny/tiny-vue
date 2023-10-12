@@ -7,7 +7,7 @@ test('分页事件size-change', async ({ page }) => {
   const preview = page.locator('#preview')
   const pager = preview.locator('.tiny-pager')
   const sizeSelect = page.locator('.tiny-pager__selector')
-  const sizeChange = pager.locator('.tiny-pager__input')
+  const sizeChange = pager.locator('.tiny-pager__page-size')
   const modalBox = page.locator('.tiny-modal__box')
 
   await sizeChange.click()

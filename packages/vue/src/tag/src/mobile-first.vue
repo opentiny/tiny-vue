@@ -4,6 +4,7 @@ import { props, setup, h } from '@opentiny/vue-common'
 import { IconClose } from '@opentiny/vue-icon'
 import { classes } from './token'
 import { defineComponent } from '@opentiny/vue-common'
+import type { ITagApi } from '@opentiny/vue-renderless/types/tag.type'
 
 export default defineComponent({
   components: {
@@ -27,7 +28,7 @@ export default defineComponent({
     'value'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api, h, classes })
+    return setup({ props, context, renderless, api, h, classes }) as unknown as ITagApi
   },
   render() {
     const { slots, selectable, disabled, color, handleClose, handleClick, customClass, hit, m, gcls, state, value } =

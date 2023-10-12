@@ -10,6 +10,7 @@
  *
  */
 
+import { IRadioApi, IRadioProps, IRadioState, ISharedRenderlessParamHooks, IRadioRenderlessParamUtils } from '@/types'
 import {
   handleChange,
   isGroup,
@@ -27,19 +28,19 @@ import {
 export const api = ['state', 'handleChange']
 
 export const renderless = (
-  props,
-  { onMounted, onBeforeUnmount, computed, reactive, inject, watch },
-  { refs, vm, parent, emit, constants, nextTick, dispatch }
-) => {
+  props: IRadioProps,
+  { onMounted, onBeforeUnmount, computed, reactive, inject, watch }: ISharedRenderlessParamHooks,
+  { refs, vm, parent, emit, constants, nextTick, dispatch }: IRadioRenderlessParamUtils
+): IRadioApi => {
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
-  const api = {}
+  const api = {} as IRadioApi
 
-  const state = reactive({
+  const state: IRadioState = reactive({
     vertical: inject('radioVertical', false),
     size: props.size || inject('size', null),
     focus: false,
-    radioGroup: '',
+    radioGroup: null,
     isGroup: computed(() => api.isGroup()),
     radioSize: computed(() => api.radioSize()),
     isDisabled: computed(() => api.isDisabled()),

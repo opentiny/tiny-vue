@@ -17,6 +17,9 @@ const formatRegExp = /%[sdj%]/g
 
 export let warning = () => undefined
 
+/**
+ * @description 转换返回错误的数据结构
+ */
 export function convertFieldsError(errors) {
   if (!errors || !errors.length) {
     return null
@@ -33,6 +36,9 @@ export function convertFieldsError(errors) {
   return fields
 }
 
+/**
+ * @description 生成校验错误的提示信息
+ */
 export function format(...args) {
   let i = 1
   const checkData = args[0]
@@ -74,8 +80,11 @@ export function format(...args) {
   return checkData
 }
 
+/**
+ * @description 判断是否string类型
+ */
 function isNativeStringType(type) {
-  return ~[
+  return [
     'string',
     'url',
     'hex',
@@ -94,9 +103,11 @@ function isNativeStringType(type) {
     'acceptImg',
     'acceptFile',
     'fileSize'
-  ].indexOf(type)
+  ].includes(type)
 }
-
+/**
+ * @description 判断对应的类型是否是空值
+ */
 export function isEmptyValue(data, dataType) {
   if (isNull(data)) {
     return true
@@ -113,10 +124,14 @@ export function isEmptyValue(data, dataType) {
   return false
 }
 
+/** TINY_DUP  type.ts  TINY_NO_USED */
 export function isEmptyObject(data) {
   return Object.keys(data).length === 0
 }
 
+/**
+ * @description 并行处理校验规则
+ */
 function asyncParallelArray(arrData, func, callback) {
   let count = 0
   const results = []
@@ -137,6 +152,9 @@ function asyncParallelArray(arrData, func, callback) {
   })
 }
 
+/**
+ * @description 串行处理校验规则
+ */
 function asyncSerialArray(arr, fn, cb) {
   let idx = 0
   const arrLength = arr.length
@@ -160,6 +178,9 @@ function asyncSerialArray(arr, fn, cb) {
   checkNext([])
 }
 
+/**
+ * @description 将一层数据平铺开
+ */
 function flattenObjArr(objArr) {
   const result = []
 
@@ -170,6 +191,9 @@ function flattenObjArr(objArr) {
   return result
 }
 
+/**
+ * @description 转换返回错误的数据结构
+ */
 export function asyncMap(objArray, option, func, callback) {
   if (option.first) {
     const pending = new Promise((resolve, reject) => {
@@ -210,7 +234,7 @@ export function asyncMap(objArray, option, func, callback) {
 
     objArrayKeys.forEach((key) => {
       const arr = objArray[key]
-      if (~firstFields.indexOf(key)) {
+      if (firstFields.includes(key)) {
         asyncSerialArray(arr, func, next)
       } else {
         asyncParallelArray(arr, func, next)
@@ -224,6 +248,9 @@ export function asyncMap(objArray, option, func, callback) {
   return pending
 }
 
+/**
+ * @description 处理返回的错误
+ */
 export function complementError(rule) {
   return (onError) => {
     if (onError && onError.message) {
@@ -238,6 +265,9 @@ export function complementError(rule) {
   }
 }
 
+/**
+ * @description 深度合并
+ */
 export function deepMerge(target, sources) {
   if (!sources) {
     return target

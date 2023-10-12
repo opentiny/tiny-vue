@@ -7,7 +7,7 @@ export default {
       'name': { 'zh-CN': 'Grid-编辑器-内置编辑器', 'en-US': 'Grid-editor-built-in editor' },
       'desc': {
         'zh-CN':
-          '<p><code>grid</code> 标签上配置 <code>edit-config</code>。在 <code>grid-column</code> 列配置 <code>editor</code> 对象， <code>component</code> 渲染内置编辑组件， <code>events</code> 配置组件事件。具体参考下面示例。</p>\n<div class="tip custom-block"><p class="custom-block-title">说明</p>\n<p>3.0 内置编辑器只支持 <code>Input</code> 和 <code>Select</code> 组件，需要使用其他组件可参考自定义编辑器</p>\n</div>\n',
+          '<p><code>grid</code> 标签上配置 <code>edit-config</code>。在 <code>grid-column</code> 列配置 <code>editor</code> 对象， <code>component</code> 渲染内置编辑组件， <code>events</code> 配置组件事件。具体参考下面示例。</p>\n<div class="tip custom-block"><p class="custom-block-title">说明</p>\n<p>TINY 内置编辑器只支持 <code>Input</code> 和 <code>Select</code> 组件，需要使用其他组件可参考自定义编辑器</p>\n</div>\n',
         'en-US':
           'Configure <code>edit-config</code> on the <p><code>grid</code> label. In the <code>grid-column</code> column, configure the <code>editor</code> object, <code>component</code> render the built-in editing component, and <code>events</code> configure component events. For details, see the following example. </p>\n<div class="tip custom-block"><p class="custom-block-title"> Description</p>\n<p>The built-in editor supports only the <code>Input</code> and <code>Select</code> components. For details about how to use other components, see the custom editor </p>\n</div>\n'
       },
@@ -26,7 +26,7 @@ export default {
     },
     {
       'demoId': 'grid_Example-gridEdit-custom-editor-select',
-      'name': { 'zh-CN': '引入 3.0 组件作为编辑器', 'en-US': 'Introducing the 3.0 component as the editor' },
+      'name': { 'zh-CN': '引入 TINY 组件作为编辑器', 'en-US': 'Introducing the TINY component as the editor' },
       'desc': {
         'zh-CN': '<p>通过 <code>属性配置</code> 方式引入 TinyVue <code>Select</code> 组件。</p>\n',
         'en-US':

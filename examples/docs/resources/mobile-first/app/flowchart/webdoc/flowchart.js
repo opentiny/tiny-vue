@@ -3,7 +3,7 @@ export default {
   owner: '',
   demos: [
     {
-      demoId: '/basic-usage',
+      demoId: 'basic-usage',
       name: {
         'zh-CN': '垂直图形',
         'en-US': 'events'
@@ -12,7 +12,7 @@ export default {
         'zh-CN': '<p><p>',
         'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['/basic-usage.vue']
+      codeFiles: ['basic-usage.vue']
     },
     {
       demoId: 'horizon',
@@ -49,6 +49,30 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['dot-horizon.vue']
+    },
+    {
+      demoId: 'dot-horizon-async',
+      name: {
+        'zh-CN': '点模式-水平图形-异步',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p><p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['dot-horizon-async.vue']
+    },
+    {
+      demoId: 'dot-vertical-async',
+      name: {
+        'zh-CN': '点模式-垂直图形-异步',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p><p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['dot-vertical-async.vue']
     },
     {
       demoId: 'holistic',

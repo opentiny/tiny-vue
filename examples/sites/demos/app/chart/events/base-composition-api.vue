@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartPie as TinyChartPie } from '@opentiny/vue'
+import { ChartPie as TinyChartPie, Modal as TinyModal } from '@opentiny/vue'
 
 const chartData = ref({
   columns: ['日期', '访问用户'],
@@ -23,7 +23,7 @@ const chartSettings = ref({
 })
 const chartEvents = ref({
   click: (data) => {
-    alert(`被点击日期：${data.name}`)
+    TinyModal.alert(`被点击日期：${data.name}`)
   }
 })
 </script>

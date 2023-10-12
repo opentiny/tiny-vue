@@ -12,7 +12,7 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
-const $constants = {
+export const $constants = {
   COMPONENT_NAME: {
     Collapse: 'Collapse'
   },
@@ -21,27 +21,27 @@ const $constants = {
   }
 }
 
+export const collapseProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  accordion: Boolean,
+  beforeClose: Function,
+  modelValue: {
+    type: [Array, String, Number],
+    default: () => []
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'Collapse',
   componentName: 'Collapse',
+  props: collapseProps,
   provide() {
     return {
       collapse: this
-    }
-  },
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    accordion: Boolean,
-    beforeClose: Function,
-    modelValue: {
-      type: [Array, String, Number],
-      default() {
-        return []
-      }
     }
   },
   setup(props, context) {

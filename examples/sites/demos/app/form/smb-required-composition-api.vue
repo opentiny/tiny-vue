@@ -1,7 +1,12 @@
 <template>
   <div class="demo-form">
+    <div class="mb-12">
+      是否隐藏星号：
+      <tiny-switch v-model="hideRequiredAsterisk"></tiny-switch>
+    </div>
     <tiny-form
       ref="ruleFormRef"
+      :hide-required-asterisk="hideRequiredAsterisk"
       :model="createData"
       :rules="rules"
       :validate-on-rule-change="isvalidate"
@@ -33,20 +38,19 @@ import {
   FormItem as TinyFormItem,
   Input as TinyInput,
   Button as TinyButton,
-  Modal
+  Modal,
+  Switch as TinySwitch
 } from '@opentiny/vue'
 
 let validatePass = (rule, value, callback) => {
   if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(value)) {
     callback(new Error('最少八个字符，至少包含一个大写字母，一个小写字母和一个数字'))
   } else {
-    if (ruleForm.password !== '') {
-      $refs.ruleForm.validateField('password')
-    }
     callback()
   }
 }
 
+const hideRequiredAsterisk = ref(true)
 const createData = reactive({
   username: '',
   password: '',
@@ -83,9 +87,11 @@ function handleSubmit() {
   })
 }
 </script>
-
 <style scoped>
 .demo-form {
   width: 380px;
+}
+.mb-12 {
+  margin-bottom: 12px;
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
-  <div style="display: flex; justify-content: space-between">
+  <div class="flex justify-between">
     <tiny-time-line :data="data">
       <template #left="data">
-        <div style="margin-top: -14px; margin-left: 10px">
-          <tiny-user-head type="image" round v-model="imgUrl" scale="0.8"></tiny-user-head>
+        <div class="ml-1.5 -mt-1.5">
+          <tiny-user-head type="image" round v-model="imgUrl" :size="32"></tiny-user-head>
         </div>
-        <span style="margin-left: 6px; display: inline-block; font-size: 12px">
+        <span class="ml-2 inline-block text-xs leading-5 mb-6">
           {{ data.slotScope.title }}
         </span>
       </template>
@@ -13,10 +13,12 @@
 
     <tiny-time-line :data="data1">
       <template #left="data1">
-        <div style="margin-top: -14px; margin-left: 10px">
-          <tiny-user-head type="image" round v-model="imgUrl" scale="0.8"></tiny-user-head>
+        <div class="ml-1.5 -mt-1.5">
+          <tiny-user-head type="image" round v-model="imgUrl" :size="32"></tiny-user-head>
         </div>
-        <span style="margin-left: 6px; display: inline-block; font-size: 12px"> {{ data1.slotScope.title }} </span>
+        <span class="ml-2 inline-block text-xs leading-5 mb-6">
+          {{ data1.slotScope.title }}
+        </span>
       </template>
     </tiny-time-line>
   </div>
@@ -33,7 +35,7 @@ export default {
   },
   data() {
     return {
-      imgUrl: 'https:/webnova/static/img/tiny3bg.b5dd307.jpg',
+      imgUrl: '/static/images/1.jpg',
       data: [{ title: '节点标题1' }, { title: '节点标题2' }, { title: '节点标题3' }, { title: '节点标题4' }],
       data1: [
         { title: '节点标题1' },

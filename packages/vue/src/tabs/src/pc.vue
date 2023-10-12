@@ -15,6 +15,7 @@ import { props, setup, h, defineComponent } from '@opentiny/vue-common'
 import TabNav from './tab-nav/pc.vue'
 import { iconPlus } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/tabs/index.less'
+import type { ITabsApi } from '@opentiny/vue-renderless/types/tabs.type'
 
 export default defineComponent({
   emits: ['add', 'click', 'close', 'edit', 'update:modelValue', 'tab-drag-start', 'tab-drag-over', 'tab-drag-end'],
@@ -46,7 +47,7 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as ITabsApi
   },
   render() {
     let {

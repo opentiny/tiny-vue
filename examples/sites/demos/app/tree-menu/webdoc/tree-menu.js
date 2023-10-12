@@ -82,6 +82,17 @@ export default {
       'codeFiles': ['default-expanded-keys.vue']
     },
     {
+      'demoId': 'default-expanded-keys-highlight',
+      'name': { 'zh-CN': '默认高亮', 'en-US': 'Highlighted by default' },
+      'desc': {
+        'zh-CN':
+          '<p>通过<code> default-expanded-keys-highlight </code>设置初始化展开的某个节点高亮，一般配合<code> default-expanded-keys </code>使用。</p>',
+        'en-US':
+          '<p>Use <code> default-expanded-keys-highlight</code> to highlight an expanded node.Generally, this parameter is used together with <code> default-expanded-keys </code> .</p>'
+      },
+      'codeFiles': ['default-expanded-keys-highlight.vue']
+    },
+    {
       'demoId': 'lazy-load',
       'name': { 'zh-CN': '懒加载子节点', 'en-US': 'Lazy loading subnode' },
       'desc': {
@@ -240,10 +251,10 @@ export default {
       'codeFiles': ['event-check-change.vue']
     },
     {
-      'demoId': 'collapsible',
+      'demoId': 'menu-collapsible',
       'name': { 'zh-CN': '菜单可折叠', 'en-US': '' },
       'desc': { 'zh-CN': '<p>设置树形菜单是否可以折叠</p>\n', 'en-US': '' },
-      'codeFiles': ['collapsible.vue']
+      'codeFiles': ['menu-collapsible.vue']
     }
   ],
   apis: [
@@ -253,7 +264,7 @@ export default {
       'properties': [
         {
           'name': 'accordion',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '是否展示手风琴效果，默认值为 false',
@@ -279,15 +290,15 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              "拖拽菜单回调事件，需配置draggable使用，return false(阻止拖放),true(允许拖放);//params1:Object 拖拽的节点数据信息对象\n//params2:Object 拖拽的节点数据信息对象\n//params3:'prev'或者'inner'或者'next'",
+              "拖拽菜单回调事件，需配置draggable使用，return false(阻止拖放),true(允许拖放);//params1:object 拖拽的节点数据信息对象\n//params2:object 拖拽的节点数据信息对象\n//params3:'prev'或者'inner'或者'next'",
             'en-US':
-              "Drag menu callback event. This event is used by draggable. return false (forbidding dragging), true (allowing dragging);//params1:Object: data information object of the dragged node.\n//params2: Object: data information object of the dragged node\n//params3:'prev','inner', or'next'"
+              "Drag menu callback event. This event is used by draggable. return false (forbidding dragging), true (allowing dragging);//params1:object: data information object of the dragged node.\n//params2: object: data information object of the dragged node\n//params3:'prev','inner', or'next'"
           },
           'demoId': ''
         },
         {
           'name': 'show-title',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '是否显示节点的 title 提示，鼠标悬浮节点之上触发。',
@@ -298,7 +309,7 @@ export default {
         },
         {
           'name': 'show-filter',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '是否开启输入框进行输入筛选节点，默认值为 true',
@@ -315,7 +326,7 @@ export default {
         },
         {
           'name': 'empty-text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '内容为空的时候展示的文本', 'en-US': 'Text displayed when the content is empty' },
           'demoId': 'empty-text'
@@ -343,7 +354,7 @@ export default {
         },
         {
           'name': 'ellipsis',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -355,7 +366,7 @@ export default {
         },
         {
           'name': 'indent',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '相邻级节点间的水平缩进，单位为像素',
@@ -379,7 +390,7 @@ export default {
         },
         {
           'name': 'wrap',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否换行显示。', 'en-US': 'Indicates whether to display information in a new line.' },
           'demoId': 'text-wrap'
@@ -395,8 +406,19 @@ export default {
           'demoId': 'default-expanded-keys'
         },
         {
+          'name': 'default-expanded-keys-highlight',
+          'type': 'number | string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '配合 default-expanded-keys 使用，设置初始化默认展开节点数组中的某个节点高亮',
+            'en-US':
+              'This parameter is used together with default-expanded-keys to highlight a node in the default expanded node array during initialization.'
+          },
+          'demoId': 'default-expanded-keys-highlight'
+        },
+        {
           'name': 'node-key',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '每个树节点用来作为唯一标识的属性，整棵树应该是唯一的',
@@ -406,21 +428,21 @@ export default {
         },
         {
           'name': 'prefix-icon',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '自定义前置图标。', 'en-US': 'Customize the front icon.' },
           'demoId': 'text-ellipsis'
         },
         {
           'name': 'search-icon',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '自定义搜索图标。', 'en-US': 'Customize the search icon.' },
           'demoId': 'search-icon'
         },
         {
           'name': 'check-strictly',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN':
@@ -432,7 +454,7 @@ export default {
         },
         {
           'name': 'lazy',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否懒加载子节点，需与 load 方法结合使用',
@@ -452,7 +474,7 @@ export default {
         },
         {
           'name': 'show-checkbox',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '节点是否可被选择', 'en-US': 'Whether the node can be selected' },
           'demoId': 'check-strictly'
@@ -473,6 +495,26 @@ export default {
             'en-US': 'User-defined menu data service, which returns a Promise object.'
           },
           'demoId': 'get-menu-data-sync'
+        },
+        {
+          'name': 'menu-collapsible',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否显示折叠与展开按钮',
+            'en-US': ''
+          },
+          'demoId': 'menu-collapsible'
+        },
+        {
+          'name': 'collapsible',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '点击父级节点是否收起或展开子节点，未和 show-number 配套使用时，仍可以点击图标收起',
+            'en-US': ''
+          },
+          'demoId': ''
         }
       ],
       'events': [
@@ -482,9 +524,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '节点被点击时的回调;//参数: arg1:Object \n{ children: 点击节点的子节点, id: 点击节点的id, label: 点击节点的title }\n// arg2:Object // 当前点击节点的数据信息对象',
+              '节点被点击时的回调;//参数: arg1:object \n{ children: 点击节点的子节点, id: 点击节点的id, label: 点击节点的title }\n// arg2:object // 当前点击节点的数据信息对象',
             'en-US':
-              'Callback when a node is clicked; //Parameter: arg1:Object \n{children: subnode of the clicked node, id: ID of the clicked node, label: title}\n// arg2:Object // of the clicked node, data information object of the currently clicked node'
+              'Callback when a node is clicked; //Parameter: arg1:object \n{children: subnode of the clicked node, id: ID of the clicked node, label: title}\n// arg2:object // of the clicked node, data information object of the currently clicked node'
           },
           'demoId': 'event-node-click'
         },
@@ -494,9 +536,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '当前选中节点变化时触发的事件;//参数: arg1:Object \n{ children: 点击节点的子节点, id: 点击节点的id, label: 点击节点的title }\n// arg2:Object // 当前点击节点的数据信息对象',
+              '当前选中节点变化时触发的事件;//参数: arg1:object \n{ children: 点击节点的子节点, id: 点击节点的id, label: 点击节点的title }\n// arg2:object // 当前点击节点的数据信息对象',
             'en-US':
-              'Event triggered when the selected node changes; //Parameter: arg1:Object \n{children: subnode of the clicked node, id: ID of the clicked node, label: title}\n// arg2:Object // of the clicked node, data information object of the currently clicked node'
+              'Event triggered when the selected node changes; //Parameter: arg1:object \n{children: subnode of the clicked node, id: ID of the clicked node, label: title}\n// arg2:object // of the clicked node, data information object of the currently clicked node'
           },
           'demoId': 'event-current-change'
         },
@@ -506,9 +548,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '节点被展开时触发的事件;//参数: arg1:Object \n{ children: 点击节点的子节点, id: 点击节点的id, label: 点击节点的title }\n// arg2:Object // 当前点击节点的数据信息对象',
+              '节点被展开时触发的事件;//参数: arg1:object \n{ children: 点击节点的子节点, id: 点击节点的id, label: 点击节点的title }\n// arg2:object // 当前点击节点的数据信息对象',
             'en-US':
-              'Event triggered when a node is expanded; //Parameter: arg1:Object \n{children: subnode of the clicked node, id: ID of the clicked node, label: title}\n// arg2:Object // of the clicked node, data information object of the currently clicked node'
+              'Event triggered when a node is expanded; //Parameter: arg1:object \n{children: subnode of the clicked node, id: ID of the clicked node, label: title}\n// arg2:object // of the clicked node, data information object of the currently clicked node'
           },
           'demoId': 'event-node-expand'
         },
@@ -518,9 +560,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '节点被关闭时触发的事件;//参数: arg1:Object \n{ children: 点击节点的子节点, id: 点击节点的id, label: 点击节点的title }\n// arg2:Object // 当前点击节点的数据信息对象',
+              '节点被关闭时触发的事件;//参数: arg1:object \n{ children: 点击节点的子节点, id: 点击节点的id, label: 点击节点的title }\n// arg2:object // 当前点击节点的数据信息对象',
             'en-US':
-              'Event triggered when a node is shut down; //Parameter: arg1:Object \n{children: subnode of the clicked node, id: ID of the clicked node, label: title}\n// arg2:Object // of the clicked node, data information object of the currently clicked node'
+              'Event triggered when a node is shut down; //Parameter: arg1:object \n{children: subnode of the clicked node, id: ID of the clicked node, label: title}\n// arg2:object // of the clicked node, data information object of the currently clicked node'
           },
           'demoId': 'event-node-collapse'
         },
@@ -530,9 +572,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '节点选中状态发生变化时的回调;//参数: arg1:Object \n{ children: 点击节点的子节点, id: 点击节点的id, label: 点击节点的title }\n// arg2:Boolean // 当前点击节点的勾选状态\n // arg3:Boolean // 当前点击节点之前的勾选状态',
+              '节点选中状态发生变化时的回调;//参数: arg1:object \n{ children: 点击节点的子节点, id: 点击节点的id, label: 点击节点的title }\n// arg2:boolean // 当前点击节点的勾选状态\n // arg3:boolean // 当前点击节点之前的勾选状态',
             'en-US':
-              'Callback when the node selection status changes; //Parameters: arg1:Object \n{children: subnode of the clicked node, id: ID of the clicked node, label: title}\n// arg2:Boolean // of the clicked node, status of the current clicked node, and status of the current clicked node \n // arg3:Boolean //'
+              'Callback when the node selection status changes; //Parameters: arg1:object \n{children: subnode of the clicked node, id: ID of the clicked node, label: title}\n// arg2:boolean // of the clicked node, status of the current clicked node, and status of the current clicked node \n // arg3:boolean //'
           },
           'demoId': 'event-check-change'
         },

@@ -125,21 +125,21 @@ export default {
       'properties': [
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否禁用', 'en-US': 'Disable' },
           'demoId': 'dynamic-disable'
         },
         {
           'name': 'min',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': { 'zh-CN': '设置最小值。', 'en-US': 'Set the minimum value.' },
           'demoId': 'max-min'
         },
         {
           'name': 'max',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 100',
           'desc': {
             'zh-CN': '设置最大值。必需是整数，可以负数。必需大于所设置的最小值。',
@@ -150,7 +150,7 @@ export default {
         },
         {
           'name': 'step',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 1',
           'desc': {
             'zh-CN': '设置滑块移动时，每步位移距离，必需是大于0的正整数。',
@@ -161,7 +161,7 @@ export default {
         },
         {
           'name': 'show-input',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否显示输入框，仅在非范围选择时有效',
@@ -178,21 +178,21 @@ export default {
         },
         {
           'name': 'vertical',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否竖向模式', 'en-US': 'Whether the vertical mode is used' },
           'demoId': 'vertical-mode'
         },
         {
           'name': 'height',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 300px',
           'desc': { 'zh-CN': 'Slider 高度', 'en-US': 'Slider Height' },
           'demoId': 'vertical-mode'
         },
         {
           'name': 'value',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': {
             'zh-CN': '设置单滑块的当前值，必需是整数或数组。;绑定值',
@@ -202,7 +202,7 @@ export default {
         },
         {
           'name': 'num-pages',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 1',
           'desc': {
             'zh-CN':
@@ -214,7 +214,7 @@ export default {
         },
         {
           'name': 'show-tip',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否显示 tooltip', 'en-US': 'Whether to display tooltip' },
           'demoId': 'show-tip'
@@ -227,9 +227,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '值改变时触发（使用鼠标拖曳时，只在松开鼠标后触发）;arg:{Number|Array 滑块非范围选择时，是滑块当前值；滑块是范围选择时，是滑块当前值数组}',
+              '值改变时触发（使用鼠标拖曳时，只在松开鼠标后触发）;arg:{number|Array 滑块非范围选择时，是滑块当前值；滑块是范围选择时，是滑块当前值数组}',
             'en-US':
-              'Triggered when the value changes (When you drag the mouse, it is triggered only after you release the mouse). When the arg:{Number|Array slider is not selected in a range, the value is the current value of the slider. When the slider is a range selection, it is the array of the current values of the slider}'
+              'Triggered when the value changes (When you drag the mouse, it is triggered only after you release the mouse). When the arg:{number|Array slider is not selected in a range, the value is the current value of the slider. When the slider is a range selection, it is the array of the current values of the slider}'
           },
           'demoId': 'slider-event-change'
         },
@@ -239,9 +239,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '设置滑块滑动开始时，触发该事件;arg:{Number|Array 滑块非范围选择时，是滑块当前值；滑块是范围选择时，是滑块当前值数组}',
+              '设置滑块滑动开始时，触发该事件;arg:{number|Array 滑块非范围选择时，是滑块当前值；滑块是范围选择时，是滑块当前值数组}',
             'en-US':
-              'This event is triggered when the slider starts to slide. When the arg:{Number|Array slider is not selected in a range, the value is the current value of the slider. When the slider is a range selection, it is the array of the current values of the slider}'
+              'This event is triggered when the slider starts to slide. When the arg:{number|Array slider is not selected in a range, the value is the current value of the slider. When the slider is a range selection, it is the array of the current values of the slider}'
           },
           'demoId': 'slider-event-start'
         },
@@ -251,9 +251,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '设置滑块滑动结束时，触发该事件;arg:{Number|Array 滑块非范围选择时，是滑块当前值；滑块是范围选择时，是滑块当前值数组}',
+              '设置滑块滑动结束时，触发该事件;arg:{number|Array 滑块非范围选择时，是滑块当前值；滑块是范围选择时，是滑块当前值数组}',
             'en-US':
-              'This event is triggered when the slider sliding ends. When the arg:{Number|Array slider is not selected in a range, the value is the current value of the slider. When the slider is a range selection, it is the array of the current values of the slider}'
+              'This event is triggered when the slider sliding ends. When the arg:{number|Array slider is not selected in a range, the value is the current value of the slider. When the slider is a range selection, it is the array of the current values of the slider}'
           },
           'demoId': 'slider-event-stop'
         }

@@ -21,7 +21,7 @@ export default {
       'properties': [
         {
           'name': 'data ',
-          'type': 'Object ',
+          'type': 'object ',
           'defaultValue': '',
           'desc': {
             'zh-CN': '数据由指标和维度组成,“维度” 指的是数据的属性,“指标” 是量化衡量标准',
@@ -32,7 +32,7 @@ export default {
         },
         {
           'name': 'settings ',
-          'type': 'Object ',
+          'type': 'object ',
           'defaultValue': '',
           'desc': {
             'zh-CN': '配置项，各图表 Settings 属性配置请查阅各图表详情页面',
@@ -42,49 +42,49 @@ export default {
         },
         {
           'name': 'width',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 auto',
           'desc': { 'zh-CN': '设置图表容器的宽度。', 'en-US': 'Set the width of the chart container.' },
           'demoId': 'chart/attributes-demo#props-demo10'
         },
         {
           'name': 'height',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 400px',
           'desc': { 'zh-CN': '设置图表容器的高度。', 'en-US': 'Set the height of the chart container.' },
           'demoId': 'chart/attributes-demo#props-demo10'
         },
         {
           'name': 'events',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '事件绑定', 'en-US': 'Event binding' },
           'demoId': 'chart/events#events-base'
         },
         {
           'name': 'init-options',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': 'init 附加参数', 'en-US': 'Init Additional Parameters' },
           'demoId': 'chart/attributes-demo#props-demo10'
         },
         {
           'name': 'tooltip-visible',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否显示提示框', 'en-US': 'Display dialog box' },
           'demoId': 'chart/attributes-demo#props-demo10'
         },
         {
           'name': 'legend-visible',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否显示图例', 'en-US': 'Display legend' },
           'demoId': 'chart/attributes-demo#props-demo10'
         },
         {
           'name': 'theme',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '自定义主题名称。;自定义主题对象。',
@@ -94,7 +94,7 @@ export default {
         },
         {
           'name': 'theme-name',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '自定义主题名称,如果设置了theme-name,则theme无效',
@@ -104,7 +104,7 @@ export default {
         },
         {
           'name': 'judge-width',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否处理生成图表时的宽度问题',
@@ -114,21 +114,21 @@ export default {
         },
         {
           'name': 'width-change-delay',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 300',
           'desc': { 'zh-CN': '容器宽度变化的延迟', 'en-US': 'Container width change delay' },
           'demoId': 'chart/question#question-base'
         },
         {
           'name': 'resizeable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否处理窗口 resize 事件', 'en-US': 'Whether to process the window resize event' },
           'demoId': 'chart/question#question-base'
         },
         {
           'name': 'cancel-resize-check',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否禁用 resize 时的容器检测',
@@ -138,14 +138,14 @@ export default {
         },
         {
           'name': 'resize-delay',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 200',
           'desc': { 'zh-CN': '窗口 resize 事件回调的延迟', 'en-US': 'Delay of the window resize event callback' },
           'demoId': 'chart/attributes-demo#props-demo10'
         },
         {
           'name': 'change-delay',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': {
             'zh-CN': '属性修改触发图表重绘回调的延迟',
@@ -155,7 +155,7 @@ export default {
         },
         {
           'name': 'set-option-opts',
-          'type': 'Boolean , Object',
+          'type': 'boolean , object',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': 'echarts setOption 的第二个参数', 'en-US': 'Echarts setOption second parameter' },
           'demoId': ''

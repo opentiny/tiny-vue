@@ -17,7 +17,7 @@ export default {
       fileList: [
         {
           name: 'test3',
-          url: 'webnova/static/images/ld.png',
+          url: '/static/images/ld.png',
           status: 'fail'
         }
       ]

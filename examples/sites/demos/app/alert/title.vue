@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Alert } from '@opentiny/vue'
 
 export default {

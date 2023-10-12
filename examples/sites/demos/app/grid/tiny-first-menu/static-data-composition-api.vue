@@ -1,11 +1,18 @@
 <template>
-  <tiny-grid :data="tableData">
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="名称"></tiny-grid-column>
-    <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
-    <tiny-grid-column field="address" title="地址"></tiny-grid-column>
-    <tiny-grid-column field="introduction" title="公司简介" show-overflow></tiny-grid-column>
-  </tiny-grid>
+  <div>
+    <div class="button-box">
+      <tiny-button @click="addRow">添加数据</tiny-button>
+      <tiny-button @click="deleteRow">减少数据</tiny-button>
+      <tiny-button @click="changeTableData">改变tableData引用地址</tiny-button>
+    </div>
+    <tiny-grid :data="tableData">
+      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column field="name" title="名称"></tiny-grid-column>
+      <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
+      <tiny-grid-column field="address" title="地址"></tiny-grid-column>
+      <tiny-grid-column field="introduction" title="公司简介" show-overflow></tiny-grid-column>
+    </tiny-grid>
+  </div>
 </template>
 
 <script setup lang="jsx">
@@ -56,4 +63,43 @@ const tableData = ref([
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
   }
 ])
+
+const addRow = () => {
+  tableData.value.push({
+    id: '7',
+    name: 'ZZZ科技YX公司',
+    area: '华南区',
+    address: '深圳福田区',
+    introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+  })
+}
+
+const deleteRow = () => {
+  tableData.value.pop()
+}
+
+const changeTableData = () => {
+  tableData.value = [
+    {
+      id: '10',
+      name: 'OOO科技YX公司',
+      area: '华南区',
+      address: '深圳福田区',
+      introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    },
+    {
+      id: '11',
+      name: 'KKK科技YX公司',
+      area: '华南区',
+      address: '深圳福田区',
+      introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+    }
+  ]
+}
 </script>
+
+<style scoped>
+.button-box {
+  margin-bottom: 20px;
+}
+</style>

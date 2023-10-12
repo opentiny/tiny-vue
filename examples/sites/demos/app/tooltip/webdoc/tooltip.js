@@ -153,7 +153,7 @@ export default {
       'properties': [
         {
           'name': 'effect',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 dark',
           'desc': {
             'zh-CN': '默认提供的主题;该属性的可选值为 dark/light',
@@ -163,7 +163,7 @@ export default {
         },
         {
           'name': 'type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '默认提供的类型;该属性的可选值为 normal/warning/error/info/success 。type的优先级大于effect',
@@ -174,7 +174,7 @@ export default {
         },
         {
           'name': 'content',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '显示的内容，也可以通过 slot#content 传入 DOM',
@@ -184,14 +184,14 @@ export default {
         },
         {
           'name': 'append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否添加到body上', 'en-US': 'Whether to add to body' },
           'demoId': ''
         },
         {
           'name': 'placement',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 bottom',
           'desc': {
             'zh-CN':
@@ -203,35 +203,35 @@ export default {
         },
         {
           'name': 'modelValue / v-model',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '状态是否可见', 'en-US': 'Whether the status is visible' },
           'demoId': 'manual-control-tip'
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': 'Tooltip 是否可用', 'en-US': 'Whether Tooltip is available' },
           'demoId': 'dynamic-disable'
         },
         {
           'name': 'offset',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': { 'zh-CN': '出现位置的偏移量', 'en-US': 'Offset of the occurrence position' },
           'demoId': 'tooltip-offset'
         },
         {
           'name': 'transition',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 tiny-fade-in-linear',
           'desc': { 'zh-CN': '定义渐变动画', 'en-US': 'Define gradient animation' },
           'demoId': 'custom-transition'
         },
         {
           'name': 'visible-arrow',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否显示 Tooltip 箭头，popper.js 的参数',
@@ -241,7 +241,7 @@ export default {
         },
         {
           'name': 'popper-options',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': "该属性的默认值为 { boundariesCBG XUI: 'body', gpuAcceleration: false }",
           'desc': {
             'zh-CN': 'popper.js 的参数;该属性的可选值为 参考 popper.js 文档',
@@ -252,14 +252,14 @@ export default {
         },
         {
           'name': 'open-delay',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': { 'zh-CN': '延迟出现，单位毫秒', 'en-US': 'Delay, in milliseconds.' },
           'demoId': 'open-delay'
         },
         {
           'name': 'manual',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '手动控制模式，设置为 true 后，mouseenter 和 mouseleave 事件将不会生效',
@@ -270,7 +270,7 @@ export default {
         },
         {
           'name': 'visible',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 always',
           'desc': {
             'zh-CN': '提示的智能出现的模式；该属性的可选值为 auto/always',
@@ -280,21 +280,21 @@ export default {
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '为 Tooltip 的 popper 添加类名', 'en-US': 'Add a class name for the tooltip popper.' },
           'demoId': 'popper-class'
         },
         {
           'name': 'enterable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '鼠标是否可进入到 tooltip 中', 'en-US': 'Whether the mouse can go to the tooltip' },
           'demoId': 'enterable'
         },
         {
           'name': 'hide-after',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': {
             'zh-CN': 'Tooltip 出现后自动隐藏延时，单位毫秒，为 0 则不会自动隐藏',
@@ -305,7 +305,7 @@ export default {
         },
         {
           'name': 'tabindex',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '配置该元素，配置的属性会自动添加到该组件的触发原上',

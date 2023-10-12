@@ -10,16 +10,17 @@
  *
  */
 
+import { IBreadcrumbItemProps, IBreadcrumbItemApi, IBreadcrumbItemRenderlessParamUtils, ISharedRenderlessParamHooks } from '@/types'
 import { linkClick } from './index'
 
 export const api = ['linkClick']
 
-export const renderless = (props, { inject }, { refs, router, emit }) => {
+export const renderless = (props: IBreadcrumbItemProps, { inject }: ISharedRenderlessParamHooks, { refs, router, emit }: IBreadcrumbItemRenderlessParamUtils) => {
   const breadcrumbEmitter = inject('breadcrumbEmitter')
   const breadcrumb = inject('breadcrumb')
   const constants = breadcrumb._constants
 
-  const api = {
+  const api: IBreadcrumbItemApi = {
     linkClick: linkClick({ props, refs, router, emit, breadcrumbEmitter, constants })
   }
 

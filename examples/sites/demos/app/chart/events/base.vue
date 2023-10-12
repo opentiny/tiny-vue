@@ -3,7 +3,7 @@
 </template>
 
 <script lang="jsx">
-import { ChartPie } from '@opentiny/vue'
+import { ChartPie, Modal as TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -28,7 +28,7 @@ export default {
       },
       chartEvents: {
         click: (data) => {
-          alert(`被点击日期：${data.name}`)
+          TinyModal.alert(`被点击日期：${data.name}`)
         }
       }
     }

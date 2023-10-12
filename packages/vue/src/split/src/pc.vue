@@ -13,71 +13,137 @@
   <div ref="outerWrapper" :class="state.wrapperClasses">
     <div v-if="state.isHorizontal" :class="`${state.prefix}-horizontal`">
       <div
-        :style="{ right: state.collapsed ? '100%' : `${state.anotherOffset}%` }"
+        :style="{
+          right: `${state.anotherOffset}%`,
+          width: state.anotherOffset != 100 && state.isThreeAreas ? `${state.leftTopPane}px` : ''
+        }"
         :class="state.paneClasses"
         class="left-pane"
       >
         <slot name="left" />
       </div>
       <div
-        :class="`${state.prefix}-trigger-con`"
-        :style="{ left: state.collapsed ? '2px' : `${state.offset}%` }"
+        :class="[
+          `${state.prefix}-trigger-con`,
+          `${state.prefix}-trigger-con-vertical`,
+          !state.dragable ? `${state.prefix}-trigger-con-disabled` : ``,
+          state.isMoving ? `${state.prefix}-trigger-con-drag` : ``,
+          state.offset === 0 && state.triggerSimple ? `${state.prefix}-trigger-con-left-active` : ``,
+          state.triggerSimple ? `${state.prefix}-trigger-con-simple` : ``
+        ]"
+        :style="{ left: state.isThreeAreas ? `${state.leftTopPane}px` : `${state.offset}%` }"
         @mousedown="handleMousedown"
       >
         <slot name="trigger">
           <div :class="[`${state.prefix}-trigger`, `${state.prefix}-trigger-vertical`]">
-            <div :class="[`${state.prefix}-trigger-bar-con`, 'vertical']">
+            <div v-if="!state.triggerSimple" :class="[`${state.prefix}-trigger-bar-con`, 'vertical']">
               <i v-for="i in 3" v-once :class="`${state.prefix}-trigger-bar`" :key="`trigger-${i}`"></i>
             </div>
           </div>
         </slot>
+        <div
+          :class="[
+            `${state.prefix}-trigger-button`,
+            `${state.prefix}-trigger-left-button`,
+            state.offset === 100 ? `${state.prefix}-trigger-button-active` : ``,
+            state.offset === 100 || state.collapseLeftTop ? `${state.prefix}-trigger-button-show` : ``
+          ]"
+          v-if="state.triggerSimple"
+          @mousedown="buttonMousedown"
+          @click="buttonLeftTopClick"
+        >
+          <icon-split-left class="aui-svg-size"></icon-split-left>
+        </div>
+        <div
+          :class="[
+            `${state.prefix}-trigger-button`,
+            `${state.prefix}-trigger-right-button`,
+            state.offset === 0 ? `${state.prefix}-trigger-button-active` : ``,
+            state.offset === 0 || state.collapseRightBottom ? `${state.prefix}-trigger-button-show` : ``
+          ]"
+          v-if="state.triggerSimple"
+          @mousedown="buttonMousedown"
+          @click="buttonRightBottomClick"
+        >
+          <icon-split-right class="aui-svg-size"></icon-split-right>
+        </div>
       </div>
       <div
-        v-if="collapsible"
-        :class="`${state.prefix}-collapse-bar`"
         :style="{
-          left: state.collapsed ? 0 : `calc(${state.offset}% - 2px)`
+          left: state.isThreeAreas ? `${state.leftTopPane}px` : `${state.offset}%`,
+          width: state.isThreeAreas ? `calc(100% - ${state.leftTopPane}px)` : ``
         }"
-        @click="handleCollapse"
+        :class="state.paneClasses"
+        class="right-pane"
       >
-        <icon-chevron-right :style="{ transform: `rotate(${state.collapsed ? '0deg' : '180deg'})` }" />
-      </div>
-      <div :style="{ left: state.collapsed ? '0' : `${state.offset}%` }" :class="state.paneClasses" class="right-pane">
         <slot name="right" />
       </div>
     </div>
     <div v-else :class="`${state.prefix}-vertical`">
       <div
-        :style="{ bottom: state.collapsed ? '100%' : `${state.anotherOffset}%` }"
+        :style="{
+          bottom: `${state.anotherOffset}%`,
+          height: state.anotherOffset != 100 ? `${state.leftTopPane}px` : ''
+        }"
         :class="state.paneClasses"
         class="top-pane"
       >
         <slot name="top" />
       </div>
       <div
-        :class="`${state.prefix}-trigger-con`"
-        :style="{ top: state.collapsed ? '2px' : `${state.offset}%` }"
+        :class="[
+          `${state.prefix}-trigger-con`,
+          `${state.prefix}-trigger-con-horizontal`,
+          !state.dragable ? `${state.prefix}-trigger-con-disabled` : ``,
+          state.isMoving ? `${state.prefix}-trigger-con-drag` : ``,
+          state.offset === 0 && state.triggerSimple ? `${state.prefix}-trigger-con-top-active` : ``,
+          state.triggerSimple ? `${state.prefix}-trigger-con-simple` : ``
+        ]"
+        :style="{ top: state.isThreeAreas ? `${state.leftTopPane}px` : `${state.offset}%` }"
         @mousedown="handleMousedown"
       >
         <slot name="trigger">
           <div :class="[`${state.prefix}-trigger`, `${state.prefix}-trigger-horizontal`]">
-            <div :class="[`${state.prefix}-trigger-bar-con`, 'horizontal']">
+            <div v-if="!state.triggerSimple" :class="[`${state.prefix}-trigger-bar-con`, 'horizontal']">
               <i v-for="i in 3" v-once :class="`${state.prefix}-trigger-bar`" :key="`trigger-${i}`"></i>
             </div>
           </div>
         </slot>
+        <div
+          :class="[
+            `${state.prefix}-trigger-button`,
+            `${state.prefix}-trigger-top-button`,
+            state.offset === 100 ? `${state.prefix}-trigger-button-active` : ``,
+            state.offset === 100 || state.collapseLeftTop ? `${state.prefix}-trigger-button-show` : ``
+          ]"
+          v-if="state.triggerSimple"
+          @mousedown="buttonMousedown"
+          @click="buttonLeftTopClick"
+        >
+          <icon-split-left class="aui-svg-size"></icon-split-left>
+        </div>
+        <div
+          :class="[
+            `${state.prefix}-trigger-button`,
+            `${state.prefix}-trigger-bottom-button`,
+            state.offset === 0 ? `${state.prefix}-trigger-button-active` : ``,
+            state.offset === 0 || state.collapseRightBottom ? `${state.prefix}-trigger-button-show` : ``
+          ]"
+          v-if="state.triggerSimple"
+          @mousedown="buttonMousedown"
+          @click="buttonRightBottomClick"
+        >
+          <icon-split-right class="aui-svg-size"></icon-split-right>
+        </div>
       </div>
       <div
-        v-if="collapsible"
-        :class="`${state.prefix}-collapse-bar`"
         :style="{
-          top: state.collapsed ? 0 : `calc(${state.offset}% - 2px)`
+          top: state.isThreeAreas ? `${state.leftTopPane}px` : `${state.offset}%`,
+          height: state.isThreeAreas ? `calc(100% - ${state.leftTopPane}px)` : ``
         }"
-        @click="handleCollapse"
+        :class="state.paneClasses"
+        class="bottom-pane"
       >
-        <icon-chevron-right :style="{ transform: `rotate(${state.collapsed ? '90deg' : '270deg'})` }" />
-      </div>
-      <div :style="{ top: state.collapsed ? '0' : `${state.offset}%` }" :class="state.paneClasses" class="bottom-pane">
         <slot name="bottom" />
       </div>
     </div>
@@ -87,14 +153,35 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/split/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { iconChevronRight } from '@opentiny/vue-icon'
+import { IconLeft, IconRight } from '@opentiny/vue-icon'
 
 export default defineComponent({
-  emits: ['moving', 'mousemove', 'mouseup', 'moveend', 'movestart', 'update:modelValue', 'collapsedChange'],
-  props: [...props, 'modelValue', 'mode', 'leftTopMin', 'rightBottomMin', 'collapsible'],
   components: {
-    IconChevronRight: iconChevronRight()
+    IconSplitLeft: IconLeft(), // 暂时使用tiny-vue的图标代替。 备注：这个图标在简易模式也看不到
+    IconSplitRight: IconRight()
   },
+  emits: [
+    'moving',
+    'mousemove',
+    'mouseup',
+    'moveend',
+    'movestart',
+    'update:modelValue',
+    'left-top-click',
+    'right-bottom-click'
+  ],
+  props: [
+    ...props,
+    'modelValue',
+    'mode',
+    'leftTopMin',
+    'rightBottomMin',
+    'disabled',
+    'triggerSimple',
+    'collapseLeftTop',
+    'collapseRightBottom',
+    'threeAreas'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

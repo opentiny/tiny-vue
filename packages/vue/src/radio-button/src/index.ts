@@ -12,28 +12,30 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
-const $constants = {
+export const $constants = {
   RADIO_GROUP: 'RadioGroup'
+}
+
+export const radioButtonProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  name: String,
+  text: String,
+  events: {
+    type: Object,
+    default: () => ({})
+  },
+  label: {},
+  disabled: Boolean,
+  tipContent: String
 }
 
 export default defineComponent({
   name: $prefix + 'RadioButton',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    name: String,
-    text: String,
-    events: {
-      type: Object,
-      default: () => ({})
-    },
-    label: {},
-    disabled: Boolean,
-    tipContent: String
-  },
+  props: radioButtonProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

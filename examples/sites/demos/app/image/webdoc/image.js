@@ -104,7 +104,7 @@ export default {
       'properties': [
         {
           'name': 'src',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置预览图片路径;图片源，同原生',
@@ -114,7 +114,7 @@ export default {
         },
         {
           'name': 'fit',
-          'type': 'String ',
+          'type': 'string ',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -126,14 +126,14 @@ export default {
         },
         {
           'name': 'lazy',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '是否开启懒加载', 'en-US': 'Whether to enable lazy loading' },
           'demoId': 'lazy-load'
         },
         {
           'name': 'scroll-container',
-          'type': 'String , HTMLElement',
+          'type': 'string , HTMLElement',
           'defaultValue': '该属性的默认值为 最近一个 overflow 值为 auto 或 scroll 的父元素',
           'desc': {
             'zh-CN': '开启懒加载后，监听 scroll 事件的容器',
@@ -150,7 +150,7 @@ export default {
         },
         {
           'name': 'z-index',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 2000',
           'desc': { 'zh-CN': '设置图片预览的 z-index', 'en-US': 'Set the z-index of the image preview' },
           'demoId': 'preview-z-index'

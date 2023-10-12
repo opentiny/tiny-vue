@@ -90,6 +90,7 @@ import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
 import bind from '@opentiny/vue-renderless/common/deps/repeat-click'
 import { iconChevronDown, iconChevronUp, iconMinus, iconPlus } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/numeric/index.less'
+import type { INumericApi } from '@opentiny/renderless/types/numeric.type'
 
 export default defineComponent({
   directives: directive({
@@ -135,7 +136,7 @@ export default defineComponent({
   ],
   emits: ['update:modelValue', 'change', 'blur', 'focus', 'paste-error'],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as INumericApi
   }
 })
 </script>

@@ -52,6 +52,10 @@ export default defineComponent({
       type: [Number, String],
       default: '40px'
     },
+    'disabled': {
+      type: Boolean,
+      default: false
+    },
     'trigger-simple': {
       type: Boolean,
       default: false
@@ -67,8 +71,7 @@ export default defineComponent({
     'three-areas': {
       type: Boolean,
       default: false
-    },
-    collapsible: Boolean
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })

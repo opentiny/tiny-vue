@@ -14,7 +14,9 @@
 <script lang="tsx">
 import { renderless, api } from '@opentiny/vue-renderless/tooltip/vue'
 import { $prefix, setup, createComponent, parseVnode, h, defineComponent } from '@opentiny/vue-common'
+import type { ITinyVm } from '@opentiny/vue-renderless/types/shared.type'
 import '@opentiny/vue-theme/tooltip/index.less'
+import type { ITooltipApi } from '@opentiny/vue-renderless/types/tooltip.type'
 
 export default defineComponent({
   name: $prefix + 'Tooltip',
@@ -45,7 +47,7 @@ export default defineComponent({
       type: Number,
       default: () => 300
     },
-    content: { type: String },
+    content: { type: [String, Object] },
     disabled: { type: Boolean },
     effect: {
       type: String,
@@ -84,10 +86,6 @@ export default defineComponent({
       type: Number,
       default: () => 0
     },
-    transformOrigin: {
-      type: [Boolean, String],
-      default: () => true
-    },
     transition: {
       type: String,
       default: () => 'tiny-fade-in-linear'
@@ -106,17 +104,17 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as ITooltipApi
   },
   render() {
-    const getContent = (vm) => {
+    const getContent = (vm: ITinyVm<never>) => {
       let slotContent = vm.slots.content && vm.slots.content()
 
       if (slotContent) {
         return slotContent
       }
 
-      let attrContent
+      let attrContent: any
 
       if (vm.renderContent) {
         attrContent = vm.renderContent(h, vm.content)
@@ -164,7 +162,6 @@ export default defineComponent({
                       ref="popper"
                       id={this.state.tooltipId}
                       v-show={!this.disabled && this.state.showPopper && content}
-                      appendToBody={this.appendToBody}
                       class={[
                         'tiny-tooltip',
                         'tiny-tooltip__popper',
@@ -186,12 +183,12 @@ export default defineComponent({
         }
       })
 
-    const stringifyClassObj = (classObj) =>
+    const stringifyClassObj = (classObj: Record<string, string>) =>
       Object.keys(classObj)
         .filter((key) => classObj[key])
         .join(' ')
 
-    const stringifyClassArr = (classArr) =>
+    const stringifyClassArr = (classArr: string[]) =>
       classArr
         .filter((item) => item)
         .map((item) =>
@@ -199,7 +196,7 @@ export default defineComponent({
         )
         .join(' ')
 
-    const addTooltipClass = (bindClass) => {
+    const addTooltipClass = (bindClass: string | Record<string, string> | string[]) => {
       let className = ''
 
       if (bindClass) {

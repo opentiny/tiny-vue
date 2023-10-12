@@ -28,7 +28,6 @@ export const renderless = (
   const api = {
     state,
     onChange: onChange({ emit, props }),
-    parent: computed(() => api.getParent()),
     setActiveItem: setActiveItem({ props, state }),
     getChildrens: getChildrens({ childrenHandler })
   }
@@ -43,7 +42,7 @@ export const renderless = (
 
   watch(() => props.modelValue, api.setActiveItem, { immediate: true })
 
-  watch(() => state.children, api.setActiveItem, { immediate: true })
+  watch(() => state.children, api.setActiveItem, { immediate: true, deep: true })
 
   return api
 }

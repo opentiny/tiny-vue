@@ -1,12 +1,17 @@
 <template>
-  <div :id="demo.demoId" class="b-a br-sm wp100" :class="currDemoId === demo.demoId ? 'b-a-success' : ''">
-    <div class="px24 py20">
+  <div :id="demo.demoId" class="ti-b-a ti-br-sm ti-wp100" :class="currDemoId === demo.demoId ? 'b-a-success' : ''">
+    <div class="ti-px24 ti-py20">
       <!-- DEMO 的标题 + 说明desc+  示例wcTag -->
-      <div class="f-r f-pos-between f-box-end pb20">
-        <div class="f18 cur-hand">{{ demo.name[langKey] }}</div>
+      <div class="ti-f-r ti-f-pos-between ti-f-box-end ti-pb20">
+        <div class="ti-f18 ti-cur-hand">{{ demo.name[langKey] }}</div>
         <div>
           <tiny-tooltip placement="top" :append-to-body="false" :content="copyTip">
-            <i :class="copyIcon" class="h:c-success w16 h16 cur-hand" @click="copyCode(demo)" @mouseout="resetTip()" />
+            <i
+              :class="copyIcon"
+              class="h:c-success ti-w16 ti-h16 ti-cur-hand"
+              @click="copyCode(demo)"
+              @mouseout="resetTip()"
+            />
           </tiny-tooltip>
           <tiny-tooltip
             placement="top"
@@ -15,16 +20,16 @@
           >
             <i
               :class="!!demo.isOpen ? 'i-ti-codeslash' : 'i-ti-code'"
-              class="ml8 h:c-success w16 h16 cur-hand"
+              class="ti-ml8 h:c-success ti-w16 ti-h16 ti-cur-hand"
               @click="toggleDemoCode(demo)"
             />
           </tiny-tooltip>
           <tiny-tooltip placement="top" :append-to-body="false" :content="$t('playground')">
-            <i class="i-ti-playground ml8 h:c-success w16 h16 cur-hand" @click="openPlayground(demo)" />
+            <i class="i-ti-playground ml8 h:c-success ti-w16 ti-h16 ti-cur-hand" @click="openPlayground(demo)" />
           </tiny-tooltip>
         </div>
       </div>
-      <component :is="getDescMd(demo)" class="mb16 f14" />
+      <component :is="getDescMd(demo)" class="ti-mb16 ti-f14" />
       <div v-if="demoConfig.isMobile" class="phone-container">
         <div class="mobile-view-container">
           <component :is="cmp" />
@@ -37,7 +42,7 @@
       </div>
     </div>
     <!-- demo 打开后的示例代码  细滚动时，width:fit-content; -->
-    <div v-if="demo.isOpen" class="px24 py20 b-t-lightless">
+    <div v-if="demo.isOpen" class="ti-px24 ti-py20 ti-b-t-lightless">
       <div>
         <tiny-tabs v-model="tabValue" class="code-tabs">
           <tiny-tab-item
@@ -46,9 +51,7 @@
             :name="'tab' + idx"
             :title="file.fileName"
           >
-            <div class="code-preview-box">
-              <pre v-html="hljs.highlightAuto(file.code).value"></pre>
-            </div>
+            <async-highlight :code="file.code"></async-highlight>
           </tiny-tab-item>
         </tiny-tabs>
       </div>
@@ -59,23 +62,15 @@
 <script lang="jsx">
 import { defineComponent, reactive, computed, toRefs, shallowRef, onMounted, watch, nextTick } from 'vue'
 import { $t, $t2 } from '@/i18n'
-import hljs from 'highlight.js/lib/core'
-import javascript from 'highlight.js/lib/languages/javascript'
-import 'highlight.js/styles/default.css'
-import css from 'highlight.js/lib/languages/css'
-import html from 'highlight.js/lib/languages/xml'
 import { $split, appData, fetchDemosFile, $pub } from '@/tools'
 import { Tooltip as TinyTooltip, Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
 import { languageMap, vueComponents, getWebdocPath, staticDemoPath } from './cmpConfig'
 import { router } from '@/router.js'
 import demoConfig from '@demos/config.js'
 import { useApiMode } from '@/tools'
+import AsyncHighlight from './async-highlight.vue'
 
 const { apiModeState, apiModeFn } = useApiMode()
-
-hljs.registerLanguage('javascript', javascript)
-hljs.registerLanguage('css', css)
-hljs.registerLanguage('html', html)
 
 const getDemoCodeFn = async (demo, forceUpdate) => {
   // 获取code代码文本
@@ -110,7 +105,8 @@ export default defineComponent({
   components: {
     TinyTooltip,
     TinyTabs,
-    TinyTabItem
+    TinyTabItem,
+    AsyncHighlight
   },
   setup(props) {
     const state = reactive({
@@ -180,8 +176,7 @@ export default defineComponent({
             apiModeState.apiMode
           }`
         )
-      },
-      hljs
+      }
     }
 
     onMounted(async () => {
@@ -192,7 +187,6 @@ export default defineComponent({
       } else {
         const log = `${demoName}示例资源不存在，请检查文件名是否正确？`
         cmp.value = <div>{log}</div>
-        console.error(log)
       }
     })
 
@@ -212,59 +206,6 @@ export default defineComponent({
 </script>
 
 <style lang="less">
-.code-preview-box {
-  max-height: 400px;
-  overflow-y: auto;
-
-  pre {
-    line-height: 22px;
-    font-family: monospace;
-    font-size: 14px;
-    font-weight: 400;
-    padding: 0px 12px;
-  }
-
-  .hljs-tag {
-    color: #170;
-    font-weight: 400;
-
-    .hljs-name {
-      color: #170;
-      font-weight: 400;
-    }
-
-    .hljs-attr {
-      color: #00c;
-    }
-  }
-
-  .hljs-string {
-    color: #a11;
-  }
-
-  .hljs-keyword {
-    color: #708;
-    font-weight: 400;
-  }
-
-  .hljs-title {
-    color: #00f;
-    font-weight: 400;
-  }
-
-  .hljs-selector-class {
-    color: #555;
-  }
-
-  .hljs-attribute {
-    font-weight: 400;
-  }
-
-  .hljs-number {
-    color: #164;
-  }
-}
-
 .demo-desc {
   line-height: 1.5;
 

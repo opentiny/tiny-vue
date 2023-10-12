@@ -12,80 +12,82 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
-const $constants = {
+export const $constants = {
   DEFAULT_COLOR: '#1890FF',
   DEFAULT_BACK_COLOR: '#FFFFFF',
   BOX_SHADOW_PX: '0px 0px 0px 4px',
   FLAG_CONTENT_CLS: '.content'
 }
 
+export const milestoneProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  showNumber: {
+    type: Boolean,
+    default: true
+  },
+  solid: {
+    type: Boolean,
+    default: false
+  },
+  lineStyle: {
+    type: [String, Number],
+    default: 1
+  },
+  flagBefore: {
+    type: Boolean,
+    default: false
+  },
+  completedField: {
+    type: String,
+    default: 'completed'
+  },
+  milestonesStatus: {
+    type: Object,
+    default: () => ({})
+  },
+  statusField: {
+    type: String,
+    default: 'status'
+  },
+  nameField: {
+    type: String,
+    default: 'name'
+  },
+  flagField: {
+    type: String,
+    default: 'flags'
+  },
+  flagNameField: {
+    type: String,
+    default: 'name'
+  },
+  flagContentField: {
+    type: String,
+    default: 'content'
+  },
+  flagStatusField: {
+    type: String,
+    default: 'status'
+  },
+  timeField: {
+    type: String,
+    default: 'time'
+  },
+  data: [Object, Array],
+  space: Number,
+  start: {
+    type: Number,
+    default: -1
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'Milestone',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    showNumber: {
-      type: Boolean,
-      default: true
-    },
-    solid: {
-      type: Boolean,
-      default: false
-    },
-    lineStyle: {
-      type: [String, Number],
-      default: 1
-    },
-    flagBefore: {
-      type: Boolean,
-      default: false
-    },
-    completedField: {
-      type: String,
-      default: 'completed'
-    },
-    milestonesStatus: {
-      type: Object,
-      default: () => ({})
-    },
-    statusField: {
-      type: String,
-      default: 'status'
-    },
-    nameField: {
-      type: String,
-      default: 'name'
-    },
-    flagField: {
-      type: String,
-      default: 'flags'
-    },
-    flagNameField: {
-      type: String,
-      default: 'name'
-    },
-    flagContentField: {
-      type: String,
-      default: 'content'
-    },
-    flagStatusField: {
-      type: String,
-      default: 'status'
-    },
-    timeField: {
-      type: String,
-      default: 'time'
-    },
-    data: [Object, Array],
-    space: Number,
-    start: {
-      type: Number,
-      default: -1
-    }
-  },
+  props: milestoneProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

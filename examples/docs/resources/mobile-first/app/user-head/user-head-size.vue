@@ -63,7 +63,7 @@ export default {
   data() {
     return {
       text: '文字',
-      imgUrl: 'https:/webnova/static/img/tiny3bg.b5dd307.jpg'
+      imgUrl: '/static/images/1.jpg'
     }
   }
 }

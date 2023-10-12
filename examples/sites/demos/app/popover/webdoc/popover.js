@@ -42,7 +42,7 @@ export default {
       'demoId': 'close-delay',
       'name': { 'zh-CN': '延迟隐藏', 'en-US': 'Delay Hiding' },
       'desc': {
-        'zh-CN': '<p><code>close-delay</code> 弹出框延迟隐藏单位为毫秒(Number)</p>\n',
+        'zh-CN': '<p><code>close-delay</code> 弹出框延迟隐藏单位为毫秒(number)</p>\n',
         'en-US':
           '<p><code>close-delay</code> The delay for hiding the pop-up dialog box is in milliseconds (number)</p>\n'
       },
@@ -174,7 +174,7 @@ export default {
       'properties': [
         {
           'name': 'trigger',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 click',
           'desc': {
             'zh-CN': '触发方式;该属性的可选值为 click / focus / hover / manual',
@@ -184,14 +184,14 @@ export default {
         },
         {
           'name': 'title',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '标题', 'en-US': 'Title' },
           'demoId': 'custom-tip-text'
         },
         {
           'name': 'content',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '显示的内容，也可以通过 slot 传入 DOM',
@@ -201,14 +201,14 @@ export default {
         },
         {
           'name': 'width',
-          'type': 'String , Number',
+          'type': 'string , number',
           'defaultValue': '该属性的默认值为auto，最小宽度 150px',
           'desc': { 'zh-CN': '宽度', 'en-US': 'Width' },
           'demoId': 'popover-width'
         },
         {
           'name': 'height',
-          'type': 'String , Number',
+          'type': 'string , number',
           'defaultValue': '该属性的默认值为auto',
           'desc': {
             'zh-CN': '高度',
@@ -219,7 +219,7 @@ export default {
         },
         {
           'name': 'placement',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 bottom',
           'desc': {
             'zh-CN':
@@ -230,56 +230,49 @@ export default {
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': 'Popover 是否可用', 'en-US': 'Whether the status is visible' },
           'demoId': 'dynamic-disable'
         },
         {
           'name': 'modelValue / v-model',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '状态是否可见', 'en-US': 'Offset of the occurrence position' },
           'demoId': 'trigger-mode'
         },
         {
           'name': 'offset',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': { 'zh-CN': '出现位置的偏移量', 'en-US': 'Arrow position offset' },
           'demoId': 'frame-offset'
         },
         {
           'name': 'arrow-offset',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': { 'zh-CN': '箭头的位置偏移', 'en-US': 'The rotation center of the component' },
           'demoId': 'arrow-offset'
         },
         {
-          'name': 'transform-origin',
-          'type': 'Boolean , String',
-          'defaultValue': '该属性的默认值为 true',
-          'desc': { 'zh-CN': '组件的旋转中心点 ', 'en-US': 'Whether to add to body' },
-          'demoId': ''
-        },
-        {
           'name': 'append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否添加到body上', 'en-US': 'Define gradient animation' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'transition',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 fade-in-linear',
           'desc': { 'zh-CN': '定义渐变动画', 'en-US': 'Whether to display the Tooltip arrow.' },
           'demoId': 'custom-transition'
         },
         {
           'name': 'visible-arrow',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否显示 Tooltip 箭头',
@@ -290,7 +283,7 @@ export default {
         },
         {
           'name': 'popper-options',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': "该属性的默认值为 { boundariesElement: 'body', gpuAcceleration: false }",
           'desc': {
             'zh-CN':
@@ -301,7 +294,7 @@ export default {
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '为 popper 添加类名',
@@ -311,7 +304,7 @@ export default {
         },
         {
           'name': 'open-delay',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': {
             'zh-CN': '触发方式为 hover 时的显示延迟，单位为毫秒',
@@ -321,7 +314,7 @@ export default {
         },
         {
           'name': 'close-delay',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 200',
           'desc': { 'zh-CN': '触发方式为 hover 时的隐藏延迟，单位为毫秒', 'en-US': '' },
           'demoId': 'close-delay'

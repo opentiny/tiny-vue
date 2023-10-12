@@ -10,19 +10,33 @@
  *
  */
 
-export const handleExpand = (state) => (e) => (state.activeNode = e.target)
+import { ICascaderMenuRenderlessParamUtils, ICascaderMenuRenderlessParams, ICascaderMenuState } from '@/types'
+
+export const handleExpand = (state: ICascaderMenuState) => (e: MouseEvent) =>
+  (state.activeNode = e.target as HTMLElement)
 
 export const handleMouseMove =
-  ({ api, parent, refs, state, svg }) =>
-  (e) => {
+  ({
+    api,
+    parent,
+    refs,
+    state,
+    svg
+  }: Pick<ICascaderMenuRenderlessParams, 'api' | 'parent' | 'state'> & {
+    svg: string
+    refs: ICascaderMenuRenderlessParams['vm']['$refs']
+  }) =>
+  (e: MouseEvent) => {
     const { hoverZone } = refs
 
     if (!state.activeNode || !hoverZone) {
       return
     }
 
-    if (state.activeNode.contains(e.target)) {
-      clearTimeout(state.hoverTimer)
+    if (state.activeNode.contains(e.target as HTMLElement)) {
+      if (state.hoverTimer) {
+        clearTimeout(state.hoverTimer)
+      }
 
       const { left } = refs.cascaderMenu.$parent.$el.getBoundingClientRect()
       const startX = e.clientX - left
@@ -39,7 +53,7 @@ export const handleMouseMove =
     }
   }
 
-export const clearHoverZone = (refs) => () => {
+export const clearHoverZone = (refs: ICascaderMenuRenderlessParamUtils['vm']['$refs']) => () => {
   const { hoverZone } = refs
 
   if (!hoverZone) {

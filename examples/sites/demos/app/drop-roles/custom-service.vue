@@ -10,8 +10,7 @@
 </template>
 
 <script lang="jsx">
-import { DropRoles } from '@opentiny/vue'
-import Notify from '@opentiny/vue-notify'
+import { DropRoles, Notify } from '@opentiny/vue'
 
 export default {
   components: {

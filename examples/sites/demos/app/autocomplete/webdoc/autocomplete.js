@@ -194,28 +194,28 @@ export default {
       'properties': [
         {
           'name': 'clearable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否可清空', 'en-US': 'Whether to clear data' },
           'demoId': 'clearable'
         },
         {
           'name': 'placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框占位文本', 'en-US': 'Placeholder text in the text box' },
           'demoId': 'hide-loading1'
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
           'demoId': 'disabled1'
         },
         {
           'name': 'value-key',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '输入建议对象中用于显示的键名',
@@ -225,21 +225,21 @@ export default {
         },
         {
           'name': 'value',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '必填值，输入绑定值', 'en-US': 'This parameter is mandatory. Enter a bound value.' },
           'demoId': 'clearable'
         },
         {
           'name': 'debounce',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 300',
           'desc': { 'zh-CN': '获取输入建议的去抖延时', 'en-US': 'Obtain the recommended input dejitter delay.' },
           'demoId': 'debounce'
         },
         {
           'name': 'placement',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 bottom-start',
           'desc': {
             'zh-CN': '菜单弹出位置;该属性的可选值为 top / top-start / top-end / bottom / bottom-start / bottom-end',
@@ -250,7 +250,7 @@ export default {
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': 'Autocomplete 下拉列表的类名',
@@ -260,7 +260,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置组件大小，可设置为：medium，small，mini',
@@ -270,7 +270,7 @@ export default {
         },
         {
           'name': 'trigger-on-focus',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否在输入框 focus 时显示建议列表',
@@ -280,14 +280,14 @@ export default {
         },
         {
           'name': 'name',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '原生属性', 'en-US': 'Native attribute' },
           'demoId': 'clearable'
         },
         {
           'name': 'select-when-unmatched',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '在输入没有任何匹配建议的情况下，按下回车是否触发 select 事件',
@@ -298,28 +298,28 @@ export default {
         },
         {
           'name': 'label',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框关联的label文字', 'en-US': 'Label text associated with the text box' },
           'demoId': ''
         },
         {
           'name': 'prefix-icon',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框头部图标', 'en-US': 'Icon on the header of the text box' },
           'demoId': 'custom-icon'
         },
         {
           'name': 'suffix-icon',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框尾部图标', 'en-US': 'Icon at the end of the text box' },
           'demoId': 'custom-icon'
         },
         {
           'name': 'hide-loading',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否隐藏远程加载时的加载图标',
@@ -329,7 +329,7 @@ export default {
         },
         {
           'name': 'popper-append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否将下拉列表插入至 body 元素。在下拉列表的定位出现问题时，可将该属性设置为 false',
@@ -351,7 +351,7 @@ export default {
         },
         {
           'name': 'highlight-first-item',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否默认突出显示远程搜索建议中的第一项',

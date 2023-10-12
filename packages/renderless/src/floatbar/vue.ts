@@ -10,12 +10,16 @@
  *
  */
 
+import type { IFloatbarProps, IFloatbarState, IFloatbarApi, ISharedRenderlessParamHooks } from '@/types'
 import { computeData } from './index'
 
 export const api = ['state']
 
-export const renderless = (props, { computed, reactive }) => {
-  const state = reactive({
+export const renderless = (
+  props: IFloatbarProps,
+  { computed, reactive }: ISharedRenderlessParamHooks
+): IFloatbarApi => {
+  const state: IFloatbarState = reactive({
     data: computed(() => computeData({ props }))
   })
 

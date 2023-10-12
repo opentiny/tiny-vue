@@ -173,7 +173,7 @@ export default {
         },
         {
           'name': 'draggable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置是否开启拖拽节点的功能，默认值为 `false`',
@@ -183,7 +183,7 @@ export default {
         },
         {
           'name': 'show-filter',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置是否展示过滤搜索框，默认为 `true`。',
@@ -193,14 +193,14 @@ export default {
         },
         {
           'name': 'icon',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '自定义菜单左侧图标。', 'en-US': 'Customize the icon on the left of the menu.' },
           'demoId': 'custom-icon'
         },
         {
           'name': 'default-expand-all',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置菜单默认是否展开所有节点，默认为 false 。',
@@ -210,7 +210,7 @@ export default {
         },
         {
           'name': 'expand-on-click-node',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置是否可以通过点击节点展开/收起菜单，默认为 false。',
@@ -220,14 +220,14 @@ export default {
         },
         {
           'name': 'placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框占位符。', 'en-US': 'Placeholder in the text box.' },
           'demoId': 'show-filter'
         },
         {
           'name': 'ellipsis',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '菜单内容超长时省略显示，默认为 false 。',
@@ -237,7 +237,7 @@ export default {
         },
         {
           'name': 'wrap',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '菜单内容超长时换行显示，默认为 false 。',
@@ -247,7 +247,7 @@ export default {
         },
         {
           'name': 'automatic-filtering',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '输入框输入内容时是否自动过滤内容，默认是 true 。',
@@ -258,7 +258,7 @@ export default {
         },
         {
           'name': 'props',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': "该属性的默认值为 {children: 'children',label: 'label',disabled: 'disabled'}",
           'desc': { 'zh-CN': '配置数据选项的映射字段名称', 'en-US': 'Configuration data option mapping field name' },
           'demoId': 'toggle-props'
@@ -289,9 +289,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '点击节点后的事件。;点击节点后触发的回调函数;//参数arg1:\n{children: 点击节点的子节点, id: 点击节点的id ,label: 点击节点的title} \n//参数arg2:\n Object 当前点击节点的数据信息对象 ',
+              '点击节点后的事件。;点击节点后触发的回调函数;//参数arg1:\n{children: 点击节点的子节点, id: 点击节点的id ,label: 点击节点的title} \n//参数arg2:\n object 当前点击节点的数据信息对象 ',
             'en-US':
-              'Indicates that a node is clicked. ;Callback function triggered after a node is clicked. //Parameter arg1:\n{children: child node of the clicked node, id: ID of the clicked node, label: title of the clicked node} \n//Parameter arg2:\n Object Data information object of the currently clicked node'
+              'Indicates that a node is clicked. ;Callback function triggered after a node is clicked. //Parameter arg1:\n{children: child node of the clicked node, id: ID of the clicked node, label: title of the clicked node} \n//Parameter arg2:\n object Data information object of the currently clicked node'
           },
           'demoId': 'node-click'
         },
@@ -313,9 +313,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '收缩节点后的事件。;节点被关闭时触发的事件;//参数arg1:Object \n{children: 点击节点的子节点,id: 点击节点的id,label: 点击节点的title}\n//参数arg2:Object 当前点击节点的数据信息对象',
+              '收缩节点后的事件。;节点被关闭时触发的事件;//参数arg1:object \n{children: 点击节点的子节点,id: 点击节点的id,label: 点击节点的title}\n//参数arg2:object 当前点击节点的数据信息对象',
             'en-US':
-              'Event after the node is scaled in. ; Event triggered when a node is shut down; //Parameter arg1:Object \n{children: child node of the clicked node, id: ID of the clicked node, label: title of the clicked node}\n//Parameter arg2:Object Data information object of the currently clicked node'
+              'Event after the node is scaled in. ; Event triggered when a node is shut down; //Parameter arg1:object \n{children: child node of the clicked node, id: ID of the clicked node, label: title of the clicked node}\n//Parameter arg2:object Data information object of the currently clicked node'
           },
           'demoId': 'node-collapse'
         },
@@ -325,9 +325,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '节点开始拖拽时触发的事件。;节点开始拖拽时触发的事件。;//参数: \narg1:Object 当前拖拽节点的数据信息对象\narg2:event ',
+              '节点开始拖拽时触发的事件。;节点开始拖拽时触发的事件。;//参数: \narg1:object 当前拖拽节点的数据信息对象\narg2:event ',
             'en-US':
-              'Event triggered when a node starts to be dragged. ;Event triggered when a node starts to be dragged. ; / / Parameters:\narg1:Object Data information object of the current node \narg2:event'
+              'Event triggered when a node starts to be dragged. ;Event triggered when a node starts to be dragged. ; / / Parameters:\narg1:object Data information object of the current node \narg2:event'
           },
           'demoId': 'drag-events'
         },
@@ -337,9 +337,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '拖拽进入其他节点时触发的事件;拖拽进入其他节点时触发的事件;//参数\narg1:Object 当前拖拽节点的数据信息对象\narg2: Object 当前点击节点拖拽后位置的节点数据信息对象',
+              '拖拽进入其他节点时触发的事件;拖拽进入其他节点时触发的事件;//参数\narg1:object 当前拖拽节点的数据信息对象\narg2: object 当前点击节点拖拽后位置的节点数据信息对象',
             'en-US':
-              'This event is triggered when a user drags a node to another node. Event triggered when a user drags a node to another node. / / Parameter \narg1: Object Data information object of the current node \narg2: Object Data information object of the current node after the node is dragged.'
+              'This event is triggered when a user drags a node to another node. Event triggered when a user drags a node to another node. / / Parameter \narg1: object Data information object of the current node \narg2: object Data information object of the current node after the node is dragged.'
           },
           'demoId': 'drag-events'
         },
@@ -349,9 +349,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '拖拽离开某个节点时触发的事件;拖拽离开某个节点时触发的事件;//参数\narg1:Object 当前拖拽节点的数据信息对象\narg2: Object 当前拖出后节点的数据信息对象',
+              '拖拽离开某个节点时触发的事件;拖拽离开某个节点时触发的事件;//参数\narg1:object 当前拖拽节点的数据信息对象\narg2: object 当前拖出后节点的数据信息对象',
             'en-US':
-              'This event is triggered when a user drags a node. Event triggered when a user drags a node. / / Parameter \narg1:Object Data information object of the currently dragged node \narg2: Object Data information object of the currently dragged node'
+              'This event is triggered when a user drags a node. Event triggered when a user drags a node. / / Parameter \narg1:object Data information object of the currently dragged node \narg2: object Data information object of the currently dragged node'
           },
           'demoId': 'drag-events'
         },
@@ -361,9 +361,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '在拖拽节点时触发的事件（类似浏览器的 mouseover 事件）;在拖拽节点时触发的事件（类似浏览器的 mouseover 事件）;//参数\narg1:Object 当前拖拽节点的数据信息对象\narg2:Object 当前拖拽节点拖拽时节点的数据信息对象\n arg3:event ',
+              '在拖拽节点时触发的事件（类似浏览器的 mouseover 事件）;在拖拽节点时触发的事件（类似浏览器的 mouseover 事件）;//参数\narg1:object 当前拖拽节点的数据信息对象\narg2:object 当前拖拽节点拖拽时节点的数据信息对象\n arg3:event ',
             'en-US':
-              'Event triggered when a node is dragged (similar to the mouseover event of the browser); Event triggered when a node is dragged (similar to the mouseover event of the browser) / / Parameter \narg1:Object Data information object of the current dragged node \narg2:Object Data information object of the current dragged node \n arg3:event'
+              'Event triggered when a node is dragged (similar to the mouseover event of the browser); Event triggered when a node is dragged (similar to the mouseover event of the browser) / / Parameter \narg1:object Data information object of the current dragged node \narg2:object Data information object of the current dragged node \n arg3:event'
           },
           'demoId': 'drag-events'
         },
@@ -373,9 +373,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              "拖拽结束时（r可能未成功）触发的事件;拖拽成功完成时触发的事件;//参数\narg1: Object当前拖拽节点的数据信息对象\narg2: Object当前点击节点拖拽后位置的节点数据信息对象\narg3: 拖拽的类型，如：'inner'\narg4:event ",
+              "拖拽结束时（r可能未成功）触发的事件;拖拽成功完成时触发的事件;//参数\narg1: object当前拖拽节点的数据信息对象\narg2: object当前点击节点拖拽后位置的节点数据信息对象\narg3: 拖拽的类型，如：'inner'\narg4:event ",
             'en-US':
-              "Event triggered when dragging ends (r may not succeed). Event triggered when the drag is successfully completed; / / Parameter \narg1: Object Data information object of the current node\narg2: Object Data information object of the current node after the node is dragged\narg3: Drag type, for example,'inner'\narg4:event"
+              "Event triggered when dragging ends (r may not succeed). Event triggered when the drag is successfully completed; / / Parameter \narg1: object Data information object of the current node\narg2: object Data information object of the current node after the node is dragged\narg3: Drag type, for example,'inner'\narg4:event"
           },
           'demoId': 'drag-events'
         },
@@ -385,9 +385,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '拖放节点后的事件。开启 draggable 属性为 true 有效。;拖放节点后的事件。开启 draggable 属性为 true 有效。;//参数\narg1:Object 当前拖拽节点的数据信息对象\n arg2:Object 当前点击节点拖拽后的位置节点的数据信息对象\narg3: 拖拽的类型\narg4:event ',
+              '拖放节点后的事件。开启 draggable 属性为 true 有效。;拖放节点后的事件。开启 draggable 属性为 true 有效。;//参数\narg1:object 当前拖拽节点的数据信息对象\n arg2:object 当前点击节点拖拽后的位置节点的数据信息对象\narg3: 拖拽的类型\narg4:event ',
             'en-US':
-              'Indicates the event after a node is dragged and dropped. This parameter is valid when the draggable attribute is set to true. ; Events after a node is dragged and dropped. This parameter is valid when the draggable attribute is set to true. ; / / Parameter \narg1:Object Data information object of the current dragged node \n arg2:Object Data information object of the current clicked node after the dragged node \narg3:Drag type \narg4:event'
+              'Indicates the event after a node is dragged and dropped. This parameter is valid when the draggable attribute is set to true. ; Events after a node is dragged and dropped. This parameter is valid when the draggable attribute is set to true. ; / / Parameter \narg1:object Data information object of the current dragged node \n arg2:object Data information object of the current clicked node after the dragged node \narg3:Drag type \narg4:event'
           },
           'demoId': 'node-drop'
         }

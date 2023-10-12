@@ -28,7 +28,7 @@ export default {
       fileList1: [
         {
           name: 'ld.png',
-          url: 'webnova/static/images/ld.png',
+          url: '/static/images/ld.png',
           status: 'uploading',
           percentage: 30
         }
@@ -36,13 +36,13 @@ export default {
       fileList2: [
         {
           name: 'ld.png',
-          url: 'webnova/static/images/ld.png'
+          url: '/static/images/ld.png'
         }
       ],
       fileList3: [
         {
           name: 'ld.png',
-          url: 'webnova/static/images/ld.png',
+          url: '/static/images/ld.png',
           status: 'fail'
         }
       ]

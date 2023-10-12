@@ -1,6 +1,7 @@
 <template>
   <tiny-flowchart
     ref="chart"
+    class="text-xs"
     :data="chartData"
     :config="chartConfig"
     @click-node="onClickNode"

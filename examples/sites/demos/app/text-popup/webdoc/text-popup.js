@@ -69,14 +69,14 @@ export default {
       'properties': [
         {
           'name': 'value',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '绑定值', 'en-US': 'Bound Value' },
           'demoId': 'value'
         },
         {
           'name': 'placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置输入框内的提示占位文本',
@@ -86,21 +86,21 @@ export default {
         },
         {
           'name': 'readonly',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '设置是否只读', 'en-US': 'Set whether to read only' },
           'demoId': 'readonly'
         },
         {
           'name': 'width',
-          'type': 'Number , String',
+          'type': 'number , string',
           'defaultValue': '该属性的默认值为 150',
           'desc': { 'zh-CN': '设置宽度', 'en-US': 'Set width' },
           'demoId': 'width'
         },
         {
           'name': 'separtor',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 ,',
           'desc': { 'zh-CN': '分隔符', 'en-US': 'Separator' },
           'demoId': 'separtor'

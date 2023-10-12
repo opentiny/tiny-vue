@@ -12,7 +12,7 @@ import * as hooks from 'vue'
 export type ISharedRenderlessParamHooks = typeof hooks
 
 /** utils变量: renderless的第三个参数  */
-export interface ISharedRenderlessParamUtils<CT> {
+export interface ISharedRenderlessParamUtils<CT = never> {
   /** 当前使用的框架 */
   framework: 'vue3' | 'vue2' | 'vue2.7'
   /** 组件前缀，默认为 Tiny  */
@@ -39,6 +39,8 @@ export interface ISharedRenderlessParamUtils<CT> {
   isMobileMode: boolean
   /** 是否为 pc */
   isPCMode: boolean
+  /** 是否为mobile-first */
+  isMobileFirstMode: boolean
 
   /** vue组件实例的context.attrs */
   attrs: any
@@ -71,9 +73,9 @@ export interface ISharedRenderlessParamUtils<CT> {
   /** 向实例的 subTree.children 深度遍历发送广播消息。 如果component找到了触发component.emit(eventName, params)
    * @param componentName 组件名
    */
-  broadcast: (componentName: string, eventName: string, params: any) => void
+  broadcast: (componentName: string, eventName: string, params?: any) => void
   /** 向实例的 parent开始查找componentName， 找到匹配第一个组件， 触发component.emit(eventName, params) */
-  dispatch: (componentName: string, eventName: string, params: any) => void
+  dispatch: (componentName: string, eventName: string, params?: any) => void
   /** 向实例的subTree 遍历。
    * 1、handler 是函数： handler入参{level,vm,el,options,isLevel1}. 给每个子节点遍历调用函数。
    * 2、handler 是非函数： 直接通过 instance.subTree 来生成一个同等树状的vm数据。
@@ -132,7 +134,7 @@ interface IComponentDesignConfig {
 }
 
 /** Tiny-Vue的Adapter 内部为组件创建的Vm */
-interface ITinyVm<CT> {
+export interface ITinyVm<CT = never> {
   /** 从instance.attrs上， 过滤出所有的非函数的attrs */
   $attrs: Record<string, any>
   /** 从instance.attrs上， 过滤出所有的函数的attrs, 并对大驼峰属性名转化为下划线名 */
@@ -149,8 +151,8 @@ interface ITinyVm<CT> {
   $nextTick: typeof hooks.nextTick
   /** 自动触发 instance.emit 和 instance.$emitter 两处地方*/
   $emit: (...args) => void
-  /** instance.$emitter.off */
-  $off: (eventname: string, callback: Function) => void
+  /** instance.$emitter.off, 不传任何参数则是移除所有事件 */
+  $off: (eventname?: string, callback?: Function) => void
   /** instance.$emitter.on */
   $on: (eventname: string, callback: Function) => void
   /** instance.$emitter.once */

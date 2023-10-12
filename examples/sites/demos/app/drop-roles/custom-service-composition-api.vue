@@ -11,8 +11,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { DropRoles as TinyDropRoles } from '@opentiny/vue'
-import Notify from '@opentiny/vue-notify'
+import { DropRoles as TinyDropRoles, Notify } from '@opentiny/vue'
 
 const value = ref('')
 const fields = ref({

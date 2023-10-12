@@ -9,7 +9,7 @@ test('每页显示数量', async ({ page }) => {
   const getPageCount = (pageSize) => String(Math.ceil(total / pageSize))
   const preview = page.locator('#preview')
   const pager = preview.locator('.tiny-pager')
-  const sizeChange = pager.locator('.tiny-pager__input')
+  const sizeChange = pager.locator('.tiny-pager__page-size')
   const sizeSelect = page.locator('.tiny-pager__selector')
   const pageItem = pager.locator('.tiny-pager__pages li')
 

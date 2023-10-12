@@ -67,7 +67,7 @@ const pathGet = (obj, property) => {
   }
 }
 
-const get = (obj, property, defaultValue) => {
+const get = (obj: object, property: string, defaultValue?: unknown) => {
   if (eqNull(obj)) {
     return defaultValue
   }

@@ -23,9 +23,9 @@ import { hasOwn, typeOf, isObject, isPlainObject, isNull } from './type'
  *     })
  *
  * @param {Object} obj 要处理的对象
- * @param {Function} handle 进行循环处理的函数，参数为对象属性名及属性值
+ * @param {Function} handle 进行循环处理的函数，函数返回false, 则跳出循环
  */
-export const each = (obj, handle) => {
+export const each = (obj: object, handle: (key: string, value?: any) => boolean) => {
   if (typeof handle !== 'function') {
     return
   }
@@ -38,10 +38,18 @@ export const each = (obj, handle) => {
   }
 }
 
-let extend
+/** 支持深度合并对象
+ * 【首参为true】，则每一层是对象就合并， 但是简单值或数组时，就后面覆盖过来
+ * 【首参为对象】，则仅第一层合并， 类似Object.assign
+ * 合并对象中，有非object类型的，统统忽略！
+ * @returns {Object}
+ */
+
+// eslint-disable-next-line import/no-mutable-exports
+let extend: (deep: boolean | object, ...values: object[]) => object
 
 /**
- * 获得指定的命名空间的值对象。
+ * 通过路径，获得对象指向位置的值。
  *
  *     getObj({ a: { b: 1 } }, 'a.b')            // 1
  *     getObj({ a: { b: 1 } }, 'data.a.b', true) // 1
@@ -52,21 +60,21 @@ let extend
  * @param {Boolean} [isExceptRoot] 是否排除 names 的第一个节点，默认 false
  * @returns {Object}
  */
-export const getObj = (data, names, isExceptRoot) => {
+export const getObj = (data: object, names: string, isExceptRoot?: boolean) => {
   if (!data || !isPlainObject(data) || !names || typeof names !== 'string') {
     return
   }
 
-  names = names.split('.')
+  const nameArr = names.split('.')
 
   let obj = data
-  const len = names.length
+  const len = nameArr.length
 
   if (len > 1) {
     const startIndex = isExceptRoot ? 1 : 0
 
     for (let i = startIndex; i < len; i++) {
-      obj = obj[names[i]]
+      obj = obj[nameArr[i]]
 
       if (isNull(obj)) {
         return obj
@@ -75,12 +83,12 @@ export const getObj = (data, names, isExceptRoot) => {
 
     return obj
   } else {
-    return obj[names[0]]
+    return obj[nameArr[0]]
   }
 }
 
 /**
- * 设置指定的命名空间的值对象。
+ * 通过路径，设置对象指向位置的值。
  *
  *     let obj = { limit: 5, data: { a: 1, b: 2 }, info: { a: 1, b: 2 } }
  *     setObj(obj, 'limit', 10)              // obj.limit = 10
@@ -95,16 +103,16 @@ export const getObj = (data, names, isExceptRoot) => {
  * @param {boolean} [isMerge] 是否覆盖还是合并，默认覆盖
  * @returns {Object}
  */
-export const setObj = (data, names, value, isMerge) => {
+export const setObj = (data: object, names: string, value: any, isMerge) => {
   if (!data || !isPlainObject(data) || !names || typeof names !== 'string') {
     return data
   }
 
-  names = names.split('.')
+  const nameArr = names.split('.')
 
   const obj = data
-  let len = names.length
-  let item = names[0]
+  let len = nameArr.length
+  let item = nameArr[0]
 
   if (len > 1) {
     len--
@@ -113,7 +121,7 @@ export const setObj = (data, names, value, isMerge) => {
     let name, target
 
     for (let i = 0; i < len; i++) {
-      name = names[i]
+      name = nameArr[i]
       target = tmpl[name]
 
       if (target === null || !isPlainObject(target)) {
@@ -124,7 +132,7 @@ export const setObj = (data, names, value, isMerge) => {
       tmpl = target
     }
 
-    item = names[len]
+    item = nameArr[len]
 
     isMerge
       ? isPlainObject(tmpl[item])
@@ -132,7 +140,11 @@ export const setObj = (data, names, value, isMerge) => {
         : (tmpl[item] = value)
       : (tmpl[item] = value)
   } else {
-    isMerge ? (isPlainObject(obj[item]) ? extend(true, obj[item], value) : (obj[item] = value)) : (obj[item] = value)
+    isMerge
+      ? isPlainObject(obj[item])
+        ? extend(true, obj[item], value) //
+        : (obj[item] = value)
+      : (obj[item] = value)
   }
 
   return obj
@@ -146,13 +158,13 @@ export const setObj = (data, names, value, isMerge) => {
  *     copyField(obj, ['a', 'b'], false, true) // { c: [3, 4, 5], d: { e: 'good' } }
  *
  * @param {Object} data 源数据，合并数据源
- * @param {Array} [fields] 指定的值得命名空间字符串的数值
+ * @param {Array} [fields] 指定的值得命名空间字符串的数值。 不传入，默认为克隆一份数据出来
  * @param {Boolean} [isMerge] 是否覆盖还是合并，默认false覆盖
  * @param {Boolean} [isExclude] 是否排除指定的fields复制，默认false
  * @returns {Array}
  */
-export const copyField = (data, fields, isMerge, isExclude) => {
-  const setValue = (obj, result, name, key, isMerge) => {
+export const copyField = (data: object, fields?: string[], isMerge?: boolean, isExclude?: boolean) => {
+  const setValue = (obj, result, name, key, isMerge?) => {
     const include = key.indexOf(name) === 0
     const keySplit = key.split(name)
     const hasNextDot = keySplit[1] && keySplit[1].indexOf('.') === 0
@@ -161,10 +173,11 @@ export const copyField = (data, fields, isMerge, isExclude) => {
       if (name !== key) {
         each(getObj(obj, name), (field) => {
           setValue(obj, result, `${name}.${field}`, key)
+          return true
         })
       }
     } else {
-      if (!fields.includes(name)) {
+      if (fields && !fields.includes(name)) {
         setObj(result, name, getObj(obj, name), isMerge)
       }
     }
@@ -195,13 +208,10 @@ export const copyField = (data, fields, isMerge, isExclude) => {
  *
  *     let arr1 = [ 1, 2, { name: 'jacky' } ]
  *     let arr2 = copyArray(arr1)
- *     arr1[ 2 ].name = 'kevin'
- *     // arr2[ 2 ].name: 'jacky'
- *
- * @param {Array} arr 要复制的数组
- * @returns {Array}
  */
-export const copyArray = (arr) => (Array.isArray(arr) ? arr.map((item) => copyField(item)) : arr)
+export const copyArray = (arr: any[]) => {
+  return Array.isArray(arr) ? arr.map((item) => copyField(item)) : arr
+}
 
 /**
  * 对象复制，支持深度复制，修复 $.extend 数组复制的问题, 参数同 $.extend。
@@ -236,26 +246,20 @@ const deepCopy = (target, name, deep, copy, src) => {
   }
 }
 
-extend = function () {
-  const args = arguments
+extend = function (...args) {
   const length = args.length
   let target = args[0] || {}
   let i = 1
   let deep = false
 
   if (typeOf(target) === 'boolean') {
-    deep = target
+    deep = target as boolean
     target = args[i] || {}
     i++
   }
 
   if (!isObject(target) && typeOf(target) !== 'function') {
     target = {}
-  }
-
-  if (i === length) {
-    target = this
-    i--
   }
 
   for (; i < length; i++) {
@@ -276,23 +280,44 @@ extend = function () {
   }
 
   return target
-}
-
-let isEachEqual
+} as any
 
 /**
- * 比较两个对象是否相等。
+ * 可深层比较两个对象或两个数组是否相等。注意以源对象为比较基础
+ *
+ *     isEachEqual({a: 1}, {a: 1, b: 2})      // true
+ *     isEachEqual({a: 1, b: 2}, {a: 1})      // false (以源对象为比较基础，所以它是false)
+ *     isEachEqual({a: 1, b: {c: 3, d: 4}}, {a: 1, b: {c: 3, d: 5}})  // false
+ *
+ * @param {Object} data1 数据源对象
+ * @param {Object} data2 对比目标对象
+ * @param {Boolean} [deep] 是否深度遍历，默认为true
+ * @returns {Boolean}
+ */
+// eslint-disable-next-line import/no-mutable-exports
+let isEachEqual: (data1: any, data2: any, deep?: boolean) => boolean
+
+/**
+ * 可深层比较两个对象是否相等。
+ * 与`isEachEqual` 区别是：
+ * 1、2个对象交换位置，判断2次
+ * 2、它可以指定要比较的属性分支["a.b","a.c"] （整个系统使用fields这块功能）
  *
  *     isEqual({ a: { b: 1 } }, { a: { b: 1, c: 2 } }, false, [ 'a.b' ]) // false
  *     isEqual({ a: { b: 1 } }, { a: { b: 1, c: 2 } }, true, [ 'a.b' ])  // true
  *
  * @param {Object} sourceData 源对象
  * @param {Object} targetData 目标对象
- * @param {Boolean} [deep] 是否深度比较，默认深度比较, 只有指定false才不进行深度比较
+ * @param {Boolean} [deep] 是否深度比较，默认为true
  * @param {Array} [fields] 指定需要比较的字段的数组
  * @returns {Boolean}
  */
-export const isEqual = (sourceData, targetData, deep, fields) => {
+export const isEqual: (sourceData: object, targetData: object, deep?: boolean, fields?: string[]) => boolean = (
+  sourceData: object,
+  targetData: object,
+  deep?: boolean,
+  fields?: string[]
+) => {
   if (typeOf(sourceData) === typeOf(targetData)) {
     deep = deep !== false
 
@@ -300,31 +325,22 @@ export const isEqual = (sourceData, targetData, deep, fields) => {
       const _sourceData = copyField(sourceData, fields)
       const _targetData = copyField(targetData, fields)
 
-      return isEqual(_sourceData, _targetData, deep)
+      return isEqual(_sourceData, _targetData, deep) as boolean
     }
 
+    // 此处交换了位置判断
     const source = isEachEqual(sourceData, targetData, deep)
     const target = isEachEqual(targetData, sourceData, deep)
 
-    return source === target && source !== false
+    return source && target
   }
 
   return false
 }
 
-/**
- * 循环遍历两个对象，判断对象的属性是否完全相等。
- *
- *     isEachEqual({a: 1}, {a: 1})                                    // true
- *     isEachEqual({a: 1, b: {c: 3, d: 4}}, {a: 1, b: {c: 3, d: 5}})  // false
- *
- * @param {Object} data1 数据源对象
- * @param {Object} data2 对比目标对象
- * @param {Boolean} [deep] 是否深度遍历
- * @returns {Boolean}
- */
-isEachEqual = (data1, data2, deep) => {
+isEachEqual = (data1: any, data2: any, deep?: boolean) => {
   if (!isPlainObject(data1)) {
+    // 当是数组的情况
     if (!Array.isArray(data1)) {
       return data1 === data2
     }
@@ -342,7 +358,7 @@ isEachEqual = (data1, data2, deep) => {
 
     return true
   }
-
+  // 对象的情况
   let bEqual = true
   const names = Object.keys(data1)
 
@@ -376,13 +392,13 @@ export { isEachEqual, extend }
  *     let obj = { a: 1, b: 2 }
  *     toJsonStr(obj)  // '{"a":1,"b":2}'
  *     obj.prop = obj
- *     toJsonStr(obj)  // undefined
+ *     toJsonStr(obj)  // undefined  递归引用自己了，所以catch了
  *     toJsonStr(null) // 'null'
  *
  * @param {Object} obj
  * @returns {String}
  */
-export const toJsonStr = (obj) => {
+export const toJsonStr = (obj: any) => {
   try {
     return JSON.stringify(obj)
   } catch (e) {
@@ -392,6 +408,7 @@ export const toJsonStr = (obj) => {
 
 /**
  * 将一个或多个源对象简单合并到目标对象中，合并时排除非 OwnProperty 及 undefined 属性。
+ * 只处理第一层，功能基本等同于  Object.assign
  *
  *     merge({ a: 1 }, { b: { c: 2 } }, { d: 3 }) // { a: 1, b: { c: 2 }, d: 3 }
  *
@@ -399,9 +416,9 @@ export const toJsonStr = (obj) => {
  * @param {Object} [source] 源对象
  * @returns {Object}
  */
-export const merge = function (target) {
-  for (let i = 1, len = arguments.length; i < len; i++) {
-    const source = arguments[i] || {}
+export const merge = function (target: object, ...rest: object[]) {
+  for (let i = 0, len = rest.length; i < len; i++) {
+    const source = rest[i] || {}
 
     for (const prop in source) {
       if (hasOwn.call(source, prop)) {

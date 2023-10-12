@@ -9,7 +9,13 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-
+import {
+  ITabNavState,
+  ITabNavApi,
+  ITabNavProps,
+  ISharedRenderlessParamHooks,
+  ITabNavRenderlessParamUtils
+} from '@/types'
 import {
   computedNavStyle,
   computedSizeName,
@@ -53,11 +59,11 @@ export const api = [
 ]
 
 export const renderless = (
-  props,
-  { computed, inject, onBeforeUnmount, onMounted, onUpdated, reactive, markRaw },
-  { parent, nextTick, refs, mode: tinyMode, emit }
-) => {
-  const api = { mounted, beforeUnmount, computedNavStyle, computedSizeName }
+  props: ITabNavProps,
+  { computed, inject, onBeforeUnmount, onMounted, onUpdated, reactive, markRaw }: ISharedRenderlessParamHooks,
+  { parent, nextTick, refs, mode: tinyMode, emit }: ITabNavRenderlessParamUtils
+): ITabNavApi => {
+  const api = { mounted, beforeUnmount, computedNavStyle, computedSizeName } as ITabNavApi
   const state = reactive({
     dragging: false,
     navOffset: 0,
@@ -74,8 +80,10 @@ export const renderless = (
     mode: props._mode || parent.$mode || tinyMode || 'pc',
     rootTabs: inject('rootTabs'),
     sizeName: computed(() => api.computedSizeName(state)),
-    navStyle: computed(() => api.computedNavStyle(state))
-  })
+    navStyle: computed(() => api.computedNavStyle(state)),
+    navSortableObj: {}
+  }) as ITabNavState
+
   Object.assign(api, {
     state,
     setFocus: setFocus(state),

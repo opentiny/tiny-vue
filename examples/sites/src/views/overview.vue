@@ -1,46 +1,50 @@
 <template>
   <div>
-    <div class="overview-layout pt48">
-      <h1 class="mb20 f24 fw-600">{{ $t('overview') }}</h1>
-      <h1 class="f14 my20 lh21">
+    <div class="overview-layout ti-pt48">
+      <h1 class="ti-mb20 ti-f24 ti-fw-600">
+        {{ $t('overview') }}
+        <span class="ti-f18">({{ getTotalComponentsNum() }})</span>
+      </h1>
+
+      <h1 class="ti-f14 ti-my20 ti-lh21">
         {{ $t('overviewDesc') }}
       </h1>
       <!-- 搜索 -->
       <tiny-input
         :placeholder="$t('searchComponents')"
         v-model="value"
-        class="mb10 search-input"
+        class="ti-mb10 search-input"
         :style="{ width: '100%', padding: '6px' }"
         @input="searchHandler"
       >
         <template #suffix>
-          <img class="h24 w24 cur-def" :src="searchSvg" />
+          <img class="ti-h24 ti-w24 cur-def" :src="searchSvg" />
         </template>
       </tiny-input>
       <!-- 组件列表 -->
       <div v-if="searchMenus?.length === 0" class="text-center py20">
-        <img class="h150 w200 my-20" :src="noDataSvg" />
+        <img class="ti-h150 ti-w200 ti-my-20" :src="noDataSvg" />
       </div>
       <div v-for="(menu, index) in searchMenus" :label="menu" :key="index">
-        <div class="rel mt25">
-          <h2 class="f16 d-ib fw-600 mr8">{{ $t2(menu.label, menu.labelEn) }}</h2>
+        <div class="ti-rel ti-mt25">
+          <h2 class="ti-f16 ti-d-ib ti-fw-600 ti-mr8">{{ $t2(menu.label, menu.labelEn) }}</h2>
           <span v-if="searchMenus?.length !== 0" class="cell-title">{{ menu.children.length }}</span>
         </div>
-        <div class="f-r f-wrap f-pos-between overview-card">
+        <div class="ti-f-r ti-f-wrap ti-f-pos-between overview-card">
           <div
             v-for="(cell, cellIndex) in menu.children"
             :label="cell"
             :key="cellIndex"
-            class="my10 text-center overview-card-container"
+            class="ti-my10 ti-text-center overview-card-container"
           >
             <router-link :to="getTo(cell.key)" class="decoration-none">
-              <div class="br-4 component-card">
+              <div class="ti-br-4 component-card">
                 <img
-                  class="h125 w125"
+                  class="ti-h125 ti-w125"
                   :src="$pub(`@demos/overviewimage/${getSvg(cell.key)}.svg`)"
                   :onerror="`this.src='${$pub(`@demos/overviewimage/dev.svg`)}'`"
                 />
-                <h2 class="f16 overview-card-label">
+                <h2 class="ti-f16 overview-card-label">
                   {{ cell.name }}
                   <span v-if="isZhCn">{{ cell.nameCn }}</span>
                 </h2>
@@ -48,7 +52,7 @@
             </router-link>
           </div>
           <!-- 解决space-between布局下，最后一行项目不够时，两端对齐问题 -->
-          <div v-for="(menu, index) in palceMenus" :label="menu" :key="index" class="w320 h0"></div>
+          <div v-for="(menu, index) in palceMenus" :label="menu" :key="index" class="ti-w320 ti-h0"></div>
         </div>
       </div>
     </div>
@@ -122,6 +126,19 @@ export default defineComponent({
         } else {
           return key
         }
+      },
+      getTotalComponentsNum: () => {
+        let total = 0;
+        cmpMenus.forEach((cmpCategory) => {
+          if (cmpCategory.key === 'cmp_frame_style') {
+            total += 2
+          } else if (cmpCategory.key === 'cmp_table_components') {
+            total += 1
+          } else {
+            total += cmpCategory.children.length
+          }
+        })
+        return total
       }
     }
     onMounted(() => {

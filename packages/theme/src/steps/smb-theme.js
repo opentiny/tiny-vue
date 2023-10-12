@@ -5,7 +5,7 @@ export const tinyStepsSmbTheme = {
   'ti-steps-text-color-hover': 'var(--ti-common-color-text-primary)',
   'ti-steps-content-margin-top': 'var(--ti-common-space-2x)',
   'ti-steps-advanced-li-text-color': 'var(--ti-common-color-text-white)',
-  'ti-steps-unselected-border-color': 'var(--ti-common-color-line-normal)',
+  'ti-steps-unselected-border-color': 'var(--ti-common-color-text-primary)',
   'ti-steps-done-text-color': 'var(--ti-common-color-text-primary)',
   'ti-steps-done-icon-color': 'var(--ti-common-color-text-primary)',
   'ti-steps-done-icon-size': 'var(--ti-common-font-size-4)',

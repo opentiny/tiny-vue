@@ -4,11 +4,16 @@
   </div>
 </template>
 
-<script lang="jsx">
-import {ColorPicker} from '@opentiny/vue';
+<script>
+import { ColorPicker } from '@opentiny/vue'
 export default {
   components: {
     TinyColorPicker: ColorPicker
+  },
+  data() {
+    return {
+      color: '#66ccff'
+    }
   }
 }
 </script>

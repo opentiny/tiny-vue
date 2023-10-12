@@ -6,7 +6,7 @@ test('自定义分页下拉框的类名', async ({ page }) => {
 
   const preview = page.locator('#preview')
   const pager = preview.locator('.tiny-pager')
-  const sizeChange = pager.locator('.tiny-pager__input')
+  const sizeChange = pager.locator('.tiny-pager__page-size')
   const sizeSelect = page.locator('.tiny-pager__selector')
 
   await sizeChange.click()

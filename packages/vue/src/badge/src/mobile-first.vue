@@ -1,8 +1,9 @@
 <template>
-  <div :class="m(gcls('primary-status'), gcls({ 'dot-showleft': isDot && showLeft }))">
+  <div data-tag="tiny-badge" :class="m(gcls('primary-status'), gcls({ 'dot-showleft': isDot && showLeft }))">
     <span v-if="data">{{ data }}</span>
     <slot v-else />
     <div
+      data-tag="tiny-badge-content"
       v-if="!hidden && (state.content || state.content === 0 || isDot || showLeft)"
       :class="
         m(

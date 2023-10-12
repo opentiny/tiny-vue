@@ -22,6 +22,7 @@
  * SOFTWARE.
  *
  */
+import { h } from '@opentiny/vue-common'
 export function createTooltipRange({ _vm, cell, column, isHeader }) {
   let range = document.createRange()
   let rangeEnd
@@ -46,7 +47,7 @@ export function createTooltipRange({ _vm, cell, column, isHeader }) {
 }
 
 /*
- * 预期 contentMethod 可以返回空串、null、undefined 和非空字符串
+ * 预期 contentMethod 可以返回字符串或者vnode（jsx）
  * 1、返回空串，则不显示 tooltip 提示
  * 2、返回非空字符串，则处理字符串中的换行字符
  * 3、返回 null 或 undefined，则按之前默认逻辑处理
@@ -54,13 +55,8 @@ export function createTooltipRange({ _vm, cell, column, isHeader }) {
 export function processContentMethod({ _vm, column, content, contentMethod, event, isHeader, row, showTip }) {
   if (contentMethod) {
     // 自定义表格tip提示，既支持字符串也支持jsx或者h函数写法
-    _vm.tooltipConfig.renderContent = (h, content) =>
-      contentMethod({ event, column, row, showTip, isHeader, content }, h)
-
-    _vm.tooltipContentPre = true
+    _vm.tooltipContent = contentMethod({ event, column, row, showTip, isHeader, content }, h)
   } else {
-    _vm.tooltipContentPre = false
+    _vm.tooltipContent = content
   }
-
-  _vm.tooltipContent = content
 }

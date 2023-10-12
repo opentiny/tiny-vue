@@ -642,14 +642,14 @@ export const Cell = {
 
     return Cell.renderHeader(h, params).concat(Cell.renderSortIcon(h, params, suffixCls[1]))
   },
-  renderSortIcon(h, params) {
+  renderSortIcon(h, params, cls = '') {
     let { icon } = GLOBAL_CONFIG
     let { $table, column } = params
     let isColGroup = column.children && column.children.length
     return [
       h(
         'span',
-        { class: 'tiny-grid-sort-wrapper' },
+        { class: `tiny-grid-sort-wrapper ${cls}` },
         isColGroup
           ? []
           : [

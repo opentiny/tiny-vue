@@ -9,6 +9,15 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import {
+  IUploadState,
+  IUploadApi,
+  IUploadProps,
+  ISharedRenderlessParamHooks,
+  IUploadRenderlessParamUtils,
+  IFileUploadModalVm,
+  IFileUploadVm
+} from '@/types'
 
 import {
   getFormData,
@@ -41,15 +50,15 @@ export const api = [
 ]
 
 export const renderless = (
-  props,
-  { computed, inject, reactive, onMounted, onBeforeUnmount },
-  { refs, service, t },
-  { Modal }
-) => {
-  const api = {}
-  const uploader = inject('uploader')
+  props: IUploadProps,
+  { computed, inject, reactive, onMounted, onBeforeUnmount }: ISharedRenderlessParamHooks,
+  { refs, service, t }: IUploadRenderlessParamUtils,
+  { Modal }: IFileUploadModalVm & { CryptoJS: object; Streamsaver: object }
+): IUploadApi => {
+  const api = {} as IUploadApi
+  const uploader = inject('uploader') as IFileUploadVm
   const constants = uploader.$constants
-  const state = reactive({
+  const state: IUploadState = reactive({
     mouseover: false,
     reqs: {},
     uploader,

@@ -54,7 +54,6 @@
     }
   }
 
-
   &.is-fullscreen &__body {
     max-height: calc(100vh - 94px);
   }
@@ -197,6 +196,10 @@
       text-align: var(--ti-dialog-box-drawer-footer-text-align);
     }
   }
+}
+
+.popup-parent--hidden {
+  overflow: hidden;
 }
 
 body:not(.popup-parent--hidden) {

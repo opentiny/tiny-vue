@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('输入时触发表单校验', async ({ page }) => {
+test('[Input]validate-event', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('http://localhost:7130/pc/input/validate-event')
   await page.locator('#preview').getByRole('textbox').click()

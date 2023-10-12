@@ -23,7 +23,7 @@
  *
  */
 
-const helperCreateTreeFunc = (handle) => (obj, iterate, options, context) => {
+const helperCreateTreeFunc = (handle) => (obj, iterate, options, context?: unknown) => {
   let opts = options || {}
   let optChildren = opts.children || 'children'
   const params = {

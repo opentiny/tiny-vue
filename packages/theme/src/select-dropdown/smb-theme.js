@@ -23,5 +23,6 @@ export const tinySelectDropdownSmbTheme = {
   'ti-select-dropdown-search-empty-padding-bottom': 'var(--ti-common-space-2x)',
   'ti-select-dropdown-wrap-padding-bottom': 'var(--ti-common-space-base)',
   'ti-select-dropdown-icon-size': 'var(--ti-common-font-size-2)',
-  'ti-select-dropdown-icon-color': 'var(--ti-common-color-icon-normal)'
+  'ti-select-dropdown-icon-color': 'var(--ti-common-color-icon-normal)',
+  'ti-select-dropdown-search-margin-bottom': 'var(--ti-common-space-2x)'
 }

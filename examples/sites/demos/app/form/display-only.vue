@@ -110,7 +110,6 @@ import {
   Option,
   Modal
 } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
 
 export default {
   components: {
@@ -439,7 +438,7 @@ export default {
   },
   methods: {
     submitClick() {
-      alert('提交')
+      Modal.alert('提交')
     },
     querySearch(queryString, cb) {
       let restaurants = this.restaurants

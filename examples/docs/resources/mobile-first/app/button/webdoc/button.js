@@ -115,7 +115,7 @@ export default {
       codeFiles: ['click.vue']
     },
     {
-      demoId: 'dynamic-disable-button',
+      demoId: 'dynamic-disabled',
       name: {
         'zh-CN': '动态禁用按钮',
         'en-US': 'events'
@@ -124,7 +124,19 @@ export default {
         'zh-CN': '<p>设置  <code>disabled</code>属性为 true 后，可以禁用按钮。<p>',
         'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['dynamic-disable-button.vue']
+      codeFiles: ['dynamic-disabled.vue']
+    },
+    {
+      demoId: 'banner',
+      name: {
+        'zh-CN': '通知栏按钮',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p>通过添加<code>banner</code>属性设置通栏按钮<p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['banner.vue']
     }
   ],
   apis: []

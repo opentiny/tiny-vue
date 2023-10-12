@@ -5,7 +5,11 @@ export default {
     {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': '详细用法参考如下示例 <br/>配置 <code>name</code> 属性作为每个 collapse-item 的唯一标志符',
+        'en-US':
+          'For details, see the following example.<br/>Configure the <code>name</code> attribute as the unique identifier for each collapse-item.'
+      },
       'codeFiles': ['basic-usage.vue']
     },
     {
@@ -13,9 +17,9 @@ export default {
       'name': { 'zh-CN': '手风琴效果', 'en-US': 'Accordion Effect' },
       'desc': {
         'zh-CN':
-          '<p>配置 <code>accordion</code> 属性为 true 后，折叠面板将展示手风琴效果。\n配置 <code>v-model</code> 设置当前激活的面板(如果是手风琴模式，绑定值类型需要为 string ，否则为 array )\n<code>change</code> 事件，在当前激活面板改变时触发，参数为当前的 value 值\n配置 <code>name</code> 属性作为每个 collapse-item 的唯一标志符</p>\n',
+          '<p>配置 <code>accordion</code> 属性为 true 后，折叠面板将展示手风琴效果 <br/> 配置 <code>v-model</code> 设置当前激活的面板(如果是手风琴模式，绑定值类型需要为 string ，否则为 array )</p>\n',
         'en-US':
-          '<p>After <code>accordion</code> is set to true, the collapsed panel displays the accordion effect. \nConfigure <code>v-model</code> to set the currently active panel. (In accordion mode, the binding value type must be string. Otherwise, the binding value type is array.) \n<code>change</code> event, which is triggered when the current active panel changes. The parameter is the current value.\n Configure the <code>name</code> attribute as the unique identifier of each collapse-item.</p>\n'
+          '<p>After <code>accordion</code> is set to true, the collapsed panel displays the accordion effect. <br/>Configure <code>v-model</code> to set the currently active panel. (In accordion mode, the binding value type must be string. Otherwise, the binding value type is array.) </p>\n'
       },
       'codeFiles': ['accordion.vue']
     },
@@ -32,18 +36,18 @@ export default {
     },
     {
       'demoId': 'custom-collapse-title',
-      'name': { 'zh-CN': '自定义面板标题', 'en-US': 'Custom Panel Title' },
+      'name': { 'zh-CN': '面板标题', 'en-US': 'Custom Panel Title' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>collapse-item</code> 元素上配置 <code>title</code> 属性可以指定每个折叠面板项的标题。但同时也可以通过 <code>title</code> 插槽的方式自定义面板标题，比如在标题前增加图标。</p>\n',
+          '<p>在 <code>collapse-item</code> 元素上配置 <code>title</code> 属性可以指定每个折叠面板项的标题。但同时也可以通过 <code>title</code> 插槽的方式自定义面板标题，比如在标题前增加图标。<br/>在 <code>collapse-item</code> 元素上配置 <code>title-right</code> 属性可以指定每个折叠面板项标题的右侧内容。但同时也可以通过 <code>title-right</code> 插槽的方式自定义面板标题右侧内容，比如在标题右侧增加图标 </p>\n',
         'en-US':
-          '<p>Configure the <code>title</code> attribute on the <code>collapse-item</code> element to specify the title of each collapse panel item. However, you can also customize the panel title by using the <code>title</code> slot, for example, adding an icon before the title. </p>\n'
+          '<p>Configure the <code>title</code> attribute on the <code>collapse-item</code> element to specify the title of each collapse panel item. However, you can also customize the panel title by using the <code>title</code> slot, for example, adding an icon before the title. <br/>Configure the <code>title-right</code> attribute on the <code>collapse-item</code> element to specify the right side of each collapse panel item title. However, you can also customize the content on the right of the panel title by using the <code>title-right</code> slot, for example, adding an icon to the right of the title.</p>\n'
       },
       'codeFiles': ['custom-collapse-title.vue']
     },
     {
       'demoId': 'custom-collapse-icon',
-      'name': { 'zh-CN': '自定义展开折叠图标', 'en-US': 'Customize the expansion and collapse icon' },
+      'name': { 'zh-CN': '展开折叠图标', 'en-US': 'Customize the expansion and collapse icon' },
       'desc': {
         'zh-CN':
           '<p>在 <code>collapse-item</code> 元素上可以通过 <code>icon</code> 插槽的方式自定义展开折叠 icon 图标。</p>\n',
@@ -54,7 +58,7 @@ export default {
     },
     {
       'demoId': 'collapse-events',
-      'name': { 'zh-CN': '折叠面板事件', 'en-US': 'Fold Panel Event' },
+      'name': { 'zh-CN': '折叠面板change事件', 'en-US': 'Fold panel change event' },
       'desc': {
         'zh-CN': '<p>激活面板的值改变时将触发 <code>change</code> 事件。</p>\n',
         'en-US': '<p>When the value of the active panel changes, the <code>change</code> event is triggered. </p>\n'
@@ -63,7 +67,7 @@ export default {
     },
     {
       'demoId': 'block-close',
-      'name': { 'zh-CN': '阻止折叠面板关闭事件', 'en-US': 'Prevent the event of closing the folding panel' },
+      'name': { 'zh-CN': '折叠面板关闭事件', 'en-US': 'Prevent the event of closing the folding panel' },
       'desc': {
         'zh-CN': '<p>:before-close 折叠面板关闭前事件,方法里面return true/false，表示是否可以关闭</p>\n',
         'en-US':
@@ -88,50 +92,37 @@ export default {
         'en-US': '<p>Embed the form through the default slot of the <code>collapse-item</code> element. </p>\n'
       },
       'codeFiles': ['nested-form.vue']
-    },
-    {
-      'demoId': 'custom-title-right',
-      'name': { 'zh-CN': '自定义面板标题右侧内容', 'en-US': '' },
-      'desc': {
-        'zh-CN':
-          '<p>在 <code>collapse-item</code> 元素上配置 <code>title-right</code> 属性可以指定每个折叠面板项标题的右侧内容。但同时也可以通过 <code>title-right</code> 插槽的方式自定义面板标题右侧内容，比如在标题右侧增加图标。</p>\n',
-        'en-US': ''
-      },
-      'codeFiles': ['custom-title-right.vue']
     }
   ],
   apis: [
     {
       'name': 'collapse',
       'type': 'component',
-      'properties': [],
-      'events': [],
-      'slots': [],
-      'collapse-attrs': [
-        {
-          'name': 'modelValue / v-model',
-          'type': 'String , Array , Number',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '当前激活的面板(如果是手风琴模式，绑定值类型需要为String，否则为array)',
-            'en-US':
-              'Currently activated panel (In accordion mode, the binding value type must be String. Otherwise, the binding value type is array.)'
-          },
-          'demoId': 'basic-usage'
-        },
+      'collapse-props': [
         {
           'name': 'accordion',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否手风琴模式', 'en-US': 'In accordion mode' },
           'demoId': 'accordion'
         },
         {
           'name': 'before-close',
-          'type': 'Function',
-          'defaultValue': '',
+          'type': 'Function()',
+          'defaultValue': '--',
           'desc': { 'zh-CN': '阻止折叠面板关闭事件', 'en-US': 'Do not close the folding panel.' },
           'demoId': 'block-close'
+        },
+        {
+          'name': 'modelValue / v-model',
+          'type': 'string , array , number',
+          'defaultValue': '--',
+          'desc': {
+            'zh-CN': '当前激活的面板(如果是手风琴模式，绑定值类型需要为string，否则为array)',
+            'en-US':
+              'Currently activated panel (In accordion mode, the binding value type must be string. Otherwise, the binding value type is array.)'
+          },
+          'demoId': 'basic-usage'
         }
       ],
       'collapse-slots': [
@@ -146,31 +137,17 @@ export default {
       'collapse-events': [
         {
           'name': 'change',
-          'type': '',
-          'defaultValue': '',
+          'type': 'Function(activeNames)',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '当前激活面板改变时触发(如果是手风琴模式，参数 activeNames 类型为String，否则为array)',
+            'zh-CN': '当前激活面板改变时触发(如果是手风琴模式，参数 activeNames 类型为string，否则为array)',
             'en-US':
-              'Triggered when the current active panel changes. (In accordion mode, the type of activeNames is String. Otherwise, the type of activeNames is array.)'
+              'Triggered when the current active panel changes. (In accordion mode, the type of activeNames is string. Otherwise, the type of activeNames is array.)'
           },
           'demoId': 'collapse-events'
         }
       ],
-      'collapseItem-attrs': [
-        {
-          'name': 'name',
-          'type': 'String | Number',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '唯一标志符', 'en-US': 'Unique identifier' },
-          'demoId': 'accordion'
-        },
-        {
-          'name': 'title',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '面板标题', 'en-US': 'Panel Title' },
-          'demoId': 'custom-collapse-title'
-        },
+      'collapseItem-props': [
         {
           'name': 'disabled',
           'type': 'Boolean',
@@ -179,14 +156,36 @@ export default {
           'demoId': 'dynamic-disable'
         },
         {
+          'name': 'name',
+          'type': 'string | number',
+          'defaultValue': '--',
+          'desc': { 'zh-CN': '唯一标志符', 'en-US': 'Unique identifier' },
+          'demoId': 'accordion'
+        },
+        {
+          'name': 'title',
+          'type': 'string',
+          'defaultValue': '--',
+          'desc': { 'zh-CN': '面板标题', 'en-US': 'Panel Title' },
+          'demoId': 'custom-collapse-title'
+        },
+
+        {
           'name': 'title-right',
-          'type': 'String',
-          'defaultValue': '',
+          'type': 'string',
+          'defaultValue': '--',
           'desc': { 'zh-CN': '自定义面板标题右侧内容', 'en-US': '' },
-          'demoId': 'custom-title-right'
+          'demoId': 'custom-collapse-title'
         }
       ],
       'collapseItem-slots': [
+        {
+          'name': 'icon',
+          'type': '',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '展开折叠 icon 图标', 'en-US': 'Expand and collapse the icon.' },
+          'demoId': 'custom-collapse-icon'
+        },
         {
           'name': 'default',
           'type': '',
@@ -202,18 +201,11 @@ export default {
           'demoId': 'custom-collapse-title'
         },
         {
-          'name': 'icon',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '展开折叠 icon 图标', 'en-US': 'Expand and collapse the icon.' },
-          'demoId': 'custom-collapse-icon'
-        },
-        {
           'name': 'title-right',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '自定义面板标题右侧内容', 'en-US': '' },
-          'demoId': 'custom-title-right'
+          'demoId': 'custom-collapse-title'
         }
       ]
     }

@@ -144,14 +144,14 @@ export default {
       'properties': [
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '设置按钮组是否被禁用。', 'en-US': 'Sets whether the button group is disabled.' },
           'demoId': 'disabled'
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置组件大小', 'en-US': 'Set the component size' },
           'demoId': 'size'
@@ -168,35 +168,35 @@ export default {
         },
         {
           'name': 'value-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 value',
           'desc': { 'zh-CN': '按钮值的字段值。', 'en-US': 'Field value of the button value.' },
           'demoId': 'text-value-field'
         },
         {
           'name': 'text-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 text',
           'desc': { 'zh-CN': '按钮显示文字的字段值。', 'en-US': 'Field value of the button displayed text.' },
           'demoId': 'text-value-field'
         },
         {
           'name': 'modelValue / v-model',
-          'type': 'Number , String',
+          'type': 'number , string',
           'defaultValue': '',
           'desc': { 'zh-CN': '默认选中按钮的值。', 'en-US': 'Default value of the selected button.' },
           'demoId': 'base'
         },
         {
           'name': 'plain',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否朴素按钮。', 'en-US': 'Indicates whether the button is a simple button.' },
           'demoId': 'plain'
         },
         {
           'name': 'show-more',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置超过多少个显示更多按钮。',
@@ -206,7 +206,7 @@ export default {
         },
         {
           'name': 'show-edit',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否显示编辑按钮，只有在显示更多的情况下生效。',
@@ -217,7 +217,7 @@ export default {
         },
         {
           'name': 'border',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否显示边框线。', 'en-US': 'Remove button border.' },
           'demoId': 'border'

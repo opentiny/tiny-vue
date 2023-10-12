@@ -200,10 +200,11 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
       extensions: ['.js', '.ts', '.tsx', '.vue'],
       alias: {
         ...getAlias(vueVersion),
-        '@tiptap/vue': `${vueVersion === '2'
-          ? path.join(__dirname, '../../../../../packages/vue/src/rich-text-editor/node_modules/@tiptap/vue-2')
-          : path.join(__dirname, '../../../../../packages/vue/src/rich-text-editor/node_modules/@tiptap/vue-3')
-          }`,
+        '@tiptap/vue': `${
+          vueVersion === '2'
+            ? path.resolve(pathFromPackages(''), 'vue/src/rich-text-editor/node_modules/@tiptap/vue-2')
+            : path.resolve(pathFromPackages(''), 'vue/src/rich-text-editor/node_modules/@tiptap/vue-3')
+        }`,
         '@vue/babel-helper-vue-jsx-merge-props': 'node_modules/@vue/babel-helper-vue-jsx-merge-props/dist/helper.js'
       }
     },

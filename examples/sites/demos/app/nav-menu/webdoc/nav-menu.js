@@ -112,7 +112,7 @@ export default {
         },
         {
           'name': 'overflow',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -145,7 +145,7 @@ export default {
         },
         {
           'name': 'fields',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '自定义菜单数据的映射。', 'en-US': 'User-defined menu data mapping.' },
           'demoId': 'custom-service'
@@ -159,6 +159,16 @@ export default {
           'defaultValue': '',
           'desc': { 'zh-CN': '菜单栏 Logo 插槽', 'en-US': 'Menu Bar Logo Slot' },
           'demoId': 'slot-logo'
+        },
+        {
+          'name': 'toolbar',
+          'type': '',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '自定义右上角部分 toolbar 插槽',
+            'en-US': 'Customize the toolbar slot in the upper right corner. '
+          },
+          'demoId': 'slot-toolbar'
         }
       ]
     }

@@ -58,7 +58,7 @@ export default {
       delete: '删除',
       edit: '编辑',
       more: '更多',
-      reset: '重置',
+      reset: '重置'
     },
     button: {
       cancel: '取消',
@@ -82,7 +82,7 @@ export default {
       total: '总计',
       value: '数值'
     },
-    colorSelectPanel:{
+    colorSelectPanel: {
       confirm: '选择',
       cancel: '取消',
       predefine: '预定义颜色',
@@ -152,7 +152,9 @@ export default {
       },
       timezone: '选择时区',
       year: '年',
-      to: '至'
+      to: '至',
+      yearMonth: '{year}年{month}月',
+      yearMonthDay: '{year}年{month}月{day}日'
     },
     richTextEditor: {
       bold: '加粗',
@@ -655,6 +657,16 @@ export default {
         11: '11',
         12: '12'
       }
+    },
+    calendarView: {
+      week: { 0: '日', 1: '一', 2: '二', 3: '三', 4: '四', 5: '五', 6: '六' },
+      weekDays: { 0: '周日', 1: '周一', 2: '周二', 3: '周三', 4: '周四', 5: '周五', 6: '周六' },
+      backToday: '回今天',
+      new: '新增',
+      noSchedule: '暂无日程',
+      year: '年',
+      month: '月',
+      dateFormat: 'yyyy 年 MM 月'
     },
     selectedBox: {
       select: '已选（%s）',

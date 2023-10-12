@@ -10,7 +10,7 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+import { Grid, GridColumn, Modal as TinyModal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     footerCellDblclick() {
-      alert('触发表尾单元格双击事件')
+      TinyModal.alert('触发表尾单元格双击事件')
     },
     footerMethod({ columns, data }) {
       return [

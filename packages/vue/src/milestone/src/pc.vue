@@ -52,9 +52,9 @@
             <div
               :style="{ background: milestonesStatus[flag[flagStatusField]] }"
               class="tiny-milestone__flag-content"
-              @mouseleave="flagOprate({ over: false })"
+              @mouseleave="flagOperate({ over: false })"
               @mouseenter="
-                flagOprate({
+                flagOperate({
                   event: $event,
                   text: flag[flagContentField],
                   over: true
@@ -99,6 +99,7 @@ import { renderless, api } from '@opentiny/vue-renderless/milestone/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
 import { iconYes } from '@opentiny/vue-icon'
+import type { IMilestoneApi } from '@opentiny/vue-renderless/types/milestone.type'
 
 export default defineComponent({
   components: { Tooltip, IconYes: iconYes() },
@@ -123,7 +124,7 @@ export default defineComponent({
   ],
   emits: ['click', 'flagclick', 'flag-click'], // deprecated 原事件flagclick v3.5.0废弃，v3.17.0移除；移除原因：命名规范
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IMilestoneApi
   }
 })
 </script>

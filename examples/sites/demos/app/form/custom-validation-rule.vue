@@ -39,9 +39,6 @@ export default {
       if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(value)) {
         callback(new Error('最少八个字符，至少包含一个大写字母，一个小写字母和一个数字'))
       } else {
-        if (this.createData.password !== '') {
-          this.$refs.ruleFormRef.validateField('password')
-        }
         callback()
       }
     }
