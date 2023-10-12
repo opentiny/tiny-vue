@@ -6,20 +6,10 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': '<p>属性 action(type：string) 上传服务器地址。</p>\n',
-        'en-US': '<p>Attribute action (type: string) upload server address. </p>\n'
+        'zh-CN': '<p>通过action属性，设置上传服务器地址。</p>\n',
+        'en-US': '<p>Set the upload server address by configuring the action attribute.</p>\n'
       },
       'codeFiles': ['basic-usage.vue']
-    },
-    {
-      'demoId': 'size',
-      'name': { 'zh-CN': '设置组件大小', 'en-US': 'Set Component Size' },
-      'desc': {
-        'zh-CN': '<p>可选值为<code>large</code>，<code>medium</code>，<code>small</code>，<code>mini</code></p>\n',
-        'en-US':
-          '<p>The options are <code>large</code>, <code>medium</code>, <code>small</code>, and <code>mini</code></p>\n'
-      },
-      'codeFiles': ['size.vue']
     },
     {
       'demoId': 'accept-file-image',
@@ -43,9 +33,10 @@ export default {
       'demoId': 'prevent-delete-file',
       'name': { 'zh-CN': '阻止删除文件', 'en-US': 'Do not delete files' },
       'desc': {
-        'zh-CN': '<p>:before-remove（移除文件前回调事件）,方法里面return true/false，表示是否可以删除</p>\n',
+        'zh-CN':
+          '<p>通过配置before-remove属性的返回值，执行删除文件前的操作；<br/>通过file-list属性定义上传的文件列表</p>\n',
         'en-US':
-          '<p>:before-remove (callback event before removing a file). In the method, return true/false indicates whether the file can be deleted.</p>\n'
+          '<p>By defining the return value of the before remove attribute, perform the operation before deleting the file; <br/>The file list attribute defines the list of uploaded files</p>\n'
       },
       'codeFiles': ['prevent-delete-file.vue']
     },
@@ -103,7 +94,7 @@ export default {
       'desc': {
         'zh-CN': '<p>通过 <code>file</code> 插槽自定义文件列表</p>\n',
         'en-US':
-          '<p>You can use <code>show-file-list</code> to configure whether to display the list of uploaded files. The default value is true. This parameter must be used together with file-list.\nYou can configure <code>:file-list (type: object) </code> to display the name and address of the uploaded file</p>\n'
+          '<p>You can use <code>show-file-list</code> to configure whether to display the list of uploaded files. The default value is true. This parameter must be used together with file-list.\nYou can configure <code>:file-list (type: Object) </code> to display the name and address of the uploaded file</p>\n'
       },
       'codeFiles': ['upload-file-list.vue']
     },
@@ -112,9 +103,9 @@ export default {
       'name': { 'zh-CN': '自定义文件列表', 'en-US': 'User-defined File List' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>show-file-list</code> 配置是否显示是否显示已上传文件列表，默认值为 true ，需要与 file-list 同时使用\n可配置 <code>:file-list（type：object）</code>来显示已上传的文件名和地址</p>\n',
+          '<p>通过 <code>show-file-list</code> 配置是否显示是否显示已上传文件列表，默认值为 true ，需要与 file-list 同时使用\n可配置 <code>:file-list（type：Object）</code>来显示已上传的文件名和地址</p>\n',
         'en-US':
-          '<p>You can use <code>show-file-list</code> to configure whether to display the list of uploaded files. The default value is true and must be used together with file-list.\nYou can configure <code>:file-list (type: object) </code> to display the name and address of the uploaded file</p>\n'
+          '<p>You can use <code>show-file-list</code> to configure whether to display the list of uploaded files. The default value is true and must be used together with file-list.\nYou can configure <code>:file-list (type: Object) </code> to display the name and address of the uploaded file</p>\n'
       },
       'codeFiles': ['upload-file-list-slot.vue']
     },
@@ -186,9 +177,9 @@ export default {
       'demoId': 'max-file-count',
       'name': { 'zh-CN': '最大上传文件数', 'en-US': 'Maximum number of files to be uploaded' },
       'desc': {
-        'zh-CN': '<p>\n可通过配置limit（type:number，大于0的整数）来限制上传文件的个数</p>\n',
+        'zh-CN': '<p>\n可通过配置limit（type:Number，大于0的整数）来限制上传文件的个数</p>\n',
         'en-US':
-          '<p>\nYou can set limit (type:number, an integer greater than 0) to limit the number of files to be uploaded.</p>\n'
+          '<p>\nYou can set limit (type:Number, an integer greater than 0) to limit the number of files to be uploaded.</p>\n'
       },
       'codeFiles': ['max-file-count.vue']
     },
@@ -293,28 +284,92 @@ export default {
       'type': 'component',
       'properties': [
         {
-          'name': 'action',
-          'type': 'string',
+          'name': 'accept',
+          'type': 'String',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '上传的地址，当不配置 action 时，会生成默认网关链接',
-            'en-US': 'Upload URL. If no action is configured, the default gateway link is generated.'
+            'zh-CN': '限制文件类型（thumbnail-mode 模式下此参数无效）',
+            'en-US': 'Restrict the types of files. This parameter is invalid in thumbnail-mode mode.'
+          },
+          'demoId': 'accept-file-image'
+        },
+        {
+          'name': 'action',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '上传的地址，必填参数',
+            'en-US': 'The address for uploading files, required parameter'
           },
           'demoId': 'basic-usage'
         },
         {
-          'name': 'open-download-file',
-          'type': 'boolean',
+          'name': 'auto-upload',
+          'type': 'Boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '是否在选取文件后立即进行上传',
+            'en-US': 'Whether to upload a file immediately after it is selected'
+          },
+          'demoId': 'manual-upload'
+        },
+        {
+          'name': 'before-remove',
+          'type': '(file, fileList) => boolean | Promise',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '是否开启点击下载文件，默认不开启 false',
-            'en-US': 'Whether to enable file download by clicking. By default, this function is disabled.'
+            'zh-CN':
+              '删除文件前的钩子，参数为上传的文件和文件列表，若返回 false 或者返回 Promise 且被 reject，则停止删除',
+            'en-US':
+              'Hook before deleting files. The parameters are the uploaded files and file list. If false is returned or Promise is returned and rejected, the deletion stops.'
           },
-          'demoId': 'upload-file-list'
+          'demoId': 'prevent-delete-file'
+        },
+        {
+          'name': 'before-upload',
+          'type': '(file) => boolean | Promise',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '上传文件之前的钩子，参数为上传的文件，若返回 false 或者返回 Promise 且被 reject，则停止上传。',
+            'en-US':
+              'Hook before uploading a file. The parameter is the file to be uploaded. If false is returned or Promise is returned and rejected, the upload stops.'
+          },
+          'demoId': 'prevent-upload-file'
+        },
+        {
+          'name': 'data',
+          'type': 'Object',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '上传时附带的额外参数', 'en-US': 'Extra parameters attached during upload' },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'disabled',
+          'type': 'Boolean',
+          'defaultValue': 'false',
+          'desc': { 'zh-CN': '是否禁用', 'en-US': 'Disable' },
+          'demoId': ''
+        },
+        {
+          'name': 'drag',
+          'type': 'Boolean',
+          'defaultValue': 'false',
+          'desc': { 'zh-CN': '是否启用拖拽上传', 'en-US': 'Whether to enable drag-and-drop upload' },
+          'demoId': 'drag-upload'
+        },
+        {
+          'name': 'file-list',
+          'type': 'Array',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': "上传的文件列表, 例如: [{name: 'food.jpg', url: 'https://xxx.cdn.com/xxx.jpg'}]",
+            'en-US': "List of uploaded files, for example, [{name:'food.jpg', url:' https://xxx.cdn.com/xxx.jpg '}]"
+          },
+          'demoId': 'prevent-upload-file'
         },
         {
           'name': 'headers',
-          'type': 'object',
+          'type': 'Object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -325,125 +380,8 @@ export default {
           'demoId': 'custom-upload-request'
         },
         {
-          'name': 'multiple',
-          'type': 'boolean',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '是否支持多选文件', 'en-US': 'Specifies whether multiple files can be selected.' },
-          'demoId': 'multiple-file'
-        },
-        {
-          'name': 'data',
-          'type': 'object',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '上传时附带的额外参数', 'en-US': 'Extra parameters attached during upload' },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'name',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为 file',
-          'desc': { 'zh-CN': '上传的文件字段名', 'en-US': 'Field name of the uploaded file' },
-          'demoId': 'upload-file-list'
-        },
-        {
-          'name': 'with-credentials',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '支持发送 cookie 凭证信息', 'en-US': 'Cookie credential information can be sent.' },
-          'demoId': 'upload-request1'
-        },
-        {
-          'name': 'show-file-list',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
-          'desc': { 'zh-CN': '是否显示已上传文件列表', 'en-US': 'Whether to display the list of uploaded files' },
-          'demoId': 'upload-file-list'
-        },
-        {
-          'name': 'drag',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否启用拖拽上传', 'en-US': 'Whether to enable drag-and-drop upload' },
-          'demoId': 'drag-upload'
-        },
-        {
-          'name': 'accept',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '接受上传的文件类型（thumbnail-mode 模式下此参数无效）',
-            'en-US': 'File type to be uploaded. This parameter is invalid in thumbnail-mode mode.'
-          },
-          'demoId': 'accept-file-image'
-        },
-        {
-          'name': 'before-upload',
-          'type': 'Function(file)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '上传文件之前的钩子，参数为上传的文件，若返回 false 或者返回 Promise 且被 reject，则停止上传。',
-            'en-US':
-              'Hook before uploading a file. The parameter is the file to be uploaded. If false is returned or Promise is returned and rejected, the upload stops.'
-          },
-          'demoId': 'prevent-upload-file'
-        },
-        {
-          'name': 'list-type',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为 text',
-          'desc': {
-            'zh-CN': '文件列表的类型;该属性的可选值为 text / picture / picture-card / thumb',
-            'en-US': 'File list type; The optional values of this attribute are text / picture / picture-card / thumb'
-          },
-          'demoId': 'picture-card'
-        },
-        {
-          'name': 'thumb-option',
-          'type': 'object',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '文件列表的显示类型为 thumb 时，相关配置;popperClass 弹窗列表自定义类名;width 弹窗宽度，默认270,number类型;showDownload 是否显示下载按钮,布尔值默认为false;showDel 是否显示删除按钮,布尔值默认为false;downloadFile 点击下载按钮执行函数,开启 EDM 模式配置必要的token后即可下载，可省略该配置;show-tooltip 文件名超出隐藏显示时是否启用tip,默认值为false;列表结果前 icon,默认为 icon-attachment',
-            'en-US':
-              'Configure the file list when the display type is thumb. popperClass pop-up window list custom class name; width: width of the pop-up window. The default value is 270. The value is of the number type. ShowDownload indicates whether to display the download button. The default boolean value is false. ShowDel indicates whether to display the delete button. The default boolean value is false. DownloadFile: Click the download button to execute the function. Enable the EDM mode and configure the necessary token. This configuration can be omitted. show-tooltip: Indicates whether to enable tip when the file name exceeds the hidden value. The default value is false. The icon before the list result. The default value is icon-attachment'
-          },
-          'demoId': 'upload-file-list-thumb'
-        },
-        {
-          'name': 'before-remove',
-          'type': 'Function(file, fileList)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '删除文件之前的钩子，参数为上传的文件和文件列表，若返回 false 或者返回 Promise 且被 reject，则停止删除',
-            'en-US':
-              'Hook before deleting files. The parameters are the uploaded files and file list. If false is returned or Promise is returned and rejected, the deletion stops.'
-          },
-          'demoId': 'prevent-delete-file'
-        },
-        {
-          'name': 'auto-upload',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
-          'desc': {
-            'zh-CN': '是否在选取文件后立即进行上传',
-            'en-US': 'Whether to upload a file immediately after it is selected'
-          },
-          'demoId': 'manual-upload'
-        },
-        {
-          'name': 'file-list',
-          'type': 'Array',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': "上传的文件列表, 例如: [{name: 'food.jpg', url: 'https://xxx.cdn.com/xxx.jpg'}]",
-            'en-US': "List of uploaded files, for example, [{name:'food.jpg', url:' https://xxx.cdn.com/xxx.jpg '}]"
-          },
-          'demoId': 'accept-file-image'
-        },
-        {
           'name': 'http-request',
-          'type': 'Function',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -454,22 +392,8 @@ export default {
           'demoId': 'http-request'
         },
         {
-          'name': 'disabled',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否禁用', 'en-US': 'Disable' },
-          'demoId': ''
-        },
-        {
-          'name': 'limit',
-          'type': 'number',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '最大允许上传个数', 'en-US': 'Maximum number of files that can be uploaded' },
-          'demoId': 'upload-limit'
-        },
-        {
           'name': 'is-hidden',
-          'type': 'boolean',
+          'type': 'Boolean',
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '达到最大上传个数时，是否隐藏上传按钮，默认不隐藏',
@@ -479,99 +403,32 @@ export default {
           'demoId': 'upload-limit'
         },
         {
-          'name': 'edm',
-          'type': 'object',
+          'name': 'limit',
+          'type': 'Number',
           'defaultValue': '',
-          'desc': {
-            'zh-CN': '使用 EDM 的上传下载预览功能，可在该对象里边配置上传、下载、预览功能的参数',
-            'en-US':
-              'To use the upload, download, and preview functions of the EDM, you can configure the upload, download, and preview parameters in the object.'
-          },
-          'demoId': ''
+          'desc': { 'zh-CN': '最大允许上传个数', 'en-US': 'Maximum number of files that can be uploaded' },
+          'demoId': 'upload-limit'
         },
         {
-          'name': 'token',
-          'type': 'Function',
-          'defaultValue': '',
+          'name': 'list-type',
+          'type': 'String',
+          'defaultValue': 'text',
           'desc': {
-            'zh-CN': '使用 EDM 上传下载预览所需的token,返回值为 Promise',
-            'en-US': 'Token required for uploading, downloading, and previewing using EDM. The return value is Promise.'
+            'zh-CN': '文件列表的类型;该属性的可选值为 text / picture / picture-card / thumb',
+            'en-US': 'File list type; The optional values of this attribute are text / picture / picture-card / thumb'
           },
-          'demoId': ''
+          'demoId': 'picture-card'
         },
         {
-          'name': 'isFolder',
-          'type': 'boolean',
+          'name': 'max-name-length',
+          'type': 'Number',
           'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '配置为 true,启用 EDM 上传文件夹的功能，最多只能上传 5 层;{edm:upload:{plugin:sha256,isFolder:true,token:()=>{}}}',
-            'en-US':
-              'If this parameter is set to true, the function of uploading folders is enabled. A maximum of five folders can be uploaded. {edm:upload:{plugin:sha256,isFolder:true,token:()=>{}}}'
-          },
-          'demoId': 'edm-folder-upload'
-        },
-        {
-          'name': 'fileSize',
-          'type': 'number | Array',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '限制文件大,小单位为 KB;启用 EDM 上传时设置有效;当为 number 类型时，小于该值停止上传;为数组时[min,max] 设置上传范围,值为 number 类型；最大值不能超过 2G;设置为数组时最大值将与 EDM 服务侧设置的值做对比，取最小值',
-            'en-US':
-              'Restrict the file size. The unit is KB. This parameter is valid when EDM upload is enabled. When the value is of the number type, the upload stops if the value is less than the value of this parameter. When the value is an array, [min,max] sets the upload range. The value is of the number type. The maximum value cannot exceed 2 GB. When this parameter is set to an array, the maximum value is compared with the value set on the EDM server and the minimum value is used.'
-          },
-          'demoId': ''
-        },
-        {
-          'name': 'packageToken',
-          'type': 'Function',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '配置 EDM 批量打包下载的 token；配置结构为 edm:{download:packageToken:()=>{}},返回一个 Promise',
-            'en-US':
-              'Configure the token for EDM batch packaging and downloading. The configuration structure is edm:{download:packageToken:()=>{}} and a Promise is returned'
-          },
-          'demoId': ''
-        },
-        {
-          'name': 'upload',
-          'type': 'object',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '配置 EDM 上传功能所需的参数,例如：edm:{upload:{plugin:sha256,token:()=>{}}},plugin 为第三方依赖可生成文档内容校验 hash 值，token为鉴权token，类型为Function,返回 Promise',
-            'en-US':
-              'Parameters required for configuring the EDM upload function. For example, edm:{upload:{plugin:sha256,token:()=>{}}},plugin indicates the hash value for verifying the document content generated by the third-party dependency, token indicates the authentication token, and the type is Function. Promise is returned.'
-          },
-          'demoId': ''
-        },
-        {
-          'name': 'download',
-          'type': 'object',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '配置 EDM 下载功能所需的参数,例如：edm:{download:{token:()=>{}}},token为鉴权token',
-            'en-US':
-              'Configure the parameters required for the EDM download function. For example, edm:{download:{token:()=>{}}},token is the authentication token.'
-          },
-          'demoId': ''
-        },
-        {
-          'name': 'preivew',
-          'type': 'object',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              "配置 EDM 预览功能所需的参数,例如：edm:{preview:{plugin：util.default,previewUrl:./_index.html?appid=应用Id,packageName: 'jslib',token:()=>{}}}",
-            'en-US':
-              "Parameters required for configuring the EDM preview function, for example, edm:{preview:{plugin: util.default,previewUrl:./_index.html?appid= application ID,packageName:'jslib',token:()=>{}}}"
-          },
+          'desc': { 'zh-CN': '文件名最大的显示长度', 'en-US': 'Maximum length of a file name' },
           'demoId': ''
         },
         {
           'name': 'mergeService',
-          'type': 'boolean',
+          'type': 'Boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '配置 mergeService 为true 且开启多文件上传走默认服务会将多个上传服务合并为一个服务上传',
@@ -581,57 +438,64 @@ export default {
           'demoId': ''
         },
         {
-          'name': 'updateId',
-          'type': 'string',
+          'name': 'multiple',
+          'type': 'Boolean',
           'defaultValue': '',
-          'desc': { 'zh-CN': 'EDM 需要更新文档的 docId', 'en-US': 'DocId of the document to be updated on the EDM' },
-          'demoId': ''
+          'desc': { 'zh-CN': '是否支持多选文件', 'en-US': 'Specifies whether multiple files can be selected.' },
+          'demoId': 'multiple-file'
         },
         {
-          'name': 'max-name-length',
-          'type': 'number',
+          'name': 'name',
+          'type': 'String',
+          'defaultValue': 'file',
+          'desc': { 'zh-CN': '上传的文件字段名', 'en-US': 'Field name of the uploaded file' },
+          'demoId': 'upload-file-list'
+        },
+        {
+          'name': 'open-download-file',
+          'type': 'Boolean',
           'defaultValue': '',
-          'desc': { 'zh-CN': '文件名最大的显示长度', 'en-US': 'Maximum length of a file name' },
-          'demoId': ''
+          'desc': {
+            'zh-CN': '是否开启点击下载文件，默认不开启 false',
+            'en-US': 'Whether to enable file download by clicking. By default, this function is disabled.'
+          },
+          'demoId': 'upload-file-list'
+        },
+        {
+          'name': 'paste-upload',
+          'type': 'Boolean',
+          'defaultValue': 'false',
+          'desc': { 'zh-CN': '是否启用粘贴键快捷上传功能', 'en-US': 'Is the paste key quick upload function enabled' },
+          'demoId': 'drag-select-file'
+        },
+        {
+          'name': 'show-file-list',
+          'type': 'Boolean',
+          'defaultValue': 'true',
+          'desc': { 'zh-CN': '是否显示已上传文件列表', 'en-US': 'Whether to display the list of uploaded files' },
+          'demoId': 'upload-file-list'
+        },
+        {
+          'name': 'thumb-option',
+          'type': 'Object',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN':
+              '文件列表的显示类型为 thumb 时，相关配置;popperClass 弹窗列表自定义类名;width 弹窗宽度，默认270,number类型;showDownload 是否显示下载按钮,布尔值默认为false;showDel 是否显示删除按钮,布尔值默认为false;downloadFile 点击下载按钮执行函数;show-tooltip 文件名超出隐藏显示时是否启用tip,默认值为false;列表结果前 icon,默认为 icon-attachment',
+            'en-US':
+              'Configure the file list when the display type is thumb. popperClass pop-up window list custom class name; width: width of the pop-up window. The default value is 270. The value is of the number type. ShowDownload indicates whether to display the download button. The default Boolean value is false. ShowDel indicates whether to display the delete button. The default Boolean value is false. DownloadFile: Click the download button to execute the function. show-tooltip: Indicates whether to enable tip when the file name exceeds the hidden value. The default value is false. The icon before the list result. The default value is icon-attachment'
+          },
+          'demoId': 'upload-file-list-thumb'
+        },
+        {
+          'name': 'with-credentials',
+          'type': 'Boolean',
+          'defaultValue': 'false',
+          'desc': { 'zh-CN': '支持发送 cookie 凭证信息', 'en-US': 'Cookie credential information can be sent.' },
+          'demoId': 'upload-request1'
         }
       ],
       'events': [
-        {
-          'name': 'drop-error',
-          'type': 'Function(arg1)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '拖拽文件失败时触发的事件，开启拖拽时有效。;dropError(arg1){\n// arg1 上传失败文件信息\n {name: 上传文件名,\npercentage: 上传进度百分比,\nraw: 文件信息,\nsize: 文件大小,\nstatus: 上传状态,\nuid: uid} \n// do something you want... }',
-            'en-US':
-              'This event is triggered when a file fails to be dragged. This event is valid only when the drag function is enabled. ; dropError(arg1){\n// arg1 Information about the file that fails to be uploaded.\n {name: name of the file to be uploaded, \npercentage: percentage of the upload progress, \nraw: file information, \nsize: file size, \nstatus: upload status, \nuid: uid} \n// do something you want...}'
-          },
-          'demoId': 'drag-upload'
-        },
-        {
-          'name': 'preview',
-          'type': 'Function(arg1)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '点击文件列表中已上传的文件时触发的事件;preview(arg1){\n arg1 = {name: 上传文件名,percentage: 上传进度百分比,raw: 文件信息,size: 文件大小,status: 上传状态,uid: uid}}',
-            'en-US':
-              'Event triggered when an uploaded file is clicked in the file list. preview(arg1){\n arg1 = {name: Upload file name, percentage: upload progress percentage, raw: file information, size: file size, status: upload status, uid: uid}}'
-          },
-          'demoId': 'upload-events'
-        },
-        {
-          'name': 'remove',
-          'type': 'Function(arg1)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '从文件列表移除文件时触发的事件;onRomove(arg1){\n //arg1当前移除的文件信息：\n{name: 上传文件名,percentage: 上传进度百分比,raw: 文件信息,size: 文件大小,status: 上传状态,uid: uid }\n// do something you want...}',
-            'en-US':
-              'Event triggered when a file is removed from the file list; onRomove(arg1){\n //arg1 Information about the file to be removed:\n{name: name of the file to be uploaded, percentage: percentage of the upload progress, raw: file information, size: file size, status: upload status, uid: uid}\n// do something you want...}'
-          },
-          'demoId': 'upload-events'
-        },
         {
           'name': 'error',
           'type': 'Function(arg1,arg2,arg3)',
@@ -646,11 +510,37 @@ export default {
         },
         {
           'name': 'exceed',
-          'type': '',
+          'type': 'Function(files, fileList)',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '文件超出个数限制时触发的事件',
-            'en-US': 'This event is triggered when the number of files exceeds the upper limit.'
+            'zh-CN':
+              '文件超出个数限制时触发的事件, exceed(files, fileList){\n// files 上传的文件，fileList: props.fileList属性值；}',
+            'en-US':
+              'This event is triggered when the number of files exceeds the upper limit, exceeded (files, fileList) { n//Files uploaded, fileList: props. fileList attribute value;}'
+          },
+          'demoId': 'upload-events'
+        },
+        {
+          'name': 'drop-error',
+          'type': 'Function(arg1)',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN':
+              '拖拽文件失败时触发的事件，开启拖拽时有效。;dropError(arg1){\n// arg1 上传失败文件信息\n {name: 上传文件名,\npercentage: 上传进度百分比,\nraw: 文件信息,\nsize: 文件大小,\nstatus: 上传状态,\nuid: uid} \n// do something you want... }',
+            'en-US':
+              'This event is triggered when a file fails to be dragged. This event is valid only when the drag function is enabled. ; dropError(arg1){\n// arg1 Information about the file that fails to be uploaded.\n {name: name of the file to be uploaded, \npercentage: percentage of the upload progress, \nraw: file information, \nsize: file size, \nstatus: upload status, \nuid: uid} \n// do something you want...}'
+          },
+          'demoId': 'drag-upload'
+        },
+        {
+          'name': 'change',
+          'type': 'Function(file, fileList)',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN':
+              '文件状态改变时触发的事件，添加文件、上传成功和上传失败时都会被触发;change(file, fileList)\n//file 当前上传成功文件信息 \n {name: 上传文件名,percentage: 上传进度百分比,raw: 文件信息,size: 文件大小,status: 上传状态,uid: uid } \n// fileList: 数组类型Array 上传成功file数\n}',
+            'en-US':
+              'The event is triggered when the file status changes. The event is triggered when a file is added, uploaded successfully, or uploaded unsuccessfully. change(file, fileList)\n//file Information about the file that is successfully uploaded.\n {name: file name, percentage: upload progress percentage, raw: file information, size: file size, status: upload status, uid: uid} \n// fileList: array type: number of files that are successfully uploaded.\n}'
           },
           'demoId': 'upload-events'
         },
@@ -665,11 +555,16 @@ export default {
           'demoId': 'upload-events'
         },
         {
-          'name': 'download',
-          'type': 'Function(arg1, arg2)',
+          'name': 'preview',
+          'type': 'Function(arg1)',
           'defaultValue': '',
-          'desc': { 'zh-CN': '文件下载时触发的事件', 'en-US': 'File download event' },
-          'demoId': ''
+          'desc': {
+            'zh-CN':
+              '点击文件列表中已上传的文件时触发的事件;preview(arg1){\n arg1 = {name: 上传文件名,percentage: 上传进度百分比,raw: 文件信息,size: 文件大小,status: 上传状态,uid: uid}}',
+            'en-US':
+              'Event triggered when an uploaded file is clicked in the file list. preview(arg1){\n arg1 = {name: Upload file name, percentage: upload progress percentage, raw: file information, size: file size, status: upload status, uid: uid}}'
+          },
+          'demoId': 'upload-events'
         },
         {
           'name': 'progress',
@@ -684,14 +579,14 @@ export default {
           'demoId': 'upload-events'
         },
         {
-          'name': 'change',
-          'type': 'Function(file, fileList)',
+          'name': 'remove',
+          'type': 'Function(arg1)',
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '文件状态改变时触发的事件，添加文件、上传成功和上传失败时都会被触发;change(file, fileList)\n//file 当前上传成功文件信息 \n {name: 上传文件名,percentage: 上传进度百分比,raw: 文件信息,size: 文件大小,status: 上传状态,uid: uid } \n// fileList: 数组类型Array 上传成功file数\n}',
+              '从文件列表移除文件时触发的事件;onRomove(arg1){\n //arg1当前移除的文件信息：\n{name: 上传文件名,percentage: 上传进度百分比,raw: 文件信息,size: 文件大小,status: 上传状态,uid: uid }\n// do something you want...}',
             'en-US':
-              'The event is triggered when the file status changes. The event is triggered when a file is added, uploaded successfully, or uploaded unsuccessfully. change(file, fileList)\n//file Information about the file that is successfully uploaded.\n {name: file name, percentage: upload progress percentage, raw: file information, size: file size, status: upload status, uid: uid} \n// fileList: array type: number of files that are successfully uploaded.\n}'
+              'Event triggered when a file is removed from the file list; onRomove(arg1){\n //arg1 Information about the file to be removed:\n{name: name of the file to be uploaded, percentage: percentage of the upload progress, raw: file information, size: file size, status: upload status, uid: uid}\n// do something you want...}'
           },
           'demoId': 'upload-events'
         },
@@ -710,11 +605,11 @@ export default {
       ],
       'slots': [
         {
-          'name': 'trigger',
+          'name': 'file',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '触发文件选择框的内容', 'en-US': 'Content of the triggering file selection box' },
-          'demoId': 'custom-trigger'
+          'desc': { 'zh-CN': '自定义文件显示内容', 'en-US': 'Custom File Display Content' },
+          'demoId': 'upload-file-list-slot'
         },
         {
           'name': 'tip',
@@ -724,14 +619,21 @@ export default {
           'demoId': 'custom-upload-tip'
         },
         {
-          'name': 'file',
+          'name': 'trigger',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '自定义文件显示内容', 'en-US': 'Custom File Display Content' },
-          'demoId': 'upload-file-list-slot'
+          'desc': { 'zh-CN': '触发文件选择框的内容', 'en-US': 'Content of the triggering file selection box' },
+          'demoId': 'custom-trigger'
         }
       ],
       'methods': [
+        {
+          'name': 'abort',
+          'type': '',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '取消上传请求', 'en-US': 'Cancel the upload request' },
+          'demoId': 'abort-quest'
+        },
         {
           'name': 'clearFiles',
           'type': '',
@@ -743,49 +645,11 @@ export default {
           'demoId': 'clear-files'
         },
         {
-          'name': 'abort',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '取消上传请求', 'en-US': 'Cancel the upload request' },
-          'demoId': 'abort-quest'
-        },
-        {
           'name': 'submit',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '手动上传文件列表', 'en-US': 'List of manually uploaded files' },
           'demoId': 'manual-upload'
-        },
-        {
-          'name': 'downloadFile',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '下载 EDM 文件', 'en-US': 'Downloading an EDM File' },
-          'demoId': ''
-        },
-        {
-          'name': 'previewFile',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '预览 EDM 文件', 'en-US': 'Previewing an EDM File' },
-          'demoId': ''
-        },
-        {
-          'name': 'getNewTabPreviewUrl',
-          'type': '',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '预览 EDM 文件预览的 Url，返回值为 Promise',
-            'en-US': 'URL for previewing the EDM file. The return value is Promise.'
-          },
-          'demoId': ''
-        },
-        {
-          'name': 'handleRemove',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '手动移除 EDM 文件', 'en-US': 'Manually remove EDM file' },
-          'demoId': ''
         }
       ]
     }
