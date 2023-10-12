@@ -66,4 +66,5 @@ export type IPopoverRenderlessParams = ISharedRenderlessFunctionParams<never> & 
   props: IPopoverProps
   state: IPopoverState
   api: IPopoverApi
+  updatePopper: () => void
 }

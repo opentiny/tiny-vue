@@ -1,11 +1,11 @@
 // 批量导入vue组件示例文件, 进行vue组件示例的渲染
-const vueFiles = import.meta.glob('@demos/app/**/*.vue')
+const vueFiles = import.meta.glob(`@demos/app/**/*.vue`)
 const vueComponents = Object.create(null)
 for (const path in vueFiles) {
   if (Object.prototype.hasOwnProperty.call(vueFiles, path)) {
     const pathArr = path.split('/')
-    const cmpId = pathArr[3]
-    const key = pathArr.slice(4).join('/')
+    const cmpId = pathArr[4]
+    const key = pathArr.slice(5).join('/')
     vueComponents[`${cmpId}/${key}`] = vueFiles[path]
   }
 }

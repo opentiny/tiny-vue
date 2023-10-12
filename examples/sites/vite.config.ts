@@ -6,6 +6,7 @@ import UnoCssConfig from './uno.config'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import dynamicImportPlugin from 'vite-plugin-dynamic-import'
 import Markdown from 'vite-plugin-md'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 import { MdExt, mdInstall } from './md.extend.config'
 import importPlugin from '@opentiny/vue-vite-import'
 import vue3SvgPlugin from 'vite-svg-loader'
@@ -49,7 +50,15 @@ export default defineConfig((config) => {
         },
         markdownItUses: MdExt
       }),
-      Unocss(UnoCssConfig)
+      Unocss(UnoCssConfig),
+      viteStaticCopy({
+        targets: [
+          {
+            src: `./demos/${env.VITE_APP_MODE}/**`,
+            dest: '@demos'
+          }
+        ]
+      })
     ],
     optimizeDeps: getOptimizeDeps(3),
     build: {
@@ -65,7 +74,7 @@ export default defineConfig((config) => {
       extensions: ['.js', '.ts', '.tsx', '.vue'],
       alias: {
         '@': path.resolve('src'),
-        '@demos': path.resolve('./demos'),
+        '@demos': path.resolve(`./demos/${env.VITE_APP_MODE}`),
         '@opentiny/vue-renderless/types': pathFromWorkspaceRoot('packages/renderless/types'),
         '@tiptap/vue': '@tiptap/vue-3',
         ...getAlias(3, env.VITE_TINY_THEME)
