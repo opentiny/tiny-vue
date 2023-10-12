@@ -100,13 +100,22 @@ const initWatch = ({
   state,
   emit,
   api,
-  nextTick
-}: Pick<IPopoverRenderlessParams, 'watch' | 'props' | 'state' | 'emit' | 'api' | 'nextTick'>) => {
+  nextTick,
+  updatePopper,
+  mode
+}: Pick<
+  IPopoverRenderlessParams,
+  'watch' | 'props' | 'state' | 'emit' | 'api' | 'nextTick' | 'updatePopper' | 'mode'
+>) => {
   watch(
     () => state.showPopper,
     (val) => {
       if (props.disabled) {
         return
+      }
+      // mobile-first时，需要更新一下，arrow的位置才正确
+      if (mode === 'mobile-first' && val) {
+        nextTick(() => updatePopper())
       }
       // 隐藏时，只冒一下事件，并没有调用doDestory();
       // 只是通过v-show=state.showPopper 来实现隐藏
@@ -156,7 +165,7 @@ export const renderless = (
   const api = {} as IPopoverApi
   const constants = { IDPREFIX: `${$prefix.toLowerCase()}-popover` }
   const options = { emit, onBeforeUnmount, nextTick, reactive, props, watch, onDeactivated, refs, slots, toRefs }
-  const { showPopper, popperElm, referenceElm, doDestroy } = userPopper(options as any)
+  const { showPopper, popperElm, referenceElm, doDestroy, updatePopper } = userPopper(options as any)
   const state: IPopoverState = initState({ reactive, computed, api, popperElm, showPopper, referenceElm })
 
   initApi({ api, constants, props, state, refs, emit, doDestroy, nextTick, vm, mode })
@@ -185,7 +194,7 @@ export const renderless = (
 
   onBeforeUnmount(api.cleanup)
 
-  initWatch({ watch, props, state, emit, api, nextTick })
+  initWatch({ watch, props, state, emit, api, nextTick, updatePopper, mode })
 
   return api
 }
