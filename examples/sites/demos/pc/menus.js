@@ -62,7 +62,8 @@ export const cmpMenus = [
       { 'nameCn': '树型菜单', 'name': 'TreeMenu', 'key': 'tree-menu' },
       { 'nameCn': '流程图', 'name': 'Wizard', 'key': 'wizard' },
       { 'nameCn': '下拉菜单', 'name': 'Dropdown', 'key': 'dropdown' },
-      { 'nameCn': '菜单按钮', 'name': 'ActionMenu', 'key': 'action-menu' }
+      { 'nameCn': '菜单按钮', 'name': 'ActionMenu', 'key': 'action-menu' },
+      { 'nameCn': '流程图', 'name': 'Flowchart', 'key': 'flowchart' }
     ]
   },
   {

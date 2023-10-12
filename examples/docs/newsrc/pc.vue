@@ -211,7 +211,7 @@ export default {
         }
       },
       openInVscode: (demo) => {
-        fetch(`/__open-in-editor?file=../sites/demos/app/${getPath(modeState.pathName)}/${demo.codeFiles[0]}`)
+        fetch(`/__open-in-editor?file=../sites/demos/pc/app/${getPath(modeState.pathName)}/${demo.codeFiles[0]}`)
       }
     }
 
@@ -223,7 +223,7 @@ export default {
     async function _switchPath() {
       state.demoLoading = true
       // 查找API
-      const apiModule = apis[`../../sites/demos/app/${getPath(modeState.pathName)}/webdoc/${modeState.pathName}.js`]
+      const apiModule = apis[`../../sites/demos/pc/app/${getPath(modeState.pathName)}/webdoc/${modeState.pathName}.js`]
 
       if (apiModule) {
         const module = await apiModule()
@@ -240,7 +240,7 @@ export default {
     }
     async function _switchDemo() {
       modeState.demoId = state.currDemo.demoId
-      const path = `../../sites/demos/app/${getPath(modeState.pathName)}/${state.currDemo?.codeFiles[0]}`
+      const path = `../../sites/demos/pc/app/${getPath(modeState.pathName)}/${state.currDemo?.codeFiles[0]}`
 
       // 查找源码  查找组件
       state.currDemoSrc = await demoStr[path]()

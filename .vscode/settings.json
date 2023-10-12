@@ -82,5 +82,6 @@
       "italic": false
     }
   ],
-  "vue.codeActions.enabled": false
+  "vue.codeActions.enabled": false,
+  "git.ignoreLimitWarning": true
 }

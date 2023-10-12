@@ -1,11 +1,11 @@
 <template>
   <div>
     <tiny-button @click="fn" type="primary"> 动作面板 </tiny-button>
-    <tiny-action-sheet
-      title="标题"
-      :visible="boxVisibility"
-      @update:visible="boxVisibility = $event"
-    ></tiny-action-sheet>
+    <tiny-action-sheet title="标题" :visible="boxVisibility" @update:visible="boxVisibility = $event">
+      <div style="text-align: center">
+        <p v-for="i in 20" style="height: 50px" :key="i">内容选项 {{ i }}</p>
+      </div>
+    </tiny-action-sheet>
   </div>
 </template>
 
