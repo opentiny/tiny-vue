@@ -383,14 +383,14 @@ export default {
         },
         {
           'name': 'expand-icon',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '指示展开的图标', 'en-US': 'Indicates the expanded icon' },
           'demoId': 'set-tree-icon'
         },
         {
           'name': 'icon-trigger-click-node',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '点击图标展开节点时是否触发 node-click 事件',
@@ -400,7 +400,7 @@ export default {
         },
         {
           'name': 'show-line',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '设置是否显示连接线',
@@ -410,7 +410,7 @@ export default {
         },
         {
           'name': 'show-contextmenu',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '右键点击节点是否弹窗自定义菜单,默认值为 false',
@@ -420,21 +420,21 @@ export default {
         },
         {
           'name': 'shrink-icon',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '指示收缩的图标', 'en-US': 'Icon indicating contraction' },
           'demoId': 'set-tree-icon'
         },
         {
           'name': 'empty-text',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '内容为空的时候展示的文本', 'en-US': 'Text displayed when the content is empty.' },
           'demoId': 'custom-empty-text'
         },
         {
           'name': 'render-after-expand',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否在第一次展开某个树节点后才渲染其子节点',
@@ -444,7 +444,7 @@ export default {
         },
         {
           'name': 'node-key',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '节点唯一标识属性名称。每个树节点用来作为唯一标识的属性，整棵树应该是唯一的',
@@ -455,7 +455,7 @@ export default {
         },
         {
           'name': 'check-strictly',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '在显示复选框的情况下，是否严格的遵循父子不互相关联的做法，默认为 false',
@@ -466,14 +466,14 @@ export default {
         },
         {
           'name': 'default-expand-all',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否默认展开所有节点', 'en-US': 'Whether to expand all nodes by default' },
           'demoId': 'default-expand-all'
         },
         {
           'name': 'expand-on-click-node',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN':
@@ -485,7 +485,7 @@ export default {
         },
         {
           'name': 'check-on-click-node',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否在点击节点的时候选中节点，默认值为 false，即只有在点击复选框时才会选中节点。',
@@ -496,7 +496,7 @@ export default {
         },
         {
           'name': 'auto-expand-parent',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '展开子节点的时候是否自动展开父节点',
@@ -535,14 +535,14 @@ export default {
         },
         {
           'name': 'show-checkbox',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '节点是否可被选择', 'en-US': 'Whether a node can be selected.' },
           'demoId': 'show-checkbox'
         },
         {
           'name': 'draggable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否开启节点拖拽，节点的位置可任意拖放，改变原来的节点的父子结构。是否开启拖拽节点功能',
@@ -572,7 +572,7 @@ export default {
         },
         {
           'name': 'props',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': "该属性的默认值为 {children: 'children',label: 'label',disabled: 'disabled'}",
           'desc': {
             'zh-CN': '配置选项，具体看下表',
@@ -582,14 +582,14 @@ export default {
         },
         {
           'name': 'highlight-current',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否高亮当前选中节点', 'en-US': 'Whether to highlight the selected node' },
           'demoId': 'highlight-current'
         },
         {
           'name': 'lazy',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '异步加载模式，展开节点时再请求数据。需要服务支持。是否懒加载子节点，需与 load 方法结合使用',
@@ -623,7 +623,7 @@ export default {
         },
         {
           'name': 'accordion',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN':
@@ -635,7 +635,7 @@ export default {
         },
         {
           'name': 'indent',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 18',
           'desc': {
             'zh-CN': '相邻级节点间的水平缩进，单位为像素',
@@ -645,19 +645,19 @@ export default {
         },
         {
           'name': 'icon',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '自定义图标。css : String（图标的总样式名），child : String（叶子节点图标），parent : String（父节点图标，open 打开，close，关闭），expand : String（展开节点图标），collapse : String（收缩节点图标）;自定义树节点的图标',
+              '自定义图标。css : string（图标的总样式名），child : string（叶子节点图标），parent : string（父节点图标，open 打开，close，关闭），expand : string（展开节点图标），collapse : string（收缩节点图标）;自定义树节点的图标',
             'en-US':
-              'User-defined icon. css: String (general style name of an icon), child: String (leaf node icon), parent: String (Parent node icon, open, close, and close), expand: String (the expansion node icon); collapse: String (the collapse node icon); Custom tree node icon'
+              'User-defined icon. css: string (general style name of an icon), child: string (leaf node icon), parent: string (Parent node icon, open, close, and close), expand: string (the expansion node icon); collapse: string (the collapse node icon); Custom tree node icon'
           },
           'demoId': 'custom-node-icon'
         },
         {
           'name': 'view-type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'tree',
           'desc': {
             'zh-CN': '视图模式，可选值有tree、plain，其中tree是普通视图，plain是平铺视图；默认值是tree',
@@ -668,7 +668,7 @@ export default {
         },
         {
           'name': 'filter-plain-method',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -722,9 +722,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '勾选节点后的事件;当复选框被点击的时候触发;//回调参数：\n{data: Object,// 当前选中节点信息\ncurrentNode:Object//树组件目前的选中状态信息，包含 checkedNodes、checkedKeys、halfCheckedNodes、halfCheckedKeys 四个属性}',
+              '勾选节点后的事件;当复选框被点击的时候触发;//回调参数：\n{data: object,// 当前选中节点信息\ncurrentNode:object//树组件目前的选中状态信息，包含 checkedNodes、checkedKeys、halfCheckedNodes、halfCheckedKeys 四个属性}',
             'en-US':
-              'events after a node is selected. Triggered when the check box is clicked; // Callback parameters:\n{data: Object,// Information about the currently selected node\ncurrentNode:Object// Current selected status of the tree component. Contains four attributes: checkedNodes, checkedKeys, halfCheckedNodes, and halfCheckedKeys} '
+              'events after a node is selected. Triggered when the check box is clicked; // Callback parameters:\n{data: object,// Information about the currently selected node\ncurrentNode:object// Current selected status of the tree component. Contains four attributes: checkedNodes, checkedKeys, halfCheckedNodes, and halfCheckedKeys} '
           },
           'demoId': 'drag-events'
         },

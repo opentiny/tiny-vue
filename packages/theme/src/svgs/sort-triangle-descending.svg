@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	x="0px" y="0px"
+	viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
 <path class="st0" d="M8,14.5c-0.24,0-0.47-0.08-0.66-0.24c-0.03-0.03-0.06-0.05-0.09-0.08l-3.81-4.14c-0.37-0.4-0.33-1.01,0.09-1.36
 	c0.18-0.16,0.42-0.24,0.66-0.24h7.61c0.55,0,1,0.43,1,0.97c0,0.24-0.09,0.46-0.25,0.64l-3.81,4.14C8.55,14.39,8.28,14.5,8,14.5
 	C8,14.5,8,14.5,8,14.5 M3.19,6.61c0-0.24,0.09-0.46,0.25-0.64l3.81-4.14C7.45,1.61,7.72,1.5,8,1.5c0.24,0,0.47,0.08,0.66,0.24

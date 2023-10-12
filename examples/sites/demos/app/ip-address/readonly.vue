@@ -2,7 +2,7 @@
   <tiny-ip-address v-model="value" readonly></tiny-ip-address>
 </template>
 
-<script lang="jsx">
+<script>
 import { IpAddress } from '@opentiny/vue'
 
 export default {

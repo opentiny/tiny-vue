@@ -40,9 +40,9 @@ yarn add @opentiny/vue@3
 npm install @opentiny/vue@3
 ```
 
-然后修改项目的 `vite.config.js` ，添加以下代码突出显示的部分：
+然后修改项目的 `vite.config.js` ，添加以下代码：
 
-```js {8-10}
+```js
 // vite.config.js
 
 import { defineConfig } from 'vite'
@@ -58,9 +58,9 @@ export default defineConfig({
 
 安装完成后，请按 `Ctrl + C` 中断关闭当前服务，然后执行 `yarn dev # npm run dev` 重启服务；
 
-接下来修改工程中的 `App.vue` 文件， 添加以下代码突出显示的部分（以 `Button` 组件为例）：
+接下来修改工程中的 `App.vue` 文件， 添加以下代码（以 `Button` 组件为例）：
 
-```js {5,11}
+```js
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup

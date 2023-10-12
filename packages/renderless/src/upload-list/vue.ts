@@ -1,4 +1,13 @@
 import {
+  IUploadListState,
+  IUploadListApi,
+  IUploadListProps,
+  ISharedRenderlessParamHooks,
+  IUploadListRenderlessParamUtils,
+  IFileUploadModalVm,
+  IFileUploadConstants
+} from '@/types'
+import {
   parsePercentage,
   handleClick,
   picturefilePreview,
@@ -47,14 +56,14 @@ export const api = [
 ]
 
 export const renderless = (
-  props,
-  { reactive, onMounted, onUnmounted, watch, inject, computed },
-  { t, parent, mode, emit, service, vm, nextTick },
-  { Modal }
-) => {
-  const api = { getApi }
+  props: IUploadListProps,
+  { reactive, onMounted, onUnmounted, watch, inject, computed }: ISharedRenderlessParamHooks,
+  { t, parent, mode, emit, service, vm, nextTick }: IUploadListRenderlessParamUtils,
+  { Modal }: IFileUploadModalVm
+): IUploadListApi => {
+  const api = { getApi } as IUploadListApi
   parent = inject('uploader').$children[0]
-  const constants = parent.$constants
+  const constants = parent.$constants as IFileUploadConstants
   const $service = initService({ props, service })
 
   const state = reactive({
@@ -66,8 +75,9 @@ export const renderless = (
     showTriggerPanel: false,
     triggerClickType: '',
     showAudioPanel: false,
-    files: computed(() => api.getNotSuccessFiles())
-  })
+    files: computed(() => api.getNotSuccessFiles()),
+    currentFile: null
+  }) as IUploadListState
 
   parent.getToken = getToken({ constants, props: parent, state: parent.state, t, Modal })
 

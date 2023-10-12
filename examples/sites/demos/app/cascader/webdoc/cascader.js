@@ -177,7 +177,7 @@ export default {
         'zh-CN':
           '<p><code>filter-method</code> 自定义搜索逻辑，第一个参数是节点 node，第二个参数是搜索关键词 keyword，通过返回布尔值表示是否命中,如果需要选择父级，通过 props.checkStrictly = true 来设置父子节点取消选中关联，从而达到选择任意一级选项的目的。默认单选模式下，只能选择叶子节点。</p>\n',
         'en-US':
-          '<p><code>filter-method</code> customizes the search logic. The first parameter is node, and the second parameter is keyword. A Boolean value is returned to indicate whether the search is hit. To select a parent, set props.checkStrictly = true to deselect the parent and child nodes. In this way, the purpose of selecting any level of option is achieved. In the default single-choice mode, only leaf nodes can be selected. </p>\n'
+          '<p><code>filter-method</code> customizes the search logic. The first parameter is node, and the second parameter is keyword. A boolean value is returned to indicate whether the search is hit. To select a parent, set props.checkStrictly = true to deselect the parent and child nodes. In this way, the purpose of selecting any level of option is achieved. In the default single-choice mode, only leaf nodes can be selected. </p>\n'
       },
       'codeFiles': ['filter-method.vue']
     },
@@ -240,7 +240,7 @@ export default {
         },
         {
           'name': 'props',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '配置选项，具体见 Cascader Props 表',
@@ -250,7 +250,7 @@ export default {
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '为 popper 添加类名(可参考 popover 组件)',
@@ -260,7 +260,7 @@ export default {
         },
         {
           'name': 'popper-append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'true',
           'desc': {
             'zh-CN':
@@ -272,7 +272,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '尺寸;该属性的可选值为 medium / small / mini',
@@ -282,28 +282,28 @@ export default {
         },
         {
           'name': 'placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '请选择',
           'desc': { 'zh-CN': '输入框占位文本', 'en-US': 'Placeholder text in the text box' },
           'demoId': 'filterable-multiple1'
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '是否禁用', 'en-US': 'Disable' },
           'demoId': 'disabled-items'
         },
         {
           'name': 'clearable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '是否支持清空选项', 'en-US': 'Whether to support the clear option' },
           'demoId': 'clearable'
         },
         {
           'name': 'show-all-levels',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'true',
           'desc': {
             'zh-CN': '输入框中是否显示选中值的完整路径',
@@ -313,21 +313,21 @@ export default {
         },
         {
           'name': 'collapse-tags',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '多选模式下是否折叠Tag', 'en-US': 'Whether to collapse tags in multi-choice mode' },
           'demoId': 'collapse-tags'
         },
         {
           'name': 'separator',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '/',
           'desc': { 'zh-CN': '选项分隔符', 'en-US': 'Option separator' },
           'demoId': 'clearable1'
         },
         {
           'name': 'filterable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '是否可搜索选项', 'en-US': 'Whether to search for options' },
           'demoId': 'filterable'
@@ -340,13 +340,13 @@ export default {
             'zh-CN':
               '自定义搜索逻辑，第一个参数是节点 node，第二个参数是搜索关键词 keyword，通过返回布尔值表示是否命中',
             'en-US':
-              'Customize the search logic. The first parameter is node, and the second parameter is keyword. A Boolean value is returned to indicate whether the search is hit.'
+              'Customize the search logic. The first parameter is node, and the second parameter is keyword. A boolean value is returned to indicate whether the search is hit.'
           },
           'demoId': 'filter-method'
         },
         {
           'name': 'debounce',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '300',
           'desc': {
             'zh-CN': '搜索关键词输入的去抖延迟，单位毫秒',
@@ -367,7 +367,7 @@ export default {
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '自定义浮层类名', 'en-US': 'Customized floating layer class name' },
           'demoId': ''
@@ -401,9 +401,9 @@ export default {
           'type': 'Fuction(arg)',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '当失去焦点时触发;arg:回调参数为 (event: Event, 类型:Object)',
+            'zh-CN': '当失去焦点时触发;arg:回调参数为 (event: Event, 类型:object)',
             'en-US':
-              'This event is triggered when the focus is lost. arg: The callback parameter is (event: Event, type: Object).'
+              'This event is triggered when the focus is lost. arg: The callback parameter is (event: Event, type: object).'
           },
           'demoId': 'events'
         },
@@ -412,9 +412,9 @@ export default {
           'type': 'Fuction(arg)',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '当获得焦点时触发;arg:回调参数为 (event: Event, 类型:Object)',
+            'zh-CN': '当获得焦点时触发;arg:回调参数为 (event: Event, 类型:object)',
             'en-US':
-              'This event is triggered when the focus is obtained. arg: The callback parameter is (event: Event, type: Object).'
+              'This event is triggered when the focus is obtained. arg: The callback parameter is (event: Event, type: object).'
           },
           'demoId': 'events'
         },
@@ -425,7 +425,7 @@ export default {
           'desc': {
             'zh-CN': '下拉框出现/隐藏时触发;arg:回调参数为 出现则为 true，隐藏则为 false(布尔类型)',
             'en-US':
-              'This event is triggered when the drop-down list box is displayed or hidden. arg: true if the callback parameter is present; false if the callback parameter is hidden (Boolean)'
+              'This event is triggered when the drop-down list box is displayed or hidden. arg: true if the callback parameter is present; false if the callback parameter is hidden (boolean)'
           },
           'demoId': 'events'
         },
@@ -466,7 +466,7 @@ export default {
       'casprops': [
         {
           'name': 'expandTrigger',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'click',
           'desc': {
             'zh-CN': '次级菜单的展开方式;该属性的可选值为 click / hover',
@@ -476,14 +476,14 @@ export default {
         },
         {
           'name': 'multiple',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '是否多选', 'en-US': 'Whether to select multiple options' },
           'demoId': 'default-multiple'
         },
         {
           'name': 'checkStrictly',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': ' false',
           'desc': {
             'zh-CN': '是否严格的遵守父子节点不互相关联',
@@ -494,7 +494,7 @@ export default {
         },
         {
           'name': 'emitPath',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': ' true',
           'desc': {
             'zh-CN':
@@ -506,7 +506,7 @@ export default {
         },
         {
           'name': 'lazy',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否动态加载子节点，需与 lazyLoad 方法结合使用',
@@ -529,7 +529,7 @@ export default {
         },
         {
           'name': 'value',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': "'value'",
           'desc': {
             'zh-CN': '指定选项的值为选项对象的某个属性值',
@@ -539,7 +539,7 @@ export default {
         },
         {
           'name': 'label',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': "'label'",
           'desc': {
             'zh-CN': '指定选项标签为选项对象的某个属性值',
@@ -549,7 +549,7 @@ export default {
         },
         {
           'name': 'children',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': "'children'",
           'desc': {
             'zh-CN': '指定选项的子选项为选项对象的某个属性值',
@@ -559,7 +559,7 @@ export default {
         },
         {
           'name': 'disabled',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': "'disabled'",
           'desc': {
             'zh-CN': '指定选项的禁用为选项对象的某个属性值',
@@ -569,7 +569,7 @@ export default {
         },
         {
           'name': 'leaf',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': "'leaf'",
           'desc': {
             'zh-CN': '指定选项的叶子节点的标志位为选项对象的某个属性值',

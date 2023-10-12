@@ -1,9 +1,10 @@
 <template>
   <div
+    data-tag="tiny-from-item"
     :class="
       m(
-        `flex min-h-[3rem] sm:min-h-[1.75rem] mb-0 p-0 sm:mb-4 box-border after:content-[''] after:table after:clear-both before:content-['']  before:table border-b-[0.5px] border-color-bg-3 sm:border-none`,
-        state.validateState === 'error' && state.validateType === 'text' ? 'mb-0 sm:mb-0 pb-3 sm:pb-1' : '',
+        `flex min-h-[theme(spacing.12)] sm:min-h-[theme(spacing.7)] mb-0 p-0 sm:mb-4 box-border after:content-[''] after:table after:clear-both before:content-['']  before:table border-b-0.5 border-color-bg-3 sm:border-none`,
+        state.validateState === 'error' && state.validateType === 'text' ? 'mb-0 sm:mb-0 pb-1 sm:pb-1' : '',
         state.formInline ? 'align-sub' : '',
         state.labelPosition === 'top' ? 'block mb-4' : '',
         state.validateState === 'error'
@@ -22,10 +23,11 @@
       :is-mobile-first="true"
     >
       <label
+        data-tag="tiny-item-label"
         v-if="slots.label || label"
         :class="
           m(
-            'py-3 sm:py-1.5 min-h-[2.25rem] sm:min-h-[1.75rem] relative align-bottom float-left text-sm sm:text-xs text-color-text-secondary pr-1 sm:pr-4 box-border',
+            'py-3 sm:py-1.5 sm:min-h-[theme(spacing.7)] relative align-bottom float-left text-sm sm:text-xs text-color-text-secondary pr-0 sm:pr-4 box-border',
             'overflow-hidden text-ellipsis text-left sm:text-right',
             state.labelPosition === 'top'
               ? 'float-none inline-block text-left leading-none px-0 pt-0 pb-1.5 h-auto min-h-0'
@@ -66,10 +68,11 @@
       </label>
     </label-wrap>
     <div
+      data-tag="tiny-from-item-inline"
       :class="
         m(
-          `m-auto flex-1 relative -top-0.5 sm:top-auto text-sm sm:text-xs  after:content-['']  after:table after:clear-both before:content-['']  before:table [&_button:not(:last-child)]:mr-2`,
-          '[&_[data-tag=tiny-checkbox]]:py-0 [&_[data-tag=tiny-input]]:w-full [&_[data-tag=tiny-input]_textarea]:w-full [&_[data-tag=tiny-input]_textarea]:mt-1 sm:[&_[data-tag=tiny-input]_textarea]:mt-0',
+          `m-auto flex-1 relative sm:top-auto text-sm sm:text-xs  after:content-['']  after:table after:clear-both before:content-['']  before:table [&_button:not(:last-child)]:mr-2`,
+          '[&_[data-tag=tiny-checkbox]]:py-0 [&_[data-tag=tiny-input]]:w-full [&_[data-tag=tiny-input]_textarea]:w-full [&_[data-tag=tiny-input]_textarea]:pt-3.5 sm:[&_[data-tag=tiny-input]_textarea]:pt-2',
           state.formInline ? 'align-sub leading-none' : '',
           state.labelPosition === 'top' && !state.hideRequiredAsterisk
             ? 'pl-2.5 sm:pl-0 [&_[data-tag=tiny-input]_input]:px-0 sm:[&_[data-tag=tiny-input]_input]:px-3'
@@ -78,6 +81,7 @@
       "
     >
       <div
+        data-tag="tiny-from-item-display-only"
         v-if="state.isDisplayOnly && state.isBasicComp"
         :class="['break-all', state.typeName === 'textarea' ? 'line-clamp-3' : 'line-clamp-1']"
         :type-name="state.typeName"
@@ -87,22 +91,27 @@
         {{ state.displayedValue || '-' }}
       </div>
       <div
+        data-tag="tiny-from-item-show"
         v-show="!(state.isDisplayOnly && state.isBasicComp)"
         :class="[
           '[&_[aria-label=checkbox-group]]:pl-0.5 sm:[&_[aria-label=checkbox-group]]:pl-0',
-          '[&_>:first-child[data-tag=aui-checkbox]]:pl-0.5 sm:[&_>:first-child[data-tag=aui-checkbox]]:pl-0',
+          '[&_>:first-child[data-tag=tiny-checkbox]]:pl-0.5 sm:[&_>:first-child[data-tag=tiny-checkbox]]:pl-0',
           !state.isDisplayOnly
-            ? '[&_[data-tag=aui-switch]]:ml-2.5 sm:[&_[data-tag=aui-switch]]:ml-0 [&_[data-tag=aui-numeric]]:ml-2.5 sm:[&_[data-tag=aui-numeric]]:ml-0'
+            ? '[&_[data-tag=tiny-switch]]:ml-2.5 sm:[&_[data-tag=tiny-switch]]:ml-0 [&_[data-tag=tiny-numeric]]:ml-2.5 sm:[&_[data-tag=tiny-numeric]]:ml-0'
             : ''
         ]"
       >
         <slot></slot>
       </div>
-      <slot v-if="state.validateState === 'error' && showMessage && state.showMessage" name="error">
+      <slot
+        data-tag="tiny-from-item-error"
+        v-if="state.validateState === 'error' && showMessage && state.showMessage"
+        name="error"
+      >
         <div
           :class="
             m(
-              'relative text-color-error text-xs leading-1 pt-1',
+              'relative text-color-error text-xs leading-normal pt-1',
               (typeof inlineMessage === 'boolean' && inlineMessage) || state.inlineMessage
                 ? 'relative top-auto left-auto inline-block ml-2.5'
                 : '',
@@ -124,6 +133,7 @@ import { renderless, api } from '@opentiny/vue-renderless/form-item/vue'
 import LabelWrap from './label-wrap'
 import Tooltip from '@opentiny/vue-tooltip'
 import { IconHelpCircle } from '@opentiny/vue-icon'
+import type { IFormItemApi } from '@opentiny/vue-renderless/types/form-item.type'
 
 const $constants = {
   FORM_NAME: 'Form',
@@ -178,7 +188,7 @@ export default defineComponent({
     validateType: String
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IFormItemApi
   }
 })
 </script>

@@ -41,6 +41,7 @@
                 'line-end': node.index === state.nodesLength - 1
               }
             ]"
+            :style="{ width: state.computedLineWidth }"
           ></div>
 
           <div class="tiny-timeline-item__description" ref="description">
@@ -123,6 +124,7 @@ import { renderless, api } from '@opentiny/vue-renderless/timeline-item/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconYes, iconClose } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/steps/index.less'
+import type { ITimelineItemApi } from '@opentiny/vue-renderless/types/timeline-item.type'
 
 export default defineComponent({
   emits: ['click'],
@@ -130,6 +132,7 @@ export default defineComponent({
     ...props,
     'node',
     'space',
+    'lineWidth'
   ],
   components: {
     IconYes: iconYes(),
@@ -141,7 +144,7 @@ export default defineComponent({
       context,
       renderless,
       api
-    })
+    }) as unknown as ITimelineItemApi
   }
 })
 </script>

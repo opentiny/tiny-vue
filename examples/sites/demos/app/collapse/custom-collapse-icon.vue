@@ -25,7 +25,7 @@
   </tiny-collapse>
 </template>
 
-<script lang="jsx">
+<script>
 import { Collapse, CollapseItem } from '@opentiny/vue'
 import { IconDeltaRight } from '@opentiny/vue-icon'
 

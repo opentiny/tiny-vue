@@ -18,17 +18,17 @@ export default {
       fileList: [
         {
           name: 'test1.png',
-          url: 'webnova/static/images/ld.png',
+          url: '/static/images/ld.png',
           status: 'uploading',
           percentage: '50'
         },
         {
           name: 'test2',
-          url: 'webnova/static/images/ry.png'
+          url: '/static/images/ry.png'
         },
         {
           name: 'test3',
-          url: 'webnova/static/images/ld.png',
+          url: '/static/images/ld.png',
           status: 'fail'
         }
       ]

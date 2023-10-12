@@ -17,6 +17,10 @@
   --ti-link-font-weight: var(--ti-common-font-weight-5);
   // 链接下划线色(hide)
   --ti-link-border-color: var(--ti-common-color-line-active);
+  // 链接有图标时下划线宽度(hide)
+  --ti-link-has-icon-underline-width: 100%;
+  // 链接只有文字时下划线宽度(hide)
+  --ti-link-only-text-underline-width: 100%;
   // 链接是否显示
   --ti-link-display: inline;
   // 链接图标宽度
@@ -29,8 +33,6 @@
   // 链接图标悬浮字重
   --ti-link-icon-hover-text-weight: var(--ti-common-font-weight-5);
 
-  // 链接下划线是否显示，默认不显示
-  --ti-link-default-border-display: none;
   // 默认链接文本色
   --ti-link-default-text-color: var(--ti-common-color-info-text);
   // 默认链接悬浮下划线色
@@ -89,5 +91,5 @@
   --ti-link-info-disabled-text-color: var(--ti-common-color-info-disabled);
 
   // 带有图标的链接悬浮文本色
-  --ti-link-has-svg-hover-text-color: var(--ti-link-default-text-color);
+  --ti-link-has-svg-hover-text-color: var(--ti-common-color-text-link);
 }

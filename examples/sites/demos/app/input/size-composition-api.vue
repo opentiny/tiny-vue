@@ -1,13 +1,13 @@
 <template>
   <div class="demo-input">
-    <tiny-input v-model="input" placeholder="size 为默认值"></tiny-input><br /><br />
-    <tiny-input v-model="input" size="medium" placeholder="size 为 medium"></tiny-input><br /><br />
-    <tiny-input v-model="input" size="small" placeholder="size 为 small"></tiny-input><br /><br />
-    <tiny-input v-model="input" size="mini" placeholder="size 为 mini"></tiny-input>
+    <tiny-input v-model="input" size="medium" placeholder="size = medium"></tiny-input>
+    <tiny-input v-model="input" placeholder="default size"></tiny-input>
+    <tiny-input v-model="input" size="small" placeholder="size = small"></tiny-input>
+    <tiny-input v-model="input" size="mini" placeholder="size = mini"></tiny-input>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Input as TinyInput } from '@opentiny/vue'
 
@@ -17,5 +17,6 @@ const input = ref('')
 <style scoped>
 .demo-input .tiny-input {
   width: 250px;
+  margin: 5px;
 }
 </style>

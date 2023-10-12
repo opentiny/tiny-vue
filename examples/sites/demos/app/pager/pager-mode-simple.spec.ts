@@ -12,7 +12,7 @@ test('分页simple模式', async ({ page }) => {
   await expect(prev).toBeVisible()
   await expect(pager.locator('.tiny-pager__pages')).toBeVisible()
   await expect(next).toBeVisible()
-  await expect(pager.locator('.tiny-pager__input')).toBeVisible()
+  await expect(pager.locator('.tiny-pager__page-size')).toBeVisible()
   await expect(pager.locator('.tiny-pager__goto')).not.toBeVisible()
   await expect(pager.locator('.tiny-pager__total')).toBeVisible()
 })

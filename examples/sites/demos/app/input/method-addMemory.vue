@@ -1,17 +1,16 @@
 <template>
   <div class="demo-input">
-    <h3>input:{{ input }}</h3>
     <tiny-input
       ref="textMemory"
       v-model="input"
       name="textMemory"
-      placeholder="请输入内容"
+      placeholder="Please input"
       @change="addMemory"
     ></tiny-input>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Input, Modal } from '@opentiny/vue'
 
 export default {
@@ -33,10 +32,8 @@ export default {
 </script>
 
 <style scoped>
-.demo-input {
-  height: 300px;
-}
 .demo-input .tiny-input {
   width: 250px;
+  margin: 5px 0;
 }
 </style>

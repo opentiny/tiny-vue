@@ -6,7 +6,6 @@
   "main": "lib/index.js",
   "module": "index.ts",
   "devDependencies": {
-    "vue": "~2.7.10",
-    "vue-router": "^3.6.4"
+    "vue": "~2.7.10"
   }
 }

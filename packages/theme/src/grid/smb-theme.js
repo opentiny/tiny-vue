@@ -17,5 +17,7 @@ export const tinyGridSmbTheme = {
   'ti-grid-header-text-color': 'var(--ti-common-color-text-secondary)',
   'ti-grid-row-hover-background-color': '#F5F5F5',
   'ti-grid-icon-color': 'var(--ti-common-color-icon)',
-  'ti-grid-checkbox-icon-size': 'var(--ti-common-font-size-2)'
+  'ti-grid-checkbox-icon-size': 'var(--ti-common-font-size-2)',
+  'ti-grid-checkbox-bg-color-checked': '#1476FF',
+  'ti-grid-radio-bg-color-checked': '#1476FF'
 }

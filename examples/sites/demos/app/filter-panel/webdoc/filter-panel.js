@@ -80,7 +80,7 @@ export default {
       'properties': [
         {
           'name': 'clearable ',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'true',
           'desc': {
             'zh-CN': '显示清空按钮，配合`handle-clear`事件一起使用清空内容区域的值，默认为true。',
@@ -90,7 +90,7 @@ export default {
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否禁用',
@@ -100,7 +100,7 @@ export default {
         },
         {
           'name': 'label',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '标题',
@@ -110,7 +110,7 @@ export default {
         },
         {
           'name': 'placement',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'bottom-start',
           'desc': {
             'zh-CN': '弹出框位置，默认值为bottom-start',
@@ -120,7 +120,7 @@ export default {
         },
         {
           'name': 'popper-append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'true',
           'desc': {
             'zh-CN': '下拉框是否添加到body中',
@@ -130,7 +130,7 @@ export default {
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '下拉框的class',
@@ -140,7 +140,7 @@ export default {
         },
         {
           'name': 'tip',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '标题右侧的提示信息',
@@ -150,7 +150,7 @@ export default {
         },
         {
           'name': 'value',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '显示的值',

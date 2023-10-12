@@ -3,6 +3,7 @@ import { props, $prefix, setup, h, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/upload/vue'
 import UploadDragger from '@opentiny/vue-upload-dragger'
 import Modal from '@opentiny/vue-modal'
+import type { IUploadApi } from '@opentiny/vue-renderless/types/upload.type'
 
 export default defineComponent({
   inheritAttrs: false,
@@ -42,7 +43,7 @@ export default defineComponent({
     'mode'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api, h, extendOptions: { Modal } })
+    return setup({ props, context, renderless, api, h, extendOptions: { Modal } }) as unknown as IUploadApi
   },
   render() {
     let {

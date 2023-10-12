@@ -149,7 +149,7 @@ export default {
       'properties': [
         {
           'name': 'arrow-control',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否使用箭头进行时间选择',
@@ -159,14 +159,14 @@ export default {
         },
         {
           'name': 'clearable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否显示清除按钮', 'en-US': 'Display Clear Button' },
           'demoId': 'clearable'
         },
         {
           'name': 'clear-icon',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 IconOperationfaild',
           'desc': {
             'zh-CN': '自定义清空图标',
@@ -187,21 +187,21 @@ export default {
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
           'demoId': 'disabled'
         },
         {
           'name': 'editable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '文本框可输入', 'en-US': 'The text box can be entered.' },
           'demoId': 'editable'
         },
         {
           'name': 'end-placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '范围选择时结束日期的占位内容',
@@ -211,7 +211,7 @@ export default {
         },
         {
           'name': 'is-range',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否为时间范围选择，仅对<tiny-time-picker>有效',
@@ -232,28 +232,28 @@ export default {
         },
         {
           'name': 'name',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '原生 input <code>name</code> 属性', 'en-US': 'Native input <code>name</code> attribute' },
           'demoId': 'name'
         },
         {
           'name': 'picker-options',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '该属性的默认值为 {}',
           'desc': { 'zh-CN': '当前时间日期选择器特有的选项参考下表', 'en-US': 'Separator for selecting a range' },
           'demoId': 'basic-usage1'
         },
         {
           'name': 'placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为空',
           'desc': { 'zh-CN': '非范围选择时的占位内容', 'en-US': 'Placeholder content for non-range selection' },
           'demoId': 'placeholder'
         },
         {
           'name': 'popper-append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false',
@@ -263,7 +263,7 @@ export default {
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': 'TimePicker 下拉框的 class 类名',
@@ -273,7 +273,7 @@ export default {
         },
         {
           'name': 'range-separator',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 - ',
           'desc': {
             'zh-CN': '选择范围时的分隔符',
@@ -284,7 +284,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '输入框尺寸;该属性的可选值为 medium,small, mini',
@@ -294,7 +294,7 @@ export default {
         },
         {
           'name': 'start-placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '范围选择时开始日期的占位内容',
@@ -304,7 +304,7 @@ export default {
         },
         {
           'name': 'step',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '自定义时分秒步长',
@@ -314,7 +314,7 @@ export default {
         },
         {
           'name': 'suffix-icon',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该自定后置图标， 该属性的默认值为 IconCalendar',
           'desc': { 'zh-CN': '自定义头部图标的类名', 'en-US': 'Custom Clear Icon' },
           'demoId': 'suffix-icon'
@@ -326,8 +326,8 @@ export default {
           'type': 'Function(arg)',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '当 input 失去焦点时触发;arg:{Object 时间组件Vue对象}',
-            'en-US': 'This event is triggered when the input loses focus. arg:{Object Time Component Vue Object}'
+            'zh-CN': '当 input 失去焦点时触发;arg:{object 时间组件Vue对象}',
+            'en-US': 'This event is triggered when the input loses focus. arg:{object Time Component Vue Object}'
           },
           'demoId': 'event'
         },
@@ -348,8 +348,8 @@ export default {
           'type': 'Function(arg)',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '当 input 获得焦点时触发;arg:{Object 时间组件Vue对象}',
-            'en-US': 'This event is triggered when the input is focused. arg:{Object Time Component Vue Object}'
+            'zh-CN': '当 input 获得焦点时触发;arg:{object 时间组件Vue对象}',
+            'en-US': 'This event is triggered when the input is focused. arg:{object Time Component Vue object}'
           },
           'demoId': 'event'
         }

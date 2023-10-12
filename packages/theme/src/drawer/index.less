@@ -15,10 +15,6 @@
     left: 0;
     right: 0;
 
-    transition-timing-function: linear;
-    transition-duration: 200ms;
-    transition-property: opacity;
-
     &.show-bg-color {
       background-color: rgba(0, 0, 0, 0.3);
     }
@@ -182,5 +178,75 @@
         text-align: var(--ti-drawer-footer-text-align);
       }
     }
+  }
+}
+
+.drawer-slideRight-enter-active {
+  animation: slideRight 0.3s linear;
+}
+
+.drawer-slideRight-leave-active {
+  animation: slideRightout 0.3s linear;
+}
+
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateX(50%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slideRightout {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateX(50%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.drawer-fade-enter-active {
+  animation: drawer-fade-in 0.3s linear;
+}
+
+.drawer-fade-leave-active {
+  animation: drawer-fade-out 0.3s linear;
+}
+
+@keyframes drawer-fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes drawer-fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
   }
 }

@@ -9,6 +9,16 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import {
+  IFileUploadState,
+  IFileUploadApi,
+  IFileUploadProps,
+  ISharedRenderlessParamHooks,
+  IFileUploadRenderlessParamUtils,
+  IFileUploadModalVm,
+  IFileUploadService,
+  IFileUploadStreamsaver
+} from '@/types'
 
 import { downloadFile as ordinaryDownload } from '../upload-list'
 
@@ -107,9 +117,11 @@ export const api = [
   'handleTriggerClick'
 ]
 
-const initState = ({ api, reactive, computed, inject, ref, vm, props, httpRequest, service }) => {
+const initState = ({ api, reactive, computed, inject, ref, vm, props, httpRequest, service }): IFileUploadState => {
   const state = reactive({
     url: '',
+    updateId: '',
+    currentDownloadFiles: '',
     tempIndex: 1,
     draging: false,
     uploadFiles: [],
@@ -169,7 +181,7 @@ const initState = ({ api, reactive, computed, inject, ref, vm, props, httpReques
 const initApi = ({ api, state, props, constants, vm, $service, t, Modal }) => {
   Object.assign(api, {
     state,
-    sliceChunk: sliceChunk({ state, props }),
+    sliceChunk: sliceChunk({ state }),
     getFormData: getFormData({ constants, props, state }),
     abort: abort({ constants, vm, state }),
     handleClick: handleClick({ constants, vm }),
@@ -212,20 +224,20 @@ const mergeApi = ({ api, props, $service, state, constants, emit, mode, Modal, t
     previewImage: previewImage({ api, props, service: $service }),
     previewFile: previewFile({ api, props }),
     getNewTabPreviewUrl: getNewTabPreviewUrl({ api }),
-    submit: submit({ api, constants, Modal, vm, props, state, t }),
+    submit: submit({ api, constants, vm, props, state }),
     handleStart: handleStart({ api, constants, props, state, vm }),
     batchSegmentUpload: batchSegmentUpload({ api, constants, props, vm, state }),
     largeDocumentUpload: largeDocumentUpload({ api, Modal, state, emit, constants, t }),
     handleProgress: handleProgress({ api, constants, emit, state }),
-    handleSuccess: handleSuccess({ api, constants, emit, Modal, props, state }),
+    handleSuccess: handleSuccess({ api, constants, emit, props, state }),
     handleError: handleError({ api, constants, emit, state }),
     handleRemove: handleRemove({ api, emit, props, state, constants }),
-    updateUrl: updateUrl({ api, props, service: $service, state }),
+    updateUrl: updateUrl({ api, props, state }),
     startUpload: startUpload({ api, state, constants, vm, Modal, t }),
     beforeUpload: beforeUpload({ api, props, Modal, constants, t, state }),
     getDownloadFileInfo: getDownloadFileInfo({ api, props, state, service: $service }),
     largeDocumentDownload: largeDocumentDownload({ api, state }),
-    sliceDownloadChunk: sliceDownloadChunk({ api, state }),
+    sliceDownloadChunk: sliceDownloadChunk({ state }),
     batchSegmentDownload: batchSegmentDownload({ state, api }),
     downloadFileInner: downloadFileInner({ api, props, state }),
     setWriterFile: setWriterFile({ state, emit, Streamsaver }),
@@ -277,18 +289,18 @@ const initWatch = ({ watch, state, api, props, $service }) => {
   watch(() => props.edm, api.computeDocChunkSize, { deep: true, immediate: true })
 }
 
-export let getApi = () => ({})
+export let getApi = () => ({}) as { downloadFile: Function }
 
 export const renderless = (
-  props,
-  { computed, inject, onBeforeUnmount, provide, reactive, ref, watch, onMounted },
-  { t, vm, parent, emit, service, mode, constants },
-  { Modal, CryptoJS, Streamsaver }
-) => {
-  let api = {}
-  const $service = initService({ props, service })
-  const httpRequest = $service.httpRequest
-  const state = initState({ reactive, computed, api, inject, ref, vm, props, httpRequest, service })
+  props: IFileUploadProps,
+  { computed, inject, onBeforeUnmount, provide, reactive, ref, watch, onMounted }: ISharedRenderlessParamHooks,
+  { t, vm, parent, emit, service, mode, constants }: IFileUploadRenderlessParamUtils,
+  { Modal, CryptoJS, Streamsaver }: IFileUploadModalVm & { CryptoJS: object; Streamsaver: IFileUploadStreamsaver }
+): IFileUploadApi => {
+  let api = {} as IFileUploadApi
+  const $service: IFileUploadService = initService({ props, service })
+  const httpRequest: Function = $service.httpRequest
+  const state: IFileUploadState = initState({ reactive, computed, api, inject, ref, vm, props, httpRequest, service })
 
   initApi({ api, state, props, constants, vm, $service, t, Modal })
   mergeApi({ api, props, $service, state, constants, emit, mode, Modal, t, vm, CryptoJS, Streamsaver })
@@ -301,7 +313,7 @@ export const renderless = (
   // 注册生命周期函数必须要在（watch）异步函数/组件之前，否则会 Vue3 警告
   onBeforeUnmount(() => {
     api.onBeforeDestroy()
-    api = null
+    api = {} as IFileUploadApi
   })
 
   initWatch({ watch, state, api, props, $service })

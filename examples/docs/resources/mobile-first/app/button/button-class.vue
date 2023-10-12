@@ -1,7 +1,7 @@
 <template>
   <div class="demo">
     <tiny-button>默认按钮</tiny-button>
-    <tiny-button button-class="text-color-brand-active bg-color-bg-3"> 主要按钮 </tiny-button>
+    <tiny-button custom-class="text-color-brand-active bg-color-bg-3"> 主要按钮 </tiny-button>
   </div>
 </template>
 

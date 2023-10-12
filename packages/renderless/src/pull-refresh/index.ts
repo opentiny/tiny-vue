@@ -90,7 +90,6 @@ export const onTouchend =
               api.handlerModelValue('down', 'success')
             },
             (e) => {
-              console.log(e)
               api.handlerModelValue('down', 'failed')
             }
           )
@@ -110,7 +109,6 @@ export const onTouchend =
               api.handlerModelValue('up', 'success')
             },
             (e) => {
-              console.log(e)
               api.handlerModelValue('up', 'failed')
             }
           )

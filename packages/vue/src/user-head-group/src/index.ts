@@ -13,7 +13,17 @@ export default {
     list: {
       type: Array,
       default: () => []
-    }
+    },
+    showMax: {
+      type: Boolean,
+      default: false
+    },
+    horizontal: {
+      type: Boolean,
+      default: false
+    },
+    color: String,
+    backgroundColor: String
   },
   setup(props, context) {
     return $setup({ props, context, template })

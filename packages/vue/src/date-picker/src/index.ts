@@ -9,7 +9,8 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $setup, $prefix, defineComponent } from '@opentiny/vue-common'
+import type { PropType } from '@opentiny/vue-common'
+import { $setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import { iconOperationfaild } from '@opentiny/vue-icon'
 import template from 'virtual-template?pc|mobile'
 
@@ -51,10 +52,31 @@ const validator = (value) => {
   return result
 }
 
+const $props = {
+  'tiny_mode': String,
+  'tiny_mode_root': Boolean,
+  'tiny_template': [Function, Object],
+  'tiny_renderless': Function,
+  'tiny_theme': String,
+  'tiny_chart_theme': Object
+}
+
 export const datePickerProps = {
   ...$props,
   type: {
-    type: String,
+    type: Object as PropType<
+      | 'date'
+      | 'dates'
+      | 'daterange'
+      | 'week'
+      | 'month'
+      | 'monthrange'
+      | 'year'
+      | 'years'
+      | 'yearrange'
+      | 'datetime'
+      | 'datetimerange'
+    >,
     default: 'date'
   },
   _constants: {

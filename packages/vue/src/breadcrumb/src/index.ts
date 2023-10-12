@@ -12,36 +12,38 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
-const $constants = {
+export const $constants = {
   EVENT_NAME: {
     breadcrumbItemSelect: 'breadcrumbItemSelect'
   }
 }
 
+export const breadcrumbProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  separator: {
+    type: String,
+    default: '>'
+  },
+  separatorIcon: {
+    type: Object
+  },
+  textField: {
+    type: String,
+    default: 'label'
+  },
+  options: {
+    type: Array,
+    default: () => []
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'Breadcrumb',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    separator: {
-      type: String,
-      default: '>'
-    },
-    separatorIcon: {
-      type: Object
-    },
-    textField: {
-      type: String,
-      default: 'label'
-    },
-    options: {
-      type: Array,
-      default: () => []
-    }
-  },
+  props: breadcrumbProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

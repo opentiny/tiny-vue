@@ -11,7 +11,7 @@ test('测试自定义分页布局', async ({ page }) => {
   const slot = pager.getByText('我是插槽')
 
   await expect(slot).toBeVisible()
-  const pageSizeBox = await pager.locator('.tiny-pager__input').boundingBox()
+  const pageSizeBox = await pager.locator('.tiny-pager__page-size').boundingBox()
   const slotBox = await slot.boundingBox()
   expect(pageSizeBox.x).toBeLessThan(slotBox.x)
   const prevBox = await prev.boundingBox()

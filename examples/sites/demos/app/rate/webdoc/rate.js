@@ -170,21 +170,21 @@ export default {
       'properties': [
         {
           'name': 'max',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 5',
           'desc': { 'zh-CN': '最大分值', 'en-US': 'Maximum score' },
           'demoId': 'max-score'
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否为只读', 'en-US': 'Read-only' },
           'demoId': 'dynamic-disable'
         },
         {
           'name': 'allow-half',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否允许半选', 'en-US': 'Whether to allow half selection' },
           'demoId': 'allow-half'
@@ -201,14 +201,14 @@ export default {
         },
         {
           'name': 'disabled-void-color',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 #D9D9D9',
           'desc': { 'zh-CN': '禁用状态下未选中 icon 的颜色', 'en-US': 'Color of unselected icons in disabled state' },
           'demoId': 'disabled-not-selected-color'
         },
         {
           'name': 'disabled-void-icon-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 icon-starActive',
           'desc': {
             'zh-CN': '只读状态下未选中的图标样式名，可选值:icon-starDisable | icon-frown | icon-meh | icon-smile',
@@ -219,7 +219,7 @@ export default {
         },
         {
           'name': 'high-threshold',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 4',
           'desc': {
             'zh-CN': '高分和中等分数的界限值，值本身被划分在高分中',
@@ -240,7 +240,7 @@ export default {
         },
         {
           'name': 'low-threshold',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 2',
           'desc': {
             'zh-CN': '低分和中等分数的界限值，值本身被划分在低分中',
@@ -251,14 +251,14 @@ export default {
         },
         {
           'name': 'score-template',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 {value}',
           'desc': { 'zh-CN': '分数显示模板', 'en-US': 'Score display template' },
           'demoId': 'show-score'
         },
         {
           'name': 'show-score',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否显示当前分数，show-score 和 show-text 不能同时为真',
@@ -269,7 +269,7 @@ export default {
         },
         {
           'name': 'show-text',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否显示辅助文字，若为真，则会从 texts 数组中选取当前分数对应的文字内容',
@@ -280,7 +280,7 @@ export default {
         },
         {
           'name': 'text-color',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 #666666',
           'desc': { 'zh-CN': '辅助文字的颜色', 'en-US': 'Color of auxiliary text' },
           'demoId': 'texts-and-text-color'
@@ -294,14 +294,14 @@ export default {
         },
         {
           'name': 'void-color',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 #BFBFBF',
           'desc': { 'zh-CN': '未选中 icon 的颜色', 'en-US': 'Color of unselected icons' },
           'demoId': 'not-selected-color'
         },
         {
           'name': 'void-icon-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 icon-starActive',
           'desc': {
             'zh-CN': '未选中 icon 的图标样式名,可选值:icon-starDisable | icon-frown | icon-meh | icon-smile',
@@ -312,28 +312,28 @@ export default {
         },
         {
           'name': 'radio',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '评分其他形态单选', 'en-US': 'Single choice for scoring other forms' },
           'demoId': 'radio-rate'
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 18px',
           'desc': { 'zh-CN': '图标字体大小', 'en-US': 'Icon font size' },
           'demoId': 'size-and-space'
         },
         {
           'name': 'space',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 24px',
           'desc': { 'zh-CN': '每个图标所占宽度', 'en-US': 'Width of each icon' },
           'demoId': 'size-and-space'
         },
         {
           'name': 'text-on-bottom',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否在图标下显示对应的文字',
@@ -343,7 +343,7 @@ export default {
         },
         {
           'name': 'modelValue / v-model',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': { 'zh-CN': '绑定值', 'en-US': 'Bound Value' },
           'demoId': 'basic-usage'

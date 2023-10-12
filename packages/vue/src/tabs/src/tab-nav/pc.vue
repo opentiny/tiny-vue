@@ -10,7 +10,7 @@
  *
  -->
 <script lang="tsx">
-import { $prefix, setup, h, $props } from '@opentiny/vue-common'
+import { $prefix, setup, h } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
 import { renderless, api } from '@opentiny/vue-renderless/tab-nav/vue'
 import Dropdown from '@opentiny/vue-dropdown'
@@ -18,7 +18,9 @@ import DropdownMenu from '@opentiny/vue-dropdown-menu'
 import DropdownItem from '@opentiny/vue-dropdown-item'
 import Tooltip from '@opentiny/vue-tooltip'
 import { iconChevronLeft, iconChevronRight, iconClose } from '@opentiny/vue-icon'
+import type { ITabNavApi } from '@opentiny/vue-renderless/types/tab-nav.type'
 import TabBar from './tab-bar.vue'
+import { tabNavPcProps } from './index'
 
 const getOrderedPanes = (state, panes) => {
   const slotDefault = state.rootTabs.$slots.default
@@ -82,36 +84,10 @@ export default {
     IconChevronRight: iconChevronRight(),
     IconClose: iconClose()
   },
-  props: {
-    ...$props,
-    panes: {
-      type: Array,
-      default: () => []
-    },
-    currentName: String,
-    editable: Boolean,
-    onTabClick: {
-      type: Function,
-      default: () => {}
-    },
-    onTabRemove: {
-      type: Function,
-      default: () => {}
-    },
-    tabStyle: String,
-    stretch: Boolean,
-    showMoreTabs: Boolean,
-    showPanesCount: Number,
-    popperClass: String,
-    dropConfig: {
-      type: Object,
-      default: () => null
-    },
-    tooltipConfig: [String, Object]
-  },
+  props: tabNavPcProps,
   inject: ['moreIcon'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api, mono: true }) as unknown as ITabNavApi
   },
   render() {
     const {

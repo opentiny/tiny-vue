@@ -48,14 +48,14 @@ export default {
       'properties': [
         {
           'name': 'container-id',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'document.body',
           'desc': { 'zh-CN': '指定滚动容器的id值', 'en-US': 'Specify the scrolling container ID.' },
           'demoId': 'set-container'
         },
         {
           'name': 'is-affix',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '固定模式', 'en-US': 'Fixed mode' },
           'demoId': 'is-affix'
@@ -72,7 +72,7 @@ export default {
         },
         {
           'name': 'mask-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '自定义滚动的目标元素类名',

@@ -46,7 +46,7 @@ export default {
       'properties': [
         {
           'name': 'modelValue',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           desc: {
             'zh-CN': '默认富文本内容',

@@ -31,14 +31,14 @@ export default {
       'properties': [
         {
           'name': 'background-image',
-          'type': 'String , Object',
+          'type': 'string , object',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置卡片的背景图片;', 'en-US': 'Set the background image of the card.' },
           'demoId': 'background-image'
         },
         {
           'name': 'form-data',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue':
             "// 该属性的默认值为 \n{cardCvv: '', cardName: '', cardYear: '', cardMonth: '', cardNumber: ''}",
           'desc': { 'zh-CN': '设置信用卡显示数据', 'en-US': 'Setting Credit Card Display Data' },

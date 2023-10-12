@@ -107,6 +107,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/alert/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconClose, iconSuccess, iconError, iconHelp, iconWarning, iconChevronDown } from '@opentiny/vue-icon'
+import type { IAlertApi } from '@opentiny/vue-renderless/types/alert.type'
 
 export default defineComponent({
   props: [
@@ -133,8 +134,8 @@ export default defineComponent({
     IconChevronDown: iconChevronDown()
   },
   emits: ['close'],
-  setup(props, context): any {
-    return setup({ props, context, renderless, api })
+  setup(props, context) {
+    return setup({ props, context, renderless, api }) as unknown as IAlertApi
   }
 })
 </script>

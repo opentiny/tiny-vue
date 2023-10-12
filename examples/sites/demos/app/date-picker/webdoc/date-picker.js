@@ -309,7 +309,7 @@ export default {
         },
         {
           'name': 'editable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '文本框可输入', 'en-US': 'The text box can be entered.' },
           'demoId': 'disabled'
@@ -442,7 +442,7 @@ export default {
         },
         {
           'name': 'show-timezone',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否开启设置日期选择面板时区选择',
@@ -452,7 +452,7 @@ export default {
         },
         {
           'name': 'show-week-number',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否展示周次序号', 'en-US': 'Class name added to the DatePicker drop-down list box' },
           'demoId': 'custom-weeks'
@@ -479,7 +479,7 @@ export default {
         },
         {
           'name': 'step',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -542,14 +542,14 @@ export default {
         },
         {
           'name': 'unlink-panels',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '在范围选择器里取消两个日期面板之间的联动', 'en-US': '' },
           'demoId': 'unlink-panels'
         },
         {
           'name': 'validate-event',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置日期选择器在输入时是否会触发表单校验;默认为 true', 'en-US': '' },
           'demoId': 'validate-event'

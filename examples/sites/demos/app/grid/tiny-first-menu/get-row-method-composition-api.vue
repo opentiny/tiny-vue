@@ -19,8 +19,7 @@
 
 <script setup lang="jsx">
 import { ref, getCurrentInstance } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Button as TinyButton } from '@opentiny/vue'
-import { alert } from '@opentiny/vue-modal'
+import { Grid as TinyGrid, GridColumn as TinyGridColumn, Button as TinyButton, Modal as TinyModal } from '@opentiny/vue'
 
 const tableData = ref([
   {
@@ -72,7 +71,7 @@ const instance = getCurrentInstance()
 function getCurrentRow(hideMessage) {
   const data = theGridRef.value.getCurrentRow()
 
-  !hideMessage && alert(`当前行数据是：${JSON.stringify(data)}`)
+  !hideMessage && TinyModal.alert(`当前行数据是：${JSON.stringify(data)}`)
 
   return data
 }
@@ -80,27 +79,27 @@ function getCurrentRow(hideMessage) {
 function getRadioRow() {
   const data = theGridRef.value.getRadioRow()
 
-  alert(`单选选中行数据是：${JSON.stringify(data)}`)
+  TinyModal.alert(`单选选中行数据是：${JSON.stringify(data)}`)
 }
 
 function getRowIndex() {
   const row = getCurrentRow(true)
   const data = theGridRef.value.getRowIndex(row)
 
-  alert(`当前选中行号是：${JSON.stringify(data)}`)
+  TinyModal.alert(`当前选中行号是：${JSON.stringify(data)}`)
 }
 
 function getRowById() {
   const row = getCurrentRow(true) || {}
   const data = theGridRef.value.getRowById(row._RID)
 
-  alert(`根据 rowId 获取的当前行：${JSON.stringify(data)}`)
+  TinyModal.alert(`根据 rowId 获取的当前行：${JSON.stringify(data)}`)
 }
 
 function getRowNode() {
   const tr = instance.vnode.el.querySelector('.tiny-grid-body__row')
   const data = theGridRef.value.getRowNode(tr)
 
-  alert(`根据 tr 元素获取对应的 row 信息：${JSON.stringify(data)}`)
+  TinyModal.alert(`根据 tr 元素获取对应的 row 信息：${JSON.stringify(data)}`)
 }
 </script>

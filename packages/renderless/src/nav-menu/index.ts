@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-
+import { INavMenuRenderlessParams, INavMenuProps, INavMenuApi, INavMenuState, menuItemType, whitchSubMenuType } from '@/types'
 import { isEmptyObject, isObject } from '../common/type'
 import PopupManager from '../common/deps/popup-manager'
 import { mapTree } from '../grid/static'
@@ -20,15 +20,15 @@ import { xss } from '../common/xss.js'
 const { nextZIndex } = PopupManager
 
 export const computedIsShowMore =
-  ({ props, state }) =>
-  () =>
-    !/^(retract|fixed|hidden)$/.test(props.overflow) && state.more && state.more.length
+  ({ props, state }: Pick<INavMenuRenderlessParams, 'props' | 'state'>) =>
+    (): boolean | number =>
+      !/^(retract|fixed|hidden)$/.test(props.overflow) && state.more && state.more.length
 
-export const computedPopClass = (state) => () =>
+export const computedPopClass = (state: INavMenuState) => (): string =>
   !state.showMore && state.subMenus && state.subMenus.length === 1 ? 'single' : ''
 
-export const computedSubMenus = (state) => () => {
-  let arr = state.subMenu
+export const computedSubMenus = (state: INavMenuState) => (): menuItemType[] => {
+  let arr: menuItemType[] = state.subMenu
 
   if (state.subMenu && !isEmptyObject(state.subMenu)) {
     if (!state.subMenu.map((item) => item.children && !isEmptyObject(item.children)).reduce((pre, cur) => pre || cur)) {
@@ -40,27 +40,27 @@ export const computedSubMenus = (state) => () => {
 }
 
 export const computedMenuStyle =
-  ({ props, state }) =>
-  () => {
-    let result = {
-      maxWidth: `${state.width}px`
+  ({ props, state }: Pick<INavMenuRenderlessParams, 'props' | 'state'>) =>
+    (): Object => {
+      let result = {
+        maxWidth: `${state.width}px`
+      }
+
+      if (props.overflow === 'retract') {
+        result.width = '0px'
+      }
+
+      return result
     }
 
-    if (props.overflow === 'retract') {
-      result.width = '0px'
-    }
-
-    return result
-  }
-
-export const computedPopStyle = (state) => () => ({
+export const computedPopStyle = (state: INavMenuState) => (): object => ({
   top: `${state.popMenuTop}px`
 })
 
 export const watchWidth =
-  ({ api, nextTick }) =>
-  () =>
-    nextTick(() => api.classify())
+  ({ api, nextTick }: Pick<INavMenuRenderlessParams, 'api' | 'nextTick'>) =>
+    () =>
+      nextTick(() => api.classify())
 
 class CloneObject {
   constructor(json, props) {
@@ -134,95 +134,95 @@ class CloneObject {
 }
 
 export const initData =
-  ({ fetchMenuData, fields, props, state }) =>
-  () => {
-    const { textField = 'title', urlField = 'url', key = 'id' } = fields || {}
-    const { parentKey, data } = props
-    const isFullUrl = (url) => /^(https?:\/\/|\/\/)[\s\S]+$/.test(url)
+  ({ fetchMenuData, fields, props, state }: Pick<INavMenuRenderlessParams, 'fetchMenuData' | 'fields' | 'props' | 'state'>) =>
+    () => {
+      const { textField = 'title', urlField = 'url', key = 'id' } = fields || {}
+      const { parentKey, data } = props
+      const isFullUrl = (url: string): boolean => /^(https?:\/\/|\/\/)[\s\S]+$/.test(url)
 
-    const buildData = (item) => {
-      const router = item[urlField] || item.route
+      const buildData = (item: menuItemType) => {
+        const router = item[urlField] || item.route
 
-      return {
-        title: item[textField],
-        route: router ? router.replace(/^#\/?/, '') : null,
-        url: item.url,
-        id: item.id,
-        pid: item.pid,
-        isFullUrl: props.allowFullUrl && isFullUrl(router),
-        target: item.target
+        return {
+          title: item[textField],
+          route: router ? router.replace(/^#\/?/, '') : null,
+          url: item.url,
+          id: item.id,
+          pid: item.pid,
+          isFullUrl: props.allowFullUrl && isFullUrl(router),
+          target: item.target
+        }
       }
+
+      if (data) {
+        state.data = mapTree(parentKey ? transformTreeData(data, key, parentKey) : data, buildData)
+        return
+      }
+
+      const menuData = props.fetchMenuData && fetchMenuData()
+
+      if (isObject(menuData) && menuData?.then) {
+        menuData.then((data) => {
+          state.data = mapTree(props.parentKey ? transformTreeData(data, key, props.parentKey) : data, buildData)
+        })
+
+        return
+      }
+
+      if (!menuData) {
+        state.data = []
+        return
+      }
+
+      let arr: menuItemType[] = []
+
+      if (menuData && menuData.length) {
+        let getMenuData = new CloneObject(menuData, props).data
+
+        arr = typeof getMenuData === 'object' && Array.isArray(getMenuData) ? getMenuData : [getMenuData]
+      }
+
+      state.data = mapTree(parentKey ? transformTreeData(arr, key, parentKey) : arr, buildData)
     }
-
-    if (data) {
-      state.data = mapTree(parentKey ? transformTreeData(data, key, parentKey) : data, buildData)
-      return
-    }
-
-    const menuData = props.fetchMenuData && fetchMenuData()
-
-    if (isObject(menuData) && menuData.then) {
-      menuData.then((data) => {
-        state.data = mapTree(props.parentKey ? transformTreeData(data, key, props.parentKey) : data, buildData)
-      })
-
-      return
-    }
-
-    if (!menuData) {
-      state.data = []
-      return
-    }
-
-    let arr = []
-
-    if (menuData && menuData.length) {
-      let getMenuData = new CloneObject(menuData, props).data
-
-      arr = typeof getMenuData === 'object' && Array.isArray(getMenuData) ? getMenuData : [getMenuData]
-    }
-
-    state.data = mapTree(parentKey ? transformTreeData(arr, key, parentKey) : arr, buildData)
-  }
 
 export const mounted =
-  ({ api, props, router, route, state }) =>
-  () => {
-    api.calcWidth()
+  ({ api, props, router, route, state }: Pick<INavMenuRenderlessParams, 'api' | 'props' | 'router' | 'route' | 'state'>) =>
+    (): void => {
+      api.calcWidth()
 
-    on(window, 'resize', api.calcWidth)
+      on(window, 'resize', api.calcWidth)
 
-    if (router) {
-      state.afterEach = () => {
-        api.setActiveMenu(api.getSelectedIndex(route.path))
+      if (router) {
+        state.afterEach = () => {
+          api.setActiveMenu(api.getSelectedIndex(route.path))
+        }
+
+        router.afterEach(state.afterEach)
       }
 
-      router.afterEach(state.afterEach)
+      props.data && props.data.length && route && api.setActiveMenu(api.getSelectedIndex(route.path))
     }
-
-    props.data && props.data.length && route && api.setActiveMenu(api.getSelectedIndex(route.path))
-  }
 
 export const unMounted =
-  ({ api, state, router }) =>
-  () => {
-    if (router && router.afterHooks) {
-      const index = router.afterHooks.indexOf(state.afterEach)
+  ({ api, state, router }: Pick<INavMenuRenderlessParams, 'api' | 'state' | 'router'>) =>
+    (): void => {
+      if (router && router.afterHooks) {
+        const index = router.afterHooks.indexOf(state.afterEach)
 
-      router.afterHooks.splice(index, 1)
+        router.afterHooks.splice(index, 1)
+      }
+
+      state.afterEach = null
+      off(window, 'resize', api.calcWidth)
     }
 
-    state.afterEach = null
-    off(window, 'resize', api.calcWidth)
-  }
-
-export const getSelectedIndex = (state) => (path) => {
+export const getSelectedIndex = (state: INavMenuState) => (path: string): number => {
   let length = state.data.length
   let index = -1
 
   if (path !== '/') {
     const queryIndex = path.indexOf('?')
-    
+
     if (queryIndex !== -1) {
       path = path.slice(0, queryIndex)
     }
@@ -243,105 +243,105 @@ export const getSelectedIndex = (state) => (path) => {
 }
 
 export const showSetting =
-  ({ parent, state }) =>
-  () => {
-    state.isShowSetting = true
+  ({ parent, state }: Pick<INavMenuRenderlessParams, 'parent' | 'state'>) =>
+    (): void => {
+      state.isShowSetting = true
 
-    const setting = parent.$el.querySelector('.more-setting')
+      const setting = parent.$el.querySelector('.more-setting') as HTMLElement
 
-    setting.style.zIndex = nextZIndex()
-  }
+      setting.style.zIndex = nextZIndex()
+    }
 
-export const willHideSetting = (state) => () => (state.isShowSetting = false)
+export const willHideSetting = (state: INavMenuState) => (): boolean => (state.isShowSetting = false)
 
 export const showSubMenu =
-  ({ api, nextTick, parent, state }) =>
-  (list, { more, index }, event) => {
-    if (list || more) {
-      state.subMenu !== list ? api.hideSubMenu() : api.stopHideSubMenu()
-      state.showMore = !!more
-      state.subMenu = list
-      state.showPopmenu = true
+  ({ api, nextTick, parent, state }: Pick<INavMenuRenderlessParams, 'api' | 'nextTick' | 'parent' | 'state'>) =>
+    (list: Array<menuItemType>, { more, index }: whitchSubMenuType, event: MouseEvent): void => {
       state.enterMenu = true
-      state.subItemSelectedIndex = -1
-      state.subIndex = -1
-      state.moreItemSelectedIndex = -1
+      if (list || more) {
+        state.subMenu !== list ? api.hideSubMenu() : api.stopHideSubMenu()
+        state.showMore = !!more
+        state.subMenu = list
+        state.showPopmenu = true
+        state.subItemSelectedIndex = -1
+        state.subIndex = -1
+        state.moreItemSelectedIndex = -1
 
-      nextTick(() => {
-        const popmenu = parent.$el.querySelector('.popmenu')
+        nextTick(() => {
+          const popmenu = parent.$el.querySelector('.popmenu') as HTMLElement
 
-        if (popmenu) {
-          popmenu.style.zIndex = nextZIndex()
+          if (popmenu) {
+            popmenu.style.zIndex = nextZIndex()
 
-          if (popmenu.classList.contains('single') && event) {
-            popmenu.style.left = `${event.target.offsetLeft}px`
-          } else {
-            popmenu.style.left = 0
+            if (popmenu.classList.contains('single') && event) {
+              popmenu.style.left = `${event.target.offsetLeft}px`
+            } else {
+              popmenu.style.left = 0
+            }
+
+            popmenu.style.height = 'auto'
+            popmenu.style.display = 'block'
           }
+        })
 
-          popmenu.style.height = 'auto'
-          popmenu.style.display = 'block'
+        if (index !== undefined) {
+          state.activeIndex = index
         }
-      })
 
-      if (index !== undefined) {
-        state.activeIndex = index
+        if (more && list && list.length && state.subActiveIndex === -1) {
+          state.subActiveIndex = 0
+        }
+      } else {
+        api.hideSubMenu()
       }
-
-      if (more && list && list.length && state.subActiveIndex === -1) {
-        state.subActiveIndex = 0
-      }
-    } else {
-      api.hideSubMenu()
     }
-  }
 
 export const hideSubMenu =
-  ({ api, parent, state }) =>
-  () => {
-    api.stopHideSubMenu()
-    state.showMore = false
-    state.showPopmenu = false
-    state.activeIndex = -1
-    state.subActiveIndex = -1
+  ({ api, parent, state }: Pick<INavMenuRenderlessParams, 'api' | 'parent' | 'state'>) =>
+    (): void => {
+      api.stopHideSubMenu()
+      state.showMore = false
+      state.showPopmenu = false
+      state.activeIndex = -1
+      state.subActiveIndex = -1
 
-    const popmenu = parent.$el.querySelector('.popmenu')
+      const popmenu = parent.$el.querySelector('.popmenu') as HTMLElement
 
-    popmenu.style.height = 'auto'
-    popmenu.style.display = 'none'
-  }
+      popmenu.style.height = 'auto'
+      popmenu.style.display = 'none'
+    }
 
 export const willHideSubMenu =
-  ({ api, state }) =>
-  () => {
-    api.stopHideSubMenu()
-    state.enterMenu = false
+  ({ api, state }: Pick<INavMenuRenderlessParams, 'api' | 'state'>) =>
+    () => {
+      api.stopHideSubMenu()
+      state.enterMenu = false
 
-    state.timer = setTimeout(() => {
-      api.hideSubMenu()
-    }, 20)
-  }
+      state.timer = window.setTimeout(() => {
+        api.hideSubMenu()
+      }, 20)
+    }
 
-export const stopHideSubMenu = (state) => () => {
+export const stopHideSubMenu = (state: INavMenuState) => (): void => {
   clearTimeout(state.timer)
 }
 
-export const setSubMenu = (state) => (value, index) => {
+export const setSubMenu = (state: INavMenuState) => (value: Array<menuItemType>, index: number): void => {
   state.subActiveIndex = index
   state.subMenu = value
   state.enterMoreMenu = true
 }
 
-export const leaveMoreMune = (state) => () =>{
+export const leaveMoreMune = (state: INavMenuState) => (): void => {
   state.enterMoreMenu = false
 }
 
 export const isHide =
-  ({ parent, state }) =>
-  (event) =>
-    !state.width || event.offsetTop >= parent.$el.offsetHeight
+  ({ parent, state }: Pick<INavMenuRenderlessParams, 'parent' | 'state'>) =>
+    (event: HTMLElement): boolean =>
+      !state.width || event.offsetTop >= parent.$el.offsetHeight
 
-export const hidePopmenu = (api) => (item) => {
+export const hidePopmenu = (api: INavMenuApi) => (item: menuItemType) => {
   if (item.url || item.route) {
     api.setActiveMenu(api.getSelectedIndex(item.url || item.route))
     api.hideSubMenu()
@@ -349,106 +349,105 @@ export const hidePopmenu = (api) => (item) => {
 }
 
 export const clickMenu =
-  ({ api, props, state }) =>
-  (item, index, parentIndex) => {
-    if(index === undefined){
-      return
-    }
-    if (state.enterMenu) {
-      state.subIndex = -1
-      state.subItemSelectedIndex = -1
-      api.setActiveMenu(index)
-    }
-    if(state.enterMoreMenu){
-      state.moreItemSelectedIndex = index
-    }else{
-      state.subItemSelectedIndex = index
-      state.subIndex = parentIndex
-    }
-    if (item.url || item.route) {
-      if (props.beforeSkip) {
-        props.beforeSkip(item) && api.skip(item, true)
-      } else {
-        api.skip(item)
+  ({ api, props, state }: Pick<INavMenuRenderlessParams, 'api' | 'props' | 'state'>) =>
+    (item: menuItemType, index: number, parentIndex: number): void => {
+      if (index === undefined) {
+        return
       }
-    }
-    api.hidePopmenu(item)
-  }
-
-export const skip =
-  ({ api, router, fields }) =>
-  (item, flag = false) => {
-    if (item.isFullUrl) {
-      const { urlField = 'url' } = fields || {}
-      const router = item[urlField] || item.route
-
-      return (window.open(xss.filterUrl(router)).opener = null)
-    }
-
-    const address =
-      !item.route || !flag ? api.getUrl(item).replace(/^#/, '') : `/${item.route || ''}`.replace(/^\/+/, '/').replace('#/', '')
-
-    if (address) {
-      return router.push(address)
-    } else {
-      return ''
-    }
-  }
-
-export const getPoint =
-  ({ api, parent }) =>
-  () => {
-    const items = parent.$el.querySelectorAll('.menu>li')
-    let index = 0
-
-    if (items) {
-      index = items.length
-
-      for (let i = 0; i < items.length; i++) {
-        if (api.isHide(items[i])) {
-          index = index - (items.length - i)
-          break
+      if (state.enterMenu) {
+        state.subIndex = -1
+        state.subItemSelectedIndex = -1
+        api.setActiveMenu(index)
+      }
+      if (state.enterMoreMenu) {
+        state.moreItemSelectedIndex = index
+      } else {
+        state.subItemSelectedIndex = index
+        state.subIndex = parentIndex
+      }
+      if (item.url || item.route) {
+        if (props.beforeSkip) {
+          props.beforeSkip(item) && api.skip(item, true)
+        } else {
+          api.skip(item, false)
         }
       }
+      api.hidePopmenu(item)
     }
 
-    return index
-  }
+export const skip =
+  ({ api, router, fields }: Pick<INavMenuRenderlessParams, 'api' | 'router' | 'fields'>) =>
+    (item: menuItemType, flag = false): string | null => {
+      if (item.isFullUrl) {
+        const { urlField = 'url' } = fields || {}
+        const router = item[urlField] || item.route
+        return (window.open(xss.filterUrl(router)).opener = null)
+      }
+
+      const address =
+        !item.route || !flag ? api.getUrl(item).replace(/^#/, '') : `/${item.route || ''}`.replace(/^\/+/, '/').replace('#/', '')
+
+      if (address) {
+        return router.push(address)
+      } else {
+        return ''
+      }
+    }
+
+export const getPoint =
+  ({ api, parent }: Pick<INavMenuRenderlessParams, 'api' | 'parent'>) =>
+    (): number => {
+      const items = parent.$el.querySelectorAll('.menu>li')as NodeListOf<HTMLElement>
+      let index = 0
+
+      if (items) {
+        index = items.length
+
+        for (let i = 0; i < items.length; i++) {
+          if (api.isHide(items[i])) {
+            index = index - (items.length - i)
+            break
+          }
+        }
+      }
+
+      return index
+    }
 
 export const classify =
-  ({ api, props, state }) =>
-  () => {
-    const isRetractOrFixed = /^(retract|fixed)$/.test(props.overflow)
-    const menuCount = isRetractOrFixed ? 0 : props.overflow === 'hidden' ? props.data.length : api.getPoint()
+  ({ api, props, state }: Pick<INavMenuRenderlessParams, 'api' | 'props' | 'state'>) =>
+    (): void => {
+      const isRetractOrFixed = /^(retract|fixed)$/.test(props.overflow)
+      const menuCount = isRetractOrFixed ? 0 : props.overflow === 'hidden' ? props.data?.length : api.getPoint()
 
-    state.more = state.data.slice(menuCount)
-  }
+      state.more = state.data.slice(menuCount)
+    }
 
 export const calcWidth =
-  ({ parent, props, state }) =>
-  () => {
-    let el = parent.$el
-    let logoWidth = parent.$slots.logo ? el.querySelector('.slot-logo').offsetWidth : 0
-    let toolbarWidth = parent.$slots.toolbar ? el.querySelector('.slot-toolbar').offsetWidth : 0
-    let menuWidth = el.offsetWidth
-    let width = props.overflow === 'retract' ? 0 : menuWidth - toolbarWidth - logoWidth
+  ({ parent, props, state }: Pick<INavMenuRenderlessParams, 'parent' | 'props' | 'state'>) =>
+    (): void => {
+      let el = parent.$el
+      let logoWidth = parent.$slots.logo ? el.querySelector('.slot-logo').offsetWidth : 0
+      let toolbarWidth = parent.$slots.toolbar ? el.querySelector('.slot-toolbar').offsetWidth : 0
+      let menuWidth = el.offsetWidth
+      let width = props.overflow === 'retract' ? 0 : menuWidth - toolbarWidth - logoWidth
 
-    width = width - 120 - (toolbarWidth ? 50 : 10) - (logoWidth ? 100 : 0)
-    state.width = width < 200 ? 0 : width
-    state.popMenuTop = el.offsetHeight
-  }
+      width = width - 120 - (toolbarWidth ? 50 : 10) - (logoWidth ? 100 : 0)
+      state.width = width < 200 ? 0 : width
+      state.popMenuTop = el.offsetHeight
+    }
 
-export const getTag = (props) => (item) =>
+export const getTag = (props: INavMenuProps) => (item: menuItemType): string =>
   (item.url && 'a') || (item.route && (!props.beforeSkip ? 'router-link' : 'a')) || 'span'
 
-export const getUrl = () => (item) => item.url || ''
+export const getUrl = () => (item: menuItemType): string => item.url || ''
 
-export const getRoute = (props) => (item) =>
+export const getRoute = (props: INavMenuProps) => (item: menuItemType): string =>
   !props.beforeSkip ? `/${item.route || ''}`.replace(/^\/+/, '/').replace('#/', '') : ''
 
-export const setActiveMenu = (state) => (index) => (state.selectedIndex = typeof index !== 'undefined' ? index : -1)
+export const setActiveMenu = (state: INavMenuState) => (index: number): number => (state.selectedIndex = typeof index !== 'undefined' ? index : -1)
 
-export const initService = ({ props, service }) => {
+export const initService = ({ props, service }: Pick<INavMenuRenderlessParams, 'props' | 'service'>): Object => {
   const fetchMenuData = () =>
     Promise.reject(
       new Error('[TINY Error][NavMenu] Prop fetchMenuData is mandatory when the framework service is not used')

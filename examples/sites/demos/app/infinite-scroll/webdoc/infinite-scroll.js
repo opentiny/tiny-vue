@@ -41,7 +41,7 @@ export default {
         },
         {
           'name': 'infinite-scroll-disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '是否禁用滚动',
@@ -51,7 +51,7 @@ export default {
         },
         {
           'name': 'infinite-scroll-immediate',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否立即加载，以防初始状态下内容无法撑满容器。',
@@ -61,7 +61,7 @@ export default {
         },
         {
           'name': 'infinite-scroll-delay',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 200',
           'desc': {
             'zh-CN': '加载延时，单位为 ms。',
@@ -71,7 +71,7 @@ export default {
         },
         {
           'name': 'infinite-scroll-distance',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 0',
           'desc': {
             'zh-CN': '加载触发距离阈值，单位为 px。',

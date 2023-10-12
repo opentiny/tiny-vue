@@ -74,6 +74,7 @@ import { renderless, api } from '@opentiny/vue-renderless/dialog-box/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconClose, iconFullscreen, iconMinscreen } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/dialog-box/index.less'
+import type { IDialogBoxApi } from '@opentiny/vue-renderless/types/dialog-box.type'
 
 export default defineComponent({
   components: {
@@ -128,7 +129,7 @@ export default defineComponent({
     return { dialog: this }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IDialogBoxApi
   }
 })
 </script>

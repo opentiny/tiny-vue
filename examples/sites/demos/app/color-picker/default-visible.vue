@@ -4,16 +4,14 @@
 
 <script>
 import { ColorPicker } from '@opentiny/vue'
-import { ref } from 'vue'
 
 export default {
   components: {
     TinyColorPicker: ColorPicker
   },
-  setup() {
-    const color = ref('#66ccff')
+  data() {
     return {
-      color,
+      color: '#66ccff'
     }
   }
 }

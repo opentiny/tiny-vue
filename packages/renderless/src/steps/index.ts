@@ -1,6 +1,8 @@
+import { IStepsRenderlessParams, IStepsVisibleConfig, IStepsNodePosConfig } from '@/types'
+
 export const updateStartIndex =
-  ({ state, props }) =>
-  () => {
+  ({ state, props }: Pick<IStepsRenderlessParams, 'state' | 'props'>) =>
+  (): void => {
     const { visibleNum, active } = props
     const maxStartIndex = Math.min(props.data.length - visibleNum, active - Math.floor(visibleNum / 2))
 
@@ -8,8 +10,8 @@ export const updateStartIndex =
   }
 
 export const isVisibleHandler =
-  ({ state, props }) =>
-  (index) => {
+  ({ state, props }: Pick<IStepsRenderlessParams, 'state' | 'props'>) =>
+  (index: number): IStepsVisibleConfig => {
     if (index < state.startIndex) {
       return 'hidden-left'
     } else if (index >= state.startIndex + props.visibleNum) {
@@ -20,8 +22,8 @@ export const isVisibleHandler =
   }
 
 export const computedRightNodePos =
-  ({ state, props }) =>
-  () => {
+  ({ state, props }: Pick<IStepsRenderlessParams, 'state' | 'props'>) =>
+  (): IStepsNodePosConfig[] => {
     const { data } = props
     const { endIndex } = state
     const dataLength = data.length
@@ -33,7 +35,7 @@ export const computedRightNodePos =
     }))
   }
 
-export const computedSpace = ({ props }) => {
+export const computedSpace = ({ props }: Pick<IStepsRenderlessParams, 'props'>): number | string => {
   const { space } = props
   if (/^\d+$/.test(space)) {
     return `${space}px`

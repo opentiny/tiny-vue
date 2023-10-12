@@ -1,6 +1,6 @@
 <template>
   <div class="demo-form">
-    <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="100px">
+    <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="100px" :show-message="false">
       <tiny-form-item label="不防抖" prop="user1">
         <tiny-input v-model="createData.user1"></tiny-input>
       </tiny-form-item>
@@ -49,7 +49,6 @@ export default {
       })
     },
     validateUser(rule, value, callback) {
-      Modal.message('开始校验')
       /**
        * 模拟异步校验
        * 如果validate-debounce为false，在连续输入的情况下，这里会创建很多校验请求

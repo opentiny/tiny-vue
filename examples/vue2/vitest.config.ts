@@ -59,6 +59,7 @@ export default defineConfig((config) => {
         '@vue/composition-api': path.resolve('node_modules/@vue/composition-api'),
         'vue': path.resolve('node_modules/vue/dist/vue.esm.js'),
         '@vue/test-utils': path.resolve('node_modules/@vue/test-utils'),
+        '@tiptap/vue': '@tiptap/vue-2',
         ...getAlias(2)
       }
     }

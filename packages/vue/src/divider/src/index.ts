@@ -1,6 +1,6 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import type { PropType } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile-first'
+import template from 'virtual-template?pc'
 
 export type DirectionType = 'horizontal' | 'vertical'
 export type BorderStyleType = 'dashed' | 'solid'

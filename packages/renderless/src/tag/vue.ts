@@ -17,7 +17,7 @@ export const api = ['state', 'handleClose', 'handleClick']
 export const renderless = (
   props: ITagProps,
   { reactive, computed }: ISharedRenderlessParamHooks,
-  { emit, parent }: ISharedRenderlessParamUtils
+  { emit, parent }: ISharedRenderlessParamUtils<never>
 ): ITagApi => {
   const state: ITagState = reactive({
     type: computed(() => props.theme || props.type),

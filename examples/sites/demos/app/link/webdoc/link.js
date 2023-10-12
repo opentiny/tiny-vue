@@ -66,7 +66,7 @@ export default {
       'properties': [
         {
           'name': 'type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 default',
           'desc': {
             'zh-CN': '该属性的可选值为 primary / success / warning / danger / info',
@@ -76,28 +76,28 @@ export default {
         },
         {
           'name': 'underline',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否下划线', 'en-US': 'Underline' },
           'demoId': 'focus-no-underline'
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否禁用状态', 'en-US': 'Disabled' },
           'demoId': 'dynamic-disable'
         },
         {
           'name': 'href',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '原生 href 属性', 'en-US': 'Native href attribute' },
           'demoId': 'config-href'
         },
         {
           'name': 'icon',
-          'type': 'Object , String',
+          'type': 'object , string',
           'defaultValue': '',
           'desc': { 'zh-CN': '图标类名', 'en-US': 'Icon class name' },
           'demoId': 'custom-icon'

@@ -12,7 +12,7 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
-const $constants = {
+export const $constants = {
   FILE_UPLOAD_INNER_TEMPLATE: 'file-upload-inner-template',
   UPLOAD_INNER: 'upload-inner',
   UPLOAD_INNER_TEMPLATE: 'upload-inner-template',
@@ -100,177 +100,179 @@ const $constants = {
   }
 }
 
-export default defineComponent({
-  name: $prefix + 'FileUpload',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    accept: String,
-    action: String,
-    autoUpload: {
-      type: Boolean,
-      default: () => true
-    },
-    beforeRemove: Function,
-    beforeUpload: Function,
-    data: Object,
-    disabled: Boolean,
-    display: {
-      type: Boolean,
-      default: () => true
-    },
-    drag: Boolean,
-    dragger: Boolean,
-    edm: {
-      type: Object,
-      default: () => ({})
-    },
-    fileIconList: {
-      type: Array,
-      default: () => []
-    },
-    fileList: {
-      type: Array,
-      default: () => []
-    },
-    fileSize: {
-      type: [Number, Array],
-      validator(value) {
-        return Array.isArray(value) ? value[0] < value[1] : typeof value === 'number'
-      }
-    },
-    fileTitle: {
-      type: String,
-      default: () => '附件'
-    },
-    headerShow: {
-      type: Boolean,
-      default: () => true
-    },
-    headers: {
-      type: Object,
-      default: () => ({})
-    },
-    httpRequest: Function,
-    limit: Number,
-    listType: {
-      type: String,
-      default: () => 'text',
-      validator: (value: string) => !!$constants.LIST_TYPE[value.toUpperCase().replace('-', '_')]
-    },
-    mergeService: {
-      type: Boolean,
-      default: () => false
-    },
-    multiple: Boolean,
-    name: {
-      type: String,
-      default: () => 'file'
-    },
-    openDownloadFile: {
-      type: Boolean,
-      default: () => false
-    },
-    showFileList: {
-      type: Boolean,
-      default: () => true
-    },
-    size: String,
-    successStatistics: {
-      type: Boolean,
-      default: () => true
-    },
-    thumbOption: {
-      type: Object,
-      default: () => ({
-        popperClass: '',
-        width: 270,
-        showDownload: false,
-        downloadFile: Function,
-        showDel: false,
-        icon: 'icon-attachment',
-        showTooltip: false
-      })
-    },
-    type: {
-      type: String,
-      default: () => 'select'
-    },
-    uploadIcon: {
-      type: Boolean,
-      default: () => true
-    },
-    withCredentials: {
-      type: Boolean,
-      default: () => true
-    },
-    isFolderTitle: {
-      type: Boolean,
-      default: false
-    },
-    listOption: {
-      type: Object,
-      default: () => ({
-        showUpdate: true,
-        showDel: true
-      })
-    },
-    maxNameLength: {
-      type: Number,
-      default: 20
-    },
-    scale: {
-      type: [Number, String],
-      default: 1
-    },
-    showName: {
-      type: Boolean,
-      default: false
-    },
-    sourceType: {
-      type: String,
-      default: 'picture',
-      validator(val) {
-        return val.split('/').every((type) => ['picture', 'video', 'audio'].includes(type))
-      }
-    },
-    showTitle: {
-      type: Boolean,
-      default: true
-    },
-    title: {
-      type: String,
-      default: ''
-    },
-    displayOnly: {
-      type: Boolean,
-      default: false
-    },
-    customClass: [String, Object, Array],
-    hwh5: Object,
-    mode: {
-      type: String,
-      default: '',
-      validator(val) {
-        return ['', 'bubble'].includes(val)
-      }
-    },
-    cacheToken: {
-      type: Boolean,
-      default: true
-    },
-    lockScroll: {
-      type: Boolean,
-      default: true
-    },
-    isHidden: {
-      type: Boolean,
-      default: false
+export const fileUploadProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  accept: String,
+  action: String,
+  autoUpload: {
+    type: Boolean,
+    default: () => true
+  },
+  beforeRemove: Function,
+  beforeUpload: Function,
+  data: Object,
+  disabled: Boolean,
+  display: {
+    type: Boolean,
+    default: () => true
+  },
+  drag: Boolean,
+  dragger: Boolean,
+  edm: {
+    type: Object,
+    default: () => ({})
+  },
+  fileIconList: {
+    type: Array,
+    default: () => []
+  },
+  fileList: {
+    type: Array,
+    default: () => []
+  },
+  fileSize: {
+    type: [Number, Array],
+    validator(value) {
+      return Array.isArray(value) ? value[0] < value[1] : typeof value === 'number'
     }
   },
+  fileTitle: {
+    type: String,
+    default: () => '附件'
+  },
+  headerShow: {
+    type: Boolean,
+    default: () => true
+  },
+  headers: {
+    type: Object,
+    default: () => ({})
+  },
+  httpRequest: Function,
+  limit: Number,
+  listType: {
+    type: String,
+    default: () => 'text',
+    validator: (value: string) => !!$constants.LIST_TYPE[value.toUpperCase().replace('-', '_')]
+  },
+  mergeService: {
+    type: Boolean,
+    default: () => false
+  },
+  multiple: Boolean,
+  name: {
+    type: String,
+    default: () => 'file'
+  },
+  openDownloadFile: {
+    type: Boolean,
+    default: () => false
+  },
+  showFileList: {
+    type: Boolean,
+    default: () => true
+  },
+  size: String,
+  successStatistics: {
+    type: Boolean,
+    default: () => true
+  },
+  thumbOption: {
+    type: Object,
+    default: () => ({
+      popperClass: '',
+      width: 270,
+      showDownload: false,
+      downloadFile: Function,
+      showDel: false,
+      icon: 'icon-attachment',
+      showTooltip: false
+    })
+  },
+  type: {
+    type: String,
+    default: () => 'select'
+  },
+  uploadIcon: {
+    type: Boolean,
+    default: () => true
+  },
+  withCredentials: {
+    type: Boolean,
+    default: () => true
+  },
+  isFolderTitle: {
+    type: Boolean,
+    default: false
+  },
+  listOption: {
+    type: Object,
+    default: () => ({
+      showUpdate: true,
+      showDel: true
+    })
+  },
+  maxNameLength: {
+    type: Number,
+    default: 20
+  },
+  scale: {
+    type: [Number, String],
+    default: 1
+  },
+  showName: {
+    type: Boolean,
+    default: false
+  },
+  sourceType: {
+    type: String,
+    default: 'picture',
+    validator(val) {
+      return val.split('/').every((type) => ['picture', 'video', 'audio'].includes(type))
+    }
+  },
+  showTitle: {
+    type: Boolean,
+    default: true
+  },
+  title: {
+    type: String,
+    default: ''
+  },
+  displayOnly: {
+    type: Boolean,
+    default: false
+  },
+  customClass: [String, Object, Array],
+  hwh5: Object,
+  mode: {
+    type: String,
+    default: '',
+    validator(val) {
+      return ['', 'bubble'].includes(val)
+    }
+  },
+  cacheToken: {
+    type: Boolean,
+    default: true
+  },
+  lockScroll: {
+    type: Boolean,
+    default: true
+  },
+  isHidden: {
+    type: Boolean,
+    default: false
+  }
+}
+
+export default defineComponent({
+  name: $prefix + 'FileUpload',
+  props: fileUploadProps,
   setup(props, context) {
     return $setup({ props, context, template, extend: { ref: 'file-upload-inner-template' } })
   }

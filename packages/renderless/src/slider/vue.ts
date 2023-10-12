@@ -67,12 +67,23 @@ export const api = [
   'inputValueChange'
 ]
 
+import {
+  ISliderProps,
+  ISliderState,
+  ISharedRenderlessParamHooks,
+  ISliderApi,
+  ISliderRenderlessParamUtils
+} from '@/types'
+
 const initState = ({ reactive, computed, props, api, parent }) => {
-  const state = reactive({
+  const state: ISliderState = reactive({
     tipStyle: {},
     barStyle: {},
     moveStyle: [],
+    points: [],
+    labels: [],
     isInit: true,
+    inputValue: [0, 0],
     isDrag: false,
     sliderSize: 0,
     showTip: false,
@@ -99,13 +110,12 @@ const initState = ({ reactive, computed, props, api, parent }) => {
 }
 
 export const renderless = (
-  props,
-  { computed, onBeforeUnmount, onMounted, reactive, watch, inject },
-  { parent, constants, nextTick, emit, mode }
+  props: ISliderProps,
+  { computed, onBeforeUnmount, onMounted, reactive, watch, inject }: ISharedRenderlessParamHooks,
+  { parent, constants, nextTick, emit, mode }: ISliderRenderlessParamUtils
 ) => {
-  const api = {}
-  const state = initState({ reactive, computed, props, api, parent })
-
+  const api = {} as ISliderApi
+  const state: ISliderState = initState({ reactive, computed, props, api, parent })
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
   Object.assign(api, {
@@ -119,7 +129,7 @@ export const renderless = (
     calculateValue: calculateValue({ props, state }),
     getActiveButtonValue: getActiveButtonValue(state),
     getActiveButtonIndex: getActiveButtonIndex({ constants, mode, state }),
-    setTipStyle: setTipStyle({ constants, mode, emit, parent, props, state }),
+    setTipStyle: setTipStyle({ constants, mode, parent, props, state }),
     customAfterAppearHook: customAfterAppearHook({ state, props }),
     customBeforeAppearHook: customBeforeAppearHook(props),
     bindEvent: bindEvent(api),

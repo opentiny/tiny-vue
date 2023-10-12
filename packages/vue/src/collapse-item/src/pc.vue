@@ -19,7 +19,6 @@
     >
       <div
         class="tiny-collapse-item__header"
-        @click="handleHeaderClick"
         role="button"
         :id="`tiny-collapse-head-${state.id}`"
         :tabindex="disabled ? undefined : 0"
@@ -31,12 +30,14 @@
         @focus="handleFocus"
         @blur="state.focusing = false"
       >
-        <div class="tiny-collapse-item__arrow">
+        <div class="tiny-collapse-item__arrow" @click="handleHeaderClick">
           <slot name="icon">
             <icon-chevron-right class="tiny-svg-size" :class="{ 'is-active': state.isActive }" />
           </slot>
         </div>
-        <slot name="title">{{ title }}</slot>
+        <div class="tiny-collapse-item__word-overflow" @click="handleHeaderClick">
+          <slot name="title">{{ title }}</slot>
+        </div>
         <div class="tiny-collapse-item__title__right">
           <slot name="title-right">{{ titleRight }}</slot>
         </div>

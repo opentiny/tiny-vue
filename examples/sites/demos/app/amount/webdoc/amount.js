@@ -13,9 +13,9 @@ export default {
       'name': { 'zh-CN': '设置日期', 'en-US': 'Set Date' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>date</code> 属性设置日期后，将会在金额组件中显示日期框。值可设置为 String 或者 Date() 类型。\n通过 <code>change</code> 获取改变后的值。</p>\n',
+          '<p>通过 <code>date</code> 属性设置日期后，将会在金额组件中显示日期框。值可设置为 string 或者 Date() 类型。\n通过 <code>change</code> 获取改变后的值。</p>\n',
         'en-US':
-          '<p>After the date is set through the <code>date</code> attribute, the date box is displayed in the amount component. The value can be of the String or Date() type. \n Obtain the changed value through <code>change</code>. </p>\n'
+          '<p>After the date is set through the <code>date</code> attribute, the date box is displayed in the amount component. The value can be of the string or Date() type. \n Obtain the changed value through <code>change</code>. </p>\n'
       },
       'codeFiles': ['set-date.vue']
     },
@@ -78,21 +78,21 @@ export default {
       'properties': [
         {
           'name': 'placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '当数据为空时的占位符', 'en-US': 'Placeholder when data is empty' },
           'demoId': 'custom-service'
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置组件大小', 'en-US': 'Set the component size' },
           'demoId': 'size'
         },
         {
           'name': 'format',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -104,14 +104,14 @@ export default {
         },
         {
           'name': 'currency',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 CNY',
           'desc': { 'zh-CN': '', 'en-US': '' },
           'demoId': 'custom-currency'
         },
         {
           'name': 'digits',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 2',
           'desc': {
             'zh-CN': '设置小数点位数，默认为 2 位。',
@@ -121,18 +121,18 @@ export default {
         },
         {
           'name': 'date',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置弹出框内显示日期框。值可设置为 String 或者 Date() 类型。',
+            'zh-CN': '设置弹出框内显示日期框。值可设置为 string 或者 Date() 类型。',
             'en-US':
-              'Set the date box to be displayed in the pop-up box. The value can be of the String or Date() type.'
+              'Set the date box to be displayed in the pop-up box. The value can be of the string or Date() type.'
           },
           'demoId': 'set-date'
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '设置是否禁用，默认为 false。',
@@ -142,7 +142,7 @@ export default {
         },
         {
           'name': 'max-len',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 15',
           'desc': {
             'zh-CN': '整数位最大长度，默认为 15 位。',
@@ -152,7 +152,7 @@ export default {
         },
         {
           'name': 'negative',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '是否可为负数，默认为 true ，可设为负数。',
@@ -163,7 +163,7 @@ export default {
         },
         {
           'name': 'popper-class',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '为 popper 添加类名(可参考 popover 组件)',
@@ -173,7 +173,7 @@ export default {
         },
         {
           'name': 'popper-append-to-body',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN':
@@ -185,14 +185,14 @@ export default {
         },
         {
           'name': 'value',
-          'type': 'String , Number',
+          'type': 'string , number',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置金额组件的值。', 'en-US': 'Set the value of the amount component.' },
           'demoId': 'digits-maxlen'
         },
         {
           'name': 'rounding',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '控制输入金额四舍五入。', 'en-US': 'Controls the rounding of the input amount.' },
           'demoId': 'digits-maxlen'
@@ -210,7 +210,7 @@ export default {
         },
         {
           'name': 'fields',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': '自定义金额组件数据映射，在没有使用框架服务时必填',

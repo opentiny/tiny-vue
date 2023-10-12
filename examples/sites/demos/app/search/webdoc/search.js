@@ -103,7 +103,7 @@ export default {
       'properties': [
         {
           'name': 'default-value',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置搜索输入框内的默认搜索值。',
@@ -113,7 +113,7 @@ export default {
         },
         {
           'name': 'clearable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': ' 属性设置显示清空图标按钮',
@@ -123,14 +123,14 @@ export default {
         },
         {
           'name': 'v-model',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置绑定的值。', 'en-US': 'Set the bound value.' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'mini',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN': '迷你模式，配置为true时，搜索默认显示为一个带图标的圆形按钮，点击后展开，默认 false 。',
@@ -141,7 +141,7 @@ export default {
         },
         {
           'name': 'placeholder',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置搜索输入框内的提示占位文本 。',
@@ -162,8 +162,8 @@ export default {
         },
         {
           'name': 'is-enter-search',
-          'type': 'Boolean',
-          'defaultValue': '',
+          'type': 'boolean',
+          'defaultValue': 'true',
           'desc': {
             'zh-CN': '是否在按下键盘Enter键的时候触发search事件',
             'en-US':
@@ -173,7 +173,7 @@ export default {
         },
         {
           'name': 'transparent',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': {
             'zh-CN':
@@ -189,9 +189,9 @@ export default {
           'type': 'Function(arg1,arg2)',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '在 input 框中输入完成时触发的回调函数;arg1:{Object 搜索类型}，arg2:{String 当前input框中值}',
+            'zh-CN': '在 input 框中输入完成时触发的回调函数;arg1:{object 搜索类型}，arg2:{string 当前input框中值}',
             'en-US':
-              'Callback function triggered when input is complete in the input box; arg1:{Object search type}, arg2:{String value in the current input box}'
+              'Callback function triggered when input is complete in the input box; arg1:{object search type}, arg2:{string value in the current input box}'
           },
           'demoId': 'change-events'
         },
@@ -200,9 +200,9 @@ export default {
           'type': 'Function(arg1,arg2)',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '在展开状态点击搜索按钮时触发的回调函数;arg1:{Object 搜索类型}，arg2:{String 当前input框中值}',
+            'zh-CN': '在展开状态点击搜索按钮时触发的回调函数;arg1:{object 搜索类型}，arg2:{string 当前input框中值}',
             'en-US':
-              'Callback function triggered when the search button is clicked in the expanded state; arg1:{Object search type}, arg2:{String value in the current input box}'
+              'Callback function triggered when the search button is clicked in the expanded state; arg1:{object search type}, arg2:{string value in the current input box}'
           },
           'demoId': 'search-events'
         },
@@ -211,9 +211,9 @@ export default {
           'type': 'Function(arg1)',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '在search组件切换类型时触发的回调函数;arg1:{Object 搜索类型}',
+            'zh-CN': '在search组件切换类型时触发的回调函数;arg1:{object 搜索类型}',
             'en-US':
-              'Callback function triggered when the type of the search component is switched; arg1:{Object search type}'
+              'Callback function triggered when the type of the search component is switched; arg1:{object search type}'
           },
           'demoId': 'select-events'
         },
@@ -223,9 +223,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '在search组件输入实时触发的回调函数;arg1:{String 当前input框中值}，arg2:{Object 搜索类型}【3.9.1新增】',
+              '在search组件输入实时触发的回调函数;arg1:{string 当前input框中值}，arg2:{object 搜索类型}【3.9.1新增】',
             'en-US':
-              'Enter the callback function triggered in real time in the search component. arg1:{String value in the current input box}, arg2:{Object search type} [added in 3.9.1]'
+              'Enter the callback function triggered in real time in the search component. arg1:{string value in the current input box}, arg2:{object search type} [added in 3.9.1]'
           },
           'demoId': ''
         }

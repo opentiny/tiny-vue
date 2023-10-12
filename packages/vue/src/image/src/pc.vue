@@ -25,7 +25,6 @@
       :src="src"
       :style="state.getImageStyle"
       :class="{
-        'tiny-image__inner-center': state.getAlignCenter,
         'tiny-image__preview': state.getPreview
       }"
     />
@@ -42,6 +41,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/image/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import ImageViewer from '@opentiny/vue-image-viewer'
+import type { IImageApi } from '@opentiny/vue-renderless/types/image.type'
 
 export default defineComponent({
   components: {
@@ -50,7 +50,7 @@ export default defineComponent({
   emits: ['load', 'error'],
   props: [...props, 'src', 'fit', 'lazy', 'scrollContainer', 'previewSrcList', 'zIndex'],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IImageApi
   }
 })
 </script>

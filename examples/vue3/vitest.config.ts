@@ -57,6 +57,7 @@ export default defineConfig((config) => {
       alias: {
         'vue': path.resolve('node_modules/vue/dist/vue.esm-bundler.js'),
         '@vue/test-utils': path.resolve('node_modules/@vue/test-utils'),
+        '@tiptap/vue': '@tiptap/vue-3',
         ...getAlias(3)
       }
     }

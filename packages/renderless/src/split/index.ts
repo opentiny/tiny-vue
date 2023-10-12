@@ -13,9 +13,9 @@
 export const px2percent = ({ numerator, denominator }) => parseFloat(numerator) / parseFloat(denominator)
 
 export const getComputedThresholdValue =
-  ({ api, props, refs, state }) =>
+  ({ api, props, vm, state }) =>
   (type) => {
-    const size = refs.outerWrapper[state.offsetSize]
+    const size = vm.$refs.outerWrapper[state.offsetSize]
 
     if (state.valueIsPx) {
       return typeof props[type] === 'string' ? props[type] : size * props[type]
@@ -37,16 +37,16 @@ export const getrightBottomMin =
     state.valueIsPx ? `${Math.max(parseFloat(oldvalue), parseFloat(newvalue))}px` : Math.max(oldvalue, newvalue)
 
 export const getAnotherOffset =
-  ({ refs, state }) =>
+  ({ vm, state }) =>
   (value) =>
-    state.valueIsPx ? `${refs.outerWrapper[state.offsetSize] - parseFloat(value)}px` : 1 - value
+    state.valueIsPx ? `${vm.$refs.outerWrapper[state.offsetSize] - parseFloat(value)}px` : 1 - value
 
 export const handleMove =
-  ({ api, emit, props, refs, state }) =>
+  ({ api, emit, props, vm, state }) =>
   (event) => {
     const pageOffset = state.isHorizontal ? event.pageX : event.pageY
     const offset = pageOffset - state.initOffset
-    const outerWidth = refs.outerWrapper[state.offsetSize]
+    const outerWidth = vm.$refs.outerWrapper[state.offsetSize]
 
     let value = state.valueIsPx
       ? `${parseFloat(state.oldOffset) + offset}px`
@@ -75,6 +75,8 @@ export const handleMove =
       ? api.getAnotherOffset(props.modelValue) === state.computedrightBottomMin
       : api.getAnotherOffset(props.modelValue).toFixed(5) === state.computedrightBottomMin.toFixed(5)
 
+    state.leftTopPane = outerWidth * value
+
     emit('update:modelValue', value)
     emit('moving', event)
   }
@@ -91,29 +93,85 @@ export const handleUp =
   }
 
 export const handleMousedown =
-  ({ api, emit, on, props, state }) =>
+  ({ api, emit, on, props, state, vm }) =>
   (event) => {
-    if (state.collapsed) return
+    if (state.dragable) {
+      state.initOffset = state.isHorizontal ? event.pageX : event.pageY
+      if (state.offset === 0) {
+        state.oldOffset = 0
+      } else if (state.offset === 100) {
+        state.oldOffset = 1
+      } else {
+        if (props.threeAreas) {
+          state.totalPane = vm.$refs.outerWrapper[state.offsetSize]
+          let val = api.px2percent({ numerator: state.leftTopPane, denominator: state.totalPane })
+          state.oldOffset = val
+          emit('update:modelValue', val)
+        } else {
+          state.oldOffset = props.modelValue
+        }
+      }
+      state.isMoving = true
 
-    state.initOffset = state.isHorizontal ? event.pageX : event.pageY
-    state.oldOffset = props.modelValue
-    state.isMoving = true
+      on(document, 'mousemove', api.handleMove)
+      on(document, 'mouseup', api.handleUp)
 
-    on(document, 'mousemove', api.handleMove)
-    on(document, 'mouseup', api.handleUp)
+      emit('movestart')
+    }
+  }
 
-    emit('movestart')
+export const buttonMousedown = () => (event) => {
+  event.stopPropagation()
+}
+
+export const buttonLeftTopClick =
+  ({ emit, props, state }) =>
+  () => {
+    if (state.offset === 100) {
+      state.offset = state.lastClickOffset
+
+      emit('update:modelValue', state.lastmodelValue)
+    } else if (state.offset !== 0) {
+      state.lastClickOffset = state.offset
+      state.offset = 0
+      state.lastmodelValue = props.modelValue
+
+      emit('update:modelValue', 0)
+    }
+    emit('left-top-click')
+  }
+
+export const buttonRightBottomClick =
+  ({ emit, props, state }) =>
+  () => {
+    if (state.offset === 0) {
+      state.offset = state.lastClickOffset
+
+      emit('update:modelValue', state.lastmodelValue)
+    } else if (state.offset !== 100) {
+      state.lastClickOffset = state.offset
+      state.offset = 100
+      state.lastmodelValue = props.modelValue
+
+      emit('update:modelValue', 1)
+    }
+    emit('right-bottom-click')
   }
 
 export const computeOffset =
-  ({ api, nextTick, props, refs, state }) =>
+  ({ api, nextTick, props, vm, state }) =>
   () => {
+    setTimeout(() => {
+      state.totalPane = vm.$refs.outerWrapper[state.offsetSize]
+      state.leftTopPane = state.totalPane * (state.offset / 100)
+    })
+
     if (state.valueIsPx) {
       nextTick(() => {
         state.offset =
           (api.px2percent({
             numerator: props.modelValue,
-            denominator: refs.outerWrapper && refs.outerWrapper[state.offsetSize]
+            denominator: vm.$refs.outerWrapper && vm.$refs.outerWrapper[state.offsetSize]
           }) *
             10000) /
           100
@@ -121,11 +179,4 @@ export const computeOffset =
     } else {
       state.offset = (props.modelValue * 10000) / 100
     }
-  }
-
-export const handleCollapse =
-  ({ emit, state }) =>
-  () => {
-    state.collapsed = !state.collapsed
-    emit('collapsedChange', state.collapsed)
   }

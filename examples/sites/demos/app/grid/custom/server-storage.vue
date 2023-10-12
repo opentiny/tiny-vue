@@ -129,33 +129,35 @@ export default {
         // 模拟接口请求回来的数据
         this.loading = false
 
-        let result = [
-          {
-            order: null,
-            property: 'introduction',
-            visible: false
-          },
-          {
-            order: null,
-            property: 'address',
-            visible: false
-          }
+        const configs = this.$refs.auiGrid.getColumns()
+
+        // 字段 introduction 在字段 address 前面
+        const result = [
+          { order: null, property: 'introduction', visible: true },
+          { order: null, property: 'address', visible: true }
         ]
 
-        const configs = this.$refs.tinyGrid.getColumns()
-
-        for (let i = 0; i < result.length; i++) {
-          const item = result[i]
+        result.forEach((item) => {
           configs.forEach((config) => {
             if (item.property === config.property) {
               Object.assign(config, item)
             }
           })
+        })
+
+        // 如果字段 introduction 不在字段 address 前面，就调整 introduction 到 address 前面
+        const introIndex = configs.findIndex((col) => col.property === 'introduction')
+        const addressIndex = configs.findIndex((col) => col.property === 'address')
+
+        if (introIndex > -1 && addressIndex > -1 && introIndex > addressIndex) {
+          configs.splice(addressIndex, 0, ...configs.splice(introIndex, 1))
         }
 
         // 更新个性化面板数据
-        this.$refs.tinyGridToolbar.updateColumn(configs)
-        this.$refs.tinyGrid.reloadCustoms(configs)
+        this.$refs.auiGridToolbar.updateColumn(configs)
+
+        // 更新表格列，第二个参数为 true 表示同时调整列顺序
+        this.$refs.auiGrid.reloadCustoms(configs, true)
       }, 0)
     },
     getData({ page }) {

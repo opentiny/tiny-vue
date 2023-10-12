@@ -10,7 +10,7 @@ export default {
     },
     {
       'demoId': 'split-button',
-      'name': { 'zh-CN': '触发对象', 'en-US': 'Trigger Object' },
+      'name': { 'zh-CN': '触发对象', 'en-US': 'Trigger object' },
       'desc': {
         'zh-CN':
           '<p>配置<code>split-button</code>属性，可以使用内置按钮触发下拉菜单,同时可以通过<code>type</code>属性配置按钮状态，用法同<code>Button</code>组件</p>\n',
@@ -151,7 +151,7 @@ export default {
       'properties': [
         {
           'name': 'type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '菜单按钮类型，同 Button 组件(只在split-button为 true 的情况下有效)。',
@@ -162,7 +162,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '菜单尺寸，在split-button为 true 的情况下也对触发按钮生效。可选值（medium / small / mini）',
@@ -173,7 +173,7 @@ export default {
         },
         {
           'name': 'split-button',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '下拉触发元素呈现为按钮组。默认值：false',
@@ -183,7 +183,7 @@ export default {
         },
         {
           'name': 'trigger',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'hover',
           'desc': {
             'zh-CN': '触发下拉的行为。可选值（hover, click），默认值：hover',
@@ -193,7 +193,7 @@ export default {
         },
         {
           'name': 'hide-on-click',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'true',
           'desc': {
             'zh-CN': '是否在点击菜单项后隐藏菜单。默认为 true。',
@@ -203,7 +203,7 @@ export default {
         },
         {
           'name': 'show-timeout',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '展开下拉菜单的延时（仅在 trigger 为 hover 时有效）。默认：250 毫秒',
@@ -214,7 +214,7 @@ export default {
         },
         {
           'name': 'hide-timeout',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '收起下拉菜单的延时（仅在 trigger 为 hover 时有效）。默认：150 毫秒',
@@ -225,14 +225,14 @@ export default {
         },
         {
           'name': 'tabindex',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '',
           'desc': { 'zh-CN': 'Dropdown 组件的 tabindex。', 'en-US': 'tabindex of the Dropdown component.' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否禁用。默认值：false',
@@ -242,14 +242,14 @@ export default {
         },
         {
           'name': 'menu-options',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '{"options":[],"textField":"label","popper-class":"","placement":"bottom-end"}',
           'desc': { 'zh-CN': '配置式配置 DropdownMenu 属性', 'en-US': 'Configuring DropdownMenu in Profiles' },
           'demoId': 'options'
         },
         {
           'name': 'visible-arrow',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否显示箭头。默认值不显示',
@@ -259,7 +259,7 @@ export default {
         },
         {
           'name': 'title',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '下拉菜单',
           'desc': {
             'zh-CN': '不使用默认插槽时，title属性可以配置菜单标题',
@@ -269,7 +269,7 @@ export default {
         },
         {
           'name': 'inherit-width',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '默认为false,设置true时，弹框的最小宽度继承触发源的宽度',
@@ -293,10 +293,10 @@ export default {
         {
           'name': 'item-click',
           'type': 'Function',
-          'defaultValue': 'Function(data:Object)',
+          'defaultValue': 'Function(data:object)',
           'desc': {
             'zh-CN':
-              '点击菜单项触发的事件回调。返回数据data为Object类型，对象包含字段 itemData 和 vm 字段，itemData 为当前选中项的数据（仅配置式时生效），vm 为当前选中项的实例',
+              '点击菜单项触发的事件回调。返回数据data为object类型，对象包含字段 itemData 和 vm 字段，itemData 为当前选中项的数据（仅配置式时生效），vm 为当前选中项的实例',
             'en-US': 'Callback triggered by clicking a menu item.'
           },
           'demoId': 'events'
@@ -304,9 +304,9 @@ export default {
         {
           'name': 'visible-change',
           'type': 'Function',
-          'defaultValue': 'Function(status:Boolean)',
+          'defaultValue': 'Function(status:boolean)',
           'desc': {
-            'zh-CN': '下拉框显示/隐藏时触发。回调参数 status 为 Boolean 类型，true 表示显示，false 表示隐藏',
+            'zh-CN': '下拉框显示/隐藏时触发。回调参数 status 为 boolean 类型，true 表示显示，false 表示隐藏',
             'en-US': 'This event is triggered when the drop-down list box is displayed or hidden.'
           },
           'demoId': 'events'
@@ -338,7 +338,7 @@ export default {
       'dropdownMenuattrs': [
         {
           'name': 'placement',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '菜单弹出位置。可选值（top/top-start/top-end/bottom/bottom-start/bottom-end），默认：bottom-end',
@@ -366,7 +366,7 @@ export default {
         },
         {
           'name': 'text-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'label',
           'desc': {
             'zh-CN': '结合options 属性使用，指定菜单项的显示文案的字段，默认字段为 label',
@@ -391,28 +391,28 @@ export default {
       'dropdownItemattrs': [
         {
           'name': 'disabled',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '禁用。默认：false', 'en-US': 'Disabled. Default value: false' },
           'demoId': 'disabled'
         },
         {
           'name': 'divided',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '显示分割线。默认值：false', 'en-US': 'Displays the split line. Default value: false' },
           'demoId': 'hide-on-click'
         },
         {
           'name': 'icon',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '内嵌图标。', 'en-US': 'Embedded icon.' },
           'demoId': 'trigger'
         },
         {
           'name': 'label',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '菜单项的显示值', 'en-US': 'Display value of a menu item' },
           'demoId': 'basic-usage'

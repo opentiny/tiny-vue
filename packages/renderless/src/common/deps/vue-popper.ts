@@ -12,14 +12,37 @@
 
 import PopupManager from './popup-manager'
 import PopperJS from './popper'
-import { on, off } from './dom'
+import { on } from './dom'
+import { ISharedRenderlessFunctionParams } from 'types/shared.type'
+import Popper from './popper'
 
-const stop = (e) => {
-  e.stopPropagation()
+interface IPopperState {
+  popperJS: Popper
+  appended: boolean
+  popperElm: HTMLElement
+  showPopper: boolean
+  referenceElm: HTMLElement
+  currentPlacement: string
 }
+
+type IPopperInputParams = ISharedRenderlessFunctionParams<never> & {
+  api: { open: Function; close: Function }
+  state: IPopperState
+  props: any
+}
+
+/** 给 popper 的click添加stop, 阻止冒泡 */
+const stop = (e: Event) => e.stopPropagation()
+
 const isServer = typeof window === 'undefined'
 
-const getReference = ({ state, props, refs, slots }) => {
+// 由于多个组件传入reference元素的方式不同，所以这里从多处查找。
+const getReference = ({
+  state,
+  props,
+  refs,
+  slots
+}: Pick<IPopperInputParams, 'state' | 'props' | 'refs' | 'slots'>) => {
   let reference = state.referenceElm || props.reference || (refs.reference && refs.reference.$el) || refs.reference
 
   if (!reference && slots.reference && slots.reference()[0]) {
@@ -30,104 +53,43 @@ const getReference = ({ state, props, refs, slots }) => {
   return reference
 }
 
-const getReferMaxZIndex = (reference) => {
-  if (!reference || !reference.nodeType) {
-    return
-  }
-
-  let getZIndex = (dom) => parseInt(window.getComputedStyle(dom).zIndex, 10) || 0
-  let max = getZIndex(reference)
-  let z
-
-  // webcomponents场景下，shadowRoot的nodeType是文档片段，文档片段没有父节点且无法做为getComputedStyle的参数
-  while (reference !== document.body && reference?.parentNode?.nodeType !== 11 && reference.parentNode) {
-    reference = reference.parentNode
-    z = getZIndex(reference)
-    max = Math.max(z, max)
-  }
-
-  return `${max + 1}`
-}
-
-const appendPopper = ({ options, props, state, parent }) => {
-  if (props.appendToBody || props.popperAppendToBody) {
-    document.body.appendChild(state.popperElm)
-  } else {
-    parent && parent.$el && parent.$el.appendChild(state.popperElm)
-    options.forceAbsolute = true
-  }
-}
-
-const setWatchFn = ({
-  watch,
-  props,
-  state,
-  emit,
-  nextTick,
-  updatePopper,
-  destroyPopper,
-  onBeforeUnmount,
-  onDeactivated,
-  doDestroy
-}) => {
-  watch(
-    () => props.modelValue,
-    (val) => {
-      if (props.trigger === 'manual') {
-        state.showPopper = val
-        emit('update:modelValue', val)
-      }
-    }
-  )
-
-  watch(
-    () => state.showPopper,
-    (val) => {
-      if (props.disabled) {
-        return
-      }
-
-      val ? nextTick(updatePopper) : destroyPopper()
-      props.trigger === 'manual' && emit('update:modelValue', val)
-    }
-  )
-
-  const removeBodyElm = () => {
-    if (state.popperElm && state.popperElm.parentNode === document.body) {
-      off(state.popperElm, 'click', stop)
-      document.body.removeChild(state.popperElm)
-    }
-  }
-
-  onBeforeUnmount(() => {
-    nextTick(() => {
-      doDestroy(true)
-      removeBodyElm()
-    })
+export default (options: IPopperInputParams) => {
+  const { parent, emit, nextTick, onBeforeUnmount, onDeactivated, props, watch, reactive, refs, slots, toRefs } =
+    options
+  const state = reactive<IPopperState>({
+    popperJS: null as any,
+    appended: false, // arrow 是否添加
+    popperElm: null as any,
+    showPopper: props.manual ? Boolean(props.modelValue) : false,
+    referenceElm: null as any,
+    currentPlacement: ''
   })
 
-  onDeactivated(() => {
-    doDestroy(true)
-    removeBodyElm()
-  })
-}
+  /** 创建箭头函数 */
+  const appendArrow = (el: HTMLElement) => {
+    if (state.appended) {
+      return
+    }
 
-const createPopperFn =
-  ({
-    state,
-    props,
-    refs,
-    slots,
-    appendArrow,
-    emit,
-    resetTransformOrigin,
-    nextTick,
-    updatePopper,
-    nextZIndex,
-    parent,
-    followHide
-  }) =>
-  (dom) => {
+    state.appended = true
+    const div = document.createElement('div')
+
+    div.setAttribute('x-arrow', '')
+    div.className = 'popper__arrow'
+    el.appendChild(div)
+  }
+
+  // 如果触发源是隐藏的，其弹出层也设置为隐藏。组件可以通过 props.popperOptions.followReferenceHide = true/false来控制
+  const followHide = (popperInstance: PopperJS) => {
+    const followReferenceHide = props?.popperOptions?.followReferenceHide || true
+    const { _popper: popper, _reference: reference } = popperInstance
+
+    if (followReferenceHide && getComputedStyle(reference).position !== 'fixed' && reference.offsetParent === null) {
+      popper.style.display = 'none'
+    }
+  }
+
+  const createPopper = () => {
     if (isServer) {
       return
     }
@@ -139,7 +101,7 @@ const createPopperFn =
     }
 
     const options = props.popperOptions || { gpuAcceleration: false }
-    state.popperElm = state.popperElm || props.popper || refs.popper || dom
+    state.popperElm = state.popperElm || props.popper || refs.popper
     const popper = state.popperElm
     let reference = getReference({ state, props, refs, slots })
 
@@ -151,10 +113,13 @@ const createPopperFn =
       appendArrow(popper)
     }
 
-    appendPopper({ options, props, state, parent })
-
-    if (props.popperJS && state.popperJS.destroy) {
-      state.popperJS.destroy()
+    // 使用的组件比较多，所以 appendToBody popperAppendToBody 这2个属性都要监听
+    if (props.appendToBody || props.popperAppendToBody) {
+      document.body.appendChild(state.popperElm)
+    } else {
+      // 只有tooltip 传入parent了
+      parent && parent.$el && parent.$el.appendChild(state.popperElm)
+      options.forceAbsolute = true
     }
 
     options.placement = state.currentPlacement
@@ -162,166 +127,80 @@ const createPopperFn =
     options.arrowOffset = props.arrowOffset || 0
     options.adjustArrow = props.adjustArrow || false
 
+    // 创建一个popperJS, 内部会立即调用一次update() 并 applyStyle等操作
     state.popperJS = new PopperJS(reference, popper, options)
-    state.popperJS.onCreate(() => {
-      emit('created', state)
-      resetTransformOrigin()
-      // 原来代码逻辑会触发2次updatePopper,暂时注释掉这一处，待观察
-      // new PopperJS 内部已经调用this.update了，所以屏蔽： nextTick(updatePopper)
-    })
+    // 1、所有使用vue-popper的都有该事件；2、有的组件会多次触发 created
+    emit('created', state)
 
     if (typeof options.onUpdate === 'function') {
       state.popperJS.onUpdate(options.onUpdate)
     }
 
-    state.popperJS._popper.style.zIndex = nextZIndex(state.popperJS._reference)
+    state.popperJS._popper.style.zIndex = PopupManager.nextZIndex().toString()
     followHide(state.popperJS)
     on(state.popperElm, 'click', stop)
   }
 
-const appendArrowFn = (state) => (el) => {
-  let hash
-  if (state.appended) {
-    return
-  }
-  state.appended = true
-
-  for (const item in el.attributes) {
-    if (el.attributes[item].name?.startsWith('_v-')) {
-      hash = el.attributes[item].name
-      break
+  /** 第一次 updatePopper 的时候，才真正执行创建 */
+  const updatePopper = (popperElm?: HTMLElement) => {
+    if (popperElm) {
+      state.popperElm = popperElm
     }
-  }
 
-  const div = document.createElement('div')
-
-  if (hash) {
-    div.setAttribute(hash, '')
-  }
-
-  div.setAttribute('x-arrow', '')
-  div.className = 'popper__arrow'
-  el.appendChild(div)
-}
-
-const resetTransformOriginFn = (state, props) => () => {
-  if (!props.transformOrigin) {
-    return
-  }
-
-  const placementMap = { top: 'bottom', bottom: 'top', left: 'right', right: 'left' }
-  const placement = state.popperJS._popper.getAttribute('x-placement').split('-')[0]
-  const origin = placementMap[placement]
-
-  if (typeof props.transformOrigin === 'string') {
-    state.popperJS._popper.style.transformOrigin = props.transformOrigin
-  } else {
-    state.popperJS._popper.style.transformOrigin = ['top', 'bottom'].includes(placement)
-      ? `center ${origin}`
-      : `${origin} center`
-  }
-}
-
-export default ({
-  parent,
-  emit,
-  nextTick,
-  onBeforeUnmount,
-  onDeactivated,
-  props,
-  watch,
-  reactive,
-  refs,
-  slots,
-  toRefs
-}) => {
-  const state = reactive({
-    popperJS: null,
-    appended: false,
-    popperElm: null,
-    showPopper: props.manual ? Boolean(props.modelValue) : false,
-    referenceElm: null,
-    currentPlacement: ''
-  })
-
-  const nextZIndex = (reference) =>
-    props.zIndex === 'relative' ? getReferMaxZIndex(reference) : PopupManager.nextZIndex()
-  const appendArrow = appendArrowFn(state)
-  const resetTransformOrigin = resetTransformOriginFn(state, props)
-
-  // 如果触发源是隐藏的，其弹出层也设置为隐藏
-  const followHide = (popperInstance) => {
-    const { popperOptions = {} } = props
-    const { followReferenceHide = true } = popperOptions
-    const { _popper: popper, _reference: reference } = popperInstance
-
-    if (followReferenceHide && getComputedStyle(reference).position !== 'fixed' && reference.offsetParent === null) {
-      popper.style.display = 'none'
-    }
-  }
-
-  let createPopper
-  const updatePopper = (dom) => {
     const popperJS = state.popperJS
     if (popperJS) {
       popperJS.update()
-      if (popperJS._popper && dom !== true) {
-        // dom===true的场景仅在select组件动态更新面版时，不更新zIndex
-        popperJS._popper.style.zIndex = nextZIndex(popperJS._reference)
-        followHide(popperJS)
-      }
     } else {
-      createPopper(dom)
+      createPopper()
     }
   }
-  createPopper = createPopperFn({
-    state,
-    props,
-    refs,
-    slots,
-    appendArrow,
-    emit,
-    resetTransformOrigin,
-    nextTick,
-    updatePopper,
-    nextZIndex,
-    parent,
-    followHide
-  })
-  const doDestroy = (forceDestroy) => {
+
+  /** 调用state.popperJS.destroy()。  默认不会移除popper dom
+   *  doDestroy() 默认执行的条件是： state.popperJS 有值且 state.showPopper = false.
+   *  当state.showPopper 为true时， 需要 doDestroy(true)!
+   */
+  const doDestroy = (forceDestroy?: boolean) => {
     if (!state.popperJS || (state.showPopper && !forceDestroy)) {
       return
     }
-    state.popperJS.destroy()
-    state.popperJS = null
+    state.popperJS.destroy() // 并未移除popper的dom
+    state.popperJS = null as any
   }
-  const destroyPopper = (remove) => {
-    if (state.popperJS) {
-      resetTransformOrigin()
-    }
 
+  /** remove时，执行真的移除popper dom操作。*/
+  const destroyPopper = (remove: 'remove' | boolean) => {
     if (remove) {
       if (state.popperElm) {
-        const parentNode = state.popperElm.parentNode
-        if (parentNode) {
-          parentNode.removeChild(state.popperElm)
-        }
+        state.popperElm.remove()
       }
     }
   }
 
-  setWatchFn({
-    watch,
-    props,
-    state,
-    emit,
-    nextTick,
-    updatePopper,
-    destroyPopper,
-    onBeforeUnmount,
-    onDeactivated,
-    doDestroy
+  // 注意： 一直以来，state.showPopper 为false时，并未调用doDestory. 像popover只是依赖这个值来 给reference元素 v-show一下
+  watch(
+    () => state.showPopper,
+    (val) => {
+      if (props.disabled) {
+        return
+      }
+      if (val) {
+        updatePopper()
+      }
+      props.trigger === 'manual' && emit('update:modelValue', val)
+    }
+  )
+
+  onBeforeUnmount(() => {
+    nextTick(() => {
+      doDestroy(true)
+      destroyPopper('remove')
+    })
   })
 
-  return { doDestroy, appendArrow, createPopper, updatePopper, destroyPopper, resetTransformOrigin, ...toRefs(state) }
+  onDeactivated(() => {
+    doDestroy(true)
+    destroyPopper('remove')
+  })
+
+  return { updatePopper, destroyPopper, doDestroy, ...toRefs(state) }
 }

@@ -62,6 +62,7 @@
 import { $prefix, setup, $props } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/loading/vue'
 import { classes } from './tokens'
+import type { ILoadingApi } from '@opentiny/vue-renderless/types/loading.type'
 
 import { defineComponent } from '@opentiny/vue-common'
 
@@ -72,8 +73,8 @@ export default defineComponent({
     ...$props,
     _constants: Object
   },
-  setup(props, context): any {
-    return setup({ props, context, renderless, api, classes })
+  setup(props, context) {
+    return setup({ props, context, renderless, api, classes }) as unknown as ILoadingApi
   }
 })
 </script>

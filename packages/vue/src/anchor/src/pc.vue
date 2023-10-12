@@ -1,6 +1,7 @@
 <script lang="tsx">
 import { setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/anchor/vue'
+import type { IAnchorApi } from '@opentiny/vue-renderless/types/anchor.type'
 
 export default defineComponent({
   name: $prefix + 'Anchor',
@@ -24,7 +25,7 @@ export default defineComponent({
   },
   emits: ['linkClick', 'onChange'],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IAnchorApi
   },
   render() {
     const {
@@ -53,7 +54,7 @@ export default defineComponent({
         : null
 
     return (
-      <div class={[isAffix ? `${anchorClass}__affix` : '', `${anchorClass}__wrapper`]} ref={isAffix ? 'fixRef' : ''}>
+      <div class={[isAffix ? `${anchorClass}__affix` : '', `${anchorClass}__wrapper`]} ref="anchorWrapRef">
         <div class={anchorClass} ref="anchorRef">
           <div class={`${anchorClass}-link-mask`} ref="maskRef"></div>
           <div class={`${anchorClass}-orbit`}>

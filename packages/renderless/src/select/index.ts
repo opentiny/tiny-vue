@@ -19,7 +19,7 @@ import PopupManager from '../common/deps/popup-manager'
 import debounce from '../common/deps/debounce'
 import { getDataset } from '../common/dataset'
 import Memorize from '../common/deps/memorize'
-import { isEmptyObject, isNull } from '../common/type'
+import { isEmptyObject, isNull, isObject } from '../common/type'
 import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
 import { extend } from '../common/object'
 import { BROWSER_NAME } from '../common'
@@ -262,17 +262,30 @@ export const emitChange =
     }
   }
 
+export const clearNoMatchValue =
+  ({ props, emit }) =>
+  (newModelValue) => {
+    if (!props.clearNoMatchValue) {
+      return
+    }
+
+    if (
+      (props.multiple && props.modelValue.length !== newModelValue.length) ||
+      (!props.multiple && props.modelValue !== newModelValue)
+    ) {
+      emit('update:modelValue', newModelValue)
+    }
+  }
+
 export const getOption =
   ({ props, state }) =>
   (value) => {
     let option
-    const isObject = Object.prototype.toString.call(value).toLowerCase() === '[object object]'
-    const isNull = Object.prototype.toString.call(value).toLowerCase() === '[object null]'
-    const isUndefined = Object.prototype.toString.call(value).toLowerCase() === '[object undefined]'
+    const optionsList = props.optimization ? props.options : state.cachedOptions
 
-    for (let i = state.cachedOptions.length - 1; i >= 0; i--) {
-      const cachedOption = state.cachedOptions[i]
-      const isEqual = isObject
+    for (let i = optionsList.length - 1; i >= 0; i--) {
+      const cachedOption = optionsList[i]
+      const isEqual = isObject(value)
         ? getObj(cachedOption.value, props.valueKey) === getObj(value, props.valueKey)
         : cachedOption.value === value
 
@@ -283,10 +296,18 @@ export const getOption =
     }
 
     if (option) {
+      if (!option.currentLabel) {
+        option.currentLabel = option[props.textField]
+      }
+
       return option
     }
 
-    const label = !isObject && !isNull && !isUndefined ? value : ''
+    let label = ''
+    if (!isObject(value) && !isNull(value) && !props.clearNoMatchValue) {
+      label = value
+    }
+
     let newOption = { value, currentLabel: label }
 
     if (props.multiple) {
@@ -296,6 +317,7 @@ export const getOption =
     return newOption
   }
 
+// 单选，获取匹配的option
 const getOptionOfSetSelected = ({ api, props }) => {
   const option = api.getOption(props.modelValue) || {}
 
@@ -310,27 +332,43 @@ const getOptionOfSetSelected = ({ api, props }) => {
     option.createdSelected = false
   }
 
+  if (!option.currentLabel) {
+    api.clearNoMatchValue('')
+  }
+
   return option
 }
 
+// 多选，获取匹配的option
 const getResultOfSetSelected = ({ props, isGrid, isTree, api }) => {
   let result = []
+  const newModelValue = []
 
   if (Array.isArray(props.modelValue)) {
     props.modelValue.forEach((value) => {
       if (isGrid || isTree) {
         const option = api.getPluginOption(value, isTree)
-
         result = result.concat(option)
+
+        if (props.clearNoMatchValue && option.length) {
+          newModelValue.push(value)
+        }
       } else {
-        result.push(api.getOption(value))
+        const option = api.getOption(value)
+        if (!props.clearNoMatchValue || (props.clearNoMatchValue && option.currentLabel)) {
+          result.push(option)
+          newModelValue.push(value)
+        }
       }
     })
   }
 
+  api.clearNoMatchValue(newModelValue)
+
   return result
 }
 
+// 单选,树/表格，获取匹配的option
 const setGridOrTreeSelected = ({ props, state, vm, isTree, api }) => {
   if (!props.modelValue) {
     state.selectedLabel = ''
@@ -349,6 +387,8 @@ const setGridOrTreeSelected = ({ props, state, vm, isTree, api }) => {
   const data = find(nestdata, (item) => props.modelValue == item[props.valueField])
 
   if (isEmptyObject(data)) {
+    api.clearNoMatchValue('')
+
     return
   }
 
@@ -395,6 +435,7 @@ export const setSelected =
     nextTick(api.resetInputHeight)
   }
 
+// 多选,树/表格，获取匹配option
 export const getPluginOption =
   ({ api, props, state }) =>
   (value, isTree) => {
@@ -625,7 +666,6 @@ export const resetInputHeight =
 
       const sizeInMap = designConfig?.state?.initialInputHeight || state.initialInputHeight
       const noSelected = state.selected.length === 0
-      const borderHeight = 2
 
       if (!state.isDisplayOnly) {
         if (!noSelected && tags) {
@@ -634,7 +674,8 @@ export const resetInputHeight =
 
             fastdom.mutate(() => {
               input.style.height =
-                Math.max(tagsClientHeight + (tagsClientHeight > sizeInMap ? borderHeight : 0), sizeInMap) + 'px'
+                Math.max(tagsClientHeight + (tagsClientHeight > sizeInMap ? constants.BORDER_HEIGHT : 0), sizeInMap) +
+                'px'
             })
           })
         } else {
@@ -645,7 +686,7 @@ export const resetInputHeight =
       }
 
       if (state.visible && state.emptyText !== false) {
-        state.selectEmitter.emit(constants.EVENT_NAME.updatePopper, true)
+        state.selectEmitter.emit(constants.EVENT_NAME.updatePopper)
       }
     })
   }
@@ -1187,7 +1228,8 @@ export const toVisible =
 export const toHide =
   ({ constants, state, props, vm, api }) =>
   () => {
-    state.selectEmitter.emit(constants.COMPONENT_NAME.SelectDropdown, constants.EVENT_NAME.updatePopper)
+    state.selectEmitter.emit(constants.COMPONENT_NAME.SelectDropdown)
+    state.selectEmitter.emit(constants.EVENT_NAME.updatePopper)
 
     if (state.filterOrSearch) {
       state.query =
@@ -1200,9 +1242,8 @@ export const toHide =
         props.filterable ? vm.$refs.input?.focus() : vm.$refs.reference?.focus()
       } else {
         if (!props.remote) {
-          state.selectEmitter.emit(constants.EVENT_NAME.queryChange, '')
-
-          state.selectEmitter.emit(constants.COMPONENT_NAME.OptionGroup, constants.EVENT_NAME.queryChange)
+          state.selectEmitter.emit(constants.EVENT_NAME.queryChange)
+          state.selectEmitter.emit(constants.COMPONENT_NAME.OptionGroup)
         }
 
         if (state.selectedLabel && !props.shape) {
@@ -1260,10 +1301,6 @@ export const watchVisible =
     value ? api.toHide() : api.toVisible()
 
     emit(constants.EVENT_NAME.visibleChange, value)
-
-    setTimeout(() => {
-      state.selectEmitter.emit(constants.EVENT_NAME.updatePopper)
-    }, props.updateDelay)
 
     if (!value && props.shape === 'filter') {
       state.softFocus = false
@@ -1694,7 +1731,7 @@ export const initQuery =
   }
 
 export const mounted =
-  ({ api, parent, state, props, vm }) =>
+  ({ api, parent, state, props, vm, constants }) =>
   () => {
     state.defaultCheckedKeys = state.gridCheckedData
     const parentEl = parent.$el
@@ -1715,8 +1752,8 @@ export const mounted =
     }
 
     state.initialInputHeight = state.isDisplayOnly
-      ? sizeMap[state.selectSize]
-      : inputClientRect.height || sizeMap[state.selectSize]
+      ? sizeMap[state.selectSize] || constants.DEFAULT_HEIGHT
+      : inputClientRect.height || sizeMap[state.selectSize] || constants.DEFAULT_HEIGHT
 
     addResizeListener(parentEl, api.handleResize)
 

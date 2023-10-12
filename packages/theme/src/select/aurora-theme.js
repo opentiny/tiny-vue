@@ -6,6 +6,5 @@ export const tinySelectAuroraTheme = {
   'ti-select-tags-margin-bottom': '2px',
   'ti-select-tags-margin-left': 'var(--ti-common-space-0)',
   'ti-select-tags-wrap-padding-left': '8px',
-  'ti-select-tags-wrap-padding-right': '30px',
   'ti-select-input-icon-close-margin-right': 'var(--ti-common-space-2x)'
 }

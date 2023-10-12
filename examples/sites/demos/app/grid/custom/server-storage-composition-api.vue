@@ -123,33 +123,42 @@ function getCustomConfigs() {
     // 模拟接口请求回来的数据
     loading = false
 
-    let result = [
+    const result = [
       {
         order: null,
         property: 'introduction',
-        visible: false
+        visible: true
       },
       {
         order: null,
         property: 'address',
-        visible: false
+        visible: true
       }
     ]
 
     const configs = tinyGridRef.value.getColumns()
 
-    for (let i = 0; i < result.length; i++) {
-      const item = result[i]
+    result.forEach((item) => {
       configs.forEach((config) => {
         if (item.property === config.property) {
           Object.assign(config, item)
         }
       })
+    })
+
+    // 如果字段 introduction 不在字段 address 前面，就调整 introduction 到 address 前面
+    const introIndex = configs.findIndex((col) => col.property === 'introduction')
+    const addressIndex = configs.findIndex((col) => col.property === 'address')
+
+    if (introIndex > -1 && addressIndex > -1 && introIndex > addressIndex) {
+      configs.splice(addressIndex, 0, ...configs.splice(introIndex, 1))
     }
 
     // 更新个性化面板数据
     tinyGridToolbarRef.value.updateColumn(configs)
-    tinyGridRef.value.reloadCustoms(configs)
+
+    // 更新表格列，第二个参数为 true 表示同时调整列顺序
+    tinyGridRef.value.reloadCustoms(configs, true)
   }, 0)
 }
 

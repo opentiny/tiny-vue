@@ -118,42 +118,42 @@ export default {
       'properties': [
         {
           'name': 'visible',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '控制抽屉显示与关闭', 'en-US': '' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'placement',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'right',
           'desc': { 'zh-CN': '添加 placement 属性设置抽屉的方向，可选值有 left|right|top|bottom', 'en-US': '' },
           'demoId': 'placement'
         },
         {
           'name': 'width',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '500px',
           'desc': { 'zh-CN': '设置抽屉的宽度', 'en-US': '' },
           'demoId': 'width'
         },
         {
           'name': 'dragable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '控制抽屉开启或关闭宽度拖拽功能', 'en-US': '' },
           'demoId': 'dragable'
         },
         {
           'name': 'mask',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'true',
           'desc': { 'zh-CN': '控制遮罩层显示隐藏 ', 'en-US': '' },
           'demoId': 'mask'
         },
         {
           'name': 'mask-closable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'true',
           'desc': {
             'zh-CN': '默认弹窗打开后，可以单击遮罩层关闭弹窗，设置 mask-closable 为 false 后将禁用该功能',
@@ -163,28 +163,28 @@ export default {
         },
         {
           'name': 'show-close',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'true',
           'desc': { 'zh-CN': '控制关闭图标显示', 'en-US': '' },
           'demoId': 'show-close'
         },
         {
           'name': 'show-header',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'true',
           'desc': { 'zh-CN': '控制头部显示', 'en-US': '' },
           'demoId': 'show-header'
         },
         {
           'name': 'show-footer',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '控制底部显示', 'en-US': '' },
           'demoId': 'show-footer'
         },
         {
           'name': 'z-index',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 2000',
           'desc': { 'zh-CN': '自定义堆叠顺序（对于某些特殊场景，比如被遮挡时可能会用到）', 'en-US': '' },
           'demoId': 'z-index'

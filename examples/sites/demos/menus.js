@@ -229,6 +229,7 @@ export const cmpMenus = [
     'children': [
       { 'nameCn': '公告牌', 'name': 'BulletinBoard', 'key': 'bulletin-board' },
       { 'nameCn': '日历', 'name': 'Calendar', 'key': 'calendar' },
+      { 'nameCn': '日历视图', 'name': 'CalendarView', 'key': 'calendar-view' },
       { 'nameCn': '信用卡表单', 'name': 'CreditCardForm', 'key': 'credit-card-form' },
       { 'nameCn': '图片裁剪', 'name': 'Crop', 'key': 'crop' },
       { 'nameCn': '表头详情栏', 'name': 'DetailPage', 'key': 'detail-page' },

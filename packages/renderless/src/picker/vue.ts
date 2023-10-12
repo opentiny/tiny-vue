@@ -67,6 +67,14 @@ import {
   setInputPaddingLeft
 } from './index'
 import { DATEPICKER } from '../common'
+import {
+  IPickerProps,
+  IPickerApi,
+  IPickerState,
+  ISharedRenderlessParamHooks,
+  IPickerRenderlessParamUtils,
+  IPickRenderlessParamExtendOptions
+} from '@/types'
 
 export const api = [
   'state',
@@ -132,31 +140,6 @@ const initState = ({ api, reactive, vm, computed, props, utils, parent }) => {
   return state
 }
 
-const initApi2 = ({ api, props, state, t }) => {
-  Object.assign(api, {
-    t,
-    state,
-    blur: blur(state),
-    getMode: getMode({ state }),
-    getType: getType({ props }),
-    dateParser: dateParser({ t }),
-    rangeParser: rangeParser(api),
-    rangeFormatter: rangeFormatter(api),
-    dateFormatter: dateFormatter({ t }),
-    getValueEmpty: getValueEmpty(props),
-    handleEndInput: handleEndInput(state),
-    handleStartInput: handleStartInput(state),
-    firstInputId: firstInputId({ props, state }),
-    secondInputId: secondInputId({ props, state }),
-    handleMouseEnter: handleMouseEnter({ props, state }),
-    initGlobalTimezone: initGlobalTimezone({ api, state, props }),
-    parseValue: parseValue({ api, props, state }),
-    handleSelectRange: handleSelectRange(state),
-    handleEnterPickerlabel: handleEnterPickerlabel({ state, props }),
-    handleEnterDisplayOnlyContent: handleEnterDisplayOnlyContent({ state, props, t })
-  })
-}
-
 const initApi = ({ api, props, hooks, state, vnode, others, utils }) => {
   const { t, emit, dispatch, nextTick, vm } = vnode
   const { TimePanel, TimeRangePanel } = others
@@ -168,7 +151,7 @@ const initApi = ({ api, props, hooks, state, vnode, others, utils }) => {
   Object.assign(api, {
     destroyPopper,
     emitDbTime: emitDbTime({ emit, state, t }),
-    hidePicker: hidePicker({ destroyPopper, state }),
+    hidePicker: hidePicker({ state }),
     handleSelectChange: ({ tz, date }) => emit('select-change', { tz, date }),
     getPanel: getPanel(others),
     handleFocus: handleFocus({ emit, vm, state }),
@@ -195,16 +178,35 @@ const initApi = ({ api, props, hooks, state, vnode, others, utils }) => {
     handlePick: handlePick({ api, state }),
     watchPickerVisible: watchPickerVisible({ api, vm, dispatch, emit, props, state }),
     formatToString: formatToString({ api, state }),
-    watchIsRange: watchIsRange({ api, props, state, TimePanel, TimeRangePanel }),
+    watchIsRange: watchIsRange({ api, state, TimePanel, TimeRangePanel }),
     mountPicker: mountPicker({ api, vm, props, state, updatePopper }),
     watchModelValue: watchModelValue({ api, props, state, dispatch }),
     computedFormat: computedFormat({ props, utils }),
     computedTriggerClass: computedTriggerClass({ props, state }),
     computedHaveTrigger: computedHaveTrigger({ props }),
-    setInputPaddingLeft: setInputPaddingLeft({ props, state, vm, nextTick })
-  })
+    setInputPaddingLeft: setInputPaddingLeft({ props, state, vm, nextTick }),
 
-  initApi2({ api, props, state, t })
+    t,
+    state,
+    blur: blur(state),
+    getMode: getMode({ state }),
+    getType: getType({ props }),
+    dateParser: dateParser({ t }),
+    rangeParser: rangeParser(api),
+    rangeFormatter: rangeFormatter(api),
+    dateFormatter: dateFormatter({ t }),
+    getValueEmpty: getValueEmpty(props),
+    handleEndInput: handleEndInput(state),
+    handleStartInput: handleStartInput(state),
+    firstInputId: firstInputId({ props, state }),
+    secondInputId: secondInputId({ props, state }),
+    handleMouseEnter: handleMouseEnter({ props, state }),
+    initGlobalTimezone: initGlobalTimezone({ api, state, props }),
+    parseValue: parseValue({ api, props, state }),
+    handleSelectRange: handleSelectRange(state),
+    handleEnterPickerlabel: handleEnterPickerlabel({ state, props }),
+    handleEnterDisplayOnlyContent: handleEnterDisplayOnlyContent({ state, t })
+  })
 }
 
 const initWatch = ({ api, state, props, watch, markRaw }) => {
@@ -236,12 +238,17 @@ const initWatch = ({ api, state, props, watch, markRaw }) => {
   watch(() => props.label, api.setInputPaddingLeft)
 }
 
-export const renderless = (props, hooks, vnode, others) => {
-  const api = {}
+export const renderless = (
+  props: IPickerProps,
+  hooks: ISharedRenderlessParamHooks,
+  vnode: IPickerRenderlessParamUtils,
+  others: IPickRenderlessParamExtendOptions
+): IPickerApi => {
+  const api = {} as IPickerApi
   const { reactive, computed, watch, onBeforeUnmount, inject, markRaw, onMounted } = hooks
   const { vm, service, parent } = vnode
   const { utils = {} } = service || {}
-  const state = initState({ api, reactive, vm, computed, props, utils, parent })
+  const state: IPickerState = initState({ api, reactive, vm, computed, props, utils, parent })
 
   parent.tinyForm = parent.tinyForm || inject('form', null)
 

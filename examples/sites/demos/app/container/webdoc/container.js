@@ -57,28 +57,28 @@ export default {
       'properties': [
         {
           'name': 'aside-width',
-          'type': 'Number , String',
+          'type': 'number , string',
           'defaultValue': '该属性的默认值为 200',
           'desc': { 'zh-CN': '左侧宽度', 'en-US': 'Left width' },
           'demoId': 'custom-with-height'
         },
         {
           'name': 'footer-height',
-          'type': 'Number , String',
+          'type': 'number , string',
           'defaultValue': '该属性的默认值为 60',
           'desc': { 'zh-CN': '底部高度', 'en-US': 'Height at the bottom' },
           'demoId': 'custom-with-height'
         },
         {
           'name': 'header-height',
-          'type': 'Number , String',
+          'type': 'number , string',
           'defaultValue': '该属性的默认值为 60',
           'desc': { 'zh-CN': '头部高度', 'en-US': 'Head height' },
           'demoId': 'custom-with-height'
         },
         {
           'name': 'pattern',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 default',
           'desc': {
             'zh-CN': '版型类型;该属性的可选值为 default / simple / legend / classic / fashion',

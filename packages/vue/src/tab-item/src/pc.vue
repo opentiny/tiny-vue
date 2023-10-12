@@ -26,6 +26,7 @@
 <script lang="ts">
 import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/tab-item/vue'
+import type { ITabItemApi } from '@opentiny/vue-renderless/types/tab-item.type'
 
 export default defineComponent({
   name: $prefix + 'TabItem',
@@ -39,7 +40,7 @@ export default defineComponent({
     lazy: Boolean
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as ITabItemApi
   }
 })
 </script>

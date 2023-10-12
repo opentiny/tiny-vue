@@ -8,11 +8,9 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 import { Breadcrumb as TinyBreadcrumb, BreadcrumbItem as TinyBreadcrumbItem } from '@opentiny/vue'
 
-const route = useRoute()
 const routes = computed(() => {
-  return route.matched
+  return []
 })
 </script>

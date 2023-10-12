@@ -32,7 +32,7 @@
         >
           <slot name="text" :slot-scope="state.searchValue">
             <span data-tag="tiny-search__text" :class="m(gcls('pc-search-present-pointer'))">{{
-              state.searchValue.text
+              state.searchValue['text']
             }}</span>
           </slot>
           <span data-tag="tiny-icon-outer" :class="m(gcls('pc-search-present-icon-outer'))">
@@ -89,8 +89,8 @@
           <a
             :class="
               m(
-                gcls('pc-search-input-btn-transtion-a-big'),
-                gcls({ 'pc-search-input-btn-transtion-a': big }),
+                gcls('pc-search-input-btn-transtion-a'),
+                gcls({ 'pc-search-input-btn-transtion-a-big': big }),
                 gcls({ 'pc-search-input-btn-transtion-a-unbig': !big })
               )
             "
@@ -168,7 +168,7 @@
       <tiny-input
         v-model="state.currentValue"
         @input="handleInput"
-        :input-class="m(gcls('mobile-search-input'), gcls({ 'mobile-search-input-bg-change': changeBgColor }))"
+        :custom-class="m(gcls('mobile-search-input'), gcls({ 'mobile-search-input-bg-change': changeBgColor }))"
         :placeholder="placeholder"
       >
         <template #prefix>
@@ -193,9 +193,8 @@
         type="text"
         @click="searchClick"
         :class="m(gcls('mobile-search-button'), gcls({ 'mobile-search-button-notShowButton': !showButton }))"
+        >{{ t('ui.search.placeholder') }}</tiny-button
       >
-        搜索
-      </tiny-button>
     </div>
   </div>
 </template>
@@ -208,6 +207,7 @@ import Input from '@opentiny/vue-input'
 import Button from '@opentiny/vue-button'
 import { classes } from './token'
 import { defineComponent } from '@opentiny/vue-common'
+import type { ISearchApi } from '@opentiny/vue-renderless/types/search.type'
 
 export default defineComponent({
   props: [
@@ -233,7 +233,7 @@ export default defineComponent({
   },
   emits: ['change', 'update:modelValue', 'select', 'search', 'clear', 'input'],
   setup(props: any, context: any) {
-    return setup({ props, context, renderless, api, classes })
+    return setup({ props, context, renderless, api, classes }) as unknown as ISearchApi
   }
 })
 </script>

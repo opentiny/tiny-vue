@@ -9,14 +9,43 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICElinksMapNSES FOR MORE DETAILS.
  *
  */
+import {
+  IAnchorState,
+  IAnchorProps,
+  IAnchorApi,
+  ISharedRenderlessParamHooks,
+  ISharedRenderlessParamUtils
+} from '@/types'
 
-import { mounted, updated, unmounted, getContainer, linkClick, onItersectionObserver } from './index'
+import {
+  mounted,
+  updated,
+  unmounted,
+  getContainer,
+  linkClick,
+  onItersectionObserver,
+  setScrollContainer,
+  getCurrentAnchor,
+  setFixAnchor,
+  handleScroll
+} from './index'
 
-export const api = ['state', 'getContainer', 'linkClick', 'onItersectionObserver']
+export const api = [
+  'state',
+  'getContainer',
+  'linkClick',
+  'onItersectionObserver',
+  'setScrollContainer',
+  'getCurrentAnchor'
+]
 
-export const renderless = (props, { onMounted, onUnmounted, onUpdated, reactive, watch }, { vm, emit }) => {
-  const api = {}
-  const state = reactive({
+export const renderless = (
+  props: IAnchorProps,
+  { onMounted, onUnmounted, onUpdated, reactive, watch }: ISharedRenderlessParamHooks,
+  { vm, emit, nextTick }: ISharedRenderlessParamUtils<never>
+): IAnchorApi => {
+  const api = {} as IAnchorApi
+  const state: IAnchorState = reactive({
     currentLink: '',
     observerLinks: {},
     expandLink: {},
@@ -24,18 +53,22 @@ export const renderless = (props, { onMounted, onUnmounted, onUpdated, reactive,
     scrollContainer: null,
     currentHash: '',
     isScroll: false,
-    scrollTimer: null,
+    scrollTimer: 0,
     offsetTop: 0
   })
 
   Object.assign(api, {
     state,
-    mounted: mounted({ vm, state, api, props }),
-    updated: updated({ state, api }),
-    unmounted: unmounted({ state }),
+    mounted: mounted({ state, api, props, nextTick }),
+    updated: updated({ api }),
+    unmounted: unmounted({ state, api }),
     getContainer: getContainer({ props }),
-    linkClick: linkClick({ state, vm, emit, props }),
-    onItersectionObserver: onItersectionObserver({ vm, state, props, emit })
+    linkClick: linkClick({ state, vm, emit, props, api }),
+    onItersectionObserver: onItersectionObserver({ state, props, api }),
+    setScrollContainer: setScrollContainer({ state, api }),
+    getCurrentAnchor: getCurrentAnchor({ vm, state, emit }),
+    setFixAnchor: setFixAnchor({ vm, props }),
+    handleScroll: handleScroll(state)
   })
 
   onMounted(api.mounted)
@@ -46,6 +79,13 @@ export const renderless = (props, { onMounted, onUnmounted, onUpdated, reactive,
     () => props.links,
     () => {
       api.mounted()
+    }
+  )
+
+  watch(
+    () => props.isAffix,
+    () => {
+      api.setFixAnchor()
     }
   )
 

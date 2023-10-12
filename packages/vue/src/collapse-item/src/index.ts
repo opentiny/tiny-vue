@@ -12,30 +12,30 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
-const $constants = {
+export const $constants = {
   INTERVAL: 50
 }
-
+export const collapseItemProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  title: String,
+  titleRight: String,
+  name: {
+    type: [String, Number],
+    default() {
+      return this._uid
+    }
+  },
+  disabled: Boolean
+}
 export default defineComponent({
   name: $prefix + 'CollapseItem',
   componentName: 'CollapseItem',
   inject: ['collapse'],
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    title: String,
-    titleRight: String,
-    name: {
-      type: [String, Number],
-      default() {
-        return this._uid
-      }
-    },
-    disabled: Boolean
-  },
+  props: collapseItemProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

@@ -1,6 +1,7 @@
 export const tinyPagerAuroraTheme = {
   'ti-pager-li-border-color': 'var(--ti-common-color-line-normal)',
-  'ti-pager-width': '30px',
+  'ti-pager-width': 'auto',
+  'ti-pager-min-width': '30px',
   'ti-pager-height': '30px',
   'ti-pager-input-height': '30px',
   'ti-pager-btn-svg-fill-color': 'var(--ti-common-color-icon-normal)',

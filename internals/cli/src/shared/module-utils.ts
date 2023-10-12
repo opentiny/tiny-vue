@@ -78,7 +78,8 @@ const getByName = ({
   isOriginal?: boolean
 }) => {
   const callback = (item) => {
-    const result = new RegExp(`/${name}/|^vue-${name}/`).test(item.path)
+    // 可以支持单独打出design的包
+    const result = new RegExp(`${name.startsWith('design') ? '' : '/'}${name}/|^vue-${name}/`).test(item.path)
     return inversion ? !result : result
   }
 

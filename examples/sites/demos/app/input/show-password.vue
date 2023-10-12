@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Input } from '@opentiny/vue'
 
 export default {
@@ -13,7 +13,7 @@ export default {
   },
   data() {
     return {
-      input: ''
+      input: '123456'
     }
   }
 }

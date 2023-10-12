@@ -331,14 +331,14 @@ export default {
       'properties': [
         {
           'name': 'modelValue / v-model',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '绑定值', 'en-US': 'Bound Value' },
           'demoId': 'value'
         },
         {
           'name': 'id',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '只对 type=message 有效，如果不想窗口重复点击，可以设置唯一的 id 防止重复提示',
@@ -349,7 +349,7 @@ export default {
         },
         {
           'name': 'is-form-reset',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '关闭弹窗，默认重置表单数据',
@@ -359,7 +359,7 @@ export default {
         },
         {
           'name': 'title',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '窗口的标题（支持开启国际化）',
@@ -369,7 +369,7 @@ export default {
         },
         {
           'name': 'type',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 alert',
           'desc': {
             'zh-CN': '窗口类型;该属性的可选值为 alert, confirm, message',
@@ -379,7 +379,7 @@ export default {
         },
         {
           'name': 'status',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '该属性的默认值为 info',
           'desc': {
             'zh-CN':
@@ -391,31 +391,31 @@ export default {
         },
         {
           'name': 'message',
-          'type': '[String, Function,VNode]',
+          'type': '[string, Function,VNode]',
           'defaultValue': '',
           'desc': {
             'zh-CN': '窗口的内容，类型为：纯文本/VNode，或返回纯文本/VNode的函数',
-            'en-US': 'Content of the modal, Type: plain text/VNode, or function that returns String/VNode'
+            'en-US': 'Content of the modal, Type: plain text/VNode, or function that returns string/VNode'
           },
           'demoId': 'message'
         },
         {
           'name': 'show-header',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否显示头部', 'en-US': 'Display Header' },
           'demoId': 'showHeader'
         },
         {
           'name': 'show-footer',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '是否显示底部', 'en-US': 'Display bottom' },
           'demoId': 'showFooter'
         },
         {
           'name': 'confirm-content',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '确认',
           'desc': {
             'zh-CN': '自定义确认按钮内容',
@@ -425,7 +425,7 @@ export default {
         },
         {
           'name': 'cancel-content',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '取消',
           'desc': {
             'zh-CN': '自定义取消按钮内容',
@@ -435,14 +435,14 @@ export default {
         },
         {
           'name': 'confirm-btn-config',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '{}',
           'desc': { 'zh-CN': '自定义确认按钮Props，可选值与TinyButton组件一致', 'en-US': 'Display mask layer' },
           'demoId': 'footer-btn-props'
         },
         {
           'name': 'cancel-btn-props',
-          'type': 'Object',
+          'type': 'object',
           'defaultValue': '{}',
           'desc': {
             'zh-CN': '自定义取消按钮props，可选值与TinyButton组件一致',
@@ -452,7 +452,7 @@ export default {
         },
         {
           'name': 'lock-view',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否锁住页面，不允许窗口之外的任何操作',
@@ -462,7 +462,7 @@ export default {
         },
         {
           'name': 'lock-scroll',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否锁住滚动条，不允许页面滚动',
@@ -472,7 +472,7 @@ export default {
         },
         {
           'name': 'mask',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN': '是否显示遮罩层',
@@ -483,35 +483,35 @@ export default {
         },
         {
           'name': 'mask-closable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '是否允许点击遮罩层关闭窗口', 'en-US': 'Window width' },
           'demoId': 'mask-closable'
         },
         {
           'name': 'esc-closable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': { 'zh-CN': '是否允许按 Esc 键关闭窗口', 'en-US': 'Window height' },
           'demoId': 'esc-closable'
         },
         {
           'name': 'resize',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '是否允许拖动调整窗口大小', 'en-US': 'Minimum width of the window' },
           'demoId': 'resize'
         },
         {
           'name': 'duration',
-          'type': '[Number, String]',
+          'type': '[number, string]',
           'defaultValue': '该属性的默认值为 3000',
           'desc': { 'zh-CN': '只对 type=message 有效，自动关闭的延时', 'en-US': 'Minimum height of the window' },
           'demoId': 'duration'
         },
         {
           'name': 'width',
-          'type': '[Number, String]',
+          'type': '[number, string]',
           'defaultValue': '',
           'desc': {
             'zh-CN': '窗口的宽度',
@@ -522,7 +522,7 @@ export default {
         },
         {
           'name': 'height',
-          'type': '[Number, String]',
+          'type': '[number, string]',
           'defaultValue': '',
           'desc': {
             'zh-CN': '窗口的高度',
@@ -533,42 +533,42 @@ export default {
         },
         {
           'name': 'min-width',
-          'type': '[Number, String]',
+          'type': '[number, string]',
           'defaultValue': '',
           'desc': { 'zh-CN': '窗口的最小宽度', 'en-US': 'Maximized display by default' },
           'demoId': 'min-width'
         },
         {
           'name': 'min-height',
-          'type': '[Number, String]',
+          'type': '[number, string]',
           'defaultValue': '',
           'desc': { 'zh-CN': '窗口的最小高度', 'en-US': '' },
           'demoId': 'min-height'
         },
         {
           'name': 'top',
-          'type': '[Number, String]',
+          'type': '[number, string]',
           'defaultValue': '该属性的默认值为 15',
           'desc': { 'zh-CN': '只对 type=message 有效，消息距离顶部的位置', 'en-US': '' },
           'demoId': 'top'
         },
         {
           'name': 'z-index',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '该属性的默认值为 3000',
           'desc': { 'zh-CN': '自定义堆叠顺序（对于某些特殊场景，比如被遮挡时可能会用到）', 'en-US': '' },
           'demoId': 'zIndex'
         },
         {
           'name': 'fullscreen',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': '默认最大化显示', 'en-US': '' },
           'demoId': 'fullscreen'
         },
         {
           'name': 'message-closable',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
           'desc': { 'zh-CN': 'message信息是否显示关闭按钮', 'en-US': '' },
           'demoId': 'status'

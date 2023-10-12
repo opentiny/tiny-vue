@@ -10,17 +10,18 @@
  *
  */
 
+import { IRadioGroupRenderlessParams } from '@/types'
 import { KEY_CODE } from '../common'
 
 export const handleKeydown =
-  ({ parent }) =>
-  (event) => {
+  (parent: IRadioGroupRenderlessParams['parent']) =>
+  (event: KeyboardEvent): void => {
     const target = event.target
-    const className = target.nodeName === 'INPUT' ? '[type=radio]' : '[role=radio]'
+    const className = target?.nodeName === 'INPUT' ? '[type=radio]' : '[role=radio]'
     const radios = parent.$el.querySelectorAll(className)
     const length = radios.length
     const index = [].indexOf.call(radios, target)
-    const roleRadiosNodes = parent.$el.querySelectorAll('[role=radio]')
+    const roleRadiosNodes: NodeListOf<HTMLInputElement> = parent.$el.querySelectorAll('[role=radio]')
 
     switch (event.keyCode) {
       case KEY_CODE.ArrowDown:
@@ -54,11 +55,11 @@ export const handleKeydown =
     }
   }
 
-export const mounted = (parent) => () => {
-  const radios = parent.$el.querySelectorAll('[type=radio]')
-  const firstLabel = parent.$el.querySelectorAll('[role=radio]')[0]
+export const mounted = (parent: IRadioGroupRenderlessParams['parent']) => (): void => {
+  const radios: NodeListOf<HTMLInputElement> = parent.$el.querySelectorAll('[type=radio]')
+  const firstLabel = parent.$el.querySelectorAll('[role=radio]')[0] as HTMLInputElement
 
-  if (![].some.call(radios, (radio) => radio.checked) && firstLabel) {
+  if (![].some.call(radios, (radio: HTMLInputElement) => radio.checked) && firstLabel) {
     firstLabel.tabIndex = 0
   }
 }

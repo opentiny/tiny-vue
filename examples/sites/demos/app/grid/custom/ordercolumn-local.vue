@@ -5,6 +5,9 @@
         id="custom-sort-columns"
         :resizable="{ storage: true }"
         :setting="{ storage: 'local', sortable: Sortable }"
+        @save-setting="saveSetting"
+        @cancel-setting="cancelSetting"
+        @reset-setting="resetSetting"
       ></tiny-grid-toolbar>
     </template>
     <tiny-grid-column type="index" width="40"></tiny-grid-column>
@@ -17,8 +20,8 @@
   </tiny-grid>
 </template>
 
-<script lang="jsx">
-import { Grid, GridColumn, GridToolbar } from '@opentiny/vue'
+<script>
+import { Grid, GridColumn, GridToolbar, Modal } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 export default {
@@ -26,6 +29,17 @@ export default {
     TinyGrid: Grid,
     TinyGridColumn: GridColumn,
     TinyGridToolbar: GridToolbar
+  },
+  methods: {
+    saveSetting(settingConfigs) {
+      Modal.alert(`点击了确认按钮${JSON.stringify(settingConfigs)}`)
+    },
+    cancelSetting(settingConfigs) {
+      Modal.alert(`点击了取消按钮${JSON.stringify(settingConfigs)}`)
+    },
+    resetSetting() {
+      Modal.alert('点击了重置按钮')
+    }
   },
   data() {
     return {

@@ -50,9 +50,9 @@ import {
   Radio as TinyRadio,
   RadioGroup as TinyRadioGroup,
   Checkbox as TinyCheckbox,
-  CheckboxGroup as TinyCheckboxGroup
+  CheckboxGroup as TinyCheckboxGroup,
+  Notify
 } from '@opentiny/vue'
-import Notify from '@opentiny/vue-notify'
 
 const btnSubmit = ref({
   loading: false,

@@ -79,6 +79,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/slider/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
+import type { ISliderApi } from '@opentiny/vue-renderless/types/slider.type'
 import '@opentiny/vue-theme/slider/index.less'
 
 export default defineComponent({
@@ -99,7 +100,7 @@ export default defineComponent({
     'formatTooltip'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as ISliderApi
   }
 })
 </script>

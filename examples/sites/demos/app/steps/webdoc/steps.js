@@ -149,7 +149,7 @@ export default {
       'properties': [
         {
           'name': 'active',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '-1',
           'desc': {
             'zh-CN': '设置步骤条的选中步骤，默认为-1 。',
@@ -159,7 +159,7 @@ export default {
         },
         {
           'name': 'count-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'count',
           'desc': {
             'zh-CN': "设置高级向导里徽标计数对应的字段名，默认为 'count'",
@@ -170,14 +170,14 @@ export default {
         },
         {
           'name': 'data',
-          'type': 'Object , Array',
+          'type': 'object , Array',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置步骤条的数据。', 'en-US': 'Set the step bar data.' },
           'demoId': 'data-resource'
         },
         {
           'name': 'name-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'name',
           'desc': {
             'zh-CN': "设置节点信息中名称对应的字段名，默认为 'name'",
@@ -187,7 +187,7 @@ export default {
         },
         {
           'name': 'space',
-          'type': 'String, Number',
+          'type': 'string, number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置步骤条节点的宽度, 取值为数字、带长度单位数值与百分比，数字会默认以px为长度单位。',
@@ -197,7 +197,7 @@ export default {
         },
         {
           'name': 'status-field',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'status',
           'desc': {
             'zh-CN': "设置数据状态对应的字段名，默认为 'status'",
@@ -207,21 +207,21 @@ export default {
         },
         {
           'name': 'text-position',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': 'bottom',
           'desc': { 'zh-CN': '设置节点文本内容的位置, 可选值有right, bottom', 'en-US': '' },
           'demoId': 'text-position'
         },
         {
           'name': 'show-divider',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '设置是否显示步骤条底部分割线', 'en-US': '' },
           'demoId': 'show-divider'
         },
         {
           'name': 'only-number',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '节点序号是否只显示数字', 'en-US': '' },
           'demoId': 'only-number'

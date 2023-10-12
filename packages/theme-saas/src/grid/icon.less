@@ -2,9 +2,9 @@
 @import './mixins/icon.less';
 @import '../custom.less';
 
-@grid-icon-prefix-cls: ~'@{css-prefix}grid-icon';
+@icon-prefix-cls: ~'@{css-prefix}icon';
 
-[class*=~'@{css-prefix}grid-icon__'] {
+[class*=~'@{css-prefix}icon__'] {
   @apply inline-block;
   @apply align-middle;
   @apply relative;
@@ -12,7 +12,7 @@
   font-family: Helvetica, Arial, 'Microsoft YaHei', sans-serif;
 }
 
-.@{grid-icon-prefix-cls} {
+.@{icon-prefix-cls} {
   &__zoomin {
     width: 0.8em;
     height: 0.8em;

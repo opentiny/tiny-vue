@@ -15,7 +15,7 @@ export default {
       fileList: [
         {
           name: 'Snipaste_2022-12-02_18-05-51.png',
-          url: 'webnova/static/images/ld.png'
+          url: '/static/images/ld.png'
         }
       ]
     }

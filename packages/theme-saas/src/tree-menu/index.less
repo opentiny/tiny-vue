@@ -43,6 +43,7 @@
         @apply h-12;
         line-height: 48px;
         @apply overflow-hidden;
+        @apply mt-0;
 
         &:hover {
           @apply bg-color-bg-2;
@@ -50,7 +51,6 @@
 
         .tree-node-icon {
           @apply order-1;
-          @apply mr-4;
         }
 
         .tree-node-number {
@@ -86,6 +86,10 @@
             }
           }
         }
+      }
+
+      .@{tree-node-prefix-cls}__content-box {
+        @apply flex-1;
       }
 
       .@{tree-node-prefix-cls}__content-number {

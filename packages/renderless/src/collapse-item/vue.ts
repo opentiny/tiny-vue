@@ -10,17 +10,24 @@
  *
  */
 
+import {
+  ICollapseItemProps,
+  ICollapseItemState,
+  ICollapseItemApi,
+  ISharedRenderlessParamHooks,
+  ICollapseItemRenderlessParamUtils
+} from '@/types'
 import { handleFocus, handleEnterClick, handleHeaderClick } from './index'
 import { guid } from '../common/string'
 
 export const api = ['state', 'isActive', 'handleFocus', 'handleEnterClick', 'handleHeaderClick']
 
-export const renderless = (props, { computed, reactive }, { parent, constants, dispatch }) => {
+export const renderless = (props: ICollapseItemProps, { computed, reactive }: ISharedRenderlessParamHooks, { parent, constants, dispatch }: ICollapseItemRenderlessParamUtils) => {
   const _constants = parent.collapse._constants
   const componentName = _constants.COMPONENT_NAME.Collapse
   const eventName = _constants.EVENT_NAME.CollapseItemClick
 
-  const state = reactive({
+  const state:ICollapseItemState = reactive({
     id: guid(),
     isClick: false,
     focusing: false,
@@ -29,7 +36,7 @@ export const renderless = (props, { computed, reactive }, { parent, constants, d
     isActive: computed(() => parent.collapse.state.activeNames.includes(props.name))
   })
 
-  const api = {
+  const api: ICollapseItemApi = {
     state,
     handleFocus: handleFocus({ state, interval: constants.INTERVAL }),
     handleEnterClick: handleEnterClick({ componentName, dispatch, eventName, parent }),

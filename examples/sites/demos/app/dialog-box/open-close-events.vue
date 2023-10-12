@@ -19,8 +19,7 @@
 </template>
 
 <script lang="jsx">
-import { Button, DialogBox } from '@opentiny/vue'
-import Notify from '@opentiny/vue-notify'
+import { Button, DialogBox, Notify } from '@opentiny/vue'
 
 export default {
   components: {

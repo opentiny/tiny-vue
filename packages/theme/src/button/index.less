@@ -58,6 +58,22 @@
     vertical-align: middle;
   }
 
+  &.is-only-icon {
+    min-width: var(--ti-button-only-icon-min-width);
+    padding: 0 var(--ti-button-only-icon-padding-horizontal);
+    border-radius: var(--ti-button-only-icon-border-radius);
+    border-color: var(--ti-button-only-icon-border-color);
+    &:hover {
+      border-color: var(--ti-button-only-icon-hover-border-color);
+    }
+    &.is-disabled {
+      border-color: var(--ti-button-only-icon-disabled-border-color);
+      &:hover {
+        border-color: var(--ti-button-only-icon-disabled-border-color);
+      }
+    }
+  }
+
   &::-moz-focus-inner {
     border: 0;
   }
@@ -155,7 +171,7 @@
 
   &:not(.is-circle) {
     .@{svg-prefix-cls}.is-text {
-      margin-right: 8px;
+      margin-right: var(--ti-button-text-has-svg-icon-margin-right);
     }
 
     &.is-loading {
@@ -329,18 +345,27 @@
       var(--ti-button-text-hover-weight),
     );
 
+    &:hover {
+      text-decoration: var(--ti-button-text-hover-text-decoration);
+    }
+
+    &.is-disabled:hover {
+      text-decoration: none;
+    }
+
     border-radius: var(--ti-button-text-hover-border-radius);
 
     padding: 0 var(--ti-button-text-padding-horizontal);
 
     &:has(.@{svg-prefix-cls}) {
       padding: 0 var(--ti-button-text-svg-padding-horizontal);
+      color: var(--ti-button-text-has-svg-text-color);
     }
 
     &:has(.@{svg-prefix-cls}):hover {
       background: var(--ti-button-text-hover-bg-color);
       border-radius: var(--ti-button-text-hover-border-radius);
-
+      color: var(--ti-button-text-has-svg-hover-text-color);
       & .@{svg-prefix-cls} {
         fill: var(--ti-button-text-svg-hover-fill-color);
       }
@@ -349,6 +374,7 @@
     &:has(.@{svg-prefix-cls}).is-disabled {
       background: transparent;
       fill: var(--ti-button-text-svg-disabled-fill-color);
+      color: var(--ti-button-text-color-disabled);
 
       & .@{svg-prefix-cls} {
         fill: var(--ti-button-text-svg-disabled-fill-color);
@@ -357,6 +383,12 @@
       &:hover {
         fill: var(--ti-button-text-svg-disabled-fill-color);
         background: transparent;
+      }
+    }
+
+    &.is-only-icon {
+      &:hover {
+        background: var(--ti-button-text-only-icon-hover-bg-color);
       }
     }
 

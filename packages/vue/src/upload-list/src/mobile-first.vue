@@ -127,7 +127,7 @@
               <div class="sm:invisible absolute top-1/2 right-2 -translate-y-1/2 cursor-pointer">
                 <icon-ellipsis
                   v-if="~['success', 'downloading'].indexOf(file.status)"
-                  @click="showOperatePanel({ file })"
+                  @click="showOperatePanel(file)"
                   :class="'fill-color-text-primary'"
                 />
                 <icon-error
@@ -511,6 +511,7 @@ import {
   IconCloudUpload
 } from '@opentiny/vue-icon'
 import Modal from '@opentiny/vue-modal'
+import type { IUploadListApi } from '@opentiny/vue-renderless/types/upload-list.type'
 
 export default defineComponent({
   name: $prefix + 'UploadList',
@@ -571,7 +572,7 @@ export default defineComponent({
     'lockScroll'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api, extendOptions: { Modal } })
+    return setup({ props, context, renderless, api, extendOptions: { Modal } }) as unknown as IUploadListApi
   }
 })
 </script>

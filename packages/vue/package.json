@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue",
   "private": true,
-  "version": "3.10.0",
+  "version": "3.11.0",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "homepage": "https://opentiny.design/tiny-vue",
   "keywords": [
@@ -34,6 +34,7 @@
     "@opentiny/vue-amount": "workspace:~",
     "@opentiny/vue-anchor": "workspace:~",
     "@opentiny/vue-area": "workspace:~",
+    "@opentiny/vue-async-flowchart": "workspace:~",
     "@opentiny/vue-autocomplete": "workspace:~",
     "@opentiny/vue-autonavi-map": "workspace:~",
     "@opentiny/vue-avatar": "workspace:~",
@@ -46,6 +47,7 @@
     "@opentiny/vue-button-group": "workspace:~",
     "@opentiny/vue-calendar": "workspace:~",
     "@opentiny/vue-calendar-bar": "workspace:~",
+    "@opentiny/vue-calendar-view": "workspace:~",
     "@opentiny/vue-card": "workspace:~",
     "@opentiny/vue-card-group": "workspace:~",
     "@opentiny/vue-card-template": "workspace:~",

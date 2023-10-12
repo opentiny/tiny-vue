@@ -117,67 +117,67 @@ export default {
       imageList1: [
         {
           type: 'image',
-          modelValue: 'https:/webnova/static/img/tiny3bg.b5dd307.jpg',
+          modelValue: '/static/images/1.jpg',
           round: true
         },
         {
           type: 'image',
-          modelValue: 'https:/webnova/static/img/tiny3bg.b5dd307.jpg',
+          modelValue: '/static/images/1.jpg',
           round: true
         }
       ],
       imageList2: [
         {
           type: 'image',
-          modelValue: 'https:/webnova/static/img/tiny3bg.b5dd307.jpg',
+          modelValue: '/static/images/1.jpg',
           round: true
         },
         {
           type: 'image',
-          modelValue: 'https:/webnova/static/img/tiny3bg.b5dd307.jpg',
+          modelValue: '/static/images/1.jpg',
           round: true
         },
         {
           type: 'image',
-          modelValue: 'https:/webnova/static/img/tiny3bg.b5dd307.jpg',
+          modelValue: '/static/images/1.jpg',
           round: true
         }
       ],
       imageList3: [
         {
           type: 'image',
-          modelValue: 'https:/webnova/static/img/tiny3bg.b5dd307.jpg',
+          modelValue: '/static/images/1.jpg',
           round: true
         },
         {
           type: 'image',
-          modelValue: 'https:/webnova/static/img/tiny3bg.b5dd307.jpg',
+          modelValue: '/static/images/1.jpg',
           round: true
         },
         {
           type: 'image',
-          modelValue: 'https:/webnova/static/img/tiny3bg.b5dd307.jpg',
+          modelValue: '/static/images/1.jpg',
           round: true
         },
         {
           type: 'image',
-          modelValue: 'https:/webnova/static/img/tiny3bg.b5dd307.jpg',
+          modelValue: '/static/images/1.jpg',
           round: true
         },
         {
           type: 'image',
-          modelValue: 'https:/webnova/static/img/tiny3bg.b5dd307.jpg',
+          modelValue: '/static/images/1.jpg',
           round: true
         },
         {
           type: 'image',
-          modelValue: 'https:/webnova/static/img/tiny3bg.b5dd307.jpg',
+          modelValue: '/static/images/1.jpg',
           round: true
         }
       ],
       text: '中文',
       textEn: 'Meta',
-      imgUrl: 'https:/webnova/static/img/tiny3bg.b5dd307.jpg'
+      imgUrl: '/static/images/1.jpg'
     }
   }
 }

@@ -9,19 +9,26 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import {
+  ICollapseProps,
+  ICollapseState,
+  ICollapseApi,
+  ISharedRenderlessParamHooks,
+  ICollapseRenderlessParamUtils
+} from '@/types'
 
 import { setActiveNames, handleItemClick } from './index'
 
 export const api = ['state']
 
-export const renderless = (props, { reactive, watch }, { parent, emit, constants }) => {
+export const renderless = (props: ICollapseProps, { reactive, watch }: ISharedRenderlessParamHooks, { parent, emit, constants }: ICollapseRenderlessParamUtils) => {
   const eventName = constants.EVENT_NAME.CollapseItemClick
 
-  const state = reactive({
+  const state: ICollapseState = reactive({
     activeNames: []
   })
 
-  const api = {
+  const api: ICollapseApi = {
     state,
     setActiveNames: setActiveNames({ emit, props, state })
   }

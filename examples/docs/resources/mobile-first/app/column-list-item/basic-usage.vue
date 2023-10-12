@@ -3,7 +3,7 @@
     <tiny-column-list-item
       v-model="checked"
       :show-checkbox="true"
-      image="webnova/static/images/1.jpg"
+      image="/static/images/1.jpg"
       size="medium"
       :options="options1"
       :flex-grow="[1, 1]"
@@ -25,7 +25,7 @@
         </ul>
       </template>
     </tiny-column-list-item>
-    <tiny-column-list-item image="webnova/static/images/1.jpg" size="medium" :options="options2" class="mb-3">
+    <tiny-column-list-item image="/static/images/1.jpg" size="medium" :options="options2" class="mb-3">
       <template #column1>
         <ul>
           <li class="text-sm mb-1 sm:mb-1.5">智能手机智能手机</li>

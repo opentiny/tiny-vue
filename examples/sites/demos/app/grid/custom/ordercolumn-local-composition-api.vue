@@ -4,6 +4,9 @@
       <tiny-grid-toolbar
         id="custom-sort-columns"
         :resizable="{ storage: true }"
+        @save-setting="saveSetting"
+        @cancel-setting="cancelSetting"
+        @reset-setting="resetSetting"
         :setting="{ storage: 'local', sortable: Sortable }"
       ></tiny-grid-toolbar>
     </template>
@@ -17,9 +20,9 @@
   </tiny-grid>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, GridToolbar as TinyGridToolbar } from '@opentiny/vue'
+import { Grid as TinyGrid, GridColumn as TinyGridColumn, GridToolbar as TinyGridToolbar, Modal } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
 const tableData = ref([
@@ -66,4 +69,14 @@ const tableData = ref([
     employees: 800
   }
 ])
+
+const saveSetting = (settingConfigs) => {
+  Modal.alert(`点击了确认按钮${JSON.stringify(settingConfigs)}`)
+}
+const cancelSetting = (settingConfigs) => {
+  Modal.alert(`点击了取消按钮${JSON.stringify(settingConfigs)}`)
+}
+const resetSetting = () => {
+  Modal.alert('点击了重置按钮')
+}
 </script>

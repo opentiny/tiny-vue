@@ -10,11 +10,12 @@
  *
  */
 
+import type { IFloatbarRenderlessParams, IFloatbarItem } from '@/types'
 import { xss } from '../common/xss.js'
 
-export const computeData = ({ props }) => {
+export const computeData = ({ props }: Pick<IFloatbarRenderlessParams, 'props'>): IFloatbarItem[] => {
   if (Array.isArray(props.data) && props.data.length) {
-    props.data.forEach((item) => {
+    props.data.forEach((item: IFloatbarItem) => {
       item.url = xss.filterUrl(item.url)
     })
   }

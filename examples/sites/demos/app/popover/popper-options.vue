@@ -5,7 +5,6 @@
     width="200"
     trigger="hover"
     :popper-options="PopperOption"
-    transform-origin="20% 40%"
     content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
   >
     <template #reference>

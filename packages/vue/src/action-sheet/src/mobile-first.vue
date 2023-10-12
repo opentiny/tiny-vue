@@ -88,6 +88,7 @@ import { setup, props, defineComponent } from '@opentiny/vue-common'
 import { IconClose } from '@opentiny/vue-icon'
 import Button from '@opentiny/vue-button'
 import Drawer from '@opentiny/vue-drawer'
+import BScroll from '@better-scroll/core'
 
 export default defineComponent({
   components: {
@@ -109,7 +110,7 @@ export default defineComponent({
     'maskClosable'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api, extendOptions: { BScroll } })
   }
 })
 </script>

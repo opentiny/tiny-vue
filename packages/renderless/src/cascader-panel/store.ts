@@ -10,11 +10,23 @@
  *
  */
 
+import {
+  ICascaderPanelConfig,
+  ICascaderPanelData,
+  ICascaderPanelNode,
+  ICascaderPanelNodePropValue
+} from '@/types'
 import Node from './node'
 import { valueEquals, coerceTruthyValueToArray as toArray } from './index'
 
-const flatNodes = (data, leafOnly) =>
-  data.reduce((prev, node) => {
+/**
+ * 深度遍历，获得扁平的节点数组
+ * @param data 节点树
+ * @param leafOnly 是否只包含叶子节点
+ * @returns 扁平的节点数组
+ */
+const flatNodes = (data: ICascaderPanelNode[], leafOnly: boolean) =>
+  data.reduce<ICascaderPanelNode[]>((prev, node) => {
     if (node.isLeaf) {
       prev.push(node)
     } else {
@@ -26,7 +38,12 @@ const flatNodes = (data, leafOnly) =>
   }, [])
 
 export default class Store {
-  constructor(data, config) {
+  config: ICascaderPanelConfig
+  nodes!: ICascaderPanelNode[]
+  flattedNodes!: ICascaderPanelNode[]
+  leafNodes!: ICascaderPanelNode[]
+
+  constructor(data: ICascaderPanelData | ICascaderPanelData[], config: ICascaderPanelConfig) {
     this.config = config
     this.initNodes(data)
   }
@@ -35,7 +52,7 @@ export default class Store {
     return this.nodes
   }
 
-  initNodes(data) {
+  initNodes(data: ICascaderPanelData | ICascaderPanelData[]) {
     data = toArray(data)
 
     this.nodes = data.map((nodeData) => new Node(nodeData, this.config))
@@ -43,7 +60,10 @@ export default class Store {
     this.leafNodes = this.getFlattedNodes(true, false)
   }
 
-  appendNode(nodeData, parentNode) {
+  /**
+   * 添加节点到parentNode
+   */
+  appendNode(nodeData: ICascaderPanelData, parentNode?: ICascaderPanelNode | null) {
     const { config, nodes } = this
     const node = new Node(nodeData, config, parentNode)
     const children = parentNode ? parentNode.children : nodes
@@ -51,18 +71,32 @@ export default class Store {
     children.push(node)
   }
 
-  appendNodes(nodeDataList, parentNode) {
+  /**
+   * 添加节点到parentNode
+   */
+  appendNodes(nodeDataList: ICascaderPanelData[], parentNode?: ICascaderPanelNode | null) {
     nodeDataList = toArray(nodeDataList)
     nodeDataList.forEach((nodeData) => this.appendNode(nodeData, parentNode))
   }
 
-  getFlattedNodes(leafOnly, cached = true) {
+  /**
+   * 获取节点值
+   * @param leafOnly 只包含叶子节点
+   * @param cached 取缓存（flattedNodes或者leafNodes）中的数据
+   * @returns
+   */
+  getFlattedNodes(leafOnly: boolean, cached: boolean = true) {
     const { leafNodes, flattedNodes } = this
     const cachedNodes = leafOnly ? leafNodes : flattedNodes
     return cached ? cachedNodes : flatNodes(this.nodes, leafOnly)
   }
 
-  getNodeByValue(value) {
+  /**
+   * 通过节点值获取Node节点
+   * @param value
+   * @returns
+   */
+  getNodeByValue(value: ICascaderPanelNodePropValue | null) {
     if (value) {
       const lazy = !this.config.lazy
       const nodes = this.getFlattedNodes(false, lazy).filter(

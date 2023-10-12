@@ -53,6 +53,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/alert/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconClose, iconSuccess, iconError, iconHelp, iconWarning } from '@opentiny/vue-icon'
+import type { IAlertApi } from '@opentiny/vue-renderless/types/alert.type'
 import '@opentiny/vue-theme/alert/index.less'
 
 export default defineComponent({
@@ -66,7 +67,7 @@ export default defineComponent({
   },
   emits: ['close'],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IAlertApi
   }
 })
 </script>
