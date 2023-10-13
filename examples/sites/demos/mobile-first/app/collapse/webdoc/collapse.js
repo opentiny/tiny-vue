@@ -114,7 +114,7 @@ export default {
       codeFiles: ['nested-form.vue']
     },
     {
-      demoId: 'enumeration',
+      demoId: 'slot-title',
       name: {
         'zh-CN': '自定义 Title 展示',
         'en-US': 'events'
@@ -123,7 +123,7 @@ export default {
         'zh-CN': '<p>通过配置 Collapse 内置的 title 插槽实现自定义标题展示<p>',
         'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['enumeration.vue']
+      codeFiles: ['slot-title.vue']
     },
     {
       demoId: 'slot-title-right',

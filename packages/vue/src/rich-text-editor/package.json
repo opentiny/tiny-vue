@@ -11,6 +11,7 @@
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-rich-text-editor": "link:",
     "@opentiny/vue-theme": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
     "@tiptap/core": "^2.1.6",

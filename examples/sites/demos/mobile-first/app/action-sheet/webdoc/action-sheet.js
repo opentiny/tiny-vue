@@ -76,6 +76,18 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['slot.vue']
+    },
+    {
+      demoId: 'ellipsis',
+      name: {
+        'zh-CN': '超出省略',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p>添加属性 `ellipsis` 选项内容会超出隐藏。<p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['ellipsis.vue']
     }
   ],
   apis: []

@@ -21,7 +21,8 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>添加 `placement` 属性设置抽屉的方向，可选值有 `left|right|top|bottom`，默认值为 `right`。<p>',
+        'zh-CN':
+          '<p>添加 <code>placement</code> 属性设置抽屉的方向，可选值有 <code>left|right|top|bottom</code>，默认值为 <code>right</code>。<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['placement.vue']
@@ -33,7 +34,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>添加 `width` 属性设置抽屉的宽度，默认值为 `300px`。<p>',
+        'zh-CN': '<p>添加 <code>width</code> 属性设置抽屉的宽度，默认值为 <code>300px</code>。<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['width.vue']
@@ -45,7 +46,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>添加 `dragable` 属性开启抽屉宽度拖拽功能，默认值为 `false`。<p>',
+        'zh-CN': '<p>添加 <code>dragable</code> 属性开启抽屉宽度拖拽功能，默认值为 <code>false</code>。<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['dragable.vue']
@@ -57,7 +58,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>添加 `mask` 属性可以关闭遮罩层，默认值为 `true` 。<p>',
+        'zh-CN': '<p>添加 <code>mask</code> 属性可以关闭遮罩层，默认值为 <code>true</code> 。<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['mask.vue']
@@ -70,7 +71,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>默认弹窗打开后，可以单击遮罩层关闭弹窗，设置 `mask-closable` 为 `false` 后将禁用该功能，默认值为 `true` 。<p>',
+          '<p>默认弹窗打开后，可以单击遮罩层关闭弹窗，设置 <code>mask-closable</code> 为 <code>false</code> 后将禁用该功能，默认值为 <code>true</code> 。<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['mask-event.vue']
@@ -82,7 +83,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>- show-header: 显示头部，默认值为 true；- show-footer: 显示底部，默认值为 false；<p>',
+        'zh-CN': '<p>- show-header: 显示头部，默认值为 true；<br>- show-footer: 显示底部，默认值为 false；<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['show.vue']
@@ -95,7 +96,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>- header: 头部插槽，默认显示头部，设置 :show-header="true" 时有效；- header-right: 头部右侧插槽，默认显示关闭功能；- footer: 底部插槽，默认隐藏底部，设置 :show-footer="true" 时有效；<p>',
+          '<p>- header: 头部插槽，默认显示头部，设置 :show-header="true" 时有效；<br>- header-right: 头部右侧插槽，默认显示关闭功能；<br>- footer: 底部插槽，默认隐藏底部，设置 :show-footer="true" 时有效；<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['slot.vue']
@@ -107,7 +108,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>- hide: 关闭抽屉事件；- confirm: 确认事件，设置 :show-footer="true" 时有效；<p>',
+        'zh-CN': '<p>- hide: 关闭抽屉事件；<br>- confirm: 确认事件，设置 :show-footer="true" 时有效；<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['event.vue']
