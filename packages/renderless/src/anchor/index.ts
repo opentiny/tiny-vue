@@ -50,10 +50,15 @@ const updateSkidPosition = ({ vm, state, emit }: Pick<IAnchorRenderlessParams, '
   const activeEl = vm.$refs[currentLink]
   const { skidRef, maskRef, anchorRef } = vm.$refs
 
-  if (!activeEl || !anchorRef) {
+  if (!activeEl) {
     return
   }
+
   emit('onChange', currentLink)
+
+  if (!anchorRef || !skidRef || !maskRef) {
+    return
+  }
 
   const { offsetHeight, offsetWidth } = activeEl
   const { top: linkTitleClientTop, left: linkTitleClientLeft } = activeEl.getBoundingClientRect()

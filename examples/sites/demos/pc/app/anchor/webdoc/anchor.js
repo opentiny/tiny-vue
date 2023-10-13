@@ -79,6 +79,16 @@ export default {
             'en-US': 'Class name of the customized scrolling target element'
           },
           'demoId': 'set-container'
+        },
+        {
+          'name': 'type',
+          'type': 'string',
+          'defaultValue': '"line"',
+          'desc': {
+            'zh-CN': '锚点类型，可选"line", "dot"两种',
+            'en-US': 'Anchor type, providing two types: line and dot'
+          },
+          'demoId': 'basic-usage'
         }
       ],
       'events': [
