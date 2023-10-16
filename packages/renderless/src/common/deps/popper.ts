@@ -127,16 +127,20 @@ export const getScrollParent: (el: HTMLElement) => HTMLElement = (el) => {
 /** 计算 el 在父元素中的定位 */
 const getOffsetRectRelativeToCustomParent = (el: HTMLElement, parent: HTMLElement, fixed: boolean) => {
   let { top, left, width, height } = getBoundingClientRect(el)
-  let parentRect = getBoundingClientRect(parent)
 
+  // 如果是fixed定位，直接返回相对视口位置
   if (fixed) {
-    let { scrollTop, scrollLeft } = getScrollParent(parent)
-    parentRect.top += scrollTop
-    parentRect.bottom += scrollTop
-    parentRect.left += scrollLeft
-    parentRect.right += scrollLeft
+    return {
+      top: top,
+      left: left,
+      bottom: top + height,
+      right: left + width,
+      width,
+      height
+    }
   }
 
+  let parentRect = getBoundingClientRect(parent)
   let rect = {
     top: top - parentRect.top,
     left: left - parentRect.left,
@@ -206,6 +210,10 @@ const getAllScrollParents: (el: HTMLElement, parents?: HTMLElement[]) => HTMLEle
 
   if (parent) {
     isScrollElement(parent) && parents.push(parent)
+    // 如果祖先元素是fixed，则不再继续往上查找
+    if (getStyleComputedProperty(parent, 'position') === 'fixed') {
+      return parents
+    }
     return getAllScrollParents(parent, parents) as HTMLElement[]
   }
 
@@ -744,10 +752,11 @@ class Popper {
       let scrollTop = isFixed ? 0 : getScrollTopValue(scrollParent)
       let scrollLeft = isFixed ? 0 : getScrollLeftValue(scrollParent)
 
+      const viewportWindow = PopupManager.viewportWindow || window
       boundaries = {
         top: 0 - (offsetParentRect.top - scrollTop),
-        right: window.document.documentElement.clientWidth - (offsetParentRect.left - scrollLeft),
-        bottom: window.document.documentElement.clientHeight - (offsetParentRect.top - scrollTop),
+        right: viewportWindow.document.documentElement.clientWidth - (offsetParentRect.left - scrollLeft),
+        bottom: viewportWindow.document.documentElement.clientHeight - (offsetParentRect.top - scrollTop),
         left: 0 - (offsetParentRect.left - scrollLeft)
       }
     } else {
