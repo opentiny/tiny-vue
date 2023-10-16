@@ -41,6 +41,10 @@ export const handleChange = (editor) => {
 export const setLink = (editor) => {
   return () => {
     const previousUrl = editor.getAttributes('link').href
+    if (previousUrl) {
+      editor.chain().focus().toggleMark('link').run()
+      return
+    }
     const url = window.prompt('URL', previousUrl)
     if (url === null) {
       return

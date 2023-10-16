@@ -8,12 +8,12 @@ export default {
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['basic-usage.vue']
     },
-    {
-      'demoId': 'collaboration-usage',
-      'name': { 'zh-CN': '协同编辑用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['collaboration-usage.vue']
-    },
+    // {
+    //   'demoId': 'collaboration-usage',
+    //   'name': { 'zh-CN': '协同编辑用法', 'en-US': 'Basic Usage' },
+    //   'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+    //   'codeFiles': ['collaboration-usage.vue']
+    // },
     {
       'demoId': 'custom-bar-usage',
       'name': { 'zh-CN': '自定义工具栏用法', 'en-US': 'Basic Usage' },
@@ -54,16 +54,16 @@ export default {
           },
           demoId: 'basic-usage'
         },
-        {
-          'name': 'collaboration',
-          'type': 'Boolean',
-          'defaultValue': 'false',
-          desc: {
-            'zh-CN': '是否开启协同编辑，默认不开启',
-            'en-US': 'Whether to enable collaborative editing. It is disabled by default'
-          },
-          demoId: 'basic-usage'
-        },
+        // {
+        //   'name': 'collaboration',
+        //   'type': 'Boolean',
+        //   'defaultValue': 'false',
+        //   desc: {
+        //     'zh-CN': '是否开启协同编辑，默认不开启',
+        //     'en-US': 'Whether to enable collaborative editing. It is disabled by default'
+        //   },
+        //   demoId: 'basic-usage'
+        // },
         {
           'name': 'customToolBar',
           'type': 'Array',
