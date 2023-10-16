@@ -752,7 +752,7 @@ class Popper {
       let scrollTop = isFixed ? 0 : getScrollTopValue(scrollParent)
       let scrollLeft = isFixed ? 0 : getScrollLeftValue(scrollParent)
 
-      const viewportWindow = PopupManager.realWindow || window
+      const viewportWindow = PopupManager.viewportWindow || window
       boundaries = {
         top: 0 - (offsetParentRect.top - scrollTop),
         right: viewportWindow.document.documentElement.clientWidth - (offsetParentRect.left - scrollLeft),

@@ -49,7 +49,7 @@ const PopupManager = {
   hasModal: false, // 当前是否有Modal
   popLockClass: 'popup-parent--hidden',
   oldBodyBorder: '',
-  realWindow: null,
+  viewportWindow: null,
   fixBodyBorder() {
     const barWidth = window.innerWidth - document.documentElement.clientWidth
     if (barWidth) {
