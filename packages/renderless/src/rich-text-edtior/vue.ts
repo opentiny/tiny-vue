@@ -149,7 +149,7 @@ export const renderless = (
   const CustomSize = Paragraph.extend({
     addOptions() {
       return {
-        size: [12, 14, 16, 18, 20]
+        size: [12, 14, 16, 18, 20, 24, 30]
       }
     },
     addAttributes() {
