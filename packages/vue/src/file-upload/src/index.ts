@@ -267,6 +267,10 @@ export const fileUploadProps = {
   isHidden: {
     type: Boolean,
     default: false
+  },
+  pasteUpload: {
+    type: Boolean,
+    default: false
   }
 }
 

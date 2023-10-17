@@ -26,6 +26,7 @@ export default defineComponent({
     'action',
     'autoUpload',
     'beforeUpload',
+    'pasteUpload',
     'data',
     'disabled',
     'drag',
@@ -67,6 +68,7 @@ export default defineComponent({
       drag,
       handleChange,
       handleClick,
+      handlePaste,
       handleKeydown,
       isFolder,
       listType,
@@ -87,6 +89,7 @@ export default defineComponent({
       <div
         class={['tiny-upload', `tiny-upload--${listType}`, disabled ? 'is-disabled' : '', hidden ? 'is-hidden' : '']}
         onClick={($event) => handleClick($event, type)}
+        onPaste={handlePaste}
         onKeydown={handleKeydown}
         tabindex="0">
         {drag ? (
