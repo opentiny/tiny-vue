@@ -14,7 +14,7 @@ export const formItemProps = {
   },
   appendToBody: {
     type: Boolean,
-    default: false
+    default: undefined
   },
   error: {
     type: String,
