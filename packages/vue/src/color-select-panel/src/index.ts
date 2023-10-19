@@ -1,5 +1,5 @@
 import { $props, $setup, $prefix, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc'
 
 const $constants = {}
 
