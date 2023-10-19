@@ -1,13 +1,18 @@
 <template>
-  <tiny-anchor :links="links"></tiny-anchor>
+  <div>
+    <tiny-switch v-model="type" true-value="line" false-value="dot"> </tiny-switch>
+    当前类型：{{ type }}
+    <tiny-anchor :links="links" :type="type"></tiny-anchor>
+  </div>
 </template>
 
 <script>
-import { Anchor } from '@opentiny/vue'
+import { Anchor, Switch } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyAnchor: Anchor
+    TinyAnchor: Anchor,
+    TinySwitch: Switch
   },
   data() {
     return {
@@ -44,7 +49,8 @@ export default {
           link: '#api',
           title: 'Api'
         }
-      ]
+      ],
+      type: 'dot'
     }
   }
 }

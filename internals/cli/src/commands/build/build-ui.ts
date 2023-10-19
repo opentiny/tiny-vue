@@ -10,7 +10,7 @@ import { getAlias, pathFromWorkspaceRoot } from '../../config/vite'
 import { external } from '../../shared/config'
 import type { Module } from '../../shared/module-utils'
 import { getAllIcons, getAllModules, getByName } from '../../shared/module-utils'
-import { logGreen, kebabCase, capitalizeKebabCase, getMinorVersion, isValidVersion } from '../../shared/utils'
+import { logGreen, kebabCase, capitalizeKebabCase, getPatchVersion, isValidVersion } from '../../shared/utils'
 import generatePackageJsonPlugin from './rollup/generate-package-json'
 import inlineChunksPlugin from './rollup/inline-chunks'
 import replaceModuleNamePlugin from './rollup/replace-module-name'
@@ -138,9 +138,9 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
           Object.entries(content.dependencies).forEach(([key, value]) => {
             // dependencies里的@opentiny,统一使用：~x.x.0
             if (isThemeOrRenderless(key)) {
-              dependencies[key] = getMinorVersion(themeAndRenderlessVersion)
+              dependencies[key] = getPatchVersion(themeAndRenderlessVersion)
             } else if ((value as string).includes('workspace:~')) {
-              dependencies[key] = getMinorVersion(versionTarget)
+              dependencies[key] = getPatchVersion(versionTarget)
             } else {
               dependencies[key] = value
             }
