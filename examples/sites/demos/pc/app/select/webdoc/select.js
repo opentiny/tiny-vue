@@ -128,29 +128,13 @@ export default {
     },
     {
       'demoId': 'size-medium',
-      'name': { 'zh-CN': 'medium', 'en-US': 'small' },
+      'name': { 'zh-CN': 'select', 'en-US': 'small' },
       'desc': {
         'zh-CN':
           '<p>通过 <code>size</code> 属性定义输入框尺寸，可选项有 medium、small、mini 。\n通过 <code>options</code> 配置 Select 数据项，使用后不需要再配置 tiny-option。</p>\n',
         'en-US': 'For details, see the following example.'
       },
       'codeFiles': ['size-medium.vue']
-    },
-    {
-      'demoId': 'size-small',
-      'name': { 'zh-CN': 'small', 'en-US': 'mini' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['size-small.vue']
-    },
-    {
-      'demoId': 'size-mini',
-      'name': { 'zh-CN': 'mini', 'en-US': 'Group' },
-      'desc': {
-        'zh-CN': '详细用法参考如下示例',
-        'en-US':
-          '<p> uses <code>tiny-option-group</code> to group options. The <code>label</code> attribute is the group name. Use the <code>disabled</code> attribute to disable all options in the group. </p>\n'
-      },
-      'codeFiles': ['size-mini.vue']
     },
     {
       'demoId': 'option-group',
