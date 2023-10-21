@@ -106,8 +106,8 @@ export default {
     },
     {
       'demoId': 'confirm-event',
-      'name': { 'zh-CN': '确认事件', 'en-US': '' },
-      'desc': { 'zh-CN': '<p>确认事件，设置 :show-footer="true" 时有效</p>', 'en-US': '' },
+      'name': { 'zh-CN': '确定事件', 'en-US': '' },
+      'desc': { 'zh-CN': '<p>确定事件，设置 :show-footer="true" 时有效</p>', 'en-US': '' },
       'codeFiles': ['confirm-event.vue']
     }
   ],
@@ -202,7 +202,7 @@ export default {
           'name': 'confirm',
           'type': 'Function(params)',
           'defaultValue': '',
-          'desc': { 'zh-CN': '确认事件，设置 :show-footer="true" 时有效', 'en-US': '' },
+          'desc': { 'zh-CN': '确定事件，设置 :show-footer="true" 时有效', 'en-US': '' },
           'demoId': 'confirm-event'
         }
       ],

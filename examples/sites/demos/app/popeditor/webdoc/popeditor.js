@@ -152,7 +152,7 @@ export default {
       'name': { 'zh-CN': '拦截弹窗关闭', 'en-US': 'tabindex of the text box' },
       'desc': {
         'zh-CN':
-          '通过 <code>before-close</code> 属性可以配置一个拦截弹窗关闭的方法。如果方法返回 <code>false</code> 值，则拦截弹窗关闭；否则不拦截。<br>可以通过该拦截方法传入的参数获取关闭的操作类型 <code>confirm</code> 弹窗有以下关闭类型：<br> <code>confirm</code> ：点击确认时关闭 <br> <code>cancel</code> ：点击取消时关闭 <br> <code>close</code> ：点击关闭按钮时关闭</p>\n',
+          '通过 <code>before-close</code> 属性可以配置一个拦截弹窗关闭的方法。如果方法返回 <code>false</code> 值，则拦截弹窗关闭；否则不拦截。<br>可以通过该拦截方法传入的参数获取关闭的操作类型 <code>confirm</code> 弹窗有以下关闭类型：<br> <code>confirm</code> ：点击确定时关闭 <br> <code>cancel</code> ：点击取消时关闭 <br> <code>close</code> ：点击关闭按钮时关闭</p>\n',
         'en-US':
           '<p>The <code>tabindex</code> attribute is used to determine whether the focus can be obtained by pressing Tab and the focus sequence. This parameter is valid only when the <code>readonly</code> attribute is set to false. </p>\n'
       },
@@ -711,14 +711,14 @@ export default {
           'demoId': 'close-event'
         },
         {
-          "name": "popup",
-          "type": "Function",
-          "defaultValue": "",
-          "desc": {
-            'zh-CN': "Popeditor 组件弹框打开时触发的事件。",
-            'en-US': "The event that is triggered when the Popeditor component pop-up box is opened."
+          'name': 'popup',
+          'type': 'Function',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': 'Popeditor 组件弹框打开时触发的事件。',
+            'en-US': 'The event that is triggered when the Popeditor component pop-up box is opened.'
           },
-          "demoId": "popup-event"
+          'demoId': 'popup-event'
         },
         {
           'name': 'page-change',

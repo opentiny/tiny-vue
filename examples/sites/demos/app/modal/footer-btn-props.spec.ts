@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('自定义底部按钮Props', () => {
-  test('确认按钮Props', async ({ page }) => {
+  test('确定按钮Props', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
     await page.goto('http://localhost:7130/pc/modal/footer-btn-props')
 

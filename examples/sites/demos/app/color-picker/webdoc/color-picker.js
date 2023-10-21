@@ -11,7 +11,10 @@ export default {
     {
       'demoId': 'event',
       'name': { 'zh-CN': '事件触发', 'en-US': 'event' },
-      'desc': { 'zh-CN': '点击确认是将会触发confirm事件, 取消时触发cancel事件', 'en-US': 'When click confirm will trigger confirm event. When click outside or cancel will trigger cancel event' },
+      'desc': {
+        'zh-CN': '点击确定是将会触发confirm事件, 取消时触发cancel事件',
+        'en-US': 'When click confirm will trigger confirm event. When click outside or cancel will trigger cancel event'
+      },
       'codeFiles': ['event.vue']
     },
     {
@@ -24,8 +27,10 @@ export default {
       'demoId': 'default-visible',
       'name': { 'zh-CN': '默认显示', 'en-US': 'default-visible' },
       'desc': {
-        'zh-CN': '当visible为true时, 将会默认显示color-select. visible是响应式的, 所以你可以强制控制color-select的状态。当visible切换的时候, 会触发cancel事件',
-        'en-US': 'If visible is true the <code>color-select</code> will show. The visible prop is reactive so you can force change <code>color-select</code> show or not. When change visible will trigger cancel event'
+        'zh-CN':
+          '当visible为true时, 将会默认显示color-select. visible是响应式的, 所以你可以强制控制color-select的状态。当visible切换的时候, 会触发cancel事件',
+        'en-US':
+          'If visible is true the <code>color-select</code> will show. The visible prop is reactive so you can force change <code>color-select</code> show or not. When change visible will trigger cancel event'
       },
       'codeFiles': ['default-visible.vue']
     },
@@ -37,7 +42,7 @@ export default {
         'en-US': 'Can dynamically switch color attributes to meet various needs'
       },
       'codeFiles': ['dynamic-color-change.vue']
-    },
+    }
   ],
   apis: [
     {
@@ -81,7 +86,7 @@ export default {
           type: '(hex:string) => void',
           defaultValue: '',
           desc: {
-            'zh-CN': '按下确认时触发该事件',
+            'zh-CN': '按下确定时触发该事件',
             'en-US': 'When click confirm will trigger confirm event'
           },
           demoId: 'event'

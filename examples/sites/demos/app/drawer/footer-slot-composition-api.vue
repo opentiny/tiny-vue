@@ -7,7 +7,7 @@
       <template #footer>
         <div class="my-footer">
           <span>自定义底部文本</span>
-          <tiny-button type="primary" native-type="submit">确认提交</tiny-button>
+          <tiny-button type="primary" native-type="submit">确定提交</tiny-button>
         </div>
       </template>
     </tiny-drawer>

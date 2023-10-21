@@ -8,7 +8,7 @@ test('logout-custom-service', async ({ page }) => {
   await expect(button).toHaveText('登录')
   await expect(status).toContainText(['false'])
   await button.click()
-  await page.getByRole('button', { name: '确认' }).click()
+  await page.getByRole('button', { name: '确定' }).click()
   await page.waitForTimeout(1000)
   await expect(button).toHaveText('注销')
   await expect(status).toContainText(['true'])

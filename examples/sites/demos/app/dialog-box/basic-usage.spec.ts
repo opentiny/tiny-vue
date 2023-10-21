@@ -26,7 +26,7 @@ test('dialogBox 基础用法', async ({ page }) => {
   await close.click()
   await expect(dialogBox).not.toBeVisible()
 
-  // 点击确认按钮，关闭dialogBox
+  // 点击确定按钮，关闭dialogBox
   await button.click()
   await expect(dialogBox).toBeVisible()
   await confirm.click()

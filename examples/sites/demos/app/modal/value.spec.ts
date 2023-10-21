@@ -8,7 +8,7 @@ test('控制弹窗显示隐藏的绑定值', async ({ page }) => {
   await page.getByRole('button', { name: '默认插槽' }).click()
   await expect(modal).toHaveClass(/is__visible/)
   await expect(modal).toBeVisible()
-  await page.getByRole('button', { name: '确认' }).click()
+  await page.getByRole('button', { name: '确定' }).click()
   await expect(modal).not.toHaveClass(/is__visible/)
   await expect(modal).not.toBeVisible()
 })

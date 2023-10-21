@@ -17,7 +17,7 @@ test('PopEditor 拦截弹窗关闭', async ({ page }) => {
   await cancelBtn.click()
   await expect(dialogBox).not.toBeVisible()
 
-  // 点击确认按钮，编辑框可关闭
+  // 点击确定按钮，编辑框可关闭
   await textBox.click()
   await expect(dialogBox).toBeVisible()
   await confirmBtn.click()

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-button @click="fn" type="primary"> 确认事件示例 </tiny-button>
+    <tiny-button @click="fn" type="primary"> 确定事件示例 </tiny-button>
     <tiny-drawer
       title="标题"
       :show-footer="true"
@@ -24,6 +24,6 @@ function fn() {
 }
 
 function confirm() {
-  Modal.message('确认事件')
+  Modal.message('确定事件')
 }
 </script>

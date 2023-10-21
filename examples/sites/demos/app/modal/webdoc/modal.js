@@ -106,7 +106,7 @@ export default {
       'name': { 'zh-CN': '自定义底部按钮内容', 'en-US': 'Resize the window' },
       'desc': {
         'zh-CN':
-          '<p>通过<code> confirmContent </code> 属性设置确认按钮内容，通过<code> cancelContent </code> 属性设置取消按钮内容。<p>\n',
+          '<p>通过<code> confirmContent </code> 属性设置确定按钮内容，通过<code> cancelContent </code> 属性设置取消按钮内容。<p>\n',
         'en-US':
           '<p>You can set the width and height of a window by using <code>width</code> and <code>height</code>. You can set whether to allow dragging to adjust the window size by using <code>resize</code>. </p>\n'
       },
@@ -117,7 +117,7 @@ export default {
       'name': { 'zh-CN': '自定义底部按钮props', 'en-US': 'Minimum width of the window after the window is resized' },
       'desc': {
         'zh-CN':
-          '<p>通过<code> confirmBtnProps </code>属性设置确认按钮props，通过 <code> cancelBtnProps </code>属性设置取消按钮props。<p>\n',
+          '<p>通过<code> confirmBtnProps </code>属性设置确定按钮props，通过 <code> cancelBtnProps </code>属性设置取消按钮props。<p>\n',
         'en-US':
           '<p>After <code>resize</code> is set to <code>true</code>, the <code>min-width</code> attribute can be used to set the minimum width of the window after being dragged. </p>\n'
       },
@@ -416,9 +416,9 @@ export default {
         {
           'name': 'confirm-content',
           'type': 'String',
-          'defaultValue': '确认',
+          'defaultValue': '确定',
           'desc': {
-            'zh-CN': '自定义确认按钮内容',
+            'zh-CN': '自定义确定按钮内容',
             'en-US': 'Whether to lock the page. Operations outside the window are not allowed.'
           },
           'demoId': 'footer-btn-content'
@@ -434,10 +434,10 @@ export default {
           'demoId': 'footer-btn-content'
         },
         {
-          'name': 'confirm-btn-config',
+          'name': 'confirm-btn-props',
           'type': 'Object',
           'defaultValue': '{}',
-          'desc': { 'zh-CN': '自定义确认按钮Props，可选值与TinyButton组件一致', 'en-US': 'Display mask layer' },
+          'desc': { 'zh-CN': '自定义确定按钮Props，可选值与TinyButton组件一致', 'en-US': 'Display mask layer' },
           'demoId': 'footer-btn-props'
         },
         {

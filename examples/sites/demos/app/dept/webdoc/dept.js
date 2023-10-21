@@ -51,7 +51,7 @@ export default {
       'demoId': 'before-confirm',
       'name': { 'zh-CN': '阻止弹框关闭', 'en-US': 'Prevent pop-up dialog box closing' },
       'desc': {
-        'zh-CN': '<p>before-confirm（确认前回调事件）,方法里面 return true/false，表示是否关闭弹框</p>\n',
+        'zh-CN': '<p>before-confirm（确定前回调事件）,方法里面 return true/false，表示是否关闭弹框</p>\n',
         'en-US':
           '<p>before-confirm (callback event before confirmation). In the method, return true/false indicates whether to close the dialog box.</p>\n'
       },
@@ -190,7 +190,7 @@ export default {
           'type': 'Function',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '确认之前的钩子，若返回 false 或者返回 Promise 且被 reject，则阻止弹框关闭',
+            'zh-CN': '确定之前的钩子，若返回 false 或者返回 Promise 且被 reject，则阻止弹框关闭',
             'en-US': 'If false is returned or Promise is returned and rejected, the dialog box is not closed.'
           },
           'demoId': 'before-confirm'
@@ -202,7 +202,7 @@ export default {
           'type': 'Function',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '点击确认按钮触发的事件。',
+            'zh-CN': '点击确定按钮触发的事件。',
             'en-US': 'This event is triggered when the OK button is clicked.'
           },
           'demoId': 'dept-confirm'

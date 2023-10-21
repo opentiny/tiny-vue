@@ -71,8 +71,8 @@ export default {
     },
     {
       'demoId': 'confirm-event',
-      'name': { 'zh-CN': '确认事件', 'en-US': '' },
-      'desc': { 'zh-CN': '<p>当点击底部确认按钮时触发 <code>confirm</code> 事件。</p>\n', 'en-US': '' },
+      'name': { 'zh-CN': '确定事件', 'en-US': '' },
+      'desc': { 'zh-CN': '<p>当点击底部确定按钮时触发 <code>confirm</code> 事件。</p>\n', 'en-US': '' },
       'codeFiles': ['confirm-event.vue']
     }
   ],
@@ -160,7 +160,7 @@ export default {
           'name': 'confirm',
           'type': 'Function(params)',
           'defaultValue': '',
-          'desc': { 'zh-CN': '点击确认按钮时触发', 'en-US': 'Triggered when confirm button is clicked' },
+          'desc': { 'zh-CN': '点击确定按钮时触发', 'en-US': 'Triggered when confirm button is clicked' },
           'demoId': 'confirm-event'
         }
       ],

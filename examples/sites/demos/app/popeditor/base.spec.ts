@@ -22,7 +22,7 @@ test('PopEditor 基本用法', async ({ page }) => {
   await expect(dialogBox).toBeVisible()
   await expect(dialogBox.locator('.tiny-grid__wrapper')).toBeVisible()
 
-  // 选择数据后点击确认，弹出框消失，文本框填充选中的数据
+  // 选择数据后点击确定，弹出框消失，文本框填充选中的数据
   await dataItem.click()
   await confirmBtn.click()
   await expect(dialogBox).not.toBeVisible()

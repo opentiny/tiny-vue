@@ -17,7 +17,7 @@ export default {
       Modal.alert({
         message: '基本提示框',
         title: '基本标题',
-        confirmContent: '自定义确认',
+        confirmContent: '自定义确定',
         cancelContent: '自定义取消'
       })
     },

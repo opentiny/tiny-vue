@@ -8,7 +8,7 @@ test('窗口类型', async ({ page }) => {
   await page.getByRole('button', { name: 'alert 弹框' }).click()
   await expect(alert).toBeVisible()
   await expect(alert).toHaveClass(/type__alert/)
-  await page.getByRole('button', { name: '确认', exact: true }).click()
+  await page.getByRole('button', { name: '确定', exact: true }).click()
 
   const message = page.locator('.tiny-modal').filter({ hasText: 'message 提示框' })
   await page.getByRole('button', { name: 'message 提示框' }).click()

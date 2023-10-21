@@ -58,11 +58,11 @@ export default {
       delete: '删除',
       edit: '编辑',
       more: '更多',
-      reset: '重置',
+      reset: '重置'
     },
     button: {
       cancel: '取消',
-      confirm: '确认'
+      confirm: '确定'
     },
     cell: {
       placeholder: '请选择'
