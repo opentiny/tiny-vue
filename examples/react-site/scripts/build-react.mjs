@@ -1,6 +1,7 @@
 import { build, defineConfig } from 'vite4'
 import fg from 'fast-glob'
 import { getBabelOutputPlugin } from '@rollup/plugin-babel'
+import { Session } from 'inspector'
 
 function createEntry() {
   const entries = fg.sync(
