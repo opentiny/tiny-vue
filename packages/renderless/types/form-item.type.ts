@@ -13,6 +13,9 @@ import type {
   computedForm,
   computedFieldValue,
   computedGetValidateType,
+  computedValidateIcon,
+  computedIsErrorInline,
+  computedIsErrorBlock,
   clearValidate,
   getRules,
   updateComputedLabelWidth,
@@ -85,9 +88,11 @@ export interface IFormItemState {
   labelSuffix: string
   labelWidth: string
   showMessage: boolean
-  inlineMessage: boolean
   sizeClass: string | undefined
   getValidateType: string
+  validateIcon: object | null
+  isErrorInline: boolean
+  isErrorBlock: boolean
 }
 
 export type IFormItemConstants = typeof $constants
@@ -115,6 +120,9 @@ export interface IFormItemApi {
   computedForm: ReturnType<typeof computedForm>
   computedFieldValue: ReturnType<typeof computedFieldValue>
   computedGetValidateType: ReturnType<typeof computedGetValidateType>
+  computedValidateIcon: ReturnType<typeof computedValidateIcon>
+  computedIsErrorInline: ReturnType<typeof computedIsErrorInline>
+  computedIsErrorBlock: ReturnType<typeof computedIsErrorBlock>
   clearValidate: ReturnType<typeof clearValidate>
   getRules: ReturnType<typeof getRules>
   updateComputedLabelWidth: ReturnType<typeof updateComputedLabelWidth>

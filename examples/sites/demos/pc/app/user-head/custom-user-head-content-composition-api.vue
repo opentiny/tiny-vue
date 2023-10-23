@@ -9,7 +9,7 @@
   </tiny-user-head>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { UserHead as TinyUserHead } from '@opentiny/vue'
 import { iconMail } from '@opentiny/vue-icon'
 

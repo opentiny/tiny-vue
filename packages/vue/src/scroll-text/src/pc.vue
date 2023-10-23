@@ -11,16 +11,18 @@
  -->
 <template>
   <div class="tiny-scroll-text__wrapper">
-    <div ref="wrap" class="tiny-scroll-text" @mouseenter="stopAnimation" @mouseleave="startAnimation">
-      <div
-        ref="content"
-        :class="[{ stop: state.isStop }, direction]"
-        :style="state.bindStyle"
-        class="tiny-scroll-text__content"
-      >
-        <slot>
-          <p>{{ text }}</p>
-        </slot>
+    <div
+      ref="wrap"
+      :class="['tiny-scroll-text', { 'width-adapt': widthAdapt }]"
+      @mouseenter="stopAnimation"
+      @mouseleave="startAnimation"
+    >
+      <div ref="content" class="tiny-scroll-text__content">
+        <div :class="[{ stop: state.isStop }, direction]" :style="state.bindStyle">
+          <slot>
+            <p>{{ text }}</p>
+          </slot>
+        </div>
       </div>
     </div>
   </div>
@@ -31,7 +33,7 @@ import { renderless, api } from '@opentiny/vue-renderless/scroll-text/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
-  props: [...props, 'text', 'time', 'styles', 'direction', 'hoverStop'],
+  props: [...props, 'text', 'time', 'styles', 'direction', 'hoverStop', 'widthAdapt'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

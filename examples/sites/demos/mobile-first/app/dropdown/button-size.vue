@@ -1,5 +1,5 @@
 <template>
-  <tiny-dropdown split-button type="primary" size="medium">
+  <tiny-dropdown single-button type="primary" size="medium">
     <span>更多</span>
     <template #dropdown>
       <tiny-dropdown-menu>

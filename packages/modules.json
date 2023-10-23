@@ -813,10 +813,7 @@
   "DatePickerMobileFirst": {
     "path": "vue/src/date-picker-mobile-first/index.ts",
     "type": "component",
-    "exclude": false,
-    "mode": [
-      "mobile-first"
-    ]
+    "exclude": false
   },
   "DatePickerPc": {
     "path": "vue/src/date-picker/src/pc.vue",

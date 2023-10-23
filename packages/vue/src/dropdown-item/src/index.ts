@@ -63,6 +63,7 @@ export const dropdownItemProps = {
     type: Number,
     default: () => -1
   },
+  // tiny新增
   appendToBody: {
     type: Boolean,
     default: true

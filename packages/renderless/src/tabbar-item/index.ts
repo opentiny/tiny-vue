@@ -25,22 +25,25 @@ export const getRouteActive =
   }
 
 export const onClick =
-  ({ api, emit, parent, props, router, state }) =>
-  () => {
-    parent.onChange(props.name || parent.index || state.index)
+  ({ api, emit, parent, props, router, state, dispatch }) =>
+  (event) => {
+    dispatch('Tabbar', 'activeItem', props.name || parent.index || state.index)
 
     emit('click', event)
 
     api.routeTab(router)
   }
 
-export const bindChildren = (parent) => () => {
-  if (!parent) {
-    return
-  }
+export const bindChildren =
+  ({ parent, vm, dispatch }) =>
+  () => {
+    if (!parent.$parent) {
+      return
+    }
 
-  parent.state.children = parent.getChildrens()
-}
+    dispatch('Tabbar', 'updateItems', vm)
+    dispatch('Tabbar', 'showIndex')
+  }
 
 export const routeTab = (props, state) => (router) => {
   const { to, replace } = props
@@ -59,4 +62,8 @@ export const routeTab = (props, state) => (router) => {
   } else if (url) {
     replace ? location.replace(url) : (location.href = url)
   }
+}
+
+export const getTabbarItemsWidth = (state) => (tabbarWidth, tabbarNumber) => {
+  state.itemWidth = tabbarWidth / tabbarNumber + 'px'
 }

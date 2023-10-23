@@ -151,7 +151,8 @@
   }
 
   &--visible {
-    transform: rotate(180deg);
+    // rotate(180deg) 会受svg的margin影响，位置会变动！
+    transform: scaleY(-1);
     transform-origin: center;
   }
 }

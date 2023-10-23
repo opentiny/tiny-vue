@@ -5,9 +5,11 @@
       :popper-class="'tiny-user' + (popperClass ? ' ' + popperClass : '')"
       :popper-append-to-body="popperAppendToBody"
       @blur="handleBlur"
+      @focus="$emit('focus', $event)"
       class="tiny-user__select"
       v-model="state.user"
       v-bind="a($attrs, ['^on[A-Z]'])"
+      :display-only="displayOnly"
       :disabled="disabled"
       :show-overflow-tooltip="showOverflowTooltip"
       :hide-drop="!state.visible"
@@ -41,6 +43,9 @@
           <icon-user v-else class="tiny-svg-size" />
         </div>
       </template>
+      <template v-if="slots.label" #label="{ item }">
+        <slot name="label" :user="item"></slot>
+      </template>
       <tiny-option
         class="tiny-user__select-dropdown"
         :title="option.userCN + (option.dept ? ' ' + option.dept : '')"
@@ -64,21 +69,23 @@ import { renderless, api } from '@opentiny/vue-renderless/user/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import TinySelect from '@opentiny/vue-select'
 import TinyOption from '@opentiny/vue-option'
-import { IconUser, IconGroup } from '@opentiny/vue-icon'
+import { iconUser, iconGroup } from '@opentiny/vue-icon'
 
 export default defineComponent({
   components: {
     TinySelect,
     TinyOption,
-    IconUser: IconUser(),
-    IconGroup: IconGroup()
+    IconUser: iconUser(),
+    IconGroup: iconGroup()
   },
   inheritAttrs: false,
+  emits: ['blur', 'focus', 'change', 'error', 'visible-change', 'update:modelValue'],
   props: [
     ...props,
     'modelValue',
     'multiple',
     'size',
+    'displayOnly',
     'disabled',
     'sortable',
     'valueSplit',

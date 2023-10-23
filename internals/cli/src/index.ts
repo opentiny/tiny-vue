@@ -31,6 +31,7 @@ program
   .description('打包组件 runtime 包')
   .addOption(new Option('-v --vue-versions <vueVersions...>', '目标框架，默认所有').choices(['2', '2.7', '3']))
   .option('-m, --min', '是否压缩输出文件', false)
+  .option('--tiny_mode', '输出的模板类型', 'pc')
   .action(buildRuntime)
 
 program
