@@ -12,7 +12,9 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~"
+  },
+  "devDependencies": {
     "@tiptap/core": "^2.1.6",
     "@tiptap/extension-code-block-lowlight": "^2.0.4",
     "@tiptap/extension-collaboration": "^2.0.4",
