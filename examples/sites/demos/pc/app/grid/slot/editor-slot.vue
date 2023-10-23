@@ -4,8 +4,8 @@
             <tiny-grid-column type="index" width="60"></tiny-grid-column>
             <tiny-grid-column field="name" title="插槽自定义列编辑" :editor="{component: 'input', autoselect: true}">
                 <template #edit="data">
-                    <tiny-autocomplete v-model="data.row.name" 
-                        placeholder="请输入内容"></tiny-autocomplete>
+                    <tiny-input v-model="data.row.name" 
+                        placeholder="请输入内容"></tiny-input>
                 </template>
             </tiny-grid-column>
             <tiny-grid-column field="employees" title="员工人数"></tiny-grid-column>
@@ -17,13 +17,13 @@
 </template>
   
 <script lang="jsx">
-import { Grid, GridColumn, Autocomplete } from '@opentiny/vue'
+import { Grid, GridColumn, Input } from '@opentiny/vue'
 
 export default {
     components: {
         TinyGrid: Grid,
         TinyGridColumn: GridColumn,
-        TinyAutocomplete: Autocomplete
+        TinyInput: Input
     },
     data() {
         return {
