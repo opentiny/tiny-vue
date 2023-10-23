@@ -91,7 +91,7 @@
           class="color-button"
         >
           <label for="tiny--back-color">
-            <TinyIconRichTextColor></TinyIconRichTextColor>
+            <TinyIconRichbackgroundColor></TinyIconRichbackgroundColor>
           </label>
           <input
             id="tiny-back-color"
@@ -245,7 +245,8 @@ import {
   iconRichTextBold,
   iconRichTextCodeBlock,
   iconRichTextCodeView,
-  iconRichTextColor,
+  IconEditorTextcolor,
+  IconEditorBackground,
   iconRichTextDeleteColumn,
   iconRichTextDeleteRow,
   iconRichTextDeleteTable,
@@ -369,7 +370,8 @@ export default defineComponent({
     TinyIconRichTextBold: iconRichTextBold(),
     TinyIconRichTextCodeBlock: iconRichTextCodeBlock(),
     TinyIconRichTextCodeView: iconRichTextCodeView(),
-    TinyIconRichTextColor: iconRichTextColor(),
+    TinyIconRichTextColor: IconEditorTextcolor(),
+    TinyIconRichbackgroundColor: IconEditorBackground(),
     TinyIconRichTextDeleteColumn: iconRichTextDeleteColumn(),
     TinyIconRichTextDeleteRow: iconRichTextDeleteRow(),
     TinyIconRichTextDeleteTable: iconRichTextDeleteTable(),
