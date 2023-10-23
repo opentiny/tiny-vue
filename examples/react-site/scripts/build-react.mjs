@@ -1,7 +1,6 @@
 import { build, defineConfig } from 'vite4'
 import fg from 'fast-glob'
 import { getBabelOutputPlugin } from '@rollup/plugin-babel'
-import { Session } from 'inspector'
 
 function createEntry() {
   const entries = fg.sync(
@@ -67,7 +66,7 @@ async function buildReact() {
       lib: {
         entry: entries,
         formats: ['es'],
-        fileName: (format, entryName) => `${entryName}.js`
+        fileName: (_, entryName) => `${entryName}.js`
       }
     }
   })
