@@ -1,27 +1,33 @@
 <template>
   <div>
     <tiny-user-head
+      v-model="labelText"
       class="head-item"
       type="label"
-      value="Ai"
-      background-color="#40a9ff"
-      color="#fa8c16"
+      background-color="#b8d9f9"
+      color="#fff"
     ></tiny-user-head>
-    <tiny-user-head
-      class="head-item"
-      type="icon"
-      background-color="rgb(250, 140, 22)"
-      color="rgb(64, 169, 255)"
-    ></tiny-user-head>
+    <tiny-user-head class="head-item" type="icon" background-color="#2e86de" color="#fff"></tiny-user-head>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { UserHead } from '@opentiny/vue'
 
 export default {
   components: {
     TinyUserHead: UserHead
+  },
+  data() {
+    return {
+      labelText: 'Ai'
+    }
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-user-head {
+  margin-right: 10px;
+}
+</style>

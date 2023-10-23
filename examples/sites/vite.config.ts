@@ -15,6 +15,20 @@ import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/
 
 export default defineConfig((config) => {
   const env = loadEnv(config.mode, process.cwd() + '/env', '')
+  const isSaas = env.VITE_TINY_THEME === 'saas'
+  const menuPath = isSaas ? path.resolve('./demos/saas') : path.resolve(`./demos/${env.VITE_APP_MODE}`)
+  const copyTarget = [
+    {
+      src: `./demos/${env.VITE_APP_MODE}/**`,
+      dest: '@demos'
+    }
+  ]
+  if (isSaas) {
+    copyTarget.push({
+      src: `./demos/mobile-first/**`,
+      dest: '@demos/mobile-first'
+    })
+  }
   const viteConfig = {
     envDir: './env',
     base: env.VITE_APP_BUILD_BASE_URL || '/tiny-vue/',
@@ -52,21 +66,19 @@ export default defineConfig((config) => {
       }),
       Unocss(UnoCssConfig),
       viteStaticCopy({
-        targets: [
-          {
-            src: `./demos/${env.VITE_APP_MODE}/**`,
-            dest: '@demos'
-          }
-        ]
+        targets: copyTarget
       })
     ],
+    define: {
+      'process.env': {}
+    },
     optimizeDeps: getOptimizeDeps(3),
     build: {
       rollupOptions: {
         input: {
-          index: path.resolve(__dirname, './index.html')
-          // 未来还是要在design-server中添加一个专门路由。下面入口暂时保留
-          // playground: path.resolve(__dirname, './playground.html')
+          index: path.resolve(__dirname, './index.html'),
+          // design-server中添加一个专门路由指向 playground.html
+          playground: path.resolve(__dirname, './playground.html')
         }
       }
     },
@@ -75,6 +87,7 @@ export default defineConfig((config) => {
       alias: {
         '@': path.resolve('src'),
         '@demos': path.resolve(`./demos/${env.VITE_APP_MODE}`),
+        '@menu': menuPath,
         '@opentiny/vue-renderless/types': pathFromWorkspaceRoot('packages/renderless/types'),
         '@tiptap/vue': '@tiptap/vue-3',
         ...getAlias(3, env.VITE_TINY_THEME)

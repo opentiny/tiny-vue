@@ -134,7 +134,7 @@ const initState = ({ api, reactive, vm, computed, props, utils, parent }) => {
     format: computed(() => api.computedFormat()),
     labelTooltip: '',
     displayOnlyTooltip: '',
-    isDisplayOnly: computed(() => props.displayOnly || (parent.auiForm || {}).displayOnly)
+    isDisplayOnly: computed(() => props.displayOnly || (parent.tinyForm || {}).displayOnly)
   })
 
   return state

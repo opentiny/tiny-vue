@@ -32,6 +32,9 @@ import {
   computedIsRequired,
   computedFieldValue,
   computedGetValidateType,
+  computedValidateIcon,
+  computedIsErrorInline,
+  computedIsErrorBlock,
   updateTip,
   wrapValidate,
   getDisplayedValue,
@@ -106,12 +109,15 @@ const initState = ({
     isDisplayOnly: computed(() => state.formInstance.displayOnly),
     labelPosition: computed(() => state.formInstance.labelPosition),
     hideRequiredAsterisk: computed(() => state.formInstance.state.hideRequiredAsterisk),
+    // isErrorInline: computed(() => state.formInstance.state.isErrorInline),
     labelSuffix: computed(() => state.formInstance.labelSuffix),
     labelWidth: computed(() => state.formInstance.labelWidth),
     showMessage: computed(() => state.formInstance.showMessage),
-    inlineMessage: computed(() => state.formInstance.inlineMessage),
     sizeClass: computed(() => state.formItemSize),
-    getValidateType: computed(() => api.computedGetValidateType())
+    getValidateType: computed(() => api.computedGetValidateType()),
+    validateIcon: computed(() => api.computedValidateIcon()),
+    isErrorInline: computed(() => api.computedIsErrorInline()),
+    isErrorBlock: computed(() => api.computedIsErrorBlock())
   })
 
   return state
@@ -131,6 +137,9 @@ const initApi = ({ api, state, dispatch, broadcast, refs, props, constants, inst
     computedForm: computedForm({ constants, instance, state }),
     computedFieldValue: computedFieldValue({ props, state }),
     computedGetValidateType: computedGetValidateType({ props, state }),
+    computedValidateIcon: computedValidateIcon({ props, state }),
+    computedIsErrorInline: computedIsErrorInline({ props, state }),
+    computedIsErrorBlock: computedIsErrorBlock({ props, state }),
     clearValidate: clearValidate(state),
     getRules: getRules({ props, state }),
     updateComputedLabelWidth: updateComputedLabelWidth(state),

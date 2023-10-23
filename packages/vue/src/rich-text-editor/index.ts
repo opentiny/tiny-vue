@@ -1,5 +1,4 @@
 import RichTextEditor from './src/pc.vue'
-import '@opentiny/vue-theme/logout/index.less'
 import { version } from './package.json'
 
 /* istanbul ignore next */

@@ -11,8 +11,9 @@ export const cmpMenus = [
   {
     label: '导航组件',
     labelEn: 'Navigation',
-    key: 'cmp_navigation',
+    key: 'cmp_navigation_components',
     children: [
+      { name: 'Tabbar', nameCn: '标签栏', key: 'tabbar' },
       { name: 'CalendarBar', nameCn: '日历栏', key: 'calendar-bar' },
       { name: 'Filter', nameCn: '过滤器', key: 'filter' },
       { name: 'FilterBar', nameCn: '过滤栏', key: 'filter-bar' },
@@ -27,7 +28,7 @@ export const cmpMenus = [
   {
     label: '容器组件',
     labelEn: 'Container',
-    key: 'cmp_container',
+    key: 'cmp_container_components',
     children: [
       { name: 'Cell', nameCn: '单元格', key: 'cell' },
       { name: 'ActionSheet', nameCn: '动作面板', key: 'action-sheet' },
@@ -42,7 +43,7 @@ export const cmpMenus = [
   {
     label: '表单组件',
     labelEn: 'Form',
-    key: 'cmp_form',
+    key: 'cmp_form_components',
     children: [
       { name: 'DatePickerMobile', nameCn: '日期选择器', key: 'date-picker-mobile' },
       { name: 'TimePickerMobile', nameCn: '时间选择器', key: 'time-picker-mobile' },
@@ -64,7 +65,7 @@ export const cmpMenus = [
   {
     label: '数据组件',
     labelEn: 'Data',
-    key: 'cmp_data',
+    key: 'cmp_data_components',
     children: [
       { name: 'Grid', nameCn: '表格', key: 'grid' },
       { name: 'ColumnListItem', nameCn: '分区列表项', key: 'column-list-item' },
@@ -75,7 +76,7 @@ export const cmpMenus = [
   {
     label: '提示组件',
     labelEn: 'Tooltip',
-    key: 'cmp_tooltip',
+    key: 'cmp_tips_components',
     children: [
       { name: 'Alert', nameCn: '警告', key: 'alert' },
       { name: 'Badge', nameCn: '标记', key: 'badge' },
@@ -91,7 +92,7 @@ export const cmpMenus = [
   {
     label: '其它组件',
     labelEn: 'Others',
-    key: 'cmp_others',
+    key: 'cmp_other_components',
     children: [
       { name: 'Exception', nameCn: '缺省页', key: 'exception' },
       { name: 'Image', nameCn: '图片预览', key: 'image' },

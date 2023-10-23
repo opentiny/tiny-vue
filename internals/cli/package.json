@@ -39,6 +39,7 @@
     "build:ui1": "pnpm build && node dist/index.js build:ui",
     "// #build:runtime-vue 构建适用于 Vue2/Vue3 的组件 Runtime (按需加载)": "",
     "build:runtime": "pnpm build:entry-app && esno src/index.ts build:runtime",
+    "build:runtime-mf": "pnpm build:entry-app --tiny_mode mobile-first && esno src/index.ts build:runtime --tiny_mode mobile-first",
     "// ---------------------全局适配@aurora包名--------------------- ": "",
     "release:aurora": "esno src/index.ts release:aurora",
     "// ----------------------辅助脚本---------------------- ": "",

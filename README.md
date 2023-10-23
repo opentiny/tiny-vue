@@ -10,7 +10,7 @@ English | [简体中文](README.zh-CN.md)
 
 🌈 Features:
 
-- 📦 69 clean, easy-to-use and powerful components.
+- 📦 104 clean, easy-to-use and powerful components.
 - 🖖 One code, Support both Vue.js 2 and Vue.js 3.
 - 🖥️ One code, Support both PC and Mobile.
 - 🌍 Support internationalization.

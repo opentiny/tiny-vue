@@ -43,7 +43,9 @@
               "color-fill-5": "white,50",
               "color-fill-6": "brand-50,100",
               "color-fill-7": "gray-300,100",
-              "color-fill-8": "blue-50,50",
+              "color-fill-8": "blue-600,5",
+              "color-fill-9": "gray-600,100",
+              "color-fill-10": "blue-600,10",
               "color-fill-primary": "gray-900,100",
               "color-fill-secondary": "gray-400,100"
             }
@@ -69,7 +71,7 @@
               "color-icon-secondary": "gray-500,100",
               "color-icon-tertiary": "gray-300,100",
               "color-icon-placeholder": "gray-300,100",
-              "color-icon-disabled": "gray-100,100",
+              "color-icon-disabled": "gray-300,100",
               "color-icon-inverse": "white,100",
               "color-icon-hover": "brand-400,100",
               "color-icon-focus": "brand-500,100",
@@ -481,7 +483,9 @@
               "color-fill-5": "white,50",
               "color-fill-6": "brand-50,100",
               "color-fill-7": "gray-300,100",
-              "color-fill-8": "blue-50,50",
+              "color-fill-8": "blue-600,5",
+              "color-fill-9": "gray-600,100",
+              "color-fill-10": "blue-600,10",
               "color-fill-primary": "gray-900,100",
               "color-fill-secondary": "gray-400,100"
             }
@@ -507,7 +511,7 @@
               "color-icon-secondary": "gray-500,100",
               "color-icon-tertiary": "gray-300,100",
               "color-icon-placeholder": "gray-300,100",
-              "color-icon-disabled": "gray-100,100",
+              "color-icon-disabled": "gray-300,100",
               "color-icon-inverse": "white,100",
               "color-icon-hover": "brand-400,100",
               "color-icon-focus": "brand-500,100",

@@ -1,8 +1,8 @@
 <template>
-  <tiny-user-head class="head-item" type="label" round v-model="text"></tiny-user-head>
+  <tiny-user-head v-model="text" class="head-item" type="label" round></tiny-user-head>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { UserHead as TinyUserHead } from '@opentiny/vue'
 

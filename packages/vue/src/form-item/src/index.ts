@@ -14,7 +14,7 @@ export const formItemProps = {
   },
   appendToBody: {
     type: Boolean,
-    default: false
+    default: undefined
   },
   error: {
     type: String,
@@ -22,9 +22,10 @@ export const formItemProps = {
   },
   for: String,
   inlineMessage: {
-    type: [String, Boolean],
-    default: ''
+    type: Boolean,
+    default: undefined
   },
+  messageType: String,
   label: String,
   labelWidth: String,
   manual: Boolean,
@@ -48,10 +49,7 @@ export const formItemProps = {
   validatePosition: String,
   validateStatus: String,
   validateType: String,
-  validateIcon: {
-    type: Object,
-    default: null
-  },
+  validateIcon: Object,
   ellipsis: {
     type: Boolean,
     default: false

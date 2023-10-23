@@ -83,6 +83,7 @@ import {
 import '@opentiny/vue-theme/image-viewer/index.less'
 
 export default defineComponent({
+  emits: ['close', 'update:preview-visible', 'delete', 'change', 'newImageList'],
   props: [...props, 'urlList', 'zIndex', 'onSwitch', 'onClose'],
   components: {
     IconClose: iconClose(),

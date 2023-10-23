@@ -160,9 +160,10 @@ export default defineComponent({
     error: String,
     for: String,
     inlineMessage: {
-      type: [String, Boolean],
-      default: ''
+      type: Boolean,
+      default: undefined
     },
+    messageType: String,
     label: String,
     labelWidth: String,
     manual: Boolean,
