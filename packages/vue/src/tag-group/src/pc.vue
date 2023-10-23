@@ -4,7 +4,7 @@
       v-for="(item, i) in data"
       :key="item.name + i"
       :size="size"
-      :type="item.type || 'info'"
+      :type="item.type"
       style="margin-right: 8px; margin-bottom: 8px"
       :effect="effect"
       @click="handelItemClick(item, i, $event)"
@@ -16,14 +16,14 @@
           v-for="(tag, i) in state.hiddenTags"
           :key="tag.name + i"
           :size="size"
-          :type="tag.type || 'info'"
+          :type="tag.type"
           style="margin-right: 8px; margin-bottom: 8px"
           @click="handelItemClick(tag, data.length - state.hiddenTags.length + i, $event)"
           >{{ tag.name }}</tiny-tag
         >
       </div>
       <template #reference>
-        <tiny-tag ref="more" :size="size" type="info" class="tiny-tag-group_icon">
+        <tiny-tag ref="more" :size="size" class="tiny-tag-group_icon">
           <icon-ellipsis></icon-ellipsis>
         </tiny-tag>
       </template>

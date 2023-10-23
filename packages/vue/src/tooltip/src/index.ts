@@ -1,8 +1,15 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
+import type { ITooltipApi } from '@opentiny/vue-renderless/types/tooltip.type'
+
 import template from 'virtual-template?pc|mobile-first'
 
 export const tooltipProps = {
   ...$props,
+  visible: {
+    type: String,
+    default: () => 'always',
+    validator: (value: string) => ['always', 'auto'].includes(value)
+  },
   adjustArrow: {
     type: Boolean,
     default: () => false
@@ -62,10 +69,6 @@ export const tooltipProps = {
     type: Number,
     default: () => 0
   },
-  transformOrigin: {
-    type: [Boolean, String],
-    default: () => true
-  },
   transition: {
     type: String,
     default: () => 'tiny-fade-in-linear'
@@ -75,6 +78,10 @@ export const tooltipProps = {
     validator: (value: string) => Boolean(~['normal', 'warning', 'error', 'info', 'success'].indexOf(value))
   },
   visibleArrow: {
+    type: Boolean,
+    default: () => true
+  },
+  genArrowByHtml: {
     type: Boolean,
     default: () => true
   },
@@ -88,6 +95,6 @@ export default defineComponent({
   componentName: 'Tooltip',
   props: tooltipProps,
   setup(props, context) {
-    return $setup({ props, context, template })
+    return $setup({ props, context, template }) as unknown as ITooltipApi
   }
 })

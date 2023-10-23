@@ -191,9 +191,9 @@ const colorRules = [
   [/^(c|bg)-([\w|-]+)$/, ([, attr, color]) => ({ [`${_s5[attr]}`]: `var(--${color})` })],
   [/^(c|bg)#(\w+)$/, ([, attr, color]) => ({ [`${_s5[attr]}`]: `#${color}` })]
 ]
-export const rules = [...sizeRules, ...layoutRules, ...fontRules, ...borderRules, ...utilRules, ...colorRules]
+export const rules: any[] = [...sizeRules, ...layoutRules, ...fontRules, ...borderRules, ...utilRules, ...colorRules]
 
-export const shortcuts = [
+export const shortcuts: any[] = [
   [/^(m|p)x(-?\d+)$/, ([, t, c]) => `${t}l${c} ${t}r${c}`],
   [/^(m|p)y(-?\d+)$/, ([, t, c]) => `${t}t${c} ${t}b${c}`],
 

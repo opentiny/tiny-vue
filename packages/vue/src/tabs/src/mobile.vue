@@ -16,6 +16,7 @@ import TabNav from './tab-nav/mb.vue'
 import { iconPlus } from '@opentiny/vue-icon'
 import { touchStart, touchMove } from '@opentiny/vue-renderless/common/deps/touch'
 import '@opentiny/vue-theme-mobile/tabs/index.less'
+import type { ITabsApi } from '@opentiny/vue-renderless/types/tabs.type'
 
 const MIN_SWIPE_DISTANCE = 50
 
@@ -41,7 +42,7 @@ export default defineComponent({
     IconPlus: iconPlus()
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as ITabsApi
   },
   methods: {
     getCurIndex() {

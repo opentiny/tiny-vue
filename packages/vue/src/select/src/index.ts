@@ -56,7 +56,9 @@ const $constants = {
   },
   ICON_MAP: {
     dropdownIcon: 'icon-delta-down'
-  }
+  },
+  BORDER_HEIGHT: 2, // 上下边框各1px,加起来是2
+  DEFAULT_HEIGHT: 28 // 默认主题的默认高度
 }
 
 export default defineComponent({
@@ -246,10 +248,6 @@ export default defineComponent({
       type: [Object, String, Boolean, Array, Number],
       default: ''
     },
-    updateDelay: {
-      type: Number,
-      default: 0
-    },
     showTips: {
       type: Boolean,
       default: true
@@ -269,6 +267,10 @@ export default defineComponent({
     tagType: {
       type: String,
       default: '' // aui 默认 info
+    },
+    clearNoMatchValue: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

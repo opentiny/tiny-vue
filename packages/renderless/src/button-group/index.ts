@@ -9,18 +9,19 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import { IButtonGroupRenderlessParams, IButtonGroupNode, IButtonGroupItemClass } from '@/types'
 
 export const handleChange =
-  ({ emit, state }) =>
-  () => {
+  ({ emit, state }: Pick<IButtonGroupRenderlessParams, 'emit' | 'state'>) =>
+  (): void => {
     if (!state.disabled) {
       emit('change', state.value)
     }
   }
 
 export const handleClick =
-  ({ emit, props, state }) =>
-  (node) => {
+  ({ emit, props, state }: Pick<IButtonGroupRenderlessParams, 'emit' | 'props' | 'state'>) =>
+  (node: IButtonGroupNode): void => {
     if (!state.disabled && !node.disabled) {
       state.value = node[props.valueField]
       emit('update:modelValue', state.value)
@@ -28,8 +29,8 @@ export const handleClick =
   }
 
 export const moreNodeClick =
-  ({ emit, props, state }) =>
-  (node) => {
+  ({ emit, props, state }: Pick<IButtonGroupRenderlessParams, 'emit' | 'props' | 'state'>) =>
+  (node: IButtonGroupNode): void => {
     if (!state.disabled) {
       const index = state.moreData.indexOf(node)
 
@@ -41,11 +42,11 @@ export const moreNodeClick =
   }
 
 export const getItemClass =
-  ({ props, state }) =>
-  (node) => {
+  ({ props, state }: Pick<IButtonGroupRenderlessParams, 'props' | 'state'>) =>
+  (node: IButtonGroupNode): IButtonGroupItemClass => {
     if (state.disabled || node.disabled) {
       return { disabled: true }
     }
 
-    return props.plain ? { plain: props.plain } : ''
+    return props.plain ? { plain: props.plain } : {}
   }

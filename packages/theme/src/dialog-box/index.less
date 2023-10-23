@@ -22,7 +22,7 @@
   border: 1px solid transparent;
   border-radius: var(--ti-dialog-box-border-radius);
   box-shadow: var(--ti-dialog-box-shadow);
-  overflow: hidden;
+  overflow: scroll;
 
   &__wrapper {
     .component-css-vars-dialog-box();
@@ -43,9 +43,6 @@
     height: 100vh;
 
     .@{dialog-box-prefix-cls}__footer {
-      position: absolute;
-      left: 0;
-      bottom: 0;
       width: 100vw;
     }
   }
@@ -56,7 +53,6 @@
       text-align: center;
     }
   }
-
 
   &.is-fullscreen &__body {
     max-height: calc(100vh - 94px);
@@ -194,8 +190,6 @@
     }
 
     .@{dialog-box-prefix-cls}__footer {
-      position: absolute;
-      bottom: 0;
       padding: var(--ti-dialog-box-drawer-footer-padding-top) var(--ti-dialog-box-drawer-footer-padding-right)
         var(--ti-dialog-box-drawer-footer-padding-bottom) var(--ti-dialog-box-drawer-footer-padding-left);
       border-top: 1px solid var(--ti-dialog-box-drawer-divider-border-color);
@@ -211,14 +205,6 @@
 body:not(.popup-parent--hidden) {
   .v-modal {
     pointer-events: none;
-  }
-
-  .@{dialog-box-prefix-cls}__wrapper {
-    pointer-events: none;
-
-    .@{dialog-box-prefix-cls} {
-      pointer-events: auto;
-    }
   }
 }
 

@@ -13,7 +13,6 @@ import md_sup from 'markdown-it-sup'
 import md_mark from 'markdown-it-mark'
 
 // 高亮文字    ==   ==
-import md_container from 'markdown-it-container' // 提示块
 import md_anchor from 'markdown-it-anchor'
 
 export const MdExt = [md_emoji, md_sub, md_sup, md_mark]

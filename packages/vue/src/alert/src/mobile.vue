@@ -21,10 +21,10 @@
       </div>
       <icon-close
         v-if="!closeText && closable"
-        @click="close"
+        @click="handleClose"
         class="tiny-mobile-alert__icon tiny-mobile-alert__close"
       ></icon-close>
-      <span v-else-if="closeText && closable" @click="close" class="is-custom">{{ closeText }}</span>
+      <span v-else-if="closeText && closable" @click="handleClose" class="is-custom">{{ closeText }}</span>
     </div>
   </transition>
 </template>
@@ -33,6 +33,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/alert/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconClose, iconSuccess, iconError, iconHelp, iconWarning } from '@opentiny/vue-icon'
+import type { IAlertApi } from '@opentiny/vue-renderless/types/alert.type'
 import '@opentiny/vue-theme-mobile/alert/index.less'
 
 export default defineComponent({
@@ -45,7 +46,7 @@ export default defineComponent({
     IconWarning: iconWarning()
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IAlertApi
   }
 })
 </script>

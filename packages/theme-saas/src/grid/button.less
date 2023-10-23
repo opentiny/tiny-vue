@@ -57,9 +57,8 @@
 
   &.type__button {
     @apply py-0 px-3;
-    line-height: 26px;
-    min-width: 72px;
-    max-width: 144px;
+    @apply ~'min-w-[theme(spacing.18)]';
+    @apply ~'max-w-[theme(spacing.36)]';
     @apply h-7;
     @apply border border-solid border-color-border;
     @apply rounded-sm;
@@ -106,7 +105,6 @@
 
     &.size__small {
       @apply py-0 px-3;
-      line-height: 26px;
     }
 
     &.size__mini {
@@ -126,7 +124,7 @@
   }
 
   &__loading-icon {
-    margin-right: 5px;
+    @apply mr-1;
   }
 
   &__wrapper,
@@ -178,10 +176,10 @@
       @apply hidden;
       @apply absolute;
       @apply ~'left-1/2';
-      @apply ~"-translate-x-2/4";
-      margin-top: 5px;
+      @apply ~'-translate-x-2/4';
+      @apply mt-1;
       @apply ~'z-[100]';
-      padding: 5px;
+      @apply p-1;
       @apply bg-color-bg-1;
       @apply rounded;
       @apply border border-solid border-color-border;
@@ -202,7 +200,7 @@
 
   &__wrapper {
     .@{input-prefix-cls} {
-      width: 270px;
+      @apply w-72;
     }
 
     .@{input-prefix-cls},

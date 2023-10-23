@@ -646,6 +646,7 @@ export default defineComponent({
       const { columns, pageSize, sortType } = settingConfigs
 
       this.applySettings({ columns, pageSize })
+
       // 如果开启本地缓存则保存数据到 localstorage
       if (setting && settingOpts.storage === 'local') {
         // 保存时如果没有设置 id 就使用 null 清除掉本地存储中保存的 id

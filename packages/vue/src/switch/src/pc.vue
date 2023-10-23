@@ -29,6 +29,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/switch/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/switch/index.less'
+import type { ISwitchApi } from '@opentiny/vue-renderless/types/switch.type'
 
 export default defineComponent({
   emits: ['change', 'update:modelValue'],
@@ -45,7 +46,7 @@ export default defineComponent({
     'displayOnly'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as ISwitchApi
   }
 })
 </script>

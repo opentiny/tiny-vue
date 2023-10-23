@@ -7,9 +7,10 @@
   @apply relative;
   @apply inline-block;
 
-  &:first-child &__inner {
+  &:nth-child(n) &__inner {
     @apply border-l border-l-color-border;
     @apply rounded-tl-sm rounded-tr-none rounded-br-none rounded-bl-sm;
+    @apply -mr-px;
   }
 
   &:last-child &__inner {
@@ -25,7 +26,7 @@
 
     &:first-child .@{checkbox-button-prefix-cls}__inner {
       @apply border-l-color-border-focus;
-      @apply ~"shadow-[none]";
+      @apply shadow-none;
     }
   }
 
@@ -36,7 +37,7 @@
       @apply bg-none;
       @apply bg-color-bg-2;
       @apply border-color-border;
-      @apply ~"shadow-[none]";
+      @apply shadow-none;
     }
 
     &:first-child .@{checkbox-button-prefix-cls}__inner {

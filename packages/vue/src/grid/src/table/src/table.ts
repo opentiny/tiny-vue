@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { h, hooks, $prefix, appProperties } from '@opentiny/vue-common'
+import { h, hooks, $prefix, appProperties, isVue3 } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
 import { extend } from '@opentiny/vue-renderless/common/object'
 import { isEmptyObject, isObject, isNull } from '@opentiny/vue-renderless/common/type'
@@ -40,6 +40,11 @@ import GlobalConfig from '../../config'
 import { error } from '../../tools'
 import { clearOnTableUnmount } from './strategy'
 import MfTable from '../../mobile-first/index.vue'
+
+const { themes, viewConfig } = GlobalConfig
+const { SAAS: T_SAAS } = themes
+const { DEFAULT: V_DEFAULT, CARD: V_CARD, LIST: V_LIST } = viewConfig
+const { MF_SHOW_LIST: V_MF_LIST } = viewConfig
 
 function verifyConfig(_vm) {
   if (!getRowkey(_vm)) {
@@ -117,7 +122,7 @@ const renderEmptyPartFn = (opt) => {
 
     if (_vm.isCenterEmpty && !tableData.length) {
       let emptyVnodes
-      let noEmptyClass = _vm.viewType === 'card' || _vm.viewType === 'list'
+      let noEmptyClass = _vm.viewType === V_CARD || _vm.viewType === V_LIST
 
       if ($slots.empty) {
         emptyVnodes = $slots.empty.call(_vm, h)
@@ -147,14 +152,15 @@ const renderEmptyPartFn = (opt) => {
 }
 
 const renderFooterFn = (opt) => {
-  const { showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize } = opt
+  const { _vm, showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize } = opt
   return () => {
     let tableFooterVnode = [null]
 
     if (showFooter) {
       tableFooterVnode = h(GridFooter, {
         props: { footerData, footerMethod, tableColumn, visibleColumn, size: vSize },
-        ref: 'tableFooter'
+        ref: 'tableFooter',
+        class: _vm.viewCls('tableFooter')
       })
     }
 
@@ -163,13 +169,13 @@ const renderFooterFn = (opt) => {
 }
 
 const renderResizeBarFn = (opt) => {
-  const { isResizable, overflowX, scrollbarHeight } = opt
+  const { _vm, isResizable, overflowX, scrollbarHeight } = opt
   return () => {
     let resizeBarVnode = [null]
 
     if (isResizable) {
       resizeBarVnode = h('div', {
-        class: 'tiny-grid__resizable-bar',
+        class: ['tiny-grid__resizable-bar', _vm.viewCls('resizeBar')],
         style: overflowX ? { 'padding-bottom': `${scrollbarHeight}px` } : null,
         ref: 'resizeBar',
         key: 'tinyGridResizeBar'
@@ -288,8 +294,8 @@ function getRenderer(opt) {
   const renderHeader = () =>
     showHeader ? h(GridHeader, { ref: 'tableHeader', props, class: _vm.viewCls('tableHeader') }) : [null]
   const renderEmptyPart = renderEmptyPartFn({ _vm, tableData, $slots, renderEmpty })
-  const renderFooter = renderFooterFn({ showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize })
-  const renderResizeBar = renderResizeBarFn({ isResizable, overflowX, scrollbarHeight })
+  const renderFooter = renderFooterFn({ _vm, showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize })
+  const renderResizeBar = renderResizeBarFn({ _vm, isResizable, overflowX, scrollbarHeight })
   const arg1 = { hasFilter, optimizeOpts, filterStore, isCtxMenu, ctxMenuStore, hasTip, tooltipContentOpts }
   const arg2 = { editRules, validOpts, height, tableData, vaildTipOpts, id, _vm }
   const renderPluginWrapper = renderPluginWrapperFn(Object.assign(arg1, arg2))
@@ -319,7 +325,7 @@ function getTableAttrs(args) {
   const { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = args
   const { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup, mouseConfig } = args
   const { loading, highlightHoverRow, highlightHoverColumn } = args
-  const { tinyTheme, stripeSaas, borderSaas, borderVertical } = args
+  const { stripeSaas, borderSaas, borderVertical, isThemeSaas } = args
 
   const map = {
     showHeader: 'show__head',
@@ -345,10 +351,10 @@ function getTableAttrs(args) {
       'tiny-grid-cell__highlight': highlightCell,
       'tiny-grid__animat': optimizeOpts.animat,
       'tiny-grid__stripe': stripe,
-      'tiny-grid__stripe-saas': tinyTheme === 'saas' && stripeSaas,
+      'tiny-grid__stripe-saas': isThemeSaas && stripeSaas,
       'tiny-grid__border': border || isGroup,
-      'tiny-grid__border-saas': tinyTheme === 'saas' && borderSaas,
-      'tiny-grid__group-saas': tinyTheme === 'saas' && isGroup,
+      'tiny-grid__border-saas': isThemeSaas && borderSaas,
+      'tiny-grid__group-saas': isThemeSaas && isGroup,
       'tiny-grid__border-vertical': borderVertical,
       'tiny-grid__checked': mouseConfig.checked,
       'mark-insert': editConfig && editConfig.markInsert,
@@ -648,7 +654,7 @@ export default {
     resizable: { type: Boolean, default: () => GlobalConfig.resizable },
     // 给行附加 className
     rowClassName: [String, Function],
-    // 行分组配置
+    // 行分组配置映射表
     rowGroup: Object,
     rowId: { type: String, default: () => GlobalConfig.rowId },
     rowKey: Boolean,
@@ -706,9 +712,9 @@ export default {
     // 多端卡片配置
     cardConfig: Object,
     // 视图类型
-    viewType: { type: String, default: () => GlobalConfig.viewConfig.DEFAULT },
+    viewType: { type: String, default: () => V_DEFAULT },
     // 移动优先视图下展示类型
-    mfShow: { type: String, default: () => GlobalConfig.viewConfig.MF_SHOW_LIST },
+    mfShow: { type: String, default: () => V_MF_LIST },
     // 列锚点
     columnAnchor: Array,
     // 表尾自定义渲染
@@ -812,6 +818,12 @@ export default {
     },
     computerTableBodyHeight() {
       return this.tableBodyHeight === 0 ? 'calc(100% - 36px)' : `${this.tableBodyHeight}px`
+    },
+    isThemeSaas() {
+      return this.tinyTheme === T_SAAS
+    },
+    isViewDefault() {
+      return this.viewType === V_DEFAULT
     }
   },
   watch: {
@@ -822,22 +834,6 @@ export default {
     customs(value) {
       !this.isUpdateCustoms && this.mergeCustomColumn(value)
       this.isUpdateCustoms = false
-    },
-    data(value) {
-      // 此处监听只有当data的引用地址改变之后才会触发
-      if (Array.isArray(value)) {
-        !this._isUpdateData && this.loadTableData(value, true).then(this.handleDefault).then(this.handleSelectionHeader)
-        this._isUpdateData = false
-      }
-    },
-    'data.length': {
-      handler() {
-        // 如果监听的data引用地址发生改变则不需要执行以下逻辑
-        if (Array.isArray(this.data)) {
-          !this._isUpdateData && this.loadTableData(this.data, true).then(this.handleDefault)
-          this._isUpdateData = false
-        }
-      }
     },
     height() {
       this.$nextTick(this.recalculate)
@@ -909,8 +905,27 @@ export default {
     }
   },
   setup(props, { slots, attrs, listeners }) {
+    const table = hooks.getCurrentInstance().proxy
+
+    /**
+     * vue2会拦截数组的push、pop、shift、unshift等数组常规操作，所以不用深度监听也可触发视图更新
+     * vue3不会拦截数组的常规操作，如果深度监听会影响效率，所以需要额外监控数组长度改变，解决push无响应等问题
+     * 如果是vue3需要同时监听data和数组长度，如果分多个watch监听会导致重复渲染，影响效率
+     */
+    if (isVue3) {
+      hooks.watch([() => table.data, () => table.data && table.data.length], () => {
+        table.handleDataChange()
+      })
+    } else {
+      hooks.watch(
+        () => table.data,
+        () => {
+          table.handleDataChange()
+        }
+      )
+    }
+
     hooks.onBeforeUnmount(() => {
-      const table = hooks.getCurrentInstance().proxy
       const { elemStore, $refs } = table
       const containerList = ['main', 'left', 'right']
       const tableWrapper = $refs.tableWrapper
@@ -954,8 +969,9 @@ export default {
   render() {
     let { border, collectColumn, columnStore, editConfig, highlightCell, highlightHoverColumn } = this as any
     let { highlightHoverRow, isGroup, loading, loadingComponent, mouseConfig = {}, optimizeOpts } = this as any
-    let { overflowX, overflowY, showFooter, showHeader, showHeaderOverflow, showOverflow, tinyTheme } = this as any
-    let { stripe, tableColumn, tableData, vSize, visibleColumn, slots, $slots, stripeSaas, borderSaas } = this as any
+    let { overflowX, overflowY, showFooter, showHeader, showHeaderOverflow, showOverflow, isThemeSaas } = this as any
+    let { stripe, tableColumn, tableData, vSize, visibleColumn, slots, $slots, stripeSaas, borderSaas, isViewDefault } =
+      this as any
     let { borderVertical, cardConfig, listConfig, ganttConfig } = this
     let { leftList, rightList } = columnStore
     const props = { tableData, tableColumn, visibleColumn, collectColumn, size: vSize, isGroup }
@@ -971,13 +987,13 @@ export default {
     args = { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow }
     Object.assign(args, { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup, mouseConfig })
     Object.assign(args, { loading, highlightHoverRow, highlightHoverColumn })
-    Object.assign(args, { tinyTheme, stripeSaas, borderSaas, borderVertical })
+    Object.assign(args, { stripeSaas, borderSaas, borderVertical, isThemeSaas })
 
     return h('div', getTableAttrs(args), [
       // 隐藏列
       h(
         'div',
-        { class: ['tiny-grid-hidden-column', this.viewCls('hiddenColumn')], ref: 'hideColumn' },
+        { class: 'tiny-grid-hidden-column', ref: 'hideColumn' },
         typeof $slots.default === 'function' ? $slots.default() : $slots.default
       ),
       // 主头部
@@ -998,14 +1014,21 @@ export default {
       renderPluginWrapper(),
       // 多选工具栏
       renderSelectToolbar(),
-      // 多端表格
-      h(MfTable, { ref: 'mfTable', props }),
+      // 多端表格（只在多端模式加载）
+      !isViewDefault ? h(MfTable, { ref: 'mfTable', props }) : null,
       // 表尾边框线
       renderFooterBorder(this)
     ])
   },
   methods: {
     ...methods,
+    handleDataChange() {
+      if (Array.isArray(this.data)) {
+        !this._isUpdateData &&
+          this.loadTableData(this.data, true).then(this.handleDefault).then(this.handleSelectionHeader)
+        this._isUpdateData = false
+      }
+    },
     viewCls(module) {
       return (this as any).$grid.viewCls(module)
     }

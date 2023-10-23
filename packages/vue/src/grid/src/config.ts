@@ -39,7 +39,7 @@ const GlobalConfig = {
     message: 'tooltip'
   },
   // 默认开启点击头部单元格触发排序
-  sortConfig: {},
+  sortConfig: { multipleColumnSort: false },
   // 默认不开启隔行换色和行高亮，不暴露此配置
   stripe: false,
   // saas下默认不开启隔行换色和行高亮
@@ -155,6 +155,10 @@ const GlobalConfig = {
     mfTable: { default: 'hidden', mf: 'block sm:hidden', card: 'block' },
     footerBorder: { default: 'block', mf: 'hidden sm:block', card: 'hidden' },
     operButton: { default: 'inline-block', mf: 'hidden sm:inline-block', card: 'hidden' }
+  },
+  themes: {
+    AURORA: 'aurora',
+    SAAS: 'saas'
   }
 }
 

@@ -1,1 +1,24 @@
-import type { ExtractPropTypes } from '@opentiny/vue-common'
+import type { ExtractPropTypes } from 'vue'
+import { breadcrumbProps, $constants } from '@/breadcrumb/src'
+import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+
+export interface IBreadcrumbState {
+  breadcrumbEmitter: object
+  currentBreadcrumbItem: object
+}
+
+export type IBreadcrumbProps = ExtractPropTypes<typeof breadcrumbProps>
+
+export type IBreadcrumbConstants = typeof $constants
+
+export type IBreadcrumbRenderlessParams = ISharedRenderlessFunctionParams<IBreadcrumbConstants> & {
+  state: IBreadcrumbState
+  props: IBreadcrumbProps
+}
+
+export interface IBreadcrumbApi {
+  state: IBreadcrumbState
+  breadcrumbItemSelect: () => void
+}
+
+export type IBreadcrumbRenderlessParamUtils = ISharedRenderlessParamUtils<IBreadcrumbConstants>

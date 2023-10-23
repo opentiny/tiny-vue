@@ -26,6 +26,14 @@ import {
   mounted,
   deleteHander
 } from './index'
+import { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from 'types/shared.type'
+import {
+  IImageApi,
+  IImageProps,
+  IImageState,
+  IImageRenderlessParamUtils,
+  IImageRenderlessParams
+} from 'types/image.type'
 
 export const api = [
   'state',
@@ -40,9 +48,16 @@ export const api = [
   'deleteHander'
 ]
 
-const initState = ({ reactive, computed, api, props, images }) => {
+const initState = ({
+  reactive,
+  computed,
+  api,
+  props,
+  images
+}: Pick<IImageRenderlessParams, 'reactive' | 'computed' | 'api' | 'props' | 'images'>) => {
   const state = reactive({
     mfPreviewVisible: props.previewVisible,
+    /** mobile-first传入的一张image-error的图片 */
     images,
     error: false,
     loading: true,
@@ -58,7 +73,16 @@ const initState = ({ reactive, computed, api, props, images }) => {
   return state
 }
 
-const initApi = ({ api, state, emit, props, vm, constants, nextTick, attrs }) => {
+const initApi = ({
+  api,
+  state,
+  emit,
+  props,
+  vm,
+  constants,
+  nextTick,
+  attrs
+}: Pick<IImageRenderlessParams, 'state' | 'emit' | 'api' | 'props' | 'vm' | 'constants' | 'nextTick' | 'attrs'>) => {
   Object.assign(api, {
     state,
     closeViewer: closeViewer(state),
@@ -78,7 +102,7 @@ const initApi = ({ api, state, emit, props, vm, constants, nextTick, attrs }) =>
   })
 }
 
-const initWatch = ({ watch, state, api, props }) => {
+const initWatch = ({ watch, state, api, props }: Pick<IImageRenderlessParams, 'state' | 'watch' | 'api' | 'props'>) => {
   watch(
     () => props.src,
     (value, oldValue) => value !== oldValue && state.show && api.loadImage()
@@ -91,13 +115,13 @@ const initWatch = ({ watch, state, api, props }) => {
 }
 
 export const renderless = (
-  props,
-  { computed, onBeforeUnmount, onMounted, reactive, watch, provide },
-  { vm, emit, constants, nextTick, attrs },
-  { images }
+  props: IImageProps,
+  { computed, onBeforeUnmount, onMounted, reactive, watch, provide }: ISharedRenderlessParamHooks,
+  { vm, emit, constants, nextTick, attrs }: IImageRenderlessParamUtils,
+  { images }: any
 ) => {
-  const api = {}
-  const state = initState({ reactive, computed, api, props, images })
+  const api = {} as IImageApi
+  const state: IImageState = initState({ reactive, computed, api, props, images })
 
   initApi({ api, state, emit, props, vm, constants, nextTick, attrs })
 

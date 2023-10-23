@@ -420,6 +420,7 @@ function renderColumn(args1) {
 function renderRowGroupTds(args) {
   const { closeable, currentIcon, field, group, render } = args
   const { row, tableColumn, targetColumn, tds, title } = args
+
   for (let index in tableColumn) {
     if (Object.prototype.hasOwnProperty.call(tableColumn, index)) {
       const column = tableColumn[index]
@@ -427,7 +428,7 @@ function renderRowGroupTds(args) {
         tds.push(<td></td>)
       } else {
         const value = row[field]
-        const header = title || (targetColumn && formatText(getFuncText(targetColumn.title), 1)) || value
+        const header = title || (targetColumn && formatText(getFuncText(targetColumn.title))) || value
         let groupTitleVNode
 
         if (render) {
@@ -465,17 +466,12 @@ function renderRowGroupData({ groupData, groupFolds, row, rowGroup, rowid, rows,
   const targetColumn = find(tableColumn, (col) => col.property === field)
   const currentIcon = group.fold ? <ChevronRight class="tiny-svg-size" /> : <ChevronDown class="tiny-svg-size" />
 
+  // 将分组行的td添加到tds数组中
   renderRowGroupTds({ closeable, currentIcon, field, group, render, row, tableColumn, targetColumn, tds, title })
 
   rows.push(
     <tr
-      class={['tiny-grid-body__row', 'group', className, { hover: group.hover }]}
-      onMouseout={() => {
-        group.hover = false
-      }}
-      onMouseover={() => {
-        group.hover = true
-      }}
+      class={['tiny-grid-body__row', 'group', className]}
       onClick={() => {
         if (closeable) {
           group.fold = !group.fold
@@ -489,8 +485,7 @@ function renderRowGroupData({ groupData, groupFolds, row, rowGroup, rowid, rows,
             }
           })
         }
-      }}
-    >
+      }}>
       {tds}
     </tr>
   )

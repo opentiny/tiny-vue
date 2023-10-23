@@ -10,14 +10,16 @@
  *
  */
 
-export const handleMoreClick = (emit) => () => {
+import { IActionMenuRenderlessParams, IActionMenuItemData } from '@/types'
+
+export const handleMoreClick = (emit: IActionMenuRenderlessParams['emit']) => () => {
   emit('more-click')
 }
 
-export const handleItemClick = (emit) => (data) => {
+export const handleItemClick = (emit: IActionMenuRenderlessParams['emit']) => (data: IActionMenuItemData) => {
   emit('item-click', data)
 }
 
-export const visibleChange = (emit) => (status) => {
+export const visibleChange = (emit: IActionMenuRenderlessParams['emit']) => (status: boolean) => {
   emit('visible-change', status)
 }

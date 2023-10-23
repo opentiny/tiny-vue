@@ -10,8 +10,7 @@
  *
  */
 
-import { isSame } from '../common/type'
-
+import { IInputApi, IInputClassPrefixConstants, IInputRenderlessParams, IInputState } from 'types/input.type'
 const HIDDEN_STYLE = `
 height:0 !important;visibility:hidden !important;overflow:hidden !important;
 position:absolute !important;z-index:-1000 !important;top:0 !important;right:0 !important
@@ -46,9 +45,9 @@ const STYLE = {
 }
 
 const isServer = typeof window === 'undefined'
-const isKorean = (text) => /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi.test(text)
+const isKorean = (text: string): boolean => /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi.test(text)
 
-export const showBox = (state) => () => {
+export const showBox = (state: IInputState) => (): void => {
   if (state.inputDisabled) {
     return false
   }
@@ -56,25 +55,46 @@ export const showBox = (state) => () => {
   state.boxVisibility = true
 }
 
-export const calculateNodeStyling = () => (targetElement) => {
-  const style = window.getComputedStyle(targetElement)
-  const boxSizing = style.getPropertyValue(STYLE.BoxSizing)
+export const calculateNodeStyling =
+  () =>
+  (
+    targetElement: HTMLElement
+  ): {
+    contextStyle: string
+    paddingSize: number
+    borderSize: number
+    boxSizing: string
+  } => {
+    const style = window.getComputedStyle(targetElement)
+    const boxSizing = style.getPropertyValue(STYLE.BoxSizing)
 
-  const paddingSize =
-    parseFloat(style.getPropertyValue(STYLE.PaddingBottom)) + parseFloat(style.getPropertyValue(STYLE.PaddingTop))
+    const paddingSize =
+      parseFloat(style.getPropertyValue(STYLE.PaddingBottom)) + parseFloat(style.getPropertyValue(STYLE.PaddingTop))
 
-  const borderSize =
-    parseFloat(style.getPropertyValue(STYLE.BorderBottomWidth)) +
-    parseFloat(style.getPropertyValue(STYLE.BorderTopWidth))
+    const borderSize =
+      parseFloat(style.getPropertyValue(STYLE.BorderBottomWidth)) +
+      parseFloat(style.getPropertyValue(STYLE.BorderTopWidth))
 
-  const contextStyle = CONTEXT_STYLE.map((name) => `${name}:${style.getPropertyValue(name)}`).join(';')
+    const contextStyle = CONTEXT_STYLE.map((name) => `${name}:${style.getPropertyValue(name)}`).join(';')
 
-  return { contextStyle, paddingSize, borderSize, boxSizing }
-}
+    return { contextStyle, paddingSize, borderSize, boxSizing }
+  }
 
 export const calcTextareaHeight =
-  ({ api, hiddenTextarea, props, state }) =>
-  (targetElement, minRows = 1, maxRows = null) => {
+  ({
+    api,
+    hiddenTextarea,
+    props,
+    state
+  }: Pick<IInputRenderlessParams, 'api' | 'props' | 'state'> & { hiddenTextarea: HTMLTextAreaElement | null }) =>
+  (
+    targetElement: HTMLTextAreaElement,
+    minRows = 1,
+    maxRows = null
+  ): {
+    minHeight?: string
+    height?: string
+  } => {
     if (!hiddenTextarea) {
       hiddenTextarea = document.createElement('textarea')
       document.body.appendChild(hiddenTextarea)
@@ -86,7 +106,10 @@ export const calcTextareaHeight =
     hiddenTextarea.value = targetElement.value || targetElement.placeholder || ''
 
     let height = hiddenTextarea.scrollHeight
-    const textareaStyle = {}
+    const textareaStyle: {
+      minHeight?: string
+      height?: string
+    } = {}
 
     if (boxSizing === STYLE.ContentBox) {
       height = height - paddingSize
@@ -138,17 +161,28 @@ export const calcTextareaHeight =
     return textareaStyle
   }
 
-export const getInput = (refs) => () => refs.input || refs.textarea
+export const getInput = (refs: IInputRenderlessParams['refs']) => (): HTMLTextAreaElement | HTMLInputElement =>
+  refs.input || refs.textarea
 
-export const blur = (api) => () => api.getInput().blur()
+export const blur = (api: IInputApi) => (): void => api.getInput().blur()
 
-export const focus = (api) => () => api.getInput().focus()
+export const focus = (api: IInputApi) => (): void => api.getInput().focus()
 
-export const select = (api) => () => api.getInput().select()
+export const select = (api: IInputApi) => (): void => api.getInput().select()
 
 export const handleBlur =
-  ({ api, componentName, eventName, emit, props, state }) =>
-  (event) => {
+  ({
+    api,
+    componentName,
+    eventName,
+    emit,
+    props,
+    state
+  }: Pick<IInputRenderlessParams, 'api' | 'emit' | 'props' | 'state'> & {
+    componentName: string
+    eventName: string
+  }) =>
+  (event: FocusEvent): void => {
     state.focused = false
 
     emit('blur', event)
@@ -161,40 +195,43 @@ export const handleBlur =
   }
 
 export const handleFocus =
-  ({ api, emit, state }) =>
-  (event) => {
+  ({ api, emit, state }: Pick<IInputRenderlessParams, 'api' | 'emit' | 'state'>) =>
+  (event: FocusEvent): void => {
     state.focused = true
 
     emit('focus', event)
 
-    api.searchMemory(event.target.value)
+    api.searchMemory((event.target as HTMLInputElement | HTMLTextAreaElement).value)
   }
 
 export const handleInput =
-  ({ api, emit, nextTick, state }) =>
-  (event) => {
+  ({ api, emit, nextTick, state }: Pick<IInputRenderlessParams, 'api' | 'emit' | 'nextTick' | 'state'>) =>
+  (event: Event): void => {
     if (state.isComposing) {
       return
     }
 
-    if (event.target.value === state.nativeInputValue) {
+    if ((event.target as HTMLInputElement | HTMLTextAreaElement).value === state.nativeInputValue) {
       return
     }
 
-    emit('update:modelValue', event.target.value)
+    emit('update:modelValue', (event.target as HTMLInputElement | HTMLTextAreaElement).value)
 
     emit('input', event)
 
-    api.searchMemory(event.target.value)
+    api.searchMemory((event.target as HTMLInputElement | HTMLTextAreaElement).value)
 
     nextTick(api.setNativeInputValue)
   }
 
-export const handleChange = (emit) => (event) => emit('change', event.target.value)
+export const handleChange =
+  (emit: IInputRenderlessParams['emit']) =>
+  (event: Event): void =>
+    emit('change', (event.target as HTMLInputElement | HTMLTextAreaElement).value)
 
 export const resizeTextarea =
-  ({ api, parent, refs, state }) =>
-  () => {
+  ({ api, parent, refs, state }: Pick<IInputRenderlessParams, 'api' | 'parent' | 'refs' | 'state'>) =>
+  (): void => {
     if (isServer) {
       return
     }
@@ -220,33 +257,35 @@ export const resizeTextarea =
   }
 
 export const setNativeInputValue =
-  ({ api, state }) =>
-  () => {
+  ({ api, state }: Pick<IInputRenderlessParams, 'api' | 'state'>) =>
+  (): void => {
     const input = api.getInput()
 
     if (!input) {
       return
     }
 
-    if (isSame(input.value, state.nativeInputValue)) {
+    if (input.value === state.nativeInputValue) {
       return
     }
 
     input.value = state.nativeInputValue
   }
 
-export const handleCompositionStart = (state) => () => (state.isComposing = true)
+export const handleCompositionStart = (state: IInputState) => (): void => (state.isComposing = true)
 
-export const handleCompositionUpdate = (state) => (event) => {
-  const text = event.target.value
-  const lastCharacter = text[text.length - 1] || ''
+export const handleCompositionUpdate =
+  (state: IInputState) =>
+  (event: CompositionEvent): void => {
+    const text = (event.target as HTMLInputElement | HTMLTextAreaElement).value
+    const lastCharacter = text[text.length - 1] || ''
 
-  state.isComposing = !isKorean(lastCharacter)
-}
+    state.isComposing = !isKorean(lastCharacter)
+  }
 
 export const handleCompositionEnd =
-  ({ api, state }) =>
-  (event) => {
+  ({ api, state }: Pick<IInputRenderlessParams, 'api' | 'state'>) =>
+  (event: CompositionEvent): void => {
     if (state.isComposing) {
       state.isComposing = false
       api.handleInput(event)
@@ -254,15 +293,17 @@ export const handleCompositionEnd =
   }
 
 export const calcIconOffset =
-  ({ CLASS_PREFIX, parent }) =>
-  (place) => {
-    const elList = [].slice.call(parent.$el.querySelectorAll(`.${CLASS_PREFIX.Input}${place}`) || [])
+  ({ CLASS_PREFIX, parent }: Pick<IInputRenderlessParams, 'parent'> & { CLASS_PREFIX: IInputClassPrefixConstants }) =>
+  (place: 'prefix' | 'suffix'): void => {
+    const elList = [].slice.call(
+      parent.$el.querySelectorAll(`.${CLASS_PREFIX.Input}${place}`) || []
+    ) as unknown as HTMLElement[]
 
     if (!elList.length) {
       return
     }
 
-    let el = null
+    let el: HTMLElement | null = null
 
     for (let i = 0, len = elList.length; i < len; i++) {
       if (elList[i].parentNode === parent.$el) {
@@ -294,27 +335,27 @@ export const calcIconOffset =
     }
   }
 
-export const updateIconOffset = (api) => () => {
+export const updateIconOffset = (api: IInputApi) => (): void => {
   api.calcIconOffset('prefix')
   api.calcIconOffset('suffix')
 }
 
-export const clear = (emit) => () => {
+export const clear = (emit: IInputRenderlessParams['emit']) => (): void => {
   emit('update:modelValue', '')
   emit('change', '')
   emit('clear')
 }
 
 export const handlePasswordVisible =
-  ({ api, nextTick, state }) =>
-  () => {
+  ({ api, nextTick, state }: Pick<IInputRenderlessParams, 'api' | 'nextTick' | 'state'>) =>
+  (): void => {
     state.passwordVisible = !state.passwordVisible
     nextTick(api.focus)
   }
 
 export const getSuffixVisible =
-  ({ parent, props, state }) =>
-  () =>
+  ({ parent, props, state }: Pick<IInputRenderlessParams, 'parent' | 'props' | 'state'>) =>
+  (): boolean =>
     parent.$slots.suffix ||
     props.suffixIcon ||
     state.showClear ||
@@ -322,7 +363,7 @@ export const getSuffixVisible =
     state.isWordLimitVisible ||
     (state.validateState && state.needStatusIcon)
 
-export const textLength = (value) => {
+export const textLength = (value: number | string | undefined): number => {
   if (typeof value === 'number') {
     return String(value).length
   }
@@ -331,8 +372,8 @@ export const textLength = (value) => {
 }
 
 export const watchFormSelect =
-  ({ emit, props, state }) =>
-  (value) => {
+  ({ emit, props, state }: Pick<IInputRenderlessParams, 'emit' | 'props' | 'state'>) =>
+  (value: string | number | undefined): void => {
     if (props.isSelect) {
       emit('update:modelValue', value)
       emit('change', value)
@@ -343,27 +384,28 @@ export const watchFormSelect =
     }
   }
 
-export const hasSelection = (api) => () => {
+export const hasSelection = (api: IInputApi) => (): boolean => {
   const input = api.getInput()
   return input && input.selectionStart !== input.selectionEnd
 }
 
 export const handleEnterDisplayOnlyContent =
-  ({ state, props }) =>
-  ($event, type) => {
+  ({ state, props }: Pick<IInputRenderlessParams, 'state' | 'props'>) =>
+  ($event: MouseEvent, type?: 'textarea'): void => {
     const target = $event.target
 
     if (
       target &&
-      (target.scrollWidth > target.offsetWidth || (type === 'textarea' && target.scrollHeight > target.offsetHeight))
+      ((target as HTMLElement).scrollWidth > (target as HTMLElement).offsetWidth ||
+        (type === 'textarea' && (target as HTMLElement).scrollHeight > (target as HTMLElement).offsetHeight))
     ) {
       state.displayOnlyTooltip = props.displayOnlyContent || state.nativeInputValue
     }
   }
 
 export const hiddenPassword =
-  ({ state, props }) =>
-  () => {
+  ({ state, props }: Pick<IInputRenderlessParams, 'state' | 'props'>) =>
+  (): string => {
     let str = ''
     const password = props.displayOnlyContent || state.nativeInputValue
 
@@ -374,8 +416,8 @@ export const hiddenPassword =
   }
 
 export const dispatchDisplayedValue =
-  ({ state, props, dispatch, api }) =>
-  () => {
+  ({ state, props, dispatch, api }: Pick<IInputRenderlessParams, 'state' | 'props' | 'dispatch' | 'api'>) =>
+  (): void => {
     if (state.isDisplayOnly) {
       dispatch('FormItem', 'displayed-value-changed', {
         type: props.type || 'text',
@@ -385,8 +427,8 @@ export const dispatchDisplayedValue =
   }
 
 export const getDisplayedValue =
-  ({ state, props }) =>
-  () => {
+  ({ state, props }: Pick<IInputRenderlessParams, 'state' | 'props'>) =>
+  (): string => {
     if (props.type === 'password') {
       return state.hiddenPassword || '-'
     } else {

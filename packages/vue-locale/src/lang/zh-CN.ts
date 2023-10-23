@@ -58,7 +58,7 @@ export default {
       delete: '删除',
       edit: '编辑',
       more: '更多',
-      reset: '重置',
+      reset: '重置'
     },
     button: {
       cancel: '取消',
@@ -82,9 +82,12 @@ export default {
       total: '总计',
       value: '数值'
     },
-    colorPicker: {
+    colorSelectPanel: {
       confirm: '选择',
-      cancel: '取消'
+      cancel: '取消',
+      predefine: '预定义颜色',
+      history: '历史记录',
+      empty: '暂无'
     },
     creditCardForm: {
       submit: '提交'
@@ -149,7 +152,40 @@ export default {
       },
       timezone: '选择时区',
       year: '年',
-      to: '至'
+      to: '至',
+      yearMonth: '{year}年{month}月',
+      yearMonthDay: '{year}年{month}月{day}日'
+    },
+    richTextEditor: {
+      bold: '加粗',
+      italic: '斜体',
+      link: '链接',
+      unlink: '移除链接',
+      highlight: '高亮',
+      underline: '下划线',
+      strike: '中划线',
+      subscript: '下标',
+      superscript: '上标',
+      code: '代码',
+      unorderedlist: '无序列表',
+      orderedlist: '有序列表',
+      taskList: '任务列表',
+      quote: '引用',
+      codeBlock: '代码块',
+      formatClear: '清除标记',
+      nodeDelete: '删除节点',
+      undo: '回退',
+      redo: '前进',
+      left: '左对齐',
+      center: '居中',
+      right: '右对齐',
+      fontSize: '字号',
+      lineHeight: '行高',
+      hBox: '段落标题',
+      img: '图片',
+      color: '颜色',
+      table: '表格',
+      backgroundColor: '文字背景色'
     },
     calendar: {
       showType: {
@@ -621,6 +657,16 @@ export default {
         11: '11',
         12: '12'
       }
+    },
+    calendarView: {
+      week: { 0: '日', 1: '一', 2: '二', 3: '三', 4: '四', 5: '五', 6: '六' },
+      weekDays: { 0: '周日', 1: '周一', 2: '周二', 3: '周三', 4: '周四', 5: '周五', 6: '周六' },
+      backToday: '回今天',
+      new: '新增',
+      noSchedule: '暂无日程',
+      year: '年',
+      month: '月',
+      dateFormat: 'yyyy 年 MM 月'
     },
     selectedBox: {
       select: '已选（%s）',

@@ -6,16 +6,10 @@ import { $local } from './tools/storage'
 const Components = () => import('@/views/components/components.vue')
 const Docs = () => import('@/views/docs/docs.vue')
 const Overview = () => import('@/views/overview.vue')
-const Playground = () => import('../playground/App.vue')
 
 const context = import.meta.env.VITE_CONTEXT
 
 let routes = [
-  // 演练场，无中英文
-  {
-    path: `${context}playground`,
-    component: Playground
-  },
   // 组件总览
   {
     path: `${context}:lang/overview`,

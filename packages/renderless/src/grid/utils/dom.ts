@@ -25,6 +25,7 @@
 
 import { getRowid } from './common'
 import { hasClass } from '../../common/deps/dom'
+import { getActualTarget } from '../../common/event'
 import { arrayIndexOf } from '../static'
 
 const ATTR_NAME = 'data-rowid'
@@ -163,7 +164,7 @@ export const getDomNode = () => {
 
 export const getEventTargetNode = (event, container, queryCls) => {
   let targetEl
-  let target = event.target
+  let target = getActualTarget(event)
 
   while (target && target.nodeType && target !== document) {
     if (queryCls && hasClass(target, queryCls)) {

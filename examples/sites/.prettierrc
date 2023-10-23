@@ -11,6 +11,7 @@
   "useTabs": false,
   "tabWidth": 2,
   "proseWrap": "preserve",
+  "arrowParens": "always",
   "overrides": [
     {
       "files": ".prettierrc",

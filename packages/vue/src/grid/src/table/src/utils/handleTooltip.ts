@@ -23,7 +23,6 @@
  *
  */
 import { h } from '@opentiny/vue-common'
-
 export function createTooltipRange({ _vm, cell, column, isHeader }) {
   let range = document.createRange()
   let rangeEnd
@@ -56,7 +55,7 @@ export function createTooltipRange({ _vm, cell, column, isHeader }) {
 export function processContentMethod({ _vm, column, content, contentMethod, event, isHeader, row, showTip }) {
   if (contentMethod) {
     // 自定义表格tip提示，既支持字符串也支持jsx或者h函数写法
-    _vm.tooltipContent=contentMethod({ event, column, row, showTip, isHeader, content }, h)
+    _vm.tooltipContent = contentMethod({ event, column, row, showTip, isHeader, content }, h)
   } else {
     _vm.tooltipContent = content
   }

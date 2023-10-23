@@ -24,7 +24,7 @@
         {{ state.info }}
       </div>
     </div>
-    <div class="tiny-mobile-tabbar-item__text" :style="{ color: state.renderColor }">
+    <div class="tiny-mobile-tabbar-item__text" :style="{ color: state.renderColor, 'pointerEvents': 'none' }">
       <slot></slot>
     </div>
   </div>

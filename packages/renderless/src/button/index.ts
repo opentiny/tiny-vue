@@ -13,11 +13,11 @@ import { IButtonRenderlessParams, IButtonState } from '@/types'
 
 export const handleClick =
   ({ emit, props, state }: Pick<IButtonRenderlessParams, 'emit' | 'props' | 'state'>) =>
-  (event: MouseEvent) => {
+  (event: MouseEvent): void => {
     if (props.nativeType === 'button' && props.resetTime > 0) {
       state.disabled = true
 
-      state.timer = setTimeout(() => {
+      state.timer = window.setTimeout(() => {
         state.disabled = false
       }, props.resetTime)
     }
@@ -25,4 +25,4 @@ export const handleClick =
     emit('click', event)
   }
 
-export const clearTimer = (state: IButtonState) => () => clearTimeout(state.timer)
+export const clearTimer = (state: IButtonState) => (): void => clearTimeout(state.timer)

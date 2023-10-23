@@ -15,7 +15,7 @@ import { isSame } from './type'
 import { getObj } from './object'
 
 /**
- * 返回在数组中可以找到一个给定元素的第一个索引，如果不存在，则返回-1。
+ * 返回在数组中可以找到一个给定元素的第一个索引，如果不存在，则返回-1。 TINY_NO_NEED 现在数组有 findIndex
  * 修复数组原生的 indexOf 方法不能判断 NaN 的问题
  *
  *     let arr1 = [1, 2, 3, 4]

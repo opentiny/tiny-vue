@@ -160,7 +160,8 @@
 
       .@{modal-prefix-cls}__box {
         display: inline-block;
-        padding: var(--ti-modal-message-padding-vertical) var(--ti-modal-message-padding-right) var(--ti-modal-message-padding-vertical) var(--ti-modal-message-padding-left);
+        padding: var(--ti-modal-message-padding-vertical) var(--ti-modal-message-padding-right)
+          var(--ti-modal-message-padding-vertical) var(--ti-modal-message-padding-left);
         margin-top: 0;
         width: auto;
         box-shadow: var(--ti-modal-message-box-shadow);
@@ -168,7 +169,8 @@
         font-size: var(--ti-modal-message-font-size);
 
         .@{modal-prefix-cls}__body {
-          padding: var(--ti-modal-body-padding-top) var(--ti-modal-message-body-padding-horizontal) var(--ti-modal-body-padding-bottom);
+          padding: var(--ti-modal-body-padding-top) var(--ti-modal-message-body-padding-horizontal)
+            var(--ti-modal-body-padding-bottom);
 
           &:after {
             content: '';
@@ -298,7 +300,6 @@
       }
 
       .@{modal-prefix-cls}__resize {
-
         .wl-resize,
         .wr-resize,
         .swst-resize,
@@ -373,7 +374,8 @@
   &__body {
     display: flex;
     flex-grow: 1;
-    padding: var(--ti-modal-body-padding-top) var(--ti-modal-body-padding-horizontal) var(--ti-modal-body-padding-bottom);
+    padding: var(--ti-modal-body-padding-top) var(--ti-modal-body-padding-horizontal)
+      var(--ti-modal-body-padding-bottom);
   }
 
   &__header {
@@ -384,7 +386,8 @@
     align-items: center;
     font-weight: var(--ti-modal-header-font-weight);
     border-bottom: none;
-    padding: var(--ti-modal-header-padding-top) var(--ti-modal-header-padding-horizontal) var(--ti-modal-header-padding-bottom);
+    padding: var(--ti-modal-header-padding-top) var(--ti-modal-header-padding-horizontal)
+      var(--ti-modal-header-padding-bottom);
     user-select: none;
   }
 
@@ -414,7 +417,8 @@
   &__footer {
     flex-shrink: 0;
     text-align: center;
-    padding: var(--ti-modal-footer-padding-top) var(--ti-modal-footer-padding-horizontal) var(--ti-modal-footer-padding-bottom);
+    padding: var(--ti-modal-footer-padding-top) var(--ti-modal-footer-padding-horizontal)
+      var(--ti-modal-footer-padding-bottom);
 
     .@{button-prefix-cls} {
       min-width: var(--ti-modal-footer-btn-min-width);
@@ -450,11 +454,11 @@
     }
 
     .wl-resize {
-      left: -@SpaceSize / 2 + 1;
+      left: -@SpaceSize * 0.5 + 1;
     }
 
     .wr-resize {
-      right: -@SpaceSize / 2 + 1;
+      right: -@SpaceSize * 0.5 + 1;
     }
 
     .swst-resize,
@@ -505,11 +509,11 @@
     }
 
     .st-resize {
-      top: -@SpaceSize / 2 + 1;
+      top: -@SpaceSize * 0.5 + 1;
     }
 
     .sb-resize {
-      bottom: -@SpaceSize / 2 + 1;
+      bottom: -@SpaceSize * 0.5 + 1;
     }
   }
 }

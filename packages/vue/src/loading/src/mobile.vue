@@ -16,6 +16,7 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/loading/vue'
 import '@opentiny/vue-theme-mobile/loading/index.less'
 import { iconDotDownload } from '@opentiny/vue-icon'
+import type { ILoadingApi } from '@opentiny/vue-renderless/types/loading.type'
 
 export default defineComponent({
   components: {
@@ -23,7 +24,7 @@ export default defineComponent({
   },
   props: [...props, 'type', 'loadtext'],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as ILoadingApi
   }
 })
 </script>

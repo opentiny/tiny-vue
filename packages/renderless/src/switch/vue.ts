@@ -11,23 +11,26 @@
  */
 
 import { toggle, computedWarpClasses, computedInnerClasses, computedStyle } from './index'
+import {
+  ISwitchApi,
+  ISwitchProps,
+  ISwitchState,
+  ISharedRenderlessParamHooks,
+  ISwitchRenderlessParamUtils
+} from '@/types'
 
 export const api = ['toggle', 'state']
 
 export const renderless = (
-  props,
-  { computed, watch, reactive, inject },
-  { parent, constants, mode, emit, designConfig }
-) => {
+  props: ISwitchProps,
+  { computed, watch, reactive, inject }: ISharedRenderlessParamHooks,
+  { parent, constants, mode, emit, designConfig }: ISwitchRenderlessParamUtils
+): ISwitchApi => {
   const prefixCls = constants.prefixcls(mode)
 
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
-  const api = {
-    computedInnerClasses: computedInnerClasses({ prefixCls })
-  }
-
-  const state = reactive({
+  const state: ISwitchState = reactive({
     currentValue: props.modelValue,
     innerClasses: computed(() => api.computedInnerClasses()),
     wrapClasses: computed(() => api.computedWarpClasses()),
@@ -45,12 +48,13 @@ export const renderless = (
     })
   })
 
-  Object.assign(api, {
+  const api: ISwitchApi = {
     state,
+    computedInnerClasses: computedInnerClasses({ prefixCls }),
     computedStyle: computedStyle({ props, state }),
     computedWarpClasses: computedWarpClasses({ prefixCls, props, state }),
     toggle: toggle({ emit, props, state })
-  })
+  }
 
   watch(
     () => props.modelValue,

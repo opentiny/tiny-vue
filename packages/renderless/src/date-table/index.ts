@@ -21,6 +21,7 @@ import {
   clearTime
 } from '../common/deps/date-util'
 import { DATEPICKER } from '../common'
+import { IDateTableRow } from '@/types'
 
 const formatJudg = ({ day, offset, j, i, cell, count, dateCountOfLastMonth }) => {
   const nodfpm = day + offset < 0 ? 7 + day + offset : day + offset
@@ -142,9 +143,24 @@ const doCount = ({ i, day, offset, j, cell, count, dateCountOfLastMonth, dateCou
 
 export const coerceTruthyValueToArray = (val) => (Array.isArray(val) ? val : val ? [val] : [])
 
+/**
+ * 获取日期表格二维数组，用于渲染日期表格。
+ *
+ * 返回值的格式如下：
+ * [
+ *   [
+ *     {
+ *       text: 1,
+ *       selected: true,
+ *       ... // 每个数组项的类型为 IDateTableRow
+ *     }
+ *   ],
+ *   ...
+ * ]
+ */
 export const getRows =
   ({ api, props, state, t, vm }) =>
-  () => {
+  (): IDateTableRow[][] => {
     const date = new Date(state.year, state.month, 1)
     let day = getFirstDayOfMonth(date)
     const dateCountOfMonth = getDayCountOfMonth(date.getFullYear(), date.getMonth())
@@ -156,7 +172,7 @@ export const getRows =
     day = day === 0 ? 7 : day
 
     const offset = state.offsetDay
-    const rows = state.tableRows
+    const rows: IDateTableRow[][] = state.tableRows
     const startDate = state.startDate
     const disabledDate = props.disabledDate
     const cellClassName = props.cellClassName
@@ -165,21 +181,29 @@ export const getRows =
 
     const isFunction = props.formatWeeks instanceof Function
   
-    const arr = []
+    const arr: Date[][] = []
 
+    // 日期表格行，从0开始，共6行，[0, 5]
     for (let i = 0; i < 6; i++) {
       const row = rows[i]
+
+      // 周次
       if (props.showWeekNumber) {
         row[0] = {
           type: DATEPICKER.Week,
           text: getWeekNumber(nextDate(startDate, i * 7 + 1))
         }
       }
+
+      // Date 格式的日期表格
       arr[i] = []
 
+      // 日期表格列，从0开始，共7列，[0, 6]。星期日为0，星期一为1，依此类推。
       for (let j = 0; j < 7; j++) {
+        // 设置日期单元格的 row / column / inRange / start / end / type
         const { cell, cellDate } = api.getCell(row, i, j, DATEPICKER.Normal, props)
 
+        // 设置日期单元格的 text / type
         count = doCount({ i, day, offset, j, cell, count, dateCountOfLastMonth, dateCountOfMonth })
 
         cell.disabled = typeof disabledDate === 'function' && disabledDate(cellDate)
@@ -194,11 +218,13 @@ export const getRows =
         })
         cell.customClass = typeof cellClassName === 'function' && cellClassName(cellDate)
 
+        // 更新日期表格的行数据，执行了这行代码，rows 中才会有数据
         vm.$set(row, props.showWeekNumber ? j + 1 : j, cell)
 
         arr[i].push(cellDate)
       }
 
+      // 选择周
       if (props.selectionMode === DATEPICKER.Week) {
         const [start, end] = props.showWeekNumber ? [1, 7] : [0, 6]
         const isWeekActive = api.isWeekActive(row[start + 1])
@@ -208,6 +234,7 @@ export const getRows =
       }
     }
 
+    // 周次的逻辑
     const res = []
 
     for (let i = 0; i < arr.length; i++) {

@@ -71,6 +71,7 @@ import { renderless, api } from '@opentiny/vue-renderless/progress/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconClose, iconSuccessful, iconError, iconYes, iconWarning } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme-mobile/progress/index.less'
+import type { IProgressApi } from '@opentiny/vue-renderless/types/progress.type'
 
 export default defineComponent({
   props: [
@@ -93,7 +94,7 @@ export default defineComponent({
     IconWarning: iconWarning()
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IProgressApi
   }
 })
 </script>

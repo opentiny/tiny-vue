@@ -11,6 +11,37 @@
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
+import type { PropType } from 'vue'
+import type { IButtonGroupNode } from '@opentiny/vue-renderless/types/button-group.type'
+
+export const buttonGroupProps = {
+  ...$props,
+  size: String,
+  data: {
+    type: Array as PropType<IButtonGroupNode[]>,
+    default: () => []
+  },
+  plain: Boolean,
+  modelValue: [String, Number],
+  disabled: Boolean,
+  valueField: {
+    type: String,
+    default: 'value'
+  },
+  textField: {
+    type: String,
+    default: 'text'
+  },
+  showMore: Number,
+  showEdit: {
+    type: Boolean,
+    default: false
+  },
+  border: {
+    type: Boolean,
+    default: true
+  }
+}
 
 export default defineComponent({
   name: $prefix + 'ButtonGroup',
@@ -19,31 +50,7 @@ export default defineComponent({
       buttonGroup: this
     }
   },
-  props: {
-    ...$props,
-    size: String,
-    data: Array,
-    plain: Boolean,
-    modelValue: [String, Number],
-    disabled: Boolean,
-    valueField: {
-      type: String,
-      default: 'value'
-    },
-    textField: {
-      type: String,
-      default: 'text'
-    },
-    showMore: Number,
-    showEdit: {
-      type: Boolean,
-      default: false
-    },
-    border: {
-      type: Boolean,
-      default: true
-    }
-  },
+  props: buttonGroupProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

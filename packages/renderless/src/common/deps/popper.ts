@@ -13,7 +13,6 @@
 import { on, off } from './dom'
 import PopupManager from './popup-manager'
 import { typeOf } from '../type'
-import { xss } from '../xss'
 
 const positions = ['left', 'right', 'top', 'bottom']
 const modifiers = ['shift', 'offset', 'preventOverflow', 'keepTogether', 'arrow', 'flip', 'applyStyle']
@@ -23,21 +22,17 @@ const DEFAULTS = {
   arrowElement: '[x-arrow]',
   boundariesElement: 'viewport',
   boundariesPadding: 5,
-  flipBehavior: 'flip',
+  flipBehavior: 'flip', // 全局没有修改过它，所以它一直是flip
   forceAbsolute: false,
-  gpuAcceleration: true,
+  gpuAcceleration: true, // 这个用不到了，默认使用tranform3d
   offset: 0,
   placement: 'bottom',
   preventOverflowOrder: positions,
-  modifiers,
-  modifiersIgnored: []
+  modifiers // 此处是string数组， 构造函数调用之后转为函数数组
 }
 
-const getRealWindow = () => (window.tinyGetRealWindow ? window.tinyGetRealWindow() : window)
-
-const getRealElement = (el) => (el.jquery ? el[0] : el)
-
-const setStyle = (el, styles) => {
+/** 用 styles 对象赋值el.style */
+const setStyle = (el: HTMLElement, styles: object) => {
   const isNumeric = (n) => n !== '' && !isNaN(parseFloat(n)) && isFinite(n)
 
   Object.keys(styles).forEach((prop) => {
@@ -51,42 +46,15 @@ const setStyle = (el, styles) => {
   })
 }
 
-const getSupportedPropertyName = (property) => {
-  let prefixes = ['', 'ms', 'webkit', 'moz', 'o']
-  let bodyEl = window.document.body
-
-  for (let i = 0; i < prefixes.length; i++) {
-    let toCheck = prefixes[i] ? prefixes[i] + property.charAt(0).toUpperCase() + property.slice(1) : property
-
-    if (typeof bodyEl.style[toCheck] !== 'undefined') {
-      return toCheck
-    }
-  }
-
-  return null
-}
-
-const addClassNames = (el, classNames) => {
-  classNames.forEach((className) => {
-    el.classList.add(className)
-  })
-}
-
-const addAttributes = (el, attributes) => {
-  attributes.forEach((attribute) => {
-    const attrs = attribute.split(':')
-
-    el.setAttribute(attrs[0], attrs[1] || '')
-  })
-}
-
-const getOffsetParent = (el) => {
-  let offsetParent = el.offsetParent
+/** 查找el的 offsetParent ,找不到则默认为 <html> */
+const getOffsetParent = (el: HTMLElement) => {
+  let offsetParent = el.offsetParent as HTMLElement
 
   return offsetParent === window.document.body || !offsetParent ? window.document.documentElement : offsetParent
 }
 
-const getStyleComputedProperty = (el, property) => {
+/** 查找基本元素的计算属性值 */
+const getStyleComputedProperty = (el: HTMLElement, property: string) => {
   if (!el || el.nodeType !== 1) {
     return
   }
@@ -96,7 +64,8 @@ const getStyleComputedProperty = (el, property) => {
   return css[property]
 }
 
-const isFixed = (el) => {
+/** 向上查找，判断是不是某一层级有fixed */
+const isFixed = (el: HTMLElement) => {
   if (el === window.document.body) {
     return false
   }
@@ -105,26 +74,25 @@ const isFixed = (el) => {
     return true
   }
 
-  return el.parentNode ? isFixed(el.parentNode) : false
+  return el.parentNode ? isFixed(el.parentNode as HTMLElement) : false
 }
 
-const getBoundingClientRect = (el) => {
-  let rectObj = el.getBoundingClientRect()
-  let isIE = navigator.userAgent.includes('MSIE')
-  let rectTop = isIE && el.tagName === 'HTML' ? -el.scrollTop : rectObj.top
+/** 在页面上的相对视口位置。 也就是说滚动条会影响它的值 */
+const getBoundingClientRect = (el: HTMLElement) => {
+  let rect = el.getBoundingClientRect()
 
   return {
-    left: rectObj.left,
-    top: rectTop,
-    right: rectObj.right,
-    bottom: rectObj.bottom,
-    width: rectObj.right - rectObj.left,
-    height: rectObj.bottom - rectTop
+    left: rect.left,
+    top: rect.top,
+    right: rect.right,
+    bottom: rect.bottom,
+    width: rect.right - rect.left,
+    height: rect.bottom - rect.top
   }
 }
 
-// 判断el的overflow是不是可能滚动的
-const isScrollElement = (el) => {
+/** 判断el的overflow是不是可能滚动的 */
+const isScrollElement = (el: HTMLElement) => {
   const scrollTypes = ['scroll', 'auto']
 
   return (
@@ -134,8 +102,8 @@ const isScrollElement = (el) => {
   )
 }
 
-// 查找滚动元素，只找第一个就返回
-export const getScrollParent = (el) => {
+/** 查找滚动父元素，只找第一个就返回 */
+export const getScrollParent: (el: HTMLElement) => HTMLElement = (el) => {
   let parent = el.parentNode
 
   if (!parent) {
@@ -144,21 +112,23 @@ export const getScrollParent = (el) => {
 
   if (parent === window.document) {
     if (window.document.body.scrollTop || window.document.body.scrollLeft) {
-      return window.document.body
+      return window.document.body as HTMLElement
     }
     return window.document.documentElement
   }
 
-  if (isScrollElement(parent)) {
-    return parent
+  if (isScrollElement(parent as any)) {
+    return parent as HTMLElement
   }
 
-  return getScrollParent(el.parentNode)
+  return getScrollParent(parent as any)
 }
 
-const getOffsetRectRelativeToCustomParent = (el, parent, fixed) => {
+/** 计算 el 在父元素中的定位 */
+const getOffsetRectRelativeToCustomParent = (el: HTMLElement, parent: HTMLElement, fixed: boolean) => {
   let { top, left, width, height } = getBoundingClientRect(el)
 
+  // 如果是fixed定位，直接返回相对视口位置
   if (fixed) {
     return {
       top: top,
@@ -171,7 +141,6 @@ const getOffsetRectRelativeToCustomParent = (el, parent, fixed) => {
   }
 
   let parentRect = getBoundingClientRect(parent)
-
   let rect = {
     top: top - parentRect.top,
     left: left - parentRect.left,
@@ -184,10 +153,10 @@ const getOffsetRectRelativeToCustomParent = (el, parent, fixed) => {
   return rect
 }
 
-const getScrollTopValue = (el) =>
+const getScrollTopValue = (el: HTMLElement) =>
   el === document.body ? Math.max(document.documentElement.scrollTop, document.body.scrollTop) : el.scrollTop
 
-const getScrollLeftValue = (el) =>
+const getScrollLeftValue = (el: HTMLElement) =>
   el === document.body ? Math.max(document.documentElement.scrollLeft, document.body.scrollLeft) : el.scrollLeft
 
 const getMaxWH = (body, html) => {
@@ -196,7 +165,8 @@ const getMaxWH = (body, html) => {
   return { width, height }
 }
 
-const getOuterSizes = (el) => {
+/** 计算元素的margin盒子的大小 */
+const getOuterSizes = (el: HTMLElement) => {
   let _display = el.style.display
   let _visibility = el.style.visibility
 
@@ -214,13 +184,15 @@ const getOuterSizes = (el) => {
   return result
 }
 
-const getOppositePlacement = (placement) => {
+/** 把字符串位置替换为反方向， 例如： left替换为right */
+const getOppositePlacement = (placement: string) => {
   let hash = { left: 'right', right: 'left', bottom: 'top', top: 'bottom' }
 
   return placement.replace(/left|right|bottom|top/g, (matched) => hash[matched])
 }
 
-const getPopperClientRect = (popperOffsets) => {
+/** 克隆popperOffsets，并补上 right,bottom的值  */
+const getPopperClientRect = (popperOffsets: PopperOffsets) => {
   let offsets = { ...popperOffsets }
 
   offsets.right = offsets.left + offsets.width
@@ -229,41 +201,34 @@ const getPopperClientRect = (popperOffsets) => {
   return offsets
 }
 
-const getArrayKeyIndex = (arr, keyToFind) => {
-  let i = 0
-
-  for (let value of arr) {
-    if (value === keyToFind) {
-      return i
-    }
-
-    i++
-  }
-
-  return null
-}
-
-export const getAllScrollParents = (el, parents = []) => {
-  const parent = el.parentNode
+/** 收集所有的带scroll的父元素到一个数组中 */
+const getAllScrollParents: (el: HTMLElement, parents?: HTMLElement[]) => HTMLElement[] = (
+  el: HTMLElement,
+  parents = [] as HTMLElement[]
+) => {
+  const parent = el.parentNode as HTMLElement
 
   if (parent) {
     isScrollElement(parent) && parents.push(parent)
     // 如果祖先元素是fixed，则不再继续往上查找
-    if(getStyleComputedProperty(parent, 'position') === 'fixed') {
+    if (getStyleComputedProperty(parent, 'position') === 'fixed') {
       return parents
     }
-    return getAllScrollParents(parent, parents)
+    return getAllScrollParents(parent, parents) as HTMLElement[]
   }
 
   return parents
 }
 
-const getOffsetRect = (el) => {
-  let elementRect = {
+/** 返回当前元素的offset值 */
+const getOffsetRect = (el: HTMLElement) => {
+  const elementRect = {
     width: el.offsetWidth,
     height: el.offsetHeight,
     left: el.offsetLeft,
-    top: el.offsetTop
+    top: el.offsetTop,
+    right: 0,
+    bottom: 0
   }
 
   elementRect.right = elementRect.left + elementRect.width
@@ -272,561 +237,550 @@ const getOffsetRect = (el) => {
   return elementRect
 }
 
-function Popper(reference, popper, options) {
-  this._reference = getRealElement(reference)
-  this.state = {}
+interface PopperOptions {
+  arrowOffset: number
+  arrowElement: string
+  boundariesElement: string | HTMLElement
+  boundariesPadding: number
+  flipBehavior: string
+  forceAbsolute: boolean
+  gpuAcceleration: boolean
+  offset: number
+  placement: string
+  preventOverflowOrder: string[]
+  modifiers: string[]
+  modifierFns: Function[] // 区分2个modifiers变量
+  removeOnDestroy?: boolean // destory时，是否移除popper dom
+  bubbling?: boolean // 是否给所有祖先的scroll都监听上
+  adjustArrow?: boolean // 是否校正。 只有tooltip使用它个属性了
+}
+interface PopperState {
+  position: 'absolute' | 'fixed'
+  updateCallback?: (data: UpdateData) => void
+  scrollTarget: HTMLElement | null
+  scrollTargets: HTMLElement[] | null
+  updateBoundFn: () => void
+}
 
-  let isNotDefined = typeof popper === 'undefined' || popper === null
-  let isConfig = popper && Object.prototype.toString.call(popper) === '[object Object]'
+interface ReferenceOffsets {
+  top: number
+  left: number
+  bottom: number
+  right: number
+  width: number
+  height: number
+}
+interface PopperOffsets {
+  position: 'absolute' | 'fixed'
+  top: number
+  left: number
+  bottom: number
+  right: number
+  width: number
+  height: number
+}
+interface arrowOffsets {
+  top: number
+  left: number
+}
+/** update时的data变量 */
+interface UpdateData {
+  instance: Popper
+  styles: {}
+  placement: string
+  _originalPlacement: string
 
-  if (isNotDefined || isConfig) {
-    this._popper = this.parse(isConfig ? popper : {})
-  } else {
-    this._popper = getRealElement(popper)
+  offsets: {
+    popper: PopperOffsets
+    reference: ReferenceOffsets
+    arrow?: arrowOffsets
+  }
+  arrowElement: HTMLElement
+
+  boundaries: {
+    right: number
+    left: number
+    top: number
+    bottom: number
+  }
+  flipped?: boolean
+}
+/** Popper 类是用于处理 reference 和 popper 两个dom，让popper悬浮的功能
+ * 调用后就popper就'absolute' | 'fixed' 定位，并立即计算一次popper后的位置，并绑定scroll 和 resize事件！
+ */
+class Popper {
+  _reference: HTMLElement
+  _popper: HTMLElement
+  state: PopperState
+  _options: PopperOptions
+  modifiers: Record<string, Function> = {}
+  /** 每次update, 计算popper的大小并缓存 */
+  popperOuterSize = null as unknown as { width: number; height: number }
+
+  constructor(reference: HTMLElement, popper: HTMLElement, options: PopperOptions) {
+    this._reference = reference
+    this._popper = popper
+    this.state = {} as PopperState
+
+    this._options = { ...DEFAULTS, ...options } as any
+
+    this._options.modifierFns = modifiers.map((modifier) => {
+      return this[modifier]
+    })
+    this._popper.setAttribute('x-placement', this._options.placement)
+
+    this.state.position = this._getPopperPositionByRefernce(this._reference)
+
+    setStyle(this._popper, { position: this.state.position, top: 0 })
+
+    this.update()
+    this._setupEventListeners()
   }
 
-  this._options = { ...DEFAULTS, ...options }
+  destroy() {
+    this._popper.removeAttribute('x-placement')
 
-  this._options.modifiers = this._options.modifiers.map((modifier) => {
-    if (~this._options.modifiersIgnored.indexOf(modifier)) {
-      return undefined
+    // 记录 _oldreference 就是为了保留之前的top,left, 但必要性并不大，因为此时强行把popper给display:none了。
+    // 它的位置也并不重要了。 所以 _oldreference  TINY_NO_NEED
+    // const popperStyle = (this._reference === this._oldreference && this._oldreference._popper) || {}
+
+    this._popper.style.display = 'none'
+    // this._popper.style.position = ''
+    // this._popper.style.top = popperStyle.top || ''
+    // this._popper.style.left = popperStyle.left || ''
+    // this._popper.style.transform = ''
+    this._removeEventListeners()
+
+    /** 只有示例中，用到这个属性了。 由于8个组件默认值没有用，所以默认popper是display:none的状态，留在了页面上 */
+    this._options.removeOnDestroy && this._popper.remove()
+
+    return this
+  }
+  onUpdate(callback) {
+    this.state.updateCallback = callback
+    return this
+  }
+  update() {
+    let data = { instance: this, styles: {} } as unknown as UpdateData
+
+    this.popperOuterSize = null as unknown as { width: number; height: number }
+    data.placement = data._originalPlacement = this._options.placement
+    data.offsets = this._getRefPopOffsets(this._popper, this._reference, data.placement)
+
+    data.boundaries = this._getBoundaries(data, this._options.boundariesPadding, this._options.boundariesElement)
+
+    data = this.runModifiers(data, this._options.modifierFns)
+
+    typeof this.state.updateCallback === 'function' && this.state.updateCallback(data)
+  }
+  /** 按顺序执行Modifiers， 如果传入终点modifier,则执行到指定位置 */
+  runModifiers(data: UpdateData, modifiers: Function[], ends?: Function) {
+    let modifiersToRun = modifiers.slice()
+    const _options = this._options
+
+    if (ends !== undefined) {
+      modifiersToRun = this._options.modifierFns.slice(
+        0,
+        _options.modifierFns.findIndex((m) => m == ends)
+      )
     }
 
-    if (modifier === 'applyStyle') {
-      this._popper.setAttribute('x-placement', this._options.placement)
-    }
-
-    return this.modifiers[modifier] || modifier
-  })
-
-  this.state.position = this._getPosition(this._popper, this._reference)
-
-  setStyle(this._popper, { position: this.state.position, top: 0 })
-
-  this.update()
-  this._setupEventListeners()
-  this._oldreference = this._reference
-  this._oldreference._popper = this._popper.style || {}
-
-  return this
-}
-
-Popper.prototype.destroy = function () {
-  this._popper.removeAttribute('x-placement')
-
-  const popperStyle = (this._reference === this._oldreference && this._oldreference._popper) || {}
-
-  this._popper.style.display = 'none'
-  this._popper.style.position = ''
-  this._popper.style.top = popperStyle.top || ''
-  this._popper.style.left = popperStyle.left || ''
-  this._popper.style[getSupportedPropertyName('transform')] = ''
-  this._removeEventListeners()
-
-  this._options.removeOnDestroy && this._popper.remove()
-
-  return this
-}
-
-Popper.prototype.onCreate = function (callback) {
-  callback(this)
-  return this
-}
-
-Popper.prototype.onUpdate = function (callback) {
-  this.state.updateCallback = callback
-  return this
-}
-
-Popper.prototype.update = function () {
-  let data = { instance: this, styles: {} }
-
-  this.popperOuterSize = null
-  data.placement = data._originalPlacement = this._options.placement
-  data.offsets = this._getOffsets(this._popper, this._reference, data.placement)
-
-  data.boundaries = this._getBoundaries(data, this._options.boundariesPadding, this._options.boundariesElement)
-
-  data = this.runModifiers(data, this._options.modifiers)
-
-  typeof this.state.updateCallback === 'function' && this.state.updateCallback(data)
-}
-
-Popper.prototype.parse = function (config) {
-  let defaultConfig = {
-    attributes: [],
-    arrowTagName: 'div',
-    arrowClassNames: ['popper__arrow'],
-    arrowAttributes: ['x-arrow'],
-    classNames: ['popper'],
-    content: '',
-    contentType: 'text',
-    parent: window.document.body,
-    tagName: 'div'
-  }
-  config = { ...defaultConfig, ...config }
-  const { tagName, classNames, attributes, contentType, content, arrowTagName } = config
-  let docEl = window.document
-  let popper = docEl.createElement(tagName)
-  addClassNames(popper, classNames)
-  addAttributes(popper, attributes)
-  if (contentType === 'node') {
-    popper.appendChild(getRealElement(content))
-  } else if (contentType === 'html') {
-    popper.innerHTML = xss.filterHtml(content)
-  } else {
-    popper.textContent = content
-  }
-
-  if (arrowTagName) {
-    let arrow = docEl.createElement(arrowTagName)
-    addClassNames(arrow, config.arrowClassNames)
-    addAttributes(arrow, config.arrowAttributes)
-    popper.appendChild(arrow)
-  }
-  let parent = getRealElement(config.parent)
-  if (typeof parent === 'string') {
-    parent = docEl.querySelectorAll(config.parent)
-    if (parent && parent.length) {
-      parent = parent[0]
-    } else {
-      throw new Error('ERROR: the given `parent` does not exists!')
-    }
-  }
-  if (parent.length > 1 && parent instanceof Element === false) {
-    parent = parent[0]
-  }
-  parent.appendChild(popper)
-
-  return popper
-}
-
-Popper.prototype._getPosition = function (popper, reference) {
-  if (this._options.forceAbsolute) {
-    return 'absolute'
-  }
-
-  let isParentFixed = isFixed(reference)
-  return isParentFixed ? 'fixed' : 'absolute'
-}
-
-Popper.prototype._getOffsets = function (popper, reference, placement) {
-  placement = placement.split('-')[0]
-
-  let popperOffsets = {}
-  popperOffsets.position = this.state.position
-
-  let isParentFixed = popperOffsets.position === 'fixed'
-  let referenceOffsets = getOffsetRectRelativeToCustomParent(reference, getOffsetParent(popper), isParentFixed)
-  // 利用 popperOuterSize 来减少一次outerSize的计算
-  let { width, height } = this.popperOuterSize ? this.popperOuterSize : (this.popperOuterSize = getOuterSizes(popper))
-
-  if (~['right', 'left'].indexOf(placement)) {
-    popperOffsets.top = referenceOffsets.top + referenceOffsets.height / 2 - height / 2
-
-    if (placement === 'left') {
-      popperOffsets.left = referenceOffsets.left - width
-    } else {
-      popperOffsets.left = referenceOffsets.right
-    }
-  } else {
-    popperOffsets.left = referenceOffsets.left + referenceOffsets.width / 2 - width / 2
-
-    if (placement === 'top') {
-      popperOffsets.top = referenceOffsets.top - height
-    } else {
-      popperOffsets.top = referenceOffsets.bottom
-    }
-  }
-
-  popperOffsets.width = width
-  popperOffsets.height = height
-
-  return {
-    popper: popperOffsets,
-    reference: referenceOffsets
-  }
-}
-
-Popper.prototype._setupEventListeners = function () {
-  this.state.updateBound = this.update.bind(this)
-
-  on(window, 'resize', this.state.updateBound)
-
-  if (this._options.boundariesElement !== 'window') {
-    let target = getScrollParent(this._reference)
-
-    if (target === window.document.body || target === window.document.documentElement) {
-      target = window
-    }
-    this.state.scrollTarget = target
-
-    // 只有bubbling时，才启用所有祖先监听，根源在此。 getAll..Parents函数只有这一处调用
-    if (this._options.bubbling || PopupManager.globalScroll) {
-      let targets = getAllScrollParents(this._reference)
-
-      this.state.scrollTargets = targets || []
-      targets.forEach((target) => {
-        on(target, 'scroll', this.state.updateBound)
-      })
-    } else {
-      on(target, 'scroll', this.state.updateBound)
-    }
-  }
-}
-
-Popper.prototype._removeEventListeners = function () {
-  off(window, 'resize', this.state.updateBound)
-
-  if (this._options.boundariesElement !== 'window' && this.state.scrollTarget) {
-    off(this.state.scrollTarget, 'scroll', this.state.updateBound)
-    this.state.scrollTarget = null
-
-    // 移除祖先监听
-    if (this._options.bubbling || PopupManager.globalScroll) {
-      let targets = this.state.scrollTargets || []
-
-      targets.forEach((target) => {
-        off(target, 'scroll', this.state.updateBound)
-      })
-      this.state.scrollTargets = null
-    }
-  }
-
-  this.state.updateBound = null
-}
-
-Popper.prototype._getBoundaries = function (data, padding, boundariesElement) {
-  let boundaries = {}
-
-  if (boundariesElement === 'window') {
-    let body = window.document.body
-    let html = window.document.documentElement
-    let { width, height } = getMaxWH(body, html)
-
-    boundaries = { top: 0, right: width, bottom: height, left: 0 }
-  } else if (boundariesElement === 'viewport') {
-    let offsetParent = getOffsetParent(this._popper)
-    let scrollParent = getScrollParent(this._popper)
-    let offsetParentRect = getOffsetRect(offsetParent)
-    let isFixed = data.offsets.popper.position === 'fixed'
-    let scrollTop = isFixed ? 0 : getScrollTopValue(scrollParent)
-    let scrollLeft = isFixed ? 0 : getScrollLeftValue(scrollParent)
-
-    const viewportWindow = getRealWindow()
-    boundaries = {
-      top: 0 - (offsetParentRect.top - scrollTop),
-      right: viewportWindow.document.documentElement.clientWidth - (offsetParentRect.left - scrollLeft),
-      bottom: viewportWindow.document.documentElement.clientHeight - (offsetParentRect.top - scrollTop),
-      left: 0 - (offsetParentRect.left - scrollLeft)
-    }
-  } else {
-    if (getOffsetParent(this._popper) === boundariesElement) {
-      const { clientWidth, clientHeight } = boundariesElement
-
-      boundaries = {
-        right: clientWidth,
-        bottom: clientHeight,
-        top: 0,
-        left: 0
+    modifiersToRun.forEach((modifier) => {
+      if (typeOf(modifier) === 'function') {
+        data = modifier.call(this, data)
       }
-    } else {
-      boundaries = getOffsetRect(boundariesElement)
-    }
+    })
+
+    return data
   }
+  // 此时才把offsets.popper 赋值给popper dom,  offsets.array赋值给array dom
+  applyStyle(data: UpdateData) {
+    let styles: any = { position: data.offsets.popper.position }
+    let left = Math.round(data.offsets.popper.left)
+    let top = Math.round(data.offsets.popper.top)
 
-  boundaries.right -= padding
-  boundaries.left += padding
-  boundaries.bottom = boundaries.bottom - padding
-  boundaries.top = boundaries.top + padding
-
-  return boundaries
-}
-
-Popper.prototype.isModifierRequired = function (requesting, requested) {
-  let index = getArrayKeyIndex(this._options.modifiers, requesting)
-
-  return !!this._options.modifiers.slice(0, index).filter((modifier) => modifier === requested).length
-}
-
-Popper.prototype.runModifiers = function (data, modifiers, ends) {
-  let modifiersToRun = modifiers.slice()
-  const _options = this._options
-
-  if (ends !== undefined) {
-    modifiersToRun = _options.modifiers.slice(0, getArrayKeyIndex(_options.modifiers, ends))
-  }
-
-  modifiersToRun.forEach((modifier) => {
-    if (typeOf(modifier) === 'function') {
-      data = modifier.call(this, data)
-    }
-  })
-
-  return data
-}
-
-Popper.prototype.modifiers = {}
-
-Popper.prototype.modifiers.applyStyle = function (data) {
-  let styles = { position: data.offsets.popper.position }
-  let left = Math.round(data.offsets.popper.left)
-  let top = Math.round(data.offsets.popper.top)
-  let prefixedProperty
-
-  if (this._options.gpuAcceleration && (prefixedProperty = getSupportedPropertyName('transform'))) {
-    styles[prefixedProperty] = `translate3d(${left}px, ${top}px, 0)`
+    // 始终使用 translate3d
+    styles.transform = `translate3d(${left}px, ${top}px, 0)`
     Object.assign(styles, { top: 0, left: 0 })
-  } else {
-    Object.assign(styles, { top, left })
+
+    Object.assign(styles, data.styles)
+
+    setStyle(this._popper, styles)
+
+    this._popper.setAttribute('x-placement', data.placement)
+
+    if (data.offsets.arrow) {
+      setStyle(data.arrowElement, data.offsets.arrow)
+    }
+
+    return data
   }
+  // 判断 placement是不是2段式的，是则处理一下偏移。 修改data.offsets.popper的值
+  shift(data: UpdateData) {
+    let placement = data.placement
+    let basePlacement = placement.split('-')[0]
+    let shiftVariation = placement.split('-')[1]
 
-  Object.assign(styles, data.styles)
+    if (shiftVariation) {
+      let { top, left, height, width } = data.offsets.reference
+      let popper = getPopperClientRect(data.offsets.popper)
 
-  setStyle(this._popper, styles)
+      let shiftOffsets = {
+        y: {
+          start: { top },
+          end: { top: top + height - popper.height }
+        },
+        x: {
+          start: { left },
+          end: { left: left + width - popper.width }
+        }
+      }
 
-  this._popper.setAttribute('x-placement', data.placement)
+      let axis = ~['bottom', 'top'].indexOf(basePlacement) ? 'x' : 'y'
 
-  const modifiers = this.modifiers
+      data.offsets.popper = Object.assign(popper, shiftOffsets[axis][shiftVariation])
+    }
 
-  if (this.isModifierRequired(modifiers.applyStyle, modifiers.arrow) && data.offsets.arrow) {
-    setStyle(data.arrowElement, data.offsets.arrow)
+    return data
   }
-
-  return data
-}
-
-Popper.prototype.modifiers.shift = function (data) {
-  let placement = data.placement
-  let basePlacement = placement.split('-')[0]
-  let shiftVariation = placement.split('-')[1]
-
-  if (shiftVariation) {
-    let { top, left, height, width } = data.offsets.reference
+  // 校正popper的位置在boundaries 的内部
+  preventOverflow(data: UpdateData) {
+    let order = this._options.preventOverflowOrder
     let popper = getPopperClientRect(data.offsets.popper)
 
-    let shiftOffsets = {
-      y: {
-        start: { top },
-        end: { top: top + height - popper.height }
+    let check = {
+      top: () => {
+        let { top } = popper
+
+        if (top < data.boundaries.top) {
+          top = Math.max(top, data.boundaries.top)
+        }
+
+        return { top }
       },
-      x: {
-        start: { left },
-        end: { left: left + width - popper.width }
+      right: () => {
+        let { left } = popper
+
+        if (popper.right > data.boundaries.right) {
+          left = Math.min(left, data.boundaries.right - popper.width)
+        }
+
+        return { left }
+      },
+      bottom: () => {
+        let { top } = popper
+
+        if (popper.bottom > data.boundaries.bottom) {
+          top = Math.min(top, data.boundaries.bottom - popper.height)
+        }
+
+        return { top }
+      },
+      left: () => {
+        let { left } = popper
+
+        if (popper.left < data.boundaries.left) {
+          left = Math.max(left, data.boundaries.left)
+        }
+
+        return { left }
       }
     }
 
-    let axis = ~['bottom', 'top'].indexOf(basePlacement) ? 'x' : 'y'
-
-    data.offsets.popper = Object.assign(popper, shiftOffsets[axis][shiftVariation])
+    order.forEach((direction) => {
+      data.offsets.popper = Object.assign(popper, check[direction]())
+    })
+    return data
   }
+  // 校正popper的位置在reference的边上。 如果2个分离了，重新调整popper的位置。 可能是担心 modifiers.offset 带来的副作用吧
+  keepTogether(data: UpdateData) {
+    let popper = getPopperClientRect(data.offsets.popper)
+    let reference = data.offsets.reference
 
-  return data
-}
-
-Popper.prototype.modifiers.preventOverflow = function (data) {
-  let order = this._options.preventOverflowOrder
-  let popper = getPopperClientRect(data.offsets.popper)
-
-  let check = {
-    top: () => {
-      let { top } = popper
-
-      if (top < data.boundaries.top) {
-        top = Math.max(top, data.boundaries.top)
-      }
-
-      return { top }
-    },
-    right: () => {
-      let { left } = popper
-
-      if (popper.right > data.boundaries.right) {
-        left = Math.min(left, data.boundaries.right - popper.width)
-      }
-
-      return { left }
-    },
-    bottom: () => {
-      let { top } = popper
-
-      if (popper.bottom > data.boundaries.bottom) {
-        top = Math.min(top, data.boundaries.bottom - popper.height)
-      }
-
-      return { top }
-    },
-    left: () => {
-      let { left } = popper
-
-      if (popper.left < data.boundaries.left) {
-        left = Math.max(left, data.boundaries.left)
-      }
-
-      return { left }
+    if (popper.right < Math.floor(reference.left)) {
+      data.offsets.popper.left = Math.floor(reference.left) - popper.width
     }
+
+    if (popper.left > Math.floor(reference.right)) {
+      data.offsets.popper.left = Math.floor(reference.right)
+    }
+
+    if (popper.bottom < Math.floor(reference.top)) {
+      data.offsets.popper.top = Math.floor(reference.top) - popper.height
+    }
+
+    if (popper.top > Math.floor(reference.bottom)) {
+      data.offsets.popper.top = Math.floor(reference.bottom)
+    }
+
+    return data
   }
+  // 根据flip的策略，计算当前应该显示的位置。 空间不够要计算出flip的位置。 可能是担心preventOverflow 时，造成pop, reference会重叠。 重叠了就要flip一下
+  flip(data: UpdateData) {
+    // 只翻转一次，避免重复的flip
+    if (data.flipped && data.placement === data._originalPlacement) {
+      return data
+    }
 
-  order.forEach((direction) => {
-    data.offsets.popper = Object.assign(popper, check[direction]())
-  })
-  return data
-}
+    const placements = data.placement.split('-')
+    let placement = placements[0]
+    let placementOpposite = getOppositePlacement(placement)
+    let variation = placements[1] || ''
+    let flipOrderArr = [placement, placementOpposite]
 
-Popper.prototype.modifiers.keepTogether = function (data) {
-  let popper = getPopperClientRect(data.offsets.popper)
-  let reference = data.offsets.reference
+    flipOrderArr.forEach((step, index) => {
+      if (placement !== step || flipOrderArr.length === index + 1) {
+        return
+      }
 
-  if (popper.right < Math.floor(reference.left)) {
-    data.offsets.popper.left = Math.floor(reference.left) - popper.width
+      placement = data.placement.split('-')[0]
+      placementOpposite = getOppositePlacement(placement)
+
+      let popperOffsets = getPopperClientRect(data.offsets.popper)
+      // 变量起名不佳。 此处分2种情况： placement是right', 'bottom 或 left,top
+      let a = ~['right', 'bottom'].indexOf(placement)
+      let p = Math.floor(data.offsets.reference[placement])
+      let po = Math.floor(popperOffsets[placementOpposite])
+
+      // 如果right，  ref.right > pop.left
+      //     bottom,  ref.bottom > pop.top
+      //     left,    ref.left < pop.left
+      //     top,     ref.top < pop.bottom
+      // 则进行flip
+      if ((a && p > po) || (!a && p < po)) {
+        data.flipped = true
+        data.placement = flipOrderArr[index + 1]
+
+        if (variation) {
+          data.placement += `-${variation}`
+        }
+
+        data.offsets.popper = this._getRefPopOffsets(this._popper, this._reference, data.placement).popper
+
+        data = this.runModifiers(data, this._options.modifierFns, this.flip)
+      }
+    })
+    return data
   }
+  // 根据入参option上的offset, 给data.offset.popper进行校正
+  offset(data: UpdateData) {
+    let offset = this._options.offset
+    let popper = data.offsets.popper
 
-  if (popper.left > Math.floor(reference.right)) {
-    data.offsets.popper.left = Math.floor(reference.right)
+    if (~data.placement.indexOf('left')) {
+      popper.top -= offset
+    } else if (~data.placement.indexOf('right')) {
+      popper.top += offset
+    } else if (~data.placement.indexOf('top')) {
+      popper.left -= offset
+    } else if (~data.placement.indexOf('bottom')) {
+      popper.left += offset
+    }
+
+    return data
   }
+  // 计算arrow的位置,保存在data.offsets.arrow ={top,left}
+  arrow(data: UpdateData) {
+    let arrow: string | HTMLElement = this._options.arrowElement // 小三角的dom
+    let arrowOffset = this._options.arrowOffset // 入参里的值，可能为 Infinity
 
-  if (popper.bottom < Math.floor(reference.top)) {
-    data.offsets.popper.top = Math.floor(reference.top) - popper.height
-  }
+    if (typeof arrow === 'string') {
+      arrow = this._popper.querySelector(arrow) as HTMLElement
+    }
 
-  if (popper.top > Math.floor(reference.bottom)) {
-    data.offsets.popper.top = Math.floor(reference.bottom)
-  }
+    if (!arrow || !this._popper.contains(arrow)) {
+      return data
+    }
 
-  return data
-}
+    let arrowStyle = {} as arrowOffsets
+    let placement = data.placement.split('-')[0] //             以下以 placement = right 为例
+    let popper = getPopperClientRect(data.offsets.popper) //    整个popper的dom屏幕尺寸。（popper到底是right-start还是right-end，此时已经计算好了的。所以最后那里不需要校正）
+    let reference = data.offsets.reference //                   tiny-form-item__content 元素的屏幕尺寸。 不包含label
+    let isVertical = ~['left', 'right'].indexOf(placement) //   true
+    let calcProp = isVertical ? 'height' : 'width' //           calcProp:height
+    let opSide = isVertical ? 'bottom' : 'right' //              opSide:bottom
+    let altSide = isVertical ? 'left' : 'top' //                 altSide:left       left是无用的那个值
+    let side = isVertical ? 'top' : 'left' //                    side:top
 
-Popper.prototype.modifiers.flip = function (data) {
-  if (!this.isModifierRequired(this.modifiers.flip, this.modifiers.preventOverflow)) {
+    let popperRect = this.popperOuterSize ? this.popperOuterSize : (this.popperOuterSize = getOuterSizes(this._popper)) // popper的大小
+    let arrowRect = getOuterSizes(arrow) //                      arrow的大小 {height: 11，width: 5}
+    let arrowSize = arrowRect[calcProp] //                       11
+
+    // 如果reference 比 popper 更靠上，则popper上移到 ref.bottom - arrowSize （上边缘对齐）
+    if (reference[opSide] - arrowSize < popper[side]) {
+      data.offsets.popper[side] -= popper[side] - (reference[opSide] - arrowSize)
+    }
+    // 如果reference 比 popper 更靠下，则popper下移到 ref.bottom + arrowSize（下边缘对齐）
+    if (reference[side] + arrowSize > popper[opSide]) {
+      data.offsets.popper[side] += reference[side] + arrowSize - popper[opSide]
+    }
+    // 如果arrowOffset有值，则center为ref的上边+arrowOffset。  此例arrowOffset为Infinity，  center也为无穷大。
+    let center = reference[side] + (arrowOffset || reference[calcProp] / 2 - arrowSize / 2)
+    let sideValue = center - popper[side]
+
+    // 猜测是上下边距留下8px的距离。 确保箭头不太靠顶靠底。
+    // 此时sideValue为“popper的顶- 箭头 - 8px” 的位置。
+    sideValue = Math.max(Math.min(popper[calcProp] - arrowSize - 8, sideValue), 8)
+    arrowStyle[side] = sideValue
+    arrowStyle[altSide] = ''
+
+    // adjustArrow此处还要校正一下，但不明白为什么只校正left, 不校正top的位置？
+    const params = this._options.placement.split('-')
+    if (this._options.adjustArrow && ~['top', 'bottom'].indexOf(params[0]) && side === 'left') {
+      if (params[1] === 'start') {
+        arrowStyle.left = 8
+      } else if (!params[1]) {
+        arrowStyle.left = (popperRect.width - arrowRect.width) / 2
+      }
+    }
+
+    data.offsets.arrow = arrowStyle
+    data.arrowElement = arrow
+
     return data
   }
 
-  if (data.flipped && data.placement === data._originalPlacement) {
-    return data
-  }
-
-  const placements = data.placement.split('-')
-  let placement = placements[0]
-  let placementOpposite = getOppositePlacement(placement)
-  let variation = placements[1] || ''
-  let flipOrderArr = []
-
-  if (this._options.flipBehavior === 'flip') {
-    flipOrderArr = [placement, placementOpposite]
-  } else {
-    flipOrderArr = this._options.flipBehavior
-  }
-
-  flipOrderArr.forEach((step, index) => {
-    if (placement !== step || flipOrderArr.length === index + 1) {
-      return
+  /** 判断 reference 的 offsetParent 元素是fix还是abs, 这个值会赋值给popper 的dom */
+  _getPopperPositionByRefernce(reference: HTMLElement) {
+    if (this._options.forceAbsolute) {
+      return 'absolute'
     }
 
-    placement = data.placement.split('-')[0]
-    placementOpposite = getOppositePlacement(placement)
+    let isParentFixed = isFixed(reference)
+    return isParentFixed ? 'fixed' : 'absolute'
+  }
+  /** 实时计算一下popper, reference的 位置信息， 用于 */
+  _getRefPopOffsets(popper, reference, placement) {
+    placement = placement.split('-')[0]
+    let popperOffsets = { position: this.state.position } as PopperOffsets
 
-    let popperOffsets = getPopperClientRect(data.offsets.popper)
-    let a = ~['right', 'bottom'].indexOf(placement)
-    let p = Math.floor(data.offsets.reference[placement])
-    let po = Math.floor(popperOffsets[placementOpposite])
+    let isParentFixed = popperOffsets.position === 'fixed'
+    let referenceOffsets = getOffsetRectRelativeToCustomParent(reference, getOffsetParent(popper), isParentFixed)
 
-    if ((a && p > po) || (!a && p < po)) {
-      data.flipped = true
-      data.placement = flipOrderArr[index + 1]
+    // 利用 popperOuterSize 来减少一次outerSize的计算
+    const { width, height } = this.popperOuterSize
+      ? this.popperOuterSize
+      : (this.popperOuterSize = getOuterSizes(popper))
 
-      if (variation) {
-        data.placement += `-${variation}`
+    if (~['right', 'left'].indexOf(placement)) {
+      popperOffsets.top = referenceOffsets.top + referenceOffsets.height / 2 - height / 2
+
+      if (placement === 'left') {
+        popperOffsets.left = referenceOffsets.left - width
+      } else {
+        popperOffsets.left = referenceOffsets.right
       }
+    } else {
+      popperOffsets.left = referenceOffsets.left + referenceOffsets.width / 2 - width / 2
 
-      data.offsets.popper = this._getOffsets(this._popper, this._reference, data.placement).popper
-
-      data = this.runModifiers(data, this._options.modifiers, this._flip)
+      if (placement === 'top') {
+        popperOffsets.top = referenceOffsets.top - height
+      } else {
+        popperOffsets.top = referenceOffsets.bottom
+      }
     }
-  })
-  return data
-}
 
-Popper.prototype.modifiers.offset = function (data) {
-  let offset = this._options.offset
-  let popper = data.offsets.popper
+    popperOffsets.width = width
+    popperOffsets.height = height
 
-  if (~data.placement.indexOf('left')) {
-    popper.top -= offset
-  } else if (~data.placement.indexOf('right')) {
-    popper.top += offset
-  } else if (~data.placement.indexOf('top')) {
-    popper.left -= offset
-  } else if (~data.placement.indexOf('bottom')) {
-    popper.left += offset
-  }
-
-  return data
-}
-
-// 计算arrow的位置,保存在data.offsets.arrow ={top,left}
-Popper.prototype.modifiers.arrow = function (data) {
-  let arrow = this._options.arrowElement // 小三角的dom
-  let arrowOffset = this._options.arrowOffset // 入参里的值，可能为 Infinity
-
-  if (typeof arrow === 'string') {
-    arrow = this._popper.querySelector(arrow)
-  }
-
-  if (
-    !arrow ||
-    !this._popper.contains(arrow) ||
-    !this.isModifierRequired(this.modifiers.arrow, this.modifiers.keepTogether)
-  ) {
-    return data
-  }
-
-  let arrowStyle = {}
-  let placement = data.placement.split('-')[0] //             以下以 placement = right 为例
-  let popper = getPopperClientRect(data.offsets.popper) //    整个popper的dom屏幕尺寸。（popper到底是right-start还是right-end，此时已经计算好了的。所以最后那里不需要校正）
-  let reference = data.offsets.reference //                   tiny-form-item__content 元素的屏幕尺寸。 不包含label
-  let isVertical = ~['left', 'right'].indexOf(placement) //   true
-  let calcProp = isVertical ? 'height' : 'width' //           calcProp:height
-  let opSide = isVertical ? 'bottom' : 'right' //              opSide:bottom
-  let altSide = isVertical ? 'left' : 'top' //                 altSide:left       left是无用的那个值
-  let side = isVertical ? 'top' : 'left' //                    side:top
-
-  let popperRect = this.popperOuterSize ? this.popperOuterSize : (this.popperOuterSize = getOuterSizes(this._popper)) // popper的大小
-  let arrowRect = getOuterSizes(arrow) //                      arrow的大小 {height: 11，width: 5}
-  let arrowSize = arrowRect[calcProp] //                       11
-
-  // 如果reference 比 popper 更靠上，则popper上移到 ref.bottom - arrowSize （上边缘对齐）
-  if (reference[opSide] - arrowSize < popper[side]) {
-    data.offsets.popper[side] -= popper[side] - (reference[opSide] - arrowSize)
-  }
-  // 如果reference 比 popper 更靠下，则popper下移到 ref.bottom + arrowSize（下边缘对齐）
-  if (reference[side] + arrowSize > popper[opSide]) {
-    data.offsets.popper[side] += reference[side] + arrowSize - popper[opSide]
-  }
-  // 如果arrowOffset有值，则center为ref的上边+arrowOffset。  此例arrowOffset为Infinity，  center也为无穷大。
-  let center = reference[side] + (arrowOffset || reference[calcProp] / 2 - arrowSize / 2)
-  let sideValue = center - popper[side]
-
-  // 猜测是上下边距留下8px的距离。 确保箭头不太靠顶靠底。
-  // 此时sideValue为“popper的顶- 箭头 - 8px” 的位置。
-  sideValue = Math.max(Math.min(popper[calcProp] - arrowSize - 8, sideValue), 8)
-  arrowStyle[side] = sideValue
-  arrowStyle[altSide] = ''
-
-  // adjustArrow此处还要校正一下，但不明白为什么只校正left, 不校正top的位置？
-  const popperOptions = this._options
-  const params = popperOptions.placement.split('-')
-  if (popperOptions.adjustArrow && ~['top', 'bottom'].indexOf(params[0]) && side === 'left') {
-    if (params[1] === 'start') {
-      arrowStyle.left = 8
-    } else if (!params[1]) {
-      arrowStyle.left = (popperRect.width - arrowRect.width) / 2
+    return {
+      popper: popperOffsets,
+      reference: referenceOffsets
     }
   }
+  _setupEventListeners() {
+    this.state.updateBoundFn = this.update.bind(this)
 
-  data.offsets.arrow = arrowStyle
-  data.arrowElement = arrow
+    on(window, 'resize', this.state.updateBoundFn)
 
-  return data
+    if (this._options.boundariesElement !== 'window') {
+      let target: HTMLElement = getScrollParent(this._reference)
+
+      if (target === window.document.body || target === window.document.documentElement) {
+        target = window as any
+      }
+      this.state.scrollTarget = target
+
+      // 只有bubbling时，才启用所有祖先监听，根源在此。 getAll..Parents函数只有这一处调用
+      if (this._options.bubbling || PopupManager.globalScroll) {
+        let targets = getAllScrollParents(this._reference)
+
+        this.state.scrollTargets = targets || []
+        targets.forEach((target) => {
+          on(target, 'scroll', this.state.updateBoundFn)
+        })
+      } else {
+        on(target, 'scroll', this.state.updateBoundFn)
+      }
+    }
+  }
+  _removeEventListeners() {
+    off(window, 'resize', this.state.updateBoundFn)
+
+    if (this._options.boundariesElement !== 'window' && this.state.scrollTarget) {
+      off(this.state.scrollTarget, 'scroll', this.state.updateBoundFn)
+      this.state.scrollTarget = null
+
+      // 移除祖先监听
+      if (this._options.bubbling || PopupManager.globalScroll) {
+        let targets = this.state.scrollTargets || []
+
+        targets.forEach((target) => {
+          off(target, 'scroll', this.state.updateBoundFn)
+        })
+        this.state.scrollTargets = null
+      }
+    }
+
+    this.state.updateBoundFn = null as any
+  }
+  /** 实时计算一下Boundary的位置 */
+  _getBoundaries(data: UpdateData, padding: number, boundariesElement: string | HTMLElement) {
+    let boundaries = { right: 0, left: 0, top: 0, bottom: 0 }
+
+    if (boundariesElement === 'window' || boundariesElement === 'body') {
+      let body = window.document.body
+      let html = window.document.documentElement
+      let { width, height } = getMaxWH(body, html)
+
+      boundaries = { top: 0, right: width, bottom: height, left: 0 }
+    } else if (boundariesElement === 'viewport') {
+      let offsetParent = getOffsetParent(this._popper)
+      let scrollParent = getScrollParent(this._popper)
+      let offsetParentRect = getOffsetRect(offsetParent)
+      let isFixed = data.offsets.popper.position === 'fixed'
+      let scrollTop = isFixed ? 0 : getScrollTopValue(scrollParent)
+      let scrollLeft = isFixed ? 0 : getScrollLeftValue(scrollParent)
+
+      const viewportWindow = PopupManager.viewportWindow || window
+      boundaries = {
+        top: 0 - (offsetParentRect.top - scrollTop),
+        right: viewportWindow.document.documentElement.clientWidth - (offsetParentRect.left - scrollLeft),
+        bottom: viewportWindow.document.documentElement.clientHeight - (offsetParentRect.top - scrollTop),
+        left: 0 - (offsetParentRect.left - scrollLeft)
+      }
+    } else {
+      if (getOffsetParent(this._popper) === boundariesElement) {
+        const { clientWidth, clientHeight } = boundariesElement
+
+        boundaries = {
+          right: clientWidth,
+          bottom: clientHeight,
+          top: 0,
+          left: 0
+        }
+      } else {
+        boundaries = getOffsetRect(boundariesElement as HTMLElement)
+      }
+    }
+
+    boundaries.right -= padding
+    boundaries.left += padding
+    boundaries.bottom = boundaries.bottom - padding
+    boundaries.top = boundaries.top + padding
+
+    return boundaries
+  }
 }
 
 export default Popper

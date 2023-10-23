@@ -16,29 +16,69 @@ import { merge } from '../common/object'
 import Validator from '../common/validate'
 import { isNull } from '../common/type'
 import debounce from '../common/deps/debounce'
+import type {
+  IFormItemRenderlessParams,
+  IFormInstance,
+  IFormItemDisplayedValueParam,
+  IFormItemRule,
+  IFormItemTrigger,
+  IFormItemValidateStatus,
+  IFormItemLabelStyle
+} from '@/types'
+import type { StyleValue } from 'vue'
 
-export const watchError = (state) => (value) => {
-  if (!isNull(value) && state.getValidateType === 'tip') {
-    state.canShowTip = true
+export const watchError =
+  (state: IFormItemRenderlessParams['state']) =>
+  (value: string): void => {
+    if (!isNull(value) && state.getValidateType === 'tip') {
+      state.canShowTip = true
+    }
+
+    state.validateMessage = value
+    state.validateState = value ? VALIDATE_STATE.Error : ''
   }
 
-  state.validateMessage = value
-  state.validateState = value ? VALIDATE_STATE.Error : ''
-}
-
-export const watchValidateStatus = (state) => (value) => {
-  state.validateState = value
-}
+export const watchValidateStatus =
+  (state: IFormItemRenderlessParams['state']) =>
+  (value: IFormItemValidateStatus): void => {
+    state.validateState = value
+  }
 
 export const computedGetValidateType =
-  ({ props, state }) =>
-  () =>
+  ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
+  (): string =>
     props.validateType || (state.formInstance ? state.formInstance.validateType : '')
 
+export const computedValidateIcon =
+  ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
+  (): object | null =>
+    props.validateIcon ?? state?.formInstance?.state?.validateIcon ?? null
+
+export const computedIsErrorInline =
+  ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
+  (): boolean => {
+    if (props.messageType) {
+      return props.messageType === 'inline'
+    }
+    if (typeof props.inlineMessage === 'boolean') {
+      return props.inlineMessage
+    }
+    return state?.formInstance?.state?.isErrorInline ?? false
+  }
+
+export const computedIsErrorBlock =
+  ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
+  (): boolean => {
+    if (props.messageType) {
+      return props.messageType === 'block'
+    }
+    return state?.formInstance?.state?.isErrorBlock ?? false
+  }
+
 export const computedLabelStyle =
-  ({ props, state }) =>
-  () => {
-    const result = {}
+  ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
+  (): IFormItemLabelStyle => {
+    const result = { width: '' }
 
     if (state.form.labelPosition === POSITION.Top) {
       return result
@@ -54,12 +94,13 @@ export const computedLabelStyle =
   }
 
 export const computedValueStyle =
-  ({ props, state }) =>
-  () => {
-    const result = {}
+  ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
+  (): { width: string } => {
+    const result = { width: '' }
 
     if (state.form.labelPosition === POSITION.Top) {
-      return (result.width = '100%')
+      result.width = '100%'
+      return result
     }
 
     const labelWidth = props.labelWidth || state.form.labelWidth
@@ -76,9 +117,9 @@ export const computedValueStyle =
   }
 
 export const computedContentStyle =
-  ({ props, state }) =>
-  () => {
-    const result = {}
+  ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
+  (): StyleValue => {
+    const result: StyleValue = {}
     const label = props.label
 
     if (state.form.labelPosition === POSITION.Top || state.form.inline) {
@@ -105,27 +146,27 @@ export const computedContentStyle =
   }
 
 export const computedForm =
-  ({ constants, instance, state }) =>
-  () => {
+  ({ constants, instance, state }: Pick<IFormItemRenderlessParams, 'constants' | 'instance' | 'state'>) =>
+  (): IFormInstance | null => {
     const { FORM_NAME, FORM_ITEM_NAME } = constants
-    let parent = instance.$parent.$parent
-    let parentName = parent.$options.componentName
+    let parent = instance.$parent?.$parent as IFormInstance | null
+    let parentName = parent?.$options?.componentName
 
-    while (parentName !== FORM_NAME) {
+    while (parent && parentName !== FORM_NAME) {
       if (parentName === FORM_ITEM_NAME) {
         state.isNested = true
       }
 
-      parent = parent.$parent
-      parentName = parent.$options.componentName
+      parent = parent?.$parent as IFormInstance | null
+      parentName = parent?.$options?.componentName
     }
 
     return parent
   }
 
 export const computedIsRequired =
-  ({ api, state }) =>
-  () => {
+  ({ api, state }: Pick<IFormItemRenderlessParams, 'api' | 'state'>) =>
+  (): boolean => {
     if (state.validationRequired) {
       return true
     }
@@ -146,8 +187,14 @@ export const computedIsRequired =
 
     return isRequired
   }
-
-export const getPropByPath = (obj, path, strict) => {
+/**
+ * @description: 给定对象和路径，返回对象路径的值。
+ * @param {object} obj
+ * @param {string} path
+ * @param {boolean} strict
+ * @return {*}
+ */
+export const getPropByPath = (obj: object, path: string, strict?: boolean) => {
   let findObj = obj
 
   path = path.replace(/\[(\w+)\]/g, '.$1')
@@ -163,7 +210,7 @@ export const getPropByPath = (obj, path, strict) => {
 
     let key = keys[index]
 
-    if (key in findObj) {
+    if (findObj && key in findObj) {
       findObj = findObj[key]
     } else {
       if (strict) {
@@ -182,7 +229,7 @@ export const getPropByPath = (obj, path, strict) => {
 }
 
 export const computedFieldValue =
-  ({ props, state }) =>
+  ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
   () => {
     const model = state.form.model
 
@@ -200,8 +247,14 @@ export const computedFieldValue =
   }
 
 export const mounted =
-  ({ api, instance, props, state, refs }) =>
-  () => {
+  ({
+    api,
+    instance,
+    props,
+    state,
+    refs
+  }: Pick<IFormItemRenderlessParams, 'api' | 'instance' | 'props' | 'state' | 'refs'>) =>
+  (): void => {
     state.tooltip = refs.tooltip
 
     if (props.prop) {
@@ -210,7 +263,7 @@ export const mounted =
       let initialValue = state.fieldValue
 
       if (Array.isArray(initialValue)) {
-        initialValue = [].concat(initialValue)
+        initialValue = ([] as any).concat(initialValue)
       }
 
       state.initialValue = initialValue
@@ -219,22 +272,22 @@ export const mounted =
   }
 
 export const unmounted =
-  ({ api, instance, state }) =>
-  () => {
+  ({ api, instance, state }: Pick<IFormItemRenderlessParams, 'api' | 'instance' | 'state'>) =>
+  (): void => {
     state.canShowTip = false
     api.dispatch('Form', 'form:removeField', instance)
   }
 
 export const validate =
-  ({ api, props, state, t }) =>
-  (trigger, callback = () => undefined) => {
+  ({ api, props, state, t }: Pick<IFormItemRenderlessParams, 'api' | 'props' | 'state' | 't'>) =>
+  (trigger: IFormItemTrigger, callback: Function = () => undefined): void => {
     state.validateDisabled = false
 
     const rules = api.getFilteredRule(trigger)
 
     if ((!rules || rules.length === 0) && props.required === undefined) {
       callback()
-      return true
+      return
     }
 
     state.validateState = VALIDATE_STATE.Validating
@@ -247,12 +300,12 @@ export const validate =
       })
     }
 
-    descriptor[props.prop] = rules
+    descriptor[props.prop || ''] = rules
 
     const validator = new Validator(descriptor, t)
     const model = {}
 
-    model[props.prop] = state.fieldValue
+    model[props.prop || ''] = state.fieldValue
 
     validator.validate(model, { firstFields: true }, (errors, invalidFields) => {
       api.clearValidate()
@@ -264,41 +317,26 @@ export const validate =
           errors[0].message = props.error
         }
         state.validateMessage = errors ? errors[0].message : ''
-        state.canShowTip = !!errors
+        state.canShowTip = Boolean(errors)
 
         callback(state.validateMessage, invalidFields)
 
         state.formInstance && state.formInstance.$emit('validate', props.prop, !errors, state.validateMessage || null)
       }
 
-      if (errors && state.stowed[0] === errors[0].field) {
-        handlerError()
-
-        /*
-         * 去掉了nextTick，修改为同步校验，保证 "第一次校验" 和 "重置后再次校验" 都是同步校验
-         *
-         * 只在两次或多次触发相同field情况下执行异步触发校验
-         * nextTick(handlerError)
-         */
-
-        return
-      }
-
-      errors && (state.stowed[0] = errors[0].field)
-
       handlerError()
     })
   }
 
-export const clearValidate = (state) => () => {
+export const clearValidate = (state: IFormItemRenderlessParams['state']) => (): void => {
   state.validateState = ''
   state.validateMessage = ''
   state.validateDisabled = false
 }
 
 export const resetField =
-  ({ api, nextTick, props, state }) =>
-  () => {
+  ({ api, nextTick, props, state }: Pick<IFormItemRenderlessParams, 'api' | 'nextTick' | 'props' | 'state'>) =>
+  (): void => {
     if (state.getValidateType === 'tip') {
       state.canShowTip = false
     }
@@ -306,11 +344,11 @@ export const resetField =
     state.validateState = ''
     state.validateMessage = ''
 
-    let model = state.form.model
+    let model = state.form.model || {}
     let value = state.fieldValue
-    let path = props.prop
+    let path = props.prop || ''
 
-    if (path.includes(':')) {
+    if (path && path.includes(':')) {
       path = path.replace(/:/, '.')
     }
 
@@ -333,44 +371,57 @@ export const resetField =
     api.broadcast('timeSelect', 'fieldReset', state.initialValue)
   }
 
+/**
+ * @description 获取本表单项的校验规则
+ * 来源有可能有3处：form中rules,form-item中的rules以及form-item配置了required属性
+ */
 export const getRules =
-  ({ props, state }) =>
-  () => {
-    let formRules = state.form.rules
+  ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
+  (): IFormItemRule[] => {
+    let formRules = state.form.rules || {}
     const selfRules = props.rules
     const requiredRule = props.required !== undefined ? { required: !!props.required } : []
     const prop = getPropByPath(formRules, props.prop || '')
 
     formRules = formRules ? prop.o[props.prop || ''] || prop.v : []
-
-    return [].concat(selfRules || formRules || []).concat(requiredRule)
+    // @ts-ignore
+    return ([] as IFormItemRule[]).concat(selfRules || formRules || []).concat(requiredRule)
   }
 
-export const getFilteredRule = (api) => (trigger) => {
-  const rules = api.getRules()
+/**
+ * @description 根据trigger来筛选符合条件和检验规则。此处的规则进行了一层浅拷贝处理。
+ * 因为valide中使用会delete掉其中的trigger属性。
+ * 不传或者传空字符串，则默认返回所有规则。
+ * @param {trigger} target 触发检验规则
+ * @returns {Array} 符合条件的检验规则
+ */
+export const getFilteredRule =
+  (api: IFormItemRenderlessParams['api']) =>
+  (trigger: IFormItemTrigger): IFormItemRule[] => {
+    const rules = api.getRules()
 
-  return rules
-    .filter((rule) => {
-      if (!rule.trigger || trigger === '') {
-        return true
-      }
+    return rules
+      .filter((rule) => {
+        if (!rule.trigger || trigger === '') {
+          return true
+        }
 
-      if (Array.isArray(rule.trigger)) {
-        return rule.trigger.includes(trigger)
-      }
+        if (Array.isArray(rule.trigger)) {
+          return rule.trigger.includes(trigger)
+        }
 
-      return rule.trigger === trigger
-    })
-    .map((rule) => merge({}, rule))
-}
+        return rule.trigger === trigger
+      })
+      .map((rule) => merge({}, rule))
+  }
 
-export const onFieldBlur = (api) => () => {
+export const onFieldBlur = (api: IFormItemRenderlessParams['api']) => (): void => {
   api.validate('blur')
 }
 
 export const onFieldChange =
-  ({ api, state }) =>
-  () => {
+  ({ api, state }: Pick<IFormItemRenderlessParams, 'api' | 'state'>) =>
+  (): void => {
     if (state.validateDisabled) {
       state.validateDisabled = false
       return
@@ -379,13 +430,15 @@ export const onFieldChange =
     api.validate('change')
   }
 
-export const updateComputedLabelWidth = (state) => (width) => {
-  state.computedLabelWidth = width ? `${width}px` : ''
-}
+export const updateComputedLabelWidth =
+  (state: IFormItemRenderlessParams['state']) =>
+  (width: number): void => {
+    state.computedLabelWidth = width ? `${width}px` : ''
+  }
 
 export const addValidateEvents =
-  ({ api, instance, props, state }) =>
-  () => {
+  ({ api, instance, props, state }: Pick<IFormItemRenderlessParams, 'api' | 'instance' | 'props' | 'state'>) =>
+  (): void => {
     const rules = api.getRules()
 
     if (rules.length || props.required !== undefined) {
@@ -398,13 +451,13 @@ export const addValidateEvents =
     }
   }
 
-export const removeValidateEvents = (instance) => () => {
+export const removeValidateEvents = (instance: IFormItemRenderlessParams['instance']) => (): void => {
   instance.$off()
 }
 
 export const updateTip =
-  ({ refs, state }) =>
-  () => {
+  ({ refs, state }: Pick<IFormItemRenderlessParams, 'refs' | 'state'>) =>
+  (): void => {
     if (state.getValidateType !== 'tip' && !state.canShowTip) {
       return
     }
@@ -443,7 +496,10 @@ export const getValueByPath = (object, prop) => {
   return result
 }
 
-export const wrapValidate = ({ validateFunc, props }) => {
+export const wrapValidate = ({
+  validateFunc,
+  props
+}: Pick<IFormItemRenderlessParams, 'validateFunc' | 'props'>): Function => {
   if (props.validateDebounce) {
     return debounce(500, validateFunc)
   } else {
@@ -451,15 +507,18 @@ export const wrapValidate = ({ validateFunc, props }) => {
   }
 }
 
+/**
+ * 目前仅mobile-first模板使用到
+ */
 export const handleMouseenter =
-  ({ state }) =>
-  (e) => {
+  ({ state }: Pick<IFormItemRenderlessParams, 'state'>) =>
+  (e): void => {
     if (!state.isDisplayOnly || !state.typeName || !state.form) return
     const dom = e.target
     const text = dom.textContent
     const font = window.getComputedStyle(dom).font
     const rect = dom.getBoundingClientRect()
-    let res = {}
+    let res: { o?: boolean; t?: any } = {}
     let overHeight = false
 
     if (['text', 'password', 'number'].includes(state.typeName)) {
@@ -475,23 +534,22 @@ export const handleMouseenter =
     }
   }
 
-export const handleMouseleave = (state) => () => {
+export const handleMouseleave = (state: IFormItemRenderlessParams['state']) => (): void => {
   state.form && state.form.hideTooltip()
 }
 
 export const getDisplayedValue =
-  ({ state }) =>
-  (param) => {
+  ({ state }: Pick<IFormItemRenderlessParams, 'state'>) =>
+  (param: IFormItemDisplayedValueParam): void => {
     if (!state.formInstance.displayOnly) return
-    const valueSplit = state.formInstance.valueSplit || '; '
     state.typeName = param.type
     state.isBasicComp = true
-    state.displayedValue = state.displayedValue + (state.displayedValue && param.val ? valueSplit : '') + param.val
+    state.displayedValue = param.val
   }
 
 export const clearDisplayedValue =
-  ({ state }) =>
-  () => {
+  ({ state }: Pick<IFormItemRenderlessParams, 'state'>) =>
+  (): void => {
     state.typeName = ''
     state.isBasicComp = false
     state.displayedValue = ''

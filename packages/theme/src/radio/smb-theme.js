@@ -9,5 +9,5 @@ export const tinyRadioSmbTheme = {
   'ti-common-font-size-base': 'var(--ti-common-font-size-1)',
   'ti-radio-button-margin-bottom': 'var(--ti-common-space-4x)',
   'ti-radio-inner-checked-bg-color': '#1476FF',
-  'ti-radio-bordered-checked-border-color': '#1476FF',
+  'ti-radio-bordered-checked-border-color': '#1476FF'
 }

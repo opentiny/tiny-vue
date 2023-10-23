@@ -11,34 +11,36 @@
  */
 
 import { format } from '../common/date'
+import {
+  ITimelineItemRenderlessParams,
+  ITimelineItem,
+  ITimelineStatusCls,
+  ITimelineCustomCls,
+  ITimelineItemApi
+} from '@/types'
 
-export const getDate = (dateTime) => ({
+export const getDate = (dateTime: string): { date: string; time: string } => ({
   date: format(dateTime, 'yyyy-MM-dd'),
   time: format(dateTime, 'hh:mm')
 })
 
 export const getStatus =
-  ({ state, t }) =>
-  (value) => {
+  ({ state, t }: Pick<ITimelineItemRenderlessParams, 'state' | 't'>) =>
+  (value: number): string => {
     const status = state.current - value
 
     return status > 0 ? t('ui.steps.done') : status === 0 ? t('ui.steps.doing') : t('ui.steps.wait')
   }
 
-export const computedSpace =
-  ({ props, api }) =>
-  () => {
-    const space = props.space || api.rootProps.space
-    if (/^\d+$/.test(space)) {
-      return `${space}px`
-    }
-
-    return space
+export const computedWidth =
+  () =>
+  (width: string | number): string => {
+    return /^\d+$/.test(width) ? `${width}px` : width
   }
 
 export const handleClick =
-  ({ emit, state }) =>
-  (node) => {
+  ({ emit, state }: Pick<ITimelineItemRenderlessParams, 'emit' | 'state'>) =>
+  (node: ITimelineItem): void => {
     const { index } = node || {}
     if (!node.disabled) {
       emit('click', state.isReverse ? state.nodesLength - index - 1 : index, node)
@@ -46,9 +48,9 @@ export const handleClick =
   }
 
 export const getStatusCls =
-  ({ constants, state }) =>
-  (node?) => {
-    const { index } = node || {}
+  ({ constants, state }: Pick<ITimelineItemRenderlessParams, 'constants' | 'state'>) =>
+  (node: ITimelineItem): ITimelineStatusCls => {
+    const { index } = node
 
     const { PROCESS_DONE_CLS, PROCESS_CUR_CLS, PROCESS_WAIT_CLS, PROCESS_DISABLED_CLS, PROCESS_ERROR_CLS } = constants
     const cls = {}
@@ -68,16 +70,17 @@ export const getStatusCls =
   }
 
 export const computedCurrent =
-  ({ state, api }) =>
-  () =>
+  ({ state, api }: Pick<ITimelineItemRenderlessParams, 'state' | 'api'>) =>
+  (): number =>
     state.isReverse ? state.nodesLength - api.rootProps.active - 1 : api.rootProps.active
 
-export const computedIsReverse = (api) => () => api.rootProps.reverse && api.rootProps.vertical
+export const computedIsReverse = (api: ITimelineItemApi) => (): boolean =>
+  api.rootProps.reverse && api.rootProps.vertical
 
 export const computedItemCls =
-  ({ props, api }) =>
-  () => {
-    const itemClass: (string | object)[] = []
+  ({ props, api, state }: Pick<ITimelineItemRenderlessParams, 'props' | 'api' | 'state'>) =>
+  (): ITimelineCustomCls => {
+    const itemClass: ITimelineCustomCls = []
     if (api.rootProps.vertical) {
       itemClass.push('timeline')
     } else {
@@ -85,12 +88,17 @@ export const computedItemCls =
     }
 
     itemClass.push(api.getStatusCls(props.node))
+
+    if (state.computedLineWidth) {
+      itemClass.push('no-flex')
+    }
+
     return itemClass
   }
 
 export const computedItemStyle =
-  ({ props, state, api }) =>
-  () => {
+  ({ props, state, api }: Pick<ITimelineItemRenderlessParams, 'props' | 'state' | 'api'>) =>
+  (): { width?: string | number; height?: string | number; flex?: string } | null => {
     const { index } = props.node
     const { computedSpace, nodesLength } = state
     const { textPosition, vertical } = api.rootProps
@@ -100,7 +108,7 @@ export const computedItemStyle =
     }
 
     if (textPosition === 'right') {
-      if (computedSpace) {
+      if (computedSpace && !state.computedLineWidth) {
         return { flex: `0 0 ${computedSpace}` }
       }
 

@@ -1,37 +1,20 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
-    "allowJs": true ,
+    "allowJs": true,
     "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
-      "@opentiny/vue-autonavi-map": [
-        "packages/vue/src/chart/autonavi-map"
-      ],
-      "@opentiny/vue-baidu-map": [
-        "packages/vue/src/chart/baidu-map"
-      ],
-      "@opentiny/vue-chart-*": [
-        "packages/vue/src/chart/chart-*"
-      ],
-      "@opentiny/vue-*": [
-        "packages/vue-*",
-        "packages/vue/src/*"
-      ],
-      "@opentiny/vue-renderless*": [
-        "packages/renderless/src*"
-      ],
-      "virtual:common/adapter/vue": [
-        "packages/vue-common/src/adapter/vue2.7/index.ts"
-      ],
-      "virtual:locale/vue": [
-        "packages/vue-locale/src/vue2.7/index.ts"
-      ]
+      "@opentiny/vue-autonavi-map": ["packages/vue/src/chart/autonavi-map"],
+      "@opentiny/vue-baidu-map": ["packages/vue/src/chart/baidu-map"],
+      "@opentiny/vue-chart-*": ["packages/vue/src/chart/chart-*"],
+      "@opentiny/vue-*": ["packages/vue-*", "packages/vue/src/*"],
+      "@opentiny/vue-renderless/types*": ["packages/renderless/types*"],
+      "@opentiny/vue-renderless*": ["packages/renderless/src*"],
+      "virtual:common/adapter/vue": ["packages/vue-common/src/adapter/vue2.7/index.ts"],
+      "virtual:locale/vue": ["packages/vue-locale/src/vue2.7/index.ts"]
     },
-    "types": [
-      "node",
-      "vite/client"
-    ]
+    "types": ["node", "vite/client"]
   },
   "vueCompilerOptions": {
     "target": 2.7
@@ -43,9 +26,5 @@
     "examples/vue2.7/shims-app.d.ts",
     "examples/vue2.7/shims-vue.d.ts"
   ],
-  "exclude": [
-    "**/node_modules",
-    "**/dist*",
-    "**/*.md"
-  ]
+  "exclude": ["**/node_modules", "**/dist*", "**/*.md"]
 }

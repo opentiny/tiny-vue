@@ -9,18 +9,29 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-
+import {
+  ITabItemState,
+  ITabItemApi,
+  ITabItemProps,
+  ISharedRenderlessParamHooks,
+  ITabItemRenderlessParamUtils,
+  ITabsVm
+} from '@/types'
 import { computedIsClosable, computedActive, computedPaneName, watchTitle } from './index'
 
 export const api = ['state']
 
-export const renderless = (props, { computed, inject, reactive, watch }, { parent, nextTick }) => {
-  const rootTabs = inject('rootTabs')
+export const renderless = (
+  props: ITabItemProps,
+  { computed, inject, reactive, watch }: ISharedRenderlessParamHooks,
+  { parent, nextTick }: ITabItemRenderlessParamUtils
+): ITabItemApi => {
+  const rootTabs = inject('rootTabs') as ITabsVm
 
   const api = {
     watchTitle: watchTitle(parent),
     computedIsClosable: computedIsClosable({ rootTabs, props })
-  }
+  } as ITabItemApi
 
   const state = reactive({
     index: null,
@@ -30,7 +41,7 @@ export const renderless = (props, { computed, inject, reactive, watch }, { paren
     active: computed(() => api.computedActive()),
     paneName: computed(() => api.computedPaneName()),
     isClosable: computed(() => api.computedIsClosable())
-  })
+  }) as ITabItemState
 
   Object.assign(api, {
     state,

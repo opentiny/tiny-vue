@@ -84,13 +84,13 @@ const initState = ({ reactive, treeRoot, props, emitter, $parentEmitter, vm, api
   return state
 }
 
-const initApi = ({ api, state, dispatch, broadcast, vm, props, parent, treeRoot, nextTick, emit }) => {
+const initApi = ({ api, state, dispatch, broadcast, vm, props, parent, treeRoot, nextTick, emit, designConfig }) => {
   Object.assign(api, {
     state,
     dispatch,
     broadcast,
     watchExpanded: watchExpanded({ state }),
-    created: created({ vm, props, state, parent }),
+    created: created({ props, state }),
     getNodeKey: getNodeKey(state),
     closeMenu: closeMenu(state),
     handleSelectChange: handleSelectChange({ props, state }),
@@ -113,7 +113,7 @@ const initApi = ({ api, state, dispatch, broadcast, vm, props, parent, treeRoot,
     deleteNode: deleteNode({ state }),
     handleChildNodeExpand: handleChildNodeExpand(state),
     handleExpandIconClick: handleExpandIconClick({ api, state }),
-    computedExpandIcon: computedExpandIcon(),
+    computedExpandIcon: computedExpandIcon({ designConfig }),
     computedIndent: computedIndent()
   })
 }
@@ -128,7 +128,11 @@ const initWatcher = ({ watch, state, api, props }) => {
   watch(() => props.node.expanded, api.watchExpanded, { deep: true })
 }
 
-export const renderless = (props, { reactive, watch, inject, provide, computed }, { parent: parentVm, vm, nextTick, emit, broadcast, dispatch, emitter }) => {
+export const renderless = (
+  props,
+  { reactive, watch, inject, provide, computed },
+  { parent: parentVm, vm, nextTick, emit, broadcast, dispatch, emitter, designConfig }
+) => {
   const api = {}
   const parent = inject('parentTree') || parentVm
   const treeRoot = inject('TreeRoot')
@@ -139,7 +143,7 @@ export const renderless = (props, { reactive, watch, inject, provide, computed }
 
   provide('parentEmitter', state.emitter)
 
-  initApi({ api, state, dispatch, broadcast, vm, props, parent, treeRoot, nextTick, emit })
+  initApi({ api, state, dispatch, broadcast, vm, props, parent, treeRoot, nextTick, emit, designConfig })
   initWatcher({ watch, state, api, props })
 
   api.created((childrenKey) => {

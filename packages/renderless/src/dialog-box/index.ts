@@ -13,18 +13,19 @@
 import { on, off, addClass, removeClass } from '../common/deps/dom'
 import { emitEvent } from '../common/event'
 import { getDomNode } from '../common/deps/dom'
+import type { IDialogBoxRenderlessParams, IDialogBoxStyle } from '@/types'
 
 export const computedAnimationName =
-  ({ constants, props }) =>
-  () =>
+  ({ constants, props }: Pick<IDialogBoxRenderlessParams, 'constants' | 'props'>) =>
+  (): string =>
     props.rightSlide ? constants.DIALOG_SLIDER_RIGHT : constants.DIALOG_FADE
 
-export const computedAddUnit = (value) => (isNaN(Number(value)) ? value : value + 'px')
+export const computedAddUnit = (value: string): string => (isNaN(Number(value)) ? value : value + 'px')
 
 export const computedStyle =
-  ({ props, state }) =>
-  () => {
-    const style = {}
+  ({ props, state }: Pick<IDialogBoxRenderlessParams, 'props' | 'state'>) =>
+  (): IDialogBoxStyle => {
+    const style = {} as IDialogBoxStyle
     let { width, top, rightSlide, maxHeight } = props
 
     if (top === undefined) {
@@ -52,9 +53,11 @@ export const computedStyle =
   }
 
 export const computedBodyStyle =
-  ({ props }) =>
-  () => {
-    const style = {}
+  ({ props }: Pick<IDialogBoxRenderlessParams, 'props'>) =>
+  (): { maxHeight?: string } => {
+    const style = {
+      maxHeight: ''
+    }
     let { maxHeight } = props
 
     if (maxHeight) {
@@ -64,8 +67,20 @@ export const computedBodyStyle =
   }
 
 export const watchVisible =
-  ({ api, constants, emit, nextTick, parent, props, vm, state }) =>
-  (val) => {
+  ({
+    api,
+    constants,
+    emit,
+    nextTick,
+    parent,
+    props,
+    vm,
+    state
+  }: Pick<
+    IDialogBoxRenderlessParams,
+    'api' | 'constants' | 'emit' | 'nextTick' | 'parent' | 'props' | 'vm' | 'state'
+  >) =>
+  (val: boolean): void => {
     const el = parent.$el
 
     if (props.lockScroll) {
@@ -111,8 +126,8 @@ export const watchVisible =
   }
 
 export const mounted =
-  ({ api, parent, props }) =>
-  () => {
+  ({ api, parent, props }: Pick<IDialogBoxRenderlessParams, 'api' | 'parent' | 'props'>) =>
+  (): void => {
     if (props.lockScroll && props.visible) {
       api.showScrollbar()
     }
@@ -129,8 +144,8 @@ export const mounted =
   }
 
 export const unMounted =
-  ({ api, parent, props }) =>
-  () => {
+  ({ api, parent, props }: Pick<IDialogBoxRenderlessParams, 'api' | 'parent' | 'props'>) =>
+  (): void => {
     const el = parent.$el
 
     api.hideScrollbar()
@@ -141,8 +156,8 @@ export const unMounted =
   }
 
 export const handleWrapperClick =
-  ({ api, props }) =>
-  () => {
+  ({ api, props }: Pick<IDialogBoxRenderlessParams, 'api' | 'props'>) =>
+  (): void => {
     if (!props.closeOnClickModal) {
       return
     }
@@ -151,7 +166,13 @@ export const handleWrapperClick =
   }
 
 export const handleClose =
-  ({ api, constants, emit, parent, props }) =>
+  ({
+    api,
+    constants,
+    emit,
+    parent,
+    props
+  }: Pick<IDialogBoxRenderlessParams, 'api' | 'constants' | 'emit' | 'parent' | 'props'>) =>
   (type = 'close') => {
     if (typeof props.beforeClose === 'function' && props.beforeClose(type) === false) {
       return
@@ -160,7 +181,7 @@ export const handleClose =
     const el = parent.$el
 
     if (props.rightSlide) {
-      const dialogBoxDom = el.querySelector(constants.DIALOG_BOX_CLASS) || el
+      const dialogBoxDom = (el.querySelector(constants.DIALOG_BOX_CLASS) || el) as HTMLElement
       dialogBoxDom.style.left = ''
     }
 
@@ -172,8 +193,8 @@ export const handleClose =
   }
 
 export const hide =
-  ({ api, emit, state, props }) =>
-  (cancel) => {
+  ({ api, emit, state, props }: Pick<IDialogBoxRenderlessParams, 'api' | 'emit' | 'state' | 'props'>) =>
+  (cancel?: boolean): void => {
     if (cancel !== false) {
       state.emitter.emit('boxclose', props.isFormReset)
 
@@ -187,39 +208,45 @@ export const hide =
   }
 
 export const handleConfirm =
-  ({ api, emit }) =>
-  () => {
+  ({ api, emit }: Pick<IDialogBoxRenderlessParams, 'api' | 'emit'>) =>
+  (): void => {
     emit('confirm')
     api.handleClose()
   }
 
 export const handleCancel =
-  ({ api, emit }) =>
-  () => {
+  ({ api, emit }: Pick<IDialogBoxRenderlessParams, 'api' | 'emit'>) =>
+  (): void => {
     emit('cancel')
     api.handleClose()
   }
 
 export const updatePopper =
-  ({ api, constants }) =>
-  () => {
+  ({ api, constants }: Pick<IDialogBoxRenderlessParams, 'api' | 'constants'>) =>
+  (): void => {
     api.broadcast(constants.SELECT_DROPDOWN, 'updatePopper')
     api.broadcast(constants.DROPDOWN_MENU, 'updatePopper')
   }
 
-export const afterEnter = (emit) => () => {
+export const afterEnter = (emit: IDialogBoxRenderlessParams['emit']) => (): void => {
   emit('opened')
 }
 
-export const afterLeave = (emit) => () => {
+export const afterLeave = (emit: IDialogBoxRenderlessParams['emit']) => (): void => {
   emit('closed')
 }
 
-const findPopoverComponent = ({ vm, componentList }) => {
+const findPopoverComponent = ({
+  vm,
+  componentList
+}: {
+  vm: IDialogBoxRenderlessParams['vm']
+  componentList: IDialogBoxRenderlessParams['vm'][]
+}): IDialogBoxRenderlessParams['vm'][] => {
   const children = vm.$children
 
   if (!children || children.length === 0) {
-    return
+    return []
   }
 
   children.forEach((child) => {
@@ -235,20 +262,20 @@ const findPopoverComponent = ({ vm, componentList }) => {
   return componentList
 }
 
-const closeAllPopover = (parent) => {
+const closeAllPopover = (parent: IDialogBoxRenderlessParams['parent']) => {
   findPopoverComponent({ vm: parent, componentList: [] }).forEach((component) => {
     component.state.visible = false
   })
 }
 
 export const handleDrag =
-  ({ parent, props, state, emit }) =>
-  (event) => {
+  ({ parent, props, state, emit }: Pick<IDialogBoxRenderlessParams, 'parent' | 'props' | 'state' | 'emit'>) =>
+  (event: MouseEvent): void => {
     if (!props.draggable) {
       return
     }
 
-    let modalBoxElem = parent.$el.querySelector('.tiny-dialog-box')
+    let modalBoxElem = parent.$el.querySelector('.tiny-dialog-box') as HTMLDivElement
     event.preventDefault()
 
     let demMousemove = document.onmousemove
@@ -268,8 +295,8 @@ export const handleDrag =
 
       let offsetWidth = modalBoxElem.offsetWidth
       let offsetHeight = modalBoxElem.offsetHeight
-      let maxX = visibleWidth - offsetWidth
-      let maxY = visibleHeight - offsetHeight
+      let maxX = Math.max(visibleWidth - offsetWidth, 0)
+      let maxY = Math.max(visibleHeight - offsetHeight, 0)
       let left = event.clientX - disX
       let top = event.clientY - disY
 
@@ -293,10 +320,10 @@ export const handleDrag =
     }
   }
 
-export const showScrollbar = (lockScrollClass) => () => {
+export const showScrollbar = (lockScrollClass: string) => (): void => {
   addClass(document.body, lockScrollClass)
 }
 
-export const hideScrollbar = (lockScrollClass) => () => {
+export const hideScrollbar = (lockScrollClass: string) => (): void => {
   removeClass(document.body, lockScrollClass)
 }

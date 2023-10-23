@@ -2,8 +2,10 @@ import { reactive } from 'vue'
 import { $local } from './storage'
 
 const _modeKey = 'tiny-vue-api-mode'
+const _demoModeKey = 'tiny-vue-demo-mode'
 const apiModeState = reactive({
-  apiMode: $local[_modeKey] || 'Options'
+  apiMode: $local[_modeKey] || 'Options',
+  demoMode: $local[_demoModeKey] || 'default' // 示例展示： default:多示例， single:单示例
 })
 
 const apiModeFn = {
@@ -12,6 +14,10 @@ const apiModeFn = {
   },
   changeApiMode: (name) => {
     $local[_modeKey] = name
+  },
+  changeDemoMode: (value) => {
+    apiModeState.demoMode = value
+    $local[_demoModeKey] = value
   }
 }
 

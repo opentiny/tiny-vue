@@ -10,11 +10,14 @@
  *
  */
 
+import { off } from '../common/deps/dom'
+
 export const setActiveItem =
   ({ props, state }) =>
   () => {
     state.children.forEach((item, index) => {
       item.state ? (item.state.index = index) : (item.index = index)
+
       item.state && (item.state.active = (item.name || index) === props.modelValue)
     })
   }
@@ -29,13 +32,48 @@ export const onChange =
   }
 
 export const getChildrens =
-  ({ childrenHandler }) =>
+  ({ childrenHandler, api }) =>
   () => {
     const $children = []
 
     childrenHandler(({ options, vm }) => {
-      options.componentName === 'TinyTabbarItem' && $children.push(vm)
+      options.componentName === 'TabbarItem' && $children.push(vm)
     })
+    api.setActiveItem()
 
     return $children
   }
+
+export const getItems = (state) => (item) => {
+  if (state.showIndex >= state.showNumber) {
+    item.state.showVm = false
+  }
+  state.children.push(item)
+
+  if (state.showNumber) {
+    item.getTabbarItemsWidth(state.tabbarWidth, state.showNumber)
+  } else if (state.children.length >= 5) {
+    item.getTabbarItemsWidth(state.tabbarWidth, 5)
+  } else {
+    item.getTabbarItemsWidth(state.tabbarWidth, state.children.length)
+  }
+}
+
+export const initPage =
+  ({ vm, state }) =>
+  () => {
+    state.tabbarWidth = vm.$refs.tabbar && vm.$refs.tabbar.offsetWidth
+    state.children.forEach((item) => {
+      if (state.showNumber) {
+        item.getTabbarItemsWidth(state.tabbarWidth, state.showNumber)
+      } else if (state.children.length >= 5) {
+        item.getTabbarItemsWidth(state.tabbarWidth, 5)
+      } else {
+        item.getTabbarItemsWidth(state.tabbarWidth, state.children.length)
+      }
+    })
+  }
+
+export const beforeDestroy = (api) => () => {
+  off(window, 'resize', api.initPage)
+}

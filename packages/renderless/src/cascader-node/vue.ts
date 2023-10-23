@@ -10,13 +10,25 @@
  *
  */
 
+import {
+  ICascaderNodeApi,
+  ICascaderNodeProps,
+  ISharedRenderlessParamHooks,
+  ISharedRenderlessParamUtils,
+  ICascaderNodeRenderlessParams,
+  ICascaderNodeState
+} from '@/types'
 import { comptCheckPath, handleExpand, isInPath, handleCheckChange, handleMultiCheckChange } from './index'
 
 export const api = ['state', 'handleMultiCheckChange', 'handleCheckChange', 'handleExpand']
 
-export const renderless = (props, { computed, reactive, inject }, { dispatch }) => {
-  const parent = inject('panel')
-  const api = {}
+export const renderless = (
+  props: ICascaderNodeProps,
+  { computed, reactive, inject }: ISharedRenderlessParamHooks,
+  { dispatch }: ISharedRenderlessParamUtils
+): ICascaderNodeApi => {
+  const parent = inject('panel') as ICascaderNodeRenderlessParams['parent']
+  const api = {} as ICascaderNodeApi
   const state = reactive({
     config: computed(() => parent.state.config),
     isLeaf: computed(() => props.node.isLeaf),
@@ -26,7 +38,7 @@ export const renderless = (props, { computed, reactive, inject }, { dispatch }) 
     inActivePath: computed(() => api.isInPath(parent.state.activePath)),
     inCheckedPath: computed(() => api.comptCheckPath()),
     value: computed(() => props.node.getValueByOption())
-  })
+  }) as ICascaderNodeState
 
   Object.assign(api, {
     state,

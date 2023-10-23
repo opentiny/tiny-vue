@@ -112,6 +112,7 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import Popover from '@opentiny/vue-popover'
 import Button from '@opentiny/vue-button'
 import { iconPopup, iconWriting } from '@opentiny/vue-icon'
+import type { IButtonGroupApi } from '@opentiny/vue-renderless/types/button-group.type'
 
 export default defineComponent({
   emits: ['change', 'edit', 'update:modelValue'],
@@ -135,7 +136,7 @@ export default defineComponent({
     IconWriting: iconWriting()
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IButtonGroupApi
   }
 })
 </script>

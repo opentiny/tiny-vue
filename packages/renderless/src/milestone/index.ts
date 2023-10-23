@@ -9,8 +9,18 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import {
+  IMilestoneRenderlessParams,
+  IMilestoneGetMileContentParams,
+  IMilestonePropsDataFlags,
+  IMilestoneHandleFlagClickParams,
+  IMilestoneHandleClickParams,
+  IMilestoneNode,
+  IMilestoneIconStyle,
+  IMilestoneFlagOperateParams
+} from '@/types'
 
-const hexToRgb = (hex) => {
+const hexToRgb = (hex: string): { r: number; g: number; b: number } => {
   if (hex.includes('var')) {
     hex = hex.replace(/var\(|\)/g, '')
     hex = getComputedStyle(document.documentElement).getPropertyValue(hex)
@@ -29,15 +39,15 @@ const hexToRgb = (hex) => {
 }
 
 export const handleClick =
-  ({ emit }) =>
-  ({ index, node }) => {
+  ({ emit }: Pick<IMilestoneRenderlessParams, 'emit'>) =>
+  ({ index, node }: IMilestoneHandleClickParams) => {
     emit('click', index, node)
   }
 
 /* istanbul ignore next */
-export const flagOprate =
-  ({ constants, refs, state }) =>
-  ({ event, over, text }) => {
+export const flagOperate =
+  ({ constants, refs, state }: Pick<IMilestoneRenderlessParams, 'constants' | 'refs' | 'state'>) =>
+  ({ event, over, text }: IMilestoneFlagOperateParams) => {
     const tooltip = refs.tooltip
 
     if (over) {
@@ -55,8 +65,8 @@ export const flagOprate =
   }
 
 export const getMileIcon =
-  ({ constants, props }) =>
-  (node) => {
+  ({ constants, props }: Pick<IMilestoneRenderlessParams, 'constants' | 'props'>) =>
+  (node: IMilestoneNode): IMilestoneIconStyle => {
     const status = props.milestonesStatus[node[props.statusField]] || constants.DEFAULT_COLOR
 
     const isCompleted = node[props.statusField] === props.completedField
@@ -71,33 +81,35 @@ export const getMileIcon =
   }
 
 export const getMileContent =
-  (props) =>
-  ({ data, index }) => {
+  (props: IMilestoneRenderlessParams['props']) =>
+  ({ data, index }: IMilestoneGetMileContentParams): IMilestonePropsDataFlags[] => {
     const content = data[props.flagBefore ? index : index + 1][props.flagField]
     return Array.isArray(content) ? content : []
   }
 
-export const getLineColor = (props) => (status) => {
-  let background = ''
+export const getLineColor =
+  (props: IMilestoneRenderlessParams['props']) =>
+  (status: string): { background: string } => {
+    let background = ''
 
-  if (status) {
-    if (/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(props.lineStyle)) {
-      background = props.lineStyle
+    if (status) {
+      if (/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(props.lineStyle)) {
+        background = props.lineStyle
+      }
+
+      if (props.lineStyle === 2) {
+        background = props.milestonesStatus[status]
+      } else if (props.lineStyle === 1) {
+        background = status === props.completedField ? props.milestonesStatus[status] : ''
+      }
     }
 
-    if (props.lineStyle === 2) {
-      background = props.milestonesStatus[status]
-    } else if (props.lineStyle === 1) {
-      background = status === props.completedField ? props.milestonesStatus[status] : ''
-    }
+    return { background }
   }
 
-  return { background }
-}
-
 export const handleFlagClick =
-  (emit) =>
-  ({ idx, flag }) => {
+  (emit: IMilestoneRenderlessParams['emit']) =>
+  ({ idx, flag }: IMilestoneHandleFlagClickParams) => {
     emit('flagclick', idx, flag) // deprecated 原事件flagclick v3.5.0废弃，v3.17.0移除；移除原因：命名规范
     emit('flag-click', idx, flag)
   }

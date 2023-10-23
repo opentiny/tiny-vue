@@ -2,6 +2,7 @@
 import { onMounted, reactive, ref } from 'vue'
 import { Repl, useStore, File } from '@opentiny/vue-repl'
 import '@opentiny/vue-repl/dist/style.css'
+
 import Monaco from '@vue/repl/monaco-editor'
 import { ButtonGroup as TinyButtonGroup, Select as TinySelect, Option as TinyOption, Notify } from '@opentiny/vue'
 import { staticDemoPath, getWebdocPath } from '@/views/components/cmpConfig'
@@ -16,19 +17,42 @@ const versions = ['3.10.0', '3.9.1', '3.8.4']
 const latestVersion = versions[0]
 const cdnHost = 'https://unpkg.com'
 
+const searchObj = new URLSearchParams(location.search)
+const tinyMode = searchObj.get('mode')
+const tinyTheme = tinyMode === 'saas' ? 'aurora' : searchObj.get('theme')
+
 const createImportMap = (version) => {
+  const imports = {
+    '@opentiny/vue': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue.mjs`,
+    '@opentiny/vue-icon': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-icon.mjs`,
+    '@opentiny/vue-locale': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-locale.mjs`,
+    '@opentiny/vue-common': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-common.mjs`,
+    'sortablejs': `${cdnHost}/sortablejs@1.15.0/modular/sortable.esm.js`
+  }
+  if (['aurora', 'smb'].includes(tinyTheme)) {
+    imports[`@opentiny/vue-design-${tinyTheme}`] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}@${version}/index.js`
+  }
   return {
-    imports: {
-      '@opentiny/vue': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue.mjs`,
-      '@opentiny/vue-icon': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-icon.mjs`,
-      '@opentiny/vue-locale': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-locale.mjs`,
-      '@opentiny/vue-common': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-common.mjs`,
-      'sortablejs': `${cdnHost}/sortablejs@1.15.0/modular/sortable.esm.js`
-    }
+    imports
   }
 }
-// 如果hash有效，它格式为： 3.8.4|eNqIVV9p...... 如果'|' 被转义成'%7C' 则再转义回来
-const hash = location.hash.slice(1).replace('%7C', '|')
+
+const getTinyTheme = (version) => {
+  let theme = tinyMode === 'saas' ? 'saas' : tinyTheme
+  if (!['smb', 'default', 'aurora', 'saas'].includes(theme)) {
+    theme = 'default'
+  }
+  const tinyThemeMap = {
+    default: `${cdnHost}/@opentiny/vue-theme@${version}/index.css`,
+    smb: `${cdnHost}/@opentiny/vue-theme@${version}/index.css`,
+    aurora: `${cdnHost}/@opentiny/vue-theme@${version}/index.css`,
+    saas: `${cdnHost}/@opentiny/vue-theme-saas@${version}/index.css`
+  }
+  return tinyThemeMap[theme]
+}
+
+// 如果hash有效，它格式为： 3.8.4|eNqIVV9p.............
+const hash = location.hash.slice(1)
 const shareData = hash.split('|')
 
 const store = new useStore({
@@ -37,7 +61,7 @@ const store = new useStore({
   outputMode: 'preview',
   versions: {
     vue: '3.2.47',
-    opentiny: latestVersion,
+    opentiny: '3.9.1',
     typescript: '5.1.3'
   }
 })
@@ -56,11 +80,22 @@ const state = reactive({
     { value: 'horizon', text: '水平' },
     { value: 'vertical', text: '垂直' }
   ],
-  previewOptions: { headHTML: '' },
   // 版本切换
   versions: versions.map((item) => ({ value: item })),
-  selectVersion: shareData.length === 2 ? shareData[0] : latestVersion
+  selectVersion: shareData.length === 2 ? shareData[0] : latestVersion,
+  previewOptions: {}
 })
+
+function setTinyDesign() {
+  // 目前只有aurora和smb有design包
+  if (['aurora', 'smb'].includes(tinyTheme)) {
+    state.previewOptions.customCode = {
+      importCode: `import designConfig from '@opentiny/vue-design-${tinyTheme}';
+        import { design } from '@opentiny/vue-common';`,
+      useCode: `app.provide(design.configKey, designConfig)`
+    }
+  }
+}
 
 function versionChange(version) {
   const importMap = createImportMap(version)
@@ -73,7 +108,7 @@ function versionChange(version) {
     const link = iframeWin.document.createElement('link')
     link.id = 'tiny-theme'
     link.rel = 'stylesheet'
-    link.href = `${cdnHost}/@opentiny/vue-theme@${version}/index.css`
+    link.href = getTinyTheme(version)
     iframeWin.document.head.append(link)
   }, 300)
 }
@@ -82,9 +117,9 @@ function getDemoName(name, apiMode) {
   return name.replace(/\.vue$/, `${apiMode === 'Options' ? '' : '-composition-api'}.vue`)
 }
 
-const getDemoCode = async ({ cmpId, fileName, apiMode }) => {
+const getDemoCode = async ({ cmpId, fileName, apiMode, mode }) => {
   const demoName = getDemoName(`${getWebdocPath(cmpId)}/${fileName}`, apiMode)
-  const path = `${staticDemoPath}/${demoName}`
+  const path = tinyMode === 'mobile-first' ? `@demos/mobile-first/app/${demoName}` : `${staticDemoPath}/${demoName}`
   const code = await fetchDemosFile(path)
     .then((code) => {
       return code
@@ -96,8 +131,8 @@ const getDemoCode = async ({ cmpId, fileName, apiMode }) => {
   return code
 }
 
-const loadFileCode = async ({ cmpId, fileName, apiMode }) => {
-  const code = await getDemoCode({ cmpId, fileName, apiMode })
+const loadFileCode = async ({ cmpId, fileName, apiMode, mode }) => {
+  const code = await getDemoCode({ cmpId, fileName, apiMode, mode })
   store.state.mainFile = fileName
   store.state.activeFile = fileName
   store.addFile(new File(fileName, code, false))
@@ -105,6 +140,7 @@ const loadFileCode = async ({ cmpId, fileName, apiMode }) => {
 }
 
 onMounted(() => {
+  setTinyDesign()
   // 初始加载,有分享则加载分享，否则加载默认版本的默认文件
   if (shareData.length === 2) {
     const demoFile = Object.values(store.state.files).find(
@@ -114,27 +150,29 @@ onMounted(() => {
         file.filename !== 'src/App.vue' &&
         file.filename !== 'src/PlaygroundMain.vue'
     )
-    if (demoFile) {
-      store.state.mainFile = demoFile.filename
-      store.state.activeFile = demoFile
-    }
 
+    store.state.mainFile = demoFile.filename
+    store.state.activeFile = demoFile
     versionChange(shareData[0])
   } else {
-    const searchObj = new URLSearchParams(location.search)
     const fileName = searchObj.get('fileName')
     const cmpId = searchObj.get('cmpId')
     const apiMode = searchObj.get('apiMode')
+    const mode = searchObj.get('mode')
     if (fileName && cmpId && apiMode) {
-      loadFileCode({ cmpId, fileName, apiMode })
+      loadFileCode({ cmpId, fileName, apiMode, mode })
     }
   }
 })
-
 // 分享功能
 function share() {
   const hash = store.serialize()
-  const shareUrl = location.origin + '/tiny-vue/playground#' + state.selectVersion + '|' + hash
+  const shareUrl =
+    location.origin +
+    `${import.meta.env.VITE_PLAYGROUND_URL}?mode=${tinyMode}&theme=${tinyTheme}#` +
+    state.selectVersion +
+    '|' +
+    hash
 
   navigator.clipboard.writeText(shareUrl)
   Notify({

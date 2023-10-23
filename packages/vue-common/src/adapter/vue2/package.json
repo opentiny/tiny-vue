@@ -7,7 +7,6 @@
   "module": "index.ts",
   "devDependencies": {
     "@vue/composition-api": "~1.2.2",
-    "vue": "~2.6.14",
-    "vue-router": "^3.6.4"
+    "vue": "~2.6.14"
   }
 }

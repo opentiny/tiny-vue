@@ -22,7 +22,7 @@ export const compute =
 
     const afterNodes = api.buildAfterNode(nodes, widths, heights)
     const afterLinks = api.buildAfterLink(links, widths, heights, afterNodes)
-    const hoverState = api.buildHoverState(afterLinks)
+    const hoverState = api.buildHoverState({ afterLinks })
     const allItem = api.getAllItem(nodes)
     const dropdowns = api.initDropdowns(nodes)
 
@@ -134,6 +134,116 @@ export const buildAfterLink = () => (links, widths, heights, afterNodes) => {
   return links.map((link) => path(link, widths[1], heights[1], afterNodes))
 }
 
+const clearHoverList = ({ afterLink, state }) => {
+  const { hoverMap, hoverList } = state.afterData.hoverState
+  const indices = []
+
+  hoverList.forEach((tri, i) => hoverMap.get(tri) === afterLink && indices.unshift(i))
+  indices.forEach((index) => hoverList.splice(index, 1))
+}
+
+const drawLinePart = (ctx, p) => {
+  const mmap = { m: 'moveTo', l: 'lineTo', a: 'arcTo' }
+  const paths = p.split(',')
+  ctx[mmap[paths[0]]](...paths.slice(1).map(Number))
+}
+
+const styleDraw = ({ afterLink, afterNodes, api, config, ctx }) => {
+  if (typeof config.styleLink === 'function') {
+    config.styleLink(ctx, afterLink, afterNodes)
+  } else {
+    ctx.strokeStyle = config.colors[afterLink.raw.info.status]
+    afterLink.raw.info.style !== 'solid' && ctx.setLineDash(api.isMf() ? [6, 6] : [2, 4])
+  }
+
+  if (api.isLinkHover(afterLink) && typeof config.styleHoverLink === 'function') {
+    config.styleHoverLink(ctx, afterLink, afterNodes)
+  }
+}
+
+const hitMatch = (drawCfg, afterLink) => {
+  let matched = true
+
+  if (drawCfg.filter) {
+    if (drawCfg.filter.from && drawCfg.filter.to) {
+      matched = afterLink.raw.from === drawCfg.filter.from && afterLink.raw.to === drawCfg.filter.to
+    } else if (drawCfg.filter.from) {
+      matched = afterLink.raw.from === drawCfg.filter.from
+    } else if (drawCfg.filter.to) {
+      matched = afterLink.raw.to === drawCfg.filter.to
+    } else {
+      matched = false
+    }
+  }
+
+  return matched
+}
+
+const setLinear = ({ afterLink, ctx }) => {
+  if (afterLink.linearGrad) {
+    const { from, to, linear } = afterLink.linearGrad
+    const grad = ctx.createLinearGradient(from.x, from.y, to.x, to.y)
+
+    if (
+      Array.isArray(linear.stops) &&
+      Array.isArray(linear.colors) &&
+      linear.stops.length === linear.colors.length &&
+      linear.stops.length > 0
+    ) {
+      linear.stops.forEach((stop, i) => grad.addColorStop(stop, linear.colors[i]))
+    }
+
+    ctx.strokeStyle = grad
+    afterLink._grad = grad
+  }
+}
+
+const realDraw = ({ afterLink, afterNodes, config, ctx, state }) => {
+  const defaultDrawLink = () => {
+    setLinear({ afterLink, ctx })
+    afterLink.p.map((p) => drawLinePart(ctx, p))
+  }
+  let drawn = false
+
+  if (typeof config.drawLink === 'function') {
+    drawn = true
+    config.drawLink({ ctx, afterLink, afterNodes })
+  } else if (Array.isArray(config.drawLink)) {
+    if (config.drawLink.length) {
+      for (let i = 0; i < config.drawLink.length; i++) {
+        if ((drawn = hitMatch(config.drawLink[i], afterLink))) {
+          config.drawLink[i].method({ ctx, afterLink, afterNodes })
+          break
+        }
+      }
+    }
+  } else if (config.drawLink && typeof config.drawLink.method === 'function') {
+    if ((drawn = hitMatch(config.drawLink, afterLink))) {
+      config.drawLink.method({ ctx, afterLink, afterNodes })
+    }
+  }
+
+  if (drawn) {
+    state.temporary.customLinks.push(afterLink.raw)
+    clearHoverList({ afterLink, state })
+  } else {
+    defaultDrawLink()
+  }
+}
+
+const draw = ({ afterLink, afterNodes, api, config, ctx, state }) => {
+  ctx.save()
+  ctx.beginPath()
+
+  styleDraw({ afterLink, afterNodes, api, config, ctx })
+  realDraw({ afterLink, afterNodes, config, ctx, state })
+
+  ctx.stroke()
+  ctx.restore()
+
+  drawArrow({ afterLink, config, ctx, state })
+}
+
 export const drawAfterLink =
   ({ api, props, state, vm }) =>
   () => {
@@ -141,42 +251,7 @@ export const drawAfterLink =
     const { afterData } = state
     const { $refs } = vm
     const { afterLinks, afterNodes, graph } = afterData
-    const mmap = { m: 'moveTo', l: 'lineTo', a: 'arcTo' }
     const dpr = window.devicePixelRatio
-
-    const drawLinePart = (ctx, p) => {
-      const paths = p.split(',')
-      ctx[mmap[paths[0]]](...paths.slice(1).map(Number))
-    }
-
-    const draw = (ctx, afterLink) => {
-      const { p, raw } = afterLink
-      const { status, style } = raw.info
-      const color = config.colors[status]
-
-      ctx.save()
-      ctx.beginPath()
-
-      if (typeof config.drawLink === 'function') {
-        config.drawLink(ctx, afterLink, afterNodes)
-      } else {
-        if (typeof config.styleLink === 'function') {
-          config.styleLink(ctx)
-        } else {
-          ctx.strokeStyle = color
-          style !== 'solid' && ctx.setLineDash(api.isMf() ? [6, 6] : [2, 4])
-        }
-
-        if (api.isLinkHover(afterLink) && typeof config.styleHoverLink === 'function') {
-          config.styleHoverLink(ctx)
-        }
-
-        p.map((p) => drawLinePart(ctx, p))
-      }
-
-      ctx.stroke()
-      ctx.restore()
-    }
 
     if ($refs.canvas && $refs.canvas.getContext) {
       const ctx = $refs.canvas.getContext('2d')
@@ -198,18 +273,24 @@ export const drawAfterLink =
         ctx.lineWidth = api.isMf() ? (config.lineWidth || 1) / dpr : 2
         ctx.miterLimit = 0
         ctx.lineDashOffset = 0
-        afterLinks.map((afterLink) => draw(ctx, afterLink))
+        state.temporary.customLinks = []
+        afterLinks.map((afterLink) => draw({ afterLink, afterNodes, api, config, ctx, state }))
         ctx.restore()
+
+        api.isMf() && drawGroup({ state, ctx })
       }
     }
-
-    api.isMf() && api.drawArrow()
   }
 
 export const refresh =
   ({ api, nextTick, state }) =>
-  () => {
+  ({ graphWidth = 0, adjustX = 0 } = {}) => {
     api.removeListeners()
+
+    if (graphWidth && graphWidth !== state.temporary.graphWidth) {
+      state.temporary.graphWidth = graphWidth
+      state.temporary.adjustX = adjustX
+    }
 
     if (api.isMf()) {
       api.computeMf()
@@ -222,6 +303,8 @@ export const refresh =
     nextTick(() => {
       api.drawAfterLink()
       api.addListeners()
+
+      state.temporary.emitter.emit('after-graph-refresh')
     })
   }
 
@@ -270,16 +353,39 @@ export const isLinkHover = (state) => (afterLink) => state.hoverAfterLink === af
 
 export const omitText = omit
 
-export const buildHoverState = (props) => (afterLinks) => {
-  const { config } = props
-  const { hoverHit } = config
-  const hoverMap = new WeakMap()
-  const hoverList = []
+export const buildHoverState =
+  (props) =>
+  ({ afterGroups, afterLinks }) => {
+    const { config } = props
+    const hoverMap = new WeakMap()
+    const hoverList = []
 
+    buildLinkHoverState({ afterLinks, hoverMap, hoverList, config })
+
+    const groupHoverMap = new WeakMap()
+    const groupHoverList = []
+
+    if (afterGroups) {
+      buildGroupHoverState({ afterGroups, groupHoverMap, groupHoverList })
+    }
+
+    return { hoverMap, hoverList, groupHoverMap, groupHoverList }
+  }
+
+const buildLinkHoverState = ({ afterLinks, hoverMap, hoverList, config }) => {
+  const { hoverHit } = config
   const createItem = (cur, next, afterLink) => {
     if (cur[0] === next[0]) {
-      const top = cur[1] < next[1] ? cur : next
-      const bottom = cur[1] < next[1] ? next : cur
+      let top, bottom
+
+      if (cur[1] < next[1]) {
+        top = cur
+        bottom = next
+      } else {
+        top = next
+        bottom = cur
+      }
+
       const tri1 = [top[0] + hoverHit, top[1], top[0] - hoverHit, top[1], bottom[0] - hoverHit, bottom[1]]
       const tri2 = [bottom[0] - hoverHit, bottom[1], bottom[0] + hoverHit, bottom[1], top[0] + hoverHit, top[1]]
 
@@ -288,8 +394,16 @@ export const buildHoverState = (props) => (afterLinks) => {
       hoverList.push(tri2)
       hoverMap.set(tri2, afterLink)
     } else if (cur[1] === next[1]) {
-      const left = cur[0] < next[0] ? cur : next
-      const right = cur[0] < next[0] ? next : cur
+      let left, right
+
+      if (cur[0] < next[0]) {
+        left = cur
+        right = next
+      } else {
+        left = next
+        right = cur
+      }
+
       const tri1 = [left[0], left[1] - hoverHit, left[0], left[1] + hoverHit, right[0], right[1] + hoverHit]
       const tri2 = [right[0], right[1] + hoverHit, right[0], right[1] - hoverHit, left[0], left[1] - hoverHit]
 
@@ -324,8 +438,19 @@ export const buildHoverState = (props) => (afterLinks) => {
       }
     })
   })
+}
 
-  return { hoverMap, hoverList }
+const buildGroupHoverState = ({ afterGroups, groupHoverMap, groupHoverList }) => {
+  afterGroups.forEach((afterGroup) => {
+    const [p0, p1, p2, p3] = afterGroup.coords
+    const tri0 = [p0.x, p3.y, p0.x, p1.y, p2.x, p3.y]
+    const tri1 = [p0.x, p1.y, p2.x, p1.y, p2.x, p3.y]
+
+    groupHoverList.push(tri0)
+    groupHoverMap.set(tri0, afterGroup)
+    groupHoverList.push(tri1)
+    groupHoverMap.set(tri1, afterGroup)
+  })
 }
 
 export const addListeners =
@@ -353,6 +478,8 @@ export const setListeners =
     const { delay } = config
 
     state.mousemoveListener = debounce(delay, (e) => {
+      if (!vm.$refs.canvas) return
+
       const { left, top } = vm.$refs.canvas.getBoundingClientRect()
       const { clientX, clientY } = e
       let x = clientX - left
@@ -368,9 +495,12 @@ export const setListeners =
 
     state.clickListener = debounce(delay, (e) => {
       const afterLink = state.hoverAfterLink
+      const afterGroup = state.hoverAfterGroup
 
       if (afterLink) {
         emit('click-link', afterLink, e)
+      } else if (afterGroup) {
+        emit('click-group', afterGroup, e)
       } else {
         emit('click-blank', null, e)
       }
@@ -379,63 +509,65 @@ export const setListeners =
     })
   }
 
+const pointInTriangle = (x0, y0, x1, y1, x2, y2, px, py) => {
+  const v0 = [x2 - x0, y2 - y0]
+  const v1 = [x1 - x0, y1 - y0]
+  const v2 = [px - x0, py - y0]
+  const dot00 = v0[0] * v0[0] + v0[1] * v0[1]
+  const dot01 = v0[0] * v1[0] + v0[1] * v1[1]
+  const dot02 = v0[0] * v2[0] + v0[1] * v2[1]
+  const dot11 = v1[0] * v1[0] + v1[1] * v1[1]
+  const dot12 = v1[0] * v2[0] + v1[1] * v2[1]
+  const inverDeno = 1 / (dot00 * dot11 - dot01 * dot01)
+  const u = (dot11 * dot02 - dot01 * dot12) * inverDeno
+
+  if (u < 0 || u > 1) {
+    return false
+  }
+
+  const v = (dot00 * dot12 - dot01 * dot02) * inverDeno
+
+  if (v < 0 || v > 1) {
+    return false
+  }
+
+  return u + v <= 1
+}
+
 export const hitTest =
   ({ api, state, vm }) =>
   (x, y) => {
+    const { hoverAfterLink = null, hoverAfterGroup = null } = state
     const { afterData } = state
     const { hoverState } = afterData
-    const { hoverMap, hoverList } = hoverState
-
-    const pointInTriangle = (x0, y0, x1, y1, x2, y2, px, py) => {
-      const v0 = [x2 - x0, y2 - y0]
-      const v1 = [x1 - x0, y1 - y0]
-      const v2 = [px - x0, py - y0]
-      const dot00 = v0[0] * v0[0] + v0[1] * v0[1]
-      const dot01 = v0[0] * v1[0] + v0[1] * v1[1]
-      const dot02 = v0[0] * v2[0] + v0[1] * v2[1]
-      const dot11 = v1[0] * v1[0] + v1[1] * v1[1]
-      const dot12 = v1[0] * v2[0] + v1[1] * v2[1]
-      const inverDeno = 1 / (dot00 * dot11 - dot01 * dot01)
-      const u = (dot11 * dot02 - dot01 * dot12) * inverDeno
-
-      if (u < 0 || u > 1) {
-        return false
-      }
-
-      const v = (dot00 * dot12 - dot01 * dot02) * inverDeno
-
-      if (v < 0 || v > 1) {
-        return false
-      }
-
-      return u + v <= 1
-    }
-
-    const tri = hoverList.find((item) => pointInTriangle(...item, x, y))
+    const { hoverMap, hoverList, groupHoverMap, groupHoverList } = hoverState
+    let tri = hoverList.find((item) => pointInTriangle(...item, x, y))
 
     state.hoverAfterLink = tri ? hoverMap.get(tri) : null
 
-    if (state.hoverAfterLink) {
-      api.drawAfterLink()
+    if (!tri) {
+      tri = groupHoverList.find((item) => pointInTriangle(...item, x, y))
+      state.hoverAfterGroup = tri ? groupHoverMap.get(tri) : null
+    }
 
-      vm.$refs.canvas.style.cursor = 'pointer'
-    } else {
-      api.clearHoverAfterLink()
+    if (hoverAfterLink !== state.hoverAfterLink || hoverAfterGroup !== state.hoverAfterGroup) {
+      if (state.hoverAfterLink || state.hoverAfterGroup) {
+        vm.$refs.canvas.style.cursor = 'pointer'
+        api.drawAfterLink()
+      } else {
+        api.clearHoverAfterLink()
+      }
     }
   }
 
 export const clearHoverAfterLink =
   ({ api, state, vm }) =>
   () => {
-    if (state.hoverAfterLink) {
-      state.hoverAfterLink = null
-    }
+    if (state.hoverAfterLink) state.hoverAfterLink = null
+    if (state.hoverAfterGroup) state.hoverAfterGroup = null
+    if (vm.$refs.canvas.style.cursor) vm.$refs.canvas.style.cursor = ''
 
     api.drawAfterLink()
-
-    if (vm.$refs.canvas.style.cursor) {
-      vm.$refs.canvas.style.cursor = ''
-    }
   }
 
 export const clickNode =
@@ -463,41 +595,48 @@ export const clearDropdown = (state) => (nodeName) => {
 export const computeMf =
   ({ api, markRaw, props, state }) =>
   () => {
-    const { data, config } = props
-    const { nodes, links } = hideNodeLink(data)
-    const { gap = 0, align = '', width = 0, height = 0, padding = 0 } = config
-    const { prior = '', radius = 4, font, showArrow = true, lineWidth = 1, arrowEdge = 4 } = config
-    const thin = false
+    const afterConfig = normalConfig(props)
+    const { nodes, links, groups } = hideNodeLink(props.data)
+    const getRow = buildGetRow({ afterConfig, api })
+    const getCol = buildGetCol({ afterConfig, api })
+    const rectRow = buildRectRow({ afterConfig, getRow })
+    const rectNode = buildRectNode({ afterConfig, api, getRow, rectRow })
+    let args = { afterConfig, api, getCol, getRow, groups, nodes, rectNode, state }
 
-    const getRow = buildGetRow(gap)
-    const getCol = buildGetCol(gap)
-    const rectRow = buildRectRow({ getRow, gap })
-    const rectNode = buildRectNode({ rectRow, gap, align, getRow })
+    const { afterGroups, afterNodes, graph } = buildAfterNodeGraph(args)
 
-    const { afterNodes, graph } = buildAfterNodeGraph({ nodes, thin, getRow, getCol, rectNode, padding, width, height })
-    const { afterLinks, arrows } = buildAfterLinkArrow({
-      links,
-      afterNodes,
-      graph,
-      prior,
-      radius,
-      showArrow,
-      lineWidth,
-      arrowEdge
-    })
+    args = { afterConfig, afterNodes, graph, links }
 
-    const hoverState = api.buildHoverState(afterLinks)
+    const { afterLinks, arrows } = buildAfterLinkArrow(args)
+    const hoverState = api.buildHoverState({ afterGroups, afterLinks })
 
-    state.afterData = markRaw({ afterNodes, afterLinks, hoverState, graph, arrows })
-    state.wrapperStyle = `width:${graph.width}px;height:${graph.height}px;font:${font}`
+    state.afterData = markRaw({ afterConfig, afterGroups, afterLinks, afterNodes, arrows, graph, hoverState })
+    state.wrapperStyle = { width: `${graph.width}px`, height: `${graph.height}px` }
   }
+
+const normalConfig = (props) => {
+  const { config } = props
+  const { align = '', arrowEdge = 4, condHeight = 20, condWidth = 60 } = config
+  const { font = '', gap = 0, height = 0, lineWidth = 1, linkEndMinus = 3 } = config
+  const { padding = 0, prior = '', radius = 4, showArrow = true, width = 0 } = config
+  const { extraWidth = 0, extraHeight = 0 } = config
+  const cfg = { align, arrowEdge, condHeight, condWidth, font, gap, height, lineWidth, linkEndMinus }
+
+  Object.assign(cfg, { padding, prior, radius, showArrow, width, extraWidth, extraHeight })
+
+  const afterConfig = Object.assign({}, config, cfg)
+
+  afterConfig.thin = false
+
+  return afterConfig
+}
 
 export const isMf = (mode) => () => mode === 'mobile-first'
 
-const getNodeDef = (node, type) => {
+export const getNodeDef = (props) => (node, type) => {
   const shape = node.info.shape || 'circle'
 
-  if (shape === 'circle') return 40
+  if (shape === 'circle') return props.config.nodeWrapperSize || 40
 
   if (shape === 'rectangle') {
     if (type === 'width') return 160
@@ -507,62 +646,66 @@ const getNodeDef = (node, type) => {
   return 0
 }
 
-const getNode = (node, type) => {
+export const getNode = (api) => (node, type) => {
   const shape = node.info.shape || 'circle'
 
   if (shape === 'circle') {
-    return node.info.width || getNodeDef(node, type)
+    return node.info.width || api.getNodeDef(node, type)
   }
 
   if (shape === 'rectangle') {
-    return node.info[type] || getNodeDef(node, type)
+    return node.info[type] || api.getNodeDef(node, type)
   }
 
   return 0
 }
 
-const buildGetRow = (gap) => (afterNodes, row, type) => {
-  const rowAfterNodes = afterNodes.filter((afterNode) => afterNode.row === row)
-  const rowNodes = rowAfterNodes.map((rowAfterNode) => rowAfterNode.raw)
+const buildGetRow =
+  ({ api, afterConfig }) =>
+  (afterNodes, row, type) => {
+    const rowAfterNodes = afterNodes.filter((afterNode) => afterNode.row === row)
+    const rowNodes = rowAfterNodes.map((rowAfterNode) => rowAfterNode.raw)
 
-  if (rowNodes.length > 0) {
-    if (type === 'width') {
-      return rowNodes.reduce((p, c) => p + getNode(c, type), 0) + (rowNodes.length - 1) * gap
+    if (rowNodes.length > 0) {
+      if (type === 'width') {
+        return rowNodes.reduce((p, c) => p + api.getNode(c, type), 0) + (rowNodes.length - 1) * afterConfig.gap
+      }
+
+      if (type === 'height') {
+        return Math.max(...rowNodes.map((rowNode) => api.getNode(rowNode, type)))
+      }
     }
 
-    if (type === 'height') {
-      return Math.max(...rowNodes.map((rowNode) => getNode(rowNode, type)))
-    }
+    return 0
   }
 
-  return 0
-}
+const buildGetCol =
+  ({ api, afterConfig }) =>
+  (afterNodes, col, type) => {
+    const colAfterNodes = afterNodes.filter((afterNode) => afterNode.col === col)
+    const colNodes = colAfterNodes.map((colAfterNode) => colAfterNode.raw)
 
-const buildGetCol = (gap) => (afterNodes, col, type) => {
-  const colAfterNodes = afterNodes.filter((afterNode) => afterNode.col === col)
-  const colNodes = colAfterNodes.map((colAfterNode) => colAfterNode.raw)
+    if (colNodes.length > 0) {
+      if (type === 'width') {
+        return Math.max(...colNodes.map((colNode) => api.getNode(colNode, type)))
+      }
 
-  if (colNodes.length > 0) {
-    if (type === 'width') {
-      return Math.max(...colNodes.map((colNode) => getNode(colNode, type)))
+      if (type === 'height') {
+        return colNodes.reduce((p, c) => p + api.getNode(c, type), 0) + (colNodes.length - 1) * afterConfig.gap
+      }
     }
 
-    if (type === 'height') {
-      return colNodes.reduce((p, c) => p + getNode(c, type), 0) + (colNodes.length - 1) * gap
-    }
+    return 0
   }
-
-  return 0
-}
 
 const buildRectRow =
-  ({ getRow, gap }) =>
+  ({ getRow, afterConfig }) =>
   (afterNodes, row, graph) => {
     const accrueRowHeight = Array.from({ length: row })
       .map((c, i) => i)
       .map((i) => getRow(afterNodes, i, 'height'))
       .reduce((p, c) => p + c, 0)
-    const accrueGapHeight = row > 0 ? row * gap : 0
+    const accrueGapHeight = row > 0 ? row * afterConfig.gap : 0
 
     return {
       x: 0,
@@ -573,37 +716,38 @@ const buildRectRow =
   }
 
 const buildRectNode =
-  ({ rectRow, gap, align, getRow }) =>
+  ({ api, rectRow, afterConfig, getRow }) =>
   (afterNode, afterNodes, graph) => {
     const { row, col } = afterNode
     const prevRowRect = rectRow(afterNodes, row - 1, graph)
     const rowRect = rectRow(afterNodes, row, graph)
-    const width = getNode(afterNode.raw, 'width')
-    const height = getNode(afterNode.raw, 'height')
-    const y = prevRowRect.y + prevRowRect.height + (row > 0 ? gap : 0) + (rowRect.height - height) / 2
+    const width = api.getNode(afterNode.raw, 'width')
+    const height = api.getNode(afterNode.raw, 'height')
+    const y = prevRowRect.y + prevRowRect.height + (row > 0 ? afterConfig.gap : 0) + (rowRect.height - height) / 2
     const rowAfterNodes = afterNodes.filter((afterNode) => afterNode.row === row)
     const get = (i) => rowAfterNodes.find((rowAfterNode) => rowAfterNode.col === i)
     const accrueColWidth = Array.from({ length: col })
       .map((c, i) => i)
       .map((i) => {
         const afterNode = get(i)
-        return afterNode ? getNode(afterNode.raw, 'width') : 0
+        return afterNode ? api.getNode(afterNode.raw, 'width') : 0
       })
       .reduce((p, c) => p + c, 0)
-    const accrueGapWidth = col > 0 ? col * gap : 0
-    const dx = align === 'center' ? (graph.width - getRow(afterNodes, row, 'width')) / 2 : 0
+    const accrueGapWidth = col > 0 ? col * afterConfig.gap : 0
+    const dx = afterConfig.align === 'center' ? (graph.width - getRow(afterNodes, row, 'width')) / 2 : 0
     const x = accrueColWidth + accrueGapWidth + dx
 
     return { x, y, width, height }
   }
 
-const normalRowCol = (nodes) => {
+const normalRowCol = ({ afterConfig, nodes }) => {
   let rows = new Set()
   const rowMap = new Map()
+  const autoAdjustPos = afterConfig.autoAdjust !== false
 
   nodes.forEach((node) => !rows.has(node.info.row) && rows.add(node.info.row))
   rows = [...rows].sort((a, b) => a - b)
-  rows.forEach((row, i) => rowMap.set(row, i))
+  rows.forEach((row, i) => rowMap.set(row, autoAdjustPos ? i : row))
 
   const afterNodes = nodes.map((node) => {
     return { type: 'node', row: rowMap.get(node.info.row), col: 0, raw: node }
@@ -616,7 +760,7 @@ const normalRowCol = (nodes) => {
 
     cols = new Set(cols)
     cols = [...cols].sort((a, b) => a - b)
-    cols.forEach((col, i) => colMap.set(col, i))
+    cols.forEach((col, i) => colMap.set(col, autoAdjustPos ? i : col))
 
     rowAfterNodes.forEach((rowAfterNode) => (rowAfterNode.col = colMap.get(rowAfterNode.raw.info.col)))
   })
@@ -624,27 +768,24 @@ const normalRowCol = (nodes) => {
   return afterNodes
 }
 
-const buildAfterNodeGraph = ({ nodes, thin, getRow, getCol, rectNode, padding, width, height }) => {
-  const afterNodes = normalRowCol(nodes)
-  const maxRow = Math.max(...afterNodes.map((afterNode) => afterNode.row))
-  const maxCol = Math.max(...afterNodes.map((afterNode) => afterNode.col))
-  const graph = { width: 0, height: 0, thin, thinValue: 1 }
+const defaultLayout = ({ afterConfig, afterNodes, getCol, getRow, graph, maxCol, maxRow, rectNode }) => {
+  const { height, padding, width } = afterConfig
+  let tmp
 
   for (let i = 0; i <= maxRow; i++) {
-    const tmp = getRow(afterNodes, i, 'width')
-    tmp > graph.width && (graph.width = tmp)
+    if ((tmp = getRow(afterNodes, i, 'width')) > graph.width) graph.width = tmp
   }
 
   for (let i = 0; i <= maxCol; i++) {
-    const tmp = getCol(afterNodes, i, 'height')
-    tmp > graph.height && (graph.height = tmp)
+    if ((tmp = getCol(afterNodes, i, 'height')) > graph.height) graph.height = tmp
   }
 
   afterNodes.forEach((afterNode) => Object.assign(afterNode, rectNode(afterNode, afterNodes, graph)))
 
   if (padding > 0) {
-    graph.width += 2 * padding
-    graph.height += 2 * padding
+    tmp = 2 * padding
+    graph.width += tmp
+    graph.height += tmp
 
     afterNodes.forEach((afterNode) => {
       afterNode.x += padding
@@ -652,112 +793,410 @@ const buildAfterNodeGraph = ({ nodes, thin, getRow, getCol, rectNode, padding, w
     })
   }
 
-  let dx = 0
-  let dy = 0
-
   if (width > graph.width) {
-    dx = (width - graph.width) / 2
+    tmp = (width - graph.width) / 2
     graph.width = width
-    afterNodes.forEach((afterNode) => (afterNode.x += dx))
+    afterNodes.forEach((afterNode) => (afterNode.x += tmp))
   }
 
   if (height > graph.height) {
-    dy = (height - graph.height) / 2
+    tmp = (height - graph.height) / 2
     graph.height = height
-    afterNodes.forEach((afterNode) => (afterNode.y += dy))
+    afterNodes.forEach((afterNode) => (afterNode.y += tmp))
+  }
+}
+
+const dotModeAdjust = ({ afterConfig, afterNodes, graph, maxCol, state }) => {
+  const { padding } = afterConfig
+
+  if (afterConfig.type === 'dot' && state.temporary.graphWidth) {
+    graph.width = state.temporary.graphWidth < graph.minWidth ? graph.minWidth : state.temporary.graphWidth
+
+    const colSize = (graph.width - 2 * padding) / (maxCol + 1)
+
+    afterNodes.forEach((afterNode) => {
+      afterNode.x = ~~((afterNode.col + 0.5) * colSize + padding) + state.temporary.adjustX
+    })
+  }
+}
+
+const customLayout = ({ afterConfig, afterNodes, graph }) => {
+  if (typeof afterConfig.layout === 'function') {
+    const graphHeight = graph.height
+    const graphWidth = graph.width
+    const coords = afterConfig.layout({ afterNodes, graphHeight, graphWidth })
+
+    if (coords && coords.length === afterNodes.length) {
+      afterNodes.forEach((afterNode, i) => {
+        if (coords[i]) {
+          afterNode.x = Number(coords[i].x) || 0
+          afterNode.y = Number(coords[i].y) || 0
+        }
+      })
+    }
+  }
+}
+
+const calcGraphMinSize = ({ afterConfig, afterNodes, api, graph, maxCol, maxRow }) => {
+  const { gap, padding, extraWidth, extraHeight } = afterConfig
+  const maxNodeSize = { width: 0, height: 0 }
+  let tempSize
+
+  afterNodes.forEach((afterNode) => {
+    if ((tempSize = api.getNode(afterNode.raw, 'width')) > maxNodeSize.width) {
+      maxNodeSize.width = tempSize
+    }
+    if ((tempSize = api.getNode(afterNode.raw, 'height')) > maxNodeSize.height) {
+      maxNodeSize.height = tempSize
+    }
+  })
+
+  graph.minWidth = (maxCol + 1) * maxNodeSize.width + maxCol * gap + 2 * padding + extraWidth
+  graph.minHeight = (maxRow + 1) * maxNodeSize.height + maxRow * gap + 2 * padding + extraHeight
+}
+
+const buildAfterNodeGraph = (args) => {
+  const { afterConfig, api, getCol, getRow, groups, nodes, rectNode, state } = args
+  const afterNodes = normalRowCol({ afterConfig, nodes })
+  const maxRow = Math.max(...afterNodes.map((afterNode) => afterNode.row))
+  const maxCol = Math.max(...afterNodes.map((afterNode) => afterNode.col))
+  const graph = { width: 0, height: 0, minWidth: 0, minHeight: 0, thin: afterConfig.thin, thinValue: 1 }
+
+  calcGraphMinSize({ afterConfig, afterNodes, api, graph, maxCol, maxRow })
+  defaultLayout({ afterConfig, afterNodes, getCol, getRow, graph, maxCol, maxRow, rectNode })
+  dotModeAdjust({ afterConfig, afterNodes, graph, maxCol, state })
+  customLayout({ afterConfig, afterNodes, graph })
+
+  const afterGroups = computeGroup({ afterConfig, afterNodes, graph, groups })
+
+  return { afterGroups, afterNodes, graph }
+}
+
+const computeGroup = ({ afterConfig, afterNodes, graph, groups }) => {
+  if (groups && groups.length) {
+    return groups.map((group) => {
+      const afterGroup = { coords: [], width: 0, height: 0, raw: group }
+      const coords = computeGroupCoord({ afterNodes, group })
+      const padding = [0, 0]
+      const adjust = adjustLine(afterConfig)
+      const { condWidth, condHeight } = afterConfig
+
+      afterGroup.width = condWidth
+      afterGroup.height = condHeight
+
+      if (typeof group.padding === 'number') {
+        padding[0] = padding[1] = group.padding
+      } else if (Array.isArray(group.padding) && group.padding.length > 1) {
+        padding[0] = group.padding[0]
+        padding[1] = group.padding[1]
+      }
+
+      coords[0] = coords[0] - padding[1] < 0 ? 0 : coords[0] - padding[1]
+      coords[1] = coords[1] + padding[1] > graph.width ? graph.width : coords[1] + padding[1]
+      coords[2] = coords[2] - padding[0] < 0 ? 0 : coords[2] - padding[0]
+      coords[3] = coords[3] + padding[0] > graph.height ? graph.height : coords[3] + padding[0]
+
+      const p0 = { x: coords[0], y: coords[2] }
+      const p1 = { x: coords[0], y: coords[3] }
+      const p2 = { x: coords[1], y: coords[3] }
+      const p3 = { x: coords[1], y: coords[2] }
+
+      adjust({ from: p0, to: p1 })
+      adjust({ from: p1, to: p2 })
+      adjust({ from: p2, to: p3 })
+      adjust({ from: p3, to: p0 })
+
+      const dx = ~~((p3.x - p0.x) / 2)
+      const dy = ~~((p1.y - p0.y) / 2)
+
+      p0.y += dy
+      p1.x += dx
+      p2.y -= dy
+      p3.x -= dx
+
+      afterGroup.coords.push(p0, p1, p2, p3)
+
+      return afterGroup
+    })
+  }
+}
+
+const computeGroupCoord = ({ afterNodes, group }) => {
+  const points = []
+  const coords = ['', '', '', '']
+
+  group.nodes
+    .map((name) => afterNodes.find((afterNode) => afterNode.raw.name === name))
+    .forEach(({ x, y, width, height }) => {
+      points.push({ x, y })
+      points.push({ x: x + width, y: y + height })
+    })
+
+  points.forEach(({ x, y }) => {
+    if (typeof coords[0] !== 'number' || x < coords[0]) coords[0] = x
+    if (typeof coords[1] !== 'number' || x > coords[1]) coords[1] = x
+    if (typeof coords[2] !== 'number' || y < coords[2]) coords[2] = y
+    if (typeof coords[3] !== 'number' || y > coords[3]) coords[3] = y
+  })
+
+  return coords
+}
+
+const adjustLineEnd = ({ arrowEndMinus, e, from, isVertical, linkEndMinus, linkOffset, s, to }) => {
+  if (s) {
+    if (isVertical) {
+      to.y += (to.y > from.y ? -1 : 1) * (linkEndMinus + (arrowEndMinus || 0))
+    } else {
+      to.x += (to.x > from.x ? -1 : 1) * (linkEndMinus + (arrowEndMinus || 0))
+    }
   }
 
-  return { afterNodes, graph }
+  if (e) {
+    if (isVertical) {
+      from.y += (to.y > from.y ? 1 : -1) * (linkOffset || 0)
+    } else {
+      from.x += (to.x > from.x ? 1 : -1) * (linkOffset || 0)
+    }
+  }
 }
 
 const adjustLine =
-  ({ lineWidth }) =>
-  (f, t) => {
+  ({ lineWidth, linkEndMinus }) =>
+  ({ from, to, s, arrowEndMinus, e, linkOffset }) => {
     const dpr = window.devicePixelRatio
     const isOdd = lineWidth & 0x01
-    const dx = Math.abs(f.x - t.x)
+    const dx = Math.abs(from.x - to.x)
     const isVertical = dx < Number.EPSILON
 
-    if (isOdd) {
-      if (isVertical) {
-        f.x = t.x = Math.floor(f.x) + 0.5 / dpr
-      } else {
-        f.y = t.y = Math.floor(f.y) + 0.5 / dpr
-      }
+    if (isVertical) {
+      from.x = to.x = Math.floor(from.x) + (isOdd ? 0.5 / dpr : 0)
     } else {
-      if (isVertical) {
-        f.x = t.x = Math.floor(f.x)
+      from.y = to.y = Math.floor(from.y) + (isOdd ? 0.5 / dpr : 0)
+    }
+
+    adjustLineEnd({ arrowEndMinus, e, from, isVertical, linkEndMinus, linkOffset, s, to })
+
+    return { x: ~~((from.x + to.x) / 2), y: ~~((from.y + to.y) / 2) }
+  }
+
+const pathParser = ({ adjust, afterLink, arrow, linear, midpoint, middir, points, radius }) => {
+  const arrowEndMinus = afterLink.raw.arrowEndMinus
+  const linkOffset = afterLink.raw.linkOffset
+  const len = points.length
+  const p = []
+
+  for (let i = 1; i < len; i++) {
+    adjust({ from: points[i - 1], to: points[i], s: i === len - 1, arrowEndMinus, e: i === 1, linkOffset })
+  }
+
+  const prevPoint = points[points.length - 2]
+  const lastPoint = points[points.length - 1]
+
+  if (len === 2) {
+    p.push(`m,${points[0].x},${points[0].y}`)
+    p.push(`l,${points[1].x},${points[1].y}`)
+  } else {
+    for (let i = 0; i < len - 1; i++) {
+      if (i === 0) {
+        p.push(`m,${points[i].x},${points[i].y}`)
       } else {
-        f.y = t.y = Math.floor(f.y)
+        p.push(`a,${points[i].x},${points[i].y},${points[i + 1].x},${points[i + 1].y},${radius}`)
+      }
+    }
+
+    p.push(`l,${lastPoint.x},${lastPoint.y}`)
+  }
+
+  afterLink.p = p
+
+  if (linear) {
+    afterLink.linearGrad = { from: points[0], to: lastPoint, linear }
+  }
+
+  if (midpoint) {
+    afterLink.mid = midpoint
+  } else {
+    afterLink.mid = { x: ~~((prevPoint.x + lastPoint.x) / 2), y: ~~((prevPoint.y + lastPoint.y) / 2) }
+    middir = getMiddir(prevPoint, lastPoint)
+  }
+
+  afterLink.middir = middir
+
+  arrow(prevPoint, lastPoint)
+}
+
+const getMiddir = (prev, last) => {
+  let middir = 'r'
+
+  if (prev.x !== last.x) {
+    middir = prev.x > last.x ? 'l' : 'r'
+  } else if (prev.y !== last.y) {
+    middir = prev.y > last.y ? 'u' : 'd'
+  }
+
+  return middir
+}
+
+const validLinkPath = (res) => {
+  let points, midpoint, middir, linear, flag
+
+  if (Array.isArray(res) && res.length > 1) {
+    points = res
+    midpoint = null
+    middir = null
+    linear = null
+    flag = true
+  } else if (res && Array.isArray(res.path) && res.path.length > 1) {
+    points = res.path
+    midpoint = res.mid ? res.mid : null
+    middir = res.middir || 'r'
+    linear = res.linear ? res.linear : null
+    flag = true
+  }
+
+  return { points, midpoint, middir, linear, flag }
+}
+
+const customRoute = ({ adjust, afterConfig, afterLink, afterNodes, arrow }) => {
+  const { linkPath, radius } = afterConfig
+  let valid = false
+
+  if (Array.isArray(linkPath)) {
+    for (let i = 0; i < linkPath.length; i++) {
+      if (hitMatch(linkPath[i], afterLink)) {
+        const { points, midpoint, middir, linear, flag } = validLinkPath(linkPath[i].method({ afterLink, afterNodes }))
+
+        if (flag) {
+          valid = true
+          pathParser({ adjust, afterLink, arrow, linear, midpoint, middir, points, radius })
+        }
+
+        break
+      }
+    }
+  } else if (linkPath && typeof linkPath.method === 'function') {
+    if (hitMatch(linkPath, afterLink)) {
+      const { points, midpoint, middir, linear, flag } = validLinkPath(linkPath.method({ afterLink, afterNodes }))
+
+      if (flag) {
+        valid = true
+        pathParser({ adjust, afterLink, arrow, linear, midpoint, middir, points, radius })
       }
     }
   }
 
-const buildAfterLinkArrow = ({ links, afterNodes, graph, prior, radius, showArrow, lineWidth, arrowEdge }) => {
-  const arrows = []
-  const buildArrow = getBuildArrow({ arrows, arrowEdge })
-  const adjust = adjustLine({ lineWidth })
+  return valid
+}
 
-  const afterLinks = links.map((link) => {
-    const { from, to, fromJoint = 'bottom', toJoint = 'top' } = link
-    const fromAfterNode = afterNodes.find((afterNode) => afterNode.raw.name === from)
-    const toAfterNode = afterNodes.find((afterNode) => afterNode.raw.name === to)
-    const f = point(fromAfterNode, fromJoint, graph)
-    const t = point(toAfterNode, toJoint, graph)
-    const p = []
-    const dx = Math.abs(f.x - t.x)
-    const dy = Math.abs(f.y - t.y)
+const defaultRoute = (args) => {
+  const { adjust, afterConfig, afterLink, arrow, link } = args
+  const { prior, radius } = afterConfig
+  const { f, t, p } = afterLink
+  const { arrowEndMinus, linkOffset } = link
+  const dx = Math.abs(f.x - t.x)
+  const dy = Math.abs(f.y - t.y)
 
-    if (dx < Number.EPSILON || dy < Number.EPSILON) {
-      adjust(f, t)
+  if (dx < Number.EPSILON || dy < Number.EPSILON) {
+    afterLink.mid = adjust({ from: f, to: t, s: 1, arrowEndMinus, e: 1, linkOffset })
+    afterLink.middir = getMiddir(f, t)
+    p.push(`m,${f.x},${f.y}`)
+    p.push(`l,${t.x},${t.y}`)
+
+    arrow(f, t)
+  } else {
+    const mid = [(f.x + t.x) / 2, (f.y + t.y) / 2]
+
+    if (!prior || prior === 'vertical') {
+      const tmp0 = { x: f.x, y: mid[1] }
+      const tmp1 = { x: t.x, y: mid[1] }
+      adjust({ from: f, to: tmp0, s: 0, e: 1, linkOffset })
+      afterLink.mid = adjust({ from: tmp0, to: tmp1, s: 0, e: 0 })
+      afterLink.middir = getMiddir(tmp0, tmp1)
+      adjust({ from: tmp1, to: t, s: 1, arrowEndMinus, e: 0 })
+      mid[1] = tmp0.y
+
       p.push(`m,${f.x},${f.y}`)
+      p.push(`a,${f.x},${mid[1]},${mid[0]},${mid[1]},${radius}`)
+      p.push(`a,${t.x},${mid[1]},${t.x},${t.y},${radius}`)
       p.push(`l,${t.x},${t.y}`)
 
-      showArrow && buildArrow([f.x, f.y], [t.x, t.y], link)
-    } else {
-      const mid = [(f.x + t.x) / 2, (f.y + t.y) / 2]
+      arrow({ x: t.x, y: mid[1] }, t)
+    } else if (prior === 'horizontal') {
+      const tmp0 = { x: mid[0], y: f.y }
+      const tmp1 = { x: mid[0], y: t.y }
+      adjust({ from: f, to: tmp0, s: 0, e: 1, linkOffset })
+      afterLink.mid = adjust({ from: tmp0, to: tmp1, s: 0, e: 0 })
+      afterLink.middir = getMiddir(tmp0, tmp1)
+      adjust({ from: tmp1, to: t, s: 1, arrowEndMinus, e: 0 })
+      mid[0] = tmp0.x
 
-      if (!prior || prior === 'vertical') {
-        const tmp0 = { x: f.x, y: mid[1] }
-        const tmp1 = { x: t.x, y: mid[1] }
-        adjust(f, tmp0)
-        adjust(tmp0, tmp1)
-        adjust(tmp1, t)
-        mid[1] = tmp0.y
+      p.push(`m,${f.x},${f.y}`)
+      p.push(`a,${mid[0]},${f.y},${mid[0]},${mid[1]},${radius}`)
+      p.push(`a,${mid[0]},${t.y},${t.x},${t.y},${radius}`)
+      p.push(`l,${t.x},${t.y}`)
 
-        p.push(`m,${f.x},${f.y}`)
-        p.push(`a,${f.x},${mid[1]},${mid[0]},${mid[1]},${radius}`)
-        p.push(`a,${t.x},${mid[1]},${t.x},${t.y},${radius}`)
-        p.push(`l,${t.x},${t.y}`)
+      arrow({ x: mid[0], y: t.y }, t)
+    }
+  }
+}
 
-        showArrow && buildArrow([t.x, mid[1]], [t.x, t.y], link)
-      } else if (prior === 'horizontal') {
-        const tmp0 = { x: mid[0], y: f.y }
-        const tmp1 = { x: mid[0], y: t.y }
-        adjust(f, tmp0)
-        adjust(tmp0, tmp1)
-        adjust(tmp1, t)
-        mid[0] = tmp0.x
+const computeLinkEnds = ({ afterNodes, graph, link }) => {
+  const { from, to } = link
+  const f = point({
+    afterNode: afterNodes.find((afterNode) => afterNode.raw.name === from),
+    graph,
+    link,
+    type: 0
+  })
+  const t = point({
+    afterNode: afterNodes.find((afterNode) => afterNode.raw.name === to),
+    graph,
+    link,
+    type: 1
+  })
 
-        p.push(`m,${f.x},${f.y}`)
-        p.push(`a,${mid[0]},${f.y},${mid[0]},${mid[1]},${radius}`)
-        p.push(`a,${mid[0]},${t.y},${t.x},${t.y},${radius}`)
-        p.push(`l,${t.x},${t.y}`)
+  return { f, t }
+}
 
-        showArrow && buildArrow([mid[0], t.y], [t.x, t.y], link)
-      }
+const buildAfterLinkArrow = (args) => {
+  let { afterConfig, afterNodes, graph, links } = args
+  const { condWidth, condHeight } = afterConfig
+  const arrows = []
+  const buildArrow = getBuildArrow({ arrows, afterConfig })
+  const adjust = adjustLine(afterConfig)
+
+  const afterLinks = links.map((link) => {
+    const { f, t } = computeLinkEnds({ afterNodes, graph, link })
+    const cond = !!(link && link.info.other && link.info.other.title)
+    const afterLink = { arrow: null, cond, f, linearGrad: null, mid: null }
+
+    Object.assign(afterLink, { p: [], raw: link, rect: null, t, type: 'link' })
+
+    const arrow = (f, t) => buildArrow(f, t, link, afterLink)
+    const flag = customRoute({ adjust, afterConfig, afterLink, afterNodes, arrow })
+
+    if (!flag) {
+      defaultRoute({ adjust, afterConfig, afterLink, arrow, link })
     }
 
-    return { type: 'link', f, t, p, raw: link }
+    afterLink.rect = {
+      x: ~~(afterLink.mid.x - condWidth / 2),
+      y: ~~(afterLink.mid.y - condHeight / 2),
+      w: condWidth,
+      h: condHeight
+    }
+
+    return afterLink
   })
 
   return { afterLinks, arrows }
 }
 
-const point = (afterNode, joint, graph) => {
+const point = ({ afterNode, graph, link, type }) => {
   const exp = /^(bottom|top|left|right)$/
   const variant = /^(bottom|top|left|right)-(\d+)\/(\d+)$/
   const res = { x: 0, y: 0 }
+  const joint = type ? link.toJoint || 'top' : link.fromJoint || 'bottom'
 
   if (exp.test(joint)) {
     if (joint === 'bottom') {
@@ -805,12 +1244,17 @@ const point = (afterNode, joint, graph) => {
 }
 
 const getBuildArrow =
-  ({ arrows, arrowEdge }) =>
-  (from, to, link) => {
-    const p0 = [0, 0]
-    const p2 = [0, 0]
-    const dx = from[0] - to[0]
-    const dy = from[1] - to[1]
+  ({ arrows, afterConfig }) =>
+  (from, to, link, afterLink) => {
+    const { arrowEdge, linkEndMinus, showArrow } = afterConfig
+    const { showArrow: linkShowArrow = true } = link
+
+    if (!showArrow || !linkShowArrow) return
+
+    const p0 = { x: 0, y: 0 }
+    const p2 = { x: 0, y: 0 }
+    const dx = from.x - to.x
+    const dy = from.y - to.y
     const absx = Math.abs(dx)
     const absy = Math.abs(dy)
     let t = 1
@@ -818,70 +1262,117 @@ const getBuildArrow =
 
     if (absx < Number.EPSILON) {
       t = dy > 0 ? 1 : dy < 0 ? -1 : 1
-
-      p0[0] = to[0] - edge
-      p0[1] = to[1] + Math.sqrt(3) * edge * t
-      p2[0] = to[0] + edge
-      p2[1] = p0[1]
+      to.y -= t * linkEndMinus
+      p0.x = to.x - edge
+      p0.y = to.y + Math.sqrt(3) * edge * t
+      p2.x = to.x + edge
+      p2.y = p0.y
 
       if (dy !== 0) {
-        arrows.push({ p0, p1: to, p2, link })
+        arrows.push((afterLink.arrow = { p0, p1: to, p2, link }))
       }
     }
 
     if (absy < Number.EPSILON) {
       t = dx > 0 ? 1 : dx < 0 ? -1 : 1
-
-      p0[0] = to[0] + Math.sqrt(3) * edge * t
-      p0[1] = to[1] - edge
-      p2[0] = p0[0]
-      p2[1] = to[1] + edge
+      to.x -= t * linkEndMinus
+      p0.x = to.x + Math.sqrt(3) * edge * t
+      p0.y = to.y - edge
+      p2.x = p0.x
+      p2.y = to.y + edge
 
       if (dx !== 0) {
-        arrows.push({ p0, p1: to, p2, link })
+        arrows.push((afterLink.arrow = { p0, p1: to, p2, link }))
       }
     }
   }
 
 const hideNodeLink = (data) => {
-  let { nodes, links } = data
+  let { nodes, links, groups } = data
   const hiddenNodeNames = nodes.filter((node) => node.hidden === true).map((node) => node.name)
 
   nodes = nodes.filter((node) => node.hidden !== true)
   links = links.filter((link) => !~hiddenNodeNames.indexOf(link.from) && !~hiddenNodeNames.indexOf(link.to))
 
-  return { nodes, links }
+  if (Array.isArray(groups)) {
+    groups = groups.filter((group) => {
+      group.nodes = group.nodes.filter((name) => !~hiddenNodeNames.indexOf(name))
+      return group.nodes.length > 0
+    })
+  }
+
+  return { nodes, links, groups }
 }
 
-export const drawArrow =
-  ({ state, vm, props }) =>
-  () => {
-    const { $refs } = vm
-    const { config } = props
-    const { showArrow = true } = config
-    const { afterData } = state
-    const { arrows } = afterData
+const drawArrow = ({ afterLink, config, ctx, state }) => {
+  const { arrow } = afterLink
 
-    if (showArrow && $refs.canvas && $refs.canvas.getContext) {
-      const ctx = $refs.canvas.getContext('2d')
+  ctx.save()
 
-      if (ctx) {
-        ctx.save()
+  if (arrow && !~state.temporary.customLinks.indexOf(arrow.link)) {
+    ctx.beginPath()
+    ctx.moveTo(arrow.p0.x, arrow.p0.y)
+    ctx.lineTo(arrow.p1.x, arrow.p1.y)
+    ctx.lineTo(arrow.p2.x, arrow.p2.y)
+    ctx.closePath()
 
-        arrows.forEach((arrow) => {
-          ctx.beginPath()
-          ctx.moveTo(...arrow.p0)
-          ctx.lineTo(...arrow.p1)
-          ctx.lineTo(...arrow.p2)
-          ctx.closePath()
-          ctx.fillStyle = config.colors[arrow.link.info.status]
-          ctx.fill()
-        })
-
-        ctx.restore()
-      }
+    if (afterLink._grad) {
+      ctx.fillStyle = afterLink._grad
+      afterLink._grad = null
+    } else {
+      ctx.fillStyle = config.colors[arrow.link.info.status]
     }
+
+    ctx.fill()
   }
+
+  ctx.restore()
+}
+
+const drawGroup = ({ state, ctx }) => {
+  const { afterData } = state
+  const { afterConfig, afterGroups } = afterData
+  const { showGroup = true, radius } = afterConfig
+
+  if (showGroup && ctx && afterGroups) {
+    afterGroups.forEach((afterGroup) => {
+      const [p0, p1, p2, p3] = afterGroup.coords
+
+      ctx.save()
+      ctx.beginPath()
+      ctx.moveTo(p0.x, p0.y)
+      ctx.arcTo(p0.x, p1.y, p1.x, p1.y, radius)
+      ctx.arcTo(p2.x, p1.y, p2.x, p2.y, radius)
+      ctx.arcTo(p2.x, p3.y, p3.x, p3.y, radius)
+      ctx.arcTo(p0.x, p3.y, p0.x, p0.y, radius)
+      ctx.closePath()
+      ctx.globalAlpha = 0.3
+
+      if (afterGroup.raw.fillStyle) {
+        ctx.fillStyle = afterGroup.raw.fillStyle
+        ctx.fill()
+      }
+
+      if (afterGroup.raw.strokeStyle) {
+        ctx.strokeStyle = afterGroup.raw.strokeStyle
+
+        if (Array.isArray(afterGroup.raw.lineDash)) {
+          ctx.setLineDash(afterGroup.raw.lineDash)
+        } else {
+          ctx.setLineDash([3, 3])
+        }
+
+        ctx.stroke()
+      }
+
+      ctx.restore()
+    })
+  }
+}
+
+export const clickGroup = (emit) => (afterGroup, e) => {
+  emit('click-group', afterGroup, e)
+}
 
 export const antialiasing = (vm) => () => {
   const canvas = vm.$refs.canvas
@@ -898,3 +1389,34 @@ export const antialiasing = (vm) => () => {
     context.scale(dpr, dpr)
   }
 }
+
+export const handleNodeResize =
+  ({ state, vm }) =>
+  () => {
+    const el = vm.$el
+    const { padding, height } = state.temporary
+
+    state.nodeHeight = el.offsetHeight
+    state.isSmall =
+      ((state.sizeMini || state.sizeMedium) && Math.abs(state.nodeHeight - height) < 0.1) || state.sizeSmall
+
+    if (state.layUpdown) {
+      const titleWidth = vm.$refs.title.offsetWidth
+      const iconWidth = vm.$refs.icon.offsetWidth
+
+      state.posLeft = ~~((titleWidth - iconWidth) / 2)
+      state.nodeWidth = iconWidth + padding
+    } else {
+      let paddingLeft
+
+      if (state.isSmall) {
+        paddingLeft = 24 /* 1.5rem */
+      } else if (state.sizeMini) {
+        paddingLeft = 16 /* 1rem */
+      } else if (state.sizeMedium) {
+        paddingLeft = 32 /* 2rem */
+      }
+
+      state.nodeWidth = vm.$refs.title.offsetWidth + paddingLeft + padding
+    }
+  }

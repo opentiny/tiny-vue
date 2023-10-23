@@ -9,15 +9,21 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import { ITabsRenderlessParams, ITabsPane, ITabsCustomEvent, ITabsPaneVm } from '@/types'
 
 export const calcPaneInstances =
-  ({ constants, parent, state, childrenHandler }) =>
-  (isForceUpdate = false) => {
+  ({
+    constants,
+    parent,
+    state,
+    childrenHandler
+  }: Pick<ITabsRenderlessParams, 'constants' | 'parent' | 'state' | 'childrenHandler'>) =>
+  (isForceUpdate: boolean = false) => {
     const tabItemVNodes = parent.$slots.default
 
     /* istanbul ignore if */
     if (tabItemVNodes) {
-      const currentPanes = []
+      const currentPanes = [] as ITabsPaneVm[]
 
       childrenHandler(({ vm, isLevel1 }) => {
         isLevel1 && vm.$options.componentName === constants.TAB_ITEM && currentPanes.push(vm)
@@ -26,7 +32,7 @@ export const calcPaneInstances =
       const currentPaneStates = currentPanes.map((pane) => pane.state)
       const paneStates = state.panes.map((pane) => pane.state)
 
-      let newPanes = []
+      let newPanes = [] as ITabsPaneVm[]
       for (let i = 0; i < paneStates.length; i++) {
         const paneState = paneStates[i]
         const index = currentPaneStates.indexOf(paneState)
@@ -56,7 +62,13 @@ export const calcPaneInstances =
 
 /* istanbul ignore */
 export const calcMorePanes =
-  ({ parent, props, state, refs, nextTick }) =>
+  ({
+    parent,
+    props,
+    state,
+    refs,
+    nextTick
+  }: Pick<ITabsRenderlessParams, 'parent' | 'props' | 'state' | 'refs' | 'nextTick'>) =>
   () => {
     if (!props.showMoreTabs) {
       return
@@ -71,12 +83,14 @@ export const calcMorePanes =
         nextTick(() => {
           let tabsAllWidth = 0
           for (let i = 0; i < tabs.length; i++) {
+            const tabItem = tabs[i] as HTMLElement
             // 遮住元素一半则隐藏
-            tabsAllWidth = tabs[i].offsetLeft + tabs[i].offsetWidth / 2
+            tabsAllWidth = tabItem.offsetLeft + tabItem.offsetWidth / 2
             const tabsHeaderWidth = tabNavRefs.navScroll.offsetWidth
-            if (tabsAllWidth > tabsHeaderWidth) {
-              if (state.currentName >= i + 1) {
-                state.showPanesCount = state.currentName - 0
+            const currentName = Number(state.currentName)
+            if (tabsAllWidth > tabsHeaderWidth && currentName >= 0) {
+              if (currentName >= i + 1) {
+                state.showPanesCount = currentName - 0
               } else {
                 state.showPanesCount = i
               }
@@ -89,7 +103,7 @@ export const calcMorePanes =
   }
 
 export const calcExpandPanes =
-  ({ parent, props, state }) =>
+  ({ parent, props, state }: Pick<ITabsRenderlessParams, 'parent' | 'props' | 'state'>) =>
   () => {
     if (!props.showExpandTabs) {
       return
@@ -103,8 +117,8 @@ export const calcExpandPanes =
   }
 
 export const handleTabClick =
-  ({ api, emit, props, refs }) =>
-  (pane, tabName, event) => {
+  ({ api, emit, props, refs }: Pick<ITabsRenderlessParams, 'api' | 'emit' | 'props' | 'refs'>) =>
+  (pane: ITabsPane, tabName: string, event: Event) => {
     if (pane.disabled) {
       return
     }
@@ -118,7 +132,7 @@ export const handleTabClick =
     }
   }
 
-export const handleTabRemove = (emit) => (pane, event) => {
+export const handleTabRemove = (emit: ITabsRenderlessParams['emit']) => (pane: ITabsPane, event: Event) => {
   if (pane.disabled) {
     return
   }
@@ -129,14 +143,14 @@ export const handleTabRemove = (emit) => (pane, event) => {
   emit('close', pane.name)
 }
 
-export const handleTabAdd = (emit) => () => {
+export const handleTabAdd = (emit: ITabsRenderlessParams['emit']) => () => {
   emit('edit', null, 'add')
   emit('add')
 }
 
 export const setCurrentName =
-  ({ api, props, refs, state }) =>
-  (value) => {
+  ({ api, props, refs, state }: Pick<ITabsRenderlessParams, 'api' | 'props' | 'refs' | 'state'>) =>
+  (value: string) => {
     api.changeDirection(state.currentName)
 
     if (state.currentName !== value && props.beforeLeave) {
@@ -156,14 +170,14 @@ export const setCurrentName =
   }
 
 export const changeCurrentName =
-  ({ emit, state }) =>
-  (value) => {
+  ({ emit, state }: Pick<ITabsRenderlessParams, 'emit' | 'state'>) =>
+  (value: string) => {
     state.currentName = value
     emit('update:modelValue', value)
   }
 
 export const created =
-  ({ api, parent, state }) =>
+  ({ api, parent, state }: Pick<ITabsRenderlessParams, 'api' | 'parent' | 'state'>) =>
   () => {
     api.changeDirection(state.currentName)
 
@@ -171,9 +185,10 @@ export const created =
   }
 
 export const changeDirection =
-  ({ props, state }) =>
-  (currentName) => {
-    state.panes.forEach((item, index) => {
+  ({ props, state }: Pick<ITabsRenderlessParams, 'props' | 'state'>) =>
+  (currentName: string) => {
+    const panes = state.panes as ITabsPaneVm[]
+    panes.forEach((item, index) => {
       if (item.state.paneName === currentName && state.currentIndex !== index) {
         const isTopOrBottom = ~['top', 'bottom'].indexOf(props.position)
         const isPrev = state.currentIndex < index
@@ -185,20 +200,20 @@ export const changeDirection =
   }
 
 export const handleTabDragStart =
-  ({ emit }) =>
-  (event) => {
+  ({ emit }: Pick<ITabsRenderlessParams, 'emit'>) =>
+  (event: ITabsCustomEvent) => {
     emit('tab-drag-start', event)
   }
 
 export const handleTabDragOver =
-  ({ emit }) =>
-  (event) => {
+  ({ emit }: Pick<ITabsRenderlessParams, 'emit'>) =>
+  (event: ITabsCustomEvent) => {
     emit('tab-drag-over', event)
   }
 
 export const handleTabDragEnd =
-  ({ state, emit }) =>
-  (event) => {
+  ({ state, emit }: Pick<ITabsRenderlessParams, 'state' | 'emit'>) =>
+  (event: ITabsCustomEvent) => {
     const { oldDraggableIndex, newDraggableIndex } = event
     const panel = state.panes.splice(oldDraggableIndex, 1)[0]
     state.panes.splice(newDraggableIndex, 0, panel)

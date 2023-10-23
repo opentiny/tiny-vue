@@ -11,8 +11,8 @@
  -->
 
 <template>
-  <div class="tiny-tree-menu" :class="{ 'is-collapsed': state.isCollapsed }">
-    <div v-if="collapsible" class="tiny-tree-menu__toggle-button" @click.stop="collapseChange">
+  <div class="tiny-tree-menu" :class="{ 'is-collapsed': state.isCollapsed, 'tiny-tree-menu__show-filter': showFilter }">
+    <div v-if="menuCollapsible" class="tiny-tree-menu__toggle-button" @click.stop="collapseChange">
       <icon-arrow></icon-arrow>
     </div>
     <tiny-input
@@ -25,9 +25,11 @@
       ref="tree"
       :class="{
         'tiny-tree-menu__wrap': !ellipsis ? wrap : false,
-        'tiny-tree-menu__overflow': ellipsis
+        'tiny-tree-menu__overflow': ellipsis,
+        'only-check-children': onlyCheckChildren
       }"
       tiny_mode="pc"
+      theme="tiny"
       :accordion="accordion"
       :data="state.data"
       :node-key="nodeKey"
@@ -39,6 +41,9 @@
       :lazy="lazy"
       :load="load"
       :show-checkbox="showCheckbox"
+      :show-number="showNumber"
+      :collapsible="collapsible"
+      :node-height="nodeHeight"
       :indent="indent"
       :default-checked-keys="defaultCheckedKeys"
       :default-expanded-keys="defaultExpandedKeys"
@@ -47,6 +52,7 @@
       :props="props"
       :allow-drop="allowDrop"
       :expand-on-click-node="expandOnClickNode"
+      :only-check-children="onlyCheckChildren"
       @node-drag-start="nodeDragStart"
       @node-drag-enter="nodeDragEnter"
       @node-drag-over="nodeDragOver"
@@ -64,10 +70,9 @@
           <div class="tree-menus-link tiny-tree-node__label">
             <a class="tree-node-body" :title="getTitle(data.label)" :href="data.url || void 0">
               <span class="tree-node-name">
-                <component v-if="prefixIcon" :is="prefixIcon"></component>
-                <slot :node="node" :data="data" :label="data.label">
-                  {{ data.label || node.label }}
-                </slot>
+                <component v-if="!data.customIcon && suffixIcon" :is="suffixIcon"></component>
+                <component v-if="data.customIcon" :is="data.customIcon"></component>
+                <slot :node="node" :data="data" :label="data.label">{{ data.label || node.label }} </slot>
               </span>
             </a>
           </div>
@@ -150,6 +155,19 @@ export default defineComponent({
       default: true
     },
     collapsible: {
+      type: Boolean,
+      default: true
+    },
+    showNumber: {
+      type: Boolean,
+      default: false
+    },
+    nodeHeight: Number,
+    onlyCheckChildren: {
+      type: Boolean,
+      default: false
+    },
+    menuCollapsible: {
       type: Boolean,
       default: false
     }

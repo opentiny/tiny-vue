@@ -9,6 +9,13 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import {
+  ISearchState,
+  ISearchProps,
+  ISearchApi,
+  ISharedRenderlessParamHooks,
+  ISearchRenderlessParamUtils
+} from '@/types'
 
 import {
   clear,
@@ -47,14 +54,14 @@ export const useFormatSearchTypes = ({ computed, props, reactive, toRefs, watch 
   }
 
   const state = reactive({
-    searchValue: {},
+    searchValue: props.typeValue,
     types: computed(() => api.formatSearchTypes(props.searchTypes))
   })
 
   watch(
-    () => props.searchTypes,
+    () => props.typeValue,
     () => {
-      state.searchValue = api.setDefaultType(props.searchTypes)
+      state.searchValue = api.setDefaultType(props.searchTypes, props.typeValue)
     },
     { immediate: true }
   )
@@ -66,10 +73,10 @@ export const useFormatSearchTypes = ({ computed, props, reactive, toRefs, watch 
 }
 
 export const renderless = (
-  props,
-  { computed, onBeforeUnmount, onMounted, reactive, toRefs, watch },
-  { refs, parent, emit, nextTick }
-) => {
+  props: ISearchProps,
+  { computed, onBeforeUnmount, onMounted, reactive, toRefs, watch }: ISharedRenderlessParamHooks,
+  { refs, parent, emit, nextTick }: ISearchRenderlessParamUtils
+): ISearchApi => {
   const formatSearchTypes = useFormatSearchTypes({
     computed,
     props,
@@ -78,7 +85,7 @@ export const renderless = (
     watch
   })
 
-  const state = reactive({
+  const state: ISearchState = reactive({
     show: false,
     focus: false,
     hovering: false,
@@ -95,9 +102,9 @@ export const renderless = (
     showSelector: showSelector({ refs, state }),
     searchClick: searchClick({ emit, props, state }),
     clickOutside: clickOutside({ parent, props, state }),
-    emitInput: emitInput(emit),
+    emitInput: emitInput({ emit }),
     ...formatSearchTypes.api
-  }
+  } as ISearchApi
 
   Object.assign(api, {
     clear: clear({ api, emit, refs, state }),
@@ -105,8 +112,8 @@ export const renderless = (
     searchEnterKey: searchEnterKey({ api, props, refs, nextTick })
   })
 
-  onMounted(mounted(api))
-  onBeforeUnmount(beforeDestroy(api))
+  onMounted(mounted({ api }))
+  onBeforeUnmount(beforeDestroy({ api }))
 
   watch(
     () => props.modelValue,

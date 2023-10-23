@@ -11,6 +11,14 @@
  */
 
 import {
+  IDropdownItemState,
+  IDropdownItemApi,
+  IDropdownItemProps,
+  IDropdownItemRenderlessParamUtils,
+  ISharedRenderlessParamHooks,
+  IDropdownMenuVm
+} from '@/types'
+import {
   tagClick,
   confirm,
   clickOutside,
@@ -51,7 +59,7 @@ export const api = [
 ]
 
 const initState = ({ reactive, computed, api, props, parent, dropdownMenuVm }) => {
-  const state = reactive({
+  const state: IDropdownItemState = reactive({
     sort: props.modelValue,
     transition: true,
     getTitle: false,
@@ -99,19 +107,19 @@ const initApi = ({ api, state, emit, props, parent, dispatch, vm, constants, des
 }
 
 export const renderless = (
-  props,
-  { computed, reactive, watch, inject },
-  { parent, emit, vm, dispatch, mode, constants, designConfig }
-) => {
-  const api = {}
-  const dropdownMenuVm = inject('dropdownMenuVm', null)
+  props: IDropdownItemProps,
+  { computed, reactive, watch, inject }: ISharedRenderlessParamHooks,
+  { parent, emit, vm, dispatch, mode, constants, designConfig }: IDropdownItemRenderlessParamUtils
+): IDropdownItemApi => {
+  const api = {} as IDropdownItemApi
+  const dropdownMenuVm = inject('dropdownMenuVm') as IDropdownMenuVm
 
-  if (mode === 'mobile') {
+  if (mode === 'mobile' && dropdownMenuVm) {
     dropdownMenuVm.state.children = [...dropdownMenuVm.state.children, vm]
   }
   parent = parent.$parent
 
-  const state = initState({ reactive, computed, api, props, parent, dropdownMenuVm })
+  const state: IDropdownItemState = initState({ reactive, computed, api, props, parent, dropdownMenuVm })
 
   initApi({ api, state, emit, props, parent, dispatch, vm, constants, designConfig })
 

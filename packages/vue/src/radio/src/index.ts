@@ -9,41 +9,47 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import type { PropType } from 'vue'
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
-const $constants = {
+export const $constants = {
   RADIO_GROUP: 'RadioGroup'
+}
+
+export const radioProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  modelValue: {},
+  label: {},
+  disabled: Boolean,
+  name: String,
+  border: Boolean,
+  size: {
+    type: String as PropType<'mini' | 'small' | 'medium'>,
+    default: ''
+  },
+  text: String,
+  events: {
+    type: Object,
+    default: () => ({})
+  },
+  tabindex: {
+    type: String,
+    default: '1'
+  },
+  displayOnly: {
+    type: Boolean,
+    default: false
+  }
 }
 
 export default defineComponent({
   name: $prefix + 'Radio',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    modelValue: {},
-    label: {},
-    disabled: Boolean,
-    name: String,
-    border: Boolean,
-    size: String,
-    text: String,
-    events: {
-      type: Object,
-      default: () => ({})
-    },
-    tabindex: {
-      type: String,
-      default: '1'
-    },
-    displayOnly: {
-      type: Boolean,
-      default: false
-    }
-  },
+  props: radioProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

@@ -9,15 +9,25 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-
+import {
+  IButtonGroupState,
+  ISharedRenderlessParamHooks,
+  IButtonGroupProps,
+  IButtonGroupApi,
+  IButtonGroupRenderlessParamUtils
+} from '@/types'
 import { handleClick, moreNodeClick, handleChange, getItemClass } from './index'
 
 export const api = ['state', 'handleClick', 'moreNodeClick', 'handleChange', 'getItemClass']
 
-export const renderless = (props, { computed, reactive, watch, inject }, { emit, parent }) => {
+export const renderless = (
+  props: IButtonGroupProps,
+  { computed, reactive, watch, inject }: ISharedRenderlessParamHooks,
+  { emit, parent }: IButtonGroupRenderlessParamUtils
+) => {
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
-  const state = reactive({
+  const state: IButtonGroupState = reactive({
     value: props.modelValue,
     buttonData: props.data?.slice(0, props.showMore) || [],
     moreData: props.data?.slice(props.showMore, props.data.length) || [],
@@ -39,7 +49,7 @@ export const renderless = (props, { computed, reactive, watch, inject }, { emit,
     () => api.handleChange()
   )
 
-  const api = {
+  const api: IButtonGroupApi = {
     state,
     handleClick: handleClick({ emit, props, state }),
     moreNodeClick: moreNodeClick({ emit, props, state }),

@@ -43,10 +43,6 @@ export default defineComponent({
       default: () => ({ gpuAcceleration: false })
     },
     reference: {},
-    transformOrigin: {
-      type: [Boolean, String],
-      default: () => true
-    },
     visibleArrow: {
       default: () => false
     }

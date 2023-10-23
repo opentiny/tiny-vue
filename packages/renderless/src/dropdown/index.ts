@@ -10,12 +10,14 @@
  *
  */
 
+import { IDropdownRenderlessParams } from '@/types'
+import type { ComponentPublicInstance } from 'vue'
 import { KEY_CODE } from '../common'
 import { addClass, removeClass, on, off } from '../common/deps/dom'
 
 export const watchVisible =
-  ({ broadcast, emit, nextTick }) =>
-  (value) => {
+  ({ broadcast, emit, nextTick }: Pick<IDropdownRenderlessParams, 'broadcast' | 'emit' | 'nextTick'>) =>
+  (value: boolean) => {
     broadcast('TinyDropdownMenu', 'visible', value)
 
     /**
@@ -29,24 +31,22 @@ export const watchVisible =
     nextTick(() => emit('visible-change', value))
   }
 
-export const watchFocusing =
-  ({ parent }) =>
-  (value) => {
-    const selfDefine = parent.$el.querySelector('.tiny-dropdown-selfdefine')
+export const watchFocusing = (parent: IDropdownRenderlessParams['parent']) => (value: boolean) => {
+  const selfDefine = parent.$el.querySelector('.tiny-dropdown-selfdefine')
 
-    if (selfDefine) {
-      value ? addClass(selfDefine, 'focusing') : removeClass(selfDefine, 'focusing')
-    }
+  if (selfDefine) {
+    value ? addClass(selfDefine, 'focusing') : removeClass(selfDefine, 'focusing')
   }
+}
 
 export const show =
-  ({ props, state }) =>
+  ({ props, state }: Pick<IDropdownRenderlessParams, 'props' | 'state'>) =>
   () => {
     if (props.disabled) {
       return
     }
 
-    clearTimeout(state.timeout)
+    clearTimeout(Number(state.timeout))
 
     state.timeout = setTimeout(
       () => {
@@ -57,7 +57,7 @@ export const show =
   }
 
 export const hide =
-  ({ api, props, state }) =>
+  ({ api, props, state }: Pick<IDropdownRenderlessParams, 'api' | 'props' | 'state'>) =>
   () => {
     if (props.disabled) {
       return
@@ -65,11 +65,11 @@ export const hide =
 
     api.removeTabindex()
 
-    if (props.tabindex >= 0) {
+    if (props.tabindex >= 0 && state.triggerElm) {
       api.resetTabindex(state.triggerElm)
     }
 
-    clearTimeout(state.timeout)
+    clearTimeout(Number(state.timeout))
 
     state.timeout = setTimeout(
       () => {
@@ -80,7 +80,7 @@ export const hide =
   }
 
 export const handleClick =
-  ({ api, props, state, emit }) =>
+  ({ api, props, state, emit }: Pick<IDropdownRenderlessParams, 'api' | 'props' | 'state' | 'emit'>) =>
   () => {
     if (props.disabled) {
       return
@@ -92,14 +92,16 @@ export const handleClick =
   }
 
 export const handleTriggerKeyDown =
-  ({ api, state }) =>
-  (event) => {
+  ({ api, state }: Pick<IDropdownRenderlessParams, 'api' | 'state'>) =>
+  (event: KeyboardEvent) => {
     const keyCode = event.keyCode
 
     if (~[KEY_CODE.ArrowUp, KEY_CODE.ArrowDown].indexOf(keyCode)) {
       api.removeTabindex()
-      api.resetTabindex(state.menuItems[0])
-      state.menuItems[0].focus()
+      if (state.menuItems) {
+        api.resetTabindex(state.menuItems[0])
+        state.menuItems[0].focus()
+      }
 
       event.preventDefault()
       event.stopPropagation()
@@ -111,8 +113,8 @@ export const handleTriggerKeyDown =
   }
 
 export const handleItemKeyDown =
-  ({ api, props, state }) =>
-  (event) => {
+  ({ api, props, state }: Pick<IDropdownRenderlessParams, 'api' | 'props' | 'state'>) =>
+  (event: KeyboardEvent) => {
     const keyCode = event.keyCode
     const target = event.target
     const currentIndex = state.menuItemsArray.indexOf(target)
@@ -128,15 +130,17 @@ export const handleItemKeyDown =
       }
 
       api.removeTabindex()
-      api.resetTabindex(state.menuItems[nextIndex])
-      state.menuItems[nextIndex].focus()
+      if (state.menuItems) {
+        api.resetTabindex(state.menuItems[nextIndex])
+        state.menuItems[nextIndex].focus()
+      }
 
       event.preventDefault()
       event.stopPropagation()
     } else if (keyCode === KEY_CODE.Enter) {
       api.triggerElmFocus()
 
-      target.click()
+      target?.click()
 
       if (props.hideOnClick) {
         state.visible = false
@@ -147,33 +151,29 @@ export const handleItemKeyDown =
     }
   }
 
-export const resetTabindex =
-  ({ api }) =>
-  (el) => {
-    api.removeTabindex()
+export const resetTabindex = (api: IDropdownRenderlessParams['api']) => (el: HTMLElement) => {
+  api.removeTabindex()
 
-    el.setAttribute('tabindex', '0')
-  }
+  el.setAttribute('tabindex', '0')
+}
 
-export const removeTabindex =
-  ({ state }) =>
-  () => {
-    state.triggerElm.setAttribute('tabindex', '-1')
-    state.menuItemsArray.forEach((item) => {
-      item.setAttribute('tabindex', '-1')
-    })
-  }
+export const removeTabindex = (state: IDropdownRenderlessParams['state']) => () => {
+  state.triggerElm?.setAttribute('tabindex', '-1')
+  state.menuItemsArray?.forEach((item) => {
+    item.setAttribute('tabindex', '-1')
+  })
+}
 
 export const initAria =
-  ({ state, props }) =>
+  ({ state, props }: Pick<IDropdownRenderlessParams, 'state' | 'props'>) =>
   () => {
-    state.dropdownElm.setAttribute('id', state.listId)
-    state.triggerElm.setAttribute('aria-haspopup', 'list')
-    state.triggerElm.setAttribute('aria-controls', state.listId)
+    state.dropdownElm?.setAttribute('id', state.listId)
+    state.triggerElm?.setAttribute('aria-haspopup', 'list')
+    state.triggerElm?.setAttribute('aria-controls', state.listId)
 
     if (!props.splitButton || !props.singleButton) {
-      state.triggerElm.setAttribute('role', 'button')
-      state.triggerElm.setAttribute('tabindex', props.tabindex)
+      state.triggerElm?.setAttribute('role', 'button')
+      state.triggerElm?.setAttribute('tabindex', String(props.tabindex))
       addClass(state.triggerElm, 'tiny-dropdown-selfdefine')
     }
   }
@@ -185,14 +185,14 @@ const toggleFocus =
   }
 
 export const initEvent =
-  ({ api, props, state, vm, mode }) =>
+  ({ api, props, state, vm, mode }: Pick<IDropdownRenderlessParams, 'api' | 'props' | 'state' | 'vm' | 'mode'>) =>
   () => {
     let buttonValue = props.splitButton || props.singleButton
 
     state.triggerElm = buttonValue ? vm.$refs.trigger.$el : props.border ? vm.$refs.trigger.$el : vm.$refs.trigger
 
     on(state.triggerElm, 'keydown', api.handleTriggerKeyDown)
-    state.dropdownElm.addEventListener('keydown', api.handleItemKeyDown, true)
+    state.dropdownElm?.addEventListener('keydown', api.handleItemKeyDown, true)
 
     if (!props.splitButton || !props.singleButton) {
       on(state.triggerElm, 'focus', toggleFocus({ state, value: true }))
@@ -217,7 +217,7 @@ export const initEvent =
   }
 
 export const handleMenuItemClick =
-  ({ props, state, emit }) =>
+  ({ props, state, emit }: Pick<IDropdownRenderlessParams, 'props' | 'state' | 'emit'>) =>
   ({ itemData, vm, disabled }) => {
     if (props.hideOnClick && !disabled) {
       state.visible = false
@@ -229,17 +229,15 @@ export const handleMenuItemClick =
     }
   }
 
-export const triggerElmFocus =
-  ({ state }) =>
-  () => {
-    state.triggerElm.focus && state.triggerElm.focus()
-  }
+export const triggerElmFocus = (state: IDropdownRenderlessParams['state']) => () => {
+  state.triggerElm?.focus && state.triggerElm.focus()
+}
 
 export const initDomOperation =
-  ({ api, state, vm }) =>
+  ({ api, state, vm }: Pick<IDropdownRenderlessParams, 'api' | 'state' | 'vm'>) =>
   () => {
     state.dropdownElm = vm.popperElm
-    state.menuItems = state.dropdownElm.querySelectorAll('[tabindex="-1"]')
+    state.menuItems = state.dropdownElm?.querySelectorAll('[tabindex="-1"]')
     state.menuItemsArray = [].slice.call(state.menuItems)
 
     api.initEvent()
@@ -247,14 +245,14 @@ export const initDomOperation =
   }
 
 export const handleMainButtonClick =
-  ({ api, emit }) =>
-  (event) => {
+  ({ api, emit }: Pick<IDropdownRenderlessParams, 'api' | 'emit'>) =>
+  (event: MouseEvent) => {
     emit('button-click', event)
     api.hide()
   }
 
 export const mounted =
-  ({ api, vm, state, broadcast }) =>
+  ({ api, vm, state, broadcast }: Pick<IDropdownRenderlessParams, 'api' | 'vm' | 'state' | 'broadcast'>) =>
   () => {
     if (state.showSelfIcon) {
       state.showIcon = false
@@ -269,7 +267,7 @@ export const mounted =
   }
 
 export const beforeDistory =
-  ({ api, state }) =>
+  ({ api, state }: Pick<IDropdownRenderlessParams, 'api' | 'state'>) =>
   () => {
     if (state.triggerElm) {
       off(state.triggerElm, 'keydown', api.handleTriggerKeyDown)
@@ -293,8 +291,8 @@ export const beforeDistory =
   }
 
 export const clickOutside =
-  ({ props, api }) =>
-  (disabled) => {
+  ({ props, api, state }: Pick<IDropdownRenderlessParams, 'props' | 'api' | 'state'>) =>
+  (disabled: boolean) => {
     if (props.hideOnClick) {
       disabled ? api.show() : api.hide()
     }

@@ -21,6 +21,11 @@ import prefixBuilder from './variants/prefix'
 // preflights
 import preflights from './preflights'
 
+// autocomplete
+import autocomplete from './autocomplete'
+
+import { defineConfig } from 'unocss'
+
 const defaultOption = {
   prefix: '',
   isRem: false,
@@ -45,13 +50,14 @@ function merge(options, ...rules) {
 export default (options) => {
   const tempOptions = { ...defaultOption, ...options }
   let prefix = tempOptions.prefix
-  return {
+  return defineConfig({
     name: 'preset-tinyuno',
     ...merge(options, border, color, font, layout, size, transform, utils, animate),
     variants: [prefixBuilder(prefix), child, hover, important, mediaquery, range, select],
     theme: {
       breakpoints: tempOptions.breakpoints
     },
-    preflights
-  }
+    preflights,
+    autocomplete
+  })
 }

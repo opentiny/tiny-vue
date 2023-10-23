@@ -31,7 +31,6 @@ export const handleTouchDown =
 export const handleTouchMove =
   ({ emit, state }) =>
   (e) => {
-    console.log(e, state.isMouseDown)
     if (state.isMouseDown && e.target.id) {
       switchIndex(Number(e.target.id), state, emit)
     }

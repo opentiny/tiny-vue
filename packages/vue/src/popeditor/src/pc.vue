@@ -58,7 +58,7 @@
         </span>
       </template>
     </tiny-input>
-    <transition name="tiny-zoom-in-top" @after-leave="popper.doDestroy">
+    <transition name="tiny-zoom-in-top" @after-leave="doDestroy">
       <div ref="popper" v-show="state.showSuggestPanel">
         <tiny-grid
           ref="suggest"
@@ -378,7 +378,8 @@ export default defineComponent({
     'beforeClose',
     'showSelectedBox',
     'selectedBoxOp',
-    'tooltipConfig'
+    'tooltipConfig',
+    'autoReset'
   ],
   emits: ['change', 'close', 'page-change', 'popup'],
   setup(props, context) {

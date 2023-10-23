@@ -71,6 +71,7 @@ export const api = [
 const initState = ({ reactive, props, computed, parent, api, t, constants, refs, inject }) => {
   const state = reactive({
     showAutoWidth: inject('showAutoWidth', null),
+    /** popper 元素是否显示。 它是通过v-show 绑定到页面上，造成隐藏时，popperJs并没有destory,有一定的性能影响 */
     dropDownVisible: false,
     checkedValue: props.modelValue || null,
     inputHover: false,

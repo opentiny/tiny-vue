@@ -11,7 +11,13 @@
  */
 
 import { guid } from '../common/string'
-
+import {
+  IDropdownState,
+  IDropdownApi,
+  IDropdownProps,
+  IDropdownRenderlessParamUtils,
+  ISharedRenderlessParamHooks
+} from '@/types'
 import {
   watchVisible,
   watchFocusing,
@@ -36,17 +42,17 @@ import {
 export const api = ['state', 'handleMainButtonClick', 'hide', 'show', 'initDomOperation', 'handleClick', 'clickOutside']
 
 export const renderless = (
-  props,
-  { reactive, watch, provide, onMounted },
-  { emit, parent, broadcast, vm, nextTick, mode, designConfig }
-) => {
-  const api = {}
-  const state = reactive({
+  props: IDropdownProps,
+  { reactive, watch, provide, onMounted }: ISharedRenderlessParamHooks,
+  { emit, parent, broadcast, vm, nextTick, mode, designConfig }: IDropdownRenderlessParamUtils
+): IDropdownApi => {
+  const api = {} as IDropdownApi
+  const state: IDropdownState = reactive({
     visible: false,
     timeout: null,
     focusing: false,
-    menuItems: null,
-    menuItemsArray: null,
+    menuItems: [],
+    menuItemsArray: [],
     triggerElm: null,
     dropdownElm: null,
     listId: `dropdown-menu-${guid()}`,
@@ -60,23 +66,23 @@ export const renderless = (
   Object.assign(api, {
     state,
     watchVisible: watchVisible({ broadcast, emit, nextTick }),
-    watchFocusing: watchFocusing({ parent }),
+    watchFocusing: watchFocusing(parent),
     show: show({ props, state }),
     hide: hide({ api, props, state }),
     mounted: mounted({ api, vm, state, broadcast }),
     handleClick: handleClick({ api, props, state, emit }),
     handleTriggerKeyDown: handleTriggerKeyDown({ api, state }),
     handleItemKeyDown: handleItemKeyDown({ api, props, state }),
-    resetTabindex: resetTabindex({ api }),
-    removeTabindex: removeTabindex({ state }),
+    resetTabindex: resetTabindex(api),
+    removeTabindex: removeTabindex(state),
     initAria: initAria({ state, props }),
     initEvent: initEvent({ api, props, state, vm, mode }),
     handleMenuItemClick: handleMenuItemClick({ props, state, emit }),
     handleMainButtonClick: handleMainButtonClick({ api, emit }),
-    triggerElmFocus: triggerElmFocus({ state }),
+    triggerElmFocus: triggerElmFocus(state),
     initDomOperation: initDomOperation({ api, state, vm }),
     beforeDistory: beforeDistory({ api, state }),
-    clickOutside: clickOutside({ props, api })
+    clickOutside: clickOutside({ state, props, api })
   })
 
   watch(() => state.visible, api.watchVisible)

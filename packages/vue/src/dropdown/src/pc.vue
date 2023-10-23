@@ -92,7 +92,7 @@ export default defineComponent({
   },
   emits: ['visible-change', 'item-click', 'button-click', 'menu-item-click', 'handle-click'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true, h })
+    return setup({ props, context, renderless, api, h })
   },
   render() {
     const { splitButton, type, disabled, handleMainButtonClick, menuOptions, title } = this
@@ -141,7 +141,7 @@ export default defineComponent({
 
       // 增加一层，vue3 环境中无法使用 slots.default 的方式获取原生 DOM 元素
       const suffixInner = showIcon ? (
-        <span class="tiny-dropdown__suffix-inner">{suffixSlot || <IconDown class={visibleClass}></IconDown>}</span>
+        <span class={'tiny-dropdown__suffix-inner ' + visibleClass}>{suffixSlot || <IconDown></IconDown>}</span>
       ) : (
         ''
       )

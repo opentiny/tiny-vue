@@ -91,6 +91,7 @@ import { renderless, api } from '@opentiny/vue-renderless/search/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconChevronDown, iconSearch, iconClose } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/search/index.less'
+import type { ISearchApi } from '@opentiny/vue-renderless/types/search.type'
 
 export default defineComponent({
   props: [
@@ -102,7 +103,8 @@ export default defineComponent({
     'modelValue',
     'tabindex',
     'clearable',
-    'isEnterSearch'
+    'isEnterSearch',
+    'typeValue'
   ],
   emits: ['change', 'search', 'update:modelValue', 'clear', 'select', 'input'],
   components: {
@@ -111,7 +113,7 @@ export default defineComponent({
     IconClose: iconClose()
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as ISearchApi
   }
 })
 </script>

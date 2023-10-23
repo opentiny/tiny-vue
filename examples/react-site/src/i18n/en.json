@@ -1,0 +1,23 @@
+{
+  "dark": "Dark",
+  "light": "Light",
+  "searchPlaceholder": "Search",
+  "home": "Home",
+  "doc": "Docs",
+  "component": "Components",
+  "common": "Common",
+  "apiPreference": "Framework",
+  "apiTiny": "Vue",
+  "yan-shi": "Demo",
+  "name": "Name",
+  "propType": "Type",
+  "defValue": "Default",
+  "typeValue": "Option Value",
+  "desc": "Description",
+  "showCode": "Show Code",
+  "hideCode": "Hide Code",
+  "copyCode": "Copy Code",
+  "doc-owner": "Owner",
+  "copyCodeOk": "Copy Success",
+  "frameAngular": "Angular"
+}

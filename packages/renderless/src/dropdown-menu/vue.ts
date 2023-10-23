@@ -11,6 +11,14 @@
  */
 
 import {
+  IDropdownVm,
+  IDropdownMenuState,
+  IDropdownMenuApi,
+  IDropdownMenuProps,
+  IDropdownMenuRenderlessParamUtils,
+  ISharedRenderlessParamHooks
+} from '@/types'
+import {
   toggleItem,
   updateOffset,
   clickOutside,
@@ -32,11 +40,16 @@ export const api = [
   'handleMouseleave'
 ]
 
-export const renderless = (props, hooks, instance) => {
-  const api = {}
+export const renderless = (
+  props: IDropdownMenuProps,
+  hooks: ISharedRenderlessParamHooks,
+  instance: IDropdownMenuRenderlessParamUtils
+): IDropdownMenuApi => {
+  const api = {} as IDropdownMenuApi
   const { reactive, provide, onMounted, inject } = hooks
   const { nextTick, mode, vm, parent, dispatch, emit } = instance
-  const state = reactive({
+
+  const state: IDropdownMenuState = reactive({
     offset: 0,
     scroller: null,
     children: [],
@@ -50,11 +63,11 @@ export const renderless = (props, hooks, instance) => {
 
   provide('dropdownMenuVm', vm)
   provide('multiStage', props.multiStage)
-  const dropdownVm = inject('dropdownVm')
+  const dropdownVm: IDropdownVm = inject('dropdownVm')
 
   if (mode === 'mobile') {
     nextTick(() => {
-      state.scroller = getScroller(vm.$refs.menu)
+      state.scroller = getScroller(vm.$refs.menu as HTMLElement)
     })
   } else {
     useVuePopper({ api, hooks, props, instance, state, dropdownVm })
@@ -66,8 +79,8 @@ export const renderless = (props, hooks, instance) => {
     clickOutside: clickOutside({ props, state }),
     updateOffset: updateOffset({ props, state, vm }),
     mounted: mounted({ api, parent, state }),
-    handleMouseenter: handleMouseenter({ emit }),
-    handleMouseleave: handleMouseleave({ emit }),
+    handleMouseenter: handleMouseenter(emit),
+    handleMouseleave: handleMouseleave(emit),
     handleMenuItemClick: handleMenuItemClick({ dispatch, state })
   })
 

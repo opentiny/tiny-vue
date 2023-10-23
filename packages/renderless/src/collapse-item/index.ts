@@ -10,8 +10,12 @@
  *
  */
 
+import {
+  ICollapseItemRenderlessParams
+} from '@/types'
+
 export const handleFocus =
-  ({ state, interval }) =>
+  ({ state, interval }: Pick<ICollapseItemRenderlessParams, 'state' | 'interval'>) =>
   () => {
     setTimeout(() => {
       if (!state.isClick) {
@@ -23,7 +27,7 @@ export const handleFocus =
   }
 
 export const handleHeaderClick =
-  ({ componentName, dispatch, eventName, props, parent, state }) =>
+  ({ componentName, dispatch, eventName, props, parent, state }: Pick<ICollapseItemRenderlessParams, 'componentName' | 'dispatch' | 'eventName' | 'props' | 'parent' | 'state'>) =>
   () => {
     if (props.disabled) {
       return
@@ -36,6 +40,6 @@ export const handleHeaderClick =
   }
 
 export const handleEnterClick =
-  ({ componentName, dispatch, eventName, parent }) =>
+  ({ componentName, dispatch, eventName, parent }: Pick<ICollapseItemRenderlessParams, 'componentName' | 'dispatch' | 'eventName' | 'parent'>) =>
   () =>
     dispatch(componentName, eventName, parent)

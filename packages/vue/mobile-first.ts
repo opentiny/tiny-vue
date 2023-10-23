@@ -1,48 +1,23 @@
 import ActionSheet from '@opentiny/vue-action-sheet'
 import Alert from '@opentiny/vue-alert'
-import AutonaviMap from '@opentiny/vue-autonavi-map'
+import AsyncFlowchart from '@opentiny/vue-async-flowchart'
 import Badge from '@opentiny/vue-badge'
-import BaiduMap from '@opentiny/vue-baidu-map'
 import Button from '@opentiny/vue-button'
 import CalendarBar from '@opentiny/vue-calendar-bar'
+import CalendarView from '@opentiny/vue-calendar-view'
 import Card from '@opentiny/vue-card'
 import CardGroup from '@opentiny/vue-card-group'
 import Carousel from '@opentiny/vue-carousel'
 import CarouselItem from '@opentiny/vue-carousel-item'
-import CascaderMenu from '@opentiny/vue-cascader-menu'
 import CascaderMobile from '@opentiny/vue-cascader-mobile'
 import CascaderSelect from '@opentiny/vue-cascader-select'
 import Cell from '@opentiny/vue-cell'
-import Chart from '@opentiny/vue-chart'
-import ChartBar from '@opentiny/vue-chart-bar'
-import ChartBoxplot from '@opentiny/vue-chart-boxplot'
-import ChartCandle from '@opentiny/vue-chart-candle'
-import ChartCore from '@opentiny/vue-chart-core'
-import ChartFunnel from '@opentiny/vue-chart-funnel'
-import ChartGauge from '@opentiny/vue-chart-gauge'
-import ChartGraph from '@opentiny/vue-chart-graph'
-import ChartHeatmap from '@opentiny/vue-chart-heatmap'
-import ChartHistogram from '@opentiny/vue-chart-histogram'
-import ChartLine from '@opentiny/vue-chart-line'
-import ChartLiquidfill from '@opentiny/vue-chart-liquidfill'
-import ChartMap from '@opentiny/vue-chart-map'
-import ChartPie from '@opentiny/vue-chart-pie'
-import ChartRadar from '@opentiny/vue-chart-radar'
-import ChartRing from '@opentiny/vue-chart-ring'
-import ChartSankey from '@opentiny/vue-chart-sankey'
-import ChartScatter from '@opentiny/vue-chart-scatter'
-import ChartSunburst from '@opentiny/vue-chart-sunburst'
-import ChartTree from '@opentiny/vue-chart-tree'
-import ChartWaterfall from '@opentiny/vue-chart-waterfall'
-import ChartWordcloud from '@opentiny/vue-chart-wordcloud'
 import Checkbox from '@opentiny/vue-checkbox'
 import CheckboxGroup from '@opentiny/vue-checkbox-group'
 import Collapse from '@opentiny/vue-collapse'
 import CollapseItem from '@opentiny/vue-collapse-item'
 import ColumnListGroup from '@opentiny/vue-column-list-group'
 import ColumnListItem from '@opentiny/vue-column-list-item'
-import ConfigProvider from '@opentiny/vue-config-provider'
-import DatePickerMobileFirst from '@opentiny/vue-date-picker-mobile-first'
 import Drawer from '@opentiny/vue-drawer'
 import Dropdown from '@opentiny/vue-dropdown'
 import DropdownItem from '@opentiny/vue-dropdown-item'
@@ -55,16 +30,10 @@ import FloatingButton from '@opentiny/vue-floating-button'
 import Flowchart from '@opentiny/vue-flowchart'
 import Form from '@opentiny/vue-form'
 import FormItem from '@opentiny/vue-form-item'
-import Grid from '@opentiny/vue-grid'
-import GridColumn from '@opentiny/vue-grid-column'
-import GridManager from '@opentiny/vue-grid-manager'
-import GridToolbar from '@opentiny/vue-grid-toolbar'
 import Image from '@opentiny/vue-image'
 import ImageViewer from '@opentiny/vue-image-viewer'
-import IndexBarAnchor from '@opentiny/vue-index-bar-anchor'
 import Input from '@opentiny/vue-input'
 import Loading from '@opentiny/vue-loading'
-import Message from '@opentiny/vue-message'
 import Modal from '@opentiny/vue-modal'
 import Numeric from '@opentiny/vue-numeric'
 import Pager from '@opentiny/vue-pager'
@@ -88,6 +57,8 @@ import StandardListItem from '@opentiny/vue-standard-list-item'
 import Steps from '@opentiny/vue-steps'
 import Switch from '@opentiny/vue-switch'
 import TabItem from '@opentiny/vue-tab-item'
+import Tabbar from '@opentiny/vue-tabbar'
+import TabbarItem from '@opentiny/vue-tabbar-item'
 import Tabs from '@opentiny/vue-tabs'
 import Tag from '@opentiny/vue-tag'
 import TagGroup from '@opentiny/vue-tag-group'
@@ -104,49 +75,24 @@ import { $prefix } from '@opentiny/vue-common'
 const components = [
   ActionSheet,
   Alert,
-  AutonaviMap,
+  AsyncFlowchart,
   Badge,
-  BaiduMap,
   Button,
   CalendarBar,
+  CalendarView,
   Card,
   CardGroup,
   Carousel,
   CarouselItem,
-  CascaderMenu,
   CascaderMobile,
   CascaderSelect,
   Cell,
-  Chart,
-  ChartBar,
-  ChartBoxplot,
-  ChartCandle,
-  ChartCore,
-  ChartFunnel,
-  ChartGauge,
-  ChartGraph,
-  ChartHeatmap,
-  ChartHistogram,
-  ChartLine,
-  ChartLiquidfill,
-  ChartMap,
-  ChartPie,
-  ChartRadar,
-  ChartRing,
-  ChartSankey,
-  ChartScatter,
-  ChartSunburst,
-  ChartTree,
-  ChartWaterfall,
-  ChartWordcloud,
   Checkbox,
   CheckboxGroup,
   Collapse,
   CollapseItem,
   ColumnListGroup,
   ColumnListItem,
-  ConfigProvider,
-  DatePickerMobileFirst,
   Drawer,
   Dropdown,
   DropdownItem,
@@ -159,16 +105,10 @@ const components = [
   Flowchart,
   Form,
   FormItem,
-  Grid,
-  GridColumn,
-  GridManager,
-  GridToolbar,
   Image,
   ImageViewer,
-  IndexBarAnchor,
   Input,
   Loading,
-  Message,
   Modal,
   Numeric,
   Pager,
@@ -192,6 +132,8 @@ const components = [
   Steps,
   Switch,
   TabItem,
+  Tabbar,
+  TabbarItem,
   Tabs,
   Tag,
   TagGroup,
@@ -225,54 +167,29 @@ export const install = (app, opts = {}) => {
   })
 }
 
-export const version = '3.10.0'
+export const version = '3.11.0'
 
 export {
   ActionSheet,
   Alert,
-  AutonaviMap,
+  AsyncFlowchart,
   Badge,
-  BaiduMap,
   Button,
   CalendarBar,
+  CalendarView,
   Card,
   CardGroup,
   Carousel,
   CarouselItem,
-  CascaderMenu,
   CascaderMobile,
   CascaderSelect,
   Cell,
-  Chart,
-  ChartBar,
-  ChartBoxplot,
-  ChartCandle,
-  ChartCore,
-  ChartFunnel,
-  ChartGauge,
-  ChartGraph,
-  ChartHeatmap,
-  ChartHistogram,
-  ChartLine,
-  ChartLiquidfill,
-  ChartMap,
-  ChartPie,
-  ChartRadar,
-  ChartRing,
-  ChartSankey,
-  ChartScatter,
-  ChartSunburst,
-  ChartTree,
-  ChartWaterfall,
-  ChartWordcloud,
   Checkbox,
   CheckboxGroup,
   Collapse,
   CollapseItem,
   ColumnListGroup,
   ColumnListItem,
-  ConfigProvider,
-  DatePickerMobileFirst,
   Drawer,
   Dropdown,
   DropdownItem,
@@ -285,16 +202,10 @@ export {
   Flowchart,
   Form,
   FormItem,
-  Grid,
-  GridColumn,
-  GridManager,
-  GridToolbar,
   Image,
   ImageViewer,
-  IndexBarAnchor,
   Input,
   Loading,
-  Message,
   Modal,
   Numeric,
   Pager,
@@ -318,6 +229,8 @@ export {
   Steps,
   Switch,
   TabItem,
+  Tabbar,
+  TabbarItem,
   Tabs,
   Tag,
   TagGroup,
@@ -334,49 +247,24 @@ export {
 export default {
   ActionSheet,
   Alert,
-  AutonaviMap,
+  AsyncFlowchart,
   Badge,
-  BaiduMap,
   Button,
   CalendarBar,
+  CalendarView,
   Card,
   CardGroup,
   Carousel,
   CarouselItem,
-  CascaderMenu,
   CascaderMobile,
   CascaderSelect,
   Cell,
-  Chart,
-  ChartBar,
-  ChartBoxplot,
-  ChartCandle,
-  ChartCore,
-  ChartFunnel,
-  ChartGauge,
-  ChartGraph,
-  ChartHeatmap,
-  ChartHistogram,
-  ChartLine,
-  ChartLiquidfill,
-  ChartMap,
-  ChartPie,
-  ChartRadar,
-  ChartRing,
-  ChartSankey,
-  ChartScatter,
-  ChartSunburst,
-  ChartTree,
-  ChartWaterfall,
-  ChartWordcloud,
   Checkbox,
   CheckboxGroup,
   Collapse,
   CollapseItem,
   ColumnListGroup,
   ColumnListItem,
-  ConfigProvider,
-  DatePickerMobileFirst,
   Drawer,
   Dropdown,
   DropdownItem,
@@ -389,16 +277,10 @@ export default {
   Flowchart,
   Form,
   FormItem,
-  Grid,
-  GridColumn,
-  GridManager,
-  GridToolbar,
   Image,
   ImageViewer,
-  IndexBarAnchor,
   Input,
   Loading,
-  Message,
   Modal,
   Numeric,
   Pager,
@@ -422,6 +304,8 @@ export default {
   Steps,
   Switch,
   TabItem,
+  Tabbar,
+  TabbarItem,
   Tabs,
   Tag,
   TagGroup,

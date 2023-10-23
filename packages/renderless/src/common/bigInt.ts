@@ -186,7 +186,7 @@ export class BigIntDecimal {
       const trimRet = trimNumber(mergedValue)
       this.negative = trimRet.negative
       const numbers = trimRet.trimStr.split('.')
-      this.integer = BigInt(numbers[0])
+      this.integer = numbers[0].indexOf('e') === -1 ? BigInt(numbers[0]) : numbers[0]
       const decimalStr = numbers[1] || '0'
       this.decimal = convertBigInt(decimalStr)
       this.decimalLen = decimalStr.length

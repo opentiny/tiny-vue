@@ -1,5 +1,6 @@
 <template>
   <form
+    data-tag="tiny-from"
     class="w-full overflow-hidden p-4 sm:p-0"
     :class="{
       'overflow-x-visible': labelPosition === 'top' && !hideRequiredAsterisk,
@@ -25,6 +26,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/form/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
+import type { IFormApi } from '@opentiny/vue-renderless/types/form.type'
 
 export default defineComponent({
   components: {
@@ -42,6 +44,7 @@ export default defineComponent({
     'model',
     'rules',
     'inlineMessage',
+    'messageType',
     'statusIcon',
     'labelPosition',
     'showMessage',
@@ -53,14 +56,14 @@ export default defineComponent({
     'inline',
     'responsiveLayout',
     'validateType',
+    'validateIcon',
     'manual',
     'appendToBody',
     'popperOptions',
-    'displayOnly',
-    'valueSplit'
+    'displayOnly'
   ],
   setup(props, context): any {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IFormApi
   }
 })
 </script>

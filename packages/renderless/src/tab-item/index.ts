@@ -9,15 +9,16 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import { ITabItemRenderlessParams } from '@/types'
 
 export const computedIsClosable =
-  ({ rootTabs, props }) =>
-  () =>
+  ({ rootTabs, props }: Pick<ITabItemRenderlessParams, 'rootTabs' | 'props'>) =>
+  (): boolean =>
     props.withClose || rootTabs.withClose
 
 export const computedActive =
-  ({ nextTick, props, state }) =>
-  () => {
+  ({ nextTick, props, state }: Pick<ITabItemRenderlessParams, 'nextTick' | 'props' | 'state'>) =>
+  (): boolean => {
     const active = state.rootTabs.state.currentName === (props.name || state.index)
 
     if (active) {
@@ -34,8 +35,8 @@ export const computedActive =
   }
 
 export const computedPaneName =
-  ({ props, state }) =>
-  () =>
+  ({ props, state }: Pick<ITabItemRenderlessParams, 'props' | 'state'>) =>
+  (): string | null =>
     props.name || state.index
 
-export const watchTitle = (parent) => () => parent.$emit('tab-nav-update')
+export const watchTitle = (parent: ITabItemRenderlessParams['parent']) => () => parent.$emit('tab-nav-update')

@@ -42,9 +42,21 @@ import { iconLoading } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme-mobile/button/index.less'
 
 export default defineComponent({
-  inheritAttrs: false,
   emits: ['hook-updated', 'click'],
-  props: [...props, 'type', 'text', 'size', 'icon', 'resetTime', 'nativeType', 'loading', 'disabled', 'plain', 'round'],
+  props: [
+    ...props,
+    'type',
+    'text',
+    'size',
+    'icon',
+    'resetTime',
+    'nativeType',
+    'loading',
+    'disabled',
+    'plain',
+    'round',
+    'customClass'
+  ],
   components: { IconLoading: iconLoading() },
   setup(props, context) {
     return setup({ props, context, renderless, api })

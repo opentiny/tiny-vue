@@ -37,6 +37,13 @@ import {
 import { merge } from '../common/object'
 import { isEmpty } from '../cascader'
 import Store from './store.js'
+import {
+  ICascaderPanelApi,
+  ICascaderPanelProps,
+  ICascaderPanelRenderlessParamUtils,
+  ICascaderPanelRenderlessParams,
+  ISharedRenderlessParamHooks
+} from '@/types'
 
 export const api = [
   'state',
@@ -93,7 +100,15 @@ const initState = ({ reactive, props, computed, parent, slots }) => {
   return state
 }
 
-const initApi = ({ api, state, menus, props, nextTick, parent, emit }) => {
+const initApi = ({
+  api,
+  state,
+  menus,
+  props,
+  nextTick,
+  parent,
+  emit
+}: Pick<ICascaderPanelRenderlessParams, 'api' | 'state' | 'menus' | 'props' | 'nextTick' | 'parent' | 'emit'>) => {
   Object.assign(api, {
     state,
     isLeaf: isLeaf(),
@@ -121,7 +136,12 @@ const initApi = ({ api, state, menus, props, nextTick, parent, emit }) => {
   })
 }
 
-const initWatch = ({ watch, state, props, api }) => {
+const initWatch = ({
+  watch,
+  state,
+  props,
+  api
+}: Pick<ICascaderPanelRenderlessParams, 'watch' | 'state' | 'props' | 'api'>) => {
   watch(
     () => props.options,
     () => api.initStore(),
@@ -146,12 +166,12 @@ const initWatch = ({ watch, state, props, api }) => {
 }
 
 export const renderless = (
-  props,
-  { computed, onMounted, reactive, watch },
-  { nextTick, emit, parent, childrenHandler, slots }
+  props: ICascaderPanelProps,
+  { computed, onMounted, reactive, watch }: ISharedRenderlessParamHooks,
+  { nextTick, emit, parent, childrenHandler, slots }: ICascaderPanelRenderlessParamUtils
 ) => {
-  const api = {}
-  const menus = []
+  const api = {} as ICascaderPanelApi
+  const menus: ICascaderPanelRenderlessParams['vm'][] = []
   const state = initState({ reactive, props, computed, parent, slots })
 
   childrenHandler(({ vm }) => {

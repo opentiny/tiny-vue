@@ -50,7 +50,6 @@ export const renderless = (props, { reactive, inject }, { dispatch, vm }) => {
         disabled: props.disabled
       }
       dispatch('TinyDropdownMenu', 'menu-item-click', data)
-
       dispatch('TinyDropdown', 'is-disabled', [props.disabled])
     }
 

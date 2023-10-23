@@ -15,6 +15,7 @@ import { $prefix, setup, h, defineComponent, props } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/upload/vue'
 import UploadDragger from '@opentiny/vue-upload-dragger'
 import Modal from '@opentiny/vue-modal'
+import type { IUploadApi } from '@opentiny/vue-renderless/types/upload.type'
 
 export default defineComponent({
   inheritAttrs: false,
@@ -25,6 +26,7 @@ export default defineComponent({
     'action',
     'autoUpload',
     'beforeUpload',
+    'pasteUpload',
     'data',
     'disabled',
     'drag',
@@ -55,10 +57,9 @@ export default defineComponent({
       context,
       renderless,
       api,
-      mono: true,
       h,
       extendOptions: { Modal }
-    })
+    }) as unknown as IUploadApi
   },
   render() {
     let {
@@ -67,6 +68,7 @@ export default defineComponent({
       drag,
       handleChange,
       handleClick,
+      handlePaste,
       handleKeydown,
       isFolder,
       listType,
@@ -87,6 +89,7 @@ export default defineComponent({
       <div
         class={['tiny-upload', `tiny-upload--${listType}`, disabled ? 'is-disabled' : '', hidden ? 'is-hidden' : '']}
         onClick={($event) => handleClick($event, type)}
+        onPaste={handlePaste}
         onKeydown={handleKeydown}
         tabindex="0">
         {drag ? (

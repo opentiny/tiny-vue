@@ -1,4 +1,4 @@
-import DatePickerMobile from './src/mobile-first.vue'
+import DatePickerMobile from './src/index'
 import { version } from './package.json'
 
 DatePickerMobile.model = {

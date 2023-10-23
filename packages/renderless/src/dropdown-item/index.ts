@@ -10,9 +10,10 @@
  *
  */
 
+import { IDropdownItemRenderlessParams, IDropdownItemStyle, IDropdownItemTag, IDropdownItemOptionStyle } from '@/types'
 import { on, off } from '../common/deps/dom'
 
-export const getTitle = (props) => () => {
+export const getTitle = (props: IDropdownItemRenderlessParams['props']) => (): string => {
   if (props.title) {
     return props.title
   }
@@ -23,15 +24,15 @@ export const getTitle = (props) => () => {
 }
 
 export const bindScroll =
-  ({ api, parent }) =>
-  (value) => {
+  ({ api, parent }: Pick<IDropdownItemRenderlessParams, 'api' | 'parent'>) =>
+  (value): void => {
     const action = value ? on : off
     action(parent.state.scroller, 'scroll', api.onScroll, true)
   }
 
 export const toggle =
-  ({ parent, props, state }) =>
-  (show) => {
+  ({ parent, props, state }: Pick<IDropdownItemRenderlessParams, 'parent' | 'props' | 'state'>) =>
+  (show: boolean): void => {
     if (show === state.showPopup) {
       return
     }
@@ -45,13 +46,17 @@ export const toggle =
     }
   }
 
-export const onScroll = (parent) => () => parent.updateOffset()
+export const onScroll = (parent: IDropdownItemRenderlessParams['parent']) => (): void => parent.updateOffset()
 
-export const clickWrapper = (parent) => (event) => parent.$el && event.stopPropagation()
+export const clickWrapper =
+  (parent: IDropdownItemRenderlessParams['parent']) =>
+  (event: MouseEvent): void =>
+    parent.$el && event.stopPropagation()
 
+// mode为mobile时点击菜单项的方法
 export const clickItem =
-  ({ emit, props, state }) =>
-  (value) => {
+  ({ emit, props, state }: Pick<IDropdownItemRenderlessParams, 'emit' | 'props' | 'state'>) =>
+  (value: string): void => {
     state.showPopup = false
 
     if (value !== props.modelValue) {
@@ -61,42 +66,45 @@ export const clickItem =
   }
 
 export const getItemStyle =
-  ({ parent, state }) =>
-  () => ({
+  ({ parent, state }: Pick<IDropdownItemRenderlessParams, 'parent' | 'state'>) =>
+  (): IDropdownItemStyle => ({
     zIndex: parent.zIndex,
     top: parent.direction === 'down' ? state.offset + 'px' : '',
     bottom: parent.direction !== 'down' ? state.offset + 'px' : ''
   })
 
-export const getOptionStyle = (state) => (tag, tags) => {
-  if (tags.includes(tag.value)) {
-    return {
-      color: state.activeColor ? state.activeColor : '#f36f64',
-      border: `1px solid ${state.activeColor ? state.activeColor : '#f36f64'}`
-    }
-  } else {
-    return {
-      color: '#333'
+// mode为mobile时动态获取样式的方法
+export const getOptionStyle =
+  (state: IDropdownItemRenderlessParams['state']) =>
+  (tag: IDropdownItemTag, tags: string | Array<number | string>): IDropdownItemOptionStyle => {
+    if (tags.includes(tag.value)) {
+      return {
+        color: state.activeColor ? state.activeColor : '#f36f64',
+        border: `1px solid ${state.activeColor ? state.activeColor : '#f36f64'}`
+      }
+    } else {
+      return {
+        color: '#333'
+      }
     }
   }
-}
 
 export const closed =
-  ({ emit, state }) =>
-  () => {
+  ({ emit, state }: Pick<IDropdownItemRenderlessParams, 'emit' | 'state'>) =>
+  (): void => {
     state.showWrapper = false
     emit('closed')
   }
 
-export const open = (emit) => () => emit('open')
+export const open = (emit: IDropdownItemRenderlessParams['emit']) => (): void => emit('open')
 
-export const opened = (emit) => () => emit('opened')
+export const opened = (emit: IDropdownItemRenderlessParams['emit']) => (): void => emit('opened')
 
-export const close = (emit) => () => emit('close')
+export const close = (emit: IDropdownItemRenderlessParams['emit']) => (): void => emit('close')
 
 export const tagClick =
-  ({ emit, props }) =>
-  (key, tag, event) => {
+  ({ emit, props }: Pick<IDropdownItemRenderlessParams, 'emit' | 'props'>) =>
+  (key: number, tag: IDropdownItemTag, event: MouseEvent): void => {
     event.preventDefault()
     event.stopPropagation()
 
@@ -115,15 +123,15 @@ export const tagClick =
   }
 
 export const confirm =
-  ({ emit, props, state }) =>
-  () => {
+  ({ emit, props, state }: Pick<IDropdownItemRenderlessParams, 'emit' | 'props' | 'state'>) =>
+  (): void => {
     state.showPopup = false
     emit('confirm', props.modelValue)
   }
 
 export const reset =
-  ({ emit, props }) =>
-  () => {
+  ({ emit, props }: Pick<IDropdownItemRenderlessParams, 'emit' | 'props'>) =>
+  (): void => {
     const len = props.modelValue.length
     const array = []
 
@@ -135,7 +143,7 @@ export const reset =
     emit('reset', array)
   }
 
-export const clickOutside = (parent) => () => {
+export const clickOutside = (parent: IDropdownItemRenderlessParams['parent']) => (): void => {
   if (parent.closeOnClickOutside && parent.closeOnClickOverlay) {
     parent.state.children.forEach((item) => {
       item.toggle(false)
@@ -144,11 +152,10 @@ export const clickOutside = (parent) => () => {
 }
 
 export const handleClick =
-  ({ props, dispatch, vm, emit }) =>
-  (event) => {
+  ({ props, dispatch, vm, emit }: Pick<IDropdownItemRenderlessParams, 'props' | 'dispatch' | 'vm' | 'emit'>) =>
+  (event: MouseEvent): void => {
     // 此处需要手动阻止事件冒泡，如果使用@click.sotp在vue2.x下会导致在自循环组件（dropdown-item）事件绑定错乱
     event.stopPropagation()
-
     const data = { itemData: props.itemData, vm, disabled: props.disabled }
 
     if (!props.disabled) {
@@ -160,12 +167,12 @@ export const handleClick =
   }
 
 export const computedGetIcon =
-  ({ constants, designConfig }) =>
-  (name = 'leftWardArrow') => {
+  ({ constants, designConfig }: Pick<IDropdownItemRenderlessParams, 'constants' | 'designConfig'>) =>
+  (name: string = 'leftWardArrow'): object => {
     return designConfig?.icons[name] || constants?.ICON_MAP[name]
   }
 
-export const getTip = ({ props, vm }) => {
+export const getTip = ({ props, vm }: Pick<IDropdownItemRenderlessParams, 'props' | 'vm'>): string => {
   if (props.tip && typeof props.tip === 'function') {
     return props.tip({ itemData: props.itemData, vm })
   }
