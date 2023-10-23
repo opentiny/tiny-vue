@@ -1,6 +1,6 @@
 <template>
   <div style="height: 200px">
-    <tiny-search :search-types="searchTypes1">
+    <tiny-search :search-types="searchTypes1" :type-value="typeValue">
       <template #poplist="slotScope">
         <b>{{ slotScope.slotScope.text }}</b>
       </template>
@@ -30,8 +30,12 @@ export default {
           text: '插槽3',
           value: 3
         }
-      ]
+      ],
+      typeValue: null
     }
+  },
+  created() {
+    this.typeValue = this.searchTypes1[2]
   }
 }
 </script>

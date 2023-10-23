@@ -86,7 +86,8 @@ export const ISearchProps = {
   changeBgColor: {
     type: Boolean,
     default: false
-  }
+  },
+  typeValue: Object
 }
 
 export default defineComponent({
