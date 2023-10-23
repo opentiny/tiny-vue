@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     changeColor() {
-      color.value = color.value === '#66ccff' ? '#000' : '#66ccff'
+      this.color = this.color === '#66ccff' ? '#000' : '#66ccff'
     }
   }
 }
