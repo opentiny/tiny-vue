@@ -484,18 +484,12 @@ export default {
     },
     {
       'demoId': 'nest-checkbox-grid1',
-      'name': { 'zh-CN': 'text-field', 'en-US': 'Nested Grid Enable Remote Search (Single Choice)' },
+      'name': { 'zh-CN': '映射字段', 'en-US': 'Nested Grid Enable Remote Search (Single Choice)' },
       'desc': {
         'zh-CN': '详细用法参考如下示例',
         'en-US':
           '<p>Set <code>render-type</code> to <code>grid</code> nested grid; Set <code>filterable</code> and <code>remote</code> to <code>true</code> and pass in the <code>remote-method</code> method to enable remote search. To automatically search for and display the expansion button, set <code>remote-config</code> </p>\n'
       },
-      'codeFiles': ['nest-checkbox-grid.vue']
-    },
-    {
-      'demoId': 'nest-checkbox-grid2',
-      'name': { 'zh-CN': 'value-field', 'en-US': 'Grid nested with a large amount of data.' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['nest-checkbox-grid.vue']
     },
     {
