@@ -21,5 +21,13 @@ export const tinyStepsSmbTheme = {
   'ti-steps-timeline-date-time-font-size': 'var(--ti-common-font-size-0)',
   'ti-steps-mini-number-font-size': 'var(--ti-common-font-size-0)',
   'ti-steps-mini-font-size-base': 'var(--ti-common-font-size-0)',
-  'ti-steps-bottom-divider-margin-top': 'calc(var(--ti-common-space-6x) + 1px)'
+  'ti-steps-bottom-divider-margin-top': 'calc(var(--ti-common-space-6x) + 1px)',
+  'ti-steps-timeline-dot-bg-color': 'var(--ti-common-color-light)',
+  'ti-steps-timeline-line-margin-vertical': 'var(--ti-common-space-base)',
+  'ti-steps-timeline-dot-border-color': 'var(--ti-base-color-brand-5)',
+  'ti-steps-timeline-dot-bg-color': 'var(--ti-common-color-light)',
+  'ti-steps-timeline-dot-primary-bg-color': 'var(--ti-base-color-brand-5)',
+  'ti-steps-timeline-item-secondary-text-font-size': 'var(--ti-common-font-size-0)',
+  'ti-steps-timeline-vertical-line-margin-left': 'var(--ti-common-space-4x)',
+  'ti-steps-timeline-item-padding-bottom': 'var(--ti-common-space-6x)'
 }
