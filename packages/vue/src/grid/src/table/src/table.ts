@@ -152,14 +152,15 @@ const renderEmptyPartFn = (opt) => {
 }
 
 const renderFooterFn = (opt) => {
-  const { showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize } = opt
+  const { _vm, showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize } = opt
   return () => {
     let tableFooterVnode = [null]
 
     if (showFooter) {
       tableFooterVnode = h(GridFooter, {
         props: { footerData, footerMethod, tableColumn, visibleColumn, size: vSize },
-        ref: 'tableFooter'
+        ref: 'tableFooter',
+        class: _vm.viewCls('tableFooter')
       })
     }
 
@@ -168,13 +169,13 @@ const renderFooterFn = (opt) => {
 }
 
 const renderResizeBarFn = (opt) => {
-  const { isResizable, overflowX, scrollbarHeight } = opt
+  const { _vm, isResizable, overflowX, scrollbarHeight } = opt
   return () => {
     let resizeBarVnode = [null]
 
     if (isResizable) {
       resizeBarVnode = h('div', {
-        class: 'tiny-grid__resizable-bar',
+        class: ['tiny-grid__resizable-bar', _vm.viewCls('resizeBar')],
         style: overflowX ? { 'padding-bottom': `${scrollbarHeight}px` } : null,
         ref: 'resizeBar',
         key: 'tinyGridResizeBar'
@@ -293,8 +294,8 @@ function getRenderer(opt) {
   const renderHeader = () =>
     showHeader ? h(GridHeader, { ref: 'tableHeader', props, class: _vm.viewCls('tableHeader') }) : [null]
   const renderEmptyPart = renderEmptyPartFn({ _vm, tableData, $slots, renderEmpty })
-  const renderFooter = renderFooterFn({ showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize })
-  const renderResizeBar = renderResizeBarFn({ isResizable, overflowX, scrollbarHeight })
+  const renderFooter = renderFooterFn({ _vm, showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize })
+  const renderResizeBar = renderResizeBarFn({ _vm, isResizable, overflowX, scrollbarHeight })
   const arg1 = { hasFilter, optimizeOpts, filterStore, isCtxMenu, ctxMenuStore, hasTip, tooltipContentOpts }
   const arg2 = { editRules, validOpts, height, tableData, vaildTipOpts, id, _vm }
   const renderPluginWrapper = renderPluginWrapperFn(Object.assign(arg1, arg2))
@@ -992,7 +993,7 @@ export default {
       // 隐藏列
       h(
         'div',
-        { class: ['tiny-grid-hidden-column', this.viewCls('hiddenColumn')], ref: 'hideColumn' },
+        { class: 'tiny-grid-hidden-column', ref: 'hideColumn' },
         typeof $slots.default === 'function' ? $slots.default() : $slots.default
       ),
       // 主头部

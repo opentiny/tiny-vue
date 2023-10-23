@@ -4,7 +4,7 @@
       <!-- DEMO 的标题 + 说明desc+  示例wcTag -->
       <div class="ti-f-r ti-f-pos-between ti-f-box-end ti-pb20">
         <div class="ti-f18 ti-cur-hand">{{ demo.name[langKey] }}</div>
-        <div>
+        <div v-if="!isMobileFirst">
           <tiny-tooltip placement="top" :append-to-body="false" :content="copyTip">
             <i
               :class="copyIcon"
@@ -30,7 +30,11 @@
         </div>
       </div>
       <component :is="getDescMd(demo)" class="ti-mb16 ti-f14" />
-      <div v-if="demoConfig.isMobile" class="phone-container">
+
+      <div v-if="isMobileFirst" class="pc-demo-container">
+        <tiny-button @click="openPlayground(demo)">多端预览</tiny-button>
+      </div>
+      <div v-else-if="demoConfig.isMobile" class="phone-container">
         <div class="mobile-view-container">
           <component :is="cmp" />
         </div>
@@ -63,11 +67,12 @@
 import { defineComponent, reactive, computed, toRefs, shallowRef, onMounted, watch, nextTick } from 'vue'
 import { $t, $t2 } from '@/i18n'
 import { $split, appData, fetchDemosFile, $pub } from '@/tools'
-import { Tooltip as TinyTooltip, Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
+import { Tooltip as TinyTooltip, Tabs as TinyTabs, TabItem as TinyTabItem, Button as TinyButton } from '@opentiny/vue'
 import { languageMap, vueComponents, getWebdocPath, staticDemoPath } from './cmpConfig'
 import { router } from '@/router.js'
 import demoConfig from '@demos/config.js'
-import { useApiMode } from '@/tools'
+import { useApiMode, useTemplateMode } from '@/tools'
+import useTheme from '@/tools/useTheme'
 import AsyncHighlight from './async-highlight.vue'
 
 const { apiModeState, apiModeFn } = useApiMode()
@@ -106,9 +111,15 @@ export default defineComponent({
     TinyTooltip,
     TinyTabs,
     TinyTabItem,
+    TinyButton,
     AsyncHighlight
   },
   setup(props) {
+    const { templateModeState } = useTemplateMode()
+    const { currThemeLabel } = useTheme()
+    const isMobileFirst = computed(() => {
+      return templateModeState.mode === 'mobile-first'
+    })
     const state = reactive({
       tabValue: 'tab0',
       cmpId: router.currentRoute.value.params.cmpId,
@@ -171,10 +182,11 @@ export default defineComponent({
       },
       openPlayground(demo) {
         const cmpId = router.currentRoute.value.params.cmpId
+        const tinyTheme = currThemeLabel.value.split('-')[1]
         window.open(
-          `${import.meta.env.VITE_CONTEXT}playground?cmpId=${cmpId}&fileName=${demo.codeFiles[0]}&apiMode=${
+          `${import.meta.env.VITE_PLAYGROUND_URL}?cmpId=${cmpId}&fileName=${demo.codeFiles[0]}&apiMode=${
             apiModeState.apiMode
-          }`
+          }&mode=${templateModeState.mode}&theme=${tinyTheme}`
         )
       }
     }
@@ -200,7 +212,7 @@ export default defineComponent({
       }
     )
 
-    return { ...toRefs(state), ...fn, appData, vueComponents, demoConfig, cmp }
+    return { ...toRefs(state), ...fn, appData, vueComponents, demoConfig, cmp, isMobileFirst }
   }
 })
 </script>

@@ -41,9 +41,10 @@ export default defineComponent({
     error: String,
     for: String,
     inlineMessage: {
-      type: [String, Boolean],
-      default: ''
+      type: Boolean,
+      default: undefined
     },
+    messageType: String,
     label: String,
     labelWidth: String,
     manual: Boolean,
@@ -84,9 +85,10 @@ export default defineComponent({
   },
 
   render() {
-    const { state, required, slots, label, scopedSlots, showMessage, inlineMessage, validateIcon, ellipsis, vertical } =
+    const { state, required, slots, label, scopedSlots, showMessage, inlineMessage, ellipsis, vertical } =
       this as unknown as IFormItemInstance
 
+    const { validateIcon, isErrorInline, isErrorBlock } = state
     const isMobile = state.mode === 'mobile'
     const classPrefix = isMobile ? 'tiny-mobile-' : 'tiny-'
     const labelSlot = slots.label ? slots.label() : null
@@ -94,10 +96,6 @@ export default defineComponent({
     const errorSlot = scopedSlots.error && scopedSlots.error(state.validateMessage)
     const formItemClass = `${classPrefix}form-item--${state.sizeClass ? state.sizeClass : 'default'}`
     const isShowError = state.validateState === 'error' && showMessage && state.form.showMessage
-    const isErrorInline =
-      typeof inlineMessage === 'boolean'
-        ? inlineMessage
-        : (state.formInstance && state.formInstance.inlineMessage) || false
     let validateMessage
 
     const ItemContent = defaultSlots
@@ -242,7 +240,8 @@ export default defineComponent({
             {
               class: {
                 [`${classPrefix}form-item__error`]: true,
-                [`${classPrefix}form-item__error--inline`]: isErrorInline
+                [`${classPrefix}form-item__error--inline`]: isErrorInline,
+                [`${classPrefix}form-item__error--block`]: isErrorBlock
               }
             },
             [

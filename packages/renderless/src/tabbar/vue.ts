@@ -10,39 +10,68 @@
  *
  */
 
-import { setActiveItem, onChange, getChildrens } from './index'
+import { setActiveItem, onChange, getChildrens, getItems, beforeDestroy, initPage } from './index'
+import { on } from '../common/deps/dom'
 
 export const api = ['state', 'onChange', 'getChildrens']
 
 export const renderless = (
   props,
-  { computed, onMounted, reactive, watch },
-  { refs, emit, nextTick, childrenHandler }
+  { computed, onMounted, reactive, watch, onBeforeUnmount },
+  { vm, emit, nextTick, childrenHandler }
 ) => {
+  const api = {}
   const state = reactive({
     height: null,
     children: [],
-    fit: computed(() => (props.safeAreaInsetBottom !== null ? props.safeAreaInsetBottom : props.fixed))
+    fit: computed(() => (props.safeAreaInsetBottom ? props.safeAreaInsetBottom : props.fixed)),
+    activeItem: false,
+    showIndex: 0,
+    showNumber: computed(() => (props.showNumber > 0 ? props.showNumber : -1)),
+    tabbarWidth: null
   })
 
-  const api = {
+  Object.assign(api, {
     state,
     onChange: onChange({ emit, props }),
+    parent: computed(() => api.getParent()),
     setActiveItem: setActiveItem({ props, state }),
-    getChildrens: getChildrens({ childrenHandler })
-  }
+    getChildrens: getChildrens({ childrenHandler, api }),
+    getItems: getItems(state),
+    beforeDestroy: beforeDestroy(api),
+    initPage: initPage({ state, vm })
+  })
 
   onMounted(() => {
+    on(window, 'resize', api.initPage)
+
+    state.tabbarWidth = vm.$refs && vm.$refs.tabbar.offsetWidth
     if (props.placeholder && props.fixed) {
       nextTick(() => {
-        state.height = refs.tabbar.getBoundingClientRect().height
+        state.height = vm.$refs.tabbar.getBoundingClientRect().height
       })
     }
   })
 
-  watch(() => props.modelValue, api.setActiveItem, { immediate: true })
+  vm.$on('updateItems', api.getItems)
+  vm.$on('activeItem', api.onChange)
+  vm.$on('showIndex', () => {
+    state.showIndex++
+  })
 
-  watch(() => state.children, api.setActiveItem, { immediate: true, deep: true })
+  watch(
+    () => props.modelValue,
+    () => {
+      setTimeout(() => {
+        api.setActiveItem()
+      }, 100)
+    },
+    { immediate: true }
+  )
+
+  watch(() => state.children, api.setActiveItem, { immediate: true })
+
+  onBeforeUnmount(api.beforeDestroy)
 
   return api
 }

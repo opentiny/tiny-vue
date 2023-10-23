@@ -49,6 +49,32 @@ export const computedGetValidateType =
   (): string =>
     props.validateType || (state.formInstance ? state.formInstance.validateType : '')
 
+export const computedValidateIcon =
+  ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
+  (): object | null =>
+    props.validateIcon ?? state?.formInstance?.state?.validateIcon ?? null
+
+export const computedIsErrorInline =
+  ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
+  (): boolean => {
+    if (props.messageType) {
+      return props.messageType === 'inline'
+    }
+    if (typeof props.inlineMessage === 'boolean') {
+      return props.inlineMessage
+    }
+    return state?.formInstance?.state?.isErrorInline ?? false
+  }
+
+export const computedIsErrorBlock =
+  ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
+  (): boolean => {
+    if (props.messageType) {
+      return props.messageType === 'block'
+    }
+    return state?.formInstance?.state?.isErrorBlock ?? false
+  }
+
 export const computedLabelStyle =
   ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
   (): IFormItemLabelStyle => {

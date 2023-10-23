@@ -375,7 +375,7 @@ const getComponents = (mode, isSort = true) => {
     .filter((item) => item.type === 'component')
     // 以下3种情况，均写入entry js文件。
     // 1、入参all，  2、chart组件，item.mode不存在  3、item.mode包含要输出的entry
-    .filter((item) => mode === 'all' || !item.mode || item.mode.includes(mode))
+    .filter((item) => mode === 'all' || (mode === 'pc' && !item.mode) || (item.mode && item.mode.includes(mode)))
   return components
 }
 

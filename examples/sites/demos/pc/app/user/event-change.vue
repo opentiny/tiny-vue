@@ -1,8 +1,8 @@
 <template>
-  <tiny-user v-model="user" multiple @change="change"></tiny-user>
+  <tiny-user v-model="user" multiple @change="change" @focus="handleFocus" @blur="handleBlur"></tiny-user>
 </template>
 
-<script lang="jsx">
+<script>
 import { User, Modal } from '@opentiny/vue'
 
 export default {
@@ -17,6 +17,16 @@ export default {
   methods: {
     change(val) {
       Modal.message({ message: `${val}`, status: 'info' })
+    },
+    handleFocus() {
+      Modal.message({
+        message: '组件聚焦'
+      })
+    },
+    handleBlur() {
+      Modal.message({
+        message: '组件失焦'
+      })
     }
   }
 }

@@ -1,10 +1,10 @@
 <template>
-  <tiny-user-head type="image" :value="imgUrl"></tiny-user-head>
+  <tiny-user-head v-model="imgUrl" type="image"></tiny-user-head>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { UserHead as TinyUserHead } from '@opentiny/vue'
 
-const imgUrl = ref('localhost:3000/webnova/static/img/compontent.b2f0f5b.png')
+const imgUrl = ref('/static/images/ld.png')
 </script>
