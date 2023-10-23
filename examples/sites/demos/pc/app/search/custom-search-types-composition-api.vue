@@ -1,6 +1,6 @@
 <template>
   <div style="height: 200px">
-    <tiny-search :search-types="searchTypes1">
+    <tiny-search :search-types="searchTypes1" :type-value="typeValue">
       <template #poplist="slotScope">
         <b>{{ slotScope.slotScope.text }}</b>
       </template>
@@ -26,4 +26,6 @@ const searchTypes1 = ref([
     value: 3
   }
 ])
+
+const typeValue = searchTypes1.value[2]
 </script>
