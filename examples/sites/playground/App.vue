@@ -13,7 +13,7 @@ import Sun from './icons/Sun.vue'
 import Moon from './icons/Moon.vue'
 import Share from './icons/Share.vue'
 
-const versions = ['3.10.0', '3.9.1', '3.8.4']
+const versions = ['3.11.0', '3.10.0', '3.9.1', '3.8.4']
 const latestVersion = versions[0]
 const cdnHost = 'https://unpkg.com'
 window.localStorage.setItem('setting-cdn', cdnHost)

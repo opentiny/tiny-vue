@@ -9,7 +9,9 @@
 | Vue2.x              | @opentiny/vue@2.x         |
 | Vue3.x              | @opentiny/vue@3.x         |
 
-Currently, TinyVue does not support Vue2.7. When the project uses the Vue2.0 framework, the recommended version format is `"vue": "~2.6.14", "vue-template-compiler": "~2.6.14"`.
+**Vue2 Engineering Description**
+
+For a long time, TinyVue only supports Vue 2.6.14. Starting from TinyVue 2.11.0, the project of Vue 2.7+ is also supported. Make sure that you have installed the correct Vue 2.x dependency.
 
 ### New Project Configuration
 
