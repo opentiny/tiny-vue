@@ -15,9 +15,9 @@ export default {
       'demoId': 'calendar-mode',
       'name': { 'zh-CN': '显示模式', 'en-US': 'Display mode' },
       'desc': {
-        'zh-CN': '<p>通过 <code>mode</code> 属性指定以年的形式显示，将展示当年的每个月份。可选值有 year、month。</p>\n',
+        'zh-CN': '<p>通过 <code>mode</code> 属性指定以年的形式显示，将展示当年的每个月份。可选值有 <code>month</code> / <code>timeline</code> / <code>schedule</code>。</p>\n',
         'en-US':
-          '<p>The <code>mode</code> attribute specifies that each month of the current year is displayed. The options are year and month. </p>\n'
+          '<p>The <code>mode</code> attribute specifies that each month of the current year is displayed. The options are <code>month</code> / <code>timeline</code> / <code>schedule</code>. </p>\n'
       },
       'codeFiles': ['calendar-mode.vue']
     },
@@ -49,7 +49,7 @@ export default {
       'codeFiles': ['calendar-timeline-slot.vue']
     },
     {
-      'demoId': 'calendar-timeline-rang',
+      'demoId': 'calendar-timeline-range',
       'name': { 'zh-CN': '时间线范围配置', 'en-US': '' },
       'desc': {
         'zh-CN': '<p>通过dayTimes属性配置时间线模式下所展示的时间范围，默认为[8,18]，可配范围[0,23]。</p>\n',
@@ -137,7 +137,7 @@ export default {
             'zh-CN': '配置时间线模式下所展示的时间范围，默认为[8,18]，可配范围[0,23]。',
             'en-US': ''
           },
-          'demoId': 'basic-usage'
+          'demoId': 'calendar-timeline-range'
         },
         {
           'name': 'disabled',
@@ -167,7 +167,7 @@ export default {
             'zh-CN': '日历高度',
             'en-US': ''
           },
-          'demoId': 'basic-usage'
+          'demoId': ''
         },
         {
           'name': 'mark-color',
@@ -275,7 +275,7 @@ export default {
             'zh-CN': '新增日程按钮点击事件',
             'en-US': ''
           },
-          'demoId': 'calendar-event'
+          'demoId': 'calendar-schedule-slot'
         },
         {
           'name': 'next-week-click',
@@ -299,7 +299,7 @@ export default {
             'zh-CN': '选中日期改变事件',
             'en-US': ''
           },
-          'demoId': 'calendar-event'
+          'demoId': 'multi-select'
         },
         {
           'name': 'week-change',
