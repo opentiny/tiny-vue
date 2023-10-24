@@ -3,7 +3,7 @@ import { onMounted, reactive, ref } from 'vue'
 import { Repl, useStore, File } from '@opentiny/vue-repl'
 import '@opentiny/vue-repl/dist/style.css'
 
-import Monaco from '@vue/repl/monaco-editor'
+import Editor from '@vue/repl/codemirror-editor'
 import { ButtonGroup as TinyButtonGroup, Select as TinySelect, Option as TinyOption, Notify } from '@opentiny/vue'
 import { staticDemoPath, getWebdocPath } from '@/views/components/cmpConfig'
 import { fetchDemosFile } from '@/tools/utils'
@@ -16,6 +16,7 @@ import Share from './icons/Share.vue'
 const versions = ['3.11', '3.10', '3.9', '3.8']
 const latestVersion = versions[0]
 const cdnHost = 'https://unpkg.com'
+window.localStorage.setItem('setting-cdn', cdnHost)
 
 const searchObj = new URLSearchParams(location.search)
 const tinyMode = searchObj.get('mode')
@@ -213,7 +214,7 @@ function share() {
     </div>
   </div>
   <Repl
-    :editor="Monaco"
+    :editor="Editor"
     :store="store"
     :theme="dark ? 'dark' : 'light'"
     :preview-options="state.previewOptions"
