@@ -293,7 +293,8 @@ export const renderless = (
       }),
     )
   }
-  const editor = new Editor(props.options ? props.options : defaultOptions)
+  let options = props.options ? Object.assign(defaultOptions, props.options) : defaultOptions
+  const editor = new Editor(options)
 
   const box = ref(null)
   const fontSize = ref('16px')

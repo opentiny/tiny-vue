@@ -7,67 +7,27 @@
 <script setup lang="jsx">
 import { RichTextEditor as TinyRichTextEditor, Notify } from '@opentiny/vue'
 const beforeCreate = function (editor) {
-  Notify({
-    type: 'info',
-    message: 'beforeCreate',
-    position: 'top',
-    duration: 3000,
-  })
+  console.log('beforeCreate')
 }
 const create = function (editor) {
-  Notify({
-    type: 'info',
-    message: 'create',
-    position: 'top',
-    duration: 3000,
-  })
+  console.log('create')
 }
 const focus = function (editor) {
-  Notify({
-    type: 'info',
-    message: 'focus',
-    position: 'top',
-    duration: 3000,
-  })
+  console.log('focus')
 }
 const blur = function (editor) {
-  Notify({
-    type: 'info',
-    message: 'blur',
-    position: 'top',
-    duration: 3000,
-  })
+  console.log('blur')
 }
 const selectionUpdate = function (editor) {
-  Notify({
-    type: 'info',
-    message: 'selectionUpdate',
-    position: 'top',
-    duration: 3000,
-  })
+  console.log('selectionUpdate')
 }
 const transaction = function (editor) {
-  Notify({
-    type: 'info',
-    message: 'transaction',
-    position: 'top',
-    duration: 3000,
-  })
+  console.log('transaction')
 }
 const destroy = function (editor) {
-  Notify({
-    type: 'info',
-    message: 'destroy',
-    position: 'top',
-    duration: 3000,
-  })
+  console.log('destroy')
 }
 const update = function (editor) {
-  Notify({
-    type: 'info',
-    message: 'update',
-    position: 'top',
-    duration: 3000,
-  })
+  console.log('update')
 }
 </script>
