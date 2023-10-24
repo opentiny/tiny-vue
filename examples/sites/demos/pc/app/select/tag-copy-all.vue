@@ -10,18 +10,19 @@
       >
       </tiny-option>
     </tiny-select>
-    <p>复制到此处：</p>
-    <input class="copy-value" type="text" />
+    <p class="fontStyle">复制到此处：</p>
+    <tiny-input class="copy-value" type="text" />
   </div>
 </template>
 
 <script lang="jsx">
-import { Select, Option } from '@opentiny/vue'
+import { Select, Option, Input } from '@opentiny/vue'
 
 export default {
   components: {
     TinySelect: Select,
-    TinyOption: Option
+    TinyOption: Option,
+    TinyInput: Input
   },
   data() {
     return {
@@ -52,3 +53,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.fontStyle {
+  font-size: 14px;
+  margin: 8px;
+}
+</style>
