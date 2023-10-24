@@ -468,9 +468,9 @@ export const getImageWidth =
 
       state.imageList = vm.$refs.viewerItem
     } else {
-      imageW = parent.$el.querySelector('.aui-mobile-image-viewer__canvas').offsetWidth
+      imageW = parent.$el.querySelector('.tiny-mobile-image-viewer__canvas').offsetWidth
 
-      state.imageList = parent.$el.querySelectorAll('.aui-mobile-image-viewer__item')
+      state.imageList = parent.$el.querySelectorAll('.tiny-mobile-image-viewer__item')
     }
 
     state.imageItemWidth = imageW
