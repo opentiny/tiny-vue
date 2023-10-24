@@ -6,12 +6,6 @@
   <span>分隔线</span>
 </template>
 
-<script>
-import { Divider } from '@opentiny/vue'
-
-export default {
-  components: {
-    TinyDivider: Divider
-  }
-}
+<script setup>
+import { Divider as TinyDivider } from '@opentiny/vue'
 </script>

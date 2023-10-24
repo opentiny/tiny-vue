@@ -9,12 +9,6 @@
   <tiny-divider content-color="#ffffff" content-background-color="#7693f5">文案</tiny-divider>
 </template>
 
-<script>
-import { Divider } from '@opentiny/vue'
-
-export default {
-  components: {
-    TinyDivider: Divider
-  }
-}
+<script setup>
+import { Divider as TinyDivider } from '@opentiny/vue'
 </script>
