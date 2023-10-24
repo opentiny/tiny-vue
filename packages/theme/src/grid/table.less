@@ -301,11 +301,16 @@
     .@{grid-prefix-cls}-header__column,
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
-      border-right: 1px solid var(--ti-grid-border-color);
-
-      .@{grid-prefix-cls}-resizable {
-        right: -1px;
-      }
+      background-image: linear-gradient(-90deg, var(--ti-grid-border-color), var(--ti-grid-border-color)),
+        linear-gradient(-180deg, var(--ti-grid-border-color), var(--ti-grid-border-color));
+      background-repeat: no-repeat;
+      background-size:
+        1px 100%,
+        100% 1px;
+      background-position:
+        100% 0,
+        100% 100%;
+      border: none;
     }
 
     .@{grid-prefix-cls}__body-wrapper {
