@@ -17,7 +17,7 @@
   </tiny-form>
 </template>
 
-<script lang="jsx">
+<script>
 import { Form, FormItem, Select, Modal } from '@opentiny/vue'
 
 const buildOptions = () =>
@@ -37,7 +37,7 @@ export default {
     }
   },
   methods: {
-    onChange(value) {
+    onChange:(value) => {
       Modal.message(JSON.stringify(value))
     }
   }

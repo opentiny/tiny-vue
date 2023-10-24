@@ -35,7 +35,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select } from '@opentiny/vue'
 
 export default {
@@ -76,7 +76,7 @@ export default {
     }
   },
   methods: {
-    remoteMethod(value) {
+    remoteMethod:(value) => {
       let allData = Array.from({ length: 1000 }, (a, i) => {
         return {
           id: '00' + i,
@@ -96,7 +96,7 @@ export default {
         }, 500)
       })
     },
-    filter(value) {
+    filter:(value) => {
       return this.allData.filter((item) => {
         return !item.city.includes(value)
       })

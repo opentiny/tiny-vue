@@ -11,7 +11,7 @@
   </tiny-select>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select, Option, Modal } from '@opentiny/vue'
 
 export default {
@@ -32,12 +32,13 @@ export default {
     }
   },
   methods: {
-    removeTag() {
-      Modal.message({
-        message: 'removeTag事件'
-      })
+     removeTag: () => {
+       Modal.message({
+         message: 'removeTag事件'
+       })
     },
-    visibleChange() {
+
+     visibleChange: () => {
       Modal.message({
         message: 'visibleChange事件'
       })

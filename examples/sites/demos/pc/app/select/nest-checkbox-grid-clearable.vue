@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select } from '@opentiny/vue'
 
 export default {
@@ -24,7 +24,7 @@ export default {
     TinySelect: Select
   },
   methods: {
-    filter(value) {
+    filter:(value) => {
       if (!value) {
         return this.gridOpRadio.data
       }

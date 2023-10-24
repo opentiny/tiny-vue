@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select } from '@opentiny/vue'
 
 export default {
@@ -65,7 +65,7 @@ export default {
     }
   },
   methods: {
-    filter(value, data) {
+    filter:(value, data) => {
       if (!value) return true
 
       return data.label.includes(value)

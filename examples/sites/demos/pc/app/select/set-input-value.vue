@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select, Option, Button } from '@opentiny/vue'
 
 export default {
@@ -29,7 +29,7 @@ export default {
     }
   },
   methods: {
-    click() {
+    click:() => {
       this.value = ['选项4']
     }
   }

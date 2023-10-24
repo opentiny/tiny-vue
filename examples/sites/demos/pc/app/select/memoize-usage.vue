@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select, Option } from '@opentiny/vue'
 import Memorize from '@opentiny/vue-renderless/common/deps/memorize'
 
@@ -43,7 +43,7 @@ export default {
     }
   },
   methods: {
-    clickItem(value) {
+    clickItem:(value) => {
       MemorizeInstance.updateByKey(value)
       this.cacheValue = window.localStorage.getItem('tiny_memorize_test456')
     }

@@ -14,7 +14,7 @@
   </tiny-select>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select, Option } from '@opentiny/vue'
 
 export default {
@@ -91,7 +91,7 @@ export default {
       }))
   },
   methods: {
-    remoteMethod(query) {
+    remoteMethod:(query) => {
       if (query !== undefined) {
         this.loading = true
         setTimeout(() => {

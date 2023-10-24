@@ -33,7 +33,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select } from '@opentiny/vue'
 
 export default {
@@ -41,7 +41,7 @@ export default {
     TinySelect: Select
   },
   methods: {
-    remoteMethod(query) {
+    remoteMethod:(query) => {
       if (query !== undefined) {
         this.loading = true
 

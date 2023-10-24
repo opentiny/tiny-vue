@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select } from '@opentiny/vue'
 
 export default {
@@ -38,7 +38,7 @@ export default {
     }
   },
   methods: {
-    cacheChange() {
+    cacheChange: () => {
       this.cacheValue = window.localStorage.getItem(`tiny_memorize_${this.cacheOp.key}`)
     }
   }

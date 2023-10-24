@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select, Option, Button } from '@opentiny/vue'
 
 export default {
@@ -34,10 +34,10 @@ export default {
     }
   },
   methods: {
-    click1() {
+    click1:() => {
       this.$refs.drop.focus()
     },
-    click2() {
+    click2:() => {
       this.$refs.drop.blur()
     }
   }

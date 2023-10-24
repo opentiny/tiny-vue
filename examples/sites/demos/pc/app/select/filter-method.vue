@@ -11,7 +11,7 @@
   </tiny-select>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select, Option } from '@opentiny/vue'
 
 export default {
@@ -32,7 +32,8 @@ export default {
     }
   },
   methods: {
-    filter(value) {
+
+    filter:(value) => {
       const select = this.$refs.select
 
       if (value) {
@@ -45,6 +46,7 @@ export default {
         })
       }
     }
+
   }
 }
 </script>
