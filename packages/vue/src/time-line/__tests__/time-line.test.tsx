@@ -47,6 +47,10 @@ describe('PC Mode', () => {
 
   test.todo('only-number 节点序号是否只显示数字')
 
+  test.todo('shape 圆点外形')
+
+  test.todo('line-width 连接线长度')
+
   /**
    * slots
    */
