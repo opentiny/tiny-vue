@@ -1,4 +1,4 @@
-import { docMenus, cmpMenus } from '@demos/menus.js'
+import { docMenus, cmpMenus } from '@menu/menus.js'
 
 import { appData, $t2 } from './tools'
 
@@ -49,4 +49,8 @@ function genMenus() {
   return [...standaloneOptions, ...docOptions, ...cmpOptions]
 }
 
-export { genMenus }
+const getAllComponents = () =>
+  cmpMenus.reduce((acc, current) => {
+    return acc.concat(current.children)
+  }, [])
+export { genMenus, getAllComponents }

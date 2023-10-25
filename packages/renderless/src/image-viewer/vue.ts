@@ -36,7 +36,16 @@ import {
   touchstart,
   touchmove,
   touchend,
-  computeZIndex
+  computeZIndex,
+  activeItems,
+  imagePreview,
+  initPage,
+  beforeDestroy,
+  itemClick,
+  selectOption,
+  langClick,
+  getLastPrev,
+  getDefaultPrev
 } from './index'
 
 export const api = [
@@ -57,7 +66,12 @@ export const api = [
   'handleVisible',
   'swipeLeft',
   'swipeRight',
-  'handleDelete'
+  'handleDelete',
+  'activeItems',
+  'imagePreview',
+  'itemClick',
+  'selectOption',
+  'langClick'
 ]
 
 const initState = ({ reactive, computed, api, mode, props, constants, inject }) => {
@@ -71,7 +85,7 @@ const initState = ({ reactive, computed, api, mode, props, constants, inject }) 
     mfPreviewVisible: inject('mfPreviewVisible', null),
     scale: 1,
     time: null,
-    index: mode === 'pc' || mode === 'mobile-first' ? 0 : props.startPosition,
+    index: mode == 'pc' || mode == 'mobile-first' ? 0 : props.startPosition,
     imageName: '',
     isShow: false,
     infinite: true,
@@ -95,24 +109,39 @@ const initState = ({ reactive, computed, api, mode, props, constants, inject }) 
     isSingle: computed(() => api.computedIsSingle()),
     imgStyle: computed(() => api.computedImgStyle()),
     currentImg: computed(() => api.computedCurrentImg()),
-    zIndex: computed(() => api.computeZIndex())
+    zIndex: computed(() => api.computeZIndex()),
+    currentIndex: 0,
+    mobileCurrentIndex: -1,
+    isImagePreview: false,
+    hiddenThumbnail: false,
+    firstX: 0,
+    endX: 0,
+    showImageViewer: true,
+    isThumbnail: props.isThumbnail,
+    isMenuView: props.isMenuView,
+    showFlag: 0,
+    boxVisibility: false,
+    fileName: '',
+    scrollTop: 0,
+    thumbnailTop: constants.THUMBNAILTOP,
+    menuTop: constants.MENUTOP
   })
 
   return state
 }
 
-const initApi = ({ api, state, props, parent, nextTick, emit, t, constants }) => {
+const initApi = ({ api, state, props, parent, nextTick, emit, t, constants, vm, mode }) => {
   Object.assign(api, {
     state,
-    touchstart: touchstart(state),
+    touchstart: touchstart({ state, mode, api }),
     touchmove: touchmove(state),
     touchend: touchend(state),
     reset: reset(state),
-    prev: prev({ state, props }),
-    next: next({ state, props }),
-    getImageWidth: getImageWidth({ state, parent, props, nextTick }),
+    prev: prev({ state, api, vm }),
+    next: next({ state, api, vm }),
+    getImageWidth: getImageWidth({ state, parent, props, nextTick, vm, mode }),
     handleVisible: handleVisible({ state, emit, props }),
-    handleActions: handleActions(state),
+    handleActions: handleActions(state, props, emit),
     handleImgLoad: handleImgLoad(state),
     handleMouseDown: handleMouseDown(state),
     computedIsFirst: computedIsFirst(state),
@@ -120,16 +149,25 @@ const initApi = ({ api, state, props, parent, nextTick, emit, t, constants }) =>
     handleImgError: handleImgError({ state, t }),
     computedIsLast: computedIsLast({ state, props }),
     watchVisible: watchVisible(state),
-    deviceSupportUninstall: deviceSupportUninstall(state),
-    computedCurrentImg: computedCurrentImg({ state, props }),
+    deviceSupportUninstall: deviceSupportUninstall({ state, mode }),
+    computedCurrentImg: computedCurrentImg(state),
     computedImgStyle: computedImgStyle({ state, constants }),
     computeZIndex: computeZIndex({ constants, props }),
-    hide: hide({ props, api }),
-    deviceSupportInstall: deviceSupportInstall({ state, api }),
+    hide: hide({ props, api, state }),
+    deviceSupportInstall: deviceSupportInstall({ state, api, mode }),
     toggleMode: toggleMode({ state, constants, api }),
     swipeRight: swipeRight({ api, state, emit }),
     swipeLeft: swipeLeft({ api, state, emit }),
-    handleDelete: handleDelete({ api, state, emit })
+    handleDelete: handleDelete({ api, state, emit }),
+    activeItems: activeItems(state),
+    imagePreview: imagePreview(state),
+    initPage: initPage({ state, nextTick, api }),
+    beforeDestroy: beforeDestroy({ api, state }),
+    itemClick: itemClick({ state, vm, nextTick }),
+    selectOption: selectOption({ state, api }),
+    langClick: langClick(state),
+    getLastPrev: getLastPrev({ state, vm }),
+    getDefaultPrev: getDefaultPrev({ state, vm })
   })
 }
 
@@ -145,12 +183,12 @@ const initWatch = ({ watch, state, api, props, nextTick, vm }) => {
 
   watch(
     () => props.previewVisible,
+
     (value) => {
       api.watchVisible(value)
 
       if (props.previewVisible || state.mfPreviewVisible) {
         nextTick(() => {
-          state.urlList = props.urlList
           api.getImageWidth()
         })
       }
@@ -176,17 +214,25 @@ const initWatch = ({ watch, state, api, props, nextTick, vm }) => {
     },
     { immediate: true }
   )
+
+  watch(
+    () => state.isImagePreview,
+    () =>
+      nextTick(() => {
+        api.getImageWidth()
+      })
+  )
 }
 
 export const renderless = (
   props,
-  { computed, onMounted, onUpdated, reactive, watch, inject },
+  { computed, onMounted, onBeforeUnmount, onUpdated, reactive, watch, inject, provide },
   { t, parent, nextTick, emit, constants, vm, mode }
 ) => {
   const api = {}
   const state = initState({ reactive, computed, api, mode, props, constants, inject })
 
-  initApi({ api, state, props, parent, nextTick, emit, t, constants })
+  initApi({ api, state, props, parent, nextTick, emit, t, constants, vm, mode })
 
   initWatch({ watch, state, api, props, nextTick, vm })
 
@@ -200,6 +246,10 @@ export const renderless = (
       }, 3000)
     }
   })
+
+  onBeforeUnmount(api.beforeDestroy)
+
+  provide('change-size', true)
 
   return api
 }

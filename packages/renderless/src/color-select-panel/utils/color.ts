@@ -10,7 +10,10 @@ function hexToRgb(hex: string) {
 export const normalizeHexColor = (color: string) => {
   let normalizedColor: string = color.replace('#', '')
   if (normalizedColor.length === 3) {
-    normalizedColor = normalizedColor.split('').map(char => char + char).join('')
+    normalizedColor = normalizedColor
+      .split('')
+      .map((char) => char + char)
+      .join('')
   }
   normalizedColor = normalizedColor.padEnd(6, '0')
 
@@ -79,7 +82,9 @@ export default class Color {
     if (!this.enableAlpha) {
       return hsv(this.h, this.s, this.v).hex().toString()
     }
-    return hsv(this.h, this.s, this.v, this.a / 100).hexa().toString()
+    return hsv(this.h, this.s, this.v, this.a / 100)
+      .hexa()
+      .toString()
   }
 
   /**

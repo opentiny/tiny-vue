@@ -74,9 +74,10 @@ export default {
     },
     {
       'demoId': 'lock-view1',
-      'name': { 'zh-CN': '显示遮罩层', 'en-US': 'Display Mask Layer' },
+      'name': { 'zh-CN': '隐藏遮罩层', 'en-US': 'Display Mask Layer' },
       'desc': {
-        'zh-CN': '<p>可通过 <code>mask</code> 属性设置是否显示遮罩层，默认为 <code>true</code>。</p>\n',
+        'zh-CN':
+          '<p>可通过 <code>mask</code> 属性设置是否显示遮罩层，默认为 <code>true</code>。设置为<code>false</code>时隐藏遮罩层</p>\n',
         'en-US':
           '<p>You can set whether to display the mask layer through the <code>mask</code> attribute. The default value is <code>true</code>. </p>\n'
       },

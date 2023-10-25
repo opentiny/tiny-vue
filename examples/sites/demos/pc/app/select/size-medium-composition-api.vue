@@ -2,7 +2,7 @@
   <tiny-select v-model="value" placeholder="请选择" size="medium" multiple :options="options"></tiny-select>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect } from '@opentiny/vue'
 

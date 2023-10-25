@@ -8,6 +8,6 @@ import { ScrollText as TinyScrollText } from '@opentiny/vue'
 
 <style scoped>
 .scrollclass {
-  background-color: red;
+  background-color: #b8d9f9;
 }
 </style>

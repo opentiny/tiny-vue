@@ -2,7 +2,7 @@
   <div class="demo-form-valid-text">
     <div class="mb-12">
       <div>提示形式：<tiny-button-group :data="validTypeList" v-model="validType"></tiny-button-group></div>
-      <div>行内形式：<tiny-button-group :data="inlineList" v-model="inlineType"></tiny-button-group></div>
+      <div>错误文本类型：<tiny-button-group :data="messageTypeList" v-model="messageType"></tiny-button-group></div>
     </div>
     <tiny-form
       ref="ruleFormRef"
@@ -10,7 +10,7 @@
       :rules="rules"
       label-width="100px"
       :validate-type="validType"
-      :inline-message="inlineType"
+      :message-type="messageType"
     >
       <tiny-form-item label="必填" prop="users">
         <tiny-input v-model="createData.users"></tiny-input>
@@ -18,8 +18,8 @@
       <tiny-form-item label="日期" prop="datepicker">
         <tiny-date-picker v-model="createData.datepicker"></tiny-date-picker>
       </tiny-form-item>
-      <tiny-form-item label="URL" prop="url">
-        <tiny-input v-model="createData.url"></tiny-input>
+      <tiny-form-item label="短输入框" prop="input">
+        <tiny-input v-model="createData.input" style="width: 180px"></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="邮件" prop="email" validate-type="text">
         <tiny-input v-model="createData.email"></tiny-input>
@@ -50,20 +50,21 @@ export default {
     return {
       createData: {
         users: '',
-        url: '',
+        input: '',
         email: '',
         datepicker: '',
         textarea: ''
       },
       validType: 'text',
-      inlineType: false,
+      messageType: 'block',
       validTypeList: [
         { text: 'tip', value: 'tip' },
         { text: 'text', value: 'text' }
       ],
-      inlineList: [
-        { text: 'false', value: false },
-        { text: 'true', value: true }
+      messageTypeList: [
+        { text: '默认', value: 'none' },
+        { text: '行内', value: 'inline' },
+        { text: '块级', value: 'block' }
       ],
       rules: {
         users: [
@@ -71,7 +72,7 @@ export default {
           { min: 2, max: 11, message: '长度必须不小于2', trigger: 'blur' }
         ],
         datepicker: { type: 'date' },
-        url: { required: true, type: 'url' },
+        input: { required: true },
         email: { required: true, type: 'email' }
       }
     }

@@ -1,12 +1,12 @@
 <template>
   <div class="clear-no-match-value">
-    <div>
+    <div class="font-style">
       <span>单选：</span>
       <tiny-select v-model="val" :clear-no-match-value="true" placeholder="请选择">
         <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
       </tiny-select>
     </div>
-    <div>
+    <div class="font-style">
       <span>多选：</span>
       <tiny-select v-model="multiVal" :clear-no-match-value="true" multiple placeholder="请选择">
         <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
@@ -45,6 +45,10 @@ export default {
     width: 230px;
     margin-right: 20px;
     margin-bottom: 10px;
+  }
+  .font-style {
+    font-size: 14px;
+    margin: 8px;
   }
 }
 </style>

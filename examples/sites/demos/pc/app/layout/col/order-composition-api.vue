@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Layout as TinyLayout, Row as TinyRow, Col as TinyCol, Button as TinyButton } from '@opentiny/vue'
 

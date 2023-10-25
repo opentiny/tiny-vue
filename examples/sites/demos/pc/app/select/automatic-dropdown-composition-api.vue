@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption, Button as TinyButton } from '@opentiny/vue'
 
@@ -21,7 +21,7 @@ const options = ref([
 const value = ref('')
 const selectDomRef = ref()
 
-function onFocus() {
-  selectDomRef.value.focus()
+const onFocus = () => {
+    selectDomRef.value.focus()
 }
 </script>

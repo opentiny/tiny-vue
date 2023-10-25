@@ -172,7 +172,7 @@ export default {
       taskList: '任务列表',
       quote: '引用',
       codeBlock: '代码块',
-      formatClear: '清楚标记',
+      formatClear: '清除标记',
       nodeDelete: '删除节点',
       undo: '回退',
       redo: '前进',

@@ -28,63 +28,93 @@
   overflow: hidden;
 
   & &__content {
-    width: max-content;
+    width: 100%;
     height: 100%;
-    padding: 0 8px;
     display: flex;
     display: inline-block\9;
     align-items: center;
-    white-space: nowrap;
-    position: relative;
-    animation: infinite linear;
-    animation-duration: 7s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+    box-sizing: border-box;
+    justify-content: center;
+    overflow: hidden;
 
-    // 兼容ie10-ie11
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      display: inline-block;
-    }
-
-    // 兼容edge
-    @supports (-ms-ime-align: auto) {
-      display: inline-block;
-    }
-
-    &.left {
-      animation-name: moveLeft;
-    }
-
-    &.right {
-      animation-name: moveRight;
-    }
-
-    &.up {
-      animation-name: moveUp;
-    }
-
-    &.down {
-      animation-name: moveDown;
-    }
-
-    &.singleUp {
-      animation-name: singleUp;
-    }
-
-    &.stop {
-      animation-play-state: paused;
-    }
-
-    &.up,
-    &.down {
+    & > div {
       width: 100%;
-      white-space: normal;
-    }
+      display: flex;
+      height: 16px;
+      align-items: center;
+      white-space: nowrap;
+      position: relative;
+      animation: infinite linear;
+      animation-duration: 7s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      justify-content: center;
 
-    p {
-      width: auto;
-      line-height: 1;
-      margin: 0;
+      // 兼容ie10-ie11
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        display: inline-block;
+      }
+
+      // 兼容edge
+      @supports (-ms-ime-align: auto) {
+        display: inline-block;
+      }
+
+      &.left {
+        animation-name: moveLeft;
+      }
+
+      &.right {
+        animation-name: moveRight;
+      }
+
+      &.up {
+        animation-name: moveUp;
+      }
+
+      &.down {
+        animation-name: moveDown;
+      }
+
+      &.singleUp {
+        animation-name: singleUp;
+      }
+
+      &.stop {
+        animation-play-state: paused;
+      }
+
+      &.up,
+      &.down {
+        width: 100%;
+        white-space: normal;
+      }
+
+      p {
+        width: auto;
+        line-height: 1;
+        margin: 0;
+      }
+    }
+  }
+
+  &.width-adapt {
+    width: 100%;
+    overflow: hidden;
+
+    .@{scroll-text-prefix-cls}__content {
+      width: fit-content;
+      min-width: 100%;
+
+      >div.left {
+        min-width: 100%;
+        animation-name: moveLeftWidthAdapt;
+      }
+
+      >div.right {
+        min-width: 100%;
+        animation-name: moveRightWidthAdapt;
+      }
     }
   }
 }
@@ -126,5 +156,33 @@
 
   100% {
     transform: translateY(100%);
+  }
+}
+
+@keyframes moveLeftWidthAdapt {
+  0% {
+    transform: translateX(100%);
+  }
+ 
+  50% {
+    transform: translateX(0);
+  }
+ 
+  100% {
+    transform: translateX(-100%);
+  }
+}
+ 
+@keyframes moveRightWidthAdapt {
+  0% {
+    transform: translateX(-100%);
+  }
+ 
+  50% {
+    transform: translateX(0);
+  }
+ 
+  100% {
+    transform: translateX(100%);
   }
 }

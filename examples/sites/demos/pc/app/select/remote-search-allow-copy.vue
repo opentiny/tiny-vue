@@ -12,17 +12,18 @@
   >
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
-  <p>复制到此处：</p>
-  <input class="custom" type="text" />
+  <p class="font-style">复制到此处：</p>
+  <tiny-input class="custom" type="text" />
 </template>
 
 <script lang="jsx">
-import { Select, Option } from '@opentiny/vue'
+import { Select, Option, Input } from '@opentiny/vue'
 
 export default {
   components: {
     TinySelect: Select,
-    TinyOption: Option
+    TinyOption: Option,
+    TinyInput: Input
   },
   data() {
     return {
@@ -106,3 +107,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.font-style {
+  font-size: 14px;
+  margin: 8px;
+}
+</style>

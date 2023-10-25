@@ -12,11 +12,11 @@
   >
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
-  <p>复制到此处：</p>
+  <p class="font-style">复制到此处：</p>
   <input class="custom" type="text" />
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref, onMounted } from 'vue'
 import { Select as TinySelect, Option as TinyOption } from '@opentiny/vue'
 
@@ -83,7 +83,7 @@ onMounted(() => {
   })
 })
 
-function remoteMethod(query) {
+const remoteMethod = (query) => {
   if (query !== undefined) {
     loading.value = true
     setTimeout(() => {
@@ -97,3 +97,10 @@ function remoteMethod(query) {
   }
 }
 </script>
+
+<style scoped>
+.font-style {
+  font-size: 14px;
+  margin: 8px;
+}
+</style>

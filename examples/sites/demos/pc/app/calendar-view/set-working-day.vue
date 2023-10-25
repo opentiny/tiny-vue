@@ -39,7 +39,6 @@ export default {
         return
       }
       this[type].push(...this.selectedDate)
-      this.$refs.calendar.$children[0].state.selectedDates = []
       this.selectedDate = []
     },
     setDayBgColor(date) {

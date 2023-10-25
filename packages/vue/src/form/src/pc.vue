@@ -19,6 +19,7 @@
       { 'has-required': state.hasRequired },
       { 'is-display-only': state.isDisplayOnly }
     ]"
+    @submit.native.prevent
   >
     <slot></slot>
   </form>
@@ -39,6 +40,7 @@ export default defineComponent({
     'model',
     'rules',
     'inlineMessage',
+    'messageType',
     'statusIcon',
     'labelPosition',
     'labelAlign',
@@ -51,6 +53,7 @@ export default defineComponent({
     'inline',
     'responsiveLayout',
     'validateType',
+    'validateIcon',
     'manual',
     'appendToBody',
     'popperOptions',

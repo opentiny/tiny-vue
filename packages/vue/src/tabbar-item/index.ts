@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import TabbarItem from './src/mobile.vue'
+import TabbarItem from './src/index'
 import '@opentiny/vue-theme-mobile/tabbar-item/index.less'
 import { version } from './package.json'
 
