@@ -24,13 +24,13 @@ const options = ref([
 ])
 const value = ref('')
 
-function removeTag() {
+const removeTag = () => {
   Modal.message({
     message: 'removeTag事件'
   })
 }
 
-function visibleChange() {
+const visibleChange = () => {
   Modal.message({
     message: 'visibleChange事件'
   })

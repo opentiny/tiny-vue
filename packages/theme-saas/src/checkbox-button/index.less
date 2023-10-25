@@ -7,9 +7,10 @@
   @apply relative;
   @apply inline-block;
 
-  &:first-child &__inner {
+  &:nth-child(n) &__inner {
     @apply border-l border-l-color-border;
     @apply rounded-tl-sm rounded-tr-none rounded-br-none rounded-bl-sm;
+    @apply -mr-px;
   }
 
   &:last-child &__inner {

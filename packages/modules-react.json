@@ -5,8 +5,14 @@
     "exclude": false,
     "mode": [
       "mobile-first",
+      "mobile",
       "pc"
     ]
+  },
+  "AlertMobile": {
+    "path": "react/src/alert/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
   },
   "AlertMobileFirst": {
     "path": "react/src/alert/src/mobile-first.jsx",
@@ -15,6 +21,25 @@
   },
   "AlertPc": {
     "path": "react/src/alert/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Badge": {
+    "path": "react/src/badge/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile",
+      "pc"
+    ]
+  },
+  "BadgeMobile": {
+    "path": "react/src/badge/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "BadgePc": {
+    "path": "react/src/badge/src/pc.jsx",
     "type": "template",
     "exclude": false
   },
@@ -51,6 +76,25 @@
   "Icon": {
     "path": "react-icon/index.ts",
     "type": "module",
+    "exclude": false
+  },
+  "Switch": {
+    "path": "react/src/switch/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile",
+      "pc"
+    ]
+  },
+  "SwitchMobile": {
+    "path": "react/src/switch/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "SwitchPc": {
+    "path": "react/src/switch/src/pc.jsx",
+    "type": "template",
     "exclude": false
   }
 }

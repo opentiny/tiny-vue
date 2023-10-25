@@ -2,11 +2,11 @@
   <tiny-layout>
     <tiny-row>
       <tiny-col :span="2">
-        <p>默认</p>
+        <p>下居右</p>
         <tiny-dropdown>
           <span>更多</span>
           <template #dropdown>
-            <tiny-dropdown-menu>
+            <tiny-dropdown-menu placement="bottom-start">
               <tiny-dropdown-item>选择一</tiny-dropdown-item>
               <tiny-dropdown-item>选择二</tiny-dropdown-item>
               <tiny-dropdown-item>选择三</tiny-dropdown-item>

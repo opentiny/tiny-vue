@@ -31,10 +31,10 @@
         </div>
       </div>
       <!-- API表格 -->
-      <div v-if="state.currApi.length" class="my20 f24 fw-bold">组件API</div>
+      <div v-if="state.currApi.length" class="mt20 f24 fw-bold">组件API</div>
 
       <div v-for="(oneGroup, idx) in state.currApi" :key="idx">
-        <div class="f-r f-pos-start fw-bold">
+        <div class="mt20 f-r f-pos-start fw-bold">
           <div :id="oneGroup.name" class="f18">
             {{ oneGroup.name }}
           </div>

@@ -19,6 +19,12 @@ export default {
       'name': { 'zh-CN': '空数据显示插槽', 'en-US': 'Empty data display slot' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['slot/empty-slot.vue']
+    },
+    {
+      'demoId': 'slot-editor-slot',
+      'name': { 'zh-CN': '编辑器插槽', 'en-US': 'Editor slot' },
+      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'codeFiles': ['slot/editor-slot.vue']
     }
   ],
   apis: [{ 'name': 'grid-slot', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]

@@ -1,8 +1,8 @@
 <template>
-  <tiny-user-head type="image" :value="imgUrl"></tiny-user-head>
+  <tiny-user-head v-model="imgUrl" type="image"></tiny-user-head>
 </template>
 
-<script lang="jsx">
+<script>
 import { UserHead } from '@opentiny/vue'
 
 export default {
@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      imgUrl: 'localhost:3000/webnova/static/img/compontent.b2f0f5b.png'
+      imgUrl: '/static/images/ld.png'
     }
   }
 }

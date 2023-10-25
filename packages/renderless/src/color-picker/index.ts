@@ -1,12 +1,15 @@
-import {IColorPickerRef, IColorSelectPanelRef} from '@/types';
+import { IColorPickerRef, IColorSelectPanelRef } from '@/types'
 import type Color from './utils/color'
 
 export const onConfirm = (
-  hex: IColorSelectPanelRef<string>, triggerBg: IColorSelectPanelRef<string>,
-  res: IColorSelectPanelRef<string>, emit, isShow: IColorSelectPanelRef<boolean>
+  hex: IColorSelectPanelRef<string>,
+  triggerBg: IColorSelectPanelRef<string>,
+  res: IColorSelectPanelRef<string>,
+  emit,
+  isShow: IColorSelectPanelRef<boolean>
 ) => {
   return (color: string) => {
-    res.value=color;
+    res.value = color
     hex.value = res.value
     triggerBg.value = res.value
     emit('confirm', res.value)
@@ -15,11 +18,15 @@ export const onConfirm = (
 }
 
 export const onCancel = (
-  res: IColorSelectPanelRef<string>, triggerBg: IColorSelectPanelRef<string>, emit, isShow: IColorSelectPanelRef<boolean>,
-  hex: IColorSelectPanelRef<string>, color: Color
+  res: IColorSelectPanelRef<string>,
+  triggerBg: IColorSelectPanelRef<string>,
+  emit,
+  isShow: IColorSelectPanelRef<boolean>,
+  hex: IColorSelectPanelRef<string>,
+  color: Color
 ) => {
   return () => {
-    if (isShow.value){
+    if (isShow.value) {
       res.value = triggerBg.value
       hex.value = triggerBg.value
       color.reset(hex.value)

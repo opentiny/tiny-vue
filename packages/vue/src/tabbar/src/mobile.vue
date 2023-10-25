@@ -23,6 +23,7 @@
 <script lang="ts">
 import { setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/tabbar/vue'
+import '@opentiny/vue-theme-mobile/tabbar/index.less'
 
 export default defineComponent({
   name: $prefix + 'Tabbar',
@@ -50,7 +51,7 @@ export default defineComponent({
     zIndex: [Number, String]
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>

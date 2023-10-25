@@ -2,7 +2,7 @@
   <tiny-user-head type="icon" round></tiny-user-head>
 </template>
 
-<script lang="jsx">
+<script>
 import { UserHead } from '@opentiny/vue'
 
 export default {

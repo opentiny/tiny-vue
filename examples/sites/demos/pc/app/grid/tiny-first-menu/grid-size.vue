@@ -1,5 +1,22 @@
 <template>
+  <p>medium</p>
   <tiny-grid :data="tableData" size="medium">
+    <tiny-grid-column type="index" width="60"></tiny-grid-column>
+    <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+    <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
+    <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
+    <tiny-grid-column field="city" title="城市"></tiny-grid-column>
+  </tiny-grid>
+  <p>small</p>
+  <tiny-grid :data="tableData" size="small">
+    <tiny-grid-column type="index" width="60"></tiny-grid-column>
+    <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+    <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
+    <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
+    <tiny-grid-column field="city" title="城市"></tiny-grid-column>
+  </tiny-grid>
+  <p>mini</p>
+  <tiny-grid :data="tableData" size="mini">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="60"></tiny-grid-column>
     <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>

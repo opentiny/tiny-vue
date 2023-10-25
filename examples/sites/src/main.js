@@ -55,6 +55,8 @@ if (notMatchLang) {
 
 let app = createApp(App)
 app.config.performance = true
+// 注入全局的saas主题变量
+app.config.globalProperties.tiny_theme = { value: import.meta.env.VITE_TINY_THEME }
 
 if (import.meta.env.VITE_TINY_THEME === 'saas') {
   import('./tailwind.css')

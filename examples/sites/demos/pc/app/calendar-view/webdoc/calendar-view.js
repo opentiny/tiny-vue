@@ -16,7 +16,8 @@ export default {
       'name': { 'zh-CN': '显示模式', 'en-US': 'Display mode' },
       'desc': {
         'zh-CN': '<p>通过 <code>mode</code> 属性指定以年的形式显示，将展示当年的每个月份。可选值有 year、month。</p>\n',
-        'en-US': '<p>The <code>mode</code> attribute specifies that each month of the current year is displayed. The options are year and month. </p>\n'
+        'en-US':
+          '<p>The <code>mode</code> attribute specifies that each month of the current year is displayed. The options are year and month. </p>\n'
       },
       'codeFiles': ['calendar-mode.vue']
     },
@@ -39,13 +40,22 @@ export default {
       'codeFiles': ['calendar-schedule-slot.vue']
     },
     {
-      'demoId': 'calendar-timeline',
-      'name': { 'zh-CN': '日程模式插槽', 'en-US': '' },
+      'demoId': 'calendar-timeline-slot',
+      'name': { 'zh-CN': '时间线插槽', 'en-US': '' },
+      'desc': {
+        'zh-CN': '<p>时间下模式下提供 timeline1-timeline7 这 7 个插槽，方便用户自定义日程展示。</p>\n',
+        'en-US': '<p></p>\n'
+      },
+      'codeFiles': ['calendar-timeline-slot.vue']
+    },
+    {
+      'demoId': 'calendar-timeline-rang',
+      'name': { 'zh-CN': '时间线范围配置', 'en-US': '' },
       'desc': {
         'zh-CN': '<p>通过dayTimes属性配置时间线模式下所展示的时间范围，默认为[8,18]，可配范围[0,23]。</p>\n',
         'en-US': '<p></p>\n'
       },
-      'codeFiles': ['calendar-timeline-slot.vue']
+      'codeFiles': ['calendar-timeline-range.vue']
     },
     {
       'demoId': 'multi-select',
@@ -60,7 +70,8 @@ export default {
       'demoId': 'calendar-day-mark',
       'name': { 'zh-CN': '日期标记', 'en-US': '' },
       'desc': {
-        'zh-CN': '<p>通过showMark回调函数来标记某些日期，markColor属性设置标记的颜色，此功能只在时间线模式和日程模式生效。markColor可选颜色同 theme</p>\n',
+        'zh-CN':
+          '<p>通过showMark回调函数来标记某些日期，markColor属性设置标记的颜色，此功能只在时间线模式和日程模式生效。markColor可选颜色同 theme</p>\n',
         'en-US': '<p></p>\n'
       },
       'codeFiles': ['calendar-day-mark.vue']
@@ -87,7 +98,8 @@ export default {
       'demoId': 'custom-day-bg-color',
       'name': { 'zh-CN': '自定义日期单元格背景色', 'en-US': 'Add Schedule Event' },
       'desc': {
-        'zh-CN': '<p>自定义日期单元格背景色。</p>\n<p>目前只支持预置的颜色，可选颜色blue、green、red、yellow、purple、cyan、grey</p>\n',
+        'zh-CN':
+          '<p>自定义日期单元格背景色。</p>\n<p>目前只支持预置的颜色，可选颜色blue、green、red、yellow、purple、cyan、grey</p>\n',
         'en-US': '<p></p>\n'
       },
       'codeFiles': ['custom-day-bg-color.vue']
@@ -105,7 +117,8 @@ export default {
       'demoId': 'calendar-event',
       'name': { 'zh-CN': '事件', 'en-US': '' },
       'desc': {
-        'zh-CN': '<p>日历抛出的事件有以下这些：</p>\n<p>new-schedule:新增日程按钮点击事件</p>\n<p>selected-date-change:选中日期改变事件</p>\n<p>prev-week-click：上一周按钮点击事件</p>\n<p>next-week-click：下一周按钮点击事件</p>\n<p>week-change：周改变事件</p>\n<p>year-change：年改变事件</p>\n<p>month-change：月改变事件</p>\n',
+        'zh-CN':
+          '<p>日历抛出的事件有以下这些：</p>\n<p>new-schedule:新增日程按钮点击事件</p>\n<p>selected-date-change:选中日期改变事件</p>\n<p>prev-week-click：上一周按钮点击事件</p>\n<p>next-week-click：下一周按钮点击事件</p>\n<p>week-change：周改变事件</p>\n<p>year-change：年改变事件</p>\n<p>month-change：月改变事件</p>\n',
         'en-US': '<p></p>\n'
       },
       'codeFiles': ['calendar-event.vue']
@@ -245,7 +258,7 @@ export default {
             'en-US': ''
           },
           'demoId': 'basic-usage'
-        },
+        }
       ],
       'events': [
         {

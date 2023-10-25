@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select, Option } from '@opentiny/vue'
 import Memorize from '@opentiny/vue-renderless/common/deps/memorize'
 

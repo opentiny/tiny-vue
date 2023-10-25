@@ -57,7 +57,7 @@ export const renderless = (
     updateCache: updateCache({ props, state }),
     autoSelect: autoSelect({ props, state, nextTick }),
     updateOptions: updateOptions({ props, state, nextTick }),
-    handleBlur: handleBlur({ constants, dispatch, state }),
+    handleBlur: handleBlur({ constants, dispatch, state, emit }),
     filter: filter({ props, state }),
     suggestUser: suggestUser(api),
     cacheUser: cacheUser({ api, props, service: $service, state }),
