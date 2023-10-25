@@ -287,10 +287,10 @@ import {
   Editor,
   EditorContent,
   BubbleMenu,
-  VueNodeViewRenderer,
-  NodeViewContent,
-  nodeViewProps,
-  NodeViewWrapper
+  VueNodeViewRenderer
+  // NodeViewContent,
+  // nodeViewProps,
+  // NodeViewWrapper
 } from '@tiptap/vue'
 import StarterKit from '@tiptap/starter-kit'
 // 段落包
@@ -327,21 +327,23 @@ import js from 'highlight.js/lib/languages/javascript'
 import ts from 'highlight.js/lib/languages/typescript'
 import html from 'highlight.js/lib/languages/xml'
 import { lowlight } from 'lowlight'
-lowlight.registerLanguage('html', html)
-lowlight.registerLanguage('css', css)
-lowlight.registerLanguage('js', js)
-lowlight.registerLanguage('ts', ts)
+
+function initLowLight() {
+  lowlight.registerLanguage('html', html)
+  lowlight.registerLanguage('css', css)
+  lowlight.registerLanguage('js', js)
+  lowlight.registerLanguage('ts', ts)
+}
+/* @__PURE__ */
+initLowLight()
+
 // Placeholder
 import Placeholder from '@tiptap/extension-placeholder'
-// collaboration 包
-import Collaboration from '@tiptap/extension-collaboration'
-import * as Y from 'yjs'
-import { WebrtcProvider } from 'y-webrtc'
 
 import { props, setup, defineComponent, $prefix } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
 import '@opentiny/vue-theme/rich-text-editor/index.less'
-import Codehighlight from './code-highlight'
+// import Codehighlight from './code-highlight.vue'
 
 export default defineComponent({
   name: $prefix + 'RichTextEditor',
@@ -417,10 +419,7 @@ export default defineComponent({
       mono: true,
       extendOptions: {
         Editor,
-        Collaboration,
         StarterKit,
-        Y,
-        WebrtcProvider,
         Table,
         TableCell,
         TableHeader,
@@ -441,10 +440,10 @@ export default defineComponent({
         CodeBlockLowlight,
         lowlight,
         VueNodeViewRenderer,
-        CodehighComp: VueNodeViewRenderer(Codehighlight(NodeViewContent, nodeViewProps, NodeViewWrapper)),
-        NodeViewContent,
-        nodeViewProps,
-        NodeViewWrapper,
+        // CodehighComp: VueNodeViewRenderer(Codehighlight(NodeViewContent, nodeViewProps, NodeViewWrapper)),
+        // NodeViewContent,
+        // nodeViewProps,
+        // NodeViewWrapper,
         Placeholder,
         codeHighlight
       }

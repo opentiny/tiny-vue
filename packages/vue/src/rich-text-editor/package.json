@@ -40,9 +40,6 @@
     "@tiptap/vue-2": "^2.1.10",
     "@tiptap/vue-3": "^2.0.4",
     "highlight.js": "^11.8.0",
-    "lowlight": "^2.9.0",
-    "y-prosemirror": "^1.2.1",
-    "y-webrtc": "^10.2.5",
-    "yjs": "^13.6.7"
+    "lowlight": "^2.9.0"
   }
 }

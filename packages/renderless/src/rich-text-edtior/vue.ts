@@ -32,10 +32,6 @@ export const renderless = (
   { vm, emit, parent },
   {
     Editor,
-    Collaboration,
-    CodehighComp,
-    Y,
-    WebrtcProvider,
     StarterKit,
     Table,
     TableCell,
@@ -57,9 +53,10 @@ export const renderless = (
     CodeBlockLowlight,
     lowlight,
     VueNodeViewRenderer,
-    NodeViewContent,
-    nodeViewProps,
-    NodeViewWrapper,
+    // CodehighComp,
+    // NodeViewContent,
+    // nodeViewProps,
+    // NodeViewWrapper,
     Placeholder,
     codeHighlight
   }
@@ -140,9 +137,9 @@ export const renderless = (
       return {
         setP:
           (attributes) =>
-            ({ commands }) => {
-              return commands.setNode(this.name, attributes)
-            }
+          ({ commands }) => {
+            return commands.setNode(this.name, attributes)
+          }
       }
     }
   })
@@ -168,9 +165,9 @@ export const renderless = (
       return {
         setSize:
           (attributes) =>
-            ({ commands }) => {
-              return commands.setNode(this.name, attributes)
-            }
+          ({ commands }) => {
+            return commands.setNode(this.name, attributes)
+          }
       }
     }
   })
@@ -179,24 +176,24 @@ export const renderless = (
       return {
         bgColor: {
           default: null,
-          renderHTML: attributes => {
+          renderHTML: (attributes) => {
             if (!attributes.bgColor) {
               return {}
             }
             return {
-              style: `background: ${attributes.bgColor}`,
+              style: `background: ${attributes.bgColor}`
             }
-          },
+          }
         }
       }
     },
     addCommands() {
       return {
         setBackColor:
-          attributes =>
-            ({ commands }) => {
-              return commands.setMark(this.name, attributes)
-            }
+          (attributes) =>
+          ({ commands }) => {
+            return commands.setMark(this.name, attributes)
+          }
       }
     }
   })
@@ -281,18 +278,7 @@ export const renderless = (
     },
     ...props.options
   }
-  if (props.Collaboration) {
-    if (!window._yDoc) {
-      window._yDoc = new Y.Doc()
-    }
-    ydoc = window._yDoc
-    provider = new WebrtcProvider('tiny-examsple-document', ydoc)
-    defaultOptions.extensions.push(
-      Collaboration?.configure({
-        document: ydoc
-      }),
-    )
-  }
+
   let options = props.options ? Object.assign(defaultOptions, props.options) : defaultOptions
   const editor = new Editor(options)
 
