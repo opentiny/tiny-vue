@@ -128,7 +128,7 @@ export default {
     },
     {
       'demoId': 'size-medium',
-      'name': { 'zh-CN': 'select', 'en-US': 'small' },
+      'name': { 'zh-CN': '尺寸', 'en-US': 'small' },
       'desc': {
         'zh-CN':
           '<p>通过 <code>size</code> 属性定义输入框尺寸，可选项有 medium、small、mini 。\n通过 <code>options</code> 配置 Select 数据项，使用后不需要再配置 tiny-option。</p>\n',
