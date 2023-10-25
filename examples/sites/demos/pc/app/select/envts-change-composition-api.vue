@@ -12,7 +12,7 @@
   </tiny-select>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption, Modal } from '@opentiny/vue'
 
@@ -25,25 +25,25 @@ const options = ref([
 ])
 const value = ref('')
 
-function change() {
+const change = () => {
   Modal.message({
     message: 'changes事件'
   })
 }
 
-function clear() {
+const clear = () => {
   Modal.message({
     message: 'clear事件'
   })
 }
 
-function focus() {
+const focus = () => {
   Modal.message({
     message: 'focus事件'
   })
 }
 
-function blur() {
+const blur = () => {
   Modal.message({
     message: 'blur事件'
   })

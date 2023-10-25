@@ -12,7 +12,7 @@
   </tiny-select>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select, Option, Modal } from '@opentiny/vue'
 
 export default {

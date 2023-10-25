@@ -14,7 +14,7 @@
   </tiny-select>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref, onMounted } from 'vue'
 import { Select as TinySelect, Option as TinyOption } from '@opentiny/vue'
 
@@ -81,7 +81,7 @@ onMounted(() => {
   })
 })
 
-function remoteMethod(query) {
+const remoteMethod = (query) => {
   if (query !== undefined) {
     loading.value = true
     setTimeout(() => {

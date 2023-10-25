@@ -25,7 +25,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect } from '@opentiny/vue'
 
@@ -76,6 +76,7 @@ const gridOp = ref({
 <style scoped>
 .demo-select .tiny-select {
   width: 270px;
-  margin-right: 30px;
+  display: block;
+  margin: 8px;
 }
 </style>

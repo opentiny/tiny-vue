@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select, Option, Button } from '@opentiny/vue'
 
 export default {
