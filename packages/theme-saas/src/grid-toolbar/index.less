@@ -38,14 +38,14 @@
   }
 
   .@{grid-custom-prefix-cls} {
-    &__tabs {
+    .@{grid-custom-prefix-cls}__tabs {
       @apply pt-7;
 
       .@{grid-custom-prefix-cls}__tabs-head {
         @apply whitespace-nowrap;
         @apply m-0;
         @apply overflow-hidden;
-        width: 300px;
+        @apply w-144;
         @apply absolute;
         @apply left-0;
         @apply top-0;
@@ -82,15 +82,15 @@
 
       .@{grid-custom-prefix-cls}__tabs-body {
         .tabs-body-item {
-          height: 340px;
+          @apply h-96;
 
           .other-setting {
             @apply h-full;
-            border-top: 1px solid #d9d9d9;
-            border-bottom: 1px solid #d9d9d9;
-            padding: 30px 20px 20px 25px;
+            @apply border-y border-y-color-border-separator;
+            @apply p-6;
             @apply relative;
             @apply -top-px;
+            @apply box-border;
 
             .label {
               @apply mr-5;
@@ -108,7 +108,7 @@
                 @apply ~'pb-2.5';
                 @apply mb-2;
                 @apply text-color-none;
-                border-bottom: 1px solid #e8ebef;
+                @apply border-b border-b-color-border-separator;
                 @apply flex;
                 @apply justify-between;
 
@@ -120,13 +120,13 @@
                 .clear-all {
                   @apply text-color-brand;
                   @apply cursor-pointer;
-                  @apply ml-4;
+                  @apply ml-3;
                 }
 
                 span:not(.clear-all) {
                   @apply inline-block;
                   @apply text-center;
-                  width: 60px;
+                  @apply w-16;
                 }
               }
 
@@ -134,7 +134,7 @@
                 .@{input-prefix-cls}__inner {
                   @apply border-0;
                   @apply p-0;
-                  padding-left: 5px;
+                  @apply pl-2;
                   @apply h-6;
 
                   &:focus {
@@ -152,8 +152,9 @@
                   }
                 }
               }
+
               ul {
-                height: calc(100% - 20px);
+                height: calc(100% - theme('spacing.5'));
                 @apply overflow-y-auto;
 
                 li {
@@ -222,12 +223,12 @@
                   }
 
                   .dropdown-column {
-                    width: 60px;
+                    @apply w-16;
                     @apply text-center;
 
                     .is-text {
                       @apply inline-block;
-                      width: 60px;
+                      @apply w-16;
 
                       .set-btn.visibility-hidden {
                         @apply invisible;
@@ -244,7 +245,7 @@
                     @apply text-center;
                     @apply inline-block;
                     @apply invisible;
-                    width: 60px;
+                    @apply w-16;
                   }
 
                   &:hover {
@@ -349,15 +350,15 @@
       @apply ~'my-0.5';
       @apply mx-3;
       @apply flex;
-      justify-content: right;
+      @apply text-right;
       @apply ~'pr-2.5';
 
-      > button {
-        margin: 0 5px;
+      >button {
+        @apply my-0 mx-1;
       }
 
-      > span {
-        margin: 0 5px;
+      >span {
+        @apply my-0 mx-1;
       }
     }
   }
@@ -365,7 +366,7 @@
 
 .@{popover-prefix-cls}.grid-toolbar-template-popover {
   .radio-box {
-    @apply ~"mb-3.5";
+    @apply ~'mb-3.5';
   }
 
   .btn-box {

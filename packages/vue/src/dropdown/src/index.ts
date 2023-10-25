@@ -54,6 +54,7 @@ export const dropdownProps = {
     type: Boolean,
     default: false
   },
+  // tiny新增
   menuOptions: {
     type: Object,
     default: () => ({

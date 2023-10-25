@@ -129,7 +129,7 @@ export default {
         // 模拟接口请求回来的数据
         this.loading = false
 
-        const configs = this.$refs.auiGrid.getColumns()
+        const configs = this.$refs.tinyGrid.getColumns()
 
         // 字段 introduction 在字段 address 前面
         const result = [
@@ -154,10 +154,10 @@ export default {
         }
 
         // 更新个性化面板数据
-        this.$refs.auiGridToolbar.updateColumn(configs)
+        this.$refs.tinyGridToolbar.updateColumn(configs)
 
         // 更新表格列，第二个参数为 true 表示同时调整列顺序
-        this.$refs.auiGrid.reloadCustoms(configs, true)
+        this.$refs.tinyGrid.reloadCustoms(configs, true)
       }, 0)
     },
     getData({ page }) {

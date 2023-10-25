@@ -58,8 +58,14 @@ export default {
     },
     {
       'demoId': 'custom-search-types',
-      'name': { 'zh-CN': '自定义搜索类型的内容', 'en-US': 'Content of the user-defined search type' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'name': {
+        'zh-CN': '自定义搜索类型的内容',
+        'en-US': 'Content of the user-defined search type'
+      },
+      'desc': {
+        'zh-CN': '通过<code>type-value</code>属性设置搜索类型的默认值',
+        'en-US': 'Set the default value of the search type through the<code>type value</code>attribute'
+      },
       'codeFiles': ['custom-search-types.vue']
     },
     {
@@ -102,42 +108,36 @@ export default {
       'type': 'component',
       'properties': [
         {
-          'name': 'default-value',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '设置搜索输入框内的默认搜索值。',
-            'en-US': 'Set the default search value in the search text box.'
-          },
-          'demoId': ''
-        },
-        {
           'name': 'clearable',
           'type': 'boolean',
-          'defaultValue': '',
+          'defaultValue': 'false',
           'desc': {
-            'zh-CN': ' 属性设置显示清空图标按钮',
-            'en-US': 'The clear icon is displayed in attribute settings.'
+            'zh-CN': '设置是否显示清空图标按钮',
+            'en-US': 'Set whether to display the clear icon button'
           },
           'demoId': 'clearable'
         },
         {
-          'name': 'v-model',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '设置绑定的值。', 'en-US': 'Set the bound value.' },
-          'demoId': 'basic-usage'
-        },
-        {
           'name': 'mini',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '迷你模式，配置为true时，搜索默认显示为一个带图标的圆形按钮，点击后展开，默认 false 。',
             'en-US':
               'Mini mode. If this parameter is set to true, a round button with an icon is displayed by default. After you click the button, the button is displayed. The default value is false.'
           },
           'demoId': 'mini-mode'
+        },
+        {
+          'name': 'is-enter-search',
+          'type': 'boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '是否在按下键盘Enter键的时候触发search事件',
+            'en-US':
+              'Transparent mode. If this parameter is set to true, the border becomes transparent and is displayed semi-transparently after being collapsed. Generally, this parameter is used in scenarios with a background. The default value is false.'
+          },
+          'demoId': 'search-events'
         },
         {
           'name': 'placeholder',
@@ -161,26 +161,32 @@ export default {
           'demoId': 'search-types'
         },
         {
-          'name': 'is-enter-search',
-          'type': 'boolean',
-          'defaultValue': 'true',
-          'desc': {
-            'zh-CN': '是否在按下键盘Enter键的时候触发search事件',
-            'en-US':
-              'Transparent mode. If this parameter is set to true, the border becomes transparent and is displayed semi-transparently after being collapsed. Generally, this parameter is used in scenarios with a background. The default value is false.'
-          },
-          'demoId': 'search-events'
-        },
-        {
           'name': 'transparent',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN':
               '设置为透明模式，配置为true时，边框变为透明且收缩后半透明显示，一般用在带有背景的场景，默认 false 。',
             'en-US': ''
           },
           'demoId': 'transparent-mode'
+        },
+        {
+          'name': 'type-value',
+          'type': 'object',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '设置搜索类型的默认值。默认搜索类型的第一项【3.11.0新增】',
+            'en-US': 'Set default values for search types. First item of default search type [3.11.0 New]'
+          },
+          'demoId': 'custom-search-types'
+        },
+        {
+          'name': 'v-model',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '绑定搜索值。', 'en-US': 'Bind search values.' },
+          'demoId': 'basic-usage'
         }
       ],
       'events': [
@@ -194,6 +200,18 @@ export default {
               'Callback function triggered when input is complete in the input box; arg1:{object search type}, arg2:{string value in the current input box}'
           },
           'demoId': 'change-events'
+        },
+        {
+          'name': 'input',
+          'type': 'Function(arg1,arg2)',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN':
+              '在search组件输入实时触发的回调函数;arg1:{string 当前input框中值}，arg2:{object 搜索类型}【3.9.1新增】',
+            'en-US':
+              'Enter the callback function triggered in real time in the search component. arg1:{string value in the current input box}, arg2:{object search type} [added in 3.9.1]'
+          },
+          'demoId': ''
         },
         {
           'name': 'search',
@@ -216,18 +234,6 @@ export default {
               'Callback function triggered when the type of the search component is switched; arg1:{object search type}'
           },
           'demoId': 'select-events'
-        },
-        {
-          'name': 'input',
-          'type': 'Function(arg1,arg2)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '在search组件输入实时触发的回调函数;arg1:{string 当前input框中值}，arg2:{object 搜索类型}【3.9.1新增】',
-            'en-US':
-              'Enter the callback function triggered in real time in the search component. arg1:{string value in the current input box}, arg2:{object search type} [added in 3.9.1]'
-          },
-          'demoId': ''
         }
       ],
       'slots': [
@@ -239,18 +245,18 @@ export default {
           'demoId': 'custom-search-types'
         },
         {
-          'name': 'text',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '默认搜索类型插槽', 'en-US': 'Default search type slot' },
-          'demoId': 'show-selected-types'
-        },
-        {
           'name': 'prefix',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '左侧插槽', 'en-US': 'Left slot' },
           'demoId': 'slot-prefix'
+        },
+        {
+          'name': 'text',
+          'type': '',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '默认搜索类型插槽', 'en-US': 'Default search type slot' },
+          'demoId': 'show-selected-types'
         }
       ]
     }

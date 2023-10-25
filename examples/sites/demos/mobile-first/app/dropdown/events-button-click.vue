@@ -1,5 +1,5 @@
 <template>
-  <tiny-dropdown split-button @button-click="buttonClick">
+  <tiny-dropdown single-button @button-click="buttonClick">
     标准按钮
     <template #dropdown>
       <tiny-dropdown-menu>

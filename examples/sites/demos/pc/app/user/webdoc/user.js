@@ -33,8 +33,37 @@ export default {
       'codeFiles': ['multiple-users-tag.vue']
     },
     {
+      'demoId': 'hide-selected',
+      'name': { 'zh-CN': '隐藏已选择用户', 'en-US': '' },
+      'desc': {
+        'zh-CN':
+          '<p>设置 <code>hide-selected</code> 属性为 <code>true</code>，过滤搜索结果，已选择的人员不出现在搜索列表中。默认为 <code>false</code>，表示不过滤。</p>\n',
+        'en-US': '<p></p>\n'
+      },
+      'codeFiles': ['hide-selected.vue']
+    },
+    {
+      'demoId': 'multiple-users-hover-expand',
+      'name': { 'zh-CN': '折叠 Tag， hover 展开', 'en-US': 'Collapse Tag' },
+      'desc': {
+        'zh-CN':
+          '<p>多选时通过设置 <code>hover-expand</code> 为 true ，默认折叠 tag, hover 时展示所有 tag。tag 超出隐藏并展示 tooltip。</p>\n',
+        'en-US': '<p></p>\n'
+      },
+      'codeFiles': ['multiple-users-hover-expand.vue']
+    },
+    {
+      'demoId': 'allow-copy',
+      'name': { 'zh-CN': '单用户场景支持复制', 'en-US': '' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>allow-copy</code> 设置输入框账号可通过鼠标选中，然后按 Ctrl + C 或右键进行复制。</p>\n',
+        'en-US': '<p></p>\n'
+      },
+      'codeFiles': ['allow-copy.vue']
+    },
+    {
       'demoId': 'tag-copy',
-      'name': { 'zh-CN': 'user选择器选项可复制', 'en-US': 'User selector options can be copied' },
+      'name': { 'zh-CN': '多用户场景支持复制', 'en-US': 'User selector options can be copied' },
       'desc': {
         'zh-CN':
           '<p>通过 <code>tag-selectable</code> 输入框中已选择的选项可通过鼠标选择，然后按 Ctrl + C 或右键进行复制。</p>\n',
@@ -45,9 +74,10 @@ export default {
     },
     {
       'demoId': 'tag-copy-all',
-      'name': { 'zh-CN': 'user选择器选项可复制', 'en-US': 'User selector options can be copied' },
+      'name': { 'zh-CN': 'user选择器选项可一键复制', 'en-US': 'User selector options can be copied' },
       'desc': {
-        'zh-CN': '<p>设置 <code>copyable</code> 属性后，可以复制所有的 <code>tag</code> 文本内容以逗号分隔</p>\n',
+        'zh-CN':
+          '<p>设置 <code>copyable</code> 属性后，可以点击复制按钮复制所有的 <code>tag</code> 文本内容以逗号分隔</p>\n',
         'en-US':
           '<p>After the <code>copyable</code> attribute is set, all <code>tag</code> text contents can be copied and separated by commas.</p>\n'
       },
@@ -163,6 +193,15 @@ export default {
       'codeFiles': ['user-options.vue']
     },
     {
+      'demoId': 'no-data-text',
+      'name': { 'zh-CN': '自定义选自定义空数据文本项文本', 'en-US': '' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>no-data-text</code> 设置未查询到数据时的空数据提示。</p>\n',
+        'en-US': '<p></p>\n'
+      },
+      'codeFiles': ['no-data-text.vue']
+    },
+    {
       'demoId': 'custom-service',
       'name': { 'zh-CN': '自定义服务', 'en-US': 'Custom Service' },
       'desc': {
@@ -191,6 +230,35 @@ export default {
           '<p>You can use the <code>size</code> attribute to specify the size of the text box, including medium, small, and mini. </p>\n'
       },
       'codeFiles': ['user-select-size.vue']
+    },
+    {
+      'demoId': 'hidden-tips-disable',
+      'name': { 'zh-CN': '禁用多选不展示用户信息', 'en-US': '' },
+      'desc': {
+        'zh-CN':
+          '<p>设置 <code>show-tips</code> 属性可展示用户信息，默认展示。</p>\n<p>设置 <code>max-width</code> 属性可设置 tips 展示信息最大宽度，默认`200`。</p>\n',
+        'en-US': '<p></p>\n'
+      },
+      'codeFiles': ['hidden-tips-disable.vue']
+    },
+    {
+      'demoId': 'batch',
+      'name': { 'zh-CN': '合并请求用户信息', 'en-US': '' },
+      'desc': {
+        'zh-CN':
+          '<p>在进行批量发起用户信息查询时，例如同页面使用了多处 user 组件，通过配置 <code>batch</code> 为 <code>true</code> 将用户信息查询进行合并（组件内部会进行请求合并）。</p>\n',
+        'en-US': '<p></p>\n'
+      },
+      'codeFiles': ['batch.vue']
+    },
+    {
+      'demoId': 'display-only',
+      'name': { 'zh-CN': '只读', 'en-US': '' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>display-only</code> 属性设置只读态。</p>\n',
+        'en-US': '<p></p>\n'
+      },
+      'codeFiles': ['display-only.vue']
     }
   ],
   apis: [

@@ -62,7 +62,7 @@
 
 <script lang="js">
 import { defineComponent, reactive, toRefs, onMounted } from 'vue'
-import { cmpMenus } from '@demos/menus.js'
+import { cmpMenus } from '@menu/menus.js'
 import TinyInput from '@opentiny/vue-input'
 import noDataSvg from '@/assets/images/no-data.svg?url'
 import searchSvg from '@/assets/images/search.svg?url'

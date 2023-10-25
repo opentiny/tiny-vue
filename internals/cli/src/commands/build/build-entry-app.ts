@@ -3,6 +3,7 @@
  */
 import fs from 'fs-extra'
 import { EOL as endOfLine } from 'node:os'
+import minimist from 'minimist'
 import {
   getopentinyVersion,
   pathFromWorkspaceRoot,
@@ -12,6 +13,9 @@ import {
 } from '../../shared/utils'
 import { getComponents } from '../../shared/module-utils'
 import handlebarsRender from './handlebars.render'
+
+const argv = minimist(process.argv.slice(2))
+const { tiny_mode = 'pc' } = argv
 
 const version = getopentinyVersion({ key: 'version' })
 const outputDir = 'packages/vue'
@@ -49,7 +53,7 @@ export const install = (app, opts = {}) => {
 
 const buildFullRuntime = () => {
   const outputPath = pathFromWorkspaceRoot(outputDir, 'app.ts')
-  const components = getComponents('pc')
+  const components = getComponents(tiny_mode)
   const includeTemplate: string[] = []
   const componentsTemplate: string[] = []
 

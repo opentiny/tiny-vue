@@ -50,6 +50,33 @@ export const computedHideRequiredAsterisk =
     return props.hideRequiredAsterisk ?? designConfig?.hideRequiredAsterisk ?? false
   }
 
+export const computedValidateIcon =
+  ({ props, designConfig }: Pick<IFormRenderlessParams, 'props' | 'designConfig'>) =>
+  (): object | null => {
+    return props.validateIcon ?? designConfig?.icons?.validateIcon ?? null
+  }
+
+export const computedIsErrorInline =
+  ({ props, designConfig }: Pick<IFormRenderlessParams, 'props' | 'designConfig'>) =>
+  (): boolean => {
+    if (props.messageType) {
+      return props.messageType === 'inline'
+    }
+    if (typeof props.inlineMessage === 'boolean') {
+      return props.inlineMessage
+    }
+    return designConfig?.messageType === 'inline' || false
+  }
+
+export const computedIsErrorBlock =
+  ({ props, designConfig }: Pick<IFormRenderlessParams, 'props' | 'designConfig'>) =>
+  (): boolean => {
+    if (props.messageType) {
+      return props.messageType === 'block'
+    }
+    return designConfig?.messageType === 'block' || false
+  }
+
 export const created =
   ({ parent, state }: Pick<IFormRenderlessParams, 'parent' | 'state'>) =>
   (): void => {

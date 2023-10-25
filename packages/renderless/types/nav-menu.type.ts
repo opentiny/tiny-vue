@@ -41,10 +41,14 @@ export interface INavMenuState {
     marginLeft: number,
     isShowMore: ComputedRef<boolean>,
     popClass: ComputedRef<boolean>,
-    subMenus: ComputedRef<Array<menuItemType>>,
+    subMenus: Array<menuItemType>,
     menuStyle: ComputedRef<boolean>,
     popStyle: ComputedRef<boolean>,
     afterEach: (() => void) | null
+    tooltipVisible: boolean
+    tooltipContent: string | null
+    isSaaSTheme: boolean
+    menuClass: string
 }
 
 export interface INavMenuApi {
@@ -78,7 +82,8 @@ export interface INavMenuApi {
     willHideSubMenu: () => void,
     hideSubMenu: () => void,
     showSubMenu: (list: Array<menuItemType>, { more, index }: whitchSubMenuType, event: MouseEvent) => void
-
+    handleTitleMouseenter: ($event: MouseEvent) => void
+    handleTitleMouseleave: () => void
 }
 export interface fieldsType {
     textField: string,

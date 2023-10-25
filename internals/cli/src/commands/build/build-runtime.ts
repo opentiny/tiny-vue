@@ -1,11 +1,15 @@
 import path from 'node:path'
 import type { UserConfig } from 'vite'
 import { build } from 'vite'
+import minimist from 'minimist'
 import commonjs from '@rollup/plugin-commonjs'
 import babel from '@rollup/plugin-babel'
 import { logGreen } from '../../shared/utils'
 import type { BuildUiOption, BaseConfig } from './build-ui'
 import { pathFromPackages, getBaseConfig, requireModules } from './build-ui'
+
+const argv = minimist(process.argv.slice(2))
+const { tiny_mode = 'pc' } = argv
 
 async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope, min }) {
   const rootDir = pathFromPackages('')
@@ -54,7 +58,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
     baseConfig.define = Object.assign(baseConfig.define || {}, {
       'process.env.BUILD_TARGET': JSON.stringify(vueVersion !== '3' ? 'runtime' : 'component'),
       'process.env.NODE_ENV': JSON.stringify('production'),
-      'process.env.TINY_MODE': JSON.stringify('pc'),
+      'process.env.TINY_MODE': JSON.stringify(tiny_mode),
       'process.env.RUNTIME_VERSION': JSON.stringify(requireModules('packages/renderless/package.json').version),
       'process.env.COMPONENT_VERSION': JSON.stringify(requireModules('packages/vue/package.json').version)
     })
@@ -99,7 +103,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
               }
 
               if (/\.css$/.test(name ?? '')) {
-                return `style${min ? '.min' : ''}[extname]`
+                return `${tiny_mode === 'mobile-first' ? 'mobile-first-' : ''}style${min ? '.min' : ''}[extname]`
               }
 
               return 'style/[name]-[hash][extname]'
@@ -134,7 +138,7 @@ function getEntryTasks() {
     },
     {
       path: 'vue/app.ts',
-      libPath: 'tiny-vue'
+      libPath: tiny_mode === 'mobile-first' ? 'tiny-vue-mobile-first' : 'tiny-vue'
     }
   ]
 }

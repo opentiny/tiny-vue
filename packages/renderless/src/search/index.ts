@@ -81,7 +81,11 @@ export const clickOutside =
     }
   }
 
-export const setDefaultType = (searchTypes: ISearchValue[]): ISearchValue => {
+export const setDefaultType = (searchTypes: ISearchValue[], typeValue: ISearchValue): ISearchValue => {
+  if (typeValue && searchTypes.includes(typeValue)) {
+    return typeValue
+  }
+
   let type = {} as ISearchValue
 
   for (let i = 0, len = searchTypes.length; i < len; i++) {

@@ -7,7 +7,7 @@ declare module '*.vue' {
 }
 
 interface ImportMetaEnv {
-  readonly VITE_AUI_MODE: 'pc' | 'mobile' | 'mobile-first'
+  readonly VITE_TINY_MODE: 'pc' | 'mobile' | 'mobile-first'
   // 更多环境变量...
 }
 

@@ -16,12 +16,26 @@ import { typeOf } from '../common/type'
 import '../common/deps/requestAnimationFrame'
 import { rafThrottle } from '../image-viewer'
 
+const isSupportObjectFit = () => document.documentElement.style.objectFit !== undefined
+
 const isHtmlElement = (node: any): boolean => node && node.nodeType === Node.ELEMENT_NODE
 
 export const computedGetImageStyle =
-  ({ props }: Pick<IImageRenderlessParams, 'props'>) =>
+  ({ props, api }: Pick<IImageRenderlessParams, 'props' | 'api'>) =>
+  () => {
+    const { fit } = props
+
+    if (fit) {
+      return isSupportObjectFit() ? { 'object-fit': fit } : api.getImageStyle(fit)
+    }
+
+    return {}
+  }
+
+export const computedGetAlignCenter =
+  ({ props, constants }) =>
   () =>
-    props.fit ? { 'object-fit': props.fit } : {}
+    !isSupportObjectFit() && props.fit !== constants.FILL
 
 export const computedGetPreview = (props: IImageProps) => () =>
   Array.isArray(props.previewSrcList) && props.previewSrcList.length > 0
@@ -44,7 +58,7 @@ export const loadImage =
       }
     })
 
-    img.src = props.src!
+    img.src = props.src || ''
   }
 
 export const handleLoad =
@@ -114,7 +128,45 @@ export const removeLazyLoadListener = (state: IImageState) => () => {
   state._lazyLoadHandler = null
 }
 
-export const clickHandler = (state: IImageState) => () => (state.showViewer = true)
+/**
+ * simulate object-fit behavior to compatible with IE11 and other browsers which not support object-fit
+ */
+export const getImageStyle =
+  ({ state, vm, constants }: Pick<IImageRenderlessParams, 'state' | 'vm' | 'constants'>) =>
+  (fit) => {
+    const { imageWidth, imageHeight } = state
+    const { clientWidth: containerWidth, clientHeight: containerHeight } = vm.$el
+
+    if (!imageWidth || !imageHeight || !containerWidth || !containerHeight) {
+      return {}
+    }
+
+    const vertical = imageWidth / imageHeight < 1
+
+    if (fit === constants.SCALE_DOWN) {
+      const isSmaller = imageWidth < containerWidth && imageHeight < containerHeight
+      fit = isSmaller ? constants.NONE : constants.CONTAIN
+    }
+
+    if (fit === constants.NONE) {
+      return { width: 'auto', height: 'auto' }
+    }
+
+    if (fit === constants.CONTAIN) {
+      return vertical ? { width: 'auto' } : { height: 'auto' }
+    }
+
+    if (fit === constants.COVER) {
+      return vertical ? { height: 'auto' } : { width: 'auto' }
+    }
+
+    return {}
+  }
+
+export const clickHandler = (state: IImageState) => () => {
+  state.showViewer = true
+  state.mfPreviewVisible = true
+}
 
 export const closeViewer = (state: IImageState) => () => (state.showViewer = false)
 

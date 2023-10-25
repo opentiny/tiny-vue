@@ -1,6 +1,6 @@
 <template>
   <div
-    data-tag="aui-cell"
+    data-tag="tiny-cell"
     class="border-0 border-color-border rounded relative w-full h-7 leading-7 sm:leading-6.5 pr-5 sm:pr-7 cursor-pointer line-clamp-1 pl-3"
     :class="[
       m(
@@ -12,7 +12,7 @@
     @click="state.isDisabled ? '' : $emit('click', $event)"
   >
     {{ state.isDisplayOnly ? data || '-' : data || placeholder }}
-    <div data-tag="aui-cell-icon" v-if="!(state.isDisplayOnly || state.isDisabled)">
+    <div data-tag="tiny-cell-icon" v-if="!(state.isDisplayOnly || state.isDisabled)">
       <slot name="icon">
         <component
           :is="icon"
