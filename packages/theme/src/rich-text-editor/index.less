@@ -70,6 +70,10 @@
     background: transparent;
     cursor: pointer;
 
+    svg, input {
+      cursor: pointer;
+    }
+
     &:not(:disabled):hover,
     &.is-active {
       background-color: #d2e4ff;
@@ -100,6 +104,20 @@
     vertical-align: middle;
     overflow: hidden;
     display: inline-block;
+  }
+
+  .tippy-box {
+    .tippy-content {
+      .bubble-menu {
+        button {
+          border-width: 1px;
+          border-left: none;
+        }
+        &:nth-child(1) {
+          border-left-width: 1px;
+        }
+      }
+    }
   }
 }
 
@@ -353,7 +371,7 @@
 // 富文本编辑器的主题区域，需要对高度进行调整，达到融为一体
 .tiny-rich-text-editor__container {
   overflow: auto;
-  padding: 0 10px;
+  padding: 10px;
   height: 100%;
   border: 1px solid var(--ti-rich-text-editor-box-outline-color);
   border-top: 0;
@@ -399,6 +417,27 @@
     h5,
     h6 {
       line-height: 1.1;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1;
+
+      &[level='1'] {
+        line-height: 1;
+      }
+
+      &[level='1.5'] {
+        line-height: 1.5;
+      }
+
+      &[level='2'] {
+        line-height: 2;
+      }
+
+      &[level='2.5'] {
+        line-height: 2.5;
+      }
     }
 
     code {
