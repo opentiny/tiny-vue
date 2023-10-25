@@ -82,7 +82,6 @@
             id="tiny-color"
             type="color"
             @input="state.editor.chain().focus().setColor($event.target.value).run()"
-            :value="state.editor?.getAttributes('textStyle').color"
           />
         </button>
         <button
