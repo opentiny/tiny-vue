@@ -199,7 +199,7 @@ export const renderless = (
     extensions: [
       StarterKit?.configure({
         // 开启多人协作功能要关闭默认的history模式
-        history: false
+        history: true
       }),
       Table.configure({
         resizable: true
