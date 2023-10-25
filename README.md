@@ -141,6 +141,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="12.5%"><a href="https://allenli178.top"><img src="https://avatars.githubusercontent.com/u/53218750?v=4?s=100" width="100px;" alt="YuYan Li"/><br /><sub><b>YuYan Li</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=allenli178" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/shonen7"><img src="https://avatars.githubusercontent.com/u/145949377?v=4?s=100" width="100px;" alt="shonen7"/><br /><sub><b>shonen7</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=shonen7" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/xlearns"><img src="https://avatars.githubusercontent.com/u/62782792?v=4?s=100" width="100px;" alt="xlearns"/><br /><sub><b>xlearns</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=xlearns" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/ianxinnew"><img src="https://avatars.githubusercontent.com/u/146069396?v=4?s=100" width="100px;" alt="tianxin"/><br /><sub><b>tianxin</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=ianxinnew" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
