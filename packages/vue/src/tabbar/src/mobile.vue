@@ -9,9 +9,10 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  -->
-<template>
+ <template>
   <div :class="{ 'tiny-mobile-tabbar-placeholder': placeholder }" :style="{ height: state.height }">
     <div
+      ref="tabbar"
       class="tiny-mobile-tabbar"
       :class="[{ 'is-border': border }, { unfit: !state.fit, 'tiny-mobile-tabbar--fixed': fixed }]"
     >
@@ -27,6 +28,7 @@ import '@opentiny/vue-theme-mobile/tabbar/index.less'
 
 export default defineComponent({
   name: $prefix + 'Tabbar',
+  componentName: 'Tabbar',
   props: {
     activeColor: String,
     border: {
