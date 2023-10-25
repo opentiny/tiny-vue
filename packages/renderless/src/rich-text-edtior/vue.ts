@@ -32,10 +32,6 @@ export const renderless = (
   { vm, emit, parent },
   {
     Editor,
-    Collaboration,
-    CodehighComp,
-    Y,
-    WebrtcProvider,
     StarterKit,
     Table,
     TableCell,
@@ -57,9 +53,10 @@ export const renderless = (
     CodeBlockLowlight,
     lowlight,
     VueNodeViewRenderer,
-    NodeViewContent,
-    nodeViewProps,
-    NodeViewWrapper,
+    // CodehighComp,
+    // NodeViewContent,
+    // nodeViewProps,
+    // NodeViewWrapper,
     Placeholder,
     codeHighlight
   }
@@ -98,8 +95,6 @@ export const renderless = (
   if (props.customToolBar) {
     toolBar = props.customToolBar
   }
-  let ydoc = null
-  let provider = null
   // 自定义图片
   const CustomImage = Image.extend({
     addAttributes() {
@@ -140,9 +135,9 @@ export const renderless = (
       return {
         setP:
           (attributes) =>
-            ({ commands }) => {
-              return commands.setNode(this.name, attributes)
-            }
+          ({ commands }) => {
+            return commands.setNode(this.name, attributes)
+          }
       }
     }
   })
@@ -168,9 +163,9 @@ export const renderless = (
       return {
         setSize:
           (attributes) =>
-            ({ commands }) => {
-              return commands.setNode(this.name, attributes)
-            }
+          ({ commands }) => {
+            return commands.setNode(this.name, attributes)
+          }
       }
     }
   })
@@ -179,24 +174,24 @@ export const renderless = (
       return {
         bgColor: {
           default: null,
-          renderHTML: attributes => {
+          renderHTML: (attributes) => {
             if (!attributes.bgColor) {
               return {}
             }
             return {
-              style: `background: ${attributes.bgColor}`,
+              style: `background: ${attributes.bgColor}`
             }
-          },
+          }
         }
       }
     },
     addCommands() {
       return {
         setBackColor:
-          attributes =>
-            ({ commands }) => {
-              return commands.setMark(this.name, attributes)
-            }
+          (attributes) =>
+          ({ commands }) => {
+            return commands.setMark(this.name, attributes)
+          }
       }
     }
   })
@@ -204,7 +199,7 @@ export const renderless = (
     extensions: [
       StarterKit?.configure({
         // 开启多人协作功能要关闭默认的history模式
-        history: false
+        history: true
       }),
       Table.configure({
         resizable: true
@@ -281,19 +276,9 @@ export const renderless = (
     },
     ...props.options
   }
-  if (props.Collaboration) {
-    if (!window._yDoc) {
-      window._yDoc = new Y.Doc()
-    }
-    ydoc = window._yDoc
-    provider = new WebrtcProvider('tiny-examsple-document', ydoc)
-    defaultOptions.extensions.push(
-      Collaboration?.configure({
-        document: ydoc
-      }),
-    )
-  }
-  const editor = new Editor(props.options ? props.options : defaultOptions)
+
+  let options = props.options ? Object.assign(defaultOptions, props.options) : defaultOptions
+  const editor = new Editor(options)
 
   const box = ref(null)
   const fontSize = ref('16px')

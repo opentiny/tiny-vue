@@ -7,7 +7,7 @@
   <tiny-divider content-position="right">文案</tiny-divider>
 </template>
 
-<script lang="jsx">
+<script>
 import { Divider } from '@opentiny/vue'
 
 export default {

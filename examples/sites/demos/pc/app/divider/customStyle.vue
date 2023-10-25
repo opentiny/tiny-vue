@@ -9,7 +9,7 @@
   <tiny-divider content-color="#ffffff" content-background-color="#7693f5">文案</tiny-divider>
 </template>
 
-<script lang="jsx">
+<script>
 import { Divider } from '@opentiny/vue'
 
 export default {
