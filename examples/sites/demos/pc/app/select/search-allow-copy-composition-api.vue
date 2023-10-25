@@ -19,7 +19,7 @@
       </tiny-option>
     </tiny-select>
 
-    <p>复制到此处：</p>
+    <p class="font-style">复制到此处：</p>
     <input class="custom" type="text" />
   </div>
 </template>
@@ -52,3 +52,10 @@ const filter = (value) => {
   }
 }
 </script>
+
+<style scoped>
+.font-style {
+  font-size: 14px;
+  margin: 8px;
+}
+</style>

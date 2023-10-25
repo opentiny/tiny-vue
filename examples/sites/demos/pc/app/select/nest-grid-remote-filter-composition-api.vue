@@ -99,6 +99,7 @@ const filter = (value) => {
 <style scoped>
 .demo-select .tiny-select {
   width: 270px;
-  margin-right: 30px;
+  display: block;
+  margin: 8px;
 }
 </style>

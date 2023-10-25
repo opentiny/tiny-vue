@@ -12,7 +12,7 @@
   >
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
-  <p>复制到此处：</p>
+  <p class="font-style">复制到此处：</p>
   <input class="custom" type="text" />
 </template>
 
@@ -97,3 +97,10 @@ const remoteMethod = (query) => {
   }
 }
 </script>
+
+<style scoped>
+.font-style {
+  font-size: 14px;
+  margin: 8px;
+}
+</style>
