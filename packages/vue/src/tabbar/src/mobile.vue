@@ -51,7 +51,7 @@ export default defineComponent({
     zIndex: [Number, String]
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api, mono: true })
   }
 })
 </script>
