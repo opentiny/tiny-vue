@@ -35,7 +35,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect } from '@opentiny/vue'
 
@@ -68,7 +68,7 @@ allData.value = Array.from({ length: 10000 }, (a, i) => {
   }
 })
 
-function remoteMethod(value) {
+const remoteMethod = (value) => {
   let allData = Array.from({ length: 1000 }, (a, i) => {
     return {
       id: '00' + i,
@@ -89,7 +89,7 @@ function remoteMethod(value) {
   })
 }
 
-function filter(value) {
+const filter = (value) => {
   return allData.value.filter((item) => {
     return !item.city.includes(value)
   })
