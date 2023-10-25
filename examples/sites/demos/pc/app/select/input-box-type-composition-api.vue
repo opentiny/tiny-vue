@@ -1,14 +1,14 @@
 <template>
   <div>
-    <p>下划线默认</p>
+    <p class="font-style">下划线默认</p>
     <tiny-select v-model="value1" input-box-type="underline" clearable placeholder="请选择">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
-    <p>下划线禁用</p>
+    <p class="font-style">下划线禁用</p>
     <tiny-select v-model="value2" input-box-type="underline" disabled placeholder="请选择">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
-    <p>下划线多选</p>
+    <p class="font-style">下划线多选</p>
     <tiny-select v-model="value3" input-box-type="underline" multiple placeholder="请选择">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
@@ -30,3 +30,10 @@ const value1 = ref('')
 const value2 = ref('')
 const value3 = ref([])
 </script>
+
+<style scoped>
+.font-style {
+  font-size: 14px;
+  margin: 8px;
+}
+</style>

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <p class="fontStyle">未设置属性is-drop-inherit-width，下拉选项默认撑开：</p>
+    <p class="font-style">未设置属性is-drop-inherit-width，下拉选项默认撑开：</p>
     <tiny-select v-model="value" placeholder="请选择">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
-    <p class="fontStyle">设置了属性is-drop-inherit-width，下拉选项跟随输入框宽度：</p>
+    <p class="font-style">设置了属性is-drop-inherit-width，下拉选项跟随输入框宽度：</p>
     <tiny-select v-model="value" placeholder="请选择" is-drop-inherit-width>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
@@ -38,8 +38,8 @@ export default {
 }
 </script>
 
-<style>
-.fontStyle {
+<style scoped>
+.font-style {
   font-size: 14px;
   margin: 8px;
 }

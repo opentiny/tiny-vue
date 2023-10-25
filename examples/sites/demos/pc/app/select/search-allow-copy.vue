@@ -19,7 +19,7 @@
       </tiny-option>
     </tiny-select>
 
-    <p class="fontStyle">复制到此处：</p>
+    <p class="font-style">复制到此处：</p>
     <tiny-input class="custom" type="text" />
   </div>
 </template>
@@ -63,8 +63,8 @@ export default {
 }
 </script>
 
-<style>
-.fontStyle {
+<style scoped>
+.font-style {
   font-size: 14px;
   margin: 8px;
 }

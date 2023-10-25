@@ -10,7 +10,7 @@
       >
       </tiny-option>
     </tiny-select>
-    <p>复制到此处：</p>
+    <p class="font-style">复制到此处：</p>
     <input class="copy-value" type="text" />
   </div>
 </template>
@@ -43,3 +43,10 @@ function filter(value) {
   }
 }
 </script>
+
+<style scoped>
+.font-style {
+  font-size: 14px;
+  margin: 8px;
+}
+</style>
