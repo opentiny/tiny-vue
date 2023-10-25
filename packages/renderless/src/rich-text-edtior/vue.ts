@@ -95,8 +95,6 @@ export const renderless = (
   if (props.customToolBar) {
     toolBar = props.customToolBar
   }
-  let ydoc = null
-  let provider = null
   // 自定义图片
   const CustomImage = Image.extend({
     addAttributes() {
