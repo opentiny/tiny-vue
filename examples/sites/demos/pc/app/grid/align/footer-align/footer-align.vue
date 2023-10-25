@@ -1,11 +1,11 @@
 <template>
-  <tiny-grid :data="tableData" show-footer :footer-method="footerMethod" border footer-align="center">
+  <tiny-grid :data="tableData" show-footer :footer-method="footerMethod" border footer-align="left">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
-    <tiny-grid-column field="employees" title="员工数" footer-align="left"></tiny-grid-column>
-    <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
-    <tiny-grid-column field="city" title="城市"></tiny-grid-column>
+    <tiny-grid-column field="employees" title="员工数（右对齐）" footer-align="right"></tiny-grid-column>
+    <tiny-grid-column field="age" title="平均年龄（左对齐）"></tiny-grid-column>
+    <tiny-grid-column field="wages" title="平均工资（居中对齐）" footer-align="center"></tiny-grid-column>
   </tiny-grid>
 </template>
 
@@ -23,58 +23,58 @@ export default {
         {
           id: '1',
           name: 'GFD科技YX公司',
-          city: '福州',
+          wages: 6300,
           employees: 800,
-          createdDate: '2014-04-30 00:56:00'
+          age: 35
         },
         {
           id: '2',
           name: 'WWW科技YX公司',
-          city: '深圳',
+          wages: 8600,
           employees: 300,
-          createdDate: '2016-07-08 12:36:22'
+          age: 30
         },
         {
           id: '3',
           name: 'RFV有限责任公司',
-          city: '中山',
+          wages: 4800,
           employees: 1300,
-          createdDate: '2014-02-14 14:14:14'
+          age: 43
         },
         {
           id: '4',
           name: 'TGB科技YX公司',
-          city: '龙岩',
+          wages: 6500,
           employees: 360,
-          createdDate: '2013-01-13 13:13:13'
+          age: 26
         },
         {
           id: '5',
           name: 'YHN科技YX公司',
-          city: '韶关',
+          wages: 7100,
           employees: 810,
-          createdDate: '2012-12-12 12:12:12'
+          age: 36
         },
         {
           id: '6',
           name: 'WSX科技YX公司',
-          city: '黄冈',
+          wages: 5800,
           employees: 800,
-          createdDate: '2011-11-11 11:11:11'
+          age: 29
         },
         {
           id: '7',
           name: 'KBG物业YX公司',
-          city: '赤壁',
+          wages: 8800,
           employees: 400,
-          createdDate: '2016-04-30 23:56:00'
+          age: 44
         },
         {
           id: '8',
           name: '深圳市福德宝网络技术YX公司',
-          city: '厦门',
+          wages: 9100,
           employees: 540,
-          createdDate: '2016-06-03 13:53:25'
+          age: 25
         }
       ]
     }
@@ -91,6 +91,14 @@ export default {
             return Math.floor(data.map((item) => item[column.property]).reduce((acc, item) => acc + item) / data.length)
           }
 
+          if (column.property === 'age') {
+            return Math.floor(data.map((item) => item[column.property]).reduce((acc, item) => acc + item) / data.length)
+          }
+          
+          if (column.property === 'wages') {
+            return Math.floor(data.map((item) => item[column.property]).reduce((acc, item) => acc + item) / data.length)
+          }
+
           return null
         }),
         columns.map((column, columnIndex) => {
@@ -99,6 +107,14 @@ export default {
           }
 
           if (column.property === 'employees') {
+            return data.map((item) => item[column.property]).reduce((acc, item) => acc + item)
+          }
+
+          if (column.property === 'age') {
+            return data.map((item) => item[column.property]).reduce((acc, item) => acc + item)
+          }
+
+          if (column.property === 'wages') {
             return data.map((item) => item[column.property]).reduce((acc, item) => acc + item)
           }
 
