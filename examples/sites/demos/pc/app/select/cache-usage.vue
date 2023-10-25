@@ -38,7 +38,7 @@ export default {
     }
   },
   methods: {
-    cacheChange: () => {
+    cacheChange() {
       this.cacheValue = window.localStorage.getItem(`tiny_memorize_${this.cacheOp.key}`)
     }
   }

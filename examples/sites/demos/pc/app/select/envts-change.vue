@@ -33,22 +33,22 @@ export default {
     }
   },
   methods: {
-    change:() => {
+    change() {
       Modal.message({
         message: 'changes事件'
       })
     },
-    clear:() => {
+    clear() {
       Modal.message({
         message: 'clear事件'
       })
     },
-    focus:() => {
+    focus() {
       Modal.message({
         message: 'focus事件'
       })
     },
-    blur:() => {
+    blur() {
       Modal.message({
         message: 'blur事件'
       })

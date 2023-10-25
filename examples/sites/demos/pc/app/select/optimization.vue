@@ -37,7 +37,7 @@ export default {
     }
   },
   methods: {
-    onChange:(value) => {
+    onChange(value) {
       Modal.message(JSON.stringify(value))
     }
   }

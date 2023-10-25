@@ -43,7 +43,7 @@ export default {
     }
   },
   methods: {
-    clickItem:(value) => {
+    clickItem(value) {
       MemorizeInstance.updateByKey(value)
       this.cacheValue = window.localStorage.getItem('tiny_memorize_test456')
     }

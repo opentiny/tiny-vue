@@ -65,7 +65,7 @@ export default {
     }
   },
   methods: {
-    filter:(value, data) => {
+    filter(value, data) {
       if (!value) return true
 
       return data.label.includes(value)

@@ -24,7 +24,7 @@ export default {
     TinySelect: Select
   },
   methods: {
-    filter:(value) => {
+    filter(value) {
       if (!value) {
         return this.gridOpRadio.data
       }

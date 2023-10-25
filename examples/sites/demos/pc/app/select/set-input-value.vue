@@ -29,7 +29,7 @@ export default {
     }
   },
   methods: {
-    click:() => {
+    click() {
       this.value = ['选项4']
     }
   }

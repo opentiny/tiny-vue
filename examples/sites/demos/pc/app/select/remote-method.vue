@@ -88,7 +88,7 @@ export default {
     })
   },
   methods: {
-    remoteMethod:(query) => {
+    remoteMethod(query) {
       if (query !== undefined) {
         this.loading = true
         setTimeout(() => {

@@ -36,7 +36,7 @@ export default {
     }
   },
   methods: {
-    filter:(value) => {
+    filter(value) {
       const select = this.$refs.select
 
       if (value) {

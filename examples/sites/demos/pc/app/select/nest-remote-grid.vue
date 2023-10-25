@@ -41,7 +41,7 @@ export default {
     TinySelect: Select
   },
   methods: {
-    remoteMethod:(query) => {
+    remoteMethod(query) {
       if (query !== undefined) {
         this.loading = true
 

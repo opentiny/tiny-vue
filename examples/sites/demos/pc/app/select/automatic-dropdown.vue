@@ -29,7 +29,7 @@ export default {
     }
   },
   methods: {
-    onFocus:() => {
+    onFocus() {
       this.$refs.selectDom.focus()
     }
   }
