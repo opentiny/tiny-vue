@@ -384,6 +384,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "vaebe",
+      "name": "vaebe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52314078?v=4",
+      "profile": "https://github.com/vaebe",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 8,
