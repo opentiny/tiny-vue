@@ -165,6 +165,9 @@
     min-width: var(--ti-dialog-box-drawer-min-width);
     max-width: var(--ti-dialog-box-drawer-max-width);
 
+    display: flex;
+    flex-direction: column;
+
     .@{dialog-box-prefix-cls}__header,
     .@{dialog-box-prefix-cls}__body,
     .@{dialog-box-prefix-cls}__footer {
@@ -187,13 +190,13 @@
     }
 
     .@{dialog-box-prefix-cls}__body {
+      flex: 1;
+      overflow: auto;
       padding: var(--ti-dialog-box-drawer-body-padding-top) var(--ti-dialog-box-drawer-body-padding-right)
         var(--ti-dialog-box-drawer-body-padding-bottom) var(--ti-dialog-box-drawer-body-padding-left);
     }
 
     .@{dialog-box-prefix-cls}__footer {
-      position: absolute;
-      bottom: 0;
       padding: var(--ti-dialog-box-drawer-footer-padding-top) var(--ti-dialog-box-drawer-footer-padding-right)
         var(--ti-dialog-box-drawer-footer-padding-bottom) var(--ti-dialog-box-drawer-footer-padding-left);
       border-top: 1px solid var(--ti-dialog-box-drawer-divider-border-color);
