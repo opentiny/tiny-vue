@@ -25,6 +25,12 @@ export default {
       'name': { 'zh-CN': '编辑器插槽', 'en-US': 'Editor slot' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['slot/editor-slot.vue']
+    },
+    {
+      'demoId': 'slot-header-slot',
+      'name': { 'zh-CN': '表头插槽', 'en-US': 'Table header slot' },
+      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'codeFiles': ['slot/tableHeader-slot.vue']
     }
   ],
   apis: [{ 'name': 'grid-slot', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
