@@ -45,7 +45,6 @@ export const loadImage =
   () => {
     state.loading = true
     state.error = false
-
     const img = new Image()
 
     img.onload = (event) => api.handleLoad(event, img)
@@ -67,7 +66,6 @@ export const handleLoad =
     state.imageWidth = img.width
     state.imageHeight = img.height
     state.loading = false
-
     emit('load', event)
   }
 

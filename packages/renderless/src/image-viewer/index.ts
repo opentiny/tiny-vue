@@ -467,10 +467,14 @@ export const getImageWidth =
       }
 
       state.imageList = vm.$refs.viewerItem
-    } else {
+    } else if (mode === 'mobile') {
       imageW = parent.$el.querySelector('.tiny-mobile-image-viewer__canvas').offsetWidth
 
       state.imageList = parent.$el.querySelectorAll('.tiny-mobile-image-viewer__item')
+    } else {
+      imageW = parent.$el.querySelector('.tiny-image-viewer__canvas').offsetWidth
+
+      state.imageList = parent.$el.querySelectorAll('.tiny-image-viewer__img')
     }
 
     state.imageItemWidth = imageW
