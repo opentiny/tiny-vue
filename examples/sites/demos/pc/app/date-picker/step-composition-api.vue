@@ -20,7 +20,7 @@ const step = ref({
   hour: 2,
   minute: 5
 })
-const value = ref([])
+const value = ref('')
 </script>
 
 <style scoped>
