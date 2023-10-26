@@ -435,7 +435,6 @@ const gridData = {
   groupFolds: [],
   // 所有列已禁用
   headerCheckDisabled: false,
-  id: uniqueId(),
   // 是否全选
   isAllSelected: false,
   // 多选属性，有选中且非全选状态
@@ -741,7 +740,7 @@ export default {
     }
   },
   data() {
-    return extend(true, {}, gridData)
+    return extend(true, { id: uniqueId() }, gridData)
   },
   computed: {
     bodyCtxMenu() {
