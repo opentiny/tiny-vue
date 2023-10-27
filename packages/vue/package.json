@@ -223,6 +223,7 @@
     "@opentiny/vue-time-select": "workspace:~",
     "@opentiny/vue-time-spinner": "workspace:~",
     "@opentiny/vue-timeline-item": "workspace:~",
+    "@opentiny/vue-toast": "workspace:~",
     "@opentiny/vue-toggle-menu": "workspace:~",
     "@opentiny/vue-tooltip": "workspace:~",
     "@opentiny/vue-top-box": "workspace:~",

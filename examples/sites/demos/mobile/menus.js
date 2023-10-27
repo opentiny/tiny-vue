@@ -93,7 +93,8 @@ export const cmpMenus = [
       { name: 'Badge', nameCn: '徽章', key: 'badge' },
       { name: 'Loading', nameCn: '加载', key: 'loading' },
       { name: 'Modal', nameCn: '模态框', key: 'modal' },
-      { name: 'Popover', nameCn: '气泡', key: 'popover' }
+      { name: 'Popover', nameCn: '气泡', key: 'popover' },
+      { name: 'Toast', nameCn: '轻提示', key: 'toast' }
     ]
   },
   {
