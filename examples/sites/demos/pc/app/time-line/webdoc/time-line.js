@@ -41,6 +41,24 @@ export default {
       'codeFiles': ['vertical-step.vue']
     },
     {
+      'demoId': 'shape',
+      'name': { 'zh-CN': '圆点外观', 'en-US': 'Appearance of Node' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>shape</code> 属性设置竖向时间线节点的外观风格。</p>',
+        'en-US': '<p>Use the <code>shape</code> attribute to set the appearance of a vertical time line node. </p>'
+      },
+      'codeFiles': ['shape.vue']
+    },
+    {
+      'demoId': 'status',
+      'name': { 'zh-CN': '节点状态', 'en-US': 'Status of Node' },
+      'desc': {
+        'zh-CN': '<p>在单项数据中使用 <code>status</code> 指定对应节点的状态.</p>',
+        'en-US': '<p>Use the <code>shape</code> attribute to set the appearance of a vertical time line node. </p>'
+      },
+      'codeFiles': ['status.vue']
+    },
+    {
       'demoId': 'vertical-step-reverse',
       'name': { 'zh-CN': '竖向时间线的方向', 'en-US': 'Direction of the vertical timeline' },
       'desc': {
@@ -142,6 +160,16 @@ export default {
           'defaultValue': '',
           'desc': { 'zh-CN': '设置时间线步骤条数据', 'en-US': 'Set timeline step bar data' },
           'demoId': 'basic-usage'
+        },
+        {
+          'name': 'shape',
+          'type': 'string',
+          'defaultValue': 'circle',
+          'desc': {
+            'zh-CN': '圆点外形: 空心圆形或实心圆点，分别对应 circle | dot',
+            'en-US': 'Set the appearance of point, optional values include circle and dot'
+          },
+          'demoId': 'shape'
         },
         {
           'name': 'vertical',

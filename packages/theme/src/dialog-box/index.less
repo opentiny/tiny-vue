@@ -22,7 +22,7 @@
   border: 1px solid transparent;
   border-radius: var(--ti-dialog-box-border-radius);
   box-shadow: var(--ti-dialog-box-shadow);
-  overflow: scroll;
+  overflow: hidden;
 
   &__wrapper {
     .component-css-vars-dialog-box();
@@ -43,6 +43,9 @@
     height: 100vh;
 
     .@{dialog-box-prefix-cls}__footer {
+      position: absolute;
+      left: 0;
+      bottom: 0;
       width: 100vw;
     }
   }
@@ -124,7 +127,6 @@
     margin-bottom: var(--ti-dialog-box-body-margin-bottom);
     color: var(--ti-dialog-box-body-text-color);
     font-size: var(--ti-dialog-box-body-font-size);
-    overflow: auto;
 
     .@{css-prefix}upload {
       overflow: hidden;
@@ -163,6 +165,9 @@
     min-width: var(--ti-dialog-box-drawer-min-width);
     max-width: var(--ti-dialog-box-drawer-max-width);
 
+    display: flex;
+    flex-direction: column;
+
     .@{dialog-box-prefix-cls}__header,
     .@{dialog-box-prefix-cls}__body,
     .@{dialog-box-prefix-cls}__footer {
@@ -185,6 +190,8 @@
     }
 
     .@{dialog-box-prefix-cls}__body {
+      flex: 1;
+      overflow: auto;
       padding: var(--ti-dialog-box-drawer-body-padding-top) var(--ti-dialog-box-drawer-body-padding-right)
         var(--ti-dialog-box-drawer-body-padding-bottom) var(--ti-dialog-box-drawer-body-padding-left);
     }
@@ -205,6 +212,14 @@
 body:not(.popup-parent--hidden) {
   .v-modal {
     pointer-events: none;
+  }
+
+  .@{dialog-box-prefix-cls}__wrapper {
+    pointer-events: none;
+
+    .@{dialog-box-prefix-cls} {
+      pointer-events: auto;
+    }
   }
 }
 

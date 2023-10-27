@@ -31,7 +31,7 @@
   </tiny-layout>
 </template>
 
-<script lang="jsx">
+<script>
 import { Layout, Row, Col } from '@opentiny/vue'
 
 export default {

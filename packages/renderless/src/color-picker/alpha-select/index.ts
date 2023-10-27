@@ -1,9 +1,7 @@
-import type { IColorSelectPanel } from "@/types";
+import type { IColorSelectPanel } from '@/types'
 
 export const calcLeftByAlpha = (wrapper: HTMLElement, thumb: HTMLElement, alpha: number) => {
-  return Math.round(
-    (alpha * (wrapper.offsetWidth - thumb.offsetWidth / 2)) / 100
-  )
+  return Math.round((alpha * (wrapper.offsetWidth - thumb.offsetWidth / 2)) / 100)
 }
 
 export const updateThumb = (alpha: number, thumb: HTMLElement, wrapper: HTMLElement) => {
@@ -11,7 +9,9 @@ export const updateThumb = (alpha: number, thumb: HTMLElement, wrapper: HTMLElem
 }
 
 export const onDrag = (
-  event: MouseEvent, bar: IColorSelectPanel<HTMLElement>, thumb: IColorSelectPanel<HTMLElement>,
+  event: MouseEvent,
+  bar: IColorSelectPanel<HTMLElement>,
+  thumb: IColorSelectPanel<HTMLElement>,
   alpha: IColorSelectPanel<number>
 ) => {
   const rect = bar.value.getBoundingClientRect()
@@ -19,7 +19,5 @@ export const onDrag = (
   let left = clientX - rect.left
   left = Math.max(thumb.value.offsetWidth / 2, left)
   left = Math.min(left, rect.width - thumb.value.offsetWidth / 2)
-  alpha.value = Math.round(
-    ((left - thumb.value.offsetWidth / 2) / (rect.width - thumb.value.offsetWidth)) * 100
-  )
+  alpha.value = Math.round(((left - thumb.value.offsetWidth / 2) / (rect.width - thumb.value.offsetWidth)) * 100)
 }

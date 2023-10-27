@@ -82,7 +82,6 @@
             id="tiny-color"
             type="color"
             @input="state.editor.chain().focus().setColor($event.target.value).run()"
-            :value="state.editor?.getAttributes('textStyle').color"
           />
         </button>
         <button
@@ -91,7 +90,7 @@
           class="color-button"
         >
           <label for="tiny--back-color">
-            <TinyIconRichTextColor></TinyIconRichTextColor>
+            <TinyIconRichbackgroundColor></TinyIconRichbackgroundColor>
           </label>
           <input
             id="tiny-back-color"
@@ -245,7 +244,8 @@ import {
   iconRichTextBold,
   iconRichTextCodeBlock,
   iconRichTextCodeView,
-  iconRichTextColor,
+  IconEditorTextcolor,
+  IconEditorBackground,
   iconRichTextDeleteColumn,
   iconRichTextDeleteRow,
   iconRichTextDeleteTable,
@@ -286,10 +286,10 @@ import {
   Editor,
   EditorContent,
   BubbleMenu,
-  VueNodeViewRenderer,
-  NodeViewContent,
-  nodeViewProps,
-  NodeViewWrapper
+  VueNodeViewRenderer
+  // NodeViewContent,
+  // nodeViewProps,
+  // NodeViewWrapper
 } from '@tiptap/vue'
 import StarterKit from '@tiptap/starter-kit'
 // 段落包
@@ -326,21 +326,23 @@ import js from 'highlight.js/lib/languages/javascript'
 import ts from 'highlight.js/lib/languages/typescript'
 import html from 'highlight.js/lib/languages/xml'
 import { lowlight } from 'lowlight'
-lowlight.registerLanguage('html', html)
-lowlight.registerLanguage('css', css)
-lowlight.registerLanguage('js', js)
-lowlight.registerLanguage('ts', ts)
+
+function initLowLight() {
+  lowlight.registerLanguage('html', html)
+  lowlight.registerLanguage('css', css)
+  lowlight.registerLanguage('js', js)
+  lowlight.registerLanguage('ts', ts)
+}
+/* @__PURE__ */
+initLowLight()
+
 // Placeholder
 import Placeholder from '@tiptap/extension-placeholder'
-// collaboration 包
-import Collaboration from '@tiptap/extension-collaboration'
-import * as Y from 'yjs'
-import { WebrtcProvider } from 'y-webrtc'
 
 import { props, setup, defineComponent, $prefix } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
 import '@opentiny/vue-theme/rich-text-editor/index.less'
-import Codehighlight from './code-highlight'
+// import Codehighlight from './code-highlight.vue'
 
 export default defineComponent({
   name: $prefix + 'RichTextEditor',
@@ -369,7 +371,8 @@ export default defineComponent({
     TinyIconRichTextBold: iconRichTextBold(),
     TinyIconRichTextCodeBlock: iconRichTextCodeBlock(),
     TinyIconRichTextCodeView: iconRichTextCodeView(),
-    TinyIconRichTextColor: iconRichTextColor(),
+    TinyIconRichTextColor: IconEditorTextcolor(),
+    TinyIconRichbackgroundColor: IconEditorBackground(),
     TinyIconRichTextDeleteColumn: iconRichTextDeleteColumn(),
     TinyIconRichTextDeleteRow: iconRichTextDeleteRow(),
     TinyIconRichTextDeleteTable: iconRichTextDeleteTable(),
@@ -412,12 +415,10 @@ export default defineComponent({
       context,
       renderless,
       api,
+      mono: true,
       extendOptions: {
         Editor,
-        Collaboration,
         StarterKit,
-        Y,
-        WebrtcProvider,
         Table,
         TableCell,
         TableHeader,
@@ -438,10 +439,10 @@ export default defineComponent({
         CodeBlockLowlight,
         lowlight,
         VueNodeViewRenderer,
-        CodehighComp: VueNodeViewRenderer(Codehighlight(NodeViewContent, nodeViewProps, NodeViewWrapper)),
-        NodeViewContent,
-        nodeViewProps,
-        NodeViewWrapper,
+        // CodehighComp: VueNodeViewRenderer(Codehighlight(NodeViewContent, nodeViewProps, NodeViewWrapper)),
+        // NodeViewContent,
+        // nodeViewProps,
+        // NodeViewWrapper,
         Placeholder,
         codeHighlight
       }

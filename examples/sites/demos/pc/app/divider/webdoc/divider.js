@@ -10,28 +10,28 @@ export default {
     },
     {
       'demoId': 'direction',
-      'name': { 'zh-CN': '垂直分隔线', 'en-US': 'Basic Usage' },
+      'name': { 'zh-CN': '垂直分隔线', 'en-US': '' },
       'desc': {
-        'zh-CN': '通过 props direction 可以设置分隔线的方向',
-        'en-US': 'The direction of the divider can be set using the props "direction".'
+        'zh-CN': '<p>通过 <code>direction</code> 属性可以设置分隔线的方向。</p>',
+        'en-US': ''
       },
       'codeFiles': ['direction.vue']
     },
     {
       'demoId': 'content-position',
-      'name': { 'zh-CN': '分隔线文案的位置', 'en-US': 'Basic Usage' },
+      'name': { 'zh-CN': '分隔线文案的位置', 'en-US': '' },
       'desc': {
-        'zh-CN': '通过 props content-position 可以设置分隔线文案的位置',
-        'en-US': 'The position of the divider content can be set using the prop "content-position".'
+        'zh-CN': '<p>通过 <code>content-position</code> 属性 可以设置分隔线文案的位置。</p>',
+        'en-US': ''
       },
       'codeFiles': ['contentPosition.vue']
     },
     {
       'demoId': 'custom-style',
-      'name': { 'zh-CN': '自定义分隔线样式', 'en-US': 'Basic Usage' },
+      'name': { 'zh-CN': '自定义分隔线样式', 'en-US': '' },
       'desc': {
-        'zh-CN': '通过 props 自定义分隔线样式',
-        'en-US': 'You can customize the divider style through props.'
+        'zh-CN': '<p>你可以自定义分割线样式。</p>',
+        'en-US': ''
       },
       'codeFiles': ['customStyle.vue']
     }

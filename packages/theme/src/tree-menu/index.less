@@ -126,6 +126,11 @@
         }
       }
 
+      .@{tree-node-prefix-cls}__content-left {
+        position: relative;
+        padding-left: var(--tree-menu-node-vertical-line-margin-right);
+      }
+
       &.is-current {
         & > .@{tree-node-prefix-cls}__content {
           background-color: var(--ti-tree-menu-node-selected-bg-color);
@@ -135,19 +140,15 @@
             color: var(--ti-tree-menu-node-current-text-color);
           }
 
-          .@{tree-node-prefix-cls}__content-box {
-            position: relative;
-
-            &::before {
-              content: '';
-              position: absolute;
-              left: -4px;
-              top: 50%;
-              display: inline-block;
-              height: 18px;
-              transform: translateY(-50%);
-              border-left: 2px solid var(--ti-tree-menu-square-left-border-color);
-            }
+          .@{tree-node-prefix-cls}__content-left::before {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 50%;
+            display: inline-block;
+            height: 18px;
+            transform: translateY(-50%);
+            border-left: 2px solid var(--ti-tree-menu-square-left-border-color);
           }
         }
       }

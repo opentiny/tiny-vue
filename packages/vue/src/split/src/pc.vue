@@ -52,7 +52,7 @@
           @mousedown="buttonMousedown"
           @click="buttonLeftTopClick"
         >
-          <icon-split-left class="aui-svg-size"></icon-split-left>
+          <icon-split-left class="tiny-svg-size"></icon-split-left>
         </div>
         <div
           :class="[
@@ -65,7 +65,7 @@
           @mousedown="buttonMousedown"
           @click="buttonRightBottomClick"
         >
-          <icon-split-right class="aui-svg-size"></icon-split-right>
+          <icon-split-right class="tiny-svg-size"></icon-split-right>
         </div>
       </div>
       <div
@@ -120,7 +120,7 @@
           @mousedown="buttonMousedown"
           @click="buttonLeftTopClick"
         >
-          <icon-split-left class="aui-svg-size"></icon-split-left>
+          <icon-split-left class="tiny-svg-size"></icon-split-left>
         </div>
         <div
           :class="[
@@ -133,7 +133,7 @@
           @mousedown="buttonMousedown"
           @click="buttonRightBottomClick"
         >
-          <icon-split-right class="aui-svg-size"></icon-split-right>
+          <icon-split-right class="tiny-svg-size"></icon-split-right>
         </div>
       </div>
       <div

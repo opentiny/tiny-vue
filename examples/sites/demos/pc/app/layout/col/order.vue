@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Layout, Row, Col, Button } from '@opentiny/vue'
 
 export default {

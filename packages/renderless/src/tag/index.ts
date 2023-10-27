@@ -24,7 +24,7 @@ export const handleClose =
 export const handleClick =
   ({ emit, props, parent, state }: Pick<ITagRenderlessParams, 'emit' | 'props' | 'parent' | 'state'>) =>
   (event: Event) => {
-    if (props.selectable || props.disabled) return
+    if (!props.selectable || props.disabled) return
 
     parent.$parent && parent.$parent.tagSelectable && event.stopPropagation()
     state.selected = !state.selected

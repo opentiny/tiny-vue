@@ -82,7 +82,7 @@ export default {
         {
           'name': 'align',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 left',
+          'defaultValue': 'left',
           'desc': {
             'zh-CN': '所有的列对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
             'en-US':
@@ -93,7 +93,7 @@ export default {
         {
           'name': 'auto-resize',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '父元素响应式监听（对于父元素可能存在动态变化的场景可能会用到）',
             'en-US':
@@ -104,7 +104,7 @@ export default {
         {
           'name': 'border',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '是否带有纵向边框', 'en-US': 'Whether there is a vertical border' },
           'demoId': 'grid-grid-border#tiny-first-menu-grid-border'
         },
@@ -135,7 +135,7 @@ export default {
         {
           'name': 'column-key',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否需要为每一列的 VNode 设置 key 属性（非特殊情况下不需要使用）',
             'en-US': 'Whether to set the key attribute for VNodes in each column (not required in special cases).'
@@ -157,7 +157,7 @@ export default {
         {
           'name': 'column-width',
           'type': 'number, string',
-          'defaultValue': '该属性的默认值为 默认均匀分配',
+          'defaultValue': '默认均匀分配',
           'desc': {
             'zh-CN': '所有列宽度;该属性的可选值为 整数, px，%',
             'en-US': 'Width of all columns; The optional values of this attribute are integers, px,%'
@@ -193,7 +193,7 @@ export default {
         {
           'name': 'fit',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': {
             'zh-CN': '所有列的宽度是否自撑开',
             'en-US': 'Whether the widths of all columns are extended automatically.'
@@ -203,7 +203,7 @@ export default {
         {
           'name': 'footer-align',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 继承 align',
+          'defaultValue': '继承 align',
           'desc': {
             'zh-CN': '所有的表尾列的对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
             'en-US':
@@ -215,7 +215,7 @@ export default {
           'name': 'optimization',
           'type': 'object',
           'defaultValue':
-            '该属性的默认值为 animat: true,delayHover: 250,scrollX: {gt: 100, 指定大于多少范围时自动启动虚拟滚动（启用 X 虚拟滚动，必须固定所有列宽，否则无法兼容）默认100, oSize: 2, 当剩余数据少于指定范围时触发重新渲染 默认自动计算 rSize: 2, 每次渲染条数 默认自动计算 vSize: 5  指定可视区域条数 }, scrollY: { gt: 500, 指定大于多少范围时自动启动虚拟滚动（启用 Y 虚拟滚动，必须固定所有行高，否则无法兼容）默认500 oSize: 2, 当剩余数据少于指定范围时触发重新渲染 默认自动计算 rSize: 2, 每次渲染条数 默认自动计算 vSize: 5, 指定可视区域条数 默认自动计算 rHeight: 50, 指定行高 默认自动计算adaptive: true 自动适配最优的渲染方式 默认true }',
+            'animat: true,delayHover: 250,scrollX: {gt: 100, 指定大于多少范围时自动启动虚拟滚动（启用 X 虚拟滚动，必须固定所有列宽，否则无法兼容）默认100, oSize: 2, 当剩余数据少于指定范围时触发重新渲染 默认自动计算 rSize: 2, 每次渲染条数 默认自动计算 vSize: 5  指定可视区域条数 }, scrollY: { gt: 500, 指定大于多少范围时自动启动虚拟滚动（启用 Y 虚拟滚动，必须固定所有行高，否则无法兼容）默认500 oSize: 2, 当剩余数据少于指定范围时触发重新渲染 默认自动计算 rSize: 2, 每次渲染条数 默认自动计算 vSize: 5, 指定可视区域条数 默认自动计算 rHeight: 50, 指定行高 默认自动计算adaptive: true 自动适配最优的渲染方式 默认true }',
           'desc': { 'zh-CN': '优化配置项', 'en-US': 'Optimize configuration items' },
           'demoId': 'grid-grid-optimization#tiny-first-menu-grid-optimization'
         },
@@ -277,7 +277,7 @@ export default {
         {
           'name': 'header-align',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 继承 align',
+          'defaultValue': '继承 align',
           'desc': {
             'zh-CN': '所有的表头列的对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
             'en-US':
@@ -323,7 +323,7 @@ export default {
         {
           'name': 'highlight-cell',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '只对 editConfig 配置时有效，是否在编辑时高亮单元格边框',
             'en-US':
@@ -334,21 +334,21 @@ export default {
         {
           'name': 'highlight-current-column',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '是否要高亮当前列', 'en-US': 'Do you want to highlight the current column?' },
           'demoId': 'grid-highlight#highlight-highlight-current-column'
         },
         {
           'name': 'highlight-current-row',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '是否要高亮当前行', 'en-US': 'Do you want to highlight the current line?' },
           'demoId': 'grid-highlight#highlight-highlight-current-row'
         },
         {
           'name': 'highlight-hover-column',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '鼠标移到列是否要高亮显示',
             'en-US': 'Do you want to highlight the column when you move the cursor to the column?'
@@ -358,7 +358,7 @@ export default {
         {
           'name': 'highlight-hover-row',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '鼠标移到行是否要高亮显示',
             'en-US': 'Do you want to highlight the line when you move the cursor to the line?'
@@ -378,7 +378,7 @@ export default {
         {
           'name': 'loading',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': { 'zh-CN': '表格是否显示加载中', 'en-US': 'Whether the table is being loaded.' },
           'demoId': 'grid-grid-loading-tip#tiny-first-menu-grid-loading-off-tip'
         },
@@ -420,7 +420,7 @@ export default {
         {
           'name': 'remote-filter',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '所有列是否使用服务端筛选，如果设置为 true 则不会对数据进行处理',
             'en-US':
@@ -431,7 +431,7 @@ export default {
         {
           'name': 'remote-sort',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否将服务端的全部数据进行排序。默认为 false 不进行服务端排序。',
             'en-US':
@@ -442,7 +442,7 @@ export default {
         {
           'name': 'resizable',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': { 'zh-CN': '设置是否允许调整列宽', 'en-US': 'Set whether to allow column width adjustment' },
           'demoId': 'grid-width-height#tiny-first-menu-resize-column-width'
         },
@@ -461,7 +461,7 @@ export default {
         {
           'name': 'row-id',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 _RID',
+          'defaultValue': '_RID',
           'desc': {
             'zh-CN': '自定义行数据唯一主键的字段名（行数据必须要有唯一主键，默认自动生成）',
             'en-US':
@@ -472,7 +472,7 @@ export default {
         {
           'name': 'row-key',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否需要为每一行的 VNode 设置 key 属性（非特殊情况下没必要设置）',
             'en-US': 'Whether to set the key attribute for the VNode in each row (not necessary in special cases)'
@@ -494,14 +494,14 @@ export default {
         {
           'name': 'show-footer',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '是否显示表尾合计', 'en-US': 'Display the total at the end of the table' },
           'demoId': 'grid-summary#summary-cus tom-summary'
         },
         {
           'name': 'show-header',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '是否显示表头', 'en-US': 'Whether to display the table header' },
           'demoId': 'grid-header#header-hide-grid-header'
         },
@@ -566,7 +566,7 @@ export default {
         {
           'name': 'span-method',
           'type': 'Function',
-          'defaultValue': '该属性的默认值为 { rowspan: 1, colspan: 1}',
+          'defaultValue': '{ rowspan: 1, colspan: 1}',
           'desc': {
             'zh-CN':
               '合并行或列，该函数 Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, data}) 返回计算后的值',
@@ -578,7 +578,7 @@ export default {
         {
           'name': 'start-index',
           'type': 'number',
-          'defaultValue': '该属性的默认值为 0',
+          'defaultValue': '0',
           'desc': {
             'zh-CN': '只对 type=index 的列有效，动态索引的起始值',
             'en-US':
@@ -589,14 +589,14 @@ export default {
         {
           'name': 'stripe',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '是否带有斑马纹', 'en-US': 'Zebra pattern' },
           'demoId': 'grid-grid-stripe#stripe-stripe'
         },
         {
           'name': 'sync-resize',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '响应式跟随某个属性（对于通过某个属性来控制显示/隐藏切换的场景可能会用到）',
             'en-US':
@@ -642,7 +642,7 @@ export default {
         {
           'name': 'sortable',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': {
             'zh-CN': '设置是否允许列数据排序。默认为 true 可排序',
             'en-US': 'Whether to allow column data sorting. The default value is true, which can be sorted.'
@@ -652,7 +652,7 @@ export default {
         {
           'name': 'auto-load',
           'type': 'boolean',
-          'defaultValue': '是否开启自动请求服务，配置 fetch-data 时有效，该属性的默认值为 true',
+          'defaultValue': '是否开启自动请求服务，配置 fetch-data 时有效，true',
           'desc': { 'zh-CN': '', 'en-US': '' },
           'demoId': 'grid-data-source#tiny-first-menu-auto-load'
         },
@@ -758,7 +758,7 @@ export default {
         {
           'name': 'seq-serial',
           'type': 'boolean',
-          'defaultValue': '设置行序号是否连续，开启分页时有效，该属性的默认值为 false',
+          'defaultValue': '设置行序号是否连续，开启分页时有效，false',
           'desc': {
             'zh-CN': '设置行序号是否连续，seqSerial 当 showSeq 为 true 时有效。',
             'en-US':
@@ -1980,7 +1980,7 @@ export default {
         {
           'name': 'align',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 继承 table 的 align',
+          'defaultValue': '继承 table 的 align',
           'desc': {
             'zh-CN': '列对其方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）',
             'en-US': 'Column pair mode; The optional values for this property are left, center, right'
@@ -2002,7 +2002,7 @@ export default {
         {
           'name': 'multi',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': {
             'zh-CN':
               "是 filter 对象内置的属性，筛选是否允许多选;设置选择列是否显示复选框。当 columnType 为 'select' 时有效。",
@@ -2036,7 +2036,7 @@ export default {
         {
           'name': 'footer-align',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 继承 align > 继承 table 的 footer-align',
+          'defaultValue': '继承 align > 继承 table 的 footer-align',
           'desc': {
             'zh-CN': '表尾列的对齐方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）',
             'en-US':
@@ -2059,7 +2059,7 @@ export default {
         {
           'name': 'header-align',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 继承 align > 继承 table 的 header-align',
+          'defaultValue': '继承 align > 继承 table 的 header-align',
           'desc': {
             'zh-CN': '表头列的对齐方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）',
             'en-US':
@@ -2093,7 +2093,7 @@ export default {
         {
           'name': 'min-width',
           'type': 'number, string',
-          'defaultValue': '该属性的默认值为 继承 table 的 column-min-width',
+          'defaultValue': '继承 table 的 column-min-width',
           'desc': {
             'zh-CN': '最小列宽度；会自动将剩余空间按比例分配;该属性的可选值为 整数, px，%',
             'en-US':
@@ -2104,7 +2104,7 @@ export default {
         {
           'name': 'show-icon',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': {
             'zh-CN': '是否显示列头编辑图标，在编辑时有效',
             'en-US': 'Whether to display the column header editing icon. This parameter is valid during editing.'
@@ -2124,7 +2124,7 @@ export default {
         {
           'name': 'remote-sort',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 继承 table 的 remote-sort',
+          'defaultValue': '继承 table 的 remote-sort',
           'desc': {
             'zh-CN': '是否使用服务端排序，如果设置为 true 则不会对数据进行处理',
             'en-US': 'Whether to use server sorting. If this parameter is set to true, data will not be processed.'
@@ -2134,7 +2134,7 @@ export default {
         {
           'name': 'resizable',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 继承 table 的 resizable',
+          'defaultValue': '继承 table 的 resizable',
           'desc': {
             'zh-CN': '设置该列是否可以调整列宽;列是否允许拖动列宽调整大小',
             'en-US':
@@ -2145,7 +2145,7 @@ export default {
         {
           'name': 'show-header-overflow',
           'type': 'string,boolean',
-          'defaultValue': '该属性的默认值为 继承 table 的 show-header-overflow',
+          'defaultValue': '继承 table 的 show-header-overflow',
           'desc': {
             'zh-CN':
               '当表头内容过长时显示为省略号;该属性的可选值为 ellipsis（只显示省略号）, title（并且显示为原生 title）, tooltip（并且显示为 tooltip 提示）',
@@ -2157,7 +2157,7 @@ export default {
         {
           'name': 'show-overflow',
           'type': 'string,boolean',
-          'defaultValue': '该属性的默认值为 继承 table 的 show-overflow',
+          'defaultValue': '继承 table 的 show-overflow',
           'desc': {
             'zh-CN':
               '当内容过长时显示为省略号;该属性的可选值为 ellipsis（只显示省略号）, title（并且显示为原生 title）, tooltip（并且显示为 tooltip 提示）',
@@ -2186,7 +2186,7 @@ export default {
         {
           'name': 'required',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否必填，如不设置，则会根据校验规则自动生成',
             'en-US':
@@ -2209,7 +2209,7 @@ export default {
         {
           'name': 'sortable',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '设置该列数据是否可以排序。;是否允许列排序',
             'en-US': 'Whether the data in the column can be sorted.; Allow Sorting Columns'
@@ -2229,7 +2229,7 @@ export default {
         {
           'name': 'tree-node',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '只对 tree-config 配置时有效，指定为树节点',
             'en-US': 'This parameter is valid only when tree-config is configured. It is specified as a tree node.'
@@ -2273,7 +2273,7 @@ export default {
         {
           'name': 'width',
           'type': 'number , string',
-          'defaultValue': '该属性的默认值为 继承 table 的 column-width',
+          'defaultValue': '继承 table 的 column-width',
           'desc': {
             'zh-CN':
               "设置列的宽度，可以是像素或者百分比或者'auto'，设置为'auto'时，列宽会自动适应。;列宽度;该属性的可选值为 整数 / px /%",
@@ -2321,7 +2321,7 @@ export default {
         {
           'name': 'filter',
           'type': 'boolean , object',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '设置表格列的筛选配置信息。默认值为 false 不配置筛选信息。',
             'en-US':
@@ -2344,14 +2344,14 @@ export default {
         {
           'name': 'show-tip',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '表格列单元格是否需要提示', 'en-US': 'Does the table column cells require prompts?' },
           'demoId': 'grid-tip#tip-cell-tip'
         },
         {
           'name': 'show-header-tip',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '表格列头是否需要提示', 'en-US': 'Whether to prompt the table column header.' },
           'demoId': 'grid-tip#tip-column-header-tip'
         }
@@ -2420,7 +2420,7 @@ export default {
         {
           'name': 'loading',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '是否加载中', 'en-US': 'Loading' },
           'demoId': 'grid-toolbar#tiny-first-menu-refresh-grid'
         },

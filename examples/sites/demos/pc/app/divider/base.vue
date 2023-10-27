@@ -2,7 +2,7 @@
   <tiny-divider></tiny-divider>
 </template>
 
-<script lang="jsx">
+<script>
 import { Divider } from '@opentiny/vue'
 
 export default {

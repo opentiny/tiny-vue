@@ -98,7 +98,7 @@
     .@{grid-pager-prefix-cls}__prev-btn,
     .@{grid-pager-prefix-cls}__next-btn,
     .@{grid-pager-prefix-cls}__jump-next {
-      font-size: 19px;
+      @apply text-xl;
     }
   }
 
@@ -122,8 +122,8 @@
     .@{grid-pager-prefix-cls}__jump-prev,
     .@{grid-pager-prefix-cls}__num-btn,
     .@{grid-pager-prefix-cls}__jump-next {
-      height: 26px;
-      line-height: 26px;
+      @apply h-7;
+      @apply leading-7;
     }
 
     .@{grid-pager-prefix-cls}__sizes {
@@ -133,14 +133,14 @@
     }
 
     .@{grid-pager-prefix-cls}__jump .@{grid-pager-prefix-cls}__goto {
-      height: 26px;
+      @apply h-7;
     }
 
     .@{grid-pager-prefix-cls}__jump-prev,
     .@{grid-pager-prefix-cls}__prev-btn,
     .@{grid-pager-prefix-cls}__next-btn,
     .@{grid-pager-prefix-cls}__jump-next {
-      font-size: 17px;
+      @apply text-base;
     }
   }
 
@@ -195,7 +195,7 @@
   & &__jump-prev,
   & &__jump-next,
   & &__count {
-    @apply my-0 ~"mx-1.5";
+    @apply my-0 ~'mx-1.5';
     @apply align-middle;
     @apply inline-block;
   }
@@ -216,8 +216,8 @@
   & &__jump-prev,
   & &__num-btn,
   & &__jump-next {
-    height: 30px;
-    line-height: 30px;
+    @apply h-8;
+    @apply leading-8;
     @apply inline-block;
   }
 
@@ -275,7 +275,7 @@
   }
 
   & &__num-btn {
-    min-width: 30px;
+    @apply ~'min-w-[theme(spacing.8)]';
     @apply font-bold;
     @apply align-middle;
   }
@@ -322,7 +322,7 @@
   }
 
   & &__count &__separator {
-    @apply ~"mr-1.5";
+    @apply ~'mr-1.5';
   }
 
   & &__jump &__goto {

@@ -1,10 +1,10 @@
 <template>
-  <tiny-user-head type="icon" :value="IconSmile"></tiny-user-head>
+  <tiny-user-head v-model="tinyIconSmile" type="icon"></tiny-user-head>
 </template>
 
-<script lang="jsx">
+<script>
 import { UserHead } from '@opentiny/vue'
-import { IconSmile } from '@opentiny/vue-icon'
+import { iconSmile } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -12,7 +12,7 @@ export default {
   },
   data() {
     return {
-      IconSmile: IconSmile()
+      tinyIconSmile: iconSmile()
     }
   }
 }

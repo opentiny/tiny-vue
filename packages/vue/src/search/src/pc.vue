@@ -103,7 +103,8 @@ export default defineComponent({
     'modelValue',
     'tabindex',
     'clearable',
-    'isEnterSearch'
+    'isEnterSearch',
+    'typeValue'
   ],
   emits: ['change', 'search', 'update:modelValue', 'clear', 'select', 'input'],
   components: {

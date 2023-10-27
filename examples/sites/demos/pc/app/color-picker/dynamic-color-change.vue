@@ -1,6 +1,8 @@
 <template>
-  <tiny-color-picker v-model="color" />
-  <tiny-button @click="changeColor"> 切换 </tiny-button>
+  <div>
+    <tiny-color-picker v-model="color" />
+    <tiny-button @click="changeColor"> 切换 </tiny-button>
+  </div>
 </template>
 
 <script>
@@ -18,7 +20,7 @@ export default {
   },
   methods: {
     changeColor() {
-      color.value = color.value === '#66ccff' ? '#000' : '#66ccff'
+      this.color = this.color === '#66ccff' ? '#000' : '#66ccff'
     }
   }
 }
