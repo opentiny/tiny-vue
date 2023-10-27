@@ -18,7 +18,7 @@
     <tiny-input
       v-if="showFilter"
       v-model="state.filterText"
-      :placeholder="t('ui.treeMenu.placeholder')"
+      :placeholder="placeholder || t('ui.treeMenu.placeholder')"
       :prefix-icon="searchIcon"
     />
     <tiny-tree
@@ -97,6 +97,10 @@ export default defineComponent({
     IconArrow: iconLeftWardArrow()
   },
   props: {
+    placeholder: {
+      default: '',
+      type: String
+    },
     data: Array,
     nodeKey: String,
     defaultExpandAll: Boolean,
