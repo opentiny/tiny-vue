@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { h, hooks, $prefix, appProperties, isVue3 } from '@opentiny/vue-common'
+import { h, hooks, $prefix, appProperties } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
 import { extend } from '@opentiny/vue-renderless/common/object'
 import { isEmptyObject, isObject, isNull } from '@opentiny/vue-renderless/common/type'
@@ -435,7 +435,6 @@ const gridData = {
   groupFolds: [],
   // 所有列已禁用
   headerCheckDisabled: false,
-  id: uniqueId(),
   // 是否全选
   isAllSelected: false,
   // 多选属性，有选中且非全选状态
@@ -741,7 +740,7 @@ export default {
     }
   },
   data() {
-    return extend(true, {}, gridData)
+    return extend(true, { id: uniqueId() }, gridData)
   },
   computed: {
     bodyCtxMenu() {
@@ -912,18 +911,9 @@ export default {
      * vue3不会拦截数组的常规操作，如果深度监听会影响效率，所以需要额外监控数组长度改变，解决push无响应等问题
      * 如果是vue3需要同时监听data和数组长度，如果分多个watch监听会导致重复渲染，影响效率
      */
-    if (isVue3) {
-      hooks.watch([() => table.data, () => table.data && table.data.length], () => {
-        table.handleDataChange()
-      })
-    } else {
-      hooks.watch(
-        () => table.data,
-        () => {
-          table.handleDataChange()
-        }
-      )
-    }
+    hooks.watch([() => table.data, () => table.data && table.data.length], () => {
+      table.handleDataChange()
+    })
 
     hooks.onBeforeUnmount(() => {
       const { elemStore, $refs } = table

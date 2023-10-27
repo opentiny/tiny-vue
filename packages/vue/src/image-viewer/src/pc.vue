@@ -11,7 +11,7 @@
  -->
 <template>
   <transition name="viewer-fade">
-    <div class="tiny-image-viewer__wrapper" :style="{ 'z-index': state.zIndex }" @mousewheel.prevent>
+    <div class="tiny-image-viewer tiny-image-viewer__wrapper" :style="{ 'z-index': state.zIndex }" @mousewheel.prevent>
       <div class="tiny-image-viewer__mask"></div>
       <!-- CLOSE -->
       <span class="tiny-image-viewer__btn tiny-image-viewer__close" @click="hide">

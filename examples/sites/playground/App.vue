@@ -3,19 +3,17 @@ import { onMounted, reactive, ref } from 'vue'
 import { Repl, useStore, File } from '@opentiny/vue-repl'
 import '@opentiny/vue-repl/dist/style.css'
 
-import Monaco from '@vue/repl/monaco-editor'
+import Editor from '@vue/repl/codemirror-editor'
 import { ButtonGroup as TinyButtonGroup, Select as TinySelect, Option as TinyOption, Notify } from '@opentiny/vue'
 import { staticDemoPath, getWebdocPath } from '@/views/components/cmpConfig'
 import { fetchDemosFile } from '@/tools/utils'
 import logoUrl from './assets/opentiny-logo.svg?url'
 import GitHub from './icons/Github.vue'
-import Sun from './icons/Sun.vue'
-import Moon from './icons/Moon.vue'
 import Share from './icons/Share.vue'
 
-const versions = ['3.10.0', '3.9.1', '3.8.4']
+const versions = ['3.11', '3.10', '3.9', '3.8']
 const latestVersion = versions[0]
-const cdnHost = 'https://unpkg.com'
+const cdnHost = window.localStorage.getItem('setting-cdn')
 
 const searchObj = new URLSearchParams(location.search)
 const tinyMode = searchObj.get('mode')
@@ -65,13 +63,6 @@ const store = new useStore({
     typescript: '5.1.3'
   }
 })
-
-// 切换主题
-const dark = ref(false)
-
-const toggleTheme = (theme) => {
-  dark.value = theme
-}
 
 const state = reactive({
   // repl 属性
@@ -193,29 +184,21 @@ function share() {
         <tiny-button-group :data="state.layoutOptions" v-model="state.layout"></tiny-button-group>
       </span>
       <span class="ml20">
-        版本:
+        OpenTiny Vue 版本:
         <tiny-select v-model="state.selectVersion" @change="versionChange" style="width: 150px">
-          <tiny-option
-            v-for="item in state.versions"
-            :key="item.value"
-            :label="'opentiny/vue@' + item.value"
-            :value="item.value"
-          >
+          <tiny-option v-for="item in state.versions" :key="item.value" :label="item.value" :value="item.value">
           </tiny-option>
         </tiny-select>
       </span>
       <Share @click="share" title="分享" class="share" />
-      <Sun v-if="!dark" @click="toggleTheme(true)" class="light" />
-      <Moon v-else @click="toggleTheme(false)" class="dark" />
       <a style="display: flex" href="https://github.com/opentiny/tiny-vue" target="_blank">
         <GitHub class="github" />
       </a>
     </div>
   </div>
   <Repl
-    :editor="Monaco"
+    :editor="Editor"
     :store="store"
-    :theme="dark ? 'dark' : 'light'"
     :preview-options="state.previewOptions"
     :clear-console="false"
     :layout="state.layout"
@@ -264,8 +247,6 @@ function share() {
   height: calc(100vh - 36px - 16px) !important;
 }
 
-.light,
-.dark,
 .github,
 .share {
   width: 20px;

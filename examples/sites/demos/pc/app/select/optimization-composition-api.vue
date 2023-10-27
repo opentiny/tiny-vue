@@ -17,7 +17,7 @@
   </tiny-form>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Form as TinyForm, FormItem as TinyFormItem, Select as TinySelect, Modal } from '@opentiny/vue'
 
@@ -28,7 +28,7 @@ const value1 = ref('')
 const value2 = ref('')
 const options = ref(buildOptions())
 
-function onChange(value) {
+const onChange = (value) => {
   Modal.message(JSON.stringify(value))
 }
 </script>

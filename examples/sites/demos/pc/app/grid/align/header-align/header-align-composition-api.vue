@@ -1,11 +1,10 @@
 <template>
-  <tiny-grid :data="tableData" show-footer :footer-method="footerMethod" border footer-align="center">
+  <tiny-grid :data="tableData" header-align="left">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="selection" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
-    <tiny-grid-column field="employees" title="员工数" footer-align="left"></tiny-grid-column>
-    <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
-    <tiny-grid-column field="city" title="城市"></tiny-grid-column>
+    <tiny-grid-column field="name" title="公司名称(左对齐)" ></tiny-grid-column>
+    <tiny-grid-column field="employees" title="员工数（右对齐）" header-align="right"></tiny-grid-column>
+    <tiny-grid-column field="createdDate" title="创建日期（居中对齐）" header-align="center"></tiny-grid-column>
+    <tiny-grid-column field="city" title="城市（左对齐）" ></tiny-grid-column>
   </tiny-grid>
 </template>
 
@@ -71,31 +70,4 @@ const tableData = ref([
     createdDate: '2016-06-03 13:53:25'
   }
 ])
-
-function footerMethod({ columns, data }) {
-  return [
-    columns.map((column, columnIndex) => {
-      if (columnIndex === 0) {
-        return '平均'
-      }
-
-      if (column.property === 'employees') {
-        return Math.floor(data.map((item) => item[column.property]).reduce((acc, item) => acc + item) / data.length)
-      }
-
-      return null
-    }),
-    columns.map((column, columnIndex) => {
-      if (columnIndex === 0) {
-        return '和值'
-      }
-
-      if (column.property === 'employees') {
-        return data.map((item) => item[column.property]).reduce((acc, item) => acc + item)
-      }
-
-      return null
-    })
-  ]
-}
 </script>

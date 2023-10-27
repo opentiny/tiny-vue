@@ -2297,6 +2297,7 @@
     "type": "component",
     "exclude": false,
     "mode": [
+      "mobile-first",
       "mobile"
     ]
   },
@@ -2305,8 +2306,29 @@
     "type": "component",
     "exclude": false,
     "mode": [
+      "mobile-first",
       "mobile"
     ]
+  },
+  "TabbarItemMobile": {
+    "path": "vue/src/tabbar-item/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TabbarItemMobileFirst": {
+    "path": "vue/src/tabbar-item/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TabbarMobile": {
+    "path": "vue/src/tabbar/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TabbarMobileFirst": {
+    "path": "vue/src/tabbar/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
   },
   "Table": {
     "path": "vue/src/table/index.ts",

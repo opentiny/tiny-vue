@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-docs",
-  "version": "2.1.17",
+  "version": "2.1.6",
   "scripts": {
     "start": "vite",
     "start:saas": "vite --mode saas",
@@ -13,7 +13,8 @@
     "build:inner:prod": "vite build --mode innerprod",
     "build:open": "vite build --mode open",
     "prettier": "npx prettier --write ./**/*.{ts,tsx,css,less,scss,vue}",
-    "stylelint": "npx stylelint ./src/**/*.scss ./src/**/*.less ./src/**/*.css --fix"
+    "stylelint": "npx stylelint ./src/**/*.scss ./src/**/*.less ./src/**/*.css --fix",
+    "pub": "pnpm publish --no-git-checks --access=public"
   },
   "dependencies": {
     "@opentiny/vue": "workspace:~",
@@ -39,7 +40,7 @@
     "marked": "^4.3.0",
     "@playwright/test": "^1.29.2",
     "sortablejs": "1.15.0",
-    "@opentiny/vue-repl": "^1.0.2"
+    "@opentiny/vue-repl": "^1.1.0"
   },
   "devDependencies": {
     "@opentiny-internal/unplugin-virtual-template": "workspace:~",
