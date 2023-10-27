@@ -40,7 +40,7 @@
     "marked": "^4.3.0",
     "@playwright/test": "^1.29.2",
     "sortablejs": "1.15.0",
-    "@opentiny/vue-repl": "^1.0.2"
+    "@opentiny/vue-repl": "^1.1.0"
   },
   "devDependencies": {
     "@opentiny-internal/unplugin-virtual-template": "workspace:~",
