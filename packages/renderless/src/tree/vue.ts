@@ -139,7 +139,7 @@ const initState = ({ reactive, emitter, props, computed, api }) => {
     treeItems: null,
     currentNode: null,
     checkboxItems: [],
-    isEmpty: false,
+    isEmpty: computed(() => api.computedIsEmpty(props, state)),
     emitter: emitter(),
     expandIcon: props.expandIcon,
     shrinkIcon: props.shrinkIcon,
@@ -255,14 +255,7 @@ const initWatcher = ({ watch, props, api, state }) => {
     { immediate: true }
   )
 
-  watch(
-    () => state.root,
-    () => {
-      state.isEmpty = api.computedIsEmpty(props, state)
-      api.initPlainNodeStore()
-    },
-    { deep: true }
-  )
+  watch(() => state.root, api.initPlainNodeStore, { deep: true })
 }
 
 export const renderless = (

@@ -219,8 +219,8 @@
   </div>
 </template>
 
-<script lang="tsx">
-import { setup, directive, h } from '@opentiny/vue-common'
+<script lang="ts">
+import { setup, directive, h, isVue2 } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/tree-node/vue'
 import CollapseTransition from '@opentiny/vue-collapse-transition'
 import {
@@ -348,7 +348,7 @@ export default {
     }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api, mono: true, extendOptions: { isVue2 } })
   }
 }
 </script>
