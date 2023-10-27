@@ -23,8 +23,6 @@ export const renderless = (props: IToastProps, { reactive }: ISharedRenderlessPa
     time: props.time as number
   })
 
-  console.log(state, props)
-
   const api: IToastApi = {
     state,
     timeout: timeout(emit)
