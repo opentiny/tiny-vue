@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义服务数据', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/dept/custom-service')
+  await page.goto('dept#custom-service')
   const iconBox = page.locator('.tiny-input__suffix-inner svg')
   await iconBox.first().click()
   await page.getByPlaceholder('可输入部门编码或名称').click()

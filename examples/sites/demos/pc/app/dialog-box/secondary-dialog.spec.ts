@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('二级弹窗', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/dialog-box/secondary-dialog')
+  await page.goto('dialog-box#secondary-dialog')
 
   const childDialogBox = page.locator('body > .tiny-dialog-box__wrapper').filter({ hasText: '子弹窗内容' })
   await page.getByRole('button', { name: '二级弹窗' }).click()

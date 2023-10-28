@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试切换分页前时间', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pager/before-page-change')
+  await page.goto('pager#before-page-change')
 
   const preview = page.locator('#preview')
   const pager = preview.locator('.tiny-pager')

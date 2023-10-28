@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('触发方式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/dropdown/trigger')
+  await page.goto('dropdown#trigger')
 
   const preview = page.locator('#preview')
   const dropDown = preview.locator('.tiny-dropdown')

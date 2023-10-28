@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('ipAddress blur事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/ip-address/blur')
+  await page.goto('ip-address#blur')
 
   const preview = page.locator('#preview')
   const input = preview.getByRole('textbox')

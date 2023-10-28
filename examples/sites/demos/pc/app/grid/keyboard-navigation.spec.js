@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('键盘导航测试', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-keyboard/keyboard-navigation')
+  await page.goto('grid-keyboard#keyboard-navigation')
   await page.getByRole('cell', { name: 'GFD科技YX公司' }).click()
   await page.waitForTimeout(1000)
   await page.locator('body').press('ArrowDown')

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/notify/basic-usage')
+  await page.goto('notify#basic-usage')
   await page.getByRole('button', { name: '弹出提示框' }).click()
   const status = page.locator('.tiny-notify__icon-status')
   await expect(status).toBeVisible()

@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Rate 自定义 3 分段图标样式', () => {
   test('自定义三分段图标样式', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/rate/custom-3-threshold-icon')
+    await page.goto('rate#custom-3-threshold-icon')
 
     const icon = page.locator('.tiny-rate__star > .tiny-svg')
 

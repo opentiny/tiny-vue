@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('禁用', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/link/dynamic-disable')
+  await page.goto('link#dynamic-disable')
   const preview = page.locator('#preview')
   let anchor = preview.locator('a').filter({ hasText: '默认链接' })
   await expect(anchor).toHaveCSS('cursor', 'not-allowed')

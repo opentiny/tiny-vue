@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('manual-focus-blur', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/manual-focus-blur')
+  await page.goto('select#manual-focus-blur')
   await page.getByRole('button', { name: '单击按钮 Select 将获取焦点' }).click()
   await page.waitForTimeout(1000)
   const dropdown = page.locator('.tiny-select-dropdown')

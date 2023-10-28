@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('垂直布局', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/checkbox/vertical-checkbox')
+  await page.goto('checkbox#vertical-checkbox')
   const preview = page.locator('#preview')
   const checkedLabelBJ = preview.getByRole('checkbox', { name: '北京' }).filter({ hasText: '北京' })
   await checkedLabelBJ.click()

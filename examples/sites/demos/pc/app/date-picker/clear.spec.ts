@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('[DatePicker] 测试清除输入', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/date-picker/clear')
+  await page.goto('date-picker#clear')
   const dateInputHasText = page.getByRole('textbox', { name: '2023-05-24' })
   await expect(dateInputHasText).toBeVisible()
   await dateInputHasText.hover()

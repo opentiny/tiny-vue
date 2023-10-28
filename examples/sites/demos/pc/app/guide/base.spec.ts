@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('基础用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/guide/base')
+  await page.goto('guide#base')
 
   const activeDom = await page.getByRole('button', { name: '基础新手引导开始' })
   const step1 = page.getByRole('heading', { name: '新手引导标题1' })

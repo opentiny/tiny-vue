@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('判断交换左侧备选项后是否位于右侧面板首位', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/target-order')
+  await page.goto('transfer#target-order')
   const preview = page.locator('#preview')
   const buttons = preview.getByRole('button')
   const transferPanels = preview.locator('.tiny-transfer-panel')

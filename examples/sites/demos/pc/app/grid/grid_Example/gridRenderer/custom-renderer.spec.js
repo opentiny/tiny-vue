@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义渲染器', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-renderer/grid_Example-gridRenderer-custom-renderer')
+  await page.goto('grid-renderer#grid_Example-gridRenderer-custom-renderer')
   await expect(page.getByText('GFD科技YX公司').first()).toHaveCSS('color', 'rgb(218, 165, 32)')
   await expect(
     page

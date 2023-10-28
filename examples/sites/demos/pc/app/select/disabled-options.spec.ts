@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('disabled-options', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/disabled-options')
+  await page.goto('select#disabled-options')
   const select = page.locator('#preview .tiny-select')
   const tags = page.locator('#preview .tiny-select .tiny-tag')
 

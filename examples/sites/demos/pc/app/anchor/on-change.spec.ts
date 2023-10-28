@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('change事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/anchor/on-change')
+  await page.goto('anchor#on-change')
 
   const anchor = page.locator('.tiny-anchor')
   const link1 = anchor.getByRole('link', { name: '演示' })

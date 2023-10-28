@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('父子节点互不关联', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/check-strictly')
+  await page.goto('tree#check-strictly')
 
   const checkedClass = /is-checked/
   const tree = page.locator('#preview .tiny-tree')

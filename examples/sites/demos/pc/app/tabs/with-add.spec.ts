@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('标签页可增加', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tabs/with-add')
+  await page.goto('tabs#with-add')
 
   const tabs = page.locator('.tiny-tabs')
   const tabItems = tabs.getByRole('tab')

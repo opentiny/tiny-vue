@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义标记目标', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/badge/slot-default')
+  await page.goto('badge#slot-default')
 
   const preview = page.locator('#preview')
   const badgeWarpper = preview.locator('.tiny-badge__wrapper')

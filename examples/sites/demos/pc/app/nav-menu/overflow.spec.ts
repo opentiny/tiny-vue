@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('显示策略', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/nav-menu/overflow')
+  await page.goto('nav-menu#overflow')
   const preview = page.locator('#preview')
   const popMenu = preview.locator('.popmenu')
   await preview.locator('.more-button').hover()

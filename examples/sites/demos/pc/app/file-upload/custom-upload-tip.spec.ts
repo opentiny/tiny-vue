@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义上传提示', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/file-upload/custom-upload-tip')
+  await page.goto('file-upload#custom-upload-tip')
 
   const tip = page.locator('.tiny-upload__tip')
 

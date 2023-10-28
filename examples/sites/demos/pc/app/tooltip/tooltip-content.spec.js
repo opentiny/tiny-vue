@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tooltip/tooltip-content')
+  await page.goto('tooltip#tooltip-content')
 
   const button1 = page.getByRole('button', { name: '插槽的使用' })
   const button2 = page.getByRole('button', { name: '校验错误' })

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('只有一页时隐藏分页', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pager/hide-on-single-page')
+  await page.goto('pager#hide-on-single-page')
 
   const preview = page.locator('#preview')
   const pager = preview.locator('.tiny-pager')

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('树表切换展开行测试', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-tree-grid/methods-toggle-tree-expansion')
+  await page.goto('grid-tree-grid#methods-toggle-tree-expansion')
   await page.getByRole('button', { name: 'toggleTreeExpansion' }).click()
   await page.getByRole('row', { name: 'WWWW科技股份有限子公司 华南区 720' }).locator('label span').click()
   const toggleIcon = page.locator(

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('PopEditor 输入框的 tabindex', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popeditor/tabindex')
+  await page.goto('popeditor#tabindex')
 
   const preview = page.locator('#preview')
   const textBox = preview.getByRole('textbox')

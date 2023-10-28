@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('隐藏显示事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popconfirm/visible-event')
+  await page.goto('popconfirm#visible-event')
 
   const preview = page.locator('#preview')
   const popConfirm = preview.locator('.tiny-popconfirm .tiny-popconfirm__reference .tiny-button')

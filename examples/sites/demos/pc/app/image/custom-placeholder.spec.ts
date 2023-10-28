@@ -5,7 +5,7 @@ test('占位内容', async ({ page }) => {
   await page.route(/jpg$/, async (route) => {
     await page.waitForTimeout(300)
   })
-  await page.goto('http://localhost:7130/pc/image/custom-placeholder')
+  await page.goto('image#custom-placeholder')
   const wait = page.locator('.image-slot')
   await expect(wait).toHaveText('加载中...')
 })

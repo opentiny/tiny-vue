@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('订单流程', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/steps/order-progress')
+  await page.goto('steps#order-progress')
 
   const advancedSteps = page.locator('#preview .tiny-steps')
   const nodes = advancedSteps.locator('li')

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试按钮禁用事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button/reset-time')
+  await page.goto('button#reset-time')
 
   const defalutDisabled = page.getByRole('button', { name: '默认禁用' })
   const noDisabled = page.getByRole('button', { name: '无禁用' })

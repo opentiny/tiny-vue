@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('dialogBox 可拖拽的弹窗', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/dialog-box/draggable')
+  await page.goto('dialog-box#draggable')
 
   const preview = page.locator('#preview')
   const button = preview.getByRole('button', { name: '可拖拽弹窗' })

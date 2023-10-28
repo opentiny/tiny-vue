@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('filterable-tree', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/nest-filterable-tree')
+  await page.goto('select#nest-filterable-tree')
   const input = page.locator('#preview .tiny-input__inner')
   const selectDropdown = page.locator('.tiny-select-dropdown')
 

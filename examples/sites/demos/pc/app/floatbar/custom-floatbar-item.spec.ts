@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义内容', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/floatbar/custom-floatbar-item')
+  await page.goto('floatbar#custom-floatbar-item')
 
   const floatbar = page.locator('#preview .tiny-float-bar')
   const item1 = floatbar.getByRole('listitem').first()

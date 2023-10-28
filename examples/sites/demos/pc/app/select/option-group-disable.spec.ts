@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('option-group-disable', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/option-group-disable')
+  await page.goto('select#option-group-disable')
   const select = page.locator('#preview .tiny-select')
   await select.click()
   const listitems = page.locator('.tiny-option')

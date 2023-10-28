@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('判断按钮是否可用', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/show-all-btn')
+  await page.goto('transfer#show-all-btn')
   const preview = page.locator('#preview')
   const buttons = preview.getByRole('button')
   await expect(buttons.first()).toBeEnabled()
@@ -11,7 +11,7 @@ test('判断按钮是否可用', async ({ page }) => {
 
 test('全部移动到右侧', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/show-all-btn')
+  await page.goto('transfer#show-all-btn')
   const preview = page.locator('#preview')
   const buttons = preview.getByRole('button')
   const transferPanels = preview.locator('.tiny-transfer-panel')
@@ -24,7 +24,7 @@ test('全部移动到右侧', async ({ page }) => {
 
 test('全部移动到左侧', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/show-all-btn')
+  await page.goto('transfer#show-all-btn')
   const preview = page.locator('#preview')
   const buttons = preview.getByRole('button')
   const transferPanels = preview.locator('.tiny-transfer-panel')
