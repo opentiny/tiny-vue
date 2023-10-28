@@ -255,6 +255,7 @@ export default {
       downloadFile: 'DownLoad file',
       previewFile: 'Preview file',
       updateFile: 'Update file',
+      reUploadFile: 'refresh upload file',
       deleteFile: 'Delete file',
       empty: 'is empty!',
       kiaScanTip:
@@ -271,7 +272,10 @@ export default {
       attachment: 'Attachment',
       uploadList: 'Upload List',
       numberExceed:
-        'Failed to upload the file. The number of files to be uploaded in batches exceeds the upper limit ({number}).'
+        'Failed to upload the file. The number of files to be uploaded in batches exceeds the upper limit ({number}).',
+      networkError: 'Network Error',
+      pictureNetworkError: 'Network error, upload failed',
+      ReUploadTip: '{number} files failed to upload!'
     },
     uploadList: {
       pictureUploading: 'Picture uploading',

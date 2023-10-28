@@ -72,6 +72,8 @@ export default [
   'toggle-menu',
   'tree-menu',
   'upload-list',
+  'upload__tip',
+  'upload-dragger',
   'user-account',
   'user-card',
   'user-contact',

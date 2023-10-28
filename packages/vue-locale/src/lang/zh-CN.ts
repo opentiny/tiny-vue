@@ -255,6 +255,7 @@ export default {
       downloadFile: '下载文件',
       previewFile: '预览文件',
       updateFile: '更新文件',
+      reUploadFile: '重新上传',
       deleteFile: '删除文件',
       empty: '是空文件！',
       kiaScanTip: '抱歉，从公网接入下载文档，需要通过KIA检测；当前文档正在KIA检测中，请稍后几分钟后再下载！',
@@ -269,7 +270,10 @@ export default {
       notSupport: '文件上传失败：不支持该格式（.{format}）',
       attachment: '附件',
       uploadList: '上传列表',
-      numberExceed: '文件上传失败：批量上传个数超过限制（{number}）'
+      numberExceed: '文件上传失败：批量上传个数超过限制（{number}）',
+      networkError: '网络出错',
+      pictureNetworkError: '网络出错，上传失败',
+      reUploadTip: '{number}个文件上传失败！'
     },
     uploadList: {
       pictureUploading: '图片上传中',

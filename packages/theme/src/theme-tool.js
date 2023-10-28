@@ -84,10 +84,14 @@ export default class TinyThemeTool {
     }
     const compLength = definedComponents.length
     let compName = ''
+    let newName = name.slice(3) // 切除css变量的前缀ti-。用于判断
     for (let i = 0; i < compLength; i++) {
-      // 先试试是不是双段式的组件名： 比如dialog-box 这种
-      if (definedComponents[i] === `${compNameList[1]}-${compNameList[2]}`) {
-        compName = `tiny-${definedComponents[i]}`
+      // 先试试是不是双段以上式的组件名： 比如dialog-box img-preview__item这种
+      const newCompName = `tiny-${definedComponents[i]}`
+      const configName = definedComponents[i].replace('__', '-')
+
+      if (newName.startsWith(configName)) {
+        compName = newCompName
         break
       }
     }
