@@ -62,13 +62,7 @@ export const calcPaneInstances =
 
 /* istanbul ignore */
 export const calcMorePanes =
-  ({
-    parent,
-    props,
-    state,
-    refs,
-    nextTick
-  }: Pick<ITabsRenderlessParams, 'parent' | 'props' | 'state' | 'refs' | 'nextTick'>) =>
+  ({ parent, props, state, refs }: Pick<ITabsRenderlessParams, 'parent' | 'props' | 'state' | 'refs'>) =>
   () => {
     if (!props.showMoreTabs) {
       return
@@ -79,26 +73,22 @@ export const calcMorePanes =
     const tabNavRefs = refs.nav.$refs
 
     if (tabs && tabs.length) {
-      nextTick(() => {
-        nextTick(() => {
-          let tabsAllWidth = 0
-          for (let i = 0; i < tabs.length; i++) {
-            const tabItem = tabs[i] as HTMLElement
-            // 遮住元素一半则隐藏
-            tabsAllWidth = tabItem.offsetLeft + tabItem.offsetWidth / 2
-            const tabsHeaderWidth = tabNavRefs.navScroll.offsetWidth
-            const currentName = Number(state.currentName)
-            if (tabsAllWidth > tabsHeaderWidth && currentName >= 0) {
-              if (currentName >= i + 1) {
-                state.showPanesCount = currentName - 0
-              } else {
-                state.showPanesCount = i
-              }
-              break
-            }
+      let tabsAllWidth = 0
+      for (let i = 0; i < tabs.length; i++) {
+        const tabItem = tabs[i] as HTMLElement
+        // 遮住元素一半则隐藏
+        tabsAllWidth = tabItem.offsetLeft + tabItem.offsetWidth / 2
+        const tabsHeaderWidth = tabNavRefs.navScroll.offsetWidth
+        const currentName = Number(state.currentName || 0)
+        if (tabsAllWidth > tabsHeaderWidth && currentName >= 0) {
+          if (currentName >= i + 1) {
+            state.showPanesCount = currentName - 0
+          } else {
+            state.showPanesCount = i
           }
-        })
-      })
+          break
+        }
+      }
     }
   }
 
