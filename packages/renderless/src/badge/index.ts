@@ -9,10 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import { IBadgeRenderlessParams, IBadgeContent } from '@/types'
 
 export const computedContent =
-  ({ props, state }) =>
-  () =>
+  ({ props, state }: Pick<IBadgeRenderlessParams, 'props' | 'state'>) =>
+  (): IBadgeContent =>
     typeof state.valueRef === 'number' && typeof props.max === 'number'
       ? props.max < state.valueRef
         ? `${props.max}+`
@@ -20,8 +21,8 @@ export const computedContent =
       : state.valueRef
 
 export const computedValueRef =
-  ({ props }) =>
-  () => {
+  ({ props }: Pick<IBadgeRenderlessParams, 'props'>) =>
+  (): number | undefined => {
     if (typeof props.value === 'number') {
       return props.value
     }

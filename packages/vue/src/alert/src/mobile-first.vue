@@ -93,10 +93,10 @@
       </div>
       <icon-close
         v-if="!closeText && closable"
-        @click="close"
+        @click="handleClose"
         class="h-4 w-4 mt-1 cursor-pointer fill-color-text-primary opacity-70"
       ></icon-close>
-      <span v-else-if="closeText && closable" @click="close" class="leading-6 text-sm cursor-pointer">{{
+      <span v-else-if="closeText && closable" @click="handleClose" class="leading-6 text-sm cursor-pointer">{{
         closeText
       }}</span>
     </div>
@@ -107,6 +107,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/alert/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconClose, iconSuccess, iconError, iconHelp, iconWarning, iconChevronDown } from '@opentiny/vue-icon'
+import type { IAlertApi } from '@opentiny/vue-renderless/types/alert.type'
 
 export default defineComponent({
   props: [
@@ -133,8 +134,8 @@ export default defineComponent({
     IconChevronDown: iconChevronDown()
   },
   emits: ['close'],
-  setup(props, context): any {
-    return setup({ props, context, renderless, api })
+  setup(props, context) {
+    return setup({ props, context, renderless, api }) as unknown as IAlertApi
   }
 })
 </script>

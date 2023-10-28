@@ -6,7 +6,7 @@ export default {
   presets: [
     presetTinyUno({
       isRem: false,
-      prefix: ''
+      prefix: 'ti-'
       // breakpoints: {
       //   xs: '0px',
       //   sm: '100px',

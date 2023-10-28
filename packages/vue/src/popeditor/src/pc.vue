@@ -58,7 +58,7 @@
         </span>
       </template>
     </tiny-input>
-    <transition name="tiny-zoom-in-top" @after-leave="popper.doDestroy">
+    <transition name="tiny-zoom-in-top" @after-leave="doDestroy">
       <div ref="popper" v-show="state.showSuggestPanel">
         <tiny-grid
           ref="suggest"
@@ -313,7 +313,7 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/popeditor/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
 import { iconClose, iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
 import Input from '@opentiny/vue-input'
 import DialogBox from '@opentiny/vue-dialog-box'
@@ -335,9 +335,7 @@ export default defineComponent({
     TinyTree: Tree,
     TinySelectedBox: SelectedBox
   },
-  directives: {
-    Clickoutside
-  },
+  directives: directive({ Clickoutside }),
   props: [
     ...props,
     'dataset',
@@ -380,7 +378,8 @@ export default defineComponent({
     'beforeClose',
     'showSelectedBox',
     'selectedBoxOp',
-    'tooltipConfig'
+    'tooltipConfig',
+    'autoReset'
   ],
   emits: ['change', 'close', 'page-change', 'popup'],
   setup(props, context) {

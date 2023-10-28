@@ -12,20 +12,22 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
+export const breadcrumbItemProps = {
+  ...$props,
+  to: Object,
+  replace: {
+    type: Boolean,
+    default: false
+  },
+  option: {
+    type: Object,
+    default: () => ({})
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'BreadcrumbItem',
-  props: {
-    ...$props,
-    to: Object,
-    replace: {
-      type: Boolean,
-      default: false
-    },
-    option: {
-      type: Object,
-      default: () => ({})
-    }
-  },
+  props: breadcrumbItemProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

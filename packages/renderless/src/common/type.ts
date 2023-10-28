@@ -29,7 +29,8 @@ const class2type = {
   '[object Boolean]': 'boolean'
 }
 
-export const isNull = (x) => x === null || x === undefined || x === 'undefined'
+/** 判断是否为 null / undefined */
+export const isNull = (x: any) => x === null || x === undefined
 
 /**
  * 返回 JavaScript 对象的类型。
@@ -51,30 +52,24 @@ export const isNull = (x) => x === null || x === undefined || x === 'undefined'
  *     typeOf( new Error() ) === 'error'
  *     typeOf( /test/ ) === 'regExp'
  *
- * @param {Object} obj 对象
- * @returns {String}
  */
-export const typeOf = (obj) => (isNull(obj) ? String(obj) : class2type[toString.call(obj)] || 'object')
+export const typeOf: (obj: any) => string = (obj) =>
+  isNull(obj) ? String(obj) : class2type[toString.call(obj)] || 'object'
 
 /**
  * 判断对象是否为 object 类型。
  *
  *     isObject({}) // true
- *
- * @param {Object} obj 对象
- * @returns {Boolean}
  */
-export const isObject = (obj) => typeOf(obj) === 'object'
+export const isObject = (obj: any) => typeOf(obj) === 'object'
 
 /**
  * 判断对象是否为 function 类型。
  *
  *     isObject(function (){) // true
- *
- * @param {Object} fn 函数
- * @returns {Boolean}
+
  */
-export const isFunction = (fn) => typeOf(fn) === 'function'
+export const isFunction = (fn: any) => typeOf(fn) === 'function'
 
 /**
  * 判断对象是否为简单对象。
@@ -83,11 +78,8 @@ export const isFunction = (fn) => typeOf(fn) === 'function'
  *
  *     let obj = {}
  *     isPlainObject(obj) //true
- *
- * @param {Object} obj 对象
- * @returns {Boolean}
  */
-export const isPlainObject = (obj) => {
+export const isPlainObject = (obj: any) => {
   if (!obj || toString.call(obj) !== '[object Object]') {
     return false
   }
@@ -106,11 +98,8 @@ export const isPlainObject = (obj) => {
  *
  *     let obj = {}
  *     isEmptyObject(obj) // true
- *
- * @param {Object} obj 对象
- * @returns {Boolean}
  */
-export const isEmptyObject = (obj) => {
+export const isEmptyObject = (obj: any) => {
   const type = typeOf(obj)
 
   if (type === 'object' || type === 'array') {
@@ -128,11 +117,8 @@ export const isEmptyObject = (obj) => {
  * 判断对象是否为数字类型。
  *
  *     isNumber(369) // true
- *
- * @param {Object} value 对象
- * @returns {Boolean}
  */
-export const isNumber = (value) => typeof value === 'number' && isFinite(value)
+export const isNumber = (value: any) => typeof value === 'number' && isFinite(value)
 
 /**
  * 判断对象是否代表一个数值。
@@ -151,20 +137,14 @@ export const isNumber = (value) => typeof value === 'number' && isFinite(value)
  *     isNumeric(true)      // false
  *     isNumeric(Infinity)  // false
  *     isNumeric(undefined) // false
- *
- * @param {Object} value 对象
- * @returns {Boolean}
  */
-export const isNumeric = (value) => value - parseFloat(value) >= 0
+export const isNumeric = (value: any) => value - parseFloat(value) >= 0
 
 /**
  * 判断对象是否为日期类型。
  *
  *     let date = new Date()
  *     isDate(date)  // true
- *
- * @param {Object} value 对象
- * @returns {Boolean}
  */
 export const isDate = (value) => typeOf(value) === 'date'
 
@@ -175,11 +155,9 @@ export const isDate = (value) => typeOf(value) === 'date'
  *
  *     isSame(1, 1)     // true
  *     isSame(NaN, NaN) // true
- *
- * @param {Object} x 对象
- * @param {Object} y 对象
- * @returns {Boolean}
  */
-export const isSame = (x, y) => x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y))
+export const isSame = (x: any, y: any) =>
+  x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y))
 
-export const isRegExp = (value) => typeOf(value) === 'regExp'
+/** 判断是否是正则表达式 */
+export const isRegExp = (value: any) => typeOf(value) === 'regExp'

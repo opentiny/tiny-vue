@@ -9,6 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import { ICascaderPanelConfig, ICascaderPanelData, ICascaderPanelNodePropValue, ICascaderPanelNodeValue } from '@/types'
 
 import { isEqual } from '../common/object'
 import { capitalize } from '../common/string'
@@ -17,7 +18,26 @@ import { isNull } from '../common/type'
 let uid = 0
 
 export default class Node {
-  constructor(data, config, parentNode) {
+  parent: Node | null
+  level: number
+  data!: ICascaderPanelData
+  config!: ICascaderPanelConfig
+  uid!: number
+  value!: ICascaderPanelNodeValue
+  label!: string
+  pathNodes!: Node[]
+  path!: ICascaderPanelNodeValue[]
+  pathLabels!: string[]
+  loaded!: boolean
+  loading!: boolean
+  hasChildren!: boolean
+  children!: Node[]
+
+  checked?: boolean
+  indeterminate?: boolean
+  root?: boolean
+
+  constructor(data: ICascaderPanelData, config: ICascaderPanelConfig, parentNode?: Node | null) {
     Object.assign(this, { data, config, uid: uid++ })
 
     this.parent = parentNode || null
@@ -30,8 +50,8 @@ export default class Node {
   initState() {
     const { value, label } = this.config
 
-    this.value = this.data[value]
-    this.label = this.data[label]
+    this.value = this.data[value] as ICascaderPanelNodeValue
+    this.label = String(this.data[label])
     this.pathNodes = this.calculatePathNodes()
     this.path = this.pathNodes.map((node) => node.value)
     this.pathLabels = this.pathNodes.map((node) => node.label)
@@ -46,10 +66,10 @@ export default class Node {
     const childrenData = this.data[childrenKey]
 
     this.hasChildren = Array.isArray(childrenData)
-    this.children = (childrenData || []).map((child) => new Node(child, config, this))
+    this.children = ((childrenData as ICascaderPanelData[]) || []).map((child) => new Node(child, config, this))
   }
 
-  get isLeaf() {
+  get isLeaf(): boolean {
     const { data, loaded, hasChildren, children, config } = this
     const { lazy, leaf } = config
 
@@ -59,22 +79,25 @@ export default class Node {
 
       this.hasChildren = !isLeaf
 
-      return isLeaf
+      return Boolean(isLeaf)
     }
 
     return !hasChildren
   }
 
-  get isDisabled() {
+  /**
+   * 当前节点是否被disable
+   */
+  get isDisabled(): boolean {
     const { data, parent, config } = this
     const { checkStrictly, disabled } = config
     const disabledKey = disabled
 
-    return data[disabledKey] || (!checkStrictly && parent && parent.isDisabled)
+    return Boolean(data[disabledKey] || (!checkStrictly && parent && parent.isDisabled))
   }
 
   calculatePathNodes() {
-    const nodes = [this]
+    const nodes: Node[] = [this]
     let parentNode = this.parent
 
     while (parentNode) {
@@ -93,22 +116,30 @@ export default class Node {
     return this.path
   }
 
-  getValueByOption() {
+  getValueByOption(): ICascaderPanelNodePropValue {
     return this.config.emitPath ? this.getPath() : this.getValue()
   }
 
-  getText(allLevels, separator) {
+  /**
+   *
+   * @param allLevels 输入框中是否显示选中值的完整路径
+   * @param separator 分割符
+   * @returns 选中值的路径
+   */
+  getText(allLevels: boolean, separator: string) {
     return allLevels ? this.pathLabels.join(separator) : this.label
   }
 
-  isSameNode(checkedValue) {
+  isSameNode(checkedValue: ICascaderPanelNodePropValue) {
     const value = this.getValueByOption()
     const isMultiple = this.config.multiple && Array.isArray(checkedValue)
 
-    return isMultiple ? checkedValue.some((val) => isEqual(val, value)) : isEqual(checkedValue, value)
+    return isMultiple
+      ? checkedValue.some((val) => isEqual(val, value as object))
+      : isEqual(checkedValue as object, value as object)
   }
 
-  emit(eventName, ...args) {
+  emit(eventName: string, ...args) {
     const { parent } = this
     const handlerName = `onChild${capitalize(eventName)}`
 
@@ -118,7 +149,7 @@ export default class Node {
     }
   }
 
-  broadcast(eventName, ...args) {
+  broadcast(eventName: string, ...args) {
     const handlerName = `onParent${capitalize(eventName)}`
 
     this.children.forEach((child) => {
@@ -129,7 +160,7 @@ export default class Node {
     })
   }
 
-  onParentCheck(checked) {
+  onParentCheck(checked: boolean) {
     !this.isDisabled && this.setCheckState(checked)
   }
 
@@ -141,14 +172,14 @@ export default class Node {
     this.setCheckState(checked)
   }
 
-  syncCheckState(checkedValue) {
+  syncCheckState(checkedValue: ICascaderPanelNodePropValue) {
     const value = this.getValueByOption()
-    const checked = this.isSameNode(checkedValue, value)
+    const checked = this.isSameNode(checkedValue)
 
     this.doCheck(checked)
   }
 
-  setCheckState(checked) {
+  setCheckState(checked: boolean) {
     const totalNum = this.children.length
 
     const checkedNum = this.children.reduce((prevChild, nextChild) => {
@@ -160,7 +191,7 @@ export default class Node {
     this.indeterminate = checkedNum !== totalNum && checkedNum > 0
   }
 
-  doCheck(isChecked) {
+  doCheck(isChecked: boolean) {
     if (this.checked !== isChecked) {
       if (this.config.checkStrictly) {
         this.checked = isChecked

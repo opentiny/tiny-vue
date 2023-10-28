@@ -276,7 +276,10 @@ export default {
       })
     }
 
-    field === true && emitEvent(this, 'filter-change', [{ filters: {}, $table: this }]) // 从reload执行过来的不发送事件
+    // 如果清除所有列筛选或者参数传递的清除列存在才发送事件，从reload执行过来的不发送事件
+    if (field === true || column) {
+      emitEvent(this, 'filter-change', [{ filters: {}, $table: this }])
+    }
 
     this.clearSelection()
 

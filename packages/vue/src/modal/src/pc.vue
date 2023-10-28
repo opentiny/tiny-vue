@@ -25,6 +25,7 @@ import {
   iconMinscreenLeft
 } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/modal/index.less'
+import type { IModalApi } from '@opentiny/vue-renderless/types/modal.type'
 
 export default defineComponent({
   props: [
@@ -83,7 +84,7 @@ export default defineComponent({
     return { dialog: this }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IModalApi
   },
   render() {
     let { state, scopedSlots, vSize, type, resize, animat, status, showHeader, messageClosable } = this
@@ -140,6 +141,7 @@ export default defineComponent({
           'div',
           {
             class: 'tiny-modal__box',
+            style: state.boxStyle,
             ref: 'modalBox'
           },
           [

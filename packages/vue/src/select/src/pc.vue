@@ -497,7 +497,6 @@ const getReference = (el, binding, vnode) => {
 }
 
 export default defineComponent({
-  inheritAttrs: false,
   emits: [
     'update:modelValue',
     'change',
@@ -610,12 +609,12 @@ export default defineComponent({
     'shape',
     'label',
     'tip',
-    'updateDelay',
     'showTips',
     'searchable',
     'showEmptyImage',
     'inputBoxType',
-    'tagType'
+    'tagType',
+    'clearNoMatchValue'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

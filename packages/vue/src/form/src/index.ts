@@ -12,91 +12,94 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
+export const formProps = {
+  ...$props,
+  model: Object,
+  rules: Object,
+  inlineMessage: {
+    type: Boolean,
+    default: undefined
+  },
+  messageType: String,
+  statusIcon: Boolean,
+  showMessage: {
+    type: Boolean,
+    default: true
+  },
+  validatePosition: {
+    type: String,
+    default: 'right'
+  },
+  size: String,
+  disabled: Boolean,
+  validateOnRuleChange: {
+    type: Boolean,
+    default: true
+  },
+  hideRequiredAsterisk: {
+    type: Boolean,
+    default: undefined
+  },
+  labelPosition: {
+    type: String,
+    default: 'right',
+    validator: (value: string) => ['left', 'top', 'right'].includes(value)
+  },
+  labelWidth: {
+    type: String,
+    default: '80px'
+  },
+  labelAlign: {
+    type: Boolean,
+    default: false
+  },
+  contentOffset: Number,
+  labelSuffix: {
+    type: String,
+    default: ''
+  },
+  inline: {
+    type: Boolean,
+    default: false
+  },
+  responsiveLayout: {
+    type: Boolean,
+    default: false
+  },
+  validateType: {
+    type: String,
+    default: 'tip',
+    validator(value: string) {
+      return Boolean(~['tip', 'text'].indexOf(value))
+    }
+  },
+  validateIcon: Object,
+  manual: {
+    type: Boolean,
+    default: false
+  },
+  appendToBody: {
+    type: Boolean,
+    default: undefined
+  },
+  popperOptions: {
+    type: Object,
+    default: () => ({})
+  },
+  displayOnly: {
+    type: Boolean,
+    default: false
+  },
+  showAutoWidth: {
+    type: Boolean,
+    default: false
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'Form',
   componentName: 'Form',
-  props: {
-    ...$props,
-    model: Object,
-    rules: Object,
-    inlineMessage: Boolean,
-    statusIcon: Boolean,
-    showMessage: {
-      type: Boolean,
-      default: true
-    },
-    validatePosition: {
-      type: String,
-      default: 'right'
-    },
-    size: String,
-    disabled: Boolean,
-    validateOnRuleChange: {
-      type: Boolean,
-      default: true
-    },
-    hideRequiredAsterisk: {
-      type: Boolean,
-      default: false
-    },
-    labelPosition: {
-      type: String,
-      default: 'right',
-      validator: (value: string) => Boolean(~['left', 'top', 'right'].indexOf(value))
-    },
-    labelWidth: {
-      type: String,
-      default: '80px'
-    },
-    labelAlign: {
-      type: Boolean,
-      default: false
-    },
-    contentOffset: Number,
-    labelSuffix: {
-      type: String,
-      default: ''
-    },
-    inline: {
-      type: Boolean,
-      default: false
-    },
-    responsiveLayout: {
-      type: Boolean,
-      default: false
-    },
-    validateType: {
-      type: String,
-      default: 'tip',
-      validator(value: string) {
-        return Boolean(~['tip', 'text'].indexOf(value))
-      }
-    },
-    manual: {
-      type: Boolean,
-      default: false
-    },
-    appendToBody: {
-      type: Boolean,
-      default: undefined
-    },
-    popperOptions: {
-      type: Object,
-      default: () => ({})
-    },
-    displayOnly: {
-      type: Boolean,
-      default: false
-    },
-    valueSplit: {
-      type: String,
-      default: '; '
-    },
-    showAutoWidth: {
-      type: Boolean,
-      default: false
-    }
-  },
+  props: formProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

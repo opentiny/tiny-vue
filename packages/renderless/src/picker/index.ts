@@ -16,19 +16,14 @@ import userPopper from '../common/deps/vue-popper'
 import { DATEPICKER } from '../common'
 import { formatDate, parseDate, isDateObject, getWeekNumber } from '../common/deps/date-util'
 import { extend } from '../common/object'
-import globalTimezone from '../picker/timezone'
+import { isFunction } from '../common/type'
+import globalTimezone from './timezone'
 
 const iso8601Reg = /^\d{4}-\d{2}-\d{2}(.)\d{2}:\d{2}:\d{2}(.+)$/
 
-export const getPanel = ({
-  DatePanel,
-  DateRangePanel,
-  MonthRangePanel,
-  YearRangePanel,
-  TimePanel,
-  TimeRangePanel,
-  TimeSelect
-}) => (type) => {
+export const getPanel =
+  ({ DatePanel, DateRangePanel, MonthRangePanel, YearRangePanel, TimePanel, TimeRangePanel, TimeSelect }) =>
+  (type) => {
     if (type === DATEPICKER.DateRange || type === DATEPICKER.DateTimeRange) {
       return DateRangePanel
     } else if (type === DATEPICKER.MonthRange) {
@@ -710,12 +705,15 @@ export const handleKeydown =
   }
 
 export const hidePicker =
-  ({ destroyPopper, state }) =>
+  ({ state, doDestroy }) =>
   () => {
     if (state.picker) {
       state.picker.resetView && state.picker.resetView()
       state.pickerVisible = state.picker.visible = state.picker.state.visible = false
-      destroyPopper()
+
+      if (isFunction(doDestroy)) {
+        doDestroy()
+      }
     }
   }
 
@@ -734,10 +732,8 @@ export const showPicker =
     state.picker.state.value = state.parsedValue
     state.picker.resetView && state.picker.resetView()
 
-    nextTick(() => {
-      updatePopper(state.picker.$el)
-      state.picker.adjustSpinners && state.picker.adjustSpinners()
-    })
+    updatePopper(state.picker.$el)
+    state.picker.adjustSpinners && state.picker.adjustSpinners()
   }
 
 export const handlePick =
@@ -1078,27 +1074,33 @@ export const initGlobalTimezone =
     api.emitDbTime(props.value)
   }
 
-export const handleEnterDisplayOnlyContent = ({ state, t }) => ($event) => {
-  const target = $event.target
-  if (target && target.scrollWidth > target.offsetWidth) {
-    state.displayOnlyTooltip = state.displayValue.join(` ${t('ui.datepicker.to')} `)
+export const handleEnterDisplayOnlyContent =
+  ({ state, t }) =>
+  ($event) => {
+    const target = $event.target
+    if (target && target.scrollWidth > target.offsetWidth) {
+      state.displayOnlyTooltip = state.displayValue.join(` ${t('ui.datepicker.to')} `)
+    }
   }
-}
 
-export const handleEnterPickerlabel = ({ state, props }) => ($event) => {
-  const target = $event.target
-  if (target && target.scrollWidth > target.offsetWidth) {
-    state.labelTooltip = props.label
+export const handleEnterPickerlabel =
+  ({ state, props }) =>
+  ($event) => {
+    const target = $event.target
+    if (target && target.scrollWidth > target.offsetWidth) {
+      state.labelTooltip = props.label
+    }
   }
-}
 
-export const setInputPaddingLeft = ({ props, state, vm, nextTick }) => () => {
-  const ml = 12
-  const mr = 8
+export const setInputPaddingLeft =
+  ({ props, state, vm, nextTick }) =>
+  () => {
+    const ml = 12
+    const mr = 8
 
-  if (props.label && !state.ranged && vm.$refs.label && vm.$refs.reference) {
-    nextTick(() => {
-      vm.$refs.reference.querySelector('input').style.paddingLeft = vm.$refs.label.offsetWidth + ml + mr + 'px'
-    })
+    if (props.label && !state.ranged && vm.$refs.label && vm.$refs.reference) {
+      nextTick(() => {
+        vm.$refs.reference.querySelector('input').style.paddingLeft = vm.$refs.label.offsetWidth + ml + mr + 'px'
+      })
+    }
   }
-}

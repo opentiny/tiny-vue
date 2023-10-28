@@ -170,14 +170,14 @@
   // 冻结列，采用sticky布局代替多表格渲染，至少少渲染一半的dom元素
   .fixed__column {
     position: sticky !important;
-    z-index: 1;
+    z-index: 2;
     background-color: var(--ti-grid-light-color);
 
     &.fixed-left-last__column:after {
       position: absolute;
       top: 0;
       right: 0;
-      bottom: -1px;
+      bottom: 0;
       width: 30px;
       transform: translate(100%);
       transition: box-shadow 0.3s;
@@ -188,7 +188,7 @@
     &.fixed-right-first__column:after {
       position: absolute;
       top: 0;
-      bottom: -1px;
+      bottom: 0;
       left: 0;
       width: 30px;
       transform: translate(-100%);
@@ -488,7 +488,7 @@
     }
 
     .@{grid-prefix-cls}-checkbox {
-      vertical-align: bottom;
+      vertical-align: middle;
     }
 
     .@{grid-prefix-cls}__data-boole,

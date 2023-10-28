@@ -12,30 +12,39 @@
 import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
-const $constants = {
+export const $constants = {
   PROCESS_DONE_CLS: 'process-done',
   PROCESS_CUR_CLS: 'process-current',
   PROCESS_WAIT_CLS: 'process-wait',
   PROCESS_DISABLED_CLS: 'process-disabled',
   PROCESS_ERROR_CLS: 'process-error',
-  STACK_NODES_MAX: '7',
-  LIMITED_STACK_NODES: '3'
+  STACK_NODES_MAX: 7,
+  LIMITED_STACK_NODES: 3
+}
+
+export const timelineItemProps = {
+  ...$props,
+  node: {
+    type: Object,
+    default: {}
+  },
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  space: {
+    type: [String, Number],
+    default: ''
+  },
+  lineWidth: {
+    type: [String, Number],
+    default: ''
+  }
 }
 
 export default defineComponent({
   name: $prefix + 'TimelineItem',
-  props: {
-    ...$props,
-    node: {
-      type: Object,
-      default: {}
-    },
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    space: [String, Number]
-  },
+  props: timelineItemProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

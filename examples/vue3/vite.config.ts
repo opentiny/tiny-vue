@@ -25,6 +25,11 @@ export default defineConfig((config) => {
       host: 'localhost',
       open: false
     },
+    devServer: {
+      proxy: {
+        ws: false
+      }
+    },
     plugins: [
       virtualTemplatePlugin({ include: ['**/packages/vue/**/src/index.ts'], env }),
       vue3Plugin({
@@ -71,6 +76,8 @@ export default defineConfig((config) => {
         'vue': path.resolve('node_modules/vue/dist/vue.esm-bundler.js'),
         'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
         '@': pathFromWorkspaceRoot('examples/docs/newsrc'),
+        '@opentiny/vue-renderless/types': pathFromWorkspaceRoot('packages/renderless/types'),
+        '@tiptap/vue': '@tiptap/vue-3',
         ...getAlias(3, env.VITE_TINY_THEME)
       }
     },

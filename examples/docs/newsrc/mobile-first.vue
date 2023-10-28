@@ -23,15 +23,15 @@
           <div v-html="state.currDemo?.desc['zh-CN']"></div>
         </div>
         <!-- 预览 -->
-        <div class="rel px20">
+        <div class="rel px20 minh200" style="transform: translateX(0)">
           <component :is="state.comp"></component>
         </div>
       </div>
       <!-- API表格 -->
-      <div v-if="state.currApi.length" class="my20 f24 fw-bold">组件API</div>
+      <div v-if="state.currApi.length" class="mt20 f24 fw-bold">组件API</div>
 
       <div v-for="(oneGroup, idx) in state.currApi" :key="idx">
-        <div class="f-r f-pos-start fw-bold">
+        <div class="mt20 f-r f-pos-start fw-bold">
           <div :id="oneGroup.name" class="f18">
             {{ oneGroup.name }}
           </div>
@@ -141,7 +141,7 @@ export default {
         }
       },
       openInVscode: (demo) => {
-        fetch(`/__open-in-editor?file=../docs/resources/mobile-first/app/${modeState.pathName}/${demo.codeFiles[0]}`)
+        fetch(`/__open-in-editor?file=../sites/demos/mobile-first/app/${modeState.pathName}/${demo.codeFiles[0]}`)
       }
     }
 
@@ -152,7 +152,7 @@ export default {
     // 以下私有方法，无须传递给vue模板的。
     async function _switchPath() {
       // 查找API
-      const apiModule = apis[`../resources/mobile-first/app/${modeState.pathName}/webdoc/${modeState.pathName}.js`]
+      const apiModule = apis[`../../sites/demos/mobile-first/app/${modeState.pathName}/webdoc/${modeState.pathName}.js`]
       if (apiModule) {
         const module = await apiModule()
         const apiRoot = module.default
@@ -167,7 +167,7 @@ export default {
     }
     async function _switchDemo() {
       modeState.demoId = state.currDemo.demoId
-      const path = `../resources/mobile-first/app/${modeState.pathName}/${state.currDemo?.codeFiles[0]}`
+      const path = `../../sites/demos/mobile-first/app/${modeState.pathName}/${state.currDemo?.codeFiles[0]}`
 
       // 查找源码  查找组件
       state.currDemoSrc = await demoStr[path]()

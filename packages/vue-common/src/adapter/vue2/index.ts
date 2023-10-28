@@ -1,14 +1,20 @@
 import Vue from 'vue'
-import * as hooks from '@vue/composition-api'
-import type {} from 'vue-router'
+import * as compositionHooks from '@vue/composition-api'
+import * as vueHooks from 'vue'
 import { bindFilter, emitter, getElementCssClass, getElementStatusClass } from '../utils'
 import teleport from '../teleport'
+
+// vue2.7有version字段
+const isVueHooks = Boolean(Vue.version?.includes('2.7'))
+
+const hooks = isVueHooks ? vueHooks : compositionHooks
 
 const Teleport = teleport(hooks)
 
 export { emitter, bindFilter, getElementCssClass, getElementStatusClass, Teleport }
 
-if (!hooks.default['__composition_api_installed__']) {
+// 只有在vue的版本小于2.7并且composition-api没有注册的情况下才去注册hooks
+if (!hooks.default['__composition_api_installed__'] && !isVueHooks) {
   Vue.use(hooks.default)
 }
 
@@ -214,6 +220,12 @@ const createVm = (vm, instance, context = undefined) => {
   return vm
 }
 
+const onBeforeMount = (instance, refs) => {
+  Object.keys(instance.$refs).forEach((key) => {
+    refs[key] = instance.$refs[key]
+  })
+}
+
 export const tools = (context, mode) => {
   const instance = hooks.getCurrentInstance()?.proxy as any
   const root = instance?.$root
@@ -224,6 +236,7 @@ export const tools = (context, mode) => {
   const childrenHandler = children(instance)
   const vm = createVm({}, instance, context)
   const emit = context.emit
+  const refs = {}
   const parentVm = instance.$parent ? createVm({}, instance.$parent) : null
 
   const setParentAttribute = ({ name, value }) => {
@@ -242,6 +255,10 @@ export const tools = (context, mode) => {
 
   hooks.onBeforeMount(() => defineProperties(vm, instance, filter))
 
+  if (vueHooks) {
+    hooks.onMounted(() => onBeforeMount(instance, refs))
+  }
+
   return {
     framework: 'vue2',
     vm,
@@ -253,7 +270,8 @@ export const tools = (context, mode) => {
     broadcast,
     parentHandler,
     childrenHandler,
-    refs: context.refs,
+    // 因为vue2.6版本context.refs是有值的，但是vue2.7版本是undefined所以这里需要做个兼容
+    refs: vueHooks ? refs : context.refs,
     i18n,
     slots: context.slots,
     scopedSlots: context.slots,

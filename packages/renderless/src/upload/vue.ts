@@ -9,12 +9,22 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import {
+  IUploadState,
+  IUploadApi,
+  IUploadProps,
+  ISharedRenderlessParamHooks,
+  IUploadRenderlessParamUtils,
+  IFileUploadModalVm,
+  IFileUploadVm
+} from '@/types'
 
 import {
   getFormData,
   isImage,
   handleChange,
   uploadFiles,
+  handlePaste,
   upload,
   abort,
   post,
@@ -29,6 +39,7 @@ export const api = [
   'state',
   'isImage',
   'handleChange',
+  'handlePaste',
   'uploadFiles',
   'upload',
   'abort',
@@ -39,15 +50,15 @@ export const api = [
 ]
 
 export const renderless = (
-  props,
-  { computed, inject, reactive, onMounted, onBeforeUnmount },
-  { refs, service, t },
-  { Modal }
-) => {
-  const api = {}
-  const uploader = inject('uploader')
+  props: IUploadProps,
+  { computed, inject, reactive, onMounted, onBeforeUnmount }: ISharedRenderlessParamHooks,
+  { refs, service, t }: IUploadRenderlessParamUtils,
+  { Modal }: IFileUploadModalVm & { CryptoJS: object; Streamsaver: object }
+): IUploadApi => {
+  const api = {} as IUploadApi
+  const uploader = inject('uploader') as IFileUploadVm
   const constants = uploader.$constants
-  const state = reactive({
+  const state: IUploadState = reactive({
     mouseover: false,
     reqs: {},
     uploader,
@@ -81,6 +92,7 @@ export const renderless = (
     uploadFiles: uploadFiles({ constants, Modal, props, state, t }),
     post: post({ api, constants, props, state, service }),
     handleChange: handleChange(api),
+    handlePaste: handlePaste({ api, props }),
     handleKeydown: handleKeydown(api),
     upload: upload({ api, props, refs }),
     mounted: mounted({ state, props, api })

@@ -203,6 +203,7 @@
     .icon {
       background: var(--ti-steps-done-icon-bg-color);
       color: var(--ti-steps-done-icon-color);
+      fill: var(--ti-steps-done-icon-color);
       border-color: var(--ti-steps-done-active-border-color);
 
       .@{css-prefix}svg {
@@ -289,7 +290,6 @@
       display: block;
       position: relative;
       font-size: var(--ti-steps-font-size-base);
-
     }
 
     .icon {
@@ -300,6 +300,7 @@
 
     .name {
       color: var(--ti-steps-timeline-date-time-text-color);
+      cursor: pointer;
     }
 
     &.text-right {
@@ -312,6 +313,7 @@
       .normal {
         display: inline-flex;
         align-items: center;
+        overflow: hidden;
   
         .step-icon {
           top: 0;
@@ -355,6 +357,10 @@
   
         &:not(:last-child) {
           flex: 1;
+        }
+
+        &.no-flex {
+          flex: none;
         }
       }
     }

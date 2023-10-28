@@ -32,6 +32,9 @@ import {
   computedIsRequired,
   computedFieldValue,
   computedGetValidateType,
+  computedValidateIcon,
+  computedIsErrorInline,
+  computedIsErrorBlock,
   updateTip,
   wrapValidate,
   getDisplayedValue,
@@ -39,6 +42,14 @@ import {
   handleMouseenter,
   handleMouseleave
 } from './index'
+import type {
+  IFormItemApi,
+  IFormItemProps,
+  IFormItemState,
+  IFormInstance,
+  IFormItemRenderlessParams,
+  IFormItemRenderlessParamUtils
+} from '@/types'
 
 export const api = [
   'state',
@@ -58,14 +69,20 @@ export const api = [
   'handleMouseleave'
 ]
 
-const initState = ({ reactive, computed, api, mode, inject, props }) => {
-  const state = reactive({
+const initState = ({
+  reactive,
+  computed,
+  api,
+  mode,
+  inject,
+  props
+}: Pick<IFormItemRenderlessParams, 'reactive' | 'computed' | 'api' | 'mode' | 'inject' | 'props'>) => {
+  const state: IFormItemState = reactive({
     mode,
     validateState: '',
     validateMessage: '',
     validateDisabled: false,
     validator: {},
-    stowed: [],
     isNested: false,
     computedLabelWidth: '',
     initialValue: null,
@@ -73,17 +90,17 @@ const initState = ({ reactive, computed, api, mode, inject, props }) => {
     // 兼容 2.0 validation 的 required
     validationRequired: false,
     validateType: 'text',
-    tooltip: null,
+    tooltip: '',
     displayedValue: '',
     isBasicComp: false,
     showTooltip: false,
     typeName: '',
-    formInstance: inject('form', null),
-    labelFor: computed(() => props.for || props.prop),
+    formInstance: inject('form') as IFormInstance,
+    labelFor: computed(() => props.for || props.prop || ''),
     labelStyle: computed(() => api.computedLabelStyle()),
     valueStyle: computed(() => api.computedValueStyle()),
     contentStyle: computed(() => api.computedContentStyle()),
-    form: computed(() => api.computedForm()),
+    form: computed(() => api.computedForm() as IFormInstance),
     fieldValue: computed(() => api.computedFieldValue()),
     isRequired: computed(() => api.computedIsRequired()),
     formInline: computed(() => state.formInstance.inline),
@@ -91,13 +108,16 @@ const initState = ({ reactive, computed, api, mode, inject, props }) => {
     formItemSize: computed(() => props.size || state.formSize),
     isDisplayOnly: computed(() => state.formInstance.displayOnly),
     labelPosition: computed(() => state.formInstance.labelPosition),
-    hideRequiredAsterisk: computed(() => state.formInstance.hideRequiredAsterisk),
+    hideRequiredAsterisk: computed(() => state.formInstance.state.hideRequiredAsterisk),
+    // isErrorInline: computed(() => state.formInstance.state.isErrorInline),
     labelSuffix: computed(() => state.formInstance.labelSuffix),
     labelWidth: computed(() => state.formInstance.labelWidth),
     showMessage: computed(() => state.formInstance.showMessage),
-    inlineMessage: computed(() => state.formInstance.inlineMessage),
     sizeClass: computed(() => state.formItemSize),
-    getValidateType: computed(() => api.computedGetValidateType())
+    getValidateType: computed(() => api.computedGetValidateType()),
+    validateIcon: computed(() => api.computedValidateIcon()),
+    isErrorInline: computed(() => api.computedIsErrorInline()),
+    isErrorBlock: computed(() => api.computedIsErrorBlock())
   })
 
   return state
@@ -117,6 +137,9 @@ const initApi = ({ api, state, dispatch, broadcast, refs, props, constants, inst
     computedForm: computedForm({ constants, instance, state }),
     computedFieldValue: computedFieldValue({ props, state }),
     computedGetValidateType: computedGetValidateType({ props, state }),
+    computedValidateIcon: computedValidateIcon({ props, state }),
+    computedIsErrorInline: computedIsErrorInline({ props, state }),
+    computedIsErrorBlock: computedIsErrorBlock({ props, state }),
     clearValidate: clearValidate(state),
     getRules: getRules({ props, state }),
     updateComputedLabelWidth: updateComputedLabelWidth(state),
@@ -146,11 +169,11 @@ const initWatch = ({ watch, api, props, state }) => {
 }
 
 export const renderless = (
-  props,
-  { computed, inject, onMounted, onUnmounted, provide, reactive, watch },
-  { vm: instance, constants, t, nextTick, refs, broadcast, dispatch, mode }
-) => {
-  const api = {}
+  props: IFormItemProps,
+  { computed, inject, onMounted, onUnmounted, provide, reactive, watch }: IFormItemRenderlessParams,
+  { vm: instance, constants, t, nextTick, refs, broadcast, dispatch, mode }: IFormItemRenderlessParamUtils
+): IFormItemApi => {
+  const api = {} as IFormItemApi
   const state = initState({ reactive, computed, api, mode, inject, props })
 
   provide('formItem', instance)

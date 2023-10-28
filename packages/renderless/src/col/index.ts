@@ -46,17 +46,18 @@ export const setGlobalAttrValue = ({ attr, className, value }) => {
 export const getClassName =
   ({ api, props }) =>
   () => {
-    const span = props.span
+    const multiple = 2
+    const span = props.span * multiple
     const offset = props.offset
     const push = props.move ? props.move : 0
     const pull = props.move ? 0 : -props.move
 
     const subitems = {
-      xs: props.xs,
-      sm: props.sm,
-      md: props.md,
-      lg: props.lg,
-      xl: props.xl
+      xs: props.xs * multiple,
+      sm: props.sm * multiple,
+      md: props.md * multiple,
+      lg: props.lg * multiple,
+      xl: props.xl * multiple
     }
 
     const className = {}

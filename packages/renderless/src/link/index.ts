@@ -9,10 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import { ILinkRenderlessParams } from '@/types'
 
 export const handleClick =
-  ({ emit, props, state }) =>
-  (event) => {
+  ({ emit, props, state }: Pick<ILinkRenderlessParams, 'emit' | 'props' | 'state'>) =>
+  (event: MouseEvent) => {
     if (!state.disabled && !props.href) {
       emit('click', event)
     }

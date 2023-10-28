@@ -12,55 +12,62 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
-const $constants = {
+export const $constants = {
   FORM_ITEM: 'FormItem',
   FORM_CHANGE: 'form.change',
   CHECKBOX: $prefix + 'Checkbox',
   CHECKBOX_GROUP: 'CheckboxGroup'
 }
 
+export const checkboxProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  modelValue: {
+    type: [String, Number, Boolean]
+  },
+  label: {
+    type: [String, Number, Boolean],
+    default: ''
+  },
+  indeterminate: Boolean,
+  disabled: Boolean,
+  checked: Boolean,
+  name: String,
+  trueLabel: [String, Number],
+  falseLabel: [String, Number],
+
+  /*
+   * 当indeterminate为真时，为controls提供相关连的checkbox的id，表明元素间的控制关系
+   */
+  id: String,
+
+  /*
+   * 当indeterminate为真时，为controls提供相关连的checkbox的id，表明元素间的控制关系
+   */
+  controls: { type: String, default: '' },
+  border: Boolean,
+  size: String,
+  text: String,
+  validateEvent: {
+    type: Boolean,
+    default: true
+  },
+  events: {
+    type: Object,
+    default: () => ({})
+  },
+  displayOnly: {
+    type: Boolean,
+    default: false
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'Checkbox',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    modelValue: {},
-    label: {},
-    indeterminate: Boolean,
-    disabled: Boolean,
-    checked: Boolean,
-    name: String,
-    trueLabel: [String, Number],
-    falseLabel: [String, Number],
-
-    /*
-     * 当indeterminate为真时，为controls提供相关连的checkbox的id，表明元素间的控制关系
-     */
-    id: String,
-
-    /*
-     * 当indeterminate为真时，为controls提供相关连的checkbox的id，表明元素间的控制关系
-     */
-    controls: String,
-    border: Boolean,
-    size: String,
-    text: String,
-    validateEvent: {
-      type: Boolean,
-      default: true
-    },
-    events: {
-      type: Object,
-      default: () => ({})
-    },
-    displayOnly: {
-      type: Boolean,
-      default: false
-    }
-  },
+  props: checkboxProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

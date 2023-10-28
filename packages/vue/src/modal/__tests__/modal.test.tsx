@@ -12,8 +12,22 @@ const waitAsyncFunctionEnded = (time = 0) => {
   return new Promise((resolve) => setTimeout(resolve, ASYNC_WAIT_TIME + time))
 }
 
+const mockDocumentSize = () => {
+  Object.defineProperty(document.documentElement, 'clientWidth', {
+    value: 1920,
+    writable: true
+  })
+
+  Object.defineProperty(document.documentElement, 'clientHeight', {
+    value: 1080,
+    writable: true
+  })
+}
+
 describe('PC Mode', () => {
   const mount = mountPcMode
+
+  mockDocumentSize()
 
   /**
    * attrs
@@ -207,9 +221,27 @@ describe('PC Mode', () => {
     wrapper.unmount()
   })
 
-  test.todo('min-width 窗口的最小宽度')
+  test('min-width & min-height', async () => {
+    let visible = true
+    const minWidth = 300
+    const minHeight = 200
 
-  test.todo('min-height 窗口的最小高度')
+    const wrapper = mount(() => (
+      <Modal v-model={visible} minWidth={minWidth} minHeight={minHeight} type="alert" resize={true}></Modal>
+    ))
+
+    await wrapper.find('.selb-resize').trigger('mousedown')
+
+    document.dispatchEvent(new MouseEvent('mousemove'))
+    document.dispatchEvent(new MouseEvent('mouseup'))
+
+    const style = wrapper.find('.tiny-modal__box').attributes('style')
+
+    expect(style).toContain(`width: ${minWidth}px`)
+    expect(style).toContain(`height: ${minHeight}px`)
+
+    wrapper.unmount()
+  })
 
   test('top', async () => {
     let visible = true
@@ -234,13 +266,45 @@ describe('PC Mode', () => {
     wrapper.unmount()
   })
 
-  test.todo('confirm-content 确定按钮内容')
+  test('confirm & cancel content', () => {
+    let visible = true
+    const confirmText = 'im Confirm'
+    const cancelText = 'im Cancel'
 
-  test.todo('cancel-content 取消按钮内容')
+    const wrapper = mount(() => (
+      <Modal
+        v-model={visible}
+        type="confirm"
+        showFooter={true}
+        confirmContent={confirmText}
+        cancelContent={cancelText}></Modal>
+    ))
 
-  test.todo('confirm-btn-props 确定按钮props')
+    const buttons = wrapper.findAll('.tiny-button')
 
-  test.todo('cancel-btn-props 取消按钮props')
+    expect(buttons[0].text()).toEqual(confirmText)
+    expect(buttons[1].text()).toEqual(cancelText)
+  })
+
+  test('confirm & cancel btn-props', () => {
+    let visible = true
+    const confirmProps = { text: 'im Confirm' }
+    const cancelProps = { text: 'im Cancel' }
+
+    const wrapper = mount(() => (
+      <Modal
+        v-model={visible}
+        type="confirm"
+        showFooter={true}
+        confirmBtnProps={confirmProps}
+        cancelBtnProps={cancelProps}></Modal>
+    ))
+
+    const buttons = wrapper.findAll('.tiny-button')
+
+    expect(buttons[0].text()).toEqual(confirmProps.text)
+    expect(buttons[1].text()).toEqual(cancelProps.text)
+  })
 
   /**
    * slots

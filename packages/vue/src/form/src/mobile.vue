@@ -25,6 +25,7 @@
 <script lang="tsx">
 import { renderless, api } from '@opentiny/vue-renderless/form/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
+import type { IFormApi } from '@opentiny/vue-renderless/types/form.type'
 import '@opentiny/vue-theme-mobile/form/index.less'
 import '@opentiny/vue-theme-mobile/form-item/index.less'
 
@@ -37,6 +38,7 @@ export default defineComponent({
     'model',
     'rules',
     'inlineMessage',
+    'messageType',
     'statusIcon',
     'labelPosition',
     'labelAlign',
@@ -49,10 +51,11 @@ export default defineComponent({
     'inline',
     'responsiveLayout',
     'validateType',
+    'validateIcon',
     'manual'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IFormApi
   }
 })
 </script>

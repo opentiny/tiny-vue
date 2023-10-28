@@ -1,6 +1,7 @@
 <template>
-  <div class="inline-block relative">
+  <div class="inline-block relative" data-tag="tiny-user-head" @click="handleClick" @mouseenter="mouseEnter">
     <div
+      data-tag="tiny-user-head-body"
       :style="[state.style, { height: `${state.size}px`, width: `${state.size}px`, lineHeight: `${state.size}px` }]"
       :class="[
         'overflow-hidden w-10 h-10  text-center rounded  bg-center bg-no-repeat bg-cover',
@@ -34,9 +35,10 @@
       </slot>
     </div>
     <div
+      data-tag="tiny-user-head-message"
       v-if="messageTotal"
       :class="[
-        'absolute rounded-lg text-black text-center box-content bg-color-error',
+        'absolute rounded-lg text-color-text-primary text-center box-content bg-color-error',
         messageType === 'basic'
           ? 'w-0 h-1 px-0.5 border-2 -right-1.5 border-color-bg-1 border-solid -top-1 left-9'
           : 'min-w-[0.625rem] w-auto left-7 flex items-center -top-2.5 px-0.5 text-xs h-3.5 border-2 border-color-bg-1 border-solid',
@@ -60,6 +62,7 @@ export default defineComponent({
   components: {
     IconUser: IconUser()
   },
+  emits: ['click', 'mouseenter'],
   props: [
     ...props,
     'min',
@@ -67,7 +70,6 @@ export default defineComponent({
     'color',
     'backgroundColor',
     'type',
-    'value',
     'modelValue',
     'messageTotal',
     'messageType',

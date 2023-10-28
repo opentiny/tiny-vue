@@ -1,5 +1,5 @@
 <template>
-  <div class="main-layout hp100 f-c f-box-stretch">
+  <div class="main-layout ti-hp100 ti-f-c ti-f-box-stretch">
     <!-- 切换语言 -->
     <div class="lang-box">
       <tiny-tooltip :content="$t('changeLanguage')" placement="left">
@@ -7,7 +7,7 @@
       </tiny-tooltip>
     </div>
     <!-- 切換主题样式 -->
-    <tiny-dropdown class="theme-change-button" trigger="click">
+    <tiny-dropdown v-if="!templateModeState.isSaas" class="theme-change-button" trigger="click">
       <tiny-tooltip :content="$t('changeTheme')" placement="left">
         <span>
           <img :src="themeSvg" :alt="$t('changeTheme')" />
@@ -26,9 +26,9 @@
         </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
-    <div class="content-layout fi-1" :has-sider="!isFrame">
+    <div class="content-layout ti-fi-1" :has-sider="!isFrame">
       <div id="layoutSider" class="layout-sider" v-if="!isFrame">
-        <div class="api-type-box" :class="{ 'is-collapsed': isCollapsed }">
+        <div v-show="!isCollapsed" class="api-type-box" :class="{ 'is-collapsed': isCollapsed }">
           <div class="api-type">
             <div :class="{ 'api-mode': true, active: apiModeState.apiMode === 'Options' }">
               {{ $t2('选项式', 'Options') }}
@@ -47,6 +47,25 @@
               <icon-help-circle></icon-help-circle>
             </tiny-tooltip>
           </div>
+
+          <div class="api-type">
+            <div :class="{ 'api-mode': true, active: apiModeState.demoMode === 'single' }">
+              {{ $t2('单示例', 'Single Demo') }}
+            </div>
+            <tiny-switch
+              class="api-switch"
+              true-value="default"
+              false-value="single"
+              @change="apiModeFn.changeDemoMode"
+              v-model="apiModeState.demoMode"
+            ></tiny-switch>
+            <div :class="{ 'api-mode': true, active: apiModeState.demoMode === 'default' }">
+              {{ $t2('多示例', 'Mutli Demo') }}
+            </div>
+            <tiny-tooltip content="切换demo的预览模式" placement="right">
+              <icon-help-circle></icon-help-circle>
+            </tiny-tooltip>
+          </div>
         </div>
         <tiny-tree-menu
           ref="treeMenuRef"
@@ -55,11 +74,15 @@
           node-key="id"
           ellipsis
           :data="menuOptions"
-          :collapsible="true"
+          :menu-collapsible="true"
           :filter-node-method="searchMenu"
           @current-change="clickMenu"
           @collapse-change="collapseChange"
         >
+          <template #default="{ data }">
+            <tiny-tag v-if="data?.mode?.includes('mobile-first')" effect="plain" class="ti-mr6">多端</tiny-tag>
+            <span>{{ data.label }}</span>
+          </template>
         </tiny-tree-menu>
       </div>
       <div
@@ -67,7 +90,7 @@
         ref="contentRef"
         :native-scrollbar="true"
         content-style="display: flex;  flex-direction: column; height:100%"
-        :class="'md-' + appData.configType"
+        class="md-tiny"
       >
         <router-view />
       </div>
@@ -76,19 +99,14 @@
 </template>
 
 <script>
-import { defineComponent, reactive, computed, toRefs, watch, onMounted, onUnmounted } from 'vue'
-import hljs from 'highlight.js/lib/core'
-import javascript from 'highlight.js/lib/languages/javascript'
-import css from 'highlight.js/lib/languages/css'
-import html from 'highlight.js/lib/languages/xml'
-import { Switch, TreeMenu, Dropdown, DropdownMenu, DropdownItem, Tooltip } from '@opentiny/vue'
+import { defineComponent, reactive, computed, toRefs, onMounted, onUnmounted } from 'vue'
+import { Switch, TreeMenu, Dropdown, DropdownMenu, DropdownItem, Tooltip, Tag } from '@opentiny/vue'
 import { iconHelpCircle } from '@opentiny/vue-icon'
 import { genMenus } from '@/menus.jsx'
 import { router } from '@/router.js'
-import { $t2, $t, appData, appFn } from '@/tools'
+import { $t2, $t, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
 import themeSvg from '@/assets/images/theme.svg?url'
-import { useApiMode } from '../../tools'
-import useTheme from '../../tools/useTheme'
+import useTheme from '@/tools/useTheme'
 
 export default defineComponent({
   name: 'LayoutVue',
@@ -99,12 +117,14 @@ export default defineComponent({
     TinyDropdownMenu: DropdownMenu,
     TinyDropdownItem: DropdownItem,
     TinyTooltip: Tooltip,
+    TinyTag: Tag,
     IconHelpCircle: iconHelpCircle()
   },
   props: [],
   setup() {
     const { getThemeData, changeTheme, currThemeLabel } = useTheme()
     const { apiModeState, apiModeFn } = useApiMode()
+    const { templateModeState } = useTemplateMode()
     let state = reactive({
       menuOptions: genMenus(),
       hasHeader: true, // Header，当嵌入think时，无头。 所以预留变量
@@ -114,17 +134,6 @@ export default defineComponent({
       treeMenuRef: null,
       expandKeys: []
     })
-
-    watch(
-      () => appData.configType,
-      () => {
-        state.menuOptions = genMenus()
-      }
-    )
-
-    hljs.registerLanguage('javascript', javascript)
-    hljs.registerLanguage('css', css)
-    hljs.registerLanguage('html', html)
 
     const lang = $t2('zh-CN', 'en-US')
     const getTo = (route, key) => `${import.meta.env.VITE_CONTEXT}${lang}/os-theme/${route}${key}`
@@ -181,7 +190,7 @@ export default defineComponent({
 
     return {
       ...toRefs(state),
-      appData, // 使用到里面的lang / configMode
+      appData,
       ...appFn,
       searchMenu,
       clickMenu,
@@ -192,7 +201,8 @@ export default defineComponent({
       themeSvg,
       changeLanguage,
       apiModeState,
-      apiModeFn
+      apiModeFn,
+      templateModeState
     }
   }
 })
@@ -202,7 +212,7 @@ export default defineComponent({
 .content-layout {
   display: flex;
   --layout-tree-menu-input-height: 40px;
-  --layout-api-mode-height: 53px;
+  --layout-api-mode-height: 106px;
 }
 
 .theme-change-button {
@@ -261,6 +271,10 @@ export default defineComponent({
   border-radius: var(--ti-dropdown-item-border-radius);
 }
 
+.is-collapsed + .main-menu.tiny-tree-menu {
+  height: 100%;
+}
+
 .main-menu.tiny-tree-menu {
   height: calc(100% - var(--layout-api-mode-height));
   .tiny-tree {
@@ -293,22 +307,15 @@ export default defineComponent({
   transition: width 0.5s;
   width: 100%;
   position: relative;
-  height: var(--layout-api-mode-height);
   font-size: 14px;
-  &.is-collapsed {
-    // transition: width 0s;
-    width: 0;
-  }
+
   .api-type {
-    position: absolute;
     min-width: 220px;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     padding: 16px;
     padding-left: 30px;
-    top: 0;
     background: #fff;
-    z-index: 20;
     overflow: hidden;
     .api-mode {
       color: rgba(60, 60, 60, 0.33);

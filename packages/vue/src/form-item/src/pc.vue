@@ -10,10 +10,11 @@
  *
  -->
 <script lang="tsx">
-import { $props, $prefix, setup, parseVnode, h, defineComponent, isVue2 } from '@opentiny/vue-common'
+import { $props, $prefix, setup, parseVnode, h, defineComponent, isVue2, hooks } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/form-item/vue'
 import LabelWrap from './label-wrap'
 import Tooltip from '@opentiny/vue-tooltip'
+import type { IFormItemApi, IFormItemInstance } from '@opentiny/vue-renderless/types/form-item.type'
 
 const $constants = {
   FORM_NAME: 'Form',
@@ -40,9 +41,10 @@ export default defineComponent({
     error: String,
     for: String,
     inlineMessage: {
-      type: [String, Boolean],
-      default: ''
+      type: Boolean,
+      default: undefined
     },
+    messageType: String,
     label: String,
     labelWidth: String,
     manual: Boolean,
@@ -79,12 +81,14 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IFormItemApi
   },
 
   render() {
-    const { state, required, slots, label, scopedSlots, showMessage, inlineMessage, validateIcon, ellipsis, vertical } =
-      this
+    const { state, required, slots, label, scopedSlots, showMessage, inlineMessage, ellipsis, vertical } =
+      this as unknown as IFormItemInstance
+
+    const { validateIcon, isErrorInline, isErrorBlock } = state
     const isMobile = state.mode === 'mobile'
     const classPrefix = isMobile ? 'tiny-mobile-' : 'tiny-'
     const labelSlot = slots.label ? slots.label() : null
@@ -92,25 +96,15 @@ export default defineComponent({
     const errorSlot = scopedSlots.error && scopedSlots.error(state.validateMessage)
     const formItemClass = `${classPrefix}form-item--${state.sizeClass ? state.sizeClass : 'default'}`
     const isShowError = state.validateState === 'error' && showMessage && state.form.showMessage
-    const isErrorInline =
-      typeof inlineMessage === 'boolean'
-        ? inlineMessage
-        : (state.formInstance && state.formInstance.inlineMessage) || false
-    let validateMessage = null
+    let validateMessage
 
-    const FormContent = defaultSlots
+    const ItemContent = defaultSlots
       ? defaultSlots.map((vnode) => {
           if (isVue2 && !vnode.componentOptions) return vnode
 
           const item = parseVnode(vnode)
           item.props = item.props || {}
-          const { type, props, data = {} } = item
-          if (
-            (props && props['novalid-tip'] !== undefined) ||
-            (data.attrs && data.attrs['novalid-tip'] !== undefined)
-          ) {
-            return item
-          }
+          const { type } = item
 
           Object.assign(item.props, {
             size: state.formItemSize,
@@ -133,43 +127,7 @@ export default defineComponent({
               return item
             }
           }
-
-          const formAppendToBody = state.formInstance && state.formInstance.appendToBody
-          const appendToBody =
-            typeof this.appendToBody === 'boolean'
-              ? this.appendToBody
-              : typeof formAppendToBody === 'boolean'
-              ? formAppendToBody
-              : true
-          const validatePosition =
-            this.validatePosition || (state.formInstance && state.formInstance.validatePosition) || 'top-end'
-          const popperOptions = {
-            ...state.formInstance.popperOptions,
-            ...this.popperOptions,
-            forceAbsolute: !appendToBody,
-            onUpdate: (options) => {
-              const popper = options.instance._popper
-              const translate3d = popper.style.transform
-              const matchTranslate = translate3d.match(/translate3d\((\w+)px, (\w+)px, (\w+)px\)/)
-
-              if (!Array.isArray(matchTranslate)) {
-                return
-              }
-
-              const [x, y, z] = matchTranslate.slice(1)
-
-              popper.style.transform = `translate3d(${x}px, ${parseInt(y, 10)}px, ${z}px)`
-            }
-          }
           if (isMobile) {
-            const validatePosition = this.validatePosition || state.formInstance.validatePosition || 'right'
-            validateMessage = state.validateMessage ? (
-              validatePosition === 'right' ? (
-                <div class="tiny-mobile-input-form__error align-right">{state.validateMessage}</div>
-              ) : (
-                <div class="tiny-mobile-input-form__error align-left">{state.validateMessage}</div>
-              )
-            ) : null
             return h(
               'div',
               {
@@ -179,37 +137,101 @@ export default defineComponent({
               [item]
             )
           }
-          const validateIconNode = validateIcon ? h(validateIcon, { class: 'tooltip-validate-icon' }) : null
-          return h(
-            'tooltip',
-            {
-              props: {
-                popperClass: `${classPrefix}form__valid`,
-                arrowOffset: 0,
-                adjustArrow: true,
-                type: 'error',
-                disabled: state.getValidateType !== 'tip',
-                placement: validatePosition,
-                manual: true,
-                appendToBody,
-                popperOptions,
-                modelValue: isShowError ? state.canShowTip : false,
-                zIndex: 'relative',
-                renderContent() {
-                  return [validateIconNode, state.validateMessage]
-                }
-              },
-              on: {
-                'update:modelValue': (value) => {
-                  state.canShowTip = value
-                }
-              },
-              ref: 'tooltip'
-            },
-            [item]
-          )
+          return item
         })
       : null
+
+    const getFormItemContnet = () => {
+      if (isMobile) {
+        const validatePosition = this.validatePosition || state.formInstance.validatePosition || 'right'
+        validateMessage = state.validateMessage ? (
+          validatePosition === 'right' ? (
+            <div class="tiny-mobile-input-form__error align-right">{state.validateMessage}</div>
+          ) : (
+            <div class="tiny-mobile-input-form__error align-left">{state.validateMessage}</div>
+          )
+        ) : null
+        return ItemContent
+      }
+
+      const tooltipTriggerContent =
+        ItemContent.length > 1
+          ? h('div', { class: 'tiny-mobile-form-item__content-muti-children' }, ItemContent)
+          : ItemContent[0]
+
+      if (!this.showMessage) {
+        return tooltipTriggerContent
+      }
+
+      const formAppendToBody = state.formInstance && state.formInstance.appendToBody
+      const appendToBody =
+        typeof this.appendToBody === 'boolean'
+          ? this.appendToBody
+          : typeof formAppendToBody === 'boolean'
+          ? formAppendToBody
+          : true
+      const validatePosition =
+        this.validatePosition || (state.formInstance && state.formInstance.validatePosition) || 'top-end'
+
+      const popperOptions = {
+        ...state.formInstance.popperOptions,
+        ...this.popperOptions,
+        forceAbsolute: !appendToBody,
+        onUpdate: (options) => {
+          const popper = options.instance._popper
+          const translate3d = popper.style.transform
+          const matchTranslate = translate3d.match(/translate3d\((\w+)px, (\w+)px, (\w+)px\)/)
+
+          if (!Array.isArray(matchTranslate)) {
+            return
+          }
+
+          const [x, y, z] = matchTranslate.slice(1)
+
+          popper.style.transform = `translate3d(${x}px, ${parseInt(y, 10)}px, ${z}px)`
+        }
+      }
+      const validateIconNode = validateIcon ? h(validateIcon, { class: 'tooltip-validate-icon' }) : null
+      return h(
+        'tooltip',
+        {
+          props: {
+            popperClass: `${classPrefix}form__valid`,
+            arrowOffset: 0,
+            adjustArrow: true,
+            type: 'error',
+            disabled: state.getValidateType !== 'tip',
+            placement: validatePosition,
+            manual: true,
+            appendToBody,
+            popperOptions,
+            modelValue: isShowError ? state.canShowTip : false,
+            zIndex: 'relative',
+            renderContent() {
+              return [
+                validateIconNode,
+                <span class={`${classPrefix}form-item__validate-message`}>{state.validateMessage}</span>
+              ]
+            }
+          },
+          on: {
+            'update:modelValue': (value) => {
+              state.canShowTip = value
+            }
+          },
+          ref: 'tooltip'
+        },
+        [
+          !isVue2 && tooltipTriggerContent.type === hooks.Text ? (
+            <span>{tooltipTriggerContent}</span>
+          ) : (
+            tooltipTriggerContent
+          )
+        ]
+      )
+    }
+
+    const FormItemContnet = ItemContent ? getFormItemContnet() : null
     const ErrorContent =
       isShowError && state.getValidateType === 'text'
         ? errorSlot ||
@@ -218,10 +240,14 @@ export default defineComponent({
             {
               class: {
                 [`${classPrefix}form-item__error`]: true,
-                [`${classPrefix}form-item__error--inline`]: isErrorInline
+                [`${classPrefix}form-item__error--inline`]: isErrorInline,
+                [`${classPrefix}form-item__error--block`]: isErrorBlock
               }
             },
-            [validateIcon ? h(validateIcon, { class: 'validate-icon' }) : null, state.validateMessage]
+            [
+              validateIcon ? h(validateIcon, { class: 'validate-icon' }) : null,
+              <span class={`${classPrefix}form-item__validate-message`}>{state.validateMessage}</span>
+            ]
           )
         : null
     const LabelContent = h(
@@ -263,7 +289,7 @@ export default defineComponent({
           'is-validating': state.validateState === 'validating',
           'is-success': state.validateState === 'success',
           'is-required': state.isRequired || required,
-          'is-no-asterisk': state.formInstance && state.formInstance.hideRequiredAsterisk,
+          'is-no-asterisk': state.hideRequiredAsterisk,
           [formItemClass]: true
         }
       },
@@ -280,7 +306,7 @@ export default defineComponent({
           },
           [
             isMobile ? LabelContent : null,
-            FormContent,
+            FormItemContnet,
             isMobile ? validateMessage : null,
             h(
               'transition',

@@ -76,10 +76,6 @@ export default defineComponent({
       type: Number,
       default: () => 0
     },
-    transformOrigin: {
-      type: [Boolean, String],
-      default: () => true
-    },
     type: {
       type: String,
       validator: (value) => ~['normal', 'warning', 'error', 'info', 'success'].indexOf(value)

@@ -10,15 +10,16 @@
  *
  */
 
-import { isNull } from '../common/type'
+import type { StyleValue } from 'vue'
+import { ISwitchRenderlessParams, ISwitchClass } from '@/types'
 
 export const toggle =
-  ({ emit, props, state }) =>
-  (event) => {
+  ({ emit, props, state }: Pick<ISwitchRenderlessParams, 'emit' | 'props' | 'state'>) =>
+  (event: KeyboardEvent | MouseEvent): void => {
     event.preventDefault()
 
     if (state.disabled || props.types === 'loading') {
-      return false
+      return
     }
 
     const change = () => {
@@ -32,10 +33,10 @@ export const toggle =
   }
 
 export const computedWarpClasses =
-  ({ prefixCls, props, state }) =>
-  () => [
-    `${prefixCls}`,
+  ({ prefixCls, props, state }: Pick<ISwitchRenderlessParams, 'prefixCls' | 'props' | 'state'>) =>
+  (): ISwitchClass => [
     {
+      [prefixCls]: true,
       [`${prefixCls}-checked`]: state.currentValue === props.trueValue,
       [`${prefixCls}-disabled`]: state.disabled,
       mini: props.mini,
@@ -44,21 +45,14 @@ export const computedWarpClasses =
   ]
 
 export const computedInnerClasses =
-  ({ prefixCls }) =>
-  () =>
+  ({ prefixCls }: Pick<ISwitchRenderlessParams, 'prefixCls'>) =>
+  (): string =>
     `${prefixCls}-inner`
 
 export const computedStyle =
-  ({ props, state }) =>
-  () => {
-    let size = ''
-
-    if (!isNull(props.modelValue)) {
-      size = typeof props.modelValue === 'number' ? `${props.modelValue}px` : props.modelValue
-    }
-
+  ({ props, state }: Pick<ISwitchRenderlessParams, 'props' | 'state'>) =>
+  (): StyleValue => {
     return {
-      fontSize: size,
-      backgroundColor: props.trueValue === state.currentValue ? props.activeColor : props.inactiveColor
+      backgroundColor: props.trueValue === state.currentValue ? props.trueColor : props.falseColor
     }
   }

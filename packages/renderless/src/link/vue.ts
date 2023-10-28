@@ -9,15 +9,16 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import type { ILinkState, ILinkProps, ILinkRenderlessParamUtils, ISharedRenderlessParamHooks, ILinkApi } from '@/types'
 
 import { handleClick } from './index'
 
 export const api = ['state', 'handleClick']
 
-export const renderless = (props, { inject, reactive, computed }, { emit, parent }) => {
+export const renderless = (props: ILinkProps, { inject, reactive, computed }: ISharedRenderlessParamHooks, { emit, parent }: ILinkRenderlessParamUtils): ILinkApi => {
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
-  const state = reactive({
+  const state: ILinkState = reactive({
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
     disabled: computed(() => props.disabled || state.formDisabled)
   })

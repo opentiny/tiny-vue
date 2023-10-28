@@ -12,41 +12,49 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
+export const badgeProps = {
+  ...$props,
+  showLeft: {
+    type: Boolean,
+    default: false
+  },
+  isDot: {
+    type: Boolean,
+    default: false
+  },
+  isFixed: {
+    type: Boolean,
+    default: true
+  },
+  isMini: {
+    type: Boolean,
+    default: false
+  },
+  max: Number,
+  value: [String, Number],
+  modelValue: [String, Number],
+  href: String,
+  target: String,
+  hidden: {
+    type: Boolean,
+    default: false
+  },
+  type: {
+    type: String,
+    validator: (value: string) =>
+      Boolean(~['primary', 'success', 'warning', 'info', 'danger', 'icon', 'label'].indexOf(value))
+  },
+  badgeClass: String,
+  offset: {
+    type: Array,
+    default: () => [0, 0]
+  },
+  data: [String, Number]
+}
+
 export default defineComponent({
   name: $prefix + 'Badge',
-  props: {
-    ...$props,
-    isDot: {
-      type: Boolean,
-      default: false
-    },
-    isFixed: {
-      type: Boolean,
-      default: true
-    },
-    isMini: {
-      type: Boolean,
-      default: false
-    },
-    max: Number,
-    value: [String, Number],
-    modelValue: [String, Number],
-    href: String,
-    target: String,
-    hidden: {
-      type: Boolean,
-      default: false
-    },
-    type: {
-      type: String,
-      validator: (value: string) => Boolean(~['primary', 'success', 'warning', 'info', 'danger'].indexOf(value))
-    },
-    badgeClass: String,
-    offset: {
-      type: Array,
-      default: () => [0, 0]
-    }
-  },
+  props: badgeProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

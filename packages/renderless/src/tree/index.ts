@@ -282,6 +282,7 @@ export const initTreeStore =
       load,
       afterLoad(params) {
         !state.loaded && (state.loaded = true)
+        lazy && state.root && (state.root.childNodes = [...state.root.childNodes])
         emit('load-data', params)
         afterLoad && afterLoad(params)
       },

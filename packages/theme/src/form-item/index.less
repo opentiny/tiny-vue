@@ -206,6 +206,9 @@
       fill: var(--ti-form-item-error-text-color);
       margin-right: 8px;
     }
+    .@{form-item-prefix-cls}__validate-message {
+      vertical-align: middle;
+    }
   }
 
   &__error--inline {
@@ -213,7 +216,16 @@
     top: auto;
     left: auto;
     display: inline-block;
-    margin-left: 10px;
+    margin-left: var(--ti-form-item-error-inline-margin-left);
+  }
+
+  &__error--block {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: flex;
+    margin-left: 0;
+    padding-top: var(--ti-form-item-error-block-padding-top);
   }
 
   &.is-required:not(.is-no-asterisk) {

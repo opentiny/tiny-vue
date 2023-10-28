@@ -90,8 +90,17 @@
         padding-left: 0;
 
         .tree-node-icon {
-          left: auto;
-          right: 8px;
+          order: 10;
+          margin-right: var(--ti-tree-menu-collapse-icon-margin-right);
+        }
+
+        .tree-node-number {
+          order: 1;
+          position: absolute;
+          right: 16px;
+          max-width: 36px;
+          overflow: hidden;
+          font-size: var(--tree-menu-node-number-font-size);
         }
 
         .tree-node {
@@ -103,17 +112,43 @@
         }
       }
 
+      .@{tree-node-prefix-cls}__content-number {
+        .tree-node-name {
+          padding-right: 0;
+        }
+      }
+
+      .@{tree-node-prefix-cls}__content:hover {
+        background-color: var(--ti-tree-menu-node-hover-bg-color);
+
+        .@{tree-node-prefix-cls}__content-box {
+          background-color: transparent;
+        }
+      }
+
+      .@{tree-node-prefix-cls}__content-left {
+        position: relative;
+        padding-left: var(--tree-menu-node-vertical-line-margin-right);
+      }
+
       &.is-current {
         & > .@{tree-node-prefix-cls}__content {
-          background-color: var(--ti-tree-menu-node-hover-bg-color);
+          background-color: var(--ti-tree-menu-node-selected-bg-color);
           position: relative;
-
-          .tree-node-name {
-            border-left: 2px solid var(--ti-tree-menu-square-left-border-color);
-          }
 
           .tree-node-body {
             color: var(--ti-tree-menu-node-current-text-color);
+          }
+
+          .@{tree-node-prefix-cls}__content-left::before {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 50%;
+            display: inline-block;
+            height: 18px;
+            transform: translateY(-50%);
+            border-left: 2px solid var(--ti-tree-menu-square-left-border-color);
           }
         }
       }
@@ -152,6 +187,12 @@
 
           .tree-node {
             width: calc(100% - 24px);
+          }
+        }
+
+        .@{tree-node-prefix-cls}__content-number {
+          .tree-node {
+            width: calc(100% - 60px);
           }
         }
       }

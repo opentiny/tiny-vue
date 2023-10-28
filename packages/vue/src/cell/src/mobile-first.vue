@@ -1,16 +1,18 @@
 <template>
   <div
-    class="border-0 border-color-border rounded-sm relative w-full h-[1.75rem] leading-7 sm:leading-[1.625rem] pr-5 sm:pr-7 cursor-pointer line-clamp-1 pl-3"
+    data-tag="tiny-cell"
+    class="border-0 border-color-border rounded relative w-full h-7 leading-7 sm:leading-6.5 pr-5 sm:pr-7 cursor-pointer line-clamp-1 pl-3"
     :class="[
       m(
         data ? 'text-color-text-primary' : 'text-color-icon-placeholder',
-        state.isDisplayOnly ? 'pointer-events-none cursor-default text-color-text-primary pl-0' : 'sm:border'
+        state.isDisplayOnly ? 'pointer-events-none cursor-default text-color-text-primary pl-0' : 'sm:border',
+        state.isDisabled ? 'bg-color-bg-4 cursor-not-allowed' : ''
       )
     ]"
-    @click="$emit('click', $event)"
+    @click="state.isDisabled ? '' : $emit('click', $event)"
   >
     {{ state.isDisplayOnly ? data || '-' : data || placeholder }}
-    <div v-if="!state.isDisplayOnly">
+    <div data-tag="tiny-cell-icon" v-if="!(state.isDisplayOnly || state.isDisabled)">
       <slot name="icon">
         <component
           :is="icon"
@@ -34,6 +36,10 @@ export default defineComponent({
     placeholder: {
       type: String,
       default: t('ui.cell.placeholder')
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     },
     data: {
       type: String,

@@ -9,17 +9,28 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import {
+  ITabBarPcState,
+  ITabBarPcApi,
+  ITabBarPcProps,
+  ISharedRenderlessParamHooks,
+  ITabBarPcRenderlessParamUtils
+} from '@/types'
 import { computedBarStyle } from './index'
 
 export const api = ['state', 'computedBarStyle']
 
-export const renderless = (props, { inject, reactive }, { parent }) => {
+export const renderless = (
+  props: ITabBarPcProps,
+  { inject, reactive }: ISharedRenderlessParamHooks,
+  { parent }: ITabBarPcRenderlessParamUtils
+): ITabBarPcApi => {
   const state = reactive({
     rootTabs: inject('rootTabs'),
     barStyle: {}
-  })
+  }) as ITabBarPcState
 
-  const api = {
+  const api: ITabBarPcApi = {
     state,
     computedBarStyle: computedBarStyle(parent)
   }

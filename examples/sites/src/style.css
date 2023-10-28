@@ -1,3 +1,8 @@
+/* saas 官网的尺寸单位是rem */
+html {
+  font-size: 16px;
+}
+
 .tinyui-design-header {
   z-index: 1000 !important;
 }

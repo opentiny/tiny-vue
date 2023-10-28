@@ -9,6 +9,13 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import {
+  IWizardProps,
+  IWizardState,
+  IWizardApi,
+  ISharedRenderlessParamHooks,
+  IWizardRenderlessParamUtils
+} from '@/types'
 
 import {
   btnSaveHandle,
@@ -31,11 +38,14 @@ export const api = [
   'showNode'
 ]
 
-export const renderless = (props, { onMounted, reactive }, { emit, constants }) => {
-  const state = reactive({
+export const renderless = (
+  props: IWizardProps,
+  { onMounted, reactive }: ISharedRenderlessParamHooks,
+  { emit, constants }: IWizardRenderlessParamUtils
+): IWizardApi => {
+  const state: IWizardState = reactive({
     datas: props.data,
     submitShow: false,
-    showIndex: null,
     doing: constants.DOING_STATUS,
     ready: constants.READY_STATUS,
     wait: constants.WAIT_STATUS
@@ -50,7 +60,7 @@ export const renderless = (props, { onMounted, reactive }, { emit, constants }) 
     submitHandle: submitHandle({ state, emit }),
     btnSaveHandle: btnSaveHandle({ state, emit }),
     setTimelineflowNodeStatus: setTimelineflowNodeStatus(state)
-  }
+  } as IWizardApi
 
   api.timelineflowData = timelineflowData({ state, props, api })
 

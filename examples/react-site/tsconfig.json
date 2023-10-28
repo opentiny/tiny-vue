@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "allowJs": true ,
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "paths": {
+      "@opentiny/react-*": [
+        "packages/react-*",
+        "packages/react/src/*"
+      ],
+      "@opentiny/vue-renderless*": [
+        "packages/renderless/src*"
+      ]
+    },
+    "types": [
+      "node",
+      "vite/client"
+    ],
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "packages/**/*.ts",
+    "packages/**/*.tsx",
+    "packages/**/*.jsx",
+  ],
+  "exclude": [
+    "**/node_modules",
+    "**/dist*",
+    "**/*.md"
+  ]
+}

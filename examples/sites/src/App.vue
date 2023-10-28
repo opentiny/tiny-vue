@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { defineComponent, reactive, computed, onMounted, toRefs } from 'vue'
 import { ConfigProvider } from '@opentiny/vue'
 import { appData } from './tools'

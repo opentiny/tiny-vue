@@ -48,9 +48,13 @@ export const buttonProps = {
   loading: Boolean,
   disabled: Boolean,
   autofocus: Boolean,
-  buttonClass: {
+  customClass: {
     type: String,
     default: ''
+  },
+  banner: {
+    type: Boolean,
+    default: false
   }
 }
 

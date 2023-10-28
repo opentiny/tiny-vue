@@ -9,11 +9,13 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+
+import { ICheckboxRenderlessParams, ICheckboxState, ICheckboxChangeEvent, ICheckboxProps } from '@/types'
 import { isNull } from '../common/type'
 
 export const addToStore =
-  ({ state, props }) =>
-  () => {
+  ({ state, props }: Pick<ICheckboxRenderlessParams, 'state' | 'props'>) =>
+  (): void => {
     if (Array.isArray(state.model) && !state.model.includes(props.label)) {
       state.model.push(props.label)
     } else {
@@ -22,8 +24,8 @@ export const addToStore =
   }
 
 export const removeFromStore =
-  ({ state, props }) =>
-  () => {
+  ({ state, props }: Pick<ICheckboxRenderlessParams, 'state' | 'props'>) =>
+  (): void => {
     if (Array.isArray(state.model)) {
       const index = state.model.indexOf(props.label)
       index !== -1 && state.model.splice(index, 1)
@@ -33,8 +35,15 @@ export const removeFromStore =
   }
 
 export const handleChange =
-  ({ state, props, emit, nextTick, dispatch, constants }) =>
-  (event) => {
+  ({
+    state,
+    props,
+    emit,
+    nextTick,
+    dispatch,
+    constants
+  }: Pick<ICheckboxRenderlessParams, 'state' | 'props' | 'emit' | 'nextTick' | 'dispatch' | 'constants'>) =>
+  (event: ICheckboxChangeEvent): void => {
     if (state.isLimitExceeded) {
       return
     }
@@ -56,7 +65,7 @@ export const handleChange =
   }
 
 // prettier-ignore
-export const computedGetModelGet = ({ state, props }) => () => {
+export const computedGetModelGet = ({ state, props }: Pick<ICheckboxRenderlessParams, 'state' | 'props'>) => (): ICheckboxState['model'] => {
   const model = state.isGroup
     ? state.store
     : props.modelValue !== undefined
@@ -67,8 +76,13 @@ export const computedGetModelGet = ({ state, props }) => () => {
 }
 
 export const computedGetModelSet =
-  ({ state, dispatch, emit, constants }) =>
-  (value) => {
+  ({
+    state,
+    dispatch,
+    emit,
+    constants
+  }: Pick<ICheckboxRenderlessParams, 'state' | 'dispatch' | 'emit' | 'constants'>) =>
+  (value: ICheckboxState['model']): void => {
     if (state.isGroup) {
       state.isLimitExceeded = false
 
@@ -84,8 +98,8 @@ export const computedGetModelSet =
   }
 
 export const computedIsChecked =
-  ({ state, props }) =>
-  () => {
+  ({ state, props }: Pick<ICheckboxRenderlessParams, 'state' | 'props'>) =>
+  (): boolean => {
     if (typeof state.model === 'boolean') {
       return state.model
     } else if (Array.isArray(state.model)) {
@@ -93,11 +107,12 @@ export const computedIsChecked =
     } else if (!isNull(state.model)) {
       return state.model === props.trueLabel
     }
+    return false
   }
 
 export const computedIsGroup =
-  ({ state, parent, constants }) =>
-  () => {
+  ({ state, parent, constants }: Pick<ICheckboxRenderlessParams, 'state' | 'parent' | 'constants'>) =>
+  (): boolean => {
     let parentObj = parent.$parent
 
     while (parentObj) {
@@ -113,8 +128,8 @@ export const computedIsGroup =
   }
 
 export const computedStore =
-  ({ state, props }) =>
-  () =>
+  ({ state, props }: Pick<ICheckboxRenderlessParams, 'state' | 'props'>) =>
+  (): ICheckboxState['store'] =>
     state.checkboxGroup ? state.checkboxGroup.modelValue : props.modelValue
 
 export const computedIsLimitDisabled = (state) => () => {
@@ -126,8 +141,8 @@ export const computedIsLimitDisabled = (state) => () => {
 }
 
 export const computedIsDisabled =
-  ({ state, props }) =>
-  () =>
+  ({ state, props }: Pick<ICheckboxRenderlessParams, 'state' | 'props'>) =>
+  (): boolean =>
     (state.isGroup
       ? state.checkboxGroup.disabled ||
         state.checkboxGroup.displayOnly ||
@@ -136,10 +151,10 @@ export const computedIsDisabled =
         state.isLimitDisabled
       : props.disabled) || state.formDisabled
 
-export const computedFormItemSize = (props) => () => (props.formItem || {}).formItemSize
+export const computedFormItemSize = (props) => (): string => (props.formItem || {}).formItemSize
 
 export const computedCheckboxSize =
-  ({ state, props, formItemSize }) =>
+  ({ state, props, formItemSize }: Pick<ICheckboxRenderlessParams, 'state' | 'props' | 'formItemSize'>) =>
   () => {
     const tempCheckboxSize = props.size || formItemSize.value
 
@@ -147,8 +162,8 @@ export const computedCheckboxSize =
   }
 
 export const mounted =
-  ({ props, emit, api, parent }) =>
-  () => {
+  ({ props, emit, api, parent }: Pick<ICheckboxRenderlessParams, 'props' | 'emit' | 'api' | 'parent'>) =>
+  (): void => {
     props.checked && api.addToStore()
 
     props.indeterminate && parent.$el.setAttribute('aria-controls', props.controls)
@@ -156,7 +171,11 @@ export const mounted =
     emit('complete', true)
   }
 
-export const toggleEvent = ({ parent, props, type }) => {
+export const toggleEvent = ({
+  parent,
+  props,
+  type
+}: Pick<ICheckboxRenderlessParams, 'parent' | 'props' | 'type'>): void => {
   const inputEl = parent.$el
 
   for (let ev in props.events) {
@@ -165,32 +184,37 @@ export const toggleEvent = ({ parent, props, type }) => {
 }
 
 export const computedIsDisplayOnly =
-  ({ state, props }) =>
-  () =>
+  ({ state, props }: Pick<ICheckboxRenderlessParams, 'state' | 'props'>) =>
+  (): boolean =>
     props.displayOnly || state.formDisplayOnly
 
 export const computedIsGroupDisplayOnly =
-  ({ state }) =>
-  () =>
+  ({ state }: Pick<ICheckboxRenderlessParams, 'state'>) =>
+  (): boolean =>
     state.isGroup && (state.checkboxGroup.displayOnly || state.formDisplayOnly)
 
 export const computedDisplayLabel =
-  ({ state, props, t }) =>
-  () => {
+  ({ state, props, t }: Pick<ICheckboxRenderlessParams, 'state' | 'props' | 't'>) =>
+  (): string => {
     state.showLabel = true
     if (props.trueLabel !== undefined && props.falseLabel !== undefined) {
-      return props.modelValue ? props.trueLabel : props.falseLabel
+      return props.modelValue ? String(props.trueLabel) : String(props.falseLabel)
     } else {
       return props.modelValue ? t('yes') : t('no')
     }
   }
 
-export const computedIsShowText = ({ props }) => () => props.text || props.label || !isNull(props.text) || !isNull(props.label)
+export const computedIsShowText =
+  ({ props }: Pick<ICheckboxRenderlessParams, 'props'>) =>
+  (): boolean =>
+    !isNull(props.text) || !isNull(props.label)
 
-export const computedShowText = ({ props }) => () => {
-  if (props.text || !isNull(props.text)) {
-    return props.text
-  } else {
-    return props.label
+export const computedShowText =
+  ({ props }: Pick<ICheckboxRenderlessParams, 'props'>) =>
+  (): ICheckboxProps['label'] | ICheckboxProps['text'] => {
+    if (props.text || !isNull(props.text)) {
+      return props.text
+    } else {
+      return props.label
+    }
   }
-}

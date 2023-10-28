@@ -16,7 +16,7 @@ export default defineComponent({
       attrs: { 'data-tag': 'tiny-table-column-content' },
       class: 'my-0.5 truncate space-y-2 sm:space-y-1'
     }
-    const ons = { mouseenter: this.handleMouseenter, mouseleave: this.handleMouseleave }
+    const ons = () => ({ mouseenter: this.handleMouseenter, mouseleave: this.handleMouseleave })
 
     if (!primaryColumn || !primaryColumn.renderCell) {
       return h('div', props, [])
@@ -29,7 +29,7 @@ export default defineComponent({
       const hasLogo = typeof cardConfig.logoField !== 'undefined'
       let hasTag = false
       let tagVnodes: Array<any> = []
-      let logoField = ''
+      let logoField: string = ''
       let logoFieldConfig: FieldConfig = {}
       let logoVnode: any = null
 
@@ -39,6 +39,10 @@ export default defineComponent({
         hasTag = true
 
         tagVnodes = fnFields(tagFields).map((field, i) => {
+          if (!row[field] || typeof row[field] !== 'string') {
+            return null
+          }
+
           const fieldConfig = fnFieldConfig(tagFields[i])
           let colorField = ''
 
@@ -87,7 +91,7 @@ export default defineComponent({
       primaryVnode = h('div', { class: gridCls }, [
         hasLogo ? h('div', { class: logoCls }, [logoVnode]) : null,
         h('div', { class: 'truncate space-y-1 relative -top-0.5' }, [
-          h('div', { class: primCls, on: ons }, [primaryColumn.renderCell(h, genParams(primaryColumn, row))]),
+          h('div', { class: primCls, on: ons() }, [primaryColumn.renderCell(h, genParams(primaryColumn, row))]),
           hasTag ? h('div', { class: tagCls }, tagVnodes) : null
         ])
       ])
@@ -97,7 +101,7 @@ export default defineComponent({
         'overflow-hidden text-ellipsis whitespace-normal line-clamp-2 sm:line-clamp-1'
       ]
 
-      primaryVnode = h('div', { class: cls, on: ons }, [primaryColumn.renderCell(h, genParams(primaryColumn, row))])
+      primaryVnode = h('div', { class: cls, on: ons() }, [primaryColumn.renderCell(h, genParams(primaryColumn, row))])
     }
 
     contentVnodes = contentColumns.map((contentColumn) => {
@@ -107,7 +111,7 @@ export default defineComponent({
         'overflow-hidden text-ellipsis whitespace-normal line-clamp-2 sm:line-clamp-1'
       ]
 
-      return h('div', { class: cls, on: ons }, [
+      return h('div', { class: cls, on: ons() }, [
         h('span', {}, [Cell.renderHeader(h, params)]),
         h('span', {}, cardConfig.split || ':\u{20}'),
         h('span', {}, [Cell.renderCell(h, params)])

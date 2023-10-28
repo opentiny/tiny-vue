@@ -34,6 +34,8 @@ import * as scrollbarWidth from './deps/scrollbar-width'
 import throttle from './deps/throttle'
 import vueEmitter from './deps/vue-emitter'
 import vuePopper from './deps/vue-popper'
+
+/** TINY_NO_NEED  这个包只是dialog-box 自己使用的一个中间包，暴露给用户，用户也不会使用它呀 */
 import vuePopup from './deps/vue-popup'
 import validate from './validate'
 import memorize from './deps/memorize'

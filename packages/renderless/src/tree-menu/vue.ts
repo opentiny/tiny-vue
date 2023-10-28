@@ -63,7 +63,7 @@ export const api = [
   'getCurrentNode'
 ]
 
-export const renderless = (props, { watch, reactive, onMounted }, { t, service, refs, emit, vm }) => {
+export const renderless = (props, { watch, reactive, onMounted }, { t, service, emit, vm }) => {
   service = service || { base: {} }
   service = { getMenuDataSync: props.getMenuDataSync || service.base.getMenuDataSync }
 
@@ -88,7 +88,7 @@ export const renderless = (props, { watch, reactive, onMounted }, { t, service, 
     nodeDragStart: nodeDragStart(emit),
     nodeDragEnter: nodeDragEnter(emit),
     currentChange: currentChange(emit),
-    watchFilterText: watchFilterText(refs),
+    watchFilterText: watchFilterText({ vm }),
     getTitle: getTitle(props),
     setMenuKey: setMenuKey(api),
     initData: initData({ state, props, service, api }),

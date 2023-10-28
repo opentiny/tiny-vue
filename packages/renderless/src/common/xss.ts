@@ -15,113 +15,6 @@ import * as xss$1 from 'xss'
 let getWindow = function () {
   return typeof window === 'undefined' ? global : window
 }
-let isWeb = function () {
-  return !(typeof window === 'undefined')
-}
-
-let _win$2 = getWindow()
-let reverseUrlAlphabet = 'tcirzywvqlkjhgfbZQG_FLOWHSUBDNIMYREVKCAJxp57XP043891T62-modnaesu'
-let urlAlphabet$1 = reverseUrlAlphabet.split('').reverse().join('')
-let buffer
-let bufferOffset
-let allocBuffer = function (bytes) {
-  return new Uint8Array(new ArrayBuffer(bytes))
-}
-let randomFill = function (buffer) {
-  return _win$2.crypto.getRandomValues(buffer)
-}
-let defFillPool = function (bytes) {
-  if (!buffer || buffer.length < bytes) {
-    buffer = allocBuffer(bytes * 128)
-    randomFill(buffer)
-    bufferOffset = 0
-  } else if (bufferOffset + bytes > buffer.length) {
-    randomFill(buffer)
-    bufferOffset = 0
-  }
-  bufferOffset += bytes
-}
-let nanoid$2 = function (size) {
-  if (size === void 0) {
-    size = 21
-  }
-  defFillPool((size -= 0))
-  let uniq = ''
-  for (let i = bufferOffset - size; i < bufferOffset; i++) {
-    uniq += urlAlphabet$1[buffer[i] & 63]
-  }
-  return uniq
-}
-let defRandomFunc = function (bytes) {
-  defFillPool((bytes -= 0))
-  return buffer.subarray(bufferOffset - bytes, bufferOffset)
-}
-let defCustomRandom = function (alphabet, defaultSize, randomFunc) {
-  let mask = (2 << (31 - Math.clz32((alphabet.length - 1) | 1))) - 1
-  let step = Math.ceil((1.6 * mask * defaultSize) / alphabet.length)
-  return function (size) {
-    if (size === void 0) {
-      size = defaultSize
-    }
-    let uniq = ''
-    let bytes = randomFunc(step)
-    let i = step
-    while (i--) {
-      uniq += alphabet[bytes[i] & mask] || ''
-      if (uniq.length === size) {
-        return uniq
-      }
-    }
-  }
-}
-let customAlphabet$1 = function (alphabet, defaultSize) {
-  if (defaultSize === void 0) {
-    defaultSize = 21
-  }
-  return defCustomRandom(alphabet, defaultSize, defRandomFunc)
-}
-
-function isIE(window) {
-  return isWeb() && (window.document.all || window.document.documentMode) && !window.crypto && window.msCrypto
-}
-function initForIE(window) {
-  if (isIE(window)) {
-    window.crypto = window.msCrypto
-    let getRandomValuesDef = window.crypto.getRandomValues
-    window.crypto.getRandomValues = function (array) {
-      let values = getRandomValuesDef.call(window.crypto, array)
-      let result = []
-      for (let i = 0; i < array.length; i++) {
-        result[i] = values[i]
-      }
-      return result
-    }
-  }
-}
-let _win$1 = getWindow()
-initForIE(_win$1)
-let MAX_UINT32_PLUS_ONE = 4294967296
-let urlAlphabet = urlAlphabet$1
-let nanoid$1 = nanoid$2
-let customAlphabet = customAlphabet$1
-let random = function () {
-  if (!isWeb()) {
-    return 0
-  }
-  return _win$1.crypto.getRandomValues(new _win$1.Uint32Array(1))[0] / MAX_UINT32_PLUS_ONE
-}
-let api = {
-  urlAlphabet,
-  nanoid: nanoid$1,
-  customAlphabet
-}
-
-let _nanoid = Object.freeze({
-  __proto__: null,
-  random,
-  api,
-  'default': api
-})
 
 let xssOptions = {
   enableAttrs: true,
@@ -287,7 +180,7 @@ let index = {
   setFilterUrl
 }
 
-let _xss = Object.freeze({
+let xss = Object.freeze({
   __proto__: null,
   getXssOption,
   setXssOption,
@@ -305,57 +198,7 @@ let _xss = Object.freeze({
   setFilterUrl,
   'default': index
 })
+let log = { logger: getWindow().console }
+let def = { xss, log }
 
-let _win = getWindow()
-let _cnsl = 'console'
-let _console = _win[_cnsl] || {}
-let isOpen = true
-let _print = {}
-let _log = function (csl, type) {
-  return function () {
-    let args = []
-    for (let i = 0; i < arguments.length; i++) {
-      args[i] = arguments[i]
-    }
-    if (!isOpen) {
-      return
-    }
-    if (csl[type] && typeof csl[type] === 'function') {
-      csl[type].apply(csl, args)
-    }
-  }
-}
-let _initPrint = function (csl) {
-  Object.keys(csl).forEach((type) => {
-    _print[type] = _log(csl, type)
-  })
-  return _print
-}
-let switchLogger = function (flag) {
-  isOpen = !!flag
-}
-let setLogger = function (type, fn) {
-  if (_print && Object.hasOwnProperty.call(_print, type)) {
-    _print[type] = fn
-  }
-}
-let logger = _initPrint(_console)
-
-let _logger = Object.freeze({
-  __proto__: null,
-  switchLogger,
-  setLogger,
-  logger,
-  'default': logger
-})
-
-let def = {
-  nanoid: _nanoid,
-  xss: _xss,
-  log: _logger
-}
-let nanoid = _nanoid
-let xss = _xss
-let log = _logger
-
-export { def as default, log, nanoid, xss }
+export { def as default, log, xss }

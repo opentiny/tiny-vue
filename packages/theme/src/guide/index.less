@@ -5,17 +5,19 @@
 .@{guide-prefix-cls} {
   .component-css-vars-guide();
   .shepherd-arrow {
-    height: var(--ti-guide-arrow-height);
+    height: calc(var(--ti-guide-arrow-height) * 1.4);
     position: absolute;
-    width: var(--ti-guide-arrow-width);
+    width: calc(var(--ti-guide-arrow-width) * 1.4) ;
     z-index: -10;
-
+    overflow: hidden;
     &:before {
       width: var(--ti-guide-arrow-width);
       position: absolute;
       height: var(--ti-guide-arrow-height);
       background-color: var(--ti-guide-header-bg-color);
-      transform: rotate(45deg);
+      transform: translate(-50%, -50%) rotate(45deg);
+      left: 50%;
+      top: 50%;
       z-index: -10;
       content: '';
     }
@@ -252,7 +254,7 @@
     opacity: 0;
     visibility: hidden;
     z-index: 9999;
-    width: 510px;
+    width: var(--tiny-guide-shepherd-element-size);
     outline: none;
     border-radius: 4px;
     transition:
@@ -279,19 +281,19 @@
   }
 
   &.shepherd-element[data-popper-placement^='top'] > .shepherd-arrow {
-    bottom: -8px;
+    bottom: calc(-0.7 * var(--ti-guide-arrow-width));
   }
 
   &.shepherd-element[data-popper-placement^='bottom'] > .shepherd-arrow {
-    top: -8px;
+    top: calc(-0.7 * var(--ti-guide-arrow-width));
   }
 
   &.shepherd-element[data-popper-placement^='left'] > .shepherd-arrow {
-    right: -8px;
+    right: calc(-0.7 * var(--ti-guide-arrow-width));
   }
 
   &.shepherd-element[data-popper-placement^='right'] > .shepherd-arrow {
-    left: -8px;
+    left: calc(-0.7 * var(--ti-guide-arrow-width));
   }
 
   &.shepherd-element.shepherd-centered > .shepherd-arrow {

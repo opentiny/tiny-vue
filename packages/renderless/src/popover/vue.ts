@@ -32,6 +32,8 @@ import {
   observeCallback
 } from './index'
 import userPopper from '../common/deps/vue-popper'
+import { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from 'types/shared.type'
+import { IPopoverApi, IPopoverProps, IPopoverState, IPopoverRenderlessParams } from 'types/popover.type'
 
 export const api = [
   'state',
@@ -44,15 +46,24 @@ export const api = [
   'handleItemClick'
 ]
 
-const initState = ({ reactive, computed, api, popperElm, showPopper, referenceElm }) => {
+const initState = ({
+  reactive,
+  computed,
+  api,
+  popperElm,
+  showPopper,
+  referenceElm
+}: Pick<IPopoverRenderlessParams, 'reactive' | 'computed' | 'api'> & IPopoverState) => {
   const state = reactive({
     popperElm,
-    showPopper,
-    timer: null,
-    mounted: false,
     referenceElm,
+    /** popper 元素是否显示。 它是通过v-show 绑定到页面上，造成隐藏时，popperJs并没有destory,有一定的性能影响 */
+    showPopper,
+    timer: 0,
+    mounted: false,
     xPlacement: 'bottom',
-    tooltipId: computed(() => api.computedTooltipId())
+    tooltipId: computed(() => api.computedTooltipId()),
+    webCompEventTarget: null
   })
   return state
 }
@@ -83,14 +94,31 @@ const initApi = ({ api, props, state, refs, emit, doDestroy, constants, nextTick
   })
 }
 
-const initWatch = ({ watch, props, state, emit, api, nextTick }) => {
+const initWatch = ({
+  watch,
+  props,
+  state,
+  emit,
+  api,
+  nextTick,
+  updatePopper,
+  mode
+}: Pick<
+  IPopoverRenderlessParams,
+  'watch' | 'props' | 'state' | 'emit' | 'api' | 'nextTick' | 'updatePopper' | 'mode'
+>) => {
   watch(
     () => state.showPopper,
     (val) => {
       if (props.disabled) {
         return
       }
-
+      // mobile-first时，需要更新一下，arrow的位置才正确
+      if (mode === 'mobile-first' && val) {
+        nextTick(() => updatePopper())
+      }
+      // 隐藏时，只冒一下事件，并没有调用doDestory();
+      // 只是通过v-show=state.showPopper 来实现隐藏
       val ? emit('show') : emit('hide')
     }
   )
@@ -107,18 +135,38 @@ const initWatch = ({ watch, props, state, emit, api, nextTick }) => {
       }
     }
   )
+
+  watch(
+    () => props.modelValue,
+    (val: boolean) => {
+      if (props.trigger === 'manual') {
+        state.showPopper = val
+        emit('update:modelValue', val)
+      }
+    }
+  )
 }
 
 export const renderless = (
-  props,
-  { reactive, computed, watch, toRefs, onBeforeUnmount, onMounted, onUnmounted, onActivated, onDeactivated },
-  { $prefix, emit, vm, refs, slots, nextTick, mode }
+  props: IPopoverProps,
+  {
+    reactive,
+    computed,
+    watch,
+    toRefs,
+    onBeforeUnmount,
+    onMounted,
+    onUnmounted,
+    onActivated,
+    onDeactivated
+  }: ISharedRenderlessParamHooks,
+  { $prefix, emit, vm, refs, slots, nextTick, mode }: ISharedRenderlessParamUtils<never>
 ) => {
-  const api = {}
+  const api = {} as IPopoverApi
   const constants = { IDPREFIX: `${$prefix.toLowerCase()}-popover` }
   const options = { emit, onBeforeUnmount, nextTick, reactive, props, watch, onDeactivated, refs, slots, toRefs }
-  const { showPopper, popperElm, referenceElm, doDestroy } = userPopper(options)
-  const state = initState({ reactive, computed, api, popperElm, showPopper, referenceElm })
+  const { showPopper, popperElm, referenceElm, doDestroy, updatePopper } = userPopper(options as any)
+  const state: IPopoverState = initState({ reactive, computed, api, popperElm, showPopper, referenceElm })
 
   initApi({ api, constants, props, state, refs, emit, doDestroy, nextTick, vm, mode })
 
@@ -146,7 +194,7 @@ export const renderless = (
 
   onBeforeUnmount(api.cleanup)
 
-  initWatch({ watch, props, state, emit, api, nextTick })
+  initWatch({ watch, props, state, emit, api, nextTick, updatePopper, mode })
 
   return api
 }

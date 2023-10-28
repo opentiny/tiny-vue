@@ -14,6 +14,7 @@ const fs = require('node:fs')
 const source = '../src'
 const dist = '../dist'
 const plugin = '../plugins'
+const theme = '../theme'
 const svgInlineOption = {
   maxImageSize: 1 * 1024 * 1024,
   extensions: [/\.svg/gi]
@@ -24,6 +25,7 @@ const jsFiles = [`${source}/**/*.js`, `${source}/index.js`, '../tailwind.config.
 const svgFiles = [`${source}/svgs/**`]
 const imageFiles = [`${source}/images/**`]
 const pluginFiles = [`${plugin}/**`]
+const themeFiles = [`${theme}/**`]
 
 const devDist = '../../tiny-vue/node_modules/@opentiny/vue-theme'
 let syncToTinyVueProject = false
@@ -103,8 +105,20 @@ function copyPlugin() {
 
 gulp.task('copyplugin', copyPlugin)
 
-gulp.task('build', gulp.series('compile', 'copycssvar', 'copysvgs', 'copyimage', 'copyplugin'))
+function copyTheme() {
+  const task = gulp.src(themeFiles).pipe(gulp.dest(`${dist}/theme`), { since: gulp.lastRun(copyTheme) })
+
+  if (syncToTinyVueProject) task.pipe(gulp.dest(`${devDist}/theme`))
+
+  return task
+}
+
+gulp.task('copyTheme', copyTheme)
+
+gulp.task('build', gulp.series('compile', 'copycssvar', 'copysvgs', 'copyimage', 'copyplugin', 'copyTheme'))
 
 gulp.task('dev', () => {
+  syncToTinyVueProject = true
+
   return gulp.watch(allLessFiles, gulp.series('compile'))
 })

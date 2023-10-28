@@ -24,6 +24,9 @@ export default function ({ deleteInlinedFiles = true }): Plugin {
                 cache[chunkName] = (bundle[chunkName] as OutputChunk).code
                   .replace(/export {[\s\S]+$/, '')
                   .replace(/_extends/g, '_extends_tiny')
+                  .replace(/_createForOfIteratorHelperLoose/g, '_createForOfIteratorHelperLoose_tiny')
+                  .replace(/_unsupportedIterableToArray/g, '_unsupportedIterableToArray_tiny')
+                  .replace(/_arrayLikeToArray/g, '_arrayLikeToArray_tiny')
                 bundlesToDelete.add(chunkName)
               }
 

@@ -19,6 +19,7 @@
       { 'has-required': state.hasRequired },
       { 'is-display-only': state.isDisplayOnly }
     ]"
+    @submit.native.prevent
   >
     <slot></slot>
   </form>
@@ -27,6 +28,7 @@
 <script lang="tsx">
 import { renderless, api } from '@opentiny/vue-renderless/form/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
+import type { IFormApi } from '@opentiny/vue-renderless/types/form.type'
 import '@opentiny/vue-theme/form/index.less'
 import '@opentiny/vue-theme/form-item/index.less'
 
@@ -38,6 +40,7 @@ export default defineComponent({
     'model',
     'rules',
     'inlineMessage',
+    'messageType',
     'statusIcon',
     'labelPosition',
     'labelAlign',
@@ -50,6 +53,7 @@ export default defineComponent({
     'inline',
     'responsiveLayout',
     'validateType',
+    'validateIcon',
     'manual',
     'appendToBody',
     'popperOptions',
@@ -57,7 +61,7 @@ export default defineComponent({
     'showAutoWidth'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IFormApi
   }
 })
 </script>

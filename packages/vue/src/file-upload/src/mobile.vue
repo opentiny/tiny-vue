@@ -20,6 +20,7 @@ import '@opentiny/vue-theme-mobile/file-upload/index.less'
 import '@opentiny/vue-theme-mobile/upload-list/index.less'
 import '@opentiny/vue-theme-mobile/upload-dragger/index.less'
 import '@opentiny/vue-theme-mobile/upload/index.less'
+import type { IFileUploadApi } from '@opentiny/vue-renderless/types/file-upload.type'
 
 export default defineComponent({
   inheritAttrs: false,
@@ -52,7 +53,7 @@ export default defineComponent({
     'uploadIcon'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as IFileUploadApi
   },
   components: {
     Progress,
