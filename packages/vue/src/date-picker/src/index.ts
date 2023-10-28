@@ -84,6 +84,10 @@ export const datePickerProps = {
     default: () => $constants
   },
   timeArrowControl: Boolean,
+  timeEditable: {
+    type: Boolean,
+    default: true
+  },
   size: String,
   format: String,
   valueFormat: String,
