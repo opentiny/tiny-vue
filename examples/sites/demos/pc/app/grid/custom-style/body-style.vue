@@ -1,15 +1,27 @@
 <template>
-  <tiny-grid :data="tableData" show-footer :footer-method="footerMethod">
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="selection" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
-    <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
-    <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
-    <tiny-grid-column field="city" title="城市"></tiny-grid-column>
-  </tiny-grid>
+  <div>
+    <h4>自定义表体行样式：</h4>
+    <tiny-grid class="grid-row-style" :data="tableData" :row-class-name="rowClassName">
+      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+      <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
+      <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
+      <tiny-grid-column field="city" title="城市"></tiny-grid-column>
+    </tiny-grid>
+    <h4>自定义表体单元格样式：</h4>
+    <tiny-grid class="grid-cell-style" :data="tableData" :cell-class-name="cellClassName">
+      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+      <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
+      <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
+      <tiny-grid-column field="city" title="城市"></tiny-grid-column>
+    </tiny-grid>
+  </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn } from '@opentiny/vue'
 
 export default {
@@ -80,16 +92,26 @@ export default {
     }
   },
   methods: {
-    footerMethod({ columns, data }) {
-      return [
-        columns.map((column) => {
-          if (column.property === 'employees') {
-            return data.map((item) => item[column.property]).reduce((acc, item) => acc + item)
-          }
-          return null
-        })
-      ]
+    rowClassName({ rowIndex }) {
+      if (rowIndex & 1) {
+        return 'row__word--red'
+      }
+    },
+    cellClassName({ rowIndex, columnIndex }) {
+      if (rowIndex & 1 && !(columnIndex & 1)) {
+        return 'col-orange'
+      }
     }
   }
 }
 </script>
+
+<style>
+.grid-row-style .tiny-grid__body .row__word--red {
+  color: palevioletred;
+}
+.grid-cell-style .tiny-grid-body__column.col-orange {
+  background-color: pink;
+  color: #fff;
+}
+</style>

@@ -144,7 +144,6 @@ export const cmpMenus = [
       { 'nameCn': '冻结', 'name': 'Freeze', 'key': 'grid-fixed' },
       { 'nameCn': '合并', 'name': 'Merges', 'key': 'grid-span' },
       { 'nameCn': '分组', 'name': 'Grouping', 'key': 'grid-row-grouping' },
-      { 'nameCn': '统计', 'name': 'Statistic', 'key': 'grid-summary' },
       { 'nameCn': '拖拽', 'name': 'Drag and drop', 'key': 'grid-drag' },
       { 'nameCn': '数据级联', 'name': 'Data Cascading', 'key': 'grid-cascade' },
       { 'nameCn': '右键菜单', 'name': 'Right-click menu', 'key': 'grid-context-menu' },

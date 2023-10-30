@@ -1,22 +1,27 @@
 <template>
-  <tiny-grid
-    class="grid-footer-row-style"
-    :data="tableData"
-    show-footer
-    :footer-method="footerMethod"
-    border
-    :footer-row-class-name="footerRowClassName"
-  >
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="selection" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
-    <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
-    <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
-    <tiny-grid-column field="city" title="城市"></tiny-grid-column>
-  </tiny-grid>
+  <div>
+    <h4>自定义表头行样式：</h4>
+    <tiny-grid class="grid-header-row-style" :data="tableData" :header-row-class-name="headerRowClassName">
+      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+      <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
+      <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
+      <tiny-grid-column field="city" title="城市"></tiny-grid-column>
+    </tiny-grid>
+    <h4>自定义表头单元格样式：</h4>
+    <tiny-grid class="grid-header-cell-style" :data="tableData" :header-cell-class-name="headerCellClassName">
+      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+      <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
+      <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
+      <tiny-grid-column field="city" title="城市"></tiny-grid-column>
+    </tiny-grid>
+  </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn } from '@opentiny/vue'
 
 export default {
@@ -87,39 +92,14 @@ export default {
     }
   },
   methods: {
-    footerMethod({ columns, data }) {
-      return [
-        columns.map((column, columnIndex) => {
-          if (columnIndex === 0) {
-            return '平均'
-          }
-
-          if (column.property === 'employees') {
-            return Math.floor(data.map((item) => item[column.property]).reduce((acc, item) => acc + item) / data.length)
-          }
-
-          return null
-        }),
-        columns.map((column, columnIndex) => {
-          if (columnIndex === 0) {
-            return '和值'
-          }
-
-          if (column.property === 'employees') {
-            return data.map((item) => item[column.property]).reduce((acc, item) => acc + item)
-          }
-
-          return null
-        })
-      ]
-    },
-    footerRowClassName({ $rowIndex }) {
+    headerRowClassName({ $rowIndex }) {
       if ($rowIndex === 0) {
-        return 'footer__row--red'
+        return 'header__row--red'
       }
-
-      if ($rowIndex === 1) {
-        return 'footer__row--green'
+    },
+    headerCellClassName({ column }) {
+      if (column.property === 'name') {
+        return 'header__cell--blue'
       }
     }
   }
@@ -127,12 +107,11 @@ export default {
 </script>
 
 <style>
-.grid-footer-row-style .tiny-grid-footer__row.footer__row--red {
-  background-color: red;
-  color: #fff;
+.grid-header-row-style .tiny-grid-header__row.header__row--red {
+  background-color: palevioletred;
 }
-.grid-footer-row-style .tiny-grid-footer__row.footer__row--green {
-  background-color: green;
+.grid-header-cell-style .tiny-grid-header__column.header__cell--blue {
+  background-color: #2db7f5;
   color: #fff;
 }
 </style>

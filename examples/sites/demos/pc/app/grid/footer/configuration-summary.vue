@@ -1,5 +1,5 @@
 <template>
-  <tiny-grid class="grid-row-style" :data="tableData" :row-class-name="rowClassName">
+  <tiny-grid :data="tableData" :summary-config="summary" show-footer>
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
@@ -9,7 +9,7 @@
   </tiny-grid>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn } from '@opentiny/vue'
 
 export default {
@@ -19,6 +19,11 @@ export default {
   },
   data() {
     return {
+      summary: {
+        fields: ['employees'],
+        fraction: 2,
+        truncate: false
+      },
       tableData: [
         {
           id: '1',
@@ -78,19 +83,6 @@ export default {
         }
       ]
     }
-  },
-  methods: {
-    rowClassName({ rowIndex }) {
-      if (rowIndex & 1) {
-        return 'row__word--red'
-      }
-    }
   }
 }
 </script>
-
-<style>
-.grid-row-style .tiny-grid__body .row__word--red {
-  color: red;
-}
-</style>

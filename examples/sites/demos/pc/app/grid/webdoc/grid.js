@@ -248,7 +248,7 @@ export default {
             'en-US':
               'Calculation method of table tail total Function({columns, data});params:{columns: all column configuration data: all table data}'
           },
-          'demoId': 'grid-summary#summary-custom-summary'
+          'demoId': 'grid-footer#footer-footer-summation-empty'
         },
         {
           'name': 'footer-row-class-name',
@@ -637,7 +637,7 @@ export default {
             'en-US':
               "Configuration item of the table statistics function; {fields:['Emp employees'], //Statistics field name\n fraction: 2, //Final digits reserved after decimal point\n truncate: false, //Whether to truncate. The default value is rounding up. The value is not truncated. \n text: ''//Statistics displayed text}"
           },
-          'demoId': 'grid-summary#summary-configuration-summary'
+          'demoId': 'grid-footer#footer-configuration-summary'
         },
         {
           'name': 'sortable',
