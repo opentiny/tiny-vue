@@ -5,9 +5,7 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OpenTiny - TinyVue</title>
-    <!--问题：1.TinyNG打包后静态资源文件在新官网找不到，CSS主题样式文件加载不到-->
-    <!--2.TinyNG打包文件web-components的主题样式加载时机较早，编译获取不到PUBLIC_URL和DEPLOY_URL变量，从而找不到对应的css文件-->
-    <!--方案：将PUBLIC_URL和DEPLOY_URL变量在header中提前定义，保证web-components可以获取到这两个变量，从而正确加载对应的主题样式文件-->
+    <!--图片引用方案：将PUBLIC_URL和DEPLOY_URL变量在header中提前定义，保证web-components可以获取到这两个变量，从而正确加载对应的主题样式文件-->
     <script type="module">
       window.PUBLIC_URL = import.meta.env.BASE_URL
       window.DEPLOY_URL = ''
@@ -19,11 +17,8 @@
     <div id="header"></div>
     <app-root></app-root>
     <div id="app" class="wp100 hp100 pt60 of-hidden"></div>
-
-    <script
-      id="tinyui-design-common"
-      src="https://res.hc-cdn.com/tinyui-design-common/1.0.5.20230707170109/tinyui-design-common.min.js"
-    ></script>
+    <!-- prettier-ignore -->
+    <script id="tinyui-design-common" src="https://res.hc-cdn.com/tinyui-design-common/1.0.5.20230707170109/tinyui-design-common.min.js"></script>
     <script type="module" src="./src/main.js"></script>
   </body>
 </html>
