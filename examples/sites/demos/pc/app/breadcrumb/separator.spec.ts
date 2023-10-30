@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('Breadcrumb 自定义分隔符', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/breadcrumb/separator')
+  await page.goto('breadcrumb#separator')
 
   const breadcrumb = page.getByRole('navigation', { name: 'Breadcrumb' })
   const separator1 = breadcrumb.first().locator('.tiny-breadcrumb__separator')

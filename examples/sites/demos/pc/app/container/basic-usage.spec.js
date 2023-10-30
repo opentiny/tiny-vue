@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('基础用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/container/custom-container')
+  await page.goto('container#custom-container')
   await page.getByText('默认布局').click()
   await page.locator('#preview').getByText('Header').click()
   await expect(page.locator('.tiny-container > div').first()).toHaveAttribute('style', 'height: 60px;')

@@ -1,5 +1,5 @@
 ﻿<template>
-  <tiny-exception type="pagenoperm"></tiny-exception>
+  <tiny-exception type="pageservererror"></tiny-exception>
 </template>
 
 <script>

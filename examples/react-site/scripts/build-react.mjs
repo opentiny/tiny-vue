@@ -66,7 +66,7 @@ async function buildReact() {
       lib: {
         entry: entries,
         formats: ['es'],
-        fileName: (format, entryName) => `${entryName}.js`
+        fileName: (_, entryName) => `${entryName}.js`
       }
     }
   })

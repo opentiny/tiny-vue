@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('show-alloption', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/show-alloption')
+  await page.goto('select#show-alloption')
   const select = page.locator('#preview .tiny-select')
   const options = page.locator('.tiny-select-dropdown').locator('.tiny-option')
 

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('Fullscreen 函数式使用', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/fullscreen/example-api')
+  await page.goto('fullscreen#example-api')
 
   const pageOnly = page.getByLabel('pageOnly')
   const teleport = page.getByLabel('teleport')

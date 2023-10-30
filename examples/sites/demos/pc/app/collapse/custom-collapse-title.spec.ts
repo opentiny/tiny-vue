@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('Collapse 自定义面板标题', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/collapse/custom-collapse-title')
+  await page.goto('collapse#custom-collapse-title')
 
   const header = page.locator('.tiny-collapse-item__header')
   const titleRight = page.locator('.tiny-collapse-item__title__right')

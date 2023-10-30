@@ -9,8 +9,9 @@ export default {
         'en-US': 'basic usage'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 `v-model` 绑定变量，设置的变量值为默认选中的 Radio，变量值对应 `label` 属性的值。通过 `text` 也可以配置显示文本，与默认插槽配置纯文本的结果一致<br /> `label` 可以是 `String`、`Number` 或 `Boolean`。</p>',
+        'zh-CN': `<p>通过 <code>v-model</code> 绑定变量，设置的变量值为默认选中的 Radio，变量值对应 <code>label</code> 属性的值。<br>
+          通过 <code>text</code> 也可以配置显示文本，与默认插槽配置纯文本的结果一致<br>
+          <code>label</code> 可以是 <code>String</code>、<code>Number</code> 或 <code>Boolean</code>。</p>`,
         'en-US': '<p>button type</p>'
       },
       codeFiles: ['basic-usage.vue']
@@ -23,8 +24,11 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN':
-          '<p>提供 `options` 属性，支持通过配置对象数组数据的形式来渲染单选组。使用该属性后，可以不用再在标签中以插槽的形式插入 `<radio>` 或 `<radio-button>` 标签。<br />`options` 对象数组中包括三个字段：`label`、`text`、`events`。 <br /> 另外还提供 `type` 属性，配合 `options` 属性一起使用，默认值为 `radio`。还可以配置为 `button`，配置后单选组将以按钮的形式展示。<p>',
+        'zh-CN': `<p>提供 <code>options</code> 属性，支持通过配置对象数组数据的形式来渲染单选组。<br>
+          使用该属性后，可以不用再在标签中以插槽的形式插入 <code><radio></code> 或 <code><radio-button></code> 标签。<br />
+          <code>options</code> 对象数组中包括三个字段：<code>label</code>、<code>text</code>、<code>events</code>。 <br />
+          另外还提供 <code>type</code> 属性，配合 <code>options</code> 属性一起使用，默认值为 <code>radio</code>。<br>
+          还可以配置为 <code>button</code>，配置后单选组将以按钮的形式展示。<p>`,
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['group-options.vue']
@@ -40,6 +44,19 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['dynamic-disable.vue']
+    },
+    {
+      demoId: 'radio-size',
+      name: {
+        'zh-CN': '单选尺寸',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN':
+          '<p>当组件<code> radio-group</code> 和 radio 配置 <code>size </code>属性为 <code>medium</code> 时，显示为中尺寸（仅 pc 支持）<p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['radio-size.vue']
     },
     {
       demoId: 'vertical',
@@ -77,6 +94,18 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['radio-events.vue']
+    },
+    {
+      demoId: 'group-options',
+      name: {
+        'zh-CN': '循环配置',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p>可在 RadioGroup 组件上设置<code> options</code> 属性，可循环配置 Radio。<p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['group-options.vue']
     },
     {
       demoId: 'radio-default',

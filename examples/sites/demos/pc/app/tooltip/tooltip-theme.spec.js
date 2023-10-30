@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试tooltip主题', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tooltip/tooltip-theme')
+  await page.goto('tooltip#tooltip-theme')
 
   await page.getByRole('button', { name: 'Dark' }).hover()
   await expect(page.getByRole('tooltip', { name: 'dark 提示文字' })).toHaveClass(/is-dark/)

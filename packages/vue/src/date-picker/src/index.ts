@@ -64,7 +64,7 @@ const $props = {
 export const datePickerProps = {
   ...$props,
   type: {
-    type: Object as PropType<
+    type: String as PropType<
       | 'date'
       | 'dates'
       | 'daterange'
@@ -84,6 +84,10 @@ export const datePickerProps = {
     default: () => $constants
   },
   timeArrowControl: Boolean,
+  timeEditable: {
+    type: Boolean,
+    default: true
+  },
   size: String,
   format: String,
   valueFormat: String,

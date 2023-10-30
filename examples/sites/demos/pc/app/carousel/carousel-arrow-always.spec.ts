@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('总是显示切换箭头', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/carousel/carousel-arrow-always')
+  await page.goto('carousel#carousel-arrow-always')
   const preview = page.locator('#preview')
   const carousel = preview.locator('.tiny-carousel')
   const carouselItems = preview.locator('div.tiny-carousel__item')

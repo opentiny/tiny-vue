@@ -293,7 +293,11 @@
             theme('colors.color.border.separator.DEFAULT'),
             theme('colors.color.border.separator.DEFAULT')
           ),
-          linear-gradient(-180deg, theme('colors.color.border.separator.DEFAULT'), theme('colors.color.border.separator.DEFAULT'));
+          linear-gradient(
+            -180deg,
+            theme('colors.color.border.separator.DEFAULT'),
+            theme('colors.color.border.separator.DEFAULT')
+          );
         @apply bg-no-repeat;
 
         .is__line::before {
@@ -867,9 +871,9 @@
 
       &.col__ellipsis {
         .@{grid-prefix-cls}-cell {
-          &__tooltip:has(.aui-grid-tree__indent:nth-last-child(2):first-child),
-          &__title:has(.aui-grid-tree__indent:nth-last-child(2):first-child),
-          &__ellipsis:has(.aui-grid-tree__indent:nth-last-child(2):first-child) {
+          &__tooltip:has(.tiny-grid-tree__indent:nth-last-child(2):first-child),
+          &__title:has(.tiny-grid-tree__indent:nth-last-child(2):first-child),
+          &__ellipsis:has(.tiny-grid-tree__indent:nth-last-child(2):first-child) {
             @apply inline-block;
           }
         }

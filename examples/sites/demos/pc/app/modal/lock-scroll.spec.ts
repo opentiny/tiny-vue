@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('锁住滚动条', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/modal/lock-scroll')
+  await page.goto('modal#lock-scroll')
 
   const modal = page.locator('.tiny-modal')
   await page.getByRole('button', { name: '不锁住滚动条不要遮罩层' }).click()

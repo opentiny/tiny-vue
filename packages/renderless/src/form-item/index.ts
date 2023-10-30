@@ -146,10 +146,10 @@ export const computedContentStyle =
   }
 
 export const computedForm =
-  ({ constants, instance, state }: Pick<IFormItemRenderlessParams, 'constants' | 'instance' | 'state'>) =>
+  ({ constants, vm, state }: Pick<IFormItemRenderlessParams, 'constants' | 'vm' | 'state'>) =>
   (): IFormInstance | null => {
     const { FORM_NAME, FORM_ITEM_NAME } = constants
-    let parent = instance.$parent?.$parent as IFormInstance | null
+    let parent = vm.$parent?.$parent as IFormInstance | null
     let parentName = parent?.$options?.componentName
 
     while (parent && parentName !== FORM_NAME) {
@@ -247,18 +247,12 @@ export const computedFieldValue =
   }
 
 export const mounted =
-  ({
-    api,
-    instance,
-    props,
-    state,
-    refs
-  }: Pick<IFormItemRenderlessParams, 'api' | 'instance' | 'props' | 'state' | 'refs'>) =>
+  ({ api, vm, props, state }: Pick<IFormItemRenderlessParams, 'api' | 'vm' | 'props' | 'state'>) =>
   (): void => {
-    state.tooltip = refs.tooltip
+    state.tooltip = vm.$refs.tooltip
 
     if (props.prop) {
-      api.dispatch('Form', 'form:addField', instance)
+      api.dispatch('Form', 'form:addField', vm)
 
       let initialValue = state.fieldValue
 
@@ -272,10 +266,10 @@ export const mounted =
   }
 
 export const unmounted =
-  ({ api, instance, state }: Pick<IFormItemRenderlessParams, 'api' | 'instance' | 'state'>) =>
+  ({ api, vm, state }: Pick<IFormItemRenderlessParams, 'api' | 'vm' | 'state'>) =>
   (): void => {
     state.canShowTip = false
-    api.dispatch('Form', 'form:removeField', instance)
+    api.dispatch('Form', 'form:removeField', vm)
   }
 
 export const validate =
@@ -285,7 +279,7 @@ export const validate =
 
     const rules = api.getFilteredRule(trigger)
 
-    if ((!rules || rules.length === 0) && props.required === undefined) {
+    if (((!rules || rules.length === 0) && props.required === undefined) || props.validateDisabled) {
       callback()
       return
     }
@@ -437,7 +431,7 @@ export const updateComputedLabelWidth =
   }
 
 export const addValidateEvents =
-  ({ api, instance, props, state }: Pick<IFormItemRenderlessParams, 'api' | 'instance' | 'props' | 'state'>) =>
+  ({ api, vm, props, state }: Pick<IFormItemRenderlessParams, 'api' | 'vm' | 'props' | 'state'>) =>
   (): void => {
     const rules = api.getRules()
 
@@ -445,24 +439,24 @@ export const addValidateEvents =
       const manual = props.manual || (state.formInstance ? state.formInstance.manual : false)
 
       if (!manual) {
-        instance.$on('form.blur', api.onFieldBlur)
-        instance.$on('form.change', api.onFieldChange)
+        vm.$on('form.blur', api.onFieldBlur)
+        vm.$on('form.change', api.onFieldChange)
       }
     }
   }
 
-export const removeValidateEvents = (instance: IFormItemRenderlessParams['instance']) => (): void => {
-  instance.$off()
+export const removeValidateEvents = (vm: IFormItemRenderlessParams['vm']) => (): void => {
+  vm.$off()
 }
 
 export const updateTip =
-  ({ refs, state }: Pick<IFormItemRenderlessParams, 'refs' | 'state'>) =>
+  ({ vm, state }: Pick<IFormItemRenderlessParams, 'vm' | 'state'>) =>
   (): void => {
     if (state.getValidateType !== 'tip' && !state.canShowTip) {
       return
     }
 
-    const tooltip = refs.tooltip
+    const tooltip = vm.$refs.tooltip
 
     if (!tooltip) {
       return
@@ -531,6 +525,16 @@ export const handleMouseenter =
 
     if (res.o || overHeight) {
       state.form.showTooltip(dom, state.displayedValue)
+    }
+  }
+
+export const handleLabelMouseenter =
+  ({ props, state, slots }) =>
+  (e) => {
+    if (!state.form.overflowTitle || !state.form || slots.label) return
+    const label = e.target
+    if (label && label.scrollWidth > label.offsetWidth) {
+      state.form.showTooltip(label, props.label + state.form.labelSuffix)
     }
   }
 

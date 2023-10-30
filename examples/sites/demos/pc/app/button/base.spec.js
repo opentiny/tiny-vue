@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试默认按钮', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button/base')
+  await page.goto('button#base')
   await expect(page.locator('.tiny-button').first()).toHaveClass(/tiny-button--default/)
   await expect(page.getByRole('button', { name: '主要按钮' }).first()).toHaveClass(/tiny-button--primary/)
   await expect(page.getByRole('button', { name: '成功按钮' }).first()).toHaveClass(/tiny-button--success/)
@@ -13,7 +13,7 @@ test('测试默认按钮', async ({ page }) => {
 
 test('测试朴素按钮', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button/base')
+  await page.goto('button#base')
   await expect(page.getByRole('button', { name: '朴素按钮' })).toHaveClass(/is-plain/)
   await expect(page.getByRole('button', { name: '主要按钮' }).nth(1)).toHaveClass(/tiny-button--primary is-plain/)
   await expect(page.getByRole('button', { name: '成功按钮' }).nth(1)).toHaveClass(/tiny-button--success is-plain/)
@@ -24,7 +24,7 @@ test('测试朴素按钮', async ({ page }) => {
 
 test('测试圆角按钮', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button/base')
+  await page.goto('button#base')
   await expect(page.getByRole('button', { name: '圆角按钮' })).toHaveClass(/is-round/)
   await expect(page.getByRole('button', { name: '主要按钮' }).nth(2)).toHaveClass(/tiny-button--primary is-round/)
   await expect(page.getByRole('button', { name: '成功按钮' }).nth(2)).toHaveClass(/tiny-button--success is-round/)
@@ -35,7 +35,7 @@ test('测试圆角按钮', async ({ page }) => {
 
 test('测试是否是圆形按钮', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button/base')
+  await page.goto('button#base')
   await expect(page.locator('.tiny-button').first()).toHaveClass(/tiny-button--default/)
   await expect(page.locator('button:nth-child(2)').first()).toHaveClass(/tiny-button--primary/)
   await expect(page.locator('button:nth-child(3)').first()).toHaveClass(/tiny-button--success/)

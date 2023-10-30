@@ -1,11 +1,11 @@
 <template>
   <div data-tag="tiny-slider-button-group">
     <component v-if="!pageTurn" :is="state.tag" class="inline-flex" role="sliderButtonGroup">
-      <div class="bg-color-bg-2 inline-flex h-auto rounded-md relative box-border">
+      <div class="bg-color-bg-3 inline-flex h-auto rounded-md relative box-border">
         <div
-          :class="['absolute bg-color-bg-1 shadow h-6 rounded', size === 'large' ? 'top-1' : 'top-0.5']"
+          :class="['absolute bg-color-bg-1 shadow-sm h-6 rounded', size === 'large' ? 'top-1' : 'top-0.5']"
           :style="{
-            'transition': 'left 0.5s',
+            'transition': 'left 0.25s,width 0.25s',
             'left': state.sliderSpace + 'px',
             'width': state.sliderWidth + 'px',
             'height': state.sliderHeight + 'px'
@@ -72,7 +72,8 @@ export default defineComponent({
     'iconField',
     'noArrow',
     'flex',
-    'delay'
+    'delay',
+    'disabled'
   ],
   setup(props, context): any {
     return setup({ props, context, renderless, api })

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('clearable', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/clearable')
+  await page.goto('select#clearable')
   const input = page.locator('#preview .tiny-input__inner')
   const icon = page.locator('#preview .tiny-input__suffix')
 

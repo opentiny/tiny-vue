@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('嵌套使用', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/split/nested-use')
+  await page.goto('split#nested-use')
   const split = page.locator('#preview div').filter({ hasText: '上面板下面板右面板' }).nth(2)
   const centerBtn = page.locator('.tiny-split-horizontal > div:nth-child(2)')
   //   测试左右面板

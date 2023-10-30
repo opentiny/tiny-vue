@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('user-account-custom-service', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/user-account/custom-service')
+  await page.goto('user-account#custom-service')
   const userImage = page.locator('.tiny-user-head__portrait')
   const userName = page.locator('.tiny-user-contact__role-name')
   const dropdown = page.locator('.tiny-popover.tiny-user-account')

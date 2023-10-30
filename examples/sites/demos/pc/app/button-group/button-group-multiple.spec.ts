@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试按钮组点击功能', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button-group/button-group-multiple')
+  await page.goto('button-group#button-group-multiple')
 
   const preview = page.locator('#preview')
   const buttonGroup = preview.locator('.tiny-button-group').first()
@@ -16,7 +16,7 @@ test('测试按钮组点击功能', async ({ page }) => {
 
 test('测试按钮是否换行', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button-group/button-group-multiple')
+  await page.goto('button-group#button-group-multiple')
 
   // 测试两行场景
   page.setViewportSize({

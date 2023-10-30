@@ -40,6 +40,18 @@ export default {
       codeFiles: ['title.vue']
     },
     {
+      demoId: 'custom-icon',
+      name: {
+        'zh-CN': '自定义图标',
+        'en-US': 'Custom icon'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>icon</code> 属性自定义图标。<p>',
+        'en-US': '<p>Customize the icon through the <code>icon</code> attribute.</p>'
+      },
+      codeFiles: ['custom-icon.vue']
+    },
+    {
       demoId: 'closable',
       name: {
         'zh-CN': '不可关闭',
@@ -124,6 +136,18 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['show-foldable.vue']
+    },
+    {
+      demoId: 'custom-class',
+      name: {
+        'zh-CN': '自定义类名',
+        'en-US': 'Custom class'
+      },
+      desc: {
+        'zh-CN': '<p>通过<code>custom-class</code>属性设置自定义类名<p>',
+        'en-US': '<p>Set a custom class name through the <code>custom-class</code> attribute</p>'
+      },
+      codeFiles: ['custom-class.vue']
     }
   ],
   apis: []

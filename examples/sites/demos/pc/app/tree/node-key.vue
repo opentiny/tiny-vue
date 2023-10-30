@@ -44,7 +44,7 @@
       </tiny-col>
     </tiny-row>
 
-    <tiny-tree :data="data" ref="tree" node-key="id"></tiny-tree>
+    <tiny-tree :data="data" ref="tree" default-expand-all node-key="id"></tiny-tree>
   </div>
 </template>
 

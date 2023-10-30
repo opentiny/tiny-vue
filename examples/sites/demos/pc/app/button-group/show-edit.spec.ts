@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试是否显示编辑按钮', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button-group/show-edit')
+  await page.goto('button-group#show-edit')
 
   const preview = page.locator('#preview')
   const buttonGroup = page.locator('.tiny-button-group').nth(1)

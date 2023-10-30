@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('分页事件size-change', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pager/pager-events')
+  await page.goto('pager#pager-events')
 
   const preview = page.locator('#preview')
   const pager = preview.locator('.tiny-pager')

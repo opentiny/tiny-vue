@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('控制按钮设置在右侧显示', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/numeric/controls-position')
+  await page.goto('numeric#controls-position')
 
   const numeric = page.locator('#preview .tiny-numeric')
   const decreaseBtn = numeric.locator('.tiny-numeric__decrease')

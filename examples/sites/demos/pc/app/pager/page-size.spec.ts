@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('每页显示数量', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pager/page-size')
+  await page.goto('pager#page-size')
 
   const total = 50
   const initPageSize = 5

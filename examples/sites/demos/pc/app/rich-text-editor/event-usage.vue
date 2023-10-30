@@ -13,68 +13,28 @@ export default {
   },
   methods: {
     beforeCreate(editor) {
-      Notify({
-        type: 'info',
-        message: 'beforeCreate',
-        position: 'top',
-        duration: 3000,
-      })
+      console.log('beforeCreate')
     },
     create(editor) {
-      Notify({
-        type: 'info',
-        message: 'create',
-        position: 'top',
-        duration: 3000,
-      })
+      console.log('create')
     },
     focus(editor) {
-      Notify({
-        type: 'info',
-        message: 'focus',
-        position: 'top',
-        duration: 3000,
-      })
+      console.log('focus')
     },
     blur(editor) {
-      Notify({
-        type: 'info',
-        message: 'blur',
-        position: 'top',
-        duration: 3000,
-      })
+      console.log('blur')
     },
     selectionUpdate(editor) {
-      Notify({
-        type: 'info',
-        message: 'selectionUpdate',
-        position: 'top',
-        duration: 3000,
-      })
+      console.log('selectionUpdate')
     },
     transaction(editor) {
-      Notify({
-        type: 'info',
-        message: 'transaction',
-        position: 'top',
-        duration: 3000,
-      })
+      console.log('transaction')
     },
     destroy(editor) {
-      Notify({
-        type: 'info',
-        message: 'destroy',
-        position: 'top',
-        duration: 3000,
-      })
+      console.log('destroy')
     },
     update(editor) {
-      Notify({
-        type: 'info',
-        message: 'update',
-        position: 'top',
-        duration: 3000,
-      })
+      console.log('update')
     },
   },
 }

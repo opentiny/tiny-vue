@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('版型切换', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/container/simple')
+  await page.goto('container#simple')
   await page.getByText('版型切换').click()
   await page.getByLabel('默认:default').check()
   await expect(page.locator('.tiny-container > div').first(1)).toHaveAttribute('style', 'height: 60px;')

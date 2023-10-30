@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('tree-multiple', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/nest-checkbox-tree')
+  await page.goto('select#nest-checkbox-tree')
   const suffix = page.locator('#preview .tiny-input__suffix')
   const select = page.locator('#preview .tiny-select')
   const selectDropdown = page.locator('.tiny-select-dropdown')

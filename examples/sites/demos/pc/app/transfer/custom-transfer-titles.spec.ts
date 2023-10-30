@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义列表标题', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/custom-transfer-titles')
+  await page.goto('transfer#custom-transfer-titles')
   const preview = page.locator('#preview')
   const transferPanels = preview.locator('.tiny-transfer-panel')
   const leftPanel = transferPanels.first()

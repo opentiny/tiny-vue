@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('服务端数据保存和删除方法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-toolbar/tiny-first-menu-save-data')
+  await page.goto('grid-toolbar#tiny-first-menu-save-data')
   await page.getByText('GFD科技YX公司').first().click()
   await page
     .getByRole('row', {

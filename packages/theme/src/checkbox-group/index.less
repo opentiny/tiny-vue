@@ -43,13 +43,14 @@
 
     .@{checkbox-button-prefix-cls} {
       display: block;
+      width: min-content;
 
       &:first-child .@{checkbox-button-prefix-cls}__inner {
-        border-radius: 2px 2px 0 0;
+        border-radius: var(--ti-checkbox-group-1st-child-border-radius);
       }
 
       &:last-child .@{checkbox-button-prefix-cls}__inner {
-        border-radius: 0 0 2px 2px;
+        border-radius: var(--ti-checkbox-group-last-child-border-radius);
       }
 
       &.is-checked .@{checkbox-button-prefix-cls}__inner {

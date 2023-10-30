@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('节点描述信息插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/steps/slot-description')
+  await page.goto('steps#slot-description')
 
   const steps = page.locator('#preview .tiny-steps')
   const nodes = steps.locator('.tiny-timeline-item')

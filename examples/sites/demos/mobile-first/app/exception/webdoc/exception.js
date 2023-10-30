@@ -55,14 +55,26 @@ export default {
     {
       demoId: 'button-text',
       name: {
-        'zh-CN': '自定义插槽',
-        'en-US': 'events'
+        'zh-CN': '自定义按钮文本',
+        'en-US': 'button-text'
       },
       desc: {
         'zh-CN': '<p>已去除`button-text`自定义按钮文本，直接可以通过插槽自定义<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['button-text.vue']
+    },
+    {
+      demoId: 'content-slot',
+      name: {
+        'zh-CN': 'content 插槽',
+        'en-US': 'content-slot'
+      },
+      desc: {
+        'zh-CN': '<p>通过命名插槽 `content`，自定义内容区<p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['content-slot.vue']
     }
   ],
   apis: []

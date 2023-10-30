@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试更多按钮', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button-group/show-more')
+  await page.goto('button-group#show-more')
 
   const preview = page.locator('#preview')
   const buttonGroup = page.locator('.tiny-button-group').nth(1)

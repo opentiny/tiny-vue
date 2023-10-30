@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('禁用下拉菜单', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/dropdown/disabled')
+  await page.goto('dropdown#disabled')
 
   const preview = page.locator('#preview')
   const disabledDropDown = preview.locator('.tiny-dropdown').nth(1)

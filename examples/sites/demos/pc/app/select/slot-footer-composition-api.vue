@@ -9,7 +9,7 @@
   </tiny-select>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption, Button as TinyButton } from '@opentiny/vue'
 

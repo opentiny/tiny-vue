@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('popup-style-position', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/popup-style-position')
+  await page.goto('select#popup-style-position')
   const select = page.locator('#preview .tiny-select')
 
   await select.click()

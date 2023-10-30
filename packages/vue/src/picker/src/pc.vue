@@ -161,6 +161,7 @@
       :is="state.panel"
       :step="step"
       :show-week-number="showWeekNumber"
+      :time-editable="timeEditable"
       :format-weeks="formatWeeks"
       ref="picker"
       :visible="state.pickerVisible"

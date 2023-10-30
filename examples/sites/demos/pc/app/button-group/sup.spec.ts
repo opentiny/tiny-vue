@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试选块角标', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button-group/sup')
+  await page.goto('button-group#sup')
   const preview = page.locator('#preview')
   const buttonGroup = preview.locator('.tiny-button-group').first()
   const item = buttonGroup.locator('.tiny-group-item > li')

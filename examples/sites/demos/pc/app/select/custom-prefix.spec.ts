@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('custom-prefix', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/custom-prefix')
+  await page.goto('select#custom-prefix')
   const prefix = page.locator('#preview .tiny-input .tiny-input__prefix .tiny-svg')
 
   await expect(prefix).toBeVisible()

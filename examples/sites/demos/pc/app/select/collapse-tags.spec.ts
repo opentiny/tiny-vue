@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('collapse-tags', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/collapse-tags')
+  await page.goto('select#collapse-tags')
   await expect(page.locator('span.tiny-tag')).toHaveCount(2)
   await expect(page.locator('span').filter({ hasText: '黄金糕' }).nth(1)).toBeVisible()
   await expect(page.locator('span').filter({ hasText: '+ 1' }).nth(1)).toBeVisible()

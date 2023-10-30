@@ -1,13 +1,19 @@
 <template>
   <div
-    class="flex w-full min-h-[2.625rem] text-xs"
-    :class="[
-      type === 'card'
-        ? 'p-3 border-0.5 hover:shadow sm:border rounded border-color-border-separator mb-2 [&:last-child]:mb-0'
-        : 'px-0 py-3 border-b-0.5 sm:border-b-px border-b-color-border-separator [&:last-child]:border-none'
-    ]"
+    data-tag="tiny-standard-list-item"
+    class="flex w-full min-h-[theme(spacing.11)] sm:min-h-[theme(spacing.12)] text-xs"
+    :class="
+      m(
+        type === 'card'
+          ? 'p-3 border-0.5 hover:shadow sm:border rounded border-color-border-separator mb-2 [&:last-child]:mb-0'
+          : 'px-0 py-3 border-b-0.5 sm:border-b-px border-b-color-border-separator [&:last-child]:border-none',
+        type === 'card' && selected ? 'border border-color-brand' : ''
+      )
+    "
+    @click="$emit('click', $event)"
   >
     <div
+      data-tag="tiny-standard-list-item-image"
       v-if="showImage || (slots.image && slots.image())"
       class="float-left items-center mr-2.5 shrink-0"
       :class="[icon.name ? 'block' : 'block sm:flex']"
@@ -26,10 +32,22 @@
         ></tiny-user-head>
       </slot>
     </div>
-    <div class="text-left flex-auto mx-0 my-auto leading-5">
+    <div data-tag="tiny-standard-list-item-title" class="text-left flex-auto mx-0 my-auto leading-5">
       <slot>
         <div class="text-sm flex items-center">
-          <span class="mr-3 shrink-0">{{ data.title || '' }}</span>
+          <slot name="title">
+            <span
+              :class="
+                m(
+                  'mr-3 shrink-0',
+                  titleOption.role === 'a' && 'cursor-pointer text-color-brand',
+                  titleOption.class || ''
+                )
+              "
+              @click.stop="handleTitleClick"
+              >{{ data.title || '' }}</span
+            >
+          </slot>
           <span class="text-color-text-placeholder shrink-0">{{ data.subTitle || '' }}</span>
           <slot name="tag">
             <tiny-tag-group
@@ -42,13 +60,12 @@
           </slot>
         </div>
         <tiny-tooltip effect="light" :content="state.descTooltip" placement="top" @mouseenter.native="handleEnterDesc">
-          <p v-if="data.desc" class="mt-2 text-xs line-clamp-2 sm:line-clamp-1">
-            {{ data.desc }}
-          </p>
+          <p v-if="data.desc" class="mt-2 text-xs line-clamp-2 sm:line-clamp-1">{{ data.desc }}</p>
         </tiny-tooltip>
       </slot>
     </div>
     <div
+      data-tag="tiny-standard-list-item-operate"
       v-if="state.effectOptions.length || (slots.operate && slots.operate())"
       class="w-auto pr-0 pl-6 h-auto flex items-center justify-center shrink-0 text-color-text-primary"
     >
@@ -58,7 +75,7 @@
           v-for="(item, index) in state.effectOptions.slice(0, state.sliceNum)"
           :key="item.text + index"
           :class="[item.disabled ? 'text-color-text-disabled cursor-not-allowed' : '']"
-          @click="handelIconClick(item, index)"
+          @click.stop="handelIconClick(item, index, $event)"
         >
           <component :is="item.icon" class="w-4 h-4" :class="[item.disabled ? 'fill-color-icon-disabled' : '']" />
           <span v-if="item.text" class="ml-1 align-middle sm:align-bottom">{{ item.text }}</span>
@@ -67,7 +84,7 @@
           class="cursor-pointer hidden sm:block"
           :class="[state.effectOptions[state.sliceNum].disabled ? 'text-color-text-disabled cursor-not-allowed' : '']"
           v-if="state.effectOptions.length === state.iconNum"
-          @click="handelIconClick(state.effectOptions[state.sliceNum], state.sliceNum)"
+          @click.stop="handelIconClick(state.effectOptions[state.sliceNum], state.sliceNum, $event)"
         >
           <component
             :is="state.effectOptions[state.sliceNum].icon"
@@ -78,8 +95,12 @@
             state.effectOptions[state.sliceNum].text
           }}</span>
         </div>
-        <div v-if="state.effectOptions.length > state.iconNum" class="h-4 hidden sm:block">
-          <tiny-dropdown show-self-icon>
+        <div
+          data-tag="tiny-standard-list-item-selficon"
+          v-if="state.effectOptions.length > state.iconNum"
+          class="h-4 hidden sm:block"
+        >
+          <tiny-dropdown show-self-icon @click.native.stop>
             <component :is="iconMore" class="w-4 h-4" />
             <span v-if="state.effectOptions[0].text" class="ml-1 text-color-text-primary">{{ t('ui.base.more') }}</span>
             <template #dropdown>
@@ -89,7 +110,7 @@
                   :key="item.text + index"
                 >
                   <div
-                    @click="handelIconClick(item, index + state.sliceNum)"
+                    @click.stop="handelIconClick(item, index + state.sliceNum, $event)"
                     :class="[item.disabled ? 'text-color-text-disabled cursor-not-allowed' : '']"
                   >
                     <component
@@ -104,14 +125,14 @@
             </template>
           </tiny-dropdown>
         </div>
-        <div v-if="state.effectOptions.length" class="block sm:hidden">
-          <tiny-dropdown show-self-icon>
+        <div data-tag="tiny-standard-list-item-selficon" v-if="state.effectOptions.length" class="block sm:hidden">
+          <tiny-dropdown show-self-icon @click.native.stop>
             <component :is="iconMore" class="w-4 h-4" />
             <template #dropdown>
               <tiny-dropdown-menu placement="bottom">
                 <tiny-dropdown-item v-for="(item, index) in state.effectOptions" :key="item.text + index">
                   <div
-                    @click="handelIconClick(item, index)"
+                    @click.stop="handelIconClick(item, index, $event)"
                     :class="[item.disabled ? 'text-color-text-disabled cursor-not-allowed' : '']"
                   >
                     <component
@@ -140,7 +161,7 @@ import DropdownItem from '@opentiny/vue-dropdown-item'
 import Tooltip from '@opentiny/vue-tooltip'
 import UserHead from '@opentiny/vue-user-head'
 import TagGroup from '@opentiny/vue-tag-group'
-import { IconEllipsis } from '@opentiny/vue-icon'
+import { iconEllipsis } from '@opentiny/vue-icon'
 
 export default defineComponent({
   name: $prefix + 'StandardListItem',
@@ -152,7 +173,7 @@ export default defineComponent({
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,
     TinyDropdownItem: DropdownItem,
-    IconEllipsis: IconEllipsis()
+    IconEllipsis: iconEllipsis()
   },
   props: {
     ...$props,
@@ -167,6 +188,10 @@ export default defineComponent({
       default: () => {
         return {}
       }
+    },
+    selected: {
+      type: Boolean,
+      default: false
     },
     showImage: {
       type: Boolean,
@@ -193,16 +218,28 @@ export default defineComponent({
     iconMore: {
       type: [Object, String],
       default: () => {
-        return IconEllipsis()
+        return iconEllipsis()
       }
     },
     type: {
       type: String,
       default: 'list'
+    },
+    titleOption: {
+      type: Object,
+      default: () => {
+        return {}
+      }
     }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({
+      props,
+      context,
+      renderless,
+      api,
+      mono: true
+    })
   }
 })
 </script>

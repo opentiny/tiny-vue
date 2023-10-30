@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试设置当前页', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pager/current-page')
+  await page.goto('pager#current-page')
 
   const preview = page.locator('#preview')
   const pager = preview.locator('.tiny-pager')

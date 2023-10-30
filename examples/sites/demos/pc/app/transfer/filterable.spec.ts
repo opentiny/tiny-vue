@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('输入搜索关键字判断功能是否正常', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/filterable')
+  await page.goto('transfer#filterable')
   const preview = page.locator('#preview')
   const transferPanels = preview.locator('.tiny-transfer-panel')
   const leftPanel = transferPanels.first()

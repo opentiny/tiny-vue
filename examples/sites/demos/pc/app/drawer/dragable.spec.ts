@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('宽度拖拽功能', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/drawer/dragable')
+  await page.goto('drawer#dragable')
 
   const drawer = page.locator('.tiny-drawer__main')
   await page.getByRole('button', { name: '宽度拖拽' }).click()

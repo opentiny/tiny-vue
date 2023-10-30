@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('[Input]show-password', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/input/show-password')
+  await page.goto('input#show-password')
 
   const svg = await page.locator('.demo-input .tiny-input__suffix > .tiny-input__suffix-inner svg path')
   const input = await page.locator('.demo-input .tiny-input.tiny-input-suffix input')

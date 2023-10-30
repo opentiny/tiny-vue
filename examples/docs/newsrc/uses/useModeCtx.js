@@ -13,7 +13,6 @@ const parsePath = (path) => {
   const items = path.split('/')
   state.mode = items[1]
   state.pathName = items[2]
-  state.demoId = items[3]
 }
 
 // todo vue2需要预注册一下 @vue/composition-api
@@ -32,6 +31,7 @@ const fn = {
     if (modeNames.includes(mode)) {
       // 有效的url, 更新缓存
       parsePath(location.pathname)
+      state.demoId = location.hash.slice(1)
       fn.cacheCtx()
     } else {
       // 无效的url
@@ -44,7 +44,7 @@ const fn = {
   },
   // 保存ctx
   cacheCtx: () => {
-    state.modeCtx[state.mode] = `/${state.mode}/${state.pathName}/${state.demoId}`
+    state.modeCtx[state.mode] = `/${state.mode}/${state.pathName}#${state.demoId}`
     $local.modeCtx = state.modeCtx
   },
   // 更新url

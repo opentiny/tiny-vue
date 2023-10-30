@@ -11,32 +11,8 @@
  */
 
 import throttle from '../common/deps/throttle'
+import { getDirection } from '../common/deps/touch'
 import { POSITION } from '../common'
-
-// 暂停计时器
-export const pauseTimer = (state) => () => clearInterval(state.timer)
-
-// 播放幻灯片
-export const playSlides =
-  ({ props, state }) =>
-  () => {
-    if (state.activeIndex < state.items.length - 1) {
-      state.activeIndex++
-    } else if (props.loop) {
-      state.activeIndex = 0
-    }
-  }
-
-// 启动计时器
-export const startTimer =
-  ({ api, props, state }) =>
-  () => {
-    if (props.interval <= 0 || !props.autoplay) {
-      return
-    }
-
-    state.timer = setInterval(api.playSlides, props.interval)
-  }
 
 // 鼠标进入幻灯片事件
 export const handleMouseEnter =
@@ -46,7 +22,6 @@ export const handleMouseEnter =
     api.pauseTimer()
   }
 
-// 鼠标离开幻灯片事件
 export const handleMouseLeave =
   ({ api, state }) =>
   () => {
@@ -99,13 +74,40 @@ export const resetItemPosition = (state) => (oldIndex) => {
   }
 }
 
-// 设置当前展示的幻灯片
+// 播放幻灯片
+export const playSlides =
+  ({ props, state }) =>
+  () => {
+    if (state.activeIndex < state.items.length - 1) {
+      state.activeIndex++
+    } else if (props.loop) {
+      state.activeIndex = 0
+    }
+  }
+
+// 暂停计时器
+export const pauseTimer = (state) => () => clearInterval(state.timer)
+
+// 启动计时器
+export const startTimer =
+  ({ api, props, state }) =>
+  () => {
+    if (props.interval <= 0 || !props.autoplay) {
+      return
+    }
+
+    state.timer = setInterval(api.playSlides, props.interval)
+  }
+
 export const setActiveItem =
   ({ api, props, state }) =>
   (index) => {
     if (typeof index === 'string') {
-      const filteredItems = state.items.findIndex((item) => item.name === index)
-      index = filteredItems === -1 ? index : filteredItems
+      const filteredItems = state.items.filter((item) => item.name === index)
+
+      if (filteredItems.length > 0) {
+        index = state.items.indexOf(filteredItems[0])
+      }
     }
 
     index = Number(index)
@@ -181,7 +183,15 @@ export const computedStyle =
     if (props.height) {
       return { 'height': props.height }
     } else {
-      return { 'aspect-ratio': props.aspectRatio.replace(':', ' / ') }
+      // 低版本浏览器兼容（chrome 58 不支持 aspect-ratio属性）
+      if (CSS.supports('aspect-ratio', 'auto')) {
+        return { 'aspect-ratio': props.aspectRatio.replace(':', ' / ') }
+      } else {
+        const ratio = props.aspectRatio.split(':')
+        const paddingTop = ((ratio[1] / ratio[0]) * 100).toFixed(2) + '%'
+
+        return { 'width': '100%', 'height': 0, 'padding-top': paddingTop }
+      }
     }
   }
 
@@ -275,20 +285,6 @@ export const touchend =
     }
     api.startTimer()
   }
-
-function getDirection(x, y) {
-  const MIN_DISTANCE = 10
-
-  if (x > y && x > MIN_DISTANCE) {
-    return 'horizontal'
-  }
-
-  if (y > x && y > MIN_DISTANCE) {
-    return 'vertical'
-  }
-
-  return ''
-}
 
 function resetTouchStatus(state) {
   state.direction = ''

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('PopEditor 开启树模式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popeditor/tree')
+  await page.goto('popeditor#tree')
 
   const preview = page.locator('#preview')
   const textBox = preview.getByRole('textbox')

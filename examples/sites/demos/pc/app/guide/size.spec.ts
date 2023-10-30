@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('尺寸', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/guide/size')
+  await page.goto('guide#size')
 
   const guide = page.locator('.shepherd-element')
   const showBtn = page.getByRole('button', { name: '新手引导自定义宽高' })

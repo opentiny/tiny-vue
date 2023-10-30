@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自动切换', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/carousel/autoplay')
+  await page.goto('carousel#autoplay')
   const preview = page.locator('#preview')
   const carousel = preview.locator('.tiny-carousel')
   const carouselItems = preview.locator('div.tiny-carousel__item')

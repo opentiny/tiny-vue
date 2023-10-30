@@ -33,7 +33,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect } from '@opentiny/vue'
 
@@ -201,7 +201,7 @@ const gridOpRadio = ref({
 })
 let loading
 
-function remoteMethod(query) {
+const remoteMethod = (query) => {
   if (query !== undefined) {
     loading = true
 
@@ -225,6 +225,8 @@ function remoteMethod(query) {
 <style scoped>
 .demo-select .tiny-select {
   width: 270px;
-  margin-right: 30px;
+  display: block;
+  margin: 8px;
+
 }
 </style>

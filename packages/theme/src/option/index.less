@@ -37,9 +37,9 @@
             background-color: var(--ti-option-disabled-bg-color);
           }
         }
-        > :first-child{
+        .@{option-prefix-cls}__checkbox-wrap {
           color: var(--ti-option-selected-text-color);
-          }
+        }
       }
     }
   }
@@ -77,7 +77,8 @@
     .@{checkbox-prefix-cls}__inner {
       border-color: var(--ti-option-checkbox-border-color-hover);
     }
-    .halfselect, .checked-sur{
+    .halfselect,
+    .checked-sur {
       .@{checkbox-prefix-cls}__inner {
         border-color: var(--ti-option-checkbox-all-select-border-color-hover);
       }

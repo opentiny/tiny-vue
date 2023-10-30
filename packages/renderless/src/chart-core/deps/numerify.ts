@@ -16,8 +16,6 @@ let DEFAULT_OPTIONS = { zeroFormat: null, nullFormat: null, defaultFormat: '0,0'
 let [TRILLION, BILLION, MILLION, THOUSAND] = [1e12, 1e9, 1e6, 1e3]
 
 const numIsNaN = (value) => typeof value === 'number' && isNaN(value)
-let options = {}
-let formats = {}
 
 function getBoundedPrecision(value, maxDecimals, optionals) {
   let splitValue = value.toString().split('e-')
@@ -32,7 +30,7 @@ function getBoundedPrecision(value, maxDecimals, optionals) {
 
 function toFixed(value, maxDecimals, roundingFunction, optionals) {
   let boundedPrecision = getBoundedPrecision(value, maxDecimals, optionals)
-  let power = 10 ** boundedPrecision
+  let power = Math.pow(10, boundedPrecision)
 
   let output = (roundingFunction(value * `1e+${boundedPrecision}`) / power).toFixed(boundedPrecision)
 
@@ -62,7 +60,7 @@ function judgForFunc(num, abs, abbrForce) {
 }
 
 const negativeSigned = function ({ format, value }) {
-  return ~format.indexOf('+') ? format.indexOf('+') : value < 0 ? format.indexOf('-') : -1
+  return format.includes('+') ? format.indexOf('+') : value < 0 ? format.indexOf('-') : -1
 }
 
 const updateAbbrV = function (params) {
@@ -70,7 +68,7 @@ const updateAbbrV = function (params) {
   abbrForce = format.match(/a(k|m|b|t)?/)
   abbrForce = abbrForce ? abbrForce[1] : false
 
-  if (~format.indexOf(' a')) {
+  if (format.includes(' a')) {
     abbr = ' '
   }
 
@@ -98,7 +96,7 @@ const handlePrecision = function (params) {
   let number = value.toString().split('.')[0]
   let precision = format.split('.')[1]
   if (precision) {
-    if (~precision.indexOf('[')) {
+    if (precision.includes('[')) {
       precision = precision.replace(']', '')
       precision = precision.split('[')
 
@@ -108,7 +106,7 @@ const handlePrecision = function (params) {
     }
 
     number = params.decimal.split('.')[0]
-    params.decimal = ~params.decimal.indexOf('.') ? '.' + params.decimal.split('.')[1] : ''
+    params.decimal = params.decimal.includes('.') ? '.' + params.decimal.split('.')[1] : ''
 
     if (params.optDec && Number(params.decimal.slice(1)) === 0) {
       params.decimal = ''
@@ -130,7 +128,7 @@ function formatNumber(params) {
     params.abbr = ABBR.million
   }
 
-  if (~number.indexOf('-')) {
+  if (number.includes('-')) {
     number = number.slice(1)
     params.neg = true
   }
@@ -182,20 +180,20 @@ function numberToFormat(options, value, format, roundingFunction) {
     roundingFunction
   }
 
-  if (~format.indexOf('(')) {
+  if (format.includes('(')) {
     params.negFlag = true
     params.format = format.replace(/[(|)]/g, '')
-  } else if (~params.format.indexOf('+') || ~params.format.indexOf('-')) {
+  } else if (params.format.includes('+') || params.format.includes('-')) {
     params.signed = negativeSigned(params)
 
     params.format = format.replace(/[+|-]/g, '')
   }
 
-  if (~params.format.indexOf('a')) {
+  if (params.format.includes('a')) {
     updateAbbrV(params)
   }
 
-  if (~params.format.indexOf('[.]')) {
+  if (params.format.includes('[.]')) {
     params.optDec = true
     params.format = format.replace('[.]', '.')
   }
@@ -215,7 +213,7 @@ let numerifyPercent = {
   regexp: /%/,
 
   format: function format(value, formatType, roundingFunction, numerify) {
-    let space = ~formatType.indexOf(' %') ? ' ' : ''
+    let space = formatType.includes(' %') ? ' ' : ''
     let outStr = void 0
 
     if (numerify.options.scalePercentBy100) {
@@ -225,7 +223,7 @@ let numerifyPercent = {
     formatType = formatType.replace(/\s?%/, '')
     outStr = numerify._numberToFormat(value, formatType, roundingFunction)
 
-    if (~outStr.indexOf(')')) {
+    if (outStr.includes(')')) {
       outStr = outStr.split('')
       outStr.splice(-1, 0, space + '%')
       outStr = outStr.join('')
@@ -237,9 +235,10 @@ let numerifyPercent = {
   }
 }
 
-extend(options, DEFAULT_OPTIONS)
+let options = {}
+let formats = {}
 
-let numerify
+extend(options, DEFAULT_OPTIONS)
 
 function format(value, formatType, roundingFunc) {
   let { zeroFormat, nullFormat, defaultFormat } = options
@@ -268,7 +267,23 @@ function format(value, formatType, roundingFunc) {
   return output
 }
 
-numerify = function (input, formatType, roundingFunc) {
+const _register = (name, format) => {
+  formats[name] = format
+}
+
+const _unregister = (name) => {
+  formats[name] = null
+}
+
+const _setOptions = (opts) => {
+  extend(options, opts)
+}
+
+const _reset = () => {
+  extend(options, DEFAULT_OPTIONS)
+}
+
+function numerify(input, formatType, roundingFunc) {
   let { zeroFormat, nullFormat } = options
   let value = Number(input) || null
 
@@ -287,22 +302,6 @@ numerify = function (input, formatType, roundingFunc) {
   }
 
   return format(value, formatType, roundingFunc)
-}
-
-const _register = (name, format) => {
-  formats[name] = format
-}
-
-const _unregister = (name) => {
-  formats[name] = null
-}
-
-const _setOptions = (opts) => {
-  extend(options, opts)
-}
-
-const _reset = () => {
-  extend(options, DEFAULT_OPTIONS)
 }
 
 numerify.options = options

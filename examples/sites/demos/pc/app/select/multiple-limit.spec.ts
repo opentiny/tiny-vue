@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('multiple-limit', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/multiple-limit')
+  await page.goto('select#multiple-limit')
   const select = page.locator('#preview .tiny-select')
 
   await select.click()

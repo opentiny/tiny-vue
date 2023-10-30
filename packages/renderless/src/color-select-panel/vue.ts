@@ -1,13 +1,6 @@
-import {IColorSelectPanelRef as Ref} from '@/types';
+import { IColorSelectPanelRef as Ref } from '@/types'
 import Color from './utils/color'
-import {
-  onConfirm,
-  onCancel,
-  onHSVUpdate,
-  onAlphaUpdate,
-  handleHistoryClick,
-  handlePredefineClick,
-} from '.'
+import { onConfirm, onCancel, onHSVUpdate, onAlphaUpdate, handleHistoryClick, handlePredefineClick } from '.'
 
 export const api = [
   'state',
@@ -20,29 +13,20 @@ export const api = [
   'onCancel',
   'onAlphaUpdate',
   'onHistoryClick',
-  'onPredefineColorClick',
-  'alpha'
+  'onPredefineColorClick'
 ]
 
-export const renderless = (
-  props,
-  context,
-  { emit }
-) => {
+export const renderless = (props, context, { emit }) => {
   const { modelValue, visible, history, predefine } = context.toRefs(props)
   const hex = context.ref(modelValue?.value ?? 'transparent')
   const res = context.ref(modelValue?.value ?? 'transparent')
   const triggerBg = context.ref(modelValue?.value ?? 'transparent')
   const isShow = context.ref(visible?.value ?? false)
   const cursor: Ref<HTMLElement> = context.ref()
-  const stack:Ref<string[]> = context.ref(
-    [...(history?.value ?? [])]
-  )
-  const predefineStack: Ref<string[]> = context.ref(
-    [...(predefine?.value ?? [])]
-  )
-  const enableHistory = history?.value;
-  const enablePredefineColor = predefine?.value;
+  const stack: Ref<string[]> = context.ref([...(history?.value ?? [])])
+  const predefineStack: Ref<string[]> = context.ref([...(predefine?.value ?? [])])
+  const enableHistory = history?.value
+  const enablePredefineColor = predefine?.value
   const changeVisible = (state: boolean) => {
     isShow.value = state
   }
@@ -59,12 +43,20 @@ export const renderless = (
     enableHistory,
     enablePredefineColor
   })
-  context.watch(predefine, (newPredefine: string[])=>{
-    predefineStack.value = [...newPredefine];
-  }, {deep: true})
-  context.watch(history, (newHistory:string[]) => {
-    stack.value = [...newHistory]
-  }, {deep: true})
+  context.watch(
+    predefine,
+    (newPredefine: string[]) => {
+      predefineStack.value = [...newPredefine]
+    },
+    { deep: true }
+  )
+  context.watch(
+    history,
+    (newHistory: string[]) => {
+      stack.value = [...newHistory]
+    },
+    { deep: true }
+  )
   context.watch(modelValue, (newValue) => {
     hex.value = newValue
     res.value = newValue
@@ -85,9 +77,8 @@ export const renderless = (
     onCancel: onCancel(res, triggerBg, emit, isShow, hex, color),
     onAlphaUpdate: update,
     onHistoryClick: handleHistoryClick(hex, res, color),
-    onPredefineColorClick: handlePredefineClick(hex,res,color),
-    cursor,
-    alpha: props.alpha
+    onPredefineColorClick: handlePredefineClick(hex, res, color),
+    cursor
   }
   return api
 }

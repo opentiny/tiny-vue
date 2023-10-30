@@ -7,15 +7,15 @@
   </tiny-select>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select, Option } from '@opentiny/vue'
-import { IconShare } from '@opentiny/vue-icon'
+import { iconShare } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinySelect: Select,
     TinyOption: Option,
-    IconShare: IconShare()
+    IconShare: iconShare()
   },
   data() {
     return {

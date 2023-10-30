@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('拖拽事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/toggle-menu/drag-events')
+  await page.goto('toggle-menu#drag-events')
   const preview = page.locator('#preview')
   const dragNode = preview
     .getByRole('treeitem', { name: '开发指南' })

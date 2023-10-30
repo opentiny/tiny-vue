@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('关闭循环轮播', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/carousel/close-loop')
+  await page.goto('carousel#close-loop')
   const preview = page.locator('#preview')
   const carousel = preview.locator('.tiny-carousel')
   const carouselItems = preview.locator('div.tiny-carousel__item')

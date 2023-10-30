@@ -98,102 +98,98 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
       virtualTemplatePlugin({ include: ['**/packages/vue/**/src/index.ts', '**/packages/vue/**/src/index.vue'] }),
       ...getVuePlugins(vueVersion),
       dts &&
-      dtsPlugin({
-        root: pathFromWorkspaceRoot(),
-        tsconfigPath: `tsconfig.vue${vueVersion}.json`,
-        aliasesExclude: [/@opentiny\/vue.+/],
-        compilerOptions: {
-          paths: {
-            ...compilerOptions.paths,
-            // 一定要映射到 packages/vue 下对应的 vue 版本和 @vue/composition-api 才能正确生成 dts
-            'vue': [`packages/vue/node_modules/vue${vueVersion}`],
-            '@vue/runtime-core': ['packages/vue/node_modules/@vue/runtime-core'],
-            '@vue/runtime-dom': ['packages/vue/node_modules/@vue/runtime-dom'],
-            '@vue/composition-api': ['packages/vue/node_modules/@vue/composition-api']
+        dtsPlugin({
+          root: pathFromWorkspaceRoot(),
+          tsconfigPath: `tsconfig.vue${vueVersion}.json`,
+          aliasesExclude: [/@opentiny\/vue.+/],
+          compilerOptions: {
+            paths: {
+              ...compilerOptions.paths,
+              // 一定要映射到 packages/vue 下对应的 vue 版本和 @vue/composition-api 才能正确生成 dts
+              'vue': [`packages/vue/node_modules/vue${vueVersion}`],
+              '@vue/runtime-core': ['packages/vue/node_modules/@vue/runtime-core'],
+              '@vue/runtime-dom': ['packages/vue/node_modules/@vue/runtime-dom'],
+              '@vue/composition-api': ['packages/vue/node_modules/@vue/composition-api']
+            }
+          },
+          include: [...dtsInclude, 'packages/vue/*.d.ts'],
+          beforeWriteFile: (filePath, content) => {
+            return {
+              // "vue/src/alert/index.d.ts" ==> "alert/index.d.ts"
+              filePath: filePath.replace('/vue/src', '').replace('\\vue\\src', ''),
+              content: content
+                // vue 2.7 还不能正常识别 vue-common
+                .replace(/import\('[./]+vue-common.+'\)/, 'import("vue")')
+                .replace(/\("vue[1-9\.]+/g, '("vue')
+            }
           }
-        },
-        include: [...dtsInclude, 'packages/vue/*.d.ts'],
-        beforeWriteFile: (filePath, content) => {
-          return {
-            // "vue/src/alert/index.d.ts" ==> "alert/index.d.ts"
-            filePath: filePath.replace('/vue/src', '').replace('\\vue\\src', ''),
-            content: content
-              // vue 2.7 还不能正常识别 vue-common
-              .replace(/import\('[./]+vue-common.+'\)/, 'import("vue")')
-              .replace(/\("vue[1-9\.]+/g, '("vue')
-          }
-        }
-      }),
+        }),
       !isRuntime && inlineChunksPlugin({ deleteInlinedFiles: true }),
       !isRuntime &&
-      generatePackageJsonPlugin({
-        beforeWriteFile: (filePath, content) => {
-          const versionTarget = isValidVersion(buildTarget) ? buildTarget : `${ns(vueVersion)}.${buildTarget}`
-          const themeAndRenderlessVersion = isValidVersion(buildTarget) ? buildTarget : `3.${buildTarget}`
-          const isThemeOrRenderless = (key) =>
-            key.includes('@opentiny/vue-theme') || key.includes('@opentiny/vue-renderless')
+        generatePackageJsonPlugin({
+          beforeWriteFile: (filePath, content) => {
+            const versionTarget = isValidVersion(buildTarget) ? buildTarget : `${ns(vueVersion)}.${buildTarget}`
+            const themeAndRenderlessVersion = isValidVersion(buildTarget) ? buildTarget : `3.${buildTarget}`
+            const isThemeOrRenderless = (key) =>
+              key.includes('@opentiny/vue-theme') || key.includes('@opentiny/vue-renderless')
 
-          const dependencies = {}
+            const dependencies = {}
 
-          Object.entries(content.dependencies).forEach(([key, value]) => {
-            // dependencies里的@opentiny,统一使用：~x.x.0
-            if (isThemeOrRenderless(key)) {
-              dependencies[key] = getPatchVersion(themeAndRenderlessVersion)
-            } else if ((value as string).includes('workspace:~')) {
-              dependencies[key] = getPatchVersion(versionTarget)
-            } else {
-              dependencies[key] = value
-            }
-          })
-
-          if (filePath.includes('vue-common') && vueVersion === '2') {
-            dependencies['@vue/composition-api'] = '~1.2.2'
-          }
-
-          // 如果是主入口或者svg图标则直接指向相同路径
-          if (
-            filePath === 'vue-icon' ||
-            filePath === 'vue-icon-saas' ||
-            filePath === 'vue' ||
-            filePath === 'design/smb' ||
-            filePath === 'design/aurora'
-          ) {
-            content.main = './index.js'
-            content.module = './index.js'
-          } else {
-            content.main = './lib/index.js'
-            content.module = './lib/index.js'
-          }
-
-          // 为主入口包添加readme和LICENSE
-          if (filePath === 'vue') {
-            ;['README.md', 'README.zh-CN.md', 'LICENSE'].forEach((item) => {
-              fs.copySync(
-                pathFromWorkspaceRoot(item),
-                path.resolve(pathFromPackages(''), `dist${vueVersion}/@opentiny/vue/${item}`)
-              )
+            Object.entries(content.dependencies).forEach(([key, value]) => {
+              // dependencies里的@opentiny,统一使用：~x.x.0
+              if (isThemeOrRenderless(key)) {
+                dependencies[key] = getPatchVersion(themeAndRenderlessVersion)
+              } else if ((value as string).includes('workspace:~')) {
+                dependencies[key] = getPatchVersion(versionTarget)
+              } else {
+                dependencies[key] = value
+              }
             })
+
+            if (filePath.includes('vue-common') && vueVersion === '2') {
+              dependencies['@vue/composition-api'] = '~1.2.2'
+            }
+
+            const matchList = ['vue-icon', 'vue-icon-saas', 'vue', 'design/smb', 'design/aurora', 'design/saas']
+
+            // 如果是主入口、svg图标或者主题规范包则直接指向相同路径
+            if (matchList.includes(filePath)) {
+              content.main = './index.js'
+              content.module = './index.js'
+            } else {
+              content.main = './lib/index.js'
+              content.module = './lib/index.js'
+            }
+
+            // 为主入口包添加readme和LICENSE
+            if (filePath === 'vue') {
+              ;['README.md', 'README.zh-CN.md', 'LICENSE'].forEach((item) => {
+                fs.copySync(
+                  pathFromWorkspaceRoot(item),
+                  path.resolve(pathFromPackages(''), `dist${vueVersion}/@opentiny/vue/${item}`)
+                )
+              })
+            }
+
+            content.types = 'index.d.ts'
+
+            if (filePath.includes('vue-common') || filePath.includes('vue-locale')) {
+              content.types = './src/index.d.ts'
+            }
+
+            content.version = versionTarget
+            content.dependencies = dependencies
+
+            delete content.devDependencies
+            delete content.private
+            delete content.exports
+
+            return {
+              filePath: filePath.replace(/[\\/]lib$/, ''),
+              content
+            }
           }
-
-          content.types = 'index.d.ts'
-
-          if (filePath.includes('vue-common') || filePath.includes('vue-locale')) {
-            content.types = './src/index.d.ts'
-          }
-
-          content.version = versionTarget
-          content.dependencies = dependencies
-
-          delete content.devDependencies
-          delete content.private
-          delete content.exports
-
-          return {
-            filePath: filePath.replace(/[\\/]lib$/, ''),
-            content
-          }
-        }
-      }),
+        }),
       !isRuntime && replaceModuleNamePlugin(`${ns(vueVersion)}.${buildTarget}`)
     ],
     resolve: {

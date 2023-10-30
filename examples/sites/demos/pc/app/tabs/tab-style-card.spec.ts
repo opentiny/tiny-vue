@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('card类型', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tabs/tab-style-card')
+  await page.goto('tabs#tab-style-card')
 
   const tabs = page.locator('.tiny-tabs')
   const tabItems = tabs.getByRole('tab')

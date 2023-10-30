@@ -10,8 +10,11 @@ export const getValue = (state) => () => state.sliderButtonGroup.modelValue
 
 export const setValue =
   ({ state }) =>
-  (val) =>
-    state.sliderButtonGroup.$emit('update:modelValue', val)
+  (val) => {
+    if (state.disabled) return
+
+    return state.sliderButtonGroup.$emit('update:modelValue', val)
+  }
 
 export const getGroup =
   ({ constants, parent: $parent }) =>

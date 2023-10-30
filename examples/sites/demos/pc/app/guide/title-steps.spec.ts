@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('通过添加多个类名实现用户引导', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/guide/title-steps')
+  await page.goto('guide#title-steps')
 
   const showBtn = page.getByRole('button', { name: '多步骤新手引导开始' })
   const step1 = page.getByRole('heading', { name: '新手引导标题1' })

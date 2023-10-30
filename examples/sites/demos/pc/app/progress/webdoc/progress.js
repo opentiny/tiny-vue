@@ -58,6 +58,15 @@ export default {
       'codeFiles': ['progress-status.vue']
     },
     {
+      'demoId': 'custom-status',
+      'name': { 'zh-CN': '自定义状态场景', 'en-US': 'Status' },
+      'desc': {
+        'zh-CN': '<p></p>\n',
+        'en-US': '<p></p>\n'
+      },
+      'codeFiles': ['custom-status.vue']
+    },
+    {
       'demoId': 'text-inside-or-no-text',
       'name': { 'zh-CN': '文字内显或不显', 'en-US': 'Text displayed or not displayed' },
       'desc': {

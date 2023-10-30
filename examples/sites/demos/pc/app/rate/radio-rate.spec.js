@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('单选模式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/rate/radio-rate')
+  await page.goto('rate#radio-rate')
 
   const icon = page.locator('.tiny-rate__star > .tiny-svg')
 
