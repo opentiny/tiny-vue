@@ -29,7 +29,9 @@ import {
   clean,
   mounted,
   changeHandler,
-  resizeHandler
+  resizeHandler,
+  computedInitColor,
+  getDefaultThemeColors
 } from './index'
 import { camelToKebab } from './deps/utils'
 
@@ -52,26 +54,27 @@ export const api = [
   'clean',
   'mounted',
   'changeHandler',
-  'resizeHandler'
+  'resizeHandler',
+  'getDefaultThemeColors'
 ]
 
 export const renderless = (
   props,
   { computed, onBeforeUnmount, onMounted, reactive, watch, markRaw },
-  { t, vm, refs, emit, nextTick },
+  { t, vm, emit, nextTick },
   { echartsLib }
 ) => {
-  let api = {}
   const state = reactive({
-    chartColor: computed(() => api.computedChartColor()),
+    chartColor: computed(() => api.computedInitColor()),
     canvasStyle: computed(() => api.computedCanvasStyle())
   })
 
-  api = {
+  const api = {
     state,
     camelToKebab,
     computedChartColor: computedChartColor(props),
-    computedCanvasStyle: computedCanvasStyle(props)
+    computedCanvasStyle: computedCanvasStyle(props),
+    computedInitColor: computedInitColor(props)
   }
 
   onMounted(() => api.mounted())
@@ -85,7 +88,7 @@ export const renderless = (
     changeHandler: changeHandler({ api, props }),
     resizeHandler: resizeHandler({ api, props }),
     nextTickResize: nextTickResize({ api, nextTick }),
-    init: init({ state, props, api, refs, echartsLib, markRaw }),
+    init: init({ state, props, api, vm, echartsLib, markRaw }),
     createEventProxy: createEventProxy({ api, props, state }),
     addResizeListener: addResizeListener({ state, api }),
     resizeableHandler: resizeableHandler({ api, state }),
@@ -94,6 +97,7 @@ export const renderless = (
     addWatchToProps: addWatchToProps({ vm, props, watch, api }),
     dataHandler: dataHandler({ api, props, state, echartsLib, t, vm }),
     judgeWidthHandler: judgeWidthHandler({ props, api, vm, nextTick }),
+    getDefaultThemeColors: getDefaultThemeColors(),
 
     optionsHandler: optionsHandler({
       props,

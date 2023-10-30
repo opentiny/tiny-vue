@@ -117,6 +117,10 @@ export const numericProps = {
   showLeft: {
     type: Boolean,
     default: false
+  },
+  showEmptyValue: {
+    type: Boolean,
+    default: false
   }
 }
 

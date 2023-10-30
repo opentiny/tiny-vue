@@ -389,6 +389,7 @@ import IconTextType from './src/text-type'
 import IconVideoType from './src/video-type'
 import IconWordType from './src/word-type'
 import IconZipType from './src/zip-type'
+import IconSubScript from './src/sub-script'
 
 // new design
 import IconPrompt from './src/prompt'
@@ -403,7 +404,12 @@ import IconSortTriangle from './src/sort-triangle'
 import IconSortTriangleAscending from './src/sort-triangle-ascending'
 import IconSortTriangleDescending from './src/sort-triangle-descending'
 
+import IconFinish from './src/finish'
+import IconWarn from './src/warn'
+
 export {
+  IconSubScript,
+  IconSubScript as iconSubScript,
   IconSortTriangle,
   IconSortTriangle as iconSortTriangle,
   IconSortTriangleAscending,
@@ -1183,10 +1189,15 @@ export {
   IconZoomIn,
   IconZoomIn as iconZoomIn,
   IconZoomOut,
-  IconZoomOut as iconZoomOut
+  IconZoomOut as iconZoomOut,
+  IconFinish,
+  IconFinish as iconFinish,
+  IconWarn,
+  IconWarn as iconWarn
 }
 
 export default {
+  IconSubScript,
   IconSortTriangle,
   IconSortTriangleAscending,
   IconSortTriangleDescending,
@@ -1572,5 +1583,7 @@ export default {
   IconWriting,
   IconYes,
   IconZoomIn,
-  IconZoomOut
+  IconZoomOut,
+  IconFinish,
+  IconWarn
 }

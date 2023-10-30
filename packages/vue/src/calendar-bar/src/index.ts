@@ -1,7 +1,13 @@
 import { $props, $setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?mobile-first'
 
-const $constants = {}
+const $constants = {
+  POSITON: {
+    START: 'start',
+    CENTER: 'center',
+    END: 'end'
+  }
+}
 
 export default defineComponent({
   name: $prefix + 'CalendarBar',
@@ -12,7 +18,14 @@ export default defineComponent({
       default: () => $constants
     },
     modelValue: String,
-    config: { type: Object, default: () => ({}) }
+    config: { type: Object, default: () => ({}) },
+    cascaderPosition: {
+      type: String,
+      default: 'center',
+      validator: (value: string) => {
+        return Boolean(~Object.values($constants.POSITON).indexOf(value))
+      }
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })

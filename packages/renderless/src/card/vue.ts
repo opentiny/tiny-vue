@@ -12,7 +12,7 @@ import {
   getItemChecked
 } from './index'
 
-export const api = ['state', 'handelIconClick']
+export const api = ['state', 'handelIconClick', 'handleChange']
 
 export const renderless = (
   props,
@@ -29,7 +29,7 @@ export const renderless = (
     iconNum: computed(() => api.getIconNum()),
     effectOptions: computed(() => props.options.filter((item) => !item.hidden)),
     store: computed(() => api.computedStore()),
-    cardClass: computed(() => props.cardClass || state.cardGroup.cardClass || ''),
+    customClass: computed(() => props.customClass || state.cardGroup.customClass || ''),
     autoWidth: computed(() => props.autoWidth || state.cardGroup.autoWidth),
     height: computed(() => props.height || state.cardGroup.height),
     status: computed(() => props.status || state.cardGroup.status || 'default'),
@@ -60,7 +60,6 @@ export const renderless = (
     getItemChecked: getItemChecked({ state, props })
   })
 
-  watch(() => state.model, api.handleChange, { deep: true })
   watch(
     () => state.disabled,
     () => {

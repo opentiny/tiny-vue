@@ -29,7 +29,7 @@
               v-model="state.search.input"
               @keydown.enter="searchMethod"
               class="h-5 flex-auto text-xs bg-transparent outline-0"
-              :placeholder="t('ui.select.pleaseSearch')"
+              :placeholder="placeholder || t('ui.select.pleaseSearch')"
             />
           </div>
           <div class="flex items-center pl-3 cursor-pointer">
@@ -174,7 +174,7 @@
       <template #footer>
         <tiny-button
           tiny_mode="mobile-first"
-          button-class="flex-1 w-full mx-4 sm:mx-0"
+          custom-class="flex-1 w-full mx-4 sm:mx-0"
           type="primary"
           size="medium"
           :reset-time="0"
@@ -284,6 +284,10 @@ export default defineComponent({
     lockScroll: {
       type: Boolean,
       default: true
+    },
+    placeholder: {
+      type: String,
+      default: ''
     }
   },
   setup(props, context) {

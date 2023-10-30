@@ -164,6 +164,18 @@ export default {
       codeFiles: ['resize.vue']
     },
     {
+      demoId: 'custom-height',
+      name: {
+        'zh-CN': '自定义最小文本域高度',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p>可通过 height 属性设置文本域的最小高度。<p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['custom-height.vue']
+    },
+    {
       demoId: 'rows',
       name: {
         'zh-CN': '文本域行数',
@@ -419,6 +431,18 @@ export default {
       codeFiles: ['event-focus.vue']
     },
     {
+      demoId: 'event-input',
+      name: {
+        'zh-CN': '输入事件',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p>输入框输入时触发 input 事件。<p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['event-input.vue']
+    },
+    {
       demoId: 'method-addMemory',
       name: {
         'zh-CN': '记忆历史输入',
@@ -465,6 +489,30 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['method-select.vue']
+    },
+    {
+      demoId: 'custom-class',
+      name: {
+        'zh-CN': '自定义样式',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p>可通过 custom-class 属性设置自定义样式。<p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['custom-class.vue']
+    },
+    {
+      demoId: 'display-only-content',
+      name: {
+        'zh-CN': '内容区只读',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p>可通过 display-only或display-only-content 属性设置只读态。<p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['display-only-content.vue']
     }
   ],
   apis: []

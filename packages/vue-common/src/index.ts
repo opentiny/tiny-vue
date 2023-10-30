@@ -8,7 +8,7 @@ import {
   getElementStatusClass
 } from './adapter'
 import { defineAsyncComponent, directive, emitter, h, markRaw, Teleport } from './adapter'
-import { parseVnode, renderComponent, rootConfig, tools, useRouter, getComponentName } from './adapter'
+import { parseVnode, isEmptyVnode, renderComponent, rootConfig, tools, useRouter, getComponentName } from './adapter'
 import { t } from '@opentiny/vue-locale'
 import { stringifyCssClass } from './csscls'
 import { twMerge } from 'tailwind-merge'
@@ -305,6 +305,7 @@ export {
   hooks,
   directive,
   parseVnode,
+  isEmptyVnode,
   useRouter,
   emitter,
   createComponent,
@@ -317,6 +318,7 @@ export default {
   h,
   directive,
   parseVnode,
+  isEmptyVnode,
   useRouter,
   emitter,
   createComponent,
