@@ -1,5 +1,5 @@
 <template>
-  <div data-tag="tiny-steps-advanced" class="w-full flex text-color-text text-xs leading-4">
+  <div data-tag="tiny-steps-advanced" :class="gcls('steps-advanced')">
     <SlideBar ref="slideBar" :data="data" :duration="duration" :no-arrow="noArrow" :flex="flex">
       <!-- left button -->
       <template #left-button="slotScoped">
@@ -33,70 +33,91 @@
           data-tag="tiny-steps-block"
           :class="
             m(
-              'h-8 flex rounded-sm relative cursor-pointer group',
-              { 'min-w-[7.5rem] max-w-[13.75rem]': !flex },
-              { 'text-white': index === active },
-              { 'text-color-error': node[statusField] === 'error' && index !== active },
-              { 'text-color-text-disabled': node[statusField] === 'disabled' && index !== active },
-              { 'bg-color-brand': index === active },
-              { 'bg-color-bg-2': node[statusField] !== 'error' && index !== active },
-              { 'bg-color-error': node[statusField] === 'error' && index === active },
-              { 'hover:bg-color-error-hover hover:text-white': node[statusField] === 'error' },
-              { 'bg-color-info-secondary-subtle': node[statusField] === 'done' && index !== active },
-              { 'bg-color-error-subtler': node[statusField] === 'error' && index !== active }
+              gcls('steps-block'),
+              gcls(`steps-block-${node[statusField]}`),
+              { 'bg-color-brand hover:bg-color-brand': index === active },
+              index === active && gcls(`steps-block-${node[statusField]}-active`),
+              {
+                'min-w-[theme(spacing.28)] max-w-[theme(spacing.56)]': !flex
+              }
             )
           "
           @click="$emit('click', index, node, $event)"
         >
-          <div
-            data-tag="tiny-steps-content"
-            :class="['flex-auto flex max-w-full items-center justify-center px-4 overflow-hidden h-full']"
-          >
+          <div data-tag="tiny-steps-content" :class="gcls('steps-content')">
             <slot name="item" :slot-scope="node" :index="index">
               <div
                 data-tag="tiny-steps-icon"
-                v-if="['done', 'error'].indexOf(node[statusField]) !== -1"
                 :class="
                   m(
-                    'w-3.5 h-3.5 flex flex-none items-center justify-center rounded-full mr-2',
-                    index === active ? 'bg-white text-color-brand' : 'bg-color-brand text-white',
+                    'w-4 h-4 flex flex-none items-center justify-center rounded-full mr-2 text-color-text-inverse',
+                    node[statusField] === 'done' ? 'bg-color-brand' : 'bg-gray-200',
                     {
-                      'text-white bg-color-error group-hover:bg-white group-hover:text-color-error':
-                        node[statusField] === 'error'
+                      ' bg-color-brand group-hover:text-color-brand group-hover:bg-color-bg-1 ':
+                        node[statusField] === 'doing'
                     },
-                    { 'text-color-error bg-white': node[statusField] === 'error' && index === active }
+                    {
+                      ' text-color-brand bg-color-bg-1': index === active && node[statusField] !== 'disabled'
+                    },
+                    {
+                      'text-color-text-inverse bg-color-error': node[statusField] === 'error'
+                    },
+                    {
+                      'text-color-error bg-color-bg-1': node[statusField] === 'error' && index === active
+                    }
                   )
                 "
               >
-                <IconYes v-if="node[statusField] === 'done'" :class="['w-2.5 h-2.5 fill-current']"></IconYes>
-                <template v-else-if="node[statusField] === 'error'"> ! </template>
+                <icon-finish v-if="node[statusField] === 'done'" custom-class="w-2.5 h-2.5  fill-current"></icon-finish>
+                <icon-warn
+                  v-else-if="node[statusField] === 'error'"
+                  custom-class="w-2.5  h-2.5  fill-current"
+                ></icon-warn>
+                <span v-else> {{ index + 1 }} </span>
               </div>
               <div data-tag="tiny-steps-prefixslot" class="flex-none">
                 <slot name="prefix" :slot-scope="{ node, index }">
                   <div class="-mr-2"></div>
                 </slot>
               </div>
-              <div data-tag="tiny-steps-text" class="flex-auto max-w-full truncate">
+              <div
+                data-tag="tiny-steps-text"
+                :class="
+                  m(gcls('steps-text'), gcls(`steps-text-${node[statusField]}`), {
+                    'text-color-text-inverse': index === active && node[statusField] !== 'disabled'
+                  })
+                "
+              >
                 {{ node[nameField] }}
               </div>
             </slot>
           </div>
           <div
             :class="[
-              'h-full absolute left-0 top-0 border-t-[1rem] border-b-[1rem] border-l-[0.375rem]  border-t-transparent border-b-transparent border-white',
+              'h-full absolute left-0 border-t-transparent border-b-transparent border-white',
               { 'hidden': index === 0 }
             ]"
+            style="
+              border-top-width: calc(var(--tiny-spacing-8, 2rem) / 2);
+              border-bottom-width: calc(var(--tiny-spacing-8, 2rem) / 2);
+              border-left-width: var(--tiny-spacing-1_5, 0.375rem);
+            "
           ></div>
           <div
             :class="[
-              'h-full absolute right-0 top-0 border-t-[1rem] border-b-[1rem] border-l-[0.375rem]  border-l-transparent border-white',
+              'h-full absolute right-0 border-l-transparent border-white',
               { 'hidden': index === data.length - 1 }
             ]"
+            style="
+              border-top-width: calc(var(--tiny-spacing-8, 2rem) / 2);
+              border-bottom-width: calc(var(--tiny-spacing-8, 2rem) / 2);
+              border-left-width: var(--tiny-spacing-1_5, 0.375rem);
+            "
           ></div>
         </div>
       </template>
-      <template #block-bottom="{ node, index, show }">
-        <slot v-if="show" name="block-bottom" :node="node" :index="index"></slot>
+      <template #block-bottom="{ node, index }">
+        <slot name="block-bottom" :node="node" :index="index"></slot>
       </template>
     </SlideBar>
   </div>
@@ -105,18 +126,18 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/steps/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { IconYes, IconChevronLeft, IconChevronRight } from '@opentiny/vue-icon'
+import { IconFinish, IconWarn, IconChevronLeft, IconChevronRight } from '@opentiny/vue-icon'
 import SlideBar from './slide-bar.vue'
-
-const mode = { tiny_mode: 'mobile-first' }
+import { classes } from './token/advanced-token'
 
 export default defineComponent({
   emits: ['click'],
   components: {
     SlideBar,
-    IconYes: IconYes(mode),
-    IconChevronLeft: IconChevronLeft(mode),
-    IconChevronRight: IconChevronRight(mode)
+    IconFinish: IconFinish(),
+    IconWarn: IconWarn(),
+    IconChevronLeft: IconChevronLeft(),
+    IconChevronRight: IconChevronRight()
   },
   props: [
     ...props,
@@ -131,7 +152,7 @@ export default defineComponent({
     'flex'
   ],
   setup(props: any, context: any) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api, classes })
   }
 })
 </script>

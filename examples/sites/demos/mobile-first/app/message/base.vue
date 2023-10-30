@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { Button } from '@opentiny/vue'
+import { Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -13,7 +13,7 @@ export default {
   },
   methods: {
     messageClick() {
-      this.$message('message 提示框')
+      Modal.message('message 提示框')
     }
   }
 }

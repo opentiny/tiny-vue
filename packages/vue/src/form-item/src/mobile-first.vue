@@ -12,15 +12,15 @@
           : '',
         state.labelPosition === 'top' && !state.hideRequiredAsterisk ? 'pl-0' : '',
         ['small', 'mini'].indexOf(state.formItemSize) >= 0 ? 'mb-2' : '',
-        !slots.label && !label ? 'border-none' : '',
+        !slots.label && !this.label ? 'border-none' : '',
         state.isDisplayOnly ? 'border-none py-0.5' : ''
       )
     "
   >
     <label-wrap
-      :is-auto-width="state.labelStyle && state.labelStyle.width === 'auto'"
-      :update-all="state.labelWidth === 'auto'"
-      :is-mobile-first="true"
+      :isAutoWidth="state.labelStyle && state.labelStyle.width === 'auto'"
+      :updateAll="state.labelWidth === 'auto'"
+      :isMobileFirst="true"
     >
       <label
         data-tag="tiny-item-label"
@@ -183,6 +183,7 @@ export default defineComponent({
     },
     size: String,
     tipContent: String,
+    validateDisabled: Boolean,
     validateDebounce: Boolean,
     validatePosition: String,
     validateStatus: String,

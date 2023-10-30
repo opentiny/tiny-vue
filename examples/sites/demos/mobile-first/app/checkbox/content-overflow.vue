@@ -1,9 +1,23 @@
 <template>
-  <tiny-checkbox v-model="checked" border>
-    <tiny-tooltip content="备选项1 提示文字 提示文字" effect="light" placement="top">
-      <div class="content-overflow">备选项1 提示文字 提示文字</div>
-    </tiny-tooltip>
-  </tiny-checkbox>
+  <tiny-tooltip
+    ref="tooltip"
+    effect="light"
+    :content="label"
+    :manual="true"
+    placement="top-start"
+    v-model="showContent"
+  >
+    <tiny-checkbox v-model="checked" border>
+      <div
+        ref="label"
+        class="w-20 overflow-hidden text-ellipsis whitespace-nowrap align-middle"
+        @mouseenter="mouseEnter"
+        @mouseleave="mouseLeave"
+      >
+        {{ label }}
+      </div>
+    </tiny-checkbox>
+  </tiny-tooltip>
 </template>
 
 <script>
@@ -16,18 +30,20 @@ export default {
   },
   data() {
     return {
-      checked: false
+      checked: false,
+      label: '备选项1 提示文字 提示文字',
+      showContent: false
+    }
+  },
+  methods: {
+    mouseLeave() {
+      this.showContent = false
+    },
+    mouseEnter() {
+      if (this.$refs.label.scrollWidth > this.$refs.label.offsetWidth) {
+        this.showContent = true
+      }
     }
   }
 }
 </script>
-
-<style scoped>
-.content-overflow {
-  width: 100px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  vertical-align: middle;
-}
-</style>

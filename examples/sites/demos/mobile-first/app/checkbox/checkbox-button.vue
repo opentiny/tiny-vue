@@ -18,7 +18,7 @@ export default {
   },
   data() {
     return {
-      checked: ''
+      checked: '假文本'
     }
   },
   methods: {

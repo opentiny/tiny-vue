@@ -7,7 +7,7 @@
         :placement="placement"
         trigger="manual"
         :width="width"
-        :popper-class="m('tiny-popconfirm-popover', popperClass)"
+        :popper-class="m('tiny-popconfirm-popover', customClass)"
       >
         <div class="tiny-popconfirm-popover__container">
           <div class="tiny-popconfirm-popover__header">
@@ -30,7 +30,7 @@
             </div>
           </div>
           <div class="tiny-popconfirm-popover__content">
-            {{ content }}
+            {{ message }}
           </div>
           <div class="tiny-popconfirm-popover__footer">
             <slot name="footer">
@@ -57,7 +57,6 @@
 import { setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/popconfirm/vue'
 import Popover from '@opentiny/vue-popover'
-import Modal from '@opentiny/vue-modal'
 import Button from '@opentiny/vue-button'
 import { iconError, iconInfoSolid, iconWarning, iconSuccess } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/popconfirm/index.less'
@@ -66,7 +65,6 @@ export default defineComponent({
   name: $prefix + 'Popconfirm',
   components: {
     TinyPopover: Popover,
-    TinyModal: Modal,
     TinyButton: Button,
     IconSuccess: iconSuccess(),
     IconInfoSolid: iconInfoSolid(),
@@ -78,12 +76,12 @@ export default defineComponent({
       type: Object,
       default: () => ({})
     },
-    content: String,
-    popperClass: String,
+    message: String,
+    customClass: String,
     trigger: {
       type: String,
       default: 'hover',
-      validator: (value: string) => Boolean(~['click', 'hover'].indexOf(value))
+      validator: (value: string) => ['click', 'hover'].includes(value)
     },
     cancelButton: {
       type: Boolean,

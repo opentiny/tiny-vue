@@ -43,13 +43,13 @@
     }
 
     &.is-animating {
-      transition: transform 0.4s ease-in-out;
+      @apply duration-300 ~"transition-[transform]" ease-in-out;
     }
   }
 
   &__item--card {
     @apply ~'w-1/2';
-    transition: transform 0.4s ease-in-out;
+    @apply duration-300 ~"transition-[transform]" ease-in-out;
 
     &.is-in-stage {
       @apply cursor-pointer;
@@ -58,7 +58,7 @@
       &.is-hover,
       &:hover {
         .@{carousel-prefix-cls}__mask {
-          opacity: 0.12;
+          @apply opacity-10;
         }
       }
     }
@@ -71,7 +71,7 @@
   &__mask {
     @apply w-full;
     @apply bg-color-bg-1;
-    opacity: 0.24;
+    @apply opacity-20;
     @apply duration-200;
   }
 }

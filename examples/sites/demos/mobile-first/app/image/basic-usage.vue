@@ -1,9 +1,5 @@
 <template>
-  <div style="display: flex; justify-content: space-around; width: 300px">
-    <tiny-image :image-size="100" :src="url"></tiny-image>
-    <br />
-    <tiny-image :image-size="100" round :src="url"></tiny-image>
-  </div>
+  <tiny-image :src="url"></tiny-image>
 </template>
 
 <script>

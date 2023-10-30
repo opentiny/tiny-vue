@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { Image } from '@opentiny/vue'
+import { Image, Message } from '@opentiny/vue'
 
 export default {
   components: {
@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       url: '/static/images/1.jpg',
-      srcList: ['/static/images/1.jpg', '/static/images/2.jpg', '/static/images/3.jpg']
+      srcList: ['/static/images/1.jpg', '/static/images/3.jpg']
     }
   },
   methods: {

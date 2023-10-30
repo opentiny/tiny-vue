@@ -13,7 +13,7 @@ export default {
     return {
       value: '2022-12-18',
       config: {
-        currentColorClass: 'text-white',
+        currentColorClass: 'text-color-text-inverse',
         currentBackgroundColorClass: 'bg-color-success'
       }
     }

@@ -37,8 +37,13 @@ export default defineComponent({
       type: String,
       default: 'description'
     },
+    size: {
+      type: String,
+      default: 'medium'
+    },
     vertical: Boolean,
     advanced: Boolean,
+    line: Boolean,
     duration: {
       type: Number,
       default: 300

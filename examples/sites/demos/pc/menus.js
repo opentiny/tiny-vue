@@ -245,7 +245,8 @@ export const cmpMenus = [
       { 'nameCn': '用户头像', 'name': 'UserHead', 'key': 'user-head' },
       { 'nameCn': '全屏显示', 'name': 'Fullscreen', 'key': 'fullscreen' },
       { 'nameCn': '全局设置', 'name': 'ConfigProvider', 'key': 'config-provider' },
-      { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' }
+      { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' },
+      { 'nameCn': '二维码', 'name': 'QrCode', 'key': 'qr-code' }
     ]
   }
 ]

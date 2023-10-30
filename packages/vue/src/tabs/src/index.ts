@@ -40,9 +40,6 @@ export const tabsProps = {
   beforeLeave: Function,
   stretch: Boolean,
   showMoreTabs: Boolean,
-  showExpandTabs: Boolean,
-  expandTabsTitle: String,
-  expandTabsMode: String,
   swipeable: {
     type: Boolean,
     default: true
@@ -56,6 +53,11 @@ export const tabsProps = {
     type: Object,
     default: () => null
   },
+  separator: Boolean,
+  // tiny 新增
+  showExpandTabs: Boolean,
+  expandTabsTitle: String,
+  expandTabsMode: String,
   tooltipConfig: [String, Object]
 }
 

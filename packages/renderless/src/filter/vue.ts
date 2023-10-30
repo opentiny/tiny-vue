@@ -41,13 +41,15 @@ export const renderless = (props, { reactive, computed, onMounted, onBeforeUnmou
     labelList: computed(() => api.labelListComputed()),
     showPanel: computed(() => state.showPanelIndex !== -1 || state.filterPanel.show),
     hasFilterValue: computed(() =>
-      props.filterValue.find((item) => (Array.isArray(item) ? item.length > 0 : ![undefined, null, ''].includes(item)))
+      props.filterValue.find((item) =>
+        Array.isArray(item) ? item.length > 0 : [undefined, null, ''].indexOf(item) === -1
+      )
     )
   })
 
   Object.assign(api, {
     state,
-    panelToggle: panelToggle({ state, props, api }),
+    panelToggle: panelToggle({ state, props, api, emit }),
     filterSelectOption: filterSelectOption({ state, props, emit, api }),
     filterConfirm: filterConfirm({ state, props, emit }),
     selectOption: selectOption({ state, props, emit, api }),

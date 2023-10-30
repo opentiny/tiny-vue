@@ -1,6 +1,7 @@
 <template>
   <div ref="root" data-tag="tiny-filter" :class="m('text-sm text-color-text-primary relative', customClass)">
     <tiny-filter-bar :model-value="state.showPanelIndex" :data="state.labelList" @click="panelToggle">
+      <slot :active="state.showPanelIndex" :value="modelValue" :labels="state.labelList"></slot>
       <template v-if="filterGroup" #icon>
         <div data-tag="filter-icon" class="w-full" @click="panelToggle('filter')">
           <slot name="icon" :active="state.filterPanel.show || state.hasFilterValue" :show="state.filterPanel.show">
@@ -19,16 +20,16 @@
     <div
       ref="panelMask"
       data-tag="panel-mask"
-      v-show="state.showPanel"
-      class="fixed left-0 right-0 z-40 w-full h-full bg-black opacity-40"
+      v-show="!manual && state.showPanel"
+      class="fixed left-0 right-0 z-40 w-full h-full bg-color-bg-7"
       @click="cancel"
     ></div>
 
     <div
       ref="panel"
       data-tag="tiny-filter-panel"
-      v-show="state.showPanel"
-      :class="m('absolute top-11 flex flex-col z-40 w-full bg-white overflow-hidden', panelClass)"
+      v-show="!manual && state.showPanel"
+      :class="m('absolute top-11 flex flex-col z-40 w-full bg-color-bg-1 overflow-hidden', panelClass)"
     >
       <div
         data-tag="panel-scrollbar"
@@ -68,7 +69,7 @@
       <div
         data-tag="filter-list"
         v-show="state.selectPanel.config.type === 'list'"
-        class="leading-[2.75rem] cursor-pointer h-full py-2 overflow-x-visible overflow-y-auto scrollbar-size-0"
+        class="leading-[theme(spacing.12)] cursor-pointer h-full py-2 overflow-x-visible overflow-y-auto scrollbar-size-0"
       >
         <div
           v-if="state.selectPanel.config.showAll"
@@ -99,7 +100,7 @@
             tiny_mode="mobile-first"
             key="btn1"
             size="medium"
-            button-class="sm:max-w-full mr-4 flex-1"
+            custom-class="sm:max-w-full mr-4 flex-1"
             @click="cancel"
             >{{ t('ui.base.cancel') }}</tiny-button
           >
@@ -108,7 +109,7 @@
             key="btn2"
             size="medium"
             :reset-time="0"
-            button-class="sm:max-w-full mr-4 flex-1"
+            custom-class="sm:max-w-full mr-4 flex-1"
             @click="reset(state.filterPanel.show)"
             >{{ t('ui.base.reset') }}</tiny-button
           >
@@ -117,7 +118,7 @@
             key="btn3"
             type="primary"
             size="medium"
-            button-class="sm:max-w-full flex-1"
+            custom-class="sm:max-w-full flex-1"
             @click="confirm(state.filterPanel.show)"
             >{{ t('ui.base.confirm') }}</tiny-button
           >
@@ -144,6 +145,7 @@ export default defineComponent({
     IconChevronDown: IconChevronDown(),
     IconChevronUp: IconChevronUp()
   },
+  emits: ['update:modelValue', 'cancel', 'panel', 'update:filter-value'],
   props: {
     ...$props,
     data: Array,
@@ -155,6 +157,7 @@ export default defineComponent({
     filterGroup: Array,
     filterValue: Array,
     panelClass: String,
+    manual: Boolean,
     customClass: String
   },
   setup(props: any, context: any) {

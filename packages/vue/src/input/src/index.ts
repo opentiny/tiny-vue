@@ -32,7 +32,8 @@ export const $constants = {
   },
   COMPONENT_NAME: {
     FormItem: 'FormItem'
-  }
+  },
+  MASKSYMBOL: '******'
 }
 
 export const inputProps = {
@@ -50,6 +51,8 @@ export const inputProps = {
   tabindex: { type: String, default: '1' },
   disabled: Boolean,
   readonly: Boolean,
+  hoverExpand: Boolean,
+  mask: Boolean,
   suffixIcon: [Object, String],
   prefixIcon: [Object, String],
   modelValue: [String, Number] as PropType<string | number | null>,
@@ -123,11 +126,15 @@ export const inputProps = {
     type: String,
     default: ''
   },
-  inputClass: {
+  customClass: {
     type: String,
     default: ''
   },
   frontClearIcon: {
+    type: Boolean,
+    default: false
+  },
+  showEmptyValue: {
     type: Boolean,
     default: false
   }
