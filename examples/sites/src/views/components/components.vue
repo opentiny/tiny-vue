@@ -64,7 +64,7 @@
                     <tbody>
                       <tr v-for="row in oneApiArr" :key="row.name">
                         <td>
-                          <a v-if="row.demoId" :href="`#${row.demoId}`">{{ row.name }}</a>
+                          <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
                           <span v-else>{{ row.name }}</span>
                         </td>
                         <td v-if="!key.includes('slots')"><span v-html="row.type"></span></td>
@@ -260,6 +260,13 @@ export default defineComponent({
     const fn = {
       copyText: (text) => {
         navigator.clipboard.writeText(text)
+      },
+      jumpToDemo: (demoId) => {
+        if (demoId.startsWith('chart') || demoId.startsWith('grid')) {
+          router.push(demoId)
+        } else {
+          router.push(`#${demoId}`)
+        }
       },
       handleApiClick: (ev) => {
         if (ev.target.tagName === 'A') {

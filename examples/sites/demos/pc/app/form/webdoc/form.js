@@ -35,6 +35,17 @@ export default {
       codeFiles: ['label-align.vue']
     },
     {
+      demoId: 'overflow-title',
+      name: { 'zh-CN': '标签超长显示 tip', 'en-US': 'label too long display tip' },
+      desc: {
+        'zh-CN':
+          '<p>在 form 表单组件上添加<code>overflow-title</code>属性，label 标签超长时鼠标移动到 label 上可显示 tooltip 提示，不支持 label 插槽。</p>\n',
+        'en-US':
+          '<p>Add the <code>overflow-title</code> attribute to the form component. When the label is too long, the tooltip will be displayed by moving the mouse over the label. Label slots are not supported.</p>\n'
+      },
+      codeFiles: ['overflow-title.vue']
+    },
+    {
       demoId: 'form-validation',
       name: { 'zh-CN': '表单校验、移除校验', 'en-US': 'Form Validation/Clear Validation' },
       desc: {

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('图片列表缩略图', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/file-upload/picture-list')
+  await page.goto('file-upload#picture-list')
 
   const upload = page.locator('.tiny-upload')
   const lists = page.locator('.tiny-upload-list__item')

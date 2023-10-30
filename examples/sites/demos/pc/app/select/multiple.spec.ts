@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('test', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/multiple')
+  await page.goto('select#multiple')
   const select = page.locator('#preview .tiny-select')
 
   await expect(select.locator('.tiny-tag')).toHaveCount(2)

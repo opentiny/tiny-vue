@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('radio-tree', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/nest-radio-tree')
+  await page.goto('select#nest-radio-tree')
   const input = page.locator('#preview .tiny-input__inner')
   const suffixSvg = await page.locator('#preview .tiny-select__caret').first()
 

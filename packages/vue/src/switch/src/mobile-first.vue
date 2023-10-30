@@ -3,27 +3,12 @@
     :class="
       m(
         gcls('switch-default'),
-        gcls('before-switch-default'),
-        mini
-          ? [
-              gcls('switch-default-mini-mobile'),
-              gcls('before-switch-default-mini-mobile'),
-              disabled || types === 'loading' ? '' : gcls('active-before-switch-default-mini-mobile')
-            ]
-          : [
-              gcls('switch-default-mobile'),
-              gcls('before-switch-default-mobile'),
-              disabled || types === 'loading' ? '' : gcls('active-before-switch-default-mobile')
-            ],
-        state.currentValue === trueValue
-          ? disabled || types === 'loading'
-            ? gcls(`switch-true-disabled${mini ? '-mini' : ''}`)
-            : gcls(`switch-true${mini ? '-mini' : ''}`)
-          : disabled
-          ? gcls('switch-false-disabled')
-          : types === 'loading'
-          ? gcls('switch-false-loading')
-          : gcls('switch-false')
+        gcls(`switch-${size ? size : 'small'}`),
+        gcls(
+          `${state.currentValue === trueValue ? 'switch-true' : 'switch-false'}${
+            disabled || types === 'loading' ? '-disabled' : '-not-disabled'
+          }`
+        )
       )
     "
     data-tag="tiny-switch"
@@ -32,31 +17,52 @@
     @keydown.space="toggle"
   >
     <span
+      data-tag="tiny-switch-handle"
       :class="
         m(
-          gcls('switch-inner-default'),
-          gcls(`switch-inner-default-mobile${mini === true ? '-mini' : ''}`),
-          state.currentValue === trueValue
-            ? types === 'icon'
-              ? gcls(`switch-inner-true-icon${mini === true ? '-mini' : ''}`)
-              : types === 'loading'
-              ? gcls(`switch-inner-true-loading${mini === true ? '-mini' : ''}`)
-              : gcls(`switch-inner-true${mini === true ? '-mini' : ''}`)
-            : types === 'icon'
-            ? gcls(`switch-inner-false-icon${mini === true ? '-mini' : ''}`)
-            : types === 'loading'
-            ? ''
-            : gcls(`switch-inner-false${mini === true ? '-mini' : ''}`)
+          gcls('switch-handle-default'),
+          gcls(`switch-handle-${size ? size : 'small'}`),
+          gcls(
+            `${
+              state.currentValue === trueValue
+                ? `switch-handle-true-${size ? size : 'small'}${disabled || types === 'loading' ? '-disabled' : ''}`
+                : `switch-handle-false-${size ? size : 'small'}${disabled || types === 'loading' ? '-disabled' : ''}`
+            }`
+          )
+        )
+      "
+    ></span>
+    <span
+      data-tag="tiny-switch-inner"
+      :class="
+        m(
+          gcls(`switch-inner-default`),
+          gcls(`switch-inner-${size ? size : 'small'}`),
+          gcls(
+            `${
+              state.currentValue === trueValue
+                ? types === 'word'
+                  ? 'switch-inner-true-word'
+                  : `switch-inner-true-${size ? size : 'small'}-icon`
+                : types === 'word'
+                ? `switch-inner-false-${size ? size : 'small'}-word`
+                : 'switch-inner-false-icon'
+            }`
+          )
         )
       "
     >
-      <div v-if="types === 'icon'">
+      <div data-tag="tiny-switch-word" v-if="types === 'word'" class="sm:text-xs text-sm">
+        <slot v-if="state.currentValue === trueValue" name="open">A</slot>
+        <slot v-if="state.currentValue === falseValue" name="close">B</slot>
+      </div>
+      <div data-tag="tiny-switch-icon" v-if="types === 'icon'">
         <slot v-if="state.currentValue === trueValue" name="open">
           <svg
             viewBox="0 0 24 24"
             :class="[
-              mini === true ? 'w-3 h-3 sm:w-2.5 sm:h-2.5' : 'w-4 h-4 sm:w-3 sm:h-3',
-              disabled === true ? 'fill-color-brand-disabled' : 'fill-color-brand'
+              gcls(`switch-icon-${size ? size : 'small'}`),
+              gcls(`switch-icon-true-${disabled ? 'disabled' : 'default'}`)
             ]"
           >
             <path
@@ -68,8 +74,8 @@
           <svg
             viewBox="0 0 24 24"
             :class="[
-              mini === true ? 'w-3 h-3 sm:w-2.5 sm:h-2.5' : 'w-4 h-4 sm:w-3 sm:h-3',
-              disabled === true ? 'fill-color-icon-primary' : 'fill-color-icon-disabled'
+              gcls(`switch-icon-${size ? size : 'small'}`),
+              gcls(`switch-icon-false-${disabled ? 'disabled' : 'default'}`)
             ]"
           >
             <path
@@ -78,15 +84,11 @@
           </svg>
         </slot>
       </div>
-      <div v-if="types === 'word'" :class="['sm:text-xs', mini === true ? 'text-xs' : 'text-sm']">
-        <slot v-if="state.currentValue === trueValue" name="open">A</slot>
-        <slot v-if="state.currentValue === falseValue" name="close">B</slot>
-      </div>
-      <div v-if="types === 'loading'">
+      <div data-tag="tiny-switch-loading" v-if="types === 'loading'">
         <slot v-if="state.currentValue === trueValue" name="open">
           <svg
-            :class="['fill-color-brand-disabled', mini === true ? 'sm:w-3 sm:h-3 w-4 h-4' : 'sm:w-4 sm:h-4 w-5 h-5']"
-            viewBox="0 0 50 50"
+            viewBox="0 0 48 48"
+            :class="[gcls(`switch-loading-${size ? size : 'small'}`), gcls('switch-icon-true-disabled')]"
           >
             <path
               d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z"
@@ -104,10 +106,10 @@
             </path>
           </svg>
         </slot>
-        <slot v-if="state.currentValue === falseValue" name="close">
+        <slot data-tag="tiny-switch-close" v-if="state.currentValue === falseValue" name="close">
           <svg
-            :class="['fill-color-none-hover', mini === true ? 'sm:w-3 sm:h-3 w-4 h-4' : 'sm:w-4 sm:h-4 w-5 h-5']"
-            viewBox="0 0 50 50"
+            viewBox="0 0 48 48"
+            :class="[gcls(`switch-loading-${size ? size : 'small'}`), gcls('switch-icon-false-disabled')]"
           >
             <path
               d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z"
@@ -125,9 +127,8 @@
             </path>
           </svg>
         </slot>
-      </div>
-    </span>
-  </span>
+      </div> </span
+  ></span>
 </template>
 
 <script lang="ts">
@@ -138,8 +139,8 @@ import { defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
   emits: ['change', 'update:modelValue'],
-  props: [...props, 'modelValue', 'trueValue', 'falseValue', 'disabled', 'mini', 'tabindex', 'types'],
-  setup(props, context): any {
+  props: [...props, 'modelValue', 'trueValue', 'falseValue', 'disabled', 'size', 'tabindex', 'types'],
+  setup(props, context) {
     return setup({ props, context, renderless, api, classes })
   }
 })

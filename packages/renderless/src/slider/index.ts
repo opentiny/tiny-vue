@@ -24,9 +24,9 @@ export const bindEvent = (api: ISliderApi) => () => {
 export const unBindEvent = (api: ISliderApi) => () => off(window, 'resize', api.bindResize)
 
 export const bindResize =
-  ({ parent, props, state }: Pick<ISliderRenderlessParams, 'parent' | 'props' | 'state'>) =>
+  ({ vm, props, state }: Pick<ISliderRenderlessParams, 'vm' | 'props' | 'state'>) =>
   () => {
-    const handleEl = (parent.$el as HTMLElement).querySelector('div.tiny-slider') as HTMLElement
+    const handleEl = vm.$refs.slider
     state.sliderSize = handleEl['client' + (props.vertical ? 'Height' : 'Width')]
     state.sliderOffset = handleEl.getBoundingClientRect()
   }
@@ -91,11 +91,22 @@ export const bindMouseDown =
     }
 
     const handleEl = event.target
-    const isClickBar = hasClass(handleEl, constants.sliderCls(mode)) || hasClass(handleEl, constants.rangeCls(mode))
-    const isClickBtn =
-      hasClass(handleEl, constants.buttonCls(mode)) ||
-      hasClass(handleEl, constants.leftSvgCls(mode)) ||
-      hasClass(handleEl, constants.rightSvgCls(mode))
+    let isClickBar: boolean | undefined = false
+    let isClickBtn: boolean | undefined = false
+
+    if (mode === 'mobile-first') {
+      const role = Array.from(handleEl.attributes).find((attr) => attr.name === 'role')
+      const name = role && role.value
+
+      isClickBar = name === constants.PC_SLIDER_CLS || name === constants.PC_RANGE_CLS
+      isClickBtn = name === constants.PC_BUTTON_CLS
+    } else {
+      isClickBar = hasClass(handleEl, constants.sliderCls(mode)) || hasClass(handleEl, constants.rangeCls(mode))
+      isClickBtn =
+        hasClass(handleEl, constants.buttonCls(mode)) ||
+        hasClass(handleEl, constants.leftSvgCls(mode)) ||
+        hasClass(handleEl, constants.rightSvgCls(mode))
+    }
     if (state.disabled || (!isClickBtn && !isClickBar)) {
       state.activeIndex = -1
       return
@@ -179,31 +190,37 @@ export const setTipStyle =
   ({
     constants,
     mode,
-    parent,
+    vm,
     props,
     state
-  }: Pick<ISliderRenderlessParams, 'parent' | 'props' | 'state' | 'constants' | 'mode'>) =>
+  }: Pick<ISliderRenderlessParams, 'vm' | 'props' | 'state' | 'constants' | 'mode'>) =>
   () => {
     if (!props.showTip) {
       return
     }
 
     const tipStyle = { top: 0, left: 0 }
-    const tipEl = parent.$el.querySelector('.' + constants.tipCls(mode)) as HTMLElement
+    const tipEl = vm.$refs.sliderTip
     const moveSize = ((state.activeValue - props.min) / state.rangeDiff) * state.sliderSize
 
     if (props.vertical) {
       tipStyle.top =
         state.sliderSize - moveSize - constants.BUTTON_SIZE - constants.TIP_HEIGHT / 2 + constants.HALF_BAR_HEIGHT
-      tipStyle.left = -tipEl.clientWidth / 2 + constants.HALF_BAR_HEIGHT
+      tipStyle.left = -tipEl.getBoundingClientRect().width / 2 + constants.HALF_BAR_HEIGHT
     } else {
       tipStyle.top = -constants.TIP_HEIGHT - constants.BUTTON_SIZE / 2 + constants.HALF_BAR_HEIGHT
-      tipStyle.left = moveSize - constants.HALF_BAR_HEIGHT - tipEl.clientWidth / 2
+      tipStyle.left = moveSize - tipEl.getBoundingClientRect().width / 2
     }
 
-    state.tipStyle = {
-      top: tipStyle.top + 'px',
-      left: tipStyle.left + 'px'
+    if (mode === 'mobile-first') {
+      state.tipStyle = {
+        left: tipStyle.left + 'px'
+      }
+    } else {
+      state.tipStyle = {
+        top: tipStyle.top + 'px',
+        left: tipStyle.left + 'px'
+      }
     }
   }
 
@@ -216,11 +233,17 @@ const getActiveButtonIndexFlag = ({
   const cls = constants.buttonCls(mode)
   const { previousElementSibling } = event.target as HTMLElement
 
-  return (
-    state.isDouble &&
-    (hasClass(previousElementSibling, cls) ||
-      (event.target as SVGAElement).className.baseVal === 'tiny-slider-right-svg')
-  )
+  if (mode === 'mobile-first') {
+    const role = Array.from(previousElementSibling.attributes).find((attr) => attr.name === 'role')
+    const name = role && role.value
+    return state.isDouble && name === constants.PC_BUTTON_CLS
+  } else {
+    return (
+      state.isDouble &&
+      (hasClass(previousElementSibling, cls) ||
+        (event.target as SVGAElement).className.baseVal === 'tiny-slider-right-svg')
+    )
+  }
 }
 
 export const getActiveButtonIndex =
@@ -235,7 +258,7 @@ const calcCurrentValue = ({
   props,
   state
 }: Pick<ISliderRenderlessParams, 'currentValue' | 'props' | 'state'>) => {
-  if(Array.isArray(currentValue)){
+  if (Array.isArray(currentValue)) {
     currentValue = currentValue[state.activeIndex]
   }
   if (currentValue <= props.min) {
@@ -277,8 +300,7 @@ export const setActiveButtonValue =
   (value: number | [number, number]) => {
     if (Array.isArray(value)) {
       // 在组件初始化和emit('update:modelValue')会发生modelValue为数组的情况
-      [state.leftBtnValue, state.rightBtnValue] = value
-
+      ;[state.leftBtnValue, state.rightBtnValue] = value
     } else {
       let currentValue = calcCurrentValue({ currentValue: value, props, state })
       if (!state.isDouble) {
@@ -290,7 +312,7 @@ export const setActiveButtonValue =
           state.rightBtnValue = currentValue
         }
       }
-  
+
       state.activeValue = currentValue
     }
 
@@ -336,6 +358,8 @@ export const setBarStyle =
 export const initSlider =
   ({ api, props, state }: Pick<ISliderRenderlessParams, 'api' | 'props' | 'state'>) =>
   (value) => {
+    if (state.isDrag) return
+
     state.isDouble = Array.isArray(value)
 
     const sliders = state.isDouble ? value : [value]
@@ -360,9 +384,16 @@ export const initSlider =
   }
 
 export const calculateValue =
-  ({ props, state }: Pick<ISliderRenderlessParams, 'props' | 'state'>) =>
+  ({ props, state, vm }: Pick<ISliderRenderlessParams, 'props' | 'state' | 'vm'>) =>
   (event) => {
     let currentValue = 0
+
+    if (state.sliderSize == 0) {
+      const handleEl = vm.$refs.slider
+      state.sliderSize = handleEl['client' + (props.vertical ? 'Height' : 'Width')]
+      state.sliderOffset = handleEl.getBoundingClientRect()
+    }
+
     const offset = state.sliderOffset as DOMRect
 
     if (event.type === 'touchmove' || event.type === 'touchstart' || event.type === 'touchend') {
@@ -406,6 +437,10 @@ export const customBeforeAppearHook = (props) => (el) => {
     el.style.left = 0 + '%'
     el.style.width = 0 + '%'
   }
+}
+
+export const customAppearHook = () => (el) => {
+  el.style.transition = 'all 0.5s'
 }
 
 export const customAfterAppearHook =

@@ -35,12 +35,12 @@ export default defineComponent({
       type: Object,
       default: () => $constants
     },
-    content: String,
-    popperClass: String,
+    message: String,
+    customClass: String,
     trigger: {
       type: String,
       default: 'hover',
-      validator: (value: string) => Boolean(~['click', 'hover'].indexOf(value))
+      validator: (value: string) => ['click', 'hover'].includes(value)
     },
     cancelButton: {
       type: Boolean,

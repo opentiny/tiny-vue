@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('fetch-role', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/roles/fetch-role')
+  await page.goto('roles#fetch-role')
   const reference = page.locator('.tiny-roles .tiny-popover__reference')
   const list = page.locator('.tiny-roles__selector')
 

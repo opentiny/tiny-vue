@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('树表增删改功能', () => {
   test('树表增删测试', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/grid-tree-grid/tree-table-tree-grid-insert-delete-update')
+    await page.goto('grid-tree-grid#tree-table-tree-grid-insert-delete-update')
     await page.getByRole('button', { name: '新增' }).click()
     await page.getByRole('row', { name: '1 新数据' }).getByRole('textbox').click()
     await page.getByRole('row', { name: '1 新数据' }).getByRole('textbox').fill('ee')
@@ -22,7 +22,7 @@ test.describe('树表增删改功能', () => {
 
   test('树表修改测试', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/grid-tree-grid/tree-table-tree-grid-insert-delete-update')
+    await page.goto('grid-tree-grid#tree-table-tree-grid-insert-delete-update')
     await page.getByRole('row', { name: '2 WWWW科技YX公司 华南区 500' }).getByRole('img').first().click()
     await page.getByRole('row', { name: '3 WWWW科技股份有限子公司 华南区 720' }).getByText('华南区').first().click()
     await page.getByRole('row', { name: '3 WWWW科技股份有限子公司 720' }).getByRole('textbox').first().click()

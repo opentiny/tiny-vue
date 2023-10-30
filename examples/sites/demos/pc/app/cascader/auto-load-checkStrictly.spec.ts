@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('动态加载且父子级不相关联', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/cascader/auto-load-checkStrictly')
+  await page.goto('cascader#auto-load-checkStrictly')
   await page.locator('#preview').getByRole('img').nth(1).click()
   const svg = page.locator('.tiny-cascader-node__postfix > .st0')
   await expect(svg).toHaveAttribute('d', 'M6 2v20l13-10z')

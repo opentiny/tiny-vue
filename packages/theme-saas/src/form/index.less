@@ -24,7 +24,7 @@
     }
 
     .@{form-item-prefix-cls} {
-      margin-right: 74px;
+      @apply mr-18;
     }
 
     .@{form-item-prefix-cls}__label {
@@ -57,7 +57,15 @@
 
   &--label-top {
     .@{form-item-prefix-cls}__label {
-      @apply float-none inline-block text-left leading-5 pt-0 pr-0 pb-1 pl-0 h-5 box-content;
+      @apply float-none;
+      @apply inline-block;
+      @apply text-left;
+      @apply leading-5;
+      @apply pt-0 pr-0 pb-1 pl-0;
+      @apply h-5;
+      @apply box-content;
+      @apply w-full;
+      @apply truncate;
     }
   }
 
@@ -68,7 +76,7 @@
   &--inline&--label-top {
     .@{form-item-prefix-cls} {
       @apply mb-4;
-      margin-right: 74px;
+      @apply mr-18;
     }
 
     .@{form-item-prefix-cls}__label {
@@ -79,7 +87,8 @@
 
   &__valid {
     &.@{tooltip-prefix-cls}.@{tooltip-prefix-cls}__popper {
-      padding: 7px 4px;
+      @apply p-1;
+      @apply leading-normal;
 
       &.is-error[x-placement^='top'] .popper__arrow {
         @apply -bottom-1;
@@ -100,13 +109,8 @@
 
     .@{form-item-prefix-cls} {
       .@{form-item-prefix-cls}__label {
-        @apply overflow-visible;
+        @apply overflow-hidden;
         @apply relative;
-
-        &:before {
-          @apply absolute;
-          @apply ~'-left-2.5';
-        }
       }
     }
   }
@@ -126,6 +130,7 @@
       .@{form-item-prefix-cls}__label-wrap > .@{form-item-prefix-cls}__label:before,
       & > .@{form-item-prefix-cls}__label:before {
         @apply ~"content-['']";
+        @apply mr-0;
       }
     }
 

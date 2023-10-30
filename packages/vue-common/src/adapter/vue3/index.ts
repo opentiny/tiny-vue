@@ -391,6 +391,10 @@ export const directive = (directives) => {
 
 export const parseVnode = (vnode) => vnode
 
+const { Text, Comment } = hooks
+
+export const isEmptyVnode = (vnode) => !vnode || !vnode.type || [Text, Comment].includes(vnode.type)
+
 const parseProps = (propsData) => {
   const props = {}
 

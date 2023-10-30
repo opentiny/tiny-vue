@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('调整窗口大小后窗口显示的最小高度', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/modal/min-height')
+  await page.goto('modal#min-height')
 
   await page.getByRole('button', { name: '提示框最小高度为300' }).click()
   const modal = page.locator('.tiny-modal__box')

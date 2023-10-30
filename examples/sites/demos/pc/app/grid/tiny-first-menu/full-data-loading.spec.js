@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('全量加载', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-large-data/tiny-first-menu-full-data-loading')
+  await page.goto('grid-large-data#tiny-first-menu-full-data-loading')
   await page.locator('.tiny-grid__body').hover()
   // 先滚动1000px
   await page.mouse.wheel(0, 1000)

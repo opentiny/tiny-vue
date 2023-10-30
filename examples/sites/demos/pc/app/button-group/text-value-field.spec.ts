@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试数据字段映射', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button-group/data')
+  await page.goto('button-group#data')
 
   const preview = page.locator('#preview')
   const buttonGroup = preview.locator('.tiny-button-group').first()

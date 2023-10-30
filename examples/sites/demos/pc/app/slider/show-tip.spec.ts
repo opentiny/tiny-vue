@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('提示', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/slider/show-tips')
+  await page.goto('slider#show-tips')
   const preview = page.locator('#preview')
   const slider = preview.locator('.tiny-slider__wrapper')
   const sliderDiv = slider.locator('.tiny-slider > div').nth(1)

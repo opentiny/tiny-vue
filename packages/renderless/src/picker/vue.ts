@@ -143,7 +143,7 @@ const initState = ({ api, reactive, vm, computed, props, utils, parent }) => {
 const initApi = ({ api, props, hooks, state, vnode, others, utils }) => {
   const { t, emit, dispatch, nextTick, vm } = vnode
   const { TimePanel, TimeRangePanel } = others
-  const { destroyPopper, popperElm, updatePopper } = initPopper({ props, hooks, vnode })
+  const { destroyPopper, popperElm, updatePopper, doDestroy } = initPopper({ props, hooks, vnode })
 
   state.popperElm = popperElm
   state.picker = null
@@ -151,7 +151,7 @@ const initApi = ({ api, props, hooks, state, vnode, others, utils }) => {
   Object.assign(api, {
     destroyPopper,
     emitDbTime: emitDbTime({ emit, state, t }),
-    hidePicker: hidePicker({ state }),
+    hidePicker: hidePicker({ state, doDestroy }),
     handleSelectChange: ({ tz, date }) => emit('select-change', { tz, date }),
     getPanel: getPanel(others),
     handleFocus: handleFocus({ emit, vm, state }),

@@ -17,6 +17,7 @@
       { 'tiny-mobile-form--inline': inline },
       { 'label-align': labelAlign }
     ]"
+    @submit.prevent
   >
     <slot></slot>
   </form>

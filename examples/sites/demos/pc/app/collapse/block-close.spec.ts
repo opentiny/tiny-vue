@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('Collapse 阻止折叠面板关闭事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/collapse/block-close')
+  await page.goto('collapse#block-close')
 
   const modal = page.locator('.tiny-modal')
   const header = page.locator('.tiny-collapse-item__header')

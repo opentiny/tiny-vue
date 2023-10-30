@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('可选数量限制', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/checkbox/min-max')
+  await page.goto('checkbox#min-max')
   const preview = page.locator('#preview')
   const labels = preview.locator('.tiny-checkbox-group > label')
   const disabledLabels = labels.locator('.is-disabled')

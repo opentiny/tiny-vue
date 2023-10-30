@@ -13,6 +13,7 @@
 import { createComponent, setupComponent } from '@opentiny/vue-common'
 import { MsgQueue } from '@opentiny/vue-renderless/modal'
 import TINYModal from './src/index'
+import Popconfirm from '@opentiny/vue-popconfirm'
 import { version } from './package.json'
 
 TINYModal.version = version
@@ -34,19 +35,35 @@ export function Modal(options) {
         ...events,
         hide(params) {
           events.hide && events.hide.call(this, params)
-
-          $modal.beforeUnmouted()
+          if ($modal.beforeUnmouted) {
+            $modal.beforeUnmouted()
+          }
           resolve(params.type)
+        },
+        confirm(params) {
+          events.confirm && events.confirm.call(this, params)
+        },
+        show(params) {
+          events.show && events.show.call(this, params)
         }
       }
 
       $modal = createComponent({
         el: document.createElement('div'),
-        propsData: options,
-        component: TINYModal
+        propsData: Object.assign(
+          {
+            'tiny_mode': TINYModal.tiny_mode,
+            'tiny_theme': TINYModal.tiny_theme
+          },
+          options
+        ),
+        component: options.componentType === 'popconfirm' ? Popconfirm : TINYModal
       })
 
-      $modal.open()
+      const open = $modal[options.componentType === 'popconfirm' ? 'show' : 'open']
+      if (open) {
+        open()
+      }
       setTimeout(() => (modalPromise.vm = $modal), 0)
     }
   })
@@ -56,26 +73,29 @@ export function Modal(options) {
 
 const modal = Modal
 
-const types = ['alert', 'confirm', 'message']
+const types = ['alert', 'confirm', 'message', 'popconfirm']
 
-types.forEach((type, index) => {
-  let defOpts = { showFooter: true }
+const defOpts = {
+  alert: {
+    showFooter: true,
+    type: 'alert'
+  },
+  confirm: {
+    showFooter: true,
+    status: 'question',
+    type: 'confirm'
+  },
+  message: {
+    mask: false,
+    lockView: false,
+    showHeader: false,
+    showClose: false,
+    type: 'message'
+  },
+  popconfirm: {}
+}
 
-  if (index === 2) {
-    defOpts = {
-      mask: false,
-      lockView: false,
-      showHeader: false,
-      showClose: false
-    }
-  }
-
-  defOpts.type = type
-
-  if (index === 1) {
-    defOpts.status = 'question'
-  }
-
+types.forEach((type) => {
   TINYModal[type] = Modal[type] = function (message, title, options) {
     let opts
 
@@ -91,10 +111,10 @@ types.forEach((type, index) => {
 
     return modal({
       message: message.toString(),
-      type,
-      ...defOpts,
+      ...defOpts[type],
       ...opts,
-      ...options
+      ...options,
+      componentType: type
     })
   }
 })
@@ -102,6 +122,7 @@ types.forEach((type, index) => {
 export const alert = (Modal as any).alert
 export const message = (Modal as any).message
 export const confirm = (Modal as any).confirm
+export const popconfirm = (Modal as any).popconfirm
 
 TINYModal.installed = false
 setupComponent.TINYModal = {
@@ -122,6 +143,7 @@ setupComponent.TINYModal = {
     root[`${prefix}alert`] = (Modal as any).alert
     root[`${prefix}message`] = (Modal as any).message
     root[`${prefix}confirm`] = (Modal as any).confirm
+    root[`${prefix}popconfirm`] = (Modal as any).popconfirm
   }
 }
 

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('节点选中状态发生变化时的回调', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree-menu/event-check-change')
+  await page.goto('tree-menu#event-check-change')
 
   const checkBox = page.getByRole('treeitem', { name: '首页' }).locator('span').nth(2)
 

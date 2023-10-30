@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('可清空特性', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/numeric/allow-empty')
+  await page.goto('numeric#allow-empty')
 
   const input = page.getByRole('spinbutton')
   await input.click()

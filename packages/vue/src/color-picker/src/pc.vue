@@ -1,7 +1,8 @@
 <template>
-  <div class="tiny-color-picker__trigger" v-clickoutside="onCancel" @click="() => changeVisible(!state.isShow)">
+  <div class="tiny-color-picker__trigger" @click="() => changeVisible(!state.isShow)">
     <div
-      class="tiny-color-picker__inner" :style="{
+      class="tiny-color-picker__inner"
+      :style="{
         background: state.triggerBg ?? ''
       }"
     >
@@ -33,7 +34,7 @@ export default defineComponent({
   props: [...props, 'modelValue', 'visible', 'alpha'],
   components: {
     IconChevronDown: IconChevronDown(),
-    ColorSelect: colorSelect,
+    ColorSelect: colorSelect
   },
   setup(props, context) {
     return setup({ props, context, renderless, api })

@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('PopUpload 自定义按钮的文本', () => {
   test('PopUpload 文件上传弹框中取消按钮的文本', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/pop-upload/fill-button-text1')
+    await page.goto('pop-upload#fill-button-text1')
 
     const modalAppearBtn = page.getByRole('button', { name: '自定义按钮文本' })
     const modal = page.locator('.tiny-modal')
@@ -15,7 +15,7 @@ test.describe('PopUpload 自定义按钮的文本', () => {
 
   test('PopUpload 文件上传弹框中提交按钮的文本', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/pop-upload/fill-button-text2')
+    await page.goto('pop-upload#fill-button-text2')
 
     const modalAppearBtn = page.getByRole('button', { name: '自定义按钮文本' })
     const modal = page.locator('.tiny-modal')
@@ -27,7 +27,7 @@ test.describe('PopUpload 自定义按钮的文本', () => {
 
   test('PopUpload 打开弹出框的按钮的文本', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/pop-upload/fill-button-text4')
+    await page.goto('pop-upload#fill-button-text4')
 
     const modalAppearBtn = page.getByRole('button', { name: '自定义按钮文本' })
     const modal = page.locator('.tiny-modal')

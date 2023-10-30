@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试按钮组点击功能', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button-group/border')
+  await page.goto('button-group#border')
 
   // 按钮组1
   const buttonGroup1 = page.locator('.tiny-button-group').nth(1)
@@ -24,7 +24,7 @@ test('测试按钮组点击功能', async ({ page }) => {
 
 test('测试按钮组有无边框', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button-group/border')
+  await page.goto('button-group#border')
 
   // 按钮组1点击前后查看有无边框
   const buttonGroup1 = page.locator('.tiny-button-group').nth(1)

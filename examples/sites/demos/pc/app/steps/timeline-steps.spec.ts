@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('时间线步骤条', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/steps/timeline-steps')
+  await page.goto('steps#timeline-steps')
 
   const timelineHorizotal = page.locator('#preview .tiny-steps').first()
   const timelineVertical = page.locator('#preview .tiny-steps').nth(1)

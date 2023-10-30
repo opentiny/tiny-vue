@@ -5,44 +5,42 @@ import Button from '@opentiny/vue-button'
 import Checkbox from '@opentiny/vue-checkbox'
 import CheckboxGroup from '@opentiny/vue-checkbox-group'
 import {
-  IconHelpSolid,
-  IconSuccess,
-  IconError,
-  IconInfoSolid,
-  IconLoading,
-  IconWarning,
-  IconClose,
-  IconFullscreenLeft,
-  IconMinscreenLeft,
-  IconInfoCircle,
-  IconSuccessful,
-  IconCueL,
-  IconOperationfaildL
+  iconHelpSolid,
+  iconSuccess,
+  iconError,
+  iconInfoSolid,
+  iconLoading,
+  iconWarning,
+  iconClose,
+  iconFullscreenLeft,
+  iconMinscreenLeft,
+  iconInfoCircle,
+  iconSuccessful,
+  iconCueL,
+  iconOperationfaildL
 } from '@opentiny/vue-icon'
 
 const mode = { tiny_mode: 'mobile-first' }
 const STATUS_MAPPING_COMPINENT = {
-  QUESTION: IconHelpSolid(mode),
-  INFO: IconInfoSolid(mode),
-  SUCCESS: IconSuccess(mode),
-  WARNING: IconWarning(mode),
-  ERROR: IconError(mode),
-  LOADING: IconLoading(mode)
+  QUESTION: iconHelpSolid(mode),
+  INFO: iconInfoSolid(mode),
+  SUCCESS: iconSuccess(mode),
+  WARNING: iconWarning(mode),
+  ERROR: iconError(mode),
+  LOADING: iconLoading(mode)
 }
 
 const MOBILE_STATUS_MAPPING_COMPINENT = {
-  INFO: IconInfoCircle(mode),
-  SUCCESS: IconSuccessful(mode),
-  WARNING: IconCueL(mode),
-  ERROR: IconOperationfaildL(mode),
-  LOADING: IconLoading(mode)
+  INFO: iconInfoCircle(mode),
+  SUCCESS: iconSuccessful(mode),
+  WARNING: iconCueL(mode),
+  ERROR: iconOperationfaildL(mode),
+  LOADING: iconLoading(mode)
 }
 
 export default defineComponent({
-  emits: ['zoom', 'update:modelValue', 'show', 'hide', 'custom-mousemove', 'custom-mouseup', 'custom-mousedown'],
   props: {
     ...$props,
-    animat: { type: Boolean, default: () => true },
     beforeClose: Function,
     duration: { type: [Number, String], default: () => 3000 },
     escClosable: Boolean,
@@ -73,15 +71,27 @@ export default defineComponent({
     title: String,
     top: { type: [Number, String], default: 80 },
     type: { type: String, default: 'alert' },
-    vSize: String,
     width: [Number, String],
     zIndex: [Number, String],
     description: String,
     options: Array,
     showClose: { type: Boolean, default: true },
     confirmContent: String,
-    cancelContent: String
+    cancelContent: String,
+    position: String,
+    customClass: String
   },
+  emits: [
+    'update:modelValue',
+    'show',
+    'close',
+    'confirm',
+    'cancel',
+    'hide',
+    'custom-mousedown',
+    'custom-mouseup',
+    'custom-mousemove'
+  ],
   components: {
     Button,
     Checkbox,
@@ -113,8 +123,9 @@ export default defineComponent({
       cancelContent,
       m,
       position,
-      modalBoxClass
+      customClass
     } = this
+
     let { zoomLocat, visible, contentVisible, modalTop, isMsg } = state
     let defaultSlot = slots.default
     let footerSlot = slots.footer
@@ -162,6 +173,7 @@ export default defineComponent({
         'div',
         // pc 端按钮
         {
+          attrs: { 'data-tag': 'tiny-footer-bottom' },
           class: 'hidden sm:block'
         },
         [
@@ -177,7 +189,7 @@ export default defineComponent({
                     click: this.cancelEvent
                   }
                 },
-                cancelContent || t('ui.buttonMessage.cancel')
+                cancelContent || t('ui.button.cancel')
               )
             : null,
           h(
@@ -192,7 +204,7 @@ export default defineComponent({
                 click: this.confirmEvent
               }
             },
-            confirmContent || t('ui.buttonMessage.confirm')
+            confirmContent || t('ui.button.confirm')
           )
         ]
       ),
@@ -200,6 +212,7 @@ export default defineComponent({
         'div',
         // mobile 端按钮
         {
+          attrs: { 'data-tag': 'tiny-footer-bottom' },
           class: 'flex sm:hidden text-base justify-center'
         },
         [
@@ -210,7 +223,7 @@ export default defineComponent({
                   props: {
                     tiny_mode: 'mobile-first',
                     type: 'text',
-                    buttonClass: 'flex-1 text-color-text-secondary active:text-color-text-secondary'
+                    customClass: 'flex-1 text-color-text-secondary active:text-color-text-secondary'
                   },
                   on: {
                     click: this.cancelEvent
@@ -226,7 +239,7 @@ export default defineComponent({
               props: {
                 tiny_mode: 'mobile-first',
                 type: 'text',
-                buttonClass: 'flex-1 text-color-brand active:text-color-brand'
+                customClass: 'flex-1 text-color-brand active:text-color-brand'
               },
               on: {
                 click: this.confirmEvent
@@ -243,9 +256,9 @@ export default defineComponent({
       {
         attrs: { 'data-tag': 'tiny-modal' },
         class: [
-          'fixed inset-0 w-full h-full text-sm text-color-text-primary transition-top ease-out duration-300',
+          'fixed left-0 right-0 top-0 bottom-0 w-full h-full text-sm text-color-text-primary transition-top ease-out duration-300',
           {
-            'before:content-[""] before:fixed before:inset-0 before:w-full before:h-full before:opacity-30 before:bg-black':
+            'before:content-[""] before:fixed before:left-0 before:right-0 before:top-0 before:bottom-0 before:w-full before:h-full before:bg-color-bg-7':
               mask,
             'before:pointer-events-none pointer-events-none': !mask,
             'hidden': !contentVisible && !visible
@@ -267,7 +280,7 @@ export default defineComponent({
             ref: 'modalBox',
             attrs: { 'data-tag': 'tiny-grid-modal__box' },
             class: m(
-              'absolute pointer-events-auto box-border',
+              'absolute pointer-events-auto box-border p-3 sm:p-0',
               { 'bottom-0 sm:bottom-auto top-auto w-full flex sm:block max-h-full': !isMsg },
               { 'h-full': zoomLocat },
               { 'sm:max-h-[60%]': !zoomLocat },
@@ -280,10 +293,10 @@ export default defineComponent({
                   type === 'message'
               },
               {
-                'bg-color-icon-primary opacity-80 sm:opacity-100 text-white sm:text-color-text-primary sm:bg-white ':
+                'bg-color-icon-primary opacity-80 sm:opacity-100 text-color-text-inverse sm:text-color-text-primary sm:bg-color-bg-1 ':
                   type === 'message'
               },
-              modalBoxClass
+              customClass
             )
           },
           [
@@ -292,7 +305,7 @@ export default defineComponent({
               {
                 class: [
                   'flex flex-col w-full max-h-full rounded-lg sm:rounded  overflow-hidden',
-                  { 'shadow-xl bg-white': type !== 'message' },
+                  { 'shadow-xl bg-color-bg-1': type !== 'message' },
                   { 'h-full': zoomLocat }
                 ]
               },
@@ -302,11 +315,12 @@ export default defineComponent({
                     ? h(
                         'div',
                         {
+                          attrs: { 'data-tag': 'tiny-message' },
                           class: [
-                            'flex text-sm items-center',
+                            'flex text-sm items-center justify-center sm:justify-start',
                             { 'px-6 pt-5 sm:pt-6 leading-6': type !== 'message' },
                             {
-                              'leading-4 sm:leading-5.5 sm:h-auto bg-color-icon-primary text-white sm:text-color-text-primary sm:bg-white':
+                              'leading-4 sm:leading-5.5 sm:h-auto bg-color-icon-primary text-color-text-inverse sm:text-color-text-primary sm:bg-color-bg-1':
                                 type === 'message'
                             }
                           ],
@@ -321,11 +335,12 @@ export default defineComponent({
                                   props: {
                                     tiny_mode: 'mobile-first'
                                   },
+                                  attrs: { 'data-tag': 'tiny-status-icon' },
                                   class: m(
                                     'hidden sm:inline-block mr-2 fill-current',
                                     type === 'message' ? 'h-4.5 w-4.5 self-start shrink-0 mt-0.5' : 'h-6 w-auto',
                                     { 'text-color-success': status === 'success' },
-                                    { 'text-color-info-secondary': ['info', 'question'].includes(status) },
+                                    { 'text-color-info-secondary': ['info', 'question'].indexOf(status) !== -1 },
                                     { 'text-color-warning': status === 'warning' },
                                     { 'text-color-error': status === 'error' }
                                   )
@@ -345,7 +360,7 @@ export default defineComponent({
                             'span',
                             {
                               class: [
-                                'flex-auto text-base sm:text-sm',
+                                'flex-none sm:flex-auto text-base sm:text-sm w-full flex-1',
                                 { 'truncate font-semibold': type !== 'message' },
                                 {
                                   'line-clamp-2 text-center leading-5.5 sm:text-left': type === 'message'
@@ -358,7 +373,7 @@ export default defineComponent({
                             type === 'message' ? messageHtml : title || t('ui.alert.title')
                           ),
                           resize
-                            ? h(zoomLocat ? IconMinscreenLeft(mode) : IconFullscreenLeft(mode), {
+                            ? h(zoomLocat ? iconMinscreenLeft(mode) : iconFullscreenLeft(mode), {
                                 class: 'flex-none h-4 w-4 ml-2 cursor-pointer',
                                 on: {
                                   click: this.toggleZoomEvent
@@ -366,13 +381,12 @@ export default defineComponent({
                               })
                             : null,
                           showClose
-                            ? h(IconClose(mode), {
+                            ? h(iconClose(mode), {
                                 class: [
-                                  'flex-none cursor-pointer',
+                                  'hidden sm:block flex-none cursor-pointer',
                                   { 'h-4 w-4 ml-2': type !== 'message' },
                                   {
-                                    'hidden sm:block w-4 h-4 ml-4 self-start sm:mt-0.5 sm:translate-y-px':
-                                      type === 'message'
+                                    'w-4 h-4 ml-4 self-start sm:mt-0.5 sm:translate-y-px': type === 'message'
                                   }
                                 ],
                                 on: {
@@ -431,6 +445,7 @@ export default defineComponent({
                     ? h(
                         'div',
                         {
+                          attrs: { 'data-tag': 'tiny-modal-footer' },
                           class:
                             'py-2.5 sm:pb-6 sm:pt-0 px-6 border-t-0.5 sm:border-t-0 border-color-border-separator text-center sm:text-right'
                         },

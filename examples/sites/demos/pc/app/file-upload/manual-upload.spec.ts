@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('手动上传', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/file-upload/manual-upload')
+  await page.goto('file-upload#manual-upload')
 
   const upload = page.getByRole('button', { name: '选取文件' })
   const server = page.getByRole('button', { name: '上传到服务器' })

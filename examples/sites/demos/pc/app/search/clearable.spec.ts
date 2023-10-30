@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test('清空输入值', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/search/clearable')
+  await page.goto('search#clearable')
 
   const input = page.locator('.tiny-search__input')
   const close = page.locator('.tiny-search__input-btn a').first()

@@ -55,13 +55,13 @@
 </template>
 
 <script lang="tsx">
-import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
+import { $prefix, setup, defineComponent, props } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/pull-refresh/vue'
 import '@opentiny/vue-theme-mobile/pull-refresh/index.less'
-
 export default defineComponent({
   name: $prefix + 'PullRefresh',
   props: {
+    ...props,
     modelValue: Boolean,
     loosingText: String,
     successText: String,
@@ -92,7 +92,7 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>

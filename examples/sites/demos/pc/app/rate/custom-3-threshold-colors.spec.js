@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('rate 自定义 3 分段颜色', () => {
   test('hover或选中时三分段呈现不同颜色', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/rate/custom-3-threshold-colors')
+    await page.goto('rate#custom-3-threshold-colors')
 
     // hover时三分段颜色
     const icon = page.locator('.tiny-rate__star > .tiny-svg')

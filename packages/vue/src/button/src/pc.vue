@@ -25,15 +25,15 @@
         'is-plain': state.plain,
         'is-round': round,
         'is-circle': circle,
-        'is-icon': icon && !loading && (text || $slots.default),
-        'is-only-icon': icon && !loading && !(text || $slots.default)
+        'is-icon': icon && !loading && (text || slots.default),
+        'is-only-icon': icon && !loading && !(text || slots.default)
       }
     ]"
     :tabindex="tabindex"
     v-bind="a($attrs, ['class', 'style'], true)"
   >
     <icon-loading v-if="loading" class="tiny-icon-loading tiny-svg-size" />
-    <component v-if="icon && !loading" :is="icon" :class="{ 'is-text': text || $slots.default }" />
+    <component v-if="icon && !loading" :is="icon" :class="{ 'is-text': text || slots.default }" />
     <slot>
       <span>{{ text }}</span>
     </slot>

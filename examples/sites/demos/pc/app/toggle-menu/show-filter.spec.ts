@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('显示过滤搜索框', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/toggle-menu/show-filter')
+  await page.goto('toggle-menu#show-filter')
   const preview = page.locator('#preview')
   // 应该获取不到搜索框
   await expect(preview.locator('.tiny-toggle-menu__filter')).toHaveCount(0)

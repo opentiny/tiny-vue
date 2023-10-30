@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('确认按钮事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/modal/confirm-event')
+  await page.goto('modal#confirm-event')
 
   const modal = page.locator('.tiny-modal').filter({ hasText: 'test' })
   await page.getByRole('button', { name: '点击确定按钮触发事件' }).click()

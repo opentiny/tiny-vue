@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('触发校验时自动定位到当前校验的单元格', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-validation/grid_Example-gridValid-validation-scroll-to-col')
+  await page.goto('grid-validation#grid_Example-gridValid-validation-scroll-to-col')
   await page.getByText('GFD科技YX公司').first().click()
   await page
     .getByRole('row', {

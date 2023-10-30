@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('radio-value', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/radio/radio-value')
+  await page.goto('radio#radio-value')
   const radio1 = page.locator('.tiny-radio').nth(0)
   const radio2 = page.locator('.tiny-radio').nth(1)
   await expect(radio1).toBeVisible()

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义菜单数据服务', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/link-menu/get-menu-data-sync')
+  await page.goto('link-menu#get-menu-data-sync')
   const preview = page.locator('#preview')
   const dialogBox = preview.locator('.tiny-dialog-box')
   const linkMenuList = preview.locator('.tiny-tree.tiny-link-menu__overflow > div')

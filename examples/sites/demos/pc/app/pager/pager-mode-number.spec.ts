@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('分页number模式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pager/pager-mode-number')
+  await page.goto('pager#pager-mode-number')
 
   const preview = page.locator('#preview')
   const pager = preview.locator('.tiny-pager')

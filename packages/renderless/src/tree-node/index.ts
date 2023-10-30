@@ -301,9 +301,9 @@ export const onSiblingToggleExpand =
 
 export const watchExpandedChange =
   ({ state, props }) =>
-  (value) => {
+  () => {
     state.parentEmitter.emit('sibling-node-toggle-expand', {
-      isExpand: value,
+      isExpand: props.node.expanded,
       sibling: props.node
     })
   }

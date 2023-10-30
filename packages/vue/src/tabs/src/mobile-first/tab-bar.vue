@@ -41,7 +41,13 @@ export default defineComponent({
           })
         ]
       ),
-      h('div', { class: 'invisible sm:visible absolute w-full h-px bottom-px bg-color-border-separator z-10' }),
+      h('div', {
+        class: [
+          state.separator
+            ? 'sm:invisible'
+            : 'invisible sm:visible absolute w-full h-px bottom-px bg-color-border-separator z-10'
+        ]
+      }),
       h(
         'div',
         {

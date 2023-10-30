@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('表格反转测试', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-reverse-column-row/grid_Example-reverseRow')
+  await page.goto('grid-reverse-column-row#grid_Example-reverseRow')
   await page.getByRole('button', { name: '表格反转' }).click()
   await page.getByText('GFD科技YX公司').first().click()
 

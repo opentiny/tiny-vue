@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('tag-copy-all', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/tag-copy-all')
+  await page.goto('select#tag-copy-all')
   const select = page.locator('#preview .tiny-select')
 
   await select.hover()

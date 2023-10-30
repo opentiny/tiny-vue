@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('高级向导', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/steps/advanced-steps')
+  await page.goto('steps#advanced-steps')
 
   const advancedSteps = page.locator('#preview .tiny-steps')
   const nodes = advancedSteps.locator('.tiny-steps-advanced li')

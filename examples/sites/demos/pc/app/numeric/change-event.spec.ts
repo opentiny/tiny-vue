@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('值改变事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/numeric/change-event')
+  await page.goto('numeric#change-event')
 
   const increaseBtn = page.locator('.tiny-numeric__increase')
   await increaseBtn.click()

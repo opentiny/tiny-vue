@@ -33,7 +33,7 @@ export default {
         'en-US': 'button round'
       },
       desc: {
-        'zh-CN': '<p>可使用右侧 `icon` 自定义插槽。<p>',
+        'zh-CN': '<p>可使用右侧 <code>icon</code> 自定义插槽。<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['slot.vue']

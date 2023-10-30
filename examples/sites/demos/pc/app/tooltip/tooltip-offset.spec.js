@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试偏移量', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tooltip/tooltip-offset')
+  await page.goto('tooltip#tooltip-offset')
 
   const button = page.getByRole('button', { name: '出现位置的偏移量' })
   const tip = page.getByRole('tooltip', { name: '出现位置的偏移量' })

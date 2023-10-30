@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('下拉按钮显示文本', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/action-menu/more-text')
+  await page.goto('action-menu#more-text')
 
   const preview = page.locator('#preview')
   const actionMenu = preview.locator('.tiny-action-menu')

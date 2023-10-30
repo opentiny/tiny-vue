@@ -1,8 +1,10 @@
 <template>
-      <div class="tiny-color-select-panel__wrapper__inner">
+  <div class="tiny-color-select-panel__wrapper__inner">
     <div
-      class="tiny-color-select-panel__wrapper__inner__color-select" ref="wrapper" :style="{
-        background: state.background,
+      class="tiny-color-select-panel__wrapper__inner__color-select"
+      ref="wrapper"
+      :style="{
+        background: state.background
       }"
     >
       <div class="white"></div>
@@ -30,7 +32,7 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api, mono: true })
   }
 })
 </script>

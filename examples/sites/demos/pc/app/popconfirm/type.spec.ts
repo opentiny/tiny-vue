@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('图标类型', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popconfirm/type')
+  await page.goto('popconfirm#type')
 
   const preview = page.locator('#preview')
   const popConfirm = preview.locator('.tiny-popconfirm .tiny-popconfirm__reference .tiny-button')

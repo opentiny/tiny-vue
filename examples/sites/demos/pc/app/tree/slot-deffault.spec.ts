@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('默认插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/slot-deffault')
+  await page.goto('tree#slot-deffault')
 
   const tree = page.locator('#preview .tiny-tree')
   const node = tree.locator('.tiny-tree-node').first()

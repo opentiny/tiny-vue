@@ -29,7 +29,7 @@ export default {
       IconUser: IconUser(),
       icon: {
         active: 'https://his-beta.huawei.com/opentiny/webnova/static/img/tiny3bg.b5dd307.jpg',
-        inactive: 'https://his-beta.huawei.com/opentiny/webnova/static/img/tjdk.22c8d3d.png'
+        inactive: '/static/images/3.jpg'
       }
     }
   }

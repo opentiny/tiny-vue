@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义展示文本', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/detail-page/custom-show-text')
+  await page.goto('detail-page#custom-show-text')
   await expect(
     page.getByText('数据：标题1--测试文本1标题2--测试文本2标题3--测试文本3标题4--测试文本4标题5--测试文本5')
   ).toBeVisible()

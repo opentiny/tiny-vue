@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('消息已读动态隐藏标记', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/badge/dynamic-hidden')
+  await page.goto('badge#dynamic-hidden')
 
   const preview = page.locator('#preview')
   const badge = preview.locator('.tiny-badge')

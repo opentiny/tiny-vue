@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('动态禁用', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popover/dynamic-disable')
+  await page.goto('popover#dynamic-disable')
 
   let disBtn = page.getByRole('button', { name: '禁用弹出框' })
   let popBtn = page.getByRole('button', { name: '悬浮弹出' })

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('点击事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/steps/click')
+  await page.goto('steps#click')
 
   const nodes = page.locator('#preview .tiny-steps').locator('li')
   const tips = page.locator('#preview .tiny-steps ~ div span')

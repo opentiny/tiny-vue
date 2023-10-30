@@ -34,15 +34,7 @@
             }"
             >{{ index }}</slot
           >
-          <slot
-            name="block-bottom"
-            :node="node"
-            :index="index"
-            :show="
-              index > slideBarState.boundingIndex.left &&
-              (slideBarState.boundingIndex.right === -1 || index < slideBarState.boundingIndex.right)
-            "
-          ></slot>
+          <slot name="block-bottom" :node="node" :index="index"></slot>
         </div>
       </div>
     </div>

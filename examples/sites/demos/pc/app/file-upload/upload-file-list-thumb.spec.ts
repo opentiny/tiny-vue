@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('上传的文件列表弹出显示', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/file-upload/upload-file-list-thumb')
+  await page.goto('file-upload#upload-file-list-thumb')
 
   const thumb = page.locator('.tiny-upload--thumb__head')
   const popList = page.getByRole('tooltip', { name: 'test1 下载文件 删除文件 test2 下载文件 删除文件' })
