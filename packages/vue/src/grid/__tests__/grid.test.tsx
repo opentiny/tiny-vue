@@ -87,8 +87,7 @@ describe('PC Mode', () => {
                 {data.row.name}
               </span>
             )
-          }}
-        ></GridColumn>
+          }}></GridColumn>
         <GridColumn field="city" titile="城市" width="100"></GridColumn>
       </Grid>
     ))
@@ -135,7 +134,7 @@ describe('PC Mode', () => {
 
   test.todo('footer-align 所有的表尾列的对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）')
 
-  test.todo('optimization 优化配置项')
+  test.todo('optimization 表格虚拟滚动的优化配置项')
 
   test.todo('params 额外的参数')
 
