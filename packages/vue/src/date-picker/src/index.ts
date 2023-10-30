@@ -64,7 +64,7 @@ const $props = {
 export const datePickerProps = {
   ...$props,
   type: {
-    type: Object as PropType<
+    type: String as PropType<
       | 'date'
       | 'dates'
       | 'daterange'

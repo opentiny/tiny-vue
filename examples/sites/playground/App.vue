@@ -13,8 +13,7 @@ import Share from './icons/Share.vue'
 
 const versions = ['3.11', '3.10', '3.9', '3.8']
 const latestVersion = versions[0]
-const cdnHost = 'https://unpkg.com'
-window.localStorage.setItem('setting-cdn', cdnHost)
+const cdnHost = window.localStorage.getItem('setting-cdn')
 
 const searchObj = new URLSearchParams(location.search)
 const tinyMode = searchObj.get('mode')

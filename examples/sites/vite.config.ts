@@ -69,9 +69,6 @@ export default defineConfig((config) => {
         targets: copyTarget
       })
     ],
-    define: {
-      'process.env': {}
-    },
     optimizeDeps: getOptimizeDeps(3),
     build: {
       rollupOptions: {
@@ -113,6 +110,12 @@ export default defineConfig((config) => {
     if (!viteConfig.resolve.alias['@opentiny/vue-theme']) {
       viteConfig.resolve.alias['@opentiny/vue-theme'] = '@opentiny/vue-theme-saas'
       viteConfig.resolve.alias['@opentiny/vue-icon'] = '@opentiny/vue-icon-saas'
+    }
+  }
+
+  if (env.NODE_ENV === 'development') {
+    viteConfig.define = {
+      'process.env': {}
     }
   }
 
