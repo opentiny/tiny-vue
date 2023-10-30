@@ -126,7 +126,7 @@ export default {
       codeFiles: ['tabs-events-click.vue']
     },
     {
-      demoId: 'tabs-events-close',
+      demoId: 'tabs-events-close2',
       name: {
         'zh-CN': 'close 事件',
         'en-US': 'events'

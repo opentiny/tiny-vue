@@ -16,7 +16,11 @@
   },
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-picker": "workspace:~"
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-picker": "workspace:~",
+    "@opentiny/vue-mini-picker": "workspace:~",
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~"
   },
   "license": "MIT"
 }
