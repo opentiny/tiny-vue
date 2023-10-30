@@ -1,12 +1,14 @@
 <template>
   <tiny-select
-    v-model="value"
-    placeholder="请选择"
-    clearable
-    @change="change"
-    @clear="clear"
-    @blur="blur"
-    @focus="focus"
+      v-model="value"
+      placeholder="请选择"
+      clearable
+      @change="change"
+      @clear="clear"
+      @blur="blur"
+      @focus="focus"
+      @remove-tag="removeTag"
+      @visible-change="visibleChange"
   >
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
@@ -44,6 +46,19 @@ const focus = () => {
 }
 
 const blur = () => {
+  Modal.message({
+    message: 'blur事件'
+  })
+}
+
+const removeTag = () => {
+  Modal.message({
+    message: 'blur事件'
+  })
+}
+
+
+const visibleChange = () => {
   Modal.message({
     message: 'blur事件'
   })
