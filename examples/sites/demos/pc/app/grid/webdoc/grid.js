@@ -216,8 +216,8 @@ export default {
           'type': 'object',
           'defaultValue':
             'animat: true,delayHover: 250,scrollX: {gt: 100, 指定大于多少范围时自动启动虚拟滚动（启用 X 虚拟滚动，必须固定所有列宽，否则无法兼容）默认100, oSize: 2, 当剩余数据少于指定范围时触发重新渲染 默认自动计算 rSize: 2, 每次渲染条数 默认自动计算 vSize: 5  指定可视区域条数 }, scrollY: { gt: 500, 指定大于多少范围时自动启动虚拟滚动（启用 Y 虚拟滚动，必须固定所有行高，否则无法兼容）默认500 oSize: 2, 当剩余数据少于指定范围时触发重新渲染 默认自动计算 rSize: 2, 每次渲染条数 默认自动计算 vSize: 5, 指定可视区域条数 默认自动计算 rHeight: 50, 指定行高 默认自动计算adaptive: true 自动适配最优的渲染方式 默认true }',
-          'desc': { 'zh-CN': '优化配置项', 'en-US': 'Optimize configuration items' },
-          'demoId': 'grid-grid-optimization#tiny-first-menu-grid-optimization'
+          'desc': { 'zh-CN': '表格虚拟滚动的优化配置项', 'en-US': 'Optimize configuration items' },
+          'demoId': 'grid-large-data#large-data-grid-optimization'
         },
         {
           'name': 'params',
@@ -687,7 +687,7 @@ export default {
             'en-US':
               'Rolling configuration loading; scrollLoad={isInfinity: false //Continuous, \npageSize: 10 //Number of records to be loaded each time}; Sets whether to load pages in scrolling mode. This parameter is valid only when showPager is set to true.'
           },
-          'demoId': 'grid-large-data#tiny-first-menu-scroll-paging'
+          'demoId': 'grid-large-data#large-data-scroll-paging'
         },
         {
           'name': 'row-span',
@@ -1290,7 +1290,7 @@ export default {
             'en-US':
               'Load data (This parameter may be used in the scenario where table data needs to be reloaded or partially incremented.)'
           },
-          'demoId': 'grid-large-data#tiny-first-menu-full-data-loading'
+          'demoId': 'grid-large-data#large-data-full-data-loading'
         },
         {
           'name': 'recalculate()',
