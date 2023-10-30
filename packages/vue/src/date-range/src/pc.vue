@@ -65,6 +65,7 @@
                   @focus="state.minTimePickerVisible = true"
                   @update:modelValue="(val) => handleTimeInput(val, 'min')"
                   @change="(val) => handleTimeChange(val, 'min')"
+                  :readonly="!timeEditable"
                 />
                 <time-picker
                   ref="minTimePicker"
@@ -98,7 +99,7 @@
                   :disabled="state.rangeState.selecting"
                   :placeholder="t('ui.datepicker.endTime')"
                   :modelValue="state.maxVisibleTime"
-                  :readonly="!state.minDate"
+                  :readonly="!state.minDate || !timeEditable"
                   @focus="state.minDate && (state.maxTimePickerVisible = true)"
                   @update:modelValue="(val) => handleTimeInput(val, 'max')"
                   @change="(val) => handleTimeChange(val, 'max')"
@@ -272,7 +273,11 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    formatWeeks: Function
+    formatWeeks: Function,
+    timeEditable: {
+      type: Boolean,
+      default: true
+    }
   },
   emits: ['dodestroy', 'pick'],
   setup(props, context) {
