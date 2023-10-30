@@ -249,7 +249,7 @@
         :class="['tiny-upload-list__li-title', file.status === 'fail' && 'is-fail']"
         :title="isFolderTitle ? (file.path || '') + file.name : file.name"
       >
-        {{ isFolderTitle ? (file.path || '') + file.name : file.name }}
+        {{ file.name.length > maxNameLength ? file.name.substring(0, maxNameLength) + '...' : file.name }}
       </div>
     </li>
   </transition-group>
