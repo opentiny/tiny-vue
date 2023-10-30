@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('文件缩略图', async ({ page, context }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/file-upload/file-picture-card')
+  await page.goto('file-upload#file-picture-card')
 
   const upload = page.locator('.tiny-upload')
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])

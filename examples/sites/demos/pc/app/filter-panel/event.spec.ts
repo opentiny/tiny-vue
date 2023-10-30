@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/filter-panel/event')
+  await page.goto('filter-panel#event')
 
   const panel = page.locator('.tiny-filter-panel')
   const button = panel.locator('.tiny-filter-box')

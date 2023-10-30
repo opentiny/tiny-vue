@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义菜单左侧图标', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/toggle-menu/custom-icon')
+  await page.goto('toggle-menu#custom-icon')
   const preview = page.locator('#preview')
   const nodes = preview.locator('.tiny-toggle-menu .tiny-tree > div')
   const svg = preview.getByRole('treeitem', { name: '开发指南' }).locator('svg')

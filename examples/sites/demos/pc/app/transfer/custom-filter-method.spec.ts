@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义过滤方法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/custom-filter-method')
+  await page.goto('transfer#custom-filter-method')
   const preview = page.locator('#preview')
   const transferPanels = preview.locator('div.tiny-transfer-panel')
   const leftPanel = transferPanels.first()

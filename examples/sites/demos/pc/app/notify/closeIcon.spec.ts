@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义关闭图标', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/notify/closeIcon')
+  await page.goto('notify#closeIcon')
   await page.getByRole('button', { name: '自定义关闭图标' }).click()
   const svg = page.locator('.tiny-notify__icon-close > .tiny-svg > .st0')
   await expect(svg).toHaveAttribute(

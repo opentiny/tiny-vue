@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义加载图标', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/loading/spinner')
+  await page.goto('loading#spinner')
   const loadingText = page.locator('.tiny-loading__text')
   const sloading = page.locator('.tiny-loading__spinner-small')
   const mloading = page.locator('.tiny-loading__spinner-medium')

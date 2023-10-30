@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('PopEditor 数据超出隐藏', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popeditor/showOverflow')
+  await page.goto('popeditor#showOverflow')
 
   const preview = page.locator('#preview')
   const textBox = preview.getByRole('textbox')

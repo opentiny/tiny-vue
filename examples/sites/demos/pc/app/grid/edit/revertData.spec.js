@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('表格编辑还原更改', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-edit/edit-revertData')
+  await page.goto('grid-edit#edit-revertData')
   await page.getByText('GFD科技YX公司').first().click()
   await page
     .getByRole('row', {

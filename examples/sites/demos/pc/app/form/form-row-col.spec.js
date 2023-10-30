@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试表单复杂布局', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/form/form-row-col')
+  await page.goto('form#form-row-col')
 
   const preview = page.locator('#preview')
   const form = preview.locator('.tiny-form')

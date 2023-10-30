@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test('三大主题分别对应的五种类型', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://localhost:7130/pc/tag/effect')
+  await page.goto('tag#effect')
 
   const light = page.locator('.tiny-tag--light')
   const dark = page.locator('.tiny-tag--dark')

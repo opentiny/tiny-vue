@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('以下3个测试将覆盖3个demo: 数据源、收藏菜单标题、菜单内容超长时换行显示', () => {
   test('弹框功能是否正常', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/link-menu/data-resource')
+    await page.goto('link-menu#data-resource')
     const preview = page.locator('#preview')
     const dialogBox = preview.locator('.tiny-dialog-box')
     // 点击图标弹出对话框
@@ -24,7 +24,7 @@ test.describe('以下3个测试将覆盖3个demo: 数据源、收藏菜单标题
 
   test('菜单内容超长时换行显示、收藏菜单标题', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/link-menu/data-resource2')
+    await page.goto('link-menu#data-resource2')
     const preview = page.locator('#preview')
     const dialogBox = preview.locator('.tiny-dialog-box')
     const dialogBoxTitle = preview.locator('.tiny-dialog-box__header .tiny-dialog-box__title')
@@ -41,7 +41,7 @@ test.describe('以下3个测试将覆盖3个demo: 数据源、收藏菜单标题
 
   test('是否可以选中菜单项并展示', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/link-menu/data-resource1')
+    await page.goto('link-menu#data-resource1')
     const preview = page.locator('#preview')
     const dialogBox = preview.locator('.tiny-dialog-box')
     const linkMenuList = preview.locator('.tiny-tree.tiny-link-menu__wrap > div')

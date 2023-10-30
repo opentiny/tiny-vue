@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('基础用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/time-select/basic-usage')
+  await page.goto('time-select#basic-usage')
   const timeInput = page.getByPlaceholder('选择时间')
   await timeInput.click()
   await page.getByText('10:00').click()

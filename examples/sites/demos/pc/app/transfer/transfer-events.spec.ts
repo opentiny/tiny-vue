@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('判断是否触发了不同事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/transfer-events')
+  await page.goto('transfer#transfer-events')
   const preview = page.locator('#preview')
   const transferPanels = preview.locator('.tiny-transfer-panel')
   const leftPanel = transferPanels.first()

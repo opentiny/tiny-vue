@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test('动态编辑标签', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://localhost:7130/pc/tag/create')
+  await page.goto('tag#create')
 
   const preview = page.locator('#preview')
   const add = page.getByRole('button', { name: '+ New Tag' })

@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Rate 基本用法', () => {
   test('rate 组件出现', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/rate/allow-half')
+    await page.goto('rate#allow-half')
 
     // 判断rate组件是否出现
     await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/div')).toBeVisible()
@@ -11,7 +11,7 @@ test.describe('Rate 基本用法', () => {
 
   test('鼠标hover时，icon高亮', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/rate/basic-usage')
+    await page.goto('rate#basic-usage')
 
     // 鼠标hover到相应icon时，icon样式改变
     const icon = page.locator('.tiny-rate__star > .tiny-svg')
@@ -38,7 +38,7 @@ test.describe('Rate 基本用法', () => {
 
   test('click选中值准确', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/rate/basic-usage')
+    await page.goto('rate#basic-usage')
 
     const icon = page.locator('.tiny-rate__star > .tiny-svg')
     const text = page.locator('//*[@id="preview"]/div[2]/div[2]/div/span[6]')

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('父子级不相关联', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree-menu/check-strictly')
+  await page.goto('tree-menu#check-strictly')
 
   const treeMenu = page.locator('#preview .tiny-tree-menu')
   const checkedClass = /is-checked/

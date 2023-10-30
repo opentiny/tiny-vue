@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('reserve-keyword', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/remote-method')
+  await page.goto('select#remote-method')
   const tags = page.locator('#preview .tiny-select .tiny-tag')
   const searchInput = page.locator('#preview .tiny-select__input')
 

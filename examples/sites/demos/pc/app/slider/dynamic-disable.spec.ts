@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('禁用', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/slider/dynamic-disable')
+  await page.goto('slider#dynamic-disable')
 
   // 判断按钮禁用
   const preview = page.locator('#preview')

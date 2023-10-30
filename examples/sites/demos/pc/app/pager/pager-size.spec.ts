@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('分页尺寸', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pager/pager-size')
+  await page.goto('pager#pager-size')
 
   const preview = page.locator('#preview')
   const pager = preview.locator('.tiny-pager.tiny-pager__number')

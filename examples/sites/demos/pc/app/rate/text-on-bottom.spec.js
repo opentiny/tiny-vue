@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('rate 图标下方文字提示', () => {
   test('图标下文字提示', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/rate/text-on-bottom')
+    await page.goto('rate#text-on-bottom')
 
     const text = page.locator('.tiny-rate__bottom-text')
     // 图标下方文字可见

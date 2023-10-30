@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('PopEditor 单选时触发勾选的方式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popeditor/trigger')
+  await page.goto('popeditor#trigger')
 
   const preview = page.locator('#preview')
   const textBox = preview.getByRole('textbox')

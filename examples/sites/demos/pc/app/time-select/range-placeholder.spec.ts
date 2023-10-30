@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('固定时间范围', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/time-select/range-placeholder')
+  await page.goto('time-select#range-placeholder')
   const timeInput = page.getByPlaceholder('起始时间')
   await timeInput.click()
   await page.getByText('09:30').nth(1).click()

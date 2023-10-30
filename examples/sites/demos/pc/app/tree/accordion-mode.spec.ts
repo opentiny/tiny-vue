@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('手风琴模式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/accordion-mode')
+  await page.goto('tree#accordion-mode')
 
   const tree = page.locator('#preview .tiny-tree')
   await expect(tree.getByText('二级 1-1')).toBeVisible()

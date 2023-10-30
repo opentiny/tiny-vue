@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/cascader-panel/basic-usage')
+  await page.goto('cascader-panel#basic-usage')
   await page
     .locator('div')
     .filter({ hasText: /^指南组件$/ })

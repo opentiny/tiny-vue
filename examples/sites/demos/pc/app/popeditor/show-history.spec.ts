@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('PopEditor 设置历史记录标签页', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popeditor/show-history')
+  await page.goto('popeditor#show-history')
 
   const preview = page.locator('#preview')
   const textBox = preview.getByRole('textbox')

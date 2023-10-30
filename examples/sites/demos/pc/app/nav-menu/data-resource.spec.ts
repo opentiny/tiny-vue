@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('数据源', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/nav-menu/data-resource')
+  await page.goto('nav-menu#data-resource')
   const preview = page.locator('#preview')
   const popMenu = preview.locator('.popmenu')
   const homePage = preview.getByText('首页')

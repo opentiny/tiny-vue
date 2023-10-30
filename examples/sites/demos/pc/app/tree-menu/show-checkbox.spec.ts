@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('节点可勾选', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree-menu/show-checkbox')
+  await page.goto('tree-menu#show-checkbox')
 
   const treeMenu = page.locator('#preview .tiny-tree-menu')
   const node = treeMenu.getByRole('treeitem', { name: '首页' })

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('排序', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/layout/order')
+  await page.goto('layout#order')
   const preview = page.locator('#preview')
   const layout = preview.locator('.tiny-layout')
   const firstDiv = layout.locator('.tiny-row div').first()

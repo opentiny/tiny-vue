@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('Grid-编辑器-内置编辑器', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-editor/grid_Example-gridEdit-inner-editor')
+  await page.goto('grid-editor#grid_Example-gridEdit-inner-editor')
   await page.getByText('GFD科技YX公司').first().click()
   const input = page
     .getByRole('row', {

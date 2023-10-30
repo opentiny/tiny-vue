@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('懒加载节点', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/lazy-load-node')
+  await page.goto('tree#lazy-load-node')
 
   const parentNode = page.getByRole('treeitem', { name: '一级 3' }).first()
   const childNode1 = page.getByRole('treeitem', { name: '一级 1' }).first()

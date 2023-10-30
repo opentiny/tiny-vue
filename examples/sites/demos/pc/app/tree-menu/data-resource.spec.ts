@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('绑定数据源', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree-menu/data-resource')
+  await page.goto('tree-menu#data-resource')
 
   await page.getByTitle('指南', { exact: true }).click()
   await expect(page.getByTitle('后端适配器')).toBeVisible()

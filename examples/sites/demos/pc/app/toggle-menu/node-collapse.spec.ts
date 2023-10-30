@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('收缩节点事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/toggle-menu/node-collapse')
+  await page.goto('toggle-menu#node-collapse')
   const preview = page.locator('#preview')
   // 点击展开
   await preview.getByTitle('开发指南').click()

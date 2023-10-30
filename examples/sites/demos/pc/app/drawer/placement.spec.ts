@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('抽屉方向', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/drawer/placement')
+  await page.goto('drawer#placement')
 
   const drawer = page.locator('.tiny-drawer__main')
 

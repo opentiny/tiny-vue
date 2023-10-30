@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试禁用状态', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pager/pager-disabled')
+  await page.goto('pager#pager-disabled')
 
   const preview = page.locator('#preview')
   const pager = preview.locator('.tiny-pager').first()

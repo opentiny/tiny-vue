@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('标签页切换表格', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tabs/show-different-grid-data')
+  await page.goto('tabs#show-different-grid-data')
 
   const tabA = page.getByRole('tab', { name: '表格组件A' })
   const tabB = page.getByRole('tab', { name: '表格组件B' })

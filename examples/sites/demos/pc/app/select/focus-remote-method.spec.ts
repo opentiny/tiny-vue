@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('remote-method', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/focus-remote-method')
+  await page.goto('select#focus-remote-method')
   const input = page.locator('#preview .tiny-input__inner')
 
   await input.click()

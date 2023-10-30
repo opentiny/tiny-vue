@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('自定义底部按钮Props', () => {
   test('确认按钮Props', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/modal/footer-btn-props')
+    await page.goto('modal#footer-btn-props')
 
     const modal = page.locator('.tiny-modal')
     const confirmBtn1 = modal.locator('.tiny-modal__footer .tiny-button--primary').nth(1)
@@ -20,7 +20,7 @@ test.describe('自定义底部按钮Props', () => {
 
   test('取消按钮Props', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/modal/footer-btn-props')
+    await page.goto('modal#footer-btn-props')
 
     const modal = page.locator('.tiny-modal')
     const cancelBtn1 = modal.locator('.tiny-modal__footer .tiny-button--default').first()

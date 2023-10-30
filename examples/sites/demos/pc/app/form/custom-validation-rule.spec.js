@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试有密码校验', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/form/custom-validation-rule')
+  await page.goto('form#custom-validation-rule')
 
   const preview = page.locator('#preview')
   const form = preview.locator('.tiny-form')
@@ -47,7 +47,7 @@ test('测试有密码校验', async ({ page }) => {
 
 test('测试清除密码校验', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/form/custom-validation-rule')
+  await page.goto('form#custom-validation-rule')
 
   const preview = page.locator('#preview')
   const form = preview.locator('.tiny-form')

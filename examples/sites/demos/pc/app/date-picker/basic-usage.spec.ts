@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('[DatePicker] 测试日期选择和清除', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/date-picker/basic-usage')
+  await page.goto('date-picker#basic-usage')
   const dateInput = page.getByRole('textbox', { name: '2023-05-20' })
   const dateInput2 = page.getByRole('textbox', { name: '2023-05-21' })
   const clearIcon = page.locator('#preview').getByRole('img').nth(1)
@@ -25,7 +25,7 @@ test('[DatePicker] 测试日期选择和清除', async ({ page }) => {
 
 test('[DatePicker] 测试上一月/下一月/前一年/后一年', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/date-picker/basic-usage')
+  await page.goto('date-picker#basic-usage')
   const dateInputNextMonth = page.getByRole('textbox', { name: '2023-06-04' })
   const dateInputNextYear = page.getByRole('textbox', { name: '2024-06-01' })
   const dateInputPreMonth = page.getByRole('textbox', { name: '2023-05-14' })
@@ -61,7 +61,7 @@ test('[DatePicker] 测试上一月/下一月/前一年/后一年', async ({ page
 
 test('[DatePicker] 测试月份/年份选择', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/date-picker/basic-usage')
+  await page.goto('date-picker#basic-usage')
   const dateInputMonth = page.getByRole('textbox', { name: '2023-06-04' })
   const dateInputYear = page.getByRole('textbox', { name: '2024-02-07' })
 

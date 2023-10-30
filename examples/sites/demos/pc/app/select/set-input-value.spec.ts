@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('set-input-value', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/set-input-value')
+  await page.goto('select#set-input-value')
   const tags = page.locator('#preview .tiny-select .tiny-tag')
 
   await page.getByRole('button', { name: '设置value值' }).click()

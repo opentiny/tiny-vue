@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试分组表单', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/form/group-form')
+  await page.goto('form#group-form')
 
   const preview = page.locator('#preview')
   const form = preview.locator('.tiny-form')

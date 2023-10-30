@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('隐藏未完成节点的序号', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/time-line/show-number')
+  await page.goto('time-line#show-number')
 
   const nodes = page.locator('#preview .tiny-steps .normal')
   await expect(nodes.first().locator('.icon svg')).toBeVisible()

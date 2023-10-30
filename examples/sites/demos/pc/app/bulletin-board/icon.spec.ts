@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('BulletinBoard 自定义新公告前缀', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/bulletin-board/icon')
+  await page.goto('bulletin-board#icon')
 
   const preview = page.locator('#preview')
   const tabContent = preview.locator('.tiny-tab-pane')

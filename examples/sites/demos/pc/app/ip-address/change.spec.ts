@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('ipAddress change事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/ip-address/change')
+  await page.goto('ip-address#change')
 
   const preview = page.locator('#preview')
   const input = preview.getByRole('textbox')

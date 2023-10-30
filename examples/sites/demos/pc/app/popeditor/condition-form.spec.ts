@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('PopEditor 表单中使用并开启表单校验', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popeditor/condition-form')
+  await page.goto('popeditor#condition-form')
 
   const preview = page.locator('#preview')
   const textBox = preview.locator('.tiny-input').nth(3)

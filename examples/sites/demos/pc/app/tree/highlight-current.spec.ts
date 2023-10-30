@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('高亮当前选中节点', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/highlight-current')
+  await page.goto('tree#highlight-current')
 
   const node = page.getByRole('treeitem', { name: '三级 1-1-1' }).first().locator('.tiny-tree-node__content').first()
   await node.click()

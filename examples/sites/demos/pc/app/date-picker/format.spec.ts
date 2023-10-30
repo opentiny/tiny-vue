@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('[DatePicker] 测试日期格式化', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/date-picker/format')
+  await page.goto('date-picker#format')
   const dateInputDefault = page.getByRole('textbox', { name: '2023 年 05 月 20 日' })
   const dateInputTimestamp = page.getByRole('textbox', { name: '2020 年 5 月 20 日 0 时 0 分钟 0 秒 AM' })
   const dateInputString = page.getByRole('textbox', { name: '2020 年 05 月 20 日' })

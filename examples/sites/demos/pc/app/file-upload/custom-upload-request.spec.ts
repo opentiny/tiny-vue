@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义上传请求', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/file-upload/custom-upload-request')
+  await page.goto('file-upload#custom-upload-request')
 
   const upload = page.getByRole('button', { name: '选取文件' })
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('不可拖拽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/split/basic-usage1')
+  await page.goto('split#basic-usage1')
   const split = page.locator('#preview div').filter({ hasText: '左面板右面板' }).nth(2)
   const centerBtn = page.locator('.tiny-split-trigger')
   //  获取左边面板宽度

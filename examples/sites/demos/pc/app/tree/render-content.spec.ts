@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义内容区渲染', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/render-content')
+  await page.goto('tree#render-content')
 
   const node = page.getByRole('treeitem', { name: '三级 1-1-1' })
   const customContent1 = node.getByText('Append').first()

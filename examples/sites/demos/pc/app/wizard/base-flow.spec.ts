@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://localhost:7130/pc/wizard/base-flow')
+  await page.goto('wizard#base-flow')
 
   const stepItems = page.locator('.tiny-wizard__steps-item')
   const charts = stepItems.locator('.tiny-wizard__chart')

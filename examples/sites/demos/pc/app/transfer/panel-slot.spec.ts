@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('判断插槽内是否有内容', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/panel-slot')
+  await page.goto('transfer#panel-slot')
   const preview = page.locator('#preview')
   const transferPanels = preview.locator('.tiny-transfer-panel')
   const leftPanel = transferPanels.first()

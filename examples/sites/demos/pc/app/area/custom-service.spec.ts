@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试自定义服务', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/area/custom-service')
+  await page.goto('area#custom-service')
 
   const preview = page.locator('#preview')
   const areaInput = preview.locator('.tiny-area input')
