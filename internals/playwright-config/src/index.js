@@ -32,7 +32,7 @@ const Config = ({ testDir, baseURL, storageState }) => ({
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: process.env.PYTEST_BASEURL || baseURL,
-    storageState: process.env.PYTEST_STORAGE ? JSON.parse(process.env.PYTEST_STORAGE) : storageState
+    storageState: process.env.PYTEST_STORAGE ? JSON.parse(process.env.PYTEST_STORAGE) : storageState,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
 
