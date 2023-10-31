@@ -1,8 +1,8 @@
 <template>
   <div>
-    <button @click="showToast('text', 100)">show text toast</button>
-    <button @click="showToast('correct', 101)">show correct toast</button>
-    <button @click="showToast('error', 102)">show error toast</button>
+    <button @click="showTextToast">show text toast</button>
+    <button @click="showCorrectToast">show correct toast</button>
+    <button @click="showErrorToast">show error toast</button>
   </div>
 </template>
 
@@ -11,12 +11,27 @@ import { Toast } from '@opentiny/vue'
 
 export default {
   methods: {
-    showToast(type, zIndex) {
+    showTextToast() {
       Toast.service({
         text: 'loading...',
-        type: type,
+        type: 'text',
+        time: 2000
+      })
+    },
+    showCorrectToast() {
+      Toast.service({
+        text: 'success',
+        type: 'correct',
+        time: 4000,
+        zIndex: 101
+      })
+    },
+    showErrorToast() {
+      Toast.service({
+        text: 'error',
+        type: 'error',
         time: 2000,
-        zIndex
+        zIndex: 102
       })
     }
   }

@@ -67,7 +67,7 @@ export default {
           type: 'Function',
           defaultValue: '',
           desc: {
-            'zh-CN': '<p>消失前的回调g</p>',
+            'zh-CN': '<p>消失前的回调</p>',
             'en-US': ''
           },
           demoId: 'base'
