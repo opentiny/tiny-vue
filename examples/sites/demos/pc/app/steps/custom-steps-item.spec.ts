@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义数据项', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/steps/custom-steps-item')
+  await page.goto('steps#custom-steps-item')
 
   const advancedSteps = page.locator('#preview .tiny-steps')
   const nodes = advancedSteps.locator('li')

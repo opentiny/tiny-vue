@@ -19,7 +19,7 @@ export default defineComponent({
     size: {
       type: String,
       default: 'medium',
-      validator: (value: string) => ~['medium', 'small', 'mini'].indexOf(value)
+      validator: (value: string) => ['medium', 'small', 'mini'].includes(value)
     },
     data: {
       type: Array,
@@ -28,7 +28,7 @@ export default defineComponent({
     effect: {
       type: String,
       default: 'light',
-      validator: (value: string) => ~['dark', 'light', 'plain'].indexOf(value)
+      validator: (value: string) => ['dark', 'light', 'plain'].includes(value)
     }
   },
   setup(props, context): any {

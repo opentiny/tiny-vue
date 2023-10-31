@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('Textpopup 提示占位文本', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/text-popup/placeholder')
+  await page.goto('text-popup#placeholder')
 
   const preview = page.locator('#preview')
   const small = preview.locator('input')

@@ -1,17 +1,18 @@
 <template>
   <li
+    data-tag="tiny-dropdown-item"
     @mouseenter="mouseEnter"
     @mouseleave="mouseLeave"
     :class="
       m(
-        'list-none leading-10 sm:leading-8 m-0 outline-0 min-w-[theme(spacing.18)] max-w-[theme(spacing.52)] w-full [&_svg]:sm:w-3.5 [&_svg]:sm:h-3.5 [&_svg]:sm:mr-1.5 [&_svg]:mr-2 [&_svg]:align-text-bottom',
+        'rounded-sm list-none leading-10 sm:leading-8 outline-0 min-w-[theme(spacing.18)] max-w-[theme(spacing.52)] w-full [&_svg]:sm:w-3.5 [&_svg]:sm:h-3.5 [&_svg]:sm:mr-1.5 [&_svg]:mr-2 [&_svg]:align-text-bottom',
         disabled
           ? 'cursor-not-allowed text-color-text-disabled [&_svg]:fill-color-text-disabled'
-          : 'text-color-text-primary active:bg-color-bg-4 visited:text-color-brand hover:bg-color-bg-4 focus:bg-color-bg-4 cursor-pointer',
+          : 'text-color-text-primary active:bg-color-bg-4 visited:text-color-brand hover:bg-color-bg-2 focus:bg-color-bg-4 cursor-pointer',
         {
-          'text-color-brand-focus': dataStore.checkedStatus && selected
+          'text-color-brand-focus bg-color-fill-6': dataStore.checkedStatus && selected
         },
-        { '!px-0': dataStore.multiStage }
+        dataStore.multiStage ? '!px-0 mb-1' : '[&:not(:last-of-type)]:mb-1'
       )
     "
     @click.stop="handleClick"
@@ -19,6 +20,7 @@
     :tabindex="disabled ? null : -1"
   >
     <div
+      data-tag="tiny-dropdown-level"
       ref="level"
       :class="[
         'sm:text-xs text-sm',
@@ -38,6 +40,7 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/dropdown-item/mf'
 
 export default defineComponent({
+  emits: ['update:modelValue', 'change', 'closed', 'open', 'opened', 'close', 'confirm', 'reset'],
   props: [...props, 'disabled', 'icon', 'itemData', 'selected', 'label', 'level', 'currentIndex'],
   setup(props, context): any {
     return setup({ props, context, renderless, api })

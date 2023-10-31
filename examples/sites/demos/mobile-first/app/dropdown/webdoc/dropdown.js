@@ -47,7 +47,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>可以通过 `split-button` 属性设置按钮下拉菜单。<p>',
+        'zh-CN': '<p>可以通过 `single-button` 属性设置按钮下拉菜单。<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['button-dropdown.vue']
@@ -160,7 +160,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>当下拉触发元素呈现为按钮组，即`split-button`属性为`true`时，点击左侧按钮的事件回调<p>',
+        'zh-CN': '<p>当下拉触发元素呈现为按钮组，即`single-button`属性为`true`时，点击左侧按钮的事件回调<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['events-button-click.vue']
@@ -200,7 +200,7 @@ export default {
         'zh-CN': '<p>通过添加`max-height`属性可设置下拉最大高度<p>',
         'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['/max-height.vue']
+      codeFiles: ['max-height.vue']
     }
   ],
   apis: []

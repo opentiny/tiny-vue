@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义默认插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/user-contact/slots-usercontact')
+  await page.goto('user-contact#slots-usercontact')
   const partBox = page.locator('.dropdown-part')
   await partBox.hover()
   await page.waitForTimeout(300)

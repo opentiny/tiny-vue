@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('[Input]show-word-limit', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/input/show-word-limit')
+  await page.goto('input#show-word-limit')
 
   const inputComponent = page.locator('.demo-input .tiny-input')
   const input = inputComponent.locator('input')

@@ -35,6 +35,17 @@ export default {
       codeFiles: ['label-align.vue']
     },
     {
+      demoId: 'overflow-title',
+      name: { 'zh-CN': '标签超长显示 tip', 'en-US': 'label too long display tip' },
+      desc: {
+        'zh-CN':
+          '<p>在 form 表单组件上添加<code>overflow-title</code>属性，label 标签超长时鼠标移动到 label 上可显示 tooltip 提示，不支持 label 插槽。</p>\n',
+        'en-US':
+          '<p>Add the <code>overflow-title</code> attribute to the form component. When the label is too long, the tooltip will be displayed by moving the mouse over the label. Label slots are not supported.</p>\n'
+      },
+      codeFiles: ['overflow-title.vue']
+    },
+    {
       demoId: 'form-validation',
       name: { 'zh-CN': '表单校验、移除校验', 'en-US': 'Form Validation/Clear Validation' },
       desc: {
@@ -86,7 +97,7 @@ export default {
       name: { 'zh-CN': '校验提示的形式', 'en-US': 'Disable form' },
       desc: {
         'zh-CN':
-          '<p>通过 <code>validate-type</code> 可设置校验提示信息是以 <code>text</code> 文本显示还是以 <code>tip</code> 提示框的形式显示，默认为 <code>tip</code> 。通过<code>inline-message</code>可以控制文本显示时是否以行内形式展示校验信息。也可直接配置在某一个 <code>&lt;form-item&gt;</code> 上控制某一项的校验提示形式。</p>\n',
+          '<p>通过 <code>validate-type</code> 可设置校验提示信息是以 <code>text</code> 文本显示还是以 <code>tip</code> 提示框的形式显示，默认为 <code>tip</code> 。通过<code>message-type</code>可以控制文本显示时是否以行内形式展示校验信息。也可直接配置在某一个 <code>&lt;form-item&gt;</code> 上控制某一项的校验提示形式。</p>\n',
         'en-US':
           '<p>You can set whether to disable the form by <code>disabled</code>. The default value is <code>false</code>. </p>\n'
       },
@@ -217,10 +228,22 @@ export default {
         {
           name: 'inline-message',
           type: 'boolean',
-          defaultValue: 'false',
+          defaultValue: '',
           desc: {
-            'zh-CN': '是否以行内形式展示校验信息',
-            'en-US': 'Display validation information in line format'
+            'zh-CN': '(推荐使用message-type设置)是否以行内形式展示校验信息',
+            'en-US':
+              '(It is recommended to use message-type setting) Whether to display the verification information inline form'
+          },
+          demoId: 'validate-type'
+        },
+        {
+          name: 'message-type',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '配置文本类型错误类型，可配置行内或者块级，默认为absolute定位;该属性的可选值为 inline | block',
+            'en-US':
+              'Configure the text type error type, which can be configured at the inline or block level. The default is absolute positioning; the optional value of this attribute is inline | block'
           },
           demoId: 'validate-type'
         },
@@ -435,10 +458,22 @@ export default {
         {
           name: 'inline-message',
           type: 'boolean',
-          defaultValue: 'false',
+          defaultValue: '',
           desc: {
-            'zh-CN': '以行内形式展示校验信息;该属性的可选值为 -',
-            'en-US': 'The validation information is displayed in rows. The optional value of this attribute is -'
+            'zh-CN': '(推荐使用message-type设置)是否以行内形式展示校验信息',
+            'en-US':
+              '(It is recommended to use message-type setting) Whether to display the verification information inline form'
+          },
+          demoId: 'validate-type'
+        },
+        {
+          name: 'message-type',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '配置文本类型错误类型，可配置行内或者块级，默认为absolute定位;该属性的可选值为 inline | block',
+            'en-US':
+              'Configure the text type error type, which can be configured at the inline or block level. The default is absolute positioning; the optional value of this attribute is inline | block'
           },
           demoId: 'validate-type'
         },

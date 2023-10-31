@@ -36,12 +36,12 @@
   .@{grid-prefix-cls}-copyed-borders {
     .@{grid-prefix-cls}-border-top,
     .@{grid-prefix-cls}-border-bottom {
-      height: 3px;
+      @apply ~'h-0.5';
     }
 
     .@{grid-prefix-cls}-border-right,
     .@{grid-prefix-cls}-border-left {
-      width: 3px;
+      @apply ~'w-0.5';
     }
 
     & > span {
@@ -83,6 +83,10 @@
       &::-webkit-scrollbar {
         @apply w-2;
         @apply h-2;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        @apply rounded-lg;
       }
     }
   }

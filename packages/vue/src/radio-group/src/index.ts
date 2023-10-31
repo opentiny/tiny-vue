@@ -35,6 +35,10 @@ export const radioGroupProps = {
   showTips: {
     type: Boolean,
     default: false
+  },
+  displayOnly: {
+    type: Boolean,
+    default: false
   }
 }
 

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('gutter栅格间隔', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/layout/gutter')
+  await page.goto('layout#gutter')
   const preview = page.locator('#preview')
   const layout = preview.locator('.tiny-layout > div')
   const div1 = layout.first()

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('[Input]input-icon: blur, focus', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/input/methods')
+  await page.goto('input#methods')
 
   const input = await page.locator('.demo-input input').nth(0)
   const focusBtn = await page.locator('.demo-input button', { hasText: 'focus' })
@@ -18,7 +18,7 @@ test('[Input]input-icon: blur, focus', async ({ page }) => {
 
 test('[Input]input-icon: select', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/input/methods')
+  await page.goto('input#methods')
 
   const input = await page.locator('.demo-input input').nth(1)
   const selectBtn = await page.locator('.demo-input button', { hasText: 'select' })

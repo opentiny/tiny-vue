@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('PopUpload 上传时附带的额外参数', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pop-upload/data')
+  await page.goto('pop-upload#data')
 
   const preview = page.locator('#preview')
   const modalAppearBtn = preview.getByRole('button', { name: '选择文件' })

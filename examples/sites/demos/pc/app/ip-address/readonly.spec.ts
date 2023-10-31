@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('ipAddress 文本只读', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/ip-address/readonly')
+  await page.goto('ip-address#readonly')
 
   const preview = await page.locator('#preview')
   const input1 = preview.getByRole('textbox').nth(0)

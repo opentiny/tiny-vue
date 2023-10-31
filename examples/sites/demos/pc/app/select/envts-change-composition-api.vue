@@ -1,18 +1,20 @@
 <template>
   <tiny-select
-    v-model="value"
-    placeholder="请选择"
-    clearable
-    @change="change"
-    @clear="clear"
-    @blur="blur"
-    @focus="focus"
+      v-model="value"
+      placeholder="请选择"
+      clearable
+      @change="change"
+      @clear="clear"
+      @blur="blur"
+      @focus="focus"
+      @remove-tag="removeTag"
+      @visible-change="visibleChange"
   >
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption, Modal } from '@opentiny/vue'
 
@@ -25,25 +27,38 @@ const options = ref([
 ])
 const value = ref('')
 
-function change() {
+const change = () => {
   Modal.message({
     message: 'changes事件'
   })
 }
 
-function clear() {
+const clear = () => {
   Modal.message({
     message: 'clear事件'
   })
 }
 
-function focus() {
+const focus = () => {
   Modal.message({
     message: 'focus事件'
   })
 }
 
-function blur() {
+const blur = () => {
+  Modal.message({
+    message: 'blur事件'
+  })
+}
+
+const removeTag = () => {
+  Modal.message({
+    message: 'blur事件'
+  })
+}
+
+
+const visibleChange = () => {
   Modal.message({
     message: 'blur事件'
   })

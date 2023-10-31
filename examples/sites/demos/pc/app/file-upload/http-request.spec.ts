@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('覆盖默认请求', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/file-upload/http-request')
+  await page.goto('file-upload#http-request')
 
   const upload = page.getByRole('button', { name: '点击上传' })
   const lists = page.locator('.tiny-upload-list__item')

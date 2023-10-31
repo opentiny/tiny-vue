@@ -579,9 +579,10 @@ export const initUser =
       })
   }
 export const handleBlur =
-  ({ constants, dispatch, state }) =>
-  () => {
+  ({ constants, dispatch, state, emit }) =>
+  (e) => {
     dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.FormBlur, state.user)
+    emit('blur', e)
   }
 
 export const initService = ({ props, service }) => {

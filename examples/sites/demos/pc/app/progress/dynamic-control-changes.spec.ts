@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('动态控制进度条变化', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://localhost:7130/pc/progress/dynamic-control-changes')
+  await page.goto('progress#dynamic-control-changes')
 
   const progress = page.getByRole('progressbar')
 

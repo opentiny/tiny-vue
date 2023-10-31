@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('数值精度', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/numeric/precision')
+  await page.goto('numeric#precision')
 
   const numericInput = page.getByRole('spinbutton')
   await numericInput.fill('2.2222')

@@ -56,5 +56,7 @@ export const renderless = (
 
   provide('showTips', props.showTips)
 
+  provide('size', props.size)
+
   return api
 }

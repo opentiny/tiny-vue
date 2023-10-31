@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/drop-times/basic-usage')
+  await page.goto('drop-times#basic-usage')
 
   const droptimes = page.getByPlaceholder('请选择')
   const option = page.getByRole('listitem').filter({ hasText: '01:00' })

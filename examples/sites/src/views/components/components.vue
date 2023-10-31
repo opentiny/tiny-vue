@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div v-if="templateModeState.isSaas" class="ti-pt20 ti-pl48 ti-mb-36">
+      <span class="cmp-mode-title">文档类型： </span>
+      <tiny-button-group :data="optionsList" v-model="templateModeState.mode"></tiny-button-group>
+    </div>
     <div class="ti-f-r ti-pt48 ti-pl48 ti-pr48">
       <div class="ti-fi-1 ti-w0 ti-rel cmp-container">
         <!-- 一个组件的文档:  描述md + demos + apis -->
@@ -60,7 +64,7 @@
                     <tbody>
                       <tr v-for="row in oneApiArr" :key="row.name">
                         <td>
-                          <a v-if="row.demoId" :href="`#${row.demoId}`">{{ row.name }}</a>
+                          <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
                           <span v-else>{{ row.name }}</span>
                         </td>
                         <td v-if="!key.includes('slots')"><span v-html="row.type"></span></td>
@@ -101,15 +105,17 @@
 <script lang="jsx">
 import { defineComponent, reactive, computed, toRefs, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { marked } from 'marked'
-import { Loading, Anchor } from '@opentiny/vue'
-import { $t, $t2, $clone, $split, fetchDemosFile, useApiMode } from '@/tools'
+import { Loading, Anchor, ButtonGroup } from '@opentiny/vue'
+import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { $t, $t2, $clone, $split, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
 import demo from '@/views/components/demo'
 import { router } from '@/router.js'
+import { getAllComponents } from '@/menus.jsx'
 import { faqMdConfig, staticDemoPath, getWebdocPath } from './cmpConfig'
 
 export default defineComponent({
   name: 'CmpPageVue',
-  components: { Demo: demo, TinyAnchor: Anchor },
+  components: { Demo: demo, TinyAnchor: Anchor, TinyButtonGroup: ButtonGroup },
   directives: {
     loading: Loading.directive
   },
@@ -147,6 +153,7 @@ export default defineComponent({
     })
 
     const { apiModeState } = useApiMode()
+    const { templateModeState, staticPath, optionsList } = useTemplateMode()
 
     // 页面加载/点击api中的链接，根据hash滚动。
     const scrollByHash = (hash) => {
@@ -158,7 +165,8 @@ export default defineComponent({
           })
         } else {
           let scrollTarget
-          try { //  用户打开官网有时候会带一些特殊字符的hash，try catch一下防止js报错
+          try {
+            //  用户打开官网有时候会带一些特殊字符的hash，try catch一下防止js报错
             scrollTarget = document.querySelector(`#${hash}`)
           } catch (err) {
             console.log('querySelector has special character:', err)
@@ -189,18 +197,19 @@ export default defineComponent({
       }
     }
 
-    const loadPage = () => {
+    // saas下切换mode和组价示例都会触发loadPage,需要防抖
+    const loadPage = debounce(templateModeState.isSaas ? 100 : 0, false, () => {
       const lang = $t2('cn', 'en')
       state.cmpId = router.currentRoute.value.params.cmpId
 
       // 将请求合并起来，这样页面更新一次，页面刷新的时机就固定了
       const promiseArr = [
-        fetchDemosFile(`${staticDemoPath}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.${lang}.md`),
-        fetchDemosFile(`${staticDemoPath}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.js`)
+        fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.${lang}.md`),
+        fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.js`)
       ]
       if (faqMdConfig[state.cmpId]) {
         promiseArr.push(
-          fetchDemosFile(`${staticDemoPath}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.faq.${lang}.md`)
+          fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.faq.${lang}.md`)
         )
       }
 
@@ -247,10 +256,17 @@ export default defineComponent({
         // F5刷新加载时，跳到当前示例
         scrollByHash(hash)
       })
-    }
+    })
     const fn = {
       copyText: (text) => {
         navigator.clipboard.writeText(text)
+      },
+      jumpToDemo: (demoId) => {
+        if (demoId.startsWith('chart') || demoId.startsWith('grid')) {
+          router.push(demoId)
+        } else {
+          router.push(`#${demoId}`)
+        }
       },
       handleApiClick: (ev) => {
         if (ev.target.tagName === 'A') {
@@ -298,6 +314,13 @@ export default defineComponent({
       }
     )
 
+    watch(
+      () => templateModeState.mode,
+      () => {
+        loadPage()
+      }
+    )
+
     onMounted(() => {
       loadPage()
       const common = new window.TDCommon(['#footer'], {})
@@ -308,7 +331,9 @@ export default defineComponent({
       ...toRefs(state),
       ...fn,
       $t,
-      apiModeState
+      apiModeState,
+      templateModeState,
+      optionsList
     }
   }
 })
@@ -347,6 +372,11 @@ export default defineComponent({
   }
 }
 
+.cmp-mode-title {
+  font-size: 18px;
+  vertical-align: middle;
+  font-weight: 600;
+}
 .catalog {
   height: calc(100vh - 150px);
   overflow: hidden;

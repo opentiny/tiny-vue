@@ -17,6 +17,7 @@
       { 'tiny-mobile-form--inline': inline },
       { 'label-align': labelAlign }
     ]"
+    @submit.prevent
   >
     <slot></slot>
   </form>
@@ -38,6 +39,7 @@ export default defineComponent({
     'model',
     'rules',
     'inlineMessage',
+    'messageType',
     'statusIcon',
     'labelPosition',
     'labelAlign',
@@ -50,6 +52,7 @@ export default defineComponent({
     'inline',
     'responsiveLayout',
     'validateType',
+    'validateIcon',
     'manual'
   ],
   setup(props, context) {

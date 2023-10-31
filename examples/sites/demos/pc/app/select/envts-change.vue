@@ -7,12 +7,14 @@
     @clear="clear"
     @blur="blur"
     @focus="focus"
+    @remove-tag="removeTag"
+    @visible-change="visibleChange"
   >
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select, Option, Modal } from '@opentiny/vue'
 
 export default {
@@ -51,6 +53,16 @@ export default {
     blur() {
       Modal.message({
         message: 'blur事件'
+      })
+    },
+    removeTag() {
+      Modal.message({
+        message: 'removeTag事件'
+      })
+    },
+    visibleChange() {
+      Modal.message({
+        message: 'visibleChange事件'
       })
     }
   }

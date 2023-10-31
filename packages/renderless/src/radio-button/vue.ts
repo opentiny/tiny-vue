@@ -34,11 +34,11 @@ export const api = ['state', 'handleChange', 'keydownHandle', 'handleFocus', 'ha
 export const renderless = (
   props: IRadioButtonProps,
   { computed, reactive, onMounted, onBeforeUnmount, inject }: ISharedRenderlessParamHooks,
-  { emit, parent, dispatch, constants, nextTick, refs }: IRadioButtonRenderlessParamUtils
+  { parent, dispatch, constants, nextTick, vm }: IRadioButtonRenderlessParamUtils
 ): IRadioButtonApi => {
   const api: IRadioButtonApi = {
     getGroup: getGroup({ constants, parent }),
-    toggleEvents: toggleEvents({ refs, props })
+    toggleEvents: toggleEvents({ vm, props })
   } as IRadioButtonApi
 
   const state: IRadioButtonState = reactive({

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('按钮组change事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button-group/change-event')
+  await page.goto('button-group#change-event')
 
   const preview = page.locator('#preview')
   const btn = preview.locator('.tiny-button-group button')

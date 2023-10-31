@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/credit-card-form/basic-usage')
+  await page.goto('credit-card-form#basic-usage')
   await expect(page.getByText('Card Number')).toBeVisible()
   await expect(page.locator('.credit-card-item__wrapper')).toBeVisible()
   await expect(page.locator('label').filter({ hasText: /^Card Holder$/ })).toBeVisible()

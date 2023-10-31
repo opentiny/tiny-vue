@@ -73,6 +73,23 @@ export default {
 }
 ```
 
+#### 温馨提示：
+
+在 `pnpm` 工程使用该插件时需要在 `package.json` 文件中逐个声明用到的每一个 `TinyVue` 组件依赖，因为 `pnpm` 特点就是用到的依赖就需要提前声明，防止幽灵依赖。
+
+依赖声明可以参考一下配置
+
+```json
+{
+  "dependencies": {
+    "@opentiny/vue-button": "~3.x.x",
+    "@opentiny/vue-alert": "~3.x.x",
+    "@opentiny/vue-input": "~3.x.x",
+    ...
+  }
+}
+```
+
 ### 单组件引入
 
 `TinyVue` 每个组件都可以独立安装、独立使用，即只安装单个组件的依赖并单独引用该组件。

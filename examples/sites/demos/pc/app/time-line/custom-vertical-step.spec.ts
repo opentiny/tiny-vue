@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('自定义竖向时间线', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
 
-  await page.goto('http://localhost:7130/pc/time-line/custom-vertical-step')
+  await page.goto('time-line#custom-vertical-step')
 
   const node = page.locator('#preview .tiny-steps .timeline').first()
   // 自定义左侧内容

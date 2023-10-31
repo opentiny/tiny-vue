@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('触发源', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popover/trigger-reference')
+  await page.goto('popover#trigger-reference')
 
   let button = page.getByRole('button', { name: '触发源' })
   let pop = page.getByRole('tooltip', { name: /这是一段内容/ })

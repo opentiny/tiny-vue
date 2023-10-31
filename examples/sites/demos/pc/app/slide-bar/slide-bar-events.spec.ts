@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('滚动块事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/slide-bar/slide-bar-events')
+  await page.goto('slide-bar#slide-bar-events')
   const preview = page.locator('#preview')
   const slideBarContainer = preview.locator('.tiny-slide-bar__content')
   const slideBarList = slideBarContainer.locator('.tiny-slide-bar__list')

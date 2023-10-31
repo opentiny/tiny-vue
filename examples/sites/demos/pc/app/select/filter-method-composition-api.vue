@@ -11,7 +11,7 @@
   </tiny-select>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption } from '@opentiny/vue'
 
@@ -25,7 +25,7 @@ const options = ref([
 const value = ref('')
 const selectRef = ref()
 
-function filter(value) {
+const filter = (value) => {
   const select = selectRef.value
 
   if (value) {

@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref, onMounted } from 'vue'
 import { Select as TinySelect } from '@opentiny/vue'
 

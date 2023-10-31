@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('单元格格式化', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-edit/tiny-first-menu-format-value')
+  await page.goto('grid-edit#tiny-first-menu-format-value')
   await page.getByText('GFD科技YX公司').first().click()
   const input = page
     .getByRole('row', {

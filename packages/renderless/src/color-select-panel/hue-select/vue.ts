@@ -1,12 +1,7 @@
-import {IColorSelectPanelRef as Ref} from '@/types';
+import { IColorSelectPanelRef as Ref } from '@/types'
 import { draggable } from '../utils/use-drag'
 import Color from '../utils/color'
-import {
-  getThumbTop,
-  resetCursor,
-  updateThumb,
-  updateCursor,
-} from './index'
+import { getThumbTop, resetCursor, updateThumb, updateCursor } from './index'
 
 export const api = ['state', 'cursor', 'wrapper', 'bar', 'thumb']
 export const renderless = (props, context, { emit }) => {
@@ -24,40 +19,35 @@ export const renderless = (props, context, { emit }) => {
     background
   })
   const api = { state, cursor, wrapper, bar, thumb }
-  context.watch(() => props.color, (newColor) => {
-    color.reset(newColor)
-    resetCursor(color.get('s'), color.get('v'), wrapper, cursor, thumb, color, h)
-  })
+  context.watch(
+    () => props.color,
+    (newColor) => {
+      color.reset(newColor)
+      resetCursor(color.get('s'), color.get('v'), wrapper, cursor, thumb, color, h)
+    }
+  )
   context.onMounted(() => {
     const update = {
       thumb: updateThumb(bar, thumb, h, emit),
-      cursor: updateCursor(wrapper,cursor,emit)
-    };
+      cursor: updateCursor(wrapper, cursor, emit)
+    }
     const thumbTop = getThumbTop(wrapper.value, thumb.value, h.value)
     thumb.value.style.top = `${thumbTop}px`
-    resetCursor(
-      color.get('s'),
-      color.get('v'),
-      wrapper,
-      cursor,
-      thumb,
-      color,
-      h
-    )
+    resetCursor(color.get('s'), color.get('v'), wrapper, cursor, thumb, color, h)
     draggable(wrapper.value, {
       drag(event) {
-        update.cursor(color, event as MouseEvent);
+        update.cursor(color, event as MouseEvent)
       },
       start(event) {
-        update.cursor(color, event as MouseEvent);
-      },
+        update.cursor(color, event as MouseEvent)
+      }
     })
     draggable(bar.value, {
       drag(event) {
         update.thumb(event as MouseEvent)
       },
-      start(event){
-        update.thumb(event as MouseEvent);
+      start(event) {
+        update.thumb(event as MouseEvent)
       }
     })
   })

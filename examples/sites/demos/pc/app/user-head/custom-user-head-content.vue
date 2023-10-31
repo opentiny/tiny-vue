@@ -9,14 +9,14 @@
   </tiny-user-head>
 </template>
 
-<script lang="jsx">
+<script>
 import { UserHead } from '@opentiny/vue'
-import { IconMail } from '@opentiny/vue-icon'
+import { iconMail } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyUserHead: UserHead,
-    IconMail: IconMail()
+    IconMail: iconMail()
   }
 }
 </script>

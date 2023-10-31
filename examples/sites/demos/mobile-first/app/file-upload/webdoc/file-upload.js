@@ -276,7 +276,20 @@ export default {
       },
       codeFiles: ['multi-media-native.vue']
     },
-
+    {
+      demoId: 'bubble',
+      name: {
+        'zh-CN': '气泡上传',
+        'en-US': 'Bubble Upload'
+      },
+      desc: {
+        'zh-CN':
+          '<p>在 <code>list-type</code> 为默认值 <code>text</code> 时，设置 <code>mode</code> 为 <code>bubble</code> 时进行气泡模式的上传<p>',
+        'en-US':
+          '<p><p>Upload in bubble mode when <code>list-type</code> is set to the default value <code>text</code> and <code>mode</code> is set to <code>bubble</code>.<p></p>'
+      },
+      codeFiles: ['bubble.vue']
+    },
     {
       demoId: 'drag',
       name: {
@@ -325,6 +338,18 @@ export default {
         'en-US': '<p>button click</p>'
       },
       codeFiles: ['assist-content.vue']
+    },
+    {
+      demoId: 'encrypt-config',
+      name: {
+        'zh-CN': '水印和加密配置',
+        'en-US': 'Watermark and Encryption Configuration'
+      },
+      desc: {
+        'zh-CN': `<p>设置 <code>:encrypt-config: { enabled: true, ... }</code> 开启水印和加密弹窗配置，<code>encrypt-config</code> 默认值为 <code>{ enabled: false, encrypt: false, watermark: '' }</code><p>`,
+        'en-US': `<p>Set the <code>:encrypt-config: {enabled: true, ...}</code> to enable the watermark and encryption pop-up window configuration. <code>encrypt-config</code>The default value is <code>{enabled: false, encrypt: false, watermark: ''}</code><p>`
+      },
+      codeFiles: ['encrypt-config.vue']
     }
   ],
   apis: []

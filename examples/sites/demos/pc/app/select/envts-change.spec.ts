@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('focus', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/envts-change')
+  await page.goto('select#envts-change')
   const model = page.locator('.tiny-modal')
   const input = page.locator('#preview .tiny-input__inner')
 
@@ -11,7 +11,7 @@ test('focus', async ({ page }) => {
 })
 
 test('change', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/envts-change')
+  await page.goto('select#envts-change')
   const model = page.locator('.tiny-modal')
   const input = page.locator('#preview .tiny-input__inner')
 
@@ -23,7 +23,7 @@ test('change', async ({ page }) => {
 })
 
 test('clear', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/envts-change')
+  await page.goto('select#envts-change')
   const model = page.locator('.tiny-modal')
   const input = page.locator('#preview .tiny-input__inner')
 
@@ -37,7 +37,7 @@ test('clear', async ({ page }) => {
 })
 
 test('blur', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/envts-change')
+  await page.goto('select#envts-change')
   const model = page.locator('.tiny-modal')
   const input = page.locator('#preview .tiny-input__inner')
 

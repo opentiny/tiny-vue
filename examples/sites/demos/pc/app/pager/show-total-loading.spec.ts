@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('总条数加载中', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pager/show-total-loading')
+  await page.goto('pager#show-total-loading')
 
   const preview = page.locator('#preview')
   const pager = preview.locator('.tiny-pager')

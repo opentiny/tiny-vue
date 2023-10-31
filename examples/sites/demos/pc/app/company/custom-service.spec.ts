@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义服务', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://localhost:7130/pc/company/custom-service')
+  await page.goto('company#custom-service')
 
   const expand = page.locator('#preview svg').nth(1)
   const clear = page.locator('#preview svg').nth(2)

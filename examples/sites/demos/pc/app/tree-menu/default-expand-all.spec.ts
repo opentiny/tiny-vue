@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('默认展开全部菜单', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree-menu/default-expand-all')
+  await page.goto('tree-menu#default-expand-all')
 
   const treeMenu = page.locator('#preview .tiny-tree-menu')
   await expect(treeMenu.getByTitle('首页')).toBeVisible()

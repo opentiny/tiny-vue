@@ -70,7 +70,6 @@ export default defineComponent({
     'color',
     'backgroundColor',
     'type',
-    'value',
     'modelValue',
     'messageTotal',
     'messageType',

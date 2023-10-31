@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('简化版筛选面板-时间日期菜单', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-filter/filter-simple-date-filter')
+  await page.goto('grid-filter#filter-simple-date-filter')
   await page.getByRole('cell', { name: '开始时间' }).getByRole('img').click()
   await page
     .getByRole('listitem')

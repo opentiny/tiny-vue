@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('消息类型', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/notify/type')
+  await page.goto('notify#type')
   await page.getByRole('button', { name: 'info类型' }).click()
   const info = page.locator('.tiny-notify--info')
   await expect(info).toBeVisible()

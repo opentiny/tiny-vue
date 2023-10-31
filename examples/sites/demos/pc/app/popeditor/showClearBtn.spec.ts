@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('PopEditor 是否可清除', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popeditor/showClearBtn')
+  await page.goto('popeditor#showClearBtn')
 
   const preview = page.locator('#preview')
   const textBox = preview.locator('.tiny-popeditor-readonly')

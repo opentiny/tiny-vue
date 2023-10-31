@@ -128,29 +128,13 @@ export default {
     },
     {
       'demoId': 'size-medium',
-      'name': { 'zh-CN': 'medium', 'en-US': 'small' },
+      'name': { 'zh-CN': '尺寸', 'en-US': 'small' },
       'desc': {
         'zh-CN':
           '<p>通过 <code>size</code> 属性定义输入框尺寸，可选项有 medium、small、mini 。\n通过 <code>options</code> 配置 Select 数据项，使用后不需要再配置 tiny-option。</p>\n',
         'en-US': 'For details, see the following example.'
       },
       'codeFiles': ['size-medium.vue']
-    },
-    {
-      'demoId': 'size-small',
-      'name': { 'zh-CN': 'small', 'en-US': 'mini' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['size-small.vue']
-    },
-    {
-      'demoId': 'size-mini',
-      'name': { 'zh-CN': 'mini', 'en-US': 'Group' },
-      'desc': {
-        'zh-CN': '详细用法参考如下示例',
-        'en-US':
-          '<p> uses <code>tiny-option-group</code> to group options. The <code>label</code> attribute is the group name. Use the <code>disabled</code> attribute to disable all options in the group. </p>\n'
-      },
-      'codeFiles': ['size-mini.vue']
     },
     {
       'demoId': 'option-group',
@@ -177,22 +161,11 @@ export default {
       'name': { 'zh-CN': 'change clear blur focus 事件', 'en-US': 'visible-change remove-tag event' },
       'desc': {
         'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>change：选中值发生变化时触发，回调参数为目前的选中值\nclear：可清空的单选模式下用户点击清空按钮时触发\nblur：当 input 失去焦点时触发\nfocus：当 input 获得焦点时触发</p>\n</div>\n',
+          '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>change：选中值发生变化时触发，回调参数为目前的选中值;</p><p>clear：可清空的单选模式下用户点击清空按钮时触发;</p><p>blur：当 input 失去焦点时触发;</p><p>focus：当 input 获得焦点时触发;</p><p>visible-change：下拉框出现/隐藏时触发，回调参数为：出现则为 true，隐藏则为 false;</p><p>remove-tag：多选模式下移除tag时触发，回调参数为移除的 tag 值。</p>\n</div>\n',
         'en-US':
-          '<div class="tip custom-block"><p class="custom-block-title"> Event Description</p>\n<p>visible-change: Triggered when the drop-down list box is displayed or hidden. The callback parameter is true if the drop-down list box is displayed or false if the drop-down list box is hidden.\nremove-tag: Triggered when the tag is removed in multi-select mode. The callback parameter is the removed tag value </p>\n</div>\n'
+          '<div class="tip custom-block"><p class="custom-block-title"> Event Description</p>\n<p>change:Triggered when the selected value changes.The callback parameter id the current selected value.</p><p>clear:Emptable Radio mode Triggered when the user clicks the Emptable button</p><p>blur:Triggered when you lose focus.\nfocus:Triggered when input goes out of focus.</p><p>visible-change: Triggered when the drop-down list box is displayed or hidden. The callback parameter is true if the drop-down list box is displayed or false if the drop-down list box is hidden.</p><p>remove-tag: Triggered when the tag is removed in multi-select mode. The callback parameter is the removed tag value </p>\n</div>\n'
       },
       'codeFiles': ['envts-change.vue']
-    },
-    {
-      'demoId': 'envts-remove',
-      'name': { 'zh-CN': 'visible-change remove-tag 事件', 'en-US': 'Searchable' },
-      'desc': {
-        'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>visible-change：下拉框出现/隐藏时触发，回调参数为：出现则为 true，隐藏则为 false\nremove-tag：多选模式下移除tag时触发，回调参数为移除的 tag 值</p>\n</div>\n',
-        'en-US':
-          '<p>The <code>filterable</code> property enables the search function. By default, Select finds all options for which the <code>label</code> property contains the entered value. If you want to use other search logic, you can pass in a <code>filter-method</code>. <code>filter-method</code> is a function. It is invoked when the input value changes. The parameter is the current input value. </p>\n'
-      },
-      'codeFiles': ['envts-remove.vue']
     },
     {
       'demoId': 'filter-method',
@@ -484,18 +457,12 @@ export default {
     },
     {
       'demoId': 'nest-checkbox-grid1',
-      'name': { 'zh-CN': 'text-field', 'en-US': 'Nested Grid Enable Remote Search (Single Choice)' },
+      'name': { 'zh-CN': '映射字段', 'en-US': 'Nested Grid Enable Remote Search (Single Choice)' },
       'desc': {
         'zh-CN': '详细用法参考如下示例',
         'en-US':
           '<p>Set <code>render-type</code> to <code>grid</code> nested grid; Set <code>filterable</code> and <code>remote</code> to <code>true</code> and pass in the <code>remote-method</code> method to enable remote search. To automatically search for and display the expansion button, set <code>remote-config</code> </p>\n'
       },
-      'codeFiles': ['nest-checkbox-grid.vue']
-    },
-    {
-      'demoId': 'nest-checkbox-grid2',
-      'name': { 'zh-CN': 'value-field', 'en-US': 'Grid nested with a large amount of data.' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['nest-checkbox-grid.vue']
     },
     {

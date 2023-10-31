@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/credit-card-form/credit-card-form-events')
+  await page.goto('credit-card-form#credit-card-form-events')
   await page.getByRole('button', { name: '提交' }).click()
   await page
     .locator('div')

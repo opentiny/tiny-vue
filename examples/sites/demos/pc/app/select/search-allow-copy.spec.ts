@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('search-allow-copy', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/search-allow-copy')
+  await page.goto('select#search-allow-copy')
   const input = page.locator('#preview .tiny-input__inner')
   const options = page.locator('.tiny-select-dropdown').locator('.tiny-option')
 

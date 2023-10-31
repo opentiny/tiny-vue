@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义分页下拉框的类名', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pager/popper-class')
+  await page.goto('pager#popper-class')
 
   const preview = page.locator('#preview')
   const pager = preview.locator('.tiny-pager')

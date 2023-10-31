@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('获取上传的片的原始尺寸', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/file-upload/image-size')
+  await page.goto('file-upload#image-size')
 
   const upload = page.getByRole('button', { name: '选取文件' })
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])

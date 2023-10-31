@@ -11,6 +11,7 @@ export const uploadProps = {
   },
   autoUpload: Boolean,
   beforeUpload: Function,
+  pasteUpload: Boolean,
   data: Object,
   disabled: Boolean,
   drag: Boolean,

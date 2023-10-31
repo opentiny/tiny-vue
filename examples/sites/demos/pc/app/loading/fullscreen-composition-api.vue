@@ -9,7 +9,7 @@
 
 <script setup lang="jsx">
 import { ref, getCurrentInstance } from 'vue'
-import { Button as TinyButton, Loading as VLoading } from '@opentiny/vue'
+import { Button as TinyButton, Loading } from '@opentiny/vue'
 
 const fullscreenLoading = ref(false)
 const instance = getCurrentInstance()

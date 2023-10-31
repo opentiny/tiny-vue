@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('rate 辅助文字及文字颜色', () => {
   test('辅助文字及文字颜色', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/rate/texts-and-text-color')
+    await page.goto('rate#texts-and-text-color')
 
     const icon = page.locator('.tiny-rate__star > .tiny-svg')
     const text = page.locator('.tiny-rate__text')

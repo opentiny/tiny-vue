@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Rate 自定义未选中图标类名', () => {
   test('自定义未选中图标', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/rate/not-selected-class')
+    await page.goto('rate#not-selected-class')
 
     const icon = page.locator('.tiny-rate__star > .tiny-svg')
     const svg = page.locator('span:nth-child(5) > .tiny-svg > .st0')

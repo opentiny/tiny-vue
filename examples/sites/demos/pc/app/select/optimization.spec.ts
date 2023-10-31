@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('radio-optimization', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/optimization')
+  await page.goto('select#optimization')
   const select = page.locator('#preview .tiny-select').first()
   const input = page.locator('#preview .tiny-input__inner').first()
 
@@ -20,7 +20,7 @@ test('radio-optimization', async ({ page }) => {
 })
 
 test('select-optimization', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/optimization')
+  await page.goto('select#optimization')
   const select = page.locator('#preview .tiny-select').nth(1)
   const tags = page.locator('#preview .tiny-select .tiny-tag')
 

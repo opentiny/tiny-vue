@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义内容', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/fall-menu/custom-menuitem')
+  await page.goto('fall-menu#custom-menuitem')
   const preview = page.locator('#preview')
   // 子菜单列表容器
   const fallMenuBox = preview.locator('.tiny-fall-menu__box')

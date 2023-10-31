@@ -6,7 +6,7 @@ test.describe('PopUpload 上传的文件字段名和发送 cookie 凭证信息',
 
   test('PopUpload 上传的文件字段名', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/pop-upload/upload-name1')
+    await page.goto('pop-upload#upload-name1')
 
     const preview = page.locator('#preview')
     const modalAppearBtn = preview.getByRole('button', { name: '选择文件' })
@@ -26,7 +26,7 @@ test.describe('PopUpload 上传的文件字段名和发送 cookie 凭证信息',
 
   test(' 发送 cookie 凭证信息', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/pop-upload/upload-name')
+    await page.goto('pop-upload#upload-name')
 
     const preview = page.locator('#preview')
     const modalAppearBtn = preview.getByRole('button', { name: '选择文件' })

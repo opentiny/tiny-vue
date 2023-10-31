@@ -23,15 +23,15 @@
           <div v-html="state.currDemo?.desc['zh-CN']"></div>
         </div>
         <!-- 预览 -->
-        <div class="rel px20">
+        <div class="rel px20 minh200" style="transform: translateX(0)">
           <component :is="state.comp"></component>
         </div>
       </div>
       <!-- API表格 -->
-      <div v-if="state.currApi.length" class="my20 f24 fw-bold">组件API</div>
+      <div v-if="state.currApi.length" class="mt20 f24 fw-bold">组件API</div>
 
       <div v-for="(oneGroup, idx) in state.currApi" :key="idx">
-        <div class="f-r f-pos-start fw-bold">
+        <div class="mt20 f-r f-pos-start fw-bold">
           <div :id="oneGroup.name" class="f18">
             {{ oneGroup.name }}
           </div>

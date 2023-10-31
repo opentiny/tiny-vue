@@ -66,6 +66,7 @@ export const dropdownMenuProps = {
     type: [Number, String],
     default: '400'
   },
+  // tiny新增
   options: {
     type: Array,
     default: () => []

@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('自定义数据映射规则', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
 
-  await page.goto('http://localhost:7130/pc/time-line/different-data')
+  await page.goto('time-line#different-data')
 
   const timeline = page.locator('#preview .tiny-steps')
   const nodes = timeline.locator('.timeline')

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('尝试拖拽左侧某一项至右侧面板', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/drop-config')
+  await page.goto('transfer#drop-config')
   const preview = page.locator('#preview')
   const transferPanels = preview.locator('.tiny-transfer-panel')
   const leftPanel = transferPanels.first()
@@ -18,7 +18,7 @@ test('尝试拖拽左侧某一项至右侧面板', async ({ page }) => {
 
 test('尝试拖拽右侧某一项至左侧面板', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/drop-config')
+  await page.goto('transfer#drop-config')
   const preview = page.locator('#preview')
   const transferPanels = preview.locator('.tiny-transfer-panel')
   const leftPanel = transferPanels.first()

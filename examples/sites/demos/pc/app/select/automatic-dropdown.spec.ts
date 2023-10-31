@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('automatic-dropdown', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/automatic-dropdown')
+  await page.goto('select#automatic-dropdown')
   const input = page.locator('#preview .tiny-input__inner')
 
   await page.getByRole('button', { name: '点击获取焦点' }).click()

@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('手动重置列操作', () => {
   test('重置列宽', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/grid-customized/custom-resetResizable')
+    await page.goto('grid-customized#custom-resetResizable')
     const draggerDom = page.getByRole('cell', { name: '名称' }).locator('.tiny-grid-resizable')
     const thDom = page.getByRole('cell', { name: '名称' })
     // 获取初始列宽
@@ -30,7 +30,7 @@ test.describe('手动重置列操作', () => {
 
   test('重置列隐藏', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/grid-customized/custom-resetResizable')
+    await page.goto('grid-customized#custom-resetResizable')
     await page.locator('.tiny-grid-custom__setting-btn').click()
     await page.getByRole('row', { name: '名称 显示 未冻结' }).getByTitle('显示').getByRole('img').click()
     await page.getByRole('button', { name: '确定' }).click()

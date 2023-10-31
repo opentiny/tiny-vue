@@ -8,7 +8,7 @@ export const handelIconClick =
   }
 
 export const getSliceNum =
-  ({ props }) =>
+  ({ state }) =>
   () => {
     const sliceNumMap = {
       'mini': 1,
@@ -16,11 +16,11 @@ export const getSliceNum =
       'medium': 3,
       'large': 5
     }
-    return sliceNumMap[props.size]
+    return sliceNumMap[state.size]
   }
 
 export const getIconNum =
-  ({ props }) =>
+  ({ state }) =>
   () => {
     const iconNumMap = {
       'mini': 2,
@@ -28,7 +28,7 @@ export const getIconNum =
       'medium': 4,
       'large': 6
     }
-    return iconNumMap[props.size]
+    return iconNumMap[state.size]
   }
 
 export const handleChange =

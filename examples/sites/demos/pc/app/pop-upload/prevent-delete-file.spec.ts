@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('PopUpload 阻止删除文件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pop-upload/prevent-delete-file')
+  await page.goto('pop-upload#prevent-delete-file')
 
   const preview = page.locator('#preview')
   const modalAppearBtn = preview.getByRole('button', { name: '选择文件' })

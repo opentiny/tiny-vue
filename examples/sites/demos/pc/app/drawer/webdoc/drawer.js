@@ -27,13 +27,13 @@ export default {
     {
       'demoId': 'dragable',
       'name': { 'zh-CN': '宽度拖拽功能', 'en-US': '' },
-      'desc': { 'zh-CN': '<p>添加 <code>dragable</code> 属性开启抽屉宽度拖拽功能，默认值为 `false`</p>', 'en-US': '' },
+      'desc': { 'zh-CN': '<p>添加 <code>dragable</code> 属性开启抽屉宽度拖拽功能，默认值为 false</p>', 'en-US': '' },
       'codeFiles': ['dragable.vue']
     },
     {
       'demoId': 'mask',
       'name': { 'zh-CN': '遮罩层显示隐藏', 'en-US': '' },
-      'desc': { 'zh-CN': '<p>添加 <code>mask</code> 属性可以控制遮罩层显示隐藏，默认值为 `true` 。</p>', 'en-US': '' },
+      'desc': { 'zh-CN': '<p>添加 <code>mask</code> 属性可以控制遮罩层显示隐藏，默认值为 true 。</p>', 'en-US': '' },
       'codeFiles': ['mask.vue']
     },
     {
@@ -41,7 +41,7 @@ export default {
       'name': { 'zh-CN': '点击遮罩层关闭抽屉', 'en-US': '' },
       'desc': {
         'zh-CN':
-          '<p>默认弹窗打开后，可以单击遮罩层关闭弹窗，设置 <code>mask-closable</code> 为 `false` 后将禁用该功能，默认值为 `true` 。</p>',
+          '<p>默认弹窗打开后，可以单击遮罩层关闭弹窗，设置 <code>mask-closable</code> 为 false 后将禁用该功能，默认值为 true 。</p>',
         'en-US': ''
       },
       'codeFiles': ['mask-closable.vue']

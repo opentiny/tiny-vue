@@ -283,6 +283,13 @@ const getMinorVersion = (version) => {
   return `~${semver.major(version)}.${semver.minor(version)}.0`
 }
 
+// 支持 alpha / beta 等版本号
+export const getPatchVersion = (version) => {
+  const versionItems = version.split('.')
+  versionItems.pop()
+  return `~${versionItems.join('.')}.0`
+}
+
 /**
  * 获取组件的版本号
  * @param  {String} name 文件名|字段名

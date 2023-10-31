@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('隐藏箭头', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popover/hidden-arrow')
+  await page.goto('popover#hidden-arrow')
 
   let button1 = page.getByRole('button', { name: '有提示箭头' })
   let button2 = page.getByRole('button', { name: '无提示箭头' })

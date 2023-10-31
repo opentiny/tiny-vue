@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('节点过滤', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/filter-node')
+  await page.goto('tree#filter-node')
 
   await page.getByPlaceholder('输入关键字进行过滤').first().click()
   await page.getByPlaceholder('输入关键字进行过滤').first().locator('input').fill('1')
