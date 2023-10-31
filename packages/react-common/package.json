@@ -14,6 +14,7 @@
     "@opentiny/vue-theme": "workspace:~",
     "classnames": "^2.3.2",
     "react": "18.2.0",
-    "tailwind-merge": "^1.8.0"
+    "tailwind-merge": "^1.8.0",
+    "@vue/runtime-core": "^3.3.7"
   }
 }
