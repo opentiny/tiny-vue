@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义关闭图标，控制警告的再次显示或隐藏', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/alert/custom-close')
+  await page.goto('alert#custom-close')
 
   const alertSuccess = page.locator('.tiny-alert--success')
   const defaultClose = alertSuccess.locator('.tiny-alert__close')
@@ -28,7 +28,7 @@ test('自定义关闭图标，控制警告的再次显示或隐藏', async ({ pa
 
 test('关闭按钮事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/alert/custom-close')
+  await page.goto('alert#custom-close')
 
   const alertWarning = page.locator('.tiny-alert')
   const close = alertWarning.locator('.tiny-alert__close')
@@ -41,7 +41,7 @@ test('关闭按钮事件', async ({ page }) => {
 
 test('自定义关闭按钮文本', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/alert/custom-close')
+  await page.goto('alert#custom-close')
 
   const alertError = page.locator('.tiny-alert')
   const closeText = alertError.locator('.tiny-alert__close')
@@ -53,7 +53,7 @@ test('自定义关闭按钮文本', async ({ page }) => {
 
 test('不可关闭警告', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/alert/custom-close')
+  await page.goto('alert#custom-close')
 
   // 关闭按钮不存在
   const noClosable = page.locator('.tiny-alert').last()

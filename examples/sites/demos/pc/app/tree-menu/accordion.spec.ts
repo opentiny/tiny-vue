@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('手风琴', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree-menu/accordion')
+  await page.goto('tree-menu#accordion')
 
   const treeMenu = page.locator('#preview .tiny-tree-menu')
   await treeMenu.getByTitle('指南').click()

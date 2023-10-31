@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('菜单可折叠', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree-menu/menu-collapsible')
+  await page.goto('tree-menu#menu-collapsible')
 
   const preview = page.locator('#preview')
   const treeMenu = preview.locator('.tiny-tree-menu')

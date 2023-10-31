@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('remove-tag', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/envts-remove')
+  await page.goto('select#envts-remove')
   const model = page.locator('.tiny-modal')
   const select = page.locator('#preview .tiny-select')
   const tags = page.locator('#preview .tiny-select .tiny-tag')
@@ -15,7 +15,7 @@ test('remove-tag', async ({ page }) => {
 })
 
 test('visible-change', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/envts-remove')
+  await page.goto('select#envts-remove')
   const model = page.locator('.tiny-modal')
   const input = page.locator('#preview .tiny-input__inner')
   const select = page.locator('#preview .tiny-select')

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('logout-custom-service', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/logout/custom-service')
+  await page.goto('logout#custom-service')
   const button = page.locator('.tiny-logout')
   const status = page.locator('.status')
 

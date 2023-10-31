@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('moving 事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/split/moving-event')
+  await page.goto('split#moving-event')
   const centerBtn = page.locator('.tiny-split-trigger')
   const { x, y } = await centerBtn.boundingBox()
   // 鼠标按下

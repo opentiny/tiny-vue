@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('节点点击事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/time-line/vertical-step-reverse')
+  await page.goto('time-line#vertical-step-reverse')
 
   const node1 = page.locator('#preview .tiny-steps .timeline').first()
   const node2 = page.locator('#preview .tiny-steps .timeline').nth(1)

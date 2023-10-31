@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试按钮尺寸', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button-group/size')
+  await page.goto('button-group#size')
 
   const miniHeight = '24px'
   const smallHeight = '36px'

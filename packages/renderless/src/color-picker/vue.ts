@@ -15,12 +15,8 @@ export const api = [
   'alpha'
 ]
 
-export const renderless = (
-  props,
-  context,
-  { emit }
-) => {
-  const { modelValue, visible, predefine, size, history } = context.toRefs(props)
+export const renderless = (props, context, { emit }) => {
+  const { modelValue, visible } = context.toRefs(props)
   const hex = context.ref(modelValue.value ?? 'transparent')
   const res = context.ref(modelValue.value ?? 'transparent')
   const triggerBg = context.ref(modelValue.value ?? 'transparent')
@@ -62,6 +58,7 @@ export const renderless = (
   context.watch(visible, (visible) => {
     isShow.value = visible
   })
+
   const { onHueUpdate, onSVUpdate } = onHSVUpdate(color, res, hex)
   const { update } = onAlphaUpdate(color, res)
   const api = {
@@ -72,8 +69,7 @@ export const renderless = (
     onConfirm: onConfirm(hex, triggerBg, res, emit, isShow),
     onCancel: onCancel(res, triggerBg, emit, isShow, hex, color),
     onAlphaUpdate: update,
-    cursor,
-    alpha: props.alpha
+    cursor
   }
   return api
 }

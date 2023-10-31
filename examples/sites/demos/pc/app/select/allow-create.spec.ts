@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('click', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/allow-create')
+  await page.goto('select#allow-create')
   const input = page.locator('#preview .tiny-input__inner')
   await input.click()
   await input.fill('测试allow-create')
@@ -16,7 +16,7 @@ test('click', async ({ page }) => {
 })
 
 test('press-enter', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/allow-create')
+  await page.goto('select#allow-create')
   const input = page.locator('#preview .tiny-input__inner')
   await input.click()
 

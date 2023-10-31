@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('照片墙', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/file-upload/picture-card')
+  await page.goto('file-upload#picture-card')
 
   const upload = page.locator('.tiny-upload')
   const lists = page.locator('.tiny-upload-list__item')

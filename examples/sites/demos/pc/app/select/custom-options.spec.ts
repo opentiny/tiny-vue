@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('option-slot', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/custom-options')
+  await page.goto('select#custom-options')
   const input = page.locator('#preview .tiny-input__inner')
 
   await input.click()

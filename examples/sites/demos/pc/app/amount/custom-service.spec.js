@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义服务', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/amount/custom-service')
+  await page.goto('amount#custom-service')
   await page.getByRole('img').filter({ hasText: '>' }).locator('path').click()
   await page
     .locator('div')

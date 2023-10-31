@@ -32,6 +32,15 @@ export default {
       'codeFiles': ['size.vue']
     },
     {
+      'demoId': 'disabled',
+      'name': { 'zh-CN': '禁用', 'en-US': 'Set Disabled' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>disabled</code> 设置组件禁用默认值为 false 。</p>\n',
+        'en-US': '<p>Use <code>disabled</code> to disable the component. The default value is false. </p>\n'
+      },
+      'codeFiles': ['disabled.vue']
+    },
+    {
       'demoId': 'area-events',
       'name': { 'zh-CN': '事件', 'en-US': 'Event' },
       'desc': {
@@ -41,15 +50,6 @@ export default {
           'The <code>change-region</code> event is triggered when the value of the Region drop-down list box changes. The <code>change-rep</code> event is triggered when the value of the Rep drop-down list box changes. The <code>change-office</code> event is triggered when the value of the Office drop-down list box changes. </p>\n'
       },
       'codeFiles': ['area-events.vue']
-    },
-    {
-      'demoId': 'disabled',
-      'name': { 'zh-CN': '设置组件大小', 'en-US': 'Set Component Size' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>disabled</code> 设置组件禁用默认值为 false 。</p>\n',
-        'en-US': '<p>Use <code>disabled</code> to disable the component. The default value is false. </p>\n'
-      },
-      'codeFiles': ['disabled.vue']
     }
   ],
   apis: [

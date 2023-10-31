@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('阻止删除文件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/file-upload/prevent-delete-file')
+  await page.goto('file-upload#prevent-delete-file')
 
   const lists = page.locator('.tiny-upload-list__item')
   const close = page.getByTitle('删除文件').locator('svg')

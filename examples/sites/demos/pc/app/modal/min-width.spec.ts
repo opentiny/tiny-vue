@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('调整窗口大小后窗口显示的最小宽度', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/modal/min-width')
+  await page.goto('modal#min-width')
 
   await page.getByRole('button', { name: '提示框最小宽度为700' }).click()
   const modal = page.locator('.tiny-modal__box')

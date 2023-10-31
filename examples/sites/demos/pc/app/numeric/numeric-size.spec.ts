@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('尺寸', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/numeric/numeric-size')
+  await page.goto('numeric#numeric-size')
 
   // large尺寸
   const largeNumeric = page.locator('#preview .tiny-numeric').first()

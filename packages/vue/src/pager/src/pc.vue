@@ -347,12 +347,15 @@ export default defineComponent({
         }
       },
       watch: {
-        '$parent.internalCurrentPage'(currentPage) {
-          const value = String(currentPage)
+        '$parent.internalCurrentPage': {
+          handler(currentPage) {
+            const value = String(currentPage)
 
-          if (this.value !== value) {
-            this.value = value
-          }
+            if (this.value !== value) {
+              this.value = value
+            }
+          },
+          immediate: true
         }
       },
       methods: {
@@ -491,7 +494,7 @@ export default defineComponent({
             </div>
           )
           const totalTemplate = (
-            <div class={['tiny-pager__group', this.$parent.disabled ? 'is-disabled' : '']}>
+            <div class={['tiny-pager__group tiny-pager__pull-left', this.$parent.disabled ? 'is-disabled' : '']}>
               {' '}
               <div class={['tiny-pager__total', this.$parent.size ? 'tiny-pager--' + this.$parent.size : '']}>
                 <span>{t('ui.page.total')}：</span>

@@ -2,5 +2,5 @@ import Config from '@opentiny-internal/playwright-config'
 
 export default Config({
   testDir: '../sites/demos',
-  port: 7130
+  baseURL: 'http://localhost:7130/pc/'
 })

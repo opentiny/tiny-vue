@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('test', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/font/chinese-font-set')
+  await page.goto('font#chinese-font-set')
   await page.getByText('英文字体').click()
   await page.getByRole('heading', { name: 'User Experience Design' }).click()
   await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/h1')).toHaveText('User Experience Design')

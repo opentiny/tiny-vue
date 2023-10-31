@@ -61,7 +61,7 @@ export default {
         'zh-CN': '<p>可通过 `icon-classes` 自定义 3 分段图标样式。<p>',
         'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['custom-3-threshold-icon.vue.vue']
+      codeFiles: ['custom-3-threshold-icon.vue']
     },
     {
       demoId: 'texts-and-text-color',
@@ -135,18 +135,6 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['allow-half.vue']
-    },
-    {
-      demoId: 'enumeration',
-      name: {
-        'zh-CN': '枚举单选',
-        'en-US': 'events'
-      },
-      desc: {
-        'zh-CN': '<p>设置过滤类型<p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['enumeration.vue']
     },
     {
       demoId: 'dynamic-disable',

@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Rate 自定义禁用时未选中图标类名', () => {
   test('禁用时未选中图标类名', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/rate/disabled-not-selected-class')
+    await page.goto('rate#disabled-not-selected-class')
 
     // 禁用
     const icon = page.locator('.tiny-rate__star > .tiny-svg')

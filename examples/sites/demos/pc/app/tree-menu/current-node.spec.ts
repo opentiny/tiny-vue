@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('设置当前节点', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree-menu/current-node')
+  await page.goto('tree-menu#current-node')
 
   const treeMenu = page.locator('#preview .tiny-tree-menu')
   const currentCls = /is-current/

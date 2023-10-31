@@ -54,14 +54,14 @@ export const useFormatSearchTypes = ({ computed, props, reactive, toRefs, watch 
   }
 
   const state = reactive({
-    searchValue: {},
+    searchValue: props.typeValue,
     types: computed(() => api.formatSearchTypes(props.searchTypes))
   })
 
   watch(
-    () => props.searchTypes,
+    () => props.typeValue,
     () => {
-      state.searchValue = api.setDefaultType(props.searchTypes)
+      state.searchValue = api.setDefaultType(props.searchTypes, props.typeValue)
     },
     { immediate: true }
   )

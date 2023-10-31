@@ -44,7 +44,8 @@ import {
   unmounted,
   initService,
   dispatchDisplayedValue,
-  getDisplayedValue
+  getDisplayedValue,
+  getDisplayOnlyText
 } from './index'
 
 export const api = [
@@ -83,7 +84,8 @@ const initState = ({ reactive, computed, props, api, $service, parent }: INumeri
 
     format: computed(() => getUnitPrecision({ service: $service, props })),
 
-    isDisplayOnly: computed(() => props.displayOnly || (parent.tinyForm || {}).displayOnly)
+    isDisplayOnly: computed(() => props.displayOnly || (parent.tinyForm || {}).displayOnly),
+    displayOnlyText: computed(() => api.getDisplayOnlyText())
   })
   return state
 }
@@ -96,10 +98,11 @@ const initApi = ({
   refs,
   emit,
   dispatch,
-  constants
+  constants,
+  nextTick
 }: Pick<
   INumericRenderlessParams,
-  'api' | 'props' | 'state' | 'parent' | 'refs' | 'emit' | 'dispatch' | 'constants'
+  'api' | 'props' | 'state' | 'parent' | 'refs' | 'emit' | 'dispatch' | 'constants' | 'nextTick'
 >): void => {
   Object.assign(api, {
     state,
@@ -122,10 +125,11 @@ const initApi = ({
     handleInputChange: handleInputChange({ api }),
     mouseEvent: mouseEvent({ api, props, state }),
     handleBlur: handleBlur({ constants, dispatch, emit, props, state, api }),
-    watchValue: watchValue({ api, state }),
+    watchValue: watchValue({ api, state, nextTick }),
     setCurrentValue: setCurrentValue({ api, constants, dispatch, emit, props, state }),
     dispatchDisplayedValue: dispatchDisplayedValue({ api, state, dispatch }),
-    getDisplayedValue: getDisplayedValue({ state, props })
+    getDisplayedValue: getDisplayedValue({ state, props }),
+    getDisplayOnlyText: getDisplayOnlyText({ parent, props, state })
   })
 
   api.getDecimal(0)
@@ -145,7 +149,7 @@ const initWatch = ({
 export const renderless = (
   props: INumericProps,
   { computed, onMounted, onUpdated, onUnmounted, reactive, watch, inject }: ISharedRenderlessParamHooks,
-  { parent, emit, refs, constants, dispatch, service }: INumericRenderlessParamUtils
+  { parent, emit, refs, constants, dispatch, service, nextTick }: INumericRenderlessParamUtils
 ): INumericApi => {
   const api = {} as INumericApi
   const $service = initService(service)
@@ -153,7 +157,7 @@ export const renderless = (
 
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
-  initApi({ api, props, state, parent, refs, emit, dispatch, constants })
+  initApi({ api, props, state, parent, refs, emit, dispatch, constants, nextTick })
   initWatch({ state, watch, props, api })
 
   onMounted(() => {

@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('平铺模式下的props和事件', () => {
   test('视图模式 viewType', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/tree/plain-mode')
+    await page.goto('tree#plain-mode')
 
     const tree = page.locator('#preview .tiny-tree')
     const plainNodes = tree.locator('.tiny-tree__plain-node')
@@ -18,7 +18,7 @@ test.describe('平铺模式下的props和事件', () => {
 
   test('节点勾选事件 check-plain', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/tree/plain-mode')
+    await page.goto('tree#plain-mode')
 
     const tree = page.locator('#preview .tiny-tree')
     const plainNode = tree.locator('.tiny-tree__plain-node').first()
@@ -35,7 +35,7 @@ test.describe('平铺模式下的props和事件', () => {
 
   test('点击定位图标事件 leave-plain-view', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/tree/plain-mode')
+    await page.goto('tree#plain-mode')
 
     const tree = page.locator('#preview .tiny-tree')
     const plainNode = tree.locator('.tiny-tree__plain-node').first()

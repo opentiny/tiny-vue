@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('手动取消上传请求', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/file-upload/abort-quest')
+  await page.goto('file-upload#abort-quest')
 
   const upload = page.locator('.tiny-upload')
   const lists = page.locator('.tiny-upload-list__item')

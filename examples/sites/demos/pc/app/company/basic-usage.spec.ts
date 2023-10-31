@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://localhost:7130/pc/company/basic-usage')
+  await page.goto('company#basic-usage')
 
   const select = page.getByPlaceholder('请选择')
   const dropdown = page.locator('.tiny-select-dropdown.tiny-popper')

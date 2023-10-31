@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('页码发生变化时触发事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pager/pager-events-current-change')
+  await page.goto('pager#pager-events-current-change')
 
   const preview = page.locator('#preview')
   const pager = preview.locator('.tiny-pager')

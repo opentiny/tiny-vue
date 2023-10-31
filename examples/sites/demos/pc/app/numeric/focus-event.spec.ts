@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('聚焦事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/numeric/focus-event')
+  await page.goto('numeric#focus-event')
 
   const numeric = page.getByRole('spinbutton')
   await numeric.focus()

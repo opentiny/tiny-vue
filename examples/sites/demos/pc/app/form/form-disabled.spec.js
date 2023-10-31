@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试表单禁用', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/form/form-disabled')
+  await page.goto('form#form-disabled')
 
   const preview = page.locator('#preview')
   const form = preview.locator('.tiny-form')

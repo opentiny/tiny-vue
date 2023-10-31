@@ -10,10 +10,15 @@
  *
  -->
 <template>
-  <div class="tiny-slider__wrapper" style="position: relative">
+  <div class="tiny-slider-container" :class="[!vertical && 'tiny-slider-container__horizontal']">
     <div
+      ref="slider"
       role="tiny-slider"
-      :class="['tiny-slider', { 'tiny-slider__vertical': vertical, disabled: state.disabled }]"
+      :class="[
+        'tiny-slider',
+        { 'tiny-slider__vertical': vertical, disabled: state.disabled },
+        !showInput || state.isDouble ? (state.showAutoWidth ? 'show-auto-width' : '') : ''
+      ]"
       :style="{ height: vertical ? height : '' }"
       @mousedown="bindMouseDown"
     >
@@ -62,7 +67,7 @@
           ></path>
         </svg>
       </div>
-      <div class="tiny-slider__tips" v-show="showTip && state.showTip" :style="state.tipStyle">
+      <div ref="sliderTip" class="tiny-slider__tips" v-show="showTip && state.showTip" :style="state.tipStyle">
         {{ state.tipValue }}
       </div>
     </div>

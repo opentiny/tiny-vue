@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试智能出现', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tooltip/visible-show')
+  await page.goto('tooltip#visible-show')
 
   const button = page.getByRole('button', { name: '切换visible' })
   const textLong = page.getByText('我的内容很长很长。。。。')

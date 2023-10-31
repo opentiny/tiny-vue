@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('滚动容器', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/anchor/set-container')
+  await page.goto('anchor#set-container')
 
   const anchor = page.locator('.tiny-anchor')
   const container = page.locator('#container')

@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('测试Tooltip的是否能出现', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
 
-  await page.goto('http://localhost:7130/pc/tooltip/basic-usage')
+  await page.goto('tooltip#basic-usage')
   let button = page.getByRole('button', { name: '上左' })
   let tooltip = page.getByRole('tooltip', { name: 'Top Left 提示文字' })
 
@@ -14,7 +14,7 @@ test('测试Tooltip的是否能出现', async ({ page }) => {
 
 test('测试Tooltip的位置是否正确', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tooltip/basic-usage')
+  await page.goto('tooltip#basic-usage')
 
   let button = page.getByRole('button', { name: '上右' })
   let tooltip = page.getByRole('tooltip', { name: 'Top Right 提示文字' })

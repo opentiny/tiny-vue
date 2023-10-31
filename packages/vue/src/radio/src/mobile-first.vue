@@ -1,5 +1,6 @@
 <template>
   <label
+    data-tag="tiny-radio"
     :class="
       m(
         gcls('radio-default'),
@@ -21,6 +22,7 @@
     v-bind="a($attrs, ['class', 'style', 'onClick'], true)"
   >
     <span
+      data-tag="tiny-radio-content"
       :class="
         m(
           gcls('radio-label-common'),
@@ -29,25 +31,12 @@
         )
       "
     >
-      <span :class="m(gcls('radio-label-circle'))" :tabindex="tabindex">
-        <icon-radioselected
-          v-if="state.model === label"
-          :class="
-            m(
-              gcls('pc-show'),
-              gcls({ 'radio-hover-selected': !state.isDisabled }),
-              gcls({ 'radio-active-selected': !state.isDisabled }),
-              gcls('icon-radioselected-common'),
-              gcls({ 'icon-radioselected-disabled': state.isDisabled }),
-              gcls({ 'icon-radioselected-default': !state.isDisabled }),
-              gcls(state.size === 'medium' ? 'icon-radioselected-size-medium' : 'icon-radioselected-size-common')
-            )
-          "
-        />
+      <span data-tag="tiny-radio-icon" :class="m(gcls('radio-label-circle'))" :tabindex="tabindex">
+        <!-- pc screen -->
         <icon-radio
-          v-else
           :class="
             m(
+              gcls('icon-common'),
               gcls('pc-show'),
               gcls({ 'radio-active': !state.isDisabled }),
               gcls({ 'radio-hover': !state.isDisabled }),
@@ -58,28 +47,45 @@
             )
           "
         />
-        <icon-mobileRadioSelected
-          v-if="state.model === label"
+        <icon-radioselected
           :class="
             m(
-              gcls('mobile-show'),
+              gcls('icon-common'),
+              gcls('pc-show'),
+              state.model === label ? gcls('icon-show') : gcls('icon-hidden'),
+              gcls({ 'radio-hover-selected': !state.isDisabled }),
+              gcls({ 'radio-active-selected': !state.isDisabled }),
               gcls('icon-radioselected-common'),
-              gcls({ 'mobile-icon-radioselected-disabled': state.isDisabled }),
-              gcls({ 'mobile-icon-radioselected-default': !state.isDisabled })
+              gcls({ 'icon-radioselected-disabled': state.isDisabled }),
+              gcls({ 'icon-radioselected-default': !state.isDisabled }),
+              gcls(state.size === 'medium' ? 'icon-radioselected-size-medium' : 'icon-radioselected-size-common')
             )
           "
-        ></icon-mobileRadioSelected>
-        <icon-mobileRadio
-          v-else
+        />
+        <!-- mobile screen -->
+        <icon-mobile-radio
           :class="
             m(
+              gcls('icon-common'),
               gcls('mobile-show'),
               gcls({ 'mobile-icon-radio-disabled': state.isDisabled }),
               gcls({ 'mobile-icon-radio-default': !state.isDisabled }),
               gcls('icon-radio-common')
             )
           "
-        ></icon-mobileRadio>
+        ></icon-mobile-radio>
+        <icon-mobile-radio-selected
+          :class="
+            m(
+              gcls('icon-common'),
+              gcls('mobile-show'),
+              state.model === label ? gcls('icon-show') : gcls('icon-hidden'),
+              gcls('icon-radioselected-common'),
+              gcls({ 'mobile-icon-radioselected-disabled': state.isDisabled }),
+              gcls({ 'mobile-icon-radioselected-default': !state.isDisabled })
+            )
+          "
+        ></icon-mobile-radio-selected>
       </span>
       <input
         ref="radio"
@@ -97,6 +103,7 @@
       />
     </span>
     <span
+      data-tag="tiny-radio-label"
       ref="label"
       :class="
         m(

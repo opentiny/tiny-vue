@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试自定义动画显示正常', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tooltip/custom-transition')
+  await page.goto('tooltip#custom-transition')
 
   const button = page.getByRole('button', { name: '定义渐变动画' })
   const tooltip = page.getByRole('tooltip', { name: '定义渐变动画', includeHidden: true })

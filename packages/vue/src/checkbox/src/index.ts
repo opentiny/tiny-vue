@@ -51,6 +51,7 @@ export const checkboxProps = {
   border: Boolean,
   size: String,
   text: String,
+  customClass: [String, Object, Array],
   validateEvent: {
     type: Boolean,
     default: true

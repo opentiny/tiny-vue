@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('右侧显示', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tabs/position-right')
+  await page.goto('tabs#position-right')
 
   const tabs = page.locator('.tiny-tabs')
   const tabsList = page.locator('.tiny-tabs > div')

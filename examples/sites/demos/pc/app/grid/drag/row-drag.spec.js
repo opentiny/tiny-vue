@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('行拖拽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-drag/drag-row-drag')
+  await page.goto('grid-drag#drag-row-drag')
   const draggerDom = page.getByRole('cell', { name: 'RFV有限责任公司' })
   // 获取拖拽元素位置
   const { x, y } = await draggerDom.boundingBox()

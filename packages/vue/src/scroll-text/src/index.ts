@@ -44,6 +44,10 @@ export default defineComponent({
     hoverStop: {
       type: Boolean,
       default: true
+    },
+    widthAdapt: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

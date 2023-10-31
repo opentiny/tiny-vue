@@ -57,7 +57,7 @@ export const modalProps = {
   marginSize: { type: [Number, String], default: 10 },
   mask: { type: Boolean, default: () => true },
   maskClosable: Boolean,
-  message: [String, Function, Object],
+  message: [String, Function],
   minHeight: { type: [Number, String], default: () => 200 },
   minWidth: { type: [Number, String], default: () => 340 },
   modelValue: Boolean,
@@ -69,16 +69,16 @@ export const modalProps = {
     default: ''
   },
   title: String,
-  top: { type: [Number, String], default: 15 },
+  top: { type: [Number, String], default: 80 },
   type: { type: String, default: 'alert' },
   vSize: String,
   width: [Number, String],
   zIndex: [Number, String],
-  tiny_theme: String,
-  mode: null,
   description: String,
   options: Array,
   showClose: { type: Boolean, default: true },
+  confirmContent: String,
+  cancelContent: String,
   position: {
     type: String,
     default: '',
@@ -86,11 +86,9 @@ export const modalProps = {
       return ['', 'bottom-right'].includes(val)
     }
   },
-  modalBoxClass: String,
-  confirmContent: String,
-  cancelContent: String,
-  confirmBtnProps: { type: Object, default: {} },
-  cancelBtnProps: { type: Object, default: {} }
+  customClass: String,
+  confirmBtnProps: { type: Object, default: () => ({}) },
+  cancelBtnProps: { type: Object, default: () => ({}) }
 }
 
 export default defineComponent({

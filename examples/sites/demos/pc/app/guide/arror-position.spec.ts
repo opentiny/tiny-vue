@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('引导框箭头距离', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/guide/arror-position')
+  await page.goto('guide#arror-position')
 
   const guide = page.locator('body > .tiny-guide')
   const arrow = guide.locator('.shepherd-arrow')

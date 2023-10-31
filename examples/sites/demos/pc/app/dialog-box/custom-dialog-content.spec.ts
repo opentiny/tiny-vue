@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('dialogBox 自定义内容', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/dialog-box/custom-dialog-content')
+  await page.goto('dialog-box#custom-dialog-content')
 
   const preview = page.locator('#preview')
   const button = preview.getByRole('button', { name: '弹出Dialog' })

@@ -10,12 +10,12 @@
       >
       </tiny-option>
     </tiny-select>
-    <p>复制到此处：</p>
+    <p class="font-style">复制到此处：</p>
     <input class="copy-value" type="text" />
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption } from '@opentiny/vue'
 
@@ -29,7 +29,7 @@ const options = ref([
 const value = ref(['选项1'])
 const selectRef = ref()
 
-function filter(value) {
+const filter = (value) => {
   const select = selectRef.value
 
   if (value) {
@@ -43,3 +43,10 @@ function filter(value) {
   }
 }
 </script>
+
+<style scoped>
+.font-style {
+  font-size: 14px;
+  margin: 8px;
+}
+</style>

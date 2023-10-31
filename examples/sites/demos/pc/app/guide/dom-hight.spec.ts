@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('高亮多处', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/guide/dom-hight')
+  await page.goto('guide#dom-hight')
 
   const showBtn = page.getByRole('button', { name: '引导', exact: true })
   const step1 = page.getByRole('button', { name: '新手引导1' })

@@ -17,7 +17,7 @@
   </tiny-form>
 </template>
 
-<script lang="jsx">
+<script>
 import { Form, FormItem, Select, Modal } from '@opentiny/vue'
 
 const buildOptions = () =>

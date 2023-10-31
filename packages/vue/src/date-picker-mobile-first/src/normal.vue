@@ -158,7 +158,7 @@
 
           <div class="w-full text-center">
             <tiny-button
-              aui_mode="mobile-first"
+              tiny_mode="mobile-first"
               custom-class="w-full"
               :disabled="state.btnDisabled"
               type="primary"

@@ -19,14 +19,18 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-tag": "workspace:~",
+    "@opentiny/vue-loading": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-option": "workspace:~",
     "@opentiny/vue-scrollbar": "workspace:~",
-    "@opentiny/vue-popover": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-select-dropdown": "workspace:~",
+    "@opentiny/vue-search": "workspace:~",
     "@opentiny/vue-grid": "workspace:~",
-    "@opentiny/vue-tree": "workspace:~"
+    "@opentiny/vue-tree": "workspace:~",
+    "@opentiny/vue-tooltip": "workspace:~",
+    "@opentiny/vue-filter-box": "workspace:~",
+    "@opentiny/vue-checkbox": "workspace:~"
   },
   "license": "MIT"
 }

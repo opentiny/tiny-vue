@@ -2,7 +2,7 @@
   <tiny-user v-model="user"></tiny-user>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { User as TinyUser } from '@opentiny/vue'
 

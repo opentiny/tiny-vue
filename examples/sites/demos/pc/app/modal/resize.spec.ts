@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('调整窗口大小', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/modal/resize')
+  await page.goto('modal#resize')
 
   await page.getByRole('button', { name: '可以拖动调整窗口大小' }).click()
   const modal = page.locator('.tiny-modal__box')

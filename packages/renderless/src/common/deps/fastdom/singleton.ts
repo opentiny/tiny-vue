@@ -90,7 +90,7 @@ class FastDom {
   }
 
   extend(props) {
-    if (!props || typeof props !== 'object') throw new Error('[AUI][FastDom] expected object')
+    if (!props || typeof props !== 'object') throw new Error('[TINY][FastDom] expected object')
 
     const child = Object.create(this)
 

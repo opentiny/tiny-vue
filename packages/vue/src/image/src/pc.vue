@@ -15,7 +15,7 @@
       <div class="tiny-image__placeholder"></div>
     </slot>
     <slot v-else-if="state.error" name="error">
-      <div class="tiny-image__error">{{ t('ui.image.loadFail') }}</div>
+      <div class="tiny-image__error"></div>
     </slot>
     <img
       v-else
@@ -25,29 +25,34 @@
       :src="src"
       :style="state.getImageStyle"
       :class="{
+        'tiny-image__inner-center': state.getAlignCenter,
         'tiny-image__preview': state.getPreview
       }"
     />
-    <image-viewer
-      :z-index="zIndex"
-      v-if="state.getPreview && state.showViewer"
-      :on-close="closeViewer"
-      :url-list="previewSrcList"
-    />
+    <teleport to="body">
+      <image-viewer
+        ref="imageViewer"
+        :z-index="zIndex"
+        v-if="state.getPreview && state.showViewer"
+        :on-close="closeViewer"
+        :url-list="previewSrcList"
+      />
+    </teleport>
   </div>
 </template>
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/image/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { props, setup, defineComponent, Teleport } from '@opentiny/vue-common'
 import ImageViewer from '@opentiny/vue-image-viewer'
 import type { IImageApi } from '@opentiny/vue-renderless/types/image.type'
 
 export default defineComponent({
   components: {
-    ImageViewer
+    ImageViewer,
+    Teleport
   },
-  emits: ['load', 'error'],
+  emits: ['load', 'error', 'delete'],
   props: [...props, 'src', 'fit', 'lazy', 'scrollContainer', 'previewSrcList', 'zIndex'],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IImageApi

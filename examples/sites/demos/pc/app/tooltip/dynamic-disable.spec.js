@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试动态禁用', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tooltip/dynamic-disable')
+  await page.goto('tooltip#dynamic-disable')
 
   const button = page.getByRole('button', { name: '点击关闭 tooltip 功能' })
   const button1 = page.getByRole('button', { name: '点击开启 tooltip 功能' })

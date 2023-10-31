@@ -1,12 +1,9 @@
-const normalConfig = (config, state) => {
-  let { weekFirst, disabled, holiday, workday, mark } = config || {}
-  const minWeekFirst = 0
-  const maxWeekFirst = state.dayOfWeek - 1
+import { lastMonth, nextMonth } from '../common/calendar/calendar'
+import { getDirection } from '../common/deps/touch'
 
-  weekFirst =
-    typeof weekFirst === 'number' && weekFirst >= minWeekFirst && weekFirst <= maxWeekFirst
-      ? Math.round(weekFirst)
-      : minWeekFirst
+const normalConfig = (config, state) => {
+  let { disabled, holiday, workday, mark } = config || {}
+  const weekFirst = getWeekFirst(state, { config })
 
   disabled = typeof disabled === 'function' ? disabled : () => false
   // 对当前月份内的周六周日进行判断，如果返回false则作为工作日
@@ -40,7 +37,7 @@ const splitDate = (date) => {
 }
 
 const getBuildDay = (args) => (year, month, date) => {
-  const { pad0, isCurrent, currentFullYear, currentMonth, holiday, workday, mark } = args
+  const { pad0, isCurrent, holiday, workday, mark, type } = args
   const { currentDate, isToday, disabled, dayOfWeek } = args
 
   const dateStr = `${year}-${pad0(month)}-${pad0(date)}`
@@ -51,14 +48,12 @@ const getBuildDay = (args) => (year, month, date) => {
 
   let isWorkday, isHoliday
 
-  if (year === currentFullYear && month === currentMonth) {
-    if (isSat || isSun) {
-      isHoliday = holiday(d)
-      isWorkday = !isHoliday
-    } else {
-      isWorkday = workday(d)
-      isHoliday = !isWorkday
-    }
+  if (isSat || isSun) {
+    isHoliday = holiday(d)
+    isWorkday = !isHoliday
+  } else {
+    isWorkday = workday(d)
+    isHoliday = !isWorkday
   }
 
   const markMsg = mark(d)
@@ -66,10 +61,11 @@ const getBuildDay = (args) => (year, month, date) => {
 
   const day = { dateStr, marked, markMsg, isWorkday, isHoliday, isSat, isSun, isCurMon }
 
-  day.isCur = isCurMon && date === currentDate
+  day.isCur = isCurMon && date === currentDate && type === 'cur'
   day.isToday = isToday(year, month, date)
   day.disabled = disabled(d)
   day.dateArr = [year, month, date]
+  day.type = type
 
   return day
 }
@@ -91,79 +87,206 @@ const getPadCalendarDays =
 
 const equalArr = (arr1, arr2) => Array.isArray(arr1) && Array.isArray(arr2) && arr1.join(',') === arr2.join(',')
 
-const setDayRow = ({ calendarDays, state }) => calendarDays.map((day, i) => (day.row = Math.floor(i / state.dayOfWeek)))
+const setDayRow = ({ calendarDays, state }) =>
+  calendarDays.map((day, i) => {
+    day.row = Math.floor(i / state.dayOfWeek)
+
+    if (day.isCur) {
+      state.activeRow = day.row
+      state.activeDate = day.dateStr
+    }
+  })
 
 const pad0 = (str, n = 2) => String(str).padStart(n, '0')
 
-export const getCalendarDays = (state) => (date, config) => {
-  date = normalDate(date)
+const getDate = (state, type, date) => {
+  let resDate = new Date()
 
-  let { weekFirst, disabled, holiday, workday, mark } = normalConfig(config, state)
-  const { todayFullYear, todayMonth, todayDate, currentFullYear, currentMonth, currentDate } = splitDate(date)
-  const isToday = (year, month, date) => year === todayFullYear && month === todayMonth && date === todayDate
-  const isCurrent = (year, month) => year === currentFullYear && month === currentMonth
-  const february = (currentFullYear % 4 === 0 && currentFullYear % 100 !== 0) || currentFullYear % 400 === 0 ? 29 : 28
-  const monthDays = [-1, 31, february, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-  const f = (arr) => arr[0]
-  const l = (arr) => arr[arr.length - 1]
-  const { dayOfWeek } = state
-  const args = { pad0, isCurrent, currentFullYear, currentMonth, holiday, workday, mark }
-
-  Object.assign(args, { currentDate, isToday, disabled, dayOfWeek })
-
-  const buildDay = getBuildDay(args)
-
-  const calendarDays = Array.from({ length: monthDays[currentMonth] }).map((v, i) =>
-    buildDay(currentFullYear, currentMonth, i + 1)
-  )
-
-  const weekDays = Array.from({ length: dayOfWeek }).map((v, i) => (weekFirst + i) % dayOfWeek)
-
-  const monthDaysFirst = new Date(f(calendarDays).dateStr).getDay()
-  const monthDaysLast = new Date(l(calendarDays).dateStr).getDay()
-  const padCalendarDays = getPadCalendarDays({ calendarDays, buildDay })
-
-  let count = monthDaysFirst !== f(weekDays) ? weekDays.indexOf(monthDaysFirst) : dayOfWeek
-
-  padCalendarDays('s', count, new Date(f(calendarDays).dateStr))
-
-  count = monthDaysLast !== l(weekDays) ? dayOfWeek - 1 - weekDays.indexOf(monthDaysLast) : dayOfWeek
-
-  padCalendarDays('e', count, new Date(l(calendarDays).dateStr))
-
-  setDayRow({ calendarDays, state })
-
-  if (!equalArr(state.weekDays, weekDays)) {
-    state.weekDays = weekDays
+  if (type === 'last') {
+    const { year, month } = lastMonth(state.currentYear, state.currentMonth)
+    resDate = new Date(`${year}-${month}-01`)
+  } else if (type === 'next') {
+    const { year, month } = nextMonth(state.currentYear, state.currentMonth)
+    resDate = new Date(`${year}-${month}-01`)
+  } else {
+    resDate = normalDate(date)
   }
 
-  state.calendarDays = calendarDays
-  state.currentYear = `${currentFullYear}`
-  state.currentMonth = `${currentMonth}`
-  state.currentDate = `${currentDate}`
-  state.cascaderCurrent = [currentFullYear, currentMonth]
+  return resDate
 }
 
-const setStackRows = (state) => {
-  const { calendarDays } = state
+export const getCalendarDays =
+  (state) =>
+  (date, config, type = 'cur') => {
+    date = getDate(state, type, date)
 
-  if (Array.isArray(calendarDays) && calendarDays.length) {
-    const currentDay = calendarDays.find((day) => day.isCur)
-    const allRows = [...new Set(calendarDays.map((day) => day.row))]
-    const index = allRows.indexOf(currentDay.row)
-    const stackRows = allRows
-      .slice(index + 1)
-      .reverse()
-      .concat(allRows.slice(0, index))
+    let { weekFirst, disabled, holiday, workday, mark } = normalConfig(config, state)
+    const { todayFullYear, todayMonth, todayDate, currentFullYear, currentMonth, currentDate } = splitDate(date)
+    const isToday = (year, month, date) => year === todayFullYear && month === todayMonth && date === todayDate
+    const isCurrent = (year, month) => year === currentFullYear && month === currentMonth
+    const february = (currentFullYear % 4 === 0 && currentFullYear % 100 !== 0) || currentFullYear % 400 === 0 ? 29 : 28
+    const monthDays = [-1, 31, february, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    const f = (arr) => arr[0]
+    const l = (arr) => arr[arr.length - 1]
+    const { dayOfWeek } = state
+    const args = { pad0, isCurrent, currentFullYear, currentMonth, holiday, workday, mark, type }
 
-    state.stackRows = stackRows
+    Object.assign(args, { currentDate, isToday, disabled, dayOfWeek })
+
+    const buildDay = getBuildDay(args)
+    const calendarDays = Array.from({ length: monthDays[currentMonth] }).map((v, i) =>
+      buildDay(currentFullYear, currentMonth, i + 1)
+    )
+
+    const weekDays = Array.from({ length: dayOfWeek }).map((v, i) => (weekFirst + i) % dayOfWeek)
+    const monthDaysFirst = new Date(f(calendarDays).dateStr).getDay()
+    const monthDaysLast = new Date(l(calendarDays).dateStr).getDay()
+    const padCalendarDays = getPadCalendarDays({ calendarDays, buildDay })
+
+    let count = monthDaysFirst !== f(weekDays) ? weekDays.indexOf(monthDaysFirst) : dayOfWeek
+
+    padCalendarDays('s', count, new Date(f(calendarDays).dateStr))
+
+    count = monthDaysLast !== l(weekDays) ? dayOfWeek - 1 - weekDays.indexOf(monthDaysLast) : dayOfWeek
+
+    padCalendarDays('e', count, new Date(l(calendarDays).dateStr))
+
+    setCalendarDays(state, type, calendarDays)
+
+    if (type !== 'cur') return
+
+    setDayRow({ calendarDays, state })
+
+    if (!equalArr(state.weekDays, weekDays)) {
+      state.weekDays = weekDays
+    }
+
+    state.currentYear = currentFullYear
+    state.currentMonth = currentMonth
+    state.currentDate = currentDate
+    state.cascaderCurrent = [currentFullYear, currentMonth]
   }
+
+const setCalendarDays = (state, type, calendarDays) => {
+  if (type === 'last') {
+    state.lastCalendarDays = calendarDays
+  } else if (type === 'next') {
+    state.nextCalendarDays = calendarDays
+  } else {
+    state.calendarDays = calendarDays
+  }
+}
+
+export const getPrevWeek =
+  ({ props, emit, state, api }) =>
+  () => {
+    let newPrevDate = new Date(state.weekDates[0].dateStr)
+    newPrevDate.setDate(newPrevDate.getDate() - 7)
+    state.weekDates = api.getAllDatesOfCurrWeek(new Date(newPrevDate))
+
+    setActiveDate(state, props, emit)
+  }
+
+export const getNextWeek =
+  ({ props, emit, state, api }) =>
+  () => {
+    let newNextDate = new Date(state.weekDates[6].dateStr)
+    newNextDate.setDate(newNextDate.getDate() + 7)
+    state.weekDates = api.getAllDatesOfCurrWeek(new Date(newNextDate))
+
+    setActiveDate(state, props, emit)
+  }
+
+const setActiveDate = (state, props, emit) => {
+  state.weekDates.forEach((day) => (day.isCur = false))
+
+  const day = new Date(props.modelValue).getDay()
+  const dayIdx = state.weekDays.indexOf(day)
+  const curDate = state.weekDates[dayIdx]
+
+  curDate.isCur = true
+
+  emit('update:modelValue', curDate.dateStr)
+  state.activeDate = curDate.dateStr
+  state.currentDate = curDate.dateArr[2]
+  state.activeRow = curDate.row
+}
+
+export const getAllDatesOfCurrWeek =
+  ({ state, props }) =>
+  (date) => {
+    const weekFirst = getWeekFirst(state, props)
+    const weekDates = []
+    let weekDate = new Date(date)
+    const calDate = weekDate.getDate() - weekDate.getDay() + weekFirst
+    const weekFirstDate = calDate > weekDate.getDate() ? calDate - 7 : calDate
+
+    weekDate.setDate(weekFirstDate)
+
+    const threeMonthDays = [...state.calendarDays, ...state.lastCalendarDays, ...state.nextCalendarDays]
+    const len = threeMonthDays.length
+
+    for (let i = 0; i < 7; i++) {
+      const date = formatDate(new Date(weekDate))
+      let findDate = false
+
+      for (let j = 0; j < len; j++) {
+        if (threeMonthDays[j].dateStr === date) {
+          threeMonthDays[j].type = 'cur'
+          weekDates.push(threeMonthDays[j])
+          findDate = true
+          break
+        }
+      }
+
+      if (!findDate) {
+        const newDate = new Date(weekDate)
+        weekDates.push({ dateStr: date, dateArr: [newDate.getFullYear(), newDate.getMonth() + 1, newDate.getDate()] })
+      }
+
+      weekDate.setDate(weekDate.getDate() + 1)
+    }
+
+    return weekDates
+  }
+
+export const getWeekOfDate =
+  ({ api }) =>
+  (type, date) => {
+    const aWeekTimestamp = 7 * 24 * 60 * 60 * 1000
+    let nextDate = +new Date(date)
+    if (type === 'prev') {
+      nextDate = +new Date(date) - aWeekTimestamp
+    } else {
+      nextDate = +new Date(date) + aWeekTimestamp
+    }
+
+    return api.getAllDatesOfCurrWeek(new Date(nextDate))
+  }
+
+export const showWeekChange =
+  ({ state }) =>
+  (value) => {
+    if (value) {
+      state.weekDates = state.calendarDays.filter((day) => day.row === state.activeRow)
+    } else {
+      state.calendarDays.forEach((date) => {
+        if (state.activeDate === date.dateStr) {
+          date.isCur = true
+        } else {
+          date.isCur = false
+        }
+      })
+    }
+  }
+
+const formatDate = (date) => {
+  const newDate = new Date(date)
+  return newDate.getFullYear() + '-' + pad0(newDate.getMonth() + 1) + '-' + pad0(newDate.getDate())
 }
 
 export const computedCurrentRow = (state) => () => {
   const { calendarDays } = state
-
-  setStackRows(state)
 
   if (Array.isArray(calendarDays) && calendarDays.length) {
     const currentDay = calendarDays.find((day) => day.isCur)
@@ -174,6 +297,14 @@ export const computedCurrentRow = (state) => () => {
   }
 
   return null
+}
+
+export const computedData = (state) => () => {
+  if (state.showWeek) {
+    return [state.prevWeekDates, state.weekDates, state.nextWeekDates]
+  } else {
+    return [state.lastCalendarDays, state.calendarDays, state.nextCalendarDays]
+  }
 }
 
 export const computedFilteredCalendarDays = (state) => () => {
@@ -188,29 +319,33 @@ export const computedFilteredCalendarDays = (state) => () => {
   return []
 }
 
-const clearVisibleRows = (state) => (state.visibleRows = [])
-
-const fillVisibleRows = (state) => (state.visibleRows = [...new Set((state.calendarDays || []).map((day) => day.row))])
-
-export const handleDraggerClick = (state) => () => {
-  const { visibleRows } = state
-
+export const handleDraggerClick = (state, emit) => () => {
   if (state.dragging) return
 
-  if (Array.isArray(visibleRows) && visibleRows.length) {
-    clearVisibleRows(state)
-  } else {
-    fillVisibleRows(state)
-  }
+  state.showWeek = !state.showWeek
+
+  emit('expand', !state.showWeek)
 }
 
 export const handleClickDay =
-  ({ api, emit, props }) =>
+  ({ api, emit, props, state }) =>
   (day) => {
     if (day.isCur || day.disabled) return
-
     if (typeof day.dateStr === 'string') {
-      api.getCalendarDays(day.dateStr, props.config)
+      const isCurrent = day.dateArr[0] === +state.currentYear && day.dateArr[1] === +state.currentMonth
+
+      if (!isCurrent) {
+        api.getCalendarDays(day.dateStr, props.config, 'cur')
+        api.getCalendarDays(day.dateStr, props.config, 'last')
+        api.getCalendarDays(day.dateStr, props.config, 'next')
+      }
+
+      const showCalendarDays = [...state.calendarDays, ...state.weekDates]
+      showCalendarDays.forEach((date) => (date.isCur = day.dateStr === date.dateStr))
+
+      state.activeDate = day.dateStr
+      state.currentDate = day.dateArr[2]
+      state.activeRow = day.row
 
       emit('update:modelValue', day.dateStr)
     }
@@ -229,33 +364,53 @@ export const calcCalendarItemHeight =
   }
 
 export const computedTotalRows = (state) => () => {
+  const len = state.dragging ? state.calendarDaysCopy.length : calendarDays.length
   const { calendarDays, dayOfWeek } = state
-  const total = Math.floor(calendarDays.length / dayOfWeek)
+  const total = Math.floor(len / dayOfWeek)
 
   return total
 }
 
-const dragStart = ({ state, vm, clientX, clientY }) => {
-  state.dragPosStart = state.dragPos = { clientX, clientY }
+const dragStart = ({ state, clientX, clientY, vm }) => {
+  state.showRows = 0
+  state.calendarDaysCopy = state.calendarDays.slice(0)
   state.calendarPanelHeight = vm.$refs.calendarPanel.offsetHeight
-  state.stackRowsCopy = state.stackRows.slice(0)
+  state.dragPosStart = state.dragPos = { clientX, clientY }
 }
 
-const dragEnd = ({ state, vm, clientY }) => {
+const dragEnd = ({ state, vm, clientY, emit }) => {
   const dy = clientY - state.dragPosStart.clientY
 
-  state.dragPosStart = state.dragPos = {}
-  vm.$refs.calendarPanel.style.height = 'auto'
+  if (dy === 0) return
 
-  if (dy > 0) {
-    fillVisibleRows(state)
-  } else if (dy < 0) {
-    clearVisibleRows(state)
+  state.dragPosStart = state.dragPos = {}
+
+  if (state.showWeek) {
+    if (state.showRows >= 2) {
+      state.showWeek = false
+    }
+  } else {
+    if (state.showRows <= 5) {
+      state.showWeek = true
+    }
   }
+  emit('expand', !state.showWeek)
+
+  state.weekDates = state.copyWeekDates
+  state.calendarDays = state.calendarDaysCopy
+  vm.$refs.calendarPanel.style.height = 'auto'
+  state.showRows = 0
 }
 
 const dragMove = ({ state, vm, clientX, clientY }) => {
-  const { dragPos: lastPos, itemHeight, totalRows, stackRowsCopy, currentRow } = state
+  const { dragPos: lastPos, itemHeight } = state
+  const totalRows = 6
+
+  if (lastPos.clientY === undefined || lastPos.clientX === undefined) {
+    state.dragging = false
+    return
+  }
+
   const minH = itemHeight
   const maxH = itemHeight * totalRows
 
@@ -265,11 +420,27 @@ const dragMove = ({ state, vm, clientX, clientY }) => {
   let h = state.calendarPanelHeight
 
   h = h < minH ? minH : h > maxH ? maxH : h
-
-  const showRows = Math.floor(h / itemHeight)
-
+  state.showRows = Math.floor(h / itemHeight)
   vm.$refs.calendarPanel.style.height = `${h}px`
-  state.visibleRows = stackRowsCopy.slice(0).concat(currentRow).reverse().slice(0, showRows)
+
+  if (state.showWeek) {
+    if (state.showRows === 1) {
+      state.weekDates = [...state.copyWeekDates]
+    }
+    if (state.showRows === 2) {
+      state.weekDates = [...state.prevWeekDates, ...state.copyWeekDates]
+    }
+    if (state.showRows === 3) {
+      state.weekDates = [...state.prevWeekDates, ...state.copyWeekDates, ...state.nextWeekDates]
+    }
+  } else {
+    getShowedCalendarDays(state)
+  }
+}
+
+const getShowedCalendarDays = (state) => {
+  if (state.showRows === 0) return
+  state.calendarDays = state.calendarDaysCopy.slice(0, state.showRows * 7)
 }
 
 export const handleDraggerMousedown =
@@ -284,14 +455,14 @@ export const handleDraggerMousedown =
   }
 
 export const handleMouseup =
-  ({ api, state, vm }) =>
+  ({ api, state, vm, emit }) =>
   (e) => {
     setTimeout(() => (state.dragging = false))
 
     document.removeEventListener('mouseup', api.handleMouseup)
     document.removeEventListener('mousemove', api.throttledHandleMousemove)
 
-    dragEnd({ state, vm, clientY: e.clientY })
+    dragEnd({ state, vm, clientY: e.clientY, emit })
   }
 
 export const handleMousemove =
@@ -315,13 +486,13 @@ export const handleDraggerTouchstart =
   }
 
 export const handleDraggerTouchend =
-  ({ state, vm }) =>
+  ({ state, vm, emit }) =>
   (e) => {
     const { clientY } = e.changedTouches[0]
 
     state.touching = false
 
-    dragEnd({ state, vm, clientY })
+    dragEnd({ state, vm, clientY, emit })
   }
 
 export const handleDraggerTouchmove =
@@ -337,18 +508,13 @@ export const setCascaderVisible = (state) => (value) => (state.cascaderVisible =
 export const handleCascaderChange =
   ({ api, emit, props, state }) =>
   (val) => {
-    const { currentDate } = state
-    let dateStr = `${val[0]}-${pad0(val[1])}-${pad0(currentDate)}`
-    const numberCurrentDate = Number(currentDate)
-    const { currentFullYear: curYear, currentMonth: curMonth, currentDate: curDate } = splitDate(new Date(dateStr))
+    const dateStr = getDateStr(state, val[0], val[1])
 
-    if (curYear !== val[0] || curMonth !== val[1] || curDate !== numberCurrentDate) {
-      dateStr = `${val[0]}-${pad0(val[1])}-01`
-    }
-
-    api.getCalendarDays(dateStr, props.config)
-
+    api.getCalendarDays(dateStr, props.config, 'cur')
+    api.getCalendarDays(dateStr, props.config, 'last')
+    api.getCalendarDays(dateStr, props.config, 'next')
     emit('update:modelValue', dateStr)
+    state.weekDates = state.calendarDays.filter((day) => day.row === state.activeRow)
   }
 
 export const computeCascaderOptions = (t) => () => [
@@ -371,3 +537,117 @@ export const i18nYearMonth =
 
     return template
   }
+
+export const touchmove =
+  ({ state }) =>
+  (event) => {
+    const touch = event.touches[0]
+
+    state.deltaPos.Y = touch.clientY - state.startPos.Y
+    state.deltaPos.X = touch.clientX - state.startPos.X
+    state.offsetPos.Y = Math.abs(state.deltaPos.Y)
+    state.offsetPos.X = Math.abs(state.deltaPos.X)
+    state.direction = getDirection(state.offsetPos.X, state.offsetPos.Y)
+
+    if (state.direction === 'vertical') return
+
+    state.delta = state.deltaPos.X
+  }
+
+export const touchstart =
+  ({ state }) =>
+  (event) => {
+    event.stopPropagation()
+    resetTouchStatus(state)
+
+    state.duration = 300
+    state.moving = true
+    state.touchTime = Date.now()
+    state.startPos.X = event.touches[0].clientX
+    state.startPos.Y = event.touches[0].clientY
+  }
+
+export const touchend =
+  ({ state, api, vm }) =>
+  () => {
+    const weekPanel = vm.$refs.weekPanel
+    const width = weekPanel && weekPanel.offsetWidth
+    const speed = state.delta / (Date.now() - state.touchTime)
+    const isShouldMove = Math.abs(speed) > 0.3 || Math.abs(state.delta) > +(width / 3).toFixed(2)
+
+    if (isShouldMove) {
+      const delta = state.delta
+      state.duration = 300
+      state.delta = delta > 0 ? width : -width
+
+      setTimeout(() => {
+        if (state.showWeek) {
+          delta > 0 ? api.getPrevWeek() : api.getNextWeek()
+          if (
+            state.weekDates[3].dateArr[0] !== +state.currentYear ||
+            state.weekDates[3].dateArr[1] !== +state.currentMonth
+          ) {
+            api.updateCalendarDays(delta)
+          }
+        } else {
+          api.updateCalendarDays(delta)
+        }
+
+        state.duration = 0
+        state.delta = 0
+      }, 300)
+    } else {
+      state.delta = 0
+    }
+
+    state.moving = false
+  }
+
+export const updateCalendarDays =
+  ({ props, state, api, emit }) =>
+  (delta) => {
+    let { year, month } =
+      delta > 0 ? lastMonth(state.currentYear, state.currentMonth) : nextMonth(state.currentYear, state.currentMonth)
+
+    const dateStr = getDateStr(state, year, month)
+
+    api.getCalendarDays(dateStr, props.config, 'cur')
+    api.getCalendarDays(dateStr, props.config, 'last')
+    api.getCalendarDays(dateStr, props.config, 'next')
+    !state.showWeek && emit('update:modelValue', dateStr)
+  }
+
+function getDateStr(state, year, month) {
+  const { currentDate } = state
+  let dateStr = `${year}-${pad0(month)}-${pad0(currentDate)}`
+  const numberCurrentDate = Number(currentDate)
+  const { currentFullYear: curYear, currentMonth: curMonth, currentDate: curDate } = splitDate(new Date(dateStr))
+
+  if (curYear !== year || curMonth !== month || curDate !== numberCurrentDate) {
+    dateStr = `${year}-${pad0(month)}-01`
+  }
+
+  return dateStr
+}
+
+function getWeekFirst(state, props) {
+  let weekFirst = props.config.weekFirst || 0
+  const minWeekFirst = 0
+  const maxWeekFirst = state.dayOfWeek - 1
+
+  weekFirst =
+    typeof weekFirst === 'number' && weekFirst >= minWeekFirst && weekFirst <= maxWeekFirst
+      ? Math.round(weekFirst)
+      : minWeekFirst
+
+  return weekFirst
+}
+
+function resetTouchStatus(state) {
+  state.direction = ''
+  state.delta = 0
+  state.deltaPos.X = 0
+  state.deltaPos.Y = 0
+  state.offsetPos.X = 0
+  state.offsetPos.Y = 0
+}

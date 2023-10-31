@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('操作浮动块内容', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/floatbar/operation-floatbar-item')
+  await page.goto('floatbar#operation-floatbar-item')
 
   const floatbar = page.locator('#preview .tiny-float-bar')
   const item = floatbar.getByRole('listitem').filter({ hasText: 'custom-Add' })

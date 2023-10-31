@@ -22,3 +22,13 @@
 <script setup lang="jsx">
 import { Layout as TinyLayout, Row as TinyRow, Col as TinyCol } from '@opentiny/vue'
 </script>
+
+<style scoped>
+.col {
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+  background: #1f9ed8;
+  border-radius: 15px;
+}
+</style>

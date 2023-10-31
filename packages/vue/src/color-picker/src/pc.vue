@@ -40,7 +40,7 @@ export default defineComponent({
   props: [...props, 'modelValue', 'visible', 'alpha', 'predefine', 'history', 'size'],
   components: {
     IconChevronDown: IconChevronDown(),
-    ColorSelect: colorSelect,
+    ColorSelect: colorSelect
   },
   setup(props, context) {
     return setup({ props, context, renderless, api })

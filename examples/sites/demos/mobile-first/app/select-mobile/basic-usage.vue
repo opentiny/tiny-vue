@@ -60,18 +60,15 @@ export default {
   }
 }
 </script>
-
 <style scoped>
 .page__hd {
   padding: 40px;
 }
-
 .page__title {
   font-weight: 400;
   font-size: 21px;
   text-align: left;
 }
-
 .page__desc {
   margin-top: 5px;
   color: #888;

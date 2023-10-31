@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('基础用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/toggle-menu/basic-usage')
+  await page.goto('toggle-menu#basic-usage')
   const preview = page.locator('#preview')
   const nodes = preview.locator('.tiny-toggle-menu .tiny-tree > div')
   // 点击文字展开

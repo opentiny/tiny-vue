@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('[DatePicker] 测试选择快捷选项日期：今天/昨天/一周前', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/date-picker/shortcuts')
+  await page.goto('date-picker#shortcuts')
   const datePickerDom = page.locator('body > .tiny-date-picker')
   // 选择今天/昨天/一周前
   await page.locator('#preview').getByRole('textbox').click()

@@ -16,7 +16,11 @@ export const formProps = {
   ...$props,
   model: Object,
   rules: Object,
-  inlineMessage: Boolean,
+  inlineMessage: {
+    type: Boolean,
+    default: undefined
+  },
+  messageType: String,
   statusIcon: Boolean,
   showMessage: {
     type: Boolean,
@@ -33,8 +37,8 @@ export const formProps = {
     default: true
   },
   hideRequiredAsterisk: {
-    type: [Boolean, null],
-    default: null
+    type: Boolean,
+    default: undefined
   },
   labelPosition: {
     type: String,
@@ -69,6 +73,7 @@ export const formProps = {
       return Boolean(~['tip', 'text'].indexOf(value))
     }
   },
+  validateIcon: Object,
   manual: {
     type: Boolean,
     default: false
@@ -86,6 +91,18 @@ export const formProps = {
     default: false
   },
   showAutoWidth: {
+    type: Boolean,
+    default: false
+  },
+  showEmptyValue: {
+    type: Boolean,
+    default: true
+  },
+  validateTag: {
+    type: Boolean,
+    default: false
+  },
+  overflowTitle: {
     type: Boolean,
     default: false
   }

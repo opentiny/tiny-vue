@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="chek-box-true-label-demo">
     <tiny-checkbox-button
       v-model="checked"
       text="复选框"
@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { CheckboxButton, Modal } from '@opentiny/vue'
 
 export default {
@@ -32,3 +32,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.chek-box-true-label-demo > * {
+  margin: 4px;
+}
+</style>

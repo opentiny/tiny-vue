@@ -28,6 +28,10 @@ export const anchorProps = {
   markClass: {
     type: String,
     default: ''
+  },
+  type: {
+    type: String,
+    default: 'line'
   }
 }
 

@@ -104,6 +104,8 @@ export const mounted =
       on(document, 'keydown', api.handleGlobalKeydownEvent)
     }
 
+    on(window, 'hashchange', api.handleHashChange)
+
     document.body.appendChild(parent.$el)
   }
 
@@ -112,6 +114,7 @@ export const beforeUnmouted =
   (): void => {
     isMobileFirstMode && off(window, 'resize', api.resetDragStyle)
     off(document, 'keydown', api.handleGlobalKeydownEvent)
+    off(window, 'hashchange', api.handleHashChange)
     api.removeMsgQueue()
 
     if (parent.$el.parentNode) {
@@ -338,6 +341,10 @@ export const handleGlobalKeydownEvent =
       api.close('esc')
     }
   }
+
+export const handleHashChange = (api: IModalApi) => (): void => {
+  api.close('close')
+}
 
 export const getBox =
   ({ vm }: Pick<IModalRenderlessParams, 'vm'>) =>

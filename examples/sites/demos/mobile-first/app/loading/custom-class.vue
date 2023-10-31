@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style scoped>
-.new-loading .tiny-tailwind-text {
-  color: darkgreen;
+:deep(.tiny-loading__spinner .tiny-loading__text) {
+  color: darkorange;
 }
 </style>

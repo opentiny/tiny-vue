@@ -11,7 +11,15 @@ export const handleEnterDesc =
 
 export const handelIconClick =
   ({ emit }) =>
-  (item, index) => {
+  (item, index, event) => {
     if (item.disabled) return
-    emit('icon-click', item, index)
+    emit('icon-click', item, index, event)
+  }
+
+export const handleTitleClick =
+  ({ props }) =>
+  () => {
+    if (!props.titleOption.click) return
+
+    props.titleOption.click()
   }

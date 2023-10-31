@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('拖动菜单', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree-menu/can-draggable')
+  await page.goto('tree-menu#can-draggable')
 
   const treeMenu = page.locator('#preview .tiny-tree-menu')
   const node = treeMenu.getByTitle('首页')

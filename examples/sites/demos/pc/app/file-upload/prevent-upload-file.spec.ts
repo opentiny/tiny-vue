@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('阻止上传文件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/file-upload/prevent-upload-file')
+  await page.goto('file-upload#prevent-upload-file')
 
   const upload = page.getByRole('button', { name: '选取文件' })
   const modal = page.locator('.tiny-modal')
