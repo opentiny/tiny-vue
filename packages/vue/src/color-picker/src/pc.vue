@@ -1,10 +1,15 @@
 <template>
-  <div class="tiny-color-picker__trigger" v-clickoutside="onCancel" @click="() => changeVisible(!state.isShow)">
-    <div
-      class="tiny-color-picker__inner" :style="{
-        background: state.triggerBg ?? ''
-      }"
-    >
+  <div v-clickoutside="onCancel" @click="() => changeVisible(!state.isShow)"
+     :class="[{
+        'tiny-color-picker__trigger': true,
+        'trigger':true
+       },
+       state.size ? 'tiny-color-picker--' + state.size : '',
+     ]">
+
+    <div class="tiny-color-picker__inner" :style="{
+      background: state.triggerBg ?? ''
+    }">
       <IconChevronDown />
     </div>
     <Transition name="tiny-zoom-in-top">
@@ -15,7 +20,9 @@
         @sv-update="onSVUpdate"
         v-model="state.hex"
         :visible="state.isShow"
+        :predefine="state.predefineStack.length > 0 ? state.predefineStack : undefined"
         :alpha="alpha"
+        :history="state.stack.length > 0 ? state.stack : undefined" 
       />
     </Transition>
   </div>
@@ -30,7 +37,7 @@ import '@opentiny/vue-theme/color-picker/index.less'
 
 export default defineComponent({
   emits: ['update:modelValue', 'confirm', 'cancel'],
-  props: [...props, 'modelValue', 'visible', 'alpha'],
+  props: [...props, 'modelValue', 'visible', 'alpha', 'predefine', 'history', 'size'],
   components: {
     IconChevronDown: IconChevronDown(),
     ColorSelect: colorSelect,

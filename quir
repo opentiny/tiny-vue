@@ -1,0 +1,3181 @@
+[33mcommit 74e20a43ae6105694d96c74dae256196179ac2f3[m[33m ([m[1;36mHEAD -> [m[1;32mfanbingbing16/feat-colorPicker-size-predefine-history[m[33m, [m[1;31morigin/fanbingbing16/feat-colorPicker-size-predefine-history[m[33m)[m
+Author: zhangyl <2581932570@qq.com>
+Date:   Tue Oct 31 11:29:14 2023 +0800
+
+    feat(components):[color-picker] add props size、predefine and history
+
+[33mcommit 9e62d9776652dceffc8a39ed2d74a5ca9c1bfc92[m[33m ([m[1;31morigin/fanbingbing16/feat-treeMenu-placeholder[m[33m, [m[1;32mfanbingbing16/feat-treeMenu-placeholder[m[33m)[m
+Author: zhangyl <2581932570@qq.com>
+Date:   Fri Oct 27 17:13:21 2023 +0800
+
+    feat(tree-menu):The placeholder of the search box can be customized
+
+[33mcommit c2fc9f23af8a7375c05a92670ef67446af430aa8[m[33m ([m[1;31morigin/dev[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Kagol <kagol@sina.com>
+Date:   Fri Oct 13 16:07:48 2023 +0800
+
+    docs: update component number (#585)
+
+[33mcommit 7746526452b03439dd8796c2b963f65252f9bdc8[m
+Author: Kif <62132584+wkif@users.noreply.github.com>
+Date:   Fri Oct 13 16:07:19 2023 +0800
+
+    fix：Added version import to component templates (#578)
+
+[33mcommit bc91d14d69e88f18aa78f83a43b1206a407f71a6[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Thu Oct 12 01:50:42 2023 -0700
+
+    feat: update pc/mobile/mobile-first docs (#583)
+
+[33mcommit 0beeb5d0392abd35a116e07713e65ce2f6807646[m
+Author: Kagol <kagol@sina.com>
+Date:   Wed Oct 11 22:32:49 2023 +0800
+
+    fix(rich-text-editor): fix Unsupported URL Type "link:" when execute npm i (#579)
+
+[33mcommit 8d2a9a222c1459d9bdda0294dd88e97134f5651e[m[33m ([m[1;33mtag: v3.11.0-alpha.0[m[33m)[m
+Author: Kagol <kagol@sina.com>
+Date:   Wed Oct 11 04:02:39 2023 -0700
+
+    feat: support react and add new components: rich-text-editor/color-picker/divider/calendar-view
+
+[33mcommit 2041a44847d5afa75b10a0cc6659361b971ab370[m
+Author: shonen7 <145949377+shonen7@users.noreply.github.com>
+Date:   Wed Oct 11 15:11:45 2023 +0800
+
+    fix(numeric):numeric 修复输入超大数字变为科学计数法时失焦后组件消失的问题 (#563)
+    
+    * fix(numeric):numeric 输入超大数字变为科学计数法时失焦后组件消失的问题
+    
+    * fix(numeric):numeric 修改评审意见
+
+[33mcommit 95072995f9e2a92f9546ae2b5b37072fff35b50f[m
+Author: xlearns <62782792+xlearns@users.noreply.github.com>
+Date:   Wed Oct 11 11:06:35 2023 +0800
+
+    fix: Guide component mobile overflow (#574)
+
+[33mcommit 5770e6c0681d7a3cc8216ed2524a33adcfa33a3f[m
+Author: Mr.栋 <103579791+pe-3@users.noreply.github.com>
+Date:   Tue Oct 10 16:06:55 2023 +0800
+
+    feat(react): add mobile mode in tiny react alert (#550)
+    
+    * feat(react): add mobile mode in tiny react alert
+    
+    * feat(react): adjust indent spaces to 2
+
+[33mcommit a0c7ad10ed61053d6d4478b3d4b2525cb2640558[m
+Author: shonen7 <145949377+shonen7@users.noreply.github.com>
+Date:   Tue Oct 10 15:09:12 2023 +0800
+
+    fix(divider,color-picker): divider组件content-position描述完善，以及部分api关联示例变动；color-picker组件修改错误变量 (#567)
+
+[33mcommit 0ba09551633cfe2f1f48a10881c91f37741c08b7[m
+Author: chenguang <31501915+chenguang1994@users.noreply.github.com>
+Date:   Tue Oct 10 14:51:19 2023 +0800
+
+    fix(tree): Click margin-top zoom will collapse treemenu(#559) (#568)
+
+[33mcommit 43c8ff9b727c29e4aa48d47dda258f0dcf8f8f61[m
+Author: Kif <62132584+wkif@users.noreply.github.com>
+Date:   Tue Oct 10 09:29:40 2023 +0800
+
+    feat: popeditor adds the autoreset property (#562)
+
+[33mcommit feeb96b7a815b227e561922b12abb119eec45d89[m
+Author: chenguang <31501915+chenguang1994@users.noreply.github.com>
+Date:   Mon Oct 9 22:11:18 2023 +0800
+
+    fix(guider): 箭头部分情况超出了指定位置，优化样式 ，解决计算问题(#454) (#539)
+    
+    Signed-off-by: chenguang <339613682@qq.com>
+    Co-authored-by: chenguang <guang_chen@huacenav.com>
+
+[33mcommit a4e225f9678d151c2e3dd6fc918de5c1b0bde642[m
+Author: Mr.栋 <103579791+pe-3@users.noreply.github.com>
+Date:   Mon Oct 9 20:32:32 2023 +0800
+
+    feat(react): ehance virtual comp，each comp has v-if，default as true (#564)
+
+[33mcommit c380deb31368304fb29513b2cb4a31d66b3c2c76[m
+Author: Mr.栋 <103579791+pe-3@users.noreply.github.com>
+Date:   Mon Oct 9 20:32:09 2023 +0800
+
+    feat(react): add badge comp with mobile & pc mode (#566)
+
+[33mcommit d52433534e75fcd25c5a3b9c00fdb4c4fe33140b[m
+Author: Mr.栋 <103579791+pe-3@users.noreply.github.com>
+Date:   Mon Oct 9 20:30:13 2023 +0800
+
+    feat(react): add switch comp with mobile & pc mode (#565)
+
+[33mcommit 07c2230616bf3c414971c0aca63d11ccb2e24f96[m
+Author: Zz-ZzzZ <48228016+Zz-ZzzZ@users.noreply.github.com>
+Date:   Sun Oct 8 15:55:36 2023 +0800
+
+    docs(README): correct misspellings (#561)
+
+[33mcommit ab8344e793dc977125ade1ab1f7e17df86d42cba[m
+Author: GaoNeng <31283122+GaoNeng-wWw@users.noreply.github.com>
+Date:   Sun Oct 8 15:54:12 2023 +0800
+
+    fix(color-select-panel): z-index (#560)
+
+[33mcommit 0260c237b84dbd98dc5b06cc2a6b4200cf1f6b56[m
+Author: GaoNeng <31283122+GaoNeng-wWw@users.noreply.github.com>
+Date:   Sat Oct 7 15:32:36 2023 +0800
+
+    feat(color-select-panel): history & predefine color (#530)
+    
+    * feat(color-select-panel): history & predefine color
+    
+    * fix: alpha not update
+    
+    * refactor(color-select-panel): delete comment code
+    
+    * feat: predefine color
+    
+    * feat: empty tips
+    
+    * feat: predefine color
+    
+    * fix(color-select-panel): rename composition example file
+
+[33mcommit 84bf0afc1fe47860bc1c9b9d8c670e2175cb8813[m
+Author: Gweesin Chan <42909374+gweesin@users.noreply.github.com>
+Date:   Sat Oct 7 15:23:24 2023 +0800
+
+    docs: fix popover demo position error when toggle code block (#535)
+
+[33mcommit b7e730f3d38dfc0ba5c80cee6179517274cdac1a[m
+Author: Mr.栋 <103579791+pe-3@users.noreply.github.com>
+Date:   Sat Oct 7 15:18:29 2023 +0800
+
+    feat(react): 添加贡献文档，readme 改名为 README (#538)
+
+[33mcommit 0768ce22abd1c25c11e4db519ed1d1b96a64b71e[m
+Author: Mr.栋 <103579791+pe-3@users.noreply.github.com>
+Date:   Sat Oct 7 14:41:05 2023 +0800
+
+    feat(react): collect refs and children in one traverse (#551)
+
+[33mcommit 95b059546d4a6fca53d43737c3573b7a4284b1bc[m
+Author: Gweesin Chan <42909374+gweesin@users.noreply.github.com>
+Date:   Sat Oct 7 11:18:23 2023 +0800
+
+    fix: fix extra highlight color when press button in mobile mode (#537)
+
+[33mcommit 344d3e16467b91943f15cf3d4f79305e93091df4[m
+Author: Gweesin Chan <42909374+gweesin@users.noreply.github.com>
+Date:   Sat Oct 7 10:44:21 2023 +0800
+
+    feat: scripts support cross-platform (#554)
+    
+    * feat: scripts support cross-platform
+    
+    * revert: revert lockfile change
+
+[33mcommit 07a938f131defee9ab468e2b0c10d3c7c9edb61e[m
+Author: Binks_ <yuhao615@qq.com>
+Date:   Sat Oct 7 10:13:13 2023 +0800
+
+    docs(guide): fix alert out of bounds (#541)
+
+[33mcommit 0ff09c23c66400fb96ce68d3a9411126bd89ccc6[m
+Author: Binks_ <yuhao615@qq.com>
+Date:   Mon Oct 2 11:06:29 2023 +0800
+
+    docs(breadcrumb): optimize breadcrumb docs (#547)
+    
+    * docs(breadcrumb): modify component description
+    
+    * docs(breadcrumb): adjust the order of api
+    
+    * docs(breadcrumb): optimize api docs
+    
+    * docs(breadcrumb): optimize demo docs
+    
+    * docs(breadcrumb): adjust the order of  api
+
+[33mcommit b2600ce1f7819b314a6d2611826034742c6d4da5[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Fri Sep 29 11:21:05 2023 +0800
+
+    docs: add wkif as a contributor for code (#546)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit b5874cb238e2f6ff6c21287ed5103f4efc8d2f27[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Fri Sep 29 11:19:48 2023 +0800
+
+    docs: add yoyo201626 as a contributor for code (#545)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit b1c4b3ba9904d046c8b95c25cf40ebda6dc01ec6[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Fri Sep 29 11:17:46 2023 +0800
+
+    docs: add Binks123 as a contributor for doc (#544)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 4b35a0c879dea524dd97f8c21d0bf830092bd163[m
+Author: Binks_ <yuhao615@qq.com>
+Date:   Fri Sep 29 11:16:17 2023 +0800
+
+    docs(anchor): optimize anchor demo api docs (#540)
+    
+    * docs(anchor): modify component description
+    
+    * docs(anchor): adjust the order of api
+
+[33mcommit a70649ada710273185f66af0985362ba9832244d[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Fri Sep 29 11:13:41 2023 +0800
+
+    docs: add pe-3 as a contributor for doc (#543)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 69263461f6b7a071da9579243730eb4ee2874399[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Fri Sep 29 11:05:05 2023 +0800
+
+    docs: add gweesin as a contributor for code (#542)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit b5b767fa9a13a5d753ccc1585e9afe6684f62dd0[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu Sep 28 19:43:35 2023 +0800
+
+    fix: fix pnpm dev:site error (#536)
+
+[33mcommit b9aefb73f1a76e2d25ac583cc1ac11f2f749c4fb[m
+Author: Mr.栋 <103579791+pe-3@users.noreply.github.com>
+Date:   Thu Sep 28 19:39:05 2023 +0800
+
+    feat(react): merge react-dev to dev (#531)
+    
+    * 组件库 react 版本的 button 组件实现，0 - 1 实现 react 复用 vue 逻辑 (#341)
+    
+    * refactor: A constructor name should not start with a lowercase letter but a uppercase.
+    
+    * feat: 查看样式 less 问题
+    
+    * feat: react版本 button api 功能实现，移除 lock 文件
+    
+    * feat: react版本 button api 功能实现，修复 pr 问题
+    
+    * feat: react版本 button api 功能实现，lock 文件更改
+    
+    * feat: react版本 button api 功能实现，lock 文件更改
+    
+    * feat: react版本 button api 功能实现，多余注释删除
+    
+    ---------
+    
+    Co-authored-by: guoxudong06 <guoxudong06@meituan.com>
+    
+    * feat: tiny-react event module, imitate vue event system (#405)
+    
+    * feat: tiny-react props resolver，to get events & attrs from props (#408)
+    
+    * feat: utils of packages/react-common (#409)
+    
+    * feat: replacing some rendering logic in jsx with virtual components (#412)
+    
+    * feat: tiny-react svg render function (#406)
+    
+    * feat: data responsive core, registering responsive objects through us… (#416)
+    
+    * feat: data responsive core, registering responsive objects through useReactive
+    
+    * feat: Modify the passing values of path attributes in the code
+    
+    * Add a virtual machine like proxy for fiber component nodes (#442)
+    
+    * feat(react): Add related operations to the fiber tree (#431)
+    
+    * Add related operations to the fiber tree
+    
+    * Make some optimizations for fiber operations
+    
+    * feat: simulate Vue Composite API (#445)
+    
+    * feat: 添加 tiny-react 的 alert 组件 (#477)
+    
+    * feat(react): Packaging and building React series components (#493)
+    
+    * feat: 打包构建 react 系组件
+    
+    * feat: 打包构建 react 系组件
+    
+    * feat(react): Fix the React dev development link (#510)
+    
+    * feat: 修复开发链路
+    
+    * feat: 修复开发链路
+    
+    * fix: 修改 scope
+    
+    * fix: 修复导入后缀
+    
+    * fix: 修复导入后缀
+    
+    * fix: tsx 运行报错，改回 jsx
+    
+    * fix: 打包 react 组件排出 react 运行依赖
+    
+    * fix: 修复打包无法通过命令参数自定义 npmscope 和版本问题
+    
+    * feat(react): 在 packages/react 下添加 readme 文件
+    
+    ---------
+    
+    Co-authored-by: Mr.栋子 <guoxiaodong@MrdongzideMacBook-Pro.local>
+    
+    * fix(react): Development and debugging environment adjustment (#527)
+    
+    * fix: 开发链路调整
+    
+    * fix: react dev 开发命令入口修复
+    
+    ---------
+    
+    Co-authored-by: Mr.栋子 <guoxiaodong@MrdongzideMacBook-Pro.local>
+    
+    * feat(react): 添加 react-site api 文档项目 (#528)
+    
+    Co-authored-by: Mr.栋子 <guoxiaodong@MrdongzideMacBook-Pro.local>
+    
+    * fix: 打包代码 scope 为 @opentiny 会无限循环替换修复 (#529)
+    
+    Co-authored-by: Mr.栋子 <guoxiaodong@MrdongzideMacBook-Pro.local>
+    
+    ---------
+    
+    Co-authored-by: guoxudong06 <guoxudong06@meituan.com>
+    Co-authored-by: Mr.栋子 <guoxiaodong@MrdongzideMacBook-Pro.local>
+
+[33mcommit f2b399158209cbb2302520eda1868825276c27a2[m
+Author: Binks_ <yuhao615@qq.com>
+Date:   Thu Sep 28 10:43:48 2023 +0800
+
+    optimize button docs (#522)
+    
+    * docs(button): adjust the order of api
+    
+    * docs(button): modify component description
+    
+    * docs(button): optimize basic usage demo
+    
+    * docs(button): fix base's circle test
+    
+    * docs(button): delete the repetitive round  demo
+    
+    * docs(button): optimize the repetitive plain  demo
+    
+    * docs(button): optimize basic usage/icon demo
+    
+    * docs(button): optimize text demo
+    
+    * docs(button): optimize image demo
+    
+    * docs(button): optimize basic usage/type demo
+    
+    * docs(button): optimize loading demo
+    
+    * docs(button): optimize size demo
+    
+    * docs(button): optimize reset-time demo
+    
+    * docs(button): optimize autofocus/click/dynami demo
+    
+    * docs(button): optimize en-US docs
+    
+    * docs(button): adjust the order of demo
+    
+    * docs(button): make sure the api jumps properly
+    
+    * docs(button): optimize the api docs
+
+[33mcommit d7c789f5673df4cef3172e09a9ec05caec733b3f[m
+Author: GaoNeng <31283122+GaoNeng-wWw@users.noreply.github.com>
+Date:   Thu Sep 28 07:35:40 2023 +0800
+
+    feat: color select panel component (#492)
+    
+    * feat: color select panel component
+    
+    * fix: Cancel does not reset color issue
+    
+    * doc: color select panel demos
+    
+    * feat: display or not controlled externally
+    
+    * fix: delete jsx
+    
+    * fix: delete jsx
+
+[33mcommit caa347f8b8f2d9165f0c743622ace1897ba74326[m
+Author: vaebe <52314078+vaebe@users.noreply.github.com>
+Date:   Wed Sep 27 21:50:31 2023 +0800
+
+    fix(theme): 修复官网组件标题背景色异常 (#496)
+    
+    * fix(theme): 修复官网组件标题背景色异常
+    
+    * fix(theme):  refVar 值等于 undefined 或 null 时赋默认值
+    
+    * refactor(theme): useAutoStore  refVar 赋值逻辑优化
+
+[33mcommit 68a7284ff7ed0a6007b87cc2f6566a104684cfc6[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Wed Sep 27 21:42:04 2023 +0800
+
+    docs: add Zuowendong as a contributor for code (#524)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit da752346c6e77e1fd8e98fc9c178206ca83051be[m
+Author: wendZzoo <45628596+Zuowendong@users.noreply.github.com>
+Date:   Wed Sep 27 21:40:20 2023 +0800
+
+    fix(dialog-box): dialog mask err(#495) (#503)
+
+[33mcommit 8d355af6e0e20037360b0a24061523d349759a4b[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Wed Sep 27 21:29:30 2023 +0800
+
+    docs: add chenguang1994 as a contributor for code (#521)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit eec4713a35e9ad4ce358e3cce1ce8a8efee61a36[m
+Author: Spark Bill <31501915+chenguang1994@users.noreply.github.com>
+Date:   Wed Sep 27 21:27:44 2023 +0800
+
+    fix(slider): slider range select bug (#390) (#518)
+    
+    Co-authored-by: chenguang <guang_chen@huacenav.com>
+
+[33mcommit 0036fcb2037bfe20bac287f88d80df75e191390f[m
+Author: Kif <62132584+wkif@users.noreply.github.com>
+Date:   Wed Sep 27 10:37:33 2023 +0800
+
+    fix(collapse): 修复collapse未深度监听导致Pc端tiny-collapse activeNames直接push无法响应的bug (#512)
+
+[33mcommit 7f0f02776500c7c540b28e80f279b45d59bd2a2c[m
+Author: Caesar-ch <74941512+Caesar-ch@users.noreply.github.com>
+Date:   Tue Sep 26 19:38:00 2023 +0800
+
+    feat(rich-text-editor): resolve svg viewbox (#515)
+    
+    * feat(rich-text-editor): resolve icon package
+    
+    * feat(rich-text-editor): resolve svg viewbox
+
+[33mcommit b4d3d3b1c7c73ac2e120f5b3fdf4fb9ebcace0f0[m
+Author: Caesar-ch <74941512+Caesar-ch@users.noreply.github.com>
+Date:   Sun Sep 24 18:36:07 2023 +0800
+
+    feat(rich-text-editor): support media url (#508)
+
+[33mcommit f5b35fd26c2468ed81b14244a3ff59d5f26877c6[m
+Author: Caesar-ch <74941512+Caesar-ch@users.noreply.github.com>
+Date:   Sun Sep 24 16:20:39 2023 +0800
+
+    feat(rich-text-editor): fix bug, add font-size and add api demo (#497)
+    
+    * feat(rich-text-editor): add version compatibility
+    
+    * feat(rich-text-editor): update resolve path
+    
+    * feat(rich-text-editor): update resolve path
+    
+    * feat(rich-text-editor): fix bug
+    
+    * fix(rich-text-editor): bug fix
+    
+    * feat(rich-text-editor): fix bug, add font-size and add api demo
+    
+    * feat(rich-text-editor): add notify tips
+    
+    * feat(rich-text-editor): fix image/video bug and add more table select
+    
+    * feat(rich-text-editor): add i18
+    
+    * feat(rich-text-editor): add i18
+    
+    * feat(rich-text-editor): refinement i18
+
+[33mcommit 765843e3235d4b044e8804b98c68db07650eb3ba[m
+Author: Binks_ <yuhao615@qq.com>
+Date:   Sat Sep 23 15:41:07 2023 +0800
+
+    fix(dialog-box): 修复右侧弹窗不能滚动问题 (#500)
+    
+    * fix(dialog-box): 修复右侧弹窗不能滚动问题
+    
+    * fix(dialog-box): 修复文本过长下导致footer覆盖问题
+
+[33mcommit efbe7a6fbff671200b21d5472ebf059f99bff406[m
+Author: Caesar-ch <74941512+Caesar-ch@users.noreply.github.com>
+Date:   Thu Sep 21 13:49:06 2023 +0800
+
+    feat(rich-text-editor): add vue2 support (#483)
+    
+    * feat(rich-text-editor): add version compatibility
+    
+    * feat(rich-text-editor): update resolve path
+    
+    * feat(rich-text-editor): update resolve path
+
+[33mcommit 4bee278c6aa33092c11386eb8a9b253720101500[m
+Author: Kagol <kagol@sina.com>
+Date:   Tue Sep 19 08:29:25 2023 +0800
+
+    docs: optimzie date picker demo/api (#486)
+    
+    * docs(date-picker): adjust the order of api
+    
+    * docs(date-picker): optimize basic-usage demo
+    
+    * docs(date-picker): optimize date-range demo
+    
+    * docs(date-picker): add multiple-dates demo
+    
+    * docs(date-picker): optimize disabled demo
+    
+    * docs(date-picker): optimize shortcuts demo
+    
+    * docs(date-picker): remove useless demo
+    
+    * docs(date-picker): optimize default-value demo
+    
+    * docs(date-picker): optimize size demo
+    
+    * docs(date-picker): optimize format demo
+    
+    * docs(date-picker): optimize clear demo
+    
+    * docs(date-picker): optimize align demo
+    
+    * docs(date-picker): remove readonly/editable demo
+    
+    * docs(date-picker): optimize filter-mode demo
+    
+    * docs(date-picker): optimize custom-suffix-icon demo
+    
+    * docs(date-picker): optimize custom-weeks demo
+    
+    * docs(date-picker): optimize label-inside demo
+    
+    * docs(date-picker): optimize step/time-arrow-control demo
+    
+    * docs(date-picker): optimize unlink-panels demo
+    
+    * docs(date-picker): merge start-from-end-at to shortcuts demo
+    
+    * docs(date-picker): optimize timezone/isutc8 demo
+    
+    * docs(date-picker): optimize events demo
+    
+    * docs(date-picker): optimize validate-event demo
+    
+    * docs(date-picker): adjust demo order
+    
+    * docs(date-picker): update component description
+
+[33mcommit 3c3c433ddd69afbcffda021d828e2722c27c3bb2[m
+Author: YuYan Li <53218750+allenli178@users.noreply.github.com>
+Date:   Sat Sep 16 10:46:12 2023 +0800
+
+    🐛 fork tiny-vue 启动失败，添加字符串末尾缺少的引号 (#488)
+
+[33mcommit 1f770980906c4e9750da855c4235167b17f96477[m
+Author: Kagol <kagol@sina.com>
+Date:   Fri Sep 15 20:07:39 2023 +0800
+
+    chore: add dialog-select/filter-panel to tiny-vue.yml (#487)
+
+[33mcommit ff7890c750390caddeb65546f0489e771d49b667[m
+Author: Kagol <kagol@sina.com>
+Date:   Fri Sep 15 18:09:35 2023 +0800
+
+    docs: optimize time picker demo api docs (#482)
+    
+    * docs(time-picker): adjust the order of api
+    
+    * docs(time-picker): modify component description
+    
+    * docs(time-picker): optimize basic usage demo
+    
+    * docs(time-picker): optimize size/is-range demo
+    
+    * docs(time-picker): optimize disabled demo
+    
+    * docs(time-picker): optimize editable/is-range demo
+    
+    * docs(time-picker): optimize arrow-control demo
+    
+    * docs(time-picker): optimize step demo
+    
+    * docs(time-picker): optimize clearable demo
+    
+    * docs(time-picker): optimize suffix-icon demo
+    
+    * docs(time-picker): optimize popper-class/popper-append-to-body demo
+    
+    * docs(time-picker): optimize placeholder demo
+    
+    * docs(time-picker): optimize format/name/event demo
+    
+    * docs(time-picker): adjust the order of demo
+
+[33mcommit 51c46cbd42124f87124981689ee8448cf2386c93[m
+Author: Caesar-ch <74941512+Caesar-ch@users.noreply.github.com>
+Date:   Thu Sep 14 10:17:44 2023 +0800
+
+    feat(rich-text-editor): Add api design (#475)
+    
+    * feat(rich-text-editor): Add api design
+    
+    * feat(rich-text-editor): change code
+    
+    * feat(rich-text-editor): delete log
+    
+    ---------
+    
+    Co-authored-by: 常浩-BJS21325 <changhao01@youdao>
+
+[33mcommit 7d6120ed1d77f8155b1d24400adf4a2118b3b2f2[m
+Author: vaebe <52314078+vaebe@users.noreply.github.com>
+Date:   Wed Sep 13 18:05:03 2023 +0800
+
+    feature(divider): 增加 Divider 组件 (#354 close) (#471)
+    
+    * feature(divider): 增加 Divider 组件 (#354 close)
+    
+    * fix: 移除 lock 文件的提交
+    
+    * fix: 还原移除的 pnpm-lock.yaml 文件
+    
+    * fix: 使用 dev 覆盖本地 pnpm-lock.yaml.lock 文件
+
+[33mcommit 9911dd4a31b4a8fe30a6a5959c80e9e2d2a921d3[m
+Author: LinboLen <5467712+LinboLen@users.noreply.github.com>
+Date:   Tue Sep 12 21:44:19 2023 +0800
+
+    fix(alert): mobile first same bug (#481)
+
+[33mcommit bfa640fea1e270f9f3573e394a022961020276fb[m
+Author: LinboLen <5467712+LinboLen@users.noreply.github.com>
+Date:   Mon Sep 11 10:10:13 2023 +0800
+
+    fix(alert): alert mobile close should works (#478)
+
+[33mcommit eea1a21dc3d66b0109e801652aba8cab9350eba2[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu Sep 7 16:20:55 2023 +0800
+
+    refactor(date-table): supplement the ts type declaration of the date-table component (#456)
+
+[33mcommit 8e3c6f97dc3a5bd62f2de13229208dd17ec175c2[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu Sep 7 16:20:45 2023 +0800
+
+    fix(time-picker): fix time-picker arrow-control bug (#464)
+
+[33mcommit 3ccbfd8ccdebb2e70b8e1da0f328784b1b1b5f7d[m
+Author: Lyx <1498781418@qq.com>
+Date:   Tue Sep 5 11:39:08 2023 +0800
+
+    feat(unit): add breadcrumb unit test (#457)
+
+[33mcommit 408182b93fc5d5e476e754b33fe1114b8e7e7b20[m
+Author: Caesar-ch <74941512+Caesar-ch@users.noreply.github.com>
+Date:   Tue Sep 5 11:38:13 2023 +0800
+
+    feat(rich-text-editor): css style adjustment (#459)
+    
+    Co-authored-by: 常浩-BJS21325 <changhao01@youdao>
+
+[33mcommit c40bce0db349bec00f7743f8fa23ccc527464da3[m
+Author: Caesar-ch <74941512+Caesar-ch@users.noreply.github.com>
+Date:   Sun Aug 27 07:53:18 2023 +0800
+
+    feat(rich-text-editor): add font-size selection (#448)
+    
+    Co-authored-by: 常浩-BJS21325 <changhao01@youdao>
+
+[33mcommit 3c714b76a02b6e335222a6847a34fe2cb46445e3[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu Aug 24 18:59:03 2023 +0800
+
+    feat: optimize rich text editor toolbar style (#444)
+
+[33mcommit ef50b1a14b3eb91a19fe0db46e5182201e4c66df[m
+Author: Zz-ZzzZ <48228016+Zz-ZzzZ@users.noreply.github.com>
+Date:   Thu Aug 24 15:31:13 2023 +0800
+
+    test(modal): add surplus unit test (#435)
+
+[33mcommit a592dd9f67694aef47bbe7e0a95ba44346360082[m
+Author: Caesar-ch <74941512+Caesar-ch@users.noreply.github.com>
+Date:   Thu Aug 24 15:29:26 2023 +0800
+
+    feat(rich-text-editor): support code highlight (#440)
+    
+    * feat(rich-text-editor): support code highlight
+    
+    * feat(rich-text-editor): support code highlight
+    
+    * style(rich-text-editor): code style adjust
+    
+    * style(rich-text-editor): code style adjust
+    
+    ---------
+    
+    Co-authored-by: 常浩-BJS21325 <changhao01@youdao>
+
+[33mcommit b2cd6ab80f7813c537cabc60261886ee5bec543a[m
+Author: Kagol <kagol@sina.com>
+Date:   Wed Aug 23 23:51:52 2023 +0800
+
+    docs(container): fix container composition demos fix #425 (#441)
+
+[33mcommit 5777404363e8b56a5ac6bc084941729b9938fd18[m
+Author: Zz-ZzzZ <48228016+Zz-ZzzZ@users.noreply.github.com>
+Date:   Tue Aug 22 11:25:17 2023 +0800
+
+    fix(modal): fix css value error (#426)
+
+[33mcommit f3414a36f20e7d93b4dfd4f7264565e56be9f6d2[m
+Author: Caesar-ch <74941512+Caesar-ch@users.noreply.github.com>
+Date:   Tue Aug 22 08:59:55 2023 +0800
+
+    feat(rich-text-editor): add row height and merge h1-h6 and pargraph (#414)
+    
+    Co-authored-by: 常浩-BJS21325 <changhao01@youdao>
+
+[33mcommit 956293b4ba83c78fa0a32fecdf6b32720c62b8b4[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu Aug 17 16:57:39 2023 +0800
+
+    docs(rich-text-editor): add demo and api docs (#404)
+
+[33mcommit c0cd7cdb4e04ed97dbf4a41fcf99067b2ef6bbdd[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu Aug 17 16:23:38 2023 +0800
+
+    chore: merge editor-dev to dev (#403)
+    
+    * feat(rich-text-editor): add new component rich-text-editor (#346)
+    
+    * feat(rich-text-editor): add new components rich-text-editor
+    
+    ---------
+    
+    Co-authored-by: 常浩-BJS21325 <changhao01@youdao>
+    
+    * style(rich-text-editor): adjust style, fit Highlight, Default, Disabled (#357)
+    
+    * style(rich-text-editor): adjust style, fit Highlight, Default, Disabled
+    
+    * fix(rich-text-editor): Space format changed from four to two
+    
+    * fix(rich-text-editor): add svg file and support high light and disabled and default
+    
+    ---------
+    
+    Co-authored-by: 常浩-BJS21325 <changhao01@youdao>
+    
+    * feat(rich-text-editor): add text alignment, task list, table interaction (#372)
+    
+    * feat(rich-text-editor): add text alignment, task list, table interaction
+    
+    ---------
+    
+    Co-authored-by: 常浩-BJS21325 <changhao01@youdao>
+    
+    * perf(rich-text-editor): split pure function from vue.ts to index.ts (#395)
+    
+    Co-authored-by: 常浩-BJS21325 <changhao01@youdao>
+    
+    * fix(rich-text-editor): fix conflict
+    
+    ---------
+    
+    Co-authored-by: Caesar-ch <74941512+Caesar-ch@users.noreply.github.com>
+    Co-authored-by: 常浩-BJS21325 <changhao01@youdao>
+
+[33mcommit 59c73952bd603c1ae9653e1fe40c9db19021fb6f[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu Aug 17 16:05:54 2023 +0800
+
+    style(rich-text-editor): format code style (#402)
+
+[33mcommit 16488865df00d3e8ed64bec59dfdcb68adb65b30[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu Aug 17 15:38:02 2023 +0800
+
+    feat: add rich-text-editor component (#401)
+    
+    * feat(rich-text-editor): add new component rich-text-editor (#346)
+    
+    * feat(rich-text-editor): add new components rich-text-editor
+    
+    ---------
+    
+    Co-authored-by: 常浩-BJS21325 <changhao01@youdao>
+    
+    * style(rich-text-editor): adjust style, fit Highlight, Default, Disabled (#357)
+    
+    * style(rich-text-editor): adjust style, fit Highlight, Default, Disabled
+    
+    * fix(rich-text-editor): Space format changed from four to two
+    
+    * fix(rich-text-editor): add svg file and support high light and disabled and default
+    
+    ---------
+    
+    Co-authored-by: 常浩-BJS21325 <changhao01@youdao>
+    
+    * feat(rich-text-editor): add text alignment, task list, table interaction (#372)
+    
+    * feat(rich-text-editor): add text alignment, task list, table interaction
+    
+    ---------
+    
+    Co-authored-by: 常浩-BJS21325 <changhao01@youdao>
+    
+    ---------
+    
+    Co-authored-by: Caesar-ch <74941512+Caesar-ch@users.noreply.github.com>
+    Co-authored-by: 常浩-BJS21325 <changhao01@youdao>
+
+[33mcommit 339c74fdad43695139519ce6d179b5b2fa73a606[m
+Author: 申君健 <40288193@qq.com>
+Date:   Thu Aug 17 15:26:09 2023 +0800
+
+    fix(sites): fix (#400)
+
+[33mcommit 85804288b1d7a9da89162f934dc5bde0db7f6585[m
+Author: 申君健 <40288193@qq.com>
+Date:   Thu Aug 17 15:08:38 2023 +0800
+
+    fix Playground Page (#399)
+    
+    * fix(sites): 切换 sites 引用 @opentiny/vue-repl包
+    
+    * fix(sites): fix Playground Page
+
+[33mcommit f33cb4256d1dd3c4349af7ba36920db6eb044960[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu Aug 17 11:32:07 2023 +0800
+
+    docs: update release notes (#397)
+
+[33mcommit 0bdf96db5cb88a0e268ed1b590afe3b6b719ab93[m
+Author: GaoNeng <31283122+GaoNeng-wWw@users.noreply.github.com>
+Date:   Thu Aug 17 09:54:31 2023 +0800
+
+    fix(color-picker): 修复组件若干问题 (#394)
+    
+    * 🐞 fix(color-picker): 修复国际化问题
+    
+    * ✨ feat(color-picker): 点击选择
+    
+    * ✨ feat(color-picker): 点选
+    
+    * 🐞 fix(color-picker): 修复了颜色闪烁bug
+    
+    当thumb拖动，但取消选择后，再次点击trigger颜色会出现错误的bug
+    
+    * 🐞 fix(color-picker): 修复颜色抖动问题
+    
+    当用户拖动thumb，但点击cancel时，再次点击trigger拖动thumb或cursor，颜色会有抖动（也就是不统一）
+    
+    * ✨ feat(color-picker): alpha点选
+
+[33mcommit 0029477b294ca725f4e225903e2a305800af6a4c[m
+Author: zzcr <894103554@qq.com>
+Date:   Wed Aug 16 01:48:55 2023 -0700
+
+    fix(docs): fix docs build error
+
+[33mcommit 23fa983d4815e951d3ae573c59d5d9130dd1efc6[m
+Author: gimmyhehe <975402925@qq.com>
+Date:   Wed Aug 16 14:43:22 2023 +0800
+
+    fix(sites): change design config when change theme (#393)
+    
+    * fix(sites): change design config when change theme
+    
+    * fix(sites): fix dev:site script
+
+[33mcommit 0b50e4f9704c79b49b61502d8bcd9831c1307926[m
+Author: Zz-ZzzZ <48228016+Zz-ZzzZ@users.noreply.github.com>
+Date:   Wed Aug 16 12:18:53 2023 +0800
+
+    test(modal): add modal unit test (#374)
+    
+    * test(modal): add modal unit test
+    
+    * test(modal): add zoom event test
+    
+    * test(modal): change test api
+
+[33mcommit 4c25c74c36fdd3469d1ab632c97f72a7da68f943[m
+Author: GaoNeng <31283122+GaoNeng-wWw@users.noreply.github.com>
+Date:   Wed Aug 16 11:30:24 2023 +0800
+
+    feat(color-picker): color-picker component (#383)
+    
+    * feat(color-picker): color-picker component
+
+[33mcommit c1d78fda3b122311744f9eb5d9190f34c615741a[m
+Author: Kagol <kagol@sina.com>
+Date:   Wed Aug 16 11:25:00 2023 +0800
+
+    fix: fix packages/vue/package.json format error when execute pnpm dev or pnpm build:ui command (#387)
+
+[33mcommit 159fd4fc4728d3c8f5ff7ae70a3ca41f7c185aa5[m
+Author: Lyx <1498781418@qq.com>
+Date:   Wed Aug 16 09:28:37 2023 +0800
+
+    test(badge): add unit test (#388)
+
+[33mcommit 75032bde35e81e207c7878d66387e98aaf0372be[m
+Author: jack-zishan <67041206+jack-zishan@users.noreply.github.com>
+Date:   Wed Aug 16 09:18:24 2023 +0800
+
+    fix:当使用垂直方向split包裹水平方向split， (#392)
+    
+    水平方向split的分割线cursor样式会被覆盖，本次修复了该bug。
+    
+    Signed-off-by: jack-zishan <jack-zishan@outlook.com>
+
+[33mcommit ee044891c0def1f7fb55a7d769fb61c4903b4de3[m
+Author: 申君健 <40288193@qq.com>
+Date:   Wed Aug 16 09:17:14 2023 +0800
+
+    fix(sites): 切换 sites 引用 @opentiny/vue-repl包 (#391)
+
+[33mcommit a74390d125ce7233d2af72057f8413fbf6c9221b[m
+Author: zzcr <894103554@qq.com>
+Date:   Tue Aug 15 00:33:26 2023 -0700
+
+    fix(theme): delete renderless type module
+
+[33mcommit 61a5f5bb71b9c3eb18e7cc110e23a32a714c8369[m
+Author: zzcr <894103554@qq.com>
+Date:   Tue Aug 15 00:26:06 2023 -0700
+
+    fix(theme): delete theme sideEffects
+
+[33mcommit d6264f9e68fb45b64a213c1a69502b3624dff58e[m[33m ([m[1;33mtag: v3.10.0[m[33m)[m
+Author: Kagol <kagol@sina.com>
+Date:   Mon Aug 14 16:33:19 2023 +0800
+
+    fix: fix ts declaration error when execute pnpm build:ui vue command (#386)
+
+[33mcommit 5f6784ecb34ee454dcb48224c9135ff21be7f874[m
+Author: zzcr <894103554@qq.com>
+Date:   Sun Aug 13 19:24:47 2023 -0700
+
+    fix(grid): fix grid fixed style
+
+[33mcommit 8de953ea0ee135bbd18cb7e1e4c68704979fe957[m
+Author: 黄怡林 <48042709+Huangyilin19@users.noreply.github.com>
+Date:   Mon Aug 14 09:40:17 2023 +0800
+
+    fix(Modal): Fix the issue of incorrect props type declaration in modal component (#385)
+
+[33mcommit aff83c2e3c954526afb1f9d886ab5b71c0038065[m
+Author: Lyx <1498781418@qq.com>
+Date:   Sun Aug 13 16:36:55 2023 +0800
+
+    fix(badge): same content display duplicate (#382)
+
+[33mcommit f2528e9cadad7ac16933495216fbf14cdb680788[m
+Author: Kagol <kagol@sina.com>
+Date:   Fri Aug 11 17:30:54 2023 +0800
+
+    chore: add pnpm-lock.yaml (#380)
+
+[33mcommit 3dc9769d1c2de2d1b0cccd57a5d2422d69d8f842[m
+Author: Kagol <kagol@sina.com>
+Date:   Fri Aug 11 17:04:20 2023 +0800
+
+    add unit test (#379)
+    
+    * test(alert): add alert unit test (#369)
+    
+    * test(alert): add alert unit test
+    
+    * test(alert): add close event unit test
+    
+    * docs: add Zz-ZzzZ as a contributor for test (#371)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+    
+    * fix(carousel): adjust arrow circle width to 28px (#376)
+    
+    * docs: add lyx-jay as a contributor for code (#377)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+    
+    ---------
+    
+    Co-authored-by: Zz-ZzzZ <48228016+Zz-ZzzZ@users.noreply.github.com>
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+    Co-authored-by: Lyx <lyxjay1005@163.com>
+
+[33mcommit 164afb23e4af74448e89df291620e84ed60684e4[m
+Author: Kagol <kagol@sina.com>
+Date:   Fri Aug 11 16:40:06 2023 +0800
+
+    feat: add dialog-select and refactor sites (#378)
+
+[33mcommit 18d4d190d3a165a6ad474f11d8a71781b3e45323[m
+Author: Lyx <lyxjay1005@163.com>
+Date:   Fri Aug 11 12:03:07 2023 +0800
+
+    fix(drawer): mask  disappear faster than content (#375)
+
+[33mcommit c38d2045253735db04cfb85ea7bd178f5c5531de[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Fri Aug 11 12:02:08 2023 +0800
+
+    docs: add lyx-jay as a contributor for code (#377)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 726515673d2f3649a06cfb26eb24d9ab929d3ac5[m
+Author: Lyx <lyxjay1005@163.com>
+Date:   Fri Aug 11 12:01:19 2023 +0800
+
+    fix(carousel): adjust arrow circle width to 28px (#376)
+
+[33mcommit 6c6bf20cd21f6064a165be1c7b3b51499616f8c7[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Wed Aug 9 08:50:33 2023 +0800
+
+    docs: add Zz-ZzzZ as a contributor for test (#371)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 58f36edfabfa3cebff323cf77684e9af93d6de4f[m
+Author: Zz-ZzzZ <48228016+Zz-ZzzZ@users.noreply.github.com>
+Date:   Wed Aug 9 08:48:50 2023 +0800
+
+    test(alert): add alert unit test (#369)
+    
+    * test(alert): add alert unit test
+    
+    * test(alert): add close event unit test
+
+[33mcommit aeaf9ad3ef9fdb2297391fd61448829983325dc8[m
+Author: 申君健 <40288193@qq.com>
+Date:   Tue Aug 8 14:02:53 2023 +0800
+
+    tooltip performance optimization (#368)
+    
+    * fix(tooltip): 修复tooltip卡顿的问题
+    
+    * fix(theme): build theme时，自动合并所有组件 的index.less
+
+[33mcommit 517c06e2e390d80adb4694bfac04f078fd1e9195[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Mon Aug 7 09:24:52 2023 +0800
+
+    docs: add chenqifeng66 as a contributor for test (#366)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 846524834a1ef639a8d684441750a74b42bad3be[m
+Author: chenqifeng66 <839860616@qq.com>
+Date:   Sun Aug 6 22:27:37 2023 +0800
+
+    feat(button): 完善单元测试 (#364)
+
+[33mcommit ded52d323ef7f7ef3502f01dcc0ad645c3f3908b[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu Aug 3 07:57:21 2023 +0800
+
+    chore: add issue-translator (#361)
+
+[33mcommit 5bd36e79d6509fed7c9ea5bba001c9d4bcff035a[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Wed Aug 2 19:54:17 2023 +0800
+
+    docs: add Caesar-ch as a contributor for code (#360)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit d747c05c19bb53600e954d590ed27fcda660e7a7[m
+Author: MomoPoppy <125256456+MomoPoppy@users.noreply.github.com>
+Date:   Wed Aug 2 14:08:24 2023 +0800
+
+    Momo poppy/fix select :Fixed the problem of calculating the height of the Select component and creating an item incorrectly. (#358)
+    
+    * chore: checkout release branch
+    
+    * fix(select): Fix the issue of automatic creation of matching items when using the allowCreate property in the Select component
+    
+    * fix(select): Fix the incorrect height of the input box when multiple attributes are selected when using the Select component
+    
+    * fix(select): Fix the incorrect height of the input box when multiple attributes are selected when using the Select component
+    
+    ---------
+    
+    Co-authored-by: Kagol <kagol@sina.com>
+
+[33mcommit e26f182602ab7a2be4d16daa02df259315512566[m
+Author: ing <104059491+yuanningning@users.noreply.github.com>
+Date:   Tue Aug 1 18:31:33 2023 -0700
+
+    feat #272 ipAddress组件ipv6类型整改 (#337)
+    
+    * close #272 ipAddress组件ipv6类型整改
+    
+    * fix: 检视意见修改
+
+[33mcommit b9086540ee5f840136cef888f5211db87894a6c3[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Mon Jul 31 16:22:59 2023 +0800
+
+    docs: add CatsAndMice as a contributor for code (#350)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 3bee89abad41d32ac992744b6d923d3b8fbfc504[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Mon Jul 31 16:17:46 2023 +0800
+
+    docs: add KevinAndrewDong as a contributor for code (#349)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit e7d4e674b515772b3437fd01e5c25df9a1b37a3e[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Mon Jul 31 16:16:44 2023 +0800
+
+    docs: add gimmyhehe as a contributor for code (#348)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 2781d0d583a59e77e683c0fef923d1ad1a72a321[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Mon Jul 31 16:15:55 2023 +0800
+
+    docs: add pe-3 as a contributor for code (#347)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 4fddd426831d273f418812646ac450ce3c161ea6[m
+Author: gimmyhehe <975402925@qq.com>
+Date:   Mon Jul 24 09:25:36 2023 +0800
+
+    fix(checkbox): 修复checkbox label为0时不显示bug (#331)
+
+[33mcommit b2064e738dc2c8e0e8c6c7d0981be0fe1dd3185c[m
+Author: gimmyhehe <975402925@qq.com>
+Date:   Fri Jul 14 10:41:39 2023 +0800
+
+    fix(input): 修复input在表单中disabled不生效bug (#322)
+
+[33mcommit 35d5451de4167f346802275e4bc9b64d1e5ca18a[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Wed Jul 12 18:27:50 2023 -0700
+
+    feat(pnpm-lock): 添加pnpm-lock到git仓库 (#320)
+
+[33mcommit 6e3e2ee0377b211aac5a11d9c6fc6aba09651bf5[m
+Author: 申君健 <40288193@qq.com>
+Date:   Wed Jul 12 16:44:40 2023 +0800
+
+    fix(vue-theme):  fix textarea 中的 @apply (#319)
+
+[33mcommit 2b2bb47e64612c90a8919a217439d1c354f9a34d[m
+Author: ing <104059491+yuanningning@users.noreply.github.com>
+Date:   Tue Jul 11 18:13:25 2023 -0700
+
+    fix #268 增加编辑框弹出时自定义事件 (#315)
+
+[33mcommit e73df05bad9f44c2277d4d2def3442b2ef2546ce[m
+Author: 申君健 <40288193@qq.com>
+Date:   Mon Jul 10 15:08:56 2023 +0800
+
+    恢复demo中的示例中的样式 (#311)
+    
+    * fix(theme): 移除container ,layout中的样式
+    
+    * fix(docs): 恢复container.layout的示例
+    
+    * fix(docs): 恢复container.layout的示例
+
+[33mcommit 0c1e8dc763205d0376ce65564880390bc8462c1c[m
+Author: zzcr <894103554@qq.com>
+Date:   Sun Jul 9 18:59:37 2023 -0700
+
+    fix(grid): 修复tabs切换表格配置autoresize有闪动问题
+
+[33mcommit ef951b3922199e42ca8e7a1f4bcfaa66749d1ba8[m
+Author: 申君健 <40288193@qq.com>
+Date:   Fri Jul 7 17:05:02 2023 +0800
+
+    fix(theme): 移除container ,layout中的样式 (#306)
+    
+    * fix(theme): 移除container ,layout中的样式
+    
+    * fix(docs): 恢复container.layout的示例
+
+[33mcommit a0df193f7abc3df864d00c16801c5743d7e16dc9[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Fri Jul 7 00:00:54 2023 -0700
+
+    fix(grid): 修复表格筛选面板样式错误问题，修复ResizeObserver，api在webpack本地环境报警告问题 (#305)
+
+[33mcommit d20f9f75af4d5236634d3f39f9dbd6829054f770[m
+Author: gimmyhehe <975402925@qq.com>
+Date:   Tue Jul 4 18:59:18 2023 -0700
+
+    fix(button): 修复朴素按钮图标禁用态颜色 (#299)
+
+[33mcommit 35e833e3ff0ad7ad3fc94a513b96c67cc799c0f4[m
+Author: zzcr <894103554@qq.com>
+Date:   Mon Jul 3 05:19:29 2023 -0700
+
+    fix(grid): 修复表格表头居中对齐不生效问题
+
+[33mcommit 337fb812583812612c41e96ba2d2913b44d1dc03[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Mon Jul 3 05:00:46 2023 -0700
+
+    fix(grid): 修复表格组件存在冻结列且没有滚动条时样式异常问题 (#298)
+
+[33mcommit 4e48d37bfaa2c628cb786c6a80d9adbc936cadd0[m
+Author: 黄怡林 <48042709+Huangyilin19@users.noreply.github.com>
+Date:   Mon Jul 3 04:40:15 2023 -0700
+
+    fix(numeric): 修复当前value + step > max时, 无法取值max的问题 (#297)
+
+[33mcommit d7a6a2150eca32987d13e90f3d80e7d46709ccdf[m[33m ([m[1;33mtag: v3.9.0[m[33m)[m
+Author: zzcr <894103554@qq.com>
+Date:   Thu Jun 29 02:29:19 2023 -0700
+
+    fix(icon): 修复icon图标显示异常问题
+
+[33mcommit 68c07818dd6765c44bb91ac9461dfe73cc070109[m
+Author: zzcr <894103554@qq.com>
+Date:   Thu Jun 29 02:10:30 2023 -0700
+
+    fix(icon): 修复icon图标显示异常问题
+
+[33mcommit df96e1642784c910f25cfa8edb8c3e38a811d1cc[m
+Author: zzcr <894103554@qq.com>
+Date:   Thu Jun 29 00:41:18 2023 -0700
+
+    feat(TinyVue): 同步内部代码，新特性添加和bug修复
+
+[33mcommit 637a8d117adfa83a2f265cd18476d694fbeee5c4[m
+Author: dong <2970752254@qq.com>
+Date:   Sun Jun 25 14:26:04 2023 +0800
+
+    docs: change content of toolbar-button-click-event (#296)
+    
+    Co-authored-by: dongyouyi 30041373 <dongyouyi@huawei.com>
+
+[33mcommit 8c2dc357f7a604ca8ad4f067e1fa46f13bd56f03[m
+Author: ing <104059491+yuanningning@users.noreply.github.com>
+Date:   Tue Jun 20 20:39:50 2023 -0700
+
+    feat: 增加联想查询api及demo示例 #289 (#290)
+
+[33mcommit 9a292394b4b36ec139acab1e94fe3e0a94775ae1[m[33m ([m[1;33mtag: v3.8.3[m[33m)[m
+Merge: 5164adcb 608aa043
+Author: zzcr <894103554@qq.com>
+Date:   Mon Jun 12 05:09:44 2023 -0700
+
+    Merge branch 'dev' of github.com:opentiny/tiny-vue into dev
+
+[33mcommit 5164adcbfc065d4b22759a7ec6d0847c7d393579[m
+Author: zzcr <894103554@qq.com>
+Date:   Mon Jun 12 05:09:32 2023 -0700
+
+    fix(grid): 修复表格type=operation时有插槽情况下，渲染为空白问题
+
+[33mcommit 608aa043c5b55df775ee82ffb82c70407c635617[m
+Author: zuixinwang <59717852+zuixinwang@users.noreply.github.com>
+Date:   Mon Jun 12 10:59:33 2023 +0800
+
+    fix(cli): template path resolve error after built (#279)
+    
+    fix #267
+
+[33mcommit ede750475eda04458a730543fe4b0c0469a956cd[m
+Author: MrWang2016 <421231576@qq.com>
+Date:   Mon Jun 12 10:58:36 2023 +0800
+
+    Mrwang/fix： 修复search组件不支持键盘回车事件和修正删除图标不垂直居中问题 (#282)
+    
+    * 修复actionSheet在手机上click无效问题
+    
+    * 修复pullRefresh组件，数据类型不匹配，导致控制台告警日志超大量打印，导致页面渲染慢的问题
+    
+    * 修复actionSheet组件api.watchVisible空指针问题和去掉tabs空白padding
+    
+    * 修复search组件不支持键盘回车事件和修正删除图标不垂直居中问题
+
+[33mcommit 9fde21fdf1600c78398d0c4c5ceeb11264b0fe41[m
+Author: zzcr <894103554@qq.com>
+Date:   Sat Jun 10 01:41:03 2023 -0700
+
+    fix(build): design 增加摇树配置
+
+[33mcommit 130e3cf25ba771807a67cc3516a3f10e595965ef[m
+Author: zzcr <894103554@qq.com>
+Date:   Sat Jun 10 01:33:20 2023 -0700
+
+    fix(page): 修复page分页初始化出触发分页改变事件
+
+[33mcommit dff7e83e0ad354bd5727668e302156447e3f8403[m
+Author: MrWang2016 <421231576@qq.com>
+Date:   Sat Jun 10 15:56:52 2023 +0800
+
+    fix: 修复actionSheet组件api.watchVisible空指针问题和去掉tabs空白padding (#278)
+    
+    * 修复actionSheet在手机上click无效问题
+    
+    * 修复pullRefresh组件，数据类型不匹配，导致控制台告警日志超大量打印，导致页面渲染慢的问题
+    
+    * 修复actionSheet组件api.watchVisible空指针问题和去掉tabs空白padding
+
+[33mcommit ae97ad85e083d491074fe5eb7f05df2ffa9948b4[m
+Author: zzcr <894103554@qq.com>
+Date:   Sat Jun 10 00:54:00 2023 -0700
+
+    feat(TinyVue): 同步内部代码，解决若干bug
+
+[33mcommit 598d173029e235da6cd32f816f546eb4a9474d1f[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Wed Jun 7 19:20:20 2023 -0700
+
+    fix(vite-plugin): 按需打包插件支持更多自定义包名 (#276)
+
+[33mcommit 77b68bea184cfc184497bed2bc74d7627898f743[m
+Author: GaoNeng <31283122+GaoNeng-wWw@users.noreply.github.com>
+Date:   Thu Jun 8 10:18:17 2023 +0800
+
+    feat: config-provider (#271)
+    
+    * feat: config-provider
+    
+    * 🐞 fix(config-provider):
+    
+    开发者如果只覆盖某个design item 那么其他的常量会被覆盖为 undefined. commit主要修复该问题
+    
+    * 🧪 test(config-provider): 补充单元测试
+    
+    * 🐞 fix(config-provider): 修改检视意见
+
+[33mcommit 6b1d103d69ed0531f47fb5c906aed90e93b9955a[m
+Author: zuixinwang <59717852+zuixinwang@users.noreply.github.com>
+Date:   Thu Jun 8 10:15:44 2023 +0800
+
+    style(internal-cli): fix types and lint code (#257)
+    
+    * fix(cli): fix types and lint code
+    
+    * style(internal-cli): fix types and lint code
+
+[33mcommit 302cf2573f35b09e06278108fb450dd85dcf0f33[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Mon Jun 5 19:59:43 2023 -0700
+
+    fix(eslint): 屏蔽eslint：top-level-function规则 (#273)
+
+[33mcommit 0d3ca6bda61e3912c7cf369b0ca90e39b0a774b8[m
+Author: 黄怡林 <48042709+Huangyilin19@users.noreply.github.com>
+Date:   Sun Jun 4 23:43:13 2023 -0700
+
+    fix(numeric): 解决bug: 设置数值精度后无法输入小数点; 超出小数位数后裁剪值不对. (#270)
+
+[33mcommit 8f9f3868b73cca750bd583948afe377a15adc479[m
+Author: ing <104059491+yuanningning@users.noreply.github.com>
+Date:   Sun Jun 4 20:13:57 2023 -0700
+
+    feat: 增加auto-lookup属性demo及api文档 (#269)
+
+[33mcommit 33373bc27f15c522a66729376232b0279fe8d1b6[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Wed May 31 22:43:26 2023 +0800
+
+    docs: add coderbaozi as a contributor for code (#266)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 651546c5d825b81dc3149efae672e0e00fd02121[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Wed May 31 22:41:01 2023 +0800
+
+    docs: add linxiang07 as a contributor for code (#265)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit afae3376b5f2df59544931c73f6a8ca4bb77de38[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Wed May 31 22:39:25 2023 +0800
+
+    docs: add xiejay97 as a contributor for infra (#264)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit dec6a4c8e0488f7437ab25f15acbe6f04e9a6507[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Wed May 31 22:33:45 2023 +0800
+
+    docs: add brenner8023 as a contributor for infra (#263)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit f038e65066b4e1bc068414d44e9931176ef3701c[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Wed May 31 22:30:26 2023 +0800
+
+    docs: add LadyChatterleyLover as a contributor for code (#262)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 2946111719bdba632836bc3e33e3f540bc9b0f6e[m
+Author: zuixinwang <59717852+zuixinwang@users.noreply.github.com>
+Date:   Wed May 31 22:26:26 2023 +0800
+
+    docs: Update PULL_REQUEST_TEMPLATE.md (#258)
+    
+    * chore: Update PULL_REQUEST_TEMPLATE.md
+    
+    * docs: Update PULL_REQUEST_TEMPLATE.md
+
+[33mcommit e91aa22a9df88f7fe9b14af96d129bc9bf462021[m
+Author: Kagol <kagol@sina.com>
+Date:   Wed May 31 14:32:48 2023 +0800
+
+    fix(date-picker): fix date-picker clear icon style (#260)
+
+[33mcommit ee759b2a5f2d8023ffaeaf36a55b7a69ac38e370[m[33m ([m[1;33mtag: v3.8.2[m[33m)[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Sun May 28 18:25:32 2023 -0700
+
+    fix(tinyvue): 同步内部代码，并修改grid组件再vue2下报错问题 (#254)
+
+[33mcommit 8cf6d4adaa476eec8b27069da2dcf6f79cd68259[m
+Author: GaoNeng <31283122+GaoNeng-wWw@users.noreply.github.com>
+Date:   Sat May 20 20:25:21 2023 +0800
+
+    Refactor: 重构cli (#238)
+    
+    * refactor: 重构shared/utils
+    
+    * fix: 修复shared/utils类型错误
+    
+    * refactor: 重构cli
+
+[33mcommit b319be37efdc4241013cf8d10b0d874468765c5e[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu May 25 14:39:53 2023 +0800
+
+    docs: update contributors
+
+[33mcommit 886499bbec893c279164281db45e089dc081a566[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu May 25 14:26:49 2023 +0800
+
+    fix: fix some XDesign bug
+
+[33mcommit 0e095efd32ab5470afcd7a24386b5e212edaf397[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Sun May 21 18:14:40 2023 -0700
+
+    fix(runtime-build) 修复运行打包构建产物缺少组件问题 (#250)
+
+[33mcommit b5ee981110a2c9a27868a7c9ee8f43737f0b7609[m
+Author: peter G <103579791+pe-3@users.noreply.github.com>
+Date:   Sun May 21 09:40:11 2023 +0800
+
+    refactor: A constructor name should not start with a lowercase letter but a uppercase. (#251)
+    
+    Co-authored-by: guoxudong06 <guoxudong06@meituan.com>
+
+[33mcommit bad8c0daa6c7f45344827bb03bb09a77de551fa0[m
+Author: GaoNeng <31283122+GaoNeng-wWw@users.noreply.github.com>
+Date:   Sat May 20 20:25:21 2023 +0800
+
+    Refactor: 重构cli (#238)
+    
+    * refactor: 重构shared/utils
+    
+    * fix: 修复shared/utils类型错误
+    
+    * refactor: 重构cli
+
+[33mcommit 9f2fd3d0c80dc5bf30e35f294884476b82332853[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sat May 20 12:25:16 2023 +0800
+
+    docs: add zuixinwang as a contributor for code (#249)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 17a7bdf0caa6e62d94d590935a370ef351172d54[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sat May 20 12:21:40 2023 +0800
+
+    docs: add Huangyilin19 as a contributor for code (#248)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 8c032bc6561070e12cef980cffa62e04b3609593[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sat May 20 12:20:37 2023 +0800
+
+    docs: add qinwencheng as a contributor for code (#247)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit e52f7c5d9f8f4e732941577996029cf96f0e0d34[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sat May 20 12:19:38 2023 +0800
+
+    docs: add MrWang2016 as a contributor for code (#246)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 158325180bb3d370c8c4191d44c540ad85465811[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sat May 20 12:17:14 2023 +0800
+
+    docs: add ygj6 as a contributor for code (#245)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit eef60dcf60b3ba313b1b84f6784f0140c74598cb[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sat May 20 12:14:57 2023 +0800
+
+    docs: add acyza as a contributor for code (#244)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit e91e659d6e3be10ab80d08e09032c34e28990b35[m
+Author: Kagol <kagol@sina.com>
+Date:   Sat May 20 12:02:42 2023 +0800
+
+    docs: update contributors
+
+[33mcommit 663e8fc65df317b2262e5729a6d859e5b6635d10[m
+Author: Kagol <kagol@sina.com>
+Date:   Fri May 19 07:03:28 2023 +0800
+
+    chore: add label ci (#243)
+
+[33mcommit 034cf3ce514a2189db11c742a794dbe86eb0e35c[m[33m ([m[1;33mtag: v3.8.0[m[33m)[m
+Author: zzcr <894103554@qq.com>
+Date:   Thu May 18 07:16:38 2023 -0700
+
+    fix(build) 修改版本号
+
+[33mcommit 8cb490cf50240b98314826814bb49abaa779d50e[m
+Author: zzcr <894103554@qq.com>
+Date:   Thu May 18 07:13:09 2023 -0700
+
+    fix(build) 按需加载插件支持屏蔽mobile-first模板
+
+[33mcommit e39bb91bfd7103cacae5aa24465ae4a96b9dabb2[m
+Merge: 63d58bfa 766874c0
+Author: zzcr <894103554@qq.com>
+Date:   Thu May 18 07:01:23 2023 -0700
+
+    Merge branch 'dev' of github.com:opentiny/tiny-vue into fix-bug-0518
+
+[33mcommit 766874c0b73189f7f28dafc7f289aea1c3499b3b[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu May 18 21:49:33 2023 +0800
+
+    fix: fix npm publish 402 error (#241)
+
+[33mcommit ae9b7fe9b278c10e75b22d97d0764bea1b3a34ba[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Thu May 18 06:30:10 2023 -0700
+
+    fix(build) 修复grid、pager组件bug (#240)
+    
+    * fix(build) 修复grid、pager组件bug
+    
+    * fix(build) 更新版本号
+
+[33mcommit 63d58bfac06fc2c5f2f9e229373adfd8bfc0cdfc[m
+Author: zzcr <894103554@qq.com>
+Date:   Thu May 18 06:24:53 2023 -0700
+
+    fix(build) 更新版本号
+
+[33mcommit 31ff8490403c33b78e6739e71013591cbcf3db05[m
+Author: zzcr <894103554@qq.com>
+Date:   Thu May 18 05:34:12 2023 -0700
+
+    fix(build) 修复grid、pager组件bug
+
+[33mcommit b17660f0556deb410e9880d8eb977d064f2da4e4[m
+Merge: 11a28e3c dfc1bb3f
+Author: zzcr <894103554@qq.com>
+Date:   Thu May 18 02:11:18 2023 -0700
+
+    Merge branch 'dev' of github.com:opentiny/tiny-vue into fix-upload-0505
+
+[33mcommit dfc1bb3fe43346365157758a2e09556afe998bc2[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu May 18 16:57:25 2023 +0800
+
+    feat: add XDesign
+
+[33mcommit 42cd6d084d98e7a67d0f9f898720a84b8eb9218f[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Tue May 16 09:35:14 2023 +0800
+
+    docs: add GaoNeng-wWw as a contributor for code (#234)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+    Co-authored-by: Kagol <kagol@sina.com>
+
+[33mcommit 063cee1fd9cb745ed7626fa82a6bf52c50e467a5[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Tue May 16 09:31:42 2023 +0800
+
+    docs: add WXC-Spring as a contributor for code (#233)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit adc9c1bf86cb5bc9a9099767bdf7e6b9f37b3111[m
+Author: GaoNeng <31283122+GaoNeng-wWw@users.noreply.github.com>
+Date:   Sun May 14 17:38:47 2023 +0800
+
+    doc: 修改文档示例 (#224)
+
+[33mcommit 6ca421b9640443520770778ab85cfa2512b14001[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sun May 14 17:16:37 2023 +0800
+
+    docs: add MomoPoppy as a contributor for code (#231)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 4df3f697b592055b1c3e0d6c29445088c08b7c93[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sun May 14 17:15:45 2023 +0800
+
+    docs: add shenjunjian as a contributor for code (#230)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 7b4cffa2572fb231d0ea6f57033710700e840753[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sun May 14 17:14:30 2023 +0800
+
+    docs: add yuanningning as a contributor for code (#229)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 0a6f21403eeb282e708889a9320aa43e092f5b40[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sun May 14 17:13:19 2023 +0800
+
+    docs: add rayhaoqin as a contributor for code (#228)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 30db47e05ccd5207d7d8a10719f02de4ca22e47a[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sun May 14 17:12:17 2023 +0800
+
+    docs: add chenxi-20 as a contributor for code (#227)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit c4c74bcd1b6b1f352043bbefce17398fd3f6685b[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sun May 14 17:08:43 2023 +0800
+
+    docs: add ErKeLost as a contributor for code (#223)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+    Co-authored-by: Kagol <kagol@sina.com>
+
+[33mcommit ad835c421138ca68db24517508ff1dbfd6493030[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sun May 14 17:06:13 2023 +0800
+
+    docs: add wwttff as a contributor for code (#222)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    * Update README.md
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+    Co-authored-by: Kagol <kagol@sina.com>
+
+[33mcommit b5eea3321c64f9e5f51eae8f8cb20c5f37108ea0[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sun May 14 16:59:07 2023 +0800
+
+    docs: add heygsc as a contributor for code (#221)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 8b0e30b63085f1d8f220a1b751e1098226212807[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sun May 14 13:14:23 2023 +0800
+
+    docs: add awspi as a contributor for code (#220)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 837b2f4e9ec0347e58843235136b4ccf3704c5b8[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sun May 14 13:02:54 2023 +0800
+
+    docs: add MNZhu as a contributor for code (#219)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 5a0c9a8ef7378ceb7f8f43800b9ec5cdcd77c917[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sun May 14 13:01:15 2023 +0800
+
+    docs: add TC-twwang as a contributor for code (#218)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 99837cfdaa1df99fac4cb0a0b6330f22da596f3b[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sun May 14 12:35:42 2023 +0800
+
+    docs: add zzcr as a contributor for code (#217)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: update .all-contributorsrc [skip ci]
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+
+[33mcommit 95e19fe1edb0405585a34f465d4fba75d85ea3f8[m
+Author: Kagol <kagol@sina.com>
+Date:   Sun May 14 12:34:09 2023 +0800
+
+    docs: update README.zh-CN.md (#216)
+
+[33mcommit f47627da743da3cef2e5411b6f40ce689c122dbd[m
+Author: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+Date:   Sun May 14 12:29:59 2023 +0800
+
+    docs: add kagol as a contributor for code (#215)
+    
+    * docs: update README.md [skip ci]
+    
+    * docs: create .all-contributorsrc [skip ci]
+    
+    * Update README.md
+    
+    ---------
+    
+    Co-authored-by: allcontributors[bot] <46447321+allcontributors[bot]@users.noreply.github.com>
+    Co-authored-by: Kagol <kagol@sina.com>
+
+[33mcommit 97e8e2f73b2b4e47923ff32e449a4e57fc9f8b1e[m
+Author: Kagol <kagol@sina.com>
+Date:   Sun May 14 12:25:02 2023 +0800
+
+    docs: 增加 all-contributors 机器人🤖️用于自动添加贡献者 (#214)
+
+[33mcommit 50723613fc31d3ba58313e512dfcb8bef42a28d5[m
+Author: wwttff <32888622+wwttff@users.noreply.github.com>
+Date:   Fri May 12 20:43:55 2023 -0700
+
+    fix(rate) 修复组件Rate半选加禁选后，2.5与3星实际不匹配的问题 (#200)
+
+[33mcommit 437d1e61774a4b1ced0955668d2049894aa6bf88[m
+Author: ing <104059491+yuanningning@users.noreply.github.com>
+Date:   Fri May 12 20:43:16 2023 -0700
+
+    fix: 修复Breadcrumb配置textField的demo不显示面包屑内容 #207 (#210)
+
+[33mcommit 969550b2d63bd34fc4b9d5c54dc6d08de3bf6f60[m
+Author: MrWang2016 <421231576@qq.com>
+Date:   Sat May 13 11:42:26 2023 +0800
+
+    fix: 修复pullRefresh组件，数据类型不匹配，导致控制台告警日志超大量打印，导致页面渲染慢的问题 (#211)
+    
+    * 修复actionSheet在手机上click无效问题
+    
+    * 修复pullRefresh组件，数据类型不匹配，导致控制台告警日志超大量打印，导致页面渲染慢的问题
+
+[33mcommit a8f402563b904f3a8df64c892d7f9e57f1650313[m
+Author: qinwencheng <157475034@qq.com>
+Date:   Wed May 10 18:18:04 2023 +0800
+
+    fix(button): 修复无内容的情况下上下错位的问题(#194) (#203)
+
+[33mcommit 950205482852fd6403e5db7ade72f9eb60527e2c[m
+Author: chenxi-20 <76168465+chenxi-20@users.noreply.github.com>
+Date:   Wed May 10 18:16:27 2023 +0800
+
+    fix(fileupload): 上传组件增加用户不配置action属性报错的警告，告知用户需要配置 (#199)
+
+[33mcommit a1ce16bcf391637f134a501783a3e09ac31281c9[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Sat May 6 18:12:23 2023 +0800
+
+    fix(upload) 修复uplaod组件销毁时报错的bug (#196)
+
+[33mcommit 11a28e3c73a2553236e094d8634f3ac2a57ead05[m
+Author: zzcr <894103554@qq.com>
+Date:   Fri May 5 20:06:51 2023 -0700
+
+    fix(upload) 修复uplaod组件销毁时报错的bug
+
+[33mcommit b89b033721f0c826614c2408337dc71692521b11[m
+Author: 黄怡林 <48042709+Huangyilin19@users.noreply.github.com>
+Date:   Sat May 6 10:51:13 2023 +0800
+
+    fix(dialog-box): 修复对话框移动后动态style没更新的bug (#195)
+
+[33mcommit 4d448833e0bcc44a91f65353802fac081543fc2b[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Fri May 5 18:15:21 2023 +0800
+
+    fix(runtime-build) 修复：运行时多入口打包会抽取公共依赖，导致加载报错 (#191)
+
+[33mcommit 3e4b201e76ca3b7b925bb3b8b1ce95d233fbf878[m
+Author: WXC-Spring <131581326+WXC-Spring@users.noreply.github.com>
+Date:   Thu May 4 04:08:37 2023 -0700
+
+    fix(carousel) 走马灯手动轮播切换到此处数据会偶现与实际不符 (#188)
+
+[33mcommit afb447d73f6d06511024074c1b9ee8c069ca9218[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Thu May 4 14:53:59 2023 +0800
+
+    fix(build runtime) 修复打包运行时报错问题 (#185)
+    
+    * fix(build runtime) 修复打包运行时报错问题
+    
+    * fix(build runtime) 删除多余注释
+    
+    * fix(build runtime) 优化代码缩进和逻辑
+
+[33mcommit 8165b75712e8ebab6acb56e0c8f7bbb1fe4e94cf[m
+Author: 申君健 <40288193@qq.com>
+Date:   Thu Apr 27 20:35:49 2023 -0700
+
+    fix(build:runtime):  修复打包runtime产物的脚本 (#183)
+
+[33mcommit 2cb17701b1d586db5ee59896dddcd6dbffe3ca21[m
+Author: zzcr <894103554@qq.com>
+Date:   Mon Apr 24 19:13:10 2023 -0700
+
+    fix(grid): 修复窗口改变时，表格尺寸变形问题
+
+[33mcommit 9932230319135655161d0aed7b36b2dfa4283d5b[m
+Author: heygsc <103993866+heygsc@users.noreply.github.com>
+Date:   Sun Apr 23 09:42:46 2023 +0800
+
+    端口号以及微信的改动 (#171)
+
+[33mcommit db72cd4fc950d360dc7fb78d3e82c33ff8d4d9d3[m
+Author: zuixinwang <59717852+zuixinwang@users.noreply.github.com>
+Date:   Sat Apr 22 13:39:57 2023 +0800
+
+    fix(checkbox): icon position when checked (#164)
+    
+    icon position not centered when checkbox is checked
+
+[33mcommit c294f6b402942703bc1a8c82511ec4a2805bc888[m
+Author: luopei <285258675@qq.com>
+Date:   Fri Apr 21 09:59:42 2023 +0800
+
+    refactor(button): 优化size属性校验 (#162)
+    
+    Co-authored-by: 骆沛 <luopei@11.com>
+
+[33mcommit b87367b53a8d0d7e31d78a8bebf4144bfbdfd431[m
+Author: 凌览 <58327088+CatsAndMice@users.noreply.github.com>
+Date:   Thu Apr 20 18:34:15 2023 +0800
+
+     chore: 添加文件后缀名 (#160)
+
+[33mcommit 61719ad1d3a391b67efa43888e3fecbbd73fb97e[m
+Author: zzcr <894103554@qq.com>
+Date:   Wed Apr 19 19:14:36 2023 -0700
+
+    fix(command): 删除无用的命令
+
+[33mcommit c0f9db4d9c80ea63b20893230995bd058266339f[m
+Author: zzcr <894103554@qq.com>
+Date:   Wed Apr 19 19:04:53 2023 -0700
+
+    fix(tooltip): 修复tooltip组件显示错误bug
+
+[33mcommit a4657164adc68fd64523ecc18a5c3ed7d53dc88a[m
+Author: 前端爆冲 <31237954+brenner8023@users.noreply.github.com>
+Date:   Thu Apr 20 09:39:17 2023 +0800
+
+    chore(.vscode): add vscode fileNesting config (#159)
+    
+    add vscode fileNesting config
+
+[33mcommit 6dc66128a89f7a79a8956bd284cdd1d38c9e7832[m
+Author: Xie Jay <xiejay97@gmail.com>
+Date:   Wed Apr 19 19:58:38 2023 +0800
+
+    chore: add CI for dev commit (#153)
+
+[33mcommit 7ed0948ed010f3cc8f08c1899a0097f3a9a9ea30[m
+Author: linxiang <40119767+linxiang07@users.noreply.github.com>
+Date:   Wed Apr 19 19:57:25 2023 +0800
+
+    fix(carousel-item): 合并重复属性 (#152)
+    
+    Co-authored-by: gaoxiang <gaoxiang@hungrypandagroup.com>
+
+[33mcommit 68bb4530fc59925d4531fcd5ae253f90ee38ec16[m
+Author: ADNY <66500121+ErKeLost@users.noreply.github.com>
+Date:   Wed Apr 19 19:55:54 2023 +0800
+
+    chore: Compatible with windows users (#151)
+
+[33mcommit 6ea177e8a54911100cdfc3de2eb504c93749b06d[m
+Author: Kagol <kagol@sina.com>
+Date:   Wed Apr 19 19:50:31 2023 +0800
+
+    fix(tabs): fix tab header bottom border line close #154 (#155)
+
+[33mcommit 582fa0df842198b0a74ff53476cdcd341012991b[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Tue Apr 18 23:29:35 2023 -0700
+
+    修复build:ui打包出来的产物有问题bug，修复input组件本地开发报警告bug (#150)
+    
+    * fix(grid): 修复cropperjs依赖超期的问题
+    
+    * fix(build): 修复打包文件出错问题
+    
+    * fix(input): 修复input组件本地开发报警告问题
+
+[33mcommit abd16d855bd880bcb2793dc7b6a88f103b28fa9e[m
+Author: 程序员包子 <103836393+coderbaozi@users.noreply.github.com>
+Date:   Wed Apr 19 14:24:49 2023 +0800
+
+    fix: 修复windows下pnpm install rm rf not found (#149)
+
+[33mcommit b6bec13b6e52e73f04709c35070525a35bbb86cd[m
+Author: Kagol <kagol@sina.com>
+Date:   Wed Apr 19 09:45:29 2023 +0800
+
+    chore: release v3.6.6 (#148)
+
+[33mcommit 2d6e8933920134670fa79dff8e3c187398c42915[m
+Author: TC-twwang <42400776+TC-twwang@users.noreply.github.com>
+Date:   Tue Apr 18 20:09:35 2023 +0800
+
+    fix(pull-refresh): 修复下拉刷新组件频繁触发的问题 (#145)
+
+[33mcommit 63f8c16dc5d6d51b7e544c507f60d0bb71ff1f7b[m
+Author: acyza <101238421+acyza@users.noreply.github.com>
+Date:   Tue Apr 18 20:08:16 2023 +0800
+
+    fix: popper correct display (#146)
+
+[33mcommit 01294ad47bf73bbc85da5a55ad5eecbf839db1ec[m
+Author: GaoNeng <31283122+GaoNeng-wWw@users.noreply.github.com>
+Date:   Tue Apr 18 20:03:44 2023 +0800
+
+    feat: 当children为空数组是认为是叶子节点 (#143)
+    
+    * feat: 当children为空数组是认为是叶子节点
+
+[33mcommit 7613d098c5f0195ac06093a4510c8e8d4d4c2380[m
+Author: MrWang2016 <421231576@qq.com>
+Date:   Tue Apr 18 15:54:05 2023 +0800
+
+    修复actionSheet在手机上click无效问题 (#147)
+
+[33mcommit e5ee94b639115b0693686dcb240e564f6342492f[m
+Author: Pithy <66438036+awspi@users.noreply.github.com>
+Date:   Mon Apr 17 11:25:25 2023 +0800
+
+    fix: table-misaligned when frozen columns (#140)
+
+[33mcommit 3f0adf5dbe2cd25f8b2ad110cc9e384412d7cc60[m
+Author: acyza <101238421+acyza@users.noreply.github.com>
+Date:   Sat Apr 15 11:30:07 2023 +0800
+
+    fix pnpm build:ui (#116)
+
+[33mcommit 2293bde8b7aa4d7bfbb09267219a1706ebc82698[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu Apr 13 21:06:20 2023 +0800
+
+    fix(date-picker): fix date-picker style (#136)
+
+[33mcommit 274106200360e80482a997e52a7708299a50f690[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu Apr 13 20:41:25 2023 +0800
+
+    fix: fix conflict (#135)
+    
+    Co-authored-by: OpenTiny <opentiny@sina.com>
+
+[33mcommit d64df1f17bea3a5bc0cf2dcd37238321810c3f49[m
+Author: ygj6 <7699524+ygj6@users.noreply.github.com>
+Date:   Wed Apr 12 22:47:00 2023 +0800
+
+    fix(types): 修复vue3-example项目中的ts报错。 (#132)
+
+[33mcommit 868e1cf47e3db99900e98f03c03fd2de3a461989[m
+Author: Kagol <kagol@sina.com>
+Date:   Wed Apr 12 14:58:14 2023 +0800
+
+    fix(chart-line): fix line-chart tooltip.axisPointer.lineStyle does not take effect close #130 (#131)
+
+[33mcommit 5e0aad622b137a5da80016eb5faae3c49d6c9c5d[m
+Author: Kagol <kagol@sina.com>
+Date:   Tue Apr 11 23:08:41 2023 +0800
+
+    refactor(tabs): optimize new tab button postion close #127 (#128)
+
+[33mcommit 82932511848411854be9a8d568ba4a22f16b39e7[m
+Author: Kagol <kagol@sina.com>
+Date:   Tue Apr 11 16:27:54 2023 +0800
+
+    fix: fix vuepress-vite version error when execute pnpm i (#126)
+
+[33mcommit 2455c1c1b209da79bdca81aea63c46b5bfcd8218[m[33m ([m[1;31mupstream/dev-test[m[33m)[m
+Author: ygj6 <7699524+ygj6@users.noreply.github.com>
+Date:   Tue Apr 11 10:38:37 2023 +0800
+
+    fix: 修复 pnpm dev:docs 报错的问题。 (#123)
+
+[33mcommit a574e11a7bfc33b7749561f4b2d5fa586b84ef33[m
+Author: zzcr <894103554@qq.com>
+Date:   Mon Apr 10 04:43:06 2023 -0700
+
+    fix(grid): 修复表格开启虚拟滚动，当滚动条滚动后在添加数据，导致页面空白的bug
+
+[33mcommit f5752ce691d94fb59c6054a5d17bfe78082727ab[m
+Author: Alaray <46983981+rayhaoqin@users.noreply.github.com>
+Date:   Sun Apr 9 23:14:50 2023 -0700
+
+    fix(ipaddress): git@github.com:opentiny/tiny-vue.git (#122)
+
+[33mcommit 7ae2726f2f3a29beacda855186a9648aa8edfe82[m[33m ([m[1;33mtag: v3.6.1[m[33m)[m
+Author: zzcr <894103554@qq.com>
+Date:   Sat Apr 8 02:01:39 2023 -0700
+
+    fix(grid): 使用gpu加速优化虚拟滚动性能，修复筛选面板单选框无法选中问题
+
+[33mcommit 442a6e9ff7c3a89980105742eb6cdbf352b03dac[m
+Author: Kagol <kagol@sina.com>
+Date:   Sat Apr 8 16:41:25 2023 +0800
+
+    fix: fix build error (#119)
+
+[33mcommit 8a941f371165e3bf1cb40166b908d752571e7178[m
+Author: ygj6 <7699524+ygj6@users.noreply.github.com>
+Date:   Fri Apr 7 18:54:27 2023 +0800
+
+    fix: Removing the invalid resource path enables `pnpm dev` to succeed. (#109)
+    
+    * fix: 在`@opentiny/vue`package.json增加入口使 pnpm dev 能成功。
+    
+    * fix: 根据review意见修改编译脚本。
+
+[33mcommit 8334249122943b27e5e6259d2bf724602b2bdf7c[m
+Author: 申君健 <40288193@qq.com>
+Date:   Fri Apr 7 02:58:09 2023 -0700
+
+    fix(vue-panel): 修复panel 的问题 (#113)
+
+[33mcommit b393bc42d02ec607888ed97219aff9869f4b01ed[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Fri Apr 7 00:39:05 2023 -0700
+
+    添加打包前置脚本 (#112)
+
+[33mcommit 2379ee144cd57c8588367eb65fefb998725fc48c[m
+Author: 申君健 <40288193@qq.com>
+Date:   Fri Apr 7 00:34:08 2023 -0700
+
+    修复国际化键值的问题 (#111)
+    
+    * fix(vue-common): 修复adapter中的mode的传值问题
+    
+    * fix(vue-locale): 修复键值的问题
+
+[33mcommit ebafe609b6a5c6650184a225d409011eae3bb0b4[m
+Author: acyza <101238421+acyza@users.noreply.github.com>
+Date:   Fri Apr 7 15:18:17 2023 +0800
+
+    fix: 修复文档初始`pathname`错误 (#107)
+    
+    * Update pc.vue
+    
+    * Update mobile.vue
+
+[33mcommit b67a79d570228332fe37cdd72433469f17918b19[m
+Author: 申君健 <40288193@qq.com>
+Date:   Thu Apr 6 23:07:18 2023 -0700
+
+    fix(vue-common): 修复adapter中的mode的传值问题 (#110)
+    
+    * fix(vue-common): 修复adapter中的mode的传值问题
+    
+    * fix(vue-common): 修复adapter中的mode的传值问题
+
+[33mcommit f21d114a453d0bb3285ecf4522f9e6cc2ed5dd74[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Thu Apr 6 02:01:16 2023 -0700
+
+    修复打包，发布报错等问题，调整类型声明等问题 (#108)
+    
+    * fix(tiny-loading): 修复loading组件在vue2.0版本报错bug
+    
+    * fix(build):  修复打包报错
+    
+    * feat(build): 添加vue2和vue3版本发布脚本
+    
+    * fix(build):修复svg图标打包失败bug
+    
+    * fix(build): 修复icon打包失败问题
+    
+    * fix(build): 修复icon打包失败问题
+    
+    * fix(build): svg图标也添加类型声明
+    
+    * fix(build): 修改package.json 包名
+    
+    * fix(type): 修复form等组件类型声明文件生成失败问题
+    
+    * fix(type): 修复common和locale类型声明文件生成失败问题
+    
+    * fix(type): 修复less没有转化成功地问题
+    
+    * fix(type): 修复icon文件名称后缀错误，修复echarts依赖丢失问题
+    
+    * fix(type): 修复类型声明文件生成错误bug
+    
+    * fix(type): 修复file-upload组件缺少streamsaver依赖问题
+    
+    * fix(type): 修复@better-scroll没有排除导致报错问题
+    
+    * fix(type): 修复scrollbar打包报错问题
+    
+    * fix(type): 修复grid-toolbar报错问题
+    
+    * fix(type): 修复icon打包后使用报错的问题
+    
+    * fix(build): 重构入口文件生成方法
+    
+    * fix(type): renderless工程添加release脚本
+    
+    * fix(type): 修复组件运行时报错
+    
+    * fix(type): 修复组件运行时报错
+    
+    * fix(type): 修复主入口package.json
+    
+    * fix(type): 修复chart入口package.json
+    
+    * fix(type): 修复loading组件类型声明报错问题
+    
+    * fix(type): 添加声明文件配置
+    
+    * fix(type): 修复vue2打包内联模块名称重复导致报错问题
+
+[33mcommit 501010d66e03835f3a4c40bad50de5a89deaf8e0[m
+Author: jacknan <zhumaonan@aliyun.com>
+Date:   Mon Apr 3 22:58:45 2023 +0800
+
+    fix(timeline): 修复单个节点数据显示线条问题 (#105)
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+
+[33mcommit 985afeeb8d7aa7280c17406b9ed7b078e1ddc485[m
+Author: jacknan <zhumaonan@aliyun.com>
+Date:   Mon Apr 3 22:57:48 2023 +0800
+
+    fix(exception): 优化定位布局样式 (#104)
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+
+[33mcommit 7b7adf07738d73a6abe1eafaaff848d006202270[m
+Author: jacknan <zhumaonan@aliyun.com>
+Date:   Mon Apr 3 10:09:52 2023 +0800
+
+    fix(timeline): 增加箭头点击区域 (#103)
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+
+[33mcommit e62130ef17cc41b50bb1cd50034828c65aa4e108[m
+Author: chenxi-20 <76168465+chenxi-20@users.noreply.github.com>
+Date:   Fri Mar 31 14:31:12 2023 +0800
+
+    fix(upload): 取消fileupload组件的自动隐藏和提示功能，修改成用户可自定义配置 (#95)
+
+[33mcommit 5248bec3cc7e960a28a97cf52d89a9a43f36d2d1[m
+Author: Kagol <kagol@sina.com>
+Date:   Fri Mar 31 07:01:24 2023 +0800
+
+    fix: Failed to resolve entry for package "@opentiny/vue" close #99 (#100)
+
+[33mcommit 41f5809e667a167d1b429f459f80d3fd5f7da9eb[m
+Author: Kagol <kagol@sina.com>
+Date:   Fri Mar 31 06:55:03 2023 +0800
+
+    docs: update README (#98)
+
+[33mcommit 0a1a598a0ee15787c86b3ec5a44419327ddfa1bf[m
+Author: chenxi-20 <76168465+chenxi-20@users.noreply.github.com>
+Date:   Wed Mar 29 14:07:26 2023 +0800
+
+    fix(anchor): 修复父锚点指示异常的问题 (#93)
+
+[33mcommit 90372cbb28bd47bedaeea89a12eca79f236cd77f[m
+Author: Kagol <kagol@sina.com>
+Date:   Tue Mar 28 21:12:40 2023 +0800
+
+    refactor: remove useless files (#92)
+
+[33mcommit 534e80d99dc7167fe67beb1bd9fa8fca0579145e[m
+Author: Kagol <kagol@sina.com>
+Date:   Tue Mar 28 21:03:59 2023 +0800
+
+    fix: fix monorepo (#91)
+
+[33mcommit df4a5d12967c8f1c01f52516758ba7d06d27e643[m
+Author: Kagol <kagol@sina.com>
+Date:   Tue Mar 28 20:37:18 2023 +0800
+
+    Refactor project to Monorepo and TypeScript (#90)
+    
+    * fix(tiny-vue): TinyVue工程momorepo改造[WI2029]
+    
+    Match-id-2e9669527b4f9d10ba441ea7a204dc1627ab0420
+    
+    * fix(tiny-vue): TinyVue工程momorepo改造[WI2029]
+    
+    Match-id-a3c037ae0147e6ef27df417b09fff18d548a5fa7
+    
+    * fix(tiny-vue): 修改license[WI2029]
+    
+    Match-id-646d905fcfedf0b9ceb147d9ce288916e3c78c45
+    
+    * fix(tiny-vue): 修改package.json[WI2029]
+    
+    Match-id-8e0d6161964178ca68ee111f3bb0c60e27d9f3e0
+    
+    * fix: fix conflict
+    
+    ---------
+    
+    Co-authored-by: OpenTiny <opentiny@sina.com>
+
+[33mcommit 4d34fe378858361da58281d8d197819c50bc8559[m
+Author: chenxi-20 <76168465+chenxi-20@users.noreply.github.com>
+Date:   Fri Mar 24 15:34:06 2023 +0800
+
+    fix(radio): 修复主题配置radio-button无法继承属性的bug，打开可继承属性 (#82)
+
+[33mcommit 05f33530e133c8eaeeb8c2829a2fa03e574350f9[m
+Author: Kagol <kagol@sina.com>
+Date:   Wed Mar 22 17:09:29 2023 +0800
+
+    chore: release v3.6.0
+
+[33mcommit 7cffec34e8e088bacd073e0d341c8c805285bf67[m
+Author: TC-twwang <42400776+TC-twwang@users.noreply.github.com>
+Date:   Wed Mar 22 16:58:14 2023 +0800
+
+    fix: 修复tabs组件展开内容被遮盖，multi-slect返回值增加value (#81)
+
+[33mcommit b3f0412dd43dc621920e43626967b25618b172c3[m
+Author: chenxi-20 <76168465+chenxi-20@users.noreply.github.com>
+Date:   Wed Mar 22 14:23:53 2023 +0800
+
+    fix(dropdown-mobile): 修复移动端组件dropdownMenu无法正常渲染的问题，顺带修复pc端dropDown组件的警告 (#80)
+
+[33mcommit 80821910d7210e68b94a35313f19f7efdd6ff677[m
+Author: Kagol <kagol@sina.com>
+Date:   Mon Mar 20 17:44:35 2023 +0800
+
+    docs: add homepage and keywords
+
+[33mcommit 64c4003407500d46def02cbe5bec6a17b7929a8a[m
+Author: Kagol <kagol@sina.com>
+Date:   Mon Mar 20 15:25:25 2023 +0800
+
+    docs: add english README and CONTRIBUTING (#79)
+    
+    * docs: add english README and CONTRIBUTING
+    
+    * chore: copy README file
+
+[33mcommit db4770bffca2e08353f2c48a476ae1d81208ebcc[m
+Author: Kagol <kagol@sina.com>
+Date:   Mon Mar 20 09:17:33 2023 +0800
+
+    feat(search): add prefix/suffix slots (#77)
+
+[33mcommit 7223cf8976142f97ad24ee7f0f3aaf1503308e14[m
+Author: Kagol <kagol@sina.com>
+Date:   Mon Mar 20 09:17:04 2023 +0800
+
+    feat(transfer): add beforeTransfer props (#75)
+
+[33mcommit f551d40f679b087e673c8285d30cb36accc95d3a[m
+Author: MomoPoppy <125256456+MomoPoppy@users.noreply.github.com>
+Date:   Sun Mar 19 18:16:32 2023 -0700
+
+    feat(action-menu): 修复 ActionMenu 下拉后箭头旋转向上 (#70)
+    
+    * chore: checkout release branch
+    
+    * feat(action-menu): 修复 ActionMenu 下拉后箭头旋转向上
+    
+    ---------
+    
+    Co-authored-by: Kagol <kagol@sina.com>
+
+[33mcommit 8ad2c7b110fca480ca688c15ee33b586b94bd372[m
+Author: chenxi-20 <76168465+chenxi-20@users.noreply.github.com>
+Date:   Mon Mar 20 09:15:09 2023 +0800
+
+    feat(tabs): 增加tabs组件超出隐藏提示tip配置 (#68)
+
+[33mcommit 1d15b81ea3e9c2252b05ce9a7ccc8b008720a19b[m
+Author: Kagol <kagol@sina.com>
+Date:   Fri Mar 17 19:31:42 2023 +0800
+
+    chore: fix release:ui script
+
+[33mcommit 0ef270439341f2ab1f01937cde7b9e13c9f1657f[m
+Author: Kagol <kagol@sina.com>
+Date:   Fri Mar 17 15:19:23 2023 +0800
+
+    chore: add release condition
+
+[33mcommit d56288b99368809f04ea5d376301d907856454e1[m
+Author: TC-twwang <42400776+TC-twwang@users.noreply.github.com>
+Date:   Thu Mar 16 09:22:43 2023 +0800
+
+    feat(pull-refresh): pull-refresh组件支持上拉刷新 (#67)
+
+[33mcommit 770215f89099fd5feadf540f5249b10de6257922[m
+Author: Alaray <46983981+rayhaoqin@users.noreply.github.com>
+Date:   Wed Mar 15 18:21:01 2023 -0700
+
+    fix(cascader): 修复级联组件属性无法透传问题 (#66)
+
+[33mcommit 34757ff8d2e7fa1899f26e59d6bfa3b47875a042[m
+Author: Kagol <kagol@sina.com>
+Date:   Thu Mar 16 09:20:32 2023 +0800
+
+    feat(split): add collapsible props (#64)
+
+[33mcommit b78561d67f063aefb42751cb1d5e19efca58ff17[m
+Author: TC-twwang <42400776+TC-twwang@users.noreply.github.com>
+Date:   Tue Mar 14 20:46:29 2023 +0800
+
+    feat(tabs): tabs组件支持展开 (#60)
+
+[33mcommit 56e26f3ba0d5f50912434512f4dbd903cfcd77e2[m
+Author: Kagol <kagol@sina.com>
+Date:   Tue Mar 14 11:50:12 2023 +0800
+
+    feat(badge): add offset props (#63)
+
+[33mcommit f276a7c7aaece24ebe17864db990bd7469300530[m
+Author: Kagol <kagol@sina.com>
+Date:   Tue Mar 14 11:13:51 2023 +0800
+
+    docs: update CONTRIBUTING.md (#62)
+
+[33mcommit 22e384896fb20153e5997ab36cccfd9bb7e6b651[m
+Author: Kagol <kagol@sina.com>
+Date:   Tue Mar 14 08:51:02 2023 +0800
+
+    feat(fullscreen): add beforeChange props (#61)
+
+[33mcommit 9409de75cf9becd621cf997ac84e90a0869964c4[m
+Author: Kagol <kagol@sina.com>
+Date:   Tue Mar 14 08:49:40 2023 +0800
+
+    feat(switch): add beforeChange props (#59)
+
+[33mcommit fea8c860d63ed1bbca2e297801286c6f651aa7b7[m
+Author: TC-twwang <42400776+TC-twwang@users.noreply.github.com>
+Date:   Mon Mar 13 16:50:24 2023 +0800
+
+    feat(form): form组件增加自动换行-增加移动端条件校验 (#58)
+    
+    * feat(multi-select): 增加下拉选择器multi-select组件
+    
+    * feat(form-item): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): 依赖包名称错误修改
+    
+    * feat(form): form组件增加自动换行-检视意见修改
+    
+    * feat(form): form组件增加自动换行-检视修改
+
+[33mcommit 23eae8510a9ab018edb51c7fac799fcf499aa8c3[m
+Author: Kagol <kagol@sina.com>
+Date:   Mon Mar 13 15:40:44 2023 +0800
+
+    feat(tag): add beforeDelete props (#52)
+
+[33mcommit a872c07fa5f462ba184e65e7c5923a09d3cdebd8[m
+Author: Kagol <kagol@sina.com>
+Date:   Mon Mar 13 15:40:21 2023 +0800
+
+    feat(badge): add badge-class close #50 (#51)
+
+[33mcommit 11918cdd26c460c7714ddad6e4b909d2e6ea06ab[m
+Author: chenxi-20 <76168465+chenxi-20@users.noreply.github.com>
+Date:   Mon Mar 13 15:29:06 2023 +0800
+
+    feat(anchor): 调整anchor组件，让其可以适配主题配置 (#57)
+    
+    * feat(anchor): 修复affix检视意见
+    
+    * feat(anchor): 修复检视意见，同步远程代码 (#55)
+    
+    * feat(anchor): 锚点组件增加固定模式，修复示例文档bug问题
+    
+    * feat(anchor): 修复affix检视意见
+    
+    * feat(anchor): 调整anchor组件，让其可以适配主题配置
+
+[33mcommit c34f0669791816c9f84241c8723dc7a7baa21139[m
+Author: MomoPoppy <125256456+MomoPoppy@users.noreply.github.com>
+Date:   Mon Mar 13 00:25:17 2023 -0700
+
+    fix(dropdown): 修复 dropdown 下拉后箭头旋转向上 (#45)
+    
+    * feat(dropdown): 修复 dropdown 下拉后箭头旋转向上
+    
+    * fix(dropwown): 修改 review 意见
+
+[33mcommit dc8b0abbe2739cafca7f75b2764d409fd9a011f3[m
+Author: jacknan <zhumaonan@aliyun.com>
+Date:   Mon Mar 13 14:10:37 2023 +0800
+
+    fix(indexbar): 类命名整改 (#56)
+    
+    * feat(indexbar): 增加索引组件
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+    
+    * fix(indexbar): 类命名整改
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+    
+    ---------
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+
+[33mcommit 05a23ed5f65f490a3abf07df56dbcbf4af179de0[m
+Author: chenxi-20 <76168465+chenxi-20@users.noreply.github.com>
+Date:   Mon Mar 13 10:48:38 2023 +0800
+
+    feat(anchor): 修复检视意见，同步远程代码 (#55)
+    
+    * feat(anchor): 锚点组件增加固定模式，修复示例文档bug问题
+    
+    * feat(anchor): 修复affix检视意见
+
+[33mcommit d7bade3a60970f4d715d1fc4a8acbeb274b3e735[m
+Author: chenxi-20 <76168465+chenxi-20@users.noreply.github.com>
+Date:   Mon Mar 13 09:25:46 2023 +0800
+
+    feat(anchor): 锚点组件增加固定模式，修复示例文档bug问题 (#49)
+
+[33mcommit 7407fd13c01a3430ab7773f5eb59831323db63ee[m
+Author: TC-twwang <42400776+TC-twwang@users.noreply.github.com>
+Date:   Mon Mar 13 09:14:13 2023 +0800
+
+    feat(form): form组件增加自动换行-检视意见修改 (#54)
+    
+    * feat(multi-select): 增加下拉选择器multi-select组件
+    
+    * feat(form-item): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): 依赖包名称错误修改
+    
+    * feat(form): form组件增加自动换行-检视意见修改
+
+[33mcommit 105531c3e257ce9c593aacdbdfdd1a8817d368d0[m
+Author: jacknan <zhumaonan@aliyun.com>
+Date:   Mon Mar 13 09:12:47 2023 +0800
+
+    feat(indexbar): 增加索引组件 (#47)
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+
+[33mcommit 505e4d11409caaf3634d576f5eb9016edab2f3e6[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Fri Mar 10 15:49:32 2023 +0800
+
+    fix(tiny-loading): 修复loading组件在vue2.0版本报错bug (#46)
+
+[33mcommit de940e9d0eca90433672f2df49a24fc2db71aa69[m
+Author: Kagol <kagol@sina.com>
+Date:   Fri Mar 10 14:56:26 2023 +0800
+
+    chore: add auto-publish workflow (#41)
+
+[33mcommit 096f475f78ee8a3a3d8128fa36069e286c25bb7f[m
+Author: TC-twwang <42400776+TC-twwang@users.noreply.github.com>
+Date:   Fri Mar 10 14:55:55 2023 +0800
+
+    feat(form): form组件增加自动换行 (#40)
+    
+    * feat(multi-select): 增加下拉选择器multi-select组件
+    
+    * feat(form-item): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): form组件增加自动换行
+    
+    * feat(form): 依赖包名称错误修改
+
+[33mcommit a7effca5c61c7fdaf4fe26d7accb986d368ba840[m
+Author: jacknan <zhumaonan@aliyun.com>
+Date:   Thu Mar 9 17:30:58 2023 +0800
+
+    feat(timeline): timeline样式修改 (#38)
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+
+[33mcommit 381325d19bc2089f4ae1c862d2ed9e97b3f3302c[m
+Author: yuanningning <104059491+yuanningning@users.noreply.github.com>
+Date:   Wed Mar 8 09:38:44 2023 +0800
+
+    fix(switch): switch组件提示文字只在首次显示，切换开关状态后提示文字消失 (#42)
+
+[33mcommit 904cce4f73f4919371efa7cc7f707672fa0ee91b[m
+Author: chenxi-20 <76168465+chenxi-20@users.noreply.github.com>
+Date:   Tue Mar 7 15:46:10 2023 +0800
+
+    feat(timeline): 时间线插槽作用域增加index属性 (#39)
+
+[33mcommit 28cc92d570750f66540ce8eb1aad691f41fb6c03[m
+Author: chenxi-20 <76168465+chenxi-20@users.noreply.github.com>
+Date:   Fri Mar 3 17:35:17 2023 +0800
+
+    feat(anchor): 添加锚点anchor组件onchange事件 (#35)
+    
+    * feat(anchor): 新增anchor组件第一个功能：基本使用
+    
+    * feat(anchor): 修改anchor组件讨论意见，增加container api和maskClass类名
+    
+    * fix(anchor): 修复anchor组件MD文档说明
+    
+    * feat(anchor): 添加锚点anchor组件onchange事件
+    
+    * fix(anchor): 修复review意见，取消行内样式
+
+[33mcommit c43fb95f08885ffe02971e6fa5f099bfaadc4a5e[m
+Author: Alaray <46983981+rayhaoqin@users.noreply.github.com>
+Date:   Fri Mar 3 01:15:40 2023 -0800
+
+    fix: 修复存在2个高度不一样的notify时，新增的notify高度错误 (#26)
+
+[33mcommit d578abac72b6a67e365cac572cdd8691ab9f7996[m
+Author: chenxi-20 <76168465+chenxi-20@users.noreply.github.com>
+Date:   Fri Mar 3 16:54:22 2023 +0800
+
+    fix(milestone): 修复里程碑图标不对齐bug (#37)
+
+[33mcommit bedfc4d51f864a730f031c3994ffa881ce61938d[m
+Author: chenxi-20 <76168465+chenxi-20@users.noreply.github.com>
+Date:   Fri Mar 3 11:14:45 2023 +0800
+
+    fix(anchor): 修复anchor组件MD文档说明 (#34)
+    
+    * feat(anchor): 新增anchor组件第一个功能：基本使用
+    
+    * feat(anchor): 修改anchor组件讨论意见，增加container api和maskClass类名
+    
+    * fix(anchor): 修复anchor组件MD文档说明
+
+[33mcommit bd3d60d3310d35b592028885b64bb8e5048de1e6[m
+Author: jacknan <zhumaonan@aliyun.com>
+Date:   Thu Mar 2 20:37:33 2023 +0800
+
+    fix(search): 修改移动端搜索样式 (#33)
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+
+[33mcommit 591e960333dd87d0efe3048efeeccbf66006f6f2[m
+Author: 申君健 <40288193@qq.com>
+Date:   Thu Mar 2 04:36:54 2023 -0800
+
+    fix(checkbox): 修复vue3模式下，checkbox-group的change事件触发2次的问题 (#31)
+    
+    * fix(checkbox): 修复vue3模式下，checkbox-group的change事件触发2次的问题
+    
+    * fix(checkbox): fix
+
+[33mcommit 2b2dcae0ece2bef8c4276ec10fcae7e26322b096[m
+Author: TC-twwang <42400776+TC-twwang@users.noreply.github.com>
+Date:   Thu Mar 2 20:35:32 2023 +0800
+
+    feat(multi-select): 增加下拉选择器multi-select组件 (#22)
+
+[33mcommit 6622f29f8a4915e06c6af9a4f93c021fba745104[m
+Author: jacknan <zhumaonan@aliyun.com>
+Date:   Thu Mar 2 20:33:25 2023 +0800
+
+    feat(button): 按钮组件样式修改 (#21)
+    
+    * feat(button): 按钮组件样式修改
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+    
+    * feat(button): 按钮组件样式修改
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+    
+    ---------
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+
+[33mcommit 73e2ec0ce90f8024dee3a495e0960563d5a480c2[m
+Author: jacknan <zhumaonan@aliyun.com>
+Date:   Thu Mar 2 20:31:24 2023 +0800
+
+    feat(modal): 增加反馈弹窗modal组件 (#19)
+    
+    * feat(modal): 增加反馈弹窗modal组件
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+    
+    * fix(modal): 变更tiny_mode读取字段
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+    
+    * fix(modal): message属性增加Object类型
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+    
+    ---------
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+
+[33mcommit 6eeea71f900cca0976e39930ca5598f296d787e0[m
+Author: chenxi-20 <2465950588@qq.com>
+Date:   Thu Mar 2 19:29:23 2023 +0800
+
+    feat(anchor): 修改anchor组件讨论意见，增加container api和maskClass类名
+
+[33mcommit 5c97d3ab2d166235c91eaadc530df0a1cc1fb93f[m
+Author: chenxi-20 <2465950588@qq.com>
+Date:   Tue Feb 28 11:16:54 2023 +0800
+
+    feat(anchor): 新增anchor组件第一个功能：基本使用
+
+[33mcommit 1a8217328103e14b007917387133eb1988a538ac[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Wed Mar 1 09:24:24 2023 +0800
+
+    fix(grid): 修复表格再虚拟滚动模式下，始终有横向滚动条问题 (#32)
+
+[33mcommit 78e6b8ad5ba54f2b745f302c5ed0a435f9c9abe0[m
+Author: yuanningning <104059491+yuanningning@users.noreply.github.com>
+Date:   Tue Feb 28 14:18:21 2023 +0800
+
+    fix: 修复echarts和cropperjs依赖版本落后问题 (#27)
+
+[33mcommit ff486e319d87e493d18c9712069f9496da4496f4[m
+Author: Kagol <kagol@sina.com>
+Date:   Tue Feb 28 14:16:30 2023 +0800
+
+    fix: 修复构建错误 (#25)
+
+[33mcommit e9dae3d27042f900a64fa9e9a1f5660944cc76ea[m
+Author: 申君健 <40288193@qq.com>
+Date:   Mon Feb 27 22:05:23 2023 -0800
+
+    fix(ipaddress): form的示例增加numeric,ipaddress的校验示例 (#29)
+
+[33mcommit c98486ba745b5a3e240921f1b933d8e7895910c0[m[33m ([m[1;33mtag: v3.5.0[m[33m)[m
+Author: Alaray <46983981+rayhaoqin@users.noreply.github.com>
+Date:   Fri Feb 24 17:37:48 2023 +0800
+
+    fix: notify组件不同类型关闭时间对齐华为云规范 (#20)
+
+[33mcommit 231179ae81e64263a915c4e48673e89dc39bdab6[m
+Author: chenxi-20 <76168465+chenxi-20@users.noreply.github.com>
+Date:   Fri Feb 24 11:13:13 2023 +0800
+
+    fix(vue): 修复actionmenu图标样式不对齐问题 (#15)
+
+[33mcommit 91ac9f1bdfaa4b8e1bcf92a4a1b25999bec41f24[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Fri Feb 24 11:11:57 2023 +0800
+
+    fix(grid): 修复grid组件个性化面板样式异常bug (#17)
+
+[33mcommit 49a2d1f9a6ecb05e7151a8aa7ef274f4e6b3fcbc[m
+Author: jacknan <zhumaonan@aliyun.com>
+Date:   Thu Feb 23 15:46:29 2023 +0800
+
+    Mn zhu/feat userhead mobile1 (#12)
+    
+    * feat(userhead): 增加移动端头像组件
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+    
+    * feat(userhead): 增加移动端头像组件
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+    
+    ---------
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+
+[33mcommit e2b1cce6d20aee4ec8960a0060a8a6f688fa5402[m
+Author: jacknan <zhumaonan@aliyun.com>
+Date:   Thu Feb 23 14:17:47 2023 +0800
+
+    feat(exception): 增加缺省页自定义图片，样式修改 (#13)
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+
+[33mcommit 6106c9bd4dca693c0cd0e42fe5b951539f839a56[m
+Author: jacknan <zhumaonan@aliyun.com>
+Date:   Thu Feb 23 14:16:46 2023 +0800
+
+    Mn zhu/feat table mobile1 (#14)
+    
+    * feat(table): 新增移动端table组件和demo
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+    
+    * feat(table): 新增移动端table组件和demo
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+    
+    * fix(table): 整改字符串拼接处理
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+    
+    ---------
+    
+    Signed-off-by: MNZhu <zhumaonan@aliyun.com>
+
+[33mcommit f32a6bd8a515e327c751d477cc0a8bfc9ddc7529[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Thu Feb 23 10:04:24 2023 +0800
+
+    修复项目启动报错 (#11)
+    
+    * fix(readme): 修复readme文档npm下载方式
+    
+    * fix(tiny-vue): 修复项目启动报错
+
+[33mcommit 2a00d3362a0fba56372b06f96f8d23429d7de973[m
+Merge: 250f6ace f41a593d
+Author: Kagol <kagol@sina.com>
+Date:   Wed Feb 22 18:45:38 2023 +0800
+
+    feat: add more component
+
+[33mcommit f41a593d29c8a8acb46b8dd313e9b2876b043aa3[m
+Author: OpenTiny <opentiny@sina.com>
+Date:   Wed Feb 22 16:45:25 2023 +0800
+
+    fix(tiny-vue): 内部和开源代码同步，减少维护成本 [WI2023]
+    
+    Match-id-31a5bd840dddac8f9371b683a11e8d2521d111c1
+
+[33mcommit 250f6ace996755ca11c77378a57a03ae6b568593[m
+Author: zzcr <894103554@qq.com>
+Date:   Mon Feb 20 04:59:14 2023 -0800
+
+    fix(vite.config.js): 修复theme本地映射关系，解决项目启动报错问题
+
+[33mcommit 2d3a037115607231d7bdb13a74ffa1ee01b95807[m
+Author: Kagol <kagol@sina.com>
+Date:   Mon Feb 20 20:22:55 2023 +0800
+
+    docs: update CONTRIBUTING.md (#6)
+
+[33mcommit 43c2306b9cd0648a13c721aa96d6367cacda418b[m
+Author: ajaxzheng <894103554@qq.com>
+Date:   Mon Feb 20 03:56:51 2023 -0800
+
+    fix(readme): 修复readme文档npm下载方式 (#5)
+
+[33mcommit 0527f9519a24398a2c3f48863e37b40b5edcb2f2[m[33m ([m[1;31mupstream/main[m[33m)[m
+Author: OpenTiny <opentiny@sina.com>
+Date:   Thu Feb 16 19:11:16 2023 +0800
+
+    feat: init project US2022111700422
+    
+    Signed-off-by:  <zenglingka@>
+    
+    Match-id-9ac6cf2948c4663b3ce91406b4ddbc6045cbd57e
+
+[33mcommit c2ccf682cbb805d63ce884d44a3e20cdd9629633[m
+Author: OpenTiny <opentiny@sina.com>
+Date:   Tue Jul 12 15:58:02 2022 +0800
+
+    Initial commit
+    
+    Match-id-c834f863cdc016898226e1393d3f487d80aa38bd
+
+[33mcommit 6a66756f4fb7226ec01fc954f858a9a0cbc1e248[m
+Author: public govdpub <govdpub1@huawei.com>
+Date:   Mon Nov 14 16:24:55 2022 +0800
+
+    Add README.md
