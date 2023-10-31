@@ -17,11 +17,22 @@
       { 'tiny-form--inline': inline },
       { 'label-align': labelAlign },
       { 'has-required': state.hasRequired },
+      { 'asterisk-form': labelPosition === 'top' && !state.hideRequiredAsterisk },
       { 'is-display-only': state.isDisplayOnly }
     ]"
-    @submit.native.prevent
+    @submit.prevent
   >
     <slot></slot>
+    <tiny-tooltip
+      v-if="overflowTitle"
+      ref="tooltip"
+      v-model="state.tooltipVisible"
+      :manual="true"
+      effect="light"
+      :content="state.displayedValue"
+      placement="top"
+    >
+    </tiny-tooltip>
   </form>
 </template>
 
@@ -29,10 +40,14 @@
 import { renderless, api } from '@opentiny/vue-renderless/form/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import type { IFormApi } from '@opentiny/vue-renderless/types/form.type'
+import Tooltip from '@opentiny/vue-tooltip'
 import '@opentiny/vue-theme/form/index.less'
 import '@opentiny/vue-theme/form-item/index.less'
 
 export default defineComponent({
+  components: {
+    TinyTooltip: Tooltip
+  },
   props: [
     ...props,
     'validateOnRuleChange',
@@ -58,7 +73,10 @@ export default defineComponent({
     'appendToBody',
     'popperOptions',
     'displayOnly',
-    'showAutoWidth'
+    'showAutoWidth',
+    'showEmptyValue',
+    'validateTag',
+    'overflowTitle'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IFormApi

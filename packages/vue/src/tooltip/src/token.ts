@@ -1,6 +1,6 @@
 export const classes = {
   'tooltip':
-    'absolute -left-[9999px] py-2 px-3 sm:py-1.5 sm:px-2 text-sm sm:text-xs bg-color-text-primary text-color-text-inverse shadow-none sm:bg-color-bg-1 sm:text-color-text-primary sm:shadow-md leading-tight min-w-[3.75rem] max-w-[28.125rem] z-[2000] break-words rounded [&[x-placement^=top]]:mb-2.5 [&[x-placement^=bottom]]:mt-2.5 [&[x-placement^=right]]:ml-2.5 [&[x-placement^=left]]:mr-2.5',
+    'absolute -left-[9999px] py-2 px-3 sm:py-1.5 sm:px-2 text-sm sm:text-xs bg-color-text-primary text-color-text-inverse shadow-none sm:bg-color-bg-1 sm:text-color-text-primary sm:shadow-md leading-tight min-w-[theme(spacing.12)] max-w-[theme(spacing.112)] z-[2000] break-words rounded [&[x-placement^=top]]:mb-2.5 [&[x-placement^=bottom]]:mt-2.5 [&[x-placement^=right]]:ml-2.5 [&[x-placement^=left]]:mr-2.5',
   'arrow':
     'drop-shadow-none absolute block w-0 h-0 border-[0.375rem] border-transparent border-solid after:absolute after:block after:w-0 after:h-0 after:border-[0.3125rem] after:border-transparent after:border-solid after:content-[""]',
   'placement-top':

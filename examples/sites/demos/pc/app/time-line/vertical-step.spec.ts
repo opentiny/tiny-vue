@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('纵向时间线', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/time-line/vertical-step')
+  await page.goto('time-line#vertical-step')
 
   const timeline = page.locator('#preview .tiny-steps')
   await expect(timeline).not.toHaveClass(/is-horizontal/)

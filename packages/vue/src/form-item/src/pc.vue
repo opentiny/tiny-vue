@@ -63,6 +63,7 @@ export default defineComponent({
       default: true
     },
     size: String,
+    validateDisabled: Boolean,
     validateDebounce: Boolean,
     validatePosition: String,
     validateStatus: String,
@@ -85,8 +86,19 @@ export default defineComponent({
   },
 
   render() {
-    const { state, required, slots, label, scopedSlots, showMessage, inlineMessage, ellipsis, vertical } =
-      this as unknown as IFormItemInstance
+    const {
+      state,
+      required,
+      slots,
+      label,
+      scopedSlots,
+      showMessage,
+      inlineMessage,
+      ellipsis,
+      vertical,
+      handleLabelMouseenter,
+      handleMouseleave
+    } = this as unknown as IFormItemInstance
 
     const { validateIcon, isErrorInline, isErrorBlock } = state
     const isMobile = state.mode === 'mobile'
@@ -96,11 +108,12 @@ export default defineComponent({
     const errorSlot = scopedSlots.error && scopedSlots.error(state.validateMessage)
     const formItemClass = `${classPrefix}form-item--${state.sizeClass ? state.sizeClass : 'default'}`
     const isShowError = state.validateState === 'error' && showMessage && state.form.showMessage
+    const validateTag = state.formInstance && state.formInstance.validateTag
     let validateMessage
 
     const ItemContent = defaultSlots
       ? defaultSlots.map((vnode) => {
-          if (isVue2 && !vnode.componentOptions) return vnode
+          if (isVue2 && !vnode.componentOptions && !validateTag) return vnode
 
           const item = parseVnode(vnode)
           item.props = item.props || {}
@@ -242,6 +255,9 @@ export default defineComponent({
                 [`${classPrefix}form-item__error`]: true,
                 [`${classPrefix}form-item__error--inline`]: isErrorInline,
                 [`${classPrefix}form-item__error--block`]: isErrorBlock
+              },
+              attrs: {
+                title: [state.validateMessage]
               }
             },
             [
@@ -271,6 +287,10 @@ export default defineComponent({
                 style: state.labelStyle,
                 attrs: {
                   for: state.labelFor
+                },
+                on: {
+                  mouseenter: handleLabelMouseenter,
+                  mouseleave: handleMouseleave
                 }
               },
               labelSlot || label + state.form.labelSuffix

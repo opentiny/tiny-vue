@@ -18,7 +18,6 @@
 
   & &__group {
     @apply inline-block;
-    @apply ml-2;
     @apply align-middle;
     @apply text-xs;
     @apply h-7;
@@ -46,6 +45,7 @@
     .tiny-loading__spinner .circular {
       @apply ~"h-3.5";
       @apply ~"w-3.5";
+      @apply align-middle;
     }
   }
 
@@ -68,7 +68,9 @@
 
     li {
       @apply bg-transparent;
-      @apply inline-block;
+      @apply inline-flex;
+      @apply items-center;
+      @apply justify-center;
       @apply text-xs;
       @apply ml-2;
       @apply cursor-pointer;
@@ -80,7 +82,7 @@
       @apply box-border;
       @apply transition-all duration-500 ease-linear;
       @apply border border-solid border-transparent;
-      @apply rounded-sm;
+      @apply rounded;
 
       a {
         @apply text-color-text-primary;
@@ -113,16 +115,16 @@
 
       &.is-active {
         @apply text-color-brand;
-        @apply border-color-border-focus;
+        @apply bg-color-fill-6;
       }
 
       &:not(.is-active):hover {
-        @apply text-color-brand-hover;
+        @apply bg-color-border-disabled;
       }
 
       &:not(.is-active):active {
         @apply text-color-brand-active;
-        @apply border-color-brand-active;
+        @apply bg-color-fill-6;
       }
     }
   }
@@ -134,7 +136,7 @@
       @apply w-8;
       @apply text-center;
       @apply align-top;
-      @apply rounded-sm;
+      @apply rounded;
       @apply inline-block;
       position: inherit;
       @apply h-7;
@@ -146,6 +148,7 @@
       @apply box-border;
       @apply mr-0;
       @apply bg-color-bg-1;
+      @apply mx-2;
 
       &:hover {
         @apply border border-solid border-color-icon-primary;
@@ -170,7 +173,7 @@
 
     button {
       @apply ~"min-w-[theme('spacing.10')]";
-      @apply w-11;
+      @apply w-9;
       @apply h-7;
       @apply border border-solid border-color-border;
       @apply text-color-text-primary;
@@ -188,7 +191,6 @@
       @apply transition-all duration-300;
       @apply outline-0;
       .user-select(none);
-      @apply ml-2;
     }
   }
 
@@ -200,7 +202,7 @@
     @apply text-color-text-primary;
     @apply bg-color-bg-1;
     @apply border border-solid border-color-border;
-    @apply rounded-sm;
+    @apply rounded;
     @apply outline-0;
     @apply p-0;
     @apply ml-2;
@@ -221,38 +223,30 @@
       @apply relative;
     }
 
-    &:hover {
-      @apply border-color-icon-primary;
-
-      svg {
-        @apply fill-color-icon-primary;
-      }
+    &:not([disabled]):hover {
+      @apply bg-color-border-disabled;
+      @apply border-color-border;
     }
 
-    &:active {
-      @apply border-color-brand-active;
+    &:not([disabled]):active {
+      @apply bg-color-fill-6;
+      @apply border-color-brand;
 
       svg {
-        @apply fill-color-icon-active;
+        @apply fill-color-brand;
       }
     }
 
     &[disabled] {
-      @apply bg-color-bg-4;
-
-      &,
-      &:hover {
-        @apply border-color-border;
-        @apply opacity-50;
-        @apply cursor-default;
-      }
+      @apply bg-color-border-disabled;
+      @apply cursor-not-allowed;
 
       span {
-        @apply text-color-text-secondary;
+        @apply text-color-text-disabled;
       }
 
       svg {
-        @apply fill-color-icon-disabled;
+        @apply fill-color-border;
       }
     }
   }
@@ -292,14 +286,18 @@
         @apply text-ellipsis;
         @apply text-center;
         @apply whitespace-nowrap;
+        @apply m-1;
+        @apply rounded;
 
         &:hover {
           @apply cursor-pointer;
-          @apply bg-color-bg-4;
+          @apply bg-color-bg-2;
+          @apply text-color-text-primary;
         }
 
         &.is-selected {
           @apply text-color-brand;
+          @apply bg-color-fill-6;
         }
       }
     }
@@ -313,6 +311,8 @@
   & .reference-wrapper-show {
     .@{pager-prefix-cls}__page-size {
       @apply border-color-border-focus;
+      @apply bg-color-fill-6;
+      @apply text-color-border-focus;
     }
 
     svg {
@@ -323,14 +323,14 @@
 
   &__page-size {
     @apply ~"min-w-[theme('spacing.18')]";
-    @apply ~"max-w-[theme('spacing.36')]";
+    @apply ~"max-w-[theme('spacing.40')]";
     @apply relative;
     @apply text-left;
     @apply h-7;
     @apply leading-7;
     @apply border border-solid border-color-border;
     @apply text-color-text-primary;
-    @apply rounded-sm;
+    @apply rounded;
     @apply bg-color-bg-1;
     @apply text-xs;
     @apply py-0;
@@ -344,11 +344,18 @@
     .user-select(none);
 
     &:hover {
-      @apply border-color-border-hover;
+      @apply bg-color-border-disabled;
+      @apply border-color-border;
     }
 
     &:active {
       @apply border-color-border-focus;
+      @apply bg-color-fill-6;
+      @apply text-color-brand;
+
+      svg {
+        @apply fill-color-brand;
+      }
     }
 
     span {

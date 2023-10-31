@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('节点状态', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/steps/node-status')
+  await page.goto('steps#node-status')
 
   const nodes = page.locator('#preview .tiny-steps .tiny-timeline-item')
   await expect(nodes.first()).toHaveClass(/process-current/)

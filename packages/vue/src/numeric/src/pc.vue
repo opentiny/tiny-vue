@@ -58,7 +58,7 @@
     >
       <span class="tiny-numeric-display-only">
         <span class="tiny-numeric-display-only__content" v-if="state.isDisplayOnly">
-          <span class="tiny-numeric-display-only__value">{{ state.displayValue }}</span>
+          <span class="tiny-numeric-display-only__value">{{ state.displayOnlyText }}</span>
           <span class="tiny-numeric-display-only__unit" v-if="unit && !hideUnit && state.currentValue">{{ unit }}</span>
           <span v-else-if="unit && !hideUnit">{{ unit }}</span>
         </span>
@@ -132,7 +132,8 @@ export default defineComponent({
     'hideUnit',
     'unitCenter',
     'displayOnly',
-    'showLeft'
+    'showLeft',
+    'showEmptyValue'
   ],
   emits: ['update:modelValue', 'change', 'blur', 'focus', 'paste-error'],
   setup(props, context) {

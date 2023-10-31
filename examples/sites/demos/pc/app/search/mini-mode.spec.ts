@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test('迷你模式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/search/mini-mode')
+  await page.goto('search#mini-mode')
 
   const search = page.locator('.tiny-search.mini')
   const blank = page.getByRole('code').first()

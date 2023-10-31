@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('PopEditor 自定义图标', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popeditor/icon')
+  await page.goto('popeditor#icon')
 
   const preview = page.locator('#preview')
   const icon = preview.locator('.tiny-popeditor-readonly svg path')

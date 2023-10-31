@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('拖拽节点', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/toggle-menu/draggable')
+  await page.goto('toggle-menu#draggable')
   const preview = page.locator('#preview')
   const nodes = preview.locator('.tiny-toggle-menu .tiny-tree > div')
   const dragNode = preview.getByText('更新日志')

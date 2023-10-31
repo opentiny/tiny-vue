@@ -22,8 +22,9 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 `checkbox-group` 元素把多个 `checkbox` 元素管理为一组，在 `checkbox-group` 中使用 `v-model` 绑定 Array 类型的变量即可实现双向绑定。 `checkbox` 的 `label` 属性是其对应的值，若该标签中无内容，则该属性也充当 checkbox 后的介绍。`label` 与数组中的元素值相对应，如果存在指定的值则为选中状态，否则为不选中。<p>',
+        'zh-CN': `<p>通过 <code>checkbox-group</code> 元素把多个 <code>checkbox</code> 元素管理为一组，在 <code>checkbox-group</code> 中使用 <code>v-model</code> 绑定 Array 类型的变量即可实现双向绑定。<br>
+          <code>checkbox</code> 的 <code>label</code> 属性是其对应的值，若该标签中无内容，则该属性也充当 checkbox 后的介绍。<br>
+          <code>label</code> 与数组中的元素值相对应，如果存在指定的值则为选中状态，否则为不选中。<p>`,
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['checkbox-group.vue']
@@ -35,11 +36,26 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN':
-          '<p>提供 `options` 属性，支持通过配置对象数组数据的形式来渲染多选框组。使用该属性后，可以不用再在标签中以插槽的形式插入 `checkbox` 或 `checkbox-button` 元素。<br />`options` 对象数组中包括三个字段：`label`、`text`、`events`。<br />另外还提供 `type` 属性，配合 `options` 属性一起使用，默认值为 `checkbox`。还可以配置为 `button`，配置后复选框组将以按钮的形式展示。<p>',
+        'zh-CN': `<p>提供 <code>options</code> 属性，支持通过配置对象数组数据的形式来渲染多选框组。使用该属性后，可以不用再在标签中以插槽的形式插入 <code>checkbox</code> 或 <code>checkbox-button</code> 元素。<br />
+          <code>options</code> 对象数组中包括三个字段：<code>label</code>、<code>text</code>、<code>events</code>。<br />
+          另外还提供 <code>type</code> 属性，配合 <code>options</code> 属性一起使用，默认值为 <code>checkbox</code>。
+          还可以配置为 <code>button</code>，配置后复选框组将以按钮的形式展示。<p>`,
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['group-options.vue']
+    },
+    {
+      demoId: 'checkbox-size',
+      name: {
+        'zh-CN': '尺寸设置',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN':
+          '<p>当组件 `checkbox-group` 和 `checkbox` 配置 `size` 属性为 `medium` 时，显示为中尺寸（仅 pc 支持）<p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['checkbox-size.vue']
     },
     {
       demoId: 'indeterminate',
@@ -102,6 +118,31 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['content-overflow.vue']
+    },
+    {
+      demoId: 'display-only',
+      name: {
+        'zh-CN': '只读',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p>通过添加 <code>display-only</code> 属性设置复选框只读<p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['display-only.vue']
+    },
+    {
+      demoId: 'display-only-no-label',
+      name: {
+        'zh-CN': '只读(无 label)',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': `<p>当 CheckBox 只有一个勾选框，没有 label 时，只读状态下默认显示 是/否，可通过设置<code>true-label</code>与<code>false-label</code>指定需要显示的值，<br>
+        此功能只适用于单个 CheckBox 用作选择框<p>`,
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['display-only-no-label.vue']
     },
     {
       demoId: 'checkbox-slot',

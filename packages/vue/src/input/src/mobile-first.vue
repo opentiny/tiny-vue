@@ -28,13 +28,14 @@
     <template v-if="type !== 'textarea'">
       <!-- 前置元素 -->
       <div
+        data-tag="tiny-input-prepend"
         ref="prepend"
         class="border-r-0 rounded-tr-none rounded-br-none bg-color-bg-2 text-color-text-placeholder border border-solid border-color-border rounded px-3 py-0 w-px align-middle table-cell relative whitespace-nowrap"
         v-if="slots.prepend && !state.isDisplayOnly"
       >
         <slot name="prepend"></slot>
       </div>
-      <span class="relative">
+      <span class="relative" data-tag="tiny-input-display-only">
         <tiny-tooltip
           v-if="state.isDisplayOnly"
           effect="light"
@@ -62,8 +63,13 @@
               'w-full border-0 px-3 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover ' +
                 'sm:focus:border-color-brand-focus sm:disabled:border-color-border ' +
                 'placeholder:text-color-text-placeholder placeholder:text-sm text-sm sm:placeholder:text-xs sm:text-xs text-color-text-primary ' +
-                'bg-white disabled:cursor-not-allowed disabled:text-color-text-disabled ' +
-                'disabled:bg-color-bg-2 h-7 leading-7 py-0 outline-0 transition-colors duration-200 ease-in-out ',
+                'bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled ' +
+                'disabled:bg-color-bg-4 py-0 outline-0 transition-colors duration-200 ease-in-out ',
+              state.inputSizeMf === 'medium'
+                ? 'h-8 leading-8'
+                : state.inputSizeMf === 'mini'
+                ? 'h-6 leading-6'
+                : 'h-7 leading-7',
               slots.prepend || slots.append ? 'align-middle table-cell' : 'inline-block',
               slots.prepend && slots.append
                 ? 'rounded-none'
@@ -71,7 +77,7 @@
                 ? 'rounded-tl-none rounded-bl-none rounded-tr rounded-br'
                 : slots.append
                 ? 'rounded-tl rounded-bl rounded-tr-none rounded-br-none'
-                : 'rounded-sm',
+                : 'rounded',
               readonly ? 'sm:border-0 text-ellipsis overflow-hidden whitespace-nowrap' : 'sm:border',
               (slots.prefix || prefixIcon) && (slots.suffix || suffixIcon || clearable || showPassword)
                 ? 'pl-6 pr-6'
@@ -81,7 +87,7 @@
                 ? 'pl-3 pr-6'
                 : '',
               state.isDisplayOnly ? 'invisible h-auto leading-none border-0' : '',
-              inputClass
+              customClass
             )
           "
           :tabindex="tabindex"
@@ -120,7 +126,12 @@
         <component
           v-if="prefixIcon"
           :is="prefixIcon"
-          class="leading-7 text-center transition-all duration-300 ease-in-out text-xs"
+          :class="
+            m(
+              'text-center transition-all duration-300 ease-in-out text-xs',
+              state.inputSizeMf === 'medium' ? 'leading-8' : state.inputSizeMf === 'mini' ? 'leading-6' : 'leading-7'
+            )
+          "
         />
       </span>
       <!-- 后置内容 -->
@@ -135,25 +146,49 @@
             <component
               v-if="suffixIcon"
               :is="suffixIcon"
-              class="leading-7 text-center transition-all duration-300 ease-in-out text-xs"
+              :class="
+                m(
+                  'text-center transition-all duration-300 ease-in-out text-xs',
+                  state.inputSizeMf === 'medium'
+                    ? 'leading-8'
+                    : state.inputSizeMf === 'mini'
+                    ? 'leading-6'
+                    : 'leading-7'
+                )
+              "
             />
           </template>
           <icon-error
             v-if="state.showClear"
-            class="leading-7 text-center transition-all duration-300 ease-in-out text-xs cursor-pointer fill-color-none-hover block sm:hidden"
+            :class="
+              m(
+                'text-center transition-all duration-300 ease-in-out text-xs cursor-pointer fill-color-none-hover block sm:hidden',
+                state.inputSizeMf === 'medium' ? 'leading-8' : state.inputSizeMf === 'mini' ? 'leading-6' : 'leading-7'
+              )
+            "
             @mousedown.prevent
             @click="clear"
           ></icon-error>
           <icon-close
             v-if="state.showClear"
-            class="hidden sm:block leading-7 text-center transition-all duration-300 ease-in-out text-xs cursor-pointer"
+            :class="
+              m(
+                'hidden sm:block text-center transition-all duration-300 ease-in-out text-xs cursor-pointer',
+                state.inputSizeMf === 'medium' ? 'leading-8' : state.inputSizeMf === 'mini' ? 'leading-6' : 'leading-7'
+              )
+            "
             @mousedown.prevent
             @click="clear"
           ></icon-close>
           <component
             v-if="showPassword"
             :is="state.passwordVisible ? 'icon-eyeopen' : 'icon-eyeclose'"
-            class="leading-7 text-center transition-all duration-300 ease-in-out text-xs"
+            :class="
+              m(
+                'text-center transition-all duration-300 ease-in-out text-xs',
+                state.inputSizeMf === 'medium' ? 'leading-8' : state.inputSizeMf === 'mini' ? 'leading-6' : 'leading-7'
+              )
+            "
             @click.native="handlePasswordVisible"
           ></component>
           <span
@@ -169,7 +204,8 @@
           v-if="state.validateState"
           :class="
             m(
-              'leading-7 text-center transition-all duration-300 ease-in-out text-xs pointer-events-none',
+              'text-center transition-all duration-300 ease-in-out text-xs pointer-events-none',
+              state.inputSizeMf === 'medium' ? 'leading-8' : state.inputSizeMf === 'mini' ? 'leading-6' : 'leading-7',
               state.validateIcon
             )
           "
@@ -189,7 +225,7 @@
         <slot name="panel"></slot>
       </div>
     </template>
-    <span v-else>
+    <span v-else data-tag="tiny-input-textarea">
       <tiny-tooltip
         v-if="state.isDisplayOnly"
         effect="light"
@@ -205,7 +241,7 @@
         ref="textarea"
         v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
         :tabindex="tabindex"
-        class="block w-full border-0 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover sm:focus:border-color-brand-focus sm:disabled:border-color-border outline-0 rounded placeholder:text-color-text-placeholder placeholder:text-xs text-xs text-color-text-primary bg-white disabled:cursor-not-allowed disabled:text-color-text-disabled disabled:bg-color-bg-2 leading-normal"
+        class="block w-full border-0 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover sm:focus:border-color-brand-focus sm:disabled:border-color-border outline-0 rounded placeholder:text-color-text-placeholder placeholder:text-xs text-xs text-color-text-primary bg-white disabled:cursor-not-allowed disabled:text-color-text-disabled disabled:bg-color-bg-4 leading-normal"
         :class="[readonly ? 'sm:border-0 px-0 py-0' : 'sm:border px-3 py-2', state.isDisplayOnly ? 'hidden' : '']"
         @compositionstart="handleCompositionStart"
         @compositionupdate="handleCompositionUpdate"
@@ -224,6 +260,7 @@
       </textarea>
     </span>
     <span
+      data-tag="tiny-input-limit"
       v-if="state.isWordLimitVisible && type === 'textarea'"
       class="bg-white text-color-text-placeholder text-xs absolute bottom-1 right-3"
       >{{ state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength }}</span
@@ -285,7 +322,7 @@ export default defineComponent({
     'showPassword',
     'validateEvent',
     'showWordLimit',
-    'inputClass',
+    'customClass',
     'displayOnly',
     'displayOnlyContent'
   ],

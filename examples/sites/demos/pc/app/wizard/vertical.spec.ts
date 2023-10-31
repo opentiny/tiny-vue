@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('垂直流程图', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://localhost:7130/pc/wizard/vertical')
+  await page.goto('wizard#vertical')
 
   const wizard = page.locator('.tiny-wizard__vertical')
   const nodeLines = wizard.locator('.tiny-wizard__chart-line')

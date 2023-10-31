@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('范围选择', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/time-picker/is-range')
+  await page.goto('time-picker#is-range')
 
   const preview = page.locator('#preview')
   const timePicker = preview.locator('.tiny-date-editor')

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('grid-filterable', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/nest-checkbox-grid-clearable')
+  await page.goto('select#nest-checkbox-grid-clearable')
   const input = page.locator('#preview .tiny-input__inner')
 
   await input.click()
@@ -20,7 +20,7 @@ test('grid-filterable', async ({ page }) => {
 })
 
 test('grid-clearable', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/nest-checkbox-grid-clearable')
+  await page.goto('select#nest-checkbox-grid-clearable')
   const input = page.locator('#preview .tiny-input__inner')
   const suffix = page.locator('#preview .tiny-input__suffix')
 

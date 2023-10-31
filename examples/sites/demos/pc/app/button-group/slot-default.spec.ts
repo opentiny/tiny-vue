@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试按钮默认插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button-group/slot-default')
+  await page.goto('button-group#slot-default')
   const preview = page.locator('#preview')
   const buttonGroup = preview.locator('.tiny-button-group').first()
   await expect(buttonGroup.getByRole('button', { name: 'Button1' })).toHaveCSS('background-color', 'rgb(94, 124, 224)')

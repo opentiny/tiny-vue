@@ -45,6 +45,7 @@ export const formItemProps = {
   },
   size: String,
   tipContent: String,
+  validateDisabled: Boolean,
   validateDebounce: Boolean,
   validatePosition: String,
   validateStatus: String,

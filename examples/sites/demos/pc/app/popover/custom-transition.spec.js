@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义渐变动画', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popover/custom-transition')
+  await page.goto('popover#custom-transition')
 
   let button = page.getByRole('button', { name: '悬浮看效果' })
   let pop = page.getByRole('tooltip', { name: /这是一段内容/ })

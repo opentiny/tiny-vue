@@ -1,5 +1,5 @@
 export const classes = {
-  'loading-default': 'm-0 top-0 right-0 left-0 bottom-0 block transition bg-color-bg-1 duration-[2000ms]',
+  'loading-default': 'm-0 top-0 right-0 left-0 bottom-0 block transition bg-color-bg-1 duration-1000',
   'loading-fullscreen': 'fixed opacity-80',
   'loading-unfullscreen': 'absolute',
   'loading-content': 'absolute -translate-y-2/4  w-full  top-1/2 text-center  flex justify-center items-center',

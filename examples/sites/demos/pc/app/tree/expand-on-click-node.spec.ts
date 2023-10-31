@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('点击节点展开收缩', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/expand-on-click-node')
+  await page.goto('tree#expand-on-click-node')
 
   const expandedClass = /is-expanded/
   const rootNode = page

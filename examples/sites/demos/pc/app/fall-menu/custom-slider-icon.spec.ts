@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义左、右侧图标', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/fall-menu/custom-slider-icon')
+  await page.goto('fall-menu#custom-slider-icon')
   const preview = page.locator('#preview')
   // 右侧插槽图标
   const rightSlotIcon = preview.locator('.icon-slot-right')

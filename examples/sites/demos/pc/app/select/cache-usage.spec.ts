@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('cache-op', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/cache-usage')
+  await page.goto('select#cache-usage')
   const input = page.locator('#preview .tiny-input__inner')
   const cacheValue = page.locator('#preview .cache-value')
 

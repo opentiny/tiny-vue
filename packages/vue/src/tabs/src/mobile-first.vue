@@ -1,6 +1,6 @@
 <template>
   <div data-tag="tiny-tabs">
-    <div class="hidden">
+    <div data-tag="tiny-tabs-hidden" class="hidden">
       <slot></slot>
     </div>
     <tab-bar ref="tabbar"></tab-bar>
@@ -22,7 +22,7 @@ import TabPanel from './mobile-first/tab-panel.vue'
 import type { ITabsApi } from '@opentiny/vue-renderless/types/tabs.type'
 
 export default defineComponent({
-  props: [...props, 'activeName', 'modelValue', 'size', 'withClose', 'withAdd', 'beforeLeave'],
+  props: [...props, 'activeName', 'modelValue', 'size', 'withClose', 'withAdd', 'beforeLeave', 'separator'],
   emits: ['update:activeName', 'update:modelValue'],
   components: { TabBar, TabPanel },
   setup(props, context): any {

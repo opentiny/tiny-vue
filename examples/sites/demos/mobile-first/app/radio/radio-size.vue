@@ -1,38 +1,42 @@
 <template>
   <div>
-    <tiny-radio-group v-model="value" size="medium">
-      <tiny-radio-button label="1"> 日度 </tiny-radio-button>
-      <tiny-radio-button label="2"> 月度 </tiny-radio-button>
-      <tiny-radio-button label="3"> 年度 </tiny-radio-button>
+    <div>默认尺寸：</div>
+    <tiny-radio-group v-model="value1">
+      <tiny-radio label="1">选项一</tiny-radio>
+      <tiny-radio label="2" text="选项二"></tiny-radio>
     </tiny-radio-group>
-    <div style="margin-top: 20px">
-      <tiny-radio-group v-model="value" size="small">
-        <tiny-radio-button label="1"> 日度 </tiny-radio-button>
-        <tiny-radio-button label="2"> 月度 </tiny-radio-button>
-        <tiny-radio-button label="3"> 年度 </tiny-radio-button>
-      </tiny-radio-group>
-    </div>
-    <div style="margin-top: 20px">
-      <tiny-radio-group v-model="value" size="mini">
-        <tiny-radio-button label="1"> 日度 </tiny-radio-button>
-        <tiny-radio-button label="2"> 月度 </tiny-radio-button>
-        <tiny-radio-button label="3"> 年度 </tiny-radio-button>
-      </tiny-radio-group>
-    </div>
+    <br />
+    <br />
+    <br />
+    <div>中尺寸：</div>
+    <tiny-radio-group v-model="value2" size="medium">
+      <tiny-radio label="1">选项一</tiny-radio>
+      <tiny-radio label="2" text="选项二"></tiny-radio>
+    </tiny-radio-group>
+    <br />
+    <br />
+    <br />
+    <div>垂直布局：</div>
+    <tiny-radio-group v-model="value3" vertical>
+      <tiny-radio size="medium" label="1">选项一</tiny-radio>
+      <tiny-radio size="medium" label="2" text="选项二"></tiny-radio>
+    </tiny-radio-group>
   </div>
 </template>
 
 <script>
-import { RadioButton, RadioGroup } from '@opentiny/vue'
+import { Radio, RadioGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRadioButton: RadioButton,
+    TinyRadio: Radio,
     TinyRadioGroup: RadioGroup
   },
   data() {
     return {
-      value: '1'
+      value1: '1',
+      value2: '1',
+      value3: '1'
     }
   }
 }

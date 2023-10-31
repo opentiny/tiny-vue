@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('Grid-编辑器-自定义编辑器', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-editor/grid_Example-gridEdit-custom-editor')
+  await page.goto('grid-editor#grid_Example-gridEdit-custom-editor')
   await page.getByText('许生').first().click()
   const input = page
     .getByRole('row', {

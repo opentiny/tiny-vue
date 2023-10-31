@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('Breadcrumb options配置', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/breadcrumb/options')
+  await page.goto('breadcrumb#options')
 
   const breadcrumb = page.getByRole('navigation', { name: 'Breadcrumb' }).first()
   const breadcrumbItem = breadcrumb.locator('.tiny-breadcrumb__item')

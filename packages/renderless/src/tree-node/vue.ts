@@ -10,6 +10,7 @@
  *
  */
 
+import debounce from '../common/deps/debounce'
 import {
   created,
   handleDragEnd,
@@ -89,7 +90,7 @@ const initApi = ({ api, state, dispatch, broadcast, vm, props, parent, treeRoot,
     state,
     dispatch,
     broadcast,
-    watchExpanded: watchExpanded({ state }),
+    watchExpanded: debounce(20, watchExpanded({ state })),
     created: created({ props, state }),
     getNodeKey: getNodeKey(state),
     closeMenu: closeMenu(state),
@@ -131,7 +132,8 @@ const initWatcher = ({ watch, state, api, props }) => {
 export const renderless = (
   props,
   { reactive, watch, inject, provide, computed },
-  { parent: parentVm, vm, nextTick, emit, broadcast, dispatch, emitter, designConfig }
+  { parent: parentVm, vm, nextTick, emit, broadcast, dispatch, emitter, designConfig },
+  { isVue2 }
 ) => {
   const api = {}
   const parent = inject('parentTree') || parentVm
@@ -153,6 +155,12 @@ export const renderless = (
         props.node.updateChildren()
       }
     )
+
+    if (!isVue2) {
+      props.node.updateMethod = (node, field) => {
+        field === 'expanded' && api.watchExpanded(node[field])
+      }
+    }
   })
 
   state.parentEmitter.on('closeMenu', () => {

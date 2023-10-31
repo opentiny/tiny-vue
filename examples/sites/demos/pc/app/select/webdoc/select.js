@@ -161,22 +161,11 @@ export default {
       'name': { 'zh-CN': 'change clear blur focus 事件', 'en-US': 'visible-change remove-tag event' },
       'desc': {
         'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>change：选中值发生变化时触发，回调参数为目前的选中值\nclear：可清空的单选模式下用户点击清空按钮时触发\nblur：当 input 失去焦点时触发\nfocus：当 input 获得焦点时触发</p>\n</div>\n',
+          '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>change：选中值发生变化时触发，回调参数为目前的选中值;</p><p>clear：可清空的单选模式下用户点击清空按钮时触发;</p><p>blur：当 input 失去焦点时触发;</p><p>focus：当 input 获得焦点时触发;</p><p>visible-change：下拉框出现/隐藏时触发，回调参数为：出现则为 true，隐藏则为 false;</p><p>remove-tag：多选模式下移除tag时触发，回调参数为移除的 tag 值。</p>\n</div>\n',
         'en-US':
-          '<div class="tip custom-block"><p class="custom-block-title"> Event Description</p>\n<p>visible-change: Triggered when the drop-down list box is displayed or hidden. The callback parameter is true if the drop-down list box is displayed or false if the drop-down list box is hidden.\nremove-tag: Triggered when the tag is removed in multi-select mode. The callback parameter is the removed tag value </p>\n</div>\n'
+          '<div class="tip custom-block"><p class="custom-block-title"> Event Description</p>\n<p>change:Triggered when the selected value changes.The callback parameter id the current selected value.</p><p>clear:Emptable Radio mode Triggered when the user clicks the Emptable button</p><p>blur:Triggered when you lose focus.\nfocus:Triggered when input goes out of focus.</p><p>visible-change: Triggered when the drop-down list box is displayed or hidden. The callback parameter is true if the drop-down list box is displayed or false if the drop-down list box is hidden.</p><p>remove-tag: Triggered when the tag is removed in multi-select mode. The callback parameter is the removed tag value </p>\n</div>\n'
       },
       'codeFiles': ['envts-change.vue']
-    },
-    {
-      'demoId': 'envts-remove',
-      'name': { 'zh-CN': 'visible-change remove-tag 事件', 'en-US': 'Searchable' },
-      'desc': {
-        'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>visible-change：下拉框出现/隐藏时触发，回调参数为：出现则为 true，隐藏则为 false\nremove-tag：多选模式下移除tag时触发，回调参数为移除的 tag 值</p>\n</div>\n',
-        'en-US':
-          '<p>The <code>filterable</code> property enables the search function. By default, Select finds all options for which the <code>label</code> property contains the entered value. If you want to use other search logic, you can pass in a <code>filter-method</code>. <code>filter-method</code> is a function. It is invoked when the input value changes. The parameter is the current input value. </p>\n'
-      },
-      'codeFiles': ['envts-remove.vue']
     },
     {
       'demoId': 'filter-method',

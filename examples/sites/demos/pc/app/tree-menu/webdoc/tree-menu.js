@@ -273,6 +273,16 @@ export default {
           'demoId': 'accordion'
         },
         {
+          'name': 'placeholder',
+          'type': 'string',
+          'defaultValue': '请输入内容进行筛选',
+          'desc': {
+            'zh-CN': '自定义搜索框placeholder',
+            'en-US': 'Custom search box placeholder.'
+          },
+          'demoId': ''
+        },
+        {
           'name': 'allow-drag',
           'type': 'Function(params)',
           'defaultValue': '',

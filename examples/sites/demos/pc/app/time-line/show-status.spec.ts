@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('显示组件内部状态', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/time-line/show-status')
+  await page.goto('time-line#show-status')
 
   const nodes = page.locator('#preview .tiny-steps .normal')
   await expect(nodes.first().locator('.status')).toHaveText('已完成')

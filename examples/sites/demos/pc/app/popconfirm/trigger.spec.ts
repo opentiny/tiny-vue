@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('触发方式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popconfirm/trigger')
+  await page.goto('popconfirm#trigger')
 
   const preview = page.locator('#preview')
   const popConfirm = preview.locator('.tiny-popconfirm .tiny-popconfirm__reference .tiny-button')

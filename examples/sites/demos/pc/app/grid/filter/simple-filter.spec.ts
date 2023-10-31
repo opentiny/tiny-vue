@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('简化版筛选面板-单选/多选菜单', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-filter/filter-simple-filter')
+  await page.goto('grid-filter#filter-simple-filter')
   await page.getByRole('cell', { name: '公司名称' }).getByRole('img').click()
 
   // 筛选面板搜索功能

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('时间线流程图', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://localhost:7130/pc/wizard/time-line-flow')
+  await page.goto('wizard#time-line-flow')
 
   const wizard = page.locator('.tiny-wizard__vertical.is-time-line-flow')
   const nodeLines = wizard.locator('.tiny-wizard__chart-line.is-time-line')

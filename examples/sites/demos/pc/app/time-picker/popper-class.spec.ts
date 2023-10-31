@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('下拉框的类名', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/time-picker/popper-class')
+  await page.goto('time-picker#popper-class')
 
   const preview = page.locator('#preview')
   const timePicker = preview.locator('.tiny-date-editor > input')

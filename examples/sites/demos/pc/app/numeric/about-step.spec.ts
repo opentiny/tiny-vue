@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('步长', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/numeric/about-step')
+  await page.goto('numeric#about-step')
 
   const input = page.getByRole('spinbutton')
   const increaseBtn = page.locator('#preview .tiny-numeric__increase')

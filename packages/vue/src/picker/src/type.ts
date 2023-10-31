@@ -10,6 +10,10 @@ export const pickerProps = {
     default: '1'
   },
   timeArrowControl: Boolean,
+  timeEditable: {
+    type: Boolean,
+    default: true
+  },
   size: String,
   format: String,
   valueFormat: String,

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('判断是否可以将左侧数据交换到右侧面板', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/nested-table')
+  await page.goto('transfer#nested-table')
   const preview = page.locator('#preview')
   const transferPanels = preview.locator('.tiny-transfer-panel')
   const rightPanel = transferPanels.nth(1)
@@ -12,7 +12,7 @@ test('判断是否可以将左侧数据交换到右侧面板', async ({ page }) 
 
 test('判断是否可以将右侧数据交换到左侧面板', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/nested-table')
+  await page.goto('transfer#nested-table')
   const preview = page.locator('#preview')
   const transferPanels = preview.locator('.tiny-transfer-panel')
   const leftPanel = transferPanels.first()
@@ -22,7 +22,7 @@ test('判断是否可以将右侧数据交换到左侧面板', async ({ page }) 
 
 test('判断是否可以切换分页页码', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/nested-table')
+  await page.goto('transfer#nested-table')
   const preview = page.locator('#preview')
   const transferPanels = preview.locator('.tiny-transfer-panel')
   const leftPanel = transferPanels.first()
@@ -32,7 +32,7 @@ test('判断是否可以切换分页页码', async ({ page }) => {
 
 test('判断搜索功能是否正常', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/nested-table')
+  await page.goto('transfer#nested-table')
   const preview = page.locator('#preview')
   const transferPanels = preview.locator('.tiny-transfer-panel')
   const leftPanel = transferPanels.first()

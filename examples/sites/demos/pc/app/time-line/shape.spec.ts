@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('节点外观风格', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/time-line/shape')
+  await page.goto('time-line#shape')
 
   const timeline = page.locator('#preview .tiny-steps-timeline')
   await expect(timeline.locator('.dot').first()).toBeVisible()

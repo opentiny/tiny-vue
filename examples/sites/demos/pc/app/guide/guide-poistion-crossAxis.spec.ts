@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('引导框横轴距离', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/guide/guide-poistion-crossAxis')
+  await page.goto('guide#guide-poistion-crossAxis')
 
   const guideBtn1 = page.getByRole('button', { name: '新手引导1' })
   const guideBtn2 = page.getByRole('button', { name: '新手引导2' })

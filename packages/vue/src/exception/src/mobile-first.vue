@@ -1,24 +1,29 @@
 <template>
-  <div :class="m('flex t-0 justify-center items-center w-full h-full bg-color-bg-1 text-center', exceptionClass)">
-    <div>
-      <div class="bg-cover">
+  <div
+    data-tag="tiny-exception"
+    :class="m('flex t-0 justify-center items-center w-full h-full bg-color-bg-1 text-center', exceptionClass)"
+  >
+    <div data-tag="tiny-exception-body">
+      <div class="bg-cover" data-tag="tiny-exception-image">
         <img
           v-if="state.urlType"
-          :class="['inline-block', componentPage ? 'w-[6.25rem]' : 'w-[12.5rem]']"
+          :class="['inline-block', componentPage ? 'w-24' : 'w-52']"
           :src="state.images[state.urlType]"
           alt=""
         />
       </div>
       <slot name="content">
-        <div>
+        <div data-tag="tiny-exception-description">
           <div
-            :class="['text-color-text-primary mt-2 text-center text-base', componentPage ? 'sm:text-xs' : 'sm:text-sm']"
+            data-tag="tiny-exception-componentpage"
+            :class="['text-color-text-primary mt-1 text-center text-sm', componentPage ? 'sm:text-xs' : 'sm:text-sm']"
           >
             {{ t(_constants[type]) }}
           </div>
           <div
+            data-tag="tiny-exception-submessage"
             v-if="subMessage"
-            class="leading-[1.375rem] sm:leading-3 sm:text-xs mt-1 sm:mt-2 text-color-icon-placeholder"
+            class="leading-5.5 sm:leading-3 sm:text-xs mt-1 sm:mt-2 text-color-icon-placeholder"
           >
             {{ subMessage }}
           </div>
@@ -48,7 +53,7 @@ import pageservererror from '@opentiny/vue-theme/images/empty-page-servererror.p
 const $constants = {
   nodata: 'ui.exception.nodatamf',
   noperm: 'ui.exception.nopermmf',
-  weaknet: 'ui.exception.weaknet',
+  weaknet: 'ui.exception.weaknetmf',
   noresult: 'ui.exception.noresult',
   nonews: 'ui.exception.nonews',
   pagenoperm: 'ui.exception.pagenoperm',
@@ -59,8 +64,9 @@ const $constants = {
 
 export default defineComponent({
   components: {
-    TinyButton: Button
+    tinyButton: Button
   },
+  emits: ['click'],
   props: {
     ...$props,
     _constants: {
@@ -71,7 +77,6 @@ export default defineComponent({
       type: String,
       default: 'nodata'
     },
-    message: String,
     subMessage: String,
     exceptionClass: String,
     pageEmpty: {

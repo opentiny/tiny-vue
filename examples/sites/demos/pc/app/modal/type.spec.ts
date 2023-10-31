@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('窗口类型', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/modal/type')
+  await page.goto('modal#type')
 
   const alert = page.locator('.tiny-modal').filter({ hasText: 'alert 弹框' })
   await page.getByRole('button', { name: 'alert 弹框' }).click()

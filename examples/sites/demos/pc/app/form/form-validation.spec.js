@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试表单校验规则', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/form/form-validation')
+  await page.goto('form#form-validation')
 
   const preview = page.locator('#preview')
   const form = preview.locator('.tiny-form')
@@ -19,7 +19,7 @@ test('测试表单校验规则', async ({ page }) => {
 
 test('测试表单输入变化和失焦是否出现校验', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/form/form-validation')
+  await page.goto('form#form-validation')
 
   const preview = page.locator('#preview')
   const form = preview.locator('.tiny-form')

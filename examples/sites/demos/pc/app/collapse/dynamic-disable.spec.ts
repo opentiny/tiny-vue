@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('Collapse 禁用状态', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/collapse/dynamic-disable')
+  await page.goto('collapse#dynamic-disable')
 
   const disabledItem = page.locator('.tiny-collapse-item').nth(2)
   const disabledHeader = page.locator('.tiny-collapse-item__header').nth(2)

@@ -133,7 +133,6 @@ export const cmpMenus = [
       { 'nameCn': '边框', 'name': 'Borders', 'key': 'grid-grid-border' },
       { 'nameCn': '高亮', 'name': 'Highlighting', 'key': 'grid-highlight' },
       { 'nameCn': '斑马线条纹', 'name': 'Zebra Crossing Stripes', 'key': 'grid-grid-stripe' },
-      { 'nameCn': '优化配置项', 'name': 'OptimizedConfigurationItems', 'key': 'grid-grid-optimization' },
       { 'nameCn': '提示', 'name': 'Tip', 'key': 'grid-tip' },
       { 'nameCn': '对齐方式', 'name': 'Alignment', 'key': 'grid-align' },
       { 'nameCn': '表头', 'name': 'Table Header', 'key': 'grid-header' },
@@ -245,7 +244,8 @@ export const cmpMenus = [
       { 'nameCn': '用户头像', 'name': 'UserHead', 'key': 'user-head' },
       { 'nameCn': '全屏显示', 'name': 'Fullscreen', 'key': 'fullscreen' },
       { 'nameCn': '全局设置', 'name': 'ConfigProvider', 'key': 'config-provider' },
-      { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' }
+      { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' },
+      { 'nameCn': '二维码', 'name': 'QrCode', 'key': 'qr-code' }
     ]
   }
 ]

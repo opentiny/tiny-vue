@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('步长与时间区间', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/drop-times/start-end-step')
+  await page.goto('drop-times#start-end-step')
 
   const droptimes = page.getByPlaceholder('请选择')
   const option1 = page.locator('.tiny-select-dropdown__item').first()

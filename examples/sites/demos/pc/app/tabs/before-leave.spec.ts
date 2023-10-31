@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('离开前事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tabs/before-leave')
+  await page.goto('tabs#before-leave')
 
   const tabs = page.locator('.tiny-tabs')
   const tabItem = tabs.getByRole('tab', { name: '表单组件' })

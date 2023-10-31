@@ -13,8 +13,7 @@ import Share from './icons/Share.vue'
 
 const versions = ['3.11', '3.10', '3.9', '3.8']
 const latestVersion = versions[0]
-const cdnHost = 'https://unpkg.com'
-window.localStorage.setItem('setting-cdn', cdnHost)
+const cdnHost = window.localStorage.getItem('setting-cdn')
 
 const searchObj = new URLSearchParams(location.search)
 const tinyMode = searchObj.get('mode')
@@ -26,6 +25,7 @@ const createImportMap = (version) => {
     '@opentiny/vue-icon': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-icon.mjs`,
     '@opentiny/vue-locale': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-locale.mjs`,
     '@opentiny/vue-common': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-common.mjs`,
+    '@opentiny/vue-theme/': `${cdnHost}/@opentiny/vue-theme@${version}/`,
     'sortablejs': `${cdnHost}/sortablejs@1.15.0/modular/sortable.esm.js`
   }
   if (['aurora', 'smb'].includes(tinyTheme)) {
@@ -78,14 +78,32 @@ const state = reactive({
   previewOptions: {}
 })
 
+const designThemeMap = {
+  aurora: 'tinyAuroraTheme',
+  infinity: 'tinyInfinityTheme',
+  smb: 'tinySmbTheme',
+}
+
 function setTinyDesign() {
+  let importCode = ''
+  let useCode = ''
   // 目前只有aurora和smb有design包
   if (['aurora', 'smb'].includes(tinyTheme)) {
-    state.previewOptions.customCode = {
-      importCode: `import designConfig from '@opentiny/vue-design-${tinyTheme}';
-        import { design } from '@opentiny/vue-common';`,
-      useCode: `app.provide(design.configKey, designConfig)`
-    }
+    importCode += `import designConfig from '@opentiny/vue-design-${tinyTheme}';
+      import { design } from '@opentiny/vue-common';\n`,
+    useCode += 'app.provide(design.configKey, designConfig)\n'
+  }
+
+  if (['aurora', 'infinity', 'smb'].includes(tinyTheme)) {
+    const designTheme = designThemeMap[tinyTheme]
+    importCode += `import TinyThemeTool from '@opentiny/vue-theme/theme-tool';
+      import { ${designTheme} } from '@opentiny/vue-theme/theme';\n`,
+    useCode += `const theme = new TinyThemeTool(${designTheme})\n`
+  }
+
+  state.previewOptions.customCode = {
+    importCode,
+    useCode
   }
 }
 

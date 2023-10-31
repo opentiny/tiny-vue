@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Rate 允许半选', () => {
   test('允许半选', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/rate/allow-half')
+    await page.goto('rate#allow-half')
 
     // 判断rate组件是否出现
     await expect(page.locator('//*[@id="preview"]/div[2]/div[2]/div')).toBeVisible()

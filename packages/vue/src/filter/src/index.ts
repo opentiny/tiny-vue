@@ -14,6 +14,7 @@ export default defineComponent({
     filterGroup: Array,
     filterValue: Array,
     panelClass: String,
+    manual: Boolean,
     customClass: String
   },
   setup(props, context) {

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('下拉面板显示事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/action-menu/visible-change')
+  await page.goto('action-menu#visible-change')
 
   const preview = page.locator('#preview')
   const actionMenu = preview.locator('.tiny-action-menu')

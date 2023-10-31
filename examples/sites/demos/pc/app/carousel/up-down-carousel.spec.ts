@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('纵向轮播', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/carousel/up-down-carousel')
+  await page.goto('carousel#up-down-carousel')
   const preview = page.locator('#preview')
   const indicators = preview.getByRole('button')
   const carouselItems = preview.locator('.tiny-carousel__item')

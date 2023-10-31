@@ -23,7 +23,9 @@ const $constants = {
       icon: 'icon-minscreen'
     }
   },
-  DEFAULT_POPPER_ZINDEX: Number.POSITIVE_INFINITY
+  DEFAULT_POPPER_ZINDEX: Number.POSITIVE_INFINITY,
+  THUMBNAILTOP: 8,
+  MENUTOP: 10
 }
 
 export default defineComponent({
@@ -89,6 +91,26 @@ export default defineComponent({
       default: () => {
         // do nothing
       }
+    },
+    isThumbnail: {
+      type: Boolean,
+      default: false
+    },
+    isMenuView: {
+      type: Boolean,
+      default: false
+    },
+    modalView: {
+      type: Boolean,
+      default: false
+    },
+    modalHeight: {
+      type: [String, Number],
+      default: 400
+    },
+    bgColor: {
+      type: String,
+      default: 'bg-color-icon-primary'
     }
   },
   setup(props, context) {

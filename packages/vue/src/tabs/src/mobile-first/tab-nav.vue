@@ -16,12 +16,10 @@ export default defineComponent({
     return setup({ props, context, renderless, api, mono: true })
   },
   render() {
-    const { state, customClass } = this
+    const { state, customClass, m } = this
 
-    return h(
-      'div',
-      { attrs: { 'data-tag': 'tiny-tab-nav' }, class: customClass },
-      state.navItems.map((item: NavItem) =>
+    return h('div', { attrs: { 'data-tag': 'tiny-tab-nav' }, class: m('relative', customClass) }, [
+      ...state.navItems.map((item: NavItem) =>
         typeof item.visible === 'undefined' || item.visible
           ? h(TabNavItem, {
               key: item.name,
@@ -33,8 +31,17 @@ export default defineComponent({
               }
             })
           : null
-      )
-    )
+      ),
+      h('div', {
+        class: m('absolute bottom-0.5 h-0.5 bg-color-brand transition-all duration-300', {
+          'hidden': !state.currentNav
+        }),
+        style: {
+          width: state.currentWidth + 'px',
+          left: state.currentPosition + 'px'
+        }
+      })
+    ])
   }
 })
 </script>

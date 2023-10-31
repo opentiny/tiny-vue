@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('是否开启多选模式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/show-checkbox')
+  await page.goto('tree#show-checkbox')
 
   const tree = page.locator('#preview .tiny-tree')
   const checkbox1 = tree.locator('.tiny-tree-node').nth(3).locator('.tiny-checkbox').first()

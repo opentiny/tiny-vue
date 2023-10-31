@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('初始化展开所有节点', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/default-expand-all')
+  await page.goto('tree#default-expand-all')
 
   const tree = page.locator('#preview .tiny-tree')
   const expandClass = /is-expanded/

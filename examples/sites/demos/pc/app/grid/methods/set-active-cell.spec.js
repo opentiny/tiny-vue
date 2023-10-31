@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('手动激活编辑', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-edit/methods-set-active-cell')
+  await page.goto('grid-edit#methods-set-active-cell')
   await page.getByRole('button', { name: 'setActiveCell' }).click()
 
   await expect(page.getByRole('row', { name: '1 2014-04-30 00:56:00 福州' }).getByRole('textbox')).toBeVisible()

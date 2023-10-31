@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('BulletinBoard 基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/bulletin-board/base')
+  await page.goto('bulletin-board#base')
 
   const preview = page.locator('#preview')
   const tabTitle = preview.locator('.tiny-tabs__item')

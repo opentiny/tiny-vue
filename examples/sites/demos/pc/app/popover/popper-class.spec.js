@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义样式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popover/popper-class')
+  await page.goto('popover#popper-class')
 
   let button1 = page.getByRole('button', { name: /单个class/ })
   let button2 = page.getByRole('button', { name: /多个class/ })

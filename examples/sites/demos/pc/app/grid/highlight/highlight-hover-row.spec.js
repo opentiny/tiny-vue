@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('高亮悬停行', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-highlight/highlight-highlight-hover-row')
+  await page.goto('grid-highlight#highlight-highlight-hover-row')
   const tr = page.locator('.tiny-grid-body__row').first()
   await tr.hover()
   await page.waitForTimeout(500)

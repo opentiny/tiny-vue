@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自动过滤', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/toggle-menu/automatic-filtering')
+  await page.goto('toggle-menu#automatic-filtering')
   const preview = page.locator('#preview')
   await preview.getByTitle('更新日志').click()
   await preview.getByTitle('开发指南').click()

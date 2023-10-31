@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('锁住页面', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/modal/lock-view')
+  await page.goto('modal#lock-view')
 
   const modal = page.locator('.tiny-modal')
   await page.getByRole('button', { name: '不锁界面不要遮罩层' }).click()
@@ -17,7 +17,7 @@ test('锁住页面', async ({ page }) => {
 })
 
 test('控制遮罩层显示', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/modal/lock-view')
+  await page.goto('modal#lock-view')
 
   const modal = page.locator('.tiny-modal')
   await page.getByRole('button', { name: '不锁界面不要遮罩层' }).click()

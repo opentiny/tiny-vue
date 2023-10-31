@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 // 以下2个测试将覆盖2个demo：基本用法、数据源
 test('基础用法、数据源', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/fall-menu/data-resource')
+  await page.goto('fall-menu#data-resource')
   const preview = page.locator('#preview')
   await preview.getByRole('link', { name: '指南' }).hover()
   const fallMenuBox = preview.locator('.tiny-fall-menu__box')

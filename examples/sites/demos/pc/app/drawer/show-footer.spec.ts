@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('底部显示', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/drawer/show-footer')
+  await page.goto('drawer#show-footer')
 
   const drawerFooter = page.locator('.tiny-drawer__header')
 

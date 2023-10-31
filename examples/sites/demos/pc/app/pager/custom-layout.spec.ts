@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试自定义分页布局', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pager/custom-layout')
+  await page.goto('pager#custom-layout')
 
   const preview = page.locator('#preview')
   const pager = preview.locator('.tiny-pager')

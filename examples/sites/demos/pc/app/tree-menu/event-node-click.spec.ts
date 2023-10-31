@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('节点被点击事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree-menu/event-node-click')
+  await page.goto('tree-menu#event-node-click')
 
   const treeMenu = page.locator('#preview .tiny-tree-menu')
   await treeMenu.getByTitle('首页', { exact: true }).click()

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('主题样式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/link/link-style')
+  await page.goto('link#link-style')
   const preview = page.locator('#preview')
   let anchor = preview.locator('a').filter({ hasText: '默认链接' })
   await anchor.hover()

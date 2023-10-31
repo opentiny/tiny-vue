@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('卡片模式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/carousel/card-mode')
+  await page.goto('carousel#card-mode')
   const preview = page.locator('#preview')
   const carousel = preview.locator('.tiny-carousel')
   const carouselItems = preview.locator('div.tiny-carousel__item')

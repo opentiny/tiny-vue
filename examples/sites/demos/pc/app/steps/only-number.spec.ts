@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('序号仅显示数字', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/steps/normal-steps')
+  await page.goto('steps#normal-steps')
 
   const steps = page.locator('#preview .tiny-steps')
   await expect(steps.locator('div').first()).toHaveClass(/tiny-steps-normal/)
