@@ -82,6 +82,7 @@ export const getCurrentAnchor =
     if (state.currentLink === link || state.isScroll) {
       return
     }
+
     state.currentLink = link
     updateSkidPosition({ vm, state, emit })
   }
@@ -128,7 +129,7 @@ const setChildOffsetTop = ({ state, props }: Pick<IAnchorRenderlessParams, 'stat
 export const getContainer =
   ({ props }: Pick<IAnchorRenderlessParams, 'props'>) =>
   (): Element =>
-    props.containerId ? document.querySelector(props.containerId) : document.body
+    (props.containerId && document.querySelector(props.containerId)) || document.body
 
 export const mounted =
   ({ state, api, props, nextTick }: Pick<IAnchorRenderlessParams, 'state' | 'api' | 'props' | 'nextTick'>) =>
@@ -160,7 +161,7 @@ export const unmounted =
   }
 
 export const onItersectionObserver =
-  ({ state, props, api }: Pick<IAnchorRenderlessParams, 'state' | 'props' | 'api'>) =>
+  ({ state, props, api, vm, emit }: Pick<IAnchorRenderlessParams, 'state' | 'props' | 'api' | 'vm' | 'emit'>) =>
   () => {
     const { expandLink, scrollContainer } = state
     state.intersectionObserver = new IntersectionObserver(
@@ -171,6 +172,14 @@ export const onItersectionObserver =
           const key = item.target.id
           state.observerLinks[key] = item
         })
+
+        // 判断hash值变化
+        if (state.currentHash !== location.hash) {
+          state.currentHash = location.hash
+          state.currentLink = state.currentHash
+          updateSkidPosition({ vm, state, emit })
+          return
+        }
 
         for (let key in state.observerLinks) {
           if (Object.prototype.hasOwnProperty.call(state.observerLinks, key)) {
@@ -211,11 +220,11 @@ export const linkClick =
     updateSkidPosition({ vm, state, emit })
     setMarkClass({ state, props })
 
-    if (scrollContainer !== document.body && !isChangeHash) {
-      const linkEl = scrollContainer.querySelector(item.link)
-      const top = linkEl.offsetTop - scrollContainer.offsetTop // 修复横向锚点无法滚动到顶部
-      const param = { top, left: 0, behavior: 'smooth' }
-      scrollContainer.scrollTo(param)
-      scrollContainer.addEventListener('scroll', api.handleScroll())
+    if (scrollContainer && scrollContainer !== document.body && !isChangeHash) {
+      const linkEl = scrollContainer.querySelector(item.link) as HTMLElement
+      const top = linkEl?.offsetTop - scrollContainer.offsetTop // 修复横向锚点无法滚动到顶部
+      const param = { top, left: 0, behavior: 'smooth' } as ScrollToOptions
+      scrollContainer?.scrollTo(param)
+      scrollContainer?.addEventListener('scroll', api.handleScroll())
     }
   }
