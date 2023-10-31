@@ -1,0 +1,55 @@
+name: E2E Test Dispatch
+run-name: E2E Test Dispatch--${{ inputs.testDemos }}--
+on:
+  workflow_dispatch:
+    inputs:
+      testDemos:
+        description: |
+          Name of directory from "examples/sites/demos/pc/app",
+          such as `input, alert`.
+        required: true
+        type: string
+concurrency:
+  group: ${{ github.workflow }}-${{ github.sha }}
+  cancel-in-progress: true
+jobs:
+  dispatch-tests:
+    name: Dispatch Tests
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      - name: Install dependencies
+        run: pnpm i --no-frozen-lockfile
+
+      - name: dev start
+        run: pnpm dev & sleep 5
+
+      - name: Install Playwright browsers
+        run: pnpm install:browser --with-deps chromium
+
+      - name: Run Playwright tests
+        run: |
+          testDemos="${{ inputs.testDemos }}"
+          components=${testDemos//,/' '}
+          pnpm test:e2e3 $components --reporter=line
