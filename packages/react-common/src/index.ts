@@ -9,7 +9,8 @@ import { useVm } from './vm.js'
 import { twMerge } from 'tailwind-merge'
 import { stringifyCssClass } from './csscls.js'
 import { useExcuteOnce, useReload, useOnceResult, useVueLifeHooks } from './hooks.js'
-import { effectScope, nextTick } from '@vue/runtime-core'
+// 导入 vue 响应式系统
+import { effectScope, nextTick, reactive } from '@vue/runtime-core'
 
 import '@opentiny/vue-theme/base/index.less'
 
@@ -35,8 +36,8 @@ export const useSetup = ({
   // 刷新逻辑
   const reload = useReload()
   useExcuteOnce(() => {
-    // 1. 响应式出发 $bus 的事件
-    // 2. 事件响应出发组件更新
+    // 1. 响应式触发 $bus 的事件
+    // 2. 事件响应触发组件更新
     $bus.on('event:reload', reload)
   })
 
@@ -46,29 +47,33 @@ export const useSetup = ({
     return () => scope.stop()
   }, [])
 
+  // 创建响应式 props，每次刷新更新响应式 props
+  const reactiveProps = useOnceResult(() => reactive(props))
+  Object.assign(reactiveProps, props) 
+
   // 执行一次 renderless
   // renderless 作为 setup 的结果，最后要将结果挂在 vm 上
   let setupResult = useExcuteOnce(() => {
-    const render = typeof props.tiny_renderless === 'function' ? props.tiny_renderless : renderless
+    const render = typeof reactiveProps.tiny_renderless === 'function' ? reactiveProps.tiny_renderless : renderless
     const { dispath, broadcast } = emitEvent(vm)
 
     const utils = {
       vm,
       parent,
-      emit: emit(props),
+      emit: emit(reactiveProps),
       constants,
       nextTick,
       dispath,
       broadcast,
       t() { },
       mergeClass,
-      mode: props.tiny_mode
+      mode: reactiveProps.tiny_mode
     }
 
     let sdk
     scope.run(() => {
       sdk = render(
-        props,
+        reactiveProps,
         {
           ...generateVueHooks({
             $bus
