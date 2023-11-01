@@ -287,7 +287,7 @@ export default {
     {
       'name': 'file-upload',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'accept',
           'type': 'String',
