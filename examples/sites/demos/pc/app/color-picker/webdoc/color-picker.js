@@ -27,24 +27,6 @@ export default {
       'codeFiles': ['alpha.vue']
     },
     {
-      'demoId': 'default-visible',
-      'name': { 'zh-CN': '默认显示', 'en-US': 'default-visible' },
-      'desc': {
-        'zh-CN': '当visible为true时, 将会默认显示color-select. visible是响应式的, 所以你可以强制控制color-select的状态。当visible切换的时候, 会触发cancel事件',
-        'en-US': 'If visible is true the <code>color-select</code> will show. The visible prop is reactive so you can force change <code>color-select</code> show or not. When change visible will trigger cancel event'
-      },
-      'codeFiles': ['default-visible.vue']
-    },
-    {
-      'demoId': 'dynamic-color-change',
-      'name': { 'zh-CN': '颜色动态切换', 'en-US': 'dynamic-color-change' },
-      'desc': {
-        'zh-CN': '可以动态切换color属性, 以满足各种需求',
-        'en-US': 'Can dynamically switch color attributes to meet various needs'
-      },
-      'codeFiles': ['dynamic-color-change.vue']
-    },
-    {
       'demoId': 'history',
       'name': { 'zh-CN': '历史记录', 'en-US': 'history' },
       'desc': {
@@ -64,6 +46,24 @@ export default {
         'en-US': 'Provide some defined colors, user behavior will not change the predefined colors, but can be changed externally'
       },
       'codeFiles': ['predefine.vue']
+    },
+    {
+      'demoId': 'default-visible',
+      'name': { 'zh-CN': '默认显示', 'en-US': 'default-visible' },
+      'desc': {
+        'zh-CN': '当visible为true时, 将会默认显示color-select. visible是响应式的, 所以你可以强制控制color-select的状态。当visible切换的时候, 会触发cancel事件',
+        'en-US': 'If visible is true the <code>color-select</code> will show. The visible prop is reactive so you can force change <code>color-select</code> show or not. When change visible will trigger cancel event'
+      },
+      'codeFiles': ['default-visible.vue']
+    },
+    {
+      'demoId': 'dynamic-color-change',
+      'name': { 'zh-CN': '颜色动态切换', 'en-US': 'dynamic-color-change' },
+      'desc': {
+        'zh-CN': '可以动态切换color属性, 以满足各种需求',
+        'en-US': 'Can dynamically switch color attributes to meet various needs'
+      },
+      'codeFiles': ['dynamic-color-change.vue']
     },
   ],
   apis: [
