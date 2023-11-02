@@ -67,7 +67,15 @@
                           <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
                           <span v-else>{{ row.name }}</span>
                         </td>
-                        <td v-if="!key.includes('slots')"><span v-html="row.type"></span></td>
+                        <td v-if="!key.includes('slots')">
+                          <a
+                            v-if="row.typeAnchorName"
+                            :href="`#${row.typeAnchorName}`"
+                            v-html="row.type"
+                            @click="handleTypeClick"
+                          ></a>
+                          <span v-else v-html="row.type"></span>
+                        </td>
                         <td v-if="!key.includes('slots') && !key.includes('events')">
                           <span v-html="row.defaultValue"></span>
                         </td>
@@ -79,6 +87,16 @@
               </div>
             </div>
           </div>
+        </template>
+        <template v-if="currJson.types && currJson.types.length">
+          <div class="ti-f18 ti-py28" id="types">types</div>
+          <tiny-collapse v-model="activeNames">
+            <div v-for="typeItem in currJson.types" :id="typeItem.name" :key="typeItem.name">
+              <tiny-collapse-item :title="typeItem.name" :name="typeItem.name">
+                <async-highlight :code="typeItem.code.trim()" types="ts"></async-highlight
+              ></tiny-collapse-item>
+            </div>
+          </tiny-collapse>
         </template>
         <h2 id="FAQ" v-if="cmpFAQMd" class="ti-f30 ti-fw-normal ti-mt28 ti-mb20">FAQ</h2>
         <div class="markdown-body" v-html="cmpFAQMd"></div>
@@ -111,11 +129,20 @@ import { $t, $t2, $clone, $split, fetchDemosFile, useApiMode, useTemplateMode } 
 import demo from '@/views/components/demo'
 import { router } from '@/router.js'
 import { getAllComponents } from '@/menus.jsx'
+import { Collapse, CollapseItem } from '@opentiny/vue'
 import { faqMdConfig, staticDemoPath, getWebdocPath } from './cmpConfig'
+import AsyncHighlight from './async-highlight.vue'
 
 export default defineComponent({
   name: 'CmpPageVue',
-  components: { Demo: demo, TinyAnchor: Anchor, TinyButtonGroup: ButtonGroup },
+  components: {
+    Demo: demo,
+    TinyAnchor: Anchor,
+    TinyButtonGroup: ButtonGroup,
+    TinyCollapse: Collapse,
+    TinyCollapseItem: CollapseItem,
+    AsyncHighlight
+  },
   directives: {
     loading: Loading.directive
   },
@@ -149,7 +176,8 @@ export default defineComponent({
         return links
       }),
       // 单demo显示时
-      singleDemo: null
+      singleDemo: null,
+      activeNames: ''
     })
 
     const { apiModeState } = useApiMode()
@@ -194,6 +222,20 @@ export default defineComponent({
             behavior: 'smooth'
           })
         }, 0)
+      }
+    }
+
+    // 改变折叠筐的展开状态， 2参为TRUE则表示是通过点击type属性跳转的锚点。不用进行判断直接赋值
+    const changeActiveNames = (hash, isType = false) => {
+      const newVal = hash.replace('#', '')
+      if (isType) {
+        state.activeNames = newVal
+        return
+      }
+
+      const isTypeHashChange = state.currJson.types.some((item) => item.name === newVal)
+      if (isTypeHashChange) {
+        state.activeNames = newVal
       }
     }
 
@@ -249,6 +291,10 @@ export default defineComponent({
           if (!state.singleDemo) {
             state.singleDemo = state.currJson.demos[0]
           }
+
+          if (state.currJson.types && state.currJson.types.length) {
+            changeActiveNames(hash)
+          }
         } else {
           state.singleDemo = state.currJson.demos[0]
         }
@@ -278,6 +324,9 @@ export default defineComponent({
 
           scrollByHash(hash)
         }
+      },
+      handleTypeClick: (ev) => {
+        changeActiveNames(ev.target.hash, true)
       },
       handleAnchorClick: (e, data) => {
         if (apiModeState.demoMode === 'single' && data.link.startsWith('#')) {
