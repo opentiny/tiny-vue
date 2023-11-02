@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-test('cahnge事件是否正常触发', async ({ page }) => {
+test('change事件是否正常触发', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('search#change-events')
 
