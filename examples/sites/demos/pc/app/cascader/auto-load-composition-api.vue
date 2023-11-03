@@ -2,7 +2,7 @@
   <tiny-cascader :props="propsAuto"></tiny-cascader>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Cascader as TinyCascader } from '@opentiny/vue'
 
