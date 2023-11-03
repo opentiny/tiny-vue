@@ -8,11 +8,11 @@ therefore, it can misjudge boundaries, leading to issues such as flipping and mi
 _Solution:_ Introducing popup global configuration, assigning the 'window' of the main application to the 'viewportWindow' of the global configuration for boundary judgment
 
 ```js
-import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
+import globalConfig from '@opentiny/vue-renderless/common/global'
 
 // Determine if the app run in the sub application
 if (window.__POWERED_BY_WUJIE__) {
   // In sub applications, the window of the main application can be obtained through window. parent
-  PopupManager.viewportWindow = window.parent
+  globalConfig.viewportWindow = window.parent
 }
 ```
