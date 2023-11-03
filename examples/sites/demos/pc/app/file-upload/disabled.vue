@@ -1,7 +1,7 @@
 <template>
-  <tiny-file-upload ref="upload" :action="action">
+  <tiny-file-upload action="#" disabled>
     <template #trigger>
-      <tiny-button type="primary" size="medium">上传</tiny-button>
+      <tiny-button type="primary">点击上传</tiny-button>
     </template>
   </tiny-file-upload>
 </template>
@@ -13,11 +13,6 @@ export default {
   components: {
     TinyFileUpload: FileUpload,
     TinyButton: Button
-  },
-  data() {
-    return {
-      action: 'http://localhost:3000/api/upload'
-    }
   }
 }
 </script>
