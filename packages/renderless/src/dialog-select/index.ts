@@ -300,7 +300,7 @@ const getTreeRadio = (vm) => {
   const currentRadio = vm.$refs.multiTree.state.currentRadio
   const plainNode = find(plainNodes, (plainNode) => plainNode.node.id === currentRadio.value)
 
-  return [plainNode.node.data]
+  return plainNode?.node ? [plainNode.node.data] : []
 }
 
 export const multiTreeCheck =
