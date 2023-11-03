@@ -200,7 +200,7 @@ export default {
         'zh-CN': '<p>通过添加`max-height`属性可设置下拉最大高度<p>',
         'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['/max-height.vue']
+      codeFiles: ['max-height.vue']
     }
   ],
   apis: []

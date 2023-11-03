@@ -4,10 +4,9 @@ import VueI18n from 'vue-i18n'
 import { initI18n } from '@opentiny/vue-locale'
 import { Loading } from '@opentiny/vue'
 import App from '@/App.vue'
-import { $local } from '@/uses'
 
 Vue.config.productionTip = false
-const mode = $local.mode || 'pc'
+const mode = location.pathname.split('/')[1] || 'pc'
 
 Vue.prototype.tiny_mode = { value: mode }
 Vue.prototype.isPcMode = mode === 'pc'

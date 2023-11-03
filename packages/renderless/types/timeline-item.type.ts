@@ -32,6 +32,8 @@ export type ITimelineItemConstants = typeof $constants
 
 export type ITimelineItemRenderlessParamUtils = ISharedRenderlessParamUtils<ITimelineItemConstants>
 
+export type TimelineItemType = 'primary' | 'success' | 'warning' | 'error' | 'info'
+
 export interface ITimelineItemState {
   nodesLength: number
   current: number
@@ -68,6 +70,7 @@ export interface ITimelineItem {
   time: string
   error: boolean
   disabled: boolean
+  type: TimelineItemType
 }
 
 export interface ITimelineInject {
