@@ -16,7 +16,7 @@ export const api = [
 ]
 
 export const renderless = (props, context, { emit }) => {
-  const { modelValue, visible } = context.toRefs(props)
+  const { modelValue, visible, predefine, size, history } = context.toRefs(props)
   const hex = context.ref(modelValue.value ?? 'transparent')
   const res = context.ref(modelValue.value ?? 'transparent')
   const triggerBg = context.ref(modelValue.value ?? 'transparent')
@@ -25,6 +25,12 @@ export const renderless = (props, context, { emit }) => {
   const changeVisible = (state: boolean) => {
     isShow.value = state
   }
+  const stack: Ref<string[]> = context.ref(
+    [...(history?.value ?? [])]
+  )
+  const predefineStack: Ref<string[]> = context.ref(
+    [...(predefine?.value ?? [])]
+  )
   const color = new Color(hex.value, props.alpha)
   const state = context.reactive({
     isShow,
@@ -32,8 +38,17 @@ export const renderless = (props, context, { emit }) => {
     color,
     triggerBg,
     defaultValue: modelValue,
-    res
+    res,
+    predefineStack,
+    size: size ?? '',
+    stack
   })
+  context.watch(predefine, (newPredefine: string[]) => {
+    predefineStack.value = [...newPredefine];
+  }, { deep: true })
+  context.watch(history, (newHistory: string[]) => {
+    stack.value = [...newHistory]
+  }, { deep: true })
   context.watch(modelValue, (newValue) => {
     hex.value = newValue
     res.value = newValue

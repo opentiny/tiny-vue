@@ -13,7 +13,16 @@ export default defineComponent({
     },
     modelValue: String,
     visible: Boolean,
-    alpha: Boolean
+    alpha: Boolean,
+    predefine: Array,
+    history: Array,
+    size: {
+      type: String,
+      default: '',
+      validator(val: string) {
+        return ['large', 'medium', 'small', 'mini', ''].includes(val)
+      }
+    },
   },
   setup(props, context) {
     return $setup({ props, context, template })

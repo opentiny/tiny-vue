@@ -27,7 +27,7 @@ function beforeUpload(file) {
 
   fileReader.readAsDataURL(file) // 根据图片路径读取图片
   fileReader.onload = function () {
-    let base64 = result
+    let base64 = this.result
     let img = document.createElement('img')
 
     img.src = base64

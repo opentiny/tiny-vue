@@ -283,7 +283,9 @@ export const fileUploadProps = {
   pasteUpload: {
     type: Boolean,
     default: false
-  }
+  },
+  reUploadable: Boolean,
+  reUploadTip: Function
 }
 
 export default defineComponent({
