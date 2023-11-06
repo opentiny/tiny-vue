@@ -23,6 +23,7 @@ jobs:
         id: parseTitle
         uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.E2E_TEST_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
             const prTitle = context.payload.pull_request.title
             const regex = /\[(.*?)\]/
