@@ -14,12 +14,11 @@
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/toast/vue'
 import '@opentiny/vue-theme-mobile/toast/index.less'
-import { IconMobileErrorWhite, IconMobileSuccessWhite, IconLoading } from '@opentiny/vue-icon'
+import { IconMobileErrorWhite, IconMobileSuccessWhite } from '@opentiny/vue-icon'
 import type { IToastApi } from '@opentiny/vue-renderless/types/toast.type'
 
 export default defineComponent({
   components: {
-    iconLoading: IconLoading(),
     IconMobileErrorWhite: IconMobileErrorWhite(),
     IconMobileSuccessWhite: IconMobileSuccessWhite()
   },

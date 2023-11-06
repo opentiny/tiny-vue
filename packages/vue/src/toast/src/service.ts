@@ -35,7 +35,6 @@ export default (configs = {}) => {
   parent.appendChild(instance.$el)
 
   setTimeout(() => {
-    console.log(instance)
     instance.state.timeout()
     parent.removeChild(instance.$el)
   }, instance.state.time)
