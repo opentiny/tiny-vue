@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
+      issues: write
     outputs:
       testComponents: ${{ steps.parseTitle.outputs.testComponents }}
     steps:
