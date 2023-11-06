@@ -1,6 +1,6 @@
 <template>
-  <div style="margin-top: 20px">
-    <tiny-checkbox-group v-model="checkboxGroup" size="small">
+  <div>
+    <tiny-checkbox-group v-for="(size, index) in sizeList" :key="index" v-model="checkboxGroup" :size="size">
       <tiny-checkbox-button v-for="city in cities" :label="city" :key="city">{{ city }}</tiny-checkbox-button>
     </tiny-checkbox-group>
   </div>
@@ -9,7 +9,9 @@
 <script setup>
 import { ref } from 'vue'
 import { CheckboxButton as TinyCheckboxButton, CheckboxGroup as TinyCheckboxGroup } from '@opentiny/vue'
+import { number } from 'echarts'
 
-const cities = ref(['上海', '北京', '广州', '深圳', '西安', '南京', '天津', '四川', '河北', '云南', '海南', '厦门'])
+const cities = ref(['上海', '北京', '广州', '深圳'])
+const sizeList = ref(['', 'medium', 'small', 'mini'])
 const checkboxGroup = ref(['上海'])
 </script>
