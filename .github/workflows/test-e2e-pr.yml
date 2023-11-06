@@ -24,16 +24,16 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const prTitle = '${{ github.event.pull_request.title }}'
+            const prTitle = context.payload.pull_request.title
             const regex = /\[(.*?)\]/
             const matches = prTitle.match(regex)
             if (matches && matches.length > 1 && matches[1]) {
-              let components = matches[1].split(',').map(c => `${c.trim()}/`).filter(c => c)
+              let components = matches[1].split(',').map(c => c.trim()).filter(c => /^[a-z\-]+$/.test(c)).map(c => `${c}/`)
               components = [...new Set(components)].slice(0, 3).join(' ')
-              core.exportVariable('testComponents', components)
+              core.setOutput('testComponents', components)
             } else {
               const warningString =`
-              **[warning]** The component to be tested is missing. (This warning is from ${{ github.workflow }})
+              **[warning]** The component to be tested is missing. (This warning is from ${ context.workflow })
 
               The title of the Pull request should look like "fix(vue-renderless): [action-menu, alert] fix xxx bug".
               
