@@ -40,7 +40,11 @@ jobs:
               Please make sure you've read our [contributing guide](https://github.com/opentiny/tiny-vue/blob/dev/CONTRIBUTING.md)
               `
               core.warning(warningString)
-              github.rest.issues.createComment({ issue_number: context.issue.number, owner: context.repo.owner, repo: context.repo.repo, body: warningString })
+              try {
+                github.rest.issues.createComment({ issue_number: context.issue.number, owner: context.repo.owner, repo: context.repo.repo, body: warningString })
+              } catch(err) {
+                core.error(err)
+              }
             }
   pr-test:
     if: ${{ needs.parse-components.outputs.testComponents }}
