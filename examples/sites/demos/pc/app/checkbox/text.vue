@@ -1,6 +1,6 @@
 <template>
-  <div class="chek-box-text-demo">
-    <tiny-checkbox v-model="checked" text="复选框" true-label="真文本" false-label="假文本"></tiny-checkbox>
+  <div class="checkbox-demo">
+    <tiny-checkbox v-model="checked" text="复选框1" true-label="真文本" false-label="假文本"></tiny-checkbox>
     <tiny-button @click="getValue">获取文本</tiny-button>
   </div>
 </template>
@@ -15,14 +15,14 @@ export default {
   },
   data() {
     return {
-      checked: ''
+      checked: '假文本'
     }
   },
   methods: {
     getValue() {
       Modal.message({
-        message: 'change 事件，当前选中的值为:' + this.checked,
-        status: 'info'
+        message: '当前状态对应的值为:' + this.checked,
+        top: 200
       })
     }
   }
@@ -30,7 +30,8 @@ export default {
 </script>
 
 <style scoped>
-.chek-box-text-demo> * {
-  margin: 4px;
+.checkbox-demo {
+  display: flex;
+  gap: 10px;
 }
 </style>

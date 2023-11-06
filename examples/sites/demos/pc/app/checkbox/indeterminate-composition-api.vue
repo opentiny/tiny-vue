@@ -11,7 +11,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref, computed } from 'vue'
 import { Checkbox as TinyCheckbox, CheckboxGroup as TinyCheckboxGroup, Switch as TinySwitch } from '@opentiny/vue'
 
