@@ -29,6 +29,10 @@ export const toastProps = {
   time: {
     type: [String, Number],
     default: 2000
+  },
+  timeout: {
+    type: Function,
+    default: null
   }
 }
 

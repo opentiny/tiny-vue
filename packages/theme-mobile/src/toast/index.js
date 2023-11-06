@@ -11,14 +11,10 @@
  */
 
 export default {
-  'tiny-mobile-toast-bg-color-primary': 'rgba(0, 0, 0, 0.9)',
-  'tiny-mobile-toast-text-color-primary': '#fff',
-  'tiny-mobile-toast-height-primary': '140px',
-  'tiny-mobile-toast-width-primary': '140px',
-  'tiny-mobile-toast-line-height-primary': '55px',
-  'tiny-mobile-toast-border-radius-primary': '16px',
-  'tiny-mobile-toast-dot-height-primary': '40px',
-  'tiny-mobile-toast-dot-width-primary': '3px',
-  'tiny-mobile-toast-dot-width-simple': '2px',
-  'tiny-mobile-toast-text-color-simple': '#999'
+  '--ti-mobile-toast-bg-color-primary': 'rgb(77 77 77 / 95%)',
+  '--ti-mobile-toast-shadow-color-primary': 'rgb(0 0 0 / 30%)',
+  '--ti-mobile-toast-text-color-primary': '#fff',
+  '--ti-mobile-toast-width-max': '90%',
+  '--ti-mobile-toast-text-font-size': '14px',
+  '--ti-mobile-toast-icon-font-size': '36px'
 }

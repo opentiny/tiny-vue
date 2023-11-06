@@ -13,9 +13,12 @@ export default {
   methods: {
     showTextToast() {
       Toast.service({
-        text: 'loading...',
+        text: 'Toast',
         type: 'text',
-        time: 2000
+        time: 2000,
+        timeout: () => {
+          alert('timeout')
+        }
       })
     },
     showCorrectToast() {
