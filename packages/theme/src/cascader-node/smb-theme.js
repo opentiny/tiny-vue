@@ -9,5 +9,7 @@ export const tinyCascaderNodeSmbTheme = {
   'ti-cascader-node-hover-text-color': '#191919',
   'ti-cascader-node-prefix-display': 'none',
   'ti-cascader-node-icon-color': '#191919',
-  'ti-cascader-node-icon-font-size': '12px'
+  'ti-cascader-node-icon-font-size': '12px',
+  'ti-cascader-node-text-color': '#191919',
+  'ti-cascader-node-active-icon-color': '#191919',
 }

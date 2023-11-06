@@ -2,7 +2,7 @@
   <tiny-cascader placeholder="试试搜索：安装" :options="options" :props="{ multiple: true }" filterable></tiny-cascader>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Cascader as TinyCascader } from '@opentiny/vue'
 

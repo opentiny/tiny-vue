@@ -15,6 +15,7 @@ test('是否正常渲染', async ({ page }) => {
   await expect(icon).toBeVisible()
   await expect(selector).not.toBeVisible()
   await expect(firstPresent).not.toBeVisible()
+  await expect(firstInput).toHaveValue('搜索')
   await firstInput.fill('123')
   await expect(firstInput).toHaveValue('123')
 })

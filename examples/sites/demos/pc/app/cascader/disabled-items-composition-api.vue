@@ -1,8 +1,8 @@
 <template>
-  <tiny-cascader :options="optionsDis" :props="{ label: 'label' }"></tiny-cascader>
+  <tiny-cascader :options="optionsDis"></tiny-cascader>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Cascader as TinyCascader } from '@opentiny/vue'
 

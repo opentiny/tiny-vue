@@ -5,6 +5,7 @@ import DropdownItem from './src/dropdown-item'
 import Form from './src/form'
 import Select from './src/select'
 import TreeNode from './src/tree-node'
+import UploadList from './src/upload-list'
 import { version } from './package.json'
 
 export default {
@@ -17,6 +18,7 @@ export default {
     DropdownItem,
     Form,
     Select,
-    TreeNode
+    TreeNode,
+    UploadList
   }
 }

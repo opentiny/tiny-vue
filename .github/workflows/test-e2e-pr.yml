@@ -10,13 +10,17 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  pr-test:
-    name: PR E2E Test
+  parse-components:
+    name: Parse Affected Components
     runs-on: ubuntu-latest
-    env:
-      TEST_COMPONENTS: ''
+    permissions:
+      pull-requests: write
+      issues: write
+    outputs:
+      testComponents: ${{ steps.parseTitle.outputs.testComponents }}
     steps:
       - name: Parse Title
+        id: parseTitle
         uses: actions/github-script@v6
         with:
           script: |
@@ -26,10 +30,30 @@ jobs:
             if (matches && matches.length > 1 && matches[1]) {
               let components = matches[1].split(',').map(c => `${c.trim()}/`).filter(c => c)
               components = [...new Set(components)].slice(0, 3).join(' ')
-              core.exportVariable('TEST_COMPONENTS', components)
+              core.exportVariable('testComponents', components)
             } else {
-              core.setFailed('Missing components to be tested. Title must be like "fix(components): [input, alert] fix xxx bug", component name comes from "examples/sites/demos/pc/app". Please read our contributing guide')
+              const warningString =`
+              **[warning]** The component to be tested is missing. (This warning is from ${{ github.workflow }})
+
+              The title of the Pull request should look like "fix(vue-renderless): [action-menu, alert] fix xxx bug".
+              
+              Please make sure you've read our [contributing guide](https://github.com/opentiny/tiny-vue/blob/dev/CONTRIBUTING.md)
+              `
+              core.warning(warningString)
+              try {
+                github.rest.issues.createComment({ issue_number: context.issue.number, owner: context.repo.owner, repo: context.repo.repo, body: warningString })
+              } catch(err) {
+                core.error(err)
+              }
             }
+  pr-test:
+    if: ${{ needs.parse-components.outputs.testComponents }}
+    name: PR E2E Test
+    needs: parse-components
+    runs-on: ubuntu-latest
+    env:
+      TEST_COMPONENTS: ${{ needs.parse-components.outputs.testComponents }}
+    steps:
       - uses: actions/checkout@v3
       - name: Setup pnpm
         uses: pnpm/action-setup@v2

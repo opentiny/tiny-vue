@@ -1,7 +1,7 @@
 <template>
   <div>
     <tiny-search v-model="value" placeholder="请输入关键词"></tiny-search>
-    {{ value }}
+    <div class="mt10">当前搜索值为：{{ value }}</div>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
   },
   data() {
     return {
-      value: ''
+      value: '默认值'
     }
   }
 }

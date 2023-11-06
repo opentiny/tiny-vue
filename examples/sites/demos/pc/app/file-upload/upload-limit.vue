@@ -1,5 +1,5 @@
 <template>
-  <tiny-file-upload :action="action" :before-upload="beforeAvatarUpload" :limit="limit" is-hidden>
+  <tiny-file-upload :action="action" :before-upload="beforeAvatarUpload">
     <tiny-button type="primary">点击上传</tiny-button>
   </tiny-file-upload>
 </template>
@@ -14,8 +14,7 @@ export default {
   },
   data() {
     return {
-      action: 'http://localhost:3000/api/upload',
-      limit: 1
+      action: 'http://localhost:3000/api/upload'
     }
   },
   methods: {
