@@ -32,7 +32,7 @@
           </div>
         </template>
         <template v-if="currJson.apis?.length > 0">
-          <div id="API" @click="handleApiClick($event)">
+          <div id="API">
             <h2 class="ti-f30 ti-fw-normal ti-mt28">API</h2>
             <!-- apis 是一个数组 {name,type,properties:[原table内容],events:[] ...........} -->
             <div class="mt20" v-for="(oneGroup, idx) in currJson.apis" :key="oneGroup.name">
@@ -308,21 +308,11 @@ export default defineComponent({
         navigator.clipboard.writeText(text)
       },
       jumpToDemo: (demoId) => {
+        state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)
         if (demoId.startsWith('chart') || demoId.startsWith('grid')) {
           router.push(demoId)
         } else {
           router.push(`#${demoId}`)
-        }
-      },
-      handleApiClick: (ev) => {
-        if (ev.target.tagName === 'A') {
-          ev.preventDefault()
-          const href = ev.target.getAttribute('href')
-          const hash = $split(href, '#', -1)
-          router.push(href)
-          state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
-
-          scrollByHash(hash)
         }
       },
       handleTypeClick: (ev) => {
