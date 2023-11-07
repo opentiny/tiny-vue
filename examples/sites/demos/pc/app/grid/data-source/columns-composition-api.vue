@@ -1,23 +1,13 @@
 <template>
-  <tiny-grid ref="mytableRef" :select-config="selectConfigData" :data="tableData">
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="selection" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="名称"></tiny-grid-column>
-    <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
-    <tiny-grid-column field="address" title="地址"></tiny-grid-column>
-    <tiny-grid-column field="introduction" title="公司简介" show-overflow></tiny-grid-column>
-  </tiny-grid>
+  <div>
+    <tiny-grid :columns="columnsData" :data="tableData" ref="theGridRef"> </tiny-grid>
+  </div>
 </template>
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { Grid as TinyGrid } from '@opentiny/vue'
 
-const selectConfigData = ref({
-  checkMethod({ rowIndex }) {
-    return rowIndex % 2 === 0
-  }
-})
 const tableData = ref([
   {
     id: '1',
@@ -60,6 +50,25 @@ const tableData = ref([
     area: '华北区',
     address: '广州天河区',
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+  }
+])
+const columnsData = ref([
+  { type: 'index', width: 50 },
+  {
+    field: 'name',
+    title: '名称'
+  },
+  {
+    field: 'area',
+    title: '所属区域'
+  },
+  {
+    field: 'address',
+    title: '地址'
+  },
+  {
+    field: 'introduction',
+    title: '公司简介'
   }
 ])
 </script>

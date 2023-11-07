@@ -12,7 +12,7 @@
   </tiny-grid>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn, GridToolbar } from '@opentiny/vue'
 
 export default {
@@ -27,6 +27,22 @@ export default {
         {
           code: 'clearSelection',
           name: '手动取消多选行'
+        },
+        {
+          code: 'setAllSelection',
+          name: '手动选中所有行'
+        },
+        {
+          code: 'setSelection',
+          name: '手动选中指定行'
+        },
+        {
+          code: 'toggleAllSelection',
+          name: '手动切换所有行选中状态'
+        },
+        {
+          code: 'toggleRowSelection',
+          name: '手动切换指定行选中状态'
         }
       ],
       tableData: [
@@ -80,6 +96,22 @@ export default {
       switch (code) {
         case 'clearSelection': {
           $grid.clearSelection()
+          break
+        }
+        case 'setAllSelection': {
+          $grid.setAllSelection(true)
+          break
+        }
+        case 'setSelection': {
+          $grid.setSelection(this.tableData[4], true)
+          break
+        }
+        case 'toggleAllSelection': {
+          $grid.toggleAllSelection()
+          break
+        }
+        case 'toggleRowSelection': {
+          $grid.toggleRowSelection(this.tableData[1])
           break
         }
       }

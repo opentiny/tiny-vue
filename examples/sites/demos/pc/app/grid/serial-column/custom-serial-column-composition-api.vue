@@ -1,7 +1,7 @@
 <template>
-  <tiny-grid ref="mytableRef" :radio-config="radioConfigData" :data="tableData">
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="radio" width="60"></tiny-grid-column>
+  <tiny-grid :data="tableData">
+    <tiny-grid-column type="index" :index-method="indexMethod" width="60"></tiny-grid-column>
+    <tiny-grid-column type="selection" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="名称"></tiny-grid-column>
     <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
     <tiny-grid-column field="address" title="地址"></tiny-grid-column>
@@ -13,11 +13,6 @@
 import { ref } from 'vue'
 import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
 
-const radioConfigData = ref({
-  checkMethod({ rowIndex }) {
-    return rowIndex % 2 === 0
-  }
-})
 const tableData = ref([
   {
     id: '1',
@@ -62,4 +57,8 @@ const tableData = ref([
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
   }
 ])
+
+function indexMethod({ rowIndex }) {
+  return rowIndex * 2 + 1
+}
 </script>

@@ -12,7 +12,7 @@
   </tiny-grid>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn, GridToolbar } from '@opentiny/vue'
 
 export default {
@@ -27,6 +27,10 @@ export default {
         {
           code: 'clearRadioRowData',
           name: '手动取消单选行'
+        },
+        {
+          code: 'setRadioRow',
+          name: '手动选中某一行'
         }
       ],
       tableData: [
@@ -80,6 +84,10 @@ export default {
       switch (code) {
         case 'clearRadioRowData': {
           this.$refs.grid.clearRadioRow()
+          break
+        }
+        case 'setRadioRow': {
+          this.$refs.grid.setRadioRow(this.tableData[4])
           break
         }
       }

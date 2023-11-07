@@ -1,9 +1,9 @@
 <template>
   <div>
-    <tiny-button @click="click">toggleRowSelection</tiny-button>
     <tiny-grid
       :data="tableData"
       ref="grid"
+      :select-config="selectConfig"
       highlight-current-row
       border
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
@@ -69,7 +69,7 @@ export default {
         city: '龙岩',
         employees: 360,
         createdDate: '2013-01-13 13:13:13',
-        boole: true
+        boole: false
       },
       {
         id: '5',
@@ -77,7 +77,7 @@ export default {
         city: '韶关',
         employees: 810,
         createdDate: '2012-12-12 12:12:12',
-        boole: true
+        boole: false
       },
       {
         id: '6',
@@ -105,13 +105,16 @@ export default {
       }
     ]
     return {
-      tableData
+      tableData,
+      selectConfig: {
+        checkField: 'boole',
+        checkMethod({ rowIndex }) {
+          return rowIndex % 2 === 0
+        }
+      }
     }
   },
   methods: {
-    click() {
-      this.$refs.grid.toggleRowSelection(this.tableData[1])
-    },
     checkboxEdit(h, { row, column }) {
       return (
         <input

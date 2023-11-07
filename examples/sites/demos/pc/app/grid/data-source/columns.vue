@@ -1,29 +1,18 @@
 <template>
-  <tiny-grid ref="mytable" :radio-config="radioConfigData" :data="tableData">
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="radio" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="名称"></tiny-grid-column>
-    <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
-    <tiny-grid-column field="address" title="地址"></tiny-grid-column>
-    <tiny-grid-column field="introduction" title="公司简介" show-overflow></tiny-grid-column>
-  </tiny-grid>
+  <div>
+    <tiny-grid :columns="columnsData" :data="tableData" ref="theGrid"> </tiny-grid>
+  </div>
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn } from '@opentiny/vue'
+import { Grid } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGrid: Grid
   },
   data() {
     return {
-      radioConfigData: {
-        checkMethod({ rowIndex }) {
-          return rowIndex % 2 === 0
-        }
-      },
       tableData: [
         {
           id: '1',
@@ -66,6 +55,25 @@ export default {
           area: '华北区',
           address: '广州天河区',
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+        }
+      ],
+      columnsData: [
+        { type: 'index', width: 50 },
+        {
+          field: 'name',
+          title: '名称'
+        },
+        {
+          field: 'area',
+          title: '所属区域'
+        },
+        {
+          field: 'address',
+          title: '地址'
+        },
+        {
+          field: 'introduction',
+          title: '公司简介'
         }
       ]
     }

@@ -12,7 +12,7 @@
   </tiny-grid>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Grid as TinyGrid, GridColumn as TinyGridColumn, GridToolbar as TinyGridToolbar } from '@opentiny/vue'
 
@@ -72,6 +72,10 @@ function toolbarButtonClickEvent({ code }) {
   switch (code) {
     case 'clearRadioRowData': {
       gridRef.value.clearRadioRow()
+      break
+    }
+    case 'setRadioRow': {
+      gridRef.value.setRadioRow(tableData.value[4])
       break
     }
   }

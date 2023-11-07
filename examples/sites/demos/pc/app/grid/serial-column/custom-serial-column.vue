@@ -1,6 +1,6 @@
 <template>
-  <tiny-grid ref="mytable" :select-config="selectConfigData" :data="tableData">
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
+  <tiny-grid :data="tableData">
+    <tiny-grid-column type="index" :index-method="indexMethod" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="名称"></tiny-grid-column>
     <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
@@ -19,11 +19,6 @@ export default {
   },
   data() {
     return {
-      selectConfigData: {
-        checkMethod({ rowIndex }) {
-          return rowIndex % 2 === 0
-        }
-      },
       tableData: [
         {
           id: '1',
@@ -68,6 +63,11 @@ export default {
           introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
         }
       ]
+    }
+  },
+  methods: {
+    indexMethod({ rowIndex }) {
+      return rowIndex * 2 + 1
     }
   }
 }

@@ -1,10 +1,9 @@
 <template>
   <div>
-    <tiny-button @click="click"> setSelection </tiny-button>
     <tiny-grid
       :data="tableData"
       ref="gridRef"
-      :select-config="{ checkField: 'boole' }"
+      :select-config="selectConfig"
       highlight-current-row
       border
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
@@ -99,13 +98,16 @@ const tableData = ref([
     employees: 540
   }
 ])
+
+const selectConfig = {
+  checkField: 'boole',
+  checkMethod({ rowIndex }) {
+    return rowIndex % 2 === 0
+  }
+}
 const gridRef = ref()
 
-function click() {
-  gridRef.value.setSelection(tableData.value[4], true)
-}
-
-function checkboxEdit(h, { row, column }) {
+const checkboxEdit = (h, { row, column }) => {
   return (
     <input
       type="checkbox"
