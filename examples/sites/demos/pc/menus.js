@@ -154,7 +154,7 @@ export const cmpMenus = [
       { 'nameCn': '树表', 'name': '', 'key': 'grid-tree-grid' },
       { 'nameCn': '嵌套表格', 'name': '', 'key': 'grid-nested-grid' },
       { 'nameCn': '导入导出', 'name': '', 'key': 'grid-import-export' },
-      { 'nameCn': '鼠标和键盘配置', 'name': '', 'key': 'grid-keyboard' },
+      { 'nameCn': '鼠标和键盘配置', 'name': '', 'key': 'grid-mouse-keyboard' },
       { 'nameCn': '表格行列反转', 'name': '', 'key': 'grid-reverse-column-row' },
       { 'nameCn': '动态生成列', 'name': '', 'key': 'grid-dynamically-columns' },
       { 'nameCn': '常见问题', 'name': '', 'key': 'grid-faq' }

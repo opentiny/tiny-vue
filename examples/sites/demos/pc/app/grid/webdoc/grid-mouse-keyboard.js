@@ -3,7 +3,7 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'keyboard-navigation',
+      'demoId': 'mouse-keyboard-keyboard-navigation',
       'name': { 'zh-CN': '键盘导航', 'en-US': 'Keyboard Navigation' },
       'desc': {
         'zh-CN':
@@ -11,26 +11,26 @@ export default {
         'en-US':
           '<div class="tip custom-block"><p class="custom-block-title"> Key Description </p>\n<p>| Arrow Up ↑ | Moves to the cell above the current active cell |\n| Arrow Down ← | Moves to the cell below the current active cell |\n| Arrow Left ← | Moves to the cell on the left of the current active cell |\n| Arrow Right → | Moves to the right of the current active cell |\n| Tab | Moves to the cell on the right of the selected or active cell. If the last column is displayed and the next row exists, move from the next row. |\n| Tab + Shift | Moves to the cell on the left of the selected or active cell. If the first column is displayed and there is a previous row, move the cell from the previous row. |\n| Spacebar | If the cell is a check box or option button, switch the selected status. |\n| Enter | Cancel the editing and move the cell to the cell under the current active cell. |\n| Delete | Clear the content. | \n| Backspace | Clear the contents and activate the selected cell to the editing state. |\n| F2 | Activate cell editing. |\n| Esc | Cancel cell editing. |\n| Page Up | Page Up | Page Down | Page Down | Page Down | Page Down | \n| Home | Scroll to the top |\n| End | Scroll to the bottom |</p>\n</div>\n'
       },
-      'codeFiles': ['keyboard-navigation.vue']
+      'codeFiles': ['mouse-keyboard/keyboard-navigation.vue']
     },
     {
-      'demoId': 'keyboard-config',
+      'demoId': 'mouse-keyboard-keyboard-config',
       'name': { 'zh-CN': '设置按键配置项', 'en-US': 'Set key configuration items' },
       'desc': {
         'zh-CN': '<p>表格属性 <code>keyboard-config</code> 设置按键配置项。\n</p>\n',
         'en-US': '<p>Table property<code>keyboard-config</code>Set key configuration items. \n</p>\n'
       },
-      'codeFiles': ['keyboard-config.vue']
+      'codeFiles': ['mouse-keyboard/keyboard-config.vue']
     },
     {
-      'demoId': 'mouse-config',
+      'demoId': 'mouse-keyboard-mouse-config',
       'name': { 'zh-CN': '设置鼠标配置项', 'en-US': 'Setting Mouse Configuration Items' },
       'desc': {
         'zh-CN': '<p>表格属性 <code>mouse-config</code> 设置鼠标配置项。\n</p>\n',
         'en-US': '<p>Table property<code>mouse-config</code>Set the mouse configuration item. \n</p>\n'
       },
-      'codeFiles': ['mouse-config.vue']
+      'codeFiles': ['mouse-keyboard/mouse-config.vue']
     }
   ],
-  apis: [{ 'name': 'grid-keyboard', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-mouse-keyboard', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
 }
