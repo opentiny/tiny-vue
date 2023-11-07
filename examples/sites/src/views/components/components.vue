@@ -308,11 +308,13 @@ export default defineComponent({
         navigator.clipboard.writeText(text)
       },
       jumpToDemo: (demoId) => {
-        state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)
         if (demoId.startsWith('chart') || demoId.startsWith('grid')) {
           router.push(demoId)
         } else {
           router.push(`#${demoId}`)
+        }
+        if (apiModeState.demoMode) {
+          state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)
         }
       },
       handleTypeClick: (ev) => {
