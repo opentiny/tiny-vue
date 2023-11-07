@@ -267,7 +267,7 @@ export default {
       'codeFiles': ['event/valid-error-event.vue']
     },
     {
-      'demoId': 'tiny-first-menu-get-row-method',
+      'demoId': 'event-get-row-method',
       'name': { 'zh-CN': '获取表格行方法', 'en-US': 'Obtain table row method' },
       'desc': {
         'zh-CN':
@@ -275,7 +275,7 @@ export default {
         'en-US':
           '<div class="tip custom-block"><p class="custom-block-title"> Method for obtaining a row: </p>\n<p><code>getCurrentRow</code> Obtain the current row \n<code>getRowIndex</code> Obtain the current row number \n<code>getRadioRow</code> Radio Select a single row \n<code>getRowById</code> Obtain the current row based on the row ID \n<code>getRowNode</code> Obtain the row information based on the tr element </p>\n</div>\n'
       },
-      'codeFiles': ['tiny-first-menu/get-row-method.vue']
+      'codeFiles': ['event/get-row-method.vue']
     }
   ],
   apis: [{ 'name': 'grid-event', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]

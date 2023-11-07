@@ -150,7 +150,7 @@ export const cmpMenus = [
       { 'nameCn': '表格校验', 'name': '', 'key': 'grid-validation' },
       { 'nameCn': '事件', 'name': '', 'key': 'grid-event' },
       { 'nameCn': '插槽', 'name': '', 'key': 'grid-slot' },
-      { 'nameCn': '个性化', 'name': '', 'key': 'grid-customized' },
+      { 'nameCn': '个性化', 'name': '', 'key': 'grid-custom' },
       { 'nameCn': '树表', 'name': '', 'key': 'grid-tree-grid' },
       { 'nameCn': '嵌套表格', 'name': '', 'key': 'grid-nested-grid' },
       { 'nameCn': '导入导出', 'name': '', 'key': 'grid-import-export' },

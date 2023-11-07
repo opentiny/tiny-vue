@@ -181,5 +181,5 @@ export default {
       'codeFiles': ['custom/reset-method.vue']
     }
   ],
-  apis: [{ 'name': 'grid-customized', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-custom', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
 }
