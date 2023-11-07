@@ -40,8 +40,6 @@ export const handleHeaderClick =
 
     dispatch(componentName, eventName, parent)
 
-    console.log('handleHeaderClick')
-
     state.focusing = false
     state.isClick = true
   }

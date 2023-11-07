@@ -21,7 +21,11 @@ import { setActiveNames, handleItemClick } from './index'
 
 export const api = ['state']
 
-export const renderless = (props: ICollapseProps, { reactive, watch }: ISharedRenderlessParamHooks, { parent, emit, constants }: ICollapseRenderlessParamUtils) => {
+export const renderless = (
+  props: ICollapseProps,
+  { reactive, watch }: ISharedRenderlessParamHooks,
+  { parent, emit, constants }: ICollapseRenderlessParamUtils
+) => {
   const eventName = constants.EVENT_NAME.CollapseItemClick
 
   const state: ICollapseState = reactive({
@@ -40,9 +44,9 @@ export const renderless = (props: ICollapseProps, { reactive, watch }: ISharedRe
     (value) => {
       state.activeNames = value || value === 0 ? [].concat(value) : []
     },
-    { immediate: true, deep: true  }
+    { immediate: true, deep: true }
   )
-
+  console.log('parent---', parent)
   parent.$on(eventName, api.handleItemClick)
 
   return api
