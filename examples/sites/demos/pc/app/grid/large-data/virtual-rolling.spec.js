@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('虚拟滚动', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('grid-large-data#tiny-first-menu-virtual-rolling')
+  await page.goto('grid-large-data#large-data-virtual-rolling')
   await page.locator('.tiny-grid__body').hover()
   // 先滚动1000px
   await page.mouse.wheel(0, 1000)

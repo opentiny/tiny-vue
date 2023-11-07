@@ -2,7 +2,7 @@
   <tiny-cascader v-model="value" :options="options" :show-all-levels="false"></tiny-cascader>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { Cascader as TinyCascader } from '@opentiny/vue'
 import { reactive } from 'vue'
 

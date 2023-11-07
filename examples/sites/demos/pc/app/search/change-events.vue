@@ -1,5 +1,5 @@
 <template>
-  <tiny-search @change="change"></tiny-search>
+  <tiny-search @change="change" @input="input"></tiny-search>
 </template>
 
 <script lang="jsx">
@@ -11,7 +11,10 @@ export default {
   },
   methods: {
     change(key, value) {
-      Modal.message(`${value}`)
+      Modal.message(`change: ${value}`)
+    },
+    input(key, value) {
+      Modal.message(`input: ${key}, ${JSON.stringify(value)}`)
     }
   }
 }

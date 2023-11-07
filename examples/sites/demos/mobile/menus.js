@@ -43,6 +43,7 @@ export const cmpMenus = [
     children: [
       { name: 'Navbar', nameCn: '导航栏', key: 'navbar' },
       { name: 'Tabbar', nameCn: '标签栏', key: 'tabbar' },
+      { name: 'DropdownMenu ', nameCn: '下拉菜单', key: 'dropdownmenu' },
       { name: 'Tabs', nameCn: '选项卡', key: 'tabs' },
       { name: 'TimeLine ', nameCn: '时间轴', key: 'timeline' },
       { name: 'IndexBar ', nameCn: '索引条', key: 'index-bar' }
@@ -58,23 +59,23 @@ export const cmpMenus = [
     label: '数据组件',
     labelEn: 'Data',
     key: 'cmp_data',
-    children: [{ name: 'Progress', nameCn: '进度条', key: 'progress' }]
+    children: [
+      { name: 'Table', nameCn: '表格', key: 'table' },
+      { name: 'List', nameCn: '列表', key: 'list' },
+      { name: 'Progress', nameCn: '进度条', key: 'progress' }
+    ]
   },
   {
     label: '表单组件',
     labelEn: 'Form',
     key: 'cmp_form',
     children: [
-      { name: 'Table', nameCn: '表格', key: 'table' },
       { name: 'Button', nameCn: '按钮', key: 'button' },
       { name: 'Form', nameCn: '表单', key: 'form' },
       { name: 'Checkbox', nameCn: '复选框', key: 'checkbox' },
       { name: 'Slider', nameCn: '滑块', key: 'slider' },
       { name: 'CheckboxGroup', nameCn: '复选框组', key: 'checkboxgroup' },
-      { name: 'DropdownMenu ', nameCn: '筛选排序', key: 'dropdownmenu' },
-      { name: 'ImageViewer', nameCn: '图片预览', key: 'imageviewer' },
       { name: 'Input', nameCn: '输入框', key: 'input' },
-      { name: 'List', nameCn: '列表', key: 'list' },
       { name: 'Radio', nameCn: '单选', key: 'radio' },
       { name: 'Search', nameCn: '搜索框', key: 'search' },
       { name: 'Switch', nameCn: '开关', key: 'switch' },
@@ -103,6 +104,7 @@ export const cmpMenus = [
     children: [
       { name: 'Exception', nameCn: '缺省页', key: 'exception' },
       { name: 'Avatar', nameCn: '头像', key: 'avatar' },
+      { name: 'ImageViewer', nameCn: '图片预览', key: 'imageviewer' },
       { name: 'Icon', nameCn: '图标', key: 'icon' },
       { name: 'ActionSheet', nameCn: '上滑列表组件', key: 'actionsheet' },
       { name: 'MiniPicker', nameCn: 'mini选择器', key: 'minipicker' },
