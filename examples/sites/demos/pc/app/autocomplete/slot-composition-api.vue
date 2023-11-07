@@ -1,6 +1,10 @@
 <template>
   <div class="demo-autocomplete">
-    <tiny-autocomplete v-model="value" placeholder="请输入内容" :fetch-suggestions="querySearch">
+    <tiny-autocomplete class="pend-slot" v-model="value" placeholder="请输入内容" :fetch-suggestions="querySearch">
+      <template #prepend>前置内容</template>
+      <template #append>后置内容</template>
+    </tiny-autocomplete>
+    <tiny-autocomplete class="fix-slot" v-model="value" placeholder="请输入内容" :fetch-suggestions="querySearch">
       <template #prefix>
         <tiny-icon-edit />
       </template>
@@ -8,17 +12,22 @@
         <tiny-icon-association />
       </template>
     </tiny-autocomplete>
+    <tiny-autocomplete class="default-slot" v-model="value" :fetch-suggestions="querySearch">
+      <template #default="{ slotScope }">
+        <div>{{ slotScope.value }}</div>
+        <span class="default-slot-buttom">{{ slotScope.address }}</span>
+      </template>
+    </tiny-autocomplete>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref, onMounted } from 'vue'
 import { Autocomplete as TinyAutocomplete } from '@opentiny/vue'
 import { iconEdit, iconAssociation } from '@opentiny/vue-icon'
 
 const restaurants = ref([])
 const value = ref('')
-
 const TinyIconEdit = iconEdit()
 const TinyIconAssociation = iconAssociation()
 
@@ -70,5 +79,13 @@ function loadAll() {
 <style scoped>
 .demo-autocomplete .tiny-autocomplete {
   width: 270px;
+}
+.pend-slot, .fix-slot {
+  margin-right: 12px;
+}
+
+.default-slot-buttom {
+  font-size: 12px;
+  color: #a29b91
 }
 </style>
