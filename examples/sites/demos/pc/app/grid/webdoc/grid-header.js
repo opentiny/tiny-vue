@@ -41,16 +41,6 @@ export default {
           '<p>Add the class name to the cell of the table header through the column attribute <code>header-class-name</code>, or the function Function({$rowIndex, column, columnIndex, $columnIndex}) . \n</p>\n'
       },
       'codeFiles': ['header/slot-header.vue']
-    },
-    {
-      'demoId': 'header-header-class-name',
-      'name': { 'zh-CN': '基本说明', 'en-US': '' },
-      'desc': {
-        'zh-CN':
-          '<p>通过列属性 <code>header-class-name</code> 给表头的单元格附加 className，也可以是函数 Function({$rowIndex, column, columnIndex, $columnIndex})。\n</p>\n',
-        'en-US': ''
-      },
-      'codeFiles': ['header/header-class-name.vue']
     }
   ],
   apis: [{ 'name': 'grid-header', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
