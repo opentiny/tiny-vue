@@ -136,7 +136,7 @@ export default {
     },
     {
       'demoId': 'size-grid-size',
-      'name': { 'zh-CN': 'size', 'en-US': 'size' },
+      'name': { 'zh-CN': '尺寸', 'en-US': 'size' },
       'desc': {
         'zh-CN': '<p>表格设置 <code>size</code> 属性调整表格尺寸大小。</p>\n',
         'en-US': '<p>Table settings<code>size</code> property adjusts the table size. </p>\n'
