@@ -313,7 +313,7 @@ export default defineComponent({
         } else {
           router.push(`#${demoId}`)
         }
-        if (apiModeState.demoMode) {
+        if (apiModeState.demoMode === 'single') {
           state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)
         }
       },
