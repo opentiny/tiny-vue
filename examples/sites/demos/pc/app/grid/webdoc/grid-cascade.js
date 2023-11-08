@@ -3,7 +3,7 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'grid_Example-dataCascading-cascade',
+      'demoId': 'cascade-cascade',
       'name': { 'zh-CN': 'Grid-数据级联-正常列级联', 'en-US': 'Grid-data concatenation-normal column concatenation' },
       'desc': {
         'zh-CN':
@@ -11,10 +11,10 @@ export default {
         'en-US':
           '<p>You need to configure the <code>edit-config</code> object on the <code>grid</code> tag, and <code>activeMethod</code> before editing the event processing edit item data set. \nThe <code>editor</code> object is configured in the <code>grid-column</code> column. <code>component</code> is used to render the editing component. \n<code>attrs</code>Configure cascading data. \n<code>events</code> to set events. \nFor details, see the following example. </p>\n'
       },
-      'codeFiles': ['grid_Example/dataCascading/cascade.vue']
+      'codeFiles': ['cascade/cascade.vue']
     },
     {
-      'demoId': 'grid_Example-dataCascading-arbitraryCascade',
+      'demoId': 'cascade-arbitrary-cascade',
       'name': { 'zh-CN': 'Grid-数据级联-任意父级联', 'en-US': 'Grid-data concatenation-any parent concatenation' },
       'desc': {
         'zh-CN':
@@ -22,7 +22,7 @@ export default {
         'en-US':
           '<p>You need to configure the <code>edit-config</code> object on the <code>grid</code> tag, and <code>activeMethod</code> before editing the event processing edit item data set. \nThe <code>editor</code> object is configured in the <code>grid-column</code> column. <code>component</code> is used to render the editing component. \n<code>attrs</code>Configure cascading data. \n<code>events</code> to set events. \nFor details, see the following example. </p>\n'
       },
-      'codeFiles': ['grid_Example/dataCascading/arbitraryCascade.vue']
+      'codeFiles': ['cascade/arbitrary-cascade.vue']
     }
   ],
   apis: [{ 'name': 'grid-cascade', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]

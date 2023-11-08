@@ -38,17 +38,17 @@ export default {
       'codeFiles': ['tree-table/tree-grid-operation-column.vue']
     },
     {
-      'demoId': 'methods-set-all-tree-expansion',
+      'demoId': 'tree-table-set-all-tree-expansion',
       'name': { 'zh-CN': '手动展开所有树节点', 'en-US': 'Manually expand all tree nodes' },
       'desc': {
         'zh-CN': '<p><code>setAllTreeExpansion(checked)</code> 可设置所有树节点的展开与否。</p>\n',
         'en-US':
           '<p><code>setAllTreeExpansion(checked)</code> can be used to set whether all tree nodes are expanded or not. </p>\n'
       },
-      'codeFiles': ['methods/set-all-tree-expansion.vue']
+      'codeFiles': ['tree-table/set-all-tree-expansion.vue']
     },
     {
-      'demoId': 'methods-set-tree-expansion',
+      'demoId': 'tree-table-set-tree-expansion',
       'name': { 'zh-CN': '手动展开指定树节点', 'en-US': 'Manually expand a specified tree node' },
       'desc': {
         'zh-CN':
@@ -56,16 +56,16 @@ export default {
         'en-US':
           'You can set <p><code>setTreeExpansion(rows, checked)</code> to expand the specified tree node. The second parameter specifies whether to expand the row. </p>\n'
       },
-      'codeFiles': ['methods/set-tree-expansion.vue']
+      'codeFiles': ['tree-table/set-tree-expansion.vue']
     },
     {
-      'demoId': 'methods-toggle-tree-expansion',
+      'demoId': 'tree-table-toggle-tree-expansion',
       'name': { 'zh-CN': '手动切换展开树形节点', 'en-US': 'Manually switch and expand tree nodes' },
       'desc': {
         'zh-CN': '<p><code>toggleTreeExpansion(row)</code> 可设置切换展开树形节点。</p>\n',
         'en-US': 'The <p><code>toggleTreeExpansion(row)</code> can be set to switch to expand the tree node. </p>\n'
       },
-      'codeFiles': ['methods/toggle-tree-expansion.vue']
+      'codeFiles': ['tree-table/toggle-tree-expansion.vue']
     },
     {
       'demoId': 'tree-table-tree-grid-fixed-column',

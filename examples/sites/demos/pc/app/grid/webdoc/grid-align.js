@@ -3,7 +3,7 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'align-header-align-left-header-align',
+      'demoId': 'align-header-align',
       'name': { 'zh-CN': '表头对齐', 'en-US': 'aligned table header' },
       'desc': {
         'zh-CN':
@@ -11,10 +11,10 @@ export default {
         'en-US':
           '<p><code>header-align</code> Sets the table header alignment mode. The value can be <code>left</code> <code>center</code> <code>right</code>. The default value is <code>left</code>. <code>header-align</code> configured in the </p>\n<div class="tip custom-block"><p class="custom-block-title">TIP</p>\n<p> table will be overwritten by <code>header-align</code> configured in the column </p>\n</div>\n'
       },
-      'codeFiles': ['align/header-align/header-align.vue']
+      'codeFiles': ['align/header-align.vue']
     },
     {
-      'demoId': 'align-footer-align-left-footer-align',
+      'demoId': 'align-footer-align',
       'name': { 'zh-CN': '表尾对齐', 'en-US': 'Left-aligned table tail' },
       'desc': {
         'zh-CN':
@@ -22,10 +22,10 @@ export default {
         'en-US':
           'The value of <p><code>footer-align</code> is <code>left</code> <code>center</code> <code>right</code>. The default value is <code>left</code>. <code>footer-align</code> configured in the </p>\n<div class="tip custom-block"><p class="custom-block-title">TIP</p>\n<p> table will be replaced by <code>footer-align</code> configured in the column </p>\n</div>\n'
       },
-      'codeFiles': ['align/footer-align/footer-align.vue']
+      'codeFiles': ['align/footer-align.vue']
     },
     {
-      'demoId': 'align-grid-align-left-grid-align',
+      'demoId': 'align-grid-align',
       'name': { 'zh-CN': '表格对齐', 'en-US': 'Left-aligned table' },
       'desc': {
         'zh-CN':
@@ -33,7 +33,7 @@ export default {
         'en-US':
           '<p><code>align</code> Sets the alignment mode of all columns. The options are <code>left</code> <code>center</code> <code>right</code>. The default value is <code>left</code>. The alignment mode configured in the </p>\n<div class="tip custom-block"><p class="custom-block-title">TIP</p>\n<p> table has the lowest priority. The alignment mode configured in the </p>\n<div class="tip custom-block"><p class="custom-block-title">TIP</p>\n<p> table will overwrite the </p>\n</div>\n'
       },
-      'codeFiles': ['align/grid-align/grid-align.vue']
+      'codeFiles': ['align/grid-align.vue']
     }
   ],
   apis: [{ 'name': 'grid-align', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]

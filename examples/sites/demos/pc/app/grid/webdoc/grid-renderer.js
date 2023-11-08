@@ -3,7 +3,7 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'grid_Example-gridRenderer-inner-renderer',
+      'demoId': 'renderer-inner-renderer',
       'name': { 'zh-CN': '内置渲染器', 'en-US': 'Built-in Renderer' },
       'desc': {
         'zh-CN':
@@ -11,10 +11,10 @@ export default {
         'en-US':
           '<p>The built-in renderer sets the display obtaining type of the current table column. \n Configure the <code>format-text</code> object in the <code>grid-column</code> column to control the data format. The options of </p>\n<div class="tip custom-block"><p class="custom-block-title">TIP</p>\n<p><code>format-text</code> are as follows: </p>\n<ul>\n<li><code>integer</code>: displayed as an integer. </li>\n<li><code>number</code>: The value is displayed as a decimal. </li>\n<li><code>money</code>: displays the amount of money. </li>\n<li>rate: The data is displayed as a percentage. </li>\n<li>filesize: indicates the file size. </li>\n<li>boole: displays the icon with a pair or cross. </li>\n<li>date: indicates the year, month, and day. </li>\n<li>dateTime: indicates the year, month, day, hour, and minute. </li>\n<li>longDateTime: year, month, day, hour, minute, and second. </li>\n<li>time: time and hour. </li>\n<li>longTime: hour, minute, and second. </li>\n<li>yearMonth: displays the adult month. </li>\n<li>enum: Queries the text to be displayed based on the data value. </li>\n<li>ellipsis: displays the omitted content. When you move the cursor to the cell, the complete content is displayed. The len attribute of format must also be configured. </li>\n</ul>\n</div>\n'
       },
-      'codeFiles': ['grid_Example/gridRenderer/inner-renderer.vue']
+      'codeFiles': ['renderer/inner-renderer.vue']
     },
     {
-      'demoId': 'grid_Example-gridRenderer-custom-renderer',
+      'demoId': 'renderer-custom-renderer',
       'name': { 'zh-CN': '自定义渲染器', 'en-US': 'Custom Renderer' },
       'desc': {
         'zh-CN':
@@ -22,10 +22,10 @@ export default {
         'en-US':
           '<p>The custom renderer can customize the rendering of cells or a <code>vue component</code>. Configure <code>renderer</code> in the <code>grid-column</code> column to support method and object configuration. For details, see the following example. </p>\n'
       },
-      'codeFiles': ['grid_Example/gridRenderer/custom-renderer.vue']
+      'codeFiles': ['renderer/custom-renderer.vue']
     },
     {
-      'demoId': 'news-async-colunm-render',
+      'demoId': 'render-async-colunm-render',
       'name': { 'zh-CN': '列异步数据渲染', 'en-US': 'Column Asynchronous Data Rendering' },
       'desc': {
         'zh-CN':
@@ -33,7 +33,7 @@ export default {
         'en-US':
           '<p>After the <code>async</code> attribute of the <code>format-config</code> column is set to <code>true</code>, the <code>data</code> data can be dynamically modified for automatic rendering. Generally, <code>type</code> is set to <code>enum</code>, and <code>value</code> and <code>label</code> can be used to configure the mapping of rendering cells. </p>\n'
       },
-      'codeFiles': ['news/async-colunm-render.vue']
+      'codeFiles': ['render/async-colunm-render.vue']
     }
   ],
   apis: [{ 'name': 'grid-renderer', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]

@@ -3,7 +3,18 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'tiny-first-menu-row-editing',
+      'demoId': 'edit-cell-editing',
+      'name': { 'zh-CN': '单元格编辑', 'en-US': 'Cell Edit' },
+      'desc': {
+        'zh-CN':
+          "<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>mode: 'cell'</code> 开启行编辑，即：<code>:edit-config=&quot;{ mode: 'cell' }&quot;</code>。\n表格列属性设置 <code>show-icon</code> 设置列头是否显示编辑图标，在编辑时有效。</p>\n",
+        'en-US':
+          "<p>Table attribute setting <code>edit-config</code>Enable the editing mode, and then set <code>mode:'cell'</code> in the attribute object to enable line editing, that is, <code>:edit-config=&quot;{mode: 'cell'}&; </code>. \nTable Column Attribute Settings<code>show-icon</code> Sets whether to display the editing icon in the column header. This parameter is valid during editing. </p>\n"
+      },
+      'codeFiles': ['edit/cell-editing.vue']
+    },
+    {
+      'demoId': 'edit-row-editing',
       'name': { 'zh-CN': '行编辑', 'en-US': 'Line Edit' },
       'desc': {
         'zh-CN':
@@ -11,7 +22,7 @@ export default {
         'en-US':
           "<p>Table attribute setting <code>edit-config</code>Enable the editing mode, and then set <code>mode:'row'</code> in the attribute object to enable row editing, that is, <code>:edit-config=&quot;{mode:'row'}&; </code>. </p>\n"
       },
-      'codeFiles': ['tiny-first-menu/row-editing.vue']
+      'codeFiles': ['edit/row-editing.vue']
     },
     {
       'demoId': 'edit-revertData',
@@ -35,18 +46,7 @@ export default {
       'codeFiles': ['edit/hasRowChange.vue']
     },
     {
-      'demoId': 'tiny-first-menu-cell-editing',
-      'name': { 'zh-CN': '单元格编辑', 'en-US': 'Cell Edit' },
-      'desc': {
-        'zh-CN':
-          "<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>mode: 'cell'</code> 开启行编辑，即：<code>:edit-config=&quot;{ mode: 'cell' }&quot;</code>。\n表格列属性设置 <code>show-icon</code> 设置列头是否显示编辑图标，在编辑时有效。</p>\n",
-        'en-US':
-          "<p>Table attribute setting <code>edit-config</code>Enable the editing mode, and then set <code>mode:'cell'</code> in the attribute object to enable line editing, that is, <code>:edit-config=&quot;{mode: 'cell'}&; </code>. \nTable Column Attribute Settings<code>show-icon</code> Sets whether to display the editing icon in the column header. This parameter is valid during editing. </p>\n"
-      },
-      'codeFiles': ['tiny-first-menu/cell-editing.vue']
-    },
-    {
-      'demoId': 'methods-set-active-cell',
+      'demoId': 'edit-set-active-cell',
       'name': { 'zh-CN': '手动激活编辑', 'en-US': 'Manually Activate Edit' },
       'desc': {
         'zh-CN':
@@ -54,20 +54,10 @@ export default {
         'en-US':
           'The <p><code>setActiveCell(row, field)</code> method activates editing of the specified cell. The <code>setActiveRow(row)</code> method activates row editing. If mode=cell is used, the first cell is activated by default. </p>\n'
       },
-      'codeFiles': ['methods/set-active-cell.vue']
+      'codeFiles': ['edit/set-active-cell.vue']
     },
     {
-      'demoId': 'tiny-first-menu-format-value',
-      'name': { 'zh-CN': '单元格格式化', 'en-US': 'Format Cell' },
-      'desc': {
-        'zh-CN': '<p>表格列属性 <code>format-value</code> 格式化单元格编辑器组件的传入值。</p>\n',
-        'en-US':
-          '<p>Table Column Properties <code>format-value</code> Format the input value of the Cell Editor component. </p>\n'
-      },
-      'codeFiles': ['tiny-first-menu/format-value.vue']
-    },
-    {
-      'demoId': 'tiny-first-menu-custom-editing',
+      'demoId': 'edit-custom-editing',
       'name': { 'zh-CN': '自定义编辑规则', 'en-US': 'Custom Editing Rule' },
       'desc': {
         'zh-CN':
@@ -75,10 +65,10 @@ export default {
         'en-US':
           '<p>Table attribute setting<code>edit-config</code>Enable the editing mode, and then set <code>activeMethod</code> custom editing rules in the attribute object. </p>\n'
       },
-      'codeFiles': ['tiny-first-menu/custom-editing.vue']
+      'codeFiles': ['edit/custom-editing.vue']
     },
     {
-      'demoId': 'tiny-first-menu-editor-is-salid-always',
+      'demoId': 'edit-editor-is-salid-always',
       'name': { 'zh-CN': '自定义编辑校验规则', 'en-US': 'Customized Editing Verification Rule' },
       'desc': {
         'zh-CN':
@@ -86,10 +76,10 @@ export default {
         'en-US':
           '<p>Table attribute setting<code>edit-config</code>Enable the editing mode and configure the <code>edit-rules</code> object to set the validation object and validation rule. Set <code>isValidAlways</code> in the <code>editor</code> object to enable real-time editing verification. </p>\n'
       },
-      'codeFiles': ['tiny-first-menu/editor-is-salid-always.vue']
+      'codeFiles': ['edit/editor-is-salid-always.vue']
     },
     {
-      'demoId': 'tiny-first-menu-status-of-editing',
+      'demoId': 'edit-status-of-editing',
       'name': { 'zh-CN': '开启编辑状态', 'en-US': 'Enable editing' },
       'desc': {
         'zh-CN':
@@ -97,16 +87,16 @@ export default {
         'en-US':
           '<p>Table attribute settings<code>edit-config</code>Enable the editing mode, Set <code>showStatus</code> in the attribute object to enable or disable the cell update status (inverted triangle update flag in the upper left corner of the cell). The default value is <code>true</code>. </p>\n'
       },
-      'codeFiles': ['tiny-first-menu/status-of-editing.vue']
+      'codeFiles': ['edit/status-of-editing.vue']
     },
     {
-      'demoId': 'tiny-first-menu-status-of-noediting',
+      'demoId': 'edit-status-of-noediting',
       'name': { 'zh-CN': '关闭编辑状态', 'en-US': 'Disable editing' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['tiny-first-menu/status-of-noediting.vue']
+      'codeFiles': ['edit/status-of-noediting.vue']
     },
     {
-      'demoId': 'tiny-first-menu-trigger-mode-for-editing',
+      'demoId': 'edit-trigger-mode-for-editing',
       'name': { 'zh-CN': '点击触发编辑', 'en-US': 'Click to trigger editing' },
       'desc': {
         'zh-CN':
@@ -114,23 +104,23 @@ export default {
         'en-US':
           '<p>Table attribute setting<code>edit-config</code>Enable the editing mode, and then set <code>trigger</code> in the attribute object to modify the triggering mode. The options are as follows: <code>click trigger (click), double-click trigger (dblclick), and manual trigger (manual)</code>. The default value is <code>click trigger</code>. </p>\n'
       },
-      'codeFiles': ['tiny-first-menu/trigger-mode-for-editing.vue']
+      'codeFiles': ['edit/trigger-mode-for-editing.vue']
     },
     {
-      'demoId': 'tiny-first-menu-trigger-mode-db-editing',
+      'demoId': 'edit-trigger-mode-db-editing',
       'name': { 'zh-CN': '双击触发编辑', 'en-US': 'Double-click to trigger editing' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['tiny-first-menu/trigger-mode-db-editing.vue']
+      'codeFiles': ['edit/trigger-mode-db-editing.vue']
     },
     {
-      'demoId': 'tiny-first-menu-trigger-mode-hm-editing',
+      'demoId': 'edit-trigger-mode-hm-editing',
       'name': { 'zh-CN': '手动触发编辑', 'en-US': 'Manually triggered editing' },
       'desc': {
         'zh-CN':
           '在点击其他行或表格外部时，编辑器会自动关闭。设置 <code>editConfig.autoClear</code> 为 <code>false</code> 可以防止编辑器自动关闭',
         'en-US': 'For details, see the following example.'
       },
-      'codeFiles': ['tiny-first-menu/trigger-mode-hm-editing.vue']
+      'codeFiles': ['edit/trigger-mode-hm-editing.vue']
     }
   ],
   apis: [{ 'name': 'grid-edit', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
