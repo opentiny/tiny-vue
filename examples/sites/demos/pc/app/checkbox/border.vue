@@ -6,11 +6,20 @@
   </tiny-checkbox>
 </template>
 
-<script setup lang="jsx">
-import { ref } from 'vue'
-import { Checkbox as TinyCheckbox, Tooltip as TinyTooltip } from '@opentiny/vue'
+<script>
+import { Checkbox, Tooltip } from '@opentiny/vue'
 
-const checked = ref(false)
+export default {
+  components: {
+    TinyCheckbox: Checkbox,
+    TinyTooltip: Tooltip
+  },
+  data() {
+    return {
+      checked: false
+    }
+  }
+}
 </script>
 
 <style scoped>
