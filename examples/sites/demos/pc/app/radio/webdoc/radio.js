@@ -196,7 +196,7 @@ export default {
       'events': [
         {
           'name': 'change',
-          'type': '',
+          'type': '(value) => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '绑定值变化时触发的事件',
