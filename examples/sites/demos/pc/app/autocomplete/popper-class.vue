@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Autocomplete } from '@opentiny/vue'
 
 export default {
