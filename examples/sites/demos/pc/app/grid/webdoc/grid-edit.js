@@ -25,7 +25,7 @@ export default {
       'codeFiles': ['edit/row-editing.vue']
     },
     {
-      'demoId': 'edit-revertData',
+      'demoId': 'edit-revert-data',
       'name': { 'zh-CN': '还原更改', 'en-US': 'Restore Changes' },
       'desc': {
         'zh-CN':
@@ -33,17 +33,17 @@ export default {
         'en-US':
           '<p>Invoke the <code>revertData(rows, field)</code> method to restore the data of a specified row or the entire table. If rows is an object, one row of data is restored. If rows is an array, multiple rows of data are restored. The field is optional. If no parameter is specified, the entire table data is restored. </p>\n'
       },
-      'codeFiles': ['edit/revertData.vue']
+      'codeFiles': ['edit/revert-data.vue']
     },
     {
-      'demoId': 'edit-hasRowChange',
+      'demoId': 'edit-has-row-change',
       'name': { 'zh-CN': '检查数据是否改变', 'en-US': 'Check whether data is changed.' },
       'desc': {
         'zh-CN': '<p><code>hasRowChange(row, field)</code> 检查行或列数据是否发生改变，field 可不指定。</p>\n',
         'en-US':
           '<p><code>hasRowChange(row, field)</code> Checks whether the row or column data is changed. The field is optional. </p>\n'
       },
-      'codeFiles': ['edit/hasRowChange.vue']
+      'codeFiles': ['edit/has-row-change.vue']
     },
     {
       'demoId': 'edit-set-active-cell',

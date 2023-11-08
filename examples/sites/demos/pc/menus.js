@@ -129,7 +129,7 @@ export const cmpMenus = [
       { 'nameCn': '编辑', 'name': '', 'key': 'grid-edit' },
       { 'nameCn': '工具栏', 'name': '', 'key': 'grid-toolbar' },
       { 'nameCn': '加载中', 'name': '', 'key': 'grid-loading-tip' },
-      { 'nameCn': '宽高尺寸', 'name': '', 'key': 'grid-width-height' },
+      { 'nameCn': '宽高尺寸', 'name': '', 'key': 'grid-size' },
       { 'nameCn': '外观设置', 'name': '', 'key': 'grid-appearance-settings' },
       { 'nameCn': '高亮', 'name': '', 'key': 'grid-highlight' },
       { 'nameCn': '提示', 'name': '', 'key': 'grid-tip' },

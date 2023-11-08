@@ -3,24 +3,24 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'nested-table-nestedGrid',
+      'demoId': 'nested-table-nested-grid',
       'name': { 'zh-CN': '嵌套表格', 'en-US': 'Nested Table' },
       'desc': {
         'zh-CN': '<p>通过在默认插槽 <code>default</code>中使用表格组件，实现嵌套表格功能。</p>\n',
         'en-US':
           '<p>Implements the nested table function by using the table component in the default slot <code>default</code>. </p>\n'
       },
-      'codeFiles': ['nested-table/nestedGrid.vue']
+      'codeFiles': ['nested-table/nested-grid.vue']
     },
     {
-      'demoId': 'nested-table-hasRowExpand',
+      'demoId': 'nested-table-has-row-expand',
       'name': { 'zh-CN': '检查行是否已展开', 'en-US': 'Check whether the row is expanded.' },
       'desc': {
         'zh-CN': '<p>通过调用 <code>hasRowExpand(row)</code> 方法可以检查行是否已展开，参数 row 为行数据对象。</p>\n',
         'en-US':
           '<p>You can invoke the <code>hasRowExpand(row)</code> method to check whether a row is expanded. The row parameter is the row data object. </p>\n'
       },
-      'codeFiles': ['nested-table/hasRowExpand.vue']
+      'codeFiles': ['nested-table/has-row-expand.vue']
     },
     {
       'demoId': 'nested-table-set-all-row-expansion',

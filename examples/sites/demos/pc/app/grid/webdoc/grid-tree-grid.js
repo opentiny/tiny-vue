@@ -89,14 +89,14 @@ export default {
       'codeFiles': ['tree-table/tree-grid-expand.vue']
     },
     {
-      'demoId': 'tree-table-hasTreeExpand',
+      'demoId': 'tree-table-has-tree-expand',
       'name': { 'zh-CN': '检查树节点是否已展开', 'en-US': 'Check whether the tree node is expanded.' },
       'desc': {
         'zh-CN': '<p>通过 <code>hasTreeExpand(row)</code> 方法可以检查树节点是否已展开，参数 row 为行数据对象。</p>\n',
         'en-US':
           '<p>You can use the <code>hasTreeExpand(row)</code> method to check whether a tree node is expanded. The row parameter indicates the row data object. </p>\n'
       },
-      'codeFiles': ['tree-table/hasTreeExpand.vue']
+      'codeFiles': ['tree-table/has-tree-expand.vue']
     },
     {
       'demoId': 'tree-table-tree-grid-index',

@@ -3,16 +3,16 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'base-basicUsage',
+      'demoId': 'base-basic-usage',
       'name': { 'zh-CN': '标签式', 'en-US': 'Label' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['base/basicUsage.vue']
+      'codeFiles': ['base/basic-usage.vue']
     },
     {
-      'demoId': 'base-basicUsage-conf',
+      'demoId': 'base-basic-usage-conf',
       'name': { 'zh-CN': '配置式', 'en-US': 'Profile' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['base/basicUsage-conf.vue']
+      'codeFiles': ['base/basic-usage-conf.vue']
     }
   ],
   apis: [
@@ -40,14 +40,14 @@ export default {
           'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '服务端数据查询方法', 'en-US': 'Querying Server Data' },
-          'demoId': 'grid-data-source#tiny-first-menu-request-service'
+          'demoId': 'grid-data-source#data-source-request-service'
         },
         {
           'name': 'save-data',
           'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '服务端数据保存方法', 'en-US': 'Method of saving server data' },
-          'demoId': 'grid-toolbar#tiny-first-menu-save-data'
+          'demoId': 'grid-toolbar#toolbar-save-data'
         },
         {
           'name': 'delete-data',
@@ -59,7 +59,7 @@ export default {
             'en-US':
               'Method of deleting server data; ({$grid, changeRecords}, ...args)=>{return new Promise((resolve, reject)=>{setTimeout(()=>{resolve()},300)})}'
           },
-          'demoId': 'grid-toolbar#tiny-first-menu-save-data'
+          'demoId': 'grid-toolbar#toolbar-save-data'
         },
         {
           'name': 'row-group',
@@ -77,7 +77,7 @@ export default {
           'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '工具栏配置', 'en-US': 'Toolbar configuration' },
-          'demoId': 'grid-toolbar#tiny-first-menu-insert-delete-update'
+          'demoId': 'grid-toolbar#toolbar-insert-delete-update'
         },
         {
           'name': 'align',
@@ -88,7 +88,7 @@ export default {
             'en-US':
               'All column alignment mode; The optional values of this attribute are left (left-aligned), center (center-aligned), and right (right-aligned)'
           },
-          'demoId': 'grid-align#align-grid-align-left-grid-align'
+          'demoId': 'grid-align#align-grid-align'
         },
         {
           'name': 'auto-resize',
@@ -99,14 +99,14 @@ export default {
             'en-US':
               'Parent element responsive listening (This may be used in scenarios where the parent element may have dynamic changes.)'
           },
-          'demoId': 'grid-width-height#tiny-first-menu-adaptive-grid-width-height'
+          'demoId': 'grid-size#size-adaptive-grid-width-height'
         },
         {
           'name': 'border',
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '是否带有纵向边框', 'en-US': 'Whether there is a vertical border' },
-          'demoId': 'grid-grid-border#tiny-first-menu-grid-border'
+          'demoId': 'grid-appearance-settings#appearance-settings-grid-border'
         },
         {
           'name': 'is-before-page-change',
