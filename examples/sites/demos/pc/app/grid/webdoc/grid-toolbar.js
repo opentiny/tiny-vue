@@ -25,7 +25,7 @@ export default {
       'codeFiles': ['toolbar/cancel-delete.vue']
     },
     {
-      'demoId': 'toolbar-clearData',
+      'demoId': 'toolbar-clear-data',
       'name': { 'zh-CN': '清空数据', 'en-US': 'Clear Data' },
       'desc': {
         'zh-CN':
@@ -33,7 +33,7 @@ export default {
         'en-US':
           '<p>clearData method manually clears the cell content. If no parameter is transferred, the entire table content is cleared. If a line is transferred, the specified line is cleared. If a field is transferred, the field is cleared. For details, see the following example. </p>\n'
       },
-      'codeFiles': ['toolbar/clearData.vue']
+      'codeFiles': ['toolbar/clear-data.vue']
     },
     {
       'demoId': 'toolbar-insert-remove-rows',

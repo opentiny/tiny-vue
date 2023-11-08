@@ -151,5 +151,5 @@ export default {
       'codeFiles': ['tree-table/tree-grid-expand-active-method.vue']
     }
   ],
-  apis: [{ 'name': 'grid-tree-grid', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-tree-table', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
 }

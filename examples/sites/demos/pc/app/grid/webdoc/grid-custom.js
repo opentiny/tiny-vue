@@ -117,7 +117,7 @@ export default {
       'codeFiles': ['custom/column-visible-hidden.vue']
     },
     {
-      'demoId': 'hide-hideColumn',
+      'demoId': 'hide-hide-column',
       'name': { 'zh-CN': '手动隐藏显示列', 'en-US': 'Event triggered before dragging the personalized panel' },
       'desc': {
         'zh-CN':
@@ -125,7 +125,7 @@ export default {
         'en-US':
           '<p>Configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings, and configure the <code>onBeforeMove</code> event before dragging on the personalized panel. You can also configure <code>filter</code> to set the class name. If you drag a line on the personalized panel, the event before dragging the personalized panel is triggered. </p>\n'
       },
-      'codeFiles': ['hide/hideColumn.vue']
+      'codeFiles': ['hide/hide-column.vue']
     },
     {
       'demoId': 'custom-prsonalized-drag',

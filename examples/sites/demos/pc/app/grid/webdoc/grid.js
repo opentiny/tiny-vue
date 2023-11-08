@@ -99,7 +99,7 @@ export default {
             'en-US':
               'Parent element responsive listening (This may be used in scenarios where the parent element may have dynamic changes.)'
           },
-          'demoId': 'grid-size#size-adaptive-grid-width-height'
+          'demoId': 'grid-size#size-adaptive-grid-size'
         },
         {
           'name': 'border',
@@ -140,7 +140,7 @@ export default {
             'zh-CN': '是否需要为每一列的 VNode 设置 key 属性（非特殊情况下不需要使用）',
             'en-US': 'Whether to set the key attribute for VNodes in each column (not required in special cases).'
           },
-          'demoId': 'grid-operation-column#tiny-first-menu-column-key'
+          'demoId': ''
         },
         {
           'name': 'column-min-width',
@@ -152,7 +152,7 @@ export default {
             'en-US':
               'Minimum width that can be adjusted. If this parameter is not set, the default value is the width of the column head span plus 36 (fixed width of the head).; all minimum column widths; The remaining space will be allocated in proportion automatically. The optional values of this attribute are integers, px,%'
           },
-          'demoId': 'grid-width-height#tiny-first-menu-column-min-width'
+          'demoId': 'grid-size#size-column-min-width'
         },
         {
           'name': 'column-width',
@@ -162,21 +162,21 @@ export default {
             'zh-CN': '所有列宽度;该属性的可选值为 整数, px，%',
             'en-US': 'Width of all columns; The optional values of this attribute are integers, px,%'
           },
-          'demoId': 'grid-width-height#tiny-first-menu-column-width'
+          'demoId': 'grid-size#size-column-width'
         },
         {
           'name': 'context-menu',
           'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '快捷菜单配置项', 'en-US': 'Shortcut menu configuration item' },
-          'demoId': 'grid-context-menu#grid_Example-shortcutMenu-footer-menu'
+          'demoId': 'grid-context-menu#context-menu-footer-menu'
         },
         {
           'name': 'edit-rules',
           'type': 'object',
           'defaultValue': '',
           'desc': { 'zh-CN': '校验规则配置项', 'en-US': 'Check rule configuration item' },
-          'demoId': 'grid-validation#grid_Example-gridValid-editing-validation'
+          'demoId': 'grid-validation#validation-editing-validation'
         },
         {
           'name': 'expand-config',
@@ -188,7 +188,7 @@ export default {
             'en-US':
               "Define the row configuration item. {expandAll: false, // Indicates whether to expand all rows by default. \n trigger:'row', // Indicates the triggering mode of expanding rows. The options include cell (triggered by clicking the cell where the icon is located) and row (triggered by clicking the row). By default, click the icon to trigger \n expandRowKeys: [], // Expand the specified row by default. (The row-id is required. \n accordion: false //Whether only one node can be expanded at a time. \n activeMethod: Function () {} // Customized expansion rule}"
           },
-          'demoId': 'grid-tree-grid#tree-table-tree-grid-expand-config'
+          'demoId': 'grid-tree-table#tree-table-tree-grid-expand-config'
         },
         {
           'name': 'fit',
@@ -198,7 +198,7 @@ export default {
             'zh-CN': '所有列的宽度是否自撑开',
             'en-US': 'Whether the widths of all columns are extended automatically.'
           },
-          'demoId': 'grid-width-height#tiny-first-menu-adaptive-column-width'
+          'demoId': 'grid-size#size-adaptive-column-width'
         },
         {
           'name': 'footer-align',
@@ -209,7 +209,7 @@ export default {
             'en-US':
               'Alignment mode of all table tail columns; The optional values of this attribute are left (left-aligned), center (center-aligned), and right (right-aligned)'
           },
-          'demoId': 'grid-align#align-footer-align-left-footer-align'
+          'demoId': 'grid-align#align-footer-align'
         },
         {
           'name': 'optimization',
@@ -217,14 +217,7 @@ export default {
           'defaultValue':
             'animat: true,delayHover: 250,scrollX: {gt: 100, 指定大于多少范围时自动启动虚拟滚动（启用 X 虚拟滚动，必须固定所有列宽，否则无法兼容）默认100, oSize: 2, 当剩余数据少于指定范围时触发重新渲染 默认自动计算 rSize: 2, 每次渲染条数 默认自动计算 vSize: 5  指定可视区域条数 }, scrollY: { gt: 500, 指定大于多少范围时自动启动虚拟滚动（启用 Y 虚拟滚动，必须固定所有行高，否则无法兼容）默认500 oSize: 2, 当剩余数据少于指定范围时触发重新渲染 默认自动计算 rSize: 2, 每次渲染条数 默认自动计算 vSize: 5, 指定可视区域条数 默认自动计算 rHeight: 50, 指定行高 默认自动计算adaptive: true 自动适配最优的渲染方式 默认true }',
           'desc': { 'zh-CN': '表格虚拟滚动的优化配置项', 'en-US': 'Optimize configuration items' },
-          'demoId': 'grid-large-data#large-data-grid-optimization'
-        },
-        {
-          'name': 'params',
-          'type': 'object',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '额外的参数', 'en-US': 'Additional parameters' },
-          'demoId': 'grid-filter#grid-params'
+          'demoId': 'grid-large-data#large-data-virtual-rolling'
         },
         {
           'name': 'footer-cell-class-name',
@@ -283,7 +276,7 @@ export default {
             'en-US':
               'Alignment mode of all table header columns; The optional values of this attribute are left (left-aligned), center (center-aligned), and right (right-aligned)'
           },
-          'demoId': 'grid-align#align-header-align-left-header-align'
+          'demoId': 'grid-align#align-header-align'
         },
         {
           'name': 'header-cell-class-name',
@@ -318,7 +311,7 @@ export default {
             'en-US':
               'Set the height of the table content area (excluding the table header and bottom). If this parameter is not set, the height of the table content area is adaptive.; height of table; Supports full parent containers or fixed width and height. The optional values of this attribute are integers, px,%'
           },
-          'demoId': 'grid-width-height#tiny-first-menu-fixed-grid-height'
+          'demoId': 'grid-size#size-fixed-grid-height'
         },
         {
           'name': 'highlight-cell',
@@ -373,14 +366,14 @@ export default {
             'zh-CN': '按键配置项;{isArrow: true // 启用方向键功能}',
             'en-US': 'Key configuration item; {isArrow: true //Enable the arrow keys}'
           },
-          'demoId': 'grid-keyboard#keyboard-navigation'
+          'demoId': 'grid-mouse-keyboard#mouse-keyboard-keyboard-navigation'
         },
         {
           'name': 'loading',
           'type': 'boolean',
           'defaultValue': 'true',
           'desc': { 'zh-CN': '表格是否显示加载中', 'en-US': 'Whether the table is being loaded.' },
-          'demoId': 'grid-grid-loading-tip#tiny-first-menu-grid-loading-off-tip'
+          'demoId': 'grid-loading#loading-grid-loading-off-tip'
         },
         {
           'name': 'max-height',
@@ -391,7 +384,7 @@ export default {
             'en-US':
               'Set the maximum height of the table content area (excluding the table header and bottom).; The optional values of this attribute are integers, px,%'
           },
-          'demoId': 'grid-width-height#tiny-first-menu-min-grid-height'
+          'demoId': 'grid-size#size-min-grid-height'
         },
         {
           'name': 'mouse-config',
@@ -403,7 +396,7 @@ export default {
             'en-US':
               'Mouse configuration item; {selected: true //Whether to enable the function of selecting cells by left-clicking. This function is valid only for edit-config.mode=cell. The default value is false.}'
           },
-          'demoId': 'grid-keyboard#mouse-config'
+          'demoId': 'grid-mouse-keyboard#mouse-keyboard-mouse-config'
         },
         {
           'name': 'radio-config',
@@ -415,7 +408,7 @@ export default {
             'en-US':
               "Select a configuration item. {trigger:'cell', //Trigger selection mode. The options include cell (triggered by clicking the cell where the icon is located)/row (triggered by clicking the row). By default, the icon is triggered.\n labelField:'', //Field name displayed in the single-choice box. You can directly display it in the check box.\n checkRowKey:', //The specified line is selected by default. (This function is triggered only once during initialization. The row-id parameter is required.) \n checkMethod: Function() {} //Whether to allow the selected method. The return value of this method determines whether the Radio in the row can be selected"
           },
-          'demoId': 'grid-operation-column#tiny-first-menu-radio-config'
+          'demoId': 'grid-operation-column#operation-column-radio-config'
         },
         {
           'name': 'remote-filter',
@@ -444,7 +437,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'true',
           'desc': { 'zh-CN': '设置是否允许调整列宽', 'en-US': 'Set whether to allow column width adjustment' },
-          'demoId': 'grid-width-height#tiny-first-menu-resize-column-width'
+          'demoId': 'grid-size#size-resize-column-width'
         },
         {
           'name': 'row-class-name',
@@ -467,17 +460,7 @@ export default {
             'en-US':
               'Field name of the unique primary key of the customized row data (The row data must have a unique primary key, which is automatically generated by default)'
           },
-          'demoId': 'grid-sort#tiny-first-menu-row-id'
-        },
-        {
-          'name': 'row-key',
-          'type': 'boolean',
-          'defaultValue': 'false',
-          'desc': {
-            'zh-CN': '是否需要为每一行的 VNode 设置 key 属性（非特殊情况下没必要设置）',
-            'en-US': 'Whether to set the key attribute for the VNode in each row (not necessary in special cases)'
-          },
-          'demoId': ''
+          'demoId': 'grid-sort#sort-row-id'
         },
         {
           'name': 'select-config',
@@ -489,7 +472,7 @@ export default {
             'en-US':
               "Check the configuration item. {trigger:'cell', //Trigger selection mode. The options include cell (triggered by clicking the cell where the icon is located) and row (triggered by clicking the row). By default, the icon is triggered.\n labelField:'', //Field name displayed in the check box. It can be directly displayed in the check box.\n checkRowKeys: [], //The specified line is selected by default. (This function is triggered only once during initialization. The row-id parameter is required.) \n checkMethod: Function() {}, // Indicates whether the selected method is allowed. The return value of this method is used to determine whether the checkbox of this line can be selected.\n checkAll: true, true //All are selected by default (triggered only once during initialization)}\n showHeader: true, // Indicates whether to display all buttons. If checkStrictly=true, the default value is false. \n checkStrictly: false, //Whether to strictly follow the method of not associating parent and child with each other.\n reserve: false //Whether to retain the historical selection data for the page turning operation}"
           },
-          'demoId': 'grid-operation-column#disable-selection'
+          'demoId': 'grid-operation-column#operation-column-selection-config'
         },
         {
           'name': 'show-footer',
@@ -537,7 +520,7 @@ export default {
             'zh-CN': '表格的尺寸;该属性的可选值为 medium, small, mini',
             'en-US': 'Table size; The options of this attribute are medium, small, and mini'
           },
-          'demoId': 'grid-grid-size#tiny-first-menu-grid-size'
+          'demoId': 'grid-size#size-grid-size'
         },
         {
           'name': 'sort-config',
@@ -573,7 +556,7 @@ export default {
             'en-US':
               'Consolidate rows or columns. This function Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, data}) returns the calculated value.'
           },
-          'demoId': 'grid-span#span-row-span-row-span'
+          'demoId': 'grid-span#span-row-span'
         },
         {
           'name': 'start-index',
@@ -584,14 +567,14 @@ export default {
             'en-US':
               'This parameter is valid only for columns whose type is index. The value of this parameter is the start value of the dynamic index.'
           },
-          'demoId': 'grid-serial-column#tiny-first-menu-start-index'
+          'demoId': 'grid-serial-column#serial-column-start-index'
         },
         {
           'name': 'stripe',
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '是否带有斑马纹', 'en-US': 'Zebra pattern' },
-          'demoId': 'grid-grid-stripe#stripe-stripe'
+          'demoId': 'grid-appearance-settings#appearance-settings-stripe'
         },
         {
           'name': 'sync-resize',
@@ -602,7 +585,7 @@ export default {
             'en-US':
               'Responsively follow an attribute. (This may be used in scenarios where the display/hide switchover is controlled by an attribute)'
           },
-          'demoId': 'grid-width-height#tiny-first-menu-adaptive-grid-width-height'
+          'demoId': 'grid-size#size-adaptive-grid-size'
         },
         {
           'name': 'tree-config',
@@ -614,7 +597,7 @@ export default {
             'en-US':
               "tree structure configuration item, tree-config:{children:'children'} children: identification character used to define the lower level and subset of data in the tree structure data;{trigger:'default', //Expanding sub-triggering mode: 'default' (click the button to trigger); 'cell' (click cell to trigger); 'row' (triggered by clicking a row)\nordered: true, // Indicates whether to display the child index in ascending order by number. The options are true. (The child index is displayed in ascending order by number, parent level 1 and child level 2); false (The child index is added based on the parent index. The parent index is 1 and the child index is 1.1.) \nindent: 16, // Controls the horizontal indentation distance. The default value is 16. The unit is px\nchildren: 'children', // Specify the field name of child data\nexpandAll: false, // Indicates whether to expand all rows. \nexpandRowKeys: [], // By default, the specified row in the given array is expanded. The row-id is required. The row-id can be obtained from the '_RID' attribute of the row\naccordion: false, // Whether only one subnode can be expanded at the same time for multiple subnodes at the same level} "
           },
-          'demoId': 'grid-tree-grid#tree-table-tree-grid-base'
+          'demoId': 'grid-tree-table#tree-table-tree-grid-base'
         },
         {
           'name': 'valid-config',
@@ -625,7 +608,7 @@ export default {
             'en-US':
               "Check configuration items. {message:'inline'//Check prompt type. 'inline' (built-in prompt) 'tooltip'}"
           },
-          'demoId': 'grid-validation#grid_Example-gridValid-valid-config'
+          'demoId': 'grid-validation#validation-valid-config'
         },
         {
           'name': 'summary-config',
@@ -647,14 +630,14 @@ export default {
             'zh-CN': '设置是否允许列数据排序。默认为 true 可排序',
             'en-US': 'Whether to allow column data sorting. The default value is true, which can be sorted.'
           },
-          'demoId': 'grid-customized#custom-column-sort'
+          'demoId': 'grid-sort#sort-default-sort'
         },
         {
           'name': 'auto-load',
           'type': 'boolean',
           'defaultValue': '是否开启自动请求服务，配置 fetch-data 时有效，true',
           'desc': { 'zh-CN': '', 'en-US': '' },
-          'demoId': 'grid-data-source#tiny-first-menu-auto-load'
+          'demoId': 'grid-data-source#data-source-auto-load'
         },
         {
           'name': 'is-async-column',
@@ -665,7 +648,7 @@ export default {
             'en-US':
               'Sets whether to delay the loading of columns in the table. Indicates whether to enable the asynchronous column function. This parameter is used together with scrollLoad'
           },
-          'demoId': 'grid-data-source#tiny-first-menu-column-asyn-rendering'
+          'demoId': 'grid-data-source#data-source-column-asyn-rendering'
         },
         {
           'name': 'columns',
@@ -675,7 +658,7 @@ export default {
             'zh-CN': '表格列的配置信息，具体参考列配置项',
             'en-US': 'Configuration information of the table column. For details, see the column configuration items.'
           },
-          'demoId': 'grid-data-source#tiny-first-menu-columns'
+          'demoId': 'grid-data-source#data-source-columns'
         },
         {
           'name': 'scroll-load',
@@ -698,14 +681,14 @@ export default {
             'en-US':
               'Set row combination. This attribute applies only to common tables and cannot be used together with tree-config.'
           },
-          'demoId': 'grid-span#span-row-span-row-span-easy'
+          'demoId': 'grid-span#span-row-span-easy'
         },
         {
           'name': 'render-empty',
           'type': 'Function',
           'defaultValue': '',
           'desc': { 'zh-CN': '空数据渲染', 'en-US': 'Render empty data' },
-          'demoId': 'grid-empty-data-tip#tiny-first-menu-empty-data-tip'
+          'demoId': 'grid-empty#empty-empty-data-tip'
         },
         {
           'name': 'events',
@@ -719,7 +702,7 @@ export default {
           'type': 'Array',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置表格的数据;', 'en-US': 'Set table data.' },
-          'demoId': 'grid-data-source#tiny-first-menu-static-data'
+          'demoId': 'grid-data-source#data-source-static-data'
         },
         {
           'name': 'min-height',
@@ -729,7 +712,7 @@ export default {
             'zh-CN': '设置表格内容区域（不含表格头部，底部）的最小高度。',
             'en-US': 'Set the minimum height of the table content area (excluding the table header and bottom).'
           },
-          'demoId': 'grid-width-height#tiny-first-menu-min-grid-height'
+          'demoId': 'grid-size#size-min-grid-height'
         },
         {
           'name': 'drop-config',
@@ -753,14 +736,14 @@ export default {
             'en-US':
               "Configuration item for editing the table. When object is configured, the following fields can be configured: {trigger:'click', //Activation triggering mode. The options include click, dblclick, manual\n mode:'cell', //Activation type. The options include cell / row\n showStatus: true, // Display Status\n activeMethod: Function () {} //User-defined editing rule}"
           },
-          'demoId': 'grid-editor#grid_Example-gridEdit-inner-editor'
+          'demoId': 'grid-editor#editor-inner-editor'
         },
         {
           'name': 'seq-serial',
           'type': 'boolean',
-          'defaultValue': '设置行序号是否连续，开启分页时有效，false',
+          'defaultValue': 'false',
           'desc': {
-            'zh-CN': '设置行序号是否连续，seqSerial 当 showSeq 为 true 时有效。',
+            'zh-CN': '设置行序号是否连续，开启分页时有效,seqSerial 当 showSeq 为 true 时有效。',
             'en-US':
               'Whether to set the row sequence number consecutive. This parameter is valid only when showSeq is set to true.'
           },
@@ -774,7 +757,7 @@ export default {
             'zh-CN': '切换分页时有未保存的数据时是否进行提示',
             'en-US': 'Whether to display a prompt when there is unsaved data during page switching.'
           },
-          'demoId': 'grid-pager#pager-showSaveMsg'
+          'demoId': 'grid-pager#pager-show-save-msg'
         },
         {
           'name': 'tooltip-config',
@@ -821,7 +804,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '空数据时显示的文本内容', 'en-US': 'Text content displayed when the data is empty' },
-          'demoId': 'grid-empty-data-tip#tiny-first-menu-empty-data-tip'
+          'demoId': 'grid-empty#empty-empty-data-tip'
         }
       ],
       'grid-methods': [
@@ -830,7 +813,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '手动清除单元格激活状态', 'en-US': 'Manually clear cell activation status' },
-          'demoId': 'grid-edit#tiny-first-menu-trigger-mode-for-editing'
+          'demoId': 'grid-edit#edit-has-row-change'
         },
         {
           'name': 'clearAll()',
@@ -842,7 +825,7 @@ export default {
             'en-US':
               'Manually clear all conditions in the table and restore the table to the initial state. (This may be used in the scenario of adding, deleting, modifying, and querying, for example, clearing the table cache after data is saved.)'
           },
-          'demoId': 'grid-toolbar#tiny-first-menu-insert-delete-update'
+          'demoId': 'grid-toolbar#toolbar-insert-delete-update'
         },
         {
           'name': 'clearCurrentColumn()',
@@ -874,7 +857,7 @@ export default {
             'en-US':
               'Manually clear the cell content. If no parameter is transferred, the entire table content is cleared. If a row is transferred, the specified row content is cleared. If a specified field is transferred, the field content is cleared.'
           },
-          'demoId': 'grid-toolbar#tiny-first-menu-insert-delete-update'
+          'demoId': 'grid-toolbar#toolbar-insert-delete-update'
         },
         {
           'name': 'clearFilter(field)',
@@ -895,7 +878,7 @@ export default {
             'zh-CN': '用于单选行，手动清空用户的选择',
             'en-US': 'This is used to select a single row. Manually clear the user selection.'
           },
-          'demoId': 'grid-operation-column#tiny-first-menu-default-serial-column'
+          'demoId': 'grid-operation-column#operation-column-default-serial-column'
         },
         {
           'name': 'clearRowExpand()',
@@ -905,7 +888,7 @@ export default {
             'zh-CN': '手动清空展开行状态，数据会恢复成未展开的状态',
             'en-US': 'Manually clear the expanded row status. The data will be restored to the unexpanded state.'
           },
-          'demoId': 'grid-nested-grid#grid_Example-nestedGrid'
+          'demoId': 'grid-nested-grid#nested-grid-nested-grid'
         },
         {
           'name': 'clearScroll()',
@@ -915,7 +898,7 @@ export default {
             'zh-CN': '手动清除滚动相关信息，还原到初始状态',
             'en-US': 'Manually clear scrolling information and restore the original state.'
           },
-          'demoId': 'grid-width-height#tiny-first-menu-min-grid-height'
+          'demoId': 'grid-size#size-max-min-grid-height'
         },
         {
           'name': 'clearSelected()',
@@ -932,7 +915,7 @@ export default {
             'zh-CN': '用于多选行，手动清空用户的选择',
             'en-US': 'For selecting multiple lines. Manually clear the user selection.'
           },
-          'demoId': 'grid-operation-column#tiny-first-menu-custom-serial-column'
+          'demoId': 'grid-operation-column#operation-column-custom-serial-column'
         },
         {
           'name': 'clearSort()',
@@ -953,7 +936,7 @@ export default {
             'en-US':
               'Manually clear the expanded state of the tree node. The data will be restored to the un-folded state.'
           },
-          'demoId': 'grid-tree-grid#tree-table-tree-grid-insert-delete-update'
+          'demoId': 'grid-tree-table#tree-table-tree-grid-insert-delete-update'
         },
         {
           'name': 'closeFilter()',
@@ -973,18 +956,7 @@ export default {
             'zh-CN': '手动关闭快捷菜单（某些特殊场景可能会用到）',
             'en-US': 'Manually close the shortcut menu (which may be used in some special scenarios)'
           },
-          'demoId': 'grid-context-menu#grid_Example-shortcutMenu-cell-menu'
-        },
-        {
-          'name': 'createData(records)',
-          'type': '',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '创建 data 对象（对于某些特殊场景可能会用到，会自动对数据的字段名进行检测，如果不存在就自动定义）',
-            'en-US':
-              'Create a data object. (For some special scenarios, the field name will be automatically checked. If the field name does not exist, the field name will be automatically defined.)'
-          },
-          'demoId': 'grid-data-source#tiny-first-menu-static-data'
+          'demoId': 'grid-context-menu#context-menu-cell-menu'
         },
         {
           'name': 'createRow(records)',
@@ -995,7 +967,7 @@ export default {
             'en-US':
               'Create a Row|Rows object. (This method may be used when data needs to be manually inserted in some special scenarios.)'
           },
-          'demoId': 'grid-data-source#tiny-first-menu-static-data'
+          'demoId': 'grid-tree-table#tree-table-tree-grid-insert-delete-update'
         },
         {
           'name': 'exportCsv(options)',
@@ -1006,7 +978,7 @@ export default {
             'en-US':
               'Exports table data to a .csv file. (All mainstream browsers are supported. Rows or columns cannot be combined.)'
           },
-          'demoId': 'grid-import-export#tiny-first-menu-export-excel'
+          'demoId': 'grid-import-export#import-export-export-excel'
         },
         {
           'name': 'fullValidate(rows, callback)',
@@ -1017,21 +989,21 @@ export default {
             'en-US':
               'Complete table verification function. The difference between this function and validate is that all rules of full data are verified.'
           },
-          'demoId': 'grid-validation#grid_Example-gridValid-before-submit-validation'
+          'demoId': 'grid-validation#validation-before-submit-validation'
         },
         {
           'name': 'getActiveRow()',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '获取已激活的行数据', 'en-US': 'Obtain activated row data' },
-          'demoId': 'grid-edit#tiny-first-menu-trigger-mode-for-editing'
+          'demoId': 'grid-edit#edit-trigger-mode-hm-editing'
         },
         {
           'name': 'getColumnByField(field)',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '根据列的字段名获取列', 'en-US': 'Obtain columns based on column field names.' },
-          'demoId': 'grid-data-source#tiny-first-menu-columns'
+          'demoId': 'grid-large-data#large-data-scroll-to'
         },
         {
           'name': 'getColumnById(colid)',
@@ -1041,7 +1013,7 @@ export default {
             'zh-CN': '根据列的唯一主键获取列',
             'en-US': 'Obtain a column based on the unique primary key of the column.'
           },
-          'demoId': 'grid-data-source#tiny-first-menu-columns'
+          'demoId': ''
         },
         {
           'name': 'getColumnIndex(column)',
@@ -1051,7 +1023,7 @@ export default {
             'zh-CN': '根据 column 获取相对于 columns 中的索引',
             'en-US': 'Obtain the index relative to the column based on the column.'
           },
-          'demoId': 'grid-data-source#tiny-first-menu-columns'
+          'demoId': ''
         },
         {
           'name': 'getColumnNode(cell)',
@@ -1061,7 +1033,7 @@ export default {
             'zh-CN': '根据 th/td 元素获取对应的 column 信息',
             'en-US': 'Obtain the column information based on the th/td element.'
           },
-          'demoId': 'grid-data-source#tiny-first-menu-columns'
+          'demoId': ''
         },
         {
           'name': 'getColumns(columnIndex)',
@@ -1071,7 +1043,7 @@ export default {
             'zh-CN': '获取表格的可视列，也可以指定索引获取列',
             'en-US': 'Obtains the visual column of the table or specifies the index to obtain the column.'
           },
-          'demoId': 'grid-data-source#tiny-first-menu-columns'
+          'demoId': 'grid-dynamically-columns#dynamically-columns-columns-dynamic'
         },
         {
           'name': 'getCurrentRow()',
@@ -1081,7 +1053,7 @@ export default {
             'zh-CN': '用于当前行，获取当前行的数据',
             'en-US': 'This is used for the current row to obtain the data of the current row.'
           },
-          'demoId': 'grid-event#tiny-first-menu-get-row-method'
+          'demoId': 'grid-event#event-get-row-method'
         },
         {
           'name': 'getData(rowIndex)',
@@ -1092,14 +1064,14 @@ export default {
             'en-US':
               'The behavior of obtaining data is the same as that of data. You can also specify an index to obtain data.'
           },
-          'demoId': 'grid-data-source#tiny-first-menu-columns'
+          'demoId': 'grid-toolbar#toolbar-clear-data'
         },
         {
           'name': 'getInsertRecords()',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '获取新增的数据', 'en-US': 'Obtain the new data' },
-          'demoId': 'grid-toolbar#tiny-first-menu-insert-delete-update'
+          'demoId': 'grid-toolbar#toolbar-insert-delete-update'
         },
         {
           'name': 'getRadioRow()',
@@ -1109,7 +1081,7 @@ export default {
             'zh-CN': '用于单选行，获取当已选中的数据',
             'en-US': 'This command is used to select a single row to obtain the selected data.'
           },
-          'demoId': 'grid-event#tiny-first-menu-get-row-method'
+          'demoId': 'grid-event#event-get-row-method'
         },
         {
           'name': 'getRecordset()',
@@ -1120,14 +1092,14 @@ export default {
             'en-US':
               'Obtaining a table data set (Obtain the data of adding, deleting, and changing. It is very convenient for adding, deleting, modifying, and querying tables.)'
           },
-          'demoId': 'grid-toolbar#tiny-first-menu-insert-delete-update'
+          'demoId': 'grid-toolbar#toolbar-insert-delete-update'
         },
         {
           'name': 'getRemoveRecords()',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '获取已删除的数据', 'en-US': 'Obtain deleted data' },
-          'demoId': 'grid-toolbar#tiny-first-menu-insert-delete-update'
+          'demoId': 'grid-toolbar#toolbar-insert-delete-update'
         },
         {
           'name': 'getRowById(rowid)',
@@ -1137,7 +1109,7 @@ export default {
             'zh-CN': '根据行的唯一主键获取行',
             'en-US': 'Obtain a row based on the unique primary key of the row.'
           },
-          'demoId': 'grid-event#tiny-first-menu-get-row-method'
+          'demoId': 'grid-event#event-get-row-method'
         },
         {
           'name': 'getRowIndex(row:object)',
@@ -1147,7 +1119,7 @@ export default {
             'zh-CN': '根据 row 获取相对于 data 中的索引',
             'en-US': 'Obtains indexes relative to data based on rows.'
           },
-          'demoId': 'grid-event#tiny-first-menu-get-row-method'
+          'demoId': 'grid-event#event-get-row-method'
         },
         {
           'name': 'getRowNode(tr)',
@@ -1157,7 +1129,7 @@ export default {
             'zh-CN': '根据 tr 元素获取对应的 row 信息',
             'en-US': 'Obtain row information based on the tr element.'
           },
-          'demoId': 'grid-event#tiny-first-menu-get-row-method'
+          'demoId': 'grid-event#event-get-row-method'
         },
         {
           'name': 'getSelectRecords()',
@@ -1167,7 +1139,7 @@ export default {
             'zh-CN': '用于多选行，获取已选中的数据',
             'en-US': 'This command is used to select multiple lines to obtain the selected data.'
           },
-          'demoId': 'grid-toolbar#tiny-first-menu-insert-delete-update'
+          'demoId': 'grid-toolbar#toolbar-insert-delete-update'
         },
         {
           'name': 'getTableColumn()',
@@ -1301,7 +1273,7 @@ export default {
             'en-US':
               'Recalculate the table. (This may be used in some special scenarios, such as hidden tables and column width update.)'
           },
-          'demoId': 'grid-width-height#recalculate'
+          'demoId': 'grid-size#recalculate'
         },
         {
           'name': 'refreshColumn()',
@@ -2099,7 +2071,7 @@ export default {
             'en-US':
               'Minimum column width; The remaining space will be allocated in proportion. The optional values of this property are integers, px,%'
           },
-          'demoId': 'grid-width-height#tiny-first-menu-min-width'
+          'demoId': 'grid-size#tiny-first-menu-min-width'
         },
         {
           'name': 'show-icon',
@@ -2140,7 +2112,7 @@ export default {
             'en-US':
               'Set whether the column width can be adjusted. Allows you to drag the column width to adjust the column size.'
           },
-          'demoId': 'grid-width-height#tiny-first-menu-resize-column-width'
+          'demoId': 'grid-size#tiny-first-menu-resize-column-width'
         },
         {
           'name': 'show-header-overflow',
@@ -2280,7 +2252,7 @@ export default {
             'en-US':
               'Set the column width. The value can be pixel, percentage, or auto. If the value is auto, the column width automatically adapts.; column width; The optional value of this property is integer/px/%'
           },
-          'demoId': 'grid-width-height#tiny-first-menu-fixed-column-width'
+          'demoId': 'grid-size#tiny-first-menu-fixed-column-width'
         },
         {
           'name': 'format-config',
