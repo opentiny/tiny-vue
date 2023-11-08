@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <tiny-file-upload size="small" ref="uploadRef" :action="action" :file-list="fileList">
+    <tiny-file-upload ref="uploadRef" :action="action" :file-list="fileList">
       <tiny-button type="primary">点击上传</tiny-button>
     </tiny-file-upload>
     <br />

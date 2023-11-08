@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
-import { compWhiteList } from './virtual-comp.jsx'
+import { compWhiteList } from './virtual-comp'
 
 function getFiberByDom(dom) {
   const key = Object.keys(dom).find((key) => {

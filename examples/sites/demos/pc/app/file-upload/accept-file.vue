@@ -1,5 +1,5 @@
 <template>
-  <tiny-file-upload size="small" :action="action" accept=".doc,.docx" :file-list="fileList2">
+  <tiny-file-upload :action="action" accept=".doc,.docx" :file-list="fileList2">
     <tiny-button type="primary">点击上传</tiny-button>
   </tiny-file-upload>
 </template>

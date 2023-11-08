@@ -69,7 +69,9 @@ import type {
   handleTriggerClick,
   noopFnCreator,
   getCalcProgress,
-  getHandleSuccess
+  getHandleSuccess,
+  handleReUpload,
+  handleReUploadTotal
 } from '../src/file-upload'
 import type { downloadFile as ordinaryDownload } from '../src/upload-list'
 import type { IUploadFormData } from './upload.type'
@@ -199,6 +201,8 @@ export interface IFileUploadApi {
   handleChange: ReturnType<typeof handleChange>
   handleClickFileList: ReturnType<typeof handleClickFileList>
   handleTriggerClick: ReturnType<typeof handleTriggerClick>
+  handleReUpload: ReturnType<typeof handleReUpload>
+  handleReUploadTotal: ReturnType<typeof handleReUploadTotal>
 }
 
 type IFileUploadNoopFnCreator = ReturnType<typeof noopFnCreator>

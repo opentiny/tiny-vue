@@ -1,5 +1,5 @@
 <template>
-  <tiny-file-upload size="small" :data="requestData" ref="upload" :action="action">
+  <tiny-file-upload :data="requestData" ref="upload" :action="action">
     <template #trigger>
       <tiny-button type="primary">点击上传</tiny-button>
     </template>

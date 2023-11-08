@@ -19,7 +19,8 @@ export const docMenus = [
       { 'title': '开发示例', 'titleEn': 'developDemo', 'key': 'develop-demo' },
       { 'title': '国际化', 'titleEn': 'i18n', 'key': 'i18n' },
       { 'title': '主题配置', 'titleEn': 'theme', 'key': 'theme' },
-      { 'title': '表单校验配置', 'titleEn': 'formValid', 'key': 'form-valid' }
+      { 'title': '表单校验配置', 'titleEn': 'formValid', 'key': 'form-valid' },
+      { 'title': '常见问题', 'titleEn': 'faq', 'key': 'faq' }
     ]
   }
 ]

@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Cascader } from '@opentiny/vue'
 
 export default {

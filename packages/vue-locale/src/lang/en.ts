@@ -255,6 +255,7 @@ export default {
       downloadFile: 'DownLoad file',
       previewFile: 'Preview file',
       updateFile: 'Update file',
+      reUploadFile: 'refresh upload file',
       deleteFile: 'Delete file',
       empty: 'is empty!',
       kiaScanTip:
@@ -276,7 +277,10 @@ export default {
       numberLimit: 'Maximum upload of {number} files.',
       encryptDialogTitle: 'Watermark and encryption settings',
       addWatermark: 'Add Watermark',
-      encrypted: 'Encrypted'
+      encrypted: 'Encrypted',
+      networkError: 'Network Error',
+      pictureNetworkError: 'Network error, upload failed',
+      ReUploadTip: '{number} files failed to upload!'
     },
     uploadList: {
       pictureUploading: 'Picture uploading',

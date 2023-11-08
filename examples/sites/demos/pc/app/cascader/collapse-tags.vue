@@ -2,7 +2,7 @@
   <tiny-cascader v-model="value" :options="options" :props="props" collapse-tags clearable></tiny-cascader>
 </template>
 
-<script lang="jsx">
+<script>
 import { Cascader } from '@opentiny/vue'
 
 export default {
