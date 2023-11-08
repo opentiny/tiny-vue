@@ -128,7 +128,7 @@ export const cmpMenus = [
       { 'nameCn': '分页', 'name': '', 'key': 'grid-pager' },
       { 'nameCn': '编辑', 'name': '', 'key': 'grid-edit' },
       { 'nameCn': '工具栏', 'name': '', 'key': 'grid-toolbar' },
-      { 'nameCn': '加载中', 'name': '', 'key': 'grid-grid-loading-tip' },
+      { 'nameCn': '加载中', 'name': '', 'key': 'grid-loading-tip' },
       { 'nameCn': '宽高尺寸', 'name': '', 'key': 'grid-width-height' },
       { 'nameCn': '外观设置', 'name': '', 'key': 'grid-appearance-settings' },
       { 'nameCn': '高亮', 'name': '', 'key': 'grid-highlight' },
@@ -155,8 +155,7 @@ export const cmpMenus = [
       { 'nameCn': '嵌套表格', 'name': '', 'key': 'grid-nested-grid' },
       { 'nameCn': '导入导出', 'name': '', 'key': 'grid-import-export' },
       { 'nameCn': '鼠标和键盘配置', 'name': '', 'key': 'grid-mouse-keyboard' },
-      { 'nameCn': '表格行列反转', 'name': '', 'key': 'grid-reverse-column-row' },
-      { 'nameCn': '动态生成列', 'name': '', 'key': 'grid-dynamically-columns' },
+      { 'nameCn': '动态列及行列反转', 'name': '', 'key': 'grid-dynamically-columns' },
       { 'nameCn': '常见问题', 'name': '', 'key': 'grid-faq' }
     ]
   },

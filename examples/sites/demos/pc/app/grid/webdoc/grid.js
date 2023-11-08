@@ -3,16 +3,16 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'basicUsage',
+      'demoId': 'base-basicUsage',
       'name': { 'zh-CN': '标签式', 'en-US': 'Label' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['basicUsage.vue']
+      'codeFiles': ['base/basicUsage.vue']
     },
     {
-      'demoId': 'basicUsage-conf',
+      'demoId': 'base-basicUsage-conf',
       'name': { 'zh-CN': '配置式', 'en-US': 'Profile' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['basicUsage-conf.vue']
+      'codeFiles': ['base/basicUsage-conf.vue']
     }
   ],
   apis: [
