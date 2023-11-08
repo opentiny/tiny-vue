@@ -50,10 +50,10 @@ export default {
           'type': 'object , Array',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置瀑布菜单的数据。;设置瀑布菜单的数据。',
+            'zh-CN': '设置瀑布菜单的数据。',
             'en-US': 'Set the waterfall menu data. ;Set the data of the waterfall menu.'
           },
-          'demoId': 'data-resource'
+          'demoId': 'data-resource1'
         }
       ],
       'events': [],
