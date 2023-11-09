@@ -1,12 +1,10 @@
 <template>
   <div>
-    <tiny-pager layout="prev, pager, next" :total="50"></tiny-pager>
-
-    <tiny-pager align="center" layout="prev, pager, next" :total="100"></tiny-pager>
+    <tiny-pager :total="50"></tiny-pager>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Pager } from '@opentiny/vue'
 
 export default {

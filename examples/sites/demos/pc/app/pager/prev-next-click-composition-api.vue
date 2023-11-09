@@ -1,25 +1,29 @@
 <template>
   <tiny-pager
-    @current-change="handleCurrentChange"
+    @prev-click="prevClick"
+    @next-click="nextClick"
     :current-page="currentPage"
     @update:current-page="currentPage = $event"
-    :page-size="100"
-    layout="total, sizes, prev, pager, next"
-    :total="1000"
+    :total="100"
   >
   </tiny-pager>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Pager as TinyPager, Modal } from '@opentiny/vue'
 
 const currentPage = ref(5)
 
-function handleCurrentChange(val) {
+function prevClick(val) {
   Modal.message({
-    message: `current-change 事件，当前页: ${val}`,
-    status: 'info'
+    message: `prev-click 事件，当前页: ${val}`
+  })
+}
+
+function nextClick(val) {
+  Modal.message({
+    message: `next-click 事件，当前页: ${val}`
   })
 }
 </script>
