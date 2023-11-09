@@ -3,7 +3,16 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'disabled1',
+      'demoId': 'basic-usage',
+      'name': { 'zh-CN': '基础用法', 'en-US': 'Basic Usage' },
+      'desc': {
+        'zh-CN': '<p>基础用法。</p>',
+        'en-US': '<p>Basic Usage. </p>\n'
+      },
+      'codeFiles': ['basic-usage.vue']
+    },
+    {
+      'demoId': 'disabled',
       'name': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
       'desc': {
         'zh-CN': '<p>通过 <code>disabled</code> 属性可以设置为禁用状态。</p>\n',
@@ -12,17 +21,11 @@ export default {
       'codeFiles': ['disabled.vue']
     },
     {
-      'demoId': 'disabled',
-      'name': { 'zh-CN': '原生属性', 'en-US': 'Native Attribute' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['disabled.vue']
-    },
-    {
       'demoId': 'size',
       'name': { 'zh-CN': '输入框大小', 'en-US': 'Text box size' },
       'desc': {
-        'zh-CN': '<p>可选择值为medium，small，mini</p>\n',
-        'en-US': '<p>The value can be medium, small, or mini</p>\n'
+        'zh-CN': '<p>可选择值为<code>medium</code>，<code>small</code>，<code>mini</code></p>\n',
+        'en-US': '<p>The value can be <code>medium</code>, <code>small</code>, or <code>mini</code></p>\n'
       },
       'codeFiles': ['size.vue']
     },
@@ -37,26 +40,17 @@ export default {
       'codeFiles': ['clearable.vue']
     },
     {
-      'demoId': 'append-prepend',
-      'name': { 'zh-CN': '输入框前置内容', 'en-US': 'Pre-content in the text box' },
+      'demoId': 'slot',
+      'name': { 'zh-CN': '插槽', 'en-US': 'slot' },
       'desc': {
-        'zh-CN': '<p>配置 <code>prepend</code> 属性设置输入框前置内容。</p>\n',
-        'en-US': '<p>Configure the <code>prepend</code> attribute to set the front content of the text box. </p>\n'
+        'zh-CN': '<p>分别配置 <code>prepend</code>、<code>append</code>、<code>prefix</code>、<code>suffix</code>、<code>default</code> 插槽</p>\n',
+        'en-US': '<p>Configure <code>prepend</code>, <code>append</code>, <code>prefix</code>, <code>default</code>, and <code>suffix</code> slots.</p>\n'
       },
-      'codeFiles': ['append-prepend.vue']
-    },
-    {
-      'demoId': 'append-append',
-      'name': { 'zh-CN': '输入框后置内容', 'en-US': 'Content after the text box' },
-      'desc': {
-        'zh-CN': '<p>配置 <code>append</code> 属性设置输入框后置内容。</p>\n',
-        'en-US': '<p>Configure the <code>append</code> attribute to set the content behind the text box. </p>\n'
-      },
-      'codeFiles': ['append-prepend.vue']
+      'codeFiles': ['slot.vue']
     },
     {
       'demoId': 'custom-icon',
-      'name': { 'zh-CN': '自定义图标', 'en-US': 'Custom Icon' },
+      'name': { 'zh-CN': '图标', 'en-US': 'Icon' },
       'desc': {
         'zh-CN':
           '<p>配置 <code>prefix-icon</code> 和 <code>suffix-icon</code> 属性可分别自定义输入框前后置图标。</p>\n',
@@ -64,16 +58,6 @@ export default {
           '<p>Configure the <code>prefix-icon</code> and <code>suffix-icon</code> attributes to customize the icons before and after the text box. </p>\n'
       },
       'codeFiles': ['custom-icon.vue']
-    },
-    {
-      'demoId': 'prefix-suffix-slot',
-      'name': { 'zh-CN': '通过插槽自定义图标', 'en-US': 'Customize icons by slot' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>prefix</code> 和 <code>suffix</code> 插槽也可以分别自定义输入框前后置图标。</p>\n',
-        'en-US':
-          '<p>You can also customize the front and rear icons of the text box through the <code>prefix</code> and <code>suffix</code> slots. </p>\n'
-      },
-      'codeFiles': ['prefix-suffix-slot.vue']
     },
     {
       'demoId': 'debounce',
@@ -87,30 +71,12 @@ export default {
     },
     {
       'demoId': 'hide-loading',
-      'name': { 'zh-CN': '隐藏加载图标', 'en-US': 'Hide the loading icon' },
+      'name': { 'zh-CN': '加载图标', 'en-US': 'Loading Icon' },
       'desc': {
         'zh-CN': '<p>设置 <code>hide-loading</code> 属性为 true ,可以隐藏加载图标。</p>\n',
         'en-US': '<p>Set <code>hide-loading</code> to true to hide the loading icon. </p>\n'
       },
       'codeFiles': ['hide-loading.vue']
-    },
-    {
-      'demoId': 'hide-loading1',
-      'name': { 'zh-CN': '输入框占位文本', 'en-US': 'Placeholder text in the text box' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>placeholder</code> 属性设置输入框占位文本。</p>\n',
-        'en-US': '<p>Use the <code>placeholder</code> attribute to set the placeholder text in the text box. </p>\n'
-      },
-      'codeFiles': ['hide-loading.vue']
-    },
-    {
-      'demoId': 'cust-template',
-      'name': { 'zh-CN': '自定义模板', 'en-US': 'Custom Template' },
-      'desc': {
-        'zh-CN': '<p>通过作用域插槽可以自定义输入建议模板。</p>\n',
-        'en-US': '<p>You can customize the input suggestion template through the scope slot. </p>\n'
-      },
-      'codeFiles': ['cust-template.vue']
     },
     {
       'demoId': 'remote-search',
@@ -123,7 +89,7 @@ export default {
     },
     {
       'demoId': 'value-key',
-      'name': { 'zh-CN': '指定显示的键名', 'en-US': 'Specify the key name to be displayed.' },
+      'name': { 'zh-CN': '显示的键名', 'en-US': 'Key Name to be displayed.' },
       'desc': {
         'zh-CN':
           '<p>输入内容后，建议列表中默认显示输入建议对象中 value 键名对应的值，若对象中没有 value 键名，就可以通过 <code>value-key</code> 属性指定显示的键名。</p>\n',
@@ -134,7 +100,7 @@ export default {
     },
     {
       'demoId': 'popper-class',
-      'name': { 'zh-CN': '自定义列表样式', 'en-US': 'Custom List Style' },
+      'name': { 'zh-CN': '列表样式', 'en-US': 'List Style' },
       'desc': {
         'zh-CN':
           '<p><code>popper-class</code> 属性可指定一个样式类名，可自定义建议列表的样式。\n<code>popper-append-to-body</code> 属性可设置是否将下拉列表插入至 body 元素。在下拉列表的定位出现问题时，可将该属性设置为 false。</p>\n',
@@ -145,18 +111,18 @@ export default {
     },
     {
       'demoId': 'placement',
-      'name': { 'zh-CN': '设置菜单弹出位置', 'en-US': 'Set menu pop-up position' },
+      'name': { 'zh-CN': '菜单弹出位置', 'en-US': 'Menu Pop-up Position' },
       'desc': {
         'zh-CN':
-          '<p><code>placement</code> 属性可以设置菜单弹出位置，默认为 <code>bottom-start</code>。可选值有 top、top-start、top-end、bottom、bottom-start、bottom-end 。</p>\n',
+          '<p><code>placement</code> 属性可以设置菜单弹出位置，默认为 <code>bottom-start</code>。</p>\n',
         'en-US':
-          '<p><code>placement</code> property can be used to set the menu pop-up position. The default value is <code>bottom-start</code>. The options are top, top-start, top-end, bottom, bottom-start, and bottom-end. </p>\n'
+          '<p><code>placement</code> property can be used to set the menu pop-up position. The default value is <code>bottom-start</code>. </p>\n'
       },
       'codeFiles': ['placement.vue']
     },
     {
       'demoId': 'highlight-first-item',
-      'name': { 'zh-CN': '高亮显示第一项', 'en-US': 'Highlight the first item' },
+      'name': { 'zh-CN': '第一项高亮', 'en-US': 'Highlight the first item' },
       'desc': {
         'zh-CN': '<p>设置 <code>highlight-first-item</code> 属性为 true ,可以突出显示远程搜索建议中的第一项。</p>\n',
         'en-US':
@@ -166,7 +132,7 @@ export default {
     },
     {
       'demoId': 'no-trigger-on-focus',
-      'name': { 'zh-CN': '聚焦不显示建议列表', 'en-US': 'Focus does not display the suggestion list' },
+      'name': { 'zh-CN': '触发', 'en-US': 'Trigger' },
       'desc': {
         'zh-CN':
           '<p>默认输入框聚焦就会显示全部的建议列表，但设置 <code>trigger-on-focus</code> 属性为 false 后只有在匹配到输入建议后才会显示匹配到的建议列表。</p>\n',
@@ -195,7 +161,7 @@ export default {
         {
           'name': 'clearable',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '是否可清空', 'en-US': 'Whether to clear data' },
           'demoId': 'clearable'
         },
@@ -204,47 +170,48 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框占位文本', 'en-US': 'Placeholder text in the text box' },
-          'demoId': 'hide-loading1'
+          'demoId': 'hide-loading'
         },
         {
           'name': 'disabled',
           'type': 'boolean',
           'defaultValue': '',
-          'desc': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
-          'demoId': 'disabled1'
+          'desc': { 'zh-CN': '是否禁用', 'en-US': 'Whether to disabled' },
+          'demoId': 'disabled'
         },
         {
           'name': 'value-key',
           'type': 'string',
-          'defaultValue': '',
+          'defaultValue': 'value',
           'desc': {
-            'zh-CN': '输入建议对象中用于显示的键名',
-            'en-US': 'Enter the key name for display in the suggestion object.'
+            'zh-CN': '在输入建议对象中，用于显示和匹配输入的键名',
+            'en-US': 'In the Input Suggestion object, key names for displaying and matching inputs'
           },
           'demoId': 'value-key'
         },
         {
-          'name': 'value',
+          'name': 'v-model',
           'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '必填值，输入绑定值', 'en-US': 'This parameter is mandatory. Enter a bound value.' },
-          'demoId': 'clearable'
+          'demoId': 'basic-usage'
         },
         {
           'name': 'debounce',
           'type': 'number',
-          'defaultValue': '该属性的默认值为 300',
+          'defaultValue': '300',
           'desc': { 'zh-CN': '获取输入建议的去抖延时', 'en-US': 'Obtain the recommended input dejitter delay.' },
           'demoId': 'debounce'
         },
         {
           'name': 'placement',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为 bottom-start',
+          'typeAnchorName': 'IAutocompletePlacement',
+          'type': 'IAutocompletePlacement',
+          'defaultValue': '"bottom-start"',
           'desc': {
-            'zh-CN': '菜单弹出位置;该属性的可选值为 top / top-start / top-end / bottom / bottom-start / bottom-end',
+            'zh-CN': '菜单弹出位置',
             'en-US':
-              'Menu pop-up position; The optional value of this attribute is top / top-start / top-end / bottom / bottom-start / bottom-end'
+              'Menu pop-up position'
           },
           'demoId': 'placement'
         },
@@ -253,25 +220,25 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': 'Autocomplete 下拉列表的类名',
+            'zh-CN': '下拉列表的类名',
             'en-US': 'Class name of the Autocomplete drop-down list box'
           },
           'demoId': 'popper-class'
         },
         {
           'name': 'size',
-          'type': 'string',
+          'type': '"medium" | "small" | "mini"',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置组件大小，可设置为：medium，small，mini',
-            'en-US': 'Set the component size. The value can be medium, small, or mini.'
+            'zh-CN': '设置组件大小',
+            'en-US': 'Set the component size.'
           },
           'demoId': 'size'
         },
         {
           'name': 'trigger-on-focus',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': {
             'zh-CN': '是否在输入框 focus 时显示建议列表',
             'en-US': 'Whether to display the suggestion list when the text box is focused'
@@ -282,13 +249,12 @@ export default {
           'name': 'name',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '原生属性', 'en-US': 'Native attribute' },
-          'demoId': 'clearable'
+          'desc': { 'zh-CN': 'input元素的原生属性', 'en-US': 'Native attributes of the input element' }
         },
         {
           'name': 'select-when-unmatched',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '在输入没有任何匹配建议的情况下，按下回车是否触发 select 事件',
             'en-US':
@@ -300,19 +266,19 @@ export default {
           'name': 'label',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '输入框关联的label文字', 'en-US': 'Label text associated with the text box' },
+          'desc': { 'zh-CN': '等价于原生 input aria-label 属性', 'en-US': 'Equiphorus input aria-label attribute' },
           'demoId': ''
         },
         {
           'name': 'prefix-icon',
-          'type': 'string',
+          'type': 'Component',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框头部图标', 'en-US': 'Icon on the header of the text box' },
           'demoId': 'custom-icon'
         },
         {
           'name': 'suffix-icon',
-          'type': 'string',
+          'type': 'Component',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框尾部图标', 'en-US': 'Icon at the end of the text box' },
           'demoId': 'custom-icon'
@@ -320,7 +286,7 @@ export default {
         {
           'name': 'hide-loading',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否隐藏远程加载时的加载图标',
             'en-US': 'Whether to hide the loading icon during remote loading'
@@ -330,7 +296,7 @@ export default {
         {
           'name': 'popper-append-to-body',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': {
             'zh-CN': '是否将下拉列表插入至 body 元素。在下拉列表的定位出现问题时，可将该属性设置为 false',
             'en-US':
@@ -340,19 +306,20 @@ export default {
         },
         {
           'name': 'fetch-suggestions',
-          'type': 'Function(queryString, callback)',
+          'typeAnchorName': 'IAutocompleteFetchSuggestions',
+          'type': 'IAutocompleteFetchSuggestions',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '返回输入建议的方法，仅当你的输入建议数据 resolve 时，通过调用 callback(data:[]) 来返回它',
+            'zh-CN': '返回输入建议的方法，仅当你的输入建议数据 resolve 时，通过调用 callback 来返回它',
             'en-US':
-              'This method is used to return input suggestions. It is returned by calling callback(data:[]) only when your input suggestions are resolved.'
+              'This method is used to return input suggestions. It is returned by calling callback only when your input suggestions are resolved.'
           },
           'demoId': 'remote-search'
         },
         {
           'name': 'highlight-first-item',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否默认突出显示远程搜索建议中的第一项',
             'en-US': 'Whether to highlight the first item in remote search suggestions by default'
@@ -363,10 +330,10 @@ export default {
       'events': [
         {
           'name': 'select',
-          'type': '',
+          'type': '(selection: object) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '点击选中建议项时触发。回调参数为：选中建议项',
+            'zh-CN': '点击选中建议项时触发。回调参数为选中建议项',
             'en-US':
               'This event is triggered when a suggestion item is selected. The callback parameter is: Selected Suggestions'
           },
@@ -379,30 +346,49 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框头部内容', 'en-US': 'Content in the text box header' },
-          'demoId': 'custom-icon'
+          'demoId': 'slot'
         },
         {
           'name': 'suffix',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框尾部内容', 'en-US': 'Content at the end of the text box' },
-          'demoId': 'custom-icon'
+          'demoId': 'slot'
         },
         {
           'name': 'prepend',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框前置内容', 'en-US': 'Pre-content in the text box' },
-          'demoId': 'append-prepend'
+          'demoId': 'slot'
         },
         {
           'name': 'append',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框后置内容', 'en-US': 'Content after the text box' },
-          'demoId': 'append-prepend'
+          'demoId': 'slot'
+        },
+        {
+          'name': 'default',
+          'type': '',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '下拉列表项插槽，插槽参数: arg: { slotScope: object }', 'en-US': 'Dropdown list item slot, slot parameters: arg: { slotScope: object }' },
+          'demoId': 'slot'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IAutocompletePlacement',
+      type: 'type',
+      code: `type IAutocompletePlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end"`
+    },
+    {
+      name: 'IAutocompleteFetchSuggestions',
+      type: 'type',
+      code: 'type IAutocompleteFetchSuggestions = (queryString: string, callback: (suggestions: object[]) => void) => void'
     }
   ]
 }

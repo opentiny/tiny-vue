@@ -7,7 +7,7 @@ export const tinyCheckboxButtonSmbTheme = {
   'ti-checkbox-button-right-border-radius': '6px',
   'ti-checkbox-button-left-border-radius': '6px',
   'ti-checkbox-button-border-radius': '6px',
-  'ti-checkbox-button-padding-horizontal': '16px',
+  'ti-checkbox-button-mini-padding-horizontal': '16px',
   'ti-checkbox-button-padding-vertical': '4px',
   'ti-checkbox-button-height': '24px',
   'ti-checkbox-button-margin-horizontal': '4px',

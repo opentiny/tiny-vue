@@ -32,7 +32,7 @@
           </div>
         </template>
         <template v-if="currJson.apis?.length > 0">
-          <div id="API" @click="handleApiClick($event)">
+          <div id="API">
             <h2 class="ti-f30 ti-fw-normal ti-mt28">API</h2>
             <!-- apis 是一个数组 {name,type,properties:[原table内容],events:[] ...........} -->
             <div class="mt20" v-for="(oneGroup, idx) in currJson.apis" :key="oneGroup.name">
@@ -77,7 +77,7 @@
                           <span v-else v-html="row.type"></span>
                         </td>
                         <td v-if="!key.includes('slots') && !key.includes('events')">
-                          <span v-html="row.defaultValue || '--'"></span>
+                          <span v-html="typeof row.defaultValue === 'string' ? row.defaultValue : row.defaultValue[langKey] || '--'"></span>
                         </td>
                         <td><span v-html="row.desc[langKey]"></span></td>
                       </tr>
@@ -313,16 +313,8 @@ export default defineComponent({
         } else {
           router.push(`#${demoId}`)
         }
-      },
-      handleApiClick: (ev) => {
-        if (ev.target.tagName === 'A') {
-          ev.preventDefault()
-          const href = ev.target.getAttribute('href')
-          const hash = $split(href, '#', -1)
-          router.push(href)
-          state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
-
-          scrollByHash(hash)
+        if (apiModeState.demoMode === 'single') {
+          state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)
         }
       },
       handleTypeClick: (ev) => {

@@ -2,7 +2,7 @@
   <tiny-checkbox-group v-model="checkList" type="checkbox" :options="options"></tiny-checkbox-group>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { CheckboxGroup as TinyCheckboxGroup, Modal } from '@opentiny/vue'
 

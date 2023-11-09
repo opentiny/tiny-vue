@@ -3,7 +3,7 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'grid_Example-shortcutMenu-header-menu',
+      'demoId': 'context-menu-header-menu',
       'name': { 'zh-CN': 'Grid-右键菜单-表头菜单', 'en-US': 'Grid-right-click menu-header menu' },
       'desc': {
         'zh-CN':
@@ -11,10 +11,10 @@ export default {
         'en-US':
           '<p>Configure the <code>:context-menu=&quot;{header: {options: headerMenus}, visibleMethod}&quot;</code> object to control the table header menu. In the \n<code>headerMenus</code>, configure <code>visible</code> whether to display the menu and <code>disabled</code> whether to disable the menu. \n The <code>visibleMethod</code> method can be used to control menu permissions. \n<code>@context-menu-click</code> monitoring menu click event. \nFor details, see the following example. </p>\n'
       },
-      'codeFiles': ['grid_Example/shortcutMenu/header-menu.vue']
+      'codeFiles': ['context-menu/header-menu.vue']
     },
     {
-      'demoId': 'grid_Example-shortcutMenu-footer-menu',
+      'demoId': 'context-menu-footer-menu',
       'name': { 'zh-CN': 'Grid-右键菜单-表尾菜单', 'en-US': 'Grid-right-click menu-table tail menu' },
       'desc': {
         'zh-CN':
@@ -22,10 +22,10 @@ export default {
         'en-US':
           '<p>The table footer menu can be displayed only when <code>:context-menu=&quot;{body: {options: bodyMenus}}&quot;</code>, show-footer, and <code>:footer-method=&quot;footerMethod&quot;</code> are configured. \nThe <code>:context-menu=&quot;{body: {options: bodyMenus}, footer: {options: footerMenus}, visibleMethod}&;</code> objects are configured to control the table header menu. In the \n<code>footerMenus</code>, configure <code>visible</code> whether to display the menu and <code>disabled</code> whether to disable the menu. \n The <code>visibleMethod</code> method can be used to control menu permissions. \n<code>@context-menu-click</code> monitoring menu click event. \nFor details, see the following example. </p>\n'
       },
-      'codeFiles': ['grid_Example/shortcutMenu/footer-menu.vue']
+      'codeFiles': ['context-menu/footer-menu.vue']
     },
     {
-      'demoId': 'grid_Example-shortcutMenu-cell-menu',
+      'demoId': 'context-menu-cell-menu',
       'name': { 'zh-CN': 'Grid-右键菜单-单元格菜单', 'en-US': 'Grid-right-click menu-cell menu' },
       'desc': {
         'zh-CN':
@@ -33,10 +33,10 @@ export default {
         'en-US':
           '<p>Configure the <code>context-menu=&quot;{body: {options: bodyMenus}, visibleMethod}&quot;</code> object to control the cell menu. In \n<code>bodyMenus</code>, set <code>visible</code> to display menus and <code>disabled</code> to disable menus. \n The <code>visibleMethod</code> method can be used to control menu permissions. Event triggered before the \n<code>@cell-context-menu</code> monitoring menu is displayed. \n<code>@context-menu-click</code> monitoring menu click event. \nFor details, see the following example. </p>\n'
       },
-      'codeFiles': ['grid_Example/shortcutMenu/cell-menu.vue']
+      'codeFiles': ['context-menu/cell-menu.vue']
     },
     {
-      'demoId': 'grid_Example-shortcutMenu-menu-permissions',
+      'demoId': 'context-menu-menu-permissions',
       'name': { 'zh-CN': 'Grid-右键菜单-菜单权限', 'en-US': 'Grid-Right-click Menu-Menu Permission' },
       'desc': {
         'zh-CN':
@@ -44,7 +44,7 @@ export default {
         'en-US':
           '<p>Configure the <code>:context-menu=&quot;{header: {options: headerMenus},body: {options: bodyMenus}, footer: {options: footerMenus},visibleMethod}&quot;</code> object to control the table header menu. \n<code>header, bodyMenus, footer</code>: <code>visible</code> indicates whether to display menus and <code>disabled</code> indicates whether to disable menus. \nUse the <code>visibleMethod</code> method to control menu permissions. Event triggered before the \n<code>@cell-context-menu</code> monitoring menu is displayed. \n<code>@context-menu-click</code> monitoring menu click event. \nFor details, see the following example. </p>\n'
       },
-      'codeFiles': ['grid_Example/shortcutMenu/menu-permissions.vue']
+      'codeFiles': ['context-menu/menu-permissions.vue']
     }
   ],
   apis: [{ 'name': 'grid-context-menu', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
