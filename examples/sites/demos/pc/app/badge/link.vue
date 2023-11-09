@@ -6,6 +6,12 @@
   </div>
 </template>
 
-<script setup lang="jsx">
-import { Badge as TinyBadge } from '@opentiny/vue'
+<script>
+import { Badge } from '@opentiny/vue'
+
+export default {
+  components: {
+    TinyBadge: Badge
+  }
+}
 </script>

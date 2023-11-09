@@ -1,8 +1,8 @@
 <template>
-  <tiny-badge :value="2">我的待办</tiny-badge>
+  <tiny-badge :value="2" data="我的待办"></tiny-badge>
 </template>
 
-<script lang="jsx">
+<script>
 import { Badge } from '@opentiny/vue'
 
 export default {

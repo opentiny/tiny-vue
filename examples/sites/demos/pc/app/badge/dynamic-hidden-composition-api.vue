@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Badge as TinyBadge, Button as TinyButton } from '@opentiny/vue'
 
