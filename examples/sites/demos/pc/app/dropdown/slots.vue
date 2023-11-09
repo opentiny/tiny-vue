@@ -1,7 +1,9 @@
 <template>
-  <tiny-dropdown @visible-change="visibleChange">
+  <tiny-dropdown>
     <span>默认插槽</span>
-
+    <template #suffix-icon>
+      <tiny-icon-ascending></tiny-icon-ascending>
+    </template>
     <template #dropdown>
       <tiny-dropdown-menu>
         <tiny-dropdown-item>黄金糕</tiny-dropdown-item>
@@ -15,7 +17,7 @@
 </template>
 
 <script>
-import { iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
+import { iconAscending } from '@opentiny/vue-icon'
 import { Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
 
 export default {
@@ -23,18 +25,7 @@ export default {
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,
     TinyDropdownItem: DropdownItem,
-    IconChevronDown: iconChevronDown(),
-    IconChevronUp: iconChevronUp()
-  },
-  data() {
-    return {
-      visible: false
-    }
-  },
-  methods: {
-    visibleChange(status) {
-      this.visible = status
-    }
+    TinyIconAscending: iconAscending()
   }
 }
 </script>

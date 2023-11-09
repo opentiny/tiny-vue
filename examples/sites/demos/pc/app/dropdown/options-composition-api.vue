@@ -1,22 +1,23 @@
 <template>
   <div>
+    <p>场景1：使用 menu-options 属性配置 tiny-dropdown</p>
+    <tiny-dropdown :menu-options="menuOptions"></tiny-dropdown>
+    <p>场景2：使用 menu-options 和 title 属性配置 tiny-dropdown</p>
+    <tiny-dropdown :menu-options="menuOptions" title="点击下拉" @item-click="itemClick"></tiny-dropdown>
+    <p>场景3：使用 menu-options 和 text-field 属性配置 tiny-dropdown</p>
+    <tiny-dropdown :menu-options="menuOptions1" text-field="name"></tiny-dropdown>
+    <p>场景4：使用 options 属性配置 tiny-dropdown-menu</p>
     <tiny-dropdown>
       <template #dropdown>
         <tiny-dropdown-menu :options="options"> </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
-
+    <p>场景5：使用 options 和 text-field 属性配置 tiny-dropdown-menu</p>
     <tiny-dropdown>
       <template #dropdown>
         <tiny-dropdown-menu :options="options1" text-field="name"> </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
-
-    <tiny-dropdown :menu-options="menuOptions" title="点击下拉" @item-click="itemClick"></tiny-dropdown>
-
-    <tiny-dropdown :menu-options="menuOptions"></tiny-dropdown>
-
-    <tiny-dropdown :menu-options="menuOptions1" text-field="name"></tiny-dropdown>
   </div>
 </template>
 
@@ -102,8 +103,9 @@ function itemClick(data) {
 }
 </script>
 
-<style scoped>
-.tiny-dropdown {
-  margin-right: 20px;
+<style lang="less" scoped>
+p {
+  line-height: 1.5;
+  font-size: 14px;
 }
 </style>
