@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <tiny-tag v-for="tag in tags" :key="'tiny-tag1-' + tag.name" closable :type="tag.type" @close="handleClose1(tag)">
-      {{ tag.name }}
-    </tiny-tag>
+  <div class="tiny-tag-demo">
+    <tiny-tag v-for="tag in tags" :key="'tiny-tag1-' + tag.name" closable :type="tag.type" @close="handleClose(tag)">{{
+      tag.name
+    }}</tiny-tag>
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
     }
   },
   methods: {
-    handleClose1(tag) {
+    handleClose(tag) {
       this.tags.splice(this.tags.indexOf(tag), 1)
       Modal.message('close 事件')
     }

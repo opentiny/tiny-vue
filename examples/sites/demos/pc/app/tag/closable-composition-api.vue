@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <tiny-tag v-for="tag in tags" :key="'tiny-tag1-' + tag.name" closable :type="tag.type" @close="handleClose1(tag)">{{
+  <div class="tiny-tag-demo">
+    <tiny-tag v-for="tag in tags" :key="'tiny-tag1-' + tag.name" closable :type="tag.type" @close="handleClose(tag)">{{
       tag.name
     }}</tiny-tag>
   </div>
@@ -8,7 +8,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tag as TinyTag } from '@opentiny/vue'
+import { Tag as TinyTag, Modal } from '@opentiny/vue'
 
 const tags = ref([
   { name: '标签一', type: '' },
@@ -18,13 +18,8 @@ const tags = ref([
   { name: '标签五', type: 'danger' }
 ])
 
-function handleClose1(tag) {
+function handleClose(tag) {
   tags.value.splice(tags.value.indexOf(tag), 1)
+  Modal.message('close 事件')
 }
 </script>
-
-<style scoped>
-.tiny-tag + .tiny-tag {
-  margin-left: 10px;
-}
-</style>

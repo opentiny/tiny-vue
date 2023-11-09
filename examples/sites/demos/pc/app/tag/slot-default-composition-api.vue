@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="tiny-tag-demo">
     <tiny-tag size="small" :disabled="disabled" class="first">
       <tiny-icon-fileupload class="tiny-svg-size left" />标签 <tiny-icon-chevron-right class="tiny-svg-size right" />
     </tiny-tag>
@@ -24,9 +24,6 @@ const TinyIconChevronRight = iconChevronRight()
 </script>
 
 <style scoped>
-.tiny-tag {
-  margin-right: 10px;
-}
 .first {
   color: #a25203;
 }

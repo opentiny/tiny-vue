@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test'
 
-test('close 事件触发弹窗并移除元素', async ({ page }) => {
+test('是否正常移除标签', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('tag#tag-event-close')
+  await page.goto('tag#closable')
 
   const first = page.locator('.tiny-tag').filter({ hasText: '标签一' })
   const close = first.locator('.tiny-tag__close')
