@@ -1,36 +1,19 @@
 <template>
-  <tiny-grid
-    :data="tableData"
-    @edit-actived="editActive"
-    seq-serial
-    :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
-  >
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="名称" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
-    <tiny-grid-column field="area" title="区域" :editor="{ component: 'select', options }"></tiny-grid-column>
-    <tiny-grid-column
-      field="address"
-      title="地址"
-      :editor="{ component: 'input', autoselect: true }"
-    ></tiny-grid-column>
-    <tiny-grid-column
-      field="introduction"
-      title="公司简介"
-      :editor="{ component: 'input', autoselect: true }"
-      show-overflow="ellipsis"
-    ></tiny-grid-column>
-  </tiny-grid>
+  <div>
+    <tiny-grid :data="tableData" @cell-mouseenter="cellMouseenterEvent">
+      <tiny-grid-column type="index" title="序号" width="100"></tiny-grid-column>
+      <tiny-grid-column field="name" title="名称"></tiny-grid-column>
+      <tiny-grid-column field="area" title="区域"></tiny-grid-column>
+      <tiny-grid-column field="address" title="地址"></tiny-grid-column>
+      <tiny-grid-column field="introduction" show-overflow title="公司简介"></tiny-grid-column>
+    </tiny-grid>
+  </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
 
-const options = ref([
-  { label: '华北区', value: '华北区' },
-  { label: '华东区', value: '华东区' },
-  { label: '华南区', value: '华南区' }
-])
 const tableData = ref([
   {
     id: '1',
@@ -41,7 +24,7 @@ const tableData = ref([
   },
   {
     id: '2',
-    name: 'WWWW科技YX公司',
+    name: 'WWW科技YX公司',
     area: '华南区',
     address: '深圳福田区',
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
@@ -55,9 +38,9 @@ const tableData = ref([
   },
   {
     id: '4',
-    name: 'TGBYX公司',
-    area: '华北区',
-    address: '梅州',
+    name: 'TGB科技YX公司',
+    area: '华东区',
+    address: '龙岩',
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
@@ -69,17 +52,33 @@ const tableData = ref([
   },
   {
     id: '6',
-    name: '康康物业YX公司',
-    area: '华北区',
-    address: '广州天河区',
+    name: 'WSX科技YX公司',
+    area: '华中区',
+    address: '黄冈',
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
   }
 ])
 
-function editActive() {
+const cellMouseenterEvent = ({ column }) => {
   Modal.message({
-    message: '激活编辑事件',
+    message: `鼠标进入单元格${column.title}`,
+    status: 'info'
+  })
+}
+
+const cellMouseleaveEvent = ({ column }) => {
+  Modal.message({
+    message: `鼠标离开单元格${column.title}`,
     status: 'info'
   })
 }
 </script>
+
+<style scoped>
+.customizedBox .type__input {
+  display: inline;
+}
+.tiny-grid .customizedBox .tiny-grid-input__wrapper .tiny-grid-input {
+  width: 100px;
+}
+</style>

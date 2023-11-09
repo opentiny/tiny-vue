@@ -45,7 +45,7 @@ export default {
         city: '福州',
         employees: 800,
         createdDate: '2014-04-30 00:56:00',
-        boole: false
+        boole: true
       },
       {
         id: '2',
@@ -53,7 +53,7 @@ export default {
         city: '深圳',
         employees: 300,
         createdDate: '2016-07-08 12:36:22',
-        boole: true
+        boole: false
       },
       {
         id: '3',
@@ -85,7 +85,7 @@ export default {
         city: '黄冈',
         employees: 800,
         createdDate: '2011-11-11 11:11:11',
-        boole: true
+        boole: false
       },
       {
         id: '7',
@@ -98,7 +98,7 @@ export default {
       {
         id: '8',
         name: '深圳市福德宝网络技术YX公司',
-        boole: true,
+        boole: false,
         city: '厦门',
         createdDate: '2016-06-03 13:53:25',
         employees: 540

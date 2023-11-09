@@ -2,15 +2,14 @@
   <div>
     <tiny-grid
       :data="tableData"
+      @header-cell-click="headerCellClickEvent"
+      @header-cell-dblclick="headerCellDBLClickEvent"
+      @cell-click="cellClickEvent"
+      @cell-dblclick="cellDBLClickEvent"
       @footer-cell-click="footerClick"
-      :context-menu="{
-        body: { options: bodyMenus },
-        footer: { options: footerMenus },
-        visibleMethod
-      }"
+      @footer-cell-dblclick="footerCellDbClick"
       show-footer
       :footer-method="footerMethod"
-      @context-menu-click="contextMenuClickEvent"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称"></tiny-grid-column>
@@ -22,7 +21,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn, Modal } from '@opentiny/vue'
 
 export default {
@@ -32,43 +31,6 @@ export default {
   },
   data() {
     return {
-      bodyMenus: [
-        [
-          {
-            code: 'remove',
-            name: '删除'
-          },
-          {
-            code: 'filter',
-            name: '筛选'
-          },
-          {
-            code: 'sort',
-            name: '排序'
-          },
-          {
-            code: 'print',
-            name: '打印',
-            disabled: true
-          }
-        ]
-      ],
-      footerMenus: [
-        [
-          {
-            code: 'clearAll',
-            name: '清空数据',
-            visible: true,
-            disabled: false
-          },
-          {
-            code: 'deletAll',
-            name: '删除数据',
-            visible: true,
-            disabled: false
-          }
-        ]
-      ],
       tableData: [
         {
           id: '1',
@@ -164,8 +126,29 @@ export default {
     }
   },
   methods: {
+    headerCellClickEvent({ column }) {
+      Modal.message({
+        message: `表头单元格点击${column.title}`,
+        status: 'info'
+      })
+    },
+    cellClickEvent({ column }) {
+      Modal.message({ message: `单元格点击${column.title}`, status: 'info' })
+    },
+    cellDBLClickEvent({ column }) {
+      Modal.message({ message: `单元格双击${column.title}`, status: 'info' })
+    },
+    headerCellDBLClickEvent({ column }) {
+      Modal.message({
+        message: `表头单元格双击${column.title}`,
+        status: 'info'
+      })
+    },
     footerClick(a) {
       Modal.message({ message: `${a.columnIndex}`, status: 'info' })
+    },
+    footerCellDbClick() {
+      Modal.alert('触发表尾双击点击事件')
     },
     footerMethod({ columns, data }) {
       return [
@@ -187,33 +170,6 @@ export default {
           return null
         })
       ]
-    },
-    visibleMethod({ options, column }) {
-      const isVisible =
-        column && (column.property === 'name' || column.property === 'area' || column.property === 'telephone')
-      const isDisabled = !column || column.property !== 'area'
-
-      options.forEach((list) => {
-        list.forEach((item) => {
-          if (~['deletAll'].indexOf(item.code)) {
-            item.disabled = isDisabled
-          }
-          item.visible = isVisible
-        })
-      })
-
-      return true
-    },
-    contextMenuClickEvent({ menu, row, column }) {
-      switch (menu.code) {
-        case 'copy':
-          if (row && column) {
-            Modal.alert(`copy ${row}`)
-          }
-          break
-        default:
-          Modal.alert(`点击了 ${menu.name} 选项`)
-      }
     }
   }
 }

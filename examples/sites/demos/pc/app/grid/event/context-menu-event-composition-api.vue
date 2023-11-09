@@ -2,9 +2,9 @@
   <div>
     <tiny-grid
       :data="tableData"
-      @footer-cell-click="footerCellClick"
       @footer-cell-context-menu="footerMenuClick"
       :context-menu="{
+        header: { options: headerMenus },
         body: { options: bodyMenus },
         footer: { options: footerMenus },
         visibleMethod
@@ -23,9 +23,26 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
+
+const headerMenus = ref([
+  [
+    {
+      code: 'exportAll',
+      name: '导出所有.csv',
+      visible: true,
+      disabled: false
+    },
+    {
+      code: 'importAll',
+      name: '导入所有.csv',
+      visible: true,
+      disabled: false
+    }
+  ]
+])
 
 const bodyMenus = ref([
   [
@@ -157,16 +174,16 @@ const tableData = ref([
   }
 ])
 
-function footerMenuClick() {
+const headerMenuClick = () => {
   Modal.message({
-    message: '触发表尾右键点击事件',
+    message: '触发表头右键点击事件',
     status: 'info'
   })
 }
 
-function footerCellClick() {
+function footerMenuClick() {
   Modal.message({
-    message: '触发表尾左键点击事件',
+    message: '触发表尾右键点击事件',
     status: 'info'
   })
 }

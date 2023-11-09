@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-grid @select-all="selectAll" :data="tableData" resizable>
+    <tiny-grid @select-all="selectAll" @select-change="selectChange" :data="tableData" resizable>
       <tiny-grid-column type="selection" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称"></tiny-grid-column>
       <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
@@ -22,6 +22,12 @@ export default {
     selectAll() {
       Modal.message({
         message: '触发全选事件',
+        status: 'info'
+      })
+    },
+    selectChange() {
+      Modal.message({
+        message: '选项改变了',
         status: 'info'
       })
     }

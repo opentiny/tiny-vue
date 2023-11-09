@@ -1,13 +1,27 @@
 <template>
-  <div>
-    <tiny-grid @select-change="selectChange" :data="tableData" resizable>
-      <tiny-grid-column type="selection" width="60"></tiny-grid-column>
-      <tiny-grid-column field="name" title="名称"></tiny-grid-column>
-      <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
-      <tiny-grid-column field="address" title="地址"></tiny-grid-column>
-      <tiny-grid-column field="introduction" title="公司简介" show-overflow></tiny-grid-column>
-    </tiny-grid>
-  </div>
+  <tiny-grid
+    :data="tableData"
+    @edit-actived="editActive"
+    @edit-closed="editClosed"
+    @edit-disabled="editDisabled"
+    seq-serial
+    :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true, activeMethod }"
+  >
+    <tiny-grid-column type="index" width="60"></tiny-grid-column>
+    <tiny-grid-column field="name" title="名称" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
+    <tiny-grid-column field="area" title="区域" :editor="{ component: 'select', options }"></tiny-grid-column>
+    <tiny-grid-column
+      field="address"
+      title="地址"
+      :editor="{ component: 'input', autoselect: true }"
+    ></tiny-grid-column>
+    <tiny-grid-column
+      field="introduction"
+      title="公司简介"
+      :editor="{ component: 'input', autoselect: true }"
+      show-overflow="ellipsis"
+    ></tiny-grid-column>
+  </tiny-grid>
 </template>
 
 <script>
@@ -19,15 +33,35 @@ export default {
     TinyGridColumn: GridColumn
   },
   methods: {
-    selectChange() {
+    editActive() {
       Modal.message({
-        message: '选项改变了',
+        message: '激活编辑事件',
+        status: 'info'
+      })
+    },
+    editClosed() {
+      Modal.message({
+        message: '触发关闭编辑事件',
+        status: 'info'
+      })
+    },
+    activeMethod({ row }) {
+      return row.area !== '华东区'
+    },
+    editDisabled() {
+      Modal.message({
+        message: '激活editDisable事件',
         status: 'info'
       })
     }
   },
   data() {
     return {
+      options: [
+        { label: '华北区', value: '华北区' },
+        { label: '华东区', value: '华东区' },
+        { label: '华南区', value: '华南区' }
+      ],
       tableData: [
         {
           id: '1',

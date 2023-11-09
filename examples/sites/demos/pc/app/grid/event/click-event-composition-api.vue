@@ -2,15 +2,14 @@
   <div>
     <tiny-grid
       :data="tableData"
+      @header-cell-click="headerCellClickEvent"
+      @header-cell-dblclick="headerCellDBLClickEvent"
+      @cell-click="cellClickEvent"
+      @cell-dblclick="cellDBLClickEvent"
       @footer-cell-click="footerClick"
-      :context-menu="{
-        body: { options: bodyMenus },
-        footer: { options: footerMenus },
-        visibleMethod
-      }"
-      show-footer
+      @footer-cell-dblclick="footerCellDbClick"
       :footer-method="footerMethod"
-      @context-menu-click="contextMenuClickEvent"
+      show-footer
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称"></tiny-grid-column>
@@ -22,47 +21,10 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
 
-const bodyMenus = ref([
-  [
-    {
-      code: 'remove',
-      name: '删除'
-    },
-    {
-      code: 'filter',
-      name: '筛选'
-    },
-    {
-      code: 'sort',
-      name: '排序'
-    },
-    {
-      code: 'print',
-      name: '打印',
-      disabled: true
-    }
-  ]
-])
-const footerMenus = ref([
-  [
-    {
-      code: 'clearAll',
-      name: '清空数据',
-      visible: true,
-      disabled: false
-    },
-    {
-      code: 'deletAll',
-      name: '删除数据',
-      visible: true,
-      disabled: false
-    }
-  ]
-])
 const tableData = ref([
   {
     id: '1',
@@ -156,11 +118,37 @@ const tableData = ref([
   }
 ])
 
-function footerClick(a) {
-  Modal.message({ message: `${a.columnIndex}`, status: 'info' })
+const headerCellClickEvent = ({ column }) => {
+  Modal.message({
+    message: `表头单元格点击${column.title}`,
+    status: 'info'
+  })
 }
 
-function footerMethod({ columns, data }) {
+const cellClickEvent = ({ column }) => {
+  Modal.message({ message: `单元格点击${column.title}`, status: 'info' })
+}
+
+const cellDBLClickEvent = ({ column }) => {
+  Modal.message({ message: `单元格双击${column.title}`, status: 'info' })
+}
+
+const headerCellDBLClickEvent = ({ column }) => {
+  Modal.message({
+    message: `表头单元格双击${column.title}`,
+    status: 'info'
+  })
+}
+
+const footerClick = ({ columnIndex }) => {
+  Modal.message({ message: `${columnIndex}`, status: 'info' })
+}
+
+const footerCellDbClick = () => {
+  Modal.alert('触发表尾双击点击事件')
+}
+
+const footerMethod = ({ columns, data }) => {
   return [
     columns.map((column, columnIndex) => {
       if (columnIndex === 1) {
@@ -180,34 +168,5 @@ function footerMethod({ columns, data }) {
       return null
     })
   ]
-}
-
-function visibleMethod({ options, column }) {
-  const isVisible =
-    column && (column.property === 'name' || column.property === 'area' || column.property === 'telephone')
-  const isDisabled = !column || column.property !== 'area'
-
-  options.forEach((list) => {
-    list.forEach((item) => {
-      if (~['deletAll'].indexOf(item.code)) {
-        item.disabled = isDisabled
-      }
-      item.visible = isVisible
-    })
-  })
-
-  return true
-}
-
-function contextMenuClickEvent({ menu, row, column }) {
-  switch (menu.code) {
-    case 'copy':
-      if (row && column) {
-        Modal.alert(`copy ${row}`)
-      }
-      break
-    default:
-      Modal.alert(`点击了 ${menu.name} 选项`)
-  }
 }
 </script>

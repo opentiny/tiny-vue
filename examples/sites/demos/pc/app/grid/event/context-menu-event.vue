@@ -2,8 +2,10 @@
   <div>
     <tiny-grid
       :data="tableData"
-      @footer-cell-dblclick="footerCellDbClick"
+      @header-cell-context-menu="headerMenuClick"
+      @footer-cell-context-menu="footerMenuClick"
       :context-menu="{
+        header: { options: headerMenus },
         body: { options: bodyMenus },
         footer: { options: footerMenus },
         visibleMethod
@@ -22,8 +24,8 @@
   </div>
 </template>
 
-<script lang="jsx">
-import { Grid, GridColumn, Modal as TinyModal } from '@opentiny/vue'
+<script>
+import { Grid, GridColumn, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -32,6 +34,22 @@ export default {
   },
   data() {
     return {
+      headerMenus: [
+        [
+          {
+            code: 'exportAll',
+            name: '导出所有.csv',
+            visible: true,
+            disabled: false
+          },
+          {
+            code: 'importAll',
+            name: '导入所有.csv',
+            visible: true,
+            disabled: false
+          }
+        ]
+      ],
       bodyMenus: [
         [
           {
@@ -164,8 +182,17 @@ export default {
     }
   },
   methods: {
-    footerCellDbClick() {
-      TinyModal.alert('触发表尾双击点击事件')
+    headerMenuClick() {
+      Modal.message({
+        message: '触发表头右键点击事件',
+        status: 'info'
+      })
+    },
+    footerMenuClick() {
+      Modal.message({
+        message: '触发表尾右键点击事件',
+        status: 'info'
+      })
     },
     footerMethod({ columns, data }) {
       return [
@@ -198,7 +225,6 @@ export default {
           if (~['deletAll'].indexOf(item.code)) {
             item.disabled = isDisabled
           }
-
           item.visible = isVisible
         })
       })
@@ -209,11 +235,11 @@ export default {
       switch (menu.code) {
         case 'copy':
           if (row && column) {
-            TinyModal.alert(`copy ${row}`)
+            Modal.alert(`copy ${row}`)
           }
           break
         default:
-          TinyModal.alert(`点击了 ${menu.name} 选项`)
+          Modal.alert(`点击了 ${menu.name} 选项`)
       }
     }
   }

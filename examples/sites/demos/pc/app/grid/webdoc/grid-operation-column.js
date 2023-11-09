@@ -4,7 +4,7 @@ export default {
   demos: [
     {
       'demoId': 'operation-column-clear-and-set-radio-row',
-      'name': { 'zh-CN': '单元项操作', 'en-US': 'Basic Usage' },
+      'name': { 'zh-CN': '单选项操作', 'en-US': 'Basic Usage' },
       'desc': {
         'zh-CN':
           '<p>表格列属性设置 <code>type=&quot;radio&quot;</code> 显示单选列。<code>setRadioRow(row)</code> 用于单选行，设置某一行为选中状态。<code>clearRadioRow(row)</code> 用于取消单选行的选中。</p>\n',
