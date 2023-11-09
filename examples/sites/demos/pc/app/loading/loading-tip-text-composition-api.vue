@@ -1,21 +1,21 @@
 <template>
-  <div id="boxone"></div>
+  <div id="tiny-demo-loading-tip-text"></div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { onMounted } from 'vue'
 import { Loading } from '@opentiny/vue'
 
 onMounted(() => {
   Loading.service({
     text: '加载中',
-    target: document.getElementById('boxone')
+    target: document.getElementById('tiny-demo-loading-tip-text')
   })
 })
 </script>
 
 <style scoped>
-#boxone {
+#tiny-demo-loading-tip-text {
   height: 120px;
 }
 </style>
