@@ -27,9 +27,7 @@ import type {
 export type IDropdownItemVm = ComponentPublicInstance & {
   type: string
   toggle: (value: boolean, options?: object) => void
-  state: {
-    showPopup: boolean
-  }
+  state: IDropdownItemState
 } & IDropdownItemProps
 
 export type IDropdownItemProps = ExtractPropTypes<typeof dropdownItemProps>
