@@ -77,7 +77,7 @@
                           <span v-else v-html="row.type"></span>
                         </td>
                         <td v-if="!key.includes('slots') && !key.includes('events')">
-                          <span v-html="row.defaultValue || '--'"></span>
+                          <span v-html="typeof row.defaultValue === 'string' ? row.defaultValue : row.defaultValue[langKey] || '--'"></span>
                         </td>
                         <td><span v-html="row.desc[langKey]"></span></td>
                       </tr>
