@@ -171,8 +171,14 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      // 每次切换路由，要导航到顶部
-      routerCbDestory = router.afterEach(() => {
+      // 每次切换路由，有锚点则跳转到锚点，否则导航到顶部
+      routerCbDestory = router.afterEach((to) => {
+        if (to.hash) {
+          const el = document.querySelector(to.hash)
+          if (el) {
+            return el.scrollIntoView()
+          }
+        }
         state.contentRef.scrollTo({ top: 0, behavior: 'auto' })
       })
 

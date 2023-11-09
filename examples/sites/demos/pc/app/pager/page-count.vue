@@ -2,7 +2,7 @@
   <tiny-pager layout="prev, pager, next" :page-count="200"></tiny-pager>
 </template>
 
-<script lang="jsx">
+<script>
 import { Pager } from '@opentiny/vue'
 
 export default {

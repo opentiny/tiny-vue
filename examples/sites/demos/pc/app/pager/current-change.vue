@@ -1,16 +1,16 @@
 <template>
   <tiny-pager
-    @size-change="handleSizeChange"
-    :current-page="currentPage"
-    @update:current-page="currentPage = $event"
     :page-size="100"
     layout="total, sizes, prev, pager, next"
     :total="1000"
+    :current-page="currentPage"
+    @update:current-page="currentPage = $event"
+    @current-change="handleCurrentChange"
   >
   </tiny-pager>
 </template>
 
-<script lang="jsx">
+<script>
 import { Pager, Modal } from '@opentiny/vue'
 
 export default {
@@ -23,9 +23,9 @@ export default {
     }
   },
   methods: {
-    handleSizeChange(val) {
+    handleCurrentChange(val) {
       Modal.message({
-        message: `size-change 事件，每页 ${val} 条`,
+        message: `current-change 事件，当前页: ${val}`,
         status: 'info'
       })
     }
