@@ -54,5 +54,5 @@ export default {
       'codeFiles': ['nested-table/toggle-row-expansion.vue']
     }
   ],
-  apis: [{ 'name': 'grid-nested-grid', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-nested-table', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
 }

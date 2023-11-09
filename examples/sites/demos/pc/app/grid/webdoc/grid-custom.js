@@ -25,7 +25,7 @@ export default {
       'codeFiles': ['custom/column-simple.vue']
     },
     {
-      'demoId': 'custom-resetResizable',
+      'demoId': 'custom-reset-resizable',
       'name': { 'zh-CN': '手动重置列操作', 'en-US': 'Sort' },
       'desc': {
         'zh-CN':
@@ -33,7 +33,7 @@ export default {
         'en-US':
           '<p>Configure <code>sortable</code> on the <code>column</code> label to sort data. (For columns that are not configured, the sorting icon in the personalization panel is hidden.) and configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings. Sort the settings in the personalized panel. The sorting results are saved in the local <code>localStroage</code>. Refresh the page. The sorted data is displayed on the page.</p>\n'
       },
-      'codeFiles': ['custom/resetResizable.vue']
+      'codeFiles': ['custom/reset-resizable.vue']
     },
     {
       'demoId': 'custom-column-sort',

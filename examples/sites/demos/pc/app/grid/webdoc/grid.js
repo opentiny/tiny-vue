@@ -888,7 +888,7 @@ export default {
             'zh-CN': '手动清空展开行状态，数据会恢复成未展开的状态',
             'en-US': 'Manually clear the expanded row status. The data will be restored to the unexpanded state.'
           },
-          'demoId': 'grid-nested-grid#nested-grid-nested-grid'
+          'demoId': 'grid-nested-table#nested-table-nested-grid'
         },
         {
           'name': 'clearScroll()',
@@ -1150,7 +1150,7 @@ export default {
             'en-US':
               'Obtains columns in the current table. (full table header column, full table header column after processing condition, table header column in current rendering)'
           },
-          'demoId': 'grid-data-source#tiny-first-menu-static-data'
+          'demoId': 'grid-custom#custom-hide-column.vue'
         },
         {
           'name': 'getTableData()',
@@ -1162,21 +1162,21 @@ export default {
             'en-US':
               'Obtains data in the current table. (complete table body data, full table body data after processing conditions, table body data in the current rendering, table tail data in the current rendering)'
           },
-          'demoId': 'grid-data-source#tiny-first-menu-static-data'
+          'demoId': 'grid-toolbar#toolbar-clear-data'
         },
         {
           'name': 'getUpdateRecords()',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '获取已修改的数据', 'en-US': 'Obtain modified data' },
-          'demoId': 'grid-toolbar#tiny-first-menu-insert-delete-update'
+          'demoId': 'grid-toolbar#toolbar-insert-delete-update'
         },
         {
           'name': 'handleFetch()',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '触发表格的fetch-data', 'en-US': 'Fetch-data of the trigger table' },
-          'demoId': 'grid-data-source#tiny-first-menu-request-service'
+          'demoId': 'grid-data-source#data-source-request-service'
         },
         {
           'name': 'hasActiveRow(row)',
@@ -1186,7 +1186,7 @@ export default {
             'zh-CN': '检查行是否已激活为编辑状态',
             'en-US': 'Check whether the row has been activated and is in the editing state.'
           },
-          'demoId': 'grid-edit#tiny-first-menu-trigger-mode-for-editing'
+          'demoId': 'grid-edit#edit-trigger-mode-for-editing'
         },
         {
           'name': 'hasRowChange(row, field)',
@@ -1196,28 +1196,28 @@ export default {
             'zh-CN': '检查行或列数据是否发生改变',
             'en-US': 'Check whether the row or column data is changed.'
           },
-          'demoId': 'grid-edit#tiny-first-menu-row-editing'
+          'demoId': 'grid-edit#edit-has-row-change'
         },
         {
           'name': 'hasRowExpand(row)',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '检查行是否已展开', 'en-US': 'Check whether the row is expanded.' },
-          'demoId': 'grid-nested-grid#grid_Example-nestedGrid'
+          'demoId': 'grid-nested-table#nested-table-has-row-expand'
         },
         {
           'name': 'hasTreeExpand(row)',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '检查树节点是否已展开', 'en-US': 'Check whether the tree node is expanded.' },
-          'demoId': 'grid-tree-grid#tree-table-hasTreeExpand'
+          'demoId': 'grid-tree-table#tree-table-has-tree-expand'
         },
         {
           'name': 'hideColumn(column)',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '隐藏指定列', 'en-US': 'Hide a specified column.' },
-          'demoId': 'grid-customized#custom-column-visible-hidden'
+          'demoId': 'grid-custom#custom-hide-column'
         },
         {
           'name': 'insert(records)',
@@ -1228,7 +1228,7 @@ export default {
             'en-US':
               'Add data to the table.; Insert data into the table, add one or more rows of data from the first row'
           },
-          'demoId': 'grid-toolbar#tiny-first-menu-insert-delete-update'
+          'demoId': 'grid-toolbar#toolbar-insert-delete-update'
         },
         {
           'name': 'insertAt(records, row)',
@@ -1240,7 +1240,7 @@ export default {
             'en-US':
               'Inserts one or more rows into a table. Second parameter: row specified position (tree tables are not supported), null inserted from the first row, and –1 inserted from the last row'
           },
-          'demoId': 'grid-toolbar#tiny-first-menu-insert-delete-update'
+          'demoId': 'grid-toolbar#toolbar-insert-delete-update'
         },
         {
           'name': 'loadColumn(columns)',
@@ -1273,7 +1273,7 @@ export default {
             'en-US':
               'Recalculate the table. (This may be used in some special scenarios, such as hidden tables and column width update.)'
           },
-          'demoId': 'grid-size#recalculate'
+          'demoId': 'grid-size#size-recalculate'
         },
         {
           'name': 'refreshColumn()',
@@ -1284,7 +1284,7 @@ export default {
             'en-US':
               'Refresh column configuration (This parameter may be used in the scenario of displaying or hiding columns.)'
           },
-          'demoId': 'grid-customized#custom-column-visible-hidden'
+          'demoId': 'grid-custom#custom-hide-column'
         },
         {
           'name': 'refreshData()',
@@ -1307,7 +1307,7 @@ export default {
             'en-US':
               'Initialize loading to display or hide columns (which may be used in asynchronous update scenarios).'
           },
-          'demoId': 'grid-customized#custom-server-storage'
+          'demoId': 'grid-custom#custom-server-storage'
         },
         {
           'name': 'remove(rows)',
@@ -1318,14 +1318,14 @@ export default {
             'en-US':
               'Deletes data in a specified row. Multiple data records in a specified row or [row, ...] are deleted. If the value is empty, all data records are deleted.'
           },
-          'demoId': 'grid-toolbar#tiny-first-menu-insert-delete-update'
+          'demoId': 'grid-toolbar#toolbar-insert-delete-update'
         },
         {
           'name': 'removeSelecteds()',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '删除已选中的所有行数据', 'en-US': 'Delete all selected rows.' },
-          'demoId': 'grid-toolbar#tiny-first-menu-insert-delete-update'
+          'demoId': 'grid-toolbar#toolbar-insert-delete-update'
         },
         {
           'name': 'resetAll()',
@@ -1336,7 +1336,7 @@ export default {
             'en-US':
               'Manually reset all operations in the column to the initial state. If the toolbar has been associated, the operations will be updated accordingly.'
           },
-          'demoId': 'grid-customized#custom-column-width'
+          'demoId': 'grid-custom#custom-reset-resizable'
         },
         {
           'name': 'resetCustoms()',
@@ -1347,7 +1347,7 @@ export default {
             'en-US':
               'Manually reset the display/hide operations of columns to restore the initial status (if the toolbar has been associated, it will be updated accordingly)'
           },
-          'demoId': 'grid-customized#custom-column-width'
+          'demoId': 'grid-custom#custom-reset-resizable'
         },
         {
           'name': 'resetResizable()',
@@ -1358,7 +1358,7 @@ export default {
             'en-US':
               'Manually reset the column width and drag the column width to the initial state (if the toolbar has been associated, the column width will be updated accordingly).'
           },
-          'demoId': 'grid-customized#custom-column-width'
+          'demoId': 'grid-custom#custom-reset-resizable'
         },
         {
           'name': 'revertData(rows, field)',
@@ -1368,7 +1368,7 @@ export default {
             'zh-CN': '还原更改，还原指定行 row 或者整个表格的数据',
             'en-US': 'Restore the data of a specified row or the entire table.'
           },
-          'demoId': 'grid-edit#tiny-first-menu-row-editing'
+          'demoId': 'grid-edit#edit-revert-data'
         },
         {
           'name': 'scrollTo(scrollLeft, scrollTop)',
@@ -1405,7 +1405,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '激活单元格编辑', 'en-US': 'Activate cell editing' },
-          'demoId': 'grid-edit#tiny-first-menu-cell-editing'
+          'demoId': 'grid-edit#edit-set-active-cell'
         },
         {
           'name': 'setActiveRow(row)',
@@ -1415,14 +1415,14 @@ export default {
             'zh-CN': '激活行编辑，如果是 mode=cell 则默认激活第一个单元格',
             'en-US': 'Activate line editing. If mode=cell is selected, the first cell is activated by default.'
           },
-          'demoId': 'grid-edit#tiny-first-menu-cell-editing'
+          'demoId': 'grid-edit#edit-set-active-cell'
         },
         {
           'name': 'setAllRowExpansion(checked)',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置所有行的展开与否', 'en-US': 'Set whether to expand all rows.' },
-          'demoId': 'grid-nested-grid#grid_Example-nestedGrid'
+          'demoId': 'grid-nested-table#nested-table-set-all-row-expansion'
         },
         {
           'name': 'setAllSelection(checked)',
@@ -1433,14 +1433,14 @@ export default {
             'en-US':
               'The input parameter is boolean, which is used to select multiple lines and set the selected status of all lines.'
           },
-          'demoId': 'grid-operation-column#tiny-first-menu-custom-serial-column'
+          'demoId': 'grid-operation-column#operation-column-selection-operation'
         },
         {
           'name': 'setAllTreeExpansion(checked)',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置所有树节点的展开与否', 'en-US': 'Sets whether to expand all tree nodes.' },
-          'demoId': 'grid-tree-grid#tree-table-tree-grid-operation-column'
+          'demoId': 'grid-tree-table#tree-table-set-all-tree-expansion'
         },
         {
           'name': 'setCurrentRow(row)',
@@ -1460,7 +1460,7 @@ export default {
             'zh-CN': '用于单选行，设置某一行为选中状态',
             'en-US': 'Select a row and set the selected status of a row.'
           },
-          'demoId': 'grid-operation-column#tiny-first-menu-default-serial-column'
+          'demoId': 'grid-operation-column#operation-column-clear-and-set-radio-row'
         },
         {
           'name': 'setRowExpansion(rows, checked)',
@@ -1470,7 +1470,7 @@ export default {
             'zh-CN': '设置展开行，二个参数设置这一行展开与否',
             'en-US': 'Set the expansion row, and set whether to expand the row.'
           },
-          'demoId': 'grid-nested-grid#grid_Example-nestedGrid'
+          'demoId': 'grid-nested-table#nested-table-set-row-expansion'
         },
         {
           'name': 'setSelection(rows, checked)',
@@ -1481,7 +1481,7 @@ export default {
             'en-US':
               'This parameter is used to select multiple lines. The second parameter is whether to select or not.'
           },
-          'demoId': 'grid-operation-column#tiny-first-menu-custom-serial-column'
+          'demoId': 'grid-operation-column#operation-column-selection-operation'
         },
         {
           'name': 'setTreeExpansion(rows, checked)',
@@ -1491,14 +1491,14 @@ export default {
             'zh-CN': '设置展开树形节点，二个参数设置这一行展开与否',
             'en-US': 'Set the expansion tree node and set whether to expand the row.'
           },
-          'demoId': 'grid-tree-grid#tree-table-tree-grid-operation-column'
+          'demoId': 'grid-tree-table#tree-table-set-tree-expansion'
         },
         {
           'name': 'showColumn(column)',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '显示指定列', 'en-US': 'Display the specified column.' },
-          'demoId': 'grid-customized#custom-column-visible-hidden'
+          'demoId': 'grid-custom#custom-hide-column'
         },
         {
           'name': 'sort(field, order)',
@@ -1518,14 +1518,14 @@ export default {
             'zh-CN': '用于多选行，切换所有行的选中状态',
             'en-US': 'Selection of multiple lines and switch the selected status of all lines.'
           },
-          'demoId': 'grid-operation-column#tiny-first-menu-custom-serial-column'
+          'demoId': 'grid-operation-column#operation-column-selection-operation'
         },
         {
           'name': 'toggleRowExpansion(row)',
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '用于可展开表格，切换展开行', 'en-US': 'For expanding tables or switching rows.' },
-          'demoId': 'grid-nested-grid#grid_Example-nestedGrid'
+          'demoId': 'grid-nested-table#nested-table-toggle-row-expansion'
         },
         {
           'name': 'toggleRowSelection(row)',
@@ -1535,7 +1535,7 @@ export default {
             'zh-CN': '用于多选行，切换某一行的选中状态',
             'en-US': 'Selection of multiple lines and switch the selected status of a line.'
           },
-          'demoId': 'grid-operation-column#tiny-first-menu-custom-serial-column'
+          'demoId': 'grid-operation-column#operation-column-selection-operation'
         },
         {
           'name': 'toggleTreeExpansion(row)',
@@ -1545,7 +1545,7 @@ export default {
             'zh-CN': '用于可树形表格，切换展开树形节点',
             'en-US': 'This parameter is used to switch and expand tree nodes in a tree table.'
           },
-          'demoId': 'grid-tree-grid#tree-table-tree-grid-operation-column'
+          'demoId': 'grid-tree-table#tree-table-toggle-tree-expansion'
         },
         {
           'name': 'validate(rows, callback)',
@@ -1557,7 +1557,7 @@ export default {
             'en-US':
               'Table verification function. If a row or rows is specified, the specified row or multiple rows are verified. Otherwise, the entire table is verified. This callback function is called after the verification is complete and the following parameters are transferred: (Whether the verification is successful. The fields in the latest column fail the verification.) If no callback function is passed in, a promise is returned'
           },
-          'demoId': 'grid-validation#grid_Example-gridValid-before-submit-validation'
+          'demoId': 'grid-validation#validation-before-submit-validation'
         }
       ],
       'grid-events': [
