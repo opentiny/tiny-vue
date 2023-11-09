@@ -15,12 +15,18 @@
 <script setup lang="jsx">
 import { ref } from 'vue'
 import { FileUpload as TinyFileUpload, Button as TinyButton } from '@opentiny/vue'
+import { iconEditorListNum } from '@opentiny/vue-icon'
 
 const options = ref({
   width: 300,
   showDownload: true,
   showDel: true,
-  showTooltip: false
+  showTooltip: false,
+  popperClass: 'my-thumb-name',
+  downloadFile: (file) => {
+    console.log('file', file)
+  },
+  icon: iconEditorListNum()
 })
 const fileList = ref([
   {

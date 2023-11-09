@@ -52,7 +52,7 @@ export default {
     {
       'demoId': 'custom-search-types',
       'name': {
-        'zh-CN': '自定义搜索类型下拉项',
+        'zh-CN': '定义搜索类型下拉项',
         'en-US': 'Custom Search Type Dropdown'
       },
       'desc': {
@@ -63,7 +63,7 @@ export default {
     },
     {
       'demoId': 'show-selected-types',
-      'name': { 'zh-CN': '自定义默认搜索类型', 'en-US': 'Customize default search type' },
+      'name': { 'zh-CN': '定义默认搜索类型', 'en-US': 'Customize default search type' },
       'desc': {
         'zh-CN': '通过<code>text</code>插槽自定义默认搜索类型的内容。',
         'en-US': 'Customize the content of the default search type through the<code>text</code>slot.'
@@ -157,8 +157,8 @@ export default {
         },
         {
           'name': 'search-types',
-          'type': 'ISearchValue[]',
-          'typeAnchorName': 'ISearchValue',
+          'type': 'ITypeValue[]',
+          'typeAnchorName': 'ITypeValue',
           'defaultValue': '[]',
           'desc': {
             'zh-CN': '搜索类型的选项列表',
@@ -178,8 +178,8 @@ export default {
         },
         {
           'name': 'type-value',
-          'type': 'ISearchValue',
-          'typeAnchorName': 'ISearchValue',
+          'type': 'ITypeValue',
+          'typeAnchorName': 'ITypeValue',
           'defaultValue': '',
           'desc': {
             'zh-CN': '搜索类型的默认值。默认为搜索类型的第一项【3.11.0新增】',
@@ -199,44 +199,48 @@ export default {
       'events': [
         {
           'name': 'change',
-          'type': 'Function(arg1,arg2)',
+          'type': '(arg1: ITypeValue, arg2: string) => void',
+          'typeAnchorName': 'ITypeValue',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '输入完成时触发的回调函数;arg1:{object 搜索类型}，arg2:{string 当前input框中值}',
+            'zh-CN': '输入完成时触发的回调函数；// arg1 为搜索类型，arg2 为当前输入值',
             'en-US':
-              'The callback function triggered upon input completion; Arg1: {object search type}, arg2: {string current input box value}'
+              'The callback function triggered upon input completion// Arg1 is the search type, arg2 is the current input value'
           },
           'demoId': 'change-events'
         },
         {
           'name': 'input',
-          'type': 'Function(arg1,arg2)',
+          'type': '(arg1: string, arg2: ITypeValue) => void',
+          'typeAnchorName': 'ITypeValue',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '输入实时触发的回调函数;arg1:{string 当前input框中值}，arg2:{object 搜索类型}【3.9.1新增】',
+            'zh-CN': '输入实时触发的回调函数；// arg1 为当前输入值，arg2 为搜索类型【3.9.1新增】',
             'en-US':
-              'Input a real-time triggered callback function; Arg1: {string current input box value}, arg2: {object search type} [added in 3.9.1]'
+              'Input a real-time triggered callback function// Arg1 is the current input value, arg2 is the search type [3.9.1 added]'
           },
           'demoId': 'change-events'
         },
         {
           'name': 'search',
-          'type': 'Function(arg1,arg2)',
+          'type': '(arg1: ITypeValue, arg2: string) => void',
+          'typeAnchorName': 'ITypeValue',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '展开模式下，点击搜索按钮时触发的回调函数;arg1:{object 搜索类型}，arg2:{string 当前input框中值}',
+            'zh-CN': '展开模式下，点击搜索按钮时触发的回调函数；// arg1 为搜索类型，arg2 为当前输入值',
             'en-US':
-              'The callback function triggered when clicking the search button in expansion mode; Arg1: {object search type}, arg2: {string current input box value}'
+              'The callback function triggered when clicking the search button in expansion mode// Arg1 is the search type, arg2 is the current input value'
           },
           'demoId': 'search-events'
         },
         {
           'name': 'select',
-          'type': 'Function(arg1)',
+          'type': '(arg1: ITypeValue) => void',
+          'typeAnchorName': 'ITypeValue',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '切换类型时触发的回调函数;arg1:{object 搜索类型}',
-            'en-US': 'The callback function triggered when switching types; Arg1: {object search type}'
+            'zh-CN': '切换类型时触发的回调函数；// arg1 为搜索类型',
+            'en-US': 'The callback function triggered when switching types// Arg1 is a search type'
           },
           'demoId': 'select-events'
         }
@@ -268,10 +272,10 @@ export default {
   ],
   types: [
     {
-      name: 'ISearchValue',
+      name: 'ITypeValue',
       type: 'interface',
       code: `
-interface ISearchValue {
+interface ITypeValue {
   text: string
   value: number
 }`
