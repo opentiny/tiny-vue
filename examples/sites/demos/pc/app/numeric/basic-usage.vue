@@ -1,8 +1,8 @@
 <template>
-  <tiny-numeric v-model="num1"></tiny-numeric>
+  <tiny-numeric v-model="value" placeholder="请输入非空数值"></tiny-numeric>
 </template>
 
-<script lang="jsx">
+<script lang="ts">
 import { Numeric } from '@opentiny/vue'
 
 export default {
@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      num1: 1
+      value: 1
     }
   }
 }
