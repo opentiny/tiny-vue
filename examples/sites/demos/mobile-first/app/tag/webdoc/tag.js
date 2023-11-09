@@ -77,7 +77,7 @@ export default {
       codeFiles: ['create.vue']
     },
     {
-      demoId: 'closeable',
+      demoId: 'closable',
       name: {
         'zh-CN': '可移除标签',
         'en-US': 'events'
@@ -86,7 +86,7 @@ export default {
         'zh-CN': '<p>`closable` 属性可以为标签设置成可去除标签。<p>',
         'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['closeable.vue']
+      codeFiles: ['closable.vue']
     },
     {
       demoId: 'tag-event-click',

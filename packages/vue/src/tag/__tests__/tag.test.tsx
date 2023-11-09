@@ -41,7 +41,7 @@ describe('PC Mode', () => {
   })
 
   // props
-  test.todo('closeable 是否可关闭')
+  test.todo('closable 是否可关闭')
 
   test.todo('color 颜色，支持 rgb,rgba,hex 三种格式;背景色')
 
