@@ -1,6 +1,6 @@
 <template>
   <div>
-    当前处于活动的行索引号（rowIndex）：{{ activedRow }} <br /><br />
+    <h4 class="title">当前处于活动的行索引号（rowIndex）：{{ activedRow }}</h4>
     <tiny-grid
       ref="theGrid"
       :data="tableData"
@@ -123,3 +123,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.title {
+  font-size: 16px;
+  padding: 15px;
+  font-weight: bolder;
+  color: #444;
+}
+</style>

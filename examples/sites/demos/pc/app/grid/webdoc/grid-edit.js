@@ -3,26 +3,16 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'edit-cell-editing',
-      'name': { 'zh-CN': '单元格编辑', 'en-US': 'Cell Edit' },
+      'demoId': 'edit-editing',
+      'name': { 'zh-CN': '编辑方式', 'en-US': 'Cell Edit' },
       'desc': {
-        'zh-CN':
-          "<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>mode: 'cell'</code> 开启行编辑，即：<code>:edit-config=&quot;{ mode: 'cell' }&quot;</code>。\n表格列属性设置 <code>show-icon</code> 设置列头是否显示编辑图标，在编辑时有效。</p>\n",
+        'zh-CN': `
+          <p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>mode: 'cell'</code> 或者<code>mode: 'row'</code> 开启单元格编辑或者行编辑，即：<code>:edit-config=&quot;{ mode: 'cell' }&quot;</code>。\n表格列属性设置 <code>show-icon</code> 设置列头是否显示编辑图标，在编辑时有效。</p>
+          `,
         'en-US':
           "<p>Table attribute setting <code>edit-config</code>Enable the editing mode, and then set <code>mode:'cell'</code> in the attribute object to enable line editing, that is, <code>:edit-config=&quot;{mode: 'cell'}&; </code>. \nTable Column Attribute Settings<code>show-icon</code> Sets whether to display the editing icon in the column header. This parameter is valid during editing. </p>\n"
       },
-      'codeFiles': ['edit/cell-editing.vue']
-    },
-    {
-      'demoId': 'edit-row-editing',
-      'name': { 'zh-CN': '行编辑', 'en-US': 'Line Edit' },
-      'desc': {
-        'zh-CN':
-          "<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>mode: 'row'</code> 开启行编辑，即：<code>:edit-config=&quot;{ mode: 'row' }&quot;</code>。</p>\n",
-        'en-US':
-          "<p>Table attribute setting <code>edit-config</code>Enable the editing mode, and then set <code>mode:'row'</code> in the attribute object to enable row editing, that is, <code>:edit-config=&quot;{mode:'row'}&; </code>. </p>\n"
-      },
-      'codeFiles': ['edit/row-editing.vue']
+      'codeFiles': ['edit/editing.vue']
     },
     {
       'demoId': 'edit-revert-data',
@@ -46,15 +36,15 @@ export default {
       'codeFiles': ['edit/has-row-change.vue']
     },
     {
-      'demoId': 'edit-set-active-cell',
-      'name': { 'zh-CN': '手动激活编辑', 'en-US': 'Manually Activate Edit' },
+      'demoId': 'edit-trigger-mode-hm-editing',
+      'name': { 'zh-CN': '手动触发编辑', 'en-US': 'Manually triggered editing' },
       'desc': {
-        'zh-CN':
-          '<p><code>setActiveCell(row, field)</code> 方法可激活指定单元格编辑。<code>setActiveRow(row)</code> 方法激活行编辑，如果是 mode=cell 则默认激活第一个单元格。</p>\n',
-        'en-US':
-          'The <p><code>setActiveCell(row, field)</code> method activates editing of the specified cell. The <code>setActiveRow(row)</code> method activates row editing. If mode=cell is used, the first cell is activated by default. </p>\n'
+        'zh-CN': `<p><code>setActiveCell(row, field)</code> 方法可激活指定单元格编辑。<code>setActiveRow(row)</code> 方法激活行编辑，如果是 mode=cell 则默认激活第一个单元格。</p>
+          <p>在点击其他行或表格外部时，编辑器会自动关闭。设置 <code>editConfig.autoClear</code> 为 <code>false</code> 可以防止编辑器自动关闭</p>
+          `,
+        'en-US': 'For details, see the following example.'
       },
-      'codeFiles': ['edit/set-active-cell.vue']
+      'codeFiles': ['edit/trigger-mode-hm-editing.vue']
     },
     {
       'demoId': 'edit-custom-editing',
@@ -80,7 +70,7 @@ export default {
     },
     {
       'demoId': 'edit-status-of-editing',
-      'name': { 'zh-CN': '开启编辑状态', 'en-US': 'Enable editing' },
+      'name': { 'zh-CN': '开启和关闭编辑状态', 'en-US': 'Enable editing' },
       'desc': {
         'zh-CN':
           '<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>showStatus</code> 开启或关闭单元格更新状态（单元格左上角倒三角形更新标识)，默认值为 <code>true</code> 开启状态。</p>\n',
@@ -90,14 +80,8 @@ export default {
       'codeFiles': ['edit/status-of-editing.vue']
     },
     {
-      'demoId': 'edit-status-of-noediting',
-      'name': { 'zh-CN': '关闭编辑状态', 'en-US': 'Disable editing' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['edit/status-of-noediting.vue']
-    },
-    {
       'demoId': 'edit-trigger-mode-for-editing',
-      'name': { 'zh-CN': '点击触发编辑', 'en-US': 'Click to trigger editing' },
+      'name': { 'zh-CN': '触发编辑方式', 'en-US': 'Click to trigger editing' },
       'desc': {
         'zh-CN':
           '<p>表格属性设置 <code>edit-config</code> 开启编辑模式，然后在该属性对象内设置 <code>trigger</code> 修改触发方式。可选值有 <code>点击触发（click）/ 双击触发（dblclick）/ 手动触发（manual）</code>，默认值为 <code>click 点击触发</code>。</p>\n',
@@ -105,22 +89,6 @@ export default {
           '<p>Table attribute setting<code>edit-config</code>Enable the editing mode, and then set <code>trigger</code> in the attribute object to modify the triggering mode. The options are as follows: <code>click trigger (click), double-click trigger (dblclick), and manual trigger (manual)</code>. The default value is <code>click trigger</code>. </p>\n'
       },
       'codeFiles': ['edit/trigger-mode-for-editing.vue']
-    },
-    {
-      'demoId': 'edit-trigger-mode-db-editing',
-      'name': { 'zh-CN': '双击触发编辑', 'en-US': 'Double-click to trigger editing' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['edit/trigger-mode-db-editing.vue']
-    },
-    {
-      'demoId': 'edit-trigger-mode-hm-editing',
-      'name': { 'zh-CN': '手动触发编辑', 'en-US': 'Manually triggered editing' },
-      'desc': {
-        'zh-CN':
-          '在点击其他行或表格外部时，编辑器会自动关闭。设置 <code>editConfig.autoClear</code> 为 <code>false</code> 可以防止编辑器自动关闭',
-        'en-US': 'For details, see the following example.'
-      },
-      'codeFiles': ['edit/trigger-mode-hm-editing.vue']
     }
   ],
   apis: [{ 'name': 'grid-edit', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
