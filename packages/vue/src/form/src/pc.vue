@@ -19,7 +19,7 @@
       { 'has-required': state.hasRequired },
       { 'is-display-only': state.isDisplayOnly }
     ]"
-    @submit.native.prevent
+    @submit.prevent
   >
     <slot></slot>
   </form>
