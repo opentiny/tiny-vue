@@ -4,4 +4,4 @@ title: Wizard Flowchart
 
 # Wizard Flowchart
 
-<div>A component with a specific graphic symbol indicating the relationship between process nodes.</div>
+<div>Add specific graphical symbols with explanations to indicate the relationship between each process node.</div>
