@@ -455,7 +455,7 @@ export default defineComponent({
   p {
     font-size: 16px;
     line-height: 1.7em;
-    margin: 16px 0;
+    margin: 12px 0;
   }
 }
 .cmp-page-anchor {
@@ -506,19 +506,25 @@ export default defineComponent({
   background-color: #f3f5f7;
   border-color: #42b983;
   border-radius: 0;
-  padding: 0.1rem 1.5rem;
+  padding: 1.5rem;
   border-left-width: 0.5rem;
   border-left-style: solid;
   margin: 1rem 0;
   font-size: 14px;
   color: #5e6d82;
+  line-height: 1.5;
   .custom-block-title {
     font-weight: 600;
   }
   p {
-    margin: 16px 0;
+    margin: 8px 0;
     font-size: 16px;
-    line-height: 1.7em;
+    line-height: 1.5;
+  }
+  ul {
+    li {
+      padding: 5px 0;
+    }
   }
 }
 </style>

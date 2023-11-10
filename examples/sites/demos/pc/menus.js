@@ -143,7 +143,6 @@ export const cmpMenus = [
       { 'nameCn': '合并', 'name': '', 'key': 'grid-span' },
       { 'nameCn': '分组', 'name': '', 'key': 'grid-row-grouping' },
       { 'nameCn': '拖拽', 'name': '', 'key': 'grid-drag' },
-      { 'nameCn': '数据级联', 'name': '', 'key': 'grid-cascade' },
       { 'nameCn': '右键菜单', 'name': '', 'key': 'grid-context-menu' },
       { 'nameCn': '编辑器', 'name': '', 'key': 'grid-editor' },
       { 'nameCn': '渲染器', 'name': '', 'key': 'grid-renderer' },

@@ -33,7 +33,7 @@ export default {
         'en-US':
           '<p>After the <code>async</code> attribute of the <code>format-config</code> column is set to <code>true</code>, the <code>data</code> data can be dynamically modified for automatic rendering. Generally, <code>type</code> is set to <code>enum</code>, and <code>value</code> and <code>label</code> can be used to configure the mapping of rendering cells. </p>\n'
       },
-      'codeFiles': ['render/async-colunm-render.vue']
+      'codeFiles': ['renderer/async-colunm-render.vue']
     }
   ],
   apis: [{ 'name': 'grid-renderer', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
