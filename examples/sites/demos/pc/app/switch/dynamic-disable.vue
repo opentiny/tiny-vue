@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="switch-demo">
     <tiny-switch v-model="value1" disabled></tiny-switch>
     <tiny-switch v-model="value2" disabled></tiny-switch>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Switch } from '@opentiny/vue'
 
 export default {
@@ -20,3 +20,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.switch-demo .tiny-switch + .tiny-switch {
+  margin-left: 20px;
+}
+</style>

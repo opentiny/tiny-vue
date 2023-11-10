@@ -196,7 +196,7 @@ export default {
       'events': [
         {
           'name': 'change',
-          'type': '(value) => void',
+          'type': '(value: boolean | number | string) => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '绑定值变化时触发的事件',
@@ -303,7 +303,7 @@ export default {
       'radio-group events': [
         {
           'name': 'change',
-          'type': '(value) => void',
+          'type': '(value: number[] | string[]) => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '绑定值变化时触发的事件',

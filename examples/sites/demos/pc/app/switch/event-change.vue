@@ -1,8 +1,8 @@
 <template>
-  <tiny-switch @change="enent"></tiny-switch>
+  <tiny-switch @change="handleChange"></tiny-switch>
 </template>
 
-<script lang="jsx">
+<script>
 import { Switch, Modal } from '@opentiny/vue'
 
 export default {
@@ -10,8 +10,8 @@ export default {
     TinySwitch: Switch
   },
   methods: {
-    enent(val) {
-      Modal.message({ message: `${val}`, status: 'info' })
+    handleChange(val) {
+      Modal.message({ message: `开关值：${val}` })
     }
   }
 }

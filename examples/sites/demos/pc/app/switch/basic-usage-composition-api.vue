@@ -1,9 +1,10 @@
 <template>
-  <tiny-switch></tiny-switch>
+  <tiny-switch v-model="value"></tiny-switch>
 </template>
 
-<script setup lang="jsx">
-import { Switch } from '@opentiny/vue'
+<script setup>
+import { ref } from 'vue'
+import { Switch as TinySwitch } from '@opentiny/vue'
 
-const TinySwitch = Switch
+const value = ref(true)
 </script>
