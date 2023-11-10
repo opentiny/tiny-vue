@@ -36,5 +36,5 @@
 import { ref } from 'vue'
 import { Progress as TinyProgress, Button as TinyButton } from '@opentiny/vue'
 
-const textInside = ref(true)
+const textInside = ref(false)
 </script>

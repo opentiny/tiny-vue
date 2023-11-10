@@ -94,7 +94,7 @@ export default {
     {
       'name': 'tag',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'closable',
           'type': 'boolean',

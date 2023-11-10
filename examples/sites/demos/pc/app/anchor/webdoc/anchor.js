@@ -45,7 +45,7 @@ export default {
     {
       'name': 'anchor',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'container-id',
           'type': 'string',
