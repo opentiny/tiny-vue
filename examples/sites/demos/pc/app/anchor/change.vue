@@ -1,5 +1,5 @@
 <template>
-  <tiny-anchor :links="links" @on-change="handleChange"></tiny-anchor>
+  <tiny-anchor :links="links" @change="handleChange"></tiny-anchor>
 </template>
 
 <script>
