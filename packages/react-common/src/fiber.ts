@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react'
 import { compWhiteList } from './virtual-comp'
 
-function getFiberByDom(dom) {
+export function getFiberByDom(dom) {
   const key = Object.keys(dom).find((key) => {
     return (
       key.startsWith('__reactFiber$') || // react 17+
@@ -18,7 +18,7 @@ function defaultBreaker({ type }) {
   }
 }
 
-function traverseFiber(fiber, handler, breaker = defaultBreaker) {
+export function traverseFiber(fiber, handler, breaker = defaultBreaker) {
   if (!fiber) return
   typeof handler === 'function' && handler(fiber)
   Array.isArray(handler) && handler.forEach(task => {

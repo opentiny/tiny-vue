@@ -29,6 +29,64 @@ export const $props = {
 
 export const mergeClass = (...cssClasses) => twMerge(stringifyCssClass(cssClasses))
 
+const setup = ({
+  props,
+  renderless,
+  api,
+  extendOptions = {},
+  classes = {},
+  constants,
+  vm,
+  parent,
+  $bus
+}) => {
+  const render = typeof props.tiny_renderless === 'function' ? props.tiny_renderless : renderless
+  const { dispatch, broadcast } = emitEvent(vm)
+
+  const utils = {
+    vm,
+    parent,
+    emit: vm.$emit,
+    constants,
+    nextTick,
+    dispatch,
+    broadcast,
+    t() { },
+    mergeClass,
+    mode: props.tiny_mode
+  }
+
+  const sdk = render(
+    props,
+    {
+      ...generateVueHooks({
+        $bus
+      })
+    },
+    utils,
+    extendOptions
+  )
+
+  const attrs = {
+    a: filterAttrs,
+    m: mergeClass,
+    vm: utils.vm,
+    gcls: (key) => getElementCssClass(classes, key),
+  }
+
+  if (Array.isArray(api)) {
+    api.forEach((name) => {
+      const value = sdk[name]
+
+      if (typeof value !== 'undefined') {
+        attrs[name] = value
+      }
+    })
+  }
+
+  return attrs
+}
+
 export const useSetup = ({
   props,
   renderless,
@@ -65,56 +123,25 @@ export const useSetup = ({
   // 执行一次 renderless
   // renderless 作为 setup 的结果，最后要将结果挂在 vm 上
   let setupResult = useExcuteOnce(() => {
-    const render = typeof reactiveProps.tiny_renderless === 'function' ? reactiveProps.tiny_renderless : renderless
-    const { dispatch, broadcast } = emitEvent(vm)
-
-    const utils = {
-      vm,
-      parent: vm.$parent,
-      emit: vm.$emit,
-      constants,
-      nextTick,
-      dispatch,
-      broadcast,
-      t() { },
-      mergeClass,
-      mode: reactiveProps.tiny_mode
-    }
-
-    let sdk
+    let result
+    // 在 effectScope 里运行 renderless
     scope.run(() => {
-      sdk = render(
-        reactiveProps,
-        {
-          ...generateVueHooks({
-            $bus
-          })
-        },
-        utils,
-        extendOptions
-      )
-    })
-
-    const attrs = {
-      a: filterAttrs,
-      m: mergeClass,
-      vm: utils.vm,
-      gcls: (key) => getElementCssClass(classes, key),
-    }
-
-    if (Array.isArray(api)) {
-      api.forEach((name) => {
-        const value = sdk[name]
-
-        if (typeof value !== 'undefined') {
-          attrs[name] = value
-        }
+      result = setup({
+        props: reactiveProps,
+        renderless,
+        api,
+        constants,
+        extendOptions,
+        classes,
+        vm,
+        parent,
+        $bus
       })
-    }
-
-    return attrs
+    })
+    return result
   })
 
+  // 触发生命周期
   useVueLifeHooks($bus)
 
   Object.keys(setupResult).forEach((key) => {

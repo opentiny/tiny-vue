@@ -31,6 +31,8 @@ import {
   // 通用
   nextTick
 } from '@vue/runtime-core'
+import { useExcuteOnce } from './hooks'
+import { useEffect } from 'react'
 
 // 通用
 const inject = () => { }
@@ -130,6 +132,30 @@ export function generateVueHooks({
       $bus.on('hook:onServerPrefetch')
     }
   }
+}
+
+// 在这里出发生命周期钩子
+export function useVueLifeHooks($bus) {
+  $bus.emit('hook:onBeforeUpdate')
+  nextTick(() => {
+    $bus.emit('hook:onUpdated')
+  })
+
+  useExcuteOnce(() => {
+    $bus.emit('hook:onBeforeMount')
+  })
+
+  useEffect(() => {
+    $bus.emit('hook:onMounted')
+
+    return () => {
+      // 卸载
+      $bus.emit('hook:onBeforeUnmount')
+      nextTick(() => {
+        $bus.emit('hook:onUnmounted')
+      })
+    }
+  }, [])
 }
 
 export * from '@vue/runtime-core'

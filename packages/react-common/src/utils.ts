@@ -55,10 +55,19 @@ export const eventBus = () => {
     $bus[eventName].forEach(subscriber => subscriber(...args))
   }
 
+  const once = (eventName, callback) => {
+    const onceCallBack = (...args) => {
+      callback(...args)
+      off(eventName, onceCallBack)
+    }
+    on(eventName, onceCallBack)
+  }
+
   return {
     on,
     emit,
-    off
+    off,
+    once
   }
 }
 
@@ -107,4 +116,25 @@ export const getElementCssClass = (classes = {}, key) => {
   } else {
     return classes[key] || ''
   }
+}
+
+export function getPropByPath(obj, path) {
+  let tempObj = obj;
+  //将a[b].c转换为a.b.c
+  path = path.replace(/\[(\w+)\]/g, '.$1');
+  //将.a.b转换为a.b
+  path = path.replace(/^\./, '');
+
+  let keyArr = path.split('.');
+  let len = keyArr.length;
+
+  for (let i = 0; i < len - 1; i++) {
+    let key = keyArr[i];
+    if (key in tempObj) {
+      tempObj = tempObj[key];
+    } else {
+      return
+    }
+  }
+  return tempObj[keyArr[keyArr.length - 1]]
 }

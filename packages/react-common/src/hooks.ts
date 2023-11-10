@@ -1,5 +1,4 @@
-import { useState, useRef, useEffect } from "react"
-import { nextTick } from '@vue/runtime-core'
+import { useState, useRef } from "react"
 
 export function useExcuteOnce(cb, ...args) {
   const isExcuted = useRef(false)
@@ -22,28 +21,4 @@ export function useOnceResult(func, ...args) {
     result.current = func(...args)
   }
   return result.current
-}
-
-// 在这里出发生命周期钩子
-export function useVueLifeHooks($bus) {
-  $bus.emit('hook:onBeforeUpdate')
-  nextTick(() => {
-    $bus.emit('hook:onUpdated')
-  })
-
-  useExcuteOnce(() => {
-    $bus.emit('hook:onBeforeMount')
-  })
-
-  useEffect(() => {
-    $bus.emit('hook:onMounted')
-
-    return () => {
-      // 卸载
-      $bus.emit('hook:onBeforeUnmount')
-      nextTick(() => {
-        $bus.emit('hook:onUnmounted')
-      })
-    }
-  }, [])
 }
