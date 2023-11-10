@@ -71,6 +71,7 @@ export interface ITimelineItem {
   error: boolean
   disabled: boolean
   type: TimelineItemType
+  fold?: boolean
 }
 
 export interface ITimelineInject {
