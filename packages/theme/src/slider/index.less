@@ -18,6 +18,7 @@
 @slider-container-prefix-cls: ~'@{css-prefix}slider-container';
 
 .@{slider-container-prefix-cls} {
+  .component-css-vars-slider();
   position: relative;
 
   &&__horizontal {
@@ -27,10 +28,6 @@
 }
 
 .@{slider-prefix-cls} {
-  &__wrapper {
-    .component-css-vars-slider();
-  }
-
   border-radius: var(--ti-slider-border-radius);
   height: var(--ti-slider-height);
   position: relative;
