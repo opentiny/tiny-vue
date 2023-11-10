@@ -51,9 +51,10 @@ export const onHSVUpdate = (color: Color, res: IColorSelectPanelRef<string>, hex
       hex.value = color.getHex()
     },
     onSVUpdate: ({ s, v }: { s: number; v: number }) => {
-      color.set({ s, v })
+      color.set({ h: color.get('h'), s, v })
       onColorUpdate(color, res, triggerBg)
-      triggerBg.value = color.getHex()
+      triggerBg.value = color.getHex();
+      hex.value = color.getHex();
     }
   }
 }
