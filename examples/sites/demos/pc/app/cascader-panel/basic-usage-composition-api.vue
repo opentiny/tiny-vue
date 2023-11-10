@@ -2,7 +2,7 @@
   <tiny-cascader-panel class="cascader-panel-demo" :options="optionsCascader"></tiny-cascader-panel>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { CascaderPanel as TinyCascaderPanel } from '@opentiny/vue'
 
