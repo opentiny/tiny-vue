@@ -21,7 +21,8 @@ import {
   changeStatus,
   computedStackNodes,
   computedSpace,
-  computedWrapperClass
+  computedWrapperClass,
+  toggleFold
 } from './index'
 import type {
   ITimelineApi,
@@ -32,7 +33,7 @@ import type {
   ITimelineItem
 } from '@/types'
 
-export const api = ['state', 'handleClick', 'getStatusCls', 'getStatus', 'getDate', 'changeStatus']
+export const api = ['state', 'handleClick', 'getStatusCls', 'getStatus', 'getDate', 'changeStatus', 'toggleFold']
 
 export const renderless = (
   props: ITimelineProps,
@@ -64,7 +65,8 @@ export const renderless = (
     getStatusCls: getStatusCls({ constants, state }),
     computedStackNodes: computedStackNodes({ state, constants }),
     changeStatus: changeStatus({ state }),
-    computedWrapperClass: computedWrapperClass({ props })
+    computedWrapperClass: computedWrapperClass({ props }),
+    toggleFold: toggleFold({ props })
   })
 
   provide('nodesInject', { timelineItems: state.timelineItems, nodes: state.nodes, props })

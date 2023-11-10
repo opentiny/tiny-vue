@@ -64,7 +64,7 @@
                   {{ node.name }}
                 </div>
               </slot>
-              <div v-if="node.showFoldBtn" class="arrow-btn" @click="node.fold = !node.fold">
+              <div v-if="node.showFoldBtn" class="arrow-btn" @click="toggleFold(node)">
                 <div :class="['arrow-btn-arrow', node.fold ? 'arrow-btn-arrow-fold' : '']"></div>
               </div>
             </div>
