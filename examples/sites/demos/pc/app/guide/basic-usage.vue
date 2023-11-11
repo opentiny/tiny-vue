@@ -71,9 +71,6 @@ export default {
     stepStart() {
       this.showStep = !this.showStep
     }
-  },
-  mounted() {
-    this.showStep = !this.showStep
   }
 }
 </script>

@@ -1,6 +1,7 @@
 <template>
   <div>
     <tiny-guide :show-step="showStep" :dom-data="domData" light-class="activeDom"></tiny-guide>
+    <tiny-button type="primary" @click="stepStart">开始引导</tiny-button>
     <div class="base-content">
       <tiny-button plain class="guide-box1" @click="stepStart">基础新手引导开始</tiny-button>
       <tiny-button plain class="guide-box2">带滚动条新手引导</tiny-button>
@@ -10,7 +11,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { Guide as TinyGuide, Button as TinyButton } from '@opentiny/vue'
 
 const showStep = ref(false)
@@ -60,10 +61,6 @@ const domData = ref([
   }
 ])
 
-onMounted(() => {
-  showStep.value = !showStep.value
-})
-
 function stepStart() {
   showStep.value = !showStep.value
 }
@@ -72,5 +69,6 @@ function stepStart() {
 <style scoped>
 .base-content {
   width: 100%;
+  margin-top: 16px;
 }
 </style>
