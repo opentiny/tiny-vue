@@ -6,6 +6,6 @@
   </tiny-badge>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { Badge as TinyBadge } from '@opentiny/vue'
 </script>

@@ -1,12 +1,13 @@
 <template>
-  <tiny-pager layout="sizes,slot, prev, pager, next, jumper, ->, total" :total="1000">
+  <tiny-pager layout="total, sizes, prev, pager, next, slot, jumper" :total="1000">
     <template #default>
-      <span>我是插槽</span>
+      <span>默认插槽</span>
     </template>
   </tiny-pager>
+  <tiny-pager layout="sizes, prev, current, next, total" :total="1000"></tiny-pager>
 </template>
 
-<script lang="jsx">
+<script>
 import { Pager } from '@opentiny/vue'
 
 export default {

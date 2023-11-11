@@ -3,16 +3,16 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'basicUsage',
+      'demoId': 'base-basicUsage',
       'name': { 'zh-CN': '标签式', 'en-US': 'Label' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['basicUsage.vue']
+      'codeFiles': ['base/basicUsage.vue']
     },
     {
-      'demoId': 'basicUsage-conf',
+      'demoId': 'base-basicUsage-conf',
       'name': { 'zh-CN': '配置式', 'en-US': 'Profile' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['basicUsage-conf.vue']
+      'codeFiles': ['base/basicUsage-conf.vue']
     }
   ],
   apis: [
@@ -130,7 +130,7 @@ export default {
             'en-US':
               'Add a class name to a cell. The class name can also be the Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex})'
           },
-          'demoId': 'grid-custom-style#custom-style-cell-style'
+          'demoId': 'grid-custom-style#custom-style-body-style'
         },
         {
           'name': 'column-key',
@@ -236,7 +236,7 @@ export default {
             'en-US':
               'Add the class name to the cell at the end of the table. The class name can also be the function Function({$rowIndex, column, columnIndex, $columnIndex})'
           },
-          'demoId': 'grid-custom-style#custom-style-footer-style-footer-cell-style'
+          'demoId': 'grid-custom-style#custom-style-footer-style'
         },
         {
           'name': 'footer-method',
@@ -248,7 +248,7 @@ export default {
             'en-US':
               'Calculation method of table tail total Function({columns, data});params:{columns: all column configuration data: all table data}'
           },
-          'demoId': 'grid-summary#summary-custom-summary'
+          'demoId': 'grid-footer#footer-footer-summation-empty'
         },
         {
           'name': 'footer-row-class-name',
@@ -260,7 +260,7 @@ export default {
             'en-US':
               'Add className to the row at the end of the table. The className can also be the function Function({$rowIndex}). Use footer-cell-class-name and footer-row-class-name to set the cell and row styles at the end of the table params:{$rowIndex: row label}'
           },
-          'demoId': 'grid-custom-style#custom-style-footer-style-footer-cell-style'
+          'demoId': 'grid-custom-style#custom-style-footer-style'
         },
         {
           'name': 'footer-span-method',
@@ -295,7 +295,7 @@ export default {
             'en-US':
               'Add a class name to the cell in the table header. The class name can also be the function Function({$rowIndex, column, columnIndex, $columnIndex}). params{$rowIndex: row label, column: column data, columnIndex: column subscript, $columnIndex: column subscript}'
           },
-          'demoId': 'grid-custom-style#custom-style-header-style-header-cell-style'
+          'demoId': 'grid-custom-style#custom-style-header-style'
         },
         {
           'name': 'header-row-class-name',
@@ -306,7 +306,7 @@ export default {
             'en-US':
               'Add className to the row in the table header. It can also be the function Function({$rowIndex});params: {$rowIndex: row label}'
           },
-          'demoId': 'grid-custom-style#custom-style-header-style-header-cell-style'
+          'demoId': 'grid-custom-style#custom-style-header-style'
         },
         {
           'name': 'height',
@@ -456,7 +456,7 @@ export default {
             'en-US':
               'User-defined table row class name, which is used in the scenario where the row style of the table is customized. You can set the string class name directly or use the Function({seq, row, rowIndex, $rowIndex}) function to return the class name.'
           },
-          'demoId': 'grid-custom-style#custom-style-row-style'
+          'demoId': 'grid-custom-style#custom-style-body-style'
         },
         {
           'name': 'row-id',
@@ -496,7 +496,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '是否显示表尾合计', 'en-US': 'Display the total at the end of the table' },
-          'demoId': 'grid-summary#summary-cus tom-summary'
+          'demoId': 'grid-footer#footer-footer-summation-empty'
         },
         {
           'name': 'show-header',
@@ -637,7 +637,7 @@ export default {
             'en-US':
               "Configuration item of the table statistics function; {fields:['Emp employees'], //Statistics field name\n fraction: 2, //Final digits reserved after decimal point\n truncate: false, //Whether to truncate. The default value is rounding up. The value is not truncated. \n text: ''//Statistics displayed text}"
           },
-          'demoId': 'grid-summary#summary-configuration-summary'
+          'demoId': 'grid-footer#footer-configuration-summary'
         },
         {
           'name': 'sortable',
@@ -1997,7 +1997,7 @@ export default {
             'en-US':
               'Add a class name to a cell. The class name can also be the Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex})'
           },
-          'demoId': 'grid-custom-style#custom-style-cell-style'
+          'demoId': 'grid-custom-style#custom-style-class-name'
         },
         {
           'name': 'multi',
@@ -2088,7 +2088,7 @@ export default {
             'en-US':
               'This parameter is valid only for type=index. The user-defined index method is Function({row, rowIndex, column, columnIndex})'
           },
-          'demoId': 'grid-serial-column#tiny-first-menu-custom-serial-column'
+          'demoId': 'grid-serial-column#serial-column-custom-serial-column'
         },
         {
           'name': 'min-width',

@@ -11,18 +11,23 @@ export default {
   },
   data() {
     return {
-      // 里程碑样式
+      // statusMap 对应 milestoneData的status；显示的背景色样式（可以是旗，可以是步骤条）
       statusMap: {
-        // 对应下面status 显示的背景色样式（可以是旗，可以是步骤条）
+        // 对应 status = completed
         completed: 'var(--ti-common-color-line-active)',
+        // 对应 status = doing
         doing: '#7ED321',
+        // 对应 status = back
         back: '#f5222d',
+        // 对应 status = end
         end: '#faad14',
+        // 对应 status = cancel
         cancel: '#d9d9d9'
       },
+      // 数据源
       milestoneData: [
         {
-          name: 'POR1',
+          name: 'completed状态',
           time: '2018-9-7',
           status: 'completed',
           flags: [
@@ -34,7 +39,7 @@ export default {
           ]
         },
         {
-          name: 'POR2',
+          name: 'completed状态',
           time: '2018-9-8',
           status: 'completed',
           flags: [
@@ -44,9 +49,9 @@ export default {
             }
           ]
         },
-        { name: 'POR3', time: '2018-9-10', status: 'doing', content: null },
+        { name: 'doing状态', time: '2018-9-10', status: 'doing', content: null },
         {
-          name: 'POR4',
+          name: 'cancel状态',
           time: '2018-9-9',
           status: 'cancel',
           flags: [
@@ -61,9 +66,9 @@ export default {
             }
           ]
         },
-        { name: 'POR5', time: '2018-9-11', status: 'back' },
+        { name: 'back状态', time: '2018-9-11', status: 'back' },
         {
-          name: 'POR6',
+          name: 'end状态',
           time: '2018-9-9',
           status: 'end',
           flags: [

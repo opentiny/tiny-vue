@@ -1,6 +1,6 @@
 <template>
   <div title="复制" class="icon-demo">
-    <icon-copy class="tiny-svg-size icon-copy"></icon-copy>
+    <icon-copy></icon-copy>
   </div>
 </template>
 
@@ -15,12 +15,9 @@ export default {
 </script>
 
 <style scoped>
-.icon-demo .tiny-svg-size {
+.icon-demo .tiny-svg {
   fill: #8994aa;
   margin: 20px 50px;
-}
-
-.icon-demo .icon-copy {
-  font-size: 1.8em;
+  font-size: 24px;
 }
 </style>

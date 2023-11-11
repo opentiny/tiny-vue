@@ -333,7 +333,7 @@ export default {
         {
           'name': 'modelValue / v-model',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': { 'zh-CN': '绑定值', 'en-US': 'Bound Value' },
           'demoId': 'value'
         },
@@ -351,7 +351,7 @@ export default {
         {
           'name': 'is-form-reset',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': {
             'zh-CN': '关闭弹窗，默认重置表单数据',
             'en-US': 'Close the pop-up window. The form data is reset by default.'
@@ -371,7 +371,7 @@ export default {
         {
           'name': 'type',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 alert',
+          'defaultValue': 'alert',
           'desc': {
             'zh-CN': '窗口类型;该属性的可选值为 alert, confirm, message',
             'en-US': 'Window type; The options of this attribute are alert, confirm, and message.'
@@ -381,7 +381,7 @@ export default {
         {
           'name': 'status',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 info',
+          'defaultValue': 'info',
           'desc': {
             'zh-CN':
               '只对 type=alert | confirm | message 有效，消息状态;该属性的可选值为 info, success, warning, error, loading',
@@ -403,7 +403,7 @@ export default {
         {
           'name': 'show-header',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': { 'zh-CN': '是否显示头部', 'en-US': 'Display Header' },
           'demoId': 'showHeader'
         },
@@ -417,7 +417,10 @@ export default {
         {
           'name': 'confirm-content',
           'type': 'string',
-          'defaultValue': '确认',
+          'defaultValue': {
+            'zh-CN': '确认',
+            'en-US': 'Confirm'
+          },
           'desc': {
             'zh-CN': '自定义确认按钮内容',
             'en-US': 'Whether to lock the page. Operations outside the window are not allowed.'
@@ -427,7 +430,10 @@ export default {
         {
           'name': 'cancel-content',
           'type': 'string',
-          'defaultValue': '取消',
+          'defaultValue': {
+            'zh-CN': '取消',
+            'en-US': 'Cancel'
+          },
           'desc': {
             'zh-CN': '自定义取消按钮内容',
             'en-US': 'Whether to lock the scroll bar to disable page scrolling.'
@@ -454,7 +460,7 @@ export default {
         {
           'name': 'lock-view',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': {
             'zh-CN': '是否锁住页面，不允许窗口之外的任何操作',
             'en-US': 'Whether to allow closing the window by pressing Esc'
@@ -464,7 +470,7 @@ export default {
         {
           'name': 'lock-scroll',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': {
             'zh-CN': '是否锁住滚动条，不允许页面滚动',
             'en-US': 'Whether to allow dragging to adjust the window size'
@@ -474,7 +480,7 @@ export default {
         {
           'name': 'mask',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': {
             'zh-CN': '是否显示遮罩层',
             'en-US':
@@ -492,21 +498,21 @@ export default {
         {
           'name': 'esc-closable',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': { 'zh-CN': '是否允许按 Esc 键关闭窗口', 'en-US': 'Window height' },
           'demoId': 'esc-closable'
         },
         {
           'name': 'resize',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '是否允许拖动调整窗口大小', 'en-US': 'Minimum width of the window' },
           'demoId': 'resize'
         },
         {
           'name': 'duration',
           'type': '[number, string]',
-          'defaultValue': '该属性的默认值为 3000',
+          'defaultValue': '3000',
           'desc': { 'zh-CN': '只对 type=message 有效，自动关闭的延时', 'en-US': 'Minimum height of the window' },
           'demoId': 'duration'
         },
@@ -549,28 +555,28 @@ export default {
         {
           'name': 'top',
           'type': '[number, string]',
-          'defaultValue': '该属性的默认值为 15',
+          'defaultValue': '15',
           'desc': { 'zh-CN': '只对 type=message 有效，消息距离顶部的位置', 'en-US': '' },
           'demoId': 'top'
         },
         {
           'name': 'z-index',
           'type': 'number',
-          'defaultValue': '该属性的默认值为 3000',
+          'defaultValue': '3000',
           'desc': { 'zh-CN': '自定义堆叠顺序（对于某些特殊场景，比如被遮挡时可能会用到）', 'en-US': '' },
           'demoId': 'zIndex'
         },
         {
           'name': 'fullscreen',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '默认最大化显示', 'en-US': '' },
           'demoId': 'fullscreen'
         },
         {
           'name': 'message-closable',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': 'message信息是否显示关闭按钮', 'en-US': '' },
           'demoId': 'status'
         }

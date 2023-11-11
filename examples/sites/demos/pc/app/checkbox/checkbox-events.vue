@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { CheckboxButton, CheckboxGroup } from '@opentiny/vue'
 
 export default {

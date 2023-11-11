@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Radio, RadioButton, RadioGroup, Modal } from '@opentiny/vue'
 
 export default {
