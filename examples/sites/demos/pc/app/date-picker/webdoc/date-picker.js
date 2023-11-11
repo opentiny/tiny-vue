@@ -553,7 +553,7 @@ export default {
         {
           'name': 'step',
           'type': 'IStep',
-          'typeAnchorName': 'IStep',
+          'typeAnchorName': 'time-picker#IStep',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '设置 type="datetime" 或者 type="datetimerange" 属性之后，可以通过 step 配置时间的步长，step 是一个对象，包含三个属性：hour、minute、second，分别用来配置时、分、秒的步长',
@@ -786,17 +786,6 @@ interface IPickerOptions {
     startDate: Date
     endDate: Date
   }[]
-}
-      `
-    },
-    {
-      name: 'IStep',
-      type: 'interface',
-      code: `
-interface IStep {
-  hour: number
-  minute: number
-  second: number
 }
       `
     },

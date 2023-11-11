@@ -70,7 +70,7 @@
                         <td v-if="!key.includes('slots')">
                           <a
                             v-if="row.typeAnchorName"
-                            :href="`#${row.typeAnchorName}`"
+                            :href="`${row.typeAnchorName.indexOf('#') === -1 ? '#' : ''}${row.typeAnchorName}`"
                             v-html="row.type"
                             @click="handleTypeClick"
                           ></a>
