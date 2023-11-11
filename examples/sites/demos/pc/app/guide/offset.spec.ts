@@ -1,22 +1,25 @@
 import { test, expect } from '@playwright/test'
 
-test('引导框对齐轴距离', async ({ page }) => {
+test('引导框偏移量', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('guide#guide-poistion-alignmentAxis')
+  await page.goto('guide#offset')
 
   const guideBtn1 = page.getByRole('button', { name: '新手引导1' })
   const guideBtn2 = page.getByRole('button', { name: '新手引导2' })
   const guide = page.getByRole('dialog')
-  const arrow = guide.locator('.shepherd-arrow')
 
-  // 引导1 偏移量10
+  // 引导1 没有设置
   await guideBtn1.click()
   await expect(guide).toBeVisible()
-  await expect(arrow).toHaveCSS('left', '383.5px')
 
-  // 引导2 偏移量20
+  const guideBox1 = await guide.boundingBox()
+
+  // 引导2  50px
   await page.getByRole('button', { name: 'Close Tour' }).click()
   await guideBtn2.click()
   await expect(guide).toBeVisible()
-  await expect(arrow).toHaveCSS('left', '393.5px')
+
+  const guideBox2 = await guide.boundingBox()
+
+  expect(guideBox1.y).toBeLessThan(guideBox2.y)
 })

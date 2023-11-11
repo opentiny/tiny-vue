@@ -1,19 +1,23 @@
 <template>
   <div>
-    <tiny-button plain @click="stepStart">新手引导开始</tiny-button>
-    <tiny-button plain class="guide1-content-steps">新手引导1</tiny-button>
-    <tiny-button plain class="guide2-content-steps">新手引导2</tiny-button>
+    <tiny-button type="primary" @click="stepStart">开始引导</tiny-button>
+    <tiny-divider color="var(--ti-common-color-line-dividing)"></tiny-divider>
+    <div>
+      <tiny-button plain class="guide1-content-steps">新手引导1</tiny-button>
+      <tiny-button plain class="guide2-content-steps">新手引导2</tiny-button>
+    </div>
     <tiny-guide :show-step="showStep" :dom-data="domData"></tiny-guide>
   </div>
 </template>
 
 <script>
-import { Guide, Button } from '@opentiny/vue'
+import { Guide, Button, Divider } from '@opentiny/vue'
 
 export default {
   components: {
     TinyGuide: Guide,
-    TinyButton: Button
+    TinyButton: Button,
+    TinyDivider: Divider
   },
   data() {
     return {

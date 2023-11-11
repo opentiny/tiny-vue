@@ -1,18 +1,18 @@
 <template>
   <div>
-    <tiny-guide :show-step="showStep" :dom-data="domData" light-class="activeDom"></tiny-guide>
     <tiny-button type="primary" @click="stepStart">开始引导</tiny-button>
-    <div class="base-content">
-      <tiny-button plain class="guide-box1" @click="stepStart">基础新手引导开始</tiny-button>
+    <tiny-divider color="var(--ti-common-color-line-dividing)"></tiny-divider>
+    <tiny-guide :show-step="showStep" :dom-data="domData"></tiny-guide>
+    <div>
+      <tiny-button plain class="guide-box1">基础新手引导</tiny-button>
       <tiny-button plain class="guide-box2">带滚动条新手引导</tiny-button>
-      <tiny-button plain class="guide-box3">带滚动条无标题新手引导</tiny-button>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { Guide as TinyGuide, Button as TinyButton } from '@opentiny/vue'
+import { Guide as TinyGuide, Button as TinyButton, Divider as TinyDivider } from '@opentiny/vue'
 
 const showStep = ref(false)
 const domData = ref([
@@ -38,26 +38,10 @@ const domData = ref([
         secondary: true
       },
       {
-        text: '下一步',
-        action: 'next'
-      }
-    ]
-  },
-  {
-    text: '<div class="scrollBox" style="height:254px">这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案这里是新手引导文案</div>',
-    domElement: '.guide-box3',
-    button: [
-      {
-        text: '上一步',
-        action: 'back',
-        secondary: true
-      },
-      {
         text: '完成',
         action: 'complete'
       }
-    ],
-    classes: 'only-content'
+    ]
   }
 ])
 
@@ -65,10 +49,3 @@ function stepStart() {
   showStep.value = !showStep.value
 }
 </script>
-
-<style scoped>
-.base-content {
-  width: 100%;
-  margin-top: 16px;
-}
-</style>

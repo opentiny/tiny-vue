@@ -18,8 +18,8 @@ const domData = ref([
     domElement: '.btn1',
     button: [
       {
-        text: '下一步',
-        action: 'next'
+        text: '完成',
+        action: 'complete'
       }
     ]
   }
