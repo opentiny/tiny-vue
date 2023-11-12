@@ -6,8 +6,7 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN':
-          '<p>通过 <code>data</code> 属性设置时间线步骤条数据，通过 <code>active</code> 属性设置步骤条的选中步骤。</p>\n',
+        'zh-CN': '<p>通过 <code>data</code> 属性设置时间线的节点数据；<code>active</code> 属性设置当前节点。</p>\n',
         'en-US':
           '<p>Use the <code>data</code> attribute to set the timeline step bar data, and use the <code>active</code> attribute to set the selected step of the step bar. </p>\n'
       },
@@ -155,11 +154,66 @@ export default {
       'type': 'component',
       'properties': [
         {
-          'name': 'data',
-          'type': 'Array',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '设置时间线步骤条数据', 'en-US': 'Set timeline step bar data' },
+          'name': 'active',
+          'type': 'number',
+          'defaultValue': '-1',
+          'desc': {
+            'zh-CN': '当前节点索引，从0开始计数',
+            'en-US': 'Current node index and count from 0'
+          },
           'demoId': 'basic-usage'
+        },
+        {
+          'name': 'data',
+          'type': 'ITimelineItem',
+          'typeAnchorName': 'ITimelineItem',
+          'defaultValue': '[]',
+          'desc': {
+            'zh-CN': '节点数据',
+            'en-US': 'Nodes data'
+          },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'horizontal',
+          'type': 'boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '是否水平方向',
+            'en-US': 'Whether horizontal constructure'
+          },
+          'demoId': ''
+        },
+        {
+          'name': 'line-width',
+          'type': 'string | number',
+          'defaultValue': '--',
+          'desc': {
+            'zh-CN': '连接线长度，仅当 text-position 取值为 true 时生效，设置后 space 属性失效。',
+            'en-US':
+              'The length of the connection line and it is valid only when text-position is set to true. After setting, the space property is invalid'
+          },
+          'demoId': ''
+        },
+        {
+          'name': 'name-field',
+          'type': 'string',
+          'defaultValue': 'name',
+          'desc': {
+            'zh-CN': '节点名称对应的字段名',
+            'en-US': 'Set the field name in the node information.'
+          },
+          'demoId': 'custom-field'
+        },
+        {
+          'name': 'reverse',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否逆序排列节点，仅用于竖式时间线',
+            'en-US': 'Whether the node in reverse order and only for vertical timeline'
+          },
+          'demoId': 'vertical-step-reverse'
         },
         {
           'name': 'shape',
@@ -172,132 +226,161 @@ export default {
           'demoId': 'shape'
         },
         {
-          'name': 'vertical',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '竖式步骤条', 'en-US': 'vertical step bar' },
-          'demoId': 'vertical-step'
-        },
-        {
-          'name': 'horizontal',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否为横向步骤条', 'en-US': 'Whether it is a horizontal step bar' },
-          'demoId': 'horizontal-step'
-        },
-        {
           'name': 'show-number',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': {
-            'zh-CN': '设置未完成的状态是否显示序号',
-            'en-US': 'Set whether to display sequence numbers for unfinished states.'
+            'zh-CN': '未完成状态的节点是否显示序号',
+            'en-US': 'Whether to display sequence numbers for unfinished states.'
           },
-          'demoId': 'show-number'
-        },
-        {
-          'name': 'name-field',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为 name',
-          'desc': { 'zh-CN': '设置节点信息中名称对应的字段名', 'en-US': 'Set the field name in the node information.' },
-          'demoId': 'different-data'
-        },
-        {
-          'name': 'time-field',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为 time',
-          'desc': {
-            'zh-CN': '设置节点时间信息对应的字段名',
-            'en-US': 'Setting the name of the field corresponding to the node time information'
-          },
-          'demoId': 'different-data'
-        },
-        {
-          'name': 'start',
-          'type': 'number',
-          'defaultValue': '该属性的默认值为 1',
-          'desc': { 'zh-CN': '设置步骤条序号起始值', 'en-US': 'Set the start step sequence number.' },
-          'demoId': 'set-start-value'
+          'demoId': ''
         },
         {
           'name': 'space',
-          'type': 'string， Numer',
-          'defaultValue': '',
+          'type': 'string | number',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置时间线节点的宽度, 取值为数字、带长度单位数值与百分比，数字会默认以px为长度单位。',
-            'en-US': 'Set the width of the step bar'
+            'zh-CN': '节点宽度， 取值为数字、带长度单位的数值字符串和百分比字符串，数字会默认以px为长度单位。',
+            'en-US':
+              'Set the width of the step bar.The value can be a number, a numeric string with length units, or a percentage string. For numbers, the default length unit is px'
           },
           'demoId': 'set-step-width'
         },
         {
-          'name': 'active',
+          'name': 'start',
           'type': 'number',
-          'defaultValue': '该属性的默认值为 -1',
-          'desc': { 'zh-CN': '设置步骤条的选中步骤', 'en-US': 'Set the selected step of the step bar' },
-          'demoId': 'basic-usage'
+          'defaultValue': '1',
+          'desc': {
+            'zh-CN': '节点序号起始值',
+            'en-US': 'The start step sequence number.'
+          },
+          'demoId': 'set-start-value'
         },
         {
-          'name': 'reverse',
+          'name': 'time-field',
+          'type': 'string',
+          'defaultValue': 'time',
+          'desc': {
+            'zh-CN': '节点时间信息对应的字段名',
+            'en-US': 'The name of the field corresponding to the node time information'
+          },
+          'demoId': 'custome-filed'
+        },
+        {
+          'name': 'vertical',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '设置竖向步骤条的方向', 'en-US': 'Set the direction of the vertical step bar' },
-          'demoId': 'vertical-step-reverse'
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否竖直方向',
+            'en-US': 'Vertical direction'
+          },
+          'demoId': 'vertical-step'
+        }
+      ],
+      'events': [
+        {
+          'name': 'click',
+          'type': '(index: number, node: ITimelineItem) => void',
+          'desc': {
+            'zh-CN': '节点的点击事件，参数：<br />index：点击节点的下标<br /> node： 点击节点数据}',
+            'en-US': 'Click event of a node. arguments:<br />index: click the subscript of a node<br />node: node data'
+          },
+          'demoId': 'basic-usage'
+        }
+      ],
+      'slots': [
+        {
+          'name': 'bottom',
+          'desc': {
+            'zh-CN': '自定义节点底部内容',
+            'en-US': 'Customize bottom content for timeline item'
+          },
+          'demoId': 'custom-normal-step'
+        },
+        {
+          'name': 'left',
+          'desc': {
+            'zh-CN': '自定义节点左侧内容',
+            'en-US': 'Customize left content for timeline item'
+          },
+          'demoId': 'custom-vertical-step'
+        },
+        {
+          'name': 'right',
+          'desc': {
+            'zh-CN': '自定义节点右侧内容',
+            'en-US': 'Customize right content for timeline item'
+          },
+          'demoId': 'custom-vertical-step'
+        },
+        {
+          'name': 'top',
+          'desc': {
+            'zh-CN': '自定义节点顶部内容',
+            'en-US': 'Customize bottom content for timeline item'
+          },
+          'demoId': 'custom-normal-step'
+        }
+      ]
+    },
+    {
+      'name': 'timeline-item',
+      'type': 'component',
+      'properties': [
+        {
+          'name': 'node',
+          'type': 'ITimelineItem',
+          'typeAnchorName': 'ITimelineItem',
+          'defaultValue': '--',
+          'desc': {
+            'zh-CN': '节点数据',
+            'en-US': 'Node data'
+          },
+          'demoId': 'timeline-item'
         },
         {
           'name': 'line-width',
           'type': 'string | number',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '连接线长度，仅text-position取值为true时生效，设置后space属性失效。',
+            'zh-CN': '连接线长度，仅当 timeline 组件 text-position 属性取值为 true 时生效，设置后 space 属性失效。',
             'en-US':
               'The length of the connection line and it is valid only when text-position is set to true. After setting, the space property is invalid'
           },
           'demoId': ''
-        }
-      ],
-      'events': [
+        },
         {
-          'name': 'click',
-          'type': 'Function(arg1,arg2)',
-          'defaultValue': '',
+          'name': 'space',
+          'type': 'string | number',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '节点的点击事件;arguments: arg1:点击节点的下标, arg2:{ name: 节点名称, time: 时间 }',
+            'zh-CN': '节点宽度， 取值为数字、带长度单位的数值字符串和百分比字符串，数字会默认以px为长度单位。',
             'en-US':
-              'Click event of a node. arguments: arg1: click the subscript of a node, arg2: {name: node name, time: time}'
+              'Set the width of the step bar.The value can be a number, a numeric string with length units, or a percentage string. For numbers, the default length unit is px'
           },
-          'demoId': 'vertical-step-reverse1'
-        }
-      ],
-      'slots': [
-        {
-          'name': 'top',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '定义步骤条顶部', 'en-US': 'Define the top of the step bar' },
-          'demoId': 'custom-normal-step'
-        },
-        {
-          'name': 'bottom',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '定义步骤条底部', 'en-US': 'Define the bottom of the step bar' },
-          'demoId': 'custom-normal-step'
-        },
-        {
-          'name': 'left',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '定义步骤条左侧内容', 'en-US': 'Define the content on the left of the step bar.' },
-          'demoId': 'custom-vertical-step'
-        },
-        {
-          'name': 'right',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '定义步骤条右侧内容', 'en-US': 'Define the content on the right of the step bar' },
-          'demoId': 'custom-vertical-step'
+          'demoId': ''
         }
       ]
+    }
+  ],
+  types: [
+    {
+      'name': 'ITimelineItem',
+      'type': 'interface',
+      'code': `
+interface ITimelineItem {
+  name: string // 节点名称
+  time: string // 节点时间
+  error: boolean // 是否异常状态
+  disabled: boolean // 是否禁用
+  type: ITimelineItemType // 节点类型
+}
+      `
+    },
+    {
+      'name': 'ITimelineItemType',
+      'type': 'type',
+      'code': `type ITimelineItemType = 'primary' | 'success' | 'warning' | 'error' | 'info'`
     }
   ]
 }
