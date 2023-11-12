@@ -10,7 +10,7 @@
   </tiny-time-line>
 </template>
 
-<script lang="ts">
+<script>
 import { TimeLine, TimelineItem } from '@opentiny/vue'
 
 export default {

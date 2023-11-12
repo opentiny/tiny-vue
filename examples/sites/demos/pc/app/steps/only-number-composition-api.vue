@@ -2,7 +2,7 @@
   <tiny-time-line :data="data" :active="normalActive" :only-number="onlyNumber" @click="normalClick"></tiny-time-line>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 import { TimeLine as TinyTimeLine, Modal } from '@opentiny/vue'
 

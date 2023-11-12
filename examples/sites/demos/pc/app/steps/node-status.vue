@@ -1,8 +1,8 @@
 <template>
-  <tiny-time-line :data="data" :active="normalActive" type="normal" @click="normalClick"></tiny-time-line>
+  <tiny-time-line :data="data" :active="normalActive" @click="normalClick"></tiny-time-line>
 </template>
 
-<script lang="jsx">
+<script>
 import { TimeLine, Modal } from '@opentiny/vue'
 
 export default {
