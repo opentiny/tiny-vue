@@ -1,8 +1,6 @@
 <template>
   <div class="demo-form">
-    <div class="demo-form-btns">
-      <tiny-button @click="displayOnly = !displayOnly">display-only/{{ displayOnly }}</tiny-button>
-    </div>
+    <div style="margin-bottom: 12px">表单是否只展示：<tiny-switch v-model="displayOnly"></tiny-switch></div>
     <tiny-form :inline="inline" label-position="right" :display-only="displayOnly">
       <tiny-form-item label="input">
         <tiny-input v-model="formData.input"></tiny-input>
@@ -52,41 +50,9 @@
           placeholder="请输入内容"
         ></tiny-autocomplete>
       </tiny-form-item>
-      <!-- TODO 待定位问题 -->
-      <!-- <tiny-form-item label="级联选择器">
-        <tiny-cascader
-          v-model="formData.cascaderValue"
-          :options="cascaderOptions"
-          :props="{ emitPath: false }"
-        ></tiny-cascader>
-      </tiny-form-item>
-      <tiny-form-item label="级联选择器多选">
-        <tiny-cascader
-          v-model="formData.cascaderValueArr"
-          :options="cascaderOptions"
-          :props="{ multiple: true }"
-          clearable
-          @remove-tag="removeTag"
-        ></tiny-cascader>
-      </tiny-form-item> -->
-      <!-- TODO 待datePicker合入验证 -->
-      <!-- <tiny-form-item label="datePicker">
+      <tiny-form-item label="datePicker">
         <tiny-date-picker v-model="formData.datePicker"></tiny-date-picker>
       </tiny-form-item>
-      <tiny-form-item label="monthrange">
-        <tiny-date-picker
-          v-model="formData.monthrange"
-          type="monthrange"
-          :picker-options="pickerOptions"
-        ></tiny-date-picker>
-      </tiny-form-item>
-      <tiny-form-item label="datePicker1">
-        <tiny-date-picker
-          v-model="formData.daterangeValue"
-          type="daterange"
-          :picker-options="onPickOptions"
-        ></tiny-date-picker>
-      </tiny-form-item> -->
     </tiny-form>
   </div>
 </template>
@@ -209,218 +175,20 @@ const formData = ref({
   checkedArr: ['复选框1'],
   rate1: 2,
   passwordValue: '12345',
-  restaurants: [],
-  autocompleteValue: 'GFD科技有限公司',
-  cascaderValue: 'xiangmudengji',
-  cascaderValueArr: [
-    ['zhinan', 'anzhuang', 'xiangmudengji'],
-    ['zhinan', 'anzhuang', 'anzhuangcli'],
-    ['zhinan', 'kaifa', 'yinruzujian']
-  ]
+  restaurants: [
+    {
+      value: 'GFD科技有限公司',
+      address: '福州'
+    },
+    {
+      value: 'WWWW科技有限公司',
+      address: '深圳福田区'
+    }
+  ],
+  autocompleteValue: 'GFD科技有限公司'
 })
-const cascaderOptions = ref([
-  {
-    value: 'zhinan',
-    label: '指南',
-    children: [
-      {
-        value: 'anzhuang',
-        label: '安装',
-        children: [
-          {
-            value: 'xiangmudengji',
-            label: '项目登记'
-          },
-          {
-            value: 'huanjingzhunbei',
-            label: '环境准备'
-          },
-          {
-            value: 'anzhuangcli',
-            label: '安装 CLI'
-          },
-          {
-            value: 'chuangjianxiangmu',
-            label: '创建项目'
-          }
-        ]
-      },
-      {
-        value: 'kaifa',
-        label: '开发',
-        children: [
-          {
-            value: 'yinruzujian',
-            label: '引入组件'
-          },
-          {
-            value: 'monishuju',
-            label: '模拟数据'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    value: 'zujian',
-    label: '组件',
-    children: [
-      {
-        value: 'basic',
-        label: '框架风格',
-        children: [
-          {
-            value: 'layout',
-            label: 'Layout 布局'
-          },
-          {
-            value: 'color',
-            label: 'Color 色彩'
-          },
-          {
-            value: 'font',
-            label: 'Font 字体'
-          },
-          {
-            value: 'icon',
-            label: 'Icon 图标'
-          }
-        ]
-      },
-      {
-        value: 'form',
-        label: '表单组件',
-        children: [
-          {
-            value: 'radio',
-            label: 'Radio 单选框'
-          },
-          {
-            value: 'checkbox',
-            label: 'Checkbox 多选框'
-          },
-          {
-            value: 'input',
-            label: 'Input 输入框'
-          },
-          {
-            value: 'number',
-            label: 'Numeric 计数器'
-          },
-          {
-            value: 'select',
-            label: 'Select 选择器'
-          },
-          {
-            value: 'cascader',
-            label: 'Cascader 级联选择器'
-          },
-          {
-            value: 'switch',
-            label: 'Switch 开关'
-          },
-          {
-            value: 'slider',
-            label: 'Slider 滑块'
-          },
-          {
-            value: 'time-picker',
-            label: 'TimePicker 时间选择器'
-          },
-          {
-            value: 'date-picker',
-            label: 'DatePicker 日期选择器'
-          },
-          {
-            value: 'form',
-            label: 'Form 表单'
-          }
-        ]
-      },
-      {
-        value: 'data',
-        label: '数据组件',
-        children: [
-          {
-            value: 'tree',
-            label: 'Tree 树形控件'
-          },
-          {
-            value: 'pager',
-            label: 'Pager 分页'
-          }
-        ]
-      },
-      {
-        value: 'notice',
-        label: '提示组件',
-        children: [
-          {
-            value: 'alert',
-            label: 'Alert 警告'
-          },
-          {
-            value: 'loading',
-            label: 'Loading 加载'
-          }
-        ]
-      },
-      {
-        value: 'navigation',
-        label: '导航组件',
-        children: [
-          {
-            value: 'menu',
-            label: 'NavMenu 导航菜单'
-          },
-          {
-            value: 'tabs',
-            label: 'Tabs 标签页'
-          },
-          {
-            value: 'breadcrumb',
-            label: 'Breadcrumb 面包屑'
-          },
-          {
-            value: 'steps',
-            label: 'Steps 步骤条'
-          }
-        ]
-      },
-      {
-        value: 'others',
-        label: '其他组件',
-        children: [
-          {
-            value: 'rate',
-            label: 'Rate 评分'
-          },
-          {
-            value: 'tag',
-            label: 'Tag 标签'
-          },
-          {
-            value: 'usercontact',
-            label: 'UserContact 联系人'
-          },
-          {
-            value: 'slidebar',
-            label: 'SlideBar 滚动块'
-          }
-        ]
-      }
-    ]
-  }
-])
+
 let restaurants
-
-onMounted(() => {
-  restaurants = loadAll()
-})
-
-function submitClick() {
-  Modal.alert('提交')
-}
 
 function querySearch(queryString, cb) {
   let restaurants = restaurants
@@ -431,42 +199,6 @@ function querySearch(queryString, cb) {
 
 function createFilter(queryString) {
   return (restaurant) => restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
-}
-
-function loadAll() {
-  return [
-    {
-      value: 'GFD科技有限公司',
-      address: '福州'
-    },
-    {
-      value: 'WWWW科技有限公司',
-      address: '深圳福田区'
-    },
-    {
-      value: 'RFV有限责任公司',
-      address: '中山市'
-    },
-    {
-      value: 'TGB有限公司',
-      address: '梅州'
-    },
-    {
-      value: 'YHN科技有限公司',
-      address: '韶关'
-    },
-    {
-      value: '康康物业有限公司',
-      address: '广州天河区'
-    }
-  ]
-}
-
-function removeTag(val) {
-  Modal.message({
-    message: '当前触发了 remove-tag 事件删除的值为：' + val,
-    status: 'info'
-  })
 }
 </script>
 

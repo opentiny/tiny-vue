@@ -4,10 +4,7 @@
       ref="ruleFormRef"
       :model="createData"
       :rules="rules"
-      :validate-on-rule-change="isvalidate"
-      label-width="100px"
-      validate-type="text"
-      :inline-message="true"
+      :validate-on-rule-change="isValidate"
       @validate="validate"
     >
       <tiny-form-item label="用户名" prop="username">
@@ -18,13 +15,13 @@
       </tiny-form-item>
       <tiny-form-item>
         <tiny-button type="primary" @click="handleSubmit()"> 注册 </tiny-button>
-        <tiny-button type="primary" @click="removePass"> 清除密码校验 </tiny-button>
+        <tiny-button type="primary" @click="changeRule"> 改变校验规则 </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref, reactive } from 'vue'
 import {
   Form as TinyForm,
@@ -48,7 +45,7 @@ let validatePass = (rule, value, callback) => {
   }
 }
 
-const isvalidate = ref(true)
+const isValidate = ref(true)
 const rules = ref({
   username: [
     { required: true, message: '必填', trigger: 'blur' },
@@ -60,26 +57,11 @@ const rules = ref({
   ]
 })
 
-function validate(val) {
-  Modal.message({
-    message: `表单项被校验后触发的事件,所校验字段为:${val}`,
-    status: 'info'
-  })
-}
-
 function handleSubmit() {
-  ruleFormRef.value.validate((valid) => {
-    if (valid) {
-      Modal.alert('校验通过，开始注册！')
-    } else {
-      Modal.message({ message: '校验不通过！！', status: 'warning' })
-      return false
-    }
-  })
+  ruleFormRef.value.validate()
 }
 
-function removePass() {
-  isvalidate.value = false // 通过配置validate-on-rule-change属性,设置是否在rules属性改变后立即触发一次验证
+function changeRule() {
   rules.value = {
     username: [
       { required: true, message: '必填', trigger: 'blur' },
