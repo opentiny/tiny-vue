@@ -2,7 +2,7 @@
   <tiny-rate v-model="rate" text-on-bottom></tiny-rate>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Rate as TinyRate } from '@opentiny/vue'
 
