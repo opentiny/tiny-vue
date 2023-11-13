@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { TimeLine as TinyTimeLine } from '@opentiny/vue'
 

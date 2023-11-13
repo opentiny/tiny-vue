@@ -6,38 +6,33 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': '<p>通过 <code>data</code> 属性设置时间线的节点数据；<code>active</code> 属性设置当前节点。</p>\n',
+        'zh-CN':
+          '<p>通过 <code>data</code> 属性设置时间线的节点数据；<code>active</code> 属性设置当前节点，<code>click</code> 监听单节点的点击事件。</p>\n',
         'en-US':
-          '<p>Use the <code>data</code> attribute to set the timeline step bar data, and use the <code>active</code> attribute to set the selected step of the step bar. </p>\n'
+          '<p>Use the <code>data</code> attribute to set data,  the <code>active</code> attribute to set the selected node, and <code>click</code> to listen to click event on node. </p>\n'
       },
       'codeFiles': ['basic-usage.vue']
     },
     {
       'demoId': 'timeline-item',
-      'name': { 'zh-CN': '时间线节点', 'en-US': 'Timeline Node' },
+      'name': { 'zh-CN': '时间线节点组件', 'en-US': 'Timeline Node Component' },
       'desc': {
-        'zh-CN': '<p>可以通过时间线节点组件<code>TimelineItem</code>自定义单个节点的属性、事件和插槽。</p>\n',
-        'en-US': ''
+        'zh-CN': '<p>通过时间线节点组件 <code>timeline-item</code> 自定义单个节点的属性、事件和插槽。</p>\n',
+        'en-US':
+          '<p>Customize the attributes, events, and slots of individual nodes through the <code>timeline-item</code> component of the Timeline node component.</p>\n'
       },
       'codeFiles': ['timeline-item.vue']
     },
     {
-      'demoId': 'horizontal-step',
-      'name': { 'zh-CN': '横向时间线', 'en-US': 'horizontal timeline' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>horizontal</code> 属性设置横向时间线。</p>\n',
-        'en-US': '<p>Set the horizontal timeline through the <code>horizontal</code> attribute. </p>\n'
-      },
-      'codeFiles': ['horizontal-step.vue']
-    },
-    {
-      'demoId': 'vertical-step',
+      'demoId': 'vertical-timeline',
       'name': { 'zh-CN': '竖向时间线', 'en-US': 'Vertical Timeline' },
       'desc': {
-        'zh-CN': '<p>通过 <code>vertical</code> 属性设置竖向时间线。</p>\n',
-        'en-US': '<p>Use the <code>vertical</code> attribute to set the vertical timeline. </p>\n'
+        'zh-CN':
+          '<p>通过 <code>vertical</code> 属性设置为竖直方向时间线，<code>reverse</code> 设置是否逆序展示数据。</p>\n',
+        'en-US':
+          '<p>Use the <code>vertical</code> attribute to set the vertical timeline and <code>reverse</code> to set whether display data in reverse order.</p>\n'
       },
-      'codeFiles': ['vertical-step.vue']
+      'codeFiles': ['vertical-timeline.vue']
     },
     {
       'demoId': 'shape',
@@ -58,94 +53,55 @@ export default {
       'codeFiles': ['status.vue']
     },
     {
-      'demoId': 'vertical-step-reverse',
-      'name': { 'zh-CN': '竖向时间线的方向', 'en-US': 'Direction of the vertical timeline' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>reverse</code> 属性设置竖向步骤条的方向。</p>\n',
-        'en-US': '<p>Sets the direction of the vertical step bar through the <code>reverse</code> attribute. </p>\n'
-      },
-      'codeFiles': ['vertical-step-reverse.vue']
-    },
-    {
-      'demoId': 'set-step-width',
+      'demoId': 'set-node-width',
       'name': { 'zh-CN': '宽度设置', 'en-US': 'Width Setting' },
       'desc': {
-        'zh-CN': '<p>详细用法参考如下示例。</p>\n',
-        'en-US': '<p>Use the <code>space</code> attribute to set the width of the step bar. </p>\n'
+        'zh-CN': '<p>通过 <code>space</code> 属性设置节点的宽度。</p>\n',
+        'en-US': '<p>Use the <code>space</code> attribute to set the width of timeline node. </p>\n'
       },
-      'codeFiles': ['set-step-width.vue']
+      'codeFiles': ['set-node-width.vue']
     },
     {
-      'demoId': 'different-data',
-      'name': { 'zh-CN': '数据映射', 'en-US': 'Data Mapping' },
-      'desc': {
-        'zh-CN':
-          '<p>通过 <code>name-field</code> 属性设置节点信息中名称对应的字段名，通过 <code>time-field</code> 属性设置节点时间信息对应的字段名。</p>\n',
-        'en-US':
-          '<p>The <code>name-field</code> attribute is used to set the field name corresponding to the node name in the node information, and the <code>time-field</code> attribute is used to set the field name corresponding to the node time information. </p>\n'
-      },
-      'codeFiles': ['different-data.vue']
-    },
-    {
-      'demoId': 'set-start-value',
-      'name': { 'zh-CN': '设置序号起始值', 'en-US': 'Set the start value of the sequence number' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>start</code> 属性设置步骤条序号起始值。</p>\n',
-        'en-US': '<p>Set the start step sequence number through the <code>start</code> attribute. </p>\n'
-      },
-      'codeFiles': ['set-start-value.vue']
-    },
-    {
-      'demoId': 'show-status',
-      'name': { 'zh-CN': '显示组件内部状态', 'en-US': 'Display the internal status of a component.' },
-      'desc': {
-        'zh-CN':
-          '<p>通过 <code>show-status</code> 属性设置是否显示组件内部状态。默认为 <code>false</code>，表示不显示。</p>\n',
-        'en-US':
-          '<p>The <code>show-status</code> attribute is used to set whether to display the internal status of a component. The default value is <code>false</code>, indicating that the parameter is not displayed. </p>\n'
-      },
-      'codeFiles': ['show-status.vue']
-    },
-    {
-      'demoId': 'show-number',
-      'name': { 'zh-CN': '未完成的序号显示', 'en-US': 'Unfinished Sequence Number Display' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>show-number</code> 属性设置未完成的状态是否显示序号。</p>\n',
-        'en-US':
-          '<p>The <code>show-number</code> attribute is used to set whether to display sequence numbers for uncompleted states. </p>\n'
-      },
-      'codeFiles': ['show-number.vue']
-    },
-    {
-      'demoId': 'custom-normal-step',
+      'demoId': 'custom-horizontal-timeline',
       'name': { 'zh-CN': '自定义横向时间线', 'en-US': 'Customizing a Horizontal Timeline' },
       'desc': {
         'zh-CN':
-          '<p><code>slot</code> 为 <code>top</code>可以自定义步骤条顶部内容，<code>slot</code> 为 <code>bottom</code> 可以自定义步骤条底部内容。</p>\n',
+          '<p>通过 <code>top</code> 插槽可以自定义步骤条顶部内容，<code>bottom</code> 插槽自定义步骤条底部内容。</p>\n',
         'en-US':
-          'If <p><code>slot</code> is <code>top</code>, you can customize the top content of the step bar. If <p><code>slot</code> is <code>slot</code>, you can customize the bottom content of the step bar. </p>\n'
+          'If <p><code>slot</code> is <code>top</code>, you can customize the top content of the timeline. If <p><code>slot</code> is <code>slot</code>, you can customize the bottom content of the timeline. </p>\n'
       },
-      'codeFiles': ['custom-normal-step.vue']
+      'codeFiles': ['custom-horizontal-timeline.vue']
     },
     {
-      'demoId': 'custom-vertical-step',
+      'demoId': 'custom-vertical-timeline',
       'name': { 'zh-CN': '自定义竖向时间线', 'en-US': 'Customized Vertical Timeline' },
       'desc': {
         'zh-CN':
-          '<p><code>slot</code> 为 <code>left</code>可以自定义步骤条左侧内容，<code>slot</code> 为 <code>right</code> 可以自定义步骤条右侧内容。</p>\n',
+          '<p>通过<code>left</code> 插槽自定义步骤条左侧内容，<code>right</code> 插槽自定义步骤条右侧内容。</p>\n',
         'en-US':
-          'If <p><code>slot</code> is set to <code>left</code>, you can customize the content on the left of the step bar. If <p><code>slot</code> is set to <code>right</code>, you can customize the content on the right of the step bar. </p>\n'
+          'If <p><code>slot</code> is set to <code>left</code>, you can customize the content on the left of the timeline. If <p><code>slot</code> is set to <code>right</code>, you can customize the content on the right of the timeline. </p>\n'
       },
-      'codeFiles': ['custom-vertical-step.vue']
+      'codeFiles': ['custom-vertical-timeline.vue']
     },
     {
-      'demoId': 'vertical-step-reverse1',
-      'name': { 'zh-CN': 'click 事件', 'en-US': 'click event' },
+      'demoId': 'custom-field',
+      'name': { 'zh-CN': '自定义字段', 'en-US': 'Custom Field' },
       'desc': {
-        'zh-CN': '<p>单击时触发 click 事件</p>\n',
-        'en-US': '<p>The click event is triggered upon a click</p>\n'
+        'zh-CN':
+          '<p>通过 <code>name-field</code> 属性设置节点信息中名称对应的字段名，<code>time-field</code> 属性设置节点时间信息对应的字段名。</p>\n',
+        'en-US':
+          '<p>The <code>name-field</code> attribute is used to set the field name corresponding to the node name in the node information, and the <code>time-field</code> attribute is used to set the field name corresponding to the node time information. </p>\n'
       },
-      'codeFiles': ['vertical-step-reverse.vue']
+      'codeFiles': ['custom-field.vue']
+    },
+    {
+      'demoId': 'set-start-value',
+      'name': { 'zh-CN': '序号起始值', 'en-US': 'Start value of the sequence number' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>start</code> 属性设置时间线序号起始值。</p>\n',
+        'en-US': '<p>Set the start sequence number through the <code>start</code> attribute. </p>\n'
+      },
+      'codeFiles': ['set-start-value.vue']
     }
   ],
   apis: [
@@ -213,7 +169,7 @@ export default {
             'zh-CN': '是否逆序排列节点，仅用于竖式时间线',
             'en-US': 'Whether the node in reverse order and only for vertical timeline'
           },
-          'demoId': 'vertical-step-reverse'
+          'demoId': 'vertical-timeline'
         },
         {
           'name': 'shape',
@@ -231,7 +187,7 @@ export default {
           'defaultValue': 'true',
           'desc': {
             'zh-CN': '未完成状态的节点是否显示序号',
-            'en-US': 'Whether to display sequence numbers for unfinished states.'
+            'en-US': 'Whether to display sequence numbers for unfinished states'
           },
           'demoId': ''
         },
@@ -242,9 +198,9 @@ export default {
           'desc': {
             'zh-CN': '节点宽度， 取值为数字、带长度单位的数值字符串和百分比字符串，数字会默认以px为长度单位。',
             'en-US':
-              'Set the width of the step bar.The value can be a number, a numeric string with length units, or a percentage string. For numbers, the default length unit is px'
+              'Set the width of the timeline.The value can be a number, a numeric string with length units, or a percentage string. For numbers, the default length unit is px'
           },
-          'demoId': 'set-step-width'
+          'demoId': 'set-node-width'
         },
         {
           'name': 'start',
@@ -274,7 +230,7 @@ export default {
             'zh-CN': '是否竖直方向',
             'en-US': 'Vertical direction'
           },
-          'demoId': 'vertical-step'
+          'demoId': 'vertical-timeline'
         }
       ],
       'events': [
@@ -295,7 +251,7 @@ export default {
             'zh-CN': '自定义节点底部内容',
             'en-US': 'Customize bottom content for timeline item'
           },
-          'demoId': 'custom-normal-step'
+          'demoId': 'custom-normal-timeline'
         },
         {
           'name': 'left',
@@ -303,7 +259,7 @@ export default {
             'zh-CN': '自定义节点左侧内容',
             'en-US': 'Customize left content for timeline item'
           },
-          'demoId': 'custom-vertical-step'
+          'demoId': 'custom-vertical-timeline'
         },
         {
           'name': 'right',
@@ -311,7 +267,7 @@ export default {
             'zh-CN': '自定义节点右侧内容',
             'en-US': 'Customize right content for timeline item'
           },
-          'demoId': 'custom-vertical-step'
+          'demoId': 'custom-horizontal-timeline'
         },
         {
           'name': 'top',
@@ -319,7 +275,7 @@ export default {
             'zh-CN': '自定义节点顶部内容',
             'en-US': 'Customize bottom content for timeline item'
           },
-          'demoId': 'custom-normal-step'
+          'demoId': 'custom-horizontal-timeline'
         }
       ]
     },
@@ -356,9 +312,9 @@ export default {
           'desc': {
             'zh-CN': '节点宽度， 取值为数字、带长度单位的数值字符串和百分比字符串，数字会默认以px为长度单位。',
             'en-US':
-              'Set the width of the step bar.The value can be a number, a numeric string with length units, or a percentage string. For numbers, the default length unit is px'
+              'Set the width of the timeline.The value can be a number, a numeric string with length units, or a percentage string. For numbers, the default length unit is px'
           },
-          'demoId': ''
+          'demoId': 'set-node-width'
         }
       ]
     }

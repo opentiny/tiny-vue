@@ -1,7 +1,7 @@
 <template>
   <div class="demo-shape">
     <tiny-button type="primary" @click="changeShape">
-      点击切换shape的值为 {{ shape === 'dot' ? 'circle' : 'dot' }}
+      点击切换 shape 为 {{ shape === 'dot' ? 'circle' : 'dot' }}
     </tiny-button>
     <tiny-time-line vertical :data="data" :shape="shape"></tiny-time-line>
   </div>

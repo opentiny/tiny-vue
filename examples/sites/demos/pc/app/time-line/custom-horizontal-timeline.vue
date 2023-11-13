@@ -1,8 +1,17 @@
 <template>
-  <tiny-time-line :data="data" :active="active" @click="click" show-status></tiny-time-line>
+  <tiny-time-line :data="data" :active="active" @click="click">
+    <template #top="{ slotScope: { index, name } }">
+      <p class="custom-top">{{ index }}.{{ name }}</p>
+    </template>
+    <template #bottom="{ slotScope: { time } }">
+      <p class="custom-bottom">
+        {{ time }}
+      </p>
+    </template>
+  </tiny-time-line>
 </template>
 
-<script lang="ts">
+<script>
 import { TimeLine, Modal } from '@opentiny/vue'
 
 export default {
@@ -30,3 +39,14 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.custom-top {
+  text-align: center;
+}
+
+.custom-bottom {
+  color: #8a8e99;
+  font-size: 12px;
+}
+</style>
