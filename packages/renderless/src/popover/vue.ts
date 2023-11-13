@@ -113,7 +113,6 @@ const initWatch = ({
       if (props.disabled) {
         return
       }
-      // mobile-first时，需要更新一下，arrow的位置才正确
       if (val) {
         nextTick(() => updatePopper())
       }
