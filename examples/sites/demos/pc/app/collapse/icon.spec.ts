@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('Collapse 自定义展开折叠图标', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('collapse#custom-collapse-icon')
+  await page.goto('collapse#icon')
 
   const header = page.locator('.tiny-collapse-item__header')
   const content = page.locator('.tiny-collapse-item__wrap')

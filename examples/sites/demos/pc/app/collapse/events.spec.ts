@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('Collapse 折叠面板事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('collapse#collapse-events')
+  await page.goto('collapse#events')
 
   const header = page.locator('.tiny-collapse-item__header')
   const modal = page.locator('.tiny-modal')

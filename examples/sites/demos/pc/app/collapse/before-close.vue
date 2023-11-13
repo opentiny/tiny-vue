@@ -1,5 +1,5 @@
 <template>
-  <tiny-collapse v-model="activeNames" @change="change">
+  <tiny-collapse class="demo-collapse-wrap" v-model="activeName" accordion :before-close="beforeClose">
     <tiny-collapse-item title="一致性 Consistency" name="1">
       <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
       <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
@@ -30,16 +30,22 @@ export default {
   },
   data() {
     return {
-      activeNames: ['1', '3']
+      activeName: '1'
     }
   },
   methods: {
-    change(activeNames) {
-      Modal.message({
-        message: 'change 事件，当前激活面板：' + activeNames,
-        status: 'info'
-      })
+    beforeClose(item, activeNames) {
+      Modal.message({ message: '阻止面板切换，当前点击面板：' + item.name, status: 'error' })
+      return false
     }
   }
 }
 </script>
+
+<style scoped lang="less">
+.demo-collapse-wrap {
+  .tiny-collapse-item__content > * {
+    line-height: 1.8;
+  }
+}
+</style>

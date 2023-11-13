@@ -1,5 +1,5 @@
 <template>
-  <tiny-collapse v-model="activeNames">
+  <tiny-collapse class="demo-collapse-wrap" v-model="activeNames">
     <tiny-collapse-item title="多列表单" name="1">
       <tiny-layout>
         <tiny-form :responsive-layout="true">
@@ -33,6 +33,15 @@
         </tiny-form>
       </tiny-layout>
     </tiny-collapse-item>
+    <tiny-collapse-item title="表格" name="2">
+      <tiny-grid :data="data" border :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
+        <tiny-grid-column type="index" width="60"></tiny-grid-column>
+        <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+        <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
+        <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
+        <tiny-grid-column field="city" title="城市"></tiny-grid-column>
+      </tiny-grid>
+    </tiny-collapse-item>
   </tiny-collapse>
 </template>
 
@@ -49,7 +58,9 @@ import {
   Numeric,
   IpAddress,
   Select,
-  Option
+  Option,
+  Grid,
+  GridColumn
 } from '@opentiny/vue'
 
 export default {
@@ -65,14 +76,16 @@ export default {
     TinyNumeric: Numeric,
     TinySelect: Select,
     TinyOption: Option,
-    TinyIpAddress: IpAddress
+    TinyIpAddress: IpAddress,
+    TinyGrid: Grid,
+    TinyGridColumn: GridColumn
   },
   data() {
     return {
-      activeNames: ['1'],
+      activeNames: ['1', '2'],
       formData: {
         name: '',
-        employees: '',
+        employees: 1,
         city: '',
         ip: '192.168.0.1'
       },
@@ -97,8 +110,58 @@ export default {
           value: 'meizhou',
           label: '梅州'
         }
+      ],
+      data: [
+        {
+          id: '1',
+          name: 'GFD科技YX公司',
+          city: '福州',
+          employees: 800,
+          createdDate: '2014-04-30 00:56:00',
+          boole: false
+        },
+        {
+          id: '2',
+          name: 'WWW科技YX公司',
+          city: '深圳',
+          employees: 300,
+          createdDate: '2016-07-08 12:36:22',
+          boole: true
+        },
+        {
+          id: '3',
+          name: 'RFV有限责任公司',
+          city: '中山',
+          employees: 1300,
+          createdDate: '2014-02-14 14:14:14',
+          boole: false
+        },
+        {
+          id: '4',
+          name: 'TGB科技YX公司',
+          city: '龙岩',
+          employees: 360,
+          createdDate: '2013-01-13 13:13:13',
+          boole: true
+        },
+        {
+          id: '5',
+          name: 'YHN科技YX公司',
+          city: '韶关',
+          employees: 810,
+          createdDate: '2012-12-12 12:12:12',
+          boole: true
+        }
       ]
     }
   }
 }
 </script>
+
+<style scoped lang="less">
+.demo-collapse-wrap {
+  .tiny-collapse-item__content > * {
+    line-height: 1.8;
+  }
+}
+</style>
