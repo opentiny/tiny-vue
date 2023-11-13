@@ -1,10 +1,10 @@
 <template>
-  <tiny-numeric v-model="num1"></tiny-numeric>
+  <tiny-numeric v-model="value" placeholder="请输入非空数值"></tiny-numeric>
 </template>
 
-<script setup lang="jsx">
+<script setup lang="ts">
 import { ref } from 'vue'
 import { Numeric as TinyNumeric } from '@opentiny/vue'
 
-const num1 = ref(1)
+const value = ref(1)
 </script>

@@ -35,7 +35,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn, Pager } from '@opentiny/vue'
 
 export default {

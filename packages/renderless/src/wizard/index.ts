@@ -18,11 +18,11 @@ import { isObject } from '../common/type'
 export const lastStepHandle =
   ({ state, emit }: Pick<IWizardRenderlessParams, 'state' | 'emit'>) =>
   () => {
-    for (let i = 0; i < state.datas.length; i++) {
-      if (state.datas[0].status === state.doing) {
-        return
-      }
+    if (state.datas[0].status === state.doing) {
+      return
+    }
 
+    for (let i = 0; i < state.datas.length; i++) {
       if (state.datas[i].status === state.doing) {
         state.datas[i].status = state.wait
         state.datas[i - 1].status = state.doing
@@ -45,11 +45,11 @@ export const nextStepHandle =
         state.datas[i].status = state.ready
         state.datas[i + 1].status = state.doing
         state.submitShow = i + 2 === state.datas.length
-        return
+        break
       }
-
-      emit('btnNext', state.datas)
     }
+
+    emit('btnNext', state.datas)
   }
 
 export const btnSaveHandle =

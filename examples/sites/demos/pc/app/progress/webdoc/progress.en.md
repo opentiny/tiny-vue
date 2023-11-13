@@ -4,4 +4,4 @@ title: Progress
 
 # Progress
 
-<div>Displays the operation progress and informs users of the current status and expectations.</div>
+<div>Used for real-time feedback on progress and informing users of the current loading status.</div>

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('旗帜数据来源前面节点', async ({ page }) => {
+test('旗子数据来源', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
   await page.goto('http://127.0.0.1:7130/pc/milestone/flag-before')
 

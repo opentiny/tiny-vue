@@ -1,5 +1,5 @@
 <template>
-  <tiny-numeric v-model="num1" :unit="unit"></tiny-numeric>
+  <tiny-numeric v-model="value" :unit="unit"></tiny-numeric>
 </template>
 
 <script>
@@ -11,8 +11,8 @@ export default {
   },
   data() {
     return {
-      num1: 1,
-      unit: '斤'
+      value: 1,
+      unit: 'kg'
     }
   }
 }

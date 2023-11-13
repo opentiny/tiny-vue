@@ -55,7 +55,7 @@ export const useSetup = ({
   // renderless 作为 setup 的结果，最后要将结果挂在 vm 上
   let setupResult = useExcuteOnce(() => {
     const render = typeof reactiveProps.tiny_renderless === 'function' ? reactiveProps.tiny_renderless : renderless
-    const { dispath, broadcast } = emitEvent(vm)
+    const { dispatch, broadcast } = emitEvent(vm)
 
     const utils = {
       vm,
@@ -63,7 +63,7 @@ export const useSetup = ({
       emit: emit(reactiveProps),
       constants,
       nextTick,
-      dispath,
+      dispatch,
       broadcast,
       t() { },
       mergeClass,

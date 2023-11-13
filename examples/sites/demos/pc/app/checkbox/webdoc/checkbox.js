@@ -5,7 +5,7 @@ export default {
     {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '<p>详细用法参考如下示例。</p>', 'en-US': '<p>For details, see the following example.</p>' },
       'codeFiles': ['basic-usage.vue']
     },
     {
@@ -44,9 +44,9 @@ export default {
       'name': { 'zh-CN': '配置式复选框组', 'en-US': 'Profile Checkbox Group' },
       'desc': {
         'zh-CN':
-          '<p>提供 <code>options</code> 属性，支持通过配置对象数组数据的形式来渲染多选框组。使用该属性后，可以不用再在标签中以插槽的形式插入 <code>checkbox</code> 或 <code>checkbox-button</code> 元素。\n\n<code>options</code> 对象数组中包括三个字段：<code>label</code>、<code>text</code>、<code>events</code>。\n\n另外还提供 <code>type</code> 属性，配合 <code>options</code> 属性一起使用，默认值为 <code>checkbox</code>。还可以配置为 <code>button</code>，配置后复选框组将以按钮的形式展示。</p>\n',
+          '<p>通过<code>options</code>配置显示多选框组。使用该属性后，可以不用再在标签中以插槽的形式插入 <code>checkbox</code> 或 <code>checkbox-button</code> 元素。<code>options</code>的类型为<a href="#ICheckboxGroupOptions">ICheckboxGroupOptions[]</a>。 <code>type</code> 属性配合 <code>options</code> 属性一起使用，将<code>type</code>配置为<code>button</code>，复选框组将以按钮的形式展示。</p>\n',
         'en-US':
-          '<p>Provides the <code>options</code> attribute. You can render a check box group by configuring object array data. With this attribute, you no longer need to insert the <code>checkbox</code> or <code>checkbox-button</code> element as a slot in the tag. \n\nThe <code>options</code> object array contains three fields: <code>label</code>, <code>text</code>, and <code>events</code>. \n\n The <code>type</code> attribute is also provided, which is used with the <code>options</code> attribute. The default value is <code>checkbox</code>. You can also set this parameter to <code>button</code>. After the configuration, the check box group is displayed as a button. </p>\n'
+          '<p>Configure the display of multiple selection box groups through<code>options</code>. After using this attribute, you no longer need to insert<code>checkbox</code>or<code>checkbox button</code>elements in the label as slots. The type of <code>options</code>is<a="# ICheckboxGroupOptions">ICheckboxGroupOptions[]</a>< The code>type</code>attribute is used in conjunction with the<code>options</code>attribute to configure the<code>type</code>as<code>button</code>, and the checkbox group will be displayed in the form of a button.</p>\n'
       },
       'codeFiles': ['group-options.vue']
     },
@@ -139,11 +139,10 @@ export default {
     },
     {
       'demoId': 'checkbox-slot',
-      'name': { 'zh-CN': '插槽', 'en-US': 'Slot' },
+      'name': { 'zh-CN': '默认插槽', 'en-US': 'Slot' },
       'desc': {
-        'zh-CN': '<p>Checkbox 的内容</p>\n',
-        'en-US':
-          '<p>Multi-line button group, after exceeding the maximum width, it will be displayed in a new line.</p>\n'
+        'zh-CN': '<p>通过<code>default slot</code>自定义文本内容。</p>\n',
+        'en-US': '<p>Customize text content through<code>default slot</code>.</p>\n'
       },
       'codeFiles': ['checkbox-slot.vue']
     },
@@ -151,14 +150,14 @@ export default {
       'demoId': 'checkbox-button-multiple',
       'name': { 'zh-CN': '多行按钮', 'en-US': 'Checkbox Button Multiple' },
       'desc': {
-        'zh-CN': '<p>多行按钮组，超出最大宽度后，换行显示</p>\n',
-        'en-US': '<p>Checkbox button multiple</p>\n'
+        'zh-CN': '<p>多行按钮组，超出最大宽度后，换行显示。</p>\n',
+        'en-US': '<p>Multi line button group, displayed as a new line after exceeding the maximum width.</p>\n'
       },
       'codeFiles': ['checkbox-button-multiple.vue']
     },
     {
       'demoId': 'dynamic-create-checkbox',
-      'name': { 'zh-CN': '动态生成复选框组', 'en-US': 'Dynamicly generate check box groups' },
+      'name': { 'zh-CN': '动态生成复选框组', 'en-US': 'Dynamic generate check box groups' },
       'desc': {
         'zh-CN': '<p>复选框组所需数据可通过请求服务从后台取得，然后动态生成。</p>\n',
         'en-US':
@@ -204,7 +203,7 @@ export default {
         },
         {
           'name': 'false-label',
-          'type': 'string , number',
+          'type': 'string | number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '没有选中时的值',
@@ -224,12 +223,12 @@ export default {
         },
         {
           'name': 'label',
-          'type': 'string , number , boolean',
+          'type': 'string | number | boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '选中状态的值（只有在checkbox-group或者绑定对象类型为array时有效）',
             'en-US':
-              'Selected value (This parameter is valid only when checkbox-group or the bound object type is array.)'
+              'Selected value (This parameter is valid only when checkbox-group or the bound object type is array)'
           },
           'demoId': 'checkbox-group'
         },
@@ -255,12 +254,11 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'string',
+          'type': 'medium | small | mini',
           'defaultValue': '',
           'desc': {
-            'zh-CN': 'Checkbox 的尺寸，仅在 border 为真时有效;该属性的可选值为 medium / small / mini',
-            'en-US':
-              'Checkbox size. This parameter is valid only when border is set to true. The optional values of this attribute are medium / small / mini'
+            'zh-CN': 'checkbox 的尺寸，仅在 border 为真时有效',
+            'en-US': 'Checkbox size. This parameter is valid only when border is set to true'
           },
           'demoId': 'size'
         },
@@ -276,7 +274,7 @@ export default {
         },
         {
           'name': 'true-label',
-          'type': 'string , number',
+          'type': 'string | number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '选中时的值',
@@ -288,11 +286,11 @@ export default {
       'events': [
         {
           'name': 'change',
-          'type': '',
+          'type': '(value: string | number | boolean) => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '当绑定值变化时触发的事件',
-            'en-US': 'This event is triggered when the binding value changes.'
+            'en-US': 'This event is triggered when the binding value changes'
           },
           'demoId': 'checkbox-events'
         }
@@ -303,7 +301,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': 'Checkbox的内容',
+            'zh-CN': 'checkbox的内容',
             'en-US': 'Checkbox content'
           },
           'demoId': 'checkbox-slot'
@@ -326,23 +324,24 @@ export default {
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否禁用',
-            'en-US': 'Disable'
+            'en-US': 'Is disabled'
           },
           'demoId': 'indeterminate'
         },
         {
           'name': 'events',
-          'type': 'object',
+          'type': 'ICheckboxGroupOptions.events',
+          'typeAnchorName': 'ICheckboxGroupOptions',
           'defaultValue': '',
           'desc': {
             'zh-CN': '原生事件',
             'en-US': 'Native event'
           },
-          'demoId': 'checkbox-group'
+          'demoId': 'group-options'
         },
         {
           'name': 'false-label',
-          'type': 'string , number',
+          'type': 'string | number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '没有选中时的值',
@@ -352,7 +351,7 @@ export default {
         },
         {
           'name': 'label',
-          'type': 'string , number , boolean',
+          'type': 'string | number | boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '选中状态的值（只有在checkbox-group或者绑定对象类型为array时有效）;该属性的可选值为 medium-',
@@ -363,7 +362,7 @@ export default {
         },
         {
           'name': 'modelValue / v-model',
-          'type': 'string , number , boolean',
+          'type': 'string | number | boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': '绑定值',
@@ -384,16 +383,16 @@ export default {
         {
           'name': 'text',
           'type': 'string',
-          'defaultValue': 'Function',
+          'defaultValue': '',
           'desc': {
-            'zh-CN': '文本',
+            'zh-CN': '复选框文本',
             'en-US': 'Text'
           },
           'demoId': 'description'
         },
         {
           'name': 'true-label',
-          'type': 'string , number',
+          'type': 'string | number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '选中时的值',
@@ -408,7 +407,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': 'Checkbox-button的内容',
+            'zh-CN': 'checkbox-button的内容',
             'en-US': 'Checkbox-button content'
           },
           'demoId': 'description'
@@ -430,7 +429,7 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '按钮形式的 Checkbox 激活时的填充色和边框色',
+            'zh-CN': '按钮形式的 checkbox 激活时的填充色和边框色',
             'en-US': 'Fill color and border color when the checkbox in button mode is activated'
           },
           'demoId': 'checkbox-button'
@@ -457,7 +456,7 @@ export default {
         },
         {
           'name': 'modelValue / v-model',
-          'type': 'Array<string | number>',
+          'type': 'string[] | number[]',
           'defaultValue': '',
           'desc': {
             'zh-CN': '绑定值',
@@ -467,7 +466,8 @@ export default {
         },
         {
           'name': 'options',
-          'type': 'Array',
+          'type': 'ICheckboxGroupOptions[]',
+          'typeAnchorName': 'ICheckboxGroupOptions',
           'defaultValue': '',
           'desc': {
             'zh-CN': 'checkbox组件列表',
@@ -480,19 +480,18 @@ export default {
           'type': 'medium | small | mini',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '多选框组尺寸，仅对按钮形式的 Checkbox 或带有边框的 Checkbox 有效;该属性的可选值为 medium / small / mini',
+            'zh-CN': '多选框组尺寸，仅对按钮形式的 checkbox 或带有边框的 checkbox 有效',
             'en-US':
-              'Size of the check box group. This parameter is valid only for the check box with buttons or borders. The optional values of this attribute are medium / small / mini'
+              'Size of the check box group. This parameter is valid only for the check box with buttons or borders'
           },
           'demoId': 'size'
         },
         {
           'name': 'text-color',
           'type': 'string',
-          'defaultValue': '#ffffff',
+          'defaultValue': '',
           'desc': {
-            'zh-CN': '按钮形式的 Checkbox 激活时的文本颜色',
+            'zh-CN': '按钮形式的 checkbox 激活时的文本颜色',
             'en-US': 'Text color when the checkbox in button mode is activated'
           },
           'demoId': 'vertical-checkbox'
@@ -534,7 +533,7 @@ export default {
       'checkbox-group events': [
         {
           'name': 'change',
-          'type': '',
+          'type': '(value: string[] | number[]) => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '当绑定值变化时触发的事件',
@@ -543,6 +542,23 @@ export default {
           'demoId': 'checkbox-events'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'ICheckboxGroupOptions',
+      type: 'interface',
+      code: `
+interface ICheckboxGroupOptions {
+  label: string // 选中时对应的值
+  text?: number // 描述文本
+  disabled?: boolean // 是否禁用
+  checked?: boolean // 是否默认选中
+  events?: {
+    click?: (e: Event) => void // 点击事件
+    change?: (e: Event) => void // change事件
+  }
+}`
     }
   ]
 }

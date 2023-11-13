@@ -13,7 +13,7 @@
   ></tiny-cascader-panel>
 </template>
 
-<script lang="jsx">
+<script>
 import { CascaderPanel } from '@opentiny/vue'
 
 export default {
