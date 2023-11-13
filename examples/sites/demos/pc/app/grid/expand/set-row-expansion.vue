@@ -1,6 +1,11 @@
 <template>
   <div>
-    <tiny-button @click="click">setAllRowExpansion</tiny-button>
+    <div>
+      <tiny-button @click="setRowExpansion">展开指定行</tiny-button>
+      <tiny-button @click="setAllRowExpansion">展开所有行</tiny-button>
+      <tiny-button @click="toggleRowExpansion">手动切换展开行</tiny-button>
+    </div>
+    <br />
     <tiny-grid :data="tableData" ref="grid" border :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column type="selection" width="60"></tiny-grid-column>
@@ -88,8 +93,15 @@ export default {
     }
   },
   methods: {
-    click() {
+    setRowExpansion() {
+      this.$refs.grid.clearRowExpand()
+      this.$refs.grid.setRowExpansion([this.tableData[1], this.tableData[0]], true)
+    },
+    setAllRowExpansion() {
       this.$refs.grid.setAllRowExpansion(true)
+    },
+    toggleRowExpansion() {
+      this.$refs.grid.toggleRowExpansion(this.tableData[1])
     },
     checkboxEdit(h, { row, column }) {
       return (

@@ -4,7 +4,7 @@ export default {
   demos: [
     {
       'demoId': 'custom-column-width',
-      'name': { 'zh-CN': '列宽', 'en-US': 'Column Width' },
+      'name': { 'zh-CN': '本地存储列宽', 'en-US': 'Column Width' },
       'desc': {
         'zh-CN':
           '<p>在 <code>grid</code> 标签上配置 <code>resizable=&quot;true&quot;</code> 可以调整列宽，并在 <code>toolbar</code> 标签上配置 <code>resizable=&quot;{storage: true}&quot;</code> 保存在本地的 <code>localStroage</code> 里，刷新页面表格的列宽按照拖动后的列宽显示</p>\n',
@@ -82,7 +82,7 @@ export default {
     {
       'demoId': 'custom-ordercolumn-local',
       'name': {
-        'zh-CN': '本地记录和个性化面板按钮点击事件监听',
+        'zh-CN': '个性化按钮点击事件',
         'en-US': 'Local Record and Personalization Panel Button Click Event Listening'
       },
       'desc': {
@@ -125,7 +125,7 @@ export default {
         'en-US':
           '<p>Configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings, and configure the <code>onBeforeMove</code> event before dragging on the personalized panel. You can also configure <code>filter</code> to set the class name. If you drag a line on the personalized panel, the event before dragging the personalized panel is triggered. </p>\n'
       },
-      'codeFiles': ['hide/hide-column.vue']
+      'codeFiles': ['custom/hide-column.vue']
     },
     {
       'demoId': 'custom-prsonalized-drag',
@@ -148,17 +148,6 @@ export default {
           '<p>Configure <code>:setting=&quot;{storage:\'local\'}&quot; on the <code>toolbar</code> tag </code>Enable personalization and save to local <code>localSotrage</code> </p>\n<div class="danger custom-block">\n</div>\n'
       },
       'codeFiles': ['custom/page-size.vue']
-    },
-    {
-      'demoId': 'custom-local-storage',
-      'name': { 'zh-CN': '本地存储', 'en-US': 'Server Storage' },
-      'desc': {
-        'zh-CN':
-          '<p>在 <code>toolbar</code> 标签上配置 <code>:setting=&quot;{storage:\'local\'}&quot;</code> 开启个性化并保存到本地 <code>localSotrage</code> 里</p>\n<div class="danger custom-block">\n</div>\n',
-        'en-US':
-          '<p>Configure <code>:setting=&quot;{storage:\'remote\'}&quot;</code> on the <code>toolbar</code> tab to enable personalization and remote services to obtain personalized data. Configure <code>@remote-setting</code> to invoke the <code>reloadCustoms</code> method to update personalized data. \n Note\n If the column is displayed or hidden based on the server data, you need to manually invoke the <code>reloadCustoms</code> method to update the personalized data after invoking the interface. In \n</p>\n<div class="danger custom-block">\n</div>\n'
-      },
-      'codeFiles': ['custom/local-storage.vue']
     },
     {
       'demoId': 'custom-server-storage',

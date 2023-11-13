@@ -151,7 +151,7 @@ export const cmpMenus = [
       { 'nameCn': '插槽', 'name': '', 'key': 'grid-slot' },
       { 'nameCn': '个性化', 'name': '', 'key': 'grid-custom' },
       { 'nameCn': '树表', 'name': '', 'key': 'grid-tree-table' },
-      { 'nameCn': '嵌套表格', 'name': '', 'key': 'grid-nested-table' },
+      { 'nameCn': '展开行', 'name': '', 'key': 'grid-expand' },
       { 'nameCn': '导入导出', 'name': '', 'key': 'grid-import-export' },
       { 'nameCn': '鼠标和键盘配置', 'name': '', 'key': 'grid-mouse-keyboard' },
       { 'nameCn': '动态列及行列反转', 'name': '', 'key': 'grid-dynamically-columns' },

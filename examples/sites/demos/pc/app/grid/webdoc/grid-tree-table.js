@@ -5,12 +5,12 @@ export default {
     {
       'demoId': 'tree-table-tree-grid-base',
       'name': {
-        'zh-CN': '有子级的数据结构，自定义树表展开收缩图标',
+        'zh-CN': '自定树节点图标',
         'en-US': 'Data structure with children, Custom Tree Table Expand and Collapse Icon'
       },
       'desc': {
         'zh-CN':
-          "<p>在 grid 标签上配置 tree-config=&quot;{children: 'children',renderIcon}&quot;以树的形式来展示数据,还需要在展示树节点的字段上配置 tree-node 属性</p>\n",
+          "<p>在 grid 标签上配置 tree-config={children: 'children',renderIcon},其中renderIcon可以自定义树表的展开收缩图标。以树的形式来展示数据,还需要在展示树节点的字段上配置 tree-node 属性</p>\n",
         'en-US':
           "<p>Configure tree-config=&quot;{children:'children'}&quot; on the grid tab to display data in a tree. In addition, you need to configure the tree-node attribute</p>\n on the field that displays the tree node"
       },
@@ -28,6 +28,16 @@ export default {
       'codeFiles': ['tree-table/tree-grid-data.vue']
     },
     {
+      'demoId': 'tree-table-tree-grid-expand-active-method',
+      'name': { 'zh-CN': '自定义树表隐藏行', 'en-US': '' },
+      'desc': {
+        'zh-CN':
+          '<p>表格属性 <code>treeConfig.hideMethod</code> 配置一个方法控制行是否渲染，参数为 <code>row</code> 和 <code>rowLevel</code>，返回 <code>true</code> 则此行隐藏不渲染</p>\n',
+        'en-US': ''
+      },
+      'codeFiles': ['tree-table/tree-grid-expand-active-method.vue']
+    },
+    {
       'demoId': 'tree-table-tree-grid-operation-column',
       'name': { 'zh-CN': '操作列', 'en-US': 'Operation Column' },
       'desc': {
@@ -38,34 +48,18 @@ export default {
       'codeFiles': ['tree-table/tree-grid-operation-column.vue']
     },
     {
-      'demoId': 'tree-table-set-all-tree-expansion',
-      'name': { 'zh-CN': '手动展开所有树节点', 'en-US': 'Manually expand all tree nodes' },
-      'desc': {
-        'zh-CN': '<p><code>setAllTreeExpansion(checked)</code> 可设置所有树节点的展开与否。</p>\n',
-        'en-US':
-          '<p><code>setAllTreeExpansion(checked)</code> can be used to set whether all tree nodes are expanded or not. </p>\n'
-      },
-      'codeFiles': ['tree-table/set-all-tree-expansion.vue']
-    },
-    {
       'demoId': 'tree-table-set-tree-expansion',
-      'name': { 'zh-CN': '手动展开指定树节点', 'en-US': 'Manually expand a specified tree node' },
+      'name': { 'zh-CN': '树节点展开操作', 'en-US': 'Manually expand a specified tree node' },
       'desc': {
-        'zh-CN':
-          '<p><code>setTreeExpansion(rows, checked)</code> 可设置展开指定的树形节点，第二个参数设置这一行展开与否。</p>\n',
+        'zh-CN': `
+        <p><code>setTreeExpansion(rows, checked)</code> 可设置展开指定的树形节点，第二个参数设置这一行展开与否。</p>
+        <p><code>setAllTreeExpansion(checked)</code> 可设置所有树节点的展开与否。</p>
+        <p><code>toggleTreeExpansion(row)</code> 可设置切换展开树形节点。</p>
+        `,
         'en-US':
           'You can set <p><code>setTreeExpansion(rows, checked)</code> to expand the specified tree node. The second parameter specifies whether to expand the row. </p>\n'
       },
       'codeFiles': ['tree-table/set-tree-expansion.vue']
-    },
-    {
-      'demoId': 'tree-table-toggle-tree-expansion',
-      'name': { 'zh-CN': '手动切换展开树形节点', 'en-US': 'Manually switch and expand tree nodes' },
-      'desc': {
-        'zh-CN': '<p><code>toggleTreeExpansion(row)</code> 可设置切换展开树形节点。</p>\n',
-        'en-US': 'The <p><code>toggleTreeExpansion(row)</code> can be set to switch to expand the tree node. </p>\n'
-      },
-      'codeFiles': ['tree-table/toggle-tree-expansion.vue']
     },
     {
       'demoId': 'tree-table-tree-grid-fixed-column',
@@ -79,16 +73,6 @@ export default {
       'codeFiles': ['tree-table/tree-grid-fixed-column.vue']
     },
     {
-      'demoId': 'tree-table-tree-grid-expand',
-      'name': { 'zh-CN': '展开行', 'en-US': 'Expand Row' },
-      'desc': {
-        'zh-CN': '<p>在 column 标签上配置 type=&quot;expand&quot; 展开行,可以通过 v-slot 插槽插入需要的模板信息</p>\n',
-        'en-US':
-          '<p>Configure type=&quot;expand&quot; on the column label to expand the line. You can insert the required template information through the v-slot slot</p>\n'
-      },
-      'codeFiles': ['tree-table/tree-grid-expand.vue']
-    },
-    {
       'demoId': 'tree-table-has-tree-expand',
       'name': { 'zh-CN': '检查树节点是否已展开', 'en-US': 'Check whether the tree node is expanded.' },
       'desc': {
@@ -100,7 +84,7 @@ export default {
     },
     {
       'demoId': 'tree-table-tree-grid-index',
-      'name': { 'zh-CN': '展开行序号列配置', 'en-US': 'Expand Row No. Column Configuration' },
+      'name': { 'zh-CN': '树表展开序号列配置', 'en-US': 'Expand Row No. Column Configuration' },
       'desc': {
         'zh-CN':
           '<p>在 <code>treeConfig</code> 属性里配置 <code>ordered</code> 为 <code>false</code> 展开行，序号列按父子级的结构排序。默认 <code>ordered</code> 属性为 <code>true</code> 展开行后序号列按序号排序。</p>\n',
@@ -108,15 +92,6 @@ export default {
           '<p>In the <code>treeConfig</code> attribute, set <code>ordered</code> to <code>false</code> to expand rows. The sequence number column is sorted by parent-child structure. By default, the <code>ordered</code> attribute is <code>true</code>. After the row is expanded, the sequence number column is sorted by sequence number. </p>\n'
       },
       'codeFiles': ['tree-table/tree-grid-index.vue']
-    },
-    {
-      'demoId': 'tree-table-tree-grid-expand-config',
-      'name': { 'zh-CN': '设置展开行配置项', 'en-US': 'Basic Usage' },
-      'desc': {
-        'zh-CN': '<p>表格属性 <code>expand-config</code> 设置展开行配置项。</p>\n',
-        'en-US': '<p>Table property<code>expand-config</code>Set the configuration item of the expanded line. </p>\n'
-      },
-      'codeFiles': ['tree-table/tree-grid-expand-config.vue']
     },
     {
       'demoId': 'tree-table-tree-grid-insert-delete-update',
@@ -139,16 +114,6 @@ export default {
           '<p>Move the highlighted row, set stripe to false, highlight-hover-row to false, and highlight-current-row to false. Configure the keyboard-config={isArrow: true} attribute to enable the arrow keys function.\n | Arrow Up | Move to the previous line of the highlighted line\n | Arrow Down | Move to the next line of the highlighted line\n | Enter | Expand the node. Enter the child node\n | Backspace | Close the node and return to the parent node</p>\n'
       },
       'codeFiles': ['tree-table/tree-grid-keyboard-operation.vue']
-    },
-    {
-      'demoId': 'tree-table-tree-grid-expand-active-method',
-      'name': { 'zh-CN': '自定义展开和隐藏行', 'en-US': '' },
-      'desc': {
-        'zh-CN':
-          '<p>表格属性 <code>expandConfig.activeMethod</code> 配置一个方法控制行是否可展开，参数为 <code>row</code> 和 <code>rowLevel</code>，返回 <code>false</code> 则此行不可展开，且不显示展开图标\n表格属性 <code>expandConfig.showIcon</code> 配置是否显示展开图标，默认为 <code>true</code> 表示显示展开图标\n表格属性 <code>treeConfig.hideMethod</code> 配置一个方法控制行是否渲染，参数为 <code>row</code> 和 <code>rowLevel</code>，返回 <code>true</code> 则此行隐藏不渲染</p>\n',
-        'en-US': ''
-      },
-      'codeFiles': ['tree-table/tree-grid-expand-active-method.vue']
     }
   ],
   apis: [{ 'name': 'grid-tree-table', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]

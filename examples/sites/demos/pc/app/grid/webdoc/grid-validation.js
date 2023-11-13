@@ -15,7 +15,7 @@ export default {
     },
     {
       'demoId': 'validation-editing-isvalidalways-validation',
-      'name': { 'zh-CN': '隐藏列编辑时校验', 'en-US': 'Verify hidden columns during editing' },
+      'name': { 'zh-CN': '常显编辑器校验', 'en-US': 'Verify hidden columns during editing' },
       'desc': {
         'zh-CN':
           '<p>grid 标签配置 edit-config 对象且列配置type：visible 且配置isValidAlways属性时, 即列总是显示可编辑状态时，支持编辑时校验,并配置 edit-rules 对象来设置校验对象和校验规则。具体参考下面示例。</p>\n',

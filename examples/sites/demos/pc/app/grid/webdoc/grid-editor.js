@@ -19,21 +19,12 @@ export default {
       'codeFiles': ['editor/inner-editor.vue']
     },
     {
-      'demoId': 'editor-custom-editor',
-      'name': { 'zh-CN': '自定义编辑器', 'en-US': 'Grid-Editor-Custom Editor' },
-      'desc': {
-        'zh-CN':
-          '<p><code>grid</code> 标签上配置 <code>edit-config</code>。\n在 <code>grid-column</code> 列配置 <code>editor</code> 对象， <code>component</code> 渲染自定义编辑组件。\n自定义编辑默认编辑框为小框，可以配合样式修改编辑框。\n具体参考下面示例。</p>\n',
-        'en-US':
-          'Configure <code>edit-config</code> on the <p><code>grid</code> label. \n Configure the <code>editor</code> object in the <code>grid-column</code> column and render the custom editing component. \nThe default edit box is a small box. You can modify the edit box based on the style. \nFor details, see the following example. </p>\n'
-      },
-      'codeFiles': ['editor/custom-editor.vue']
-    },
-    {
       'demoId': 'editor-custom-editor-select',
-      'name': { 'zh-CN': '引入组件作为编辑器', 'en-US': 'Introducing the TINY component as the editor' },
+      'name': { 'zh-CN': '自定义编辑器', 'en-US': 'Introducing the TINY component as the editor' },
       'desc': {
-        'zh-CN': '<p>通过 <code>属性配置</code> 方式引入 TinyVue <code>Select</code> 组件。</p>\n',
+        'zh-CN': `
+        <p><code>grid</code> 标签上配置 <code>edit-config</code>。\n在 <code>grid-column</code> 列配置 <code>editor</code> 对象， <code>component</code> 渲染自定义编辑组件或者TinyVue提供的组件</p>
+        `,
         'en-US':
           '<p>Introduces the TinyVue <code>Select</code> component through <code>attribute configuration</code>. </p>\n'
       },

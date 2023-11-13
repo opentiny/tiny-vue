@@ -1,7 +1,11 @@
 <template>
   <div>
-    <tiny-button @click="click">setTreeExpansion</tiny-button>
-    <tiny-grid :data="tableData" ref="gridRef" :tree-config="{ children: 'children' }">
+    <div>
+      <tiny-button @click="setTreeExpansion">展开指定树节点</tiny-button>
+      <tiny-button @click="setAllTreeExpansion">展开所有树节点</tiny-button>
+      <tiny-button @click="toggleTreeExpansion">切换展开树节点</tiny-button>
+    </div>
+    <tiny-grid :data="tableData" ref="grid" :tree-config="{ children: 'children' }">
       <tiny-grid-column type="selection" width="100" tree-node></tiny-grid-column>
       <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
       <tiny-grid-column field="area" title="区域"></tiny-grid-column>
@@ -10,7 +14,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Grid as TinyGrid, GridColumn as TinyGridColumn, Button as TinyButton } from '@opentiny/vue'
 
@@ -121,7 +125,13 @@ const tableData = ref([
 ])
 const gridRef = ref()
 
-function click() {
-  gridRef.value.setTreeExpansion([tableData.value[1], tableData.value[3]], true)
+const setTreeExpansion = () => {
+  gridRef.value.setTreeExpansion([this.tableData[1], this.tableData[3]], true)
+}
+const setAllTreeExpansion = () => {
+  gridRef.value.setAllTreeExpansion(true)
+}
+const toggleTreeExpansion = () => {
+  gridRef.value.toggleTreeExpansion(this.tableData[1])
 }
 </script>

@@ -1,12 +1,12 @@
 <template>
   <div>
-    <tiny-button @click="click">setRowExpansion</tiny-button>
-    <tiny-grid
-      :data="tableData"
-      ref="gridRef"
-      border
-      :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
-    >
+    <div>
+      <tiny-button @click="setRowExpansion">展开指定行</tiny-button>
+      <tiny-button @click="setAllRowExpansion">展开所有行</tiny-button>
+      <tiny-button @click="toggleRowExpansion">手动切换展开行</tiny-button>
+    </div>
+    <br />
+    <tiny-grid :data="tableData" ref="grid" border :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column type="selection" width="60"></tiny-grid-column>
       <tiny-grid-column type="expand" title="操作" width="60">
@@ -84,12 +84,20 @@ const tableData = ref([
 ])
 const gridRef = ref()
 
-function click() {
+const setRowExpansion = () => {
   gridRef.value.clearRowExpand()
-  gridRef.value.setRowExpansion([tableData.value[1], tableData.value[0]], true)
+  gridRef.value.setRowExpansion([this.tableData[1], this.tableData[0]], true)
 }
 
-function checkboxEdit(h, { row, column }) {
+const setAllRowExpansion = () => {
+  gridRef.value.setAllRowExpansion(true)
+}
+
+const toggleRowExpansion = () => {
+  gridRef.value.toggleRowExpansion(this.tableData[1])
+}
+
+const checkboxEdit = (h, { row, column }) => {
   return (
     <input
       type="checkbox"
