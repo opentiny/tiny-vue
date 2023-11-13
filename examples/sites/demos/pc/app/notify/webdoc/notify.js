@@ -153,8 +153,8 @@ export default {
         },
         {
           'name': 'title',
-          'typeAnchorName': 'INotyfyTitle',
-          'type': 'INotyfyTitle',
+          'typeAnchorName': 'INotifyTitle',
+          'type': 'INotifyTitle',
           'defaultValue': '',
           'desc': {
             'zh-CN': '通知消息标题，可用 jsx 定制',
@@ -267,9 +267,9 @@ export default {
   ],
   types: [
     {
-      name: 'INotyfyTitle',
+      name: 'INotifyTitle',
       type: 'type',
-      code: `type INotyfyTitle = string | (h: Vue.h, params: { titleClass: string, vm }) => JSX.Element`
+      code: `type INotifyTitle = string | (h: Vue.h, params: { titleClass: string, vm }) => JSX.Element`
     },
     {
       name: 'INotyfyMessage',
