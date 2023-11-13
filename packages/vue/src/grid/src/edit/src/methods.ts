@@ -421,6 +421,14 @@ export default {
 
     if (isActived) {
       this.updateFooter()
+
+      // 处理数字输入框返回string类型数据，导致还原初始数字还是编辑状态的问题
+      const { row, column } = args
+      const { editor } = column || {}
+      if (editor?.component === 'input' && editor?.attrs?.type === 'number') {
+        row[column.property] = +row[column.property]
+      }
+
       emitEvent(this, 'edit-closed', [args, event])
     }
 
