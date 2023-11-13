@@ -7,14 +7,14 @@
       :header-height="headerHeight"
     >
       <template #header>
-        <tiny-layout>header-height：80</tiny-layout>
+        <tiny-layout>header-height：80px</tiny-layout>
       </template>
       <template #aside>
-        <tiny-layout>aside-width：200</tiny-layout>
+        <tiny-layout>aside-width：200px</tiny-layout>
       </template>
-      <tiny-layout>Main</tiny-layout>
+      <tiny-layout>Main 自动填充空间</tiny-layout>
       <template #footer>
-        <tiny-layout>footer-height：80</tiny-layout>
+        <tiny-layout>footer-height：80px</tiny-layout>
       </template>
     </tiny-container>
   </div>
@@ -32,7 +32,7 @@ const headerHeight = ref(80)
 
 <style>
 .demo-container .tiny-container {
-  height: 200px;
+  height: 300px;
   color: #5f6774;
   text-align: center;
   font-size: 18px;

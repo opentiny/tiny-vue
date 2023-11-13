@@ -4,4 +4,4 @@ title: Container 版型
 
 # Container 版型
 
-<div>用于布局的容器组件，方便快速搭建页面的版型。</div>
+<div> 内置5种常见布局版型，方便快速搭建页面。</div>
