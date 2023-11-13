@@ -6,7 +6,6 @@
       :dom-data="domData"
       width="300"
       height="200"
-      :modal-overlay-opening-paddin="size"
     ></tiny-guide>
   </div>
 </template>
@@ -15,7 +14,6 @@
 import { ref } from 'vue'
 import { Guide as TinyGuide, Button as TinyButton } from '@opentiny/vue'
 
-const size = ref(10)
 const showStep = ref(false)
 const domData = ref([
   {
@@ -24,8 +22,8 @@ const domData = ref([
     domElement: '.h1',
     button: [
       {
-        text: '下一步',
-        action: 'next'
+        text: '完成',
+        action: 'complete'
       }
     ]
   }

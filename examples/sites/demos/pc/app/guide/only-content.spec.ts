@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test'
 
-test('多步骤纯段落用户引导', async ({ page }) => {
+test('纯段落用户引导', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('guide#content-steps')
+  await page.goto('guide#only-content')
 
   const showBtn = page.getByRole('button', { name: '新手引导开始' })
   const nextBtn = page.getByRole('button', { name: '下一步' })

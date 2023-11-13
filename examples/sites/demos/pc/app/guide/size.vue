@@ -6,7 +6,6 @@
       :dom-data="domData"
       width="300"
       height="200"
-      :modal-overlay-opening-paddin="size"
     ></tiny-guide>
   </div>
 </template>
@@ -21,7 +20,6 @@ export default {
   },
   data() {
     return {
-      size: 10,
       showStep: false,
       domData: [
         {
@@ -30,8 +28,8 @@ export default {
           domElement: '.h1',
           button: [
             {
-              text: '下一步',
-              action: 'next'
+              text: '完成',
+              action: 'complete'
             }
           ]
         }

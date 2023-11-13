@@ -1,15 +1,13 @@
 import { test, expect } from '@playwright/test'
 
-test('纯段落用户引导', async ({ page }) => {
+test('在模态叠加层开口周围添加的填充量', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('guide#content-step')
+  await page.goto('guide#modal-overlay-opening')
 
   const showBtn = page.getByRole('button', { name: '新手引导' })
-  const nextBtn = page.getByRole('button', { name: '下一步' })
   const guide = page.getByRole('dialog')
 
   await showBtn.click()
   await expect(guide).toBeVisible()
-  await expect(guide).toHaveClass(/only-content/)
-  await expect(guide.locator('.shepherd-text')).toBeVisible()
+  await expect(page.locator('.shepherd-modal-overlay-container')).toBeVisible()
 })
