@@ -2,7 +2,7 @@
   <tiny-slider v-model="value2" :show-input="true"></tiny-slider>
 </template>
 
-<script lang="jsx">
+<script>
 import { Slider } from '@opentiny/vue'
 
 export default {
