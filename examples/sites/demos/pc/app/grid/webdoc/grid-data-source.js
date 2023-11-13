@@ -55,7 +55,7 @@ export default {
     },
     {
       'demoId': 'data-source-defslot-protochain-fetch',
-      'name': { 'zh-CN': '在默认插槽中使用复杂数据', 'en-US': '' },
+      'name': { 'zh-CN': '插槽中使用复杂数据', 'en-US': '' },
       'desc': {
         'zh-CN':
           '<p>兼容低版本的复杂数据访问（例如：row.attr1.attr2.attr3），参考示例。\n在列初始化过程中，使用 `skip` 插槽参数可以跳过默认插槽内容的执行，参考示例。\n在表格渲染过程中，没有提供这个参数，始终不会跳过默认插槽内容的执行。</p>\n',

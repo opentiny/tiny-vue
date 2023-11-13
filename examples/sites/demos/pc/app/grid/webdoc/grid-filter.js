@@ -29,7 +29,7 @@ export default {
     },
     {
       'demoId': 'filter-simple-filter',
-      'name': { 'zh-CN': '简化版筛选面板-单选/多选菜单', 'en-US': 'Custom Parameter' },
+      'name': { 'zh-CN': '简化版筛选-单选/多选菜单', 'en-US': 'Custom Parameter' },
       'desc': {
         'zh-CN':
           '<p>通过 <code>layout</code> 设置需要使用的筛选项为<code>simple</code>,其中<code>layout</code>可选项包括<code>input,enum,default,extends,base,simple</code></p>\n',
@@ -39,7 +39,7 @@ export default {
     },
     {
       'demoId': 'filter-simple-date-filter',
-      'name': { 'zh-CN': '简化版筛选面板-时间日期菜单', 'en-US': 'Advanced Filter Settings' },
+      'name': { 'zh-CN': '简化版筛选-时间日期菜单', 'en-US': 'Advanced Filter Settings' },
       'desc': {
         'zh-CN':
           '<p>通过 <code>layout</code> 设置需要使用的筛选项为<code>simple</code>,其中<code>layout</code>可选项包括<code>input,enum,default,extends,base,simple</code></p>\n',

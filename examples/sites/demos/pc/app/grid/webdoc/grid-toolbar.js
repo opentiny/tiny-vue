@@ -38,7 +38,7 @@ export default {
     {
       'demoId': 'toolbar-insert-remove-rows',
       'name': {
-        'zh-CN': '指定行插入数据和删除指定行',
+        'zh-CN': '插入或删除指定行',
         'en-US': 'Insert data to a specified row and delete a specified row'
       },
       'desc': {
@@ -51,7 +51,7 @@ export default {
     },
     {
       'demoId': 'toolbar-save-data',
-      'name': { 'zh-CN': '服务端数据保存和删除方法', 'en-US': 'Saving and Deleting Server Data' },
+      'name': { 'zh-CN': '服务端数据保存和删除', 'en-US': 'Saving and Deleting Server Data' },
       'desc': {
         'zh-CN':
           '<p>通过表格属性 <code>save-data</code> 服务端数据保存方法。\n通过表格属性 <code>delete-data</code> 服务端数据删除方法。</p>\n',

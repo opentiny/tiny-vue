@@ -20,7 +20,7 @@ export default {
         'zh-CN':
           '<p>在 <code>toolbar</code> 标签上配置 <code>:setting=&quot;{simple: true, customDisable: customDisable}&quot;</code> 开启简化版列设置 通过<code>customDisable</code> 方法自定义当前选项是否禁用</p>\n',
         'en-US':
-          'Description of the <div class="tip custom-block"><p class="custom-block-title"> method </p>\n<p><code>resetResizable()</code>: Manually reset the column width and drag the operation to the initial state \n<code>resetCustoms()</code>: Manually reset the display/hide operation of the column to the initial state.\n<code>resetAll()</code>: Manually reset all operations of the column. Restore to the initial state </p>\n</div>\n<p> Drag the column width or hide the column, and then click the corresponding button to view the effect. </p>\n'
+          'Description of the <div class="tip custom-block"><p class="custom-block-title"> method </p>\n<p> <code>resetResizable()</code>: Manually reset the column width and drag the operation to the initial state \n<code>resetCustoms()</code>: Manually reset the display/hide operation of the column to the initial state.\n<code>resetAll()</code>: Manually reset all operations of the column. Restore to the initial state </p>\n</div>\n<p> Drag the column width or hide the column, and then click the corresponding button to view the effect. </p>\n'
       },
       'codeFiles': ['custom/column-simple.vue']
     },
@@ -29,7 +29,7 @@ export default {
       'name': { 'zh-CN': '手动重置列操作', 'en-US': 'Sort' },
       'desc': {
         'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">方法说明</p>\n<p><code>resetResizable()</code>：手动重置列宽拖动的操作，还原到初始状态\n<code>resetCustoms()</code>：手动重置列的显示/隐藏操作，还原到初始状态\n<code>resetAll()</code>：手动重置列的所有操作，还原到初始状态</p>\n</div>\n<p>请先对列宽进行拖动、隐藏列等操作，然后单击对应按钮查看效果。</p>\n',
+          '<div class="tip custom-block"><p class="custom-block-title">方法说明</p>\n<p> <code>resetResizable()</code>：手动重置列宽拖动的操作，还原到初始状态\n<code>resetCustoms()</code>：手动重置列的显示/隐藏操作，还原到初始状态\n<code>resetAll()</code>：手动重置列的所有操作，还原到初始状态</p>\n</div>\n<p>请先对列宽进行拖动、隐藏列等操作，然后单击对应按钮查看效果。</p>\n',
         'en-US':
           '<p>Configure <code>sortable</code> on the <code>column</code> label to sort data. (For columns that are not configured, the sorting icon in the personalization panel is hidden.) and configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings. Sort the settings in the personalized panel. The sorting results are saved in the local <code>localStroage</code>. Refresh the page. The sorted data is displayed on the page.</p>\n'
       },
@@ -50,9 +50,9 @@ export default {
       'demoId': 'custom-multiple-column-sort',
       'name': { 'zh-CN': '多列排序', 'en-US': 'Multi-column sorting' },
       'desc': {
-        'zh-CN': `<p><code>表头排序</code> 只支持单列排序，<code>个性化排序</code> 可以通过配置 <code>sortConfig.multipleColumnSort</code> 开启多列排序，
+        'zh-CN': `<p> <code>表头排序</code> 只支持单列排序，<code>个性化排序</code> 可以通过配置 <code>sortConfig.multipleColumnSort</code> 开启多列排序，
           <code>sortConfig.multipleColumnSort</code> 支持配置为 <code>true</code> 或者 <code>方法</code>，配置为方法时可以自定义多列排序。</p>\n`,
-        'en-US': `<p><code>Table header sorting</code> supports only single-column sorting. <code>Personalized sorting</code>You can configure <code>sortConfig.multipleColumnSort</code> to enable multi-column sorting,
+        'en-US': `<p> <code>Table header sorting</code> supports only single-column sorting. <code>Personalized sorting</code>You can configure <code>sortConfig.multipleColumnSort</code> to enable multi-column sorting,
           <code>sortConfig.multipleColumnSort</code> can be set to <code>true</code> or <code>method</code>. When this parameter is set to a method, you can customize multi-column sorting. </p>\n`
       },
       'codeFiles': ['custom/multiple-column-sort.vue']

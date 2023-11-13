@@ -8,12 +8,12 @@ export default {
       'desc': {
         'zh-CN': `
         <p>在 <code>grid</code> 标签上配置：</p>
-        <p><code>header-cell-click</code> 可以监听到表头的点击事件</p>
-        <p><code>header-cell-dblclick</code> 可以监听到表头的双击事件</p>
-        <p><code>cell-click</code> 可以监听到单元格的点击事件</p>
-        <p><code>cell-dblclick</code> 可以监听到单元格的双击事件</p>
-        <p><code>footer-cell-click</code> 可以监听到表尾单元格的点击事件</p>
-        <p><code>footer-cell-dbclick</code> 可以监听到表尾单元格的双击事件</p>
+        <p> <code>header-cell-click</code> 可以监听到表头的点击事件</p>
+        <p> <code>header-cell-dblclick</code> 可以监听到表头的双击事件</p>
+        <p> <code>cell-click</code> 可以监听到单元格的点击事件</p>
+        <p> <code>cell-dblclick</code> 可以监听到单元格的双击事件</p>
+        <p> <code>footer-cell-click</code> 可以监听到表尾单元格的点击事件</p>
+        <p> <code>footer-cell-dbclick</code> 可以监听到表尾单元格的双击事件</p>
         `,
         'en-US':
           '<p>Configure <code>header-cell-click</code> on the <code>grid</code> tag to listen to the click event of the table header</p>\n'
@@ -26,8 +26,8 @@ export default {
       'desc': {
         'zh-CN': `
           <p>在 <code>grid</code> 标签上配置：</p>
-          <p><code>header-cell-context-menu</code> 可以监听右键点击表头事件。</p>
-          <p><code>footer-cell-context-menu</code> 可以监听右键点击表尾单元格事件。</p>
+          <p> <code>header-cell-context-menu</code> 可以监听右键点击表头事件。</p>
+          <p> <code>footer-cell-context-menu</code> 可以监听右键点击表尾单元格事件。</p>
           `,
         'en-US':
           '<p>On the <code>grid</code> tab, configure the <code>footer-cell-context-menu</code> event of right-clicking a cell at the end of the table. Configure <code>footer-cell-click</code> to trigger the event of clicking a cell at the end of the table. </p>\n'
@@ -40,8 +40,8 @@ export default {
       'desc': {
         'zh-CN': `
         <p>在 <code>grid</code> 标签上配置：</p>
-        <p><code>cell-dblclick</code> 可以监听到单元格的双击事件</p>
-        <p><code>cell-mouseleave</code> 可以监听到鼠标离开单元格事件</p>
+        <p> <code>cell-dblclick</code> 可以监听到单元格的双击事件</p>
+        <p> <code>cell-mouseleave</code> 可以监听到鼠标离开单元格事件</p>
         `,
         'en-US':
           '<p>Configure <code>cell-dblclick</code> on the <code>grid</code> tab to listen to the double-click event of a cell</p>\n'
@@ -57,8 +57,8 @@ export default {
       'desc': {
         'zh-CN': `
           <p>在 <code>grid</code> 标签上配置：</p>
-          <p><code>edit-actived</code> 单元格被激活编辑时触发的事件</p>
-          <p><code>edit-closed</code> 单元格编辑完成触发该事件</p>
+          <p> <code>edit-actived</code> 单元格被激活编辑时触发的事件</p>
+          <p> <code>edit-closed</code> 单元格编辑完成触发该事件</p>
           <p> <code>edit-disabled-event</code> 当单元格激活时如果是禁用状态时会触发该事件，同时需要在 <code>edit-config</code> 配置中的 <code>activeMethod</code> 方法控制单元格是否可以编辑（返回 <code>true</code> 可以编辑，反之亦然）。</p>
           `,
         'en-US':
@@ -104,8 +104,8 @@ export default {
       'desc': {
         'zh-CN': `
           <p>在 <code>grid</code> 标签上配置：</p>
-          <p><code>select-change</code> 可以监听到勾选行事件\n只对 type=selection 有效，当手动勾选并且值发生改变时触发的事件</p>
-          <p><code>select-all</code> 有效\n只对 type=selection 有效，当手动勾选全选时触发的事件</p>
+          <p> <code>select-change</code> 可以监听到勾选行事件\n只对 type=selection 有效，当手动勾选并且值发生改变时触发的事件</p>
+          <p> <code>select-all</code> 有效\n只对 type=selection 有效，当手动勾选全选时触发的事件</p>
           `,
         'en-US':
           '<p>You can configure <code>select-change</code> on the <code>grid</code> tag to listen to the selected row event.\nThis parameter is valid only for type=selection. Event triggered when manually selected and the value changes</p>\n'
@@ -197,9 +197,9 @@ export default {
       'name': { 'zh-CN': '获取表格行方法', 'en-US': 'Obtain table row method' },
       'desc': {
         'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">获取行的方法</p>\n<p><code>getCurrentRow</code> 获取当前行\n<code>getRowIndex</code> 获取当前行号\n<code>getRadioRow</code> Radio 单选选中行\n<code>getRowById</code> 通过 rowId 获取当前行\n<code>getRowNode</code> 通过 tr 元素获取行信息</p>\n</div>\n',
+          '<div class="tip custom-block"><p class="custom-block-title">获取行的方法</p>\n<p> <code>getCurrentRow</code> 获取当前行\n<code>getRowIndex</code> 获取当前行号\n<code>getRadioRow</code> Radio 单选选中行\n<code>getRowById</code> 通过 rowId 获取当前行\n<code>getRowNode</code> 通过 tr 元素获取行信息</p>\n</div>\n',
         'en-US':
-          '<div class="tip custom-block"><p class="custom-block-title"> Method for obtaining a row: </p>\n<p><code>getCurrentRow</code> Obtain the current row \n<code>getRowIndex</code> Obtain the current row number \n<code>getRadioRow</code> Radio Select a single row \n<code>getRowById</code> Obtain the current row based on the row ID \n<code>getRowNode</code> Obtain the row information based on the tr element </p>\n</div>\n'
+          '<div class="tip custom-block"><p class="custom-block-title"> Method for obtaining a row: </p>\n<p> <code>getCurrentRow</code> Obtain the current row \n<code>getRowIndex</code> Obtain the current row number \n<code>getRadioRow</code> Radio Select a single row \n<code>getRowById</code> Obtain the current row based on the row ID \n<code>getRowNode</code> Obtain the row information based on the tr element </p>\n</div>\n'
       },
       'codeFiles': ['event/get-row-method.vue']
     }

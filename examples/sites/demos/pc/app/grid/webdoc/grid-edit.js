@@ -29,9 +29,9 @@ export default {
       'demoId': 'edit-has-row-change',
       'name': { 'zh-CN': '检查数据是否改变', 'en-US': 'Check whether data is changed.' },
       'desc': {
-        'zh-CN': '<p><code>hasRowChange(row, field)</code> 检查行或列数据是否发生改变，field 可不指定。</p>\n',
+        'zh-CN': '<p> <code>hasRowChange(row, field)</code> 检查行或列数据是否发生改变，field 可不指定。</p>\n',
         'en-US':
-          '<p><code>hasRowChange(row, field)</code> Checks whether the row or column data is changed. The field is optional. </p>\n'
+          '<p> <code>hasRowChange(row, field)</code> Checks whether the row or column data is changed. The field is optional. </p>\n'
       },
       'codeFiles': ['edit/has-row-change.vue']
     },
@@ -39,7 +39,7 @@ export default {
       'demoId': 'edit-trigger-mode-hm-editing',
       'name': { 'zh-CN': '手动触发编辑', 'en-US': 'Manually triggered editing' },
       'desc': {
-        'zh-CN': `<p><code>setActiveCell(row, field)</code> 方法可激活指定单元格编辑。<code>setActiveRow(row)</code> 方法激活行编辑，如果是 mode=cell 则默认激活第一个单元格。</p>
+        'zh-CN': `<p> <code>setActiveCell(row, field)</code> 方法可激活指定单元格编辑。<code>setActiveRow(row)</code> 方法激活行编辑，如果是 mode=cell 则默认激活第一个单元格。</p>
           <p>在点击其他行或表格外部时，编辑器会自动关闭。设置 <code>editConfig.autoClear</code> 为 <code>false</code> 可以防止编辑器自动关闭</p>
           `,
         'en-US': 'For details, see the following example.'

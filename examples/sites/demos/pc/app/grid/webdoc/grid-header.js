@@ -34,7 +34,7 @@ export default {
     },
     {
       'demoId': 'header-slot-header',
-      'name': { 'zh-CN': '配置自定义表头内容的模板', 'en-US': 'Basic Description' },
+      'name': { 'zh-CN': '自定义表头内容模板', 'en-US': 'Basic Description' },
       'desc': {
         'zh-CN': '<p>设置 <code>header</code> 插槽，配置自定义表头内容的模板。</p>\n',
         'en-US':

@@ -38,7 +38,7 @@ export default {
     {
       'demoId': 'validation-custcomp',
       'name': {
-        'zh-CN': '自定义组件与插槽编辑器校验',
+        'zh-CN': '自定义组件校验',
         'en-US': 'Verify the customized component with the slot editor'
       },
       'desc': {
