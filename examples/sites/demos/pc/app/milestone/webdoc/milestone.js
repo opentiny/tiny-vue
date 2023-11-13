@@ -149,7 +149,7 @@ export default {
         },
         {
           'name': 'data',
-          'type': 'object | Array',
+          'type': 'object | array',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置步骤条的数据',

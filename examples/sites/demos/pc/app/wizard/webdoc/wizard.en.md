@@ -4,4 +4,4 @@ title: Wizard Flowchart
 
 # Wizard Flowchart
 
-<div>Add specific graphical symbols with explanations to indicate the relationship between each process node.</div>
+<div>Use specific graphical symbols and descriptions to indicate the relationships between process nodes.</div>

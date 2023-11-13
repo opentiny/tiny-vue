@@ -1,5 +1,12 @@
 <template>
-  <tiny-wizard :data="dataSet" base-flow></tiny-wizard>
+  <tiny-wizard
+    :data="dataSet"
+    page-guide
+    @btn-prev="handlePrev"
+    @btn-next="handleNext"
+    @btn-save="handleSave"
+    @btn-submit="handleSubmit"
+  ></tiny-wizard>
 </template>
 
 <script lang="jsx">
@@ -33,6 +40,20 @@ export default {
           status: 'wait'
         }
       ]
+    }
+  },
+  methods: {
+    handlePrev(datas) {
+      console.log('handlePrev：上一步，', datas)
+    },
+    handleNext(datas) {
+      console.log('handleNext：下一步，', datas)
+    },
+    handleSave(datas) {
+      console.log('handleSave：保存，', datas)
+    },
+    handleSubmit(datas) {
+      console.log('handleSubmit：提交，', datas)
     }
   }
 }

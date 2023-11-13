@@ -693,7 +693,7 @@ interface IThumbOption {
   showTooltip: boolean // 文件名超出隐藏显示时是否启用tip，默认false
   popperClass: string // 弹窗列表自定义类名
   downloadFile: (file) => void // 点击下载按钮执行函数
-  icon: string | vue-icon() // 列表结果前 icon ，默认为 'icon-attachment'
+  icon: string | Component // 列表结果前 icon ，默认为 'icon-attachment'
 }
       `
     },
