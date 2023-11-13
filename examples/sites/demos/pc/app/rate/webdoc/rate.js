@@ -10,7 +10,7 @@ export default {
     },
     {
       'demoId': 'custom-3-threshold-colors',
-      'name': { 'zh-CN': '自定义 3 分段颜色', 'en-US': 'Custom 3-segment color' },
+      'name': { 'zh-CN': '分段颜色', 'en-US': 'Segment color' },
       'desc': {
         'zh-CN': '<p>可通过 <code>colors</code> 定义 3 分段颜色。</p>\n',
         'en-US': '<p>You can use <code>colors</code> to define three-segment colors. </p>\n'
@@ -19,7 +19,7 @@ export default {
     },
     {
       'demoId': 'disabled-not-selected-color',
-      'name': { 'zh-CN': '自定义禁用时未选中图标颜色', 'en-US': 'Unselected icon color when customized is disabled' },
+      'name': { 'zh-CN': '禁用时未选中图标颜色', 'en-US': 'Unselected icon color when customized is disabled' },
       'desc': {
         'zh-CN': '<p>可通过 <code>disabled-void-color</code> 自定义禁用时未选中图标颜色。</p>\n',
         'en-US': '<p>You can use <code>disabled-void-color</code> to customize the color of the unselected icon. </p>\n'
@@ -29,7 +29,7 @@ export default {
     {
       'demoId': 'disabled-not-selected-class',
       'name': {
-        'zh-CN': '自定义禁用时未选中图标类名',
+        'zh-CN': '禁用时未选中图标类名',
         'en-US': 'Icon class name that is not selected when user-defined is disabled'
       },
       'desc': {
@@ -41,10 +41,10 @@ export default {
     },
     {
       'demoId': 'custom-3-threshold-icon',
-      'name': { 'zh-CN': '自定义 3 分段图标样式', 'en-US': 'Custom 3-segment icon style' },
+      'name': { 'zh-CN': '分段图标类名', 'en-US': 'Segment icon class name' },
       'desc': {
-        'zh-CN': '<p>可通过 <code>icon-classes</code> 自定义 3 分段图标样式。</p>\n',
-        'en-US': '<p>You can use <code>icon-classes</code> to customize the 3-part icon style. </p>\n'
+        'zh-CN': '<p>可通过 <code>icon-classes</code> 自定义 3 分段图标。</p>\n',
+        'en-US': '<p>You can use <code>icon-classes</code> to customize the 3-part icon. </p>\n'
       },
       'codeFiles': ['custom-3-threshold-icon.vue']
     },
@@ -70,7 +70,7 @@ export default {
     },
     {
       'demoId': 'not-selected-color',
-      'name': { 'zh-CN': '自定义未选中图标颜色', 'en-US': 'Customize the color of unselected icons' },
+      'name': { 'zh-CN': '未选中图标颜色', 'en-US': 'The color of unselected icons' },
       'desc': {
         'zh-CN': '<p>可通过 <code>void-color</code> 定义未选中图标颜色。</p>\n',
         'en-US': '<p>You can use <code>void-color</code> to define the color of an unselected icon. </p>\n'
@@ -79,7 +79,7 @@ export default {
     },
     {
       'demoId': 'not-selected-class',
-      'name': { 'zh-CN': '自定义未选中图标类名', 'en-US': 'Customized unselected icon class name' },
+      'name': { 'zh-CN': '未选中图标类名', 'en-US': 'Customized unselected icon name' },
       'desc': {
         'zh-CN': '<p>可通过 <code>void-icon-class</code> 定义未选中图标类名。</p>\n',
         'en-US': '<p>You can use <code>void-icon-class</code> to define the unselected icon class name. </p>\n'
