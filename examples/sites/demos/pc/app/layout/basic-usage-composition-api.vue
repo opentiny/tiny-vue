@@ -1,6 +1,43 @@
 <template>
   <div class="content">
+    <div>12栅格布局示例：</div>
     <tiny-layout>
+      <tiny-row>
+        <tiny-col :span="12">
+          <div class="col">span 12</div>
+        </tiny-col>
+      </tiny-row>
+      <tiny-row>
+        <tiny-col :span="3">
+          <div class="col">span 3</div>
+        </tiny-col>
+        <tiny-col :span="6">
+          <div class="col">span 6</div>
+        </tiny-col>
+        <tiny-col :span="3">
+          <div class="col">span 3</div>
+        </tiny-col>
+      </tiny-row>
+      <tiny-row>
+        <tiny-col :span="2">
+          <div class="col">span 2</div>
+        </tiny-col>
+        <tiny-col :span="3">
+          <div class="col">span 3</div>
+        </tiny-col>
+        <tiny-col :span="2">
+          <div class="col">span 2</div>
+        </tiny-col>
+        <tiny-col :span="3">
+          <div class="col">span 3</div>
+        </tiny-col>
+        <tiny-col :span="2">
+          <div class="col">span 2</div>
+        </tiny-col>
+      </tiny-row>
+    </tiny-layout>
+    <div>24栅格布局示例：</div>
+    <tiny-layout cols="24">
       <tiny-row>
         <tiny-col :span="12">
           <div class="col">span 12</div>
@@ -44,7 +81,7 @@ import { Layout as TinyLayout, Row as TinyRow, Col as TinyCol } from '@opentiny/
 
 <style scoped>
 .content .tiny-row {
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .content .tiny-row .last-child {

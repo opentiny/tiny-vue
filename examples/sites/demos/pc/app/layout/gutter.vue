@@ -13,6 +13,17 @@
           <div class="col">gutter 20px</div>
         </tiny-col>
       </tiny-row>
+      <tiny-row no-space>
+        <tiny-col :span="4">
+          <div class="col">no-space</div>
+        </tiny-col>
+        <tiny-col :span="4">
+          <div class="col">no-space</div>
+        </tiny-col>
+        <tiny-col :span="4">
+          <div class="col">no-space</div>
+        </tiny-col>
+      </tiny-row>
     </tiny-layout>
   </div>
 </template>

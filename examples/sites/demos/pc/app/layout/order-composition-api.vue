@@ -1,6 +1,11 @@
 <template>
   <div class="content">
     <tiny-layout>
+      <tiny-row>
+        <tiny-button @click="toggleOrder">
+          {{ state.buttonLabel }}
+        </tiny-button>
+      </tiny-row>
       <tiny-row :flex="true" :gutter="20" :order="state.order">
         <tiny-col :span="3" :no="3">
           <div class="col">3</div>
