@@ -106,8 +106,6 @@ export const $setup = ({ props, context, template, extend = {} }) => {
     return typeof component === 'function' ? defineAsyncComponent(component) : component
   })
 
-  initComponent()
-
   return renderComponent({ view, props, context, extend })
 }
 
