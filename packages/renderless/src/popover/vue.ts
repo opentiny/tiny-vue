@@ -114,7 +114,7 @@ const initWatch = ({
         return
       }
       // mobile-first时，需要更新一下，arrow的位置才正确
-      if (mode === 'mobile-first' && val) {
+      if (val) {
         nextTick(() => updatePopper())
       }
       // 隐藏时，只冒一下事件，并没有调用doDestory();
