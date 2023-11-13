@@ -1,77 +1,43 @@
 <template>
   <div class="content">
-    <div>12栅格布局示例：</div>
-    <tiny-layout cols="12">
-      <tiny-row>
-        <tiny-col :span="12">
-          <div class="col">span 12</div>
-        </tiny-col>
-      </tiny-row>
-      <tiny-row>
-        <tiny-col :span="3">
-          <div class="col">span 3</div>
-        </tiny-col>
-        <tiny-col :span="6">
-          <div class="col">span 6</div>
-        </tiny-col>
-        <tiny-col :span="3">
-          <div class="col">span 3</div>
-        </tiny-col>
-      </tiny-row>
-      <tiny-row>
-        <tiny-col :span="2">
-          <div class="col">span 2</div>
-        </tiny-col>
-        <tiny-col :span="3">
-          <div class="col">span 3</div>
-        </tiny-col>
-        <tiny-col :span="2">
-          <div class="col">span 2</div>
-        </tiny-col>
-        <tiny-col :span="3">
-          <div class="col">span 3</div>
-        </tiny-col>
-        <tiny-col :span="2">
-          <div class="col">span 2</div>
-        </tiny-col>
-      </tiny-row>
-    </tiny-layout>
-    <div>24栅格布局示例：</div>
-    <tiny-layout cols="24">
-      <tiny-row>
-        <tiny-col :span="12">
-          <div class="col">span 12</div>
-        </tiny-col>
-      </tiny-row>
-      <tiny-row>
-        <tiny-col :span="3">
-          <div class="col">span 3</div>
-        </tiny-col>
-        <tiny-col :span="6">
-          <div class="col">span 6</div>
-        </tiny-col>
-        <tiny-col :span="3">
-          <div class="col">span 3</div>
-        </tiny-col>
-      </tiny-row>
-      <tiny-row>
-        <tiny-col :span="2">
-          <div class="col">span 2</div>
-        </tiny-col>
-        <tiny-col :span="3">
-          <div class="col">span 3</div>
-        </tiny-col>
-        <tiny-col :span="2">
-          <div class="col">span 2</div>
-        </tiny-col>
-        <tiny-col :span="3">
-          <div class="col">span 3</div>
-        </tiny-col>
-        <tiny-col :span="2">
-          <div class="col">span 2</div>
-        </tiny-col>
-      </tiny-row>
-    </tiny-layout>
+    <div v-for="cols in [12, 24]" :key="cols">
+      <div>每行 {{ cols }} 栅格布局示例：</div>
+      <tiny-layout :cols="cols">
+        <tiny-row>
+          <tiny-col :span="12">
+            <div class="col">span 12</div>
+          </tiny-col>
+        </tiny-row>
+        <tiny-row>
+          <tiny-col :span="3">
+            <div class="col">span 3</div>
+          </tiny-col>
+          <tiny-col :span="6">
+            <div class="col">span 6</div>
+          </tiny-col>
+          <tiny-col :span="3">
+            <div class="col">span 3</div>
+          </tiny-col>
+        </tiny-row>
+        <tiny-row>
+          <tiny-col :span="2">
+            <div class="col">span 2</div>
+          </tiny-col>
+          <tiny-col :span="3">
+            <div class="col">span 3</div>
+          </tiny-col>
+          <tiny-col :span="2">
+            <div class="col">span 2</div>
+          </tiny-col>
+          <tiny-col :span="3">
+            <div class="col">span 3</div>
+          </tiny-col>
+          <tiny-col :span="2">
+            <div class="col">span 2</div>
+          </tiny-col>
+        </tiny-row>
+      </tiny-layout>
+    </div>
   </div>
 </template>
 
