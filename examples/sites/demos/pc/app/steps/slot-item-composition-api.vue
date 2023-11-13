@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="demo-steps-slot-item">
     <div>通过 item 插槽添加自定义图标</div>
     <tiny-steps :data="stepsData">
       <template #item="data">
@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Steps as TinySteps } from '@opentiny/vue'
 import { iconYes, iconClose } from '@opentiny/vue-icon'
@@ -48,13 +48,13 @@ const stepsData = ref([
 </script>
 
 <style scoped>
-.content {
+.demo-steps-slot-item {
   padding: 20px;
   max-width: 50%;
   min-width: 700px;
 }
 
-.content > div:not(:last-child) {
+.demo-steps-slot-item > div:not(:last-child) {
   margin: 0 0 20px 0;
 }
 </style>
