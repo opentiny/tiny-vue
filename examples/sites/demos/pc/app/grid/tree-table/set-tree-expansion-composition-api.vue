@@ -5,6 +5,7 @@
       <tiny-button @click="setAllTreeExpansion">展开所有树节点</tiny-button>
       <tiny-button @click="toggleTreeExpansion">切换展开树节点</tiny-button>
     </div>
+    <br />
     <tiny-grid :data="tableData" ref="grid" :tree-config="{ children: 'children' }">
       <tiny-grid-column type="selection" width="100" tree-node></tiny-grid-column>
       <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
