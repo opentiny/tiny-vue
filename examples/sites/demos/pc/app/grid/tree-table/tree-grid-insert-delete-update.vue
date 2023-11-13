@@ -234,7 +234,7 @@ export default {
 
       for (let i = data.length - 1; i >= 0; i--) {
         const node = data[i]
-        if (idSet.has(node[this.$props.rowKeyFiledName])) {
+        if (idSet.has(node.id)) {
           data.splice(i, 1) // 删除当前节点
 
           idSet.delete(node.id) // 处理完目标节点后从集合中删除对应的ID
