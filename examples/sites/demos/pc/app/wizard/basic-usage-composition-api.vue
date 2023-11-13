@@ -1,5 +1,5 @@
 <template>
-  <tiny-wizard :data="dataSet" base-flow></tiny-wizard>
+  <tiny-wizard :data="dataSet" @node-click="nodeClick"></tiny-wizard>
 </template>
 
 <script setup lang="jsx">
@@ -28,4 +28,8 @@ const dataSet = ref([
     status: 'wait'
   }
 ])
+
+const nodeClick = (node, index, event) => {
+  console.log('nodeClick', node, index, event)
+}
 </script>
