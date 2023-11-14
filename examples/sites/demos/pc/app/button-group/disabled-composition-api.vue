@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { ButtonGroup as TinyButtonGroup } from '@opentiny/vue'
 

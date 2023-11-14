@@ -170,7 +170,7 @@ export default {
     {
       'name': 'checkbox',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'border',
           'type': 'boolean',
@@ -306,114 +306,12 @@ export default {
           },
           'demoId': 'checkbox-slot'
         }
-      ],
-      'checkbox-button props': [
-        {
-          'name': 'checked',
-          'type': 'boolean',
-          'defaultValue': 'false',
-          'desc': {
-            'zh-CN': '当前是否勾选',
-            'en-US': 'Currently selected'
-          },
-          'demoId': 'checked'
-        },
-        {
-          'name': 'disabled',
-          'type': 'boolean',
-          'defaultValue': 'false',
-          'desc': {
-            'zh-CN': '是否禁用',
-            'en-US': 'Is disabled'
-          },
-          'demoId': 'indeterminate'
-        },
-        {
-          'name': 'events',
-          'type': 'ICheckboxGroupOptions.events',
-          'typeAnchorName': 'ICheckboxGroupOptions',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '原生事件',
-            'en-US': 'Native event'
-          },
-          'demoId': 'group-options'
-        },
-        {
-          'name': 'false-label',
-          'type': 'string | number',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '没有选中时的值',
-            'en-US': 'Value when no option is selected'
-          },
-          'demoId': 'text'
-        },
-        {
-          'name': 'label',
-          'type': 'string | number | boolean',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '选中状态的值（只有在checkbox-group或者绑定对象类型为array时有效）;该属性的可选值为 medium-',
-            'en-US':
-              'Value in the selected state (This parameter is valid only when checkbox-group or the bound object type is array.) The optional value of this attribute is medium-'
-          },
-          'demoId': 'checkbox-group'
-        },
-        {
-          'name': 'modelValue / v-model',
-          'type': 'string | number | boolean',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '绑定值',
-            'en-US': 'Bound Value'
-          },
-          'demoId': 'checkbox'
-        },
-        {
-          'name': 'name',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '原生 name 属性',
-            'en-US': 'Native name attribute'
-          },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'text',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '复选框文本',
-            'en-US': 'Text'
-          },
-          'demoId': 'description'
-        },
-        {
-          'name': 'true-label',
-          'type': 'string | number',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '选中时的值',
-            'en-US': 'Value when selected'
-          },
-          'demoId': 'text'
-        }
-      ],
-      'checkbox-button slots': [
-        {
-          'name': 'default',
-          'type': '',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': 'checkbox-button的内容',
-            'en-US': 'Checkbox-button content'
-          },
-          'demoId': 'description'
-        }
-      ],
-      'checkbox-group props': [
+      ]
+    },
+    {
+      'name': 'checkbox-group',
+      'type': 'component',
+      'props': [
         {
           'name': 'disabled',
           'type': 'boolean',
@@ -518,7 +416,7 @@ export default {
           'demoId': 'vertical-checkbox'
         }
       ],
-      'checkbox-group slots': [
+      'slots': [
         {
           'name': 'default',
           'type': '',
@@ -530,7 +428,7 @@ export default {
           'demoId': 'checkbox-group'
         }
       ],
-      'checkbox-group events': [
+      'events': [
         {
           'name': 'change',
           'type': '(value: string[] | number[]) => void',
@@ -540,6 +438,116 @@ export default {
             'en-US': 'This event is triggered when the binding value changes.'
           },
           'demoId': 'checkbox-events'
+        }
+      ]
+    },
+    {
+      'name': 'checkbox-button',
+      'type': 'component',
+      'props': [
+        {
+          'name': 'checked',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '当前是否勾选',
+            'en-US': 'Currently selected'
+          },
+          'demoId': 'checked'
+        },
+        {
+          'name': 'disabled',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否禁用',
+            'en-US': 'Is disabled'
+          },
+          'demoId': 'indeterminate'
+        },
+        {
+          'name': 'events',
+          'type': 'ICheckboxGroupOptions.events',
+          'typeAnchorName': 'ICheckboxGroupOptions',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '原生事件',
+            'en-US': 'Native event'
+          },
+          'demoId': 'group-options'
+        },
+        {
+          'name': 'false-label',
+          'type': 'string | number',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '没有选中时的值',
+            'en-US': 'Value when no option is selected'
+          },
+          'demoId': 'text'
+        },
+        {
+          'name': 'label',
+          'type': 'string | number | boolean',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '选中状态的值（只有在checkbox-group或者绑定对象类型为array时有效）;该属性的可选值为 medium-',
+            'en-US':
+              'Value in the selected state (This parameter is valid only when checkbox-group or the bound object type is array.) The optional value of this attribute is medium-'
+          },
+          'demoId': 'checkbox-group'
+        },
+        {
+          'name': 'modelValue / v-model',
+          'type': 'string | number | boolean',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '绑定值',
+            'en-US': 'Bound Value'
+          },
+          'demoId': 'checkbox'
+        },
+        {
+          'name': 'name',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '原生 name 属性',
+            'en-US': 'Native name attribute'
+          },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'text',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '复选框文本',
+            'en-US': 'Text'
+          },
+          'demoId': 'description'
+        },
+        {
+          'name': 'true-label',
+          'type': 'string | number',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '选中时的值',
+            'en-US': 'Value when selected'
+          },
+          'demoId': 'text'
+        }
+      ],
+      'slots': [
+        {
+          'name': 'default',
+          'type': '',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': 'checkbox-button的内容',
+            'en-US': 'Checkbox-button content'
+          },
+          'demoId': 'description'
         }
       ]
     }

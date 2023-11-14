@@ -74,7 +74,7 @@ export default {
     {
       'name': 'switch',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'before-change',
           'type': '(done: () => void) => void',

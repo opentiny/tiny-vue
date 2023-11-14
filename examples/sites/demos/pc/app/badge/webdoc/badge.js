@@ -103,7 +103,7 @@ export default {
     {
       'name': 'badge',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'badge-class',
           'type': 'string',

@@ -120,7 +120,7 @@ export default {
     {
       'name': 'radio',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'border',
           'type': 'boolean',
@@ -216,8 +216,12 @@ export default {
           },
           'demoId': 'default-slot'
         }
-      ],
-      'radio-group props': [
+      ]
+    },
+    {
+      'name': 'radio-group',
+      'type': 'component',
+      'props': [
         {
           'name': 'disabled',
           'type': 'boolean',
@@ -300,7 +304,7 @@ export default {
           'demoId': 'vertical'
         }
       ],
-      'radio-group events': [
+      'events': [
         {
           'name': 'change',
           'type': '(value: number[] | string[]) => void',
@@ -312,7 +316,7 @@ export default {
           'demoId': 'radio-events'
         }
       ],
-      'radio-group slots': [
+      'slots': [
         {
           'name': 'default',
           'type': '',
@@ -323,8 +327,12 @@ export default {
           },
           'demoId': 'radio-group'
         }
-      ],
-      'radio-button props': [
+      ]
+    },
+    {
+      'name': 'radio-button',
+      'type': 'component',
+      'props': [
         {
           'name': 'disabled',
           'type': 'boolean',
@@ -366,7 +374,7 @@ export default {
           'demoId': 'radio-text'
         }
       ],
-      'radio-button slots': [
+      'slots': [
         {
           'name': 'default',
           'type': '',

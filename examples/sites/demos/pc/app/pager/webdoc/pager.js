@@ -195,7 +195,7 @@ export default {
     {
       'name': 'pager',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'align',
           'type': 'left | center | right',
