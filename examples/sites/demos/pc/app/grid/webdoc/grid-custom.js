@@ -117,7 +117,7 @@ export default {
       'codeFiles': ['custom/column-visible-hidden.vue']
     },
     {
-      'demoId': 'hide-hide-column',
+      'demoId': 'custom-hide-column',
       'name': { 'zh-CN': '手动隐藏显示列', 'en-US': 'Event triggered before dragging the personalized panel' },
       'desc': {
         'zh-CN':
@@ -153,8 +153,9 @@ export default {
       'demoId': 'custom-server-storage',
       'name': { 'zh-CN': '服务端存储', 'en-US': '' },
       'desc': {
-        'zh-CN':
-          '<p>在 <code>toolbar</code> 标签上配置 <code>:setting=&quot;{storage:\'remote\'}&quot;</code> 开启个性化并启用远程服务获取个性化数据，并配置 <code>@remote-setting</code> 调用 <code>reloadCustoms</code> 方法更新个性化数据。\n 注意\n如果是根据服务端数据控制显示/隐藏列，调用接口获取到个性化的数据后需手动调用 <code>reloadCustoms</code> 方法更新。\n</p>\n<div class="danger custom-block">\n</div>\n',
+        'zh-CN': `
+        <p>在 <code>toolbar</code> 标签上配置 <code>:setting=&quot;{storage:'remote'}&quot;</code> 开启个性化并启用远程服务获取个性化数据，并配置 <code>@remote-setting</code> 调用 <code>reloadCustoms</code> 方法更新个性化数据。
+         注意:如果是根据服务端数据控制显示/隐藏列，调用接口获取到个性化的数据后需手动调用 <code>reloadCustoms</code> 方法更新。</p>`,
         'en-US': ''
       },
       'codeFiles': ['custom/server-storage.vue']

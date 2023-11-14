@@ -40,7 +40,7 @@ export default {
       'desc': {
         'zh-CN': `
         <p>在 <code>grid</code> 标签上配置：</p>
-        <p> <code>cell-dblclick</code> 可以监听到单元格的双击事件</p>
+        <p> <code>cell-mouseenter</code> 可以监听到鼠标进入单元格事件</p>
         <p> <code>cell-mouseleave</code> 可以监听到鼠标离开单元格事件</p>
         `,
         'en-US':
