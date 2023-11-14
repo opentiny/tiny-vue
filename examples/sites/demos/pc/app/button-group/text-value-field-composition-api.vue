@@ -6,7 +6,7 @@
       :text-field="textField"
       :value-field="valueField"
     ></tiny-button-group>
-    <div style="margin-top: 12px">当前选中值：{{ checkedVal }}</div>
+    <div class="mt-12">当前选中值：{{ checkedVal }}</div>
   </div>
 </template>
 
@@ -23,3 +23,9 @@ const groupData = ref([
   { 'text-key': 'Button3', 'value-key': 3 }
 ])
 </script>
+
+<style scoped>
+.mt-12 {
+  margin-top: 12px;
+}
+</style>

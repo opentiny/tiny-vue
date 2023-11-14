@@ -13,9 +13,9 @@ export default {
       'name': { 'zh-CN': '复选框组', 'en-US': 'Checkbox group' },
       'desc': {
         'zh-CN':
-          '<p><code>checkbox-group</code> 可以将多个 <code>checkbox</code> 元素管理为一组，在 <code>checkbox-group</code> 中使用 <code>v-model</code> 绑定 Array 类型的变量即可实现双向绑定。 <code>checkbox</code> 的 <code>label</code> 属性是其对应的值，若该标签中无内容，则该属性也充当 <code>checkbox</code> 的描述文本。<code>label</code> 与数组中的元素值相对应，如果存在指定的值则为选中状态，否则为不选中。</p>\n',
+          '<p> <code>checkbox-group</code> 可以将多个 <code>checkbox</code> 元素管理为一组，在 <code>checkbox-group</code> 中使用 <code>v-model</code> 绑定 Array 类型的变量即可实现双向绑定。 <code>checkbox</code> 的 <code>label</code> 属性是其对应的值，若该标签中无内容，则该属性也充当 <code>checkbox</code> 的描述文本。 <code>label</code> 与数组中的元素值相对应，如果存在指定的值则为选中状态，否则为不选中。</p>\n',
         'en-US':
-          '<p>Manages multiple <code>checkbox</code> elements into a group through the <code>checkbox-group</code> element. In <code>checkbox-group</code>, use <code>v-model</code> to bind variables of the Array type to implement bidirectional binding. The <code>label</code> attribute of the <code>checkbox</code> is its corresponding value. If there is no content in the tag, the attribute also serves as the introduction after the checkbox. <code>label</code> corresponds to the element value in the array. If the specified value exists, the value is selected. Otherwise, the value is not selected. </p>\n'
+          '<p>Manages multiple <code>checkbox</code> elements into a group through the <code>checkbox-group</code> element. In <code>checkbox-group</code> , use <code>v-model</code> to bind variables of the Array type to implement bidirectional binding. The <code>label</code> attribute of the <code>checkbox</code> is its corresponding value. If there is no content in the tag, the attribute also serves as the introduction after the checkbox. <code>label</code> corresponds to the element value in the array. If the specified value exists, the value is selected. Otherwise, the value is not selected. </p>\n'
       },
       'codeFiles': ['checkbox-group.vue']
     },
@@ -24,9 +24,9 @@ export default {
       'name': { 'zh-CN': '复选框按钮', 'en-US': 'Checkbox button' },
       'desc': {
         'zh-CN':
-          '<p>通过<code>checkbox-button</code> 以按钮的形式展示复选框,用法与<code>checkbox</code>相似。复选框按钮组可以通过<code>fill</code>自定义选中时背景颜色。</p>\n',
+          '<p>通过 <code>checkbox-button</code> 以按钮的形式展示复选框,用法与 <code>checkbox</code> 相似。复选框按钮组可以通过 <code>fill</code> 自定义选中时背景颜色。</p>\n',
         'en-US':
-          '<p><code>checkbox button</code>Display checkboxes in the form of buttons, similar in usage to<code>checkbox</code>.The checkbox button group can customize the background color when selected through<code>fill</code>.</p>\n'
+          '<p> <code>checkbox button</code> Display checkboxes in the form of buttons, similar in usage to <code>checkbox</code> .The checkbox button group can customize the background color when selected through <code>fill</code> .</p>\n'
       },
       'codeFiles': ['checkbox-button.vue']
     },
@@ -44,9 +44,9 @@ export default {
       'name': { 'zh-CN': '配置式复选框组', 'en-US': 'Profile Checkbox Group' },
       'desc': {
         'zh-CN':
-          '<p>通过<code>options</code>配置显示多选框组。使用该属性后，可以不用再在标签中以插槽的形式插入 <code>checkbox</code> 或 <code>checkbox-button</code> 元素。<code>options</code>的类型为<a href="#ICheckboxGroupOptions">ICheckboxGroupOptions[]</a>。 <code>type</code> 属性配合 <code>options</code> 属性一起使用，将<code>type</code>配置为<code>button</code>，复选框组将以按钮的形式展示。</p>\n',
+          '<p>通过 <code>options</code> 配置显示多选框组。使用该属性后，可以不用再在标签中以插槽的形式插入 <code>checkbox</code> 或 <code>checkbox-button</code> 元素。 <code>options</code> 的类型为<a href="#ICheckboxGroupOptions">ICheckboxGroupOptions[]</a>。 <code>type</code> 属性配合 <code>options</code> 属性一起使用，将 <code>type</code> 配置为 <code>button</code> ，复选框组将以按钮的形式展示。</p>\n',
         'en-US':
-          '<p>Configure the display of multiple selection box groups through<code>options</code>. After using this attribute, you no longer need to insert<code>checkbox</code>or<code>checkbox button</code>elements in the label as slots. The type of <code>options</code>is<a="# ICheckboxGroupOptions">ICheckboxGroupOptions[]</a>< The code>type</code>attribute is used in conjunction with the<code>options</code>attribute to configure the<code>type</code>as<code>button</code>, and the checkbox group will be displayed in the form of a button.</p>\n'
+          '<p>Configure the display of multiple selection box groups through <code>options</code> . After using this attribute, you no longer need to insert <code>checkbox</code> or <code>checkbox button</code> elements in the label as slots. The type of <code>options</code> is<a="# ICheckboxGroupOptions">ICheckboxGroupOptions[]</a>< The code>type</code> attribute is used in conjunction with the <code>options</code> attribute to configure the <code>type</code> as <code>button</code> , and the checkbox group will be displayed in the form of a button.</p>\n'
       },
       'codeFiles': ['group-options.vue']
     },
@@ -55,9 +55,9 @@ export default {
       'name': { 'zh-CN': '描述文本', 'en-US': 'Description text' },
       'desc': {
         'zh-CN':
-          '<p>复选框和复现框按钮的描述文本，有三种方式可以提供，优先级依次为<code>默认插槽</code>、<code>text</code>、<code>label</code>。</p>',
+          '<p>复选框和复现框按钮的描述文本，有三种方式可以提供，优先级依次为 <code>默认插槽</code> 、 <code>text</code> 、 <code>label</code> 。</p>',
         'en-US':
-          '<p>There are three ways to provide the description text for the checkbox or checkbox button, with priority being<code>default slot</code>,<code>text</code>, and<code>label</code>.<p>'
+          '<p>There are three ways to provide the description text for the checkbox or checkbox button, with priority being <code>default slot</code> , <code>text</code> , and <code>label</code> .<p>'
       },
       'codeFiles': ['description.vue']
     },
@@ -77,9 +77,9 @@ export default {
       'name': { 'zh-CN': '可选数量限制', 'en-US': 'Quantity Limit' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>checkbox-group</code> 上可通过 <code>min</code>、<code>max</code> 属性指定可勾选项目的最小、最大值。</p>\n',
+          '<p>在 <code>checkbox-group</code> 上可通过 <code>min</code> 、 <code>max</code> 属性指定可勾选项目的最小、最大值。</p>\n',
         'en-US':
-          '<p>On the <code>checkbox-group</code>, the <code>min</code> and <code>max</code> attributes can be used to specify the minimum and maximum values of the options that can be selected. </p>\n'
+          '<p>On the <code>checkbox-group</code> , the <code>min</code> and <code>max</code> attributes can be used to specify the minimum and maximum values of the options that can be selected. </p>\n'
       },
       'codeFiles': ['min-max.vue']
     },
@@ -88,9 +88,9 @@ export default {
       'name': { 'zh-CN': '是否默认勾选', 'en-US': 'Default selected' },
       'desc': {
         'zh-CN':
-          '<p><code>check-group</code>上绑定的v-model可以配置默认选中，<code>checked</code>同样可以配置默认选中。</p>\n',
+          '<p> <code>check-group</code> 上绑定的v-model可以配置默认选中， <code>checked</code> 同样可以配置默认选中。</p>\n',
         'en-US':
-          '<p>The v-model bound on<code>check group</code>can be configured with default selection, and<code>checked</code>can also be configured with default selection.</p>\n'
+          '<p>The v-model bound on <code>check group</code> can be configured with default selection, and <code>checked</code> can also be configured with default selection.</p>\n'
       },
       'codeFiles': ['checked.vue']
     },
@@ -110,9 +110,9 @@ export default {
       'name': { 'zh-CN': '带边框复选框', 'en-US': 'Checkbox border' },
       'desc': {
         'zh-CN':
-          '<p><code>checkbox</code> 上配置 <code>border</code>，可显示边框。若复选框后的描述文本超出时，可以通过 Tooltip 组件增加提示信息，鼠标悬停时可提示所有内容。</p>\n',
+          '<p> <code>checkbox</code> 上配置 <code>border</code> ，可显示边框。若复选框后的描述文本超出时，可以通过 Tooltip 组件增加提示信息，鼠标悬停时可提示所有内容。</p>\n',
         'en-US':
-          '<p>Configure<code>border</code>on<code>checkbox</code>to display borders. If the description text after the check box exceeds, a prompt message can be added through the Tooltip component, and all content can be prompted when the mouse hovers.</p>\n'
+          '<p>Configure <code>border</code> on <code>checkbox</code> to display borders. If the description text after the check box exceeds, a prompt message can be added through the Tooltip component, and all content can be prompted when the mouse hovers.</p>\n'
       },
       'codeFiles': ['border.vue']
     },
@@ -131,7 +131,7 @@ export default {
       'name': { 'zh-CN': '尺寸', 'en-US': 'Dimension' },
       'desc': {
         'zh-CN':
-          '<p>当复选框为按钮形式时，<code>size</code> 属性可以设置尺寸，可选项有 <code>medium、small、mini</code>不设置则为默认样式。</p>',
+          '<p>当复选框为按钮形式时， <code>size</code> 属性可以设置尺寸，可选项有 <code>medium、small、mini</code> 不设置则为默认样式。</p>',
         'en-US':
           '<p>When the check box is a button, you can set the size of the button through the <code>size</code> attribute. The options are medium, small, and mini. \n\n Setting the <code>disabled</code> property on <code>checkbox-button</code> will disable a check button. If the <code>disabled</code> attribute is configured on the <code>checkbox-group</code> tab, all check buttons are disabled. </p>\n'
       },
@@ -141,8 +141,8 @@ export default {
       'demoId': 'checkbox-slot',
       'name': { 'zh-CN': '默认插槽', 'en-US': 'Slot' },
       'desc': {
-        'zh-CN': '<p>通过<code>default slot</code>自定义文本内容。</p>\n',
-        'en-US': '<p>Customize text content through<code>default slot</code>.</p>\n'
+        'zh-CN': '<p>通过 <code>default slot</code> 自定义文本内容。</p>\n',
+        'en-US': '<p>Customize text content through <code>default slot</code> .</p>\n'
       },
       'codeFiles': ['checkbox-slot.vue']
     },

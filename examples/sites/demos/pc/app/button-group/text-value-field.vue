@@ -6,7 +6,7 @@
       :text-field="textField"
       :value-field="valueField"
     ></tiny-button-group>
-    <div style="margin-top: 12px">当前选中值：{{ checkedVal }}</div>
+    <div class="mt-12">当前选中值：{{ checkedVal }}</div>
   </div>
 </template>
 
@@ -31,3 +31,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.mt-12 {
+  margin-top: 12px;
+}
+</style>
