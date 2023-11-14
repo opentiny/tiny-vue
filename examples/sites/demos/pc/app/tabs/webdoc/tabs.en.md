@@ -1,7 +1,7 @@
 ---
-title: Tabs tab
+title: Tabs
 ---
 
-# Tabs tab
+# Tabs
 
-<div>Separates data sets that are associated with content but belong to different categories.</div>
+<div>Switch different content through tabs.</div>
