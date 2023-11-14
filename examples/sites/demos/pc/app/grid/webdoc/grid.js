@@ -118,7 +118,7 @@ export default {
             'en-US':
               'Whether to enable the preprocessing feature when the page changes. If the value is true, the page turning operation or page size change operation does not take effect immediately. The service logic is left for the user to process. Then, the reserved callback or rollback is invoked to make the operation take effect or invalid. For details, see the before-page-change event'
           },
-          'demoId': 'grid-event#event-page-change-event'
+          'demoId': 'grid-event#event-page-before-change-event'
         },
         {
           'name': 'cell-class-name',
@@ -1611,7 +1611,7 @@ export default {
             'en-US':
               'triggered when the page is changed and the page is turned or the page size is changed. / / Parameter arg:\n{newPage, // New page size\nnewPageSize// New page size\ncurrentPage,// Current page size\ncurrentPageSize, // Current page size\ncallback, // Validate the rollback\nrollback// Invalidate the rollback\nrollback,// Rollback, which may not exist}'
           },
-          'demoId': 'grid-event#event-page-change-event'
+          'demoId': 'grid-event#event-page-before-change-event'
         },
         {
           'name': 'toolbar-button-click',
