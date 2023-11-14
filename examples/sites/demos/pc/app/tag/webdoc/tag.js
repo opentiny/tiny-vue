@@ -36,7 +36,7 @@ export default {
         'zh-CN':
           '通过<code>effect</code>设置主题，可选值：<code>(dark / light / plain)</code>；<code>type</code>设置类型，可选值：<code>(success / info / warning / danger)</code>。',
         'en-US':
-          'Set the theme through<code>effect</code>, with optional values:<code>(dark/light/plain)</code>< Code>type</code>Set the type, optional values:<code>(success/info/warning/danger)</code>.'
+          'Set the theme through<code>effect</code>, with optional values:<code>(dark/light/plain)</code>;<code>type</code>Set the type, optional values:<code>(success/info/warning/danger)</code>.'
       },
       'codeFiles': ['effect.vue']
     },
@@ -65,7 +65,7 @@ export default {
       'desc': {
         'zh-CN': `添加新标签：监听<code>+ New Tag</code>元素点击事件，打开<code>input</code>输入框，监听输入框事件做添加操作；<br />
           修改旧标签：监听旧标签的双击事件，打开<code>input</code>输入框，监听输入框事件做修改操作。`,
-        'en-US': `Add a new tag: listen for<code>+New Tag</code>element click events, open the<code>input</code>input box, and listen for input box events to add< Br/>
+        'en-US': `Add a new tag: listen for<code>+New Tag</code>element click events, open the<code>input</code>input box, and listen for input box events to add<br/>
         Modify old tags: listen for double click events on old tags, open the<code>input</code>input box, and listen for input box events to make modifications.`
       },
       'codeFiles': ['create.vue']

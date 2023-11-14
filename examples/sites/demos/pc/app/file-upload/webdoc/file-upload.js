@@ -55,7 +55,7 @@ export default {
       'desc': {
         'zh-CN': '通过<code>auto-upload</code>取消自动上传，配合<code>submit</code>实例方法手动上传。',
         'en-US':
-          'Cancel automatic upload through<code>auto upload</code>and manually upload in conjunction with the<code>submit</code>instance method.'
+          'Cancel automatic upload through<code>auto-upload</code>and manually upload in conjunction with the<code>submit</code>instance method.'
       },
       'codeFiles': ['manual-upload.vue']
     },
@@ -66,7 +66,7 @@ export default {
         'zh-CN':
           '通过<code>file-list</code>设置上传的文件列表，也可通过<code>:show-file-list="false"</code>关闭列表的显示；<code>open-download-file</code>设置文件是否可下载。',
         'en-US':
-          'Set the list of uploaded files through<code>file list</code>, or turn off the display of the list through<code>: show file list="false"</code>< Code>open download file</code>Set whether the file is downloadable.'
+          'Set the list of uploaded files through<code>file-list</code>, or turn off the display of the list through<code>: show-file-list="false"</code>;<code>open-download-file</code>Set whether the file is downloadable.'
       },
       'codeFiles': ['upload-file-list.vue']
     },
@@ -87,7 +87,7 @@ export default {
         'zh-CN':
           '通过<code>before-remove</code>执行移除文件前的操作，返回<code>false</code>或<code>reject</code>则阻止删除。',
         'en-US':
-          'Perform the operation before removing the file by<code>before remove</code>, and return<code>false</code>or<code>reject</code>to prevent deletion.'
+          'Perform the operation before removing the file by<code>before-remove</code>, and return<code>false</code>or<code>reject</code>to prevent deletion.'
       },
       'codeFiles': ['prevent-delete-file.vue']
     },
@@ -98,7 +98,7 @@ export default {
         'zh-CN':
           '通过<code>before-upload</code>执行上传文件前的操作，返回<code>false</code>或<code>reject</code>则阻止上传。',
         'en-US':
-          'Perform the operation before uploading the file by<code>before upload</code>, and return<code>false</code>or<code>reject</code>to block the upload.'
+          'Perform the operation before uploading the file by<code>before-upload</code>, and return<code>false</code>or<code>reject</code>to block the upload.'
       },
       'codeFiles': ['prevent-upload-file.vue']
     },
@@ -109,7 +109,7 @@ export default {
         'zh-CN':
           '通过<code>headers</code>配置上传请求头部信息，<code>with-credentials</code>设置允许发送 cookie 凭证信息。',
         'en-US':
-          'Configure the upload request header information through<code>headers</code>, and set the permission to send cookie credential information through<code>with credentials</code>settings.'
+          'Configure the upload request header information through<code>headers</code>, and set the permission to send cookie credential information through<code>with-credentials</code>settings.'
       },
       'codeFiles': ['upload-request.vue']
     },
@@ -120,7 +120,7 @@ export default {
         'zh-CN':
           '通过<code>drag</code>设置能否拖拽文件上传，若配置了<code>accept</code>属性，则通过监听<code>drop-error</code>事件来操作不合规的拖拽文件信息。',
         'en-US':
-          'By setting whether files can be dragged and uploaded through<code>drag</code>, if the<code>accept</code>attribute is configured, non compliant drag file information can be operated by listening for<code>drop error</code>events.'
+          'By setting whether files can be dragged and uploaded through<code>drag</code>, if the<code>accept</code>attribute is configured, non compliant drag file information can be operated by listening for<code>drop-error</code>events.'
       },
       'codeFiles': ['drag-upload.vue']
     },
@@ -131,7 +131,7 @@ export default {
         'zh-CN':
           '通过<code>paste-upload</code>设置能否粘贴文件上传，<code>max-name-length</code>限制文件名显示的字符数。',
         'en-US':
-          'Set whether to paste and upload files through<code>paste upload</code>, and limit the number of characters displayed in file names<code>max name length</code>.'
+          'Set whether to paste and upload files through<code>paste-upload</code>, and limit the number of characters displayed in file names<code>max-name-length</code>.'
       },
       'codeFiles': ['paste-upload.vue']
     },
@@ -140,7 +140,8 @@ export default {
       'name': { 'zh-CN': '列表弹窗显示', 'en-US': 'List pop-up display' },
       'desc': {
         'zh-CN': '通过<code>list-type="thumb"</code>开启文件列表弹窗显示，<code>thumb-option</code>设置弹窗相关数据。',
-        'en-US': 'Open the file list pop-up display by<code>list type="thumb"</code>, and set the pop-up related data.'
+        'en-US':
+          'Open the file list pop-up display by<code>list-type="thumb"</code>, and<code>thumb-option</code>set the pop-up related data.'
       },
       'codeFiles': ['upload-file-list-thumb.vue']
     },
@@ -150,7 +151,7 @@ export default {
       'desc': {
         'zh-CN': '通过<code>http-request</code>配置覆盖默认的上传行为，自定义上传的实现。',
         'en-US':
-          'Configure to override the default upload behavior and customize the upload implementation through<code>HTTP request</code>configuration.'
+          'Configure to override the default upload behavior and customize the upload implementation through<code>http-request</code>configuration.'
       },
       'codeFiles': ['http-request.vue']
     },
@@ -159,7 +160,7 @@ export default {
       'name': { 'zh-CN': '上传前限制', 'en-US': 'Custom upload restrictions' },
       'desc': {
         'zh-CN': '通过<code>before-upload</code>设置上传前事件回调，对文件类型和大小做限制。',
-        'en-US': 'Set pre upload event callbacks through<code>before upload</code>to limit file types and sizes.'
+        'en-US': 'Set pre upload event callbacks through<code>before-upload</code>to limit file types and sizes.'
       },
       'codeFiles': ['upload-limit.vue']
     },
@@ -170,7 +171,7 @@ export default {
         'zh-CN':
           '通过<code>limit</code>设置限制上传文件的个数，<code>is-hidden</code>设置达到最大上传数时是否隐藏上传按钮。',
         'en-US':
-          'Set a limit on the number of uploaded files by<code>limit</code>, and whether to hide the upload button when the maximum number of uploads is reached.'
+          'Set a limit on the number of uploaded files by<code>limit</code>, and <code>is-hidden</code> whether to hide the upload button when the maximum number of uploads is reached.'
       },
       'codeFiles': ['max-file-count.vue']
     },
@@ -181,7 +182,7 @@ export default {
         'zh-CN':
           '通过设置<code>list-type="picture-card"</code>开启照片墙模式，<code>preview</code>监听此模式下的图片预览按钮的点击事件。',
         'en-US':
-          'By setting<code>list type="picture card"</code>to enable photo wall mode,<code>preview</code>listens to the click event of the picture preview button in this mode.'
+          'By setting<code>list-type="picture-card"</code>to enable photo wall mode,<code>preview</code>listens to the click event of the picture preview button in this mode.'
       },
       'codeFiles': ['picture-card.vue']
     },
@@ -200,7 +201,7 @@ export default {
       'name': { 'zh-CN': '图片列表缩略图', 'en-US': 'Image List Thumbnail' },
       'desc': {
         'zh-CN': '通过设置<code>list-type="picture"</code>实现图片列表缩略图显示。',
-        'en-US': 'By setting<code>list type="picture"</code>, the thumbnail display of the image list can be achieved.'
+        'en-US': 'By setting<code>list-type="picture"</code>, the thumbnail display of the image list can be achieved.'
       },
       'codeFiles': ['picture-list.vue']
     },
@@ -211,9 +212,9 @@ export default {
         'zh-CN': `通过<code>preview</code>监听文件点击事件；<br/> <code>remove</code>监听文件移除事件；<br/> <code>error</code>监听文件上传失败事件；<br/>
           <code>exceed</code>监听文件超出个数限制事件；<br/> <code>progress</code>监听文件上传过程事件；<br/> <code>change</code>监听文件改变事件（文件改变涵盖文件添加、上传成功和上传失败）；<br/>
           <code>success</code>监听文件上传成功事件；<br/> <code>hash-progress</code>监听文件上传生成hash值事件。`,
-        'en-US': `Listen for file click events through<code>preview</code>< Br/><code>remove</code>Listen for file removal events< Br/><code>error</code>Listen for file upload failure events< Br/>
-        <code>exceeded</code>Listen for events where the number of files exceeds the limit< <code>progress</code>Listen for file upload process events< <code>change</code>Listen for file change events (file changes include file addition, successful upload, and failed upload)< Br/>
-        <code>success</code>Listen for file upload success events< <code>hash progress</code>Listen for file upload to generate hash value events.`
+        'en-US': `Listen for file click events through<code>preview</code>; <br /><code>remove</code>Listen for file removal events; <br /><code>error</code>Listen for file upload failure events;<br />
+        <code>exceeded</code>Listen for events where the number of files exceeds the limit; <br/><code>progress</code>Listen for file upload process events;<br/> <code>change</code>Listen for file change events (file changes include file addition, successful upload, and failed upload);<br />
+        <code>success</code>Listen for file upload success events;<br/> <code>hash-progress</code>Listen for file upload to generate hash value events.`
       },
       'codeFiles': ['upload-events.vue']
     },
@@ -224,7 +225,7 @@ export default {
         'zh-CN':
           '通过<code>clearFiles</code>实例方法实现清空已上传的文件列表（注意：该方法不支持在<code>before-upload</code> 中调用）。',
         'en-US':
-          'Clear the list of uploaded files through the<code>clearFiles</code>instance method (note: this method does not support calling in<code>before upload</code>).'
+          'Clear the list of uploaded files through the<code>clearFiles</code>instance method (note: this method does not support calling in<code>before-upload</code>).'
       },
       'codeFiles': ['clear-files.vue']
     },
@@ -244,7 +245,7 @@ export default {
         'zh-CN':
           '通过<code>tip</code>插槽自定义上传提示，<code>re-uploadable</code>启用重新上传功能，<code>re-upload-tip</code>自定义重新上传提示的左侧文字。',
         'en-US':
-          'Customize the upload prompt through the<code>tip</code>slot, enable the re upload function, and customize the left text of the re upload prompt.'
+          'Customize the upload prompt through the<code>tip</code>slot, <code>re-uploadable</code>enable the re upload function, and <code>re-upload-tip</code>customize the left text of the re upload prompt.'
       },
       'codeFiles': ['custom-upload-tip.vue']
     },
@@ -262,7 +263,7 @@ export default {
       'name': { 'zh-CN': '用户头像上传', 'en-US': 'User avatar upload' },
       'desc': {
         'zh-CN': '通过<code>URL.createobjectURL</code>创建出文件的URL对象，用来展示头像。',
-        'en-US': 'Create a URL object for the file through<code>URL. createobject URL</code>to display the avatar.'
+        'en-US': 'Create a URL object for the file through<code>URL.createobjectURL</code>to display the avatar.'
       },
       'codeFiles': ['upload-user-head.vue']
     },
