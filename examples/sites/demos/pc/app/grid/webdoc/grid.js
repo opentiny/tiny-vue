@@ -80,7 +80,7 @@ export default {
         },
         {
           'name': 'align',
-          'type': 'string',
+          'type': `'left' | 'center' | 'right'`,
           'defaultValue': 'left',
           'desc': {
             'zh-CN': '所有的列对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
@@ -121,13 +121,12 @@ export default {
         },
         {
           'name': 'cell-class-name',
-          'type': 'string | ({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex}) => string',
+          'type': 'string | (args: IClassNameArgs) => string',
+          'typeAnchorName': 'IClassNameArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '给单元格附加 className，也可以是函数 Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex})',
-            'en-US':
-              'Add a class name to a cell. The class name can also be the Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex})'
+            'zh-CN': '给单元格附加 className，也可以是函数',
+            'en-US': 'Add a class name to a cell. The class name can also be the Function'
           },
           'demoId': 'grid-custom-style#custom-style-body-style'
         },
@@ -202,7 +201,7 @@ export default {
         },
         {
           'name': 'footer-align',
-          'type': 'string',
+          'type': `'left' | 'center' | 'right'`,
           'defaultValue': '继承 align',
           'desc': {
             'zh-CN': '所有的表尾列的对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
@@ -221,13 +220,12 @@ export default {
         },
         {
           'name': 'footer-cell-class-name',
-          'type': 'string | ({$rowIndex, column, columnIndex, $columnIndex}) => string',
+          'type': 'string | (args: IClassNameArgs) => string',
+          'typeAnchorName': 'IClassNameArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '给表尾的单元格附加 className，也可以是函数 Function({$rowIndex, column, columnIndex, $columnIndex})',
-            'en-US':
-              'Add the class name to the cell at the end of the table. The class name can also be the function Function({$rowIndex, column, columnIndex, $columnIndex})'
+            'zh-CN': '给表尾的单元格附加 className，也可以是函数',
+            'en-US': 'Add the class name to the cell at the end of the table. The class name can also be the function'
           },
           'demoId': 'grid-custom-style#custom-style-footer-style'
         },
@@ -245,25 +243,24 @@ export default {
         },
         {
           'name': 'footer-row-class-name',
-          'type': 'string | ({$rowIndex}) => string',
+          'type': 'string | (args: IClassNameArgs) => string',
+          'typeAnchorName': 'IClassNameArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '给表尾的行附加 className，也可以是函数 Function({$rowIndex});通过 footer-cell-class-name 和 footer-row-class-name 设置表尾的单元格和行样式 params:{$rowIndex:行标}',
-            'en-US':
-              'Add className to the row at the end of the table. The className can also be the function Function({$rowIndex}). Use footer-cell-class-name and footer-row-class-name to set the cell and row styles at the end of the table params:{$rowIndex: row label}'
+            'zh-CN': '给表尾的行附加 className',
+            'en-US': 'Add className to the row at the end of the table'
           },
           'demoId': 'grid-custom-style#custom-style-footer-style'
         },
         {
           'name': 'footer-span-method',
-          'type': '({$rowIndex, column, columnIndex, $columnIndex, data}) => { rowspan: number, colspan: number }',
+          'type': '(args: ISpanMethodArgs) => { rowspan: number, colspan: number }',
+          'typeAnchorName': 'ISpanMethodArgs',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '表尾合并行或列，该函数 Function({$rowIndex, column, columnIndex, $columnIndex, data}) 返回计算后的值;通过 footer-method 和 footer-span-method 设置表尾合计行或列逻辑 必须配置 show-footer。 parmas：{ $rowIndex: 行标 column：列数据 columnIndex：列下标 data：一个数组，保存了当前合并和计算的数据}',
-            'en-US':
-              'Merge rows or columns at the end of the table. This function Function({$rowIndex, column, columnIndex, $columnIndex, data}) returns the calculated value. The show-footer must be configured when the table tail total row or column logic is set by footer-method and footer-span-method. parmas: {$rowIndex: row label column: column data columnIndex: column subscript data: an array that holds the currently combined and calculated data}'
+              '表尾合并行或列，该函数返回计算后的值;通过 footer-method 和 footer-span-method 设置表尾合计行或列逻辑 必须配置 show-footer',
+            'en-US': ''
           },
           'demoId': 'grid-footer#footer-footer-row-or-column-span'
         },
@@ -280,24 +277,23 @@ export default {
         },
         {
           'name': 'header-cell-class-name',
-          'type': 'string | ({$rowIndex, column, columnIndex, $columnIndex}) => string',
+          'type': 'string | (args: IClassNameArgs) => string',
+          'typeAnchorName': 'IClassNameArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '给表头的单元格附加 className，也可以是函数 Function({$rowIndex, column, columnIndex, $columnIndex});参数说明 params{$rowIndex：行标,column：列数据, columnIndex：列下标, $columnIndex：列下标 }',
-            'en-US':
-              'Add a class name to the cell in the table header. The class name can also be the function Function({$rowIndex, column, columnIndex, $columnIndex}). params{$rowIndex: row label, column: column data, columnIndex: column subscript, $columnIndex: column subscript}'
+            'zh-CN': '给表头的单元格附加 className，也可以是函数',
+            'en-US': 'Add a class name to the cell in the table header. The class name can also be the function'
           },
           'demoId': 'grid-custom-style#custom-style-header-style'
         },
         {
           'name': 'header-row-class-name',
-          'type': 'string | ({$rowIndex}) => string',
+          'type': 'string | (args: IClassNameArgs) => string',
+          'typeAnchorName': 'IClassNameArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '表头的行附加 className，也可以是函数 Function({$rowIndex});params：{$rowIndex:行标}',
-            'en-US':
-              'Add className to the row in the table header. It can also be the function Function({$rowIndex});params: {$rowIndex: row label}'
+            'zh-CN': '表头的行附加 className，也可以是函数',
+            'en-US': 'Add className to the row in the table header. It can also be the function'
           },
           'demoId': 'grid-custom-style#custom-style-header-style'
         },
@@ -307,7 +303,7 @@ export default {
           'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '设置表格内容区域（不含表格头部，底部）的高度。 不设置时，表格内容区域的高度度自适应。 ;表格的高度；支持铺满父容器或者固定宽高;该属性的可选值为 整数, px，%',
+              '设置表格内容区域（不含表格头部，底部）的高度。 不设置时，表格内容区域的高度度自适应；表格的高度；支持铺满父容器或者固定宽高;该属性的可选值为 整数, px，%',
             'en-US':
               'Set the height of the table content area (excluding the table header and bottom). If this parameter is not set, the height of the table content area is adaptive.; height of table; Supports full parent containers or fixed width and height. The optional values of this attribute are integers, px,%'
           },
@@ -441,13 +437,13 @@ export default {
         },
         {
           'name': 'row-class-name',
-          'type': 'string | ({seq, row, rowIndex, $rowIndex}) => string',
+          'type': 'string | (args: IClassNameArgs) => string',
+          'typeAnchorName': 'IClassNameArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '自定义表格行类名，用于自定义表格的行样式的场景。可以直接设置字符串类名，也可以是用函数 Function({seq, row, rowIndex, $rowIndex})返回类名',
+            'zh-CN': '自定义表格行类名，用于自定义表格的行样式的场景。可以直接设置字符串类名，也可以是用函数',
             'en-US':
-              'User-defined table row class name, which is used in the scenario where the row style of the table is customized. You can set the string class name directly or use the Function({seq, row, rowIndex, $rowIndex}) function to return the class name.'
+              'User-defined table row class name, which is used in the scenario where the row style of the table is customized. You can set the string class name directly or use the Function.'
           },
           'demoId': 'grid-custom-style#custom-style-body-style'
         },
@@ -489,7 +485,7 @@ export default {
         },
         {
           'name': 'show-header-overflow',
-          'type': 'boolean | string',
+          'type': `boolean | 'ellipsis' | 'tooltip' | 'title'`,
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -501,7 +497,7 @@ export default {
         },
         {
           'name': 'show-overflow',
-          'type': 'boolean | string',
+          'type': `boolean | 'ellipsis' | 'tooltip' | 'title'`,
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -513,7 +509,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'string',
+          'type': `'medium' | 'small' | 'mini'`,
           'defaultValue': '--',
           'desc': {
             'zh-CN': '表格的尺寸;该属性的可选值为 medium, small, mini',
@@ -534,26 +530,24 @@ export default {
         },
         {
           'name': 'sort-method',
-          'type': '(arg1,arg2) => boolean',
+          'type': '(row1: Row, row2: Row)=> boolean',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '自定义所有列的排序方法，当触发排序时会调用该函数 Function(arg1, arg2) 返回排序后的结果;自定义排序方法，类似原生的sort排序，入参arguments: (arg1, arg2)  arg1: 前一个比较数据项 arg2: 后一个比较数据项',
+              '自定义所有列的排序方法，当触发排序时会调用该函数返回排序后的结果;自定义排序方法，类似原生的sort排序',
             'en-US':
-              'Customize the sorting method of all columns. When sorting is triggered, the function Function(arg1, arg2) is invoked to return the sorting result. User-defined sorting method, similar to the native sort sorting method. The input parameter arguments: (arg1, arg2) arg1: is the previous comparison data item arg2: the next comparison data item'
+              'Customize the sorting method of all columns. When sorting is triggered, the function is invoked to return the sorting result. User-defined sorting method, similar to the native sort sorting method'
           },
           'demoId': 'grid-sort#sort-custom-sort'
         },
         {
           'name': 'span-method',
-          'type':
-            '({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, data}) => { rowspan: number, colspan: number }',
+          'type': '(args: ISpanMethodArgs) => { rowspan: number, colspan: number }',
+          'typeAnchorName': 'ISpanMethodArgs',
           'defaultValue': '{ rowspan: 1, colspan: 1}',
           'desc': {
-            'zh-CN':
-              '合并行或列，该函数 Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, data}) 返回计算后的值',
-            'en-US':
-              'Consolidate rows or columns. This function Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, data}) returns the calculated value.'
+            'zh-CN': '合并行或列，该函数返回计算后的值',
+            'en-US': 'Consolidate rows or columns. This function returns the calculated value.'
           },
           'demoId': 'grid-span#span-row-span'
         },
@@ -649,7 +643,7 @@ export default {
         },
         {
           'name': 'columns',
-          'type': 'object[]',
+          'type': 'ColumnConfig[]',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '表格列的配置信息，具体参考列配置项',
@@ -696,7 +690,7 @@ export default {
         },
         {
           'name': 'data',
-          'type': 'object[]',
+          'type': 'Row[]',
           'defaultValue': '--',
           'desc': { 'zh-CN': '设置表格的数据;', 'en-US': 'Set table data.' },
           'demoId': 'grid-data-source#data-source-static-data'
@@ -805,7 +799,7 @@ export default {
       'methods': [
         {
           'name': 'clearActived',
-          'type': '(row, field?:string)=> void',
+          'type': '()=> void',
           'defaultValue': '--',
           'desc': { 'zh-CN': '手动清除单元格激活状态', 'en-US': 'Manually clear cell activation status' },
           'demoId': 'grid-edit#edit-has-row-change'
@@ -844,7 +838,7 @@ export default {
         },
         {
           'name': 'clearData',
-          'type': '(rows, field)=> void',
+          'type': '(rows?: Row | Row[], field?: string)=> void',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -856,7 +850,7 @@ export default {
         },
         {
           'name': 'clearFilter',
-          'type': '(field)=> void',
+          'type': '(field: string)=> void',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '手动清空筛选条件（如果不传 field 则清空所有筛选条件），数据会恢复成未筛选的状态',
@@ -955,7 +949,7 @@ export default {
         },
         {
           'name': 'createRow',
-          'type': '(records)=> Promise',
+          'type': '(records: Row[])=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '创建 Row|Rows 对象（对于某些特殊场景需要对数据进行手动插入时可能会用到）',
@@ -966,7 +960,8 @@ export default {
         },
         {
           'name': 'exportCsv',
-          'type': '(options)=> void',
+          'type': '(options: IExportCsvOptions)=> void',
+          'typeAnchorName': 'IExportCsvOptions',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '将表格数据导出为 .csv 文件（支持所有主流的浏览器，不支持合并行或列）',
@@ -977,7 +972,7 @@ export default {
         },
         {
           'name': 'fullValidate',
-          'type': '(rows, callback)=> Promise',
+          'type': '(rows: Row[], callback: ()=> void)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '表格完整校验函数，和 validate 的区别就是会对全量数据的所有规则进行完整校验',
@@ -988,21 +983,21 @@ export default {
         },
         {
           'name': 'getActiveRow',
-          'type': '()=> object',
+          'type': '()=> Row',
           'defaultValue': '--',
           'desc': { 'zh-CN': '获取已激活的行数据', 'en-US': 'Obtain activated row data' },
           'demoId': 'grid-edit#edit-trigger-mode-hm-editing'
         },
         {
           'name': 'getColumnByField',
-          'type': '(field)=> object',
+          'type': '(field: string)=> ColumnConfig',
           'defaultValue': '--',
           'desc': { 'zh-CN': '根据列的字段名获取列', 'en-US': 'Obtain columns based on column field names.' },
           'demoId': 'grid-large-data#large-data-scroll-to'
         },
         {
           'name': 'getColumnById',
-          'type': '(colid)=> object',
+          'type': '(colid: string)=> ColumnConfig',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据列的唯一主键获取列',
@@ -1012,7 +1007,7 @@ export default {
         },
         {
           'name': 'getColumnIndex',
-          'type': '(column)=> object',
+          'type': '(column: ColumnConfig)=> number',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据 column 获取相对于 columns 中的索引',
@@ -1022,7 +1017,7 @@ export default {
         },
         {
           'name': 'getColumnNode',
-          'type': '(cell)=> object',
+          'type': '(cell: HTMLElement)=> ColumnConfig',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据 th/td 元素获取对应的 column 信息',
@@ -1032,7 +1027,7 @@ export default {
         },
         {
           'name': 'getColumns',
-          'type': '(columnIndex?:number)=> object | object[]',
+          'type': '(columnIndex?: number)=> ColumnConfig | ColumnConfig[]',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '获取表格的可视列，也可以指定索引获取列',
@@ -1042,7 +1037,7 @@ export default {
         },
         {
           'name': 'getCurrentRow',
-          'type': '()=> object',
+          'type': '()=> Row',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于当前行，获取当前行的数据',
@@ -1052,7 +1047,7 @@ export default {
         },
         {
           'name': 'getData',
-          'type': '(rowIndex?:number)=> object | object[]',
+          'type': '(rowIndex?: number)=> Row | Row[]',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '获取数据，和 data 的行为一致，也可以指定索引获取数据',
@@ -1063,14 +1058,14 @@ export default {
         },
         {
           'name': 'getInsertRecords',
-          'type': '()=> object[]',
+          'type': '()=> Row[]',
           'defaultValue': '--',
           'desc': { 'zh-CN': '获取新增的数据', 'en-US': 'Obtain the new data' },
           'demoId': 'grid-toolbar#toolbar-insert-delete-update'
         },
         {
           'name': 'getRadioRow',
-          'type': '()=> object',
+          'type': '()=> Row',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于单选行，获取当已选中的数据',
@@ -1092,14 +1087,14 @@ export default {
         },
         {
           'name': 'getRemoveRecords',
-          'type': '()=> object[]',
+          'type': '()=> Row[]',
           'defaultValue': '--',
           'desc': { 'zh-CN': '获取已删除的数据', 'en-US': 'Obtain deleted data' },
           'demoId': 'grid-toolbar#toolbar-insert-delete-update'
         },
         {
           'name': 'getRowById',
-          'type': '(rowid:string)=> object',
+          'type': '(rowid: string)=> Row',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据行的唯一主键获取行',
@@ -1109,7 +1104,7 @@ export default {
         },
         {
           'name': 'getRowIndex',
-          'type': '(row:object)=> number',
+          'type': '(row: Row)=> number',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据 row 获取相对于 data 中的索引',
@@ -1119,7 +1114,7 @@ export default {
         },
         {
           'name': 'getRowNode',
-          'type': '(tr:HTMLElement)=> object',
+          'type': '(tr: HTMLElement)=> Row',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据 tr 元素获取对应的 row 信息',
@@ -1129,7 +1124,7 @@ export default {
         },
         {
           'name': 'getSelectRecords',
-          'type': '()=> object[]',
+          'type': '()=> Row[]',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于多选行，获取已选中的数据',
@@ -1139,7 +1134,7 @@ export default {
         },
         {
           'name': 'getTableColumn',
-          'type': '()=> object[]',
+          'type': '()=> Row[]',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '获取当前表格的列（完整的全量表头列、处理条件之后的全量表头列、当前渲染中的表头列）',
@@ -1150,7 +1145,7 @@ export default {
         },
         {
           'name': 'getTableData',
-          'type': '()=> object[]',
+          'type': '()=> Row[]',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -1162,7 +1157,7 @@ export default {
         },
         {
           'name': 'getUpdateRecords',
-          'type': '()=> object[]',
+          'type': '()=> Row[]',
           'defaultValue': '--',
           'desc': { 'zh-CN': '获取已修改的数据', 'en-US': 'Obtain modified data' },
           'demoId': 'grid-toolbar#toolbar-insert-delete-update'
@@ -1176,7 +1171,7 @@ export default {
         },
         {
           'name': 'hasActiveRow',
-          'type': '(row)=> boolean',
+          'type': '(row: Row)=> boolean',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '检查行是否已激活为编辑状态',
@@ -1186,7 +1181,7 @@ export default {
         },
         {
           'name': 'hasRowChange',
-          'type': '(row, field:string)=> boolean',
+          'type': '(row: Row, field: string)=> boolean',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '检查行或列数据是否发生改变',
@@ -1196,28 +1191,28 @@ export default {
         },
         {
           'name': 'hasRowExpand',
-          'type': '(row)=> boolean',
+          'type': '(row: Row)=> boolean',
           'defaultValue': '--',
           'desc': { 'zh-CN': '检查行是否已展开', 'en-US': 'Check whether the row is expanded.' },
           'demoId': 'grid-expand#expand-has-row-expand'
         },
         {
           'name': 'hasTreeExpand',
-          'type': '(row)=> boolean',
+          'type': '(row: Row)=> boolean',
           'defaultValue': '--',
           'desc': { 'zh-CN': '检查树节点是否已展开', 'en-US': 'Check whether the tree node is expanded.' },
           'demoId': 'grid-tree-table#tree-table-has-tree-expand'
         },
         {
           'name': 'hideColumn',
-          'type': '(column)=> void',
+          'type': '(column: ColumnConfig)=> Promise',
           'defaultValue': '--',
           'desc': { 'zh-CN': '隐藏指定列', 'en-US': 'Hide a specified column.' },
           'demoId': 'grid-custom#custom-hide-column'
         },
         {
           'name': 'insert',
-          'type': '(records)=> void',
+          'type': '(records: Row | Row[])=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '在表格中新增数据;往表格插入数据，从第一行新增一行或多行新数据',
@@ -1228,7 +1223,7 @@ export default {
         },
         {
           'name': 'insertAt',
-          'type': '(records, row)=> void',
+          'type': '(records: Row | Row[], row: Row | null | -1)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -1240,7 +1235,7 @@ export default {
         },
         {
           'name': 'loadColumn',
-          'type': '(columns)=> Promise',
+          'type': '(columns: ColumnConfig[])=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '加载列配置（对于表格列需要重载、局部递增场景下可能会用到）',
@@ -1251,7 +1246,7 @@ export default {
         },
         {
           'name': 'loadData',
-          'type': '(data)=> Promise',
+          'type': '(data: Row[])=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '加载数据（对于表格数据需要重载、局部递增场景下可能会用到）',
@@ -1296,10 +1291,11 @@ export default {
         },
         {
           'name': 'reloadCustoms',
-          'type': '(customs)=> Promise',
+          'type': '(customs: ColumnConfig[], sortable?: boolean)=> Promise',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '初始化加载显示/隐藏列（对于异步更新的场景下可能会用到）',
+            'zh-CN':
+              '初始化加载显示/隐藏列（对于异步更新的场景下可能会用到），customs表示列信息集合，sortable表示是否按列顺序加载',
             'en-US':
               'Initialize loading to display or hide columns (which may be used in asynchronous update scenarios).'
           },
@@ -1307,7 +1303,7 @@ export default {
         },
         {
           'name': 'remove',
-          'type': '(rows)=> Promise',
+          'type': '(rows: Row | Row[])=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '删除指定行数据，指定 row 或 [row, ...] 删除多条数据，如果为空则删除所有数据',
@@ -1358,7 +1354,7 @@ export default {
         },
         {
           'name': 'revertData',
-          'type': '(rows, field)=> Promise',
+          'type': '(rows: Row | Row[], field?: string)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '还原更改，还原指定行 row 或者整个表格的数据',
@@ -1368,7 +1364,7 @@ export default {
         },
         {
           'name': 'scrollTo',
-          'type': '(scrollLeft, scrollTop)=> Promise',
+          'type': '(scrollLeft: number, scrollTop: number)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '如果有滚动条，则滚动到对应的位置',
@@ -1378,7 +1374,7 @@ export default {
         },
         {
           'name': 'scrollToColumn',
-          'type': '(column)=> Promise',
+          'type': '(column: ColumnConfig)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '如果有滚动条，则滚动到对应的列',
@@ -1388,7 +1384,7 @@ export default {
         },
         {
           'name': 'scrollToRow',
-          'type': '(row)=> Promise',
+          'type': '(row: Row)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '如果有滚动条，则滚动到对应的行',
@@ -1398,14 +1394,14 @@ export default {
         },
         {
           'name': 'setActiveCell',
-          'type': '(row, field)=> Promise',
+          'type': '(row: Row, field: string)=> Promise',
           'defaultValue': '--',
           'desc': { 'zh-CN': '激活单元格编辑', 'en-US': 'Activate cell editing' },
           'demoId': 'grid-edit#edit-set-active-cell'
         },
         {
           'name': 'setActiveRow',
-          'type': '(row)=> Promise',
+          'type': '(row: Row)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '激活行编辑，如果是 mode=cell 则默认激活第一个单元格',
@@ -1415,14 +1411,14 @@ export default {
         },
         {
           'name': 'setAllRowExpansion',
-          'type': '(checked)=> Promise',
+          'type': '(checked: boolean)=> Promise',
           'defaultValue': '--',
           'desc': { 'zh-CN': '设置所有行的展开与否', 'en-US': 'Set whether to expand all rows.' },
           'demoId': 'grid-expand#expand-set-all-row-expansion'
         },
         {
           'name': 'setAllSelection',
-          'type': '(checked)=> void',
+          'type': '(checked: boolean)=> void',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '入参为boolean,用于多选行，设置所有行的选中状态,',
@@ -1433,14 +1429,14 @@ export default {
         },
         {
           'name': 'setAllTreeExpansion',
-          'type': '(checked)=> Promise',
+          'type': '(checked: boolean)=> Promise',
           'defaultValue': '--',
           'desc': { 'zh-CN': '设置所有树节点的展开与否', 'en-US': 'Sets whether to expand all tree nodes.' },
           'demoId': 'grid-tree-table#tree-table-set-all-tree-expansion'
         },
         {
           'name': 'setCurrentRow(row)',
-          'type': '(row)=> Promise',
+          'type': '(row: Row)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于当前行，设置某一行为高亮状态',
@@ -1450,7 +1446,7 @@ export default {
         },
         {
           'name': 'setRadioRow',
-          'type': '(row)=> Promise',
+          'type': '(row: Row)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于单选行，设置某一行为选中状态',
@@ -1460,17 +1456,17 @@ export default {
         },
         {
           'name': 'setRowExpansion',
-          'type': '(rows, checked)=> Promise',
+          'type': '(rows: Row | Row[], checked: boolean)=> Promise',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置展开行，二个参数设置这一行展开与否',
+            'zh-CN': '设置展开行，第二个参数设置这一行展开与否',
             'en-US': 'Set the expansion row, and set whether to expand the row.'
           },
           'demoId': 'grid-expand#expand-set-row-expansion'
         },
         {
           'name': 'setSelection',
-          'type': '(rows, checked)=> Promise',
+          'type': '(rows: Row | Row[], checked: boolean)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于多选行，设置行为选中状态，第二个参数为选中与否',
@@ -1481,24 +1477,24 @@ export default {
         },
         {
           'name': 'setTreeExpansion',
-          'type': '(rows, checked)=> Promise',
+          'type': '(rows: Row | Row[], checked: boolean)=> Promise',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置展开树形节点，二个参数设置这一行展开与否',
+            'zh-CN': '设置展开树形节点，第二个参数设置这一行展开与否',
             'en-US': 'Set the expansion tree node and set whether to expand the row.'
           },
           'demoId': 'grid-tree-table#tree-table-set-tree-expansion'
         },
         {
           'name': 'showColumn',
-          'type': '(column)=> Promise',
+          'type': '(column: ColumnConfig)=> Promise',
           'defaultValue': '--',
           'desc': { 'zh-CN': '显示指定列', 'en-US': 'Display the specified column.' },
           'demoId': 'grid-custom#custom-hide-column'
         },
         {
           'name': 'sort',
-          'type': '(field, order)=> Promise',
+          'type': `(field: string, order?: 'asc' | 'desc')=> Promise`,
           'defaultValue': '--',
           'desc': {
             'zh-CN': '手动对表格进行排序（如果 order 为空则自动切换排序）',
@@ -1518,14 +1514,14 @@ export default {
         },
         {
           'name': 'toggleRowExpansion',
-          'type': '(row)=> Promise',
+          'type': '(row: Row)=> Promise',
           'defaultValue': '--',
           'desc': { 'zh-CN': '用于可展开表格，切换展开行', 'en-US': 'For expanding tables or switching rows.' },
           'demoId': 'grid-expand#expand-toggle-row-expansion'
         },
         {
           'name': 'toggleRowSelection',
-          'type': '(row)=> Promise',
+          'type': '(row: Row)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于多选行，切换某一行的选中状态',
@@ -1535,7 +1531,7 @@ export default {
         },
         {
           'name': 'toggleTreeExpansion',
-          'type': '(row)=> Promise',
+          'type': '(row: Row)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于可树形表格，切换展开树形节点',
@@ -1545,7 +1541,7 @@ export default {
         },
         {
           'name': 'validate',
-          'type': '(rows, callback)=> Promise',
+          'type': '(rows: Row | Row[], callback: ()=> void)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -1559,8 +1555,8 @@ export default {
       'events': [
         {
           'name': 'page-change',
-          'type': '(arg: IpageChangeArgs)=> void',
-          'typeAnchorName': 'IpageChangeArgs',
+          'type': '(args: IPageChangeArgs)=> void',
+          'typeAnchorName': 'IPageChangeArgs',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '只对 pager-config 配置时有效，分页发生改变时会触发该事件 ',
@@ -1571,43 +1567,41 @@ export default {
         },
         {
           'name': 'before-page-change',
-          'type': '(arg)=> void',
+          'type': '(args: IBeforePageChangeArgs)=> void',
+          'typeAnchorName': 'IBeforePageChangeArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '在打开页面改变时的前置处理特性，并且进行翻页操作或者改变页大小操作时触发;//参数arg:\n{ newPage, //新页码\nnewPageSize//为新的页大小\ncurrentPage,//当前页码\ncurrentPageSize, //当前的页大小\ncallback,//生效回调\nrollback//失效回调\nrollback,//回退，可能不存在}',
-            'en-US':
-              'triggered when the page is changed and the page is turned or the page size is changed. / / Parameter arg:\n{newPage, // New page size\nnewPageSize// New page size\ncurrentPage,// Current page size\ncurrentPageSize, // Current page size\ncallback, // Validate the rollback\nrollback// Invalidate the rollback\nrollback,// Rollback, which may not exist}'
+            'zh-CN': '在打开页面改变时的前置处理特性，并且进行翻页操作或者改变页大小操作时触发',
+            'en-US': 'triggered when the page is changed and the page is turned or the page size is changed'
           },
           'demoId': 'grid-event#event-page-change-event'
         },
         {
           'name': 'toolbar-button-click',
-          'type': 'Function(arg, event)',
+          'type': '(args: IToolbarButtonClickArgs, event: Event)=> void',
+          'typeAnchorName': 'IToolbarButtonClickArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '只对 toolbar.buttons 配置时有效，当工具栏的按钮被点击时会后触发该事件;//arg1：\n{ $grid: VueComponent, //表格组件实例对象信息 \nbutton, //按钮信息对象 \ncode// 按钮功能类型 \n}\n //arg2:\nevent//原生点击事件',
+            'zh-CN': '只对 toolbar.buttons 配置时有效，当工具栏的按钮被点击时会后触发该事件',
             'en-US':
-              'This event is valid only when toolbar.buttons are configured. This event is triggered when a toolbar button is clicked. //arg1: \n{$grid: VueComponent, // table component instance object information\nbutton, // Button information object\ncode// Button function type \n}\n //arg2:\nevent// native click event'
+              'This event is valid only when toolbar.buttons are configured. This event is triggered when a toolbar button is clicked'
           },
           'demoId': 'grid-toolbar#tiny-first-menu-insert-delete-update'
         },
         {
           'name': 'cell-click',
-          'type': 'Function(arg1, event)',
+          'type': '(args: ICellClickArgs, event: Event)=> void',
+          'typeAnchorName': 'ICellClickArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '单元格被点击时会触发该事件;arg1：{row: 当前行,rowIndex: 当前行的下标,column: 当前列,columnIndex: 当前列的下标}',
-            'en-US':
-              'This event is triggered when a cell is clicked. arg1: {row: current row, rowIndex: subscript of the current row, column: current column, columnIndex: current column subscript}'
+            'zh-CN': '单元格被点击时会触发该事件',
+            'en-US': 'This event is triggered when a cell is clicked'
           },
           'demoId': 'grid-event#event-cell-click-event'
         },
         {
           'name': 'cancel-page-change',
-          'type': 'Function()',
+          'type': '($grid: VueComponent)=> void',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '切换分页时有未保存的数据时，提示框确定按钮事件',
@@ -1618,41 +1612,41 @@ export default {
         },
         {
           'name': 'cell-context-menu',
-          'type': 'Function(arg)',
+          'type': '(args: ICellContextMenuArgs)=> void',
+          'typeAnchorName': 'ICellContextMenuArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '单元格被鼠标右键点击时触发该事件,arg:{row：当前行}',
-            'en-US': 'This event is triggered when a cell is right-clicked. arg:{row:current row}'
+            'zh-CN': '单元格被鼠标右键点击时触发该事件',
+            'en-US': 'This event is triggered when a cell is right-clicked'
           },
-          'demoId': 'grid-context-menu#grid_Example-shortcutMenu-menu-permissions'
+          'demoId': 'grid-context-menu#context-menu-cell-menu'
         },
         {
           'name': 'cell-dblclick',
-          'type': 'Function(arg1,event)',
+          'type': '(args: ICellArgs, event: Event)=> void',
+          'typeAnchorName': 'ICellArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '单元格被双击时会触发该事件;//arg1\n{row,  //当前行\nrowIndex, //当前行的下标\ncolumn, // 当前列\ncolumnIndex// 当前列的下标\n},\nevent //点击事件',
-            'en-US':
-              "This event is triggered when a cell is double-clicked. //arg1\n{row, // Current row\nrowIndex, // Current row's subscript\ncolumn, // Current row's subscript\ncolumnIndex// Current row's subscript\n}, \neevent //Click Event"
+            'zh-CN': '单元格被双击时会触发该事件',
+            'en-US': 'This event is triggered when a cell is double-clicked'
           },
           'demoId': 'grid-event#event-cell-dblclick-event'
         },
         {
           'name': 'cell-mouseenter',
-          'type': 'Function(arg1,event)',
+          'type': '(args: ICellArgs, event: Event)=> void',
+          'typeAnchorName': 'ICellArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '当单元格 hover 进入时会触发该事件;//arg1\n{row,  //当前行\nrowIndex, //当前行的下标\ncolumn, // 当前列\ncolumnIndex// 当前列的下标\n},\nevent //原生事件',
-            'en-US':
-              'This event is triggered when the cell hovers. //arg1\n{row, // Current row\nrowIndex, // Subscript of current row\ncolumn, // Current column\ncolumnIndex// Current column\n}, \neevent //Native event'
+            'zh-CN': '当单元格 hover 进入时会触发该事件',
+            'en-US': 'This event is triggered when the cell hovers'
           },
           'demoId': 'grid-event#event-cell-mouseenter-event'
         },
         {
           'name': 'cell-mouseleave',
-          'type': '',
+          'type': '(args: ICellArgs, event: Event)=> void',
+          'typeAnchorName': 'ICellArgs',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '当单元格 hover 退出时会触发该事件',
@@ -1662,280 +1656,241 @@ export default {
         },
         {
           'name': 'context-menu-click',
-          'type': 'Function(arg1)',
+          'type': '(args: IContextMenuArgs, event: Event)=> void',
+          'typeAnchorName': 'IContextMenuArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              "只对 context-menu 配置时有效，当点击快捷菜单时会触发该事件;//arg1\n{table: VueComponent,  //table组件vue实例\ncell, //点击的单元格dom\ncolumn, // 列配置信息\ncolumnIndex:number,// 点击所在列的索引\ncolumns: Array,//所有列信息},\nmenu: object,// 当前显示上下文菜单的配置,options: Arry,// 上下文菜单的配置列表\nrow: object, // 点击的单元格所在行的数据\nrowIndex: 1,// 点击的单元格所在行的索引\ntype: 'body'// 上下文菜单的显示位置}",
+            'zh-CN': '只对 context-menu 配置时有效，当点击快捷菜单时会触发该事件',
             'en-US':
-              "This event is valid only when context-menu is configured. This event is triggered when the shortcut menu is clicked. //arg1\n{table: VueComponent, //table component vue instance\ncell, //Dom\ncolumn of the clicked cell, //Column configuration information\ncolumnIndex:number,//Click the index of the column\ncolumns:Array,//Information about all columns}, \nmenu:object,//Configuration of the current context menu, options: Arry,//Configuration list of the context menu\nrow: object, //Data of the row where the clicked cell is located\nrowIndex: 1,//Index of the row where the clicked cell is located\ntype:'body'//Display position of the context menu}"
+              'This event is valid only when context-menu is configured. This event is triggered when the shortcut menu is clicked'
           },
           'demoId': 'grid-context-menu#grid_Example-shortcutMenu-header-menu'
         },
         {
           'name': 'current-change',
-          'type': 'Function(arg1,arg2)',
+          'type': '(args: ICurrentChangeArgs, event: Event)=> void',
+          'typeAnchorName': 'ICurrentChangeArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '只对 highlightCurrentRow 有效，当手动选中行并且值发生改变时触发的事件,arg1：object 手动选中行的相关信息对象，arg2:event',
+            'zh-CN': '只对 highlightCurrentRow 有效，当手动选中行并且值发生改变时触发的事件',
             'en-US':
-              'This parameter is valid only for highlightCurrentRow. This parameter is triggered when a row is manually selected and the value changes. arg1:object: The information object related to the row is manually selected. arg2:event.'
+              'This parameter is valid only for highlightCurrentRow. This parameter is triggered when a row is manually selected and the value changes'
           },
           'demoId': 'grid-highlight#highlight-highlight-cell'
         },
         {
           'name': 'edit-actived',
-          'type': 'Function(arg1,arg2)',
+          'type': '(args: IEditActivedArgs, event: Event)=> void',
+          'typeAnchorName': 'IEditActivedArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '单元格被激活编辑时会触发该事件,arg1：object 激活编辑单元格的相关信息对象,arg2:event',
-            'en-US':
-              'This event is triggered when a cell is activated for editing. arg1: object activates and edits the related information object of the cell, arg2: event'
+            'zh-CN': '单元格被激活编辑时会触发该事件',
+            'en-US': 'This event is triggered when a cell is activated for editing'
           },
           'demoId': 'grid-event#event-edit-actived-event'
         },
         {
           'name': 'edit-closed',
-          'type': 'Function(arg1,arg2)',
+          'type': '(args: IEditClosedArgs, event: Event)=> void',
+          'typeAnchorName': 'IEditClosedArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '单元格编辑状态下被关闭时会触发该事件,arg1：object 激活编辑单元格的相关信息对象,arg2:event',
-            'en-US':
-              'This event is triggered when a cell is closed in the editing state. arg1: object activates the information object of the editing cell, arg2: event'
+            'zh-CN': '单元格编辑状态下被关闭时会触发该事件',
+            'en-US': 'This event is triggered when a cell is closed in the editing state'
           },
-          'demoId': 'grid-event#event-edit-closed-event'
+          'demoId': 'grid-event#event-edit-actived-event'
         },
         {
           'name': 'edit-disabled',
-          'type': 'Function(arg1,arg2)',
+          'type': '(args: IEditDisabledArgs, event: Event)=> void',
+          'typeAnchorName': 'IEditDisabledArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '当单元格激活时如果是禁用状态时会触发该事件,arg1：object 激活编辑单元格的相关信息对象,arg2:event',
-            'en-US':
-              'This event is triggered when a cell is activated and is disabled. arg1: object activates and edits the related information object of the cell. arg2: event'
+            'zh-CN': '当单元格激活时如果是禁用状态时会触发该事件',
+            'en-US': 'This event is triggered when a cell is activated and is disabled'
           },
           'demoId': 'grid-event#event-edit-disabled-event'
         },
         {
           'name': 'filter-change',
-          'type': 'Function(arg1,arg2)',
+          'type': '(args: IFilterChangeArgs)=> void',
+          'typeAnchorName': 'IFilterChangeArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '当筛选条件发生变化时会触发该事件;//arg1:\n{$table:object, //表格的信息对象\nfilters,//过滤列的过滤数据信息},//\narg2:\n{ $table:object,// 表格的信息对象 \nfilters,//过滤列的过滤数据信息}',
-            'en-US':
-              'This event is triggered when the filter condition changes. Information object of the //arg1:\n{$table:object, // table\nfilters,//filtering data information of the filter column},//\narg2:\n{$table:object,// table\nfilters,//filtering data information of the filter column}'
+            'zh-CN': '当筛选条件发生变化时会触发该事件',
+            'en-US': 'This event is triggered when the filter condition changes'
           },
           'demoId': 'grid-filter#filter-server-filter'
         },
         {
           'name': 'footer-cell-click',
-          'type': 'Function(arg1,arg2)',
+          'type': '(args: IFooterCellClickArgs, event: Event)=> void',
+          'typeAnchorName': 'IFooterCellClickArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '表尾单元格被点击时会触发该事件;//arg1:当前表过table对象\n{\n$columnIndex: 2,$rowIndex: 0,$table: VueComponent, //table组件vue实例\ncell,// 当前单元格节点\ncolumn: ColumnConfig，// 当前列信息\ncolumnIndex: 2}\n//arg2:event //原生事件',
-            'en-US':
-              'This event is triggered when a cell at the end of a table is clicked. //arg1: current table object \n{\n$columnIndex: 2,$rowIndex: 0,$table: VueComponent, //table component vue instance\ncell,// current cell node\ncolumn:ColumnConfig, // current column information \ncolumnIndex: 2}\n//arg2:event // native event'
+            'zh-CN': '表尾单元格被点击时会触发该事件',
+            'en-US': 'This event is triggered when a cell at the end of a table is clicked'
           },
           'demoId': 'grid-event#event-footer-cell-context-menu-event'
         },
         {
           'name': 'footer-cell-context-menu',
-          'type': 'Function(arg1,arg2)',
+          'type': '(args: IContextMenuArgs, event: Event)=> void',
+          'typeAnchorName': 'IContextMenuArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              "表尾单元格被鼠标右键点击时触发该事件;//arg1:当前表过table对象\n{\n$columnIndex: 2,$rowIndex: 0,$table: VueComponent, //table组件vue实例\ncell,// 当前单元格节点\ncolumn: ColumnConfig，// 当前列信息\ncolumnIndex: 2, \noptions:Array,//配置清除等功能信息\ntype: 'footer'//表格区域类型\n}\n//arg2:event //原生事件",
-            'en-US':
-              "This event is triggered when a cell at the end of the table is right-clicked. //arg1: current table object \n{\n$columnIndex: 2,$rowIndex: 0,$table: VueComponent, //table component vue instance\ncell,// Current cell node\ncolumn:ColumnConfig, // Current column information \ncolumnIndex: 2, \noptions:Array,// configuration and clearing function information\ntype: 'footer' //Table area type \n}\n//arg2:event // native event"
+            'zh-CN': '表尾单元格被鼠标右键点击时触发该事件',
+            'en-US': 'This event is triggered when a cell at the end of the table is right-clicked'
           },
-          'demoId': 'grid-context-menu#grid_Example-shortcutMenu-cell-menu'
+          'demoId': 'grid-context-menu#context-menu-footer-menu'
         },
         {
           'name': 'footer-cell-dblclick',
-          'type': 'Function(arg1,arg2)',
+          'type': '(args: IFooterCellDblClickArgs, event: Event)=> void',
+          'typeAnchorName': 'IFooterCellDblClickArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '表尾单元格被双击时会触发该事件;//arg1:当前表过table对象\n{\n$columnIndex: 2,$rowIndex: 0,$table: VueComponent, //table组件vue实例\ncell,// 当前单元格节点\ncolumn: ColumnConfig，// 当前列信息\ncolumnIndex: 2}\n//arg2:event //原生事件',
-            'en-US':
-              'This event is triggered when a cell at the end of a table is double-clicked. //arg1: current table object \n{\n$columnIndex: 2,$rowIndex: 0,$table: VueComponent, //table component vue instance\ncell,// Current cell node\ncolumn:ColumnConfig, // Current column information \ncolumnIndex: 2}\n//arg2:event // native event'
+            'zh-CN': '表尾单元格被双击时会触发该事件',
+            'en-US': 'This event is triggered when a cell at the end of a table is double-clicked'
           },
           'demoId': 'grid-footer#footer-footer-summation'
         },
         {
           'name': 'header-cell-click',
-          'type': 'Function(arg1,arg2)',
+          'type': '(args: IHeaderCellClickArgs, event: Event)=> void',
+          'typeAnchorName': 'IHeaderCellClickArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '表头单元格被点击时会触发该事件;//arg1:当前表过table对象\n{\n$columnIndex: 2,$rowIndex: 0,$table: VueComponent, //table组件vue实例\ncell,// 点击表头单元格\ncolumn: ColumnConfig，// 当前列信息\ncolumnIndex: 2,\ntriggerFilter:false,//当前点击节点过滤标识\ntriggerSort:false,//当前点击节点排序标识}\n//arg2:event //原生事件',
-            'en-US':
-              'This event is triggered when a cell in the table header is clicked. //arg1: current table object \n{\n$columnIndex: 2,$rowIndex: 0,$table: VueComponent, //table component vue instance\ncell,// Click the table header cell \ncolumn:ColumnConfig, // Current column information \ncolumnIndex: 2,\ntriggerFilter:false,// Current click node filter flag \ntriggerSort:false,// Current click node sorting flag}\n//arg2:event // Native event '
+            'zh-CN': '表头单元格被点击时会触发该事件',
+            'en-US': 'This event is triggered when a cell in the table header is clicked'
           },
           'demoId': 'grid-event#event-header-click-event'
         },
         {
           'name': 'header-cell-context-menu',
-          'type': 'Function(arg1,arg2)',
+          'type': '(args: IContextMenuArgs, event: Event)=> void',
+          'typeAnchorName': 'IContextMenuArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              "表头单元格被鼠标右键点击时触发该事件;//arg1:当前表过table对象\n{\n$columnIndex: 2,$rowIndex: 0,$table: VueComponent, //table组件vue实例\ncell,// 当前单元格节点\ncolumn: ColumnConfig，// 当前列信息\ncolumnIndex: 2, \noptions:Array,//配置清除等功能信息\ntype: 'header'//表格区域类型\n}\n//arg2:event //原生事件",
-            'en-US':
-              "This event is triggered when a cell in the table header is right-clicked. //arg1: current table object \n{\n$columnIndex: 2,$rowIndex: 0,$table: VueComponent, //table component vue instance\ncell,// Current cell node\ncolumn:ColumnConfig, // Current column information \ncolumnIndex: 2, \noptions:Array,// configuration and clearing function information\ntype: 'header' //Table area type \n}\n//arg2:event // native event"
+            'zh-CN': '表头单元格被鼠标右键点击时触发该事件',
+            'en-US': 'This event is triggered when a cell in the table header is right-clicked'
           },
           'demoId': 'grid-event#event-header-cell-context-menu-event'
         },
         {
           'name': 'header-cell-dblclick',
-          'type': 'Function(arg1,arg2)',
+          'type': '(args: IHeaderCellDblClickArgs, event: Event)=> void',
+          'typeAnchorName': 'IHeaderCellDblClickArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '表头单元格被双击时会触发该事件;//arg1:\n{column,  // 列数据\ncolumnIndex, // 列索引\n$table,  // table组件 vue实例\ncell// 点击的单元格dom\n}\n//arg2:\nevent//原生事件',
-            'en-US':
-              'This event is triggered when a table header cell is double-clicked. //arg1:\n{column, //Column data\ncolumnIndex, //Column index\n$table, //Table component vue instance\ncell//Clicked cell dom\n}\n//arg2:\nevent// native event'
+            'zh-CN': '表头单元格被双击时会触发该事件',
+            'en-US': 'This event is triggered when a table header cell is double-clicked'
           },
           'demoId': 'grid-event#event-header-dblclick-event'
         },
         {
           'name': 'radio-change',
-          'type': 'Function(arg1,arg2)',
+          'type': '($table: VueComponent, event: Event)=> void',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '只对 type=radio 有效，当手动勾选并且值发生改变时触发的事件;//参数描述：\narg1 $table: VueComponent table组件vue实例\n arg2 event 原生radio的change事件对象',
+            'zh-CN': '只对 type=radio 有效，当手动勾选并且值发生改变时触发的事件',
             'en-US':
-              'This parameter is valid only for the event whose type is radio. It is triggered when the value is manually selected and the value changes. / / Parameter description:\narg1 $table: VueComponent table Component vue instance \n arg2 event Native radio event object'
+              'This parameter is valid only for the event whose type is radio. It is triggered when the value is manually selected and the value changes'
           },
           'demoId': 'grid-event#event-radio-change-event'
         },
         {
           'name': 'resizable-change',
-          'type': 'Function(arg1)',
+          'type': '(args: IResizableChangeArgs)=> void',
+          'typeAnchorName': 'IResizableChangeArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '当列宽拖动发生变化时会触发该事件;//参数描述 arg1\n{$table: VueComponent,// table组件的vue 实例 \ncolumn, //列配置信息 \ncolumnIndex:1//拖动列的索引\nfixed// 是否固定列}',
-            'en-US':
-              'This event is triggered when the column width changes. //Parameter description of the vue instance of the arg1\n{$table: VueComponent,// table component\ncolumn, //Column configuration information\ncolumnIndex:1//Drag the column index\nfixed//Whether to fix the column}'
+            'zh-CN': '当列宽拖动发生变化时会触发该事件',
+            'en-US': 'This event is triggered when the column width changes'
           },
           'demoId': 'grid-event#event-resizable-change-event'
         },
         {
           'name': 'scroll',
-          'type': 'Function(arg, event)',
+          'type': '(args: IScrollArgs)=> void',
+          'typeAnchorName': 'IScrollArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              "表格滚动时会触发该事件;//arg1：\n{\n $table: VueComponent（表格实例对象信息）\n fixed: undefined\n isX: false ：(X轴滚动)\n isY: true（Y轴滚动）\n scrollLeft: 0（X轴滚动距离）\n scrollTop: 66 （Y轴滚动距离）\n type: 'body'\n }\n arg2:event",
-            'en-US':
-              "This event is triggered when the table scrolls. //arg1:\n{\n $table: VueComponent(Table instance object information) \n fixed: undefined\n isX: false: (X axis scrolling) \n isY: true (Y axis scrolling) \n scrollLeft: 0 (X-axis rolling distance)\nscrollTop: 66 (Y-axis rolling distance)\n type: 'body' \n}\n arg2:event"
+            'zh-CN': '表格滚动时会触发该事件',
+            'en-US': 'This event is triggered when the table scrolls'
           },
           'demoId': 'grid-event#event-grid-scroll-event'
         },
         {
           'name': 'select-all',
-          'type': 'Function(arg,event)',
+          'type': '(args: ISelectAllArgs, event: Event)=> void',
+          'typeAnchorName': 'ISelectAllArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '只对 type=selection 有效，当手动勾选全选时触发的事件;//arg1：\n{\n $table: VueComponent 表格实例对象信息\n checked: 勾选状态\n selection: 选中的表格数据数组\n }\n arg2:event',
-            'en-US':
-              'This event is valid only when type=selection and is triggered when all are selected manually. //arg1:\n{\n $table: VueComponent table instance object information\n checked: checked status\n selection: selected table data array \n}\n arg2:event'
+            'zh-CN': '只对 type=selection 有效，当手动勾选全选时触发的事件',
+            'en-US': 'This event is valid only when type=selection and is triggered when all are selected manually'
           },
           'demoId': 'grid-event#event-select-all-event'
         },
         {
           'name': 'select-change',
-          'type': 'Function(arg,event)',
+          'type': '(args: ISelectChangeArgs, event: Event)=> void',
+          'typeAnchorName': 'ISelectChangeArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              "只对 type=selection 有效，当手动勾选并且值发生改变时触发的事件;//arg1：\n{\n $columnIndex: 0\n $rowIndex: 0\n $seq: ''\n $table: VueComponent （表格实例对象信息）\n checked: true (勾选状态)\n column: ColumnConfig {…} （列信息）\n columnIndex: 0 （列下标）\n data: [{…}, {…}, {…}, {…}, {…}, {…}] （表格数据）\n fixed: undefined\n isHidden: undefined\n level: 0\n row: {…} （勾选项的行数据信息）\n rowIndex: 0 （勾选项的行下标）\n selection: [{…}] （选中的数据）\n seq: 1\n }\n arg2:event                ",
+            'zh-CN': '只对 type=selection 有效，当手动勾选并且值发生改变时触发的事件',
             'en-US':
-              "This event is valid only for type=selection. It is triggered when the value is manually selected and the value changes. //arg1: \n{\n $columnIndex: 0\n $rowIndex: 0\n $seq: '\n $table: VueComponent (Table instance object information) \n checked: true (checked status) \n column: ColumnConfig {...} \n columnIndex: 0 (column subscript)\n data: [{...}, {...}, {...}, {...}, {...}, {...}](Table data) \n fixed: undefined\n isHidden: undefined\n level: 0\n row: {...}(Line data information of selected items)\n rowIndex: 0(Line subscript of selected items)\n selection:[{...}(Selected data) \n seq: 1\n}\n arg2:event"
+              'This event is valid only for type=selection. It is triggered when the value is manually selected and the value changes'
           },
           'demoId': 'grid-event#event-select-change-event'
         },
         {
           'name': 'toggle-expand-change',
-          'type': 'Function(arg,event)',
+          'type': '(args: IToggleExpandChangeArgs, event: Event)=> void',
+          'typeAnchorName': 'IToggleExpandChangeArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '当行展开或收起时会触发该事件;//参数arg1：\n{ $table: VueComponent,// 表格实例对象信息\nrow, //点击展开行的数据信息对象\nrowIndex,// 点击展开行的下标 } \n //参数arg2:\nevent//事件对象',
-            'en-US':
-              'This event is triggered when a row is expanded or closed. //Parameter arg1: \n{$table: VueComponent,// table instance object information\nrow, // Click to expand the data object \nrowIndex in the row. //Click the subscript of the expanded row} \n //Parameter arg2:\nevent//Event object'
+            'zh-CN': '当行展开或收起时会触发该事件',
+            'en-US': 'This event is triggered when a row is expanded or closed'
           },
           'demoId': 'grid-event#event-toggle-expand-change-event'
         },
         {
           'name': 'toggle-tree-change',
-          'type': 'Function(arg,event)',
+          'type': '(args: IToggleTreeChangeArgs, event: Event)=> void',
+          'typeAnchorName': 'IToggleTreeChangeArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '当树节点展开或收起时会触发该事件;//参数 arg1：\n{ $table: VueComponent,// 表格实例对象信息\nrow,// 点击展开行的数据信息对象\nrowIndex,// 点击展开行的下标\n} \n//参数 arg2:\nevent:事件对象',
-            'en-US':
-              'This event is triggered when a tree node is expanded or closed. //Parameter arg1: \n{$table: VueComponent,// table instance object information\nrow,//Click to expand the data information object in the row \nrowIndex,//Click to expand the subscript in the row \n} \n//Parameter arg2:\nevent: Event object'
+            'zh-CN': '当树节点展开或收起时会触发该事件',
+            'en-US': 'This event is triggered when a tree node is expanded or closed'
           },
           'demoId': 'grid-event#event-toggle-tree-change-event'
         },
         {
           'name': 'valid-error',
-          'type': 'Function(arg)',
+          'type': '(args: IValidErrorArgs)=> void',
+          'typeAnchorName': 'IValidErrorArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '当数据校验不通过时会触发该事件;//参数arg：\n{ cell,//校验的单元格信息对象\ncolumn,//校验单元格所在列的列配置信息对象\nrow,//校验单元格所在行的信息对象\nrule// 校验规则信息对象 }',
-            'en-US':
-              'This event is triggered when data verification fails. //Parameter arg:\n{cell,//Cell information object to be verified\ncolumn,//Column configuration information object of the column where the cell is located\nrow,//Information object of the row where the cell is located\nrule//Check rule information object}'
+            'zh-CN': '当数据校验不通过时会触发该事件',
+            'en-US': 'This event is triggered when data verification fails'
           },
           'demoId': 'grid-event#event-valid-error-event'
         },
         {
-          'name': 'BeforeEdit',
-          'type': '',
-          'defaultValue': '--',
-          'desc': {
-            'zh-CN':
-              '点击单元格，显示编辑组件前触发的事件。;点击单元格，显示编辑组件前触发的事件 —— edit-config 中的 activeMethod 方法',
-            'en-US':
-              'Click a cell to display the events triggered before the component is edited.; Click the cell to display the event triggered before editing the component - the activeMethod method in edit-config'
-          },
-          'demoId': 'grid-event#event-edit-disabled-event'
-        },
-        {
-          'name': 'CellClick',
-          'type': 'Function(arg1,event)',
-          'defaultValue': '--',
-          'desc': {
-            'zh-CN':
-              '点击单元格触发的事件。arg1:{row:  当前行,rowIndex: 当前行的下标,column: 当前列,columnIndex: 当前列的下标},event:点击事件',
-            'en-US':
-              'Event triggered by clicking a cell. arg1:{row: current row, rowIndex: subscript of current row, column: current column, columnIndex: current column subscript}, event: click event'
-          },
-          'demoId': 'grid-event#event-cell-click-event'
-        },
-        {
           'name': 'sort-change',
-          'type': 'Function(arg)',
+          'type': '(args: ISortChangeArgs)=> void',
+          'typeAnchorName': 'ISortChangeArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              "点击列头，执行数据排序前触发的事件。;//参数arg1：\n{ $grid: VueComponent,// （表格实例对象信息\ncolumn: ColumnConfign,// （列信息） \nfield: 'name',// （排序的字段名） \norder: 'asc',//（排序类型升序或降序） \nprop: 'name',\n property: 'name'}",
-            'en-US':
-              "Event triggered before data sorting is performed when a column header is clicked.; / / Parameter arg1: \n{$grid: VueComponent,// (Table instance object information\ncolumn:ColumnConfign,//(Column information) \nfield: 'name', / /(sorted field name)\norder: 'asc', / /(sorted type in ascending or descending order)\nprop: 'name', \n property: 'name'}"
+            'zh-CN': '点击列头，执行数据排序前触发的事件。;//参数arg1：\n',
+            'en-US': 'Event triggered before data sorting is performed when a column header is clicked'
           },
           'demoId': 'grid-sort#sort-server-sort'
         },
         {
           'name': 'fullscreen',
-          'type': '',
+          'type': '()=> void',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '全屏时或关闭全屏时触发的时间',
@@ -1957,13 +1912,12 @@ export default {
         },
         {
           'name': 'class-name',
-          'type': 'string | Function',
+          'type': 'string | (args: IClassNameArgs)=> string',
+          'typeAnchorName': 'IClassNameArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '给单元格附加 className，也可以是函数 Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex})',
-            'en-US':
-              'Add a class name to a cell. The class name can also be the Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex})'
+            'zh-CN': '给单元格附加 className，也可以是函数',
+            'en-US': 'Add a class name to a cell. The class name can also be the Function'
           },
           'demoId': 'grid-custom-style#custom-style-class-name'
         },
@@ -1980,16 +1934,6 @@ export default {
           'demoId': 'grid-filter#filter-default-filter'
         },
         {
-          'name': 'method',
-          'type': 'Function',
-          'defaultValue': '--',
-          'desc': {
-            'zh-CN': '是 filter 对象内置的自定义筛选方法 Function({value, row, column})',
-            'en-US': 'In the custom filtering method Function({value, row, column}) built in the filter object'
-          },
-          'demoId': 'grid-filter#filter-custom-filter'
-        },
-        {
           'name': 'fixed',
           'type': 'string',
           'defaultValue': '--',
@@ -2003,7 +1947,7 @@ export default {
         },
         {
           'name': 'footer-align',
-          'type': 'string',
+          'type': `'left' | 'center' | 'right'`,
           'defaultValue': '继承 align > 继承 table 的 footer-align',
           'desc': {
             'zh-CN': '表尾列的对齐方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）',
@@ -2014,19 +1958,18 @@ export default {
         },
         {
           'name': 'footer-class-name',
-          'type': 'string | ({$rowIndex, column, columnIndex, $columnIndex})=> string',
+          'type': 'string | (args: IClassNameArgs)=> string',
+          'typeAnchorName': 'IClassNameArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '给表尾的单元格附加 className，也可以是函数 Function({$rowIndex, column, columnIndex, $columnIndex})',
-            'en-US':
-              'Add a class name to the cell at the end of the table. The class name can also be the Function({$rowIndex, column, columnIndex, $columnIndex})'
+            'zh-CN': '给表尾的单元格附加 className，也可以是函数',
+            'en-US': 'Add a class name to the cell at the end of the table. The class name can also be the Function'
           },
           'demoId': 'grid-footer#footer-footer-class-name'
         },
         {
           'name': 'header-align',
-          'type': 'string',
+          'type': "'left' | 'center' | 'right'",
           'defaultValue': '继承 align > 继承 table 的 header-align',
           'desc': {
             'zh-CN': '表头列的对齐方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）',
@@ -2037,30 +1980,29 @@ export default {
         },
         {
           'name': 'header-class-name',
-          'type': 'string | Function',
+          'type': 'string | (args: IClassNameArgs)=> string',
+          'typeAnchorName': 'IClassNameArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '设置列头样式名称;给表头的单元格附加 className，也可以是函数 Function({$rowIndex, column, columnIndex, $columnIndex})',
-            'en-US':
-              'Set the column header style name. Add className to the cell in the table header, or the function Function({$rowIndex, column, columnIndex, $columnIndex})'
+            'zh-CN': '设置列头样式名称;给表头的单元格附加 className，也可以是函数',
+            'en-US': 'Set the column header style name. Add className to the cell in the table header, or the function'
           },
           'demoId': 'grid-header#header-header-class-name'
         },
         {
           'name': 'index-method',
-          'type': 'Function',
+          'type': 'string | (args: IIndexMethodArgs)=> string',
+          'typeAnchorName': 'IIndexMethodArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '只对 type=index 有效，自定义索引方法 Function({row, rowIndex, column, columnIndex})',
-            'en-US':
-              'This parameter is valid only for type=index. The user-defined index method is Function({row, rowIndex, column, columnIndex})'
+            'zh-CN': '只对 type=index 有效，自定义索引方法',
+            'en-US': 'This parameter is valid only for type=index'
           },
           'demoId': 'grid-serial-column#serial-column-custom-serial-column'
         },
         {
           'name': 'min-width',
-          'type': 'number, string',
+          'type': 'number | string',
           'defaultValue': '继承 table 的 column-min-width',
           'desc': {
             'zh-CN': '最小列宽度；会自动将剩余空间按比例分配;该属性的可选值为 整数, px，%',
@@ -2112,7 +2054,7 @@ export default {
         },
         {
           'name': 'show-header-overflow',
-          'type': 'string |boolean',
+          'type': 'string | boolean',
           'defaultValue': '继承 table 的 show-header-overflow',
           'desc': {
             'zh-CN':
@@ -2124,7 +2066,7 @@ export default {
         },
         {
           'name': 'show-overflow',
-          'type': 'string |boolean',
+          'type': 'string | boolean',
           'defaultValue': '继承 table 的 show-overflow',
           'desc': {
             'zh-CN':
@@ -2136,7 +2078,7 @@ export default {
         },
         {
           'name': 'sort-by',
-          'type': 'string | Array',
+          'type': 'string | string[]',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '只对 sortable 有效，自定义排序的属性',
@@ -2146,7 +2088,8 @@ export default {
         },
         {
           'name': 'rules',
-          'type': 'object',
+          'type': 'IValidRules',
+          'typeAnchorName': 'IValidRules',
           'defaultValue': '--',
           'desc': { 'zh-CN': '表单的验证功能', 'en-US': 'Form verification function' },
           'demoId': ''
@@ -2164,13 +2107,12 @@ export default {
         },
         {
           'name': 'sort-method',
-          'type': 'Function',
+          'type': '(row1: Row, row2: Row)=> boolean',
+          'typeAnchorName': 'IValidRules',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '自定义所有列的排序方法，当触发排序时会调用该函数 Function({ data, column, property, order }) 返回排序后的结果',
-            'en-US':
-              'Customize the sorting method of all columns. When sorting is triggered, the function Function({data, column, property, order}) is invoked to return the sorting result.'
+            'zh-CN': '自定义所有列的排序方法，当触发排序时会调用该函数',
+            'en-US': 'Customize the sorting method of all columns. When sorting is triggered.'
           },
           'demoId': 'grid-sort#sort-custom-sort'
         },
@@ -2186,11 +2128,11 @@ export default {
         },
         {
           'name': 'title',
-          'type': 'string , Function',
+          'type': 'string | (h, params)=> string | VNode',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '列标题（支持开启国际化），可以是函数 Function(h, params)',
-            'en-US': 'Column title (internationalization can be enabled). It can be the function Function(h, params)'
+            'zh-CN': '列标题（支持开启国际化），可以是函数',
+            'en-US': 'Column title (internationalization can be enabled). It can be the function'
           },
           'demoId': 'grid-data-source#tiny-first-menu-static-data'
         },
@@ -2205,42 +2147,30 @@ export default {
           'demoId': 'grid-tree-grid#tree-table-tree-grid-base'
         },
         {
-          'name': 'format-value',
-          'type': 'Function',
-          'defaultValue': '--',
-          'desc': {
-            'zh-CN': '格式化单元格编辑器组件的传入值',
-            'en-US': 'Incoming value of formatting the cell editor component'
-          },
-          'demoId': 'grid-edit#tiny-first-menu-format-value'
-        },
-        {
           'name': 'format-text',
-          'type': 'string , Function',
+          'type': `'money' | 'enum' | 'select' | 'number' | 'integer' | 'filesize' | 'date' | 'dateTime' | 'longDateTime' | 'time' | 'longTime' | 'yearMonth' | 'ellipsis' | 'rate' | 'boole' | (params)=> string`,
           'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '设置当前表格列的显示获取编辑类型;设置当前表格列的显示获取编辑类型，也可以是函数 Function(params);该属性的可选值为 money / enum / select / number / integer / filesize / date / dateTime / longDateTime / time / longTime / yearMonth / ellipsis / rate / boole',
+              '设置当前表格列的显示获取编辑类型;设置当前表格列的显示获取编辑类型，也可以是函数;该属性的可选值为 ',
             'en-US':
-              'Sets the display and editing mode of the current table column. Sets the display and obtaining editing type of the current table column. It can also be the function Function(params). The optional value of this property is money / enum / select / number / integer / filesize / date / dateTime / longDateTime / time / longTime / yearMonth / ellipsis / rate / boole'
+              'Sets the display and editing mode of the current table column. Sets the display and obtaining editing type of the current table column. It can also be the function'
           },
           'demoId': 'grid-renderer#grid_Example-gridRenderer-inner-renderer'
         },
         {
           'name': 'type',
-          'type': 'string',
+          'type': `'index' | 'selection' | 'radio' | 'expand'`,
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '设置内置列的类型;设置内置列的类型;该属性的可选值为 index（序号）/ selection（复选框）/ radio（单选框）/ expand（展开行）',
-            'en-US':
-              'Set the type of the built-in column. Set the type of the built-in column. The available values of this attribute are index (serial number), selection (check box), radio (single box), and expand (expand row)'
+            'zh-CN': '设置内置列的类型;设置内置列的类型',
+            'en-US': 'Set the type of the built-in column'
           },
           'demoId': 'grid-serial-column#tiny-first-menu-default-serial-column'
         },
         {
           'name': 'width',
-          'type': 'number , string',
+          'type': 'number | string',
           'defaultValue': '继承 table 的 column-width',
           'desc': {
             'zh-CN':
@@ -2252,43 +2182,41 @@ export default {
         },
         {
           'name': 'format-config',
-          'type': 'object',
+          'type': 'IFormatConfig',
+          'typeAnchorName': 'IFormatConfig',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              "开启该列数据异步渲染。;{data: [], // 列数据源\n type: '', // 内置渲染器类型，与 format-text 属性取值相同\n async: true, // 配置为 true 后，支持动态修改 data 的数据。还可以配置为对象，配置为对象时，对象中可以配置 splitConfig.enabled（是否启用分隔配置）、splitConfig.valueSplit（指定 value 值的分隔符）、splitConfig.textSplit（指定 text 的分隔符）、fetch（列数据异步渲染，请求数据）\n label: '' // 单元格显示内容的映射\n value: '' // 单元格取值的映射}",
-            'en-US':
-              "Enable the asynchronous rendering of the column data.; {data: [], // Column data source\n type:'', // Built-in renderer type, which is the same as the format-text attribute.\n async: true, // Data can be dynamically modified after the value is set to true. You can also configure it as an object. If you configure it as an object, you can configure splitConfig.enabled (whether to enable the separation configuration), splitConfig.valueSplit (separator of the specified value), splitConfig.textSplit (separator of the specified text), and fetch (column data asynchronous). Render, request data)\n label:''//Mapping of the cell display content\n value:''//Mapping of the cell value}"
+            'zh-CN': '开启该列数据异步渲染。',
+            'en-US': 'Enable the asynchronous rendering of the column data'
           },
           'demoId': 'grid-data-source#tiny-first-menu-column-asyn-rendering'
         },
         {
           'name': 'class-name',
-          'type': 'string | Function',
+          'type': 'string | IClassNameArgs',
+          'typeAnchorName': 'IClassNameArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '给单元格附加 className，也可以是函数 Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex})',
-            'en-US':
-              'Add a class name to a cell. The class name can also be the function Function({seq, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex})'
+            'zh-CN': '给单元格附加 className，也可以是函数',
+            'en-US': 'Add a class name to a cell. The class name can also be the function'
           },
           'demoId': 'grid-custom-style#custom-style-cell-style'
         },
         {
           'name': 'editor',
-          'type': 'object , Function',
+          'type': 'IEditorConfig | (h, {row:Row, column: ColumnConfig})=> VueComponent',
+          'typeAnchorName': 'IEditorConfig',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '单元格编辑渲染配置项，也可以是函数 Function(h, params);设置表格列的编辑类型。当 editMode 为 true，并且 editabele 为 true 是有效。',
+            'zh-CN': '单元格编辑渲染配置项，也可以是函数 Function(h, params);设置表格列的编辑类型',
             'en-US':
-              'Cell editing rendering configuration item, which can also be the function Function(h, params). Sets the editing type of the table column. Valid when editMode is true and editabele is true.'
+              'Cell editing rendering configuration item, which can also be the function Function(h, params). Sets the editing type of the table column'
           },
           'demoId': 'grid-edit#tiny-first-menu-custom-editing'
         },
         {
           'name': 'filter',
-          'type': 'boolean , object',
+          'type': 'boolean | IFilterConfig',
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '设置表格列的筛选配置信息。默认值为 false 不配置筛选信息。',
@@ -2299,15 +2227,16 @@ export default {
         },
         {
           'name': 'renderer',
-          'type': 'object , Function',
+          'type': 'IEditorConfig | (h, {row: Row, column: ColumnConfig})=> VueComponent',
+          'typeAnchorName': 'IEditorConfig',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '设置表格列的渲染类型。其优先级高于列的 type 属性配置;单元格渲染配置项，其优先级高于列的 formatText 属性配置，也可以是函数 Function(h, params)',
+              '设置表格列的渲染类型。其优先级高于列的 type 属性配置;单元格渲染配置项，其优先级高于列的 formatText 属性配置',
             'en-US':
-              'Set the rendering type of the table column. The priority of the column is higher than that of the column type attribute. Cell rendering configuration item. Its priority is higher than that of the formatText attribute of the column. It can also be the function Function(h, params)'
+              'Set the rendering type of the table column. The priority of the column is higher than that of the column type attribute. Cell rendering configuration item. Its priority is higher than that of the formatText attribute of the column'
           },
-          'demoId': 'grid-renderer#grid_Example-gridRenderer-custom-renderer'
+          'demoId': 'grid-renderer#renderer-custom-renderer'
         },
         {
           'name': 'show-tip',
@@ -2373,7 +2302,10 @@ export default {
       'toolbar-props': [
         {
           'name': 'buttons',
-          'type': 'Array',
+          'type': `{
+            code: string
+            name: string
+          }[]`,
           'defaultValue': '--',
           'desc': { 'zh-CN': '按钮列表', 'en-US': 'Button List' },
           'demoId': 'grid-toolbar#tiny-first-menu-insert-delete-update'
@@ -2404,7 +2336,7 @@ export default {
         },
         {
           'name': 'resizable',
-          'type': 'boolean,object',
+          'type': 'boolean | object',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '列宽拖动配置（需要设置 id）',
@@ -2414,7 +2346,7 @@ export default {
         },
         {
           'name': 'setting',
-          'type': 'boolean/object',
+          'type': 'boolean | object',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -2437,7 +2369,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'string',
+          'type': `'medium' | 'small' | 'mini'`,
           'defaultValue': '--',
           'desc': {
             'zh-CN': '尺寸;该属性的可选值为 medium,small,mini',
@@ -2447,23 +2379,23 @@ export default {
         },
         {
           'name': 'before-open-full-screen',
-          'type': 'Function',
+          'type': '()=> boolean',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '全屏前的拦截方法 Function():boolean，返回 false 则阻止全屏，返回 true 则不阻止',
+            'zh-CN': '全屏前的拦截方法，返回 false 则阻止全屏，返回 true 则不阻止',
             'en-US':
-              'Intercept method before full screen Function():boolean. If false is returned, the full screen is blocked. If true is returned, the full screen is not blocked.'
+              'Intercept method before full screen, If false is returned, the full screen is blocked. If true is returned, the full screen is not blocked.'
           },
           'demoId': 'grid-toolbar#tiny-first-menu-grid-full-screen'
         },
         {
           'name': 'before-close-full-screen',
-          'type': 'Function',
+          'type': 'Functi()=> booleanon',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '关闭全屏前的拦截方法 Function():boolean，返回 false 则阻止关闭全屏，返回 true 则不阻止',
+            'zh-CN': '关闭全屏前的拦截方法，返回 false 则阻止关闭全屏，返回 true 则不阻止',
             'en-US':
-              'Intercept method Function():boolean before full screen is disabled. If false is returned, the full screen is disabled. If true is returned, the full screen is not disabled.'
+              'Intercept method before full screen is disabled. If false is returned, the full screen is disabled. If true is returned, the full screen is not disabled.'
           },
           'demoId': 'grid-toolbar#tiny-first-menu-grid-full-screen'
         }
@@ -2494,19 +2426,19 @@ export default {
       'toolbar-events': [
         {
           'name': 'button-click',
-          'type': 'Function(arg,event)',
+          'type': '(args: IButtonClick, event: Event)=> void',
+          'typeAnchorName': 'IButtonClick',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '当工具栏的按钮被点击时会后触发该事件;arg1:{ $grid: VueComponent  表格组件实例对象信息 $table: VueComponent 表实例对象组件信息 button:按钮列表信息对象 code: 按钮类型 } arg2:event',
-            'en-US':
-              'This event is triggered when a button on the toolbar is clicked. arg1:{$grid: VueComponent table component instance object information $table: VueComponent table instance object component information button: button list information object code: button type} arg2:event'
+            'zh-CN': '当工具栏的按钮被点击时会后触发该事件',
+            'en-US': 'This event is triggered when a button on the toolbar is clicked'
           },
           'demoId': 'grid-event#event-toolbar-button-click-event'
         },
         {
           'name': 'save-setting',
-          'type': 'Function(settingConfigs)',
+          'type': '(args: ISettingConfigs)=> void',
+          'typeAnchorName': 'ISettingConfigs',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '点击个性化面板的确认按钮触发该事件;settingConfigs:表格的个性化数据',
@@ -2517,7 +2449,8 @@ export default {
         },
         {
           'name': 'cancel-setting',
-          'type': 'Function(settingConfigs)',
+          'type': '(args: ISettingConfigs)=> void',
+          'typeAnchorName': 'ISettingConfigs',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '点击个性化面板的取消按钮触发该事件;settingConfigs:表格的个性化数据',
@@ -2528,7 +2461,7 @@ export default {
         },
         {
           'name': 'reset-setting',
-          'type': 'Function()',
+          'type': '()=> void',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '点击个性化面板的重置按钮触发该事件。',
@@ -2538,7 +2471,7 @@ export default {
         },
         {
           'name': 'on-before-move',
-          'type': 'Function(arg1,arg2)',
+          'type': `(type: 'column' | 'row', row: Row)=> boolean`,
           'defaultValue': '--',
           'desc': {
             'zh-CN': '个性化面板拖拽前事件;arg1:拖拽类型 arg2:拖拽行信息',
@@ -2651,7 +2584,7 @@ interface IExpandConfig {
   // 对于同一级的节点，每次只能展开一个
   accordion?: boolean
   // 控制是否渲染展开行
-  activeMethod?:(row)=> boolean
+  activeMethod?:({row: Row})=> boolean
   // 配置是否显示展开图标
   showIcon?: boolean 
 }
@@ -2863,9 +2796,9 @@ interface IEditConfig {
   // 激活类型单元格激活或者行
   mode: 'cell' | 'row'
   // 是否显示状态
-  showStatus: boolean
+  showStatus?: boolean
   // 自定义编辑规则，返回true可以编辑返回false则禁止编辑
-  activeMethod?: ()=> boolean
+  activeMethod?: ({row: Row, column: ColumnConfig})=> boolean
 }
       `
     },
@@ -2874,17 +2807,17 @@ interface IEditConfig {
       type: 'type',
       code: `
 interface IRecordset {
-  insertRecords: object[]
-  removeRecords: object[]
-  updateRecords: object[]
+  insertRecords: Row[]
+  removeRecords: Row[]
+  updateRecords: Row[]
 }
       `
     },
     {
-      name: 'IpageChangeArgs',
+      name: 'IPageChangeArgs',
       type: 'type',
       code: `
-interface IpageChangeArgs { 
+interface IPageChangeArgs { 
   // table组件vue实例
   $grid: VueComponent
   // 当前页码
@@ -2897,6 +2830,529 @@ interface IpageChangeArgs {
   pageSizes: number[] 
   //总数据条数
   total: number 
+}
+      `
+    },
+    {
+      name: 'IBeforePageChangeArgs',
+      type: 'type',
+      code: `
+interface IBeforePageChangeArgs { 
+  //新页码
+  newPage: number
+  //新的分页大小 
+  newPageSize: number
+  //当前页码
+  currentPage: number
+  //当前的页大小
+  currentPageSize: number
+  //生效回调
+  callback: ()=> void
+  //失效回调
+  rollback: ()=> void
+}
+      `
+    },
+    {
+      name: 'IToolbarButtonClickArgs',
+      type: 'type',
+      code: `
+interface IToolbarButtonClickArgs { 
+  //表格组件实例对象信息 
+  $grid: VueComponent
+  //按钮信息对象 
+  button: {
+    code: string
+    name: string
+  }[]
+  // 按钮功能类型
+  code: string
+}
+      `
+    },
+    {
+      name: 'ICellClickArgs',
+      type: 'type',
+      code: `
+interface ICellClickArgs {
+  // 当前行
+  row: object,
+  // 当前行的下标
+  rowIndex: number
+  // 当前列
+  column: object
+  // 当前列的下标
+  columnIndex: number
+}
+      `
+    },
+    {
+      name: 'ICellClickArgs',
+      type: 'type',
+      code: `
+interface ICellClickArgs {
+  // 当前行
+  row: object
+  // 当前行的下标
+  rowIndex: number
+  // 当前列
+  column: object
+  // 当前列的下标
+  columnIndex: number
+}
+      `
+    },
+    {
+      name: 'ICellContextMenuArgs',
+      type: 'type',
+      code: `
+interface ICellContextMenuArgs {
+  // 当前行
+  row: object
+}
+      `
+    },
+    {
+      name: 'ICellArgs',
+      type: 'type',
+      code: `
+interface ICellArgs {
+  //当前行
+  row: object
+  //当前行的下标
+  rowIndex: number
+  // 当前列 
+  column: object
+  // 当前列的下标 
+  columnIndex: number
+}
+      `
+    },
+    {
+      name: 'ICurrentChangeArgs',
+      type: 'type',
+      code: `
+interface ICurrentChangeArgs {
+  // 当前行
+  row: object
+}
+      `
+    },
+    {
+      name: 'IEditActivedArgs',
+      type: 'type',
+      code: `
+interface IEditActivedArgs {
+  // 当前行
+  row: object
+  // 当前列 
+  column: object
+}
+      `
+    },
+    {
+      name: 'IEditClosedArgs',
+      type: 'type',
+      code: `
+interface IEditClosedArgs {
+  // 当前行
+  row: object
+  // 当前列 
+  column: object
+}
+      `
+    },
+    {
+      name: 'IEditDisabledArgs',
+      type: 'type',
+      code: `
+interface IEditDisabledArgs {
+  //当前行
+  row: object
+  // 当前列 
+  column: object
+}
+      `
+    },
+    {
+      name: 'IFilterChangeArgs',
+      type: 'type',
+      code: `
+interface IFilterChangeArgs {
+  //表格的信息对象
+  $table: VueComponent
+  //过滤列的过滤数据信息
+  filters: object
+}
+      `
+    },
+    {
+      name: 'IFooterCellClickArgs',
+      type: 'type',
+      code: `
+interface IFooterCellClickArgs {
+  $columnIndex: number
+  $rowIndex: number
+  // table组件vue实例
+  $table: VueComponent
+  // 当前单元格节点 
+  cell: HTMLElement
+  // 当前列信息
+  column: object
+  columnIndex: number
+}
+      `
+    },
+    {
+      name: 'IContextMenuArgs',
+      type: 'type',
+      code: `
+interface IContextMenuArgs {
+  $columnIndex: number
+  $rowIndex: number
+  // table组件vue实例
+  $table: VueComponent
+  // 当前单元格节点
+  cell: HTMLElement
+  // 当前列信息
+  column: object
+  columnIndex: number
+  // 配置清除等功能信息
+  options: object[]
+  // 表格区域类型
+  type: 'header' | 'footer' | 'body'
+}
+      `
+    },
+    {
+      name: 'IFooterCellDblClickArgs',
+      type: 'type',
+      code: `
+interface IFooterCellDblClickArgs {
+  $columnIndex: number
+  $rowIndex: number
+  // table组件vue实例
+  $table: VueComponent
+  // 当前单元格节点
+  cell: HTMLElement
+  // 当前列信息
+  column: object
+  columnIndex: number
+}
+      `
+    },
+    {
+      name: 'IHeaderCellClickArgs',
+      type: 'type',
+      code: `
+interface IHeaderCellClickArgs {
+  $columnIndex: number
+  $rowIndex: number
+  // table组件vue实例
+  $table: VueComponent
+  // 点击表头单元格
+  cell: HTMLElement
+  // 当前列信息
+  column: object
+  columnIndex: number
+  // 当前点击节点过滤标识
+  triggerFilter: boolean
+  // 当前点击节点排序标识
+  triggerSort: boolean
+}
+      `
+    },
+    {
+      name: 'IHeaderCellDblClickArgs',
+      type: 'type',
+      code: `
+interface IHeaderCellDblClickArgs {
+  // 列数据
+  column: object  
+  // 列索引
+  columnIndex: number
+  // table组件 vue实例 
+  $table: VueComponent
+  // 点击的单元格dom
+  cell: HTMLElement
+}
+      `
+    },
+    {
+      name: 'IResizableChangeArgs',
+      type: 'type',
+      code: `
+interface IResizableChangeArgs {
+  // table组件的vue 实例 
+  $table: VueComponent,
+  // 列配置信息 
+  column: object 
+  // 拖动列的索引
+  columnIndex: number
+  // 是否固定列
+  fixed: boolean
+}
+      `
+    },
+    {
+      name: 'IScrollArgs',
+      type: 'type',
+      code: `
+interface IScrollArgs {
+  // 表格实例对象信息
+  $table: VueComponent
+  fixed: boolean
+  // X轴滚动
+  isX: boolean
+  // Y轴滚动
+  isY: true
+  // X轴滚动距离
+  scrollLeft: number
+  // Y轴滚动距离
+  scrollTop: number
+  type: 'body' | 'header' | 'footer'
+}
+      `
+    },
+    {
+      name: 'ISelectAllArgs',
+      type: 'type',
+      code: `
+interface ISelectAllArgs {
+  $columnIndex: number
+  $rowIndex: number
+  $seq: string
+  // 表格实例对象信息
+  $table: VueComponent 
+  // 勾选状态
+  checked: boolean
+  // 列信息
+  column: ColumnConfig
+  // 列下标
+  columnIndex: number
+  // 表格数据
+  data: Row[]
+  fixed: boolean
+  isHidden: boolean
+  level: number
+  // 勾选项的行数据信息
+  row: Row
+  // 勾选项的行下标
+  rowIndex: number
+  // 选中的数据
+  selection: Row[]
+  seq: number
+}
+      `
+    },
+    {
+      name: 'IToggleExpandChangeArgs',
+      type: 'type',
+      code: `
+interface IToggleExpandChangeArgs { 
+  // 表格实例对象信息
+  $table: VueComponent,
+  //点击展开行的数据信息对象
+  row: Row
+  // 点击展开行的下标 
+  rowIndex: number
+}
+      `
+    },
+    {
+      name: 'IToggleTreeChangeArgs',
+      type: 'type',
+      code: `
+interface IToggleTreeChangeArgs { 
+  // 表格实例对象信息
+  $table: VueComponent,
+  //点击展开行的数据信息对象
+  row: Row
+  // 点击展开行的下标 
+  rowIndex: number
+}
+      `
+    },
+    {
+      name: 'IValidErrorArgs',
+      type: 'type',
+      code: `
+interface IValidErrorArgs { 
+  // 校验的单元格信息对象
+  cell: Cell
+  //校验单元格所在列的列配置信息对象
+  column: ColumnConfig
+  //校验单元格所在行的信息对象
+  row: Row
+  // 校验规则信息对象 
+  rule: object
+}
+      `
+    },
+    {
+      name: 'ISortChangeArgs',
+      type: 'type',
+      code: `
+interface ISortChangeArgs { 
+  // 表格实例对象信息
+  $grid: VueComponent
+  // 列信息
+  column: ColumnConfign
+  // 排序的字段名
+  field: string 
+  // 排序类型升序或降序
+  order: 'asc' | 'desc' 
+  prop: string
+  property: string
+}
+      `
+    },
+    {
+      name: 'IClassNameArgs',
+      type: 'type',
+      code: `
+interface IClassNameArgs {
+  seq: number
+  row: Row
+  rowIndex: number
+  $rowIndex: number
+  column: ColumnConfig
+  columnIndex: number
+  $columnIndex: number
+}
+      `
+    },
+    {
+      name: 'IIndexMethodArgs',
+      type: 'type',
+      code: `
+interface IIndexMethodArgs {
+  row: Row
+  rowIndex: number
+  column: ColumnConfig
+  columnIndex: number
+}
+      `
+    },
+    {
+      name: 'IFormatConfig',
+      type: 'type',
+      code: `
+interface IFormatConfig {
+  // 列数据源
+  data: ColumnConfig[] 
+  // 内置渲染器类型，与 format-text 属性取值相同
+  type: 'money' | 'enum' | 'select' | 'number' | 'integer' | 'filesize' | 'date' | 'dateTime' | 'longDateTime' | 'time' | 'longTime' | 'yearMonth' | 'ellipsis' | 'rate'
+  // 配置为 true 后，支持动态修改 data 的数据。还可以配置为对象，配置为对象时，对象中可以配置 splitConfig.enabled（是否启用分隔配置）、splitConfig.valueSplit（指定 value 值的分隔符）、splitConfig.textSplit（指定 text 的分隔符）、fetch（列数据异步渲染，请求数据）
+  async: true, 
+  // 单元格显示内容的映射
+  label: string
+  // 单元格取值的映射
+  value: string
+}
+      `
+    },
+    {
+      name: 'IButtonClick',
+      type: 'type',
+      code: `
+interface IButtonClick { 
+  // 表格组件实例对象信息
+  $grid: VueComponent 
+  // 按钮列表信息对象   
+  button: {
+    code: string
+    name: string
+  }[]
+   // 按钮类型 
+   code: string
+  } 
+      `
+    },
+    {
+      name: 'ISettingConfigs',
+      type: 'type',
+      code: `
+interface ISettingConfigs {
+  sortType: 'page' | 'all'
+  pageSize: number
+  columns: {
+    property: string
+    order: 'asc' | 'desc' | null 
+    visible: boolean
+    sortable: boolean
+  }[]
+}
+      `
+    },
+    {
+      name: 'ISpanMethodArgs',
+      type: 'type',
+      code: `
+interface ISpanMethodArgs {
+  // 行标
+  $rowIndex: number
+  // 列数据  
+  column: ColumnConfig
+  // 列下标 
+  columnIndex: number
+  // 一个数组，保存了当前合并和计算的数据
+  data: (string | number | null)[][]
+}
+      `
+    },
+    {
+      name: 'IExportCsvOptions',
+      type: 'type',
+      code: `
+interface IExportCsvOptions {
+  filename: string
+  original: boolean
+  isHeader: boolean
+  data: Row[]
+}
+      `
+    },
+    {
+      name: 'IEditorConfig',
+      type: 'type',
+      code: `
+interface IEditorConfig {
+  // 内置组件名称或者自定义组件实例
+  component: 'input' | 'select' | VueComponent
+  // 传递给组件的事件集合
+  events?: {
+    [event]: ()=> void
+  }
+  // 传递给编辑器组件的属性集合
+  attrs?: {
+    [prop]: any
+  }
+  // select 内置组件独有的下拉数据配置项
+  options?: object[]
+}
+      `
+    },
+    {
+      name: 'IFilterConfig',
+      type: 'type',
+      code: `
+interface IFilterConfig {
+  // 设置在显示枚举选项功能是否为多选, 仅在 enumable:true 下有效
+  multi: boolean
+  // 设置在过滤面板中显示枚举选项
+  enumable: boolean
+  // 设置在过滤面板中显示默认的筛选条件
+  defaultFilter: boolean
+  // 设置在过滤面板中显示输入筛选的项
+  inputFilter: boolean
+  // 设置在显示枚举选项功能(enumable)下制定静态数据源
+  values: {
+    // 设置枚举数据的显示值属性字段， 默认'label'
+    label: string
+    // 设置枚举数据的实际值属性字段， 默认'value'
+    value: string 
+  }[]
 }
       `
     }
