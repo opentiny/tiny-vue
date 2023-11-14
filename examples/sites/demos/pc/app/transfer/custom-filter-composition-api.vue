@@ -30,7 +30,8 @@ const generateData = () => {
 
 const data = ref(generateData())
 const value = ref([1, 4])
-const filterMethod = ref(function filterMethod(query, item) {
+
+function filterMethod(query, item) {
   return item.pinyin.includes(query)
-})
+}
 </script>

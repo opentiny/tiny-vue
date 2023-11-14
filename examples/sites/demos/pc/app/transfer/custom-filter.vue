@@ -34,10 +34,12 @@ export default {
 
     return {
       data: generateData(),
-      value: [1, 4],
-      filterMethod(query, item) {
-        return item.pinyin.includes(query)
-      }
+      value: [1, 4]
+    }
+  },
+  methods: {
+    filterMethod(query, item) {
+      return item.pinyin.includes(query)
     }
   }
 }

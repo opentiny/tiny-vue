@@ -6,119 +6,92 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN':
-          '<p>通过 <code>value</code> 属性进行双向绑定，其指定的值为默认选择的值，将展示在右侧列表。\n\n<code>data</code> 属性提供数据源，其是一个对象数组，对象中默认字段有 key、label、disabled 。</p>\n',
+        'zh-CN': `<p>
+            通过 <code>data</code> 属性提供左右列表全量的数据源，其是一个对象数组，每个数据项中默认字段有 key、label、disabled。<br>
+            通过 <code>value</code> 属性指定右列表值的数组，其选择项只展示在右侧列表。
+          </p>`,
         'en-US':
           '<p>The <code>value</code> attribute is used for bidirectional binding. The specified value is the default value and is displayed in the list on the right. \n\nThe <code>data</code> attribute provides the data source. It is an object array. The default fields in the object are key, label, and disabled. </p>\n'
       },
       'codeFiles': ['basic-usage.vue']
     },
     {
-      'demoId': 'data-source',
-      'name': { 'zh-CN': '数据源', 'en-US': 'Data Source' },
+      'demoId': 'custom-titles',
+      'name': { 'zh-CN': '自定义列表标题区', 'en-US': 'Customized List Title' },
       'desc': {
-        'zh-CN': '<p>可请求服务获取数据，再将数据赋予 <code>data</code> 。</p>\n',
-        'en-US': '<p>You can request the service to obtain data and assign the data to <code>data</code>. </p>\n'
-      },
-      'codeFiles': ['data-source.vue']
-    },
-    {
-      'demoId': 'show-all-btn',
-      'name': { 'zh-CN': '展示全部移动按钮', 'en-US': 'Display All Move Buttons' },
-      'desc': {
-        'zh-CN': '<p>可通过 <code>show-all-btn</code> 属性设置展示全部移动按钮。</p>\n',
-        'en-US': '<p>You can set the <code>show-all-btn</code> attribute to display all mobile buttons. </p>\n'
-      },
-      'codeFiles': ['show-all-btn.vue']
-    },
-    {
-      'demoId': 'custom-transfer-titles',
-      'name': { 'zh-CN': '自定义列表标题', 'en-US': 'Customized List Title' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>titles</code> 属性可对左右列表的标题进行自定义。</p>\n',
+        'zh-CN': `<p>
+          通过 <code>titles</code> 属性，可对左右列表的标题进行自定义。<br>
+          通过 <code>format</code> 属性，可定制左右侧列表顶部的数据统计的显示格式，请参考下面示例。
+        </p>`,
         'en-US':
           '<p>You can use the <code>titles</code> attribute to customize the titles of the left and right lists. </p>\n'
       },
-      'codeFiles': ['custom-transfer-titles.vue']
+      'codeFiles': ['custom-titles.vue']
     },
     {
-      'demoId': 'custom-button-texts',
-      'name': { 'zh-CN': '自定义按钮文案', 'en-US': 'Custom Button Copywriting' },
+      'demoId': 'custom-btns',
+      'name': { 'zh-CN': '自定义按钮区', 'en-US': 'Display All Move Buttons' },
       'desc': {
-        'zh-CN': '<p>通过 <code>button-texts</code> 属性自定义左右穿梭的按钮文本。</p>\n',
-        'en-US':
-          '<p>The <code>button-texts</code> attribute is used to customize the left and right button text. </p>\n'
+        'zh-CN': `<p>
+          按钮区包含默认按钮和全部按钮2类按钮。按钮的高亮与禁用，组件内部会自动识别处理。<br>
+          通过 <code>show-all-btn</code> 属性设置展示全部移动按钮，属性默认值为<code>false</code>。<br>
+          通过 <code>button-texts</code> 属性自定义左右穿梭的默认按钮文本，接受包含2个字符串的数组值。全部按钮不能自定义文本。<br>
+          你可以通过<code>to-left-disable</code> 和 <code>to-right-disable</code> 属性来指定默认按钮没有选中项时的状态。
+        </p>`,
+        'en-US': '<p>You can set the <code>show-all-btn</code> attribute to display all mobile buttons. </p>\n'
       },
-      'codeFiles': ['custom-button-texts.vue']
+      'codeFiles': ['custom-btns.vue']
     },
+
     {
-      'demoId': 'filter-placeholder',
-      'name': { 'zh-CN': '搜索框占位符', 'en-US': 'Search box placeholder' },
+      'demoId': 'custom-filter',
+      'name': { 'zh-CN': '过滤搜索', 'en-US': 'Custom Search Method' },
       'desc': {
-        'zh-CN': '<p>通过 <code>filter-placeholder</code> 属性自定义搜索框占位符。</p>\n',
-        'en-US': '<p>Customize the search box placeholder through the <code>filter-placeholder</code> attribute. </p>\n'
-      },
-      'codeFiles': ['filter-placeholder.vue']
-    },
-    {
-      'demoId': 'custom-filter-method',
-      'name': { 'zh-CN': '自定义搜索方法', 'en-US': 'Custom Search Method' },
-      'desc': {
-        'zh-CN': '<p>提供 <code>filter-method</code> 钩子函数，可自定义搜索的方法。</p>\n',
+        'zh-CN': `<p>
+          在左右列表的上部，支持显示一个输入框，去过滤显示左右列表的数据项。<br>
+          通过 <code>filterable</code> 属性开启左右侧列表的搜索功能，默认根据label内容过滤。<br>
+          通过 <code>filter-placeholder</code> 属性自定义左右搜索框占位符。<br>
+          通过 <code>filter-method</code> 钩子函数，可自定义左右列表搜索的方法。
+        </p>`,
         'en-US': '<p>Provides the <code>filter-method</code> hook function to customize the search method. </p>\n'
       },
-      'codeFiles': ['custom-filter-method.vue']
+      'codeFiles': ['custom-filter.vue']
     },
     {
       'demoId': 'default-checked',
       'name': { 'zh-CN': '默认勾选项', 'en-US': 'Default options' },
       'desc': {
-        'zh-CN':
-          '<p>通过 <code>left-default-checked</code>、<code>right-default-checked</code> 属性分别指定左右侧列表默认的勾选数据。</p>\n',
+        'zh-CN': `<p>
+          通过 <code>left-default-checked</code>、<code>right-default-checked</code> 属性分别指定左右侧列表默认的勾选数据。禁用数据项默认无法勾选。<br>
+          通过组件实例上的<code>state</code>属性，可以查询组件当前左右列表的数据项和数据选中项等信息。
+        </p>`,
         'en-US':
           '<p>Use the <code>left-default-checked</code> and <code>right-default-checked</code> attributes to specify the default selected data in the left and right lists. </p>\n'
       },
       'codeFiles': ['default-checked.vue']
     },
     {
-      'demoId': 'custom-render-content',
-      'name': { 'zh-CN': '自定义数据项渲染', 'en-US': 'Customized Data Item Rendering' },
+      'demoId': 'custom-render',
+      'name': { 'zh-CN': '自定义数据项显示', 'en-US': 'Customized Data Item Rendering' },
       'desc': {
-        'zh-CN': '<p>使用 render-content 自定义数据项</p>\n',
+        'zh-CN': `<p>
+          通过 <code> props </code> 属性,可以简单的指定<code> key / label /disabled </code>映射到数据项的指定列。<br>
+          通过 <code> render-content </code> 属性,可以完全自定义数据项渲染的dom结构。
+        </p>`,
         'en-US': '<p>Use render-content to customize data items</p>\n'
       },
-      'codeFiles': ['custom-render-content.vue']
+      'codeFiles': ['custom-render.vue']
     },
     {
-      'demoId': 'checked-format-text',
-      'name': { 'zh-CN': '列表顶部勾选状态文案', 'en-US': 'Selected status copywriting at the top of the list' },
+      'demoId': 'drop-config',
+      'name': { 'zh-CN': '可拖拽', 'en-US': 'Drag left and right' },
       'desc': {
         'zh-CN':
-          '<p>指定 <code>format</code> 属性后，勾选数据时，左右侧列表顶部将展示已勾选数据和所有数据的比值。</p>\n',
+          '<div class="tip custom-block"><p class="custom-block-title">使用拖拽功能时请先安装 sortablejs 插件</p>\n</div>\n<p>通过 <code>drop-config</code> 属性配置 sortablejs 插件进行左右拖拽穿梭。</p>\n',
         'en-US':
-          '<p>After the <code>format</code> attribute is specified, the ratio of the selected data to all data is displayed on the top of the left and right lists when data is selected. </p>\n'
+          'Before using the drag-and-drop function for the <div class="tip custom-block"><p class="custom-block-title">, install the sortablejs plug-in. The </p>\n</div>\n<p> uses the drop-config attribute to configure the sortablejs plug-in. </p>\n'
       },
-      'codeFiles': ['checked-format-text.vue']
-    },
-    {
-      'demoId': 'filterable',
-      'name': { 'zh-CN': '可搜索', 'en-US': 'Searchable' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>filterable</code> 属性开启左右侧列表的搜索功能。</p>\n',
-        'en-US':
-          '<p>The <code>filterable</code> attribute is used to enable the search function for the left and right lists. </p>\n'
-      },
-      'codeFiles': ['filterable.vue']
-    },
-    {
-      'demoId': 'props-of-data-source',
-      'name': { 'zh-CN': '数据源的字段别名', 'en-US': 'Field alias of the data source' },
-      'desc': {
-        'zh-CN': '<p>当数据对象中的字段和默认不一致时，可通过 <code>props</code> 属性进行映射。</p>\n',
-        'en-US':
-          '<p>When a field in a data object is inconsistent with the default value, the <code>props</code> attribute can be used for mapping. </p>\n'
-      },
-      'codeFiles': ['props-of-data-source.vue']
+      'codeFiles': ['drop-config.vue']
     },
     {
       'demoId': 'target-order',
@@ -132,15 +105,14 @@ export default {
       'codeFiles': ['target-order.vue']
     },
     {
-      'demoId': 'drop-config',
-      'name': { 'zh-CN': '左右拖拽', 'en-US': 'Drag left and right' },
+      'demoId': 'manual-clear-query',
+      'name': { 'zh-CN': '手动清空搜索框', 'en-US': 'Clear the search box manually' },
       'desc': {
-        'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">使用拖拽功能时请先安装 sortablejs 插件</p>\n</div>\n<p>通过 <code>drop-config</code> 属性配置 sortablejs 插件进行左右拖拽穿梭。</p>\n',
+        'zh-CN': '<p>调用 <code>clearQuery()</code> 方法可清空左右侧列表的搜索框，参数为 left 或者 right 。</p>\n',
         'en-US':
-          'Before using the drag-and-drop function for the <div class="tip custom-block"><p class="custom-block-title">, install the sortablejs plug-in. The </p>\n</div>\n<p> uses the drop-config attribute to configure the sortablejs plug-in. </p>\n'
+          '<p>Invoke the <code>clearQuery()</code> method to clear the search boxes in the left and right lists. The parameter is left or right. </p>\n'
       },
-      'codeFiles': ['drop-config.vue']
+      'codeFiles': ['manual-clear-query.vue']
     },
     {
       'demoId': 'transfer-events',
@@ -152,16 +124,6 @@ export default {
           '<p>There are three events: <code>change</code>, <code>left-check-change</code>, and <code>right-check-change</code>. </p>\n<div class="tip custom-block"><p class="custom-block-title"> Event Description</p>\n<p>change: Triggered when an element in the list on the right changes.\nleft-check-change: Triggered when an element in the list on the left is selected or deselected.\nright-check-change: Triggered when an element in the list on the right is selected or deselected'
       },
       'codeFiles': ['transfer-events.vue']
-    },
-    {
-      'demoId': 'manual-clear-query',
-      'name': { 'zh-CN': '手动清空搜索框', 'en-US': 'Clear the search box manually' },
-      'desc': {
-        'zh-CN': '<p>调用 <code>clearQuery()</code> 方法可清空左右侧列表的搜索框，参数为 left 或者 right 。</p>\n',
-        'en-US':
-          '<p>Invoke the <code>clearQuery()</code> method to clear the search boxes in the left and right lists. The parameter is left or right. </p>\n'
-      },
-      'codeFiles': ['manual-clear-query.vue']
     },
     {
       'demoId': 'custom-footer',

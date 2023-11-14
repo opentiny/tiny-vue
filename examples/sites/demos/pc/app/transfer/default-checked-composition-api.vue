@@ -1,14 +1,15 @@
 <template>
   <tiny-transfer
+    ref="transferRef"
     v-model="value"
     :data="data"
-    :left-default-checked="[2, 6]"
-    :right-default-checked="[1]"
+    :left-default-checked="[0, 2, 6]"
+    :right-default-checked="[1, 4]"
   ></tiny-transfer>
 </template>
 
 <script setup lang="jsx">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { Transfer as TinyTransfer } from '@opentiny/vue'
 
 const generateData = () => {
@@ -26,5 +27,10 @@ const generateData = () => {
 }
 
 const data = ref(generateData())
-const value = ref([1, 4])
+const value = ref([1, 4, 7])
+const transferRef = ref()
+
+onMounted(() => {
+  console.log(transferRef.value.state)
+})
 </script>
