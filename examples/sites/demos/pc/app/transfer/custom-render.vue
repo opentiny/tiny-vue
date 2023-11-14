@@ -1,6 +1,14 @@
 <template>
   <header>字段映射</header>
   <tiny-transfer v-model="value" :data="data" :props="{ key: 'id', label: 'text' }"></tiny-transfer>
+  <header>使用插槽</header>
+  <tiny-transfer v-model="value" :data="data" :props="{ key: 'id', label: 'text' }">
+    <template #default="optionData">
+      <div>
+        <span class="red">{{ optionData.option.id }}</span> <span>- {{ optionData.option.text }} - customized</span>
+      </div>
+    </template>
+  </tiny-transfer>
   <header>自定义渲染</header>
   <tiny-transfer
     v-model="value"
@@ -41,7 +49,7 @@ export default {
     renderDataItem(h, option) {
       return (
         <span>
-          <span class="red">{option.id}</span> - {option.text}
+          <span class="red">{option.id}</span> - {option.text} -by jsx
         </span>
       )
     }
