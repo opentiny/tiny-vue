@@ -48,7 +48,7 @@ export default {
       'codeFiles': ['draggable.vue']
     },
     {
-      'demoId': 'showClearBtn',
+      'demoId': 'show-clear-btn',
       'name': { 'zh-CN': '不可清除', 'en-US': 'Cannot be cleared' },
       'desc': {
         'zh-CN': '<p>通过 <code>show-clear-btn</code> 属性设置是否可以清除。</p>\n',
@@ -226,7 +226,7 @@ export default {
       'codeFiles': ['clearable.vue']
     },
     {
-      'demoId': 'textField',
+      'demoId': 'text-field',
       'name': { 'zh-CN': '显示字段映射', 'en-US': 'Remote Search' },
       'desc': {
         'zh-CN': '<p>通过 <code>text-field</code> 属性设置组件显示的字段。</p>\n',
@@ -322,7 +322,7 @@ export default {
       'codeFiles': ['size.vue']
     },
     {
-      'demoId': 'showOverflow',
+      'demoId': 'show-overflow',
       'name': { 'zh-CN': '数据超出隐藏', 'en-US': 'Remote Data Request' },
       'desc': {
         'zh-CN':
@@ -386,52 +386,186 @@ export default {
   ],
   apis: [
     {
-      'name': 'popeditor',
+      'name': 'pop-editor',
       'type': 'component',
-      'properties': [
+      'props': [
+        {
+          'name': 'auto-lookup',
+          'type': 'boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '初始化时是否自动请求数据',
+            'en-US': 'Set initialization not to request data'
+          },
+          'demoId': 'auto-lookup'
+        },
+        {
+          'name': 'auto-reset',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '筛选后点击关闭是否自动重置筛选条件',
+            'en-US': 'After filtering, click Off to reset the filter automatically'
+          },
+          'demoId': 'auto-reset'
+        },
+        {
+          'name': 'before-close',
+          'type': '() => boolean',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '可以配置一个拦截弹窗关闭的方法。如果方法返回 false 值，则拦截弹窗关闭，否则不拦截',
+            'en-US': ''
+          },
+          'demoId': 'before-close'
+        },
+        {
+          'name': 'before-reset',
+          'type': '() => boolean',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '重置前的钩子函数',
+            'en-US': 'Hook function before reset'
+          },
+          'demoId': 'before-reset'
+        },
+        {
+          'name': 'conditions',
+          'type': 'IConditions[]',
+          'typeAnchorName': 'IConditions',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '当弹出面板配置的是表格时，设置弹出面板中的表单查询项',
+            'en-US': 'When a table is configured on the pop-up panel, set the table query items in the pop-up panel.'
+          },
+          'demoId': 'conditions'
+        },
+        {
+          'name': 'dialog-class',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '自定义配置弹窗类名',
+            'en-US': 'Customized configuration pop-up window class name'
+          },
+          'demoId': 'width'
+        },
+        {
+          'name': 'disabled',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '禁用状态',
+            'en-US': 'Sets whether a component is disabled.'
+          },
+          'demoId': 'disabled'
+        },
+        {
+          'name': 'draggable',
+          'type': 'boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '设置弹出窗口是否可拖动',
+            'en-US': 'Set whether the pop-up window can be dragged.'
+          },
+          'demoId': 'draggable'
+        },
+        {
+          'name': 'grid-op',
+          'type': 'IGridOp',
+          'typeAnchorName': 'grid#IGridOp',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '设置弹出面板中表格组件的配置信息',
+            'en-US': 'Set the configuration information of the table component in the pop-up panel.'
+          },
+          'demoId': 'grid'
+        },
+        {
+          'name': 'icon',
+          'type': 'Component',
+          'defaultValue': 'IconPopup',
+          'desc': {
+            'zh-CN': '自定义选择框尾部图标',
+            'en-US': 'Set the icon of the popEditor component. The default value is svg component'
+          },
+          'demoId': 'icon'
+        },
         {
           'name': 'modelValue / v-model',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '绑定值', 'en-US': 'Bound Value' },
+          'desc': {
+            'zh-CN': '绑定值',
+            'en-US': 'Bound Value'
+          },
           'demoId': 'base'
+        },
+        {
+          'name': 'multi',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '设置弹出面板中的数据是否可多选',
+            'en-US': 'Specifies whether multiple data can be selected in the pop-up panel.'
+          },
+          'demoId': 'multi'
+        },
+        {
+          'name': 'pager-op',
+          'type': 'IPagerOp',
+          'typeAnchorName': 'pager#IPagerOp',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '设置分页配置',
+            'en-US': 'Setting Pagination Configuration'
+          },
+          'demoId': 'pager'
         },
         {
           'name': 'placeholder',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '占位符', 'en-US': 'Placeholder' },
+          'desc': {
+            'zh-CN': '占位符',
+            'en-US': 'Placeholder'
+          },
           'demoId': 'base'
         },
         {
-          'name': 'tabindex',
+          'name': 'popseletor',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 1',
+          'defaultValue': 'grid',
           'desc': {
-            'zh-CN': '设置是否可通过 Tab 键获焦及获焦顺序（readonly 属性设置为 false 时有效）',
-            'en-US':
-              'Sets whether focus can be obtained by pressing Tab and the focus sequence. This parameter is valid only when readonly is set to false.'
+            'zh-CN': '设置弹出面板中可显示的树或者表格组件',
+            'en-US': 'Set the tree or table components that can be displayed in the pop-up panel.'
           },
-          'demoId': 'tabindex'
+          'demoId': 'tree'
         },
         {
           'name': 'remote-search',
-          'type': 'Function({ page, conditions })',
+          'type': '({ page, conditions }) => void',
           'defaultValue': '',
-          'desc': { 'zh-CN': '配置远程搜索', 'en-US': 'Configure remote search' },
+          'desc': {
+            'zh-CN': '配置远程搜索',
+            'en-US': 'Configure remote search'
+          },
           'demoId': 'remote-search'
         },
         {
-          'name': 'before-reset',
-          'type': 'Function',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '重置前的钩子函数', 'en-US': 'Hook function before reset' },
-          'demoId': 'before-reset'
+          'name': 'readonly',
+          'type': 'boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '设置是否只读，【3.0】设置为 false 后点击 Input 框可以弹出选择框',
+            'en-US': 'Set [3.0] to read-only. If [3.0] is set to false, click the Ipunt box to display the selection box.'
+          },
+          'demoId': 'readonly'
         },
         {
           'name': 'resize',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否显示弹框全屏按钮',
             'en-US': 'Whether to display the full-screen button in the pop-up box'
@@ -439,165 +573,120 @@ export default {
           'demoId': 'resize'
         },
         {
-          'name': 'draggable',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
-          'desc': { 'zh-CN': '设置弹出窗口是否可拖动', 'en-US': 'Set whether the pop-up window can be dragged.' },
-          'demoId': 'draggable'
-        },
-        {
-          'name': 'showOverflow',
-          'type': 'string,object',
+          'name': 'selected-box-op',
+          'type': 'ISelectedBoxOp',
+          'typeAnchorName': 'ISelectedBoxOp',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '（popeditor 嵌套 grid 表格时，配置在gridOp属性的columns中）设置表格数据过长出现的展示问题,值可为：tooltip，title，ellipsis;①tooltip：内容超出部分显示 ...，左侧/右侧弹出提示层显示全部信息。②title：和原生标签的 title 属性一致。③ellipsis：内容超出部分显示 ...，没有提示。④true：为 true 时，效果和 tooltip 一致。',
-            'en-US':
-              ' (When a grid table is nested in popeditor, it is configured in columns of the gridOp attribute.) Sets the display problem caused by excessively long table data. The value can be tooltip, title, or ellipsis;1tooltip: The extra part is displayed.... The prompt layer on the left or right displays all information. 2title: The value is the same as the title attribute of the native tag. 3ellipsis: The part that exceeds the content is displayed as..., and no prompt is displayed. 4true: If the value is true, the effect is the same as that of the tooltip.'
+            'zh-CN': '通过属性 selected-box-op 指定 SelectedBox 组件配置，可以把已选表格显示为已选栏',
+            'en-US': ''
           },
-          'demoId': 'showOverflow'
+          'demoId': 'selected-box-op'
+        },
+        {
+          'name': 'show-clear-btn',
+          'type': 'boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '设置输入框中右侧是否显示清除按钮',
+            'en-US': 'Specifies whether to display the Clear button on the right of the text box.'
+          },
+          'demoId': 'show-clear-btn'
+        },
+        {
+          'name': 'show-history',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '当弹出面板配置的是表格时，设置历史记录标签页是否显示表格',
+            'en-US': 'Specifies whether to display tables on the History tab page when tables are configured on the pop-up panel.'
+          },
+          'demoId': 'show-history'
+        },
+        {
+          'name': 'show-overflow',
+          'type': 'boolean | \'tooltip\' | \'title\' | \'ellipsis\'',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': `
+              <div>pop-editor 嵌套 grid 表格时，配置在 grid-op 属性的 columns 中，用于配置表格数据过长的展示效果，值可为：tooltip / title / ellipsis。</div>
+              <ul>
+                <li>①tooltip：内容超出部分显示 ...，左侧/右侧弹出提示层显示全部信息。</li>
+                <li>②title：和原生标签的 title 属性一致。</li>
+                <li>③ellipsis：内容超出部分显示 ...，没有提示。</li>
+                <li>④true：为 true 时，效果和 tooltip 一致。</li>
+              </ul>
+            `,
+            'en-US': ' (When a grid table is nested in popeditor, it is configured in columns of the gridOp attribute.) Sets the display problem caused by excessively long table data. The value can be tooltip, title, or ellipsis;1tooltip: The extra part is displayed.... The prompt layer on the left or right displays all information. 2title: The value is the same as the title attribute of the native tag. 3ellipsis: The part that exceeds the content is displayed as..., and no prompt is displayed. 4true: If the value is true, the effect is the same as that of the tooltip.'
+          },
+          'demoId': 'show-overflow'
+        },
+        {
+          'name': 'show-pager',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '展示分页',
+            'en-US': 'Paging'
+          },
+          'demoId': 'pager'
+        },
+        {
+          'name': 'show-selected-box',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '多选场景，是否将已选表格显示为已选栏',
+            'en-US': ''
+          },
+          'demoId': 'show-selected-box'
         },
         {
           'name': 'size',
-          'type': 'string',
+          'type': '\'medium\' | \'small\' | \'mini\'',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置组件的size大小，三种类型可以选择：medium，small，mini',
+            'zh-CN': '尺寸',
             'en-US': 'Set the component size. The options are medium, small, and mini.'
           },
           'demoId': 'size'
         },
         {
-          'name': 'trigger',
+          'name': 'suggest',
+          'type': 'boolean',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '配置 suggest 开启联想功能，输入框输入后自动触发联想查询，该功能需要联合 remote-search 使用',
+            'en-US': 'Configure the suggest to enable the association function, and automatically trigger the association query after entering the input box; This function needs to be used in conjunction with remoteSearch'
+          },
+          'demoId': 'suggest'
+        },
+        {
+          'name': 'tabindex',
           'type': 'string',
-          'defaultValue': '',
+          'defaultValue': '1',
           'desc': {
-            'zh-CN':
-              '弹框表格中为单选时radio的选中配置，可配置：default（默认）, cell（点击单元格触发）, row（点击行触发）',
-            'en-US':
-              'In the table in the dialog box that is displayed, the radio is selected. The options are as follows: default (default), cell (clicking a cell), and row (clicking a row)'
+            'zh-CN': '设置通过 Tab 键获焦及获焦顺序（readonly 属性设置为 false 时有效）',
+            'en-US': 'Sets whether focus can be obtained by pressing Tab and the focus sequence. This parameter is valid only when readonly is set to false.'
           },
-          'demoId': 'trigger'
-        },
-        {
-          'name': 'disabled',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '设置组件是否为禁用状态。', 'en-US': 'Sets whether a component is disabled.' },
-          'demoId': 'disabled'
-        },
-        {
-          'name': 'conditions',
-          'type': 'Array',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '当弹出面板配置的是表格时，设置弹出面板中的表单查询项。',
-            'en-US': 'When a table is configured on the pop-up panel, set the table query items in the pop-up panel.'
-          },
-          'demoId': 'conditions'
-        },
-        {
-          'name': 'grid-op',
-          'type': 'object',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '设置弹出面板中表格组件的配置信息。',
-            'en-US': 'Set the configuration information of the table component in the pop-up panel.'
-          },
-          'demoId': 'grid'
-        },
-        {
-          'name': 'pager-op',
-          'type': 'object',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '设置分页配置', 'en-US': 'Setting Pagination Configuration' },
-          'demoId': 'pager'
-        },
-        {
-          'name': 'icon',
-          'type': 'object',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': 'popEditor 组件的 Icon 图标设置。默认为 svg 组件',
-            'en-US': 'Set the icon of the popEditor component. The default value is svg component'
-          },
-          'demoId': 'icon'
-        },
-        {
-          'name': 'multi',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': {
-            'zh-CN': '设置弹出面板中的数据是否可多选。',
-            'en-US': 'Specifies whether multiple data can be selected in the pop-up panel.'
-          },
-          'demoId': 'multi'
-        },
-        {
-          'name': 'popseletor',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为 grid',
-          'desc': {
-            'zh-CN': '设置弹出面板中可显示的树或者表格组件。',
-            'en-US': 'Set the tree or table components that can be displayed in the pop-up panel.'
-          },
-          'demoId': 'tree'
-        },
-        {
-          'name': 'readonly',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
-          'desc': {
-            'zh-CN': '设置是否只读，【3.0】设置为 false 后点击 Ipunt 框可以弹出选择框',
-            'en-US':
-              'Set [3.0] to read-only. If [3.0] is set to false, click the Ipunt box to display the selection box.'
-          },
-          'demoId': 'readonly'
-        },
-        {
-          'name': 'show-clear-btn',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
-          'desc': {
-            'zh-CN': '设置输入框中右侧是否显示清除按钮。',
-            'en-US': 'Specifies whether to display the Clear button on the right of the text box.'
-          },
-          'demoId': 'showClearBtn'
-        },
-        {
-          'name': 'show-pager',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '展示分页', 'en-US': 'Paging' },
-          'demoId': 'pager'
-        },
-        {
-          'name': 'show-history',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': {
-            'zh-CN': '当弹出面板配置的是表格时，设置历史记录标签页是否显示表格。',
-            'en-US':
-              'Specifies whether to display tables on the History tab page when tables are configured on the pop-up panel.'
-          },
-          'demoId': 'show-history'
+          'demoId': 'tabindex'
         },
         {
           'name': 'text-field',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 label',
+          'defaultValue': 'label',
           'desc': {
-            'zh-CN': '设置输入框中显示文本的字段，提交数据时，不提交该显示文本。',
+            'zh-CN': '设置输入框中显示文本的字段，提交数据时，不提交该显示文本',
             'en-US': 'Set the text field in the text box. When data is submitted, the text is not submitted.'
           },
-          'demoId': 'textField'
+          'demoId': 'text-field'
         },
         {
           'name': 'text-split',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 /',
+          'defaultValue': '/',
           'desc': {
-            'zh-CN': '在多选的情况下，设置输入框中要显示多个数据时的分隔符。',
+            'zh-CN': '在多选的情况下，设置输入框中要显示多个数据时的分隔符',
             'en-US': 'Separator for displaying multiple records in the text box when multiple records are selected.'
           },
           'demoId': 'multi'
@@ -607,17 +696,27 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置弹出面板的标题，并且支持国际化。',
+            'zh-CN': '设置弹出面板的标题，并且支持国际化',
             'en-US': 'Set the title of the pop-up panel and support internationalization.'
           },
           'demoId': 'title'
         },
         {
+          'name': 'trigger',
+          'type': '\'default\' | \'cell\' | \'row\'',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN':  '弹框表格中为单选时 radio 的选中配置，可配置：default（默认）, cell（点击单元格触发）, row（点击行触发）',
+            'en-US': 'In the table in the dialog box that is displayed, the radio is selected. The options are as follows: default (default), cell (clicking a cell), and row (clicking a row)'
+          },
+          'demoId': 'trigger'
+        },
+        {
           'name': 'value-field',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 id',
+          'defaultValue': 'id',
           'desc': {
-            'zh-CN': '设置输入框要提交数据的字段。',
+            'zh-CN': '设置输入框要提交数据的字段',
             'en-US': 'Set the field to which data is to be submitted in the text box.'
           },
           'demoId': 'title'
@@ -625,150 +724,100 @@ export default {
         {
           'name': 'value-split',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 ;',
+          'defaultValue': ';',
           'desc': {
-            'zh-CN': '在多选的情况下，设置输入框要提交多个数据时的分隔符。',
-            'en-US':
-              'Separator for submitting multiple pieces of data in the text box when multiple pieces of data are selected.'
+            'zh-CN': '在多选的情况下，设置输入框要提交多个数据时的分隔符',
+            'en-US': 'Separator for submitting multiple pieces of data in the text box when multiple pieces of data are selected.'
           },
           'demoId': 'multi'
         },
         {
           'name': 'width',
-          'type': 'number , string',
+          'type': 'number | string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置弹出面板的宽度（单位像素）。当组件的 multi = true 时，宽度最小为900px；否则宽度最小为600px;',
-            'en-US':
-              'Wide of the pop-up panel, in pixels.When multi of a component is set to true, the minimum width is 900px. Otherwise, the minimum width is 600px.'
+            'zh-CN': '设置弹出面板的宽度（单位像素），当组件的 multi = true 时，宽度最小为 900px，否则宽度最小为 600px',
+            'en-US': 'Wide of the pop-up panel, in pixels.When multi of a component is set to true, the minimum width is 900px. Otherwise, the minimum width is 600px.'
           },
           'demoId': 'width'
-        },
-        {
-          'name': 'dialog-class',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '自定义配置弹窗类名', 'en-US': 'Customized configuration pop-up window class name' },
-          'demoId': 'width'
-        },
-        {
-          'name': 'auto-lookup',
-          'type': 'boolean',
-          'defaultValue': 'true',
-          'desc': { 'zh-CN': '设置初始化不请求数据', 'en-US': 'Set initialization not to request data' },
-          'demoId': 'auto-lookup'
-        },
-        {
-          'name': 'suggest',
-          'type': 'boolean',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '配置suggest 开启联想功能，输入框输入后自动触发联想查询；该功能需要联合 remoteSearch 使用',
-            'en-US':
-              'Configure the suggest to enable the association function, and automatically trigger the association query after entering the input box; This function needs to be used in conjunction with remoteSearch'
-          },
-          'demoId': 'suggest'
-        },
-        {
-          'name': 'before-close',
-          'type': 'boolean',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '可以配置一个拦截弹窗关闭的方法。如果方法返回 false 值，则拦截弹窗关闭；否则不拦截',
-            'en-US': ''
-          },
-          'demoId': 'before-close'
-        },
-        {
-          'name': 'show-selected-box',
-          'type': 'boolean',
-          'defaultValue': 'false',
-          'desc': { 'zh-CN': '多选场景,是否将已选表格显示为已选栏，默认值为false', 'en-US': '' },
-          'demoId': 'show-selected-box'
-        },
-        {
-          'name': 'selected-box-op',
-          'type': 'object',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '通过属性 selected-box-op 指定 SelectedBox 组件配置，可以把已选表格显示为已选栏',
-            'en-US': ''
-          },
-          'demoId': 'selected-box-op'
-        },
-        {
-          'name': 'autoReset',
-          'type': 'Boolean',
-          'defaultValue': 'false',
-          'desc': {
-            'zh-CN': '筛选后点击关闭是否自动重置筛选条件',
-            'en-US': 'After filtering, click Off to reset the filter automatically'
-          },
-          'demoId': 'auto-reset'
         }
       ],
       'events': [
         {
           'name': 'change',
-          'type': 'Function(arg1,arg2)',
+          'type': '(commitValue, selectedDatas) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              'Popeditor 组件 Input 框的 change 事件。;onChange(arg1,arg2){\n// arg1 =  state.commitValue   arg1为提交信息索引\n// arg2 =  state.selectedDatas   arg2为提交信息数据\n// do something you want... }',
-            'en-US':
-              'Change event in the input box of the Popeditor component. ; onChange(arg1, arg2){\n// arg1 = state.commitValue arg1 is the index of the submitted information. \n// arg2 = state.selectedDatas arg2 is the data of the submitted information. \n// do something you want...}'
+            'zh-CN': '数据发生变化的事件，commitValue 为选中数据的索引（value-field 配置的字段），selectedDatas 为选中的数据项',
+            'en-US': 'Change event in the input box of the Popeditor component. ; onChange(arg1, arg2){\n// arg1 = state.commitValue arg1 is the index of the submitted information. \n// arg2 = state.selectedDatas arg2 is the data of the submitted information. \n// do something you want...}'
           },
           'demoId': 'events'
         },
         {
           'name': 'close',
-          'type': 'Function',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': 'Popeditor 组件弹框关闭时触发的事件。',
+            'zh-CN': '弹框关闭时触发的事件',
             'en-US': 'Event triggered when the pop-up dialog box of the Popeditor component is closed.'
           },
           'demoId': 'close-event'
         },
         {
-          "name": "popup",
-          "type": "Function",
-          "defaultValue": "",
-          "desc": {
-            'zh-CN': "Popeditor 组件弹框打开时触发的事件。",
-            'en-US': "The event that is triggered when the Popeditor component pop-up box is opened."
-          },
-          "demoId": "popup-event"
-        },
-        {
           'name': 'page-change',
-          'type': 'Function(arg1)',
+          'type': '(page: number) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              'Popeditor 组件表格模式带分页切换事件。;onPageChange（arg1）{// arg1 = val   arg1为分页切换页码// do something you want... }',
-            'en-US':
-              'Indicates that the table mode of the Popeditor component is switched by page. ; onPageChange (arg1) {// arg1 = val arg1 is the page number. // do something you want...}'
+            'zh-CN': '表格模式分页切换事件，page 为分页切换页码',
+            'en-US': 'Indicates that the table mode of the Popeditor component is switched by page. ; onPageChange (arg1) {// arg1 = val arg1 is the page number. // do something you want...}'
           },
           'demoId': 'events'
+        },
+        {
+          'name': 'popup',
+          'type': '() => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '弹框打开时触发的事件',
+            'en-US': 'The event that is triggered when the Popeditor component pop-up box is opened.'
+          },
+          'demoId': 'popup-event'
         }
       ],
       'slots': [
         {
-          'name': 'search',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '查询条件插槽', 'en-US': 'Query Condition Slot' },
-          'demoId': 'slot'
-        },
-        {
           'name': 'footer',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '查询条件插槽', 'en-US': '' },
+          'desc': {
+            'zh-CN': '底部区域插槽',
+            'en-US': ''
+          },
           'demoId': 'slot-footer'
+        },
+        {
+          'name': 'search',
+          'type': '',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '查询条件插槽',
+            'en-US': 'Query Condition Slot'
+          },
+          'demoId': 'slot'
         }
       ]
+    }
+  ],
+  'types': [
+    {
+      name: 'IConditions',
+      type: 'interface',
+      code: `
+interface IConditions {
+  field: string
+  label: string
+}
+      `
     }
   ]
 }
