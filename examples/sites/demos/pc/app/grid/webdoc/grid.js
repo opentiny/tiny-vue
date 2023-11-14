@@ -2474,8 +2474,8 @@ export default {
           'type': `(type: 'column' | 'row', row: Row)=> boolean`,
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '个性化面板拖拽前事件;arg1:拖拽类型 arg2:拖拽行信息',
-            'en-US': 'event before the personalized panel is dragged. arg1: drag type arg2: drag row information'
+            'zh-CN': '个性化面板拖拽前事件',
+            'en-US': 'event before the personalized panel is dragged'
           },
           'demoId': 'grid-customized#custom-prsonalized-drag'
         }
@@ -3352,6 +3352,19 @@ interface IFilterConfig {
     label: string
     // 设置枚举数据的实际值属性字段， 默认'value'
     value: string 
+  }[]
+}
+      `
+    },
+    {
+      name: 'IOPConfig',
+      type: 'type',
+      code: `
+interface IOPConfig {
+  editConfig: IEditConfig
+  pagerConfig: IPagerConfig
+  columns: ColumnConfig[]
+  data: Row[]
   }[]
 }
       `
