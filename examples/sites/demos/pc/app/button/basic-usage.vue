@@ -35,20 +35,34 @@
   </tiny-layout>
 </template>
 
-<script setup>
-import { Button as TinyButton, Layout as TinyLayout, Row as TinyRow } from '@opentiny/vue'
-import { iconDel, iconYes, iconEdit, iconMail, iconStarO, iconSearch } from '@opentiny/vue-icon'
+<script>
+import { Button, Layout, Row } from '@opentiny/vue'
+import { IconDel, IconYes, IconEdit, IconMail, IconStarO, IconSearch } from '@opentiny/vue-icon'
 
-const IconDel = iconDel()
-const IconYes = iconYes()
-const IconEdit = iconEdit()
-const IconMail = iconMail()
-const IconStarO = iconStarO()
-const IconSearch = iconSearch()
+export default {
+  components: {
+    TinyButton: Button,
+    TinyLayout: Layout,
+    TinyRow: Row
+  },
+  data() {
+    return {
+      IconDel: IconDel(),
+      IconYes: IconYes(),
+      IconEdit: IconEdit(),
+      IconMail: IconMail(),
+      IconStarO: IconStarO(),
+      IconSearch: IconSearch()
+    }
+  }
+}
 </script>
 
 <style scoped>
 .tiny-row {
   margin-bottom: 20px;
+}
+.tiny-button {
+  margin-bottom: 10px;
 }
 </style>

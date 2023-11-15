@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Button as TinyButton } from '@opentiny/vue'
 import { iconUpload } from '@opentiny/vue-icon'
