@@ -8,7 +8,7 @@ export default {
       'desc': {
         'zh-CN': '通过<code>percentage</code>设置进度值，<code>stroke-width</code>设置进度条的宽度，单位 px。',
         'en-US':
-          'Set the progress value through<code>percentage</code>, and<code>stroke width</code>to set the width of the progress bar in px.'
+          'Set the progress value through<code>percentage</code>, and<code>stroke-width</code>to set the width of the progress bar in px.'
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -29,7 +29,7 @@ export default {
         'zh-CN':
           '通过<code>show-text</code>设置文字显隐；<code>text-inside</code>设置文字内置在进度条内显示（只在 type=line 时可用），<code>format</code>自定义进度条的文字。',
         'en-US':
-          'Set text display and hiding through<code>show text</code>< Code>text insert</code>Set the text to be displayed within the progress bar (only available when type=line), and customize the text for the progress bar.<code>format</code>.'
+          'Set text display and hiding through<code>show-text</code>; <code>text-inside</code>Set the text to be displayed within the progress bar (only available when type=line), and<code>format</code>customize the text for the progress bar.'
       },
       'codeFiles': ['format-text.vue']
     },

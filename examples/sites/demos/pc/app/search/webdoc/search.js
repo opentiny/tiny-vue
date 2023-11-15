@@ -36,7 +36,7 @@ export default {
       'desc': {
         'zh-CN': '通过<code>search-types</code>设置可选的搜索类型，<code>type-value</code>设置搜索类型的默认值。',
         'en-US':
-          'Set optional search types by<code>search types</code>, and set default values for search types by<code>type value</code>.'
+          'Set optional search types by<code>search-types</code>, and set default values for search types by<code>type-value</code>.'
       },
       'codeFiles': ['search-types.vue']
     },
@@ -85,7 +85,7 @@ export default {
       'desc': {
         'zh-CN': '通过<code>is-enter-search</code>设置回车触发搜索事件，<code>search</code>监听搜索事件。',
         'en-US':
-          'Set a carriage return to trigger a search event by<code>is enter search</code>, and listen for search events by<code>search</code>.'
+          'Set a carriage return to trigger a search event by<code>is-enter-search</code>, and listen for search events by<code>search</code>.'
       },
       'codeFiles': ['search-events.vue']
     },

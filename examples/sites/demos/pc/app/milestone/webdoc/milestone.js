@@ -9,7 +9,7 @@ export default {
         'zh-CN':
           '通过<code>data</code>设置每个节点的标题、日期、和状态；<code>milestones-status</code>设置每种状态对应的颜色值；前者的<code>status</code>字段对应后者的键值。',
         'en-US':
-          'Set the title, date, and status of each node through<code>data</code>< Code>Milestones status</code>Set the color values corresponding to each state; The<code>status</code>field of the former corresponds to the key value of the latter.'
+          'Set the title, date, and status of each node through<code>data</code>; <code>Milestones status</code>Set the color values corresponding to each state; The<code>status</code>field of the former corresponds to the key value of the latter.'
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -20,7 +20,7 @@ export default {
         'zh-CN':
           '通过<code>flag-before</code>设置旗子的数据来源，是来自前面还是后面的节点，默认为<code>false</code>取后面节点上的数据。',
         'en-US':
-          'Set the data source of the flag through<code>flag before</code>, whether it comes from the preceding or following nodes. The default value is<code>false</code>to retrieve the data from the following nodes.'
+          'Set the data source of the flag through<code>flag-before</code>, whether it comes from the preceding or following nodes. The default value is<code>false</code>to retrieve the data from the following nodes.'
       },
       'codeFiles': ['flag-before.vue']
     },
@@ -29,7 +29,7 @@ export default {
       'name': { 'zh-CN': '线条颜色和间距', 'en-US': 'Line color and Space' },
       'desc': {
         'zh-CN': '通过<code>line-style</code>设置线条颜色，<code>space</code>设置节点间距。',
-        'en-US': 'Set the line color and node spacing through<code>line style</code>.'
+        'en-US': 'Set the line color and node spacing through<code>line-style</code>.'
       },
       'codeFiles': ['line-style.vue']
     },
@@ -43,7 +43,7 @@ export default {
         'zh-CN':
           '通过<code>show-number</code>设置未完成状态的节点是否显示序号；默认为<code>true</code>显示；<code>start</code>设置节点的序号起始值，默认为<code>-1</code>。',
         'en-US':
-          'Set whether nodes in incomplete status display serial numbers through<code>show number</code>; Default to display as<code>true</code>< Code>start</code>Set the starting value of the nodes sequence number, which defaults to<code>-1</code>.'
+          'Set whether nodes in incomplete status display serial numbers through<code>show-number</code>; Default to display as<code>true</code>;<code>start</code>Set the starting value of the nodes sequence number, which defaults to<code>-1</code>.'
       },
       'codeFiles': ['show-number.vue']
     },
@@ -127,7 +127,7 @@ export default {
       'desc': {
         'zh-CN': '通过<code>click</code>监听单击节点事件，<code>flag-click</code>监听单击旗子事件。',
         'en-US':
-          'Listen for click node events through<code>click</code>, and<code>flag click</code>listen for click flag sub events.'
+          'Listen for click node events through<code>click</code>, and<code>flag-click</code>listen for click flag sub events.'
       },
       'codeFiles': ['milestone-events.vue']
     }
