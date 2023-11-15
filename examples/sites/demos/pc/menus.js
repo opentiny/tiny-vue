@@ -58,7 +58,7 @@ export const cmpMenus = [
       { 'nameCn': '里程碑', 'name': 'Milestone', 'key': 'milestone' },
       { 'nameCn': '导航菜单', 'name': 'NavMenu', 'key': 'nav-menu' },
       { 'nameCn': '步骤条', 'name': 'Steps', 'key': 'steps' },
-      { 'nameCn': '标签页', 'name': 'Tabs', 'key': 'tabs' },
+      { 'nameCn': '页签', 'name': 'Tabs', 'key': 'tabs' },
       { 'nameCn': '时间线', 'name': 'TimeLine', 'key': 'time-line' },
       { 'nameCn': '树型菜单', 'name': 'TreeMenu', 'key': 'tree-menu' },
       { 'nameCn': '流程图', 'name': 'Wizard', 'key': 'wizard' },

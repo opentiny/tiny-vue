@@ -1,12 +1,11 @@
 <template>
   <div class="tab-demo-position">
     <div class="mb10">
-      <tiny-radio v-model="position" label="top">top显示</tiny-radio>
-      <tiny-radio v-model="position" label="bottom">bottom显示</tiny-radio>
-      <tiny-radio v-model="position" label="left">left显示</tiny-radio>
-      <tiny-radio v-model="position" label="right">right显示</tiny-radio>
+      <tiny-switch v-model="value" @change="handleChange"></tiny-switch> 当前tooltip-config是{{
+        value ? 'tooltip配置' : '字符串title'
+      }}
     </div>
-    <tiny-tabs v-model="activeName4" tab-style="card" :position="position">
+    <tiny-tabs v-model="activeName4" tab-style="card" position="left" :tooltip-config="tooltipConfig">
       <tiny-tab-item v-for="item in tabs3" :key="item.name" :title="item.title" :name="item.name">
         {{ item.content }}
       </tiny-tab-item>
@@ -15,22 +14,22 @@
 </template>
 
 <script lang="jsx">
-import { Tabs, TabItem, Radio } from '@opentiny/vue'
+import { Tabs, TabItem, Switch } from '@opentiny/vue'
 
 export default {
   components: {
     TinyTabs: Tabs,
     TinyTabItem: TabItem,
-    TinyRadio: Radio
+    TinySwitch: Switch
   },
   data() {
     return {
       activeName4: 'navigation1',
-      position: 'left',
+      tooltipConfig: { effect: 'light', placement: 'left', visible: 'auto' },
       tabs3: [
         {
           name: 'navigation1',
-          title: 'Navigation1',
+          title: 'Navigation1(蒸羊羔蒸熊掌蒸鹿尾，可以试着将tooltip-config设置为字符串title)',
           content: 'Navigation1'
         },
         {
@@ -54,6 +53,13 @@ export default {
           content: 'Navigation5'
         }
       ]
+    }
+  },
+  methods: {
+    handleChange(value) {
+      value
+        ? (this.tooltipConfig = { effect: 'light', placement: 'left', visible: 'auto' })
+        : (this.tooltipConfig = 'title')
     }
   }
 }
