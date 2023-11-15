@@ -8,7 +8,6 @@
         </span>
       </template>
     </tiny-button-group>
-    <span>当前选中值：{{ checkedVal }}</span>
   </div>
 </template>
 

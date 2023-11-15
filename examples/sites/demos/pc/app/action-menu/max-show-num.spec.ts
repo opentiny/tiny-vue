@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('显示个数', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/action-menu/max-show-num')
+  await page.goto('action-menu#max-show-num')
 
   const preview = page.locator('#preview')
   const actionMenu = preview.locator('.tiny-action-menu')

@@ -8,7 +8,7 @@ import {
   getElementStatusClass
 } from './adapter'
 import { defineAsyncComponent, directive, emitter, h, markRaw, Teleport } from './adapter'
-import { parseVnode, renderComponent, rootConfig, tools, useRouter, getComponentName } from './adapter'
+import { parseVnode, isEmptyVnode, renderComponent, rootConfig, tools, useRouter, getComponentName } from './adapter'
 import { t } from '@opentiny/vue-locale'
 import { stringifyCssClass } from './csscls'
 import { twMerge } from 'tailwind-merge'
@@ -97,15 +97,14 @@ const resolveChartTheme = ({ props, context, utils }) => {
 }
 
 export const $setup = ({ props, context, template, extend = {} }) => {
+  const mode = resolveMode(props, context)
   const view = hooks.computed(() => {
     if (typeof props.tiny_template !== 'undefined') return props.tiny_template
 
-    const component = template(resolveMode(props, context), props)
+    const component = template(mode, props)
 
     return typeof component === 'function' ? defineAsyncComponent(component) : component
   })
-
-  initComponent()
 
   return renderComponent({ view, props, context, extend })
 }
@@ -305,6 +304,7 @@ export {
   hooks,
   directive,
   parseVnode,
+  isEmptyVnode,
   useRouter,
   emitter,
   createComponent,
@@ -317,6 +317,7 @@ export default {
   h,
   directive,
   parseVnode,
+  isEmptyVnode,
   useRouter,
   emitter,
   createComponent,

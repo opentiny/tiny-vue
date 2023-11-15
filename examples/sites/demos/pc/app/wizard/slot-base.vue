@@ -38,11 +38,6 @@ export default {
         }
       ]
     }
-  },
-  methods: {
-    btnClick(arg) {
-      Modal.message(`步骤${arg}`)
-    }
   }
 }
 </script>

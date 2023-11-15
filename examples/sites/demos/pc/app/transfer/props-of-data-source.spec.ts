@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('从左侧交换数据至右侧面板', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/props-of-data-source')
+  await page.goto('transfer#props-of-data-source')
   const preview = page.locator('#preview')
   const transferPanels = preview.locator('.tiny-transfer-panel')
   const rightPanel = transferPanels.nth(1)
@@ -14,7 +14,7 @@ test('从左侧交换数据至右侧面板', async ({ page }) => {
 
 test('从右侧交换数据至左侧面板', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/props-of-data-source')
+  await page.goto('transfer#props-of-data-source')
   const preview = page.locator('#preview')
   const transferPanels = preview.locator('.tiny-transfer-panel')
   const leftPanel = transferPanels.first()

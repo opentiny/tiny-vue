@@ -19,7 +19,7 @@ export default defineComponent({
 
     let child = typeof renderItem === 'function' ? renderItem({ h, item: day, text }) : ''
     let backgroundColorClass = ''
-    let markVnode = null
+    let markVnode: any = null
     let ons: any = {}
 
     child = child || h('span', text)
@@ -30,7 +30,7 @@ export default defineComponent({
       ons.click = () => $emit.apply(this, ['clickday', day])
     }
 
-    if (day && day.isCur) {
+    if (day && day.type === 'cur' && day.isCur) {
       backgroundColorClass = (config && config.currentBackgroundColorClass) || 'bg-color-brand'
     }
 

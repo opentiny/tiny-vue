@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('拖拽节点事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/drag-events')
+  await page.goto('tree#drag-events')
 
   const tree = page.locator('#preview .tiny-tree')
   const draggedDom = tree.locator('.tiny-tree-node').nth(3)

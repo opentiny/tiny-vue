@@ -15,8 +15,8 @@ export default {
       config: {
         workday: this.workday,
         holiday: this.holiday,
-        workdayColorClass: 'text-black',
-        holidayColorClass: 'text-gray-200'
+        workdayColorClass: 'text-color-text-primary',
+        holidayColorClass: 'text-color-none-hover'
       }
     }
   },

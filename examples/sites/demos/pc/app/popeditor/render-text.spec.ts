@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('PopEditor 渲染反查', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popeditor/render-text')
+  await page.goto('popeditor#render-text')
 
   const preview = page.locator('#preview')
   const textBox = preview.getByRole('textbox')

@@ -1,12 +1,13 @@
 <template>
   <label
+    data-tag="tiny-radio-button"
     :class="[
       'relative outline-0 inline-flex rounded-none cursor-pointer items-center [&:first-of-type_span]:border-l-0.5 sm:[&:first-of-type_span]:border-l [&:first-of-type_span]:rounded-l-sm [&:last-of-type_span]:rounded-r-sm',
-      state.size === 'small' ? 'sm:h-6 h-10 text-xs' : 'sm:h-7 sm:leading-7 h-11 leading-[2.75rem] text-sm sm:text-xs',
+      state.size === 'small' ? 'sm:h-6 h-10 text-xs' : 'sm:h-7 sm:leading-7 h-11 text-sm sm:text-xs',
       !disabled &&
         !state.radioGroup.disabled &&
         state.value === label &&
-        'sm:[&:not(:first-of-type)_span]:shadow-[-1px_0_0_0_#0067D1] [&:not(:first-of-type)_span]:shadow-[-0.5px_0_0_0_#0067D1]'
+        'sm:[&:not(:first-of-type)_span]:shadow-[calc(-1*theme(borderWidth.DEFAULT))_0_0_0_theme(colors.color.border.focus)] [&:not(:first-of-type)_span]:shadow-[calc(-1*theme(borderWidth[0.5]))_0_0_0_theme(colors.color.border.focus)]'
     ]"
     role="radio"
     :aria-checked="state.value === label"
@@ -28,9 +29,10 @@
       @blur="handleBlur"
     />
     <span
+      data-tag="tiny-radio-button-content"
       :class="
         m(
-          'relative sm:border-y border-y-0.5 sm:border-r border-r-0.5 border-solid inline-block leading-5 items-center min-w-[2.5rem] max-w-[4.875rem] sm:min-w-[3rem] sm:max-w-[9rem] text-center overflow-hidden text-ellipsis whitespace-nowrap py-[0.1875rem] px-3 cursor-pointer border-color-border box-border',
+          'relative sm:border-y border-y-0.5 sm:border-r border-r-0.5 border-solid inline-block leading-7 items-center min-w-[theme(spacing.10)] max-w-[theme(spacing.20)] sm:min-w-[theme(spacing.12)] sm:max-w-[theme(spacing.36)] text-center overflow-hidden text-ellipsis whitespace-nowrap px-3 cursor-pointer border-color-border box-border',
           state.radioGroup.disabled &&
             state.value === label &&
             'text-color-bg-1 bg-color-brand-disabled border-y-0 cursor-not-allowed border-transparent shadow-none',
@@ -46,7 +48,7 @@
             !disabled &&
             !state.radioGroup.disabled &&
             'text-color-text-secondary hover:text-color-brand-hover active:text-color-brand',
-          state.size === 'small' ? 'sm:h-6 py-px px-2 h-[1.4375rem]' : 'sm:h-7 h-[1.6875rem]',
+          state.size === 'small' ? 'sm:h-6 leading-6 px-2 h-6' : 'sm:h-7 h-7',
           state.showTips && 'sm:pr-7'
         )
       "

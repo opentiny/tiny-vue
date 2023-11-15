@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('PopEditor 多选且初始数据为数组', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popeditor/multi-value-array')
+  await page.goto('popeditor#multi-value-array')
 
   const preview = page.locator('#preview')
   const textBox = preview.getByRole('textbox')

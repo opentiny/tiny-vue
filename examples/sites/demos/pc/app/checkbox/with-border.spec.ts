@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('尺寸', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/checkbox/with-border')
+  await page.goto('checkbox#with-border')
   const checkedLabelGZ = page.getByRole('checkbox', { name: '广州' }).filter({ hasText: '广州' })
   // 点击第1个选项
   await checkedLabelGZ.first().click()

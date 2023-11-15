@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('searchable-multiple', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/searchable')
+  await page.goto('select#searchable')
   const select = page.locator('#preview .tiny-select').first()
   const dropdown = page.locator('.tiny-select-dropdown').nth(1)
   const options = dropdown.locator('.tiny-option')
@@ -25,7 +25,7 @@ test('searchable-multiple', async ({ page }) => {
 })
 
 test('searchable-single', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/searchable')
+  await page.goto('select#searchable')
   const select = page.locator('#preview .tiny-select').nth(1)
   const input = page.locator('#preview .tiny-input__inner').nth(2)
   const dropdown = page.locator('.tiny-select-dropdown').nth(1)

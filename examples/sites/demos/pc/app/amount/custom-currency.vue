@@ -1,5 +1,5 @@
 <template>
-  <tiny-amount v-model="value" currency="HKD" disabled></tiny-amount>
+  <tiny-amount v-model="value" currency="HKD"></tiny-amount>
 </template>
 
 <script lang="jsx">

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('ipAddress 类型', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/ip-address/basic-usage')
+  await page.goto('ip-address#basic-usage')
 
   const preview = page.locator('#preview')
   const ipv4 = preview.locator('.tiny-ip-address').nth(0)

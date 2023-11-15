@@ -13,27 +13,27 @@
 import { emitEvent } from '../common/event'
 
 export const leftClick =
-  ({ api, props, refs, state }) =>
+  ({ api, props, vm, state }) =>
   () => {
     if (state.leftLength >= 0) {
       return
     }
 
     state.leftLength = state.leftLength + (state.blockWidth + state.blockMargin) * props.wheelBlocks
-    refs.insider.style.left = state.leftLength + 'px'
+    vm.$refs.insider.style.left = state.leftLength + 'px'
 
     api.changeState()
   }
 
 export const rightClick =
-  ({ api, props, refs, state }) =>
+  ({ api, props, vm, state }) =>
   () => {
     if (state.blockWrapper < Math.abs(state.leftLength) + state.wrapperWidth) {
       return
     }
 
     state.leftLength = state.leftLength - (state.blockWidth + state.blockMargin) * props.wheelBlocks
-    refs.insider.style.left = state.leftLength + 'px'
+    vm.$refs.insider.style.left = state.leftLength + 'px'
 
     api.changeState()
   }
@@ -74,9 +74,9 @@ export const mouseEvent =
   }
 
 export const changeSize =
-  ({ props, state, refs }) =>
+  ({ props, state, vm }) =>
   () => {
-    state.wrapperWidth = refs.wrapper.offsetWidth
+    state.wrapperWidth = vm.$refs.wrapper.offsetWidth
     state.blockWidth = parseInt(((1 - (props.initBlocks - 1) * 0.02) / props.initBlocks) * state.wrapperWidth, 10)
     state.blockMargin = parseInt(state.wrapperWidth * 0.02, 10)
     state.blockWrapper = props.modelValue.length * state.blockWidth + (props.modelValue.length - 1) * state.blockMargin

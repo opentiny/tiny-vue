@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('小圆点标记', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/badge/is-dot')
+  await page.goto('badge#is-dot')
 
   const preview = page.locator('#preview')
   const badge = preview.locator('.tiny-badge')

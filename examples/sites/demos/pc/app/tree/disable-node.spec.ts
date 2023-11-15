@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('树节点禁用状态', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/disable-node')
+  await page.goto('tree#disable-node')
 
   const tree = page.locator('#preview .tiny-tree')
   const checkboxDisabled = tree.locator('.tiny-tree-node').nth(2).locator('.tiny-checkbox')

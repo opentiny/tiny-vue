@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/slider/slider-slot')
+  await page.goto('slider#slider-slot')
   const preview = page.locator('#preview')
   const slider = preview.locator('.tiny-slider__wrapper > .tiny-slider')
   const sliderInput = preview.locator('.tiny-slider__wrapper > .tiny-slider__input')

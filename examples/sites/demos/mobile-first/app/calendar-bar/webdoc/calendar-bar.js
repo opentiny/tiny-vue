@@ -22,7 +22,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>使用 <code>config.disabled  </code>配置一个方法，用于判断参数日期是否禁用。 使用 <code>config.disabledColorClass </code> 配置禁用日期的字体颜色类名。 使用 <code>config.disabledBackgroundColorClass </code> 配置禁用日期的背景颜色类名。</p>',
+          '<p>使用 <code>config.disabled  </code>配置一个方法，用于判断参数日期是否禁用。<br> 使用 <code>config.disabledColorClass </code> 配置禁用日期的字体颜色类名。 <br>使用 <code>config.disabledBackgroundColorClass </code> 配置禁用日期的背景颜色类名。</p>',
         'en-US': '<p>button round</p>'
       },
       codeFiles: ['disabled.vue']
@@ -34,8 +34,10 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN':
-          '<p>使用<code> config.mark</code> 配置一个方法，用于判断参数日期是否存在标记。 此方法返回空字符串表示不存在标记，返回非空字符串表示存在标记，且标记内容就是该字符串。 使用<code> config.markBackgroundColorClass</code> 配置标记的颜色类名。 使用<code> config.showMarkMessage</code> 配置是否开启标记<code> title</code> 提示，默认值为<code> false</code>。<p>',
+        'zh-CN': `<p>使用<code> config.mark</code> 配置一个方法，用于判断参数日期是否存在标记。<br>
+          此方法返回空字符串表示不存在标记，返回非空字符串表示存在标记，且标记内容就是该字符串。 <br>
+          使用<code> config.markBackgroundColorClass</code> 配置标记的颜色类名。 <br>
+          使用<code> config.showMarkMessage</code> 配置是否开启标记<code> title</code> 提示，默认值为<code> false</code>。<p>`,
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['marked.vue']
@@ -47,8 +49,9 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN':
-          '<p>用户传入的日期为<code>  当前日期</code> 。 使用 <code> config.currentColorClass</code>  配置<code>  当前日期</code>  的字体颜色类名； 使用<code>  config.currentBackgroundColorClass</code>  配置<code>  当前日期</code>  的背景颜色类名。<p>',
+        'zh-CN': `<p>用户传入的日期为<code>  当前日期</code> 。<br>
+           使用 <code> config.currentColorClass</code>  配置<code>  当前日期</code>  的字体颜色类名；<br>
+           使用<code>  config.currentBackgroundColorClass</code>  配置<code>  当前日期</code>  的背景颜色类名。<p>`,
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['render-current.vue']
@@ -85,11 +88,37 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN':
-          '<p>用户传入的日期为<code>  当前日期</code>，当前日期所在月份为<code>  当前月份</code>，当前月份周六周日为 周末，非周六周日为 工作日。 使用<code>  config.workday </code>配置一个方法，用于判断 工作日 是否作为真正的工作日； 使用<code>  config.holiday</code> 配置一个方法，用于判断 周末 是否作为真正的周末； 使用<code>  config.workdayColorClass 和 config.holidayColorClass</code> 配置工作日和周末的字体颜色类。<p>',
+        'zh-CN': `<p>用户传入的日期为<code>  当前日期</code>，当前日期所在月份为<code>  当前月份</code>，当前月份周六周日为 周末，非周六周日为 工作日。<br>
+           使用<code>  config.workday </code>配置一个方法，用于判断 工作日 是否作为真正的工作日；<br>
+           使用<code>  config.holiday</code> 配置一个方法，用于判断 周末 是否作为真正的周末； <br>
+           使用<code>  config.workdayColorClass 和 config.holidayColorClass</code> 配置工作日和周末的字体颜色类。<p>`,
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['workday.vue']
+    },
+    {
+      demoId: 'expand',
+      name: {
+        'zh-CN': '展开收起事件',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': `<p>日历栏展开或收起时触发的事件；事件参数为 true 时代表展开状态，反之为收起状态。<p>`,
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['expand.vue']
+    },
+    {
+      demoId: 'cascader-position',
+      name: {
+        'zh-CN': '年月选择的位置',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': `<p>使用 cascaderPosition 属性可以改变年月选择的位置；可选值为：<code>start | center | end</code> 默认值为<code>center</code><p>`,
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['cascader-position.vue']
     }
   ],
   apis: []

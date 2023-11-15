@@ -1,6 +1,7 @@
 <template>
-  <div :class="m(gcls('rate'))" tabindex="0" @keydown="handelKey">
+  <div data-tag="tiny-rate" :class="m(gcls('rate'))" tabindex="0" @keydown="handelKey">
     <span
+      data-tag="tiny-rate-content"
       v-for="item in max"
       :key="item"
       :class="
@@ -30,6 +31,7 @@
         :class="m(gcls({ 'allowhalf-active': allowHalf }))"
       ></component>
       <div
+        data-tag="tiny-rate-text-bottom"
         v-if="textOnBottom && !radio"
         :style="{ color: textColor }"
         :class="m(gcls('text-Bottom'), gcls({ 'big-text-bottom': type === 'large' }))"
@@ -37,6 +39,7 @@
         {{ texts[item - 1] }}
       </div>
       <div
+        data-tag="tiny-rate-radio-bottom"
         v-if="textOnBottom && radio"
         :style="getTextStyle()"
         :class="m(gcls('text-Bottom'), gcls({ 'big-text-bottom': type === 'large' }))"
@@ -45,6 +48,7 @@
       </div>
     </span>
     <span
+      data-tag="tiny-rate-score"
       v-if="(!textOnBottom && showText) || showScore"
       :style="{ color: textColor }"
       :class="m(gcls('text-left'), gcls({ 'big-text-left': type === 'large' }))"
@@ -55,11 +59,12 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/rate/vue'
-import { defineComponent, props, setup } from '@opentiny/vue-common'
+import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { IconStarActive, IconStarDisable, IconSmile, IconFrown, IconMeh } from '@opentiny/vue-icon'
 import { classes } from './token'
 
 export default defineComponent({
+  emits: ['update:modelValue', 'change'],
   props: [
     ...props,
     'modelValue',
@@ -90,8 +95,7 @@ export default defineComponent({
     IconFrown: IconFrown(),
     IconMeh: IconMeh()
   },
-  emits: ['update:modelValue', 'change'],
-  setup(props, context): any {
+  setup(props, context) {
     return setup({ props, context, renderless, api, classes })
   }
 })

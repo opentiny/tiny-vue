@@ -77,6 +77,18 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['infinit-scroll.vue']
+    },
+    {
+      demoId: 'place-holder',
+      name: {
+        'zh-CN': '自定义 placeHolder',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p>通过placeholder属性配置自定义 placeHolder<p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['place-holder.vue']
     }
   ],
   apis: []

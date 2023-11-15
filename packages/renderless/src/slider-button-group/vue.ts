@@ -1,6 +1,8 @@
+import { getChangePosition } from './index'
+
 export const api = ['state']
 
-export const renderless = (props, { reactive, provide }, { parent }) => {
+export const renderless = (props, { reactive, provide, onMounted }, { parent }) => {
   const state = reactive({
     tag: 'div',
     isActive: false,
@@ -17,19 +19,9 @@ export const renderless = (props, { reactive, provide }, { parent }) => {
   })
 
   parent.$on('handleChange', (value) => {
-    state.eachBlockIndex.find((e, index) => {
-      if (e.index === value) {
-        state.currentIndex = index
-      }
-    })
-
-    state.sliderSpace = state.eachBlock[state.currentIndex]
-    state.sliderWidth = state.sliderWidthData[state.currentIndex]
-    state.sliderHeight = state.sliderHeightData[state.currentIndex]
+    api.getChangePosition(value)
 
     parent.$emit('change', value)
-
-    state.sliderCount += 1
   })
 
   parent.$on('labelValue', (value) => {
@@ -49,11 +41,17 @@ export const renderless = (props, { reactive, provide }, { parent }) => {
 
   const api = {}
 
-  Object.assign(api, { state })
+  Object.assign(api, { state, getChangePosition: getChangePosition(state) })
 
   provide('sliderType', props.type)
 
   provide('sliderSize', props.size)
+
+  provide('disabled', props.disabled)
+
+  onMounted(() => {
+    api.getChangePosition(props.modelValue)
+  })
 
   return api
 }

@@ -54,28 +54,28 @@ export default {
       'properties': [
         {
           'name': 'data',
-          'type': 'Array',
-          'defaultValue': '',
+          'type': 'ITagGroupDataItem[]',
+          'typeAnchorName': 'ITagGroupDataItem',
           'desc': { 'zh-CN': ' 数据源', 'en-US': 'Data source' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'size',
-          'type': 'string',
-          'defaultValue': '默认值为 medium',
+          'type': "'medium' | 'small' | 'mini'",
+          'defaultValue': 'medium',
           'desc': {
-            'zh-CN': '尺寸;该属性的可选值为 medium / small / mini',
-            'en-US': 'Size, the value of this attribute can be dark / light / plain. '
+            'zh-CN': '尺寸',
+            'en-US': 'Size '
           },
           'demoId': 'tag-group-size'
         },
         {
           'name': 'effect',
-          'type': 'string',
-          'defaultValue': '默认值为 light',
+          'type': "'dark' | 'light' | 'plain'",
+          'defaultValue': 'light',
           'desc': {
-            'zh-CN': '主题;该属性的可选值为 dark / light / plain',
-            'en-US': 'Effect, the value of this attribute can be dark / light / plain. '
+            'zh-CN': '主题',
+            'en-US': 'Effect'
           },
           'demoId': 'tag-group-effect'
         }
@@ -83,13 +83,25 @@ export default {
       'events': [
         {
           'name': 'item-click',
-          'type': 'Function(item, index, event)',
-          'defaultValue': '',
+          'type': 'ITagGroupItemClick',
+          'typeAnchorName': 'ITagGroupItemClick',
           'desc': { 'zh-CN': '单个标签的点击事件', 'en-US': 'Click event of a single tag. ' },
           'demoId': 'tag-group-event'
         }
       ],
       'slots': []
+    }
+  ],
+  types: [
+    {
+      name: 'ITagGroupDataItem',
+      type: 'type',
+      code: `type ITagGroupDataItem = { name: string, type?: 'success' | 'info' | 'warning' | 'danger' }`
+    },
+    {
+      name: 'ITagGroupItemClick',
+      type: 'type',
+      code: `type ITagGroupItemClick = (item: ITagGroupDataItem, index: number, event: Event) => void`
     }
   ]
 }

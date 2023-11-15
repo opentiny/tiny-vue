@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('懒加载', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/image/lazy-load')
+  await page.goto('image#lazy-load')
   await expect(page.locator('.demo-image__lazy div').locator('img')).toHaveCount(2)
   const imageBox = page.locator('.demo-image__lazy')
   await imageBox.hover()

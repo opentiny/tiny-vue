@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('test-grid-select', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/disable-grid-select-radio')
+  await page.goto('select#disable-grid-select-radio')
   const tags = page.locator('.grid-select .tiny-tag')
 
   await page.locator('.tiny-select__tags').click()
@@ -13,7 +13,7 @@ test('test-grid-select', async ({ page }) => {
 })
 
 test('test-grid-radio', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/disable-grid-select-radio')
+  await page.goto('select#disable-grid-select-radio')
 
   const input = page.locator('.grid-radio .tiny-input__inner')
   await input.click()

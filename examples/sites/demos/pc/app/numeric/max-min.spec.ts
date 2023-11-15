@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('最值与数值循环', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/numeric/max-min')
+  await page.goto('numeric#max-min')
 
   const input = page.getByRole('spinbutton')
   const increaseBtn = page.locator('#preview .tiny-numeric__increase')

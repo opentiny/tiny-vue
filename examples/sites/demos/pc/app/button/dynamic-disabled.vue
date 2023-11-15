@@ -1,10 +1,6 @@
 <template>
   <tiny-layout>
-    <tiny-row>
-      <tiny-button @click="disabled = !disabled">
-        {{ disabled ? '点击启用按钮' : '点击禁用按钮' }}
-      </tiny-button>
-    </tiny-row>
+    <tiny-row> 是否禁用：<tiny-switch v-model="disabled"></tiny-switch> </tiny-row>
     <tiny-row>
       <tiny-button :icon="IconSearch" type="text" size="mini" :disabled="disabled"></tiny-button>
       <tiny-button :disabled="disabled">默认按钮</tiny-button>
@@ -27,14 +23,15 @@
 </template>
 
 <script>
-import { Button, Layout, Row } from '@opentiny/vue'
+import { Button, Layout, Row, Switch } from '@opentiny/vue'
 import { IconSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyButton: Button,
     TinyLayout: Layout,
-    TinyRow: Row
+    TinyRow: Row,
+    TinySwitch: Switch
   },
   data() {
     return {
@@ -48,5 +45,8 @@ export default {
 <style scoped>
 .tiny-row {
   margin-bottom: 20px;
+}
+.tiny-button {
+  margin-bottom: 10px;
 }
 </style>

@@ -3,15 +3,8 @@
     data-tag="tiny-checkbox"
     :class="
       m(
-        'inline-flex sm:items-center text-sm leading-5 cursor-pointer',
+        'inline-flex sm:items-center text-sm sm:py-2 leading-5 cursor-pointer',
         state.size === 'medium' ? 'sm:text-sm' : 'sm:text-xs',
-        { 'sm:py-2': state.vertical },
-        state.isDisplayOnly || state.isGroupDisplayOnly
-          ? state.isChecked
-            ? `cursor-default after:content-[';'] after:inline-block last:after:content-['']`
-            : 'hidden'
-          : '',
-        state.showLabel ? 'inline-flex' : '',
         customClass
       )
     "
@@ -21,58 +14,61 @@
   >
     <span
       :class="[
-        'relative',
+        'relative w-11 h-11 sm:p-0',
         state.size === 'medium' ? 'sm:w-6 sm:h-6' : 'sm:h-4 sm:w-4',
         state.isDisplayOnly || state.isGroupDisplayOnly ? 'hidden' : ''
       ]"
       :role="indeterminate ? 'checkbox' : false"
       :aria-checked="indeterminate ? 'mixed' : false"
     >
-      <span class="inline-flex p-3 sm:p-0" tabindex="1">
+      <span tabindex="1">
         <icon-check
-          v-if="!state.isChecked && !indeterminate"
           data-tag="icon-check"
-          :custom-class="['w-5 h-5 flex-1', state.size === 'medium' ? 'sm:w-6 sm:h-6' : 'sm:w-4 sm:h-4']"
-          :class="[
-            state.isDisabled
-              ? '[&_path:nth-of-type(2)]:fill-color-icon-disabled [&_path:nth-of-type(1)]:fill-color-bg-3 cursor-not-allowed'
-              : '[&_path:nth-of-type(1)]:fill-color-icon-inverse [&_path:nth-of-type(2)]:fill-color-none-hover'
-          ]"
+          :class="
+            m(
+              'w-5 h-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0',
+              state.size === 'medium' ? 'sm:w-6 sm:h-6' : 'sm:w-4 sm:h-4',
+              state.isDisabled
+                ? '[&_path:nth-of-type(2)]:fill-color-icon-disabled [&_path:nth-of-type(1)]:fill-color-bg-3 cursor-not-allowed'
+                : '[&_path:nth-of-type(1)]:fill-color-icon-inverse [&_path:nth-of-type(2)]:fill-color-none-hover'
+            )
+          "
         />
         <icon-halfselect
-          v-else-if="indeterminate"
           data-tag="icon-halfselect"
-          :custom-class="
+          :class="
             m(
-              'w-5 h-5 flex-1 [&_path:nth-of-type(2)]:fill-color-icon-inverse',
+              'w-5 h-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all [&_path:nth-of-type(2)]:fill-color-icon-inverse',
+              indeterminate ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-0 z-0',
               state.isDisabled
                 ? '[&_path:nth-of-type(1)]:fill-color-brand-disabled cursor-not-allowed'
-                : '[&_path:nth-of-type(1)]:fill-color-brand',
+                : '[&_path:nth-of-type(1)]:fill-color-brand [&_path:nth-of-type(1)]:shadow-xsm',
               state.size === 'medium' ? 'sm:w-6 sm:h-6' : 'sm:w-4 sm:h-4'
             )
           "
         />
         <icon-checked-sur
-          v-else-if="state.isChecked"
           data-tag="icon-checked-sur"
-          :custom-class="['w-5 h-5', state.size === 'medium' ? 'sm:w-6 sm:h-6' : 'sm:w-4 sm:h-4']"
           :class="
             m(
-              'flex-1 [&_path:nth-of-type(2)]:fill-color-icon-inverse',
+              'w-5 h-5',
+              state.size === 'medium' ? 'sm:w-6 sm:h-6' : 'sm:w-4 sm:h-4',
+              'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all [&_path:nth-of-type(2)]:fill-color-icon-inverse',
+              state.isChecked && !indeterminate ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-0 z-0',
               state.isDisabled
                 ? '[&_path:nth-of-type(1)]:fill-color-brand-disabled cursor-not-allowed'
-                : '[&_path:nth-of-type(1)]:fill-color-brand'
+                : '[&_path:nth-of-type(1)]:fill-color-brand [&_path:nth-of-type(2)]:shadow-xsm'
             )
           "
         />
       </span>
       <input
         v-if="trueLabel || falseLabel"
-        class="absolute left-0 right-0 top-0 bottom-0 w-0 h-0 -z-10 opacity-0"
+        class="absolute inset-0 w-0 h-0 -z-10 opacity-0"
         type="checkbox"
         :aria-hidden="indeterminate ? 'true' : 'false'"
         :name="name"
-        :disabled="state.inputDisabled"
+        :disabled="state.isDisabled"
         :true-value="trueLabel"
         :false-value="falseLabel"
         v-model="state.model"
@@ -83,10 +79,10 @@
       />
       <input
         v-else
-        class="absolute left-0 right-0 top-0 bottom-0 w-0 h-0 -z-10 opacity-0"
+        class="absolute inset-0 w-0 h-0 -z-10 opacity-0"
         type="checkbox"
         :aria-hidden="indeterminate ? 'true' : 'false'"
-        :disabled="state.inputDisabled"
+        :disabled="state.isDisabled"
         :value="label"
         :name="name"
         v-model="state.model"
@@ -97,21 +93,12 @@
       />
     </span>
     <span
-      v-if="(slots.default && slots.default()) || state.isShowText"
       ref="label"
-      :class="
-        m(
-          'py-3 sm:py-0 pl-0 sm:pl-2 mr-5 flex-auto',
-          state.isDisabled ? 'cursor-not-allowed text-color-text-disabled' : 'text-color-text-primary',
-          state.isDisplayOnly || state.isGroupDisplayOnly ? 'p-0 sm:p-0 m-0 text-color-text-primary cursor-default' : ''
-        )
-      "
+      class="py-3 sm:py-0 pl-0 sm:pl-2 text-color-text-primary mr-5 flex-auto"
+      v-if="(slots.default && slots.default()) || text || label"
     >
-      <slot>{{ state.showText }}</slot>
+      <slot>{{ text || label }}</slot>
     </span>
-    <template v-else>
-      <span v-if="state.isDisplayOnly" class="text-color-text-primary cursor-default"> {{ state.displayLabel }}</span>
-    </template>
   </label>
 </template>
 

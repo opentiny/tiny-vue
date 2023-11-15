@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义节点能否被拖拽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/allow-drop')
+  await page.goto('tree#allow-drop')
 
   const tree = page.locator('#preview .tiny-tree')
   const draggedDom = tree.getByText('二级 3-2')

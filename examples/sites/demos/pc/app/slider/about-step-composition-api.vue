@@ -2,7 +2,7 @@
   <tiny-slider v-model="value" :step="10"></tiny-slider>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Slider as TinySlider } from '@opentiny/vue'
 

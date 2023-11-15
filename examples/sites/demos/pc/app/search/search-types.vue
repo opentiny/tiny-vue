@@ -1,5 +1,7 @@
 <template>
-  <tiny-search :search-types="searchTypes"></tiny-search>
+  <div style="height: 130px">
+    <tiny-search :search-types="searchTypes" :type-value="typeValue"></tiny-search>
+  </div>
 </template>
 
 <script lang="jsx">
@@ -24,8 +26,12 @@ export default {
           text: '找谁',
           value: 3
         }
-      ]
+      ],
+      typeValue: null
     }
+  },
+  created() {
+    this.typeValue = this.searchTypes[2]
   }
 }
 </script>

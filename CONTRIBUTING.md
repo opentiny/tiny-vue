@@ -38,6 +38,25 @@ The following information is required for the Issue of the new feature:
 
 Before submitting pull request, please make sure that your submission is in line with the overall plan of TinyVue. Generally, issues that marked as [bug](https://github.com/opentiny/tiny-vue/labels/bug) are encouraged to submit pull requests. If you are not sure, you can create a [Discussion](https://github.com/opentiny/tiny-vue/discussions) for discussion.
 
+### Pull Request specification
+
+- The commit message should be in the form of a `type(scope): description of the message`, e.g. `fix(vue-renderless): [scrollbar, action-menu] fix xxx bug`.
+
+  1. type: must be one of build, chore, ci, docs, feat, fix, perf, refactor, revert, release, style, test, improvement.
+
+  2. scope.
+  - Package names in the `packages` directory, e.g. `vue-design-aurora, vue-design-saas, react ......`
+  - Component name under the package name in the `packages` directory, e.g., `vue-design-aurora/alert, vue-design-saas/alert, react/alert ......`
+  - The name of the folder to use: e.g.: `gulp, internals/playwright-config, sites`
+  - The name of the component (lowercase, center dot): e.g.: `action-menu, alert ......`
+
+  3. Run e2e tests: Using `[componentName1, componentName2]` in the commit message will execute the test case for componentName1, componentName2, which needs to be declared when changing code that affects the component.
+
+  4. Example.
+  - Supplemental documentation for the alert component: `docs(alert): [alert] xxxxxxxxxxxxxxxxxxx`, `docs(site): [alert] xxxxxxxxxxxxxxx`
+  - Add test case for the alert component: `test(alert): [alert] xxxxxxxxxxxxxxxxxx`.
+  - Fix a bug in the alter component @opentiny/vue-renderless: `fix(vue-renderless/alert): [alert] xxxxxxxxxxxxxxxx`
+
 Local startup steps:
 
 - Click the Fork button in the upper right corner of the [TinyVue](https://github.com/opentiny/tiny-vue) code repository to Fork the upstream repository to the personal repository.
@@ -85,7 +104,7 @@ The contribution process is over, thank you for your contribution!
 If you are interested in our open source project, you are welcome to join our open source community in the following ways.
 
 - Add official assistant WeChat: opentiny-official to join our technical exchange group.
-- Add to the mailing list: opentiny@googlegroups.com
+- Add to the mailing list: <opentiny@googlegroups.com>
 
 If you have submitted Issue or PR to OpenTiny, you can comment on Issue or Pull Request, asking @all-contributors to add a contributor:
 

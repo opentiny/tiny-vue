@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('选择器打开时默认时间设置', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/time-picker/default-value')
+  await page.goto('time-picker#default-value')
 
   const preview = page.locator('#preview')
   const timePicker = preview.locator('.tiny-date-editor > input')

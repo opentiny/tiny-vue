@@ -38,6 +38,25 @@
 
 提交 PR 之前，请先确保你提交的内容是符合 TinyVue 整体规划的，一般已经标记为 [bug](https://github.com/opentiny/tiny-vue/labels/bug) 的 Issue 是鼓励提交 PR 的，如果你不是很确定，可以创建一个 [Discussion](https://github.com/opentiny/tiny-vue/discussions) 进行讨论。
 
+### Pull Request 规范
+
+- commit 信息要以 `type(scope): 描述信息` 的形式填写，例如 `fix(vue-renderless): [scrollbar, action-menu] fix xxx bug`。
+
+  1. type: 必须是 build, chore, ci, docs, feat, fix, perf, refactor, revert, release, style, test, improvement 其中的一个。
+
+  2. scope:
+  - `packages`目录下的包名，比如：`vue-design-aurora, vue-design-saas, react ......`
+  - `packages`目录下的包名下的组件名，比如：`vue-design-aurora/alert, vue-design-saas/alert, react/alert ......`
+  - 用文件夹的名称: 比如: `gulp, internals/playwright-config, sites`
+  - 组件的名称(小写，中划线): 比如: `action-menu, alert ......`
+
+  3. 运行e2e测试: 在提交信息里使用 `[componentName1, componentName2]`，将会执行componentName1，componentName2的测试用例，当改动的代码会影响组件时，需要声明这个结构。
+
+  4. 示例:
+  - 补充alert组件文档： `docs(alert): [alert] xxxxxxxxxxxxxxx`, `docs(site): [alert] xxxxxxxxxxxxxxx`
+  - 补充alet组件测试用例: `test(alert): [alert] xxxxxxxxxxxxxx`
+  - 修复alet组件@opentiny/vue-renderless下的缺陷: `fix(vue-renderless/alert): [alert] xxxxxxxxxxxxxx`
+
 本地启动步骤：
 
 - 点击 [TinyVue](https://github.com/opentiny/tiny-vue) 代码仓库右上角的 Fork 按钮，将上游仓库 Fork 到个人仓库
@@ -85,7 +104,7 @@ pnpm dev:vue2
 如果你对我们的开源项目感兴趣，欢迎通过以下方式加入我们的开源社区。
 
 - 添加官方小助手微信：opentiny-official，加入我们的技术交流群
-- 加入邮件列表：opentiny@googlegroups.com
+- 加入邮件列表：<opentiny@googlegroups.com>
 
 如果你给 OpenTiny 提交过 Issue 或 PR，请通过以下方式添加自己到贡献者列表里。
 

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { Button } from '@opentiny/vue'
+import { Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -16,16 +16,16 @@ export default {
   },
   methods: {
     baseClick() {
-      this.$message({ message: '基本提示图标', status: 'info', showClose: true })
+      Modal.message({ message: '基本提示图标', status: 'info', showClose: true })
     },
     successClick() {
-      this.$message({ message: '成功提示图标', status: 'success' })
+      Modal.message({ message: '成功提示图标', status: 'success' })
     },
     warningClick() {
-      this.$message({ message: '警告提示图标', status: 'warning' })
+      Modal.message({ message: '警告提示图标', status: 'warning' })
     },
     errorClick() {
-      this.$message({ message: '错误提示图标', status: 'error' })
+      Modal.message({ message: '错误提示图标', status: 'error' })
     }
   }
 }

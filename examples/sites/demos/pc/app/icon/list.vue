@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="search">
-      <div>搜索图标：</div>
       <tiny-input class="search-input" v-model="searchName" clearable autofocus size="small"></tiny-input>
     </div>
     <div class="svgs-wrapper">
@@ -64,6 +63,11 @@ export default {
   flex-wrap: wrap;
 }
 
+.icon-container {
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+}
+
 .search {
   display: flex;
   flex-direction: row;
@@ -86,9 +90,8 @@ export default {
 .svgs-icon {
   cursor: pointer;
   transition: all 0.4s;
-  width: 2em;
   fill: #000;
-  height: 2em;
+  font-size: 24px;
 }
 
 .svgs-icon:hover {
@@ -96,17 +99,20 @@ export default {
 }
 
 .svgs-item {
-  width: 200px;
+  width: 20%;
   text-align: center;
   display: inline-block;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  padding: 24px;
+}
+
+.svgs-item:hover {
+  background-color: #f6f8fa;
 }
 
 .svgs-text {
-  padding-top: 8px;
+  margin-top: 12px;
   display: block;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
 }
 </style>

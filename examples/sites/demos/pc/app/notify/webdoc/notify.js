@@ -50,7 +50,7 @@ export default {
     },
     {
       'demoId': 'message',
-      'name': { 'zh-CN': '自定义内容', 'en-US': 'Custom Content' },
+      'name': { 'zh-CN': '内容自定义', 'en-US': 'Custom Content' },
       'desc': {
         'zh-CN': '<p>可通过 <code>message</code>  属性设置通知框的内容。</p>\n',
         'en-US': '<p>You can set the content of the notification box through the <code>message</code> attribute. </p>\n'
@@ -99,7 +99,7 @@ export default {
     },
     {
       'demoId': 'beforeClose',
-      'name': { 'zh-CN': '关闭通知框前触发的事件', 'en-US': 'Event triggered before the notification box is closed' },
+      'name': { 'zh-CN': '关闭前的事件', 'en-US': 'Event before closing' },
       'desc': {
         'zh-CN': '<p>可通过 <code>beforeClose</code>  属性设置通知框关闭前的事件。</p>\n',
         'en-US':
@@ -110,8 +110,8 @@ export default {
     {
       'demoId': 'close',
       'name': {
-        'zh-CN': '点击关闭按钮时触发事件',
-        'en-US': 'This event is triggered when the close button is clicked.'
+        'zh-CN': '关闭事件',
+        'en-US': 'Event of closing'
       },
       'desc': {
         'zh-CN': '<p>可通过 <code>onClose</code>  属性设置通知点击关闭按钮时触发事件。</p>\n',
@@ -122,7 +122,7 @@ export default {
     },
     {
       'demoId': 'debounceDelay',
-      'name': { 'zh-CN': '配置防抖', 'en-US': 'Configure image stabilization' },
+      'name': { 'zh-CN': '防抖', 'en-US': 'Anti-shake' },
       'desc': {
         'zh-CN': '<p>可通过 <code>debounceDelay</code> 设置防抖时间\n',
         'en-US': '<p>You can use <code>debounceDelay</code> to set the image stabilization time.\n'
@@ -131,7 +131,7 @@ export default {
     },
     {
       'demoId': 'verticalOffset',
-      'name': { 'zh-CN': '垂直方向偏离距离', 'en-US': '' },
+      'name': { 'zh-CN': '垂直偏移量', 'en-US': 'Vertical Offset' },
       'desc': { 'zh-CN': '<p>可通过 <code>verticalOffset</code> 设置垂直方向偏离距离\n', 'en-US': '' },
       'codeFiles': ['verticalOffset.vue']
     }
@@ -143,18 +143,19 @@ export default {
       'properties': [
         {
           'name': 'type',
-          'type': 'string',
+          'type': '"info" | "success" | "warning" | "error"',
           'defaultValue': 'info',
           'desc': {
-            'zh-CN': '通知消息类型，可选值为 info、success、warning、error',
-            'en-US': 'Notification message type. The options are info, success, warning, and error.'
+            'zh-CN': '通知消息类型',
+            'en-US': 'Notification message type'
           },
           'demoId': 'type'
         },
         {
           'name': 'title',
-          'type': '[string, Function]',
-          'defaultValue': 'undefined',
+          'typeAnchorName': 'INotifyTitle',
+          'type': 'INotifyTitle',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '通知消息标题，可用 jsx 定制',
             'en-US': 'Notification message title, which can be customized by JSX.'
@@ -163,8 +164,9 @@ export default {
         },
         {
           'name': 'message',
-          'type': '[string, Function]',
-          'defaultValue': 'undefined',
+          'typeAnchorName': 'INotyfyMessage',
+          'type': 'INotyfyMessage',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '通知消息文本，可用 jsx 定制',
             'en-US': 'Notification message text, which can be customized using JSX.'
@@ -173,11 +175,11 @@ export default {
         },
         {
           'name': 'position',
-          'type': 'string',
+          'type': '"top-right" | "bottom-right"',
           'defaultValue': 'bottom-right',
           'desc': {
-            'zh-CN': '通知显示位置，可选值为 top-right、bottom-right',
-            'en-US': 'Notification display position. The value can be top-right or bottom-right.'
+            'zh-CN': '通知显示位置',
+            'en-US': 'Notification display position.'
           },
           'demoId': 'position'
         },
@@ -190,8 +192,8 @@ export default {
         },
         {
           'name': 'customClass',
-          'type': '[string, object]',
-          'defaultValue': 'undefined',
+          'type': 'string',
+          'defaultValue': '',
           'desc': { 'zh-CN': '自定义样式类', 'en-US': 'Custom style class' },
           'demoId': 'basic-usage'
         },
@@ -211,14 +213,14 @@ export default {
         },
         {
           'name': 'closeIcon',
-          'type': 'object',
+          'type': 'Component',
           'defaultValue': 'IconClose',
           'desc': { 'zh-CN': '关闭图标组件对象', 'en-US': 'Close icon component object' },
           'demoId': 'closeIcon'
         },
         {
           'name': 'statusIcon',
-          'type': 'object',
+          'type': 'Component',
           'defaultValue': 'IconInfoSolid',
           'desc': { 'zh-CN': '类型图标组件对象', 'en-US': 'Type icon component object' },
           'demoId': 'statusIcon'
@@ -232,8 +234,8 @@ export default {
         },
         {
           'name': 'verticalOffset',
-          'type': '[number,string]',
-          'defaultValue': 16,
+          'type': 'number | string',
+          'defaultValue': '16',
           'desc': { 'zh-CN': '设置垂直方向偏离距离,单位px', 'en-US': '' },
           'demoId': 'verticalOffset'
         }
@@ -241,8 +243,8 @@ export default {
       'events': [
         {
           'name': 'beforeClose',
-          'type': 'Function',
-          'defaultValue': 'undefined',
+          'type': '() => void',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '关闭前回调方法，返回 false 可阻止关闭',
             'en-US': 'Callback method before closing. If false is returned, closing is prevented.'
@@ -250,9 +252,9 @@ export default {
           'demoId': 'beforeClose'
         },
         {
-          'name': 'close',
-          'type': 'object',
-          'defaultValue': 'undefined',
+          'name': 'onClose',
+          'type': '() => void',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '关闭 notify 时触发的事件',
             'en-US': 'Event triggered when the notify function is disabled'
@@ -261,6 +263,18 @@ export default {
         }
       ],
       'slots': []
+    }
+  ],
+  types: [
+    {
+      name: 'INotifyTitle',
+      type: 'type',
+      code: `type INotifyTitle = string | (h: Vue.h, params: { titleClass: string, vm }) => JSX.Element`
+    },
+    {
+      name: 'INotyfyMessage',
+      type: 'type',
+      code: `type INotyfyMessage = string | (h: Vue.h, params: { messageClass: string, vm }) => JSX.Element`
     }
   ]
 }

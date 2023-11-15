@@ -3,7 +3,7 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'tiny-first-menu-scroll-paging',
+      'demoId': 'large-data-scroll-paging',
       'name': { 'zh-CN': '滚动分页', 'en-US': 'Scroll Pagination' },
       'desc': {
         'zh-CN':
@@ -11,10 +11,10 @@ export default {
         'en-US':
           '<p>Scrolling pagination configuration procedure:\n1. Set the table attribute <code>fetch-data</code> to enable the service request. \n2. Set <code>scroll-load</code> to enable scrolling. </p>\n'
       },
-      'codeFiles': ['tiny-first-menu/scroll-paging.vue']
+      'codeFiles': ['large-data/scroll-paging.vue']
     },
     {
-      'demoId': 'tiny-first-menu-virtual-rolling',
+      'demoId': 'large-data-virtual-rolling',
       'name': { 'zh-CN': '虚拟滚动', 'en-US': 'Virtual Scrolling' },
       'desc': {
         'zh-CN':
@@ -22,10 +22,10 @@ export default {
         'en-US':
           '<p>Virtual scrolling configuration procedure:\n1. Set <code>height</code> to a fixed height for table attributes. \n2. Set <code>optimization</code> to enable virtual scrolling. </p>\n<div class="tip custom-block"><p class="custom-block-title">optimization(object) configuration description: </p>\n<p>| delayHover(number) | (ms) after which the hover event can be triggered when a table is dragged or scrolled. The default value is 250 ms. |\n| scrollX(object) | Horizontal X virtual scrolling configuration (for manual optimization in special scenarios) Example: {gt: 100} |\n| scrollY(object) | Vertical Y Virtual Scrolling Configuration (for manual optimization in special scenarios) For example, {gt: 500} |</p>\n</div>\n<div class="tip custom-block"><p class="custom-block-title"> Precautions for enabling virtual scrolling</p>\n<p>1. Before enabling virtual scrolling, ensure that the width of each column is the same. You can configure the uniform width by setting the <code>column-width</code> attribute on the <code>&lt;tiny-grid&gt;</code> tag. \n2. Enabling virtual scrolling will disable the column width adjustment function. Column dragging will change the column width. As a result, the number of columns in virtual scrolling rendering is incorrectly calculated and the table style is disordered. Therefore, column dragging is prohibited. </p>\n</div>\n'
       },
-      'codeFiles': ['tiny-first-menu/virtual-rolling.vue']
+      'codeFiles': ['large-data/virtual-rolling.vue']
     },
     {
-      'demoId': 'tiny-first-menu-grid-large-tree-data',
+      'demoId': 'large-data-grid-large-tree-data',
       'name': { 'zh-CN': '树表虚拟滚动', 'en-US': 'Virtual scrolling of the tree table' },
       'desc': {
         'zh-CN':
@@ -33,10 +33,10 @@ export default {
         'en-US':
           '<p><table class="table"><thead><tr><th> Name</th><th>Type</th><th>Description</th>Default Value </th></tr></thead> <tbody><tr><td>optimization.scrollX.gt</td> <td>number</td> <td> Specifies the number of columns to be automatically started when the number of columns is greater than X Virtual scrolling </td> <td>100</td></tr> <tr><td>optimization.scrollX.rSize</td> <td>number</td> <td> number of columns to be rendered each time </td> <td></td></tr> <tr><td>optimization.scrollX.vSize</td> <td>number</td> <td> number of columns in the visible area </td> <td></td></tr> <tr><td>optimization.scrollX.adaptive</td> <td>boolean</td> <td> Automatically adapts to the optimal rendering mode (If this parameter is set to false, the column array is intercepted only once after the scrolling is complete, which improves the performance in big data scenarios. However, the white screen will be displayed for a short time and will be restored after the rendering is complete.) </td> <td>true</td></tr> <tr><td>optimization.scrollY.gt</td> <td>number</td> <td> specifies the number of lines. Y: The virtual scrolling function is automatically enabled. </td> <td>500</td></tr> <tr><td>optimization.scrollY.rSize</td> <td>number</td> <td>: number of lines to be rendered each time. </td> <td></td></tr> <tr><td>optimization.scrollY.adaptive</td> <td>boolean</td> <td>: automatically adapts to the optimal rendering mode. (If this parameter is set to false, the row array is captured only once after the scrolling is complete, which improves the performance in big data scenarios. However, white screen will be displayed for a short time and will be restored after the rendering is complete.) </td> <td>true</td></tr></tbody></table></p>\n</div>\n'
       },
-      'codeFiles': ['tiny-first-menu/grid-large-tree-data.vue']
+      'codeFiles': ['large-data/grid-large-tree-data.vue']
     },
     {
-      'demoId': 'tiny-first-menu-full-data-loading',
+      'demoId': 'large-data-full-data-loading',
       'name': { 'zh-CN': '全量加载', 'en-US': 'Full Load' },
       'desc': {
         'zh-CN':
@@ -44,7 +44,7 @@ export default {
         'en-US':
           '<p>Performance problems may occur when there is too much data in a table. You can use <code>$refs</code> to obtain table objects and set the <code>loadData</code> method of the table objects to enable full loading to optimize performance. </p>\n'
       },
-      'codeFiles': ['tiny-first-menu/full-data-loading.vue']
+      'codeFiles': ['large-data/full-data-loading.vue']
     },
     {
       'demoId': 'large-data-load-column',
@@ -62,9 +62,9 @@ export default {
       'name': { 'zh-CN': '滚动到指定位置', 'en-US': 'Scroll to the specified position' },
       'desc': {
         'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">方法说明</p>\n<p><code>scrollTo(scrollLeft, scrollTop)</code>：滚动到对应的位置\n<code>scrollToRow(row)</code>：滚动到对应的行\n<code>scrollToColumn(column)</code>：手滚动到对应的列</p>\n</div>\n',
+          '<div class="tip custom-block"><p class="custom-block-title">方法说明</p>\n<p> <code>scrollTo(scrollLeft, scrollTop)</code>：滚动到对应的位置\n<code>scrollToRow(row)</code>：滚动到对应的行\n<code>scrollToColumn(column)</code>：手滚动到对应的列</p>\n</div>\n',
         'en-US':
-          '<div class="tip custom-block"><p class="custom-block-title"> Method Description </p>\n<p><code>scrollTo(scrollLeft, scrollTop)</code>: Scroll to the corresponding position \n<code>scrollToRow(row)</code>: Scroll to the corresponding row \n<code>scrollToColumn(column)</code>: Scroll to the corresponding column </p>\n</div>\n'
+          '<div class="tip custom-block"><p class="custom-block-title"> Method Description </p>\n<p> <code>scrollTo(scrollLeft, scrollTop)</code>: Scroll to the corresponding position \n<code>scrollToRow(row)</code>: Scroll to the corresponding row \n<code>scrollToColumn(column)</code>: Scroll to the corresponding column </p>\n</div>\n'
       },
       'codeFiles': ['large-data/scroll-to.vue']
     }

@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('以下2个测试将覆盖2个demo: 自定义折叠展开图标、菜单内容超长时省略显示', () => {
   test('自定义折叠展开图标', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/link-menu/custom-icon')
+    await page.goto('link-menu#custom-icon')
     const preview = page.locator('#preview')
     // 点击图标弹出对话框
     await preview.getByRole('button').click()
@@ -17,7 +17,7 @@ test.describe('以下2个测试将覆盖2个demo: 自定义折叠展开图标、
 
   test('菜单内容超长时省略显示', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/link-menu/custom-icon1')
+    await page.goto('link-menu#custom-icon1')
     const preview = page.locator('#preview')
     // 点击图标弹出对话框
     await preview.getByRole('button').click()

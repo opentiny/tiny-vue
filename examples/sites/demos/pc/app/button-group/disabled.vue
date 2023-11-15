@@ -2,15 +2,15 @@
   <div>
     <tiny-button-group :data="groupData" disabled v-model="value"></tiny-button-group>
   </div>
-  <div style="margin-top: 8px">
+  <div class="mt-12">
     <tiny-button-group :data="groupData" :border="false" v-model="value" disabled></tiny-button-group>
   </div>
-  <div style="margin-top: 8px">
+  <div class="mt-12">
     <tiny-button-group :data="disabledGroup" v-model="value"></tiny-button-group>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { ButtonGroup } from '@opentiny/vue'
 
 export default {
@@ -34,3 +34,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.mt-12 {
+  margin-top: 12px;
+}
+</style>

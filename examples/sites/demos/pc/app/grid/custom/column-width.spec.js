@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('个性化列拖拽测试', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-customized/custom-column-simple')
+  await page.goto('grid-customized#custom-column-simple')
   const draggerDom = page.getByRole('cell', { name: '名称' }).locator('.tiny-grid-resizable')
   const thDom = page.getByRole('cell', { name: '名称' })
   // 获取初始列宽

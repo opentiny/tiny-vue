@@ -1,8 +1,8 @@
 <template>
-  <tiny-numeric v-model="value" @blur="Eblur"></tiny-numeric>
+  <tiny-numeric v-model="value" @blur="onBlur"></tiny-numeric>
 </template>
 
-<script lang="jsx">
+<script lang="ts">
 import { Numeric, Modal } from '@opentiny/vue'
 
 export default {
@@ -15,8 +15,8 @@ export default {
     }
   },
   methods: {
-    Eblur() {
-      Modal.message({ message: 'blur 事件', status: 'info' })
+    onBlur(event: FocusEvent) {
+      Modal.message({ message: `${event.type} 事件`, status: 'info' })
     }
   }
 }

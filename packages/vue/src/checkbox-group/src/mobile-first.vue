@@ -1,5 +1,10 @@
 <template>
-  <div :class="['inline-flex flex-col', { 'sm:flex-row': !vertical }]" role="group" aria-label="checkbox-group">
+  <div
+    data-tag="tiny-checkbox-group"
+    :class="['inline-flex flex-col', { 'sm:flex-row': !vertical }]"
+    role="group"
+    aria-label="checkbox-group"
+  >
     <slot>
       <template v-if="type === 'checkbox'">
         <checkbox v-for="(item, index) in options" :key="index" v-bind="item"></checkbox>
@@ -13,11 +18,9 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/checkbox-group/vue'
-import { props, setup } from '@opentiny/vue-common'
+import { props, setup, defineComponent } from '@opentiny/vue-common'
 import Checkbox from '@opentiny/vue-checkbox'
 import CheckboxButton from '@opentiny/vue-checkbox-button'
-
-import { defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
   components: {
@@ -25,7 +28,20 @@ export default defineComponent({
     CheckboxButton
   },
   inheritAttrs: false,
-  props: [...props, 'modelValue', 'type', 'options', 'disabled', 'min', 'max', 'size', 'fill', 'textColor', 'vertical'],
+  props: [
+    ...props,
+    'modelValue',
+    'type',
+    'options',
+    'disabled',
+    'min',
+    'max',
+    'size',
+    'fill',
+    'textColor',
+    'vertical',
+    'displayOnly'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

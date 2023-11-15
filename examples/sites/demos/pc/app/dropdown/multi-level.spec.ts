@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('多级菜单', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/dropdown/multi-level')
+  await page.goto('dropdown#multi-level')
 
   const preview = page.locator('#preview')
   const dropDown = preview.locator('.tiny-dropdown')

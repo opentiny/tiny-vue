@@ -1,14 +1,14 @@
 import { test, expect } from '@playwright/test'
 
 test('default', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/input-box-type')
+  await page.goto('select#input-box-type')
   const select = page.locator('#preview .tiny-select').first()
 
   await expect(select).toHaveClass(/tiny-select__underline/)
 })
 
 test('disable', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/input-box-type')
+  await page.goto('select#input-box-type')
   const select = page.locator('#preview .tiny-select').nth(1)
   const input = select.locator('.tiny-input__inner')
 
@@ -18,7 +18,7 @@ test('disable', async ({ page }) => {
 })
 
 test('multiple', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/input-box-type')
+  await page.goto('select#input-box-type')
   const select = page.locator('#preview .tiny-select').nth(2)
 
   await expect(select).toHaveClass(/tiny-select__underline/)

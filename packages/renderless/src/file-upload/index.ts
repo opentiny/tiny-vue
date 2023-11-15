@@ -35,7 +35,6 @@ import { xss, log } from '../common/xss'
 import uploadAjax from '../common/deps/upload-ajax'
 import { isObject } from '../common/type'
 import { isEmptyObject } from '../common/type'
-import { Resolver } from 'dns/promises'
 
 let initTokenPromise = null
 
@@ -84,6 +83,7 @@ export const initService = ({
     getFileDownloadUrl: noopFnCreator(common.getFileDownloadUrl),
     getSingleDownloadUrl: noopFnCreator(common.getSingleDownloadUrl),
     getPackageDownloadUrl: noopFnCreator(common.getPackageDownloadUrl),
+    getAsyncPackageDownload: noopFnCreator(common.getAsyncPackageDownload),
     getLargeFileInitUrl: noopFnCreator(common.getLargeFileInitUrl),
     getChunkUploadUrl: noopFnCreator(common.getChunkUploadUrl),
     getPreviewUrl: noopFnCreator(common.getPreviewUrl),
@@ -274,7 +274,9 @@ export const beforeUpload =
       if (!isValid) {
         remove({ api, file, autoRemove })
         return Modal.message({
-          message: t(constants.EDM.notSupport, { format: fileType }),
+          message: fileType
+            ? t(constants.EDM.notSupport, { format: fileType })
+            : t(constants.EDM.NOT_SUPPORT_NO_SUFFIX),
           status: 'warning'
         })
       }
@@ -358,10 +360,11 @@ export const properFileSize =
   ({
     props,
     state,
+    api,
     constants,
     Modal,
     t
-  }: Pick<IFileUploadRenderlessParams, 'props' | 'state' | 'constants' | 't'> & IFileUploadModalVm) =>
+  }: Pick<IFileUploadRenderlessParams, 'props' | 'state' | 'constants' | 'api' | 't'> & IFileUploadModalVm) =>
   (file: IFileUploadFile): boolean => {
     if ([undefined, null].includes(file.size)) return true
 
@@ -376,7 +379,7 @@ export const properFileSize =
     if (state.isEdm || (!state.isEdm && Array.isArray(props.fileSize) && props.fileSize[1])) {
       if (file.size > maxSize * 1024 * 1024) {
         Modal.message({
-          message: t(constants.EDM.EXCEED, { maxSize }),
+          message: t(constants.EDM.EXCEED, { maxSize: api.formatFileSize(Number(maxSize), 'M') }),
           status: 'warning'
         })
 
@@ -397,7 +400,7 @@ export const properFileSize =
 
     if (file.size <= userMin * 1024) {
       Modal.message({
-        message: `${t(constants.EDM.SIZE).replace(/{name}/, file.name)} ${userMin} KB`,
+        message: `${t(constants.EDM.SIZE, { minSize: api.formatFileSize(Number(userMin), 'K'), sizeUnit: '' })}`,
         status: 'warning'
       })
 
@@ -718,8 +721,10 @@ export const handleSuccess =
     constants,
     emit,
     state,
-    props
-  }: Pick<IFileUploadRenderlessParams, 'api' | 'constants' | 'emit' | 'state' | 'props'>) =>
+    props,
+    Modal,
+    t
+  }: Pick<IFileUploadRenderlessParams, 'api' | 'constants' | 'emit' | 'state' | 't' | 'props'>) =>
   (res: any, rawFile: IFileUploadFile) => {
     const currentUploadFiles = state.uploadFiles.filter((file) => state.currentUploadingFileUids.includes(file.uid))
     if (Array.isArray(rawFile)) {
@@ -738,9 +743,18 @@ export const handleSuccess =
     } else {
       const file = api.getFile(rawFile)
 
+      const status = res.data && res.data.status
+      const { STATUS_SPECIAL_CHARACTERS, NOT_SUPPORT_SPECIAL_CHARACTERS } = constants.EDM
+
       delete file.cancelToken
 
-      if (props.edm.upload && file && res.data && res.data.status !== 200) {
+      if (props.edm.upload && file && res.data && status !== 200) {
+        if (status === STATUS_SPECIAL_CHARACTERS) {
+          Modal.message({
+            message: `${t(NOT_SUPPORT_SPECIAL_CHARACTERS)}`,
+            status: 'warning'
+          })
+        }
         file.status = constants.FILE_STATUS.FAIL
         emit('error', res, file, state.uploadFiles)
         return
@@ -779,7 +793,13 @@ export const handleSuccess =
   }
 
 export const handleError =
-  ({ api, constants, emit, state }: Pick<IFileUploadRenderlessParams, 'api' | 'constants' | 'emit' | 'state'>) =>
+  ({
+    api,
+    constants,
+    emit,
+    state,
+    props
+  }: Pick<IFileUploadRenderlessParams, 'api' | 'constants' | 'emit' | 'state' | 'props'>) =>
   (err: any, rawFile: IFileUploadFile) => {
     const file = api.getFile(rawFile)
     if (!file) return
@@ -787,7 +807,7 @@ export const handleError =
     file.status = constants.FILE_STATUS.FAIL
     file.percentage = 100
 
-    if (!state.isEdm) {
+    if (!state.isEdm && !props.reUploadable) {
       state.uploadFiles.splice(state.uploadFiles.indexOf(file), 1)
     }
 
@@ -810,7 +830,7 @@ export const handleRemove =
     }
 
     let doRemove = () => {
-      file.status = constants.FILE_STATUS.FAIL
+      // 删除动作不用改变文件状态为fail; 这样删除需要删两次。因为只有第二次时，indexOf才能在uploadFiles里面找到要删除的file。
       api.abort(file)
       let fileList = state.uploadFiles
 
@@ -835,6 +855,23 @@ export const handleRemove =
       }
     }
   }
+
+export const handleReUpload =
+  ({ vm, constants }: Pick<IFileUploadRenderlessParams, 'vm' | 'constants'>) =>
+  (file: IFileUploadFile) => {
+    const { READY } = constants.FILE_STATUS
+    file.status = READY
+    file.percentage = 0
+    vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].upload(file.raw)
+  }
+
+export const handleReUploadTotal = (api: IFileUploadRenderlessParams['api']) => (files: IFileUploadFile[]) => {
+  files.forEach((file) => {
+    if (file.status === 'fail') {
+      api.handleReUpload(file)
+    }
+  })
+}
 
 export const clearUploadingFiles =
   ({ constants, state }: Pick<IFileUploadRenderlessParams, 'constants' | 'state'>) =>
@@ -1001,8 +1038,14 @@ const getTranslateFile =
       }
     } else {
       const content = data.headers['content-disposition']
-      const name = content.match(/fileName.?=(.*)/)[1] || content.match(/fileName=(.*)/)[1]
-      const blob = new Blob([data.data], { type: type !== 'zip' ? 'application / x - xls' : 'application/zip' })
+      const name = content ? content.match(/fileName.?=(.*)/)[1] || content.match(/fileName=(.*)/)[1] : ''
+      const type =
+        name.indexOf('.') === -1
+          ? data.headers['content-type']
+          : type !== 'zip'
+          ? 'application / x - xls'
+          : 'application/zip'
+      const blob = new Blob([data.data], { type })
       aLinkDownload({ blob, name })
     }
   }
@@ -1196,15 +1239,33 @@ export const downloadFileSingle =
     emit
   }: Pick<IFileUploadRenderlessParams, 'service' | 'constants' | 'props' | 'state' | 'api' | 'emit'>) =>
   (args: IFileUploadDownloadFileSingle) => {
-    let { file, batchIndex, isChunk, calcProgress, handleSuccess, range = {}, isBatch, isLessThan17G } = args
-    let getServiceUrl = ({ url, file }) =>
-      url.replace(/{docId}/, file.docId || file) +
-      `${~url.indexOf('?') ? '&' : '?'}x-download-sign=true&docVersion=${file.docVersion || ''}`
-    let sdResolver = (url) => {
-      let serviceUrl = getServiceUrl({ url, file })
+    let {
+      file,
+      batchIndex,
+      isChunk,
+      calcProgress,
+      handleSuccess,
+      range = {},
+      isBatch,
+      isLessThan17G,
+      url: fileUrl
+    } = args
 
-      serviceUrl = api.modifyServiceUrlSingle({ file, serviceUrl, range })
-      serviceUrl = xss.filterUrl(serviceUrl)
+    const promise = fileUrl
+      ? Promise.resolve(fileUrl)
+      : service.getSingleDownloadUrl().then((url) => {
+          let serviceUrl =
+            url.replace(/{docId}/, file.docId || file) +
+            `${~url.indexOf('?') ? '&' : '?'}x-download-sign=true&docVersion=${file.docVersion || ''}${
+              file.decryptKey ? '&decryptKey=' + file.decryptKey : ''
+            }`
+
+          serviceUrl = api.modifyServiceUrlSingle({ file, serviceUrl, range })
+          return serviceUrl
+        })
+
+    promise.then((url) => {
+      url = xss.filterUrl(url)
 
       let params = {
         withCredentials: props.withCredentials,
@@ -1213,7 +1274,7 @@ export const downloadFileSingle =
         hideErr: true,
         cancelToken: api.createDownloadCancelToken(file),
         onDownloadProgress(evt) {
-          let progress = calcProgress(evt)
+          let progress = calcProgress(evt, isChunk)
           if (progress !== 100) {
             !isChunk && emit('download', progress, evt)
           }
@@ -1225,7 +1286,7 @@ export const downloadFileSingle =
       }
 
       service
-        .get(serviceUrl, params)
+        .get(url, params)
         .then((data) => {
           if (api.getKiaScanTip({ data })) return
           if (api.validateDownloadStatus({ downloadOps: props.edm.download || {}, file, isLessThan17G, data })) return
@@ -1246,15 +1307,13 @@ export const downloadFileSingle =
         .catch((data) => {
           if (data.response && state.errorStatusCodes.includes(data.response.status)) {
             const downloadOps = props.edm.download || {}
-            const tokenParams = { token: downloadOps.token, file, type: 'download' }
+            const tokenParams = { token: downloadOps.token, file: file, type: 'download' }
             api.getToken(tokenParams).then((data) => {
               api.afterDownload({ batchIndex, data, file, range, isChunk, isBatch, isLessThan17G })
             })
           }
         })
-    }
-
-    service.getSingleDownloadUrl().then(sdResolver)
+    })
   }
 
 export const downloadFileBatch =
@@ -1268,6 +1327,7 @@ export const downloadFileBatch =
   (args: IFileUploadDownloadFileSingle) => {
     let { downloadOps, file, calcProgress, handleSuccess, range = {} } = args
     let tokenParams = { token: downloadOps.packageToken, file, type: 'download' }
+    const { asyncPackages } = downloadOps || {}
     api.getToken(tokenParams).then((data) => {
       if (!data) {
         return
@@ -1282,9 +1342,13 @@ export const downloadFileBatch =
         }
       })
 
+      if (asyncPackages) {
+        api.downloadAsyncPackage(params)
+        return
+      }
+
       service.getPackageDownloadUrl().then((url) => {
-        url += `${~url.indexOf('?') ? '&' : '?'}x-download-sign=true`
-        url = xss.filterUrl(url)
+        url = xss.filterUrl(url + `${~url.indexOf('?') ? '&' : '?'}x-download-sign=true`)
 
         service
           .post(
@@ -1313,6 +1377,61 @@ export const downloadFileBatch =
     })
   }
 
+export const downloadAsyncPackage =
+  ({ state, props, service, api, constants }) =>
+  (params) => {
+    return service.getAsyncPackageDownload().then((url) => {
+      service
+        .request({
+          method: 'post',
+          url: xss.filterUrl(url),
+          withCredentials: props.withCredentials,
+          headers: Object.assign(props.headers, state.headers),
+          data: params
+        })
+        .then((res) => {
+          if (res && res.data && res.data.status === 200) {
+            const files = (res.data.result || []).map(({ downloadLink, fileSize }) => {
+              return { url: downloadLink, fileSize }
+            })
+
+            const { SIZE_17G } = constants.EDM
+            const isBatch = false
+            const isChunk = false
+            const downloadOps = props.edm.download || {}
+
+            files.forEach((file) => {
+              const isLessThan17G = !file.fileSize || file.fileSize < SIZE_17G * 1024
+              const translateFile = getTranslateFile({ api, isChunk, isLessThan17G, file, state })
+              const handleSuccess = getHandleSuccess({
+                downloadOps,
+                file,
+                translateFile,
+                isChunk,
+                state,
+                isLessThan17G
+              })
+              const calcProgress = getCalcProgress()
+              const args = {
+                url: file.url,
+                calcProgress,
+                handleSuccess,
+                downloadOps,
+                file,
+                isLessThan17G,
+                isFinished: false,
+                range: {},
+                batchIndex: 0,
+                isBatch,
+                isChunk
+              }
+
+              api.downloadFileSingle(args)
+            })
+          }
+        })
+    })
+  }
 export const downloadFileSingleHwh5 =
   ({ state, props, emit, constants }: Pick<IFileUploadRenderlessParams, 'state' | 'props' | 'emit' | 'constants'>) =>
   ({ file }: { file: IFileUploadFile }) => {
@@ -1368,11 +1487,11 @@ export const downloadFile =
   }
 
 export const downloadFileSingleInner =
-  ({ props, state, api, constants }: Pick<IFileUploadRenderlessParams, 'props' | 'state' | 'api' | 'constants'>) =>
-  ({ file, isBatch }: IFileUploadDownloadFileSingleInner) => {
+  ({ props, state, api, constants }) =>
+  ({ file, isBatch }) => {
     const { SIZE_17G } = constants.EDM
     const downloadOps = props.edm.download || {}
-    let tokenParams = { token: downloadOps.token, file, type: 'download' }
+    let tokenParams = { token: downloadOps.token, file: file, type: 'download' }
     api.getToken(tokenParams).then((data) => {
       if (!data) return
       if (state.isHwh5) {
@@ -1380,25 +1499,18 @@ export const downloadFileSingleInner =
         return
       }
 
-      if (state.hasFileInfoInterface) {
-        api.getDownloadFileInfo({ docId: file.docId }).then((res) => {
-          let fileInfo
-          if (res && res.outDocQueryList[0].verInfo[0]) {
-            fileInfo = res.outDocQueryList[0].verInfo[0].docInfo[0]
-          }
-          const { fileSize } = fileInfo
-          const isLargeFile = fileSize > state.docSize && fileSize > state.chunkSize
-          const isLessThan17G = fileSize < SIZE_17G * 1024
+      const promise = state.hasFileInfoInterface ? api.getDownloadFileInfo({ docId: file.docId }) : Promise.resolve()
 
-          if (isLargeFile) {
-            api.largeDocumentDownload({ file: fileInfo, isBatch, isLessThan17G })
-          } else {
-            api.downloadFileInner({ file, isBatch })
-          }
-        })
-      } else {
-        api.downloadFileInner({ file, isBatch })
-      }
+      promise.then((fileInfo) => {
+        const { fileSize } = fileInfo || {}
+        const isLargeFile = fileSize > state.docSize && fileSize > state.chunkSize
+
+        if (fileSize && isLargeFile) {
+          api.largeDocumentDownload({ file: fileInfo, isBatch, isLessThan17G: fileSize < SIZE_17G * 1024 })
+        } else {
+          api.downloadFileInner({ file, isBatch })
+        }
+      })
     })
   }
 
@@ -1417,8 +1529,12 @@ export const getDownloadFileInfo =
             data: { docInfoVO: { ids: [docId], docType: '', docVersion: '' } }
           })
           .then((res) => {
-            if (res.data.status === 200) {
-              resolve(res.data.result)
+            const { data, outDocQueryList } = res || {}
+
+            if (data && data.status === 200) {
+              const fileInfo = outDocQueryList && outDocQueryList[0].verInfo[0].docInfo[0]
+
+              resolve(fileInfo)
             } else {
               reject(res)
             }
@@ -1594,10 +1710,12 @@ export const setWriterFile =
     let { fileStream, writer, fileData = [], downloaded = 0 } = {}
     const { checkcode } = data.headers
     const content = data.headers['content-disposition']
-    const name = content.match(/fileName.?=(.*)/)[1] || content.match(/fileName=(.*)/)[1]
 
     let { chunkNum, fileSize, docName } = state.downloadChunkFile[file.docId]
-    docName = name || docName
+
+    if (content) {
+      docName = content.match(/fileName.?=(.*)/)[1] || content.match(/fileName=(.*)/)[1] || docName
+    }
 
     if (!isLessThan17G) {
       fileStream = Streamsaver.createWriteStream(docName, { size: data.byteLength })
@@ -2558,4 +2676,13 @@ export const mounted =
   ({ vm, state }: Pick<IFileUploadRenderlessParams, 'vm' | 'state'>) =>
   () => {
     vm.$on('drag-over', (isDragover) => (state.isDragover = isDragover))
+  }
+
+export const encryptDialogConfirm =
+  ({ state }) =>
+  () => {
+    const selectFileMethod = state.encryptDialogConfig.selectFileMethod
+
+    state.encryptDialogConfig.show = false
+    typeof selectFileMethod === 'function' && selectFileMethod()
   }

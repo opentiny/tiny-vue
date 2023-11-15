@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { Button } from '@opentiny/vue'
+import { Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     btnClick() {
-      this.$message({ message: '不允许重复点击', id: 'unique' })
+      Modal.message({ message: '不允许重复点击', id: 'unique' })
     }
   }
 }

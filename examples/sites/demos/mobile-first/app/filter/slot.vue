@@ -12,21 +12,20 @@
     >
       <template #icon="{ active, show }">
         <div style="text-align: center; cursor: pointer" :style="{ color: active ? '#0067D1' : '#333' }">
-          插槽内容可以很长很长很长很长 {{ show ? '^' : 'v' }}
+          插槽内容可以很长 {{ show ? '^' : 'v' }}
           <icon-express-search style="fill: currentColor; width: 20px; height: 20px"></icon-express-search>
         </div>
       </template>
       <template #footer="{ cancel, reset, confirm }">
-        面板底部插槽，调换按钮顺序 &nbsp;
         <tiny-button
           tiny_mode="mobile-first"
           key="btn2"
           size="small"
-          button-class="w-20 mr-4 flex-1"
+          custom-class="w-20 mr-4 flex-1"
           @click="reset(true)"
           >重置-自定义</tiny-button
         >
-        <tiny-button tiny_mode="mobile-first" key="btn1" size="small" button-class="w-20 mr-4 flex-1" @click="cancel"
+        <tiny-button tiny_mode="mobile-first" key="btn1" size="small" custom-class="w-20 mr-4 flex-1" @click="cancel"
           >取消-自定义</tiny-button
         >
         <tiny-button
@@ -34,7 +33,7 @@
           key="btn3"
           type="primary"
           size="small"
-          button-class="w-20 flex-1"
+          custom-class="w-20 flex-1"
           @click="confirm(true)"
           >确定-自定义</tiny-button
         >

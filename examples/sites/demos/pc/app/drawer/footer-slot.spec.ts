@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('底部插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/drawer/footer-slot')
+  await page.goto('drawer#footer-slot')
 
   const drawer = page.locator('#preview .tiny-drawer')
   const footer = drawer.locator('.tiny-drawer__footer')

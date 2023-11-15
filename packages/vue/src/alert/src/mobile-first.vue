@@ -1,33 +1,47 @@
 <template>
   <transition>
     <div
+      data-tag="tiny-alert"
       v-if="state.show"
-      :class="[
-        'min-h-min flex py-2 sm:py-3 px-4 my-2 rounded box-border font-light sm:font-normal',
-        { 'bg-color-info-secondary-subtle': type === 'info' || !type },
-        { 'bg-color-error-subtler': type === 'error' },
-        { 'bg-color-warning-subtler': type === 'warning' },
-        { 'bg-color-success-subtler': type === 'success' },
-        { 'text-center': center }
-      ]"
+      :class="
+        m(
+          'min-h-min flex py-2 sm:py-3 px-4 my-2 rounded box-border font-light sm:font-normal',
+          { 'bg-color-info-primary-subtler': type === 'info' || !type },
+          { 'bg-color-error-subtler': type === 'error' },
+          { 'bg-color-warning-subtler': type === 'warning' },
+          { 'bg-color-success-subtler': type === 'success' },
+          { 'text-center': center },
+          customClass
+        )
+      "
     >
       <component
         v-if="showIcon"
         :is="state.getIcon"
         custom-class="h-4.5 w-4.5 mt-1 sm:mt-0.5 sm:h-6 sm:w-5 sm:h-5 fill-current"
         :class="[
-          { 'text-color-info-secondary': type === 'info' || !type },
+          { 'text-color-info-primary': type === 'info' || !type },
           { 'text-color-error': type === 'error' },
           { 'text-color-warning': type === 'warning' },
           { 'text-color-success': type === 'success' }
         ]"
       />
-      <div v-if="showFoldable" class="flex-1 leading-6 text-sm overflow-hidden" :class="showIcon ? 'mx-2' : 'mr-2'">
-        <div v-if="size === 'large'" @click="handleHeaderClick" class="inline-flex cursor-pointer font-medium">
-          <span>
+      <div
+        data-tag="tiny-alert-foldable"
+        v-if="showFoldable"
+        class="flex-1 leading-6 text-sm overflow-hidden"
+        :class="showIcon ? 'mx-2' : 'mr-2'"
+      >
+        <div
+          data-tag="tiny-alert-large"
+          v-if="size === 'large'"
+          @click="handleHeaderClick"
+          class="inline-flex cursor-pointer font-medium"
+        >
+          <span data-tag="tiny-alert-title">
             <slot name="title">{{ state.getTitle }}</slot>
           </span>
-          <span class="ml-2.5"
+          <span data-tag="tiny-alert-icon" class="ml-2.5"
             ><icon-chevron-down
               class="transition-transform duration-300 align-top my-1 fill-color-icon-placeholder"
               :class="[state.contentVisible ? 'rotate-180' : 'rotate-0']"
@@ -36,6 +50,7 @@
         </div>
 
         <div
+          data-tag="tiny-alert-content"
           ref="ContentDescribe"
           :class="[
             'transition-all duration-900 ease-linear',
@@ -45,6 +60,7 @@
           ]"
         >
           <div
+            data-tag="tiny-alert-singline"
             :class="[
               { 'truncate': singleLine },
               {
@@ -58,6 +74,7 @@
         </div>
 
         <div
+          data-tag="tiny-alert-default"
           ref="ContentDefault"
           v-if="size === 'large' && slots.default"
           :class="[
@@ -70,12 +87,21 @@
           <slot></slot>
         </div>
       </div>
-      <div v-else class="flex-1 leading-6 text-sm overflow-hidden cursor-pointer" :class="showIcon ? 'mx-2' : 'mr-2'">
-        <div v-if="size === 'large'" class="font-medium">
+      <div
+        data-tag="tiny-alert-notfoldable"
+        v-else
+        class="flex-1 leading-6 text-sm overflow-hidden cursor-pointer"
+        :class="showIcon ? 'mx-2' : 'mr-2'"
+      >
+        <div data-tag="tiny-alert-large" v-if="size === 'large'" class="font-medium">
           <slot name="title">{{ state.getTitle }}</slot>
         </div>
-        <div :class="[{ 'hidden': size === 'large' && !description && !slots.description }]">
+        <div
+          data-tag="tiny-alert-singlelinebox"
+          :class="[{ 'hidden': size === 'large' && !description && !slots.description }]"
+        >
           <div
+            data-tag="tiny-alert-singleline"
             :class="[
               { 'truncate': singleLine },
               {
@@ -96,9 +122,13 @@
         @click="handleClose"
         class="h-4 w-4 mt-1 cursor-pointer fill-color-text-primary opacity-70"
       ></icon-close>
-      <span v-else-if="closeText && closable" @click="handleClose" class="leading-6 text-sm cursor-pointer">{{
-        closeText
-      }}</span>
+      <span
+        v-else-if="closeText && closable"
+        data-tag="tiny-alert-close-text"
+        @click="handleClose"
+        class="leading-6 text-sm cursor-pointer"
+        >{{ closeText }}</span
+      >
     </div>
   </transition>
 </template>
@@ -110,6 +140,7 @@ import { iconClose, iconSuccess, iconError, iconHelp, iconWarning, iconChevronDo
 import type { IAlertApi } from '@opentiny/vue-renderless/types/alert.type'
 
 export default defineComponent({
+  emits: ['close'],
   props: [
     ...props,
     'icon',
@@ -123,7 +154,8 @@ export default defineComponent({
     'closeText',
     'singleLine',
     'scrolling',
-    'showFoldable'
+    'showFoldable',
+    'customClass'
   ],
   components: {
     IconClose: iconClose(),
@@ -133,7 +165,6 @@ export default defineComponent({
     IconWarning: iconWarning(),
     IconChevronDown: iconChevronDown()
   },
-  emits: ['close'],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IAlertApi
   }

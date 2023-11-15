@@ -15,6 +15,8 @@ export default {
   'zh-TW': '中国台湾',
   hello: '你好 {name}',
   code: 'zh-CN',
+  yes: '是',
+  no: '否',
   ui: {
     buttonMessage: {
       cancel: '取消',
@@ -58,7 +60,8 @@ export default {
       delete: '删除',
       edit: '编辑',
       more: '更多',
-      reset: '重置'
+      reset: '重置',
+      comma: '，'
     },
     button: {
       cancel: '取消',
@@ -248,13 +251,14 @@ export default {
       folder: '文件所在文件夹层数已超过 5 层，将不会上传该文件',
       init: '服务报错，请重试',
       token: '请先进行 EDM 鉴权，获取 token',
-      exceed: '文件上传失败：大小超过限制（{maxSize}MB）',
-      largeFile: '文件大小超出限制 2G ！！！',
-      fileSize: '{name}大小不能小于 ',
+      exceed: '文件大小超过限制（{maxSize}）',
+      largeFile: '文件大小超出限制 2G ！！',
+      fileSize: '文件大小低于限制（{minSize}{sizeUnit}）',
       deleteTip: '按 delete 键可删除',
       downloadFile: '下载文件',
       previewFile: '预览文件',
       updateFile: '更新文件',
+      reUploadFile: '重新上传',
       deleteFile: '删除文件',
       empty: '是空文件！',
       kiaScanTip: '抱歉，从公网接入下载文档，需要通过KIA检测；当前文档正在KIA检测中，请稍后几分钟后再下载！',
@@ -264,12 +268,21 @@ export default {
       uploadFile: '文件上传',
       downloadAll: '全部下载',
       onlySupport: '仅支持{type}格式文件',
-      fileNotLessThan: '文件不能小于',
-      fileNotMoreThan: '文件不能超过',
-      notSupport: '文件上传失败：不支持该格式（.{format}）',
+      fileNotLessThan: '单个文件不能小于',
+      fileNotMoreThan: '单个文件不能超过',
+      notSupport: '格式（.{format}）暂不支持',
+      notSupportNoSuffix: '暂不支持无后缀文件',
+      notSupportSpecialCharacters: '文件名包含特殊字符，请重命名后上传',
       attachment: '附件',
       uploadList: '上传列表',
-      numberExceed: '文件上传失败：批量上传个数超过限制（{number}）'
+      numberExceed: '批量上传个数超过限制（{number}）',
+      numberLimit: '最多上传{number}个文件',
+      encryptDialogTitle: '水印及加密设置',
+      addWatermark: '添加水印',
+      encrypted: '加密',
+      networkError: '网络出错',
+      pictureNetworkError: '网络出错，上传失败',
+      reUploadTip: '{number}个文件上传失败！'
     },
     uploadList: {
       pictureUploading: '图片上传中',
@@ -322,7 +335,9 @@ export default {
         dargFixed: '固定列不允许拖动',
         remoteMethod: '个性化模板管理远端存储需要设置 multipleHistory.remoteMethod',
         remoteSelectedMethod: '个性化模板管理远端存储需要设置 multipleHistory.remoteSelectedMethod',
-        chainCallError: '列的默认插槽中存在语法错误，请检查。'
+        chainCallError: '列的默认插槽中存在语法错误，请检查。',
+        renderParamError: '期望配置一个生成 VNode 的渲染方法。',
+        classComponentError: '类组件渲染出错。'
       },
       filter: {
         allFilter: '全部',
@@ -375,6 +390,8 @@ export default {
         reserveTemplateName: '如未填写名称将保留之前的名称',
         resetBtn: '重置',
         saveBtn: '确定',
+        hideAll: '全部隐藏',
+        showAll: '全部显示',
         tabs: {
           base: {
             title: '基础设置',
@@ -417,7 +434,13 @@ export default {
       remark: '备注'
     },
     imageViewer: {
-      loadErrorAlt: '加载失败'
+      loadErrorAlt: '加载失败',
+      save: '保存图片',
+      del: '删除图片',
+      thumbnail: '缩略图',
+      menu: '目录',
+      hide: '隐藏侧边栏',
+      show: '显示侧边栏'
     },
     navMenu: {
       moreText: '更多'
@@ -485,7 +508,12 @@ export default {
       loading: '加载中',
       noMatch: '无匹配数据',
       noData: '暂无相关数据',
-      placeholder: '请选择'
+      placeholder: '请选择',
+      pleaseSearch: '请搜索',
+      search: '搜索',
+      selected: '已选',
+      selectedNum: '已选 {num} 个',
+      noSearchData: '无相关搜索结果，请重新输入'
     },
     search: {
       placeholder: '搜索'
@@ -511,8 +539,12 @@ export default {
       titles: ['列表 1', '列表 2']
     },
     tree: {
+      loading: '加载中',
       emptyText: '暂无数据',
       switchText: '同时勾选下级',
+      edit: '编辑',
+      delete: '删除',
+      addChild: '新增下级',
       deleteTip: '删除后数据不可恢复，确定删除吗？',
       preserveSubnodeTip: '该节点存在下级节点，是否保留下级节点数据？',
       preserveSubnodeData: '保留下级节点数据',
@@ -623,7 +655,8 @@ export default {
     },
     currency: {
       defaultCurrency: '默认币种',
-      setDefault: '设为默认'
+      setDefault: '设为默认',
+      chooseCurrency: '选择币种'
     },
     calendarBar: {
       week: { 0: '日', 1: '一', 2: '二', 3: '三', 4: '四', 5: '五', 6: '六' },

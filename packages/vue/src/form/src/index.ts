@@ -93,6 +93,18 @@ export const formProps = {
   showAutoWidth: {
     type: Boolean,
     default: false
+  },
+  showEmptyValue: {
+    type: Boolean,
+    default: true
+  },
+  validateTag: {
+    type: Boolean,
+    default: false
+  },
+  overflowTitle: {
+    type: Boolean,
+    default: false
   }
 }
 

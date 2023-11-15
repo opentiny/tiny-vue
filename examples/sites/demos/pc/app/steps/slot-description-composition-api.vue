@@ -10,7 +10,7 @@
   </tiny-time-line>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 import { TimeLine as TinyTimeLine } from '@opentiny/vue'
 
@@ -22,7 +22,7 @@ const data = ref([
   { name: 'Billing', description: '最终步骤信息' }
 ])
 
-function normalClick(index, node) {
+const normalClick = (index, node) => {
   active.value = index
 }
 </script>

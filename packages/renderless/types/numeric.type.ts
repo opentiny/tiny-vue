@@ -25,7 +25,8 @@ import {
   setCurrentValue,
   dispatchDisplayedValue,
   getDisplayedValue,
-  initService
+  initService,
+  getDisplayOnlyText
 } from '../src/numeric'
 import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 
@@ -77,6 +78,7 @@ export interface INumericApi {
   setCurrentValue: ReturnType<typeof setCurrentValue>
   dispatchDisplayedValue: ReturnType<typeof dispatchDisplayedValue>
   getDisplayedValue: ReturnType<typeof getDisplayedValue>
+  getDisplayOnlyText: ReturnType<typeof getDisplayOnlyText>
 }
 
 export type INumericRenderlessParams = ISharedRenderlessFunctionParams<INumericConstants> & {

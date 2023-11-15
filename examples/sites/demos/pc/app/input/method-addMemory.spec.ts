@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('[Input]method-addMemory', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/input/method-addMemory')
+  await page.goto('input#method-addMemory')
   const input = await page.locator('.demo-input input').nth(0)
 
   await input.click()

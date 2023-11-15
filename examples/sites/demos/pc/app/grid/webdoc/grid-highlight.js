@@ -14,13 +14,13 @@ export default {
       'codeFiles': ['highlight/highlight-hover-row.vue']
     },
     {
-      'demoId': 'methods-set-current-row',
+      'demoId': 'highlight-set-current-row',
       'name': { 'zh-CN': '设置指定行高亮', 'en-US': 'Highlight a specified line' },
       'desc': {
-        'zh-CN': '<p><code>setCurrentRow(row)</code> 可设置某一行为高亮状态。</p>\n',
-        'en-US': 'The <p><code>setCurrentRow(row)</code> can be used to set the highlight status of a line. </p>\n'
+        'zh-CN': '<p> <code>setCurrentRow(row)</code> 可设置某一行为高亮状态。</p>\n',
+        'en-US': 'The <p> <code>setCurrentRow(row)</code> can be used to set the highlight status of a line. </p>\n'
       },
-      'codeFiles': ['methods/set-current-row.vue']
+      'codeFiles': ['highlight/set-current-row.vue']
     },
     {
       'demoId': 'highlight-highlight-current-row',

@@ -11,9 +11,9 @@ export const hide =
   }
 
 export const show =
-  ({ state, emit, props }) =>
+  ({ state, props, emit }) =>
   (trigger) => {
-    if ((trigger && props.trigger !== trigger) || state.isLock || state.showPopover) {
+    if ((trigger ? props.trigger !== trigger : !props.reference) || state.isLock || state.showPopover) {
       return
     }
 
@@ -27,4 +27,16 @@ export const confirm =
     state.showPopover = false
     emit('confirm', state)
     emit('hide', state)
+  }
+
+export const handleEmit =
+  ({ state, emit, vm }) =>
+  (type) => {
+    let { events = {} } = vm
+
+    if (events[type]) {
+      events[type].call(vm, { $modal: vm, type })
+    } else {
+      emit(type, state)
+    }
   }

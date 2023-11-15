@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试校验提示是否出现在form上', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/form/validate-type')
+  await page.goto('form#validate-type')
 
   const preview = page.locator('#preview')
   const form = preview.locator('.tiny-form')

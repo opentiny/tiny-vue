@@ -40,6 +40,10 @@ export default defineComponent({
     delay: {
       type: Number,
       default: 5
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

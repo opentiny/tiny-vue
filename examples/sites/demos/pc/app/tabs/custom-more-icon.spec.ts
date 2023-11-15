@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('"更多图标插槽"', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tabs/custom-more-icon')
+  await page.goto('tabs#custom-more-icon')
 
   const tabs = page.locator('.tiny-tabs')
   const moreIcon = tabs.locator('.tiny-tabs__more-icon > svg')

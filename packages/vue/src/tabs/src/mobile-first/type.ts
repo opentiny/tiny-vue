@@ -9,7 +9,8 @@ export interface NavItem {
 
 export interface TabNavItemState {
   withClose: boolean
-  tabSize: string
+  tabSize: string,
+  separator: boolean
 }
 
 export interface TabNavItemInstance {

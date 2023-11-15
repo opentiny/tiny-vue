@@ -1,8 +1,8 @@
 <template>
-  <tiny-numeric v-model="stepNum" :mouse-wheel="mouseWheel"></tiny-numeric>
+  <tiny-numeric v-model="value" :mouse-wheel="mouseWheel"></tiny-numeric>
 </template>
 
-<script lang="jsx">
+<script lang="ts">
 import { Numeric } from '@opentiny/vue'
 
 export default {
@@ -11,8 +11,8 @@ export default {
   },
   data() {
     return {
-      mouseWheel: true,
-      stepNum: 1
+      value: 1,
+      mouseWheel: true
     }
   }
 }

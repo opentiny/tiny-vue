@@ -7,6 +7,8 @@
     @clear="clear"
     @blur="blur"
     @focus="focus"
+    @remove-tag="removeTag"
+    @visible-change="visibleChange"
   >
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
@@ -51,6 +53,16 @@ export default {
     blur() {
       Modal.message({
         message: 'blur事件'
+      })
+    },
+    removeTag() {
+      Modal.message({
+        message: 'removeTag事件'
+      })
+    },
+    visibleChange() {
+      Modal.message({
+        message: 'visibleChange事件'
       })
     }
   }

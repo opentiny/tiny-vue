@@ -75,7 +75,10 @@ export const $constants = {
     CALCHASH: 'ui.fileUpload.calcHash',
     KIASTATUS: 12079,
     NumberExceed: 'ui.fileUpload.numberExceed',
-    notSupport: 'ui.fileUpload.notSupport'
+    notSupport: 'ui.fileUpload.notSupport',
+    NOT_SUPPORT_NO_SUFFIX: 'ui.fileUpload.notSupportNoSuffix',
+    STATUS_SPECIAL_CHARACTERS: 11005,
+    NOT_SUPPORT_SPECIAL_CHARACTERS: 'ui.fileUpload.notSupportSpecialCharacters'
   },
   IMAGE_TYPE: 'image/*',
   FILE_TYPE: {
@@ -264,6 +267,15 @@ export const fileUploadProps = {
     type: Boolean,
     default: true
   },
+  beforeAddFile: Function,
+  encryptConfig: {
+    type: Object,
+    default: () => ({
+      enabled: false,
+      encrypt: false,
+      watermark: ''
+    })
+  },
   isHidden: {
     type: Boolean,
     default: false
@@ -271,7 +283,9 @@ export const fileUploadProps = {
   pasteUpload: {
     type: Boolean,
     default: false
-  }
+  },
+  reUploadable: Boolean,
+  reUploadTip: Function
 }
 
 export default defineComponent({

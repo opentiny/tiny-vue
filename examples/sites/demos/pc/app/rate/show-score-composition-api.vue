@@ -2,7 +2,7 @@
   <tiny-rate v-model="rate" show-score score-template="您的评分是{value}"></tiny-rate>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Rate as TinyRate } from '@opentiny/vue'
 

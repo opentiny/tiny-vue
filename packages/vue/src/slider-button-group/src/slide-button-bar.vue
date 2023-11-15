@@ -75,13 +75,13 @@
 <script lang="ts">
 import { defineComponent, setup, $props } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/slider-button-group/slide-button'
-import { IconChevronLeft, IconChevronRight } from '@opentiny/vue-icon'
+import { iconChevronLeft, iconChevronRight } from '@opentiny/vue-icon'
 
 export default defineComponent({
   emits: ['click'],
   components: {
-    IconChevronRight: IconChevronRight(),
-    IconChevronLeft: IconChevronLeft()
+    IconChevronRight: iconChevronRight(),
+    IconChevronLeft: iconChevronLeft()
   },
   props: {
     ...$props,

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('展开节点事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/toggle-menu/node-expand')
+  await page.goto('toggle-menu#node-expand')
   const preview = page.locator('#preview')
   // 点击展开
   await preview.getByTitle('开发指南').click()

@@ -81,9 +81,9 @@ export const setModel =
     dispatch,
     emit,
     props,
-    refs,
+    vm,
     state
-  }: Pick<IRadioRenderlessParams, 'constants' | 'dispatch' | 'emit' | 'props' | 'refs' | 'state'>) =>
+  }: Pick<IRadioRenderlessParams, 'constants' | 'dispatch' | 'emit' | 'props' | 'vm' | 'state'>) =>
   (val: IRadioState['model']): void => {
     if (state.isGroup) {
       dispatch(constants.RADIO_GROUP, 'update:modelValue', [val])
@@ -91,15 +91,17 @@ export const setModel =
       emit('update:modelValue', val)
     }
 
-    refs.radio && (refs.radio.checked = state.model === props.label)
+    vm.$refs.radio && (vm.$refs.radio.checked = state.model === props.label)
   }
 
-export const toggleEvent = ({ props, refs, type }: Pick<IRadioRenderlessParams, 'props' | 'refs' | 'type'>) => {
-  const radioEl = refs.radio
+export const toggleEvent = ({ props, vm, type }: Pick<IRadioRenderlessParams, 'props' | 'vm' | 'type'>) => {
+  const radioEl = vm.$refs.radio
 
-  Object.keys(props.events).forEach((ev) => {
-    radioEl[type + 'EventListener'](ev, props.events[ev])
-  })
+  if (radioEl) {
+    Object.keys(props.events).forEach((ev) => {
+      radioEl[type + 'EventListener'](ev, props.events[ev])
+    })
+  }
 }
 
 export const dispatchDisplayedValue =

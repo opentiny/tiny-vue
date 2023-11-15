@@ -97,8 +97,8 @@ export default {
       'name': { 'zh-CN': '文本域行数与宽', 'en-US': 'Lines and Width Of Textarea' },
       'desc': {
         'zh-CN': `
-          <p>可通过 <code>rows</code> 属性设置文本域显示行数。注意：只在 <code>text="textarea"</code> 时有效</p>
-          <p>可通过 <code>cols</code> 属性设置文本域显示宽度。注意：只在 <code>text="textarea"</code> 时有效</p>
+          <p>可通过 <code>rows</code> 属性设置文本域显示行数。注意：只在 <code>type="textarea"</code> 时有效</p>
+          <p>可通过 <code>cols</code> 属性设置文本域显示宽度。注意：只在 <code>type="textarea"</code> 时有效</p>
         `,
         'en-US': `
           <p>You can set the number of lines displayed in the text field through the <code>rows</code> property. Note: This parameter is valid only when <code>text="textarea"</code> is used. </p>
@@ -212,7 +212,7 @@ export default {
         },
         {
           'name': 'autosize',
-          'type': 'boolean, <span>object { minRows: number, maxRows: number }</span>',
+          'type': 'boolean | { minRows: number, maxRows: number }',
           'defaultValue': 'false',
           'desc': {
             'zh-CN':
@@ -367,7 +367,7 @@ export default {
         },
         {
           'name': 'resize',
-          'type': 'string "both" | "horizontal" | "vertical" | "none"',
+          'type': '"both" | "horizontal" | "vertical" | "none"',
           'defaultValue': '',
           'desc': {
             'zh-CN': '控制是否能被用户缩放',
@@ -408,7 +408,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'string "medium" | "small" | "mini"',
+          'type': '"medium" | "small" | "mini"',
           'defaultValue': '',
           'desc': {
             'zh-CN': '输入框尺寸，只在 type!="textarea" 时有效',
@@ -448,7 +448,7 @@ export default {
         },
         {
           'name': 'type',
-          'type': 'string "text" | "textarea" | "password" | ...[InputHTMLAttributes.type]',
+          'type': '"text" | "textarea" | "password" | InputHTMLAttributes.type',
           'defaultValue': 'text',
           'desc': {
             'zh-CN': '设置input框的type属性，默认为 text,可选值 text，textarea 和其他 原生 input 的 type 值',
@@ -471,7 +471,7 @@ export default {
       'events': [
         {
           'name': 'blur',
-          'type': 'Function (event: FocusEvent) => void',
+          'type': '(event: FocusEvent) => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '在 Input 失去焦点时触发',
@@ -481,7 +481,7 @@ export default {
         },
         {
           'name': 'change',
-          'type': 'Function (value: string | number) => void',
+          'type': '(value: string | number) => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '在 Input 值改变时触发',
@@ -491,7 +491,7 @@ export default {
         },
         {
           'name': 'clear',
-          'type': 'Function () => void',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '在点击由 clearable 属性生成的清空按钮时触发',
@@ -501,7 +501,7 @@ export default {
         },
         {
           'name': 'focus',
-          'type': 'Function (event: FocusEvent) => void',
+          'type': '(event: FocusEvent) => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '在 Input 获得焦点时触发',
@@ -511,7 +511,7 @@ export default {
         },
         {
           'name': 'input',
-          'type': 'Function (event: InputEvent) => void',
+          'type': '(event: InputEvent) => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '输入值时触发事件',
@@ -565,28 +565,28 @@ export default {
       'methods': [
         {
           'name': 'addMemory',
-          'type': 'Function (value: string) => void',
+          'type': '(value: string) => void',
           'defaultValue': '',
           'desc': { 'zh-CN': '历史输入内容的记忆方法', 'en-US': 'Memorization method of historical input content' },
           'demoId': 'method-addMemory'
         },
         {
           'name': 'blur',
-          'type': 'Function () => void',
+          'type': '() => void',
           'defaultValue': '',
           'desc': { 'zh-CN': '使 input 失去焦点', 'en-US': 'The input loses focus.' },
           'demoId': 'methods'
         },
         {
           'name': 'focus',
-          'type': 'Function () => void',
+          'type': '() => void',
           'defaultValue': '',
           'desc': { 'zh-CN': '使 input 获取焦点', 'en-US': 'To enable the input to obtain the focus' },
           'demoId': 'methods'
         },
         {
           'name': 'select',
-          'type': 'Function () => void',
+          'type': '() => void',
           'defaultValue': '',
           'desc': { 'zh-CN': '选中 input 中的文字', 'en-US': 'Select the text in input.' },
           'demoId': 'methods'

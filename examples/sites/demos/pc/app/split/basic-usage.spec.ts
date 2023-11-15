@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/split/basic-usage')
+  await page.goto('split#basic-usage')
   const split = page.locator('#preview div').filter({ hasText: '左面板右面板' }).nth(2)
   const centerBtn = page.locator('.tiny-split-trigger')
   //   获取整个面板宽度

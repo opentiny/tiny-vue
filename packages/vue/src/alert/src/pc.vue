@@ -13,7 +13,7 @@
   <transition name="tiny-transition-alert-fade">
     <div
       v-if="state.show"
-      :class="['tiny-alert', 'tiny-alert--' + type, 'tiny-alert--' + size, { 'is-center': center }]"
+      :class="m('tiny-alert', 'tiny-alert--' + type, 'tiny-alert--' + size, { 'is-center': center }, customClass)"
     >
       <component v-if="showIcon" :is="state.getIcon" class="tiny-svg-size tiny-alert__icon" />
       <div class="tiny-alert__content">
@@ -57,7 +57,19 @@ import type { IAlertApi } from '@opentiny/vue-renderless/types/alert.type'
 import '@opentiny/vue-theme/alert/index.less'
 
 export default defineComponent({
-  props: [...props, 'icon', 'type', 'size', 'description', 'title', 'closable', 'center', 'showIcon', 'closeText'],
+  props: [
+    ...props,
+    'icon',
+    'type',
+    'size',
+    'description',
+    'title',
+    'closable',
+    'center',
+    'showIcon',
+    'closeText',
+    'customClass'
+  ],
   components: {
     IconClose: iconClose(),
     IconSuccess: iconSuccess(),

@@ -77,7 +77,7 @@ export const searchMethod =
     if (searchConfig && searchConfig.searchMethod) {
       list = searchConfig.searchMethod({ input, options }) || []
     } else {
-      list = options.filter((item) => item[textField].includes(input))
+      list = options.filter((item) => item[textField].indexOf(input) > -1)
     }
 
     if (typeof list.then === 'function') {
@@ -149,7 +149,7 @@ export const setSelected =
     if (multiple) {
       const ids = menus.map((option) => option[valueField])
       state.checkList = (modelValue || []).map((id) => {
-        return ids.includes(id) ? menus[ids.indexOf(id)] : { [valueField]: id, [textField]: id }
+        return ids.indexOf(id) > -1 ? menus[ids.indexOf(id)] : { [valueField]: id, [textField]: id }
       })
     }
 

@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Radio as TinyRadio } from '@opentiny/vue'
 

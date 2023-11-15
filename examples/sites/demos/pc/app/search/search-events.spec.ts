@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test('搜索事件是否正常触发', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/search/search-events')
+  await page.goto('search#search-events')
 
   const modal = page.locator('.tiny-modal')
   const input = page.locator('.tiny-search').getByRole('textbox')

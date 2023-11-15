@@ -1,8 +1,8 @@
 <template>
-  <tiny-steps :data="data" type="advanced" :active="advancedActive" @click="advancedClick"></tiny-steps>
+  <tiny-steps :data="data" :active="advancedActive" @click="advancedClick"></tiny-steps>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Steps as TinySteps, Modal } from '@opentiny/vue'
 
@@ -14,7 +14,7 @@ const data = ref([
   { name: 'Billing', count: 0, status: 'done' }
 ])
 
-function advancedClick(index, node) {
+const advancedClick = (index, node) => {
   advancedActive.value = index
 
   Modal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)

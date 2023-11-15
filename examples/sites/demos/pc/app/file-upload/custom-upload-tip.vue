@@ -1,7 +1,7 @@
 <template>
-  <tiny-file-upload ref="upload" :action="action" accept=".jpg,.png">
+  <tiny-file-upload ref="upload" :action="action" accept=".jpg,.png" re-uploadable :re-upload-tip="reUploadTip">
     <template #trigger>
-      <tiny-button size="small" type="primary">选取文件</tiny-button>
+      <tiny-button type="primary">选取文件</tiny-button>
     </template>
     <template #tip>
       <div class="tiny-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
@@ -19,7 +19,8 @@ export default {
   },
   data() {
     return {
-      action: 'http://localhost:3000/api/upload'
+      action: 'http://localhost:3000/api/upload',
+      reUploadTip: (count) => `我是自定义重新上传的左侧提示，${count}个文件变红啦！`
     }
   }
 }

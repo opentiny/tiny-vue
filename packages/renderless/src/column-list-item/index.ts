@@ -2,9 +2,9 @@ import { isNull } from '../common/type'
 
 export const handelIconClick =
   ({ emit }) =>
-  (item, index) => {
+  (item, index, event) => {
     if (item.disabled) return
-    emit('icon-click', item, index)
+    emit('icon-click', item, index, event)
   }
 
 export const handleChange =
@@ -40,14 +40,18 @@ export const getSize =
 export const isDisabled =
   ({ props, state }) =>
   () =>
-    props.checkboxDisabled || state.columnGroup.disabled
+    props.disabled || state.columnGroup.disabled
 
 export const getModel =
   ({ props, state }) =>
   () => {
     const model = state.isGroup ? state.store : props.modelValue !== undefined ? props.modelValue : state.selfModel
 
-    return isNull(model) ? [] : model
+    if (state.showCheckbox) {
+      return isNull(model) ? [] : model
+    } else {
+      return state.store
+    }
   }
 
 export const setModel =
@@ -57,7 +61,7 @@ export const setModel =
       dispatch(constants.COLUMN_GROUP, 'update:modelValue', [val])
     } else {
       emit('update:modelValue', val)
-      state.selfModel = val
+      state.showCheckbox && (state.selfModel = val)
     }
   }
 
@@ -65,3 +69,15 @@ export const computedStore =
   ({ state, props }) =>
   () =>
     state.isGroup ? state.columnGroup.modelValue : props.modelValue
+
+export const getItemChecked =
+  ({ props, state }) =>
+  () => {
+    if (!state.showCheckbox || !state.showRadio) return
+
+    if (state.showCheckbox) {
+      return state.isGroup || Array.isArray(state.model) ? ~state.model.indexOf(props.label) : state.model
+    } else {
+      return state.model === props.label
+    }
+  }

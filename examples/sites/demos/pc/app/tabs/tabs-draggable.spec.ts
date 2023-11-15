@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('标签页可拖拽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tabs/tabs-draggable')
+  await page.goto('tabs#tabs-draggable')
 
   const items = page.getByRole('tab')
   const box1 = await items.nth(0).boundingBox()

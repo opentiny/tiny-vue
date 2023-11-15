@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('鼠标右键点击节点事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/node-contextmenu')
+  await page.goto('tree#node-contextmenu')
 
   const node = page.getByRole('treeitem', { name: '三级 1-1-1' }).first()
   await node.click({ button: 'right' })

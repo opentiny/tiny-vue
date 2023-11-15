@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('轮播间隔时间', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/carousel/play-interval')
+  await page.goto('carousel#play-interval')
   const preview = page.locator('#preview')
   const carouselItems = preview.locator('div.tiny-carousel__item')
 

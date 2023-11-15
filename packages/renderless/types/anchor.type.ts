@@ -14,7 +14,7 @@ import {
   handleScroll
 } from '../src/anchor'
 
-type IAnchorObject = object | null
+type IAnchorObject = HTMLElement | null
 
 export interface IAnchorState {
   currentLink: string

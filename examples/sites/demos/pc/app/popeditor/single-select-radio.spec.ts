@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('PopEditor 树模式单选', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popeditor/single-select-radio')
+  await page.goto('popeditor#single-select-radio')
 
   const preview = page.locator('#preview')
   const textBox = preview.getByRole('textbox')

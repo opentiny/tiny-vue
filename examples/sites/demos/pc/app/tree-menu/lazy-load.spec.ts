@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('懒加载', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree-menu/lazy-load')
+  await page.goto('tree-menu#lazy-load')
 
   const treeMenu = page.locator('#preview .tiny-tree-menu')
   await treeMenu.getByTitle('表单组件', { exact: true }).click()

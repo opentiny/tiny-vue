@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('节点状态', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/time-line/status')
+  await page.goto('time-line#status')
 
   const timeline = page.locator('#preview .tiny-steps-timeline')
   const timelineItems = timeline.locator('.tiny-timeline-item')
