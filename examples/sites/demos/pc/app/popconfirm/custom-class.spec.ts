@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义类名', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('popconfirm#popper-class')
+  await page.goto('popconfirm#custom-class')
 
   const preview = page.locator('#preview')
   const popConfirm = preview.locator('.tiny-popconfirm .tiny-popconfirm__reference .tiny-button')

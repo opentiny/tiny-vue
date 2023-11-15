@@ -7,9 +7,9 @@ export default {
       'name': { 'zh-CN': '基础用法', 'en-US': 'Basic Usage' },
       'desc': {
         'zh-CN':
-          '<p>通过<code>v-model</code>设置绑定值，<code>type</code>设置类型，可选值为<code>IPv4</code>，<code>IPv6</code>，默认为 <code>ipv4</code>。</p>',
+          '<p>通过 <code>v-model</code> 设置绑定值， <code>type</code> 设置类型，可选值为 <code>IPv4</code> ， <code>IPv6</code> ，默认为 <code>ipv4</code> 。</p>',
         'en-US':
-          '<p>Set the binding value through<code>v-model</code>, and set the type through<code>type</code>. The optional values are<code>IPv4</code>,<code>IPv6</code>, and the default is<code>ipv4</code>.</p>'
+          '<p>Set the binding value through <code>v-model</code> , and set the type through <code>type</code> . The optional values are <code>IPv4</code> , <code>IPv6</code> , and the default is <code>ipv4</code> .</p>'
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -27,7 +27,7 @@ export default {
       'demoId': 'readonly',
       'name': { 'zh-CN': '文本只读', 'en-US': 'Read-only text' },
       'desc': {
-        'zh-CN': '<p>通过<code>readonly</code>设置文本的只读行，默认为 false 。</p>',
+        'zh-CN': '<p>通过 <code>readonly</code> 设置文本的只读行，默认为 false 。</p>',
         'en-US': '<p>Use the <code>readonly</code> attribute to set the read-only line of the text </p>'
       },
       'codeFiles': ['readonly.vue']
@@ -36,7 +36,7 @@ export default {
       'demoId': 'disabled',
       'name': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
       'desc': {
-        'zh-CN': '<p>通过<code>disabled</code>设置文本是否禁用，默认为 false。</p>',
+        'zh-CN': '<p>通过 <code>disabled</code> 设置文本是否禁用，默认为 false。</p>',
         'en-US': '<p>The <code>disabled</code> attribute is used to set whether to disable text </p>'
       },
       'codeFiles': ['disabled.vue']
@@ -46,9 +46,9 @@ export default {
       'name': { 'zh-CN': '尺寸', 'en-US': 'Text box size' },
       'desc': {
         'zh-CN':
-          '<p>通过<code>size</code>设置尺寸，可选值有<code>medium</code>，<code>small</code>，<code>mini</code>。</p>',
+          '<p>通过 <code>size</code> 设置尺寸，可选值有 <code>medium</code> ， <code>small</code> ， <code>mini</code> 。</p>',
         'en-US':
-          '<p>Set the size through<code>size</code>, and the optional values are<code>medium</code>,<code>small</code>,<code>mini</code>.</p>'
+          '<p>Set the size through <code>size</code> , and the optional values are <code>medium</code> , <code>small</code> , <code>mini</code> .</p>'
       },
       'codeFiles': ['size.vue']
     },
