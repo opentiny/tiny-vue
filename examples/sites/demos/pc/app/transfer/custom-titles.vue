@@ -1,5 +1,13 @@
 <template>
-  <tiny-transfer v-model="value" :data="data" :button-texts="['left', 'right']"></tiny-transfer>
+  <tiny-transfer
+    v-model="value"
+    :data="data"
+    :titles="['所有数据列表', '已选数据列表']"
+    :format="{
+      noChecked: '未勾选 / 共${total}',
+      hasChecked: '已选择${checked} / 共${total}'
+    }"
+  ></tiny-transfer>
 </template>
 
 <script lang="jsx">
