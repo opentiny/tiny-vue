@@ -5,38 +5,43 @@ export default {
     {
       'demoId': 'base',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': `<code>Breadcrumb</code>：通过 <code>select</code> 监听面包屑选中事件；<br/>
+                  <code>BreadcrumbItem</code>：通过 <code>to</code> 设置选项路由跳转对象，<code></code> 设置选项名称，<code>select</code> 监听选项选中事件。`,
+        'en-US': `<code>Breadcrumb</code>: Listen for breadcrumb selection events through<code>select</code>; <br/>
+                  <code>BreadcrumbItem</code>: Route the jump object through the <code>to</code>setting option,<code></code>setting option name,<code>select</code>listening for option selection events.`
+      },
       'codeFiles': ['base.vue']
     },
     {
       'demoId': 'slot-default',
-      'name': { 'zh-CN': '自定义节点', 'en-US': 'Custom Node' },
+      'name': { 'zh-CN': '定义节点', 'en-US': 'Custom Node' },
       'desc': {
         'zh-CN':
-          '<p>设置子组件 BreadcrumbItem 的 默认插槽，自定义节点内容。<code>to</code> 设置路由跳转的对象，同时设置 <code>replace</code> 后将不会向 history 添加新记录。</p>\n',
+          '<code>BreadcrumbItem</code>：通过默认插槽自定义节点内容；<code>replace</code> 设置不向浏览器历史添加新记录。',
         'en-US':
-          '<p>Sets the default slot of the subcomponent BreadcrumbItem and customizes the node content. <code>to</code> sets the object of route redirection. After <code>replace</code> is set, no new record is added to history. </p>\n'
+          '<code>BreadcrumbItem</code>: Customize node content through default slots< Code>replace</code>Set not to add new records to browser history.'
       },
       'codeFiles': ['slot-default.vue']
     },
     {
       'demoId': 'separator',
-      'name': { 'zh-CN': '自定义分隔符', 'en-US': 'Custom separator' },
+      'name': { 'zh-CN': '定义分隔符', 'en-US': 'Custom separator' },
       'desc': {
-        'zh-CN': '<p>设置 <code>separator</code> 或 <code>separator-icon</code> 属性，自定义分隔符。</p>\n',
+        'zh-CN': '<code>Breadcrumb</code>：通过 <code>separator</code> 或 <code>separator-icon</code> 自定义分隔符。',
         'en-US':
-          '<p>Set the <code>separator</code> or <code>separator-icon</code> attribute to customize the separator. </p>\n'
+          '<code>Breadcrumb</code>: Customize the separator through<code>separator</code>or<code>separator icon</code>.'
       },
       'codeFiles': ['separator.vue']
     },
     {
       'demoId': 'options',
-      'name': { 'zh-CN': 'options 配置', 'en-US': 'options configuration' },
+      'name': { 'zh-CN': '配置式', 'en-US': 'Configuration' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>options</code> 总体配置每个 <code>BreadcrumbItem</code>。  </p> 设置<code>text-field</code> 指定显示字段，默认显示字段为 <code>label</code>。\n',
+          '通过 <code>options</code> 配置每个 <code>BreadcrumbItem</code>；<code>text-field</code> 指定显示键值，默认显示键值为 <code>label</code>。',
         'en-US':
-          '<p>Totally configure each <code>BreadcrumbItem</code> via <code>options</code>. </p>Set <code>text-field</code> to specify the field to be displayed. The default field to be displayed is <code>label</code>.\n'
+          'Configure each<code>BreadcrumbItem</code>through<code>options</code>< Code>text field</code>specifies the display key value, and the default display key value is<code>label</code>.'
       },
       'codeFiles': ['options.vue']
     }
@@ -48,11 +53,12 @@ export default {
       'props': [
         {
           'name': 'options',
-          'type': 'Array',
-          'defaultValue': '[]',
+          'type': 'IOptionsItem[]',
+          'typeAnchorName': 'IOptionsItem',
+          'defaultValue': '',
           'desc': {
-            'zh-CN': '配置 options ,可以单独使用 tiny-breadcrumb 组件',
-            'en-US': 'Configure options. The tiny-breadcrumb component can be used independently.'
+            'zh-CN': '单独使用 Breadcrumb，通过 option 配置生成面包屑',
+            'en-US': 'Use Breadcrumb alone to generate bread crumbs through option configuration'
           },
           'demoId': 'options'
         },
@@ -65,9 +71,9 @@ export default {
         },
         {
           'name': 'separator-icon',
-          'type': 'object',
-          'defaultValue': '--',
-          'desc': { 'zh-CN': '图标分隔符 class', 'en-US': 'Icon separator class' },
+          'type': 'Component',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '图标分隔符', 'en-US': 'Icon separator' },
           'demoId': 'separator'
         },
         {
@@ -75,9 +81,8 @@ export default {
           'type': 'string',
           'defaultValue': 'label',
           'desc': {
-            'zh-CN': '指定面包屑的显示字段，结合 options 使用，组件默认 label ',
-            'en-US':
-              'Specify the breadcrumb display field. This field is used together with options. The component defaults to label.'
+            'zh-CN': '指定面包屑的显示键值，结合 options 使用',
+            'en-US': 'Specify the display key value for bread crumbs, used in conjunction with options'
           },
           'demoId': 'options'
         }
@@ -85,11 +90,12 @@ export default {
       'events': [
         {
           'name': 'select',
-          'type': 'Function',
-          'defaultValue': '--',
+          'type': '(value: ISelectValue) => void',
+          'typeAnchorName': 'ISelectValue',
+          'defaultValue': '',
           'desc': {
-            'zh-CN': '点击 breadcrumb-item 时触发',
-            'en-US': 'This event is triggered when breadcrumb-item is clicked.'
+            'zh-CN': '点击 BreadcrumbItem 时触发',
+            'en-US': 'This event is triggered when BreadcrumbItem is clicked.'
           },
           'demoId': 'options'
         }
@@ -101,24 +107,25 @@ export default {
       'props': [
         {
           'name': 'label',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '定义面包屑的显示值', 'en-US': 'Define the breadcrumb display value.' },
+          'desc': { 'zh-CN': '定义面包屑的显示文本', 'en-US': 'Define the breadcrumb display text' },
           'demoId': 'base'
         },
         {
           'name': 'replace',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
-            'zh-CN': '在使用 to 进行路由跳转时，启用 replace 将不会向 history 添加新记录',
-            'en-US': 'When to is used for route redirection, if replace is enabled, no new record is added to history.'
+            'zh-CN': '在使用 to 进行路由跳转时，启用 replace 将不会向 浏览器历史记录 history 里添加新记录',
+            'en-US': 'When using to for routing jump, enabling replace will not add new records to the browser history'
           },
           'demoId': 'slot-default'
         },
         {
           'name': 'to',
-          'type': 'String , Object',
+          'type': 'string | IOptionsItemTo',
+          'typeAnchorName': 'IOptionsItemTo',
           'defaultValue': '',
           'desc': {
             'zh-CN': '路由跳转对象，同 vue-router 的 to',
@@ -130,11 +137,12 @@ export default {
       'events': [
         {
           'name': 'select',
-          'type': 'Function()',
-          'defaultValue': '--',
+          'type': '(value: ISelectValue) => void',
+          'typeAnchorName': 'ISelectValue',
+          'defaultValue': '',
           'desc': {
-            'zh-CN': '点击 breadcrumb-item 时触发',
-            'en-US': 'This event is triggered when breadcrumb-item is clicked.'
+            'zh-CN': '点击 BreadcrumbItem 时触发',
+            'en-US': 'This event is triggered when BreadcrumbItem is clicked.'
           },
           'demoId': 'base'
         }
@@ -148,6 +156,39 @@ export default {
           'demoId': 'slot-default'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IOptionsItemTo',
+      type: 'interface',
+      code: `
+interface IOptionsItemTo {
+  path: string
+}`
+    },
+    {
+      name: 'IOptionsItem',
+      type: 'interface',
+      code: `
+interface IOptionsItem {
+  label?: string
+  to?: IOptionsItemTo
+  replace?: boolean
+  [customProp: string]: string
+}`
+    },
+    {
+      name: 'ISelectValue',
+      type: 'interface',
+      code: `
+interface ISelectValue {
+  event: Event
+  link: HTMLElement
+  option: IOptionsItem
+  replace: boolean
+  to?: IOptionsItemTo
+}`
     }
   ]
 }
