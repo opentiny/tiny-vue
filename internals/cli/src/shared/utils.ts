@@ -129,7 +129,7 @@ const kebabCase = ({ str, splitChar = '-' }: { str: string; splitChar?: string }
  * @param {String} str 格式字符
  * @param {Object} options 格式字符
  */
-const prettierFormat = ({ str, options = {} }: { str: string; options?: object }) => {
+const prettierFormat = ({ str, options = {} }: { str: string; options?: object }):string => {
   return prettier.format(
     str,
     Object.assign(
@@ -143,10 +143,10 @@ const prettierFormat = ({ str, options = {} }: { str: string; options?: object }
         bracketSpacing: true,
         quoteProps: 'preserve',
         parser: 'typescript'
-      },
+      } as any,
       options
     )
-  )
+  ) as unknown as string
 }
 
 /**
