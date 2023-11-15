@@ -1,8 +1,17 @@
 <template>
-  <tiny-time-line :data="data" :active="active" @click="click" show-status></tiny-time-line>
+  <tiny-time-line :data="data" :active="active" @click="click">
+    <template #top="{ slotScope: { index, name } }">
+      <p class="custom-top">{{ index }}.{{ name }}</p>
+    </template>
+    <template #bottom="{ slotScope: { time } }">
+      <p class="custom-bottom">
+        {{ time }}
+      </p>
+    </template>
+  </tiny-time-line>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { TimeLine as TinyTimeLine, Modal } from '@opentiny/vue'
 
@@ -21,3 +30,14 @@ function click(index, node) {
   })
 }
 </script>
+
+<style scoped>
+.custom-top {
+  text-align: center;
+}
+
+.custom-bottom {
+  color: #8a8e99;
+  font-size: 12px;
+}
+</style>
