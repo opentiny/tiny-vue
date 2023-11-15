@@ -25,7 +25,7 @@ export default {
       'codeFiles': ['toolbar/cancel-delete.vue']
     },
     {
-      'demoId': 'toolbar-clearData',
+      'demoId': 'toolbar-clear-data',
       'name': { 'zh-CN': '清空数据', 'en-US': 'Clear Data' },
       'desc': {
         'zh-CN':
@@ -33,12 +33,12 @@ export default {
         'en-US':
           '<p>clearData method manually clears the cell content. If no parameter is transferred, the entire table content is cleared. If a line is transferred, the specified line is cleared. If a field is transferred, the field is cleared. For details, see the following example. </p>\n'
       },
-      'codeFiles': ['toolbar/clearData.vue']
+      'codeFiles': ['toolbar/clear-data.vue']
     },
     {
       'demoId': 'toolbar-insert-remove-rows',
       'name': {
-        'zh-CN': '指定行插入数据和删除指定行',
+        'zh-CN': '插入或删除指定行',
         'en-US': 'Insert data to a specified row and delete a specified row'
       },
       'desc': {
@@ -51,7 +51,7 @@ export default {
     },
     {
       'demoId': 'toolbar-save-data',
-      'name': { 'zh-CN': '服务端数据保存和删除方法', 'en-US': 'Saving and Deleting Server Data' },
+      'name': { 'zh-CN': '服务端数据保存和删除', 'en-US': 'Saving and Deleting Server Data' },
       'desc': {
         'zh-CN':
           '<p>通过表格属性 <code>save-data</code> 服务端数据保存方法。\n通过表格属性 <code>delete-data</code> 服务端数据删除方法。</p>\n',
@@ -76,7 +76,7 @@ export default {
       'name': { 'zh-CN': '开启表格刷新功能', 'en-US': 'Enable the table refresh function' },
       'desc': {
         'zh-CN':
-          "<p>工具栏配置步骤：\n1、表格以插槽方式引入表格工具栏组件 <code>GridToolbar</code>，并设置工具栏组件属性 <code>slot=&quot;toolbar&quot;</code> 。\n2、设置工具栏组件属性 <code>refresh</code> 开启表格刷新功能。</p>\n<ul>\n<li>设置工具栏属性 <code>loading</code> 开启/关闭加载中。\n自定义实现刷新时直接调用<code>handleFetch('reload')</code></li>\n</ul>\n",
+          "<p>工具栏配置步骤：\n1、表格以插槽方式引入表格工具栏组件 <code>GridToolbar</code>，并设置工具栏组件属性 <code>slot=&quot;toolbar&quot;</code> 。\n2、设置工具栏组件属性 <code>refresh</code> 开启表格刷新功能。</p>\n<ul>\n<li>设置表格属性 <code>loading</code> 开启/关闭加载中。\n自定义实现刷新时直接调用<code>handleFetch('reload')</code></li>\n</ul>\n",
         'en-US':
           "<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>refresh</code> to enable the table refresh function. </p>\n<ul>\n<li> Setting Toolbar Properties <code>loading</code>Enable/Disable Loading. \n <code>handleFetch('reload') </code></li>\n</ul>\n is invoked when the customized implementation is refreshed"
       },

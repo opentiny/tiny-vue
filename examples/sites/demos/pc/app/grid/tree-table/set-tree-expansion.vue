@@ -1,6 +1,11 @@
 <template>
   <div>
-    <tiny-button @click="click">setTreeExpansion</tiny-button>
+    <div>
+      <tiny-button @click="setTreeExpansion">展开指定树节点</tiny-button>
+      <tiny-button @click="setAllTreeExpansion">展开所有树节点</tiny-button>
+      <tiny-button @click="toggleTreeExpansion">切换展开树节点</tiny-button>
+    </div>
+    <br />
     <tiny-grid :data="tableData" ref="grid" :tree-config="{ children: 'children' }">
       <tiny-grid-column type="selection" width="100" tree-node></tiny-grid-column>
       <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
@@ -10,7 +15,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn, Button } from '@opentiny/vue'
 
 export default {
@@ -130,8 +135,14 @@ export default {
     }
   },
   methods: {
-    click() {
+    setTreeExpansion() {
       this.$refs.grid.setTreeExpansion([this.tableData[1], this.tableData[3]], true)
+    },
+    setAllTreeExpansion() {
+      this.$refs.grid.setAllTreeExpansion(true)
+    },
+    toggleTreeExpansion() {
+      this.$refs.grid.toggleTreeExpansion(this.tableData[1])
     }
   }
 }

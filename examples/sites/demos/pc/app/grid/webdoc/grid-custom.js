@@ -4,7 +4,7 @@ export default {
   demos: [
     {
       'demoId': 'custom-column-width',
-      'name': { 'zh-CN': '列宽', 'en-US': 'Column Width' },
+      'name': { 'zh-CN': '本地存储列宽', 'en-US': 'Column Width' },
       'desc': {
         'zh-CN':
           '<p>在 <code>grid</code> 标签上配置 <code>resizable=&quot;true&quot;</code> 可以调整列宽，并在 <code>toolbar</code> 标签上配置 <code>resizable=&quot;{storage: true}&quot;</code> 保存在本地的 <code>localStroage</code> 里，刷新页面表格的列宽按照拖动后的列宽显示</p>\n',
@@ -20,20 +20,20 @@ export default {
         'zh-CN':
           '<p>在 <code>toolbar</code> 标签上配置 <code>:setting=&quot;{simple: true, customDisable: customDisable}&quot;</code> 开启简化版列设置 通过<code>customDisable</code> 方法自定义当前选项是否禁用</p>\n',
         'en-US':
-          'Description of the <div class="tip custom-block"><p class="custom-block-title"> method </p>\n<p><code>resetResizable()</code>: Manually reset the column width and drag the operation to the initial state \n<code>resetCustoms()</code>: Manually reset the display/hide operation of the column to the initial state.\n<code>resetAll()</code>: Manually reset all operations of the column. Restore to the initial state </p>\n</div>\n<p> Drag the column width or hide the column, and then click the corresponding button to view the effect. </p>\n'
+          'Description of the <div class="tip custom-block"><p class="custom-block-title"> method </p>\n<p> <code>resetResizable()</code>: Manually reset the column width and drag the operation to the initial state \n<code>resetCustoms()</code>: Manually reset the display/hide operation of the column to the initial state.\n<code>resetAll()</code>: Manually reset all operations of the column. Restore to the initial state </p>\n</div>\n<p> Drag the column width or hide the column, and then click the corresponding button to view the effect. </p>\n'
       },
       'codeFiles': ['custom/column-simple.vue']
     },
     {
-      'demoId': 'custom-resetResizable',
+      'demoId': 'custom-reset-resizable',
       'name': { 'zh-CN': '手动重置列操作', 'en-US': 'Sort' },
       'desc': {
         'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">方法说明</p>\n<p><code>resetResizable()</code>：手动重置列宽拖动的操作，还原到初始状态\n<code>resetCustoms()</code>：手动重置列的显示/隐藏操作，还原到初始状态\n<code>resetAll()</code>：手动重置列的所有操作，还原到初始状态</p>\n</div>\n<p>请先对列宽进行拖动、隐藏列等操作，然后单击对应按钮查看效果。</p>\n',
+          '<div class="tip custom-block"><p class="custom-block-title">方法说明</p>\n<p> <code>resetResizable()</code>：手动重置列宽拖动的操作，还原到初始状态\n<code>resetCustoms()</code>：手动重置列的显示/隐藏操作，还原到初始状态\n<code>resetAll()</code>：手动重置列的所有操作，还原到初始状态</p>\n</div>\n<p>请先对列宽进行拖动、隐藏列等操作，然后单击对应按钮查看效果。</p>\n',
         'en-US':
           '<p>Configure <code>sortable</code> on the <code>column</code> label to sort data. (For columns that are not configured, the sorting icon in the personalization panel is hidden.) and configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings. Sort the settings in the personalized panel. The sorting results are saved in the local <code>localStroage</code>. Refresh the page. The sorted data is displayed on the page.</p>\n'
       },
-      'codeFiles': ['custom/resetResizable.vue']
+      'codeFiles': ['custom/reset-resizable.vue']
     },
     {
       'demoId': 'custom-column-sort',
@@ -50,9 +50,9 @@ export default {
       'demoId': 'custom-multiple-column-sort',
       'name': { 'zh-CN': '多列排序', 'en-US': 'Multi-column sorting' },
       'desc': {
-        'zh-CN': `<p><code>表头排序</code> 只支持单列排序，<code>个性化排序</code> 可以通过配置 <code>sortConfig.multipleColumnSort</code> 开启多列排序，
+        'zh-CN': `<p> <code>表头排序</code> 只支持单列排序，<code>个性化排序</code> 可以通过配置 <code>sortConfig.multipleColumnSort</code> 开启多列排序，
           <code>sortConfig.multipleColumnSort</code> 支持配置为 <code>true</code> 或者 <code>方法</code>，配置为方法时可以自定义多列排序。</p>\n`,
-        'en-US': `<p><code>Table header sorting</code> supports only single-column sorting. <code>Personalized sorting</code>You can configure <code>sortConfig.multipleColumnSort</code> to enable multi-column sorting,
+        'en-US': `<p> <code>Table header sorting</code> supports only single-column sorting. <code>Personalized sorting</code>You can configure <code>sortConfig.multipleColumnSort</code> to enable multi-column sorting,
           <code>sortConfig.multipleColumnSort</code> can be set to <code>true</code> or <code>method</code>. When this parameter is set to a method, you can customize multi-column sorting. </p>\n`
       },
       'codeFiles': ['custom/multiple-column-sort.vue']
@@ -82,7 +82,7 @@ export default {
     {
       'demoId': 'custom-ordercolumn-local',
       'name': {
-        'zh-CN': '本地记录和个性化面板按钮点击事件监听',
+        'zh-CN': '个性化按钮点击事件',
         'en-US': 'Local Record and Personalization Panel Button Click Event Listening'
       },
       'desc': {
@@ -117,7 +117,7 @@ export default {
       'codeFiles': ['custom/column-visible-hidden.vue']
     },
     {
-      'demoId': 'hide-hideColumn',
+      'demoId': 'custom-hide-column',
       'name': { 'zh-CN': '手动隐藏显示列', 'en-US': 'Event triggered before dragging the personalized panel' },
       'desc': {
         'zh-CN':
@@ -125,7 +125,7 @@ export default {
         'en-US':
           '<p>Configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings, and configure the <code>onBeforeMove</code> event before dragging on the personalized panel. You can also configure <code>filter</code> to set the class name. If you drag a line on the personalized panel, the event before dragging the personalized panel is triggered. </p>\n'
       },
-      'codeFiles': ['hide/hideColumn.vue']
+      'codeFiles': ['custom/hide-column.vue']
     },
     {
       'demoId': 'custom-prsonalized-drag',
@@ -150,22 +150,12 @@ export default {
       'codeFiles': ['custom/page-size.vue']
     },
     {
-      'demoId': 'custom-local-storage',
-      'name': { 'zh-CN': '本地存储', 'en-US': 'Server Storage' },
-      'desc': {
-        'zh-CN':
-          '<p>在 <code>toolbar</code> 标签上配置 <code>:setting=&quot;{storage:\'local\'}&quot;</code> 开启个性化并保存到本地 <code>localSotrage</code> 里</p>\n<div class="danger custom-block">\n</div>\n',
-        'en-US':
-          '<p>Configure <code>:setting=&quot;{storage:\'remote\'}&quot;</code> on the <code>toolbar</code> tab to enable personalization and remote services to obtain personalized data. Configure <code>@remote-setting</code> to invoke the <code>reloadCustoms</code> method to update personalized data. \n Note\n If the column is displayed or hidden based on the server data, you need to manually invoke the <code>reloadCustoms</code> method to update the personalized data after invoking the interface. In \n</p>\n<div class="danger custom-block">\n</div>\n'
-      },
-      'codeFiles': ['custom/local-storage.vue']
-    },
-    {
       'demoId': 'custom-server-storage',
       'name': { 'zh-CN': '服务端存储', 'en-US': '' },
       'desc': {
-        'zh-CN':
-          '<p>在 <code>toolbar</code> 标签上配置 <code>:setting=&quot;{storage:\'remote\'}&quot;</code> 开启个性化并启用远程服务获取个性化数据，并配置 <code>@remote-setting</code> 调用 <code>reloadCustoms</code> 方法更新个性化数据。\n 注意\n如果是根据服务端数据控制显示/隐藏列，调用接口获取到个性化的数据后需手动调用 <code>reloadCustoms</code> 方法更新。\n</p>\n<div class="danger custom-block">\n</div>\n',
+        'zh-CN': `
+        <p>在 <code>toolbar</code> 标签上配置 <code>:setting=&quot;{storage:'remote'}&quot;</code> 开启个性化并启用远程服务获取个性化数据，并配置 <code>@remote-setting</code> 调用 <code>reloadCustoms</code> 方法更新个性化数据。
+         注意:如果是根据服务端数据控制显示/隐藏列，调用接口获取到个性化的数据后需手动调用 <code>reloadCustoms</code> 方法更新。</p>`,
         'en-US': ''
       },
       'codeFiles': ['custom/server-storage.vue']

@@ -1,6 +1,6 @@
 <template>
   <div>
-    当前处于活动的行索引号（rowIndex）：{{ activedRow }} <br /><br />
+    <h4 class="title">当前处于活动的行索引号（rowIndex）：{{ activedRow }}</h4>
     <tiny-grid
       ref="theGridRef"
       :data="tableData"
@@ -36,7 +36,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Grid as TinyGrid, GridColumn as TinyGridColumn, Button as TinyButton } from '@opentiny/vue'
 
@@ -116,3 +116,12 @@ function getActiveRow() {
   activedRow.value = activedRowIndex ? activedRowIndex.rowIndex : ''
 }
 </script>
+
+<style scoped>
+.title {
+  font-size: 16px;
+  padding: 15px;
+  font-weight: bolder;
+  color: #444;
+}
+</style>

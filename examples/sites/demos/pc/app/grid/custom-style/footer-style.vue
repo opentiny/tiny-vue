@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>自定义表尾行样式：</h4>
+    <h4 class="title">自定义表尾行样式：</h4>
     <tiny-grid
       class="grid-footer-row-style"
       :data="tableData"
@@ -16,7 +16,7 @@
       <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
       <tiny-grid-column field="city" title="城市"></tiny-grid-column>
     </tiny-grid>
-    <h4>自定义表尾单元格样式：</h4>
+    <h4 class="title">自定义表尾单元格样式：</h4>
     <tiny-grid
       class="grid-footer-cell-style"
       :data="tableData"
@@ -163,5 +163,14 @@ export default {
 .grid-footer-row-style .tiny-grid-footer__row.footer__row--green {
   background-color: green;
   color: #fff;
+}
+</style>
+
+<style scoped>
+.title {
+  font-size: 16px;
+  padding: 15px;
+  font-weight: bolder;
+  color: #444;
 }
 </style>

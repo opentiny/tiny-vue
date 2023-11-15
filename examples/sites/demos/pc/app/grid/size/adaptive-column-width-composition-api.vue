@@ -1,13 +1,23 @@
 <template>
-  <tiny-grid :data="tableData" :fit="true">
-    <tiny-grid-column field="name" title="名称" width="200"></tiny-grid-column>
-    <tiny-grid-column field="area" title="所属区域" width="20%"></tiny-grid-column>
-    <tiny-grid-column field="address" title="地址"></tiny-grid-column>
-    <tiny-grid-column field="introduction" title="公司简介" show-overflow></tiny-grid-column>
-  </tiny-grid>
+  <div>
+    <h4 class="title">列宽自适应撑开：</h4>
+    <tiny-grid :data="tableData" :fit="true">
+      <tiny-grid-column field="name" title="名称" width="200"></tiny-grid-column>
+      <tiny-grid-column field="area" title="所属区域" width="20%"></tiny-grid-column>
+      <tiny-grid-column field="address" title="地址"></tiny-grid-column>
+      <tiny-grid-column field="introduction" title="公司简介" show-overflow></tiny-grid-column>
+    </tiny-grid>
+    <h4 class="title">列宽不自适应撑开：</h4>
+    <tiny-grid :data="tableData" :fit="false">
+      <tiny-grid-column field="name" title="名称" width="200"></tiny-grid-column>
+      <tiny-grid-column field="area" title="所属区域" width="20%"></tiny-grid-column>
+      <tiny-grid-column field="address" title="地址"></tiny-grid-column>
+      <tiny-grid-column field="introduction" title="公司简介" show-overflow></tiny-grid-column>
+    </tiny-grid>
+  </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
 
@@ -56,3 +66,12 @@ const tableData = ref([
   }
 ])
 </script>
+
+<style scoped>
+.title {
+  font-size: 16px;
+  padding: 15px;
+  font-weight: bolder;
+  color: #444;
+}
+</style>
