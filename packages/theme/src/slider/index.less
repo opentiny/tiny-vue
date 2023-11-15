@@ -27,7 +27,9 @@
 }
 
 .@{slider-prefix-cls} {
-  .component-css-vars-slider();
+  &__wrapper {
+    .component-css-vars-slider();
+  }
 
   border-radius: var(--ti-slider-border-radius);
   height: var(--ti-slider-height);
