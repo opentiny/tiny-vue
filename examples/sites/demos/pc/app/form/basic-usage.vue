@@ -29,32 +29,49 @@
   </div>
 </template>
 
-<script setup lang="jsx">
-import { ref, reactive } from 'vue'
+<script>
 import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Numeric as TinyNumeric,
-  Radio as TinyRadio,
-  DatePicker as TinyDatePicker,
-  DropTimes as TinyDropTimes,
-  Tooltip as TinyTooltip,
-  Input as TinyInput,
-  Button as TinyButton,
+  Form,
+  FormItem,
+  Numeric,
+  Radio,
+  DatePicker,
+  DropTimes,
+  Tooltip,
+  Input,
+  Button,
   Modal as TinyModal
 } from '@opentiny/vue'
 
-const createData = reactive({
-  quantity: '',
-  sex: '1',
-  datepicker: '',
-  textarea: '',
-  dropTimes: '',
-  input: ''
-})
-
-function submitClick() {
-  TinyModal.alert('提交')
+export default {
+  components: {
+    TinyForm: Form,
+    TinyFormItem: FormItem,
+    TinyNumeric: Numeric,
+    TinyRadio: Radio,
+    TinyDatePicker: DatePicker,
+    TinyDropTimes: DropTimes,
+    TinyTooltip: Tooltip,
+    TinyInput: Input,
+    TinyButton: Button
+  },
+  data() {
+    return {
+      createData: {
+        quantity: 0,
+        sex: '1',
+        datepicker: '',
+        textarea: '',
+        dropTimes: '',
+        input: ''
+      }
+    }
+  },
+  methods: {
+    submitClick() {
+      TinyModal.alert('提交')
+    }
+  }
 }
 </script>
 
