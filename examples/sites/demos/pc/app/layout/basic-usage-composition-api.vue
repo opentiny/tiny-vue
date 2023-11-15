@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <div class="content">
-      <tiny-layout>
+  <div class="content">
+    <div v-for="cols in [12, 24]" :key="cols">
+      <div>每行 {{ cols }} 栅格布局示例：</div>
+      <tiny-layout :cols="cols">
         <tiny-row>
           <tiny-col :span="12">
             <div class="col">span 12</div>
           </tiny-col>
         </tiny-row>
-        <br />
         <tiny-row>
           <tiny-col :span="3">
             <div class="col">span 3</div>
@@ -19,7 +19,6 @@
             <div class="col">span 3</div>
           </tiny-col>
         </tiny-row>
-        <br />
         <tiny-row>
           <tiny-col :span="2">
             <div class="col">span 2</div>
@@ -42,14 +41,28 @@
   </div>
 </template>
 
-<script lang="jsx">
-import { Layout, Row, Col } from '@opentiny/vue'
-
-export default {
-  components: {
-    TinyLayout: Layout,
-    TinyRow: Row,
-    TinyCol: Col
-  }
-}
+<script setup>
+import { Layout as TinyLayout, Row as TinyRow, Col as TinyCol } from '@opentiny/vue'
 </script>
+
+<style scoped>
+.content .tiny-row {
+  margin: 20px 0;
+}
+
+.content .tiny-row .last-child {
+  margin-bottom: 0;
+}
+
+.content .tiny-col .col {
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+  background: #1f9ed8;
+  border-radius: 15px;
+}
+
+.content .tiny-col:nth-child(even) .col {
+  background: #73d0fc;
+}
+</style>
