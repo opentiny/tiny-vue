@@ -1,5 +1,5 @@
 export default {
-  column: '1',
+  column: '2',
   owner: '',
   demos: [
     {
@@ -470,8 +470,9 @@ export default {
             'zh-CN': `右侧列表元素被用户选中 / 取消选中时触发;<br>
               checked:Array 穿梭框右侧被选中的数据值列表<br>
               statusChanged:Array 穿梭框右侧选中状态发生变化的数据值列表`,
-            'en-US':
-              'This event is triggered when an element in the list on the right is selected or deselected. //Parameter arg1: list of selected data values on the right of the Array transfer.\n//Parameter arg2: list of selected data values whose status changes on the right of the Array transfer'
+            'en-US': `Triggered when an element in the list on the right is selected/unselected by the user <br>
+              checked: List of selected data values to the right of the Array shuttle box <br>
+              statusChanged: The list of data values whose status has changed is selected to the right of the Array shuttle box`
           },
           'demoId': 'transfer-events'
         }
