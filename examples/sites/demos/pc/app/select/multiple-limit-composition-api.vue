@@ -15,5 +15,5 @@ const options = ref([
   { value: '选项4', label: '龙须面' },
   { value: '选项5', label: '北京烤鸭' }
 ])
-const value = ref('')
+const value = ref([])
 </script>

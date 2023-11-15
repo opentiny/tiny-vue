@@ -12,6 +12,7 @@
 
 import { on, off } from './dom'
 import PopupManager from './popup-manager'
+import globalConfig from '../global'
 import { typeOf } from '../type'
 
 const positions = ['left', 'right', 'top', 'bottom']
@@ -752,7 +753,8 @@ class Popper {
       let scrollTop = isFixed ? 0 : getScrollTopValue(scrollParent)
       let scrollLeft = isFixed ? 0 : getScrollLeftValue(scrollParent)
 
-      const viewportWindow = PopupManager.viewportWindow || window
+      // PopupManager.viewportWindow是为了兼容之前已经采用此方法兼容微前端的用户，后续需要采用globalConfig.viewportWindow
+      const viewportWindow = globalConfig.viewportWindow || PopupManager.viewportWindow || window
       boundaries = {
         top: 0 - (offsetParentRect.top - scrollTop),
         right: viewportWindow.document.documentElement.clientWidth - (offsetParentRect.left - scrollLeft),

@@ -13,7 +13,7 @@
   </tiny-dropdown>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import {
   Dropdown as TinyDropdown,
   DropdownMenu as TinyDropdownMenu,

@@ -77,7 +77,13 @@
                           <span v-else v-html="row.type"></span>
                         </td>
                         <td v-if="!key.includes('slots') && !key.includes('events')">
-                          <span v-html="typeof row.defaultValue === 'string' ? row.defaultValue : row.defaultValue?.[langKey] || '--'"></span>
+                          <span
+                            v-html="
+                              typeof row.defaultValue === 'string'
+                                ? row.defaultValue
+                                : row.defaultValue?.[langKey] || '--'
+                            "
+                          ></span>
                         </td>
                         <td><span v-html="row.desc[langKey]"></span></td>
                       </tr>
@@ -312,6 +318,17 @@ export default defineComponent({
           router.push(demoId)
         } else {
           router.push(`#${demoId}`)
+        }
+      },
+      handleApiClick: (ev) => {
+        if (ev.target.tagName === 'A') {
+          ev.preventDefault()
+          const href = ev.target.getAttribute('href')
+          const hash = $split(href, '#', -1)
+          router.push(href)
+          state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
+
+          scrollByHash(hash)
         }
         if (apiModeState.demoMode === 'single') {
           state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)

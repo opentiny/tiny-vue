@@ -28,10 +28,7 @@
       highlightClass
     ]"
   >
-    <span
-      v-if="state.select.multiple && (state.select.optimization || !state.select.state.multipleLimit)"
-      class="tiny-option__checkbox-wrap"
-    >
+    <span v-if="state.select.multiple" class="tiny-option__checkbox-wrap">
       <tiny-checkbox
         :model-value="state.itemSelected"
         :disabled="disabled || state.groupDisabled || state.limitReached"
