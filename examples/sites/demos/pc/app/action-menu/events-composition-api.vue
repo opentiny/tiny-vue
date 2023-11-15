@@ -1,5 +1,12 @@
 <template>
-  <tiny-action-menu :options="options" @visible-change="visibleChange"> </tiny-action-menu>
+  <tiny-action-menu
+    :options="options"
+    trigger="click"
+    @item-click="itemClick"
+    @more-click="moreClick"
+    @visible-change="visibleChange"
+  >
+  </tiny-action-menu>
 </template>
 
 <script setup>
@@ -25,9 +32,24 @@ const options = ref([
   }
 ])
 
-function visibleChange(status) {
+const itemClick = (data) => {
+  Notify({
+    message: JSON.stringify(data.itemData),
+    position: 'top-right',
+    duration: 2000
+  })
+}
+
+const visibleChange = (status) => {
   Notify({
     message: `触发 visible-change 事件,下拉状态为 ${status}`,
+    position: 'top-right',
+    duration: 2000
+  })
+}
+const moreClick = () => {
+  Notify({
+    message: '触发 moreClick 事件',
     position: 'top-right',
     duration: 2000
   })
