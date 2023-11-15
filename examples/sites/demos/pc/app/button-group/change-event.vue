@@ -1,12 +1,11 @@
 <template>
   <div>
     <tiny-button-group :data="groupData" v-model="checkedVal" @change="handleChange"></tiny-button-group>
-    <span>当前选中值：{{ checkedVal }}</span>
   </div>
 </template>
 
-<script lang="jsx">
-import { ButtonGroup, Notify } from '@opentiny/vue'
+<script>
+import { ButtonGroup, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -24,10 +23,7 @@ export default {
   },
   methods: {
     handleChange(val) {
-      Notify({
-        title: 'change事件',
-        message: `触发change事件，当前选中的值为${val}`
-      })
+      Modal.message('change事件触发了')
     }
   }
 }

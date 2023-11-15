@@ -8,7 +8,7 @@ export default {
       'desc': {
         'zh-CN': '<p>通过 <code>v-model</code> 绑定变量，变量值对应 <code>label</code> 属性的值。</p>\n',
         'en-US':
-          '<p>Bind variables through<code>v-model</code>, and the variable value corresponds to the value of the<code>label</code>attribute.</p>\n'
+          '<p>Bind variables through <code>v-model</code> , and the variable value corresponds to the value of the <code>label</code> attribute.</p>\n'
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -17,7 +17,7 @@ export default {
       'name': { 'zh-CN': '单选框组', 'en-US': 'Radio group' },
       'desc': {
         'zh-CN':
-          '<p><code>radio-group</code>可以将<code>radio</code>或者<code>radio-button</code>组合起来，通过<code>v-modal</code>绑定选中的值。</p>\n',
+          '<p> <code>radio-group</code> 可以将 <code>radio</code> 或者 <code>radio-button</code> 组合起来，通过 <code>v-modal</code> 绑定选中的值。</p>\n',
         'en-US': '<p>You can set the <code>border</code> attribute to add a border to an option button. </p>\n'
       },
       'codeFiles': ['radio-group.vue']
@@ -27,9 +27,9 @@ export default {
       'name': { 'zh-CN': '配置式单选组', 'en-US': 'Profile Radio Group' },
       'desc': {
         'zh-CN':
-          '<p>通过<code>options</code> 配置式渲染单选组。<code>options</code>的类型为<a href="#IRadioGroupOptions">IRadioGroupOptions[]</a>。另外还提供 <code>type</code> 属性，配合 <code>options</code> 属性一起使用，默认值为 <code>radio</code>。可以配置为 <code>button</code>，配置后单选组将以按钮的形式展示。</p>\n',
+          '<p>通过 <code>options</code> 配置式渲染单选组。 <code>options</code> 的类型为<a href="#IRadioGroupOptions">IRadioGroupOptions[]</a>。另外还提供 <code>type</code> 属性，配合 <code>options</code> 属性一起使用，默认值为 <code>radio</code> 。可以配置为 <code>button</code> ，配置后单选组将以按钮的形式展示。</p>\n',
         'en-US':
-          '<p>Provides the <code>options</code> attribute to render radio groups by configuring object array data. This property eliminates the need to insert a <code>&lt;radio&gt;</code> or <code>&lt;radio-button&gt;</code> tag as a slot in the tag. \n\nThe <code>options</code> object array contains three fields: <code>label</code>, <code>text</code>, and <code>events</code>. \n\n The <code>type</code> attribute is also provided, which is used together with the <code>options</code> attribute. The default value is <code>radio</code>. You can also set this parameter to <code>button</code>. After the configuration, the radio group is displayed as a button. </p>\n'
+          '<p>Provides the <code>options</code> attribute to render radio groups by configuring object array data. This property eliminates the need to insert a <code>&lt;radio&gt;</code> or <code>&lt;radio-button&gt;</code> tag as a slot in the tag. \n\nThe <code>options</code> object array contains three fields: <code>label</code> , <code>text</code> , and <code>events</code> . \n\n The <code>type</code> attribute is also provided, which is used together with the <code>options</code> attribute. The default value is <code>radio</code> . You can also set this parameter to <code>button</code> . After the configuration, the radio group is displayed as a button. </p>\n'
       },
       'codeFiles': ['group-options.vue']
     },
@@ -38,7 +38,7 @@ export default {
       'name': { 'zh-CN': '单选框事件', 'en-US': 'Option button event' },
       'desc': {
         'zh-CN':
-          '<p>可在 <code>radio</code>、 <code>radio-group</code> 组件上设置 <code>change</code> 事件，当绑定值变化时触发，参数为选中的 <code>label</code> 值。</p>\n',
+          '<p>可在 <code>radio</code> 、 <code>radio-group</code> 组件上设置 <code>change</code> 事件，当绑定值变化时触发，参数为选中的 <code>label</code> 值。</p>\n',
         'en-US':
           '<p>You can set the <code>change</code> event on the Radio and  <code>radio-group</code> components. The event is triggered when the bound value changes. The callback function is the selected radio label value. </p>\n'
       },
@@ -80,7 +80,7 @@ export default {
         'zh-CN':
           '<p>通过 <code>text-color</code> 设置单选按钮组激活时的文本颜色，通过 <code>fill</code> 设置填充色和边框色。</p>\n',
         'en-US':
-          'Set the text color when the radio button group is activated through<code>text color</code>, and set the fill color and border color through<code>fill</code>.</p>\n'
+          'Set the text color when the radio button group is activated through <code>text color</code> , and set the fill color and border color through <code>fill</code> .</p>\n'
       },
       'codeFiles': ['active-color.vue']
     },
@@ -89,9 +89,9 @@ export default {
       'name': { 'zh-CN': '文字内容', 'en-US': 'Text Content' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>text</code> 属性或者默认插槽设置文字内容，插槽优先级大于 <code>text</code> 属性。若两者都没有，则使用 <code>label</code>值作为文字内容。</p>\n',
+          '<p>通过 <code>text</code> 属性或者默认插槽设置文字内容，插槽优先级大于 <code>text</code> 属性。若两者都没有，则使用 <code>label</code> 值作为文字内容。</p>\n',
         'en-US':
-          '<pBy setting the text content through the<code>text</code>attribute or default slot, the slot priority is greater than the<code>text</code>attribute. If neither is present, use the<code>label</code>value as the text content. </p>\n'
+          '<pBy setting the text content through the <code>text</code> attribute or default slot, the slot priority is greater than the <code>text</code> attribute. If neither is present, use the <code>label</code> value as the text content. </p>\n'
       },
       'codeFiles': ['radio-text.vue']
     },
@@ -111,7 +111,7 @@ export default {
       'name': { 'zh-CN': '默认插槽', 'en-US': 'Default slot' },
       'desc': {
         'zh-CN': '<p>通过 <code>default</code> 默认插槽列表。</p>\n',
-        'en-US': '<p>by <code>default</code>default slot list. </p>\n'
+        'en-US': '<p>by <code>default</code> default slot list. </p>\n'
       },
       'codeFiles': ['default-slot.vue']
     }
@@ -120,7 +120,7 @@ export default {
     {
       'name': 'radio',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'border',
           'type': 'boolean',
@@ -216,8 +216,12 @@ export default {
           },
           'demoId': 'default-slot'
         }
-      ],
-      'radio-group props': [
+      ]
+    },
+    {
+      'name': 'radio-group',
+      'type': 'component',
+      'props': [
         {
           'name': 'disabled',
           'type': 'boolean',
@@ -300,7 +304,7 @@ export default {
           'demoId': 'vertical'
         }
       ],
-      'radio-group events': [
+      'events': [
         {
           'name': 'change',
           'type': '(value: number[] | string[]) => void',
@@ -312,7 +316,7 @@ export default {
           'demoId': 'radio-events'
         }
       ],
-      'radio-group slots': [
+      'slots': [
         {
           'name': 'default',
           'type': '',
@@ -323,8 +327,12 @@ export default {
           },
           'demoId': 'radio-group'
         }
-      ],
-      'radio-button props': [
+      ]
+    },
+    {
+      'name': 'radio-button',
+      'type': 'component',
+      'props': [
         {
           'name': 'disabled',
           'type': 'boolean',
@@ -366,7 +374,7 @@ export default {
           'demoId': 'radio-text'
         }
       ],
-      'radio-button slots': [
+      'slots': [
         {
           'name': 'default',
           'type': '',

@@ -6,6 +6,6 @@
   </tiny-button-group>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { Button as TinyButton, ButtonGroup as TinyButtonGroup } from '@opentiny/vue'
 </script>

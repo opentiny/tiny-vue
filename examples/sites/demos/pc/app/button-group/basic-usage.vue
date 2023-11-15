@@ -1,11 +1,11 @@
 <template>
   <div>
     <tiny-button-group :data="groupData" v-model="checkedVal"></tiny-button-group>
-    <span>当前选中值：{{ checkedVal }}</span>
+    <div class="mt-12">当前选中值：{{ checkedVal }}</div>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { ButtonGroup } from '@opentiny/vue'
 
 export default {
@@ -24,3 +24,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.mt-12 {
+  margin-top: 12px;
+}
+</style>
