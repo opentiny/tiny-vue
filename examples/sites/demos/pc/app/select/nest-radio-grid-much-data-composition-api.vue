@@ -1,16 +1,6 @@
 <template>
-  <div class="demo-select">
-    <tiny-select
-      v-model="radioValue"
-      value-field="id"
-      :multiple="false"
-      text-field="city"
-      render-type="grid"
-      :grid-op="gridOpRadio"
-      placeholder="请选择"
-      height="200px"
-    ></tiny-select>
-  </div>
+  <tiny-select v-model="radioValue" value-field="id" text-field="city" render-type="grid" :grid-op="gridOpRadio">
+  </tiny-select>
 </template>
 
 <script setup>
@@ -46,8 +36,8 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
-.demo-select .tiny-select {
-  width: 270px;
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
 }
 </style>

@@ -7,558 +7,448 @@ export default {
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
         'zh-CN':
-          '<p><code>v-model</code> 的值为当前被选中的 <code>tiny-option</code> 的 <code>value</code> 属性值。</p>\n',
+          '<p>通过 <code>v-model</code> 设置被选中的 <code>tiny-option</code> 的 <code>value</code> 属性值。</p>\n',
         'en-US':
-          'The value of <p><code>v-model</code> is the value of the <code>value</code> attribute of the currently selected <code>tiny-option</code>. </p>\n'
+          '<p>Set the<code>value</code>attribute value of the selected<code>tiny option</code>by<code>v-model</code>.</p>\n'
       },
       'codeFiles': ['basic-usage.vue']
     },
     {
-      'demoId': 'searchable',
-      'name': { 'zh-CN': '下拉面板可搜索', 'en-US': 'Multiple Choices' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>searchable</code> 配置下拉面板是否显示搜索框</p>\n',
-        'en-US':
-          '<p>The <code>multiple</code> attribute is used to enable the multi-selection function. In this case, the value of <code>v-model</code> is an array of selected values. By default, the selected value is displayed as a tag. </p>\n'
-      },
-      'codeFiles': ['searchable.vue']
-    },
-    {
       'demoId': 'multiple',
-      'name': { 'zh-CN': '多选', 'en-US': 'Collapse Tag' },
+      'name': { 'zh-CN': '多选', 'en-US': 'Multiple' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>multiple</code> 属性启用多选功能，此时 <code>v-model</code> 的值为当前选中值所组成的数组。默认情况下选中值会以 Tag 的形式展现。</p>\n',
+          '<p>通过 <code>multiple</code> 属性启用多选功能，此时 <code>v-model</code> 的值为当前选中值所组成的数组。默认选中值会以标签（Tag 组件）展示。</p>\n',
         'en-US':
-          '<p>When you select multiple values, you can set the <code>collapse-tags</code> attribute to combine the selected values into a text. </p>\n'
+          '<p>Enable the multi-selection function through the<code>multiple</code>attribute, where the value of the<code>v model</code>is an array composed of the currently selected values. The default selected value will be displayed as a tag component. </p>\n'
       },
       'codeFiles': ['multiple.vue']
     },
     {
-      'demoId': 'collapse-tags',
-      'name': { 'zh-CN': '折叠 Tag', 'en-US': 'Set the tag type' },
+      'demoId': 'multiple-limit',
+      'name': { 'zh-CN': '选择个数限制', 'en-US': 'Select number limit' },
       'desc': {
-        'zh-CN': '<p>多选时通过设置 <code>collapse-tags</code> 属性将选中值合并为一段文字。</p>\n',
-        'en-US': '<p>Set the tag type through the <code>tagType</code> attribute</p>\n'
+        'zh-CN': '<p>通过 <code>multiple-limit</code> 属性限制最多可选择的个数，默认为 0 不限制。</p>\n',
+        'en-US':
+          '<p>Limit the maximum number of choices through the<code>multiple limit</code>attribute, with a default value of 0 and no limit.</p>\n'
+      },
+      'codeFiles': ['multiple-limit.vue']
+    },
+    {
+      'demoId': 'collapse-tags',
+      'name': { 'zh-CN': '折叠标签', 'en-US': 'Collapse tags' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>collapse-tags</code> 属性设置选中多个选项时，多个标签缩略展示。</p>\n',
+        'en-US':
+          '<p>When multiple options are selected through the<code>collapse tags</code>attribute settings, multiple tags will be abbreviated and displayed.</p>\n'
       },
       'codeFiles': ['collapse-tags.vue']
     },
     {
       'demoId': 'tag-type',
-      'name': { 'zh-CN': '设置 tag 类型', 'en-US': 'Set the text box type' },
+      'name': { 'zh-CN': '标签类型', 'en-US': 'Tag type' },
       'desc': {
-        'zh-CN': '<p>通过 <code>tagType</code> 属性设置标签类型 </p>\n',
-        'en-US': '<p>You can set <code>input-box-type</code> to underline. </p>\n'
+        'zh-CN':
+          '<p>通过 <code>tagType</code> 属性设置标签类型，同 Tag 组件的 type 属性。可选值：success / info / warning / danger 。</p>\n',
+        'en-US':
+          '<p>Set the label type through the<code>tagType</code>attribute, which is the same as the type attribute of the Tag component. Optional values: success/info/warning/danger.</p>\n'
       },
       'codeFiles': ['tag-type.vue']
     },
     {
-      'demoId': 'clear-no-match-value',
-      'name': { 'zh-CN': '自动清除不匹配的值', 'en-US': 'Set the text box type' },
+      'demoId': 'size',
+      'name': { 'zh-CN': '尺寸', 'en-US': 'Size' },
       'desc': {
-        'zh-CN':
-          '<p>设置 <code>clearNoMatchValue</code> 属性为 <code>true</code>,则在options中无法找到匹配项的值会被自动清除 </p>\n',
+        'zh-CN': '<p>通过 <code>size</code> 属性设置输入框尺寸，可选值：medium / small / mini 。</p>',
         'en-US':
-          '<p>If <code>clearNoMatchValue</code> is set to <code>true</code>, values that cannot be found in options are automatically cleared. </p>\n'
+          '<p>Set the input box size through the<code>size</code>attribute, with optional values of medium / small / mini.</p>'
       },
-      'codeFiles': ['clear-no-match-value.vue']
-    },
-    {
-      'demoId': 'input-box-type',
-      'name': { 'zh-CN': '设置输入框类型', 'en-US': 'Maximum number of options' },
-      'desc': {
-        'zh-CN': '<p>通过设置 <code>input-box-type</code> 为underline,可以设置为下划线类型。</p>\n',
-        'en-US':
-          'The <p><code>multiple-limit</code> attribute specifies the maximum number of items that can be selected by the user during multiple selection. The default value is 0, which is not limited. </p>\n'
-      },
-      'codeFiles': ['input-box-type.vue']
-    },
-    {
-      'demoId': 'multiple-limit',
-      'name': { 'zh-CN': '选择个数限制', 'en-US': 'Big Data Virtual Scrolling' },
-      'desc': {
-        'zh-CN': '<p><code>multiple-limit</code> 属性可指定多选时用户最多可以选择的项目数，默认为 0 不限制。</p>\n',
-        'en-US':
-          '<p>You can set the options in the <code>options</code> drop-down list box and set <code>optimization</code> to enable the big data virtual scrolling function. Virtual scrolling is not supported when using the label configuration option. \nIn multi-choice mode, the maximum number of selected items <code>multiple-limit</code> is 20 by default. If a large number of selected items are selected, you are advised to enable <code>collapse-tags</code> to collapse the display. </p>\n'
-      },
-      'codeFiles': ['multiple-limit.vue']
-    },
-    {
-      'demoId': 'optimization',
-      'name': { 'zh-CN': '大数据虚拟滚动', 'en-US': 'Disabled' },
-      'desc': {
-        'zh-CN':
-          '<p>通过 <code>options</code> 设置下拉选项并且设置 <code>optimization</code> 开启大数据虚拟滚动功能。使用标签配置选项时不支持开启虚拟滚动。\n多选模式下，最大选中项数 <code>multiple-limit</code> 默认值为 20，如果选中项比较多，建议开启 <code>collapse-tags</code> 进行折叠显示。</p>\n',
-        'en-US': '<p>After the <code>disabled</code> property is set, the entire selector is unavailable. </p>\n'
-      },
-      'codeFiles': ['optimization.vue']
+      'codeFiles': ['size.vue']
     },
     {
       'demoId': 'disabled',
-      'name': { 'zh-CN': '禁用', 'en-US': 'Some options in the drop-down list box are disabled.' },
+      'name': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
       'desc': {
-        'zh-CN': '<p>设置 <code>disabled</code> 属性后整个选择器不可用。</p>\n',
+        'zh-CN': '<p>通过 <code>disabled</code> 属性设置下拉或者下拉项的禁用状态。</p>\n',
         'en-US':
-          'This option is unavailable after the <code>disabled</code> attribute is set for the <p>tiny-options tag. </p>\n'
+          '<p>Set the disabled status of the dropdown or dropdown item through the<code>disabled</code>attribute. </p>\n'
       },
       'codeFiles': ['disabled.vue']
     },
     {
-      'demoId': 'disabled-options',
-      'name': {
-        'zh-CN': '下拉选项某些项禁用',
-        'en-US': 'By default, multiple options in the drop-down list are selected and disabled.'
-      },
-      'desc': {
-        'zh-CN': '<p>tiny-options 标签设置 <code>disabled</code> 属性后该选项不可用。</p>\n',
-        'en-US':
-          '<p>After the <code>disabled</code> attribute is set for the default selected tag, this option is disabled. </p>\n'
-      },
-      'codeFiles': ['disabled-options.vue']
-    },
-    {
-      'demoId': 'disabled-and-selected-options',
-      'name': { 'zh-CN': '下拉多选默认选中且禁用', 'en-US': 'medium' },
-      'desc': {
-        'zh-CN': '<p>默认选中的标签设置 <code>disabled</code> 属性后，该选项禁用。</p>\n',
-        'en-US':
-          '<p>The <code>size</code> attribute defines the text box size. The options are medium, small, and mini. \n Use <code>options</code> to configure the Select data item. After using the data item, you do not need to configure tiny-option. </p>\n'
-      },
-      'codeFiles': ['disabled-and-selected-options.vue']
-    },
-    {
-      'demoId': 'size-medium',
-      'name': { 'zh-CN': '尺寸', 'en-US': 'small' },
-      'desc': {
-        'zh-CN':
-          '<p>通过 <code>size</code> 属性定义输入框尺寸，可选项有 medium、small、mini 。\n通过 <code>options</code> 配置 Select 数据项，使用后不需要再配置 tiny-option。</p>\n',
-        'en-US': 'For details, see the following example.'
-      },
-      'codeFiles': ['size-medium.vue']
-    },
-    {
-      'demoId': 'option-group',
-      'name': { 'zh-CN': '分组', 'en-US': 'Disable some options for grouping' },
-      'desc': {
-        'zh-CN':
-          '<p>使用 <code>tiny-option-group</code> 对备选项进行分组，它的 <code>label</code> 属性为分组名，使用 <code>disabled</code> 属性设置该分组下所有选项为禁用。</p>\n',
-        'en-US': '<p>Use <code>tiny-option-group</code> to group options and disable some grouping. </p>\n'
-      },
-      'codeFiles': ['option-group.vue']
-    },
-    {
-      'demoId': 'option-group-disable',
-      'name': { 'zh-CN': '分组禁用部分选项', 'en-US': 'change clear blur focus event' },
-      'desc': {
-        'zh-CN': '<p>使用 <code>tiny-option-group</code> 对备选项进行分组，禁用部分分组。</p>\n',
-        'en-US':
-          'Description of the <div class="tip custom-block"><p class="custom-block-title"> event</p>\n<p>change: triggered when the selected value changes. The callback parameter is the current selected value.\nclear: triggered when the user clicks the clear button in the option mode.\nblur: triggered when the input loses the focus.\nfocus: </p>\n</div>\n is triggered when the input is focused'
-      },
-      'codeFiles': ['option-group-disable.vue']
-    },
-    {
-      'demoId': 'envts-change',
-      'name': { 'zh-CN': 'change clear blur focus 事件', 'en-US': 'visible-change remove-tag event' },
-      'desc': {
-        'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>change：选中值发生变化时触发，回调参数为目前的选中值\nclear：可清空的单选模式下用户点击清空按钮时触发\nblur：当 input 失去焦点时触发\nfocus：当 input 获得焦点时触发</p>\n</div>\n',
-        'en-US':
-          '<div class="tip custom-block"><p class="custom-block-title"> Event Description</p>\n<p>visible-change: Triggered when the drop-down list box is displayed or hidden. The callback parameter is true if the drop-down list box is displayed or false if the drop-down list box is hidden.\nremove-tag: Triggered when the tag is removed in multi-select mode. The callback parameter is the removed tag value </p>\n</div>\n'
-      },
-      'codeFiles': ['envts-change.vue']
-    },
-    {
-      'demoId': 'envts-remove',
-      'name': { 'zh-CN': 'visible-change remove-tag 事件', 'en-US': 'Searchable' },
-      'desc': {
-        'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">事件说明</p>\n<p>visible-change：下拉框出现/隐藏时触发，回调参数为：出现则为 true，隐藏则为 false\nremove-tag：多选模式下移除tag时触发，回调参数为移除的 tag 值</p>\n</div>\n',
-        'en-US':
-          '<p>The <code>filterable</code> property enables the search function. By default, Select finds all options for which the <code>label</code> property contains the entered value. If you want to use other search logic, you can pass in a <code>filter-method</code>. <code>filter-method</code> is a function. It is invoked when the input value changes. The parameter is the current input value. </p>\n'
-      },
-      'codeFiles': ['envts-remove.vue']
-    },
-    {
-      'demoId': 'filter-method',
-      'name': { 'zh-CN': '可搜索', 'en-US': 'The search allows copying' },
-      'desc': {
-        'zh-CN':
-          '<p>通过 <code>filterable</code> 属性可启用搜索功能。默认情况下，Select 会找出所有 <code>label</code> 属性包含输入值的选项。如果希望使用其他的搜索逻辑，可以通过传入一个 <code>filter-method</code> 来实现。<code>filter-method</code> 为一个 Function，它会在输入值发生变化时调用，参数为当前输入值。</p>\n',
-        'en-US':
-          '<p>In the search scenario, the content in the text box cannot be copied. You need to add the <code>allow-copy</code> attribute to copy the content. The <code>allow-copy</code> attribute defaults to <code>false</code>. \nWhen hovering the mouse over the text box, press and move the mouse to select the previous text. \n When you hover the cursor over the text box and click the left mouse button, the input content changes to placeholder, the content is cleared, and the input state is entered. </p>\n'
-      },
-      'codeFiles': ['filter-method.vue']
-    },
-    {
-      'demoId': 'search-allow-copy',
-      'name': { 'zh-CN': '搜索允许复制', 'en-US': 'Create Item' },
-      'desc': {
-        'zh-CN':
-          '<p>搜索单选场景，不能复制输入框的内容，需要添加属性 <code>allow-copy</code> 才能复制。属性 <code>allow-copy</code> 默认为 <code>false</code>。\n在鼠标悬浮在输入框上时，按下鼠标左键并移动鼠标，可选中之前输入文本；\n在鼠标悬浮在输入框上时，点击鼠标左键，还是原有行为，即输入内容变为 placeholder，内容清空，进入输入状态；</p>\n',
-        'en-US':
-          '<p>The <code>allow-create</code> attribute allows you to create a new entry that does not exist in the option by entering text in the text box. Note that the <code>filterable</code> attribute must be true at this point. After the <code>default-first-option</code> attribute is set to true, you can press Enter to select the first option in the current option list. You do not need to use the mouse or keyboard arrow keys to locate the option. </p>\n'
-      },
-      'codeFiles': ['search-allow-copy.vue']
-    },
-    {
-      'demoId': 'allow-create',
-      'name': { 'zh-CN': '创建条目', 'en-US': 'Remote Search' },
-      'desc': {
-        'zh-CN':
-          '<p>通过 <code>allow-create</code> 属性可通过在输入框中输入文字来创建选项中并不存在的新的条目。注意此时 <code>filterable</code> 属性必须为真。而<code>default-first-option</code> 属性设置为 true 后，通过按下回车就可以选中当前选项列表中的第一个选项，无需使用鼠标或键盘方向键进行定位。</p>\n',
-        'en-US':
-          '<p>To enable remote search, set <code>filterable</code> and <code>remote</code> to <code>true</code>. In addition, a <code>remote-method</code> is transferred. <code>remote-method</code> is a function. It is invoked when the input value changes. The parameter is the current input value. When the <code>reserve-keyword</code> attribute has multiple options and is searchable, the current search keyword can be retained after an option is selected. </p>\n'
-      },
-      'codeFiles': ['allow-create.vue']
-    },
-    {
-      'demoId': 'remote-method',
-      'name': { 'zh-CN': '远程搜索', 'en-US': 'Remote search is triggered when the focus is obtained.' },
-      'desc': {
-        'zh-CN':
-          '<p>为了启用远程搜索，需要将 <code>filterable</code> 和 <code>remote</code> 设置为 <code>true</code>，同时传入一个 <code>remote-method</code>。<code>remote-method</code> 为一个 Function，它会在输入值发生变化时调用，参数为当前输入值。<code>reserve-keyword</code> 属性在多选且可搜索时，可以在选中一个选项后保留当前的搜索关键词。</p>\n',
-        'en-US': 'For details, see the following example.'
-      },
-      'codeFiles': ['remote-method.vue']
-    },
-    {
-      'demoId': 'focus-remote-method',
-      'name': { 'zh-CN': '获焦时触发远程搜索', 'en-US': 'Remote search allows replication' },
-      'desc': {
-        'zh-CN': '详细用法参考如下示例',
-        'en-US':
-          '<p>In the remote search scenario, the content in the text box cannot be copied. You need to add the <code>allow-copy</code> attribute to copy the content. The <code>allow-copy</code> attribute defaults to <code>false</code>. \nWhen hovering the mouse over the text box, press and move the mouse to select the previous text. \n When you hover the cursor over the text box and click the left mouse button, the input content changes to placeholder, the content is cleared, and the input state is entered. </p>\n'
-      },
-      'codeFiles': ['focus-remote-method.vue']
-    },
-    {
-      'demoId': 'remote-search-allow-copy',
-      'name': { 'zh-CN': '远程搜索允许复制', 'en-US': 'Options can be cleared' },
-      'desc': {
-        'zh-CN':
-          '<p>远程搜索单选场景，不能复制输入框的内容，需要添加属性 <code>allow-copy</code> 才能复制。属性 <code>allow-copy</code> 默认为 <code>false</code>。\n在鼠标悬浮在输入框上时，按下鼠标左键并移动鼠标，可选中之前输入文本；\n在鼠标悬浮在输入框上时，点击鼠标左键，还是原有行为，即输入内容变为 placeholder，内容清空，进入输入状态；</p>\n',
-        'en-US':
-          '<p>You can use the <code>clearable</code> attribute to clear the selector. When you hover the cursor over the selector, the clear icon is displayed. Note that the <code>clearable</code> attribute applies only to single selection. </p>\n'
-      },
-      'codeFiles': ['remote-search-allow-copy.vue']
-    },
-    {
       'demoId': 'clearable',
-      'name': { 'zh-CN': '选项可清除', 'en-US': 'name' },
+      'name': { 'zh-CN': '可清除', 'en-US': 'Clearable' },
       'desc': {
-        'zh-CN':
-          '<p>通过 <code>clearable</code> 属性可将选择器清空，鼠标悬停于选择器上时，会出现清除图标。需要注意的是，<code>clearable</code> 属性仅适用于单选。</p>\n',
-        'en-US': '<p>You can set the name attribute through the <code>name</code> attribute</p>\n'
+        'zh-CN': '<p>通过 <code>clearable</code> 属性启用一键清除选中值的功能。仅适用于单选。</p>\n',
+        'en-US':
+          '<p>Enable the function of clearing selected values with one click through the<code>clearable</code>attribute. Only applicable for single selection.</p>\n'
       },
       'codeFiles': ['clearable.vue']
     },
     {
-      'demoId': 'name',
-      'name': { 'zh-CN': 'name', 'en-US': 'Select selector options can be copied' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>name</code> 属性可已设置 name 的属性</p>\n',
-        'en-US':
-          '<p>After the <code>tag-selectable</code> attribute is set, the selected options in the text box can be selected by using the mouse, and then you can press Ctrl + C or right-click to copy the options. </p>\n'
-      },
-      'codeFiles': ['name.vue']
-    },
-    {
-      'demoId': 'tag-select',
-      'name': { 'zh-CN': 'Select选择器选项可复制', 'en-US': 'The Select selector option can be copied to all.' },
+      'demoId': 'filter-method',
+      'name': { 'zh-CN': '可搜索', 'en-US': 'Filterable' },
       'desc': {
         'zh-CN':
-          '<p>设置 <code>tag-selectable</code> 属性后，输入框中已选择的选项可通过鼠标选择，然后按 Ctrl + C 或右键进行复制。</p>\n',
+          '<p>通过 <code>filterable</code> 属性启用搜索功能。<code>filter-method</code> 自定义过滤方法。 <code>no-match-text</code> 属性自定义与搜索条件无匹配项时显示的文字。</p>\n',
         'en-US':
-          '<p>After the <code>copyable</code> attribute is set, all <code>tag</code> text contents can be copied and separated by commas.</p>\n'
+          '<p>Enable search functionality through the<code>filterable</code>attribute< Code>filter method</code>Customize the filtering method< Code>no match text</code>The text displayed when there is no match between attribute customization and search criteria.</p>\n'
       },
-      'codeFiles': ['tag-select.vue']
+      'codeFiles': ['filter-method.vue']
     },
     {
-      'demoId': 'tag-copy-all',
-      'name': { 'zh-CN': 'Select选择器选项支持复制所有', 'en-US': 'Bound Value object' },
-      'desc': {
-        'zh-CN': '<p>设置 <code>copyable</code> 属性后，可以复制所有的 <code>tag</code> 文本内容以逗号分隔</p>\n',
-        'en-US':
-          '<p>If the bound value is an object, the <code>value-key</code> attribute must be configured to specify the key name uniquely identified by the value. </p>\n'
-      },
-      'codeFiles': ['tag-copy-all.vue']
-    },
-    {
-      'demoId': 'binding-obj',
-      'name': { 'zh-CN': '绑定值为对象', 'en-US': 'Customized search text without matching' },
-      'desc': {
-        'zh-CN': '<p>如果绑定值为对象时，则必须要配置 <code>value-key</code> 属性指定 value 唯一标识的键名。</p>\n',
-        'en-US':
-          '<p>You can use the <code>no-match-text</code> attribute to customize the text displayed when no search criteria are matched. </p>\n'
-      },
-      'codeFiles': ['binding-obj.vue']
-    },
-    {
-      'demoId': 'no-match-text',
-      'name': { 'zh-CN': '自定义无匹配搜索文字', 'en-US': 'Customized text for empty data display' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>no-match-text</code> 属性可自定义搜索条件无匹配时显示的文字。</p>\n',
-        'en-US':
-          '<p>You can use the <code>no-data-text</code> attribute to customize the text displayed when the option is empty. </p>\n <p>You can set the <code>show-empty-image</code> attribute to display empty data images. By default, empty data images are not displayed. </p>\n'
-      },
-      'codeFiles': ['no-match-text.vue']
-    },
-    {
-      'demoId': 'no-data-text',
-      'name': { 'zh-CN': '自定义空数据显示文字', 'en-US': 'Pop-up dialog box style and positioning' },
+      'demoId': 'remote-method',
+      'name': { 'zh-CN': '远程搜索', 'en-US': 'Remote search' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>no-data-text</code> 属性可以自定义选项为空时显示的文字。</p>\n <p>通过 <code>show-empty-image</code> 属性可以设置显示空数据图片，默认不显示。</p>\n',
+          '<p>通过 <code>filterable</code> 和 <code>remote</code> 和 <code>remote-method</code> 这三个属性同时使用设置远程搜索。通过 <code>reserve-keyword</code> 属性设置多选可搜索时，可以在选中一个选项后保留当前的搜索关键词。</p>\n',
         'en-US':
-          '<p>You can use the <code>popper-class</code> attribute to customize the style of the drop-down list box. <code>popper-append-to-body</code>\t Specifies whether to insert a pop-up into the body element. If a fault occurs in locating the dialog box that is displayed, set this parameter to false. </p>\n'
+          '<p>Set remote search through the use of three attributes:<code>filterable</code>,<code>remote</code>, and<code>remote method</code>. When setting multiple searchable options through the<code>reserve keyword</code>attribute, the current search keyword can be retained after selecting an option.</p>'
       },
-      'codeFiles': ['no-data-text.vue']
+      'codeFiles': ['remote-method.vue']
+    },
+    {
+      'demoId': 'searchable',
+      'name': { 'zh-CN': '下拉面板可搜索', 'en-US': 'Panel search' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>searchable</code> 属性设置下拉面板显示搜索框，默认不显示。</p>\n',
+        'en-US':
+          '<p>The search box is displayed through the<code>searchable</code>attribute setting drop-down panel, which is not displayed by default. </p>\n'
+      },
+      'codeFiles': ['searchable.vue']
+    },
+    {
+      'demoId': 'allow-create',
+      'name': { 'zh-CN': '创建条目', 'en-US': 'Create Entry' },
+      'desc': {
+        'zh-CN':
+          '<p>通过 <code>allow-create</code> 和 <code>filterable</code> 属性，设置当搜索字段不在已有选项中时，可创建为新的条目。结合 <code>default-first-option</code> 属性，可以按 Enter 键选中第一个匹配项。</p>\n',
+        'en-US':
+          '<p>By using the<code>allow create</code>and<code>filterable</code>attributes, the search field can be created as a new entry when it is not in an existing option. By combining the<code>default-first-option</code>attribute, you can press the Enter key to select the first matching option.</p>\n'
+      },
+      'codeFiles': ['allow-create.vue']
+    },
+    {
+      'demoId': 'map-field',
+      'name': { 'zh-CN': '映射字段', 'en-US': 'Map Fields' },
+      'desc': {
+        'zh-CN': '通过 <code>text-field</code> 设置显示文本字段，<code>value-field</code>设置绑定值字段。',
+        'en-US':
+          '<p>Set the display text field by<code>text field</code>, and set the binding value field by<code>value field</code>. </p>\n'
+      },
+      'codeFiles': ['map-field.vue']
     },
     {
       'demoId': 'popup-style-position',
-      'name': { 'zh-CN': '弹出框样式与定位', 'en-US': 'The drop-down menu is displayed when the focus is obtained.' },
+      'name': { 'zh-CN': '弹框样式与定位', 'en-US': 'Bullet Box Style and Positioning' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>popper-class</code> 属性可自定义下拉弹框的样式。<code>popper-append-to-body</code>\t指定是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false 。</p>\n',
+          '<p>通过 <code>popper-class</code> 属性设置下拉弹框的类名，可自定义样式。<code>placement</code>设置弹出位置。<code>popper-append-to-body</code> 设置是否将弹框 dom 元素插入至 body 元素，默认为 true。</p>\n',
         'en-US':
-          '<p>After <code>automatic-dropdown</code> is set to true, the option menu is automatically displayed after the focus is obtained in the text box. </p>\n'
+          '<p>You can customize the style by setting the class name of the dropdown pop-up box through the<code>popper class</code>attribute< Code>placement</code>Set the pop-up position< Code>popper append to body</code>Set whether to insert the pop-up dom element into the body element, default to true. </p>\n'
       },
       'codeFiles': ['popup-style-position.vue']
     },
     {
-      'demoId': 'automatic-dropdown',
-      'name': { 'zh-CN': '获取焦点既弹出下拉菜单', 'en-US': 'Custom header content' },
+      'demoId': 'input-box-type',
+      'name': { 'zh-CN': '输入框类型', 'en-US': 'Input box type' },
       'desc': {
-        'zh-CN':
-          '<p>设置 <code>automatic-dropdown</code> 属性为 true 后，对于不可搜索的 Select，在输入框获得焦点后将自动弹出选项菜单。</p>\n',
-        'en-US': '<p>Customize the header content of the text box through the <code>prefix</code> slot. </p>\n'
-      },
-      'codeFiles': ['automatic-dropdown.vue']
-    },
-    {
-      'demoId': 'custom-prefix',
-      'name': { 'zh-CN': '自定义头部内容', 'en-US': 'User-defined drop-down list' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>prefix</code> 插槽自定义输入框头部内容。</p>\n',
+        'zh-CN': '<p>通过 <code>input-box-type</code> 属性设置输入框类型。可选值：input / underline。</p>\n',
         'en-US':
-          '<p> is implemented through the default slot of Option. Insert the customized HTML template into the slot of <code>tiny-option</code>. </p>\n'
+          'The <p>Set the input box type through the<code>input box type</code>attribute. Optional values: input / underline. </p>\n'
       },
-      'codeFiles': ['custom-prefix.vue']
-    },
-    {
-      'demoId': 'custom-options',
-      'name': { 'zh-CN': '自定义下拉内容', 'en-US': 'The Select All option is not displayed.' },
-      'desc': {
-        'zh-CN':
-          '<p>通过 Option 的默认插槽实现，将自定义的 HTML 模板插入 <code>tiny-option</code> 的 slot 中即可。</p>\n',
-        'en-US':
-          'If <p><code>show-alloption</code> is set to false, the <code>Select All</code> option is not displayed. The default value is true. </p>\n'
-      },
-      'codeFiles': ['custom-options.vue']
-    },
-    {
-      'demoId': 'custom-reference-slot',
-      'name': { 'zh-CN': '自定义触发源插槽', 'en-US': 'Change the value in the text box.' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>reference</code> 插槽自定义触发源的 HTML 模板。</p>\n',
-        'en-US': 'For details, see the following example.'
-      },
-      'codeFiles': ['custom-reference-slot.vue']
+      'codeFiles': ['input-box-type.vue']
     },
     {
       'demoId': 'show-alloption',
-      'name': { 'zh-CN': '不展示全选选项', 'en-US': 'Manually obtaining the focus' },
+      'name': { 'zh-CN': '不展示全选', 'en-US': 'Hide Select All' },
       'desc': {
-        'zh-CN':
-          '<p><code>show-alloption</code> 属性设置为 false 后将不展示 <code>全选</code> 选项，默认为 true 。</p>\n',
-        'en-US': '<p>Invoke the <code>focus()</code> method to focus the input. </p>\n'
+        'zh-CN': '<p>通过 <code>show-alloption</code> 属性设置多选时不展示 <code>全选</code> 选项，默认展示 。</p>\n',
+        'en-US':
+          '<p>By setting the<code>show allocation</code>attribute, do not display the<code>select all</code>option when multiple selections are made, and display by default.</p>\n'
       },
       'codeFiles': ['show-alloption.vue']
     },
     {
-      'demoId': 'set-input-value',
-      'name': { 'zh-CN': '改变输入框的值', 'en-US': 'The drop-down list follows the width of the text box.' },
+      'demoId': 'clear-no-match-value',
+      'name': { 'zh-CN': '自动清除不匹配的值', 'en-US': 'Clear mismatch value' },
       'desc': {
-        'zh-CN': '详细用法参考如下示例',
+        'zh-CN':
+          '<p>通过 <code>clearNoMatchValue</code> 属性设置 v-model 的值在 options 中无法找到匹配项的值会被自动清除，默认不清除。 </p>\n',
         'en-US':
-          '<p>The <code>is-drop-inherit-width</code> attribute is used to set whether the drop-down list box follows the width of the text box. The default value is <code>false</code>, indicating that the content is not followed. The width of the drop-down list can be expanded. If the value is <code>true</code>, the content is followed. </p>\n'
+          '<p>By setting the value of the v-model through the<code>clearNoMatchValue</code>attribute, if a matching value cannot be found in the options, it will be automatically cleared and will not be cleared by default.</p>\n'
       },
-      'codeFiles': ['set-input-value.vue']
+      'codeFiles': ['clear-no-match-value.vue']
+    },
+    {
+      'demoId': 'optimization',
+      'name': { 'zh-CN': '大数据虚拟滚动', 'en-US': 'Big data virtual scrolling' },
+      'desc': {
+        'zh-CN':
+          '<p>通过 <code>optimization</code> 开启大数据虚拟滚动功能。仅配置式（使用 options 属性）时支持。\n多选模式下，最大选中项数 <code>multiple-limit</code> 默认值为 20，如果选中项比较多，建议开启 <code>collapse-tags</code> 进行折叠显示。</p>\n',
+        'en-US':
+          '<p>Enable the big data virtual scrolling function through<code>optimization</code>. Supported only when configuring (using the options attribute). In n multiple selection mode, the maximum number of selected items is<code>multiple limit</code>with a default value of 20. If there are many selected items, it is recommended to turn on<code>collapse tags</code>for collapsed display. </p>\n'
+      },
+      'codeFiles': ['optimization.vue']
+    },
+    {
+      'demoId': 'option-group',
+      'name': { 'zh-CN': '分组', 'en-US': 'Group' },
+      'desc': {
+        'zh-CN':
+          '<p>使用 <code>tiny-option-group</code> 组件对备选项进行分组。通过 <code>label</code> 属性设置分组名，code>disabled</code> 属性设置该分组下所有选项为禁用。</p>\n',
+        'en-US':
+          '<p>Use the<code>tiny option group</code>component to group alternative options. Set the group name through the<code>label</code>attribute, and set all options under the group to disabled through the code>disabled</code>attribute. </p>\n'
+      },
+      'codeFiles': ['option-group.vue']
+    },
+    {
+      'demoId': 'search-allow-copy',
+      'name': { 'zh-CN': '单选可复制', 'en-US': 'Single choice replicable' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>allow-copy</code> 属性设置单选可搜索时，鼠标可滑动选中并复制输入框的内容。</p>\n',
+        'en-US':
+          '<p>When setting radio searchable through the<code>allow copy</code>attribute, the mouse can slide to select and copy the content of the input box. </p>\n'
+      },
+      'codeFiles': ['search-allow-copy.vue']
+    },
+    {
+      'demoId': 'tag-select',
+      'name': { 'zh-CN': '多选可复制', 'en-US': 'Multiple choices can be copied' },
+      'desc': {
+        'zh-CN':
+          '<p>通过 <code>tag-selectable</code> 属性设置输入框中标签可通过鼠标选择，然后按 Ctrl + C 或右键进行复制。<code>copyable</code> 属性设置启用一键复制所有标签的文本内容并以逗号分隔。</p>\n',
+        'en-US':
+          '<p>By setting the<code>tag selectable</code>attribute in the input box, the label can be selected with the mouse, and then copied by pressing Ctrl+C or right-click< Code>copyable</code>Property settings enable one click copying of all label text content separated by commas.</p>\n'
+      },
+      'codeFiles': ['tag-select.vue']
+    },
+    {
+      'demoId': 'native-properties',
+      'name': { 'zh-CN': '原生属性', 'en-US': 'Native properties' },
+      'desc': {
+        'zh-CN':
+          '<p>通过 <code>name</code> / <code>placeholder</code> / <code>autocomplete</code> 属性设置下拉组件内置 Input 的原生属性。</p>\n',
+        'en-US':
+          '<p>Set the native properties of the built-in Input in the dropdown component through the<code>name</code>/<code>placeholder</code>/<code>autocomplete</code>attribute settings.</p>\n'
+      },
+      'codeFiles': ['native-properties.vue']
+    },
+    {
+      'demoId': 'binding-obj',
+      'name': { 'zh-CN': '绑定值为对象', 'en-US': 'Bind value as object' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>value-key</code> 属性设置 value 唯一标识的键名，绑定值可以设置为对象。</p>\n',
+        'en-US':
+          '<p>By using the<code>value key</code>attribute to set the key name uniquely identified by value, the binding value can be set as an object. </p>\n'
+      },
+      'codeFiles': ['binding-obj.vue']
+    },
+    {
+      'demoId': 'no-data-text',
+      'name': { 'zh-CN': '空数据文本', 'en-US': 'Empty data text' },
+      'desc': {
+        'zh-CN':
+          '<p>通过 <code>no-data-text</code> 属性设置选项为空时显示的文本，<code>show-empty-image</code> 属性设置是否显示空数据图片，默认不显示。</p>\n',
+        'en-US':
+          '<p>By setting the<code>no data text</code>attribute to display text when the option is empty, and by setting the<code>show empty image</code>attribute to display empty data images, it is not displayed by default.</p>\n'
+      },
+      'codeFiles': ['no-data-text.vue']
     },
     {
       'demoId': 'manual-focus-blur',
-      'name': { 'zh-CN': '手动获取焦点', 'en-US': 'Empty data slot' },
+      'name': { 'zh-CN': '手动聚焦失焦', 'en-US': 'Manual focusing out of focus' },
       'desc': {
-        'zh-CN': '<p>通过调用 <code>focus()</code> 方法使 input 获取焦点。</p>\n',
-        'en-US': '<p>Use <code>empty</code> to set the message displayed when there is no data. </p>\n'
+        'zh-CN': '<p>通过 <code>focus()</code> 方法聚焦，<code>blur()</code>方法失焦。</p>\n',
+        'en-US':
+          '<p>Focusing is achieved through the<code>focus()</code>method, while the<code>blur()</code>method is out of focus. </p>\n'
       },
       'codeFiles': ['manual-focus-blur.vue']
     },
     {
+      'demoId': 'automatic-dropdown',
+      'name': { 'zh-CN': '获焦即弹出', 'en-US': 'Eject upon capture of focus' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>automatic-dropdown</code> 设置不可搜索的 select 获得焦点并自动弹出选项菜单。</p>\n',
+        'en-US':
+          '<p>Set non searchable select to obtain focus and automatically pop up an option menu through<code>automatic dropdown</code>. </p>\n'
+      },
+      'codeFiles': ['automatic-dropdown.vue']
+    },
+    {
       'demoId': 'is-drop-inherit-width',
-      'name': { 'zh-CN': '下拉列表跟随输入框宽度', 'en-US': 'Default slot' },
+      'name': { 'zh-CN': '继承宽度', 'en-US': 'Inherit width' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>is-drop-inherit-width</code> 属性设置下拉列表是否跟随输入框宽度。默认为 <code>false</code> 表示不跟随，内容可撑开下拉列表宽度，设置为 <code>true</code> 则跟随宽度。</p>\n',
-        'en-US': '<p>by <code>default</code>default slot list. </p>\n'
+          '<p>通过 <code>is-drop-inherit-width</code> 属性设置下拉弹框的宽度是否跟输入框保持一致。默认超出输入框宽度时由内容撑开。</p>\n',
+        'en-US':
+          '<p>Set whether the width of the dropdown pop-up box is consistent with the input box through the<code>is drop-in width</code>attribute. By default, when the width of the input box is exceeded, it is supported by the content. </p>\n'
       },
       'codeFiles': ['is-drop-inherit-width.vue']
     },
     {
-      'demoId': 'hide-select-input-border',
-      'name': { 'zh-CN': '隐藏下拉', 'en-US': 'Nested Grid' },
+      'demoId': 'hide-drop',
+      'name': { 'zh-CN': '隐藏下拉', 'en-US': 'Hide drop' },
       'desc': {
         'zh-CN': '<p>通过 <code>hide-drop</code> 属性设置下拉列表不显示。</p>\n',
-        'en-US': 'For details, see the following example.'
+        'en-US': '<p>Set the drop-down list to not display through the<code>hide drop</code>attribute.</p>'
       },
-      'codeFiles': ['hide-select-input-border.vue']
-    },
-    {
-      'demoId': 'slot-default',
-      'name': { 'zh-CN': '默认插槽', 'en-US': 'Nested grid, which can be searched for and cleared.' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>default</code> 默认插槽列表。</p>\n',
-        'en-US': 'For details, see the following example.'
-      },
-      'codeFiles': ['slot-default.vue']
-    },
-    {
-      'demoId': 'slot-footer',
-      'name': { 'zh-CN': '底部插槽', 'en-US': 'Nested Multi-choice Grid' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>footer</code> 使用底部插槽。</p>\n',
-        'en-US': 'For details, see the following example.'
-      },
-      'codeFiles': ['slot-footer.vue']
-    },
-    {
-      'demoId': 'slot-empty',
-      'name': { 'zh-CN': '空数据插槽', 'en-US': 'text-field' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>empty</code> 设置没有数据时显示的提示语。</p>\n',
-        'en-US': 'For details, see the following example.'
-      },
-      'codeFiles': ['slot-empty.vue']
-    },
-    {
-      'demoId': 'nest-radio-grid',
-      'name': { 'zh-CN': '嵌套单选 Grid', 'en-US': 'value-field' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['nest-radio-grid.vue']
-    },
-    {
-      'demoId': 'nest-checkbox-grid-clearable',
-      'name': { 'zh-CN': '嵌套单选 Grid，可搜索，可清除', 'en-US': 'Nested Grid data item disabled' },
-      'desc': {
-        'zh-CN': '详细用法参考如下示例',
-        'en-US':
-          '<p>In the drop-down list box, the attribute <code>checkMethod</code> of the <code>select-config</code> configuration item is used to determine which data items are disabled. The method determines each data item. If the return value is <code>true</code> or <code>false</code>, the data item is enabled or disabled. Select a single option from the drop-down list box. The attribute <code>checkMethod</code> of the <code>radio-config</code> configuration item is used to determine which data items are disabled. The method determines each data item. If the return value is <code>true</code> or <code>false</code>, the data item is enabled or disabled. </p>\n'
-      },
-      'codeFiles': ['nest-checkbox-grid-clearable.vue']
-    },
-    {
-      'demoId': 'nest-checkbox-grid',
-      'name': { 'zh-CN': '嵌套多选 Grid', 'en-US': 'Enabling Remote Search for Nested Grids (Multiple Choices)' },
-      'desc': {
-        'zh-CN': '详细用法参考如下示例',
-        'en-US':
-          '<p>Set <code>render-type</code> to <code>grid</code> nested grid; Set <code>filterable</code> and <code>remote</code> to <code>true</code> and pass in the <code>remote-method</code> method to enable remote search. To automatically search for and display the expansion button, set <code>remote-config</code> </p>\n'
-      },
-      'codeFiles': ['nest-checkbox-grid.vue']
-    },
-    {
-      'demoId': 'nest-checkbox-grid1',
-      'name': { 'zh-CN': '映射字段', 'en-US': 'Nested Grid Enable Remote Search (Single Choice)' },
-      'desc': {
-        'zh-CN': '详细用法参考如下示例',
-        'en-US':
-          '<p>Set <code>render-type</code> to <code>grid</code> nested grid; Set <code>filterable</code> and <code>remote</code> to <code>true</code> and pass in the <code>remote-method</code> method to enable remote search. To automatically search for and display the expansion button, set <code>remote-config</code> </p>\n'
-      },
-      'codeFiles': ['nest-checkbox-grid.vue']
-    },
-    {
-      'demoId': 'disable-grid-select-radio',
-      'name': { 'zh-CN': '嵌套 Grid 数据项禁用', 'en-US': 'Nested Radio Tree' },
-      'desc': {
-        'zh-CN':
-          '<p>下拉表格多选模式，通过 <code>select-config</code> 配置项的属性 <code>checkMethod</code> ，传入自定义方法判断哪些数据项被禁用，方法会判断每个数据项，需返回值为 <code>true</code> 或者 <code>false</code>，代表此数据项启用或者禁用。下拉表格单选模式，通过 <code>radio-config</code> 配置项的属性 <code>checkMethod</code> ，传入自定义方法判断哪些数据项被禁用，方法会判断每个数据项，需返回值为 <code>true</code> 或者 <code>false</code>，代表此数据项启用或者禁用。</p>\n',
-        'en-US': 'For details, see the following example.'
-      },
-      'codeFiles': ['disable-grid-select-radio.vue']
-    },
-    {
-      'demoId': 'nest-grid-remote-filter',
-      'name': { 'zh-CN': '嵌套 Grid 开启远程搜索(多选)', 'en-US': 'Nested Multi-choice Tree' },
-      'desc': {
-        'zh-CN':
-          '<p>配置 <code>render-type</code> 为 <code>grid</code> 嵌套Grid；将 <code>filterable</code> 和 <code>remote</code> 设置为 <code>true</code>，同时传入 <code>remote-method</code> 方法，开启远程搜索。如需自动搜索和显示展开按钮，需设置 <code>remote-config</code> </p>\n',
-        'en-US': 'For details, see the following example.'
-      },
-      'codeFiles': ['nest-grid-remote-filter.vue']
-    },
-    {
-      'demoId': 'nest-remote-grid',
-      'name': { 'zh-CN': '嵌套 Grid 开启远程搜索(单选)', 'en-US': 'Searchable tree' },
-      'desc': {
-        'zh-CN':
-          '<p>配置 <code>render-type</code> 为 <code>grid</code> 嵌套Grid；将 <code>filterable</code> 和 <code>remote</code> 设置为 <code>true</code>，同时传入 <code>remote-method</code> 方法，开启远程搜索。如需自动搜索和显示展开按钮，需设置 <code>remote-config</code> </p>\n',
-        'en-US': 'For details, see the following example.'
-      },
-      'codeFiles': ['nest-remote-grid.vue']
-    },
-    {
-      'demoId': 'nest-radio-grid-much-data',
-      'name': { 'zh-CN': '嵌套 Grid 且数据量大', 'en-US': 'Configuration Mode' },
-      'desc': {
-        'zh-CN': '详细用法参考如下示例',
-        'en-US':
-          '<p>Enable the cache function by setting <code>cache-op</code> and set options by <code>options</code>. </p>\n'
-      },
-      'codeFiles': ['nest-radio-grid-much-data.vue']
-    },
-    {
-      'demoId': 'nest-radio-tree',
-      'name': { 'zh-CN': '嵌套单选 Tree', 'en-US': 'Hide drop-down' },
-      'desc': {
-        'zh-CN': '详细用法参考如下示例',
-        'en-US': '<p>Use the <code>hide-drop</code> attribute to disable the display of the drop-down list. </p>\n'
-      },
-      'codeFiles': ['nest-radio-tree.vue']
-    },
-    {
-      'demoId': 'nest-checkbox-tree',
-      'name': { 'zh-CN': '嵌套多选 Tree', 'en-US': 'Slot Mode' },
-      'desc': {
-        'zh-CN': '详细用法参考如下示例',
-        'en-US':
-          '<p>If the list rendering component is set to <code>vue-option</code> through slot to output the drop-down list, you need to manually add the cache function. </p>\n'
-      },
-      'codeFiles': ['nest-checkbox-tree.vue']
-    },
-    {
-      'demoId': 'nest-filterable-tree',
-      'name': { 'zh-CN': '可搜索 tree', 'en-US': '' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': '' },
-      'codeFiles': ['nest-filterable-tree.vue']
+      'codeFiles': ['hide-drop.vue']
     },
     {
       'demoId': 'cache-usage',
-      'name': { 'zh-CN': '配置方式', 'en-US': '' },
+      'name': { 'zh-CN': '自动缓存', 'en-US': 'Automatic caching' },
       'desc': {
-        'zh-CN': '<p>通过设置 <code>cache-op</code> 开启缓存功能并且通过 <code>options</code> 设置下拉选项。</p>\n',
-        'en-US': ''
+        'zh-CN': '<p>通过 <code>cache-op</code> 开启缓存功能，仅配置式生效。</p>\n',
+        'en-US': '<p>Enable cache function through<code>cache op</code>, only configuration mode takes effect</p>'
       },
       'codeFiles': ['cache-usage.vue']
     },
     {
       'demoId': 'memoize-usage',
-      'name': { 'zh-CN': '插槽方式', 'en-US': '' },
+      'name': { 'zh-CN': '手动缓存', 'en-US': 'Manual caching' },
       'desc': {
-        'zh-CN':
-          '<p>通过 slot 设置列表渲染组件为 <code>vue-option</code> 来输出下拉列表，则需要手动加入缓存功能。</p>\n',
-        'en-US': ''
+        'zh-CN': '<p>使用 tiny-option 组件，则需要手动加入缓存功能。</p>\n',
+        'en-US': '<p>If using the tiny-option component, you need to manually add caching functionality.<p>'
       },
       'codeFiles': ['memoize-usage.vue']
+    },
+    {
+      'demoId': 'nest-tree',
+      'name': { 'zh-CN': '下拉树', 'en-US': 'Select Tree' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>render-type</code> 设置渲染为树类型，<code>tree-op</code> 设置树组件配置。</p>',
+        'en-US':
+          '<p>Set the rendering to tree type through<code>render type</code>, and set the tree component configuration through<code>tree op</code>. </p>\n'
+      },
+      'codeFiles': ['nest-tree.vue']
+    },
+    {
+      'demoId': 'nest-grid',
+      'name': { 'zh-CN': '下拉表格', 'en-US': 'Select Table' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>render-type</code> 设置渲染为表格类型，<code>grid-op</code>设置表格配置。</p>',
+        'en-US':
+          '<p>Set the rendering to a table type through<code>render type</code>, and set the table configuration through<code>grid op</code></p>\n'
+      },
+      'codeFiles': ['nest-grid.vue']
+    },
+    {
+      'demoId': 'nest-grid-disable',
+      'name': { 'zh-CN': '下拉表格禁用选项', 'en-US': 'Select Table Disable Options' },
+      'desc': {
+        'zh-CN':
+          '<p>通过 <code>select-config</code> （多选）或 <code>radio-config</code> （单选）属性的<code>checkMethod</code>自定义禁用逻辑，返回 true(启用) / false(禁用)。</p>\n',
+        'en-US':
+          "<p>By customizing the disable logic through the<code>select-config</code>(multiple selection) or<code>radio-config</code>(single selection) attribute's<code>checkMethod</code>, return true(Enable) / false(disable)</p>"
+      },
+      'codeFiles': ['nest-grid-disable.vue']
+    },
+    {
+      'demoId': 'nest-remote-grid',
+      'name': { 'zh-CN': '下拉表格远程搜索(单选)', 'en-US': 'Select table Remote Search (Single)' },
+      'desc': {
+        'zh-CN':
+          '<p>通过 <code>remote</code> 和 <code>remote-method</code> 和 <code>filterable</code> 开启远程搜索。通过 <code>remote-config</code> 设置自动搜索和显示展开按钮 。</p>\n',
+        'en-US':
+          '<p>Enable remote search through<code>remote</code>,<code>remote-method</code>, and<code>filterable</code>. Set up automatic search and display expansion buttons through<code>remote-config</code>.</p>'
+      },
+      'codeFiles': ['nest-remote-grid.vue']
+    },
+    {
+      'demoId': 'nest-grid-remote-filter',
+      'name': { 'zh-CN': '下拉表格远程搜索(多选）', 'en-US': 'Select table Remote Search (Multiple)' },
+      'desc': {
+        'zh-CN':
+          '<p>通过 <code>remote</code> 和 <code>remote-method</code> 和 <code>filterable</code> 开启远程搜索。通过 <code>remote-config</code> 设置自动搜索和显示展开按钮。<code>reserve-keyword</code>设置多选选中一个选项后依然保留搜索关键字。</p>\n',
+        'en-US':
+          '<p>Enable remote search through<code>remote</code>,<code>remote-method</code>, and<code>filterable</code>. Set up automatic search and display expansion buttons through<code>remote-config</code><code>reserve-keyword</code>Set to retain search keywords after selecting multiple options.</p>'
+      },
+      'codeFiles': ['nest-grid-remote-filter.vue']
+    },
+    {
+      'demoId': 'nest-radio-grid-much-data',
+      'name': { 'zh-CN': '下拉表格大数据', 'en-US': 'Select Table Big Data' },
+      'desc': {
+        'zh-CN': '表格数据量很大时，会自动启用虚拟滚动，同 Grid 组件。',
+        'en-US':
+          '<p>When the table data volume is large, virtual scrolling will be automatically enabled, similar to the Grid component. </p>\n'
+      },
+      'codeFiles': ['nest-radio-grid-much-data.vue']
+    },
+    {
+      'demoId': 'events',
+      'name': { 'zh-CN': '事件', 'en-US': 'Events' },
+      'desc': {
+        'zh-CN':
+          '<div class="tip custom-block">' +
+          '<p class="custom-block-title">事件说明</p>\n' +
+          '<p>change：监听 v-model 的值发生变化。</p>\n' +
+          '<p>clear：监听单选时，点击清空按钮。</p>\n' +
+          '<p>blur：监听 input 失去焦点。</p>\n' +
+          '<p>focus：监听 input 获得焦点。</p>\n' +
+          '<p>visible-change：监听下拉框可见状态的变化。</p>\n' +
+          '<p>remove-tag：监听多选移除选中的标签。</p>\n' +
+          '</div>\n',
+        'en-US':
+          '<div class="tip custom-block">' +
+          '<p class="custom-block-title"> Event Description</p>\n' +
+          '<p>change：Listen for changes in the value of the v-model.</p>' +
+          '<p>clear：When listening to radio selection, click the clear button.</p>\n' +
+          '<p>blur：Listening to input losing focus.</p>\n' +
+          '<p>focus：Listening for input to gain focus.</p>\n' +
+          '<p>visible-change: Listen for changes in the visible status of the dropdown box</p>\n' +
+          '<p>remove-tag：Listen for multiple selections to remove selected tags.</p>\n' +
+          '</div>\n'
+      },
+      'codeFiles': ['events.vue']
+    },
+    {
+      'demoId': 'slot-default',
+      'name': { 'zh-CN': '选项插槽', 'en-US': 'Option slot' },
+      'desc': {
+        'zh-CN': '<p>通过 tiny-option 的 <code>default</code> 插槽自定义选项的 HTML 模板。</p>\n',
+        'en-US': '<p>HTML template for customizing options through the<code>default</code>slot of tiny-option.</p>'
+      },
+      'codeFiles': ['slot-default.vue']
+    },
+    {
+      'demoId': 'slot-footer',
+      'name': { 'zh-CN': '底部插槽', 'en-US': 'Footer slot' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>footer</code> 插槽自定义下拉弹框底部的 HTML 模板。</p>\n',
+        'en-US':
+          '<p>Customize the HTML template at the bottom of the dropdown pop-up box through the<code>footer</code>slot.</p>'
+      },
+      'codeFiles': ['slot-footer.vue']
+    },
+    {
+      'demoId': 'slot-empty',
+      'name': { 'zh-CN': '空数据插槽', 'en-US': 'Empty data slot' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>empty</code> 插槽自定义没有选项列表时显示的 HTML 模板。</p>\n',
+        'en-US':
+          '<p>Customize the HTML template displayed when there is no option list through the<code>empty</code>slot.</p>'
+      },
+      'codeFiles': ['slot-empty.vue']
+    },
+    {
+      'demoId': 'slot-prefix',
+      'name': { 'zh-CN': '输入框前缀插槽', 'en-US': 'Predix slot' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>prefix</code> 插槽自定义输入框前缀的 HTML 模板。</p>\n',
+        'en-US': '<p>Customize the HTML template for the input box prefix through the<code>prefix</code>slot. </p>\n'
+      },
+      'codeFiles': ['slot-prefix.vue']
+    },
+    {
+      'demoId': 'slot-reference',
+      'name': { 'zh-CN': '触发源插槽', 'en-US': 'Reference slot' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>reference</code> 插槽自定义触发源的 HTML 模板。</p>\n',
+        'en-US': '<p>Customize the HTML template of the trigger source through the<code>reference</code>slot.</p>'
+      },
+      'codeFiles': ['slot-reference.vue']
     }
   ],
   apis: [
@@ -567,65 +457,44 @@ export default {
       'type': 'component',
       'properties': [
         {
-          'name': 'tag-selectable',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '下拉框内选中项支持复制功能',
-            'en-US': 'The selected items in the drop-down list box can be copied.'
-          },
-          'demoId': 'tag-select'
-        },
-        {
-          'name': 'disabled',
+          'name': 'allow-copy',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否禁用', 'en-US': 'Disable' },
-          'demoId': 'disabled'
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否允许复制输入框的内容，适用单选可搜索场景',
+            'en-US':
+              'Is it allowed to copy the content of the input box, applicable to single choice searchable scenarios'
+          },
+          'demoId': 'search-allow-copy'
         },
         {
-          'name': 'multiple',
+          'name': 'allow-create',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
-            'zh-CN': '设置是否允许输入框输入或选择多个项，默认为 false。;是否多选',
+            'zh-CN': '是否允许创建新条目，需配合 filterable 使用。若搜索字段不在选项列表中，可创建为新的选项',
             'en-US':
-              'Specifies whether multiple items can be entered or selected in the text box. The default value is false. ; Whether to select multiple options'
+              'Is it allowed to create new entries? It needs to be used in conjunction with filterable. If the search field is not in the option list, it can be created as a new option'
           },
-          'demoId': 'multiple'
+          'demoId': 'allow-create'
         },
         {
-          'name': 'tag-type',
+          'name': 'autocomplete',
           'type': 'string',
-          'defaultValue': '',
+          'defaultValue': 'off',
           'desc': {
-            'zh-CN':
-              '用于设置不同主题的标签，仅多选时适用,tag-type 默认为空，该属性的可选值为 success / info / warning / danger ,使用aurora 主题时设置该属性为 info',
-            'en-US':
-              'This parameter is used to set tags for different themes. This parameter is applicable only when multiple themes are selected. By default, tag-type is empty. The options of this parameter are success, info, warning, and danger. When the Aurora theme is used, set this parameter to info.'
+            'zh-CN': '输入框的原生 autocomplete 属性',
+            'en-US': 'The native autocomplete attribute of the input box'
           },
-          'demoId': 'tag-type'
-        },
-        {
-          'name': 'placement',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              'tip 相对于创建 tip 的 dom 节点的位置。;该属性的可选值为 top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end',
-            'en-US':
-              'Location of the tip relative to the dom node where the tip is created. ; The optional value of this attribute is top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end'
-          },
-          'demoId': 'popup-style-position'
+          'demoId': 'native-properties'
         },
         {
           'name': 'clearable',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
-            'zh-CN': '设置是否显示清除文本的按钮，默认为 true。;是否可以清空选项',
-            'en-US':
-              'Whether to display the button for clearing text. The default value is true. ;Whether the option can be cleared'
+            'zh-CN': '是否启用一键清除的功能',
+            'en-US': 'Whether to display the one click clear button, only applicable to radio selection'
           },
           'demoId': 'clearable'
         },
@@ -634,440 +503,477 @@ export default {
           'type': 'Boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '设置是否自动清空无法在options中找到匹配项的值。默认不自动清空，设置为true时生效。',
-            'en-US':
-              'Sets whether to automatically clear the values that cannot be found in options. By default, this parameter is not automatically cleared. This parameter is valid only when this parameter is set to true.'
+            'zh-CN': '是否自动清空无法在 options 中找到匹配项的值',
+            'en-US': 'Automatically clear values that cannot find matching items in options'
           },
           'demoId': 'clear-no-match-value'
         },
         {
-          'name': 'text-field',
-          'type': 'string',
-          'defaultValue': '',
+          'name': 'copyable',
+          'type': 'boolean',
+          'defaultValue': 'false',
           'desc': {
-            'zh-CN': '设置下拉框的文本对应的数据源的字段名称。',
-            'en-US': 'Field name of the data source corresponding to the text in the drop-down list box.'
-          },
-          'demoId': 'nest-checkbox-grid1'
-        },
-        {
-          'name': 'modelValue / v-model',
-          'type': 'boolean , string , number',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '设置下拉框的默认值。;绑定值',
-            'en-US': 'Set the default value of the drop-down list box. ;Bound Value'
-          },
-          'demoId': 'multiple'
-        },
-        {
-          'name': 'value-field',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '设置下拉框的值所对应数据源的字段名称,下拉框的值用于提交到服务器。',
+            'zh-CN': '是否启用一键复制的功能。点击复制按钮一键复制所有标签的文本内容并以逗号分隔，仅适用于多选',
             'en-US':
-              'Set the field name of the data source corresponding to the value in the drop-down list box. The value in the drop-down list box is submitted to the server.'
+              'Is the one click copy function enabled. Click the copy button to copy the text content of all labels with one click, separated by commas, only applicable to multiple selections'
           },
-          'demoId': 'nest-checkbox-grid2'
-        },
-        {
-          'name': 'value-key',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为 value',
-          'desc': {
-            'zh-CN': '作为 value 唯一标识的键名，绑定值为对象类型时必填',
-            'en-US':
-              'Key name that uniquely identifies a value. This parameter is mandatory when the bound value is an object type.'
-          },
-          'demoId': 'binding-obj'
-        },
-        {
-          'name': 'size',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '输入框尺寸;该属性的可选值为 medium/small/mini',
-            'en-US': 'Text box size; The value of this attribute can be medium, small, or mini'
-          },
-          'demoId': 'size-medium'
+          'demoId': 'tag-select'
         },
         {
           'name': 'collapse-tags',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
-            'zh-CN': '多选时是否将选中值按文字的形式展示',
-            'en-US': 'Whether to display the selected value in text format when multiple options are selected.'
+            'zh-CN': '是否将多个标签折叠显示。仅适用多选',
+            'en-US': 'Whether to collapse multiple labels for display. Only applicable to multiple selections'
           },
           'demoId': 'collapse-tags'
         },
         {
-          'name': 'multiple-limit',
-          'type': 'number',
-          'defaultValue': '该属性的默认值为 0',
+          'name': 'cache-op',
+          'type': 'ICacheOp',
+          'typeAnchorName': 'ICacheOp',
+          'defaultValue': `<pre>
+{
+  key: '',
+  sortBy: 'frequency',
+  sort: 'desc',
+  dataKey: 'value',
+  highlightClass: 'memorize-highlight',
+  highlightNum: Infinity,
+  cacheNum: Infinity,
+  serialize: JSON.stringify
+  deserialize: JSON.parse
+}
+</pre>`,
           'desc': {
-            'zh-CN': '多选时用户最多可以选择的项目数，为 0 则不限制',
-            'en-US':
-              'Maximum number of items that a user can select when multiple items are selected. If the value is 0, there is no limit.'
+            'zh-CN': '启用本地缓存已选项的功能配置（根据用户点击选择的次数、最后时间继续存储排序)',
+            'en-US': 'Set the component type when Grid or Tree is embedded in the drop-down list box.'
           },
-          'demoId': 'multiple'
+          'demoId': 'cache-usage'
         },
         {
-          'name': 'name',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': { 'zh-CN': 'select input 的 name 属性', 'en-US': 'name attribute of select input' },
-          'demoId': 'name'
-        },
-        {
-          'name': 'autocomplete',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为 off',
-          'desc': { 'zh-CN': 'select input 的 autocomplete 属性', 'en-US': 'autocomplete attribute of select input' },
-          'demoId': ''
-        },
-        {
-          'name': 'placeholder',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为 请选择',
-          'desc': { 'zh-CN': '占位符', 'en-US': 'Placeholder' },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'filterable',
+          'name': 'default-first-option',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否可搜索', 'en-US': 'Searchable' },
-          'demoId': 'filter-method'
-        },
-        {
-          'name': 'searchable',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
-            'zh-CN': '是否下拉面板可搜索',
-            'en-US': 'Whether to allow users to create new items. This parameter must be used together with filterable.'
-          },
-          'demoId': 'searchable'
-        },
-        {
-          'name': 'allow-create',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': {
-            'zh-CN': '是否允许用户创建新条目，需配合 filterable 使用',
+            'zh-CN': '是否启用按 Enter 键选择第一个匹配项的功能。需配合 filterable 或 remote 使用',
             'en-US':
-              'User-defined search method; arg1:{string value in the current input box}, arg2:{a node in the object tree}'
+              'Whether to enable the function of pressing the Enter key to select the first match. Must be used in conjunction with filterable or remote'
           },
           'demoId': 'allow-create'
         },
         {
-          'name': 'filter-method',
-          'type': 'Function(arg1,arg2)',
-          'defaultValue': '',
+          'name': 'disabled',
+          'type': 'boolean',
+          'defaultValue': 'false',
           'desc': {
-            'zh-CN': '自定义搜索方法;arg1:{string 当前input框中值}，arg2:{object 树的某个节点}',
-            'en-US': 'Remote search'
+            'zh-CN': '是否禁用',
+            'en-US': 'Is it disabled'
+          },
+          'demoId': 'disabled'
+        },
+        {
+          'name': 'filterable',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否可搜索',
+            'en-US': 'Is it searchable'
           },
           'demoId': 'filter-method'
         },
         {
-          'name': 'remote',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否为远程搜索', 'en-US': 'Remote search method' },
-          'demoId': 'remote-method'
-        },
-        {
-          'name': 'remote-method',
-          'type': 'Function',
+          'name': 'filter-method',
+          'type': '(query: string) => void',
           'defaultValue': '',
-          'desc': { 'zh-CN': '远程搜索方法', 'en-US': 'Whether data is being obtained from the remote server' },
-          'demoId': 'remote-method'
-        },
-        {
-          'name': 'loading',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否正在从远程获取数据', 'en-US': 'Text displayed during remote loading' },
-          'demoId': 'remote-method'
-        },
-        {
-          'name': 'loading-text',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为 加载中',
           'desc': {
-            'zh-CN': '远程加载时显示的文字',
-            'en-US': 'Text displayed when no search criteria are matched. You can also use slot="empty" to set it.'
+            'zh-CN': '自定义过滤方法',
+            'en-US': 'Custom filtering method'
           },
-          'demoId': 'remote-method'
+          'demoId': 'filter-method'
         },
         {
-          'name': 'no-match-text',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为 无匹配数据',
+          'name': 'grid-op',
+          'type': 'IGridOption',
+          'typeAnchorName': 'IGridOption',
+          'defaultValue': '',
           'desc': {
-            'zh-CN': '搜索条件无匹配时显示的文字，也可以使用slot="empty"设置',
-            'en-US': 'Text displayed when the option is empty. You can also use slot="empty" to set it.'
-          },
-          'demoId': 'no-match-text'
-        },
-        {
-          'name': 'no-data-text',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为 无数据',
-          'desc': {
-            'zh-CN': '选项为空时显示的文字，也可以使用slot="empty"设置',
+            'zh-CN': '下拉表格时，内置表格的配置，用法同 Grid 组件。需结合 render-type 属性使用',
             'en-US':
-              'By default, empty data images are not displayed. When this parameter is set to true, empty data images are displayed.'
+              'When pulling down a table, the configuration of the built-in table is the same as that of the Grid component. To be used in conjunction with the render type attribute'
           },
-          'demoId': 'no-data-text'
-        },
-        {
-          'name': 'show-empty-image',
-          'type': 'boolean',
-          'defaultValue': 'false',
-          'desc': {
-            'zh-CN': '默认不显示空数据图片，设置为 true 的时候显示',
-            'en-US':
-              'Set the display type of the text box. The options are input and underline. The default value is input.'
-          },
-          'demoId': 'no-data-text'
+          'demoId': 'nest-grid'
         },
         {
           'name': 'input-box-type',
           'type': 'string',
           'defaultValue': 'input',
           'desc': {
-            'zh-CN': '设置输入框的显示类型，包含 input / underline 两种，默认为input',
-            'en-US': 'Class name of the Select drop-down list box'
+            'zh-CN': '输入框的显示类型，可选值：input / underline',
+            'en-US': 'Display type of input box, optional values: input / underline'
           },
           'demoId': 'input-box-type'
         },
         {
-          'name': 'popper-class',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为空',
-          'desc': {
-            'zh-CN': 'Select 下拉框的类名',
-            'en-US':
-              'Whether to retain the current search keyword after an option is selected when multiple options are selected for search.'
-          },
-          'demoId': 'popup-style-position'
-        },
-        {
-          'name': 'reserve-keyword',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': {
-            'zh-CN': '多选且可搜索时，是否在选中一个选项后保留当前的搜索关键词',
-            'en-US':
-              'Press Enter in the text box to select the first matching item. This function must be used together with filterable or remote.'
-          },
-          'demoId': 'remote-method'
-        },
-        {
-          'name': 'default-first-option',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': {
-            'zh-CN': '在输入框按下回车，选择第一个匹配项。需配合 filterable 或 remote 使用',
-            'en-US':
-              'Indicates whether to insert a pop-up box to the body element. If a fault occurs in locating the fault in the dialog box that is displayed, you can set this attribute to false'
-          },
-          'demoId': 'allow-create'
-        },
-        {
-          'name': 'popper-append-to-body',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
-          'desc': {
-            'zh-CN': '是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false',
-            'en-US':
-              'Whether to automatically display the option menu after the focus is obtained in the text box for a non-searchable Select item.'
-          },
-          'demoId': 'popup-style-position'
-        },
-        {
-          'name': 'automatic-dropdown',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': {
-            'zh-CN': '对于不可搜索的 Select，是否在输入框获得焦点后自动弹出选项菜单',
-            'en-US': 'Configure the Select data item. You do not need to configure tiny-option again.'
-          },
-          'demoId': 'automatic-dropdown'
-        },
-        {
-          'name': 'options',
-          'type': 'Array',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '配置 Select 数据项，使用后不需要再配置 tiny-option。',
-            'en-US': 'The Select All option is displayed. The default value is true.'
-          },
-          'demoId': 'size-medium'
-        },
-        {
-          'name': 'show-alloption',
-          'type': 'boolean',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '展示 `全选` 选项，默认为 true 。',
-            'en-US':
-              'Whether to display the width of the drop-down list based on the width of the text box. The default value is false. If this parameter is set to false, the drop-down list is not followed. The width of the drop-down list is determined by the length of the option content. If this parameter is set to true, the text box width is displayed.'
-          },
-          'demoId': 'show-alloption'
-        },
-        {
           'name': 'is-drop-inherit-width',
           'type': 'boolean',
-          'defaultValue': '',
+          'defaultValue': 'false',
           'desc': {
-            'zh-CN':
-              '设置下拉列表的宽度是否跟随输入框的宽度进行展示，默认为 false;设置值为 false 时，表示不跟随，下拉列表宽度由选项内容的长度决定;设置值为 true 时，表示跟随输入框的宽度进行展示',
+            'zh-CN': '下拉弹框的宽度是否跟输入框保持一致。默认超出输入框宽度时由内容撑开',
             'en-US':
-              'Enable the local cache function of the select command. (Continue to store and sort according to the number of times the user clicks and the last time); cache-op.key (mandatory): unique key value in the local cache. cache-op.sortBy: sorting field. The default value is frequency. The options are frequency and time. The cache-op.sort. The default value is desc. The options are desc and asc. Unique key name in cache-op.dataKey. The default value is value. The default value is cache-op.highlightClass. The default value is memorize-highlight;cache-op.highlightNum. The default value is Infinity. cache-op.cacheNum: number of personalized storage records. The default value is Infinity.cache-op.serializeLocal storage serialization method.The default value is JSON.Stringify;cache-op.deserialize Local storage order decolumnization method.The default value is JSON.parse'
+              'Is the width of the dropdown box consistent with the input box. By default, when the width of the input box is exceeded, it is supported by the content'
           },
           'demoId': 'is-drop-inherit-width'
         },
         {
-          'name': 'cache-op',
-          'type': 'object',
+          'name': 'loading',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否加载中，适用于远程搜索场景',
+            'en-US': 'Loading or not, suitable for remote search scenarios'
+          },
+          'demoId': 'remote-method'
+        },
+        {
+          'name': 'loading-text',
+          'type': 'string',
+          'defaultValue': '加载中',
+          'desc': {
+            'zh-CN': '远程加载时显示的文本',
+            'en-US': 'Text displayed during remote loading'
+          },
+          'demoId': 'remote-method'
+        },
+        {
+          'name': 'modelValue / v-model',
+          'type': 'string | number | Array<string|number>',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '开启 select 本地缓存功能（根据用户点击选择的次数、最后时间继续存储排序）;cache-op.key （必填）本地缓存的唯一 key 值;cache-op.sortBy 排序的字段，默认 frequency (频次)，可选值：frequency、time;cache-op.sort 排序方式，默认 desc (降序)，可选值：desc、asc;cache-op.dataKey  数据中的唯一标识的 key 名称，默认： value;cache-op.highlightClass  个性化高亮 class 名称，默认：memorize-highlight;cache-op.highlightNum  高亮个性化的条数，默认：Infinity;cache-op.cacheNum 存储个性化的条数，默认：Infinity;cache-op.serialize 本地存储序列化方法，默认：JSON.Stringify;cache-op.deserialize 本地存储序反列化方法，默认：JSON.parse',
-            'en-US': 'Set the component type when Grid or Tree is embedded in the drop-down list box.'
+            'zh-CN': '绑定值',
+            'en-US': 'Bind value'
           },
-          'demoId': 'cache-usage'
+          'demoId': 'multiple'
+        },
+        {
+          'name': 'multiple',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否允许选择多个选项',
+            'en-US': 'Allow multiple options to be selected'
+          },
+          'demoId': 'multiple'
+        },
+        {
+          'name': 'multiple-limit',
+          'type': 'number',
+          'defaultValue': '0',
+          'desc': {
+            'zh-CN': '多选时最多可选择的个数，默认为 0 不限制',
+            'en-US':
+              'When selecting multiple options, the maximum number of options available is 0, with no limit by default'
+          },
+          'demoId': 'multiple-limit'
+        },
+        {
+          'name': 'name',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '输入框的原生 name 属性',
+            'en-US': 'The native name attribute of the input box'
+          },
+          'demoId': 'native-properties'
+        },
+        {
+          'name': 'no-match-text',
+          'type': 'string',
+          'defaultValue': '无匹配数据',
+          'desc': {
+            'zh-CN': '搜索条件无匹配时显示的文本，也可以使用 empty 插槽设置',
+            'en-US':
+              'The text displayed when there is no match for the search criteria can also be set using empty slots'
+          },
+          'demoId': 'filter-method'
+        },
+        {
+          'name': 'no-data-text',
+          'type': 'string',
+          'defaultValue': '暂无相关数据',
+          'desc': {
+            'zh-CN': '选项列表为空时显示的文本，也可以使用 empty 插槽设置',
+            'en-US': 'The text displayed when the option list is empty can also be set using empty slots'
+          },
+          'demoId': 'no-data-text'
+        },
+        {
+          'name': 'options',
+          'type': 'IOption[]',
+          'typeAnchorName': 'IOption',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '选项列表配置，使用后不需要再配置 tiny-option',
+            'en-US': 'Option list configuration, no need to configure tiny options after use'
+          },
+          'demoId': 'map-field'
+        },
+        {
+          'name': 'placement',
+          'type': 'IPlacement',
+          'typeAnchorName': 'IPlacement',
+          'defaultValue': 'bottom-start',
+          'desc': {
+            'zh-CN': '下拉弹框相对于触发源的弹出位置',
+            'en-US': 'The pop-up position of the pull-down pop-up box relative to the trigger source'
+          },
+          'demoId': 'popup-style-position'
+        },
+        {
+          'name': 'placeholder',
+          'type': 'string',
+          'defaultValue': '请选择',
+          'desc': { 'zh-CN': '占位符', 'en-US': 'Placeholder' },
+          'demoId': 'native-properties'
+        },
+        {
+          'name': 'popper-class',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '自定义下拉框的类名，用于自定义样式',
+            'en-US': 'The class name of the custom dropdown box, used for customizing styles'
+          },
+          'demoId': 'popup-style-position'
+        },
+        {
+          'name': 'popper-append-to-body',
+          'type': 'boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '是否将弹出框的 dom 元素插入至 body 元素',
+            'en-US': 'Whether to insert the dom element of the pop-up box into the body element'
+          },
+          'demoId': 'popup-style-position'
+        },
+        {
+          'name': 'remote',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否为远程搜索',
+            'en-US': 'Is it a remote search'
+          },
+          'demoId': 'remote-method'
+        },
+        {
+          'name': 'remote-method',
+          'type': '(query:string) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '远程搜索的方法',
+            'en-US': 'Remote search methods'
+          },
+          'demoId': 'remote-method'
+        },
+        {
+          'name': 'reserve-keyword',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '多选可搜索时，是否在选中一个选项后仍然保留当前的搜索关键词',
+            'en-US':
+              'When selecting multiple searchable options, do you still keep the current search keywords after selecting one option'
+          },
+          'demoId': 'remote-method'
         },
         {
           'name': 'render-type',
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置下拉列表嵌套 Grid 或 Tree 时的组件类型',
+            'zh-CN': '渲染为下拉表格或下拉树，可选值：tree / grid。需结合 grid-op / tree-op 使用',
             'en-US': 'Configure Grid data when the Grid component is embedded in the drop-down list box.'
           },
-          'demoId': 'nest-radio-grid'
+          'demoId': 'nest-grid'
         },
         {
-          'name': 'grid-op',
-          'type': 'object',
+          'name': 'show-empty-image',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否显示空数据图片',
+            'en-US': 'Display empty data image'
+          },
+          'demoId': 'no-data-text'
+        },
+        {
+          'name': 'searchable',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否启用下拉面板搜索',
+            'en-US': 'Whether to allow users to create new items. This parameter must be used together with filterable.'
+          },
+          'demoId': 'searchable'
+        },
+        {
+          'name': 'size',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '下拉列表嵌套 Grid 组件时，用来配置 Grid 的数据信息',
-            'en-US':
-              'This parameter is used to configure tree data when the Tree component is embedded in the drop-down list box.'
+            'zh-CN': '输入框尺寸。可选值：medium / small / mini',
+            'en-US': 'Text box size; The value of this attribute can be medium, small, or mini'
           },
-          'demoId': 'nest-radio-grid'
+          'demoId': 'size'
+        },
+        {
+          'name': 'show-alloption',
+          'type': 'boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '是否展示 “全选” 选项',
+            'en-US': 'Whether to display the "Select All" option'
+          },
+          'demoId': 'show-alloption'
+        },
+        {
+          'name': 'tag-selectable',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '输入框中的标签是否可通过鼠标选中复制',
+            'en-US': 'Can the label in the input box be copied by selecting it with the mouse'
+          },
+          'demoId': 'tag-select'
+        },
+        {
+          'name': 'tag-type',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN':
+              '标签类型，仅多选适用。可选值：success / info / warning / danger ,使用 aurora 主题时设置该属性为 info',
+            'en-US':
+              '标签类型，仅多选适用。可选值：success / info / warning / danger ,使用 aurora 主题时设置该属性为 info'
+          },
+          'demoId': 'tag-type'
         },
         {
           'name': 'tree-op',
-          'type': 'object',
+          'type': 'ITreeOption',
+          'typeAnchorName': 'ITreeOption',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '下拉列表嵌套 Tree 组件时，用来配置 Tree 的数据信息',
-            'en-US': 'Whether to allow copying the content in the text box in the single-choice search scenario'
-          },
-          'demoId': 'nest-radio-tree'
-        },
-        {
-          'name': 'allow-copy',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false，表示不能复制',
-          'desc': {
-            'zh-CN': '搜索单选场景，是否允许复制输入框的内容',
+            'zh-CN': '下拉树时，内置树组件的配置，用法同 Tree 组件。需结合 render-type 属性使用',
             'en-US':
-              'The copy function is enabled. After the configuration, a copy button is displayed on the right of the text box. (The value can be used in the multi-choice mode.)'
+              'When pulling down a tree, the configuration of the built-in tree component is the same as that of the Tree component. To be used in conjunction with the render type attribute'
           },
-          'demoId': 'search-allow-copy'
-        },
-        {
-          'name': 'copyable',
-          'type': 'boolean',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '是开启复制功能，配置后会在输入框右侧鼠标上浮后有个复制按钮。（只能用于多选模式）',
-            'en-US': 'If copyable is configured, it can be used as the separator of the selected item.'
-          },
-          'demoId': 'search-allow-copy'
+          'demoId': 'nest-tree'
         },
         {
           'name': 'text-split',
           'type': 'string',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '在配置 copyable 的情况下可相当于选中项的分隔符', 'en-US': '' },
-          'demoId': ''
+          'defaultValue': ',',
+          'desc': {
+            'zh-CN': '自定义复制文本的分隔符，需结合 copyable 属性使用',
+            'en-US': 'The separator for custom copied text needs to be used in conjunction with the copyable attribute'
+          },
+          'demoId': 'tag-select'
+        },
+        {
+          'name': 'text-field',
+          'type': 'string',
+          'defaultValue': 'label',
+          'desc': {
+            'zh-CN': '显示值字段',
+            'en-US': 'Show Value Fields'
+          },
+          'demoId': 'map-field'
+        },
+        {
+          'name': 'value-field',
+          'type': 'string',
+          'defaultValue': 'value',
+          'desc': {
+            'zh-CN': '绑定值字段',
+            'en-US': 'Bind Value Field'
+          },
+          'demoId': 'map-field'
+        },
+        {
+          'name': 'value-key',
+          'type': 'string',
+          'defaultValue': 'value',
+          'desc': {
+            'zh-CN': '作为 value 唯一标识的键名，绑定值为对象类型时必填',
+            'en-US':
+              'The key name that uniquely identifies the value must be filled in when the binding value is of object type'
+          },
+          'demoId': 'binding-obj'
         }
       ],
       'events': [
         {
-          'name': 'change',
-          'type': 'Function(arg1,arg2)',
+          'name': 'blur',
+          'type': '(event:MouseEvent) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '设置下拉框值更新后触发的事件。;arg1:{Any|Array 单选并且未指定渲染类型时，是选中项的值字段，此时没有arg2参数；多选并且未指定渲染类型时，是选中项值字段组成的数组，此时没有arg2参数；单选并且渲染类型为树或者表格时，是选中项对象，此时没有arg2参数；多选并且渲染类型为树或者表格时，是选中项对象值字段组成的数组，此时有arg2参数；}，arg2:{Array 多选并且渲染类型为树或者表格时，是选中项对象组成的数组}',
-            'en-US':
-              'Sets the event triggered after the value of the drop-down list box is updated. ; arg1:{Any|Array is selected and the rendering type is not specified. In this case, the value field of the selected item does not contain the arg2 parameter. If multiple options are selected and the rendering type is not specified, the value of the selected item is an array. In this case, the arg2 parameter is not provided. If you select a single item and the rendering type is tree or table, the object is selected. In this case, the arg2 parameter is not provided. When multiple selections are selected and the rendering type is tree or table, the array is composed of the selected object value fields. In this case, the arg2 parameter is available. }, arg2:{When multiple Arrays are selected and the rendering type is tree or table, the array consists of selected objects}'
+            'zh-CN': '监听输入框失去焦点事件',
+            'en-US': 'Listening for input box lose focus event'
           },
-          'demoId': 'envts-change'
+          'demoId': 'events'
+        },
+        {
+          'name': 'change',
+          'type': '(value:string|number|Array<string|number>, list:Array<IOption|ITreeNode>) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '监听绑定值变更事件',
+            'en-US': 'Listening for binding value change events'
+          },
+          'demoId': 'events'
         },
         {
           'name': 'clear',
-          'type': 'Function',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置内容清除后触发的事件。;可清空的单选模式下用户点击清空按钮时触发',
-            'en-US':
-              'Sets the event triggered after content is cleared. ;In the radio option mode that can be cleared, the alarm is triggered when the user clicks the Clear button.'
+            'zh-CN': '监听一键清除事件',
+            'en-US': 'Listening for one click clear events'
           },
-          'demoId': 'envts-change'
-        },
-        {
-          'name': 'visible-change',
-          'type': 'Function(arg)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '下拉框出现/隐藏时触发;arg:{boolean 下拉框出现时为true；下拉框隐藏时为false}',
-            'en-US':
-              'This event is triggered when the drop-down list box is displayed or hidden. arg:{The value is true when the boolean drop-down list box appears. If the drop-down list box is hidden, the value is false}'
-          },
-          'demoId': 'envts-change'
-        },
-        {
-          'name': 'remove-tag',
-          'type': 'Function(arg)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '多选模式下移除tag时触发;arg:{Any 被移除Tag对应数据项的值字段}',
-            'en-US':
-              'Triggered when a tag is removed in multi-choice mode. arg:{Value field of the data item corresponding to the removed tag of Any}'
-          },
-          'demoId': 'envts-change'
-        },
-        {
-          'name': 'blur',
-          'type': 'Function(arg)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '当 input 失去焦点时触发;arg:{FocusEvent 原生blur事件对象}',
-            'en-US': 'This event is triggered when the input loses focus. arg:{FocusEvent native blur event object}'
-          },
-          'demoId': 'envts-change'
+          'demoId': 'events'
         },
         {
           'name': 'focus',
-          'type': 'Function(arg)',
+          'type': '(event:MouseEvent) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '当 input 获得焦点时触发;arg:{FocusEvent 原生focus事件对象}',
-            'en-US': 'This event is triggered when the input is focused. arg:{FocusEvent native focus event object}'
+            'zh-CN': '监听输入框获取焦点事件',
+            'en-US': 'Listening to input boxes to obtain focus events'
           },
-          'demoId': 'envts-change'
+          'demoId': 'events'
+        },
+        {
+          'name': 'visible-change',
+          'type': '(status:boolean) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '监听下拉弹框的显示隐藏状态',
+            'en-US': 'Monitor the display and hidden status of dropdown pop ups'
+          },
+          'demoId': 'events'
+        },
+        {
+          'name': 'remove-tag',
+          'type': '(tag:string|number) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '监听多选时移除标签事件',
+            'en-US': 'Remove label events when listening for multiple selections'
+          },
+          'demoId': 'events'
         }
       ],
       'slots': [
@@ -1075,57 +981,152 @@ export default {
           'name': 'default',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '默认插槽', 'en-US': 'Option component list' },
+          'desc': {
+            'zh-CN': '选项默认插槽',
+            'en-US': 'Option default slot'
+          },
           'demoId': 'slot-default'
-        },
-        {
-          'name': 'reference',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': 'Select 组件触发源', 'en-US': 'Select component header content' },
-          'demoId': 'custom-reference-slot'
-        },
-        {
-          'name': 'prefix',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': 'Select 组件头部内容', 'en-US': 'List when no option is available' },
-          'demoId': 'custom-prefix'
         },
         {
           'name': 'empty',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '无选项时的列表', 'en-US': '' },
+          'desc': {
+            'zh-CN': '空数据插槽',
+            'en-US': 'Empty data slot'
+          },
           'demoId': 'slot-empty'
         },
         {
           'name': 'footer',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '底部插槽', 'en-US': '' },
+          'desc': {
+            'zh-CN': '下拉弹框底部插槽',
+            'en-US': 'Pull down the bottom slot of the pop-up box'
+          },
           'demoId': 'slot-footer'
+        },
+        {
+          'name': 'prefix',
+          'type': '',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '输入框前缀插槽',
+            'en-US': 'Input box prefix slot'
+          },
+          'demoId': 'slot-prefix'
+        },
+        {
+          'name': 'reference',
+          'type': '',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '触发源插槽',
+            'en-US': 'Trigger Source Slot'
+          },
+          'demoId': 'slot-reference'
         }
       ],
       'methods': [
         {
-          'name': 'focus',
-          'type': '',
+          'name': 'blur',
+          'type': '() => void',
           'defaultValue': '',
-          'desc': { 'zh-CN': '使 input 获取焦点', 'en-US': 'Enable input to focus.' },
+          'desc': {
+            'zh-CN': '使输入框失去焦点',
+            'en-US': 'Causes the input box to lose focus'
+          },
           'demoId': 'manual-focus-blur'
         },
         {
-          'name': 'blur',
-          'type': '',
+          'name': 'focus',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '使 input 失去焦点，并隐藏下拉框',
-            'en-US': 'Disable the focus of the input and hide the drop-down list box.'
+            'zh-CN': '使输入框获取焦点',
+            'en-US': 'Bring the input box to focus'
           },
           'demoId': 'manual-focus-blur'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IOption',
+      type: 'interface',
+      code: `
+interface IOption {
+  value?: string | number
+  label?: string
+}
+`
+    },
+    {
+      name: 'ICacheItem',
+      type: 'interface',
+      code: `
+interface ICacheItem {
+  frequency: number
+  key: string
+  time: number
+}
+`
+    },
+    {
+      name: 'ICacheOp',
+      type: 'interface',
+      code: `
+interface ICacheOp {
+  "key": string // 本地缓存的唯一 key 值
+  "sortBy"?: 'frequency' | 'time' // 排序的字段，默认 frequency (频次)
+  "sort"?: 'desc' | 'asc' // 排序方式，默认 desc (降序)
+  "dataKey"?: string // 数据中的唯一标识的 key 名称,默认 value
+  "highlightClass"?: string // 个性化高亮 class 名称，默认：memorize-highlight
+  "highlightNum"?: number // 高亮个性化的条数,默认：Infinity
+  "cacheNum"?: number // 存储个性化的条数,默认：Infinity
+  "serialize"?: ()=> string  // 本地存储序列化方法,默认：JSON.stringify
+  "deserialize"?: ()=> ICacheItem[] // 本地存储序反列化方法，默认：JSON.parse
+}        
+`
+    },
+    {
+      name: 'IGridOption',
+      type: 'interface',
+      code: `
+interface IGridOption {
+  data: any[]    // 表格数据，用法同 Grid
+  columns: any[] // 列配置，用法同 Grid
+}
+`
+    },
+    {
+      name: 'ITreeNode',
+      type: 'interface',
+      code: `
+interface ITreeNode {
+  label: string         // 默认树节点的文本字段
+  id: number|string     // 树节点唯一标识
+  children: ITreeNode[] // 子节点
+}
+`
+    },
+    {
+      name: 'ITreeOption',
+      type: 'interface',
+      code: `
+interface ITreeOption {
+  data: ITreeNode[] // 树数据，用法同 Tree
+}
+`
+    },
+    {
+      name: 'IPlacement',
+      type: 'type',
+      code: `
+type IPlacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'
+`
     }
   ]
 }
