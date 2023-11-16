@@ -3,6 +3,18 @@ export default {
   owner: '',
   demos: [
     {
+      demoId: 'base',
+      name: {
+        'zh-CN': '基础用法',
+        'en-US': 'base'
+      },
+      desc: {
+        'zh-CN': '<p>基础用法</p>',
+        'en-US': '<p>base</p>'
+      },
+      codeFiles: ['base.vue']
+    },
+    {
       demoId: 'event-click',
       name: {
         'zh-CN': '点击事件',

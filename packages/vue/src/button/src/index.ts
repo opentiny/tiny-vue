@@ -29,7 +29,7 @@ export const buttonProps = {
   },
   resetTime: {
     type: Number,
-    default: 1000
+    default: 0
   },
   nativeType: {
     type: String,
@@ -37,9 +37,9 @@ export const buttonProps = {
   },
   size: {
     type: String,
-    default: '',
+    default: 'large',
     validator(val: string) {
-      return ['large', 'medium', 'small', 'mini', ''].includes(val)
+      return ['large', 'small'].includes(val)
     }
   },
   round: Boolean,
