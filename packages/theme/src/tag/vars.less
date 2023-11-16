@@ -12,119 +12,119 @@
 
 .component-css-vars-tag() {
   // 标签默认高度
-  --ti-tag-height: calc(var(--ti-common-size-base) * 5.5);
+  --ti-tag-height: calc(var(--ti-common-size-base, 4px) * 5.5);
   // 中等标签高度
-  --ti-tag-medium-height: var(--ti-common-size-6x);
+  --ti-tag-medium-height: var(--ti-common-size-6x, 24px);
   // 中等标签水平内边距
-  --ti-tag-medium-padding-horizontal: var(--ti-common-space-2x);
+  --ti-tag-medium-padding-horizontal: var(--ti-common-space-2x, 8px);
   // 中型标签圆角
-  --ti-tag-medium-border-radius: var(--ti-common-border-radius-normal);
+  --ti-tag-medium-border-radius: var(--ti-common-border-radius-normal, 2px);
   // 小型标签高度
-  --ti-tag-small-height: var(--ti-common-line-height-4);
+  --ti-tag-small-height: var(--ti-common-line-height-4, 20px);
   // 小型标签水平内边距
-  --ti-tag-small-padding-horizontal: var(--ti-common-space-2x);
+  --ti-tag-small-padding-horizontal: var(--ti-common-space-2x, 8px);
   // 超小标签高度
-  --ti-tag-mini-height: var(--ti-common-size-4x);
+  --ti-tag-mini-height: var(--ti-common-size-4x, 16px);
   // 标签边框厚度
-  --ti-tag-border-weight: var(--ti-common-border-weight-normal);
+  --ti-tag-border-weight: var(--ti-common-border-weight-normal, 1px);
   // 标签圆角
-  --ti-tag-border-radius: var(--ti-common-border-radius-normal);
+  --ti-tag-border-radius: var(--ti-common-border-radius-normal, 2px);
   // 小型|超小标签圆角
-  --ti-tag-small-border-radius: var(--ti-common-border-radius-normal);
+  --ti-tag-small-border-radius: var(--ti-common-border-radius-normal, 2px);
   // 标签默认字号
-  --ti-tag-font-size: var(--ti-common-font-size-base);
+  --ti-tag-font-size: var(--ti-common-font-size-base, 12px);
   // 标签关闭按钮字号
-  --ti-tag-close-font-size: var(--ti-common-font-size-1);
+  --ti-tag-close-font-size: var(--ti-common-font-size-1, 14px);
   // 标签关闭按钮默认左外边距
-  --ti-tag-close-margin-left: var(--ti-common-space-6);
+  --ti-tag-close-margin-left: var(--ti-common-space-6, 6px);
   // 标签关闭按钮默认右外边距
-  --ti-tag-close-margin-right: var(--ti-common-space-0);
+  --ti-tag-close-margin-right: var(--ti-common-space-0, 0px);
   // 中型标签关闭按钮左外边距
-  --ti-tag-close-medium-margin-left: var(--ti-common-space-6);
+  --ti-tag-close-medium-margin-left: var(--ti-common-space-6, 6px);
   // 中等标签关闭按钮右外边距
-  --ti-tag-close-medium-margin-right: var(--ti-common-space-0);
+  --ti-tag-close-medium-margin-right: var(--ti-common-space-0, 0px);
   // (小型|超小)标签关闭按钮左外边距
-  --ti-tag-close-small-margin-left: var(--ti-common-space-6);
+  --ti-tag-close-small-margin-left: var(--ti-common-space-6, 6px);
   // (小型|超小)标签关闭按钮右外边距
-  --ti-tag-close-small-margin-right: var(--ti-common-space-0);
+  --ti-tag-close-small-margin-right: var(--ti-common-space-0, 0px);
   // light主题标签默认文本色
-  --ti-tag-primary-text-color: var(--ti-common-color-text-secondary);
+  --ti-tag-primary-text-color: var(--ti-common-color-text-secondary, #575d6c);
   // light主题标签默认关闭图标色
-  --ti-tag-primary-close-icon-color: var(--ti-common-color-text-secondary);
+  --ti-tag-primary-close-icon-color: var(--ti-common-color-text-secondary, #575d6c);
   // light主题标签默认关闭图标悬浮色
-  --ti-tag-primary-close-hover-icon-color: var(--ti-common-color-text-secondary);
+  --ti-tag-primary-close-hover-icon-color: var(--ti-common-color-text-secondary, #575d6c);
   // light主题标签默认关闭按钮透明度(hide)
   --ti-tag-primary-close-opacity: 0.5;
   // light主题标签默认边框色
-  --ti-tag-primary-border-color: var(--ti-common-color-bg-normal);
+  --ti-tag-primary-border-color: var(--ti-common-color-bg-normal, #eef0f5);
   // light主题标签默认背景色
-  --ti-tag-primary-background-color: var(--ti-common-color-bg-normal);
+  --ti-tag-primary-background-color: var(--ti-common-color-bg-normal, #eef0f5);
 
   // light主题警告类标签(文本|边框)色
-  --ti-tag-warning-text-color: var(--ti-common-color-warn-text);
+  --ti-tag-warning-text-color: var(--ti-common-color-warn-text, #e37d29);
   // light主题警告类标签边框色
-  --ti-tag-warning-border-color: var(--ti-common-color-warn-border);
+  --ti-tag-warning-border-color: var(--ti-common-color-warn-border, #ffd0a6);
   // light主题警告类标签背景色
-  --ti-tag-warning-background-color: var(--ti-common-color-warn-bg);
+  --ti-tag-warning-background-color: var(--ti-common-color-warn-bg, #fff3e8);
 
   // light主题危险类标签(文本|边框)色
-  --ti-tag-danger-text-color: var(--ti-common-color-error-text);
+  --ti-tag-danger-text-color: var(--ti-common-color-error-text, #de504e);
   // light主题危险类标签边框色
-  --ti-tag-danger-border-color: var(--ti-common-color-error-border-secondary);
+  --ti-tag-danger-border-color: var(--ti-common-color-error-border-secondary, #ffbcba);
   // (dark|light)主题危险类标签背景色
-  --ti-tag-danger-background-color: var(--ti-common-color-error-bg);
+  --ti-tag-danger-background-color: var(--ti-common-color-error-bg, #ffeeed);
 
   // light主题成功类标签(文本|边框)色
-  --ti-tag-success-text-color: var(--ti-common-color-text-success);
+  --ti-tag-success-text-color: var(--ti-common-color-text-success, #3ac295);
   // light主题成功类标签边框色
-  --ti-tag-success-border-color: var(--ti-common-color-success-border);
+  --ti-tag-success-border-color: var(--ti-common-color-success-border, #acf2dc);
   // light主题成功类标签背景色
-  --ti-tag-success-background-color: var(--ti-common-color-success-bg);
+  --ti-tag-success-background-color: var(--ti-common-color-success-bg, #edfff9);
 
   // light主题信息类标签(文本|边框)色
-  --ti-tag-info-text-color: var(--ti-common-color-text-primary);
+  --ti-tag-info-text-color: var(--ti-common-color-text-primary, #252b3a);
   // light主题信息类标签边框色
-  --ti-tag-info-border-color: var(--ti-common-color-info-border);
+  --ti-tag-info-border-color: var(--ti-common-color-info-border, #d3d4d6);
   // light主题信息类标签背景色
-  --ti-tag-info-background-color: var(--ti-common-color-info-bg);
+  --ti-tag-info-background-color: var(--ti-common-color-info-bg, rgba(51, 51, 51, 0.06));
 
   // dark主题标签默认文本色
-  --ti-tag-dark-text-color: var(--ti-common-color-light);
+  --ti-tag-dark-text-color: var(--ti-common-color-light, #fff);
   // dark主题标签默认(背景|边框)色
-  --ti-tag-dark-bg-color: var(--ti-common-color-prompt);
+  --ti-tag-dark-bg-color: var(--ti-common-color-prompt, #5e7ce0);
   // dark主题成功类标签(背景|边框)色
-  --ti-tag-dark-success-bg-color: var(--ti-common-color-success);
+  --ti-tag-dark-success-bg-color: var(--ti-common-color-success, #50d4ab);
   // dark主题警告类标签(背景|边框)色
-  --ti-tag-dark-warning-bg-color: var(--ti-common-color-warn);
+  --ti-tag-dark-warning-bg-color: var(--ti-common-color-warn, #fa9841);
   // dark主题危险类标签背景色
-  --ti-tag-dark-danger-bg-color: var(--ti-common-color-error);
+  --ti-tag-dark-danger-bg-color: var(--ti-common-color-error, #f66f6a);
   // dark主题信息类标签(背景|边框)色
-  --ti-tag-dark-info-bg-color: var(--ti-common-color-info);
+  --ti-tag-dark-info-bg-color: var(--ti-common-color-info, #252b3a);
 
   // plain主题标签默认文本色
-  --ti-tag-plain-text-color: var(--ti-common-color-prompt);
+  --ti-tag-plain-text-color: var(--ti-common-color-prompt, #5e7ce0);
   // plain主题标签默认边框色
-  --ti-tag-plain-border-color: var(--ti-common-color-prompt-border);
+  --ti-tag-plain-border-color: var(--ti-common-color-prompt-border, #beccfa);
   // plain主题标签默认背景色
-  --ti-tag-plain-background-color: var(--ti-common-color-light);
+  --ti-tag-plain-background-color: var(--ti-common-color-light, #fff);
 
   // plain主题信息类标签文本色
-  --ti-tag-plain-info-text-color: var(--ti-common-color-info);
+  --ti-tag-plain-info-text-color: var(--ti-common-color-info, #252b3a);
   // plain主题信息类标签边框色
-  --ti-tag-plain-info-border-color: var(--ti-common-color-info-border);
+  --ti-tag-plain-info-border-color: var(--ti-common-color-info-border, #d3d4d6);
 
   // plain主题成功类标签文本色
-  --ti-tag-plain-success-text-color: var(--ti-common-color-success);
+  --ti-tag-plain-success-text-color: var(--ti-common-color-success, #50d4ab);
   // plain主题成功类标签边框色
-  --ti-tag-plain-success-border-color: var(--ti-common-color-success-border);
+  --ti-tag-plain-success-border-color: var(--ti-common-color-success-border, #acf2dc);
 
   // plain主题警告类标签文本色
-  --ti-tag-plain-warning-text-color: var(--ti-common-color-warn);
+  --ti-tag-plain-warning-text-color: var(--ti-common-color-warn, #fa9841);
   // plain主题警告类标签边框色
-  --ti-tag-plain-warning-border-color: var(--ti-common-color-warn-border);
+  --ti-tag-plain-warning-border-color: var(--ti-common-color-warn-border, #ffd0a6);
 
   // plain主题危险类标签文本色
-  --ti-tag-plain-danger-text-color: var(--ti-common-color-error);
+  --ti-tag-plain-danger-text-color: var(--ti-common-color-error, #f66f6a);
   // plain主题危险类标签边框色
-  --ti-tag-plain-danger-border-color: var(--ti-common-color-error-border-secondary);
+  --ti-tag-plain-danger-border-color: var(--ti-common-color-error-border-secondary, #ffbcba);
 }

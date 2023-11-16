@@ -12,51 +12,51 @@
 
 .component-css-vars-pop-upload() {
   // 上传按钮文字大小(hide)
-  --ti-popupload-font-size: var(--ti-common-font-size-base);
+  --ti-popupload-font-size: var(--ti-common-font-size-base, 12px);
   // 弹出框头部alert提示底部外边距
-  --ti-popupload-dialog-header-alert-margin-bottom: var(--ti-common-space-10);
+  --ti-popupload-dialog-header-alert-margin-bottom: var(--ti-common-space-10, 10px);
   //  弹出框表格高度
-  --ti-popupload-dialog-table-height: calc(var(--ti-common-size-35x) * 2);
+  --ti-popupload-dialog-table-height: calc(var(--ti-common-size-35x, 140px) * 2);
   // 弹出框表格字号
-  --ti-popupload-dialog-table-font-size: var(--ti-common-font-size-1);
+  --ti-popupload-dialog-table-font-size: var(--ti-common-font-size-1, 14px);
   // 弹出框表格顶部外边距
-  --ti-popupload-dialog-margin-top: var(--ti-common-space-10);
+  --ti-popupload-dialog-margin-top: var(--ti-common-space-10, 10px);
   // 弹出框表格头部分割线颜色
-  --ti-popupload-dialog-table-border-color: var(--ti-common-color-line-normal);
+  --ti-popupload-dialog-table-border-color: var(--ti-common-color-line-normal, #adb0b8);
   // 弹出框表格头部高度
-  --ti-popupload-dialog-table-header-height: var(--ti-common-size-height-small);
+  --ti-popupload-dialog-table-header-height: var(--ti-common-size-height-small, 32px);
   // 弹出框表格头部文本色
-  --ti-popupload-dialog-table-header-text-color: var(--ti-common-color-text-primary);
+  --ti-popupload-dialog-table-header-text-color: var(--ti-common-color-text-primary, #252b3a);
   // 弹出框表格头部字重
-  --ti-popupload-dialog-table-header-font-weight: var(--ti-common-font-weight-bold);
+  --ti-popupload-dialog-table-header-font-weight: var(--ti-common-font-weight-bold, 700);
   // 弹出框表格头部背景色
-  --ti-popupload-dialog-table-header-bg-color: var(--ti-common-color-bg-normal);
+  --ti-popupload-dialog-table-header-bg-color: var(--ti-common-color-bg-normal, #eef0f5);
   // 弹出框表格头部item垂直内边距
-  --ti-popupload-table-header-col-padding-vertical: var(--ti-common-space-0);
+  --ti-popupload-table-header-col-padding-vertical: var(--ti-common-space-0, 0px);
   // 弹出框表格头部item水平内边距
-  --ti-popupload-table-header-col-padding-horizontal: var(--ti-common-space-3x);
+  --ti-popupload-table-header-col-padding-horizontal: var(--ti-common-space-3x, 12px);
   // 弹出框表格内容item垂直内边距
-  --ti-popupload-table-body-col-padding-vertical: var(--ti-common-space-2x);
+  --ti-popupload-table-body-col-padding-vertical: var(--ti-common-space-2x, 8px);
   // 弹出框表格内容item水平内边距
-  --ti-popupload-table-body-col-padding-horizontal: var(--ti-common-space-3x);
+  --ti-popupload-table-body-col-padding-horizontal: var(--ti-common-space-3x, 12px);
   // 弹出框表格内容item垂直外边距
-  --ti-popupload-table-body-col-margin-vertical: var(--ti-common-space-0);
+  --ti-popupload-table-body-col-margin-vertical: var(--ti-common-space-0, 0px);
   // 弹出框表格内容item水平外边距
-  --ti-popupload-table-body-col-margin-horizontal: var(--ti-common-space-0);
+  --ti-popupload-table-body-col-margin-horizontal: var(--ti-common-space-0, 0px);
   // 弹出框表格内容item行高
-  --ti-popupload-table-body-col-line-height: var(--ti-common-line-height-4);
+  --ti-popupload-table-body-col-line-height: var(--ti-common-line-height-4, 20px);
   // 弹出框表格内容偶数行背景色
-  --ti-popupload-table-item-even-bg-color: var(--ti-common-color-info-bg);
+  --ti-popupload-table-item-even-bg-color: var(--ti-common-color-info-bg, rgba(51, 51, 51, 0.06));
   // 弹出框表格底部内边距
-  --ti-popupload-dialog-table-body-padding-bottom: var(--ti-common-space-10);
+  --ti-popupload-dialog-table-body-padding-bottom: var(--ti-common-space-10, 10px);
   // 弹出框底部内边距
-  --ti-popupload-dialog-footer-padding-bottom: var(--ti-common-space-6x);
+  --ti-popupload-dialog-footer-padding-bottom: var(--ti-common-space-6x, 24px);
   // 弹出框已上传文件的删除图标色
-  --ti-popupload-dialog-table-icon-color: var(--ti-common-color-icon-active);
+  --ti-popupload-dialog-table-icon-color: var(--ti-common-color-icon-active, #5e7ce0);
   // 弹出框已上传文件的删除图标尺寸
-  --ti-popupload-dialog-table-icon-size: var(--ti-common-size-4x);
+  --ti-popupload-dialog-table-icon-size: var(--ti-common-size-4x, 16px);
   // 弹出框已上传文件的删除图标悬浮色
-  --ti-popupload-dialog-table-icon-color-hover: var(--ti-common-bg-primary);
+  --ti-popupload-dialog-table-icon-color-hover: var(--ti-common-bg-primary, #c7000b);
   // 弹出框已上传文件的删除图标悬浮尺寸
-  --ti-popupload-dialog-table-icon-size-hover: var(--ti-common-size-4x);
+  --ti-popupload-dialog-table-icon-size-hover: var(--ti-common-size-4x, 16px);
 }
