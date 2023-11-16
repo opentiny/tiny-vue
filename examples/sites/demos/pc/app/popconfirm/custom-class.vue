@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-popconfirm :title="title" :content="content" popper-class="custom-class">
+    <tiny-popconfirm :title="title" :content="content" custom-class="custom-class">
       <template #reference>
         <tiny-button>悬浮我提示</tiny-button>
       </template>
@@ -28,5 +28,9 @@ export default {
 <style>
 .tiny-popover.tiny-popper.custom-class {
   background-color: #ccc;
+}
+
+.tiny-popover.tiny-popper.custom-class .popper__arrow::after {
+  border-top-color: #ccc;
 }
 </style>

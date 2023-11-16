@@ -7,9 +7,9 @@ export default {
       name: { 'zh-CN': '常用表单', 'en-US': 'Common Form' },
       desc: {
         'zh-CN':
-          '<p>在<code>Form</code>组件中，每一个表单域由一个<code>FormItem</code>组件构成，表单域中可以放置各种类型的表单控件，包括 <code>Input</code>、<code>Select</code>、<code>Checkbox</code>、<code>Radio</code>、<code>Switch</code>、<code>DatePicker</code>、<code>TimePicker</code>等。</p>',
+          '<p>在 <code>Form</code> 组件中，每一个表单域由一个 <code>FormItem</code> 组件构成，表单域中可以放置各种类型的表单控件，包括 <code>Input</code> 、 <code>Select</code> 、 <code>Checkbox</code> 、 <code>Radio</code> 、 <code>Switch</code> 、 <code>DatePicker</code> 、 <code>TimePicker</code> 等。</p>',
         'en-US':
-          '<p>In the<code>Form</code>component, each form field is composed of a<code>FormItem</code>component, and various types of form controls can be placed in the form field, including<code>Input</code>,<code>Select</code>,<code>Checkbox</code>,<code>Radio</code>,<code>Switch</code>,<code>DatePicker</code>,<code>TimePicker</code>, etc. </p>'
+          '<p>In the <code>Form</code> component, each form field is composed of a <code>FormItem</code> component, and various types of form controls can be placed in the form field, including <code>Input</code> , <code>Select</code> , <code>Checkbox</code> , <code>Radio</code> , <code>Switch</code> , <code>DatePicker</code> , <code>TimePicker</code> , etc. </p>'
       },
       codeFiles: ['basic-usage.vue']
     },
@@ -18,9 +18,9 @@ export default {
       name: { 'zh-CN': '行内表单', 'en-US': 'Inline Form' },
       desc: {
         'zh-CN':
-          '<p>通过<code>inline</code>设置行内表单，当垂直方向空间受限且表单较简单时，可以在一行内放置表单项。<code>label-suffix</code>设置表单标签后缀。</p>',
+          '<p>通过 <code>inline</code> 设置行内表单，当垂直方向空间受限且表单较简单时，可以在一行内放置表单项。 <code>label-suffix</code> 设置表单标签后缀。</p>',
         'en-US':
-          '<p>By<code>inline</code>setting up inline forms, when vertical space is limited and the form is relatively simple, form items can be placed within one line.Set the form label suffix by<code>label-suffix</code>.</p>'
+          '<p>By <code>inline</code> setting up inline forms, when vertical space is limited and the form is relatively simple, form items can be placed within one line.Set the form label suffix by <code>label-suffix</code> .</p>'
       },
       codeFiles: ['form-in-row.vue']
     },
@@ -29,9 +29,9 @@ export default {
       name: { 'zh-CN': '标签宽度与文本对齐', 'en-US': 'Text Alignment' },
       desc: {
         'zh-CN':
-          '<p>通过<code>label-width</code>设置标签宽度，<code>label-align</code>设置是否文本对齐，<code>label-position</code>设置文本标签的位置。</p>',
+          '<p>通过 <code>label-width</code> 设置标签宽度， <code>label-align</code> 设置是否文本对齐， <code>label-position</code> 设置文本标签的位置。</p>',
         'en-US':
-          '<p>Set the label width by<code>label width</code>,Set whether the text is aligned by<code>label align</code>, and set the position of the text label by<code>label position</code>.</p>'
+          '<p>Set the label width by <code>label width</code> ,Set whether the text is aligned by <code>label align</code> , and set the position of the text label by <code>label position</code> .</p>'
       },
       codeFiles: ['label-align.vue']
     },
@@ -40,9 +40,9 @@ export default {
       name: { 'zh-CN': '标签超长显示 tip', 'en-US': 'Label too long display tip' },
       desc: {
         'zh-CN':
-          '<p>通过<code>overflow-title</code>设置标签超长时鼠标移动到标签上可显示<code>tooltip</code>提示，若使用<code>label</code>插槽，需自行实现。</p>',
+          '<p>通过 <code>overflow-title</code> 设置标签超长时鼠标移动到标签上可显示 <code>tooltip</code> 提示，若使用 <code>label</code> 插槽，需自行实现。</p>',
         'en-US':
-          '<p>By using<code>overflow title</code>to set the label to be too long, moving the mouse over the label can display a<code>tooltip</code>prompt. If using a<code>label</code>slot, you need to implement it yourself.</p>'
+          '<p>By using <code>overflow title</code> to set the label to be too long, moving the mouse over the label can display a <code>tooltip</code> prompt. If using a <code>label</code> slot, you need to implement it yourself.</p>'
       },
       codeFiles: ['overflow-title.vue']
     },
@@ -50,7 +50,7 @@ export default {
       demoId: 'form-validation',
       name: { 'zh-CN': '表单校验、移除校验', 'en-US': 'Form Validation/Clear Validation' },
       desc: {
-        'zh-CN': `<p>通过<code>rules</code>设置校验规则，<code>rules</code>的详情见<a href="#IFormRules">IFormRules</a>
+        'zh-CN': `<p>通过 <code>rules</code> 设置校验规则， <code>rules</code> 的详情见<a href="#IFormRules">IFormRules</a>
           <br />
           调用 <code>clearValidate</code> 方法移除表单项的校验结果。传入待移除的表单项的 <code>prop</code> 属性或者 <code>prop</code> 组成的数组，如不传则移除整个表单的校验结果。</p>`,
         'en-US': `<p>Includes common verification rules such as mandatory fields, date, time, URL, and email. Use <code>trigger</code> to configure the mode of triggering the validation rule. If <code>change</code> is used, the validation is triggered when the value in the text box changes. If <code>blur</code> is used, the validation is triggered after the focus is lost. 
@@ -66,9 +66,9 @@ export default {
       'name': { 'zh-CN': '特定表单项校验', 'en-US': 'Form field Validation' },
       'desc': {
         'zh-CN':
-          '<p>通过<code>validateField</code>方法对特定表单项进行校验，<code>clearValidate</code>方法移除特定表单项校验。</p>',
+          '<p>通过 <code>validateField</code> 方法对特定表单项进行校验， <code>clearValidate</code> 方法移除特定表单项校验。</p>',
         'en-US':
-          '<p>Verify specific form items using the<code>validateField</code>method, and remove specific form item validation using the<code>clearValidate</code>method.</p>'
+          '<p>Verify specific form items using the <code>validateField</code> method, and remove specific form item validation using the <code>clearValidate</code> method.</p>'
       },
       'codeFiles': ['form-validate-field.vue']
     },
@@ -77,7 +77,7 @@ export default {
       name: { 'zh-CN': '自定义校验规则', 'en-US': 'Customized Verification Rule' },
       desc: {
         'zh-CN':
-          '<p>通过<code>rules</code>的<code>validator</code>选项进行自定义校验，校验方法中 <code>callback</code> 必须被调用。通过<code>validate-on-rule-change</code>设置是否在 <code>rules</code> 属性改变后立即触发一次验证。</p>',
+          '<p>通过 <code>rules</code> 的 <code>validator</code> 选项进行自定义校验，校验方法中 <code>callback</code> 必须被调用。通过 <code>validate-on-rule-change</code> 设置是否在 <code>rules</code> 属性改变后立即触发一次验证。</p>',
         'en-US':
           '<p>Use the <code>validator</code> option to perform customized validation. In the validation method, <code>callback</code> must be invoked. Configure the <code>validate-on-rule-change</code> attribute to determine whether to trigger a verification immediately after the <code>rules</code> attribute is changed.</p>'
       },
@@ -88,7 +88,7 @@ export default {
       name: { 'zh-CN': '校验提示位置', 'en-US': 'Verification prompt position' },
       desc: {
         'zh-CN':
-          '<p>通过 <code>validate-position</code> 可自定义错误提示出现的位置，在 <code>Form</code> 组件上设置后，子组件<code>FormItem</code>会继承父组件设置。单独在 <code>FormItem</code> 组件上进行设置优先级高于在 <code>From</code>上的设置。</p>',
+          '<p>通过 <code>validate-position</code> 可自定义错误提示出现的位置，在 <code>Form</code> 组件上设置后，子组件 <code>FormItem</code> 会继承父组件设置。单独在 <code>FormItem</code> 组件上进行设置优先级高于在 <code>From</code> 上的设置。</p>',
         'en-US':
           '<p>You can use <code>validate-position</code> to customize the position where the error message appears. After this parameter is set on the <code>Form</code> component, the subcomponent <code>FormItem</code> inherits the setting of the parent component. The setting on the <code>FormItem</code> component takes precedence over the setting on the <code>From</code> component. </p>'
       },
@@ -100,7 +100,7 @@ export default {
       desc: {
         'zh-CN': '<p>通过 <code>show-message</code> 设置是否显示校验提示框的tip内容提示。</p>',
         'en-US':
-          '<p>You can use <code>validate-type</code> to set whether the verification prompt information is displayed in <code>text</code> or <code>tip</code> format. The default value is <code>tip</code>. You can also configure the verification prompt mode of a certain item on a certain <code>&lt;form-item&gt;</code> . </p>'
+          '<p>You can use <code>validate-type</code> to set whether the verification prompt information is displayed in <code>text</code> or <code>tip</code> format. The default value is <code>tip</code> . You can also configure the verification prompt mode of a certain item on a certain <code>&lt;form-item&gt;</code> . </p>'
       },
       codeFiles: ['novalid-tip.vue']
     },
@@ -109,9 +109,9 @@ export default {
       name: { 'zh-CN': '校验提示的形式', 'en-US': 'Disable form' },
       desc: {
         'zh-CN':
-          '<p>通过<code>validate-type</code>设置校验提示信息是以 <code>text</code> 文本显示还是以 <code>tip</code> 提示框的形式显示，默认为 <code>tip</code> 。<code>message-type</code>设置文本显示时是否以行内形式展示校验信息。也可直接配置在某一个 <code>form-item</code> 上控制某一项的校验提示形式。</p>',
+          '<p>通过 <code>validate-type</code> 设置校验提示信息是以 <code>text</code> 文本显示还是以 <code>tip</code> 提示框的形式显示，默认为 <code>tip</code> 。 <code>message-type</code> 设置文本显示时是否以行内形式展示校验信息。也可直接配置在某一个 <code>form-item</code> 上控制某一项的校验提示形式。</p>',
         'en-US':
-          '<p>You can set whether to disable the form by <code>disabled</code>. The default value is <code>false</code>. </p>'
+          '<p>You can set whether to disable the form by <code>disabled</code> . The default value is <code>false</code> . </p>'
       },
       codeFiles: ['validate-type.vue']
     },
@@ -120,7 +120,7 @@ export default {
       name: { 'zh-CN': '校验防抖处理', 'en-US': 'Validate debounce' },
       desc: {
         'zh-CN':
-          '<p>通过<code>validate-debounce</code>设置校验防抖，在连续输入的情况下，会在最后一次输入结束时才开始校验。</p>',
+          '<p>通过 <code>validate-debounce</code> 设置校验防抖，在连续输入的情况下，会在最后一次输入结束时才开始校验。</p>',
         'en-US':
           '<p>You can change the size of a component in a form by setting the <code>size</code> attribute on the <code>tiny-form</code> tab. You can set the <code>disabled</code> attribute to change the disabled status of components in the form.</p>'
       },
@@ -131,9 +131,9 @@ export default {
       name: { 'zh-CN': '表单尺寸', 'en-US': 'Remove the verification result of a form item.' },
       desc: {
         'zh-CN':
-          '<p>通过 <code>size</code>设置表单内组件尺寸。注意：表单中设置的size优先级高于数据录入组件(<code>input、select</code>等)设置的size。</p>',
+          '<p>通过 <code>size</code> 设置表单内组件尺寸。注意：表单中设置的size优先级高于数据录入组件( <code>input、select</code> 等)设置的size。</p>',
         'en-US':
-          '<p>Invoke the <code>clearValidate</code> method to remove the verification result of a form item. Transfer the <code>prop</code> attribute of the form item to be removed or the array consisting of <code>prop</code>. If this parameter is not transferred, the verification result of the entire form is removed. </p>'
+          '<p>Invoke the <code>clearValidate</code> method to remove the verification result of a form item. Transfer the <code>prop</code> attribute of the form item to be removed or the array consisting of <code>prop</code> . If this parameter is not transferred, the verification result of the entire form is removed. </p>'
       },
       codeFiles: ['size.vue']
     },
@@ -141,8 +141,8 @@ export default {
       demoId: 'slot-label',
       name: { 'zh-CN': '标签文本插槽', 'en-US': 'Hide Form Item Verification Prompt' },
       desc: {
-        'zh-CN': '<p>通过<code>label</code> 插槽，自定义标签文本的内容。</p>',
-        'en-US': '<p>Customize the content of label text through the<code>label</code>slot.</p>'
+        'zh-CN': '<p>通过 <code>label</code> 插槽，自定义标签文本的内容。</p>',
+        'en-US': '<p>Customize the content of label text through the <code>label</code> slot.</p>'
       },
       codeFiles: ['slot-label.vue']
     },
@@ -150,9 +150,9 @@ export default {
       demoId: 'form-disabled',
       name: { 'zh-CN': '表单禁用', 'en-US': 'Complex Layout' },
       desc: {
-        'zh-CN': '<p>通过<code>disabled</code>设置表单是否禁用，默认为 <code>false</code>。</p>',
+        'zh-CN': '<p>通过 <code>disabled</code> 设置表单是否禁用，默认为 <code>false</code> 。</p>',
         'en-US':
-          '<p>Set whether the form is disabled through<code>disabled</code>, and the default is<code>false</code>.</p>'
+          '<p>Set whether the form is disabled through <code>disabled</code> , and the default is <code>false</code> .</p>'
       },
       codeFiles: ['form-disabled.vue']
     },
@@ -160,8 +160,8 @@ export default {
       demoId: 'display-only',
       name: { 'zh-CN': '表单只读', 'en-US': 'Group Form' },
       desc: {
-        'zh-CN': '<p>通过<code>display-only</code>配置表单是否开启只读模式。</p>',
-        'en-US': '<p>Configure whether the form is in read-only mode by<code>display only</code>.</p>'
+        'zh-CN': '<p>通过 <code>display-only</code> 配置表单是否开启只读模式。</p>',
+        'en-US': '<p>Configure whether the form is in read-only mode by <code>display only</code> .</p>'
       },
       codeFiles: ['display-only.vue']
     },
@@ -182,9 +182,9 @@ export default {
       name: { 'zh-CN': '必填项红色星号', 'en-US': 'Required items with a red asterisk' },
       desc: {
         'zh-CN':
-          '<p>通过<code>hide-required-asterisk</code>设置是否隐藏标签前的红色星号，默认为<code>false</code>，但SMB主题下，默认为<code>true</code>。</p>',
+          '<p>通过 <code>hide-required-asterisk</code> 设置是否隐藏标签前的红色星号，默认为 <code>false</code> ，但SMB主题下，默认为 <code>true</code> 。</p>',
         'en-US':
-          'By setting whether to hide the red asterisk in front of the label through<code>hide required asterisk</code>, it defaults to<code>false</code>, but under the SMB theme, it defaults to<code>true</code>.'
+          'By setting whether to hide the red asterisk in front of the label through <code>hide required asterisk</code> , it defaults to <code>false</code> , but under the SMB theme, it defaults to <code>true</code> .'
       },
       codeFiles: ['smb-required.vue']
     }
