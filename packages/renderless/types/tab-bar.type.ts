@@ -9,6 +9,7 @@ export type ITabBarPcProps = ExtractPropTypes<typeof tabBarProps>
 export interface ITabBarPcState {
   rootTabs: ITabsVm
   barStyle: object
+  separator: boolean | null
 }
 
 export interface ITabBarPcApi {

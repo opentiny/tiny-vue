@@ -34,6 +34,15 @@ export default {
       'codeFiles': ['tab-style-bordercard.vue']
     },
     {
+      'demoId': 'tabs-separator',
+      'name': { 'zh-CN': '分隔符', 'en-US': 'Separator' },
+      'desc': {
+        'zh-CN': '<p>通过<code>separator</code>设置分隔符。</p>\n',
+        'en-US': '<p>Use <code>separator</code> to set the separator.</p>\n'
+      },
+      'codeFiles': ['tabs-separator.vue']
+    },
+    {
       'demoId': 'custom-more-icon',
       'name': { 'zh-CN': "定义'更多'按钮", 'en-US': "'More' icon slot" },
       'desc': {
@@ -255,6 +264,16 @@ export default {
               'Set the location of the label bar; The optional values for this attribute are top/right/bottom/left'
           },
           'demoId': 'position'
+        },
+        {
+          'name': 'separator',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '设置分隔符样式',
+            'en-US': 'Set Separator Style'
+          },
+          'demoId': 'tabs-separator'
         },
         {
           'name': 'show-more-tabs',
