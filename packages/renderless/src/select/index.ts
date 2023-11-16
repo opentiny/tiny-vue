@@ -296,8 +296,12 @@ export const getOption =
     }
 
     if (option) {
-      if (!option.currentLabel) {
-        option.currentLabel = option[props.textField]
+      if (props.optimization) {
+        // 此处克隆避免引起 state.datas 发生变化触发 computeOptimizeOpts
+        const cloneOption = extend(true, {}, option)
+        cloneOption.currentLabel = cloneOption[props.textField]
+
+        return cloneOption
       }
 
       return option
