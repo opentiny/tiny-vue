@@ -5,6 +5,6 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { Button as TinyButton } from '@opentiny/vue'
 </script>

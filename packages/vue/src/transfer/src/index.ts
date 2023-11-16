@@ -13,7 +13,6 @@ import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
 const $constants = {
-  TARGETORDER: 'original',
   ISCHECKED: 'is-checked',
   DROPPANEL: '.tiny-transfer-panel__list',
   TRANSFERPANEL: '.tiny-transfer-panel__item'

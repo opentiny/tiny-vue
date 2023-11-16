@@ -10,7 +10,7 @@ export default {
     },
     {
       'demoId': 'custom-3-threshold-colors',
-      'name': { 'zh-CN': '自定义 3 分段颜色', 'en-US': 'Custom 3-segment color' },
+      'name': { 'zh-CN': '分段颜色', 'en-US': 'Segment color' },
       'desc': {
         'zh-CN': '<p>可通过 <code>colors</code> 定义 3 分段颜色。</p>\n',
         'en-US': '<p>You can use <code>colors</code> to define three-segment colors. </p>\n'
@@ -19,7 +19,7 @@ export default {
     },
     {
       'demoId': 'disabled-not-selected-color',
-      'name': { 'zh-CN': '自定义禁用时未选中图标颜色', 'en-US': 'Unselected icon color when customized is disabled' },
+      'name': { 'zh-CN': '禁用时未选中图标颜色', 'en-US': 'Unselected icon color when customized is disabled' },
       'desc': {
         'zh-CN': '<p>可通过 <code>disabled-void-color</code> 自定义禁用时未选中图标颜色。</p>\n',
         'en-US': '<p>You can use <code>disabled-void-color</code> to customize the color of the unselected icon. </p>\n'
@@ -29,7 +29,7 @@ export default {
     {
       'demoId': 'disabled-not-selected-class',
       'name': {
-        'zh-CN': '自定义禁用时未选中图标类名',
+        'zh-CN': '禁用时未选中图标类名',
         'en-US': 'Icon class name that is not selected when user-defined is disabled'
       },
       'desc': {
@@ -41,10 +41,10 @@ export default {
     },
     {
       'demoId': 'custom-3-threshold-icon',
-      'name': { 'zh-CN': '自定义 3 分段图标样式', 'en-US': 'Custom 3-segment icon style' },
+      'name': { 'zh-CN': '分段图标类名', 'en-US': 'Segment icon class name' },
       'desc': {
-        'zh-CN': '<p>可通过 <code>icon-classes</code> 自定义 3 分段图标样式。</p>\n',
-        'en-US': '<p>You can use <code>icon-classes</code> to customize the 3-part icon style. </p>\n'
+        'zh-CN': '<p>可通过 <code>icon-classes</code> 自定义 3 分段图标。</p>\n',
+        'en-US': '<p>You can use <code>icon-classes</code> to customize the 3-part icon. </p>\n'
       },
       'codeFiles': ['custom-3-threshold-icon.vue']
     },
@@ -70,7 +70,7 @@ export default {
     },
     {
       'demoId': 'not-selected-color',
-      'name': { 'zh-CN': '自定义未选中图标颜色', 'en-US': 'Customize the color of unselected icons' },
+      'name': { 'zh-CN': '未选中图标颜色', 'en-US': 'The color of unselected icons' },
       'desc': {
         'zh-CN': '<p>可通过 <code>void-color</code> 定义未选中图标颜色。</p>\n',
         'en-US': '<p>You can use <code>void-color</code> to define the color of an unselected icon. </p>\n'
@@ -79,7 +79,7 @@ export default {
     },
     {
       'demoId': 'not-selected-class',
-      'name': { 'zh-CN': '自定义未选中图标类名', 'en-US': 'Customized unselected icon class name' },
+      'name': { 'zh-CN': '未选中图标类名', 'en-US': 'Customized unselected icon name' },
       'desc': {
         'zh-CN': '<p>可通过 <code>void-icon-class</code> 定义未选中图标类名。</p>\n',
         'en-US': '<p>You can use <code>void-icon-class</code> to define the unselected icon class name. </p>\n'
@@ -171,28 +171,28 @@ export default {
         {
           'name': 'max',
           'type': 'number',
-          'defaultValue': '该属性的默认值为 5',
+          'defaultValue': '5',
           'desc': { 'zh-CN': '最大分值', 'en-US': 'Maximum score' },
           'demoId': 'max-score'
         },
         {
           'name': 'disabled',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '是否为只读', 'en-US': 'Read-only' },
           'demoId': 'dynamic-disable'
         },
         {
           'name': 'allow-half',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '是否允许半选', 'en-US': 'Whether to allow half selection' },
           'demoId': 'allow-half'
         },
         {
           'name': 'colors',
-          'type': 'Array',
-          'defaultValue': "该属性的默认值为 ['#FADB14', '#FADB14', '#FADB14']",
+          'type': '[string, string, string]',
+          'defaultValue': "['#FADB14', '#FADB14', '#FADB14']",
           'desc': {
             'zh-CN': 'icon 的颜色数组，为 Threshold 3 个分段所对应的颜色',
             'en-US': 'icon color array, which is the color corresponding to the Threshold three segments.'
@@ -202,25 +202,26 @@ export default {
         {
           'name': 'disabled-void-color',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 #D9D9D9',
+          'defaultValue': "'#D9D9D9'",
           'desc': { 'zh-CN': '禁用状态下未选中 icon 的颜色', 'en-US': 'Color of unselected icons in disabled state' },
           'demoId': 'disabled-not-selected-color'
         },
         {
           'name': 'disabled-void-icon-class',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为 icon-starActive',
+          'typeAnchorName': 'IRateIconName',
+          'type': "IRateIconName",
+          'defaultValue': "'icon-starActive'",
           'desc': {
-            'zh-CN': '只读状态下未选中的图标样式名，可选值:icon-starDisable | icon-frown | icon-meh | icon-smile',
+            'zh-CN': '只读状态下未选中的图标样式名',
             'en-US':
-              "Icon style name that is not selected in read-only state. Options 'icon-starDisable' | 'icon-frown' | 'icon-meh' | 'icon-smile'"
+              "Icon style name that is not selected in read-only state."
           },
           'demoId': 'disabled-not-selected-class'
         },
         {
           'name': 'high-threshold',
           'type': 'number',
-          'defaultValue': '该属性的默认值为 4',
+          'defaultValue': '4',
           'desc': {
             'zh-CN': '高分和中等分数的界限值，值本身被划分在高分中',
             'en-US':
@@ -230,8 +231,9 @@ export default {
         },
         {
           'name': 'icon-classes',
-          'type': 'Array',
-          'defaultValue': "该属性的默认值为 ['icon-starActive', 'icon-starActive', 'icon-starActive']",
+          'typeAnchorName': 'IRateIconName',
+          'type': '[IRateIconName, IRateIconName, IRateIconName]',
+          'defaultValue': "['icon-starActive', 'icon-starActive', 'icon-starActive']",
           'desc': {
             'zh-CN': '三个分段对应的图标样式名',
             'en-US': 'Icon style name corresponding to the three segments'
@@ -241,7 +243,7 @@ export default {
         {
           'name': 'low-threshold',
           'type': 'number',
-          'defaultValue': '该属性的默认值为 2',
+          'defaultValue': '2',
           'desc': {
             'zh-CN': '低分和中等分数的界限值，值本身被划分在低分中',
             'en-US':
@@ -252,14 +254,14 @@ export default {
         {
           'name': 'score-template',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 {value}',
-          'desc': { 'zh-CN': '分数显示模板', 'en-US': 'Score display template' },
+          'defaultValue': "'{value}'",
+          'desc': { 'zh-CN': '分数显示模板，用“{value}”代表分数', 'en-US': 'Score display template' },
           'demoId': 'show-score'
         },
         {
           'name': 'show-score',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否显示当前分数，show-score 和 show-text 不能同时为真',
             'en-US':
@@ -270,7 +272,7 @@ export default {
         {
           'name': 'show-text',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否显示辅助文字，若为真，则会从 texts 数组中选取当前分数对应的文字内容',
             'en-US':
@@ -281,60 +283,61 @@ export default {
         {
           'name': 'text-color',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 #666666',
+          'defaultValue': "'#666666'",
           'desc': { 'zh-CN': '辅助文字的颜色', 'en-US': 'Color of auxiliary text' },
           'demoId': 'texts-and-text-color'
         },
         {
           'name': 'texts',
-          'type': 'Array',
-          'defaultValue': "该属性的默认值为 ['很差', '差', '一般', '好', '很好']",
-          'desc': { 'zh-CN': '辅助文字数组', 'en-US': 'Auxiliary text array' },
+          'type': 'string[]',
+          'defaultValue': "['很差', '差', '一般', '好', '很好']",
+          'desc': { 'zh-CN': '辅助文字数组，文字的数量应该与max属性一致', 'en-US': 'Auxiliary text array' },
           'demoId': 'texts-and-text-color'
         },
         {
           'name': 'void-color',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 #BFBFBF',
+          'defaultValue': "'#BFBFBF'",
           'desc': { 'zh-CN': '未选中 icon 的颜色', 'en-US': 'Color of unselected icons' },
           'demoId': 'not-selected-color'
         },
         {
           'name': 'void-icon-class',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为 icon-starActive',
+          'type': 'IRateIconName',
+          'typeAnchorName': 'IRateIconName',
+          'defaultValue': "'icon-starActive'",
           'desc': {
-            'zh-CN': '未选中 icon 的图标样式名,可选值:icon-starDisable | icon-frown | icon-meh | icon-smile',
+            'zh-CN': '未选中 icon 的图标样式名',
             'en-US':
-              "Class name of unselected icons. Options 'icon-starDisable' | 'icon-frown' | 'icon-meh' | 'icon-smile'"
+              "Class name of unselected icons."
           },
           'demoId': 'not-selected-class'
         },
         {
           'name': 'radio',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '评分其他形态单选', 'en-US': 'Single choice for scoring other forms' },
           'demoId': 'radio-rate'
         },
         {
           'name': 'size',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 18px',
+          'defaultValue': '18px',
           'desc': { 'zh-CN': '图标字体大小', 'en-US': 'Icon font size' },
           'demoId': 'size-and-space'
         },
         {
           'name': 'space',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 24px',
+          'defaultValue': '24px',
           'desc': { 'zh-CN': '每个图标所占宽度', 'en-US': 'Width of each icon' },
           'demoId': 'size-and-space'
         },
         {
           'name': 'text-on-bottom',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否在图标下显示对应的文字',
             'en-US': 'Whether to display the corresponding text under the icon'
@@ -344,7 +347,7 @@ export default {
         {
           'name': 'modelValue / v-model',
           'type': 'number',
-          'defaultValue': '该属性的默认值为 0',
+          'defaultValue': '0',
           'desc': { 'zh-CN': '绑定值', 'en-US': 'Bound Value' },
           'demoId': 'basic-usage'
         }
@@ -352,13 +355,20 @@ export default {
       'events': [
         {
           'name': 'change',
-          'type': '',
+          'type': '(value: number) => void',
           'defaultValue': '',
           'desc': { 'zh-CN': '分值改变时触发', 'en-US': 'This event is triggered when the score changes.' },
           'demoId': 'rate-events'
         }
       ],
       'slots': []
+    }
+  ],
+  types: [
+    {
+      name: 'IRateIconName',
+      type: 'type',
+      code: `type IRateIconName = 'icon-starDisable' | 'icon-frown' | 'icon-meh' | 'icon-smile'`
     }
   ]
 }

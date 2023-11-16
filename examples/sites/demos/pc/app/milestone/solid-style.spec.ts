@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('已完成节点实心显示', async ({ page }) => {
+test('实心显示', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
   await page.goto('http://127.0.0.1:7130/pc/milestone/solid-style')
 
@@ -52,12 +52,12 @@ test('已完成节点实心显示', async ({ page }) => {
     }
   ]
   const titles = [
-    '完成状态，状态值:completed',
-    '完成状态，状态值:completed',
-    '未完成状态, 状态值:doing',
-    '未完成状态，状态值:xxx',
-    '未完成状态，状态值:back',
-    '未完成状态，状态值:end'
+    'completed完成状态',
+    'completed完成状态',
+    'doing未完成状态',
+    'xxx未完成状态',
+    'back未完成状态',
+    'end未完成状态'
   ]
 
   await expect(nodes).toHaveCount(nodeCount)

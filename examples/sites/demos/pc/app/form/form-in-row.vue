@@ -10,7 +10,7 @@
   </tiny-form>
 </template>
 
-<script lang="jsx">
+<script>
 import { Form, FormItem, Numeric, Radio } from '@opentiny/vue'
 
 export default {

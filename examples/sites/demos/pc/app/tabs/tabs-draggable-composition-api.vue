@@ -3,11 +3,9 @@
     v-model="tabName"
     tab-style="card"
     :drop-config="dropConfig"
-    :editable="false"
     :with-add="true"
     @add="handleAdd"
     style="width: 500px"
-    :show-more-tabs="more"
     @tab-drag-start="handleStart"
     @tab-drag-over="handleOver"
     @tab-drag-end="handleEnd"
@@ -23,7 +21,6 @@ import { ref } from 'vue'
 import { Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
-const more = ref(false)
 const tabName = ref('2')
 const dropConfig = ref({
   plugin: Sortable

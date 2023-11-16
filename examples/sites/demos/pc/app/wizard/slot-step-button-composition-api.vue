@@ -1,5 +1,5 @@
 <template>
-  <tiny-wizard :data="dataSet" base-flow page-guide>
+  <tiny-wizard :data="dataSet" page-guide>
     <template #stepbutton>
       <tiny-button @click="btnClick(1)">第一步</tiny-button>
       <tiny-button @click="btnClick(2)">第二步</tiny-button>

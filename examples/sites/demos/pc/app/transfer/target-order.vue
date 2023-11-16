@@ -1,13 +1,20 @@
 <template>
-  <tiny-transfer v-model="value" :data="data" target-order="unshift"></tiny-transfer>
+  <div style="margin-bottom: 12px">
+    <span>右侧插入排序策略：</span>
+    <tiny-radio v-for="order in ['original', 'push', 'unshift']" v-model="targetOrder" :label="order">
+      {{ order }}
+    </tiny-radio>
+  </div>
+  <tiny-transfer v-model="value" :data="data" :target-order="targetOrder"></tiny-transfer>
 </template>
 
 <script lang="jsx">
-import { Transfer } from '@opentiny/vue'
+import { Transfer, Radio } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTransfer: Transfer
+    TinyTransfer: Transfer,
+    TinyRadio: Radio
   },
   data() {
     const generateData = () => {
@@ -26,7 +33,8 @@ export default {
 
     return {
       data: generateData(),
-      value: [1, 4]
+      value: [1, 4],
+      targetOrder: 'original'
     }
   }
 }

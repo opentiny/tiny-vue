@@ -1,11 +1,11 @@
 <template>
-  <tiny-numeric v-model="stepNum" :mouse-wheel="mouseWheel"></tiny-numeric>
+  <tiny-numeric v-model="value" :mouse-wheel="mouseWheel"></tiny-numeric>
 </template>
 
-<script setup lang="jsx">
+<script setup lang="ts">
 import { ref } from 'vue'
 import { Numeric as TinyNumeric } from '@opentiny/vue'
 
+const value = ref(1)
 const mouseWheel = ref(true)
-const stepNum = ref(1)
 </script>

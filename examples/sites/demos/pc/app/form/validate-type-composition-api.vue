@@ -34,7 +34,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref, reactive } from 'vue'
 import {
   Form as TinyForm,
@@ -66,15 +66,15 @@ const rules = ref({
 
 const messageType = ref('block')
 const validType = ref('text')
-const inlineType = ref(false)
-const validTypeList = ref([
+
+const messageTypeList = ref([
   { text: '默认', value: 'none' },
   { text: '行内', value: 'inline' },
   { text: '块级', value: 'block' }
 ])
-const inlineList = ref([
-  { text: 'false', value: false },
-  { text: 'true', value: true }
+const validTypeList = ref([
+  { text: 'tip', value: 'tip' },
+  { text: 'text', value: 'text' }
 ])
 
 function handleSubmit() {

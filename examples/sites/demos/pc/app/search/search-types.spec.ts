@@ -9,7 +9,7 @@ test('下拉选择搜索类型', async ({ page }) => {
   const option = search.locator('.tiny-search__poplist-item').filter({ hasText: '找文档' })
   const text = search.locator('.tiny-search__text')
 
-  await expect(text).toHaveText('找人')
+  await expect(text).toHaveText('找谁')
   await expand.click()
   await option.click() // 下拉选择
   await expect(text).toHaveText('找文档')

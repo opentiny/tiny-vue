@@ -13,16 +13,6 @@ export default {
       'codeFiles': ['sort/default-sort.vue']
     },
     {
-      'demoId': 'tiny-first-menu-row-id',
-      'name': { 'zh-CN': '唯一主键', 'en-US': 'Unique Primary Key' },
-      'desc': {
-        'zh-CN': '<p>通过表格设置 <code>row-id</code> 自定义行数据唯一主键的字段名。该属性的默认值为 _RID</p>\n',
-        'en-US':
-          '<p>Set the <code>row-id</code> field name of the unique primary key of user-defined row data in a table. The default value of this property is _XID</p>\n'
-      },
-      'codeFiles': ['tiny-first-menu/row-id.vue']
-    },
-    {
       'demoId': 'sort-combinations-sort',
       'name': { 'zh-CN': '多字段组合排序', 'en-US': 'Multi-field sorting' },
       'desc': {
@@ -45,7 +35,7 @@ export default {
       'codeFiles': ['sort/custom-sort.vue']
     },
     {
-      'demoId': 'methods-sort',
+      'demoId': 'sort-sort',
       'name': { 'zh-CN': '手动排序', 'en-US': 'Manual Sorting' },
       'desc': {
         'zh-CN':
@@ -53,7 +43,7 @@ export default {
         'en-US':
           '<p>You can use the <code>sort(field, order)</code> method to manually sort tables. If order is empty, the sorting is automatically switched. </p>\n'
       },
-      'codeFiles': ['methods/sort.vue']
+      'codeFiles': ['sort/sort.vue']
     },
     {
       'demoId': 'sort-server-sort',

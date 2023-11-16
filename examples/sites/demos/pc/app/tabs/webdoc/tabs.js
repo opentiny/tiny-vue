@@ -6,10 +6,10 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN':
-          '<p>通过 <code>v-model</code> 设置初始激活的标签页，绑定的值对应 <code>tiny-tab-item</code> 元素中 <code>name</code> 属性的值。一个 <code>tiny-tab-item</code> 为一个标签页，通过 <code>title</code> 属性设置标签页标题。</p>\n',
-        'en-US':
-          '<p> uses <code>v-model</code> to set the initial activated tab page. The bound value corresponds to the value of the <code>name</code> attribute in the <code>tiny-tab-item</code> element. A <code>tiny-tab-item</code> is a tab. You can use the <code>title</code> attribute to set the tab title. </p>\n'
+        'zh-CN': `<code>tabs</code>：通过 <code>v-model</code> 设置选中的页签项，对应 <code>TabItem</code> 页签项中 <code>name</code> 属性的值；<br />
+        <code>tabItem</code>：通过 <code>title</code> 设置页签项标题。`,
+        'en-US': `<code>tabs</code>：Set the selected tag item through the<code>v-model</code>, corresponding to the value of the<code>name</code>attribute in the<code>TabItem</code>tag item;<br/>
+        <code>tabItem</code>：Set the label item title through<code>title</code>.`
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -18,9 +18,9 @@ export default {
       'name': { 'zh-CN': 'card 类型', 'en-US': 'card type' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>tab-style</code> 设置标签页风格类型， 通过 <code>active-name</code> 设置初始激活的标签页 。</p>\n',
+          '通过 <code>tab-style="card"</code> 设置风格类型为 <code>card</code> ，<code>active-name</code> 设置初始选中的页签项，<code>size="small"</code> 设置小尺寸类型。',
         'en-US':
-          '<p>Use <code>tab-style</code> to set the tab style type and <code>active-name</code> to set the initially activated tab. </p>\n'
+          'Set the style type by<code>tab-style</code>, set the initially selected label item by<code>active-name</code>, and set the small size type by<code>size="small"</code>.'
       },
       'codeFiles': ['tab-style-card.vue']
     },
@@ -28,186 +28,161 @@ export default {
       'demoId': 'tab-style-bordercard',
       'name': { 'zh-CN': 'bordercard 类型', 'en-US': 'bordercard type' },
       'desc': {
-        'zh-CN': '<p>通过 <code>tab-style</code> 设置标签页风格类型为 <code>bordercard</code> 。</p>\n',
-        'en-US': '<p>Use <code>tab-style</code> to set the tab style type to <code>bordercard</code>. </p>\n'
+        'zh-CN': '通过 <code>tab-style="border-card"</code> 设置风格类型为 <code>bordercard</code> 。',
+        'en-US': 'Use <code>tab-style="border-card</code> to set the tab style type to <code>bordercard</code>. '
       },
       'codeFiles': ['tab-style-bordercard.vue']
     },
     {
-      'demoId': 'with-add',
-      'name': { 'zh-CN': '标签页可增加', 'en-US': 'The tab page can be added.' },
+      'demoId': 'tabs-separator',
+      'name': { 'zh-CN': '分隔符', 'en-US': 'Separator' },
       'desc': {
-        'zh-CN':
-          '<p>设置 <code>with-add</code> 属性启用标签可增加功能。同时通过 <code>add</code> 事件自定义实现增加标签页的逻辑。配置 <code>show-more-tabs</code> 属性后当标签页超过一定宽度时将显示 <code>更多</code> 按钮。</p>\n',
-        'en-US':
-          '<p>Set the <code>with-add</code> attribute to enable tags to add functions. In addition, the <code>add</code> event is used to customize the logic for adding tabs. After the <code>show-more-tabs</code> attribute is configured, the <code>More</code> button is displayed when the tab page exceeds a certain width. </p>\n'
+        'zh-CN': '<p>通过<code>separator</code>设置分隔符。</p>\n',
+        'en-US': '<p>Use <code>separator</code> to set the separator.</p>\n'
       },
-      'codeFiles': ['with-add.vue']
+      'codeFiles': ['tabs-separator.vue']
     },
     {
       'demoId': 'custom-more-icon',
-      'name': { 'zh-CN': "'更多'图标插槽", 'en-US': "'More' icon slot" },
+      'name': { 'zh-CN': "定义'更多'按钮", 'en-US': "'More' icon slot" },
       'desc': {
-        'zh-CN': '<p>通过 <code>show-more-tabs</code> 和 <code>moreIcon</code> 插槽实现自定义更多图标</p>\n',
-        'en-US': '<p>Customize more icons through <code>show-more-tabs</code> and <code>moreIcon</code> slots</p>\n'
+        'zh-CN':
+          '通过 <code>show-more-tabs</code> 设置页签项超出时显示<code>更多</code>按钮；<code>moreIcon</code> 插槽自定义<code>更多</code>按钮；<code>popper-class</code> 给“更多”下拉框添加自定义类名，可用来自定义样式。',
+        'en-US':
+          'Set the<code>show-more-tabs</code>button to display the<code>More</code>button when the label item exceeds the limit< Code>moreIcon</code>Slot Customization<code>More</code>buttons;Add custom class names to "more" dropdown boxes, can be used to customize styles.'
       },
       'codeFiles': ['custom-more-icon.vue']
     },
     {
-      'demoId': 'tabs-events-close1',
-      'name': { 'zh-CN': '标签页可关闭', 'en-US': 'The tab page can be closed.' },
+      'demoId': 'with-add',
+      'name': { 'zh-CN': '添加功能', 'en-US': 'Adding Functionality' },
+      'desc': {
+        'zh-CN': '通过 <code>with-add</code> 打开添加按钮，并监听 <code>add</code> 事件自定义实现添加页签项的逻辑。',
+        'en-US':
+          'Open the add button through<code>with-add</code>and listen for the<code>add</code>event to customize the logic for adding tag items.'
+      },
+      'codeFiles': ['with-add.vue']
+    },
+    {
+      'demoId': 'tabs-events-close',
+      'name': { 'zh-CN': '删除', 'en-US': 'Delete' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>withClose</code> 属性设置是否可关闭标签页。同时可通过 <code>close</code> 事件自定义实现关闭标签页的逻辑。</p>\n',
+          '通过 <code>with-close</code> 打开关闭按钮，并监听 <code>close</code> 事件自定义实现删除页签项的逻辑。',
         'en-US':
-          '<p>The <code>withClose</code> attribute specifies whether the tab page can be closed. In addition, the <code>close</code> event can be used to customize the logic for closing the tab page. </p>\n'
+          'Open the close button through<code>with-close</code>and listen to the<code>close</code>event to customize the logic of deleting tag items.'
       },
       'codeFiles': ['tabs-events-close.vue']
     },
     {
       'demoId': 'position',
-      'name': { 'zh-CN': 'top 显示位置', 'en-US': 'top display position' },
+      'name': { 'zh-CN': '位置', 'en-US': 'Position' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>position</code> 属性设置标签页显示位置，可选值有 <code>top</code>、<code>right</code>、<code>bottom</code>、<code>left</code>，默认为 <code>top</code> 。</p>\n',
+          '通过 <code>position</code> 设置显示位置，可选值有 <code>top</code>、<code>right</code>、<code>bottom</code>、<code>left</code>，默认为 <code>top</code> 。',
         'en-US':
-          '<p>Set the display position of the tab page through the <code>position</code> attribute. The options are <code>top</code>, <code>right</code>, <code>bottom</code>, and <code>left</code>. The default value is <code>top</code>. </p>\n'
+          'Set the display position through<code>position</code>. The optional values include<code>top</code>,<code>right</code>,<code>bottom</code>, and<code>left</code>. The default value is<code>top</code>.'
       },
       'codeFiles': ['position.vue']
     },
     {
-      'demoId': 'position-right',
-      'name': { 'zh-CN': '右侧显示', 'en-US': 'Display on the right' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['position-right.vue']
-    },
-    {
-      'demoId': 'position-bottom',
-      'name': { 'zh-CN': '下方显示', 'en-US': 'Display below' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['position-bottom.vue']
-    },
-    {
-      'demoId': 'position-left',
-      'name': { 'zh-CN': '左侧显示', 'en-US': 'Display on the left' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['position-left.vue']
+      'demoId': 'tooltip',
+      'name': { 'zh-CN': '提示', 'en-US': 'Tip' },
+      'desc': {
+        'zh-CN': '通过 <code>tooltip-config</code> 设置 Title 提示。',
+        'en-US': 'Set the Title prompt through<code>tooltip-config</code>.'
+      },
+      'codeFiles': ['tooltip.vue']
     },
     {
       'demoId': 'before-leave',
-      'name': { 'zh-CN': '离开前事件', 'en-US': 'Event Before Leaving' },
+      'name': { 'zh-CN': '阻止切换', 'en-US': 'Block switching' },
       'desc': {
         'zh-CN':
-          '<p><code>before-leave</code> 切换标签之前的钩子函数，若返回 false 或者返回 Promise 且被 reject，则阻止切换，返回 true 则可以切换。</p>\n',
+          '通过 <code>before-leave</code> 钩子函数处理切换页签项前的逻辑，若返回是 <code>false</code> 或 <code>Promise.reject</code>，则阻止切换，返回 true 则可以切换。',
         'en-US':
-          'The hook function before <p><code>before-leave</code> switches the label. If false or Promise is returned and rejected, the switchover is blocked. If true is returned, the switchover is allowed. </p>\n'
+          'Use the<code>before-leave</code>hook function to handle the logic before switching label items. If <code>false</code> or <code>Promise.reject</code> is returned, the switch is blocked, and if true is returned, the switch can be made.'
       },
       'codeFiles': ['before-leave.vue']
     },
     {
       'demoId': 'stretch-wh',
-      'name': { 'zh-CN': '可自动撑开', 'en-US': 'Automatically open' },
+      'name': { 'zh-CN': '自动撑宽', 'en-US': 'Automatic widening' },
       'desc': {
-        'zh-CN': '<p><code>stretch</code> 属性设置标签的宽度是否自撑开，默认为 false 。</p>\n',
+        'zh-CN': '通过 <code>stretch</code> 设置页签项的宽度是否自撑开，默认为 false 。',
         'en-US':
-          'The <p><code>stretch</code> property specifies whether the width of a label is self-expanded. The default value is false. </p>\n'
+          'Set whether the width of the label item is self expanding by<code>stretch</code>, and the default is false.'
       },
       'codeFiles': ['stretch-wh.vue']
     },
     {
       'demoId': 'tabs-draggable',
-      'name': { 'zh-CN': '标签页可拖拽', 'en-US': 'The tab page can be dragged.' },
+      'name': { 'zh-CN': '拖拽', 'en-US': 'Drag' },
       'desc': {
-        'zh-CN':
-          '<p>设置 <code>drop-config</code> 属性，并传入 <code>Sortable</code> 插件，启用标签页拖拽功能，对标签页进行重新排序。</p>\n',
-        'en-US':
-          '<p>Set the <code>drop-config</code> attribute, transfer the <code>Sortable</code> plug-in, enable the tab page drag function, and reorder the tab pages. </p>\n'
+        'zh-CN': `通过 <code>drop-config</code> 设置 <code>Sortable</code> 排序插件；<br/>
+          <code>tab-drag-start</code> 监听拖拽开始事件；<br/>
+          <code>tab-drag-over</code> 监听拖拽中事件；<br/>
+          <code>tab-drag-end</code> 监听拖拽结束事件，以此改变页签项顺序。`,
+        'en-US': `Set the<code>Sortable</code>sorting plugin through<code>drop configuration</code><br />
+          <code>tab-drag-start</code>Listen for drag start events<br />
+          <code>tab-drag-over</code>Listen for dragging events<br />
+          <code>tab-drag-end</code>Listen for drag end events to change the order of tags.`
       },
       'codeFiles': ['tabs-draggable.vue']
-    },
-    {
-      'demoId': 'tabs-events-add',
-      'name': { 'zh-CN': 'add 事件', 'en-US': 'add event' },
-      'desc': {
-        'zh-CN': '<p>点击新增按钮增加标签页时触发 <code>add</code> 事件</p>\n',
-        'en-US': '<p>The <code>add</code> event is triggered when the Add button is clicked to add a tab page</p>\n'
-      },
-      'codeFiles': ['tabs-events-add.vue']
     },
     {
       'demoId': 'tabs-events-click',
       'name': { 'zh-CN': 'click 事件', 'en-US': 'click event' },
       'desc': {
-        'zh-CN': '<p>单击标签页时触发 <code>click</code> 事件</p>\n',
-        'en-US': '<p>The <code>click</code> event is triggered when a tab page is clicked</p>\n'
+        'zh-CN': '通过 <code>click</code> 监听单击页签项事件。',
+        'en-US': 'Listen for tag item click events through<code>click</code>.'
       },
       'codeFiles': ['tabs-events-click.vue']
-    },
-    {
-      'demoId': 'tabs-events-close',
-      'name': { 'zh-CN': 'close 事件', 'en-US': 'close event' },
-      'desc': {
-        'zh-CN': '<p>关闭标签页时触发 <code>close</code> 事件</p>\n',
-        'en-US': '<p>The <code>close</code> event is triggered when a tab page is closed</p>\n'
-      },
-      'codeFiles': ['tabs-events-close.vue']
     },
     {
       'demoId': 'tabs-events-edit',
       'name': { 'zh-CN': 'edit 事件', 'en-US': 'edit Event' },
       'desc': {
-        'zh-CN': '<p>点击新增按钮增加标签页 或 标签页被关闭后触发 <code>edit</code> 事件</p>\n',
+        'zh-CN':
+          '通过 <code>editable</code> 设置同时显示<code>删除</code>和<code>添加</code>按钮，<code>edit</code> 监听这两类按钮的点击事件。',
         'en-US':
-          '<p>The <code>edit</code> event is triggered after you click Add to add a tab page or the tab page is closed</p>\n'
+          'By setting<code>edit</code>to display both<code>delete</code>and<code>add</code>buttons,<code>edit</code>listens for click events of these two types of buttons.'
       },
       'codeFiles': ['tabs-events-edit.vue']
     },
     {
       'demoId': 'custom-tab-title',
-      'name': { 'zh-CN': '自定义标签页标题', 'en-US': 'Custom Tab Title' },
+      'name': { 'zh-CN': '定义页签项标题', 'en-US': 'Custom Tab Item Title' },
       'desc': {
-        'zh-CN':
-          '<p>通过 <code>tiny-tab-item</code> 的 <code>title</code> 插槽自定义标签页标题，比如在标题前增加图标。</p>\n',
+        'zh-CN': '通过 <code>TabItem</code> 的 <code>title</code> 插槽自定义页签项标题，比如在标题前增加图标。',
         'en-US':
-          '<p>Customize the title of the tab page through the <code>title</code> slot of the <code>tiny-tab-item</code>, for example, add an icon before the title. </p>\n'
+          'Customize the title of the tab page through the <code>title</code> slot of the <code>TabItem</code>, for example, add an icon before the title. '
       },
       'codeFiles': ['custom-tab-title.vue']
     },
     {
-      'demoId': 'tabdata-title',
-      'name': { 'zh-CN': '循环创建标签页', 'en-US': 'Creating tab pages cyclically' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>v-for</code> 根据数据循环创建多个 <code>tiny-tab-item</code> 。</p>\n',
-        'en-US':
-          '<p>Creates multiple <code>tiny-tab-items</code> based on the data loop through <code>v-for</code>. </p>\n'
-      },
-      'codeFiles': ['tabdata-title.vue']
-    },
-    {
       'demoId': 'show-different-grid-data',
-      'name': { 'zh-CN': '标签页切换不同 Grid', 'en-US': 'Switching a tab page to a grid' },
+      'name': { 'zh-CN': '与Grid结合', 'en-US': 'Combining with Grid' },
       'desc': {
-        'zh-CN':
-          '<blockquote>\n<p>Tabs 组件里使用 Grid 组件需要 Grid 设置属性 <code>:auto-resize=&quot;true&quot;</code>，这样才能让 Grid 自适应父元素响应变化。</p>\n</blockquote>\n',
+        'zh-CN': 'Grid组件需要设置 <code>:auto-resize=“true”</code>，自适应父元素<code>TabItem</code>相应变化。',
         'en-US':
-          'Using the Grid component in the <blockquote>\n<p>Tabs component requires the Grid to set the <code>:auto-resize=&quot;true&quot;</code> property so that the Grid can adapt to changes in the parent element. </p>\n</blockquote>\n'
+          'The Grid component needs to set<code>:auto-resize="true"</code>to adapt to the corresponding changes of the parent element<code>TabItem</code>.'
       },
       'codeFiles': ['show-different-grid-data.vue']
     },
     {
       'demoId': 'tabs-second-layer',
-      'name': { 'zh-CN': '二级标签页', 'en-US': 'Level-2 tab' },
-      'desc': { 'zh-CN': '页签嵌套页签', 'en-US': 'Nested tab' },
+      'name': { 'zh-CN': '多层级', 'en-US': 'Multi Level' },
+      'desc': { 'zh-CN': '通过嵌套使用即可。', 'en-US': 'It can be used through nesting.' },
       'codeFiles': ['tabs-second-layer.vue']
     },
     {
       'demoId': 'lazy',
       'name': { 'zh-CN': '懒加载', 'en-US': 'Lazy Loading' },
       'desc': {
-        'zh-CN':
-          '设置标签项的 <code>lazy</code> 属性为 <code>true</code>，可以使标签项内容懒加载。默认值为 <code>false</code>',
+        'zh-CN': '通过 <code>lazy</code> 设置页签项内容懒加载，默认值为 <code>false</code>。',
         'en-US':
-          'Set the <code>lazy</code> attribute of a tag item to <code>true</code> to enable lazy loading of the tag item content. The default value is <code>false</code>'
+          'By setting the lazy loading of label item content through<code>lazy</code>, the default value is<code>false</code>.'
       },
       'codeFiles': ['lazy.vue']
     }
@@ -218,118 +193,23 @@ export default {
       'type': 'component',
       'properties': [
         {
-          'name': 'tab-style',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '标签页样式;该属性的可选值为 card / border-card / button-card',
-            'en-US': 'Label page style; The optional value of this attribute is card / border-card / button-card'
-          },
-          'demoId': 'tab-style-card'
-        },
-        {
-          'name': 'popper-class',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '为 popper 添加类名(可参考 popover 组件)',
-            'en-US': 'Add a class name for the popper. For details, see the popover component.'
-          },
-          'demoId': ''
-        },
-        {
-          'name': 'with-add',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '标签是否可增加', 'en-US': 'Whether tags can be added' },
-          'demoId': 'with-add'
-        },
-        {
-          'name': 'with-close',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': {
-            'zh-CN': '标签是否可关闭;标签是否可关闭',
-            'en-US': 'Whether the tag can be closed; Whether the tag can be closed'
-          },
-          'demoId': 'tabs-events-close'
-        },
-        {
-          'name': 'editable',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': {
-            'zh-CN': '标签是否同时可增加和关闭',
-            'en-US': 'Whether tags can be added and disabled at the same time'
-          },
-          'demoId': 'tabs-events-add'
-        },
-        {
-          'name': 'show-more-tabs',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': {
-            'zh-CN': '当标签页超过一定宽度时将显示 更多 ，鼠标悬停到 更多 时，将显示超出宽度的标签页。',
-            'en-US':
-              'When the width of a tab page exceeds a specified value, more tabs are displayed. When you hover the cursor to more tabs, the tab page that exceeds the width is displayed.'
-          },
-          'demoId': 'with-add'
-        },
-        {
-          'name': 'modelValue / v-model',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为 第一个选项卡的 name',
-          'desc': {
-            'zh-CN': '绑定值，选中选项卡的 name',
-            'en-US': 'Bound value, which is the name of the selected tab.'
-          },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'position',
-          'type': 'string',
-          'defaultValue': '该属性的默认值为 top',
-          'desc': {
-            'zh-CN': '选项卡所在位置;该属性的可选值为 top/right/bottom/left',
-            'en-US': 'Location of the tab; The optional values for this property are top/right/bottom/left'
-          },
-          'demoId': 'position'
-        },
-        {
-          'name': 'stretch',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '标签的宽度是否自撑开', 'en-US': 'Whether the label width is self-expanded' },
-          'demoId': 'stretch-wh'
-        },
-        {
-          'name': 'before-leave',
-          'type': 'Function(activeName, oldActiveName)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '切换标签之前的钩子，若返回 false 或者返回 Promise 且被 reject，则阻止切换',
-            'en-US':
-              'The hook before the tag is switched. If false is returned or Promise is returned and rejected, the switch is blocked.'
-          },
-          'demoId': 'before-leave'
-        },
-        {
           'name': 'active-name',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '激活当前页面', 'en-US': 'Activate the current page' },
+          'desc': { 'zh-CN': '设置初始选中的页签项', 'en-US': 'Set initially selected label items' },
           'demoId': 'tab-style-card'
         },
         {
-          'name': 'size',
-          'type': 'string',
+          'name': 'before-leave',
+          'type': '(activeName: string, oldActiveName: string) => boolean | Promise',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置 tabs 标签页尺寸,当与 tabStyle 为 card 或者 border-card 时生效, 该属性可选值为 small',
+            'zh-CN':
+              '切换页签项之前的钩子，若返回 false 或返回 Promise 且被 reject，则阻止切换；// activeName: 即将切换的页签项名称, oldActiveName: 当前页签项名称',
             'en-US':
-              'Sets the tab page size. This attribute is valid only when tabStyle is set to card or border-card. The value of this attribute can be small.'
+              'The hook before the tag is switched. If false is returned or Promise is returned and rejected, the switch is blocked;// ActiveName: The name of the label item that is about to be switched, oldActiveName: The name of the current label item'
           },
-          'demoId': 'tab-style-card'
+          'demoId': 'before-leave'
         },
         {
           'name': 'drop-config',
@@ -337,15 +217,111 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '启用标签页拖拽功能，对标签页进行重新排序，注意：不是通过 v-for 渲染的 tab-item，在拖拽排序后，无法在 tab-drag-end 事件中对其顺序进行保存',
+              '启用页签拖拽功能，配置第三方排序插件，对页签项进行重新排序；需注意：不是通过 v-for 渲染的 tab-item，在拖拽排序后，无法在 tab-drag-end 事件中对其顺序进行保存',
             'en-US':
-              'Enable the tab page drag function to reorder tab pages. Note that tab-items that are not rendered by v-for cannot be saved in the tab-drag-end event after being dragged and sorted.'
+              'Enable tab drag and drop functionality, configure third-party sorting plugins, and reorder tabs; Please note that tab items that are not rendered through v-for cannot be saved in the tab drag end event after dragging and sorting'
           },
           'demoId': 'tabs-draggable'
         },
         {
+          'name': 'editable',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否同时显示添加和删除按钮，与 edit 事件搭配使用',
+            'en-US': 'Do you want to display both add and delete buttons for use with the edit event'
+          },
+          'demoId': 'tabs-events-edit'
+        },
+        {
+          'name': 'modelValue / v-model',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '绑定选中值，选中项的 name',
+            'en-US': 'Bound selected value, The name of the selected item'
+          },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'popper-class',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '为"更多"下拉页签框添加类名，可用于自定义下拉选项的样式',
+            'en-US':
+              'Add a class name to the “More” dropdown label box, which can be used to customize the style of dropdown options'
+          },
+          'demoId': 'custom-more-icon'
+        },
+        {
+          'name': 'position',
+          'type': 'string',
+          'defaultValue': 'top',
+          'desc': {
+            'zh-CN': '设置页签栏所在位置;该属性的可选值为 top/right/bottom/left',
+            'en-US':
+              'Set the location of the label bar; The optional values for this attribute are top/right/bottom/left'
+          },
+          'demoId': 'position'
+        },
+        {
+          'name': 'separator',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '设置分隔符样式',
+            'en-US': 'Set Separator Style'
+          },
+          'demoId': 'tabs-separator'
+        },
+        {
+          'name': 'show-more-tabs',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN':
+              '设置当页签栏超过一定宽度时是否显示"更多"按钮，若为 true，则当鼠标悬停到按钮上时，将出现下拉框展示超出宽度的页签项',
+            'en-US':
+              'Set whether to display the "More" button when the label bar exceeds a certain width. If true, a drop-down box will appear when the mouse hovers over the button to display label items that exceed the width'
+          },
+          'demoId': 'custom-more-icon'
+        },
+        {
+          'name': 'size',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '设置 tabs 尺寸,当与 tab-style 为 card 或者 border-card 时生效, 该属性可选值为 small',
+            'en-US':
+              'Sets the tabs size. This attribute is valid only when tab-style is set to card or border-card. The value of this attribute can be small'
+          },
+          'demoId': 'tab-style-card'
+        },
+        {
+          'name': 'stretch',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '页签项的宽度是否自动撑开',
+            'en-US': 'Does the width of the label item automatically expand'
+          },
+          'demoId': 'stretch-wh'
+        },
+        {
+          'name': 'tab-style',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '页签的类型;该属性的可选值为 card / border-card / button-card',
+            'en-US': 'Tabs style; The optional value of this attribute is card / border-card / button-card'
+          },
+          'demoId': 'tab-style-card'
+        },
+        {
           'name': 'tooltip-config',
-          'type': 'object , string',
+          'type': 'object | string',
+          'typeAnchorName': 'tooltip#API',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -353,97 +329,115 @@ export default {
             'en-US':
               'Set the message indicating that the text exceeds the limit. For details about the value of the object type, see the configuration of the tooltip component. If you want to use the default title attribute, set it to the string type and set it to title. [Added in 3.8.0]'
           },
-          'demoId': 'position-left'
+          'demoId': 'tooltip'
+        },
+        {
+          'name': 'with-add',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否显示添加按钮，用来添加页签项',
+            'en-US': 'Do you want to display the add button to add tab item'
+          },
+          'demoId': 'with-add'
+        },
+        {
+          'name': 'with-close',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否显示页签项的关闭按钮，用来删除页签项',
+            'en-US': 'Do you want to display the close button for label items to delete them'
+          },
+          'demoId': 'tabs-events-close'
         }
       ],
       'events': [
         {
-          'name': 'tab-drag-start',
-          'type': 'Function(arg1)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '拖动开始时的事件, arguments: arg1:event',
-            'en-US': 'Drag start event, arguments: arg1:event'
-          },
-          'demoId': 'tabs-events-add'
-        },
-        {
-          'name': 'tab-drag-over',
-          'type': 'Function(arg1)',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '拖动中的事件, arguments: arg1:event', 'en-US': 'Draging event, arguments: arg1:event' },
-          'demoId': 'tabs-events-add'
-        },
-        {
-          'name': 'tab-drag-end',
-          'type': 'Function(arg1)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '拖动结束后的事件, arguments: arg1:event',
-            'en-US': 'Event after the drag is complete. arguments: arg1:event'
-          },
-          'demoId': 'tabs-events-add'
-        },
-        {
           'name': 'add',
-          'type': 'Function()',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '增加tabitem时触发事件;点击 tabs 的新增按钮后触发;无arguments',
-            'en-US': 'This event is triggered when a tab item is added. Click the Add button on the tabs. No arguments'
+            'zh-CN': '点击"添加"按钮后触发，用于编写增加页签项的逻辑',
+            'en-US': 'Triggered after clicking the "Add" button, used to write logic for adding tab items'
           },
-          'demoId': 'tabs-events-add'
+          'demoId': 'with-add'
         },
         {
           'name': 'click',
-          'type': 'Function(arg1,arg2)',
+          'type': '(arg1: Component, arg2: Event) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '点击tabitem时触发事件;tab 被选中时触发;arguments: arg1:VueComponent 点击tab的compent对象信息, arg2:event ',
+            'zh-CN': '点击页签项时触发，tab 被选中时触发；// arg1: 点中页签项的vueComponent对象信息',
             'en-US':
-              'This event is triggered when a tabitem is clicked. Triggered when a tab is selected. arguments: arg1:VueComponent Click the compent object information of the tab, arg2:event'
+              'Trigger an event when clicking on a tab item, Triggered when tab is selected// Arg1: Click on the VueComponent object information of the tab item in the middle'
           },
           'demoId': 'tabs-events-click'
         },
         {
           'name': 'close',
-          'type': 'Function(arg)',
+          'type': '(arg: string) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '删除tabitem时触发事件;点击 tab 移除按钮后触发;arguments: arg1:删除的tab名称',
+            'zh-CN': '点击页签项关闭按钮后触发，用于编写删除页签项的逻辑；// arg1: 要删除的页签项name值',
             'en-US':
-              'This event is triggered when a tab item is deleted. This event is triggered after the tab removal button is clicked. arguments: arg1: name of the deleted tab'
+              'Triggered after clicking the tab item close button, used to write logic for deleting tab items// Arg1: The name value of the tab item to be deleted'
           },
           'demoId': 'tabs-events-close'
         },
         {
           'name': 'edit',
-          'type': 'Function(arg1,arg2)',
+          'type': '(arg1: string, arg2: string) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              "点击 tabs 的新增按钮或 tab 被关闭后触发;arguments: arg1:null或删除的tab名称, arg2:'add' 或者 'remove'",
+            'zh-CN': '点击"添加"或"关闭"按钮触发；// arg1：null或删除的tab名称, arg2：添加或删除字段："add" | "remove"',
             'en-US':
-              "This event is triggered when you click the new button of a tab or the tab is closed. arguments: arg1:null or name of the deleted tab, arg2:'add' or'remove'"
+              'Click the "Add" or "Close" button to trigger// Arg1: null or deleted tab name, arg2: added or deleted field: "add" | "remove"'
           },
           'demoId': 'tabs-events-edit'
+        },
+        {
+          'name': 'tab-drag-end',
+          'type': '(arg1: DragEvent) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '拖动结束后的事件',
+            'en-US': 'Event after the drag is complete'
+          },
+          'demoId': 'tabs-draggable'
+        },
+        {
+          'name': 'tab-drag-over',
+          'type': '(arg1: DragEvent) => void',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '拖动中的事件', 'en-US': 'Dragging event' },
+          'demoId': 'tabs-draggable'
+        },
+        {
+          'name': 'tab-drag-start',
+          'type': '(arg1: DragEvent) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '拖动开始时的事件',
+            'en-US': 'Drag start event'
+          },
+          'demoId': 'tabs-draggable'
         }
       ],
       'slots': [
         {
-          'name': 'title',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '自定义title内容', 'en-US': 'Customized titl content' },
-          'demoId': 'custom-tab-title'
-        },
-        {
           'name': 'moreIcon',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '自定义更多图标', 'en-US': 'Customize More Icons' },
+          'desc': { 'zh-CN': '更多按钮插槽', 'en-US': 'More Button Slot' },
           'demoId': 'custom-more-icon'
+        },
+        {
+          'name': 'title',
+          'type': '',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '页签项标题插槽', 'en-US': 'Label Item Title Slot' },
+          'demoId': 'custom-tab-title'
         }
       ]
     }

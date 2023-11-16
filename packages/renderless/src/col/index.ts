@@ -44,9 +44,9 @@ export const setGlobalAttrValue = ({ attr, className, value }) => {
 }
 
 export const getClassName =
-  ({ api, props }) =>
+  ({ api, props, state }) =>
   () => {
-    const multiple = 2
+    const multiple = 24 / state.layout.cols
     const span = props.span * multiple
     const offset = props.offset
     const push = props.move ? props.move : 0
@@ -120,15 +120,10 @@ export const getStyle =
     const no = props.no
     const styles = []
     let gutter = parent ? parent.gutter : null
-    let noSpace = parent ? parent.noSpace : null
     let order = ''
 
-    if (gutter) {
-      gutter = gutter / 2
-      styles.push(`padding-left:${gutter}px;padding-right:${gutter}px;`)
-    } else if (noSpace) {
-      styles.push('padding-left:0;padding-right:0;')
-    }
+    gutter = gutter / 2
+    styles.push(`padding-left:${gutter}px;padding-right:${gutter}px;`)
 
     if (parent && parent.flex && parent.order) {
       /* istanbul ignore next  */

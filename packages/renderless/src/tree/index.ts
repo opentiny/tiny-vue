@@ -268,6 +268,27 @@ export const dragEnd =
       dragState.showDropIndicator = false
     }
 
+const afterLoadHandler =
+  ({ state, emit, props, api }) =>
+  (params) => {
+    const { lazy, afterLoad, showRadio } = props
+    state.loaded = true
+    if (lazy) {
+      if (state.root) {
+        state.root.childNodes = [...state.root.childNodes]
+      }
+
+      if (showRadio) {
+        api.setCurrentRadio()
+      }
+    }
+    emit('load-data', params)
+
+    if (typeof afterLoad === 'function') {
+      afterLoad(params)
+    }
+  }
+
 export const initTreeStore =
   ({ api, props, state, emit }) =>
     () => {
@@ -280,12 +301,7 @@ export const initTreeStore =
       lazy,
       props: props.props,
       load,
-      afterLoad(params) {
-        !state.loaded && (state.loaded = true)
-        lazy && state.root && (state.root.childNodes = [...state.root.childNodes])
-        emit('load-data', params)
-        afterLoad && afterLoad(params)
-      },
+      afterLoad: afterLoadHandler({ api, emit, props, state }),
       currentNodeKey,
       checkStrictly,
       checkDescendants,

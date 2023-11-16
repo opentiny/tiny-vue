@@ -224,7 +224,7 @@ export const handleMenuItemClick =
     }
 
     if (!disabled) {
-      const data = { itemData, vm, disabled }
+      const data = { itemData, vm }
       emit('item-click', data)
     }
   }

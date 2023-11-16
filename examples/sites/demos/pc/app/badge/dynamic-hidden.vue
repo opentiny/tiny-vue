@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Badge, Button } from '@opentiny/vue'
 
 export default {

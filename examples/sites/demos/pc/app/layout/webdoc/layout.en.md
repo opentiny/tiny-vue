@@ -4,4 +4,4 @@ title: Layout
 
 # Layout
 
-<div>The grid layout makes the layout simple and clear.</div>
+<div>The 12/24 grid layout makes the layout simple and clear.</div>

@@ -1,15 +1,8 @@
 <template>
-  <div>
-    <p>默认内容位于序号下方</p>
-    <tiny-time-line :data="data" :active="normalActive" type="normal" @click="normalClick"> </tiny-time-line>
-    
-    <p style="margin-top: 20px">设置<code>textPosition</code>为<code>right</code>时， 内容位于序号右边。</p>
-    <tiny-time-line :data="data" :active="normalActive1" type="normal" text-position="right" @click="normalClick1">
-    </tiny-time-line>
-  </div>
+  <tiny-time-line :data="data" :active="normalActive" text-position="right" @click="normalClick"> </tiny-time-line>
 </template>
 
-<script lang="ts">
+<script>
 import { TimeLine, Modal } from '@opentiny/vue'
 
 export default {
@@ -35,17 +28,12 @@ export default {
           disabled: true
         }
       ],
-      normalActive1: 0
+      normalActive: 0
     }
   },
   methods: {
     normalClick(index, node) {
       this.normalActive = index
-
-      Modal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
-    },
-    normalClick1(index, node) {
-      this.normalActive1 = index
 
       Modal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
     }

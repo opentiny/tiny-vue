@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('属性设置', () => {
-  test('控制按钮的显示与隐藏', async ({ page }) => {
+  test('加减按钮的显示与隐藏', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
     await page.goto('numeric#controls')
 

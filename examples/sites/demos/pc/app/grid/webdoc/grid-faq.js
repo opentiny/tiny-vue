@@ -14,20 +14,20 @@ export default {
       'codeFiles': ['faq/unbalanced.vue']
     },
     {
-      'demoId': 'faq-gridInDialogBox',
-      'name': { 'zh-CN': 'DialogBox弹窗中的可编辑表格编辑器无法正常失焦', 'en-US': '' },
+      'demoId': 'faq-grid-in-dialog-box',
+      'name': { 'zh-CN': '弹窗中的表格编辑器无法正常失焦', 'en-US': '' },
       'desc': {
         'zh-CN':
           '<p>当可以编辑的表格出现在DialogBox弹出框中，编辑器无法正常失去焦点时需要配置<code>blurOutside</code></p>\n',
         'en-US': ''
       },
-      'codeFiles': ['faq/gridInDialogBox.vue']
+      'codeFiles': ['faq/grid-in-dialog-box.vue']
     },
     {
-      'demoId': 'faq-opSlot',
+      'demoId': 'faq-op-slot',
       'name': { 'zh-CN': '配置式表格如何使用插槽', 'en-US': '' },
       'desc': { 'zh-CN': '<p>具体可以参考以下代码</p>\n', 'en-US': '' },
-      'codeFiles': ['faq/opSlot.vue']
+      'codeFiles': ['faq/op-slot.vue']
     },
     {
       'demoId': 'faq-many-poppover',

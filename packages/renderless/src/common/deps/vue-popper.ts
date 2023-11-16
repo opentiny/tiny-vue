@@ -184,7 +184,7 @@ export default (options: IPopperInputParams) => {
         return
       }
       if (val) {
-        updatePopper()
+        nextTick(updatePopper)
       }
       props.trigger === 'manual' && emit('update:modelValue', val)
     }

@@ -793,7 +793,13 @@ export const handleSuccess =
   }
 
 export const handleError =
-  ({ api, constants, emit, state }: Pick<IFileUploadRenderlessParams, 'api' | 'constants' | 'emit' | 'state'>) =>
+  ({
+    api,
+    constants,
+    emit,
+    state,
+    props
+  }: Pick<IFileUploadRenderlessParams, 'api' | 'constants' | 'emit' | 'state' | 'props'>) =>
   (err: any, rawFile: IFileUploadFile) => {
     const file = api.getFile(rawFile)
     if (!file) return
@@ -801,7 +807,7 @@ export const handleError =
     file.status = constants.FILE_STATUS.FAIL
     file.percentage = 100
 
-    if (!state.isEdm) {
+    if (!state.isEdm && !props.reUploadable) {
       state.uploadFiles.splice(state.uploadFiles.indexOf(file), 1)
     }
 
@@ -824,7 +830,7 @@ export const handleRemove =
     }
 
     let doRemove = () => {
-      file.status = constants.FILE_STATUS.FAIL
+      // 删除动作不用改变文件状态为fail; 这样删除需要删两次。因为只有第二次时，indexOf才能在uploadFiles里面找到要删除的file。
       api.abort(file)
       let fileList = state.uploadFiles
 
@@ -849,6 +855,23 @@ export const handleRemove =
       }
     }
   }
+
+export const handleReUpload =
+  ({ vm, constants }: Pick<IFileUploadRenderlessParams, 'vm' | 'constants'>) =>
+  (file: IFileUploadFile) => {
+    const { READY } = constants.FILE_STATUS
+    file.status = READY
+    file.percentage = 0
+    vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].upload(file.raw)
+  }
+
+export const handleReUploadTotal = (api: IFileUploadRenderlessParams['api']) => (files: IFileUploadFile[]) => {
+  files.forEach((file) => {
+    if (file.status === 'fail') {
+      api.handleReUpload(file)
+    }
+  })
+}
 
 export const clearUploadingFiles =
   ({ constants, state }: Pick<IFileUploadRenderlessParams, 'constants' | 'state'>) =>

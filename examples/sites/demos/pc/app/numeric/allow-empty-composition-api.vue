@@ -1,23 +1,14 @@
 <template>
-  <tiny-numeric
-    v-model="stepNum"
-    :step="step"
-    :min="1"
-    :max="10"
-    @change="onChange"
-    circulate
-    allow-empty
-  ></tiny-numeric>
+  <tiny-numeric v-model="value" allow-empty @change="onChange"></tiny-numeric>
 </template>
 
-<script setup lang="jsx">
+<script setup lang="ts">
 import { ref } from 'vue'
 import { Numeric as TinyNumeric, Modal } from '@opentiny/vue'
 
-const step = ref(2)
-const stepNum = ref(1)
+const value = ref(1)
 
-function onChange(val, oldVal) {
+const onChange = (val: number | undefined, oldVal: number | undefined) => {
   Modal.message({ message: `${val} ${oldVal}`, status: 'info' })
 }
 </script>

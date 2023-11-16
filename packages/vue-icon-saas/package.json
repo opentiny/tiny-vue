@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-icon-saas",
   "private": true,
-  "version": "3.11.0",
+  "version": "3.12.0",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "homepage": "https://opentiny.design/tiny-vue",
   "main": "index.ts",

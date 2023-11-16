@@ -1226,10 +1226,12 @@ export const toVisible =
   }
 
 export const toHide =
-  ({ constants, state, props, vm, api }) =>
+  ({ constants, state, props, vm, api, nextTick }) =>
   () => {
     state.selectEmitter.emit(constants.COMPONENT_NAME.SelectDropdown)
-    state.selectEmitter.emit(constants.EVENT_NAME.updatePopper)
+    nextTick(() => {
+      state.selectEmitter.emit(constants.EVENT_NAME.updatePopper)
+    })
 
     if (state.filterOrSearch) {
       state.query =

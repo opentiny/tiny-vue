@@ -1,22 +1,42 @@
 <template>
   <div>
-    <tiny-button :icon="IconSearch" type="text"> </tiny-button>
-    <tiny-button type="primary" :icon="IconEdit"> 图标按钮 </tiny-button>
-    <tiny-button type="success" native-type="submit" :icon="IconYes"> 图标按钮 </tiny-button>
-    <tiny-button type="info" :icon="IconMail"> 图标按钮 </tiny-button>
-    <tiny-button type="warning" :icon="IconStarO"> 图标按钮 </tiny-button>
-    <tiny-button type="danger" :icon="IconDel"> 图标按钮 </tiny-button>
+    <tiny-layout>
+      <tiny-row>
+        <tiny-button :icon="TinyIconSearch" type="text"> </tiny-button>
+        <tiny-button type="primary" :icon="TinyIconEdit"> 图标按钮 </tiny-button>
+        <tiny-button type="success" :icon="TinyIconYes"> 图标按钮 </tiny-button>
+        <tiny-button type="info" :icon="TinyIconMail"> 图标按钮 </tiny-button>
+        <tiny-button type="warning" :icon="TinyIconStarO"> 图标按钮 </tiny-button>
+        <tiny-button type="danger" :icon="TinyIconDel"> 图标按钮 </tiny-button>
+      </tiny-row>
+      <tiny-row>
+        <tiny-button type="primary" :icon="TinyIconEdit"> </tiny-button>
+        <tiny-button type="success" :icon="TinyIconYes"> </tiny-button>
+        <tiny-button type="info" :icon="TinyIconMail"></tiny-button>
+        <tiny-button type="warning" :icon="TinyIconStarO"></tiny-button>
+        <tiny-button type="danger" :icon="TinyIconDel"> </tiny-button>
+      </tiny-row>
+    </tiny-layout>
   </div>
 </template>
 
 <script setup>
-import { Button as TinyButton } from '@opentiny/vue'
+import { Button as TinyButton, Layout as TinyLayout, Row as TinyRow } from '@opentiny/vue'
 import { iconDel, iconYes, iconEdit, iconMail, iconStarO, iconSearch } from '@opentiny/vue-icon'
 
-const IconDel = iconDel()
-const IconYes = iconYes()
-const IconEdit = iconEdit()
-const IconMail = iconMail()
-const IconStarO = iconStarO()
-const IconSearch = iconSearch()
+const TinyIconDel = iconDel()
+const TinyIconYes = iconYes()
+const TinyIconEdit = iconEdit()
+const TinyIconMail = iconMail()
+const TinyIconStarO = iconStarO()
+const TinyIconSearch = iconSearch()
 </script>
+
+<style scoped>
+.tiny-row {
+  margin-bottom: 20px;
+}
+.tiny-button {
+  margin-bottom: 10px;
+}
+</style>

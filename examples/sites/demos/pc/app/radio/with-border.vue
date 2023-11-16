@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Radio } from '@opentiny/vue'
 
 export default {

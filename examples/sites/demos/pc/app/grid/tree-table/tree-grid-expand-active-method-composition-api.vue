@@ -1,29 +1,10 @@
 <template>
   <tiny-grid
     :data="tableData"
-    :expand-config="{ trigger: 'row', activeMethod: activeExpand, showIcon: false }"
     :tree-config="{ trigger: 'row', children: 'children', hideMethod: hideTree }"
     :resizable="false"
   >
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="expand" width="0">
-      <template #default="{ row }">
-        <ul>
-          <li>
-            <span>公司名称：</span><span>{{ row.name }}</span>
-          </li>
-          <li>
-            <span>区域：</span><span>{{ row.area }}</span>
-          </li>
-          <li>
-            <span>员工数：</span><span>{{ row.employees }}</span>
-          </li>
-          <li>
-            <span>公司简介：</span><span>{{ row.introduction }}</span>
-          </li>
-        </ul>
-      </template>
-    </tiny-grid-column>
     <tiny-grid-column field="name" title="公司名称" tree-node></tiny-grid-column>
     <tiny-grid-column field="area" title="区域"></tiny-grid-column>
     <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
@@ -44,13 +25,22 @@ const tableData = ref([
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
     children: [
       {
-        id: '15',
+        id: '3',
         pid: '1',
         name: 'GFD科技股份有限子公司',
         area: '华东区',
         employees: '700',
         introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
-        children: [{}]
+        children: [
+          {
+            id: '5',
+            pid: '1',
+            name: '不展示改行',
+            area: '华南区',
+            employees: '720',
+            introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+          }
+        ]
       }
     ]
   },
@@ -63,28 +53,19 @@ const tableData = ref([
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
     children: [
       {
-        id: '22',
+        id: '4',
         pid: '2',
         name: 'WWWW科技股份有限子公司',
         area: '华南区',
         employees: '720',
-        introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。',
-        children: [{}]
+        introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
       }
     ]
   }
 ])
 
-onMounted(() => {})
-
-// 可以使用数据行row和行级别rowLevel控制是否渲染展开行
-function activeExpand(row, rowLevel) {
-  // 行级别为1的行才渲染展开行
-  return rowLevel === 1
-}
-
 // 可以使用数据行row和行级别rowLevel控制是否渲染树表行
-function hideTree(row, rowLevel) {
+const hideTree = (row, rowLevel) => {
   // 行级别为2的行不渲染
   return rowLevel === 2
 }

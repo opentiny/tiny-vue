@@ -1,8 +1,8 @@
 <template>
-  <tiny-steps :data="data" type="advanced" :active="advancedActive" @click="advancedClick"></tiny-steps>
+  <tiny-steps :data="data" :active="advancedActive" @click="advancedClick"></tiny-steps>
 </template>
 
-<script lang="jsx">
+<script>
 import { Steps, Modal } from '@opentiny/vue'
 
 export default {
@@ -15,8 +15,8 @@ export default {
       data: [
         { name: 'Basic Info', count: 3, status: 'doing' },
         { name: 'BOQ Info', count: 0, status: 'done' },
-        { name: 'Involved Parties', count: 10, status: 'doing' },
-        { name: 'Billing', count: 0, status: 'done' }
+        { name: 'Involved Parties', count: 10, status: 'error' },
+        { name: 'Billing', count: 0, status: 'disabled' }
       ]
     }
   },

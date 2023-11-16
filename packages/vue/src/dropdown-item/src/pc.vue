@@ -35,9 +35,11 @@
         </span>
         <div class="tiny-dropdown-item__content tiny-dropdown-menu__item-content">
           <component v-if="icon" :is="icon" class="tiny-svg-size" />
-          <slot :item-data="itemData">
-            <span>{{ label }}</span>
-          </slot>
+          <span class="tiny-dropdown-item__label">
+            <slot :item-data="itemData">
+              <span>{{ label }}</span>
+            </slot>
+          </span>
         </div>
         <ul
           v-if="itemData.children && itemData.children.length"

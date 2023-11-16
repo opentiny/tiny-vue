@@ -14,6 +14,7 @@
 
 <script lang="jsx">
 import { FileUpload, Button } from '@opentiny/vue'
+import { iconEditorListNum } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -26,7 +27,12 @@ export default {
         width: 300,
         showDownload: true,
         showDel: true,
-        showTooltip: false
+        showTooltip: false,
+        popperClass: 'my-thumb-name',
+        downloadFile: (file) => {
+          console.log('file', file)
+        },
+        icon: iconEditorListNum()
       },
       fileList: [
         {

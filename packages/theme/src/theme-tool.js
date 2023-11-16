@@ -82,19 +82,12 @@ export default class TinyThemeTool {
     if (compNameList.length < 2) {
       return false
     }
-    const compLength = definedComponents.length
-    let compName = ''
-    for (let i = 0; i < compLength; i++) {
-      // 先试试是不是双段式的组件名： 比如dialog-box 这种
-      if (definedComponents[i] === `${compNameList[1]}-${compNameList[2]}`) {
-        compName = `tiny-${definedComponents[i]}`
-        break
-      }
-    }
-    // 不是双段的组件，则取第一位为组件名
-    if (!compName) {
-      compName = `tiny-${compNameList[1]}`
-    }
+    let compName = 'tiny-'
+    const threeKey = `${compNameList[1]}-${compNameList[2]}-${compNameList[3]}`
+    const twoKey = `${compNameList[1]}-${compNameList[2]}`
+
+    // 优先三段式命名的组件名，优先级从高到低为三段-二段-一段
+    compName += definedComponents[threeKey] || definedComponents[twoKey] || compNameList[1]
 
     // 提高权重，促使主题变换成功
     compName = `${compName}[class*=tiny]`

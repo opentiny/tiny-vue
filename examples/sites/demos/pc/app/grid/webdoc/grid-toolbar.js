@@ -3,7 +3,7 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'tiny-first-menu-insert-delete-update',
+      'demoId': 'toolbar-insert-delete-update',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
         'zh-CN':
@@ -11,7 +11,7 @@ export default {
         'en-US':
           '<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>buttons</code> and configure the button group. \n3. Table event setting: The <code>@toolbar-button-click</code> obtains the <code>buttons</code> event on the toolbar. Users can customize the service logic for adding, deleting, and modifying operations. To mark a new line in the </p>\n<div class="tip custom-block"><p class="custom-block-title"> state, set markInsert in edit-config to true</p>\n</div>\n'
       },
-      'codeFiles': ['tiny-first-menu/insert-delete-update.vue']
+      'codeFiles': ['toolbar/insert-delete-update.vue']
     },
     {
       'demoId': 'toolbar-cancel-delete',
@@ -25,7 +25,7 @@ export default {
       'codeFiles': ['toolbar/cancel-delete.vue']
     },
     {
-      'demoId': 'tiny-first-menu-clearData',
+      'demoId': 'toolbar-clear-data',
       'name': { 'zh-CN': '清空数据', 'en-US': 'Clear Data' },
       'desc': {
         'zh-CN':
@@ -33,12 +33,12 @@ export default {
         'en-US':
           '<p>clearData method manually clears the cell content. If no parameter is transferred, the entire table content is cleared. If a line is transferred, the specified line is cleared. If a field is transferred, the field is cleared. For details, see the following example. </p>\n'
       },
-      'codeFiles': ['tiny-first-menu/clearData.vue']
+      'codeFiles': ['toolbar/clear-data.vue']
     },
     {
       'demoId': 'toolbar-insert-remove-rows',
       'name': {
-        'zh-CN': '指定行插入数据和删除指定行',
+        'zh-CN': '插入或删除指定行',
         'en-US': 'Insert data to a specified row and delete a specified row'
       },
       'desc': {
@@ -50,18 +50,18 @@ export default {
       'codeFiles': ['toolbar/insert-remove-rows.vue']
     },
     {
-      'demoId': 'tiny-first-menu-save-data',
-      'name': { 'zh-CN': '服务端数据保存和删除方法', 'en-US': 'Saving and Deleting Server Data' },
+      'demoId': 'toolbar-save-data',
+      'name': { 'zh-CN': '服务端数据保存和删除', 'en-US': 'Saving and Deleting Server Data' },
       'desc': {
         'zh-CN':
           '<p>通过表格属性 <code>save-data</code> 服务端数据保存方法。\n通过表格属性 <code>delete-data</code> 服务端数据删除方法。</p>\n',
         'en-US':
           '<p>Use the table attribute <code>save-data</code> to save server data. \n Use the table attribute <code>delete-data</code> to delete server data. </p>\n'
       },
-      'codeFiles': ['tiny-first-menu/save-data.vue']
+      'codeFiles': ['toolbar/save-data.vue']
     },
     {
-      'demoId': 'tiny-first-menu-copy-row-data',
+      'demoId': 'toolbar-copy-row-data',
       'name': { 'zh-CN': '设置工具栏尺寸大小', 'en-US': 'Set the toolbar size' },
       'desc': {
         'zh-CN':
@@ -69,21 +69,21 @@ export default {
         'en-US':
           '<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>buttons</code> and configure the button group. \n3. Set the table event <code>@toolbar-button-click</code> to obtain the <code>buttons</code> event on the toolbar. You can customize the service logic for copying rows. The </p>\n<ul>\n<li><code>size</code> property specifies the size of the toolbar. The options are large, medium, small, and mini. If this parameter is not set, the default size is used. </li>\n</ul>\n'
       },
-      'codeFiles': ['tiny-first-menu/copy-row-data.vue']
+      'codeFiles': ['toolbar/copy-row-data.vue']
     },
     {
-      'demoId': 'tiny-first-menu-refresh-grid',
+      'demoId': 'toolbar-refresh-grid',
       'name': { 'zh-CN': '开启表格刷新功能', 'en-US': 'Enable the table refresh function' },
       'desc': {
         'zh-CN':
-          "<p>工具栏配置步骤：\n1、表格以插槽方式引入表格工具栏组件 <code>GridToolbar</code>，并设置工具栏组件属性 <code>slot=&quot;toolbar&quot;</code> 。\n2、设置工具栏组件属性 <code>refresh</code> 开启表格刷新功能。</p>\n<ul>\n<li>设置工具栏属性 <code>loading</code> 开启/关闭加载中。\n自定义实现刷新时直接调用<code>handleFetch('reload')</code></li>\n</ul>\n",
+          "<p>工具栏配置步骤：\n1、表格以插槽方式引入表格工具栏组件 <code>GridToolbar</code>，并设置工具栏组件属性 <code>slot=&quot;toolbar&quot;</code> 。\n2、设置工具栏组件属性 <code>refresh</code> 开启表格刷新功能。</p>\n<ul>\n<li>设置表格属性 <code>loading</code> 开启/关闭加载中。\n自定义实现刷新时直接调用<code>handleFetch('reload')</code></li>\n</ul>\n",
         'en-US':
           "<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>refresh</code> to enable the table refresh function. </p>\n<ul>\n<li> Setting Toolbar Properties <code>loading</code>Enable/Disable Loading. \n <code>handleFetch('reload') </code></li>\n</ul>\n is invoked when the customized implementation is refreshed"
       },
-      'codeFiles': ['tiny-first-menu/refresh-grid.vue']
+      'codeFiles': ['toolbar/refresh-grid.vue']
     },
     {
-      'demoId': 'tiny-first-menu-grid-full-screen',
+      'demoId': 'toolbar-grid-full-screen',
       'name': { 'zh-CN': '开启表格全屏功能', 'en-US': 'Enable the full-screen function of the table.' },
       'desc': {
         'zh-CN':
@@ -91,16 +91,16 @@ export default {
         'en-US':
           '<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>full-screen</code> to enable the full-screen function. </p>\n'
       },
-      'codeFiles': ['tiny-first-menu/grid-full-screen.vue']
+      'codeFiles': ['toolbar/grid-full-screen.vue']
     },
     {
-      'demoId': 'tiny-first-menu-grid-full-screen-height',
+      'demoId': 'toolbar-grid-full-screen-height',
       'name': { 'zh-CN': '全屏时改变表格高度', 'en-US': 'Change the table height in full screen mode' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['tiny-first-menu/grid-full-screen-height.vue']
+      'codeFiles': ['toolbar/grid-full-screen-height.vue']
     },
     {
-      'demoId': 'tiny-first-menu-custom-toolbar',
+      'demoId': 'toolbar-custom-toolbar',
       'name': { 'zh-CN': '工具栏自定义插槽', 'en-US': 'Toolbar Custom Slot' },
       'desc': {
         'zh-CN':
@@ -108,11 +108,11 @@ export default {
         'en-US':
           '<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component slot <code>#toolbar</code>. \n2. Customize content through the slot <code>#buttons</code> of the toolbar component. </p>\n'
       },
-      'codeFiles': ['tiny-first-menu/custom-toolbar.vue']
+      'codeFiles': ['toolbar/custom-toolbar.vue']
     },
     {
       'demoId': 'toolbar-toolbar-op-config',
-      'name': { 'zh-CN': '配置式', 'en-US': 'Profile' },
+      'name': { 'zh-CN': '配置式工具栏写法', 'en-US': 'Profile' },
       'desc': {
         'zh-CN':
           '<p>通过 <code>v-bind</code> 绑定一个对象来实现配置式。在绑定的对象中 <code>toolbar</code> 字段用于工具栏配置，可配合 <code>events</code> 字段对工具栏中按钮进行 <code>toolbarButtonClick</code> 事件配置。另外，<code>pager</code> 字段用于分页配置，<code>fetchData</code> 字段用于请求服务。</p>\n',
