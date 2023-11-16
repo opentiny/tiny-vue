@@ -12,11 +12,11 @@
 
 .component-css-vars-link() {
   // 链接字号
-  --ti-link-font-size: var(--ti-common-font-size-1);
+  --ti-link-font-size: var(--ti-common-font-size-1, 14px);
   // 链接字重
-  --ti-link-font-weight: var(--ti-common-font-weight-5);
+  --ti-link-font-weight: var(--ti-common-font-weight-5, 500);
   // 链接下划线色(hide)
-  --ti-link-border-color: var(--ti-common-color-line-active);
+  --ti-link-border-color: var(--ti-common-color-line-active, #5e7ce0);
   // 链接有图标时下划线宽度(hide)
   --ti-link-has-icon-underline-width: 100%;
   // 链接只有文字时下划线宽度(hide)
@@ -31,65 +31,65 @@
   --ti-link-svg-margin-right: 0px;
 
   // 链接图标悬浮字重
-  --ti-link-icon-hover-text-weight: var(--ti-common-font-weight-5);
+  --ti-link-icon-hover-text-weight: var(--ti-common-font-weight-5, 500);
 
   // 默认链接文本色
-  --ti-link-default-text-color: var(--ti-common-color-info-text);
+  --ti-link-default-text-color: var(--ti-common-color-info-text, #252b3a);
   // 默认链接悬浮下划线色
-  --ti-link-default-border-color: var(--ti-common-color-line-active);
+  --ti-link-default-border-color: var(--ti-common-color-line-active, #5e7ce0);
   // 默认链接悬浮文本色
-  --ti-link-default-hover-text-color: var(--ti-common-color-text-link);
+  --ti-link-default-hover-text-color: var(--ti-common-color-text-link, #526ecc);
   // 默认链接禁用文本色
-  --ti-link-default-disabled-text-color: var(--ti-common-color-info-disabled);
+  --ti-link-default-disabled-text-color: var(--ti-common-color-info-disabled, #bfbfbf);
   // 默认链接悬浮下划线色
   --ti-link-default-hover-border-color: var(--ti-link-default-hover-text-color);
 
   // 主要链接文本色
-  --ti-link-primary-text-color: var(--ti-common-color-primary-normal);
+  --ti-link-primary-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
 
   // 主要链接悬浮下划线色
-  --ti-link-primary-border-color: var(--ti-common-color-line-active);
+  --ti-link-primary-border-color: var(--ti-common-color-line-active, #5e7ce0);
   // 主要链接悬浮文本色
-  --ti-link-primary-hover-text-color: var(--ti-common-color-primary-hover);
+  --ti-link-primary-hover-text-color: var(--ti-common-color-primary-hover, #7693f5);
   // 主要链接禁用文本色
-  --ti-link-primary-disabled-text-color: var(--ti-common-color-primary-disabled);
+  --ti-link-primary-disabled-text-color: var(--ti-common-color-primary-disabled, #a0cfff);
 
   // 危险链接文本色
-  --ti-link-danger-text-color: var(--ti-common-bg-primary);
+  --ti-link-danger-text-color: var(--ti-common-bg-primary, #c7000b);
   // 危险链接悬浮下划线色
-  --ti-link-danger-border-color: var(--ti-common-bg-primary);
+  --ti-link-danger-border-color: var(--ti-common-bg-primary, #c7000b);
   // 危险链接悬浮文本色
-  --ti-link-danger-hover-text-color: var(--ti-common-bg-primary-hover);
+  --ti-link-danger-hover-text-color: var(--ti-common-bg-primary-hover, #d64a52);
   // 危险链接禁用文本色
-  --ti-link-danger-disabled-text-color: var(--ti-common-color-danger-disabled);
+  --ti-link-danger-disabled-text-color: var(--ti-common-color-danger-disabled, #d8bab5);
 
   // 成功链接文本色
-  --ti-link-success-text-color: var(--ti-common-color-success-normal);
+  --ti-link-success-text-color: var(--ti-common-color-success-normal, #50d4ab);
   // 成功链接悬浮下划线色
-  --ti-link-success-border-color: var(--ti-common-color-success-normal);
+  --ti-link-success-border-color: var(--ti-common-color-success-normal, #50d4ab);
   // 成功链接悬浮文本色
-  --ti-link-success-hover-text-color: var(--ti-common-color-success-hover);
+  --ti-link-success-hover-text-color: var(--ti-common-color-success-hover, #acf2dc);
   // 成功链接禁用文本色
-  --ti-link-success-disabled-text-color: var(--ti-common-color-success-disabled);
+  --ti-link-success-disabled-text-color: var(--ti-common-color-success-disabled, #a6c3b9);
 
   // 警告链接文本色
-  --ti-link-warning-text-color: var(--ti-common-color-warning-normal);
+  --ti-link-warning-text-color: var(--ti-common-color-warning-normal, #fa9841);
   // 警告链接悬浮下划线色
-  --ti-link-warning-border-color: var(--ti-common-color-warning-normal);
+  --ti-link-warning-border-color: var(--ti-common-color-warning-normal, #fa9841);
   // 警告链接悬浮文本色
-  --ti-link-warning-hover-text-color: var(--ti-common-color-warning-hover);
+  --ti-link-warning-hover-text-color: var(--ti-common-color-warning-hover, #fac20a);
   // 警告链接禁用文本色
-  --ti-link-warning-disabled-text-color: var(--ti-common-color-warning-disabled);
+  --ti-link-warning-disabled-text-color: var(--ti-common-color-warning-disabled, #d3c6a2);
 
   // 信息链接文本色
-  --ti-link-info-text-color: var(--ti-common-color-info-normal);
+  --ti-link-info-text-color: var(--ti-common-color-info-normal, #252b3a);
   // 信息链接悬浮下划线色
-  --ti-link-info-border-color: var(--ti-common-color-info-normal);
+  --ti-link-info-border-color: var(--ti-common-color-info-normal, #252b3a);
   // 信息链接悬浮文本色
-  --ti-link-info-hover-text-color: var(--ti-common-color-info-hover);
+  --ti-link-info-hover-text-color: var(--ti-common-color-info-hover, #5c6173);
   // 信息链接禁用文本色
-  --ti-link-info-disabled-text-color: var(--ti-common-color-info-disabled);
+  --ti-link-info-disabled-text-color: var(--ti-common-color-info-disabled, #bfbfbf);
 
   // 带有图标的链接悬浮文本色
-  --ti-link-has-svg-hover-text-color: var(--ti-common-color-text-link);
+  --ti-link-has-svg-hover-text-color: var(--ti-common-color-text-link, #526ecc);
 }
