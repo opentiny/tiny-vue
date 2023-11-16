@@ -55,6 +55,7 @@ export interface ITabNavState {
   sizeName: string
   navStyle: ITabNavStyle
   navSortableObj: object
+  separator: boolean | null
 }
 
 export interface ITabNavApi {

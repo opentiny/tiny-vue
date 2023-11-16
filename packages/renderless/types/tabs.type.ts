@@ -31,6 +31,7 @@ export interface ITabsState {
   direction: string
   expandPanesWidth: string | number
   morePanes?: ITabsPaneVm[]
+  separator?: boolean
 }
 
 /**
