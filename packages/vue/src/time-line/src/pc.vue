@@ -19,6 +19,7 @@
           :node="node"
           :space="space"
           :line-width="lineWidth"
+          :shape="shape"
           @click="handleClick({ index, node })"
         >
           <template #active-node-desc="slotScoped">
@@ -49,7 +50,7 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconYes, iconClose } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/steps/index.less'
 import TimelineItem from '@opentiny/vue-timeline-item'
-import type { ITimelineApi } from '@opentiny/vue-renderless/types/timeline.type'
+import type { ITimelineApi } from '@opentiny/vue-renderless/types/time-line.type'
 
 export default defineComponent({
   emits: ['click'],
@@ -70,7 +71,8 @@ export default defineComponent({
     'textPosition',
     'showDivider',
     'onlyNumber',
-    'lineWidth'
+    'lineWidth',
+    'shape'
   ],
   components: {
     IconYes: iconYes(),

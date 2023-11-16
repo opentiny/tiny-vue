@@ -32,6 +32,7 @@ import {
   hideTip,
   autoSlider,
   customBeforeAppearHook,
+  customAppearHook,
   customAfterAppearHook,
   watchActiveValue,
   watchModelValue,
@@ -63,6 +64,7 @@ export const api = [
   'hideTip',
   'autoSlider',
   'customBeforeAppearHook',
+  'customAppearHook',
   'customAfterAppearHook',
   'inputValueChange'
 ]
@@ -75,8 +77,9 @@ import {
   ISliderRenderlessParamUtils
 } from '@/types'
 
-const initState = ({ reactive, computed, props, api, parent }) => {
+const initState = ({ reactive, computed, props, api, parent, inject }) => {
   const state: ISliderState = reactive({
+    showAutoWidth: inject('showAutoWidth', null),
     tipStyle: {},
     barStyle: {},
     moveStyle: [],
@@ -112,10 +115,10 @@ const initState = ({ reactive, computed, props, api, parent }) => {
 export const renderless = (
   props: ISliderProps,
   { computed, onBeforeUnmount, onMounted, reactive, watch, inject }: ISharedRenderlessParamHooks,
-  { parent, constants, nextTick, emit, mode }: ISliderRenderlessParamUtils
+  { vm, parent, constants, nextTick, emit, mode }: ISliderRenderlessParamUtils
 ) => {
   const api = {} as ISliderApi
-  const state: ISliderState = initState({ reactive, computed, props, api, parent })
+  const state: ISliderState = initState({ reactive, computed, props, api, parent, inject })
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
   Object.assign(api, {
@@ -124,14 +127,15 @@ export const renderless = (
     formatTipValue: formatTipValue(props),
     setBarStyle: setBarStyle({ props, state }),
     changeActiveValue: changeActiveValue(state),
-    bindResize: bindResize({ parent, props, state }),
+    bindResize: bindResize({ vm, props, state }),
     setButtonStyle: setButtonStyle({ props, state }),
-    calculateValue: calculateValue({ props, state }),
+    calculateValue: calculateValue({ vm, props, state }),
     getActiveButtonValue: getActiveButtonValue(state),
     getActiveButtonIndex: getActiveButtonIndex({ constants, mode, state }),
-    setTipStyle: setTipStyle({ constants, mode, parent, props, state }),
+    setTipStyle: setTipStyle({ vm, constants, mode, props, state }),
     customAfterAppearHook: customAfterAppearHook({ state, props }),
     customBeforeAppearHook: customBeforeAppearHook(props),
+    customAppearHook: customAppearHook(),
     bindEvent: bindEvent(api),
     autoSlider: autoSlider(api),
     unBindEvent: unBindEvent(api),
@@ -150,6 +154,8 @@ export const renderless = (
   })
 
   watch(() => props.modelValue, api.watchModelValue, { immediate: true })
+  watch(() => state.activeValue, api.watchActiveValue, { immediate: true })
+
   watch(
     () => props.min,
     (min) => {
@@ -168,12 +174,26 @@ export const renderless = (
   )
   watch(() => state.activeValue, api.watchActiveValue, { immediate: true })
 
+  watch(
+    () => state.leftBtnValue,
+    (newVal) => {
+      state.inputValue[0] = newVal
+    },
+    { immediate: true }
+  )
+  watch(
+    () => state.rightBtnValue,
+    (newVal) => {
+      state.inputValue[1] = newVal
+    },
+    { immediate: true }
+  )
+
   onMounted(() => {
     api.bindEvent()
     api.getPoints()
     api.getLabels()
   })
-
   onBeforeUnmount(api.unBindEvent)
 
   return api

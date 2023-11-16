@@ -9,7 +9,8 @@ export const renderless = (props, { inject, markRaw, reactive, computed }, { vm 
 
   const state = reactive({
     tabSize: computed(() => tabs.size),
-    withClose: computed(() => tabs.withClose)
+    withClose: computed(() => tabs.withClose),
+    separator: inject('separator', null)
   })
 
   const api = {

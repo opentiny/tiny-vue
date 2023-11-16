@@ -13,7 +13,9 @@ import {
   clickHandler,
   closeViewer,
   mounted,
-  deleteHander
+  deleteHander,
+  computedGetAlignCenter,
+  getImageStyle
 } from '../src/image'
 
 export type IImageProps = ExtractPropTypes<typeof imageProps>
@@ -33,6 +35,7 @@ export interface IImageState {
   /** 判定previewSrcList不为空是，返回true。 名字更应该为： hasPreview */
   getPreview: boolean
   getImageStyle: object
+  getAlignCenter: object
 
   // 临时保存变量
   _scrollContainer: HTMLElement | null
@@ -53,6 +56,8 @@ export interface IImageApi {
   computedGetImageStyle: ReturnType<typeof computedGetImageStyle>
   addLazyLoadListener: ReturnType<typeof addLazyLoadListener>
   deleteHander: ReturnType<typeof deleteHander>
+  computedGetAlignCenter: ReturnType<typeof computedGetAlignCenter>
+  getImageStyle: ReturnType<typeof getImageStyle>
 }
 
 /** image的混合上下文 */

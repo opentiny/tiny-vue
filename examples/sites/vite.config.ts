@@ -6,6 +6,7 @@ import UnoCssConfig from './uno.config'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import dynamicImportPlugin from 'vite-plugin-dynamic-import'
 import Markdown from 'vite-plugin-md'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 import { MdExt, mdInstall } from './md.extend.config'
 import importPlugin from '@opentiny/vue-vite-import'
 import vue3SvgPlugin from 'vite-svg-loader'
@@ -14,6 +15,20 @@ import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/
 
 export default defineConfig((config) => {
   const env = loadEnv(config.mode, process.cwd() + '/env', '')
+  const isSaas = env.VITE_TINY_THEME === 'saas'
+  const menuPath = isSaas ? path.resolve('./demos/saas') : path.resolve(`./demos/${env.VITE_APP_MODE}`)
+  const copyTarget = [
+    {
+      src: `./demos/${env.VITE_APP_MODE}/**`,
+      dest: '@demos'
+    }
+  ]
+  if (isSaas) {
+    copyTarget.push({
+      src: `./demos/mobile-first/**`,
+      dest: '@demos/mobile-first'
+    })
+  }
   const viteConfig = {
     envDir: './env',
     base: env.VITE_APP_BUILD_BASE_URL || '/tiny-vue/',
@@ -49,15 +64,18 @@ export default defineConfig((config) => {
         },
         markdownItUses: MdExt
       }),
-      Unocss(UnoCssConfig)
+      Unocss(UnoCssConfig),
+      viteStaticCopy({
+        targets: copyTarget
+      })
     ],
     optimizeDeps: getOptimizeDeps(3),
     build: {
       rollupOptions: {
         input: {
-          index: path.resolve(__dirname, './index.html')
-          // 未来还是要在design-server中添加一个专门路由。下面入口暂时保留
-          // playground: path.resolve(__dirname, './playground.html')
+          index: path.resolve(__dirname, './index.html'),
+          // design-server中添加一个专门路由指向 playground.html
+          playground: path.resolve(__dirname, './playground.html')
         }
       }
     },
@@ -65,7 +83,8 @@ export default defineConfig((config) => {
       extensions: ['.js', '.ts', '.tsx', '.vue'],
       alias: {
         '@': path.resolve('src'),
-        '@demos': path.resolve('./demos'),
+        '@demos': path.resolve(`./demos/${env.VITE_APP_MODE}`),
+        '@menu': menuPath,
         '@opentiny/vue-renderless/types': pathFromWorkspaceRoot('packages/renderless/types'),
         '@tiptap/vue': '@tiptap/vue-3',
         ...getAlias(3, env.VITE_TINY_THEME)
@@ -91,6 +110,12 @@ export default defineConfig((config) => {
     if (!viteConfig.resolve.alias['@opentiny/vue-theme']) {
       viteConfig.resolve.alias['@opentiny/vue-theme'] = '@opentiny/vue-theme-saas'
       viteConfig.resolve.alias['@opentiny/vue-icon'] = '@opentiny/vue-icon-saas'
+    }
+  }
+
+  if (env.NODE_ENV === 'development') {
+    viteConfig.define = {
+      'process.env': {}
     }
   }
 

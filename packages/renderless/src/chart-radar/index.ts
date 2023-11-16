@@ -15,7 +15,7 @@ import { itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
 import { isNull } from '../common/type'
 
 const getRadarLegend = (rows, dimension, legendName) => {
-  let legendData = rows.map((row) => row[dimension])
+  let legendData = rows.map((row) => row[dimension]).filter((i) => i)
 
   function formatter(name) {
     return isNull(legendName[name]) ? name : legendName[name]
@@ -90,7 +90,7 @@ const getRadarSeries = (args) => {
   const seriesData = rows.map((row) => {
     const serieData = {
       value: [],
-      name: row[dimension],
+      name: row[dimension] || '',
       symbol: 'circle',
       symbolSize: 8,
       showSymbol: false,

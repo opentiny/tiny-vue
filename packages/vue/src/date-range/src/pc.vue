@@ -65,6 +65,7 @@
                   @focus="state.minTimePickerVisible = true"
                   @update:modelValue="(val) => handleTimeInput(val, 'min')"
                   @change="(val) => handleTimeChange(val, 'min')"
+                  :readonly="!timeEditable"
                 />
                 <time-picker
                   ref="minTimePicker"
@@ -98,7 +99,7 @@
                   :disabled="state.rangeState.selecting"
                   :placeholder="t('ui.datepicker.endTime')"
                   :modelValue="state.maxVisibleTime"
-                  :readonly="!state.minDate"
+                  :readonly="!state.minDate || !timeEditable"
                   @focus="state.minDate && (state.maxTimePickerVisible = true)"
                   @update:modelValue="(val) => handleTimeInput(val, 'max')"
                   @change="(val) => handleTimeChange(val, 'max')"
@@ -118,10 +119,10 @@
           <div class="tiny-picker-panel__content tiny-date-range-picker__content is-left">
             <div class="tiny-date-range-picker__header">
               <button type="button" @click="leftPrevYear" class="tiny-picker-panel__icon-btn tiny-icon-d-arrow-left">
-                <icon-pager-first></icon-pager-first>
+                <icon-double-left></icon-double-left>
               </button>
               <button type="button" @click="leftPrevMonth" class="tiny-picker-panel__icon-btn tiny-icon-arrow-left">
-                <icon-pager-prev></icon-pager-prev>
+                <icon-chevron-left></icon-chevron-left>
               </button>
               <button
                 type="button"
@@ -131,7 +132,7 @@
                 :class="{ 'is-disabled': !state.enableYearArrow }"
                 class="tiny-picker-panel__icon-btn tiny-icon-d-arrow-right"
               >
-                <icon-pager-last></icon-pager-last>
+                <icon-double-right></icon-double-right>
               </button>
               <button
                 type="button"
@@ -141,7 +142,7 @@
                 :class="{ 'is-disabled': !state.enableMonthArrow }"
                 class="tiny-picker-panel__icon-btn tiny-icon-arrow-right"
               >
-                <icon-pager-next></icon-pager-next>
+                <icon-chevron-right></icon-chevron-right>
               </button>
               <div>{{ state.leftLabel }}</div>
             </div>
@@ -172,7 +173,7 @@
                 :class="{ 'is-disabled': !state.enableYearArrow }"
                 class="tiny-picker-panel__icon-btn tiny-icon-d-arrow-left"
               >
-                <icon-pager-first></icon-pager-first>
+                <icon-double-left></icon-double-left>
               </button>
               <button
                 type="button"
@@ -182,13 +183,13 @@
                 :class="{ 'is-disabled': !state.enableMonthArrow }"
                 class="tiny-picker-panel__icon-btn tiny-icon-arrow-left"
               >
-                <icon-pager-prev></icon-pager-prev>
+                <icon-chevron-left></icon-chevron-left>
               </button>
               <button type="button" @click="rightNextYear" class="tiny-picker-panel__icon-btn tiny-icon-d-arrow-right">
-                <icon-pager-last></icon-pager-last>
+                <icon-double-right></icon-double-right>
               </button>
               <button type="button" @click="rightNextMonth" class="tiny-picker-panel__icon-btn tiny-icon-arrow-right">
-                <icon-pager-next></icon-pager-next>
+                <icon-chevron-right></icon-chevron-right>
               </button>
               <div>{{ state.rightLabel }}</div>
             </div>
@@ -237,7 +238,7 @@ import TimePicker from '@opentiny/vue-time'
 import DateTable from '@opentiny/vue-date-table'
 import Input from '@opentiny/vue-input'
 import Button from '@opentiny/vue-button'
-import { iconPagerLast, iconPagerFirst, iconPagerPrev, iconPagerNext } from '@opentiny/vue-icon'
+import { iconDoubleRight, iconDoubleLeft, iconChevronLeft, iconChevronRight } from '@opentiny/vue-icon'
 
 const $constants = {
   startDate: new Date('1970-01-01'),
@@ -251,10 +252,10 @@ export default defineComponent({
     DateTable,
     TinyInput: Input,
     TinyButton: Button,
-    IconPagerLast: iconPagerLast(),
-    IconPagerFirst: iconPagerFirst(),
-    IconPagerPrev: iconPagerPrev(),
-    IconPagerNext: iconPagerNext()
+    IconDoubleRight: iconDoubleRight(),
+    IconDoubleLeft: iconDoubleLeft(),
+    IconChevronLeft: iconChevronLeft(),
+    IconChevronRight: iconChevronRight(),
   },
   props: {
     _constants: {
@@ -272,7 +273,11 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    formatWeeks: Function
+    formatWeeks: Function,
+    timeEditable: {
+      type: Boolean,
+      default: true
+    }
   },
   emits: ['dodestroy', 'pick'],
   setup(props, context) {

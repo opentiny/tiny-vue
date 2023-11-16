@@ -1,7 +1,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/flowchart/vue'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
-import { props, setup, h, directive, defineComponent } from '@opentiny/vue-common'
+import { props, setup, h, directive, emitter, defineComponent } from '@opentiny/vue-common'
 import { IconYes as iconYes, IconClose as iconClose } from '@opentiny/vue-icon'
 
 export default defineComponent({
@@ -9,7 +9,7 @@ export default defineComponent({
   props: [...props, 'data', 'config'],
   directives: directive({ Clickoutside }),
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api, extendOptions: { emitter } })
   },
   render() {
     const { slots, state, clearHoverAfterLink, clickNode, config, getVars, omitText } = this

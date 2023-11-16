@@ -13,13 +13,16 @@ export default defineComponent({
       type: Object,
       default: () => $constants
     },
-    name: String,
-    text: String,
+    text: [Number, String],
     events: {
       type: Object,
       default: () => ({})
     },
-    label: [Number, String]
+    label: [Number, String],
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })

@@ -227,23 +227,27 @@
       // 支持所有行 hover 背景颜色
       &:not(.row__hover) {
         &:nth-child(2n) {
-          @apply bg-color-bg-6;
+          @apply bg-color-fill-8;
         }
 
         &.row__current {
-          @apply bg-color-brand-hover-subtle;
+          @apply bg-color-fill-10;
+        }
+      }
+
+      &.row__hover {
+        &:nth-child(2n) {
+          @apply bg-color-fill-10;
         }
       }
 
       &.row__selected {
-        &:not(.row__hover) {
-          &:nth-child(2n) {
-            @apply bg-color-brand-hover-subtle;
-          }
+        &:nth-child(2n) {
+          @apply bg-color-fill-10;
+        }
 
-          &:nth-child(2n + 1) {
-            @apply bg-color-brand-hover-subtler;
-          }
+        &:nth-child(2n + 1) {
+          @apply bg-color-fill-8;
         }
       }
     }
@@ -274,7 +278,7 @@
 
     &:after {
       @apply bottom-0;
-      @apply border-b border-b-color-border;
+      @apply border-b border-b-color-border-separator;
     }
 
     .@{grid-prefix-cls}__header {
@@ -287,14 +291,14 @@
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
       background-image: linear-gradient(-90deg, transparent, transparent),
-        linear-gradient(-180deg, theme('colors.color.bg.3'), theme('colors.color.bg.3'));
+        linear-gradient(
+          -180deg,
+          theme('colors.color.border.separator.DEFAULT'),
+          theme('colors.color.border.separator.DEFAULT')
+        );
       @apply bg-no-repeat;
-      background-size:
-        1px 100%,
-        100% 1px;
-      background-position:
-        100% 0,
-        100% 100%;
+      background-size: 1px 100%, 100% 1px;
+      background-position: 100% 0, 100% 100%;
     }
 
     .@{grid-prefix-cls}__body-wrapper {
@@ -336,7 +340,7 @@
         @apply h-full;
         @apply ~"z-[1]";
         @apply border-l;
-        @apply border-l-color-border;
+        @apply border-l-color-border-separator;
       }
 
       &::after {
@@ -347,16 +351,20 @@
         @apply h-0;
         @apply ~"z-[1]";
         @apply border-t;
-        @apply border-t-color-border;
+        @apply border-t-color-border-separator;
       }
 
       .@{grid-header-prefix-cls}__row > .@{grid-header-prefix-cls}__column {
         background-image: linear-gradient(
             -90deg,
-            theme('colors.color.border.DEFAULT'),
-            theme('colors.color.border.DEFAULT')
+            theme('colors.color.border.separator.DEFAULT'),
+            theme('colors.color.border.separator.DEFAULT')
           ),
-          linear-gradient(-180deg, theme('colors.color.border.DEFAULT'), theme('colors.color.border.DEFAULT'));
+          linear-gradient(
+            -180deg,
+            theme('colors.color.border.separator.DEFAULT'),
+            theme('colors.color.border.separator.DEFAULT')
+          );
         @apply bg-no-repeat;
 
         .is__line::before {
@@ -379,7 +387,7 @@
         @apply h-full;
         @apply ~"z-[1]";
         @apply border-l;
-        @apply border-l-color-border;
+        @apply border-l-color-border-separator;
       }
 
       &::after {
@@ -391,12 +399,12 @@
         @apply h-full;
         @apply ~"z-[1]";
         @apply border-r;
-        @apply border-r-color-border;
+        @apply border-r-color-border-separator;
       }
     }
 
     .@{grid-prefix-cls}-body__column {
-      @apply border-r border-r-color-border;
+      @apply border-r border-r-color-border-separator;
 
       &:last-child {
         @apply border-r-0;
@@ -474,19 +482,19 @@
     @apply bg-transparent;
 
     &.row__hover {
-      @apply bg-color-bg-5;
+      @apply bg-color-bg-4;
     }
 
     &.row__selected {
-      @apply bg-color-brand-hover-subtler;
+      @apply bg-color-fill-8;
 
       &.row__hover {
-        @apply bg-color-brand-hover-subtle;
+        @apply bg-color-fill-8;
       }
     }
 
     &.row__current {
-      @apply bg-color-brand-hover-subtle;
+      @apply bg-color-fill-8;
     }
   }
 
@@ -526,7 +534,7 @@
   }
 
   & &-cell {
-    line-height: 120%;
+    line-height: normal;
     @apply whitespace-normal;
     -ms-word-break: break-all;
     word-break: break-word;
@@ -796,8 +804,8 @@
     @apply hidden;
     @apply opacity-0;
     @apply h-full;
-    min-height: 60px;
-    padding: 60px 0;
+    @apply ~"min-h-[theme('spacing.16')]";
+    @apply py-16 px-0;
     @apply justify-center;
     @apply items-center;
     @apply text-center;
@@ -906,6 +914,16 @@
           @apply justify-center;
           @apply items-center;
           @apply -translate-x-1;
+        }
+      }
+
+      &.col__ellipsis {
+        .@{grid-prefix-cls}-cell {
+          &__tooltip:has(.tiny-grid-tree__indent:nth-last-child(2):first-child),
+          &__title:has(.tiny-grid-tree__indent:nth-last-child(2):first-child),
+          &__ellipsis:has(.tiny-grid-tree__indent:nth-last-child(2):first-child) {
+            @apply inline-block;
+          }
         }
       }
     }
@@ -1022,7 +1040,7 @@
     @apply top-0;
     @apply left-0;
     @apply m-0;
-    @apply p-2;
+    @apply p-4;
   }
 
   // 默认的渲染
@@ -1033,7 +1051,7 @@
     .@{grid-prefix-cls}-default-select {
       @apply outline-0;
       @apply py-0 px-2;
-      height: 30px;
+      @apply h-7;
       @apply w-full;
       @apply text-color-text-primary;
       @apply rounded-sm;
@@ -1046,7 +1064,8 @@
 
     .@{grid-prefix-cls}-editor {
       @apply w-full;
-      height: 100%;
+      @apply h-7;
+      @apply leading-none;
       @apply text-color-text-primary;
 
       .@{input-prefix-cls} {

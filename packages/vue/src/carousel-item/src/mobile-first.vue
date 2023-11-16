@@ -1,13 +1,14 @@
 <template>
   <div
+    data-tag="tiny-carousel-item"
     role="carousel-item"
     v-show="state.ready"
     :class="
       m([
-        'absolute top-0 left-0 w-full h-full inline-block overflow-hidden z-0',
-        state.carouselParent.type === 'card' ? 'w-1/2 transition-transform duration-[400ms] ease-in-out' : '',
-        state.hover ? 'opacity-[12]' : '',
-        state.animate && !state.moving ? 'transition-transform duration-[400ms] ease-in-out' : '',
+        'absolute top-0 left-0 w-full inline-block overflow-hidden z-0',
+        state.carouselParent.type === 'card' ? 'w-1/2 transition-transform duration-300 ease-in-out' : '',
+        state.hover ? 'opacity-10' : '',
+        state.animate && !state.moving ? 'transition-transform duration-300 ease-in-out' : '',
         state.inStage && state.carouselParent.type === 'card' ? 'cursor-pointer z-[1] group' : '',
         state.active ? 'z-[2]' : ''
       ])
@@ -16,13 +17,15 @@
     @click="handleItemClick"
   >
     <div
+      data-tag="tiny-carousel-item-card"
       v-if="state.carouselParent.type === 'card'"
       v-show="!state.active"
-      class="absolute h-full top-0 left-0 w-full opacity-[24] duration-200 group-hover:opacity-[12]"
-      :class="{ 'opacity-[12]': state.inStage && state.carouselParent.type === 'card' && state.hover }"
+      class="absolute h-full top-0 left-0 w-full opacity-20 duration-200 group-hover:opacity-10"
+      :class="{ 'opacity-10': state.inStage && state.carouselParent.type === 'card' && state.hover }"
     ></div>
     <slot></slot>
     <div
+      data-tag="tiny-carousel-item-title"
       v-if="state.hasTitle"
       class="absolute bottom-0 h-6 w-full text-left text-color-text-inverse leading-6 bg-color-text-disabled"
     >

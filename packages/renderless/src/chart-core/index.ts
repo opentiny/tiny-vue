@@ -16,11 +16,12 @@ import {
   DEFAULT_THEME,
   STATIC_PROPS,
   ECHARTS_SETTINGS,
-  SAAS_DEFAULT_COLORS_10,
-  SAAS_DEFAULT_COLORS_18,
+  SAAS_DEFAULT_COLORS,
+  SAAS_DEFAULT_SAME_COLORS,
   DEFAULT_CONFIG
 } from './deps/constants'
-import { getType, debounce, isObject, cloneDeep, isEqual, htmlHandler } from './deps/utils'
+import { getType, debounce, isObject, cloneDeep, isEqual, htmlHandler, get } from './deps/utils'
+import { xss } from '../common/xss'
 import setAnimation from './modules/animation'
 import setExtend from './modules/extend'
 import setMark from './modules/mark'
@@ -31,24 +32,101 @@ export const computedCanvasStyle = (props) => () => ({
   position: 'relative'
 })
 
-const calcColors = (data) => (data.length <= 10 ? SAAS_DEFAULT_COLORS_10 : SAAS_DEFAULT_COLORS_18)
+const isStack = ({ props }) => {
+  let {
+    settings: { stack },
+    data: { columns }
+  } = props
+  let flag = false
 
-export const computedChartColor = (props) => () => {
+  if (typeof stack !== 'object' || !Array.isArray(columns)) return flag
+
+  Object.keys(stack).forEach((key) => {
+    stack[key].forEach((stackItem) => {
+      const isExist = columns.some((col) => col === stackItem)
+      if (isExist) {
+        flag = true
+      }
+    })
+  })
+
+  return flag
+}
+
+const calcColors = ({ len, type, isStack }) => {
+  let SAAS_COLOR = SAAS_DEFAULT_COLORS
+  let lastColor = '#1B3F86'
+
+  if (isStack && type === '') {
+    return len && len > 6 ? [lastColor].concat(SAAS_COLOR.slice(0, len - 1)) : SAAS_COLOR.slice(0, [len || 8])
+  }
+
+  if (!isStack && type === '') {
+    type = 'default'
+  }
+
+  if (type === 'blue' || type === 'green') {
+    SAAS_COLOR = SAAS_DEFAULT_SAME_COLORS[type]
+      .slice(0, len)
+      .sort((a, b) => a.idx - b.idx)
+      .map((item) => item.color)
+  }
+
+  return len && len > 6 ? SAAS_COLOR.slice(0, len - 1).concat([lastColor]) : SAAS_COLOR.slice(0, [len || 8])
+}
+
+export const computedInitColor = (props) => () => {
   let defaultColors = DEFAULT_COLORS
-  let { data } = props
-  const { extend } = props
+  let { data, colorMode, extend } = props
 
-  if (data && Array.isArray(data.rows)) {
-    defaultColors = calcColors(data.rows)
+  let flag = isStack({ props })
+
+  if (data && (Array.isArray(data.rows) || Array.isArray(data.columns))) {
+    const { columns, rows } = data
+    const len = Math.max(columns ? columns.length : 0, rows ? rows.length : 0)
+    defaultColors = calcColors({ len, type: colorMode, isStack: flag })
   } else if (Array.isArray(data)) {
-    defaultColors = calcColors(data)
-  } else if (extend && Array.isArray(extend.series)) {
-    defaultColors = calcColors(extend.series)
+    defaultColors = calcColors({ len: data.length, type: colorMode, isStack: flag })
   } else if (extend && extend.series && Array.isArray(extend.series.data)) {
-    defaultColors = calcColors(extend.series.data)
+    defaultColors = calcColors({ len: extend.series.data.length, type: colorMode, isStack: flag })
+  } else if (extend && Array.isArray(extend.series)) {
+    defaultColors = calcColors({ len: extend.series.length, type: colorMode, isStack: flag })
   }
 
   return props.colors || (props.theme && props.theme.color) || defaultColors
+}
+
+export const computedChartColor =
+  (props) =>
+  ({ series }) => {
+    let defaultColors = DEFAULT_COLORS
+    let { colorMode } = props
+
+    let flag = isStack({ props })
+
+    if (series && Array.isArray(series)) {
+      // list内chart类型的color长度 由series里data长度决定
+      const validateList = ['pie', 'radar', 'sankey', 'heatmap', 'wordCloud']
+      let len = 0
+
+      if (series.some((item) => validateList.includes(item.type))) {
+        series.forEach((item) => (len += item.data && item.data.length))
+      } else {
+        len = series.length
+      }
+
+      defaultColors = calcColors({ len, type: colorMode, isStack: flag })
+    } else if (series && typeof series === 'object') {
+      defaultColors = calcColors({ len: series.data.length, type: colorMode, isStack: flag })
+    }
+
+    return props.colors || (props.theme && props.theme.color) || defaultColors
+  }
+
+export const getDefaultThemeColors = () => () => {
+  const { blue, green } = SAAS_DEFAULT_SAME_COLORS
+
+  return { default: SAAS_DEFAULT_COLORS, blue, green }
 }
 
 export const dataHandler =
@@ -131,7 +209,7 @@ const setOptionsLegend = ({ props, options }) => {
   if (props.legendPosition && options.legend) {
     options.legend[props.legendPosition] = 10
 
-    if (~['left', 'right'].indexOf(props.legendPosition)) {
+    if (['left', 'right'].includes(props.legendPosition)) {
       options.legend.top = 'middle'
       options.legend.orient = 'vertical'
     }
@@ -219,44 +297,66 @@ export const judgeWidthHandler =
     }
   }
 
-const setOption = ({ state, options, setOptionOpts, emit, api, props, echartsLib }) => {
-  state.echarts.setOption(options, setOptionOpts)
-  emit('ready', state.echarts, options, echartsLib)
-  if (!state.once['ready-once']) {
-    state.once['ready-once'] = true
-    emit('ready-once', state.echarts, options, echartsLib)
-  }
-  api.judgeWidthHandler(options)
-  afterSetOption({ props, state, options, echartsLib })
-  afterSetOptionOnce({ props, state, options, echartsLib })
-}
-
 export const optionsHandler =
   ({ props, state, emit, echartsLib, api, vm }) =>
   (options) => {
     if (options.tooltip) {
+      if (typeof options.tooltip.formatter === 'function') {
+        const formatter = options.tooltip.formatter
+        const customFormatter = (...args) => {
+          const rerutnValue = formatter(...args)
+          return xss.filterHtml(rerutnValue)
+        }
+
+        options.tooltip.formatter = customFormatter
+      } else {
+        let xssHtml = xss.filterHtml(options.tooltip.formatter)
+        options.tooltip.formatter = xssHtml
+      }
       const defaultTooltip = DEFAULT_CONFIG.tooltip || {}
       options.tooltip = { ...defaultTooltip, ...options.tooltip }
     }
+
     if (options.legend) {
       const defaultLegend = DEFAULT_CONFIG.legend || {}
       options.legend = { ...defaultLegend, ...options.legend }
     }
+
     setOptionsLegend({ props, options })
-    options.color = state.chartColor
     selfSetting({ props, options })
     setAnimation({ options, animation: props.animation })
     applyMarks({ props, options })
+
+    // change inited echarts settings
     if (props.extend) {
       setExtend({ options, extend: props.extend })
       options.series.label = { show: false, ...options.series.label }
       options.series.radius = ['25%', '100%']
+
+      const series = options.series
+
+      if (Array.isArray(series)) {
+        options.series = series.map((item) => {
+          if (get(item, 'type') === 'line' && get(item, 'label.show')) {
+            item.showSymbol = true
+          }
+          return item
+        })
+      }
     }
+
+    options.color = api.computedChartColor({ series: options.series })
+    emit('handle-color', options.color, api.getDefaultThemeColors())
+
     options = afterConfig({ props, options })
+
     let setOptionOpts = mapChartNotMerge(props)
+
+    // exclude unchange options
     if (props.notSetUnchange && props.notSetUnchange.length) {
       props.notSetUnchange.forEach((item) => {
         const value = options[item]
+
         if (value) {
           if (isEqual(value, state.store[item])) {
             options[item] = undefined
@@ -265,16 +365,31 @@ export const optionsHandler =
           }
         }
       })
+
       if (isObject(setOptionOpts)) {
         setOptionOpts.notMerge = false
       } else {
         setOptionOpts = false
       }
     }
+
     if (vm._isDestroyed) {
       return
     }
-    setOption({ state, options, setOptionOpts, emit, api, props, echartsLib })
+
+    state.echarts.setOption(options, setOptionOpts)
+    emit('ready', state.echarts, options, echartsLib)
+
+    if (!state.once['ready-once']) {
+      state.once['ready-once'] = true
+      emit('ready-once', state.echarts, options, echartsLib)
+    }
+
+    api.judgeWidthHandler(options)
+
+    afterSetOption({ props, state, options, echartsLib })
+
+    afterSetOptionOnce({ props, state, options, echartsLib })
   }
 
 export const resizeableHandler =
@@ -290,7 +405,7 @@ export const resizeableHandler =
   }
 
 export const init =
-  ({ state, props, api, refs, echartsLib, markRaw }) =>
+  ({ state, props, api, vm, echartsLib, markRaw }) =>
   () => {
     if (state.echarts) {
       return
@@ -303,7 +418,9 @@ export const init =
     }
 
     const themeName = props.themeName || props.theme || DEFAULT_THEME
-    state.echarts = markRaw(echartsLib.init(refs.canvas, { ...themeName, ...ictThemeName }, props.initOptions))
+    state.echarts = markRaw(
+      echartsLib.init(vm.$refs.canvas, themeName, { ...themeName, ...ictThemeName }, props.initOptions)
+    )
 
     if (props.data) {
       api.changeHandler()
@@ -334,10 +451,10 @@ export const addWatchToProps =
   ({ props, watch, api }) =>
   () => {
     Object.keys(props).forEach((prop) => {
-      if (!~STATIC_PROPS.indexOf(prop)) {
+      if (!STATIC_PROPS.includes(prop)) {
         const opts = {}
 
-        if (~['[object Object]', '[object Array]'].indexOf(getType(props[prop]))) {
+        if (['[object Object]', '[object Array]'].includes(getType(props[prop]))) {
           opts.deep = true
         } else {
           opts.immediate = true
@@ -442,7 +559,6 @@ export const watchOnMounted = ({ api, vm, watch, props, t }) => {
     () => api.resizeableHandler()
   )
 
-  // NEXT 。。
   watch(
     () => t('ui.chart.emptyText'),
     () => api.changeHandler()
@@ -463,6 +579,20 @@ export const mounted =
     state.once = {}
     state.store = {}
 
+    if (props.extend && props.extend.tooltip) {
+      if (typeof props.extend.tooltip.formatter === 'function') {
+        const formatter = props.extend.tooltip.formatter
+        const customFormatter = (...args) => {
+          const rerutnValue = formatter(...args)
+          return xss.filterHtml(rerutnValue)
+        }
+
+        props.extend.tooltip.formatter = customFormatter
+      } else {
+        let xssHtml = xss.filterHtml(props.extend.tooltip.formatter)
+        props.extend.tooltip.formatter = xssHtml
+      }
+    }
     api.chartHandler = vm.chartHandler
     api.resizeHandler = debounce(api.resize, props.resizeDelay)
     api.changeHandler = debounce(api.dataHandler, props.changeDelay)

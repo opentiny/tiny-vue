@@ -1,0 +1,50 @@
+<template>
+  <tiny-file-upload
+    action="/"
+    name="fileName"
+    show-file-list
+    :file-list="fileList"
+    list-type="thumb"
+    :open-download-file="true"
+    :thumb-option="options"
+  >
+    <tiny-button type="primary"> 点击上传 </tiny-button>
+  </tiny-file-upload>
+</template>
+
+<script lang="jsx">
+import { FileUpload, Button } from '@opentiny/vue'
+import { iconEditorListNum } from '@opentiny/vue-icon'
+
+export default {
+  components: {
+    TinyFileUpload: FileUpload,
+    TinyButton: Button
+  },
+  data() {
+    return {
+      options: {
+        width: 300,
+        showDownload: true,
+        showDel: true,
+        showTooltip: false,
+        popperClass: 'my-thumb-name',
+        downloadFile: (file) => {
+          console.log('file', file)
+        },
+        icon: iconEditorListNum()
+      },
+      fileList: [
+        {
+          name: 'test1',
+          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/fruit.jpg`
+        },
+        {
+          name: 'test2',
+          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/book.jpg`
+        }
+      ]
+    }
+  }
+}
+</script>

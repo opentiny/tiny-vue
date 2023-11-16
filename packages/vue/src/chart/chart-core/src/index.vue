@@ -23,7 +23,7 @@ import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
 import * as echartsLib from 'echarts'
 import * as echarts from 'echarts/core'
 import { TooltipComponent, LegendComponent, TitleComponent } from 'echarts/components'
-
+import { appProperties } from '@opentiny/vue-common'
 echarts.use([TooltipComponent, LegendComponent, TitleComponent])
 
 export default defineComponent({
@@ -81,7 +81,14 @@ export default defineComponent({
       }
     },
     textStyle: [Object, Array],
-    theme: Object,
+    theme: {
+      type: Object,
+      default: () => {
+        const ctx = appProperties()
+
+        return ctx.tiny_chart_theme ? ctx.tiny_chart_theme.value : null
+      }
+    },
     themeName: [Object, String],
     timeline: [Object, Array],
     title: [Object, Array],
@@ -93,8 +100,13 @@ export default defineComponent({
     width: { type: String, default: 'auto' },
     widthChangeDelay: { type: Number, default: 300 },
     xAxis: [Object, Array],
-    yAxis: [Object, Array]
+    yAxis: [Object, Array],
+    colorMode: {
+      type: String,
+      default: ''
+    }
   },
+  emits: ['ready', 'ready-once', 'handle-color'],
   setup(props, context) {
     return setup({
       props,

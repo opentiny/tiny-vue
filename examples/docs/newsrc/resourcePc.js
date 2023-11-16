@@ -3,16 +3,16 @@
 
 // demo源码
 // 同web-doc的菜单资源
-import { cmpMenus } from '../../sites/demos/menus.js'
+import { cmpMenus } from '../../sites/demos/pc/menus.js'
 
-export const demoStr = import.meta.glob('../../sites/demos/app/**/*.vue', { eager: false, as: 'raw' })
-export const demoVue = import.meta.glob('../../sites/demos/app/**/*.vue', { eager: false })
+export const demoStr = import.meta.glob('../../sites/demos/pc/app/**/*.vue', { eager: false, as: 'raw' })
+export const demoVue = import.meta.glob('../../sites/demos/pc/app/**/*.vue', { eager: false })
 
 // api属性
-export const apis = import.meta.glob('../../sites/demos/app/*/webdoc/*.js', { eager: false })
+export const apis = import.meta.glob('../../sites/demos/pc/app/*/webdoc/*.js', { eager: false })
 
 // 组件的md
-const allMD = import.meta.glob('../../sites/demos/app/*/webdoc/*.cn.md', { eager: true })
+const allMD = import.meta.glob('../../sites/demos/pc/app/*/webdoc/*.cn.md', { eager: true })
 export const mds = {}
 for (const path in allMD) {
   let key = path.split('/').slice(-1)[0]

@@ -11,8 +11,9 @@
  */
 
 import { hasOwn, isObject, isNull } from '../type'
+import globalConfig from '../global'
 
-const isServer = typeof window === 'undefined'
+export const isServer = typeof window === 'undefined'
 const SPECIAL_CHARS_REGEXP = /([:\-_]+(.))/g
 const MOZ_HACK_REGEXP = /^moz([A-Z])/
 
@@ -25,16 +26,26 @@ const camelCase = (name: string) =>
     .replace(MOZ_HACK_REGEXP, 'Moz$1')
 
 /** 绑定事件 */
-export const on = (el: EventTarget, event: any, handler: (this: HTMLElement, ev: any) => any) => {
+export const on = (
+  el: EventTarget,
+  event: any,
+  handler: (this: HTMLElement, ev: any) => any,
+  options: boolean = false
+) => {
   if (el && event && handler) {
-    el.addEventListener(event, handler, false)
+    el.addEventListener(event, handler, options)
   }
 }
 /** 移除事件 */
-export const off = (el: EventTarget, event: any, handler: (this: HTMLElement, ev: any) => any) => {
+export const off = (
+  el: EventTarget,
+  event: any,
+  handler: (this: HTMLElement, ev: any) => any,
+  options: boolean = false
+) => {
   window.document
   if (el && event) {
-    el.removeEventListener(event, handler, false)
+    el.removeEventListener(event, handler, options)
   }
 }
 
@@ -225,8 +236,9 @@ export const isVNode = (node: any) => node !== null && isObject(node) && hasOwn.
  * @returns visibleWidth ： 可视区宽度（不含滚动条）
  */
 export const getDomNode = () => {
-  let documentElement = document.documentElement
-  let bodyElem = document.body
+  const viewportWindow = globalConfig.viewportWindow || window
+  let documentElement = viewportWindow.document.documentElement
+  let bodyElem = viewportWindow.document.body
 
   return {
     scrollTop: documentElement.scrollTop || bodyElem.scrollTop,
@@ -234,4 +246,44 @@ export const getDomNode = () => {
     visibleHeight: documentElement.clientHeight || bodyElem.clientHeight,
     visibleWidth: documentElement.clientWidth || bodyElem.clientWidth
   }
+}
+
+export const getScrollTop = (el) => {
+  const top = 'scrollTop' in el ? el.scrollTop : el.pageYOffset
+  // iOS scroll bounce cause minus scrollTop
+  return Math.max(top, 0)
+}
+
+export const stopPropagation = (event) => event.stopPropagation()
+
+export const preventDefault = (event, isStopPropagation) => {
+  /* istanbul ignore else */
+  if (typeof event.cancelable !== 'boolean' || event.cancelable) {
+    event.preventDefault()
+  }
+
+  if (isStopPropagation) {
+    stopPropagation(event)
+  }
+}
+
+const overflowScrollReg = /scroll|auto|overlay/i
+const defaultRoot = isServer ? void 0 : window
+
+const isElement = (node) => node.tagName !== 'HTML' && node.tagName !== 'BODY' && node.nodeType === 1
+
+export const getScrollParent = (el, root = defaultRoot) => {
+  let node = el
+
+  while (node && node !== root && isElement(node)) {
+    const { overflowY } = window.getComputedStyle(node)
+
+    if (overflowScrollReg.test(overflowY)) {
+      return node
+    }
+
+    node = node.parentNode
+  }
+
+  return root
 }

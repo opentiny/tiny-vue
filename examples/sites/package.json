@@ -1,16 +1,20 @@
 {
   "name": "@opentiny/vue-docs",
-  "version": "2.1.13",
+  "version": "2.1.37",
   "scripts": {
-    "start": "node ./scripts/copy.js && vite",
-    "start:saas": "node ./scripts/copy.js && vite --mode saas",
-    "start:open": "node ./scripts/copy.js && vite --mode opendev",
-    "build:inner:alpha": "node ./scripts/copy.js && vite build --mode inneralpha",
-    "build:inner:saas": "node ./scripts/copy.js && vite build --mode innersaas",
-    "build:inner:prod": "node ./scripts/copy.js && vite build --mode innerprod",
-    "build:open": "node ./scripts/copy.js && vite build --mode open",
+    "start": "vite",
+    "start:saas": "vite --mode saas",
+    "start:open": "vite --mode opendev",
+    "start:mobile": "vite --mode mobile",
+    "build:inner:alpha": "vite build --mode inneralpha",
+    "build:mobile:alpha": "vite build --mode mobilealpha",
+    "build:mobile:prod": "vite build --mode mobileprod",
+    "build:inner:saas": "vite build --mode innersaas",
+    "build:inner:prod": "vite build --mode innerprod",
+    "build:open": "vite build --mode open",
     "prettier": "npx prettier --write ./**/*.{ts,tsx,css,less,scss,vue}",
-    "stylelint": "npx stylelint ./src/**/*.scss ./src/**/*.less ./src/**/*.css --fix"
+    "stylelint": "npx stylelint ./src/**/*.scss ./src/**/*.less ./src/**/*.css --fix",
+    "pub": "pnpm publish --no-git-checks --access=public"
   },
   "dependencies": {
     "@opentiny/vue": "workspace:~",
@@ -36,7 +40,7 @@
     "marked": "^4.3.0",
     "@playwright/test": "^1.29.2",
     "sortablejs": "1.15.0",
-    "@opentiny/vue-repl": "^1.0.2"
+    "@opentiny/vue-repl": "^1.1.0"
   },
   "devDependencies": {
     "@opentiny-internal/unplugin-virtual-template": "workspace:~",
@@ -63,8 +67,8 @@
     "stylelint": "^14.9.1",
     "stylelint-config-standard": "^26.0.0",
     "unocss": "^0.39.3",
-    "unplugin-auto-import": "0.8.7",
     "unplugin-vue-components": "^0.19.9",
+    "vite-plugin-static-copy": "^0.17.0",
     "uslug": "^1.0.4",
     "typescript": "^5.0.2",
     "vite": "^4.3.8",

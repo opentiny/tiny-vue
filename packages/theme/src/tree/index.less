@@ -201,7 +201,6 @@
 .@{tree-node-prefix-cls} {
   white-space: nowrap;
   outline: 0;
-  overflow: hidden;
 
   // 连接线
   &.show-line {
@@ -314,11 +313,6 @@
     }
   }
 
-  &.is-root {
-    .@{tree-node-prefix-cls}__content-box {
-      padding-left: 0;
-    }
-  }
 
   &.is-leaf:not(.is-root) {
     .@{tree-node-prefix-cls}__content {
@@ -355,7 +349,7 @@
       }
     }
 
-    & label.@{css-prefix}checkbox {
+    & label.@{css-prefix}checkbox, .@{css-prefix}radio {
       margin: 0 calc(var(--ti-tree-node-label-margin-left) / 2);
     }
 
@@ -479,8 +473,6 @@
   }
 
   .@{radio-prefix-cls} {
-    margin-right: 0;
-
     .@{radio-prefix-cls}__label {
       display: none;
     }

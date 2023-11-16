@@ -29,13 +29,14 @@
         }"
         @focus="handleFocus"
         @blur="state.focusing = false"
+        @click="handleHeaderClick"
       >
-        <div class="tiny-collapse-item__arrow" @click="handleHeaderClick">
+        <div class="tiny-collapse-item__arrow" @click.stop="handleHeaderClick">
           <slot name="icon">
             <icon-chevron-right class="tiny-svg-size" :class="{ 'is-active': state.isActive }" />
           </slot>
         </div>
-        <div class="tiny-collapse-item__word-overflow" @click="handleHeaderClick">
+        <div class="tiny-collapse-item__word-overflow" @click.stop="handleHeaderClick">
           <slot name="title">{{ title }}</slot>
         </div>
         <div class="tiny-collapse-item__title__right">

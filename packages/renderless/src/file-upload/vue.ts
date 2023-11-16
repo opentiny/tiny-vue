@@ -21,6 +21,7 @@ import {
 } from '@/types'
 
 import { downloadFile as ordinaryDownload } from '../upload-list'
+import { formatFileSize } from '../common/string'
 
 import {
   initService,
@@ -44,6 +45,8 @@ import {
   handleSuccess,
   handleError,
   handleRemove,
+  handleReUpload,
+  handleReUploadTotal,
   onBeforeDestroy,
   submit,
   watchListType,
@@ -76,6 +79,7 @@ import {
   downloadFileSingle,
   downloadFileBatch,
   downloadFileSingleHwh5,
+  downloadAsyncPackage,
   validateDownloadStatus,
   mounted,
   handleChange,
@@ -88,6 +92,7 @@ import {
   handleClickFileList,
   computedSourcetype,
   getFileSourceType,
+  encryptDialogConfirm,
   handleTriggerClick
 } from './index'
 import { isEmptyObject } from '../common/type'
@@ -105,6 +110,8 @@ export const api = [
   'handleSuccess',
   'handleError',
   'handleRemove',
+  'handleReUpload',
+  'handleReUploadTotal',
   'submit',
   'handleClick',
   'getFileUploadUrl',
@@ -114,7 +121,9 @@ export const api = [
   'handleChange',
   'abortDownload',
   'handleClickFileList',
-  'handleTriggerClick'
+  'handleTriggerClick',
+  'encryptDialogConfirm',
+  'formatFileSize'
 ]
 
 const initState = ({ api, reactive, computed, inject, ref, vm, props, httpRequest, service }): IFileUploadState => {
@@ -172,7 +181,11 @@ const initState = ({ api, reactive, computed, inject, ref, vm, props, httpReques
     types: computed(() => api.computedSourcetype()),
     triggerClickType: '',
     visible: false,
-    downloadParamsWhitelist: ['docId', 'wmType', 'docVersion']
+    downloadParamsWhitelist: ['docId', 'wmType', 'docVersion'],
+    encryptDialogConfig: {
+      show: false,
+      selectFileMethod: null
+    }
   })
 
   return state
@@ -201,7 +214,7 @@ const initApi = ({ api, state, props, constants, vm, $service, t, Modal }) => {
     ordinaryDownload: ordinaryDownload($service),
     clearUploadingFiles: clearUploadingFiles({ constants, state }),
     calcUploadingFilesInfo: calcUploadingFilesInfo({ state, constants }),
-    properFileSize: properFileSize({ props, state, constants, Modal, t }),
+    properFileSize: properFileSize({ props, state, api, constants, Modal, t }),
     mounted: mounted({ vm, state }),
     previewFileSingle: previewFileSingle({ api, state, props, constants, service: $service }),
     previewFileBatch: previewFileBatch({ service: $service, props, state, api }),
@@ -210,7 +223,9 @@ const initApi = ({ api, state, props, constants, vm, $service, t, Modal }) => {
     abortDownload: abortDownload({ state }),
     createDownloadCancelToken: createDownloadCancelToken({ state, service: $service }),
     computedSourcetype: computedSourcetype({ props, constants }),
-    getFileSourceType: getFileSourceType({ state, props, constants })
+    getFileSourceType: getFileSourceType({ state, props, constants }),
+    encryptDialogConfirm: encryptDialogConfirm({ state }),
+    formatFileSize
   })
 }
 
@@ -229,9 +244,11 @@ const mergeApi = ({ api, props, $service, state, constants, emit, mode, Modal, t
     batchSegmentUpload: batchSegmentUpload({ api, constants, props, vm, state }),
     largeDocumentUpload: largeDocumentUpload({ api, Modal, state, emit, constants, t }),
     handleProgress: handleProgress({ api, constants, emit, state }),
-    handleSuccess: handleSuccess({ api, constants, emit, props, state }),
-    handleError: handleError({ api, constants, emit, state }),
+    handleSuccess: handleSuccess({ api, constants, emit, Modal, props, state, t }),
+    handleError: handleError({ api, constants, emit, state, props }),
     handleRemove: handleRemove({ api, emit, props, state, constants }),
+    handleReUpload: handleReUpload({ vm, constants }),
+    handleReUploadTotal: handleReUploadTotal(api),
     updateUrl: updateUrl({ api, props, state }),
     startUpload: startUpload({ api, state, constants, vm, Modal, t }),
     beforeUpload: beforeUpload({ api, props, Modal, constants, t, state }),
@@ -248,6 +265,7 @@ const mergeApi = ({ api, props, $service, state, constants, emit, mode, Modal, t
     downloadFileSingle: downloadFileSingle({ service: $service, constants, props, state, api, emit }),
     downloadFileBatch: downloadFileBatch({ api, service: $service, props, state, emit }),
     downloadFileSingleHwh5: downloadFileSingleHwh5({ state, props, emit, constants }),
+    downloadAsyncPackage: downloadAsyncPackage({ state, props, api, constants, service: $service }),
     validateDownloadStatus: validateDownloadStatus({ state, Modal }),
     handleChange: handleChange({ vm, constants }),
     handleClickFileList: handleClickFileList({ state, emit }),

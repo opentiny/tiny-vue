@@ -60,7 +60,8 @@ const initState = ({ reactive, props }: Pick<ITabsRenderlessParams, 'reactive' |
     offsetX: 0,
     offsetY: 0,
     direction: '',
-    expandPanesWidth: ''
+    expandPanesWidth: '',
+    separator: props.separator
   }) as ITabsState
 
 const initWatcher = ({
@@ -111,7 +112,7 @@ export const renderless = (
     handleTabRemove: handleTabRemove(emit),
     changeDirection: changeDirection({ props, state }),
     changeCurrentName: changeCurrentName({ emit, state }),
-    calcMorePanes: calcMorePanes({ parent, props, state, refs, nextTick }),
+    calcMorePanes: calcMorePanes({ parent, props, state, refs }),
     calcExpandPanes: calcExpandPanes({ parent, props, state }),
     calcPaneInstances: calcPaneInstances({ constants, parent, state, childrenHandler }),
     handleTabDragStart: handleTabDragStart({ emit }),
@@ -125,6 +126,8 @@ export const renderless = (
   api.created()
 
   provide('rootTabs', parent)
+
+  provide('separator', state.separator)
 
   initWatcher({ watch, props, api, state, nextTick, refs })
 

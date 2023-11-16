@@ -25,10 +25,23 @@ import 'crypto-js/sha256.js'
 import 'crypto-js/lib-typedarrays.js'
 import Streamsaver from 'streamsaver'
 import Button from '@opentiny/vue-button'
+import Input from '@opentiny/vue-input'
+import Switch from '@opentiny/vue-switch'
 import type { IFileUploadApi } from '@opentiny/vue-renderless/types/file-upload.type'
 
 export default defineComponent({
   inheritAttrs: false,
+  emits: [
+    'change',
+    'hash-progress',
+    'error',
+    'progress',
+    'success',
+    'remove',
+    'download',
+    'trigger-click',
+    'click-file-list'
+  ],
   props: [
     ...props,
     'edm',
@@ -68,7 +81,8 @@ export default defineComponent({
     'hwh5',
     'mode',
     'cacheToken',
-    'lockScroll'
+    'lockScroll',
+    'encryptConfig'
   ],
   emits: ['change', 'hash-progress', 'progress', 'success', 'error', 'remove', 'download'],
   setup(props, context) {
@@ -164,7 +178,9 @@ export default defineComponent({
       handleTriggerClick,
       showFileList,
       mode,
-      lockScroll
+      lockScroll,
+      encryptConfig,
+      encryptDialogConfirm
     } = this
 
     const title = this.title || t('ui.fileUpload.attachment')
@@ -220,31 +236,49 @@ export default defineComponent({
     }
 
     // 提示文本信息
-    const getTipMessage = ({ accept, fileSize }: { accept: string; fileSize: Number | Array<Number> }) => {
+    const getTipMessage = ({
+      accept,
+      fileSize,
+      limit
+    }: {
+      accept: string
+      fileSize: Number | Array<Number>
+      limit: String | Number
+    }) => {
       let acceptTip = accept
         ? t('ui.fileUpload.onlySupport').replace(
             /{type}/,
             accept
               .split(',')
               .map((item) => item.trim().replace(/^\./, ''))
-              .join('，')
+              .join(t('ui.base.comma'))
           )
         : ''
-      fileSize && (acceptTip += '，')
+
+      if (fileSize && acceptTip.length !== 0) {
+        acceptTip += `${t('ui.base.comma')} `
+      }
 
       let fileSizeTip = ''
       if (typeof fileSize === 'number') {
         fileSizeTip = `${t('ui.fileUpload.fileNotLessThan')}${(fileSize / 1024).toFixed(2)}M`
-      } else if (Array.isArray(fileSize)) {
+      } else if (fileSize instanceof Array) {
         let minSize = (fileSize[0] as any) / 1024
         minSize = Math.floor(minSize) === minSize ? minSize : Number(minSize.toFixed(2))
         let maxSize = (fileSize[1] as any) / 1024
         maxSize = Math.floor(maxSize) === maxSize ? maxSize : Number(maxSize.toFixed(2))
 
-        fileSizeTip += fileSize[0] ? `${t('ui.fileUpload.fileNotLessThan')}${minSize}M，` : ''
+        fileSizeTip += fileSize[0] ? `${t('ui.fileUpload.fileNotLessThan')}${minSize}M${t('ui.base.comma')}` : ''
         fileSizeTip += fileSize[1] ? `${t('ui.fileUpload.fileNotMoreThan')}${maxSize}M` : ''
       }
-      return acceptTip + fileSizeTip
+
+      let limitTip = limit ? t('ui.fileUpload.numberLimit').replace(/{number}/, limit) : ''
+
+      if ((fileSize || acceptTip.length !== 0) && limit) {
+        limitTip = `${t('ui.base.comma')} ` + limitTip
+      }
+
+      return acceptTip + fileSizeTip + limitTip
     }
 
     // 提示信息插槽
@@ -266,7 +300,7 @@ export default defineComponent({
       slots: any
     }) => {
       let defaultTip
-      const tipMsg = getTipMessage({ accept: isEdm ? accept : this.accept, fileSize })
+      const tipMsg = getTipMessage({ accept: isEdm ? accept : this.accept, fileSize: fileSize, limit: this.limit })
 
       if (listType === 'text') {
         defaultTip = (
@@ -302,7 +336,7 @@ export default defineComponent({
         <tiny-tooltip
           class="inline-block sm:hidden"
           effect="dark"
-          content={getTipMessage({ accept: isEdm ? accept : this.accept, fileSize })}
+          content={getTipMessage({ accept: isEdm ? accept : this.accept, fileSize: fileSize, limit: this.limit })}
           placement="top">
           <icon-help-query class="-mt-0.5  fill-color-none-hover" />
         </tiny-tooltip>
@@ -310,7 +344,6 @@ export default defineComponent({
     }
 
     // trigger插槽content
-
     const getTriggerContent = ({
       listType,
       t,
@@ -550,7 +583,7 @@ export default defineComponent({
           'tiny-modal',
           {
             props: {
-              modalBoxClass: 'sm:w-[theme(spacing.112)]',
+              customClass: 'sm:w-[theme(spacing.112)]',
               title: t('ui.fileUpload.uploadList'),
               position: 'bottom-right',
               mask: false,
@@ -568,6 +601,7 @@ export default defineComponent({
     }
 
     let previewComponent = null
+    let encryptDialogComponent = null
 
     if (isEdm && isSuccess) {
       uploadData.props.accept = accept
@@ -599,14 +633,60 @@ export default defineComponent({
       })
     }
 
+    if (encryptConfig.enabled) {
+      encryptDialogComponent = h('tiny-dialog-box', {
+        style: '',
+        props: {
+          dataTag: 'encrypt-config-dialog',
+          lockScroll: true,
+          visible: this.state.encryptDialogConfig.show,
+          dragable: true,
+          title: this.t('ui.fileUpload.encryptDialogTitle'),
+          width: '380px',
+          height: 'auto'
+        },
+        on: {
+          'update:visible': (value) => (this.state.encryptDialogConfig.show = value)
+        },
+        scopedSlots: {
+          default: () => {
+            return (
+              <div data-tag="encrypt-config-dialog-body">
+                <div>{this.t('ui.fileUpload.addWatermark')}</div>
+                <div>
+                  <Input v-model={this.encryptConfig.watermark}></Input>
+                </div>
+                <p>&nbsp;</p>
+                <div>{this.t('ui.fileUpload.encrypted')}</div>
+                <div>
+                  <Switch v-model={this.encryptConfig.encrypt}></Switch>
+                </div>
+              </div>
+            )
+          },
+          footer: () => {
+            return [
+              <Button onClick={() => (this.state.encryptDialogConfig.show = false)}>{this.t('ui.base.cancel')}</Button>,
+              [
+                <Button type="primary" customClass="ml-2" onClick={() => encryptDialogConfirm()}>
+                  {this.t('ui.popupload.uploadButtonText')}
+                </Button>
+              ]
+            ]
+          }
+        }
+      })
+    }
+
     const attrs = a($attrs, ['^on[A-Z]'])
 
     return (
-      <div {...attrs} class={isDragSingle ? 'relative inline-block' : ''}>
+      <div {...attrs} data-tag="tiny-file-upload" class={isDragSingle ? 'relative inline-block' : ''}>
         {getDefaultTitle({ listType, title, showTitle, displayOnly, mode })}
         {isText ? (slots.trigger ? [createUploadComponent()] : createUploadComponent()) : null}
         {uploadList}
         {previewComponent}
+        {encryptDialogComponent}
       </div>
     )
   }

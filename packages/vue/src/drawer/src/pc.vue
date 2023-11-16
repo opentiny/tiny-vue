@@ -12,7 +12,7 @@
     </transition>
 
     <!-- main -->
-    <transition name="drawer-slideRight">
+    <transition :name="`drawer-slide-${placement}`">
       <div
         data-tag="tiny-drawer-main"
         ref="drawerBox"
@@ -23,7 +23,8 @@
             'is-right': placement === 'right',
             'is-top': placement === 'top',
             'is-bottom': placement === 'bottom',
-            'drag-effects': !state.dragEvent.isDrag
+            'drag-effects': !state.dragEvent.isDrag,
+            'toggle': state.toggle
           },
           customClass
         ]"

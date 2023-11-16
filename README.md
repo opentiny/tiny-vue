@@ -10,7 +10,7 @@ English | [简体中文](README.zh-CN.md)
 
 🌈 Features:
 
-- 📦 69 clean, easy-to-use and powerful components.
+- 📦 104 clean, easy-to-use and powerful components.
 - 🖖 One code, Support both Vue.js 2 and Vue.js 3.
 - 🖥️ One code, Support both PC and Mobile.
 - 🌍 Support internationalization.
@@ -133,6 +133,19 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/Binks123"><img src="https://avatars.githubusercontent.com/u/103343025?v=4?s=100" width="100px;" alt="Binks_"/><br /><sub><b>Binks_</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Binks123" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/yoyo201626"><img src="https://avatars.githubusercontent.com/u/104079404?v=4?s=100" width="100px;" alt="yoyo"/><br /><sub><b>yoyo</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=yoyo201626" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://hexo.kifroom.icu/"><img src="https://avatars.githubusercontent.com/u/62132584?v=4?s=100" width="100px;" alt="Kif"/><br /><sub><b>Kif</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=wkif" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/jack-zishan"><img src="https://avatars.githubusercontent.com/u/67041206?v=4?s=100" width="100px;" alt="jack-zishan"/><br /><sub><b>jack-zishan</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=jack-zishan" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="http://gradii.com"><img src="https://avatars.githubusercontent.com/u/5467712?v=4?s=100" width="100px;" alt="LinboLen"/><br /><sub><b>LinboLen</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=LinboLen" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/vaebe"><img src="https://avatars.githubusercontent.com/u/52314078?v=4?s=100" width="100px;" alt="vaebe"/><br /><sub><b>vaebe</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=vaebe" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://allenli178.top"><img src="https://avatars.githubusercontent.com/u/53218750?v=4?s=100" width="100px;" alt="YuYan Li"/><br /><sub><b>YuYan Li</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=allenli178" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/shonen7"><img src="https://avatars.githubusercontent.com/u/145949377?v=4?s=100" width="100px;" alt="shonen7"/><br /><sub><b>shonen7</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=shonen7" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/xlearns"><img src="https://avatars.githubusercontent.com/u/62782792?v=4?s=100" width="100px;" alt="xlearns"/><br /><sub><b>xlearns</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=xlearns" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/ianxinnew"><img src="https://avatars.githubusercontent.com/u/146069396?v=4?s=100" width="100px;" alt="tianxin"/><br /><sub><b>tianxin</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=ianxinnew" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Xppp0217"><img src="https://avatars.githubusercontent.com/u/82315158?v=4?s=100" width="100px;" alt="Xppp0217"/><br /><sub><b>Xppp0217</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Xppp0217" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/AcWrong02"><img src="https://avatars.githubusercontent.com/u/147061401?v=4?s=100" width="100px;" alt="AcWrong02"/><br /><sub><b>AcWrong02</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/issues?q=author%3AAcWrong02" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>

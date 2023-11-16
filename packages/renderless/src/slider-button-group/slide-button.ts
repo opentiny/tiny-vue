@@ -1,64 +1,58 @@
 import debounce from '../common/deps/debounce'
 import { on, off } from '../common/deps/dom'
 
-const getButtonPosition =
-  ({ sliderState }) =>
-  () => {
-    const { slideMainPostion, offsetList } = sliderState
-    const array = offsetList.slice()
-    const length = array.length
+const getButtonPosition = ({ sliderState }) => () => {
+  const { slideMainPostion, offsetList } = sliderState
+  const array = offsetList.slice()
+  const length = array.length
 
-    sliderState.boundingIndex = {
-      left: -1,
-      right: -1
-    }
+  sliderState.boundingIndex = {
+    left: -1,
+    right: -1
+  }
 
-    for (let j = 0; j < length; j++) {
-      if (array[j].right > slideMainPostion.right + 2) {
-        sliderState.boundingIndex.right = j
-        break
-      }
-    }
-
-    for (let k = length - 1; k >= 0; k--) {
-      if (array[k].left < slideMainPostion.left) {
-        sliderState.boundingIndex.left = k
-        break
-      }
+  for (let j = 0; j < length; j++) {
+    if (array[j].right > slideMainPostion.right + 2) {
+      sliderState.boundingIndex.right = j
+      break
     }
   }
 
-const arrowLeftHandler =
-  ({ sliderState, api }) =>
-  () => {
-    const { canLeftScroll, slideMainPostion, offsetList, boundingIndex } = sliderState
-
-    if (!canLeftScroll || sliderState.timer) {
-      return
-    }
-
-    const leftPosition = boundingIndex.left !== -1 && offsetList[boundingIndex.left]
-
-    if (leftPosition) {
-      api.animationEvents(leftPosition.left - slideMainPostion.left)
+  for (let k = length - 1; k >= 0; k--) {
+    if (array[k].left < slideMainPostion.left) {
+      sliderState.boundingIndex.left = k
+      break
     }
   }
+}
 
-const arrowRightHandler =
-  ({ sliderState, api }) =>
-  () => {
-    const { canRightScroll, slideMainPostion, offsetList, boundingIndex } = sliderState
+const arrowLeftHandler = ({ sliderState, api }) => () => {
+  const { canLeftScroll, slideMainPostion, offsetList, boundingIndex } = sliderState
 
-    if (!canRightScroll || sliderState.timer) {
-      return
-    }
-
-    const rightPosition = boundingIndex.right !== -1 && offsetList[boundingIndex.right]
-
-    if (rightPosition) {
-      api.animationEvents(rightPosition.right - slideMainPostion.right)
-    }
+  if (!canLeftScroll || sliderState.timer) {
+    return
   }
+
+  const leftPosition = boundingIndex.left !== -1 && offsetList[boundingIndex.left]
+
+  if (leftPosition) {
+    api.animationEvents(leftPosition.left - slideMainPostion.left)
+  }
+}
+
+const arrowRightHandler = ({ sliderState, api }) => () => {
+  const { canRightScroll, slideMainPostion, offsetList, boundingIndex } = sliderState
+
+  if (!canRightScroll || sliderState.timer) {
+    return
+  }
+
+  const rightPosition = boundingIndex.right !== -1 && offsetList[boundingIndex.right]
+
+  if (rightPosition) {
+    api.animationEvents(rightPosition.right - slideMainPostion.right)
+  }
+}
 
 const currentPosition = ({ sliderState, vm, props, api }) =>
   debounce(10, (isInit) => {
@@ -77,46 +71,42 @@ const currentPosition = ({ sliderState, vm, props, api }) =>
     isInit === true && api.currentPosition()
   })
 
-const loopAnimation =
-  ({ sliderState, api, vm }) =>
-  (offset, delay, scorllLeft, cb) => {
-    const sliderScrollLeft = vm.$refs.slideMain.scrollLeft
-    clearTimeout(sliderState.timer)
+const loopAnimation = ({ sliderState, api, vm }) => (offset, delay, scorllLeft, cb) => {
+  const sliderScrollLeft = vm.$refs.slideMain.scrollLeft
+  clearTimeout(sliderState.timer)
 
-    if (sliderScrollLeft !== sliderState.oldScrollLeft && Math.abs(sliderScrollLeft - scorllLeft) > Math.abs(offset)) {
-      sliderState.timer = setTimeout(() => {
-        vm.$refs.slideMain.scrollLeft += offset
-        sliderState.oldScrollLeft = sliderScrollLeft
-        api.loopAnimation(offset, delay, scorllLeft, cb)
-      }, delay)
-    } else {
-      sliderState.timer = null
+  if (sliderScrollLeft !== sliderState.oldScrollLeft && Math.abs(sliderScrollLeft - scorllLeft) > Math.abs(offset)) {
+    sliderState.timer = setTimeout(() => {
+      vm.$refs.slideMain.scrollLeft += offset
+      sliderState.oldScrollLeft = sliderScrollLeft
+      api.loopAnimation(offset, delay, scorllLeft, cb)
+    }, delay)
+  } else {
+    sliderState.timer = null
 
-      vm.$refs.slideMain.scrollLeft = scorllLeft
-      cb && cb()
-    }
+    vm.$refs.slideMain.scrollLeft = scorllLeft
+    cb && cb()
+  }
+}
+
+const animationEvents = ({ api, vm, props }) => (allOffset) => {
+  const mathNumber = allOffset > 0 ? Math.ceil : Math.floor
+  const offsetInt = mathNumber(allOffset)
+  const { duration, delay } = props
+
+  if (!duration) {
+    vm.$refs.slideMain.scrollLeft += offsetInt
+    api.currentPosition()
+    return
   }
 
-const animationEvents =
-  ({ api, vm, props }) =>
-  (allOffset) => {
-    const mathNumber = allOffset > 0 ? Math.ceil : Math.floor
-    const offsetInt = mathNumber(allOffset)
-    const { duration, delay } = props
+  const space = mathNumber(offsetInt / (duration / delay))
+  const left = vm.$refs.slideMain.scrollLeft + offsetInt
 
-    if (!duration) {
-      vm.$refs.slideMain.scrollLeft += offsetInt
-      api.currentPosition()
-      return
-    }
-
-    const space = mathNumber(offsetInt / (duration / delay))
-    const left = vm.$refs.slideMain.scrollLeft + offsetInt
-
-    api.loopAnimation(space, delay, left, () => {
-      api.currentPosition()
-    })
-  }
+  api.loopAnimation(space, delay, left, () => {
+    api.currentPosition()
+  })
+}
 
 const clickHandler = (api) => () => {
   api.currentPosition()

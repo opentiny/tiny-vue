@@ -116,7 +116,7 @@ export default defineComponent({
             onClick={handleMainButtonClick}
             disabled={disabled}
             class="tiny-dropdown__title-button">
-            {defaultSlot}
+            {defaultSlot || <span>{title}</span>}
           </tiny-button>
           <tiny-button
             ref="trigger"
@@ -141,7 +141,7 @@ export default defineComponent({
 
       // 增加一层，vue3 环境中无法使用 slots.default 的方式获取原生 DOM 元素
       const suffixInner = showIcon ? (
-        <span class="tiny-dropdown__suffix-inner">{suffixSlot || <IconDown class={visibleClass}></IconDown>}</span>
+        <span class={'tiny-dropdown__suffix-inner ' + visibleClass}>{suffixSlot || <IconDown></IconDown>}</span>
       ) : (
         ''
       )

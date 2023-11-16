@@ -11,7 +11,7 @@
  -->
 <template>
   <transition name="viewer-fade">
-    <div class="tiny-image-viewer__wrapper" :style="{ 'z-index': state.zIndex }" @mousewheel.prevent>
+    <div class="tiny-image-viewer tiny-image-viewer__wrapper" :style="{ 'z-index': state.zIndex }" @mousewheel.prevent>
       <div class="tiny-image-viewer__mask"></div>
       <!-- CLOSE -->
       <span class="tiny-image-viewer__btn tiny-image-viewer__close" @click="hide">
@@ -83,6 +83,7 @@ import {
 import '@opentiny/vue-theme/image-viewer/index.less'
 
 export default defineComponent({
+  emits: ['close', 'update:preview-visible', 'delete', 'change', 'newImageList'],
   props: [...props, 'urlList', 'zIndex', 'onSwitch', 'onClose'],
   components: {
     IconClose: iconClose(),

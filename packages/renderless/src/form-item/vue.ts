@@ -32,10 +32,14 @@ import {
   computedIsRequired,
   computedFieldValue,
   computedGetValidateType,
+  computedValidateIcon,
+  computedIsErrorInline,
+  computedIsErrorBlock,
   updateTip,
   wrapValidate,
   getDisplayedValue,
   clearDisplayedValue,
+  handleLabelMouseenter,
   handleMouseenter,
   handleMouseleave
 } from './index'
@@ -62,6 +66,7 @@ export const api = [
   'removeValidateEvents',
   'updateTip',
   'getDisplayedValue',
+  'handleLabelMouseenter',
   'handleMouseenter',
   'handleMouseleave'
 ]
@@ -109,43 +114,49 @@ const initState = ({
     labelSuffix: computed(() => state.formInstance.labelSuffix),
     labelWidth: computed(() => state.formInstance.labelWidth),
     showMessage: computed(() => state.formInstance.showMessage),
-    inlineMessage: computed(() => state.formInstance.inlineMessage),
     sizeClass: computed(() => state.formItemSize),
-    getValidateType: computed(() => api.computedGetValidateType())
+    getValidateType: computed(() => api.computedGetValidateType()),
+    validateIcon: computed(() => api.computedValidateIcon()),
+    isErrorInline: computed(() => api.computedIsErrorInline()),
+    isErrorBlock: computed(() => api.computedIsErrorBlock())
   })
 
   return state
 }
 
-const initApi = ({ api, state, dispatch, broadcast, refs, props, constants, instance, t, nextTick }) => {
+const initApi = ({ api, state, dispatch, broadcast, props, constants, vm, t, nextTick, slots }) => {
   Object.assign(api, {
     state,
     dispatch,
     broadcast,
     watchError: watchError(state),
-    updateTip: updateTip({ refs, state }),
+    updateTip: updateTip({ vm, state }),
     watchValidateStatus: watchValidateStatus(state),
     computedLabelStyle: computedLabelStyle({ props, state }),
     computedValueStyle: computedValueStyle({ props, state }),
     computedContentStyle: computedContentStyle({ props, state }),
-    computedForm: computedForm({ constants, instance, state }),
+    computedForm: computedForm({ constants, vm, state }),
     computedFieldValue: computedFieldValue({ props, state }),
     computedGetValidateType: computedGetValidateType({ props, state }),
+    computedValidateIcon: computedValidateIcon({ props, state }),
+    computedIsErrorInline: computedIsErrorInline({ props, state }),
+    computedIsErrorBlock: computedIsErrorBlock({ props, state }),
     clearValidate: clearValidate(state),
     getRules: getRules({ props, state }),
     updateComputedLabelWidth: updateComputedLabelWidth(state),
-    removeValidateEvents: removeValidateEvents(instance),
-    unmounted: unmounted({ api, instance, state }),
-    mounted: mounted({ api, instance, props, state, refs }),
+    removeValidateEvents: removeValidateEvents(vm),
+    unmounted: unmounted({ api, vm, state }),
+    mounted: mounted({ api, vm, props, state }),
     computedIsRequired: computedIsRequired({ api, state }),
     resetField: resetField({ api, nextTick, props, state }),
     getFilteredRule: getFilteredRule(api),
     onFieldBlur: onFieldBlur(api),
     onFieldChange: onFieldChange({ api, state }),
-    addValidateEvents: addValidateEvents({ api, instance, props, state }),
+    addValidateEvents: addValidateEvents({ api, vm, props, state }),
     validate: wrapValidate({ validateFunc: validate({ api, props, state, t }), props }),
     getDisplayedValue: getDisplayedValue({ state }),
     clearDisplayedValue: clearDisplayedValue({ state }),
+    handleLabelMouseenter: handleLabelMouseenter({ props, state, slots }),
     handleMouseenter: handleMouseenter({ state }),
     handleMouseleave: handleMouseleave(state)
   })
@@ -162,18 +173,18 @@ const initWatch = ({ watch, api, props, state }) => {
 export const renderless = (
   props: IFormItemProps,
   { computed, inject, onMounted, onUnmounted, provide, reactive, watch }: IFormItemRenderlessParams,
-  { vm: instance, constants, t, nextTick, refs, broadcast, dispatch, mode }: IFormItemRenderlessParamUtils
+  { vm, constants, t, nextTick, broadcast, dispatch, mode, slots }: IFormItemRenderlessParamUtils
 ): IFormItemApi => {
   const api = {} as IFormItemApi
   const state = initState({ reactive, computed, api, mode, inject, props })
 
-  provide('formItem', instance)
+  provide('formItem', vm)
 
-  initApi({ api, state, dispatch, broadcast, refs, props, constants, instance, t, nextTick })
+  initApi({ api, state, dispatch, broadcast, props, constants, vm, t, nextTick, slots })
   initWatch({ watch, api, props, state })
 
   onMounted(api.mounted)
-  instance.$on('displayed-value-changed', (param) => {
+  vm.$on('displayed-value-changed', (param) => {
     api.getDisplayedValue(param)
   })
   onUnmounted(api.unmounted)

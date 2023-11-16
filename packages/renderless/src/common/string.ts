@@ -769,6 +769,39 @@ export const toFileSize = (value, unit, currUnit) => {
 }
 
 /**
+ * 文件大小值，单位自动转化，最多保留2位小数
+ *
+ *     formatFileSize(17252 * 1024)     // "16.84M"
+ *     formatFileSize(200 * 1024, 'M')  // "200G"
+ *
+ * @param {Number} size    文件大小数值
+ * @param {String} [baseUnit]  当前大小单位，默认为 B，值可为 B、K、M、G、T、P、E、Z、Y
+ * @returns {String} 转化后的文件大小和单位
+ */
+export const formatFileSize = (size, baseUnit = '') => {
+  if ([undefined, null].includes(size)) {
+    return ''
+  } else if (!isNumber(size) || size <= 0) {
+    return size + baseUnit
+  }
+
+  const unitArr = ['B', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y']
+  let unitIndex = Math.max(unitArr.indexOf((baseUnit + '').toLocaleUpperCase()), 0)
+
+  while (size >= 1024 && unitIndex < unitArr.length - 1) {
+    size = size / 1024.0
+    unitIndex++
+  }
+
+  while (size < 1 && unitIndex > 0) {
+    size = size * 1024
+    unitIndex--
+  }
+
+  return parseFloat(toDecimal(size, 2, true)) + unitArr[unitIndex]
+}
+
+/**
  * 检查文本中是否包含韩文
  * @param {String} text
  */

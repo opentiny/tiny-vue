@@ -11,7 +11,7 @@
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import type { IPopoverApi } from '@opentiny/vue-renderless/types/popover.type'
-import template from 'virtual-template?pc|mobile=pc|mobile-first'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 export const popoverProps = {
   ...$props,

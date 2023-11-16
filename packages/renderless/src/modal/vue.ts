@@ -35,7 +35,8 @@ import {
   cancelEvent,
   open,
   resetDragStyle,
-  computedBoxStyle
+  computedBoxStyle,
+  handleHashChange
 } from './index'
 import type { IModalApi, IModalProps, IModalRenderlessParamUtils, ISharedRenderlessParamHooks } from '@/types'
 
@@ -102,6 +103,7 @@ export const renderless = (
     removeMsgQueue: removeMsgQueue({ api, parent }),
     close: close({ emit, parent, props, state }),
     handleGlobalKeydownEvent: handleGlobalKeydownEvent(api),
+    handleHashChange: handleHashChange(api),
     maximize: maximize({ api, nextTick, props, state, isMobileFirstMode }),
     revert: revert({ api, nextTick, state, isMobileFirstMode }),
     toggleZoomEvent: toggleZoomEvent({ api, emit, parent, state, isMobileFirstMode }),

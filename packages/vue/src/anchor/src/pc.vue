@@ -1,28 +1,11 @@
 <script lang="tsx">
-import { setup, $prefix, defineComponent } from '@opentiny/vue-common'
+import { props, setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/anchor/vue'
 import type { IAnchorApi } from '@opentiny/vue-renderless/types/anchor.type'
 
 export default defineComponent({
   name: $prefix + 'Anchor',
-  props: {
-    isAffix: {
-      type: Boolean,
-      default: false
-    },
-    links: {
-      type: Array,
-      default: () => []
-    },
-    containerId: {
-      type: String,
-      default: ''
-    },
-    markClass: {
-      type: String,
-      default: ''
-    }
-  },
+  props: [...props, 'isAffix', 'links', 'containerId', 'markClass', 'type'],
   emits: ['linkClick', 'onChange'],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IAnchorApi
@@ -32,7 +15,8 @@ export default defineComponent({
       isAffix,
       links,
       linkClick,
-      state: { currentLink }
+      state: { currentLink },
+      type
     } = this
     const anchorClass = 'tiny-anchor'
 
@@ -53,13 +37,21 @@ export default defineComponent({
           ))
         : null
 
+    const renderMask = <div class={`${anchorClass}-link-mask`} ref="maskRef"></div>
+
+    const renderOrbit = (
+      <div class={`${anchorClass}-orbit`}>
+        <div class={`${anchorClass}-orbit-skid`} ref="skidRef"></div>
+      </div>
+    )
+
     return (
-      <div class={[isAffix ? `${anchorClass}__affix` : '', `${anchorClass}__wrapper`]} ref="anchorWrapRef">
+      <div
+        class={[isAffix ? `${anchorClass}__affix` : '', `${anchorClass}__wrapper`, `tiny-anchor__${type}`]}
+        ref="anchorWrapRef">
         <div class={anchorClass} ref="anchorRef">
-          <div class={`${anchorClass}-link-mask`} ref="maskRef"></div>
-          <div class={`${anchorClass}-orbit`}>
-            <div class={`${anchorClass}-orbit-skid`} ref="skidRef"></div>
-          </div>
+          {type === 'line' && renderMask}
+          {type === 'line' && renderOrbit}
           {links && renderLinks(links)}
         </div>
       </div>

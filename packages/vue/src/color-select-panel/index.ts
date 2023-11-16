@@ -1,6 +1,5 @@
 import ColorSelectPanel from './src/index'
-import '@opentiny/vue-theme/color-select-panel/index.less'
-import {version} from './package.json';
+import { version } from './package.json'
 
 ColorSelectPanel.model = {
   prop: 'modelValue',

@@ -127,7 +127,7 @@
 
       .@{modal-prefix-cls}__header {
         @apply text-sm;
-        padding: 6px 30px 8px 14px;
+        @apply pt-6 px-6 pb-0;
       }
 
       .@{modal-prefix-cls}__zoom-btn,
@@ -167,17 +167,29 @@
             @apply overflow-hidden;
             @apply invisible;
           }
-        }
 
-        .@{modal-prefix-cls}__content {
-          max-width: 800px;
-          @apply float-left;
-        }
-      }
+          .@{modal-prefix-cls}__status-wrapper {
+            @apply text-base;
+            @apply ~'pr-2.5';
+          }
 
-      .@{modal-prefix-cls}__status-wrapper {
-        @apply text-base;
-        @apply ~'pr-2.5';
+          .@{modal-prefix-cls}__content {
+            max-width: 800px;
+            @apply float-left;
+          }
+
+          .@{modal-prefix-cls}__close-wrapper {
+            @apply flex;
+            @apply items-center;
+            @apply ml-3;
+
+            .@{modal-prefix-cls}__close-btn {
+              @apply relative;
+              @apply right-0;
+              @apply top-0;
+            }
+          }
+        }
       }
     }
 
@@ -281,7 +293,7 @@
   }
 
   &__box {
-    width: 420px;
+    @apply w-108;
     @apply bg-color-bg-1;
     @apply border-none;
     @apply rounded;
@@ -312,13 +324,6 @@
         .@{modal-prefix-cls}__content {
           @apply overflow-hidden;
         }
-      }
-    }
-
-    .@{modal-prefix-cls}__body {
-      .@{modal-prefix-cls}__content {
-        @apply flex;
-        @apply items-center;
       }
     }
   }
@@ -402,8 +407,6 @@
   }
 
   &__resize {
-    @SpaceSize: 8px;
-
     .wl-resize,
     .wr-resize,
     .swst-resize,
@@ -418,37 +421,37 @@
 
     .wl-resize,
     .wr-resize {
-      width: @SpaceSize;
+      @apply w-2;
       @apply h-full;
       @apply top-0;
       @apply cursor-w-resize;
     }
 
     .wl-resize {
-      left: -@SpaceSize / 2 + 1;
+      left: calc(-1 * theme('spacing.2') / 2 + theme('spacing.px'));
     }
 
     .wr-resize {
-      right: -@SpaceSize / 2 + 1;
+      right: calc(-1 * theme('spacing.2') / 2 + theme('spacing.px'));
     }
 
     .swst-resize,
     .sest-resize,
     .swlb-resize,
     .selb-resize {
-      width: @SpaceSize + 2;
-      height: @SpaceSize + 2;
+      @apply ~"w-2.5";
+      @apply ~"h-2.5";
       @apply ~'z-[101]';
     }
 
     .swst-resize,
     .sest-resize {
-      top: -@SpaceSize;
+      @apply -top-2;
     }
 
     .swlb-resize,
     .selb-resize {
-      bottom: -@SpaceSize;
+      @apply -bottom-2;
     }
 
     .sest-resize,
@@ -463,28 +466,28 @@
 
     .swst-resize,
     .swlb-resize {
-      left: -@SpaceSize;
+      @apply -left-2;
     }
 
     .sest-resize,
     .selb-resize {
-      right: -@SpaceSize;
+      @apply -right-2;
     }
 
     .st-resize,
     .sb-resize {
       @apply w-full;
-      height: @SpaceSize;
+      @apply h-2;
       @apply left-0;
       @apply cursor-s-resize;
     }
 
     .st-resize {
-      top: -@SpaceSize / 2 + 1;
+      top: calc(-1 * theme('spacing.2') / 2 + theme('spacing.px'));
     }
 
     .sb-resize {
-      bottom: -@SpaceSize / 2 + 1;
+      bottom: calc(-1 * theme('spacing.2') / 2 + theme('spacing.px'));
     }
   }
 }

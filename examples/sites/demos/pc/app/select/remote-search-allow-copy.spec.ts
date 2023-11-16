@@ -1,0 +1,27 @@
+import { test, expect } from '@playwright/test'
+
+test('remote-search-allow-copy', async ({ page }) => {
+  await page.goto('select#remote-search-allow-copy')
+  const input = page.locator('#preview .tiny-input__inner')
+  const options = page.locator('.tiny-select-dropdown').locator('.tiny-option')
+
+  input.press('a')
+  await page.waitForTimeout(1000)
+  await options.filter({ hasText: 'Alaska' }).click()
+  await expect(input).toHaveValue('Alaska')
+  await page.mouse.move(340, 356)
+  await page.waitForTimeout(1000)
+  await page.mouse.down()
+  await page.waitForTimeout(1000)
+  await page.mouse.move(278, 356)
+  await page.waitForTimeout(200)
+  await page.mouse.up()
+  await expect(page.locator('.tiny-select-dropdown')).toBeHidden()
+  await page.keyboard.press('Control+C')
+  const valueInput = page.locator('.custom')
+  await expect(valueInput).toHaveValue('')
+  await valueInput.focus()
+  await page.keyboard.press('Control+V')
+  await page.waitForTimeout(200)
+  await expect(valueInput).toHaveValue('Alaska')
+})

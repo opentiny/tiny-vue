@@ -1,0 +1,32 @@
+<template>
+  <tiny-time-line :data="data" :active="normalActive" @click="normalClick"></tiny-time-line>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { TimeLine as TinyTimeLine, Modal } from '@opentiny/vue'
+
+const normalActive = ref(0)
+const data = ref([
+  {
+    name: 'Basic Info.'
+  },
+  {
+    name: 'BOQ Info'
+  },
+  {
+    name: 'Involved Parties',
+    error: true
+  },
+  {
+    name: 'Billing',
+    disabled: true
+  }
+])
+
+function normalClick(index, node) {
+  normalActive.value = index
+
+  Modal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
+}
+</script>

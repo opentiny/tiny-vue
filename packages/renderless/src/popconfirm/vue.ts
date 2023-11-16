@@ -1,8 +1,8 @@
-import { show, hide, confirm } from './index'
+import { show, hide, confirm, handleEmit } from './index'
 
-export const api = ['state', 'show', 'hide', 'confirm']
+export const api = ['state', 'show', 'hide', 'confirm', 'handleEmit']
 
-export const renderless = (props, { computed, reactive }, { emit, constants, designConfig }) => {
+export const renderless = (props, { computed, reactive }, { emit, constants, designConfig, vm }) => {
   const api = {}
   const designIcon = designConfig?.icons?.[props.type]
   const state = reactive({
@@ -17,7 +17,8 @@ export const renderless = (props, { computed, reactive }, { emit, constants, des
     state,
     show: show({ state, emit, props }),
     hide: hide({ state, emit }),
-    confirm: confirm({ state, emit })
+    confirm: confirm({ state, emit }),
+    handleEmit: handleEmit({ state, emit, vm })
   })
 
   return api

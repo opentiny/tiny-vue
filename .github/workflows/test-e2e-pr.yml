@@ -1,0 +1,84 @@
+name: E2E Test PR
+run-name: E2E Test PR--${{ github.event.pull_request.title }}
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, edited]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  parse-components:
+    name: Parse Affected Components
+    runs-on: ubuntu-latest
+    outputs:
+      testComponents: ${{ steps.parseTitle.outputs.testComponents }}
+    steps:
+      - name: Parse Title
+        id: parseTitle
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prTitle = context.payload.pull_request.title
+            const regex = /\[(.*?)\]/
+            const matches = prTitle.match(regex)
+            if (matches && matches.length > 1 && matches[1]) {
+              let components = matches[1].split(',').map(c => c.trim()).filter(c => /^[a-z\-]+$/.test(c)).map(c => `${c}/`)
+              components = [...new Set(components)].slice(0, 3).join(' ')
+              core.setOutput('testComponents', components)
+            } else {
+              const warningString =`
+              The component to be tested is missing.
+
+              The title of the Pull request should look like "fix(vue-renderless): [action-menu, alert] fix xxx bug".
+              
+              Please make sure you've read our [contributing guide](https://github.com/opentiny/tiny-vue/blob/dev/CONTRIBUTING.md)
+              `
+              core.warning(warningString)
+            }
+  pr-test:
+    if: ${{ needs.parse-components.outputs.testComponents }}
+    name: PR E2E Test
+    needs: parse-components
+    runs-on: ubuntu-latest
+    env:
+      TEST_COMPONENTS: ${{ needs.parse-components.outputs.testComponents }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Cache Playwright Installation
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm i --no-frozen-lockfile
+
+      - name: dev start
+        run: pnpm dev & sleep 5
+
+      - name: Install Playwright browsers
+        run: pnpm install:browser --with-deps chromium
+
+      - name: E2E Test
+        run: pnpm test:e2e3 ${{ env.TEST_COMPONENTS }} --reporter=line

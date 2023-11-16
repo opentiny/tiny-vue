@@ -27,6 +27,10 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    displayOnly: {
+      type: Boolean,
+      default: false
+    },
     valueSplit: {
       type: String,
       default: ','
