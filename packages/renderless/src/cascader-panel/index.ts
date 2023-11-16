@@ -329,10 +329,10 @@ export const getCheckedNodes =
       }
       for (let i = 0; i < checkedValue.length; i++) {
         if (Array.isArray(checkedValue[i]) ) {
-          if(checkedValue[i].length){
+          if (checkedValue[i].length) {
             flag = checkedValue[i][checkedValue[i].length - 1] === str
           }
-        }else{
+        } else {
           flag = checkedValue[i] === str
         }
 
