@@ -174,13 +174,6 @@ export default {
           'demoId': 'content'
         },
         {
-          'name': 'append-to-body',
-          'type': 'boolean',
-          'defaultValue': ' true',
-          'desc': { 'zh-CN': '是否将弹出层的元素添加到body上', 'en-US': 'Whether to append to body' },
-          'demoId': ''
-        },
-        {
           'name': 'placement',
           'type': 'string',
           'defaultValue': ' bottom',
@@ -305,6 +298,13 @@ export default {
             'en-US': 'Add a class name to the pop-up layer of Tooltip'
           },
           'demoId': 'custom-popper'
+        },
+        {
+          'name': 'append-to-body',
+          'type': 'boolean',
+          'defaultValue': ' true',
+          'desc': { 'zh-CN': '是否将弹出层的元素添加到body上', 'en-US': 'Whether to append to body' },
+          'demoId': ''
         },
         {
           'name': 'transition',
