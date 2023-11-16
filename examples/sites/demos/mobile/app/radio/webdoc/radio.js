@@ -13,42 +13,6 @@ export default {
         'en-US': '<p>button type</p>'
       },
       codeFiles: ['base.vue']
-    },
-    {
-      demoId: 'border',
-      name: {
-        'zh-CN': '显示边框',
-        'en-US': 'button type'
-      },
-      desc: {
-        'zh-CN': '<p>显示边框</p>',
-        'en-US': '<p>button type</p>'
-      },
-      codeFiles: ['border.vue']
-    },
-    {
-      demoId: 'disabled',
-      name: {
-        'zh-CN': '是否禁用',
-        'en-US': 'button round'
-      },
-      desc: {
-        'zh-CN': '<p>是否禁用</p>',
-        'en-US': '<p>button round</p>'
-      },
-      codeFiles: ['disabled.vue']
-    },
-    {
-      demoId: 'event-change',
-      name: {
-        'zh-CN': '值改变事件',
-        'en-US': 'events'
-      },
-      desc: {
-        'zh-CN': '<p>值改变事件</p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['event-change.vue']
     }
   ],
   apis: [
@@ -65,16 +29,6 @@ export default {
             'en-US': 'display different button'
           },
           demoId: 'disabled'
-        },
-        {
-          name: 'border',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '<p>是否显示边框</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'border'
         },
         {
           name: 'label',

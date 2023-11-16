@@ -1,87 +1,29 @@
 <template>
   <div class="demo">
-    <p class="demo-title">勾选-单选</p>
-    <div>
-      <tiny-list
-        class="demo-list"
-        v-for="item of dataList"
-        :key="item.id"
-        :id="item.id"
-        :content="item.content"
-        :sub-text="item.subtext"
-        @click="clickFn"
-      >
-        <template #suffix>
-          <tiny-radio v-model="value1" :label="item.id"></tiny-radio>
-        </template>
-      </tiny-list>
-    </div>
-    <div class="withlist">
-      <tiny-list
-        class="demo-list"
-        v-for="item of dataList1"
-        :key="item.id"
-        :id="item.id"
-        :content="item.content"
-        :sub-text="item.subtext"
-        :content-des="item.contentdes"
-        @click="clickFn"
-      >
-        <template #suffix>
-          <tiny-radio v-model="value1" :label="item.id"></tiny-radio>
-        </template>
-      </tiny-list>
-    </div>
+    <p>默认</p>
+    <tiny-radio v-model="value" label="1" @change="changeAction">男</tiny-radio>
+    <tiny-radio v-model="value" label="2" @change="changeAction">女</tiny-radio>
+    <p>禁用</p>
+    <tiny-radio v-model="value" label="1" disabled>我同意</tiny-radio>
+    <tiny-radio v-model="value" label="2" disabled>我拒绝</tiny-radio>
   </div>
 </template>
 
 <script lang="jsx">
-import { Radio, List } from '@opentiny/vue'
+import { Radio } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRadio: Radio,
-    TinyList: List
+    TinyRadio: Radio
   },
   data() {
     return {
-      value1: '1',
-      value2: '1',
-      dataList: [
-        {
-          id: '1',
-          content: '主文本1',
-          subtext: '次文本1',
-          contentdes: '这是描述文本1'
-        },
-        {
-          id: '2',
-          content: '主文本2',
-          subtext: '次文本2',
-          contentdes: '这是描述文本2'
-        }
-      ],
-      dataList1: [
-        {
-          id: '1',
-          content: '主文本1',
-          subtext: '',
-          contentdes: '这是描述文本1'
-        },
-        {
-          id: '2',
-          content: '主文本2',
-          subtext: '',
-          contentdes: '这是描述文本2'
-        }
-      ]
+      value: '1'
     }
   },
   methods: {
-    clickFn(list) {
-      if (list.id) {
-        this.value1 = list.id
-      }
+    changeAction(value) {
+      console.log(value)
     }
   }
 }
@@ -89,7 +31,6 @@ export default {
 
 <style>
 .demo {
-  background: #eeeeee;
   height: 100%;
   overflow-y: scroll;
 }
@@ -120,8 +61,5 @@ export default {
   font-size: 12px;
   line-height: 1.6;
   text-align: justify;
-}
-.demo .tiny-mobile-radio__label {
-  display: none;
 }
 </style>
