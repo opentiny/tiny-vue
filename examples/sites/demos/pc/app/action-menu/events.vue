@@ -1,8 +1,15 @@
 <template>
-  <tiny-action-menu :options="options" @item-click="itemClick"> </tiny-action-menu>
+  <tiny-action-menu
+    :options="options"
+    trigger="click"
+    @item-click="itemClick"
+    @more-click="moreClick"
+    @visible-change="visibleChange"
+  >
+  </tiny-action-menu>
 </template>
 
-<script lang="jsx">
+<script>
 import { ActionMenu, Notify } from '@opentiny/vue'
 
 export default {
@@ -33,8 +40,23 @@ export default {
   },
   methods: {
     itemClick(data) {
+      console.log(data)
       Notify({
         message: JSON.stringify(data.itemData),
+        position: 'top-right',
+        duration: 2000
+      })
+    },
+    visibleChange(status) {
+      Notify({
+        message: `触发 visible-change 事件,下拉状态为 ${status}`,
+        position: 'top-right',
+        duration: 2000
+      })
+    },
+    moreClick() {
+      Notify({
+        message: '触发 moreClick 事件',
         position: 'top-right',
         duration: 2000
       })

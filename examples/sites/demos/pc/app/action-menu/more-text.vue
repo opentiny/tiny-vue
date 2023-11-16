@@ -2,7 +2,7 @@
   <tiny-action-menu :options="options" more-text="自定义下拉文本"> </tiny-action-menu>
 </template>
 
-<script lang="jsx">
+<script>
 import { ActionMenu } from '@opentiny/vue'
 
 export default {
