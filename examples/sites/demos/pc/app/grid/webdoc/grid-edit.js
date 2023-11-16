@@ -58,7 +58,7 @@ export default {
       'codeFiles': ['edit/custom-editing.vue']
     },
     {
-      'demoId': 'edit-editor-is-salid-always',
+      'demoId': 'edit-editor-is-valid-always',
       'name': { 'zh-CN': '自定义编辑校验规则', 'en-US': 'Customized Editing Verification Rule' },
       'desc': {
         'zh-CN':
@@ -66,7 +66,7 @@ export default {
         'en-US':
           '<p>Table attribute setting<code>edit-config</code>Enable the editing mode and configure the <code>edit-rules</code> object to set the validation object and validation rule. Set <code>isValidAlways</code> in the <code>editor</code> object to enable real-time editing verification. </p>\n'
       },
-      'codeFiles': ['edit/editor-is-salid-always.vue']
+      'codeFiles': ['edit/editor-is-valid-always.vue']
     },
     {
       'demoId': 'edit-status-of-editing',
