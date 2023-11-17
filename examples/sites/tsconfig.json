@@ -24,7 +24,8 @@
     "demos/**/*.d.ts",
     "demos/**/*.tsx",
     "demos/**/*.vue",
-    "demos/pc/app/grid/event/toolbar-button-click-event.spec.js"
+    "demos/pc/app/grid/event/toolbar-button-click-event.spec.js",
+    "demos/pc/app/grid/slot/editor-slot.spec.js"
   ],
   "references": [
     {
