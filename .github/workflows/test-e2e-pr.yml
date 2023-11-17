@@ -82,3 +82,9 @@ jobs:
 
       - name: E2E Test
         run: pnpm test:e2e3 ${{ env.TEST_COMPONENTS }} --reporter=line --retries=0 --workers=2
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
