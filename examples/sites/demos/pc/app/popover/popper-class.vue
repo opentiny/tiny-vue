@@ -43,7 +43,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .demo-popover-class1 {
   background: #eee !important;
 }

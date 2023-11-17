@@ -34,7 +34,7 @@ import { Popover as TinyPopover, Button as TinyButton } from '@opentiny/vue'
 const visible = ref(false)
 </script>
 
-<style>
+<style scoped>
 .demo-popover-class1 {
   background: #eee !important;
 }

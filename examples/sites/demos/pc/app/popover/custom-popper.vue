@@ -1,0 +1,62 @@
+<template>
+  <div>
+    <tiny-popover placement="left" title="标题" width="200" trigger="hover" content="我是一段内容">
+      <template #reference>
+        <tiny-button style="margin-left: 16px">左侧位置弹出</tiny-button>
+      </template>
+    </tiny-popover>
+
+    <tiny-popover
+      placement="top-start"
+      title="标题"
+      width="200"
+      trigger="hover"
+      :visible-arrow="false"
+      content="我是一段内容"
+    >
+      <template #reference>
+        <tiny-button style="margin-left: 16px">没有弹窗小箭头</tiny-button>
+      </template>
+    </tiny-popover>
+
+    <tiny-popover
+      placement="right"
+      title="标题"
+      width="200"
+      trigger="hover"
+      content="我是一段内容"
+      popper-class="custom-popover-demo-cls"
+    >
+      <template #reference>
+        <tiny-button style="margin-left: 16px">覆盖字体样式</tiny-button>
+      </template>
+    </tiny-popover>
+  </div>
+</template>
+
+<script lang="jsx">
+import { Popover, Button } from '@opentiny/vue'
+
+export default {
+  components: {
+    TinyPopover: Popover,
+    TinyButton: Button
+  },
+  data() {
+    return {}
+  }
+}
+</script>
+
+<style>
+/** 自定义弹出层的样式
+    由于弹出层是添加在body之上的，所以必须写全局的css样式类名 */
+.custom-popover-demo-cls {
+  font-size: 16px !important;
+  font-style: italic;
+}
+.custom-popover-demo-cls .tiny-popover__title {
+  font-size: 20px !important;
+  font-weight: bolder !important;
+}
+</style>
