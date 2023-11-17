@@ -1,41 +1,44 @@
-&fade-in-linear-enter-active,
-&fade-in-linear-leave-active {
+/** 全局的动画，在collapse / picker / tooltip / popover 等组件有用到 
+vue2的动画状态类：  v-enter       v-enter-to  v-leave      v-leave-to 以及 v-enter-active, v-leave-active
+vue3的动画状态类：  v-enter-from  v-enter-to  v-leave-from v-leave-to 以及 v-enter-active, v-leave-active
+*/
+
+.fade-in-linear-enter-active,
+.fade-in-linear-leave-active {
   transition: opacity 0.2s linear;
 }
 
-&fade-in-linear-enter,
-&fade-in-linear-enter-from,
-&fade-in-linear-leave,
-&fade-in-linear-leave-from,
-&fade-in-linear-leave-active {
+.fade-in-linear-enter,
+.fade-in-linear-enter-from,
+.fade-in-linear-leave-to {
   opacity: 0;
 }
 
-&fade-in-enter-active,
-&fade-in-leave-active {
+.fade-in-enter-active,
+.fade-in-leave-active {
   transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
-&fade-in-enter,
-&fade-in-enter-from,
-&fade-in-leave-active {
+.fade-in-enter,
+.fade-in-enter-from,
+.fade-in-leave-to {
   opacity: 0;
 }
 
-&zoom-in-center-enter-active,
-&zoom-in-center-leave-active {
+.zoom-in-center-enter-active,
+.zoom-in-center-leave-active {
   transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
-&zoom-in-center-enter,
-&zoom-in-center-enter-from,
-&zoom-in-center-leave-active {
+.zoom-in-center-enter,
+.zoom-in-center-enter-from,
+.zoom-in-center-leave-to {
   opacity: 0;
   transform: scaleX(0);
 }
 
-&zoom-in-top-enter-active,
-&zoom-in-top-leave-active {
+.zoom-in-top-enter-active,
+.zoom-in-top-leave-active {
   opacity: 1;
   transform: scaleY(1);
   transition:
@@ -44,15 +47,15 @@
   transform-origin: center top;
 }
 
-&zoom-in-top-enter,
-&zoom-in-top-enter-from,
-&zoom-in-top-leave-active {
+.zoom-in-top-enter,
+.zoom-in-top-enter-from,
+.zoom-in-top-leave-to {
   opacity: 0;
   transform: scaleY(0);
 }
 
-&zoom-in-bottom-enter-active,
-&zoom-in-bottom-leave-active {
+.zoom-in-bottom-enter-active,
+.zoom-in-bottom-leave-active {
   opacity: 1;
   transform: scaleY(1);
   transition:
@@ -61,15 +64,15 @@
   transform-origin: center bottom;
 }
 
-&zoom-in-bottom-enter,
-&zoom-in-left-enter-from,
-&zoom-in-bottom-leave-active {
+.zoom-in-bottom-enter,
+.zoom-in-bottom-enter-from,
+.zoom-in-bottom-leave-to {
   opacity: 0;
   transform: scaleY(0);
 }
 
-&zoom-in-left-enter-active,
-&zoom-in-left-leave-active {
+.zoom-in-left-enter-active,
+.zoom-in-left-leave-active {
   opacity: 1;
   transform: scale(1, 1);
   transition:
@@ -78,26 +81,26 @@
   transform-origin: top left;
 }
 
-&zoom-in-left-enter,
-&zoom-in-left-enter-from,
-&zoom-in-left-leave-active {
+.zoom-in-left-enter,
+.zoom-in-left-enter-from,
+.zoom-in-left-leave-to {
   opacity: 0;
   transform: scale(0.45, 0.45);
 }
 
-&list-enter-active,
-&list-leave-active {
+.list-enter-active,
+.list-leave-active {
   transition: all 1s;
 }
 
-&list-enter,
-&list-enter-from,
-&list-leave-active {
+.list-enter,
+.list-enter-from,
+.list-leave-to {
   opacity: 0;
   transform: translateY(-30px);
 }
 
-&opacity-transition {
+.opacity-transition {
   transition: opacity 0.3s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
