@@ -1,30 +1,30 @@
 <template>
   <div>
-    <tiny-popconfirm :title="title" type="info" trigger="click">
+    <tiny-popconfirm :title="title" type="info">
       <template #reference>
         <tiny-button>info</tiny-button>
       </template>
     </tiny-popconfirm>
 
-    <tiny-popconfirm :title="title" type="error" trigger="click">
+    <tiny-popconfirm :title="title" type="error">
       <template #reference>
         <tiny-button>error</tiny-button>
       </template>
     </tiny-popconfirm>
 
-    <tiny-popconfirm :title="title" type="warning" trigger="click">
+    <tiny-popconfirm :title="title" type="warning">
       <template #reference>
         <tiny-button>warning</tiny-button>
       </template>
     </tiny-popconfirm>
 
-    <tiny-popconfirm :title="title" type="success" trigger="click">
+    <tiny-popconfirm :title="title" type="success">
       <template #reference>
         <tiny-button>success</tiny-button>
       </template>
     </tiny-popconfirm>
 
-    <tiny-popconfirm :title="title" :type="TinyIconDel" trigger="click">
+    <tiny-popconfirm :title="title" :type="TinyIconDel">
       <template #reference>
         <tiny-button>自定义</tiny-button>
       </template>

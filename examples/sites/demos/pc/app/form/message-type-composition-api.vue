@@ -1,16 +1,23 @@
 <template>
-  <div class="demo-form-valid-text">
+  <div class="demo-form">
     <div class="title">
-      <div>提示形式：<tiny-button-group :data="validTypeList" v-model="validType"></tiny-button-group></div>
+      <div>错误文本类型：<tiny-button-group :data="messageTypeList" v-model="messageType"></tiny-button-group></div>
     </div>
-    <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" :validate-type="validType">
+    <tiny-form
+      ref="ruleFormRef"
+      :model="createData"
+      :rules="rules"
+      label-width="60px"
+      validate-type="text"
+      :message-type="messageType"
+    >
       <tiny-form-item label="必填" prop="users">
         <tiny-input v-model="createData.users"></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="日期" prop="datepicker">
         <tiny-date-picker v-model="createData.datepicker"></tiny-date-picker>
       </tiny-form-item>
-      <tiny-form-item label="邮件" prop="email" :validate-type="validType">
+      <tiny-form-item label="邮件" prop="email">
         <tiny-input v-model="createData.email"></tiny-input>
       </tiny-form-item>
       <tiny-form-item>
@@ -38,14 +45,17 @@ const createData = ref({
   email: '',
   datepicker: ''
 })
-const validType = ref('text')
-const validTypeList = ref([
-  { text: 'tip', value: 'tip' },
-  { text: 'text', value: 'text' }
+
+const messageType = ref('')
+
+const messageTypeList = ref([
+  { text: '默认', value: '' },
+  { text: '行内', value: 'inline' },
+  { text: '块级', value: 'block' }
 ])
 const rules = ref({
   users: { required: true, message: '必填', trigger: 'blur' },
-  datepicker: { required: true, type: 'date' },
+  datepicker: { required: true, type: 'date', message: '必填' },
   email: { required: true, type: 'email' }
 })
 
@@ -55,8 +65,17 @@ function handleSubmit() {
 </script>
 
 <style scoped>
-.demo-form-valid-text {
+.demo-form {
   width: 380px;
+}
+
+.demo-form :deep(.tiny-date-container) {
+  width: 280px;
+  display: inline-block;
+}
+
+.demo-form :deep(.tiny-input) {
+  width: 280px;
 }
 
 .title {

@@ -1,8 +1,6 @@
 <template>
-  <div style="width: 480px">
-    <h3 style="margin-bottom: 16px; margin-left: 100px">
-      是否禁用表单：<tiny-switch v-model="formDisabled"></tiny-switch>
-    </h3>
+  <div class="demo-form">
+    <h3 class="title">是否禁用表单：<tiny-switch v-model="formDisabled"></tiny-switch></h3>
     <tiny-form :disabled="formDisabled" label-width="150px">
       <tiny-form-item label="Input">
         <tiny-input v-model="createData.user"></tiny-input>
@@ -119,7 +117,7 @@ import {
 const createData = reactive({
   checked: false,
   checked2: true,
-  quantity: '',
+  quantity: 0,
   sw: false,
   sex: '1',
   datepicker: '',
@@ -262,3 +260,15 @@ function createFilter(queryString) {
   return (restaurant) => restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
 }
 </script>
+
+<style scoped>
+.demo-form {
+  width: 480px;
+}
+
+.title {
+  margin-bottom: 30px;
+  margin-left: 100px;
+  font-size: 14px;
+}
+</style>

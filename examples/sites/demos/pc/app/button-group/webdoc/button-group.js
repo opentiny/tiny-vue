@@ -7,9 +7,9 @@ export default {
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>data</code> 设置按钮组数据，类型为<a href="#IButtonGroupData">IButtonGroupData</a>，通过 <code>v-model</code> 设置绑定值。</p>',
+          '<p>通过 <code>data</code> 设置按钮组数据，类型为 <a href="#IButtonGroupData">IButtonGroupData</a> ，通过 <code>v-model</code> 设置绑定值。</p>',
         'en-US':
-          '<p>Set the button group data to type<a="# IButtonGroupData">IButtonGroupData</a>through <code>data</code> , and set the binding value through <code>v model</code> .</p>'
+          '<p>Set the button group data to type <a="# IButtonGroupData">IButtonGroupData</a> through <code>data</code> , and set the binding value through <code>v model</code> .</p>'
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -18,7 +18,7 @@ export default {
       'name': { 'zh-CN': '设置组件尺寸大小', 'en-US': 'Set Component Size' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>size</code> 设置尺寸大小，可选值为： <code>medium</code> ， <code>small</code> ， <code>mini</code> 。</p>',
+          '<p>通过 <code>size</code> 设置尺寸大小，可选值有 <code>medium</code> 、<code>small</code> 、<code>mini</code> 。</p>',
         'en-US':
           '<p>Set the size through <code>size</code> . The optional values are: <code>medium</code> , <code>small</code> , <code>mini</code> .</p>'
       },
@@ -49,7 +49,7 @@ export default {
       'name': { 'zh-CN': '数据字段映射', 'en-US': 'Data Field Mapping' },
       'desc': {
         'zh-CN':
-          '<p>若按钮组数据对象中的字段不是默认的 text 和 value ，则可通过 <code>text-field</code> 、 <code>value-field</code> 属性进行映射。</p>',
+          '<p>若按钮组数据对象中的字段不是默认的 <code>text</code> 和 <code>value</code> ，则可通过 <code>text-field</code> 、<code>value-field</code> 属性进行映射。</p>',
         'en-US':
           '<p>If the fields in the button group data object are not the default text and value, the <code>text-field</code> and <code>value-field</code> attributes can be used for mapping. </p>'
       },
@@ -77,20 +77,11 @@ export default {
       'codeFiles': ['show-edit.vue']
     },
     {
-      'demoId': 'change-event',
-      'name': { 'zh-CN': 'change事件', 'en-US': 'Change Event' },
-      'desc': {
-        'zh-CN': '<p>当选中按钮发生改变时触发 <code>change</code> 事件。</p>',
-        'en-US': '<p>The <code>change</code> event is triggered when the selected button is changed. </p>'
-      },
-      'codeFiles': ['change-event.vue']
-    },
-    {
       'demoId': 'slot-default',
       'name': { 'zh-CN': '默认插槽', 'en-US': 'Default slot' },
       'desc': {
         'zh-CN':
-          '<p>使用默认插槽自定义按钮组，使用默认插槽后， <code>button-group</code> 的 <code>data、text-field、value-field、value / v-model、size</code> 属性对插槽中的按钮将不再生效。</p>',
+          '<p>使用默认插槽自定义按钮组，使用默认插槽后， <code>button-group</code> 的 <code>data</code> 、<code>text-field</code> 、<code>value-field</code> 、<code>value / v-model</code> 、<code>size</code> 属性对插槽中的按钮将不再生效。</p>',
         'en-US':
           '<p>When the default slot mode is used, the <code>data, text-field, value-field, v-model, and size</code> attributes of the ButtonGroup do not take effect for buttons in the slot. </p>'
       },
@@ -120,10 +111,19 @@ export default {
       'name': { 'zh-CN': '选块角标', 'en-US': '' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>data</code> 的 <code>sup</code> 属性配置选块角标。详见<a href="IButtonGroupData">IButtonGroupData</a></p>',
+          '<p>通过 <code>data</code> 的 <code>sup</code> 属性配置选块角标，详见 <a href="IButtonGroupData">IButtonGroupData</a> 。</p>',
         'en-US': ''
       },
       'codeFiles': ['sup.vue']
+    },
+    {
+      'demoId': 'change-event',
+      'name': { 'zh-CN': '事件', 'en-US': 'Change Event' },
+      'desc': {
+        'zh-CN': '<p>当选中按钮发生改变时触发 <code>change</code> 事件。</p>',
+        'en-US': '<p>The <code>change</code> event is triggered when the selected button is changed. </p>'
+      },
+      'codeFiles': ['change-event.vue']
     }
   ],
   apis: [
@@ -145,7 +145,7 @@ export default {
           'name': 'data',
           'type': 'IButtonGroupData[]',
           'typeAnchorName': 'IButtonGroupData',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '按钮组数据',
             'en-US': 'button group data'
@@ -157,7 +157,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '设置按钮组是否被禁用',
+            'zh-CN': '是否被禁用按钮组',
             'en-US': 'Sets whether the button group is disabled'
           },
           'demoId': 'disabled'
@@ -165,7 +165,7 @@ export default {
         {
           'name': 'modelValue / v-model',
           'type': 'number | string',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '默认选中按钮的值',
             'en-US': 'Default value of the selected button'
@@ -196,19 +196,19 @@ export default {
         {
           'name': 'show-more',
           'type': 'number',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置超过多少个显示更多按钮',
-            'en-US': 'Set the number of more buttons to be displayed'
+            'zh-CN': '当超过给定的按钮数量时显示更多按钮',
+            'en-US': 'Show more buttons when the given number of buttons is exceeded'
           },
           'demoId': 'show-more'
         },
         {
           'name': 'size',
           'type': 'string',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置组件大小',
+            'zh-CN': '按钮组尺寸大小',
             'en-US': 'Set the component size'
           },
           'demoId': 'size'
@@ -216,7 +216,7 @@ export default {
         {
           'name': 'text-field',
           'type': 'string',
-          'defaultValue': 'text',
+          'defaultValue': "'text'",
           'desc': {
             'zh-CN': '按钮显示文字的字段值',
             'en-US': 'Field value of the button displayed text'
@@ -226,9 +226,9 @@ export default {
         {
           'name': 'value-field',
           'type': 'string',
-          'defaultValue': 'value',
+          'defaultValue': "'value'",
           'desc': {
-            'zh-CN': '按钮值的字段值',
+            'zh-CN': '按钮选中值的字段值',
             'en-US': 'Field value of the button value'
           },
           'demoId': 'text-value-field'
@@ -238,9 +238,9 @@ export default {
         {
           'name': 'change',
           'type': '(value: string | number) => void',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '当选中按钮发生改变时触发的回调函数',
+            'zh-CN': '当选中按钮发生改变时触发',
             'en-US': 'Set the callback function triggered when the selected button is changed'
           },
           'demoId': 'change-event'
@@ -248,9 +248,9 @@ export default {
         {
           'name': 'edit',
           'type': '() => void',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '当编辑按钮被点击时触发的回调函数',
+            'zh-CN': '当编辑按钮被点击时触发',
             'en-US': 'Set the callback function triggered when the edit button is clicked'
           },
           'demoId': 'show-edit'
@@ -260,7 +260,7 @@ export default {
         {
           'name': 'default',
           'type': '',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '默认插槽，自定义按钮组内容',
             'en-US': 'button group content'
