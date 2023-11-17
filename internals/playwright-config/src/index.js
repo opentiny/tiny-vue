@@ -10,10 +10,10 @@ import { devices } from '@playwright/test'
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-const Config = ({ testDir, baseURL, storageState }) => ({
+const Config = ({ testDir, baseURL, storageState, webServer }) => ({
   testDir,
   /* 每个 test 用例最长时间。 */
-  timeout: 20 * 1000,
+  timeout: 30 * 1000,
   expect: {
     // 每个 expect() 用例最长时间。
     timeout: 10 * 1000
@@ -42,6 +42,7 @@ const Config = ({ testDir, baseURL, storageState }) => ({
     screenshot: 'only-on-failure',
     permissions: ['clipboard-read']
   },
+  webServer,
 
   projects: [
     {
