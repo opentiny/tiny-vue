@@ -1,5 +1,12 @@
 <template>
-  <tiny-search :search-types="searchTypes" @select="select"></tiny-search>
+  <div>
+    <p>搜索事件</p>
+    <tiny-search @search="search" is-enter-search></tiny-search>
+    <p>值变化事件</p>
+    <tiny-search @change="change" @input="input"></tiny-search>
+    <p>类型选中事件</p>
+    <tiny-search :search-types="searchTypes" @select="select"></tiny-search>
+  </div>
 </template>
 
 <script lang="jsx">
@@ -28,6 +35,15 @@ export default {
     }
   },
   methods: {
+    search(key, value) {
+      Modal.message(`${value}`)
+    },
+    change(key, value) {
+      Modal.message(`change: ${value}`)
+    },
+    input(key, value) {
+      Modal.message(`input: ${key}, ${JSON.stringify(value)}`)
+    },
     select(value) {
       Modal.message({ message: `${value.text}`, status: 'info' })
     }
