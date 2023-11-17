@@ -1,19 +1,22 @@
 <template>
-  <tiny-cascader-panel
-    v-model="value"
-    class="cascader-panel-demo"
-    :options="optionsCascader"
-    :props="{
-      children: 'children',
-      emitPath: true,
-      label: 'label',
-      value: 'value',
-      leaf: 'leaf'
-    }"
-  ></tiny-cascader-panel>
+  <div class="cascader-panel-demo">
+    <div>选中值：<span>{{ value }}</span></div>
+    <tiny-cascader-panel
+      v-model="value"
+      class="cascader-panel-demo"
+      :options="optionsCascader"
+      :props="{
+        children: 'children',
+        emitPath: false,
+        label: 'text',
+        value: 'id',
+        leaf: 'leaf'
+      }"
+    ></tiny-cascader-panel>
+  </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { CascaderPanel } from '@opentiny/vue'
 
 export default {
@@ -25,193 +28,193 @@ export default {
       value: '',
       optionsCascader: [
         {
-          value: 'zhinan',
-          label: '指南',
+          id: 'zhinan',
+          text: '指南',
           children: [
             {
-              value: 'anzhuang',
-              label: '安装',
+              id: 'anzhuang',
+              text: '安装',
               children: [
                 {
-                  value: 'xiangmudengji',
-                  label: '项目登记',
+                  id: 'xiangmudengji',
+                  text: '项目登记',
                   disabled: true
                 },
                 {
-                  value: 'huanjingzhunbei',
-                  label: '环境准备'
+                  id: 'huanjingzhunbei',
+                  text: '环境准备'
                 },
                 {
-                  value: 'anzhuangcli',
-                  label: '安装 CLI'
+                  id: 'anzhuangcli',
+                  text: '安装 CLI'
                 },
                 {
-                  value: 'chuangjianxiangmu',
-                  label: '创建项目'
+                  id: 'chuangjianxiangmu',
+                  text: '创建项目'
                 }
               ]
             },
             {
-              value: 'kaifa',
-              label: '开发',
+              id: 'kaifa',
+              text: '开发',
               children: [
                 {
-                  value: 'yinruzujian',
-                  label: '引入组件'
+                  id: 'yinruzujian',
+                  text: '引入组件'
                 },
                 {
-                  value: 'monishuju',
-                  label: '模拟数据'
+                  id: 'monishuju',
+                  text: '模拟数据'
                 }
               ]
             }
           ]
         },
         {
-          value: 'zujian',
-          label: '组件',
+          id: 'zujian',
+          text: '组件',
           children: [
             {
-              value: 'basic',
-              label: '框架风格',
+              id: 'basic',
+              text: '框架风格',
               children: [
                 {
-                  value: 'layout',
-                  label: 'Layout 布局'
+                  id: 'layout',
+                  text: 'Layout 布局'
                 },
                 {
-                  value: 'color',
-                  label: 'Color 色彩'
+                  id: 'color',
+                  text: 'Color 色彩'
                 },
                 {
-                  value: 'font',
-                  label: 'Font 字体'
+                  id: 'font',
+                  text: 'Font 字体'
                 },
                 {
-                  value: 'icon',
-                  label: 'Icon 图标'
+                  id: 'icon',
+                  text: 'Icon 图标'
                 }
               ]
             },
             {
-              value: 'form',
-              label: '表单组件',
+              id: 'form',
+              text: '表单组件',
               children: [
                 {
-                  value: 'radio',
-                  label: 'Radio 单选框'
+                  id: 'radio',
+                  text: 'Radio 单选框'
                 },
                 {
-                  value: 'checkbox',
-                  label: 'Checkbox 多选框'
+                  id: 'checkbox',
+                  text: 'Checkbox 多选框'
                 },
                 {
-                  value: 'input',
-                  label: 'Input 输入框'
+                  id: 'input',
+                  text: 'Input 输入框'
                 },
                 {
-                  value: 'number',
-                  label: 'Numeric 计数器'
+                  id: 'number',
+                  text: 'Numeric 计数器'
                 },
                 {
-                  value: 'select',
-                  label: 'Select 选择器'
+                  id: 'select',
+                  text: 'Select 选择器'
                 },
                 {
-                  value: 'cascader',
-                  label: 'Cascader 级联选择器'
+                  id: 'cascader',
+                  text: 'Cascader 级联选择器'
                 },
                 {
-                  value: 'switch',
-                  label: 'Switch 开关'
+                  id: 'switch',
+                  text: 'Switch 开关'
                 },
                 {
-                  value: 'slider',
-                  label: 'Slider 滑块'
+                  id: 'slider',
+                  text: 'Slider 滑块'
                 },
                 {
-                  value: 'time-picker',
-                  label: 'TimePicker 时间选择器'
+                  id: 'time-picker',
+                  text: 'TimePicker 时间选择器'
                 },
                 {
-                  value: 'date-picker',
-                  label: 'DatePicker 日期选择器'
+                  id: 'date-picker',
+                  text: 'DatePicker 日期选择器'
                 },
                 {
-                  value: 'form',
-                  label: 'Form 表单'
+                  id: 'form',
+                  text: 'Form 表单'
                 }
               ]
             },
             {
-              value: 'data',
-              label: '数据组件',
+              id: 'data',
+              text: '数据组件',
               children: [
                 {
-                  value: 'tree',
-                  label: 'Tree 树形控件'
+                  id: 'tree',
+                  text: 'Tree 树形控件'
                 },
                 {
-                  value: 'pager',
-                  label: 'Pager 分页'
+                  id: 'pager',
+                  text: 'Pager 分页'
                 }
               ]
             },
             {
-              value: 'notice',
-              label: '提示组件',
+              id: 'notice',
+              text: '提示组件',
               children: [
                 {
-                  value: 'alert',
-                  label: 'Alert 警告'
+                  id: 'alert',
+                  text: 'Alert 警告'
                 },
                 {
-                  value: 'loading',
-                  label: 'Loading 加载'
+                  id: 'loading',
+                  text: 'Loading 加载'
                 }
               ]
             },
             {
-              value: 'navigation',
-              label: '导航组件',
+              id: 'navigation',
+              text: '导航组件',
               children: [
                 {
-                  value: 'menu',
-                  label: 'NavMenu 导航菜单'
+                  id: 'menu',
+                  text: 'NavMenu 导航菜单'
                 },
                 {
-                  value: 'tabs',
-                  label: 'Tabs 标签页'
+                  id: 'tabs',
+                  text: 'Tabs 标签页'
                 },
                 {
-                  value: 'breadcrumb',
-                  label: 'Breadcrumb 面包屑'
+                  id: 'breadcrumb',
+                  text: 'Breadcrumb 面包屑'
                 },
                 {
-                  value: 'steps',
-                  label: 'Steps 步骤条'
+                  id: 'steps',
+                  text: 'Steps 步骤条'
                 }
               ]
             },
             {
-              value: 'others',
-              label: '其他组件',
+              id: 'others',
+              text: '其他组件',
               children: [
                 {
-                  value: 'rate',
-                  label: 'Rate 评分'
+                  id: 'rate',
+                  text: 'Rate 评分'
                 },
                 {
-                  value: 'tag',
-                  label: 'Tag 标签'
+                  id: 'tag',
+                  text: 'Tag 标签'
                 },
                 {
-                  value: 'usercontact',
-                  label: 'UserContact 联系人'
+                  id: 'usercontact',
+                  text: 'UserContact 联系人'
                 },
                 {
-                  value: 'slidebar',
-                  label: 'SlideBar 滚动块'
+                  id: 'slidebar',
+                  text: 'SlideBar 滚动块'
                 }
               ]
             }
@@ -224,7 +227,7 @@ export default {
 </script>
 
 <style scoped>
-.cascader-panel-demo {
-  min-height: 200px;
+.cascader-panel-demo > :not(:last-child) {
+  margin-bottom: 20px;
 }
 </style>

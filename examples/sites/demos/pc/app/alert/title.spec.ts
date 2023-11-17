@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试 Alert 自定义标题', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/alert/title')
+  await page.goto('alert#title')
 
   // size为large时可设置自定义标题
   const alert = page.locator('.tiny-alert--large').first()

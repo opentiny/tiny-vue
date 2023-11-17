@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('默认展开某节点', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree-menu/default-expanded-keys')
+  await page.goto('tree-menu#default-expanded-keys')
 
   const treeMenu = page.locator('#preview .tiny-tree-menu')
   // 默认展开节点

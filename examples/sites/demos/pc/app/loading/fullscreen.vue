@@ -1,13 +1,13 @@
 <template>
   <div>
-    <tiny-button @click="handleClick" v-loading.lock.fullscreen="fullscreenLoading" style="max-width: unset"
-      >指令方式加载全屏Loading</tiny-button
-    >
-    <tiny-button @click="handleClick2" style="max-width: unset">静态方法加载全屏Loading</tiny-button>
+    <tiny-button @click="handleClick" v-loading.lock.fullscreen="fullscreenLoading">
+      指令方式加载全屏Loading
+    </tiny-button>
+    <tiny-button @click="handleClick2">静态方法加载全屏Loading</tiny-button>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button, Loading } from '@opentiny/vue'
 
 export default {
@@ -15,7 +15,7 @@ export default {
     TinyButton: Button
   },
   directives: {
-    Loading
+    Loading: Loading.directive
   },
   data() {
     return {
@@ -30,7 +30,7 @@ export default {
       }, 2500)
     },
     handleClick2() {
-      const loading = this.$loading({
+      const loading =  Loading.service({
         lock: true,
         text: 'Loading',
         background: 'rgba(0, 0, 0, 0.8)'

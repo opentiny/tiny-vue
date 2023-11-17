@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('唯一标识', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/node-key')
+  await page.goto('tree#node-key')
 
   const tree = page.locator('#preview .tiny-tree')
   const currentClass = /is-current/

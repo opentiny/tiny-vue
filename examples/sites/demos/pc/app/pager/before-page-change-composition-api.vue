@@ -1,17 +1,16 @@
 <template>
   <tiny-pager
     is-before-page-change
-    @before-page-change="onBeforePageChange"
+    mode="number"
+    :total="200"
     :current-page="currentPage"
     @update:current-page="currentPage = $event"
-    :page-size="100"
-    layout="total, sizes, prev, pager, next, jumper"
-    :total="1000"
+    @before-page-change="onBeforePageChange"
   >
   </tiny-pager>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Pager as TinyPager, Modal } from '@opentiny/vue'
 

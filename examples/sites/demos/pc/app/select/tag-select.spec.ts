@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('tag-select', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/tag-select')
+  await page.goto('select#tag-select')
 
   await page.mouse.move(345, 324)
   await page.waitForTimeout(1000)

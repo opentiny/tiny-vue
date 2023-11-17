@@ -1,9 +1,8 @@
 <template>
   <tiny-tabs
     tab-style="card"
-    :editable="false"
     :with-add="true"
-    @add="handleadd"
+    @add="handleAdd"
     style="width: 500px"
     show-more-tabs
     popper-class="custom-class"
@@ -16,7 +15,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
+import { Tabs as TinyTabs, TabItem as TinyTabItem, Modal } from '@opentiny/vue'
 
 const Tabs = ref([
   {
@@ -32,7 +31,12 @@ const Tabs = ref([
 ])
 const tabIndex = ref(2)
 
-function handleadd() {
+function handleAdd() {
+  Modal.message({
+    message: '动态增加 Tab ++',
+    status: 'success'
+  })
+
   Tabs.value.push({
     title: 'Tab ++',
     name: ++tabIndex.value + '',

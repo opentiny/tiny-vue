@@ -18,6 +18,7 @@
       'is-in-stage': state.inStage,
       'is-hover': state.hover,
       'is-animating': state.animating,
+      'tiny-oblique': state.isOblique,
       'tiny-oblique': state.carouselParent.type === 'card' && state.carouselParent.setUserCls
     }"
     :style="state.getTransform"

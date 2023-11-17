@@ -2,7 +2,7 @@
   <tiny-rate v-model="rate1" show-text :colors="['#FADB14', '#ff7a45', '#ffa940']"></tiny-rate>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Rate as TinyRate } from '@opentiny/vue'
 

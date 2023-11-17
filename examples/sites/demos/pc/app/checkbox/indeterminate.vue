@@ -11,7 +11,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Checkbox, CheckboxGroup, Switch } from '@opentiny/vue'
 
 export default {

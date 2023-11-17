@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('菜单项插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/action-menu/slot-item')
+  await page.goto('action-menu#slot-item')
 
   const preview = page.locator('#preview')
   const actionMenu = preview.locator('.tiny-action-menu')

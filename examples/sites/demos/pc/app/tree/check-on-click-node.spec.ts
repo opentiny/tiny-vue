@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('点击节点时选中', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/check-on-click-node')
+  await page.goto('tree#check-on-click-node')
 
   const checkedClass = /is-checked/
   const someCheckedClass = /is-indeterminate/

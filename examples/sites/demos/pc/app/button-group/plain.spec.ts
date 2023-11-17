@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试朴素按钮', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/button-group/plain')
+  await page.goto('button-group#plain')
 
   const buttonGroup = page.locator('.tiny-button-group').nth(1)
   const button3 = page.getByRole('button', { name: 'Button3' })

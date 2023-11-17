@@ -6,7 +6,7 @@ test.describe('设置上传请求', () => {
 
   test('上传请求', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/file-upload/upload-request')
+    await page.goto('file-upload#upload-request')
 
     const upload = page.getByRole('button', { name: '选取文件' })
     const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])
@@ -16,7 +16,7 @@ test.describe('设置上传请求', () => {
 
   test('支持发送 cookie 凭证信息', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/file-upload/upload-request1')
+    await page.goto('file-upload#upload-request1')
 
     const upload = page.getByRole('button', { name: '选取文件' })
     const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])

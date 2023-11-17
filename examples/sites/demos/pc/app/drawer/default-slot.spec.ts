@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('默认插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/drawer/default-slot')
+  await page.goto('drawer#default-slot')
 
   const drawer = page.locator('.tiny-drawer__main')
   await page.getByRole('button', { name: '抽屉默认插槽示例' }).click()

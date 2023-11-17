@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('判断是否可以将左侧数据交换至右侧面板', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/nested-tree')
+  await page.goto('transfer#nested-tree')
   const preview = page.locator('#preview')
   await preview.getByRole('treeitem', { name: '一级 1' }).locator('svg').first().click()
   await preview.getByRole('treeitem', { name: '一级 1' }).getByText('二级 1-1').click()
@@ -19,7 +19,7 @@ test('判断是否可以将左侧数据交换至右侧面板', async ({ page }) 
 
 test('置顶和置底功能', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/nested-tree')
+  await page.goto('transfer#nested-tree')
   const preview = page.locator('#preview')
   const buttons = await preview.getByRole('paragraph').filter({ hasText: '列表 2 1 / 3' }).locator('div')
   await buttons.nth(1).click()

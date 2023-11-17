@@ -115,14 +115,14 @@ export default {
         {
           'name': 'background-color',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 #d9d9d9',
+          'defaultValue': '#d9d9d9',
           'desc': { 'zh-CN': '背景色 。', 'en-US': 'Background color.' },
           'demoId': 'custom-background-color'
         },
         {
           'name': 'color',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 #ffffff',
+          'defaultValue': '#ffffff',
           'desc': { 'zh-CN': '文字颜色 。', 'en-US': 'Text color.' },
           'demoId': 'color'
         },
@@ -136,7 +136,7 @@ export default {
         {
           'name': 'message-type',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 details',
+          'defaultValue': 'details',
           'desc': {
             'zh-CN': '消息类型 details|basic 可选 。;该属性的可选值为 details / basic',
             'en-US': 'Message type details|basic is optional. ;The value of this attribute can be details or basic'
@@ -146,14 +146,14 @@ export default {
         {
           'name': 'message-upper-limit',
           'type': 'number',
-          'defaultValue': '该属性的默认值为 0',
+          'defaultValue': '0',
           'desc': { 'zh-CN': '消息显示上限 。', 'en-US': 'Maximum number of displayed messages.' },
           'demoId': 'message-count-limit'
         },
         {
           'name': 'min',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '小尺寸模式 。', 'en-US': 'Small size mode.' },
           'demoId': 'min-user-head'
         },
@@ -167,7 +167,7 @@ export default {
         {
           'name': 'type',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 label',
+          'defaultValue': 'label',
           'desc': {
             'zh-CN': '头像类型，icon|image|label 可选。;该属性的可选值为 icon / image / label',
             'en-US':

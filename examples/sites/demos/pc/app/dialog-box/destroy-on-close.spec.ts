@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('关闭时销毁主体元素', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/dialog-box/destroy-on-close')
+  await page.goto('dialog-box#destroy-on-close')
 
   const dialogBox = page.locator('#preview .tiny-dialog-box')
 

@@ -19,10 +19,13 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-progress": "workspace:~",
+    "@opentiny/vue-tooltip": "workspace:~",
+    "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-image-viewer": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-modal": "workspace:~",
     "@opentiny/vue-action-sheet": "workspace:~",
-    "@opentiny/vue-record": "workspace:~",
-    "@opentiny/vue-modal": "workspace:~"
+    "@opentiny/vue-record": "workspace:~"
   },
   "license": "MIT"
 }

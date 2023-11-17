@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('根据长度改变颜色', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://localhost:7130/pc/progress/custom-color')
+  await page.goto('progress#custom-color')
 
   const progress = page.getByRole('progressbar')
   const progress1 = progress.nth(0).locator('div.tiny-progress-bar__inner')

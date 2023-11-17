@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('触发方式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popover/trigger-mode')
+  await page.goto('popover#trigger-mode')
 
   let button1 = page.getByRole('button', { name: 'hover 激活' })
   let button2 = page.getByRole('button', { name: 'click 激活' })

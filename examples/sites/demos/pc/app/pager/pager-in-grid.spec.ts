@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试表格分页', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pager/pager-in-grid')
+  await page.goto('pager#pager-in-grid')
 
   const preview = page.locator('#preview')
   const pager = preview.locator('.tiny-pager')

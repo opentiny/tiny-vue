@@ -31,14 +31,15 @@ export default {
       },
       milestoneData: [
         {
-          name: 'POR1',
-          date: '2018-9-7',
-          progress: 'completed',
+          name: 'POR1', // name-field设置的键名
+          date: '2018-9-7', // time-field设置的键名
+          progress: 'completed', // status-field设置的键名，completed-field设置的键值
+          // flag-field设置的键名
           flags: [
             {
-              progress: 'completed',
-              title: '第一阶段',
-              describe: 'flag-content-field' // 设置节点旗子数据中描述对应的字段名，默认为 'content'
+              progress: 'completed', // flag-status-field设置的键名
+              title: '第一阶段', // flag-name-field设置的键名
+              describe: 'flag-content-field' // flag-content-field设置的键名
             }
           ]
         },

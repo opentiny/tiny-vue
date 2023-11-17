@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('PopUpload 覆盖默认请求', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pop-upload/http-request')
+  await page.goto('pop-upload#http-request')
 
   const preview = page.locator('#preview')
   const modalAppearBtn = preview.getByRole('button', { name: '选择文件' })

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('默认勾选的节点', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/default-checked-keys')
+  await page.goto('tree#default-checked-keys')
 
   const tree = page.locator('#preview .tiny-tree')
   const checkedClass = /is-checked/

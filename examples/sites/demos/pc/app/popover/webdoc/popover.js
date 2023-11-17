@@ -239,7 +239,10 @@ export default {
           'name': 'modelValue / v-model',
           'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '状态是否可见', 'en-US': 'Offset of the occurrence position' },
+          'desc': {
+            'zh-CN': '状态是否可见，仅在<a href="#trigger-mode">trigger="manual"</a>时有效',
+            'en-US': 'Whether the status is visible is only valid when<a href="#trigger-mode">trigger="manual"</a>'
+          },
           'demoId': 'trigger-mode'
         },
         {

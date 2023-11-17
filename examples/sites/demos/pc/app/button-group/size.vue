@@ -1,21 +1,12 @@
 <template>
-  <div>
-    <div>
-      <tiny-button-group size="mini" :data="groupData" v-model="checkedVal"></tiny-button-group>
-      <span>当前选中值：{{ checkedVal }}</span>
-    </div>
-    <div style="margin-top: 20px">
-      <tiny-button-group size="small" :data="groupData" v-model="checkedVal"></tiny-button-group>
-      <span>当前选中值：{{ checkedVal }}</span>
-    </div>
-    <div style="margin-top: 20px">
-      <tiny-button-group size="medium" :data="groupData" v-model="checkedVal"></tiny-button-group>
-      <span>当前选中值：{{ checkedVal }}</span>
-    </div>
+  <div class="button-group-demo">
+    <tiny-button-group size="mini" :data="groupData" v-model="checkedVal"></tiny-button-group>
+    <tiny-button-group size="small" :data="groupData" v-model="checkedVal"></tiny-button-group>
+    <tiny-button-group size="medium" :data="groupData" v-model="checkedVal"></tiny-button-group>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { ButtonGroup } from '@opentiny/vue'
 
 export default {
@@ -34,3 +25,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.button-group-demo .tiny-button-group {
+  margin-bottom: 20px;
+  display: block;
+}
+</style>

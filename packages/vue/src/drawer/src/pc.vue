@@ -12,7 +12,7 @@
     </transition>
 
     <!-- main -->
-    <transition name="drawer-slideRight">
+    <transition :name="`drawer-slide-${placement}`">
       <div
         data-tag="tiny-drawer-main"
         ref="drawerBox"

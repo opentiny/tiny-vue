@@ -1,5 +1,5 @@
-import pc from './pc.jsx'
-import mobile from './mobile.jsx'
+import pc from './pc'
+import mobile from './mobile'
 
 export default function (props) {
   const {

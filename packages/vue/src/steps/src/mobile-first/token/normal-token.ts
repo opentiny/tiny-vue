@@ -1,0 +1,36 @@
+export const classes = {
+  'steps-icon':
+    'flex-none flex items-center justify-center rounded-full border-0.5 border-current text-gray-300 bg-gray-50',
+  'steps-icon-left':
+    'w-full h-full flex items-center justify-center rounded-full border-0.5 border-color-brand text-color-brand bg-color-bg-1 relative z-10',
+  'steps-icon-right':
+    'w-full h-full flex items-center justify-center rounded-full border-0.5 border-color-brand text-color-brand bg-color-bg-1 relative z-[9999]',
+  'icon-mini': 'w-2 h-2 text-xs',
+  'icon-small': 'w-4 h-4 text-xs',
+  'icon-medium': 'w-6 h-6 text-sm',
+  'icon-large': 'w-8 h-8 text-base',
+  'icon-error': 'text-color-error bg-color-bg-1',
+  'icon-doing': 'text-color-brand bg-blue-50',
+  'icon-done': 'text-color-brand bg-blue-50',
+  'icon-disabled': 'bg-gray-50 text-gray-200',
+  'icon-error-active': 'bg-red-50 border-red-500',
+  'icon-doing-active': 'bg-color-brand border-color-brand text-color-text-inverse',
+  'icon-done-active': 'bg-color-brand border-color-brand text-color-text-inverse',
+  'icon-disabled-active': 'bg-gray-50 text-gray-200',
+  'steps-line': 'border-t-0.5 sm:border-t border-color-text flex-auto',
+  'left-line-mini': 'mr-1',
+  'left-line-small': 'mr-2',
+  'left-line-medium': 'mr-2',
+  'left-line-large': 'mr-3',
+  'right-line-mini': 'ml-1',
+  'right-line-small': 'ml-2',
+  'right-line-medium': 'ml-2',
+  'right-line-large': 'ml-3',
+  'steps-title': 'hidden sm:block text-sm ml-2 font-medium truncate',
+  'title-font-mini': 'text-xs',
+  'title-font-small': 'text-xs',
+  'title-font-medium': 'text-sm',
+  'title-font-large': 'text-base',
+  'circle-wrap': 'flex-none flex relative z-10',
+  'icon-circle': 'flex-none rounded-full border-0.5 border-color-brand bg-color-bg-1 font-medium absolute'
+}

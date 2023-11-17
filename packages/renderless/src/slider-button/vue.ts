@@ -8,6 +8,7 @@ export const renderless = (
   { emit, parent, dispatch, constants, nextTick, vm }
 ) => {
   const state = reactive({
+    disabled: inject('disabled', null) || props.disabled,
     type: inject('sliderType', null),
     value: computed({
       get: () => api.getValue(),

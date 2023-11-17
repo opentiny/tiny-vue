@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('窗口的事件回调', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/guide/callback')
+  await page.goto('guide#callback')
 
   const start = page.getByRole('button', { name: '展示之前回调' })
   const showBtn = page.getByRole('button', { name: '展示之前', exact: true })

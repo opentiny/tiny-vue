@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('默认状态下交换按钮是否禁用', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/basic-usage')
+  await page.goto('transfer#basic-usage')
   const preview = page.locator('#preview')
   const buttons = preview.getByRole('button')
   // 向左交换按钮应该为禁用状态
@@ -13,7 +13,7 @@ test('默认状态下交换按钮是否禁用', async ({ page }) => {
 
 test('多选', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/basic-usage')
+  await page.goto('transfer#basic-usage')
   const preview = page.locator('#preview')
   // 穿梭框按钮
   const buttons = preview.getByRole('button')
@@ -93,7 +93,7 @@ test('多选', async ({ page }) => {
 
 test('全选', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/transfer/basic-usage')
+  await page.goto('transfer#basic-usage')
   const preview = page.locator('#preview')
   const transferPanels = preview.locator('.tiny-transfer-panel')
   const leftPanel = transferPanels.first()

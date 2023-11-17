@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/modal/base')
+  await page.goto('modal#base')
 
   // 基本提示框
   const modal = page.locator('.tiny-modal.type__alert')

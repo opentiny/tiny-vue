@@ -139,7 +139,7 @@ const getApiTableOptFn = oneApiArr => {
         key: 'defaultValue',
         title: $t('defValue'),
         width: '20%',
-        render: row => <div class="route-anchor" v-html={row.defaultValue}></div>,
+        render: row => <div class="route-anchor" v-html={typeof row.defaultValue === 'string' ? row.defaultValue : row.defaultValue[state.langKey]}></div>,
       },
       {
         key: 'desc',

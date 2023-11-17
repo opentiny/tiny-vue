@@ -4,4 +4,4 @@ title: Transfer shuttle box
 
 # Transfer shuttle box
 
-<div>Shuttle box, which provides bidirectional selection of table data.</div>
+<div>Shuttle box, a component that realizes the two-way exchange of data between two tables.</div>

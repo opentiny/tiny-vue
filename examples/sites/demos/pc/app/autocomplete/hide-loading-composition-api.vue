@@ -1,10 +1,10 @@
 <template>
   <div class="demo-autocomplete">
-    <div>
+    <div class="loading-icon">
       默认有加载图标：
       <tiny-autocomplete v-model="value" placeholder="请输入内容" :fetch-suggestions="querySearch"></tiny-autocomplete>
     </div>
-    <div>
+    <div class="loading-icon_hide">
       隐藏加载图标：
       <tiny-autocomplete
         v-model="value"
@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref, onMounted } from 'vue'
 import { Autocomplete as TinyAutocomplete } from '@opentiny/vue'
 
@@ -74,5 +74,9 @@ function loadAll() {
 .demo-autocomplete .tiny-autocomplete {
   display: flex;
   width: 270px;
+}
+
+.loading-icon {
+  margin-bottom: 12px;
 }
 </style>

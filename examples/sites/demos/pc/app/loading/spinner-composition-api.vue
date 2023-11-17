@@ -1,7 +1,5 @@
 <template>
-  <div id="boxseven"></div>
-  <div id="boxone"></div>
-  <div id="boxtwo"></div>
+  <div id="tiny-demo-loading-spinner"></div>
 </template>
 
 <script setup lang="jsx">
@@ -14,30 +12,14 @@ const spinnerIcon = iconLoadingShadow()
 onMounted(() => {
   Loading.service({
     text: '自定义loading图标',
-    spinner: spinnerIcon, // 添加自定义类名，动画需要自己实现
-    target: document.getElementById('boxseven'),
-    background: '#fff',
-    size: 'small'
-  })
-  Loading.service({
-    text: '自定义loading图标',
     spinner: spinnerIcon,
-    target: document.getElementById('boxone'),
-    background: '#fff',
-    size: 'medium'
-  })
-  Loading.service({
-    text: '自定义loading图标',
-    spinner: spinnerIcon,
-    target: document.getElementById('boxtwo'),
-    background: '#fff',
-    size: 'large'
+    target: document.getElementById('tiny-demo-loading-spinner'),
   })
 })
 </script>
 
 <style scoped>
-div {
+#tiny-demo-loading-spinner {
   margin-bottom: 10px;
   height: 120px;
 }

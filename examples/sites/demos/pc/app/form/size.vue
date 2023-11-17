@@ -30,7 +30,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import {
   Form,
   FormItem,

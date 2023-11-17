@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('消息状态', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/modal/status')
+  await page.goto('modal#status')
 
   const messageInfo = page.locator('.tiny-modal').filter({ hasText: '基本提示图标' })
   await page.getByRole('button', { name: '基本提示图标' }).click()

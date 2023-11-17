@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('PopEditor 自定义查询条件 自动重置参数', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popeditor/auto-reset')
+  await page.goto('popeditor#auto-reset')
 
   const preview = page.locator('#preview')
   const textBox = preview.getByRole('textbox')

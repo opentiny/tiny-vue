@@ -1,21 +1,8 @@
 <template>
-  <p>mini尺寸:</p>
-  <tiny-time-line
-    :data="data"
-    :active="normalActive"
-    type="normal"
-    size="mini"
-    text-position="right"
-    @click="normalClick"
-  >
-  </tiny-time-line>
-
-  <p>默认尺寸:</p>
-  <tiny-time-line :data="data" :active="normalActive" type="normal" text-position="right" @click="normalClick">
-  </tiny-time-line>
+  <tiny-steps vertical line size="small" :data="data" :visible-num="4" :active="advancedActive"></tiny-steps>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 import { TimeLine as TinyTimeLine, Modal } from '@opentiny/vue'
 
@@ -37,16 +24,4 @@ const data = ref([
   }
 ])
 const normalActive1 = ref(0)
-
-function normalClick(index, node) {
-  normalActive.value = index
-
-  Modal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
-}
-
-function normalClick1(index, node) {
-  normalActive1.value = index
-
-  Modal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
-}
 </script>

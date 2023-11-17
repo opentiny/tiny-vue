@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('rate 大小及占位宽度', () => {
   test('自定义图标大小及占位宽度', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/rate/size-and-space')
+    await page.goto('rate#size-and-space')
 
     const rate = page.locator('.tiny-rate__star')
     const svg = page.locator('.tiny-rate__star > .tiny-svg')

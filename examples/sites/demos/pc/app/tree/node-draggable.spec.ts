@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('可拖拽节点', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree/node-draggable')
+  await page.goto('tree#node-draggable')
 
   const tree = page.locator('#preview .tiny-tree')
   const draggedDom = tree.locator('.tiny-tree-node').nth(3)

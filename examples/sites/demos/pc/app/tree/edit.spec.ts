@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('节点编辑', () => {
   test('编辑节点内容', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/tree/edit')
+    await page.goto('tree#edit')
 
     const tree = page.locator('#preview .tiny-tree')
     const node = tree.locator('.tiny-tree-node').first()
@@ -22,7 +22,7 @@ test.describe('节点编辑', () => {
 
   test('进入编辑状态后删除节点', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/tree/edit')
+    await page.goto('tree#edit')
 
     const tree = page.locator('#preview .tiny-tree')
     const node = tree.locator('.tiny-tree-node').first()
@@ -47,7 +47,7 @@ test.describe('节点编辑', () => {
 
   test('进入编辑状态后新增子节点', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/tree/edit')
+    await page.goto('tree#edit')
 
     const tree = page.locator('#preview .tiny-tree')
     const nodes = tree.locator('.tiny-tree-node')
@@ -63,7 +63,7 @@ test.describe('节点编辑', () => {
 
   test('取消编辑', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/tree/edit')
+    await page.goto('tree#edit')
 
     const tree = page.locator('#preview .tiny-tree')
     const nodes = tree.locator('.tiny-tree-node')
@@ -86,7 +86,7 @@ test.describe('节点编辑', () => {
 
   test('保存编辑', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/tree/edit')
+    await page.goto('tree#edit')
 
     const tree = page.locator('#preview .tiny-tree')
     const node = tree.locator('.tiny-tree-node').first()

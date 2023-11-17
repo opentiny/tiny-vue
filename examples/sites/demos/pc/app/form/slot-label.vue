@@ -24,7 +24,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Form, FormItem, Input, DatePicker, Button, Modal, RadioGroup } from '@opentiny/vue'
 
 export default {

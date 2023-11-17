@@ -340,6 +340,8 @@ export const parseVnode = (vnode) => {
   return vnode
 }
 
+export const isEmptyVnode = (vnode) => !vnode || !vnode.tag
+
 export const h = hooks.h
 
 export const createComponentFn = (design) => {

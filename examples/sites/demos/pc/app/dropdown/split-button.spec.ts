@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('触发对象,配置split-button属性', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/dropdown/split-button')
+  await page.goto('dropdown#split-button')
 
   const preview = page.locator('#preview')
   const dropDown = preview.locator('.tiny-dropdown')

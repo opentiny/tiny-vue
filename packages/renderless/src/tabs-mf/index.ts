@@ -1,21 +1,20 @@
 import { random } from '../common/string'
 import debounce from '../common/deps/debounce'
+import { fastdom } from '../common/deps/fastdom'
 
 // --- tabs ---
-export const setActive =
-  ({ emit, state, props }) =>
-  (name) => {
-    const current = state.currentItem ? state.currentItem.name : ''
+export const setActive = ({ emit, state, props }) => (name) => {
+  const current = state.currentItem ? state.currentItem.name : ''
 
-    if (current && current !== name && props.beforeLeave && !props.beforeLeave(name, current)) {
-      return
-    }
-
-    state.items.forEach((item) => (item.selected = item.name === name))
-
-    emit('update:activeName', name)
-    emit('update:modelValue', name)
+  if (current && current !== name && props.beforeLeave && !props.beforeLeave(name, current)) {
+    return
   }
+
+  state.items.forEach((item) => (item.selected = item.name === name))
+
+  emit('update:activeName', name)
+  emit('update:modelValue', name)
+}
 
 export const addItem = (state) => (item) => {
   state.items = [...state.items, item]
@@ -25,13 +24,13 @@ export const addNav = (state) => (nav) => {
   state.navs = [...state.navs, nav]
 }
 
-export const scrollTo =
-  ({ vm, state }) =>
-  (name) => {
-    const { navs } = state
-    const { $refs } = vm
-    const { tabbar } = $refs
-    const { scroll } = tabbar.$refs
+export const scrollTo = ({ vm, state }) => (name) => {
+  const { navs } = state
+  const { $refs } = vm
+  const { tabbar } = $refs
+  const { scroll } = tabbar.$refs
+
+  fastdom.measure(() => {
     const { clientWidth, scrollWidth } = scroll
 
     if (name && scrollWidth > clientWidth) {
@@ -40,34 +39,35 @@ export const scrollTo =
       const max = scrollWidth - clientWidth
 
       if (~index) {
-        scroll.scrollLeft = (max / (total - 1)) * index
-        tabbar.wheelListener()
+        fastdom.mutate(() => {
+          scroll.scrollLeft = (max / (total - 1)) * index
+          tabbar.wheelListener()
+        })
       }
     }
-  }
+  })
+}
 
 export const clickMore = (api) => (name) => {
   api.setActive(name)
   api.scrollTo(name)
 }
 
-export const removeItem =
-  ({ state, emit }) =>
-  (name) => {
-    const itemIndex = state.items.findIndex((item) => item.name === name)
-    const navIndex = state.navs.findIndex((item) => item.name === name)
+export const removeItem = ({ state, emit }) => (name) => {
+  const itemIndex = state.items.findIndex((item) => item.name === name)
+  const navIndex = state.navs.findIndex((item) => item.name === name)
 
-    if (~itemIndex) {
-      state.items.splice(itemIndex, 1)
-      state.items = [...state.items]
+  if (~itemIndex) {
+    state.items.splice(itemIndex, 1)
+    state.items = [...state.items]
 
-      state.navs.splice(navIndex, 1)
-      state.navs = [...state.navs]
+    state.navs.splice(navIndex, 1)
+    state.navs = [...state.navs]
 
-      emit('edit', name, 'remove')
-      emit('close', name)
-    }
+    emit('edit', name, 'remove')
+    emit('close', name)
   }
+}
 
 // --- tab-bar ---
 export const wheelListener = ({ vm, api, tabs, state }) =>
@@ -119,23 +119,17 @@ export const emitAdd = (tabs) => () => {
 }
 
 // --- tab-nav-item ---
-export const handleNavItemClick =
-  ({ tabs, props }) =>
-  () => {
-    tabs.setActive(props.navItem.name)
-    tabs.$emit('click', props.navItem)
-  }
+export const handleNavItemClick = ({ tabs, props }) => () => {
+  tabs.setActive(props.navItem.name)
+  tabs.$emit('click', props.navItem)
+}
 
-export const getBoundRectNV =
-  ({ vm, props }) =>
-  () => ({
-    name: props.navItem.name,
-    rect: vm.$el.getBoundingClientRect()
-  })
+export const getBoundRectNV = ({ vm, props }) => () => ({
+  name: props.navItem.name,
+  rect: vm.$el.getBoundingClientRect()
+})
 
-export const handleNavItemClose =
-  ({ tabs, props }) =>
-  (e) => {
-    e.stopPropagation()
-    tabs.removeItem(props.navItem.name)
-  }
+export const handleNavItemClose = ({ tabs, props }) => (e) => {
+  e.stopPropagation()
+  tabs.removeItem(props.navItem.name)
+}

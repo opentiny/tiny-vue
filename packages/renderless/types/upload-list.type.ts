@@ -30,6 +30,13 @@ import type { getApi } from '../src/file-upload/vue'
 export interface IUploadListState {
   focusing: boolean
   shows: boolean
+  progressType: string
+  progressWidth: number
+  progressStrokeWidth: number
+  tooltipDisabled: boolean
+  closeComponent: string
+  preViewComponent: string
+  failUploadFileCount: number
   startPostion: number
   screenType: boolean
   showPanel: boolean

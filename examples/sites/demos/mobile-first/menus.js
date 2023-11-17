@@ -19,7 +19,7 @@ export const cmpMenus = [
       { name: 'FilterBar', nameCn: '过滤栏', key: 'filter-bar' },
       { name: 'Steps ', nameCn: '步骤条', key: 'steps' },
       { name: 'Tabs ', nameCn: '标签页', key: 'tabs' },
-
+      { name: 'Menu ', nameCn: '菜单', key: 'menu' },
       { name: 'TimeLine ', nameCn: '时间线', key: 'time-line' },
       { name: 'Dropdown ', nameCn: '下拉菜单', key: 'dropdown' },
       { name: 'Flowchart ', nameCn: '流程图', key: 'flowchart' }
@@ -37,7 +37,9 @@ export const cmpMenus = [
       { name: 'Carousel', nameCn: '走马灯', key: 'carousel' },
       { name: 'Collapse', nameCn: '折叠面板', key: 'collapse' },
       { name: 'Scrollbar', nameCn: '滚动条', key: 'scrollbar' },
-      { name: 'CascaderSelect', nameCn: '级联选择', key: 'cascader-select' }
+      { name: 'CascaderSelect', nameCn: '级联选择', key: 'cascader-select' },
+      { name: 'CascaderMobile', nameCn: '级联选择移动', key: 'cascader-mobile' },
+      { name: 'CascaderView', nameCn: '级联选择视图', key: 'cascader-view' }
     ]
   },
   {
@@ -53,10 +55,12 @@ export const cmpMenus = [
       { name: 'Input', nameCn: '输入框', key: 'input' },
       { name: 'Numeric', nameCn: '计数器', key: 'numeric' },
       { name: 'Radio', nameCn: '单选框', key: 'radio' },
+      { name: 'RadioButton', nameCn: '单选块', key: 'radio-block' },
       { name: 'Search', nameCn: '搜索', key: 'search' },
       { name: 'SelectMobile', nameCn: '面板选择器', key: 'select-mobile' },
       { name: 'SelectView', nameCn: '页面选择器', key: 'select-view' },
       { name: 'Slider', nameCn: '滑块', key: 'slider' },
+      { name: 'SliderButton', nameCn: '滑动按钮组', key: 'slider-button' },
       { name: 'Switch', nameCn: '开关', key: 'switch' },
       { name: 'FileUpload', nameCn: '文件上传', key: 'file-upload' },
       { name: 'Record', nameCn: '语音录入', key: 'record' }
@@ -70,7 +74,8 @@ export const cmpMenus = [
       { name: 'Grid', nameCn: '表格', key: 'grid' },
       { name: 'ColumnListItem', nameCn: '分区列表项', key: 'column-list-item' },
       { name: 'StandardListItem', nameCn: '标准列表项', key: 'standard-list-item' },
-      { name: 'Progress', nameCn: '进度条', key: 'progress' }
+      { name: 'Progress', nameCn: '进度条', key: 'progress' },
+      { name: 'PullRefresh', nameCn: '下拉刷新', key: 'pull-refresh' }
     ]
   },
   {

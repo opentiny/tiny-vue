@@ -1,13 +1,12 @@
 <template>
   <div>
     <tiny-button-group :data="groupData" v-model="checkedVal" @change="handleChange"></tiny-button-group>
-    <span>当前选中值：{{ checkedVal }}</span>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
-import { ButtonGroup as TinyButtonGroup, Notify } from '@opentiny/vue'
+import { ButtonGroup as TinyButtonGroup, Modal } from '@opentiny/vue'
 
 const checkedVal = ref('Button1')
 const groupData = ref([
@@ -17,9 +16,6 @@ const groupData = ref([
 ])
 
 function handleChange(val) {
-  Notify({
-    title: 'change事件',
-    message: `触发change事件，当前选中的值为${val}`
-  })
+  Modal.message('change事件触发了')
 }
 </script>

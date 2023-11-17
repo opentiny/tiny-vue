@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Slider as TinySlider, Button as TinyButton } from '@opentiny/vue'
 

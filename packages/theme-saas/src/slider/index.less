@@ -2,28 +2,19 @@
 @import '../custom.less';
 
 @slider-prefix-cls: ~'@{css-prefix}slider';
-@slider-container-prefix-cls: ~'@{css-prefix}slider-container';
-
-.@{slider-container-prefix-cls} {
-  @apply relative;
-
-  &&__horizontal {
-    @apply flex;
-    @apply items-center;
-  }
-}
 
 .@{slider-prefix-cls} {
-  border-radius: 10px;
-  @apply ~'h-0.5';
+  @apply rounded-full;
+  @apply h-1;
   @apply relative;
-  margin: 15px 0;
-  @apply bg-color-text-disabled;
+  @apply my-4 mx-0;
+  @apply bg-color-none-disabled;
   @apply cursor-pointer;
+  @apply w-full;
   @apply inline-block;
 
   &:not(&__vertical) {
-    min-width: 160px;
+    @apply ~'min-w-[theme(spacing.40)]';
     @apply flex-1;
   }
 
@@ -36,7 +27,7 @@
   }
 
   &.disabled &__range {
-    @apply bg-color-bg-6;
+    @apply bg-color-none;
   }
 
   &.disabled &__handle {
@@ -46,7 +37,6 @@
 
   &&__vertical {
     @apply ~'w-0.5';
-    height: 300px;
     @apply block;
     @apply my-0 mx-4;
 
@@ -57,7 +47,7 @@
     }
 
     .@{slider-prefix-cls}__range {
-      border-radius: 10px;
+      @apply rounded-full;
       @apply absolute;
       @apply ~'z-[1]';
       @apply w-1;
@@ -74,14 +64,14 @@
     }
 
     .@{slider-prefix-cls}__handle {
-      @apply mt-0 mr-0 ~"-mb-3" ~"-ml-2.5";
+      @apply mt-0 mr-0 ~'-mb-3' ~'-ml-2.5';
       @apply top-auto;
       @apply left-px;
     }
   }
 
   &__range {
-    border-radius: 10px;
+    @apply rounded-full;
     @apply absolute;
     @apply ~'z-[1]';
     @apply h-1;
@@ -102,17 +92,21 @@
     @apply h-5;
     @apply w-5;
     @apply absolute;
-    @apply my-0 ~"-mx-3";
+    @apply my-0 ~'-mx-3';
     @apply ~'z-[2]';
     @apply outline-0;
     @apply bg-color-bg-1;
-    @apply border-2 border-solid border-color-brand;
     @apply top-px;
     @apply block;
     @apply select-none;
     @apply cursor-grab;
     @apply transition-all duration-300;
-    @apply ~"-translate-y-2/4";
+    @apply ~'-translate-y-2/4';
+    @apply shadow-xsm;
+
+    * {
+      @apply hidden;
+    }
 
     &.handle-focus {
       @apply z-10;
@@ -130,20 +124,20 @@
   &__tips {
     @apply text-center;
     @apply text-xs;
-    @apply ~"-mt-6";
-    min-width: 48px;
+    @apply ~'-mt-6';
+    @apply ~'min-w-[theme(spacing.12)]';
     @apply absolute;
-    padding: 9px 3px;
+    @apply py-2 ~'px-0.5';
     @apply h-7;
     @apply leading-none;
     @apply ~'z-[1010]';
-    @apply ~"-left-0.5";
+    @apply ~'-left-0.5';
     word-break: normal;
     @apply whitespace-nowrap;
     @apply bg-color-bg-1;
     @apply text-color-text-primary;
     @apply align-middle;
-    box-shadow: 0 4px 12px #d9d9d9;
+    @apply shadow-lg;
     @apply border-none;
     @apply rounded;
 
@@ -164,7 +158,6 @@
 
   &__input {
     @apply inline-block;
-    line-height: 30px;
     @apply align-top;
     @apply ml-5;
     @apply text-xs;

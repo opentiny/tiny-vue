@@ -2,7 +2,7 @@
   <tiny-button-group :data="groupData" plain></tiny-button-group>
 </template>
 
-<script lang="jsx">
+<script>
 import { ButtonGroup } from '@opentiny/vue'
 
 export default {

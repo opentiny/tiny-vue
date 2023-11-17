@@ -5,7 +5,7 @@
   </tiny-badge>
 </template>
 
-<script lang="jsx">
+<script>
 import { Badge } from '@opentiny/vue'
 
 export default {

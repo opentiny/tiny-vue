@@ -12,29 +12,29 @@
 
 .component-css-vars-breadcrumb() {
   // 字号
-  --ti-breadcrumb-font-size: var(--ti-common-font-size-base);
+  --ti-breadcrumb-font-size: var(--ti-common-font-size-base, 12px);
   // 文本行高
-  --ti-breadcrumb-text-line-height: var(--ti-common-line-height-3);
+  --ti-breadcrumb-text-line-height: var(--ti-common-line-height-3, 18px);
   // 文本色
-  --ti-breadcrumb-text-color: var(--ti-common-color-text-weaken);
+  --ti-breadcrumb-text-color: var(--ti-common-color-text-weaken, #8a8e99);
   // 字族
-  --ti-breadcrumb-font-family: var(--ti-common-font-family);
+  --ti-breadcrumb-font-family: var(--ti-common-font-family, 'Helvetica', 'Arial', 'PingFangSC-Regular', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'Microsoft JhengHei');
   // 分隔符填充色
-  --ti-breadcrumb-separator-text-color: var(--ti-common-color-placeholder);
+  --ti-breadcrumb-separator-text-color: var(--ti-common-color-placeholder, #adb0b8);
   // 分割箭头宽度
-  --ti-breadcrumb-separator-width: calc(var(--ti-common-size-base) + 2px);
+  --ti-breadcrumb-separator-width: calc(var(--ti-common-size-base, 4px) + 2px);
   // 分隔图标的垂直外边距
-  --ti-breadcrumb-separator-margin-vertical: var(--ti-common-space-0);
+  --ti-breadcrumb-separator-margin-vertical: var(--ti-common-space-0, 0px);
   // 分隔图标的水平外边距
-  --ti-breadcrumb-separator-margin-horizontal: var(--ti-common-space-base);
+  --ti-breadcrumb-separator-margin-horizontal: var(--ti-common-space-base, 4px);
   // 悬浮文本色
-  --ti-breadcrumb-hover-text-color: var(--ti-common-color-primary-normal);
+  --ti-breadcrumb-hover-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
   // 悬浮文本下划线
   --ti-breadcrumb-hover-text-decoration: none;
   // 当前节点字重
-  --ti-breadcrumb-text-font-weight: var(--ti-common-font-weight-7);
+  --ti-breadcrumb-text-font-weight: var(--ti-common-font-weight-7, bold);
   // 当前节点文本色
-  --ti-breadcrumb-selected-text-color: var(--ti-common-color-text-primary);
+  --ti-breadcrumb-selected-text-color: var(--ti-common-color-text-primary, #252b3a);
   // 当前节点悬浮文本色
   --ti-breadcrumb-selected-hover-text-color: var(--ti-breadcrumb-selected-text-color);
 }

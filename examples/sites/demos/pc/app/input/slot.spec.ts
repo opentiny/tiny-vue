@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('[Input]slot', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/input/slot')
+  await page.goto('input#slot')
   
   const prefix = page.locator('.tiny-input__prefix')
   await expect(prefix).toBeVisible()

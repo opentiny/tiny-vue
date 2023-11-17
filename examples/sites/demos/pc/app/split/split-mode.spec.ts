@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('分割方式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/split/split-mode')
+  await page.goto('split#split-mode')
   const split = page.locator('.tiny-split-wrapper')
   const centerBtn = page.locator('.tiny-split-trigger-con')
   const { width: splitWidth } = await split.boundingBox()

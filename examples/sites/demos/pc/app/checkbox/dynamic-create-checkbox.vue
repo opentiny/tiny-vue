@@ -4,7 +4,7 @@
   </tiny-checkbox-group>
 </template>
 
-<script lang="jsx">
+<script>
 import { CheckboxButton, CheckboxGroup, Modal } from '@opentiny/vue'
 
 export default {

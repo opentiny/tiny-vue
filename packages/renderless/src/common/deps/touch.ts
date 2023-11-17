@@ -12,21 +12,16 @@
 
 const MIN_DISTANCE = 10
 
-export function getDirection(w, h) {
-  if (h > w && h > MIN_DISTANCE) {
-    return 'vertical'
-  } else if (w > h && w > MIN_DISTANCE) {
+export const getDirection = (x, y) => {
+  if (x > y && x > MIN_DISTANCE) {
     return 'horizontal'
   }
-  return ''
-}
 
-export const resetTouchStatus = (state) => {
-  state.direction = ''
-  state.deltaX = 0
-  state.deltaY = 0
-  state.offsetX = 0
-  state.offsetY = 0
+  if (y > x && y > MIN_DISTANCE) {
+    return 'vertical'
+  }
+
+  return ''
 }
 
 export const touchStart = (state) => (event) => {
@@ -45,4 +40,12 @@ export const touchMove = (state) => (event) => {
   state.offsetY = Math.abs(state.deltaY)
 
   state.direction = state.direction || getDirection(state.offsetX, state.offsetY)
+}
+
+export const resetTouchStatus = (state) => {
+  state.direction = ''
+  state.deltaX = 0
+  state.deltaY = 0
+  state.offsetX = 0
+  state.offsetY = 0
 }

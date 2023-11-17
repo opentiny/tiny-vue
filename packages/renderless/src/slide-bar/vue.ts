@@ -14,7 +14,7 @@ import { leftClick, rightClick, blockClick, changeState, changeSize, mouseEvent 
 
 export const api = ['state', 'mouseEvent', 'rightClick', 'leftClick', 'blockClick']
 
-export const renderless = (props, { onMounted, reactive }, { refs, parent, emit }) => {
+export const renderless = (props, { onMounted, reactive }, { vm, parent, emit }) => {
   const api = {}
   const state = reactive({
     leftLength: 0,
@@ -32,10 +32,10 @@ export const renderless = (props, { onMounted, reactive }, { refs, parent, emit 
     state,
     blockClick: blockClick({ emit, state }),
     changeState: changeState({ props, state }),
-    changeSize: changeSize({ props, refs, state }),
-    leftClick: leftClick({ api, props, refs, state }),
-    mouseEvent: mouseEvent({ api, props, refs, state }),
-    rightClick: rightClick({ api, parent, props, refs, state })
+    changeSize: changeSize({ props, vm, state }),
+    leftClick: leftClick({ api, props, vm, state }),
+    mouseEvent: mouseEvent({ api, props, vm, state }),
+    rightClick: rightClick({ api, parent, props, vm, state })
   })
 
   onMounted(api.changeSize)

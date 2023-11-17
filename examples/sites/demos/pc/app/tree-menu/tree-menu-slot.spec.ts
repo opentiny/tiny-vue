@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tree-menu/tree-menu-slot')
+  await page.goto('tree-menu#tree-menu-slot')
 
   const treeMenu = page.locator('#preview .tiny-tree-menu')
   await expect(treeMenu.getByText('首页')).toHaveClass('treeClass')

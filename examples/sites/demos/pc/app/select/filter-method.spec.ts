@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('filter-nothing', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/filter-method')
+  await page.goto('select#filter-method')
   const input = page.locator('#preview .tiny-input__inner')
 
   await input.click()
@@ -16,7 +16,7 @@ test('filter-nothing', async ({ page }) => {
 })
 
 test('filter-something', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/filter-method')
+  await page.goto('select#filter-method')
   const input = page.locator('#preview .tiny-input__inner')
 
   await input.click()

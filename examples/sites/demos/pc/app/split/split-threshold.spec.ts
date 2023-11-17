@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('面板阈值', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/split/split-threshold')
+  await page.goto('split#split-threshold')
   const split = page.locator('.tiny-split-wrapper')
   const centerBtn = split.locator('.tiny-split-trigger-con')
   //   获取整个面板高度

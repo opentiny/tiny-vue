@@ -1,5 +1,5 @@
 <template>
-  <tiny-time-line vertical :data="data"></tiny-time-line>
+  <tiny-time-line vertical :data="data" shape="dot"></tiny-time-line>
 </template>
 
 <script setup lang="ts">

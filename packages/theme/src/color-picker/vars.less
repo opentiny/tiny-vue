@@ -1,13 +1,33 @@
 .component-css-vars-colorpicker() {
-  --ti-color-picker-background: var(--ti-common-color-transparent);
-  --ti-color-picker-border-color: var(--ti-base-color-common-2);
-  --ti-color-picker-border-weight: var(--ti-common-border-weight-normal);
-  --ti-color-picker-border-radius-xs: var(--ti-common-border-radius-normal);
-  --ti-color-picker-border-radius-sm: var(--ti-common-border-radius-1);
-  --ti-color-picker-border-radius: var(--ti-common-border-radius-2);
-  --ti-color-picker-spacing: var(--ti-common-space-base);
-  --ti-color-picker-spacing-2x: var(--ti-common-space-2x);
-  --ti-color-picker-shadow: var(--ti-common-shadow-2-down);
+  --ti-color-picker-background: var(--ti-common-color-transparent, transparent);
+  --ti-color-picker-border-color: var(--ti-base-color-common-2, #adb0b8);
+  --ti-color-picker-border-weight: var(--ti-common-border-weight-normal, 1px);
+  --ti-color-picker-border-radius-xs: var(--ti-common-border-radius-normal, 2px);
+  --ti-color-picker-border-radius-sm: var(--ti-common-border-radius-1, 4px);
+  --ti-color-picker-border-radius: var(--ti-common-border-radius-2, 8px);
+  --ti-color-picker-spacing: var(--ti-common-space-base, 4px);
+  --ti-color-picker-spacing-2x: var(--ti-common-space-2x, 8px);
+  --ti-color-picker-shadow: var(--ti-common-shadow-2-down, 0 2px 8px 0 rgba(0, 0, 0, 0.2));
   --ti-color-picker__select__wrapper-zindex: 1000;
-  --ti-color-picker__wrapper-bg: var(--ti-common-color-bg-white-emphasize);
+  --ti-color-picker__wrapper-bg: var(--ti-common-color-bg-white-emphasize, #f2f5fc);
+
+  // 超大尺寸高度
+  --ti-color-picker-size-large-height: var(--ti-common-size-16x, 64px);
+  // 超大尺寸宽度
+  --ti-color-picker-size-large-width: var(--ti-common-size-16x, 64px);
+
+  // 中等尺寸高度
+  --ti-color-picker-size-medium-height: var(--ti-common-size-12x, 48px);
+  // 中等尺寸最小宽度
+  --ti-color-picker-size-medium-width: var(--ti-common-size-12x, 48px);
+
+  // 小型高度
+  --ti-color-picker-size-small-height: var(--ti-common-size-9x, 36px);
+  // 小尺寸宽度
+  --ti-color-picker-size-small-width: var(--ti-common-size-9x, 36px);
+
+  // 迷你尺寸按钮高度
+  --ti-color-picker-size-mini-height: var(--ti-common-size-6x, 24px);
+  // 迷你尺寸宽度
+  --ti-color-picker-size-mini-width: var(--ti-common-size-6x, 24px);
 }

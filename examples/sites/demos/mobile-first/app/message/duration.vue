@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { Button } from '@opentiny/vue'
+import { Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -15,17 +15,17 @@ export default {
   },
   methods: {
     baseClick() {
-      this.$message('默认3000ms后自动关闭提示框')
+      Modal.message('默认3000ms后自动关闭提示框')
     },
     successClick() {
-      this.$message({
+      Modal.message({
         message: '500ms后自动关闭提示框',
         status: 'success',
         duration: '500'
       })
     },
     errorClick() {
-      this.$message({
+      Modal.message({
         message: '5000ms后自动关闭提示框',
         status: 'error',
         duration: '5000'

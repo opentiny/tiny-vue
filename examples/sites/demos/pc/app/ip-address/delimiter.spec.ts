@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('ipAddress 属性设置分隔符', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/ip-address/delimiter')
+  await page.goto('ip-address#delimiter')
 
   const preview = page.locator('#preview')
   const defaultDilimiter = preview.locator('svg circle')

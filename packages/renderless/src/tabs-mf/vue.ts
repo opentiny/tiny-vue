@@ -8,7 +8,8 @@ export const renderless = (props, { onMounted, onBeforeUnmount, provide, reactiv
     items: [],
     navs: [],
     currentItem: computed(() => state.items.find((item) => item.selected)),
-    key: computed(() => (state.currentItem ? state.currentItem.name : random()))
+    key: computed(() => (state.currentItem ? state.currentItem.name : random())),
+    separator: props.separator
   })
 
   const api = {
@@ -45,6 +46,8 @@ export const renderless = (props, { onMounted, onBeforeUnmount, provide, reactiv
     state.navs.forEach((n, i) => (state.navs[i] = null))
     state.navs.length = 0
   })
+
+  provide('separator', state.separator)
 
   return api
 }

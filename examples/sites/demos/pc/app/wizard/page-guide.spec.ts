@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('页向导流程图', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://localhost:7130/pc/wizard/page-guide')
+  await page.goto('wizard#page-guide')
 
   const stepItems = page.locator('.tiny-wizard__steps-item')
   const buttons = page.locator('.tiny-wizard__button')

@@ -1,23 +1,32 @@
 <template>
   <div>
-    <button @click="closeLoading">close Loading</button>
-    <div id="tiny-basic-loading1" style="width: 100%; height: 120px"></div>
+    <tiny-button @click="closeLoading">close Loading</tiny-button>
+    <div id="tiny-basic-loading1"></div>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref, onMounted } from 'vue'
-import { Loading } from '@opentiny/vue'
+import { Loading, Button as TinyButton } from '@opentiny/vue'
 
 const loadingInstance = ref(null)
+
+const closeLoading = () => {
+  loadingInstance.value.close()
+}
 
 onMounted(() => {
   loadingInstance.value = Loading.service({
     target: document.getElementById('tiny-basic-loading1')
   })
 })
-
-function closeLoading() {
-  loadingInstance.value.close()
-}
 </script>
+
+<style scoped>
+#tiny-basic-loading1 {
+  width: 100%;
+  height: 120px;
+  border: 1px solid beige;
+  margin-top: 10px;
+}
+</style>

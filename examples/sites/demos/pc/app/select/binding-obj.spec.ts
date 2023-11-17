@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('binding-obj', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/binding-obj')
+  await page.goto('select#binding-obj')
   const input = page.locator('#preview .tiny-input__inner')
   const valueLocator = page.locator('#preview .value')
 
