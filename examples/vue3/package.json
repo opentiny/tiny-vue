@@ -30,7 +30,7 @@
     "@opentiny/vue-vite-import": "workspace:~",
     "@opentiny/vue-design-smb": "workspace:~",
     "@opentiny/vue-design-aurora": "workspace:~",
-    "@playwright/test": "^1.29.2",
+    "@playwright/test": "^1.40.0",
     "@vitejs/plugin-vue": "4.1.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vitest/ui": "^0.31.0",
