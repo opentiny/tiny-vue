@@ -43,7 +43,7 @@ jobs:
         run: pnpm i --no-frozen-lockfile
 
       - name: dev start
-        run: pnpm dev & sleep 5
+        run: pnpm site & sleep 5
 
       - name: Install Playwright browsers
         run: pnpm install:browser --with-deps chromium
