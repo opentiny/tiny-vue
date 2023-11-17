@@ -7,9 +7,9 @@ export default {
       name: { 'zh-CN': '常用表单', 'en-US': 'Common Form' },
       desc: {
         'zh-CN':
-          '<p>在 <code>Form</code> 组件中，每一个表单域由一个 <code>FormItem</code> 组件构成，表单域中可以放置各种类型的表单控件，包括 <code>Input</code> 、 <code>Select</code> 、 <code>Checkbox</code> 、 <code>Radio</code> 、 <code>Switch</code> 、 <code>DatePicker</code> 、 <code>TimePicker</code> 等。</p>',
+          '<p>在 <code>Form</code> 组件中，每一个表单域由一个 <code>form-item</code> 组件构成，表单域中可以放置各种类型的表单控件，包括 <code>Input</code> 、 <code>Select</code> 、 <code>Checkbox</code> 、 <code>Radio</code> 、 <code>Switch</code> 、 <code>DatePicker</code> 、 <code>TimePicker</code> 等。</p>',
         'en-US':
-          '<p>In the <code>Form</code> component, each form field is composed of a <code>FormItem</code> component, and various types of form controls can be placed in the form field, including <code>Input</code> , <code>Select</code> , <code>Checkbox</code> , <code>Radio</code> , <code>Switch</code> , <code>DatePicker</code> , <code>TimePicker</code> , etc. </p>'
+          '<p>In the <code>Form</code> component, each form field is composed of a <code>form-item</code> component, and various types of form controls can be placed in the form field, including <code>Input</code> , <code>Select</code> , <code>Checkbox</code> , <code>Radio</code> , <code>Switch</code> , <code>DatePicker</code> , <code>TimePicker</code> , etc. </p>'
       },
       codeFiles: ['basic-usage.vue']
     },
@@ -25,19 +25,29 @@ export default {
       codeFiles: ['form-in-row.vue']
     },
     {
+      demoId: 'label-position',
+      name: { 'zh-CN': '标签宽度与标签位置', 'en-US': 'Label width and position' },
+      desc: {
+        'zh-CN': '<p>通过 <code>label-width</code> 设置标签宽度，<code>label-position</code> 设置文本标签的位置。</p>',
+        'en-US':
+          '<p>Set the label width by <code>label width</code> , and set the position of the text label by <code>label position</code> .</p>'
+      },
+      codeFiles: ['label-position.vue']
+    },
+    {
       demoId: 'label-align',
-      name: { 'zh-CN': '标签宽度与文本对齐', 'en-US': 'Text Alignment' },
+      name: { 'zh-CN': '必填星号文本对齐', 'en-US': 'Required asterisk alignment' },
       desc: {
         'zh-CN':
-          '<p>通过 <code>label-width</code> 设置标签宽度， <code>label-align</code> 设置是否文本对齐， <code>label-position</code> 设置文本标签的位置。</p>',
+          '<p>当 <code>label-position</code> 为 <code>left</code> 时， 通过 <code>label-align</code> 设置必填星号出现时标签文本是否对齐。</p>',
         'en-US':
-          '<p>Set the label width by <code>label width</code> ,Set whether the text is aligned by <code>label align</code> , and set the position of the text label by <code>label position</code> .</p>'
+          '<p>When <code>label-position</code> is <code>left</code> , Set whether the label text is aligned when a mandatory asterisk appears by<code>label align</code>.</p>'
       },
       codeFiles: ['label-align.vue']
     },
     {
       demoId: 'overflow-title',
-      name: { 'zh-CN': '标签超长显示 tip', 'en-US': 'Label too long display tip' },
+      name: { 'zh-CN': '标签超长显示提示', 'en-US': 'Label too long display tip' },
       desc: {
         'zh-CN':
           '<p>通过 <code>overflow-title</code> 设置标签超长时鼠标移动到标签上可显示 <code>tooltip</code> 提示，若使用 <code>label</code> 插槽，需自行实现。</p>',
@@ -50,7 +60,7 @@ export default {
       demoId: 'form-validation',
       name: { 'zh-CN': '表单校验、移除校验', 'en-US': 'Form Validation/Clear Validation' },
       desc: {
-        'zh-CN': `<p>通过 <code>rules</code> 设置校验规则， <code>rules</code> 的详情见<a href="#IFormRules">IFormRules</a>
+        'zh-CN': `<p>通过 <code>rules</code> 设置校验规则， <code>rules</code> 的详情见 <a href="#IFormRules">IFormRules</a>
           <br />
           调用 <code>clearValidate</code> 方法移除表单项的校验结果。传入待移除的表单项的 <code>prop</code> 属性或者 <code>prop</code> 组成的数组，如不传则移除整个表单的校验结果。</p>`,
         'en-US': `<p>Includes common verification rules such as mandatory fields, date, time, URL, and email. Use <code>trigger</code> to configure the mode of triggering the validation rule. If <code>change</code> is used, the validation is triggered when the value in the text box changes. If <code>blur</code> is used, the validation is triggered after the focus is lost. 
@@ -88,9 +98,9 @@ export default {
       name: { 'zh-CN': '校验提示位置', 'en-US': 'Verification prompt position' },
       desc: {
         'zh-CN':
-          '<p>通过 <code>validate-position</code> 可自定义错误提示出现的位置，在 <code>Form</code> 组件上设置后，子组件 <code>FormItem</code> 会继承父组件设置。单独在 <code>FormItem</code> 组件上进行设置优先级高于在 <code>From</code> 上的设置。</p>',
+          '<p>通过 <code>validate-position</code> 可自定义错误提示出现的位置，在 <code>form</code> 组件上设置后，子组件 <code>form-item</code> 会继承父组件设置。单独在 <code>form-item</code> 组件上进行设置优先级高于在 <code>from</code> 上的设置。</p>',
         'en-US':
-          '<p>You can use <code>validate-position</code> to customize the position where the error message appears. After this parameter is set on the <code>Form</code> component, the subcomponent <code>FormItem</code> inherits the setting of the parent component. The setting on the <code>FormItem</code> component takes precedence over the setting on the <code>From</code> component. </p>'
+          '<p>You can use <code>validate-position</code> to customize the position where the error message appears. After this parameter is set on the <code>form</code> component, the subcomponent <code>form-item</code> inherits the setting of the parent component. The setting on the <code>form-item</code> component takes precedence over the setting on the <code>From</code> component. </p>'
       },
       codeFiles: ['validation-position.vue']
     },
@@ -98,9 +108,8 @@ export default {
       demoId: 'novalid-tip',
       name: { 'zh-CN': '隐藏表单项校验提示', 'en-US': 'Verification prompt format' },
       desc: {
-        'zh-CN': '<p>通过 <code>show-message</code> 设置是否显示校验提示框的tip内容提示。</p>',
-        'en-US':
-          '<p>You can use <code>validate-type</code> to set whether the verification prompt information is displayed in <code>text</code> or <code>tip</code> format. The default value is <code>tip</code> . You can also configure the verification prompt mode of a certain item on a certain <code>&lt;form-item&gt;</code> . </p>'
+        'zh-CN': '<p>通过 <code>show-message</code> 设置是否显示校错误提示信息。</p>',
+        'en-US': '<p>Set whether to display error correction prompts through<code>show message</code>. </p>'
       },
       codeFiles: ['novalid-tip.vue']
     },
@@ -109,11 +118,22 @@ export default {
       name: { 'zh-CN': '校验提示的形式', 'en-US': 'Disable form' },
       desc: {
         'zh-CN':
-          '<p>通过 <code>validate-type</code> 设置校验提示信息是以 <code>text</code> 文本显示还是以 <code>tip</code> 提示框的形式显示，默认为 <code>tip</code> 。 <code>message-type</code> 设置文本显示时是否以行内形式展示校验信息。也可直接配置在某一个 <code>form-item</code> 上控制某一项的校验提示形式。</p>',
+          '<p>通过 <code>validate-type</code> 设置校验提示信息是以 <code>text</code> 文本显示还是以 <code>tip</code> 提示框的形式显示，也可直接配置在某一个 <code>form-item</code> 上控制某一项的校验提示形式。</p>',
         'en-US':
-          '<p>You can set whether to disable the form by <code>disabled</code> . The default value is <code>false</code> . </p>'
+          '<p>By setting whether the verification prompt information is displayed as<code>text</code>text or as a<code>tip</code>prompt box, it can also be directly configured to control the verification prompt form of a certain item on a certain<code>form item</code>. </p>'
       },
       codeFiles: ['validate-type.vue']
+    },
+    {
+      demoId: 'message-type',
+      name: { 'zh-CN': '文本类型错误提示位置', 'en-US': 'Text type error prompt location' },
+      desc: {
+        'zh-CN':
+          '<p>当 <code>validate-type</code> 为 <code>text</code> 时，通过 <code>message-type</code> 设置文本类型错误提示位置，不设置则为 <code>absolute</code> 定位。</p>',
+        'en-US':
+          '<p>当 <code>验证类型</code>为 <code>text</code>时，通过 <code>消息类型</code>设置文本类型错误提示位置，不设置则为 <code>绝对</code>定位。</p>'
+      },
+      codeFiles: ['message-type.vue']
     },
     {
       demoId: 'validate-debounce',
@@ -131,7 +151,7 @@ export default {
       name: { 'zh-CN': '表单尺寸', 'en-US': 'Remove the verification result of a form item.' },
       desc: {
         'zh-CN':
-          '<p>通过 <code>size</code> 设置表单内组件尺寸。注意：表单中设置的size优先级高于数据录入组件( <code>input、select</code> 等)设置的size。</p>',
+          '<p>通过 <code>size</code> 设置表单内组件尺寸。注意：表单中设置的size优先级高于数据录入组件（ <code>input</code> 、<code>select</code> 等）设置的 <code>size</code> 。</p>',
         'en-US':
           '<p>Invoke the <code>clearValidate</code> method to remove the verification result of a form item. Transfer the <code>prop</code> attribute of the form item to be removed or the array consisting of <code>prop</code> . If this parameter is not transferred, the verification result of the entire form is removed. </p>'
       },
@@ -158,9 +178,9 @@ export default {
     },
     {
       demoId: 'display-only',
-      name: { 'zh-CN': '表单只读', 'en-US': 'Group Form' },
+      name: { 'zh-CN': '表单仅展示', 'en-US': 'Group Form' },
       desc: {
-        'zh-CN': '<p>通过 <code>display-only</code> 配置表单是否开启只读模式。</p>',
+        'zh-CN': '<p>通过 <code>display-only</code> 配置表单是否开启仅展示模式。</p>',
         'en-US': '<p>Configure whether the form is in read-only mode by <code>display only</code> .</p>'
       },
       codeFiles: ['display-only.vue']
@@ -168,7 +188,10 @@ export default {
     {
       demoId: 'form-row-col',
       name: { 'zh-CN': '复杂布局', 'en-US': '' },
-      desc: { 'zh-CN': '<p>通过配合 <code>Row</code> 和 <code>Col</code> 组件来实现复杂布局。</p>', 'en-US': '' },
+      desc: {
+        'zh-CN': '<p>通过配合 <code>row</code> 和 <code>col</code> 组件来实现复杂布局。</p>',
+        'en-US': 'By collaborating with<code>row</code>and<code>col</code>components to achieve complex layouts.'
+      },
       codeFiles: ['form-row-col.vue']
     },
     {
@@ -199,7 +222,7 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '是否禁用该表单内的所有组件若设置为 true，则表单内组件上的 disabled 属性不再生效',
+            'zh-CN': '是否禁用该表单内的所有表单组件，若设置为 true，则表单内组件上的 disabled 属性不再生效',
             'en-US':
               'Whether to disable all components in the form. If this parameter is set to true, the disabled attribute of components in the form does not take effect.'
           },
@@ -210,7 +233,7 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '通过 display-only 属性，开启只读模式',
+            'zh-CN': '是否开启仅展示模式',
             'en-US': 'Enable read-only mode through the display only attribute'
           },
           demoId: 'display-only'
@@ -220,7 +243,7 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '是否隐藏必填字段的标签旁边的红色星号，SMB主题下默认值为true',
+            'zh-CN': '是否隐藏必填字段的标签旁边的红色星号，SMB 主题下默认值为true',
             'en-US':
               'Whether to hide the red asterisk next to the label of mandatory fields, The default value for SMB theme is true'
           },
@@ -231,58 +254,58 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '行内布局模式，默认为 false ',
-            'en-US': 'In-line layout mode. The default value is false.'
+            'zh-CN': '行内布局模式',
+            'en-US': 'In-line layout mode'
           },
           demoId: 'form-in-row'
         },
         {
           name: 'inline-message',
           type: 'boolean',
-          defaultValue: '',
+          'defaultValue': '--',
           desc: {
-            'zh-CN': '当validate-type设置为text时，是否以行内形式展示校验信息(推荐使用message-type设置)',
+            'zh-CN': '当 validate-type 设置为text时，是否以行内形式展示校验信息(推荐使用 message-type 设置)',
             'en-US':
               ' Whether to display the verification information inline form when validate-type is set to text,(It is recommended to use message-type setting)'
           },
-          demoId: 'validate-type'
+          demoId: ''
         },
         {
           name: 'message-type',
-          type: 'inline | block',
-          defaultValue: '',
+          type: "'inline' | 'block'",
+          'defaultValue': '--',
           desc: {
-            'zh-CN': '当validate-type设置为text时，配置文本类型错误类型，可配置行内或者块级，默认为absolute定位',
+            'zh-CN':
+              '当 validate-type 设置为text时，配置文本类型错误类型，可配置行内或者块级，不设置则为 absolute 定位',
             'en-US':
               'Configure the text type error type, which can be configured at the inline or block level when validate-type is set to text. The default is absolute positioning'
           },
-          demoId: 'validate-type'
+          demoId: 'message-type'
         },
         {
           name: 'label-align',
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '表单中在配件显示必填字段的标签旁边的红色星号时，文本是否对齐 ',
-            'en-US':
-              'Check whether the text is aligned when the red asterisk next to the label of mandatory fields is displayed in the form.'
+            'zh-CN': "当出现必填星号时，标签文本是否对齐，当 label-position 为 'right'时有效",
+            'en-US': 'When a mandatory asterisk appears, is it aligned with the text'
           },
           demoId: 'label-align'
         },
         {
           name: 'label-position',
-          type: 'right | left | top',
-          defaultValue: 'right',
+          type: "'right' | 'left' | 'top'",
+          defaultValue: "'right'",
           desc: {
             'zh-CN': '表单中标签的布局位置',
             'en-US': 'Layout position of the label in the form'
           },
-          demoId: 'label-align'
+          demoId: 'label-position'
         },
         {
           name: 'label-suffix',
           type: 'string',
-          defaultValue: '',
+          'defaultValue': '--',
           desc: {
             'zh-CN': '表单中标签后缀',
             'en-US': 'Label suffix in the form'
@@ -292,17 +315,17 @@ export default {
         {
           name: 'label-width',
           type: 'string',
-          defaultValue: '80px',
+          defaultValue: "'80px'",
           desc: {
             'zh-CN': '表单中标签占位宽度',
             'en-US': 'Label placeholder width in the form'
           },
-          demoId: 'label-align'
+          demoId: 'label-position'
         },
         {
           name: 'model',
-          type: 'object',
-          defaultValue: '',
+          type: '{ [prop: string]: any }',
+          'defaultValue': '--',
           desc: {
             'zh-CN': '表单数据对象',
             'en-US': 'Form data object'
@@ -310,10 +333,20 @@ export default {
           demoId: 'form-validation'
         },
         {
+          name: 'overflow-title',
+          type: 'boolean',
+          'defaultValue': 'false',
+          desc: {
+            'zh-CN': '标签超长是否显示提示',
+            'en-US': 'Does the label display a prompt if it is too long'
+          },
+          demoId: 'overflow-title'
+        },
+        {
           name: 'rules',
           type: '{ [prop: string]: IFormRules | IFormRules[]  }',
           typeAnchorName: 'IFormRules',
-          defaultValue: '',
+          'defaultValue': '--',
           desc: {
             'zh-CN': '表单验证规则',
             'en-US': 'Form validation rule'
@@ -332,10 +365,10 @@ export default {
         },
         {
           name: 'size',
-          type: ' medium | small | mini',
-          defaultValue: '',
+          type: "'medium' | 'small' | 'mini'",
+          'defaultValue': '--',
           desc: {
-            'zh-CN': '用于控制该表单内组件的尺寸',
+            'zh-CN': '表单内组件的尺寸，不设置则为默认尺寸',
             'en-US': 'Controls the size of components in the form'
           },
           demoId: 'size'
@@ -354,7 +387,7 @@ export default {
           name: 'validate-position',
           type: 'IFormPosition',
           typeAnchorName: 'IFormPosition',
-          defaultValue: 'right',
+          defaultValue: "'right'",
           desc: {
             'zh-CN': '指定校验提示框显示的位置',
             'en-US': 'Specify the position where the verification dialog box is displayed'
@@ -363,8 +396,8 @@ export default {
         },
         {
           name: 'validate-type',
-          type: 'tip | text',
-          defaultValue: 'tip',
+          type: "'tip' | 'text'",
+          defaultValue: "'tip'",
           desc: {
             'zh-CN': '校验类型',
             'en-US': 'Verification type'
@@ -376,9 +409,9 @@ export default {
         {
           name: 'default',
           type: '',
-          defaultValue: '',
+          'defaultValue': '--',
           desc: {
-            'zh-CN': '默认插槽',
+            'zh-CN': '默认插槽，自定义表单内容',
             'en-US': 'Default slot'
           },
           demoId: 'basic-usage'
@@ -388,7 +421,7 @@ export default {
         {
           name: 'clearValidate',
           type: '(prop: string | string[]) => void',
-          defaultValue: '',
+          'defaultValue': '--',
           desc: {
             'zh-CN':
               '移除表单项的校验结果，可传入待移除的表单项的prop，或者 prop 组成的数组，如不传则移除整个表单的校验结果',
@@ -400,7 +433,7 @@ export default {
         {
           name: 'resetFields',
           type: '() => void',
-          defaultValue: '',
+          'defaultValue': '--',
           desc: {
             'zh-CN': '对整个表单进行重置，将所有字段值重置为初始值并移除校验结果',
             'en-US': 'Reset all field values to the initial values and remove the verification result.'
@@ -409,12 +442,12 @@ export default {
         },
         {
           name: 'validate',
-          typeAnchorName: 'IFormError',
-          type: '(callback: (isValid: boolean, fields: IFormError) => void ) => Promise&lt;boolean&gt;',
-          defaultValue: '',
+          typeAnchorName: 'IFormValidateMethod',
+          type: 'IFormValidateMethod',
+          'defaultValue': '--',
           desc: {
             'zh-CN':
-              '对整个表单进行校验的方法，参数为一个回调函数该回调函数会在校验结束后被调用，并传入两个参数：是否校验成功和未通过校验的字段若不传入回调函数，则会返回一个 promise',
+              '对整个表单进行校验的方法，参数为一个回调函数（该回调函数会在校验结束后被调用，并传入两个参数：1、是否校验成功 2、未通过校验的字段）返回一个 promise',
             'en-US':
               'Method for verifying the entire form. The parameter is a callback function. The callback function will be invoked after the verification is complete and two parameters are transferred: whether the verification is successful and whether the verification fails. If the callback function is not transferred, a promise is returned.'
           },
@@ -422,9 +455,9 @@ export default {
         },
         {
           name: 'validateField',
-          typeAnchorName: 'IFormError',
-          type: '(prop: string | string[], callback: (msg: string, field: IFormError) => void) => void',
-          defaultValue: '',
+          typeAnchorName: 'IFormValidateFieldMethod',
+          type: 'IFormValidateFieldMethod',
+          'defaultValue': '--',
           desc: {
             'zh-CN':
               '对部分表单字段进行校验的方法, 第一个参数为单个prop或者prop数组，第二个参数是回调函数，每个表单项检验完后会依次调用该回调',
@@ -438,7 +471,7 @@ export default {
         {
           name: 'validate',
           type: '(prop: string, isValid: boolean, message: string) => void',
-          defaultValue: '',
+          'defaultValue': '--',
           desc: {
             'zh-CN': '任一表单项被校验后触发',
             'en-US': 'Triggered after any form item is verified'
@@ -454,9 +487,9 @@ export default {
         {
           name: 'error',
           type: 'string',
-          defaultValue: '',
+          'defaultValue': '--',
           desc: {
-            'zh-CN': '表单项错误文本，设置该值会使表单验证状态变为error',
+            'zh-CN': '表单项错误文本，设置该值会使表单验证状态变为 error',
             'en-US': 'Form item error text,Setting this value will change the form validation status to error'
           },
           demoId: ''
@@ -464,29 +497,29 @@ export default {
         {
           name: 'inline-message',
           type: 'boolean',
-          defaultValue: '',
+          'defaultValue': '--',
           desc: {
-            'zh-CN': '是否以行内形式展示校验信息(推荐使用message-type设置)',
+            'zh-CN': '是否以行内形式展示校验信息(推荐使用 message-type 设置)',
             'en-US':
               'Whether to display the verification information inline form(It is recommended to use message-type setting) '
           },
-          demoId: 'validate-type'
+          demoId: ''
         },
         {
           name: 'message-type',
-          type: 'inline | block',
-          defaultValue: '',
+          type: "'inline' | 'block'",
+          'defaultValue': '--',
           desc: {
-            'zh-CN': '配置文本类型错误类型，可配置行内或者块级，不配置则为absolute定位',
+            'zh-CN': '配置文本类型错误类型，可配置行内或者块级，不配置则为 absolute 定位',
             'en-US':
               'Configure the text type error type, which can be configured at the inline or block level. The default is absolute positioning'
           },
-          demoId: 'validate-type'
+          demoId: 'message-type'
         },
         {
           name: 'label',
           type: 'string',
-          defaultValue: '',
+          'defaultValue': '--',
           desc: {
             'zh-CN': '标签文本',
             'en-US': 'Label text'
@@ -496,19 +529,19 @@ export default {
         {
           name: 'label-width',
           type: 'string',
-          defaultValue: '80px',
+          defaultValue: "'80px'",
           desc: {
-            'zh-CN': "表单域标签的的宽度，如 '50px',支持 auto",
-            'en-US': "Width of the form field label, for example, '50px'. Auto is supported"
+            'zh-CN': '表单域标签的的宽度',
+            'en-US': 'Width of the form field label'
           },
           demoId: 'basic-usage'
         },
         {
           name: 'prop',
           type: 'string',
-          defaultValue: '',
+          'defaultValue': '--',
           desc: {
-            'zh-CN': '对应表单域model字段，如需使用表单校验，该属性是必填的',
+            'zh-CN': '对应表单域 model 字段，如需使用表单校验，该属性是必填的',
             'en-US':
               'Is it mandatory? If not set, it will be automatically generated according to the verification rules'
           },
@@ -529,7 +562,7 @@ export default {
           name: 'rules',
           type: 'IFormRules',
           typeAnchorName: 'IFormRules',
-          defaultValue: '',
+          'defaultValue': '--',
           desc: {
             'zh-CN': '表单项验证规则',
             'en-US': 'Form validation rule'
@@ -548,10 +581,10 @@ export default {
         },
         {
           name: 'size',
-          type: ' medium | small | mini',
-          defaultValue: '',
+          type: "'medium' | 'small' | 'mini'",
+          'defaultValue': '--',
           desc: {
-            'zh-CN': '用于控制该表单域下组件的尺寸',
+            'zh-CN': '用于控制该表单域下组件的尺寸，不设置则为默认尺寸',
             'en-US': 'Controls the size of the component in the form field'
           },
           demoId: 'size'
@@ -561,7 +594,7 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '开启校验防抖，在连续输入的情况下，会在最后一次输入结束时才开始校验',
+            'zh-CN': '是否开启校验防抖，在连续输入的情况下，会在最后一次输入结束时才开始校验',
             'en-US':
               'Enable verification anti shake. In the case of continuous input, verification will only begin at the end of the last input'
           },
@@ -569,8 +602,8 @@ export default {
         },
         {
           name: 'validate-icon',
-          type: 'Component',
-          defaultValue: '',
+          type: 'VueComponent',
+          'defaultValue': '--',
           desc: {
             'zh-CN': '校验提示框的图标，类型为组件',
             'en-US': 'Icon for verification prompt box, type is component'
@@ -581,7 +614,7 @@ export default {
           name: 'validate-position',
           type: 'IFormPosition',
           typeAnchorName: 'IFormPosition',
-          defaultValue: 'top-end',
+          defaultValue: "'top-end'",
           desc: {
             'zh-CN': '指定校验提示框显示的位置',
             'en-US': 'Specify the position where the verification dialog box is displayed'
@@ -590,8 +623,8 @@ export default {
         },
         {
           name: 'validate-type',
-          type: 'text | tip',
-          defaultValue: 'tip',
+          type: "'text' | 'tip'",
+          defaultValue: "'tip'",
           desc: {
             'zh-CN': '校验提示显示类型',
             'en-US': 'Verification prompt display type'
@@ -603,7 +636,7 @@ export default {
         {
           name: 'default',
           type: '',
-          defaultValue: '',
+          'defaultValue': '--',
           desc: {
             'zh-CN': '默认插槽',
             'en-US': 'Default slot'
@@ -613,7 +646,7 @@ export default {
         {
           name: 'label',
           type: '',
-          defaultValue: '',
+          'defaultValue': '--',
           desc: {
             'zh-CN': '标签文本的内容',
             'en-US': 'Label text content'
@@ -625,7 +658,7 @@ export default {
         {
           name: 'clearValidate',
           type: '() => void',
-          defaultValue: '',
+          'defaultValue': '--',
           desc: {
             'zh-CN': '移除该表单项的校验结果',
             'en-US': 'Remove the verification result of the table item.'
@@ -635,7 +668,7 @@ export default {
         {
           name: 'resetField',
           type: '() => void',
-          defaultValue: '',
+          'defaultValue': '--',
           desc: {
             'zh-CN': '对该表单项进行重置，将其值重置为初始值并移除校验结果',
             'en-US': 'Reset the table item to the initial value and remove the verification result.'
@@ -696,13 +729,30 @@ interface IFormInnerRule {
       type: 'interface',
       code: `
 // 校验错误返回对象
-interface IFormError = {
+interface IFormError {
   [prop: string]: IFormErrorField[]
 }
 interface IFormErrorField {
   message: string // 校验错误提示
   field: string // 校验失败的prop
 }
+`
+    },
+    {
+      name: 'IFormValidateMethod',
+      type: 'function',
+      code: `
+function IFormValidateMethod(callback: (isValid: boolean, fields: IFormError) => void ): Promise<boolean>
+`
+    },
+    {
+      name: 'IFormValidateFieldMethod',
+      type: 'function',
+      code: `
+function IFormValidateFieldMethod(
+  prop: string | string[],
+  callback: (msg: string, field: IFormError) => void
+): void
 `
     }
   ]

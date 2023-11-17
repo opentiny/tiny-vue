@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-popconfirm :title="title" :content="content" @show="show" @hide="hide">
+    <tiny-popconfirm :title="title" :content="content" @show="show" @hide="hide" @confirm="confirm">
       <template #reference>
         <tiny-button>悬浮我提示</tiny-button>
       </template>
@@ -33,6 +33,12 @@ export default {
       Modal.message({
         status: 'info',
         message: 'hide事件触发了'
+      })
+    },
+    confirm() {
+      Modal.message({
+        status: 'info',
+        message: 'confirm事件触发了'
       })
     }
   }

@@ -4,4 +4,4 @@ title: Alert 警告
 
 # Alert 警告
 
-<div>Alert 警告,提供 warning、error、info、success 四种类型显示不同类别的信息。</div>
+<div>Alert 警告，非浮层的静态展现形式，始终展现，不会自动消失，用户可以点击关闭。</div>

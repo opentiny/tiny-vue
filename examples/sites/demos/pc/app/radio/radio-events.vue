@@ -2,7 +2,7 @@
   <div>
     <tiny-radio v-model="value" label="1" @change="change">选项一</tiny-radio>
     <tiny-radio v-model="value" label="2" @change="change">选项二</tiny-radio>
-    <div style="margin-top: 20px">
+    <div class="mt-20">
       <tiny-radio-group v-model="radio" @change="change">
         <tiny-radio-button label="1">日度</tiny-radio-button>
         <tiny-radio-button label="2">月度</tiny-radio-button>
@@ -37,3 +37,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.mt-20 {
+  margin-top: 20px;
+}
+</style>

@@ -1,11 +1,13 @@
 <template>
   <div class="demo-form">
-    <div class="title">标签位置： <tiny-switch v-model="isLabelAlign"></tiny-switch></div>
-    <tiny-form ref="ruleFormRef" :model="createData" label-position="left" :label-align="isLabelAlign">
-      <tiny-form-item label="用户名" prop="username" required>
+    <div class="title">
+      标签位置： <tiny-button-group :data="labelPositionList" v-model="labelPositionValue"></tiny-button-group>
+    </div>
+    <tiny-form ref="ruleFormRef" :model="createData" :label-position="labelPositionValue">
+      <tiny-form-item label="用户名" prop="username">
         <tiny-input v-model="createData.username"></tiny-input>
       </tiny-form-item>
-      <tiny-form-item label="密码" prop="password" required>
+      <tiny-form-item label="密码" prop="password">
         <tiny-input v-model="createData.password" type="password" show-password></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="密钥" prop="password2">
@@ -17,11 +19,21 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { Form as TinyForm, FormItem as TinyFormItem, Input as TinyInput, Switch as TinySwitch } from '@opentiny/vue'
+import {
+  Form as TinyForm,
+  FormItem as TinyFormItem,
+  Input as TinyInput,
+  ButtonGroup as TinyButtonGroup
+} from '@opentiny/vue'
 
 const ruleFormRef = ref()
 
-const isLabelAlign = ref(true)
+const labelPositionList = ref([
+  { text: 'left', value: 'left' },
+  { text: 'right', value: 'right' },
+  { text: 'top', value: 'top' }
+])
+const labelPositionValue = ref('left')
 
 const createData = reactive({
   username: '',

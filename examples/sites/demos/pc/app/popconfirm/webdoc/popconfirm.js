@@ -33,48 +33,59 @@ export default {
     },
     {
       'demoId': 'placement',
-      'name': { 'zh-CN': '提示框显示位置', 'en-US': '' },
-      'desc': { 'zh-CN': '<p>通过 <code>placement</code> 设置提示框显示位置。</p>', 'en-US': '' },
+      'name': { 'zh-CN': '提示框显示位置', 'en-US': 'Display position of prompt box' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>placement</code> 设置提示框显示位置。</p>',
+        'en-US': '<p>Set the display position of the prompt box through<code>placement</code>.</p>'
+      },
       'codeFiles': ['placement.vue']
     },
     {
       'demoId': 'custom-class',
-      'name': { 'zh-CN': '自定义类名', 'en-US': '' },
-      'desc': { 'zh-CN': '<p>通过 <code>custom-class</code> 自定义气泡提示框的类名。</p>', 'en-US': '' },
+      'name': { 'zh-CN': '自定义类名', 'en-US': 'Custom class' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>custom-class</code> 自定义气泡提示框的类名。</p>',
+        'en-US': '<p>Customize the class name of the bubble prompt box through<code>custom class</code>.</p>'
+      },
       'codeFiles': ['custom-class.vue']
     },
     {
       'demoId': 'slot-footer',
-      'name': { 'zh-CN': '底部插槽', 'en-US': '' },
-      'desc': { 'zh-CN': '<p>通过 <code>footer</code> 插槽自定义底部内容。</p>', 'en-US': '' },
+      'name': { 'zh-CN': '底部插槽', 'en-US': 'Footer slot' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>footer</code> 插槽自定义底部内容。</p>',
+        'en-US': '<p>Customize the bottom content through the<code>footer</code>slot.</p>'
+      },
       'codeFiles': ['slot-footer.vue']
     },
     {
       'demoId': 'width',
-      'name': { 'zh-CN': '设置宽度', 'en-US': '' },
-      'desc': { 'zh-CN': '<p>通过 <code>width</code> 设置提示框宽度。</p>', 'en-US': '' },
+      'name': { 'zh-CN': '设置宽度', 'en-US': 'Set width' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>width</code> 设置提示框宽度。</p>',
+        'en-US': '<p>Set the width of the prompt box through<code>width</code></ P>'
+      },
       'codeFiles': ['width.vue']
     },
     {
       'demoId': 'cancel-button',
-      'name': { 'zh-CN': '隐藏取消按钮', 'en-US': '' },
-      'desc': { 'zh-CN': '<p>通过 <code>cancel-button</code> 设置是否展示取消按钮。</p>', 'en-US': '' },
+      'name': { 'zh-CN': '隐藏取消按钮', 'en-US': 'Hide Cancel Button' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>cancel-button</code> 设置是否展示取消按钮。</p>',
+        'en-US': '<p>Set whether to display the cancel button through<code>cancel button</code></ P>'
+      },
       'codeFiles': ['cancel-button.vue']
     },
     {
-      'demoId': 'visible-event',
-      'name': { 'zh-CN': '隐藏、显示事件', 'en-US': '' },
+      'demoId': 'event',
+      'name': { 'zh-CN': '事件', 'en-US': 'Event' },
       'desc': {
-        'zh-CN': '<p>当气泡确认框显示时触发 <code>show</code> 事件，当确认框隐藏时触发 <code>hide</code> 事件。</p>',
-        'en-US': ''
+        'zh-CN':
+          '<p>当气泡确认框显示时触发 <code>show</code> 事件，当确认框隐藏时触发 <code>hide</code> 事件。<br />当点击底部确认按钮时会同时触发 <code>hide</code> 和 <code>confirm</code> 事件。</p>',
+        'en-US':
+          '<p>The<code>show</code>event is triggered when the bubble confirmation box is displayed, and the<code>hide</code>event is triggered when the confirmation box is hidden< When clicking the confirm button at the bottom, both the<code>hide</code>and<code>confirm</code>events will be triggered simultaneously.</p>'
       },
-      'codeFiles': ['visible-event.vue']
-    },
-    {
-      'demoId': 'confirm-event',
-      'name': { 'zh-CN': '确认事件', 'en-US': '' },
-      'desc': { 'zh-CN': '<p>当点击底部确认按钮时触发 <code>confirm</code> 事件。</p>', 'en-US': '' },
-      'codeFiles': ['confirm-event.vue']
+      'codeFiles': ['event.vue']
     }
   ],
   apis: [
@@ -95,9 +106,9 @@ export default {
         {
           'name': 'content',
           'type': 'string',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置气泡提示框的内容',
+            'zh-CN': '气泡提示框的内容',
             'en-US': 'Set the pop confirm content'
           },
           'demoId': 'basic-usage'
@@ -105,8 +116,8 @@ export default {
         {
           'name': 'placement',
           'type':
-            'top | top-start | top-end | bottom | bottom-start | bottom-end | left | left-start | left-end | right | right-start | right-end',
-          'defaultValue': 'top',
+            "'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'",
+          'defaultValue': "'top'",
           'desc': {
             'zh-CN': '气泡提示框显示位置',
             'en-US': 'Set the pop confirm placement'
@@ -116,7 +127,7 @@ export default {
         {
           'name': 'custom-class',
           'type': 'string',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '为气泡提示框自定义类名',
             'en-US': 'Set the pop confirm popper class name'
@@ -126,7 +137,7 @@ export default {
         {
           'name': 'title',
           'type': 'string',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '设置气泡提示框的标题',
             'en-US': 'Set the pop confirm title'
@@ -135,8 +146,8 @@ export default {
         },
         {
           'name': 'trigger',
-          'type': 'trigger | hover',
-          'defaultValue': 'hover',
+          'type': "'click' | 'hover'",
+          'defaultValue': "'hover'",
           'desc': {
             'zh-CN': '气泡提示框显示触发方式',
             'en-US': 'How to show the pop confirm'
@@ -145,11 +156,11 @@ export default {
         },
         {
           'name': 'type',
-          'type': 'info | success | warning | error | Component',
-          'defaultValue': '',
+          'type': "'info' | 'success' | 'warning' | 'error' | VueComponent",
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '提示图标类型，可选值有info、success、warning、error，或者传入自定义图标',
-            'en-US': 'Set the icon type, info,success,warning,error can be set'
+            'zh-CN': '提示图标类型，可以传入自定义图标',
+            'en-US': 'Prompt icon type, custom icons can be passed in'
           },
           'demoId': 'type'
         },
@@ -158,7 +169,7 @@ export default {
           'type': 'string | number',
           'defaultValue': '350',
           'desc': {
-            'zh-CN': '设置气泡提示框宽度',
+            'zh-CN': '气泡提示框宽度',
             'en-US': 'Set the pop confirm box with'
           },
           'demoId': 'width'
@@ -168,7 +179,7 @@ export default {
         {
           'name': 'confirm',
           'type': '(visible: boolean) => void',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '点击确认按钮时触发',
             'en-US': 'Triggered when confirm button is clicked'
@@ -178,29 +189,29 @@ export default {
         {
           'name': 'hide',
           'type': '(visible: boolean) => void',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '气泡确认框关闭时触发',
             'en-US': 'Triggered when pop confirm hide'
           },
-          'demoId': 'visible-event'
+          'demoId': 'event'
         },
         {
           'name': 'show',
           'type': '(visible: boolean) => void',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '气泡确认框显示时触发',
             'en-US': 'Triggered when pop confirm show'
           },
-          'demoId': 'visible-event'
+          'demoId': 'event'
         }
       ],
       'slots': [
         {
           'name': 'footer',
           'type': '',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '底部插槽',
             'en-US': 'default slot'
@@ -210,7 +221,7 @@ export default {
         {
           'name': 'reference',
           'type': '',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '触发气泡提示框显示的 HTML 元素',
             'en-US': 'reference slot'
