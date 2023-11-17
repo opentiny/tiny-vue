@@ -14,13 +14,25 @@
 @import './vars.less';
 
 @switch-prefix-cls: ~'@{css-prefix}mobile-switch';
+@btn-size: var(--ti-mobile-switch-btn-size-normal);
+@btn-size-half: calc(@btn-size / 2);
+@loading-size: calc(@btn-size - 6px);
+@loading-size-half: calc(@loading-size / 2);
+@btn-padding: 3px;
+@loading-left: calc(calc(@btn-size-half - @loading-size-half) + @btn-padding);
+
+@btn-size-mini: var(--ti-mobile-switch-btn-size-mini);
+@btn-size-half-mini: calc(@btn-size-mini / 2);
+@loading-size-mini: calc(@btn-size-mini - 6px);
+@loading-size-half-mini: calc(@loading-size-mini / 2);
+@btn-padding-mini: 2px;
+@loading-left-mini: calc(calc(@btn-size-half-mini - @loading-size-half-mini) + @btn-padding-mini);
 
 .@{switch-prefix-cls} {
-  width: var(--ti-mobile-switch-width, 50px);
-  height: var(--ti-mobile-switch-height, 30px);
-  border: 1px solid var(--ti-mobile-switch-border-color, #e5e5e5);
-  border-radius: var(--ti-mobile-switch-border-radius, 40px);
-  background-color: var(--ti-mobile-switch-bgcolor, #fff);
+  width: var(--ti-mobile-switch-width-normal, 40px);
+  height: var(--ti-mobile-switch-height-mormal, 24px);
+  border-radius: 999px;
+  background-color: var(--ti-mobile-switch-bg-color-default, #c2c2c2);
   position: relative;
   cursor: pointer;
   display: inline-block;
@@ -28,36 +40,38 @@
   outline: none;
   transition: all 0.2s ease-in-out;
 
+  &.mini {
+    width: var(--ti-mobile-switch-width-small, 36px);
+    height: var(--ti-mobile-switch-height-small, 20px);
+  }
+
   &.disabled {
-    background-color: var(--ti-mobile-switch-disabled-bgcolor, #f5f5f5);
+    background-color: var(--ti-mobile-switch-bg-color-disabled, #dbdbdb);
     cursor: not-allowed;
 
-    &::after {
-      border-color: var(--ti-mobile-switch-after-border-color, #ccc);
+    &:after {
       cursor: not-allowed;
     }
 
     &.@{switch-prefix-cls}-checked {
-      background-color: var(--ti-mobile-switch-disabled-checked-bgcolor, #b3eee0);
-      border-color: var(--ti-mobile-switch-disabled-checked-bgcolor, #b3eee0);
+      background-color: var(--ti-mobile-switch-bg-color-checked-disabled, #b3d6ff);
 
-      &::after {
-        border-color: rgba(0, 0, 0, 0.1);
+      &:after {
+        border-color: rgb(0 0 0 / 10%);
       }
     }
   }
 
-  &::after {
+  &:after {
     content: '';
-    width: 28px;
-    height: 28px;
+    width: @btn-size;
+    height: @btn-size;
     border-radius: 50%;
     background-color: var(--ti-mobile-switch-font-color, #fff);
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--ti-mobile-switch-after-border-color, #ccc);
+    box-shadow: 0 3px 3px rgb(0 0 0 / 10%);
     position: absolute;
-    left: -1px;
-    top: 0;
+    left: @btn-padding;
+    top: calc(calc(var(--ti-mobile-switch-height-mormal) - @btn-size) / 2);
     cursor: pointer;
     transition:
       left 0.2s ease-in-out,
@@ -65,13 +79,84 @@
     box-sizing: border-box;
   }
 
+  &.mini:after {
+    width: @btn-size-mini;
+    height: @btn-size-mini;
+    top: calc(calc(var(--ti-mobile-switch-height-mini) - @btn-size-mini) / 2);
+    left: @btn-padding-mini;
+  }
+
   &&-checked {
-    border-color: var(--ti-mobile-switch-checked-color, #00c696);
-    background-color: var(--ti-mobile-switch-checked-color, #00c696);
+    background-color: var(--ti-mobile-switch-bg-color-checked, #1476ff);
 
     &:after {
-      left: calc(~'100% - 28px');
-      border-color: var(--ti-mobile-switch-bgcolor, #fff);
+      left: calc(calc(100% - @btn-size) - @btn-padding);
+    }
+  }
+
+  &&-checked.mini:after {
+    left: calc(calc(100% - @btn-size-mini) - @btn-padding-mini);
+  }
+
+  &.mini.checked {
+    &:after {
+      left: calc(calc(100% - @btn-size-mini) - @btn-padding-mini);
+    }
+  }
+
+  &-loading {
+    width: @loading-size;
+    height: @loading-size;
+    position: absolute;
+    z-index: 2;
+    top: calc(50% - @loading-size-half);
+    left: @loading-left;
+
+    border-radius: 50%;
+    background-image: conic-gradient(#dbdbdb01, #dbdbdb);
+
+    animation: circle 1.5s linear infinite;
+    display: inline-block;
+
+    &-inner {
+      width: @btn-size-half;
+      height: @btn-size-half;
+      border-radius: 50%;
+      background-color: #fff;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+    }
+  }
+
+  &.mini &-loading {
+    width: @loading-size-mini;
+    height: @loading-size-mini;
+    top: calc(50% - @loading-size-half-mini);
+    left: @loading-left-mini;
+
+    &-inner {
+      width: @btn-size-half-mini;
+      height: @btn-size-half-mini;
+    }
+  }
+
+  &&-checked &-loading {
+    left: calc(calc(@loading-left + 50%) - @btn-padding);
+    background-image: conic-gradient(#b3d6ff01, #b3d6ff);
+  }
+
+  &&-checked.mini &-loading {
+    left: calc(calc(@loading-left-mini + 50%) - @btn-padding-mini);
+  }
+
+  @keyframes circle {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
     }
   }
 }

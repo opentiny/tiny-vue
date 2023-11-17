@@ -3,52 +3,16 @@ export default {
   owner: '',
   demos: [
     {
-      demoId: 'disabled',
+      demoId: 'base',
       name: {
-        'zh-CN': '是否禁用',
+        'zh-CN': '基础用法',
         'en-US': 'button type'
       },
       desc: {
-        'zh-CN': '<p>是否禁用</p>',
-        'en-US': '<p>button type</p>'
+        'zh-CN': '<p>基础用法</p>',
+        'en-US': '<p>base</p>'
       },
-      codeFiles: ['disabled.vue']
-    },
-    {
-      demoId: 'switch-event-change',
-      name: {
-        'zh-CN': '值改变事件',
-        'en-US': 'button round'
-      },
-      desc: {
-        'zh-CN': '<p>值改变事件</p>',
-        'en-US': '<p>button round</p>'
-      },
-      codeFiles: ['switch-event-change.vue']
-    },
-    {
-      demoId: 'scenario',
-      name: {
-        'zh-CN': '应用场景',
-        'en-US': 'events'
-      },
-      desc: {
-        'zh-CN': '<p>应用场景</p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['scenario.vue']
-    },
-    {
-      demoId: 'true-false-value',
-      name: {
-        'zh-CN': '自定义打开关闭的值',
-        'en-US': 'true-false-value'
-      },
-      desc: {
-        'zh-CN': '<p>自定义打开关闭的值</p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['true-false-value.vue']
+      codeFiles: ['base.vue']
     }
   ],
   apis: [
@@ -64,7 +28,7 @@ export default {
             'zh-CN': '<p>是否禁用，该属性默认为false</p>',
             'en-US': 'display different button'
           },
-          demoId: 'disabled'
+          demoId: 'base'
         },
         {
           name: 'false-value',
@@ -74,7 +38,7 @@ export default {
             'zh-CN': '<p>switch 关闭时的值，该属性默认为false</p>',
             'en-US': 'display different button'
           },
-          demoId: 'true-false-value'
+          demoId: 'base'
         },
         {
           name: 'true-value',
@@ -84,17 +48,27 @@ export default {
             'zh-CN': '<p>switch 打开时的值，该属性默认为true</p>',
             'en-US': 'display different button'
           },
-          demoId: 'true-false-value'
+          demoId: 'base'
         },
         {
-          name: 'value',
+          name: 'v-model',
           type: 'String',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>绑定值</p>',
             'en-US': 'display different button'
           },
-          demoId: 'switch-event-change'
+          demoId: 'base'
+        },
+        {
+          name: 'mini',
+          type: 'Boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>小尺寸</p>',
+            'en-US': 'mini'
+          },
+          demoId: 'base'
         }
       ],
       events: [
