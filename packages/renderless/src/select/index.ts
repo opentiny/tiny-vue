@@ -1584,8 +1584,6 @@ export const buildRadioConfig =
 export const onMouseenterNative =
   ({ state }) =>
   (e) => {
-    if (e.target === e.currentTarget) return
-
     state.inputHovering = true
 
     if (state.searchSingleCopy && state.selectedLabel) {
