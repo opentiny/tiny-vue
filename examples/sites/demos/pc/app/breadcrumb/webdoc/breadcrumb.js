@@ -71,7 +71,7 @@ export default {
         },
         {
           'name': 'separator-icon',
-          'type': 'Component',
+          'type': 'VueComponent',
           'defaultValue': '',
           'desc': { 'zh-CN': '图标分隔符', 'en-US': 'Icon separator' },
           'demoId': 'separator'

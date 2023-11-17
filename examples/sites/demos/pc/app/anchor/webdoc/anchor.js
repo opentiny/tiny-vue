@@ -6,8 +6,8 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': '通过<code>links</code>设置导航数据，<code>type</code>设置类型。',
-        'en-US': 'Set navigation data through<code>links</code>, and<code>type</code>to set the type.'
+        'zh-CN': '通过 <code>links</code> 设置导航数据， <code>type</code> 设置类型。',
+        'en-US': 'Set navigation data through <code>links</code> , and <code>type</code> to set the type.'
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -15,8 +15,8 @@ export default {
       'demoId': 'is-affix',
       'name': { 'zh-CN': '固定模式', 'en-US': 'Fixed mode' },
       'desc': {
-        'zh-CN': '通过<code>is-affix</code>设置固定定位，不随页面滚动。',
-        'en-US': 'Set fixed positioning through<code>is-affix</code>, without scrolling with the page.'
+        'zh-CN': '通过 <code>is-affix</code> 设置固定定位，不随页面滚动。',
+        'en-US': 'Set fixed positioning through <code>is-affix</code> , without scrolling with the page.'
       },
       'codeFiles': ['is-affix.vue']
     },
@@ -24,10 +24,10 @@ export default {
       'demoId': 'set-container',
       'name': { 'zh-CN': '滚动容器', 'en-US': 'Rolling Container' },
       'desc': {
-        'zh-CN': `通过<code>container-id</code>设置滚动容器，<code>link-click</code>监听锚点点击事件，阻止浏览器默认行为，实现单页面<code>hash</code>路由模式的页内跳转，在指定容器内滚动。<br/>
-           <code>mask-class</code>设置自定义类名，高亮显示导航的目标元素。`,
-        'en-US': `By setting the scrolling container through<code>container-id</code>,<code>link-click</code>listens for anchor click events, prevents browser default behavior, and implements single page<code>hash</code>routing mode for page hopping, scrolling within the specified container<br/>
-            <code>mask-class</code>Set a custom class name to highlight the target element for navigation.`
+        'zh-CN': `通过 <code>container-id</code> 设置滚动容器， <code>link-click</code> 监听锚点点击事件，阻止浏览器默认行为，实现单页面 <code>hash</code> 路由模式的页内跳转，在指定容器内滚动。<br/>
+            <code>mask-class</code> 设置自定义类名，高亮显示导航的目标元素。`,
+        'en-US': `By setting the scrolling container through <code>container-id</code> , <code>link-click</code> listens for anchor click events, prevents browser default behavior, and implements single page <code>hash</code> routing mode for page hopping, scrolling within the specified container<br/>
+             <code>mask-class</code> Set a custom class name to highlight the target element for navigation.`
       },
       'codeFiles': ['set-container.vue']
     },
@@ -35,8 +35,8 @@ export default {
       'demoId': 'change',
       'name': { 'zh-CN': 'change事件', 'en-US': 'change event' },
       'desc': {
-        'zh-CN': '通过<code>change</code>监听锚点改变的事件。',
-        'en-US': '<code>change</code> event. Callback is triggered when the anchor link changes.'
+        'zh-CN': '通过 <code>change</code> 监听锚点改变的事件。',
+        'en-US': ' <code>change</code> event. Callback is triggered when the anchor link changes.'
       },
       'codeFiles': ['change.vue']
     }
@@ -87,11 +87,11 @@ export default {
         },
         {
           'name': 'type',
-          'type': 'string',
+          'type': '"line" | "dot"',
           'defaultValue': '"line"',
           'desc': {
-            'zh-CN': '锚点类型，可选"line", "dot"两种',
-            'en-US': 'Anchor type, providing two types: line and dot'
+            'zh-CN': '锚点类型',
+            'en-US': 'Anchor type'
           },
           'demoId': 'basic-usage'
         }
@@ -99,27 +99,27 @@ export default {
       'events': [
         {
           'name': 'link-click',
-          'type': '(arg1: Event, arg2: {link: string, title: string}) => void',
+          'type': '(event: Event, currentLink: {link: string, title: string}) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '锚点点击事件；// 参数arg2: {link: 当前锚点链接, title: 当前锚点标题 }',
-            'en-US': 'Anchor click event; // Parameter arg2: {link: Current anchor link, title: Current anchor title}'
+            'zh-CN': '锚点点击事件； currentLink: {link: 当前锚点链接, title: 当前锚点标题 }',
+            'en-US': 'Anchor click event; currentLink: {link: Current anchor link, title: Current anchor title}'
           },
           'demoId': 'set-container'
         },
         {
           'name': 'change',
-          'type': '(arg1: string) => void',
+          'type': '(hash: string) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '锚点链接改变事件；// 参数arg1: 当前锚点的 hash 值',
-            'en-US': 'Anchor link change event// Parameter arg1: hash value of the current anchor point'
+            'zh-CN': '锚点链接改变事件； hash: 当前锚点的 hash 值',
+            'en-US': 'Anchor link change event; hash: hash value of the current anchor point'
           },
           'demoId': 'change'
         },
         {
           'name': 'on-change',
-          'type': '(arg: string) => void',
+          'type': '(hash: string) => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '[deprecated v3.12.0废弃，v3.17.0移除；移除原因：命名规范，使用change代替]',

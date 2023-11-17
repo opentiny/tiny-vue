@@ -140,12 +140,13 @@ export default {
         },
         {
           'name': 'overflow',
-          'type': 'string',
+          'type': 'IOverflow',
+          'typeAnchorName': 'IOverflow',
           'defaultValue': 'auto',
           'desc': {
-            'zh-CN': '设置一级菜单无法在当前菜单容器里显示完全时的展示方式;可选项有 auto / retract / fixed / hidden',
+            'zh-CN': '设置一级菜单无法在当前菜单容器里显示完全时的展示方式',
             'en-US':
-              'Set the display method when the first level menu cannot be fully displayed in the current menu container; Options include auto/retract/fixed/hidden'
+              'Set the display method when the first level menu cannot be fully displayed in the current menu container'
           },
           'demoId': 'overflow'
         },
@@ -217,6 +218,13 @@ interface IFields {
   urlField: string
   key?: string
 }`
+    },
+    {
+      name: 'IOverflow',
+      type: 'type',
+      code: `
+type IOverflow = 'auto' | 'retract' | 'fixed' | 'hidden'
+`
     }
   ]
 }
