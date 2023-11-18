@@ -25,10 +25,10 @@ export default defineComponent({
       type: String,
       default: 'div'
     },
-    size: {
-      type: String,
-      default: 'medium',
-      validator: (value: string) => Boolean(~['medium', 'small', 'mini'].indexOf(value))
+    cols: {
+      type: Number,
+      default: 12,
+      validator: (value: string) => Boolean(~[12, 24].indexOf(value))
     }
   },
   setup(props, context) {

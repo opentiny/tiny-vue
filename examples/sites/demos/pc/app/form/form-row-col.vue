@@ -43,7 +43,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Form, FormItem, Input, DatePicker, Button, Row, Col } from '@opentiny/vue'
 
 export default {

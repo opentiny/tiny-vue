@@ -81,7 +81,8 @@ export const renderless = (
     rootTabs: inject('rootTabs'),
     sizeName: computed(() => api.computedSizeName(state)),
     navStyle: computed(() => api.computedNavStyle(state)),
-    navSortableObj: {}
+    navSortableObj: {},
+    separator: inject('separator', null)
   }) as ITabNavState
 
   Object.assign(api, {

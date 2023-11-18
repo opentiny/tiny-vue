@@ -1,5 +1,8 @@
 <template>
   <div>
+    <p>场景1：使用 menu-options 属性定义 children</p>
+    <tiny-dropdown :menu-options="menuOptions"></tiny-dropdown>
+    <p>场景2：使用 options 属性定义 children</p>
     <tiny-dropdown @item-click="itemClick">
       <template #dropdown>
         <tiny-dropdown-menu :options="options"> </tiny-dropdown-menu>
@@ -47,8 +50,9 @@ function itemClick(data) {
 }
 </script>
 
-<style scoped>
-.tiny-dropdown {
-  margin-right: 20px;
+<style lang="less" scoped>
+p {
+  line-height: 1.5;
+  font-size: 14px;
 }
 </style>

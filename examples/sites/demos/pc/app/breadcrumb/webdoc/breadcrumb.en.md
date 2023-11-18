@@ -4,4 +4,4 @@ title: Breadcrumb
 
 # Breadcrumb
 
-<div>Shows the location of the current page and can return to any previous page.</div>
+<div>Display the hierarchical position of the current page and be able to return to any page upwards.</div>

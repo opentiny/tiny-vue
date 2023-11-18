@@ -8,7 +8,7 @@
   ></tiny-rate>
 </template>
 
-<script lang="jsx">
+<script>
 import { Rate } from '@opentiny/vue'
 
 export default {

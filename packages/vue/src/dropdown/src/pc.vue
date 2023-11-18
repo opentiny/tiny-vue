@@ -116,7 +116,7 @@ export default defineComponent({
             onClick={handleMainButtonClick}
             disabled={disabled}
             class="tiny-dropdown__title-button">
-            {defaultSlot}
+            {defaultSlot || <span>{title}</span>}
           </tiny-button>
           <tiny-button
             ref="trigger"

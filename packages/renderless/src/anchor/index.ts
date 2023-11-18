@@ -54,7 +54,8 @@ const updateSkidPosition = ({ vm, state, emit }: Pick<IAnchorRenderlessParams, '
     return
   }
 
-  emit('onChange', currentLink)
+  emit('change', currentLink)
+  emit('onChange', currentLink) // deprecated 原事件onChange v3.12.0废弃，v3.17.0移除；移除原因：命名规范
 
   if (!anchorRef || !skidRef || !maskRef) {
     return

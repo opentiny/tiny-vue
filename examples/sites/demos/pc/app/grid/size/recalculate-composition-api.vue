@@ -1,7 +1,10 @@
 <template>
   <div>
-    <tiny-button @click="updateDivWidth" style="max-width: 150px">修改表格父容器宽度</tiny-button>
-    <tiny-button @click="recalculateGrid" style="margin-bottom: 20px">重新计算表格</tiny-button>
+    <div>
+      <tiny-button @click="updateDivWidth">修改表格父容器宽度</tiny-button>
+      <tiny-button @click="recalculateGrid">重新计算表格</tiny-button>
+    </div>
+    <br />
     <div :style="divWidth">
       <tiny-grid
         ref="tinyGridRef"

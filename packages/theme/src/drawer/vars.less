@@ -12,71 +12,71 @@
 
 .component-css-vars-drawer() {
   // 最小宽度
-  --ti-drawer-min-width: calc(var(--ti-common-space-10) * 50);
+  --ti-drawer-min-width: calc(var(--ti-common-space-10, 10px) * 50);
   // 最大宽度
-  --ti-drawer-max-width: calc(var(--ti-common-space-10) * 100);
+  --ti-drawer-max-width: calc(var(--ti-common-space-10, 10px) * 100);
   // 背景色
-  --ti-drawer-bg-color: var(--ti-common-color-bg-white-normal);
+  --ti-drawer-bg-color: var(--ti-common-color-bg-white-normal, #fff);
   // 左内边距
-  --ti-drawer-padding-left: var(--ti-common-space-8x);
+  --ti-drawer-padding-left: var(--ti-common-space-8x, 32px);
   // 右内边距
-  --ti-drawer-padding-right: var(--ti-common-space-10x);
+  --ti-drawer-padding-right: var(--ti-common-space-10x, 40px);
   // 阴影
-  --ti-drawer-shadow: var(--ti-common-shadow-4-down);
+  --ti-drawer-shadow: var(--ti-common-shadow-4-down, 0 8px 40px 0 rgba(0, 0, 0, 0.2));
   // 头部与底部边框颜色
-  --ti-drawer-divider-border-color: var(--ti-common-color-line-dividing);
+  --ti-drawer-divider-border-color: var(--ti-common-color-line-dividing, #dfe1e6);
   // 边框圆角
-  --ti-drawer-radius: var(--ti-common-space-0);
+  --ti-drawer-radius: var(--ti-common-space-0, 0px);
 
   // 头部上内边距
-  --ti-drawer-header-padding-top: var(--ti-common-space-8x);
+  --ti-drawer-header-padding-top: var(--ti-common-space-8x, 32px);
   // 头部下内边距
-  --ti-drawer-header-padding-bottom: var(--ti-common-space-5x);
+  --ti-drawer-header-padding-bottom: var(--ti-common-space-5x, 20px);
   // 头部左内边距
-  --ti-drawer-header-padding-left: var(--ti-common-space-0);
+  --ti-drawer-header-padding-left: var(--ti-common-space-0, 0px);
   // 头部右内边距
-  --ti-drawer-body-padding-right: var(--ti-common-space-0);
+  --ti-drawer-body-padding-right: var(--ti-common-space-0, 0px);
   // 头部字号
-  --ti-drawer-head-title-font-size: var(--ti-common-font-size-2);
+  --ti-drawer-head-title-font-size: var(--ti-common-font-size-2, 16px);
   // 头部文本色(hide)
-  --ti-drawer-head-text-color: var(--ti-common-color-text-primary);
+  --ti-drawer-head-text-color: var(--ti-common-color-text-primary, #252b3a);
   // 头部字重
-  --ti-drawer-head-title-font-weight: var(--ti-common-font-weight-7);
+  --ti-drawer-head-title-font-weight: var(--ti-common-font-weight-7, bold);
   // 关闭按钮宽度
-  --ti-drawer-btn-width: var(--ti-common-size-8x);
+  --ti-drawer-btn-width: var(--ti-common-size-8x, 32px);
   // 关闭按钮高度
   --ti-drawer-btn-height: var(--ti-drawer-btn-width);
   // 关闭按钮图标尺寸
-  --ti-drawer-close-icon-size: var(--ti-common-font-size-1);
+  --ti-drawer-close-icon-size: var(--ti-common-font-size-1, 14px);
   // 关闭按钮圆角
-  --ti-drawer-btn-border-radius: var(--ti-common-border-radius-1);
+  --ti-drawer-btn-border-radius: var(--ti-common-border-radius-1, 4px);
   // 关闭按钮悬浮图标色
-  --ti-drawer-close-icon-color-hover: var(--ti-common-color-icon-hover);
+  --ti-drawer-close-icon-color-hover: var(--ti-common-color-icon-hover, #5e7ce0);
   // 关闭按钮与上边框的距离(hide)
-  --ti-drawer-btn-position-top: var(--ti-common-space-5x);
+  --ti-drawer-btn-position-top: var(--ti-common-space-5x, 20px);
   // 关闭按钮与右边框的距离(hide)
-  --ti-drawer-btn-position-right: var(--ti-common-space-5x);
+  --ti-drawer-btn-position-right: var(--ti-common-space-5x, 20px);
 
   // 内容上内边距
-  --ti-drawer-body-padding-top: var(--ti-common-space-0);
+  --ti-drawer-body-padding-top: var(--ti-common-space-0, 0px);
   // 内容下内边距
-  --ti-drawer-body-padding-bottom: var(--ti-common-space-0);
+  --ti-drawer-body-padding-bottom: var(--ti-common-space-0, 0px);
   // 内容左内边距
-  --ti-drawer-body-padding-left: var(--ti-common-space-0);
+  --ti-drawer-body-padding-left: var(--ti-common-space-0, 0px);
   // 内容右内边距
-  --ti-drawer-header-padding-right: var(--ti-common-space-0);
+  --ti-drawer-header-padding-right: var(--ti-common-space-0, 0px);
   // 底部文本对齐方式
   --ti-drawer-footer-text-align: right;
   // 底部上内边距
-  --ti-drawer-footer-padding-top: var(--ti-common-space-5x);
+  --ti-drawer-footer-padding-top: var(--ti-common-space-5x, 20px);
   // 底部下内边距
-  --ti-drawer-footer-padding-bottom: var(--ti-common-space-8x);
+  --ti-drawer-footer-padding-bottom: var(--ti-common-space-8x, 32px);
   // 底部左内边距
-  --ti-drawer-footer-padding-left: var(--ti-common-space-0);
+  --ti-drawer-footer-padding-left: var(--ti-common-space-0, 0px);
   // 底部右内边距
-  --ti-drawer-footer-padding-right: var(--ti-common-space-0);
+  --ti-drawer-footer-padding-right: var(--ti-common-space-0, 0px);
   // 底部左外边距
-  --ti-drawer-footer-margin-left: var(--ti-common-space-8x);
+  --ti-drawer-footer-margin-left: var(--ti-common-space-8x, 32px);
   // 底部右外边距
-  --ti-drawer-footer-margin-right: var(--ti-common-space-10x);
+  --ti-drawer-footer-margin-right: var(--ti-common-space-10x, 40px);
 }

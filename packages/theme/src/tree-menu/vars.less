@@ -12,31 +12,31 @@
 
 .component-css-vars-tree-menu() {
   // 宽度
-  --ti-tree-menu-width: calc(var(--ti-common-space-10) * 27);
+  --ti-tree-menu-width: calc(var(--ti-common-space-10, 10px) * 27);
   // 节点高度
-  --ti-tree-menu-node-height: var(--ti-common-size-10x);
+  --ti-tree-menu-node-height: var(--ti-common-size-10x, 40px);
   // 空数据显示文本字号(hide)
-  --ti-tree-menu-font-size: var(--ti-common-font-size-base);
+  --ti-tree-menu-font-size: var(--ti-common-font-size-base, 12px);
   // 边框色
-  --ti-tree-menu-border-color: var(--ti-common-color-line-dividing);
+  --ti-tree-menu-border-color: var(--ti-common-color-line-dividing, #dfe1e6);
   // 节点水平内边距
   --ti-tree-menu-node-body-text-padding-horizontal: 0;
   // 选中节点的背景色
-  --ti-tree-menu-node-selected-bg-color: var(--ti-common-color-bg-light-normal);
+  --ti-tree-menu-node-selected-bg-color: var(--ti-common-color-bg-light-normal, #e9edfa);
   // 选中节点文本色
-  --ti-tree-menu-node-current-text-color: var(--ti-common-color-text-highlight);
+  --ti-tree-menu-node-current-text-color: var(--ti-common-color-text-highlight, #526ecc);
   // 选中节点左边框色
-  --ti-tree-menu-square-left-border-color: var(--ti-common-color-line-active);
+  --ti-tree-menu-square-left-border-color: var(--ti-common-color-line-active, #5e7ce0);
   // 未选中节点文本色
-  --ti-tree-menu-node-body-text-color: var(--ti-common-color-text-primary);
+  --ti-tree-menu-node-body-text-color: var(--ti-common-color-text-primary, #252b3a);
   // 节点悬浮背景色
-  --ti-tree-menu-node-hover-bg-color: var(--ti-common-color-hover-background);
+  --ti-tree-menu-node-hover-bg-color: var(--ti-common-color-hover-background, #f2f5fc);
   // 折叠图标颜色
-  --ti-tree-menu-collapse-icon-fill-color: var(--ti-common-color-icon-normal);
+  --ti-tree-menu-collapse-icon-fill-color: var(--ti-common-color-icon-normal, #575d6c);
   // 折叠图标右边距
-  --ti-tree-menu-collapse-icon-margin-right: var(--ti-common-size-2x);
+  --ti-tree-menu-collapse-icon-margin-right: var(--ti-common-size-2x, 8px);
   // 节点序号字号
-  --tree-menu-node-number-font-size: var(--ti-common-font-size-base);
+  --tree-menu-node-number-font-size: var(--ti-common-font-size-base, 12px);
   // 活跃节点竖线与文本的间距
-  --tree-menu-node-vertical-line-margin-right: var(--ti-common-size-5x);
+  --tree-menu-node-vertical-line-margin-right: var(--ti-common-size-4x, 16px);
 }

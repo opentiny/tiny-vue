@@ -438,7 +438,7 @@ export const handleVisible =
     state.transform.deg = 0
 
     setTimeout(() => {
-      if (props.startPosition !== 0) {
+      if (props.startPosition > 0) {
         state.index = (props.startPosition - 1 + state.urlList.length) % state.urlList.length
         state.imageTransform = state.index * state.imageItemWidth
         state.imageTransformSize = -state.index * state.imageItemWidth
@@ -481,7 +481,7 @@ export const getImageWidth =
     state.imageAllWidth = state.urlList.length * imageW
 
     if (mode !== 'mobile-first') {
-      if (props.startPosition !== 0) {
+      if (props.startPosition > 0) {
         state.index = props.startPosition
         state.imageTransition = 0
 

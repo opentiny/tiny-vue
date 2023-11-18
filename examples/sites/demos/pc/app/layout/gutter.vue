@@ -1,16 +1,15 @@
 <template>
   <div class="content">
     <tiny-layout>
-      <div class="title"></div>
-      <tiny-row :gutter="20">
+      <tiny-row v-for="gutter in [0, 10, 20]" :gutter="gutter">
         <tiny-col :span="4">
-          <div class="col">gutter 20px</div>
+          <div class="col">gutter {{ gutter }}px</div>
         </tiny-col>
         <tiny-col :span="4">
-          <div class="col">gutter 20px</div>
+          <div class="col">gutter {{ gutter }}px</div>
         </tiny-col>
         <tiny-col :span="4">
-          <div class="col">gutter 20px</div>
+          <div class="col">gutter {{ gutter }}px</div>
         </tiny-col>
       </tiny-row>
     </tiny-layout>

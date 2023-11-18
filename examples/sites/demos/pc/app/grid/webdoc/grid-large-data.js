@@ -62,9 +62,9 @@ export default {
       'name': { 'zh-CN': '滚动到指定位置', 'en-US': 'Scroll to the specified position' },
       'desc': {
         'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">方法说明</p>\n<p><code>scrollTo(scrollLeft, scrollTop)</code>：滚动到对应的位置\n<code>scrollToRow(row)</code>：滚动到对应的行\n<code>scrollToColumn(column)</code>：手滚动到对应的列</p>\n</div>\n',
+          '<div class="tip custom-block"><p class="custom-block-title">方法说明</p>\n<p> <code>scrollTo(scrollLeft, scrollTop)</code>：滚动到对应的位置\n<code>scrollToRow(row)</code>：滚动到对应的行\n<code>scrollToColumn(column)</code>：手滚动到对应的列</p>\n</div>\n',
         'en-US':
-          '<div class="tip custom-block"><p class="custom-block-title"> Method Description </p>\n<p><code>scrollTo(scrollLeft, scrollTop)</code>: Scroll to the corresponding position \n<code>scrollToRow(row)</code>: Scroll to the corresponding row \n<code>scrollToColumn(column)</code>: Scroll to the corresponding column </p>\n</div>\n'
+          '<div class="tip custom-block"><p class="custom-block-title"> Method Description </p>\n<p> <code>scrollTo(scrollLeft, scrollTop)</code>: Scroll to the corresponding position \n<code>scrollToRow(row)</code>: Scroll to the corresponding row \n<code>scrollToColumn(column)</code>: Scroll to the corresponding column </p>\n</div>\n'
       },
       'codeFiles': ['large-data/scroll-to.vue']
     }

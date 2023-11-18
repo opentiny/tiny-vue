@@ -1,12 +1,13 @@
 <template>
-  <div>
-    <div class="callback-content">我是{{ label }}</div>
-    <tiny-button plain class="e1" @click="stepStart">展示之前回调</tiny-button>
-    <tiny-button plain class="e2">展示回调</tiny-button>
-    <tiny-button plain class="e3">隐藏之前回调</tiny-button>
-    <tiny-button plain class="e4">隐藏回调</tiny-button>
-    <tiny-button plain class="e5">关闭取消回调</tiny-button>
-    <tiny-button plain class="e6">销毁/完成回调</tiny-button>
+  <div class="demo-guide-callback">
+    <p>当前事件回调：{{ label }}</p>
+    <tiny-button plain class="e1" @click="stepStart">展示前的回调</tiny-button>
+    <tiny-button plain class="e2">展示的回调</tiny-button>
+    <tiny-button plain class="e3">隐藏前的回调</tiny-button>
+    <br>
+    <tiny-button plain class="e4">隐藏的回调</tiny-button>
+    <tiny-button plain class="e5">关闭的回调</tiny-button>
+    <tiny-button plain class="e6">完成/销毁的回调</tiny-button>
 
     <tiny-guide :show-step="showStep" :dom-data="domData"></tiny-guide>
   </div>
@@ -142,8 +143,10 @@ function stepStart() {
 }
 </script>
 
-<style scoped>
-.callback-content {
-  margin-bottom: 20px;
+<style scoped lang="less">
+.demo-guide-callback {
+  & > * {
+    margin-bottom: 12px;
+  }
 }
 </style>

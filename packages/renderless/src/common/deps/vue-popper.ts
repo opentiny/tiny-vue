@@ -81,7 +81,7 @@ export default (options: IPopperInputParams) => {
 
   // 如果触发源是隐藏的，其弹出层也设置为隐藏。组件可以通过 props.popperOptions.followReferenceHide = true/false来控制
   const followHide = (popperInstance: PopperJS) => {
-    const followReferenceHide = props?.popperOptions?.followReferenceHide || true
+    const { followReferenceHide = true } = props?.popperOptions
     const { _popper: popper, _reference: reference } = popperInstance
 
     if (followReferenceHide && getComputedStyle(reference).position !== 'fixed' && reference.offsetParent === null) {
@@ -100,7 +100,7 @@ export default (options: IPopperInputParams) => {
       return
     }
 
-    const options = props.popperOptions || { gpuAcceleration: false }
+    const options = props.popperOptions || {}
     state.popperElm = state.popperElm || props.popper || refs.popper
     const popper = state.popperElm
     let reference = getReference({ state, props, refs, slots })
@@ -184,7 +184,7 @@ export default (options: IPopperInputParams) => {
         return
       }
       if (val) {
-        updatePopper()
+        nextTick(updatePopper)
       }
       props.trigger === 'manual' && emit('update:modelValue', val)
     }

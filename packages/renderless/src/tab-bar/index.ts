@@ -66,7 +66,7 @@ export const computedBarStyle =
     }
 
     const transform = `translate${capitalize(sizeDir)}(${offset}px)`
-    style[sizeName] = tabSize + 'px'
+    style[sizeName] = state.separator ? '' : tabSize + 'px'
     style.transform = transform
     style.msTransform = transform
     style.webkitTransform = transform

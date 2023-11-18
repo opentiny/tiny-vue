@@ -1,13 +1,6 @@
 <template>
   <div>
-    <tiny-select
-      v-model="value"
-      placeholder="请选择"
-      clearable
-      :options="options"
-      :cache-op="cacheOp"
-      @change="cacheChange"
-    ></tiny-select>
+    <tiny-select v-model="value" clearable :options="options" :cache-op="cacheOp" @change="cacheChange"></tiny-select>
     <p class="cache-value">
       {{ cacheValue }}
     </p>
@@ -34,3 +27,13 @@ const cacheChange = () => {
   cacheValue.value = window.localStorage.getItem(`tiny_memorize_${cacheOp.value.key}`)
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

@@ -10,5 +10,5 @@ test('设置气泡确认框宽度', async ({ page }) => {
 
   await popConfirm.hover()
   await expect(popConfirmPopover).toBeVisible()
-  await expect(popConfirmPopover).toHaveCSS('width', '600px')
+  await expect(popConfirmPopover).toHaveCSS('width', '200px')
 })

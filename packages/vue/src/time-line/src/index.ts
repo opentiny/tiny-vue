@@ -37,7 +37,7 @@ export const timelineProps = {
   },
   horizontal: {
     type: Boolean,
-    default: false
+    default: true
   },
   showNumber: {
     type: Boolean,

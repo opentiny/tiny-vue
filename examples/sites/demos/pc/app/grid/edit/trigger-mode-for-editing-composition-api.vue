@@ -1,23 +1,43 @@
 <template>
-  <tiny-grid :data="tableData" seq-serial :edit-config="{ trigger: 'click' }">
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="名称" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
-    <tiny-grid-column field="area" title="区域" :editor="{ component: 'select', options }"></tiny-grid-column>
-    <tiny-grid-column
-      field="address"
-      title="地址"
-      :editor="{ component: 'input', autoselect: true }"
-    ></tiny-grid-column>
-    <tiny-grid-column
-      field="introduction"
-      title="公司简介"
-      :editor="{ component: 'input', autoselect: true }"
-      show-overflow="ellipsis"
-    ></tiny-grid-column>
-  </tiny-grid>
+  <div>
+    <h4 class="title">单击进入编辑状态：</h4>
+    <tiny-grid :data="tableData" seq-serial :edit-config="{ trigger: 'click' }">
+      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column field="name" title="名称" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
+      <tiny-grid-column field="area" title="区域" :editor="{ component: 'select', options }"></tiny-grid-column>
+      <tiny-grid-column
+        field="address"
+        title="地址"
+        :editor="{ component: 'input', autoselect: true }"
+      ></tiny-grid-column>
+      <tiny-grid-column
+        field="introduction"
+        title="公司简介"
+        :editor="{ component: 'input', autoselect: true }"
+        show-overflow="ellipsis"
+      ></tiny-grid-column>
+    </tiny-grid>
+    <h4 class="title">双击进入编辑状态：</h4>
+    <tiny-grid :data="tableData" seq-serial :edit-config="{ trigger: 'dblclick' }">
+      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column field="name" title="名称" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
+      <tiny-grid-column field="area" title="区域" :editor="{ component: 'select', options }"></tiny-grid-column>
+      <tiny-grid-column
+        field="address"
+        title="地址"
+        :editor="{ component: 'input', autoselect: true }"
+      ></tiny-grid-column>
+      <tiny-grid-column
+        field="introduction"
+        title="公司简介"
+        :editor="{ component: 'input', autoselect: true }"
+        show-overflow="ellipsis"
+      ></tiny-grid-column>
+    </tiny-grid>
+  </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
 
@@ -71,3 +91,12 @@ const tableData = ref([
   }
 ])
 </script>
+
+<style scoped>
+.title {
+  font-size: 16px;
+  padding: 15px;
+  font-weight: bolder;
+  color: #444;
+}
+</style>

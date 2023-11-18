@@ -12,115 +12,115 @@
 
 .component-css-vars-alert() {
   // 默认字体
-  --ti-alert-font-family: var(--ti-common-font-family);
+  --ti-alert-font-family: var(--ti-common-font-family, 'Helvetica', 'Arial', 'PingFangSC-Regular', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'Microsoft JhengHei');
   // 描述字号
-  --ti-alert-description-font-size: var(--ti-common-font-size-base);
+  --ti-alert-description-font-size: var(--ti-common-font-size-base, 12px);
   // 默认关闭图标固定定位顶部距离(hide)
-  --ti-alert-close-position-top:var(--ti-common-space-4x);
+  --ti-alert-close-position-top:var(--ti-common-space-4x, 16px);
   // 默认关闭图标字号
-  --ti-alert-close-font-size: var(--ti-common-font-size-base);
+  --ti-alert-close-font-size: var(--ti-common-font-size-base, 12px);
   // 自定义关闭文字字号
-  --ti-alert-close-text-font-size: var(--ti-common-font-size-base);
+  --ti-alert-close-text-font-size: var(--ti-common-font-size-base, 12px);
   // 组件圆角
-  --ti-alert-border-radius: var(--ti-common-border-radius-normal);
+  --ti-alert-border-radius: var(--ti-common-border-radius-normal, 2px);
   // 标题文本色
-  --ti-alert-title-text-color: var(--ti-common-color-text-primary);
+  --ti-alert-title-text-color: var(--ti-common-color-text-primary, #252b3a);
   // 标题字号
-  --ti-alert-title-font-size: var(--ti-common-font-size-1);
+  --ti-alert-title-font-size: var(--ti-common-font-size-1, 14px);
   // 标题图标顶部外边距
-  --ti-alert-icon-margin-top: var(--ti-common-space-1);
+  --ti-alert-icon-margin-top: var(--ti-common-space-1, 1px);
   // 标题图标字号
-  --ti-alert-icon-font-size: var(--ti-common-font-size-1);
+  --ti-alert-icon-font-size: var(--ti-common-font-size-1, 14px);
   // 描述内容行高
-  --ti-alert-description-line-height: var(--ti-common-line-height-number);
+  --ti-alert-description-line-height: var(--ti-common-line-height-number, 1.5);
   // 描述内容顶部内边距
-  --ti-alert-normal-content-padding-vertical: var(--ti-common-space-0);
+  --ti-alert-normal-content-padding-vertical: var(--ti-common-space-0, 0px);
   // 描述内容水平内边距
-  --ti-alert-normal-content-padding-horizontal: var(--ti-common-space-2x);
+  --ti-alert-normal-content-padding-horizontal: var(--ti-common-space-2x, 8px);
   // 描述内容提示内容顶部外边距
-  --ti-alert-description-margin-top: var(--ti-common-space-base);
+  --ti-alert-description-margin-top: var(--ti-common-space-base, 4px);
   // 描述内容提示内容底部外边距
-  --ti-alert-description-margin-bottom: var(--ti-common-space-base);
+  --ti-alert-description-margin-bottom: var(--ti-common-space-base, 4px);
   // 描述默认文本色
-  --ti-alert-description-text-color: var(--ti-common-color-text-secondary);
+  --ti-alert-description-text-color: var(--ti-common-color-text-secondary, #575d6c);
   // 默认顶部内边距
-  --ti-alert-normal-padding-top: var(--ti-common-space-3x);
+  --ti-alert-normal-padding-top: var(--ti-common-space-3x, 12px);
   // 默认右内边距
-  --ti-alert-normal-padding-right: var(--ti-common-space-4x);
+  --ti-alert-normal-padding-right: var(--ti-common-space-4x, 16px);
   // 默认底部内边距
-  --ti-alert-normal-padding-bottom: var(--ti-common-space-3x);
+  --ti-alert-normal-padding-bottom: var(--ti-common-space-3x, 12px);
   // 默认左内边距
-  --ti-alert-normal-padding-left: var(--ti-common-space-4x);
+  --ti-alert-normal-padding-left: var(--ti-common-space-4x, 16px);
   // 默认垂直外边距
-  --ti-alert-normal-margin-vertical: var(--ti-common-space-2x);
+  --ti-alert-normal-margin-vertical: var(--ti-common-space-2x, 8px);
   // 默认水平外边距
-  --ti-alert-normal-margin-horizontal: var(--ti-common-space-0);
+  --ti-alert-normal-margin-horizontal: var(--ti-common-space-0, 0px);
   // large尺寸顶部内边距
-  --ti-alert-large-padding-top: calc(var(--ti-common-space-base) * 3.5);
+  --ti-alert-large-padding-top: calc(var(--ti-common-space-base, 4px) * 3.5);
   // large尺寸底部内边距
-  --ti-alert-large-padding-bottom: var(--ti-common-space-3x);
+  --ti-alert-large-padding-bottom: var(--ti-common-space-3x, 12px);
   // large尺寸左内边距
-  --ti-alert-large-padding-left: var(--ti-common-space-4x);
+  --ti-alert-large-padding-left: var(--ti-common-space-4x, 16px);
   // large尺寸右内边距
-  --ti-alert-large-padding-right: calc(var(--ti-common-space-base) * 10.5);
+  --ti-alert-large-padding-right: calc(var(--ti-common-space-base, 4px) * 10.5);
   // large尺寸操作文本色
-  --ti-alert-opration-text-color: var(--ti-common-color-text-highlight);
+  --ti-alert-opration-text-color: var(--ti-common-color-text-highlight, #526ecc);
   // large尺寸操作字号
-  --ti-alert-opration-font-size: var(--ti-common-font-size-base);
+  --ti-alert-opration-font-size: var(--ti-common-font-size-base, 12px);
   // large尺寸图标字号
   --ti-alert-large-icon-font-size: 21px;
   // large尺寸图标顶部外边距
-  --ti-alert-large-icon-margin-top: calc(var(--ti-common-space-base) - 2px);
+  --ti-alert-large-icon-margin-top: calc(var(--ti-common-space-base, 4px) - 2px);
   // large尺寸描述内容左内边距
-  --ti-alert-large-content-padding-left: var(--ti-common-space-4x);
+  --ti-alert-large-content-padding-left: var(--ti-common-space-4x, 16px);
   // 大尺寸关闭图标字号
   --ti-alert-large-close-font-size: var(--ti-alert-close-font-size);
 
   // warning类型边框色
-  --ti-alert-warning-border-color: var(--ti-common-color-warn-border);
+  --ti-alert-warning-border-color: var(--ti-common-color-warn-border, #ffd0a6);
   // warning类型图标色
-  --ti-alert-warning-icon-color: var(--ti-common-color-warn);
+  --ti-alert-warning-icon-color: var(--ti-common-color-warn, #fa9841);
   // warning类型链接色(hide)
-  --ti-alert-warning-link-text-color: var(--ti-common-color-warn-text);
+  --ti-alert-warning-link-text-color: var(--ti-common-color-warn-text, #e37d29);
   // warning类型背景色
-  --ti-alert-warning-bg-color: var(--ti-common-color-warn-bg);
+  --ti-alert-warning-bg-color: var(--ti-common-color-warn-bg, #fff3e8);
   // warning类型关闭图标色
   --ti-alert-warning-close-icon-color: var(--ti-alert-warning-icon-color);
   // warning类型悬浮关闭图标色
   --ti-alert-warning-close-hover-icon-color: var(--ti-alert-warning-icon-color);
   // error类型边框色
-  --ti-alert-error-border-color: var(--ti-common-color-error-border-secondary);
+  --ti-alert-error-border-color: var(--ti-common-color-error-border-secondary, #ffbcba);
   // error类型图标色
-  --ti-alert-error-icon-color: var(--ti-common-color-error);
+  --ti-alert-error-icon-color: var(--ti-common-color-error, #f66f6a);
   // error类型链接色(hide)
-  --ti-alert-error-link-text-color: var(--ti-common-color-error-text);
+  --ti-alert-error-link-text-color: var(--ti-common-color-error-text, #de504e);
   // error类型背景色
-  --ti-alert-error-bg-color: var(--ti-common-color-error-bg);
+  --ti-alert-error-bg-color: var(--ti-common-color-error-bg, #ffeeed);
   // error类型关闭图标色
   --ti-alert-error-close-icon-color: var(--ti-alert-error-icon-color);
   // error类型悬浮关闭图标色
   --ti-alert-error-close-hover-icon-color: var(--ti-alert-error-icon-color);
   // success类型边框色
-  --ti-alert-success-border-color: var(--ti-common-color-success-border);
+  --ti-alert-success-border-color: var(--ti-common-color-success-border, #acf2dc);
   // success类型图标色
-  --ti-alert-success-icon-color: var(--ti-common-color-success);
+  --ti-alert-success-icon-color: var(--ti-common-color-success, #50d4ab);
   // success类型链接色(hide)
-  --ti-alert-success-link-text-color: var(--ti-common-color-text-success);
+  --ti-alert-success-link-text-color: var(--ti-common-color-text-success, #3ac295);
   // success类型背景色
-  --ti-alert-success-bg-color: var(--ti-common-color-success-bg);
+  --ti-alert-success-bg-color: var(--ti-common-color-success-bg, #edfff9);
   // success类型关闭图标色
   --ti-alert-success-close-icon-color: var(--ti-alert-success-icon-color);
   // success类型悬浮关闭图标色
   --ti-alert-success-close-hover-icon-color: var(--ti-alert-success-icon-color);
 
   // info类型边框色
-  --ti-alert-info-border-color: var(--ti-common-color-prompt-border);
+  --ti-alert-info-border-color: var(--ti-common-color-prompt-border, #beccfa);
   // info类型图标色
-  --ti-alert-info-icon-color: var(--ti-common-color-prompt);
+  --ti-alert-info-icon-color: var(--ti-common-color-prompt, #5e7ce0);
   // info类型链接色(hide)
-  --ti-alert-info-link-text-color: var(--ti-common-color-prompt-text);
+  --ti-alert-info-link-text-color: var(--ti-common-color-prompt-text, #526ecc);
   // info类型背景色
-  --ti-alert-info-bg-color: var(--ti-common-color-prompt-bg);
+  --ti-alert-info-bg-color: var(--ti-common-color-prompt-bg, #ebf6ff);
   // info类型关闭图标色
   --ti-alert-info-close-icon-color: var(--ti-alert-info-icon-color);
   // info类型悬浮关闭图标色

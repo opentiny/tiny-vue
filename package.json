@@ -44,7 +44,7 @@
     "dev2.7:saas": "pnpm create:icon-saas && pnpm build:entry && pnpm -C examples/vue2.7 dev:saas",
     "dev:react": "pnpm create:mapping-react && pnpm build:entry-react && pnpm -C examples/react-docs run dev",
     "// ---------- 启动官网文档 ----------": "",
-    "site": "pnpm build:entry && gulp themeConcat -w & pnpm -C examples/sites start",
+    "site": "pnpm build:entry &&  pnpm -C examples/sites start",
     "site:open": "pnpm build:entry && gulp themeConcat -w & pnpm -C examples/sites start:open",
     "// ---------- 启动移动端组件官网文档 ----------": "",
     "site:mobile": "pnpm build:entry && gulp themeConcat -w & pnpm -C examples/sites start:mobile",

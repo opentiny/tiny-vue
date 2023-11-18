@@ -41,7 +41,7 @@ jobs:
         run: pnpm i --no-frozen-lockfile
 
       - name: dev start
-        run: pnpm dev & sleep 5
+        run: pnpm site & sleep 5
       - name: update playwright
         run: pnpm recursive update @playwright/test
       - name: Install Playwright browsers

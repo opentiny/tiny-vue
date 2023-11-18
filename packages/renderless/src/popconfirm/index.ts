@@ -7,7 +7,7 @@ export const hide =
     }, 300)
 
     state.showPopover = false
-    emit('hide', state)
+    emit('hide', state.showPopover)
   }
 
 export const show =
@@ -18,15 +18,15 @@ export const show =
     }
 
     state.showPopover = true
-    emit('show', state)
+    emit('show', state.showPopover)
   }
 
 export const confirm =
   ({ state, emit }) =>
   () => {
     state.showPopover = false
-    emit('confirm', state)
-    emit('hide', state)
+    emit('confirm', state.showPopover)
+    emit('hide', state.showPopover)
   }
 
 export const handleEmit =
@@ -37,6 +37,6 @@ export const handleEmit =
     if (events[type]) {
       events[type].call(vm, { $modal: vm, type })
     } else {
-      emit(type, state)
+      emit(type, state.showPopover)
     }
   }

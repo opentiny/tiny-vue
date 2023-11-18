@@ -7,7 +7,7 @@
   </tiny-action-menu>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { ActionMenu as TinyActionMenu } from '@opentiny/vue'
 import { iconSmile } from '@opentiny/vue-icon'

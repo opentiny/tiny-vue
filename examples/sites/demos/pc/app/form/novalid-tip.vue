@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Form, FormItem, Input, Button, Modal } from '@opentiny/vue'
 
 export default {
