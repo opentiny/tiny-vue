@@ -7,6 +7,7 @@ import babel from '@rollup/plugin-babel'
 import { logGreen } from '../../shared/utils'
 import type { BuildUiOption, BaseConfig } from './build-ui'
 import { pathFromPackages, getBaseConfig, requireModules } from './build-ui'
+import { createProcessor } from 'tailwindcss/src/cli/build/plugin'
 
 const argv = minimist(process.argv.slice(2))
 const { tiny_mode = 'pc' } = argv
@@ -123,11 +124,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
 }
 
 function getEntryTasks() {
-  return [
-    {
-      path: 'vue-icon/index.ts',
-      libPath: 'tiny-vue-icon'
-    },
+  const entry = [
     {
       path: 'vue-locale/src/index.ts',
       libPath: 'tiny-vue-locale'
@@ -141,6 +138,18 @@ function getEntryTasks() {
       libPath: tiny_mode === 'mobile-first' ? 'tiny-vue-mobile-first' : 'tiny-vue'
     }
   ]
+  if (tiny_mode === 'mobile-first') {
+    entry.push({
+      path: 'vue-icon-saas/index.ts',
+      libPath: 'tiny-vue-icon-saas'
+    })
+  } else {
+    entry.push({
+      path: 'vue-icon/index.ts',
+      libPath: 'tiny-vue-icon'
+    })
+  }
+  return entry
 }
 
 export async function buildRuntime({
@@ -162,6 +171,19 @@ export async function buildRuntime({
     // 这里注意不能使用多入口打包，rollup多入口打包会抽取公共依赖（再由inlineChunksPlugin插件处理），导致组件库运行时加载失败
     for (let i = 0; i < tasks.length; i++) {
       await batchBuildAll({ vueVersion, tasks: [tasks[i]], message, emptyOutDir, npmScope: scope, min })
+    }
+    if (tiny_mode === 'mobile-first') {
+      const rootDir = pathFromPackages('')
+      const runtimeDir = `dist${vueVersion}/@opentiny/vue/runtime`
+      const outDir = path.resolve(rootDir, runtimeDir)
+      const processor = await createProcessor(
+        {
+          '--output': path.join(outDir, 'tailwind.css'),
+          '--content': path.join(outDir, 'tiny-vue-mobile-first.mjs')
+        },
+        path.resolve(rootDir, 'theme-saas/tailwind.config.js')
+      )
+      await processor.build()
     }
     // 确保只运行一次
     emptyOutDir = false
