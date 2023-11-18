@@ -15,7 +15,7 @@ export default {
     },
     {
       'demoId': 'size',
-      'name': { 'zh-CN': '设置组件尺寸大小', 'en-US': 'Set Component Size' },
+      'name': { 'zh-CN': '组件尺寸大小', 'en-US': 'Set Component Size' },
       'desc': {
         'zh-CN':
           '<p>通过 <code>size</code> 设置尺寸大小，可选值有 <code>medium</code> 、<code>small</code> 、<code>mini</code> 。</p>',

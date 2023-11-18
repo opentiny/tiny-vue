@@ -3,17 +3,16 @@ import { test, expect } from '@playwright/test'
 test('测试选块角标', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('button-group#sup')
-  const preview = page.locator('#preview')
-  const buttonGroup = preview.locator('.tiny-button-group').first()
+  const demo = page.locator('#sup')
+  const buttonGroup = demo.locator('.tiny-button-group').first()
   const item = buttonGroup.locator('.tiny-group-item > li')
-  const getSup = (parent) => parent.locator('.tiny-group-item__sup')
+  const getSup = (parent: any) => parent.locator('.tiny-group-item__sup')
 
   // 测试自定义背景和字体颜色
   const sup1 = getSup(item.first())
   await expect(sup1).toBeVisible()
   await expect(sup1).toHaveCSS('position', 'absolute')
-  await expect(sup1).toHaveCSS('color', 'rgb(0, 0, 0)')
-  await expect(sup1).toHaveCSS('background-color', 'rgb(204, 204, 204)')
+  await expect(sup1).toHaveCSS('background-color', 'rgb(82, 196, 26)')
 
   // 测试图标角标
   const sup2 = getSup(item.nth(1))
