@@ -24,6 +24,7 @@ test-results
 /packages/react/app.ts
 
 /examples/**/playwright-report
+/examples/**/test-results
 vite.config.ts.timestamp*
 vitest.config.ts.timestamp*
 

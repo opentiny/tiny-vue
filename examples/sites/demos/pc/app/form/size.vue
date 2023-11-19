@@ -61,7 +61,7 @@ export default {
   data() {
     return {
       createData: {
-        quantity: '',
+        quantity: 0,
         sex: '1',
         datepicker: '',
         textarea: '',
@@ -69,9 +69,9 @@ export default {
         input: ''
       },
       sizeList: [
-        { text: 'mini', value: 'mini' },
+        { text: 'medium', value: 'medium' },
         { text: 'small', value: 'small' },
-        { text: 'medium', value: 'medium' }
+        { text: 'mini', value: 'mini' }
       ],
       sizeValue: 'mini'
     }

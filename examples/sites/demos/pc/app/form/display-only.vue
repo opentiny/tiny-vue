@@ -1,8 +1,8 @@
 <template>
   <div class="demo-form">
-    <div style="margin-bottom: 12px">表单是否只展示：<tiny-switch v-model="displayOnly"></tiny-switch></div>
+    <div class="title">表单是否仅展示：<tiny-switch v-model="displayOnly"></tiny-switch></div>
     <tiny-form :inline="inline" label-position="right" :display-only="displayOnly">
-      <tiny-form-item label="input">
+      <tiny-form-item label="超长文字">
         <tiny-input v-model="formData.input"></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="radio">
@@ -39,9 +39,6 @@
       </tiny-form-item>
       <tiny-form-item label="开关">
         <tiny-switch></tiny-switch>
-      </tiny-form-item>
-      <tiny-form-item label="评分">
-        <tiny-rate v-model="formData.rate1" show-text></tiny-rate>
       </tiny-form-item>
       <tiny-form-item label="自动完成">
         <tiny-autocomplete
@@ -91,7 +88,6 @@ export default {
     TinyCheckbox: Checkbox,
     TinyCheckboxGroup: CheckboxGroup,
     TinySwitch: Switch,
-    TinyRate: Rate,
     TinyAutocomplete: Autocomplete,
     TinyCascader: Cascader
   },
@@ -187,7 +183,7 @@ export default {
         person: 'test1',
         user: '655783272594485',
         monthrange: ['2022-01', '2023-01'],
-        quantity: '1',
+        quantity: 1,
         textareaValue:
           '大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦大苏打撒旦',
         checked: true,
@@ -228,5 +224,10 @@ export default {
 <style scoped>
 .demo-form {
   width: 380px;
+}
+.title {
+  margin-bottom: 30px;
+  margin-left: 16px;
+  font-size: 14px;
 }
 </style>

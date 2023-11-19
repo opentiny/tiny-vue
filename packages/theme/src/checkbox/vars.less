@@ -12,67 +12,67 @@
 
 .component-css-vars-checkbox() {
   // 复选框宽度
-  --ti-checkbox-width: var(--ti-common-size-4x);
+  --ti-checkbox-width: var(--ti-common-size-4x, 16px);
   // 复选框高度
-  --ti-checkbox-height: var(--ti-common-size-4x);
+  --ti-checkbox-height: var(--ti-common-size-4x, 16px);
   // 默认复选框文本色
-  --ti-checkbox-text-font-family: var(--ti-common-font-family);
+  --ti-checkbox-text-font-family: var(--ti-common-font-family, 'Helvetica', 'Arial', 'PingFangSC-Regular', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'Microsoft JhengHei');
   // 默认复选框文本色
-  --ti-checkbox-text-color: var(--ti-common-color-info-normal);
+  --ti-checkbox-text-color: var(--ti-common-color-info-normal, #252b3a);
   // 默认复选框字号
-  --ti-checkbox-font-size: var(--ti-common-font-size-base);
+  --ti-checkbox-font-size: var(--ti-common-font-size-base, 12px);
   // 默认复选框未选中项背景色
-  --ti-checkbox-bg-color: var(--ti-common-color-transparent);
+  --ti-checkbox-bg-color: var(--ti-common-color-transparent, transparent);
   // 默认复选框选中项背景色
-  --ti-checkbox-bg-color-checked: var(--ti-common-color-bg-emphasize);
+  --ti-checkbox-bg-color-checked: var(--ti-common-color-bg-emphasize, #5e7ce0);
   // 默认复选框选中项边框色
-  --ti-checkbox-border-color-checked: var(--ti-common-color-line-active);
+  --ti-checkbox-border-color-checked: var(--ti-common-color-line-active, #5e7ce0);
   // 默认复选框未选中项边框色
-  --ti-checkbox-border-color: var(--ti-common-color-line-normal);
+  --ti-checkbox-border-color: var(--ti-common-color-line-normal, #adb0b8);
 
   // 默认复选框选中项悬浮背景色 +
-  --ti-checkbox-bg-color-hover-checked: var(--ti-common-color-bg-hover);
+  --ti-checkbox-bg-color-hover-checked: var(--ti-common-color-bg-hover, #344899);
   // 默认复选框选中项悬浮边框色 +
-  --ti-checkbox-border-color-hover-checked: var(--ti-common-color-bg-hover);
+  --ti-checkbox-border-color-hover-checked: var(--ti-common-color-bg-hover, #344899);
 
   // 默认复选框未选中项悬浮边框色
-  --ti-checkbox-border-color-hover: var(--ti-common-color-line-active);
+  --ti-checkbox-border-color-hover: var(--ti-common-color-line-active, #5e7ce0);
 
   // 默认复选框字号(hide)
-  --ti-checkbox-font-normal-line-height: var(--ti-common-line-height-base);
+  --ti-checkbox-font-normal-line-height: var(--ti-common-line-height-base, 12px);
   // 默认复选框字号(hide)
-  --ti-checkbox-font-medium-line-height: var(--ti-common-line-height-3);
+  --ti-checkbox-font-medium-line-height: var(--ti-common-line-height-3, 18px);
   // 默认复选框字号(hide)
-  --ti-checkbox-font-small-line-height: var(--ti-common-line-height-2);
+  --ti-checkbox-font-small-line-height: var(--ti-common-line-height-2, 16px);
   // 默认复选框字号(hide)
-  --ti-checkbox-font-mini-line-height: var(--ti-common-line-height-base);
+  --ti-checkbox-font-mini-line-height: var(--ti-common-line-height-base, 12px);
 
   // 默认复选框选中项图标高度
-  --ti-checkbox-icon-height: var(--ti-common-size-2x);
+  --ti-checkbox-icon-height: var(--ti-common-size-2x, 8px);
   // 默认复选框选中项图标宽度
-  --ti-checkbox-icon-width: var(--ti-common-size-base);
+  --ti-checkbox-icon-width: var(--ti-common-size-base, 4px);
   // 默认复选框对勾的左边距
-  --ti-checkbox-icon-margin-left: var(--ti-common-space-base);
+  --ti-checkbox-icon-margin-left: var(--ti-common-space-base, 4px);
   // 默认复选框对勾的顶边距
-  --ti-checkbox-icon-margin-top: var(--ti-common-space-0);
+  --ti-checkbox-icon-margin-top: var(--ti-common-space-0, 0px);
   // 默认复选框禁用时，未选中时背景色
-  --ti-checkbox-bg-color-disable: var(--ti-common-color-bg-disabled);
+  --ti-checkbox-bg-color-disable: var(--ti-common-color-bg-disabled, #f5f5f6);
   // 默认复选框禁用时，选中项对勾颜色以及半选时中间方框颜色
-  --ti-checkbox-icon-color-disabled: var(--ti-common-color-text-disabled);
+  --ti-checkbox-icon-color-disabled: var(--ti-common-color-text-disabled, #adb0b8);
   // 默认复选框未选中项禁用边框色
-  --ti-checkbox-border-color-unchecked-disabled: var(--ti-common-color-line-disabled);
+  --ti-checkbox-border-color-unchecked-disabled: var(--ti-common-color-line-disabled, #dfe1e6);
   // 默认复选框禁用时，label文本色
-  --ti-checkbox-label-text-color-disabled: var(--ti-common-color-text-disabled);
+  --ti-checkbox-label-text-color-disabled: var(--ti-common-color-text-disabled, #adb0b8);
   // 默认复选框禁用时，选中项背景颜色
-  --ti-checkbox-bg-color-checked-disabled: var(--ti-common-color-bg-disabled);
+  --ti-checkbox-bg-color-checked-disabled: var(--ti-common-color-bg-disabled, #f5f5f6);
   // 默认复选框禁用时，选中项边框颜色
-  --ti-checkbox-border-color-checked-disabled: var(--ti-common-color-line-disabled);
+  --ti-checkbox-border-color-checked-disabled: var(--ti-common-color-line-disabled, #dfe1e6);
 
   // 默认复选框边框圆角
-  --ti-checkbox-border-radius: var(--ti-common-border-radius-normal);
+  --ti-checkbox-border-radius: var(--ti-common-border-radius-normal, 2px);
   // 默认复选框边框圆角
-  --ti-checkbox-checkline-width: var(--ti-common-border-weight-1);
+  --ti-checkbox-checkline-width: var(--ti-common-border-weight-1, 2px);
 
   // 默认复选框的右侧外边距
-  --ti-checkbox-label-margin-right: var(--ti-common-space-5x);
+  --ti-checkbox-label-margin-right: var(--ti-common-space-5x, 20px);
 }

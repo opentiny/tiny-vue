@@ -219,6 +219,8 @@ export default {
             )
       const toolTipComp = () =>
         tooltipConfig ? tipComp() : h('span', { class: 'tiny-tabs__item__title' }, [pane.title])
+      const itemsSeparator = <span class="tiny-tabs__item-separator"></span>
+
       const tabLabelContent = () => (pane.$slots.title ? pane.$slots.title() : toolTipComp())
       const tabindex = pane.state.active ? 0 : -1
 
@@ -229,6 +231,7 @@ export default {
           key: `tab-${tabName}-${index}`,
           class: {
             'tiny-tabs__item': true,
+            'tiny-tabs__item-separator-space': state.separator, // 注：tiny-tabs__item-base类名不需要同步aui，会改变tabs的基本样式
             [`is-${state.rootTabs.position}`]: true,
             'is-active': pane.state.active,
             'is-disabled': pane.disabled,
@@ -261,7 +264,7 @@ export default {
             }
           }
         },
-        [tabLabelContent(), btnClose]
+        [tabLabelContent(), btnClose, state.separator && itemsSeparator]
       )
     })
 
@@ -273,6 +276,7 @@ export default {
         style={showMoreTabs ? { paddingRight } : {}}
         class={[
           'tiny-tabs__nav-wrap',
+          !state.separator && 'tiny-tabs__nav-wrap-not-separator',
           state.scrollable ? 'is-scrollable' : '',
           showMoreTabs ? 'is-show-more' : '',
           `is-${state.rootTabs.position}`

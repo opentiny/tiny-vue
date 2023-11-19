@@ -17,9 +17,15 @@ export default {
   data() {
     return {
       cities: ['上海', '北京', '广州', '深圳'],
-      sizeList: ['', 'medium', 'small', 'mini'],
+      sizeList: ['medium', '', 'small', 'mini'],
       checkboxGroup: ['上海']
     }
   }
 }
 </script>
+
+<style scoped>
+.tiny-checkbox-group {
+  margin-bottom: 16px;
+}
+</style>

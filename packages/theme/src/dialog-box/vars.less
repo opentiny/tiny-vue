@@ -12,114 +12,114 @@
 
 .component-css-vars-dialog-box() {
   // 对话框背景色
-  --ti-dialog-box-bg-color: var(--ti-common-color-bg-white-normal);
+  --ti-dialog-box-bg-color: var(--ti-common-color-bg-white-normal, #fff);
   // 对话框圆角
-  --ti-dialog-box-border-radius: var(--ti-common-border-radius-normal);
+  --ti-dialog-box-border-radius: var(--ti-common-border-radius-normal, 2px);
   // 对话框阴影
-  --ti-dialog-box-shadow: var(--ti-common-shadow-4-down);
+  --ti-dialog-box-shadow: var(--ti-common-shadow-4-down, 0 8px 40px 0 rgba(0, 0, 0, 0.2));
 
   // 头部边框色(hide)
-  --ti-dialog-box-head-border-color: var(--ti-common-color-line-normal);
+  --ti-dialog-box-head-border-color: var(--ti-common-color-line-normal, #adb0b8);
   // 头部文本色(hide)
-  --ti-dialog-box-head-text-color: var(--ti-common-color-text-primary);
+  --ti-dialog-box-head-text-color: var(--ti-common-color-text-primary, #252b3a);
   // 头部上内边距
-  --ti-dialog-box-head-padding-top: var(--ti-common-space-8x);
+  --ti-dialog-box-head-padding-top: var(--ti-common-space-8x, 32px);
   // 头部水平内边距
-  --ti-dialog-box-head-padding-horizontal: var(--ti-common-space-8x);
+  --ti-dialog-box-head-padding-horizontal: var(--ti-common-space-8x, 32px);
   // 头部下内边距
-  --ti-dialog-box-head-padding-bottom: calc(var(--ti-common-space-base) * 7);
+  --ti-dialog-box-head-padding-bottom: calc(var(--ti-common-space-base, 4px) * 7);
   // 头部字号
-  --ti-dialog-box-head-title-font-size: var(--ti-common-font-size-3);
+  --ti-dialog-box-head-title-font-size: var(--ti-common-font-size-3, 18px);
   // 头部字重
-  --ti-dialog-box-head-title-font-weight: var(--ti-common-font-weight-7);
+  --ti-dialog-box-head-title-font-weight: var(--ti-common-font-weight-7, bold);
   // 头部文本色
-  --ti-dialog-box-head-title-text-color: var(--ti-common-color-text-primary);
+  --ti-dialog-box-head-title-text-color: var(--ti-common-color-text-primary, #252b3a);
   // 头部底边框颜色
-  --ti-dialog-box-head-border-bottom-color: var(--ti-common-color-transparent);
+  --ti-dialog-box-head-border-bottom-color: var(--ti-common-color-transparent, transparent);
   // 头部字体图标色(hide)
-  --ti-dialog-box-head-font-icon-color: var(--ti-common-color-icon-normal);
+  --ti-dialog-box-head-font-icon-color: var(--ti-common-color-icon-normal, #575d6c);
   // 头部字体图标悬浮颜色(hide)
-  --ti-dialog-box-head-font-icon-color-hover: var(--ti-common-color-icon-hover);
+  --ti-dialog-box-head-font-icon-color-hover: var(--ti-common-color-icon-hover, #5e7ce0);
   // 头部主体色(hide)
-  --ti-dialog-box-head-body-text-color: var(--ti-common-color-text-primary);
+  --ti-dialog-box-head-body-text-color: var(--ti-common-color-text-primary, #252b3a);
   // 头部主体字号(hide)
-  --ti-dialog-box-head-body-font-size: var(--ti-common-font-size-1);
+  --ti-dialog-box-head-body-font-size: var(--ti-common-font-size-1, 14px);
 
   // 关闭按钮宽度
-  --ti-dialog-box-btn-width: var(--ti-common-size-8x);
+  --ti-dialog-box-btn-width: var(--ti-common-size-8x, 32px);
   // 关闭按钮高度
   --ti-dialog-box-btn-height: var(--ti-dialog-box-btn-width);
   // 关闭按钮圆角
-  --ti-dialog-box-btn-border-radius: var(--ti-common-border-radius-1);
+  --ti-dialog-box-btn-border-radius: var(--ti-common-border-radius-1, 4px);
   // 关闭按钮图标尺寸
-  --ti-dialog-box-close-icon-size: var(--ti-common-font-size-1);
+  --ti-dialog-box-close-icon-size: var(--ti-common-font-size-1, 14px);
   // 关闭按钮图标色
-  --ti-dialog-box-close-icon-color: var(--ti-common-color-icon-normal);
+  --ti-dialog-box-close-icon-color: var(--ti-common-color-icon-normal, #575d6c);
   // 关闭按钮悬浮图标色
-  --ti-dialog-box-close-icon-color-hover: var(--ti-common-color-icon-hover);
+  --ti-dialog-box-close-icon-color-hover: var(--ti-common-color-icon-hover, #5e7ce0);
   // 关闭按钮悬浮背景色
   --ti-dialog-box-btn-background-color-hover: none;
   // 关闭按钮与上边框的距离(hide)
-  --ti-dialog-box-btn-position-top: var(--ti-common-space-5x);
+  --ti-dialog-box-btn-position-top: var(--ti-common-space-5x, 20px);
   // 关闭按钮与右边框的距离(hide)
-  --ti-dialog-box-btn-position-right: var(--ti-common-space-5x);
+  --ti-dialog-box-btn-position-right: var(--ti-common-space-5x, 20px);
 
   // 内容字号
-  --ti-dialog-box-body-font-size: var(--ti-common-font-size-base);
+  --ti-dialog-box-body-font-size: var(--ti-common-font-size-base, 12px);
   // 内容字体色
-  --ti-dialog-box-body-text-color: var(--ti-common-color-text-primary);
+  --ti-dialog-box-body-text-color: var(--ti-common-color-text-primary, #252b3a);
   // 内容垂直内边距
-  --ti-dialog-box-body-padding-vertical: var(--ti-common-space-0);
+  --ti-dialog-box-body-padding-vertical: var(--ti-common-space-0, 0px);
   // 内容水平内边距
-  --ti-dialog-box-body-padding-horizontal: var(--ti-common-space-8x);
+  --ti-dialog-box-body-padding-horizontal: var(--ti-common-space-8x, 32px);
 
   // 底部上内边距
-  --ti-dialog-box-footer-padding-top: calc(var(--ti-common-space-base) * 7);
+  --ti-dialog-box-footer-padding-top: calc(var(--ti-common-space-base, 4px) * 7);
   // 底部水平内边距
-  --ti-dialog-box-footer-padding-horizontal: var(--ti-common-space-8x);
+  --ti-dialog-box-footer-padding-horizontal: var(--ti-common-space-8x, 32px);
   // 底部下内边距
-  --ti-dialog-box-footer-margin-bottom: var(--ti-common-space-8x);
+  --ti-dialog-box-footer-margin-bottom: var(--ti-common-space-8x, 32px);
 
   // 抽屉最小宽度
-  --ti-dialog-box-drawer-min-width: calc(var(--ti-common-space-10) * 50);
+  --ti-dialog-box-drawer-min-width: calc(var(--ti-common-space-10, 10px) * 50);
   // 抽屉最大宽度
-  --ti-dialog-box-drawer-max-width: calc(var(--ti-common-space-10) * 100);
+  --ti-dialog-box-drawer-max-width: calc(var(--ti-common-space-10, 10px) * 100);
   // 抽屉左内边距
-  --ti-dialog-box-drawer-padding-left: var(--ti-common-space-8x);
+  --ti-dialog-box-drawer-padding-left: var(--ti-common-space-8x, 32px);
   // 抽屉右内边距
-  --ti-dialog-box-drawer-padding-right: var(--ti-common-space-10x);
+  --ti-dialog-box-drawer-padding-right: var(--ti-common-space-10x, 40px);
   // 抽屉头部上内边距
-  --ti-dialog-box-drawer-header-padding-top: var(--ti-common-space-8x);
+  --ti-dialog-box-drawer-header-padding-top: var(--ti-common-space-8x, 32px);
   // 抽屉头部下内边距
-  --ti-dialog-box-drawer-header-padding-bottom: var(--ti-common-space-5x);
+  --ti-dialog-box-drawer-header-padding-bottom: var(--ti-common-space-5x, 20px);
   // 抽屉头部左内边距
-  --ti-dialog-box-drawer-header-padding-left: var(--ti-common-space-0);
+  --ti-dialog-box-drawer-header-padding-left: var(--ti-common-space-0, 0px);
   // 抽屉头部右内边距
-  --ti-dialog-box-drawer-body-padding-right: var(--ti-common-space-0);
+  --ti-dialog-box-drawer-body-padding-right: var(--ti-common-space-0, 0px);
   // 抽屉内容上内边距
-  --ti-dialog-box-drawer-body-padding-top: var(--ti-common-space-0);
+  --ti-dialog-box-drawer-body-padding-top: var(--ti-common-space-0, 0px);
   // 抽屉内容下内边距
-  --ti-dialog-box-drawer-body-padding-bottom: var(--ti-common-space-0);
+  --ti-dialog-box-drawer-body-padding-bottom: var(--ti-common-space-0, 0px);
   // 抽屉内容左内边距
-  --ti-dialog-box-drawer-body-padding-left: var(--ti-common-space-0);
+  --ti-dialog-box-drawer-body-padding-left: var(--ti-common-space-0, 0px);
   // 抽屉内容右内边距
-  --ti-dialog-box-drawer-header-padding-right: var(--ti-common-space-0);
+  --ti-dialog-box-drawer-header-padding-right: var(--ti-common-space-0, 0px);
   // 抽屉底部文本对齐方式
   --ti-dialog-box-drawer-footer-text-align: right;
   // 抽屉底部上内边距
-  --ti-dialog-box-drawer-footer-padding-top: var(--ti-common-space-5x);
+  --ti-dialog-box-drawer-footer-padding-top: var(--ti-common-space-5x, 20px);
   // 抽屉底部下内边距
-  --ti-dialog-box-drawer-footer-padding-bottom: var(--ti-common-space-8x);
+  --ti-dialog-box-drawer-footer-padding-bottom: var(--ti-common-space-8x, 32px);
   // 抽屉底部左内边距
-  --ti-dialog-box-drawer-footer-padding-left: var(--ti-common-space-0);
+  --ti-dialog-box-drawer-footer-padding-left: var(--ti-common-space-0, 0px);
   // 抽屉底部右内边距
-  --ti-dialog-box-drawer-footer-padding-right: var(--ti-common-space-0);
+  --ti-dialog-box-drawer-footer-padding-right: var(--ti-common-space-0, 0px);
   // 抽屉底部左外边距
-  --ti-dialog-box-drawer-footer-margin-left: var(--ti-common-space-8x);
+  --ti-dialog-box-drawer-footer-margin-left: var(--ti-common-space-8x, 32px);
   // 抽屉底部右外边距
-  --ti-dialog-box-drawer-footer-margin-right: var(--ti-common-space-10x);
+  --ti-dialog-box-drawer-footer-margin-right: var(--ti-common-space-10x, 40px);
   // 抽屉头部与底部边框颜色
-  --ti-dialog-box-drawer-divider-border-color: var(--ti-common-color-line-dividing);
+  --ti-dialog-box-drawer-divider-border-color: var(--ti-common-color-line-dividing, #dfe1e6);
   // 抽屉边框圆角
-  --ti-dialog-box-drawer-radius: var(--ti-common-space-0);
+  --ti-dialog-box-drawer-radius: var(--ti-common-space-0, 0px);
 }

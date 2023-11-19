@@ -1,12 +1,8 @@
 <template>
   <div>
-    <tiny-button @click="click1" style="max-width: unset; margin-bottom: 15px">
-      单击按钮 Select 将获取焦点
-    </tiny-button>
-    <tiny-button @click="click2" style="max-width: unset; margin-bottom: 15px">
-      单击按钮 Select 将失去焦点
-    </tiny-button>
-    <tiny-select v-model="value" ref="drop" placeholder="请选择" multiple filterable>
+    <tiny-button @click="handleFocus"> 点击获取焦点 </tiny-button>
+    <tiny-button @click="handleBlur"> 点击失去焦点 </tiny-button>
+    <tiny-select v-model="value" ref="drop" filterable>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
   </div>
@@ -34,12 +30,26 @@ export default {
     }
   },
   methods: {
-    click1() {
+    handleFocus() {
       this.$refs.drop.focus()
     },
-    click2() {
+    handleBlur() {
       this.$refs.drop.blur()
     }
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+.tiny-button {
+  max-width: unset;
+  margin-bottom: 10px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

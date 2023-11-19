@@ -219,7 +219,9 @@ export default defineComponent({
 
 <style lang="less">
 .demo-desc {
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.7em;
+  margin: 12px 0;
 
   code {
     color: #476582;

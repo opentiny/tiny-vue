@@ -444,16 +444,16 @@ const createModuleMapping = (componentName, isMobile = false) => {
   })
 
   const moduleJson = quickSort({ sortData: moduleMap, returnType: 'object' })
-
-  fs.writeJsonSync(
+  fs.writeFileSync(
     pathJoinFromCLI('../../packages/modules.json'),
     prettierFormat({
-      str: JSON.stringify(moduleJson),
+      str: typeof moduleJson === 'string' ? moduleJson : JSON.stringify(moduleJson),
       options: {
         parser: 'json',
         printWidth: 10
       }
-    })
+    }),
+
   )
 }
 

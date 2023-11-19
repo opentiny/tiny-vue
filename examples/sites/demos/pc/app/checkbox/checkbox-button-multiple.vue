@@ -1,9 +1,7 @@
 <template>
-  <div style="margin-top: 20px">
-    <tiny-checkbox-group v-model="checkboxGroup" size="small">
-      <tiny-checkbox-button v-for="city in cities" :label="city" :key="city">{{ city }}</tiny-checkbox-button>
-    </tiny-checkbox-group>
-  </div>
+  <tiny-checkbox-group v-model="checkboxGroup" size="small">
+    <tiny-checkbox-button v-for="city in cities" :label="city" :key="city">{{ city }}</tiny-checkbox-button>
+  </tiny-checkbox-group>
 </template>
 
 <script>
