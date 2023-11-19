@@ -1,5 +1,5 @@
 <template>
-  <tiny-image :src="url" @load="loadHandler"></tiny-image>
+  <tiny-image :src="url1" @load="loadHandler" @error="errorHandler"></tiny-image>
 </template>
 
 <script lang="jsx">
@@ -11,10 +11,13 @@ export default {
   },
   data() {
     return {
-      url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`
+      url1: ''
     }
   },
   methods: {
+    errorHandler() {
+      Modal.message({ message: '加载失败触发事件', status: 'info' })
+    },
     loadHandler() {
       Modal.message({ message: '加载成功触发事件', status: 'info' })
     }

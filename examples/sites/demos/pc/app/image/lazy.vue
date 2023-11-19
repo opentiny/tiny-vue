@@ -1,6 +1,9 @@
 <template>
-  <div class="demo-image__lazy" style="height: 300px; overflow-y: auto">
-    <tiny-image v-for="url in srcList" :key="url" :src="url" lazy></tiny-image>
+  <div>
+    <div style="margin: 12px">滚动下面的容器，通过开发者工具中的观察网络请求：</div>
+    <div class="demo-image__lazy" style="height: 300px; overflow-y: auto">
+      <tiny-image v-for="url in srcList" :key="url" :src="url" lazy></tiny-image>
+    </div>
   </div>
 </template>
 
