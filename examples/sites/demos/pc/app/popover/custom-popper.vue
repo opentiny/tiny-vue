@@ -50,7 +50,7 @@ export default {
 
 <style>
 /** 自定义弹出层的样式
-    由于弹出层是添加在body之上的，所以必须写全局的css样式类名 */
+    由于弹出层是插入在body中的，所以写全局样式 */
 .custom-popover-demo-cls {
   font-size: 16px !important;
   font-style: italic;

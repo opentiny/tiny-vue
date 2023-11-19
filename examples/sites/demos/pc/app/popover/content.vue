@@ -2,7 +2,7 @@
   <div class="container">
     <tiny-popover content="这是一段内容">
       <template #reference>
-        <tiny-button>通过属性</tiny-button>
+        <tiny-button style="margin-right: 16px">通过属性</tiny-button>
       </template>
     </tiny-popover>
     <tiny-popover>
@@ -32,7 +32,7 @@ export default {
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: start;
   flex-wrap: wrap;
 }
 </style>

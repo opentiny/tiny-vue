@@ -9,6 +9,8 @@ import { Tooltip as TinyTooltip } from '@opentiny/vue'
 </script>
 
 <style>
+/** 自定义动画类名要匹配transition属性中的值
+    由于弹窗元素是插入到body中的，所以写在全局样式 */
 .tiny-tooltip.custom-transition-enter,
 .tiny-tooltip.custom-transition-enter-from,
 .tiny-tooltip.custom-transition-leave-to {

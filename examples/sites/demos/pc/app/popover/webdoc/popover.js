@@ -10,8 +10,14 @@ export default {
           通过 <code>reference</code>  插槽来指定一个触发源，通过 <code>content</code> 属性来指定提示内容，点击触发源会弹出内容面板。<br>
           通过 <code>title</code> 属性来指定标题。<br>
           通过 <code>width</code>  属性来指定一个弹出面板的宽度。<br>
+          <div class="tip custom-block">reference 插槽是必传插槽，没有它时组件渲染不出来。</div>
         `,
-        'en-US': 'For details, see the following example.'
+        'en-US': `
+          Specify a trigger source through the <code>reference</code> slot, specify the prompt content through the <code>content</code> property, click the trigger source will pop up the content panel. <br>
+          The title is specified by the <code>title</code> attribute. <br>
+          Use the <code>width</code> property to specify the width of a pop-up panel. <br>
+          The <div class="tip custom-block">reference slot is a required slot without which the component cannot be rendered. </div>
+        `
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -23,70 +29,87 @@ export default {
         'zh-CN': `
           通过<code>trigger</code> 属性设定弹出框的触发方式，属性可选值为：  <code>click / hover / manual / focus</code>， 默认值为 <code> click </code>。<br>
           当触发方式为<code> manual</code>时，通过设置<code>v-model</code> 属性，动态控制显示和隐藏弹出框。
-          `,
-        'en-US':
-          '<code>trigger</code> Set the triggering mode of the pop-up dialog box. <code>click</code>Click to trigger <code>focus</code>Hover</code>Hover</code>Click to trigger <code>manual</code>. Click Hide\n again'
+        `,
+        'en-US': `
+          The <code>trigger</code> property is used to set the triggering mode of the pop-up box. The optional value of the property is <code>click/hover/manual/focus</code>, and the default value is <code>click </code>. <br>
+          When the trigger mode is <code> manual</code>, you can set the <code>v-model</code> property to dynamically display and hide pop-ups.
+        `
       },
       'codeFiles': ['trigger.vue']
     },
 
     {
       'demoId': 'content',
-      'name': { 'zh-CN': '弹出层内容', 'en-US': 'Add Content' },
+      'name': { 'zh-CN': '弹出层内容', 'en-US': 'Pop-up layer content' },
       'desc': {
         'zh-CN': `
-          通过 <code>content</code> 属性设置要显示的字符串内容。
-          通过 <code>default</code> 插槽，支持自定义复杂的内容结构。
-          `,
-        'en-US': '<code>content</code> Sets what to display. \n'
+          通过 <code>content</code> 属性设置要显示的字符串内容。<br>
+          通过 <code>default</code> 插槽，支持自定义复杂的内容结构。<br>
+        `,
+        'en-US': `
+          The <code>content</code> property sets the string content to be displayed.
+          Support for custom complex content structures through the <code>default</code> slot.
+        `
       },
       'codeFiles': ['content.vue']
     },
     {
-      'demoId': 'disable',
+      'demoId': 'disabled',
       'name': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
       'desc': {
-        'zh-CN': '<code>disabled</code> 设置是否禁用弹出框。\n',
-        'en-US': '<code>disabled</code> Sets whether to disable pop-up boxes. \n'
+        'zh-CN': '<code>disabled</code> 设置是否禁用弹出框。',
+        'en-US': '<code>disabled</code> Specifies whether to disable the pop-up. '
       },
-      'codeFiles': ['disable.vue']
+      'codeFiles': ['disabled.vue']
     },
 
     {
       'demoId': 'offset',
-      'name': { 'zh-CN': '自定义偏移', 'en-US': 'Arrow Offset' },
+      'name': { 'zh-CN': '自定义偏移', 'en-US': 'Custom Offset' },
       'desc': {
-        'zh-CN': `通过<code>arrow-offset</code> 设置箭头的在弹窗层上的偏移量。箭头默认至少会保留8px的空间， 以保证箭头不会贴在弹窗层两边。<br>
-                  通过<code> offset</code> 设置弹框的偏移量，来改变弹框的位置`,
-        'en-US':
-          '<code>arrow-offset</code> Sets the offset of the arrow to change the position of the arrow.By default, the arrow retains at least 8px of space to ensure that the arrow does not stick to the left. \n'
+        'zh-CN': `
+          通过<code>arrow-offset</code> 设置箭头的在弹窗层上的偏移量。箭头默认至少会保留8px的空间， 以保证箭头不会贴在弹窗层两边。<br>
+          通过<code> offset</code> 设置弹框的偏移量，来改变弹框的位置
+        `,
+        'en-US': `
+          Use <code>arrow-offset</code> to set the offset of the arrow on the popup layer. Arrows are left at least 8px by default to ensure that they are not stuck on either side of the popup layer. <br>
+          Change the position of the springboard by setting the offset</code> of the springboard
+        `
       },
       'codeFiles': ['offset.vue']
     },
 
     {
       'demoId': 'custom-popper',
-      'name': { 'zh-CN': '自定义弹出面板', 'en-US': 'Arrow Offset' },
+      'name': { 'zh-CN': '自定义弹出面板', 'en-US': 'Customize the pop-up panel' },
       'desc': {
         'zh-CN': `
           通过<code>placement</code> 设置弹出框的的位置,可选值为（top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end）。<br>
           通过<code>visible-arrow</code> 设定是否显示提示框的箭头，默认值为 true。<br>
           通过<code>popper-class</code> 可配置单个或多个 class，通过类名可以控制弹窗样式。
         `,
-        'en-US':
-          '<code>arrow-offset</code> Sets the offset of the arrow to change the position of the arrow.By default, the arrow retains at least 8px of space to ensure that the arrow does not stick to the left. \n'
+        'en-US': `
+          By <code>placement</code> Set the location of the pop-up box. The optional value is (top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end ). <br>
+          Set whether the arrow of the prompt box is displayed by <code>visible-arrow</code>. The default value is true. <br>
+          You can run the <code>popper-class</code> command to configure one or more classes. You can control the popup style by class name.
+        `
       },
       'codeFiles': ['custom-popper.vue']
     },
     {
       'demoId': 'delay',
-      'name': { 'zh-CN': '延迟控制', 'en-US': 'Popup Box Offset' },
+      'name': { 'zh-CN': '延迟控制', 'en-US': 'Delay control' },
       'desc': {
         'zh-CN': `
           通过 <code>open-delay</code> 弹出框打开时延迟的时长，默认值为0，单位为毫秒<br>
           通过 <code>close-delay</code> 弹出框关闭时延迟的时长，默认值为200，单位为毫秒<br>
+          <div class="tip custom-block">只有在触发方式为 hover 时，延迟控制功能才生效。</div>
         `,
-        'en-US': '<code>offset</code> Sets the offset of the dialog box to change the position of the dialog box. \n'
+        'en-US': `
+          Run the <code>open-delay</code> command to open a pop-up. The default value is 0, in milliseconds. <br>
+          Run the <code>close-delay</code> command to close the pop-up. The default value is 200, in milliseconds. <br>
+          <div class="tip custom-block"> Delay control takes effect only if the trigger mode is hover. </div>
+        `
       },
       'codeFiles': ['delay.vue']
     },
@@ -96,7 +119,7 @@ export default {
       'desc': {
         'zh-CN': `通过 <code>transition</code> 设置弹框的显示隐藏淡入淡出动画，默认取值 fade-in-linear。`,
         'en-US':
-          '<code>transition</code> Sets the display-hide-in-fade-out animation of the dialog box. The default values are fade-in-linear and fade-in (no animation effect).\n'
+          'You can run the <code>transition</code> command to set the display hidden fade in and fade out animation of a pop-up. The default value is fade-in-linear.'
       },
       'codeFiles': ['transition.vue']
     },
@@ -105,21 +128,31 @@ export default {
       'demoId': 'popper-options',
       'name': { 'zh-CN': '高级选项', 'en-US': 'Pop-up Options' },
       'desc': {
-        'zh-CN': '<code>popper-options</code> 配置弹出框选项\n',
-        'en-US': '<code>popper-options</code> Configuration pop-up options\n'
+        'zh-CN': '通过<code>popper-options</code> 配置弹出框高级选项，参考底部的IPopperOption说明',
+        'en-US':
+          'Run the <code>popper-options</code> command to configure the advanced pop-up options. For details, see the IPopperOption description at the bottom'
       },
       'codeFiles': ['popper-options.vue']
     },
     {
-      'demoId': 'popover-events',
+      'demoId': 'events',
       'name': { 'zh-CN': '事件', 'en-US': 'Event' },
       'desc': {
-        'zh-CN':
-          '<code>input</code> 加载完触发回调\n\n<code>hide</code> 隐藏时触发回调\n\n<code>show</code> 显示时触发回调\n\n<code>after-leave</code> 显示时触发回调\n\n<code>after-enter</code> 显示动画播放完毕后触发回调\n',
-        'en-US':
-          'Callback triggered after <code>input</code> loading\n\n<code>hide</code>Hide</code>Hide</code>Callback triggered during display\n\n<code>show</code> \n\n<code>after-leave</code> displayCallback triggered during display \n\n<code>after-enter</code> displayCallback triggered after animation playing is complete \n'
+        'zh-CN': `
+          组件支持以下事件：<br>
+          <code>hide</code> 隐藏时触发回调<br>
+          <code>show</code> 显示时触发回调<br>
+          <code>after-leave</code> 进入的动画结束后触发回调<br>
+          <code>after-enter</code> 离开的动画播结束后触发回调<br>`,
+        'en-US': `
+          The component supports the following events: <br>
+          <code>hide</code> Trigger callback when hiding <br>
+          <code>show</code> callback triggered when displayed <br>
+          <code>after-leave</code> Triggers callback after entering animation <br>
+          <code>after-enter</code> Trigger callback after the leaving animation ends <br>
+          `
       },
-      'codeFiles': ['popover-events.vue']
+      'codeFiles': ['events.vue']
     }
   ],
   apis: [
@@ -128,137 +161,100 @@ export default {
       'type': 'component',
       'properties': [
         {
-          'name': 'trigger',
-          'type': 'string',
-          'defaultValue': 'click',
-          'desc': {
-            'zh-CN': '触发方式;该属性的可选值为 click / focus / hover / manual',
-            'en-US': 'Trigger mode; The optional values of this attribute are click / focus / hover / manual'
-          },
-          'demoId': 'trigger-mode'
-        },
-        {
           'name': 'title',
           'type': 'string',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '标题', 'en-US': 'Title' },
-          'demoId': 'custom-tip-text'
+          'defaultValue': '--',
+          'desc': { 'zh-CN': '弹出层的标题', 'en-US': 'Layer Title' },
+          'demoId': 'basic-usage'
         },
         {
           'name': 'content',
           'type': 'string',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '显示的内容，也可以通过 slot 传入 DOM',
-            'en-US': 'Displayed content, which can also be transferred to the DOM through slot.'
+            'zh-CN': '弹出层的内容',
+            'en-US': 'Layer Content.'
           },
-          'demoId': 'popover-content'
+          'demoId': 'basic-usage'
+        },
+
+        {
+          'name': 'placement',
+          'type': `'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'`,
+          'defaultValue': `'bottom'`,
+          'desc': {
+            'zh-CN': '弹出层出现的位置',
+            'en-US': 'Layer Placement'
+          },
+          'demoId': 'custom-popper'
         },
         {
           'name': 'width',
-          'type': 'string , number',
-          'defaultValue': 'auto',
-          'desc': { 'zh-CN': '宽度', 'en-US': 'Width' },
-          'demoId': 'popover-width'
+          'type': `'auto' | number`,
+          'defaultValue': `'auto'`,
+          'desc': { 'zh-CN': '弹出层宽度', 'en-US': 'Layer width' },
+          'demoId': 'basic-usage'
         },
         {
           'name': 'height',
-          'type': 'string , number',
-          'defaultValue': 'auto',
+          'type': `'auto' | number`,
+          'defaultValue': `'auto'`,
           'desc': {
-            'zh-CN': '高度',
-            'en-US':
-              'Location; The optional value of this attribute is top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end'
+            'zh-CN': '弹出层高度',
+            'en-US': 'Layer height'
           },
-          'demoId': 'popover-width'
-        },
-        {
-          'name': 'placement',
-          'type': 'string',
-          'defaultValue': 'bottom',
-          'desc': {
-            'zh-CN':
-              '出现位置;该属性的可选值为 top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end',
-            'en-US': 'Popover available'
-          },
-          'demoId': 'popover-placement'
+          'demoId': 'basic-usage'
         },
         {
           'name': 'disabled',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': 'Popover 是否可用', 'en-US': 'Whether the status is visible' },
-          'demoId': 'dynamic-disable'
+          'desc': { 'zh-CN': '是否禁用', 'en-US': 'Whether the status is visible' },
+          'demoId': 'disabled'
         },
         {
-          'name': 'modelValue / v-model',
+          'name': 'trigger',
+          'type': `'click' | 'focus' | 'hover' | 'manual'`,
+          'defaultValue': `'click'`,
+          'desc': {
+            'zh-CN': '触发方式',
+            'en-US': 'Trigger mode'
+          },
+          'demoId': 'trigger'
+        },
+        {
+          'name': 'modelValue',
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '状态是否可见，仅在<a href="#trigger-mode">trigger="manual"</a>时有效',
-            'en-US': 'Whether the status is visible is only valid when<a href="#trigger-mode">trigger="manual"</a>'
+            'zh-CN': '状态是否可见，仅在<code>trigger="manual"</code>时有效',
+            'en-US': 'Status is visible only when <code>trigger="manual"</code>'
           },
-          'demoId': 'trigger-mode'
+          'demoId': 'trigger'
         },
         {
           'name': 'offset',
           'type': 'number',
           'defaultValue': '0',
-          'desc': { 'zh-CN': '出现位置的偏移量', 'en-US': 'Arrow position offset' },
-          'demoId': 'frame-offset'
-        },
-        {
-          'name': 'arrow-offset',
-          'type': 'number',
-          'defaultValue': '0',
-          'desc': { 'zh-CN': '箭头的位置偏移', 'en-US': 'The rotation center of the component' },
-          'demoId': 'arrow-offset'
-        },
-        {
-          'name': 'append-to-body',
-          'type': 'boolean',
-          'defaultValue': 'true',
-          'desc': { 'zh-CN': '是否添加到body上', 'en-US': 'Define gradient animation' },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'transition',
-          'type': 'string',
-          'defaultValue': 'fade-in-linear',
-          'desc': { 'zh-CN': '定义渐变动画', 'en-US': 'Whether to display the Tooltip arrow.' },
-          'demoId': 'custom-transition'
+          'desc': { 'zh-CN': '弹出层的偏移量', 'en-US': 'Layer offset' },
+          'demoId': 'offset'
         },
         {
           'name': 'visible-arrow',
           'type': 'boolean',
           'defaultValue': 'true',
           'desc': {
-            'zh-CN': '是否显示 Tooltip 箭头',
-            'en-US':
-              "Parameters of popper.js; The optional value of this attribute is a reference to the <a href='https://popper.js.org/docs/v1/#new_Popper_new' target='_blank'>popper.js</a> document"
+            'zh-CN': '是否显示弹出层的箭头',
+            'en-US': "whether to show layer's arrow"
           },
-          'demoId': 'hidden-arrow'
+          'demoId': 'custom-popper'
         },
         {
-          'name': 'popper-options',
-          'type': 'object',
-          'defaultValue': "{ boundariesElement: 'body', gpuAcceleration: false }",
-          'desc': {
-            'zh-CN':
-              "popper.js 的参数;该属性的可选值为 参考<a href='https://popper.js.org/docs/v1/#new_Popper_new' target='_blank'>popper.js</a>文档",
-            'en-US': 'Add a class name for popper'
-          },
-          'demoId': 'popper-options'
-        },
-        {
-          'name': 'popper-class',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '为 popper 添加类名',
-            'en-US': 'Display delay when the trigger mode is hover, in milliseconds.'
-          },
-          'demoId': 'popper-class'
+          'name': 'arrow-offset',
+          'type': 'number',
+          'defaultValue': '0',
+          'desc': { 'zh-CN': '弹出层的箭头偏移位置', 'en-US': "the layer's arrow offset " },
+          'demoId': 'offset'
         },
         {
           'name': 'open-delay',
@@ -266,49 +262,89 @@ export default {
           'defaultValue': '0',
           'desc': {
             'zh-CN': '触发方式为 hover 时的显示延迟，单位为毫秒',
-            'en-US': 'Hide delay when the trigger mode is hover, in milliseconds.'
+            'en-US': 'The display delay when the trigger mode is hover, in milliseconds'
           },
-          'demoId': 'open-delay'
+          'demoId': 'delay'
         },
         {
           'name': 'close-delay',
           'type': 'number',
           'defaultValue': '200',
-          'desc': { 'zh-CN': '触发方式为 hover 时的隐藏延迟，单位为毫秒', 'en-US': '' },
-          'demoId': 'close-delay'
+          'desc': {
+            'zh-CN': '触发方式为 hover 时的隐藏延迟，单位为毫秒',
+            'en-US': 'The close delay when the trigger mode is hover, in milliseconds'
+          },
+          'demoId': 'delay'
+        },
+        {
+          'name': 'append-to-body',
+          'type': 'boolean',
+          'defaultValue': 'true',
+          'desc': { 'zh-CN': '是否添加到body上', 'en-US': 'Whether to add it to the body' },
+          'demoId': ''
+        },
+        {
+          'name': 'transition',
+          'type': 'string',
+          'defaultValue': `'fade-in-linear'`,
+          'desc': { 'zh-CN': '定义渐变动画', 'en-US': 'Define gradient animation' },
+          'demoId': 'transition'
+        },
+        {
+          'name': 'popper-options',
+          'type': 'object',
+          'defaultValue': '{}',
+          'desc': {
+            'zh-CN': '弹出层参数;请参考IPopperOption的说明',
+            'en-US': 'layer parameters; Refer to the description of IPopperOption'
+          },
+          'demoId': 'popper-options'
+        },
+        {
+          'name': 'popper-class',
+          'type': 'string',
+          'defaultValue': '--',
+          'desc': {
+            'zh-CN': '为弹出层添加类名',
+            'en-US': 'Add a class name for the pop-up layer.'
+          },
+          'demoId': 'custom-popper'
         }
       ],
       'events': [
         {
           'name': 'show',
-          'type': 'Function()',
+          'type': '()=>void',
           'defaultValue': '',
-          'desc': { 'zh-CN': '显示时触发', 'en-US': 'Triggered upon display' },
-          'demoId': 'popover-events'
+          'desc': { 'zh-CN': '显示时触发', 'en-US': 'Triggered when display' },
+          'demoId': 'events'
         },
         {
           'name': 'hide',
-          'type': 'Function()',
+          'type': '()=>void',
           'defaultValue': '',
           'desc': { 'zh-CN': '隐藏时触发', 'en-US': 'Triggered when hidden' },
-          'demoId': 'popover-events'
+          'demoId': 'events'
         },
         {
           'name': 'after-enter',
-          'type': 'Function',
+          'type': '()=>void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '显示动画播放完毕后触发',
+            'zh-CN': '进入的动画播放完毕后触发',
             'en-US': 'This event is triggered after the animation is played.'
           },
-          'demoId': 'popover-events'
+          'demoId': 'events'
         },
         {
           'name': 'after-leave',
-          'type': 'Function()',
+          'type': '()=>void',
           'defaultValue': '',
-          'desc': { 'zh-CN': '隐藏动画播放完毕后触发', 'en-US': 'Triggered after the hidden animation is played.' },
-          'demoId': 'popover-events'
+          'desc': {
+            'zh-CN': '离开的动画播放完毕后触发',
+            'en-US': 'Triggered after the hidden animation is played.'
+          },
+          'demoId': 'events'
         }
       ],
       'slots': [
@@ -316,15 +352,18 @@ export default {
           'name': 'default',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': 'Popover 内嵌 HTML 文本', 'en-US': 'Popover embedded HTML text' },
-          'demoId': 'custom-tip-text'
+          'desc': { 'zh-CN': '弹出层元素插槽', 'en-US': 'The layer element slot' },
+          'demoId': 'content'
         },
         {
           'name': 'reference',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '触发 Popover 显示的 HTML 元素', 'en-US': 'HTML element that triggers popover display' },
-          'demoId': 'popover-events'
+          'desc': {
+            'zh-CN': '触发源元素插槽，该插槽是必传插槽。',
+            'en-US': "The layer's reference element slot"
+          },
+          'demoId': 'content'
         }
       ]
     }

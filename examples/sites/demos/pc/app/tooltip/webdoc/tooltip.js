@@ -120,9 +120,9 @@ export default {
       'name': { 'zh-CN': '高级配置', 'en-US': 'Advanced configuration' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>popper-options</code> 属性为 Tooltip 的 popper 配置参数,请参考下面的PopperOption文档</p>',
+          '<p>通过 <code>popper-options</code> 属性为 Tooltip 的 popper 配置参数,请参考下面的IPopperOption文档</p>',
         'en-US':
-          '<p>Use the <code>popper-options</code> property to configure popper parameters for Tooltip. Refer to the PopperOption documentation below </p>\n'
+          '<p>Use the <code>popper-options</code> property to configure popper parameters for Tooltip. Refer to the IPopperOption documentation below </p>\n'
       },
       'codeFiles': ['popper-options.vue']
     },
@@ -284,8 +284,8 @@ export default {
           'type': 'object',
           'defaultValue': ' { }',
           'desc': {
-            'zh-CN': 'popper 参数;请参考PopperOption的说明',
-            'en-US': 'Advanced parameters; Refer to the description of PopperOption'
+            'zh-CN': '弹出层参数;请参考IPopperOption的说明',
+            'en-US': 'Advanced parameters; Refer to the description of IPopperOption'
           },
           'demoId': 'popper-options'
         },

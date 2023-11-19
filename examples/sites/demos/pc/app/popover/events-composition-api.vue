@@ -25,7 +25,7 @@ const content = ref('这是一段内容,这是一段内容,这是一段内容,�
 function enter() {
   Notify({
     title: '提示',
-    message: '显示动画播放完毕后触发',
+    message: '进入的动画结束后触发',
     offset: 100
   })
 }
@@ -33,7 +33,7 @@ function enter() {
 function leave() {
   Notify({
     title: '提示',
-    message: '隐藏动画播放完毕后触发',
+    message: '离开的动画结束后触发',
     offset: 100
   })
 }
