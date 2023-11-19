@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('表格过滤', async ({ page }) => {
+test('过滤高级设置', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('grid-filter#filter-default-filter')
   await page
