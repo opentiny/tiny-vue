@@ -8,6 +8,7 @@ dist-react/
 allDist/
 packages/**/runtime
 coverage/
+test-results
 
 /packages/vue/index.ts
 /packages/vue/pc.ts
