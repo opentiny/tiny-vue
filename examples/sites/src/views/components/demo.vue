@@ -103,8 +103,7 @@ export default defineComponent({
           const demoName = apiModeFn.getDemoName(`${getWebdocPath(cmpId)}/${fileName}`)
           let code = ''
 
-          // const path = `${staticDemoPath}/${demoName}`
-          const path = isMobileFirst ? `@demos/mobile-first/app/${demoName}` : `${staticDemoPath}/${demoName}`
+          const path = isMobileFirst.value ? `@demos/mobile-first/app/${demoName}` : `${staticDemoPath}/${demoName}`
           code = await fetchDemosFile(path)
             .then((code) => {
               return code
