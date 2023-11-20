@@ -13,6 +13,30 @@ export default {
         'en-US': '<p>button type</p>'
       },
       codeFiles: ['base.vue']
+    },
+    {
+      demoId: 'success',
+      name: {
+        'zh-CN': '成功样式',
+        'en-US': 'success'
+      },
+      desc: {
+        'zh-CN': '<p>成功提示</p>',
+        'en-US': '<p>success</p>'
+      },
+      codeFiles: ['success.vue']
+    },
+    {
+      demoId: 'failed',
+      name: {
+        'zh-CN': '失败样式',
+        'en-US': 'failed'
+      },
+      desc: {
+        'zh-CN': '<p>失败提示</p>',
+        'en-US': '<p>failed</p>'
+      },
+      codeFiles: ['failed.vue']
     }
   ],
   apis: [

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-button @click="showTextToast">show text toast</tiny-button>
+    <tiny-button @click="showCorrectToast">show correct toast</tiny-button>
   </div>
 </template>
 
@@ -13,14 +13,13 @@ export default {
     TinyToast: Toast
   },
   methods: {
-    showTextToast() {
+    showCorrectToast() {
       Toast.service({
-        text: 'Toast',
-        type: 'text',
-        time: 2000,
-        timeout: () => {
-          alert('timeout')
-        }
+        text: 'success',
+        type: 'correct',
+        time: 4000,
+        zIndex: 101,
+        timeout: () => {}
       })
     }
   }
