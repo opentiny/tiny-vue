@@ -1,27 +1,28 @@
 <template>
-  <div class="container">
+  <div>
     <tiny-popover
       placement="top-start"
       title="标题"
-      :visible-arrow="true"
       width="200"
       trigger="hover"
-      content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+      :open-delay="2000"
+      content="这是一段内容。"
     >
       <template #reference>
-        <tiny-button>有提示箭头</tiny-button>
+        <tiny-button style="margin-right: 16px">两秒后打开</tiny-button>
       </template>
     </tiny-popover>
+
     <tiny-popover
       placement="top-start"
       title="标题"
-      :visible-arrow="false"
       width="200"
       trigger="hover"
-      content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+      :close-delay="2000"
+      content="这是一段内容。"
     >
       <template #reference>
-        <tiny-button>无提示箭头</tiny-button>
+        <tiny-button style="margin-right: 16px">两秒后关闭</tiny-button>
       </template>
     </tiny-popover>
   </div>
@@ -37,9 +38,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.container .reference-wrapper .tiny-button {
-  margin: 0 30px;
-}
-</style>

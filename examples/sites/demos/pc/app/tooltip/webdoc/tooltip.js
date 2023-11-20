@@ -120,9 +120,9 @@ export default {
       'name': { 'zh-CN': '高级配置', 'en-US': 'Advanced configuration' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>popper-options</code> 属性为 Tooltip 的 popper 配置参数,请参考下面的PopperOption文档</p>',
+          '<p>通过 <code>popper-options</code> 属性为 Tooltip 的 popper 配置参数,请参考下面的IPopperOption文档</p>',
         'en-US':
-          '<p>Use the <code>popper-options</code> property to configure popper parameters for Tooltip. Refer to the PopperOption documentation below </p>\n'
+          '<p>Use the <code>popper-options</code> property to configure popper parameters for Tooltip. Refer to the IPopperOption documentation below </p>\n'
       },
       'codeFiles': ['popper-options.vue']
     },
@@ -284,8 +284,8 @@ export default {
           'type': 'object',
           'defaultValue': ' { }',
           'desc': {
-            'zh-CN': '高级参数;请参考PopperOption的说明',
-            'en-US': 'Advanced parameters; Refer to the description of PopperOption'
+            'zh-CN': '弹出层参数;请参考IPopperOption的说明',
+            'en-US': 'Advanced parameters; Refer to the description of IPopperOption'
           },
           'demoId': 'popper-options'
         },
@@ -349,41 +349,20 @@ export default {
           'desc': { 'zh-CN': '内容插槽', 'en-US': 'Content Slot' },
           'demoId': 'content'
         }
-      ],
-      'PopperOption': [
-        {
-          'name': 'bubbling',
-          'type': 'Boolean',
-          'defaultValue': 'false',
-          'desc': {
-            'zh-CN':
-              '是否监听元素所有上级有滚动元素的scroll事件，监听到则更新popper的位置。用于解决某些弹出层位置在页面滚动时，位置不正确的场景！',
-            'en-US':
-              'Whether to monitor the scroll event of all elements with a scroll element in the upper level, and update the popper location if the scroll event is detected. Used to solve some pop-up layer position when the page scroll, the position is not correct scenario!'
-          },
-          'demoId': 'popper-options'
-        },
-        {
-          'name': 'followReferenceHide',
-          'type': '',
-          'defaultValue': 'true',
-          'desc': {
-            'zh-CN': '当提示目标隐藏时，自动隐藏弹出层',
-            'en-US': 'Automatically hides the pop-up layer when the target is prompted to hide'
-          },
-          'demoId': 'popper-options'
-        },
-        {
-          'name': 'removeOnDestroy',
-          'type': 'Boolean',
-          'defaultValue': 'false',
-          'desc': {
-            'zh-CN': '弹出层消失后，是否移除弹出层的DOM元素',
-            'en-US': 'Whether to remove DOM elements from the pop-up layer after the pop-up layer disappears'
-          },
-          'demoId': 'popper-options'
-        }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IPopperOption',
+      type: 'interface',
+      code: `
+interface IPopperOption {
+  bubbling: boolean // 是否监听元素所有上级有滚动元素的scroll事件，监听到则更新popper的位置。用于解决某些弹出层位置在页面滚动时，位置不正确的场景，默认false
+  followReferenceHide: boolean // 当触发源隐藏时，自动隐藏弹出层，默认true
+  removeOnDestroy: boolean // 弹出层消失后，是否移除弹出层的DOM元素，布尔false
+}
+      `
     }
   ]
 }
