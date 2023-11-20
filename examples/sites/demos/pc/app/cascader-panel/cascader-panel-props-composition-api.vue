@@ -1,9 +1,8 @@
 <template>
-  <div class="cascader-panel-demo">
+  <div class="cascader-panel-demo-props">
     <div>选中值：<span>{{ value }}</span></div>
     <tiny-cascader-panel
       v-model="value"
-      class="cascader-panel-demo"
       :options="optionsCascader"
       :props="{
         children: 'children',
@@ -219,7 +218,7 @@ const optionsCascader = ref([
 </script>
 
 <style scoped>
-.cascader-panel-demo > :not(:last-child) {
-  margin-bottom: 20px;
+.cascader-panel-demo-props > :not(:last-child) {
+  margin-bottom: 12px;
 }
 </style>
