@@ -15,7 +15,7 @@ export default {
     {
       'demoId': 'loading-grid-loading-tip',
       'name': { 'zh-CN': '开启加载中状态', 'en-US': 'Enable loading status' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '详细用法参考如下示例：', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['loading/grid-loading-tip.vue']
     }
   ],

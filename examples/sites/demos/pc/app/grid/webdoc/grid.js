@@ -231,11 +231,10 @@ export default {
         },
         {
           'name': 'footer-method',
-          'type': '({columns, data}) => string[][]',
+          'type': '({columns: ColumnConfig[], data: Row[]}) => string[][]',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '表尾合计的计算方法 Function({columns, data});params:{columns:所有的列配置数据 data： 当前所有的表格数据}',
+            'zh-CN': '表尾合计的计算方法 columns:所有的列配置数据, data： 当前所有的表格数据',
             'en-US':
               'Calculation method of table tail total Function({columns, data});params:{columns: all column configuration data: all table data}'
           },
@@ -765,7 +764,7 @@ export default {
           'type': '',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '工具栏，（包含：缩放、个性化、刷新表格、自定义按钮',
+            'zh-CN': '工具栏，（包含：缩放、个性化、刷新表格、自定义按钮)',
             'en-US': 'Toolbar, (Includes: Zoom, Personalize, Refresh Table, and Custom Buttons)'
           },
           'demoId': 'grid-slot#slot-buttons-slot'
@@ -931,7 +930,7 @@ export default {
         },
         {
           'name': 'createRow',
-          'type': '(records: Row[])=> Promise',
+          'type': '(records: Row | Row[])=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '创建 Row|Rows 对象（对于某些特殊场景需要对数据进行手动插入时可能会用到）',
@@ -2451,6 +2450,36 @@ export default {
     }
   ],
   types: [
+    {
+      name: 'IPagerConfig',
+      type: 'interface',
+      code: `
+interface IPagerConfig {
+  type: 'index' | 'radio' | 'checkbox'
+  id: string
+  prop: string
+  rules: IValidRules
+  required: boolean
+  property: string
+  title: string
+  label: string
+  width: string | number
+  minWidth: string | number
+  resizable: boolean
+  fixed: boolean
+  align: 'left' | 'center' | 'right'
+  headerAlign: 'left' | 'center' | 'right'
+  footerAlign: 'left' | 'center' | 'right'
+  showOverflow: boolean | 'ellipsis' | 'tooltip' | 'title'
+  showHeaderOverflow: boolean | 'ellipsis' | 'tooltip' | 'title'
+  showTip: boolean
+  showHeaderTip: boolean
+  className: string
+  headerClassName: string
+  footerClassName: string
+}
+      `
+    },
     {
       name: 'IPagerConfig',
       type: 'interface',
