@@ -1,6 +1,6 @@
 <template>
   <div class="demo-form">
-    <div class="mb-12">
+    <div class="title">
       <div>validate用法：<tiny-button-group :data="validTypeList" v-model="validType"></tiny-button-group></div>
     </div>
     <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="100px">
@@ -149,7 +149,8 @@ export default {
 .demo-form {
   width: 380px;
 }
-.mb-12 {
-  margin-bottom: 12px;
+.title {
+  margin-bottom: 20px;
+  font-size: 14px;
 }
 </style>

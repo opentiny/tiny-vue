@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>自定义表头行样式：</h4>
+    <h4 class="title">自定义表头行样式：</h4>
     <tiny-grid class="grid-header-row-style" :data="tableData" :header-row-class-name="headerRowClassName">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column type="selection" width="60"></tiny-grid-column>
@@ -9,7 +9,7 @@
       <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
       <tiny-grid-column field="city" title="城市"></tiny-grid-column>
     </tiny-grid>
-    <h4>自定义表头单元格样式：</h4>
+    <h4 class="title">自定义表头单元格样式：</h4>
     <tiny-grid class="grid-header-cell-style" :data="tableData" :header-cell-class-name="headerCellClassName">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column type="selection" width="60"></tiny-grid-column>
@@ -113,5 +113,14 @@ export default {
 .grid-header-cell-style .tiny-grid-header__column.header__cell--blue {
   background-color: #2db7f5;
   color: #fff;
+}
+</style>
+
+<style scoped>
+.title {
+  font-size: 16px;
+  padding: 15px;
+  font-weight: bolder;
+  color: #444;
 }
 </style>

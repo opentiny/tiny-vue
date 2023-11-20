@@ -24,13 +24,13 @@ export default {
       'codeFiles': ['pager/inner-pager.vue']
     },
     {
-      'demoId': 'pager-showSaveMsg',
+      'demoId': 'pager-show-save-msg',
       'name': { 'zh-CN': '提示保存数据', 'en-US': '' },
       'desc': {
         'zh-CN': '<p>配置 <code>showSaveMsg</code> 属性，当检查到表格数据存在修改时，会提示用户进行保存</p>\n',
         'en-US': ''
       },
-      'codeFiles': ['pager/showSaveMsg.vue']
+      'codeFiles': ['pager/show-save-msg.vue']
     }
   ],
   apis: [{ 'name': 'grid-pager', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]

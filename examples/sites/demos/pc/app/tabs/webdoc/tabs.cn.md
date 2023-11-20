@@ -1,7 +1,7 @@
 ---
-title: Tabs 标签页
+title: Tabs 页签
 ---
 
-# Tabs 标签页
+# Tabs 页签
 
-<div>分隔内容上有关联但属于不同类别的数据集合。</div>
+<div>通过选项卡切换不同的内容。</div>

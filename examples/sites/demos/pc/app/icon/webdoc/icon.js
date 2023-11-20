@@ -6,9 +6,9 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': '从<code>@opentiny/vue-icon</code>图标库种引入图标函数，并执行，生成相应的图标。',
+        'zh-CN': '从 <code>@opentiny/vue-icon</code> 图标库种引入图标函数，并执行，生成相应的图标。',
         'en-US':
-          'Introduce icon functions from the<code>@ opentiny/vue icon</code>icon library, execute them, and generate corresponding icons.'
+          'Introduce icon functions from the <code>@opentiny/vue-icon</code> icon library, execute them, and generate corresponding icons.'
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -16,9 +16,9 @@ export default {
       'demoId': 'show-title',
       'name': { 'zh-CN': '显示 Title', 'en-US': 'Display Title' },
       'desc': {
-        'zh-CN': '通过其父元素的<code>title</code>属性，实现给图标增加<code>Title</code>的功能。',
+        'zh-CN': '通过其父元素的 <code>title</code> 属性，实现给图标增加 <code>Title</code> 的功能。',
         'en-US':
-          'By using the<code>title</code>attribute of its parent element, the function of adding<code>title</code>to the icon is implemented.'
+          'By using the <code>title</code> attribute of its parent element, the function of adding <code>Title</code> to the icon is implemented.'
       },
       'codeFiles': ['show-title.vue']
     },

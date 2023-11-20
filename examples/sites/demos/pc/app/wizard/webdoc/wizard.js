@@ -20,7 +20,7 @@ export default {
         'zh-CN':
           '通过 <code>page-guide</code> 设置页向导模式，包含流程图区域、页面展示区域、功能按钮区域，用于导航当前页面与上一页面、下一页面的前后关系。',
         'en-US':
-          'Set the page wizard mode through<code>page guide</code>, including the flowchart area, page display area, and function button area, to navigate the relationship between the current page and the previous or next page.'
+          'Set the page wizard mode through<code>page-guide</code>, including the flowchart area, page display area, and function button area, to navigate the relationship between the current page and the previous or next page.'
       },
       'codeFiles': ['page-guide.vue']
     },
@@ -42,7 +42,7 @@ export default {
         'zh-CN':
           '通过 <code>time-line-flow</code> 设置时间线，以时间点的方式竖向显示流程节点处理信息，包含节点名称、状态、完成时间、用户信息。',
         'en-US':
-          'Set a timeline through<code>time line flow</code>to vertically display process node processing information in a time point manner, including node name, status, completion time, and user information.'
+          'Set a timeline through<code>time-line-flow</code>to vertically display process node processing information in a time point manner, including node name, status, completion time, and user information.'
       },
       'codeFiles': ['time-line-flow.vue']
     },
@@ -73,10 +73,10 @@ export default {
         <code>btn-next</code> 监听“下一步”按钮点击事件；<br />
         <code>btn-save</code> 监听“保存”按钮点击事件；<br />
         <code>btn-submit</code> 监听“提交”按钮点击事件，流程需要走到最后一步才会显示此按钮。<br />`,
-        'en-US': `In page wizard mode: listen for the "Previous" button click event through<code>btn prev</code>< Br/>
-        <code>btn next</code>Listen for the "Next" button click event< Br/>
-        <code>btn save</code>Listen for the "save" button click event< Br/>
-        <code>btn submit</code>Listen for the "submit" button click event, and the process needs to go to the last step to display this button< Br/>.`
+        'en-US': `In page wizard mode: listen for the "Previous" button click event through<code>btn-prev</code><br/>
+        <code>btn-next</code>Listen for the "Next" button click event<br/>
+        <code>btn-save</code>Listen for the "save" button click event<br/>
+        <code>btn-submit</code>Listen for the "submit" button click event, and the process needs to go to the last step to display this button<br/>.`
       },
       'codeFiles': ['btn-events.vue']
     }
@@ -121,7 +121,7 @@ export default {
       ],
       'events': [
         {
-          'name': 'btnNext',
+          'name': 'btn-next',
           'type': '(datas: IDataItem[]) => void',
           'typeAnchorName': 'IDataItem',
           'desc': {
@@ -131,7 +131,7 @@ export default {
           'demoId': 'btn-events'
         },
         {
-          'name': 'btnPrev',
+          'name': 'btn-prev',
           'type': '(datas: IDataItem[]) => void',
           'typeAnchorName': 'IDataItem',
           'desc': {
@@ -141,7 +141,7 @@ export default {
           'demoId': 'btn-events'
         },
         {
-          'name': 'btnSave',
+          'name': 'btn-save',
           'type': '(datas: IDataItem[]) => void',
           'typeAnchorName': 'IDataItem',
           'desc': {
@@ -151,7 +151,7 @@ export default {
           'demoId': 'btn-events'
         },
         {
-          'name': 'btnSubmit',
+          'name': 'btn-submit',
           'type': '(datas: IDataItem[]) => void',
           'typeAnchorName': 'IDataItem',
           'desc': {

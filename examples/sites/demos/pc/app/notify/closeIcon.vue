@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button, Notify } from '@opentiny/vue'
 import { IconCloseSquare } from '@opentiny/vue-icon'
 

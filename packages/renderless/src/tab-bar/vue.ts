@@ -27,7 +27,8 @@ export const renderless = (
 ): ITabBarPcApi => {
   const state = reactive({
     rootTabs: inject('rootTabs'),
-    barStyle: {}
+    barStyle: {},
+    separator: inject('separator', null)
   }) as ITabBarPcState
 
   const api: ITabBarPcApi = {

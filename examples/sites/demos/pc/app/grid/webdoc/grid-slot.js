@@ -30,7 +30,7 @@ export default {
       'demoId': 'slot-header-slot',
       'name': { 'zh-CN': '表头插槽', 'en-US': 'Table header slot' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['slot/tableHeader-slot.vue']
+      'codeFiles': ['slot/header-slot.vue']
     }
   ],
   apis: [{ 'name': 'grid-slot', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]

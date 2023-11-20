@@ -1,12 +1,7 @@
 <template>
-  <div style="width: 480px">
-    <h3 style="margin-bottom: 16px">
-      <span style="margin-right: 20px">点击切换表单状态</span>
-      <tiny-button type="primary" @click="formDisabled = !formDisabled">
-        {{ formDisabled ? '启用表单' : '禁用表单' }}
-      </tiny-button>
-    </h3>
-    <tiny-form :disabled="formDisabled" label-position="right" ref="createDataRef" label-width="150px">
+  <div class="demo-form">
+    <h3 class="title">是否禁用表单：<tiny-switch v-model="formDisabled"></tiny-switch></h3>
+    <tiny-form :disabled="formDisabled" label-width="150px">
       <tiny-form-item label="Input">
         <tiny-input v-model="createData.user"></tiny-input>
       </tiny-form-item>
@@ -88,14 +83,11 @@
       <tiny-form-item label="Slider">
         <tiny-slider v-model="createData.slider"></tiny-slider>
       </tiny-form-item>
-      <tiny-form-item>
-        <tiny-button type="primary" @click="submitClick"> 提交 </tiny-button>
-      </tiny-form-item>
     </tiny-form>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref, reactive } from 'vue'
 import {
   Form as TinyForm,
@@ -125,7 +117,7 @@ import {
 const createData = reactive({
   checked: false,
   checked2: true,
-  quantity: '',
+  quantity: 0,
   sw: false,
   sex: '1',
   datepicker: '',
@@ -260,8 +252,6 @@ const options = ref([
   }
 ])
 
-function submitClick() {}
-
 function querySearch(queryString, cb) {
   cb(queryString ? restaurants.value.filter(createFilter(queryString)) : restaurants.value)
 }
@@ -270,3 +260,15 @@ function createFilter(queryString) {
   return (restaurant) => restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
 }
 </script>
+
+<style scoped>
+.demo-form {
+  width: 480px;
+}
+
+.title {
+  margin-bottom: 30px;
+  margin-left: 100px;
+  font-size: 14px;
+}
+</style>

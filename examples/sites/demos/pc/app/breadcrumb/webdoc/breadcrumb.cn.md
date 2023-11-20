@@ -4,4 +4,4 @@ title: Breadcrumb 面包屑
 
 # Breadcrumb 面包屑
 
-<div>显示当前页面的位置，并能返回之前的任意页面。</div>
+<div>展示当前页面的层级位置，并能向上返回任意页面。</div>

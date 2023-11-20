@@ -15,6 +15,6 @@ test('[Input]method-addMemory', async ({ page }) => {
     .click()
   await input.click()
   await input.fill('')
-  const box = page.locator('#preview').getByText('1234')
+  const box = await page.locator('.tiny-modal__body').getByText('1234')
   await expect(box).toBeVisible()
 })

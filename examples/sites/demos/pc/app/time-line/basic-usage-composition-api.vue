@@ -2,7 +2,7 @@
   <tiny-time-line :data="data" :active="active" @click="click"></tiny-time-line>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { TimeLine as TinyTimeLine, Modal } from '@opentiny/vue'
 

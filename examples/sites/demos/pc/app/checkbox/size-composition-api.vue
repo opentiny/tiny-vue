@@ -12,6 +12,12 @@ import { CheckboxButton as TinyCheckboxButton, CheckboxGroup as TinyCheckboxGrou
 import { number } from 'echarts'
 
 const cities = ref(['上海', '北京', '广州', '深圳'])
-const sizeList = ref(['', 'medium', 'small', 'mini'])
+const sizeList = ref(['medium', '', 'small', 'mini'])
 const checkboxGroup = ref(['上海'])
 </script>
+
+<style scoped>
+.tiny-checkbox-group {
+  margin-bottom: 16px;
+}
+</style>

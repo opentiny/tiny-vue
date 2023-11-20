@@ -2,7 +2,7 @@
   <tiny-action-menu :options="options" text-field="name"> </tiny-action-menu>
 </template>
 
-<script lang="jsx">
+<script>
 import { ActionMenu } from '@opentiny/vue'
 
 export default {

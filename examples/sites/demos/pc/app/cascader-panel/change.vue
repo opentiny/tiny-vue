@@ -1,10 +1,9 @@
 <template>
-  <div>
+  <div class="cascader-panel-demo-event">
     <tiny-button @click="clearCheckedNodes">清除选中节点</tiny-button>
     <tiny-cascader-panel
       v-model="value"
-      ref="CascaderPanel"
-      class="cascader-panel-demo"
+      ref="cascaderPanel"
       :options="optionsCascader"
       @change="change"
       @expand-change="expandChange"
@@ -221,13 +220,13 @@ export default {
   },
   methods: {
     clearCheckedNodes() {
-      this.$refs.CascaderPanel.clearCheckedNodes()
+      this.$refs.cascaderPanel.clearCheckedNodes()
     },
     expandChange(value) {
       Modal.message({ message: `节点展开：${value}`, status: 'info' })
     },
     change(value) {
-      const checkVal = this.$refs.CascaderPanel.getCheckedNodes()
+      const checkVal = this.$refs.cascaderPanel.getCheckedNodes()
       let mess = ''
 
       if (checkVal.length) {
@@ -244,7 +243,7 @@ export default {
 </script>
 
 <style scoped>
-.cascader-panel-demo {
-  min-height: 200px;
+.cascader-panel-demo-event > :not(:last-child){
+  margin-bottom: 12px;
 }
 </style>

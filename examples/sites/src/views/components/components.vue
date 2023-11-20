@@ -77,7 +77,13 @@
                           <span v-else v-html="row.type"></span>
                         </td>
                         <td v-if="!key.includes('slots') && !key.includes('events')">
-                          <span v-html="typeof row.defaultValue === 'string' ? row.defaultValue : row.defaultValue?.[langKey] || '--'"></span>
+                          <span
+                            v-html="
+                              typeof row.defaultValue === 'string'
+                                ? row.defaultValue || '--'
+                                : row.defaultValue?.[langKey] || '--'
+                            "
+                          ></span>
                         </td>
                         <td><span v-html="row.desc[langKey]"></span></td>
                       </tr>
@@ -163,7 +169,7 @@ export default defineComponent({
             title: demo.name[state.langKey],
             link: `#${demo.demoId}`
           })) || []
-        if (apiModeState.demoMode !== 'single') {
+        if (apiModeState.demoMode !== 'single' && state.currJson?.apis?.length) {
           links.push({ key: 'API', title: 'API', link: '#API' })
         }
         if (state.cmpFAQMd) {
@@ -313,6 +319,17 @@ export default defineComponent({
         } else {
           router.push(`#${demoId}`)
         }
+      },
+      handleApiClick: (ev) => {
+        if (ev.target.tagName === 'A') {
+          ev.preventDefault()
+          const href = ev.target.getAttribute('href')
+          const hash = $split(href, '#', -1)
+          router.push(href)
+          state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
+
+          scrollByHash(hash)
+        }
         if (apiModeState.demoMode === 'single') {
           state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)
         }
@@ -455,7 +472,7 @@ export default defineComponent({
   p {
     font-size: 16px;
     line-height: 1.7em;
-    margin: 16px 0;
+    margin: 12px 0;
   }
 }
 .cmp-page-anchor {
@@ -506,19 +523,25 @@ export default defineComponent({
   background-color: #f3f5f7;
   border-color: #42b983;
   border-radius: 0;
-  padding: 0.1rem 1.5rem;
+  padding: 1.5rem;
   border-left-width: 0.5rem;
   border-left-style: solid;
   margin: 1rem 0;
   font-size: 14px;
   color: #5e6d82;
+  line-height: 1.5;
   .custom-block-title {
     font-weight: 600;
   }
   p {
-    margin: 16px 0;
+    margin: 8px 0;
     font-size: 16px;
-    line-height: 1.7em;
+    line-height: 1.5;
+  }
+  ul {
+    li {
+      padding: 5px 0;
+    }
   }
 }
 </style>

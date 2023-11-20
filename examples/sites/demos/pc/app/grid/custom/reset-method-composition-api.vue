@@ -77,8 +77,8 @@ function resetMethod() {
   return new Promise((resolve) => {
     const customs = {
       columns: [
-        { property: 'name', visible: false, sortable: true, order: '', fixed: '' },
-        { property: 'area', visible: true, sortable: true, order: 'asc', fixed: '' },
+        { property: 'name', visible: true, sortable: true, order: '', fixed: '' },
+        { property: 'area', visible: false, sortable: true, order: 'asc', fixed: '' },
         { property: 'introduction', visible: true, sortable: true, order: '', fixed: '' },
         { property: 'address', visible: true, sortable: true, order: '', fixed: '' }
       ]

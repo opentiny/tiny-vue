@@ -4,7 +4,7 @@ export default {
   demos: [
     {
       'demoId': 'operation-column-clear-and-set-radio-row',
-      'name': { 'zh-CN': '单元项操作', 'en-US': 'Basic Usage' },
+      'name': { 'zh-CN': '单选项操作', 'en-US': 'Basic Usage' },
       'desc': {
         'zh-CN':
           '<p>表格列属性设置 <code>type=&quot;radio&quot;</code> 显示单选列。<code>setRadioRow(row)</code> 用于单选行，设置某一行为选中状态。<code>clearRadioRow(row)</code> 用于取消单选行的选中。</p>\n',
@@ -17,7 +17,7 @@ export default {
       'name': { 'zh-CN': '单选配置项', 'en-US': 'Disable a single option' },
       'desc': {
         'zh-CN':
-          '<p><code>radio-config</code> 配置项,可以配置单选框的默认选中项和禁用配置等特性。单选模式，通过 <code>radio-config</code> 配置项的属性 <code>checkMethod</code> ，传入自定义方法判断哪些数据项被禁用，方法会判断每个数据项，需返回值为 <code>true</code> 或者 <code>false</code>，代表此数据项启用或者禁用。</p>\n',
+          '<p> <code>radio-config</code> 配置项,可以配置单选框的默认选中项和禁用配置等特性。单选模式，通过 <code>radio-config</code> 配置项的属性 <code>checkMethod</code> ，传入自定义方法判断哪些数据项被禁用，方法会判断每个数据项，需返回值为 <code>true</code> 或者 <code>false</code>，代表此数据项启用或者禁用。</p>\n',
         'en-US':
           '<p>Single choice mode. The attribute <code>checkMethod</code> of the <code>radio-config</code> configuration item is used to determine which data items are disabled. The method determines each data item. If the return value is <code>true</code> or <code>false</code>, the data item is enabled or disabled. </p>\n'
       },
@@ -34,7 +34,7 @@ export default {
           <code>setAllSelection(checked)</code> 用于多选行，可设置所有行的选中状态。\n
           <code>toggleAllSelection()</code> 方法可直接切换所有行的选中状态。\n
           <code>toggleRowSelection(row)</code> 方法可直接切换某一行的选中状态。
-          <div class="tip custom-block"><p class="custom-block-title">TIP</p>\n<p><code>setSelection</code> 方法不会触发 <code>select-change</code> 事件，只有点击才会触发。</p></div>
+          <div class="tip custom-block"><p class="custom-block-title">TIP</p>\n<p> <code>setSelection</code> 方法不会触发 <code>select-change</code> 事件，只有点击才会触发。</p></div>
         </p>\n`,
         'en-US': 'For details, see the following example.'
       },
@@ -58,7 +58,7 @@ export default {
         'zh-CN':
           '<p>通过配置<code>select-config</code>中的<code>reserve</code>为<code>true</code> 并设置<code>row-id</code>，开启翻页后保留选中状态功能。</p>\n',
         'en-US':
-          '<p><code>setRadioRow(row)</code> is used to select a single line and set the selected status of a line. </p>\n'
+          '<p> <code>setRadioRow(row)</code> is used to select a single line and set the selected status of a line. </p>\n'
       },
       'codeFiles': ['operation-column/grid-pager-reserve.vue']
     },
@@ -76,7 +76,8 @@ export default {
       'demoId': 'operation-column-dropdown',
       'name': { 'zh-CN': '表头下拉菜单', 'en-US': '' },
       'desc': {
-        'zh-CN': '<p>使用多选列 dropdown 插槽，可以在多选列表头配置自定义下拉菜单，示例中使用 AuiDropdown 组件。</p>\n',
+        'zh-CN':
+          '<p>使用多选列 dropdown 插槽，可以在多选列表头配置自定义下拉菜单，示例中使用 TinyDropdown 组件。</p>\n',
         'en-US': ''
       },
       'codeFiles': ['operation-column/dropdown.vue']
