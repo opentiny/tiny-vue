@@ -49,6 +49,18 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['size.vue']
+    },
+    {
+      demoId: 'event',
+      name: {
+        'zh-CN': '点击事件',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p>点击事件</p>',
+        'en-US': '<p>button click</p>'
+      },
+      codeFiles: ['event.vue']
     }
   ],
   apis: [
@@ -64,7 +76,7 @@ export default {
             'zh-CN': '<p>设置按钮是否被禁用,该属性默认为false</p>',
             'en-US': 'display different button'
           },
-          demoId: ''
+          demoId: 'disabled'
         },
         {
           name: 'icon',
@@ -74,7 +86,7 @@ export default {
             'zh-CN': '<p>svg 图片对象</p>',
             'en-US': 'display different button'
           },
-          demoId: 'icon'
+          demoId: 'base'
         },
         {
           name: 'loading',
@@ -87,44 +99,14 @@ export default {
           demoId: 'loading'
         },
         {
-          name: 'native-type',
-          type: 'String',
-          defaultValue: 'button',
-          desc: {
-            'zh-CN': '<p>原生 type 属性,该属性默认为button</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'native-type'
-        },
-        {
-          name: 'plain',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '<p>是否朴素按钮,该属性默认为false</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'plain'
-        },
-        {
           name: 'reset-time',
           type: 'Number',
-          defaultValue: '1000',
+          defaultValue: '0',
           desc: {
             'zh-CN': '<p>设置按钮禁用时间，防止重复提交，单位毫秒,该属性默认为1000</p>',
             'en-US': 'display different button'
           },
-          demoId: 'reset-time'
-        },
-        {
-          name: 'round',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '<p>是否圆角按钮，该属性默认为false</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'round'
+          demoId: 'base'
         },
         {
           name: 'size',
@@ -138,13 +120,13 @@ export default {
         },
         {
           name: 'type',
-          type: '"primary" | "success" | "warning" |"info" | "danger"',
+          type: '"primary" | "secondary" | "text" |"icon" | "danger"',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>类型</p>',
             'en-US': 'display different button'
           },
-          demoId: 'icon'
+          demoId: 'base'
         },
         {
           name: 'text',
@@ -154,7 +136,7 @@ export default {
             'zh-CN': '<p>设置按钮显示的文本，可配置国际化 </p>',
             'en-US': 'display different button'
           },
-          demoId: 'icon'
+          demoId: 'base'
         }
       ],
       events: [
@@ -166,7 +148,7 @@ export default {
             'zh-CN': '<p>设置当按钮被点击时触发的回调函数。</p>',
             'en-US': 'Click'
           },
-          demoId: 'event-click'
+          demoId: 'event'
         }
       ],
       slots: [

@@ -1,12 +1,7 @@
 <template>
   <div class="button-wrap">
-    <p>按钮类型</p>
-    <tiny-button type="primary" reset-time="500">主要按钮</tiny-button>
-    <tiny-button type="secondary">次要按钮</tiny-button>
-    <tiny-button type="danger">危险按钮</tiny-button>
-    <tiny-button type="text">文字按钮</tiny-button>
-    <tiny-button type="icon" :icon="IconMail"></tiny-button>
-    <tiny-button type="icon" :icon="IconMail" text="图标按钮"></tiny-button>
+    <p>点击事件</p>
+    <tiny-button type="secondary" :loading="loading" @click="btnClick" size="small">点我加载</tiny-button>
   </div>
 </template>
 
@@ -20,7 +15,16 @@ export default {
   },
   data() {
     return {
-      IconMail: iconMail()
+      IconMail: iconMail(),
+      loading: false
+    }
+  },
+  methods: {
+    btnClick() {
+      this.loading = true
+      setTimeout(() => {
+        this.loading = false
+      }, 2000)
     }
   }
 }
