@@ -29,7 +29,7 @@ export default {
       'name': { 'zh-CN': '数据关联校验', 'en-US': 'Data Association Verification' },
       'desc': {
         'zh-CN':
-          '<p>在自定义校验时，<code>validator</code>方法<code>rule</code>参数中可获取到当前行与列的信息。可以按业务的需求实现数据关联的校验逻辑</p>\n',
+          '<p>在自定义校验时，<code>validator</code>方法<code>rule</code>参数中可获取到当前行与列的信息。可以按业务的需求实现数据关联的校验逻辑。</p>\n',
         'en-US':
           '<p> During customized validation, the <code>validator</code> method <code>rule</code> parameter can obtain the current row and column information. The verification logic of data association can be implemented based on service requirements.</p>\n'
       },
@@ -43,7 +43,7 @@ export default {
       },
       'desc': {
         'zh-CN':
-          '<p>在使用自定义组件时，组件需要实现<code>v-model</code>的功能。在使用插槽时想要实时校验需要手动触发组件的校验方法</p>\n',
+          '<p>在使用自定义组件时，组件需要实现<code>v-model</code>的功能。在使用插槽时想要实时校验需要手动触发组件的校验方法。</p>\n',
         'en-US':
           '<p>When using a custom component, the component needs to implement the <code>v-model</code> function. If you want to verify the slot in real time, you need to manually trigger the verification method of the component.</p>\n'
       },
@@ -101,7 +101,7 @@ export default {
       'name': { 'zh-CN': '错误提示配置项', 'en-US': '' },
       'desc': {
         'zh-CN':
-          '<p>表格默认错误提示显示在 <code>body</code> 上， 可以通过设置 <code>tooltip-config</code> 的 <code>appendTobody</code> 设置为 <code>false</code> 来解决页面滚动时tip位置错误的问题。设置 <code>placement</code> 属性调整默认显示方向。<code>tooltip-config</code> 的配置可参参考 tooltip 组件</p>\n',
+          '<p>表格默认错误提示显示在 <code>body</code> 上， 可以通过设置 <code>tooltip-config</code> 的 <code>appendTobody</code> 设置为 <code>false</code> 来解决页面滚动时tip位置错误的问题。设置 <code>placement</code> 属性调整默认显示方向。<code>tooltip-config</code> 的配置可参参考 tooltip 组件。</p>\n',
         'en-US': ''
       },
       'codeFiles': ['validation/tipconfig.vue']
