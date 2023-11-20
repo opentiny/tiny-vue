@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="trigger-container">
     <tiny-popover title="click 激活" width="200" trigger="click" content="这是一段内容。">
       <template #reference>
         <tiny-button>click 激活</tiny-button>
@@ -11,9 +11,9 @@
         <tiny-button>hover 激活</tiny-button>
       </template>
     </tiny-popover>
-    <tiny-popover title="手动激活" width="200" trigger="manual" content="这是一段内容。" v-model="visible">
+    <tiny-popover title="manual 激活" width="200" trigger="manual" content="这是一段内容。" v-model="visible">
       <template #reference>
-        <tiny-button @click="visible = !visible">手动激活</tiny-button>
+        <tiny-button @click="visible = !visible">manual 激活</tiny-button>
       </template>
     </tiny-popover>
     <tiny-popover title="focus 激活" width="200" trigger="focus" content="这是一段内容。">
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.trigger-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

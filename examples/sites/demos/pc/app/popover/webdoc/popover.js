@@ -27,7 +27,7 @@ export default {
       'name': { 'zh-CN': '触发方式', 'en-US': 'Trigger Mode' },
       'desc': {
         'zh-CN': `
-          通过<code>trigger</code> 属性设定弹出框的触发方式，属性可选值为：  <code>click / hover / manual / focus</code>， 默认值为 <code> click </code>。<br>
+          通过<code>trigger</code> 属性设定弹出框的4种触发方式， 默认值为 <code> click </code>。<br>
           当触发方式为<code> manual</code>时，通过设置<code>v-model</code> 属性，动态控制显示和隐藏弹出框。
         `,
         'en-US': `
@@ -163,14 +163,14 @@ export default {
         {
           'name': 'title',
           'type': 'string',
-          'defaultValue': '--',
+          'defaultValue': '',
           'desc': { 'zh-CN': '弹出层的标题', 'en-US': 'Layer Title' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'content',
           'type': 'string',
-          'defaultValue': '--',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '弹出层的内容',
             'en-US': 'Layer Content.'
@@ -181,7 +181,7 @@ export default {
         {
           'name': 'placement',
           'type': `'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'`,
-          'defaultValue': `'bottom'`,
+          'defaultValue': '"bottom"',
           'desc': {
             'zh-CN': '弹出层出现的位置',
             'en-US': 'Layer Placement'
@@ -191,14 +191,14 @@ export default {
         {
           'name': 'width',
           'type': `'auto' | number`,
-          'defaultValue': `'auto'`,
+          'defaultValue': '"auto"',
           'desc': { 'zh-CN': '弹出层宽度', 'en-US': 'Layer width' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'height',
           'type': `'auto' | number`,
-          'defaultValue': `'auto'`,
+          'defaultValue': '"auto"',
           'desc': {
             'zh-CN': '弹出层高度',
             'en-US': 'Layer height'
@@ -215,7 +215,7 @@ export default {
         {
           'name': 'trigger',
           'type': `'click' | 'focus' | 'hover' | 'manual'`,
-          'defaultValue': `'click'`,
+          'defaultValue': '"click"',
           'desc': {
             'zh-CN': '触发方式',
             'en-US': 'Trigger mode'
@@ -286,7 +286,7 @@ export default {
         {
           'name': 'transition',
           'type': 'string',
-          'defaultValue': `'fade-in-linear'`,
+          'defaultValue': '"fade-in-linear"',
           'desc': { 'zh-CN': '定义渐变动画', 'en-US': 'Define gradient animation' },
           'demoId': 'transition'
         },
@@ -303,7 +303,7 @@ export default {
         {
           'name': 'popper-class',
           'type': 'string',
-          'defaultValue': '--',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '为弹出层添加类名',
             'en-US': 'Add a class name for the pop-up layer.'
