@@ -1,7 +1,9 @@
 <template>
   <div class="switch-wrap">
-    <p>默认</p>
-    <tiny-switch v-model="value1" true-value="1"></tiny-switch>
+    <p>不可用-开</p>
+    <tiny-switch :modelValue="true" disabled></tiny-switch>
+    <p>不可用-关</p>
+    <tiny-switch :modelValue="false" disabled></tiny-switch>
   </div>
 </template>
 
@@ -11,11 +13,6 @@ import { Switch } from '@opentiny/vue'
 export default {
   components: {
     TinySwitch: Switch
-  },
-  data() {
-    return {
-      value1: '1'
-    }
   }
 }
 </script>
