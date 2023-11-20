@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <div id="tiny-size-loading1" style="width: 100%; margin-bottom: 10px; height: 120px"></div>
-    <div id="tiny-size-loading2" style="width: 100%; margin-bottom: 10px; height: 120px"></div>
-    <div id="tiny-size-loading3" style="width: 100%; margin-bottom: 10px; height: 120px"></div>
+  <div class="tiny-deom-size-loading">
+    <div id="tiny-size-loading1"></div>
+    <div id="tiny-size-loading2"></div>
+    <div id="tiny-size-loading3"></div>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref, onMounted } from 'vue'
 import { Loading } from '@opentiny/vue'
 
@@ -27,3 +27,14 @@ onMounted(() => {
   })
 })
 </script>
+<style>
+
+.tiny-deom-size-loading {
+  display: flex;
+}
+
+.tiny-deom-size-loading > * {
+  width: 100px;
+  height: 100px;
+}
+</style>

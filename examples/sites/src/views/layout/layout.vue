@@ -50,7 +50,7 @@
 
           <div class="api-type">
             <div :class="{ 'api-mode': true, active: apiModeState.demoMode === 'single' }">
-              {{ $t2('单示例', 'Single Demo') }}
+              {{ $t2('单示例', 'Single') }}
             </div>
             <tiny-switch
               class="api-switch"
@@ -60,9 +60,9 @@
               v-model="apiModeState.demoMode"
             ></tiny-switch>
             <div :class="{ 'api-mode': true, active: apiModeState.demoMode === 'default' }">
-              {{ $t2('多示例', 'Mutli Demo') }}
+              {{ $t2('多示例', 'Multiple') }}
             </div>
-            <tiny-tooltip content="切换demo的预览模式" placement="right">
+            <tiny-tooltip :content="$t2('切换demo的预览模式', 'Change demo preview mode')" placement="right">
               <icon-help-circle></icon-help-circle>
             </tiny-tooltip>
           </div>
@@ -171,8 +171,14 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      // 每次切换路由，要导航到顶部
-      routerCbDestory = router.afterEach(() => {
+      // 每次切换路由，有锚点则跳转到锚点，否则导航到顶部
+      routerCbDestory = router.afterEach((to) => {
+        if (to.hash) {
+          const el = document.querySelector(to.hash)
+          if (el) {
+            return el.scrollIntoView()
+          }
+        }
         state.contentRef.scrollTo({ top: 0, behavior: 'auto' })
       })
 

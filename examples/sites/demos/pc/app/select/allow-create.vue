@@ -1,7 +1,14 @@
 <template>
-  <tiny-select v-model="value" placeholder="请选择" allow-create filterable default-first-option>
-    <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
-  </tiny-select>
+  <div>
+    <p>场景1：allow-create + filterable，点击创建条目</p>
+    <tiny-select v-model="value" allow-create filterable>
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-select>
+    <p>场景2：allow-create + filterable + default-first-option，Enter 键创建条目</p>
+    <tiny-select v-model="value" allow-create filterable default-first-option>
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-select>
+  </div>
 </template>
 
 <script>
@@ -26,3 +33,13 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

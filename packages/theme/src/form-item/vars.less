@@ -12,47 +12,47 @@
 
 .component-css-vars-form-item() {
   // 小型尺寸表单输入框左侧行高(hide)
-  --ti-form-item-small-line-height: var(--ti-common-line-height-7);
+  --ti-form-item-small-line-height: var(--ti-common-line-height-7, 36px);
   // 中等尺寸表单输入框左侧行高(hide)
-  --ti-form-item-medium-line-height: calc(var(--ti-common-line-height-7) + 6px);
+  --ti-form-item-medium-line-height: calc(var(--ti-common-line-height-7, 36px) + 6px);
   // 迷你尺寸表单输入框左侧行高(hide)
-  --ti-form-item-mini-line-height: var(--ti-common-line-height-5);
+  --ti-form-item-mini-line-height: var(--ti-common-line-height-5, 24px);
   // 表单输入框左侧文本行高
-  --ti-form-item-label-line-height: var(--ti-common-size-height-normal);
+  --ti-form-item-label-line-height: var(--ti-common-size-height-normal, 28px);
   // 迷你尺寸表单的输入框高度
-  --ti-form-item-input-mini-height: var(--ti-common-size-6x);
+  --ti-form-item-input-mini-height: var(--ti-common-size-6x, 24px);
   // 小型尺寸表单的输入框高度
-  --ti-form-item-input-small-height: var(--ti-common-size-9x);
+  --ti-form-item-input-small-height: var(--ti-common-size-9x, 36px);
   // 中等尺寸表单的输入框高度
-  --ti-form-item-input-medium-height: calc(var(--ti-common-size-base) * 10.5);
+  --ti-form-item-input-medium-height: calc(var(--ti-common-size-base, 4px) * 10.5);
   // 表单输入框左侧字号
-  --ti-form-item-label-font-size: var(--ti-common-font-size-1);
+  --ti-form-item-label-font-size: var(--ti-common-font-size-1, 14px);
   // 表单输入框左侧文本色
-  --ti-form-item-label-text-color: var(--ti-common-color-info-normal);
+  --ti-form-item-label-text-color: var(--ti-common-color-info-normal, #252b3a);
 
   // 表单校验错误时输入框提示字号
-  --ti-form-item-error-font-size: var(--ti-common-font-size-base);
+  --ti-form-item-error-font-size: var(--ti-common-font-size-base, 12px);
   // 表单校验错误时输入框提示文本色
-  --ti-form-item-error-text-color: var(--ti-common-color-error);
+  --ti-form-item-error-text-color: var(--ti-common-color-error, #f66f6a);
   // 表单校验错误时星号文本色
-  --ti-form-item-error-star-text-color: var(--ti-common-color-error);
+  --ti-form-item-error-star-text-color: var(--ti-common-color-error, #f66f6a);
   // 表单校验错误时输入框边框色
-  --ti-form-item-error-border-color: var(--ti-common-color-error-border);
+  --ti-form-item-error-border-color: var(--ti-common-color-error-border, #f66f6a);
   // 表单校验错误时输入框背景色
-  --ti-form-item-error-bg-color: var(--ti-common-color-error-bg);
+  --ti-form-item-error-bg-color: var(--ti-common-color-error-bg, #ffeeed);
 
   // 小型尺寸表单的行间距
-  --ti-form-item-margin-bottom-default: var(--ti-common-space-5x);
+  --ti-form-item-margin-bottom-default: var(--ti-common-space-5x, 20px);
   // 迷你尺寸表单的行间距
-  --ti-form-item-margin-bottom-mini: var(--ti-common-space-2x);
+  --ti-form-item-margin-bottom-mini: var(--ti-common-space-2x, 8px);
   // 小型尺寸表单的行间距
-  --ti-form-item-margin-bottom-small: var(--ti-common-space-2x);
+  --ti-form-item-margin-bottom-small: var(--ti-common-space-2x, 8px);
   // 中等尺寸表单的行间距
-  --ti-form-item-margin-bottom-medium: var(--ti-common-space-3x);
+  --ti-form-item-margin-bottom-medium: var(--ti-common-space-3x, 12px);
   // 表单校验错误时星号的显示(hide)
   --ti-form-item-error-star-display: inline-block;
   // 表单校验行内错误左侧外边距
-  --ti-form-item-error-inline-margin-left: calc(var(--ti-common-space-base) * 2.5);
+  --ti-form-item-error-inline-margin-left: calc(var(--ti-common-space-base, 4px) * 2.5);
   // 表单校验块级错误消息上侧内边距
-  --ti-form-item-error-block-padding-top: var(--ti-common-space-2x);
+  --ti-form-item-error-block-padding-top: var(--ti-common-space-2x, 8px);
 }

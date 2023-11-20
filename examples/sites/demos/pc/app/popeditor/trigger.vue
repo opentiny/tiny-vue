@@ -9,7 +9,7 @@
       value-split="@"
       text-split="@"
     ></tiny-popeditor>
-    <div v-if="value">value 值：{{ value }}</div>
+    <p v-if="value">value 值：{{ value }}</p>
   </div>
 </template>
 

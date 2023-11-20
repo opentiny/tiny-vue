@@ -1,11 +1,13 @@
 <template>
-  <tiny-numeric v-model="stepNum" :step="step" :min="0" :max="10" circulate></tiny-numeric>
+  <tiny-numeric v-model="value" :step="step" :min="min" :max="max" circulate></tiny-numeric>
 </template>
 
-<script setup lang="jsx">
+<script setup lang="ts">
 import { ref } from 'vue'
 import { Numeric as TinyNumeric } from '@opentiny/vue'
 
+const value = ref(1)
 const step = ref(2)
-const stepNum = ref(1)
+const min = ref(0)
+const max = ref(5)
 </script>

@@ -1,28 +1,104 @@
 <template>
-  <tiny-select
-    v-model="value"
-    filterable
-    multiple
-    remote
-    reserve-keyword
-    placeholder="请输入关键词"
-    :remote-method="remoteMethod"
-    :loading="loading"
-    loading-text="Loading..."
-  >
-    <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
-  </tiny-select>
+  <div>
+    <p>场景1：远程搜索单选</p>
+    <tiny-select
+      v-model="value1"
+      filterable
+      remote
+      :remote-method="remoteMethod1"
+      :loading="loading1"
+      loading-text="Loading..."
+    >
+      <tiny-option v-for="item in options1" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-select>
+    <p>场景2：远程搜索多选 + 保留搜索关键字</p>
+    <tiny-select
+      v-model="value2"
+      filterable
+      multiple
+      remote
+      reserve-keyword
+      placeholder="请输入关键词"
+      :remote-method="remoteMethod2"
+      :loading="loading2"
+      loading-text="Loading..."
+    >
+      <tiny-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-select>
+    <p>场景3：获焦时触发远程搜索</p>
+    <tiny-select
+      v-model="value3"
+      ref="selectRef"
+      filterable
+      remote
+      :remote-method="remoteMethod3"
+      :loading="loading3"
+      loading-text="Loading..."
+    >
+      <tiny-option v-for="item in options3" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-select>
+  </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import { Select as TinySelect, Option as TinyOption } from '@opentiny/vue'
 
-const loading = ref(false)
-const value = ref('')
-const options = ref([])
+const loading1 = ref(false)
+const loading2 = ref(false)
+const loading3 = ref(false)
+const value1 = ref('')
+const value2 = ref([])
+const value3 = ref('')
+const options1 = ref([])
+const options2 = ref([])
+const options3 = ref([])
 const list = ref([])
-const states = ref([
+const selectRef = ref(null)
+
+const remoteMethod1 = (query) => {
+  if (query !== undefined) {
+    loading1.value = true
+    setTimeout(() => {
+      loading1.value = false
+      options1.value = list.value.filter((item) => {
+        return item.label.toLowerCase().includes(query.toLowerCase())
+      })
+    }, 200)
+  } else {
+    options1.value = []
+  }
+}
+
+const remoteMethod2 = (query) => {
+  if (query !== undefined) {
+    loading2.value = true
+    setTimeout(() => {
+      loading2.value = false
+      options2.value = list.value.filter((item) => {
+        return item.label.toLowerCase().includes(query.toLowerCase())
+      })
+    }, 200)
+  } else {
+    options2.value = []
+  }
+}
+
+const remoteMethod3 = (query) => {
+  if (query !== undefined) {
+    loading3.value = true
+    setTimeout(() => {
+      loading3.value = false
+      options3.value = list.value.filter((item) => {
+        return item.label.toLowerCase().includes(query.toLowerCase())
+      })
+    }, 300)
+  } else {
+    options3.value = []
+  }
+}
+
+const states = [
   'Alabama',
   'Alaska',
   'Arizona',
@@ -73,25 +149,23 @@ const states = ref([
   'West Virginia',
   'Wisconsin',
   'Wyoming'
-])
+]
 
 onMounted(() => {
-  list.value = states.value.map((item) => {
+  list.value = states.map((item) => {
     return { value: item, label: item }
   })
-})
 
-const remoteMethod = (query) => {
-  if (query !== undefined) {
-    loading.value = true
-    setTimeout(() => {
-      loading.value = false
-      options.value = list.value.filter((item) => {
-        return item.label.toLowerCase().includes(query.toLowerCase())
-      })
-    }, 200)
-  } else {
-    options.value = []
-  }
-}
+  selectRef.value.state.previousQuery = undefined
+})
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

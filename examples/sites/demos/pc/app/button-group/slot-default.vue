@@ -6,7 +6,7 @@
   </tiny-button-group>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button, ButtonGroup } from '@opentiny/vue'
 
 export default {

@@ -7,15 +7,11 @@
       :fetch-suggestions="querySearch"
       placeholder="请输入内容"
     >
-      <template #default="{ slotScope }">
-        <div>{{ slotScope.name }}</div>
-        <span style="font-size: 12px; color: #a29b91">{{ slotScope.address }}</span>
-      </template>
     </tiny-autocomplete>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Autocomplete } from '@opentiny/vue'
 
 export default {

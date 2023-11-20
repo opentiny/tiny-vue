@@ -32,7 +32,7 @@
           </div>
         </template>
         <template v-if="currJson.apis?.length > 0">
-          <div id="API" @click="handleApiClick($event)">
+          <div id="API">
             <h2 class="ti-f30 ti-fw-normal ti-mt28">API</h2>
             <!-- apis 是一个数组 {name,type,properties:[原table内容],events:[] ...........} -->
             <div class="mt20" v-for="(oneGroup, idx) in currJson.apis" :key="oneGroup.name">
@@ -70,14 +70,20 @@
                         <td v-if="!key.includes('slots')">
                           <a
                             v-if="row.typeAnchorName"
-                            :href="`#${row.typeAnchorName}`"
+                            :href="`${row.typeAnchorName.indexOf('#') === -1 ? '#' : ''}${row.typeAnchorName}`"
                             v-html="row.type"
                             @click="handleTypeClick"
                           ></a>
                           <span v-else v-html="row.type"></span>
                         </td>
                         <td v-if="!key.includes('slots') && !key.includes('events')">
-                          <span v-html="row.defaultValue || '--'"></span>
+                          <span
+                            v-html="
+                              typeof row.defaultValue === 'string'
+                                ? row.defaultValue || '--'
+                                : row.defaultValue?.[langKey] || '--'
+                            "
+                          ></span>
                         </td>
                         <td><span v-html="row.desc[langKey]"></span></td>
                       </tr>
@@ -163,7 +169,7 @@ export default defineComponent({
             title: demo.name[state.langKey],
             link: `#${demo.demoId}`
           })) || []
-        if (apiModeState.demoMode !== 'single') {
+        if (apiModeState.demoMode !== 'single' && state.currJson?.apis?.length) {
           links.push({ key: 'API', title: 'API', link: '#API' })
         }
         if (state.cmpFAQMd) {
@@ -324,6 +330,9 @@ export default defineComponent({
 
           scrollByHash(hash)
         }
+        if (apiModeState.demoMode === 'single') {
+          state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)
+        }
       },
       handleTypeClick: (ev) => {
         changeActiveNames(ev.target.hash, true)
@@ -463,7 +472,7 @@ export default defineComponent({
   p {
     font-size: 16px;
     line-height: 1.7em;
-    margin: 16px 0;
+    margin: 12px 0;
   }
 }
 .cmp-page-anchor {
@@ -514,19 +523,25 @@ export default defineComponent({
   background-color: #f3f5f7;
   border-color: #42b983;
   border-radius: 0;
-  padding: 0.1rem 1.5rem;
+  padding: 1.5rem;
   border-left-width: 0.5rem;
   border-left-style: solid;
   margin: 1rem 0;
   font-size: 14px;
   color: #5e6d82;
+  line-height: 1.5;
   .custom-block-title {
     font-weight: 600;
   }
   p {
-    margin: 16px 0;
+    margin: 8px 0;
     font-size: 16px;
-    line-height: 1.7em;
+    line-height: 1.5;
+  }
+  ul {
+    li {
+      padding: 5px 0;
+    }
   }
 }
 </style>

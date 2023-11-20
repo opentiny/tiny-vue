@@ -1,16 +1,9 @@
 <template>
-  <tiny-time-line
-    :data="data"
-    :active="normalActive"
-    type="normal"
-    @click="normalClick"
-    show-divider="true"
-    text-position="right"
-  >
+  <tiny-time-line :data="data" :active="normalActive" :show-divider="true" text-position="right" @click="normalClick">
   </tiny-time-line>
 </template>
 
-<script lang="jsx">
+<script>
 import { TimeLine, Modal } from '@opentiny/vue'
 
 export default {

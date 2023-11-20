@@ -12,17 +12,17 @@
 
 .component-css-vars-wizard() {
   // 横向流程图默认字号(不含基础插槽)
-  --ti-wizard-font-size: var(--ti-common-font-size-base);
+  --ti-wizard-font-size: var(--ti-common-font-size-base, 12px);
   // 节点文本色|图标色
-  --ti-wizard-icon-color: var(--ti-common-color-light);
+  --ti-wizard-icon-color: var(--ti-common-color-light, #fff);
   // 时间线流程图节点两侧文本色
-  --ti-wizard-text-color: var(--ti-common-color-info-normal);
+  --ti-wizard-text-color: var(--ti-common-color-info-normal, #252b3a);
   // 时间线流程图节点右侧文字悬浮圆角
-  --ti-wizard-detail-border-radius: var(--ti-common-border-radius-normal);
+  --ti-wizard-detail-border-radius: var(--ti-common-border-radius-normal, 2px);
   // 时间线流程图节点右侧文字悬浮背景色
-  --ti-wizard-detail-bg-color: var(--ti-common-color-warning-normal);
+  --ti-wizard-detail-bg-color: var(--ti-common-color-warning-normal, #fa9841);
   // 已完成的节点和线条背景色
-  --ti-wizard-icon-bg-color: var(--ti-common-color-bg-emphasize);
+  --ti-wizard-icon-bg-color: var(--ti-common-color-bg-emphasize, #5e7ce0);
   // 未完成的节点背景色
-  --ti-wizard-chart-icon-bg-color: var(--ti-common-color-line-disabled);
+  --ti-wizard-chart-icon-bg-color: var(--ti-common-color-line-disabled, #dfe1e6);
 }

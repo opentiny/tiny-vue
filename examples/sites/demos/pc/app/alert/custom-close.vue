@@ -1,7 +1,7 @@
 <template>
   <div>
-    <tiny-button @click="show = !show">显示或隐藏警告</tiny-button>
-    <tiny-alert description="自定义关闭按钮" v-show="show" :closable="false">
+    是否显示自定义告警组件：<tiny-switch v-model="show"></tiny-switch>
+    <tiny-alert description="自定义告警组件" v-show="show" :closable="false">
       <template #close>
         <icon-close-circle @click="show = !show"></icon-close-circle>
       </template>
@@ -13,13 +13,14 @@
 </template>
 
 <script>
-import { Button, Alert, Modal } from '@opentiny/vue'
+import { Button, Alert, Modal, Switch } from '@opentiny/vue'
 import { iconCloseCircle } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyButton: Button,
     TinyAlert: Alert,
+    TinySwitch: Switch,
     IconCloseCircle: iconCloseCircle()
   },
   data() {

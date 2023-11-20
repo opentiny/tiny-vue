@@ -1,18 +1,18 @@
 <template>
   <div>
-    <tiny-button @click="clearCheckedNodes" style="margin-bottom: 10px">清除选中节点</tiny-button>
+    <tiny-button @click="clearCheckedNodes">清除选中节点</tiny-button>
     <tiny-cascader-panel
       v-model="value"
       ref="CascaderPanelRef"
       class="cascader-panel-demo"
-      :props="{ checkStrictly: true }"
       :options="optionsCascader"
       @change="change"
+      @expand-change="expandChange"
     ></tiny-cascader-panel>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { CascaderPanel as TinyCascaderPanel, Modal, Button as TinyButton } from '@opentiny/vue'
 
@@ -230,6 +230,11 @@ function change(value) {
     status: 'info'
   })
 }
+
+function expandChange(value) {
+  Modal.message({ message: `节点展开：${value}`, status: 'info' })
+}
+
 </script>
 
 <style scoped>

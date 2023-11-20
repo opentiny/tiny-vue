@@ -1,15 +1,10 @@
 <template>
-  <tiny-time-line
-    :active="active"
-    text-position="right"
-    space="280px"
-  >
-    <tiny-timeline-item v-for="(item, i) in data" :node="item" @click="normalClick(i)" >
-    </tiny-timeline-item>
+  <tiny-time-line :active="active" text-position="right" space="200px">
+    <tiny-timeline-item v-for="(item, i) in data" :node="item" @click="onItemClick(i)"> </tiny-timeline-item>
   </tiny-time-line>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 import { TimeLine as TinyTimeLine, TimelineItem as TinyTimelineItem, Modal } from '@opentiny/vue'
 
@@ -20,7 +15,7 @@ const data = ref([
   { name: '已签收', time: '2019-11-14 20:45:50' }
 ])
 
-function click(index, node) {
+const onItemClick = (index, node) => {
   active.value = index
   Modal.message({
     message: 'click 事件，当前 index：' + index + ' 节点信息：' + node.name + ',' + node.time,

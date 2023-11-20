@@ -1,9 +1,10 @@
 <template>
   <tiny-transfer
+    ref="transferRef"
     v-model="value"
     :data="data"
-    :left-default-checked="[2, 6]"
-    :right-default-checked="[1]"
+    :left-default-checked="[0, 2, 6]"
+    :right-default-checked="[1, 4]"
   ></tiny-transfer>
 </template>
 
@@ -31,8 +32,11 @@ export default {
 
     return {
       data: generateData(),
-      value: [1, 4]
+      value: [1, 4, 7]
     }
+  },
+  mounted() {
+    console.log(this.$refs.transferRef.state)
   }
 }
 </script>

@@ -254,15 +254,7 @@ export const random = () => {
  * @param {Number} [length] 生成的guid的长度，可选值，默认为8
  * @returns {String}
  */
-export const guid = (prefix = '', length = 8) => {
-  return 'xxxxxxxx'.replace(/[x]/g, (c) => {
-    const random = parseFloat('0.' + crypto.getRandomValues(new Uint32Array(1))[0])
-    const r = (random * 16) | 0
-    const v = c === 'x' ? r : (r & 0x3) | 0x8
-    const randomStr = v.toString(16)
-    return prefix + randomStr.substring(0, length)
-  })
-}
+export const guid = (prefix = '', length = 8) => prefix + random().toString().substr(2, length)
 /**
  * 将HTML字符串进行编码。
  *

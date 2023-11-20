@@ -12,17 +12,17 @@
 
 .component-css-vars-cascader() {
   // 字体大小
-  --ti-cascader-font-size: var(--ti-common-font-size-1);
+  --ti-cascader-font-size: var(--ti-common-font-size-1, 14px);
   // 悬浮时显示的边框色
-  --ti-cascader-hover-border-color: var(--ti-common-color-line-hover);
+  --ti-cascader-hover-border-color: var(--ti-common-color-line-hover, #575d6c);
   // 聚焦时显示的边框色
-  --ti-cascader-focus-border-color: var(--ti-common-color-line-active);
+  --ti-cascader-focus-border-color: var(--ti-common-color-line-active, #5e7ce0);
   // 边框圆角
-  --ti-cascader-border-radius: var(--ti-common-border-radius-1);
+  --ti-cascader-border-radius: var(--ti-common-border-radius-1, 4px);
   // icon图标色
-  --ti-cascader-icon-color: var(--ti-common-color-icon-graybg-normal);
+  --ti-cascader-icon-color: var(--ti-common-color-icon-graybg-normal, #adb0b8);
   // medium尺寸时的字体大小
-  --ti-cascader-medium-font-size: var(--ti-common-font-size-1);
+  --ti-cascader-medium-font-size: var(--ti-common-font-size-1, 14px);
   // medium尺寸时的行高
   --ti-cascader-medium-line-height: 36px;
   // small尺寸时的行高
@@ -32,85 +32,85 @@
   // small尺寸时的字体大小
   --ti-cascader-small-font-size: var(--ti-common-font-size-bas);
   // mini尺寸时的字体大小
-  --ti-cascader-mini-font-size: var(--ti-common-font-size-base);
+  --ti-cascader-mini-font-size: var(--ti-common-font-size-base, 12px);
   // 禁用状态时的文本色
-  --ti-cascader-disabled-text-color: var(--ti-common-color-text-disabled);
+  --ti-cascader-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
   // 下拉框背景色
-  --ti-cascader-dropdown-bg-color: var(--ti-common-color-bg-white-normal);
+  --ti-cascader-dropdown-bg-color: var(--ti-common-color-bg-white-normal, #fff);
   // 输入框标签背景色
-  --ti-cascader-tag-bg-color: var(--ti-common-color-bg-white-emphasize);
+  --ti-cascader-tag-bg-color: var(--ti-common-color-bg-white-emphasize, #f2f5fc);
   // 输入框标签的icon图标背景色
-  --ti-cascader-tag-icon-bg-color: var(--ti-common-color-icon-graybg-disabled);
+  --ti-cascader-tag-icon-bg-color: var(--ti-common-color-icon-graybg-disabled, #dfe1e6);
   // 输入框标签的icon图标色
-  --ti-cascader-tag-icon-color: var(--ti-common-color-icon-white);
+  --ti-cascader-tag-icon-color: var(--ti-common-color-icon-white, #fff);
   // 输入框标签的icon图标悬浮时显示的背景色
-  --ti-cascader-tag-icon-hover-bg-color: var(--ti-common-color-icon-graybg-normal);
+  --ti-cascader-tag-icon-hover-bg-color: var(--ti-common-color-icon-graybg-normal, #adb0b8);
   // 下拉列表的文本色（没有生效）
-  --ti-cascader-list-text-color: var(--ti-common-color-text-secondary);
+  --ti-cascader-list-text-color: var(--ti-common-color-text-secondary, #575d6c);
   // 下拉列表子项的高度（没有生效）
-  --ti-cascader-item-height: var(--ti-common-size-height-normal);
+  --ti-cascader-item-height: var(--ti-common-size-height-normal, 28px);
   // 下拉列表子项悬浮时的背景色（没有生效）
   --ti-cascader-item-hover-bg-color: #f5f7fa;
   // 下拉列表子项选中时的文本色（没有生效）
   --ti-cascader-item-checked-text-color: var(--ti-base-color-primary-active);
   // 搜索后下拉列表无匹配数据的文本色
-  --ti-cascader-empty-text-color: var(--ti-common-color-text-weaken);
+  --ti-cascader-empty-text-color: var(--ti-common-color-text-weaken, #8a8e99);
   // 搜索框的文本色（没有生效）
-  --ti-cascader-search-input-text-color: var(--ti-common-color-info-normal);
+  --ti-cascader-search-input-text-color: var(--ti-common-color-info-normal, #252b3a);
   // 搜索框的占位符的文本色（没有生效）
-  --ti-cascader-search-input-placeholder-text-color: var(--ti-common-color-placeholder);
+  --ti-cascader-search-input-placeholder-text-color: var(--ti-common-color-placeholder, #adb0b8);
   // 下拉框的阴影
   --ti-cascader-dropdown-box-shadow: var(--ti-common-box-shadow);
   // 多选模式输入框宽度
   --ti-cascader-width: '100%';
   // 下拉框的左侧外边距
-  --ti-cascader-dropdown-margin-left: var(--ti-common-space-0);
+  --ti-cascader-dropdown-margin-left: var(--ti-common-space-0, 0px);
   // 下拉框的右侧侧外边距
-  --ti-cascader-dropdown-margin-right: var(--ti-common-space-0);
+  --ti-cascader-dropdown-margin-right: var(--ti-common-space-0, 0px);
   // 下拉框的顶部外边距
-  --ti-cascader-dropdown-margin-top: calc(var(--ti-common-space-6) - 1px);
+  --ti-cascader-dropdown-margin-top: calc(var(--ti-common-space-6, 6px) - 1px);
   // 下拉框的底部外边距
-  --ti-cascader-dropdown-margin-bottom: calc(var(--ti-common-space-6) - 1px);
+  --ti-cascader-dropdown-margin-bottom: calc(var(--ti-common-space-6, 6px) - 1px);
   // 输入框标签左侧外边距
-  --ti-cascader-tag-margin-left: var(--ti-common-space-6);
+  --ti-cascader-tag-margin-left: var(--ti-common-space-6, 6px);
   // 输入框标签右侧外边距
-  --ti-cascader-tag-margin-right: var(--ti-common-space-0);
+  --ti-cascader-tag-margin-right: var(--ti-common-space-0, 0px);
   // 输入框标签顶部外边距
-  --ti-cascader-tag-margin-top: calc(var(--ti-common-space-1) + 1px);
+  --ti-cascader-tag-margin-top: calc(var(--ti-common-space-1, 1px) + 1px);
   // 输入框标签底部外边距
-  --ti-cascader-tag-margin-bottom: calc(var(--ti-common-space-1) + 1px);
+  --ti-cascader-tag-margin-bottom: calc(var(--ti-common-space-1, 1px) + 1px);
   // 下拉框列表的左侧外边距（没有生效）
-  --ti-cascader-list-margin-left: var(--ti-common-space-0);
+  --ti-cascader-list-margin-left: var(--ti-common-space-0, 0px);
   // 下拉框列表的右侧外边距（没有生效）
-  --ti-cascader-list-margin-right: var(--ti-common-space-0);
+  --ti-cascader-list-margin-right: var(--ti-common-space-0, 0px);
   // 下拉框列表的顶部外边距（没有生效）
-  --ti-cascader-list-margin-top: var(--ti-common-space-0);
+  --ti-cascader-list-margin-top: var(--ti-common-space-0, 0px);
   // 下拉框列表的底部外边距（没有生效）
-  --ti-cascader-list-margin-bottom: var(--ti-common-space-0);
+  --ti-cascader-list-margin-bottom: var(--ti-common-space-0, 0px);
   // 下拉框列表的左侧外边距（没有生效）
-  --ti-cascader-list-padding-left: var(--ti-common-space-0);
+  --ti-cascader-list-padding-left: var(--ti-common-space-0, 0px);
   // 下拉框列表的右侧外边距（没有生效）
-  --ti-cascader-list-padding-right: var(--ti-common-space-0);
+  --ti-cascader-list-padding-right: var(--ti-common-space-0, 0px);
   // 下拉框列表的顶部外边距（没有生效）
-  --ti-cascader-list-padding-top: var(--ti-common-space-6);
+  --ti-cascader-list-padding-top: var(--ti-common-space-6, 6px);
   // 下拉框列表的底部外边距（没有生效）
-  --ti-cascader-list-padding-bottom: var(--ti-common-space-6);
+  --ti-cascader-list-padding-bottom: var(--ti-common-space-6, 6px);
   // 搜索后下拉列表无匹配数据左侧外边距
-  --ti-cascader-empty-margin-left: var(--ti-common-space-0);
+  --ti-cascader-empty-margin-left: var(--ti-common-space-0, 0px);
   // 搜索后下拉列表无匹配数据右侧外边距
-  --ti-cascader-empty-margin-right: var(--ti-common-space-0);
+  --ti-cascader-empty-margin-right: var(--ti-common-space-0, 0px);
   // 搜索后下拉列表无匹配数据顶部外边距
-  --ti-cascader-empty-margin-top: var(--ti-common-space-10);
+  --ti-cascader-empty-margin-top: var(--ti-common-space-10, 10px);
   // 搜索后下拉列表无匹配数据底部外边距
-  --ti-cascader-empty-margin-bottom: var(--ti-common-space-10);
+  --ti-cascader-empty-margin-bottom: var(--ti-common-space-10, 10px);
   // 搜索框的左侧外边距（没有生效）
-  --ti-cascader-search-input-margin-left: calc(var(--ti-common-space-1) + 1px);
+  --ti-cascader-search-input-margin-left: calc(var(--ti-common-space-1, 1px) + 1px);
   // 搜索框的左侧内边距（没有生效）
-  --ti-cascader-search-input-padding-left: var(--ti-common-space-2x);
+  --ti-cascader-search-input-padding-left: var(--ti-common-space-2x, 8px);
   // 下拉列表子项的字体大小
-  --ti-cascader-item-font-size: var(--ti-common-font-size-base);
+  --ti-cascader-item-font-size: var(--ti-common-font-size-base, 12px);
   // 搜索框的字体大小（没有生效）
-  --ti-cascader-search-input-font-size: var(--ti-common-font-size-base);
+  --ti-cascader-search-input-font-size: var(--ti-common-font-size-base, 12px);
   // 输入框关闭图标hover时的颜色
-  --ti-cascader-close-hover-icon-color: var(--ti-common-color-border-hover);
+  --ti-cascader-close-hover-icon-color: var(--ti-common-color-border-hover, #575d6c);
 }

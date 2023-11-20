@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>一、开启个性化多列排序</div>
+    <h4 class="title">开启个性化多列排序：</h4>
     <div>
       <tiny-grid :data="tableData" :sort-config="{ multipleColumnSort: true }">
         <template #toolbar>
@@ -12,7 +12,7 @@
         <tiny-grid-column field="introduction" title="公司简介" show-overflow></tiny-grid-column>
       </tiny-grid>
     </div>
-    <div style="margin-top: 30px">二、自定义多列排序</div>
+    <h4 class="title">自定义多列排序：</h4>
     <div>
       <tiny-grid :data="tableData" :sort-config="{ multipleColumnSort: multiSortMethod }">
         <template #toolbar>
@@ -101,3 +101,12 @@ const multiSortMethod = ({ $table, tableData, sortColumns }) => {
   return tableData
 }
 </script>
+
+<style scoped>
+.title {
+  font-size: 16px;
+  padding: 15px;
+  font-weight: bolder;
+  color: #444;
+}
+</style>

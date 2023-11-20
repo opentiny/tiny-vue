@@ -830,7 +830,7 @@ export const handleRemove =
     }
 
     let doRemove = () => {
-      file.status = constants.FILE_STATUS.FAIL
+      // 删除动作不用改变文件状态为fail; 这样删除需要删两次。因为只有第二次时，indexOf才能在uploadFiles里面找到要删除的file。
       api.abort(file)
       let fileList = state.uploadFiles
 

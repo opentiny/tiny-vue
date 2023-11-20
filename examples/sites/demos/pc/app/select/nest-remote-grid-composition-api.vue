@@ -1,35 +1,33 @@
 <template>
-  <div class="demo-select">
+  <div>
+    <p>场景1：下拉表格远程搜索基础用法</p>
     <tiny-select
       v-model="radioValue"
-      filterable
-      remote
-      reserve-keyword
       placeholder="请输入关键词"
+      reserve-keyword
+      remote
       :remote-method="remoteMethod"
       value-field="coaNumber"
-      :multiple="false"
       text-field="coaNumber"
       render-type="grid"
       :grid-op="gridOpRadio"
-      popper-class="grid-remote"
-    ></tiny-select>
-
+    >
+    </tiny-select>
+    <p>场景2：下拉表格远程搜索 + 自动搜索 + 显示按钮</p>
     <tiny-select
       v-model="radioValue"
+      placeholder="请输入关键词"
+      reserve-keyword
       filterable
       remote
-      reserve-keyword
-      placeholder="请输入关键词"
       :remote-method="remoteMethod"
       :remote-config="{ autoSeach: true, clearData: true, showIcon: true }"
       value-field="coaNumber"
-      :multiple="false"
       text-field="coaNumber"
       render-type="grid"
       :grid-op="gridOpRadio"
-      popper-class="grid-remote-config"
-    ></tiny-select>
+    >
+    </tiny-select>
   </div>
 </template>
 
@@ -222,11 +220,12 @@ const remoteMethod = (query) => {
 }
 </script>
 
-<style scoped>
-.demo-select .tiny-select {
-  width: 270px;
-  display: block;
-  margin: 8px;
-
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
 }
 </style>

@@ -257,11 +257,11 @@ export default {
           'demoId': 'moving-event'
         },
         {
-          'name': '右箭头收起时触发',
-          'type': 'Function(arg)',
+          'name': 'right-bottom-click',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '拖拽中的事件。;拖拽中的事件。;arg1:event (类型object)',
+            'zh-CN': '右箭头收起时触发',
             'en-US': 'Triggered when the right arrow is folded'
           },
           'demoId': 'moving-event'

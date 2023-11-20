@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref, reactive } from 'vue'
 import {
   Form as TinyForm,

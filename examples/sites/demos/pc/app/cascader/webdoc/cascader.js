@@ -525,7 +525,8 @@ export default {
         },
         {
           'name': 'lazyLoad',
-          'type': '(node: ICascaderPanelNode, resolve: (dataList: ICascaderPanelData[]) => void) => void',
+          'typeAnchorName': 'ICascaderPanelLazyLoad',
+          'type': 'ICascaderPanelLazyLoad',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -652,15 +653,22 @@ type ICascaderPanelNode = {
   label: string
   pathNodes: Node[]
   path: ICascaderPanelNodeValue[]
-  pathLabels!: string[]
-  loaded!: boolean
-  loading!: boolean
-  hasChildren!: boolean
-  children!: Node[]
+  pathLabels: string[]
+  loaded: boolean
+  loading: boolean
+  hasChildren: boolean
+  children: Node[]
   checked?: boolean
   indeterminate?: boolean
   root?: boolean
 }`
+    },
+    {
+      name: 'ICascaderPanelLazyLoad',
+      type: 'type',
+      code: `
+type ICascaderPanelLazyLoad = (node: ICascaderPanelNode, resolve: (dataList: ICascaderPanelData[]) => void) => void
+      `
     }
   ]
 }

@@ -2,7 +2,7 @@
   <tiny-slider v-model="value2" @stop="stop"></tiny-slider>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Slider as TinySlider, Notify } from '@opentiny/vue'
 

@@ -6,10 +6,10 @@ export default {
       demoId: 'basic-usage',
       name: {
         'zh-CN': '枚举单选',
-        'en-US': 'events'
+        'en-US': 'Enumerated single-choice'
       },
       desc: {
-        'zh-CN': '<p><p>',
+        'zh-CN': '<p></p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['basic-usage.vue']
@@ -18,10 +18,10 @@ export default {
       demoId: 'column-anchor',
       name: {
         'zh-CN': '列锚点',
-        'en-US': 'events'
+        'en-US': 'column anchor point'
       },
       desc: {
-        'zh-CN': '<p><p>',
+        'zh-CN': '<p></p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['column-anchor.vue']
@@ -30,11 +30,11 @@ export default {
       demoId: 'operation-column',
       name: {
         'zh-CN': '操作列',
-        'en-US': 'events'
+        'en-US': 'Operation column'
       },
       desc: {
-        'zh-CN': '<p><p>',
-        'en-US': '<p>bbutton click</p>'
+        'zh-CN': '<p></p>',
+        'en-US': '<p></p>'
       },
       codeFiles: ['operation-column.vue']
     }

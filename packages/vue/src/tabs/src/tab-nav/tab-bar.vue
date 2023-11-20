@@ -10,7 +10,10 @@
  *
  -->
 <template>
-  <div :style="state.barStyle" :class="`is-${state.rootTabs.position}`" class="tiny-tabs__active-bar"></div>
+  <div
+    :style="state.barStyle"
+    :class="[`is-${state.rootTabs.position}`, state.separator ? '' : 'tiny-tabs__active-bar']"
+  ></div>
 </template>
 
 <script lang="tsx">

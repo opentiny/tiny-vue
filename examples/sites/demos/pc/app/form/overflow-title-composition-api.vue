@@ -27,7 +27,7 @@ import {
 
 const formData = ref({
   user: '',
-  quantity: '',
+  quantity: 0,
   sex: ''
 })
 </script>
