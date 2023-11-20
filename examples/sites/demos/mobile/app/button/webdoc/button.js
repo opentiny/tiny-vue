@@ -15,28 +15,16 @@ export default {
       codeFiles: ['base.vue']
     },
     {
-      demoId: 'event-click',
+      demoId: 'disabled',
       name: {
-        'zh-CN': '点击事件',
-        'en-US': 'button type'
+        'zh-CN': '不可用',
+        'en-US': 'disabled'
       },
       desc: {
-        'zh-CN': '<p>单击事件</p>',
-        'en-US': '<p>button type</p>'
+        'zh-CN': '<p>不可用</p>',
+        'en-US': '<p>disabled</p>'
       },
-      codeFiles: ['event-click.vue']
-    },
-    {
-      demoId: 'icon',
-      name: {
-        'zh-CN': '图标按钮',
-        'en-US': 'button round'
-      },
-      desc: {
-        'zh-CN': '<p>图标按钮</p>',
-        'en-US': '<p>button round</p>'
-      },
-      codeFiles: ['icon.vue']
+      codeFiles: ['disabled.vue']
     },
     {
       demoId: 'loading',
@@ -51,55 +39,6 @@ export default {
       codeFiles: ['loading.vue']
     },
     {
-      demoId: 'native-type',
-      name: {
-        'zh-CN': '按钮属性',
-        'en-US': 'events'
-      },
-      desc: {
-        'zh-CN':
-          '<p>通过<code>native-type</code>属性可以设置原生 type 属性，该属性的可选值为 button / submit / reset</p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['native-type.vue']
-    },
-    {
-      demoId: 'plain',
-      name: {
-        'zh-CN': '朴素按钮',
-        'en-US': 'events'
-      },
-      desc: {
-        'zh-CN': '<p>朴素按钮</p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['plain.vue']
-    },
-    {
-      demoId: 'reset-time',
-      name: {
-        'zh-CN': '禁用时间',
-        'en-US': 'events'
-      },
-      desc: {
-        'zh-CN': '<p>通过<code>reset-time</code>属性可以设置按钮禁用时间，防止重复提交，单位毫秒,该属性默认为 1000</p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['reset-time.vue']
-    },
-    {
-      demoId: 'round',
-      name: {
-        'zh-CN': '圆角按钮',
-        'en-US': 'events'
-      },
-      desc: {
-        'zh-CN': '<p>圆角按钮</p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['round.vue']
-    },
-    {
       demoId: 'size',
       name: {
         'zh-CN': '不同尺寸',
@@ -110,18 +49,6 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['size.vue']
-    },
-    {
-      demoId: 'text',
-      name: {
-        'zh-CN': '文字按钮',
-        'en-US': 'events'
-      },
-      desc: {
-        'zh-CN': '<p>文字按钮</p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['text.vue']
     }
   ],
   apis: [
