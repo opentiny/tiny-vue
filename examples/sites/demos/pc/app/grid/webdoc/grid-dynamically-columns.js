@@ -3,7 +3,7 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'dynamically-columns-dynamicallyColumns',
+      'demoId': 'dynamically-columns-dynamically-columns',
       'name': {
         'zh-CN': '根据日期动态生成列',
         'en-US': 'Grid-Dynamic column generation based on the selected date'
@@ -18,7 +18,7 @@ export default {
       'codeFiles': ['dynamically-columns/columns-dynamic.vue']
     },
     {
-      'demoId': 'dynamically-columns-reverseRow',
+      'demoId': 'dynamically-columns-reverse-row',
       'name': { 'zh-CN': '表格行列反转', 'en-US': 'Grid-Inverting Rows and Columns in a Table' },
       'desc': {
         'zh-CN':

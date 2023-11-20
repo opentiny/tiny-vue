@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('开启编辑状态', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('grid-edit#tiny-first-menu-status-of-editing')
+  await page.goto('grid-edit#edit-status-of-editing')
   await page.getByText('GFD科技YX公司').first().click()
   await page
     .getByRole('row', {
@@ -10,6 +10,7 @@ test('开启编辑状态', async ({ page }) => {
     })
     .getByRole('textbox')
     .fill('sdfdf')
-  await page.getByText('名称').click()
-  await expect(page.getByRole('cell', { name: 'sdfdf' })).toHaveClass(/col__valid-success/)
+  await page.getByRole('heading', { name: '开启编辑状态：' }).click()
+  await expect(page.getByRole('cell', { name: 'sdfdf' }).nth(0)).toHaveClass(/col__valid-success/)
+  await expect(page.getByRole('cell', { name: 'sdfdf' }).nth(1)).not.toHaveClass(/col__valid-success/)
 })

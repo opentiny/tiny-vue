@@ -1,15 +1,22 @@
 <template>
-  <tiny-grid :data="tableData" min-height="300px">
-    <tiny-grid-column field="name" title="名称"></tiny-grid-column>
-    <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
-    <tiny-grid-column field="address" title="地址"></tiny-grid-column>
-    <tiny-grid-column field="introduction" title="公司简介" show-overflow></tiny-grid-column>
-  </tiny-grid>
+  <div>
+    <tiny-grid :data="tableData">
+      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column field="name" title="名称"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工人数"></tiny-grid-column>
+      <tiny-grid-column field="area" title="所属区域">
+        <template #header> <icon-mark-on></icon-mark-on> <span class="location-area">位置区域</span> </template>
+      </tiny-grid-column>
+      <tiny-grid-column field="address" title="地址"></tiny-grid-column>
+      <tiny-grid-column field="introduction" title="公司简介" show-overflow></tiny-grid-column>
+    </tiny-grid>
+  </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { IconMarkOn } from '@opentiny/vue-icon'
 
 const tableData = ref([
   {
@@ -17,6 +24,7 @@ const tableData = ref([
     name: 'GFD科技YX公司',
     area: '华东区',
     address: '福州',
+    employees: 423,
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
@@ -24,6 +32,7 @@ const tableData = ref([
     name: 'WWWW科技YX公司',
     area: '华南区',
     address: '深圳福田区',
+    employees: 363,
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
@@ -31,6 +40,7 @@ const tableData = ref([
     name: 'RFV有限责任公司',
     area: '华南区',
     address: '中山市',
+    employees: 131,
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
@@ -38,6 +48,7 @@ const tableData = ref([
     name: 'TGBYX公司',
     area: '华北区',
     address: '梅州',
+    employees: 215,
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
@@ -45,6 +56,7 @@ const tableData = ref([
     name: 'YHN科技YX公司',
     area: '华南区',
     address: '韶关',
+    employees: 322,
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
   },
   {
@@ -52,7 +64,14 @@ const tableData = ref([
     name: '康康物业YX公司',
     area: '华北区',
     address: '广州天河区',
+    employees: 168,
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
   }
 ])
+const TinyIconMarkOn = IconMarkOn()
 </script>
+<style scoped>
+.location-area {
+  margin-left: 10px;
+}
+</style>
