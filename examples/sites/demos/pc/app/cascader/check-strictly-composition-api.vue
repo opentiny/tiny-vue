@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <tiny-cascader :options="options" :props="{ checkStrictly: true }" v-model="value"></tiny-cascader>
-    value:{{ value }}
+  <div class="demo-tiny-cascader-check-strictly">
+    <div>value: {{ value }}</div>
+    <div>
+      <tiny-cascader :options="options" :props="{ checkStrictly: true }" v-model="value"></tiny-cascader>
+    </div>
   </div>
 </template>
 
@@ -205,3 +207,9 @@ const options = ref([
   }
 ])
 </script>
+
+<style scoped>
+.demo-tiny-cascader-check-strictly > :not(:last-child) {
+  margin-bottom: 12px;
+}
+</style>

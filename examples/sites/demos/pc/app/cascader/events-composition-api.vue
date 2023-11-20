@@ -1,10 +1,9 @@
 <template>
-  <div>
-    value:{{ value }}
+  <div class="demo-tiny-cascader-event">
+    <div>value: {{ value }}</div>
     <tiny-cascader
       v-model="value"
-      ref="cascaderRef"
-      filterable
+      ref="cascader"
       :options="options"
       @change="handleChange"
       @blur="handleblur"
@@ -247,3 +246,9 @@ function handleChange(value) {
   })
 }
 </script>
+
+<style scoped>
+.demo-tiny-cascader-event > :not(:last-child) {
+  margin-bottom: 12px;
+}
+</style>
