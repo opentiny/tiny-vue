@@ -1,6 +1,5 @@
 <template>
   <tiny-popover
-    placement="bottom"
     title="标题"
     width="200"
     @show="show"
@@ -8,7 +7,7 @@
     :after-leave="leave"
     :after-enter="enter"
     trigger="hover"
-    :content="content"
+    content="这是一段内容"
   >
     <template #reference>
       <tiny-button>悬浮我触发</tiny-button>
@@ -17,10 +16,7 @@
 </template>
 
 <script setup lang="jsx">
-import { ref } from 'vue'
 import { Popover as TinyPopover, Notify, Button as TinyButton } from '@opentiny/vue'
-
-const content = ref('这是一段内容,这是一段内容,这是一段内容,这是一段内容。')
 
 function enter() {
   Notify({

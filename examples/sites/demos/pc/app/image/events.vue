@@ -1,5 +1,5 @@
 <template>
-  <tiny-image :src="url1" @load="loadHandler" @error="errorHandler"></tiny-image>
+  <tiny-image :src="url" @load="loadHandler" @error="errorHandler"></tiny-image>
 </template>
 
 <script lang="jsx">
@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      url1: ''
+      url: ''
     }
   },
   methods: {
@@ -24,3 +24,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.tiny-image {
+  width: 150px;
+  height: 100px;
+}
+</style>

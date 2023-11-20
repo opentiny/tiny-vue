@@ -43,7 +43,6 @@ export default {
         通过 <code>lazy</code> 开启懒加载功能，当图片滚动到可视范围内才会加载。<br>
         通过 <code>scroll-container</code> 来设置滚动容器，若未定义，则为最近一个 <code>overflow</code> 值为 <code>auto</code> 或 <code>scroll</code> 的父元素。</p>\n
           <div class="tip custom-block">
-            <p class="custom-block-title">提示</p>
             <p>lazy 懒加载的图片必须是远程的图片，不支持静态图片懒加载。</p>
           </div>
         `,
@@ -51,7 +50,6 @@ export default {
           Enable lazy loading with <code>lazy</code>, and the image will only load when it is in visual range. <br>
           Set the scroll container by <code>scroll-container</code>. If not defined, Is the parent element of the last <code>overflow</code> value <code>auto</code> or <code>scroll</code>. </p>\n
           <div class="tip custom-block">
-          <p class="custom-block-title"> Prompt </p>
           <p>lazy Lazy loading images must be remote images. Lazy loading of static images is not supported. </p>
           </div>
         `
@@ -132,7 +130,7 @@ export default {
         {
           'name': 'fit',
           'type': `'fill' | 'contain' | 'cover' | 'none' | 'scale-down '`,
-          'defaultValue': '--',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '确定图片如何适应容器框，同原生 object-fit',
             'en-US':
@@ -150,7 +148,7 @@ export default {
         {
           'name': 'scroll-container',
           'type': 'string | HTMLElement',
-          'defaultValue': '--',
+          'defaultValue': '',
           'desc': {
             'zh-CN':
               '开启懒加载后，监听 scroll 事件的容器,该属性的默认值为 最近一个 overflow 值为 auto 或 scroll 的父元素',

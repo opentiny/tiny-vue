@@ -371,7 +371,8 @@ export default {
         },
         {
           'name': 'columns',
-          'type': '<a href="grid#ColumnConfig" target="_blank">ColumnConfig</a>',
+          'type': 'IColumnConfig',
+          'typeAnchorName': 'grid#IColumnConfig',
           'defaultValue': '',
           'desc': {
             'zh-CN': '在渲染类型为 table 时，设置穿梭框的表格列配置',
@@ -414,7 +415,8 @@ export default {
         },
         {
           'name': 'tree-op',
-          'type': '<a href="tree#API" target="_blank">Tree props</a>',
+          'type': 'Tree props',
+          'typeAnchorName': 'tree#API',
           'defaultValue': '',
           'desc': {
             'zh-CN': '在渲染类型为 tree 时，设置树的相关配置属性',
