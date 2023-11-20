@@ -2456,7 +2456,7 @@ export default {
       code: `
 interface IRow {
   // 表格行数据
-  [string]: any
+  [filed: string]: any
 }
       `
     },
@@ -2769,7 +2769,7 @@ interface IScrollLoadConfig {
       type: 'type',
       code: `
 interface IEventsConfig {
-  [string]: ()=> void
+  [field: string]: ()=> void
 }
       `
     },
