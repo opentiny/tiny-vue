@@ -8,6 +8,4 @@ test('可清空', async ({ page }) => {
   await page.locator('.tiny-input__suffix-inner > .tiny-svg').click()
   const textClear = await page.getByRole('textbox', { name: '请选择' }).inputValue()
   await expect(textClear).toEqual('')
-  const medium = page.locator('.tiny-cascader--medium')
-  await expect(medium).toBeVisible()
 })

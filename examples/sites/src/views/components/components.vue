@@ -129,12 +129,11 @@
 <script lang="jsx">
 import { defineComponent, reactive, computed, toRefs, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { marked } from 'marked'
-import { Loading, Anchor, ButtonGroup } from '@opentiny/vue'
+import { Loading, Anchor, ButtonGroup, ColumnListGroup } from '@opentiny/vue'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import { $t, $t2, $clone, $split, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
 import demo from '@/views/components/demo'
 import { router } from '@/router.js'
-import { getAllComponents } from '@/menus.jsx'
 import { Collapse, CollapseItem } from '@opentiny/vue'
 import { faqMdConfig, staticDemoPath, getWebdocPath } from './cmpConfig'
 import AsyncHighlight from './async-highlight.vue'
@@ -169,8 +168,8 @@ export default defineComponent({
             title: demo.name[state.langKey],
             link: `#${demo.demoId}`
           })) || []
-        if (apiModeState.demoMode !== 'single' && state.currJson?.apis?.length) {
-          links.push({ key: 'API', title: 'API', link: '#API' })
+        if (state.currJson?.apis?.length) {
+          links.push({ key: 'API', title: 'API', link: '#API' }, { key: 'Types', title: 'Types', link: '#types' })
         }
         if (state.cmpFAQMd) {
           links.push({
@@ -281,6 +280,7 @@ export default defineComponent({
           fetchDemosFile(`${staticDemoPath}/grid/webdoc/grid.js`).then((data) => {
             const gridJson = eval('(' + data.slice(15) + ')')
             state.currJson.apis = gridJson.apis
+            state.currJson.types = gridJson.types
           })
         } else if (state.cmpId?.startsWith('chart-')) {
           fetchDemosFile(`${staticDemoPath}/chart/webdoc/chart.js`).then((data) => {
@@ -341,10 +341,15 @@ export default defineComponent({
         if (apiModeState.demoMode === 'single' && data.link.startsWith('#')) {
           e.preventDefault()
           const hash = data.link.slice(1)
-          state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
+          const singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
+
+          // 单示例模式下如果没有匹配到锚点对应的示例，则这不加载示例直接跳转锚点id
+          if (singleDemo) {
+            state.singleDemo = singleDemo
+            scrollToLayoutTop()
+          }
 
           router.push(data.link)
-          scrollToLayoutTop()
         } else if (apiModeState.demoMode === 'default' && data.link.startsWith('#')) {
           // 多示例模式，自动会切到相应的位置。只需要记录singleDemo就好了
           const hash = data.link.slice(1)

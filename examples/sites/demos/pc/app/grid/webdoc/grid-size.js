@@ -75,7 +75,7 @@ export default {
       'demoId': 'size-resize-column-width',
       'name': { 'zh-CN': '开启列宽拖拽', 'en-US': 'Enable column width dragging' },
       'desc': {
-        'zh-CN': '<p>列宽默认开启，如需禁用需要设置<code>resizable</code>为<code>false</code></p>\n',
+        'zh-CN': '<p>列宽默认开启，如需禁用需要设置<code>resizable</code>为<code>false</code>。</p>\n',
         'en-US':
           '<p>Column width is enabled by default. To disable this function, set <code>resizable</code> to <code>false</code></p>\n'
       },
