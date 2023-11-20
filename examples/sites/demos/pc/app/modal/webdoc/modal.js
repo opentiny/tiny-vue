@@ -417,10 +417,7 @@ export default {
         {
           'name': 'confirm-content',
           'type': 'string',
-          'defaultValue': {
-            'zh-CN': '确认',
-            'en-US': 'Confirm'
-          },
+          'defaultValue': '确认',
           'desc': {
             'zh-CN': '自定义确认按钮内容',
             'en-US': 'Whether to lock the page. Operations outside the window are not allowed.'
@@ -430,10 +427,7 @@ export default {
         {
           'name': 'cancel-content',
           'type': 'string',
-          'defaultValue': {
-            'zh-CN': '取消',
-            'en-US': 'Cancel'
-          },
+          'defaultValue': '取消',
           'desc': {
             'zh-CN': '自定义取消按钮内容',
             'en-US': 'Whether to lock the scroll bar to disable page scrolling.'

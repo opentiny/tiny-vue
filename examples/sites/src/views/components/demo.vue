@@ -141,7 +141,7 @@ export default defineComponent({
 
     const fn = {
       getDescMd(demo) {
-        // desc字段可能是md,也可能是html。 返回md组件或者html组件
+        // desc字段是一段html
         const desc = demo.desc[state.langKey].trim()
         return <div class="demo-desc" v-html={desc}></div>
       },
@@ -225,8 +225,8 @@ export default defineComponent({
 
   code {
     color: #476582;
-    padding: 0.25rem 0.5rem;
-    margin: 0;
+    padding: 4px 8px;
+    margin: 0 4px;
     font-size: 0.85em;
     background-color: rgba(27, 31, 35, 0.05);
     border-radius: 3px;
@@ -236,6 +236,12 @@ export default defineComponent({
     text-decoration: none;
     color: #5e7ce0;
     cursor: pointer;
+  }
+
+  ul,
+  ol {
+    list-style: disc;
+    list-style-position: inside;
   }
 }
 

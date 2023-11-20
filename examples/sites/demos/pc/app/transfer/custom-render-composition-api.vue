@@ -5,7 +5,7 @@
   <tiny-transfer v-model="value" :data="data" :props="{ key: 'id', label: 'text' }">
     <template #default="optionData">
       <div>
-        <span class="red">{{ optionData.option.id }}</span> <span>- {{ optionData.option.text }} - customized</span>
+        <span class="red">{{ optionData.option.id }}</span> <span>- {{ optionData.option.text }} - by slot</span>
       </div>
     </template>
   </tiny-transfer>
