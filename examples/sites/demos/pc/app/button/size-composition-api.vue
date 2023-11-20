@@ -29,20 +29,20 @@
 
     <tiny-row>
       <div class="title">圆形按钮尺寸：</div>
-      <tiny-button type="warning" size="large" :icon="IconEdit" circle> </tiny-button>
-      <tiny-button type="warning" size="medium" :icon="IconEdit" circle> </tiny-button>
-      <tiny-button type="warning" size="small" :icon="IconEdit" circle> </tiny-button>
-      <tiny-button type="warning" :icon="IconEdit" circle></tiny-button>
-      <tiny-button type="warning" size="mini" :icon="IconEdit" circle> </tiny-button>
+      <tiny-button type="warning" size="large" :icon="TinyIconEdit" circle> </tiny-button>
+      <tiny-button type="warning" size="medium" :icon="TinyIconEdit" circle> </tiny-button>
+      <tiny-button type="warning" size="small" :icon="TinyIconEdit" circle> </tiny-button>
+      <tiny-button type="warning" :icon="TinyIconEdit" circle></tiny-button>
+      <tiny-button type="warning" size="mini" :icon="TinyIconEdit" circle> </tiny-button>
     </tiny-row>
 
     <tiny-row>
       <div class="title">纯图标按钮尺寸：</div>
-      <tiny-button :icon="IconDel" type="text" size="large" />
-      <tiny-button :icon="IconDel" type="text" size="medium" />
-      <tiny-button :icon="IconDel" type="text" size="small" />
-      <tiny-button :icon="IconDel" type="text" />
-      <tiny-button :icon="IconDel" type="text" size="mini" />
+      <tiny-button :icon="TinyIconDel" type="text" size="large" />
+      <tiny-button :icon="TinyIconDel" type="text" size="medium" />
+      <tiny-button :icon="TinyIconDel" type="text" size="small" />
+      <tiny-button :icon="TinyIconDel" type="text" />
+      <tiny-button :icon="TinyIconDel" type="text" size="mini" />
     </tiny-row>
   </tiny-layout>
 </template>
