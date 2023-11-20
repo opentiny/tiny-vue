@@ -1,8 +1,8 @@
 <template>
   <div class="demo">
-    <p>默认</p>
-    <tiny-radio v-model="value" label="1" @change="changeAction">男</tiny-radio>
-    <tiny-radio v-model="value" label="2" @change="changeAction">女</tiny-radio>
+    <p>禁用</p>
+    <tiny-radio v-model="value" label="1" disabled>我同意</tiny-radio>
+    <tiny-radio v-model="value" label="2" disabled>我拒绝</tiny-radio>
   </div>
 </template>
 

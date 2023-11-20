@@ -13,6 +13,18 @@ export default {
         'en-US': '<p>button type</p>'
       },
       codeFiles: ['base.vue']
+    },
+    {
+      demoId: 'disabled',
+      name: {
+        'zh-CN': '禁用状态',
+        'en-US': 'disabled'
+      },
+      desc: {
+        'zh-CN': '<p>禁用</p>',
+        'en-US': '<p>disabled</p>'
+      },
+      codeFiles: ['disabled.vue']
     }
   ],
   apis: [
@@ -38,7 +50,7 @@ export default {
             'zh-CN': '<p>Radio 的 value,该属性默认为{}</p>',
             'en-US': 'display different button'
           },
-          demoId: 'event-change'
+          demoId: 'base'
         },
         {
           name: 'name',
@@ -48,7 +60,7 @@ export default {
             'zh-CN': '<p>原生 name 属性</p>',
             'en-US': 'display different button'
           },
-          demoId: 'disabled'
+          demoId: 'base'
         },
         {
           name: 'text',
@@ -58,7 +70,7 @@ export default {
             'zh-CN': '<p>文本</p>',
             'en-US': 'display different button'
           },
-          demoId: 'disabled'
+          demoId: 'base'
         },
         {
           name: 'value',
@@ -68,7 +80,7 @@ export default {
             'zh-CN': '<p>绑定值，该属性默认为{}</p>',
             'en-US': 'display different button'
           },
-          demoId: 'border'
+          demoId: 'base'
         }
       ],
       events: [
@@ -80,7 +92,7 @@ export default {
             'zh-CN': '<p>绑定值变化时触发的事件,可获取changeValue</p>',
             'en-US': 'Click'
           },
-          demoId: 'event-change'
+          demoId: 'base'
         }
       ],
       slots: [
