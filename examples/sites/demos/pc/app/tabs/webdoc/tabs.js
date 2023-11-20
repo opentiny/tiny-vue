@@ -191,7 +191,7 @@ export default {
     {
       'name': 'tabs',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'active-name',
           'type': 'string',
@@ -321,14 +321,14 @@ export default {
         },
         {
           'name': 'tooltip-config',
-          'type': 'object | "title"',
-          'typeAnchorName': 'tooltip#API',
+          'type': 'ITooltipProps | "title"',
+          'typeAnchorName': 'ITooltipProps',
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '设置文字超出提示, object类型的值参考tooltip组件配置，如果想使用默认的title属性，可设置为string 类型，值为title，【3.8.0版本新增】',
+              '设置文字超出提示, object 类型的值参考 tooltip 组件的 <a href="tooltip#API">Props</a> 配置，如果想使用默认的 title 属性，可设置为 string 类型，值为 title，【3.8.0版本新增】',
             'en-US':
-              'Set the message indicating that the text exceeds the limit. For details about the value of the object type, see the configuration of the tooltip component. If you want to use the default title attribute, set it to the string type and set it to title. [Added in 3.8.0]'
+              'Set the message indicating that the text exceeds the limit. The value of the object type refers to the <a href="tooltip#API">Props</a> configuration of the tooltip component. If you want to use the default title attribute, set it to the string type and set it to title. [Added in 3.8.0]'
           },
           'demoId': 'tooltip'
         },
@@ -456,6 +456,18 @@ type IPosition = 'top' | 'right' | 'bottom' | 'left'
       type: 'type',
       code: `
 type ITabStyle = 'card' | 'border-card' | 'button-card' | ''
+`
+    },
+    {
+      name: 'ITooltipProps',
+      type: 'interface',
+      code: `
+interface ITooltipProps { // 参照tooltip的props进行配置
+  effect?: string
+  placement?: string
+  visible?: string
+  [propName: string]: any
+}
 `
     }
   ]
