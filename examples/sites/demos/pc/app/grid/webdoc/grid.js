@@ -231,7 +231,7 @@ export default {
         },
         {
           'name': 'footer-method',
-          'type': '({columns: ColumnConfig[], data: Row[]}) => string[][]',
+          'type': '({columns: IColumnConfig[], data: IRow[]}) => string[][]',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '表尾合计的计算方法 columns:所有的列配置数据, data： 当前所有的表格数据',
@@ -529,7 +529,7 @@ export default {
         },
         {
           'name': 'sort-method',
-          'type': '(row1: Row, row2: Row)=> boolean',
+          'type': '(row1: IRow, row2: IRow)=> boolean',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -642,7 +642,7 @@ export default {
         },
         {
           'name': 'columns',
-          'type': 'ColumnConfig[]',
+          'type': 'IColumnConfig[]',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '表格列的配置信息，具体参考列配置项',
@@ -819,7 +819,7 @@ export default {
         },
         {
           'name': 'clearData',
-          'type': '(rows?: Row | Row[], field?: string)=> void',
+          'type': '(rows?: IRow | IRow[], field?: string)=> void',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -930,12 +930,12 @@ export default {
         },
         {
           'name': 'createRow',
-          'type': '(records: Row | Row[])=> Promise',
+          'type': '(records: IRow | IRow[])=> Promise',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '创建 Row|Rows 对象（对于某些特殊场景需要对数据进行手动插入时可能会用到）',
+            'zh-CN': '创建 IRow | IRows 对象（对于某些特殊场景需要对数据进行手动插入时可能会用到）',
             'en-US':
-              'Create a Row|Rows object. (This method may be used when data needs to be manually inserted in some special scenarios.)'
+              'Create a IRow | IRows object. (This method may be used when data needs to be manually inserted in some special scenarios.)'
           },
           'demoId': 'grid-tree-table#tree-table-tree-grid-insert-delete-update'
         },
@@ -947,13 +947,13 @@ export default {
           'desc': {
             'zh-CN': '将表格数据导出为 .csv 文件（支持所有主流的浏览器，不支持合并行或列）',
             'en-US':
-              'Exports table data to a .csv file. (All mainstream browsers are supported. Rows or columns cannot be combined.)'
+              'Exports table data to a .csv file. (All mainstream browsers are supported. IRows or columns cannot be combined.)'
           },
           'demoId': 'grid-import-export#import-export-export-excel'
         },
         {
           'name': 'fullValidate',
-          'type': '(rows: Row[], callback: ()=> void)=> Promise',
+          'type': '(rows: IRow[], callback: ()=> void)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '表格完整校验函数，和 validate 的区别就是会对全量数据的所有规则进行完整校验',
@@ -964,21 +964,21 @@ export default {
         },
         {
           'name': 'getActiveRow',
-          'type': '()=> Row',
+          'type': '()=> IRow',
           'defaultValue': '--',
           'desc': { 'zh-CN': '获取已激活的行数据', 'en-US': 'Obtain activated row data' },
           'demoId': 'grid-edit#edit-trigger-mode-hm-editing'
         },
         {
           'name': 'getColumnByField',
-          'type': '(field: string)=> ColumnConfig',
+          'type': '(field: string)=> IColumnConfig',
           'defaultValue': '--',
           'desc': { 'zh-CN': '根据列的字段名获取列', 'en-US': 'Obtain columns based on column field names.' },
           'demoId': 'grid-large-data#large-data-scroll-to'
         },
         {
           'name': 'getColumnById',
-          'type': '(colid: string)=> ColumnConfig',
+          'type': '(colid: string)=> IColumnConfig',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据列的唯一主键获取列',
@@ -988,7 +988,7 @@ export default {
         },
         {
           'name': 'getColumnIndex',
-          'type': '(column: ColumnConfig)=> number',
+          'type': '(column: IColumnConfig)=> number',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据 column 获取相对于 columns 中的索引',
@@ -998,7 +998,7 @@ export default {
         },
         {
           'name': 'getColumnNode',
-          'type': '(cell: HTMLElement)=> ColumnConfig',
+          'type': '(cell: HTMLElement)=> IColumnConfig',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据 th/td 元素获取对应的 column 信息',
@@ -1008,7 +1008,7 @@ export default {
         },
         {
           'name': 'getColumns',
-          'type': '(columnIndex?: number)=> ColumnConfig | ColumnConfig[]',
+          'type': '(columnIndex?: number)=> IColumnConfig | IColumnConfig[]',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '获取表格的可视列，也可以指定索引获取列',
@@ -1018,7 +1018,7 @@ export default {
         },
         {
           'name': 'getCurrentRow',
-          'type': '()=> Row',
+          'type': '()=> IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于当前行，获取当前行的数据',
@@ -1028,7 +1028,7 @@ export default {
         },
         {
           'name': 'getData',
-          'type': '(rowIndex?: number)=> Row | Row[]',
+          'type': '(rowIndex?: number)=> IRow | IRow[]',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '获取数据，和 data 的行为一致，也可以指定索引获取数据',
@@ -1039,14 +1039,14 @@ export default {
         },
         {
           'name': 'getInsertRecords',
-          'type': '()=> Row[]',
+          'type': '()=> IRow[]',
           'defaultValue': '--',
           'desc': { 'zh-CN': '获取新增的数据', 'en-US': 'Obtain the new data' },
           'demoId': 'grid-toolbar#toolbar-insert-delete-update'
         },
         {
           'name': 'getRadioRow',
-          'type': '()=> Row',
+          'type': '()=> IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于单选行，获取当已选中的数据',
@@ -1068,14 +1068,14 @@ export default {
         },
         {
           'name': 'getRemoveRecords',
-          'type': '()=> Row[]',
+          'type': '()=> IRow[]',
           'defaultValue': '--',
           'desc': { 'zh-CN': '获取已删除的数据', 'en-US': 'Obtain deleted data' },
           'demoId': 'grid-toolbar#toolbar-insert-delete-update'
         },
         {
           'name': 'getRowById',
-          'type': '(rowid: string)=> Row',
+          'type': '(rowid: string)=> IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据行的唯一主键获取行',
@@ -1085,7 +1085,7 @@ export default {
         },
         {
           'name': 'getRowIndex',
-          'type': '(row: Row)=> number',
+          'type': '(row: IRow)=> number',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据 row 获取相对于 data 中的索引',
@@ -1095,7 +1095,7 @@ export default {
         },
         {
           'name': 'getRowNode',
-          'type': '(tr: HTMLElement)=> Row',
+          'type': '(tr: HTMLElement)=> IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据 tr 元素获取对应的 row 信息',
@@ -1105,7 +1105,7 @@ export default {
         },
         {
           'name': 'getSelectRecords',
-          'type': '()=> Row[]',
+          'type': '()=> IRow[]',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于多选行，获取已选中的数据',
@@ -1115,7 +1115,7 @@ export default {
         },
         {
           'name': 'getTableColumn',
-          'type': '()=> Row[]',
+          'type': '()=> IRow[]',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '获取当前表格的列（完整的全量表头列、处理条件之后的全量表头列、当前渲染中的表头列）',
@@ -1126,7 +1126,7 @@ export default {
         },
         {
           'name': 'getTableData',
-          'type': '()=> Row[]',
+          'type': '()=> IRow[]',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -1138,7 +1138,7 @@ export default {
         },
         {
           'name': 'getUpdateRecords',
-          'type': '()=> Row[]',
+          'type': '()=> IRow[]',
           'defaultValue': '--',
           'desc': { 'zh-CN': '获取已修改的数据', 'en-US': 'Obtain modified data' },
           'demoId': 'grid-toolbar#toolbar-insert-delete-update'
@@ -1152,7 +1152,7 @@ export default {
         },
         {
           'name': 'hasActiveRow',
-          'type': '(row: Row)=> boolean',
+          'type': '(row: IRow)=> boolean',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '检查行是否已激活为编辑状态',
@@ -1162,7 +1162,7 @@ export default {
         },
         {
           'name': 'hasRowChange',
-          'type': '(row: Row, field: string)=> boolean',
+          'type': '(row: IRow, field: string)=> boolean',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '检查行或列数据是否发生改变',
@@ -1172,28 +1172,28 @@ export default {
         },
         {
           'name': 'hasRowExpand',
-          'type': '(row: Row)=> boolean',
+          'type': '(row: IRow)=> boolean',
           'defaultValue': '--',
           'desc': { 'zh-CN': '检查行是否已展开', 'en-US': 'Check whether the row is expanded.' },
           'demoId': 'grid-expand#expand-has-row-expand'
         },
         {
           'name': 'hasTreeExpand',
-          'type': '(row: Row)=> boolean',
+          'type': '(row: IRow)=> boolean',
           'defaultValue': '--',
           'desc': { 'zh-CN': '检查树节点是否已展开', 'en-US': 'Check whether the tree node is expanded.' },
           'demoId': 'grid-tree-table#tree-table-has-tree-expand'
         },
         {
           'name': 'hideColumn',
-          'type': '(column: ColumnConfig)=> Promise',
+          'type': '(column: IColumnConfig)=> Promise',
           'defaultValue': '--',
           'desc': { 'zh-CN': '隐藏指定列', 'en-US': 'Hide a specified column.' },
           'demoId': 'grid-custom#custom-hide-column'
         },
         {
           'name': 'insert',
-          'type': '(records: Row | Row[])=> Promise',
+          'type': '(records: IRow | IRow[])=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '在表格中新增数据;往表格插入数据，从第一行新增一行或多行新数据',
@@ -1204,7 +1204,7 @@ export default {
         },
         {
           'name': 'insertAt',
-          'type': '(records: Row | Row[], row: Row | null | -1)=> Promise',
+          'type': '(records: IRow | IRow[], row: IRow | null | -1)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -1216,7 +1216,7 @@ export default {
         },
         {
           'name': 'loadColumn',
-          'type': '(columns: ColumnConfig[])=> Promise',
+          'type': '(columns: IColumnConfig[])=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '加载列配置（对于表格列需要重载、局部递增场景下可能会用到）',
@@ -1227,7 +1227,7 @@ export default {
         },
         {
           'name': 'loadData',
-          'type': '(data: Row[])=> Promise',
+          'type': '(data: IRow[])=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '加载数据（对于表格数据需要重载、局部递增场景下可能会用到）',
@@ -1272,7 +1272,7 @@ export default {
         },
         {
           'name': 'reloadCustoms',
-          'type': '(customs: ColumnConfig[], sortable?: boolean)=> Promise',
+          'type': '(customs: IColumnConfig[], sortable?: boolean)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -1284,7 +1284,7 @@ export default {
         },
         {
           'name': 'remove',
-          'type': '(rows: Row | Row[])=> Promise',
+          'type': '(rows: IRow | IRow[])=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '删除指定行数据，指定 row 或 [row, ...] 删除多条数据，如果为空则删除所有数据',
@@ -1335,7 +1335,7 @@ export default {
         },
         {
           'name': 'revertData',
-          'type': '(rows: Row | Row[], field?: string)=> Promise',
+          'type': '(rows: IRow | IRow[], field?: string)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '还原更改，还原指定行 row 或者整个表格的数据',
@@ -1355,7 +1355,7 @@ export default {
         },
         {
           'name': 'scrollToColumn',
-          'type': '(column: ColumnConfig)=> Promise',
+          'type': '(column: IColumnConfig)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '如果有滚动条，则滚动到对应的列',
@@ -1365,7 +1365,7 @@ export default {
         },
         {
           'name': 'scrollToRow',
-          'type': '(row: Row)=> Promise',
+          'type': '(row: IRow)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '如果有滚动条，则滚动到对应的行',
@@ -1375,14 +1375,14 @@ export default {
         },
         {
           'name': 'setActiveCell',
-          'type': '(row: Row, field: string)=> Promise',
+          'type': '(row: IRow, field: string)=> Promise',
           'defaultValue': '--',
           'desc': { 'zh-CN': '激活单元格编辑', 'en-US': 'Activate cell editing' },
           'demoId': 'grid-edit#edit-trigger-mode-hm-editing'
         },
         {
           'name': 'setActiveRow',
-          'type': '(row: Row)=> Promise',
+          'type': '(row: IRow)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '激活行编辑，如果是 mode=cell 则默认激活第一个单元格',
@@ -1417,7 +1417,7 @@ export default {
         },
         {
           'name': 'setCurrentRow(row)',
-          'type': '(row: Row)=> Promise',
+          'type': '(row: IRow)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于当前行，设置某一行为高亮状态',
@@ -1427,7 +1427,7 @@ export default {
         },
         {
           'name': 'setRadioRow',
-          'type': '(row: Row)=> Promise',
+          'type': '(row: IRow)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于单选行，设置某一行为选中状态',
@@ -1437,7 +1437,7 @@ export default {
         },
         {
           'name': 'setRowExpansion',
-          'type': '(rows: Row | Row[], checked: boolean)=> Promise',
+          'type': '(rows: IRow | IRow[], checked: boolean)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '设置展开行，第二个参数设置这一行展开与否',
@@ -1447,7 +1447,7 @@ export default {
         },
         {
           'name': 'setSelection',
-          'type': '(rows: Row | Row[], checked: boolean)=> Promise',
+          'type': '(rows: IRow | IRow[], checked: boolean)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于多选行，设置行为选中状态，第二个参数为选中与否',
@@ -1458,7 +1458,7 @@ export default {
         },
         {
           'name': 'setTreeExpansion',
-          'type': '(rows: Row | Row[], checked: boolean)=> Promise',
+          'type': '(rows: IRow | IRow[], checked: boolean)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '设置展开树形节点，第二个参数设置这一行展开与否',
@@ -1468,7 +1468,7 @@ export default {
         },
         {
           'name': 'showColumn',
-          'type': '(column: ColumnConfig)=> Promise',
+          'type': '(column: IColumnConfig)=> Promise',
           'defaultValue': '--',
           'desc': { 'zh-CN': '显示指定列', 'en-US': 'Display the specified column.' },
           'demoId': 'grid-custom#custom-hide-column'
@@ -1495,14 +1495,14 @@ export default {
         },
         {
           'name': 'toggleRowExpansion',
-          'type': '(row: Row)=> Promise',
+          'type': '(row: IRow)=> Promise',
           'defaultValue': '--',
           'desc': { 'zh-CN': '用于可展开表格，切换展开行', 'en-US': 'For expanding tables or switching rows.' },
           'demoId': 'grid-expand#expand-set-row-expansion'
         },
         {
           'name': 'toggleRowSelection',
-          'type': '(row: Row)=> Promise',
+          'type': '(row: IRow)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于多选行，切换某一行的选中状态',
@@ -1512,7 +1512,7 @@ export default {
         },
         {
           'name': 'toggleTreeExpansion',
-          'type': '(row: Row)=> Promise',
+          'type': '(row: IRow)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于可树形表格，切换展开树形节点',
@@ -1522,7 +1522,7 @@ export default {
         },
         {
           'name': 'validate',
-          'type': '(rows: Row | Row[], callback: ()=> void)=> Promise',
+          'type': '(rows: IRow | IRow[], callback: ()=> void)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -2088,7 +2088,7 @@ export default {
         },
         {
           'name': 'sort-method',
-          'type': '(row1: Row, row2: Row)=> boolean',
+          'type': '(row1: IRow, row2: IRow)=> boolean',
           'typeAnchorName': 'IValidRules',
           'defaultValue': '--',
           'desc': {
@@ -2185,7 +2185,7 @@ export default {
         },
         {
           'name': 'editor',
-          'type': 'IEditorConfig | (h, {row:Row, column: ColumnConfig})=> VueComponent',
+          'type': 'IEditorConfig | (h, {row:Row, column: IColumnConfig})=> VueComponent',
           'typeAnchorName': 'IEditorConfig',
           'defaultValue': '--',
           'desc': {
@@ -2208,7 +2208,7 @@ export default {
         },
         {
           'name': 'renderer',
-          'type': 'IEditorConfig | (h, {row: Row, column: ColumnConfig})=> VueComponent',
+          'type': 'IEditorConfig | (h, {row: IRow, column: IColumnConfig})=> VueComponent',
           'typeAnchorName': 'IEditorConfig',
           'defaultValue': '--',
           'desc': {
@@ -2438,7 +2438,7 @@ export default {
         },
         {
           'name': 'on-before-move',
-          'type': `(type: 'column' | 'row', row: Row)=> boolean`,
+          'type': `(type: 'column' | 'row', row: IRow)=> boolean`,
           'defaultValue': '--',
           'desc': {
             'zh-CN': '个性化面板拖拽前事件',
@@ -2451,10 +2451,20 @@ export default {
   ],
   types: [
     {
-      name: 'IPagerConfig',
+      name: 'IRow',
       type: 'interface',
       code: `
-interface IPagerConfig {
+interface IRow {
+  // 表格行数据
+  [string]: any
+}
+      `
+    },
+    {
+      name: 'IColumnConfig',
+      type: 'interface',
+      code: `
+interface IColumnConfig {
   type: 'index' | 'radio' | 'checkbox'
   id: string
   prop: string
@@ -2581,7 +2591,7 @@ interface IExpandConfig {
   // 对于同一级的节点，每次只能展开一个
   accordion?: boolean
   // 控制是否渲染展开行
-  activeMethod?:({row: Row})=> boolean
+  activeMethod?:({row: IRow})=> boolean
   // 配置是否显示展开图标
   showIcon?: boolean 
 }
@@ -2795,7 +2805,7 @@ interface IEditConfig {
   // 是否显示状态
   showStatus?: boolean
   // 自定义编辑规则，返回true可以编辑返回false则禁止编辑
-  activeMethod?: ({row: Row, column: ColumnConfig})=> boolean
+  activeMethod?: ({row: IRow, column: IColumnConfig})=> boolean
 }
       `
     },
@@ -2804,9 +2814,9 @@ interface IEditConfig {
       type: 'type',
       code: `
 interface IRecordset {
-  insertRecords: Row[]
-  removeRecords: Row[]
-  updateRecords: Row[]
+  insertRecords: IRow[]
+  removeRecords: IRow[]
+  updateRecords: IRow[]
 }
       `
     },
@@ -3124,20 +3134,20 @@ interface ISelectAllArgs {
   // 勾选状态
   checked: boolean
   // 列信息
-  column: ColumnConfig
+  column: IColumnConfig
   // 列下标
   columnIndex: number
   // 表格数据
-  data: Row[]
+  data: IRow[]
   fixed: boolean
   isHidden: boolean
   level: number
   // 勾选项的行数据信息
-  row: Row
+  row: IRow
   // 勾选项的行下标
   rowIndex: number
   // 选中的数据
-  selection: Row[]
+  selection: IRow[]
   seq: number
 }
       `
@@ -3150,7 +3160,7 @@ interface IToggleExpandChangeArgs {
   // 表格实例对象信息
   $table: VueComponent,
   //点击展开行的数据信息对象
-  row: Row
+  row: IRow
   // 点击展开行的下标 
   rowIndex: number
 }
@@ -3164,7 +3174,7 @@ interface IToggleTreeChangeArgs {
   // 表格实例对象信息
   $table: VueComponent,
   //点击展开行的数据信息对象
-  row: Row
+  row: IRow
   // 点击展开行的下标 
   rowIndex: number
 }
@@ -3178,9 +3188,9 @@ interface IValidErrorArgs {
   // 校验的单元格信息对象
   cell: Cell
   //校验单元格所在列的列配置信息对象
-  column: ColumnConfig
+  column: IColumnConfig
   //校验单元格所在行的信息对象
-  row: Row
+  row: IRow
   // 校验规则信息对象 
   rule: object
 }
@@ -3194,7 +3204,7 @@ interface ISortChangeArgs {
   // 表格实例对象信息
   $grid: VueComponent
   // 列信息
-  column: ColumnConfign
+  column: IColumnConfig
   // 排序的字段名
   field: string 
   // 排序类型升序或降序
@@ -3210,10 +3220,10 @@ interface ISortChangeArgs {
       code: `
 interface IClassNameArgs {
   seq: number
-  row: Row
+  row: IRow
   rowIndex: number
   $rowIndex: number
-  column: ColumnConfig
+  column: IColumnConfig
   columnIndex: number
   $columnIndex: number
 }
@@ -3224,9 +3234,9 @@ interface IClassNameArgs {
       type: 'type',
       code: `
 interface IIndexMethodArgs {
-  row: Row
+  row: IRow
   rowIndex: number
-  column: ColumnConfig
+  column: IColumnConfig
   columnIndex: number
 }
       `
@@ -3237,7 +3247,7 @@ interface IIndexMethodArgs {
       code: `
 interface IFormatConfig {
   // 列数据源
-  data: ColumnConfig[] 
+  data: IColumnConfig[] 
   // 内置渲染器类型，与 format-text 属性取值相同
   type: 'money' | 'enum' | 'select' | 'number' | 'integer' | 'filesize' | 'date' | 'dateTime' | 'longDateTime' | 'time' | 'longTime' | 'yearMonth' | 'ellipsis' | 'rate'
   // 配置为 true 后，支持动态修改 data 的数据。还可以配置为对象，配置为对象时，对象中可以配置 splitConfig.enabled（是否启用分隔配置）、splitConfig.valueSplit（指定 value 值的分隔符）、splitConfig.textSplit（指定 text 的分隔符）、fetch（列数据异步渲染，请求数据）
@@ -3290,7 +3300,7 @@ interface ISpanMethodArgs {
   // 行标
   $rowIndex: number
   // 列数据  
-  column: ColumnConfig
+  column: IColumnConfig
   // 列下标 
   columnIndex: number
   // 一个数组，保存了当前合并和计算的数据
@@ -3306,7 +3316,7 @@ interface IExportCsvOptions {
   filename: string
   original: boolean
   isHeader: boolean
-  data: Row[]
+  data: IRow[]
 }
       `
     },
@@ -3360,8 +3370,8 @@ interface IFilterConfig {
 interface IOPConfig {
   editConfig: IEditConfig
   pagerConfig: IPagerConfig
-  columns: ColumnConfig[]
-  data: Row[]
+  columns: IColumnConfig[]
+  data: IRow[]
   }[]
 }
       `
