@@ -4,8 +4,8 @@ test('主題样式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('badge#type')
 
-  const preview = page.locator('#preview')
-  const badge = preview.locator('.tiny-badge')
+  const demo = page.locator('#type')
+  const badge = demo.locator('.tiny-badge')
   const dangerBadge = badge.nth(1)
   const primaryBadge = badge.nth(2)
   const successBadge = badge.nth(3)
