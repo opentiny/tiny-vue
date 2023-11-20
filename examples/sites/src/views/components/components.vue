@@ -80,7 +80,7 @@
                           <span
                             v-html="
                               typeof row.defaultValue === 'string'
-                                ? row.defaultValue
+                                ? row.defaultValue || '--'
                                 : row.defaultValue?.[langKey] || '--'
                             "
                           ></span>
@@ -169,7 +169,7 @@ export default defineComponent({
             title: demo.name[state.langKey],
             link: `#${demo.demoId}`
           })) || []
-        if (apiModeState.demoMode !== 'single') {
+        if (apiModeState.demoMode !== 'single' && state.currJson?.apis?.length) {
           links.push({ key: 'API', title: 'API', link: '#API' })
         }
         if (state.cmpFAQMd) {

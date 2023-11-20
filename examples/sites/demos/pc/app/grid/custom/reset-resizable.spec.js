@@ -3,9 +3,9 @@ import { test, expect } from '@playwright/test'
 test.describe('手动重置列操作', () => {
   test('重置列宽', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('grid-customized#custom-resetResizable')
-    const draggerDom = page.getByRole('cell', { name: '名称' }).locator('.tiny-grid-resizable')
-    const thDom = page.getByRole('cell', { name: '名称' })
+    await page.goto('grid-custom#custom-reset-resizable')
+    const draggerDom = page.getByRole('cell', { name: '员工数' }).locator('.tiny-grid-resizable')
+    const thDom = page.getByRole('cell', { name: '员工数' })
     // 获取初始列宽
     const { width: thWidth } = await thDom.boundingBox()
     // 获取拖拽元素位置
@@ -30,14 +30,14 @@ test.describe('手动重置列操作', () => {
 
   test('重置列隐藏', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('grid-customized#custom-resetResizable')
+    await page.goto('grid-custom#custom-reset-resizable')
     await page.locator('.tiny-grid-custom__setting-btn').click()
-    await page.getByRole('row', { name: '名称 显示 未冻结' }).getByTitle('显示').getByRole('img').click()
+    await page.getByRole('row', { name: '员工数 显示 未冻结' }).getByTitle('显示').getByRole('img').click()
     await page.getByRole('button', { name: '确定' }).click()
-    const thHeader = page.locator('th.tiny-grid-header__column').nth(0)
-    await expect(thHeader).toContainText('员工数')
+    const thHeader = page.locator('th.tiny-grid-header__column').nth(1)
+    await expect(thHeader).toContainText('地址')
     await page.getByRole('button', { name: '重置列的隐藏操作' }).click()
-    const thHeader2 = page.locator('th.tiny-grid-header__column').nth(0)
-    await expect(thHeader2).toContainText('名称')
+    const thHeader2 = page.locator('th.tiny-grid-header__column').nth(1)
+    await expect(thHeader2).toContainText('员工数')
   })
 })

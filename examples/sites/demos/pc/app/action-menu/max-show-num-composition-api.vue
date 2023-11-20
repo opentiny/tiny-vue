@@ -2,7 +2,7 @@
   <tiny-action-menu :options="options" :max-show-num="1"> </tiny-action-menu>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { ActionMenu as TinyActionMenu } from '@opentiny/vue'
 

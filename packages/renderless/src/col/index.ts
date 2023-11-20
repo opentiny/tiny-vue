@@ -46,7 +46,7 @@ export const setGlobalAttrValue = ({ attr, className, value }) => {
 export const getClassName =
   ({ api, props, state }) =>
   () => {
-    const multiple = 24 / state.layout.cols
+    const multiple = 24 / (state.layout?.cols || 12)
     const span = props.span * multiple
     const offset = props.offset
     const push = props.move ? props.move : 0

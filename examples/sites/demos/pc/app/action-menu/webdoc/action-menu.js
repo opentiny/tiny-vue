@@ -5,35 +5,38 @@ export default {
     {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': 'ActionMenu 组件的基本用法。', 'en-US': 'Basic usage of the ActionMenu component.' },
+      'desc': {
+        'zh-CN': '',
+        'en-US': ''
+      },
       'codeFiles': ['basic-usage.vue']
     },
     {
       'demoId': 'disabled',
       'name': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
       'desc': {
-        'zh-CN': '通过 <code>disabled</code> 字段配置当前下拉选项是否为禁用状态',
-        'en-US': 'Use the <code>disabled</code> field to configure whether the current drop-down list box is disabled.'
+        'zh-CN': '<p>通过 <code>disabled</code> 字段设置当前下拉选项是否为禁用状态。</p>',
+        'en-US': '<p>Set whether the current drop-down option is disabled through the<code>disabled</code>field.</p>'
       },
       'codeFiles': ['disabled.vue']
     },
     {
       'demoId': 'text-field',
-      'name': { 'zh-CN': '显示文本', 'en-US': 'Display Text' },
+      'name': { 'zh-CN': '映射字段', 'en-US': 'Display Text' },
       'desc': {
-        'zh-CN': '通过属性 <code>text-field</code> 配置要显示文本的键值，默认值为 <code>label</code>。',
+        'zh-CN': '<p>通过 <code>text-field</code> 属性设置菜单项文本的键值，默认为 label。</p>',
         'en-US':
-          'Use the <code>text-field</code> attribute to configure the key value of the text to be displayed. The default value is <code>label</code>.'
+          '<p>Set the key value of the menu item text through the<code>text-field</code>attribute, which defaults to label.</p>'
       },
       'codeFiles': ['text-field.vue']
     },
     {
       'demoId': 'more-text',
-      'name': { 'zh-CN': '下拉按钮显示文本', 'en-US': 'The text of the drop-down button is displayed.' },
+      'name': { 'zh-CN': '下拉按钮文本', 'en-US': 'Dropdown button text' },
       'desc': {
-        'zh-CN': '通过属性 <code>more-text</code> 配置下拉菜单显示文本,默认值为 <code>更多</code',
+        'zh-CN': '<p>通过 <code>more-text</code> 属性设置下拉按钮文本,默认为 <code>更多</code>。</p>',
         'en-US':
-          'Use the attribute <code>more-text</code> to configure the text to be displayed in the drop-down list box. The default value is <code>More</code'
+          '<p>Set the dropdown button text through the <code>more-text</code> attribute, default to<code>More</code></p>'
       },
       'codeFiles': ['more-text.vue']
     },
@@ -41,68 +44,62 @@ export default {
       'demoId': 'spacing',
       'name': { 'zh-CN': '间距', 'en-US': 'Spacing' },
       'desc': {
-        'zh-CN': '通过属性 <code>spacing</code> 配置菜单按钮之间的间距,默认值为 <code>5px</code>。',
+        'zh-CN': '<p>通过 <code>spacing</code> 属性设置菜单按钮之间的间距,默认为 <code>5px</code>。</p>',
         'en-US':
-          'The <code>spacing</code> attribute is used to configure the spacing between menu buttons. The default value is <code>5px</code>.'
+          '<p>Set the spacing between menu buttons through the <code>spacing</code> attribute, which defaults to <code>5px</code>.</p>'
       },
       'codeFiles': ['spacing.vue']
     },
     {
       'demoId': 'popper-class',
-      'name': { 'zh-CN': '自定义下拉面板样式', 'en-US': 'Customize drop-down panel style' },
+      'name': { 'zh-CN': '弹框样式', 'en-US': 'Bullet Box Style' },
       'desc': {
-        'zh-CN': '通过属性 <code>popper-class</code> 设置下拉面板的类名，自定义样式',
-        'en-US': 'Set the class name and style of the drop-down panel through the <code>popper-class</code> attribute.'
+        'zh-CN': '<p>通过 <code>popper-class</code> 属性设置下拉面板的类名，自定义样式。</p>',
+        'en-US':
+          '<p>Set the class name of the drop-down panel and customize the style through the<code>popper class</code>attribute.</p>'
       },
       'codeFiles': ['popper-class.vue']
     },
     {
       'demoId': 'max-show-num',
-      'name': { 'zh-CN': '显示个数', 'en-US': 'Displayed Number' },
+      'name': { 'zh-CN': '个数限制', 'en-US': 'Number limit' },
       'desc': {
-        'zh-CN': '通过属性 <code>max-show-num</code> 配置显示菜单按钮的最大个数，默认值为 <code>2</code> ',
+        'zh-CN': '<p>通过 <code>max-show-num</code> 属性设置显示最多显示菜单按钮的个数，默认为 2。</p>',
         'en-US':
-          'The <code>max-show-num</code> attribute specifies the maximum number of displayed menu buttons. The default value is <code>2</code>'
+          '<p>By setting the<code>max show num</code>attribute, the maximum number of displayed menu buttons is set to 2 by default.</p>'
       },
       'codeFiles': ['max-show-num.vue']
     },
     {
-      'demoId': 'item-click',
-      'name': { 'zh-CN': '菜单项点击事件', 'en-US': 'Menu Item Click Event' },
+      'demoId': 'events',
+      'name': { 'zh-CN': '事件', 'en-US': 'Menu Item Click Event' },
       'desc': {
-        'zh-CN': '当选中菜单项时触发 <code>item-click</code> 事件，传递出去的参数为当前选中项的数据',
+        'zh-CN':
+          '<div class="tip custom-block">' +
+          '<p class="custom-block-title">事件说明</p>\n' +
+          '<p>item-click：监听菜单项的点击事件。</p>\n' +
+          '<p>more-click：监听下拉按钮的点击事件。trigger 为 click 时生效。</p>\n' +
+          '<p>visible-change：监听下拉弹框的显示或隐藏状态变化。</p>\n' +
+          '</div>\n',
+
         'en-US':
-          'When a menu item is selected, the <code>item-click</code> event is triggered. The transferred parameter is the data of the selected item.'
+          '<div class="tip custom-block">' +
+          '<p class="custom-block-title">Event description</p>\n' +
+          '<p>item-click：Listen for click events on menu items.</p>\n' +
+          '<p>more-click：Listen for the click event of the drop-down button. Effective when trigger is click.</p>\n' +
+          '<p>visible-change：Monitor the display or hidden status changes of the dropdown pop-up.</p>\n' +
+          '</div>\n'
       },
-      'codeFiles': ['item-click.vue']
-    },
-    {
-      'demoId': 'more-click',
-      'name': { 'zh-CN': '更多按钮点击事件', 'en-US': 'More button click event' },
-      'desc': {
-        'zh-CN': '当点击下拉菜单按钮时触发 <code>more-click</code> 事件',
-        'en-US': 'The <code>more-click</code> event is triggered when a drop-down list button is clicked.'
-      },
-      'codeFiles': ['more-click.vue']
+      'codeFiles': ['events.vue']
     },
     {
       'demoId': 'slot-item',
       'name': { 'zh-CN': '菜单项插槽', 'en-US': 'Menu Slot' },
       'desc': {
-        'zh-CN': '通过 <code>#item</code> 配置下拉面板中选项的模板',
-        'en-US': 'Use <code>#item</code> to configure the template for the options in the drop-down list box.'
+        'zh-CN': '<p>通过 <code>item</code> 插槽自定义下拉选项的 HTML 模板。</p>',
+        'en-US': '<p>Customize the HTML template for dropdown options through the <code>item</code> slot.</p>'
       },
       'codeFiles': ['slot-item.vue']
-    },
-    {
-      'demoId': 'visible-change',
-      'name': { 'zh-CN': '下拉面板显示事件', 'en-US': 'Drop-down menu visible change' },
-      'desc': {
-        'zh-CN': '当下拉面板出现或者隐藏时触发 <code>visible-change</code> 事件',
-        'en-US':
-          'When the drop-down menu change to be visible or hidden, the <code>visible-change</code> event is triggered.'
-      },
-      'codeFiles': ['visible-change.vue']
     }
   ],
   apis: [
@@ -111,121 +108,140 @@ export default {
       'type': 'component',
       'properties': [
         {
-          'name': 'options',
-          'type': 'Array',
-          'defaultValue': '[]',
+          'name': 'max-show-num',
+          'type': 'number',
+          'defaultValue': '2',
           'desc': {
-            'zh-CN':
-              "可以配置菜单按钮数据，默认值为 [],数组中的每个元素为对象item,每个 item 一般可包含的字段有 (label,children,disabled,divided),例如：{ label: '登录',children:[],divided: true,disabled :true}。",
+            'zh-CN': '最多显示菜单按钮的个数，其他菜单在下拉弹框显示',
             'en-US':
-              "You can configure menu button data. The default value is []. Each element in the array is an object item. Each item can contain the following fields: label, children, disabled, and divided, for example, {label:'Login', children:[],divided: true,disabled :true} ."
+              'The maximum number of displayed menu buttons, and other menus are displayed in the drop-down pop-up box'
           },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'label',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '菜单项的显示值', 'en-US': 'Display value of a menu item' },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'children',
-          'type': 'Array',
-          'defaultValue': '[]',
-          'desc': { 'zh-CN': '菜单项的子集', 'en-US': 'Subset of menu items' },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'divided',
-          'type': 'boolean',
-          'defaultValue': 'false',
-          'desc': { 'zh-CN': '显示分割线。默认值：false', 'en-US': 'Displays the split line. Default value: false' },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'disabled',
-          'type': 'boolean',
-          'defaultValue': 'false',
-          'desc': {
-            'zh-CN': '是否禁用。默认：false',
-            'en-US': 'Whether to disable the function. Default value: false'
-          },
-          'demoId': 'disabled'
-        },
-        {
-          'name': 'text-field',
-          'type': 'string',
-          'defaultValue': 'label',
-          'desc': {
-            'zh-CN': '设置菜单按钮显示文本的键值,默认值为 label',
-            'en-US': 'Set the key value of the displayed text of a menu button. The default value is label.'
-          },
-          'demoId': 'text-field'
+          'demoId': 'max-show-num'
         },
         {
           'name': 'more-text',
           'type': 'string',
           'defaultValue': '更多',
           'desc': {
-            'zh-CN': '配置下拉按钮显示文本,默认值为“更多”',
-            'en-US': 'Configure the display text of the drop-down button. The default value is More.'
+            'zh-CN': '下拉按钮文本',
+            'en-US': 'Dropdown button text'
           },
           'demoId': 'more-text'
         },
         {
-          'name': 'spacing',
-          'type': '[string,number]',
-          'defaultValue': '5px',
+          'name': 'options',
+          'type': 'IItemData[]',
+          'typeAnchorName': 'IItemData',
+          'defaultValue': '[]',
           'desc': {
-            'zh-CN': '配置菜单按钮之间的间距,默认值为 5px',
-            'en-US': 'Set the spacing between menu buttons. The default value is 5px.'
+            'zh-CN': '菜单项列表的数据',
+            'en-US': 'Data for menu item list'
           },
-          'demoId': 'spacing'
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'options.label',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '菜单项文本',
+            'en-US': 'Menu Item Text'
+          },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'options.children',
+          'type': 'IItemData[]',
+          'typeAnchorName': 'IItemData',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '菜单项的子集',
+            'en-US': 'Subset of menu items'
+          },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'options.divided',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否显示分割线',
+            'en-US': 'Whether to display split lines'
+          },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'options.disabled',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否禁用',
+            'en-US': 'Is it disabled'
+          },
+          'demoId': 'disabled'
         },
         {
           'name': 'popper-class',
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置下拉面板的类名，自定义样式',
-            'en-US': 'Set the class name of the drop-down list box and customize the style.'
+            'zh-CN': '下拉弹框的类名，用于自定义样式',
+            'en-US': 'The class name of the dropdown pop-up box, used for customizing styles'
           },
           'demoId': 'popper-class'
         },
         {
-          'name': 'max-show-num',
-          'type': 'number',
-          'defaultValue': '2',
+          'name': 'spacing',
+          'type': '[string,number]',
+          'defaultValue': '5px',
           'desc': {
-            'zh-CN': ' 配置显示菜单按钮的最大个数，默认值为2',
-            'en-US': 'Maximum number of menu buttons to be displayed. The default value is 2.'
+            'zh-CN': '菜单按钮之间的间距',
+            'en-US': 'Spacing between menu buttons'
           },
-          'demoId': 'max-show-num'
+          'demoId': 'spacing'
+        },
+        {
+          'name': 'text-field',
+          'type': 'string',
+          'defaultValue': 'label',
+          'desc': {
+            'zh-CN': '菜单按钮文本的键值',
+            'en-US': 'Key values for menu button text'
+          },
+          'demoId': 'text-field'
         }
       ],
       'events': [
         {
           'name': 'item-click',
-          'type': 'Function',
-          'defaultValue': 'Function(data:object)',
+          'type': '(data:IItemClickParams) => void',
+          'typeAnchorName': 'IItemClickParams',
+          'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '当选中菜单项时触发。返回数据data为object类型，对象包含字段 itemData 和 vm 字段，itemData 为当前选中项的数据（仅配置式时生效），vm 为当前选中项的实例',
-            'en-US':
-              'The itemClick event is triggered when a menu item is selected. The transferred parameter is the data of the selected item.'
+            'zh-CN': '监听菜单项的点击事件',
+            'en-US': 'Listen for click events on menu items'
           },
-          'demoId': 'item-click'
+          'demoId': 'events'
         },
         {
           'name': 'more-click',
-          'type': 'Function',
-          'defaultValue': 'Function',
+          'type': '() => void',
+          'defaultValue': '',
           'desc': {
-            'zh-CN': '当点击下拉按钮时触发。',
-            'en-US': 'The moreClick event is triggered when a drop-down list button is clicked.'
+            'zh-CN': '监听下拉按钮的点击事件。trigger 为 click 时生效',
+            'en-US': 'Listen for the click event of the drop-down button. Effective when trigger is click'
           },
-          'demoId': 'more-click'
+          'demoId': 'events'
+        },
+        {
+          'name': 'visible-change',
+          'type': '(status: boolean) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '监听下拉弹框的显示或隐藏状态变化',
+            'en-US': 'Monitor the display or hidden state changes of the dropdown pop-up box'
+          },
+          'demoId': 'events'
         }
       ],
       'slots': [
@@ -233,10 +249,42 @@ export default {
           'name': 'item',
           'type': '插槽',
           'defaultValue': '',
-          'desc': { 'zh-CN': '下拉面板中选项插槽', 'en-US': 'Slots in the drop-down list box' },
+          'desc': {
+            'zh-CN': '菜单选项插槽',
+            'en-US': 'Menu option slot'
+          },
           'demoId': 'slot-item'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IItemData',
+      type: 'interface',
+      code: `
+interface IItemData {
+  label: string           // 菜单项文本
+  disabled: boolean       // 是否禁用
+  divided: boolean        // 是否显示分割线
+  children: IItemData[] // 菜单项子集
+}
+`
+    },
+    {
+      name: 'IItemClickParams',
+      type: 'interface',
+      code: `
+interface IItemClickParams {
+  itemData: IItemData     // 菜单项配置
+  vm: {                   // 菜单项实例
+    "selected": boolean
+    "textField: string
+    "tipPosition: string
+    "$el": HTMLElement
+  }       
+}
+`
     }
   ]
 }

@@ -47,13 +47,13 @@ import {
 } from '@opentiny/vue'
 
 const sizeList = ref([
-  { text: 'mini', value: 'mini' },
+  { text: 'medium', value: 'medium' },
   { text: 'small', value: 'small' },
-  { text: 'medium', value: 'medium' }
+  { text: 'mini', value: 'mini' }
 ])
 const sizeValue = ref('mini')
 const createData = reactive({
-  quantity: '',
+  quantity: 0,
   sex: '1',
   datepicker: '',
   textarea: '',

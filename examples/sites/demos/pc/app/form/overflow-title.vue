@@ -30,7 +30,7 @@ export default {
     return {
       formData: {
         user: '',
-        quantity: '',
+        quantity: 0,
         sex: ''
       }
     }

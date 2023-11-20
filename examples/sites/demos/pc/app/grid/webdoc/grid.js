@@ -652,17 +652,6 @@ export default {
           'demoId': 'grid-data-source#data-source-columns'
         },
         {
-          'name': 'scroll-load',
-          'type': 'IScrollLoadConfig',
-          'typeAnchorName': 'IScrollLoadConfig',
-          'defaultValue': '--',
-          'desc': {
-            'zh-CN': '滚动加载配置,设置是否滚动加载分页，当 showPager 为 true 时有效。',
-            'en-US': 'Rolling configuration loading, This parameter is valid only when showPager is set to true.'
-          },
-          'demoId': 'grid-large-data#large-data-scroll-paging'
-        },
-        {
           'name': 'row-span',
           'type': '{ field: string }[]',
           'defaultValue': '--',

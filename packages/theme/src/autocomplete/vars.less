@@ -12,25 +12,25 @@
 
 .component-css-vars-autocomplete() {
   // 下拉框边框圆角
-  --ti-autocomplete-suggestion-border-radius: var(--ti-common-border-radius-normal);
+  --ti-autocomplete-suggestion-border-radius: var(--ti-common-border-radius-normal, 2px);
   // 下拉框边框色
-  --ti-autocomplete-suggestion-border-color: var(--ti-common-color-transparent);
+  --ti-autocomplete-suggestion-border-color: var(--ti-common-color-transparent, transparent);
   // 下拉框背景色
-  --ti-autocomplete-suggestion-bg-color: var(--ti-common-color-bg-white-normal);
+  --ti-autocomplete-suggestion-bg-color: var(--ti-common-color-bg-white-normal, #fff);
   // 下拉框列表项的文本色
-  --ti-autocomplete-li-text-color: var(--ti-common-color-text-primary);
+  --ti-autocomplete-li-text-color: var(--ti-common-color-text-primary, #252b3a);
   // 下拉框列表项字号
-  --ti-autocomplete-li-font-size: var(--ti-common-font-size-base);
+  --ti-autocomplete-li-font-size: var(--ti-common-font-size-base, 12px);
   // 下拉框列表项的悬浮背景色
-  --ti-autocomplete-li-hover-bg-color: var(--ti-common-color-hover-background);
+  --ti-autocomplete-li-hover-bg-color: var(--ti-common-color-hover-background, #f2f5fc);
   // 下拉框列表选中项的背景色
-  --ti-autocomplete-li-select-bg-color: var(--ti-common-color-selected-background);
+  --ti-autocomplete-li-select-bg-color: var(--ti-common-color-selected-background, #5e7ce0);
   // 下拉框列表选中项的文本色
-  --ti-autocomplete-li-selected-text-color: var(--ti-common-color-selected-text-color);
+  --ti-autocomplete-li-selected-text-color: var(--ti-common-color-selected-text-color, #fff);
   // 每项的分配者的边框色（没有效果）
-  --ti-autocomplete-li-divider-border-color: var(--ti-common-color-dark);
+  --ti-autocomplete-li-divider-border-color: var(--ti-common-color-dark, #000);
   // 下拉框列表项高度
-  --ti-autocomplete-li-height: calc(var(--ti-common-size-7x) + 2px);
+  --ti-autocomplete-li-height: calc(var(--ti-common-size-7x, 28px) + 2px);
   // 加载图标色（没有效果
-  --ti-autocomplete-loading-text-color: var(--ti-common-color-placeholder);
+  --ti-autocomplete-loading-text-color: var(--ti-common-color-placeholder, #adb0b8);
 }

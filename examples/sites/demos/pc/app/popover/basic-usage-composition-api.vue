@@ -1,12 +1,5 @@
 <template>
-  <tiny-popover
-    placement="top-start"
-    title="标题"
-    width="200"
-    trigger="hover"
-    append-to-body
-    content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
-  >
+  <tiny-popover placement="top-start" title="标题" content="这是一段内容。" width="200">
     <template #reference>
       <tiny-button>悬浮我提示</tiny-button>
     </template>

@@ -1,12 +1,10 @@
 import { test, expect } from '@playwright/test'
 
-test('动态生成列测试', async ({ page }) => {
+test('根据日期动态生成列', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('grid-dynamically-columns#grid_Example-dynamicallyColumns')
-  await page.getByRole('textbox').nth(2).click()
-  await page.getByText('三月').first().click()
-  await page.getByText('四月').first().click()
-  const firstTh = page.locator('//*[@id="preview"]/div[2]/div[2]/div/div[2]/div[1]/div[2]/table/thead/tr[1]/th[2]')
-
-  await expect(firstTh).toContainText('3')
+  await page.goto('grid-dynamically-columns#dynamically-columns-dynamically-columns')
+  await page.getByRole('textbox').nth(1).click()
+  await page.getByText('十二月').first().click()
+  await page.getByText('二月').nth(2).click()
+  await expect(page.getByRole('cell', { name: '12' })).toBeVisible()
 })
