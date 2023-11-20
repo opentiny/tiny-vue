@@ -4,7 +4,8 @@ test('测试朴素按钮', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('button-group#plain')
 
-  const buttonGroup = page.locator('.tiny-button-group').nth(1)
+  const demo = page.locator('#plain')
+  const buttonGroup = demo.locator('.tiny-button-group')
   const button3 = page.getByRole('button', { name: 'Button3' })
   await button3.click()
   await expect(button3).toHaveClass(/plain/)

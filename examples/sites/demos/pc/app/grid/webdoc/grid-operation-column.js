@@ -76,7 +76,8 @@ export default {
       'demoId': 'operation-column-dropdown',
       'name': { 'zh-CN': '表头下拉菜单', 'en-US': '' },
       'desc': {
-        'zh-CN': '<p>使用多选列 dropdown 插槽，可以在多选列表头配置自定义下拉菜单，示例中使用 AuiDropdown 组件。</p>\n',
+        'zh-CN':
+          '<p>使用多选列 dropdown 插槽，可以在多选列表头配置自定义下拉菜单，示例中使用 TinyDropdown 组件。</p>\n',
         'en-US': ''
       },
       'codeFiles': ['operation-column/dropdown.vue']

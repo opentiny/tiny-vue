@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('工具栏基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('grid-toolbar#tiny-first-menu-insert-delete-update')
+  await page.goto('grid-toolbar#toolbar-insert-delete-update')
 
   // 新增
   await page.getByRole('button', { name: '新增' }).click()

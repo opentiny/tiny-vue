@@ -1,7 +1,7 @@
 <template>
   <tiny-grid :data="tableData">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column min-width="200px" field="name" title="名称"></tiny-grid-column>
+    <tiny-grid-column min-width="200px" field="name" title="名称最小宽度"></tiny-grid-column>
     <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
     <tiny-grid-column field="address" title="地址"></tiny-grid-column>
     <tiny-grid-column field="name" title="名称"></tiny-grid-column>

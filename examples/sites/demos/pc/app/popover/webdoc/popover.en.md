@@ -4,4 +4,4 @@ title: Popover
 
 # Popover
 
-<div>Popover can trigger a pop-up dialog box by performing operations on a trigger source. The pop-up content, delay triggering, and gradient animation are supported.</div>
+<div>Popover You can perform operations on a trigger source to trigger a pop-up box, which is used to prompt and explain information.</div>

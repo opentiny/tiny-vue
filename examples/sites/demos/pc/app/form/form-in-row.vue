@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       formData: {
-        quantity: '',
+        quantity: 0,
         sex: ''
       }
     }

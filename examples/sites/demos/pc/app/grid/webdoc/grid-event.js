@@ -49,7 +49,7 @@ export default {
       'codeFiles': ['event/cell-mouse-event.vue']
     },
     {
-      'demoId': 'event-edit-actived-event',
+      'demoId': 'event-edit-event',
       'name': {
         'zh-CN': '单元格编辑相关事件',
         'en-US': 'This event is triggered when a cell is activated for editing.'

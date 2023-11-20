@@ -15,7 +15,7 @@ import { reactive } from 'vue'
 import { Form as TinyForm, FormItem as TinyFormItem, Numeric as TinyNumeric, Radio as TinyRadio } from '@opentiny/vue'
 
 const formData = reactive({
-  quantity: '',
+  quantity: 0,
   sex: ''
 })
 </script>

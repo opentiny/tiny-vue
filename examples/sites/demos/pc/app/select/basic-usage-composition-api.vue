@@ -1,7 +1,10 @@
 <template>
-  <tiny-select v-model="value" placeholder="请选择">
-    <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
-  </tiny-select>
+  <div>
+    <p>选中的值为： {{ value }}</p>
+    <tiny-select v-model="value">
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-select>
+  </div>
 </template>
 
 <script setup>
@@ -17,3 +20,13 @@ const options = ref([
 ])
 const value = ref('')
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

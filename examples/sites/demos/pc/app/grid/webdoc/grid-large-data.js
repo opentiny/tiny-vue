@@ -3,17 +3,6 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'large-data-scroll-paging',
-      'name': { 'zh-CN': '滚动分页', 'en-US': 'Scroll Pagination' },
-      'desc': {
-        'zh-CN':
-          '<p>滚动分页配置步骤：\n1、表格属性设置 <code>fetch-data</code> 开启服务请求；\n2、表格属性设置 <code>scroll-load</code> 开启滚动分页。</p>\n',
-        'en-US':
-          '<p>Scrolling pagination configuration procedure:\n1. Set the table attribute <code>fetch-data</code> to enable the service request. \n2. Set <code>scroll-load</code> to enable scrolling. </p>\n'
-      },
-      'codeFiles': ['large-data/scroll-paging.vue']
-    },
-    {
       'demoId': 'large-data-virtual-rolling',
       'name': { 'zh-CN': '虚拟滚动', 'en-US': 'Virtual Scrolling' },
       'desc': {

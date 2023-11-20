@@ -10,7 +10,7 @@
       value-split="@"
       text-split="@"
     ></tiny-popeditor>
-    <div v-if="value">value 值：{{ value }}</div>
+    <div class="demo-pop-editor-selected-box" v-if="value">value 值：{{ value }}</div>
   </div>
 </template>
 
@@ -107,3 +107,9 @@ const gridOp = ref({
   data: dataset
 })
 </script>
+
+<style scoped>
+.demo-pop-editor-selected-box {
+  margin-top: 12px;
+}
+</style>

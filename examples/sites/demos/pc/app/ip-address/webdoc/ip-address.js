@@ -7,9 +7,9 @@ export default {
       'name': { 'zh-CN': '基础用法', 'en-US': 'Basic Usage' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>v-model</code> 设置绑定值， <code>type</code> 设置类型，可选值为 <code>IPv4</code> ， <code>IPv6</code> ，默认为 <code>ipv4</code> 。</p>',
+          '<p>通过 <code>v-model</code> 设置绑定值， <code>type</code> 设置类型，可选值为 <code>IPv4</code> 、<code>IPv6</code> 。</p>',
         'en-US':
-          '<p>Set the binding value through <code>v-model</code> , and set the type through <code>type</code> . The optional values are <code>IPv4</code> , <code>IPv6</code> , and the default is <code>ipv4</code> .</p>'
+          '<p>Set the binding value through <code>v-model</code> , and set the type through <code>type</code> . The optional values are <code>IPv4</code> , <code>IPv6</code>.</p>'
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -27,8 +27,8 @@ export default {
       'demoId': 'readonly',
       'name': { 'zh-CN': '文本只读', 'en-US': 'Read-only text' },
       'desc': {
-        'zh-CN': '<p>通过 <code>readonly</code> 设置文本的只读行，默认为 false 。</p>',
-        'en-US': '<p>Use the <code>readonly</code> attribute to set the read-only line of the text </p>'
+        'zh-CN': '<p>通过 <code>readonly</code> 设置文本的只读行。</p>',
+        'en-US': '<p>Use the <code>readonly</code> attribute to set the read-only line of the text.</p>'
       },
       'codeFiles': ['readonly.vue']
     },
@@ -36,7 +36,7 @@ export default {
       'demoId': 'disabled',
       'name': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
       'desc': {
-        'zh-CN': '<p>通过 <code>disabled</code> 设置文本是否禁用，默认为 false。</p>',
+        'zh-CN': '<p>通过 <code>disabled</code> 设置文本是否禁用。</p>',
         'en-US': '<p>The <code>disabled</code> attribute is used to set whether to disable text </p>'
       },
       'codeFiles': ['disabled.vue']
@@ -46,56 +46,30 @@ export default {
       'name': { 'zh-CN': '尺寸', 'en-US': 'Text box size' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>size</code> 设置尺寸，可选值有 <code>medium</code> ， <code>small</code> ， <code>mini</code> 。</p>',
+          '<p>通过 <code>size</code> 设置尺寸，可选值有 <code>medium</code> 、<code>small</code> 、<code>mini</code> ，不设置则为默认尺寸。</p>',
         'en-US':
           '<p>Set the size through <code>size</code> , and the optional values are <code>medium</code> , <code>small</code> , <code>mini</code> .</p>'
       },
       'codeFiles': ['size.vue']
     },
     {
-      'demoId': 'focus',
-      'name': { 'zh-CN': 'focus 事件', 'en-US': 'focus event' },
+      'demoId': 'event',
+      'name': { 'zh-CN': '事件', 'en-US': 'Event' },
       'desc': {
-        'zh-CN': '<p>文本框获取焦点时触发 <code>focus</code> 事件。</p>',
-        'en-US': 'The <code>focus</code> event is triggered when the text box obtains the focus. </p>'
+        'zh-CN': `<p>
+          文本框获取焦点时触发 <code>focus</code> 事件，失去焦点时触发 <code>blur</code> 事件。<br />
+          文本框内容改变后触发 <code>change</code> 事件。<br />
+          文本框输入时触发 <code>input</code> 事件。<br />
+          文本框内容选中时触发 <code>select</code> 事件。<br />
+        </p>`,
+        'en-US': `<p>
+          The<code>focus</code>event is triggered when the text box gains focus, and the<code>blur</code>event is triggered when the focus is lost.<br/>
+          Trigger the<code>change</code>event after the content of the text box changes.<br/>
+          Trigger the<code>input</code>event when entering a text box.<br/>
+          Trigger the<code>select</code>event when the content of the text box is selected.<br/>
+        </p>`
       },
-      'codeFiles': ['focus.vue']
-    },
-    {
-      'demoId': 'blur',
-      'name': { 'zh-CN': 'blur 事件', 'en-US': 'blur event' },
-      'desc': {
-        'zh-CN': '<p>文本框失去焦点时触发 <code>blur</code> 事件。</p>',
-        'en-US': 'The <code>blur</code> event is triggered when the text box loses focus. </p>'
-      },
-      'codeFiles': ['blur.vue']
-    },
-    {
-      'demoId': 'change',
-      'name': { 'zh-CN': 'change 事件', 'en-US': 'change event' },
-      'desc': {
-        'zh-CN': '<p>文本框内容改变后触发 <code>change</code> 事件。</p>',
-        'en-US': 'The <code>change</code> event is triggered when the text box content changes. </p>'
-      },
-      'codeFiles': ['change.vue']
-    },
-    {
-      'demoId': 'select',
-      'name': { 'zh-CN': 'select 事件', 'en-US': 'select event' },
-      'desc': {
-        'zh-CN': '<p>文本框内容选中时触发 <code>select</code> 事件。</p>',
-        'en-US': 'The <code>select</code> event is triggered when the text box content is selected. </p>'
-      },
-      'codeFiles': ['select.vue']
-    },
-    {
-      'demoId': 'input',
-      'name': { 'zh-CN': 'input 事件', 'en-US': 'input event' },
-      'desc': {
-        'zh-CN': '<p>文本框输入时触发 <code>input</code> 事件。</p>',
-        'en-US': 'The <code>input</code> event is triggered when a user enters a text box. '
-      },
-      'codeFiles': ['input.vue']
+      'codeFiles': ['event.vue']
     }
   ],
   apis: [
@@ -105,10 +79,10 @@ export default {
       'props': [
         {
           'name': 'delimiter',
-          'type': 'string | Component',
-          'defaultValue': 'icon-dot-ipv4',
+          'type': 'VueComponent',
+          'defaultValue': 'IconDotIpv4',
           'desc': {
-            'zh-CN': '设置IP段之间的分隔符，默认图标icon-dot-ipv4',
+            'zh-CN': '设置IP段之间的分隔符，默认图标为IconDotIpv4',
             'en-US': 'Set the separator between IP segments, default icon is icon-dot-ipv4'
           },
           'demoId': 'delimiter'
@@ -135,20 +109,20 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'medium | small | mini',
-          'defaultValue': '',
+          'type': "'medium' | 'small' | 'mini'",
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置组件大小',
-            'en-US': 'Set the component size'
+            'zh-CN': '地址输入框大小',
+            'en-US': 'Address Input Box Size'
           },
           'demoId': 'size'
         },
         {
           'name': 'type',
-          'type': 'IPv4 | IPv6',
-          'defaultValue': 'IPv4',
+          'type': "'IPv4' | 'IPv6'",
+          'defaultValue': "'IPv4'",
           'desc': {
-            'zh-CN': '设置 IpAddress 框的 类型',
+            'zh-CN': '设置 ip 地址输入框的 类型',
             'en-US': 'Sets the type attribute in the IpAddress box'
           },
           'demoId': 'basic-usage'
@@ -156,7 +130,7 @@ export default {
         {
           'name': 'v-model',
           'type': 'string',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '设置地址输入框的绑定值',
             'en-US': 'Set the binding value of the address input box'
@@ -168,7 +142,7 @@ export default {
         {
           'name': 'blur',
           'type': '(value: string, index: number) => void',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '文本框失去焦点时触发事件',
             'en-US': 'The event is triggered when the text box loses the focus'
@@ -178,7 +152,7 @@ export default {
         {
           'name': 'change',
           'type': '(value: string) => void',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '文本框内容改变后事件',
             'en-US': 'Event after changing the content of the text box'
@@ -188,7 +162,7 @@ export default {
         {
           'name': 'focus',
           'type': '(value: string, index: number) => void',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '文本框获取焦点时触发事件',
             'en-US': 'This event is triggered when a text box obtains the focus'
@@ -198,7 +172,7 @@ export default {
         {
           'name': 'input',
           'type': '(event: InputEvent) => void',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '文本框内容输入时触发事件',
             'en-US': 'Trigger event when entering text box content'
@@ -208,7 +182,7 @@ export default {
         {
           'name': 'select',
           'type': '(value: string, index: number) => void',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '文本框内容选中时触发事件',
             'en-US': 'Trigger event when text box content is selected'
@@ -220,7 +194,7 @@ export default {
         {
           'name': 'default',
           'type': '',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '默认插槽，自定义IP段之间的分隔符',
             'en-US': 'Separator between IP address segments'

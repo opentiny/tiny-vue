@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('提交前校验', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('grid-validation#grid_Example-gridValid-before-submit-validation')
+  await page.goto('grid-validation#validation-before-submit-validation')
   await page.getByText('GFD科技YX公司').first().click()
   await page
     .getByRole('row', {
@@ -12,5 +12,5 @@ test('提交前校验', async ({ page }) => {
     .fill('')
   await page.getByRole('button', { name: '保存' }).click()
 
-  await expect(page.getByText('校验不通过')).toBeVisible()
+  await expect(page.getByText('校验不通过', { exact: true })).toBeVisible()
 })
