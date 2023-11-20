@@ -14,22 +14,28 @@ import Share from './icons/Share.vue'
 const versions = ['3.11', '3.10', '3.9', '3.8']
 const latestVersion = versions[0]
 const cdnHost = window.localStorage.getItem('setting-cdn')
+const getRuntime = (version) => `${cdnHost}/@opentiny/vue@${version}/runtime/`
 
 const searchObj = new URLSearchParams(location.search)
 const tinyMode = searchObj.get('mode')
 const tinyTheme = tinyMode === 'saas' ? 'aurora' : searchObj.get('theme')
+const isMobileFirst = tinyMode === 'mobile-first'
 
 const createImportMap = (version) => {
   const imports = {
-    '@opentiny/vue': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue.mjs`,
-    '@opentiny/vue-icon': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-icon.mjs`,
-    '@opentiny/vue-locale': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-locale.mjs`,
-    '@opentiny/vue-common': `${cdnHost}/@opentiny/vue@${version}/runtime/tiny-vue-common.mjs`,
+    '@opentiny/vue': `${getRuntime(version)}tiny-vue.mjs`,
+    '@opentiny/vue-icon': `${getRuntime(version)}tiny-vue-icon.mjs`,
+    '@opentiny/vue-locale': `${getRuntime(version)}tiny-vue-locale.mjs`,
+    '@opentiny/vue-common': `${getRuntime(version)}tiny-vue-common.mjs`,
     '@opentiny/vue-theme/': `${cdnHost}/@opentiny/vue-theme@${version}/`,
     'sortablejs': `${cdnHost}/sortablejs@1.15.0/modular/sortable.esm.js`
   }
   if (['aurora', 'smb'].includes(tinyTheme)) {
     imports[`@opentiny/vue-design-${tinyTheme}`] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}@${version}/index.js`
+  }
+  if (isMobileFirst) {
+    imports['@opentiny/vue'] = `${getRuntime(version)}tiny-vue-mobile-first.mjs`
+    imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
   }
   return {
     imports
@@ -37,6 +43,9 @@ const createImportMap = (version) => {
 }
 
 const getTinyTheme = (version) => {
+  if (isMobileFirst) {
+    return `${getRuntime(version)}tailwind.css`
+  }
   let theme = tinyMode === 'saas' ? 'saas' : tinyTheme
   if (!['smb', 'default', 'aurora', 'saas'].includes(theme)) {
     theme = 'default'
@@ -81,7 +90,7 @@ const state = reactive({
 const designThemeMap = {
   aurora: 'tinyAuroraTheme',
   infinity: 'tinyInfinityTheme',
-  smb: 'tinySmbTheme',
+  smb: 'tinySmbTheme'
 }
 
 function setTinyDesign() {
@@ -90,14 +99,14 @@ function setTinyDesign() {
   // 目前只有aurora和smb有design包
   if (['aurora', 'smb'].includes(tinyTheme)) {
     importCode += `import designConfig from '@opentiny/vue-design-${tinyTheme}';
-      import { design } from '@opentiny/vue-common';\n`,
+      import { design } from '@opentiny/vue-common';\n`
     useCode += 'app.provide(design.configKey, designConfig)\n'
   }
 
   if (['aurora', 'infinity', 'smb'].includes(tinyTheme)) {
     const designTheme = designThemeMap[tinyTheme]
     importCode += `import TinyThemeTool from '@opentiny/vue-theme/theme-tool';
-      import { ${designTheme} } from '@opentiny/vue-theme/theme';\n`,
+      import { ${designTheme} } from '@opentiny/vue-theme/theme';\n`
     useCode += `const theme = new TinyThemeTool(${designTheme})\n`
   }
 
