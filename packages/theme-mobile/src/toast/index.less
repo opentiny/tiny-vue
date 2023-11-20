@@ -33,16 +33,16 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 20px;
+    padding: var(--ti-mobile-toast-padding-size);
     background-color: var(--ti-mobile-toast-bg-color-primary);
-    border-radius: 16px;
+    border-radius: var(--ti-mobile-toast-border-radius);
     box-shadow: var(--ti-mobile-toast-shadow, 0 0 20px 0 rgb(0 0 0 / 8%));
     backdrop-filter: blur(5px);
     max-width: var(--ti-mobile-toast-width-max);
+    min-width: 106px;
 
     &-text {
-      padding: 7px 20px;
-      border-radius: 18px;
+      padding: 7px 0;
     }
   }
 
@@ -50,11 +50,11 @@
     word-wrap: break-word;
     word-break: break-all;
     font-size: var(--ti-mobile-toast-text-font-size);
-    color: white;
+    color: var(--ti-mobile-toast-text-color-primary, #fff);
   }
 
   &-icon {
-    padding-bottom: 8px;
-    font-size: var(--ti-mobile-toast-icon-font-size);
+    padding-bottom: var(--ti-mobile-toast-padding-bottom);
+    font-size: var(--ti-mobile-toast-icon-size);
   }
 }
