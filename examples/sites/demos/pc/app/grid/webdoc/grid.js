@@ -2495,7 +2495,7 @@ interface IColumnConfig {
       type: 'interface',
       code: `
 interface IPagerConfig {
-  component?: Component
+  component?: VueComponent
   attrs: {
     currentPage: number
     pageSize: number
