@@ -11,3 +11,13 @@ test('关闭通知框前触发的事件', async ({ page }) => {
     .nth(1)
   await expect(cloEveNT).toBeVisible()
 })
+
+test('点击关闭按钮时触发事件', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('notify#close')
+  await page.getByRole('button', { name: '点击关闭按钮时触发事件' }).click()
+  const notify = page.locator('.tiny-notify')
+  await page.locator('.tiny-notify__icon-close').click()
+  const modal = page.locator('.tiny-modal__box')
+  await expect(modal).toBeVisible()
+})
