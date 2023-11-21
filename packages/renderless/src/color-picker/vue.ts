@@ -1,6 +1,6 @@
 import { IColorSelectPanelRef as Ref } from '@/types'
 import Color from './utils/color'
-import { onConfirm, onCancel, onHSVUpdate, onAlphaUpdate } from '.'
+import { onConfirm, onCancel, onHueUpdate, onSVUpdate, onColorUpdate } from './index'
 
 export const api = [
   'state',
@@ -17,9 +17,10 @@ export const api = [
 
 export const renderless = (props, context, { emit }) => {
   const { modelValue, visible, predefine, size, history } = context.toRefs(props)
-  const triggerBg = context.ref(modelValue.value ?? 'transparent');
-  const hex = context.ref(modelValue.value ?? 'transparent');
   const pre = context.ref(modelValue.value ?? 'transparent');
+  const triggerBg = context.ref(pre.value ?? 'transparent');
+  const tmpColor = new Color(triggerBg.value ?? 'transparent');
+  const hex = context.ref(modelValue.value ?? 'transparent');
   const isShow = context.ref(visible?.value ?? false)
   const changeVisible = (state: boolean) => {
     isShow.value = state
@@ -39,30 +40,14 @@ export const renderless = (props, context, { emit }) => {
     predefineStack,
     size: size ?? ''
   })
-  const tmpColor = new Color(modelValue.value ?? 'transparent');
   const api = {
     state,
     changeVisible,
-    onCancel: (color: Ref<Color>)=>{
-      triggerBg.value = pre.value
-      isShow.value = false;
-    },
-    onConfirm: (hex)=>{
-      pre.value = triggerBg.value;
-      triggerBg.value = hex;
-      isShow.value = false;
-    },
-    onHueUpdate: (h)=>{
-      tmpColor.set({h});
-      triggerBg.value = tmpColor.getHex();
-    },
-    onSVUpdate: ({s,v})=>{
-      tmpColor.set({s,v});
-      triggerBg.value = tmpColor.getHex();
-    },
-    onColorUpdate(color: Ref<Color>){
-      triggerBg.value = color.value.getHex();
-    }
+    onCancel: onCancel(tmpColor, triggerBg, isShow, pre, emit),
+    onConfirm: onConfirm(triggerBg, pre, hex, isShow, emit),
+    onHueUpdate: onHueUpdate(tmpColor, triggerBg),
+    onSVUpdate: onSVUpdate(tmpColor, triggerBg),
+    onColorUpdate: onColorUpdate(triggerBg)
   }
   context.watch(predefine, (newPredefine: string[]) => {
     predefineStack.value = [...newPredefine];

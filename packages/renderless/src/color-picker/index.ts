@@ -1,68 +1,61 @@
-import { IColorPickerRef, IColorSelectPanelRef } from '@/types'
+import { IColorPickerRef as Ref } from '@/types'
 import type Color from './utils/color'
 
-export const onConfirm = (
-  hex: IColorSelectPanelRef<string>,
-  triggerBg: IColorSelectPanelRef<string>,
-  res: IColorSelectPanelRef<string>,
-  emit,
-  isShow: IColorSelectPanelRef<boolean>,
-  prev: IColorPickerRef<string>
-) => {
-  return (color: string) => {
-    prev.value = res.value;
-    res.value =  color
-    hex.value = res.value
-    triggerBg.value = res.value
-    emit('confirm', res.value)
-    isShow.value = false
-  }
-}
-
 export const onCancel = (
-  res: IColorSelectPanelRef<string>,
-  triggerBg: IColorSelectPanelRef<string>,
-  emit,
-  isShow: IColorSelectPanelRef<boolean>,
-  hex: IColorSelectPanelRef<string>,
-  color: Color, prev: IColorPickerRef<string>
+  tmpColor: Color,
+  triggerBg: Ref<string>,
+  isShow: Ref<boolean>,
+  pre: Ref<string>,
+  emit
 ) => {
-  return () => {
-    if (isShow.value) {
-      res.value = prev.value;
-      hex.value = prev.value;
-      triggerBg.value = prev.value;
-      color.reset(hex.value)
-      emit('cancel')
-    }
-    isShow.value = false
-  }
-}
-export const onColorUpdate = (color: Color, res: IColorSelectPanelRef<string>, triggerBg: IColorPickerRef<string>) => {
-  res.value = color.getHex()
-  triggerBg.value = color.getHex();
-}
-
-export const onHSVUpdate = (color: Color, res: IColorSelectPanelRef<string>, hex: IColorSelectPanelRef<string>, triggerBg: IColorSelectPanelRef<string>) => {
-  return {
-    onHueUpdate: (hue: number) => {
-      color.set({ h: hue })
-      onColorUpdate(color, res, triggerBg)
-      hex.value = color.getHex()
-    },
-    onSVUpdate: ({ s, v }: { s: number; v: number }) => {
-      color.set({ h: color.get('h'), s, v })
-      onColorUpdate(color, res, triggerBg)
-      hex.value = color.getHex();
-    }
+  return (color: Ref<Color>)=>{
+    tmpColor.reset(color.value.getHex());
+    triggerBg.value = pre.value;
+    isShow.value = false;
+    emit('cancel')
   }
 }
 
-export const onAlphaUpdate = (color: Color, res: IColorSelectPanelRef<string>, triggerBg: IColorSelectPanelRef<string>) => {
-  return {
-    update: (alpha: number) => {
-      color.set({ a: alpha })
-      onColorUpdate(color, res, triggerBg)
-    }
+export const onConfirm = (
+  triggerBg: Ref<string>,
+  pre: Ref<string>,
+  hex: Ref<string>,
+  isShow: Ref<boolean>,
+  emit
+) => {
+  return (color: string)=>{
+    pre.value = triggerBg.value;
+    triggerBg.value = color;
+    hex.value = color;
+    isShow.value = false;
+    emit('confirm', color);
+  }
+}
+
+export const onHueUpdate = (
+  tmpColor: Color,
+  triggerBg: Ref<string>
+) => {
+  return (h: number) => {
+    triggerBg.value = tmpColor.getHex();
+    tmpColor.set({h});
+  }
+}
+
+export const onSVUpdate = (
+  tmpColor: Color,
+  triggerBg: Ref<string>
+) => {
+  return ({s,v})=>{
+    triggerBg.value = tmpColor.getHex();
+    tmpColor.set({s,v});
+  }
+}
+
+export const onColorUpdate = (
+  triggerBg: Ref<string>
+) => {
+  return (color: Ref<Color>) => {
+    triggerBg.value = color.value.getHex();
   }
 }
