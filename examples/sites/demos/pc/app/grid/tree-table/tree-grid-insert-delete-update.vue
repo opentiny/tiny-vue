@@ -222,21 +222,57 @@ export default {
         tree.refreshData().then(() => tree.setActiveRow(activeRow))
       })
     },
-    removeEvent() {
-      const isSameObject = (obj1, obj2) => JSON.stringify(obj1) === JSON.stringify(obj2)
-      let tree = this.$refs.tree
-      let removeRecords = tree.getSelectRecords()
-      let tableData = this.tableData
+    /**
+     * 删除 第一层数据
+     * @param data 源数据
+     * @param removeRecords 选中数据
+     */
+    deleteItemsByChecked(data, removeRecords) {
+      const targetIds = removeRecords.map((x) => x.id)
 
-      this.tableData = copy(tableData, removeRecords)
+      const idSet = new Set(targetIds) // 转换为集合以提高查找性能
 
-      for (let i = 0; i < this.tableData.length; i++) {
-        for (let j = 0; j < removeRecords.length; j++) {
-          if (isSameObject(this.tableData[i], removeRecords[j])) {
-            this.tableData.splice(i, 1)
+      for (let i = data.length - 1; i >= 0; i--) {
+        const node = data[i]
+        if (idSet.has(node.id)) {
+          data.splice(i, 1) // 删除当前节点
+
+          idSet.delete(node.id) // 处理完目标节点后从集合中删除对应的ID
+
+          if (idSet.size === 0) {
+            break // 如果所有目标节点都已处理完成，则结束遍历
           }
+        } else if (node.children && node.children.length > 0) {
+          this.deleteChildItems(node.children, idSet) // 递归删除子节点
         }
       }
+    },
+    /**
+     * 删除 子集数据
+     * @param children 子集数据
+     * @param idSet 删除id集合
+     */
+    deleteChildItems(children, idSet) {
+      for (let i = children.length - 1; i >= 0; i--) {
+        const node = children[i]
+
+        if (idSet.has(node.id)) {
+          children.splice(i, 1) // 删除当前节点
+
+          idSet.delete(node.id) // 处理完目标节点后从集合中删除对应的ID
+
+          if (idSet.size === 0) {
+            break // 如果所有目标节点都已处理完成，则结束遍历
+          }
+        } else if (node.children && node.children.length > 0) {
+          this.deleteChildItems(node.children, idSet) // 递归删除子节点的子节点
+        }
+      }
+    },
+    removeEvent() {
+      let tree = this.$refs.tree
+      let removeRecords = tree.getSelectRecords()
+      this.deleteItemsByChecked(this.tableData, removeRecords)
       this.removeList = removeRecords.map((item) => ({ ...item }))
     },
 
