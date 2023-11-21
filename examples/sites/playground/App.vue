@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, reactive, nextTick } from 'vue'
 import { Repl, useStore, File } from '@opentiny/vue-repl'
 import '@opentiny/vue-repl/dist/style.css'
 
@@ -14,7 +14,8 @@ import Share from './icons/Share.vue'
 const versions = ['3.11', '3.10', '3.9', '3.8']
 const latestVersion = versions[0]
 const cdnHost = window.localStorage.getItem('setting-cdn')
-const getRuntime = (version) => `${cdnHost}/@opentiny/vue@${version}/runtime/`
+const getRuntime = (version) =>
+  `${cdnHost}/@opentiny/vue@${version}/runtime/` && 'https://unpkg.com/@opentiny/vue@3.11.0-alpha.1/runtime/'
 
 const searchObj = new URLSearchParams(location.search)
 const tinyMode = searchObj.get('mode')
@@ -96,18 +97,22 @@ const designThemeMap = {
 function setTinyDesign() {
   let importCode = ''
   let useCode = ''
+
+  if (isMobileFirst) {
+    useCode += 'app.provide("TinyMode", "mobile-first");\n'
+  }
   // 目前只有aurora和smb有design包
   if (['aurora', 'smb'].includes(tinyTheme)) {
     importCode += `import designConfig from '@opentiny/vue-design-${tinyTheme}';
       import { design } from '@opentiny/vue-common';\n`
-    useCode += 'app.provide(design.configKey, designConfig)\n'
+    useCode += 'app.provide(design.configKey, designConfig);\n'
   }
 
   if (['aurora', 'infinity', 'smb'].includes(tinyTheme)) {
     const designTheme = designThemeMap[tinyTheme]
     importCode += `import TinyThemeTool from '@opentiny/vue-theme/theme-tool';
       import { ${designTheme} } from '@opentiny/vue-theme/theme';\n`
-    useCode += `const theme = new TinyThemeTool(${designTheme})\n`
+    useCode += `const theme = new TinyThemeTool(${designTheme});\n`
   }
 
   state.previewOptions.customCode = {
@@ -120,7 +125,7 @@ function versionChange(version) {
   const importMap = createImportMap(version)
   store.state.files['import-map.json'] = new File('', JSON.stringify(importMap))
 
-  setTimeout(() => {
+  nextTick(() => {
     if (!document.querySelector('iframe')) return
 
     const iframeWin = document.querySelector('iframe').contentWindow
@@ -128,8 +133,10 @@ function versionChange(version) {
     link.id = 'tiny-theme'
     link.rel = 'stylesheet'
     link.href = getTinyTheme(version)
-    iframeWin.document.head.append(link)
-  }, 300)
+    iframeWin.addEventListener('DOMContentLoaded', () => {
+      iframeWin.document.head.append(link)
+    })
+  })
 }
 
 function getDemoName(name, apiMode) {
