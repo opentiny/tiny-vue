@@ -8,7 +8,11 @@
           <p>自定义副标题xxxxxx</p>
         </div>
       </template>
-      <div>内容区域</div>
+      <div>
+        <br />
+        <br />
+        <span>内容区域</span>
+      </div>
     </tiny-drawer>
   </div>
 </template>
@@ -38,5 +42,16 @@ export default {
 .my-header {
   padding: 0 32px;
   border-bottom: 1px solid #ccc;
+}
+
+.my-header h3 {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.7;
+}
+
+.my-header p {
+  font-size: 12px;
+  line-height: 1.5;
 }
 </style>

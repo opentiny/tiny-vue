@@ -2,7 +2,11 @@
   <div>
     <tiny-button @click="fn" type="primary"> 关闭事件示例 </tiny-button>
     <tiny-drawer title="标题" :show-footer="true" :visible="visible" @update:visible="visible = $event" @close="close">
-      <div style="height: 200px; text-align: center">内容区域</div>
+      <div style="height: 200px; text-align: center">
+        <br />
+        <br />
+        <span>内容区域</span>
+      </div>
     </tiny-drawer>
   </div>
 </template>
