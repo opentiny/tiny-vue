@@ -17,12 +17,10 @@ export const api = [
 
 export const renderless = (props, context, { emit }) => {
   const { modelValue, visible, predefine, size, history } = context.toRefs(props)
-  const hex = context.ref(modelValue.value ?? 'transparent')
-  const res = context.ref(modelValue.value ?? 'transparent')
-  const prev = context.ref(modelValue.value ?? 'transparent')
-  const triggerBg = context.ref(modelValue.value ?? 'transparent')
+  const triggerBg = context.ref(modelValue.value ?? 'transparent');
+  const hex = context.ref(modelValue.value ?? 'transparent');
+  const pre = context.ref(modelValue.value ?? 'transparent');
   const isShow = context.ref(visible?.value ?? false)
-  const cursor: Ref<HTMLElement> = context.ref()
   const changeVisible = (state: boolean) => {
     isShow.value = state
   }
@@ -32,46 +30,54 @@ export const renderless = (props, context, { emit }) => {
   const predefineStack: Ref<string[]> = context.ref(
     [...(predefine?.value ?? [])]
   )
-  const color = new Color(hex.value, props.alpha)
   const state = context.reactive({
     isShow,
     hex,
-    color,
     triggerBg,
     defaultValue: modelValue,
-    res,
+    stack,
     predefineStack,
-    size: size ?? '',
-    stack
+    size: size ?? ''
   })
+  const tmpColor = new Color(modelValue.value ?? 'transparent');
+  const api = {
+    state,
+    changeVisible,
+    onCancel: (color: Ref<Color>)=>{
+      triggerBg.value = pre.value
+      isShow.value = false;
+    },
+    onConfirm: (hex)=>{
+      pre.value = triggerBg.value;
+      triggerBg.value = hex;
+      isShow.value = false;
+    },
+    onHueUpdate: (h)=>{
+      tmpColor.set({h});
+      triggerBg.value = tmpColor.getHex();
+    },
+    onSVUpdate: ({s,v})=>{
+      tmpColor.set({s,v});
+      triggerBg.value = tmpColor.getHex();
+    },
+    onColorUpdate(color: Ref<Color>){
+      triggerBg.value = color.value.getHex();
+    }
+  }
   context.watch(predefine, (newPredefine: string[]) => {
     predefineStack.value = [...newPredefine];
   }, { deep: true })
   context.watch(history, (newHistory: string[]) => {
     stack.value = [...newHistory]
   }, { deep: true })
-  context.watch(modelValue, (newValue) => {
+  context.watch(modelValue, (newValue)=>{
+    pre.value = newValue;
     hex.value = newValue
-    res.value = newValue
-    triggerBg.value = newValue
-    prev.value = newValue;
-    color.reset(hex.value)
+    state.hex = newValue
+    state.triggerBg = newValue;
   })
-  context.watch(visible, (visible) => {
-    isShow.value = visible
+  context.watch(visible, (visible)=>{
+    isShow.value = visible;
   })
-
-  const { onHueUpdate, onSVUpdate } = onHSVUpdate(color, res, hex, triggerBg)
-  const { update } = onAlphaUpdate(color, res, triggerBg)
-  const api = {
-    state,
-    changeVisible,
-    onHueUpdate,
-    onSVUpdate,
-    onConfirm: onConfirm(hex, triggerBg, res, emit, isShow, prev),
-    onCancel: onCancel(res, triggerBg, emit, isShow, hex, color, prev),
-    onAlphaUpdate: update,
-    cursor
-  }
   return api
 }
