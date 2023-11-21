@@ -5,7 +5,15 @@ export default {
     {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': `
+            通过 <code>data</code> 属性来设置数据源, 默认根据数据源里的<code>label</code>,<code>children</code>去展示层级数据。<br>
+            通过 <code>show-line</code> 属性设置是否显示连接线。<br>
+            通过 <code>size</code> 属性设置组件的大小。<br>
+            通过 <code>indent</code> 属性设置每一级的水平缩进，默认18px。<br>
+          `,
+        'en-US': 'For details, see the following example.'
+      },
       'codeFiles': ['basic-usage.vue']
     },
     {
