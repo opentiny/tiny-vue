@@ -5,7 +5,7 @@ export default {
     {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '', 'en-US': '' },
       'codeFiles': ['basic-usage.vue']
     },
     {
@@ -98,43 +98,35 @@ export default {
       'codeFiles': ['statusIcon.vue']
     },
     {
-      'demoId': 'beforeClose',
-      'name': { 'zh-CN': '关闭前的事件', 'en-US': 'Event before closing' },
-      'desc': {
-        'zh-CN': '<p>可通过 <code>beforeClose</code>  属性设置通知框关闭前的事件。</p>\n',
-        'en-US':
-          '<p>You can set the event before the notification box is closed through the <code>beforeClose</code> attribute. </p>\n'
-      },
-      'codeFiles': ['beforeClose.vue']
-    },
-    {
-      'demoId': 'close',
-      'name': {
-        'zh-CN': '关闭事件',
-        'en-US': 'Event of closing'
-      },
-      'desc': {
-        'zh-CN': '<p>可通过 <code>onClose</code>  属性设置通知点击关闭按钮时触发事件。</p>\n',
-        'en-US':
-          '<p>You can set the <code>onClose</code> attribute to trigger an event when the close button is clicked. </p>\n'
-      },
-      'codeFiles': ['onClose.vue']
-    },
-    {
       'demoId': 'debounceDelay',
       'name': { 'zh-CN': '防抖', 'en-US': 'Anti-shake' },
       'desc': {
-        'zh-CN': '<p>可通过 <code>debounceDelay</code> 设置防抖时间\n',
-        'en-US': '<p>You can use <code>debounceDelay</code> to set the image stabilization time.\n'
+        'zh-CN': '<p>可通过 <code>debounceDelay</code> 设置防抖时间。',
+        'en-US': '<p>You can use <code>debounceDelay</code> to set the image stabilization time.'
       },
       'codeFiles': ['debounceDelay.vue']
     },
     {
       'demoId': 'verticalOffset',
       'name': { 'zh-CN': '垂直偏移量', 'en-US': 'Vertical Offset' },
-      'desc': { 'zh-CN': '<p>可通过 <code>verticalOffset</code> 设置垂直方向偏离距离\n', 'en-US': '' },
+      'desc': { 'zh-CN': '<p>可通过 <code>verticalOffset</code> 设置垂直方向偏离距离。', 'en-US': '<p> The vertical deviation distance can be set by using <code>verticalOffset</code>.' },
       'codeFiles': ['verticalOffset.vue']
-    }
+    },
+    {
+      'demoId': 'notify-events',
+      'name': { 'zh-CN': '事件', 'en-US': 'Event' },
+      'desc': {
+        'zh-CN': `<p>
+          <div>可通过 <code>beforeClose</code>  属性设置通知框关闭前的事件。</div>
+          <div>可通过 <code>onClose</code> 属性设置通知点击关闭按钮时触发事件。</div>
+        </p>`,
+        'en-US':`<p>
+          <div> The property <code>beforeClose</code> sets the event before the notification box closes. </div>
+          <div> can be set through the <code>onClose</code> property to notify the event that is triggered when the close button is clicked. </div>
+        </p>`
+      },
+      'codeFiles': ['notify-events.vue']
+    },
   ],
   apis: [
     {
@@ -143,7 +135,7 @@ export default {
       'properties': [
         {
           'name': 'type',
-          'type': '"info" | "success" | "warning" | "error"',
+          'type':`'info' | 'success' | 'warning' | 'error'`,
           'defaultValue': 'info',
           'desc': {
             'zh-CN': '通知消息类型',
@@ -175,8 +167,8 @@ export default {
         },
         {
           'name': 'position',
-          'type': '"top-right" | "bottom-right"',
-          'defaultValue': 'bottom-right',
+          'type': `'top-right' | 'bottom-right'`,
+          'defaultValue': `'bottom-right'`,
           'desc': {
             'zh-CN': '通知显示位置',
             'en-US': 'Notification display position.'
@@ -213,14 +205,14 @@ export default {
         },
         {
           'name': 'closeIcon',
-          'type': 'Component',
+          'type': 'VueComponent',
           'defaultValue': 'IconClose',
           'desc': { 'zh-CN': '关闭图标组件对象', 'en-US': 'Close icon component object' },
           'demoId': 'closeIcon'
         },
         {
           'name': 'statusIcon',
-          'type': 'Component',
+          'type': 'VueComponent',
           'defaultValue': 'IconInfoSolid',
           'desc': { 'zh-CN': '类型图标组件对象', 'en-US': 'Type icon component object' },
           'demoId': 'statusIcon'
@@ -236,7 +228,7 @@ export default {
           'name': 'verticalOffset',
           'type': 'number | string',
           'defaultValue': '16',
-          'desc': { 'zh-CN': '设置垂直方向偏离距离,单位px', 'en-US': '' },
+          'desc': { 'zh-CN': '设置垂直方向偏离距离,单位 px', 'en-US': '' },
           'demoId': 'verticalOffset'
         }
       ],
@@ -249,7 +241,7 @@ export default {
             'zh-CN': '关闭前回调方法，返回 false 可阻止关闭',
             'en-US': 'Callback method before closing. If false is returned, closing is prevented.'
           },
-          'demoId': 'beforeClose'
+          'demoId': 'notify-events'
         },
         {
           'name': 'onClose',
@@ -259,7 +251,7 @@ export default {
             'zh-CN': '关闭 notify 时触发的事件',
             'en-US': 'Event triggered when the notify function is disabled'
           },
-          'demoId': 'close'
+          'demoId': 'notify-events'
         }
       ],
       'slots': []

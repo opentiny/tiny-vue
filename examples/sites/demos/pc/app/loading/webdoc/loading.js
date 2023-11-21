@@ -112,18 +112,18 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'medium | small | mini',
-          'defaultValue': 'small',
+          'type': `'medium' | 'small' | 'mini'`,
+          'defaultValue': `'small'`,
           'desc': { 'zh-CN': '加载图标尺寸', 'en-US': 'Load icon size' },
           'demoId': 'size'
         },
         {
           'name': 'target',
-          'type': 'object | string',
+          'type': 'HTMLElement | string',
           'defaultValue': 'document.body',
           'desc': {
             'zh-CN':
-              'Loading 需要覆盖的 DOM 节点。可传入一个 DOM 对象或字符串；若传入字符串，则会将其作为参数传入 document.querySelector以获取到对应 DOM 节点',
+              'Loading 需要覆盖的 DOM 节点。可传入一个 DOM 对象或字符串；若传入字符串，则会将其作为参数传入 document.querySelector 以获取到对应 DOM 节点',
             'en-US':
               'Loading the DOM node to be overwritten. A DOM object or character string can be transferred. If a character string is transferred, it is transferred to document.querySelector as a parameter to obtain the corresponding DOM node.'
           },
@@ -150,7 +150,7 @@ export default {
         },
         {
           'name': 'spinner',
-          'type': 'Component',
+          'type': 'VueComponent',
           'defaultValue': '',
           'desc': { 'zh-CN': '自定义加载图标', 'en-US': 'Customized loading icon class name' },
           'demoId': 'spinner'
