@@ -6,11 +6,14 @@
     </div>
     <div class="page__content">
       <tiny-pull-refresh
-        :pullUp="pullUpLoad"
-        :pullDown="pullDownRefresh"
         success-text="刷新成功"
         animation-duration="500"
         success-duration="500"
+        head-height="0"
+        v-model="value"
+        :has-more="hasMore"
+        @pullDown="handlerPullDownRefresh"
+        @pullUp="handlerPullUpLoad"
       >
         <div :key="item.name" v-for="item in data">{{ item.label }}</div>
       </tiny-pull-refresh>
@@ -27,31 +30,28 @@ export default {
   },
   data() {
     return {
-      data: [{ label: 'hello pull-refresh' }],
-      pullUpLoad: {
-        handler: () => this.handlerPullUpLoad()
-      },
-      pullDownRefresh: {
-        handler: () => this.handlerPullDownRefresh()
-      }
+      data: [...Array(30)].map((i, index) => {
+        return { label: `${index} list data` }
+      }),
+      value: true,
+      hasMore: true
     }
   },
   methods: {
     handlerPullUpLoad() {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          this.data.unshift({ label: 'hello pull-refresh up' })
-          resolve(this.data)
-        }, 1000)
-      })
+      console.log('pullUp action')
+      let self = this
+      setTimeout(() => {
+        self.value = false
+        self.hasMore = false
+      }, 3000)
     },
     handlerPullDownRefresh() {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          this.data.push({ label: 'hello pull-refresh down' })
-          resolve(this.data)
-        }, 1000)
-      })
+      console.log('pullDown action')
+      let self = this
+      setTimeout(() => {
+        self.value = false
+      }, 3000)
     }
   }
 }
@@ -61,18 +61,21 @@ export default {
 .page__hd {
   padding: 40px;
 }
+
 .page__title {
   font-weight: 400;
   font-size: 21px;
   text-align: left;
 }
+
 .page__desc {
   margin-top: 5px;
   color: #888;
   font-size: 14px;
   text-align: left;
 }
+
 .page__content {
-  height: 250px;
+  height: 350px;
 }
 </style>

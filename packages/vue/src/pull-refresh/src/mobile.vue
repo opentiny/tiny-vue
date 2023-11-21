@@ -19,36 +19,41 @@
         transform: 'translate3d(0px,' + state.translate3d + 'px,0px)'
       }"
     >
-      <div
-        class="tiny-mobile-pull-refresh__tips tiny-mobile-pull-refresh__head"
-        :style="{ height: state.pullDown.headHeight + 'px' }"
-        v-if="state.pullDownLoading || state.pullDownReplaces"
-      >
+      <div class="tiny-mobile-pull-refresh__tips tiny-mobile-pull-refresh__head">
         <span v-if="!state.pullDownLoading">{{ state.pullDownReplaces }}</span>
-        <slot name="loading" v-if="state.pullDownLoading">
-          <ul v-if="state.pullDownLoading" class="tiny-mobile-pull-refresh__loading">
-            <i></i>
-            <i></i>
-            <i></i>
-          </ul>
+
+        <slot name="loading">
+          <div v-if="state.pullDownLoading" class="tiny-mobile-pull-refresh-loading-content">
+            <div
+              :class="[
+                'tiny-mobile-pull-refresh__loading',
+                state.pullDownLoading ? 'tiny-mobile-pull-refresh__loading-animation' : null
+              ]"
+            >
+              <div class="tiny-mobile-pull-refresh__loading-inner"></div>
+            </div>
+            <div class="tiny-mobile-pull-refresh__text" v-if="state.pullDownLoadingText">
+              {{ state.pullDownLoadingText }}
+            </div>
+          </div>
         </slot>
       </div>
-      <div class="tiny-mobile-pull-refresh__content">
+      <div class="tiny-mobile-pull-refresh__content" ref="content">
         <slot></slot>
-      </div>
-      <div
-        class="tiny-mobile-pull-refresh__tips tiny-mobile-pull-refresh__foot"
-        :style="{ height: state.pullUp.footHeight + 'px' }"
-        v-if="state.pullUpLoading || state.pullUpReplaces"
-      >
-        <span v-if="!state.pullUpLoading">{{ state.pullUpReplaces }}</span>
-        <slot name="loading" v-if="state.pullUpLoading">
-          <ul v-if="state.pullUpLoading" class="tiny-mobile-pull-refresh__loading">
-            <i></i>
-            <i></i>
-            <i></i>
-          </ul>
-        </slot>
+
+        <div class="tiny-mobile-pull-refresh__foot" v-if="!state.disablePullUp" ref="foot">
+          <slot name="loading">
+            <div v-if="state.hasMore" class="tiny-mobile-pull-refresh-loading-content">
+              <div class="tiny-mobile-pull-refresh__loading tiny-mobile-pull-refresh__loading-animation">
+                <div class="tiny-mobile-pull-refresh__loading-inner"></div>
+              </div>
+              <div class="tiny-mobile-pull-refresh__text" v-if="state.pullUpLoadingText">
+                {{ state.pullUpLoadingText }}
+              </div>
+            </div>
+            <div v-else>{{ state.noMoreText }}</div>
+          </slot>
+        </div>
       </div>
     </div>
   </div>
@@ -64,19 +69,9 @@ export default defineComponent({
     ...props,
     modelValue: Boolean,
     loosingText: String,
-    successText: String,
-    failedText: String,
-    successDuration: {
-      type: [Number, String],
-      default: 500
-    },
     animationDuration: {
       type: [Number, String],
       default: 300
-    },
-    disabled: {
-      type: Boolean,
-      default: false
     },
     pullUp: {
       type: Object,
@@ -89,6 +84,26 @@ export default defineComponent({
     hasMore: {
       type: Boolean,
       default: true
+    },
+    disablePullDown: {
+      type: Boolean,
+      default: false
+    },
+    disablePullUp: {
+      type: Boolean,
+      default: false
+    },
+    pullUpDistance: {
+      type: [Number, String],
+      default: 50
+    },
+    pullUpLoadingText: {
+      type: String,
+      default: null
+    },
+    pullDownLoadingText: {
+      type: String,
+      default: null
     }
   },
   setup(props, context) {
