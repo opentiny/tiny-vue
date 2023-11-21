@@ -14,8 +14,7 @@ import Share from './icons/Share.vue'
 const versions = ['3.11', '3.10', '3.9', '3.8']
 const latestVersion = versions[0]
 const cdnHost = window.localStorage.getItem('setting-cdn')
-const getRuntime = (version) =>
-  `${cdnHost}/@opentiny/vue@${version}/runtime/` && 'https://unpkg.com/@opentiny/vue@3.11.0-alpha.1/runtime/'
+const getRuntime = (version) => `${cdnHost}/@opentiny/vue@${version}/runtime/`
 
 const searchObj = new URLSearchParams(location.search)
 const tinyMode = searchObj.get('mode')
