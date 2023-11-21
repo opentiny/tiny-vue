@@ -4,7 +4,7 @@
       <router-view />
       <tiny-modal v-show="visible" :show-header="false" :show-footer="false" v-model="modalSHow" fullscreen>
         <tiny-icon-close class="close-icon" @click="visible = !visible"></tiny-icon-close>
-        <iframe width="100%" height="100%" :src="previewUrl" frameborder="0"></iframe>
+        <iframe v-if="visible" width="100%" height="100%" :src="previewUrl" frameborder="0"></iframe>
       </tiny-modal>
     </tiny-config-provider>
   </div>
