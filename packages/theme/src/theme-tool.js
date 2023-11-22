@@ -11,7 +11,6 @@
  */
 
 import definedComponents from './theme.config'
-import packageJson from '../package.json'
 
 /**
  *  TinyVue主题切换类 负责CSS变量主题的装卸，主题元数据转换成主题数据
@@ -74,7 +73,6 @@ export default class TinyThemeTool {
     }
     this.contentElement.textContent = this.formatCSSVariables(currentTheme.data)
     this.contentElement.setAttribute('tiny-theme', this.currentTheme.id)
-    this.contentElement.setAttribute('version', packageJson.version)
   }
 
   // 通过 `组件css变量`，来推导出组件名： 从 ti-checkbox-button-bg-color， 推导出 checkbox-button
