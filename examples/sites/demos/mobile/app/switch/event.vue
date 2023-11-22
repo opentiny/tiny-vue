@@ -30,9 +30,9 @@ export default {
 <style scoped>
 .switch-wrap {
   padding: 20px;
+}
 
-  .status {
-    margin-left: 20px;
-  }
+.status {
+  margin-left: 20px;
 }
 </style>

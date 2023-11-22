@@ -70,7 +70,7 @@ export default {
       properties: [
         {
           name: 'disabled',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: 'false',
           desc: {
             'zh-CN': '<p>是否禁用，该属性默认为false</p>',
@@ -80,7 +80,7 @@ export default {
         },
         {
           name: 'false-value',
-          type: 'String',
+          type: 'string',
           defaultValue: 'false',
           desc: {
             'zh-CN': '<p>switch 关闭时的值，该属性默认为false</p>',
@@ -90,7 +90,7 @@ export default {
         },
         {
           name: 'true-value',
-          type: 'String',
+          type: 'string',
           defaultValue: 'true',
           desc: {
             'zh-CN': '<p>switch 打开时的值，该属性默认为true</p>',
@@ -100,7 +100,7 @@ export default {
         },
         {
           name: 'v-model',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>绑定值</p>',
@@ -110,7 +110,7 @@ export default {
         },
         {
           name: 'mini',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: 'false',
           desc: {
             'zh-CN': '<p>小尺寸</p>',
