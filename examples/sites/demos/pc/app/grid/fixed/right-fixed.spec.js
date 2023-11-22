@@ -3,6 +3,6 @@ import { test, expect } from '@playwright/test'
 test('右冻结', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('grid-fixed#fixed-right-fixed')
-  await page.waitForTimeout(100)
-  await expect(page.getByRole('cell', { name: '城市' })).toHaveCSS('right', '4px')
+  await page.waitForTimeout(400)
+  await expect(page.getByRole('cell', { name: '城市右冻结' })).toHaveCSS('right', '4px')
 })
