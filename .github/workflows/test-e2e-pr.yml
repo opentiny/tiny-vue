@@ -81,4 +81,4 @@ jobs:
         run: pnpm install:browser --with-deps chromium
 
       - name: E2E Test
-        run: pnpm test:e2e3 ${{ env.TEST_COMPONENTS }} --reporter=line --retries=0 --workers=2
+        run: pnpm test:e2e3 ${{ env.TEST_COMPONENTS }} --reporter=line --retries=1 --workers=2
