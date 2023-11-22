@@ -1,6 +1,7 @@
 <template>
   <div class="switch-wrap">
-    <tiny-switch :value="value" @change="handleChange"></tiny-switch>
+    <p>默认</p>
+    <tiny-switch v-model="value1" true-value="1"></tiny-switch>
   </div>
 </template>
 
@@ -13,13 +14,7 @@ export default {
   },
   data() {
     return {
-      value: true
-    }
-  },
-  methods: {
-    handleChange(val) {
-      let msg = val ? '已开启' : '已关闭'
-      console.log(msg)
+      value1: '1'
     }
   }
 }
