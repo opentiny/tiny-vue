@@ -6,7 +6,10 @@
     </div>
     <div class="page__content">
       <tiny-pull-refresh
-        pull-down-loading-text="刷新中"
+        success-text="刷新成功"
+        animation-duration="500"
+        success-duration="500"
+        head-height="0"
         v-model="value"
         :has-more="hasMore"
         @pullDown="handlerPullDownRefresh"

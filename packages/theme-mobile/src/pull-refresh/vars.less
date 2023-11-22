@@ -1,8 +1,14 @@
 :root {
-  --ti-mobile-pull-refresh-text-color: #808080;
-  --ti-mobile-pull-refresh-font-size: 12px;
-  --ti-mobile-pull-refresh-head-loading-bg-image: conic-gradient(rgb(128 128 128 / 10%), rgb(128 128 128 / 100%));
+  // 文字颜色
+  --ti-mobile-pull-refresh-text-color: var(--ti-mobile-color-text-placeholder, #808080);
+  // 文字尺寸
+  --ti-mobile-pull-refresh-font-size: var(--ti-mobile-font-size-s, 12px);
+  // 加载背景色
+  --ti-mobile-pull-refresh-head-loading-bg-image: conic-gradient(rgb(128 128 128 / 0%), rgb(128 128 128 / 100%));
+  // 加载圆圈外径
   --ti-mobile-pull-refresh-head-loading-icon-size-outside: 18px;
+  // 加载圆圈内径
   --ti-mobile-pull-refresh-head-loading-icon-size-inside: 14px;
+  // 加载圆圈背景色
   --ti-mobile-pull-refresh-head-loading-icon-bg-color: #fff;
 }

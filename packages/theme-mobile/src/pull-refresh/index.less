@@ -81,8 +81,21 @@
     padding-left: 8px;
   }
 
+  &__foot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--ti-mobile-pull-refresh-font-size);
+    color: var(--ti-mobile-pull-refresh-text-color);
+  }
+
   @keyframes turn-around {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }

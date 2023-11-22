@@ -6,10 +6,7 @@
     </div>
     <div class="page__content">
       <tiny-pull-refresh
-        success-text="刷新成功"
         animation-duration="500"
-        success-duration="500"
-        head-height="0"
         v-model="value"
         :has-more="hasMore"
         @pullDown="handlerPullDownRefresh"
@@ -31,7 +28,7 @@ export default {
   data() {
     return {
       data: [...Array(30)].map((i, index) => {
-        return { label: `${index} list data` }
+        return { label: `${index + 1} list data` }
       }),
       value: true,
       hasMore: true
@@ -40,10 +37,14 @@ export default {
   methods: {
     handlerPullUpLoad() {
       console.log('pullUp action')
+
       let self = this
       setTimeout(() => {
+        const length = self.data.length
+        for (let i = 1; i <= 10; i++) {
+          self.data.push({ label: `${i + length} list data` })
+        }
         self.value = false
-        self.hasMore = false
       }, 3000)
     },
     handlerPullDownRefresh() {

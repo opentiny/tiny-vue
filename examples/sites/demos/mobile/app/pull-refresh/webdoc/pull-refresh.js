@@ -97,42 +97,6 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['pulling-text.vue']
-    },
-    {
-      demoId: 'result-text',
-      name: {
-        'zh-CN': '刷新完成时的提示文字',
-        'en-US': 'events'
-      },
-      desc: {
-        'zh-CN': '<p>刷新完成时的提示文字<p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['result-text.vue']
-    },
-    {
-      demoId: 'success-duration',
-      name: {
-        'zh-CN': '刷新成功的文字展示时长',
-        'en-US': 'events'
-      },
-      desc: {
-        'zh-CN': '<p>刷新完成时，提示的显示时长<p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['success-duration.vue']
-    },
-    {
-      demoId: 'success-text',
-      name: {
-        'zh-CN': '刷新成功的文字',
-        'en-US': 'events'
-      },
-      desc: {
-        'zh-CN': '<p>刷新成功时的提示文字<p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['success-text.vue']
     }
   ],
   apis: [
@@ -141,24 +105,14 @@ export default {
       type: 'component', // API 类型
       properties: [
         {
-          name: 'disabled',
+          name: 'v-model',
           type: 'Boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '<p>禁止下拉刷新，默认：false</p>',
-            'en-US': 'display different button'
+            'zh-CN': '<p>是否刷新状态，可以手动设置false来关闭刷新</p>',
+            'en-US': 'is refreshing'
           },
-          demoId: 'disabled'
-        },
-        {
-          name: 'head-height',
-          type: 'Number',
-          defaultValue: '50',
-          desc: {
-            'zh-CN': '<p>loading提示的高度,默认：50</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'head-height-wrap'
+          demoId: 'base'
         },
         {
           name: 'loosing-text',
@@ -171,86 +125,86 @@ export default {
           demoId: 'loosing-text'
         },
         {
-          name: 'pulling-text',
-          type: 'String',
-          defaultValue: '下拉即可刷新',
-          desc: {
-            'zh-CN': '<p>下拉高度小于head-height时的提示文字，默认为：下拉即可刷新</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'pulling-text'
-        },
-        {
-          name: 'success-duration',
-          type: 'Number',
-          defaultValue: '500',
-          desc: {
-            'zh-CN': '<p>刷新完成的提示文字的显示时长，需要与success-text配合使用，默认：500</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'success-duration'
-        },
-        {
-          name: 'success-text',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>下拉刷新完成的提示文字</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'result-text'
-        },
-        {
-          name: 'failed-text',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>下拉刷新失败的提示文字</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'success-text'
-        },
-        {
-          name: 'value',
+          name: 'has-more',
           type: 'Boolean',
           defaultValue: 'true',
           desc: {
-            'zh-CN': '<p>下拉过程中会被置为true，当设置为false时，关闭loading</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'success-text'
-        },
-        {
-          name: 'pullDown',
-          type: {},
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>下拉刷新</p>',
-            'en-US': 'display different button'
+            'zh-CN': '<p>是否有更多数据</p>',
+            'en-US': 'has more'
           },
           demoId: 'base'
         },
         {
-          name: 'pullUp',
-          type: '{}',
+          name: 'disabled-pull-down',
+          type: 'Boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>是否禁用下拉刷新</p>',
+            'en-US': 'disablde pull down'
+          },
+          demoId: 'base'
+        },
+        {
+          name: 'disabled-pull-up',
+          type: 'Boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>是否禁用上拉</p>',
+            'en-US': 'disablded pull up'
+          },
+          demoId: 'base'
+        },
+        {
+          name: 'pull-up-distance',
+          type: 'Number',
+          defaultValue: '50',
+          desc: {
+            'zh-CN': '<p>触发上拉刷新的距离</p>',
+            'en-US': 'pull up distance'
+          },
+          demoId: 'base'
+        },
+        {
+          name: 'pull-up-loading-text',
+          type: 'String',
           defaultValue: '',
           desc: {
-            'zh-CN': '<p>上拉加载</p>',
-            'en-US': 'display different button'
+            'zh-CN': '<p>上拉加载文字</p>',
+            'en-US': 'pull up loading text'
           },
-          demoId: 'enhance'
+          demoId: 'base'
+        },
+        {
+          name: 'pull-down-loading-text',
+          type: 'String',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>下拉加载文字</p>',
+            'en-US': 'pull down loading text'
+          },
+          demoId: 'base'
         }
       ],
       events: [
         {
-          name: 'refresh',
+          name: 'pull-down',
           type: 'Function()',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>下拉时触发的事件</p>',
             'en-US': 'Click'
           },
-          demoId: 'pulling-text'
+          demoId: 'event'
+        },
+        {
+          name: 'pull-up',
+          type: 'Function()',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>上拉时触发的事件</p>',
+            'en-US': 'Click'
+          },
+          demoId: 'event'
         }
       ],
       slot: [

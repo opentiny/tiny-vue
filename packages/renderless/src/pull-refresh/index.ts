@@ -20,13 +20,11 @@ export const initPullRefresh =
       pullingDownText: t('ui.pullRefresh.pullingDown'),
       pullUpDisabled: false,
       pullDownDisabled: false,
-      headHeight: 50,
-      footHeight: 50
+      headHeight: 48
     }
 
     state.pullUp = { ...defaultOption, ...props.pullUp }
     state.pullDown = { ...defaultOption, ...props.pullDown }
-    state.refreshStyle = {}
     state.loosingText = props.loosingText ?? t('ui.pullRefresh.loosing')
     state.successText = props.successText ?? t('ui.pullRefresh.success')
     state.failedText = props.failedText ?? t('ui.pullRefresh.failed')
