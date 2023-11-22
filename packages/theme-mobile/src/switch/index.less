@@ -14,14 +14,14 @@
 @import './vars.less';
 
 @switch-prefix-cls: ~'@{css-prefix}mobile-switch';
-@btn-size: var(--ti-mobile-switch-btn-size-normal);
+@btn-size: var(--ti-mobile-switch-btn-size-normal, 18px);
 @btn-size-half: calc(@btn-size / 2);
 @loading-size: calc(@btn-size - 6px);
 @loading-size-half: calc(@loading-size / 2);
 @btn-padding: 3px;
 @loading-left: calc(calc(@btn-size-half - @loading-size-half) + @btn-padding);
 
-@btn-size-mini: var(--ti-mobile-switch-btn-size-mini);
+@btn-size-mini: var(--ti-mobile-switch-btn-size-mini, 16px);
 @btn-size-half-mini: calc(@btn-size-mini / 2);
 @loading-size-mini: calc(@btn-size-mini - 6px);
 @loading-size-half-mini: calc(@loading-size-mini / 2);
@@ -82,7 +82,7 @@
   &.mini:after {
     width: @btn-size-mini;
     height: @btn-size-mini;
-    top: calc(calc(var(--ti-mobile-switch-height-mini) - @btn-size-mini) / 2);
+    top: calc(calc(var(--ti-mobile-switch-height-mini, 20px) - @btn-size-mini) / 2);
     left: @btn-padding-mini;
   }
 
