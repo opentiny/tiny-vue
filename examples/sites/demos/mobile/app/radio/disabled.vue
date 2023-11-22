@@ -1,11 +1,12 @@
 <template>
-  <div class="radio-wrap">
-    <tiny-radio v-model="value" label="1" border disabled text="单选框 1"></tiny-radio>
-    <tiny-radio v-model="value" label="2" border name="name">单选框 2</tiny-radio>
+  <div class="demo">
+    <p>禁用</p>
+    <tiny-radio v-model="value" label="1" disabled>我同意</tiny-radio>
+    <tiny-radio v-model="value" label="2" disabled>我拒绝</tiny-radio>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Radio } from '@opentiny/vue'
 
 export default {
@@ -20,8 +21,10 @@ export default {
 }
 </script>
 
-<style scoped>
-.radio-wrap {
+<style>
+.demo {
+  height: 100%;
+  overflow-y: scroll;
   padding: 20px;
 }
 </style>

@@ -36,7 +36,7 @@ export const renderless = (
     wrapClasses: computed(() => api.computedWarpClasses()),
     style: computed(() => api.computedStyle()),
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
-    disabled: computed(() => props.disabled || state.formDisabled || state.isDisplayOnly),
+    disabled: computed(() => props.disabled || state.formDisabled || state.isDisplayOnly || props.loading),
     isDisplayOnly: computed(() => props.displayOnly || (parent.tinyForm || {}).displayOnly),
     showText: computed(() => {
       // 用户没传showText属性时，aurora默认是展示文本

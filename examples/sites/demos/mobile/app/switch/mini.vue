@@ -1,7 +1,7 @@
 <template>
   <div class="switch-wrap">
-    <tiny-switch v-model="value" true-value="yes" false-value="no"></tiny-switch>
-    当前值：{{ value }}
+    <p>小尺寸</p>
+    <tiny-switch mini></tiny-switch>
   </div>
 </template>
 
@@ -11,11 +11,6 @@ import { Switch } from '@opentiny/vue'
 export default {
   components: {
     TinySwitch: Switch
-  },
-  data() {
-    return {
-      value: 'no'
-    }
   }
 }
 </script>

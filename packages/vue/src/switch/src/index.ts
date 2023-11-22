@@ -65,6 +65,10 @@ export const switchProps = {
   displayOnly: {
     type: Boolean,
     default: false
+  },
+  loading: {
+    type: Boolean,
+    default: false
   }
 }
 
