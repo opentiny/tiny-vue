@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import {
   Grid as TinyGrid,
@@ -80,9 +80,14 @@ function clearDataEvent() {
 
 function toCsvEvent() {
   theGridRef.value.exportCsv({
+    // 文件名称
     filename: 'table.csv',
     original: true,
+    // 是否导出表头
     isHeader: false,
+    // 是否在每行后面添加制表符
+    useTabs: false,
+    // 导出的数据
     data: tableData.value
   })
 }
