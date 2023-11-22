@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Radio } from '@opentiny/vue'
 
 export default {
@@ -17,11 +17,6 @@ export default {
     return {
       value: '1'
     }
-  },
-  methods: {
-    changeAction(value) {
-      console.log(value)
-    }
   }
 }
 </script>
@@ -30,33 +25,6 @@ export default {
 .demo {
   height: 100%;
   overflow-y: scroll;
-}
-.demo-title {
-  padding-right: 16px;
-  padding-left: 16px;
-  margin-top: 0.77em;
-  margin-bottom: 0.3em;
-  color: #666;
-  font-size: 14px;
-}
-.demo-list {
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-  padding: 8px 16px;
-}
-.withlist {
-  margin-top: 20px;
-}
-.demo .tiny-mobile-list__content-des {
-  margin-top: 4px;
-  color: #999;
-  font-size: 12px;
-  line-height: 1.6;
-  text-align: justify;
+  padding: 20px;
 }
 </style>

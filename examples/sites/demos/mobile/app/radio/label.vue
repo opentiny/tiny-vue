@@ -1,7 +1,8 @@
 <template>
   <div class="demo">
     <p>默认</p>
-    <tiny-radio v-model="value"></tiny-radio>
+    <tiny-radio v-model="value" label="1">男</tiny-radio>
+    <tiny-radio v-model="value" label="2">女</tiny-radio>
   </div>
 </template>
 
@@ -14,7 +15,7 @@ export default {
   },
   data() {
     return {
-      value: false
+      value: '1'
     }
   }
 }

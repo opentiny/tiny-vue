@@ -25,6 +25,30 @@ export default {
         'en-US': '<p>disabled</p>'
       },
       codeFiles: ['disabled.vue']
+    },
+    {
+      demoId: 'label',
+      name: {
+        'zh-CN': '自定义label',
+        'en-US': 'custom label'
+      },
+      desc: {
+        'zh-CN': '<p>自定义label</p>',
+        'en-US': '<p>custom label</p>'
+      },
+      codeFiles: ['label.vue']
+    },
+    {
+      demoId: 'event',
+      name: {
+        'zh-CN': '选中状态事件',
+        'en-US': 'event'
+      },
+      desc: {
+        'zh-CN': '<p>事件</p>',
+        'en-US': '<p>event</p>'
+      },
+      codeFiles: ['event.vue']
     }
   ],
   apis: [
@@ -34,7 +58,7 @@ export default {
       properties: [
         {
           name: 'disabled',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: 'false',
           desc: {
             'zh-CN': '<p>是否禁用</p>',
@@ -44,17 +68,17 @@ export default {
         },
         {
           name: 'label',
-          type: 'Object | String',
+          type: 'object | string',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>Radio 的 value,该属性默认为{}</p>',
             'en-US': 'display different button'
           },
-          demoId: 'base'
+          demoId: 'label'
         },
         {
           name: 'name',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>原生 name 属性</p>',
@@ -64,7 +88,7 @@ export default {
         },
         {
           name: 'text',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>文本</p>',
@@ -74,7 +98,7 @@ export default {
         },
         {
           name: 'value',
-          type: 'Object | String',
+          type: 'object | string',
           defaultValue: '{}',
           desc: {
             'zh-CN': '<p>绑定值，该属性默认为{}</p>',
@@ -92,7 +116,7 @@ export default {
             'zh-CN': '<p>绑定值变化时触发的事件,可获取changeValue</p>',
             'en-US': 'Click'
           },
-          demoId: 'base'
+          demoId: 'event'
         }
       ],
       slots: [
