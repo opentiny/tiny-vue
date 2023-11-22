@@ -164,7 +164,6 @@
     "lint-staged": "^13.0.3",
     "minimist": "^1.2.8",
     "node-xlsx": "^0.21.0",
-    "nx": "^15.4.5",
     "prettier": "^3.0.0",
     "rimraf": "^3.0.2",
     "shelljs": "^0.8.5",
