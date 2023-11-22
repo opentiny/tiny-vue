@@ -9,9 +9,6 @@ import type { BuildUiOption, BaseConfig } from './build-ui'
 import { pathFromPackages, getBaseConfig, requireModules } from './build-ui'
 import { createProcessor } from 'tailwindcss/src/cli/build/plugin'
 
-const argv = minimist(process.argv.slice(2))
-const { tiny_mode = 'pc' } = argv
-
 async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope, min }) {
   const rootDir = pathFromPackages('')
   const runtimeDir = `dist${vueVersion}/@opentiny/vue/runtime`
@@ -59,7 +56,6 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
     baseConfig.define = Object.assign(baseConfig.define || {}, {
       'process.env.BUILD_TARGET': JSON.stringify(vueVersion !== '3' ? 'runtime' : 'component'),
       'process.env.NODE_ENV': JSON.stringify('production'),
-      'process.env.TINY_MODE': JSON.stringify(tiny_mode),
       'process.env.RUNTIME_VERSION': JSON.stringify(requireModules('packages/renderless/package.json').version),
       'process.env.COMPONENT_VERSION': JSON.stringify(requireModules('packages/vue/package.json').version)
     })
@@ -104,7 +100,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
               }
 
               if (/\.css$/.test(name ?? '')) {
-                return `${tiny_mode === 'mobile-first' ? 'mobile-first-' : ''}style${min ? '.min' : ''}[extname]`
+                return `style${min ? '.min' : ''}[extname]`
               }
 
               return 'style/[name]-[hash][extname]'
@@ -135,20 +131,17 @@ function getEntryTasks() {
     },
     {
       path: 'vue/app.ts',
-      libPath: tiny_mode === 'mobile-first' ? 'tiny-vue-mobile-first' : 'tiny-vue'
-    }
-  ]
-  if (tiny_mode === 'mobile-first') {
-    entry.push({
+      libPath: 'tiny-vue'
+    },
+    {
       path: 'vue-icon-saas/index.ts',
       libPath: 'tiny-vue-icon-saas'
-    })
-  } else {
-    entry.push({
+    },
+    {
       path: 'vue-icon/index.ts',
       libPath: 'tiny-vue-icon'
-    })
-  }
+    }
+  ]
   return entry
 }
 
@@ -172,19 +165,17 @@ export async function buildRuntime({
     for (let i = 0; i < tasks.length; i++) {
       await batchBuildAll({ vueVersion, tasks: [tasks[i]], message, emptyOutDir, npmScope: scope, min })
     }
-    if (tiny_mode === 'mobile-first') {
-      const rootDir = pathFromPackages('')
-      const runtimeDir = `dist${vueVersion}/@opentiny/vue/runtime`
-      const outDir = path.resolve(rootDir, runtimeDir)
-      const processor = await createProcessor(
-        {
-          '--output': path.join(outDir, 'tailwind.css'),
-          '--content': path.join(outDir, 'tiny-vue-mobile-first.mjs')
-        },
-        path.resolve(rootDir, 'theme-saas/tailwind.config.js')
-      )
-      await processor.build()
-    }
+    const rootDir = pathFromPackages('')
+    const runtimeDir = `dist${vueVersion}/@opentiny/vue/runtime`
+    const outDir = path.resolve(rootDir, runtimeDir)
+    const processor = await createProcessor(
+      {
+        '--output': path.join(outDir, 'tailwind.css'),
+        '--content': path.join(outDir, 'tiny-vue.mjs')
+      },
+      path.resolve(rootDir, 'theme-saas/tailwind.config.js')
+    )
+    await processor.build()
     // 确保只运行一次
     emptyOutDir = false
   }
