@@ -4,16 +4,26 @@ import { Repl, useStore, File } from '@opentiny/vue-repl'
 import '@opentiny/vue-repl/dist/style.css'
 
 import Editor from '@vue/repl/codemirror-editor'
-import { ButtonGroup as TinyButtonGroup, Select as TinySelect, Option as TinyOption, Notify } from '@opentiny/vue'
+import {
+  ButtonGroup as TinyButtonGroup,
+  Select as TinySelect,
+  Option as TinyOption,
+  Switch as TinySwitch,
+  Notify
+} from '@opentiny/vue'
 import { staticDemoPath, getWebdocPath } from '@/views/components/cmpConfig'
 import { fetchDemosFile } from '@/tools/utils'
 import logoUrl from './assets/opentiny-logo.svg?url'
 import GitHub from './icons/Github.vue'
 import Share from './icons/Share.vue'
 
+const VERSION = 'tiny-vue-version'
+const LAYOUT = 'playground-layout'
+const LAYOUT_REVERSE = 'playground-layout-reverse'
+
 const versions = ['3.11', '3.10', '3.9', '3.8']
-const latestVersion = versions[0]
-const cdnHost = window.localStorage.getItem('setting-cdn')
+const latestVersion = localStorage.getItem(VERSION) || versions[0]
+const cdnHost = localStorage.getItem('setting-cdn')
 const getRuntime = (version) => `${cdnHost}/@opentiny/vue@${version}/runtime/`
 
 const searchObj = new URLSearchParams(location.search)
@@ -74,9 +84,11 @@ const store = new useStore({
   }
 })
 
+// repl 属性
 const state = reactive({
-  // repl 属性
-  layout: 'horizon',
+  layout: localStorage.getItem(LAYOUT) || 'horizon',
+  // 默认为反转，所以需要判断是否为'false'后取反
+  layoutReverse: !(localStorage.getItem(LAYOUT_REVERSE) === 'false'),
   layoutOptions: [
     { value: 'horizon', text: '水平' },
     { value: 'vertical', text: '垂直' }
@@ -120,6 +132,11 @@ function setTinyDesign() {
   }
 }
 
+function selectVersion(version) {
+  versionChange(version)
+  localStorage.setItem(VERSION, version)
+}
+
 function versionChange(version) {
   const importMap = createImportMap(version)
   store.state.files['import-map.json'] = new File('', JSON.stringify(importMap))
@@ -136,6 +153,14 @@ function versionChange(version) {
       iframeWin.document.head.append(link)
     })
   })
+}
+
+function changeLayout(layout) {
+  localStorage.setItem(LAYOUT, layout)
+}
+
+function changeReserve(isReserve) {
+  localStorage.setItem(LAYOUT_REVERSE, isReserve)
 }
 
 function getDemoName(name, apiMode) {
@@ -215,11 +240,19 @@ function share() {
     <div>
       <span class="ml20">
         布局方向:
-        <tiny-button-group :data="state.layoutOptions" v-model="state.layout"></tiny-button-group>
+        <tiny-button-group
+          :data="state.layoutOptions"
+          v-model="state.layout"
+          @change="changeLayout"
+        ></tiny-button-group>
+      </span>
+      <span class="ml20">
+        布局反转:
+        <tiny-switch v-model="state.layoutReverse" mini @change="changeReserve"></tiny-switch>
       </span>
       <span class="ml20">
         OpenTiny Vue 版本:
-        <tiny-select v-model="state.selectVersion" @change="versionChange" style="width: 150px">
+        <tiny-select v-model="state.selectVersion" @change="selectVersion" style="width: 150px">
           <tiny-option v-for="item in state.versions" :key="item.value" :label="item.value" :value="item.value">
           </tiny-option>
         </tiny-select>
@@ -236,6 +269,7 @@ function share() {
     :preview-options="state.previewOptions"
     :clear-console="false"
     :layout="state.layout"
+    :layout-reverse="state.layoutReverse"
   ></Repl>
 </template>
 

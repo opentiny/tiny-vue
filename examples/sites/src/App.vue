@@ -2,9 +2,9 @@
   <div class="hp100 of-hidden">
     <tiny-config-provider :design="designConfig">
       <router-view />
-      <tiny-modal v-show="visible" :show-header="false" :show-footer="false" v-model="modalSHow" fullscreen>
-        <tiny-icon-close class="close-icon" @click="visible = !visible"></tiny-icon-close>
-        <iframe v-if="visible" width="100%" height="100%" :src="previewUrl" frameborder="0"></iframe>
+      <tiny-modal :show-header="false" :show-footer="false" v-model="modalSHow" width="1400px" height="900px" resize>
+        <tiny-icon-close class="close-icon" @click="modalSHow = false"></tiny-icon-close>
+        <iframe v-if="modalSHow" width="100%" height="100%" :src="previewUrl" frameborder="0"></iframe>
       </tiny-modal>
     </tiny-config-provider>
   </div>
@@ -26,7 +26,6 @@ export default defineComponent({
     TinyIconClose: iconClose()
   },
   setup() {
-    const visible = ref(false)
     const previewUrl = ref(import.meta.env.VITE_PLAYGROUND_URL)
     const modalSHow = ref(false)
     onMounted(() => {
@@ -41,18 +40,16 @@ export default defineComponent({
         }
       })
       common.renderHeader()
-      modalSHow.value = true
     })
     const { designConfig } = useTheme()
 
     provide('showPreview', (url) => {
       previewUrl.value = url
-      visible.value = true
+      modalSHow.value = true
     })
     return {
       appData,
       designConfig,
-      visible,
       previewUrl,
       modalSHow
     }
@@ -66,6 +63,7 @@ export default defineComponent({
   right: 10px;
   top: 10px;
   font-size: 16px;
+  cursor: pointer;
 }
 .tiny-modal {
   :deep(.tiny-modal__body) {
