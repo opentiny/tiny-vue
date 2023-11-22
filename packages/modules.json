@@ -2559,6 +2559,19 @@
     "type": "template",
     "exclude": false
   },
+  "Toast": {
+    "path": "vue/src/toast/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile"
+    ]
+  },
+  "ToastMobile": {
+    "path": "vue/src/toast/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
   "ToggleMenu": {
     "path": "vue/src/toggle-menu/index.ts",
     "type": "component",

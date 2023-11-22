@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { ActionMenu as TinyActionMenu } from '@opentiny/vue'
 

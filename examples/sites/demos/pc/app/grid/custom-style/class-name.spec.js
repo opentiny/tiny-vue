@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
-test('列样式', async ({ page }) => {
+test('自定义列样式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('grid-custom-style#column-class-name')
-  await expect(page.locator('.gridClassName')).toHaveCount(8)
+  await page.goto('grid-custom-style#custom-style-class-name')
+  await expect(page.locator('.gridClassName').first()).toHaveCSS('background-color', 'rgb(230, 247, 255)')
 })

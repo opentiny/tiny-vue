@@ -17,7 +17,7 @@ export default {
       'demoId': 'size',
       'name': { 'zh-CN': '尺寸', 'en-US': 'Size' },
       'desc': {
-        'zh-CN': '<p>通过 <code>size</code> 设置不同的尺寸，可选值： <code>normal、large</code> 。</p>',
+        'zh-CN': '<p>通过 <code>size</code> 设置不同的尺寸，可选值： <code>normal</code> 、<code>large</code> 。</p>',
         'en-US':
           '<p>Set different sizes through <code>size</code> , with optional values: <code>normal, large</code> . </p>'
       },
@@ -105,7 +105,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'true',
           'desc': {
-            'zh-CN': '设置警告是否可以关闭',
+            'zh-CN': '警告是否可以关闭',
             'en-US': 'Set whether alarms can be disabled.'
           },
           'demoId': 'custom-close'
@@ -113,7 +113,7 @@ export default {
         {
           'name': 'close-text',
           'type': 'string',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '关闭按钮自定义文本',
             'en-US': 'Customized text of the close button'
@@ -123,17 +123,17 @@ export default {
         {
           'name': 'description',
           'type': 'string',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置警告的提示内容',
+            'zh-CN': '警告的提示内容',
             'en-US': 'Set the warning prompt content'
           },
           'demoId': 'basic-usage'
         },
         {
           'name': 'icon',
-          'type': 'Component',
-          'defaultValue': '',
+          'type': 'VueComponent',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '传入图标组件自定义警告的图标，默认会根据 type 值自动使用对应图标',
             'en-US':
@@ -153,10 +153,10 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'normal | large',
-          'defaultValue': 'normal',
+          'type': "'normal' | 'large'",
+          'defaultValue': "'normal'",
           'desc': {
-            'zh-CN': '设置警告的大小',
+            'zh-CN': '警告的尺寸大小',
             'en-US': 'Set the size of the warning'
           },
           'demoId': 'size'
@@ -164,9 +164,9 @@ export default {
         {
           'name': 'title',
           'type': 'string',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置警告的标题，在 size 为 large 时有效，默认会根据 type 自动设置',
+            'zh-CN': '警告的标题，在 size 为 large 时有效，默认会根据 type 自动设置',
             'en-US':
               'Set the warning title. This parameter is valid only when size is set to large. By default, the alarm title is automatically set based on type.'
           },
@@ -174,10 +174,10 @@ export default {
         },
         {
           'name': 'type',
-          'type': 'success | warning | info | error',
-          'defaultValue': 'success',
+          'type': "'success' | 'warning' | 'info' | 'error'",
+          'defaultValue': "'info'",
           'desc': {
-            'zh-CN': '设置警告的类型',
+            'zh-CN': '警告的类型',
             'en-US': 'Set the alarm type'
           },
           'demoId': 'basic-usage'
@@ -187,7 +187,7 @@ export default {
         {
           'name': 'close',
           'type': '() => void',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '关闭 alert 时触发的事件',
             'en-US': 'Event triggered when the alert function is disabled'
@@ -199,7 +199,7 @@ export default {
         {
           'name': 'close',
           'type': '',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '自定义关闭内容，当 closable 属性为 false 时有效',
             'en-US': ''
@@ -209,7 +209,7 @@ export default {
         {
           'name': 'default',
           'type': '',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '组件默认插槽，当 size 设置为 large 后有效',
             'en-US': 'The default slot for the component is valid when size is set to large'
@@ -219,7 +219,7 @@ export default {
         {
           'name': 'description',
           'type': '',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '提示内容',
             'en-US': 'Prompt Content'
@@ -229,7 +229,7 @@ export default {
         {
           'name': 'title',
           'type': '',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '标题的内容，当 size 设置为 large 后有效',
             'en-US': 'The content of the title is valid when size is set to large'

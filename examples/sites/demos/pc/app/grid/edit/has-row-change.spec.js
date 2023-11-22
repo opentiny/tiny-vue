@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('检查数据是否改变', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('grid-edit#edit-hasRowChange')
+  await page.goto('grid-edit#edit-has-row-change')
   await page.getByText('GFD科技YX公司').first().click()
   await page.getByRole('row', { name: '1 保存' }).locator('input[type="text"]').fill('sdf')
   await page.getByRole('row', { name: '1 保存' }).getByRole('button', { name: '保存' }).click()

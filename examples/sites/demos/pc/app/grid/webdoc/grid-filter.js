@@ -33,7 +33,7 @@ export default {
       'desc': {
         'zh-CN':
           '<p>通过 <code>layout</code> 设置需要使用的筛选项为<code>simple</code>,其中<code>layout</code>可选项包括<code>input,enum,default,extends,base,simple</code></p>\n',
-        'en-US': '<p>Add custom parameters by <code>params</code></p>\n'
+        'en-US': '<p>Add custom parameters by <code>params</code>。</p>\n'
       },
       'codeFiles': ['filter/simple-filter.vue']
     },
@@ -42,7 +42,7 @@ export default {
       'name': { 'zh-CN': '简化版筛选-时间日期菜单', 'en-US': 'Advanced Filter Settings' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>layout</code> 设置需要使用的筛选项为<code>simple</code>,其中<code>layout</code>可选项包括<code>input,enum,default,extends,base,simple</code></p>\n',
+          '<p>通过 <code>layout</code> 设置需要使用的筛选项为<code>simple</code>,其中<code>layout</code>可选项包括<code>input,enum,default,extends,base,simple</code>。</p>\n',
         'en-US':
           '<p>You can use <code>inputFilter</code> to configure custom components and conditions for the input filter area, and use <code>extends</code> to add a shortcut filter list</p>\n'
       },
@@ -52,7 +52,7 @@ export default {
       'demoId': 'filter-simple-default-value-filter',
       'name': { 'zh-CN': '筛选面板默认选中值', 'en-US': 'Set Column Filtering Rules' },
       'desc': {
-        'zh-CN': '<p>通过 <code>condition.value</code>可以配置筛选默认的选中值</p>\n',
+        'zh-CN': '<p>通过 <code>condition.value</code>可以配置筛选默认的选中值。</p>\n',
         'en-US': '<p>Set the column filtering rule through the <code>filter</code> attribute</p>\n'
       },
       'codeFiles': ['filter/simple-default-value-filter.vue']
@@ -62,7 +62,7 @@ export default {
       'name': { 'zh-CN': '过滤高级设置', 'en-US': 'Custom Filter' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>inputFilter</code> 可以给input过滤区域配置自定义组件与条件，通过 <code>extends</code> 可以增加快捷过滤列表</p>\n',
+          '<p>通过 <code>inputFilter</code> 可以给input过滤区域配置自定义组件与条件，通过 <code>extends</code> 可以增加快捷过滤列表。</p>\n',
         'en-US': '<p>Set additional parameters through the <code>params</code> attribute</p>\n'
       },
       'codeFiles': ['filter/advanced-filter.vue']
@@ -71,7 +71,7 @@ export default {
       'demoId': 'filter-custom-filter',
       'name': { 'zh-CN': '设置列筛选规则', 'en-US': 'Server Filter' },
       'desc': {
-        'zh-CN': '<p>通过 <code>filter</code> 属性设置列筛选规则</p>\n',
+        'zh-CN': '<p>通过 <code>filter</code> 属性设置列筛选规则。</p>\n',
         'en-US':
           '<p>Configure remote-filter to enable server-side filtering. The server-side filtering invokes the fetch-data table for query. The filter-change event is triggered after the server-side filtering.\nThe <code>services/getGridMockData</code> service in this example needs to be implemented. The example simulates the data returned by a remote service \n</p>\n'
       },
@@ -82,7 +82,7 @@ export default {
       'name': { 'zh-CN': '服务端过滤', 'en-US': 'Enter the default filtering options.' },
       'desc': {
         'zh-CN':
-          '<p>配置 remote-filter 开启服务端过滤，服务端过滤会调用表格 fetch-data 进行查询，filter-change 服务端过滤后触发的事件\n该示例中的 <code>services/getGridMockData</code> 服务需要自行实现，示例模拟了远程服务返回的数据\n</p>\n',
+          '<p>配置 remote-filter 开启服务端过滤，服务端过滤会调用表格 fetch-data 进行查询，filter-change 服务端过滤后触发的事件\n该示例中的 <code>services/getGridMockData</code> 服务需要自行实现，示例模拟了远程服务返回的数据。\n</p>\n',
         'en-US':
           '<p>Set the default input filtering options through the <code>inputFilter.relation</code> attribute. \n Enter the built-in options for filtering: <code>equals</code>, <code>unequal</code>, <code>greaterThan</code>, <code>lessThan</code>, <code>equalToGreaterThan</code>, <code>equalToLessThan</code>, <code>contains</code>, <code>startwith</code>, <code>endwith</code>; Custom options can also be configured. \n When configuring custom options, you need to configure the filtering method through the <code>inputFilter.method</code> attribute. </p>\n'
       },

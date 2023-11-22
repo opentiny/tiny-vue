@@ -2,10 +2,10 @@ import { test, expect } from '@playwright/test'
 
 test('跳转链接', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('badge#target')
+  await page.goto('badge#link')
 
-  const preview = page.locator('#preview')
-  const badge = preview.locator('.tiny-badge')
+  const demo = page.locator('#link')
+  const badge = demo.locator('.tiny-badge')
 
   await expect(badge.first().locator('a')).toBeVisible()
   await expect(badge.first().locator('a')).toContainText('2')

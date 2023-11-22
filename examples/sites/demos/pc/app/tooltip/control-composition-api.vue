@@ -71,7 +71,8 @@ const disabled = ref(false)
 .ellipsis {
   display: inline-block;
   width: 100px;
-  height: 20px;
+  height: 24px;
+  line-height: 24px;
   margin: 0 20px;
   white-space: nowrap;
   overflow: hidden;

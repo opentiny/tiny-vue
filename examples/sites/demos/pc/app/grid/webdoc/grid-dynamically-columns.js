@@ -3,22 +3,22 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'dynamically-columns-dynamicallyColumns',
+      'demoId': 'dynamically-columns-dynamically-columns',
       'name': {
         'zh-CN': '根据日期动态生成列',
         'en-US': 'Grid-Dynamic column generation based on the selected date'
       },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '详细用法参考如下示例：', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['dynamically-columns/dynamically-columns.vue']
     },
     {
       'demoId': 'column-columns-dynamic',
       'name': { 'zh-CN': '动态列数据', 'en-US': '' },
-      'desc': { 'zh-CN': '兼容低版本的动态列数据', 'en-US': '' },
+      'desc': { 'zh-CN': '兼容低版本的动态列数据。', 'en-US': '' },
       'codeFiles': ['dynamically-columns/columns-dynamic.vue']
     },
     {
-      'demoId': 'dynamically-columns-reverseRow',
+      'demoId': 'dynamically-columns-reverse-row',
       'name': { 'zh-CN': '表格行列反转', 'en-US': 'Grid-Inverting Rows and Columns in a Table' },
       'desc': {
         'zh-CN':

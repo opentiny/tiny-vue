@@ -2,9 +2,9 @@ import { test, expect } from '@playwright/test'
 
 test('开启列宽拖拽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('grid-width-height#tiny-first-menu-resize-column-width')
-  const draggerDom = page.getByRole('cell', { name: '名称' }).locator('.tiny-grid-resizable')
-  const thDom = page.getByRole('cell', { name: '名称' })
+  await page.goto('grid-size#size-resize-column-width')
+  const draggerDom = page.getByRole('cell', { name: '所属区域' }).locator('.tiny-grid-resizable')
+  const thDom = page.getByRole('cell', { name: '所属区域' })
   // 获取初始列宽
   const { width: thWidth } = await thDom.boundingBox()
   // 获取拖拽元素位置

@@ -16,6 +16,6 @@ const groupData = ref([
 ])
 
 function handleChange(val) {
-  Modal.message('change事件触发了')
+  Modal.message(`change事件触发了，选中值为${val}`)
 }
 </script>

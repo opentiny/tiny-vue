@@ -1,5 +1,5 @@
 <template>
-  <tiny-cascader v-model="value" :options="options" :props="props" collapse-tags clearable></tiny-cascader>
+  <tiny-cascader v-model="value" :options="options" :props="props" collapse-tags></tiny-cascader>
 </template>
 
 <script>

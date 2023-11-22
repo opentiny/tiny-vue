@@ -6,8 +6,11 @@ export default {
       'demoId': 'toolbar-insert-delete-update',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN':
-          '<p>工具栏配置步骤：\n1、表格以插槽方式引入表格工具栏组件 <code>GridToolbar</code>，并设置工具栏组件属性 <code>slot=&quot;toolbar&quot;</code> 。\n2、设置工具栏组件属性 <code>buttons</code> 进行按钮组相关配置。\n3、表格事件设置 <code>@toolbar-button-click</code> 获取工具栏 <code>buttons</code> 的事件，用户可自定义实现增删改操作的业务逻辑。</p>\n<div class="tip custom-block"><p class="custom-block-title">新增的行需要标记新增状态的样式时需要配置 edit-config 的 markInsert 项为 true</p>\n</div>\n',
+        'zh-CN': `
+        <p>工具栏配置步骤：\n1、表格以插槽方式引入表格工具栏组件 <code>GridToolbar</code>，并设置工具栏组件属性 <code>slot=&quot;toolbar&quot;</code> 。\n2、设置工具栏组件属性 <code>buttons</code> 进行按钮组相关配置。\n3、表格事件设置 <code>@toolbar-button-click</code> 获取工具栏 <code>buttons</code> 的事件，用户可自定义实现增删改操作的业务逻辑。</p>
+        <div class="tip custom-block">
+          <p class="custom-block-title">新增的行需要标记新增状态的样式时需要配置 edit-config 的 markInsert 项为 true。</p>
+        </div>`,
         'en-US':
           '<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>buttons</code> and configure the button group. \n3. Table event setting: The <code>@toolbar-button-click</code> obtains the <code>buttons</code> event on the toolbar. Users can customize the service logic for adding, deleting, and modifying operations. To mark a new line in the </p>\n<div class="tip custom-block"><p class="custom-block-title"> state, set markInsert in edit-config to true</p>\n</div>\n'
       },
@@ -18,7 +21,7 @@ export default {
       'name': { 'zh-CN': '取消删除', 'en-US': 'Cancel deletion' },
       'desc': {
         'zh-CN':
-          '<p>在工具栏中配置 <code>mark_cancel</code> 的 code，勾选数据后，单击 <code>删除/取消删除</code> 按钮，勾选的数据将标记删除线。再单击 <code>保存</code> 按钮请求服务删除标记的数据。已标记删除线的数据勾选后再次单击 <code>删除/取消删除</code> 按钮，会取消删除线。\n 需要配置 fetch-data 请求服务时才有标记删除线和取消删除线的效果\n</p>\n',
+          '<p>在工具栏中配置 <code>mark_cancel</code> 的 code，勾选数据后，单击 <code>删除/取消删除</code> 按钮，勾选的数据将标记删除线。再单击 <code>保存</code> 按钮请求服务删除标记的数据。已标记删除线的数据勾选后再次单击 <code>删除/取消删除</code> 按钮，会取消删除线。\n 需要配置 fetch-data 请求服务时才有标记删除线和取消删除线的效果。\n</p>\n',
         'en-US':
           '<p>Configure the code of <code>mark_cancel</code> on the toolbar, select the data, and click <code>Delete/Undelete</code>. The selected data is marked with strikethrough. Then click the <code>Save</code> button to request the service to delete the marked data. Select the data marked with strikethrough and click <code>Delete/Undelete</code> again to cancel the strikethrough. \nThe effect of marking and canceling strikethrough is available only when the fetch-data request service is configured.\n</p>\n'
       },
@@ -75,8 +78,11 @@ export default {
       'demoId': 'toolbar-refresh-grid',
       'name': { 'zh-CN': '开启表格刷新功能', 'en-US': 'Enable the table refresh function' },
       'desc': {
-        'zh-CN':
-          "<p>工具栏配置步骤：\n1、表格以插槽方式引入表格工具栏组件 <code>GridToolbar</code>，并设置工具栏组件属性 <code>slot=&quot;toolbar&quot;</code> 。\n2、设置工具栏组件属性 <code>refresh</code> 开启表格刷新功能。</p>\n<ul>\n<li>设置表格属性 <code>loading</code> 开启/关闭加载中。\n自定义实现刷新时直接调用<code>handleFetch('reload')</code></li>\n</ul>\n",
+        'zh-CN': `
+        <p>工具栏配置步骤：\n1、表格以插槽方式引入表格工具栏组件 <code>GridToolbar</code>，并设置工具栏组件属性 <code>slot=&quot;toolbar&quot;</code> 。\n2、设置工具栏组件属性 <code>refresh</code> 开启表格刷新功能。</p>
+        <ul>
+          <li>设置表格属性 <code>loading</code> 开启/关闭加载中。\n自定义实现刷新时直接调用<code>handleFetch('reload')</code></li>
+        </ul>`,
         'en-US':
           "<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>refresh</code> to enable the table refresh function. </p>\n<ul>\n<li> Setting Toolbar Properties <code>loading</code>Enable/Disable Loading. \n <code>handleFetch('reload') </code></li>\n</ul>\n is invoked when the customized implementation is refreshed"
       },
@@ -96,7 +102,7 @@ export default {
     {
       'demoId': 'toolbar-grid-full-screen-height',
       'name': { 'zh-CN': '全屏时改变表格高度', 'en-US': 'Change the table height in full screen mode' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '详细用法参考如下示例：', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['toolbar/grid-full-screen-height.vue']
     },
     {

@@ -29,8 +29,8 @@ export default {
           text: 'Button1',
           value: 'Button1',
           sup: {
-            class: ['disabled-bg', 'disabled-text'],
-            text: '售罄'
+            class: ['success-bg'],
+            text: '特惠'
           }
         },
         {
@@ -65,12 +65,10 @@ export default {
 </script>
 
 <style scoped>
-.tiny-button-group :deep(.disabled-bg) {
-  background-color: #ccc;
+.tiny-button-group :deep(.success-bg) {
+  background-color: #52c41a;
 }
-.tiny-button-group :deep(.disabled-tex)t {
-  color: #000;
-}
+
 .tiny-button-group :deep(.sup-slot) {
   line-height: 1;
   padding: 0 4px;

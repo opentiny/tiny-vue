@@ -15,3 +15,9 @@ import { Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
 
 const activeName = ref('second')
 </script>
+
+<style>
+.pc-demo .tiny-tabs__content {
+  line-height: 1.5;
+}
+</style>
