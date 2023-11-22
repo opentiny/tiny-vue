@@ -14,9 +14,6 @@ import {
 import { getComponents } from '../../shared/module-utils'
 import handlebarsRender from './handlebars.render'
 
-const argv = minimist(process.argv.slice(2))
-const { tiny_mode = 'pc' } = argv
-
 const version = getopentinyVersion({ key: 'version' })
 const outputDir = 'packages/vue'
 const MAIN_TEMPLATE = `{{{include}}}
@@ -53,7 +50,7 @@ export const install = (app, opts = {}) => {
 
 const buildFullRuntime = () => {
   const outputPath = pathFromWorkspaceRoot(outputDir, 'app.ts')
-  const components = getComponents(tiny_mode)
+  const components = getComponents('all')
   const includeTemplate: string[] = []
   const componentsTemplate: string[] = []
 

@@ -44,7 +44,6 @@ const createImportMap = (version) => {
     imports[`@opentiny/vue-design-${tinyTheme}`] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}@${version}/index.js`
   }
   if (isMobileFirst) {
-    imports['@opentiny/vue'] = `${getRuntime(version)}tiny-vue-mobile-first.mjs`
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
   }
   return {
@@ -140,7 +139,10 @@ function selectVersion(version) {
 function versionChange(version) {
   const importMap = createImportMap(version)
   store.state.files['import-map.json'] = new File('', JSON.stringify(importMap))
+  insertStyleDom(version)
+}
 
+function insertStyleDom(version) {
   nextTick(() => {
     if (!document.querySelector('iframe')) return
 
@@ -160,6 +162,7 @@ function changeLayout(layout) {
 }
 
 function changeReserve(isReserve) {
+  insertStyleDom(state.selectVersion)
   localStorage.setItem(LAYOUT_REVERSE, isReserve)
 }
 
