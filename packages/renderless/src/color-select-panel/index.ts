@@ -11,7 +11,7 @@ export const onConfirm = (
   color: IColorSelectPanelRef<Color>
 ) => {
   return () => {
-    pre.value = hex.value;
+    pre.value = hex.value
     hex.value = res.value
     if (enableHistory) {
       const itemIdx = Math.max(
@@ -41,7 +41,7 @@ export const onCancel = (
     if (isShow.value) {
       res.value = pre.value
       hex.value = pre.value
-      const tmpColor = new Color(pre.value);
+      const tmpColor = new Color(pre.value)
       color.value.set({
         ...tmpColor.getHSV(),
         h: color.value.get('preH')
@@ -68,7 +68,7 @@ export const onHSVUpdate = (
       emit('hue-update', hue)
     },
     onSVUpdate: ({ s, v }: { s: number; v: number }) => {
-      hex.value = color.value.getHex();
+      hex.value = color.value.getHex()
       onColorUpdate(color, res)
       emit('sv-update', { s, v })
     }
@@ -93,7 +93,7 @@ export const handleHistoryClick = (
   return (history: string) => {
     hex.value = history
     res.value = history
-    const tmpColor = new Color(history);
+    const tmpColor = new Color(history)
     color.value.set({
       ...tmpColor.getHSV(),
     })
@@ -110,7 +110,7 @@ export const handlePredefineClick = (
   return (selectedColor: string) => {
     hex.value = selectedColor
     res.value = selectedColor
-    const tmpColor = new Color(selectedColor);
+    const tmpColor = new Color(selectedColor)
     color.value.set({
       ...tmpColor.getHSV(),
     })

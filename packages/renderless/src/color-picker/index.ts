@@ -9,9 +9,9 @@ export const onCancel = (
   emit
 ) => {
   return (color: Ref<Color>)=>{
-    tmpColor.reset(color.value.getHex());
-    triggerBg.value = pre.value;
-    isShow.value = false;
+    tmpColor.reset(color.value.getHex())
+    triggerBg.value = pre.value
+    isShow.value = false
     emit('cancel')
   }
 }
@@ -24,11 +24,11 @@ export const onConfirm = (
   emit
 ) => {
   return (color: string)=>{
-    pre.value = triggerBg.value;
-    triggerBg.value = color;
-    hex.value = color;
-    isShow.value = false;
-    emit('confirm', color);
+    pre.value = triggerBg.value
+    triggerBg.value = color
+    hex.value = color
+    isShow.value = false
+    emit('confirm', color)
   }
 }
 
@@ -38,7 +38,7 @@ export const onHueUpdate = (
 ) => {
   return (h: number) => {
     triggerBg.value = tmpColor.getHex();
-    tmpColor.set({h});
+    tmpColor.set({h})
   }
 }
 
@@ -48,7 +48,7 @@ export const onSVUpdate = (
 ) => {
   return ({s,v})=>{
     triggerBg.value = tmpColor.getHex();
-    tmpColor.set({s,v});
+    tmpColor.set({s,v})
   }
 }
 

@@ -17,10 +17,10 @@ export const api = [
 
 export const renderless = (props, context, { emit }) => {
   const { modelValue, visible, predefine, size, history } = context.toRefs(props)
-  const pre = context.ref(modelValue.value ?? 'transparent');
-  const triggerBg = context.ref(pre.value ?? 'transparent');
-  const tmpColor = new Color(triggerBg.value ?? 'transparent');
-  const hex = context.ref(modelValue.value ?? 'transparent');
+  const pre = context.ref(modelValue.value ?? 'transparent')
+  const triggerBg = context.ref(pre.value ?? 'transparent')
+  const tmpColor = new Color(triggerBg.value ?? 'transparent')
+  const hex = context.ref(modelValue.value ?? 'transparent')
   const isShow = context.ref(visible?.value ?? false)
   const changeVisible = (state: boolean) => {
     isShow.value = state
@@ -50,19 +50,19 @@ export const renderless = (props, context, { emit }) => {
     onColorUpdate: onColorUpdate(triggerBg)
   }
   context.watch(predefine, (newPredefine: string[]) => {
-    predefineStack.value = [...newPredefine];
+    predefineStack.value = [...newPredefine]
   }, { deep: true })
   context.watch(history, (newHistory: string[]) => {
     stack.value = [...newHistory]
   }, { deep: true })
   context.watch(modelValue, (newValue)=>{
-    pre.value = newValue;
+    pre.value = newValue
     hex.value = newValue
     state.hex = newValue
     state.triggerBg = newValue;
   })
   context.watch(visible, (visible)=>{
-    isShow.value = visible;
+    isShow.value = visible
   })
   return api
 }

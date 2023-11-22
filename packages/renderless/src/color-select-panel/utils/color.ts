@@ -8,7 +8,7 @@ function hexToRgb(hex: string) {
   return { r, g, b, a: a * 100 }
 }
 export const normalizeHexColor = (color: string) => {
-  let normalizedColor: string = color.replace('#', '');
+  let normalizedColor: string = color.replace('#', '')
   if (normalizedColor.length === 3) {
     normalizedColor = normalizedColor
       .split('')
@@ -40,7 +40,7 @@ export default class Color {
   private s = 0
   private v = 0
   private a = 100
-  private preH = 0;
+  private preH = 0
   private enableAlpha = false
   constructor(value: string, alpha = false) {
     this.reset(value)
@@ -58,20 +58,20 @@ export default class Color {
     this.hex = normalizeHexColor(hex)
     const { r, g, b, a } = hexToRgb(this.hex)
     const { h, s, v } = rgb([r, g, b, a]).hsv().object()
-    this.preH = h;
+    this.preH = h
     this.h = h
     this.s = s
     this.v = v
     this.a = a
   }
   set({ h, s, v, a }: { h?: number; s?: number; v?: number; a?: number }) {
-    this.h = h ?? this.h;
+    this.h = h ?? this.h
     this.s = s ?? this.s
     this.v = v ?? this.v
     this.a = a ?? this.a
   }
   setPrevH(val: number){
-    this.preH = val;
+    this.preH = val
   }
 
   /**

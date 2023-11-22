@@ -65,7 +65,7 @@ export default class Color {
     this.preH = h;
   }
   set({ h, s, v, a }: { h?: number; s?: number; v?: number; a?: number }) {
-    this.h = h ?? this.h;
+    this.h = h ?? this.h
     this.s = s ?? this.s
     this.v = v ?? this.v
     this.a = a ?? this.a
