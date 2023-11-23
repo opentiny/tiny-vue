@@ -1,8 +1,8 @@
 <template>
-  <tiny-button @click="btnClick" :reset-time="0">zIndex的值为500</tiny-button>
+  <tiny-button @click="btnClick" :reset-time="0">z-index的值为500</tiny-button>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button, Modal } from '@opentiny/vue'
 
 export default {
@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     btnClick() {
-      Modal.alert({ message: 'zIndex的值为500', zIndex: 500 })
+      Modal.alert({ message: 'z-index的值为500', zIndex: 500 })
     }
   }
 }

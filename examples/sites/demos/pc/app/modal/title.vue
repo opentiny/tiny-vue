@@ -2,7 +2,7 @@
   <tiny-button @click="btnClick" :reset-time="0">自定义标题</tiny-button>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button, Modal } from '@opentiny/vue'
 
 export default {

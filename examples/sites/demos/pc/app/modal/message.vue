@@ -4,6 +4,7 @@
 
 <script lang="jsx">
 import { Button, Modal } from '@opentiny/vue'
+import { iconDel } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -11,7 +12,7 @@ export default {
   },
   methods: {
     btnClick() {
-      Modal.alert({ message: '自定义提示框的内容' })
+      Modal.alert({ message: () => <div style="color: #fa9841">11111</div> })
     }
   }
 }
