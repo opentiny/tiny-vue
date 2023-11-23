@@ -607,11 +607,11 @@ export default {
         },
         {
           'name': 'input-box-type',
-          'type': 'string',
+          'type': '"input" | "underline"',
           'defaultValue': 'input',
           'desc': {
-            'zh-CN': '输入框的显示类型，可选值：input / underline',
-            'en-US': 'Display type of input box, optional values: input / underline'
+            'zh-CN': '输入框的显示类型',
+            'en-US': 'Display type of input box'
           },
           'demoId': 'input-box-type'
         },
@@ -790,11 +790,11 @@ export default {
         },
         {
           'name': 'render-type',
-          'type': 'string',
+          'type': '"tree" | "grid"',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '渲染为下拉表格或下拉树，可选值：tree / grid。需结合 grid-op / tree-op 使用',
-            'en-US': 'Configure Grid data when the Grid component is embedded in the drop-down list box.'
+            'zh-CN': '渲染为下拉表格或下拉树，需结合 grid-op / tree-op 使用',
+            'en-US': 'Rendered as a dropdown table or tree, to be used in conjunction with grid op/tree op'
           },
           'demoId': 'nest-grid'
         },
@@ -820,11 +820,11 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'string',
+          'type': '"medium" | "small" | "mini"',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '输入框尺寸。可选值：medium / small / mini',
-            'en-US': 'Text box size; The value of this attribute can be medium, small, or mini'
+            'zh-CN': '输入框尺寸。',
+            'en-US': 'Text box size'
           },
           'demoId': 'size'
         },
@@ -850,13 +850,12 @@ export default {
         },
         {
           'name': 'tag-type',
-          'type': 'string',
+          'type': '"success" | "info" | "warning" | "danger" ',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '标签类型，仅多选适用。可选值：success / info / warning / danger ,使用 aurora 主题时设置该属性为 info',
+            'zh-CN': '标签类型，仅多选适用。使用 aurora 主题时设置该属性为 info',
             'en-US':
-              '标签类型，仅多选适用。可选值：success / info / warning / danger ,使用 aurora 主题时设置该属性为 info'
+              'Label type, only applicable for multiple choices. Set this property to info when using the aurora theme'
           },
           'demoId': 'tag-type'
         },
