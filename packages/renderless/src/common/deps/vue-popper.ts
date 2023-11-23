@@ -81,7 +81,7 @@ export default (options: IPopperInputParams) => {
 
   // 如果触发源是隐藏的，其弹出层也设置为隐藏。组件可以通过 props.popperOptions.followReferenceHide = true/false来控制
   const followHide = (popperInstance: PopperJS) => {
-    const { followReferenceHide = true } = props?.popperOptions
+    const { followReferenceHide = true } = props?.popperOptions || {}
     const { _popper: popper, _reference: reference } = popperInstance
 
     if (followReferenceHide && getComputedStyle(reference).position !== 'fixed' && reference.offsetParent === null) {
