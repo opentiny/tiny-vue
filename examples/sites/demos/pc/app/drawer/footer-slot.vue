@@ -2,7 +2,11 @@
   <div>
     <tiny-button @click="fn" type="primary"> 底部插槽示例 </tiny-button>
     <tiny-drawer title="标题" :visible="visible" @update:visible="visible = $event" :show-footer="true">
-      <div>内容区域</div>
+      <div>
+        <br />
+        <br />
+        <span>内容区域</span>
+      </div>
 
       <template #footer>
         <div class="my-footer">
