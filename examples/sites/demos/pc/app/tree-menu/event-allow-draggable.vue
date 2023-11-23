@@ -1,15 +1,15 @@
 <template>
   <tiny-tree-menu
     :data="treeData"
+    draggable
     :allow-drag="dragCallback"
     :allow-drop="dropCallback"
     @node-drag-start="dragStart"
     @node-drag-end="dragEnd"
-    draggable
   ></tiny-tree-menu>
 </template>
 
-<script lang="jsx">
+<script>
 import { TreeMenu, Modal } from '@opentiny/vue'
 
 export default {
@@ -17,16 +17,20 @@ export default {
     TinyTreeMenu: TreeMenu
   },
   methods: {
-    dropCallback() {
+    dropCallback(params1, params2, params3) {
+      console.log('allow-drop', params1, params2, params3)
       return true
     },
-    dragCallback() {
+    dragCallback(params) {
+      console.log('allow-drag', params)
       return true
     },
-    dragStart() {
+    dragStart(node, event) {
+      console.log('drag-start', node, event)
       Modal.message('拖拽节点开始时触发的事件')
     },
-    dragEnd() {
+    dragEnd(draggingNode, targetNode, dropType, event) {
+      console.log('drag-end', draggingNode, targetNode, dropType, event)
       Modal.message('拖拽结束时触发的事件')
     }
   },

@@ -1,43 +1,27 @@
 <template>
-  <tiny-tree-menu :data="treeData" class="tree-menu-demo">
-    <template #default="slotScope">
-      <a :target="slotScope.data.target" :class="slotScope.data.class">
-        {{ slotScope.data.label }}
-      </a>
-      <component v-if="slotScope.data.icon" :is="slotScope.data.icon" class="custom-icon"></component>
-    </template>
-  </tiny-tree-menu>
+  <tiny-tree-menu :data="treeData" only-check-children @node-click="handleNodeClick"></tiny-tree-menu>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
-import { iconApp, iconCustom, iconText, iconTotal } from '@opentiny/vue-icon'
 
-const icons = ref({
-  home: iconApp(),
-  guide: iconCustom(),
-  book: iconText(),
-  component: iconTotal()
-})
 const treeData = ref([
   {
     id: 100,
-    label: '首页',
-    class: 'treeClass',
-    target: '_blank',
-    icon: iconApp()
+    label: '首页'
   },
   {
     id: 200,
     label: '指南',
-    class: 'treeNodeClass',
-    target: '_self',
-    icon: iconCustom(),
     children: [
       {
         id: 201,
-        label: '引入组件'
+        label: '引入组件',
+        children: [
+          { id: 20101, label: '按需引入' },
+          { id: 20102, label: '完整引入' }
+        ]
       },
       { id: 202, label: '后端适配器' },
       { id: 203, label: '服务代理' },
@@ -45,13 +29,23 @@ const treeData = ref([
     ]
   },
   {
-    id: 'component',
+    id: 300,
     label: '组件',
-    icon: iconTotal(),
     children: [
       {
         id: 301,
-        label: '表单组件'
+        label: '表单组件',
+        children: [
+          {
+            id: 30101,
+            label: 'Button 按钮',
+            url: 'button'
+          },
+          { id: 30102, label: 'Datepicker 日期', url: '' },
+          { id: 30103, label: 'Dropdown 下拉框', url: '' },
+          { id: 30104, label: 'DropTimes 下拉时间', url: '' },
+          { id: 30105, label: 'Input 输入框', url: '' }
+        ]
       },
       { id: 302, label: '数据组件' },
       { id: 303, label: '导航组件' },
@@ -59,9 +53,8 @@ const treeData = ref([
     ]
   },
   {
-    id: 'book',
+    id: 400,
     label: '教程',
-    icon: iconText(),
     children: [
       {
         id: 401,
@@ -115,15 +108,8 @@ const treeData = ref([
     label: '更新日志'
   }
 ])
-</script>
 
-<style scoped>
-.tree-menu-demo a,
-.tree-menu-demo a:hover {
-  color: #333;
-  text-decoration: none;
+const handleNodeClick = (data) => {
+  Modal.message({ message: `节点-${data.label}被点击了`, status: 'info' })
 }
-.custom-icon {
-  margin-left: 8px;
-}
-</style>
+</script>

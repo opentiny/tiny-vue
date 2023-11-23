@@ -1,10 +1,10 @@
 <template>
-  <tiny-tree-menu :data="treeData" @current-change="currentChange"></tiny-tree-menu>
+  <tiny-tree-menu :data="treeData" draggable></tiny-tree-menu>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
-import { TreeMenu as TinyTreeMenu, Modal } from '@opentiny/vue'
+import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
 
 const treeData = ref([
   {
@@ -32,10 +32,6 @@ const treeData = ref([
     id: 300,
     label: '组件',
     children: [
-      {
-        id: 300,
-        label: '组件'
-      },
       {
         id: 301,
         label: '表单组件',
@@ -164,8 +160,4 @@ const treeData = ref([
     label: '更新日志'
   }
 ])
-
-function currentChange(data) {
-  Modal.message({ message: `选中节点变化为:${data.label}`, status: 'info' })
-}
 </script>

@@ -1,15 +1,20 @@
 <template>
-  <tiny-tree-menu :data="treeData" @node-expand="nodeExpand"></tiny-tree-menu>
+  <div>
+    <p>场景1：默认 可过滤 + 原生 title 属性提示</p>
+    <tiny-tree-menu :data="treeData"></tiny-tree-menu>
+    <p>场景2：不可过滤 + 不设置原生 title 属性</p>
+    <tiny-tree-menu :data="treeData" :show-filter="false" :show-title="false"></tiny-tree-menu>
+  </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
-import { TreeMenu as TinyTreeMenu, Modal } from '@opentiny/vue'
+import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
 
 const treeData = ref([
   {
     id: 100,
-    label: '首页11111111111111111111111111111111111111111111111111'
+    label: '首页'
   },
   {
     id: 200,
@@ -32,10 +37,6 @@ const treeData = ref([
     id: 300,
     label: '组件',
     children: [
-      {
-        id: 300,
-        label: '组件'
-      },
       {
         id: 301,
         label: '表单组件',
@@ -164,8 +165,15 @@ const treeData = ref([
     label: '更新日志'
   }
 ])
-
-function nodeExpand(data) {
-  Modal.message({ message: `节点-${data.label}被打开了`, status: 'info' })
-}
 </script>
+
+<style lang="less" scoped>
+.tiny-tree-menu {
+  height: 300px;
+  overflow: auto;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

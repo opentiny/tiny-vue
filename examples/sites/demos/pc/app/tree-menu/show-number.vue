@@ -1,8 +1,14 @@
 <template>
-  <tiny-tree-menu :data="treeData" :indent="50"></tiny-tree-menu>
+  <tiny-tree-menu
+    :data="treeData"
+    default-expand-all
+    show-number
+    :collapsible="false"
+    :node-height="32"
+  ></tiny-tree-menu>
 </template>
 
-<script lang="jsx">
+<script>
 import { TreeMenu } from '@opentiny/vue'
 
 export default {
@@ -14,21 +20,23 @@ export default {
       treeData: [
         {
           id: 100,
-          label: '首页'
+          label: '首页',
+          number: 0
         },
         {
           id: 200,
           label: '指南',
+          number: 9999,
           children: [
             {
               id: 201,
               label: '引入组件',
               children: [
-                { id: 20101, label: '按需引入' },
-                { id: 20102, label: '完整引入' }
+                { id: 20101, label: '按需引入', number: '9.9k' },
+                { id: 20102, label: '完整引入', number: 1 }
               ]
             },
-            { id: 202, label: '后端适配器' },
+            { id: 202, label: '后端适配器', number: 0 },
             { id: 203, label: '服务代理' },
             { id: 204, label: '构建部署' }
           ]
@@ -36,6 +44,7 @@ export default {
         {
           id: 300,
           label: '组件',
+          number: 8888,
           children: [
             {
               id: 300,
@@ -121,3 +130,14 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-tree-menu {
+  height: 300px;
+  overflow: auto;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

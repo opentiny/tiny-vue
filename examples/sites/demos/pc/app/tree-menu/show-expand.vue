@@ -1,9 +1,10 @@
 <template>
-  <tiny-tree-menu :get-menu-data-sync="getMenuDataSync"></tiny-tree-menu>
+  <tiny-tree-menu :data="treeData" show-expand></tiny-tree-menu>
 </template>
 
-<script lang="jsx">
+<script>
 import { TreeMenu } from '@opentiny/vue'
+import { iconApp, iconExpressSearch, iconTotal, iconUnfreeze, iconFile } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -14,11 +15,13 @@ export default {
       treeData: [
         {
           id: 100,
-          label: '首页'
+          label: '首页',
+          customIcon: iconApp()
         },
         {
           id: 200,
           label: '指南',
+          customIcon: iconExpressSearch(),
           children: [
             {
               id: 201,
@@ -36,6 +39,7 @@ export default {
         {
           id: 300,
           label: '组件',
+          customIcon: iconTotal(),
           children: [
             {
               id: 300,
@@ -64,6 +68,7 @@ export default {
         {
           id: 400,
           label: '教程',
+          customIcon: iconUnfreeze(),
           children: [
             {
               id: 401,
@@ -102,26 +107,25 @@ export default {
         },
         {
           id: 500,
-          label: '规范'
+          label: '规范',
+          customIcon: iconFile()
         },
         {
           id: 600,
-          label: '性能'
+          label: '性能',
+          customIcon: iconFile()
         },
         {
           id: 700,
-          label: '案例'
+          label: '案例',
+          customIcon: iconFile()
         },
         {
           id: 800,
-          label: '更新日志'
+          label: '更新日志',
+          customIcon: iconFile()
         }
       ]
-    }
-  },
-  methods: {
-    getMenuDataSync() {
-      return this.treeData
     }
   }
 }

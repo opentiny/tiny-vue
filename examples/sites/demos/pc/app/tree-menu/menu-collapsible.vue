@@ -1,5 +1,5 @@
 <template>
-  <tiny-tree-menu :data="treeData" :menu-collapsible="menuCollapsible"></tiny-tree-menu>
+  <tiny-tree-menu :data="treeData" menu-collapsible></tiny-tree-menu>
 </template>
 
 <script>
@@ -11,7 +11,6 @@ export default {
   },
   data() {
     return {
-      menuCollapsible: true,
       treeData: [
         {
           id: 100,
@@ -20,6 +19,7 @@ export default {
         {
           id: 200,
           label: '指南',
+
           children: [
             {
               id: 201,
