@@ -193,7 +193,7 @@ export default {
         },
         {
           'name': 'spacing',
-          'type': '[string,number]',
+          'type': 'string | number',
           'defaultValue': '5px',
           'desc': {
             'zh-CN': '菜单按钮之间的间距',
