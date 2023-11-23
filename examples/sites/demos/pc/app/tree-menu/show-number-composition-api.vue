@@ -1,29 +1,37 @@
 <template>
-  <tiny-tree-menu :get-menu-data-sync="getMenuDataSync"></tiny-tree-menu>
+  <tiny-tree-menu
+    :data="treeData"
+    default-expand-all
+    show-number
+    :collapsible="false"
+    :node-height="32"
+  ></tiny-tree-menu>
 </template>
 
-<script setup lang="jsx">
-import { ref } from 'vue'
+<script setup>
+import { reactive } from 'vue'
 import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
 
-const treeData = ref([
+const treeData = reactive([
   {
     id: 100,
-    label: '首页'
+    label: '首页',
+    number: 0
   },
   {
     id: 200,
     label: '指南',
+    number: 9999,
     children: [
       {
         id: 201,
         label: '引入组件',
         children: [
-          { id: 20101, label: '按需引入' },
-          { id: 20102, label: '完整引入' }
+          { id: 20101, label: '按需引入', number: '9.9k' },
+          { id: 20102, label: '完整引入', number: 1 }
         ]
       },
-      { id: 202, label: '后端适配器' },
+      { id: 202, label: '后端适配器', number: 0 },
       { id: 203, label: '服务代理' },
       { id: 204, label: '构建部署' }
     ]
@@ -31,6 +39,7 @@ const treeData = ref([
   {
     id: 300,
     label: '组件',
+    number: 8888,
     children: [
       {
         id: 300,
@@ -112,8 +121,15 @@ const treeData = ref([
     label: '更新日志'
   }
 ])
-
-function getMenuDataSync() {
-  return treeData.value
-}
 </script>
+
+<style lang="less" scoped>
+.tiny-tree-menu {
+  height: 300px;
+  overflow: auto;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

@@ -1,15 +1,23 @@
 <template>
-  <tiny-tree-menu :data="treeData" wrap show-filter show-title></tiny-tree-menu>
+  <tiny-tree-menu
+    :data="treeData"
+    :show-checkbox="true"
+    @check-change="checkChange"
+    @node-click="handleNodeClick"
+    @current-change="currentChange"
+    @node-expand="nodeExpand"
+    @node-collapse="nodeCollapse"
+  ></tiny-tree-menu>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
-import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
+import { TreeMenu as TinyTreeMenu, Modal } from '@opentiny/vue'
 
 const treeData = ref([
   {
     id: 100,
-    label: '首页111111111111111111111111111111111111111'
+    label: '首页'
   },
   {
     id: 200,
@@ -32,10 +40,6 @@ const treeData = ref([
     id: 300,
     label: '组件',
     children: [
-      {
-        id: 300,
-        label: '组件'
-      },
       {
         id: 301,
         label: '表单组件',
@@ -164,4 +168,28 @@ const treeData = ref([
     label: '更新日志'
   }
 ])
+
+const handleNodeClick = (data) => {
+  Modal.message({ message: `节点-${data.label}被点击了`, status: 'info' })
+}
+
+const currentChange = (data) => {
+  Modal.message({ message: `选中节点变化为:${data.label}`, status: 'info' })
+}
+
+const nodeExpand = (data) => {
+  Modal.message({ message: `节点-${data.label}被打开了`, status: 'info' })
+}
+
+const nodeCollapse = (data) => {
+  Modal.message({ message: `节点-${data.label}被关闭了`, status: 'info' })
+}
+
+const checkChange = (node, newVal) => {
+  let state = newVal ? '选中' : '取消'
+  Modal.message({
+    message: `节点-${node.label}被${state}了`,
+    status: 'info'
+  })
+}
 </script>

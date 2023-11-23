@@ -1,9 +1,17 @@
 <template>
-  <tiny-tree-menu :data="treeData" draggable></tiny-tree-menu>
+  <tiny-tree-menu
+    :data="treeData"
+    :show-checkbox="true"
+    @check-change="checkChange"
+    @node-click="handleNodeClick"
+    @current-change="currentChange"
+    @node-expand="nodeExpand"
+    @node-collapse="nodeCollapse"
+  ></tiny-tree-menu>
 </template>
 
-<script lang="jsx">
-import { TreeMenu } from '@opentiny/vue'
+<script>
+import { TreeMenu, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -169,6 +177,27 @@ export default {
           label: '更新日志'
         }
       ]
+    }
+  },
+  methods: {
+    handleNodeClick(data) {
+      Modal.message({ message: `节点-${data.label}被点击了`, status: 'info' })
+    },
+    currentChange(data) {
+      Modal.message({ message: `选中节点变化为:${data.label}`, status: 'info' })
+    },
+    nodeExpand(data) {
+      Modal.message({ message: `节点-${data.label}被打开了`, status: 'info' })
+    },
+    nodeCollapse(data) {
+      Modal.message({ message: `节点-${data.label}被关闭了`, status: 'info' })
+    },
+    checkChange(node, newVal) {
+      let state = newVal ? '选中' : '取消'
+      Modal.message({
+        message: `节点-${node.label}被${state}了`,
+        status: 'info'
+      })
     }
   }
 }

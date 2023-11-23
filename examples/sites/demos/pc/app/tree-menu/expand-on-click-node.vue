@@ -1,8 +1,13 @@
 <template>
-  <tiny-tree-menu :data="treeData" :expand-on-click-node="true"></tiny-tree-menu>
+  <div>
+    <p>场景1：默认点击文字展开菜单</p>
+    <tiny-tree-menu :data="treeData"></tiny-tree-menu>
+    <p>场景2：点击展开按钮才可展开菜单</p>
+    <tiny-tree-menu :data="treeData" :expand-on-click-node="false"></tiny-tree-menu>
+  </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { TreeMenu } from '@opentiny/vue'
 
 export default {
@@ -173,3 +178,14 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-tree-menu {
+  height: 300px;
+  overflow: auto;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

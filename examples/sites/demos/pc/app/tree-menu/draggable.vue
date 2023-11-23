@@ -1,8 +1,8 @@
 <template>
-  <tiny-tree-menu :data="treeData" wrap show-filter show-title></tiny-tree-menu>
+  <tiny-tree-menu :data="treeData" draggable></tiny-tree-menu>
 </template>
 
-<script lang="jsx">
+<script>
 import { TreeMenu } from '@opentiny/vue'
 
 export default {
@@ -14,7 +14,7 @@ export default {
       treeData: [
         {
           id: 100,
-          label: '首页111111111111111111111111111111111111111'
+          label: '首页'
         },
         {
           id: 200,
@@ -37,10 +37,6 @@ export default {
           id: 300,
           label: '组件',
           children: [
-            {
-              id: 300,
-              label: '组件'
-            },
             {
               id: 301,
               label: '表单组件',

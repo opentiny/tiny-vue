@@ -1,19 +1,22 @@
 <template>
-  <tiny-tree-menu :data="treeData" :indent="50"></tiny-tree-menu>
+  <tiny-tree-menu :data="treeData" show-expand></tiny-tree-menu>
 </template>
 
-<script setup lang="jsx">
-import { ref } from 'vue'
+<script setup>
+import { reactive } from 'vue'
 import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
+import { iconApp, iconExpressSearch, iconTotal, iconUnfreeze, iconFile } from '@opentiny/vue-icon'
 
-const treeData = ref([
+const treeData = reactive([
   {
     id: 100,
-    label: '首页'
+    label: '首页',
+    customIcon: iconApp()
   },
   {
     id: 200,
     label: '指南',
+    customIcon: iconExpressSearch(),
     children: [
       {
         id: 201,
@@ -31,6 +34,7 @@ const treeData = ref([
   {
     id: 300,
     label: '组件',
+    customIcon: iconTotal(),
     children: [
       {
         id: 300,
@@ -59,6 +63,7 @@ const treeData = ref([
   {
     id: 400,
     label: '教程',
+    customIcon: iconUnfreeze(),
     children: [
       {
         id: 401,
@@ -97,19 +102,23 @@ const treeData = ref([
   },
   {
     id: 500,
-    label: '规范'
+    label: '规范',
+    customIcon: iconFile()
   },
   {
     id: 600,
-    label: '性能'
+    label: '性能',
+    customIcon: iconFile()
   },
   {
     id: 700,
-    label: '案例'
+    label: '案例',
+    customIcon: iconFile()
   },
   {
     id: 800,
-    label: '更新日志'
+    label: '更新日志',
+    customIcon: iconFile()
   }
 ])
 </script>

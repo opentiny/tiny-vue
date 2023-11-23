@@ -1,8 +1,8 @@
 <template>
-  <tiny-tree-menu :data="treeData" :show-checkbox="true" :check-strictly="true"></tiny-tree-menu>
+  <tiny-tree-menu :data="treeData" :indent="50"></tiny-tree-menu>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
 
@@ -32,10 +32,6 @@ const treeData = ref([
     id: 300,
     label: '组件',
     children: [
-      {
-        id: 300,
-        label: '组件'
-      },
       {
         id: 301,
         label: '表单组件',
