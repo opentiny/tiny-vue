@@ -1729,23 +1729,27 @@ const Methods = {
     if (accordion) {
       rows = rows.slice(rows.length - 1, rows.length)
     }
+    // 这里需要进行一次浅拷贝，不能直接操作vue observe的数组，不然会导致vue频繁的get、set、toRaw、reactive等操作，导致卡顿
+    const treeExpandedsCopy = [...treeExpandeds]
     rows.forEach((row) => {
       if (row[children] && row[children].length) {
-        let index = treeExpandeds.indexOf(row)
+        const index = treeExpandedsCopy.indexOf(row)
         if (accordion) {
           // 同一级只能展开一个
-          let matchObj = findTree(tableFullData, (item) => item === row, treeConfig)
-          remove(treeExpandeds, (item) => ~matchObj.items.indexOf(item))
+          const matchObj = findTree(tableFullData, (item) => item === row, treeConfig)
+          remove(treeExpandedsCopy, (item) => ~matchObj.items.indexOf(item))
         }
         if (~index && (isToggle || !expanded)) {
-          treeExpandeds.splice(index, 1)
+          treeExpandedsCopy.splice(index, 1)
           return
         }
         if (!~index && (isToggle || expanded)) {
-          treeExpandeds.push(row)
+          treeExpandedsCopy.push(row)
         }
       }
     })
+
+    this.treeExpandeds = treeExpandedsCopy
 
     setTreeScrollYCache(this)
 
