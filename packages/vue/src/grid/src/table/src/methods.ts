@@ -1729,7 +1729,8 @@ const Methods = {
     if (accordion) {
       rows = rows.slice(rows.length - 1, rows.length)
     }
-    // 这里需要进行一次浅拷贝，不能直接操作vue observe的数组，不然会导致vue频繁的get、set、toRaw、reactive等操作，导致卡顿
+
+    // 这里需要进行一次浅拷贝，不能直接操作vue observe的数组，不然vue频繁的get、set、toRaw、reactive等操作从而导致卡顿
     const treeExpandedsCopy = [...treeExpandeds]
     rows.forEach((row) => {
       if (row[children] && row[children].length) {
