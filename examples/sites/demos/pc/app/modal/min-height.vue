@@ -2,7 +2,7 @@
   <tiny-button @click="btnClick" :reset-time="0">提示框最小高度为300</tiny-button>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button, Modal } from '@opentiny/vue'
 
 export default {
@@ -14,6 +14,7 @@ export default {
       Modal.alert({
         message: '提示框拖动最小高度为300',
         resize: true,
+        height: 500,
         minHeight: 300
       })
     }

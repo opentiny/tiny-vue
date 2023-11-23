@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { Button as TinyButton, Modal } from '@opentiny/vue'
 
 function baseClick() {
@@ -16,7 +16,6 @@ function baseClick() {
 function successClick() {
   Modal.message({
     message: '500ms后自动关闭提示框',
-    status: 'success',
     duration: '500'
   })
 }
@@ -24,7 +23,6 @@ function successClick() {
 function errorClick() {
   Modal.message({
     message: '5000ms后自动关闭提示框',
-    status: 'error',
     duration: '5000'
   })
 }

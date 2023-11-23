@@ -1,7 +1,7 @@
 <template>
   <div class="content">
-    <tiny-button @click="value1 = !value1" :reset-time="0"> 默认插槽 </tiny-button>
-    <tiny-modal v-model="value1" :lock-scroll="false" show-footer width="1000">
+    <tiny-button @click="visible = !visible" :reset-time="0"> 默认插槽 </tiny-button>
+    <tiny-modal v-model="visible" :lock-scroll="false" show-footer width="1000">
       <template #default>
         <p>test</p>
         <tiny-grid :tooltip-config="{ 'append-to-body': true }" :data="tableData" :auto-resize="true">
@@ -17,11 +17,11 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Button as TinyButton, Modal as TinyModal, Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
 
-const value1 = ref(false)
+const visible = ref(false)
 const tableData = ref([
   {
     id: '1',
