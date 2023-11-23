@@ -25,7 +25,7 @@ export default defineComponent({
   emits: ['alpha-update'],
   props: {
     color: {
-      type: String
+      type: Object
     }
   },
   setup(props, context) {

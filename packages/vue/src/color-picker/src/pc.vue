@@ -21,6 +21,7 @@
         @cancel="onCancel"
         @hue-update="onHueUpdate"
         @sv-update="onSVUpdate"
+        @color-update="onColorUpdate"
         v-model="state.hex"
         :visible="state.isShow"
         :alpha="alpha"
