@@ -15,11 +15,7 @@ test('键盘导航测试', async ({ page }) => {
     .getByRole('textbox')
     .fill('WWWW科收缩技YX公司')
 
-  await page
-    .getByText(
-      '按键说明 Arrow Up ↑：移动到当前活动单元格上面的单元格 Arrow Down ↓：移动到当前活动单元格下面的单元格 Arrow Left ←：移动到当'
-    )
-    .click()
+  await page.getByRole('cell', { name: '公司简介' }).click()
 
   await expect(page.getByRole('cell', { name: 'WWWW科收缩技YX公司' })).toBeVisible()
 })

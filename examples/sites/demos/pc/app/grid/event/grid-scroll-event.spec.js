@@ -5,7 +5,5 @@ test('表格滚动事件', async ({ page }) => {
   await page.goto('grid-event#event-grid-scroll-event')
   const scrollDom = page.getByText('深圳万众科技YX公司').first()
   await scrollDom.scrollIntoViewIfNeeded()
-  await page.waitForTimeout(20)
-
-  await expect(page.locator('.tiny-modal__box').first()).toBeVisible()
+  await expect(page.getByText('提示：触发了表格滚动事件')).toBeVisible()
 })
