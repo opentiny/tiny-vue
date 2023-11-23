@@ -51,7 +51,9 @@ const birthdayFilter = ref({
       component: DatePicker,
       format: 'yyyy-MM-dd',
       valueFormat: 'yyyy-MM-dd',
+      // 最大允许选择的时间
       max: new Date('2000-11-19'),
+      // 最小允许选择的时间
       min: new Date('1989-11-19')
     },
     isDatetime: true
@@ -64,7 +66,9 @@ const hireDateFilter = ref({
       component: DatePicker,
       format: 'yyyy/MM/dd',
       valueFormat: 'yyyy/MM/dd',
+      // 最大允许选择的时间
       max: new Date('2020-11-19'),
+      // 最小允许选择的时间
       min: new Date('2018-11-19')
     },
     isDatetime: true
@@ -77,7 +81,11 @@ const startFilter = ref({
       component: DatePicker,
       format: 'yyyy-MM-dd hh:mm:ss',
       valueFormat: 'yyyy-MM-dd hh:mm:ss',
-      type: 'datetime'
+      type: 'datetime',
+      // 开始日期默认值
+      startDate: '2023-11-19 18:00:00',
+      // 结束日期默认值
+      endDate: '2023-11-19 18:00:00'
     },
     isDatetime: true
   }
@@ -89,7 +97,9 @@ const expiredFilter = ref({
       component: DatePicker,
       format: 'yyyy-MM-dd hh:mm:ss',
       valueFormat: 'yyyy-MM-dd hh:mm:ss',
+      // 最大允许选择的时间
       max: new Date('2020-11-19'),
+      // 最小允许选择的时间
       min: new Date('2010-11-19')
     },
     isDatetime: true

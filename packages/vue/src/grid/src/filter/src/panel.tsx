@@ -33,7 +33,7 @@ import { hooks, h, $prefix } from '@opentiny/vue-common'
 import { iconCheck, iconCheckedSur, iconHalfselect, iconSearch } from '@opentiny/vue-icon'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 
-function renderInputArgs({ _vm, inputFilter }) {
+const renderInputArgs = ({ _vm, inputFilter }) => {
   let isAddbyProgram = false
 
   if (typeof inputFilter.relations_addby !== 'undefined') {
@@ -59,7 +59,7 @@ function renderInputArgs({ _vm, inputFilter }) {
   return { isAddbyProgram, inputRelations }
 }
 
-function renderInputProps({ InputComponent, condition, event, inputFilter, isNativeInput, prop }) {
+const renderInputProps = ({ InputComponent, condition, event, inputFilter, isNativeInput, prop }) => {
   let inputProps = {
     style: 'width:100%',
     on: {
@@ -115,8 +115,8 @@ const iconRender = function (checked, index, halfChecked) {
   }
 }
 
-function renderEnumableOptions({ iconRender, _vm, filterStore, selectAll, searchable }) {
-  const resultList = filterStore.options.filter((value) => value.label?.toString().includes(_vm.searchValue))
+const renderEnumableOptions = ({ iconRender, _vm, filterStore, selectAll, searchable }) => {
+  const resultList = filterStore.options.filter((value) => value.label?.toString().includes(filterStore.searchValue))
 
   if (resultList.length) {
     const filterList = resultList.map((item, index) => (
@@ -133,8 +133,7 @@ function renderEnumableOptions({ iconRender, _vm, filterStore, selectAll, search
             // 多选
             item.checked = !item.checked
           }
-        }}
-      >
+        }}>
         {filterStore.multi ? iconRender(item.checked, index + 1) : null}
         <a title={item.label}> {item.label} </a>
       </li>
@@ -155,8 +154,7 @@ function renderEnumableOptions({ iconRender, _vm, filterStore, selectAll, search
               if (!filterStore.multi) {
                 _vm.filterEnum()
               }
-            }}
-          >
+            }}>
             {filterStore.multi
               ? iconRender(
                   filterStore.options.every((item) => item.checked),
@@ -199,10 +197,7 @@ export default {
       popperJS: null,
       showAdvance: false,
       showAdvItems: false,
-      listPopper: null,
-      searchValue: '',
-      startDate: '',
-      endDate: ''
+      listPopper: null
     }
   },
   render() {
@@ -218,7 +213,6 @@ export default {
       renderSimple
     } = this as any
     const { args, column, options, layout = 'input,enum,default,extends,base' } = filterStore
-
     const layoutMap = {
       input: renderInput,
       enum: renderEnumable,
@@ -247,8 +241,7 @@ export default {
             'tiny-grid__filter-simple': layout.includes('simple')
           }
         ]}
-        style={filterStore.style}
-      >
+        style={filterStore.style}>
         {filterStore.visible ? (
           <div class={['tiny-grid__filter-body', { 'show-addvance': this.showAdvance }]}>
             {column.slots && column.slots.filter
@@ -334,16 +327,14 @@ export default {
             class={['tiny-grid__filter-option', { active: condition.empty === true }]}
             onClick={() => {
               this.filterNull(true)
-            }}
-          >
+            }}>
             <a class="item-content">{this.i18n('ui.grid.filter.empty')}</a>
           </li>
           <li
             class={['tiny-grid__filter-option', { active: condition.empty === false }]}
             onClick={() => {
               this.filterNull(false)
-            }}
-          >
+            }}>
             <a class="item-content">{this.i18n('ui.grid.filter.unempty')}</a>
           </li>
         </ul>
@@ -364,8 +355,7 @@ export default {
               class="tiny-grid__filter-option"
               onClick={() => {
                 this.filterExtends(item)
-              }}
-            >
+              }}>
               <a class="item-content">{item.label}</a>
             </li>
           ))}
@@ -405,8 +395,7 @@ export default {
                       function () {
                         return true
                       }
-                  }}
-                >
+                  }}>
                   {label}
                 </Radio>
               ))}
@@ -440,8 +429,7 @@ export default {
               <Button
                 onClick={() => {
                   filterStore.visible = false
-                }}
-              >
+                }}>
                 {this.i18n('ui.base.cancel')}
               </Button>
             </div>
@@ -487,8 +475,12 @@ export default {
                   value-format={valueFormat}
                   picker-options={pickerOptions}
                   class="tiny-grid__filter-date-pick"
-                  v-model={this.startDate}
-                ></DatePickComponents>
+                  onChange={(value) => {
+                    if (filterStore.datetimeConfig) {
+                      filterStore.datetimeConfig.startDate = value
+                    }
+                  }}
+                  v-model={filterStore.startDate}></DatePickComponents>
               </li>
               <li class="tiny-grid__filter-date-item">
                 <span>{this.i18n('ui.grid.filter.endDate')}</span>
@@ -498,8 +490,12 @@ export default {
                   value-format={valueFormat}
                   picker-options={pickerOptions}
                   class="tiny-grid__filter-date-pick"
-                  v-model={this.endDate}
-                ></DatePickComponents>
+                  v-model={filterStore.endDate}
+                  onChange={(value) => {
+                    if (filterStore.datetimeConfig) {
+                      filterStore.datetimeConfig.endDate = value
+                    }
+                  }}></DatePickComponents>
               </li>
             </ul>
             <div class="tiny-grid__filter-option filter-option__btns filter-option__date-button">
@@ -510,8 +506,7 @@ export default {
                 size="mini"
                 onClick={() => {
                   filterStore.visible = false
-                }}
-              >
+                }}>
                 {this.i18n('ui.base.cancel')}
               </Button>
             </div>
@@ -528,7 +523,12 @@ export default {
           <div class="tiny-grid__filter-panel filter-panel__enum filter-panel__simple">
             {InputComponents ? (
               <InputComponents
-                v-model={this.searchValue}
+                v-model={filterStore.searchValue}
+                onChange={(value) => {
+                  if (filterStore.searchConfig) {
+                    filterStore.searchConfig.searchValue = value
+                  }
+                }}
                 class="tiny-grid__filter-search"
                 clearable
                 v-slots={{
@@ -556,8 +556,7 @@ export default {
                   size="mini"
                   onClick={() => {
                     filterStore.visible = false
-                  }}
-                >
+                  }}>
                   {this.i18n('ui.base.cancel')}
                 </Button>
               </div>
@@ -676,11 +675,11 @@ export default {
       this.confirmFilter('input')
     },
     filterDate() {
-      const { startDate, endDate } = this
+      const { startDate, endDate } = this.filterStore
       this.condition.input = ''
       this.condition.value = []
       this.condition.empty = null
-      this.condition.dateList = [this.startDate, this.endDate]
+      this.condition.dateList = [startDate, endDate]
 
       if (startDate && !endDate) {
         this.condition.relation = 'greaterThan'
