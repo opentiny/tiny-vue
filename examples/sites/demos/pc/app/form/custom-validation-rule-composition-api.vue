@@ -58,7 +58,9 @@ const rules = ref({
 })
 
 function handleSubmit() {
-  ruleFormRef.value.validate()
+  ruleFormRef.value.validate(() => {
+    // empty
+  })
 }
 
 function changeRule() {

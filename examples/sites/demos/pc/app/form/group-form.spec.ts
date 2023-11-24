@@ -4,10 +4,10 @@ test('测试分组表单', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('form#group-form')
 
-  const preview = page.locator('#preview')
-  const form = preview.locator('.tiny-form')
+  const demo = page.locator('#group-form')
+  const form = demo.locator('.tiny-form')
   const requiredTip = page.locator('.tiny-tooltip').getByText('必填')
-  const submitButton = preview.getByRole('button', { name: '确认' })
+  const submitButton = demo.getByRole('button', { name: '确认' })
 
   await expect(form).toHaveCount(2)
   await submitButton.click()

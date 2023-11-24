@@ -4,8 +4,8 @@ test('测试表单标签文本插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('form#slot-label')
 
-  const preview = page.locator('#preview')
-  const form = preview.locator('.tiny-form')
+  const demo = page.locator('#slot-label')
+  const form = demo.locator('.tiny-form')
   const formItem = form.locator('.tiny-form-item')
 
   await expect(formItem.first().locator('.tiny-form-item__label')).toHaveText('必填')
