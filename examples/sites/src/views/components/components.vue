@@ -112,6 +112,7 @@
         <tiny-anchor
           :is-affix="true"
           :links="anchorLinks"
+          :key="anchorRefreshKey"
           mask-class="custom-active-anchor"
           @link-click="handleAnchorClick"
         >
@@ -123,7 +124,7 @@
 </template>
 
 <script lang="jsx">
-import { defineComponent, reactive, computed, toRefs, watch, onMounted, onUnmounted, nextTick } from 'vue'
+import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref } from 'vue'
 import { marked } from 'marked'
 import { Loading, Anchor, ButtonGroup, ColumnListGroup } from '@opentiny/vue'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
@@ -148,6 +149,7 @@ export default defineComponent({
     loading: Loading.directive
   },
   setup() {
+    const anchorRefreshKey = ref(0)
     const state = reactive({
       webDocPath: computed(() => ''),
       langKey: $t2('zh-CN', 'en-US'),
@@ -361,6 +363,8 @@ export default defineComponent({
           state.currJson = {}
         } else {
           loadPage()
+          // 每次切换组件都需要让锚点组件重新刷新
+          anchorRefreshKey.value++
         }
       }
     )
@@ -390,6 +394,7 @@ export default defineComponent({
       ...toRefs(state),
       ...fn,
       $t,
+      anchorRefreshKey,
       apiModeState,
       templateModeState,
       optionsList
