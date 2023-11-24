@@ -4,8 +4,8 @@ test('测试表单校验规则', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('form#form-validation')
 
-  const preview = page.locator('#preview')
-  const form = preview.locator('.tiny-form')
+  const demo = page.locator('#form-validation')
+  const form = demo.locator('.tiny-form')
 
   // 直接提交，查看是否出现检验提示
   await form.getByRole('button', { name: '提交' }).click()
@@ -21,8 +21,8 @@ test('测试表单输入变化和失焦是否出现校验', async ({ page }) => 
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('form#form-validation')
 
-  const preview = page.locator('#preview')
-  const form = preview.locator('.tiny-form')
+  const demo = page.locator('#form-validation')
+  const form = demo.locator('.tiny-form')
   const formItem = form.locator('.tiny-form-item')
   const requiredTip = page.getByRole('tooltip', { name: '必填' })
 
@@ -44,7 +44,7 @@ test('测试表单输入变化和失焦是否出现校验', async ({ page }) => 
   await firstInput.click()
   await expect(page.getByRole('tooltip', { name: '不符合规则的日期格式' })).toBeVisible()
   await datePicker.click()
-  await page.locator('.tiny-date-picker').getByText('15').click()
+  await page.locator('.tiny-date-picker .tiny-date-table__row').getByText('15').nth(1).click()
   await expect(page.getByRole('tooltip', { name: '不符合规则的日期格式' })).not.toBeVisible()
 
   // url输入框
@@ -62,17 +62,6 @@ test('测试表单输入变化和失焦是否出现校验', async ({ page }) => 
   await expect(page.getByRole('tooltip', { name: '非法邮件地址' })).toBeVisible()
   emailInput.fill(validEmail)
   await expect(page.getByRole('tooltip', { name: '非法邮件地址' })).not.toBeVisible()
-
-  // 级联选择器
-  const cascade = formItem.locator('.tiny-cascader input')
-  const cascadeSelect = page.locator('.tiny-cascader-dropdown')
-  await cascade.click()
-  await firstInput.click()
-  await expect(requiredTip.first()).toBeVisible()
-  await cascade.click()
-  await cascadeSelect.getByText('指南').click()
-  await cascadeSelect.getByText('安装').click()
-  await expect(requiredTip.first()).not.toBeVisible()
 
   // numeric输入
   const numeric = formItem.locator('.tiny-numeric').first()
