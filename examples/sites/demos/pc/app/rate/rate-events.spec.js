@@ -6,7 +6,7 @@ test.describe('rate change事件', () => {
     await page.goto('rate#rate-events')
 
     const icon = page.locator('.tiny-rate__star > .tiny-svg')
-    const modal = page.locator('.tiny-modal__box')
+    const modal = page.locator('.tiny-modal__box .tiny-modal__text').filter({ hasText: '选中的值是5' })
 
     await icon.nth(4).click()
     await expect(modal).toBeVisible()
