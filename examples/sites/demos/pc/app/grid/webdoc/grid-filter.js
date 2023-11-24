@@ -28,6 +28,15 @@ export default {
       'codeFiles': ['filter/default-filter.vue']
     },
     {
+      'demoId': 'filter-dynamic-filter',
+      'name': { 'zh-CN': '动态改变筛选项', 'en-US': 'Filter' },
+      'desc': {
+        'zh-CN': `<p>通过改变自定义的 <code>filter</code> 自定义筛选的规则中的 <code>values</code> 数组，或者将 <code>values</code> 定义成方法可以动态的返回筛选项`,
+        'en-US': ''
+      },
+      'codeFiles': ['filter/dynamic-filter.vue']
+    },
+    {
       'demoId': 'filter-simple-filter',
       'name': { 'zh-CN': '简化版筛选-单选/多选菜单', 'en-US': 'Custom Parameter' },
       'desc': {
