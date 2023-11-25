@@ -1,11 +1,12 @@
 import { test, expect } from '@playwright/test'
 
-test('基本用法', async ({ page }) => {
+test('简易模式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('split#basic-usage')
+  await page.goto('split#trigger-simple')
   // 获取拖拽元素
-  const triggerBtn = page.locator('.tiny-split-trigger')
+  const triggerBtn = page.locator('.tiny-split-trigger-con-simple')
   const leftPanel = page.locator('.left-pane')
+  const rightPanel = page.locator('.right-pane')
   const { width: leftPanelWidth } = await leftPanel.boundingBox()
   const { x, y, width: triggerBtnWidth } = await triggerBtn.boundingBox()
   // 鼠标按下
