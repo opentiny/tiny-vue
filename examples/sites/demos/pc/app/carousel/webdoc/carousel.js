@@ -122,10 +122,9 @@ export default {
     {
       'name': 'carousel',
       'type': 'component',
-      'properties': [],
       'events': [],
       'slots': [],
-      'carousel-attrs': [
+      'props': [
         {
           'name': 'arrow',
           'type': 'string',
@@ -197,7 +196,7 @@ export default {
           'demoId': 'close-loop'
         }
       ],
-      'carousel-slots': [
+      'slots': [
         {
           'name': 'default',
           'type': '',
@@ -206,7 +205,7 @@ export default {
           'demoId': 'manual-play'
         }
       ],
-      'carousel-methods': [
+      'methods': [
         {
           'name': 'next',
           'type': '',
@@ -229,7 +228,7 @@ export default {
           'demoId': 'manual-play'
         }
       ],
-      'carousel-events': [
+      'events': [
         {
           'name': 'change',
           'type': '',
@@ -237,8 +236,12 @@ export default {
           'desc': { 'zh-CN': '幻灯片切换时触发', 'en-US': '' },
           'demoId': 'carousel-events'
         }
-      ],
-      'carouselItem-attrs': [
+      ]
+    },
+    {
+      'name': 'carousel-item',
+      'type': 'component',
+      'props': [
         {
           'name': 'title',
           'type': 'string',
@@ -254,7 +257,7 @@ export default {
           'demoId': 'show-title'
         }
       ],
-      'carouselItem-slots': [
+      'slots': [
         {
           'name': 'default',
           'type': '',

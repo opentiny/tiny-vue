@@ -365,7 +365,7 @@ export default {
       ]
     },
     {
-      'name': 'dropdownMenu',
+      'name': 'dropdown-menu',
       'type': 'component',
       'properties': [
         {
@@ -424,7 +424,7 @@ export default {
       ]
     },
     {
-      'name': 'dropdownItem',
+      'name': 'dropdown-item',
       'type': 'component',
       'properties': [
         {

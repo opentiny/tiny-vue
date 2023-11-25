@@ -1879,8 +1879,12 @@ export default {
           },
           'demoId': 'grid-toolbar#toolbar-grid-full-screen'
         }
-      ],
-      'column-props': [
+      ]
+    },
+    {
+      'name': 'grid-column',
+      'type': 'component',
+      'props': [
         {
           'name': 'align',
           'type': `'left' | 'center' | 'right'`,
@@ -2234,7 +2238,7 @@ export default {
           'demoId': 'grid-tip#tip-column-header-tip'
         }
       ],
-      'column-slots': [
+      'slots': [
         {
           'name': 'default',
           'type': '',
@@ -2279,8 +2283,12 @@ export default {
           },
           'demoId': 'grid-slot#slot-header-slot'
         }
-      ],
-      'toolbar-props': [
+      ]
+    },
+    {
+      'name': 'grid-toolbar',
+      'type': 'component',
+      'props': [
         {
           'name': 'buttons',
           'type': `{
@@ -2374,7 +2382,7 @@ export default {
           'demoId': 'grid-toolbar#toolbar-grid-full-screen'
         }
       ],
-      'toolbar-slots': [
+      'slots': [
         {
           'name': 'toolbar',
           'type': '',
@@ -2390,7 +2398,7 @@ export default {
           'demoId': 'grid-toolbar#toolbar-custom-toolbar'
         }
       ],
-      'toolbar-events': [
+      'events': [
         {
           'name': 'button-click',
           'type': '(args: IButtonClick, event: Event)=> void',

@@ -140,7 +140,7 @@ export default {
     {
       'name': 'tooltip',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'effect',
           'type': 'string',

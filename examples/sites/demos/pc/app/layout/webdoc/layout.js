@@ -109,10 +109,7 @@ export default {
     {
       'name': 'layout',
       'type': 'component',
-      'properties': [],
-      'events': [],
-      'slots': [],
-      'layout-attrs': [
+      'props': [
         {
           'name': 'cols',
           'type': 'number',
@@ -133,8 +130,12 @@ export default {
           },
           'demoId': 'tag'
         }
-      ],
-      'row-attrs': [
+      ]
+    },
+    {
+      'name': 'row',
+      'type': 'component',
+      'props': [
         {
           'name': 'align',
           'type': 'string',
@@ -189,8 +190,12 @@ export default {
           },
           'demoId': 'tag'
         }
-      ],
-      'col-attrs': [
+      ]
+    },
+    {
+      'name': 'col',
+      'type': 'component',
+      'props': [
         {
           'name': 'span',
           'type': 'number',

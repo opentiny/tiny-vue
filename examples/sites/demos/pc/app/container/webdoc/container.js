@@ -41,7 +41,7 @@ export default {
     {
       'name': 'container',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'pattern',
           'type': `'default' | 'simple' | 'legend' | 'classic' | 'fashion'`,
