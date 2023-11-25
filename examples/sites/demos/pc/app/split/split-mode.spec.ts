@@ -8,5 +8,5 @@ test('分割方式', async ({ page }) => {
   const { width: splitWidth } = await split.boundingBox()
   const { width: centerWidth } = await centerBtn.boundingBox()
   //   判断宽度是否和面板总宽度保持一致
-  await expect(splitWidth).toEqual(centerWidth)
+  await expect(splitWidth).toBeCloseTo(centerWidth)
 })

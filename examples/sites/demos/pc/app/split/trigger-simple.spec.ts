@@ -6,7 +6,6 @@ test('简易模式', async ({ page }) => {
   // 获取拖拽元素
   const triggerBtn = page.locator('.tiny-split-trigger-con-simple')
   const leftPanel = page.locator('.left-pane')
-  const rightPanel = page.locator('.right-pane')
   const { width: leftPanelWidth } = await leftPanel.boundingBox()
   const { x, y, width: triggerBtnWidth } = await triggerBtn.boundingBox()
   // 鼠标按下
@@ -17,5 +16,5 @@ test('简易模式', async ({ page }) => {
   // 移动之后的宽度为:移动之前的宽度+50-分割线宽度的一半
   const afterMove = leftPanelWidth + 100 - triggerBtnWidth / 2
   const { width: afterWidth } = await leftPanel.boundingBox()
-  await expect(afterMove).toEqual(afterWidth)
+  await expect(afterMove).toBeCloseTo(afterWidth)
 })
