@@ -116,7 +116,7 @@ export default {
     {
       'name': 'image',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'src',
           'type': 'string',
